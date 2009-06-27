@@ -1334,8 +1334,8 @@ show_open_gl_driver_info ( void )
     open_gl_check_error_status ( __FUNCTION__ );
     fprintf( stderr , "\nVersion    : %s", glGetString( GL_VERSION ) );
     open_gl_check_error_status ( __FUNCTION__ );
-    // fprintf( stderr , "\nExtentions : %s", glGetString( GL_EXTENSIONS ) );
-    // open_gl_check_error_status ( __FUNCTION__ );
+    fprintf( stderr , "\nExtensions : %s", glGetString( GL_EXTENSIONS ) );
+    open_gl_check_error_status ( __FUNCTION__ );
     fprintf( stderr , "\n\n" );
 #endif
 }; // void safely_show_open_gl_driver_info ( void )
