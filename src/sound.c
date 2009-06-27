@@ -407,6 +407,29 @@ void SwitchBackgroundMusicTo ( char* filename_raw_parameter )
 
 /** ============================================ SAMPLE FUNCTIONS ========================================= */
 
+static void sample_wait()
+{
+	SDL_Event event;
+
+	while (1) {
+		SDL_WaitEvent(&event);
+
+		if (event.type == SDL_MOUSEBUTTONDOWN)
+			return;
+		else if (event.type == SDL_KEYDOWN) {
+			switch (event.key.keysym.sym) {
+				case SDLK_SPACE:
+				case SDLK_RETURN:
+				case SDLK_ESCAPE:
+					return;
+					break;
+				default:
+					break;
+			}
+		}
+	}
+}
+
 //----------------------------------------------------------------------
 // This function should play a sound sample, that is NOT needed within
 // the action part of the game but only in menus or dialogs and can
@@ -423,7 +446,6 @@ void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With
     int pathlen;
     char *extension;
     char *extensions[] = { ".spx", ".ogg", ".wav", NULL };  // Extensions to try for audio
-    int simulated_playback_starting_time;
 
     //--------------------
     // These variables will only be needed when compiling with sound!
@@ -461,17 +483,9 @@ void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With
 	// be appropriate.  On pressing the left button or space or escape
 	// the waiting time will be cancelled anyway.
 	//
-	if ( With_Waiting )
-	    {
-	    simulated_playback_starting_time = SDL_GetTicks() ;
-
-	    while ( ( SDL_GetTicks() - simulated_playback_starting_time < 7 * 1000 ) &&
-		    !EscapePressed() && !SpacePressed() && !MouseLeftPressed())
-		SDL_Delay( 10 );
-
-	    while ( EscapePressed() || SpacePressed() || MouseLeftPressed() )
-		SDL_Delay(1);
-	    }
+	if (With_Waiting) {
+		sample_wait();
+	}
 
 	//--------------------
 	// Since sound is disabled otherwise we MUST return here and not
@@ -565,17 +579,9 @@ void PlayOnceNeededSoundSample( const char* SoundSampleFileName , const int With
 	// be appropriate.  On pressing the left button or space or escape
 	// the waiting time will be cancelled anyway.
 	//
-	if ( With_Waiting )
-	    {
-	    simulated_playback_starting_time = SDL_GetTicks() ;
-
-	    while ( ( SDL_GetTicks() - simulated_playback_starting_time < 7 * 1000 ) &&
-		    !EscapePressed() && !SpacePressed() && !MouseLeftPressed() )
-		SDL_Delay(10);
-
-	    while ( EscapePressed() || SpacePressed() || MouseLeftPressed() )
-		SDL_Delay(10);
-	    }
+	if (With_Waiting) {
+		sample_wait();
+	}
 
 	//--------------------
 	// Now we must return, since we do not want to 'free' the sound sample, that
