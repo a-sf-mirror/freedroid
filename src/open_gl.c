@@ -919,23 +919,26 @@ RestoreMenuBackground ( int backup_slot )
     if ( use_open_gl )
     {
 #ifdef HAVE_LIBGL
-    int h = (GameConfig . screen_height > 1024 ) ? 2048 : 1024;
-    int w = (GameConfig . screen_width > 1024 ) ? 2048 : 1024;
+    int h = GameConfig.screen_height;
+    int w = GameConfig.screen_width;
     
-    glBindTexture( GL_TEXTURE_2D, ( StoredMenuBackgroundTex [ backup_slot ] ) );
+	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_RECTANGLE_ARB);
+    glBindTexture(GL_TEXTURE_RECTANGLE_ARB, ( StoredMenuBackgroundTex [ backup_slot ] ) );
 
     glBegin(GL_QUADS);
-    glTexCoord2f( 0.0f, 1.0f );
+    glTexCoord2i(0, h);
     glVertex2i( 0 , 0 );
-    glTexCoord2f( 0.0f, 0.0 );
+    glTexCoord2i(0, 0);
     glVertex2i( 0 , h );
-    glTexCoord2f( 1.0f, 0.0 );
+    glTexCoord2i(w, 0);
     glVertex2i( w , h );
-    glTexCoord2f( 1.0f, 1.0 );
+    glTexCoord2i(w, h);
     glVertex2i( w , 0 );
     glEnd( );
 
-    glDisable ( GL_BLEND );
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_RECTANGLE_ARB);
 
 #endif
     }
@@ -977,17 +980,17 @@ StoreMenuBackground ( int backup_slot )
 		glGenTextures(1, &StoredMenuBackgroundTex[backup_slot]);
 		}
 
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture( GL_TEXTURE_2D, StoredMenuBackgroundTex [ backup_slot ]);
-        glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_NEAREST );
-        glTexParameteri( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_NEAREST );
+	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_RECTANGLE_ARB);
+	glBindTexture(GL_TEXTURE_RECTANGLE_ARB, StoredMenuBackgroundTex [ backup_slot ]);
+	glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MAG_FILTER , GL_NEAREST );
+	glTexParameteri(GL_TEXTURE_RECTANGLE_ARB, GL_TEXTURE_MIN_FILTER , GL_NEAREST );
 
-	// We assume the GL setup supports 2048x2048 textures. If it's not the case, heh... change your graphics card :)
-	int txw = (GameConfig . screen_width > 1024) ? 2048 : 1024;
-	int txh = (GameConfig . screen_height > 1024 ) ? 2048 : 1024;
-
-	glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, GameConfig.screen_height - txh, txw,  txh, 0);
+	glCopyTexImage2D(GL_TEXTURE_RECTANGLE_ARB, 0, GL_RGBA, 0, 0, GameConfig.screen_width,  GameConfig.screen_height, 0);
 	open_gl_check_error_status(__FUNCTION__);
+	
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_RECTANGLE_ARB);
 
 #endif
     }
