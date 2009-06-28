@@ -819,68 +819,66 @@ static void enemy_spray_blood ( enemy *CurEnemy )
  */
 static int kill_enemy(enemy * target, char givexp, int killertype)
 {
-    char game_message_text [ 300 ] ;
-    int reward = 0;
-
-    /* Give death message */
-    if ( givexp ) 
-	{
-	reward = Druidmap [ target -> type ] . experience_reward;
-	Me . Experience += reward;
-	}
-
-    if ( target->is_friendly )
-	{
-	if ( killertype && killertype != -1) //killed by someone else, and we know who it is
-	    sprintf ( game_message_text , _("Your friend %s was killed by %s."), Druidmap [ target -> type ] . druidname, Druidmap [ killertype ] . druidname );
-	else if ( ! killertype )
-	    sprintf ( game_message_text, _("You killed %s."), Druidmap [ target -> type ] . druidname ); 
-	else
-	    sprintf ( game_message_text, _("%s is dead."), Druidmap [ target -> type ] . druidname ); 
-	}
-    else
-	{
-	if ( givexp )
-	    sprintf ( game_message_text , _("For defeating %s, you receive %d experience.") , Druidmap [ target -> type ] . druidname,  reward );
-	else 
-	    if ( killertype && killertype != -1) 
-		sprintf(game_message_text , _("%s was killed by %s."), Druidmap [ target -> type ] . druidname, Druidmap [ killertype ] . druidname);
-	    else sprintf(game_message_text, _("%s died."), Druidmap [ target -> type ] . druidname);
-	}
-
-    append_new_game_message ( game_message_text );
-
-    if ( MakeSureEnemyIsInsideHisLevel ( target ) ) 
-    {
-	Me . KillRecord [ target -> type ] ++ ;
+	int reward = 0;
 	
-	DropEnemyTreasure ( target ) ;
-
-
-    //--------------------
-    // NOTE:  We reset the animation phase to the first death animation image
-    //        here.  But this may be WRONG!  In the case that the enemy graphics
-    //        hasn't been loaded yet, this will result in '1' for the animation
-    //        phase.  That however is unlikely to happen unless the bot is killed
-    //        right now and hasn't been ever visible in the game yet.  Also it
-    //        will lead only to minor 'prior animation' before the real death
-    //        phase is reached and so serious bugs other than that, so I think it 
-    //        will be tolerable this way.
-    //
-	    target -> animation_phase = ( ( float ) first_death_animation_image [ target -> type ] ) - 1 + 0.1 ;
-	    target -> animation_type = DEATH_ANIMATION;
-	    play_death_sound_for_bot ( target );
-	    DebugPrintf ( 1 , "\n%s(): playing death sound because bot of type %d really died." , 
-			  __FUNCTION__ , target -> type );
-
-        if ( MyRandom(15) == 1) 	    
-		enemy_spray_blood ( target ) ;
-    }
-
-    list_move(&(target->global_list), &dead_bots_head); // bot is dead? move it to dead list
-    list_del(&(target->level_list)); // bot is dead? remove it from level list
-
-    return 0;
+	/* Give death message */
+	if ( givexp ) 
+	{
+		reward = Druidmap[target->type].experience_reward;
+		Me.Experience += reward;
+	}
+	
+	if ( target->is_friendly )
+	{
+		if ( killertype && killertype != -1) //killed by someone else, and we know who it is
+			append_new_game_message( _("Your friend %s was killed by %s."), 
+					Druidmap[target->type].druidname, Druidmap[killertype].druidname );
+		else if ( ! killertype )
+			append_new_game_message( _("You killed %s."), Druidmap[target->type].druidname );
+		else
+			append_new_game_message( _("%s is dead."), Druidmap[target->type].druidname );
+	}
+	else
+	{
+		if ( givexp )
+			append_new_game_message( _("For defeating %s, you receive %d experience."), Druidmap[target->type].druidname, reward );
+		else 
+			if ( killertype && killertype != -1 ) 
+				append_new_game_message( _("%s was killed by %s."), Druidmap[target->type].druidname, Druidmap[killertype].druidname );
+			else 
+				append_new_game_message( _("%s died."), Druidmap[target->type].druidname );
+	}
+	
+	if ( MakeSureEnemyIsInsideHisLevel ( target ) ) 
+	{
+		Me.KillRecord[target->type]++;
+		
+		DropEnemyTreasure( target );
+		
+		//--------------------
+		// NOTE:  We reset the animation phase to the first death animation image
+		//        here.  But this may be WRONG!  In the case that the enemy graphics
+		//        hasn't been loaded yet, this will result in '1' for the animation
+		//        phase.  That however is unlikely to happen unless the bot is killed
+		//        right now and hasn't been ever visible in the game yet.  Also it
+		//        will lead only to minor 'prior animation' before the real death
+		//        phase is reached and so serious bugs other than that, so I think it 
+		//        will be tolerable this way.
+		//
+		target->animation_phase = ( (float)first_death_animation_image[target->type] ) - 1 + 0.1;
+		target->animation_type = DEATH_ANIMATION;
+		play_death_sound_for_bot( target );
+		DebugPrintf( 1 , "\n%s(): playing death sound because bot of type %d really died." , 
+		             __FUNCTION__ , target->type );
+		
+		if ( MyRandom(15) == 1) 	    
+			enemy_spray_blood( target );
+	}
+	
+	list_move(&(target->global_list), &dead_bots_head); // bot is dead? move it to dead list
+	list_del(&(target->level_list)); // bot is dead? remove it from level list
+	
+	return 0;
 };
 
 /**

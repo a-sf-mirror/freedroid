@@ -1376,21 +1376,28 @@ get_days_of_game_duration ( float current_game_date )
  *
  *
  */
-void
-append_new_game_message (const char* game_message_text )
+
+void append_new_game_message (const char* message, ... )
 {
-    if ( game_message_protocol == NULL )
-    {
-	game_message_protocol = MyMalloc ( 500000 ) ; // enough for any protocol
-	sprintf ( game_message_protocol , _("--- Message Protocol ---") );
+	va_list args;
+	va_start(args, message);
+	static char *msg_ptr = NULL;
+	
+	if ( game_message_protocol == NULL )
+	{
+		game_message_protocol = MyMalloc( 500000 ); // enough for any protocol
+		msg_ptr = game_message_protocol;
+		msg_ptr += sprintf( msg_ptr, _("--- Message Protocol ---") );
     }
+	
+	msg_ptr += sprintf( msg_ptr, "\n* " );
+    msg_ptr += vsprintf( msg_ptr, message, args );
 
-    strcat ( game_message_protocol , "\n* " ) ;
-    strcat ( game_message_protocol , game_message_text ) ;
-
+    va_end(args);
+    
     game_message_protocol_scroll_override_from_user = 0 ;
 
-}; // void append_new_game_message ( char* game_message_text )
+}; // void append_new_game_message ( const char* message, ... )
 
 /**
  * We display a window with the current text messages.

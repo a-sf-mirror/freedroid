@@ -634,7 +634,7 @@ void DisplayBanner ( void );
 int get_days_of_game_duration ( float current_game_date );
 int get_hours_of_game_duration ( float current_game_date );
 int get_minutes_of_game_duration ( float current_game_date );
-void append_new_game_message (const char* game_message_text );
+void append_new_game_message (const char* message, ... );
 void display_current_game_message_window ( void );
 void toggle_game_config_screen_visibility ( int screen_visible );
 

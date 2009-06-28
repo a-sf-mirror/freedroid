@@ -570,62 +570,55 @@ I seem to have run out of free bullet entries.  This can't normally happen.  -->
  * done here...  Classic bullet collision and effect handling is done
  * somewhere else...
  */
-void
-handle_flash_effects ( bullet* CurBullet )
+void handle_flash_effects ( bullet* CurBullet )
 {
-    char game_message_text[500];
-    float my_damage;
-
-    //--------------------
-    // if the flash is over, just delete it and return
-    if ( CurBullet->time_in_seconds > FLASH_DURATION_IN_SECONDS )
-    {
-	CurBullet->time_in_frames = 0;
-	CurBullet->time_in_seconds = 0;
-	CurBullet->type = INFOUT;
-	CurBullet->mine = FALSE;
-	CurBullet->owner = -100;
-	return;
-    }
-    
-    //--------------------
-    // if the flash is not yet over, do some checking for who gets
-    // hurt by it.  
-    //
-    // Two different methode for doing this are available:
-    // The first but less elegant Method is just to check for
-    // flash immunity, for distance and visiblity.
-    //
-    // The second and more elegant method is to recursively fill
-    // out the room where the flash-maker is in and to hurt all
-    // robots in there except of course for those immune.
-    //
-    if ( CurBullet->time_in_frames != 1 ) return; // we only do the damage once and thats at frame nr. 1 of the flash
-    
-
-    enemy *erot, *nerot;
-    BROWSE_LEVEL_BOTS_SAFE(erot, nerot, CurBullet->pos.z)
+	float my_damage;
+	
+	//--------------------
+	// if the flash is over, just delete it and return
+	if ( CurBullet->time_in_seconds > FLASH_DURATION_IN_SECONDS )
 	{
-	if ( erot->type == (-1) ) continue ;
-
-	if ( IsVisible( &erot->pos ) &&
-		( ! Druidmap [ erot->type ] . flashimmune ) ) 
-	    {
-	    hit_enemy ( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner, CurBullet->mine );
-	    }
-
+		CurBullet->time_in_frames = 0;
+		CurBullet->time_in_seconds = 0;
+		CurBullet->type = INFOUT;
+		CurBullet->mine = FALSE;
+		CurBullet->owner = -100;
+		return;
 	}
-    
-    //--------------------
-    // We do some damage to the Tux, depending on the current
-    // disruptor resistance that the Tux might have...
-    //
-    my_damage = CurBullet -> damage * ( 100 - Me . resist_disruptor ) / 100 ;
-    Me . energy -= my_damage;
-    sprintf ( game_message_text , _("Disruptor blast has hit you for %d damage."),
-	      ((int)my_damage) );
-    append_new_game_message ( game_message_text );
-    
+	
+	//--------------------
+	// if the flash is not yet over, do some checking for who gets
+	// hurt by it.  
+	//
+	// Two different methode for doing this are available:
+	// The first but less elegant Method is just to check for
+	// flash immunity, for distance and visiblity.
+	//
+	// The second and more elegant method is to recursively fill
+	// out the room where the flash-maker is in and to hurt all
+	// robots in there except of course for those immune.
+	//
+	if ( CurBullet->time_in_frames != 1 ) return; // we only do the damage once and thats at frame nr. 1 of the flash
+	
+	enemy *erot, *nerot;
+	BROWSE_LEVEL_BOTS_SAFE(erot, nerot, CurBullet->pos.z)
+	{
+		if ( erot->type == (-1) ) continue;
+		
+		if ( IsVisible( &erot->pos ) && ( !Druidmap[erot->type].flashimmune ) ) 
+		{
+			hit_enemy( erot, CurBullet->damage, CurBullet->mine ? 1 : 0 /*givexp*/, CurBullet->owner, CurBullet->mine );
+		}	
+	}
+	
+	//--------------------
+	// We do some damage to the Tux, depending on the current
+	// disruptor resistance that the Tux might have...
+	//
+	my_damage = CurBullet->damage * ( 100 - Me.resist_disruptor ) / 100;
+	Me.energy -= my_damage;
+	append_new_game_message( _("Disruptor blast has hit you for %d damage."), (int)my_damage );
+
 }; // handle_flash_effects ( bullet* CurBullet )
 
 /**

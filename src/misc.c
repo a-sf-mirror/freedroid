@@ -1157,147 +1157,142 @@ move_all_items_to_level ( int target_level )
 void
 Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 {
-    int i;
-    char game_message_text [ 500 ] ;
-
-    //--------------------
-    // Maybe the 'teleport' really comes from a teleportation device or
-    // teleport spell or maybe even from accessing some sewer accessway.
-    // In that case we'll fade out the screen a bit using the gamme ramp
-    // and then later back in again.  (Note that this is a blocking function
-    // call, i.e. it will take a second or so each.)
-    //
-    if ( with_sound_and_fading ) 
-    {
-	fade_out_using_gamma_ramp ();
-    }
-    
-    if ( LNum != Me . pos . z )
-    {	
-	//--------------------
-	// In case a real level change has happend,
-	// we need to do a lot of work.  Therefore we start by activating
-	// the conservative frame time computation to avoid a 'jump'.
-	//
-	Activate_Conservative_Frame_Computation();
-
-        //--------------------
-        // If the level we're coming out from is the one where the homespot is, the teleport anchor has to be removed,
-        // because it means that the player decided not to teleport back to the previous location
-	// It is a ugly hack but it works :)
-	
-	location HomeSpot;
-	ResolveMapLabelOnShip ( "TeleportHomeTarget" , &(HomeSpot) );
-        if ( Me . pos . z == HomeSpot . level)
-		{
-	        Me . teleport_anchor.x = 0;
-                Me . teleport_anchor.y = 0;
-		}
-	
-
-	Me . pos . x = X;
-	Me . pos . y = Y;
-	Me . pos . z = LNum; 
-	
-	silently_unhold_all_items ();
-	move_all_items_to_level ( Me . pos . z );
-	silently_unhold_all_items ();
+	int i;
 	
 	//--------------------
-	// We add some sanity check against teleporting to non-allowed
-	// locations (like outside of map that is)
+	// Maybe the 'teleport' really comes from a teleportation device or
+	// teleport spell or maybe even from accessing some sewer accessway.
+	// In that case we'll fade out the screen a bit using the gamme ramp
+	// and then later back in again.  (Note that this is a blocking function
+	// call, i.e. it will take a second or so each.)
 	//
-	if ( ( LNum < 0 ) || ( LNum >= curShip.num_levels ) || 
-	     ( curShip.AllLevels[LNum] == NULL ) ||
-	     !pos_inside_level( Me.pos.x, Me.pos.y, curShip.AllLevels[LNum] ) )
+	if ( with_sound_and_fading ) 
 	{
-	    fprintf( stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n" , LNum , X , Y );
-	    fprintf( stderr, "source location was: lev=%d x=%f y=%f." , Me . pos . z , 
-		     Me . pos . x , Me . pos . y );
-	    ErrorMessage ( __FUNCTION__  , "\
+		fade_out_using_gamma_ramp ();
+	}
+	
+	if ( LNum != Me.pos.z )
+	{	
+		//--------------------
+		// In case a real level change has happend,
+		// we need to do a lot of work.  Therefore we start by activating
+		// the conservative frame time computation to avoid a 'jump'.
+		//
+		Activate_Conservative_Frame_Computation();
+		
+		//--------------------
+		// If the level we're coming out from is the one where the homespot is, the teleport anchor has to be removed,
+		// because it means that the player decided not to teleport back to the previous location
+		// It is a ugly hack but it works :)
+		
+		location HomeSpot;
+		ResolveMapLabelOnShip ( "TeleportHomeTarget" , &(HomeSpot) );
+		if ( Me.pos.z == HomeSpot.level)
+		{
+			Me.teleport_anchor.x = 0;
+			Me.teleport_anchor.y = 0;
+		}
+		
+		Me.pos.x = X;
+		Me.pos.y = Y;
+		Me.pos.z = LNum; 
+		
+		silently_unhold_all_items();
+		move_all_items_to_level( Me.pos.z );
+		silently_unhold_all_items();
+		
+		//--------------------
+		// We add some sanity check against teleporting to non-allowed
+		// locations (like outside of map that is)
+		//
+		if ( ( LNum < 0 ) || ( LNum >= curShip.num_levels ) || 
+		     ( curShip.AllLevels[LNum] == NULL ) ||
+		     !pos_inside_level( Me.pos.x, Me.pos.y, curShip.AllLevels[LNum] ) )
+		{
+			fprintf( stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n", LNum, X, Y );
+			fprintf( stderr, "source location was: lev=%d x=%f y=%f.", Me.pos.z, Me.pos.x, Me.pos.y );
+			ErrorMessage ( __FUNCTION__  , "\
 A Teleport was requested, but the location to teleport to lies outside\n\
 the bounds of this 'ship' which means the current collection of levels.\n\
 This indicates an error in the map system of Freedroid.",
 				       PLEASE_INFORM, IS_FATAL );
+		}
+		
+		//--------------------
+		// Turn off all blasts and bullets from the old level
+		//
+		for (i = 0; i < MAXBLASTS; i++)
+		{
+			AllBlasts[i].type = INFOUT;
+		}
+		for (i = 0; i < MAXBULLETS; i++)
+		{
+			DeleteBullet( i, FALSE ); 
+		}
+		
+	}
+	else
+	{
+		//--------------------
+		// If no real level change has occured, everything
+		// is simple and we just need to set the new coordinates, haha
+		//
+		Me.pos.x = X;
+		Me.pos.y = Y;
 	}
 	
 	//--------------------
-	// Turn off all blasts and bullets from the old level
+	// After the teleport, the mouse move target might be
+	// completely out of date.  Therefore we simply delete it.  In cases
+	// where the jump came from crossing a jump threshold (levels glued
+	// together) we can still restore the move target in that (the calling!)
+	// function.
 	//
-	for (i = 0; i < MAXBLASTS; i++)
+	Me.mouse_move_target.x = Me.pos.x;
+	Me.mouse_move_target.y = Me.pos.y;
+	Me.mouse_move_target.z = Me.pos.z;
+	
+	if ( with_sound_and_fading ) 
 	{
-	    AllBlasts[i].type = INFOUT;
-	}
-	for (i = 0; i < MAXBULLETS; i++)
-	{
-	    DeleteBullet ( i , FALSE ); 
+		teleport_arrival_sound ();
 	}
 	
-    }
-    else
-    {
 	//--------------------
-	// If no real level change has occured, everything
-	// is simple and we just need to set the new coordinates, haha
+	// Perhaps the player is visiting this level for the first time.  Then, the
+	// tux should make it's initial statement about the location, if there is one.
 	//
-	Me . pos . x = X ;
-	Me . pos . y = Y ;
-    }
-    
-    //--------------------
-    // After the teleport, the mouse move target might be
-    // completely out of date.  Therefore we simply delete it.  In cases
-    // where the jump came from crossing a jump threshold (levels glued
-    // together) we can still restore the move target in that (the calling!)
-    // function.
-    //
-    Me . mouse_move_target . x = Me . pos . x ;
-    Me . mouse_move_target . y = Me . pos . y ;
-    Me . mouse_move_target . z = Me . pos . z ;
-    
-    if ( with_sound_and_fading ) 
-    {
-	teleport_arrival_sound ();
-    }
-    
-    //--------------------
-    // Perhaps the player is visiting this level for the first time.  Then, the
-    // tux should make it's initial statement about the location, if there is one.
-    //
-    if ( ! Me . HaveBeenToLevel [ Me . pos . z ] )
-    {
-	PlayLevelCommentSound ( Me . pos . z );
-	Me . HaveBeenToLevel [ Me . pos . z ] = TRUE;
-	// if ( array_num != 0 ) ShuffleEnemys ( array_num );
-	// if ( ( LNum != 0 ) && ( Shuffling ) ) ShuffleEnemys ( array_num );
-	// ShuffleEnemys ( array_num );
-    }
-    
-    //--------------------
-    // No more shuffling once the game is up and running...
-    // else there are hostile bots inside some buildings and such things...
-    //
-    // if ( Shuffling ) ShuffleEnemys ( array_num );
-    
-    SwitchBackgroundMusicTo( CURLEVEL()->Background_Song_Name );
-    
-    //--------------------
-    // Since we've mightily changed position now, we should clear the
-    // position history, so that noone get's confused...
-    //
-    InitInfluPositionHistory ( );
-    
-    
-    if ( with_sound_and_fading ) 
-    {
-	sprintf ( game_message_text , _("Arrived at %s.") , D_(curShip . AllLevels [ Me . pos . z ] -> Levelname) );
-	append_new_game_message ( game_message_text );
-	AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
-	//our_SDL_flip_wrapper();
-	StoreMenuBackground(0);
-	fade_in_using_gamma_ramp ();
-    }
-
+	if ( !Me.HaveBeenToLevel[Me.pos.z] )
+	{
+		PlayLevelCommentSound(Me.pos.z);
+		Me.HaveBeenToLevel[Me.pos.z] = TRUE;
+		// if ( array_num != 0 ) ShuffleEnemys ( array_num );
+		// if ( ( LNum != 0 ) && ( Shuffling ) ) ShuffleEnemys ( array_num );
+		// ShuffleEnemys ( array_num );
+	}
+	
+	//--------------------
+	// No more shuffling once the game is up and running...
+	// else there are hostile bots inside some buildings and such things...
+	//
+	// if ( Shuffling ) ShuffleEnemys ( array_num );
+	
+	SwitchBackgroundMusicTo( CURLEVEL()->Background_Song_Name );
+	
+	//--------------------
+	// Since we've mightily changed position now, we should clear the
+	// position history, so that noone get's confused...
+	//
+	InitInfluPositionHistory();
+	
+	if ( with_sound_and_fading ) 
+	{
+		append_new_game_message(_("Arrived at %s.") , D_(curShip.AllLevels[Me.pos.z]->Levelname) );
+		AssembleCombatPicture ( SHOW_ITEMS | USE_OWN_MOUSE_CURSOR ); 
+		//our_SDL_flip_wrapper();
+		StoreMenuBackground(0);
+		fade_in_using_gamma_ramp ();
+	}
+	
 }; // void Teleport( ... ) 
 
 /*----------------------------------------------------------------------

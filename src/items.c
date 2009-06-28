@@ -1120,190 +1120,188 @@ int MatchItemWithName ( int type, const char * name )
 void
 ApplyItem( item* CurItem )
 {
-
-    DebugPrintf( 1 , "\n%s(): function call confirmed." , __FUNCTION__ );
-
-    // If the inventory slot is not at all filled, we need not do anything more...
-    if ( CurItem->type < 0 ) return;
-    
-    if ( ItemMap[ CurItem->type ] . item_can_be_applied_in_combat == FALSE ) 
-    {
-	Me . TextVisibleTime = 0;
-	Me . TextToBeDisplayed = _("I can't use this item here.");
-	return;
-    }
-
-    if ( ! requirements_for_item_application_met ( CurItem ) )
-    {
-	application_requirements_not_met_sound ();
-	return;
-    }
-
-    if ( Me . busy_time > 0 )
-	{	
-	char msg[500];
-	sprintf(msg, _("How do you expect to do two things at a time? You are "));
-		switch ( Me . busy_type ) 
-			{
-			case DRINKING_POTION:
-				strcat(msg, _("drinking a potion!"));
-				break;
-			case WEAPON_FIREWAIT:
-				strcat(msg, _("waiting for your weapon to fire again!"));
-				break;
-			case WEAPON_RELOAD:
-				strcat(msg, _("reloading your weapon!"));
-				break;
-			case THROWING_GRENADE:
-				strcat(msg, _("throwing a grenade!"));
-				break;
-			case RUNNING_PROGRAM:
-				strcat(msg, _("running a program!"));
-				break;
-			default : 
-				strcat(msg, _("doing something so weird the game does not understand what it is"));
-			}
-	append_new_game_message(msg);
-	return; //if the player is busy reloading or anything
+	DebugPrintf( 1 , "\n%s(): function call confirmed." , __FUNCTION__ );
+	
+	// If the inventory slot is not at all filled, we need not do anything more...
+	if ( CurItem->type < 0 ) return;
+	
+	if ( ItemMap[CurItem->type].item_can_be_applied_in_combat == FALSE ) 
+	{
+		Me.TextVisibleTime = 0;
+		Me.TextToBeDisplayed = _("I can't use this item here.");
+		return;
 	}
-
-    //--------------------
-    // At this point we know that the item is applicable in combat situation
-    // and therefore all we need to do from here on is execute the item effect
-    // upon the influencer or his environment.
-    //
-    if ( MatchItemWithName ( CurItem->type, "Barf's Energy Drink" ) )
+	
+	if ( !requirements_for_item_application_met( CurItem ) )
+	{
+		application_requirements_not_met_sound();
+		return;
+	}
+	
+	if ( Me.busy_time > 0 )
+	{	
+		char *msg;
+		switch ( Me.busy_type ) 
+		{
+		case DRINKING_POTION:
+			msg = _("You are drinking a potion!");
+			break;
+		case WEAPON_FIREWAIT:
+			msg = _("Your are waiting for your weapon to fire again!");
+			break;
+		case WEAPON_RELOAD:
+			msg = _("You are reloading your weapon!");
+			break;
+		case THROWING_GRENADE:
+			msg = _("You are throwing a grenade!");
+			break;
+		case RUNNING_PROGRAM:
+			msg = _("You are running a program!");
+			break;
+		default : 
+			msg = _("You are doing something so weird the game does not understand what it is");
+		}
+		append_new_game_message( _("How do you expect to do two things at a time? %s"), msg);
+		return; //if the player is busy reloading or anything
+	}
+	
+	//--------------------
+	// At this point we know that the item is applicable in combat situation
+	// and therefore all we need to do from here on is execute the item effect
+	// upon the influencer or his environment.
+	//
+	if ( MatchItemWithName( CurItem->type, "Barf's Energy Drink" ) )
+	{
+		Me.energy += 15;
+		Me.temperature -= 15;
+		Me.running_power += 15;
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Diet supplement" ) )
+	{
+		Me.energy += 25;
+		Me.busy_type = DRINKING_POTION;
+		Me.busy_time = 1;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Antibiotic" ))
+	{
+		Me.energy += 50;
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Doc-in-a-can" ))
+	{
+		Me.energy += Me.maxenergy;
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Bottled ice" ))
+	{
+		Me.temperature -= 50;
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Industrial coolant"))
+	{
+		Me.temperature -= 100;
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Liquid nitrogen"))
+	{
+		Me.temperature = 0;
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Running Power Capsule"))
+	{
+		Me.running_power = Me.max_running_power;
+		Me.running_must_rest = FALSE;
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if (  MatchItemWithName( CurItem->type, "Strength Capsule" ) )
+	{
+		Me.current_power_bonus = 30;
+		Me.power_bonus_end_date = Me.current_game_date + 2.0 * 60; 
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if (  MatchItemWithName( CurItem->type, "Dexterity Capsule") )
+	{
+		Me.current_dexterity_bonus = 30;
+		Me.dexterity_bonus_end_date = Me.current_game_date + 2.0 * 60; 
+		Me.busy_time = 1;
+		Me.busy_type = DRINKING_POTION;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Map Maker") )
+	{
+		Me.map_maker_is_present = TRUE;
+		GameConfig.Automap_Visible = TRUE;
+		Play_Spell_ForceToEnergy_Sound();
+	}
+	else if ( MatchItemWithName( CurItem->type, "VMX Gas Grenade" ) )
+	{
+		DoSkill(get_program_index_with_name("Gas grenade"), 0);
+		Me.busy_time = 1;
+		Me.busy_type = THROWING_GRENADE;
+	}
+	else if ( MatchItemWithName( CurItem->type, "EMP Shockwave Generator" ) )
+	{
+		DoSkill(get_program_index_with_name("EMP grenade"), 0);
+		Me.busy_time = 1;
+		Me.busy_type = THROWING_GRENADE;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Plasma Shockwave Emitter" ) )
     {
-	Me . energy += 15;
-	Me . temperature -= 15;
-	Me . running_power += 15;
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
+		DoSkill(get_program_index_with_name("Plasma grenade"), 0);
+		Me.busy_time = 1;
+		Me.busy_type = THROWING_GRENADE;
     }
-    if ( MatchItemWithName ( CurItem->type, "Diet supplement" ) )
-    {
-	Me . energy += 25;
-	Me . busy_type = DRINKING_POTION;
-	Me . busy_time = 1;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Antibiotic" ))
-    {
-	Me . energy += 50;
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Doc-in-a-can" ))
-    {
-	Me.energy += Me.maxenergy;
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Bottled ice" ))
-    {
-	Me.temperature -= 50;
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Industrial coolant"))
-    {
-	Me.temperature -= 100;
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Liquid nitrogen"))
-    {
-	Me.temperature = 0;
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Running Power Capsule"))
-    {
-	Me . running_power = Me . max_running_power;
-	Me . running_must_rest = FALSE ;
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if (  MatchItemWithName ( CurItem->type, "Strength Capsule" ) )
-    {
-	Me . current_power_bonus = 30 ;
-	Me . power_bonus_end_date = Me . current_game_date + 2.0 * 60 ; 
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if (  MatchItemWithName ( CurItem->type, "Dexterity Capsule") )
-    {
-	Me . current_dexterity_bonus = 30 ;
-	Me . dexterity_bonus_end_date = Me . current_game_date + 2.0 * 60 ; 
-	Me . busy_time = 1;
-	Me . busy_type = DRINKING_POTION;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Map Maker") )
-    {
-	Me . map_maker_is_present = TRUE ;
-	GameConfig . Automap_Visible = TRUE ;
-	Play_Spell_ForceToEnergy_Sound( );
-    }
-    else if ( MatchItemWithName ( CurItem->type, "VMX Gas Grenade" ) )
-    {
-	DoSkill(get_program_index_with_name("Gas grenade"), 0);
-	Me . busy_time = 1;
-	Me . busy_type = THROWING_GRENADE;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "EMP Shockwave Generator" ) )
-    {
-	DoSkill(get_program_index_with_name("EMP grenade"), 0);
-	Me . busy_time = 1;
-	Me . busy_type = THROWING_GRENADE;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Plasma Shockwave Emitter" ) )
-    {
-	DoSkill(get_program_index_with_name("Plasma grenade"), 0);
-	Me . busy_time = 1;
-	Me . busy_type = THROWING_GRENADE;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Strength Pill" ) )
-    {
-	Me . base_strength ++ ;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Dexterity Pill" ) )
-    {
-	Me . base_dexterity ++ ;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Code Pill" ) )
-    {
-	Me . base_magic ++ ;
-    }
-    else if ( MatchItemWithName ( CurItem->type, "Identification Script" ) )
-    {
-	DoSkill(get_program_index_with_name("Analyze item"), 0);
-    }	
-    else if ( MatchItemWithName ( CurItem->type, "Teleporter homing beacon" ) )
-    {
-	DoSkill(get_program_index_with_name("Sanctuary"), 0);
-    }
-    else if ( strstr( ItemMap [ CurItem->type ] . item_name , "Source Book of" ) )
-    {
-    	int sidx = associate_skill_with_item ( CurItem -> type);
-	if ( sidx >= 0 )
-		Me . base_skill_level [ associate_skill_with_item ( CurItem -> type) ] ++ ;
-	Play_Spell_ForceToEnergy_Sound( );
-    }
-    
-    if ( Me.energy > Me.maxenergy ) Me.energy = Me.maxenergy ;
-    if ( Me.temperature < 0 ) Me.temperature = 0 ;
-    
-    play_item_sound( CurItem -> type );
-    
-    //--------------------
-    // In some cases the item concerned is a one-shot-device like a health potion, which should
-    // evaporize after the first application.  Therefore we delete the item from the inventory list.
-    //
-    
-    if ( CurItem->multiplicity > 1 )
-	CurItem->multiplicity--;
-    else DeleteItem ( CurItem );
-
-    while ( MouseRightPressed() ) SDL_Delay(1);    
+	else if ( MatchItemWithName( CurItem->type, "Strength Pill" ) )
+	{
+		Me.base_strength++;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Dexterity Pill" ) )
+	{
+		Me.base_dexterity++;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Code Pill" ) )
+	{
+		Me.base_magic++;
+	}
+	else if ( MatchItemWithName( CurItem->type, "Identification Script" ) )
+	{
+		DoSkill(get_program_index_with_name("Analyze item"), 0);
+	}	
+	else if ( MatchItemWithName( CurItem->type, "Teleporter homing beacon" ) )
+	{
+		DoSkill(get_program_index_with_name("Sanctuary"), 0);
+	}
+	else if ( strstr( ItemMap[CurItem->type].item_name, "Source Book of" ) )
+	{
+		int sidx = associate_skill_with_item(CurItem->type);
+		if ( sidx >= 0 )
+			Me.base_skill_level[associate_skill_with_item(CurItem->type)]++;
+		Play_Spell_ForceToEnergy_Sound();
+	}
+	
+	if ( Me.energy > Me.maxenergy ) Me.energy = Me.maxenergy ;
+	if ( Me.temperature < 0 ) Me.temperature = 0 ;
+	
+	play_item_sound( CurItem->type );
+	
+	//--------------------
+	// In some cases the item concerned is a one-shot-device like a health potion, which should
+	// evaporize after the first application.  Therefore we delete the item from the inventory list.
+	//
+	
+	if ( CurItem->multiplicity > 1 )
+		CurItem->multiplicity--;
+	else DeleteItem( CurItem );
+	
+	while ( MouseRightPressed() ) SDL_Delay(1);    
 }; // void ApplyItem( int ItemNum )
 
 /**
@@ -2116,81 +2114,76 @@ get_floor_item_index_under_mouse_cursor ( )
 void
 handle_player_identification_command( )
 {
-    point Inv_GrabLoc;
-    point CurPos;
-    int Grabbed_InvPos = (-1) ;
-    item * GrabbedItem = NULL;
-    //--------------------
-    // If the inventory sceen isn't open at all, then we can cancel
-    // the whole operation right away
-    //
-    if ( ! GameConfig.Inventory_Visible ) 
+	point Inv_GrabLoc;
+	point CurPos;
+	int Grabbed_InvPos = (-1) ;
+	item * GrabbedItem = NULL;
+
+	//--------------------
+	// If the inventory sceen isn't open at all, then we can cancel
+	// the whole operation right away
+	//
+	if ( ! GameConfig.Inventory_Visible ) 
 	{
-	append_new_game_message(_("Identified air."));
-	return;
+		append_new_game_message(_("Identified air."));
+		return;
 	}
-
-    // --------------------
-    // We will need the current mouse position on several spots...
-    //
-    CurPos . x = GetMousePos_x() ;
-    CurPos . y = GetMousePos_y()  ;
-    
-    if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
-    {
-	Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
-	Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
-	Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
-	GrabbedItem = & Me . Inventory [ Grabbed_InvPos ];
-    }
-
-    else
+	
+	// --------------------
+	// We will need the current mouse position on several spots...
+	//
+	CurPos.x = GetMousePos_x();
+	CurPos.y = GetMousePos_y();
+	
+	if ( MouseCursorIsInInventoryGrid( CurPos.x, CurPos.y ) )
 	{
-	if ( MouseCursorIsOnButton(WEAPON_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		GrabbedItem = & Me . weapon_item;
-	if ( MouseCursorIsOnButton(DRIVE_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		GrabbedItem = & Me . drive_item;
-	if ( MouseCursorIsOnButton(SHIELD_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		GrabbedItem = & Me . shield_item;
-	if ( MouseCursorIsOnButton(ARMOUR_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		GrabbedItem = & Me . armour_item;
-	if ( MouseCursorIsOnButton(HELMET_RECT_BUTTON , CurPos.x , CurPos.y ) )
-		GrabbedItem = & Me . special_item;
-
+		Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
+		Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
+		Grabbed_InvPos = GetInventoryItemAt( Inv_GrabLoc.x, Inv_GrabLoc.y );
+		GrabbedItem = &Me.Inventory[Grabbed_InvPos];
 	}
-
-
-    if ( GrabbedItem == NULL )
-	append_new_game_message(_("Identified air."));
-    else if ( ! GrabbedItem -> type || GrabbedItem -> type == -1)
-	append_new_game_message(_("Identified air."));
-    else
+	else
 	{
-	char gmsg[500];
-	char iname[500];
-	*iname = '\0';
-
-	if ( MatchItemWithName(GrabbedItem->type, "Cyberbucks")) sprintf( iname , "%d " , GrabbedItem->multiplicity );
-    
-	if ( ( GrabbedItem->prefix_code != (-1) ) )
-	strcat( iname , PrefixList[ GrabbedItem->prefix_code ].bonus_name );
-        strcat( iname , ItemMap[ GrabbedItem->type ].item_name );
-        if ( ( GrabbedItem->suffix_code != (-1) ) )   
-	strcat( iname , SuffixList[ GrabbedItem->suffix_code ].bonus_name );
-
-
-	    if ( GrabbedItem -> is_identified == TRUE )
-	    {
-		PlayOnceNeededSoundSample ( "effects/is_already_indentif.ogg" , FALSE , FALSE );
-		sprintf(gmsg, _("You already know all there is to know about the %s."), iname);
-	    }
-	    else
-	    {
-                GrabbedItem -> is_identified = TRUE ;
-		Play_Spell_ForceToEnergy_Sound( );
-		sprintf(gmsg, _("Identified %s"), iname);
-	    }
-	append_new_game_message(gmsg);
+		if ( MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y ) )
+			GrabbedItem = &Me.weapon_item;
+		if ( MouseCursorIsOnButton(DRIVE_RECT_BUTTON, CurPos.x, CurPos.y ) )
+		GrabbedItem = &Me.drive_item;
+		if ( MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y ) )
+			GrabbedItem = &Me.shield_item;
+		if ( MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, CurPos.x, CurPos.y ) )
+			GrabbedItem = &Me.armour_item;
+		if ( MouseCursorIsOnButton(HELMET_RECT_BUTTON, CurPos.x, CurPos.y ) )
+			GrabbedItem = &Me.special_item;		
+	}
+	
+	if ( GrabbedItem == NULL )
+		append_new_game_message(_("Identified air."));
+	else if ( !GrabbedItem->type || GrabbedItem->type == -1)
+		append_new_game_message(_("Identified air."));
+	else
+	{
+		char iname[500];
+		*iname = '\0';
+		
+		if ( MatchItemWithName(GrabbedItem->type, "Cyberbucks")) sprintf( iname, "%d ", GrabbedItem->multiplicity );
+		
+		if ( ( GrabbedItem->prefix_code != (-1) ) )
+			strcat( iname, PrefixList[GrabbedItem->prefix_code].bonus_name );
+		strcat( iname, ItemMap[GrabbedItem->type].item_name );
+		if ( ( GrabbedItem->suffix_code != (-1) ) )   
+			strcat( iname, SuffixList[GrabbedItem->suffix_code].bonus_name );
+		
+		if ( GrabbedItem->is_identified == TRUE )
+		{
+			PlayOnceNeededSoundSample( "effects/is_already_indentif.ogg", FALSE, FALSE );
+			append_new_game_message( _("You already know all there is to know about the %s."), iname);
+		}
+		else
+		{
+			GrabbedItem->is_identified = TRUE;
+			Play_Spell_ForceToEnergy_Sound();
+			append_new_game_message( _("Identified %s"), iname );
+		}
 	}
 }; // void handle_player_identification_command( )
 
@@ -2201,392 +2194,390 @@ handle_player_identification_command( )
 void 
 HandleInventoryScreen ( void )
 {
-    point CurPos;
-    point Inv_GrabLoc;
-    int Grabbed_InvPos;
-    finepoint MapPositionOfMouse = { 0.0, 0.0};
-    Level PlayerLevel = curShip . AllLevels [ Me . pos . z ] ;
-    int index_of_item_under_mouse_cursor = (-1) ;
-    
-    struct { int buttonidx; item * slot; } allslots[] = /*list of all slots and their associated item*/
+	point CurPos;
+	point Inv_GrabLoc;
+	int Grabbed_InvPos;
+	finepoint MapPositionOfMouse = { 0.0, 0.0};
+	Level PlayerLevel = curShip . AllLevels [ Me . pos . z ] ;
+	int index_of_item_under_mouse_cursor = (-1) ;
+	
+	struct { int buttonidx; item * slot; } allslots[] = /*list of all slots and their associated item*/
 	{ { WEAPON_RECT_BUTTON, &(Me.weapon_item) } ,
-	    { DRIVE_RECT_BUTTON, &(Me.drive_item) },
-	    { SHIELD_RECT_BUTTON, &(Me.shield_item) },
-	    { ARMOUR_RECT_BUTTON, &(Me.armour_item) },
-	    { HELMET_RECT_BUTTON, &(Me.special_item) },
+	  { DRIVE_RECT_BUTTON, &(Me.drive_item) },
+	  { SHIELD_RECT_BUTTON, &(Me.shield_item) },
+	  { ARMOUR_RECT_BUTTON, &(Me.armour_item) },
+	  { HELMET_RECT_BUTTON, &(Me.special_item) },
 	};
-    
-    //--------------------
-    // In case the Tux is dead already, we do not need to display any inventory screen
-    // or even to pick up any stuff for the Tux...
-    //
-    if ( Me . energy <= 0 ) 
-    {
-	return;
-    }
-    
-    // --------------------
-    // We will need the current mouse position on several spots...
-    //
-    CurPos . x = GetMousePos_x() ;
-    CurPos . y = GetMousePos_y()  ;
-    
-    // If the inventory is not visible we don't handle the screen itself but we still pick up items on the ground
-    if ( GameConfig.Inventory_Visible == FALSE ) 
+	
+	//--------------------
+	// In case the Tux is dead already, we do not need to display any inventory screen
+	// or even to pick up any stuff for the Tux...
+	//
+	if ( Me . energy <= 0 ) 
 	{
-	silently_unhold_all_items ( );
+		return;
 	}
-
-    if ( MouseLeftClicked() && ( Item_Held_In_Hand == (-1) ) &&
-	    ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY ) && MouseCursorIsInUserRect( CurPos.x , CurPos.y ) )
+	
+	// --------------------
+	// We will need the current mouse position on several spots...
+	//
+	CurPos . x = GetMousePos_x() ;
+	CurPos . y = GetMousePos_y()  ;
+	
+	// If the inventory is not visible we don't handle the screen itself but we still pick up items on the ground
+	if ( GameConfig.Inventory_Visible == FALSE ) 
+	{
+		silently_unhold_all_items ( );
+	}
+	
+	if ( MouseLeftClicked() && ( Item_Held_In_Hand == (-1) ) &&
+	     ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY ) && MouseCursorIsInUserRect( CurPos.x , CurPos.y ) )
 	{ 
-	/*Pick up something on the ground */
-	MapPositionOfMouse . x = translate_pixel_to_map_location ( input_axis.x , 
-		input_axis.y , TRUE ) ;
-	MapPositionOfMouse . y = translate_pixel_to_map_location ( input_axis.x , 
-		input_axis.y , FALSE ) ;
-	index_of_item_under_mouse_cursor = get_floor_item_index_under_mouse_cursor ( );
-
-	if ( index_of_item_under_mouse_cursor != (-1) )
-	    { 
-	    //--------------------
-	    // We only take the item directly into out 'hand' i.e. the mouse cursor,
-	    // if the item in question can be reached directly and isn't blocked by
-	    // some walls or something...
-	    //
-	    if ( ( fabsf( MapPositionOfMouse . x - Me . pos . x ) < ITEM_TAKE_DIST ) &&
-		    ( fabsf( MapPositionOfMouse . y - Me . pos . y ) < ITEM_TAKE_DIST ) &&
-		    DirectLineColldet ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ,
-			Me . pos . x , Me . pos . y ,
-			Me . pos . z, NULL ) )
-		{
-		if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
-		    {
-		    /* Handled in check_for_items_to_pickup() */
-		    return;
-		    }
-		else
-		    {
-		    Item_Held_In_Hand = PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type ;
-		    PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . currently_held_in_hand = TRUE;
-		    goto NoMoreGrabbing;
-		    }
-		}
-	    else
-		{
-		/* Handled in check_for_items_to_pickup() */
-		;
-		}
-	    }
-	}
-
-    if ( MouseLeftClicked() && 
-	 ( Item_Held_In_Hand == (-1) ) &&
-	 ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY ) && MouseCursorIsInInvRect( CurPos.x , CurPos.y ))
-    { /*Grab from inventory screen (grid and player slots)*/
-	if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
-	{
-	    Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
-	    Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
-	    
-	    Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
-	    if ( Grabbed_InvPos == (-1) )
-	    {
-		Item_Held_In_Hand = ( -1 );
-	    }
-	    else
-	    {
-		//--------------------
-		// At this point we know, that we have just grabbed something from the inventory
-		// So we set, that something should be displayed in the 'hand', and it should of
-		// course be the image of the item grabbed from inventory.
-		//
-		if ( global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL )
-		    {
-			Item_Held_In_Hand = Me . Inventory [ Grabbed_InvPos ] . type ;
-			play_item_sound( Me.Inventory[ Grabbed_InvPos ].type );
-			Me.Inventory[ Grabbed_InvPos ].currently_held_in_hand = TRUE;
-		    }
-		else if (global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE)
-		    {
-		    char ngm[500];
-		    sprintf(ngm, "Examining %s: %s.", D_(ItemMap[Me . Inventory [ Grabbed_InvPos ] . type].item_name), D_(ItemMap[Me . Inventory [ Grabbed_InvPos ] . type].item_description));
-		    append_new_game_message(ngm);
-		    }
-	    }
-	}
-	else
-	    {
-	    unsigned int i;
-
-	    for ( i = 0; i < sizeof(allslots)/sizeof(allslots[0]); i ++ )
-		{
-		if ( MouseCursorIsOnButton( allslots[i].buttonidx, CurPos.x, CurPos.y ) )
-		    {
-		    if ( allslots[i].slot -> type > 0 )
-			{
-			Item_Held_In_Hand = allslots[i].slot -> type;
-			allslots[i].slot -> currently_held_in_hand = TRUE;
-			break; 
-			}
-		    }
-		}
-	    }
-	goto NoMoreGrabbing;
-    }
-    
-    //--------------------
-    // Now the OTHER CASE:  If the user now no longer presses the mouse button and it WAS pressed before,
-    // the the user has 'released' the item directly under the mouse button
-    //
-    if ( MouseLeftClicked() && ( Item_Held_In_Hand != (-1) ) ) 
-    {
-	//--------------------
-	// If the cursor is in the inventory window again, then we must see if 
-	// the item was dropped onto a correct inventory location and should from
-	// then on not only no longer be in the players hand but also remain at
-	// the newly assigned position.
-	//
-	if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
-	{
-	    Item_Held_In_Hand = ( -1 );
-	    DropHeldItemToInventory( );
-	}
-	
-	//--------------------
-	// If the cursor is in the user_rect, i.e. the combat window, then
-	// the item should be dropped onto the players current location
-	//
-	if ( MouseCursorIsInUserRect ( CurPos.x , CurPos.y ) )
-	{
-            if ( ! DropHeldItemToTheFloor( ) )
-		{
-	        Item_Held_In_Hand = ( -1 );
-		}
-	}
-	
-	//--------------------
-	// If the cursor is in the weapons rect, i.e. the small box top left, then
-	// the item should be dropped onto the players current weapon slot
-	//
-	if ( MouseCursorIsOnButton ( WEAPON_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    if ( ( GetHeldItemCode() != (-1) ) &&
-		 ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_weapon_slot ) )
-	    {
-		if ( HeldItemUsageRequirementsMet(  ) )
-		{
-		    //--------------------
-		    // Now a weapon is about to be dropped to the weapons rectangle and obviously
-		    // the stat requirements for usage are met.  But maybe this is a 2-handed weapon.
-		    // In this case we need to do some extra check.  If it isn't a 2-handed weapon,
-		    // then we can just go ahead and equip the item
-		    if ( ItemMap [ GetHeldItemCode ( ) ] . item_gun_requires_both_hands )
-		    {
+		/*Pick up something on the ground */
+		MapPositionOfMouse . x = translate_pixel_to_map_location ( input_axis.x , input_axis.y , TRUE ) ;
+		MapPositionOfMouse . y = translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) ;
+		index_of_item_under_mouse_cursor = get_floor_item_index_under_mouse_cursor ( );
+		
+		if ( index_of_item_under_mouse_cursor != (-1) )
+		{ 
 			//--------------------
-			// Now if the shield slot is just empty, that makes matters a lot simpler,
-			// cause then we can just drop this 2-handed weapon to the weapon slot and
-			// all is fine, cause no conflicts will result...
+			// We only take the item directly into out 'hand' i.e. the mouse cursor,
+			// if the item in question can be reached directly and isn't blocked by
+			// some walls or something...
 			//
-			if ( Me . shield_item . type == (-1) )
+			if ( ( fabsf( MapPositionOfMouse . x - Me . pos . x ) < ITEM_TAKE_DIST ) &&
+			     ( fabsf( MapPositionOfMouse . y - Me . pos . y ) < ITEM_TAKE_DIST ) &&
+			     DirectLineColldet ( PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . x , PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . pos . y ,
+			                         Me . pos . x , Me . pos . y ,
+			                         Me . pos . z, NULL ) )
 			{
-			    Item_Held_In_Hand = ( -1 );
-			    DropHeldItemToSlot ( & ( Me . weapon_item ) );
+				if ( GameConfig.Inventory_Visible == FALSE || MatchItemWithName(PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type, "Cyberbucks") )
+				{
+					/* Handled in check_for_items_to_pickup() */
+					return;
+				}
+				else
+				{
+					Item_Held_In_Hand = PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . type ;
+					PlayerLevel -> ItemList [ index_of_item_under_mouse_cursor ] . currently_held_in_hand = TRUE;
+					goto NoMoreGrabbing;
+				}
 			}
 			else
 			{
-			    //--------------------
-			    // But if there is something in the shield slot too, then we need to be
-			    // a bit more sophisticated and either swap the 2-handed item in for just
-			    // the shield alone, which then will be held OR we need to refuse completely
-			    // because there might be a weapon AND a shield equipped already.
-			    //
-			    if ( Me . weapon_item . type == (-1) )
-			    {
-				//first of all check requirements again but without the shield
-				//virtually remove the shield, compute requirements, if everything's okay, proceed
-				//otherwise we inform the player
-				EXTERN void update_all_primary_stats(int);
-                                int shield_item_type = Me . shield_item . type;
-				Me . shield_item . type = (-1);
-				update_all_primary_stats(0);
-				if ( HeldItemUsageRequirementsMet(  ) )
-					{
-					DropHeldItemToSlot ( & ( Me . weapon_item ) );
-					Me . shield_item . type = shield_item_type; 
-					Item_Held_In_Hand = ( -1 );
-					MakeHeldFloorItemOutOf( & ( Me . shield_item ) ) ;
-					}
-				else    {
-					append_new_game_message(_("Two-handed weapon requirements not met: shield bonus doesn't count."));
-                                        Me . shield_item . type = shield_item_type;
-					}
-			    }
-			    else
-			    {
-				PlayOnceNeededSoundSample ( "effects/tux_ingame_comments/ThisItemRequiresBothHands.ogg" , FALSE , FALSE );
-			    }
+				/* Handled in check_for_items_to_pickup() */
+				;
 			}
-		    }
-		    else
-		    {
-			Item_Held_In_Hand = ( -1 );
-			DropHeldItemToSlot ( & ( Me . weapon_item ) );
-		    }
 		}
-	    }
-	    else
-	    {
-		append_new_game_message(_("You cannot fight with this!"));
-	    }
 	}
 	
-	if ( MouseCursorIsOnButton ( SHIELD_RECT_BUTTON , CurPos.x , CurPos.y ) )
-	{
-	    if ( ( GetHeldItemCode() != (-1) ) &&
-		 ( ItemMap [ GetHeldItemCode() ] . item_can_be_installed_in_shield_slot ) )
-	    {
-	    //DebugPrintf( -1 , "\nItem dropped onto the shield rectangle!" );
-	    //DebugPrintf( -1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
-		if ( HeldItemUsageRequirementsMet(  ) )
+	if ( MouseLeftClicked() && 
+	     ( Item_Held_In_Hand == (-1) ) &&
+	     ( global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY ) && MouseCursorIsInInvRect( CurPos.x , CurPos.y ))
+	{ /*Grab from inventory screen (grid and player slots)*/
+		if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
 		{
-		    //--------------------
-		    // Now if there isn't any weapon equipped right now, the matter
-		    // is rather simple and we just need to do the normal drop-to-slot-thing.
-		    //
-		    if ( Me . weapon_item . type == (-1) )
-		    {
-			Item_Held_In_Hand = ( -1 );
-			DropHeldItemToSlot ( & ( Me.shield_item ) );
-		    }
-		    else
-		    {
-
-			//--------------------
-			// A shield, when equipped, will push out any 2-handed weapon currently
-			// equipped from it's weapon slot...
-			//
-			if ( ItemMap [ Me . weapon_item . type ] . item_gun_requires_both_hands )
+			Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
+			Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
+			
+			Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
+			if ( Grabbed_InvPos == (-1) )
 			{
-                            EXTERN void update_all_primary_stats(int);
-                            int weapon_item_type = Me . weapon_item . type;
-                            Me . weapon_item . type = (-1);
-	                    update_all_primary_stats(0);
-		            if ( HeldItemUsageRequirementsMet(  ) )
-			   	{
-				DropHeldItemToSlot ( & ( Me . shield_item ) );
-				Me . weapon_item . type = weapon_item_type; 
 				Item_Held_In_Hand = ( -1 );
-				MakeHeldFloorItemOutOf( & ( Me . weapon_item ) ) ;
+			}
+			else
+			{
+				//--------------------
+				// At this point we know, that we have just grabbed something from the inventory
+				// So we set, that something should be displayed in the 'hand', and it should of
+				// course be the image of the item grabbed from inventory.
+				//
+				if ( global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL )
+				{
+					Item_Held_In_Hand = Me . Inventory [ Grabbed_InvPos ] . type ;
+					play_item_sound( Me.Inventory[ Grabbed_InvPos ].type );
+					Me.Inventory[ Grabbed_InvPos ].currently_held_in_hand = TRUE;
 				}
-			    else    {
-				append_new_game_message(_("Shield requirements not met: two-handed weapon bonus doesn't count."));
-                                Me . weapon_item . type = weapon_item_type;
+				else if (global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE)
+				{
+					append_new_game_message( "Examining %s: %s.", D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_name), D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_description));
+				}
+			}
+		}
+		else
+		{
+			unsigned int i;
+			
+			for ( i = 0; i < sizeof(allslots)/sizeof(allslots[0]); i ++ )
+			{
+				if ( MouseCursorIsOnButton( allslots[i].buttonidx, CurPos.x, CurPos.y ) )
+				{
+					if ( allslots[i].slot -> type > 0 )
+					{
+						Item_Held_In_Hand = allslots[i].slot -> type;
+						allslots[i].slot -> currently_held_in_hand = TRUE;
+						break; 
+					}
+				}
+			}
+		}
+		goto NoMoreGrabbing;
+	}
+	
+	//--------------------
+	// Now the OTHER CASE:  If the user now no longer presses the mouse button and it WAS pressed before,
+	// the the user has 'released' the item directly under the mouse button
+	//
+	if ( MouseLeftClicked() && ( Item_Held_In_Hand != (-1) ) ) 
+	{
+		//--------------------
+		// If the cursor is in the inventory window again, then we must see if 
+		// the item was dropped onto a correct inventory location and should from
+		// then on not only no longer be in the players hand but also remain at
+		// the newly assigned position.
+		//
+		if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
+		{
+			Item_Held_In_Hand = ( -1 );
+			DropHeldItemToInventory( );
+		}
+		
+		//--------------------
+		// If the cursor is in the user_rect, i.e. the combat window, then
+		// the item should be dropped onto the players current location
+		//
+		if ( MouseCursorIsInUserRect ( CurPos.x , CurPos.y ) )
+		{
+			if ( ! DropHeldItemToTheFloor( ) )
+			{
+				Item_Held_In_Hand = ( -1 );
+			}
+		}
+		
+		//--------------------
+		// If the cursor is in the weapons rect, i.e. the small box top left, then
+		// the item should be dropped onto the players current weapon slot
+		//
+		if ( MouseCursorIsOnButton ( WEAPON_RECT_BUTTON , CurPos.x , CurPos.y ) )
+		{
+			if ( ( GetHeldItemCode() != (-1) ) &&
+			     ( ItemMap[ GetHeldItemCode() ].item_can_be_installed_in_weapon_slot ) )
+			{
+				if ( HeldItemUsageRequirementsMet(  ) )
+				{
+					//--------------------
+					// Now a weapon is about to be dropped to the weapons rectangle and obviously
+					// the stat requirements for usage are met.  But maybe this is a 2-handed weapon.
+					// In this case we need to do some extra check.  If it isn't a 2-handed weapon,
+					// then we can just go ahead and equip the item
+					if ( ItemMap [ GetHeldItemCode ( ) ] . item_gun_requires_both_hands )
+					{
+						//--------------------
+						// Now if the shield slot is just empty, that makes matters a lot simpler,
+						// cause then we can just drop this 2-handed weapon to the weapon slot and
+						// all is fine, cause no conflicts will result...
+						//
+						if ( Me . shield_item . type == (-1) )
+						{
+							Item_Held_In_Hand = ( -1 );
+							DropHeldItemToSlot ( & ( Me . weapon_item ) );
+						}
+						else
+						{
+							//--------------------
+							// But if there is something in the shield slot too, then we need to be
+							// a bit more sophisticated and either swap the 2-handed item in for just
+							// the shield alone, which then will be held OR we need to refuse completely
+							// because there might be a weapon AND a shield equipped already.
+							//
+							if ( Me . weapon_item . type == (-1) )
+							{
+								//first of all check requirements again but without the shield
+								//virtually remove the shield, compute requirements, if everything's okay, proceed
+								//otherwise we inform the player
+								EXTERN void update_all_primary_stats(int);
+								int shield_item_type = Me . shield_item . type;
+								Me . shield_item . type = (-1);
+								update_all_primary_stats(0);
+								if ( HeldItemUsageRequirementsMet(  ) )
+								{
+									DropHeldItemToSlot ( & ( Me . weapon_item ) );
+									Me . shield_item . type = shield_item_type; 
+									Item_Held_In_Hand = ( -1 );
+									MakeHeldFloorItemOutOf( & ( Me . shield_item ) ) ;
+								}
+								else
+								{
+									append_new_game_message(_("Two-handed weapon requirements not met: shield bonus doesn't count."));
+									Me . shield_item . type = shield_item_type;
+								}
+							}
+							else
+							{
+								PlayOnceNeededSoundSample ( "effects/tux_ingame_comments/ThisItemRequiresBothHands.ogg" , FALSE , FALSE );
+							}
+						}
+					}
+					else
+					{
+						Item_Held_In_Hand = ( -1 );
+						DropHeldItemToSlot ( & ( Me . weapon_item ) );
+					}
+				}
+			}
+			else
+			{
+				append_new_game_message(_("You cannot fight with this!"));
+			}
+		}
+		
+		if ( MouseCursorIsOnButton ( SHIELD_RECT_BUTTON , CurPos.x , CurPos.y ) )
+		{
+			if ( ( GetHeldItemCode() != (-1) ) &&
+					( ItemMap [ GetHeldItemCode() ] . item_can_be_installed_in_shield_slot ) )
+			{
+				//DebugPrintf( -1 , "\nItem dropped onto the shield rectangle!" );
+				//DebugPrintf( -1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
+				if ( HeldItemUsageRequirementsMet(  ) )
+				{
+					//--------------------
+					// Now if there isn't any weapon equipped right now, the matter
+					// is rather simple and we just need to do the normal drop-to-slot-thing.
+					//
+					if ( Me . weapon_item . type == (-1) )
+					{
+						Item_Held_In_Hand = ( -1 );
+						DropHeldItemToSlot ( & ( Me.shield_item ) );
+					}
+					else
+					{
+						
+						//--------------------
+						// A shield, when equipped, will push out any 2-handed weapon currently
+						// equipped from it's weapon slot...
+						//
+						if ( ItemMap [ Me . weapon_item . type ] . item_gun_requires_both_hands )
+						{
+							EXTERN void update_all_primary_stats(int);
+							int weapon_item_type = Me . weapon_item . type;
+							Me . weapon_item . type = (-1);
+							update_all_primary_stats(0);
+							if ( HeldItemUsageRequirementsMet(  ) )
+							{
+								DropHeldItemToSlot ( & ( Me . shield_item ) );
+								Me . weapon_item . type = weapon_item_type; 
+								Item_Held_In_Hand = ( -1 );
+								MakeHeldFloorItemOutOf( & ( Me . weapon_item ) ) ;
+							}
+							else
+							{
+								append_new_game_message(_("Shield requirements not met: two-handed weapon bonus doesn't count."));
+								Me . weapon_item . type = weapon_item_type;
+							}
+						}
+						else 
+						{
+							Item_Held_In_Hand = ( -1 );
+							DropHeldItemToSlot ( & ( Me . shield_item ) );
+						}
+					}
+				}
+			}
+		}
+		
+		if ( GetHeldItemCode() != -1 )
+		{
+			itemspec * tocheck = &ItemMap[ GetHeldItemCode() ];
+			struct { int btnidx; char propcheck; item * slot; } dropslots[] =
+			{ { DRIVE_RECT_BUTTON, tocheck -> item_can_be_installed_in_drive_slot, &(Me.drive_item) },
+			  { ARMOUR_RECT_BUTTON, tocheck -> item_can_be_installed_in_armour_slot, &(Me.armour_item) },
+			  { HELMET_RECT_BUTTON, tocheck -> item_can_be_installed_in_special_slot, &(Me.special_item) },
+			};
+			int i;
+			for ( i = 0; i < sizeof(dropslots)/sizeof(dropslots[0]); i ++)
+			{
+				if ( MouseCursorIsOnButton ( dropslots[i].btnidx, CurPos.x, CurPos.y ) && dropslots[i].propcheck && HeldItemUsageRequirementsMet())
+				{
+					Item_Held_In_Hand = -1;
+					DropHeldItemToSlot( dropslots[i].slot );
+					break;
+				}
+			}
+		}
+				
+	} // if release things...
+	
+NoMoreGrabbing:
+	if ( ! GameConfig . Inventory_Visible ) return; 
+	
+	//--------------------
+	// Maybe the user is just pressing the RIGHT mouse button inside the inventory recatangle
+	// which would mean for us that he is applying the item under the mouse button
+	//
+	
+	if ( MouseRightClicked() )
+	{
+		
+		if ( Me . readied_skill ==  get_program_index_with_name("Repair equipment"))
+		{
+			//--------------------
+			// Here we know, that the repair skill is selected, therefore we try to 
+			// repair the item currently under the mouse cursor.
+			//
+			if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
+			{
+				Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
+				Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
+				
+				DebugPrintf( 0 , "\nTrying to repair item at inv-pos: %d %d." , Inv_GrabLoc.x , Inv_GrabLoc.y );
+				
+				Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
+				DebugPrintf( 0 , "\nTrying to repair inventory entry no.: %d." , Grabbed_InvPos );
+				
+				if ( Grabbed_InvPos == (-1) )
+				{
+					// Nothing grabbed, so we need not do anything more here..
+					DebugPrintf( 0 , "\nRepairing in INVENTORY grid FAILED:  NO ITEM AT THIS POSITION FOUND!" );
+				}
+				else
+				{
+					if ( Me.Inventory[ Grabbed_InvPos ] . max_duration != -1 )
+						HomeMadeItemRepair ( & ( Me.Inventory[ Grabbed_InvPos ] ) ) ;
+					else  ApplyItem( & ( Me.Inventory[ Grabbed_InvPos ] ) );
 				}
 			}
 			else 
 			{
-			Item_Held_In_Hand = ( -1 );
-			DropHeldItemToSlot ( & ( Me . shield_item ) );
+				int i;
+				for ( i = 0; i < sizeof(allslots)/sizeof(allslots[0]); i ++ )
+				{
+					if ( MouseCursorIsOnButton ( allslots[i].buttonidx, CurPos.x, CurPos.y ) && allslots[i].slot->type != -1 )
+					{
+						HomeMadeItemRepair ( allslots[i].slot ); 
+						break;
+					}
+				}
 			}
-		    }
 		}
-	    }
-	}
-
-	if ( GetHeldItemCode() != -1 )
-	    {
-	    itemspec * tocheck = &ItemMap[ GetHeldItemCode() ];
-	    struct { int btnidx; char propcheck; item * slot; } dropslots[] =
-		{   { DRIVE_RECT_BUTTON, tocheck -> item_can_be_installed_in_drive_slot, &(Me.drive_item) },
-		    { ARMOUR_RECT_BUTTON, tocheck -> item_can_be_installed_in_armour_slot, &(Me.armour_item) },
-		    { HELMET_RECT_BUTTON, tocheck -> item_can_be_installed_in_special_slot, &(Me.special_item) },
-		};
-	    int i;
-	    for ( i = 0; i < sizeof(dropslots)/sizeof(dropslots[0]); i ++)
+		else
 		{
-		if ( MouseCursorIsOnButton ( dropslots[i].btnidx, CurPos.x, CurPos.y ) && dropslots[i].propcheck && HeldItemUsageRequirementsMet())
-		    {
-		    Item_Held_In_Hand = -1;
-		    DropHeldItemToSlot( dropslots[i].slot );
-		    break;
-		    }
-		}
-	    }
-		
-
-    } // if release things...
-    
- NoMoreGrabbing:
-    if ( ! GameConfig . Inventory_Visible ) return; 
-    
-    //--------------------
-    // Maybe the user is just pressing the RIGHT mouse button inside the inventory recatangle
-    // which would mean for us that he is applying the item under the mouse button
-    //
-    
-    if ( MouseRightClicked() )
-    {
-	
-	if ( Me . readied_skill ==  get_program_index_with_name("Repair equipment"))
-	{
-		//--------------------
-		// Here we know, that the repair skill is selected, therefore we try to 
-		// repair the item currently under the mouse cursor.
-		//
-		if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
-		{
-		    Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
-		    Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
-		    
-		    DebugPrintf( 0 , "\nTrying to repair item at inv-pos: %d %d." , Inv_GrabLoc.x , Inv_GrabLoc.y );
-		    
-		    Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
-		    DebugPrintf( 0 , "\nTrying to repair inventory entry no.: %d." , Grabbed_InvPos );
-		    
-		    if ( Grabbed_InvPos == (-1) )
-		    {
-			// Nothing grabbed, so we need not do anything more here..
-			DebugPrintf( 0 , "\nRepairing in INVENTORY grid FAILED:  NO ITEM AT THIS POSITION FOUND!" );
-		    }
-		    else
-		    {
-			if ( Me.Inventory[ Grabbed_InvPos ] . max_duration != -1 )
-				HomeMadeItemRepair ( & ( Me.Inventory[ Grabbed_InvPos ] ) ) ;
-			else  ApplyItem( & ( Me.Inventory[ Grabbed_InvPos ] ) );
-		    }
-		}
-		else 
-		    {
-		    int i;
-		    for ( i = 0; i < sizeof(allslots)/sizeof(allslots[0]); i ++ )
+			if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
 			{
-			if ( MouseCursorIsOnButton ( allslots[i].buttonidx, CurPos.x, CurPos.y ) && allslots[i].slot->type != -1 )
-			    {
-			    HomeMadeItemRepair ( allslots[i].slot ); 
-			    break;
-			    }
+				Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
+				Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
+				
+				Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
+				
+				if ( Grabbed_InvPos != - 1)
+				{
+					//--------------------
+					// At this point we know, that we have just applied something from the inventory
+					//
+					ApplyItem( & ( Me.Inventory[ Grabbed_InvPos ] ) );
+				}
 			}
-		    }
-	}
-	else 
-		if ( MouseCursorIsInInventoryGrid( CurPos.x , CurPos.y ) )
-		{
-		    Inv_GrabLoc.x = GetInventorySquare_x ( CurPos.x );
-		    Inv_GrabLoc.y = GetInventorySquare_y ( CurPos.y );
-		    
-		    Grabbed_InvPos = GetInventoryItemAt ( Inv_GrabLoc.x , Inv_GrabLoc.y );
-		    
-		    if ( Grabbed_InvPos != - 1)
-		    {
-			//--------------------
-			// At this point we know, that we have just applied something from the inventory
-			//
-			ApplyItem( & ( Me.Inventory[ Grabbed_InvPos ] ) );
-		    }
 		}
-	
-    }    
+	}    
 }; // void HandleInventoryScreen ( void );
 
 
@@ -2597,25 +2588,24 @@ HandleInventoryScreen ( void )
 void
 raw_move_picked_up_item_to_entry ( item* ItemPointer , item* TargetPointer , point Inv_Loc )
 {
-    char TempText[1000];
-    
-    // We announce that we have taken the item
-    Me . TextVisibleTime = 0;
-    sprintf ( TempText , _("Item taken: %s."), D_(ItemMap[ ItemPointer->type ].item_name ));
-    append_new_game_message ( TempText ); // this can be freed/destroyed afterwards.  it's ok.
-    Me . TextToBeDisplayed = MyMalloc ( strlen( TempText ) + 1 );
-    strcpy ( Me . TextToBeDisplayed , TempText );
-    
-    // We add the new item to the inventory
-    CopyItem( ItemPointer , TargetPointer , FALSE );
-    TargetPointer -> inventory_position . x = Inv_Loc . x ;
-    TargetPointer -> inventory_position.y = Inv_Loc . y ;
-    
-    // We make the sound of an item being taken
-    // PlayItemSound( ItemMap[ ItemPointer->type ].sound_number );
-    play_item_sound( ItemPointer -> type );
-    
-    DeleteItem( ItemPointer );
+	char TempText[1000];
+	
+	// We announce that we have taken the item
+	Me.TextVisibleTime = 0;
+	sprintf ( TempText, _("Item taken: %s."), D_(ItemMap[ItemPointer->type].item_name ));
+	append_new_game_message( TempText ); // this can be freed/destroyed afterwards.  it's ok.
+	Me.TextToBeDisplayed = strdup(TempText);
+	
+	// We add the new item to the inventory
+	CopyItem( ItemPointer, TargetPointer, FALSE );
+	TargetPointer->inventory_position.x = Inv_Loc.x;
+	TargetPointer->inventory_position.y = Inv_Loc.y;
+	
+	// We make the sound of an item being taken
+	// PlayItemSound( ItemMap[ ItemPointer->type ].sound_number );
+	play_item_sound( ItemPointer->type );
+	
+	DeleteItem( ItemPointer );
 }; // void move_picked_up_item_to_entry ( ItemPointer , TargetPointer )
 
 /**
