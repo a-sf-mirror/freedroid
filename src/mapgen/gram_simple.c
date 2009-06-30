@@ -444,6 +444,7 @@ static void add_rel(int x, int y , enum connection_type type, int cible){
 		free(cplist);
                 int p=rand()%4;
 		if (p==0 && l){
+			MakeConnect(x,y,type);
 			fusion(id,cible);
 		}else{
 			MakeConnect(x,y,type);

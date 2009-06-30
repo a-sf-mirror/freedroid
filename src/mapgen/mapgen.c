@@ -303,6 +303,10 @@ static int SuitableConnection(int t)
 		case 5:
 		case 6:
 		case 7:
+		case 13:
+		case 14:
+		case 15:
+		case 16:
 			return 1;
 			break;
 			
