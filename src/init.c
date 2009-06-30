@@ -1047,7 +1047,9 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.",
 	    // Now we read in the image type that should be generated for this bullet
 	    ReadValueFromString( ItemPointer ,  "Item as gun: bullet_lifetime=" , "%f" , 
 				 &ItemMap[ItemIndex].item_gun_bullet_lifetime , EndOfItemData );
-
+	    if ( ItemMap[ItemIndex].item_gun_bullet_lifetime == -1 )
+	    	ItemMap[ItemIndex].item_gun_bullet_lifetime = DEFAULT_BULLET_LIFETIME;
+	    
 	    // Now we read in the image type that should be generated for this bullet
 	    ReadValueFromString( ItemPointer ,  "Item as gun: ammo clip size=" , "%hd" , 
 				 &ItemMap[ItemIndex].item_gun_ammo_clip_size , EndOfItemData );
@@ -1612,6 +1614,7 @@ PrepareStartOfNewCharacter ( char * startpos )
     
     ResolveMapLabelOnShip ( startpos , &StartPosition );
     Teleport( StartPosition . level, StartPosition . x, StartPosition . y, FALSE);
+    clear_active_bullets();
     
     Me . teleport_anchor . x = 0 ; //no anchor at the beginning
     Me . teleport_anchor . y = 0 ;

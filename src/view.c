@@ -827,9 +827,18 @@ insert_one_thrown_item_into_blitting_list ( int item_num )
 void
 insert_one_bullet_into_blitting_list ( int bullet_num )
 {
-    float bullet_norm = AllBullets [ bullet_num ] . pos . x + AllBullets [ bullet_num ] . pos . y ;
-    
-    insert_new_element_into_blitting_list ( bullet_norm , BLITTING_TYPE_BULLET , 
+	gps virtpos;
+	
+	// Due to the use of a painter algorithm, we need to sort the objects depending of their 
+	// isometric distance on the current level.
+	// We thus have to get the bullet's position on the current level. 
+	update_virtual_position(&virtpos, &AllBullets[bullet_num].pos, Me.pos.z);
+
+	// Could not find virtual position? Give up drawing.
+	if (virtpos.z == -1)
+		return;
+
+	insert_new_element_into_blitting_list ( virtpos.x + virtpos.y, BLITTING_TYPE_BULLET , 
 					    & ( AllBullets [ bullet_num ] ) , bullet_num );
     
 }; // void insert_one_bullet_into_blitting_list ( int enemy_num )
@@ -868,7 +877,7 @@ insert_one_blast_into_blitting_list ( int blast_num )
 int level_is_visible ( int level_num )
 {
 	// Current level is for sure visible
-
+	
 	if ( level_num == Me.pos.z )
 		return TRUE;
 
@@ -882,13 +891,13 @@ int level_is_visible ( int level_num )
 
 	int left_idx = 1, right_idx = 1;
 	int top_idx = 1, bottom_idx = 1;
-	
+
 	if ( Me.pos.x < FLOOR_TILES_VISIBLE_AROUND_TUX ) left_idx = 0; 								// left neighbors are potentially visible
 	else if ( Me.pos.x >= CURLEVEL()->xlen - FLOOR_TILES_VISIBLE_AROUND_TUX ) right_idx = 2;	// right neighbors are potentially visible
-	
+
 	if ( Me.pos.y < FLOOR_TILES_VISIBLE_AROUND_TUX ) top_idx = 0; 								// top neighbors are potentially visible
 	else if ( Me.pos.y >= CURLEVEL()->ylen - FLOOR_TILES_VISIBLE_AROUND_TUX ) bottom_idx = 2;	// bottom neighbors are potentially visible
-
+		
 	// Now loop on those levels and check if one is 'level_num'
 
 	int i, j;
@@ -898,13 +907,13 @@ int level_is_visible ( int level_num )
 			if ( level_neighbors_map[Me.pos.z][j][i] &&
 			     level_neighbors_map[Me.pos.z][j][i]->lvl_idx == level_num ) { 
 				return TRUE;
-			}
+	}
 		}
 	}
 	// level_num not found
 	
-    return FALSE;
-
+	return FALSE;
+	
 }; // int level_is_visible ( int level_num )
 
 /*
@@ -4087,62 +4096,68 @@ There was a droid type on this level, that does not really exist.",
 void
 PutBullet ( int bullet_index , int mask )
 {
-    bullet* CurBullet = & ( AllBullets [ bullet_index ] ) ;
-    int PhaseOfBullet;
-    int direction_index;
-    
-    if ( CurBullet -> time_to_hide_still > 0 ) 
-	return ;
-    
-    //--------------------
-    // in case our bullet is of the type "FLASH", we only
-    // draw a big white or black rectangle right over the 
-    // combat window, white for even frames and black for 
-    // odd frames.
-    if ( CurBullet -> type == FLASH )
-    {
-	// Now the whole window will be filled with either white
-	// or black each frame until the flash is over.  (Flash 
-	// deletion after some time is done in CheckBulletCollisions.)
-	if ( ( CurBullet -> time_in_frames % 2 ) == 1)
+	bullet* CurBullet = &(AllBullets[bullet_index]);
+	int PhaseOfBullet;
+	int direction_index;
+	
+	if ( CurBullet->time_to_hide_still > 0 ) 
+		return ;
+	
+	//--------------------
+	// in case our bullet is of the type "FLASH", we only
+	// draw a big white or black rectangle right over the 
+	// combat window, white for even frames and black for 
+	// odd frames.
+	if ( CurBullet->type == FLASH )
 	{
-	    FdFlashWindow ( flashcolor1 );
-	    return;
-	}
-	if ( ( CurBullet -> time_in_frames % 2 ) == 0)
+		// Now the whole window will be filled with either white
+		// or black each frame until the flash is over.  (Flash 
+		// deletion after some time is done in CheckBulletCollisions.)
+		if ( ( CurBullet->time_in_frames % 2 ) == 1)
+		{
+			FdFlashWindow ( flashcolor1 );
+			return;
+		}
+		if ( ( CurBullet->time_in_frames % 2 ) == 0)
+		{
+			FdFlashWindow ( flashcolor2 );
+			return;
+		}
+	} // if type == FLASH
+	
+	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
+	if ( ( CurBullet->type >= Number_Of_Bullet_Types ) ||
+	     ( CurBullet->type <  0                      ) )
 	{
-	    FdFlashWindow ( flashcolor2 );
-	    return;
-	}
-    } // if type == FLASH
-    
-    // DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
-    if ( ( CurBullet -> type >= Number_Of_Bullet_Types ) ||
-	 ( CurBullet -> type <  0                      ) )
-    {
-	fprintf ( stderr , "\nPutBullet:  bullet type received: %d." , CurBullet -> type );
-	fflush ( stderr );
-	ErrorMessage ( __FUNCTION__  , "\
+		fprintf ( stderr , "\nPutBullet:  bullet type received: %d." , CurBullet->type );
+		fflush ( stderr );
+		ErrorMessage ( __FUNCTION__  , "\
 There was a bullet to be blitted of a type that does not really exist.",
 				   PLEASE_INFORM, IS_FATAL );
-    };
-    
-    PhaseOfBullet = CurBullet -> time_in_seconds * Bulletmap [ CurBullet -> type ] . phase_changes_per_second ;
-    
-    PhaseOfBullet = PhaseOfBullet % Bulletmap [ CurBullet -> type ] . phases ;
-    // DebugPrintf( 0 , "\nPhaseOfBullet: %d.", PhaseOfBullet );
-    
-    direction_index = ( ( CurBullet -> angle + 360.0 + 360 / ( 2 * BULLET_DIRECTIONS ) ) * BULLET_DIRECTIONS / 360 ) ;
-    while ( direction_index < 0  ) direction_index += BULLET_DIRECTIONS ; // just to make sure... a modulo ROTATION_ANGLES_PER_ROTATION_MODEL operation can't hurt
-    while ( direction_index >= BULLET_DIRECTIONS ) direction_index -= BULLET_DIRECTIONS ; // just to make sure... a modulo ROTATION_ANGLES_PER_ROTATION_MODEL operation can't hurt
-    
-    if ( mask & ZOOM_OUT )
-    {
-	// blit_zoomed_iso_image_to_map_position ( & ( Bulletmap [ CurBullet -> type ] . image [ direction_index ] [ PhaseOfBullet ] ) , CurBullet -> pos . x , CurBullet -> pos . y );
-    }
-    else
-	blit_iso_image_to_map_position ( &Bulletmap [ CurBullet -> type ] . image [ direction_index ] [ PhaseOfBullet ] , CurBullet -> pos . x , CurBullet -> pos . y );
-    
+	}
+	
+	PhaseOfBullet = CurBullet->time_in_seconds * Bulletmap[CurBullet->type].phase_changes_per_second;
+	
+	PhaseOfBullet = PhaseOfBullet % Bulletmap[CurBullet->type].phases;
+	// DebugPrintf( 0 , "\nPhaseOfBullet: %d.", PhaseOfBullet );
+	
+	direction_index = ( ( CurBullet->angle + 360.0 + 360 / ( 2 * BULLET_DIRECTIONS ) ) * BULLET_DIRECTIONS / 360 );
+	while ( direction_index < 0  ) direction_index += BULLET_DIRECTIONS ; // just to make sure... a modulo ROTATION_ANGLES_PER_ROTATION_MODEL operation can't hurt
+	while ( direction_index >= BULLET_DIRECTIONS ) direction_index -= BULLET_DIRECTIONS ; // just to make sure... a modulo ROTATION_ANGLES_PER_ROTATION_MODEL operation can't hurt
+	
+	// draw position is relative to current level, so compute the appropriate virtual position
+	gps vpos;
+	update_virtual_position(&vpos, &CurBullet->pos, Me.pos.z);
+	if ( vpos.x == -1 ) return;
+	
+	if ( mask & ZOOM_OUT )
+	{
+		// blit_zoomed_iso_image_to_map_position ( & ( Bulletmap [ CurBullet -> type ] . image [ direction_index ] [ PhaseOfBullet ] ) , CurBullet -> pos . x , CurBullet -> pos . y );
+	}
+	else
+	{
+		blit_iso_image_to_map_position ( &Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y );
+	}
 }; // void PutBullet (int Bulletnumber )
 
 /**

@@ -42,43 +42,54 @@
  *
  *
  */
-static void
-move_this_bullet_and_check_its_collisions ( int num )
+static void move_this_bullet_and_check_its_collisions ( int num )
 {
-  Bullet CurBullet = & ( AllBullets [ num ] ) ; 
-  moderately_finepoint bullet_step_vector;
-  float whole_step_size;
-  int i;
-  float number_of_steps;
-
-  //--------------------
-  // In case of a bullet, which is not a melee weapon, we just move
-  // the bullets as specified in it's speed vector.  But of course we
-  // must make several stops and check for collisions in case the 
-  // planned step would be too big to crash into walls...
-  //
-  whole_step_size = max ( fabsf ( CurBullet->speed.x * Frame_Time () ) , 
-			  fabsf ( CurBullet->speed.y * Frame_Time () ) );
-
-  //--------------------
-  // NOTE:  The number 0.25 here is the value of thickness of the collision
-  // rectangle of a standard wall.  Since we might not have loaded all wall tiles
-  // at every time of the game, also during game, guessing the minimum thickness
-  // of walls at runtime is a bit hard and would be unconvenient and complicated,
-  // so I leave this with the hard-coded constant for now...
-  //
-  number_of_steps = rintf ( whole_step_size / 0.25 ) + 1 ;
-
-  bullet_step_vector . x = 0.5 * CurBullet -> speed . x * Frame_Time () / number_of_steps ;
-  bullet_step_vector . y = 0.5 * CurBullet -> speed . y * Frame_Time () / number_of_steps ;
-
-  for ( i = 0 ; i < number_of_steps ; i ++ )
-    {
-      CurBullet -> pos . x += bullet_step_vector . x ;
-      CurBullet -> pos . y += bullet_step_vector . y ;
-  
-      CheckBulletCollisions ( num ) ;
-    }
+	Bullet CurBullet = &(AllBullets[num]); 
+	moderately_finepoint bullet_step_vector;
+	float whole_step_size;
+	int i;
+	float number_of_steps;
+	
+	//--------------------
+	// In case of a bullet, which is not a melee weapon, we just move
+	// the bullets as specified in it's speed vector.  But of course we
+	// must make several stops and check for collisions in case the 
+	// planned step would be too big to crash into walls...
+	//
+	whole_step_size = max( fabsf( CurBullet->speed.x * Frame_Time() ),
+	                       fabsf( CurBullet->speed.y * Frame_Time() ) );
+	
+	//--------------------
+	// NOTE:  The number 0.25 here is the value of thickness of the collision
+	// rectangle of a standard wall.  Since we might not have loaded all wall tiles
+	// at every time of the game, also during game, guessing the minimum thickness
+	// of walls at runtime is a bit hard and would be unconvenient and complicated,
+	// so I leave this with the hard-coded constant for now...
+	//
+	number_of_steps = rintf( whole_step_size / 0.25 ) + 1;
+	
+	bullet_step_vector.x = 0.5 * CurBullet->speed.x * Frame_Time() / number_of_steps;
+	bullet_step_vector.y = 0.5 * CurBullet->speed.y * Frame_Time() / number_of_steps;
+	
+	for ( i = 0 ; i < number_of_steps ; i ++ )
+	{
+		CurBullet->pos.x += bullet_step_vector.x;
+		CurBullet->pos.y += bullet_step_vector.y;
+		
+		// The bullet could have traverse a level's boundaries, so
+		// get its new level and position, and check if the transformation was possible
+		int pos_valid = resolve_virtual_position(&CurBullet->pos, &CurBullet->pos);
+		if ( !pos_valid ) {
+			DebugPrintf( -1000, "\nBullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d\n",
+			             CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, CurBullet->type );
+			DeleteBullet(num, FALSE);
+			return;
+		}
+		
+		CheckBulletCollisions( num );
+		if ( CurBullet->type == INFOUT )
+			return;
+	}
 
 }; // void move_this_bullet_and_check_its_collisions ( CurBullet )
 
@@ -191,14 +202,14 @@ MoveBullets (void)
 		if ( CurBullet->time_to_hide_still > 0 )
 			continue;
 		
-		if ( ! level_is_visible ( CurBullet->pos.z ) )
+		if ( !level_is_visible(CurBullet->pos.z) )
 		{
 			// if the bullet is on an inactive level, silently kill it
-			DeleteBullet ( i, FALSE );
+			DeleteBullet( i, FALSE );
 			continue;
 		}
 		
-		move_this_bullet_and_check_its_collisions ( i );
+		move_this_bullet_and_check_its_collisions( i );
 		
 		//--------------------
 		// WARNING!  The bullet collision check might have deleted the bullet, so 
@@ -216,26 +227,14 @@ MoveBullets (void)
 		if ( ( CurBullet->bullet_lifetime != (-1) ) && 
 		     ( CurBullet->time_in_seconds > CurBullet->bullet_lifetime ) )
 		{
-			DeleteBullet( i , FALSE );
+			DeleteBullet( i, FALSE );
 			continue;
 		}
 		CurBullet->time_in_frames++;
 		CurBullet->time_in_seconds += Frame_Time();
-				
-		//--------------------
-		// But maybe the bullet is also outside the map already, which would
-		// cause a SEGFAULT directly afterwards, when the map is queried.
-		// Therefore we introduce some extra security here...
-		//
-		if ( !pos_inside_level( CurBullet->pos.x, CurBullet->pos.y, curShip.AllLevels[CurBullet->pos.z] ) ) {
-			DebugPrintf ( -1000 , "\nBullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d." ,
-			              CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, CurBullet->type );
-			DeleteBullet ( i , FALSE );
-			return;
-		}
-		
+
 	}				/* for */
-}; // void MoveBullets(void)
+} // void MoveBullets(void)
 
 /**
  * This function eliminates the bullet with the given number.  As an 
@@ -535,6 +534,22 @@ clear_active_spells ( void )
 }; // void clear_active_spells ( void )
 
 /**
+ *
+ *
+ */
+void clear_active_bullets()
+{
+	int i;
+	
+	for (i = 0; i < MAXBLASTS; i++) {
+		AllBlasts[i].type = INFOUT;
+	}
+	for (i = 0; i < MAXBULLETS; i++) {
+		DeleteBullet( i, FALSE ); 
+	}	
+} // void clear_active_bullets()
+
+/**
  * Whenever a new bullet is generated, we need to find a free index in 
  * the array of bullets.  This function automates the process and 
  * also is secure against too many bullets in the game (with a rather
@@ -775,58 +790,58 @@ check_bullet_enemy_collisions ( bullet* CurBullet , int num )
  *
  *
  */
-void
-check_bullet_bullet_collisions ( bullet* CurBullet , int num )
+void check_bullet_bullet_collisions ( bullet* CurBullet , int num )
 {
-  int i;
-
-  // check for collisions with other bullets
-  for (i = 0; i < MAXBULLETS; i++)
-    {
-      if (i == num) continue;  // never check for collision with youself.. ;)
-      if (AllBullets[i].type == INFOUT) continue; // never check for collisions with dead bullets.. 
-      if (AllBullets[i].type == FLASH) continue; // never check for collisions with flashes bullets.. 
-      
-      if ( fabsf(AllBullets[i].pos.x-CurBullet->pos.x) > BULLET_BULLET_COLLISION_DIST ) continue;
-      if ( fabsf(AllBullets[i].pos.y-CurBullet->pos.y) > BULLET_BULLET_COLLISION_DIST ) continue;
-      // it seems like we have a collision of two bullets!
-      // both will be deleted and replaced by blasts..
-      DebugPrintf ( 1 , "\nBullet-Bullet-Collision detected..." );
-      
-      //CurBullet->type = INFOUT;
-      //AllBullets[num].type = INFOUT;
-      
-      if ( CurBullet->reflect_other_bullets )
+	int i;
+	
+	// check for collisions with other bullets
+	for (i = 0; i < MAXBULLETS; i++)
 	{
-	  if ( AllBullets[ i ].was_reflected )
-	    {
-	      // well, if it has been reflected once, we don't do any more
-	      // reflections after that...
-	    }
-	  else
-	    {
-	      AllBullets[i].speed.x = - AllBullets[i].speed.x;
-	      AllBullets[i].speed.y = - AllBullets[i].speed.y;
-	      AllBullets[i].was_reflected = TRUE;
-	    }
+		if (i == num) continue;  // never check for collision with youself.. ;)
+		if (CurBullet->pos.z != AllBullets[i].pos.z) continue; // not on same level
+		if (AllBullets[i].type == INFOUT) continue; // never check for collisions with dead bullets.. 
+		if (AllBullets[i].type == FLASH) continue; // never check for collisions with flashes bullets.. 
+		
+		if ( fabsf(AllBullets[i].pos.x-CurBullet->pos.x) > BULLET_BULLET_COLLISION_DIST ) continue;
+		if ( fabsf(AllBullets[i].pos.y-CurBullet->pos.y) > BULLET_BULLET_COLLISION_DIST ) continue;
+		// it seems like we have a collision of two bullets!
+		// both will be deleted and replaced by blasts..
+		DebugPrintf( 1 , "\nBullet-Bullet-Collision detected..." );
+		
+		//CurBullet->type = INFOUT;
+		//AllBullets[num].type = INFOUT;
+		
+		if ( CurBullet->reflect_other_bullets )
+		{
+			if ( AllBullets[i].was_reflected )
+			{
+				// well, if it has been reflected once, we don't do any more
+				// reflections after that...
+			}
+			else
+			{
+				AllBullets[i].speed.x = - AllBullets[i].speed.x;
+				AllBullets[i].speed.y = - AllBullets[i].speed.y;
+				AllBullets[i].was_reflected = TRUE;
+			}
+		}
+		
+		if ( AllBullets[i].reflect_other_bullets )
+		{
+			if ( CurBullet->was_reflected )
+			{
+				// well, if it has been reflected once, we don't do any more
+				// reflections after that...
+			}
+			else
+			{
+				CurBullet->speed.x = - CurBullet->speed.x;
+				CurBullet->speed.y = - CurBullet->speed.y;
+				CurBullet->was_reflected = TRUE;
+			}
+		}
+		
 	}
-      
-      if ( AllBullets[ i ].reflect_other_bullets )
-	{
-	  if ( CurBullet->was_reflected )
-	    {
-	      // well, if it has been reflected once, we don't do any more
-	      // reflections after that...
-	    }
-	  else
-	    {
-	      CurBullet->speed.x = - CurBullet->speed.x;
-	      CurBullet->speed.y = - CurBullet->speed.y;
-	      CurBullet->was_reflected = TRUE;
-	    }
-	}
-      
-    }
 }; // void check_bullet_bullet_collisions ( CurBullet , num )
 
 /**

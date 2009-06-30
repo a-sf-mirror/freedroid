@@ -169,11 +169,13 @@ static void TeleportHome ( void )
 	teleport_arrival_sound ( );
 	ResolveMapLabelOnShip ( "TeleportHomeTarget" , &(HomeSpot) );
 	Teleport ( HomeSpot.level , HomeSpot.x , HomeSpot.y , TRUE ) ;
+	clear_active_bullets();
 	}
     else //we must teleport back to the anchor
 	{
 	teleport_arrival_sound  ( );
 	Teleport ( Me . teleport_anchor . z , Me . teleport_anchor . x , Me . teleport_anchor . y , TRUE ) ;
+	clear_active_bullets();
 	Me . teleport_anchor . x = 0;
 	Me . teleport_anchor . y = 0;
 	Me . teleport_anchor . z = 0;

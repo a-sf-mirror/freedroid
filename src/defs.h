@@ -113,6 +113,8 @@ enum
 
 #define LIGHT_RADIUS_CHUNK_SIZE (1.0/5.0)
 #define LIGHT_RADIUS_CRUDENESS_FACTOR 1
+#define LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH 64
+#define LIGHT_RADIUS_STRETCH_TEXTURE_HEIGHT 64
 #define NUMBER_OF_SHADOW_IMAGES 20
 
 
@@ -238,9 +240,6 @@ enum
 #define ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT 0.3333333333333333333
 
 #define AUTOMAP_ZOOM_OUT_FACT 8.0
-
-#define LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH 64
-#define LIGHT_RADIUS_STRETCH_TEXTURE_HEIGHT 64
 
 // The color filters are:
 enum
@@ -692,6 +691,8 @@ enum
                                         // is considers fireing again?
 #define ATTACK_MOVE_RATE 0.2 // Minimum number of seconds between to displacement computation
                              // during attack
+
+#define DEFAULT_BULLET_LIFETIME 5.0 // prevent bullets to infinitely move (this is merely a protection against bugs)
 
 //--------------------
 // Map- and levelrelated defines

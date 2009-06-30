@@ -1157,8 +1157,6 @@ move_all_items_to_level ( int target_level )
 void
 Teleport ( int LNum , float X , float Y , int with_sound_and_fading )
 {
-	int i;
-	
 	//--------------------
 	// Maybe the 'teleport' really comes from a teleportation device or
 	// teleport spell or maybe even from accessing some sewer accessway.
@@ -1216,18 +1214,6 @@ A Teleport was requested, but the location to teleport to lies outside\n\
 the bounds of this 'ship' which means the current collection of levels.\n\
 This indicates an error in the map system of Freedroid.",
 				       PLEASE_INFORM, IS_FATAL );
-		}
-		
-		//--------------------
-		// Turn off all blasts and bullets from the old level
-		//
-		for (i = 0; i < MAXBLASTS; i++)
-		{
-			AllBlasts[i].type = INFOUT;
-		}
-		for (i = 0; i < MAXBULLETS; i++)
-		{
-			DeleteBullet( i, FALSE ); 
 		}
 		
 	}

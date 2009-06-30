@@ -1597,116 +1597,115 @@ void FillInDefaultBulletStruct ( bullet * CurBullet, int bullet_image_type, shor
  * no matter whether this is 'allowed' or not, not questioning anything
  * and SILENTLY TRUSTING THAT THIS TUX HAS A RANGED WEAPON EQUIPPED.
  */
-void
-FireTuxRangedWeaponRaw ( short int weapon_item_type , int bullet_image_type, bullet * bullet_parameters , moderately_finepoint target_location ) 
+void FireTuxRangedWeaponRaw ( short int weapon_item_type , int bullet_image_type, bullet * bullet_parameters , moderately_finepoint target_location ) 
 {
-    int i = 0;
-    bullet * CurBullet = NULL;
-    float BulletSpeed = ItemMap [ weapon_item_type ] . item_gun_speed;
-    double speed_norm;
-    moderately_finepoint speed;
-    float OffsetFactor;
-    moderately_finepoint offset;
-    OffsetFactor = 0.25 ;
-#define FIRE_TUX_RANGED_WEAPON_RAW_DEBUG 1
-    
-    DebugPrintf ( 1 , "\n%s(): target location: x=%f, y=%f." , __FUNCTION__ , 
-		  target_location . x , target_location . y );
-
-    //--------------------
-    // We search for the first free bullet entry in the 
-    // bullet list...
-    //
-    i = find_free_bullet_index ();
-    CurBullet = & ( AllBullets [ i ] ) ;
-
-    if ( bullet_parameters ) memcpy(CurBullet, bullet_parameters, sizeof(bullet));    
-    else FillInDefaultBulletStruct (CurBullet, bullet_image_type, weapon_item_type );
-
-    
-    //--------------------
-    // Now we can set up recharging time for the Tux...
-    // The firewait time is now modified by the ranged weapon skill
-    // 
-    Me . busy_time = ItemMap[ weapon_item_type ].item_gun_recharging_time;
-    Me . busy_time *= RangedRechargeMultiplierTable [ Me . ranged_weapon_skill ] ;
-    Me . busy_type = WEAPON_FIREWAIT;
-    
-    //--------------------
-    // Use the map location to
-    // pixel translation and vice versa to compute firing direction...
-    //
-    // But this is ONLY A FIRST ESTIMATE!  It will be fixed shortly!
-    //
-    // speed . x = translate_pixel_to_map_location ( input_axis.x , input_axis.y , TRUE ) - Me . pos . x ;
-    // speed . y = translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) - Me . pos . y ;
-    speed . x = target_location . x - Me . pos . x ; 
-    speed . y = target_location . y - Me . pos . y ; 
-    speed_norm = sqrt ( speed . x * speed . x + speed . y * speed . y );
-    if ( ! speed_norm ) fprintf(stderr, "Bullet speed is zero\n");
-    CurBullet -> speed.x = ( speed . x / speed_norm );
-    CurBullet -> speed.y = ( speed . y / speed_norm );
-    CurBullet -> speed . x *= BulletSpeed;
-    CurBullet -> speed . y *= BulletSpeed;
-    
-    DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
-		 "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f." , speed_norm );
-    
-    //--------------------
-    // Now the above vector would generate a fine bullet, but it will
-    // be modified later to come directly from the Tux weapon muzzle.
-    // Therefore it might often miss a target standing very close.
-    // As a reaction, we will shift the target point by a similar vector
-    // and then re-compute the bullet vector.
-    //
-    offset . x = OffsetFactor * ( CurBullet -> speed . x / BulletSpeed );
-    offset . y = OffsetFactor * ( CurBullet -> speed . y / BulletSpeed );
-    RotateVectorByAngle ( & ( offset ) , -60 );
-    
-    //--------------------
-    // And now we re-do it all!  But this time with the extra offset
-    // applied to the SHOT TARGET POINT!
-    //
-    speed . x = target_location . x - Me . pos . x - offset . x ;
-    speed . y = target_location . y - Me . pos . y - offset . y ;
-    speed_norm = sqrt ( speed . x * speed . x + speed . y * speed . y );
-    CurBullet -> speed.x = ( speed . x / speed_norm );
-    CurBullet -> speed.y = ( speed . y / speed_norm );
-    CurBullet -> speed . x *= BulletSpeed;
-    CurBullet -> speed . y *= BulletSpeed;
-    
-    DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
-		 "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f." , speed_norm );
-    
-    //--------------------
-    // Now we determine the angle of rotation to be used for
-    // the picture of the bullet itself
-    //
-    
-    CurBullet -> angle = - ( atan2 ( speed . y ,  speed . x ) * 180 / M_PI + 90 + 45 );
-    
-    DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
-		 "\nFireTuxRangedWeaponRaw(...) : Phase of bullet=%d." , CurBullet->phase );
-    DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
-		 "\nFireTuxRangedWeaponRaw(...) : angle of bullet=%f." , CurBullet->angle );
-    
-    //--------------------
-    // To prevent influ from hitting himself with his own bullets,
-    // move them a bit..
-    //
-    offset . x = OffsetFactor * ( CurBullet -> speed . x / BulletSpeed );
-    offset . y = OffsetFactor * ( CurBullet -> speed . y / BulletSpeed );
-    RotateVectorByAngle ( & ( offset ) , -60 );
-    
-    CurBullet -> pos . x += offset . x ;
-    CurBullet -> pos . y += offset . y ; 
-
-    CurBullet -> is_friendly = 1;
-
-    DebugPrintf ( 0 , "\nOffset:  x=%f y=%f." , offset . x , offset . y );
-    
-    DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
-		 "\nFireTuxRangedWeaponRaw(...) : final position of bullet = (%f/%f)." , 
+	int i = 0;
+	bullet *CurBullet = NULL;
+	float BulletSpeed = ItemMap[weapon_item_type].item_gun_speed;
+	double speed_norm;
+	moderately_finepoint speed;
+	float OffsetFactor;
+	moderately_finepoint offset;
+	OffsetFactor = 0.25 ;
+#	define FIRE_TUX_RANGED_WEAPON_RAW_DEBUG 1
+	
+	DebugPrintf ( 1, "\n%s(): target location: x=%f, y=%f.", __FUNCTION__, 
+	              target_location.x, target_location.y );
+	
+	//--------------------
+	// We search for the first free bullet entry in the 
+	// bullet list...
+	//
+	i = find_free_bullet_index();
+	CurBullet = &(AllBullets[i]);
+	
+	if ( bullet_parameters ) memcpy(CurBullet, bullet_parameters, sizeof(bullet));    
+	else FillInDefaultBulletStruct( CurBullet, bullet_image_type, weapon_item_type );
+	
+	//--------------------
+	// Now we can set up recharging time for the Tux...
+	// The firewait time is now modified by the ranged weapon skill
+	// 
+	Me.busy_time = ItemMap[weapon_item_type].item_gun_recharging_time;
+	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];
+	Me.busy_type = WEAPON_FIREWAIT;
+	
+	//--------------------
+	// Use the map location to
+	// pixel translation and vice versa to compute firing direction...
+	//
+	// But this is ONLY A FIRST ESTIMATE!  It will be fixed shortly!
+	//
+	// speed . x = translate_pixel_to_map_location ( input_axis.x , input_axis.y , TRUE ) - Me . pos . x ;
+	// speed . y = translate_pixel_to_map_location ( input_axis.x , input_axis.y , FALSE ) - Me . pos . y ;
+	speed.x = target_location.x - Me.pos.x;
+	speed.y = target_location.y - Me.pos.y;
+	speed_norm = sqrt( speed.x * speed.x + speed.y * speed.y );
+	if ( !speed_norm ) fprintf(stderr, "Bullet speed is zero\n");
+	CurBullet->speed.x = ( speed.x / speed_norm );
+	CurBullet->speed.y = ( speed.y / speed_norm );
+	CurBullet->speed.x *= BulletSpeed;
+	CurBullet->speed.y *= BulletSpeed;
+	
+	DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
+	             "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f." , speed_norm );
+	
+	//--------------------
+	// Now the above vector would generate a fine bullet, but it will
+	// be modified later to come directly from the Tux weapon muzzle.
+	// Therefore it might often miss a target standing very close.
+	// As a reaction, we will shift the target point by a similar vector
+	// and then re-compute the bullet vector.
+	//
+	offset.x = OffsetFactor * ( CurBullet->speed.x / BulletSpeed );
+	offset.y = OffsetFactor * ( CurBullet->speed.y / BulletSpeed );
+	RotateVectorByAngle( &(offset), -60 );
+	
+	//--------------------
+	// And now we re-do it all!  But this time with the extra offset
+	// applied to the SHOT TARGET POINT!
+	//
+	speed.x = target_location.x - Me.pos.x - offset.x;
+	speed.y = target_location.y - Me.pos.y - offset.y;
+	speed_norm = sqrt( speed.x * speed.x + speed.y * speed.y );
+	CurBullet->speed.x = ( speed.x / speed_norm );
+	CurBullet->speed.y = ( speed.y / speed_norm );
+	CurBullet->speed.x *= BulletSpeed;
+	CurBullet->speed.y *= BulletSpeed;
+	
+	DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
+	             "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f." , speed_norm );
+	
+	//--------------------
+	// Now we determine the angle of rotation to be used for
+	// the picture of the bullet itself
+	//
+	
+	CurBullet->angle = - ( atan2( speed.y,  speed.x ) * 180 / M_PI + 90 + 45 );
+	
+	DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
+	             "\nFireTuxRangedWeaponRaw(...) : Phase of bullet=%d." , CurBullet->phase );
+	DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
+	             "\nFireTuxRangedWeaponRaw(...) : angle of bullet=%f." , CurBullet->angle );
+	
+	//--------------------
+	// To prevent influ from hitting himself with his own bullets,
+	// move them a bit..
+	//
+	offset.x = OffsetFactor * ( CurBullet->speed.x / BulletSpeed );
+	offset.y = OffsetFactor * ( CurBullet->speed.y / BulletSpeed );
+	RotateVectorByAngle( &(offset), -60 );
+	
+	CurBullet->pos.x += offset.x;
+	CurBullet->pos.y += offset.y;
+	CurBullet->pos.z = Me.pos.z;
+	
+	CurBullet->is_friendly = 1;
+	
+	DebugPrintf( 0 , "\nOffset:  x=%f y=%f." , offset.x , offset.y );
+	
+	DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
+			"\nFireTuxRangedWeaponRaw(...) : final position of bullet = (%f/%f)." , 
 		 CurBullet->pos . x , CurBullet->pos . y );
     DebugPrintf( FIRE_TUX_RANGED_WEAPON_RAW_DEBUG , 
 		 "\nFireTuxRangedWeaponRaw(...) : BulletSpeed=%f." , BulletSpeed );

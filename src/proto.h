@@ -99,6 +99,7 @@ void DeleteBlast (int num);
 void MoveActiveSpells (void);
 void DeleteSpell (int num);
 void clear_active_spells ( void );
+void clear_active_bullets(void);
 void CheckBulletCollisions (int num);
 void CheckBlastCollisions (int num);
 int find_free_bullet_index ( void ) ;
