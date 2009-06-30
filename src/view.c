@@ -850,12 +850,20 @@ insert_one_bullet_into_blitting_list ( int bullet_num )
 void
 insert_one_blast_into_blitting_list ( int blast_num )
 {
-    float blast_norm = AllBlasts [ blast_num ] . pos . x + AllBlasts [ blast_num ] . pos . y ;
-    
-    insert_new_element_into_blitting_list ( blast_norm , BLITTING_TYPE_BLAST , 
-					    & ( AllBlasts [ blast_num ] ) , blast_num );
-    
-}; // void insert_one_blast_into_blitting_list ( int enemy_num )
+	gps virtpos;
+	
+	// Due to the use of a painter algorithm, we need to sort the objects depending of their 
+	// isometric distance on the current level.
+	// We thus have to get the blast's position on the current level. 
+	update_virtual_position(&virtpos, &AllBlasts[blast_num].pos, Me.pos.z);
+
+	// Could not find virtual position? Give up drawing.
+	if (virtpos.z == -1)
+		return;
+
+	insert_new_element_into_blitting_list ( virtpos.x + virtpos.y, BLITTING_TYPE_BLAST, 
+					    &(AllBlasts[blast_num]), blast_num );
+} // void insert_one_blast_into_blitting_list ( int enemy_num )
 
 /**
  * We need to display bots, objects, bullets... that are on the current level or on one of the
@@ -4403,35 +4411,37 @@ function used for this did not succeed.",
  * The only given parameter is the number of the blast within
  * the AllBlasts array.
  */
-void
-PutBlast (int Blast_number)
+void PutBlast (int Blast_number)
 {
-    Blast CurBlast = &AllBlasts[Blast_number];
-    
-    // If the blast is already long dead, we need not do anything else here
-    if ( CurBlast -> type == INFOUT )
-	return;
-
-    int phase = (int)floorf(CurBlast->phase);
-    if(phase >= 20)
-        {
-	DeleteBlast(Blast_number);
-        return;
-        }
-    
-    // DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
-    if ( CurBlast->type >= ALLBLASTTYPES ) 
-    {
-	ErrorMessage ( __FUNCTION__  , "\
+	Blast CurBlast = &AllBlasts[Blast_number];
+	
+	// If the blast is already long dead, we need not do anything else here
+	if ( CurBlast -> type == INFOUT )
+		return;
+	
+	int phase = (int)floorf(CurBlast->phase);
+	if(phase >= 20)
+	{
+		DeleteBlast(Blast_number);
+		return;
+	}
+	
+	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
+	if ( CurBlast->type >= ALLBLASTTYPES ) 
+	{
+		ErrorMessage ( __FUNCTION__  , "\
 The PutBlast function should blit a blast of a type that does not\n\
 exist at all.",
 				   PLEASE_INFORM, IS_FATAL );
-    };
-    
-    blit_iso_image_to_map_position ( &Blastmap [ CurBlast -> type ] . image [ phase ] , 
-				     CurBlast -> pos . x , CurBlast -> pos . y  );
-    
-};  // void PutBlast(int Blast_number)
+	}
+	
+	// draw position is relative to current level, so compute the appropriate virtual position
+	gps vpos;
+	update_virtual_position(&vpos, &CurBlast->pos, Me.pos.z);
+	if ( vpos.x == -1 ) return;
+	
+	blit_iso_image_to_map_position ( &Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y );
+}  // void PutBlast(int Blast_number)
 
 /**
  * This function fills the combat window with one single color, given as

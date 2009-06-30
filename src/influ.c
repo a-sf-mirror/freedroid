@@ -2016,7 +2016,7 @@ PerformTuxAttackRaw ( int use_mouse_cursor_for_targeting )
 	// must open pendoras box now.
 	//
 	// SmashBox ( Weapon_Target_Vector.x , Weapon_Target_Vector.y );
-	if ( smash_obstacle ( Weapon_Target_Vector . x , Weapon_Target_Vector . y ) )
+	if ( smash_obstacle ( Weapon_Target_Vector . x , Weapon_Target_Vector . y,  Me.pos.z ) )
 		melee_weapon_hit_something = TRUE;
 	
 	//--------------------
@@ -2446,8 +2446,9 @@ check_for_barrels_to_smash ( int barrel_index )
 		// We make sure the barrel gets smashed, even if the strike made by the
 		// Tux would be otherwise a miss...
 		//
-		smash_obstacle ( our_level -> obstacle_list [ barrel_index ] . pos . x , 
-						 our_level -> obstacle_list [ barrel_index ] . pos . y);
+		smash_obstacle ( our_level->obstacle_list[barrel_index].pos.x, 
+						 our_level->obstacle_list[barrel_index].pos.y,
+						 our_level->obstacle_list[barrel_index].pos.z);
 
 		//--------------------
 		// We start an attack motion...

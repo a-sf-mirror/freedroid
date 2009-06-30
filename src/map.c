@@ -932,104 +932,105 @@ CollectAutomapData ( void )
  * must be supplied so as to be able to suppress hits through walls or
  * the like.
  */
-static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
+static int smash_obstacles_only_on_tile ( float x, float y, int level, int map_x, int map_y )
 {
-    Level BoxLevel = curShip . AllLevels [ Me . pos . z ] ;
-    int i ;
-    int target_idx;
-    Obstacle target_obstacle;
-    int smashed_something = FALSE ;
-    moderately_finepoint blast_start_pos;
-
-    //--------------------
-    // First some security checks against touching the outsides of the map...
-    //
-    if ( !pos_inside_level( map_x, map_y, BoxLevel ) )
-    	return ( FALSE ) ;
-    
-    //--------------------
-    // We check all the obstacles on this square if they are maybe destructable
-    // and if they are, we destruct them, haha
-    //
-    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i ++ )
-    {
-	//--------------------
-	// First we see if there is something glued to this map tile at all.
-	//
-    target_idx = BoxLevel->map[map_y][map_x].obstacles_glued_to_here[i]; 
-	if (  target_idx == -1 ) continue;
-	
-	target_obstacle = & ( BoxLevel -> obstacle_list [target_idx] );
-	
-	if ( ! ( obstacle_map [ target_obstacle -> type ] . flags & IS_SMASHABLE) ) continue;
+	Level BoxLevel = curShip.AllLevels[level];
+	int i;
+	int target_idx;
+	Obstacle target_obstacle;
+	int smashed_something = FALSE;
+	moderately_finepoint blast_start_pos;
 	
 	//--------------------
-	// Now we check if the item really was close enough to the strike target.
-	// A range of 0.5 should do.
+	// First some security checks against touching the outsides of the map...
 	//
-	if ( fabsf ( x - target_obstacle -> pos . x ) > 0.4 ) continue ;
-	if ( fabsf ( y - target_obstacle -> pos . y ) > 0.4 ) continue ;
-	
-	    colldet_filter filter = FlyableExceptIdPassFilter;
-	    filter.data = &target_idx;
-	    if ( ! DirectLineColldet ( x , y , 
-					Me . pos . x , Me . pos . y , 
-					Me . pos . z, &filter ) )
-	    {
-		continue;
-	    }
-
-	DebugPrintf ( 1 , "\nObject smashed at: (%f/%f) by hit/explosion at (%f/%f)." ,
-		      target_obstacle -> pos . x , target_obstacle -> pos . y ,
-		      x , y );
-	
-	smashed_something = TRUE ;
+	if ( !pos_inside_level( map_x, map_y, BoxLevel ) )
+		return ( FALSE );
 	
 	//--------------------
-	// Before we destroy the obstacle (and lose the obstacle type) we see if we
-	// should maybe drop some item.
+	// We check all the obstacles on this square if they are maybe destructable
+	// and if they are, we destruct them, haha
 	//
-	if ( obstacle_map [ target_obstacle -> type ] . flags & DROPS_RANDOM_TREASURE )
-	    DropRandomItem( Me . pos . z , target_obstacle -> pos . x , target_obstacle -> pos . y , 1 , FALSE );
-	
-	//--------------------
-	// Since the obstacle is destroyed, we start a blast at it's position.
-	// But here a WARNING WARNING WARNING! is due!  We must not start the
-	// blast before the obstacle is removed, because the blast will again
-	// cause this very obstacle removal function, so we need to be careful
-	// so as not to incide endless recursion.  We memorize the position for
-	// later, then delete the obstacle, then we start the blast.
-	//
-	blast_start_pos . x = target_obstacle -> pos . x ;
-	blast_start_pos . y = target_obstacle -> pos . y ;
-	
-	//--------------------
-	// Now we really smash the obstacle, i.e. we can set it's type to the debirs that has
-	// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
-	// then we'll just delete the obstacle in question entirely.  For this we got a standard function to
-	// safely do it and not make some errors into the glue structure or obstacles lists...
-	//
-	if ( obstacle_map [ target_obstacle -> type ] . result_type_after_smashing_once == (-1) )
+	for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
 	{
-	    action_remove_obstacle ( BoxLevel , target_obstacle );
-	}
-	else
-	{
-	    target_obstacle -> type = obstacle_map [ target_obstacle -> type ] . result_type_after_smashing_once ;
+		//--------------------
+		// First we see if there is something glued to this map tile at all.
+		//
+		target_idx = BoxLevel->map[map_y][map_x].obstacles_glued_to_here[i]; 
+		if (  target_idx == -1 ) continue;
+		
+		target_obstacle = &(BoxLevel->obstacle_list[target_idx]);
+		
+		if ( !( obstacle_map[target_obstacle->type].flags & IS_SMASHABLE) ) continue;
+		
+		//--------------------
+		// Now we check if the item really was close enough to the strike target.
+		// A range of 0.5 should do.
+		//
+		if ( fabsf( x - target_obstacle->pos.x ) > 0.4 ) continue;
+		if ( fabsf( y - target_obstacle->pos.y ) > 0.4 ) continue;
+		
+		colldet_filter filter = FlyableExceptIdPassFilter;
+		filter.data = &target_idx;
+		gps smash_pos = { x, y, level };
+		gps vsmash_pos;
+		update_virtual_position(&vsmash_pos, &smash_pos, Me.pos.z);
+		if ( vsmash_pos.x == -1 ) continue;
+		if ( !DirectLineColldet ( vsmash_pos.x, vsmash_pos.y, Me.pos.x, Me.pos.y, Me.pos.z, &filter ) )
+		{
+			continue;
+		}
+		
+		DebugPrintf( 1, "\nObject smashed at: (%f/%f) by hit/explosion at (%f/%f).",
+		             target_obstacle->pos.x, target_obstacle->pos.y, x, y );
+		
+		smashed_something = TRUE ;
+		
+		//--------------------
+		// Before we destroy the obstacle (and lose the obstacle type) we see if we
+		// should maybe drop some item.
+		//
+		if ( obstacle_map[target_obstacle->type].flags & DROPS_RANDOM_TREASURE )
+			DropRandomItem( level, target_obstacle->pos.x, target_obstacle->pos.y, 1, FALSE );
+		
+		//--------------------
+		// Since the obstacle is destroyed, we start a blast at it's position.
+		// But here a WARNING WARNING WARNING! is due!  We must not start the
+		// blast before the obstacle is removed, because the blast will again
+		// cause this very obstacle removal function, so we need to be careful
+		// so as not to incide endless recursion.  We memorize the position for
+		// later, then delete the obstacle, then we start the blast.
+		//
+		blast_start_pos.x = target_obstacle->pos.x;
+		blast_start_pos.y = target_obstacle->pos.y;
+		
+		//--------------------
+		// Now we really smash the obstacle, i.e. we can set it's type to the debirs that has
+		// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
+		// then we'll just delete the obstacle in question entirely.  For this we got a standard function to
+		// safely do it and not make some errors into the glue structure or obstacles lists...
+		//
+		if ( obstacle_map[target_obstacle->type].result_type_after_smashing_once == (-1) )
+		{
+			action_remove_obstacle( BoxLevel, target_obstacle );
+		}
+		else
+		{
+			target_obstacle->type = obstacle_map[target_obstacle->type].result_type_after_smashing_once;
+		}
+		
+		//--------------------
+		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
+		// removed, we may start a blast at this position.  Otherwise we would
+		// run into trouble, see the warning further above.
+		//
+		StartBlast( blast_start_pos.x, blast_start_pos.y, level, DRUIDBLAST, 2.0);
+		
 	}
 	
-	//--------------------
-	// Now that the obstacle is removed AND ONLY NOW that the obstacle is
-	// removed, we may start a blast at this position.  Otherwise we would
-	// run into trouble, see the warning further above.
-	//
-	StartBlast( blast_start_pos . x , blast_start_pos . y , BoxLevel->levelnum , DRUIDBLAST, 2.0);
+	return ( smashed_something );
 	
-    }
-
-    return ( smashed_something );
-
-}; // int smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
+} // int smash_obstacles_only_on_tile ( float x , float y , int map_x , int map_y )
 
 /**
  * When a destructable type of obstacle gets hit, e.g. by a blast 
@@ -1038,28 +1039,27 @@ static int smash_obstacles_only_on_tile ( float x , float y , int map_x , int ma
  * leaving some treasure behind.
  *
  */
-int 
-smash_obstacle ( float x , float y )
+int smash_obstacle( float x, float y, int level )
 {
-    int map_x, map_y;
-    int smash_x, smash_y ;
-    int smashed_something = FALSE;
-    
-    map_x = (int) rintf ( x ) ;
-    map_y = (int) rintf ( y ) ;
-    
-    for ( smash_x = map_x - 1 ; smash_x < map_x + 2 ; smash_x ++ )
-    {
-	for ( smash_y = map_y - 1 ; smash_y < map_y + 2 ; smash_y ++ )
+	int map_x, map_y;
+	int smash_x, smash_y ;
+	int smashed_something = FALSE;
+	
+	map_x = (int)rintf(x);
+	map_y = (int)rintf(y);
+	
+	for ( smash_y = map_y - 1; smash_y < map_y + 2; smash_y++ )
 	{
-	    if ( smash_obstacles_only_on_tile ( x , y , smash_x , smash_y ) ) 
-		smashed_something = TRUE ;
+		for ( smash_x = map_x - 1; smash_x < map_x + 2; smash_x++ )
+		{
+			if ( smash_obstacles_only_on_tile( x, y, level, smash_x, smash_y ) ) 
+				smashed_something = TRUE ;
+		}
 	}
-    }
-    
-    return ( smashed_something );
-
-}; // int smash_obstacle ( float x , float y );
+	
+	return ( smashed_something );
+	
+} // int smash_obstacle ( float x , float y );
 
 /**
  * This function returns the map brick code of the tile that occupies the

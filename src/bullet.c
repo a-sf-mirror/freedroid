@@ -279,52 +279,51 @@ DeleteBullet ( int Bulletnumber , int ShallWeStartABlast )
  * OWNBLAST          (not implemented)
  *
  */
-void
-StartBlast ( float x, float y, int level , int type, int dmg)
+void StartBlast ( float x, float y, int level, int type, int dmg)
 {
-    int i;
-    Blast NewBlast;
+	int i;
+	Blast NewBlast;
+	
+	//--------------------
+	// Maybe there is a box under the blast.  In this case, the box will
+	// get smashed and perhaps an item will drop.
+	// 
+	smash_obstacle( x, y, level );
+	
+	// find out the position of the next free blast
+	for (i = 0; i < MAXBLASTS; i++)
+		if (AllBlasts[i].type == INFOUT)
+			break;
+	
+	// didn't find any --> then take the first one
+	if (i >= MAXBLASTS)
+		i = 0;
+	
+	// get pointer to it: more comfortable 
+	NewBlast = &(AllBlasts[i]);
+	
+	// create a blast at the specified x/y coordinates
+	NewBlast->pos.x = x;
+	NewBlast->pos.y = y;
+	NewBlast->pos.z = level;
     
-    //--------------------
-    // Maybe there is a box under the blast.  In this case, the box will
-    // get smashed and perhaps an item will drop.
-    // 
-    smash_obstacle ( x , y );
-    
-    // find out the position of the next free blast
-    for (i = 0; i < MAXBLASTS; i++)
-	if (AllBlasts[i].type == INFOUT)
-	    break;
-    
-    // didn't fine any --> then take the first one
-    if (i >= MAXBLASTS)
-	i = 0;
-    
-    // get pointer to it: more comfortable 
-    NewBlast = &(AllBlasts[i]);
-    
-    // create a blast at the specified x/y coordinates
-    NewBlast->pos.x = x;
-    NewBlast->pos.y = y;
-    NewBlast->pos.z = level;
-    
-    NewBlast->type = type;
-    NewBlast->phase = 0;
-    
-    NewBlast->MessageWasDone = 0;
-    NewBlast->damage_per_second = dmg;
-    
-    if (type == DRUIDBLAST)
-    {
-	DruidBlastSound ();
-    }
-
-    if (type == OWNBLAST)
+	NewBlast->type = type;
+	NewBlast->phase = 0;
+	
+	NewBlast->MessageWasDone = 0;
+	NewBlast->damage_per_second = dmg;
+	
+	if (type == DRUIDBLAST)
 	{
-	ExterminatorBlastSound();
+		DruidBlastSound();
 	}
-    
-}; // void StartBlast( ... )
+	
+	if (type == OWNBLAST)
+	{
+		ExterminatorBlastSound();
+	}
+	
+} // void StartBlast( ... )
 
 /**
  * This function advances the different phases of an explosion according
@@ -390,10 +389,10 @@ However, it should NOT cause any serious trouble for Freedroid.",
  * This function deletes a single blast entry from the list of all blasts
  */
 void
-DeleteBlast (int BlastNum)
+DeleteBlast(int BlastNum)
 {
-  AllBlasts[ BlastNum ].phase = INFOUT;
-  AllBlasts[ BlastNum ].type = INFOUT;
+	AllBlasts[BlastNum].phase = INFOUT;
+	AllBlasts[BlastNum].type = INFOUT;
 }; // void DeleteBlast( int BlastNum )
 
 /**
@@ -542,7 +541,7 @@ void clear_active_bullets()
 	int i;
 	
 	for (i = 0; i < MAXBLASTS; i++) {
-		AllBlasts[i].type = INFOUT;
+		DeleteBlast(i);
 	}
 	for (i = 0; i < MAXBULLETS; i++) {
 		DeleteBullet( i, FALSE ); 
