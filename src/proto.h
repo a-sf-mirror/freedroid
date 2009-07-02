@@ -135,6 +135,13 @@ int set_rotation_index_for_this_robot ( enemy* ThisRobot );
 int set_rotation_model_for_this_robot ( enemy* ThisRobot );
 void grab_enemy_images_from_archive ( int enemy_model_nr );
 int level_is_visible ( int level_num );
+void get_visible_levels();
+#define BROWSE_VISIBLE_LEVELS(pos, n) \
+ 	list_for_each_entry_safe(pos, n, &visible_level_list, node)
+#define BROWSE_NEARBY_VISIBLE_LEVELS(pos, n, d) \
+	for (pos = list_entry(visible_level_list.next, typeof(*pos), node), n = list_entry(pos->node.next, typeof(*pos), node); \
+		 (&pos->node != (&visible_level_list)) && (pos->boundary_squared_dist < d); \
+		 pos = n, n = list_entry(n->node.next, typeof(*n), node))
 
 // light.c 
 void LightRadiusInit(void);

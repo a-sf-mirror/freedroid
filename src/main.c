@@ -79,7 +79,9 @@ DoAllMovementAndAnimations ( void )
 void Game()
 {
     GameOver = FALSE;
-    while ( (!GameOver && !QuitProgram)) {
+	get_visible_levels();
+
+	while ( (!GameOver && !QuitProgram)) {
 	game_status = INSIDE_GAME;
 
 	StartTakingTimeForFPSCalculation();
@@ -97,7 +99,8 @@ void Game()
 	our_SDL_flip_wrapper();
 
 	move_tux ( );	
-
+	get_visible_levels();
+	
 	HandleInventoryScreen ();
 	HandleCharacterScreen ( );
 

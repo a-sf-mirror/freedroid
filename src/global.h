@@ -160,6 +160,7 @@ struct neighbor_data_cell {
 EXTERN struct neighbor_data_cell gps_transform_matrix[MAX_LEVELS][MAX_LEVELS];
 EXTERN struct neighbor_data_cell* (level_neighbors_map[MAX_LEVELS][3][3]);
 #define NEIGHBOR_IDX(x,len) ( ( (x) < 0) ? (0) : ( ( (x) < (len) ) ? (1) : (2) ) )
+extern list_head_t visible_level_list;
 
 EXTERN int gps_transform_map_dirty_flag;
 

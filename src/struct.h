@@ -881,6 +881,13 @@ typedef struct level_s
 }
 level, *Level;
 
+struct visible_level
+{
+	level *lvl_pointer;
+	float boundary_squared_dist;
+	struct list_head node;
+};
+
 typedef struct ship_s
 {
     int num_levels;

@@ -113,6 +113,7 @@ enum
     BLITTING_TYPE_THROWN_ITEM = 6
 };
 
+LIST_HEAD(visible_level_list);
 
 /**
  * This function displays an item at the current mouse cursor position.
@@ -868,19 +869,6 @@ insert_one_blast_into_blitting_list ( int blast_num )
 /**
  * We need to display bots, objects, bullets... that are on the current level or on one of the
  * levels glued to this one.
- * 
- * To know if a level is visible, we have to :
- * 1) find which level in the neighborhood has the 'level_num' id
- * 2) check if Tux is near enough from this neighbor (given FLOOR_TILES_VISIBLE_AROUND_TUX)
- * 
- * We can however also do it in the reverse way :
- * 1) find all the levels that are near enough from Tux to be visible
- * 2) check if one of those levels is 'level_num'
- * 
- * A quick benchmark showed that the 2 forms have suite the same computational cost.
- * The second one being smaller, and so less error-prone, we use it.
- * 
- * We use the level_neighbors_map to know the neighborhood of the current level.
  */
 int level_is_visible ( int level_num )
 {
@@ -889,40 +877,113 @@ int level_is_visible ( int level_num )
 	if ( level_num == Me.pos.z )
 		return TRUE;
 
-	// Find the 4 visible levels
+	struct visible_level *l, *n;
+	BROWSE_VISIBLE_LEVELS(l, n) {
+		if (l->lvl_pointer->levelnum == level_num ) return TRUE;
+	}
+ 	
+ 	return FALSE;
+
+} // int level_is_visible ( int level_num )
+
+/**
+ * Construct a linked list of visible levels.
+ * Also compute the distance between Tux and each level boundary.
+ */
+static void insert_one_visible_level_into_list(struct visible_level *newe)
+{
+	struct visible_level *e, *n;
+
+	list_for_each_entry_safe(e, n, &visible_level_list, node) {
+		if (newe->boundary_squared_dist < e->boundary_squared_dist) {
+			// Insert before this element
+			list_add_tail(&newe->node, &e->node);
+			return;
+		}
+	}
+	
+	list_add_tail(&newe->node, &visible_level_list);
+}
+
+void get_visible_levels()
+{
+	// Reset linked list
+	
+	struct visible_level *e, *n;
+    list_for_each_entry_safe(e, n, &visible_level_list, node) {
+		list_del(&e->node);
+		free(e);
+	}
+    INIT_LIST_HEAD(&visible_level_list);
+    
+	//--------------------
+    // Find the 4 visible levels
 	//
 	// Those 4 levels form a square (eventually a degenerated one), one corner of the 
 	// square being the current level.
-	// The 2 corners are initialized to be on the current level, and we will extend
+	// The 2 corners are initialized to be on the current level (idx = 1), and we will extend
 	// one of them, depending on Tux's position.
 	// (see gps_transform_map_init() main comment for an explanation about neighbor index)
 
-	int left_idx = 1, right_idx = 1;
+    int left_idx = 1, right_idx = 1;
 	int top_idx = 1, bottom_idx = 1;
+	float left_or_right_distance = 0.0;	// distance to the left or right neighbors
+	float top_or_bottom_distance = 0.0;	// distance to the top or bottom neighbors
+	
+	if ( Me.pos.x < FLOOR_TILES_VISIBLE_AROUND_TUX ) {
+		// left neighbors are potentially visible
+		left_idx = 0;
+		left_or_right_distance = Me.pos.x;
+	}
+	else if ( Me.pos.x >= CURLEVEL()->xlen - FLOOR_TILES_VISIBLE_AROUND_TUX ) {
+		// right neighbors are potentially visible
+		right_idx = 2;
+		left_or_right_distance = CURLEVEL()->xlen - Me.pos.x;
+	}
 
-	if ( Me.pos.x < FLOOR_TILES_VISIBLE_AROUND_TUX ) left_idx = 0; 								// left neighbors are potentially visible
-	else if ( Me.pos.x >= CURLEVEL()->xlen - FLOOR_TILES_VISIBLE_AROUND_TUX ) right_idx = 2;	// right neighbors are potentially visible
-
-	if ( Me.pos.y < FLOOR_TILES_VISIBLE_AROUND_TUX ) top_idx = 0; 								// top neighbors are potentially visible
-	else if ( Me.pos.y >= CURLEVEL()->ylen - FLOOR_TILES_VISIBLE_AROUND_TUX ) bottom_idx = 2;	// bottom neighbors are potentially visible
-		
-	// Now loop on those levels and check if one is 'level_num'
+	if ( Me.pos.y < FLOOR_TILES_VISIBLE_AROUND_TUX ) {
+		// top neighbors are potentially visible
+		top_idx = 0;
+		top_or_bottom_distance = Me.pos.y;
+	}
+	else if ( Me.pos.y >= CURLEVEL()->ylen - FLOOR_TILES_VISIBLE_AROUND_TUX ) {
+		// bottom neighbors are potentially visible
+		bottom_idx = 2;
+		top_or_bottom_distance = CURLEVEL()->ylen - Me.pos.y;
+	}
+	
+	//--------------------
+	// Fill the linked list
+	//
 
 	int i, j;
+	float latitude;  // distance, along Y axis, between Tux and the current neighbor
+	float longitude; // distance, along X axis, between Tux and the current neighbor
 	
 	for ( j = top_idx; j<= bottom_idx; j++ ) {
+		
+		// if j==1, then current neighbor is at the same 'latitude' than Tux's level,
+		// so latitude = 0.0
+		latitude = ( j == 1 ) ? 0.0 : top_or_bottom_distance;
+		
 		for ( i = left_idx; i <= right_idx; i++ ) {
-			if ( level_neighbors_map[Me.pos.z][j][i] &&
-			     level_neighbors_map[Me.pos.z][j][i]->lvl_idx == level_num ) { 
-				return TRUE;
-	}
+
+			// if i==1, then current neighbor is at the same 'longitude' than Tux's level,
+			// so longitude = 0.0
+			longitude = ( i == 1 ) ? 0.0 : left_or_right_distance;
+			
+			if ( level_neighbors_map[Me.pos.z][j][i] ) {
+				
+				struct visible_level *newe;
+				newe = MyMalloc(sizeof(struct visible_level));
+				newe->lvl_pointer = curShip.AllLevels[level_neighbors_map[Me.pos.z][j][i]->lvl_idx];
+				newe->boundary_squared_dist = longitude * longitude + latitude * latitude;
+				insert_one_visible_level_into_list(newe);
+
+			}
 		}
 	}
-	// level_num not found
-	
-	return FALSE;
-	
-}; // int level_is_visible ( int level_num )
+}
 
 /*
  * Initialization of the 2 arrays used to accelerate gps transformations.
@@ -945,14 +1006,15 @@ int level_is_visible ( int level_num )
  */
 
 // Some helper macros
-#define NEIGHBOR_TRANSFORM_NW(lvl) level_neighbors_map[lvl][0][0]
-#define NEIGHBOR_TRANSFORM_N(lvl)  level_neighbors_map[lvl][0][1]
-#define NEIGHBOR_TRANSFORM_NE(lvl) level_neighbors_map[lvl][0][2]
-#define NEIGHBOR_TRANSFORM_W(lvl)  level_neighbors_map[lvl][1][0]
-#define NEIGHBOR_TRANSFORM_E(lvl)  level_neighbors_map[lvl][1][2]
-#define NEIGHBOR_TRANSFORM_SW(lvl) level_neighbors_map[lvl][2][0]
-#define NEIGHBOR_TRANSFORM_S(lvl)  level_neighbors_map[lvl][2][1]
-#define NEIGHBOR_TRANSFORM_SE(lvl) level_neighbors_map[lvl][2][2]
+#define NEIGHBOR_TRANSFORM_NW(lvl)   level_neighbors_map[lvl][0][0]
+#define NEIGHBOR_TRANSFORM_N(lvl)    level_neighbors_map[lvl][0][1]
+#define NEIGHBOR_TRANSFORM_NE(lvl)   level_neighbors_map[lvl][0][2]
+#define NEIGHBOR_TRANSFORM_W(lvl)    level_neighbors_map[lvl][1][0]
+#define NEIGHBOR_TRANSFORM_SELF(lvl) level_neighbors_map[lvl][1][1]
+#define NEIGHBOR_TRANSFORM_E(lvl)    level_neighbors_map[lvl][1][2]
+#define NEIGHBOR_TRANSFORM_SW(lvl)   level_neighbors_map[lvl][2][0]
+#define NEIGHBOR_TRANSFORM_S(lvl)    level_neighbors_map[lvl][2][1]
+#define NEIGHBOR_TRANSFORM_SE(lvl)   level_neighbors_map[lvl][2][2]
 
 #define NEIGHBOR_ID_NW(lvl) level_neighbors_map[lvl][0][0]->lvl_idx
 #define NEIGHBOR_ID_N(lvl)  level_neighbors_map[lvl][0][1]->lvl_idx
@@ -999,6 +1061,14 @@ void gps_transform_map_init()
 	{
 		// Undefined level -> continue	
 		if ( curShip.AllLevels[lvl_idx] == NULL ) continue;
+		
+		// Self
+		gps_transform_matrix[lvl_idx][lvl_idx].delta_x = 0;
+		gps_transform_matrix[lvl_idx][lvl_idx].delta_y = 0;
+		gps_transform_matrix[lvl_idx][lvl_idx].lvl_idx = lvl_idx;
+		gps_transform_matrix[lvl_idx][lvl_idx].valid   = TRUE;
+
+		NEIGHBOR_TRANSFORM_SELF(lvl_idx) = &gps_transform_matrix[lvl_idx][lvl_idx];
 		
 		// North
 		ngb_idx = curShip.AllLevels[lvl_idx]->jump_target_north;
