@@ -401,109 +401,120 @@ DeleteBlast(int BlastNum)
 void
 MoveActiveSpells (void)
 {
-    int i ;
-    float PassedTime;
-    float DistanceFromCenter;
-    PassedTime = Frame_Time ();
-    int direction_index;
-    moderately_finepoint Displacement;
-    moderately_finepoint final_point;
-    float Angle;
-
-    for ( i = 0; i < MAX_ACTIVE_SPELLS; i++ )
-    {
-	//--------------------
-	// We can ignore all unused entries...
-	//
-	if ( AllActiveSpells [ i ] . img_type == (-1) ) continue;
+	int i ;
+	float PassedTime;
+	float DistanceFromCenter;
+	PassedTime = Frame_Time();
+	int direction_index;
+	moderately_finepoint Displacement;
+	moderately_finepoint final_point;
+	float Angle;
 	
-	//--------------------
-	// All spells should count their lifetime...
-	//
-	AllActiveSpells [ i ] . spell_age += PassedTime;
-
-
-	// We hardcode a speed here
-        AllActiveSpells [ i ] . spell_radius += 5.0 * PassedTime;
-	    
-            //--------------------
-	    // We do some collision checking with the obstacles in each
-	    // 'active_direcion' of the spell and deactivate those directions,
-	    // where some collision with solid material has happend.
-	    //
-	    for ( direction_index = 0 ; direction_index < RADIAL_SPELL_DIRECTIONS ; direction_index ++ )
-	    {
-		Angle = 360.0 * (float)direction_index / RADIAL_SPELL_DIRECTIONS ;
-		Displacement . x = 0 ; Displacement . y = - AllActiveSpells [ i ] . spell_radius ;
-		RotateVectorByAngle ( &Displacement , Angle );
-		final_point . x = AllActiveSpells [ i ] . spell_center . x + Displacement . x ;
-		final_point . y = AllActiveSpells [ i ] . spell_center . y + Displacement . y ;
-		// current_active_direction = rintf ( ( Angle  ) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
-		if ( ! SinglePointColldet ( final_point . x , final_point . y , Me . pos . z, &FlyablePassFilter ) )
-		    AllActiveSpells [ i ] . active_directions [ direction_index ] = FALSE ;
-	    }
-
-	    
-	    //--------------------
-	    // Here we also do the spell damage application here
-	    //
-	    enemy *erot, *nerot;
-	    BROWSE_LEVEL_BOTS_SAFE(erot, nerot, Me.pos.z)
+	for ( i = 0; i < MAX_ACTIVE_SPELLS; i++ )
+	{
+		//--------------------
+		// We can ignore all unused entries...
+		//
+		if ( AllActiveSpells[i].img_type == (-1) ) continue;
+				
+		//--------------------
+		// All spells should count their lifetime...
+		//
+		AllActiveSpells[i].spell_age += PassedTime;
+		
+		// We hardcode a speed here
+		AllActiveSpells[i].spell_radius += 5.0 * PassedTime;
+		
+		//--------------------
+		// We do some collision checking with the obstacles in each
+		// 'active_direction' of the spell and deactivate those directions,
+		// where some collision with solid material has happend.
+		//
+		for ( direction_index = 0; direction_index < RADIAL_SPELL_DIRECTIONS; direction_index++ )
 		{
-		DistanceFromCenter = sqrt ( ( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) *
-			( AllActiveSpells [ i ] . spell_center . x - erot->pos . x ) +
-			( AllActiveSpells [ i ] . spell_center . y - erot->pos . y ) *
-			( AllActiveSpells [ i ] . spell_center . y - erot->pos . y ) );
+			if ( AllActiveSpells[i].active_directions[direction_index] == FALSE ) continue;
 
-
-		if ( fabsf ( DistanceFromCenter - AllActiveSpells [ i ] . spell_radius ) < 0.2 )
-		    {
-	    
-		    if (( AllActiveSpells [ i ] . hit_type == ATTACK_HIT_BOTS && Druidmap[erot->type].is_human ) ||
-			    ( AllActiveSpells [ i ] . hit_type == ATTACK_HIT_HUMANS && !Druidmap[erot->type].is_human))
-			continue;
-
-		    //--------------------
-		    // Let's see if that enemy has a direction, that is still
-		    // active for the spell. 
-		    // We get the angle in radians but with zero at the 'north' direction.
-		    //
-		    Displacement . x = erot->pos . x - AllActiveSpells [ i ] . spell_center . x ;
-		    Displacement . y = erot->pos . y - AllActiveSpells [ i ] . spell_center . y ;
-		    Angle = atan2 ( Displacement . y , Displacement . x ) + M_PI + 3 * M_PI / 2 ;
-		    while ( Angle >= 2 * M_PI ) Angle -= 2 * M_PI ;
-		    //
-		    // Now we convert the angle to a normal direction index
-		    //
-		    direction_index = (int) ( ( Angle * RADIAL_SPELL_DIRECTIONS ) / ( 2 * M_PI ) ) ;
-		    
-		    if ( AllActiveSpells [ i ] . active_directions [ direction_index ] )
-			{
-			/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player.*/
-			hit_enemy(erot, AllActiveSpells [ i ] . damage * Frame_Time(), AllActiveSpells [ i ] . mine ? 1 : 0 /*givexp*/,  -1, AllActiveSpells [ i ] . mine ? 1 : 0); 
-			
-			if ( erot->poison_duration_left < AllActiveSpells [ i ] . poison_duration )
-			    erot->poison_duration_left = AllActiveSpells [ i ] . poison_duration;
-			erot->poison_damage_per_sec = AllActiveSpells [ i ] . damage;
-
-			if ( erot->frozen < AllActiveSpells [ i ] . freeze_duration )
-			    erot->frozen = AllActiveSpells [ i ] . freeze_duration;
-
-			if ( erot->paralysation_duration_left < AllActiveSpells [ i ] . paralyze_duration )
-			    erot->paralysation_duration_left = AllActiveSpells [ i ] . paralyze_duration;
-
-			}
-		    }
-
+			Angle = 360.0 * (float)direction_index / RADIAL_SPELL_DIRECTIONS;
+			Displacement.x = AllActiveSpells[i].spell_radius; 
+			Displacement.y = 0;			
+			RotateVectorByAngle( &Displacement , Angle );
+			final_point.x = AllActiveSpells[i].spell_center.x + Displacement.x;
+			final_point.y = AllActiveSpells[i].spell_center.y + Displacement.y;
+			// current_active_direction = rintf ( ( Angle  ) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
+			if ( !SinglePointColldet( final_point.x, final_point.y, Me.pos.z, &FlyablePassFilter ) )
+				AllActiveSpells[i].active_directions[direction_index] = FALSE;
 		}
-	    
-	    //--------------------
-	    // Such a spell can not live for longer than 1.0 seconds, say
-	    //
-	    if ( AllActiveSpells [ i ] . spell_age >= 1.0 ) DeleteSpell ( i ) ;
+		
+		//--------------------
+		// Here we also do the spell damage application here
+		//
+		float minDist = (0.2 + AllActiveSpells[i].spell_radius) * (0.2 + AllActiveSpells[i].spell_radius);
+		
+		struct visible_level *l, *n;
+		enemy *erot, *nerot;
+		BROWSE_NEARBY_VISIBLE_LEVELS( l, n, minDist )
+		{			
+			BROWSE_LEVEL_BOTS_SAFE(erot, nerot, l->lvl_pointer->levelnum)
+			{
+				update_virtual_position(&erot->virt_pos, &erot->pos, Me.pos.z);
+				DistanceFromCenter = ( AllActiveSpells[i].spell_center.x - erot->virt_pos.x ) * ( AllActiveSpells[i].spell_center.x - erot->virt_pos.x ) +
+	    		                     ( AllActiveSpells[i].spell_center.y - erot->virt_pos.y ) * ( AllActiveSpells[i].spell_center.y - erot->virt_pos.y );
+			
+
+				if ( DistanceFromCenter < minDist )
+				{
+					if ( ( AllActiveSpells[i].hit_type == ATTACK_HIT_BOTS   &&  Druidmap[erot->type].is_human ) ||
+					     ( AllActiveSpells[i].hit_type == ATTACK_HIT_HUMANS && !Druidmap[erot->type].is_human ) )
+						continue;
+					
+					//--------------------
+					// Let's see if that enemy has a direction, that is still
+					// active for the spell. 
+					// We get the angle in radians but with zero at the 'north' direction.
+					// And we convert the angle to a normal direction index
+					//
+					Displacement.x = erot->virt_pos.x - AllActiveSpells[i].spell_center.x;
+					Displacement.y = erot->virt_pos.y - AllActiveSpells[i].spell_center.y;
+					if ( Displacement.x <= 0.01 && Displacement.y <= 0.01 ) {
+						// if enemy is very close, the Angle computation could be inaccurate,
+						// so do not check if the spell is active or not
+						direction_index = -1;
+					} else {
+						// nota : Y axis is toward down in fdrpg 
+						Angle = atan2( -Displacement.y, Displacement.x );	// -M_PI <= Angle <= M_PI
+						if ( Angle < 0 ) Angle += 2 * M_PI; 				// 0 <= Angle <= 2 * M_PI
+						direction_index = (int) ( ( Angle * RADIAL_SPELL_DIRECTIONS ) / ( 2 * M_PI ) );
+						// clamp direction_index to avoid any bug
+						if ( direction_index < 0 ) direction_index = 0;
+						if ( direction_index >= RADIAL_SPELL_DIRECTIONS ) direction_index = RADIAL_SPELL_DIRECTIONS - 1;
+					}
+					
+					if ( (direction_index == -1) || AllActiveSpells[i].active_directions[direction_index] )
+					{
+						/* we hit the enemy. the owner is set to NULL because for now we assume it can only be the player.*/
+						hit_enemy(erot, AllActiveSpells[i].damage * Frame_Time(), AllActiveSpells[i].mine ? 1 : 0 /*givexp*/, -1, AllActiveSpells[i].mine ? 1 : 0); 
+						
+						if ( erot->poison_duration_left < AllActiveSpells[i].poison_duration )
+							erot->poison_duration_left = AllActiveSpells[i].poison_duration;
+						erot->poison_damage_per_sec = AllActiveSpells[i].damage;
+						
+						if ( erot->frozen < AllActiveSpells[i].freeze_duration )
+							erot->frozen = AllActiveSpells[i].freeze_duration;
+						
+						if ( erot->paralysation_duration_left < AllActiveSpells[i].paralyze_duration )
+							erot->paralysation_duration_left = AllActiveSpells[i].paralyze_duration;						
+					}
+				}
+			}
+		}
+		
+		//--------------------
+		// Such a spell can not live for longer than 1.0 seconds, say
+		//
+		if ( AllActiveSpells[i].spell_age >= 1.0 ) DeleteSpell( i );
+		
+	}
 	
-    }
-    
 }; // void MoveActiveSpells( ... )
 
 /**
@@ -937,6 +948,7 @@ CheckBlastCollisions (int num)
     // one blasts area of effect...
     //
     enemy *erot, *nerot;
+    
     BROWSE_LEVEL_BOTS_SAFE(erot, nerot, level) 
 	{
 	if ( ( fabsf (erot->pos.x - CurBlast->pos.x ) < Blast_Radius ) &&

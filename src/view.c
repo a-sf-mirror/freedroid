@@ -4328,153 +4328,150 @@ PutRadialBlueSparks( float PosX, float PosY , float Radius , int SparkType , cha
 #define FIXED_NUMBER_OF_SPARK_ANGLES 12
 #define FIXED_NUMBER_OF_PROTOTYPES 4
 #define NUMBER_OF_SPARK_TYPES 3
-    
-    SDL_Rect TargetRectangle;
-    static SDL_Surface* SparkPrototypeSurface [ NUMBER_OF_SPARK_TYPES ] [ FIXED_NUMBER_OF_PROTOTYPES ] = { { NULL , NULL , NULL , NULL } , { NULL , NULL , NULL , NULL } } ;
-    static iso_image PrerotatedSparkSurfaces [ NUMBER_OF_SPARK_TYPES ] [ FIXED_NUMBER_OF_PROTOTYPES ] [ FIXED_NUMBER_OF_SPARK_ANGLES ];
-    SDL_Surface* tmp_surf;
-char fpath[2048];
-    int NumberOfPicturesToUse;
-    int i , k ;
-    float Angle;
-    int PrerotationIndex;
-    moderately_finepoint Displacement;
-    int PictureType;
-    char ConstructedFilename[5000];
-    int current_active_direction ;
-
-    //--------------------
-    // We do some sanity check against too small a radius
-    // given as parameter.  This can be loosened later.
-    //
-    if ( Radius <= 1.0 ) return;
-    
-    PictureType = (int)(4 * age) % 4;
-    
-    //--------------------
-    // Now if we do not yet have all the prototype images in memory,
-    // we need to load them now and for once...
-    //
-    if ( SparkPrototypeSurface [ SparkType ] [0] == NULL )
-    {
-	for ( k = 0 ; k < FIXED_NUMBER_OF_PROTOTYPES ; k ++ )
+	
+	SDL_Rect TargetRectangle;
+	static SDL_Surface* SparkPrototypeSurface[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES] = { { NULL , NULL , NULL , NULL } , { NULL , NULL , NULL , NULL } };
+	static iso_image PrerotatedSparkSurfaces[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES][FIXED_NUMBER_OF_SPARK_ANGLES];
+	SDL_Surface* tmp_surf;
+	char fpath[2048];
+	int NumberOfPicturesToUse;
+	int i , k ;
+	float Angle;
+	int PrerotationIndex;
+	moderately_finepoint Displacement;
+	int PictureType;
+	char ConstructedFilename[5000];
+	int current_active_direction ;
+	
+	//--------------------
+	// We do some sanity check against too small a radius
+	// given as parameter.  This can be loosened later.
+	//
+	if ( Radius <= 1.0 ) return;
+	
+	PictureType = (int)(4 * age) % 4;
+	
+	//--------------------
+	// Now if we do not yet have all the prototype images in memory,
+	// we need to load them now and for once...
+	//
+	if ( SparkPrototypeSurface[SparkType][0] == NULL )
 	{
-	    if ( SparkType >= NUMBER_OF_SPARK_TYPES )
-	    {
-		fprintf( stderr, "\n\nSparkType: %d\n" , SparkType );
-		ErrorMessage ( __FUNCTION__  , "\
+		for ( k = 0 ; k < FIXED_NUMBER_OF_PROTOTYPES ; k++ )
+		{
+			if ( SparkType >= NUMBER_OF_SPARK_TYPES )
+			{
+				fprintf( stderr, "\n\nSparkType: %d\n" , SparkType );
+				ErrorMessage ( __FUNCTION__  , "\
 Freedroid encountered a radial wave type that exceeds the CONSTANT for wave types.",
 					   PLEASE_INFORM, IS_FATAL );
-	    }
-	    
-	    switch ( SparkType )
-	    {
-		case 0:
-		    sprintf( ConstructedFilename , "blue_sparks_%d.png" , k );
-		    break;
-		case 1:
-		    sprintf( ConstructedFilename , "green_mist_%d.png" , k );
-		    break;
-		case 2:
-		    sprintf( ConstructedFilename , "red_fire_%d.png" , k );
-		    break;
-		default:
-		    fprintf( stderr, "\n\nSparkType: %d\n" , SparkType );
-		    ErrorMessage ( __FUNCTION__  , "\
+			}
+			
+			switch ( SparkType )
+			{
+			case 0:
+				sprintf( ConstructedFilename , "blue_sparks_%d.png" , k );
+				break;
+			case 1:
+				sprintf( ConstructedFilename , "green_mist_%d.png" , k );
+				break;
+			case 2:
+				sprintf( ConstructedFilename , "red_fire_%d.png" , k );
+				break;
+			default:
+				fprintf( stderr, "\n\nSparkType: %d\n" , SparkType );
+				ErrorMessage ( __FUNCTION__  , "\
 Freedroid encountered a radial wave type that does not exist in Freedroid.",
 					       PLEASE_INFORM, IS_FATAL );
-	    }	      
-	    
-	    find_file (ConstructedFilename , GRAPHICS_DIR, fpath, 0 );
-	    
-	    tmp_surf = our_IMG_load_wrapper( fpath );
-	    if ( tmp_surf == NULL )
-	    {
-		fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
-		ErrorMessage ( __FUNCTION__  , "\
+			}	      
+			
+			find_file (ConstructedFilename , GRAPHICS_DIR, fpath, 0 );
+			
+			tmp_surf = our_IMG_load_wrapper( fpath );
+			if ( tmp_surf == NULL )
+			{
+				fprintf( stderr, "\n\nfpath: '%s'\n" , fpath );
+				ErrorMessage ( __FUNCTION__  , "\
 Freedroid wanted to load a certain image file into memory, but the SDL\n\
 function used for this did not succeed.",
 					   PLEASE_INFORM, IS_FATAL );
-	    }
-	    
-	    // SDL_SetColorKey( tmp_surf , 0 , 0 ); 
-	    SparkPrototypeSurface [ SparkType ] [ k ] = our_SDL_display_format_wrapperAlpha ( tmp_surf );
-	    SDL_FreeSurface( tmp_surf );
-	    
-	    //--------------------
-	    // Now that the loading is successfully done, we can do the
-	    // prerotation of the images...using a constant for simplicity...
-	    //
-	    for ( i = 0 ; i < FIXED_NUMBER_OF_SPARK_ANGLES ; i++ )
-	    {
-		Angle = +45 - 360.0 * (float)i / (float)FIXED_NUMBER_OF_SPARK_ANGLES ;
-		
-		tmp_surf = 
-		    rotozoomSurface( SparkPrototypeSurface [ SparkType ] [ k ] , Angle , 1.0 , FALSE );
-		
-		PrerotatedSparkSurfaces [ SparkType ] [ k ] [ i ] . surface = our_SDL_display_format_wrapperAlpha ( tmp_surf );
-		
-		//--------------------
-		// Maybe opengl is in use.  Then we need to prepare some textures too...
-		//
-		if ( use_open_gl )
-		{
-		    flip_image_vertically ( PrerotatedSparkSurfaces [ SparkType ] [ k ] [ i ] . surface ) ;
-		    make_texture_out_of_surface ( & ( PrerotatedSparkSurfaces [ SparkType ] [ k ] [ i ] ) ) ;
+			}
+			
+			// SDL_SetColorKey( tmp_surf , 0 , 0 ); 
+			SparkPrototypeSurface[SparkType][k] = our_SDL_display_format_wrapperAlpha( tmp_surf );
+			SDL_FreeSurface( tmp_surf );
+			
+			//--------------------
+			// Now that the loading is successfully done, we can do the
+			// prerotation of the images...using a constant for simplicity...
+			//
+			for ( i = 0 ; i < FIXED_NUMBER_OF_SPARK_ANGLES ; i++ )
+			{
+				Angle = +45 - 360.0 * (float)i / (float)FIXED_NUMBER_OF_SPARK_ANGLES ;
+				
+				tmp_surf = rotozoomSurface( SparkPrototypeSurface[SparkType][k], Angle, 1.0, FALSE );
+				
+				PrerotatedSparkSurfaces[SparkType][k][i].surface = our_SDL_display_format_wrapperAlpha( tmp_surf );
+				
+				//--------------------
+				// Maybe opengl is in use.  Then we need to prepare some textures too...
+				//
+				if ( use_open_gl )
+				{
+					flip_image_vertically( PrerotatedSparkSurfaces[SparkType][k][i].surface );
+					make_texture_out_of_surface ( &(PrerotatedSparkSurfaces[SparkType][k][i]) );
+				}
+				
+				SDL_FreeSurface ( tmp_surf );
+			}
 		}
 		
-		SDL_FreeSurface ( tmp_surf );
-	    }
 	}
 	
-    }
-    
-    NumberOfPicturesToUse = 2 * ( 2 * Radius * 64 * 3.14 ) / (float) SparkPrototypeSurface[ SparkType ] [ PictureType ] -> w;
-    NumberOfPicturesToUse += 3 ; // we want some overlap
-    
-    //--------------------
-    // Now we blit all the pictures we like to use...in this case using
-    // multiple dynamic rotations (oh god!)...
-    //
-    for ( i = 0 ; i < NumberOfPicturesToUse ; i++ )
-    {
-	Angle = 360.0 * (float)i / (float)NumberOfPicturesToUse ;
+	NumberOfPicturesToUse = 2 * ( 2 * Radius * 64 * 3.14 ) / (float)SparkPrototypeSurface[SparkType][PictureType]->w;
+	NumberOfPicturesToUse += 3 ; // we want some overlap
 	
-	Displacement . x = 0 ; Displacement . y = - Radius ;
-	
-	RotateVectorByAngle ( &Displacement , Angle );
-
-	PrerotationIndex = rintf ( ( Angle  ) * (float)FIXED_NUMBER_OF_SPARK_ANGLES / 360.0 ); 
-	if ( PrerotationIndex >= FIXED_NUMBER_OF_SPARK_ANGLES ) PrerotationIndex = 0 ;
-
-	current_active_direction = rintf ( ( Angle  ) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
-	if ( ! active_direction [ current_active_direction ] ) continue ;
-	
-	if ( use_open_gl )
+	//--------------------
+	// Now we blit all the pictures we like to use...in this case using
+	// multiple dynamic rotations (oh god!)...
+	//
+	for ( i = 0 ; i < NumberOfPicturesToUse ; i++ )
 	{
-	    TargetRectangle . x = translate_map_point_to_screen_pixel_x ( PosX + Displacement . x , PosY + Displacement . y ) - ( ( PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] . original_image_width ) / 2 );
-	    TargetRectangle . y = translate_map_point_to_screen_pixel_y ( PosX + Displacement . x , PosY + Displacement . y ) - ( ( PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] . original_image_height ) / 2 );
-	}
-	else
-	{
-	    TargetRectangle . x = translate_map_point_to_screen_pixel_x ( PosX + Displacement . x , PosY + Displacement . y ) - ( ( PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] . surface -> w ) / 2 );
-	    TargetRectangle . y = translate_map_point_to_screen_pixel_y ( PosX + Displacement . x , PosY + Displacement . y ) - ( (PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] . surface -> h ) / 2 );
+		Angle = 360.0 * (float)i / (float)NumberOfPicturesToUse ;
+		Displacement.x = Radius;
+		Displacement.y = 0;
+		RotateVectorByAngle( &Displacement , Angle );
+		
+		PrerotationIndex = rintf ( (Angle) * (float)FIXED_NUMBER_OF_SPARK_ANGLES / 360.0 ); 
+		if ( PrerotationIndex >= FIXED_NUMBER_OF_SPARK_ANGLES ) PrerotationIndex = 0;
+		
+		current_active_direction = rintf ( (Angle) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
+		if ( !active_direction[current_active_direction] ) continue;
+		
+		if ( use_open_gl )
+		{
+			TargetRectangle.x = translate_map_point_to_screen_pixel_x( PosX + Displacement.x, PosY + Displacement.y ) - ( (PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].original_image_width) / 2 );
+			TargetRectangle.y = translate_map_point_to_screen_pixel_y( PosX + Displacement.x, PosY + Displacement.y ) - ( (PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].original_image_height) / 2 );
+		}
+		else
+		{
+			TargetRectangle.x = translate_map_point_to_screen_pixel_x( PosX + Displacement.x, PosY + Displacement.y ) - ( (PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface->w) / 2 );
+			TargetRectangle.y = translate_map_point_to_screen_pixel_y( PosX + Displacement.x, PosY + Displacement.y ) - ( (PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface->h) / 2 );
+		}
+		
+		if ( use_open_gl )
+		{
+			draw_gl_textured_quad_at_screen_position( &PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex],
+			                                          TargetRectangle.x, TargetRectangle.y );
+		}
+		else
+		{
+			our_SDL_blit_surface_wrapper( PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface, NULL, Screen, &TargetRectangle);
+		}
+		
 	}
 	
-	if ( use_open_gl )
-	{
-	    draw_gl_textured_quad_at_screen_position ( &PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] , 
-						      TargetRectangle . x , 
-						      TargetRectangle . y ) ;
-	}
-	else
-	{
-	    our_SDL_blit_surface_wrapper( PrerotatedSparkSurfaces [ SparkType ] [ PictureType ] [ PrerotationIndex ] . surface , NULL , Screen , &TargetRectangle);
-	}
-	
-    }
-    
-}; // void PutRadialBlueSparks( float PosX, float PosY , float Radius )
+} // void PutRadialBlueSparks( float PosX, float PosY , float Radius )
 
 /**
  * This function draws a blast into the combat window.
