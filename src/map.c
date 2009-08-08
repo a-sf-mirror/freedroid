@@ -1325,6 +1325,9 @@ LoadShip (char *filename)
 				free(curShip . AllLevels [ i ] -> map [ row ]);
 				curShip . AllLevels [ i ] -> map [ row ] = NULL;
 			}
+
+			if (curShip.AllLevels[i]->Background_Song_Name)
+				free(curShip.AllLevels[i]->Background_Song_Name);
 			free(curShip . AllLevels [ i ]);
 			curShip . AllLevels[i] = NULL;
 		}
