@@ -322,8 +322,6 @@ print_trace ( int signum )
     }
     else if ( signum == SIGFPE )
 	fprintf ( stderr , "\n%s():  received SIGFPE!\n" , __FUNCTION__ );
-    else if ( signum == FREEDROID_INTERNAL_ERROR_SIGNAL )
-	fprintf ( stderr , "\n%s():  received INTERNAL FREEDROID ERROR SIGNAL!\n" , __FUNCTION__ );
     else
     {
     	fprintf ( stderr , "\n%s():  received UNKNOWN SIGNAL!  ERROR! \n" , __FUNCTION__ );

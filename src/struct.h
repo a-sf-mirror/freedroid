@@ -152,12 +152,15 @@ typedef struct configuration_for_freedroid_s
     int talk_to_bots_after_takeover;
     int xray_vision_for_tux;
 	int lazyload;
+
+	int difficulty_level;
+
 	// This must be the last element of the structure, because the
 	// input keybind parsing code uses strtok which messes with the
 	// string.
     keybind_t input_keybinds[100];
 }
-configuration_for_freedroid , *Configuration_for_freedroid;
+configuration_for_freedroid;
 
 typedef struct point_s
 {

@@ -48,6 +48,13 @@
 void Init_Game_Data(void);
 void Get_Bullet_Data ( char* DataPointer );
 
+static struct {
+double maxspeed_calibrator;
+double maxenergy_calibrator;
+float energyloss_calibrator;
+double experience_reward_calibrator;
+double aggression_distance_calibrator;
+} difficulty_parameters[3];
 
 /**
  * The following function is NOT 'standard' C but rather a GNU extention
@@ -471,6 +478,47 @@ There are more skills defined, than the maximum number specified in the code!",
 return 0;
 }
 
+static void Get_Difficulty_Parameters(void *DataPointer)
+{
+	char *EndOfDataPointer;
+	char *startptr;
+	char tmp[256];
+	const char *diffstr[] = { "easy", "normal", "hard" };
+	int i;
+
+#define MAXSPEED_CALIBRATOR_STRING "Droid maxspeed factor in %s: "
+#define MAXENERGY_CALIBRATOR_STRING "Droid maximum energy factor in %s: "
+#define ENERGYLOSS_CALIBRATOR_STRING "Droid healing speed factor in %s: "
+#define EXPERIENCE_REWARD_CALIBRATOR_STRING "Droid experience_reward factor in %s: "
+#define AGGRESSION_DISTANCE_CALIBRATOR_STRING "Droid aggression distance factor in %s: "
+
+	startptr = LocateStringInData ( DataPointer , "*** Start of difficulty parameters ***");
+	EndOfDataPointer = LocateStringInData ( DataPointer , "*** End of difficulty parameters ***");
+
+	for (i = 0; i < 3; i++) {
+
+		sprintf(tmp, MAXSPEED_CALIBRATOR_STRING, diffstr[i]);
+		ReadValueFromString( startptr , tmp , "%lf" , 
+				&difficulty_parameters[i].maxspeed_calibrator , EndOfDataPointer );
+
+		sprintf(tmp, MAXENERGY_CALIBRATOR_STRING, diffstr[i]);
+		ReadValueFromString( startptr , tmp , "%lf" , 
+				&difficulty_parameters[i].maxenergy_calibrator , EndOfDataPointer );
+
+		sprintf(tmp, ENERGYLOSS_CALIBRATOR_STRING, diffstr[i]);
+		ReadValueFromString( startptr , tmp , "%f" ,
+				&difficulty_parameters[i].energyloss_calibrator , EndOfDataPointer );
+
+		sprintf(tmp, EXPERIENCE_REWARD_CALIBRATOR_STRING, diffstr[i]);
+		ReadValueFromString( startptr , tmp , "%lf" , 
+				&difficulty_parameters[i].experience_reward_calibrator , EndOfDataPointer );
+
+		sprintf(tmp, AGGRESSION_DISTANCE_CALIBRATOR_STRING, diffstr[i]);
+		ReadValueFromString( startptr , tmp , "%lf" , 
+				&difficulty_parameters[i].aggression_distance_calibrator , EndOfDataPointer );
+	}
+}
+
 /**
  * This function loads all the constant concerning robot archetypes
  * from a section in memory to the actual archetype structures.
@@ -482,18 +530,6 @@ Get_Robot_Data ( void* DataPointer )
   char *RobotPointer;
   char *EndOfDataPointer;
   int i;
-
-  double maxspeed_calibrator;
-  double maxenergy_calibrator;
-  float energyloss_calibrator;
-  double experience_reward_calibrator;
-  double aggression_distance_calibrator;
-
-#define MAXSPEED_CALIBRATOR_STRING "Common factor for all droids maxspeed values: "
-#define MAXENERGY_CALIBRATOR_STRING "Common factor for all droids maximum energy values: "
-#define ENERGYLOSS_CALIBRATOR_STRING "Common factor for all droids healing speed values: "
-#define EXPERIENCE_REWARD_CALIBRATOR_STRING "Common factor for all droids experience_reward values: "
-#define AGGRESSION_DISTANCE_CALIBRATOR_STRING "Common factor for all droids aggression distance: "
 
 #define ROBOT_SECTION_BEGIN_STRING "*** Start of Robot Data Section: ***" 
 #define ROBOT_SECTION_END_STRING "*** End of Robot Data Section: ***" 
@@ -531,32 +567,9 @@ Get_Robot_Data ( void* DataPointer )
 #define INDIVIDUAL_SHAPE_SPECIFICATION_STRING "Individual shape of this droid or just -1 for classic ball shaped : "
 #define NOTES_BEGIN_STRING "Notes concerning this droid=_\""
 
-  
   RobotPointer = LocateStringInData ( DataPointer , ROBOT_SECTION_BEGIN_STRING );
   EndOfDataPointer = LocateStringInData ( DataPointer , ROBOT_SECTION_END_STRING );
-
   
-  DebugPrintf (2, "\n\nStarting to read robot calibration section\n\n");
-
-  // Now we read in the speed calibration factor for all droids
-  ReadValueFromString( RobotPointer , MAXSPEED_CALIBRATOR_STRING , "%lf" , 
-		       &maxspeed_calibrator , EndOfDataPointer );
-
-  // Now we read in the maxenergy calibration factor for all droids
-  ReadValueFromString( RobotPointer , MAXENERGY_CALIBRATOR_STRING , "%lf" , 
-		       &maxenergy_calibrator , EndOfDataPointer );
-  // Now we read in the energy_loss calibration factor for all droids
-  ReadValueFromString( RobotPointer , ENERGYLOSS_CALIBRATOR_STRING , "%f" ,
-	&energyloss_calibrator , EndOfDataPointer );
-
-  // Now we read in the experience_reward calibration factor for all droids
-  ReadValueFromString( RobotPointer , EXPERIENCE_REWARD_CALIBRATOR_STRING , "%lf" , 
-		       &experience_reward_calibrator , EndOfDataPointer );
-
-  // Now we read in the range of vision calibration factor for all droids
-  ReadValueFromString( RobotPointer , AGGRESSION_DISTANCE_CALIBRATOR_STRING , "%lf" , 
-		       &aggression_distance_calibrator , EndOfDataPointer );
-
   DebugPrintf ( 1 , "\n\nStarting to read Robot data...\n\n" );
   //--------------------
   // At first, we must allocate memory for the droid specifications.
@@ -717,11 +730,11 @@ Get_Robot_Data ( void* DataPointer )
 
   for ( i = 0 ; i < Number_Of_Droid_Types ; i++ ) 
     {
-      Druidmap [ i ] . maxspeed *= maxspeed_calibrator;
-      Druidmap [ i ] . maxenergy *= maxenergy_calibrator;
-      Druidmap [ i ] . experience_reward *= experience_reward_calibrator;
-      Druidmap [ i ] . aggression_distance *= aggression_distance_calibrator;
-      Druidmap [ i ] . lose_health *= energyloss_calibrator;
+      Druidmap [ i ] . maxspeed *= difficulty_parameters[GameConfig.difficulty_level].maxspeed_calibrator;
+      Druidmap [ i ] . maxenergy *= difficulty_parameters[GameConfig.difficulty_level].maxenergy_calibrator;
+      Druidmap [ i ] . experience_reward *= difficulty_parameters[GameConfig.difficulty_level].experience_reward_calibrator;
+      Druidmap [ i ] . aggression_distance *= difficulty_parameters[GameConfig.difficulty_level].aggression_distance_calibrator;
+      Druidmap [ i ] . lose_health *= difficulty_parameters[GameConfig.difficulty_level].energyloss_calibrator;
       Druidmap [ i ] . weapon_item . currently_held_in_hand = FALSE ;
     }
 }; // int Get_Robot_Data ( void )
@@ -1246,6 +1259,11 @@ char fpath[2048];
   Get_Item_Data ( Data );
   free ( Data );
 
+  find_file ("freedroid.difficulty_params" , MAP_DIR , fpath, 0 );
+  Data = ReadAndMallocAndTerminateFile( fpath , "*** End of this Freedroid data File ***" ) ;
+  Get_Difficulty_Parameters ( Data );
+  free ( Data );
+  
   //--------------------
   // Time to eat some droid archetypes...
   //

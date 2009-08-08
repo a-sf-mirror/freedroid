@@ -127,7 +127,6 @@ Thanks a lot!\n\n" );
 	fprintf (stderr, 
 		 "Freedroid will terminate now to draw attention to the problems it could\n\
 not resolve.  Sorry if that interrupts a major game of yours...\n" );
-	//print_trace( FREEDROID_INTERNAL_ERROR_SIGNAL );
     }
     else
     {

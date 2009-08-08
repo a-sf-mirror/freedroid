@@ -1262,7 +1262,8 @@ Cheatmenu (void)
     MENU(Options, OPTIONS) MENU(Resolution, RESOLUTION)			\
     MENU(Graphics, GRAPHICS) MENU(Sound, SOUND)				\
     MENU(Performance, PERFORMANCE) MENU(Language, LANGUAGE)		\
-    MENU(OSD, OSD) MENU(Droid, DROID)
+    MENU(OSD, OSD) MENU(Droid, DROID) \
+    MENU(Game, GAME)
 
 
 
@@ -1432,13 +1433,53 @@ Startup_fill (char *MenuTexts[10])
 	MenuTexts[i++][0]='\0';
 }
 
+static int
+Game_handle (int n)
+{
+    enum
+	{ 
+		DIFFICULTY = 1,
+	    LEAVE_MENU 
+	};
+    switch (n) 
+    {
+    case (-1):
+	    return EXIT_MENU;
+	    break;
+	case DIFFICULTY:
+		GameConfig.difficulty_level ++;
+		GameConfig.difficulty_level %= 3;
+		GiveMouseAlertWindow(_("You need to restart FreedroidRPG for the difficulty change to be taken into account.\n\nSorry for the inconvenience.\n"));
+		return CONTINUE_MENU;
+    case LEAVE_MENU:
+	    return EXIT_MENU;
+    default: 
+	    break;
+    }
+    return CONTINUE_MENU;
+}
+
+static void
+Game_fill (char *MenuTexts [10])
+{
+	const char *difficulty_str[] = { 
+		[DIFFICULTY_EASY] = "easy",
+		[DIFFICULTY_NORMAL] = "normal",
+		[DIFFICULTY_HARD] = "hard",
+	};
+
+	sprintf(MenuTexts[0], _("Difficulty: %s"), _(difficulty_str[GameConfig.difficulty_level])); 
+	strncpy(MenuTexts[1], _("Back"), 1024);
+	MenuTexts[2][0]='\0';
+}
 
 static int
 Options_handle (int n)
 {
     enum
 	{ 
-	    GRAPHICS_OPTIONS=1, 
+		GAME_OPTIONS = 1,
+	    GRAPHICS_OPTIONS, 
 	    SOUND_OPTIONS,
 	    KEYMAP_OPTIONS,
 	    LANGUAGE_OPTIONS,
@@ -1452,6 +1493,8 @@ Options_handle (int n)
     case (-1):
 	    return EXIT_MENU;
 	    break;
+	case GAME_OPTIONS:
+		return MENU_GAME;
     case GRAPHICS_OPTIONS:
 	    return MENU_GRAPHICS;
     case SOUND_OPTIONS:
@@ -1495,15 +1538,16 @@ Options_handle (int n)
 static void
 Options_fill (char *MenuTexts [10])
 {
-	strncpy(MenuTexts[0], _("Graphics Options"), 1024);
-	strncpy(MenuTexts[1], _("Sound Options"), 1024);
-	strncpy(MenuTexts[2], _("Keys"), 1024);
-	strncpy(MenuTexts[3], _("Language"), 1024);
-	strncpy(MenuTexts[4], _("Droid Talk"), 1024);
-	strncpy(MenuTexts[5], _("On-Screen Displays"), 1024);
-	strncpy(MenuTexts[6], _("Performance Tweaks"), 1024);
-	strncpy(MenuTexts[7], _("Back"), 1024);
-	MenuTexts[8][0]='\0';
+	strncpy(MenuTexts[0], _("Game Options"), 1024);
+	strncpy(MenuTexts[1], _("Graphics Options"), 1024);
+	strncpy(MenuTexts[2], _("Sound Options"), 1024);
+	strncpy(MenuTexts[3], _("Keys"), 1024);
+	strncpy(MenuTexts[4], _("Language"), 1024);
+	strncpy(MenuTexts[5], _("Droid Talk"), 1024);
+	strncpy(MenuTexts[6], _("On-Screen Displays"), 1024);
+	strncpy(MenuTexts[7], _("Performance Tweaks"), 1024);
+	strncpy(MenuTexts[8], _("Back"), 1024);
+	MenuTexts[9][0]='\0';
 }
 
 static int

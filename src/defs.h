@@ -46,7 +46,6 @@
 
 #define ERR 	-1
 #define OK		0
-#define FREEDROID_INTERNAL_ERROR_SIGNAL -7890
 
 #ifndef max
 #define max(x,y) ((x) < (y) ? (y) : (x) ) 
@@ -1626,5 +1625,11 @@ enum
 //-----
 // Pathfinder constants
 #define DEBUG_TUX_PATHFINDING 1  // debug level for tux pathfinding...
+
+enum {
+	DIFFICULTY_EASY,
+	DIFFICULTY_NORMAL,
+	DIFFICULTY_HARD
+};
 
 #endif
