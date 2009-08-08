@@ -41,6 +41,8 @@
 #include "global.h"
 #include "SDL_rotozoom.h"
 
+#include "lvledit/lvledit_display.h"
+
 // curent text insertion position
 int MyCursorX;
 int MyCursorY;
@@ -75,7 +77,7 @@ void
 show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y , int zoom_is_on )
 {
     int pixel_x, pixel_y;
-    float zoom_factor = (zoom_is_on ? (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0);
+    float zoom_factor = (zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
     
     translate_map_point_to_screen_pixel ( pos_x , pos_y , &pixel_x, &pixel_y, zoom_factor );
     show_backgrounded_label_at_pixel_position ( LabelText , pixel_x , pixel_y );

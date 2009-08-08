@@ -41,6 +41,32 @@
 
 iso_image level_editor_waypoint_cursor [ 2 ] = { UNLOADED_ISO_IMAGE , UNLOADED_ISO_IMAGE } ;
 
+#define DEFAULT_ZOOM_FACTOR 3.0
+static float lvledit_zoom_factor = DEFAULT_ZOOM_FACTOR;
+static float lvledit_zoom_factor_inv = 1.0 / DEFAULT_ZOOM_FACTOR;
+
+float lvledit_zoomfact()
+{
+	return lvledit_zoom_factor;
+}
+
+float lvledit_zoomfact_inv()
+{
+	return lvledit_zoom_factor_inv;
+}
+
+int lvledit_set_zoomfact(float zf)
+{
+	if (!use_open_gl) {
+		/* Zoom factor cannot be changed in SDL mode. */
+		return -1;
+	}
+
+	lvledit_zoom_factor = zf;
+	lvledit_zoom_factor_inv = 1.0 / zf;
+	return 0;
+}
+
 /**
  * Now we print out the map label information about this map location.
  */
@@ -104,7 +130,7 @@ static void Highlight_Current_Block (int mask)
         draw_gl_textured_quad_at_map_position (&level_editor_cursor,
                                                      Me.pos.x, Me.pos.y,
                                                      1.0, 1.0, 1.0, 0,
-                                                     FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT));
+                                                     FALSE, lvledit_zoomfact_inv());
       else
         blit_zoomed_iso_image_to_map_position (&level_editor_cursor,
                                                Me.pos.x, Me.pos.y);
@@ -180,7 +206,7 @@ void draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 ,
 	{
 	    if ( use_open_gl )
 		draw_gl_textured_quad_at_map_position ( &level_editor_dot_cursor , x , y ,
-							      1.0 , 1.0 , 1.0 , 0.25 , FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT));
+							      1.0 , 1.0 , 1.0 , 0.25 , FALSE, lvledit_zoomfact_inv());
 	    else
 		blit_zoomed_iso_image_to_map_position ( &level_editor_dot_cursor , x , y);
 	}
@@ -255,7 +281,7 @@ static void ShowWaypoints( int PrintConnectionList , int mask )
 	    {
 		draw_gl_textured_quad_at_map_position ( 
                         &level_editor_waypoint_cursor [ this_wp -> suppress_random_spawn ] , 
-							      this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) ) ;
+							      this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, lvledit_zoomfact_inv()) ;
 	    }
 	    else
 	    {
@@ -381,7 +407,7 @@ static void ShowMapLabels( int mask )
 	{
 	    if ( use_open_gl )
 		draw_gl_textured_quad_at_map_position ( &map_label_indicator , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
-							      EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) );
+							      EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, lvledit_zoomfact_inv());
 	    else
 		blit_zoomed_iso_image_to_map_position ( & ( map_label_indicator ) , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
 							EditLevel -> labels [ LabelNr ] . pos . y + 0.5 );
@@ -626,6 +652,7 @@ static void display_cursor()
 void leveleditor_display() 
 {
     char linebuf[1000];
+
     AssembleCombatPicture ( ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor * OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT * GameConfig . zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR );
 
     Highlight_Current_Block(ZOOM_OUT * GameConfig . zoom_is_on );

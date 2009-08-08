@@ -37,7 +37,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
-
+#include "lvledit/lvledit_display.h"
 #include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_widgets.h"
 
@@ -557,7 +557,7 @@ int leveleditor_select_input(SDL_Event *event)
 int leveleditor_select_display()
 {
 	int r1, r2, r3, r4, c1, c2, c3, c4 ;
-	float zf = GameConfig . zoom_is_on ? (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0;
+	float zf = GameConfig . zoom_is_on ? lvledit_zoomfact_inv() : 1.0;
 	switch(mode) {
 		case FD_RECT:
 			//display the selection rectangle

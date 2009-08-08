@@ -228,16 +228,6 @@ enum
 	IS_WALKABLE = 256			/* A bot can traverse this obstacle */
 };
 
-
-
-
-//--------------------
-// This controls the zoom factor for the automap.  Since this uses
-// a different update policy than the level editor, even strong zoom
-// will not be a problem here...
-//
-#define LEVEL_EDITOR_ZOOM_OUT_FACT 3
-
 #define AUTOMAP_ZOOM_OUT_FACT 8.0
 
 // The color filters are:

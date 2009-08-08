@@ -41,6 +41,7 @@
 #include "global.h"
 
 #include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_display.h"
 #include "map.h"
 
 void TranslateToHumanReadable ( Uint16* HumanReadable , map_tile* MapInfo, int LineLength );
@@ -3378,14 +3379,15 @@ translate_pixel_to_map_location ( float axis_x , float axis_y , int give_x )
 float
 translate_pixel_to_zoomed_map_location ( float axis_x , float axis_y , int give_x ) 
 {
+	float zf = lvledit_zoomfact();
   if ( give_x )
     {
-      return ( Me . pos . x + ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_x / ((float)iso_floor_tile_width) ) + ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_y / ((float)iso_floor_tile_height) ) ) ;
+      return ( Me . pos . x + (zf * axis_x / ((float)iso_floor_tile_width) ) + (zf * axis_y / ((float)iso_floor_tile_height) ) ) ;
       // return ( ( axis_x / ISO_WIDTH ) + ( axis_y / ISO_HEIGHT ) ) ;
     }
   else
     {
-      return ( Me . pos . y - ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_x / ((float)iso_floor_tile_width) ) + ( LEVEL_EDITOR_ZOOM_OUT_FACT * axis_y / ((float)iso_floor_tile_height) ) ) ;
+      return ( Me . pos . y - (zf * axis_x / ((float)iso_floor_tile_width) ) + (zf * axis_y / ((float)iso_floor_tile_height) ) ) ;
       // return ( - ( axis_x / ISO_WIDTH ) + ( axis_y / ISO_HEIGHT ) ) ;
     }
 	      
