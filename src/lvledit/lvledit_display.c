@@ -526,7 +526,7 @@ static void show_level_editor_tooltips ( void )
 			MouseCursorIsOnButton ( LEVEL_EDITOR_ZOOM_IN_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 		{
 		if ( time_spent_on_some_button > TICKS_UNTIL_TOOLTIP )
-			show_button_tooltip ( _("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nYou can also use the hotkey 'O' for this." ));
+			show_button_tooltip ( _("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio (OpenGL only).\n" ));
 		}
 	else if ( MouseCursorIsOnButton ( LEVEL_EDITOR_RECURSIVE_FILL_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
 		{

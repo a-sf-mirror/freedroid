@@ -33,6 +33,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_display.h"
 #include "lvledit/lvledit_grass_actions.h"
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_menu.h"
@@ -193,6 +194,34 @@ static void activate_button(struct leveleditor_button *b)
     }
 }
 
+static void activate_button_secondary(struct leveleditor_button *b)
+{
+    int idx = b->btn_index;
+
+	switch(idx) {
+		case LEVEL_EDITOR_ZOOM_IN_BUTTON: 
+				{
+				float zf = lvledit_zoomfact();
+
+				zf += 3.0;
+
+				if (zf > 9.0)
+					zf = 3.0;
+
+				if (!lvledit_set_zoomfact(zf)) {
+					sprintf(VanishingMessage, _("Zoom factor set to %f."), zf);
+				} else {
+					sprintf(VanishingMessage, _("Could not change zoom factor."));
+				}
+
+				VanishingMessageEndDate = SDL_GetTicks() + 1000;
+				}
+			break;
+		default:
+			break;
+	}
+}
+
 void leveleditor_button_mouseenter(SDL_Event *event, struct leveleditor_widget *vb)
 {
     struct leveleditor_button *b = vb->ext;
@@ -218,25 +247,25 @@ void leveleditor_button_mouserelease(SDL_Event *event, struct leveleditor_widget
 void leveleditor_button_mousepress(SDL_Event *event, struct leveleditor_widget *vb)
 {
     struct leveleditor_button *b = vb->ext;
-    if (b->pressed) {
-	ErrorMessage(__FUNCTION__, "Mouse button type %d was already pressed ?!", PLEASE_INFORM, IS_WARNING_ONLY, b->btn_index);
-    }
 
     b->pressed = 1;
 }
 
 void leveleditor_button_mouserightrelease(SDL_Event *event, struct leveleditor_widget *vb) 
 {
-    struct leveleditor_button *b = vb->ext;
-    (void)b;
-    //do nothing
+	struct leveleditor_button *b = vb->ext;
+	if (b->pressed) {
+		/* Validate the click: ACTION */
+		activate_button_secondary(b);
+		b->pressed = 0;
+	}
 }
 
 void leveleditor_button_mouserightpress(SDL_Event *event, struct leveleditor_widget *vb)
 {
     struct leveleditor_button *b = vb->ext;
-    (void)b;
-    //do nothing;
+
+    b->pressed = 1;
 }
 
 void leveleditor_button_mousewheelup(SDL_Event *event, struct leveleditor_widget *vb)
