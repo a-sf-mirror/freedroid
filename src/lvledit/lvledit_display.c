@@ -104,7 +104,7 @@ static void Highlight_Current_Block (int mask)
         draw_gl_textured_quad_at_map_position (&level_editor_cursor,
                                                      Me.pos.x, Me.pos.y,
                                                      1.0, 1.0, 1.0, 0,
-                                                     FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
+                                                     FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT));
       else
         blit_zoomed_iso_image_to_map_position (&level_editor_cursor,
                                                Me.pos.x, Me.pos.y);
@@ -180,7 +180,7 @@ void draw_connection_between_tiles ( float x1 , float y1 , float x2 , float y2 ,
 	{
 	    if ( use_open_gl )
 		draw_gl_textured_quad_at_map_position ( &level_editor_dot_cursor , x , y ,
-							      1.0 , 1.0 , 1.0 , 0.25 , FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
+							      1.0 , 1.0 , 1.0 , 0.25 , FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT));
 	    else
 		blit_zoomed_iso_image_to_map_position ( &level_editor_dot_cursor , x , y);
 	}
@@ -255,7 +255,7 @@ static void ShowWaypoints( int PrintConnectionList , int mask )
 	    {
 		draw_gl_textured_quad_at_map_position ( 
                         &level_editor_waypoint_cursor [ this_wp -> suppress_random_spawn ] , 
-							      this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT ) ;
+							      this_wp->x + 0.5 , this_wp->y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) ) ;
 	    }
 	    else
 	    {
@@ -381,7 +381,7 @@ static void ShowMapLabels( int mask )
 	{
 	    if ( use_open_gl )
 		draw_gl_textured_quad_at_map_position ( &map_label_indicator , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
-							      EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
+							      EditLevel -> labels [ LabelNr ] . pos . y + 0.5 , 1.0 , 1.0 , 1.0 , 0.25, FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) );
 	    else
 		blit_zoomed_iso_image_to_map_position ( & ( map_label_indicator ) , EditLevel -> labels [ LabelNr ] . pos . x + 0.5 , 
 							EditLevel -> labels [ LabelNr ] . pos . y + 0.5 );

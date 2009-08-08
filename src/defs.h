@@ -237,7 +237,6 @@ enum
 // will not be a problem here...
 //
 #define LEVEL_EDITOR_ZOOM_OUT_FACT 3
-#define ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT 0.3333333333333333333
 
 #define AUTOMAP_ZOOM_OUT_FACT 8.0
 

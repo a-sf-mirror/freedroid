@@ -420,7 +420,7 @@ static void show_floor(int mask)
 						continue;
 
 					int x, y;
-					float zf =  ((mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+					float zf =  ((mask & ZOOM_OUT) ?  (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0);
 
 					translate_map_point_to_screen_pixel ( ((float) col) + 0.5 , ((float) line) + 0.5 , &x, &y, zf); 
 					x +=  ourimg->offset_x * zf; 
@@ -459,7 +459,7 @@ static void show_floor(int mask)
 
 					draw_gl_textured_quad_at_map_position ( &floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES], 	 
 							((float) col) + 0.5, ((float) line) + 0.5, r, g, b, FALSE, FALSE, 	 
-							(mask & ZOOM_OUT) ?  ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+							(mask & ZOOM_OUT) ?  (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0);
 
 					}
 				}
@@ -493,7 +493,7 @@ static void
 skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color, int glwidth)
 {
 	float rr, gg, bb, zoom_factor;
-	zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+	zoom_factor = (GameConfig.zoom_is_on ? (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0);
 	rr = (color & 0xff0000) >> 16;
 	gg = (color & 0xff00) >> 8;
 	bb = color & 0xff;
@@ -533,7 +533,7 @@ skew_and_blit_line (float x1, float y1, float x2, float y2, Uint32 color, int gl
 void 
 skew_and_blit_rect( float x1, float y1, float x2, float y2, Uint32 color)
 {
-    float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+    float zoom_factor = (GameConfig.zoom_is_on ? (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0);
     int r1, r2, r3, r4, c1, c2, c3, c4 ;
     translate_map_point_to_screen_pixel ( x1 , y1 , &r1, &c1, zoom_factor);
     translate_map_point_to_screen_pixel ( x1 , y2 , &r2, &c2, zoom_factor);
@@ -596,7 +596,7 @@ void blit_one_obstacle(obstacle *our_obstacle, int highlight, int zoom)
 
 	iso_image tmp;
 	gps obs_screen_position;
-	float zf = zoom ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0;
+	float zf = zoom ? (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0;
 
 	if ((our_obstacle->type <= -1) || (our_obstacle->type >= NUMBER_OF_OBSTACLE_TYPES)) {
 		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given exceeds the number of\n\
@@ -1547,7 +1547,7 @@ void blit_preput_objects_according_to_blitting_list (int mask)
 							draw_gl_textured_quad_at_map_position(   
 									&obstacle_map[our_obstacle->type].shadow_image,
 									our_obstacle->vpos.x, our_obstacle->vpos.y,   
-									1.0, 1.0, 1.0, FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT);
+									1.0, 1.0, 1.0, FALSE, TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT));
 						} else {
 							draw_gl_textured_quad_at_map_position(
 								&obstacle_map[our_obstacle->type].shadow_image, 
@@ -1950,7 +1950,7 @@ draw_grid_on_the_floor (int mask)
     if (!(draw_grid && (mask & SHOW_GRID)))
 	return;
 
-    float zoom_factor = (GameConfig.zoom_is_on ? ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT : 1.0);
+    float zoom_factor = (GameConfig.zoom_is_on ? (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) : 1.0);
     int LineStart, LineEnd, ColStart, ColEnd;
     float x, y;
     Level our_level = curShip . AllLevels [ Me . pos . z ] ;
@@ -3894,7 +3894,7 @@ PutIndividuallyShapedDroidBody ( enemy * ThisRobot , SDL_Rect TargetRectangle , 
     float darkness ;
     moderately_finepoint bot_pos;
     float zf = 1.0;
-    if ( mask & ZOOM_OUT ) zf = ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT;
+    if ( mask & ZOOM_OUT ) zf = (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT);
 
     // if ( ThisRobot -> pos . z != Me . pos . z )
     // DebugPrintf ( -4 , "\n%s(): Now attempting to blit bot on truly virtual position..." , __FUNCTION__ );
@@ -4291,7 +4291,7 @@ There was -1 item type given to blit.  This must be a mistake! ",
 	if ( use_open_gl )
 	{
 	    draw_gl_textured_quad_at_map_position ( &ItemMap [ CurItem -> type ] . inv_image . ingame_iso_image , 
-							  CurItem -> pos . x , CurItem -> pos . y , 1.0 , 1.0 , 1.0 , 0.25, FALSE, ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT );
+							  CurItem -> pos . x , CurItem -> pos . y , 1.0 , 1.0 , 1.0 , 0.25, FALSE, (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT) );
 	}
 	else
 	{

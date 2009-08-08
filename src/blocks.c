@@ -55,8 +55,8 @@ make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
 {
     if ( our_iso_image -> zoomed_out_surface == NULL )
     {
-	our_iso_image -> zoomed_out_surface = zoomSurface ( our_iso_image -> surface , ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT, 
-					ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT, FALSE );
+	our_iso_image -> zoomed_out_surface = zoomSurface ( our_iso_image -> surface , (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT), 
+					(1.0/LEVEL_EDITOR_ZOOM_OUT_FACT), FALSE );
     }
 }; // void make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
 
@@ -749,7 +749,7 @@ blit_zoomed_iso_image_to_map_position ( iso_image* our_iso_image , float pos_x ,
 {
     SDL_Rect target_rectangle;
     int x,y;
-    float zoom_factor = ONE_OVER_LEVEL_EDITOR_ZOOM_OUT_FACT;
+    float zoom_factor = (1.0/LEVEL_EDITOR_ZOOM_OUT_FACT);
 
     translate_map_point_to_screen_pixel ( pos_x , pos_y, &x, &y, zoom_factor);
     target_rectangle.x = x + our_iso_image -> offset_x * zoom_factor ;
