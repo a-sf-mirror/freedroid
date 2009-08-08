@@ -4446,7 +4446,7 @@ void load_obstacle(int i)
 
 	if (use_open_gl) {
 		get_iso_image_from_file_and_path ( fpath , & ( obstacle_map [ i ] . image ) , TRUE ); 
-		make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . image ) ); 
+		//make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . image ) ); 
 		make_sure_automap_surface_is_there ( & ( obstacle_map [ i ] ) ); 
 
 		make_texture_out_of_surface ( & ( obstacle_map [ i ] . image ) ) ;
