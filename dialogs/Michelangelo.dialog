@@ -153,7 +153,7 @@ LuaCode={
     display_big_message("Restored Michaelangelo's power supply")
     add_xp(350)
     end_quest("Anything but the army snacks, please!")
-    open_diary_entry("Anything but the army snacks, please!", 1)
+    add_diary_entry("Anything but the army snacks, please!", "I gave him enough dilithium to last a decade. The evil spectre of eating army snacks is lifted from the city."
     del_item_backpack("Red Dilithium Crystal", 1)
     hide(29)
 }
@@ -193,8 +193,7 @@ NPC=_"I smelled burnt meat and heard the screams of the captives as they were in
 NPC=_"The bots know no mercy. They cannot even define it, damn scrap metal fiends."
 NPC=_"Feel free to go, Linarian, but make sure to be very dead before they start killing you."
 LuaCode={
-    add_quest("Anything but the army snacks, please!")
-    open_diary_entry("Anything but the army snacks, please!", 0)
+    add_quest("Anything but the army snacks, please!", "I am supposed to get some dilithium crystals for that cook. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
     hide(19, 40, 41, 42, 70, 81)
     show(82)
 }
@@ -205,7 +204,7 @@ NPC=_"There is an old dilithium mine to the east. I am sure there is lots of tha
 NPC=_"I will talk to the guards, they will open the eastern gate for you."
 NPC=_"Good luck. Try not to get yourself killed."
 LuaCode={
-    add_quest("Anything but the army snacks, please!")
+    add_quest("Anything but the army snacks, please!", "I am supposed to get some dilithium crystals for that cook. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
     change_obstacle("EastGateOfTown", "opened")
     hide(82)
 }

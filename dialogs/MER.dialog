@@ -86,7 +86,7 @@ NPC=_" Disabling disruptor shield... "
 NPC=_" Shield disabled."
 LuaCode={
     end_quest("Opening access to MS Office")
-    open_diary_entry("Opening access to MS Office", 3)
+    add_diary_entry("Opening access to MS Office", "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 }
 ----------------------------------------------------------------------
 

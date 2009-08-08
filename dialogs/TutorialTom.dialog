@@ -441,18 +441,17 @@ LuaCode={
 	if (has_cookie("has_gun")) then
 		npc_says(_"You already got a .22 pistol from that 247 you killed earlier. It's not much as guns go, but it can do the trick.")
 	else
-  	npc_says(_"Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick.")
-    add_item(".22 Automatic", 1)
-    add_item(".22 LR Ammunition", 1)
+		npc_says(_"Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick.")
+		add_item(".22 Automatic", 1)
+		add_item(".22 LR Ammunition", 1)
 	end
 	npc_says(_"You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter.")
 	npc_says(_"Practice switching weapons and reloading.")
 	npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
 	npc_says(_"Once you've gotten rid of them all, we can move on.")
 	hide(33) show(37)
-	add_quest("Tutorial Shooting")
-  open_diary_entry("Tutorial Shooting", 0)
-  add_cookie("opened_door")
+	add_quest("Tutorial Shooting", "Tutorial Tom wants me to shoot those bots.")
+	add_cookie("opened_door")
   
 	change_obstacle("TutorialStorage", "opened")
 	end_dialog()
@@ -467,7 +466,7 @@ LuaCode={
 		npc_says(_"Next, we'll be moving on to learning the TakeOver skill.")
 		npc_says(_"But first, you'll need to give me your weapons.")
 		npc_says(_"Unequip all your weapons, then talk to me and we'll move on.")
-		open_diary_entry("Tutorial Shooting", 1)
+		add_diary_entry("Tutorial Shooting", "That was like shooting fish in a barrel. I could use a fish about now.")
     hide(37) show(38)
 		end_dialog()
 	else
@@ -498,7 +497,7 @@ LuaCode={
 Nr=39  Text=_"I'd rather just move on to the next section of the tutorial."
 LuaCode={
 	npc_says(_"As you wish, Linarian.")
-  open_diary_entry("Tutorial Shooting", 2)
+  add_diary_entry("Tutorial Shooting", "I decided not to finish the shooting tutorial.")
   end_quest("Tutorial Shooting")
 	change_obstacle("TutorialShootingOut", "opened")
 	hide(30, 31, 32, 33, 37, 38, 39) show(40)
@@ -639,8 +638,7 @@ LuaCode={
 	add_item("Source Book of Analyze item", 1)
 	add_item("Source Book of Malformed packet", 1)
 	add_cookie("hacking_bots")
-  add_quest("Tutorial Hacking")
-  open_diary_entry("Tutorial Hacking", 0)
+	add_quest("Tutorial Hacking", "Tutorial Tom wants me to hack those bots.")
 	hide(55) show(56)
 	end_dialog()
 }
@@ -657,7 +655,7 @@ LuaCode={
 			npc_says(_"Well done! That concludes our tutorial.")
 			del_cookie("hacking_bots")
 			hide(51, 52, 53, 54, 55)
-      open_diary_entry("Tutorial Hacking", 1)
+      add_diary_entry("Tutorial Hacking", "Well, it took a lot of work, but I showed those bots who's boss.")
 		end
 	else end
 	npc_says(_"Now, there's one last thing you should know.")

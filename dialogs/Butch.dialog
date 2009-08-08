@@ -93,9 +93,8 @@ Nr=6  Text=_"Yeah. I want to fight."
 NPC=_"Good. I opened up the south arena gate for you, so just climb down the ladder."
 NPC=_"But remember, the door out won't be opened until you kill all the bots."
 LuaCode={
-    add_quest("Novice Arena")
+    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
     change_obstacle("NoviceArenaAccessDoor", "opened")
-    open_diary_entry("Novice Arena", 0)
     hide(6, 12, 13)
 }
 ----------------------------------------------------------------------
@@ -105,7 +104,7 @@ NPC=_"Good for you."
 NPC=_"You are a total newbie. But, a good newbie."
 NPC=_"I will say a good word to Spencer about this."
 LuaCode={
-    open_diary_entry("Novice Arena", 1)
+    add_diary_entry("Novice Arena", "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
     hide(7, 8)
     show(9, 11)
 }
@@ -128,9 +127,8 @@ NPC=_"You will die if you go there."
 NPC=_"I pity you, silly bird. Don't go there."
 NPC=_"But if you really want it, the door is open."
 LuaCode={
-    add_quest("Time to say goodnight")
+    add_quest("Time to say goodnight", "I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to enter the teleport and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
     change_obstacle("MasterArenaAccessDoor", "opened")
-    open_diary_entry("Time to say goodnight", 0)
     hide(9)
 }
 ----------------------------------------------------------------------
@@ -142,7 +140,7 @@ NPC=_"You are not a newbie, but you are a TOTAL IDIOT!"
 NPC=_"I pity you, poor fool. You will die young."
 LuaCode={
     add_xp(8000)
-    open_diary_entry("Time to say goodnight", 1)
+    add_diary_entry("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
     hide(10)
 }
 ----------------------------------------------------------------------
@@ -197,7 +195,7 @@ LuaCode={
 Nr=17  Text=_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!"
 NPC=_"Great. Get in the door, newbie."
 LuaCode={
-    add_quest("Novice Arena")
+    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
     change_obstacle("NoviceArenaAccessDoor", "opened")
 }
 ----------------------------------------------------------------------

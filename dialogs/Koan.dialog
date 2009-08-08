@@ -62,7 +62,7 @@ LuaCode={
 Nr=5  Text=_"With pleasure."
 LuaCode={
     drop_dead()
-    open_diary_entry("Doing Duncan a favour", 1)
+    add_diary_entry("Doing Duncan a favour", "I took revenge for Duncan by killing Koan.")
     respawn_level(18)
 }
 ----------------------------------------------------------------------
@@ -73,7 +73,7 @@ NPC=_"Feel free to stay here. There is no danger."
 NPC=_"The water is safe to drink and the fruit from the tree is quite delicious."
 LuaCode={
     add_cookie("koan_spared")
-    open_diary_entry("Doing Duncan a favour", 2)
+    add_diary_entry("Doing Duncan a favour", "I met and talked to Koan, but didn't kill him.")
     hide(5, 6)
     show(10, 20, 99)
 }

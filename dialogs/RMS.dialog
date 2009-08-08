@@ -68,7 +68,7 @@ NPC=_"Hey, what do we have here? The data is already prepared for processing by 
 NPC=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down."
 LuaCode={
     end_quest("A kingdom for a cluster!")
-    open_diary_entry("A kingdom for a cluster!", 1)
+    add_diary_entry("A kingdom for a cluster!", "Yes, that was simple. I wish everything else went as smoothly as this one did...")
     del_item_backpack("Kevin's Data Cube", 1)
     hide(6)
     show(9)

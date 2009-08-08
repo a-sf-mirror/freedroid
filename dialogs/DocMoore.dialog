@@ -78,7 +78,7 @@ NPC=_"But remember, I'll only give you this help once, because you didn't know t
 NPC=_"Should you take that junk again, I won't feel responsible for what happens to you any more."
 LuaCode={
     add_cookie("doc_healed_tux")
-    open_diary_entry("Bender's problem", 1)
+    add_diary_entry("Bender's problem", "The doctor was easily fooled. I have the pills that Bender needs.")
     add_item("Brain Enlargement Pills Antidote",1)
     hide(2, 4)
 }

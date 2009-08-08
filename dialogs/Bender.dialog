@@ -94,8 +94,7 @@ NPC=_"Man, if you could do that, I'd give you everything. I still got some of th
 NPC=_"Also I could vote for you if you seek to join the guard of the town."
 NPC=_"Just get me some cure, and I'll be forever grateful!"
 LuaCode={
-    add_quest("Bender's problem")
-    open_diary_entry("Bender's problem", 0)
+    add_quest("Bender's problem", "I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
     hide(7, 8)
     show(11)
 }
@@ -120,7 +119,7 @@ LuaCode={
     add_xp(150)
     del_item_backpack("Brain Enlargement Pills Antidote", 1)
     add_item("Strength Pill",2)
-    open_diary_entry("Bender's problem", 3)
+    add_diary_entry("Bender's problem", "Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
     hide(9)
 }
 ----------------------------------------------------------------------

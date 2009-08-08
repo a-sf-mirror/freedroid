@@ -282,12 +282,12 @@ static int lua_event_has_item_backpack(lua_State *L)
     return 1;
 }
 
-static int lua_event_open_diary_entry(lua_State *L)
+static int lua_event_add_diary_entry(lua_State *L)
 {
     const char *mis_name = luaL_checkstring(L, 1);
-    int mis_diary_entry_num = luaL_checkinteger(L, 2);
+	const char *text = luaL_checkstring(L, 2);
 
-    quest_browser_enable_new_diary_entry ( mis_name , mis_diary_entry_num );
+    quest_browser_diary_add(mis_name, text);
     return 0;
 }
 
@@ -325,8 +325,11 @@ static int lua_event_remove_cookie(lua_State *L)
 static int lua_event_assign_mission(lua_State *L)
 {
     const char *misname = luaL_checkstring(L, 1);
+	const char *diarytext = luaL_optstring(L, 2, NULL);
 
     AssignMission(misname);
+	if (diarytext != NULL)
+		quest_browser_diary_add(misname, diarytext);
 
     return 0;
 }
@@ -677,7 +680,7 @@ luaL_reg lfuncs[] = {
     { "add_item", lua_event_give_item },
     { "has_item_backpack", lua_event_has_item_backpack },
 
-    { "open_diary_entry", lua_event_open_diary_entry },
+    { "add_diary_entry", lua_event_add_diary_entry },
     { "add_cookie", lua_event_plant_cookie },
     { "has_cookie", lua_event_cookie_planted },
     { "del_cookie", lua_event_remove_cookie },

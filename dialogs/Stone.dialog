@@ -124,8 +124,7 @@ Nr=15  Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need
 LuaCode={
 	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles.")
     add_cookie("Stone_helping")
-    add_quest("Saving the shop")
-    open_diary_entry("Saving the shop", 0)
+    add_quest("Saving the shop", "Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon.  She needs 2000 cyberbucks to stay afloat.  I could try to help her out.")
     if (get_gold() > 1600) then show(23) else hide(23) end
     hide(15)
 }
@@ -173,7 +172,7 @@ LuaCode={
     end_dialog()
     add_item("Two Barrel shotgun",1)
     end_quest("Saving the shop")
-    open_diary_entry("Saving the shop", 1)
+    add_diary_entry("Saving the shop", "Ms. Stone was really grateful for my help.  She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 	hide(31, 32, 33)
 }
 ----------------------------------------------------------------------
@@ -184,7 +183,7 @@ LuaCode={
 	npc_says(_"So be it.")
     end_dialog()
     end_quest("Saving the shop")
-    open_diary_entry("Saving the shop", 2)
+    add_diary_entry("Saving the shop", "Ms. Stone was really grateful for my help.  She took only what she needed from me.")
 	hide(31, 32, 33)
 }
 ----------------------------------------------------------------------
@@ -196,7 +195,7 @@ LuaCode={
 	npc_says(_"Say your prayers, you oversized duck!!!")
     add_gold(1547)
     end_quest("Saving the shop")
-    open_diary_entry("Saving the shop", 3)
+    add_diary_entry("Saving the shop", "I tricked that Ms. Stone into believing I was going to help her out.  It was funny to see her get angry.")
     break_off_and_attack()
 	hide(31, 32, 33)
 }

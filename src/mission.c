@@ -63,21 +63,24 @@ int quest_browser_mission_lines_needed [ MAX_MISSIONS_IN_GAME ] ;
  * This function is responsible for making a new quest diary entry 
  * visible inside the quest browser.
  */
-void quest_browser_enable_new_diary_entry ( const char * mis_name , int mis_diary_entry_num )
+void quest_browser_diary_add(const char *mis_name, const char *diarytext)
 {
     int mis_num = GetMissionIndexByName(mis_name);
+	int idx = 0;
 
-    if ( ( mis_diary_entry_num < 0 ) || ( mis_diary_entry_num >= MAX_MISSION_DESCRIPTION_TEXTS ) )
-    {
-	fprintf ( stderr , "\nmission diary entry number received: %d." , mis_diary_entry_num );
-	ErrorMessage ( __FUNCTION__  , "\
-There was an illegal mission diary entry number received.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    Me . AllMissions [ mis_num ] . mission_description_visible [ mis_diary_entry_num ] = TRUE ;
-    Me . AllMissions [ mis_num ] . mission_description_time [ mis_diary_entry_num ] = Me . current_game_date ;
-    
-}; // void quest_browser_enable_new_diary_entry ( int mis_num , int mis_diary_entry_num )
+	while (Me.AllMissions[mis_num].mission_description_visible[idx] && idx < MAX_MISSION_DESCRIPTION_TEXTS)
+		idx++;
+
+	if (idx >= MAX_MISSION_DESCRIPTION_TEXTS) {
+		ErrorMessage(__FUNCTION__, "There is no more room to append mission diary text \"%s\" to mission name \"%s\". Doing nothing.\n", PLEASE_INFORM, IS_WARNING_ONLY, diarytext, mis_name);
+		return;
+	}
+
+    Me.AllMissions[mis_num].mission_description_visible[idx] = TRUE;
+    Me.AllMissions[mis_num].mission_description_time[idx] = Me.current_game_date;
+
+	mission_diary_texts[mis_num][idx] = strdup(diarytext);
+};
 
 /**
  * If there is some mission selected inside the quest browser, then we
@@ -592,15 +595,6 @@ void AssignMission (const char *name)
     if (Me . AllMissions [ MissNum ] . assignment_lua_code)
        run_lua(Me.AllMissions[ MissNum ].assignment_lua_code);
 
-    //--------------------
-    // We also make visible the very first of the mission diary enties. 
-    // That should be sane as upon mission assignment, there should always
-    // be some first diary entry, and usually there's only one way a mission
-    // can be assigned, so it's safe to do that automatically.
-    //
-    Me . AllMissions [ MissNum ] . mission_description_visible [ 0 ] = TRUE;
-    quest_browser_enable_new_diary_entry (name, 0);
-
 };
 
 /**
@@ -643,7 +637,11 @@ clear_tux_mission_info ( )
 
 	for ( diary_entry_nr = 0 ; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS ; diary_entry_nr ++ )
 	{
-	    mission_diary_texts [ MissionTargetIndex ] [ diary_entry_nr ] = "" ;
+	    if (mission_diary_texts[MissionTargetIndex][diary_entry_nr]) {
+			free(mission_diary_texts[MissionTargetIndex][diary_entry_nr]);
+			mission_diary_texts[MissionTargetIndex][diary_entry_nr] = NULL;
+		}
+	
 	    Me . AllMissions [ MissionTargetIndex ] . mission_description_visible [ diary_entry_nr ] = FALSE ;
 	    Me . AllMissions [ MissionTargetIndex ] . mission_description_time [ diary_entry_nr ] = 0 ;
 	}
@@ -665,8 +663,6 @@ GetQuestList ( char* QuestListFilename )
     char* MissionFileContents;
     char InnerPreservedLetter=0;
     int diary_entry_nr;
-    char* next_diary_entry_pointer;
-    int number_of_diary_entries;
 
     
 #define MISSION_TARGET_SUBSECTION_START_STRING "** Start of this mission target subsection **"
@@ -686,7 +682,6 @@ GetQuestList ( char* QuestListFilename )
 
 #define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
 #define MISSION_COMPLETION_LUACODE_STRING "Completion LuaCode={"
-#define MISSION_DIARY_ENTRY_STRING "Mission diary entry=_\""
 
     //--------------------
     // At first we must load the quest list file given...
@@ -774,21 +769,8 @@ GetQuestList ( char* QuestListFilename )
 	//
 	for ( diary_entry_nr = 0 ; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS ; diary_entry_nr ++ )
 	{
-	    mission_diary_texts [ MissionTargetIndex ] [ diary_entry_nr ] = "" ;
+	    mission_diary_texts [ MissionTargetIndex ] [ diary_entry_nr ] = NULL;
 	}
-	next_diary_entry_pointer = MissionTargetPointer;
-	number_of_diary_entries = 0;
-	while ( ( next_diary_entry_pointer = strstr( next_diary_entry_pointer , MISSION_DIARY_ENTRY_STRING ) ) != NULL )
-	{    
-	    mission_diary_texts [ MissionTargetIndex ] [ number_of_diary_entries ] = 
-		ReadAndMallocStringFromData ( next_diary_entry_pointer , MISSION_DIARY_ENTRY_STRING , "\"" ) ;
-	    DebugPrintf ( 1 , "\n\nFound new mission_diary_text (%d,%d): %s.\n\n" ,
-			  MissionTargetIndex , number_of_diary_entries , mission_diary_texts [ MissionTargetIndex ] [ number_of_diary_entries ] );
-	    number_of_diary_entries ++;
-	    next_diary_entry_pointer ++;
-	}
-	DebugPrintf ( 1 , "\n%s(): Detected %d mission description entries." , 
-		      __FUNCTION__ , number_of_diary_entries );
 	
 	//--------------------
 	// Now we are done with reading in THIS one mission target
