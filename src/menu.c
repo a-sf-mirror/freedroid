@@ -1834,12 +1834,12 @@ Sound_fill (char *MenuTexts[10])
 {
 	char Options [ 20 ] [1000];
 	int i = 0;
-		sprintf( Options [ i ] , _("Background Music Volume"));
-		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.Current_BG_Music_Volume );
+		sprintf( Options [ i ] , _("<-- Background Music Volume"));
+		sprintf( Options [ i+1 ] , ": %1.2f -->", GameConfig.Current_BG_Music_Volume );
 		strcat( Options [ i ] , Options [ i+1 ] );
 	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
-		sprintf( Options [ i ] , _("Sound Effects Volume"));
-		sprintf( Options [ i+1 ] , ": %1.2f", GameConfig.Current_Sound_FX_Volume );
+		sprintf( Options [ i ] , _("<-- Sound Effects Volume"));
+		sprintf( Options [ i+1 ] , ": %1.2f -->", GameConfig.Current_Sound_FX_Volume );
 		strcat( Options [ i ] , Options [ i+1 ] );
 	strncpy(MenuTexts[ i ], Options [ i ], 1024); i++ ;
 	strncpy(MenuTexts[i++], _("Back"), 1024);
