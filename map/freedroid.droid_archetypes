@@ -74,10 +74,8 @@ and make your modifiactions there.
 
 Common factor for all droids maxspeed values: 0.5
 Common factor for all droids maximum energy values: 0.8
-Common factor for all droids energyloss values: 0.05
-Common factor for all droids acceleration values: 3.0
+Common factor for all droids healing speed values: 0.05
 Common factor for all droids experience_reward values: 0.8
-Common factor for all droids recovery time after hit: 1.0
 Common factor for all droids aggression distance: 1
 
 ----------------------------------------------------------------------
@@ -92,7 +90,6 @@ Droid uses portrait rotation series with prefix="123"
 Maximum speed of this droid: 2.1
 Class of this droid: 1
 Drops item class=1
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 10.1
 Maximum mana of this droid: 10.1
 Rate of healing: 2.1
@@ -126,7 +123,6 @@ Droid uses portrait rotation series with prefix="139"
 Maximum speed of this droid: 2.1
 Class of this droid: 1
 Drops item class=1
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 15.1
 Maximum mana of this droid: 15.1
 Rate of healing: 2.1
@@ -160,7 +156,6 @@ Droid uses portrait rotation series with prefix="247"
 Maximum speed of this droid: 5.1
 Class of this droid: 2
 Drops item class=2
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 16.1
 Maximum mana of this droid: 16.1
 Rate of healing: 2.1
@@ -193,7 +188,6 @@ Droid uses portrait rotation series with prefix="249"
 Maximum speed of this droid: 3.1
 Class of this droid: 2
 Drops item class=2
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 20.1
 Maximum mana of this droid: 20.1
 Rate of healing: 2.1
@@ -226,7 +220,6 @@ Droid uses portrait rotation series with prefix="296"
 Maximum speed of this droid: 2.1
 Class of this droid: 2
 Drops item class=2
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 300.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1
@@ -259,7 +252,6 @@ Droid uses portrait rotation series with prefix="302"
 Maximum speed of this droid: 6.1
 Class of this droid: 3
 Drops item class=3
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 30.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1
@@ -293,7 +285,6 @@ Droid uses portrait rotation series with prefix="329"
 Maximum speed of this droid: 0.8
 Class of this droid: 3
 Drops item class=3
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 35.1
 Maximum mana of this droid: 35.1
 Rate of healing: 2.1
@@ -327,7 +318,6 @@ Droid uses portrait rotation series with prefix="420"
 Maximum speed of this droid: 2.1
 Class of this droid: 4
 Drops item class=4
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 40.1
 Maximum mana of this droid: 40.1
 Rate of healing: 2.1
@@ -361,7 +351,6 @@ Droid uses portrait rotation series with prefix="476"
 Maximum speed of this droid: 3.1
 Class of this droid: 4
 Drops item class=4
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 15.1
 Maximum mana of this droid: 15.1
 Rate of healing: 2.1
@@ -394,7 +383,6 @@ Droid uses portrait rotation series with prefix="493"
 Maximum speed of this droid: 3.1
 Class of this droid: 4
 Drops item class=4
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 80.1
 Maximum mana of this droid: 80.1
 Rate of healing: 3.1
@@ -427,7 +415,6 @@ Droid uses portrait rotation series with prefix="516"
 Maximum speed of this droid: 3.6
 Class of this droid: 5
 Drops item class=5
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 70.1
 Maximum mana of this droid: 70.1
 Rate of healing: 3.1
@@ -460,7 +447,6 @@ Droid uses portrait rotation series with prefix="571"
 Maximum speed of this droid: 4.1
 Class of this droid: 5
 Drops item class=5
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 50.1
 Maximum mana of this droid: 50.1
 Rate of healing: 3.1
@@ -493,7 +479,6 @@ Droid uses portrait rotation series with prefix="598"
 Maximum speed of this droid: 3.1
 Class of this droid: 5
 Drops item class=5
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 120.1
 Maximum mana of this droid: 120.1
 Rate of healing: 3.1
@@ -526,7 +511,6 @@ Droid uses portrait rotation series with prefix="614"
 Maximum speed of this droid: 2.0
 Class of this droid: 6
 Drops item class=6
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 130.1
 Maximum mana of this droid: 130.1
 Rate of healing: 3.1
@@ -559,7 +543,6 @@ Droid uses portrait rotation series with prefix="615"
 Maximum speed of this droid: 4.1
 Class of this droid: 6
 Drops item class=6
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 140.1
 Maximum mana of this droid: 140.1
 Rate of healing: 3.1
@@ -592,7 +575,6 @@ Droid uses portrait rotation series with prefix="629"
 Maximum speed of this droid: 2.1
 Class of this droid: 6
 Drops item class=6
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 160.1
 Maximum mana of this droid: 160.1
 Rate of healing: 3.1
@@ -625,7 +607,6 @@ Droid uses portrait rotation series with prefix="711"
 Maximum speed of this droid: 5.1
 Class of this droid: 7
 Drops item class=7
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 180.1
 Maximum mana of this droid: 180.1
 Rate of healing: 4.1
@@ -659,7 +640,6 @@ Droid uses portrait rotation series with prefix="742"
 Maximum speed of this droid: 4.1
 Class of this droid: 7
 Drops item class=7
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 210.1
 Maximum mana of this droid: 210.1
 Rate of healing: 4.1
@@ -692,7 +672,6 @@ Droid uses portrait rotation series with prefix="751"
 Maximum speed of this droid: 5.1
 Class of this droid: 7
 Drops item class=7
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 150.1
 Maximum mana of this droid: 150.1
 Rate of healing: 4.1
@@ -725,7 +704,6 @@ Droid uses portrait rotation series with prefix="821"
 Maximum speed of this droid: 6.1
 Class of this droid: 8
 Drops item class=8
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 200.1
 Maximum mana of this droid: 200.1
 Rate of healing: 4.1
@@ -759,7 +737,6 @@ Droid uses portrait rotation series with prefix="834"
 Maximum speed of this droid: 7.1
 Class of this droid: 8
 Drops item class=8
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 220.1
 Maximum mana of this droid: 220.1
 Rate of healing: 4.1
@@ -791,7 +768,6 @@ Droid uses portrait rotation series with prefix="883"
 Maximum speed of this droid: 2.1
 Class of this droid: 8
 Drops item class=8
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 120.1
 Maximum mana of this droid: 120.1
 Rate of healing: 4.1
@@ -824,7 +800,6 @@ Droid uses portrait rotation series with prefix="999"
 Maximum speed of this droid: 6.1
 Class of this droid: 9
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 300.1
 Maximum mana of this droid: 300.1
 Rate of healing: 15.1
@@ -860,7 +835,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -890,7 +864,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -920,7 +893,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 3.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -950,7 +922,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 3.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -980,7 +951,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -1010,7 +980,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -1040,7 +1009,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 3.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -1071,7 +1039,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -1101,7 +1068,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -1131,7 +1097,6 @@ Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 2.1
 Class of this droid: 18
 Drops item class=9
-Maximum acceleration of this droid: 2.1
 Maximum energy of this droid: 100.1
 Maximum mana of this droid: 100.1
 Rate of healing: 15.1
@@ -1161,7 +1126,6 @@ Droid uses portrait rotation series with prefix="harvester"
 Maximum speed of this droid: 2.1
 Class of this droid: 5
 Drops item class=5
-Maximum acceleration of this droid: 1.1
 Maximum energy of this droid: 300.1
 Maximum mana of this droid: 30.1
 Rate of healing: 2.1

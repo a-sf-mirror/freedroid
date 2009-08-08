@@ -455,7 +455,6 @@ typedef struct druidspec_s
     float lose_health;		// the energy/time the droid gains (heals)
     
     float maxspeed;
-    float accel;
     
     short flashimmune;		// is the droid immune to FLASH-bullets 
     short experience_reward;			// experience_reward for the elimination of one droid of this type 

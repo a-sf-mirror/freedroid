@@ -484,16 +484,14 @@ Get_Robot_Data ( void* DataPointer )
   int i;
 
   double maxspeed_calibrator;
-  double acceleration_calibrator;
   double maxenergy_calibrator;
   float energyloss_calibrator;
   double experience_reward_calibrator;
   double aggression_distance_calibrator;
 
 #define MAXSPEED_CALIBRATOR_STRING "Common factor for all droids maxspeed values: "
-#define ACCELERATION_CALIBRATOR_STRING "Common factor for all droids acceleration values: "
 #define MAXENERGY_CALIBRATOR_STRING "Common factor for all droids maximum energy values: "
-#define ENERGYLOSS_CALIBRATOR_STRING "Common factor for all droids energyloss values: "
+#define ENERGYLOSS_CALIBRATOR_STRING "Common factor for all droids healing speed values: "
 #define EXPERIENCE_REWARD_CALIBRATOR_STRING "Common factor for all droids experience_reward values: "
 #define AGGRESSION_DISTANCE_CALIBRATOR_STRING "Common factor for all droids aggression distance: "
 
@@ -507,7 +505,6 @@ Get_Robot_Data ( void* DataPointer )
 
 #define MAXSPEED_BEGIN_STRING "Maximum speed of this droid: "
 #define CLASS_BEGIN_STRING "Class of this droid: "
-#define ACCELERATION_BEGIN_STRING "Maximum acceleration of this droid: "
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define LOSEHEALTH_BEGIN_STRING "Rate of healing: "
@@ -544,10 +541,6 @@ Get_Robot_Data ( void* DataPointer )
   // Now we read in the speed calibration factor for all droids
   ReadValueFromString( RobotPointer , MAXSPEED_CALIBRATOR_STRING , "%lf" , 
 		       &maxspeed_calibrator , EndOfDataPointer );
-
-  // Now we read in the acceleration calibration factor for all droids
-  ReadValueFromString( RobotPointer , ACCELERATION_CALIBRATOR_STRING , "%lf" , 
-		       &acceleration_calibrator , EndOfDataPointer );
 
   // Now we read in the maxenergy calibration factor for all droids
   ReadValueFromString( RobotPointer , MAXENERGY_CALIBRATOR_STRING , "%lf" , 
@@ -621,10 +614,6 @@ Get_Robot_Data ( void* DataPointer )
       // Now we read in the class of this droid.
       ReadValueFromString( RobotPointer , CLASS_BEGIN_STRING , "%d" , 
 			   &Druidmap[RobotIndex].class , EndOfDataPointer );
-
-      // Now we read in the maximal acceleration this droid can go. 
-      ReadValueFromString( RobotPointer , ACCELERATION_BEGIN_STRING , "%f" , 
-			   &Druidmap[RobotIndex].accel , EndOfDataPointer );
 
       // Now we read in the maximal energy this droid can store. 
       ReadValueFromString( RobotPointer , MAXENERGY_BEGIN_STRING , "%f" , 
