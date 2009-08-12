@@ -153,7 +153,7 @@ LuaCode={
     display_big_message("Restored Michaelangelo's power supply")
     add_xp(350)
     end_quest("Anything but the army snacks, please!")
-    add_diary_entry("Anything but the army snacks, please!", "I gave him enough dilithium to last a decade. The evil spectre of eating army snacks is lifted from the city."
+    add_diary_entry("Anything but the army snacks, please!", "I gave him enough dilithium to last a decade. The evil spectre of eating army snacks is lifted from the city.")
     del_item_backpack("Red Dilithium Crystal", 1)
     hide(29)
 }

@@ -146,7 +146,7 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-	open_diary_entry("And there was light...", "Hope everything is back to normal now. I better go check with Kevin.")
+	add_diary_entry("And there was light...", "Hope everything is back to normal now. I better go check with Kevin.")
 }
 ** End of this mission target subsection **
 
