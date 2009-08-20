@@ -1481,10 +1481,12 @@ set_up_ordered_blitting_list ( int mask )
 static void show_obstacle(int mask, obstacle *o, int code_number)
 {
 	int barrel_under_cursor = -1;
+	level *barrel_lvl;
 	int chest_under_cursor = -1;
-
-	barrel_under_cursor = smashable_barrel_below_mouse_cursor();
-	chest_under_cursor = closed_chest_below_mouse_cursor();
+	level *chest_lvl;
+	
+	barrel_under_cursor = smashable_barrel_below_mouse_cursor( &barrel_lvl);
+	chest_under_cursor = closed_chest_below_mouse_cursor( &chest_lvl );
 
 	// Safety checks
 	if ((o-> type <= -1) ||	(o->type >= NUMBER_OF_OBSTACLE_TYPES)) {

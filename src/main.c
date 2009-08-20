@@ -110,7 +110,7 @@ void Game()
 
 	check_tux_enemy_collision ();
 
-	correct_tux_position_according_to_jump_thresholds ( );
+	correct_tux_position_according_to_jump ( );
 
 	CheckIfMissionIsComplete (); 
 

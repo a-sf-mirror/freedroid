@@ -1156,31 +1156,34 @@ prepare_text_window_content ( char* ItemDescText )
 	// Maybe the cursor in the user rect is hovering right over a closed chest.
 	// In this case we say so in the top status banner.
 	//
-	index_of_chest_below_mouse_cursor = closed_chest_below_mouse_cursor ( ) ;
+	level *obj_lvl = NULL;
+	index_of_chest_below_mouse_cursor = closed_chest_below_mouse_cursor ( &obj_lvl ) ;
 	if ( index_of_chest_below_mouse_cursor != (-1) )
 	{
-	    strcpy ( ItemDescText , _(" C H E S T ") ); 
-	    // index_of_chest_below_mouse_cursor
-	    best_banner_pos_x = translate_map_point_to_screen_pixel_x ( 
-		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . x , 
-		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . y ) + 70 ;
-	    best_banner_pos_y = translate_map_point_to_screen_pixel_y ( 
-		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . x , 
-		CURLEVEL() -> obstacle_list [ index_of_chest_below_mouse_cursor ] . pos . y ) - 20 ;
+	    gps chest_vpos;
+	    update_virtual_position(&chest_vpos, &(obj_lvl->obstacle_list[index_of_chest_below_mouse_cursor].pos), Me.pos.z);
+	    if ( chest_vpos.x != -1 ) 
+	    {
+		    strcpy( ItemDescText , _(" C H E S T ") );
+		    best_banner_pos_x = translate_map_point_to_screen_pixel_x( chest_vpos.x, chest_vpos.y ) + 70;  
+		    best_banner_pos_y = translate_map_point_to_screen_pixel_y( chest_vpos.x, chest_vpos.y ) - 20;
+	    }
 	}
 	
 	//--------------------
 	// Maybe the cursor in the user rect is hovering right over a closed chest.
 	// In this case we say so in the top status banner.
 	//
-	index_of_barrel_below_mouse_cursor = smashable_barrel_below_mouse_cursor ( ) ;
+	index_of_barrel_below_mouse_cursor = smashable_barrel_below_mouse_cursor ( &obj_lvl ) ;
 	if ( index_of_barrel_below_mouse_cursor != (-1) )
 	{
+	    gps barrel_vpos;
+	    update_virtual_position(&barrel_vpos, &(obj_lvl->obstacle_list[index_of_barrel_below_mouse_cursor].pos), Me.pos.z);
 	    //--------------------
 	    // We do some case separation for the type of barrel/crate
 	    // in question.
 	    //
-	    obs_type = curShip . AllLevels [ Me . pos . z ] -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . type ;
+	    obs_type = obj_lvl->obstacle_list[index_of_barrel_below_mouse_cursor].type;
 	    switch ( obs_type )
 	    {
 		case ISO_BARREL_1:
@@ -1198,12 +1201,8 @@ A barrel was detected, but the barrel type was not valid.",
 					       PLEASE_INFORM, IS_FATAL );
 			break;
 	    }
-	    best_banner_pos_x = translate_map_point_to_screen_pixel_x ( 
-		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . x , 
-		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . y  ) + 70 ;
-	    best_banner_pos_y = translate_map_point_to_screen_pixel_y ( 
-		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . x , 
-		CURLEVEL() -> obstacle_list [ index_of_barrel_below_mouse_cursor ] . pos . y  ) - 20 ;
+	    best_banner_pos_x = translate_map_point_to_screen_pixel_x( barrel_vpos.x, barrel_vpos.y ) + 70;
+	    best_banner_pos_y = translate_map_point_to_screen_pixel_y( barrel_vpos.x, barrel_vpos.y ) - 20;
 	}
 	
 	//--------------------

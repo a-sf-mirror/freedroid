@@ -46,8 +46,8 @@
 
 void limit_tux_speed_to_a_maximum ( );
 int autorun_activated = 0;
-void check_for_chests_to_open ( int chest_index ) ;
-void check_for_barrels_to_smash ( int index_of_barrel_below_mouse_cursor ) ;
+void check_for_chests_to_open ( level *chest_lvl, int chest_index ) ;
+void check_for_barrels_to_smash ( level *barrel_lvl, int index_of_barrel_below_mouse_cursor ) ;
 void check_for_items_to_pickup ( int );
 void CheckForTuxOutOfMap ( );
 
@@ -318,17 +318,23 @@ mouse_cursor_is_on_that_iso_image ( float pos_x , float pos_y , iso_image* our_i
  * TRUE or FALSE is returned, depending on whether the cursor IS or 
  * IS NOT on that particular iso_image, if positioned on that obstacle.
  */
-int mouse_cursor_is_on_that_obstacle ( int obst_index ) 
+int mouse_cursor_is_on_that_obstacle ( level *lvl, int obst_index ) 
 {
-
-	if (mouse_cursor_is_on_that_iso_image ( 
-				CURLEVEL() -> obstacle_list [ obst_index ] . pos . x ,
-				CURLEVEL() -> obstacle_list [ obst_index ] . pos . y ,
-				get_obstacle_image(CURLEVEL()->obstacle_list[obst_index].type))) {
+	// mouse_cursor_is_on_that_iso_image() needs a position defined relatively to
+	// current level
+	gps obs_pos = { lvl->obstacle_list[obst_index].pos.x,
+	                lvl->obstacle_list[obst_index].pos.y,
+	                lvl->levelnum  };
+	gps obs_vpos;
+	update_virtual_position(&obs_vpos, &obs_pos, Me.pos.z);
+	if ( obs_vpos.z == -1 ) return FALSE;
+	
+	if (mouse_cursor_is_on_that_iso_image ( obs_vpos.x, obs_vpos.y,
+				get_obstacle_image(lvl->obstacle_list[obst_index].type))) {
 		return ( TRUE ) ;
 	}
 	return ( FALSE );
-}; // int mouse_cursor_is_on_that_obstacle ( int obst_index ) 
+} // int mouse_cursor_is_on_that_obstacle ( int obst_index ) 
 
 /**
  * This function checks if there is a closed chest beneath the current 
@@ -342,68 +348,81 @@ int mouse_cursor_is_on_that_obstacle ( int obst_index )
  * returned.
  */
 int
-closed_chest_below_mouse_cursor ( ) 
+closed_chest_below_mouse_cursor ( level **chest_lvl ) 
 {
-    int x, y ;
-    finepoint MapPositionOfMouse;
-    int i;
-    int obst_index ;
+	int x, y ;
+	finepoint MapPositionOfMouse;
+	int i;
+	int obst_index;
 
-    //--------------------
-    // Now if the cursor is not inside the user rectangle at all, then
-    // there can never be a barrel under the mouse cursor...
-    //
-    if ( ! MouseCursorIsInUserRect ( GetMousePos_x() , 
-				     GetMousePos_y() ) )
-	return ( -1 ) ;
-
-    //--------------------
-    // We find the approximate position of the mouse cursor on the floor.
-    // We will use that as the basis for our scanning for barrels under the
-    // current mouse cursor.
-    //
-    MapPositionOfMouse.x = translate_pixel_to_map_location ( 
-	(float) input_axis.x , 
-	(float) input_axis.y , TRUE ) ;
-    MapPositionOfMouse.y = translate_pixel_to_map_location ( 
-	(float) input_axis.x , 
-	(float) input_axis.y , FALSE ) ;
-    
-    for ( x = MapPositionOfMouse . x + 3 ; x > MapPositionOfMouse . x - 3 ; x -- )
-    {
-	for ( y = MapPositionOfMouse . y + 3 ; y > MapPositionOfMouse . y - 3 ; y -- )
+	*chest_lvl = NULL;
+	
+	//--------------------
+	// Now if the cursor is not inside the user rectangle at all, then
+	// there can never be a barrel under the mouse cursor...
+	//
+	if ( !MouseCursorIsInUserRect( GetMousePos_x(), GetMousePos_y() ) )
+		return (-1);
+	
+	//--------------------
+	// We find the approximate position of the mouse cursor on the floor.
+	// We will use that as the basis for our scanning for barrels under the
+	// current mouse cursor.
+	//
+	MapPositionOfMouse.x = translate_pixel_to_map_location( (float)input_axis.x, (float)input_axis.y, TRUE  );
+	MapPositionOfMouse.y = translate_pixel_to_map_location( (float)input_axis.x, (float)input_axis.y, FALSE );
+	
+	//--------------------
+	// We will scan a small area around the mouse cursor, to ease object's selection
+	// Each scanned position could be on a neighbor of the current's level,
+	// so we should resolve all those virtual positions.
+	// But resolving a virtual position is a bit CPU costly, so in order
+	// to minimize cost, we only resolve the mouse cursor position.
+	//
+	gps mouse_target_vpos = { MapPositionOfMouse.x, MapPositionOfMouse.y, Me.pos.z };
+	gps mouse_target_pos;
+	if ( !resolve_virtual_position(&mouse_target_pos, &mouse_target_vpos) ) 
+		return -1;
+	if ( !level_is_visible(mouse_target_pos.z) )
+		return -1;
+	level *lvl = curShip.AllLevels[mouse_target_pos.z];
+	
+	for ( y = mouse_target_pos.y + 3; y > mouse_target_pos.y - 3; y-- )
 	{
-	    if ( !pos_inside_level( x, y, CURLEVEL() ) ) continue ;
-	    
-	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
-	    {
-		
-		obst_index = CURLEVEL() -> map [ (int) y ] [ (int) x ] . obstacles_glued_to_here [ i ] ;
-		
-		if ( obst_index == (-1) ) continue;
-		
-		switch ( CURLEVEL() -> obstacle_list [ obst_index ] . type )
+		for ( x = mouse_target_pos.x + 3; x > mouse_target_pos.x - 3; x-- )
 		{
-		    case ISO_H_CHEST_CLOSED:
-		    case ISO_V_CHEST_CLOSED:
-			if ( mouse_cursor_is_on_that_obstacle ( obst_index ) )
-			{
-			    DebugPrintf ( 1 , "\n%s(): closed chest under cursor identified." , __FUNCTION__ );		    
-			    return ( obst_index ) ;
-			}
-			break;
+			if ( !pos_inside_level( x, y, lvl) ) continue;
 			
-		    default: 
-			break;
+			// scan all obstacles of the level targeted by the mouse cursor	
+			for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
+			{
+				obst_index = lvl->map[y][x].obstacles_glued_to_here[i];
+				
+				if ( obst_index == (-1) ) continue;
+				
+				switch ( lvl->obstacle_list[obst_index].type )
+				{
+				case ISO_H_CHEST_CLOSED:
+				case ISO_V_CHEST_CLOSED:
+					if ( mouse_cursor_is_on_that_obstacle( lvl, obst_index ) )
+					{
+						DebugPrintf ( 1 , "\n%s(): closed chest under cursor identified." , __FUNCTION__ );
+						*chest_lvl = lvl;
+						return ( obst_index );
+					}
+					break;
+					
+				default: 
+					break;
+				}
+				
+			}
 		}
-		
-	    }
 	}
-    }
-    
-    return ( -1 ) ;
-
-}; // int closed_chest_below_mouse_cursor ( )
+	
+	return(-1);
+	
+} // int closed_chest_below_mouse_cursor ( )
 
 /**
  * This function checks if there is a barrel beneath the current mouse
@@ -415,72 +434,82 @@ closed_chest_below_mouse_cursor ( )
  * return the obstacle index of the chest in question.  Else -1 will be
  * returned.
  */
-int
-smashable_barrel_below_mouse_cursor ( )
+int smashable_barrel_below_mouse_cursor ( level **barrel_lvl )
 {
-    int x, y ;
-    finepoint MapPositionOfMouse;
-    int i;
-    int obst_index ;
-
-    //--------------------
-    // Now if the cursor is not inside the user rectangle at all, then
-    // there can never be a barrel under the mouse cursor...
-    //
-    if ( ! MouseCursorIsInUserRect( GetMousePos_x()  , 
-				    GetMousePos_y()  ))
-	return ( -1 ) ;
-
-
-    //--------------------
-    // We find the approximate position of the mouse cursor on the floor.
-    // We will use that as the basis for our scanning for barrels under the
-    // current mouse cursor.
-    //
-    MapPositionOfMouse.x = translate_pixel_to_map_location ( 
-	(float) input_axis.x , 
-	(float) input_axis.y , TRUE ) ;
-    MapPositionOfMouse.y = translate_pixel_to_map_location ( 
-	(float) input_axis.x , 
-	(float) input_axis.y , FALSE ) ;
-    
-    for ( x = MapPositionOfMouse . x + 3 ; x > MapPositionOfMouse . x - 3 ; x -- )
-    {
-	for ( y = MapPositionOfMouse . y + 3 ; y > MapPositionOfMouse . y - 3 ; y -- )
+	int x, y ;
+	finepoint MapPositionOfMouse;
+	int i;
+	int obst_index ;
+	
+	*barrel_lvl = NULL;
+	
+	//--------------------
+	// Now if the cursor is not inside the user rectangle at all, then
+	// there can never be a barrel under the mouse cursor...
+	//
+	if ( !MouseCursorIsInUserRect( GetMousePos_x(), GetMousePos_y() ))
+		return (-1);
+	
+	//--------------------
+	// We find the approximate position of the mouse cursor on the floor.
+	// We will use that as the basis for our scanning for barrels under the
+	// current mouse cursor.
+	//
+	MapPositionOfMouse.x = translate_pixel_to_map_location( (float)input_axis.x, (float)input_axis.y, TRUE  );
+	MapPositionOfMouse.y = translate_pixel_to_map_location( (float)input_axis.x, (float)input_axis.y, FALSE );
+	
+	//--------------------
+	// We will scan a small area around the mouse cursor, to ease object's selection
+	// Each scanned position could be on a neighbor of the current's level,
+	// so we should resolve all those virtual positions.
+	// But resolving a virtual position is a bit CPU costly, so in order
+	// to minimize cost, we only resolve the mouse cursor position.
+	//
+	gps mouse_target_vpos = { MapPositionOfMouse.x, MapPositionOfMouse.y, Me.pos.z };
+	gps mouse_target_pos;
+	if ( !resolve_virtual_position(&mouse_target_pos, &mouse_target_vpos) ) 
+		return -1;
+	if ( !level_is_visible(mouse_target_pos.z) )
+		return -1;
+	level *lvl = curShip.AllLevels[mouse_target_pos.z];
+	
+	for ( y = mouse_target_pos.y + 3; y > mouse_target_pos.y - 3; y-- )
 	{
-	    if ( !pos_inside_level( x, y, CURLEVEL() ) ) continue ;
-	    
-	    for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
-	    {
-		
-		obst_index = CURLEVEL() -> map [ (int) y ] [ (int) x ] . obstacles_glued_to_here [ i ] ;
-		
-		if ( obst_index == (-1) ) continue;
-		
-		switch ( CURLEVEL() -> obstacle_list [ obst_index ] . type )
+		for ( x = mouse_target_pos.x + 3; x > mouse_target_pos.x - 3; x-- )
 		{
-		    case ISO_BARREL_1:
-		    case ISO_BARREL_2:
-		    case ISO_BARREL_3:
-		    case ISO_BARREL_4:
-			if ( mouse_cursor_is_on_that_obstacle ( obst_index ) )
-			{
-			    DebugPrintf ( 1 , "\n%s(): barrel under cursor identified." , __FUNCTION__ );		    
-			    return ( obst_index ) ;
-			}
-			break;
+			if ( !pos_inside_level( x, y, lvl) ) continue;
 			
-		    default: 
-			break;
+			for ( i = 0 ; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE ; i++ )
+			{
+				obst_index = lvl->map[y][x].obstacles_glued_to_here[i];
+				
+				if ( obst_index == (-1) ) continue;
+				
+				switch ( lvl->obstacle_list[obst_index].type )
+				{
+				case ISO_BARREL_1:
+				case ISO_BARREL_2:
+				case ISO_BARREL_3:
+				case ISO_BARREL_4:
+					if ( mouse_cursor_is_on_that_obstacle( lvl, obst_index ) )
+					{
+						DebugPrintf ( 1 , "\n%s(): barrel under cursor identified." , __FUNCTION__ );
+						*barrel_lvl = lvl;
+						return ( obst_index );
+					}
+					break;
+					
+				default: 
+					break;
+				}
+				
+			}
 		}
-		
-	    }
 	}
-    }
     
-    return ( -1 ) ;
+	return(-1);
 
-}; // int smashable_barrel_below_mouse_cursor ( ) 
+} // int smashable_barrel_below_mouse_cursor ( ) 
 
 /**
  * When the player has requested an attack motion, we start the 
@@ -545,52 +574,64 @@ tux_wants_to_attack_now ( int use_mouse_cursor_for_targeting )
 }; // void tux_wants_to_attack_now ( ) 
 
 /**
- * The Tux might be close to the borders of a level, so close in fact, 
- * that he has crossed the internal threshold area.  In that case, we 
- * must move the Tux silently to the corresponding other level to the
- * corresponding position inside the threshold area there.  This is what
- * this function is for.
+ * The Tux might have cross a level's boundary. In that case, we 
+ * must move the Tux silently to the corresponding other level.
  */
-void correct_tux_position_according_to_jump_thresholds ( )
+void correct_tux_position_according_to_jump ( )
 {
 	gps old_mouse_move_target;
 	gps oldpos = { Me.pos.x, Me.pos.y, Me.pos.z };
-	gps newpos = oldpos;
+	gps newpos;
 	
+	//---------------
+	// If current Tux position is inside current level, there's nothing to change
+	//
+	if ( pos_inside_level(Me.pos.x, Me.pos.y, CURLEVEL()) ) return;
+	
+	//---------------
+	// Else, try to retrieve the actual position
+	//
+	int pos_valid = resolve_virtual_position(&newpos, &oldpos);
+
+	if ( !pos_valid ) {
+		// We were not able to compute the actual position...
+		CheckForTuxOutOfMap();
+		return;
+	}
+		
+	//---------------
+	// Tux is on another level, teleport it
+	// (note: Teleport() resets Me.mouse_move_target, so we have to restore it)
+	//
 	old_mouse_move_target.x = Me.mouse_move_target.x;
 	old_mouse_move_target.y = Me.mouse_move_target.y;
 	old_mouse_move_target.z = Me.mouse_move_target.z;
+	
+	Teleport (newpos.z, newpos.x, newpos.y, FALSE);
 
-	int pos_valid = resolve_virtual_position(&newpos, &oldpos);
+	Me.mouse_move_target.x = old_mouse_move_target.x;
+	Me.mouse_move_target.y = old_mouse_move_target.y;
+	Me.mouse_move_target.z = old_mouse_move_target.z;
 
-	if ( pos_valid && (oldpos.z != newpos.z) ) {
-		// We are on another level
-		// Move the player
-		Teleport (newpos.z, newpos.x, newpos.y, FALSE);
-
-		// Update the mouse cursor position
-		// (if it was a SIMPLE mouse move, NOT if it was a
-		// combo-action) XXX figure out why not for combo actions
-		// Teleport() did reset Me.mouse_move_target
-		Me.mouse_move_target.x = old_mouse_move_target.x;
-		Me.mouse_move_target.y = old_mouse_move_target.y;
-		Me.mouse_move_target.z = old_mouse_move_target.z;
-		
-		if ((Me.mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET) &&
-				(enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL)) 
-		{
-			// The purpose is to define mouse_move_target relatively to new Tux's level.
-			// However, if Tux had to move from one level to one of its diagonal neighbor, it has
-			// eventually not yet reach the final destination level.
-			// So we first have to get the real mouse_target position, and then transform it into a
-			// virtual position according to Tux's new level.
-			int rtn = resolve_virtual_position(&Me.mouse_move_target, &old_mouse_move_target);
-			if (rtn) update_virtual_position(&Me.mouse_move_target, &Me.mouse_move_target, newpos.z);
-			if (!rtn || (Me.mouse_move_target.x == -1) || !SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
-				Me.mouse_move_target.x = (-1);
-				Me.mouse_move_target.y = (-1);
-				Me.mouse_move_target.z = (-1);
-			}
+	//---------------
+	// Update the mouse target position
+	//
+#if 0
+	if ( (Me.mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET) &&
+		     (enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL))
+#endif
+	{
+		// The purpose is to define mouse_move_target relatively to new Tux's level.
+		// However, if Tux had to move from one level to one of its diagonal neighbor, it has
+		// eventually not yet reach the final destination level.
+		// So we first have to get the real mouse_target position, and then transform it into a
+		// virtual position according to Tux's new level.
+		int rtn = resolve_virtual_position(&Me.mouse_move_target, &old_mouse_move_target);
+		if (rtn) update_virtual_position(&Me.mouse_move_target, &Me.mouse_move_target, newpos.z);
+		if (!rtn || (Me.mouse_move_target.x == -1) || !SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
+			Me.mouse_move_target.x = (-1);
+			Me.mouse_move_target.y = (-1);
+			Me.mouse_move_target.z = (-1);
 		}
 	}
 	
@@ -600,7 +641,7 @@ void correct_tux_position_according_to_jump_thresholds ( )
 	//
 	CheckForTuxOutOfMap();
 	  
-} // correct_tux_position_according_to_jump_thresholds ( )
+} // correct_tux_position_according_to_jump ( )
 
 /**
  * This function initializes the influencers position history, which is
@@ -724,75 +765,76 @@ a bug in the currently used map system of Freedroid RPG.",
  * maybe move here and there.  But this means that also the mouse move
  * target of the influencer must adapt, which is done in this function.
  */
-void
-tux_get_move_target_and_attack ( moderately_finepoint * movetgt )
+void tux_get_move_target_and_attack ( gps *movetgt )
 {
-    moderately_finepoint RemainingWay;
-    float RemainingWayLength;
-    
-    // if there is a mouse move target, we are not going to move towards the enemy
-    if ( Me . mouse_move_target . x != (-1) ) 
+	moderately_finepoint RemainingWay;
+	float RemainingWayLength;
+	
+	// if there is a mouse move target, we are not going to move towards the enemy
+	if ( Me.mouse_move_target.x != (-1) )
 	{
-	movetgt->x = Me . mouse_move_target . x;
-	movetgt->y = Me . mouse_move_target . y;
-	return;
+		// If a combo action is pending, the mouse_move_target was defined relatively
+		// to the item's level. We need here to define the position relatively to Tux's level.
+		update_virtual_position(movetgt, &Me.mouse_move_target, Me.pos.z);
+		return;
 	}
- 
-    enemy * t = enemy_resolve_address(Me . current_enemy_target_n, & Me.current_enemy_target_addr);
-
-    if (! t || ( t -> energy <= 0 )) //No enemy or dead enemy, remove enemy
+	
+	enemy *t = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
+	
+	if ( !t || (t->energy <= 0) ) //No enemy or dead enemy, remove enemy
 	{
-	enemy_set_reference( & Me.current_enemy_target_n, & Me . current_enemy_target_addr, NULL);
-	movetgt->x = -1;
-	movetgt->y = -1;
-	return;
+		enemy_set_reference( &Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+		movetgt->x = -1;
+		movetgt->y = -1;
+		movetgt->z = -1;
+		return;
 	}	
-
-
-    update_virtual_position(&t->virt_pos, &t->pos, Me.pos.z);
-
-    //--------------------
-    // If we have a ranged weapon in hand, there is no need to approach the
-    // enemy in question.  We just try to fire a shot.
-    //
-    if ( Me . weapon_item . type != (-1) )
-    {
-	if ( ! ItemMap [ Me . weapon_item . type ] . item_weapon_is_melee )
-	{ //ranged weapon
-	    if ( ! t -> is_friendly )
-		tux_wants_to_attack_now ( FALSE ) ;
-	    movetgt->x = -1;
-	    movetgt->y = -1;
-	    return;
-	}
-    }
-
-
-    RemainingWay . x = Me . pos . x - t -> virt_pos . x ;
-    RemainingWay . y = Me . pos . y - t -> virt_pos . y ;
-    
-    RemainingWayLength = sqrtf ( ( RemainingWay . x ) * ( RemainingWay . x ) +
-				 ( RemainingWay . y ) * ( RemainingWay . y ) ) ;
-    
-    if(RemainingWayLength > 0.05)
+	
+	update_virtual_position(&t->virt_pos, &t->pos, Me.pos.z);
+	
+	//--------------------
+	// If we have a ranged weapon in hand, there is no need to approach the
+	// enemy in question.  We just try to fire a shot, and return.
+	//
+	if ( Me.weapon_item.type != (-1) )
 	{
-	    RemainingWay . x = ( RemainingWay . x / RemainingWayLength ) * 
-		( RemainingWayLength - ( BEST_MELEE_DISTANCE - 0.1 ) ) ;
-	    RemainingWay . y = ( RemainingWay . y / RemainingWayLength ) * 
-		( RemainingWayLength - ( BEST_MELEE_DISTANCE - 0.1 ) ) ;
+		if ( !ItemMap[Me.weapon_item.type].item_weapon_is_melee )
+		{ //ranged weapon
+			if ( !t->is_friendly )
+				tux_wants_to_attack_now( FALSE );
+			movetgt->x = -1;
+			movetgt->y = -1;
+			movetgt->z = -1;
+			return;
+		}
 	}
-    
-    if ( ( RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01 ) && ( ! t->is_friendly ) )
-    {
-	tux_wants_to_attack_now ( FALSE ) ;
-    } 
-    
-    movetgt -> x = Me . pos . x - RemainingWay . x ;
-    movetgt -> y = Me . pos . y - RemainingWay . y ;
-    return;
-    
-    
-}; // void UpdateMouseMoveTargetAccoringToEnemy ( )
+
+	//--------------------
+	// Move to melee distance
+	//
+	RemainingWay.x = t->virt_pos.x - Me.pos.x;
+	RemainingWay.y = t->virt_pos.y - Me.pos.y;
+	
+	RemainingWayLength = sqrt(RemainingWay.x * RemainingWay.x + RemainingWay.y * RemainingWay.y);
+	
+	if (RemainingWayLength > 0.05)
+	{
+		RemainingWay.x = ( RemainingWay.x / RemainingWayLength ) * ( RemainingWayLength - (BEST_MELEE_DISTANCE - 0.1) );
+		RemainingWay.y = ( RemainingWay.y / RemainingWayLength ) * ( RemainingWayLength - (BEST_MELEE_DISTANCE - 0.1) );
+	}
+	
+	if ( (RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01) && (!t->is_friendly) )
+	{
+		tux_wants_to_attack_now( FALSE );
+	} 
+
+	// New move target.
+	movetgt->x = Me.pos.x + RemainingWay.x;
+	movetgt->y = Me.pos.y + RemainingWay.y;
+	movetgt->z = Me.mouse_move_target.z;
+
+	return;
+} // void tux_get_move_target_and_attack( )
 
 /**
  * Self-explanatory.
@@ -980,8 +1022,7 @@ int move_tux_thowards_raw_position ( float x , float y )
 	// mouse move target...
 	//
 	if ( ( ( fabsf ( RemainingWay.y ) <= DISTANCE_TOLERANCE ) && 
-		   ( fabsf ( RemainingWay.x ) <= DISTANCE_TOLERANCE )     ) ||
-		 ( Me.mouse_move_target.z != Me.pos.z ) )
+		   ( fabsf ( RemainingWay.x ) <= DISTANCE_TOLERANCE ) ) )
 	{
 		return( TRUE );
 	}
@@ -993,74 +1034,71 @@ int move_tux_thowards_raw_position ( float x , float y )
  *
  *
  */
-void
-move_tux_thowards_intermediate_point ( )
+void move_tux_thowards_intermediate_point ( )
 {
-    int i;
-    Level PlayerLevel;
-
-    PlayerLevel = curShip . AllLevels [ Me . pos. z ] ;
-    
-    //--------------------
-    // If there is no intermediate course, we don't need to do anything
-    // in this function.
-    //
-    if ( Me . next_intermediate_point [ 0 ] . x == (-1) )
-    {
-	Me . mouse_move_target . x = -1;
-	Me . mouse_move_target . y = -1;
-
+	int i;
+	Level PlayerLevel;
+	
+	PlayerLevel = curShip.AllLevels[Me.pos.z];
+	
 	//--------------------
-	// The fact that there is no more intermediate course can mean, that
-	// there never has been any intermediate course or we have now arrived
-	// at the end of the previous intermediate course.
+	// If there is no intermediate course, we don't need to do anything
+	// in this function.
 	//
-	// But that maybe means, that it is now time for the combo_action, that
-	// can occur on the end of any intermediate course, like e.g. open a
-	// chest or pick up some item.
-	//
-	// DebugPrintf ( 2 , "\nAm I now at the last intermediate point???" );
-	switch ( Me . mouse_move_target_combo_action_type )
+	if ( Me.next_intermediate_point[0].x == (-1) )
 	{
-	    case NO_COMBO_ACTION_SET:
-		break;
-	    case COMBO_ACTION_OPEN_CHEST:
-		check_for_chests_to_open ( Me . mouse_move_target_combo_action_parameter ) ;
-		break;
-	    case COMBO_ACTION_SMASH_BARREL:
-		check_for_barrels_to_smash ( Me . mouse_move_target_combo_action_parameter ) ;
-		break;
-	    case COMBO_ACTION_PICK_UP_ITEM:
-		check_for_items_to_pickup ( Me . mouse_move_target_combo_action_parameter ); 
-		break;
-	    default:
-		ErrorMessage ( __FUNCTION__  , 
-					   "Unhandled combo action for intermediate course encountered!" ,
-					   PLEASE_INFORM, IS_FATAL );
-		break;
+		//--------------------
+		// The fact that there is no more intermediate course can mean, that
+		// there never has been any intermediate course or we have now arrived
+		// at the end of the previous intermediate course.
+		//
+		// But that maybe means, that it is now time for the combo_action, that
+		// can occur on the end of any intermediate course, like e.g. open a
+		// chest or pick up some item.
+		//
+		// DebugPrintf ( 2 , "\nAm I now at the last intermediate point???" );
+		switch ( Me.mouse_move_target_combo_action_type )
+		{
+		case NO_COMBO_ACTION_SET:
+			break;
+		case COMBO_ACTION_OPEN_CHEST:
+			check_for_chests_to_open( curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter );
+			break;
+		case COMBO_ACTION_SMASH_BARREL:
+			check_for_barrels_to_smash( curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter );
+			break;
+		case COMBO_ACTION_PICK_UP_ITEM:
+			check_for_items_to_pickup( Me.mouse_move_target_combo_action_parameter );
+			break;
+		default:
+			ErrorMessage ( __FUNCTION__, 
+					       "Unhandled combo action for intermediate course encountered!",
+					       PLEASE_INFORM, IS_FATAL );
+			break;
+		}
+		
+		Me.mouse_move_target.x = -1;
+		Me.mouse_move_target.y = -1;
+		Me.mouse_move_target.z = -1;
+		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+		return;
 	}
-
-	Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
-	return;
-    }
-    
-    //--------------------
-    // Now we move the Tux thowards the next intermediate course point
-    //
-    if ( move_tux_thowards_raw_position ( Me . next_intermediate_point [ 0 ] . x , 
-					  Me . next_intermediate_point [ 0 ] . y ) )
+	
+	//--------------------
+	// Now we move the Tux thowards the next intermediate course point
+	//
+	
+	if ( move_tux_thowards_raw_position( Me.next_intermediate_point[0].x, Me.next_intermediate_point[0].y ) )
 	{	
-	DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nMOVING ON TO NEXT INTERMEDIATE WAYPOINT! " );
-	for ( i = 1 ; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ; i ++ )
-	    {
-	    Me . next_intermediate_point [ i-1 ] . x = 
-		Me . next_intermediate_point [ i ] . x ;
-	    Me . next_intermediate_point [ i-1 ] . y = 
-		Me . next_intermediate_point [ i ] . y ;
-	    }
+		DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nMOVING ON TO NEXT INTERMEDIATE WAYPOINT! " );
+		for ( i = 1 ; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX ; i ++ )
+		{
+			Me.next_intermediate_point[i-1].x = Me.next_intermediate_point[i].x;
+			Me.next_intermediate_point[i-1].y = Me.next_intermediate_point[i].y;
+		}
 	}
-    
-}; // void move_tux_thowards_intermediate_point ( )
+	
+} // void move_tux_thowards_intermediate_point ( )
 
 /** 
  * When the player has rolled the mouse wheel up or down, we change the
@@ -1136,15 +1174,13 @@ done_handling_scroll_updown:
  * keys pressed and also adjusts his status and current "phase" of his 
  * rotation.
  */
-void
-move_tux ( )
+void move_tux ( )
 {
-	Level MoveLevel = curShip.AllLevels[ Me . pos . z ] ;
-	static moderately_finepoint last_given_course_target = { -2 , -2 };
-
+	static gps last_given_course_target = { -2, -2, -2 };
+	
 	// check, if the influencer is still ok
-	CheckIfCharacterIsStillOk ( ) ;
-
+	CheckIfCharacterIsStillOk();
+	
 	//--------------------
 	// We store the influencers position for the history record and so that others
 	// can follow his trail.
@@ -1153,68 +1189,81 @@ move_tux ( )
 	i++;
 	if ( i & 1 )
 	{
-		Me . current_zero_ring_index++;
-		Me . current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
-		Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . x = Me .pos.x;
-		Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . y = Me .pos.y;
-		Me . Position_History_Ring_Buffer [ Me . current_zero_ring_index ] . z = MoveLevel->levelnum ;
+		Me.current_zero_ring_index++;
+		Me.current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
+		Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].x = Me.pos.x;
+		Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].y = Me.pos.y;
+		Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].z = Me.pos.z;
 	}
-
-	if  ( Me . paralyze_duration ) 
+	
+	if ( Me.paralyze_duration )
 	{
-		Me . speed . x = 0;
-		Me . speed . y = 0;
+		Me.speed.x = 0;
+		Me.speed.y = 0;
 		return;  //If tux is paralyzed, we do nothing more
 	}
-
+	
 	//--------------------
 	// As a preparation for the later operations, we see if there is
 	// a living droid set as a target, and if yes, we correct the move
 	// target to something suiting that new droids position.
 	//
-	//
-	//
-
-	moderately_finepoint move_target;
+	gps move_target;
 
 	tux_get_move_target_and_attack(&move_target);
-
-	if ( move_target . x != -1 )
+	
+	if ( move_target.x != -1 )
 	{
 		//--------------------
 		// For optimisation purposes, we'll not do anything unless a new target
 		// has been given.
 		//
-		if (!( ( fabsf ( move_target . x - last_given_course_target . x ) < 0.3 ) &&
-		       ( fabsf ( move_target . y - last_given_course_target . y ) < 0.3 ) ))
+		if ( !( ( fabsf(move_target.x - last_given_course_target.x ) < 0.3 ) &&
+		        ( fabsf(move_target.y - last_given_course_target.y ) < 0.3 ) ))
 		{
 			freeway_context frw_ctx = { FALSE, { NULL, NULL } };
 			pathfinder_context pf_ctx = { &WalkableWithMarginPassFilter, &frw_ctx };
-			set_up_intermediate_course_between_positions ( &Me.pos, &move_target, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx ) ;
-			last_given_course_target . x = move_target . x ;
-			last_given_course_target . y = move_target . y ;
+			moderately_finepoint target_point = { move_target.x, move_target.y };
+			if ( !set_up_intermediate_course_between_positions ( &Me.pos, &target_point, &Me.next_intermediate_point[0], MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX, &pf_ctx ) )
+			{
+				// A path was not found.
+				// If a combo action was set, halt it.
+				if ( Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET )
+				{
+					Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+					Me.mouse_move_target.x = Me.pos.x;
+					Me.mouse_move_target.y = Me.pos.y;
+					Me.mouse_move_target.z = Me.pos.z;
+				}
+			}
+			else
+			{
+				last_given_course_target.x = move_target.x;
+				last_given_course_target.y = move_target.y;
+				last_given_course_target.z = move_target.z;
+			}
 		}
 	}
-
+	
 	// Perhaps the player has turned the mouse wheel.  In that case we might
 	// need to change the current global mode, depending on whether a change
 	// of global mode (with the current obstacles under the mouse cursor)
 	// makes sense or not.
 	// 
 	adapt_global_mode_for_player ( );
-
+	
 	//--------------------
 	// But in case of some mouse move target present, we proceed to move
 	// thowards this mouse move target.
 	//
 	move_tux_thowards_intermediate_point ( );
-
+	
 	//--------------------
 	// Perhaps the player has pressed the right mouse button, indicating the use
 	// of the currently selected special function or spell.
 	//
 	HandleCurrentlyActivatedSkill( );
-   
+	
 	// --------------------
 	// Maybe we need to fire a bullet or set a new mouse move target
 	// for the new move-to location
@@ -2133,96 +2182,94 @@ void TuxReloadWeapon()
  * not only the floor position of the mouse cursor (which would lead to 
  * rather unintuitive clicking areas) but rather the full chest graphics.
  */
-void
-check_for_chests_to_open ( int chest_index ) 
+void check_for_chests_to_open ( level *chest_lvl, int chest_index ) 
 {
-    Level our_level = curShip . AllLevels [ Me . pos . z ] ;
+	if ( chest_index == (-1) ) return;
 
-    if ( chest_index != (-1) )
-    {
 	//--------------------
 	// So the player clicked on a chest.  Well, if the chest is already close
 	// enough, it should be sufficient to just spill out the contents of the
 	// chest and then return.  However, if the player was not yet close enough
-	// to the chest, we need to SET A COMBINED_ACTION, i.e. first set the walk
-	// thowards the chest and then set the open_chest action, which is more
-	// complicated of course.
+	// to the chest, or if the player is on an other level, we need to 
+	// SET A COMBINED_ACTION, i.e. first set the walk thowards the chest and 
+	// then set the open_chest action, which is more complicated of course.
 	//
-	if ( fabsf ( Me . pos . x - our_level -> obstacle_list [ chest_index ] . pos . x ) +
-	     fabsf ( Me . pos . y - our_level -> obstacle_list [ chest_index ] . pos . y ) < 1.1 )
+	
+	// get the chest position relatively to Tux's level, in order to compute a distance
+	gps chest_vpos;
+	update_virtual_position(&chest_vpos, &(chest_lvl->obstacle_list[chest_index].pos), Me.pos.z);
+	
+	if ( fabsf(Me.pos.x - chest_vpos.x) + fabsf(Me.pos.y - chest_vpos.y ) < 1.1 )
 	{
-	    //--------------------
-	    // Check that the chest is really reachable, and not behind an obstacle
+		//--------------------
+		// Check that the chest is really reachable, and not behind an obstacle
 		colldet_filter filter = ObstacleByIdPassFilter;
 		filter.data = &chest_index;
-	    if ( DirectLineColldet( Me.pos.x, Me.pos.y,
-                                our_level->obstacle_list[chest_index].pos.x, our_level->obstacle_list[chest_index].pos.y,
-                                Me.pos.z, &filter) )
-	    {
-	    throw_out_all_chest_content ( chest_index ) ;
-	    
-	    if ( our_level -> obstacle_list [ chest_index ] . type == ISO_H_CHEST_CLOSED )
-		our_level -> obstacle_list [ chest_index ] . type = ISO_H_CHEST_OPEN  ;
-	    if ( our_level -> obstacle_list [ chest_index ] . type == ISO_V_CHEST_CLOSED )
-		our_level -> obstacle_list [ chest_index ] . type = ISO_V_CHEST_OPEN  ;
-	    }
-	    
-	    //--------------------
-	    // Maybe a combo_action has made us come here and open the chest.  Then of
-	    // course we can remove the combo action setting now...
-	    //
-	    Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
-	    Me . mouse_move_target_combo_action_parameter = ( -1 ) ;
-	    
-	    //--------------------
-	    // Now that the chest has been possibly opened, we don't need to do anything more
-	    //
-	    return;
+		if ( DirectLineColldet( Me.pos.x, Me.pos.y, chest_vpos.x, chest_vpos.y, Me.pos.z, &filter) )
+		{
+			throw_out_all_chest_content( chest_index );
+			
+			if ( chest_lvl->obstacle_list[chest_index].type == ISO_H_CHEST_CLOSED )
+				chest_lvl->obstacle_list[chest_index].type = ISO_H_CHEST_OPEN;
+			if ( chest_lvl->obstacle_list[chest_index].type == ISO_V_CHEST_CLOSED )
+				chest_lvl->obstacle_list[chest_index].type = ISO_V_CHEST_OPEN;
+		}
+		
+		//--------------------
+		// Maybe a combo_action has made us come here and open the chest.  Then of
+		// course we can remove the combo action setting now...
+		//
+		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+		Me.mouse_move_target_combo_action_parameter = -1;
+		
+		//--------------------
+		// Now that the chest has been possibly opened, we don't need to do anything more
+		//
+		return;
 	}
 	else
 	{
-	    //--------------------
-	    // So here we know, that we must set the course thowards the chest.  We
-	    // do so first.
-	    //
-	    DebugPrintf ( 2 , "\ncheck_for_chests_to_open:  setting up combined mouse move target!" );
-	    
-	    switch ( our_level -> obstacle_list [ chest_index ] . type )
-	    {
+		//--------------------
+		// So here we know, that we must set the course thowards the chest.  We
+		// do so first.
+		// The target's position has to be defined relatively to the chest's level, so that we
+		// can retrieve the chest later (at the end the combo action)
+		//
+		DebugPrintf( 2 , "\ncheck_for_chests_to_open:  setting up combined mouse move target!" );
+		
+		switch ( chest_lvl->obstacle_list[chest_index].type )
+		{
 		case ISO_V_CHEST_CLOSED:
 		case ISO_V_CHEST_OPEN:
-		    Me . mouse_move_target . x = our_level -> obstacle_list [ chest_index ] . pos . x ;
-		    Me . mouse_move_target . y = our_level -> obstacle_list [ chest_index ] . pos . y ;
-		    Me . mouse_move_target . z = Me . pos . z ;
-		    Me . mouse_move_target . x += 0.8 ;
-		   
-		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
-		    Me . mouse_move_target_combo_action_parameter = chest_index ;
-		    
-		    break;
+			Me.mouse_move_target.x = chest_lvl->obstacle_list[chest_index].pos.x;
+			Me.mouse_move_target.y = chest_lvl->obstacle_list[chest_index].pos.y;
+			Me.mouse_move_target.z = chest_lvl->levelnum;
+			Me.mouse_move_target.x += 0.8;
+			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+			Me.mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST;
+			Me.mouse_move_target_combo_action_parameter = chest_index;
+			
+			break;
 		case ISO_H_CHEST_CLOSED:
 		case ISO_H_CHEST_OPEN:
-		    Me . mouse_move_target . x = our_level -> obstacle_list [ chest_index ] . pos . x ;
-		    Me . mouse_move_target . y = our_level -> obstacle_list [ chest_index ] . pos . y ;
-		    Me . mouse_move_target . z = Me . pos . z ;
-		    Me . mouse_move_target . y += 0.8 ;
-		    
-		    enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-		    Me . mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST ;
-		    Me . mouse_move_target_combo_action_parameter = chest_index ;
-		    
-		    break;
+			Me.mouse_move_target.x = chest_lvl->obstacle_list[chest_index].pos.x;
+			Me.mouse_move_target.y = chest_lvl->obstacle_list[chest_index].pos.y;
+			Me.mouse_move_target.z = chest_lvl->levelnum;
+			Me.mouse_move_target.y += 0.8;
+			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+			Me.mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST;
+			Me.mouse_move_target_combo_action_parameter = chest_index;
+			
+			break;
 		default:
-		    ErrorMessage ( __FUNCTION__  , 
-					       "chest to be approached is not a chest obstacle!!" ,
-					       PLEASE_INFORM, IS_FATAL );
-		    break;
-	    }
+			ErrorMessage ( __FUNCTION__  , 
+					"chest to be approached is not a chest obstacle!!" ,
+					PLEASE_INFORM, IS_FATAL );
+			break;
+		}
 	}
-    }
-    
-}; // void check_for_chests_to_open ( ) 
+	
+} // void check_for_chests_to_open ( ) 
 
 void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
 {
@@ -2279,25 +2326,25 @@ void check_for_items_to_pickup ( int index_of_item_under_mouse_cursor )
  * floor position of the mouse cursor (which would lead to rather 
  * unintuitive clicking areas) but rather the full chest graphics.
  */
-void
-check_for_barrels_to_smash ( int barrel_index ) 
+void check_for_barrels_to_smash ( level *barrel_lvl, int barrel_index ) 
 {
-	Level our_level = curShip . AllLevels [ Me . pos . z ] ;
 	int i;
 	moderately_finepoint step_vector;
 	float vec_len;
+	gps barrel_vpos;
 
 	if ( barrel_index == (-1) ) return;
-	
+
+	update_virtual_position(&barrel_vpos, &(barrel_lvl->obstacle_list[barrel_index].pos), Me.pos.z);
+	if ( barrel_vpos.x == -1 ) return;
+
 	//--------------------
 	// If the smash distance for a barrel is not yet reached, then we must set up
 	// a course that will lead us to the barrel and also a combo_action specification,
 	// that will cause the corresponding barrel to be smashed upon arrival.
 	//
-	if ( calc_euklid_distance ( Me . pos . x , Me . pos . y , 
-								our_level -> obstacle_list [ barrel_index ] . pos . x ,
-								our_level -> obstacle_list [ barrel_index ] . pos . y ) 
-		   > ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) / 2.0 + 0.5 )
+	if ( calc_euklid_distance( Me.pos.x, Me.pos.y, barrel_vpos.x, barrel_vpos.y ) 
+	     > ( obstacle_map[ISO_BARREL_1].block_area_parm_1 * sqrt(2) ) / 2.0 + 0.5 )
 	{
 		//--------------------
 		// We set up a course, that will lead us directly to the barrel, that we are
@@ -2305,53 +2352,47 @@ check_for_barrels_to_smash ( int barrel_index )
 		//
 		// For this purpose, we take a vector and rotate it around the barrel center to
 		// find the 'best' location to go to for the smashing motion...
-
+		
 		// First, if the barrel is in direct line with Tux, we search a position that the
 		// Tux can reach.
-
-		step_vector . x = Me . pos . x - our_level -> obstacle_list [ barrel_index ] . pos . x ;
-		step_vector . y = Me . pos . y - our_level -> obstacle_list [ barrel_index ] . pos . y ;
-		vec_len = vect_len ( step_vector );
-
-		//--------------------
 		// We normalize the distance of the final walk-point to the barrel center just
 		// so, that it will be within the 'strike_distance' we have used just above in
 		// the 'distance-met' query.
 		//
-		step_vector . x *= ( ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) 
-							 / 2.0 + 0.05 ) / vec_len ;
-		step_vector . y *= ( ( obstacle_map [ ISO_BARREL_1 ] . block_area_parm_1 * sqrt(2) ) 
-							 / 2.0 + 0.05 ) / vec_len ;
+		step_vector.x = Me.pos.x - barrel_vpos.x;
+		step_vector.y = Me.pos.y - barrel_vpos.y;
+		vec_len = vect_len( step_vector );
 
-		for ( i = 0 ; i < 8 ; i ++ )
+		step_vector.x *= ( (obstacle_map[ISO_BARREL_1].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05 ) / vec_len;
+		step_vector.y *= ( (obstacle_map[ISO_BARREL_1].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05 ) / vec_len;
+
+		for ( i = 0 ; i < 8 ; i++ )
 		{
-			if ( DirectLineColldet( Me.pos.x, Me.pos.y,
-									our_level->obstacle_list[barrel_index].pos.x + step_vector.x ,
-									our_level->obstacle_list[barrel_index].pos.y + step_vector.y, 
-									Me.pos.z, 
-									&WalkablePassFilter ) )
+			if ( DirectLineColldet( Me.pos.x, Me.pos.y, barrel_vpos.x, barrel_vpos.y, Me.pos.z, &WalkablePassFilter ) )
 			{
 				//--------------------
 				// The obstacle plus the step vector give us the position to move the
 				// Tux to for the optimal strike...
+				// This position has to be defined relatively to the barrel's level, so that we
+				// can retrieve the barrel later (at the end the combo action)
 				//
-				Me . mouse_move_target . x = our_level -> obstacle_list [ barrel_index ] . pos . x + step_vector . x ;
-				Me . mouse_move_target . y = our_level -> obstacle_list [ barrel_index ] . pos . y + step_vector . y ;
-				Me . mouse_move_target . z = Me . pos . z ;
+				Me.mouse_move_target.x = step_vector.x + barrel_lvl->obstacle_list[barrel_index].pos.x;
+				Me.mouse_move_target.y = step_vector.y + barrel_lvl->obstacle_list[barrel_index].pos.y;
+				Me.mouse_move_target.z = barrel_lvl->obstacle_list[barrel_index].pos.z;
 
 				//--------------------
 				// We set up the combo_action, so that the barrel can be smashed later...
 				//
-				enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-				Me . mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL ;
-				Me . mouse_move_target_combo_action_parameter = barrel_index ;
-				break;
+				enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+				Me.mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL;
+				Me.mouse_move_target_combo_action_parameter = barrel_index;
+				return;
 			}
 
 			//--------------------
 			// If this vector didn't bring us any luck, we rotate by 45 degrees and try anew...
 			//
-			RotateVectorByAngle ( & ( step_vector ) , 45.0 ) ;
+			RotateVectorByAngle( &step_vector, 45.0 );
 		}
 
 		// Second : if the barrel is not in direct line with Tux, we search a position
@@ -2360,62 +2401,60 @@ check_for_barrels_to_smash ( int barrel_index )
 		// costly to launch the pathfinder here. Anyway, if no path exists, Tux will
 		// not start to move, so the player will certainly try to get closer to the
 		// barrel.
-
-		// we will rotate step_vector around the center of the barrel
-		step_vector . x = Me . pos . x - our_level -> obstacle_list [ barrel_index ] . pos . x ;
-		step_vector . y = Me . pos . y - our_level -> obstacle_list [ barrel_index ] . pos . y ;
-		vec_len = vect_len ( step_vector );
-		step_vector . x /= vec_len;
-		step_vector . y /= vec_len;
-
+		// We will rotate step_vector around the center of the barrel
+		//
+		step_vector.x = Me.pos.x - barrel_vpos.x;
+		step_vector.y = Me.pos.y - barrel_vpos.y;
+		vec_len = vect_len( step_vector );
+		step_vector.x /= vec_len;
+		step_vector.y /= vec_len;
+		
 		// point_near_barrel is a point very near the barrel in the step_vector's direction,
 		// point_away_from_barrel is a point in the same direction but a bit farther
 		moderately_finepoint point_near_barrel, point_away_from_barrel;
 
 		// half-size of the barrel
-		int barrel_type = our_level -> obstacle_list [ barrel_index ] . type;
-		moderately_finepoint half_size = { ( obstacle_map [ barrel_type ] . block_area_parm_1 * sqrt(2) ) / 2.0,
-										   ( obstacle_map [ barrel_type ] . block_area_parm_2 * sqrt(2) ) / 2.0
+		int barrel_type = barrel_lvl->obstacle_list[barrel_index].type;
+		moderately_finepoint half_size = { (obstacle_map[barrel_type].block_area_parm_1 * sqrt(2)) / 2.0,
+		                                   (obstacle_map[barrel_type].block_area_parm_2 * sqrt(2)) / 2.0
 										 };
 
-		for ( i = 0 ; i < 8 ; i ++ )
+		for ( i = 0 ; i < 8 ; i++ )
 		{
 			// (no need to optimize this, the compiler will do its job...)
-			point_near_barrel . x      = our_level -> obstacle_list [ barrel_index ] . pos . x +
-										 step_vector . x * ( half_size . x + 0.05 );
-			point_near_barrel . y      = our_level -> obstacle_list [ barrel_index ] . pos . y +
-										 step_vector . y * ( half_size . y + 0.05 );
-			point_away_from_barrel . x = our_level -> obstacle_list [ barrel_index ] . pos . x +
-										 step_vector . x * ( half_size . x + 0.2  );
-			point_away_from_barrel . y = our_level -> obstacle_list [ barrel_index ] . pos . y +
-										 step_vector . y * ( half_size . y + 0.2  );
+			point_near_barrel.x      = barrel_vpos.x + step_vector.x * ( half_size.x + 0.05 );
+			point_near_barrel.y      = barrel_vpos.y + step_vector.y * ( half_size.y + 0.05 );
+			point_away_from_barrel.x = barrel_vpos.x + step_vector.x * ( half_size.x + 0.2  );
+			point_away_from_barrel.y = barrel_vpos.y + step_vector.y * ( half_size.y + 0.2  );
 
 			// check if the line from point_near_barrel to point_away_from_barrel is walkable
 			if ( DirectLineColldet( point_near_barrel.x, point_near_barrel.y,
-									point_away_from_barrel . x, point_away_from_barrel . y,
-									Me.pos.z, 
+									point_away_from_barrel.x, point_away_from_barrel.y,
+									Me.pos.z,
 									&WalkablePassFilter) )
 			{
 				//--------------------
 				// point_to_barrel seems good, move Tux there
+				// This position has to be defined relatively to the barrel's level, so that we
+				// can retrieve the barrel later (at the end the combo action)
 				//
-				Me . mouse_move_target . x = point_near_barrel . x ;
-				Me . mouse_move_target . y = point_near_barrel . y ;
-				Me . mouse_move_target . z = Me . pos . z ;
+				Me.mouse_move_target.x = barrel_lvl->obstacle_list[barrel_index].pos.x + step_vector.x * ( half_size.x + 0.05 );
+				Me.mouse_move_target.y = barrel_lvl->obstacle_list[barrel_index].pos.y + step_vector.y * ( half_size.y + 0.05 );
+				Me.mouse_move_target.z = barrel_lvl->obstacle_list[barrel_index].pos.z;
 
 				//--------------------
 				// We set up the combo_action, so that the barrel can be smashed later, on the
 				// second call (made by move_tux_thowards_intermediate_point)...
 				//
-				enemy_set_reference(&Me . current_enemy_target_n, &Me . current_enemy_target_addr, NULL);
-				Me . mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL ;
-				Me . mouse_move_target_combo_action_parameter = barrel_index ;
+				enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+				Me.mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL;
+				Me.mouse_move_target_combo_action_parameter = barrel_index;
 
 				return;
 			}
 
 			// rotate the step_vector to check an other point
-			RotateVectorByAngle ( & ( step_vector ) , 45.0 ) ;
+			RotateVectorByAngle ( &step_vector, 45.0 );
 		}
 
 		return;
@@ -2429,8 +2468,8 @@ check_for_barrels_to_smash ( int barrel_index )
 	// Before the barrel can get destroyed and we loose the position information,
 	// we record the vector of the charecter's strike direction...
 	//
-	step_vector . x = - Me . pos . x + our_level -> obstacle_list [ barrel_index ] . pos . x ;
-	step_vector . y = - Me . pos . y + our_level -> obstacle_list [ barrel_index ] . pos . y ;
+	step_vector.x = -Me.pos.x + barrel_vpos.x;
+	step_vector.y = -Me.pos.y + barrel_vpos.y;
 
 	//--------------------
 	// Check that the barrel is really reachable, and not behind an obstacle
@@ -2438,17 +2477,15 @@ check_for_barrels_to_smash ( int barrel_index )
 	colldet_filter filter = ObstacleByIdPassFilter;
 	filter.data = &barrel_index;
 	
-	if ( DirectLineColldet( Me.pos.x, Me.pos.y,
-							our_level->obstacle_list[barrel_index].pos.x, our_level->obstacle_list[barrel_index].pos.y,
-							Me.pos.z, &filter) )
+	if ( DirectLineColldet( Me.pos.x, Me.pos.y, barrel_vpos.x, barrel_vpos.y, Me.pos.z, &filter) )
 	{
 		//--------------------
 		// We make sure the barrel gets smashed, even if the strike made by the
 		// Tux would be otherwise a miss...
 		//
-		smash_obstacle ( our_level->obstacle_list[barrel_index].pos.x, 
-						 our_level->obstacle_list[barrel_index].pos.y,
-						 our_level->obstacle_list[barrel_index].pos.z);
+		smash_obstacle ( barrel_lvl->obstacle_list[barrel_index].pos.x, 
+						 barrel_lvl->obstacle_list[barrel_index].pos.y,
+						 barrel_lvl->obstacle_list[barrel_index].pos.z);
 
 		//--------------------
 		// We start an attack motion...
@@ -2464,13 +2501,13 @@ check_for_barrels_to_smash ( int barrel_index )
 		// We set a direction of facing directly thowards the barrel in question
 		// so that the strike motion looks authentic...
 		//
-		Me . angle = - ( atan2 ( step_vector . y ,  step_vector . x ) * 180 / M_PI - 180 - 45 );
-		Me . angle += 360 / ( 2 * MAX_TUX_DIRECTIONS );
-		while ( Me . angle < 0 ) Me . angle += 360;
+		Me.angle = -( atan2(step_vector.y,  step_vector.x) * 180 / M_PI - 180 - 45 );
+		Me.angle += 360 / ( 2 * MAX_TUX_DIRECTIONS );
+		while ( Me.angle < 0 ) Me.angle += 360;
 	}
 
-	Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
-	Me . mouse_move_target_combo_action_parameter = ( -1 ) ;
+	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET ;
+	Me.mouse_move_target_combo_action_parameter = ( -1 ) ;
 	DebugPrintf ( 2 , "\ncheck_for_barrels_to_smash(...):  combo_action now unset." );
 }; // void check_for_barrels_to_smash ( int barrel_index ) 
 
@@ -2706,11 +2743,13 @@ AnalyzePlayersMouseClick ( )
 		if ( handle_click_in_hud() ) return;
 		if ( no_left_button_press_in_previous_analyze_mouse_click )
 		{
-			Me . mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+			level *obj_lvl = NULL;
+			
+			Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 
-			if ( (tmp = closed_chest_below_mouse_cursor ( )) != -1 )
+			if ( (tmp = closed_chest_below_mouse_cursor( &obj_lvl )) != -1 )
 			{
-				check_for_chests_to_open ( tmp ) ;
+				check_for_chests_to_open ( obj_lvl, tmp ) ;
 				if (Me . mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 					wait_mouseleft_release = TRUE;
 				break;
@@ -2718,9 +2757,9 @@ AnalyzePlayersMouseClick ( )
 
 			// Nota : If 'A' key is held down, we don't directly smash a barrel.
 			// This will possibly be the result of the character's attack.
-			if ( !APressed() && ( tmp = smashable_barrel_below_mouse_cursor ( ) ) != -1 )
+			if ( !APressed() && (tmp = smashable_barrel_below_mouse_cursor( &obj_lvl )) != -1 )
 			{ 
-				check_for_barrels_to_smash ( tmp );
+				check_for_barrels_to_smash ( obj_lvl, tmp );
 				if (Me . mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 					wait_mouseleft_release = TRUE;
 				break;
