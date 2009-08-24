@@ -708,13 +708,14 @@ draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
 #ifdef HAVE_LIBGL
 	float a = 1.0;
 	int x, y;
-	glEnable(GL_ALPHA_TEST);
 
 	if (((blend == TRANSPARENCY_FOR_WALLS) && GameConfig.transparency) || blend == TRANSPARENCY_CUROBJECT) {
 		glEnable(GL_BLEND);
 		a = 0.50;
 	} else if (blend == TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS) {
 		glEnable(GL_BLEND);
+	} else {
+		glEnable(GL_ALPHA_TEST);
 	}
 
 	translate_map_point_to_screen_pixel(our_col, our_line, &x, &y, zoom_factor);
@@ -747,7 +748,6 @@ draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
 	glDisable(GL_BLEND);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glDisable(GL_ALPHA_TEST);
-
 #endif
 
 };				// void draw_gl_textured_quad_at_map_position ( ... )
