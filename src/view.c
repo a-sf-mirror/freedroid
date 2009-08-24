@@ -1305,6 +1305,17 @@ int pos_inside_level(float x, float y, level * lvl)
 }				// pos_inside_level()
 
 /**
+ * Check if a position is inside or near a level's boundaries
+ * 
+ * return TRUE if (x,y) is inside 'lvl' or at less than 'dist' from
+ * 'lvl' borders.
+ */
+int pos_near_level(float x, float y, level * lvl, float dist)
+{
+	return ((x >= -dist) && (x < (float)lvl->xlen + dist) && (y >= -dist) && (y < (float)lvl->ylen + dist));
+}				// pos_near_level()
+
+/**
  * The blitting list must contain the enemies too.  This function is 
  * responsible for inserting the enemies at the right positions.
  */
@@ -1490,15 +1501,17 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 				if (use_open_gl) {
 					if (obstacle_map[our_obstacle->type].shadow_image.texture_has_been_created) {
 						if (mask & ZOOM_OUT) {
-							draw_gl_textured_quad_at_map_position(&obstacle_map[our_obstacle->type].
-											      shadow_image, our_obstacle->vpos.x,
-											      our_obstacle->vpos.y, 1.0, 1.0, 1.0, FALSE,
+							draw_gl_textured_quad_at_map_position(&obstacle_map
+											      [our_obstacle->type].shadow_image,
+											      our_obstacle->vpos.x, our_obstacle->vpos.y,
+											      1.0, 1.0, 1.0, FALSE,
 											      TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS,
 											      lvledit_zoomfact_inv());
 						} else {
-							draw_gl_textured_quad_at_map_position(&obstacle_map[our_obstacle->type].
-											      shadow_image, our_obstacle->vpos.x,
-											      our_obstacle->vpos.y, 1.0, 1.0, 1.0, FALSE,
+							draw_gl_textured_quad_at_map_position(&obstacle_map
+											      [our_obstacle->type].shadow_image,
+											      our_obstacle->vpos.x, our_obstacle->vpos.y,
+											      1.0, 1.0, 1.0, FALSE,
 											      TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0);
 						}
 					}
@@ -1506,9 +1519,9 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 					if (obstacle_map[our_obstacle->type].shadow_image.surface != NULL) {
 						if (mask & ZOOM_OUT) {
 							blit_zoomed_iso_image_to_map_position(&
-											      (obstacle_map[our_obstacle->type].
-											       shadow_image), our_obstacle->vpos.x,
-											      our_obstacle->vpos.y);
+											      (obstacle_map
+											       [our_obstacle->type].shadow_image),
+											      our_obstacle->vpos.x, our_obstacle->vpos.y);
 						} else {
 							blit_iso_image_to_map_position(&obstacle_map[our_obstacle->type].shadow_image,
 										       our_obstacle->vpos.x, our_obstacle->vpos.y);
@@ -2049,7 +2062,6 @@ void AssembleCombatPicture(int mask)
 		blit_our_own_mouse_cursor();
 		blit_mouse_cursor_corona();
 	}
-
 #if 0
 	/* This code displays the player tracks with red dots. */
 	glDisable(GL_TEXTURE_2D);
@@ -2665,9 +2677,8 @@ The number of images found in the image collection is bigger than currently allo
 				flip_image_vertically(enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].surface);
 			} else {
 				if (!strncmp("oglX", ogl_support_string, 4)) {
-					make_texture_out_of_prepadded_image(&
-									    (enemy_iso_images[enemy_model_nr][rotation_index]
-									     [enemy_phase]));
+					make_texture_out_of_prepadded_image(&(enemy_iso_images[enemy_model_nr][rotation_index]
+									      [enemy_phase]));
 				} else {
 					//--------------------
 					// Of course we could handle the case on non-open-gl optimized image
@@ -2804,11 +2815,11 @@ Empty part string received!", PLEASE_INFORM, IS_FATAL);
 			} else {
 				draw_gl_textured_quad_at_screen_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
 									 x +
-									 loaded_tux_images[tux_part_group][our_phase][rotation_index].
-									 offset_x,
+									 loaded_tux_images[tux_part_group][our_phase]
+									 [rotation_index].offset_x,
 									 y +
-									 loaded_tux_images[tux_part_group][our_phase][rotation_index].
-									 offset_y);
+									 loaded_tux_images[tux_part_group][our_phase]
+									 [rotation_index].offset_y);
 			}
 #endif
 		}

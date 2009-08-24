@@ -36,7 +36,8 @@
 #include "proto.h"
 
 /* Distances for hitting a druid */
-#define DRUIDHITDIST2		(0.0625)
+#define DRUIDHITDIST  (0.25)
+#define DRUIDHITDIST2 (DRUIDHITDIST*DRUIDHITDIST)
 
 /**
  *
@@ -62,7 +63,7 @@ static void move_this_bullet_and_check_its_collisions(int num)
 	// NOTE:  The number 0.25 here is the value of thickness of the collision
 	// rectangle of a standard wall.  Since we might not have loaded all wall tiles
 	// at every time of the game, also during game, guessing the minimum thickness
-	// of walls at runtime is a bit hard and would be unconvenient and complicated,
+	// of walls at runtime is a bit hard and would be inconvenient and complicated,
 	// so I leave this with the hard-coded constant for now...
 	//
 	number_of_steps = rintf(whole_step_size / 0.25) + 1;
@@ -75,7 +76,7 @@ static void move_this_bullet_and_check_its_collisions(int num)
 		CurBullet->pos.y += bullet_step_vector.y;
 
 		// The bullet could have traverse a level's boundaries, so
-		// get its new level and position, and check if the transformation was possible
+		// retrieve its new level and position, if possible
 		int pos_valid = resolve_virtual_position(&CurBullet->pos, &CurBullet->pos);
 		if (!pos_valid) {
 			DebugPrintf(-1000, "\nBullet outside of map: pos.x=%f, pos.y=%f, pos.z=%d, type=%d\n",
@@ -83,13 +84,19 @@ static void move_this_bullet_and_check_its_collisions(int num)
 			DeleteBullet(num, FALSE);
 			return;
 		}
+		// If the bullet has reached an invisible level, remove it silently
+		if (!level_is_visible(CurBullet->pos.z)) {
+			DeleteBullet(num, FALSE);
+			return;
+		}
+		// Check collision with the environment
 
 		CheckBulletCollisions(num);
 		if (CurBullet->type == INFOUT)
 			return;
 	}
 
-};				// void move_this_bullet_and_check_its_collisions ( CurBullet )
+}				// void move_this_bullet_and_check_its_collisions ( CurBullet )
 
 /**
  * Whenever a new bullet is generated, we need to find a free index in 
@@ -131,7 +138,9 @@ void DoMeleeDamage(void)
 	melee_shot *CurMelS;
 
 	/* Browse all melee shots */
-	for (CurMelS = AllMeleeShots, i = 0; i < MAX_MELEE_SHOTS; CurMelS++, i++) {
+	for (i = 0; i < MAX_MELEE_SHOTS; i++) {
+		CurMelS = &AllMeleeShots[i];
+
 		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_NOTHING)
 			continue;
 
@@ -153,12 +162,15 @@ void DoMeleeDamage(void)
 			}
 
 			if (((float)Druidmap[tg->type].monster_level * (float)MyRandom(100) < CurMelS->to_hit)) {
-				if (CurMelS->mine) {
-				}
 				hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
-			} else if (CurMelS->mine) {
 			}
-		} else if (CurMelS->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
+
+			delete_melee_shot(CurMelS);
+			continue;
+
+		}
+
+		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
 			/* hit player */
 			if (MyRandom(100) <= Me.lv_1_bot_will_hit_percentage * CurMelS->level) {
 				Me.energy -= CurMelS->damage;
@@ -166,6 +178,7 @@ void DoMeleeDamage(void)
 					tux_scream_sound();
 			}
 		}
+
 		delete_melee_shot(CurMelS);
 	}
 }
@@ -192,12 +205,6 @@ void MoveBullets(void)
 
 		if (CurBullet->time_to_hide_still > 0)
 			continue;
-
-		if (!level_is_visible(CurBullet->pos.z)) {
-			// if the bullet is on an inactive level, silently kill it
-			DeleteBullet(i, FALSE);
-			continue;
-		}
 
 		move_this_bullet_and_check_its_collisions(i);
 
@@ -271,11 +278,32 @@ void StartBlast(float x, float y, int level, int type, int dmg)
 	int i;
 	Blast NewBlast;
 
+	// Resolve blast real position, if possible
+	//
+	gps blast_vpos = { x, y, level };
+	gps blast_pos;
+
+	if (!resolve_virtual_position(&blast_pos, &blast_vpos)) {
+		// The blast position is nowhere....
+		ErrorMessage(__FUNCTION__, "\
+A BLAST VIRTUAL POSITION WAS FOUND TO BE INCONSISTENT.\n\
+\n\
+However, the error is not fatal and will be silently compensated for now.\n\
+When reporting a problem to the Freedroid developers, please note if this\n\
+warning message was created prior to the error in your report.\n\
+However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		return;
+	}
+	//--------------------
+	// If the blast is not on a visible level, we do not take care of it
+	if (!level_is_visible(blast_pos.z))
+		return;
+
 	//--------------------
 	// Maybe there is a box under the blast.  In this case, the box will
 	// get smashed and perhaps an item will drop.
 	// 
-	smash_obstacle(x, y, level);
+	smash_obstacle(blast_pos.x, blast_pos.y, blast_pos.z);
 
 	// find out the position of the next free blast
 	for (i = 0; i < MAXBLASTS; i++)
@@ -290,9 +318,9 @@ void StartBlast(float x, float y, int level, int type, int dmg)
 	NewBlast = &(AllBlasts[i]);
 
 	// create a blast at the specified x/y coordinates
-	NewBlast->pos.x = x;
-	NewBlast->pos.y = y;
-	NewBlast->pos.z = level;
+	NewBlast->pos.x = blast_pos.x;
+	NewBlast->pos.y = blast_pos.y;
+	NewBlast->pos.z = blast_pos.z;
 
 	NewBlast->type = type;
 	NewBlast->phase = 0;
@@ -319,11 +347,11 @@ void animate_blasts(void)
 	int i;
 	Blast CurBlast = AllBlasts;
 
-	for (i = 0; i < MAXBLASTS; i++, CurBlast++)
+	for (i = 0; i < MAXBLASTS; i++, CurBlast++) {
 		if (CurBlast->type != INFOUT) {
 
 			//--------------------
-			// But maybe the bullet is also outside the map already, which would
+			// But maybe the blast is also outside the map already, which would
 			// cause a SEGFAULT directly afterwards, when the map is queried.
 			// Therefore we introduce some extra security here...
 			//
@@ -361,9 +389,10 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 			// Then of course it's time to delete the blast, which is done
 			// here.
 			//
-			if (((int)floorf(CurBlast->phase)) >= PHASES_OF_EACH_BLAST)
+			if ((int)floorf(CurBlast->phase) >= PHASES_OF_EACH_BLAST)
 				DeleteBlast(i);
 		}		/* if */
+	}
 };				// void animate_blasts( ... )
 
 /**
@@ -386,7 +415,7 @@ void MoveActiveSpells(void)
 	PassedTime = Frame_Time();
 	int direction_index;
 	moderately_finepoint Displacement;
-	moderately_finepoint final_point;
+	gps final_point;
 	float Angle;
 
 	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
@@ -419,8 +448,22 @@ void MoveActiveSpells(void)
 			RotateVectorByAngle(&Displacement, Angle);
 			final_point.x = AllActiveSpells[i].spell_center.x + Displacement.x;
 			final_point.y = AllActiveSpells[i].spell_center.y + Displacement.y;
-			// current_active_direction = rintf ( ( Angle  ) * (float) RADIAL_SPELL_DIRECTIONS / 360.0 ); 
-			if (!SinglePointColldet(final_point.x, final_point.y, Me.pos.z, &FlyablePassFilter))
+			final_point.z = Me.pos.z;
+
+			// This spell's fraction could have traverse a level's border, so we
+			// need to retrieve its actual level, if possible
+			gps final_vpoint;
+			if (!resolve_virtual_position(&final_vpoint, &final_point)) {
+				AllActiveSpells[i].active_directions[direction_index] = FALSE;
+				continue;
+			}
+			// Just discard the spell's fraction if it is on an invisible level
+			if (!level_is_visible(final_vpoint.z)) {
+				AllActiveSpells[i].active_directions[direction_index] = FALSE;
+				continue;
+			}
+			// if this spell's fraction collides an obstacle, discard it
+			if (!SinglePointColldet(final_vpoint.x, final_vpoint.y, final_vpoint.z, &FlyablePassFilter))
 				AllActiveSpells[i].active_directions[direction_index] = FALSE;
 		}
 
@@ -429,10 +472,10 @@ void MoveActiveSpells(void)
 		//
 		float minDist = (0.2 + AllActiveSpells[i].spell_radius) * (0.2 + AllActiveSpells[i].spell_radius);
 
-		struct visible_level *l, *n;
+		struct visible_level *visible_lvl, *n;
 		enemy *erot, *nerot;
-		BROWSE_NEARBY_VISIBLE_LEVELS(l, n, minDist) {
-			BROWSE_LEVEL_BOTS_SAFE(erot, nerot, l->lvl_pointer->levelnum) {
+		BROWSE_NEARBY_VISIBLE_LEVELS(visible_lvl, n, minDist) {
+			BROWSE_LEVEL_BOTS_SAFE(erot, nerot, visible_lvl->lvl_pointer->levelnum) {
 				update_virtual_position(&erot->virt_pos, &erot->pos, Me.pos.z);
 				DistanceFromCenter =
 				    (AllActiveSpells[i].spell_center.x - erot->virt_pos.x) * (AllActiveSpells[i].spell_center.x -
@@ -681,10 +724,9 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 	double xdist, ydist;
 
 	//--------------------
-	// Of course only active players and players on the same level
-	// may be checked!
+	// Of course only active player may be checked!
 	//
-	if (Me.energy <= 0 || Me.pos.z != CurBullet->pos.z)
+	if (Me.energy <= 0)
 		return;
 
 	//--------------------
@@ -702,8 +744,15 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 	// distance or not.
 	//
 
-	xdist = Me.pos.x - CurBullet->pos.x;
-	ydist = Me.pos.y - CurBullet->pos.y;
+	// We need compatible gps positions to compute a distance
+	gps bullet_vpos;
+	update_virtual_position(&bullet_vpos, &CurBullet->pos, Me.pos.z);
+	if (bullet_vpos.x == -1)
+		return;
+
+	xdist = Me.pos.x - bullet_vpos.x;
+	ydist = Me.pos.y - bullet_vpos.y;
+
 	if ((xdist * xdist + ydist * ydist) < DRUIDHITDIST2) {
 
 		apply_bullet_damage_to_player(CurBullet->damage, CurBullet->owner);
@@ -721,45 +770,53 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 	double xdist, ydist;
 	int level = CurBullet->pos.z;
 
-	if (CurBullet->type == INFOUT)
-		fprintf(stderr, "Caca\n");
 	//--------------------
 	// Check for collision with enemys
 	//
 	enemy *ThisRobot, *nerot;
 	BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, level) {
+		//--------------------
+		// Check several hitting conditions
+		//
 		xdist = CurBullet->pos.x - ThisRobot->pos.x;
 		ydist = CurBullet->pos.y - ThisRobot->pos.y;
 
-		if ((xdist * xdist + ydist * ydist) < DRUIDHITDIST2
-		    && ((float)Druidmap[ThisRobot->type].monster_level * (float)MyRandom(100) < CurBullet->to_hit)
-		    && ThisRobot->is_friendly != CurBullet->is_friendly) {
-			if ((CurBullet->hit_type == ATTACK_HIT_BOTS && Druidmap[ThisRobot->type].is_human) ||
-			    (CurBullet->hit_type == ATTACK_HIT_HUMANS && !Druidmap[ThisRobot->type].is_human))
-				continue;
+		if ((xdist * xdist + ydist * ydist) >= DRUIDHITDIST2)
+			continue;
 
-			hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp */ , CurBullet->owner,
-				  (CurBullet->mine ? 1 : 0));
+		if ((float)Druidmap[ThisRobot->type].monster_level * (float)MyRandom(100) >= CurBullet->to_hit)
+			continue;
+		if (CurBullet->hit_type == ATTACK_HIT_BOTS && Druidmap[ThisRobot->type].is_human)
+			continue;
+		if (CurBullet->hit_type == ATTACK_HIT_HUMANS && !Druidmap[ThisRobot->type].is_human)
+			continue;
+		if (ThisRobot->is_friendly == CurBullet->is_friendly)
+			continue;
 
-			ThisRobot->frozen += CurBullet->freezing_level;
+		//--------------------
+		// Hit the ennemy
+		//
+		hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp */ , CurBullet->owner,
+			  (CurBullet->mine ? 1 : 0));
 
-			ThisRobot->poison_duration_left += CurBullet->poison_duration;
-			ThisRobot->poison_damage_per_sec += CurBullet->poison_damage_per_sec;
+		ThisRobot->frozen += CurBullet->freezing_level;
 
-			ThisRobot->paralysation_duration_left += CurBullet->paralysation_duration;
+		ThisRobot->poison_duration_left += CurBullet->poison_duration;
+		ThisRobot->poison_damage_per_sec += CurBullet->poison_damage_per_sec;
 
-			//--------------------
-			// If the blade can pass through dead and not dead bodies, it will so
-			// so and create a small explosion passing by.  But if it can't, it should
-			// be completely deleted of course, with the same small explosion as well
-			//
-			if (CurBullet->pass_through_hit_bodies)
-				StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0);
-			else
-				DeleteBullet(num, TRUE);	// we want a bullet-explosion
+		ThisRobot->paralysation_duration_left += CurBullet->paralysation_duration;
 
-			return;
-		}		// if distance low enough to possibly be at hit
+		//--------------------
+		// If the blade can pass through dead and not dead bodies, it will so
+		// so and create a small explosion passing by.  But if it can't, it should
+		// be completely deleted of course, with the same small explosion as well
+		//
+		if (CurBullet->pass_through_hit_bodies)
+			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0);
+		else
+			DeleteBullet(num, TRUE);	// we want a bullet-explosion
+
+		return;
 	}
 };				// void check_bullet_enemy_collisions ( CurBullet , num )
 
@@ -775,23 +832,25 @@ void check_bullet_bullet_collisions(bullet * CurBullet, int num)
 	for (i = 0; i < MAXBULLETS; i++) {
 		if (i == num)
 			continue;	// never check for collision with youself.. ;)
-		if (CurBullet->pos.z != AllBullets[i].pos.z)
-			continue;	// not on same level
 		if (AllBullets[i].type == INFOUT)
 			continue;	// never check for collisions with dead bullets.. 
 		if (AllBullets[i].type == FLASH)
 			continue;	// never check for collisions with flashes bullets.. 
 
-		if (fabsf(AllBullets[i].pos.x - CurBullet->pos.x) > BULLET_BULLET_COLLISION_DIST)
+		// to check the distance between the 2 bullets, we need compatible gps positions, if possible
+		gps other_bullet_pos;
+		update_virtual_position(&other_bullet_pos, &AllBullets[i].pos, CurBullet->pos.z);
+		if (other_bullet_pos.z == -1)
 			continue;
-		if (fabsf(AllBullets[i].pos.y - CurBullet->pos.y) > BULLET_BULLET_COLLISION_DIST)
+
+		if (fabsf(other_bullet_pos.x - CurBullet->pos.x) > BULLET_BULLET_COLLISION_DIST)
 			continue;
+		if (fabsf(other_bullet_pos.y - CurBullet->pos.y) > BULLET_BULLET_COLLISION_DIST)
+			continue;
+
 		// it seems like we have a collision of two bullets!
 		// both will be deleted and replaced by blasts..
 		DebugPrintf(1, "\nBullet-Bullet-Collision detected...");
-
-		//CurBullet->type = INFOUT;
-		//AllBullets[num].type = INFOUT;
 
 		if (CurBullet->reflect_other_bullets) {
 			if (AllBullets[i].was_reflected) {
@@ -846,20 +905,60 @@ void CheckBulletCollisions(int num)
 		// If its a "normal" Bullet, several checks have to be
 		// done, one for collisions with background, 
 		// one for collision with influencer
-		// some for collisions with enemys
+		// some for collisions with enemies
 		// and some for collisions with other bullets
 		// and some for collisions with blast
 		//
-		check_bullet_background_collisions(CurBullet, num);
-		if (CurBullet->type == INFOUT)
-			return;
+		// A bullet has a non null radius, so it can potentially hit 
+		// an object (obstacle, enemy...) on a neighbor level. 
+		// We however limit the collision detection to the visible levels
+		// in order to lower the CPU cost, mainly because we don't really
+		// care of what happens on invisible levels.
+		//
+
+		// Bullet/player collision code is level-independent
+
 		check_bullet_player_collisions(CurBullet, num);
 		if (CurBullet->type == INFOUT)
 			return;
-		check_bullet_enemy_collisions(CurBullet, num);
+
+		// Bullet/background and bullet/enemy collision code is level dependent.
+		// Store bullet's current position, in order to restore it after level dependent code
+		gps bullet_actual_pos = CurBullet->pos;
+		struct visible_level *visible_lvl, *next_lvl;
+
+		BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
+			level *lvl = visible_lvl->lvl_pointer;
+
+			// Compute the bullet position according to current visible level, if possible
+			update_virtual_position(&CurBullet->pos, &bullet_actual_pos, lvl->levelnum);
+			if (CurBullet->pos.x == -1)
+				continue;
+
+			// If the bullet is too far from the level's border, no need to check that level
+			if (!pos_near_level(CurBullet->pos.x, CurBullet->pos.y, lvl, DRUIDHITDIST))
+				continue;
+
+			// Now, collision detection...
+			check_bullet_background_collisions(CurBullet, num);
+			if (CurBullet->type == INFOUT)
+				return;
+
+			check_bullet_enemy_collisions(CurBullet, num);
+			if (CurBullet->type == INFOUT)
+				return;
+		}
+
+		// restore bullet's position, if the bullet is always active
+		CurBullet->pos.x = bullet_actual_pos.x;
+		CurBullet->pos.y = bullet_actual_pos.y;
+		CurBullet->pos.z = bullet_actual_pos.z;
+
+		// Bullet/bullet collision code is level-independent
+
+		check_bullet_bullet_collisions(CurBullet, num);
 		if (CurBullet->type == INFOUT)
 			return;
-		check_bullet_bullet_collisions(CurBullet, num);
 
 		break;
 	}			// switch ( Bullet-Type )
@@ -877,56 +976,81 @@ void CheckBlastCollisions(int num)
 {
 	int i;
 	Blast CurBlast = &(AllBlasts[num]);
-	int level = CurBlast->pos.z;
-	static const float Blast_Radius = 0.3;
+	static const float Blast_Radius = 1.5;
+
 	//--------------------
 	// At first, we check for collisions of this blast with all bullets 
 	//
-	for (i = 0; i < MAXBULLETS; i++) {
-		if (AllBullets[i].type == INFOUT)
-			continue;
-		if (CurBlast->phase > 4)
-			break;
+	if (CurBlast->phase <= 4) {
+		for (i = 0; i < MAXBULLETS; i++) {
+			if (AllBullets[i].type == INFOUT)
+				continue;
+			if (AllBullets[i].pass_through_explosions)
+				continue;
 
-		if (abs(AllBullets[i].pos.x - CurBlast->pos.x) < Blast_Radius) {
-			if (abs(AllBullets[i].pos.y - CurBlast->pos.y) < Blast_Radius) {
-				if (AllBullets[i].pos.z == CurBlast->pos.z) {
-					if (!AllBullets[i].pass_through_explosions) {
-						DeleteBullet(i, TRUE);	// we want a bullet-explosion
-					}
-				}
-			}
+			// Compatible gps positions are needed to compute distance between bullet and blast
+			gps bullet_vpos;
+			update_virtual_position(&bullet_vpos, &AllBullets[i].pos, CurBlast->pos.z);
+			if (bullet_vpos.z == -1)
+				continue;
+
+			if (abs(bullet_vpos.x - CurBlast->pos.x) >= Blast_Radius)
+				continue;
+			if (abs(bullet_vpos.y - CurBlast->pos.y) >= Blast_Radius)
+				continue;
+
+			DeleteBullet(i, TRUE);	// we want a bullet-explosion
 		}
 	}
-
 	//--------------------
 	// Now we check for enemys, that might have stepped into this
 	// one blasts area of effect...
 	//
+	// The blast is on a visible level, and we are only concerned with the effect
+	// of the blast on any potentially visible enemy.
+	//
+	struct visible_level *visible_lvl, *n;
 	enemy *erot, *nerot;
+	gps blast_vpos;
 
-	BROWSE_LEVEL_BOTS_SAFE(erot, nerot, level) {
-		if ((fabsf(erot->pos.x - CurBlast->pos.x) < Blast_Radius) && (fabsf(erot->pos.y - CurBlast->pos.y) < Blast_Radius)) {
+	BROWSE_VISIBLE_LEVELS(visible_lvl, n) {
+		level *lvl = visible_lvl->lvl_pointer;
+
+		// Compute the blast position according to current visible level, if possible
+		update_virtual_position(&blast_vpos, &CurBlast->pos, lvl->levelnum);
+		if (blast_vpos.x == -1)
+			continue;
+
+		// If the blast is too far from the level's border, no need to check that level
+		if (!pos_near_level(blast_vpos.x, blast_vpos.y, lvl, Blast_Radius))
+			continue;
+
+		BROWSE_LEVEL_BOTS_SAFE(erot, nerot, lvl->levelnum) {
+			if (fabsf(erot->pos.x - blast_vpos.x) >= Blast_Radius)
+				continue;
+			if (fabsf(erot->pos.y - blast_vpos.y) >= Blast_Radius)
+				continue;
+
 			/* we have no support for blast ownership yet, so we give no XP *and* don't know who killed the guy */
 			hit_enemy(erot, CurBlast->damage_per_second * Frame_Time(), 0, -1, 0);
 		}
-
 	}
 
 	//--------------------
 	// Now we check, if perhaps the influencer has stepped into the area
 	// of effect of this one blast.  Then he'll get burnt ;)
 	// 
-	if ((Me.energy > 0) && (fabsf(Me.pos.x - CurBlast->pos.x) < Blast_Radius) && (fabsf(Me.pos.y - CurBlast->pos.y) < Blast_Radius)) {
-		Me.energy -= CurBlast->damage_per_second * Frame_Time();
-
-		// So the influencer got some damage from the hot blast
-		// Now most likely, he then will also say so :)
-		if (!CurBlast->MessageWasDone) {
-			CurBlast->MessageWasDone = TRUE;
+	update_virtual_position(&blast_vpos, &CurBlast->pos, Me.pos.z);
+	if (blast_vpos.z != -1) {
+		if ((Me.energy > 0) && (fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
+			Me.energy -= CurBlast->damage_per_second * Frame_Time();
+			// So the influencer got some damage from the hot blast
+			// Now most likely, he then will also say so :)
+			if (!CurBlast->MessageWasDone) {
+				CurBlast->MessageWasDone = TRUE;
+			}
 		}
 	}
-
 };				// CheckBlastCollisions( ... )
 
 #undef _bullet_c
