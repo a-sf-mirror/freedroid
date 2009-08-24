@@ -30,14 +30,14 @@
 #endif
 
 enum leveleditor_tools {
-    TOOL_MOVE,
-    TOOL_PLACE,
-    TOOL_SELECT,
+	TOOL_MOVE,
+	TOOL_PLACE,
+	TOOL_SELECT,
 };
 
 struct leveleditor_tool {
-    int (*input_event)(SDL_Event *);
-    int (*display)();
+	int (*input_event) (SDL_Event *);
+	int (*display) ();
 };
 
 EXTERN void leveleditor_init_tools(void);
@@ -53,8 +53,6 @@ EXTERN struct leveleditor_tool tool_place, tool_move, tool_select;
 #define EVENT_KEYPRESS(e, s) (((e) && (e->type == SDL_KEYDOWN) && (e->key.keysym.sym == s)))
 #define EVENT_KEYRELEASE(e, s) (((e) && (e->type == SDL_KEYUP && (e->key.keysym.sym == s)))
 
-
 #include "lvledit/lvledit_tool_move.h"
 #include "lvledit/lvledit_tool_place.h"
 #include "lvledit/lvledit_tool_select.h"
-

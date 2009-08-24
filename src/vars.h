@@ -31,111 +31,108 @@
  *
  */
 
-char* floor_tile_filenames [ ALL_ISOMETRIC_FLOOR_TILES ] =
-  {
-    "iso_miscellaneous_floor_0000.png" , 
-    "iso_miscellaneous_floor_0001.png" , 
-    "iso_miscellaneous_floor_0002.png" , 
-    "iso_miscellaneous_floor_0003.png" , 
-    "iso_miscellaneous_floor_0004.png" , 
-    "iso_miscellaneous_floor_0005.png" , 
-    "iso_grass_floor_0000.png" , 
-    "iso_grass_floor_0001.png" , 
-    "iso_grass_floor_0002.png" , 
-    "iso_grass_floor_0003.png" , 
-    "iso_grass_floor_0004.png" , 
-    "iso_grass_floor_0005.png" , 
-    "iso_grass_floor_0006.png" , 
-    "iso_grass_floor_0007.png" , 
-    "iso_grass_floor_0008.png" , 
-    "iso_grass_floor_0009.png" , 
-    "iso_grass_floor_0010.png" , 
-    "iso_grass_floor_0011.png" , 
-    "iso_grass_floor_0012.png" , 
-    "iso_grass_floor_0013.png" , 
-    "iso_grass_floor_0014.png" , 
-    "iso_grass_floor_0015.png" , 
-    "iso_grass_floor_0016.png" , 
-    "iso_grass_floor_0017.png" , 
-    "iso_grass_floor_0018.png" , 
-    "iso_grass_floor_0019.png" , 
-    "iso_grass_floor_0020.png" , 
-    "iso_grass_floor_0021.png" , 
-    "iso_grass_floor_0022.png" , 
-    "iso_grass_floor_0023.png" , 
-    "iso_miscellaneous_floor_0006.png" , 
-    "iso_miscellaneous_floor_0007.png" , 
-    "iso_miscellaneous_floor_0008.png" , 
-    "iso_grass_floor_0024.png" , 
-    "iso_grass_floor_0025.png" ,
-    "iso_grass_floor_0026.png" , 
-    "iso_grass_floor_0027.png" , 
-    "iso_grass_floor_0028.png" ,
+char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES] = {
+	"iso_miscellaneous_floor_0000.png",
+	"iso_miscellaneous_floor_0001.png",
+	"iso_miscellaneous_floor_0002.png",
+	"iso_miscellaneous_floor_0003.png",
+	"iso_miscellaneous_floor_0004.png",
+	"iso_miscellaneous_floor_0005.png",
+	"iso_grass_floor_0000.png",
+	"iso_grass_floor_0001.png",
+	"iso_grass_floor_0002.png",
+	"iso_grass_floor_0003.png",
+	"iso_grass_floor_0004.png",
+	"iso_grass_floor_0005.png",
+	"iso_grass_floor_0006.png",
+	"iso_grass_floor_0007.png",
+	"iso_grass_floor_0008.png",
+	"iso_grass_floor_0009.png",
+	"iso_grass_floor_0010.png",
+	"iso_grass_floor_0011.png",
+	"iso_grass_floor_0012.png",
+	"iso_grass_floor_0013.png",
+	"iso_grass_floor_0014.png",
+	"iso_grass_floor_0015.png",
+	"iso_grass_floor_0016.png",
+	"iso_grass_floor_0017.png",
+	"iso_grass_floor_0018.png",
+	"iso_grass_floor_0019.png",
+	"iso_grass_floor_0020.png",
+	"iso_grass_floor_0021.png",
+	"iso_grass_floor_0022.png",
+	"iso_grass_floor_0023.png",
+	"iso_miscellaneous_floor_0006.png",
+	"iso_miscellaneous_floor_0007.png",
+	"iso_miscellaneous_floor_0008.png",
+	"iso_grass_floor_0024.png",
+	"iso_grass_floor_0025.png",
+	"iso_grass_floor_0026.png",
+	"iso_grass_floor_0027.png",
+	"iso_grass_floor_0028.png",
 
-    "iso_miscellaneous_floor_0009.png" ,
-    "iso_miscellaneous_floor_0010.png" ,
-    "iso_miscellaneous_floor_0011.png" ,
-    "iso_miscellaneous_floor_0012.png" ,
-    "iso_miscellaneous_floor_0013.png" ,
-    "iso_miscellaneous_floor_0014.png" ,
-    "iso_miscellaneous_floor_0015.png" ,
-    "iso_miscellaneous_floor_0016.png" ,
-    "iso_miscellaneous_floor_0017.png" ,
-    "iso_miscellaneous_floor_0018.png" ,
-    "iso_miscellaneous_floor_0019.png" ,
-    "iso_miscellaneous_floor_0020.png" ,
-    "iso_miscellaneous_floor_0021.png" ,
-    "iso_miscellaneous_floor_0022.png" , 
+	"iso_miscellaneous_floor_0009.png",
+	"iso_miscellaneous_floor_0010.png",
+	"iso_miscellaneous_floor_0011.png",
+	"iso_miscellaneous_floor_0012.png",
+	"iso_miscellaneous_floor_0013.png",
+	"iso_miscellaneous_floor_0014.png",
+	"iso_miscellaneous_floor_0015.png",
+	"iso_miscellaneous_floor_0016.png",
+	"iso_miscellaneous_floor_0017.png",
+	"iso_miscellaneous_floor_0018.png",
+	"iso_miscellaneous_floor_0019.png",
+	"iso_miscellaneous_floor_0020.png",
+	"iso_miscellaneous_floor_0021.png",
+	"iso_miscellaneous_floor_0022.png",
 
-    "iso_sidewalk_0001.png" ,
-    "iso_sidewalk_0002.png" ,
-    "iso_sidewalk_0003.png" ,
-    "iso_sidewalk_0004.png" ,
-    "iso_sidewalk_0005.png" ,
-    "iso_sidewalk_0006.png" ,
-    "iso_sidewalk_0007.png" ,
-    "iso_sidewalk_0008.png" ,
-    "iso_sidewalk_0009.png" ,
-    "iso_sidewalk_0010.png" ,
-    "iso_sidewalk_0011.png" ,
-    "iso_sidewalk_0012.png" ,
-    "iso_sidewalk_0013.png" ,
-    "iso_sidewalk_0014.png" ,
-    "iso_sidewalk_0015.png" ,
-    "iso_sidewalk_0016.png" ,
-    "iso_sidewalk_0017.png" ,
-    "iso_sidewalk_0018.png" ,
-    "iso_sidewalk_0019.png" ,
-    "iso_sidewalk_0020.png" ,
+	"iso_sidewalk_0001.png",
+	"iso_sidewalk_0002.png",
+	"iso_sidewalk_0003.png",
+	"iso_sidewalk_0004.png",
+	"iso_sidewalk_0005.png",
+	"iso_sidewalk_0006.png",
+	"iso_sidewalk_0007.png",
+	"iso_sidewalk_0008.png",
+	"iso_sidewalk_0009.png",
+	"iso_sidewalk_0010.png",
+	"iso_sidewalk_0011.png",
+	"iso_sidewalk_0012.png",
+	"iso_sidewalk_0013.png",
+	"iso_sidewalk_0014.png",
+	"iso_sidewalk_0015.png",
+	"iso_sidewalk_0016.png",
+	"iso_sidewalk_0017.png",
+	"iso_sidewalk_0018.png",
+	"iso_sidewalk_0019.png",
+	"iso_sidewalk_0020.png",
 
-    "iso_miscellaneous_floor_0023.png" ,
-    
-    "iso_sand_floor_0001.png" , 
-    "iso_sand_floor_0002.png" ,
-    "iso_sand_floor_0003.png" ,
-    "iso_sand_floor_0004.png" ,
-    "iso_sand_floor_0005.png" ,
-    "iso_sand_floor_0006.png" ,
+	"iso_miscellaneous_floor_0023.png",
 
-    // , "ERROR_UNUSED.png" , 
-  };
+	"iso_sand_floor_0001.png",
+	"iso_sand_floor_0002.png",
+	"iso_sand_floor_0003.png",
+	"iso_sand_floor_0004.png",
+	"iso_sand_floor_0005.png",
+	"iso_sand_floor_0006.png",
 
-tux_t Me ;
+	// , "ERROR_UNUSED.png" , 
+};
 
+tux_t Me;
 
-char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
-  {
+char *AllSkillTexts[NUMBER_OF_SKILL_LEVELS] = {
 	N_("untrained"),
 	N_("novice"),
 	N_("apprentice"),
 	N_("professional"),
 	N_("master"),
 	N_("god"),
-    ("6"),
-    ("7"),
-    ("8"),
-    ("9")
-  };
+	("6"),
+	("7"),
+	("8"),
+	("9")
+};
 
 //--------------------
 // When a character aquires better melee_weapon_skill for melee
@@ -148,15 +145,11 @@ char* AllSkillTexts [ NUMBER_OF_SKILL_LEVELS ] =
 // 1.1^x -> 1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36
 // 1.2^x -> 1.0, 1.2, 1.44, 1.73, 2.07, 2.49, 2.99, 3.58, 4.30, 5.16
 
-float MeleeDamageMultiplierTable [  ] =
-  {  1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36 } ;
-float MeleeRechargeMultiplierTable [  ] =
-  {  1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 } ;
+float MeleeDamageMultiplierTable[] = { 1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36 };
+float MeleeRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
 
-float RangedDamageMultiplierTable [  ] =
-  {  1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36 } ;
-float RangedRechargeMultiplierTable [  ] =
-  {  1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 } ;
+float RangedDamageMultiplierTable[] = { 1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36 };
+float RangedRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
 
 //--------------------
 // In the game, a few spells are still internally similar
@@ -165,10 +158,9 @@ float RangedRechargeMultiplierTable [  ] =
 // of the caster.  The details will be taken from the following
 // table:
 //
-int SpellHitPercentageTable [  ] =
-  {  50 , 70 , 90 , 110 , 130 , 150 , 190 , 230 , 270 } ;
+int SpellHitPercentageTable[] = { 50, 70, 90, 110, 130, 150, 190, 230, 270 };
 
-spell_skill_spec *SpellSkillMap; 
+spell_skill_spec *SpellSkillMap;
 int number_of_skills;
 
 Druidspec Druidmap;
@@ -177,24 +169,23 @@ Bulletspec Bulletmap;
 
 blastspec Blastmap[ALLBLASTTYPES];
 
-char font_switchto_red [ 2 ] = { 1 , 0 };
-char font_switchto_blue [ 2 ] = { 2 , 0 };
-char font_switchto_neon [ 2 ] = { 3 , 0 };
-char font_switchto_msgstat [ 2 ] = { 4 , 0 };
-char font_switchto_msgvar [ 2 ] = { 5 , 0 };
+char font_switchto_red[2] = { 1, 0 };
+char font_switchto_blue[2] = { 2, 0 };
+char font_switchto_neon[2] = { 3, 0 };
+char font_switchto_msgstat[2] = { 4, 0 };
+char font_switchto_msgvar[2] = { 5, 0 };
 
-int skip_initial_menus = FALSE ;
+int skip_initial_menus = FALSE;
 
-
-supported_languages_t supported_languages []=  {
-	{ .code="C", .name="English", .font_class="", .encoding="ISO-8859-15" },
-// disabled-v0.12	{ .code="fr_FR", .name="French", .font_class="", .encoding="ISO-8859-15" },
-// disabled-v0.12	{ .code="de_DE", .name="Deutsch", .font_class="", .encoding="ISO-8859-15" },
-// disabled-v0.12	{ .code="sv_SE", .name="Swedish", .font_class="", .encoding="ISO-8859-15" },
-// disabled-v0.12	{ .code="ru_RU.cp1251", .name="Russian", .font_class=".cp1251", .encoding="cp1251" },
-	{ NULL, NULL, NULL, NULL}, };
+supported_languages_t supported_languages[] = {
+	{.code = "C",.name = "English",.font_class = "",.encoding = "ISO-8859-15"},
+// disabled-v0.12       { .code="fr_FR", .name="French", .font_class="", .encoding="ISO-8859-15" },
+// disabled-v0.12       { .code="de_DE", .name="Deutsch", .font_class="", .encoding="ISO-8859-15" },
+// disabled-v0.12       { .code="sv_SE", .name="Swedish", .font_class="", .encoding="ISO-8859-15" },
+// disabled-v0.12       { .code="ru_RU.cp1251", .name="Russian", .font_class=".cp1251", .encoding="cp1251" },
+	{NULL, NULL, NULL, NULL},
+};
 
 int last_bot_number;
 
 enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;
-

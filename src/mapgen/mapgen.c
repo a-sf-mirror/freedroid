@@ -24,18 +24,18 @@ static void new_level(int w, int h)
 {
 	int x, y;
 	unsigned char *map_p;
-	
+
 	map.w = w;
 	map.h = h;
-	
+
 	map.m = malloc(map.w * map.h * sizeof(unsigned char));
 	map.r = malloc(map.w * map.h * sizeof(int));
 	map_p = map.m;
-	
+
 	for (y = 0; y < map.h; y++) {
 		for (x = 0; x < map.w; x++) {
 			*(map_p++) = 17;
-			map.r[y*map.w+x] = -1;
+			map.r[y * map.w + x] = -1;
 		}
 	}
 
@@ -51,7 +51,7 @@ static void free_level()
 	free(map.m);
 	free(map.r);
 
-	for (i=0; i < total_rooms; i++) {
+	for (i = 0; i < total_rooms; i++) {
 		free(rooms[i].neighbors);
 	}
 
@@ -61,7 +61,7 @@ static void free_level()
 	rooms = NULL;
 }
 
-void set_dungeon_output(level *output)
+void set_dungeon_output(level * output)
 {
 	target_level = output;
 	curobstacle = 0;
@@ -70,7 +70,8 @@ void set_dungeon_output(level *output)
 static void add_obstacle(double x, double y, int type)
 {
 	if (curobstacle >= MAX_OBSTACLES_ON_MAP) {
-		ErrorMessage(__FUNCTION__, "Too many obstacles on random dungeon level %d\n", PLEASE_INFORM, IS_FATAL, target_level->levelnum);
+		ErrorMessage(__FUNCTION__, "Too many obstacles on random dungeon level %d\n", PLEASE_INFORM, IS_FATAL,
+			     target_level->levelnum);
 	}
 
 	target_level->obstacle_list[curobstacle].type = type;
@@ -82,85 +83,85 @@ static void add_obstacle(double x, double y, int type)
 
 static void set_floor(int x, int y, int type)
 {
-    target_level->map[y][x].floor_value = type;
+	target_level->map[y][x].floor_value = type;
 }
 
 void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 {
 	int y, x;
-	
+
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
-			switch (tiles[y*w+x]) {
-				case 4:
-					add_obstacle(x + 0.5, y + 1, 2);
-					set_floor(x, y, 0);
-					break;
-				case 5:
-					add_obstacle(x + 0.5, y, 2);
-					set_floor(x, y, 0);
-					break;
-				case 6:
-					add_obstacle(x + 1.0, y + 0.5, 1);
-					set_floor(x, y, 0);
-					break;
-				case 7:
-					add_obstacle(x, y + 0.5, 1);
-					set_floor(x, y, 0);
-					break;
-				case 11:
-					add_obstacle(x + 0.5, y, 2);
-					add_obstacle(x, y + 0.5, 1);
-					set_floor(x, y, 0);
-					break;
-				case 10:
-					add_obstacle(x + 0.5, y, 2);
-					add_obstacle(x + 1, y + 0.5, 1);
-					set_floor(x, y, 0);
-					break;
-				case 9:
-					add_obstacle(x, y + 0.5, 1);
-					add_obstacle(x + 0.5, y + 1, 2);
-					set_floor(x, y, 0);
-					break;
-				case 8:
-					add_obstacle(x + 1, y + 0.5, 1);
-					set_floor(x, y, 0);
-					add_obstacle(x + 0.5, y + 1, 2);
-					break;
+			switch (tiles[y * w + x]) {
+			case 4:
+				add_obstacle(x + 0.5, y + 1, 2);
+				set_floor(x, y, 0);
+				break;
+			case 5:
+				add_obstacle(x + 0.5, y, 2);
+				set_floor(x, y, 0);
+				break;
+			case 6:
+				add_obstacle(x + 1.0, y + 0.5, 1);
+				set_floor(x, y, 0);
+				break;
+			case 7:
+				add_obstacle(x, y + 0.5, 1);
+				set_floor(x, y, 0);
+				break;
+			case 11:
+				add_obstacle(x + 0.5, y, 2);
+				add_obstacle(x, y + 0.5, 1);
+				set_floor(x, y, 0);
+				break;
+			case 10:
+				add_obstacle(x + 0.5, y, 2);
+				add_obstacle(x + 1, y + 0.5, 1);
+				set_floor(x, y, 0);
+				break;
+			case 9:
+				add_obstacle(x, y + 0.5, 1);
+				add_obstacle(x + 0.5, y + 1, 2);
+				set_floor(x, y, 0);
+				break;
+			case 8:
+				add_obstacle(x + 1, y + 0.5, 1);
+				set_floor(x, y, 0);
+				add_obstacle(x + 0.5, y + 1, 2);
+				break;
 
-				case 12:
-				case 0:
-				case 1:
-				case 2:
-				case 3:
-					set_floor(x, y, 0);
-					break;
+			case 12:
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+				set_floor(x, y, 0);
+				break;
 
-				case 17:
-					set_floor(x, y, 31);
-					break;
+			case 17:
+				set_floor(x, y, 31);
+				break;
 
-				case 16:
-					set_floor(x, y, 56);
-				    break;	
+			case 16:
+				set_floor(x, y, 56);
+				break;
 
-				case 15:
-					add_obstacle(x + 1, y + 0.5, 11);
-					set_floor(x, y, 58);
-				    break;	
-				
-				case 14:
-					add_obstacle(x + 0.5, y, 6);
-					set_floor(x, y, 57);
-				    break;	
+			case 15:
+				add_obstacle(x + 1, y + 0.5, 11);
+				set_floor(x, y, 58);
+				break;
 
-				case 13:
-					set_floor(x, y, 59);
-				    break;	
+			case 14:
+				add_obstacle(x + 0.5, y, 6);
+				set_floor(x, y, 57);
+				break;
 
-				default:
-					set_floor(x, y, tiles[y*w+x]);
+			case 13:
+				set_floor(x, y, 59);
+				break;
+
+			default:
+				set_floor(x, y, tiles[y * w + x]);
 			}
 		}
 	}
@@ -178,7 +179,7 @@ static void add_teleport(int telnum, int x, int y)
 {
 	char *warp, *fromwarp;
 	char tmp[500];
-	
+
 	sprintf(tmp, "Lv%dtoX%d", target_level->levelnum, telnum);
 	warp = strdup(tmp);
 
@@ -186,8 +187,8 @@ static void add_teleport(int telnum, int x, int y)
 	fromwarp = strdup(tmp);
 
 	add_obstacle(x, y, 16);
-	add_label(telnum*2, x, y, warp); 
-	add_label(telnum*2 + 1, x + 1, y, fromwarp);
+	add_label(telnum * 2, x, y, warp);
+	add_label(telnum * 2 + 1, x + 1, y, fromwarp);
 
 }
 
@@ -205,16 +206,19 @@ void mapgen_gift(struct roominfo *r)
 {
 	int obstacle_id = 50 + rand() % 4;
 	int pos = rand() % 4;
-	
-	struct { int x; int y; } positions[4] = {
-			{ r->x + 1, r->y + r->h / 2 },
-			{ r->x + r->w - 1, r->y + r->h / 2},
-			{ r->x + r->w / 2, r->y + 1 },
-			{ r->x + r->w / 2, r->y + r->h - 1}
+
+	struct {
+		int x;
+		int y;
+	} positions[4] = {
+		{
+		r->x + 1, r->y + r->h / 2}, {
+		r->x + r->w - 1, r->y + r->h / 2}, {
+		r->x + r->w / 2, r->y + 1}, {
+		r->x + r->w / 2, r->y + r->h - 1}
 	};
 
-
-	add_obstacle( positions[pos].x, positions[pos].y, obstacle_id);
+	add_obstacle(positions[pos].x, positions[pos].y, obstacle_id);
 }
 
 int mapgen_add_room(int x, int y, int w, int h)
@@ -222,11 +226,11 @@ int mapgen_add_room(int x, int y, int w, int h)
 	int newid = total_rooms;
 
 	if (total_rooms == max_rooms) {
-		max_rooms ++;
+		max_rooms++;
 		rooms = realloc(rooms, max_rooms * sizeof(struct roominfo));
 	}
 
-	total_rooms ++;
+	total_rooms++;
 
 	rooms[newid].x = x;
 	rooms[newid].y = y;
@@ -241,43 +245,51 @@ int mapgen_add_room(int x, int y, int w, int h)
 
 void mapgen_put_tile(int x, int y, unsigned char tile, int room)
 {
-	map.m[map.w*y+x] = tile;
-	map.r[map.w*y+x] = room;
+	map.m[map.w * y + x] = tile;
+	map.r[map.w * y + x] = room;
 }
 
 unsigned char mapgen_get_tile(int x, int y)
 {
-	if (x < 0) return 17;
-	if (y < 0) return 17;
-	if (x >= map.w) return 17;
-	if (y >= map.h) return 17;
-	
-	return map.m[map.w*y+x];
+	if (x < 0)
+		return 17;
+	if (y < 0)
+		return 17;
+	if (x >= map.w)
+		return 17;
+	if (y >= map.h)
+		return 17;
+
+	return map.m[map.w * y + x];
 }
 
 int mapgen_get_room(int x, int y)
 {
-	if (x < 0) return -1;
-	if (y < 0) return -1;
-	if (x >= map.w) return -1;
-	if (y >= map.h) return -1;
-	
-	return map.r[map.w*y+x];
+	if (x < 0)
+		return -1;
+	if (y < 0)
+		return -1;
+	if (x >= map.w)
+		return -1;
+	if (y >= map.h)
+		return -1;
+
+	return map.r[map.w * y + x];
 }
 
 void mapgen_draw_room(int place_x, int place_y, int room_w, int room_h, int room_id)
 {
 	int x, y, i;
-	const unsigned char floortiles[4] = {12, 18, 19, 20};
-	
+	const unsigned char floortiles[4] = { 12, 18, 19, 20 };
+
 	// Corners
 	mapgen_put_tile(place_x, place_y, 11, room_id);
 	mapgen_put_tile(place_x + room_w - 1, place_y, 10, room_id);
 	mapgen_put_tile(place_x, place_y + room_h - 1, 9, room_id);
 	mapgen_put_tile(place_x + room_w - 1, place_y + room_h - 1, 8, room_id);
-	
+
 	// Walls
-	
+
 	for (i = 0; i < room_w - 2; i++) {
 		mapgen_put_tile(place_x + 1 + i, place_y + room_h - 1, 4, room_id);
 		mapgen_put_tile(place_x + 1 + i, place_y, 5, room_id);
@@ -286,9 +298,9 @@ void mapgen_draw_room(int place_x, int place_y, int room_w, int room_h, int room
 		mapgen_put_tile(place_x + room_w - 1, place_y + 1 + i, 6, room_id);
 		mapgen_put_tile(place_x, place_y + 1 + i, 7, room_id);
 	}
-	
+
 	// Floor
-	
+
 	for (y = 0; y < room_h - 2; y++) {
 		for (x = 0; x < room_w - 2; x++) {
 			mapgen_put_tile(place_x + 1 + x, place_y + 1 + y, floortiles[0], room_id);
@@ -299,19 +311,19 @@ void mapgen_draw_room(int place_x, int place_y, int room_w, int room_h, int room
 static int SuitableConnection(int t)
 {
 	switch (t) {
-		case 4:
-		case 5:
-		case 6:
-		case 7:
-		case 13:
-		case 14:
-		case 15:
-		case 16:
-			return 1;
-			break;
-			
-		default:
-			break;
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 13:
+	case 14:
+	case 15:
+	case 16:
+		return 1;
+		break;
+
+	default:
+		break;
 	}
 	return 0;
 }
@@ -337,7 +349,7 @@ int find_connection_points(int room_id, struct cplist_t cplist[100])
 			cplist[connect_points].t = UP;
 			connect_points++;
 		}
-		
+
 		if (SuitableConnection(mapgen_get_tile(r->x + 1 + i, r->y + r->h))) {
 			cplist[connect_points].x = r->x + 1 + i;
 			cplist[connect_points].y = r->y + r->h - 1;
@@ -354,7 +366,7 @@ int find_connection_points(int room_id, struct cplist_t cplist[100])
 			cplist[connect_points].t = LEFT;
 			connect_points++;
 		}
-		
+
 		if (SuitableConnection(mapgen_get_tile(r->x + r->w, r->y + 1 + i))) {
 			cplist[connect_points].x = r->x + r->w - 1;
 			cplist[connect_points].y = r->y + 1 + i;
@@ -363,7 +375,7 @@ int find_connection_points(int room_id, struct cplist_t cplist[100])
 			connect_points++;
 		}
 	}
-	
+
 	return connect_points;
 }
 
@@ -424,9 +436,9 @@ static void add_neighbor(struct roominfo *r, int neigh)
 		r->neighbors = realloc(r->neighbors, r->max_neighbors * sizeof(int));
 	}
 
-	r->next_neighbor ++;
+	r->next_neighbor++;
 
-	r->neighbors[newid] = neigh;	
+	r->neighbors[newid] = neigh;
 }
 
 void MakeConnect(int x, int y, enum connection_type type)
@@ -436,55 +448,55 @@ void MakeConnect(int x, int y, enum connection_type type)
 	int d1 = 0, d2 = 0;
 	int room_1, room_2;
 
-    nx = x;
+	nx = x;
 	ny = y;
 	wp_x = x;
 	wp_nx = nx;
 	wp_y = y;
 	wp_ny = ny;
-	
+
 	switch (type) {
-		case UP:
-			ny = y - 1;
-			wp_ny = ny - 1;
-			wp_y = y + 1;
-			d1 = 14;
-			d2 = 13;
-			break;
-		case DOWN:
-			ny = y + 1;
-			wp_ny = ny + 1;
-			wp_y = y - 1;
-			d1 = 13;
-			d2 = 14;
-			break;
-		case LEFT:
-			nx = x - 1;
-			wp_nx = nx - 1;
-			wp_x = x + 1;
-			d1 = 16;
-			d2 = 15;
-			break;
-		case RIGHT:
-			nx = x + 1;
-			wp_nx = nx + 1;
-			wp_x = x - 1;
-			d1 = 15;
-			d2 = 16;
-			break;
-		default:
-			ErrorMessage(__FUNCTION__, "Unknown connection type %d\n", PLEASE_INFORM, IS_FATAL, type);
-			break;
+	case UP:
+		ny = y - 1;
+		wp_ny = ny - 1;
+		wp_y = y + 1;
+		d1 = 14;
+		d2 = 13;
+		break;
+	case DOWN:
+		ny = y + 1;
+		wp_ny = ny + 1;
+		wp_y = y - 1;
+		d1 = 13;
+		d2 = 14;
+		break;
+	case LEFT:
+		nx = x - 1;
+		wp_nx = nx - 1;
+		wp_x = x + 1;
+		d1 = 16;
+		d2 = 15;
+		break;
+	case RIGHT:
+		nx = x + 1;
+		wp_nx = nx + 1;
+		wp_x = x - 1;
+		d1 = 15;
+		d2 = 16;
+		break;
+	default:
+		ErrorMessage(__FUNCTION__, "Unknown connection type %d\n", PLEASE_INFORM, IS_FATAL, type);
+		break;
 	}
-	
+
 	room_1 = mapgen_get_room(x, y);
 	room_2 = mapgen_get_room(nx, ny);
-	
+
 	mapgen_put_tile(x, y, d1, room_1);
 	mapgen_put_tile(nx, ny, d2, room_2);
 
-	add_neighbor(&rooms[room_1], room_2);	
-	add_neighbor(&rooms[room_2], room_1);	
+	add_neighbor(&rooms[room_1], room_2);
+	add_neighbor(&rooms[room_2], room_1);
 
 	int useless;
 	int wp1 = CreateWaypoint(target_level, wp_x, wp_y, &useless);
@@ -501,7 +513,7 @@ static int find_waypoints(int x1, int y1, int x2, int y2, int *wps, int max)
 
 	for (i = 0; i < target_level->num_waypoints; i++) {
 		if (target_level->AllWaypoints[i].x >= x1 && target_level->AllWaypoints[i].x < x2 &&
-				target_level->AllWaypoints[i].y >= y1 && target_level->AllWaypoints[i].y < y2) {
+		    target_level->AllWaypoints[i].y >= y1 && target_level->AllWaypoints[i].y < y2) {
 			wps[total_wps] = i;
 			total_wps++;
 
@@ -527,7 +539,7 @@ static void connect_waypoints()
 
 		while (nbconn--) {
 			int wp1 = nbconn;
-			int wp2	= rand() % max_wps;
+			int wp2 = rand() % max_wps;
 
 			while (wp2 == wp1)
 				wp2 = rand() % max_wps;
@@ -550,9 +562,9 @@ static void place_waypoints()
 
 		nb = -1 + func / 3;
 
-		while ((nb--) >0) {
-			int newx =	rooms[rn].x + 1;
-			int newy =	rooms[rn].y + 1;
+		while ((nb--) > 0) {
+			int newx = rooms[rn].x + 1;
+			int newy = rooms[rn].y + 1;
 			newx += (rand() % (rooms[rn].w - 2));
 			newy += (rand() % (rooms[rn].h - 2));
 
@@ -566,18 +578,18 @@ static void place_waypoints()
 int generate_dungeon(int w, int h, int nbconnec)
 {
 	int i;
-	
+
 	new_level(w, h);
 
 	generate_dungeon_gram(w, h);
 
 	// Select entrance at random.
-	int entrance = rand()%total_rooms;
+	int entrance = rand() % total_rooms;
 	mapgen_entry_at(&rooms[entrance]);
 
 	// Select random exits
 	int exit_points[nbconnec - 1];
-	for (i=0; i<nbconnec - 1; i++) {
+	for (i = 0; i < nbconnec - 1; i++) {
 		int done;
 		do {
 			done = 1;
@@ -593,7 +605,7 @@ int generate_dungeon(int w, int h, int nbconnec)
 			if (entrance == exit_points[i])
 				done = 0;
 		} while (!done);
-	
+
 		mapgen_exit_at(&rooms[exit_points[i]]);
 	}
 
@@ -608,6 +620,3 @@ int generate_dungeon(int w, int h, int nbconnec)
 	free_level();
 	return 0;
 }
-
-
-

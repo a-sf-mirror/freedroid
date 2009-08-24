@@ -35,113 +35,111 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_widgets.h"
 
-void leveleditor_menu_mouseenter(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mouseenter(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    (void) m;
+	struct leveleditor_menu *m = w->ext;
+	(void)m;
 }
 
-void leveleditor_menu_mouseleave(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mouseleave(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    m->currently_selected_idx = -1;
-    m->ispressed = 0;
+	struct leveleditor_menu *m = w->ext;
+	m->currently_selected_idx = -1;
+	m->ispressed = 0;
 }
 
-void leveleditor_menu_mouserelease(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mouserelease(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    m->done_cb(m->values[m->currently_selected_idx]);
+	struct leveleditor_menu *m = w->ext;
+	m->done_cb(m->values[m->currently_selected_idx]);
 
-    // autodisable
-    w->enabled = 0;
+	// autodisable
+	w->enabled = 0;
 }
 
-void leveleditor_menu_mousepress(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mousepress(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    m->ispressed = 1;
+	struct leveleditor_menu *m = w->ext;
+	m->ispressed = 1;
 }
 
-void leveleditor_menu_mouserightrelease(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mouserightrelease(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    (void) m;
+	struct leveleditor_menu *m = w->ext;
+	(void)m;
 }
 
-void leveleditor_menu_mouserightpress(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mouserightpress(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    (void) m;
+	struct leveleditor_menu *m = w->ext;
+	(void)m;
 }
 
-void leveleditor_menu_mousewheelup(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mousewheelup(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    (void) m;
+	struct leveleditor_menu *m = w->ext;
+	(void)m;
 }
 
-void leveleditor_menu_mousewheeldown(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mousewheeldown(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    (void) m;
+	struct leveleditor_menu *m = w->ext;
+	(void)m;
 }
 
-void leveleditor_menu_mousemove(SDL_Event *event, struct leveleditor_widget *w)
+void leveleditor_menu_mousemove(SDL_Event * event, struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    m->currently_selected_idx = (event->motion.y - w->rect.y) / 20;
-    m->ispressed = 0;
-} 
+	struct leveleditor_menu *m = w->ext;
+	m->currently_selected_idx = (event->motion.y - w->rect.y) / 20;
+	m->ispressed = 0;
+}
 
 void leveleditor_menu_display(struct leveleditor_widget *w)
 {
-    struct leveleditor_menu *m = w->ext;
-    SDL_Rect separ, txt, high;
-    int i;
+	struct leveleditor_menu *m = w->ext;
+	SDL_Rect separ, txt, high;
+	int i;
 
-    our_SDL_fill_rect_wrapper(Screen, &w->rect, SDL_MapRGB(Screen->format, 0x65, 0x65, 0x65));
+	our_SDL_fill_rect_wrapper(Screen, &w->rect, SDL_MapRGB(Screen->format, 0x65, 0x65, 0x65));
 
-    BFont_Info * PreviousFont;
-    PreviousFont = GetCurrentFont();
-    SetCurrentFont( Messagevar_BFont );
+	BFont_Info *PreviousFont;
+	PreviousFont = GetCurrentFont();
+	SetCurrentFont(Messagevar_BFont);
 
-    separ.x = w->rect.x;
-    separ.y = w->rect.y + FontHeight(GetCurrentFont()) + 4;
-    separ.w = w->rect.w;
-    separ.h = 2;
+	separ.x = w->rect.x;
+	separ.y = w->rect.y + FontHeight(GetCurrentFont()) + 4;
+	separ.w = w->rect.w;
+	separ.h = 2;
 
-    txt.x = w->rect.x;
-    txt.y = w->rect.y + 1;
-    txt.w = w->rect.w;
-    txt.h = FontHeight(GetCurrentFont()) + 6;
+	txt.x = w->rect.x;
+	txt.y = w->rect.y + 1;
+	txt.w = w->rect.w;
+	txt.h = FontHeight(GetCurrentFont()) + 6;
 
-    high.x = w->rect.x;
-    high.y = w->rect.y;
-    high.w = w->rect.w;
-    high.h = FontHeight(GetCurrentFont()) + 6;
+	high.x = w->rect.x;
+	high.y = w->rect.y;
+	high.w = w->rect.w;
+	high.h = FontHeight(GetCurrentFont()) + 6;
 
-    for (i=0; i < 10; i++) {
-	if (!strlen(m->text[i]))
-		break;
+	for (i = 0; i < 10; i++) {
+		if (!strlen(m->text[i]))
+			break;
 
-	if (i == m->currently_selected_idx) {
-	    if (m->ispressed)
-		our_SDL_fill_rect_wrapper(Screen, &high, SDL_MapRGB(Screen->format, 0x45, 0x58, 0x79));
-	    else
-		our_SDL_fill_rect_wrapper(Screen, &high, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
+		if (i == m->currently_selected_idx) {
+			if (m->ispressed)
+				our_SDL_fill_rect_wrapper(Screen, &high, SDL_MapRGB(Screen->format, 0x45, 0x58, 0x79));
+			else
+				our_SDL_fill_rect_wrapper(Screen, &high, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
+		}
+
+		DisplayText(m->text[i], txt.x, txt.y, &txt, TEXT_STRETCH);
+		our_SDL_fill_rect_wrapper(Screen, &separ, SDL_MapRGBA(Screen->format, 0x00, 0x00, 0x00, 0x88));
+		txt.y += txt.h;
+		high.y += txt.h;
+		separ.y += txt.h;
 	}
+	SetCurrentFont(PreviousFont);
 
-	DisplayText (m->text[i], txt.x, txt.y, &txt, TEXT_STRETCH);
-	our_SDL_fill_rect_wrapper(Screen,&separ, SDL_MapRGBA(Screen->format, 0x00, 0x00, 0x00, 0x88));
-	txt.y += txt.h;
-	high.y += txt.h;
-	separ.y += txt.h;
-    }
-    SetCurrentFont( PreviousFont );
-
-    //update widget height according to what we know
-    w->rect.h = txt.y - w->rect.y;
+	//update widget height according to what we know
+	w->rect.h = txt.y - w->rect.y;
 }
-
-

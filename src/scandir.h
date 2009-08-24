@@ -21,8 +21,7 @@
 #    include <ndir.h>
 #  endif
 
-#endif  /* if ! HAVE_DIRENT_H */
-
+#endif				/* if ! HAVE_DIRENT_H */
 
 #undef PARAMS
 #if defined (__GNUC__) || __STDC__
@@ -31,21 +30,17 @@
 # define PARAMS(args) ()
 #endif
 
-
 #if ! HAVE_SCANDIR
 
-int scandir (
-	     const char *dir, 
-	     struct dirent ***namelist, 
-	     int (*select) PARAMS ((const struct dirent *)), 
-	     int (*cmp) PARAMS ((const void *, const void *)));
+int scandir(const char *dir,
+	    struct dirent ***namelist, int (*select) PARAMS((const struct dirent *)), int (*cmp) PARAMS((const void *, const void *)));
 
-#endif /* if ! HAVE_SCANDIR*/
+#endif				/* if ! HAVE_SCANDIR */
 
 #if ! HAVE_ALPHASORT
 
-int alphasort (const void *a, const void *b);
+int alphasort(const void *a, const void *b);
 
-#endif /* if ! HAVE_ALPHASORT*/
+#endif				/* if ! HAVE_ALPHASORT */
 
-#endif  /* double-inclusion protection */
+#endif				/* double-inclusion protection */

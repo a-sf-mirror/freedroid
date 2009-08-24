@@ -22,6 +22,5 @@
  *
  */
 
-void EditLevelDimensions (void);
-int DoLevelEditorMainMenu (void);
-
+void EditLevelDimensions(void);
+int DoLevelEditorMainMenu(void);

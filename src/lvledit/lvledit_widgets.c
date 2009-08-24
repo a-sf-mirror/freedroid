@@ -40,9 +40,9 @@
 
 LIST_HEAD(leveleditor_widget_list);
 
-struct leveleditor_widget * create_button(int btype)
+struct leveleditor_widget *create_button(int btype)
 {
-	struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_BUTTON;
 	a->rect = AllMousePressButtons[btype].button_rect;
 	a->mouseenter = leveleditor_button_mouseenter;
@@ -55,7 +55,7 @@ struct leveleditor_widget * create_button(int btype)
 	a->mousewheeldown = leveleditor_button_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_button * b = MyMalloc(sizeof(struct leveleditor_button));
+	struct leveleditor_button *b = MyMalloc(sizeof(struct leveleditor_button));
 	b->btn_index = btype;
 	b->pressed = 0;
 
@@ -64,9 +64,9 @@ struct leveleditor_widget * create_button(int btype)
 	return a;
 }
 
-struct leveleditor_widget * create_menu()
+struct leveleditor_widget *create_menu()
 {
-	struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_MENU;
 	a->mouseenter = leveleditor_menu_mouseenter;
 	a->mouseleave = leveleditor_menu_mouseleave;
@@ -77,7 +77,7 @@ struct leveleditor_widget * create_menu()
 	a->mousewheelup = leveleditor_menu_mousewheelup;
 	a->mousewheeldown = leveleditor_menu_mousewheeldown;
 	a->mousemove = leveleditor_menu_mousemove;
-	a->keybevent = NULL; //leveleditor_menu_keybevent;
+	a->keybevent = NULL;	//leveleditor_menu_keybevent;
 	a->enabled = 0;
 
 	struct leveleditor_menu *b = MyMalloc(sizeof(struct leveleditor_menu));
@@ -86,14 +86,14 @@ struct leveleditor_widget * create_menu()
 	return a;
 }
 
-static struct leveleditor_widget * create_map()
+static struct leveleditor_widget *create_map()
 {
-	struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_MAP;
 	a->rect.x = 0;
 	a->rect.y = 68;
 	a->rect.w = GameConfig.screen_width;
-	a->rect.h = GameConfig.screen_height-68;
+	a->rect.h = GameConfig.screen_height - 68;
 	a->mouseenter = leveleditor_map_mouseenter;
 	a->mouseleave = leveleditor_map_mouseleave;
 	a->mouserelease = leveleditor_map_mouserelease;
@@ -106,15 +106,15 @@ static struct leveleditor_widget * create_map()
 	a->keybevent = leveleditor_map_keybevent;
 	a->enabled = 1;
 
-	struct leveleditor_mapwidget * m = MyMalloc(sizeof(struct leveleditor_mapwidget));
+	struct leveleditor_mapwidget *m = MyMalloc(sizeof(struct leveleditor_mapwidget));
 	a->ext = m;
 
 	return a;
 }
 
-static struct leveleditor_widget * create_toolbar()
+static struct leveleditor_widget *create_toolbar()
 {
-	struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_TOOLBAR;
 	a->rect.x = 0;
 	a->rect.y = 0;
@@ -130,15 +130,15 @@ static struct leveleditor_widget * create_toolbar()
 	a->mousewheeldown = leveleditor_toolbar_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_toolbar * t = MyMalloc(sizeof(struct leveleditor_toolbar));
+	struct leveleditor_toolbar *t = MyMalloc(sizeof(struct leveleditor_toolbar));
 	a->ext = t;
 
 	return a;
 }
 
-static struct leveleditor_widget * create_objectselector(int x, char * text, enum leveleditor_object_type type, int * olist)
+static struct leveleditor_widget *create_objectselector(int x, char *text, enum leveleditor_object_type type, int *olist)
 {
-	struct leveleditor_widget * a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_OBJECTTYPESELECTORBUTTON;
 	a->rect.x = x * 80;
 	a->rect.y = 73;
@@ -154,7 +154,7 @@ static struct leveleditor_widget * create_objectselector(int x, char * text, enu
 	a->mousewheeldown = leveleditor_typeselect_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_typeselect * o = MyMalloc(sizeof(struct leveleditor_typeselect));
+	struct leveleditor_typeselect *o = MyMalloc(sizeof(struct leveleditor_typeselect));
 
 	o->type = type;
 	o->indices = olist;
@@ -164,7 +164,7 @@ static struct leveleditor_widget * create_objectselector(int x, char * text, enu
 	return a;
 }
 
-void leveleditor_destroy_widget(struct leveleditor_widget *w) 
+void leveleditor_destroy_widget(struct leveleditor_widget *w)
 {
 	free(w->ext);
 
@@ -224,24 +224,24 @@ void leveleditor_init_widgets()
 	int i;
 
 	for (i = 0; i < sizeof(t) / sizeof(t[0]); i++) {
-		ShowGenericButtonFromList(t[i]); //we need that to have .w and .h of the button rect initialized.
+		ShowGenericButtonFromList(t[i]);	//we need that to have .w and .h of the button rect initialized.
 		list_add(&create_button(t[i])->node, &leveleditor_widget_list);
 	}
 
 	/* The object type selectors */
 	wall_selector = create_objectselector(0, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list);
-	list_add_tail(&wall_selector->node, &leveleditor_widget_list); 
-	list_add_tail(&create_objectselector(1, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list); 
-	list_add_tail(&create_objectselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list); 
-	list_add_tail(&create_objectselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list); 
+	list_add_tail(&wall_selector->node, &leveleditor_widget_list);
+	list_add_tail(&create_objectselector(1, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_objectselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_objectselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_objectselector(4, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
-	for (i=0; i < NUMBER_OF_OBSTACLE_TYPES; i++) 
+	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++)
 		all_obstacles_list[i] = i;
-    all_obstacles_list[i] = -1;
-    list_add_tail(&create_objectselector(5, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
-    list_add_tail(&create_objectselector(6, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
+	all_obstacles_list[i] = -1;
+	list_add_tail(&create_objectselector(5, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_objectselector(6, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
 
-    list_add_tail(&create_objectselector(7, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_objectselector(7, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
 
 	/* The toolbar */
 	list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
@@ -263,84 +263,83 @@ void leveleditor_update_button_states()
 	struct leveleditor_widget *w;
 	obstacle *o;
 	list_for_each_entry(w, &leveleditor_widget_list, node) {
-		if (w->type != WIDGET_BUTTON) 
+		if (w->type != WIDGET_BUTTON)
 			continue;
 
 		b = w->ext;
 		switch (b->btn_index) {
-			case LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON:
-				b->active = 2*GameConfig . omit_enemies_in_level_editor;
-				break;
-			case LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON:
-				b->active = 2*!GameConfig . show_tooltips;
-				break;
-			case LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON:
-				b->active = 2*!draw_collision_rectangles;
-				break;
-			case LEVEL_EDITOR_ZOOM_IN_BUTTON:
-				b->active = 2*!GameConfig . zoom_is_on;
-				break;
-			case LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON:
-				b->active = 2*GameConfig . omit_obstacles_in_level_editor;
-				break;
-			case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
-				b->active = 2*(draw_grid);
-				break;
-			case LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON:
-				b->active = 2* EditLevel() -> use_underground_lighting;
-				break;
-			case GO_LEVEL_NORTH_BUTTON:
-				w->enabled = (EditLevel() -> jump_target_north >= 0);
-				break;
-			case GO_LEVEL_WEST_BUTTON:
-				w->enabled = (EditLevel() -> jump_target_west >= 0);
-				break;
-			case GO_LEVEL_SOUTH_BUTTON:
-				w->enabled = (EditLevel() -> jump_target_south >= 0);
-				break;
-			case GO_LEVEL_EAST_BUTTON:
-				w->enabled = (EditLevel() -> jump_target_east >= 0);
-				break;
-			case LEVEL_EDITOR_SAVE_SHIP_BUTTON:
-				w->enabled = (game_root_mode == ROOT_IS_LVLEDIT);
-				break;
-			case LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON:
-				w->enabled = level_editor_can_cycle_obs();
-				break;
-			case LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON:
-				w->enabled = !selection_empty();
-				break;
-			case LEVEL_EDITOR_EDIT_CHEST_BUTTON:
-				o = single_tile_selection(OBJECT_OBSTACLE);
-				if (o)
-					switch (o->type) {
-						case ISO_H_CHEST_CLOSED:
-						case ISO_H_CHEST_OPEN:
-						case ISO_V_CHEST_CLOSED:
-						case ISO_V_CHEST_OPEN:
-							w->enabled = 1;
-							break;
-						default:
-							w->enabled = 0;
-					}
-				else 
+		case LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON:
+			b->active = 2 * GameConfig.omit_enemies_in_level_editor;
+			break;
+		case LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON:
+			b->active = 2 * !GameConfig.show_tooltips;
+			break;
+		case LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON:
+			b->active = 2 * !draw_collision_rectangles;
+			break;
+		case LEVEL_EDITOR_ZOOM_IN_BUTTON:
+			b->active = 2 * !GameConfig.zoom_is_on;
+			break;
+		case LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON:
+			b->active = 2 * GameConfig.omit_obstacles_in_level_editor;
+			break;
+		case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
+			b->active = 2 * (draw_grid);
+			break;
+		case LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON:
+			b->active = 2 * EditLevel()->use_underground_lighting;
+			break;
+		case GO_LEVEL_NORTH_BUTTON:
+			w->enabled = (EditLevel()->jump_target_north >= 0);
+			break;
+		case GO_LEVEL_WEST_BUTTON:
+			w->enabled = (EditLevel()->jump_target_west >= 0);
+			break;
+		case GO_LEVEL_SOUTH_BUTTON:
+			w->enabled = (EditLevel()->jump_target_south >= 0);
+			break;
+		case GO_LEVEL_EAST_BUTTON:
+			w->enabled = (EditLevel()->jump_target_east >= 0);
+			break;
+		case LEVEL_EDITOR_SAVE_SHIP_BUTTON:
+			w->enabled = (game_root_mode == ROOT_IS_LVLEDIT);
+			break;
+		case LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON:
+			w->enabled = level_editor_can_cycle_obs();
+			break;
+		case LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON:
+			w->enabled = !selection_empty();
+			break;
+		case LEVEL_EDITOR_EDIT_CHEST_BUTTON:
+			o = single_tile_selection(OBJECT_OBSTACLE);
+			if (o)
+				switch (o->type) {
+				case ISO_H_CHEST_CLOSED:
+				case ISO_H_CHEST_OPEN:
+				case ISO_V_CHEST_CLOSED:
+				case ISO_V_CHEST_OPEN:
+					w->enabled = 1;
+					break;
+				default:
 					w->enabled = 0;
-				break;				
-			case LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON:
-			case LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON:
-				w->enabled = single_tile_selection(OBJECT_OBSTACLE) ? 1 : 0;
-				break;
-			case LEVEL_EDITOR_UNDO_BUTTON:
-				w->enabled = !list_empty(&to_undo);
-				break;
-			case LEVEL_EDITOR_REDO_BUTTON:
-				w->enabled = !list_empty(&to_redo);
-				break;
+			} else
+				w->enabled = 0;
+			break;
+		case LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON:
+		case LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON:
+			w->enabled = single_tile_selection(OBJECT_OBSTACLE) ? 1 : 0;
+			break;
+		case LEVEL_EDITOR_UNDO_BUTTON:
+			w->enabled = !list_empty(&to_undo);
+			break;
+		case LEVEL_EDITOR_REDO_BUTTON:
+			w->enabled = !list_empty(&to_redo);
+			break;
 		}
 	}
 }
 
-struct leveleditor_widget * get_active_widget(int x, int y) 
+struct leveleditor_widget *get_active_widget(int x, int y)
 {
 	struct leveleditor_widget *w;
 	list_for_each_entry(w, &leveleditor_widget_list, node) {
@@ -358,26 +357,25 @@ void leveleditor_display_widgets()
 {
 	struct leveleditor_widget *w;
 	list_for_each_entry_reverse(w, &leveleditor_widget_list, node) {
-		if(!w->enabled)
+		if (!w->enabled)
 			continue;
 
 		switch (w->type) {
-			case WIDGET_BUTTON:
-				leveleditor_button_display(w);
-				break;
-			case WIDGET_TOOLBAR:
-				leveleditor_toolbar_display(w);
-				break;
-			case WIDGET_MAP:
-				leveleditor_map_display(w);
-				break;
-			case WIDGET_OBJECTTYPESELECTORBUTTON:
-				leveleditor_typeselect_display(w);
-				break;
-			case WIDGET_MENU:
-				leveleditor_menu_display(w);
-				break;
+		case WIDGET_BUTTON:
+			leveleditor_button_display(w);
+			break;
+		case WIDGET_TOOLBAR:
+			leveleditor_toolbar_display(w);
+			break;
+		case WIDGET_MAP:
+			leveleditor_map_display(w);
+			break;
+		case WIDGET_OBJECTTYPESELECTORBUTTON:
+			leveleditor_typeselect_display(w);
+			break;
+		case WIDGET_MENU:
+			leveleditor_menu_display(w);
+			break;
 		}
 	}
 }
-

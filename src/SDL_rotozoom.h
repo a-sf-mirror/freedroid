@@ -21,7 +21,6 @@ extern "C" {
 #endif
 #include "system.h"
 
-
 /* ---- Defines */
 
 #define SMOOTHING_OFF		0
@@ -38,13 +37,11 @@ extern "C" {
 
 */
 
-SDL_Surface *rotozoomSurface(SDL_Surface * src, double angle, double zoom, int smooth);
-
+	SDL_Surface *rotozoomSurface(SDL_Surface * src, double angle, double zoom, int smooth);
 
 /* Returns the size of the target surface for a rotozoomSurface() call */
 
-void rotozoomSurfaceSize(int width, int height, double angle, double zoom, int *dstwidth,
-					  int *dstheight);
+	void rotozoomSurfaceSize(int width, int height, double angle, double zoom, int *dstwidth, int *dstheight);
 
 /* 
  
@@ -57,12 +54,11 @@ void rotozoomSurfaceSize(int width, int height, double angle, double zoom, int *
 
 */
 
-SDL_Surface *zoomSurface(SDL_Surface * src, double zoomx, double zoomy, int smooth);
+	SDL_Surface *zoomSurface(SDL_Surface * src, double zoomx, double zoomy, int smooth);
 
 /* Returns the size of the target surface for a zoomSurface() call */
 
-void zoomSurfaceSize(int width, int height, double zoomx, double zoomy, int *dstwidth, int *dstheight);
-
+	void zoomSurfaceSize(int width, int height, double zoomx, double zoomy, int *dstwidth, int *dstheight);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

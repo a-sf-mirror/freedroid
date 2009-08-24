@@ -2,12 +2,12 @@
 #define MAPGEN_H
 
 struct roominfo {
-  int x, y;
-  int w, h;
+	int x, y;
+	int w, h;
 
-  int *neighbors;
-  int next_neighbor;
-  int max_neighbors;
+	int *neighbors;
+	int next_neighbor;
+	int max_neighbors;
 };
 
 struct mapgen_gamelevel {
@@ -32,11 +32,11 @@ extern struct roominfo *rooms;
 extern int total_rooms;
 
 // Interface to the game
-void (*dungeonmap_convert)(int, int, unsigned char *, int *);
-void (*dungeonmap_entry_at)(struct roominfo *);
-void (*dungeonmap_exit_at)(struct roominfo *);
-void (*dungeonmap_place_enemies)(struct roominfo *);
-void (*dungeonmap_gift)(struct roominfo *);
+void (*dungeonmap_convert) (int, int, unsigned char *, int *);
+void (*dungeonmap_entry_at) (struct roominfo *);
+void (*dungeonmap_exit_at) (struct roominfo *);
+void (*dungeonmap_place_enemies) (struct roominfo *);
+void (*dungeonmap_gift) (struct roominfo *);
 
 int generate_dungeon_gram(int, int);
 
@@ -53,4 +53,3 @@ int find_connection_points(int room_id, struct cplist_t cplist[100]);
 void MakeConnect(int x, int y, enum connection_type type);
 
 #endif
-

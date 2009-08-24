@@ -24,7 +24,6 @@
  *
  */
 
-
 #ifndef _global_h
 #define _global_h
 
@@ -37,26 +36,26 @@
 #else
 #define EXTERN extern
 
-EXTERN char* floor_tile_filenames [ ALL_ISOMETRIC_FLOOR_TILES ] ;
-EXTERN obstacle_spec obstacle_map[ NUMBER_OF_OBSTACLE_TYPES ];
+EXTERN char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES];
+EXTERN obstacle_spec obstacle_map[NUMBER_OF_OBSTACLE_TYPES];
 EXTERN float FPSover1;
 EXTERN float FPSover10;
 EXTERN float FPSover100;
 EXTERN char *AllSkillTexts[];
-EXTERN char font_switchto_red [ 2 ] ;
-EXTERN char font_switchto_blue [ 2 ] ;
-EXTERN char font_switchto_neon [ 2 ] ;
-EXTERN char font_switchto_msgstat [ 2 ] ;
-EXTERN char font_switchto_msgvar [ 2 ] ;
+EXTERN char font_switchto_red[2];
+EXTERN char font_switchto_blue[2];
+EXTERN char font_switchto_neon[2];
+EXTERN char font_switchto_msgstat[2];
+EXTERN char font_switchto_msgvar[2];
 
-EXTERN int SpellHitPercentageTable [  ] ;
-EXTERN float MeleeDamageMultiplierTable [  ] ;
-EXTERN float MeleeRechargeMultiplierTable [  ] ;
-EXTERN float RangedDamageMultiplierTable [  ] ;
-EXTERN float RangedRechargeMultiplierTable [  ] ;
-EXTERN spell_skill_spec * SpellSkillMap ;
-EXTERN tux_t Me; /* the influence data */
-EXTERN Druidspec Druidmap;     
+EXTERN int SpellHitPercentageTable[];
+EXTERN float MeleeDamageMultiplierTable[];
+EXTERN float MeleeRechargeMultiplierTable[];
+EXTERN float RangedDamageMultiplierTable[];
+EXTERN float RangedRechargeMultiplierTable[];
+EXTERN spell_skill_spec *SpellSkillMap;
+EXTERN tux_t Me;		/* the influence data */
+EXTERN Druidspec Druidmap;
 EXTERN Bulletspec Bulletmap;
 EXTERN blastspec Blastmap[ALLBLASTTYPES];
 EXTERN int skip_initial_menus;
@@ -81,7 +80,7 @@ extern list_head_t alive_bots_head;
 extern list_head_t dead_bots_head;
 extern list_head_t level_bots_head[MAX_LEVELS];
 
-EXTERN spell_active AllActiveSpells[ MAX_ACTIVE_SPELLS ];
+EXTERN spell_active AllActiveSpells[MAX_ACTIVE_SPELLS];
 EXTERN ship curShip;		/* the current ship-data */
 
 EXTERN bullet AllBullets[MAXBULLETS + 10];
@@ -89,11 +88,11 @@ EXTERN melee_shot AllMeleeShots[MAX_MELEE_SHOTS];
 EXTERN blast AllBlasts[MAXBLASTS + 10];
 
 EXTERN int sound_on;		// Toggle TRUE/FALSE for turning sounds on/off 
-EXTERN int debug_level;       	// 0=no debug 1=some debug messages 2=...etc 
+EXTERN int debug_level;		// 0=no debug 1=some debug messages 2=...etc 
 				// (currently only 0 or !=0 is implemented) 
-EXTERN int show_all_droids;     // display enemys regardless of IsVisible() 
-EXTERN int draw_collision_rectangles; // to better debug collision rectangles
-EXTERN int draw_grid;           // grid to see where objects will be positioned
+EXTERN int show_all_droids;	// display enemys regardless of IsVisible() 
+EXTERN int draw_collision_rectangles;	// to better debug collision rectangles
+EXTERN int draw_grid;		// grid to see where objects will be positioned
 #undef EXTERN
 #ifdef _misc_c
 #define EXTERN
@@ -104,16 +103,16 @@ EXTERN int draw_grid;           // grid to see where objects will be positioned
 EXTERN float timeout_from_item_drop;
 EXTERN int use_open_gl;
 EXTERN int command_line_override_for_screen_resolution;
-EXTERN char* mission_diary_texts [ MAX_MISSIONS_IN_GAME ] [ MAX_MISSION_DESCRIPTION_TEXTS ] ;
-EXTERN char* character_descriptions [ MAX_PERSONS ] ;
+EXTERN char *mission_diary_texts[MAX_MISSIONS_IN_GAME][MAX_MISSION_DESCRIPTION_TEXTS];
+EXTERN char *character_descriptions[MAX_PERSONS];
 
-EXTERN char previous_part_strings [ ALL_PART_GROUPS ] [ 50 ] ;
-EXTERN mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] ;
+EXTERN char previous_part_strings[ALL_PART_GROUPS][50];
+EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
 EXTERN int Item_Held_In_Hand;
 EXTERN point InventorySize;
 
-EXTERN iso_image MouseCursorImageList[ NUMBER_OF_MOUSE_CURSOR_PICTURES ];
-EXTERN iso_image SpellLevelButtonImageList[ NUMBER_OF_SKILL_PAGES ];
+EXTERN iso_image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];
+EXTERN iso_image SpellLevelButtonImageList[NUMBER_OF_SKILL_PAGES];
 
 EXTERN int Number_Of_Droids_On_Ship;
 EXTERN float LevelDoorsNotMovedTime;
@@ -130,7 +129,7 @@ EXTERN BFont_Info *Highscore_BFont;
 EXTERN float Overall_Average;
 EXTERN int SkipAFewFrames;
 
-EXTERN int global_ingame_mode ;
+EXTERN int global_ingame_mode;
 
 #undef EXTERN
 #ifdef _view_c
@@ -138,13 +137,13 @@ EXTERN int global_ingame_mode ;
 #else
 #define EXTERN extern
 #endif
-EXTERN iso_image light_radius_chunk[ NUMBER_OF_SHADOW_IMAGES ];
+EXTERN iso_image light_radius_chunk[NUMBER_OF_SHADOW_IMAGES];
 EXTERN SDL_Rect InventoryRect;
 EXTERN SDL_Rect CharacterRect;
 #ifdef HAVE_LIBGL
-EXTERN GLuint automap_texture;  // this is to store an open_gl texture...
-EXTERN GLuint light_radius_stretch_texture;  // this is to store an open_gl texture...
-EXTERN SDL_Surface* light_radius_stretch_surface ;
+EXTERN GLuint automap_texture;	// this is to store an open_gl texture...
+EXTERN GLuint light_radius_stretch_texture;	// this is to store an open_gl texture...
+EXTERN SDL_Surface *light_radius_stretch_surface;
 #endif
 EXTERN int amask;
 EXTERN int gmask;
@@ -158,7 +157,7 @@ struct neighbor_data_cell {
 	int valid;
 };
 EXTERN struct neighbor_data_cell gps_transform_matrix[MAX_LEVELS][MAX_LEVELS];
-EXTERN struct neighbor_data_cell* (level_neighbors_map[MAX_LEVELS][3][3]);
+EXTERN struct neighbor_data_cell *(level_neighbors_map[MAX_LEVELS][3][3]);
 #define NEIGHBOR_IDX(x,len) ( ( (x) < 0) ? (0) : ( ( (x) < (len) ) ? (1) : (2) ) )
 extern list_head_t visible_level_list;
 
@@ -178,7 +177,7 @@ EXTERN light_radius_config LightRadiusConfig;
 #else
 #define EXTERN extern
 #endif
-EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
+EXTERN event_trigger AllEventTriggers[MAX_EVENT_TRIGGERS];
 
 #undef EXTERN
 #ifdef _chat_c
@@ -186,11 +185,11 @@ EXTERN event_trigger AllEventTriggers[ MAX_EVENT_TRIGGERS ];
 #else
 #define EXTERN extern
 #endif
-int chat_control_next_node; //what is the next node to use?
-int chat_control_end_dialog; //end current dialog?
-int chat_control_partner_code; //our partner code to access chat flags from Lua
-int chat_control_partner_started; //the dialog partner is the one who started the talk
-enemy *chat_control_chat_droid; //droid we are chatting with
+int chat_control_next_node;	//what is the next node to use?
+int chat_control_end_dialog;	//end current dialog?
+int chat_control_partner_code;	//our partner code to access chat flags from Lua
+int chat_control_partner_started;	//the dialog partner is the one who started the talk
+enemy *chat_control_chat_droid;	//droid we are chatting with
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 
 #undef EXTERN
@@ -214,10 +213,10 @@ dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 #define EXTERN extern
 #endif
 EXTERN int Number_Of_Bullet_Types;
-EXTERN SDL_Surface *Screen;   
-EXTERN SDL_Surface* StoredMenuBackground [ 2 ] ;
+EXTERN SDL_Surface *Screen;
+EXTERN SDL_Surface *StoredMenuBackground[2];
 #ifdef HAVE_LIBGL
-EXTERN GLuint StoredMenuBackgroundTex [ 2 ] ;
+EXTERN GLuint StoredMenuBackgroundTex[2];
 #endif
 EXTERN int current_mouse_cursor_shape;
 
@@ -226,40 +225,43 @@ EXTERN int current_mouse_cursor_shape;
 // isometric enemy images
 //
 // EXTERN SDL_Surface *EnemyRotationSurfacePointer[ ENEMY_ROTATION_MODELS_AVAILABLE ] [ ROTATION_ANGLES_PER_ROTATION_MODEL ];
-EXTERN iso_image enemy_iso_images [ ENEMY_ROTATION_MODELS_AVAILABLE ] [ ROTATION_ANGLES_PER_ROTATION_MODEL ] [ MAX_ENEMY_MOVEMENT_PHASES ] ;
-EXTERN iso_image BlueEnemyRotationSurfacePointer[ ENEMY_ROTATION_MODELS_AVAILABLE ] [ ROTATION_ANGLES_PER_ROTATION_MODEL ] [ MAX_ENEMY_MOVEMENT_PHASES ] ; 
-EXTERN iso_image RedEnemyRotationSurfacePointer[ ENEMY_ROTATION_MODELS_AVAILABLE ] [ ROTATION_ANGLES_PER_ROTATION_MODEL  ] [ MAX_ENEMY_MOVEMENT_PHASES ] ;  
-EXTERN iso_image GreenEnemyRotationSurfacePointer[ ENEMY_ROTATION_MODELS_AVAILABLE ] [ ROTATION_ANGLES_PER_ROTATION_MODEL ] [ MAX_ENEMY_MOVEMENT_PHASES ] ; 
-EXTERN iso_image chat_portrait_of_droid [ ENEMY_ROTATION_MODELS_AVAILABLE ] ;
+EXTERN iso_image enemy_iso_images[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
+EXTERN iso_image
+    BlueEnemyRotationSurfacePointer[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
+EXTERN iso_image
+    RedEnemyRotationSurfacePointer[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
+EXTERN iso_image
+    GreenEnemyRotationSurfacePointer[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
+EXTERN iso_image chat_portrait_of_droid[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 // EXTERN int phases_in_enemy_animation [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int first_walk_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int last_walk_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int first_attack_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int last_attack_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int first_gethit_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int last_gethit_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int first_death_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int last_death_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int first_stand_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int last_stand_animation_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int use_default_attack_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int use_default_gethit_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int use_default_death_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int use_default_stand_image [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int droid_walk_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int droid_attack_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int droid_gethit_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int droid_death_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE ];
-EXTERN int droid_stand_animation_speed_factor [ ENEMY_ROTATION_MODELS_AVAILABLE ];
+EXTERN int first_walk_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int last_walk_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int first_attack_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int last_attack_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int first_gethit_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int last_gethit_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int first_death_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int last_death_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int first_stand_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int last_stand_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int use_default_attack_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int use_default_gethit_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int use_default_death_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int use_default_stand_image[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int droid_walk_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int droid_attack_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int droid_gethit_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-EXTERN iso_image floor_iso_images [ ALL_ISOMETRIC_FLOOR_TILES ] ;   
+EXTERN iso_image floor_iso_images[ALL_ISOMETRIC_FLOOR_TILES];
 
 EXTERN float iso_floor_tile_width;
 EXTERN float iso_floor_tile_height;
 EXTERN float iso_floor_tile_width_over_two;
 EXTERN float iso_floor_tile_height_over_two;
-EXTERN int vid_bpp; 		       // bits per pixel 
+EXTERN int vid_bpp;		// bits per pixel 
 
 #undef EXTERN
 #ifdef _blocks_c
@@ -267,7 +269,7 @@ EXTERN int vid_bpp; 		       // bits per pixel
 #else
 #define EXTERN extern
 #endif
-EXTERN obstacle_spec obstacle_map [ NUMBER_OF_OBSTACLE_TYPES ];
+EXTERN obstacle_spec obstacle_map[NUMBER_OF_OBSTACLE_TYPES];
 
 #undef EXTERN
 #ifdef _text_c
@@ -300,7 +302,7 @@ EXTERN SDL_Rect Droid_Image_Window;
 #else
 #define EXTERN extern
 #endif
-EXTERN point input_axis;  /* joystick (and mouse) axis values */
+EXTERN point input_axis;	/* joystick (and mouse) axis values */
 EXTERN int always_show_items_text;
 
 #undef EXTERN
@@ -326,18 +328,17 @@ EXTERN SDL_Rect SkillScreenRect;
 #define EXTERN extern
 #endif
 
-
 EXTERN int Number_Of_Item_Types;
-EXTERN itemspec* ItemMap;
+EXTERN itemspec *ItemMap;
 EXTERN short int item_count_per_class[10];
-EXTERN item_bonus * PrefixList;
-EXTERN item_bonus * SuffixList;
+EXTERN item_bonus *PrefixList;
+EXTERN item_bonus *SuffixList;
 
 EXTERN int game_root_mode;
 enum {
-    ROOT_IS_UNKNOWN = 0,
-    ROOT_IS_GAME,
-    ROOT_IS_LVLEDIT,
+	ROOT_IS_UNKNOWN = 0,
+	ROOT_IS_GAME,
+	ROOT_IS_LVLEDIT,
 };
 
-#endif  // _global_h
+#endif				// _global_h

@@ -31,28 +31,28 @@ void level_editor_action_redo(void);
 void action_push(int type, ...);
 
 /* Obstacle manipulation */
-obstacle * action_create_obstacle (level *, double, double, int);
-obstacle * action_create_obstacle_user(level *, double, double, int);
-void level_editor_place_aligned_obstacle (int);
-void action_remove_obstacle_user (level *, obstacle *);
+obstacle *action_create_obstacle(level *, double, double, int);
+obstacle *action_create_obstacle_user(level *, double, double, int);
+void level_editor_place_aligned_obstacle(int);
+void action_remove_obstacle_user(level *, obstacle *);
 void action_remove_obstacle(level *, obstacle *);
 
 void action_move_obstacle(level *, obstacle *, float, float);
 
-void action_change_obstacle_label_user (level *, obstacle *, char *);
-void action_change_obstacle_description (level *, obstacle *, char *);
+void action_change_obstacle_label_user(level *, obstacle *, char *);
+void action_change_obstacle_description(level *, obstacle *, char *);
 
 /* Waypoint manipulation */
-void action_toggle_waypoint (level *, int, int, int);
-int action_toggle_waypoint_connection (level *, int , int, int);
+void action_toggle_waypoint(level *, int, int, int);
+int action_toggle_waypoint_connection(level *, int, int, int);
 void level_editor_action_toggle_waypoint_connection_user(level *, int, int);
 
 /* Floor tiles manipulation */
-void action_set_floor (level *, int, int, int);
-void action_fill_user (level *, int , int , int );
+void action_set_floor(level *, int, int, int);
+void action_fill_user(level *, int, int, int);
 
 /* Map manipulation */
-void level_editor_action_change_map_label_user (level *);
+void level_editor_action_change_map_label_user(level *);
 void action_jump_to_level(int, double, double);
 void CreateNewMapLevel(int);
 void delete_map_level(int);

@@ -7,7 +7,6 @@
  * This is obviously GPL licensed.
  */
 
-
 /**
  * Get offset of a member
  */
@@ -27,7 +26,6 @@
         (type *)( (char *)__mptr - offsetof(type,member) );})
 /*@}*/
 
-
 /*
  * These are non-NULL pointers that will result in page faults
  * under normal circumstances, used to verify that nobody uses
@@ -44,7 +42,6 @@
 #define INIT_LIST_HEAD(ptr) do { \
 	(ptr)->next = (ptr); (ptr)->prev = (ptr); \
 } while (0)
-
 
 /**
  * list_entry - get the struct for this entry
@@ -168,6 +165,3 @@
 		n = list_entry(pos->member.prev, typeof(*pos), member);	\
 	     &pos->member != (head); 					\
 	     pos = n, n = list_entry(n->member.prev, typeof(*n), member))
-
-
-

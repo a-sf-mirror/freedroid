@@ -41,25 +41,23 @@
 #include "lvledit/lvledit_tools.h"
 
 LIST_HEAD(leveleditor_tool_list);
-    
+
 void leveleditor_init_tools()
 {
-    static int init_done = 0;
-    if (init_done) {
-	printf("Tools already initialized\n");
-	return;
-    }
+	static int init_done = 0;
+	if (init_done) {
+		printf("Tools already initialized\n");
+		return;
+	}
 
+	tool_move.input_event = leveleditor_move_input;
+	tool_move.display = leveleditor_move_display;
 
-    tool_move.input_event = leveleditor_move_input;
-    tool_move.display = leveleditor_move_display;
-    
-    tool_place.input_event = leveleditor_place_input;
-    tool_place.display = leveleditor_place_display;
-    
-    tool_select.input_event = leveleditor_select_input;
-    tool_select.display = leveleditor_select_display;
-    
-    init_done = 1;
+	tool_place.input_event = leveleditor_place_input;
+	tool_place.display = leveleditor_place_display;
+
+	tool_select.input_event = leveleditor_select_input;
+	tool_select.display = leveleditor_select_display;
+
+	init_done = 1;
 }
-

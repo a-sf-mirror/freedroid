@@ -39,7 +39,7 @@ void leveleditor_map_mousewheelup(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_map_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_map_mousemove(SDL_Event *, struct leveleditor_widget *);
 int leveleditor_map_keybevent(SDL_Event *, struct leveleditor_widget *);
-    
+
 void leveleditor_map_display(struct leveleditor_widget *);
 void leveleditor_map_display_cursor();
 

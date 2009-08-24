@@ -27,11 +27,10 @@
 #define _takeover_h
 
 #ifndef _defs_h
-#include "defs.h"    // we need this here for path defines
+#include "defs.h"		// we need this here for path defines
 #endif
 
-void
-to_show_banner (const char* left, const char* right);
+void to_show_banner(const char *left, const char *right);
 
 /* Background-color of takeover-game */
 #define TO_BG_COLOR			63
@@ -39,24 +38,24 @@ to_show_banner (const char* left, const char* right);
 /* File containing the Takeover-blocks */
 #define TO_BLOCK_FILE		"to_elem.png"
 /* --------------- individual block dimensions --------------- */
-#define NUM_PHASES		5       /* number of color-phases for current "flow" */
+#define NUM_PHASES		5	/* number of color-phases for current "flow" */
 					/* inclusive "inactive" phase */
 
 /* Dimensions of the game-blocks */
 #define TO_BLOCKS		11	/* anzahl versch. Game- blocks */
 
-#define NUM_TO_BLOCKS		2*NUM_PHASES*TO_BLOCKS // total number of takover blocks 
+#define NUM_TO_BLOCKS		2*NUM_PHASES*TO_BLOCKS	// total number of takover blocks
 #define TO_ELEMENTS		6
 #define TO_BLOCKLEN		2*32	/* dimension of a Game- block */
 #define TO_BLOCKHEIGHT	 	2*8
 
 /* Dimensions of the fill-blocks (in led-column */
-#define NUM_FILL_BLOCKS		3   // yellow, violett and black
+#define NUM_FILL_BLOCKS		3	// yellow, violett and black
 #define FILL_BLOCK_LEN		2*16
 #define FILL_BLOCK_HEIGHT  	2*7
 
 /* Dimensions of a capsule */
-#define NUM_CAPS_BLOCKS		3  // yellow, violett and red (?what for)
+#define NUM_CAPS_BLOCKS		3	// yellow, violett and red (?what for)
 #define CAPSULE_LEN		2*7
 #define CAPSULE_HEIGHT		2*7
 
@@ -80,8 +79,7 @@ to_show_banner (const char* left, const char* right);
 #define WAIT_COLOR_ROTATION	2	/* 1/18 sekunden aktive-Kabel */
 #define WAIT_AFTER_GAME		2*18	/* Wait after a deadlock */
 
-#define TO_TICK_LENGTH		40     /* Time in ms between ticks */
-
+#define TO_TICK_LENGTH		40	/* Time in ms between ticks */
 
 /* --------------- Playground layout --------------- */
 
@@ -101,7 +99,7 @@ to_show_banner (const char* left, const char* right);
 
 /* Left-Capsules positions */
 #define GELB_LEFT_CAPSULES_X	4
-#define GELB_LEFT_CAPSULES_Y	2*27 
+#define GELB_LEFT_CAPSULES_Y	2*27
 #define VIOLETT_LEFT_CAPSULES_X	RIGHT_OFFS_X + COLUMNBLOCKLEN -10
 #define VIOLETT_LEFT_CAPSULES_Y	2*27
 
@@ -117,7 +115,7 @@ to_show_banner (const char* left, const char* right);
 #define GELB_PLAYGROUND_X	2*33
 #define GELB_PLAYGROUND_Y	2*26
 #define VIOLETT_PLAYGROUND_X	2*159
-#define VIOLETT_PLAYGROUND_Y	2*26 
+#define VIOLETT_PLAYGROUND_Y	2*26
 
 #define LEFT_OFFS_X		2*10	/* Offset der linken "Saeule" */
 #define LEFT_OFFS_Y		2*15
@@ -128,83 +126,71 @@ to_show_banner (const char* left, const char* right);
 #define RIGHT_OFFS_X		2*255	/* -- rechten --- */
 #define RIGHT_OFFS_Y		2*15
 
-
-
-enum _groundblocks
-{
-  GELB_OBEN,
-  GELB_MITTE,
-  GELB_UNTEN,
-  VIOLETT_OBEN,
-  VIOLETT_MITTE,
-  VIOLETT_UNTEN
+enum _groundblocks {
+	GELB_OBEN,
+	GELB_MITTE,
+	GELB_UNTEN,
+	VIOLETT_OBEN,
+	VIOLETT_MITTE,
+	VIOLETT_UNTEN
 };
 
-
 /* Konditions in Connection-layer */
-enum condition
-{
-  INACTIVE = 0,
-  ACTIVE1,
-  ACTIVE2,
-  ACTIVE3,
-  ACTIVE4
+enum condition {
+	INACTIVE = 0,
+	ACTIVE1,
+	ACTIVE2,
+	ACTIVE3,
+	ACTIVE4
 };
 
 /* Names for you and "him" */
-enum to_opponents
-{
-  YOU,
-  ENEMY
+enum to_opponents {
+	YOU,
+	ENEMY
 };
 
 /* Color-names */
 #define TO_COLORS		2
-enum to_colors
-{
-  GELB = 0,
-  VIOLETT,
-  REMIS
+enum to_colors {
+	GELB = 0,
+	VIOLETT,
+	REMIS
 };
 
 /* Element - Names */
-enum to_elements
-{
-  EL_KABEL,
-  EL_KABELENDE,
-  EL_VERSTAERKER,
-  EL_FARBTAUSCHER,
-  EL_VERZWEIGUNG,
-  EL_GATTER
+enum to_elements {
+	EL_KABEL,
+	EL_KABELENDE,
+	EL_VERSTAERKER,
+	EL_FARBTAUSCHER,
+	EL_VERZWEIGUNG,
+	EL_GATTER
 };
 
 /* Block-Names */
-enum to_block_tyes
-{
-  KABEL,
-  KABELENDE,
-  VERSTAERKER,
-  FARBTAUSCHER,
-  VERZWEIGUNG_O,
-  VERZWEIGUNG_M,
-  VERZWEIGUNG_U,
-  GATTER_O,
-  GATTER_M,
-  GATTER_U,
-  LEER
+enum to_block_tyes {
+	KABEL,
+	KABELENDE,
+	VERSTAERKER,
+	FARBTAUSCHER,
+	VERZWEIGUNG_O,
+	VERZWEIGUNG_M,
+	VERZWEIGUNG_U,
+	GATTER_O,
+	GATTER_M,
+	GATTER_U,
+	LEER
 };
-
 
 /* there are two classes of blocks: connectors and non-connectors */
 #define CONNECTOR		0
 #define NON_CONNECTOR  		1
-
 
 #define NUM_LAYERS		4	/* dimension of the playground */
 #define NUM_LINES		12
 
 /* the playground type */
 typedef int playground_t[TO_COLORS][NUM_LAYERS][NUM_LINES];
-
 
 #endif

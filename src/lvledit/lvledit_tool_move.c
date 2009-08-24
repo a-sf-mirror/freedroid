@@ -49,48 +49,46 @@ static struct leveleditor_move state;
  * @return 1 if we are done (disabled), 0 if we still want
  * to be forwarded input events.
  */
-int leveleditor_move_input(SDL_Event *event)
+int leveleditor_move_input(SDL_Event * event)
 {
-    moderately_finepoint a, b;
+	moderately_finepoint a, b;
 
-    if (EVENT_RIGHT_PRESS(event)||EVENT_LEFT_PRESS(event)) {
-	// Start a movement
-	state.origin.x = event->button.x;
-	state.origin.y = event->button.y;
-    } else if (EVENT_RIGHT_RELEASE(event)||EVENT_LEFT_RELEASE(event)) {
-	// We are done
-	return 1;
-    } 
-    
-    
-    if (EVENT_NONE(event)) { //time-based periodic updating
-	a = translate_point_to_map_location (state.origin.x - (GameConfig.screen_width/2), 
-		state.origin.y - (GameConfig.screen_height/2), 
-		GameConfig.zoom_is_on);
+	if (EVENT_RIGHT_PRESS(event) || EVENT_LEFT_PRESS(event)) {
+		// Start a movement
+		state.origin.x = event->button.x;
+		state.origin.y = event->button.y;
+	} else if (EVENT_RIGHT_RELEASE(event) || EVENT_LEFT_RELEASE(event)) {
+		// We are done
+		return 1;
+	}
 
-	b = translate_point_to_map_location (GetMousePos_x()-(GameConfig.screen_width/2), GetMousePos_y()-(GameConfig.screen_height/2),
-		GameConfig.zoom_is_on);
+	if (EVENT_NONE(event)) {	//time-based periodic updating
+		a = translate_point_to_map_location(state.origin.x - (GameConfig.screen_width / 2),
+						    state.origin.y - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
 
-	// Calculate the new position
-	Me . pos . x += (b.x - a.x) / 30;
-	Me . pos . y += (b.y - a.y) / 30;
+		b = translate_point_to_map_location(GetMousePos_x() - (GameConfig.screen_width / 2),
+						    GetMousePos_y() - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
 
-	if ( Me . pos . x > curShip.AllLevels[Me.pos.z]->xlen )
-	    Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-	if ( Me . pos . x < 0 )
-	    Me . pos . x = 0;
-	if ( Me . pos . y > curShip.AllLevels[Me.pos.z]->ylen )
-	    Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-	if ( Me . pos . y < 0 )
-	    Me . pos . y = 0;
-    }
+		// Calculate the new position
+		Me.pos.x += (b.x - a.x) / 30;
+		Me.pos.y += (b.y - a.y) / 30;
 
-    return 0;    
+		if (Me.pos.x > curShip.AllLevels[Me.pos.z]->xlen)
+			Me.pos.x = curShip.AllLevels[Me.pos.z]->xlen - 1;
+		if (Me.pos.x < 0)
+			Me.pos.x = 0;
+		if (Me.pos.y > curShip.AllLevels[Me.pos.z]->ylen)
+			Me.pos.y = curShip.AllLevels[Me.pos.z]->ylen - 1;
+		if (Me.pos.y < 0)
+			Me.pos.y = 0;
+	}
+
+	return 0;
 }
 
 int leveleditor_move_display()
 {
-    blit_leveleditor_point (state.origin.x, state.origin.y);
+	blit_leveleditor_point(state.origin.x, state.origin.y);
 
-    return 0;
+	return 0;
 }

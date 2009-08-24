@@ -50,8 +50,7 @@ struct lvlval_ctx {
 	Level this_level;
 };
 
-struct lvlval_excpt_item
-{
+struct lvlval_excpt_item {
 	int rule_id;
 	int caught;
 	void *opaque_data;
@@ -59,15 +58,15 @@ struct lvlval_excpt_item
 };
 
 struct level_validator {
-	char             initial;
-	struct list_head  excpt_list;
-	int               (*execute)( struct level_validator *this, struct lvlval_ctx *validator_ctx );
-	void             *(*parse_excpt)( char *string );
-	int               (*cmp)( void *opaque_data1, void *opaque_data2 );
+	char initial;
+	struct list_head excpt_list;
+	int (*execute) (struct level_validator * this, struct lvlval_ctx * validator_ctx);
+	void *(*parse_excpt) (char *string);
+	int (*cmp) (void *opaque_data1, void *opaque_data2);
 };
 
 #endif
 
 EXTERN void LevelValidation();
 
-#endif // _leveleditor_validator_h_
+#endif				// _leveleditor_validator_h_

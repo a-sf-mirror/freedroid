@@ -1,5 +1,4 @@
 
-
 /* 
  *
  *   Copyright (c) 2009 Arthur Huillet
@@ -54,7 +53,7 @@ static struct leveleditor_select {
 	enum leveleditor_object_type type;
 } state;
 
-enum { DISABLED, FD_RECT, FD_RECTDONE, DRAGDROP } mode; 
+enum { DISABLED, FD_RECT, FD_RECTDONE, DRAGDROP } mode;
 
 struct selected_element {
 	enum leveleditor_object_type type;
@@ -79,7 +78,7 @@ int selection_empty()
  * Check if there is exactly one element selected of the given type.
  * Returns this element, or NULL.
  */
-void * single_tile_selection(int type)
+void *single_tile_selection(int type)
 {
 	struct selected_element *s;
 	if (list_empty(&selected_elements))
@@ -108,7 +107,7 @@ int element_in_selection(void *data)
 	return 0;
 }
 
-static void add_floor_tile_to_list(struct list_head *list, map_tile *a)
+static void add_floor_tile_to_list(struct list_head *list, map_tile * a)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
 	e->type = OBJECT_FLOOR;
@@ -126,7 +125,7 @@ static void add_obstacle_to_list(struct list_head *list, obstacle * a)
 	list_add(&e->node, list);
 }
 
-static void add_waypoint_to_list(struct list_head *list, waypoint *w)
+static void add_waypoint_to_list(struct list_head *list, waypoint * w)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
 	e->type = OBJECT_WAYPOINT;
@@ -160,7 +159,7 @@ static void select_obstacles_on_tile(int x, int y)
 		idx = EditLevel()->map[y][x].obstacles_glued_to_here[a];
 		if (!element_in_selection(&EditLevel()->obstacle_list[idx])) {
 			add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
-			state.rect_nbelem_selected ++;
+			state.rect_nbelem_selected++;
 		}
 	}
 }
@@ -183,13 +182,11 @@ static void select_waypoint_on_tile(int x, int y)
  * the number of elements to remove from the list.
  */
 void clear_selection(int nbelem)
-
 {
 	__clear_selected_list(&selected_elements, nbelem);
 }
 
 void clear_clipboard(int nbelem)
-
 {
 	__clear_selected_list(&clipboard_elements, nbelem);
 }
@@ -199,12 +196,12 @@ static void start_rect_select()
 	mode = FD_RECT;
 	state.type = get_current_object_type()->type;
 	switch (state.type) {
-		case OBJECT_OBSTACLE:
-		case OBJECT_WAYPOINT:
-			break;
-		default:
-			// Non supported object type defaults to obstacles
-			state.type = OBJECT_OBSTACLE;
+	case OBJECT_OBSTACLE:
+	case OBJECT_WAYPOINT:
+		break;
+	default:
+		// Non supported object type defaults to obstacles
+		state.type = OBJECT_OBSTACLE;
 	}
 
 	// Store mouse position
@@ -218,25 +215,26 @@ static void start_rect_select()
 	state.rect_start.y = (int)mouse_mapcoord.y;
 	state.rect_len.x = 1;
 	state.rect_len.y = 1;
-	state.rect_nbelem_selected = 0;    
+	state.rect_nbelem_selected = 0;
 
 	// Create selected obstacles list
-	if ( !pos_inside_level( state.rect_start.x, state.rect_start.y, EditLevel()) ) return;
+	if (!pos_inside_level(state.rect_start.x, state.rect_start.y, EditLevel()))
+		return;
 
 	// Select elements on the starting tile
 	switch (state.type) {
-		case OBJECT_OBSTACLE:
-			select_obstacles_on_tile(state.rect_start.x, state.rect_start.y);
-			break;
-		case OBJECT_FLOOR:
-			select_floor_on_tile(state.rect_start.x, state.rect_start.y);
-			break;
-		case OBJECT_WAYPOINT:
-			select_waypoint_on_tile(state.rect_start.x, state.rect_start.y);
-			break;
-		default:
-			GiveMouseAlertWindow("Cannot select elements of the chosen type.");
-			break;
+	case OBJECT_OBSTACLE:
+		select_obstacles_on_tile(state.rect_start.x, state.rect_start.y);
+		break;
+	case OBJECT_FLOOR:
+		select_floor_on_tile(state.rect_start.x, state.rect_start.y);
+		break;
+	case OBJECT_WAYPOINT:
+		select_waypoint_on_tile(state.rect_start.x, state.rect_start.y);
+		break;
+	default:
+		GiveMouseAlertWindow("Cannot select elements of the chosen type.");
+		break;
 	}
 }
 
@@ -245,7 +243,7 @@ static void do_rect_select()
 	int i, j;
 
 	// If there is something to change
-	if ( ((int)mouse_mapcoord.x != state.cur_drag_pos.x) || ((int)mouse_mapcoord.y != state.cur_drag_pos.y) ) {
+	if (((int)mouse_mapcoord.x != state.cur_drag_pos.x) || ((int)mouse_mapcoord.y != state.cur_drag_pos.y)) {
 
 		// Store new mouse position
 		state.cur_drag_pos.x = (int)mouse_mapcoord.x;
@@ -255,7 +253,7 @@ static void do_rect_select()
 		float xlen = state.cur_drag_pos.x - state.drag_start.x;
 		float ylen = state.cur_drag_pos.y - state.drag_start.y;
 
-		if ( xlen >= 0 ) {
+		if (xlen >= 0) {
 			state.rect_start.x = state.drag_start.x;
 		} else {
 			xlen = -xlen;
@@ -263,7 +261,7 @@ static void do_rect_select()
 		}
 		state.rect_len.x = xlen + 1;
 
-		if ( ylen >= 0 ) {
+		if (ylen >= 0) {
 			state.rect_start.y = state.drag_start.y;
 		} else {
 			ylen = -ylen;
@@ -275,25 +273,27 @@ static void do_rect_select()
 		clear_selection(state.rect_nbelem_selected);
 		state.rect_nbelem_selected = 0;
 
-		// Then redo a correct one	
+		// Then redo a correct one      
 		for (j = state.rect_start.y; j < state.rect_start.y + state.rect_len.y; ++j) {
-			if (j < 0 || j >= EditLevel()->ylen) continue;
+			if (j < 0 || j >= EditLevel()->ylen)
+				continue;
 
 			for (i = state.rect_start.x; i < state.rect_start.x + state.rect_len.x; ++i) {
-				if (i < 0 || i >= EditLevel()->xlen) continue;
+				if (i < 0 || i >= EditLevel()->xlen)
+					continue;
 
 				switch (state.type) {
-					case OBJECT_OBSTACLE:
-						select_obstacles_on_tile(i, j);
-						break;
-					case OBJECT_FLOOR:
-						select_floor_on_tile(i, j);
-						break;
-					case OBJECT_WAYPOINT:
-						select_waypoint_on_tile(i, j);
-					default:
-						GiveMouseAlertWindow("Cannot select elements of the chosen type.");
-						break;
+				case OBJECT_OBSTACLE:
+					select_obstacles_on_tile(i, j);
+					break;
+				case OBJECT_FLOOR:
+					select_floor_on_tile(i, j);
+					break;
+				case OBJECT_WAYPOINT:
+					select_waypoint_on_tile(i, j);
+				default:
+					GiveMouseAlertWindow("Cannot select elements of the chosen type.");
+					break;
 				}
 			}
 
@@ -305,7 +305,8 @@ static void end_rect_select()
 {
 	if (!list_empty(&selected_elements))
 		mode = FD_RECTDONE;
-	else mode = DISABLED;
+	else
+		mode = DISABLED;
 
 	state.single_tile_mark_index = 0;
 }
@@ -324,13 +325,13 @@ static void do_drag_drop()
 	struct selected_element *e;
 	list_for_each_entry(e, &selected_elements, node) {
 		switch (e->type) {
-			case OBJECT_OBSTACLE:
-				((obstacle *)(e->data))->pos.x += (mouse_mapcoord.x - state.cur_drag_pos.x);
-				((obstacle *)(e->data))->pos.y += (mouse_mapcoord.y - state.cur_drag_pos.y);
-				break;
-			case OBJECT_WAYPOINT:
-			default:
-				;
+		case OBJECT_OBSTACLE:
+			((obstacle *) (e->data))->pos.x += (mouse_mapcoord.x - state.cur_drag_pos.x);
+			((obstacle *) (e->data))->pos.y += (mouse_mapcoord.y - state.cur_drag_pos.y);
+			break;
+		case OBJECT_WAYPOINT:
+		default:
+			;
 		}
 	}
 	state.cur_drag_pos.x = mouse_mapcoord.x;
@@ -346,23 +347,23 @@ static void end_drag_drop()
 	// Set up undo actions
 	list_for_each_entry(e, &selected_elements, node) {
 		switch (e->type) {
-			case OBJECT_OBSTACLE:
-				x = (((obstacle *)(e->data))->pos.x - state.cur_drag_pos.x + state.drag_start.x);
-				y = (((obstacle *)(e->data))->pos.y - state.cur_drag_pos.y + state.drag_start.y);
-				action_push(ACT_MOVE_OBSTACLE, (obstacle *)e->data, x, y);
-				enb ++;
-				break;
-			default:
-				;
+		case OBJECT_OBSTACLE:
+			x = (((obstacle *) (e->data))->pos.x - state.cur_drag_pos.x + state.drag_start.x);
+			y = (((obstacle *) (e->data))->pos.y - state.cur_drag_pos.y + state.drag_start.y);
+			action_push(ACT_MOVE_OBSTACLE, (obstacle *) e->data, x, y);
+			enb++;
+			break;
+		default:
+			;
 		}
 	}
 
 	glue_obstacles_to_floor_tiles_for_level(EditLevel()->levelnum);
 
 	if (enb)
-		action_push (ACT_MULTIPLE_ACTIONS, enb);
+		action_push(ACT_MULTIPLE_ACTIONS, enb);
 
-	mode = FD_RECTDONE; 
+	mode = FD_RECTDONE;
 }
 
 int level_editor_can_cycle_obs()
@@ -371,15 +372,13 @@ int level_editor_can_cycle_obs()
 		// We get called from the outside so check mode coherency first
 		return 0;
 	}
-
 	// N key does nothing on a selection larger than one tile
 	if (abs(state.rect_len.x) != 1 || abs(state.rect_len.y) != 1)
 		return 0;
 
 	if ((EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[0] == -1) ||
-			(EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[1] == -1))
+	    (EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[1] == -1))
 		return 0;
-
 
 	return 1;
 }
@@ -402,10 +401,9 @@ void level_editor_cycle_marked_obstacle()
 
 	int idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[state.single_tile_mark_index];
 	add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
-	state.single_tile_mark_index ++;
-	state.rect_nbelem_selected ++;
+	state.single_tile_mark_index++;
+	state.rect_nbelem_selected++;
 }
-
 
 void level_editor_copy_selection()
 {
@@ -421,14 +419,14 @@ void level_editor_copy_selection()
 
 	list_for_each_entry(e, &selected_elements, node) {
 		switch (e->type) {
-			case OBJECT_OBSTACLE:
-				o = MyMalloc(sizeof(obstacle));
-				memcpy(o, e->data, sizeof(obstacle));
+		case OBJECT_OBSTACLE:
+			o = MyMalloc(sizeof(obstacle));
+			memcpy(o, e->data, sizeof(obstacle));
 
-				add_obstacle_to_list(&clipboard_elements, o);
-				break;
-			default:
-				;
+			add_obstacle_to_list(&clipboard_elements, o);
+			break;
+		default:
+			;
 		}
 	}
 }
@@ -446,12 +444,12 @@ void level_editor_cut_selection()
 
 	list_for_each_entry(e, &selected_elements, node) {
 		switch (e->type) {
-			case OBJECT_OBSTACLE:
-				action_remove_obstacle_user(EditLevel(), e->data);
-				nbelem ++;
-				break;
-			default:
-				break;
+		case OBJECT_OBSTACLE:
+			action_remove_obstacle_user(EditLevel(), e->data);
+			nbelem++;
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -465,17 +463,17 @@ void level_editor_paste_selection()
 	struct selected_element *e;
 	obstacle *o;
 	int nbact = 0;
-	moderately_finepoint cmin = { 77777, 7777 }, cmax = { 0, 0}, center;
+	moderately_finepoint cmin = { 77777, 7777 }, cmax = {
+	0, 0}, center;
 
 	if (mode != FD_RECTDONE) {
 		// We get called from the outside so check mode coherency first
 		return;
 	}
 
-
 	list_for_each_entry(e, &clipboard_elements, node) {
 		if (e->type != OBJECT_OBSTACLE)
-			return; //XXX
+			return;	//XXX
 		o = e->data;
 
 		if (o->pos.x < cmin.x)
@@ -501,54 +499,54 @@ void level_editor_paste_selection()
 		o->pos.y += mouse_mapcoord.y;
 
 		// Add and select
-		add_obstacle_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type)); 
+		add_obstacle_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type));
 
-		nbact ++;
+		nbact++;
 	}
 
 	action_push(ACT_MULTIPLE_ACTIONS, nbact);
 }
 
-int leveleditor_select_input(SDL_Event *event)
+int leveleditor_select_input(SDL_Event * event)
 {
 	switch (mode) {
-		case DISABLED:
-			if (EVENT_LEFT_PRESS(event)) {
-				start_rect_select();
-				return 0;
-			}
-			break;
-		case FD_RECT:
-			if (EVENT_LEFT_RELEASE(event)) {
-				end_rect_select();
-				return 1;
-			} else if (EVENT_MOVE(event)) {
-				do_rect_select();
-				return 0;
-			}
-			break;
-		case FD_RECTDONE:
-			if (EVENT_LEFT_PRESS(event)) {
-				if (ShiftPressed()) {
-					start_drag_drop();
-				} else {
-					if (!CtrlPressed()) {
-						clear_selection(-1);
-					}
-					start_rect_select();
+	case DISABLED:
+		if (EVENT_LEFT_PRESS(event)) {
+			start_rect_select();
+			return 0;
+		}
+		break;
+	case FD_RECT:
+		if (EVENT_LEFT_RELEASE(event)) {
+			end_rect_select();
+			return 1;
+		} else if (EVENT_MOVE(event)) {
+			do_rect_select();
+			return 0;
+		}
+		break;
+	case FD_RECTDONE:
+		if (EVENT_LEFT_PRESS(event)) {
+			if (ShiftPressed()) {
+				start_drag_drop();
+			} else {
+				if (!CtrlPressed()) {
+					clear_selection(-1);
 				}
-				return 0;
-			} 
-			break;
-		case DRAGDROP:
-			if (EVENT_LEFT_RELEASE(event)) {
-				end_drag_drop();
-				return 1;
-			} else if (EVENT_MOVE(event)) {
-				do_drag_drop();
-				return 0;
+				start_rect_select();
 			}
-			break;
+			return 0;
+		}
+		break;
+	case DRAGDROP:
+		if (EVENT_LEFT_RELEASE(event)) {
+			end_drag_drop();
+			return 1;
+		} else if (EVENT_MOVE(event)) {
+			do_drag_drop();
+			return 0;
+		}
+		break;
 	}
 
 	return 0;
@@ -556,40 +554,41 @@ int leveleditor_select_input(SDL_Event *event)
 
 int leveleditor_select_display()
 {
-	int r1, r2, r3, r4, c1, c2, c3, c4 ;
-	float zf = GameConfig . zoom_is_on ? lvledit_zoomfact_inv() : 1.0;
-	switch(mode) {
-		case FD_RECT:
-			//display the selection rectangle
-			translate_map_point_to_screen_pixel (state.rect_start.x , state.rect_start.y , &r1, &c1, zf);
-			translate_map_point_to_screen_pixel ( state.rect_start.x , state.rect_start.y + state.rect_len.y , &r2, &c2, zf);
-			translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y + state.rect_len.y , &r3, &c3, zf);
-			translate_map_point_to_screen_pixel ( state.rect_start.x + state.rect_len.x , state.rect_start.y , &r4, &c4, zf);
+	int r1, r2, r3, r4, c1, c2, c3, c4;
+	float zf = GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0;
+	switch (mode) {
+	case FD_RECT:
+		//display the selection rectangle
+		translate_map_point_to_screen_pixel(state.rect_start.x, state.rect_start.y, &r1, &c1, zf);
+		translate_map_point_to_screen_pixel(state.rect_start.x, state.rect_start.y + state.rect_len.y, &r2, &c2, zf);
+		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y + state.rect_len.y, &r3, &c3,
+						    zf);
+		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y, &r4, &c4, zf);
 
-			if (!use_open_gl) {
-				DrawHatchedQuad( Screen, r1, c1, r2, c2, r3, c3, r4, c4, 0x1f, 0x7f, 0x8f );
-			}
+		if (!use_open_gl) {
+			DrawHatchedQuad(Screen, r1, c1, r2, c2, r3, c3, r4, c4, 0x1f, 0x7f, 0x8f);
+		}
 #ifdef HAVE_LIBGL
-			else {
-				glDisable ( GL_TEXTURE_2D );
-				glEnable ( GL_BLEND );
+		else {
+			glDisable(GL_TEXTURE_2D);
+			glEnable(GL_BLEND);
 
-				glColor4ub( 0x1f , 0x7f , 0x8f , 0x8f);
+			glColor4ub(0x1f, 0x7f, 0x8f, 0x8f);
 
-				glBegin(GL_QUADS);
-				glVertex2i(r1, c1);
-				glVertex2i(r2, c2);
-				glVertex2i(r3, c3);
-				glVertex2i(r4, c4);
-				glEnd();
+			glBegin(GL_QUADS);
+			glVertex2i(r1, c1);
+			glVertex2i(r2, c2);
+			glVertex2i(r3, c3);
+			glVertex2i(r4, c4);
+			glEnd();
 
-				glEnable( GL_TEXTURE_2D );
-				glDisable ( GL_BLEND );
-			}
+			glEnable(GL_TEXTURE_2D);
+			glDisable(GL_BLEND);
+		}
 #endif
-			break;
-		default:
-			break;
+		break;
+	default:
+		break;
 	}
 	return 0;
 }

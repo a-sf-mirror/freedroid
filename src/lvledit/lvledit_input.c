@@ -25,7 +25,6 @@
 
 #define _leveleditor_input_c
 
-
 #include "system.h"
 
 #include "defs.h"
@@ -41,13 +40,13 @@
 #include "lvledit/lvledit_menu.h"
 #include "lvledit/lvledit_widgets.h"
 
-static void HandleLevelEditorCursorKeys ( )
+static void HandleLevelEditorCursorKeys()
 {
 	level *EditLevel;
 
-	EditLevel = curShip.AllLevels [ Me . pos . z ] ;
+	EditLevel = curShip.AllLevels[Me.pos.z];
 	static int PressedSince[4] = { 0, 0, 0, 0 };
-	int DoAct[4] = { 0, 0, 0, 0};
+	int DoAct[4] = { 0, 0, 0, 0 };
 	int i;
 	int repeat = 1;
 
@@ -72,7 +71,7 @@ static void HandleLevelEditorCursorKeys ( )
 	if (DownPressed() && PressedSince[2] == 0) {
 		PressedSince[2] = SDL_GetTicks();
 		DoAct[2] = 1;
-	} 
+	}
 	if (UpPressed() && PressedSince[3] == 0) {
 		PressedSince[3] = SDL_GetTicks();
 		DoAct[3] = 1;
@@ -90,21 +89,25 @@ static void HandleLevelEditorCursorKeys ( )
 
 	if (DoAct[0]) {
 		for (i = 0; i < repeat; i++)
-			if (rintf(Me.pos.x) > 0) Me.pos.x-=1;
+			if (rintf(Me.pos.x) > 0)
+				Me.pos.x -= 1;
 	}
-	if (DoAct[1]) { 
+	if (DoAct[1]) {
 		for (i = 0; i < repeat; i++)
-			if (rintf(Me.pos.x) < EditLevel->xlen-1) Me.pos.x+=1;
+			if (rintf(Me.pos.x) < EditLevel->xlen - 1)
+				Me.pos.x += 1;
 	}
 	if (DoAct[2]) {
 		for (i = 0; i < repeat; i++)
-			if (rintf(Me.pos.y) < EditLevel->ylen-1) Me.pos.y+=1;
+			if (rintf(Me.pos.y) < EditLevel->ylen - 1)
+				Me.pos.y += 1;
 	}
 	if (DoAct[3]) {
 		for (i = 0; i < repeat; i++)
-			if (rintf(Me.pos.y) > 0) Me.pos.y-=1;
+			if (rintf(Me.pos.y) > 0)
+				Me.pos.y -= 1;
 	}
-}; // void HandleLevelEditorCursorKeys ( void )
+};				// void HandleLevelEditorCursorKeys ( void )
 
 /**
  * This function automatically scrolls the leveleditor window when the
@@ -112,12 +115,12 @@ static void HandleLevelEditorCursorKeys ( )
  */
 static void level_editor_auto_scroll()
 {
-	float chx = 0, chy = 0; /*Value of the change to player position*/
-	static int edgedate[4] = { 0, 0, 0, 0};
+	float chx = 0, chy = 0;	/*Value of the change to player position */
+	static int edgedate[4] = { 0, 0, 0, 0 };
 
 #define AUTOSCROLL_DELAY 500
 
-	if (GetMousePos_x() < 5) { 
+	if (GetMousePos_x() < 5) {
 		// scroll to the left
 		if (edgedate[0] == 0) {
 			edgedate[0] = SDL_GetTicks();
@@ -129,7 +132,7 @@ static void level_editor_auto_scroll()
 		edgedate[0] = 0;
 	}
 
-	if (GameConfig . screen_width - GetMousePos_x() < 5) { 
+	if (GameConfig.screen_width - GetMousePos_x() < 5) {
 		// scroll to the right
 		if (edgedate[1] == 0) {
 			edgedate[1] = SDL_GetTicks();
@@ -141,7 +144,7 @@ static void level_editor_auto_scroll()
 		edgedate[1] = 0;
 	}
 
-	if (GameConfig . screen_height - GetMousePos_y() < 5) {
+	if (GameConfig.screen_height - GetMousePos_y() < 5) {
 		// scroll down
 		if (edgedate[2] == 0) {
 			edgedate[2] = SDL_GetTicks();
@@ -165,137 +168,137 @@ static void level_editor_auto_scroll()
 		edgedate[3] = 0;
 	}
 
-	Me . pos . x += chx;
-	Me . pos . y += chy;
+	Me.pos.x += chx;
+	Me.pos.y += chy;
 
-	if ( Me . pos . x >= curShip.AllLevels[Me.pos.z]->xlen-1 )
-		Me . pos . x = curShip.AllLevels[Me.pos.z]->xlen-1 ;
-	if ( Me . pos . x <= 0 ) Me . pos . x = 0;
-	if ( Me . pos . y >= curShip.AllLevels[Me.pos.z]->ylen-1 )
-		Me . pos . y = curShip.AllLevels[Me.pos.z]->ylen-1 ;
-	if ( Me . pos . y <= 0 ) Me . pos . y = 0;
-}	
-
-void leveleditor_input_mouse_motion(SDL_Event *event)
-{
-    struct leveleditor_widget *w;
-
-    w = get_active_widget(event->motion.x, event->motion.y);
-
-    if (previously_active_widget != w) {
-	if (w) 
-	    w->mouseenter(event, w);
-	if (previously_active_widget)
-	    previously_active_widget->mouseleave(event, previously_active_widget);
-	previously_active_widget = w;
-    }
-
-    if (w && w->mousemove)
-	w->mousemove(event, w);
+	if (Me.pos.x >= curShip.AllLevels[Me.pos.z]->xlen - 1)
+		Me.pos.x = curShip.AllLevels[Me.pos.z]->xlen - 1;
+	if (Me.pos.x <= 0)
+		Me.pos.x = 0;
+	if (Me.pos.y >= curShip.AllLevels[Me.pos.z]->ylen - 1)
+		Me.pos.y = curShip.AllLevels[Me.pos.z]->ylen - 1;
+	if (Me.pos.y <= 0)
+		Me.pos.y = 0;
 }
 
-void leveleditor_input_mouse_button(SDL_Event *event)
+void leveleditor_input_mouse_motion(SDL_Event * event)
 {
-    struct leveleditor_widget *w;
+	struct leveleditor_widget *w;
 
-    w = get_active_widget(event->button.x, event->button.y);
+	w = get_active_widget(event->motion.x, event->motion.y);
 
-    if (w) {
-	switch (event->type) {
-	    case SDL_MOUSEBUTTONUP:
-		switch(event->button.button) {
-		    case 1:
-			w->mouserelease(event, w);
-			break;
-		    case 3:
-			w->mouserightrelease(event, w);
-			break;
-		    case 4:
-		    case 5:
-			break;
-		    default:
-			break;
-			//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
-		}
-		break;
-	    case SDL_MOUSEBUTTONDOWN:
-		switch(event->button.button) {
-		    case 1:
-			w->mousepress(event, w);
-			break;
-		    case 3:
-			w->mouserightpress(event, w);
-			break;
-		    case 4:
-			w->mousewheelup(event, w);
-			break;
-		    case 5:
-			w->mousewheeldown(event, w);
-			break;
-		    default:
-			break;
-			//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
-		}
-		break;
-	    default:
-		ErrorMessage(__FUNCTION__, "Event type %d sent to leveleditor as a mouse button event is not recognized.\n", PLEASE_INFORM, IS_FATAL, event->type);
+	if (previously_active_widget != w) {
+		if (w)
+			w->mouseenter(event, w);
+		if (previously_active_widget)
+			previously_active_widget->mouseleave(event, previously_active_widget);
+		previously_active_widget = w;
 	}
-    }
+
+	if (w && w->mousemove)
+		w->mousemove(event, w);
 }
 
-void leveleditor_input_keybevent(SDL_Event *event)
+void leveleditor_input_mouse_button(SDL_Event * event)
 {
-    struct leveleditor_widget *w, *n;
-       
-    w = get_active_widget(GetMousePos_x(), GetMousePos_y());
+	struct leveleditor_widget *w;
 
-    // When we get a keyboard event that wasn't handled by the "general" keybinding system,
-    // it means we have something widget- and state- dependant.
-    // We will forward the event to the currently active widget, and if it did not handle it,
-    // forward it to each widget in the list in order.
+	w = get_active_widget(event->button.x, event->button.y);
 
-    if (w && w->keybevent && !w->keybevent(event, w))
-	return;
+	if (w) {
+		switch (event->type) {
+		case SDL_MOUSEBUTTONUP:
+			switch (event->button.button) {
+			case 1:
+				w->mouserelease(event, w);
+				break;
+			case 3:
+				w->mouserightrelease(event, w);
+				break;
+			case 4:
+			case 5:
+				break;
+			default:
+				break;
+				//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event->button.button) {
+			case 1:
+				w->mousepress(event, w);
+				break;
+			case 3:
+				w->mouserightpress(event, w);
+				break;
+			case 4:
+				w->mousewheelup(event, w);
+				break;
+			case 5:
+				w->mousewheeldown(event, w);
+				break;
+			default:
+				break;
+				//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+			}
+			break;
+		default:
+			ErrorMessage(__FUNCTION__, "Event type %d sent to leveleditor as a mouse button event is not recognized.\n",
+				     PLEASE_INFORM, IS_FATAL, event->type);
+		}
+	}
+}
 
-    list_for_each_entry_safe(w, n, &leveleditor_widget_list, node) {
+void leveleditor_input_keybevent(SDL_Event * event)
+{
+	struct leveleditor_widget *w, *n;
+
+	w = get_active_widget(GetMousePos_x(), GetMousePos_y());
+
+	// When we get a keyboard event that wasn't handled by the "general" keybinding system,
+	// it means we have something widget- and state- dependant.
+	// We will forward the event to the currently active widget, and if it did not handle it,
+	// forward it to each widget in the list in order.
+
 	if (w && w->keybevent && !w->keybevent(event, w))
-	    return;
-    }       
+		return;
+
+	list_for_each_entry_safe(w, n, &leveleditor_widget_list, node) {
+		if (w && w->keybevent && !w->keybevent(event, w))
+			return;
+	}
 
 }
 
 void leveleditor_process_input()
 {
-    leveleditor_update_button_states();
-    save_mouse_state();
-    input_handle();
-    
-    HandleLevelEditorCursorKeys();
-   
-    //--------------------
-    // If the person using the level editor pressed w, the waypoint is
-    // toggled on the current square.  That means either removed or added.
-    // And in case of removal, also the connections must be removed.
-    //
-    if (WPressed())	{
-	if (!ShiftPressed()) {
-	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , FALSE );
-	} else {
-	    action_toggle_waypoint ( EditLevel() , EditX(), EditY() , TRUE );
+	leveleditor_update_button_states();
+	save_mouse_state();
+	input_handle();
+
+	HandleLevelEditorCursorKeys();
+
+	//--------------------
+	// If the person using the level editor pressed w, the waypoint is
+	// toggled on the current square.  That means either removed or added.
+	// And in case of removal, also the connections must be removed.
+	//
+	if (WPressed()) {
+		if (!ShiftPressed()) {
+			action_toggle_waypoint(EditLevel(), EditX(), EditY(), FALSE);
+		} else {
+			action_toggle_waypoint(EditLevel(), EditX(), EditY(), TRUE);
+		}
+		while (WPressed())
+			SDL_Delay(1);
 	}
-	while ( WPressed() ) SDL_Delay(1);
-    }
 
-    
-    level_editor_auto_scroll();
+	level_editor_auto_scroll();
 
-    if ( EscapePressed() )
-	{
-	level_editor_done = DoLevelEditorMainMenu ();
+	if (EscapePressed()) {
+		level_editor_done = DoLevelEditorMainMenu();
 	}
-    while( EscapePressed() ) SDL_Delay(1);
-	
-
+	while (EscapePressed())
+		SDL_Delay(1);
 
 }
-

@@ -30,7 +30,6 @@ void leveleditor_menu_mouserightrelease(SDL_Event *, struct leveleditor_widget *
 void leveleditor_menu_mouserightpress(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_menu_mousewheelup(SDL_Event *, struct leveleditor_widget *);
 void leveleditor_menu_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_menu_mousemove(SDL_Event *event, struct leveleditor_widget *w);
+void leveleditor_menu_mousemove(SDL_Event * event, struct leveleditor_widget *w);
 
 void leveleditor_menu_display(struct leveleditor_widget *);
-

@@ -29,11 +29,11 @@
 #endif
 
 void leveleditor_display();
-void draw_connection_between_tiles (float, float, float, float, int);
+void draw_connection_between_tiles(float, float, float, float, int);
 
 float lvledit_zoomfact(void);
 float lvledit_zoomfact_inv(void);
 int lvledit_set_zoomfact(float);
 
-EXTERN char * tooltip_text;
+EXTERN char *tooltip_text;
 EXTERN int tooltip_date;

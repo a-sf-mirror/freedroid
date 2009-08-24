@@ -37,4 +37,3 @@ void leveleditor_typeselect_display(struct leveleditor_widget *);
 
 struct leveleditor_typeselect *get_current_object_type(void);
 void leveleditor_typeselect_init_selected_list(struct leveleditor_typeselect *);
-

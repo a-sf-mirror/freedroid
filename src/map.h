@@ -37,7 +37,6 @@
 
 /* some defines */
 
-
 #define CONNECTION_STRING	"c: "
 #define WHITE_SPACE 		" \t"
 #define MAP_BEGIN_STRING	"beginning_of_map"
@@ -120,8 +119,6 @@
 #define OBSTACLE_LABEL_INDEX_STRING "l"
 #define OBSTACLE_DESCRIPTION_INDEX_STRING "d"
 
-
-
 //--------------------
 // Distance, where door opens 
 //
@@ -148,16 +145,14 @@
 #define H_RANDSPACE		WALLPASS
 #define H_RANDBREITE		(5/64.0)
 
-enum _colornames
-{
-  PD_RED,
-  PD_YELLOW,
-  PD_GREEN,
-  PD_GRAY,
-  PD_BLUE,
-  PD_GREENBLUE,
-  PD_DARK
+enum _colornames {
+	PD_RED,
+	PD_YELLOW,
+	PD_GREEN,
+	PD_GRAY,
+	PD_BLUE,
+	PD_GREENBLUE,
+	PD_DARK
 };
-
 
 #endif

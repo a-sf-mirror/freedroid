@@ -39,9 +39,9 @@
 #include "takeover.h"
 #include "map.h"
 
-enemy * cDroid; 
-Uint32 cur_time;  		// current time in ms 
-SDL_Surface *to_blocks;         // the global surface containing all game-blocks 
+enemy *cDroid;
+Uint32 cur_time;		// current time in ms 
+SDL_Surface *to_blocks;		// the global surface containing all game-blocks 
 
 //--------------------
 // The rectangles containing the blocks for the takeover game
@@ -63,17 +63,17 @@ SDL_Rect ToLeaderRect;
 // Class seperation of the blocks 
 //
 int BlockClass[TO_BLOCKS] = {
-  CONNECTOR,			// cable
-  NON_CONNECTOR,		// end of cable
-  CONNECTOR,			// re-enforcer
-  CONNECTOR,			// color-change
-  CONNECTOR,			// bridge above
-  NON_CONNECTOR,		// bridge middle
-  CONNECTOR,			// bridge below
-  NON_CONNECTOR,		// uniter above
-  CONNECTOR,			// uniter middle
-  NON_CONNECTOR,		// uniter below
-  NON_CONNECTOR			// empty
+	CONNECTOR,		// cable
+	NON_CONNECTOR,		// end of cable
+	CONNECTOR,		// re-enforcer
+	CONNECTOR,		// color-change
+	CONNECTOR,		// bridge above
+	NON_CONNECTOR,		// bridge middle
+	CONNECTOR,		// bridge below
+	NON_CONNECTOR,		// uniter above
+	CONNECTOR,		// uniter middle
+	NON_CONNECTOR,		// uniter below
+	NON_CONNECTOR		// empty
 };
 
 //--------------------
@@ -81,487 +81,465 @@ int BlockClass[TO_BLOCKS] = {
 //
 #define MAX_PROB		100
 int ElementProb[TO_ELEMENTS] = {
-  100,				// EL_KABEL 
-  2,				// EL_KABELENDE 
-  5,				// EL_VERSTAERKER 
-  5,				// EL_FARBTAUSCHER: only on last layer 
-  5,				// EL_VERZWEIGUNG 
-  5				// EL_GATTER 
+	100,			// EL_KABEL 
+	2,			// EL_KABELENDE 
+	5,			// EL_VERSTAERKER 
+	5,			// EL_FARBTAUSCHER: only on last layer 
+	5,			// EL_VERZWEIGUNG 
+	5			// EL_GATTER 
 };
 
-
 int NumCapsules[TO_COLORS] = {
-  0, 0
+	0, 0
 };
 
 point LeftCapsulesStart[TO_COLORS] = {
-  {GELB_LEFT_CAPSULES_X, GELB_LEFT_CAPSULES_Y},
-  {VIOLETT_LEFT_CAPSULES_X, VIOLETT_LEFT_CAPSULES_Y}
+	{GELB_LEFT_CAPSULES_X, GELB_LEFT_CAPSULES_Y},
+	{VIOLETT_LEFT_CAPSULES_X, VIOLETT_LEFT_CAPSULES_Y}
 };
 
 point CurCapsuleStart[TO_COLORS] = {
-  {GELB_CUR_CAPSULE_X, GELB_CUR_CAPSULE_Y},
-  {VIOLETT_CUR_CAPSULE_X, VIOLETT_CUR_CAPSULE_Y}
+	{GELB_CUR_CAPSULE_X, GELB_CUR_CAPSULE_Y},
+	{VIOLETT_CUR_CAPSULE_X, VIOLETT_CUR_CAPSULE_Y}
 };
 
-
 point PlaygroundStart[TO_COLORS] = {
-  {GELB_PLAYGROUND_X, GELB_PLAYGROUND_Y},
-  {VIOLETT_PLAYGROUND_X, VIOLETT_PLAYGROUND_Y}
+	{GELB_PLAYGROUND_X, GELB_PLAYGROUND_Y},
+	{VIOLETT_PLAYGROUND_X, VIOLETT_PLAYGROUND_Y}
 };
 
 point DruidStart[TO_COLORS] = {
-  {GELB_DRUID_X, GELB_DRUID_Y},
-  {VIOLETT_DRUID_X, VIOLETT_DRUID_Y}
+	{GELB_DRUID_X, GELB_DRUID_Y},
+	{VIOLETT_DRUID_X, VIOLETT_DRUID_Y}
 };
 
 int CapsuleCurRow[TO_COLORS] = { 0, 0 };
-
 
 int LeaderColor = GELB;		/* momentary leading color */
 int YourColor = GELB;
 int OpponentColor = VIOLETT;
 int OpponentType;		/* The druid-type of your opponent */
-enemy * cdroid;
+enemy *cdroid;
 
 /* the display  column */
 int DisplayColumn[NUM_LINES] = {
-  GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT,
-  GELB, VIOLETT
+	GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT,
+	GELB, VIOLETT
 };
 
-SDL_Color to_bg_color = {199, 199, 199};
+SDL_Color to_bg_color = { 199, 199, 199 };
 
 playground_t ToPlayground;
 playground_t ActivationMap;
 playground_t CapsuleCountdown;
 
-void EvaluatePlayground ( void );
-float EvaluatePosition ( int color , int row , int layer );
-void AdvancedEnemyTakeoverMovements (void);
+void EvaluatePlayground(void);
+float EvaluatePosition(int color, int row, int layer);
+void AdvancedEnemyTakeoverMovements(void);
 
 /** 
  * Display the picture of a droid
  */
-static void ShowDroidPicture (int PosX, int PosY, int Number )
+static void ShowDroidPicture(int PosX, int PosY, int Number)
 {
-    SDL_Surface *tmp;
-    SDL_Rect target;
-    char ConstructedFileName[5000];
-char fpath[2048];
-    static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
+	SDL_Surface *tmp;
+	SDL_Rect target;
+	char ConstructedFileName[5000];
+	char fpath[2048];
+	static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
 #define NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION 32
-    static SDL_Surface *DroidRotationSurfaces[ NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ] = { NULL } ;
-    SDL_Surface *Whole_Image;
-    int i;
-    int RotationIndex;
-    
-    DebugPrintf ( 2 , "\nvoid ShowDroidPicture(...): Function call confirmed.");
-    
-    if ( !strcmp ( Druidmap[ Number ] . droid_portrait_rotation_series_prefix , "NONE_AVAILABLE_YET" ) )
-	return; // later this should be a default-correction instead
-    
-    //--------------------
-    // Maybe we have to reload the whole image series
-    //
-    if ( strcmp ( LastImageSeriesPrefix , Druidmap [ Number ] . droid_portrait_rotation_series_prefix ) )
-    {
-	//--------------------
-	// Maybe we have to free the series from an old item display first
-	//
-	if ( DroidRotationSurfaces[ 0 ] != NULL )
-	{
-	    for ( i = 1 ; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ; i ++ )
-	    {
-		SDL_FreeSurface ( DroidRotationSurfaces[ i ] ) ;
-	    }
-	}
-	
-	//--------------------
-	// Now we can start to load the whole series into memory
-	//
-	for ( i=0 ; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ; i++ )
-	{
-	    if ( !strcmp ( Druidmap[ Number ] . droid_portrait_rotation_series_prefix , "NONE_AVAILABLE_YET" ) )
-	    {
-		Terminate ( ERR );
-	    }
-	    else
-	    {
-		sprintf ( ConstructedFileName , "droids/%s/portrait_%04d.jpg" , Druidmap[ Number ] . droid_portrait_rotation_series_prefix , i+1 );
-		DebugPrintf ( 1 , "\nConstructedFileName = %s " , ConstructedFileName );
-	    }
-	    
-	    // We must remember, that his is already loaded of course
-	    strcpy ( LastImageSeriesPrefix , Druidmap [ Number ] . droid_portrait_rotation_series_prefix );
-	    
-	    find_file (ConstructedFileName , GRAPHICS_DIR, fpath, 0 );
-	    
-	    Whole_Image = our_IMG_load_wrapper( fpath ); // This is a surface with alpha channel, since the picture is one of this type
-	    if ( Whole_Image == NULL )
-	    {
-		fprintf( stderr, "\n\nfpath: %s. \n" , fpath );
-		ErrorMessage ( __FUNCTION__  , "\
-Freedroid was unable to load an image of a rotated droid into memory.\n\
-This error indicates some installation problem with freedroid.",
-					   PLEASE_INFORM, IS_FATAL );
-	    }
-	    
-	    SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
-	    
-	    DroidRotationSurfaces[i] = our_SDL_display_format_wrapperAlpha( Whole_Image ); // now we have an alpha-surf of right size
-	    SDL_SetColorKey( DroidRotationSurfaces[i] , 0 , 0 ); // this should clear any color key in the dest surface
-	    
-	    SDL_FreeSurface( Whole_Image );
-	}
-    }
+	static SDL_Surface *DroidRotationSurfaces[NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION] = { NULL };
+	SDL_Surface *Whole_Image;
+	int i;
+	int RotationIndex;
 
-    RotationIndex = ( SDL_GetTicks() / 50 ) ;
-    
-    RotationIndex = RotationIndex - ( RotationIndex / NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ) * NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION ;
-    
-    tmp = DroidRotationSurfaces[ RotationIndex ] ;
-    
-    SDL_SetClipRect( Screen , NULL );
-    Set_Rect ( target, PosX, PosY, GameConfig . screen_width, GameConfig . screen_height);
-    our_SDL_blit_surface_wrapper( tmp , NULL, Screen , &target);
-    
-    DebugPrintf ( 2 , "\nvoid ShowDroidPicture(...): Usual end of function reached.");
-    
-}; // void ShowDroidPicture ( ... )
+	DebugPrintf(2, "\nvoid ShowDroidPicture(...): Function call confirmed.");
+
+	if (!strcmp(Druidmap[Number].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
+		return;		// later this should be a default-correction instead
+
+	//--------------------
+	// Maybe we have to reload the whole image series
+	//
+	if (strcmp(LastImageSeriesPrefix, Druidmap[Number].droid_portrait_rotation_series_prefix)) {
+		//--------------------
+		// Maybe we have to free the series from an old item display first
+		//
+		if (DroidRotationSurfaces[0] != NULL) {
+			for (i = 1; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
+				SDL_FreeSurface(DroidRotationSurfaces[i]);
+			}
+		}
+		//--------------------
+		// Now we can start to load the whole series into memory
+		//
+		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
+			if (!strcmp(Druidmap[Number].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
+				Terminate(ERR);
+			} else {
+				sprintf(ConstructedFileName, "droids/%s/portrait_%04d.jpg",
+					Druidmap[Number].droid_portrait_rotation_series_prefix, i + 1);
+				DebugPrintf(1, "\nConstructedFileName = %s ", ConstructedFileName);
+			}
+
+			// We must remember, that his is already loaded of course
+			strcpy(LastImageSeriesPrefix, Druidmap[Number].droid_portrait_rotation_series_prefix);
+
+			find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
+
+			Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
+			if (Whole_Image == NULL) {
+				fprintf(stderr, "\n\nfpath: %s. \n", fpath);
+				ErrorMessage(__FUNCTION__, "\
+Freedroid was unable to load an image of a rotated droid into memory.\n\
+This error indicates some installation problem with freedroid.", PLEASE_INFORM, IS_FATAL);
+			}
+
+			SDL_SetAlpha(Whole_Image, 0, SDL_ALPHA_OPAQUE);
+
+			DroidRotationSurfaces[i] = our_SDL_display_format_wrapperAlpha(Whole_Image);	// now we have an alpha-surf of right size
+			SDL_SetColorKey(DroidRotationSurfaces[i], 0, 0);	// this should clear any color key in the dest surface
+
+			SDL_FreeSurface(Whole_Image);
+		}
+	}
+
+	RotationIndex = (SDL_GetTicks() / 50);
+
+	RotationIndex =
+	    RotationIndex - (RotationIndex / NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION) * NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION;
+
+	tmp = DroidRotationSurfaces[RotationIndex];
+
+	SDL_SetClipRect(Screen, NULL);
+	Set_Rect(target, PosX, PosY, GameConfig.screen_width, GameConfig.screen_height);
+	our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &target);
+
+	DebugPrintf(2, "\nvoid ShowDroidPicture(...): Usual end of function reached.");
+
+};				// void ShowDroidPicture ( ... )
 
 /* ------------------------------------------------------------
  * display infopage page of droidtype
  * does update the screen, no our_SDL_flip_wrapper() necesary !
  * ------------------------------------------------------------ */
-static void ShowDroidInfo ( int droidtype, int Displacement , char ShowArrows )
+static void ShowDroidInfo(int droidtype, int Displacement, char ShowArrows)
 {
-    char *item_name;
-    int type;
-    char InfoText[10000];
-    char TextChunk[2000];
-    
-    //--------------------
-    // We initialize the text rectangle
-    //
-    Cons_Text_Rect . x = 258 * GameConfig . screen_width / 640 ; 
-    Cons_Text_Rect . y = 89 * GameConfig . screen_height / 480 ; 
-    Cons_Text_Rect . w = 346 * GameConfig . screen_width / 640 ; 
-    Cons_Text_Rect . h = 282 * GameConfig . screen_height / 480 ;
-    
-    SDL_SetClipRect ( Screen , NULL );
-    
-    blit_special_background ( ITEM_BROWSER_BG_PIC_BACKGROUND_CODE ) ;
-    
-    ShowDroidPicture ( 45 * GameConfig . screen_width / 640 , 190 * GameConfig . screen_height / 480 , droidtype );
-    
-    //--------------------
-    // We fill out the header area of the items browser.
-    //
-    SetCurrentFont ( Menu_BFont );
-    strcpy ( TextChunk , Druidmap [ droidtype ] . druidname );
-    CutDownStringToMaximalSize ( TextChunk , 225 );
-    PutString ( Screen , 330 * GameConfig . screen_width / 640 , 38 * GameConfig . screen_height / 480 , TextChunk );
-    
-    sprintf( InfoText, _("\
+	char *item_name;
+	int type;
+	char InfoText[10000];
+	char TextChunk[2000];
+
+	//--------------------
+	// We initialize the text rectangle
+	//
+	Cons_Text_Rect.x = 258 * GameConfig.screen_width / 640;
+	Cons_Text_Rect.y = 89 * GameConfig.screen_height / 480;
+	Cons_Text_Rect.w = 346 * GameConfig.screen_width / 640;
+	Cons_Text_Rect.h = 282 * GameConfig.screen_height / 480;
+
+	SDL_SetClipRect(Screen, NULL);
+
+	blit_special_background(ITEM_BROWSER_BG_PIC_BACKGROUND_CODE);
+
+	ShowDroidPicture(45 * GameConfig.screen_width / 640, 190 * GameConfig.screen_height / 480, droidtype);
+
+	//--------------------
+	// We fill out the header area of the items browser.
+	//
+	SetCurrentFont(Menu_BFont);
+	strcpy(TextChunk, Druidmap[droidtype].druidname);
+	CutDownStringToMaximalSize(TextChunk, 225);
+	PutString(Screen, 330 * GameConfig.screen_width / 640, 38 * GameConfig.screen_height / 480, TextChunk);
+
+	sprintf(InfoText, _("\
 Unit type %s\n\
 Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
-    
-    if ( (type = Druidmap[droidtype].weapon_item.type) >= 0) // make sure item=-1 
-	item_name = D_(ItemMap[type].item_name);                 // does not segfault 
-    else 
-	item_name = _("none");
-    
-    sprintf( TextChunk , _("\nArmament : %s\n"),
-	     item_name);
-    strcat ( InfoText , TextChunk );
-    
-    sprintf ( TextChunk , _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));
-    strcat ( InfoText , TextChunk );
-    
-    SetCurrentFont( FPS_Display_BFont );
-    DisplayText (InfoText, Cons_Text_Rect.x, Cons_Text_Rect.y + Displacement , &Cons_Text_Rect , TEXT_STRETCH );
-    
-    if ( ShowArrows ) 
-    {
-	ShowGenericButtonFromList ( UP_BUTTON );
-	ShowGenericButtonFromList ( DOWN_BUTTON );
-    }
-    
-}; // void ShowDroidInfo ( ... )
+
+	if ((type = Druidmap[droidtype].weapon_item.type) >= 0)	// make sure item=-1 
+		item_name = D_(ItemMap[type].item_name);	// does not segfault 
+	else
+		item_name = _("none");
+
+	sprintf(TextChunk, _("\nArmament : %s\n"), item_name);
+	strcat(InfoText, TextChunk);
+
+	sprintf(TextChunk, _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));
+	strcat(InfoText, TextChunk);
+
+	SetCurrentFont(FPS_Display_BFont);
+	DisplayText(InfoText, Cons_Text_Rect.x, Cons_Text_Rect.y + Displacement, &Cons_Text_Rect, TEXT_STRETCH);
+
+	if (ShowArrows) {
+		ShowGenericButtonFromList(UP_BUTTON);
+		ShowGenericButtonFromList(DOWN_BUTTON);
+	}
+
+};				// void ShowDroidInfo ( ... )
 
 /**
  * This function does the countdown where you still can changes your
  * color.
  */
-static void ChooseColor (void)
+static void ChooseColor(void)
 {
-    int countdown = 100;  // duration in 1/10 seconds given for color choosing 
-    int ColorChosen = FALSE;
-    char count_text[80];
-    SDL_Event event;
-    
-    Uint32 prev_count_tick, count_tick_len;
-    
-    count_tick_len = 100; 	// countdown in 1/10 second steps 
+	int countdown = 100;	// duration in 1/10 seconds given for color choosing 
+	int ColorChosen = FALSE;
+	char count_text[80];
+	SDL_Event event;
 
-    prev_count_tick = SDL_GetTicks ();
+	Uint32 prev_count_tick, count_tick_len;
 
-    while (!ColorChosen) {
+	count_tick_len = 100;	// countdown in 1/10 second steps 
 
-	// wait for next countdown tick 
-	while ( SDL_GetTicks() < prev_count_tick + count_tick_len );
-	
-	prev_count_tick += count_tick_len; // set for next tick 
-	
-	while (SDL_PollEvent(&event)) {
+	prev_count_tick = SDL_GetTicks();
 
-	    if (event.type == SDL_QUIT) {
-		Terminate(0);
-	    }
-	    
-	    if (event.type == SDL_MOUSEBUTTONDOWN) {
-		switch(event.button.button) {
-		    //(clever?) hack : mouse wheel up and down behave
-		    //exactly like LEFT and RIGHT arrow, so we mangle the event
-		    case SDL_BUTTON_WHEELUP:
-			event.type = SDL_KEYDOWN;
-			event.key.keysym.sym = SDLK_LEFT;
-			break;
-		    case SDL_BUTTON_WHEELDOWN:
-			event.type = SDL_KEYDOWN;
-			event.key.keysym.sym = SDLK_RIGHT;
-			break;
-		    case SDL_BUTTON_LEFT:
-			ColorChosen = TRUE;
-			break;
+	while (!ColorChosen) {
 
-		    default: break;
+		// wait for next countdown tick 
+		while (SDL_GetTicks() < prev_count_tick + count_tick_len) ;
+
+		prev_count_tick += count_tick_len;	// set for next tick 
+
+		while (SDL_PollEvent(&event)) {
+
+			if (event.type == SDL_QUIT) {
+				Terminate(0);
+			}
+
+			if (event.type == SDL_MOUSEBUTTONDOWN) {
+				switch (event.button.button) {
+					//(clever?) hack : mouse wheel up and down behave
+					//exactly like LEFT and RIGHT arrow, so we mangle the event
+				case SDL_BUTTON_WHEELUP:
+					event.type = SDL_KEYDOWN;
+					event.key.keysym.sym = SDLK_LEFT;
+					break;
+				case SDL_BUTTON_WHEELDOWN:
+					event.type = SDL_KEYDOWN;
+					event.key.keysym.sym = SDLK_RIGHT;
+					break;
+				case SDL_BUTTON_LEFT:
+					ColorChosen = TRUE;
+					break;
+
+				default:
+					break;
+				}
+			}
+
+			/* no else there! (mouse wheel) */
+			if (event.type == SDL_KEYDOWN) {
+				switch (event.key.keysym.sym) {
+				case SDLK_RIGHT:
+					YourColor = VIOLETT;
+					OpponentColor = GELB;
+					break;
+				case SDLK_LEFT:
+					YourColor = GELB;
+					OpponentColor = VIOLETT;
+					break;
+				case SDLK_SPACE:
+					ColorChosen = TRUE;
+					break;
+				default:
+					break;
+				}
+			}
+
 		}
-	    } 
-	    
-	    /* no else there! (mouse wheel) */
-	    if (event.type == SDL_KEYDOWN) { 
-		switch(event.key.keysym.sym) {
-		    case SDLK_RIGHT:
-			YourColor = VIOLETT;
-			OpponentColor = GELB;
-			break;
-		    case SDLK_LEFT:
-			YourColor = GELB;
-			OpponentColor = VIOLETT;
-			break;
-		    case SDLK_SPACE:
+
+		countdown--;	// Count down 
+		sprintf(count_text, _("Color-%d"), countdown);
+
+		ShowPlayground();
+		to_show_banner(count_text, NULL);
+		our_SDL_flip_wrapper();
+
+		if (countdown == 0)
 			ColorChosen = TRUE;
-			break;
-		    default:
-			break;
-		}
-	    }
-	    
-	}
-	
-	countdown--; // Count down 
-	sprintf (count_text, _("Color-%d"), countdown);
-	
-	ShowPlayground ();
-	to_show_banner (count_text, NULL);
-	our_SDL_flip_wrapper();
-	
-	if (countdown == 0)
-	  ColorChosen = TRUE;
-      
-    } // while(!ColorChosen) 
 
-    while (MouseLeftPressed())
-	SDL_Delay(1);
-}; // void ChooseColor ( void ) 
+	}			// while(!ColorChosen) 
 
-static void PlayGame (int countdown)
+	while (MouseLeftPressed())
+		SDL_Delay(1);
+};				// void ChooseColor ( void ) 
+
+static void PlayGame(int countdown)
 {
-  char count_text[80];
-  int FinishTakeover = FALSE;
-  int row;
+	char count_text[80];
+	int FinishTakeover = FALSE;
+	int row;
 
-  Uint32 prev_count_tick, count_tick_len;  /* tick vars for count-down */
-  Uint32 prev_move_tick, move_tick_len;    /* tick vars for motion */
-  int wait_move_ticks;    /* number of move-ticks to wait before "key-repeat" */
+	Uint32 prev_count_tick, count_tick_len;	/* tick vars for count-down */
+	Uint32 prev_move_tick, move_tick_len;	/* tick vars for motion */
+	int wait_move_ticks;	/* number of move-ticks to wait before "key-repeat" */
 
+	int up, down, set;
+	int up_counter, down_counter;
 
-  int up, down, set; 
-  int up_counter, down_counter; 
+	SDL_Event event;
 
-  SDL_Event event;
+	sprintf(count_text, _("Subliminal"));	/* Make sure a value gets assigned to count_text */
+	count_tick_len = 100;	/* countdown in 1/10 second steps */
+	move_tick_len = 60;	/* allow motion at this tick-speed in ms */
 
-  sprintf (count_text, _("Subliminal"));   /* Make sure a value gets assigned to count_text */
-  count_tick_len = 100;   /* countdown in 1/10 second steps */
-  move_tick_len  = 60;    /* allow motion at this tick-speed in ms */
-  
-  up = down = set = FALSE;
-  up_counter = down_counter = 0;
+	up = down = set = FALSE;
+	up_counter = down_counter = 0;
 
-  wait_move_ticks = 2;  
+	wait_move_ticks = 2;
 
-  prev_count_tick = prev_move_tick = SDL_GetTicks (); /* start tick clock */
-  
-  while (!FinishTakeover)
-    {
-      cur_time = SDL_GetTicks ();
+	prev_count_tick = prev_move_tick = SDL_GetTicks();	/* start tick clock */
 
-      /* 
-       * here we register if there have been key-press events in the
-       * "waiting period" between move-ticks :
-       */
-      up   = ( up   | UpPressed() ); 
-      down = ( down | DownPressed() );
-      set  = set  | SpacePressed() | MouseLeftPressed();
+	while (!FinishTakeover) {
+		cur_time = SDL_GetTicks();
 
-      while (SDL_PollEvent(&event)) {
-	  if (event.type == SDL_MOUSEBUTTONDOWN) {
-	      switch (event.button.button) {
-		  case SDL_BUTTON_WHEELUP:
-		      up ++;
-		      break;
-		  case SDL_BUTTON_WHEELDOWN:
-		      down ++;
-		      break;
-		  default:
-		      break;
-	      }
-	  } else if (event.type == SDL_KEYDOWN) {
-	      /* allow for a WIN-key that give immedate victory */
-	      event.key.keysym.mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE); /* We want to ignore "global" modifiers. */
-	      if (event.key.keysym.sym == SDLK_w && (event.key.keysym.mod == (KMOD_LCTRL | KMOD_LALT))) {
-		  LeaderColor = YourColor;   /* simple as that */
-		  return;  /* leave now, to avoid changing of LeaderColor! */
-	      }
-	  } else if (event.type == SDL_QUIT) {
-	      Terminate(0);
-	  }
-      }
+		/* 
+		 * here we register if there have been key-press events in the
+		 * "waiting period" between move-ticks :
+		 */
+		up = (up | UpPressed());
+		down = (down | DownPressed());
+		set = set | SpacePressed() | MouseLeftPressed();
 
-      if (!up) up_counter = 0;    /* reset counters for released keys */
-      if (!down) down_counter =0;
-
-      if ( cur_time > prev_count_tick + count_tick_len ) /* time to count 1 down */
-	{
-	  prev_count_tick += count_tick_len;  /* set for next countdown tick */
-	  countdown--;
-	  sprintf (count_text, _("Finish-%d"), countdown);
-
-	  if (countdown == 0)
-	    FinishTakeover = TRUE;
-
-	  AnimateCurrents ();  /* do some animation on the active cables */
-
-	} /* if (countdown_tick has occurred) */
-
-
-      /* time for movement */
-      if ( cur_time > prev_move_tick + move_tick_len )  
-	{
-	  prev_move_tick += move_tick_len; /* set for next motion tick */
-	  // EnemyMovements ();
-	  AdvancedEnemyTakeoverMovements ();
-
-	  if (up)
-	    {
-	      if (!up_counter || (up_counter > wait_move_ticks) )
-		{
-		  //--------------------
-		  // Here I have to change some things in order to make
-		  // mouse movement work properly with the wheel...
-		  //
-		  // CapsuleCurRow[YourColor]--;
-		  //
-		  CapsuleCurRow[YourColor] -= up;
-
-		  if (CapsuleCurRow[YourColor] < 1)
-		    CapsuleCurRow[YourColor] = NUM_LINES;
+		while (SDL_PollEvent(&event)) {
+			if (event.type == SDL_MOUSEBUTTONDOWN) {
+				switch (event.button.button) {
+				case SDL_BUTTON_WHEELUP:
+					up++;
+					break;
+				case SDL_BUTTON_WHEELDOWN:
+					down++;
+					break;
+				default:
+					break;
+				}
+			} else if (event.type == SDL_KEYDOWN) {
+				/* allow for a WIN-key that give immedate victory */
+				event.key.keysym.mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE);	/* We want to ignore "global" modifiers. */
+				if (event.key.keysym.sym == SDLK_w && (event.key.keysym.mod == (KMOD_LCTRL | KMOD_LALT))) {
+					LeaderColor = YourColor;	/* simple as that */
+					return;	/* leave now, to avoid changing of LeaderColor! */
+				}
+			} else if (event.type == SDL_QUIT) {
+				Terminate(0);
+			}
 		}
-	      up = FALSE;  
-	      up_counter ++;
-	    }
-	  if (down)
-	    {
-	      if (!down_counter || (down_counter > wait_move_ticks))
-		{
-		  //--------------------
-		  // Here I have to change some things in order to make
-		  // mouse movement work properly with the wheel...
-		  //
-		  // CapsuleCurRow[YourColor]++;
-		  //
-		  CapsuleCurRow[YourColor] += down;
 
-		  if (CapsuleCurRow[YourColor] > NUM_LINES)
-		    CapsuleCurRow[YourColor] = 1;
+		if (!up)
+			up_counter = 0;	/* reset counters for released keys */
+		if (!down)
+			down_counter = 0;
+
+		if (cur_time > prev_count_tick + count_tick_len) {	/* time to count 1 down */
+			prev_count_tick += count_tick_len;	/* set for next countdown tick */
+			countdown--;
+			sprintf(count_text, _("Finish-%d"), countdown);
+
+			if (countdown == 0)
+				FinishTakeover = TRUE;
+
+			AnimateCurrents();	/* do some animation on the active cables */
+
 		}
-	      down = FALSE;
-	      down_counter ++;
-	    }
 
-	  if ( set && (NumCapsules[YOU] > 0))
-	    {
-	      set = FALSE;
-	      row = CapsuleCurRow[YourColor] - 1;
-	      if ((row >= 0) &&
-		  (ToPlayground[YourColor][0][row] != KABELENDE) &&
-		  (ActivationMap[YourColor][0][row] == INACTIVE))
-		{
-		  NumCapsules[YOU]--;
-		  CapsuleCurRow[YourColor] = 0;
-		  ToPlayground[YourColor][0][row] = VERSTAERKER;
-		  ActivationMap[YourColor][0][row] = ACTIVE1;
-		  CapsuleCountdown[YourColor][0][row] = CAPSULE_COUNTDOWN * 2;
+		/* if (countdown_tick has occurred) */
+		/* time for movement */
+		if (cur_time > prev_move_tick + move_tick_len) {
+			prev_move_tick += move_tick_len;	/* set for next motion tick */
+			// EnemyMovements ();
+			AdvancedEnemyTakeoverMovements();
 
-		  Takeover_Set_Capsule_Sound ();
+			if (up) {
+				if (!up_counter || (up_counter > wait_move_ticks)) {
+					//--------------------
+					// Here I have to change some things in order to make
+					// mouse movement work properly with the wheel...
+					//
+					// CapsuleCurRow[YourColor]--;
+					//
+					CapsuleCurRow[YourColor] -= up;
 
-		  if (!NumCapsules[YOU]) {
-		      /* You placed your last capsule ? let's speed up the end */
-		      count_tick_len *= 0.75;
-		  }
-		}	/* if (row > 0 && ... ) */
-	    } /* if ( set ) */
+					if (CapsuleCurRow[YourColor] < 1)
+						CapsuleCurRow[YourColor] = NUM_LINES;
+				}
+				up = FALSE;
+				up_counter++;
+			}
+			if (down) {
+				if (!down_counter || (down_counter > wait_move_ticks)) {
+					//--------------------
+					// Here I have to change some things in order to make
+					// mouse movement work properly with the wheel...
+					//
+					// CapsuleCurRow[YourColor]++;
+					//
+					CapsuleCurRow[YourColor] += down;
 
-	  ProcessCapsules ();	/* count down the lifetime of the capsules */
+					if (CapsuleCurRow[YourColor] > NUM_LINES)
+						CapsuleCurRow[YourColor] = 1;
+				}
+				down = FALSE;
+				down_counter++;
+			}
 
-	  ProcessPlayground ();
-	  ProcessPlayground ();
-	  ProcessPlayground ();
-	  ProcessPlayground ();	/* this has to be done several times to be sure */
+			if (set && (NumCapsules[YOU] > 0)) {
+				set = FALSE;
+				row = CapsuleCurRow[YourColor] - 1;
+				if ((row >= 0) &&
+				    (ToPlayground[YourColor][0][row] != KABELENDE) && (ActivationMap[YourColor][0][row] == INACTIVE)) {
+					NumCapsules[YOU]--;
+					CapsuleCurRow[YourColor] = 0;
+					ToPlayground[YourColor][0][row] = VERSTAERKER;
+					ActivationMap[YourColor][0][row] = ACTIVE1;
+					CapsuleCountdown[YourColor][0][row] = CAPSULE_COUNTDOWN * 2;
 
-	  ProcessDisplayColumn ();
+					Takeover_Set_Capsule_Sound();
 
-	} /* if (motion_tick has occurred) */
+					if (!NumCapsules[YOU]) {
+						/* You placed your last capsule ? let's speed up the end */
+						count_tick_len *= 0.75;
+					}
+				}	/* if (row > 0 && ... ) */
+			}
+			/* if ( set ) */
+			ProcessCapsules();	/* count down the lifetime of the capsules */
 
-      ShowPlayground ();
-      to_show_banner (count_text, NULL);
-      our_SDL_flip_wrapper();
-      SDL_Delay(10);
-    }	/* while !FinishTakeover */
+			ProcessPlayground();
+			ProcessPlayground();
+			ProcessPlayground();
+			ProcessPlayground();	/* this has to be done several times to be sure */
 
-  /* Final contdown */
-  countdown = CAPSULE_COUNTDOWN + 10;
+			ProcessDisplayColumn();
 
-  while (countdown--)
-    {
-      // speed this up a little, some people get bored here...
-      //      while ( SDL_GetTicks() < prev_count_tick + count_tick_len ) ;
-      //      prev_count_tick += count_tick_len;
-      ProcessCapsules ();	/* count down the lifetime of the capsules */
-      ProcessCapsules ();	/* do it twice this time to be faster */
-      //      AnimateCurrents ();
-      ProcessPlayground ();
-      ProcessPlayground ();
-      ProcessPlayground ();
-      ProcessPlayground ();	/* this has to be done several times to be sure */
-      ProcessDisplayColumn ();
-      ShowPlayground ();
-      our_SDL_flip_wrapper();
-    }	/* while (countdown) */
+		}
+		/* if (motion_tick has occurred) */
+		ShowPlayground();
+		to_show_banner(count_text, NULL);
+		our_SDL_flip_wrapper();
+		SDL_Delay(10);
+	}			/* while !FinishTakeover */
 
-    return;
+	/* Final contdown */
+	countdown = CAPSULE_COUNTDOWN + 10;
+
+	while (countdown--) {
+		// speed this up a little, some people get bored here...
+		//      while ( SDL_GetTicks() < prev_count_tick + count_tick_len ) ;
+		//      prev_count_tick += count_tick_len;
+		ProcessCapsules();	/* count down the lifetime of the capsules */
+		ProcessCapsules();	/* do it twice this time to be faster */
+		//      AnimateCurrents ();
+		ProcessPlayground();
+		ProcessPlayground();
+		ProcessPlayground();
+		ProcessPlayground();	/* this has to be done several times to be sure */
+		ProcessDisplayColumn();
+		ShowPlayground();
+		our_SDL_flip_wrapper();
+	}			/* while (countdown) */
+
+	return;
 
 }
 
@@ -574,29 +552,27 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 	int old_status;
 
 	old_status = game_status;
-	
-	Activate_Conservative_Frame_Computation ();
-	
+
+	Activate_Conservative_Frame_Computation();
+
 	//--------------------
 	// Maybe takeover graphics haven't been loaded yet.  Then we do this
 	// here now and for once.  Later calls will be ignored inside the function.
 	//
-	GetTakeoverGraphics ( ) ;
+	GetTakeoverGraphics();
 
 	// eat pending events
 	input_handle();
 
-	while (!FinishTakeover)
-		{
+	while (!FinishTakeover) {
 		//--------------------
 		// Init Color-column and Capsule-Number for each opponenet and your color 
 		//
-		for (row = 0; row < NUM_LINES; row++)
-			{
+		for (row = 0; row < NUM_LINES; row++) {
 			DisplayColumn[row] = (row % 2);
 			CapsuleCountdown[GELB][0][row] = -1;
 			CapsuleCountdown[VIOLETT][0][row] = -1;
-			} // for row 
+		}		// for row 
 
 		YourColor = GELB;
 		OpponentColor = VIOLETT;
@@ -606,14 +582,14 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 
 		NumCapsules[YOU] = player_capsules;
 		NumCapsules[ENEMY] = opponent_capsules;
-		InventPlayground ();
+		InventPlayground();
 
-		EvaluatePlayground ();
+		EvaluatePlayground();
 
-		ShowPlayground ();
+		ShowPlayground();
 		our_SDL_flip_wrapper();
 
-		ChooseColor ();
+		ChooseColor();
 
 		//--------------------
 		// This following function plays the takeover game, until one
@@ -629,27 +605,27 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 		// already, maybe not...
 		//
 		if (LeaderColor == YourColor) {
-			Takeover_Game_Won_Sound ();
+			Takeover_Game_Won_Sound();
 			message = _("Complete");
 			FinishTakeover = TRUE;
 			player_won = 1;
 		} else if (LeaderColor == OpponentColor) {
-			Takeover_Game_Lost_Sound ();
+			Takeover_Game_Lost_Sound();
 			message = _("Rejected");
 			FinishTakeover = TRUE;
 			player_won = 0;
 		} else {
-			Takeover_Game_Deadlock_Sound ();
+			Takeover_Game_Deadlock_Sound();
 			message = _("Deadlock");
 		}
 
-		ShowPlayground ();
-		to_show_banner (message, NULL);
+		ShowPlayground();
+		to_show_banner(message, NULL);
 		our_SDL_flip_wrapper();
 		SDL_Delay(100);
 
-		}
-    
+	}
+
 	game_status = old_status;
 	return player_won;
 }
@@ -663,19 +639,19 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
  * finally won/lost.
  *
  *-----------------------------------------------------------------*/
-int droid_takeover(enemy *target)
+int droid_takeover(enemy * target)
 {
 	int Finished = FALSE;
-	int Displacement = 0 ;
+	int Displacement = 0;
 	int reward = 0;
 	SDL_Event event;
-	
+
 	//--------------------
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spent in the menu.
 	//
 	Activate_Conservative_Frame_Computation();
-	
+
 	//--------------------
 	// We set the UserRect to full again, no matter what other windows might
 	// be open right now...
@@ -684,70 +660,64 @@ int droid_takeover(enemy *target)
 	User_Rect.y = 0;
 	User_Rect.w = GameConfig.screen_width;
 	User_Rect.h = GameConfig.screen_height;
-	
-	while (SpacePressed () || MouseLeftPressed()) ;  // make sure space is release before proceed 
-	
-	SwitchBackgroundMusicTo( TAKEOVER_BACKGROUND_MUSIC_SOUND );
-	
+
+	while (SpacePressed() || MouseLeftPressed()) ;	// make sure space is release before proceed 
+
+	SwitchBackgroundMusicTo(TAKEOVER_BACKGROUND_MUSIC_SOUND);
+
 	DisplayBanner();
-	
+
 	if (GameConfig.auto_display_to_help) {
-		PlayATitleFile( "TakeoverInstructions.title" );
+		PlayATitleFile("TakeoverInstructions.title");
 		GameConfig.auto_display_to_help = 0;
 	}
-	
-	while ( !Finished )	{
-		ShowDroidInfo( target->type, Displacement, TRUE );
-		ShowGenericButtonFromList( TAKEOVER_HELP_BUTTON );
+
+	while (!Finished) {
+		ShowDroidInfo(target->type, Displacement, TRUE);
+		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
 		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
-		
+
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
 				Terminate(0);
 			}
-			
+
 			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-				if ( MouseCursorIsOnButton( UP_BUTTON, GetMousePos_x(), GetMousePos_y() ))
-				{
+				if (MouseCursorIsOnButton(UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					MoveMenuPositionSound();
-					Displacement += FontHeight( GetCurrentFont() );
-				}
-				else if ( MouseCursorIsOnButton( DOWN_BUTTON, GetMousePos_x(), GetMousePos_y() ))
-				{
+					Displacement += FontHeight(GetCurrentFont());
+				} else if (MouseCursorIsOnButton(DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					MoveMenuPositionSound();
-					Displacement -= FontHeight( GetCurrentFont () );
-				}
-				else if ( MouseCursorIsOnButton( DRUID_SHOW_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y() )) 
-				{
+					Displacement -= FontHeight(GetCurrentFont());
+				} else if (MouseCursorIsOnButton(DRUID_SHOW_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					Finished = TRUE;
+				} else if (MouseCursorIsOnButton(TAKEOVER_HELP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+					PlayATitleFile("TakeoverInstructions.title");
 				}
-				else if ( MouseCursorIsOnButton( TAKEOVER_HELP_BUTTON, GetMousePos_x(), GetMousePos_y() )) 
-				{
-					PlayATitleFile( "TakeoverInstructions.title" );
-				}
-			} else if (event.type == SDL_KEYDOWN && ((event.key.keysym.sym == SDLK_SPACE) || (event.key.keysym.sym == SDLK_ESCAPE))) {
-				Finished = TRUE ;
-			}	
+			} else if (event.type == SDL_KEYDOWN
+				   && ((event.key.keysym.sym == SDLK_SPACE) || (event.key.keysym.sym == SDLK_ESCAPE))) {
+				Finished = TRUE;
+			}
 		}
 		SDL_Delay(1);
 	}
-	
-	while ( !( !SpacePressed() && !EscapePressed() && !MouseLeftPressed() )) ;
-	
+
+	while (!(!SpacePressed() && !EscapePressed() && !MouseLeftPressed())) ;
+
 	cDroid = target;
 	int player_capsules = 2 + Me.base_skill_level[get_program_index_with_name("Hacking")];
 	int opponent_capsules = 2 + Druidmap[target->type].class;
-	
+
 	if (do_takeover(player_capsules, opponent_capsules, 100)) {
 		/* Won takeover */
 		Me.marker = target->marker;
-		
+
 		reward = Druidmap[target->type].experience_reward * 1;
 		Me.Experience += reward;
-		append_new_game_message( _("For taking control of your enemy, you receive %d experience."), reward );
-		
+		append_new_game_message(_("For taking control of your enemy, you receive %d experience."), reward);
+
 		//--------------------
 		// Maybe the enemy in question was a kind of 'boss monster' or it had
 		// some special item, that is relevant to a mission or quest.  In that
@@ -755,17 +725,16 @@ int droid_takeover(enemy *target)
 		// should be dropped after the successful takeover process, even if the
 		// enemy isn't completely dead yet...
 		//
-		if ( target->on_death_drop_item_code != (-1) )
-		{
+		if (target->on_death_drop_item_code != (-1)) {
 			DropItemAt(target->on_death_drop_item_code, target->pos.z, target->pos.x, target->pos.y, -1, -1, 1);
 			target->on_death_drop_item_code = -1;
-		}  
-		
-		target->is_friendly = TRUE ;
-		target->has_been_taken_over = TRUE ; 
-		
-		target->combat_state = WAYPOINTLESS_WANDERING ;
-		
+		}
+
+		target->is_friendly = TRUE;
+		target->has_been_taken_over = TRUE;
+
+		target->combat_state = WAYPOINTLESS_WANDERING;
+
 		//--------------------
 		// When the bot is taken over, it should not turn hostile when
 		// the rest of his former combat group (identified by having the
@@ -775,305 +744,285 @@ int droid_takeover(enemy *target)
 	} else {
 		Me.energy *= 0.5;
 	}
-	
+
 	cDroid = NULL;
-	
+
 	ClearGraphMem();
-	
-	SwitchBackgroundMusicTo( CURLEVEL()->Background_Song_Name );
-	
-	if ( LeaderColor == YourColor )
+
+	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
+
+	if (LeaderColor == YourColor)
 		return TRUE;
 	else
 		return FALSE;
-	
-}; // int Takeover( int enemynum ) 
+
+};				// int Takeover( int enemynum ) 
 
 /*-----------------------------------------------------------------
  * This function performs the enemy movements in the takeover game.
  *-----------------------------------------------------------------*/
-void
-EnemyMovements (void)
+void EnemyMovements(void)
 {
-  static int Actions = 3;
-  static int MoveProbability = 100;
-  static int TurnProbability = 10;
-  static int SetProbability = 80;
+	static int Actions = 3;
+	static int MoveProbability = 100;
+	static int TurnProbability = 10;
+	static int SetProbability = 80;
 
-  int action;
-  static int direction = 1;	/* start with this direction */
-  int row = CapsuleCurRow[OpponentColor] - 1;
+	int action;
+	static int direction = 1;	/* start with this direction */
+	int row = CapsuleCurRow[OpponentColor] - 1;
 
-  if (NumCapsules[ENEMY] == 0)
-    return;
+	if (NumCapsules[ENEMY] == 0)
+		return;
 
+	action = MyRandom(Actions);
+	switch (action) {
+	case 0:		/* Move along */
+		if (MyRandom(100) <= MoveProbability) {
+			row += direction;
+			if (row > NUM_LINES - 1)
+				row = 0;
+			if (row < 0)
+				row = NUM_LINES - 1;
+		}
+		break;
 
-  action = MyRandom (Actions);
-  switch (action)
-    {
-    case 0:			/* Move along */
-      if (MyRandom (100) <= MoveProbability)
-	{
-	  row += direction;
-	  if (row > NUM_LINES - 1)
-	    row = 0;
-	  if (row < 0)
-	    row = NUM_LINES - 1;
-	}
-      break;
+	case 1:		/* Turn around */
+		if (MyRandom(100) <= TurnProbability) {
+			direction *= -1;
+		}
+		break;
 
-    case 1:			/* Turn around */
-      if (MyRandom (100) <= TurnProbability)
-	{
-	  direction *= -1;
-	}
-      break;
+	case 2:		/* Try to set  capsule */
+		if (MyRandom(100) <= SetProbability) {
+			if ((row >= 0) &&
+			    (ToPlayground[OpponentColor][0][row] != KABELENDE) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
+				NumCapsules[ENEMY]--;
+				Takeover_Set_Capsule_Sound();
+				ToPlayground[OpponentColor][0][row] = VERSTAERKER;
+				ActivationMap[OpponentColor][0][row] = ACTIVE1;
+				CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
+				row = -1;	/* For the next capsule: startpos */
+			}
+		}
+		/* if MyRandom */
+		break;
 
-    case 2:			/* Try to set  capsule */
-      if (MyRandom (100) <= SetProbability)
-	{
-	  if ((row >= 0) &&
-	      (ToPlayground[OpponentColor][0][row] != KABELENDE) &&
-	      (ActivationMap[OpponentColor][0][row] == INACTIVE))
-	    {
-	      NumCapsules[ENEMY]--;
-	      Takeover_Set_Capsule_Sound ();
-	      ToPlayground[OpponentColor][0][row] = VERSTAERKER;
-	      ActivationMap[OpponentColor][0][row] = ACTIVE1;
-	      CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
-	      row = -1;		/* For the next capsule: startpos */
-	    }
-	} /* if MyRandom */
+	default:
+		break;
 
-      break;
+	}			/* switch action */
 
-    default:
-      break;
+	CapsuleCurRow[OpponentColor] = row + 1;
 
-    }	/* switch action */
-
-  CapsuleCurRow[OpponentColor] = row + 1;
-
-  return;
-}	/* EnemyMovements */
+	return;
+}				/* EnemyMovements */
 
 /*-----------------------------------------------------------------
  * This function performs the enemy movements in the takeover game,
  * but it does this in an advaned way, that has not been there in
  * the classic freedroid game.
  *-----------------------------------------------------------------*/
-void
-AdvancedEnemyTakeoverMovements (void)
+void AdvancedEnemyTakeoverMovements(void)
 {
-  // static int Actions = 3;
-  static int MoveProbability = 100;
-  static int TurnProbability = 10;
-  static int SetProbability = 80;
+	// static int Actions = 3;
+	static int MoveProbability = 100;
+	static int TurnProbability = 10;
+	static int SetProbability = 80;
 
-  int action;
-  static int direction = 1;	/* start with this direction */
-  int row = CapsuleCurRow[OpponentColor] - 1;
-  int test_row;
+	int action;
+	static int direction = 1;	/* start with this direction */
+	int row = CapsuleCurRow[OpponentColor] - 1;
+	int test_row;
 
-  int BestTarget = -1 ; 
-  float BestValue = (-10000);  // less than any capsule can have
+	int BestTarget = -1;
+	float BestValue = (-10000);	// less than any capsule can have
 
 #define TAKEOVER_MOVEMENT_DEBUG 1
 
-  if (NumCapsules[ENEMY] == 0)
-    return;
+	if (NumCapsules[ENEMY] == 0)
+		return;
 
-  //--------------------
-  // First we're going to find out which target place is
-  // best choice for the next capsule setting.
-  //
-  for ( test_row = 0 ; test_row < NUM_LINES ; test_row ++ )
-    {
-      if ( EvaluatePosition ( OpponentColor , test_row , 1 ) > BestValue )
-	{
-	  BestTarget = test_row ;
-	  BestValue = EvaluatePosition ( OpponentColor , test_row , 1 ) ;
+	//--------------------
+	// First we're going to find out which target place is
+	// best choice for the next capsule setting.
+	//
+	for (test_row = 0; test_row < NUM_LINES; test_row++) {
+		if (EvaluatePosition(OpponentColor, test_row, 1) > BestValue) {
+			BestTarget = test_row;
+			BestValue = EvaluatePosition(OpponentColor, test_row, 1);
+		}
 	}
-    }
-  DebugPrintf( TAKEOVER_MOVEMENT_DEBUG , "\nBest target row found : %d." , BestTarget );
+	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
 
-  //--------------------
-  // Now we can start to move into the right direction.
-  // Previously this was a pure random choice like
-  //
-  // action = MyRandom (Actions);
-  //
-  // but now we do it differently :)
-  //
-  if ( row < BestTarget )
-    {
-      direction = 1 ;
-      action = 0 ;
-    }
-  else if ( row > BestTarget )
-    {
-      direction = -1;
-      action = 0;
-    }
-  else
-    {
-      action = 2 ;
-    }
-
-  switch (action)
-    {
-    case 0:			/* Move along */
-      if (MyRandom (100) <= MoveProbability)
-	{
-	  row += direction;
-	  if (row > NUM_LINES - 1)
-	    row = 0;
-	  if (row < 0)
-	    row = NUM_LINES - 1;
+	//--------------------
+	// Now we can start to move into the right direction.
+	// Previously this was a pure random choice like
+	//
+	// action = MyRandom (Actions);
+	//
+	// but now we do it differently :)
+	//
+	if (row < BestTarget) {
+		direction = 1;
+		action = 0;
+	} else if (row > BestTarget) {
+		direction = -1;
+		action = 0;
+	} else {
+		action = 2;
 	}
-      break;
 
-    case 1:			/* Turn around */
-      if (MyRandom (100) <= TurnProbability)
-	{
-	  direction *= -1;
-	}
-      break;
+	switch (action) {
+	case 0:		/* Move along */
+		if (MyRandom(100) <= MoveProbability) {
+			row += direction;
+			if (row > NUM_LINES - 1)
+				row = 0;
+			if (row < 0)
+				row = NUM_LINES - 1;
+		}
+		break;
 
-    case 2:			/* Try to set  capsule */
-      if (MyRandom (100) <= SetProbability)
-	{
-	  if ((row >= 0) &&
-	      (ToPlayground[OpponentColor][0][row] != KABELENDE) &&
-	      (ActivationMap[OpponentColor][0][row] == INACTIVE))
-	    {
-	      NumCapsules[ENEMY]--;
-	      Takeover_Set_Capsule_Sound ();
-	      ToPlayground[OpponentColor][0][row] = VERSTAERKER;
-	      ActivationMap[OpponentColor][0][row] = ACTIVE1;
-	      CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
-	      row = -1;		/* For the next capsule: startpos */
-	    }
-	} /* if MyRandom */
+	case 1:		/* Turn around */
+		if (MyRandom(100) <= TurnProbability) {
+			direction *= -1;
+		}
+		break;
 
-      break;
+	case 2:		/* Try to set  capsule */
+		if (MyRandom(100) <= SetProbability) {
+			if ((row >= 0) &&
+			    (ToPlayground[OpponentColor][0][row] != KABELENDE) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
+				NumCapsules[ENEMY]--;
+				Takeover_Set_Capsule_Sound();
+				ToPlayground[OpponentColor][0][row] = VERSTAERKER;
+				ActivationMap[OpponentColor][0][row] = ACTIVE1;
+				CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
+				row = -1;	/* For the next capsule: startpos */
+			}
+		}
+		/* if MyRandom */
+		break;
 
-    default:
-      break;
+	default:
+		break;
 
-    }	/* switch action */
+	}			/* switch action */
 
-  CapsuleCurRow[OpponentColor] = row + 1;
+	CapsuleCurRow[OpponentColor] = row + 1;
 
-  return;
-}; // AdvancedEnemyTakeoverMovements 
+	return;
+};				// AdvancedEnemyTakeoverMovements 
 
 /**
  * This function reads in the takeover game elements for later blitting. 
  * It frees previous SDL-surfaces if they were allocated.  T
  * This allows to use this fct also for theme-switching.
  *-----------------------------------------------------------------*/
-int
-GetTakeoverGraphics (void)
+int GetTakeoverGraphics(void)
 {
-  static int TakeoverGraphicsAreAlreadyLoaded = FALSE ; 
-  int i,j;
-  int curx = 0, cury = 0;
-  SDL_Rect tmp;
-  SDL_Surface* TempLoadSurface;
+	static int TakeoverGraphicsAreAlreadyLoaded = FALSE;
+	int i, j;
+	int curx = 0, cury = 0;
+	SDL_Rect tmp;
+	SDL_Surface *TempLoadSurface;
 
-  //--------------------
-  // Maybe this function has been called before and everything
-  // has been loaded already.  Then of course we don't need to
-  // do anything any more and can just return.
-  //
-  if ( TakeoverGraphicsAreAlreadyLoaded ) return (OK);
+	//--------------------
+	// Maybe this function has been called before and everything
+	// has been loaded already.  Then of course we don't need to
+	// do anything any more and can just return.
+	//
+	if (TakeoverGraphicsAreAlreadyLoaded)
+		return (OK);
 
-  //--------------------
-  // Now we start loading all the takeover graphics.
-  //
-  Set_Rect (tmp, User_Rect.x, User_Rect.y, 0, 0);
-  char fp[2048];
-  find_file ( TO_BLOCK_FILE , GRAPHICS_DIR , fp, 0);
-  TempLoadSurface = our_IMG_load_wrapper ( fp ) ;
-  to_blocks = our_SDL_display_format_wrapperAlpha ( TempLoadSurface ); // the surface is converted
-  SDL_FreeSurface ( TempLoadSurface );
-  if ( use_open_gl ) flip_image_vertically ( to_blocks );
+	//--------------------
+	// Now we start loading all the takeover graphics.
+	//
+	Set_Rect(tmp, User_Rect.x, User_Rect.y, 0, 0);
+	char fp[2048];
+	find_file(TO_BLOCK_FILE, GRAPHICS_DIR, fp, 0);
+	TempLoadSurface = our_IMG_load_wrapper(fp);
+	to_blocks = our_SDL_display_format_wrapperAlpha(TempLoadSurface);	// the surface is converted
+	SDL_FreeSurface(TempLoadSurface);
+	if (use_open_gl)
+		flip_image_vertically(to_blocks);
 
-  // Get the fill-blocks 
-  for ( i = 0 ; i < NUM_FILL_BLOCKS ; i++ , curx += FILL_BLOCK_LEN + 2 )
-    {
-      Set_Rect ( FillRects [ i ] , curx, cury , FILL_BLOCK_LEN , FILL_BLOCK_HEIGHT );
-      FillBlocks [ i ] . surface = rip_rectangle_from_alpha_image ( to_blocks , FillRects [ i ] ) ;
-      if ( use_open_gl ) make_texture_out_of_surface ( & ( FillBlocks [ i ] ) ) ;
-    }
-
-  // Get the capsule blocks 
-  for ( i = 0 ; i < NUM_CAPS_BLOCKS ; i++ , curx += CAPSULE_LEN + 2)
-    {
-      Set_Rect ( CapsuleRects [ i ] , curx , cury , CAPSULE_LEN , CAPSULE_HEIGHT );
-      CapsuleBlocks [ i ] . surface = rip_rectangle_from_alpha_image ( to_blocks , CapsuleRects[i] ) ;
-      if ( use_open_gl ) make_texture_out_of_surface ( & ( CapsuleBlocks [ i ] ) ) ;
-    }
-    
-  // Get the default background color, to be used when no background picture found! 
-  curx += CAPSULE_LEN + 2;
-  curx = 0;
-  cury += FILL_BLOCK_HEIGHT + 2;
-
-  // get the game-blocks 
-  for ( j = 0 ; j < 2 * NUM_PHASES ; j++ )
-    {
-      for ( i = 0 ; i < TO_BLOCKS ; i++ )
-	{
-	  Set_Rect ( ToGameRects [ j * TO_BLOCKS + i ] , curx , cury , TO_BLOCKLEN , TO_BLOCKHEIGHT );
-	  ToGameBlocks [ j * TO_BLOCKS + i ] . surface = rip_rectangle_from_alpha_image ( to_blocks , ToGameRects [ j * TO_BLOCKS + i ] ) ;
-	  if ( use_open_gl ) make_texture_out_of_surface ( & ( ToGameBlocks [ j * TO_BLOCKS + i ] ) ) ;
-	  curx += TO_BLOCKLEN + 2;
+	// Get the fill-blocks 
+	for (i = 0; i < NUM_FILL_BLOCKS; i++, curx += FILL_BLOCK_LEN + 2) {
+		Set_Rect(FillRects[i], curx, cury, FILL_BLOCK_LEN, FILL_BLOCK_HEIGHT);
+		FillBlocks[i].surface = rip_rectangle_from_alpha_image(to_blocks, FillRects[i]);
+		if (use_open_gl)
+			make_texture_out_of_surface(&(FillBlocks[i]));
 	}
-      curx = 0;
-      cury += TO_BLOCKHEIGHT + 2;
-    }
 
-  // Get the ground, column and leader blocks 
-  for ( i = 0 ; i < NUM_GROUND_BLOCKS ; i++ )
-    {
-      Set_Rect ( ToGroundRects [ i ] , curx , cury , GROUNDBLOCKLEN , GROUNDBLOCKHEIGHT );
-      ToGroundBlocks [ i ] . surface = rip_rectangle_from_alpha_image ( to_blocks , ToGroundRects [ i ] ) ;
-      if ( use_open_gl ) make_texture_out_of_surface ( & ( ToGroundBlocks [ i ] ) ) ;
-      curx += GROUNDBLOCKLEN + 2;
-    }
-  cury += GROUNDBLOCKHEIGHT + 2;
-  curx = 0;
+	// Get the capsule blocks 
+	for (i = 0; i < NUM_CAPS_BLOCKS; i++, curx += CAPSULE_LEN + 2) {
+		Set_Rect(CapsuleRects[i], curx, cury, CAPSULE_LEN, CAPSULE_HEIGHT);
+		CapsuleBlocks[i].surface = rip_rectangle_from_alpha_image(to_blocks, CapsuleRects[i]);
+		if (use_open_gl)
+			make_texture_out_of_surface(&(CapsuleBlocks[i]));
+	}
 
-  //--------------------
-  // Now the rectangle for the column blocks will be set and after
-  // that we can create the new surface for blitting.
-  //
-  Set_Rect ( ToColumnRect , curx , cury , COLUMNBLOCKLEN , COLUMNBLOCKHEIGHT );
-  ToColumnBlock . surface = rip_rectangle_from_alpha_image ( to_blocks , ToColumnRect ) ;
-  if ( use_open_gl ) make_texture_out_of_surface ( & ( ToColumnBlock ) ) ;
+	// Get the default background color, to be used when no background picture found! 
+	curx += CAPSULE_LEN + 2;
+	curx = 0;
+	cury += FILL_BLOCK_HEIGHT + 2;
 
-  //--------------------
-  // 
-  curx += COLUMNBLOCKLEN + 2;
+	// get the game-blocks 
+	for (j = 0; j < 2 * NUM_PHASES; j++) {
+		for (i = 0; i < TO_BLOCKS; i++) {
+			Set_Rect(ToGameRects[j * TO_BLOCKS + i], curx, cury, TO_BLOCKLEN, TO_BLOCKHEIGHT);
+			ToGameBlocks[j * TO_BLOCKS + i].surface = rip_rectangle_from_alpha_image(to_blocks, ToGameRects[j * TO_BLOCKS + i]);
+			if (use_open_gl)
+				make_texture_out_of_surface(&(ToGameBlocks[j * TO_BLOCKS + i]));
+			curx += TO_BLOCKLEN + 2;
+		}
+		curx = 0;
+		cury += TO_BLOCKHEIGHT + 2;
+	}
 
-  //--------------------
-  // Now the rectangle for the leader block will be set and after
-  // that we can create the new surface for blitting.
-  //
-  Set_Rect ( ToLeaderRect , curx , cury , LEADERBLOCKLEN , LEADERBLOCKHEIGHT );
-  ToLeaderBlock . surface = rip_rectangle_from_alpha_image ( to_blocks , ToLeaderRect ) ;
-  if ( use_open_gl ) make_texture_out_of_surface ( & ( ToLeaderBlock ) ) ;
+	// Get the ground, column and leader blocks 
+	for (i = 0; i < NUM_GROUND_BLOCKS; i++) {
+		Set_Rect(ToGroundRects[i], curx, cury, GROUNDBLOCKLEN, GROUNDBLOCKHEIGHT);
+		ToGroundBlocks[i].surface = rip_rectangle_from_alpha_image(to_blocks, ToGroundRects[i]);
+		if (use_open_gl)
+			make_texture_out_of_surface(&(ToGroundBlocks[i]));
+		curx += GROUNDBLOCKLEN + 2;
+	}
+	cury += GROUNDBLOCKHEIGHT + 2;
+	curx = 0;
 
-  //--------------------
-  // Now that everything was loaded, we should remember this, so we
-  // don't load anything again next time...
-  //
-  TakeoverGraphicsAreAlreadyLoaded = TRUE ; 
+	//--------------------
+	// Now the rectangle for the column blocks will be set and after
+	// that we can create the new surface for blitting.
+	//
+	Set_Rect(ToColumnRect, curx, cury, COLUMNBLOCKLEN, COLUMNBLOCKHEIGHT);
+	ToColumnBlock.surface = rip_rectangle_from_alpha_image(to_blocks, ToColumnRect);
+	if (use_open_gl)
+		make_texture_out_of_surface(&(ToColumnBlock));
 
-  return OK;
-}; // int GetTakeoverGraphics ( void )
+	//--------------------
+	// 
+	curx += COLUMNBLOCKLEN + 2;
+
+	//--------------------
+	// Now the rectangle for the leader block will be set and after
+	// that we can create the new surface for blitting.
+	//
+	Set_Rect(ToLeaderRect, curx, cury, LEADERBLOCKLEN, LEADERBLOCKHEIGHT);
+	ToLeaderBlock.surface = rip_rectangle_from_alpha_image(to_blocks, ToLeaderRect);
+	if (use_open_gl)
+		make_texture_out_of_surface(&(ToLeaderBlock));
+
+	//--------------------
+	// Now that everything was loaded, we should remember this, so we
+	// don't load anything again next time...
+	//
+	TakeoverGraphicsAreAlreadyLoaded = TRUE;
+
+	return OK;
+};				// int GetTakeoverGraphics ( void )
 
 /* -----------------------------------------------------------------
  * @Desc: prepares _and displays_ the current Playground
@@ -1082,569 +1031,502 @@ GetTakeoverGraphics (void)
  *         so that we can do Infoline-setting before this
  *
  * ----------------------------------------------------------------- */
-void
-ShowPlayground ( void )
+void ShowPlayground(void)
 {
-    int i, j;
-    int color, player;
-    int block;
-    int xoffs, yoffs;
-    SDL_Rect Target_Rect;
-    
-    xoffs = User_Rect.x + ( User_Rect.w - 2 * 290 ) / 2 ;
-    yoffs = User_Rect.y + ( User_Rect.h - 2 * 140 ) / 2 ;
-    
-    //  SDL_SetColorKey (Screen, 0, 0);
-    SDL_SetClipRect (Screen , &User_Rect);
-    
-    blit_special_background ( TAKEOVER_BACKGROUND_CODE );
-    
-    blit_tux ( xoffs + DruidStart [ YourColor ] . x ,
-	       yoffs + DruidStart [ YourColor ] . y + 30);
+	int i, j;
+	int color, player;
+	int block;
+	int xoffs, yoffs;
+	SDL_Rect Target_Rect;
+
+	xoffs = User_Rect.x + (User_Rect.w - 2 * 290) / 2;
+	yoffs = User_Rect.y + (User_Rect.h - 2 * 140) / 2;
+
+	//  SDL_SetColorKey (Screen, 0, 0);
+	SDL_SetClipRect(Screen, &User_Rect);
+
+	blit_special_background(TAKEOVER_BACKGROUND_CODE);
+
+	blit_tux(xoffs + DruidStart[YourColor].x, yoffs + DruidStart[YourColor].y + 30);
 
 	if (cDroid)
-		PutEnemy (cDroid, xoffs + DruidStart[!YourColor].x,
-				yoffs + DruidStart[!YourColor].y , FALSE , FALSE );
-    
-    Set_Rect ( Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y,
-	       User_Rect.w, User_Rect.h);
-    
-    if ( use_open_gl ) 
-	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ GELB_OBEN ] , Target_Rect . x ,
-						  Target_Rect . y ) ;
-    else
-	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ GELB_OBEN ] . surface , NULL , Screen, &Target_Rect );
-    
-    Target_Rect . y += GROUNDBLOCKHEIGHT;
-    
-    for ( i = 0 ; i < 12 ; i++ )
-    {
-	if ( use_open_gl ) 
-	    draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ GELB_MITTE ] , Target_Rect . x ,
-						      Target_Rect . y ) ;
+		PutEnemy(cDroid, xoffs + DruidStart[!YourColor].x, yoffs + DruidStart[!YourColor].y, FALSE, FALSE);
+
+	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
+
+	if (use_open_gl)
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[GELB_OBEN], Target_Rect.x, Target_Rect.y);
 	else
-	    our_SDL_blit_surface_wrapper ( ToGroundBlocks [ GELB_MITTE ] . surface , NULL , Screen, &Target_Rect );
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[GELB_OBEN].surface, NULL, Screen, &Target_Rect);
+
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
-    } 
-    
-    if ( use_open_gl ) 
-	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ GELB_UNTEN ] , Target_Rect . x ,
-						  Target_Rect . y ) ;
-    else
-	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ GELB_UNTEN ] . surface , NULL , Screen, &Target_Rect );
-    
-    // the middle column
-    Set_Rect (Target_Rect, xoffs + MID_OFFS_X, yoffs + MID_OFFS_Y,0, 0);
-    
-    if ( use_open_gl ) 
-	draw_gl_textured_quad_at_screen_position ( &ToLeaderBlock , Target_Rect . x ,
-						  Target_Rect . y ) ;
-    else
-	our_SDL_blit_surface_wrapper ( ToLeaderBlock . surface , NULL , Screen, &Target_Rect);
-    
-    Target_Rect.y += LEADERBLOCKHEIGHT;
-    for ( i = 0 ; i < 12 ; i++ , Target_Rect.y += COLUMNBLOCKHEIGHT )
-    {
-	if ( use_open_gl ) 
-	    draw_gl_textured_quad_at_screen_position ( &ToColumnBlock , Target_Rect . x ,
-						      Target_Rect . y ) ;
-	else
-	    our_SDL_blit_surface_wrapper ( ToColumnBlock . surface , NULL , Screen, &Target_Rect );
-    }
-    
-    
-    // the right column
-    Set_Rect ( Target_Rect , xoffs + RIGHT_OFFS_X , yoffs + RIGHT_OFFS_Y , 0 , 0 );
-    if ( use_open_gl ) 
-	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ VIOLETT_OBEN ] , Target_Rect . x ,
-						  Target_Rect . y ) ;
-    else
-	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ VIOLETT_OBEN ] . surface , NULL , Screen , &Target_Rect );
-    
-    Target_Rect.y += GROUNDBLOCKHEIGHT;
-    
-    for ( i = 0 ; i < 12 ; i++ , Target_Rect.y += GROUNDBLOCKHEIGHT )
-    {
-	if ( use_open_gl ) 
-	    draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ VIOLETT_MITTE ] , Target_Rect . x ,
-						      Target_Rect . y ) ;
-	else
-	    our_SDL_blit_surface_wrapper ( ToGroundBlocks [ VIOLETT_MITTE ] . surface , NULL , Screen, &Target_Rect );
-    }
-    
-    if ( use_open_gl ) 
-	draw_gl_textured_quad_at_screen_position ( &ToGroundBlocks [ VIOLETT_UNTEN ] , Target_Rect . x ,
-						  Target_Rect . y ) ;
-    else
-	our_SDL_blit_surface_wrapper ( ToGroundBlocks [ VIOLETT_UNTEN ] . surface , NULL , Screen, &Target_Rect );
-    
-    // Fill the leader-LED with its color 
-    Set_Rect (Target_Rect, xoffs + LEADERLED_X, yoffs + LEADERLED_Y, 0, 0);
-    if ( use_open_gl ) 
-	draw_gl_textured_quad_at_screen_position ( &FillBlocks [ LeaderColor ] , Target_Rect . x ,
-						  Target_Rect . y ) ;
-    else
-	our_SDL_blit_surface_wrapper ( FillBlocks [ LeaderColor ] . surface , NULL , Screen, &Target_Rect );
-    
-    Target_Rect.y += FILL_BLOCK_HEIGHT;
-    if ( use_open_gl ) 
-	draw_gl_textured_quad_at_screen_position ( &FillBlocks [ LeaderColor ] , Target_Rect . x ,
-						  Target_Rect . y ) ;
-    else
-	our_SDL_blit_surface_wrapper ( FillBlocks [ LeaderColor ] . surface , NULL , Screen, &Target_Rect );
-    
-    // Fill the display column with its colors 
-    for ( i = 0 ; i < NUM_LINES ; i++ )
-    {
-	Set_Rect (Target_Rect, xoffs + LEDCOLUMN_X,
-		  yoffs + LEDCOLUMN_Y + i*(FILL_BLOCK_HEIGHT+2),
-		0, 0);
-	if ( use_open_gl ) 
-	    draw_gl_textured_quad_at_screen_position ( &FillBlocks [ DisplayColumn [ i ] ] , Target_Rect . x ,
-						      Target_Rect . y ) ;
-	else
-	    our_SDL_blit_surface_wrapper ( FillBlocks [ DisplayColumn [ i ] ] . surface , NULL , Screen, &Target_Rect );
-    }
-    
-    
-    // Show the yellow playground 
-    for (i = 0; i < NUM_LAYERS - 1; i++)
-	for (j = 0; j < NUM_LINES; j++)
-	{
-	    Set_Rect (Target_Rect, xoffs + PlaygroundStart[GELB].x + i * TO_BLOCKLEN,
-		      yoffs + PlaygroundStart[GELB].y + j * TO_BLOCKHEIGHT, 0, 0);
-	    block = ToPlayground[GELB][i][j] + ActivationMap[GELB][i][j]*TO_BLOCKS;
-	    if ( use_open_gl ) 
-		draw_gl_textured_quad_at_screen_position ( &ToGameBlocks [ block ] , Target_Rect . x ,
-							  Target_Rect . y ) ;
-	    else
-		our_SDL_blit_surface_wrapper ( ToGameBlocks [ block ] . surface , NULL , Screen, &Target_Rect );
+
+	for (i = 0; i < 12; i++) {
+		if (use_open_gl)
+			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[GELB_MITTE], Target_Rect.x, Target_Rect.y);
+		else
+			our_SDL_blit_surface_wrapper(ToGroundBlocks[GELB_MITTE].surface, NULL, Screen, &Target_Rect);
+		Target_Rect.y += GROUNDBLOCKHEIGHT;
 	}
-    
-    
-    // Show the violett playground 
-    for ( i = 0 ; i < NUM_LAYERS - 1 ; i++ )
-	for ( j = 0 ; j < NUM_LINES ; j++ )
-	{
-	    Set_Rect (Target_Rect,
-		      xoffs + PlaygroundStart[VIOLETT].x +(NUM_LAYERS-i-2)*TO_BLOCKLEN,
-		      yoffs + PlaygroundStart[VIOLETT].y + j * TO_BLOCKHEIGHT, 0, 0);
-	    block = ToPlayground[VIOLETT][i][j]+
-		(NUM_PHASES+ActivationMap[VIOLETT][i][j])*TO_BLOCKS;
-	    if ( use_open_gl ) 
-		draw_gl_textured_quad_at_screen_position ( &ToGameBlocks [ block ] , Target_Rect . x ,
-							  Target_Rect . y ) ;
-	    else
-		our_SDL_blit_surface_wrapper ( ToGameBlocks [ block ] . surface , NULL , Screen, &Target_Rect );
-	}
-    
-    // Show the capsules left for each player 
-    for (player = 0; player < 2; player++)
-    {
-	if (player == YOU)
-	    color = YourColor;
+
+	if (use_open_gl)
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[GELB_UNTEN], Target_Rect.x, Target_Rect.y);
 	else
-	    color = OpponentColor;
-	
-	Set_Rect (Target_Rect, xoffs + CurCapsuleStart[color].x, 
-		  yoffs + CurCapsuleStart[color].y + CapsuleCurRow[color]*(CAPSULE_HEIGHT+2),
-		  0,0);
-	if ( NumCapsules [ player ] )
-	{
-	    if ( use_open_gl ) 
-		draw_gl_textured_quad_at_screen_position ( &CapsuleBlocks [ color ] , Target_Rect . x ,
-							  Target_Rect . y ) ;
-	    else
-		our_SDL_blit_surface_wrapper ( CapsuleBlocks [ color ] . surface , NULL , Screen, &Target_Rect );
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[GELB_UNTEN].surface, NULL, Screen, &Target_Rect);
+
+	// the middle column
+	Set_Rect(Target_Rect, xoffs + MID_OFFS_X, yoffs + MID_OFFS_Y, 0, 0);
+
+	if (use_open_gl)
+		draw_gl_textured_quad_at_screen_position(&ToLeaderBlock, Target_Rect.x, Target_Rect.y);
+	else
+		our_SDL_blit_surface_wrapper(ToLeaderBlock.surface, NULL, Screen, &Target_Rect);
+
+	Target_Rect.y += LEADERBLOCKHEIGHT;
+	for (i = 0; i < 12; i++, Target_Rect.y += COLUMNBLOCKHEIGHT) {
+		if (use_open_gl)
+			draw_gl_textured_quad_at_screen_position(&ToColumnBlock, Target_Rect.x, Target_Rect.y);
+		else
+			our_SDL_blit_surface_wrapper(ToColumnBlock.surface, NULL, Screen, &Target_Rect);
 	}
-	
-	for ( i = 0 ; i < NumCapsules [ player ] - 1 ; i++ )
-	{
-	    Set_Rect ( Target_Rect , xoffs + LeftCapsulesStart [ color ] . x ,
-		       yoffs + LeftCapsulesStart [ color ] . y + i * CAPSULE_HEIGHT , 0 , 0 );
-	    if ( use_open_gl ) 
-		draw_gl_textured_quad_at_screen_position ( &CapsuleBlocks [ color ] , Target_Rect . x ,
-							  Target_Rect . y ) ;
-	    else
-		our_SDL_blit_surface_wrapper ( CapsuleBlocks [ color ] . surface , NULL , Screen, &Target_Rect );
-	} // for capsules 
-    } // for player 
-    
-    return;
-    
-}; // ShowPlayground 
+
+	// the right column
+	Set_Rect(Target_Rect, xoffs + RIGHT_OFFS_X, yoffs + RIGHT_OFFS_Y, 0, 0);
+	if (use_open_gl)
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[VIOLETT_OBEN], Target_Rect.x, Target_Rect.y);
+	else
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[VIOLETT_OBEN].surface, NULL, Screen, &Target_Rect);
+
+	Target_Rect.y += GROUNDBLOCKHEIGHT;
+
+	for (i = 0; i < 12; i++, Target_Rect.y += GROUNDBLOCKHEIGHT) {
+		if (use_open_gl)
+			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[VIOLETT_MITTE], Target_Rect.x, Target_Rect.y);
+		else
+			our_SDL_blit_surface_wrapper(ToGroundBlocks[VIOLETT_MITTE].surface, NULL, Screen, &Target_Rect);
+	}
+
+	if (use_open_gl)
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[VIOLETT_UNTEN], Target_Rect.x, Target_Rect.y);
+	else
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[VIOLETT_UNTEN].surface, NULL, Screen, &Target_Rect);
+
+	// Fill the leader-LED with its color 
+	Set_Rect(Target_Rect, xoffs + LEADERLED_X, yoffs + LEADERLED_Y, 0, 0);
+	if (use_open_gl)
+		draw_gl_textured_quad_at_screen_position(&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
+	else
+		our_SDL_blit_surface_wrapper(FillBlocks[LeaderColor].surface, NULL, Screen, &Target_Rect);
+
+	Target_Rect.y += FILL_BLOCK_HEIGHT;
+	if (use_open_gl)
+		draw_gl_textured_quad_at_screen_position(&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
+	else
+		our_SDL_blit_surface_wrapper(FillBlocks[LeaderColor].surface, NULL, Screen, &Target_Rect);
+
+	// Fill the display column with its colors 
+	for (i = 0; i < NUM_LINES; i++) {
+		Set_Rect(Target_Rect, xoffs + LEDCOLUMN_X, yoffs + LEDCOLUMN_Y + i * (FILL_BLOCK_HEIGHT + 2), 0, 0);
+		if (use_open_gl)
+			draw_gl_textured_quad_at_screen_position(&FillBlocks[DisplayColumn[i]], Target_Rect.x, Target_Rect.y);
+		else
+			our_SDL_blit_surface_wrapper(FillBlocks[DisplayColumn[i]].surface, NULL, Screen, &Target_Rect);
+	}
+
+	// Show the yellow playground 
+	for (i = 0; i < NUM_LAYERS - 1; i++)
+		for (j = 0; j < NUM_LINES; j++) {
+			Set_Rect(Target_Rect, xoffs + PlaygroundStart[GELB].x + i * TO_BLOCKLEN,
+				 yoffs + PlaygroundStart[GELB].y + j * TO_BLOCKHEIGHT, 0, 0);
+			block = ToPlayground[GELB][i][j] + ActivationMap[GELB][i][j] * TO_BLOCKS;
+			if (use_open_gl)
+				draw_gl_textured_quad_at_screen_position(&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
+			else
+				our_SDL_blit_surface_wrapper(ToGameBlocks[block].surface, NULL, Screen, &Target_Rect);
+		}
+
+	// Show the violett playground 
+	for (i = 0; i < NUM_LAYERS - 1; i++)
+		for (j = 0; j < NUM_LINES; j++) {
+			Set_Rect(Target_Rect,
+				 xoffs + PlaygroundStart[VIOLETT].x + (NUM_LAYERS - i - 2) * TO_BLOCKLEN,
+				 yoffs + PlaygroundStart[VIOLETT].y + j * TO_BLOCKHEIGHT, 0, 0);
+			block = ToPlayground[VIOLETT][i][j] + (NUM_PHASES + ActivationMap[VIOLETT][i][j]) * TO_BLOCKS;
+			if (use_open_gl)
+				draw_gl_textured_quad_at_screen_position(&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
+			else
+				our_SDL_blit_surface_wrapper(ToGameBlocks[block].surface, NULL, Screen, &Target_Rect);
+		}
+
+	// Show the capsules left for each player 
+	for (player = 0; player < 2; player++) {
+		if (player == YOU)
+			color = YourColor;
+		else
+			color = OpponentColor;
+
+		Set_Rect(Target_Rect, xoffs + CurCapsuleStart[color].x,
+			 yoffs + CurCapsuleStart[color].y + CapsuleCurRow[color] * (CAPSULE_HEIGHT + 2), 0, 0);
+		if (NumCapsules[player]) {
+			if (use_open_gl)
+				draw_gl_textured_quad_at_screen_position(&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
+			else
+				our_SDL_blit_surface_wrapper(CapsuleBlocks[color].surface, NULL, Screen, &Target_Rect);
+		}
+
+		for (i = 0; i < NumCapsules[player] - 1; i++) {
+			Set_Rect(Target_Rect, xoffs + LeftCapsulesStart[color].x,
+				 yoffs + LeftCapsulesStart[color].y + i * CAPSULE_HEIGHT, 0, 0);
+			if (use_open_gl)
+				draw_gl_textured_quad_at_screen_position(&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
+			else
+				our_SDL_blit_surface_wrapper(CapsuleBlocks[color].surface, NULL, Screen, &Target_Rect);
+		}		// for capsules 
+	}			// for player 
+
+	return;
+
+};				// ShowPlayground 
 
 /*-----------------------------------------------------------------
  * @Desc: Clears Playground (and ActivationMap) to default start-values
  * @Ret:  void
  *
  *-----------------------------------------------------------------*/
-void
-ClearPlayground (void)
+void ClearPlayground(void)
 {
-  int color, layer, row;
+	int color, layer, row;
 
-  for (color = GELB; color < TO_COLORS; color++)
-    for (layer = 0; layer < NUM_LAYERS; layer++)
-      for (row = 0; row < NUM_LINES; row++)
-	{
-	  ActivationMap[color][layer][row] = INACTIVE;
-	  if (layer < TO_COLORS - 1)
-	    ToPlayground[color][layer][row] = KABEL;
-	  else
-	    ToPlayground[color][layer][row] = INACTIVE;
-	}
+	for (color = GELB; color < TO_COLORS; color++)
+		for (layer = 0; layer < NUM_LAYERS; layer++)
+			for (row = 0; row < NUM_LINES; row++) {
+				ActivationMap[color][layer][row] = INACTIVE;
+				if (layer < TO_COLORS - 1)
+					ToPlayground[color][layer][row] = KABEL;
+				else
+					ToPlayground[color][layer][row] = INACTIVE;
+			}
 
-  for (row = 0; row < NUM_LINES; row++)
-    DisplayColumn[row] = row % 2;
+	for (row = 0; row < NUM_LINES; row++)
+		DisplayColumn[row] = row % 2;
 
-}; // void ClearPlayground ( void )
+};				// void ClearPlayground ( void )
 
 /* -----------------------------------------------------------------
  * This function generates a random playground for the takeover game
  * ----------------------------------------------------------------- */
-void
-InventPlayground (void)
+void InventPlayground(void)
 {
-  int anElement;
-  int newElement;
-  int row, layer;
-  int color = GELB;
+	int anElement;
+	int newElement;
+	int row, layer;
+	int color = GELB;
 
-  //--------------------
-  // first clear the playground: we depend on this !! 
-  //
-  ClearPlayground ();
+	//--------------------
+	// first clear the playground: we depend on this !! 
+	//
+	ClearPlayground();
 
-  for (color = GELB; color < TO_COLORS; color++)
-    {
-      for (layer = 1; layer < NUM_LAYERS - 1; layer++)
-	{
-	  for (row = 0; row < NUM_LINES; row++)
-	    {
-	      if (ToPlayground[color][layer][row] != KABEL)
-		continue;
+	for (color = GELB; color < TO_COLORS; color++) {
+		for (layer = 1; layer < NUM_LAYERS - 1; layer++) {
+			for (row = 0; row < NUM_LINES; row++) {
+				if (ToPlayground[color][layer][row] != KABEL)
+					continue;
 
-	      newElement = MyRandom (TO_ELEMENTS);
-	      if (MyRandom (MAX_PROB) > ElementProb[newElement])
-		{
-		  row--;
-		  continue;
-		}
+				newElement = MyRandom(TO_ELEMENTS);
+				if (MyRandom(MAX_PROB) > ElementProb[newElement]) {
+					row--;
+					continue;
+				}
 
-	      switch (newElement)
-		{
-		case EL_KABEL:	/* has not to be set any more */
-		  anElement = ToPlayground[color][layer - 1][row];
-		  if (BlockClass[anElement] == NON_CONNECTOR)
-		    ToPlayground[color][layer][row] = LEER;
-		  break;
+				switch (newElement) {
+				case EL_KABEL:	/* has not to be set any more */
+					anElement = ToPlayground[color][layer - 1][row];
+					if (BlockClass[anElement] == NON_CONNECTOR)
+						ToPlayground[color][layer][row] = LEER;
+					break;
 
-		case EL_KABELENDE:
-		  anElement = ToPlayground[color][layer - 1][row];
-		  if (BlockClass[anElement] == NON_CONNECTOR)
-		    ToPlayground[color][layer][row] = LEER;
-		  else
-		    ToPlayground[color][layer][row] = KABELENDE;
-		  break;
+				case EL_KABELENDE:
+					anElement = ToPlayground[color][layer - 1][row];
+					if (BlockClass[anElement] == NON_CONNECTOR)
+						ToPlayground[color][layer][row] = LEER;
+					else
+						ToPlayground[color][layer][row] = KABELENDE;
+					break;
 
-		case EL_VERSTAERKER:
-		  anElement = ToPlayground[color][layer - 1][row];
-		  if (BlockClass[anElement] == NON_CONNECTOR)
-		    ToPlayground[color][layer][row] = LEER;
-		  else
-		    ToPlayground[color][layer][row] = VERSTAERKER;
-		  break;
+				case EL_VERSTAERKER:
+					anElement = ToPlayground[color][layer - 1][row];
+					if (BlockClass[anElement] == NON_CONNECTOR)
+						ToPlayground[color][layer][row] = LEER;
+					else
+						ToPlayground[color][layer][row] = VERSTAERKER;
+					break;
 
-		case EL_FARBTAUSCHER:
-		  if (layer != 2)
-		    {		/* only existing on layer 2 */
-		      row--;
-		      continue;
-		    }
+				case EL_FARBTAUSCHER:
+					if (layer != 2) {	/* only existing on layer 2 */
+						row--;
+						continue;
+					}
 
-		  anElement = ToPlayground[color][layer - 1][row];
-		  if (BlockClass[anElement] == NON_CONNECTOR)
-		    ToPlayground[color][layer][row] = LEER;
-		  else
-		    ToPlayground[color][layer][row] = FARBTAUSCHER;
-		  break;
+					anElement = ToPlayground[color][layer - 1][row];
+					if (BlockClass[anElement] == NON_CONNECTOR)
+						ToPlayground[color][layer][row] = LEER;
+					else
+						ToPlayground[color][layer][row] = FARBTAUSCHER;
+					break;
 
-		case EL_VERZWEIGUNG:
-		  if (row > NUM_LINES - 3)
-		    {
-		      /* try again */
-		      row--;
-		      break;
-		    }
+				case EL_VERZWEIGUNG:
+					if (row > NUM_LINES - 3) {
+						/* try again */
+						row--;
+						break;
+					}
 
-		  anElement = ToPlayground[color][layer - 1][row + 1];
-		  if (BlockClass[anElement] == NON_CONNECTOR)
-		    {
-		      /* try again */
-		      row--;
-		      break;
-		    }
+					anElement = ToPlayground[color][layer - 1][row + 1];
+					if (BlockClass[anElement] == NON_CONNECTOR) {
+						/* try again */
+						row--;
+						break;
+					}
 
-		  /* dont destroy verzweigungen in prev. layer */
-		  anElement = ToPlayground[color][layer - 1][row];
-		  if (anElement == VERZWEIGUNG_O
-		      || anElement == VERZWEIGUNG_U)
-		    {
-		      row--;
-		      break;
-		    }
-		  anElement = ToPlayground[color][layer - 1][row + 2];
-		  if (anElement == VERZWEIGUNG_O
-		      || anElement == VERZWEIGUNG_U)
-		    {
-		      row--;
-		      break;
-		    }
+					/* dont destroy verzweigungen in prev. layer */
+					anElement = ToPlayground[color][layer - 1][row];
+					if (anElement == VERZWEIGUNG_O || anElement == VERZWEIGUNG_U) {
+						row--;
+						break;
+					}
+					anElement = ToPlayground[color][layer - 1][row + 2];
+					if (anElement == VERZWEIGUNG_O || anElement == VERZWEIGUNG_U) {
+						row--;
+						break;
+					}
 
-		  /* cut off kabels in last layer, if any */
-		  anElement = ToPlayground[color][layer - 1][row];
-		  if (BlockClass[anElement] == CONNECTOR)
-		    ToPlayground[color][layer - 1][row] = KABELENDE;
+					/* cut off kabels in last layer, if any */
+					anElement = ToPlayground[color][layer - 1][row];
+					if (BlockClass[anElement] == CONNECTOR)
+						ToPlayground[color][layer - 1][row] = KABELENDE;
 
-		  anElement = ToPlayground[color][layer - 1][row + 2];
-		  if (BlockClass[anElement] == CONNECTOR)
-		    ToPlayground[color][layer - 1][row + 2] = KABELENDE;
+					anElement = ToPlayground[color][layer - 1][row + 2];
+					if (BlockClass[anElement] == CONNECTOR)
+						ToPlayground[color][layer - 1][row + 2] = KABELENDE;
 
-		  /* set the verzweigung itself */
-		  ToPlayground[color][layer][row] = VERZWEIGUNG_O;
-		  ToPlayground[color][layer][row + 1] = VERZWEIGUNG_M;
-		  ToPlayground[color][layer][row + 2] = VERZWEIGUNG_U;
+					/* set the verzweigung itself */
+					ToPlayground[color][layer][row] = VERZWEIGUNG_O;
+					ToPlayground[color][layer][row + 1] = VERZWEIGUNG_M;
+					ToPlayground[color][layer][row + 2] = VERZWEIGUNG_U;
 
-		  row += 2;
-		  break;
+					row += 2;
+					break;
 
-		case EL_GATTER:
-		  if (row > NUM_LINES - 3)
-		    {
-		      /* try again */
-		      row--;
-		      break;
-		    }
+				case EL_GATTER:
+					if (row > NUM_LINES - 3) {
+						/* try again */
+						row--;
+						break;
+					}
 
-		  anElement = ToPlayground[color][layer - 1][row];
-		  if (BlockClass[anElement] == NON_CONNECTOR)
-		    {
-		      /* try again */
-		      row--;
-		      break;
-		    }
-		  anElement = ToPlayground[color][layer - 1][row + 2];
-		  if (BlockClass[anElement] == NON_CONNECTOR)
-		    {
-		      /* try again */
-		      row--;
-		      break;
-		    }
+					anElement = ToPlayground[color][layer - 1][row];
+					if (BlockClass[anElement] == NON_CONNECTOR) {
+						/* try again */
+						row--;
+						break;
+					}
+					anElement = ToPlayground[color][layer - 1][row + 2];
+					if (BlockClass[anElement] == NON_CONNECTOR) {
+						/* try again */
+						row--;
+						break;
+					}
 
+					/* cut off kabels in last layer, if any */
+					anElement = ToPlayground[color][layer - 1][row + 1];
+					if (BlockClass[anElement] == CONNECTOR)
+						ToPlayground[color][layer - 1][row + 1] = KABELENDE;
 
-		  /* cut off kabels in last layer, if any */
-		  anElement = ToPlayground[color][layer - 1][row + 1];
-		  if (BlockClass[anElement] == CONNECTOR)
-		    ToPlayground[color][layer - 1][row + 1] = KABELENDE;
+					/* set the GATTER itself */
+					ToPlayground[color][layer][row] = GATTER_O;
+					ToPlayground[color][layer][row + 1] = GATTER_M;
+					ToPlayground[color][layer][row + 2] = GATTER_U;
 
-		  /* set the GATTER itself */
-		  ToPlayground[color][layer][row] = GATTER_O;
-		  ToPlayground[color][layer][row + 1] = GATTER_M;
-		  ToPlayground[color][layer][row + 2] = GATTER_U;
+					row += 2;
+					break;
 
-		  row += 2;
-		  break;
+				default:
+					row--;
+					break;
 
-		default:
-		  row--;
-		  break;
+				}	/* switch NewElement */
 
-		}		/* switch NewElement */
+			}	/* for row */
 
-	    }			/* for row */
+		}		/* for layer */
 
-	}			/* for layer */
-
-    }				/* for color */
+	}			/* for color */
 
 }				/* InventPlayground */
 
 /* -----------------------------------------------------------------
  * This function generates a random playground for the takeover game
  * ----------------------------------------------------------------- */
-void
-EvaluatePlayground (void)
+void EvaluatePlayground(void)
 {
-  int newElement;
-  int row, layer;
-  int color = GELB;
-  float ScoreFound [ TO_COLORS ];
+	int newElement;
+	int row, layer;
+	int color = GELB;
+	float ScoreFound[TO_COLORS];
 
 #define EVALUATE_PLAYGROUND_DEBUG 1
 
-  for (color = GELB; color < TO_COLORS; color++)
-    {
-      
-      DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "\n----------------------------------------------------------------------\n\
-Starting to evaluate side nr. %d.  Results displayed below:\n" , color );
-      ScoreFound [ color ] = 0;
+	for (color = GELB; color < TO_COLORS; color++) {
 
-      for (layer = 1; layer < NUM_LAYERS - 1; layer++)
-	{
-	  for (row = 0; row < NUM_LINES; row++)
-	    {
+		DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "\n----------------------------------------------------------------------\n\
+Starting to evaluate side nr. %d.  Results displayed below:\n", color);
+		ScoreFound[color] = 0;
 
-	      // we examine this particular spot
-	      newElement = ToPlayground[color][layer][row] ;
+		for (layer = 1; layer < NUM_LAYERS - 1; layer++) {
+			for (row = 0; row < NUM_LINES; row++) {
 
-	      switch (newElement)
-		{
-		case KABEL:	/* has not to be set any more */
-		case LEER:
-		  break;
+				// we examine this particular spot
+				newElement = ToPlayground[color][layer][row];
 
-		case KABELENDE:
-		  DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "KABELENDE found --> score -= 1.0\n" );
-		  ScoreFound [ color ] -= 1.0 ;
-		  break;
+				switch (newElement) {
+				case KABEL:	/* has not to be set any more */
+				case LEER:
+					break;
 
-		case VERSTAERKER:
-		  DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "VERSTAERKER found --> score += 0.5\n" );
-		  ScoreFound [ color ] += 0.5 ;
-		  break;
+				case KABELENDE:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "KABELENDE found --> score -= 1.0\n");
+					ScoreFound[color] -= 1.0;
+					break;
 
-		case FARBTAUSCHER:
-		  DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "FARBTAUSCHER found --> score -= 1.5\n" );
-		  ScoreFound [ color ] -= 1.5 ;
-		  break;
+				case VERSTAERKER:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "VERSTAERKER found --> score += 0.5\n");
+					ScoreFound[color] += 0.5;
+					break;
 
-		case VERZWEIGUNG_O:
-		case VERZWEIGUNG_U:
-		case VERZWEIGUNG_M:
-		  DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "VERZWEIGUNG found --> score += 1.0\n" );
-		  ScoreFound [ color ] += 1.0 ;
-		  break;
+				case FARBTAUSCHER:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "FARBTAUSCHER found --> score -= 1.5\n");
+					ScoreFound[color] -= 1.5;
+					break;
 
-		case GATTER_M:
-		case GATTER_U:
-		case GATTER_O:
-		  DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "GATTER found --> score -= 1.0\n" );
-		  ScoreFound [ color ] -= 1.0 ;
-		  break;
+				case VERZWEIGUNG_O:
+				case VERZWEIGUNG_U:
+				case VERZWEIGUNG_M:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "VERZWEIGUNG found --> score += 1.0\n");
+					ScoreFound[color] += 1.0;
+					break;
 
-		default:
-		  DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "UNHANDLED TILE FOUND!!\n" );
-		  break;
+				case GATTER_M:
+				case GATTER_U:
+				case GATTER_O:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "GATTER found --> score -= 1.0\n");
+					ScoreFound[color] -= 1.0;
+					break;
 
-		}		/* switch NewElement */
+				default:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "UNHANDLED TILE FOUND!!\n");
+					break;
 
-	    }			/* for row */
+				}	/* switch NewElement */
 
-	}			/* for layer */
+			}	/* for row */
 
-      DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "\nResult for this side:  %f.\n" , ScoreFound [ color ] );
+		}		/* for layer */
 
-    }				/* for color */
+		DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "\nResult for this side:  %f.\n", ScoreFound[color]);
 
-  DebugPrintf ( EVALUATE_PLAYGROUND_DEBUG , "\n----------------------------------------------------------------------\n" );
+	}			/* for color */
 
-}; // EvaluatePlayground 
+	DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "\n----------------------------------------------------------------------\n");
+
+};				// EvaluatePlayground 
 
 /* -----------------------------------------------------------------
  * This function generates a random playground for the takeover game
  * ----------------------------------------------------------------- */
-float
-EvaluatePosition ( int color , int row , int layer )
+float EvaluatePosition(int color, int row, int layer)
 {
-  int newElement;
-  // float ScoreFound [ TO_COLORS ];
+	int newElement;
+	// float ScoreFound [ TO_COLORS ];
 
-#define EVAL_DEBUG 1 
+#define EVAL_DEBUG 1
 
-  DebugPrintf ( EVAL_DEBUG , "\nEvaluatePlaygound ( %d , %d , %d ) called: " , color , row , layer );
+	DebugPrintf(EVAL_DEBUG, "\nEvaluatePlaygound ( %d , %d , %d ) called: ", color, row, layer);
 
-  if ( layer == NUM_LAYERS - 1 )
-    {
-      DebugPrintf ( EVAL_DEBUG , "End layer reached..." );
-      if ( DisplayColumn[row] == color ) 
-	{
-	  DebugPrintf ( EVAL_DEBUG , "same color... returning 0.5 " );
-	  return ( 0.5 );
+	if (layer == NUM_LAYERS - 1) {
+		DebugPrintf(EVAL_DEBUG, "End layer reached...");
+		if (DisplayColumn[row] == color) {
+			DebugPrintf(EVAL_DEBUG, "same color... returning 0.5 ");
+			return (0.5);
+		} else {
+			DebugPrintf(EVAL_DEBUG, "different color... returning 1.5 ");
+			return (1.5);
+		}
 	}
-      else
-	{
-	  DebugPrintf ( EVAL_DEBUG , "different color... returning 1.5 " );
-	  return ( 1.5 );
-	}
-    }
-  
-  newElement = ToPlayground[color][layer][row] ;
 
-  switch (newElement)
-    {
-    case KABEL:	/* has not to be set any more */
-      DebugPrintf ( EVAL_DEBUG , "KABEL reached... continuing..." );
-      return ( EvaluatePosition ( color , row , layer+1 ) ) ;
-    case LEER:
-      DebugPrintf ( EVAL_DEBUG , "LEER reached... stopping..." );
-      return ( 0 );
-      break;
-      
-    case KABELENDE:
-      DebugPrintf ( EVAL_DEBUG , "KABELENDE reached... returning now..." );
-      return ( 0 );
-      break;
-      
-    case VERSTAERKER:
-      DebugPrintf ( EVAL_DEBUG , "VERSTAERKER reached... continuing..." );
-      return ( 1.5 * EvaluatePosition ( color , row , layer+1 ) ) ;
-      break;
-      
-    case FARBTAUSCHER:
-      DebugPrintf ( EVAL_DEBUG , "FARBTAUSCHER reached... continuing..." );
-      return ( -1.5 * EvaluatePosition ( color , row , layer+1 ) );
-      break;
-      
-    case VERZWEIGUNG_O:
-      DebugPrintf ( EVAL_DEBUG , "\nERROR:  REACHED UNREACHABLE SPOT: VERZWEIGUNG_O !!!\n" );
-      return ( 0 );
-      break;
-    case VERZWEIGUNG_U:
-      DebugPrintf ( EVAL_DEBUG , "\nERROR:  REACHED UNREACHABLE SPOT: VERZWEIGUNG_U !!!\n" );
-      return ( 0 );
-      break;
-    case GATTER_M:
-      DebugPrintf ( EVAL_DEBUG , "\nERROR:  REACHED UNREACHABLE SPOT: GATTER_M !!!\n" );
-      return ( 0 );
-      break;
+	newElement = ToPlayground[color][layer][row];
 
-    case VERZWEIGUNG_M:
-      DebugPrintf ( EVAL_DEBUG , "VERZWEIGUNG reached... double-continuing..." );
-      return ( EvaluatePosition ( color , row+1 , layer+1 ) + EvaluatePosition ( color , row-1 , layer+1 ) );
-      break;
-      
+	switch (newElement) {
+	case KABEL:		/* has not to be set any more */
+		DebugPrintf(EVAL_DEBUG, "KABEL reached... continuing...");
+		return (EvaluatePosition(color, row, layer + 1));
+	case LEER:
+		DebugPrintf(EVAL_DEBUG, "LEER reached... stopping...");
+		return (0);
+		break;
 
-    case GATTER_O:
-      DebugPrintf ( EVAL_DEBUG , "GATTER reached... stopping...\n" );
-      return ( 0.3 * EvaluatePosition ( color , row+1 , layer+1 ) ) ;
-      break;
+	case KABELENDE:
+		DebugPrintf(EVAL_DEBUG, "KABELENDE reached... returning now...");
+		return (0);
+		break;
 
-    case GATTER_U:
-      DebugPrintf ( EVAL_DEBUG , "GATTER reached... stopping...\n" );
-      return ( 0.3 * EvaluatePosition ( color , row-1 , layer+1 ) ) ;
-      break;
-      
-    default:
-      DebugPrintf ( EVAL_DEBUG , "\nUNHANDLED TILE reached\n" );
-      break;
-      
-    }	// switch NewElement 
-  
+	case VERSTAERKER:
+		DebugPrintf(EVAL_DEBUG, "VERSTAERKER reached... continuing...");
+		return (1.5 * EvaluatePosition(color, row, layer + 1));
+		break;
 
-  return ( 0 );
+	case FARBTAUSCHER:
+		DebugPrintf(EVAL_DEBUG, "FARBTAUSCHER reached... continuing...");
+		return (-1.5 * EvaluatePosition(color, row, layer + 1));
+		break;
 
-}; // float EvaluatePosition ( col , row , layer )
+	case VERZWEIGUNG_O:
+		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: VERZWEIGUNG_O !!!\n");
+		return (0);
+		break;
+	case VERZWEIGUNG_U:
+		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: VERZWEIGUNG_U !!!\n");
+		return (0);
+		break;
+	case GATTER_M:
+		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: GATTER_M !!!\n");
+		return (0);
+		break;
+
+	case VERZWEIGUNG_M:
+		DebugPrintf(EVAL_DEBUG, "VERZWEIGUNG reached... double-continuing...");
+		return (EvaluatePosition(color, row + 1, layer + 1) + EvaluatePosition(color, row - 1, layer + 1));
+		break;
+
+	case GATTER_O:
+		DebugPrintf(EVAL_DEBUG, "GATTER reached... stopping...\n");
+		return (0.3 * EvaluatePosition(color, row + 1, layer + 1));
+		break;
+
+	case GATTER_U:
+		DebugPrintf(EVAL_DEBUG, "GATTER reached... stopping...\n");
+		return (0.3 * EvaluatePosition(color, row - 1, layer + 1));
+		break;
+
+	default:
+		DebugPrintf(EVAL_DEBUG, "\nUNHANDLED TILE reached\n");
+		break;
+
+	}			// switch NewElement 
+
+	return (0);
+
+};				// float EvaluatePosition ( col , row , layer )
 
 /*-----------------------------------------------------------------
  * @Desc: process the playground following its intrinsic logic
@@ -1652,227 +1534,202 @@ EvaluatePosition ( int color , int row , int layer )
  * @Ret: void
  *
  *-----------------------------------------------------------------*/
-void
-ProcessPlayground (void)
+void ProcessPlayground(void)
 {
-  int color, layer, row;
-  int TurnActive = FALSE;
+	int color, layer, row;
+	int TurnActive = FALSE;
 
-  for (color = GELB; color < TO_COLORS; color++)
-    {
-      for (layer = 1; layer < NUM_LAYERS; layer++)
-	{
-	  for (row = 0; row < NUM_LINES; row++)
-	    {
-	      if (layer == NUM_LAYERS - 1)
-		{
-		  if (IsActive (color, row))
-		    ActivationMap[color][layer][row] = ACTIVE1;
-		  else
-		    ActivationMap[color][layer][row] = INACTIVE;
+	for (color = GELB; color < TO_COLORS; color++) {
+		for (layer = 1; layer < NUM_LAYERS; layer++) {
+			for (row = 0; row < NUM_LINES; row++) {
+				if (layer == NUM_LAYERS - 1) {
+					if (IsActive(color, row))
+						ActivationMap[color][layer][row] = ACTIVE1;
+					else
+						ActivationMap[color][layer][row] = INACTIVE;
 
-		  continue;
-		}		/* if last layer */
+					continue;
+				}
+				/* if last layer */
+				TurnActive = FALSE;
 
-	      TurnActive = FALSE;
+				switch (ToPlayground[color][layer][row]) {
+				case FARBTAUSCHER:
+				case VERZWEIGUNG_M:
+				case GATTER_O:
+				case GATTER_U:
+				case KABEL:
+					if (ActivationMap[color][layer - 1][row] >= ACTIVE1)
+						TurnActive = TRUE;
+					break;
 
-	      switch (ToPlayground[color][layer][row])
-		{
-		case FARBTAUSCHER:
-		case VERZWEIGUNG_M:
-		case GATTER_O:
-		case GATTER_U:
-		case KABEL:
-		  if (ActivationMap[color][layer - 1][row] >= ACTIVE1)
-		    TurnActive = TRUE;
-		  break;
+				case VERSTAERKER:
+					if (ActivationMap[color][layer - 1][row] >= ACTIVE1)
+						TurnActive = TRUE;
 
-		case VERSTAERKER:
-		  if (ActivationMap[color][layer - 1][row] >= ACTIVE1)
-		    TurnActive = TRUE;
+					// additional enforcers stay active by themselves...
+					if (ActivationMap[color][layer][row] >= ACTIVE1)
+						TurnActive = TRUE;
 
-		  // additional enforcers stay active by themselves...
-		  if (ActivationMap[color][layer][row] >= ACTIVE1)
-		    TurnActive = TRUE;
+					break;
 
-		  break;
+				case KABELENDE:
+					break;
 
-		case KABELENDE:
-		  break;
+				case VERZWEIGUNG_O:
+					if (ActivationMap[color][layer][row + 1] >= ACTIVE1)
+						TurnActive = TRUE;
+					break;
 
-		case VERZWEIGUNG_O:
-		  if (ActivationMap[color][layer][row + 1] >= ACTIVE1)
-		    TurnActive = TRUE;
-		  break;
+				case VERZWEIGUNG_U:
+					if (ActivationMap[color][layer][row - 1] >= ACTIVE1)
+						TurnActive = TRUE;
+					break;
 
-		case VERZWEIGUNG_U:
-		  if (ActivationMap[color][layer][row - 1] >= ACTIVE1)
-		    TurnActive = TRUE;
-		  break;
+				case GATTER_M:
+					if ((ActivationMap[color][layer][row - 1] >= ACTIVE1)
+					    && (ActivationMap[color][layer][row + 1] >= ACTIVE1))
+						TurnActive = TRUE;
 
-		case GATTER_M:
-		  if ((ActivationMap[color][layer][row - 1] >= ACTIVE1)
-		      && (ActivationMap[color][layer][row + 1] >= ACTIVE1))
-		    TurnActive = TRUE;
+					break;
 
-		  break;
+				default:
+					break;
+				}	/* switch */
 
-		default:
-		  break;
-		}		/* switch */
+				if (TurnActive) {
+					if (ActivationMap[color][layer][row] == INACTIVE)
+						ActivationMap[color][layer][row] = ACTIVE1;
+					TurnActive = FALSE;
+				} else
+					ActivationMap[color][layer][row] = INACTIVE;
 
-	      if (TurnActive)
-		{
-		  if (ActivationMap[color][layer][row] == INACTIVE)
-		    ActivationMap[color][layer][row] = ACTIVE1;
-		  TurnActive = FALSE;
-		}
-	      else 
-		ActivationMap[color][layer][row] = INACTIVE;
+			}	/* for row */
 
+		}		/* for layer */
 
-	    }			/* for row */
+	}			/* for color */
 
-	}			/* for layer */
-
-    }				/* for color */
-
-  return;
-};  // void ProcessPlayground ( void )
+	return;
+};				// void ProcessPlayground ( void )
 
 /** 
  * This function sets the correct values for the status column in the
  * middle of the takeover game field.
  * Binking leds are realized here as well.
  */
-void
-ProcessDisplayColumn (void)
+void ProcessDisplayColumn(void)
 {
-  static int CLayer = 3;	/* the connection-layer to the Column */
-  static int flicker_color = 0;
-  int row;
-  int GelbCounter, ViolettCounter;
+	static int CLayer = 3;	/* the connection-layer to the Column */
+	static int flicker_color = 0;
+	int row;
+	int GelbCounter, ViolettCounter;
 
-  flicker_color = !flicker_color;
+	flicker_color = !flicker_color;
 
-  for (row = 0; row < NUM_LINES; row++)
-    {
-      // unquestioned yellow
-      if ((ActivationMap[GELB][CLayer][row] >= ACTIVE1) &&
-	  (ActivationMap[VIOLETT][CLayer][row] == INACTIVE))
-	{
-	  // change color?
-	  if (ToPlayground[GELB][CLayer - 1][row] == FARBTAUSCHER)
-	    DisplayColumn[row] = VIOLETT;
-	  else
-	    DisplayColumn[row] = GELB;
-	  continue;
-	}
+	for (row = 0; row < NUM_LINES; row++) {
+		// unquestioned yellow
+		if ((ActivationMap[GELB][CLayer][row] >= ACTIVE1) && (ActivationMap[VIOLETT][CLayer][row] == INACTIVE)) {
+			// change color?
+			if (ToPlayground[GELB][CLayer - 1][row] == FARBTAUSCHER)
+				DisplayColumn[row] = VIOLETT;
+			else
+				DisplayColumn[row] = GELB;
+			continue;
+		}
+		// clearly magenta
+		if ((ActivationMap[GELB][CLayer][row] == INACTIVE) && (ActivationMap[VIOLETT][CLayer][row] >= ACTIVE1)) {
+			// change color?
+			if (ToPlayground[VIOLETT][CLayer - 1][row] == FARBTAUSCHER)
+				DisplayColumn[row] = GELB;
+			else
+				DisplayColumn[row] = VIOLETT;
 
-      // clearly magenta
-      if ((ActivationMap[GELB][CLayer][row] == INACTIVE) &&
-	  (ActivationMap[VIOLETT][CLayer][row] >= ACTIVE1))
-	{
-	  // change color?
-	  if (ToPlayground[VIOLETT][CLayer - 1][row] == FARBTAUSCHER)
-	    DisplayColumn[row] = GELB;
-	  else
-	    DisplayColumn[row] = VIOLETT;
+			continue;
+		}
+		// undecided: flimmering
+		if ((ActivationMap[GELB][CLayer][row] >= ACTIVE1) && (ActivationMap[VIOLETT][CLayer][row] >= ACTIVE1)) {
+			// change color?
+			if ((ToPlayground[GELB][CLayer - 1][row] == FARBTAUSCHER) &&
+			    (ToPlayground[VIOLETT][CLayer - 1][row] != FARBTAUSCHER))
+				DisplayColumn[row] = VIOLETT;
+			else if ((ToPlayground[GELB][CLayer - 1][row] != FARBTAUSCHER) &&
+				 (ToPlayground[VIOLETT][CLayer - 1][row] == FARBTAUSCHER))
+				DisplayColumn[row] = GELB;
+			else {
+				if (flicker_color == 0)
+					DisplayColumn[row] = GELB;
+				else
+					DisplayColumn[row] = VIOLETT;
+			}	/* if - else if - else */
 
-	  continue;
-	}
+		}
+		/* if undecided */
+	}			/* for */
 
-      // undecided: flimmering
-      if ((ActivationMap[GELB][CLayer][row] >= ACTIVE1) &&
-	  (ActivationMap[VIOLETT][CLayer][row] >= ACTIVE1))
-	{
-	  // change color?
-	  if ((ToPlayground[GELB][CLayer - 1][row] == FARBTAUSCHER) &&
-	      (ToPlayground[VIOLETT][CLayer - 1][row] != FARBTAUSCHER))
-	    DisplayColumn[row] = VIOLETT;
-	  else if ((ToPlayground[GELB][CLayer - 1][row] != FARBTAUSCHER) &&
-		   (ToPlayground[VIOLETT][CLayer - 1][row] == FARBTAUSCHER))
-	    DisplayColumn[row] = GELB;
-	  else
-	    {
-	      if (flicker_color == 0)
-		DisplayColumn[row] = GELB;
-	      else
-		DisplayColumn[row] = VIOLETT;
-	    }			/* if - else if - else */
+	// evaluate the winning color
+	GelbCounter = 0;
+	ViolettCounter = 0;
+	for (row = 0; row < NUM_LINES; row++)
+		if (DisplayColumn[row] == GELB)
+			GelbCounter++;
+		else
+			ViolettCounter++;
 
-	}			/* if undecided */
+	if (ViolettCounter < GelbCounter)
+		LeaderColor = GELB;
+	else if (ViolettCounter > GelbCounter)
+		LeaderColor = VIOLETT;
+	else
+		LeaderColor = REMIS;
 
-    }				/* for */
+	//--------------------
+	// In Freedroid, the resistance a droid against the influencers control should
+	// depend on the details of the final takeover score.  Therefore we set this
+	// resistance factor variable here.
+	//
+	Me.Current_Victim_Resistance_Factor = 0.2 * ((float)12 - abs(ViolettCounter - GelbCounter));
 
-  // evaluate the winning color
-  GelbCounter = 0;
-  ViolettCounter = 0;
-  for (row = 0; row < NUM_LINES; row++)
-    if (DisplayColumn[row] == GELB)
-      GelbCounter++;
-    else
-      ViolettCounter++;
-
-  if (ViolettCounter < GelbCounter)
-    LeaderColor = GELB;
-  else if (ViolettCounter > GelbCounter)
-    LeaderColor = VIOLETT;
-  else
-    LeaderColor = REMIS;
-
-  //--------------------
-  // In Freedroid, the resistance a droid against the influencers control should
-  // depend on the details of the final takeover score.  Therefore we set this
-  // resistance factor variable here.
-  //
-  Me.Current_Victim_Resistance_Factor = 0.2 * ( (float) 12 - abs( ViolettCounter- GelbCounter ) );
-
-  return;
-}; // void ProcessDisplayColumn 
+	return;
+};				// void ProcessDisplayColumn 
 
 /** 
  * This function does the countdown of the capsules and kills them if 
  * they are too old.
  */
-void
-ProcessCapsules (void)
+void ProcessCapsules(void)
 {
-  int row;
-  int color;
+	int row;
+	int color;
 
-  for (color = GELB; color <= VIOLETT; color++)
-    for (row = 0; row < NUM_LINES; row++)
-      {
-	if (CapsuleCountdown[color][0][row] > 0)
-	  CapsuleCountdown[color][0][row]--;
+	for (color = GELB; color <= VIOLETT; color++)
+		for (row = 0; row < NUM_LINES; row++) {
+			if (CapsuleCountdown[color][0][row] > 0)
+				CapsuleCountdown[color][0][row]--;
 
-	if (CapsuleCountdown[color][0][row] == 0)
-	  {
-	    CapsuleCountdown[color][0][row] = -1;
-	    ActivationMap[color][0][row] = INACTIVE;
-	    ToPlayground[color][0][row] = KABEL;
-	  }
+			if (CapsuleCountdown[color][0][row] == 0) {
+				CapsuleCountdown[color][0][row] = -1;
+				ActivationMap[color][0][row] = INACTIVE;
+				ToPlayground[color][0][row] = KABEL;
+			}
 
-      } /* for row */
+		}		/* for row */
 
-}; // void ProcessCapsules ( void )
+};				// void ProcessCapsules ( void )
 
 /**
  * This function tells, wether a Column-connection is active or not.
  * It returns TRUE or FALSE accordinly.
  */
-int
-IsActive (int color, int row)
+int IsActive(int color, int row)
 {
-  int CLayer = 3;		/* the connective Layer */
-  int TestElement = ToPlayground[color][CLayer - 1][row];
+	int CLayer = 3;		/* the connective Layer */
+	int TestElement = ToPlayground[color][CLayer - 1][row];
 
-  if ((ActivationMap[color][CLayer-1][row] >= ACTIVE1) &&
-      (BlockClass[TestElement] == CONNECTOR))
-    return TRUE;
-  else
-    return FALSE;
+	if ((ActivationMap[color][CLayer - 1][row] >= ACTIVE1) && (BlockClass[TestElement] == CONNECTOR))
+		return TRUE;
+	else
+		return FALSE;
 }				/* IsActive */
 
 /* -----------------------------------------------------------------
@@ -1880,82 +1737,73 @@ IsActive (int color, int row)
  * over the active phases ACTIVE1-ACTIVE3, which are represented by 
  * different pictures in the playground
  * ----------------------------------------------------------------- */
-void
-AnimateCurrents (void)
+void AnimateCurrents(void)
 {
-  int color, layer, row;
+	int color, layer, row;
 
-  for (color = GELB; color <= VIOLETT; color ++)
-    for (layer = 0; layer < NUM_LAYERS; layer ++)
-      for (row = 0; row < NUM_LINES; row ++)
-	if (ActivationMap[color][layer][row] >= ACTIVE1)
-	  {
-	    ActivationMap[color][layer][row] ++; 
-	    if (ActivationMap[color][layer][row] == NUM_PHASES)
-	      ActivationMap[color][layer][row] = ACTIVE1;
-	  }
+	for (color = GELB; color <= VIOLETT; color++)
+		for (layer = 0; layer < NUM_LAYERS; layer++)
+			for (row = 0; row < NUM_LINES; row++)
+				if (ActivationMap[color][layer][row] >= ACTIVE1) {
+					ActivationMap[color][layer][row]++;
+					if (ActivationMap[color][layer][row] == NUM_PHASES)
+						ActivationMap[color][layer][row] = ACTIVE1;
+				}
 
-  return;
-}; // void AnimateCurrents (void)
+	return;
+};				// void AnimateCurrents (void)
 
 /**
  *
  *
  */
-void
-to_show_banner (const char* left, const char* right)
+void to_show_banner(const char *left, const char *right)
 {
-  char left_box [LEFT_TEXT_LEN + 10];
-  char right_box[RIGHT_TEXT_LEN + 10];
-  int left_len, right_len;   // the actualy string lengths
+	char left_box[LEFT_TEXT_LEN + 10];
+	char right_box[RIGHT_TEXT_LEN + 10];
+	int left_len, right_len;	// the actualy string lengths
 
-  // --------------------
-  // At first the text is prepared.  This can't hurt.
-  // we will decide whether to dispaly it or not later...
-  //
+	// --------------------
+	// At first the text is prepared.  This can't hurt.
+	// we will decide whether to dispaly it or not later...
+	//
 
-  if (left == NULL) 
-    left = "0";
+	if (left == NULL)
+		left = "0";
 
-  if ( right == NULL )
-    {
-      right = "";
-    }
+	if (right == NULL) {
+		right = "";
+	}
+	// Now fill in the text
+	left_len = strlen(left);
+	if (left_len > LEFT_TEXT_LEN) {
+		printf("\nWarning: String %s too long for Left Infoline!!", left);
+		left_len = LEFT_TEXT_LEN;	// too long, so we cut it! 
+		Terminate(ERR);
+	}
+	right_len = strlen(right);
+	if (right_len > RIGHT_TEXT_LEN) {
+		printf("\nWarning: String %s too long for Right Infoline!!", right);
+		right_len = RIGHT_TEXT_LEN;	// too long, so we cut it! 
+		Terminate(ERR);
+	}
+	// Now prepare the left/right text-boxes 
+	memset(left_box, ' ', LEFT_TEXT_LEN);	// pad with spaces 
+	memset(right_box, ' ', RIGHT_TEXT_LEN);
 
-  // Now fill in the text
-  left_len = strlen (left);
-  if( left_len > LEFT_TEXT_LEN )
-    {
-      printf ("\nWarning: String %s too long for Left Infoline!!",left);
-      left_len = LEFT_TEXT_LEN;  // too long, so we cut it! 
-      Terminate(ERR);
-    }
-  right_len = strlen (right);
-  if( right_len > RIGHT_TEXT_LEN )
-    {
-      printf ("\nWarning: String %s too long for Right Infoline!!", right);
-      right_len = RIGHT_TEXT_LEN;  // too long, so we cut it! 
-      Terminate(ERR);
-    }
-  
-  // Now prepare the left/right text-boxes 
-  memset (left_box,  ' ', LEFT_TEXT_LEN);  // pad with spaces 
-  memset (right_box, ' ', RIGHT_TEXT_LEN);  
-  
-  strncpy (left_box,  left, left_len);  // this drops terminating \0 ! 
-  strncpy (right_box, right, left_len);  // this drops terminating \0 ! 
-  
-  left_box [LEFT_TEXT_LEN]  = '\0';     // that's right, we want padding!
-  right_box[RIGHT_TEXT_LEN] = '\0';
-  
-  // Now the text should be ready and its
-  // time to display it...
-  DebugPrintf (2, "Takeover said: %s -- %s\n", left_box, right_box);
-  SetCurrentFont( Para_BFont );
-  DisplayText (left_box, LEFT_INFO_X, LEFT_INFO_Y, NULL , TEXT_STRETCH );
-  DisplayText (right_box, RIGHT_INFO_X, RIGHT_INFO_Y, NULL , TEXT_STRETCH );
+	strncpy(left_box, left, left_len);	// this drops terminating \0 ! 
+	strncpy(right_box, right, left_len);	// this drops terminating \0 ! 
 
-}; // void to_show_banner (const char* left, const char* right)
+	left_box[LEFT_TEXT_LEN] = '\0';	// that's right, we want padding!
+	right_box[RIGHT_TEXT_LEN] = '\0';
 
+	// Now the text should be ready and its
+	// time to display it...
+	DebugPrintf(2, "Takeover said: %s -- %s\n", left_box, right_box);
+	SetCurrentFont(Para_BFont);
+	DisplayText(left_box, LEFT_INFO_X, LEFT_INFO_Y, NULL, TEXT_STRETCH);
+	DisplayText(right_box, RIGHT_INFO_X, RIGHT_INFO_Y, NULL, TEXT_STRETCH);
+
+};				// void to_show_banner (const char* left, const char* right)
 
 #undef _takeover_c

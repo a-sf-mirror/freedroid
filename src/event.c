@@ -40,28 +40,26 @@
 /**
  * Delete all events and event triggers
  */
-static void
-clear_out_event_triggers( void )
+static void clear_out_event_triggers(void)
 {
-    int i;
-    
-    for ( i = 0 ; i < MAX_EVENT_TRIGGERS ; i++ )
-    {
-	AllEventTriggers[i].Influ_Must_Be_At_Level=-1;
-	AllEventTriggers[i].Influ_Must_Be_At_Point.x=-1;
-	AllEventTriggers[i].Influ_Must_Be_At_Point.y=-1;
-	
-	AllEventTriggers[i].enabled=1;
-	
-	if (AllEventTriggers[i].name)
-	    free(AllEventTriggers[i].name);
-	AllEventTriggers[i].name = NULL;
+	int i;
 
-	if (AllEventTriggers[i].lua_code)
-	    free(AllEventTriggers[i].lua_code);	    
-	AllEventTriggers[i].lua_code = NULL;
-    }
-}; // void clear_out_event_triggers(void)
+	for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
+		AllEventTriggers[i].Influ_Must_Be_At_Level = -1;
+		AllEventTriggers[i].Influ_Must_Be_At_Point.x = -1;
+		AllEventTriggers[i].Influ_Must_Be_At_Point.y = -1;
+
+		AllEventTriggers[i].enabled = 1;
+
+		if (AllEventTriggers[i].name)
+			free(AllEventTriggers[i].name);
+		AllEventTriggers[i].name = NULL;
+
+		if (AllEventTriggers[i].lua_code)
+			free(AllEventTriggers[i].lua_code);
+		AllEventTriggers[i].lua_code = NULL;
+	}
+};				// void clear_out_event_triggers(void)
 
 #define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"
 #define EVENT_TRIGGER_END_STRING "* End of trigger *"
@@ -78,84 +76,79 @@ clear_out_event_triggers( void )
  *
  *
  */
-static void decode_event_triggers ( char* EventSectionPointer )
+static void decode_event_triggers(char *EventSectionPointer)
 {
-    char *EventPointer;
-    char *EndOfEvent;
-    int EventTriggerNumber;
-    char* TempMapLabelName;
-    location TempLocation;
-    char s;
+	char *EventPointer;
+	char *EndOfEvent;
+	int EventTriggerNumber;
+	char *TempMapLabelName;
+	location TempLocation;
+	char s;
 
-    EventPointer=EventSectionPointer;
-    EventTriggerNumber=0;
-    while ( ( EventPointer = strstr ( EventPointer , EVENT_TRIGGER_BEGIN_STRING ) ) != NULL)
-    {
-	EventPointer += strlen( EVENT_TRIGGER_BEGIN_STRING ) + 1;
-	
-	EndOfEvent = LocateStringInData ( EventPointer , EVENT_TRIGGER_END_STRING );
-	s = EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1];
-        EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1]	= 0;
+	EventPointer = EventSectionPointer;
+	EventTriggerNumber = 0;
+	while ((EventPointer = strstr(EventPointer, EVENT_TRIGGER_BEGIN_STRING)) != NULL) {
+		EventPointer += strlen(EVENT_TRIGGER_BEGIN_STRING) + 1;
 
-	DebugPrintf ( 1 , "\nStarting to read details of this event trigger section\n\n");
-	
-	//--------------------
-	// Now we decode the details of this event trigger section
-	//
-	
-	// Now we read in the triggering position in x and y and z coordinates
-	TempMapLabelName = 
-	    ReadAndMallocStringFromData ( EventPointer , EVENT_TRIGGER_LABEL_STRING , "\"" ) ;
-	ResolveMapLabelOnShip ( TempMapLabelName , &TempLocation );
-	AllEventTriggers [ EventTriggerNumber ] . Influ_Must_Be_At_Point . x = TempLocation . x ;
-	AllEventTriggers [ EventTriggerNumber ] . Influ_Must_Be_At_Point . y = TempLocation . y ;
-	AllEventTriggers[ EventTriggerNumber ] . Influ_Must_Be_At_Level = TempLocation . level ;
+		EndOfEvent = LocateStringInData(EventPointer, EVENT_TRIGGER_END_STRING);
+		s = EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1];
+		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = 0;
 
-	free ( TempMapLabelName );	
+		DebugPrintf(1, "\nStarting to read details of this event trigger section\n\n");
 
-	AllEventTriggers[EventTriggerNumber].name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
+		//--------------------
+		// Now we decode the details of this event trigger section
+		//
 
-	ReadValueFromStringWithDefault( EventPointer , EVENT_TRIGGER_DELETED_AFTER_TRIGGERING , "%d" , "0",
-			     &AllEventTriggers[ EventTriggerNumber ].DeleteTriggerAfterExecution , EndOfEvent );
-	
-	ReadValueFromStringWithDefault( EventPointer , EVENT_TRIGGER_IS_SILENT_STRING , "%d" , "1",
-			     &AllEventTriggers[ EventTriggerNumber ].silent , EndOfEvent );
-	
-	AllEventTriggers[ EventTriggerNumber ].lua_code = 
-	    ReadAndMallocStringFromData ( EventPointer , EVENT_TRIGGER_LUACODE_STRING , EVENT_TRIGGER_LUACODE_END_STRING ) ;
+		// Now we read in the triggering position in x and y and z coordinates
+		TempMapLabelName = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LABEL_STRING, "\"");
+		ResolveMapLabelOnShip(TempMapLabelName, &TempLocation);
+		AllEventTriggers[EventTriggerNumber].Influ_Must_Be_At_Point.x = TempLocation.x;
+		AllEventTriggers[EventTriggerNumber].Influ_Must_Be_At_Point.y = TempLocation.y;
+		AllEventTriggers[EventTriggerNumber].Influ_Must_Be_At_Level = TempLocation.level;
 
-	ReadValueFromStringWithDefault( EventPointer , EVENT_TRIGGER_ENABLED_STRING , "%d" , "1",
-			     &AllEventTriggers[ EventTriggerNumber ].enabled , EndOfEvent );
-	
-	EventTriggerNumber++;
-	        EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1] = '\0';
+		free(TempMapLabelName);
 
-	EndOfEvent[strlen(EVENT_TRIGGER_END_STRING)-1] = s;
-    } // While Event trigger begin string found...
-    
+		AllEventTriggers[EventTriggerNumber].name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
 
-}; // void decode_event_triggers ( char* EventSectionPointer )
+		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_DELETED_AFTER_TRIGGERING, "%d", "0",
+					       &AllEventTriggers[EventTriggerNumber].DeleteTriggerAfterExecution, EndOfEvent);
+
+		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
+					       &AllEventTriggers[EventTriggerNumber].silent, EndOfEvent);
+
+		AllEventTriggers[EventTriggerNumber].lua_code =
+		    ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
+
+		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_ENABLED_STRING, "%d", "1",
+					       &AllEventTriggers[EventTriggerNumber].enabled, EndOfEvent);
+
+		EventTriggerNumber++;
+		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
+
+		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = s;
+	}			// While Event trigger begin string found...
+
+};				// void decode_event_triggers ( char* EventSectionPointer )
 
 /**
  * This function reads in the game events, i.e. the locations and conditions
  * under which some actions are triggered.
  */
-void GetEventTriggers ( const char* EventsAndEventTriggersFilename )
+void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 {
-  char* EventSectionPointer;
-  char fpath[2048];
+	char *EventSectionPointer;
+	char fpath[2048];
 
-  clear_out_event_triggers();
+	clear_out_event_triggers();
 
-  find_file (EventsAndEventTriggersFilename , MAP_DIR , fpath, 0 );
-  EventSectionPointer = 
-    ReadAndMallocAndTerminateFile( fpath , 
-				   "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***" 
-				   ) ;
+	find_file(EventsAndEventTriggersFilename, MAP_DIR, fpath, 0);
+	EventSectionPointer =
+	    ReadAndMallocAndTerminateFile(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
 
-  decode_event_triggers ( EventSectionPointer );
+	decode_event_triggers(EventSectionPointer);
 
-  free ( EventSectionPointer ) ;
+	free(EventSectionPointer);
 };
 
 /**
@@ -167,79 +160,72 @@ void GetEventTriggers ( const char* EventsAndEventTriggersFilename )
  * they are, we order the apropriate event to be executed.
  *
  */
-void CheckForTriggeredEvents ( )
+void CheckForTriggeredEvents()
 {
-    int i;
-    
-    //--------------------
-    // Now we check if some event trigger is fullfilled.
-    //
-    for ( i = 0 ; i < MAX_EVENT_TRIGGERS ; i++ )
-    {
-	if ( AllEventTriggers[i].enabled == 0 ) continue;  // this trigger is not enabled
-	
-	// --------------------
-	// So at this point we know, that the event trigger is somehow meaningful. 
-	// Fine, so lets check the details, if the event is triggered now
+	int i;
+
+	//--------------------
+	// Now we check if some event trigger is fullfilled.
 	//
-	if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Level ) != CURLEVEL()->levelnum ) continue;
+	for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
+		if (AllEventTriggers[i].enabled == 0)
+			continue;	// this trigger is not enabled
 
-	if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Point.x ) != (int) ( Me . pos.x ) ) continue;
+		// --------------------
+		// So at this point we know, that the event trigger is somehow meaningful. 
+		// Fine, so lets check the details, if the event is triggered now
+		//
+		if (rintf(AllEventTriggers[i].Influ_Must_Be_At_Level) != CURLEVEL()->levelnum)
+			continue;
 
-	if ( rintf( AllEventTriggers[i].Influ_Must_Be_At_Point.y ) != (int) ( Me . pos.y ) ) continue;
+		if (rintf(AllEventTriggers[i].Influ_Must_Be_At_Point.x) != (int)(Me.pos.x))
+			continue;
 
-	run_lua ( AllEventTriggers [ i ] . lua_code ) ;
-	
-	if ( AllEventTriggers[i].DeleteTriggerAfterExecution == 1 )
-	{
-	    AllEventTriggers[i].enabled = 0;
+		if (rintf(AllEventTriggers[i].Influ_Must_Be_At_Point.y) != (int)(Me.pos.y))
+			continue;
+
+		run_lua(AllEventTriggers[i].lua_code);
+
+		if (AllEventTriggers[i].DeleteTriggerAfterExecution == 1) {
+			AllEventTriggers[i].enabled = 0;
+		}
 	}
-    }
 
-}; // CheckForTriggeredEvents(void )
+};				// CheckForTriggeredEvents(void )
 
 /**
  *
  *
  */
-int teleporter_square_below_mouse_cursor ( char* ItemDescText )
+int teleporter_square_below_mouse_cursor(char *ItemDescText)
 {
-    finepoint MapPositionOfMouse;
-    int i;
+	finepoint MapPositionOfMouse;
+	int i;
 
-    if ( MouseCursorIsInUserRect( GetMousePos_x()  , 
-		GetMousePos_y()  ) )
-	{
-	MapPositionOfMouse . x = 
-	    translate_pixel_to_map_location ( (float) input_axis.x , 
-		    (float) input_axis.y , TRUE ) ;
-	MapPositionOfMouse . y = 
-	    translate_pixel_to_map_location ( (float) input_axis.x , 
-		    (float) input_axis.y , FALSE ) ;
+	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
+		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
+		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 
-	for ( i = 0 ; i < MAX_EVENT_TRIGGERS ; i++ )
-	    {
-	    if ( ( ( (int) MapPositionOfMouse . x ) != AllEventTriggers [ i ] . Influ_Must_Be_At_Point . x ) )
-		continue;
-	    if ( ( ( (int) MapPositionOfMouse . y ) != AllEventTriggers [ i ] . Influ_Must_Be_At_Point . y ) )
-		continue;
-	    if ( Me . pos . z != AllEventTriggers [ i ] . Influ_Must_Be_At_Level )
-		continue;
-	    if ( AllEventTriggers[i].silent )
-		continue;
+		for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
+			if ((((int)MapPositionOfMouse.x) != AllEventTriggers[i].Influ_Must_Be_At_Point.x))
+				continue;
+			if ((((int)MapPositionOfMouse.y) != AllEventTriggers[i].Influ_Must_Be_At_Point.y))
+				continue;
+			if (Me.pos.z != AllEventTriggers[i].Influ_Must_Be_At_Level)
+				continue;
+			if (AllEventTriggers[i].silent)
+				continue;
 
-	    // DebugPrintf ( -1000 , "\nSome trigger seems to be here..." );
+			// DebugPrintf ( -1000 , "\nSome trigger seems to be here..." );
 
-	    //--------------------
-	    // Now we know, that the mouse is currently exactly over an event trigger.  The
-	    // question to be answered still is whether this trigger also triggers a teleporter
-	    // action or not and if yes, where the connection leads to...
-	    //
-	    sprintf ( ItemDescText , "%s..." , D_(AllEventTriggers[i].name) ) ;
-	    return ( TRUE );
-	    }
+			//--------------------
+			// Now we know, that the mouse is currently exactly over an event trigger.  The
+			// question to be answered still is whether this trigger also triggers a teleporter
+			// action or not and if yes, where the connection leads to...
+			//
+			sprintf(ItemDescText, "%s...", D_(AllEventTriggers[i].name));
+			return (TRUE);
+		}
 	}
-    return ( FALSE );
-}; // void teleporter_square_below_mouse_cursor ( char* ItemDescText )
-
-
+	return (FALSE);
+};				// void teleporter_square_below_mouse_cursor ( char* ItemDescText )

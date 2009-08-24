@@ -39,10 +39,10 @@
 
 #include <zlib.h>
 
-void load_item_surfaces_for_item_type ( int item_type );
+void load_item_surfaces_for_item_type(int item_type);
 
 extern int Number_Of_Item_Types;
-extern int debug_level ;
+extern int debug_level;
 extern dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 
 /** 
@@ -50,65 +50,58 @@ extern dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
  * success and terminates in case of "out of memory", so we dont
  * need to do this always in the code.
  */
-void *
-MyMalloc ( long Mamount )
+void *MyMalloc(long Mamount)
 {
-    void *Mptr = NULL;
-    
-    // make Gnu-compatible even if on a broken system:
-    if (Mamount == 0)
-	Mamount = 1;
-  
-    if ((Mptr = calloc (1, (size_t) Mamount)) == NULL)
-    {
-	fprintf (stderr, " MyMalloc(%ld) did not succeed!\n", Mamount);
-	fflush (stderr);
-	Terminate(ERR);
-    }
+	void *Mptr = NULL;
 
-  
-    return Mptr;
+	// make Gnu-compatible even if on a broken system:
+	if (Mamount == 0)
+		Mamount = 1;
 
-}; // void* MyMalloc ( long Mamount )
+	if ((Mptr = calloc(1, (size_t) Mamount)) == NULL) {
+		fprintf(stderr, " MyMalloc(%ld) did not succeed!\n", Mamount);
+		fflush(stderr);
+		Terminate(ERR);
+	}
+
+	return Mptr;
+
+};				// void* MyMalloc ( long Mamount )
 
 /**
  * This function is used for debugging purposes.  It writes the
  * given string on the screen, or simply does
  * nothing according to currently set debug level.
  */
-void
-DebugPrintf ( int db_level, const char *fmt, ...)
+void DebugPrintf(int db_level, const char *fmt, ...)
 {
-    va_list args;
-    va_start (args, fmt);
-    
-    if (db_level <= debug_level)
-    {
-	vfprintf (stderr, fmt, args);
-    }
-    
-    va_end (args);
-}; // void DebugPrintf ( int db_level, char *fmt, ...)
+	va_list args;
+	va_start(args, fmt);
+
+	if (db_level <= debug_level) {
+		vfprintf(stderr, fmt, args);
+	}
+
+	va_end(args);
+};				// void DebugPrintf ( int db_level, char *fmt, ...)
 
 /**
  * This function should help to simplify and standardize the many error
  * messages possible in Freedroid RPG.
  */
-void
-ErrorMessage ( const char* FunctionName , const char* fmt, int InformDevelopers , int IsFatal, ... )
+void ErrorMessage(const char *FunctionName, const char *fmt, int InformDevelopers, int IsFatal, ...)
 {
-    va_list args;
-    va_start(args, IsFatal);
+	va_list args;
+	va_start(args, IsFatal);
 
-    fprintf (stderr, "\n----------------------------------------------------------------------\n\
-Freedroid has encountered a problem:\n" );
-    fprintf (stderr, "In Function: %s.\n" , FunctionName );
-    fprintf (stderr, "FreedroidRPG package and version number: %s %s.\n" , PACKAGE , VERSION );
-    vfprintf (stderr, fmt, args );
-    
-    if ( InformDevelopers )
-    {
-	fprintf (stderr, "\
+	fprintf(stderr, "\n----------------------------------------------------------------------\n\
+Freedroid has encountered a problem:\n");
+	fprintf(stderr, "In Function: %s.\n", FunctionName);
+	fprintf(stderr, "FreedroidRPG package and version number: %s %s.\n", PACKAGE, VERSION);
+	vfprintf(stderr, fmt, args);
+
+	if (InformDevelopers) {
+		fprintf(stderr, "\
 If you encounter this message, please inform the Freedroid developers\n\
 about the problem, by sending e-mail to \n\
 \n\
@@ -119,28 +112,23 @@ IRC channel.  The channel is:\n\
 \n\
 channel: #freedroid on irc.freenode.net\n\
 \n\
-Thanks a lot!\n\n" );
-    }
-    
-    if ( IsFatal )
-    {
-	fprintf (stderr, 
-		 "Freedroid will terminate now to draw attention to the problems it could\n\
-not resolve.  Sorry if that interrupts a major game of yours...\n" );
-    }
-    else
-    {
-	fprintf (stderr, 
-		 "The problem mentionned above is not fatal, we continue the execution.\n" );
-	fprintf (stderr, "----------------------------------------------------------------------\n" );
-    }
-    
-    va_end(args);
+Thanks a lot!\n\n");
+	}
 
-    if ( IsFatal ) Terminate ( ERR );
-    
-}; // void ErrorMessage ( ... )
+	if (IsFatal) {
+		fprintf(stderr, "Freedroid will terminate now to draw attention to the problems it could\n\
+not resolve.  Sorry if that interrupts a major game of yours...\n");
+	} else {
+		fprintf(stderr, "The problem mentionned above is not fatal, we continue the execution.\n");
+		fprintf(stderr, "----------------------------------------------------------------------\n");
+	}
 
+	va_end(args);
+
+	if (IsFatal)
+		Terminate(ERR);
+
+};				// void ErrorMessage ( ... )
 
 /**
  * This function does something similar to memmem.  Indeed, it would be
@@ -154,46 +142,47 @@ not resolve.  Sorry if that interrupts a major game of yours...\n" );
  * Haystack can of course have ANY form!!!
  *
  */
-void *
-MyMemmem ( char *haystack, size_t haystacklen, char *needle, size_t needlelen)
+void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen)
 {
-    char* NextFoundPointer;
-    void* MatchPointer;
-    size_t SearchPos=0;
-    
-    DebugPrintf ( 3 , "%s(): haystack = %d, len = %d, needle=%s\n", __FUNCTION__ , haystack, haystacklen, needle);
-    
-    while ( haystacklen - SearchPos > 0 )
-    {
-	//--------------------
-	// We search for the first match OF THE FIRST CHARACTER of needle
-	//
-	NextFoundPointer = memchr ( haystack+SearchPos , needle[0] , haystacklen-SearchPos );
-	
-	//--------------------
-	// if not even that was found, we can immediately return and report our failure to find it
-	//
-	if ( NextFoundPointer == NULL ) return ( NULL );
-	
-	//--------------------
-	// Otherwise we see, if also the rest of the strings match this time ASSUMING THEY ARE STRINGS!
-	// In case of a match, we can return immediately
-	//
-	DebugPrintf (3, "calling strstr()..");
-	MatchPointer = strstr( NextFoundPointer , needle );
-	if( MatchPointer) DebugPrintf ( 3 , "..survived. MatchPointer = %d\n", MatchPointer );
-	else DebugPrintf ( 3 , "survived, but nothing found\n" );
-	if ( MatchPointer != NULL ) return ( MatchPointer );
-	
-	//--------------------
-	// At this point, we know that we had no luck with this one occasion of a first-character-match
-	// and must continue after this one occasion with our search
-	SearchPos = NextFoundPointer - haystack + 1;
-    }
+	char *NextFoundPointer;
+	void *MatchPointer;
+	size_t SearchPos = 0;
 
-    return( NULL );
-}; // void *MyMemmem ( ... );
+	DebugPrintf(3, "%s(): haystack = %d, len = %d, needle=%s\n", __FUNCTION__, haystack, haystacklen, needle);
 
+	while (haystacklen - SearchPos > 0) {
+		//--------------------
+		// We search for the first match OF THE FIRST CHARACTER of needle
+		//
+		NextFoundPointer = memchr(haystack + SearchPos, needle[0], haystacklen - SearchPos);
+
+		//--------------------
+		// if not even that was found, we can immediately return and report our failure to find it
+		//
+		if (NextFoundPointer == NULL)
+			return (NULL);
+
+		//--------------------
+		// Otherwise we see, if also the rest of the strings match this time ASSUMING THEY ARE STRINGS!
+		// In case of a match, we can return immediately
+		//
+		DebugPrintf(3, "calling strstr()..");
+		MatchPointer = strstr(NextFoundPointer, needle);
+		if (MatchPointer)
+			DebugPrintf(3, "..survived. MatchPointer = %d\n", MatchPointer);
+		else
+			DebugPrintf(3, "survived, but nothing found\n");
+		if (MatchPointer != NULL)
+			return (MatchPointer);
+
+		//--------------------
+		// At this point, we know that we had no luck with this one occasion of a first-character-match
+		// and must continue after this one occasion with our search
+		SearchPos = NextFoundPointer - haystack + 1;
+	}
+
+	return (NULL);
+};				// void *MyMemmem ( ... );
 
 /**
  * This function looks for a string begin indicator and takes the string
@@ -204,49 +193,45 @@ MyMemmem ( char *haystack, size_t haystacklen, char *needle, size_t needlelen)
  * Optionally, a char can be given as "end of record".  Usually '\n'.
  * Set to 0 when not used.
  */
-char*
-ReadAndMallocStringFromDataOptional ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString, char Terminator ) 
+char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartIndicationString, const char *EndIndicationString,
+					  char Terminator)
 {
-  char* SearchPointer;
-  char* EndOfStringPointer;
-  char* ReturnString = "" ;
-  char* Limit;
-  int StringLength;
+	char *SearchPointer;
+	char *EndOfStringPointer;
+	char *ReturnString = "";
+	char *Limit;
+	int StringLength;
 
-  for ( Limit=SearchString; *Limit && *Limit != Terminator; Limit++);
+	for (Limit = SearchString; *Limit && *Limit != Terminator; Limit++) ;
 
-  SearchPointer = strstr ( SearchString , StartIndicationString );
+	SearchPointer = strstr(SearchString, StartIndicationString);
 
-  if ( (!SearchPointer) || (SearchPointer >= Limit) )
-    return 0;
-  else
-    {
-      // Now we move to the beginning
-      SearchPointer += strlen ( StartIndicationString );
+	if ((!SearchPointer) || (SearchPointer >= Limit))
+		return 0;
+	else {
+		// Now we move to the beginning
+		SearchPointer += strlen(StartIndicationString);
 
-      // Now we move to the end with the end pointer
-      EndOfStringPointer = strstr( SearchPointer , EndIndicationString );
-      if ( (!EndOfStringPointer) || (EndOfStringPointer >= Limit) )
-	  return 0;
+		// Now we move to the end with the end pointer
+		EndOfStringPointer = strstr(SearchPointer, EndIndicationString);
+		if ((!EndOfStringPointer) || (EndOfStringPointer >= Limit))
+			return 0;
 
-      // Now we allocate memory and copy the string...
-      // delete_one_dialog_option() doesn't free empty strings so don't
-      // malloc those.
-      if ( ( StringLength = (EndOfStringPointer - SearchPointer) ) )
-	{
-	  ReturnString = MyMalloc ( StringLength + 1 );
-	  strncpy ( ReturnString , SearchPointer , StringLength );
-	  ReturnString[ StringLength ] = 0;
+		// Now we allocate memory and copy the string...
+		// delete_one_dialog_option() doesn't free empty strings so don't
+		// malloc those.
+		if ((StringLength = (EndOfStringPointer - SearchPointer))) {
+			ReturnString = MyMalloc(StringLength + 1);
+			strncpy(ReturnString, SearchPointer, StringLength);
+			ReturnString[StringLength] = 0;
+		} else {
+			ReturnString = "";
+		}
+
+		DebugPrintf(2, "\nchar* ReadAndMalocStringFromData (...): Successfully identified string : %s.", ReturnString);
 	}
-      else
-	{
-	  ReturnString = "" ;
-	}
-
-      DebugPrintf( 2 , "\nchar* ReadAndMalocStringFromData (...): Successfully identified string : %s." , ReturnString );
-    }
-  return ( ReturnString );
-}; // char* ReadAndMallocStringFromDataOptional ( ... )
+	return (ReturnString);
+};				// char* ReadAndMallocStringFromDataOptional ( ... )
 
 /**
  * This function looks for a string begin indicator and takes the string
@@ -255,41 +240,36 @@ ReadAndMallocStringFromDataOptional ( char* SearchString , const char* StartIndi
  * The original source string specified should in no way be modified.
  * The lack of searched string is fatal.
  */
-char*
-ReadAndMallocStringFromData ( char* SearchString , const char* StartIndicationString , const char* EndIndicationString ) 
+char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicationString, const char *EndIndicationString)
 {
-  char *result = ReadAndMallocStringFromDataOptional ( SearchString, StartIndicationString, EndIndicationString, 0 );
-  if ( !result )
-    {
-      fprintf( stderr, "\n\nStartIndicationString: '%s'\nEndIndicationString: '%s'\n" , StartIndicationString, EndIndicationString );
-      ErrorMessage ( __FUNCTION__  , "\
+	char *result = ReadAndMallocStringFromDataOptional(SearchString, StartIndicationString, EndIndicationString, 0);
+	if (!result) {
+		fprintf(stderr, "\n\nStartIndicationString: '%s'\nEndIndicationString: '%s'\n", StartIndicationString, EndIndicationString);
+		ErrorMessage(__FUNCTION__, "\
 The string that is supposed to prefix an entry in a text data file\n\
 of Freedroid was not found within this text data file.\n\
-This indicates some corruption in the data file in question.",
-				 PLEASE_INFORM, IS_FATAL );
-    }
-  return result ;
-}; // char* ReadAndMallocStringFromData ( ... )
+This indicates some corruption in the data file in question.", PLEASE_INFORM, IS_FATAL);
+	}
+	return result;
+};				// char* ReadAndMallocStringFromData ( ... )
 
 /**
  * This function counts the number of occurences of a string in a given
  * other string.
  */
-int
-CountStringOccurences ( char* SearchString , const char* TargetString ) 
+int CountStringOccurences(char *SearchString, const char *TargetString)
 {
-  int Counter=0;
-  char* CountPointer;
+	int Counter = 0;
+	char *CountPointer;
 
-  CountPointer = SearchString;
+	CountPointer = SearchString;
 
-  while ( ( CountPointer = strstr ( CountPointer, TargetString ) ) != NULL)
-    {
-      CountPointer += strlen ( TargetString );
-      Counter++;
-    }
-  return ( Counter );
-}; // CountStringOccurences ( char* SearchString , char* TargetString ) 
+	while ((CountPointer = strstr(CountPointer, TargetString)) != NULL) {
+		CountPointer += strlen(TargetString);
+		Counter++;
+	}
+	return (Counter);
+};				// CountStringOccurences ( char* SearchString , char* TargetString ) 
 
 /**
  * This function read in a file with the specified name, allocated 
@@ -297,85 +277,70 @@ CountStringOccurences ( char* SearchString , const char* TargetString )
  * terminates the whole read in file with a 0 character, so that it
  * can easily be treated like a common string.
  */
-char* 
-ReadAndMallocAndTerminateFile( char* filename , const char* File_End_String ) 
+char *ReadAndMallocAndTerminateFile(char *filename, const char *File_End_String)
 {
-    FILE *DataFile;
-    char *Data;
-    char *ReadPointer;
-    long MemoryAmount;
+	FILE *DataFile;
+	char *Data;
+	char *ReadPointer;
+	long MemoryAmount;
 
-    DebugPrintf ( 1 , "\n%s() : The filename is: %s" , __FUNCTION__ , filename );
+	DebugPrintf(1, "\n%s() : The filename is: %s", __FUNCTION__, filename);
 
-    //--------------------
-    // Read the whole theme data to memory.  We use binary mode, as we
-    // don't want to have to deal with any carriage return/line feed 
-    // convention mess on win32 or something...
-    // 
-    if ( ( DataFile = fopen ( filename , "rb") ) == NULL )
-    {
-	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
+	//--------------------
+	// Read the whole theme data to memory.  We use binary mode, as we
+	// don't want to have to deal with any carriage return/line feed 
+	// convention mess on win32 or something...
+	// 
+	if ((DataFile = fopen(filename, "rb")) == NULL) {
+		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
 
-	ErrorMessage ( __FUNCTION__  , "\
+		ErrorMessage(__FUNCTION__, "\
 Freedroid was unable to open a given text file,\n\
 that should be there and should be accessible.\n\
-This indicates a serious bug in this installation of Freedroid.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    else
-    {
-	DebugPrintf ( 1 , "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : Opening file succeeded...");
-    }
-    
-    MemoryAmount = FS_filelength( DataFile )  + 100;
-    Data = (char *) MyMalloc ( MemoryAmount );
-    
-    fread ( Data, MemoryAmount, 1, DataFile);
+This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
+	} else {
+		DebugPrintf(1, "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : Opening file succeeded...");
+	}
 
-    DebugPrintf ( 1 , "\n%s(): Reading file succeeded..." , __FUNCTION__ );
+	MemoryAmount = FS_filelength(DataFile) + 100;
+	Data = (char *)MyMalloc(MemoryAmount);
 
-    if ( fclose ( DataFile ) == EOF)
-	{
-	fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
-	ErrorMessage ( __FUNCTION__  , "\
+	fread(Data, MemoryAmount, 1, DataFile);
+
+	DebugPrintf(1, "\n%s(): Reading file succeeded...", __FUNCTION__);
+
+	if (fclose(DataFile) == EOF) {
+		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
+		ErrorMessage(__FUNCTION__, "\
 		Freedroid was unable to close a given text file, that should be there and\n\
 		should be accessible.\n\
 		This indicates a strange bug in this installation of Freedroid, that is\n\
 		very likely a problem with the file/directory permissions of the files\n\
-		belonging to Freedroid.",
-		PLEASE_INFORM, IS_FATAL );
-	}
-    else
-	{
-	DebugPrintf( 1 , "\n%s(): file closed successfully...\n" , __FUNCTION__ );
+		belonging to Freedroid.", PLEASE_INFORM, IS_FATAL);
+	} else {
+		DebugPrintf(1, "\n%s(): file closed successfully...\n", __FUNCTION__);
 	}
 
-    // NOTE: Since we do not assume to always have pure text files here, we switched to
-    // MyMemmem, so that we can handle 0 entries in the middle of the file content as well
-    if ( File_End_String )
-	{
-	if ( ( ReadPointer = MyMemmem ( Data, (size_t) MemoryAmount , (char*)File_End_String , (size_t)strlen( File_End_String ))) == NULL)
-	    {
-	    fprintf( stderr, "\n\nfilename: '%s'\n" , filename );
-	    fprintf( stderr, "File_End_String: '%s'\n" , File_End_String );
+	// NOTE: Since we do not assume to always have pure text files here, we switched to
+	// MyMemmem, so that we can handle 0 entries in the middle of the file content as well
+	if (File_End_String) {
+		if ((ReadPointer =
+		     MyMemmem(Data, (size_t) MemoryAmount, (char *)File_End_String, (size_t) strlen(File_End_String))) == NULL) {
+			fprintf(stderr, "\n\nfilename: '%s'\n", filename);
+			fprintf(stderr, "File_End_String: '%s'\n", File_End_String);
 
-	    ErrorMessage ( __FUNCTION__  , "\
+			ErrorMessage(__FUNCTION__, "\
 		    Freedroid was unable to find the string, that should indicate the end of\n\
 		    the given text file within this file.\n\
-		    This indicates a corrupt or outdated data or saved game file.", PLEASE_INFORM, IS_FATAL );
-	    }
-	else
-	    {
-	    ReadPointer[0]=0;
-	    }
-	}
-    else
-	Data [ MemoryAmount - 100 ] = 0;
+		    This indicates a corrupt or outdated data or saved game file.", PLEASE_INFORM, IS_FATAL);
+		} else {
+			ReadPointer[0] = 0;
+		}
+	} else
+		Data[MemoryAmount - 100] = 0;
 
-
-
-  return ( Data );
-}; // char* ReadAndMallocAndTerminateFile( char* filename) 
+	return (Data);
+};				// char* ReadAndMallocAndTerminateFile( char* filename) 
 
 /**
  * This function tries to locate a string in some given data string.
@@ -385,103 +350,97 @@ This indicates a serious bug in this installation of Freedroid.",
  * The return value is a pointer to the first instance where the substring
  * we are searching is found in the main text.
  */
-char* 
-LocateStringInData ( char* SearchBeginPointer, const char* SearchTextPointer )
+char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer)
 {
-  char* temp;
+	char *temp;
 
-  if ( ( temp = strstr ( SearchBeginPointer , SearchTextPointer ) ) == NULL)
-    {
-      fprintf( stderr, "\n\nSearchTextPointer: '%s'\n" , SearchTextPointer );
-      ErrorMessage ( __FUNCTION__  , "\
+	if ((temp = strstr(SearchBeginPointer, SearchTextPointer)) == NULL) {
+		fprintf(stderr, "\n\nSearchTextPointer: '%s'\n", SearchTextPointer);
+		ErrorMessage(__FUNCTION__, "\
 The string that was supposed to be in the text data file could not be found.\n\
-This indicates a corrupted or seriously outdated game data or saved game file.",
-				 PLEASE_INFORM, IS_FATAL );
-    }
+This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM, IS_FATAL);
+	}
 
-  return ( temp );
+	return (temp);
 
-}; // char* LocateStringInData ( ... )
-
-/**
- * This function should analyze a given passage of text, locate an 
- * indicator for a value, and read in the value.
- */
-void
-ReadValueFromStringWithDefault( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , const char * DefaultValueString, void* TargetValue , char* EndOfSearchSectionPointer )
-{
-    char OldTerminaterCharValue;
-    const char* SourceLocation;
-
-    // We shortly make a termination char into the string.
-    OldTerminaterCharValue=EndOfSearchSectionPointer[0];
-    EndOfSearchSectionPointer[0]=0;
-    
-    // Now we locate the spot, where we finally will find our value
-    SourceLocation = strstr ( SearchBeginPointer , ValuePreceedText );
-    if ( SourceLocation)
-	    SourceLocation += strlen ( ValuePreceedText );
-    else SourceLocation = DefaultValueString;
-    
-    //--------------------
-    // Attention!!! 
-    // Now we try to read in the value!!!
-    //
-    if ( sscanf ( SourceLocation , FormatString , TargetValue ) == EOF )
-    {
-	fprintf( stderr, "\n\nFormatString: '%s'\n" , FormatString );
-	fprintf( stderr, "ValuePreceedText: '%s'\n" , ValuePreceedText );
-	ErrorMessage ( __FUNCTION__  , "\
-sscanf using a certain format string failed!\n\
-This indicates a corrupted or seriously outdated game data or saved game file.",
-				 PLEASE_INFORM, IS_FATAL );
-    }
-    
-    // Now that we are done, we restore the given SearchArea to former glory
-    EndOfSearchSectionPointer[0]=OldTerminaterCharValue;
-
-}; // void ReadValueFromString( ... )
+};				// char* LocateStringInData ( ... )
 
 /**
  * This function should analyze a given passage of text, locate an 
  * indicator for a value, and read in the value.
  */
 void
-ReadValueFromString( char* SearchBeginPointer , const char* ValuePreceedText , const char* FormatString , void* TargetValue , char* EndOfSearchSectionPointer )
+ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString,
+			       const char *DefaultValueString, void *TargetValue, char *EndOfSearchSectionPointer)
 {
-    char OldTerminaterCharValue = 0;
-    char* SourceLocation;
+	char OldTerminaterCharValue;
+	const char *SourceLocation;
 
-    // We shortly make a termination char into the string if needed
-    if (EndOfSearchSectionPointer) {
-	OldTerminaterCharValue=EndOfSearchSectionPointer[0];
-	EndOfSearchSectionPointer[0]=0;
-    }
-    
-    // Now we locate the spot, where we finally will find our value
-    SourceLocation = LocateStringInData ( SearchBeginPointer , ValuePreceedText );
-    SourceLocation += strlen ( ValuePreceedText );
-    
-    //--------------------
-    // Attention!!! 
-    // Now we try to read in the value!!!
-    //
-    if ( sscanf ( SourceLocation , FormatString , TargetValue ) == EOF )
-    {
-	fprintf( stderr, "\n\nFormatString: '%s'\n" , FormatString );
-	fprintf( stderr, "ValuePreceedText: '%s'\n" , ValuePreceedText );
-	ErrorMessage ( __FUNCTION__  , "\
+	// We shortly make a termination char into the string.
+	OldTerminaterCharValue = EndOfSearchSectionPointer[0];
+	EndOfSearchSectionPointer[0] = 0;
+
+	// Now we locate the spot, where we finally will find our value
+	SourceLocation = strstr(SearchBeginPointer, ValuePreceedText);
+	if (SourceLocation)
+		SourceLocation += strlen(ValuePreceedText);
+	else
+		SourceLocation = DefaultValueString;
+
+	//--------------------
+	// Attention!!! 
+	// Now we try to read in the value!!!
+	//
+	if (sscanf(SourceLocation, FormatString, TargetValue) == EOF) {
+		fprintf(stderr, "\n\nFormatString: '%s'\n", FormatString);
+		fprintf(stderr, "ValuePreceedText: '%s'\n", ValuePreceedText);
+		ErrorMessage(__FUNCTION__, "\
 sscanf using a certain format string failed!\n\
-This indicates a corrupted or seriously outdated game data or saved game file.",
-				 PLEASE_INFORM, IS_FATAL );
-    }
-    
-    if (EndOfSearchSectionPointer) {
+This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM, IS_FATAL);
+	}
 	// Now that we are done, we restore the given SearchArea to former glory
-	EndOfSearchSectionPointer[0]=OldTerminaterCharValue;
-    }
+	EndOfSearchSectionPointer[0] = OldTerminaterCharValue;
 
-}; // void ReadValueFromString( ... )
+};				// void ReadValueFromString( ... )
+
+/**
+ * This function should analyze a given passage of text, locate an 
+ * indicator for a value, and read in the value.
+ */
+void
+ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString, void *TargetValue,
+		    char *EndOfSearchSectionPointer)
+{
+	char OldTerminaterCharValue = 0;
+	char *SourceLocation;
+
+	// We shortly make a termination char into the string if needed
+	if (EndOfSearchSectionPointer) {
+		OldTerminaterCharValue = EndOfSearchSectionPointer[0];
+		EndOfSearchSectionPointer[0] = 0;
+	}
+	// Now we locate the spot, where we finally will find our value
+	SourceLocation = LocateStringInData(SearchBeginPointer, ValuePreceedText);
+	SourceLocation += strlen(ValuePreceedText);
+
+	//--------------------
+	// Attention!!! 
+	// Now we try to read in the value!!!
+	//
+	if (sscanf(SourceLocation, FormatString, TargetValue) == EOF) {
+		fprintf(stderr, "\n\nFormatString: '%s'\n", FormatString);
+		fprintf(stderr, "ValuePreceedText: '%s'\n", ValuePreceedText);
+		ErrorMessage(__FUNCTION__, "\
+sscanf using a certain format string failed!\n\
+This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM, IS_FATAL);
+	}
+
+	if (EndOfSearchSectionPointer) {
+		// Now that we are done, we restore the given SearchArea to former glory
+		EndOfSearchSectionPointer[0] = OldTerminaterCharValue;
+	}
+
+};				// void ReadValueFromString( ... )
 
 /**
  * This function does the rotation of a given vector by a given angle.
@@ -489,24 +448,23 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
  * The angle given is in DEGREE MEASURE, i.e. 0-360 or so, maybe more or
  * less than that, but you get what I mean...
  */
-void
-RotateVectorByAngle ( moderately_finepoint* vector , float rot_angle )
+void RotateVectorByAngle(moderately_finepoint * vector, float rot_angle)
 {
-    moderately_finepoint new_vect;
-    float rad_angle;
+	moderately_finepoint new_vect;
+	float rad_angle;
 
-    if ( rot_angle == 0 )
-	return;
-    
-    rad_angle = rot_angle * ( M_PI / 180.0 ) ; 
-    
-    DebugPrintf( 2 , "\n RAD_ANGLE : %f " , rad_angle );
-    new_vect.x =  sin( rad_angle ) * vector->y + cos( rad_angle ) * vector->x;
-    new_vect.y =  cos( rad_angle ) * vector->y - sin( rad_angle ) * vector->x;
-    vector->x = new_vect.x;
-    vector->y = new_vect.y;
+	if (rot_angle == 0)
+		return;
 
-}; // void RotateVectorByAngle ( ... )
+	rad_angle = rot_angle * (M_PI / 180.0);
+
+	DebugPrintf(2, "\n RAD_ANGLE : %f ", rad_angle);
+	new_vect.x = sin(rad_angle) * vector->y + cos(rad_angle) * vector->x;
+	new_vect.y = cos(rad_angle) * vector->y - sin(rad_angle) * vector->x;
+	vector->x = new_vect.x;
+	vector->y = new_vect.y;
+
+};				// void RotateVectorByAngle ( ... )
 
 /*----------------------------------------------------------------------
  * Copyright (C) 1997-2001 Id Software, Inc., under GPL
@@ -514,21 +472,20 @@ RotateVectorByAngle ( moderately_finepoint* vector , float rot_angle )
  * FS_filelength().. (taken from quake2)
  * 		contrary to stat() this fct is nice and portable, 
  *----------------------------------------------------------------------*/
-int
-FS_filelength (FILE *f)
+int FS_filelength(FILE * f)
 {
-    int		pos;
-    int		end;
-    
-    pos = ftell (f);
-    fseek (f, 0, SEEK_END);
-    end = ftell (f);
-    fseek (f, pos, SEEK_SET);
-    
-    // DebugPrintf ( -4 , "\n%s(): file length: %d." , __FUNCTION__ , end );
-    
-    return end;
-}; // int FS_filelength (FILE *f)
+	int pos;
+	int end;
+
+	pos = ftell(f);
+	fseek(f, 0, SEEK_END);
+	end = ftell(f);
+	fseek(f, pos, SEEK_SET);
+
+	// DebugPrintf ( -4 , "\n%s(): file length: %d." , __FUNCTION__ , end );
+
+	return end;
+};				// int FS_filelength (FILE *f)
 
 /*-------------------------------------------------------------------------
  * Inflate a given stream using zlib
@@ -538,72 +495,68 @@ FS_filelength (FILE *f)
  * or does nothing is 'size' == NULL.
  * This function closes DataFile.
  ***/
-void inflate_stream(FILE * DataFile, unsigned char ** DataBuffer, int * size)
+void inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 {
-    int filelen = FS_filelength (DataFile);
-    unsigned char * src = MyMalloc (filelen+1);
-    int cursz = 1048576; //start with 1MB
-    unsigned char * temp_dbuffer = malloc(cursz);
-    fread(src, filelen, 1, DataFile);
-    fclose( DataFile );
+	int filelen = FS_filelength(DataFile);
+	unsigned char *src = MyMalloc(filelen + 1);
+	int cursz = 1048576;	//start with 1MB
+	unsigned char *temp_dbuffer = malloc(cursz);
+	fread(src, filelen, 1, DataFile);
+	fclose(DataFile);
 
-    int ret;
-    z_stream strm;
+	int ret;
+	z_stream strm;
 
-    /* copy paste of public domain tool "zpipe" of which a copy is in fdRPG source tree*/
-    /* big thanks to zlib authors */
-    /* allocate inflate state */
-    strm.zalloc = Z_NULL;
-    strm.zfree = Z_NULL;
-    strm.opaque = Z_NULL;
-    strm.avail_in = filelen;
-    strm.next_in = src;
-    strm.avail_out = cursz;
-    strm.next_out = (Bytef*) temp_dbuffer;
+	/* copy paste of public domain tool "zpipe" of which a copy is in fdRPG source tree */
+	/* big thanks to zlib authors */
+	/* allocate inflate state */
+	strm.zalloc = Z_NULL;
+	strm.zfree = Z_NULL;
+	strm.opaque = Z_NULL;
+	strm.avail_in = filelen;
+	strm.next_in = src;
+	strm.avail_out = cursz;
+	strm.next_out = (Bytef *) temp_dbuffer;
 
-    ret = inflateInit(&strm);
-    if (ret != Z_OK)
-	{
-	ErrorMessage ( __FUNCTION__  , "\
+	ret = inflateInit(&strm);
+	if (ret != Z_OK) {
+		ErrorMessage(__FUNCTION__, "\
 		zlib was unable to start decompressing a stream.\n\
-		This indicates a serious bug in this installation of Freedroid.",
-		PLEASE_INFORM, IS_FATAL );
+		This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
 
 	}
 
-    do {
-	if ( ! strm.avail_out )
-	    { //out of memory? increase
-	    temp_dbuffer = realloc(temp_dbuffer, cursz + 1048576); //increase size by 1MB
-	    strm.next_out = temp_dbuffer + cursz;
-	    cursz += 1048576;
-	    strm.avail_out += 1048576;
-	    }
-	ret = inflate(&strm, Z_NO_FLUSH);
-	switch (ret) {
-	    case Z_OK:
-		break;
-	    case Z_NEED_DICT:
-	    case Z_DATA_ERROR:
-	    case Z_MEM_ERROR:
-		(void)inflateEnd(&strm);
+	do {
+		if (!strm.avail_out) {	//out of memory? increase
+			temp_dbuffer = realloc(temp_dbuffer, cursz + 1048576);	//increase size by 1MB
+			strm.next_out = temp_dbuffer + cursz;
+			cursz += 1048576;
+			strm.avail_out += 1048576;
+		}
+		ret = inflate(&strm, Z_NO_FLUSH);
+		switch (ret) {
+		case Z_OK:
+			break;
+		case Z_NEED_DICT:
+		case Z_DATA_ERROR:
+		case Z_MEM_ERROR:
+			(void)inflateEnd(&strm);
 
-		ErrorMessage ( __FUNCTION__  , "\
+			ErrorMessage(__FUNCTION__, "\
 			zlib was unable to decompress a stream\n\
-			This indicates a serious bug in this installation of Freedroid.",
-			PLEASE_INFORM, IS_FATAL );
+			This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
 
-	}
-    } while  ( ret != Z_STREAM_END );
+		}
+	} while (ret != Z_STREAM_END);
 
-    (*DataBuffer) = (unsigned char *)malloc(strm.total_out + 1);
-    memcpy(*DataBuffer, temp_dbuffer, strm.total_out);
-    if ( size != NULL )
-	*size = strm.total_out;
+	(*DataBuffer) = (unsigned char *)malloc(strm.total_out + 1);
+	memcpy(*DataBuffer, temp_dbuffer, strm.total_out);
+	if (size != NULL)
+		*size = strm.total_out;
 
-    (void)inflateEnd(&strm);
-    free ( src );
-    free( temp_dbuffer );
+	(void)inflateEnd(&strm);
+	free(src);
+	free(temp_dbuffer);
 }
-#undef _text_public_c
 
+#undef _text_public_c

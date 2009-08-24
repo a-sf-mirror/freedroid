@@ -76,258 +76,233 @@
  * This function displays all the buttons that open up the character
  * screen and the invenotry screen
  */
-void
-DisplayButtons( void )
+void DisplayButtons(void)
 {
 
-    if (GameConfig.screen_height == 480 && (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible))
-	goto display_overlay_chascr;
+	if (GameConfig.screen_height == 480 && (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible))
+		goto display_overlay_chascr;
 
-    if ( MouseCursorIsOnButton( INV_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	ShowGenericButtonFromList ( INV_SCREEN_TOGGLE_BUTTON_YELLOW );
-    }
-    else if ( MouseCursorIsOnButton( LOG_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	ShowGenericButtonFromList ( LOG_SCREEN_TOGGLE_BUTTON_YELLOW );
-    }
-   
-display_overlay_chascr:
-    if (GameConfig.screen_height == 480 && (GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible))
-	return;
-    
-    //--------------------
-    // When the Tux has some extra skill points, that can be distributed
-    // to some character stats or saved for later training with some trainer
-    // character in the city, we mark the character screen toggle button as
-    // red to indicate the available points.
-    //
-    if ( Me.points_to_distribute > 0 )
-    {
-	// blit_special_background ( MOUSE_BUTTON_PLUS_BACKGROUND_PICTURE_CODE );
-	ShowGenericButtonFromList ( CHA_SCREEN_TOGGLE_BUTTON_RED );
-    }
-    
-    if ( MouseCursorIsOnButton( CHA_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	ShowGenericButtonFromList ( CHA_SCREEN_TOGGLE_BUTTON_YELLOW );
-    }
-    else if ( MouseCursorIsOnButton( SKI_SCREEN_TOGGLE_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) )
-    {
-	ShowGenericButtonFromList ( SKI_SCREEN_TOGGLE_BUTTON_YELLOW );
-    }
-    
-}; // void DisplayButtons( void )
+	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+		ShowGenericButtonFromList(INV_SCREEN_TOGGLE_BUTTON_YELLOW);
+	} else if (MouseCursorIsOnButton(LOG_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+		ShowGenericButtonFromList(LOG_SCREEN_TOGGLE_BUTTON_YELLOW);
+	}
 
+ display_overlay_chascr:
+	if (GameConfig.screen_height == 480 && (GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible))
+		return;
+
+	//--------------------
+	// When the Tux has some extra skill points, that can be distributed
+	// to some character stats or saved for later training with some trainer
+	// character in the city, we mark the character screen toggle button as
+	// red to indicate the available points.
+	//
+	if (Me.points_to_distribute > 0) {
+		// blit_special_background ( MOUSE_BUTTON_PLUS_BACKGROUND_PICTURE_CODE );
+		ShowGenericButtonFromList(CHA_SCREEN_TOGGLE_BUTTON_RED);
+	}
+
+	if (MouseCursorIsOnButton(CHA_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+		ShowGenericButtonFromList(CHA_SCREEN_TOGGLE_BUTTON_YELLOW);
+	} else if (MouseCursorIsOnButton(SKI_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+		ShowGenericButtonFromList(SKI_SCREEN_TOGGLE_BUTTON_YELLOW);
+	}
+
+};				// void DisplayButtons( void )
 
 /**
  * This function adds any bonuses that might be on the influencers things
  * concerning ONLY PRIMARY STATS, NOT SECONDARY STATS!
  */
-static void AddInfluencerItemAttributeBonus( item* BonusItem )
+static void AddInfluencerItemAttributeBonus(item * BonusItem)
 {
-  //--------------------
-  // In case of no item, the thing to do is pretty easy...
-  //
-  if ( BonusItem->type == ( -1 ) ) return;
+	//--------------------
+	// In case of no item, the thing to do is pretty easy...
+	//
+	if (BonusItem->type == (-1))
+		return;
 
-  //--------------------
-  // In case of a suffix modifier, we need to apply the suffix...
-  //
-  if ( ( ( BonusItem->suffix_code != ( -1 ) ) || ( BonusItem->prefix_code != ( -1 ) ) ) &&
-       BonusItem -> is_identified )
-    {
-      Me.Strength  += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes ;
-      Me.Dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes ;
-      Me.Magic     += BonusItem->bonus_to_mag + BonusItem->bonus_to_all_attributes ;
-      Me.Vitality  += BonusItem->bonus_to_vit + BonusItem->bonus_to_all_attributes ;
-    }
+	//--------------------
+	// In case of a suffix modifier, we need to apply the suffix...
+	//
+	if (((BonusItem->suffix_code != (-1)) || (BonusItem->prefix_code != (-1))) && BonusItem->is_identified) {
+		Me.Strength += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes;
+		Me.Dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes;
+		Me.Magic += BonusItem->bonus_to_mag + BonusItem->bonus_to_all_attributes;
+		Me.Vitality += BonusItem->bonus_to_vit + BonusItem->bonus_to_all_attributes;
+	}
 
-}; // void AddInfluencerItemAttributeBonus( item* BonusItem )
+};				// void AddInfluencerItemAttributeBonus( item* BonusItem )
 
 /**
  * This function adds any bonuses that might be on the influencers things
  * concerning ONLY SECONDARY STATS, NOT PRIMARY STATS!
  */
-static void AddInfluencerItemSecondaryBonus( item* BonusItem )
+static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 {
-    //--------------------
-    // In case of no item, the thing to do is pretty easy...
-    //
-    if ( BonusItem->type == ( -1 ) ) return;
-    
-    //--------------------
-    // In case of present suffix or prefix modifiers, we need to apply the suffix...
-    //
-    if ( ( ( BonusItem->suffix_code != ( -1 ) ) || ( BonusItem->prefix_code != ( -1 ) ) ) &&
-	 BonusItem->is_identified )
-    {
-	
 	//--------------------
-	// Some modifiers might not be random at all but fixed to the 
-	// item prefix or item suffix.  In that case, we must get the
-	// modifier strength from the suffix/prefix spec itself...
+	// In case of no item, the thing to do is pretty easy...
 	//
-	if ( BonusItem -> suffix_code != ( -1 ) )
-	    Me . light_bonus_from_tux += SuffixList [ BonusItem -> suffix_code ] . light_bonus_value ;
-	if ( BonusItem -> prefix_code != ( -1 ) )
-	    Me . light_bonus_from_tux += PrefixList [ BonusItem -> prefix_code ] . light_bonus_value ;
+	if (BonusItem->type == (-1))
+		return;
 
 	//--------------------
-	// Now we can apply the modifiers, that have been generated from
-	// the suffix spec and then (with some randomness) written into the
-	// item itself.  In that case we won't need the suffix- or 
-	// prefix-lists here...
+	// In case of present suffix or prefix modifiers, we need to apply the suffix...
 	//
-	Me . to_hit    += BonusItem -> bonus_to_tohit ;
-	Me . max_temperature   += BonusItem -> bonus_to_force ;
-	Me . maxenergy += BonusItem -> bonus_to_life ; 
-	Me . health_recovery_rate += BonusItem -> bonus_to_health_recovery ; 
-	Me . cooling_rate += BonusItem -> bonus_to_cooling_rate ; 
-	
-	Me . resist_disruptor   += BonusItem -> bonus_to_resist_disruptor ;
-	Me . resist_fire        += BonusItem -> bonus_to_resist_fire ;
-	Me . resist_electricity += BonusItem -> bonus_to_resist_electricity ;
+	if (((BonusItem->suffix_code != (-1)) || (BonusItem->prefix_code != (-1))) && BonusItem->is_identified) {
 
-	
-	// if ( ItemMap [ BonusItem->type ] . can_be_installed_in_weapon_slot )
-	// Me.freezing_enemys_property += BonusItem->freezing_time_in_seconds;
-    }
+		//--------------------
+		// Some modifiers might not be random at all but fixed to the 
+		// item prefix or item suffix.  In that case, we must get the
+		// modifier strength from the suffix/prefix spec itself...
+		//
+		if (BonusItem->suffix_code != (-1))
+			Me.light_bonus_from_tux += SuffixList[BonusItem->suffix_code].light_bonus_value;
+		if (BonusItem->prefix_code != (-1))
+			Me.light_bonus_from_tux += PrefixList[BonusItem->prefix_code].light_bonus_value;
 
-}; // void AddInfluencerItemSecondaryBonus( item* BonusItem )
+		//--------------------
+		// Now we can apply the modifiers, that have been generated from
+		// the suffix spec and then (with some randomness) written into the
+		// item itself.  In that case we won't need the suffix- or 
+		// prefix-lists here...
+		//
+		Me.to_hit += BonusItem->bonus_to_tohit;
+		Me.max_temperature += BonusItem->bonus_to_force;
+		Me.maxenergy += BonusItem->bonus_to_life;
+		Me.health_recovery_rate += BonusItem->bonus_to_health_recovery;
+		Me.cooling_rate += BonusItem->bonus_to_cooling_rate;
+
+		Me.resist_disruptor += BonusItem->bonus_to_resist_disruptor;
+		Me.resist_fire += BonusItem->bonus_to_resist_fire;
+		Me.resist_electricity += BonusItem->bonus_to_resist_electricity;
+
+		// if ( ItemMap [ BonusItem->type ] . can_be_installed_in_weapon_slot )
+		// Me.freezing_enemys_property += BonusItem->freezing_time_in_seconds;
+	}
+
+};				// void AddInfluencerItemSecondaryBonus( item* BonusItem )
 
 /**
  * Maybe the influencer has reached a new experience level?
  * Let's check this...
  */
-void
-check_for_new_experience_level_reached ()
+void check_for_new_experience_level_reached()
 {
-    int BaseExpRequired = 500;
+	int BaseExpRequired = 500;
 
-    if ( Me . exp_level >= 24 )
-	return;
+	if (Me.exp_level >= 24)
+		return;
 
-    Me . ExpRequired = 
-	BaseExpRequired * ( exp ( ( Me . exp_level - 1 ) * log ( 2 ) ) ) ;
-    
-    //--------------------
-    // For display reasons in the experience graph, we also state the experience 
-    // needed for the previous level inside the tux struct.  Therefore all exp/level
-    // calculations are found in this function.
-    //
-    if ( Me . exp_level > 1 )
-    {
-	Me . ExpRequired_previously = 
-	    BaseExpRequired * ( exp ( ( Me .exp_level - 2 ) * log ( 2 ) ) ) ;
-    }
-    else
-	Me . ExpRequired_previously = 0 ;
-
-    if ( Me . Experience > Me . ExpRequired ) 
-    {
-	Me . exp_level ++ ;
-	Me . points_to_distribute += 5;
-    
-	if ( Me . exp_level >= 24 )
-	    {
-	    SetNewBigScreenMessage(_("Max level reached!"));
-	    return;
-	    }
-
+	Me.ExpRequired = BaseExpRequired * (exp((Me.exp_level - 1) * log(2)));
 
 	//--------------------
-	// Like in the Gothic 1 game, maximum life force will now automatically
-	// be increased upon reaching a new character level.
+	// For display reasons in the experience graph, we also state the experience 
+	// needed for the previous level inside the tux struct.  Therefore all exp/level
+	// calculations are found in this function.
 	//
-	Me . base_vitality += 3;
+	if (Me.exp_level > 1) {
+		Me.ExpRequired_previously = BaseExpRequired * (exp((Me.exp_level - 2) * log(2)));
+	} else
+		Me.ExpRequired_previously = 0;
 
-	//--------------------
-	// When a droid reaches a new experience level, all health and 
-	// force are restored to full this one time no longer.  Gothic
-	// rulez more than Diablo rulez.
-	//
-	// Me .energy = Me .maxenergy ;
-	// Me .mana   = Me .maxmana   ;
+	if (Me.Experience > Me.ExpRequired) {
+		Me.exp_level++;
+		Me.points_to_distribute += 5;
 
-	//--------------------
-	// Also when a new level is reached, we will display a big message
-	// right over the combat window.
-	//
-	SetNewBigScreenMessage(_("Level Gained!"));
-	Takeover_Game_Won_Sound();
-    }
-}; // void check_for_new_experience_level_reached ( )
+		if (Me.exp_level >= 24) {
+			SetNewBigScreenMessage(_("Max level reached!"));
+			return;
+		}
+
+		//--------------------
+		// Like in the Gothic 1 game, maximum life force will now automatically
+		// be increased upon reaching a new character level.
+		//
+		Me.base_vitality += 3;
+
+		//--------------------
+		// When a droid reaches a new experience level, all health and 
+		// force are restored to full this one time no longer.  Gothic
+		// rulez more than Diablo rulez.
+		//
+		// Me .energy = Me .maxenergy ;
+		// Me .mana   = Me .maxmana   ;
+
+		//--------------------
+		// Also when a new level is reached, we will display a big message
+		// right over the combat window.
+		//
+		SetNewBigScreenMessage(_("Level Gained!"));
+		Takeover_Game_Won_Sound();
+	}
+};				// void check_for_new_experience_level_reached ( )
 
 /**
  *
  *
  */
-void
-update_all_primary_stats ()
+void update_all_primary_stats()
 {
-    int i;
+	int i;
 
-    //--------------------
-    // Now we base PRIMARY stats
-    //
-    Me . Strength = Me . base_strength;
-    Me . Dexterity = Me . base_dexterity;
-    Me . Magic = Me . base_magic;
-    Me . Vitality = Me . base_vitality;
-    
-    Me . freezing_melee_targets = 0;
-    Me . double_ranged_damage = FALSE;
+	//--------------------
+	// Now we base PRIMARY stats
+	//
+	Me.Strength = Me.base_strength;
+	Me.Dexterity = Me.base_dexterity;
+	Me.Magic = Me.base_magic;
+	Me.Vitality = Me.base_vitality;
 
-    //--------------------
-    // Now we re-initialize the SKILL LEVELS
-    //
-    for ( i = 0; i < number_of_skills; i ++)
-	 Me . SkillLevel[i] =  Me . base_skill_level[i];
+	Me.freezing_melee_targets = 0;
+	Me.double_ranged_damage = FALSE;
 
-    //--------------------
-    // Now we add all bonuses to the influencers PRIMARY stats
-    //
-    AddInfluencerItemAttributeBonus( & Me . armour_item );
-    AddInfluencerItemAttributeBonus( & Me . weapon_item );
-    AddInfluencerItemAttributeBonus( & Me . drive_item );
-    AddInfluencerItemAttributeBonus( & Me . shield_item );
-    AddInfluencerItemAttributeBonus( & Me . special_item );
+	//--------------------
+	// Now we re-initialize the SKILL LEVELS
+	//
+	for (i = 0; i < number_of_skills; i++)
+		Me.SkillLevel[i] = Me.base_skill_level[i];
 
-    item * itrot [5] = {  & Me . armour_item,  & Me . weapon_item ,  & Me . drive_item ,  
-    		& Me . shield_item , & Me . special_item };
-    i = 0;
-    while ( i < 5 ) 
-	{
-	if ( itrot [ i ] -> type == -1 ) 
-		{
-		i ++;
-		continue;
+	//--------------------
+	// Now we add all bonuses to the influencers PRIMARY stats
+	//
+	AddInfluencerItemAttributeBonus(&Me.armour_item);
+	AddInfluencerItemAttributeBonus(&Me.weapon_item);
+	AddInfluencerItemAttributeBonus(&Me.drive_item);
+	AddInfluencerItemAttributeBonus(&Me.shield_item);
+	AddInfluencerItemAttributeBonus(&Me.special_item);
+
+	item *itrot[5] = { &Me.armour_item, &Me.weapon_item, &Me.drive_item,
+		&Me.shield_item, &Me.special_item
+	};
+	i = 0;
+	while (i < 5) {
+		if (itrot[i]->type == -1) {
+			i++;
+			continue;
 		}
-	if ( ! ItemUsageRequirementsMet ( itrot [ i ] , FALSE ) )
-		{ //we have to move away the item
-		if ( ! AddFloorItemDirectlyToInventory ( itrot [ i ] ) ) itrot [ i ] -> type = -1;
-		else 
-			{ //inventory is full... ouch
-			DropItemToTheFloor(itrot[i], Me.pos.x, Me.pos.y, Me.pos.z);
-			itrot [ i ] -> type = -1;
+		if (!ItemUsageRequirementsMet(itrot[i], FALSE)) {	//we have to move away the item
+			if (!AddFloorItemDirectlyToInventory(itrot[i]))
+				itrot[i]->type = -1;
+			else {	//inventory is full... ouch
+				DropItemToTheFloor(itrot[i], Me.pos.x, Me.pos.y, Me.pos.z);
+				itrot[i]->type = -1;
 			}
 		}
-	i ++;
+		i++;
 	}
 
+	//--------------------
+	// Maybe there is some boost from a potion or magic spell going on right
+	// now...
+	//
+	if (Me.dexterity_bonus_end_date > Me.current_game_date)
+		Me.Dexterity += Me.current_dexterity_bonus;
+	if (Me.power_bonus_end_date > Me.current_game_date)
+		Me.Strength += Me.current_power_bonus;
 
-
-    //--------------------
-    // Maybe there is some boost from a potion or magic spell going on right
-    // now...
-    //
-    if ( Me . dexterity_bonus_end_date > Me . current_game_date )
-	Me . Dexterity += Me . current_dexterity_bonus ;
-    if ( Me . power_bonus_end_date > Me . current_game_date )
-	Me . Strength += Me . current_power_bonus ;
-
-}; // void update_all_primary_stats ( )
+};				// void update_all_primary_stats ( )
 
 /**
  * This function computes secondary stats (i.e. chances for success or
@@ -335,43 +310,34 @@ update_all_primary_stats ()
  * current 'magic' modifiers from equipped items will be applied somewhere
  * else.
  */
-void
-update_secondary_stats_from_primary_stats ()
+void update_secondary_stats_from_primary_stats()
 {
-    //--------------------
-    // The chance that this player character will score a hit on an enemy
-    //
-    Me . to_hit = 
-	60 + ( Me . Dexterity - 15 ) * TOHIT_PERCENT_PER_DEX_POINT;
+	//--------------------
+	// The chance that this player character will score a hit on an enemy
+	//
+	Me.to_hit = 60 + (Me.Dexterity - 15) * TOHIT_PERCENT_PER_DEX_POINT;
 
-    //--------------------
-    // How many life points can this character aquire currently
-    //
-    Me . maxenergy = 
-	( Me . Vitality ) * Energy_Gain_Per_Vit_Point;
-    
-    //--------------------
-    // The maximum mana value computed from the primary stats
-    //
-    Me . max_temperature = 
-	( Me . Magic )    * Maxtemp_Gain_Per_CPU_Point;
+	//--------------------
+	// How many life points can this character aquire currently
+	//
+	Me.maxenergy = (Me.Vitality) * Energy_Gain_Per_Vit_Point;
 
-    //--------------------
-    // How long can this character run until he must take a break and
-    // walk a bit
-    //
-    Me . max_running_power = 
-	( Me . Strength ) + 
-	( Me . Dexterity ) + 
-	( Me . Vitality ) +
-	Me . running_power_bonus ;
+	//--------------------
+	// The maximum mana value computed from the primary stats
+	//
+	Me.max_temperature = (Me.Magic) * Maxtemp_Gain_Per_CPU_Point;
 
+	//--------------------
+	// How long can this character run until he must take a break and
+	// walk a bit
+	//
+	Me.max_running_power = (Me.Strength) + (Me.Dexterity) + (Me.Vitality) + Me.running_power_bonus;
 
-    //--------------------
-    // base regeneration speed set to 0.2 points per second
-    Me . health_recovery_rate = 0.2;
-    Me . cooling_rate = 1.0;
-}; // void update_secondary_stats_from_primary_stats ( )
+	//--------------------
+	// base regeneration speed set to 0.2 points per second
+	Me.health_recovery_rate = 0.2;
+	Me.cooling_rate = 1.0;
+};				// void update_secondary_stats_from_primary_stats ( )
 
 /**
  * Now we compute the possible damage the player character can do.
@@ -379,444 +345,405 @@ update_secondary_stats_from_primary_stats ()
  * character is using.  And depending on the weapon type (melee or
  * ranged weapon) some additional attributes will also play a role.
  */
-void
-update_damage_tux_can_do ()
+void update_damage_tux_can_do()
 {
-    if ( Me . weapon_item . type != (-1) )
-    {
-	if ( ItemMap[ Me . weapon_item . type ] . item_weapon_is_melee != 0 )
-	{
-	    //--------------------
-	    // Damage modifier in case of MELEE WEAPON is computed:  
-	    // weapon's modifier * (100+Strength)%
-	    //
-	    Me . base_damage = Me . weapon_item.damage * 
-		( Me . Strength + 100.0) / 100.0 ;
-	    
-	    Me . damage_modifier = Me . weapon_item . damage_modifier * 
-		( Me . Strength + 100.0) / 100.0 ;
-	    
-	    //--------------------
-	    // Damage AND damage modifier a modified by additional melee weapon
-	    // skill:  A multiplier is applied!
-	    //
-	    Me . damage_modifier *= MeleeDamageMultiplierTable [ Me . melee_weapon_skill ] ;
-	    Me . base_damage     *= MeleeDamageMultiplierTable [ Me . melee_weapon_skill ] ;
+	if (Me.weapon_item.type != (-1)) {
+		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
+			//--------------------
+			// Damage modifier in case of MELEE WEAPON is computed:  
+			// weapon's modifier * (100+Strength)%
+			//
+			Me.base_damage = Me.weapon_item.damage * (Me.Strength + 100.0) / 100.0;
+
+			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.Strength + 100.0) / 100.0;
+
+			//--------------------
+			// Damage AND damage modifier a modified by additional melee weapon
+			// skill:  A multiplier is applied!
+			//
+			Me.damage_modifier *= MeleeDamageMultiplierTable[Me.melee_weapon_skill];
+			Me.base_damage *= MeleeDamageMultiplierTable[Me.melee_weapon_skill];
+		} else {
+			//--------------------
+			// Damage modifier in case of RANGED WEAPON is computed:  
+			// weapon's modifier * (100+Dexterity)%
+			//
+			Me.base_damage = Me.weapon_item.damage * (Me.Dexterity + 100.0) / 100.0;
+			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.Dexterity + 100.0) / 100.0;
+
+			//--------------------
+			// Damage AND damage modifier a modified by additional ranged weapon
+			// skill:  A multiplier is applied!
+			//
+			Me.damage_modifier *= RangedDamageMultiplierTable[Me.ranged_weapon_skill];
+			Me.base_damage *= RangedDamageMultiplierTable[Me.ranged_weapon_skill];
+
+			//--------------------
+			// Maybe there is a plugin for double damage with ranged
+			// weapons present?
+			//
+			if (Me.double_ranged_damage != 0) {
+				Me.base_damage *= 2;
+				Me.damage_modifier *= 2;
+			}
+		}
+	} else {
+		//--------------------
+		// In case of no weapon equipped at all, we initialize
+		// the damage values with some simple numbers.  Currently
+		// strength and dexterity play NO ROLE in weaponless combat.
+		// Maybe that should be changed for something more suitable
+		// at some point...
+		//
+		Me.base_damage = 0;
+		Me.damage_modifier = 1;
 	}
-	else
-	{
-	    //--------------------
-	    // Damage modifier in case of RANGED WEAPON is computed:  
-	    // weapon's modifier * (100+Dexterity)%
-	    //
-	    Me . base_damage = Me . weapon_item . damage * 
-		( Me . Dexterity + 100.0 ) / 100.0 ;
-	    Me . damage_modifier = Me . weapon_item . damage_modifier * 
-		( Me . Dexterity + 100.0 ) / 100.0 ;
-	    
-	    //--------------------
-	    // Damage AND damage modifier a modified by additional ranged weapon
-	    // skill:  A multiplier is applied!
-	    //
-	    Me . damage_modifier *= RangedDamageMultiplierTable [ Me . ranged_weapon_skill ] ;
-	    Me . base_damage     *= RangedDamageMultiplierTable [ Me . ranged_weapon_skill ] ;
-	    
-	    //--------------------
-	    // Maybe there is a plugin for double damage with ranged
-	    // weapons present?
-	    //
-	    if ( Me . double_ranged_damage != 0 )
-	    {
-		Me . base_damage *= 2;
-		Me . damage_modifier *= 2;
-	    }
-	}
-    }
-    else
-    {
-	//--------------------
-	// In case of no weapon equipped at all, we initialize
-	// the damage values with some simple numbers.  Currently
-	// strength and dexterity play NO ROLE in weaponless combat.
-	// Maybe that should be changed for something more suitable
-	// at some point...
-	//
-	Me . base_damage = 0;
-	Me . damage_modifier = 1;
-    }
-}; // void update_damage_tux_can_do ( )
+};				// void update_damage_tux_can_do ( )
 
 /**
  *
  *
  */
-void
-update_tux_armour_class ()
+void update_tux_armour_class()
 {
-    //--------------------
-    // We initialize the armour class value from the primary stat, 
-    // using the dexterity value (and the 'character class')
-    //
-    Me . AC = 
-	( Me . Dexterity - 15 ) * AC_Gain_Per_Dex_Point ;
+	//--------------------
+	// We initialize the armour class value from the primary stat, 
+	// using the dexterity value (and the 'character class')
+	//
+	Me.AC = (Me.Dexterity - 15) * AC_Gain_Per_Dex_Point;
 
-    //--------------------
-    // Now we apply the armour bonuses from the currently equipped
-    // items to the total defence value
-    //
-    if ( Me . armour_item . type != (-1) )
-    {
-	Me . AC += Me . armour_item . ac_bonus;
-    }
-    if ( Me . shield_item.type != (-1) )
-    {
-	Me . AC += Me . shield_item . ac_bonus;
-    }
-    if ( Me . special_item.type != (-1) )
-    {
-	Me . AC += Me . special_item . ac_bonus;
-    }
-    if ( Me . drive_item.type != (-1) )
-    {
-        Me . AC += Me . drive_item . ac_bonus;
-    }
+	//--------------------
+	// Now we apply the armour bonuses from the currently equipped
+	// items to the total defence value
+	//
+	if (Me.armour_item.type != (-1)) {
+		Me.AC += Me.armour_item.ac_bonus;
+	}
+	if (Me.shield_item.type != (-1)) {
+		Me.AC += Me.shield_item.ac_bonus;
+	}
+	if (Me.special_item.type != (-1)) {
+		Me.AC += Me.special_item.ac_bonus;
+	}
+	if (Me.drive_item.type != (-1)) {
+		Me.AC += Me.drive_item.ac_bonus;
+	}
 
-}; // void update_tux_armour_class ( )
-
+};				// void update_tux_armour_class ( )
 
 /**
  * This function should re-compute all character stats according to the
  * currently equipped items and currenly distributed stats points.
  */
-void 
-UpdateAllCharacterStats ()
+void UpdateAllCharacterStats()
 {
-    //--------------------
-    // Maybe the influencer has reached a new experience level?
-    // Let's check this...
-    // 
-    check_for_new_experience_level_reached ();
+	//--------------------
+	// Maybe the influencer has reached a new experience level?
+	// Let's check this...
+	// 
+	check_for_new_experience_level_reached();
 
-    //--------------------
-    // The primary status must be computed/updated first, because
-    // the secondary status (chances and the like) will depend on
-    // them...
-    //
-    update_all_primary_stats ();
+	//--------------------
+	// The primary status must be computed/updated first, because
+	// the secondary status (chances and the like) will depend on
+	// them...
+	//
+	update_all_primary_stats();
 
-    //--------------------
-    // At this point we know, that the primary stats of the influencer
-    // have been fully computed.  So that means, that finally we can compute
-    // all base SECONDARY stats, that are dependent upon the influencer primary
-    // stats.  Once we are done with that, the modifiers to the secondary
-    // stats can be applied as well.
-    //
-    update_secondary_stats_from_primary_stats ();
+	//--------------------
+	// At this point we know, that the primary stats of the influencer
+	// have been fully computed.  So that means, that finally we can compute
+	// all base SECONDARY stats, that are dependent upon the influencer primary
+	// stats.  Once we are done with that, the modifiers to the secondary
+	// stats can be applied as well.
+	//
+	update_secondary_stats_from_primary_stats();
 
-    //--------------------
-    // Now we compute the possible damage the player character can do.
-    // The damage value of course depends on the weapon type that the
-    // character is using.  And depending on the weapon type (melee or
-    // ranged weapon) some additional attributes will also play a role.
-    //
-    update_damage_tux_can_do ();
+	//--------------------
+	// Now we compute the possible damage the player character can do.
+	// The damage value of course depends on the weapon type that the
+	// character is using.  And depending on the weapon type (melee or
+	// ranged weapon) some additional attributes will also play a role.
+	//
+	update_damage_tux_can_do();
 
-    //--------------------
-    // Update tux armour class
-    //
-    update_tux_armour_class ();
+	//--------------------
+	// Update tux armour class
+	//
+	update_tux_armour_class();
 
-    //--------------------
-    // So at this point we can finally apply all the modifiers to the influencers
-    // SECONDARY stats due to 'magical' items and spells and the like
-    //
-    Me . light_bonus_from_tux = 0 ;
-    Me . resist_disruptor = 0 ;
-    AddInfluencerItemSecondaryBonus( & Me . armour_item );
-    AddInfluencerItemSecondaryBonus( & Me . weapon_item );
-    AddInfluencerItemSecondaryBonus( & Me . drive_item );
-    AddInfluencerItemSecondaryBonus( & Me . shield_item );
-    AddInfluencerItemSecondaryBonus( & Me . special_item );
+	//--------------------
+	// So at this point we can finally apply all the modifiers to the influencers
+	// SECONDARY stats due to 'magical' items and spells and the like
+	//
+	Me.light_bonus_from_tux = 0;
+	Me.resist_disruptor = 0;
+	AddInfluencerItemSecondaryBonus(&Me.armour_item);
+	AddInfluencerItemSecondaryBonus(&Me.weapon_item);
+	AddInfluencerItemSecondaryBonus(&Me.drive_item);
+	AddInfluencerItemSecondaryBonus(&Me.shield_item);
+	AddInfluencerItemSecondaryBonus(&Me.special_item);
 
-    //--------------------
-    // There also should be an upper limit to disruptor protection,
-    // so that negative values can be avoided and also such that
-    // disruptor bots don't become completely useless...
-    //
-    if ( Me . resist_disruptor > 85 ) Me . resist_disruptor = 85 ;
-	
-	
-    //--------------------
-    // Check player's health and temperature
-    if ( Me . energy > Me . maxenergy ) Me . energy = Me . maxenergy;
-    if ( Me . temperature < 0 ) Me . temperature = 0;
+	//--------------------
+	// There also should be an upper limit to disruptor protection,
+	// so that negative values can be avoided and also such that
+	// disruptor bots don't become completely useless...
+	//
+	if (Me.resist_disruptor > 85)
+		Me.resist_disruptor = 85;
 
+	//--------------------
+	// Check player's health and temperature
+	if (Me.energy > Me.maxenergy)
+		Me.energy = Me.maxenergy;
+	if (Me.temperature < 0)
+		Me.temperature = 0;
 
-    //--------------------
-    // Now that the defence stat is computed, we can compute the chance, that
-    // a randomly chosen lv. 1 bot will hit the Tux in any given strike...
-    //
-    Me . lv_1_bot_will_hit_percentage =
-	( int ) ( exp ( - 0.018 * ( (float) Me . AC ) ) * 100.0 );
+	//--------------------
+	// Now that the defence stat is computed, we can compute the chance, that
+	// a randomly chosen lv. 1 bot will hit the Tux in any given strike...
+	//
+	Me.lv_1_bot_will_hit_percentage = (int)(exp(-0.018 * ((float)Me.AC)) * 100.0);
 
-}; // void UpdateAllCharacterStats ( void )
+};				// void UpdateAllCharacterStats ( void )
 
 /**
  * Now we print out the current skill levels in hacking skill, 
  * spellcasting, melee combat, ranged weapon combat and repairing things
  */
-void
-show_character_screen_skills ( )
+void show_character_screen_skills()
 {
-    
-    //--------------------
-    // We add some security against skill values out of allowed
-    // bounds.
-    //
-    if ( ( Me . melee_weapon_skill  < 0 ) ||
-	 ( Me . melee_weapon_skill >= NUMBER_OF_SKILL_LEVELS ) )
-    {
-	fprintf ( stderr , "\nmelee_weapon_skill: %d." , Me . melee_weapon_skill );
-	ErrorMessage ( __FUNCTION__ , "\
-Error: melee weapon skill seems out of bounds.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Melee"), RIGHT_TXT_X + CharacterRect.x , MELEE_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    DisplayText( _(AllSkillTexts [ Me . melee_weapon_skill ]), 
-		 SKILLS_VALUE_X + CharacterRect.x , MELEE_SKILL_Y + 17 +  CharacterRect.y , &CharacterRect , TEXT_STRETCH );
 
-    //--------------------
-    // We add some security against skill values out of allowed
-    // bounds.
-    //
-    if ( ( Me . ranged_weapon_skill < 0 ) ||
-	 ( Me . ranged_weapon_skill >= NUMBER_OF_SKILL_LEVELS ) )
-    {
-	fprintf ( stderr , "\nranged_weapon_skill: %d." , Me . ranged_weapon_skill );
-	ErrorMessage ( __FUNCTION__ , "\
-Error: ranged weapon skill seems out of bounds.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Ranged"), RIGHT_TXT_X + CharacterRect.x , RANGED_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    DisplayText( _(AllSkillTexts [ Me . ranged_weapon_skill ]), 
-		 SKILLS_VALUE_X + CharacterRect.x , RANGED_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	//--------------------
+	// We add some security against skill values out of allowed
+	// bounds.
+	//
+	if ((Me.melee_weapon_skill < 0) || (Me.melee_weapon_skill >= NUMBER_OF_SKILL_LEVELS)) {
+		fprintf(stderr, "\nmelee_weapon_skill: %d.", Me.melee_weapon_skill);
+		ErrorMessage(__FUNCTION__, "\
+Error: melee weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
+	}
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Melee"), RIGHT_TXT_X + CharacterRect.x, MELEE_SKILL_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	DisplayText(_(AllSkillTexts[Me.melee_weapon_skill]),
+		    SKILLS_VALUE_X + CharacterRect.x, MELEE_SKILL_Y + 17 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-    //--------------------
-    // We add some security against skill values out of allowed
-    // bounds.
-    //
-    if ( ( Me . spellcasting_skill < 0 ) ||
-	 ( Me . spellcasting_skill >= NUMBER_OF_SKILL_LEVELS ) )
-    {
-	fprintf ( stderr , "\nProgramming_Skill: %d." , Me . spellcasting_skill );
-	ErrorMessage ( __FUNCTION__ , "\
-Error: Programming_Skill skill seems out of bounds.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Programming"), RIGHT_TXT_X + CharacterRect.x , SPELLCASTING_SKILL_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    DisplayText( _(AllSkillTexts [ Me . spellcasting_skill ]), 
-		 SKILLS_VALUE_X + CharacterRect.x , SPELLCASTING_SKILL_Y + 17 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	//--------------------
+	// We add some security against skill values out of allowed
+	// bounds.
+	//
+	if ((Me.ranged_weapon_skill < 0) || (Me.ranged_weapon_skill >= NUMBER_OF_SKILL_LEVELS)) {
+		fprintf(stderr, "\nranged_weapon_skill: %d.", Me.ranged_weapon_skill);
+		ErrorMessage(__FUNCTION__, "\
+Error: ranged weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
+	}
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Ranged"), RIGHT_TXT_X + CharacterRect.x, RANGED_SKILL_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	DisplayText(_(AllSkillTexts[Me.ranged_weapon_skill]),
+		    SKILLS_VALUE_X + CharacterRect.x, RANGED_SKILL_Y + 17 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-}; // void show_character_screen_skills ( )
+	//--------------------
+	// We add some security against skill values out of allowed
+	// bounds.
+	//
+	if ((Me.spellcasting_skill < 0) || (Me.spellcasting_skill >= NUMBER_OF_SKILL_LEVELS)) {
+		fprintf(stderr, "\nProgramming_Skill: %d.", Me.spellcasting_skill);
+		ErrorMessage(__FUNCTION__, "\
+Error: Programming_Skill skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
+	}
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Programming"), RIGHT_TXT_X + CharacterRect.x, SPELLCASTING_SKILL_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	DisplayText(_(AllSkillTexts[Me.spellcasting_skill]),
+		    SKILLS_VALUE_X + CharacterRect.x, SPELLCASTING_SKILL_Y + 17 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+};				// void show_character_screen_skills ( )
 
 /**
  * This function displays the character screen.
  */
-void 
-ShowCharacterScreen ( )
+void ShowCharacterScreen()
 {
-    char CharText[1000];
-    point CurPos;
-    
-    DebugPrintf ( 2 , "\n%s(): Function call confirmed." , __FUNCTION__ );
-    
-    //--------------------
-    // If the log is not set to visible right now, we do not need to 
-    // do anything more, but to restore the usual user rectangle size
-    // back to normal and to return...
-    //
-    if ( GameConfig.CharacterScreen_Visible == FALSE ) return;
+	char CharText[1000];
+	point CurPos;
 
-    SetCurrentFont ( Messagestat_BFont );
-    
-    // --------------------
-    // We will need the current mouse position on several spots...
-    //
-    CurPos.x = GetMousePos_x() ;
-    CurPos.y = GetMousePos_y() ;
-    
-    //--------------------
-    // We define the right side of the user screen as the rectangle
-    // for our inventory screen.
-    //
-    CharacterRect . x = GameConfig . screen_width - CHARACTERRECT_W;
-    CharacterRect . y = 0; 
-    CharacterRect . w = CHARACTERRECT_W;
-    CharacterRect . h = CHARACTERRECT_H;
-    
-    blit_special_background ( CHARACTER_SCREEN_BACKGROUND_CODE );
-   
-    SetCurrentFont ( Blue_BFont );
+	DebugPrintf(2, "\n%s(): Function call confirmed.", __FUNCTION__);
 
- 
-    SetCurrentFont ( Menu_BFont );
-    DisplayText( Me.character_name , 20 + CharacterRect.x , 12 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	//--------------------
+	// If the log is not set to visible right now, we do not need to 
+	// do anything more, but to restore the usual user rectangle size
+	// back to normal and to return...
+	//
+	if (GameConfig.CharacterScreen_Visible == FALSE)
+		return;
 
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Level"), LEFT_TXT_X + CharacterRect.x , 73 + CharacterRect.y , &CharacterRect , TEXT_STRETCH);
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d", Me.exp_level );
-    DisplayText( CharText , LEVEL_NR_X + CharacterRect.x , 73 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Experience"), LEFT_TXT_X + CharacterRect.x , 89 + CharacterRect.y , &CharacterRect , TEXT_STRETCH);
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%u", Me.Experience ); 
-    DisplayText( CharText , LEVEL_NR_X + CharacterRect.x ,  89 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	SetCurrentFont(Messagestat_BFont);
 
-    SetCurrentFont ( Messagestat_BFont );    
-    DisplayText( _("Next level"), LEFT_TXT_X + CharacterRect.x , 107 + CharacterRect.y , &CharacterRect , TEXT_STRETCH);
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%u", Me.ExpRequired );
-    DisplayText( CharText , LEVEL_NR_X + CharacterRect.x ,  107 + CharacterRect.y , &CharacterRect , TEXT_STRETCH ) ;
-    
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Money"), RIGHT_TXT_X + CharacterRect.x ,  71 + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%6d", Me.Gold ); 
-    DisplayText( CharText , 240 + CharacterRect.x ,  71 + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Strength"), LEFT_TXT_X + CharacterRect.x , STR_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d", Me.Strength);
-    if ( Me.Strength != Me.base_strength ) 
-	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Strength - Me.base_strength); 
-    DisplayText( CharText , STR_X + CharacterRect.x , STR_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	// --------------------
+	// We will need the current mouse position on several spots...
+	//
+	CurPos.x = GetMousePos_x();
+	CurPos.y = GetMousePos_y();
 
-    SetCurrentFont ( Messagestat_BFont );   
-    DisplayText( _("Dexterity"), LEFT_TXT_X + CharacterRect.x , DEX_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d", Me.Dexterity );
-    if ( Me.Dexterity != Me.base_dexterity ) 
-	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Dexterity - Me.base_dexterity); 
-    DisplayText( CharText , STR_X + CharacterRect.x , DEX_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	//--------------------
+	// We define the right side of the user screen as the rectangle
+	// for our inventory screen.
+	//
+	CharacterRect.x = GameConfig.screen_width - CHARACTERRECT_W;
+	CharacterRect.y = 0;
+	CharacterRect.w = CHARACTERRECT_W;
+	CharacterRect.h = CHARACTERRECT_H;
 
-    SetCurrentFont ( Messagestat_BFont );    
-    DisplayText( _("CPU"), LEFT_TXT_X + CharacterRect.x , MAG_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d", Me.Magic );
-    if ( Me.Magic != Me.base_magic ) 
-	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Magic - Me.base_magic); 
-    DisplayText( CharText , STR_X + CharacterRect.x , MAG_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Life"), LEFT_TXT_X + CharacterRect.x , VIT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d", Me.Vitality );
-    if ( Me.Vitality != Me.base_vitality ) 
-	sprintf ( CharText + strlen(CharText), " (%+d)", Me.Vitality - Me.base_vitality); 
-    DisplayText( CharText , STR_X + CharacterRect.x , VIT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-   
-    SDL_Rect tmprect = CharacterRect;
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Training points"), LEFT_TXT_X + CharacterRect.x , POINTS_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d", Me.points_to_distribute );
-    DisplayText( CharText , 150 + CharacterRect.x , POINTS_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-   
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Health"), LEFT_TXT_X + CharacterRect.x , HEALTH_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d/%d", (int) Me.energy, (int) Me.maxenergy );
-    DisplayText( CharText , HEALTH_NR_X + CharacterRect.x , HEALTH_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	blit_special_background(CHARACTER_SCREEN_BACKGROUND_CODE);
 
-    SetCurrentFont ( Messagestat_BFont );    
-    DisplayText( _("Temperature"), LEFT_TXT_X + CharacterRect.x , TEMP_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d/%d", (int) Me . temperature, (int) Me.max_temperature );
-    DisplayText( CharText , HEALTH_NR_X + CharacterRect.x , TEMP_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	SetCurrentFont(Blue_BFont);
 
-    SetCurrentFont ( Messagestat_BFont );    
-    DisplayText( _("Stamina"), LEFT_TXT_X + CharacterRect.x , STAMINA_STAT_Y + CharacterRect.y , &tmprect , TEXT_STRETCH );
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d/%d", (int) Me . running_power, (int) Me . max_running_power );
-    DisplayText( CharText , HEALTH_NR_X + CharacterRect.x , STAMINA_STAT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	SetCurrentFont(Menu_BFont);
+	DisplayText(Me.character_name, 20 + CharacterRect.x, 12 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Armor"), RIGHT_TXT_X + CharacterRect.x, AC_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d", (int) Me.AC );
-    DisplayText( CharText , ARMOR_NR_X + CharacterRect.x , AC_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Level"), LEFT_TXT_X + CharacterRect.x, 73 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.exp_level);
+	DisplayText(CharText, LEVEL_NR_X + CharacterRect.x, 73 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Attack"), RIGHT_TXT_X + CharacterRect.x, TOHIT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d%%", (int) Me.to_hit );
-    DisplayText( CharText , ARMOR_NR_X + CharacterRect.x , TOHIT_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Experience"), LEFT_TXT_X + CharacterRect.x, 89 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%u", Me.Experience);
+	DisplayText(CharText, LEVEL_NR_X + CharacterRect.x, 89 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-    SetCurrentFont ( Messagestat_BFont );
-    DisplayText( _("Damage"), RIGHT_TXT_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH ); 
-    SetCurrentFont ( Messagevar_BFont );
-    sprintf( CharText , "%d-%d", (int) Me.base_damage , (int) Me.base_damage + (int) Me.damage_modifier );
-    DisplayText( CharText , ARMOR_NR_X + CharacterRect.x , DAMAGE_Y + CharacterRect.y , &CharacterRect , TEXT_STRETCH );
-    
-    
-    //--------------------
-    // Now we print out the current skill levels in hacking skill, 
-    // spellcasting, melee combat, ranged weapon combat and repairing things
-    //
-    show_character_screen_skills ( );
-    if ( Me.points_to_distribute > 0 )
-    {
-	ShowGenericButtonFromList ( MORE_STR_BUTTON );
-	ShowGenericButtonFromList ( MORE_DEX_BUTTON );
-	ShowGenericButtonFromList ( MORE_VIT_BUTTON );
-	ShowGenericButtonFromList ( MORE_MAG_BUTTON );
-    }
-}; //ShowCharacterScreen ( ) 
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Next level"), LEFT_TXT_X + CharacterRect.x, 107 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%u", Me.ExpRequired);
+	DisplayText(CharText, LEVEL_NR_X + CharacterRect.x, 107 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Money"), RIGHT_TXT_X + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%6d", Me.Gold);
+	DisplayText(CharText, 240 + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Strength"), LEFT_TXT_X + CharacterRect.x, STR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.Strength);
+	if (Me.Strength != Me.base_strength)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.Strength - Me.base_strength);
+	DisplayText(CharText, STR_X + CharacterRect.x, STR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Dexterity"), LEFT_TXT_X + CharacterRect.x, DEX_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.Dexterity);
+	if (Me.Dexterity != Me.base_dexterity)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.Dexterity - Me.base_dexterity);
+	DisplayText(CharText, STR_X + CharacterRect.x, DEX_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("CPU"), LEFT_TXT_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.Magic);
+	if (Me.Magic != Me.base_magic)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.Magic - Me.base_magic);
+	DisplayText(CharText, STR_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Life"), LEFT_TXT_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.Vitality);
+	if (Me.Vitality != Me.base_vitality)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.Vitality - Me.base_vitality);
+	DisplayText(CharText, STR_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SDL_Rect tmprect = CharacterRect;
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Training points"), LEFT_TXT_X + CharacterRect.x, POINTS_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.points_to_distribute);
+	DisplayText(CharText, 150 + CharacterRect.x, POINTS_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Health"), LEFT_TXT_X + CharacterRect.x, HEALTH_STAT_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d/%d", (int)Me.energy, (int)Me.maxenergy);
+	DisplayText(CharText, HEALTH_NR_X + CharacterRect.x, HEALTH_STAT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Temperature"), LEFT_TXT_X + CharacterRect.x, TEMP_STAT_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d/%d", (int)Me.temperature, (int)Me.max_temperature);
+	DisplayText(CharText, HEALTH_NR_X + CharacterRect.x, TEMP_STAT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Stamina"), LEFT_TXT_X + CharacterRect.x, STAMINA_STAT_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d/%d", (int)Me.running_power, (int)Me.max_running_power);
+	DisplayText(CharText, HEALTH_NR_X + CharacterRect.x, STAMINA_STAT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Armor"), RIGHT_TXT_X + CharacterRect.x, AC_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", (int)Me.AC);
+	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, AC_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Attack"), RIGHT_TXT_X + CharacterRect.x, TOHIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d%%", (int)Me.to_hit);
+	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, TOHIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Damage"), RIGHT_TXT_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d-%d", (int)Me.base_damage, (int)Me.base_damage + (int)Me.damage_modifier);
+	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	//--------------------
+	// Now we print out the current skill levels in hacking skill, 
+	// spellcasting, melee combat, ranged weapon combat and repairing things
+	//
+	show_character_screen_skills();
+	if (Me.points_to_distribute > 0) {
+		ShowGenericButtonFromList(MORE_STR_BUTTON);
+		ShowGenericButtonFromList(MORE_DEX_BUTTON);
+		ShowGenericButtonFromList(MORE_VIT_BUTTON);
+		ShowGenericButtonFromList(MORE_MAG_BUTTON);
+	}
+};				//ShowCharacterScreen ( ) 
 
 /**
  * This function handles input for the character screen.
  */
-void
-HandleCharacterScreen ( void )
+void HandleCharacterScreen(void)
 {
 
-    if ( ! GameConfig . CharacterScreen_Visible ) return;
-    
-    if ( Me.points_to_distribute > 0 )
-    {
-	if ( MouseCursorIsOnButton( MORE_STR_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
-	{
-	    Me.base_strength++;
-	    Me.points_to_distribute--;
-	}
-	if ( MouseCursorIsOnButton( MORE_DEX_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
-	{
-	    Me.base_dexterity++;
-	    Me.points_to_distribute--;
-	}
-	if ( MouseCursorIsOnButton( MORE_MAG_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
-	{
-	    Me.base_magic++;
-	    Me.points_to_distribute--;
-	}
-	if ( MouseCursorIsOnButton( MORE_VIT_BUTTON , GetMousePos_x()  , GetMousePos_y()  ) && MouseLeftClicked() )
-	{
-	    Me.base_vitality++;
-	    Me.points_to_distribute--;
-	}
-	
-    }
+	if (!GameConfig.CharacterScreen_Visible)
+		return;
 
-    
-}; // HandleCharacterScreen ( void )
+	if (Me.points_to_distribute > 0) {
+		if (MouseCursorIsOnButton(MORE_STR_BUTTON, GetMousePos_x(), GetMousePos_y()) && MouseLeftClicked()) {
+			Me.base_strength++;
+			Me.points_to_distribute--;
+		}
+		if (MouseCursorIsOnButton(MORE_DEX_BUTTON, GetMousePos_x(), GetMousePos_y()) && MouseLeftClicked()) {
+			Me.base_dexterity++;
+			Me.points_to_distribute--;
+		}
+		if (MouseCursorIsOnButton(MORE_MAG_BUTTON, GetMousePos_x(), GetMousePos_y()) && MouseLeftClicked()) {
+			Me.base_magic++;
+			Me.points_to_distribute--;
+		}
+		if (MouseCursorIsOnButton(MORE_VIT_BUTTON, GetMousePos_x(), GetMousePos_y()) && MouseLeftClicked()) {
+			Me.base_vitality++;
+			Me.points_to_distribute--;
+		}
+
+	}
+
+};				// HandleCharacterScreen ( void )
 
 #undef _character_c

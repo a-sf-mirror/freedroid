@@ -28,7 +28,6 @@
  *           and take into account the AC-defined conditionals
  */
 
-
 /* 
  * well, for the time being we actually don't care too much about the 
  * AC-defined conditionals and pretend it's standard linux
@@ -55,7 +54,7 @@
 
 #ifdef HAVE_TIME_H
 #include <time.h>
-#else 
+#else
 #ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
@@ -119,8 +118,8 @@
 
 #ifdef HAVE_LIBGL
 #include "SDL_opengl.h"
-#endif /* HAVE_LIBGL */
+#endif				/* HAVE_LIBGL */
 
 #include "lang.h"
 
-#endif /* double-inclusion protection */
+#endif				/* double-inclusion protection */

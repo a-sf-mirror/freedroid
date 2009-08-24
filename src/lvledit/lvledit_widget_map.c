@@ -44,161 +44,161 @@ moderately_finepoint mouse_mapcoord;
 
 static struct leveleditor_widget *tool_selection_menu;
 
-void select_tool(void *t) 
+void select_tool(void *t)
 {
-    if (!active_tool)
-	selected_tool = t;
-    else 
-	GiveMouseAlertWindow("Cannot select another tool: busy\n");
+	if (!active_tool)
+		selected_tool = t;
+	else
+		GiveMouseAlertWindow("Cannot select another tool: busy\n");
 
-    if (tool_selection_menu)
-	tool_selection_menu->enabled = 0;
+	if (tool_selection_menu)
+		tool_selection_menu->enabled = 0;
 }
 
 void leveleditor_map_init()
 {
-    leveleditor_init_tools();
-    selected_tool = &tool_place;
+	leveleditor_init_tools();
+	selected_tool = &tool_place;
 }
 
-static void forward_event(SDL_Event *event)
+static void forward_event(SDL_Event * event)
 {
-    if (active_tool) {
-	if (active_tool->input_event(event)) {
-	    active_tool = NULL;
+	if (active_tool) {
+		if (active_tool->input_event(event)) {
+			active_tool = NULL;
+		}
 	}
-    }
 }
 
-void leveleditor_map_mouseenter(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mouseenter(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
+	(void)vm;
 }
 
-void leveleditor_map_mouseleave(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mouseleave(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
+	(void)vm;
 }
 
-void leveleditor_map_mouserelease(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mouserelease(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
-    
-    forward_event(event);
+	(void)vm;
+
+	forward_event(event);
 }
 
-void leveleditor_map_mousepress(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mousepress(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
-    if (!active_tool) {
-	active_tool = selected_tool;
+	(void)vm;
+	if (!active_tool) {
+		active_tool = selected_tool;
 
-	/* disable temporary-switching by CTRL because it conflicts with modifiers used in select tool
-	 if (CtrlPressed()) {
-	    active_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
+		/* disable temporary-switching by CTRL because it conflicts with modifiers used in select tool
+		   if (CtrlPressed()) {
+		   active_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
+		   }
+		 */
 	}
-	*/
-    }
 
-    forward_event(event);
+	forward_event(event);
 }
 
-void leveleditor_map_mouserightrelease(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mouserightrelease(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
-    
-    forward_event(event);
+	(void)vm;
+
+	forward_event(event);
 }
 
-void leveleditor_map_mouserightpress(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mouserightpress(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
+	(void)vm;
 
-    if (!active_tool)
-	active_tool = &tool_move;
+	if (!active_tool)
+		active_tool = &tool_move;
 
-    forward_event(event);
+	forward_event(event);
 }
 
-void leveleditor_map_mousewheelup(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mousewheelup(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
-    leveleditor_toolbar_left();
+	(void)vm;
+	leveleditor_toolbar_left();
 }
 
-void leveleditor_map_mousewheeldown(SDL_Event *event, struct leveleditor_widget *vm)
+void leveleditor_map_mousewheeldown(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
-    leveleditor_toolbar_right();
+	(void)vm;
+	leveleditor_toolbar_right();
 }
 
-void leveleditor_map_mousemove(SDL_Event *event, struct leveleditor_widget *vm) 
+void leveleditor_map_mousemove(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
-    mouse_mapcoord =  translate_point_to_map_location ((float)event->motion.x -(GameConfig.screen_width/2), (float)event->motion.y - (GameConfig.screen_height/2),
- GameConfig.zoom_is_on);
+	(void)vm;
+	mouse_mapcoord =
+	    translate_point_to_map_location((float)event->motion.x - (GameConfig.screen_width / 2),
+					    (float)event->motion.y - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
 
-    forward_event(event);
+	forward_event(event);
 }
 
-int leveleditor_map_keybevent(SDL_Event *event, struct leveleditor_widget *vm) 
+int leveleditor_map_keybevent(SDL_Event * event, struct leveleditor_widget *vm)
 {
-    (void)vm;
+	(void)vm;
 
-    // Tool selection menu via space
-    if (EVENT_KEYPRESS(event, SDLK_SPACE) && !active_tool) {
-	// No active tool? Cycle the currently selected one.
-	//
-	selected_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
+	// Tool selection menu via space
+	if (EVENT_KEYPRESS(event, SDLK_SPACE) && !active_tool) {
+		// No active tool? Cycle the currently selected one.
+		//
+		selected_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
 
-	/* Disable the annoying menu.
-	// No active tool? Spawn a menu
+		/* Disable the annoying menu.
+		   // No active tool? Spawn a menu
 
-	if (!tool_selection_menu) { 
-	    //We do not have a menu
-	    tool_selection_menu = create_menu();
-	    list_add(&tool_selection_menu->node, &leveleditor_widget_list);
-	} 
+		   if (!tool_selection_menu) { 
+		   //We do not have a menu
+		   tool_selection_menu = create_menu();
+		   list_add(&tool_selection_menu->node, &leveleditor_widget_list);
+		   } 
 
-	if (!tool_selection_menu->enabled) {
+		   if (!tool_selection_menu->enabled) {
 
-	    struct leveleditor_menu *m = tool_selection_menu->ext;
-	    int i;
-	    SDL_Rect r = { .x = GetMousePos_x(), .y = GetMousePos_y(), .w = 100, .h = 150 };
-	    tool_selection_menu->rect = r;
-	    sprintf(m->text[0], "Cancel");
-	    sprintf(m->text[1], "Place");
-	    sprintf(m->text[2], "Move");
-	    sprintf(m->text[3], "Select");
-	    for (i = 4; i < 10; i++)
-		m->text[i][0] = 0;
-	    m->values[0] = selected_tool;
-	    m->values[1] = &tool_place;
-	    m->values[2] = &tool_move;
-	    m->values[3] = &tool_select;
+		   struct leveleditor_menu *m = tool_selection_menu->ext;
+		   int i;
+		   SDL_Rect r = { .x = GetMousePos_x(), .y = GetMousePos_y(), .w = 100, .h = 150 };
+		   tool_selection_menu->rect = r;
+		   sprintf(m->text[0], "Cancel");
+		   sprintf(m->text[1], "Place");
+		   sprintf(m->text[2], "Move");
+		   sprintf(m->text[3], "Select");
+		   for (i = 4; i < 10; i++)
+		   m->text[i][0] = 0;
+		   m->values[0] = selected_tool;
+		   m->values[1] = &tool_place;
+		   m->values[2] = &tool_move;
+		   m->values[3] = &tool_select;
 
-	    m->done_cb = select_tool;
+		   m->done_cb = select_tool;
 
-	    tool_selection_menu->enabled = 1;
-	} else {
-	    //Disable the existing menu
-	    tool_selection_menu->enabled = 0;
+		   tool_selection_menu->enabled = 1;
+		   } else {
+		   //Disable the existing menu
+		   tool_selection_menu->enabled = 0;
+		   }
+		 */
 	}
-	*/
-    }
+	// Forward the key to the active tool
+	forward_event(event);
 
-    // Forward the key to the active tool
-    forward_event(event);
-
-    return 0;
+	return 0;
 }
 
 void leveleditor_map_display_cursor()
 {
-    int oldmode = global_ingame_mode;
+	int oldmode = global_ingame_mode;
 
-    if (active_tool)
-	active_tool->display();
+	if (active_tool)
+		active_tool->display();
 
 	if (selected_tool == &tool_select) {
 		if (ShiftPressed() && !selection_empty()) {
@@ -209,17 +209,17 @@ void leveleditor_map_display_cursor()
 		}
 	}
 
-    blit_our_own_mouse_cursor();
+	blit_our_own_mouse_cursor();
 
-    global_ingame_mode = oldmode;
+	global_ingame_mode = oldmode;
 }
-    
+
 void leveleditor_map_display(struct leveleditor_widget *vm)
 {
-    (void)vm;
+	(void)vm;
 }
 
 void leveleditor_update_tool()
-{ //time-based updating if relevant
-    forward_event(NULL);
+{				//time-based updating if relevant
+	forward_event(NULL);
 }
