@@ -399,9 +399,6 @@ static void show_floor(int mask)
 
 					iso_image *ourimg = &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
 
-					if (MapBrick == ISO_COMPLETELY_DARK)
-						continue;
-
 					int x, y;
 					float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
 
@@ -1970,8 +1967,6 @@ void AssembleCombatPicture(int mask)
 	int item_under_cursor = get_floor_item_index_under_mouse_cursor();
 
 	DebugPrintf(2, "\n%s(): inside display code now.", __FUNCTION__);
-
-	clear_screen();
 
 	if (mask & USE_OWN_MOUSE_CURSOR || mask & NO_CURSOR)
 		make_sure_system_mouse_cursor_is_turned_off();

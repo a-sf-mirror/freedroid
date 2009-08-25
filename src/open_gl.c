@@ -583,29 +583,6 @@ void open_gl_check_error_status(const char *name_of_calling_function)
 };				// void open_gl_check_error_status ( char* name_of_calling_function  )
 
 /**
- * Clear the screen, plain and simple, but only in OpenGL mode.
- */
-void clear_screen(void)
-{
-#ifdef HAVE_LIBGL
-
-	if (use_open_gl) {
-		//--------------------
-		// Now we specify the default color to use when clearing the screen
-		// with glClear.  Accoding to a hint from Derrick Pallas, this might
-		// be causing problems with S3 graphics cards, so we move the color
-		// specification out and away from initialisation part to the (only) 
-		// location where glClear is actually used.
-		//
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-	}
-#endif
-
-};				// void clear_screen ( void )
-
-/**
  * This function does the first part of the OpenGL parameter 
  * initialisation.  We've made this chunk of code into a separate function
  * such that the frequent issues with OpenGL drivers can be attributed to
