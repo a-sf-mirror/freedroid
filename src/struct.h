@@ -674,6 +674,8 @@ typedef struct tux_s {
 	float paralyze_duration;
 	float invisible_duration;
 
+	int quest_browser_changed;
+
 	int program_shortcuts[10];
 } tux_t, *Tux_t;
 

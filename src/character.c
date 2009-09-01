@@ -82,6 +82,9 @@ void DisplayButtons(void)
 	if (GameConfig.screen_height == 480 && (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible))
 		goto display_overlay_chascr;
 
+	if (Me.quest_browser_changed)
+		ShowGenericButtonFromList(LOG_SCREEN_TOGGLE_BUTTON_RED);
+
 	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		ShowGenericButtonFromList(INV_SCREEN_TOGGLE_BUTTON_YELLOW);
 	} else if (MouseCursorIsOnButton(LOG_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {

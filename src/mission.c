@@ -83,6 +83,8 @@ void quest_browser_diary_add(const char *mis_name, const char *diarytext)
 	Me.AllMissions[mis_num].mission_description_time[idx] = Me.current_game_date;
 
 	mission_diary_texts[mis_num][idx] = strdup(diarytext);
+
+	Me.quest_browser_changed = 1;
 };
 
 /**
@@ -303,6 +305,8 @@ void quest_browser_interface(void)
 
 	blit_special_background(QUEST_BROWSER_BACKGROUND_CODE);
 	StoreMenuBackground(1);
+
+	Me.quest_browser_changed = 0;
 
 	while (!back_to_game) {
 		SDL_Delay(1);
@@ -538,6 +542,7 @@ void AssignMission(const char *name)
 	if (Me.AllMissions[MissNum].assignment_lua_code)
 		run_lua(Me.AllMissions[MissNum].assignment_lua_code);
 
+	Me.quest_browser_changed = 1;
 };
 
 /**
@@ -552,6 +557,8 @@ void CompleteMission(const char *name)
 
 	if (Me.AllMissions[MissNum].completion_lua_code)
 		run_lua(Me.AllMissions[MissNum].completion_lua_code);
+
+	Me.quest_browser_changed = 1;
 }
 
 /**

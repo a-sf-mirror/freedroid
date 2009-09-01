@@ -70,6 +70,8 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[CHA_SCREEN_TOGGLE_BUTTON_RED] = {UNLOADED_ISO_IMAGE, "mouse_buttons/cha_button_red.png", {334, 480 - 47, 46, 14}, TRUE, FALSE},
 	[LOG_SCREEN_TOGGLE_BUTTON_YELLOW] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/log_button_yellow.png", {239, 480 - 47, 46, 14}, TRUE, FALSE},
+	[LOG_SCREEN_TOGGLE_BUTTON_RED] =
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/log_button_red.png", {239, 480 - 47, 46, 14}, TRUE, FALSE},
 	[CHA_SCREEN_TOGGLE_BUTTON_YELLOW] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/cha_button_yellow.png", {334, 480 - 47, 46, 14}, TRUE, FALSE},
 	[INV_SCREEN_TOGGLE_BUTTON_YELLOW] =
