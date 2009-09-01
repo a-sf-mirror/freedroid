@@ -47,8 +47,8 @@ LuaCode={
 	npc_says(_"On that day all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
 	npc_says(_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
 	npc_says(_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it? Good.")
-	change_obstacle("Main Gate Inner E", "opened")
-	change_obstacle("Main Gate Inner W", "opened")
+	change_obstacle_state("Main Gate Inner E", "opened")
+	change_obstacle_state("Main Gate Inner W", "opened")
     hide(1, 2, 3)
     show(99)
 }
@@ -58,8 +58,8 @@ Nr=2  Text=_"I'd like to get into town."
 LuaCode={
 	npc_says(_"Funny, exactly the same could be said about all of the crazy bots out there.")
 	npc_says(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear.")
-	change_obstacle("Main Gate Inner E", "opened")
-	change_obstacle("Main Gate Inner W", "opened")
+	change_obstacle_state("Main Gate Inner E", "opened")
+	change_obstacle_state("Main Gate Inner W", "opened")
     hide(1, 2, 3)
     show(99)
 }
@@ -69,9 +69,9 @@ Nr=3  Text=_"I'm here to assassinate your leader and you won't stop me!"
 LuaCode={
 	npc_says(_"Ok, Linarian! You asked for it!")
 	npc_says(_"Open fire!")
-	change_obstacle("Main Gate Outer E", "closed")
-	change_obstacle("Main Gate Outer W", "closed")
-	change_obstacle("Main Gate Guardhouse", "closed")
+	change_obstacle_state("Main Gate Outer E", "closed")
+	change_obstacle_state("Main Gate Outer W", "closed")
+	change_obstacle_state("Main Gate Guardhouse", "closed")
     break_off_and_attack()
     everybody_hostile()
     hide(1, 2, 3)

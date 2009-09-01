@@ -806,10 +806,6 @@ typedef struct level_s {
 	char *Background_Song_Name;
 	char *obstacle_name_list[MAX_OBSTACLE_NAMES_PER_LEVEL];
 	char *obstacle_description_list[MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL];
-	int obstacle_statelist_base[MAX_OBSTACLE_NAMES_PER_LEVEL];
-	int obstacle_statelist_count[MAX_OBSTACLE_NAMES_PER_LEVEL];
-	char *obstacle_states_names[MAX_OBSTACLE_STATES_PER_LEVEL];
-	int obstacle_states_values[MAX_OBSTACLE_STATES_PER_LEVEL];
 
 	map_tile *map[MAX_MAP_LINES];	// this is a vector of pointers
 	int jump_threshold_north;

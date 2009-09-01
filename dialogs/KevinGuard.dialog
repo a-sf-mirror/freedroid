@@ -67,7 +67,7 @@ LuaCode={
 Nr=4  Text=_"Thank you."
 LuaCode={
     add_cookie("kevin_door_open")
-    change_obstacle("KevinsDoor", "opened")
+    change_obstacle_state("KevinsDoor", "opened")
     hide(4)
     show(99)
 }

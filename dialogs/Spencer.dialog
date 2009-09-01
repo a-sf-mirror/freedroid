@@ -91,7 +91,7 @@ LuaCode={
 	npc_says(_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there.", "NO_WAIT")
 	npc_says(_"I wish you the best of luck.")
 	add_quest("Opening a can of bots...", "I am supposed to clean out the first level of some warehouse. Sounds easy.")
-	change_obstacle("AccessDoorToWarehouse", "opened")
+	change_obstacle_state("AccessDoorToWarehouse", "opened")
 	hide(5)
 }
 ----------------------------------------------------------------------
@@ -231,7 +231,7 @@ LuaCode={
 	npc_says(_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance.")
 	npc_says(_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield.")
 	add_quest("Opening access to MS Office", "Spencer has revealed the information from the data cube evaluation to me.  It seems there is an old military research facility near the town.  By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
-	change_obstacle("DisruptorShieldBaseGate", "opened")
+	change_obstacle_state("DisruptorShieldBaseGate", "opened")
 	hide(39, 40)
 }
 ----------------------------------------------------------------------

@@ -61,7 +61,7 @@ Nr=3  Text="THE GATE OPENS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 NPC=_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay."
 LuaCode={
-    change_obstacle("OldTownGuardHouseEntrance", "opened")
+    change_obstacle_state("OldTownGuardHouseEntrance", "opened")
 }
 ----------------------------------------------------------------------
 

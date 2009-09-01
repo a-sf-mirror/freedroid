@@ -58,8 +58,8 @@ NPC=_"Connecting to peripheral controller..."
 NPC=_"Guns disabled."
 LuaCode={
     add_cookie("SAGunsOff")
-    change_obstacle("SADDGun1", "disabled")
-    change_obstacle("SADDGun2", "disabled")
+    change_obstacle_state("SADDGun1", "disabled")
+    change_obstacle_state("SADDGun2", "disabled")
     hide(1)
     show(2)
 }
@@ -70,8 +70,8 @@ NPC=_"Enabling guns..."
 NPC=_"Connecting to peripheral controller..."
 NPC=_"Guns enabled."
 LuaCode={
-    change_obstacle("SADDGun1", "enabled")
-    change_obstacle("SADDGun2", "enabled")
+    change_obstacle_state("SADDGun1", "enabled")
+    change_obstacle_state("SADDGun2", "enabled")
     del_cookie("SAGunsOff")
     hide(2)
     show(1)

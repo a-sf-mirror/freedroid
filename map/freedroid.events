@@ -306,7 +306,7 @@ Silent=0
 Trigger at label="wallEvent1Trigger"
 Delete the event trigger after it has been triggered=1
 LuaCode={
-	modify_obstacle("wall1", "triggered")
+	-- modify_obstacle("wall1", "triggered")
 }
 * End of trigger *
 

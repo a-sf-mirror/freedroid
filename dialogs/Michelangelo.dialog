@@ -205,7 +205,7 @@ NPC=_"I will talk to the guards, they will open the eastern gate for you."
 NPC=_"Good luck. Try not to get yourself killed."
 LuaCode={
     add_quest("Anything but the army snacks, please!", "I am supposed to get some dilithium crystals for that cook. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")
-    change_obstacle("EastGateOfTown", "opened")
+    change_obstacle_state("EastGateOfTown", "opened")
     hide(82)
 }
 ----------------------------------------------------------------------

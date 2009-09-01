@@ -86,7 +86,7 @@ LuaCode={
 Nr=7  Text=_"That is all I need to know. I will find Koan."
 NPC=_"Only time will tell."
 LuaCode={
-    change_obstacle("DesertGate", "opened")
+    change_obstacle_state("DesertGate", "opened")
     end_dialog()
 }
 ----------------------------------------------------------------------

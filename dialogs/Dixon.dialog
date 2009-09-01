@@ -124,7 +124,7 @@ LuaCode={
 	npc_says(_"The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates.")
 	npc_says(_"There you will find the maintenance access hatch.", "NO_WAIT")
 	npc_says(_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all.")
-	change_obstacle("NorthernMaintainanceDoor", "opened")
+	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	add_item("Plasma Shockwave Emitter",2)
 	hide(21, 26) show(31)
 }
@@ -197,7 +197,7 @@ LuaCode={
 	npc_says(_"I will talk to Spencer and ask him for a few attack teams. We will take care of the bots.")
 	add_cookie("singularity_killed")
 	add_cookie("singularity_dead")
-	change_obstacle("NorthernMaintainanceDoor", "opened")
+	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	add_diary_entry("The yellow toolkit", "The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
 	hide(28, 29, 30)
 }
@@ -210,7 +210,7 @@ LuaCode={
 	npc_says(_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore.")
 	add_cookie("singularity_killed")
 	add_diary_entry("The yellow toolkit", "The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
-	change_obstacle("NorthernMaintainanceDoor", "opened")
+	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	hide(28, 29, 30)
 }
 ----------------------------------------------------------------------

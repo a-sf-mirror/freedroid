@@ -114,7 +114,7 @@ NPC=_"Man, you are the greatest hero!"
 NPC=_"Now, take this as a reward. And you can be sure that I'll vote for you if you seek membership in the Red Guard!"
 NPC=_"Thanks, man!"
 LuaCode={
-	change_obstacle("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
+	change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
     end_quest("Bender's problem")
     add_xp(150)
     del_item_backpack("Brain Enlargement Pills Antidote", 1)

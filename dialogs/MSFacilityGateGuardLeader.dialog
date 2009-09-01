@@ -89,7 +89,7 @@ LuaCode={
 	npc_says(_"WHAT?! Not an attack?!")
 	npc_says(_"I hope you are honest. One second...")
     if (has_quest("Propagating a faulty firmware")) then
-		change_obstacle("MSAreaDoor", "opened")
+		change_obstacle_state("MSAreaDoor", "opened")
 		add_cookie("MS_guard_informed")
 		next(20)
 	else

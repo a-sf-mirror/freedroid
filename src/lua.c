@@ -94,21 +94,14 @@ static int lua_event_disable_trigger(lua_State * L)
 	return 0;
 }
 
-static int event_change_obstacle_type(const char *obslabel, const char *state)
+static int event_change_obstacle_type(const char *obslabel, int type)
 {
 	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel);
 	int obstacle_level_num = give_level_of_obstacle_with_label(obslabel);
 	level *obstacle_level = curShip.AllLevels[obstacle_level_num];
 
-	if (state != NULL) {
-		int j;
-		int base = obstacle_level->obstacle_statelist_base[our_obstacle->name_index];
-		int count = obstacle_level->obstacle_statelist_count[our_obstacle->name_index];
-		for (j = 0; j < count; j++)
-			if (!strcmp(obstacle_level->obstacle_states_names[j + base], state)) {
-				our_obstacle->type = obstacle_level->obstacle_states_values[j + base];
-				break;
-			}
+	if (type != -1) {
+		our_obstacle->type = type;
 	} else {
 		action_remove_obstacle(obstacle_level, our_obstacle);
 	}
@@ -117,32 +110,31 @@ static int event_change_obstacle_type(const char *obslabel, const char *state)
 	// Now we make sure the door lists and that are all updated...
 	GetAnimatedMapTiles();
 
-	//--------------------
-	// Also make sure the other maps realize the change too, if it
-	// maybe happend in the border area where two maps are glued together
-	// only export if the obstacle falls within the interface zone
-
-	if (our_obstacle->pos.x <= obstacle_level->jump_threshold_west ||
-	    our_obstacle->pos.x >= obstacle_level->xlen - obstacle_level->jump_threshold_east ||
-	    our_obstacle->pos.y <= obstacle_level->jump_threshold_north ||
-	    our_obstacle->pos.y >= obstacle_level->ylen - obstacle_level->jump_threshold_south)
-		ExportLevelInterface(obstacle_level_num);
-
 	return 0;
 }
 
 static int lua_event_change_obstacle(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
-	const char *type = luaL_checkstring(L, 2);
+	int type = luaL_checkinteger(L, 2);
 	event_change_obstacle_type(obslabel, type);
 	return 0;
+}
+
+static int lua_event_get_obstacle_type(lua_State * L)
+{
+	const char *obslabel = luaL_checkstring(L, 1);
+	
+	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel);
+
+	lua_pushinteger(L, our_obstacle->type);	
+	return 1;
 }
 
 static int lua_event_delete_obstacle(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
-	event_change_obstacle_type(obslabel, NULL);
+	event_change_obstacle_type(obslabel, -1);
 	return 0;
 }
 
@@ -640,11 +632,11 @@ luaL_reg lfuncs[] = {
 	{"disable_trigger", lua_event_disable_trigger}
 	,
 
-	/* change_obstacle(string obstacle_label, string obstacle_state)
+	/* change_obstacle_type(string obstacle_label, int obstacle_type)
 	 * Changes the obstacle to the given state.
-	 * FIXME: states have to be set up by hand in the ship file.
 	 */
-	{"change_obstacle", lua_event_change_obstacle}
+	{"change_obstacle_type", lua_event_change_obstacle},
+	{"get_obstacle_type", lua_event_get_obstacle_type}
 	,
 	/* del_obstacle(string obstacle_label)
 	 * Delete the given obstacle

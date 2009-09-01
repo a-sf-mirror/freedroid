@@ -65,7 +65,7 @@ NPC=_"Of course. That, you might even survive."
 NPC=_"Take the accessway. I've unlocked the door. Good luck."
 LuaCode={
     add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-    change_obstacle("NoviceArenaAccessDoor", "opened")
+    change_obstacle_state("NoviceArenaAccessDoor", "opened")
 }
 ----------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ NPC=_"In fact, you should know that we've got a 711 battle bot in there. Its dea
 NPC=_"You should make sure you've got proper anti-disruptor devices on you... or just kill it fast enough. Good luck!"
 LuaCode={
     add_quest("Time to say goodnight", "I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to enter the teleport and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
-    change_obstacle("MasterArenaAccessDoor", "opened")
+    change_obstacle_state("MasterArenaAccessDoor", "opened")
 }
 ----------------------------------------------------------------------
 

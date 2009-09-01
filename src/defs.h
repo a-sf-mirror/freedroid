@@ -112,7 +112,6 @@ enum {
 
 #define MAX_OBSTACLES_ON_MAP 4000
 #define MAX_OBSTACLE_NAMES_PER_LEVEL 100
-#define MAX_OBSTACLE_STATES_PER_LEVEL 300
 #define MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL 100
 
 #define FLOOR_TILES_VISIBLE_AROUND_TUX ((GameConfig . screen_width >= 1024 ? 12 : GameConfig . screen_width >= 800 ? 9 : 7))
@@ -975,7 +974,7 @@ enum {
 	AUTOGUN_R = 59, AUTOGUN_D, AUTOGUN_L, AUTOGUN_U
 };
 
-enum {
+enum obstacle_types {
 
 	ISO_TREE_4 = 0,
 

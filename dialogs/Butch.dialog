@@ -94,7 +94,7 @@ NPC=_"Good. I opened up the south arena gate for you, so just climb down the lad
 NPC=_"But remember, the door out won't be opened until you kill all the bots."
 LuaCode={
     add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-    change_obstacle("NoviceArenaAccessDoor", "opened")
+    change_obstacle_state("NoviceArenaAccessDoor", "opened")
     hide(6, 12, 13)
 }
 ----------------------------------------------------------------------
@@ -128,7 +128,7 @@ NPC=_"I pity you, silly bird. Don't go there."
 NPC=_"But if you really want it, the door is open."
 LuaCode={
     add_quest("Time to say goodnight", "I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to enter the teleport and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
-    change_obstacle("MasterArenaAccessDoor", "opened")
+    change_obstacle_state("MasterArenaAccessDoor", "opened")
     hide(9)
 }
 ----------------------------------------------------------------------
@@ -196,7 +196,7 @@ Nr=17  Text=_"You... Have ruined my pacifistic slogan... I am angry... So angry 
 NPC=_"Great. Get in the door, newbie."
 LuaCode={
     add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-    change_obstacle("NoviceArenaAccessDoor", "opened")
+    change_obstacle_state("NoviceArenaAccessDoor", "opened")
 }
 ----------------------------------------------------------------------
 
