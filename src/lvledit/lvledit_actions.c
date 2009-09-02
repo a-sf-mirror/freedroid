@@ -764,7 +764,7 @@ void CreateNewMapLevel(int level_num)
 	NewLevel->xlen = 90;
 	NewLevel->ylen = 90;
 	NewLevel->light_radius_bonus = 1;
-	NewLevel->minimum_light_value = 13;
+	NewLevel->minimum_light_value = -9;
 	NewLevel->Levelname = "New level just created";
 	NewLevel->Background_Song_Name = "TheBeginning.ogg";
 	//--------------------

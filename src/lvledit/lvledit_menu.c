@@ -802,6 +802,8 @@ static void LevelOptions(void)
 					}
 					if (LeftPressed()) {
 						EditLevel()->light_radius_bonus--;
+						if (EditLevel()->light_radius_bonus < 0)
+							EditLevel()->light_radius_bonus = 0;
 						while (LeftPressed()) ;
 					}
 					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
@@ -809,10 +811,14 @@ static void LevelOptions(void)
 				} else {
 					if (RightPressed()) {
 						EditLevel()->minimum_light_value++;
+						if (EditLevel()->minimum_light_value > 0)
+							EditLevel()->minimum_light_value = 0;
 						while (RightPressed()) ;
 					}
 					if (LeftPressed()) {
 						EditLevel()->minimum_light_value--;
+						if (EditLevel()->minimum_light_value < -(NUMBER_OF_SHADOW_IMAGES-1))
+							EditLevel()->minimum_light_value = -(NUMBER_OF_SHADOW_IMAGES-1);
 						while (LeftPressed()) ;
 					}
 					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);

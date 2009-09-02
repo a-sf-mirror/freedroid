@@ -3829,7 +3829,7 @@ Levelnumber: 1
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 0
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -4815,7 +4815,7 @@ Levelnumber: 2
 xlen of this level: 60
 ylen of this level: 30
 light radius bonus of this level: 1
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -5495,7 +5495,7 @@ Levelnumber: 3
 xlen of this level: 38
 ylen of this level: 22
 light radius bonus of this level: 7
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -6002,7 +6002,7 @@ Levelnumber: 4
 xlen of this level: 44
 ylen of this level: 41
 light radius bonus of this level: 4
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -6823,7 +6823,7 @@ Levelnumber: 5
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 3
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -7526,7 +7526,7 @@ Levelnumber: 6
 xlen of this level: 40
 ylen of this level: 40
 light radius bonus of this level: 5
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -8110,7 +8110,7 @@ Levelnumber: 7
 xlen of this level: 44
 ylen of this level: 47
 light radius bonus of this level: 1
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -15409,7 +15409,7 @@ Levelnumber: 13
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 2
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -15583,7 +15583,7 @@ Levelnumber: 14
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 2
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -17061,7 +17061,7 @@ Levelnumber: 15
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 5
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -19554,7 +19554,7 @@ Levelnumber: 18
 xlen of this level: 30
 ylen of this level: 30
 light radius bonus of this level: 13
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -24330,7 +24330,7 @@ Levelnumber: 29
 xlen of this level: 25
 ylen of this level: 21
 light radius bonus of this level: 4
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -24584,7 +24584,7 @@ Levelnumber: 30
 xlen of this level: 25
 ylen of this level: 21
 light radius bonus of this level: 4
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -28110,7 +28110,7 @@ end_of_level
 Levelnumber: 32
 xlen of this level: 41
 ylen of this level: 70
-light radius bonus of this level: -20
+light radius bonus of this level: 0
 minimal light on this level: -14
 infinite_running_on_this_level: 0
 random dungeon: 0
@@ -28420,8 +28420,8 @@ end_of_level
 Levelnumber: 33
 xlen of this level: 90
 ylen of this level: 90
-light radius bonus of this level: -24
-minimal light on this level: -30
+light radius bonus of this level: 0
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -30851,7 +30851,7 @@ end_of_level
 Levelnumber: 34
 xlen of this level: 36
 ylen of this level: 45
-light radius bonus of this level: -11
+light radius bonus of this level: 0
 minimal light on this level: -10
 infinite_running_on_this_level: 0
 random dungeon: 0
@@ -31153,7 +31153,7 @@ Levelnumber: 35
 xlen of this level: 51
 ylen of this level: 61
 light radius bonus of this level: 11
-minimal light on this level: -30
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -32525,8 +32525,8 @@ end_of_level
 Levelnumber: 36
 xlen of this level: 23
 ylen of this level: 30
-light radius bonus of this level: -1
-minimal light on this level: -34
+light radius bonus of this level: 0
+minimal light on this level: -19
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -34931,7 +34931,7 @@ Levelnumber: 41
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 1
-minimal light on this level: 13
+minimal light on this level: 0
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -35057,7 +35057,7 @@ Levelnumber: 42
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 1
-minimal light on this level: 13
+minimal light on this level: 0
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -35296,7 +35296,7 @@ Levelnumber: 43
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 1
-minimal light on this level: 13
+minimal light on this level: 0
 infinite_running_on_this_level: 0
 random dungeon: 1
 jump threshold north: 0
@@ -35409,7 +35409,7 @@ Levelnumber: 44
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 1
-minimal light on this level: 13
+minimal light on this level: 0
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
@@ -35561,7 +35561,7 @@ Levelnumber: 45
 xlen of this level: 90
 ylen of this level: 90
 light radius bonus of this level: 1
-minimal light on this level: 13
+minimal light on this level: 0
 infinite_running_on_this_level: 0
 random dungeon: 0
 jump threshold north: 0
