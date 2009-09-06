@@ -93,7 +93,7 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-    change_obstacle("NoviceArenaExitDoor", "opened")
+    change_obstacle_state("NoviceArenaExitDoor", "opened")
     display_console_message("Novice arena cleared!")
 }
 ** End of this mission target subsection **
@@ -112,7 +112,7 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-    change_obstacle("MasterArenaExitDoor", "opened")
+    change_obstacle_state("MasterArenaExitDoor", "opened")
     display_console_message("Master arena cleared. Good job, man.")
 }
 ** End of this mission target subsection **
