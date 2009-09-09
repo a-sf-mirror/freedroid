@@ -328,7 +328,6 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num);
 void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer);
 void CollectAutomapData(void);
 int smash_obstacle(float x, float y, int level);
-int update_level_pos(level **, float *, float *);
 Uint16 GetMapBrick(level *, float, float);
 void CountNumberOfDroidsOnShip(void);
 int LoadShip(char *filename);
