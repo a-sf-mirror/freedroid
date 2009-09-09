@@ -158,10 +158,18 @@ struct neighbor_data_cell {
 };
 EXTERN struct neighbor_data_cell gps_transform_matrix[MAX_LEVELS][MAX_LEVELS];
 EXTERN struct neighbor_data_cell *(level_neighbors_map[MAX_LEVELS][3][3]);
-#define NEIGHBOR_IDX(x,len) ( ( (x) < 0) ? (0) : ( ( (x) < (len) ) ? (1) : (2) ) )
-extern list_head_t visible_level_list;
-
+EXTERN list_head_t visible_level_list;
 EXTERN int gps_transform_map_dirty_flag;
+
+#define NEIGHBOR_IDX(x,len) ( ( (x) < 0) ? (0) : ( ( (x) < (len) ) ? (1) : (2) ) )
+#define NEIGHBOR_ID_NW(lvl) ( level_neighbors_map[lvl][0][0] ? level_neighbors_map[lvl][0][0]->lvl_idx : -1 )
+#define NEIGHBOR_ID_N(lvl)  ( level_neighbors_map[lvl][0][1] ? level_neighbors_map[lvl][0][1]->lvl_idx : -1 )
+#define NEIGHBOR_ID_NE(lvl) ( level_neighbors_map[lvl][0][2] ? level_neighbors_map[lvl][0][2]->lvl_idx : -1 )
+#define NEIGHBOR_ID_W(lvl)  ( level_neighbors_map[lvl][1][0] ? level_neighbors_map[lvl][1][0]->lvl_idx : -1 )
+#define NEIGHBOR_ID_E(lvl)  ( level_neighbors_map[lvl][1][2] ? level_neighbors_map[lvl][1][2]->lvl_idx : -1 )
+#define NEIGHBOR_ID_SW(lvl) ( level_neighbors_map[lvl][2][0] ? level_neighbors_map[lvl][2][0]->lvl_idx : -1 )
+#define NEIGHBOR_ID_S(lvl)  ( level_neighbors_map[lvl][2][1] ? level_neighbors_map[lvl][2][1]->lvl_idx : -1 )
+#define NEIGHBOR_ID_SE(lvl) ( level_neighbors_map[lvl][2][2] ? level_neighbors_map[lvl][2][2]->lvl_idx : -1 )
 
 #undef EXTERN
 #ifdef _light_c

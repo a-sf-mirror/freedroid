@@ -974,15 +974,6 @@ void get_visible_levels()
 #define NEIGHBOR_TRANSFORM_S(lvl)    level_neighbors_map[lvl][2][1]
 #define NEIGHBOR_TRANSFORM_SE(lvl)   level_neighbors_map[lvl][2][2]
 
-#define NEIGHBOR_ID_NW(lvl) level_neighbors_map[lvl][0][0]->lvl_idx
-#define NEIGHBOR_ID_N(lvl)  level_neighbors_map[lvl][0][1]->lvl_idx
-#define NEIGHBOR_ID_NE(lvl) level_neighbors_map[lvl][0][2]->lvl_idx
-#define NEIGHBOR_ID_W(lvl)  level_neighbors_map[lvl][1][0]->lvl_idx
-#define NEIGHBOR_ID_E(lvl)  level_neighbors_map[lvl][1][2]->lvl_idx
-#define NEIGHBOR_ID_SW(lvl) level_neighbors_map[lvl][2][0]->lvl_idx
-#define NEIGHBOR_ID_S(lvl)  level_neighbors_map[lvl][2][1]->lvl_idx
-#define NEIGHBOR_ID_SE(lvl) level_neighbors_map[lvl][2][2]->lvl_idx
-
 void gps_transform_map_init()
 {
 	int lvl_idx;
