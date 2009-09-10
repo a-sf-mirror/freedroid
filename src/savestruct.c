@@ -373,7 +373,6 @@ save_int32_t("marker", &(target->marker));
 save_float("LastCrysoundTime", &(target->LastCrysoundTime));
 save_float("LastTransferSoundTime", &(target->LastTransferSoundTime));
 save_float("TextVisibleTime", &(target->TextVisibleTime));
-save_float("Current_Victim_Resistance_Factor", &(target->Current_Victim_Resistance_Factor));
 save_int32_t("readied_skill", &(target->readied_skill));
 save_int32_t_array("SkillLevel", (target->SkillLevel), MAX_NUMBER_OF_PROGRAMS);
 save_int32_t_array("base_skill_level", (target->base_skill_level), MAX_NUMBER_OF_PROGRAMS);

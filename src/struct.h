@@ -614,7 +614,6 @@ typedef struct tux_s {
 	float LastTransferSoundTime;
 	float TextVisibleTime;
 	char *TextToBeDisplayed;
-	float Current_Victim_Resistance_Factor;
 
 	//--------------------
 	// Here we note all the 'skill levels' of the Tux and also which skill is

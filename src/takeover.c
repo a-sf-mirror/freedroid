@@ -1683,13 +1683,6 @@ void ProcessDisplayColumn(void)
 	else
 		LeaderColor = REMIS;
 
-	//--------------------
-	// In Freedroid, the resistance a droid against the influencers control should
-	// depend on the details of the final takeover score.  Therefore we set this
-	// resistance factor variable here.
-	//
-	Me.Current_Victim_Resistance_Factor = 0.2 * ((float)12 - abs(ViolettCounter - GelbCounter));
-
 	return;
 };				// void ProcessDisplayColumn 
 

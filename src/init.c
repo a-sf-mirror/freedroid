@@ -1433,7 +1433,6 @@ void InitHarmlessTuxStatusVariables()
 	Me.cooling_rate = 0.2;
 	Me.phase = 0;
 	Me.MissionTimeElapsed = 0;
-	Me.Current_Victim_Resistance_Factor = 1;
 	Me.weapon_swing_time = (-1);	// currently not swinging this means...
 	Me.got_hit_time = (-1);	// currently not stunned and needing time to recover...
 	Me.points_to_distribute = 0;
