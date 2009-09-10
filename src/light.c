@@ -44,8 +44,14 @@
 //--------------------
 // 
 #define MAX_NUMBER_OF_LIGHT_SOURCES 100
-moderately_finepoint light_sources[MAX_NUMBER_OF_LIGHT_SOURCES];
-int light_source_strengthes[MAX_NUMBER_OF_LIGHT_SOURCES];
+
+/* Position and strength of a light source */
+struct light_source {
+	gps pos;
+	gps vpos;
+	int strength;
+} light_sources[MAX_NUMBER_OF_LIGHT_SOURCES];
+
 
 light_radius_config LightRadiusConfig = { -1, -1, -1, -1, 0.0 };
 
@@ -160,24 +166,25 @@ void update_light_list()
 	// i.e. such positions, that won't affect our location for sure.
 	//
 	for (i = 0; i < MAX_NUMBER_OF_LIGHT_SOURCES; i++) {
-		light_sources[i].x = -200;
-		light_sources[i].y = -200;
-		light_source_strengthes[i] = 0;
+		light_sources[i].pos.x = -200;
+		light_sources[i].pos.y = -200;
+		light_sources[i].pos.z = -1;
+		light_sources[i].vpos.z = -1;
+		light_sources[i].strength = 0;
 	}
+	next_light_emitter_index = 0;
 
 	//--------------------
 	// Now we fill in the Tux position as the very first light source, that will
 	// always be present.
 	//
-	light_sources[0].x = Me.pos.x;
-	light_sources[0].y = Me.pos.y;
-	light_source_strengthes[0] = light_level->light_radius_bonus + Me.light_bonus_from_tux;
-	//--------------------
-	// We must not in any case tear a hole into the beginning of
-	// the list though...
-	//
-	if (light_source_strengthes[0] <= 0)
-		light_source_strengthes[0] = 1;
+	light_sources[0].pos.x = Me.pos.x;
+	light_sources[0].pos.y = Me.pos.y;
+	light_sources[0].pos.z = Me.pos.z;
+	light_sources[0].strength = light_level->light_radius_bonus + Me.light_bonus_from_tux;	
+	// We must not in any case tear a hole into the beginning of the list though...
+	if (light_sources[0].strength <= 0)
+		light_sources[0].strength = 1;
 	next_light_emitter_index = 1;
 
 	//--------------------
@@ -188,15 +195,16 @@ void update_light_list()
 		if (!(AllBlasts[blast].type == DRUIDBLAST))
 			continue;
 
-		light_sources[next_light_emitter_index].x = AllBlasts[blast].pos.x;
-		light_sources[next_light_emitter_index].y = AllBlasts[blast].pos.y;
-
 		//--------------------
 		// We add some light strength according to the phase of the blast
 		//
-		light_source_strengthes[next_light_emitter_index] = 10 - AllBlasts[blast].phase / 2;
-		if (light_source_strengthes[next_light_emitter_index] < 0)
-			continue;
+		int light_strength = 10 - AllBlasts[blast].phase / 2;
+		if (light_strength < 0) continue;
+
+		light_sources[next_light_emitter_index].pos.x = AllBlasts[blast].pos.x;
+		light_sources[next_light_emitter_index].pos.y = AllBlasts[blast].pos.y;
+		light_sources[next_light_emitter_index].pos.z = AllBlasts[blast].pos.z;
+		light_sources[next_light_emitter_index].strength = light_strength;
 		next_light_emitter_index++;
 
 		//--------------------
@@ -213,10 +221,10 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 	// Now we can fill in the remaining light sources of this level.
 	// First we do all the obstacles:
 	//
-	map_x_start = Me.pos.x - 12;
-	map_y_start = Me.pos.y - 12;
-	map_x_end = Me.pos.x + 12;
-	map_y_end = Me.pos.y + 12;
+	map_x_start = Me.pos.x - FLOOR_TILES_VISIBLE_AROUND_TUX;
+	map_y_start = Me.pos.y - FLOOR_TILES_VISIBLE_AROUND_TUX;
+	map_x_end = Me.pos.x + FLOOR_TILES_VISIBLE_AROUND_TUX;
+	map_y_end = Me.pos.y + FLOOR_TILES_VISIBLE_AROUND_TUX;
 	if (map_x_start < 0)
 		map_x_start = 0;
 	if (map_y_start < 0)
@@ -243,9 +251,10 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 				//--------------------
 				// Now we know that this one needs to be inserted!
 				//
-				light_sources[next_light_emitter_index].x = emitter->pos.x;
-				light_sources[next_light_emitter_index].y = emitter->pos.y;
-				light_source_strengthes[next_light_emitter_index] = obstacle_map[emitter->type].emitted_light_strength;
+				light_sources[next_light_emitter_index].pos.x = emitter->pos.x;
+				light_sources[next_light_emitter_index].pos.y = emitter->pos.y;
+				light_sources[next_light_emitter_index].pos.z = emitter->pos.z;
+				light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
 				next_light_emitter_index++;
 
 				//--------------------
@@ -271,9 +280,10 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 		//--------------------
 		// Now we know that this one needs to be inserted!
 		//
-		light_sources[next_light_emitter_index].x = erot->pos.x;
-		light_sources[next_light_emitter_index].y = erot->pos.y;
-		light_source_strengthes[next_light_emitter_index] = -14;
+		light_sources[next_light_emitter_index].pos.x = erot->pos.x;
+		light_sources[next_light_emitter_index].pos.y = erot->pos.y;
+		light_sources[next_light_emitter_index].pos.z = erot->pos.z;
+		light_sources[next_light_emitter_index].strength = -14;
 		next_light_emitter_index++;
 
 		//--------------------
@@ -365,7 +375,7 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 		// If we've reached the end of the current list of light
 		// sources, then we can stop immediately.
 		//
-		if (light_source_strengthes[i] == 0)
+		if (light_sources[i].strength == 0)
 			break;
 
 		//--------------------
@@ -373,19 +383,19 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 		// If the absolute strength of the light source (i.e. it's intensity
 		// at the source position) is less than the current intensity, then it's
 		// even not needed to continue with this light source.
-		if (light_source_strengthes[i] <= (-final_darkness))
+		if (light_sources[i].strength <= (-final_darkness))
 			continue;
 
 		//--------------------
 		// Some pre-computations
-		xdist = light_sources[i].x - target_pos.x;
-		ydist = light_sources[i].y - target_pos.y;
+		xdist = light_sources[i].pos.x - target_pos.x;
+		ydist = light_sources[i].pos.y - target_pos.y;
 		squared_dist = xdist * xdist + ydist * ydist;
 
 		//--------------------
 		// Comparison between current darkness and the one from the source (line 3 of the pseudo-code)
 		if ((squared_dist * 4.0 * 4.0) >=
-		    (final_darkness + light_source_strengthes[i]) * (final_darkness + light_source_strengthes[i]))
+		    (final_darkness + light_sources[i].strength) * (final_darkness + light_sources[i].strength))
 			continue;
 
 		//--------------------
@@ -393,11 +403,11 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 		// with a small optimization : no visibility check if the target is very closed to the light
 		if ((squared_dist > (0.5 * 0.5)) && curShip.AllLevels[Me.pos.z]->use_underground_lighting) {
 			if (!DirectLineColldet
-			    (light_sources[i].x, light_sources[i].y, target_pos.x, target_pos.y, Me.pos.z, &VisiblePassFilter))
+			    (light_sources[i].pos.x, light_sources[i].pos.y, target_pos.x, target_pos.y, Me.pos.z, &VisiblePassFilter))
 				continue;
 		}
 
-		final_darkness = (sqrt(squared_dist) * 4.0) - light_source_strengthes[i];
+		final_darkness = (sqrt(squared_dist) * 4.0) - light_sources[i].strength;
 
 		// Full bright, no need to test any other light source
 		// Note: this comparison cannot be transformed into (16*squared_dist < light_source_stengthes^2), 
