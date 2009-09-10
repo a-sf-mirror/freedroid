@@ -305,15 +305,24 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
  * Take care : despite it's name, it computes a darkness value, which is the opposite of
  * an intensity (Darkness = -Intensity)
  */
-static int calculate_light_strength(moderately_finepoint target_pos)
+static int calculate_light_strength(gps *cell_vpos)
 {
 	int i;
 	float xdist;
 	float ydist;
 	float squared_dist;
+	level *current_lvl = curShip.AllLevels[cell_vpos->z];
 
+	gps cell_rpos;
+	resolve_virtual_position(&cell_rpos, cell_vpos);
+	if (cell_rpos.z == -1)
+		return NUMBER_OF_SHADOW_IMAGES - 1;
+	
 	// Full bright: final_darkness = 0 / Full dark: final_darkness = (NUMBER_OF_SHADOW_IMAGES - 1) or -(minimum light value)
-	int final_darkness = min(NUMBER_OF_SHADOW_IMAGES - 1, -(curShip.AllLevels[Me.pos.z]->minimum_light_value));
+	int final_darkness = min(NUMBER_OF_SHADOW_IMAGES - 1, -(curShip.AllLevels[cell_rpos.z]->minimum_light_value));
+
+	// Adapt light emitted from Tux to actual level
+	light_sources[0].strength = curShip.AllLevels[cell_rpos.z]->light_radius_bonus + Me.light_bonus_from_tux;
 
 	//------------------------------------------
 	// Nota: the following code being quite obscure, so some explanations are quite mandatory:
@@ -322,7 +331,7 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 	//
 	// 2) The light emitted from a light source decreases linearly with the distance.
 	//    So, at a given target position, the perceived intensity of a light is: 
-	//    I = Light_strength - 4.0*distance(Light_pos, Target_pos)
+	//    I = Light_strength - 4.0*distance(Light_pos, Cell_vpos)
 	//        (the 4.0 factor means that a light source with a strength of 1 has a radius of 0.25)
 	//    And the resulting darkness is:
 	//    D = -I 
@@ -333,38 +342,34 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 	//
 	// So the initial code is :
 	//
-	// 1: foreach this_light in (set of lights)
-	// 2: {
-	// 3:   if ( this_light is visible from the target )
-	// 4:   {
-	// 5:     this_light_darkness = 4.0 * distance( this_light.pos, target.pos) - this_light.strength;
-	// 6:     if ( this_ligh_darkness < final_darkness ) final_darkness = this_light_darkness;
-	// 7:   }
-	// 8: }
+	// 1: foreach this_light in (set of lights) {
+	// 2:   if (this_light is visible from the target) {
+	// 3:     this_light_darkness = 4.0 * distance(this_light.pos, cell.pos) - this_light.strength;
+	// 4:     if (this_ligh_darkness < final_darkness) final_darkness = this_light_darkness;
+	// 5:   }
+	// 6: }
 	//
-	// However, this function is time-critical, simply because it's used a lot every frame for 
-	// the light radius. Therefore we want to avoid the sqrt() needed to compute a distance, if the test fails,
+	// However, this function is time-critical, simply because it's used a lot at every frame. 
+	// Therefore we want to avoid the sqrt() needed to compute a distance, if the test fails,
 	// and instead use squared values as much as possible.
 	//
-	// So, lines 5 and 6 are transformed into:
-	//       if ( 4.0 * distance - strength < final_darkness ) final_darkness = 4.0 * distance - strength;
+	// So, lines 3 and 4 are transformed into:
+	//       if (4.0 * distance - strength < final_darkness) final_darkness = 4.0 * distance - strength;
 	// which are then transformed into:
-	//       if ( 4.0 * distance < final_darkness + strength ) final_darkness = 4.0 * distance - strength;
+	//       if (4.0 * distance < final_darkness + strength) final_darkness = 4.0 * distance - strength;
 	// and finally, in order to remove sqrt(), into:
-	//       if ( (4.0 * distance)^2 < (final_darkness + strength)^2 ) final_darkness = 4.0 * distance - strength;
+	//       if ((4.0 * distance)^2 < (final_darkness + strength)^2) final_darkness = 4.0 * distance - strength;
 	// (note: we will ensure that final_darkness + strength is > 0, so there is no problem
 	//  with the sign of the inequality. see optimization 1 in the code)
 	//
-	// Visibility checking being far more costly than the darkness test, we revert the 2 tests :
+	// Visibility test (line 2) being far more costly than the darkness test, we revert the 2 tests :
 	//
-	// 1: foreach this_light in (set of lights)
-	// 2: {
-	// 3:   if ( (4.0 * distance( this_light.pos, target.pos))^2 < (final_darkness + this_light.strength)^2 )
-	// 4:   {
-	// 5:     if ( this_light is visible from the target ) 
-	// 6:       final_darkness = 4.0 * distance( this_light.pos, target.pos) - this_light.strength;
-	// 7:   }
-	// 8: }
+	// 1: foreach this_light in (set of lights) {
+	// 2:   if ((4.0 * distance(this_light.pos, cell.pos))^2 < (final_darkness + this_light.strength)^2) {
+	// 3:     if (this_light is visible from the target) 
+	// 4:       final_darkness = 4.0 * distance(this_light.pos, cell.pos) - this_light.strength;
+	// 5:   }
+	// 6: }
 	//------------------------------------------
 
 	//--------------------
@@ -388,8 +393,10 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 
 		//--------------------
 		// Some pre-computations
-		xdist = light_sources[i].pos.x - target_pos.x;
-		ydist = light_sources[i].pos.y - target_pos.y;
+		// First transform light source's position into virtual position, related to Tux's current level
+		update_virtual_position(&light_sources[i].vpos, &light_sources[i].pos, current_lvl->levelnum);
+		xdist = light_sources[i].vpos.x - cell_vpos->x;
+		ydist = light_sources[i].vpos.y - cell_vpos->y;
 		squared_dist = xdist * xdist + ydist * ydist;
 
 		//--------------------
@@ -403,7 +410,7 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 		// with a small optimization : no visibility check if the target is very closed to the light
 		if ((squared_dist > (0.5 * 0.5)) && curShip.AllLevels[Me.pos.z]->use_underground_lighting) {
 			if (!DirectLineColldet
-			    (light_sources[i].pos.x, light_sources[i].pos.y, target_pos.x, target_pos.y, Me.pos.z, &VisiblePassFilter))
+			    (light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
 				continue;
 		}
 
@@ -418,7 +425,7 @@ static int calculate_light_strength(moderately_finepoint target_pos)
 
 	return (final_darkness);
 
-}				// int calculate_light_strength ( moderately_finepoint target_pos )
+}				// int calculate_light_strength(gps *cell_vpos)
 
 /**
  * When the light radius (i.e. the shadow values for the floor) has been
@@ -431,7 +438,7 @@ static int calculate_light_strength(moderately_finepoint target_pos)
  * The hardness of the shadow can be controlled in the definition of
  * MAX_LIGHT_STEP.  Higher values will lead to harder shadows, while 
  * lower values will give very smooth and flourescent shadows propagating
- * even a bit under walls (which doesn't look too good).  4 seems like
+ * even a bit under walls (which doesn't look too good).  3 seems like
  * a reasonable setting.
  */
 static void soften_light_distribution(void)
@@ -444,8 +451,8 @@ static void soften_light_distribution(void)
 	// smoothen it out a bit.  We do so in the direction of more light.
 	// Propagate from top-left to bottom-right
 	//
-	for (y = 0; y < (LightRadiusConfig.cells_h - 1); ++y) {
-		for (x = 0; x < (LightRadiusConfig.cells_w - 1); ++x) {
+	for (y = 0; y < (LightRadiusConfig.cells_h - 1); y++) {
+		for (x = 0; x < (LightRadiusConfig.cells_w - 1); x++) {
 			if (LIGHT_STRENGTH_CELL(x + 1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
 				LIGHT_STRENGTH_CELL(x + 1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 			if (LIGHT_STRENGTH_CELL(x, y + 1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
@@ -455,8 +462,8 @@ static void soften_light_distribution(void)
 		}
 	}
 	// now the same again, this time from bottom-right to top-left
-	for (y = (LightRadiusConfig.cells_h - 1); y > 0; --y) {
-		for (x = (LightRadiusConfig.cells_w - 1); x > 0; --x) {
+	for (y = (LightRadiusConfig.cells_h - 1); y > 0; y--) {
+		for (x = (LightRadiusConfig.cells_w - 1); x > 0; x--) {
 			if (LIGHT_STRENGTH_CELL(x - 1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
 				LIGHT_STRENGTH_CELL(x - 1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
 			if (LIGHT_STRENGTH_CELL(x, y - 1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
@@ -476,21 +483,24 @@ void set_up_light_strength_buffer(void)
 {
 	uint32_t x;
 	uint32_t y;
-	moderately_finepoint target_pos;
+	gps cell_vpos;
 	int screen_x;
 	int screen_y;
 
-	for (y = 0; y < LightRadiusConfig.cells_h; ++y) {
-		for (x = 0; x < LightRadiusConfig.cells_w; ++x) {
+	for (y = 0; y < LightRadiusConfig.cells_h; y++) {
+		for (x = 0; x < LightRadiusConfig.cells_w; x++) {
 			screen_x = (int)(x * LightRadiusConfig.scale_factor) - UserCenter_x;
 			// Apply a translation to Y coordinate, to simulate a light coming from bot/tux heads, instead
 			// of their feet.
 			screen_y = (int)(y * LightRadiusConfig.scale_factor) - UserCenter_y + LightRadiusConfig.translate_y;
 
-			target_pos.x = translate_pixel_to_map_location(screen_x, screen_y, TRUE);
-			target_pos.y = translate_pixel_to_map_location(screen_x, screen_y, FALSE);
+			// Transform the screen coordinates into a virtual point on the map, relatively to
+			// Tux's current level.
+			cell_vpos.x = translate_pixel_to_map_location(screen_x, screen_y, TRUE);
+			cell_vpos.y = translate_pixel_to_map_location(screen_x, screen_y, FALSE);
+			cell_vpos.z = Me.pos.z;
 
-			LIGHT_STRENGTH_CELL(x, y) = calculate_light_strength(target_pos);
+			LIGHT_STRENGTH_CELL(x,y) = calculate_light_strength(&cell_vpos);
 		}
 	}
 
