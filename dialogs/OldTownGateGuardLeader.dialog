@@ -78,7 +78,7 @@ LuaCode={
 Nr=10 Text=_"Yes. I understand."
 LuaCode={
         npc_says(_"State your name Linarian.")
-        tux_says(_"My name is ".. get_player_name() ..".")
+        tux_says("My name is ".. get_player_name() ..".")
         npc_says(_"You may now enter ".. get_player_name() ..". But we'll be watching you. I'll let the others know you've arrived.")
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
@@ -155,7 +155,7 @@ LuaCode={
    tux_says(_"OW")
    hurt_tux(30)
    npc_says(_"Your name?")
-   tux_says(_"".. get_player_name() ..".")
+   tux_says("".. get_player_name() ..".")
    tux_says(_"OW.  That HURT.")
    npc_says(_"Get out of here. The Doc is the third path door on the right.")
 
@@ -176,7 +176,7 @@ LuaCode={
 Nr=31 Text=_"I want to talk to your manager, moron."
 LuaCode={
    npc_says(_"I'm happy to send you his way.  I need your name before I let you in.")
-   tux_says(_"".. get_player_name() ..".")
+   tux_says("".. get_player_name() ..".")
    npc_says(_"Talk to Spencer.  His office is straight ahead. You can't miss it.")
    npc_says(_"Now stop bothering me! You crazy loon.")
 
@@ -221,7 +221,7 @@ LuaCode={
 	npc_says(_"Mhmmm.")
         
     if (has_cookie("OldTownGateGuardLeader_tux_nickname_loon")) then
-       npc_says(_"".. get_player_name() .."... the Loon")
+       npc_says("".. get_player_name() .."... the Loon")
     end
 
         
