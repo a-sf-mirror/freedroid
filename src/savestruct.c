@@ -487,7 +487,6 @@ read_int32_t(pos, "marker",  &(target->marker));
 read_float(pos, "LastCrysoundTime",  &(target->LastCrysoundTime));
 read_float(pos, "LastTransferSoundTime",  &(target->LastTransferSoundTime));
 read_float(pos, "TextVisibleTime",  &(target->TextVisibleTime));
-read_float(pos, "Current_Victim_Resistance_Factor",  &(target->Current_Victim_Resistance_Factor));
 read_int32_t(pos, "readied_skill",  &(target->readied_skill));
 read_int32_t_array(pos, "SkillLevel",  (target->SkillLevel), MAX_NUMBER_OF_PROGRAMS);
 read_int32_t_array(pos, "base_skill_level",  (target->base_skill_level), MAX_NUMBER_OF_PROGRAMS);
