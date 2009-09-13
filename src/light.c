@@ -63,6 +63,262 @@ int *light_strength_buffer = NULL;
 
 #define UNIVERSAL_TUX_HEIGHT 100.0	// Empirical Tux height, in the universal coordinate system
 
+/*
+ * ------------------------------------------------
+ * Foreword to the 'light interpolation' algorithm
+ * ------------------------------------------------
+ * 
+ * Some data (such as minimum_light_value) used to create the 'darkness map'
+ * are level dependents. If several levels are displayed (i.e. when Tux is
+ * near a level's border), we want to avoid abrupt darkness changes at level
+ * boundaries. The call to soften_light_distribution() is not enough to smooth
+ * those changes in a correct way. A better method is to interpolate the level
+ * dependent values near the level boundaries.
+ * 
+ * For each tile of the darkness map there are several cases :
+ * 1) the darkness tile is near a boundary's corner, which can be connected to 
+ *    0, 1, 2 or 3 neighbors, needing no interpolation or an interpolation
+ *    between up to 4 values (barycentric interpolation).
+ * 2) the tile is near a boundary's line, with 0 or 1 neighbor, needing no
+ *    no interpolation or an interpolation between 2 values.
+ * 3) the tile is far from any level boundary, so no interpolation is needed.
+ *    
+ * Those different cases thus depend on where the darkness tile is, relatively
+ * to the levels boundaries, but they also depend on the levels neighborhood.
+ * Many darkness tiles thus share some properties and interpolation parameters.
+ * The idea is to prepare and store as much knowledge as possible, so that
+ * for each darkness tile we will use a simple switch with 3 cases :
+ * - no interpolation
+ * - interpolation between 2 pre-computed values
+ * - interpolation between 4 pre-computed values 
+ */
+
+/* Interpolation type: Defines the axis along which an interpolation is needed */
+enum interpolation_methods { 
+	NO_INTERP = 0,	 // No interpolation is needed
+	ALONG_X   = 1,	 // Interpolation with the neighbor along X axis is needed
+	ALONG_Y   = 2,	 // Interpolation with the neighbor along Y axis is needed
+	ALONG_XY  = 3, 	 // ALONG_X | ALONG_Y
+	ALONG_D   = 4,   // Interpolation with the neighbor on the diagonal is needed
+	ALONG_XD  = 5,   // ALONG_X | ALONG_D
+	ALONG_YD  = 6,   // ALONG_Y | ALONG_D
+	ALONG_XYD = 7,   // ALONG_X | ALONG_Y | ALONG_D
+};
+
+/* Definition of the Interpolation Data Storage for an interpolation area */
+struct interpolation_data_cell
+{
+	/* Interpolation values */
+	float minimum_light_value;
+	float light_radius_bonus;
+	
+	/* Interpolation type */
+	enum interpolation_methods interpolation_method;
+	
+	/* prepare_light_interpolation() Internal use */
+	float sum;
+};
+
+/* Interpolation Data Storage for all interpolation areas */
+/* (neighbors are defined by "N/C/S" and "W/C/E" indices) */
+static struct interpolation_data_cell interpolation_data[MAX_LEVELS][3][3];
+
+/*
+ * This function adds interpolation values to some interpolation
+ * areas.
+ */
+static void add_interpolation_values(int curr_id, int ngb_id, 
+		int starty, int endy, int startx, int endx, enum interpolation_methods method)
+{
+	level *ngb_lvl;
+	int x, y;
+	
+	if (ngb_id != -1) {
+		ngb_lvl = curShip.AllLevels[ngb_id];
+		for (y=starty; y<=endy; y++) {
+			for (x=startx; x<=endx; x++) {
+				interpolation_data[curr_id][y][x].light_radius_bonus += ngb_lvl->light_radius_bonus;
+				interpolation_data[curr_id][y][x].minimum_light_value += ngb_lvl->minimum_light_value;
+				interpolation_data[curr_id][y][x].sum += 1;
+				interpolation_data[curr_id][y][x].interpolation_method |= method;
+			}
+		}
+	}
+}
+
+/*
+ * This function prepares some data structures used later to accelerate the
+ * creation of the 'darkness map'. 
+ * This function is called only once per frame.
+ */
+static void prepare_light_interpolation()
+{
+	int x, y;
+	level *curr_lvl;
+	int curr_id;
+	
+	struct visible_level *visible_lvl, *next_lvl;
+	
+	// We only care of the visible levels 
+
+	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
+		
+		curr_lvl = visible_lvl->lvl_pointer;
+		curr_id  = curr_lvl->levelnum;
+		
+		//-----
+		// Step 1
+		//   Initialize all interpolation areas with the 'c_val'
+		//
+		for (y = 0; y < 3; y++) {
+			for (x = 0; x < 3; x++) {
+				interpolation_data[curr_id][y][x].light_radius_bonus = curr_lvl->light_radius_bonus; 
+				interpolation_data[curr_id][y][x].minimum_light_value = curr_lvl->minimum_light_value;
+				interpolation_data[curr_id][y][x].sum = 1;
+				interpolation_data[curr_id][y][x].interpolation_method = NO_INTERP;
+			}
+		}
+		
+		//-----
+		// Step 2
+		//   For each existing neighbor, add its data to the related areas
+		//
+		add_interpolation_values(curr_id, NEIGHBOR_ID_N(curr_id), 0, 0, 0, 2, ALONG_Y);
+		add_interpolation_values(curr_id, NEIGHBOR_ID_S(curr_id), 2, 2, 0, 2, ALONG_Y);
+		add_interpolation_values(curr_id, NEIGHBOR_ID_W(curr_id), 0, 2, 0, 0, ALONG_X);
+		add_interpolation_values(curr_id, NEIGHBOR_ID_E(curr_id), 0, 2, 2, 2, ALONG_X);
+		add_interpolation_values(curr_id, NEIGHBOR_ID_NW(curr_id), 0, 0, 0, 0, ALONG_XY);
+		add_interpolation_values(curr_id, NEIGHBOR_ID_NE(curr_id), 0, 0, 2, 2, ALONG_XY);
+		add_interpolation_values(curr_id, NEIGHBOR_ID_SW(curr_id), 2, 2, 0, 0, ALONG_XY);
+		add_interpolation_values(curr_id, NEIGHBOR_ID_SE(curr_id), 2, 2, 2, 2, ALONG_XY);
+		
+		//-----
+		// Step 3
+		//   Compute the mean of each value
+		//
+		for (y = 0; y < 3; y++) {
+			for (x = 0; x < 3; x++) {
+				interpolation_data[curr_id][y][x].light_radius_bonus /= interpolation_data[curr_id][y][x].sum; 
+				interpolation_data[curr_id][y][x].minimum_light_value /= interpolation_data[curr_id][y][x].sum;
+				interpolation_data[curr_id][y][x].sum = 1;
+			}
+		}
+	}
+} // void prepare_light_interpolation()
+
+/*
+ * This functions compute the interpolation of the level dependent light values,
+ * at a given gps position.
+ * (for a global comment on light interpolation see 'Foreword to light interpolation
+ *  algorithm')
+ * 
+ * Some Notes: 
+ * 1) The interpolation is computed in an area inside the level's boundaries. 
+ *    The width of this area is INTERP_WIDTH. If the current point is inside such 
+ *    an area, an interpolation factor is computed. 
+ *    The interpolation factor is defined as : 
+ *              distance_to_level_boundary / INTERP_WIDTH.
+ *    The range of this factor is thus [0, 1] ('O' if the point is at the level 
+ *    boundary).
+ * 2) We assume that the level's size, along one given axis, is always greater
+ *    than 2*INTER_WIDTH. We thus never have to interpolate the current level
+ *    together with its eastern *and* western neighbors, for example.
+ */
+
+static void interpolate_light_data(gps *pos, struct interpolation_data_cell *data)
+{
+#	define INTERP_WIDTH 3.0
+#   define INTERP_FACTOR(x) ((x)/INTERP_WIDTH)
+
+	float X = pos->x;
+	float Y = pos->y;
+	int lvl_id = pos->z;
+	level *lvl = curShip.AllLevels[pos->z];
+	
+	//--------------------
+	// Interpolation macros
+	
+#	define INTERP_2_VALUES(dir, field) \
+	(                                                  \
+	       interp_factor_##dir  * center_area->field + \
+	  (1.0-interp_factor_##dir) *   curr_area->field   \
+	) 
+
+#	define INTERP_4_VALUES(field) \
+	(                                                                       \
+	       interp_factor_x  *      interp_factor_y  *  center_area->field + \
+	  (1.0-interp_factor_x) *      interp_factor_y  * xborder_area->field + \
+	       interp_factor_x  * (1.0-interp_factor_y) * yborder_area->field + \
+	  (1.0-interp_factor_x) * (1.0-interp_factor_y) *    curr_area->field   \
+	)
+
+	// Compute the 'N/C/S' and 'W/C/E' indices of the area containing
+	// the current position, compute the interpolation factors,
+	// and get the associated interpolation data cell.
+	
+	int area_x = 1; // default value : center
+	int area_y = 1; // default value : center
+	float interp_factor_x = 1.0; // Interpolation factor along X axis
+	float interp_factor_y = 1.0; // Interpolation factor along Y axis
+	struct interpolation_data_cell *curr_area; 
+	
+	if (X < INTERP_WIDTH) {
+		area_x = 0;
+		interp_factor_x = INTERP_FACTOR(X);
+	} else if (X > (lvl->xlen - INTERP_WIDTH)) {
+		area_x = 2;
+		interp_factor_x = INTERP_FACTOR(lvl->xlen - X);
+	}
+
+	if (Y < INTERP_WIDTH) {
+		area_y = 0;
+		interp_factor_y = INTERP_FACTOR(Y);
+	} else if (Y > (lvl->ylen - INTERP_WIDTH)) {
+		area_y = 2;
+		interp_factor_y = INTERP_FACTOR(lvl->ylen - Y);
+	}
+
+	curr_area = &interpolation_data[lvl_id][area_y][area_x]; 
+
+	// And now, the interpolation
+	
+	switch (curr_area->interpolation_method) {
+	case NO_INTERP:
+		data->minimum_light_value = curr_area->minimum_light_value;
+		data->light_radius_bonus  = curr_area->light_radius_bonus;
+		break;
+	case ALONG_X:
+		{
+			struct interpolation_data_cell *center_area = &interpolation_data[lvl_id][1][1]; 
+			data->minimum_light_value = INTERP_2_VALUES(x, minimum_light_value);
+			data->light_radius_bonus  = INTERP_2_VALUES(x, light_radius_bonus );
+		}
+		break;
+	case ALONG_Y:
+		{
+			struct interpolation_data_cell *center_area = &interpolation_data[lvl_id][1][1]; 
+			data->minimum_light_value = INTERP_2_VALUES(y, minimum_light_value);
+			data->light_radius_bonus  = INTERP_2_VALUES(y, light_radius_bonus );
+		}
+		break;
+	default:
+		{	// In any other case, a 4-values interpolation was prepared
+			struct interpolation_data_cell *center_area  = &interpolation_data[lvl_id][1][1]; 
+			struct interpolation_data_cell *xborder_area = &interpolation_data[lvl_id][1][area_x]; 
+			struct interpolation_data_cell *yborder_area = &interpolation_data[lvl_id][area_y][1]; 
+			data->minimum_light_value = INTERP_4_VALUES(minimum_light_value);
+			data->light_radius_bonus  = INTERP_4_VALUES(light_radius_bonus );
+		}
+		break;
+	}
+
+#	undef INTERP_2_VALUES
+#	undef INTERP_4_VALUES
+#	undef INTERP_FACTOR
+#	undef INTERP_WIDTH
+	
+} // static void interpolate_light_data(...)
+
 /**
  * Compute the light_radius texture size, and allocate it
  */
@@ -311,21 +567,31 @@ static int calculate_light_strength(gps *cell_vpos)
 	float xdist;
 	float ydist;
 	float squared_dist;
+	gps cell_rpos;
+	struct interpolation_data_cell ilights;
+
 	level *current_lvl = curShip.AllLevels[cell_vpos->z];
 
-	gps cell_rpos;
+	//------------------------------------------
+	// 1. Light interpolation
+	//
 	resolve_virtual_position(&cell_rpos, cell_vpos);
 	if (cell_rpos.z == -1)
 		return NUMBER_OF_SHADOW_IMAGES - 1;
-	
-	// Full bright: final_darkness = 0 / Full dark: final_darkness = (NUMBER_OF_SHADOW_IMAGES - 1) or -(minimum light value)
-	int final_darkness = min(NUMBER_OF_SHADOW_IMAGES - 1, -(curShip.AllLevels[cell_rpos.z]->minimum_light_value));
 
-	// Adapt light emitted from Tux to actual level
-	light_sources[0].strength = curShip.AllLevels[cell_rpos.z]->light_radius_bonus + Me.light_bonus_from_tux;
+	interpolate_light_data(&cell_rpos, &ilights);
+	
+	// Interpolated ambient darkness
+	// Full bright: final_darkness = 0 / Full dark: final_darkness = (NUMBER_OF_SHADOW_IMAGES - 1) or -(minimum light value)
+	int final_darkness = min(NUMBER_OF_SHADOW_IMAGES - 1, - ilights.minimum_light_value);
+
+	// Interpolated light emitted from Tux
+	light_sources[0].strength = ilights.light_radius_bonus + Me.light_bonus_from_tux;
 
 	//------------------------------------------
-	// Nota: the following code being quite obscure, so some explanations are quite mandatory:
+	// 2. Compute the darkness value at "cell_vpos"
+	//--------------------
+	// Nota: the following code being quite obscure, some explanations are quite mandatory:
 	//
 	// 1) Despite its name, this function compute a darkness, and not a light intensity
 	//
@@ -408,9 +674,8 @@ static int calculate_light_strength(gps *cell_vpos)
 		//--------------------
 		// Visibility check (line 5 of pseudo_code)
 		// with a small optimization : no visibility check if the target is very closed to the light
-		if ((squared_dist > (0.5 * 0.5)) && curShip.AllLevels[Me.pos.z]->use_underground_lighting) {
-			if (!DirectLineColldet
-			    (light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
+		if ((squared_dist > (0.5*0.5)) && curShip.AllLevels[cell_rpos.z]->use_underground_lighting) {
+			if (!DirectLineColldet(light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
 				continue;
 		}
 
@@ -487,6 +752,8 @@ void set_up_light_strength_buffer(void)
 	int screen_x;
 	int screen_y;
 
+	prepare_light_interpolation();
+	
 	for (y = 0; y < LightRadiusConfig.cells_h; y++) {
 		for (x = 0; x < LightRadiusConfig.cells_w; x++) {
 			screen_x = (int)(x * LightRadiusConfig.scale_factor) - UserCenter_x;
