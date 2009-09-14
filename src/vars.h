@@ -62,7 +62,7 @@ char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES] = {
 	"iso_grass_floor_0021.png",
 	"iso_grass_floor_0022.png",
 	"iso_grass_floor_0023.png",
-	"iso_miscellaneous_floor_0006.png",
+	"iso_water_0000.png",
 	"iso_miscellaneous_floor_0007.png",
 	"iso_miscellaneous_floor_0008.png",
 	"iso_grass_floor_0024.png",
@@ -116,6 +116,18 @@ char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES] = {
 	"iso_sand_floor_0005.png",
 	"iso_sand_floor_0006.png",
 
+        "iso_water_edge_0001.png",
+        "iso_water_edge_0002.png",
+        "iso_water_edge_0003.png",
+        "iso_water_edge_0004.png",
+        "iso_water_edge_0005.png",
+        "iso_water_edge_0006.png",
+        "iso_water_edge_0007.png",
+        "iso_water_edge_0008.png",
+        "iso_water_edge_0009.png",
+        "iso_water_edge_0010.png",
+        "iso_water_edge_0011.png",
+        "iso_water_edge_0012.png",
 	// , "ERROR_UNUSED.png" , 
 };
 

@@ -235,6 +235,19 @@ int floor_tiles_list[] = {
 	ISO_FLOOR_SAND_WITH_GRASS_28,
 	ISO_FLOOR_SAND_WITH_GRASS_29,
 
+        ISO_WATER_EDGE_1,
+        ISO_WATER_EDGE_2,
+        ISO_WATER_EDGE_3,
+        ISO_WATER_EDGE_4,
+        ISO_WATER_EDGE_5,
+        ISO_WATER_EDGE_6,
+        ISO_WATER_EDGE_7,
+        ISO_WATER_EDGE_8,
+        ISO_WATER_EDGE_9,
+        ISO_WATER_EDGE_10,
+        ISO_WATER_EDGE_11,
+        ISO_WATER_EDGE_12,
+
 	-1
 };
 
