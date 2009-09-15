@@ -181,7 +181,6 @@ LuaCode={ hide(26) }
 
 Nr=34  Text=_"Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
-    change_obstacle_state("KevinsDoor", "opened")
 	if (get_gold() < 300 ) then
 		npc_says(_"You don't have enough cash, cheapskate. Come back when you can afford to pay me.")
 	else
