@@ -87,7 +87,7 @@ Nr=5  Text=_"Maybe I could help somehow?"
 LuaCode={
 	npc_says(_"That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us.")
 	npc_says(_"But since you are said to be powerful and a former hero, I'll once more put trust into a stranger.")
-	npc_says(_"I've unlocked the accessway to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast.")
+	npc_says(_"I've unlocked the access-way to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast.")
 	npc_says(_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there.", "NO_WAIT")
 	npc_says(_"I wish you the best of luck.")
 	add_quest("Opening a can of bots...", "I am supposed to clean out the first level of some warehouse. Sounds easy.")
@@ -175,7 +175,7 @@ LuaCode={
     if (done_quest("Opening a can of bots...")) then
 		npc_says(_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget.")
 	else
-		npc_says(_"Personally Im also worrying about how we will manage to get some nessecary supplies from our warehouse.")
+		npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse.")
 	end
 
 -- ARE THERE ENOUGH POINTS TO JOIN RG
