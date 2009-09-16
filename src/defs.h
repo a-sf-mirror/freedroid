@@ -1578,6 +1578,11 @@ enum {
         ISO_WATER_EDGE_11,
         ISO_WATER_EDGE_12,
 
+        ISO_SIDEWALK_21,
+        ISO_SIDEWALK_22,
+        ISO_SIDEWALK_23,
+        ISO_SIDEWALK_24,
+
 	ALL_ISOMETRIC_FLOOR_TILES
 };
 
