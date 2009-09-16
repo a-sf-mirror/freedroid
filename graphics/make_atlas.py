@@ -20,7 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import os, sys, time
+import os, sys, time, random
 from glob import glob
 
 try:
@@ -50,7 +50,7 @@ class Grid(object):
         
         print "Ratio used / total : %f" % (surf_used / float(surface))
 
-        if surf_used > surface * 0.65 or surface - surf_used < w * h:
+        if surface - surf_used < w * h:
             if self.w + w <= self.h: self.w *= 2
             else: self.h *= 2
 
@@ -95,8 +95,13 @@ def main(argv):
     if len(argv) < 3:
         print "USAGE: %s <files-pattern> <coords-file>" % argv[0]
         return 1
-    
+   
+    random.seed()
+
     files = glob(argv[1])
+
+    random.shuffle(files);
+
     images = [Image.open(f) for f in files]
 
     g = Grid()
