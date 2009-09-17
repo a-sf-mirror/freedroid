@@ -141,6 +141,8 @@ EXTERN void leveleditor_print_object_info(enum leveleditor_object_type type, int
 #ifdef _leveleditor_c
 int floor_tiles_list[] = {
 
+	ISO_SIDEWALK_0,
+
 	ISO_SIDEWALK_7,
 	ISO_SIDEWALK_5,
 	ISO_SIDEWALK_6,
