@@ -528,7 +528,6 @@ typedef struct enemy_s {
 typedef char automap_data_t[100][100];
 typedef char *bigscrmsg_t;
 typedef unsigned char chatflags_t[MAX_ANSWERS_PER_PERSON];
-typedef char cookielist_t[MAX_COOKIE_LENGTH];
 typedef char *string;
 
 typedef struct tux_s {
@@ -652,7 +651,7 @@ typedef struct tux_s {
 	// of the Tux like town guard member or not and the like...
 	//
 	chatflags_t Chat_Flags[MAX_PERSONS];
-	cookielist_t cookie_list[MAX_COOKIES];
+	string cookie_list[MAX_COOKIES];
 	int is_town_guard_member;
 	unsigned char chat_character_initialized[MAX_PERSONS];
 

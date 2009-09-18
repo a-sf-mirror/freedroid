@@ -237,20 +237,10 @@ void PlantCookie(const char *CookieString)
 	int i;
 
 	//--------------------
-	// First a security check against attempts to plant too long cookies...
-	//
-	if (strlen(CookieString) >= MAX_COOKIE_LENGTH - 1) {
-		fprintf(stderr, "\n\nCookieString: %s\n", CookieString);
-		ErrorMessage(__FUNCTION__, "\
-There was a cookie given that exceeds the maximal length allowed for a\n\
-cookie to be set in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
-	}
-	//--------------------
-	// Check if maybe the cookie has already been set.  In this case we would
-	// not have to do anything...
+	// Check if the cookie has already been set. 
 	//
 	for (i = 0; i < MAX_COOKIES; i++) {
-		if (strlen(Me.cookie_list[i]) <= 0) {
+		if (Me.cookie_list[i]) {
 			if (!strcmp(Me.cookie_list[i], CookieString)) {
 				DebugPrintf(0, "\n\nTHAT COOKIE WAS ALREADY SET... DOING NOTHING...\n\n");
 				return;
@@ -262,7 +252,7 @@ cookie to be set in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	// Now we find a good new and free position for our new cookie...
 	//
 	for (i = 0; i < MAX_COOKIES; i++) {
-		if (strlen(Me.cookie_list[i]) <= 0) {
+		if (!Me.cookie_list[i]) {
 			break;
 		}
 	}
@@ -271,51 +261,48 @@ cookie to be set in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	// Maybe the position we have found is the last one.  That would mean too
 	// many cookies, a case that should never occur in FreedroidRPG and that is
 	// a considered a fatal error...
-	//
 	if (i >= MAX_COOKIES) {
 		fprintf(stderr, "\n\nCookieString: %s\n", CookieString);
 		ErrorMessage(__FUNCTION__, "\
 There were no more free positions available to store this cookie.\n\
 This should not be possible without a severe bug in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	}
+	
 	//--------------------
 	// Now that we know that we have found a good position for storing our
 	// new cookie, we can do it.
-	//
+	Me.cookie_list[i] = MyMalloc(strlen(CookieString)+1);
 	strcpy(Me.cookie_list[i], CookieString);
 	DebugPrintf(0, "\n\nNEW COOKIE STORED:  Position=%d Text='%s'.\n\n", i, CookieString);
 
-};				// void PlantCookie ( char* CookieString )
+};
 
 /**
  * This function deletes planted cookie, i.e. delete a text string with the
  * purpose of serving as a flag.  These flags can be set/unset from the dialog
  * file and used from within there and they get stored and loaded with
- * every gave via the tux_t structure.
+ * every game via the tux_t structure.
  */
 void DeleteCookie(const char *CookieString)
 {
-	DebugPrintf(-4, "\nDeleting cookie: '%s'.", CookieString);
-
 	int i;
 	for (i = 0; i < MAX_COOKIES; i++) {
-		DebugPrintf(1, "\nCookie entry to compare to: %s.", Me.cookie_list[i]);
-		if (!strlen(Me.cookie_list[i]))
+		if (!Me.cookie_list[i])
 			continue;
+
 		if (!strcmp(Me.cookie_list[i], CookieString))
-			break;
-		//--------------------
-		// Now some extra safety, cause the ':' termination character might still be on 
-		// the cookie or on the comparison string
-		//
-		if (strcmp(Me.cookie_list[i], CookieString) >= ((int)strlen(CookieString)))
 			break;
 	}
 
 	if (i == MAX_COOKIES) {
 		DebugPrintf(-4, "Cookie not found.");
 	} else {
-		strcpy(Me.cookie_list[i], "");
+		free(Me.cookie_list[i]);
+		for (i = i+1; i < MAX_COOKIES; i++) {
+			Me.cookie_list[i - 1] = Me.cookie_list[i];
+		}
+		Me.cookie_list[MAX_COOKIES - 1] = NULL;
+
 		DebugPrintf(1, "Cookie deleted.");
 	}
 };				// void DeleteCookie ( char* CookieString )

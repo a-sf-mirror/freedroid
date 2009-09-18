@@ -294,8 +294,9 @@ static int lua_event_cookie_planted(lua_State * L)
 	int i;
 	int cond = 0;
 	for (i = 0; i < MAX_COOKIES; i++) {
-		if (!strlen(Me.cookie_list[i]))
-			continue;
+		if (!Me.cookie_list[i])
+			break;
+		
 		if (!strcmp(Me.cookie_list[i], cookie)) {
 			cond = 1;
 			break;

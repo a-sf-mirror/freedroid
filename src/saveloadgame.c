@@ -947,64 +947,6 @@ void read_keybind_t_array(const char *buffer, const char *tag, keybind_t * kbs, 
 	*epos = savechar;
 }
 
-void save_cookielist_t_array(const char *tag, cookielist_t * cookielist, int size)
-{
-	fprintf(SaveGameFile, "<cookielist mc=%d>\n", MAX_COOKIES);
-	int i;
-	for (i = 0; i < MAX_COOKIES; i++) {
-		if (strlen(cookielist[i]))
-			fprintf(SaveGameFile, "%s\n", cookielist[i]);
-	}
-	fprintf(SaveGameFile, "</cookielist>\n");
-}
-
-void read_cookielist_t_array(const char *buffer, const char *tag, cookielist_t * cookielist, int size)
-{
-	char *pos = strstr(buffer, "<cookielist mc=");
-	if (!pos)
-		WrapErrorMessage(__FUNCTION__, "Unable to find cookielist.\n", PLEASE_INFORM, IS_FATAL);
-	char *epos = strstr(pos, "</cookielist>\n");
-	if (!epos)
-		WrapErrorMessage(__FUNCTION__, "Unable to find cookielist end.\n", PLEASE_INFORM, IS_FATAL);
-	char savechar = *epos;
-	*epos = '\0';
-	int mc = 0;
-
-	pos += strlen("<cookielist mc=");
-	while (!isdigit(*pos))
-		pos++;
-	char *erunp = pos;
-	while ((*erunp) != '>')
-		erunp++;
-	*erunp = '\0';
-	mc = atoi(pos);
-	*erunp = '>';
-	pos = erunp;
-
-	if (mc != MAX_COOKIES)
-		WrapErrorMessage(__FUNCTION__, "Size mismatch for max number of cookies, file %d vs. game %d.\n", PLEASE_INFORM, IS_FATAL,
-				 mc, MAX_COOKIES);
-
-	while (*pos != '\n')
-		pos++;
-	pos++;
-
-	int i = 0;
-	while (pos < epos) {
-		int j = 0;
-		while (*pos != '\n') {
-			cookielist[i][j] = *pos;
-			pos++;
-			j++;
-		}
-		cookielist[i][j] = '\0';
-		pos++;
-		i++;
-	}
-
-	*epos = savechar;
-}
-
 void save_bigscrmsg_t_array(const char *tag, bigscrmsg_t * data, int sz)
 {
 	fprintf(SaveGameFile, "<bigscreenmessages m=%d>\n", sz);

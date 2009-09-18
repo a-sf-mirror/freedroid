@@ -302,8 +302,6 @@ void save_keybind_t_array(const char *, keybind_t *, int);
 void read_keybind_t_array(const char *, const char *, keybind_t *, int);
 void save_chatflags_t_array(const char *, chatflags_t *, int);
 void read_chatflags_t_array(const char *, const char *, chatflags_t *, int);
-void save_cookielist_t_array(const char *, cookielist_t *, int);
-void read_cookielist_t_array(const char *, const char *, cookielist_t *, int);
 #define save_automap_data_t_array save_automap_data
 void save_automap_data(const char *, automap_data_t *, int);
 void read_automap_data_t_array(char *, char *, automap_data_t *, int);
