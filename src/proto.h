@@ -305,8 +305,6 @@ void read_chatflags_t_array(const char *, const char *, chatflags_t *, int);
 #define save_automap_data_t_array save_automap_data
 void save_automap_data(const char *, automap_data_t *, int);
 void read_automap_data_t_array(char *, char *, automap_data_t *, int);
-void save_bigscrmsg_t_array(const char *, bigscrmsg_t *, int);
-void read_bigscrmsg_t_array(const char *, const char *, bigscrmsg_t *, int);
 void save_sdl_rect(const char *, SDL_Rect *);
 int read_sdl_rect(const char *, const char *, SDL_Rect *);
 #define save_list_head_t(X,Y)

@@ -526,7 +526,6 @@ typedef struct enemy_s {
 } enemy, *Enemy;
 
 typedef char automap_data_t[100][100];
-typedef char *bigscrmsg_t;
 typedef unsigned char chatflags_t[MAX_ANSWERS_PER_PERSON];
 typedef char *string;
 
@@ -666,7 +665,7 @@ typedef struct tux_s {
 	gps Position_History_Ring_Buffer[MAX_INFLU_POSITION_HISTORY];
 
 	int BigScreenMessageIndex;
-	bigscrmsg_t BigScreenMessage[MAX_BIG_SCREEN_MESSAGES];	// bitch
+	string BigScreenMessage[MAX_BIG_SCREEN_MESSAGES];
 	float BigScreenMessageDuration[MAX_BIG_SCREEN_MESSAGES];
 
 	float slowdown_duration;
