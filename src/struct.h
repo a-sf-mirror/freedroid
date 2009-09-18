@@ -529,6 +529,7 @@ typedef char automap_data_t[100][100];
 typedef char *bigscrmsg_t;
 typedef unsigned char chatflags_t[MAX_ANSWERS_PER_PERSON];
 typedef char cookielist_t[MAX_COOKIE_LENGTH];
+typedef char *string;
 
 typedef struct tux_s {
 	float current_game_date;	// seconds since game start, will be printed as a different 'date'

@@ -240,7 +240,7 @@ int SaveGame(void)
 	Activate_Conservative_Frame_Computation();
 
 	sprintf(Me.savegame_version_string,
-		"%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d\n",
+		"%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d",
 		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
 
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
@@ -610,19 +610,28 @@ void read_float(const char *buffer, const char *tag, float *val)
 	*val = valt;
 }
 
-void read_string(const char *buffer, const char *tag, char *val)
+void read_string(const char *buffer, const char *tag, string *val)
 {
 	char search[strlen(tag) + 3];
+	char *pos, *epos;
 	sprintf(search, "\n%s:", tag);
-	char *pos = strstr(buffer, search);
+	pos = strstr(buffer, search);
 	if (!pos)
 		return;
 	pos += 3 + strlen(tag);
-	char *epos = pos;
+	epos = pos;
 	while (*epos != '\n')
 		epos++;
 	*epos = '\0';
-	strcpy(val, pos);
+
+	int size = strlen(pos);
+    if (*val) {
+		ErrorMessage(__FUNCTION__, "The target char * passed was not NULL - this means we are probably trying to overwrite an existing string which will lead to a memory leak.", PLEASE_INFORM, IS_WARNING_ONLY);
+	}
+
+	*val = MyMalloc(size);
+
+	strcpy(*val, pos);
 	*epos = '\n';
 }
 
@@ -677,6 +686,8 @@ define_save_xxx_array(uint16_t);
 typedef unsigned char uchar;
 define_save_xxx_array(float);
 define_save_xxx_array(uchar);
+define_save_xxx_array(char);
+define_save_xxx_array(string);
 define_save_xxx_array(mission);
 define_save_xxx_array(item);
 define_save_xxx_array(gps);
@@ -711,6 +722,7 @@ for ( i = 0; i < (nb <= size ? nb : size); i ++)\
 	char str[10];\
 	sprintf(str, "%d", i);\
 	pos = strstr(pos, str);\
+	if (!pos) break;\
 	pos -= 5;\
 	read_##X(pos, str, &val_ar[i]);\
 	}\
@@ -723,6 +735,8 @@ define_read_xxx_array(int16_t);
 define_read_xxx_array(uint16_t);
 define_read_xxx_array(float);
 define_read_xxx_array(uchar);
+define_read_xxx_array(char);
+define_read_xxx_array(string);
 define_read_xxx_array(mission);
 define_read_xxx_array(item);
 define_read_xxx_array(gps);

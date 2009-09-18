@@ -5,6 +5,7 @@
 # Extracts structures from a C header file and generates in/output code.
 #
 # Copyright (c) 2008 Pierre "delroth" Bourdon <root@delroth.is-a-geek.org>
+# Copyright (c) 2009 Arthur Huillet
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +24,7 @@ import sys, re
 
 # Parts of regexps
 c_id = r'[\w\d]+' # Standard C identifier
-c_type = r'((?:(?:unsigned|signed|short|long)\s+)*' + c_id + r'\s*\*?)' # C type
+c_type = r'((?:(?:unsigned|signed|short|long)\s+)*' + c_id + r'(?:(?:\s+)|(?:\s*\*\s*)))' # C type
 
 # Regexp which search for a structure
 find_structure_rxp = re.compile(r'typedef struct .+?'
@@ -32,11 +33,10 @@ find_structure_rxp = re.compile(r'typedef struct .+?'
                                 r'\}'
                                 r'\s*(' + c_id + ').*?;', re.M | re.S)
 # Regexp which search for a field
-find_members_rxp = re.compile(r'\s*' + c_type + r'\s+(' + c_id + r')(?:\s*\[(.+)\])?\s*?;.*')
+find_members_rxp = re.compile(r'\s*' + c_type + r'\s*(' + c_id + r')(?:\s*\[(.+)\])?\s*?;.*')
 
 # Special types replacements
 special_types = {
-    'char_ptr': 'string',
     #32 bit integers
     'unsigned_int': 'uint32_t',
     'unsigned_long' : 'uint32_t',
@@ -105,17 +105,21 @@ def main():
         for f in a:
             type, field, size = f
             type = type.lower().strip()
-            
-            # Pointers
+           
+            #print("got type " + str(type) + " field is " + str(field) + " size is " + str(size))
+
+            # Pointers - do not save them. It does not make sense.
             if '*' in type:
-		continue
-                #type = type.replace('*', '').strip() + '_ptr'
+                type = type.replace('*', '').strip() + '_ptr'
+                continue
+
             # Spaces
             type = type.replace(' ', '_')
             if type in special_types.keys(): type = special_types[type]
-            elif type == 'char' and size: type = "string" # HACK: char foo[SIZE] -> string
             
-	    if size and type != 'string': type += '[%s]' % size
+            
+	    if size: 
+			type += '[%s]' % size
             data[name].append((type, field))
    
     # Writing loop
@@ -141,7 +145,7 @@ def main():
                 size = type.split('[')[1][:-1]
                 type = type.split('[')[0] + '_array'
             str_save += 'save_%s("%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
-            str_read += 'read_%s(pos, "%s", %s %s(target->%s)%s);\n' % (type, field, '(char*)' if type is "string" else '', '' if size else '&', field, (', %s' % size) if size else '')
+            str_read += 'read_%s(pos, "%s", %s %s(target->%s)%s);\n' % (type, field, '', '' if size else '&', field, (', %s' % size) if size else '')
         str_save += 'fprintf(SaveGameFile, "</%s>\\n", tag);\nreturn 0;\n}\n\n'
         str_read += '''*epos = '>'; \nreturn 0;\n}\n\n'''
         outf.write(str_save)
