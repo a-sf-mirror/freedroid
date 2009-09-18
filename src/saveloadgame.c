@@ -280,9 +280,6 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 		Terminate(ERR);
 	}
 
-	/* Write the version string */
-	fprintf(SaveGameFile, "Version string: %s\n\n", Me.savegame_version_string);
-
 	/* Save tux */
 	save_tux_t("player", &Me);
 
