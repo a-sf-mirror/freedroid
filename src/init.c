@@ -1540,6 +1540,9 @@ void PrepareStartOfNewCharacter(char *startpos)
 	clear_out_intermediate_points(&Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
 
 	for (j = 0; j < MAX_COOKIES; j++) {
+		if (Me.cookie_list[j])
+			free(Me.cookie_list[j]);
+
 		Me.cookie_list[j] = NULL;
 	}
 
