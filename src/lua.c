@@ -451,6 +451,23 @@ static int lua_event_trade_with(lua_State * L)
 	return 0;
 }
 
+static int lua_event_npc_dead(lua_State *L)
+{
+	const char *cname = luaL_checkstring(L, 1);
+	enemy *erot;
+	int dead = 0;
+
+	BROWSE_DEAD_BOTS(erot) {
+		if (!strcmp(erot->dialog_section_name, cname)) {
+			dead = 1;
+			break;
+		}
+	}
+	
+	lua_pushboolean(L, dead);
+	return 1;
+}
+
 static int lua_chat_player_name(lua_State * L)
 {
 	lua_pushstring(L, Me.character_name);
@@ -761,6 +778,8 @@ luaL_reg lfuncs[] = {
 
 	{"takeover", lua_chat_takeover}
 	,
+
+	{"npc_dead", lua_event_npc_dead},
 
 	{NULL, NULL}
 	,
