@@ -103,7 +103,6 @@ EXTERN int draw_grid;		// grid to see where objects will be positioned
 EXTERN float timeout_from_item_drop;
 EXTERN int use_open_gl;
 EXTERN int command_line_override_for_screen_resolution;
-EXTERN char *mission_diary_texts[MAX_MISSIONS_IN_GAME][MAX_MISSION_DESCRIPTION_TEXTS];
 EXTERN char *character_descriptions[MAX_PERSONS];
 
 EXTERN char previous_part_strings[ALL_PART_GROUPS][50];

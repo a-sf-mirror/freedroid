@@ -69,7 +69,7 @@ void quest_browser_diary_add(const char *mis_name, const char *diarytext)
 	int mis_num = GetMissionIndexByName(mis_name);
 	int idx = 0;
 
-	while (Me.AllMissions[mis_num].mission_description_visible[idx] && idx < MAX_MISSION_DESCRIPTION_TEXTS)
+	while (Me.AllMissions[mis_num].mission_diary_texts[idx] && idx < MAX_MISSION_DESCRIPTION_TEXTS)
 		idx++;
 
 	if (idx >= MAX_MISSION_DESCRIPTION_TEXTS) {
@@ -79,10 +79,9 @@ void quest_browser_diary_add(const char *mis_name, const char *diarytext)
 		return;
 	}
 
-	Me.AllMissions[mis_num].mission_description_visible[idx] = TRUE;
 	Me.AllMissions[mis_num].mission_description_time[idx] = Me.current_game_date;
 
-	mission_diary_texts[mis_num][idx] = strdup(diarytext);
+	Me.AllMissions[mis_num].mission_diary_texts[idx] = strdup(diarytext);
 
 	Me.quest_browser_changed = 1;
 };
@@ -123,7 +122,7 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 	strcat(complete_mission_display_text, _("\nDetails:\n"));
 
 	for (mission_diary_index = 0; mission_diary_index < MAX_MISSION_DESCRIPTION_TEXTS; mission_diary_index++) {
-		if (Me.AllMissions[mis_num].mission_description_visible[mission_diary_index]) {
+		if (Me.AllMissions[mis_num].mission_diary_texts[mission_diary_index]) {
 			sprintf(temp_text, _("Day %d  %02d:%02d"),
 				get_days_of_game_duration(Me.AllMissions[mis_num].mission_description_time[mission_diary_index]),
 				get_hours_of_game_duration(Me.AllMissions[mis_num].mission_description_time[mission_diary_index]),
@@ -131,7 +130,7 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 			strcat(complete_mission_display_text, "-------- ");
 			strcat(complete_mission_display_text, temp_text);
 			strcat(complete_mission_display_text, " --------\n ");
-			strcat(complete_mission_display_text, D_(mission_diary_texts[mis_num][mission_diary_index]));
+			strcat(complete_mission_display_text, D_(Me.AllMissions[mis_num].mission_diary_texts[mission_diary_index]));
 			strcat(complete_mission_display_text, "\n");
 		}
 	}
@@ -584,12 +583,11 @@ void clear_tux_mission_info()
 		strcpy(Me.AllMissions[MissionTargetIndex].MissionName, "");
 
 		for (diary_entry_nr = 0; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS; diary_entry_nr++) {
-			if (mission_diary_texts[MissionTargetIndex][diary_entry_nr]) {
-				free(mission_diary_texts[MissionTargetIndex][diary_entry_nr]);
-				mission_diary_texts[MissionTargetIndex][diary_entry_nr] = NULL;
+			if (Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr]) {
+				free(Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr]);
+				Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr] = NULL;
 			}
 
-			Me.AllMissions[MissionTargetIndex].mission_description_visible[diary_entry_nr] = FALSE;
 			Me.AllMissions[MissionTargetIndex].mission_description_time[diary_entry_nr] = 0;
 		}
 	}
@@ -713,7 +711,7 @@ void GetQuestList(char *QuestListFilename)
 		// be displayed in the quest browser later.
 		//
 		for (diary_entry_nr = 0; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS; diary_entry_nr++) {
-			mission_diary_texts[MissionTargetIndex][diary_entry_nr] = NULL;
+			Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr] = NULL;
 		}
 
 		//--------------------

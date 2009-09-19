@@ -192,6 +192,7 @@ typedef struct map_label_s {
 } map_label, *Map_Label;
 
 typedef char *luacode;
+typedef char *string;
 
 typedef struct mission_s {
 	char MissionName[500];	// this should be the name of the mission, currently uninitialized
@@ -212,7 +213,7 @@ typedef struct mission_s {
 	luacode completion_lua_code;
 	luacode assignment_lua_code;
 
-	int mission_description_visible[MAX_MISSION_DESCRIPTION_TEXTS];
+	string mission_diary_texts[MAX_MISSION_DESCRIPTION_TEXTS];
 	float mission_description_time[MAX_MISSION_DESCRIPTION_TEXTS];
 	int expanded_display_for_this_mission;
 } mission, *Mission;
@@ -527,7 +528,6 @@ typedef struct enemy_s {
 
 typedef char automap_data_t[100][100];
 typedef unsigned char chatflags_t[MAX_ANSWERS_PER_PERSON];
-typedef char *string;
 
 typedef struct tux_s {
 	float current_game_date;	// seconds since game start, will be printed as a different 'date'
