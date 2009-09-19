@@ -247,7 +247,7 @@ return 0;
 int save_mission(char * tag, mission * target)
 {
 fprintf(SaveGameFile, "<%s>\n",tag);
-save_char_array("MissionName", (target->MissionName), 500);
+save_string("mission_name", &(target->mission_name));
 save_int32_t("MissionWasAssigned", &(target->MissionWasAssigned));
 save_int32_t("MissionIsComplete", &(target->MissionIsComplete));
 save_int32_t("MissionWasFailed", &(target->MissionWasFailed));
@@ -281,7 +281,7 @@ int read_mission(char* buffer, char * tag, mission * target)
 		char * epos = strstr(buffer, search);
 		if ( ! epos ) return 2;
 		*epos = 0;
-		read_char_array(pos, "MissionName",  (target->MissionName), 500);
+		read_string(pos, "mission_name",  &(target->mission_name));
 read_int32_t(pos, "MissionWasAssigned",  &(target->MissionWasAssigned));
 read_int32_t(pos, "MissionIsComplete",  &(target->MissionIsComplete));
 read_int32_t(pos, "MissionWasFailed",  &(target->MissionWasFailed));

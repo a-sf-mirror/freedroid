@@ -101,7 +101,7 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 	SetTextCursor(mission_description_rect.x, mission_description_rect.y);
 
 	strcat(complete_mission_display_text, _("Mission: "));
-	strcat(complete_mission_display_text, _(Me.AllMissions[mis_num].MissionName));
+	strcat(complete_mission_display_text, _(Me.AllMissions[mis_num].mission_name));
 	strcat(complete_mission_display_text, "\n");
 
 	//--------------------
@@ -177,11 +177,11 @@ void quest_browser_display_mission_list(int list_type)
 		}
 
 		if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE)) {
-			quest_browser_append_mission_info(Me.AllMissions[mis_num].MissionName,
+			quest_browser_append_mission_info(Me.AllMissions[mis_num].mission_name,
 							  Me.AllMissions[mis_num].expanded_display_for_this_mission);
 			something_was_displayed = TRUE;
 		} else if ((list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete != FALSE)) {
-			quest_browser_append_mission_info(Me.AllMissions[mis_num].MissionName,
+			quest_browser_append_mission_info(Me.AllMissions[mis_num].mission_name,
 							  Me.AllMissions[mis_num].expanded_display_for_this_mission);
 			something_was_displayed = TRUE;
 		} else {
@@ -520,7 +520,7 @@ void CheckIfMissionIsComplete(void)
 		}
 
 		if (this_mission_seems_completed)
-			CompleteMission(Me.AllMissions[mis_num].MissionName);
+			CompleteMission(Me.AllMissions[mis_num].mission_name);
 
 	}			// for AllMissions
 
@@ -580,7 +580,10 @@ void clear_tux_mission_info()
 		Me.AllMissions[MissionTargetIndex].MissionWasFailed = FALSE;
 		Me.AllMissions[MissionTargetIndex].MissionWasAssigned = FALSE;
 
-		strcpy(Me.AllMissions[MissionTargetIndex].MissionName, "");
+		if (Me.AllMissions[MissionTargetIndex].mission_name) {
+			free(Me.AllMissions[MissionTargetIndex].mission_name);
+			Me.AllMissions[MissionTargetIndex].mission_name = NULL;
+		}
 
 		for (diary_entry_nr = 0; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS; diary_entry_nr++) {
 			if (Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr]) {
@@ -654,9 +657,7 @@ void GetQuestList(char *QuestListFilename)
 
 		Me.AllMissions[MissionTargetIndex].MissionExistsAtAll = TRUE;
 
-		char *tmname = ReadAndMallocStringFromData(MissionTargetPointer, MISSION_TARGET_NAME_INITIALIZER, "\"");
-		strcpy(Me.AllMissions[MissionTargetIndex].MissionName, tmname);
-		free(tmname);
+		Me.AllMissions[MissionTargetIndex].mission_name = ReadAndMallocStringFromData(MissionTargetPointer, MISSION_TARGET_NAME_INITIALIZER, "\"");
 
 		//--------------------
 		// From here on we read the details of the mission target, i.e. what the
@@ -747,7 +748,7 @@ int GetMissionIndexByName(const char *name)
 	int cidx;
 
 	for (cidx = 0; cidx < MAX_MISSIONS_IN_GAME; cidx++) {
-		if (!strcmp(Me.AllMissions[cidx].MissionName, name))
+		if (!strcmp(Me.AllMissions[cidx].mission_name, name))
 			return cidx;
 	}
 

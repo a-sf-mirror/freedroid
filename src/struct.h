@@ -195,7 +195,7 @@ typedef char *luacode;
 typedef char *string;
 
 typedef struct mission_s {
-	char MissionName[500];	// this should be the name of the mission, currently uninitialized
+	string mission_name;
 	int MissionWasAssigned;	// has be influencer been assigned to this mission? , currently uninitialized
 	int MissionIsComplete;	// has the mission been completed?
 	int MissionWasFailed;	// has the mission been failed?
