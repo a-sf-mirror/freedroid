@@ -626,7 +626,7 @@ void read_string(const char *buffer, const char *tag, string *val)
 		ErrorMessage(__FUNCTION__, "The target char * passed was not NULL - this means we are probably trying to overwrite an existing string which will lead to a memory leak.", PLEASE_INFORM, IS_WARNING_ONLY);
 	}
 
-	*val = MyMalloc(size);
+	*val = MyMalloc(size + 1);
 
 	strcpy(*val, pos);
 	*epos = '\n';
