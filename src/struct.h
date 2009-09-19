@@ -505,8 +505,8 @@ typedef struct enemy_s {
 	short int bot_target_n;
 	struct enemy_s *bot_target_addr;
 	char attack_run_only_when_direct_line;	// require direct line to target before switching into attach run mode
-	char dialog_section_name[MAX_LENGTH_FOR_DIALOG_SECTION_NAME];	// This should indicate one of the many sections of the Freedroid.dialogues file
-	char short_description_text[MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING];	// This should indicate one of the many sections of the Freedroid.dialogues file
+	string dialog_section_name;
+	string short_description_text;
 	char will_rush_tux;	// will this robot approach the Tux on sight and open communication?
 	char has_greeted_influencer;	// has this robot issued his first-time-see-the-Tux message?
 	float previous_angle;	// which angle has this robot been facing the frame before?

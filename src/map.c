@@ -2425,8 +2425,6 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 	char *StartMapLabel;
 	char *YesNoString;
 	location StartupLocation;
-	char *DialogSection;
-	char *ShortDescription;
 
 	enemy newen;
 	while ((SearchPointer = strstr(SearchPointer, SPECIAL_FORCE_INDICATION_STRING)) != NULL) {
@@ -2482,25 +2480,21 @@ the item specification section.", PLEASE_INFORM, IS_FATAL);
 
 		free(YesNoString);
 
-		DialogSection = ReadAndMallocStringFromData(SearchPointer, "UseDialog=\"", "\"");
-		if (strlen(DialogSection) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME - 1) {
+		newen.dialog_section_name = ReadAndMallocStringFromData(SearchPointer, "UseDialog=\"", "\"");
+		if (strlen(newen.dialog_section_name) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME - 1) {
 			ErrorMessage(__FUNCTION__, "\
 The dialog section specification string for a bot was too large.\n\
 This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
 the dialog section name for one special force droid/character.", PLEASE_INFORM, IS_FATAL);
 		}
-		strcpy(newen.dialog_section_name, DialogSection);
-		free(DialogSection);
 
-		ShortDescription = ReadAndMallocStringFromData(SearchPointer, "ShortLabel=_\"", "\"");
-		if (strlen(ShortDescription) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING) {
+		newen.short_description_text = ReadAndMallocStringFromData(SearchPointer, "ShortLabel=_\"", "\"");
+		if (strlen(newen.short_description_text) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING) {
 			ErrorMessage(__FUNCTION__, "\
 The short description specification string for a bot was too large.\n\
 This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
 the dialog section name for one special force droid/character.", PLEASE_INFORM, IS_FATAL);
 		}
-		strcpy(newen.short_description_text, ShortDescription);
-		free(ShortDescription);
 
 		YesNoString = ReadAndMallocStringFromData(SearchPointer, "attack_run_only_when_direct_line=\"", "\"");
 		if (strcmp(YesNoString, "yes") == 0) {
@@ -2628,80 +2622,80 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 		newen.ammo_left = ItemMap[Druidmap[newen.type].weapon_item.type].item_gun_ammo_clip_size;
 		newen.id = last_bot_number + 1;
 
-		strcpy(newen.dialog_section_name, "StandardBotAfterTakeover");
+		newen.dialog_section_name = strdup("StandardBotAfterTakeover");
 
 		switch (atoi(Druidmap[newen.type].druidname)) {
 		case 123:
-			strcpy(newen.short_description_text, _("123 Acolyte"));
+			newen.short_description_text = strdup(_("123 Acolyte"));
 			break;
 		case 139:
-			strcpy(newen.short_description_text, _("139 Templar"));
+			newen.short_description_text = strdup(_("139 Templar"));
 			break;
 		case 247:
-			strcpy(newen.short_description_text, _("247 Banshee"));
+			newen.short_description_text = strdup(_("247 Banshee"));
 			break;
 		case 249:
-			strcpy(newen.short_description_text, _("249 Chicago"));
+			newen.short_description_text = strdup(_("249 Chicago"));
 			break;
 		case 296:
-			strcpy(newen.short_description_text, _("296 Sawmill"));
+			newen.short_description_text = strdup(_("296 Sawmill"));
 			break;
 		case 302:
-			strcpy(newen.short_description_text, _("302 Nemesis"));
+			newen.short_description_text = strdup(_("302 Nemesis"));
 			break;
 		case 329:
-			strcpy(newen.short_description_text, _("329 Sparkie"));
+			newen.short_description_text = strdup(_("329 Sparkie"));
 			break;
 		case 420:
-			strcpy(newen.short_description_text, _("420 Surgeon"));
+			newen.short_description_text = strdup(_("420 Surgeon"));
 			break;
 		case 476:
-			strcpy(newen.short_description_text, _("476 Coward"));
+			newen.short_description_text = strdup(_("476 Coward"));
 			break;
 		case 493:
-			strcpy(newen.short_description_text, _("493 Spinster"));
+			newen.short_description_text = strdup(_("493 Spinster"));
 			break;
 		case 516:
-			strcpy(newen.short_description_text, _("516 Ghoul"));
+			newen.short_description_text = strdup(_("516 Ghoul"));
 			break;
 		case 543:
-			strcpy(newen.short_description_text, _("543 Forest Harvester"));
+			newen.short_description_text = strdup(_("543 Forest Harvester"));
 			break;
 		case 571:
-			strcpy(newen.short_description_text, _("571 Apollo"));
+			newen.short_description_text = strdup(_("571 Apollo"));
 			break;
 		case 598:
-			strcpy(newen.short_description_text, _("598 Minister"));
+			newen.short_description_text = strdup(_("598 Minister"));
 			break;
 		case 615:
-			strcpy(newen.short_description_text, _("615 Firedevil"));
+			newen.short_description_text = strdup(_("615 Firedevil"));
 			break;
 		case 629:
-			strcpy(newen.short_description_text, _("629 Spitfire"));
+			newen.short_description_text = strdup(_("629 Spitfire"));
 			break;
 		case 711:
-			strcpy(newen.short_description_text, _("711 Grillmeister"));
+			newen.short_description_text = strdup(_("711 Grillmeister"));
 			break;
 		case 742:
-			strcpy(newen.short_description_text, _("742 Zeus"));
+			newen.short_description_text = strdup(_("742 Zeus"));
 			break;
 		case 751:
-			strcpy(newen.short_description_text, _("751 Soviet"));
+			newen.short_description_text = strdup(_("751 Soviet"));
 			break;
 		case 821:
-			strcpy(newen.short_description_text, _("821 Ufo"));
+			newen.short_description_text = strdup(_("821 Ufo"));
 			break;
 		case 834:
-			strcpy(newen.short_description_text, _("834 Wisp"));
+			newen.short_description_text = strdup(_("834 Wisp"));
 			break;
 		case 883:
-			strcpy(newen.short_description_text, _("883 Dalex"));
+			newen.short_description_text = strdup(_("883 Dalex"));
 			break;
 		case 999:
-			strcpy(newen.short_description_text, _("999 Cerebrum"));
+			newen.short_description_text = strdup(_("999 Cerebrum"));
 			break;
 		default:
-			strcpy(newen.short_description_text, _("No Description For This One"));
+			newen.short_description_text = strdup(_("No Description For This One"));
 		};
 
 		enemy *ne = (enemy *) calloc(1, sizeof(enemy));

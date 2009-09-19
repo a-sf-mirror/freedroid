@@ -207,6 +207,14 @@ void InitEnemy(enemy * our_bot)
 	our_bot->bot_stuck_in_wall_at_previous_check = FALSE;
 }
 
+static void free_enemy(enemy *e)
+{
+	free(e->dialog_section_name);
+	e->dialog_section_name = NULL;
+	free(e->short_description_text);
+	e->short_description_text = NULL;
+}
+
 /* -----------------------------------------------------------------
  * This function removes all enemy entries from the list of the
  * enemys.
@@ -222,12 +230,12 @@ void ClearEnemys(void)
 
 	BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
 		list_del(&erot->global_list);
-		free(erot);
+		free_enemy(erot);
 	}
 
 	BROWSE_DEAD_BOTS_SAFE(erot, nerot) {
 		list_del(&erot->global_list);
-		free(erot);
+		free_enemy(erot);
 	}
 
 	INIT_LIST_HEAD(&alive_bots_head);
