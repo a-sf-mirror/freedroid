@@ -907,4 +907,10 @@ typedef struct {
 	int number_selected;
 } shop_decision;
 
+struct auto_string {
+	char *value;
+	unsigned long length;
+	unsigned long capacity;
+};
+
 #endif

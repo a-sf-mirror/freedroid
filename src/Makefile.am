@@ -20,7 +20,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	proto.h struct.h system.h BFont.h \
 	SDL_rotozoom.c SDL_rotozoom.h open_gl.c open_gl_atlas.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound.h sound_effects.c \
-	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h pathfinder.c \
+	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h string.c pathfinder.c \
 	lvledit/lvledit.c lvledit/lvledit.h \
 	lvledit/lvledit_actions.c lvledit/lvledit_actions.h \
 	lvledit/lvledit_display.c lvledit/lvledit_display.h \

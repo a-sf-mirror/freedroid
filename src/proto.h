@@ -719,4 +719,10 @@ int generate_dungeon(int, int, int);
 // mapgen/fd_hooks.c
 void set_dungeon_output(level *);
 
+// string.c
+struct auto_string *alloc_autostr(int);
+void free_autostr(struct auto_string *);
+int autostr_printf(struct auto_string *, const char *, ...);
+int autostr_append(struct auto_string *, const char *, ...);
+
 #endif
