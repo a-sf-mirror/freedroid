@@ -1922,6 +1922,7 @@ int SaveShip(const char *filename)
 		return ERR;
 	}
 
+	free_autostr(shipstr);
 	return OK;
 }
 
