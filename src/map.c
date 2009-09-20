@@ -1241,6 +1241,7 @@ static void AnimateTeleports(void)
 int LoadShip(char *filename)
 {
 	char *ShipData = NULL;
+	FILE *ShipFile;
 	char *endpt;		// Pointer to end-strings
 	char *LevelStart[MAX_LEVELS];	// Pointer to a level-start
 	int level_anz;
@@ -1249,7 +1250,7 @@ int LoadShip(char *filename)
 #define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
 
 	for (i = 0; i < MAX_LEVELS; i++) {
-		if (curShip.AllLevels[i] != NULL) {	//we need to free memory! otherwise 10MB leak! 
+		if (curShip.AllLevels[i] != NULL) {
 			int ydim = curShip.AllLevels[i]->ylen;
 			int row = 0;
 			for (row = 0; row < ydim; row++) {
@@ -1267,7 +1268,16 @@ int LoadShip(char *filename)
 	//--------------------
 	// Read the whole ship-data to memory 
 	//
-	ShipData = ReadAndMallocAndTerminateFile(filename, END_OF_SHIP_DATA_STRING);
+	ShipFile = fopen(filename, "rb");
+	if (!ShipFile) {
+		ErrorMessage(__FUNCTION__, "Unable to open ship file %s: %s.\n", PLEASE_INFORM, IS_FATAL, filename, strerror(errno));
+	}
+
+	if (inflate_stream(ShipFile, (unsigned char **)&ShipData, NULL)) {
+		ErrorMessage(__FUNCTION__, "Unable to decompress ship file %s.\n", PLEASE_INFORM, IS_FATAL, filename);
+	}
+
+	fclose(ShipFile);
 
 	//--------------------
 	// Now we count the number of levels and remember their start-addresses.
@@ -1880,67 +1890,40 @@ use underground lighting: %d\n", Lev->levelnum, Lev->xlen, Lev->ylen, Lev->light
  */
 int SaveShip(const char *filename)
 {
-	char *LevelMem = NULL;	// linear memory for one Level 
-	char *MapHeaderString = NULL;
-	FILE *ShipFile = NULL;	// to this file we will save all the ship data...
 	int i;
+	char *LevelMem = NULL;
+	FILE *ShipFile = NULL;
+	struct auto_string *shipstr;
 
-	DebugPrintf(2, "\nint SaveShip(char *shipname): real function call confirmed.");
-
-	//--------------------
-	// We open the ship file 
-	//
+	// Open the ship file 
 	if ((ShipFile = fopen(filename, "wb")) == NULL) {
-		fprintf(stderr, "\nShip file filename: %s\n", filename);
-		ErrorMessage(__FUNCTION__, "Error opening ship file.", PLEASE_INFORM, IS_FATAL);
+		ErrorMessage(__FUNCTION__, "Error opening ship file %s.", PLEASE_INFORM, IS_FATAL, filename);
 		return ERR;
 	}
-	//--------------------
-	// Now that the file is opened for writing, we can start writing.  And the first thing
-	// we will write to the file will be a fine header, indicating what this file is about
-	// and things like that...
-	//
-	MapHeaderString = "\n";
-	fwrite(MapHeaderString, strlen(MapHeaderString), sizeof(char), ShipFile);
 
-	//--------------------
-	// Now we can save all the levels...
-	//
-	DebugPrintf(2, "\n%s(): now saving levels...", __FUNCTION__);
+	shipstr	= alloc_autostr(1048576);
+	autostr_printf(shipstr, "\n");
+	
+	// Save all the levels
 	for (i = 0; i < curShip.num_levels; i++) {
 		if (curShip.AllLevels[i] != NULL) {
-			//--------------------
-			// Now comes the real saving part FOR ONE LEVEL.  First THE LEVEL is packed into a string and
-			// then this string is written to the file.  easy. simple.
-			//
 			LevelMem = EncodeLevelForSaving(curShip.AllLevels[i]);
-			fwrite(LevelMem, strlen(LevelMem), sizeof(char), ShipFile);
+			autostr_append(shipstr, "%s", LevelMem);
 			free(LevelMem);
 		}
 	}
 
-	//--------------------
-	// Now we are almost done writing.  Everything that is missing is
-	// the termination string for the ship file.  This termination string
-	// is needed later for the ship loading functions to find the end of
-	// the data and to be able to terminate the long file-string with a
-	// null character at the right position.
-	//
-	fwrite(END_OF_SHIP_DATA_STRING, strlen(END_OF_SHIP_DATA_STRING), sizeof(char), ShipFile);
-	fwrite("\n\n  ", strlen("\n\n  "), sizeof(char), ShipFile);
+	autostr_append(shipstr, "%s\n\n", END_OF_SHIP_DATA_STRING);
 
-	DebugPrintf(2, "\nint SaveShip(char *shipname): now closing ship file...");
+	deflate_to_stream((unsigned char *)shipstr->value, shipstr->length+1, ShipFile);
 
 	if (fclose(ShipFile) == EOF) {
 		ErrorMessage(__FUNCTION__, "Closing of ship file failed!", PLEASE_INFORM, IS_FATAL);
 		return ERR;
 	}
 
-	DebugPrintf(2, "\nint SaveShip(char *shipname): end of function reached.");
-
 	return OK;
-
-};				// int SaveShip ( char* filename )
+}
 
 /**
  *
