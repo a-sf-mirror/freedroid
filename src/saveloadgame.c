@@ -313,7 +313,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 	}
 
 	autostr_append(savestruct_autostr, "End of freedroidRPG savefile\n");
-	deflate_to_stream(savestruct_autostr->value, savestruct_autostr->length, SaveGameFile);
+	deflate_to_stream((unsigned char *)savestruct_autostr->value, savestruct_autostr->length+1, SaveGameFile);
 	fclose(SaveGameFile);
 
 	SaveThumbnailOfGame();
@@ -416,7 +416,7 @@ int LoadGame(void)
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
 
 	DataFile = fopen(filename, "rb");
-	if (inflate_stream(DataFile, &LoadGameData, NULL)) {
+	if (inflate_stream(DataFile, (unsigned char **)&LoadGameData, NULL)) {
 		fclose(DataFile);
 		GiveMouseAlertWindow("Unable to decompress saved game - this is probably an old, incompatible game. Sorry.\n");
 		return ERR;
