@@ -491,18 +491,18 @@ int FS_filelength(FILE * f)
  * Inflate a given stream using zlib
  *
  * Takes DataFile file and points DataBuffer to a buffer containing the 
- * uncompressed data. Sets 'size' to the size of said uncompressed data
- * or does nothing is 'size' == NULL.
- * This function closes DataFile.
+ * uncompressed data. Sets '*size' to the size of said uncompressed data, if size 
+ * is not NULL.
+ *
+ * Returns nonzero in case of error. 
  ***/
-void inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
+int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 {
 	int filelen = FS_filelength(DataFile);
 	unsigned char *src = MyMalloc(filelen + 1);
 	int cursz = 1048576;	//start with 1MB
 	unsigned char *temp_dbuffer = malloc(cursz);
 	fread(src, filelen, 1, DataFile);
-	fclose(DataFile);
 
 	int ret;
 	z_stream strm;
@@ -522,8 +522,10 @@ void inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 	if (ret != Z_OK) {
 		ErrorMessage(__FUNCTION__, "\
 		zlib was unable to start decompressing a stream.\n\
-		This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
-
+		This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_WARNING_ONLY);
+		free(temp_dbuffer);
+		free(src);
+		return -1;
 	}
 
 	do {
@@ -544,8 +546,11 @@ void inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 
 			ErrorMessage(__FUNCTION__, "\
 			zlib was unable to decompress a stream\n\
-			This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
-
+			This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_WARNING_ONLY);
+			free(temp_dbuffer);
+			free(src);
+			return -1;
+			break;
 		}
 	} while (ret != Z_STREAM_END);
 
@@ -557,6 +562,49 @@ void inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 	(void)inflateEnd(&strm);
 	free(src);
 	free(temp_dbuffer);
+
+	return 0;
+}
+
+int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
+{
+    int ret;
+    unsigned have;
+    z_stream strm;
+#define CHUNK 16384
+    unsigned char out[CHUNK];
+
+    /* allocate deflate state */
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
+    strm.opaque = Z_NULL;
+	strm.avail_in = size;
+	strm.next_in = source_buffer;
+
+    ret = deflateInit(&strm, Z_DEFAULT_COMPRESSION);
+	if (ret != Z_OK) {
+		ErrorMessage(__FUNCTION__, "\
+		zlib was unable to start compressing a string.", PLEASE_INFORM, IS_WARNING_ONLY);
+		return -1;
+	}
+
+	/* run deflate() on input until output buffer not full, finish
+	   compression if all of source has been read in */
+	do {
+		strm.avail_out = CHUNK;
+		strm.next_out = out;
+		ret = deflate(&strm, Z_FINISH);    /* no bad return value */
+		have = CHUNK - strm.avail_out;
+		if (fwrite(out, 1, have, dest) != have || ferror(dest)) {
+			(void)deflateEnd(&strm);
+			return;
+		}
+	} while (strm.avail_out == 0);
+
+    /* clean up and return */
+    (void)deflateEnd(&strm);
+
+	return 0;
 }
 
 #undef _text_public_c

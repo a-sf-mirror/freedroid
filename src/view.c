@@ -2348,6 +2348,8 @@ void grab_tux_images_from_archive(int tux_part_group, int motion_class, char *pa
 	DataFile = open_tux_image_archive_file(tux_part_group, motion_class, part_string);
 
 	inflate_stream(DataFile, &DataBuffer, NULL);
+	fclose(DataFile);
+
 	ptr = DataBuffer;
 	//--------------------
 	// We store the currently loaded part string, so that we can later
@@ -2549,6 +2551,7 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 	}
 
 	inflate_stream(DataFile, &DataBuffer, NULL);
+	fclose(DataFile);
 
 	ptr = DataBuffer;
 

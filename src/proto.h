@@ -637,7 +637,8 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...);
 void DebugPrintf(int db_level, const char *fmt, ...);
 void *MyMalloc(long);
 int FS_filelength(FILE * f);
-void inflate_stream(FILE *, unsigned char **, int *);
+int inflate_stream(FILE *, unsigned char **, int *);
+int deflate_to_stream(unsigned char *, int, FILE *);
 
 // hud.c 
 void GiveItemDescription(char *ItemDescText, item * CurItem, int ForShop);
