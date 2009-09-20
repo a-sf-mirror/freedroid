@@ -65,7 +65,7 @@ def main():
     outh = open(outfn+'.h', 'w')
 
     #Prelude
-    outf.write('#include "struct.h"\n#include "proto.h"\n#include "' + outfn + '.h"\nextern FILE * SaveGameFile;\n\n\n')
+    outf.write('#include "struct.h"\n#include "global.h"\n#include "proto.h"\n#include "' + outfn + '.h"\n\n\n')
 
     data = {}
 
@@ -126,7 +126,7 @@ def main():
     for s_name in data.keys():
         str_save = str_read = ''
 	header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (s_name, s_name, s_name, s_name)
-	str_save += 'int save_%s(char * tag, %s * target)\n{\nfprintf(SaveGameFile, "<%%s>\\n",tag);\n' % (s_name,s_name)
+	str_save += 'int save_%s(char * tag, %s * target)\n{\nautostr_append(savestruct_autostr, "<%%s>\\n",tag);\n' % (s_name,s_name)
         str_read += '''int read_%s(char* buffer, char * tag, %s * target)\n{\n
 		char search[strlen(tag) + 5];
 		sprintf(search, "<%%s>", tag);
@@ -146,7 +146,7 @@ def main():
                 type = type.split('[')[0] + '_array'
             str_save += 'save_%s("%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
             str_read += 'read_%s(pos, "%s", %s %s(target->%s)%s);\n' % (type, field, '', '' if size else '&', field, (', %s' % size) if size else '')
-        str_save += 'fprintf(SaveGameFile, "</%s>\\n", tag);\nreturn 0;\n}\n\n'
+        str_save += 'autostr_append(savestruct_autostr, "</%s>\\n", tag);\nreturn 0;\n}\n\n'
         str_read += '''*epos = '>'; \nreturn 0;\n}\n\n'''
         outf.write(str_save)
         outf.write(str_read)

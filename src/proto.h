@@ -253,7 +253,7 @@ void LoadAndShowStats(char *CoreFilename);
 /* Primitive types */
 
 /* Saving is done via macros */
-#define save_pritype(Z,X,Y) fprintf(SaveGameFile, Z, X, *(Y))
+#define save_pritype(Z,X,Y) autostr_append(savestruct_autostr, Z, X, *(Y))
 #define save_char(X,Y) save_pritype("%s: %hhd\n", X, Y)
 #define save_uchar(X,Y) save_pritype("%s: %hhu\n", X, Y)
 #define save_uint16_t(X,Y) save_pritype("%s: %hu\n", X, Y)

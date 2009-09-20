@@ -51,8 +51,6 @@
 
 int load_game_command_came_from_inside_running_game = FALSE;
 
-FILE *SaveGameFile;		// to this file we will save all the ship data...
-
 jmp_buf saveload_jmpbuf;
 
 #define WrapErrorMessage(a, b, c, d, ...) do { \
@@ -228,6 +226,7 @@ int SaveGame(void)
 	char filename[1000];
 	char filename2[1000];
 	int ret;
+	FILE *SaveGameFile;
 
 	if (Me.energy <= 0) {
 		GiveMouseAlertWindow(_("You are dead. Savegame not modified."));
@@ -236,6 +235,9 @@ int SaveGame(void)
 
 	if (!our_config_dir)
 		return (OK);
+
+	/* Start with a 1MB string */
+	savestruct_autostr = alloc_autostr(1048576);
 
 	Activate_Conservative_Frame_Computation();
 
@@ -310,6 +312,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 		save_melee_shot(str, &AllMeleeShots[i]);
 	}
 
+	fwrite(savestruct_autostr->value, 1, savestruct_autostr->length, SaveGameFile); 
 	fprintf(SaveGameFile, "End of freedroidRPG savefile\n");
 	fclose(SaveGameFile);
 
@@ -318,8 +321,10 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 	append_new_game_message(_("Game saved."));
 
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nint SaveGame( void ): end of function reached.");
-	return OK;
 
+	free_autostr(savestruct_autostr);
+	savestruct_autostr = NULL;
+	return OK;
 };				// int SaveGame( void )
 
 /**
@@ -635,7 +640,7 @@ void read_string(const char *buffer, const char *tag, string *val)
 void save_luacode(const char *tag, luacode * val)
 {
 	if (*val)
-		fprintf(SaveGameFile, "%s:LuaCode={%s}\n", tag, *val);
+		autostr_append(savestruct_autostr, "%s:LuaCode={%s}\n", tag, *val);
 }
 
 void read_luacode(const char *buffer, const char *tag, luacode * val)
@@ -665,7 +670,7 @@ void read_luacode(const char *buffer, const char *tag, luacode * val)
 /* Save arrays of simple types */
 #define define_save_xxx_array(X) void save_##X##_array(const char * tag, X * val_ar, int size)\
 {\
-fprintf(SaveGameFile, "<%s array n=%d>\n", tag, size);\
+autostr_append(savestruct_autostr, "<%s array n=%d>\n", tag, size);\
 int i;\
 for ( i = 0; i < size; i ++)\
 	{\
@@ -673,7 +678,7 @@ for ( i = 0; i < size; i ++)\
 	sprintf(str, "%i", i);\
 	save_##X(str, &val_ar[i]);\
 	}\
-fprintf(SaveGameFile, "</%s>\n", tag);\
+autostr_append(savestruct_autostr, "</%s>\n", tag);\
 }
 
 define_save_xxx_array(int32_t);
@@ -741,12 +746,12 @@ define_read_xxx_array(moderately_finepoint);
 
 void save_sdl_rect(const char *tag, SDL_Rect * target)
 {
-	fprintf(SaveGameFile, "<%s>\n", tag);
+	autostr_append(savestruct_autostr, "<%s>\n", tag);
 	save_int16_t("x", &(target->x));
 	save_int16_t("y", &(target->y));
 	save_uint16_t("w", &(target->w));
 	save_uint16_t("h", &(target->h));
-	fprintf(SaveGameFile, "</%s>\n", tag);
+	autostr_append(savestruct_autostr, "</%s>\n", tag);
 }
 
 int read_sdl_rect(const char *buffer, const char *tag, SDL_Rect * target)
@@ -772,15 +777,15 @@ int read_sdl_rect(const char *buffer, const char *tag, SDL_Rect * target)
 
 void save_chatflags_t_array(const char *tag, chatflags_t * chatflags, int size)
 {
-	fprintf(SaveGameFile, "<ChatFlags mpeople=%d manswers=%d>\n", MAX_PERSONS, MAX_ANSWERS_PER_PERSON);
+	autostr_append(savestruct_autostr, "<ChatFlags mpeople=%d manswers=%d>\n", MAX_PERSONS, MAX_ANSWERS_PER_PERSON);
 	int i, j;
 	for (i = 0; i < MAX_PERSONS; i++) {
 		for (j = 0; j < MAX_ANSWERS_PER_PERSON; j++) {
-			fprintf(SaveGameFile, "%hhd ", (chatflags)[i][j]);
+			autostr_append(savestruct_autostr, "%hhd ", (chatflags)[i][j]);
 		}
-		fprintf(SaveGameFile, "\n");
+		autostr_append(savestruct_autostr, "\n");
 	}
-	fprintf(SaveGameFile, "</ChatFlags>\n");
+	autostr_append(savestruct_autostr, "</ChatFlags>\n");
 }
 
 void read_chatflags_t_array(const char *buffer, const char *tag, chatflags_t * chatflags, int size)
@@ -871,15 +876,15 @@ void read_chatflags_t_array(const char *buffer, const char *tag, chatflags_t * c
 
 void save_keybind_t_array(const char *tag, keybind_t * keybinds, int size)
 {
-	fprintf(SaveGameFile, "<keybinds cmd=%d>\n", size);
+	autostr_append(savestruct_autostr, "<keybinds cmd=%d>\n", size);
 	int i;
 	for (i = 0; i < size; i++) {
 		if (!strcmp(keybinds[i].name, "end"))
 			break;
 
-		fprintf(SaveGameFile, "%s %d %d\n", keybinds[i].name, keybinds[i].key, keybinds[i].mod);
+		autostr_append(savestruct_autostr, "%s %d %d\n", keybinds[i].name, keybinds[i].key, keybinds[i].mod);
 	}
-	fprintf(SaveGameFile, "</keybinds>\n");
+	autostr_append(savestruct_autostr, "</keybinds>\n");
 }
 
 void read_keybind_t_array(const char *buffer, const char *tag, keybind_t * kbs, int size)
@@ -946,18 +951,18 @@ void read_keybind_t_array(const char *buffer, const char *tag, keybind_t * kbs, 
 
 void save_automap_data(const char *tag, automap_data_t * automapdata, int size)
 {
-	fprintf(SaveGameFile, "<automap nl=%d sx=%d sy=%d>\n", MAX_LEVELS, 100, 100);
+	autostr_append(savestruct_autostr, "<automap nl=%d sx=%d sy=%d>\n", MAX_LEVELS, 100, 100);
 	int i, j, k;
 	for (i = 0; i < MAX_LEVELS; i++) {
-		fprintf(SaveGameFile, "%d\n", i);
+		autostr_append(savestruct_autostr, "%d\n", i);
 		for (j = 0; j < 100; j++) {
 			for (k = 0; k < 100; k += 5)
-				fprintf(SaveGameFile, "%hhd %hhd %hhd %hhd %hhd ", automapdata[i][j][k], automapdata[i][j][k + 1],
+				autostr_append(savestruct_autostr, "%hhd %hhd %hhd %hhd %hhd ", automapdata[i][j][k], automapdata[i][j][k + 1],
 					automapdata[i][j][k + 2], automapdata[i][j][k + 3], automapdata[i][j][k + 4]);
-			fprintf(SaveGameFile, "\n");
+			autostr_append(savestruct_autostr, "\n");
 		}
 	}
-	fprintf(SaveGameFile, "</automap>\n");
+	autostr_append(savestruct_autostr, "</automap>\n");
 }
 
 void read_automap_data_t_array(char *buffer, char *tag, automap_data_t * automapdata, int size)

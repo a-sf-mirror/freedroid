@@ -348,4 +348,12 @@ enum {
 	ROOT_IS_LVLEDIT,
 };
 
+#undef EXTERN
+#ifdef _saveloadgame_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN struct auto_string *savestruct_autostr;
+
 #endif				// _global_h

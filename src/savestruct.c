@@ -1,12 +1,12 @@
 #include "struct.h"
+#include "global.h"
 #include "proto.h"
 #include "savestruct.h"
-extern FILE * SaveGameFile;
 
 
 int save_enemy(char * tag, enemy * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_int16_t("id", &(target->id));
 save_int16_t("type", &(target->type));
 save_gps("pos", &(target->pos));
@@ -53,7 +53,7 @@ save_char("bot_stuck_in_wall_at_previous_check", &(target->bot_stuck_in_wall_at_
 save_float("time_since_previous_stuck_in_wall_check", &(target->time_since_previous_stuck_in_wall_check));
 save_list_head_t("global_list", &(target->global_list));
 save_list_head_t("level_list", &(target->level_list));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -121,7 +121,7 @@ return 0;
 
 int save_bullet(char * tag, bullet * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_int16_t("type", &(target->type));
 save_uchar("phase", &(target->phase));
 save_char("mine", &(target->mine));
@@ -146,7 +146,7 @@ save_float("poison_damage_per_sec", &(target->poison_damage_per_sec));
 save_float("paralysation_duration", &(target->paralysation_duration));
 save_char("is_friendly", &(target->is_friendly));
 save_char("hit_type", &(target->hit_type));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -192,10 +192,10 @@ return 0;
 
 int save_point(char * tag, point * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_int32_t("x", &(target->x));
 save_int32_t("y", &(target->y));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -219,10 +219,10 @@ return 0;
 
 int save_moderately_finepoint(char * tag, moderately_finepoint * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_float("x", &(target->x));
 save_float("y", &(target->y));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -246,7 +246,7 @@ return 0;
 
 int save_mission(char * tag, mission * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_string("mission_name", &(target->mission_name));
 save_int32_t("MissionWasAssigned", &(target->MissionWasAssigned));
 save_int32_t("MissionIsComplete", &(target->MissionIsComplete));
@@ -265,7 +265,7 @@ save_luacode("assignment_lua_code", &(target->assignment_lua_code));
 save_string_array("mission_diary_texts", (target->mission_diary_texts), MAX_MISSION_DESCRIPTION_TEXTS);
 save_float_array("mission_description_time", (target->mission_description_time), MAX_MISSION_DESCRIPTION_TEXTS);
 save_int32_t("expanded_display_for_this_mission", &(target->expanded_display_for_this_mission));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -305,7 +305,7 @@ return 0;
 
 int save_tux_t(char * tag, tux_t * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_float("current_game_date", &(target->current_game_date));
 save_int32_t("current_power_bonus", &(target->current_power_bonus));
 save_float("power_bonus_end_date", &(target->power_bonus_end_date));
@@ -404,7 +404,7 @@ save_float("paralyze_duration", &(target->paralyze_duration));
 save_float("invisible_duration", &(target->invisible_duration));
 save_int32_t("quest_browser_changed", &(target->quest_browser_changed));
 save_int32_t_array("program_shortcuts", (target->program_shortcuts), 10);
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -524,7 +524,7 @@ return 0;
 
 int save_item(char * tag, item * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_finepoint("pos", &(target->pos));
 save_sdl_rect("text_slot_rectangle", &(target->text_slot_rectangle));
 save_int32_t("type", &(target->type));
@@ -555,7 +555,7 @@ save_int32_t("damage_modifier", &(target->damage_modifier));
 save_int32_t("multiplicity", &(target->multiplicity));
 save_int32_t("ammo_clip", &(target->ammo_clip));
 save_point("inventory_position", &(target->inventory_position));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -607,10 +607,10 @@ return 0;
 
 int save_finepoint(char * tag, finepoint * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_double("x", &(target->x));
 save_double("y", &(target->y));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -634,7 +634,7 @@ return 0;
 
 int save_melee_shot(char * tag, melee_shot * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_char("attack_target_type", &(target->attack_target_type));
 save_char("mine", &(target->mine));
 save_int16_t("bot_target_n", &(target->bot_target_n));
@@ -642,7 +642,7 @@ save_int16_t("to_hit", &(target->to_hit));
 save_int16_t("damage", &(target->damage));
 save_int16_t("owner", &(target->owner));
 save_char("level", &(target->level));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -671,7 +671,7 @@ return 0;
 
 int save_configuration_for_freedroid(char * tag, configuration_for_freedroid * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_float("WantedTextVisibleTime", &(target->WantedTextVisibleTime));
 save_int32_t("Draw_Framerate", &(target->Draw_Framerate));
 save_int32_t("Draw_Position", &(target->Draw_Position));
@@ -720,7 +720,7 @@ save_int32_t("xray_vision_for_tux", &(target->xray_vision_for_tux));
 save_int32_t("lazyload", &(target->lazyload));
 save_int32_t("difficulty_level", &(target->difficulty_level));
 save_keybind_t_array("input_keybinds", (target->input_keybinds), 100);
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 
@@ -790,11 +790,11 @@ return 0;
 
 int save_gps(char * tag, gps * target)
 {
-fprintf(SaveGameFile, "<%s>\n",tag);
+autostr_append(savestruct_autostr, "<%s>\n",tag);
 save_float("x", &(target->x));
 save_float("y", &(target->y));
 save_int32_t("z", &(target->z));
-fprintf(SaveGameFile, "</%s>\n", tag);
+autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
 

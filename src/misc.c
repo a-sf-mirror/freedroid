@@ -1312,24 +1312,24 @@ int LoadGameConfig(void)
 	char fname[5000];
 	int original_width_of_screen = 800;
 	int original_height_of_screen = 600;
+	FILE *configfile;
 
 	if (!our_config_dir) {
 		DebugPrintf(1, "No useable config-dir. No config-loading possible\n");
 		return (OK);
 	}
 
-	extern FILE *SaveGameFile;
 	sprintf(fname, "%s/config", our_config_dir);
-	if ((SaveGameFile = fopen(fname, "rb")) == NULL) {
+	if ((configfile = fopen(fname, "rb")) == NULL) {
 		DebugPrintf(0, "WARNING: failed to open config-file: %s\n");
 		return (ERR);
 	}
 
-	char *stuff = (char *)malloc(FS_filelength(SaveGameFile) + 1);
-	fread(stuff, FS_filelength(SaveGameFile), 1, SaveGameFile);
-	fclose(SaveGameFile);
+	char *stuff = (char *)malloc(FS_filelength(configfile) + 1);
+	fread(stuff, FS_filelength(configfile), 1, configfile);
+	fclose(configfile);
 	read_configuration_for_freedroid(stuff, "GameConfig", &GameConfig);
-	SaveGameFile = NULL;
+	configfile = NULL;
 	free(stuff);
 
 	if (strcmp(GameConfig.freedroid_version_string, VERSION)) {
@@ -1381,6 +1381,7 @@ int SaveGameConfig(void)
 	char fname[5000];
 	int current_width;
 	int current_height;
+	FILE *config_file;
 
 	//--------------------
 	// Maybe the Terminate function was invoked BEFORE the startup process
@@ -1405,9 +1406,8 @@ int SaveGameConfig(void)
 	if (our_config_dir[0] == '\0')
 		return (ERR);
 
-	extern FILE *SaveGameFile;
 	sprintf(fname, "%s/config", our_config_dir);
-	if ((SaveGameFile = fopen(fname, "wb")) == NULL) {
+	if ((config_file = fopen(fname, "wb")) == NULL) {
 		DebugPrintf(0, "WARNING: failed to create config-file: %s\n");
 		return (ERR);
 	}
@@ -1428,12 +1428,16 @@ int SaveGameConfig(void)
 	current_height = GameConfig.screen_height;
 	GameConfig.screen_width = GameConfig.next_time_width_of_screen;
 	GameConfig.screen_height = GameConfig.next_time_height_of_screen;
+
 	//--------------------
 	// Now write the actual data
+	savestruct_autostr = alloc_autostr(4096);
 	save_configuration_for_freedroid("GameConfig", &(GameConfig));
+	fwrite(savestruct_autostr->value, 1, savestruct_autostr->length, config_file);
+
 	GameConfig.screen_width = current_width;
 	GameConfig.screen_height = current_height;
-	fclose(SaveGameFile);
+	fclose(config_file);
 
 	return (OK);
 
