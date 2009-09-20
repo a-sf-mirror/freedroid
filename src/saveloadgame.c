@@ -312,8 +312,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 		save_melee_shot(str, &AllMeleeShots[i]);
 	}
 
-	fwrite(savestruct_autostr->value, 1, savestruct_autostr->length, SaveGameFile); 
-	fprintf(SaveGameFile, "End of freedroidRPG savefile\n");
+	autostr_append(savestruct_autostr, "End of freedroidRPG savefile\n");
+	deflate_to_stream(savestruct_autostr->value, savestruct_autostr->length, SaveGameFile);
 	fclose(SaveGameFile);
 
 	SaveThumbnailOfGame();
@@ -415,7 +415,14 @@ int LoadGame(void)
 
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
 
-	LoadGameData = ReadAndMallocAndTerminateFile(filename, "End of freedroidRPG savefile\n");
+	DataFile = fopen(filename, "rb");
+	if (inflate_stream(DataFile, &LoadGameData, NULL)) {
+		fclose(DataFile);
+		GiveMouseAlertWindow("Unable to decompress saved game - this is probably an old, incompatible game. Sorry.\n");
+		return ERR;
+	}
+
+	fclose(DataFile);
 
 	memset(&Me, 0, sizeof(tux_t));
 	read_tux_t(LoadGameData, "player", &Me);
