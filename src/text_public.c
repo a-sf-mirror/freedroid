@@ -556,6 +556,8 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 
 	(*DataBuffer) = (unsigned char *)malloc(strm.total_out + 1);
 	memcpy(*DataBuffer, temp_dbuffer, strm.total_out);
+	(*DataBuffer)[strm.total_out] = 0;
+
 	if (size != NULL)
 		*size = strm.total_out;
 
