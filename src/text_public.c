@@ -597,7 +597,7 @@ int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 		have = CHUNK - strm.avail_out;
 		if (fwrite(out, 1, have, dest) != have || ferror(dest)) {
 			(void)deflateEnd(&strm);
-			return;
+			return -1;
 		}
 	} while (strm.avail_out == 0);
 
