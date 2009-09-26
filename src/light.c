@@ -70,7 +70,7 @@ int *light_strength_buffer = NULL;
  * 
  * Some data (such as minimum_light_value) used to create the 'darkness map'
  * are level dependents. If several levels are displayed (i.e. when Tux is
- * near a level's border), we want to avoid abrupt darkness changes at level
+ * near a level's border), we want to avoid abrupt light changes at level
  * boundaries. The call to soften_light_distribution() is not enough to smooth
  * those changes in a correct way. A better method is to interpolate the level
  * dependent values near the level boundaries.
@@ -91,6 +91,109 @@ int *light_strength_buffer = NULL;
  * - no interpolation
  * - interpolation between 2 pre-computed values
  * - interpolation between 4 pre-computed values 
+ * 
+ * ==================
+ * Interpolation Mesh
+ * ==================
+ * 
+ * We thus have a given DATA (such as 'minimum_light_value'), which has a
+ * specific VALUE on each level. Let's use the following diagram, showing
+ * the 8 potential neighbors around the current level (denoted 'C'):
+ * 
+ * +----+----+----+  We call 'c_val', the VALUE of the DATA on the Current level.
+ * | NW | N  | NE |  We call 'nw_val', the VALUE of the DATA on the North-West
+ * +----+----+----+  neighbor. And so on...
+ * | W  | C  | E  |
+ * +----+----+----+  Conceptually, this defines a "quad-mesh", with a VALUE for
+ * | SW | S  | SE |  each quad. Our aim is to interpolate those VALUES on the
+ * +----+----+----+  quad-mesh, to have a smooth variation of the DATA.
+ * 
+ * However, given the semantic of the DATAs, we only want to interpolate on a
+ * small area near the levels' boundaries. So, we refine *each* quad into a
+ * set of quads (that we will call AREAs):
+ * 
+ *   |     (vc)   |(vd)   
+ * --+--+------+--+--    
+ *   |  |      |  |      In the central AREA there will be no interpolation.
+ *   +--+------+--+       
+ *   |  |  (va)|  |(vb)  In the side AREAs, there will be an interpolation with
+ *   |  |      |  |      the corresponding direct neighbor.
+ *   |  |      |  |      
+ *   |  |  (ve)|  |(vf)  In the corner AREAs, there will be an interpolation
+ *   +--+------+--+      with all the surrounding neighbors.
+ *   |  |      |  |      
+ * --+--+------+--+--    
+ *   |            |
+ * 
+ * We now need to define the VALUE of the DATA at each vertex of the AREAs. 
+ * 
+ * Let's take the north-east corner AREA and the east side AREA as an example.
+ * We call 'A', the VALUE at vertex 'va'.
+ * We call 'B', the VALUE at vertex 'vb', and so on.
+ *   
+ * The vertex 'va' is at the boundary of the central AREA. So we have:
+ *      A = c_val
+ * 
+ * The vertex 'vb' is at a level boundary, that is at *the middle* of the current
+ * level and the eastern neighbor. The VALUE at 'vb' is thus the *middle* of 
+ * the VALUE at current level (c_val) and the VALUE at eastern neighbor (e_val).
+ * So we have:
+ *     B = 1/2 * (c_val + e_val)
+ * 
+ * In the same way, we have:
+ *     C = 1/2 * (c_val + n_val)
+ *
+ * The vertex 'vd' is at *the center* of 4 levels, so at the *center* of the 
+ * VALUEs of the DATA in those 4 levels. So we have:
+ *     D = 1/4 * (c_val + n_val + ne_val + e_val)
+ *
+ * The vertices 've' and 'vf' are equivalent to 'va' and 'vb', so:
+ *     E = A = c_val
+ *     F = B = 1/2 * (c_val + e_val)
+ *     
+ * =============================
+ * Application to "darkness map"
+ * =============================
+ * 
+ * To compute the VALUE of the DATA on a specific darkness tile, we need to find
+ * in which AREA the tile is lying. If the tile is:
+ * 
+ * - in the central AREA, no interpolation is needed,
+ * 
+ * - in a side AREA, we can easily see that we only need an interpolation along
+ *   one axis between 2 values (in our east side AREA example, the interpolation
+ *   is between the 'A' and 'B' VALUES),
+ *   
+ * - in a corner AREA, a 4-values interpolation is needed (in our north-east
+ *   corner AREA example, the interpolation is between 'A', 'B', 'C' and 'D').
+ * 
+ * As a result, a given level can thus be defined by a 3x3 matrix of data
+ * structures (one per AREA), and for each AREA we have to store the kind of 
+ * interpolation to apply, and the VALUEs needed to compute this interpolation.
+ * This data structure is called "Interpolation Data Storage".
+ * 
+ * ================================
+ * Interpolation Data Storage (IDS)
+ * ================================
+ * 
+ * If we look at our example (east side AREA and north-east corner AREA), 
+ * we easily see that the 'B' value is in common to the two AREAs. 
+ * In the same way, the 'C' value is in common to the north side AREA and the 
+ * north-east corner AREA. And so on...
+ * 
+ * The 'A' VALUE (this is the value inside the current level) is common to
+ * every AREA, and will be stored in the central IDS (that is the IDS 
+ * associated to the central AREA).
+ *
+ * If we store 'B' in the eastern IDS, and 'C' in the northern IDS, then 
+ * only the 'D' VALUE (that is the 'diagonal' value) has to be stored in the 
+ * north-eastern IDS. Other values can be retrieved from the other IDSs.
+ * 
+ * As a conclusion, for each of the 9 AREAs, we only need to store one VALUE 
+ * along with the kind of interpolation to apply.
+ * 
+ * Hence the following definitions:
+ * 
  */
 
 /* Interpolation type: Defines the axis along which an interpolation is needed */
