@@ -1916,23 +1916,23 @@ void init_obstacle_data(void)
 
 	obstacle_map[ISO_TELEPORTER_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_1].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_1].emitted_light_strength = 29;
+	obstacle_map[ISO_TELEPORTER_1].emitted_light_strength = 20;
 	obstacle_map[ISO_TELEPORTER_1].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_2].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_2].emitted_light_strength = 28;
+	obstacle_map[ISO_TELEPORTER_2].emitted_light_strength = 19;
 	obstacle_map[ISO_TELEPORTER_2].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_3].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_3].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_3].emitted_light_strength = 27;
+	obstacle_map[ISO_TELEPORTER_3].emitted_light_strength = 18;
 	obstacle_map[ISO_TELEPORTER_3].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_4].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_4].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_4].emitted_light_strength = 28;
+	obstacle_map[ISO_TELEPORTER_4].emitted_light_strength = 19;
 	obstacle_map[ISO_TELEPORTER_4].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_5].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_5].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_5].emitted_light_strength = 29;
+	obstacle_map[ISO_TELEPORTER_5].emitted_light_strength = 20;
 	obstacle_map[ISO_TELEPORTER_5].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 
 	obstacle_map[ISO_V_CHEST_OPEN].block_area_type = COLLISION_TYPE_RECTANGLE;

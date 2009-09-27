@@ -513,10 +513,13 @@ void update_light_list()
 {
 	int i;
 	Level light_level = curShip.AllLevels[Me.pos.z];
-	int map_x, map_y, map_x_end, map_y_end, map_x_start, map_y_start;
+	struct visible_level *visible_lvl, *next_lvl;
+	level *curr_lvl;
+	int curr_id;
 	int glue_index;
 	int obs_index;
 	int next_light_emitter_index;
+	int map_x, map_y;	
 	obstacle *emitter;
 	int blast;
 	gps me_vpos;
@@ -579,44 +582,71 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 
 	//--------------------
 	// Now we can fill in the remaining light sources of this level.
-	// First we do all the obstacles:
+	// First we scan all the obstacles around Tux
 	//
-	map_x_start = max(0, Me.pos.x - FLOOR_TILES_VISIBLE_AROUND_TUX);
-	map_y_start = max(0, Me.pos.y - FLOOR_TILES_VISIBLE_AROUND_TUX);
-	map_x_end = min(Me.pos.x + FLOOR_TILES_VISIBLE_AROUND_TUX, light_level->xlen - 1);
-	map_y_end = min(Me.pos.y + FLOOR_TILES_VISIBLE_AROUND_TUX, light_level->ylen - 1);
+	
+	// Scanned area
+	gps area_start = { Me.pos.x - 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+		Me.pos.y - 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+		Me.pos.z
+	};
+	gps area_end = { Me.pos.x + 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+		Me.pos.y + 1.5 * FLOOR_TILES_VISIBLE_AROUND_TUX,
+		Me.pos.z
+	};
+	gps intersection_start, intersection_end;
 
-	for (map_y = map_y_start; map_y < map_y_end; map_y++) {
-		for (map_x = map_x_start; map_x < map_x_end; map_x++) {
-			for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
-				//--------------------
-				// end of obstacles glued to here?  great->next square
-				//
-				if (light_level->map[map_y][map_x].obstacles_glued_to_here[glue_index] == (-1))
-					break;
+	// For each visible level, compute the intersection between the scanned area
+	// and the level's limits, and search light emitting obstacles inside this
+	// intersection
+	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {	
+		curr_lvl = visible_lvl->lvl_pointer;
+		curr_id  = curr_lvl->levelnum;
 
-				obs_index = light_level->map[map_y][map_x].obstacles_glued_to_here[glue_index];
-				emitter = &(light_level->obstacle_list[obs_index]);
+		// transform area gps relatively to current level
+		update_virtual_position(&intersection_start, &area_start, curr_id);
+		update_virtual_position(&intersection_end, &area_end, curr_id);
+		
+		// intersect with level's limits
+		intersection_start.x = max(intersection_start.x, 0);
+		intersection_start.y = max(intersection_start.y, 0);
+		intersection_end.x = min(intersection_end.x, curr_lvl->xlen - 1);
+		intersection_end.y = min(intersection_end.y, curr_lvl->ylen - 1);
 
-				if (obstacle_map[emitter->type].emitted_light_strength == 0)
-					continue;
+		// scan all obstacles inside the intersected area
+		for (map_y = intersection_start.y; map_y < intersection_end.y; map_y++) {
+			for (map_x = intersection_start.x; map_x < intersection_end.x; map_x++) {
+				for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
+					//--------------------
+					// end of obstacles glued to here?  great->next square
+					//
+					if (curr_lvl->map[map_y][map_x].obstacles_glued_to_here[glue_index] == (-1))
+						break;
 
-				//--------------------
-				// Now we know that this one needs to be inserted!
-				//
-				light_sources[next_light_emitter_index].pos.x = emitter->pos.x;
-				light_sources[next_light_emitter_index].pos.y = emitter->pos.y;
-				light_sources[next_light_emitter_index].pos.z = emitter->pos.z;
-				light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
-				next_light_emitter_index++;
+					obs_index = curr_lvl->map[map_y][map_x].obstacles_glued_to_here[glue_index];
+					emitter = &(curr_lvl->obstacle_list[obs_index]);
 
-				//--------------------
-				// We must not write beyond the bounds of our light sources array!
-				//
-				if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
-					ErrorMessage(__FUNCTION__, "\
+					if (obstacle_map[emitter->type].emitted_light_strength == 0)
+						continue;
+
+					//--------------------
+					// Now we know that this one needs to be inserted!
+					//
+					update_virtual_position(&emitter->vpos, &emitter->pos, Me.pos.z);
+					light_sources[next_light_emitter_index].pos.x = emitter->vpos.x;
+					light_sources[next_light_emitter_index].pos.y = emitter->vpos.y;
+					light_sources[next_light_emitter_index].pos.z = emitter->vpos.z;
+					light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
+					next_light_emitter_index++;
+
+					//--------------------
+					// We must not write beyond the bounds of our light sources array!
+					//
+					if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
+						ErrorMessage(__FUNCTION__, "\
 WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-					return;
+						return;
+					}
 				}
 			}
 		}
@@ -624,9 +654,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 
 	// Second, we add the potentially visible bots
 	//
-	struct visible_level *visible_lvl, *next_lvl;
-	level *curr_lvl;
-	int curr_id;
 	enemy *erot;
 	
 	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {	
@@ -787,6 +814,7 @@ static int calculate_light_strength(gps *cell_vpos)
 		//--------------------
 		// Visibility check (line 3 of pseudo_code)
 		// with a small optimization : no visibility check if the target is very closed to the light
+		// <Fluzz> NEED ADAPTATION
 		if ((squared_dist > (0.5*0.5)) && curShip.AllLevels[cell_rpos.z]->use_underground_lighting) {
 			if (!DirectLineColldet(light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
 				continue;
