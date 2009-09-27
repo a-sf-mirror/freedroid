@@ -519,6 +519,7 @@ void update_light_list()
 	int next_light_emitter_index;
 	obstacle *emitter;
 	int blast;
+	gps me_vpos;
 
 	//--------------------
 	// At first we fill out the light sources array with 'empty' information,
@@ -621,34 +622,45 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 		}
 	}
 
+	// Second, we add the potentially visible bots
+	//
+	struct visible_level *visible_lvl, *next_lvl;
+	level *curr_lvl;
+	int curr_id;
 	enemy *erot;
-	BROWSE_LEVEL_BOTS(erot, Me.pos.z) {
-		if (fabsf(Me.pos.x - erot->pos.x) >= 12)
-			continue;
+	
+	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {	
+		curr_lvl = visible_lvl->lvl_pointer;
+		curr_id  = curr_lvl->levelnum;
+		update_virtual_position(&me_vpos, &Me.pos, curr_id);
+		
+		BROWSE_LEVEL_BOTS(erot, curr_id) {
+			if (fabsf(me_vpos.x - erot->pos.x) >= FLOOR_TILES_VISIBLE_AROUND_TUX)
+				continue;
 
-		if (fabsf(Me.pos.y - erot->pos.y) >= 12)
-			continue;
+			if (fabsf(me_vpos.y - erot->pos.y) >= FLOOR_TILES_VISIBLE_AROUND_TUX)
+				continue;
 
-		//--------------------
-		// Now we know that this one needs to be inserted!
-		//
-		light_sources[next_light_emitter_index].pos.x = erot->pos.x;
-		light_sources[next_light_emitter_index].pos.y = erot->pos.y;
-		light_sources[next_light_emitter_index].pos.z = erot->pos.z;
-		light_sources[next_light_emitter_index].strength = 5;
-		next_light_emitter_index++;
+			//--------------------
+			// Now we know that this one needs to be inserted!
+			//
+			update_virtual_position(&erot->virt_pos, &erot->pos, Me.pos.z);
+			light_sources[next_light_emitter_index].pos.x = erot->virt_pos.x;
+			light_sources[next_light_emitter_index].pos.y = erot->virt_pos.y;
+			light_sources[next_light_emitter_index].pos.z = erot->virt_pos.z;
+			light_sources[next_light_emitter_index].strength = 5;
+			next_light_emitter_index++;
 
-		//--------------------
-		// We must not write beyond the bounds of our light sources array!
-		//
-		if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
-			ErrorMessage(__FUNCTION__, "\
+			//--------------------
+			// We must not write beyond the bounds of our light sources array!
+			//
+			if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
+				ErrorMessage(__FUNCTION__, "\
 WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-			return;
+				return;
+			}
 		}
-
 	}
-
 }				// void update_light_list ( )
 
 /**
