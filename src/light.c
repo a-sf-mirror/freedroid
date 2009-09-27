@@ -213,7 +213,7 @@ struct interpolation_data_cell
 {
 	/* Interpolation values */
 	float minimum_light_value;
-	float light_radius_bonus;
+	float light_bonus;
 	
 	/* Interpolation type */
 	enum interpolation_methods interpolation_method;
@@ -240,7 +240,7 @@ static void add_interpolation_values(int curr_id, int ngb_id,
 		ngb_lvl = curShip.AllLevels[ngb_id];
 		for (y=starty; y<=endy; y++) {
 			for (x=startx; x<=endx; x++) {
-				interpolation_data[curr_id][y][x].light_radius_bonus += ngb_lvl->light_radius_bonus;
+				interpolation_data[curr_id][y][x].light_bonus += ngb_lvl->light_bonus;
 				interpolation_data[curr_id][y][x].minimum_light_value += ngb_lvl->minimum_light_value;
 				interpolation_data[curr_id][y][x].sum += 1;
 				interpolation_data[curr_id][y][x].interpolation_method |= method;
@@ -275,7 +275,7 @@ static void prepare_light_interpolation()
 		//
 		for (y = 0; y < 3; y++) {
 			for (x = 0; x < 3; x++) {
-				interpolation_data[curr_id][y][x].light_radius_bonus = curr_lvl->light_radius_bonus; 
+				interpolation_data[curr_id][y][x].light_bonus = curr_lvl->light_bonus; 
 				interpolation_data[curr_id][y][x].minimum_light_value = curr_lvl->minimum_light_value;
 				interpolation_data[curr_id][y][x].sum = 1;
 				interpolation_data[curr_id][y][x].interpolation_method = NO_INTERP;
@@ -301,7 +301,7 @@ static void prepare_light_interpolation()
 		//
 		for (y = 0; y < 3; y++) {
 			for (x = 0; x < 3; x++) {
-				interpolation_data[curr_id][y][x].light_radius_bonus /= interpolation_data[curr_id][y][x].sum; 
+				interpolation_data[curr_id][y][x].light_bonus /= interpolation_data[curr_id][y][x].sum; 
 				interpolation_data[curr_id][y][x].minimum_light_value /= interpolation_data[curr_id][y][x].sum;
 				interpolation_data[curr_id][y][x].sum = 1;
 			}
@@ -388,20 +388,20 @@ static void interpolate_light_data(gps *pos, struct interpolation_data_cell *dat
 	switch (curr_area->interpolation_method) {
 	case NO_INTERP:
 		data->minimum_light_value = curr_area->minimum_light_value;
-		data->light_radius_bonus  = curr_area->light_radius_bonus;
+		data->light_bonus = curr_area->light_bonus;
 		break;
 	case ALONG_X:
 		{
 			struct interpolation_data_cell *center_area = &interpolation_data[lvl_id][1][1]; 
 			data->minimum_light_value = INTERP_2_VALUES(x, minimum_light_value);
-			data->light_radius_bonus  = INTERP_2_VALUES(x, light_radius_bonus );
+			data->light_bonus = INTERP_2_VALUES(x, light_bonus);
 		}
 		break;
 	case ALONG_Y:
 		{
 			struct interpolation_data_cell *center_area = &interpolation_data[lvl_id][1][1]; 
 			data->minimum_light_value = INTERP_2_VALUES(y, minimum_light_value);
-			data->light_radius_bonus  = INTERP_2_VALUES(y, light_radius_bonus );
+			data->light_bonus = INTERP_2_VALUES(y, light_bonus);
 		}
 		break;
 	default:
@@ -410,7 +410,7 @@ static void interpolate_light_data(gps *pos, struct interpolation_data_cell *dat
 			struct interpolation_data_cell *xborder_area = &interpolation_data[lvl_id][1][area_x]; 
 			struct interpolation_data_cell *yborder_area = &interpolation_data[lvl_id][area_y][1]; 
 			data->minimum_light_value = INTERP_4_VALUES(minimum_light_value);
-			data->light_radius_bonus  = INTERP_4_VALUES(light_radius_bonus );
+			data->light_bonus = INTERP_4_VALUES(light_bonus);
 		}
 		break;
 	}
@@ -540,7 +540,7 @@ void update_light_list()
 	light_sources[0].pos.x = Me.pos.x;
 	light_sources[0].pos.y = Me.pos.y;
 	light_sources[0].pos.z = Me.pos.z;
-	light_sources[0].strength = light_level->light_radius_bonus + Me.light_bonus_from_tux;	
+	light_sources[0].strength = light_level->light_bonus + Me.light_bonus_from_tux;	
 	// We must not in any case tear a hole into the beginning of the list though...
 	if (light_sources[0].strength <= 0)
 		light_sources[0].strength = 1;
@@ -557,7 +557,7 @@ void update_light_list()
 		//--------------------
 		// We add some light strength according to the phase of the blast
 		//
-		int light_strength = 10 - AllBlasts[blast].phase / 2;
+		int light_strength = 10 + AllBlasts[blast].phase / 2;
 		if (light_strength < 0) continue;
 
 		light_sources[next_light_emitter_index].pos.x = AllBlasts[blast].pos.x;
@@ -580,18 +580,11 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 	// Now we can fill in the remaining light sources of this level.
 	// First we do all the obstacles:
 	//
-	map_x_start = Me.pos.x - FLOOR_TILES_VISIBLE_AROUND_TUX;
-	map_y_start = Me.pos.y - FLOOR_TILES_VISIBLE_AROUND_TUX;
-	map_x_end = Me.pos.x + FLOOR_TILES_VISIBLE_AROUND_TUX;
-	map_y_end = Me.pos.y + FLOOR_TILES_VISIBLE_AROUND_TUX;
-	if (map_x_start < 0)
-		map_x_start = 0;
-	if (map_y_start < 0)
-		map_y_start = 0;
-	if (map_x_end >= light_level->xlen)
-		map_x_end = light_level->xlen - 1;
-	if (map_y_end >= light_level->ylen)
-		map_y_end = light_level->ylen - 1;
+	map_x_start = max(0, Me.pos.x - FLOOR_TILES_VISIBLE_AROUND_TUX);
+	map_y_start = max(0, Me.pos.y - FLOOR_TILES_VISIBLE_AROUND_TUX);
+	map_x_end = min(Me.pos.x + FLOOR_TILES_VISIBLE_AROUND_TUX, light_level->xlen - 1);
+	map_y_end = min(Me.pos.y + FLOOR_TILES_VISIBLE_AROUND_TUX, light_level->ylen - 1);
+
 	for (map_y = map_y_start; map_y < map_y_end; map_y++) {
 		for (map_x = map_x_start; map_x < map_x_end; map_x++) {
 			for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
@@ -642,7 +635,7 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 		light_sources[next_light_emitter_index].pos.x = erot->pos.x;
 		light_sources[next_light_emitter_index].pos.y = erot->pos.y;
 		light_sources[next_light_emitter_index].pos.z = erot->pos.z;
-		light_sources[next_light_emitter_index].strength = -14;
+		light_sources[next_light_emitter_index].strength = 5;
 		next_light_emitter_index++;
 
 		//--------------------
@@ -661,8 +654,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 /**
  * This function is used to find the light intensity at any given point
  * on the map.
- * Take care : despite it's name, it computes a darkness value, which is the opposite of
- * an intensity (Darkness = -Intensity)
  */
 static int calculate_light_strength(gps *cell_vpos)
 {
@@ -684,59 +675,64 @@ static int calculate_light_strength(gps *cell_vpos)
 
 	interpolate_light_data(&cell_rpos, &ilights);
 	
-	// Interpolated ambient darkness
-	// Full bright: final_darkness = 0 / Full dark: final_darkness = (NUMBER_OF_SHADOW_IMAGES - 1) or -(minimum light value)
-	int final_darkness = min(NUMBER_OF_SHADOW_IMAGES - 1, - ilights.minimum_light_value);
+	// Interpolated ambient light
+	// Full dark:  final_light_strength = 0
+	// Max bright: final_light_strength = minimum light value
+	int final_light_strength = max(0, ilights.minimum_light_value);
 
 	// Interpolated light emitted from Tux
-	light_sources[0].strength = ilights.light_radius_bonus + Me.light_bonus_from_tux;
+	light_sources[0].strength = ilights.light_bonus + Me.light_bonus_from_tux;
 
 	//------------------------------------------
-	// 2. Compute the darkness value at "cell_vpos"
+	// 2. Compute the light strength value at "cell_vpos"
 	//--------------------
-	// Nota: the following code being quite obscure, some explanations are quite mandatory:
+	// Nota: the following code being quite obscure, some explanations are quite
+	//       mandatory
 	//
-	// 1) Despite its name, this function compute a darkness, and not a light intensity
+	// 1) The light_strength value of a light source is a relative value, to
+	//    be added to the level's ambient light strength. We thus define:
+	//        Absolute_intensity = level_ambient + source_strength
+	//    Moreover, the light emitted from a light source decreases linearly 
+	//    with the distance. So, at a given target position, the perceived 
+	//    intensity of a light is: 
+	//        I = Absolute_intensity - 4.0 * distance(Light_pos, Cell_vpos)
 	//
-	// 2) The light emitted from a light source decreases linearly with the distance.
-	//    So, at a given target position, the perceived intensity of a light is: 
-	//    I = Light_strength - 4.0*distance(Light_pos, Cell_vpos)
-	//        (the 4.0 factor means that a light source with a strength of 1 has a radius of 0.25)
-	//    And the resulting darkness is:
-	//    D = -I 
-	//    D is clamped between 0 and the full darkness value of this level (due to final_darkness initialization)
+	//    Note on the 4.0 factor :
+	//      This factor is used to reduce the size of the radius of the "light
+	//      circle" around the light source.
 	//
-	// 3) The code loops on each light source, and keeps the minimum darkness (and so maximum light intensity).
-	//    It does not accumulate light intensity.
+	// 2) The code loops on each light source, and keeps the maximum light 
+	//    strength. It does not accumulate light intensity.
 	//
 	// So the initial code is :
 	//
 	// 1: foreach this_light in (set of lights) {
 	// 2:   if (this_light is visible from the target) {
-	// 3:     this_light_darkness = 4.0 * distance(this_light.pos, cell.pos) - this_light.strength;
-	// 4:     if (this_ligh_darkness < final_darkness) final_darkness = this_light_darkness;
+	// 3:     this_light_strength = Absolute_intensity - 4.0 * distance(this_light.pos, cell.pos);
+	// 4:     if (this_ligh_strength > final_strength) final_strength = this_light_strength;
 	// 5:   }
 	// 6: }
 	//
-	// However, this function is time-critical, simply because it's used a lot at every frame. 
-	// Therefore we want to avoid the sqrt() needed to compute a distance, if the test fails,
-	// and instead use squared values as much as possible.
+	// However, this function is time-critical, simply because it is called many
+	// times at every frame. Therefore we want to avoid the sqrt() needed to compute 
+	// a distance, if the test fails, and instead use squared values as much as 
+	// possible.
 	//
 	// So, lines 3 and 4 are transformed into:
-	//       if (4.0 * distance - strength < final_darkness) final_darkness = 4.0 * distance - strength;
+	//       if (Abs_intensity - 4.0 * distance > final_strength) final_strength = Abs_intensity - 4.0 * distance;
 	// which are then transformed into:
-	//       if (4.0 * distance < final_darkness + strength) final_darkness = 4.0 * distance - strength;
+	//       if (4.0 * distance < Abs_intensity - final_strength) final_strength = Abs_intensity - 4.0 * distance;
 	// and finally, in order to remove sqrt(), into:
-	//       if ((4.0 * distance)^2 < (final_darkness + strength)^2) final_darkness = 4.0 * distance - strength;
-	// (note: we will ensure that final_darkness + strength is > 0, so there is no problem
+	//       if ((4.0 * distance)^2 < (Abs_intensity - final_strength)^2) final_strength = Abs_intensity - 4.0 * distance;
+	// (note: we will ensure that (Abs_intensity - final_strength) > 0, so there is no problem
 	//  with the sign of the inequality. see optimization 1 in the code)
 	//
-	// Visibility test (line 2) being far more costly than the darkness test, we revert the 2 tests :
+	// Visibility test (line 2) being far more costly than the light strength test, we revert the 2 tests :
 	//
 	// 1: foreach this_light in (set of lights) {
-	// 2:   if ((4.0 * distance(this_light.pos, cell.pos))^2 < (final_darkness + this_light.strength)^2) {
+	// 2:   if ((4.0 * distance)^2 < (Abs_intensity - final_strength)^2) {
 	// 3:     if (this_light is visible from the target) 
-	// 4:       final_darkness = 4.0 * distance(this_light.pos, cell.pos) - this_light.strength;
+	// 4:       final_strength = Abs_intensity - 4.0 * distance;
 	// 5:   }
 	// 6: }
 	//------------------------------------------
@@ -752,13 +748,15 @@ static int calculate_light_strength(gps *cell_vpos)
 		if (light_sources[i].strength == 0)
 			break;
 
+		float absolute_intensity = ilights.minimum_light_value + light_sources[i].strength;
+		
 		//--------------------
-		// Otimization 1:
-		// If the absolute strength of the light source (i.e. it's intensity
-		// at the source position) is less than the current intensity, then it's
-		// even not needed to continue with this light source.
-		if (light_sources[i].strength <= (-final_darkness))
-			continue;
+		// Optimization 1:
+		// If absolute_intensity is lower than current intensity, we do not take
+		// the light source into account. It means that we do not accumulate
+		// light sources.
+		if ( absolute_intensity - final_light_strength < 0 )
+			break;
 
 		//--------------------
 		// Some pre-computations
@@ -769,29 +767,29 @@ static int calculate_light_strength(gps *cell_vpos)
 		squared_dist = xdist * xdist + ydist * ydist;
 
 		//--------------------
-		// Comparison between current darkness and the one from the source (line 3 of the pseudo-code)
+		// Comparison between current light strength and the light source's strength (line 2 of the pseudo-code)
 		if ((squared_dist * 4.0 * 4.0) >=
-		    (final_darkness + light_sources[i].strength) * (final_darkness + light_sources[i].strength))
+		    (absolute_intensity - final_light_strength) * (absolute_intensity - final_light_strength))
 			continue;
 
 		//--------------------
-		// Visibility check (line 5 of pseudo_code)
+		// Visibility check (line 3 of pseudo_code)
 		// with a small optimization : no visibility check if the target is very closed to the light
 		if ((squared_dist > (0.5*0.5)) && curShip.AllLevels[cell_rpos.z]->use_underground_lighting) {
 			if (!DirectLineColldet(light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
 				continue;
 		}
 
-		final_darkness = (sqrt(squared_dist) * 4.0) - light_sources[i].strength;
+		//--------------------
+		// New final_light_strength
+		final_light_strength = absolute_intensity - 4.0 * sqrt(squared_dist); 
 
 		// Full bright, no need to test any other light source
-		// Note: this comparison cannot be transformed into (16*squared_dist < light_source_stengthes^2), 
-		// because light_source_strengthes can be a positive or a negative value
-		if (final_darkness < 0)
-			return 0;
+		if (final_light_strength >= (NUMBER_OF_SHADOW_IMAGES - 1))
+			return (NUMBER_OF_SHADOW_IMAGES - 1);
 	}
 
-	return (final_darkness);
+	return (final_light_strength);
 
 }				// int calculate_light_strength(gps *cell_vpos)
 
@@ -821,23 +819,23 @@ static void soften_light_distribution(void)
 	//
 	for (y = 0; y < (LightRadiusConfig.cells_h - 1); y++) {
 		for (x = 0; x < (LightRadiusConfig.cells_w - 1); x++) {
-			if (LIGHT_STRENGTH_CELL(x + 1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
-				LIGHT_STRENGTH_CELL(x + 1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
-			if (LIGHT_STRENGTH_CELL(x, y + 1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
-				LIGHT_STRENGTH_CELL(x, y + 1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
-			if (LIGHT_STRENGTH_CELL(x + 1, y + 1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
-				LIGHT_STRENGTH_CELL(x + 1, y + 1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+			if (LIGHT_STRENGTH_CELL(x + 1, y) < LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP)
+				LIGHT_STRENGTH_CELL(x + 1, y) = LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP;
+			if (LIGHT_STRENGTH_CELL(x, y + 1) < LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP)
+				LIGHT_STRENGTH_CELL(x, y + 1) = LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP;
+			if (LIGHT_STRENGTH_CELL(x + 1, y + 1) < LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP)
+				LIGHT_STRENGTH_CELL(x + 1, y + 1) = LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP;
 		}
 	}
 	// now the same again, this time from bottom-right to top-left
 	for (y = (LightRadiusConfig.cells_h - 1); y > 0; y--) {
 		for (x = (LightRadiusConfig.cells_w - 1); x > 0; x--) {
-			if (LIGHT_STRENGTH_CELL(x - 1, y) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
-				LIGHT_STRENGTH_CELL(x - 1, y) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
-			if (LIGHT_STRENGTH_CELL(x, y - 1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
-				LIGHT_STRENGTH_CELL(x, y - 1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
-			if (LIGHT_STRENGTH_CELL(x - 1, y - 1) > LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP)
-				LIGHT_STRENGTH_CELL(x - 1, y - 1) = LIGHT_STRENGTH_CELL(x, y) + MAX_LIGHT_STEP;
+			if (LIGHT_STRENGTH_CELL(x - 1, y) < LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP)
+				LIGHT_STRENGTH_CELL(x - 1, y) = LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP;
+			if (LIGHT_STRENGTH_CELL(x, y - 1) < LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP)
+				LIGHT_STRENGTH_CELL(x, y - 1) = LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP;
+			if (LIGHT_STRENGTH_CELL(x - 1, y - 1) < LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP)
+				LIGHT_STRENGTH_CELL(x - 1, y - 1) = LIGHT_STRENGTH_CELL(x, y) - MAX_LIGHT_STEP;
 		}
 	}
 
@@ -1009,7 +1007,7 @@ void blit_classic_SDL_light_radius(void)
 		for (c = 0; c <= lrc_nb_columns; ++c) {
 			int light_strength;
 			light_strength = get_light_strength_screen((uint32_t) center_x, (uint32_t) center_y);
-			if (light_strength > 0)
+			if (light_strength < (NUMBER_OF_SHADOW_IMAGES-1))
 				our_SDL_blit_surface_wrapper(light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle);
 
 			// Next tile along X
@@ -1029,7 +1027,7 @@ void blit_classic_SDL_light_radius(void)
 		for (c = 0; c <= lrc_nb_columns; ++c) {
 			int light_strength;
 			light_strength = get_light_strength_screen((uint32_t) center_x, (uint32_t) center_y);
-			if (light_strength > 0)
+			if (light_strength < (NUMBER_OF_SHADOW_IMAGES-1))
 				our_SDL_blit_surface_wrapper(light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle);
 
 			// Next tile along X

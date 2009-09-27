@@ -340,7 +340,7 @@ static void DecodeDimensionsOfThisLevel(Level loadlevel, char *DataPointer)
 	while (*(fp + off) != '\n')
 		off++;
 	fp[off] = 0;
-	loadlevel->light_radius_bonus = atoi(fp);
+	loadlevel->light_bonus = atoi(fp);
 	fp[off] = '\n';
 	fp += off + 1;
 	off = 0;
@@ -1787,7 +1787,7 @@ jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
 jump target west: %d\n\
-use underground lighting: %d\n", Lev->levelnum, Lev->xlen, Lev->ylen, Lev->light_radius_bonus, Lev->minimum_light_value, Lev->infinite_running_on_this_level, Lev->random_dungeon, Lev->jump_threshold_north, Lev->jump_threshold_south, Lev->jump_threshold_east, Lev->jump_threshold_west, Lev->jump_target_north, Lev->jump_target_south, Lev->jump_target_east, Lev->jump_target_west, Lev->use_underground_lighting);
+use underground lighting: %d\n", Lev->levelnum, Lev->xlen, Lev->ylen, Lev->light_bonus, Lev->minimum_light_value, Lev->infinite_running_on_this_level, Lev->random_dungeon, Lev->jump_threshold_north, Lev->jump_threshold_south, Lev->jump_threshold_east, Lev->jump_threshold_west, Lev->jump_target_north, Lev->jump_target_south, Lev->jump_target_east, Lev->jump_target_west, Lev->use_underground_lighting);
 	strcpy(LevelMem, linebuf);
 	strcat(LevelMem, LEVEL_NAME_STRING);
 	strcat(LevelMem, Lev->Levelname);

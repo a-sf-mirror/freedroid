@@ -1873,26 +1873,31 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_REFRESH_1].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_REFRESH_1].filename = "iso_machinery_0009.png";
 	obstacle_map[ISO_REFRESH_1].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+	obstacle_map[ISO_REFRESH_1].emitted_light_strength = 10;
 	obstacle_map[ISO_REFRESH_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_REFRESH_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REFRESH_2].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_REFRESH_2].filename = "iso_machinery_0010.png";
 	obstacle_map[ISO_REFRESH_2].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+	obstacle_map[ISO_REFRESH_2].emitted_light_strength = 10;
 	obstacle_map[ISO_REFRESH_3].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_REFRESH_3].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REFRESH_3].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_REFRESH_3].filename = "iso_machinery_0011.png";
 	obstacle_map[ISO_REFRESH_3].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+	obstacle_map[ISO_REFRESH_3].emitted_light_strength = 10;
 	obstacle_map[ISO_REFRESH_4].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_REFRESH_4].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REFRESH_4].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_REFRESH_4].filename = "iso_machinery_0012.png";
 	obstacle_map[ISO_REFRESH_4].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+	obstacle_map[ISO_REFRESH_4].emitted_light_strength = 10;
 	obstacle_map[ISO_REFRESH_5].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_REFRESH_5].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REFRESH_5].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_REFRESH_5].filename = "iso_machinery_0013.png";
 	obstacle_map[ISO_REFRESH_5].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+	obstacle_map[ISO_REFRESH_5].emitted_light_strength = 10;
 	obstacle_map[ISO_REFRESH_5].obstacle_short_name = _("Droid nest");
 	obstacle_map[ISO_REFRESH_4].obstacle_short_name = _("Droid nest");
 	obstacle_map[ISO_REFRESH_3].obstacle_short_name = _("Droid nest");
@@ -1911,23 +1916,23 @@ void init_obstacle_data(void)
 
 	obstacle_map[ISO_TELEPORTER_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_1].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_1].emitted_light_strength = 10;
+	obstacle_map[ISO_TELEPORTER_1].emitted_light_strength = 29;
 	obstacle_map[ISO_TELEPORTER_1].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_2].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_2].emitted_light_strength = 9;
+	obstacle_map[ISO_TELEPORTER_2].emitted_light_strength = 28;
 	obstacle_map[ISO_TELEPORTER_2].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_3].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_3].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_3].emitted_light_strength = 8;
+	obstacle_map[ISO_TELEPORTER_3].emitted_light_strength = 27;
 	obstacle_map[ISO_TELEPORTER_3].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_4].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_4].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_4].emitted_light_strength = 9;
+	obstacle_map[ISO_TELEPORTER_4].emitted_light_strength = 28;
 	obstacle_map[ISO_TELEPORTER_4].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_5].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_5].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_TELEPORTER_5].emitted_light_strength = 10;
+	obstacle_map[ISO_TELEPORTER_5].emitted_light_strength = 29;
 	obstacle_map[ISO_TELEPORTER_5].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 
 	obstacle_map[ISO_V_CHEST_OPEN].block_area_type = COLLISION_TYPE_RECTANGLE;
@@ -2140,7 +2145,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LAMP_N].block_area_parm_2 = 0.5;
 	obstacle_map[ISO_LAMP_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_LAMP_N].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_LAMP_N].emitted_light_strength = 5;	// how much light emitted from here...
+	obstacle_map[ISO_LAMP_N].emitted_light_strength = 24;	// how much light emitted from here...
 	obstacle_map[ISO_LAMP_N].filename = "iso_obstacle_0055.png";
 	obstacle_map[ISO_LAMP_N].obstacle_short_name = _("Room lamp");
 	obstacle_map[ISO_LAMP_N].obstacle_long_description = _("This is a charming room lamp.");
@@ -2149,7 +2154,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LAMP_E].block_area_parm_2 = 0.5;
 	obstacle_map[ISO_LAMP_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_LAMP_E].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_LAMP_E].emitted_light_strength = 5;
+	obstacle_map[ISO_LAMP_E].emitted_light_strength = 24;
 	obstacle_map[ISO_LAMP_E].filename = "iso_obstacle_0056.png";
 	obstacle_map[ISO_LAMP_E].obstacle_short_name = _("Room lamp");
 	obstacle_map[ISO_LAMP_E].obstacle_long_description = _("This is a wonderful room lamp.");
@@ -2158,7 +2163,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LAMP_S].block_area_parm_2 = 0.5;
 	obstacle_map[ISO_LAMP_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_LAMP_S].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_LAMP_S].emitted_light_strength = 5;
+	obstacle_map[ISO_LAMP_S].emitted_light_strength = 24;
 	obstacle_map[ISO_LAMP_S].filename = "iso_obstacle_0054.png";
 	obstacle_map[ISO_LAMP_S].obstacle_short_name = _("Room lamp");
 	obstacle_map[ISO_LAMP_S].obstacle_long_description = _("This is a great room lamp.");
@@ -2167,7 +2172,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LAMP_W].block_area_parm_2 = 0.5;
 	obstacle_map[ISO_LAMP_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_LAMP_W].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_LAMP_W].emitted_light_strength = 5;
+	obstacle_map[ISO_LAMP_W].emitted_light_strength = 24;
 	obstacle_map[ISO_LAMP_W].filename = "iso_obstacle_0057.png";
 	obstacle_map[ISO_LAMP_W].obstacle_short_name = _("Room lamp");
 	obstacle_map[ISO_LAMP_W].obstacle_long_description = _("This is a perfect room lamp.");
@@ -3339,7 +3344,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_EXIT_3].block_area_parm_2 = 1.0;
 	obstacle_map[ISO_EXIT_3].filename = "iso_exits_0003.png";
 	obstacle_map[ISO_EXIT_3].flags &= ~NEEDS_PRE_PUT;
-	obstacle_map[ISO_EXIT_3].emitted_light_strength = 10;
+	obstacle_map[ISO_EXIT_3].emitted_light_strength = 29;
 	obstacle_map[ISO_EXIT_3].obstacle_short_name = _("Ladder");
 	obstacle_map[ISO_EXIT_3].obstacle_long_description = _("It leads to the surface world.");
 
@@ -3348,7 +3353,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_EXIT_4].block_area_parm_2 = 1.0;
 	obstacle_map[ISO_EXIT_4].filename = "iso_exits_0004.png";
 	obstacle_map[ISO_EXIT_4].flags &= ~NEEDS_PRE_PUT;
-	obstacle_map[ISO_EXIT_4].emitted_light_strength = 10;
+	obstacle_map[ISO_EXIT_4].emitted_light_strength = 29;
 	obstacle_map[ISO_EXIT_4].obstacle_short_name = _("Ladder");
 	obstacle_map[ISO_EXIT_4].obstacle_long_description = _("It leads to the surface world.");
 
@@ -3378,7 +3383,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].filename = "iso_rocks_n_plants_0000.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_ROCKS_N_PLANTS_1].emitted_light_strength = -9;
+	obstacle_map[ISO_ROCKS_N_PLANTS_1].emitted_light_strength = 10;
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].obstacle_short_name = _("Exotic fungoid plant");
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].obstacle_long_description =
 	    _("A wonderful exotic fungus. You can read \"Made by Basse\" on it.");
@@ -3417,28 +3422,28 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_ROCKS_N_PLANTS_5].filename = "iso_rocks_n_plants_0004.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_5].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_5].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_ROCKS_N_PLANTS_5].emitted_light_strength = -12;
+	obstacle_map[ISO_ROCKS_N_PLANTS_5].emitted_light_strength = 7;
 
 	obstacle_map[ISO_ROCKS_N_PLANTS_6].block_area_parm_1 = 1.0;
 	obstacle_map[ISO_ROCKS_N_PLANTS_6].block_area_parm_2 = 1.0;
 	obstacle_map[ISO_ROCKS_N_PLANTS_6].filename = "iso_rocks_n_plants_0005.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_6].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_6].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_ROCKS_N_PLANTS_6].emitted_light_strength = -10;
+	obstacle_map[ISO_ROCKS_N_PLANTS_6].emitted_light_strength = 9;
 
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].block_area_parm_1 = 1.0;
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].block_area_parm_2 = 1.0;
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].filename = "iso_rocks_n_plants_0006.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_ROCKS_N_PLANTS_7].emitted_light_strength = -11;
+	obstacle_map[ISO_ROCKS_N_PLANTS_7].emitted_light_strength = 8;
 
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].block_area_parm_1 = 1.0;
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].block_area_parm_2 = 1.0;
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].filename = "iso_rocks_n_plants_0007.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].flags |= GROUND_LEVEL;
-	obstacle_map[ISO_ROCKS_N_PLANTS_8].emitted_light_strength = -8;
+	obstacle_map[ISO_ROCKS_N_PLANTS_8].emitted_light_strength = 11;
 
 	obstacle_map[ISO_ROCKS_N_PLANTS_5].obstacle_short_name = _("Exotic fungoid plant");
 	obstacle_map[ISO_ROCKS_N_PLANTS_5].obstacle_long_description = _("Eating too much of that could lead to a kernel panic...");

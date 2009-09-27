@@ -798,7 +798,7 @@ typedef struct level_s {
 	int levelnum;
 	int xlen;
 	int ylen;
-	int light_radius_bonus;
+	int light_bonus;
 	int minimum_light_value;
 	int infinite_running_on_this_level;
 	int random_dungeon;

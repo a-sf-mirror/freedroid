@@ -990,7 +990,7 @@ void light_radius_update_stretched_texture(void)
 		for (x = 0; x < LightRadiusConfig.cells_w; x++) {
 			light_strength = get_light_strength_cell(x, y);
 
-			alpha = (alpha_factor) * ((float)light_strength);
+			alpha = 255 - (alpha_factor) * ((float)light_strength);
 
 			PutPixel32(light_radius_stretch_surface, x, LightRadiusConfig.texture_w - y - 1,
 				   SDL_MapRGBA(light_radius_stretch_surface->format, red, green, blue, alpha));

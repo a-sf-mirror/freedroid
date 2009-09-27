@@ -621,17 +621,17 @@ static void LevelOptions(void)
 
 		sprintf(Options[i], _("Light"));
 		strcat(Options[i], ":  ");
-		strcat(Options[i], _("Radius"));
+		strcat(Options[i], _("Ambient"));
 		if (l == 0) {
-			sprintf(Options[i + 1], " [%d]  ", EditLevel()->light_radius_bonus);
+			sprintf(Options[i + 1], " [%d]  ", EditLevel()->minimum_light_value);
 			strcat(Options[i], Options[i + 1]);
-			strcat(Options[i], _("Minimum"));
-			sprintf(Options[i + 1], "  %d   (<-/->)", EditLevel()->minimum_light_value);
+			strcat(Options[i], _("Bonus"));
+			sprintf(Options[i + 1], "  %d   (<-/->)", EditLevel()->light_bonus);
 		} else if (l == 1) {
-			sprintf(Options[i + 1], "  %d   ", EditLevel()->light_radius_bonus);
+			sprintf(Options[i + 1], "  %d   ", EditLevel()->minimum_light_value);
 			strcat(Options[i], Options[i + 1]);
-			strcat(Options[i], _("Minimum"));
-			sprintf(Options[i + 1], " [%d]  (<-/->)", EditLevel()->minimum_light_value);
+			strcat(Options[i], _("Bonus"));
+			sprintf(Options[i + 1], " [%d]  (<-/->)", EditLevel()->light_bonus);
 		} else
 			sprintf(Options[i + 1], "Im a bug");
 		strcat(Options[i], Options[i + 1]);
@@ -797,28 +797,28 @@ static void LevelOptions(void)
 			case CHANGE_LIGHT:
 				if (l == 0) {
 					if (RightPressed()) {
-						EditLevel()->light_radius_bonus++;
+						EditLevel()->minimum_light_value++;
+						if (EditLevel()->minimum_light_value > (NUMBER_OF_SHADOW_IMAGES-1))
+							EditLevel()->minimum_light_value = (NUMBER_OF_SHADOW_IMAGES-1);
 						while (RightPressed()) ;
 					}
 					if (LeftPressed()) {
-						EditLevel()->light_radius_bonus--;
-						if (EditLevel()->light_radius_bonus < 0)
-							EditLevel()->light_radius_bonus = 0;
+						EditLevel()->minimum_light_value--;
+						if (EditLevel()->minimum_light_value < 0)
+							EditLevel()->minimum_light_value = 0;
 						while (LeftPressed()) ;
 					}
 					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
 					break;
 				} else {
 					if (RightPressed()) {
-						EditLevel()->minimum_light_value++;
-						if (EditLevel()->minimum_light_value > 0)
-							EditLevel()->minimum_light_value = 0;
+						EditLevel()->light_bonus++;
 						while (RightPressed()) ;
 					}
 					if (LeftPressed()) {
-						EditLevel()->minimum_light_value--;
-						if (EditLevel()->minimum_light_value < -(NUMBER_OF_SHADOW_IMAGES-1))
-							EditLevel()->minimum_light_value = -(NUMBER_OF_SHADOW_IMAGES-1);
+						EditLevel()->light_bonus--;
+						if (EditLevel()->light_bonus < 0)
+							EditLevel()->light_bonus = 0;
 						while (LeftPressed()) ;
 					}
 					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
