@@ -532,6 +532,8 @@ void update_light_list()
 		light_sources[i].pos.x = -200;
 		light_sources[i].pos.y = -200;
 		light_sources[i].pos.z = -1;
+		light_sources[i].vpos.x = -1;
+		light_sources[i].vpos.y = -1;
 		light_sources[i].vpos.z = -1;
 		light_sources[i].strength = 0;
 	}
@@ -545,6 +547,7 @@ void update_light_list()
 	light_sources[0].pos.y = Me.pos.y;
 	light_sources[0].pos.z = Me.pos.z;
 	light_sources[0].strength = light_level->light_bonus + Me.light_bonus_from_tux;	
+	light_sources[0].vpos = light_sources[0].pos;
 	// We must not in any case tear a hole into the beginning of the list though...
 	if (light_sources[0].strength <= 0)
 		light_sources[0].strength = 1;
@@ -567,6 +570,11 @@ void update_light_list()
 		light_sources[next_light_emitter_index].pos.x = AllBlasts[blast].pos.x;
 		light_sources[next_light_emitter_index].pos.y = AllBlasts[blast].pos.y;
 		light_sources[next_light_emitter_index].pos.z = AllBlasts[blast].pos.z;
+		update_virtual_position(&light_sources[next_light_emitter_index].vpos,
+				&light_sources[next_light_emitter_index].pos, Me.pos.z);
+		if (light_sources[next_light_emitter_index].vpos.x == -1)
+			continue;
+
 		light_sources[next_light_emitter_index].strength = light_strength;
 		next_light_emitter_index++;
 
@@ -632,10 +640,14 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 					//--------------------
 					// Now we know that this one needs to be inserted!
 					//
-					update_virtual_position(&emitter->vpos, &emitter->pos, Me.pos.z);
-					light_sources[next_light_emitter_index].pos.x = emitter->vpos.x;
-					light_sources[next_light_emitter_index].pos.y = emitter->vpos.y;
-					light_sources[next_light_emitter_index].pos.z = emitter->vpos.z;
+					light_sources[next_light_emitter_index].pos.x = emitter->pos.x;
+					light_sources[next_light_emitter_index].pos.y = emitter->pos.y;
+					light_sources[next_light_emitter_index].pos.z = emitter->pos.z;
+					update_virtual_position(&light_sources[next_light_emitter_index].vpos,
+							&light_sources[next_light_emitter_index].pos, Me.pos.z);
+					if (light_sources[next_light_emitter_index].vpos.x == -1)
+						continue;
+
 					light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
 					next_light_emitter_index++;
 
@@ -671,10 +683,13 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 			//--------------------
 			// Now we know that this one needs to be inserted!
 			//
-			update_virtual_position(&erot->virt_pos, &erot->pos, Me.pos.z);
-			light_sources[next_light_emitter_index].pos.x = erot->virt_pos.x;
-			light_sources[next_light_emitter_index].pos.y = erot->virt_pos.y;
-			light_sources[next_light_emitter_index].pos.z = erot->virt_pos.z;
+			light_sources[next_light_emitter_index].pos.x = erot->pos.x;
+			light_sources[next_light_emitter_index].pos.y = erot->pos.y;
+			light_sources[next_light_emitter_index].pos.z = erot->pos.z;
+			update_virtual_position(&light_sources[next_light_emitter_index].vpos,
+					&light_sources[next_light_emitter_index].pos, Me.pos.z);
+			light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
+
 			light_sources[next_light_emitter_index].strength = 5;
 			next_light_emitter_index++;
 
@@ -702,8 +717,6 @@ static int calculate_light_strength(gps *cell_vpos)
 	float squared_dist;
 	gps cell_rpos;
 	struct interpolation_data_cell ilights;
-
-	level *current_lvl = curShip.AllLevels[cell_vpos->z];
 
 	//------------------------------------------
 	// 1. Light interpolation
@@ -800,7 +813,6 @@ static int calculate_light_strength(gps *cell_vpos)
 		//--------------------
 		// Some pre-computations
 		// First transform light source's position into virtual position, related to Tux's current level
-		update_virtual_position(&light_sources[i].vpos, &light_sources[i].pos, current_lvl->levelnum);
 		xdist = light_sources[i].vpos.x - cell_vpos->x;
 		ydist = light_sources[i].vpos.y - cell_vpos->y;
 		squared_dist = xdist * xdist + ydist * ydist;
@@ -814,7 +826,6 @@ static int calculate_light_strength(gps *cell_vpos)
 		//--------------------
 		// Visibility check (line 3 of pseudo_code)
 		// with a small optimization : no visibility check if the target is very closed to the light
-		// <Fluzz> NEED ADAPTATION
 		if ((squared_dist > (0.5*0.5)) && curShip.AllLevels[cell_rpos.z]->use_underground_lighting) {
 			if (!DirectLineColldet(light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
 				continue;
