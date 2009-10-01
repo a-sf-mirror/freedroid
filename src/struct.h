@@ -828,6 +828,7 @@ typedef struct level_s {
 } level, *Level;
 
 struct visible_level {
+	int valid;
 	level *lvl_pointer;
 	float boundary_squared_dist;
 	struct list_head node;

@@ -138,12 +138,47 @@ int set_rotation_model_for_this_robot(enemy * ThisRobot);
 void grab_enemy_images_from_archive(int enemy_model_nr);
 int level_is_visible(int level_num);
 void get_visible_levels();
+
+#define next_valid_visible_level(pos, start) ({ \
+	pos = start; \
+	while (&pos->node != &visible_level_list && !pos->valid) \
+		pos = list_entry(pos->node.next, typeof(*pos), node); \
+	})
+
+#define next_valid_nearby_visible_level(pos, start, d) ({ \
+	pos = start; \
+	while (&pos->node != &visible_level_list && (!pos->valid || pos->boundary_squared_dist>=d)) \
+		pos = list_entry(pos->node.next, typeof(*pos), node); \
+	})
+
+// This macro will loop on each valid visible levels.
+// It is based on the list_for_each_entry_safe() macro.
+// However, some entries in the visible_level_list are marked as not "valid",
+// and such levels have to be ignored during the call to the macro.
+// So, in the 'update part' of the 'for' statement we have to advance the ptr 
+// *until* a valid entry is found. Thus, a loop (that is a compound-statement) is 
+// needed.
+// However, the 'update part' of a 'for' statement has to be an 'expression'.
+// Thanks to gcc (this is not part of the C99 standard), it is possible to 
+// transform a compound statement into an expression, with the 
+// "({compound-statement;})" construct.
+// To ease readiness, the loop is defined in a next_valid_visible_level() macro.
+// This loop is also used in the 'initialization part' of the 'for' statement,
+// to reach the first valid entry.
 #define BROWSE_VISIBLE_LEVELS(pos, n) \
- 	list_for_each_entry_safe(pos, n, &visible_level_list, node)
+	for (next_valid_visible_level(pos, list_entry(visible_level_list.next, typeof(*pos), node)), \
+		n = list_entry(pos->node.next, typeof(*pos), node) ; \
+		&pos->node != (&visible_level_list) ; \
+		next_valid_visible_level(pos, n), n = list_entry(pos->node.next, typeof(*pos), node))
+
+// This macro will loop on each valid visible levels, if one of their boundary is
+// at a distance less than 'd'.
+// It uses the same trick than the BROWSE_VISIBLE_LEVELS() macro.
 #define BROWSE_NEARBY_VISIBLE_LEVELS(pos, n, d) \
-	for (pos = list_entry(visible_level_list.next, typeof(*pos), node), n = list_entry(pos->node.next, typeof(*pos), node); \
-		 (&pos->node != (&visible_level_list)) && (pos->boundary_squared_dist < d); \
-		 pos = n, n = list_entry(n->node.next, typeof(*n), node))
+	for (next_valid_nearby_visible_level(pos, list_entry(visible_level_list.next, typeof(*pos), node), d), \
+		n = list_entry(pos->node.next, typeof(*pos), node) ; \
+		&pos->node != (&visible_level_list) ; \
+		next_valid_nearby_visible_level(pos, n, d), n = list_entry(pos->node.next, typeof(*pos), node))
 
 // light.c 
 void LightRadiusInit(void);

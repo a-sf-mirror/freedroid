@@ -851,21 +851,6 @@ int level_is_visible(int level_num)
  * Construct a linked list of visible levels.
  * Also compute the distance between Tux and each level boundary.
  */
-static void insert_one_visible_level_into_list(struct visible_level *newe)
-{
-	struct visible_level *e, *n;
-
-	list_for_each_entry_safe(e, n, &visible_level_list, node) {
-		if (newe->boundary_squared_dist < e->boundary_squared_dist) {
-			// Insert before this element
-			list_add_tail(&newe->node, &e->node);
-			return;
-		}
-	}
-
-	list_add_tail(&newe->node, &visible_level_list);
-}
-
 void get_visible_levels()
 {
 	// Reset linked list
@@ -931,13 +916,12 @@ void get_visible_levels()
 			longitude = (i == 1) ? 0.0 : left_or_right_distance;
 
 			if (level_neighbors_map[Me.pos.z][j][i]) {
-
 				struct visible_level *newe;
 				newe = MyMalloc(sizeof(struct visible_level));
+				newe->valid = TRUE;
 				newe->lvl_pointer = curShip.AllLevels[level_neighbors_map[Me.pos.z][j][i]->lvl_idx];
 				newe->boundary_squared_dist = longitude * longitude + latitude * latitude;
-				insert_one_visible_level_into_list(newe);
-
+				list_add_tail(&newe->node, &visible_level_list);
 			}
 		}
 	}
