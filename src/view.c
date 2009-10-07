@@ -849,32 +849,33 @@ int level_is_visible(int level_num)
 
 /**
  * Construct a linked list of visible levels.
- * Also compute the distance between Tux and each level boundary.
+ * Also compute the distance between Tux and each level boundaries.
  */
 void get_visible_levels()
 {
-	// Reset linked list
-
+	static int old_current_level = -1;
 	struct visible_level *e, *n;
-	list_for_each_entry_safe(e, n, &visible_level_list, node) {
-		list_del(&e->node);
-		free(e);
+	
+	//--------------------
+	// Invalidate all entries in the visible_level list
+	
+	list_for_each_entry(e, &visible_level_list, node) {
+		e->valid = FALSE;
 	}
-	INIT_LIST_HEAD(&visible_level_list);
 
 	//--------------------
 	// Find the 4 visible levels
 	//
-	// Those 4 levels form a square (eventually a degenerated one), one corner of the 
-	// square being the current level.
-	// The 2 corners are initialized to be on the current level (idx = 1), and we will extend
-	// one of them, depending on Tux's position.
+	// Those 4 levels form a square (eventually a degenerated one), one corner 
+	// of the square being the current level.
+	// The 2 corners are initialized to be on the current level (idx = 1), and 
+	// we will extend one of them, depending on Tux's position.
 	// (see gps_transform_map_init() main comment for an explanation about neighbor index)
 
 	int left_idx = 1, right_idx = 1;
 	int top_idx = 1, bottom_idx = 1;
-	float left_or_right_distance = 0.0;	// distance to the left or right neighbors
-	float top_or_bottom_distance = 0.0;	// distance to the top or bottom neighbors
+	float left_or_right_distance = 0.0;	// distance to the left or right neighbor
+	float top_or_bottom_distance = 0.0;	// distance to the top or bottom neighbor
 
 	if (Me.pos.x < FLOOR_TILES_VISIBLE_AROUND_TUX) {
 		// left neighbors are potentially visible
@@ -895,33 +896,68 @@ void get_visible_levels()
 		bottom_idx = 2;
 		top_or_bottom_distance = CURLEVEL()->ylen - Me.pos.y;
 	}
+	
 	//--------------------
-	// Fill the linked list
-	//
+	// Add or re-validate entries in the visible_level list
 
 	int i, j;
 	float latitude;		// distance, along Y axis, between Tux and the current neighbor
 	float longitude;	// distance, along X axis, between Tux and the current neighbor
 
 	for (j = top_idx; j <= bottom_idx; j++) {
-
 		// if j==1, then current neighbor is at the same 'latitude' than Tux's level,
 		// so latitude = 0.0
 		latitude = (j == 1) ? 0.0 : top_or_bottom_distance;
 
 		for (i = left_idx; i <= right_idx; i++) {
-
 			// if i==1, then current neighbor is at the same 'longitude' than Tux's level,
 			// so longitude = 0.0
 			longitude = (i == 1) ? 0.0 : left_or_right_distance;
 
 			if (level_neighbors_map[Me.pos.z][j][i]) {
-				struct visible_level *newe;
-				newe = MyMalloc(sizeof(struct visible_level));
-				newe->valid = TRUE;
-				newe->lvl_pointer = curShip.AllLevels[level_neighbors_map[Me.pos.z][j][i]->lvl_idx];
-				newe->boundary_squared_dist = longitude * longitude + latitude * latitude;
-				list_add_tail(&newe->node, &visible_level_list);
+				// if there is already an entry in the visible_level list for 
+				// this level, update the entry and re-validate it
+				int in_list = FALSE;
+				list_for_each_entry(e, &visible_level_list, node) {
+					if (e->lvl_pointer->levelnum == level_neighbors_map[Me.pos.z][j][i]->lvl_idx) {
+						e->valid = TRUE;
+						e->boundary_squared_dist = longitude * longitude + latitude * latitude;
+						in_list = TRUE;
+						break;
+					}
+				}
+				// if there was no corresponding entry, create a new one
+				if (!in_list) {
+					e = MyMalloc(sizeof(struct visible_level));
+					e->valid = TRUE;
+					e->lvl_pointer = curShip.AllLevels[level_neighbors_map[Me.pos.z][j][i]->lvl_idx];
+					e->boundary_squared_dist = longitude * longitude + latitude * latitude;
+					list_add_tail(&e->node, &visible_level_list);
+				}
+			}
+		}
+	}
+	
+	//--------------------
+	// If the current level changed, remove useless invalid entries.
+	// An entry is useless if the associated level is not a neighbor of the
+	// current level. To find if two levels are connected, we look at the content
+	// of 'gps_transform_matrix' (there is no gps transformation between two
+	// unconnected levels).
+	
+	struct neighbor_data_cell *transform_data;
+	
+	if (old_current_level != Me.pos.z) {
+		old_current_level = Me.pos.z;
+		
+		list_for_each_entry_safe(e, n, &visible_level_list, node) {
+			if (e->valid)
+				continue;
+			transform_data = &gps_transform_matrix[Me.pos.z][e->lvl_pointer->levelnum];
+			if (!transform_data->valid) {
+				// useless entry: removing it from the linked list
+				list_del(&e->node);
+				free(e);				
 			}
 		}
 	}
