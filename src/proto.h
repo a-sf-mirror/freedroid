@@ -367,7 +367,9 @@ Uint16 GetMapBrick(level *, float, float);
 void CountNumberOfDroidsOnShip(void);
 int LoadShip(char *filename);
 int SaveShip(const char *filename);
-void GetAnimatedMapTiles();
+void get_animated_obstacle_lists(struct visible_level *vis_lvl);
+void dirty_animated_obstacle_lists(int lvl_num);
+void clear_animated_obstacle_lists(struct visible_level *vis_lvl);
 int GetCrew(char *shipname);
 
 void AnimateCyclingMapTiles(void);

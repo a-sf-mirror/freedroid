@@ -751,7 +751,7 @@ void ExportLevelInterface(int LevelNum)
 						AreaWidth, AreaHeight,
 						curShip.AllLevels[TargetLevel], 0, curShip.AllLevels[TargetLevel]->ylen - AreaHeight);
 
-		GetAnimatedMapTiles();
+		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
 	}
 	//--------------------
 	// Now we see if we need to copy the southern interface region
@@ -787,8 +787,7 @@ void ExportLevelInterface(int LevelNum)
 		duplicate_all_obstacles_in_area(curShip.AllLevels[LevelNum], 0, curShip.AllLevels[LevelNum]->ylen - AreaHeight,
 						AreaWidth, AreaHeight, curShip.AllLevels[TargetLevel], 0, 0);
 
-		GetAnimatedMapTiles();
-
+		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
 	}
 	//--------------------
 	// Now we see if we need to copy the eastern interface region
@@ -824,8 +823,7 @@ void ExportLevelInterface(int LevelNum)
 		duplicate_all_obstacles_in_area(curShip.AllLevels[LevelNum], curShip.AllLevels[LevelNum]->xlen - AreaWidth, 0,
 						AreaWidth, AreaHeight, curShip.AllLevels[TargetLevel], 0, 0);
 
-		GetAnimatedMapTiles();
-
+		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
 	}
 	//--------------------
 	// Now we see if we need to copy the western interface region
@@ -863,7 +861,7 @@ void ExportLevelInterface(int LevelNum)
 		duplicate_all_obstacles_in_area(curShip.AllLevels[LevelNum], 0, 0, AreaWidth, AreaHeight,
 						curShip.AllLevels[TargetLevel], curShip.AllLevels[TargetLevel]->xlen - AreaWidth, 0);
 
-		GetAnimatedMapTiles();
+		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
 	}
 
 };				// void SynchronizeLevelInterfaces ( void )

@@ -168,8 +168,8 @@ obstacle *action_create_obstacle(level * EditLevel, double x, double y, int new_
 			// to re-assemble the lists of pointers to obstacles, like the door list, the
 			// teleporter list and the refreshes list.
 			//
-			GetAnimatedMapTiles();
-
+			dirty_animated_obstacle_lists(EditLevel->levelnum);
+			
 			return (&(EditLevel->obstacle_list[i]));
 		}
 	}
@@ -217,7 +217,7 @@ void action_remove_obstacle(level * EditLevel, obstacle * our_obstacle)
 	// to re-assemble the lists of pointers to obstacles, like the door list, the
 	// teleporter list and the refreshes list.
 	//
-	GetAnimatedMapTiles();
+	dirty_animated_obstacle_lists(EditLevel->levelnum);
 }
 
 void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
@@ -818,11 +818,7 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->obstacle_list[i].pos.y = (-1);
 		NewLevel->obstacle_list[i].name_index = (-1);
 	}
-	//--------------------
-	// This should initialize the lists with the refreshed and other
-	// animated map tiles...
-	//
-	GetAnimatedMapTiles();
+
 	//--------------------
 	// Now we initialize the map labels array with 'empty' information
 	//

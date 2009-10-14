@@ -831,6 +831,11 @@ struct visible_level {
 	int valid;
 	level *lvl_pointer;
 	float boundary_squared_dist;
+	struct list_head droid_nests_head;
+	struct list_head teleporters_head;
+	struct list_head doors_head;
+	struct list_head autoguns_head;
+	int animated_obstacles_dirty_flag;
 	struct list_head node;
 };
 

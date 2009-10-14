@@ -189,7 +189,6 @@ void EditLevelDimensions(void)
 		case BACK_TO_LE_MAIN_MENU:
 			while (EnterPressed() || SpacePressed() || EscapePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			GetAnimatedMapTiles();
 			proceed_now = !proceed_now;
 			break;
 
@@ -199,6 +198,7 @@ void EditLevelDimensions(void)
 		}
 
 		gps_transform_map_init();
+		dirty_animated_obstacle_lists(EditLevel->levelnum);
 
 	}			// while (!proceed_now)
 
