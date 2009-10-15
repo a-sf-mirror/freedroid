@@ -42,25 +42,57 @@ end
 -- this table describes obstacle states
 obstacle_states = {
 	[6] = {["opened"] = 6, ["closed"] = 26,},
+	[7] = {["opened"] = 6, ["closed"] = 26,},
+	[8] = {["opened"] = 6, ["closed"] = 26,},
+	[9] = {["opened"] = 6, ["closed"] = 26,},
+	[10] = {["opened"] = 6, ["closed"] = 26,},
+
 	[11] = {["opened"] = 11, ["closed"] = 27,},
+	[12] = {["opened"] = 11, ["closed"] = 27,},
+	[13] = {["opened"] = 11, ["closed"] = 27,},
+	[14] = {["opened"] = 11, ["closed"] = 27,},
+	[15] = {["opened"] = 11, ["closed"] = 27,},
+
 	[26] = {["closed"] = 26, ["opened"] = 6,},
 	[27] = {["closed"] = 27, ["opened"] = 11,},
 	[32] = {["enabled"] = 32, ["disabled"] = 324,},
 	[34] = {["enabled"] = 34, ["disabled"] = 326,},
+
 	[181] = {["opened"] = 181, ["closed"] = 191,},
+	[182] = {["opened"] = 181, ["closed"] = 191,},
+	[183] = {["opened"] = 181, ["closed"] = 191,},
+	[184] = {["opened"] = 181, ["closed"] = 191,},
+	[185] = {["opened"] = 181, ["closed"] = 191,},
+
 	[186] = {["opened"] = 186, ["closed"] = 192,},
+	[187] = {["opened"] = 186, ["closed"] = 192,},
+	[188] = {["opened"] = 186, ["closed"] = 192,},
+	[189] = {["opened"] = 186, ["closed"] = 192,},
+	[190] = {["opened"] = 186, ["closed"] = 192,},
+
 	[191] = {["closed"] = 191, ["opened"] = 181,},
 	[192] = {["closed"] = 192, ["opened"] = 186,},
+
 	[235] = {["broken"] = 237,},
 	[236] = {["broken"] = 237,},
-        [237] = {["broken"] = 237,},
+	[237] = {["broken"] = 237,},
 	[322] = {["broken"] = 237,},
 	[324] = {["disabled"] = 324, ["enabled"] = 32,},
 	[326] = {["disabled"] = 326, ["enabled"] = 34,},
 	[351] = {["closed"] = 351, ["opened"] = 353,},
 	[352] = {["closed"] = 352, ["opened"] = 358,},
+
 	[353] = {["opened"] = 353, ["closed"] = 351,},
+	[354] = {["opened"] = 353, ["closed"] = 351,},
+	[355] = {["opened"] = 353, ["closed"] = 351,},
+	[356] = {["opened"] = 353, ["closed"] = 351,},
+	[357] = {["opened"] = 353, ["closed"] = 351,},
+
 	[358] = {["opened"] = 358, ["closed"] = 352,},
+	[359] = {["opened"] = 358, ["closed"] = 352,},
+	[360] = {["opened"] = 358, ["closed"] = 352,},
+	[361] = {["opened"] = 358, ["closed"] = 352,},
+	[362] = {["opened"] = 358, ["closed"] = 352,},
 };
 
 function get_obstacle_state_id(id, state)
