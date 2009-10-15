@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,154 +29,140 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
-
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
-
 Nr=0  Text=_"Hi! I'm new here."
-NPC=_"Welcome. I am Chandra, the local sage in this old town."
 LuaCode={
-    hide(0)
-    show(1, 2, 9)
+	npc_says(_"Welcome. I am Chandra, the local sage in this old town.")
+	hide(0) show(1, 2, 9)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"What can you tell me about this place?"
-NPC=_"This small town has existed since before the Great Assault. It used to be a somewhat successful mining community."
-NPC=_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all."
 LuaCode={
-    hide(1)
-    show(5, 10)
+	npc_says(_"This small town has existed since before the Great Assault. It used to be a somewhat successful mining community.")
+	npc_says(_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all.")
+	hide(1) show(5, 10)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Where can I get better equipment?"
-NPC=_"The shop is to the north. Ms. Stone always has a good range of equipment there."
-NPC=_"And the Red Guard always has the biggest guns and the best armor, but they do not sell them to the non-members."
 LuaCode={
-    hide(2)
+	npc_says(_"The shop is to the north. Ms. Stone always has a good range of equipment there.")
+	npc_says(_"And the Red Guard always has the biggest guns and the best armor, but they do not sell them to the non-members.")
+	hide(2)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"So what's so strange about the attack?"
-NPC=_"According to my calculations from the Fermi estimate, there are about seven million bots active in the region."
-NPC=_"Now, I think you will agree with me that the following statement is true: If bots, then death to everything alive."
-NPC=_"Now, I make the assumption that you and I are alive."
-NPC=_"Now, if we are not dead, and if bots are killing everything alive..."
-NPC=_"... THEN SOMETHING IS NOT LOGICAL!"
 LuaCode={
-    next(4)
-    hide(3)
-}
-----------------------------------------------------------------------
-
-Nr=4  Text=_"Calm down. There must be some logic behind this."
-NPC=_"There is none!"
-NPC=_"They could just enter the city and massacre everyone."
-NPC=_"But they do not do so."
-NPC=_"This makes no sense at all!"
-LuaCode={
-    hide(4)
+	npc_says(_"According to my calculations from the Fermi estimate, there are about seven million bots active in the region.")
+	npc_says(_"Now, I think you will agree with me that the following statement is true: If bots, then death to everything alive.")
+	npc_says(_"Now, I make the assumption that you and I are alive.")
+	npc_says(_"Now, if we are not dead, and if bots are killing everything alive...")
+	npc_says(_"... THEN SOMETHING IS NOT LOGICAL!")
+	tux_says(_"Calm down. There must be some logic behind this.")
+	npc_says(_"There is none!")
+	npc_says(_"They could just enter the city and massacre everyone.")
+	npc_says(_"But they do not do so.")
+	npc_says(_"This makes no sense at all!")
+	hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"What do you know about the hostile bots?"
-NPC=_"The phenomenon of hostile bots has occupied my mind for quite some time.  There are some strange irrationalities in this behaviour, that I cannot explain."
-NPC=_"This concerns not only the irrationality of the attack but also the methods and the scale of it all."
 LuaCode={
-    hide(5)
-    show(3, 6, 7)
+	npc_says(_"The phenomenon of hostile bots has occupied my mind for quite some time.  There are some strange irrationalities in this behaviour, that I cannot explain.")
+	npc_says(_"This concerns not only the irrationality of the attack but also the methods and the scale of it all.")
+	hide(5) show(3, 6, 7)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"What types of bots are out there?"
-NPC=_"Hmm... Each kind of bot has a number consisting of three digits. The first one is the most significant, the class of a bot."
-NPC=_"I know a bit about three classes."
-NPC=_"The 100s are cleaning bots of old. They are not too troublesome most of the time."
-NPC=_"The 200s are more dangerous. Beware of being attacked by more than one at the same time."
-NPC=_"An encounter with a 300 type bot equals death, so try to avoid it."
-NPC=_"I am sure there are lots more of classes out there, but I know nothing about them."
 LuaCode={
-    hide(6)
-    show(11, 12, 13)
+	npc_says(_"Hmm... Each kind of bot has a number consisting of three digits. The first one is the most significant, the class of a bot.")
+	npc_says(_"I know a bit about three classes.")
+	npc_says(_"The 100s are cleaning bots of old. They are not too troublesome most of the time.")
+	npc_says(_"The 200s are more dangerous. Beware of being attacked by more than one at the same time.")
+	npc_says(_"An encounter with a 300 type bot equals death, so try to avoid it.")
+	npc_says(_"I am sure there are lots more of classes out there, but I know nothing about them.")
+	hide(6) show(11, 12, 13)
 }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_"I want to leave this place."
-NPC=_"We all do, Linarian, we all do."
-NPC=_"The act in question is made impossible by the quasi-infinite bots outside of the city walls."
-NPC=_"You cannot live for long out there."
 LuaCode={
-    hide(7)
-    show(8)
+	npc_says(_"We all do, Linarian, we all do.")
+	npc_says(_"The act in question is made impossible by the quasi-infinite bots outside of the city walls.")
+	npc_says(_"You cannot live for long out there.")
+	hide(7) show(8)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"No, I meant I would like to leave this world."
-NPC=_"Simple. Walk outside the city walls, and the bots will send you to the other world within a few minutes."
-NPC=_"Unless you mean leave the planet, in which case that is impossible."
-NPC=_"Most likely all of our cosmodromes have been destroyed in the bot attacks."
 LuaCode={
-    hide(8)
+	npc_says(_"Simple. Walk outside the city walls, and the bots will send you to the other world within a few minutes.")
+	npc_says(_"Unless you mean leave the planet, in which case that is impossible.")
+	npc_says(_"Most likely all of our cosmodromes have been destroyed in the bot attacks.")
+	hide(8)
 }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"I keep getting beaten up by the bots. What can I do?"
-NPC=_"My advice is to invest in a ranged weapon. While that can create a huge puncture in your wallet, it is better than a huge puncture in you."
-NPC=_"Currently there is a ban on selling such things. The Red Guard wants to be the only ones with good weapons."
-NPC=_"Should you fail to find something decent to shoot with, there are always other options."
-NPC=_"Ewald sells potions which can increase your abilities to fight for a while. He keeps the ingredients a secret, and the prices high."
-NPC=_"There was a person selling grenades too. Eh... I forgot his name, my memory is not serving me very well today. I am sure he can help you out."
-NPC=_"Other than that, you are on your own."
 LuaCode={
-    hide(9)
+	npc_says(_"My advice is to invest in a ranged weapon. While that can create a huge puncture in your wallet, it is better than a huge puncture in you.")
+	npc_says(_"Currently there is a ban on selling such things. The Red Guard wants to be the only ones with good weapons.")
+	npc_says(_"Should you fail to find something decent to shoot with, there are always other options.")
+	npc_says(_"Ewald sells potions which can increase your abilities to fight for a while. He keeps the ingredients a secret, and the prices high.")
+	npc_says(_"There was a person selling grenades too. Eh... I forgot his name, my memory is not serving me very well today. I am sure he can help you out.")
+	npc_says(_"Other than that, you are on your own.")
+	hide(9)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"Do you think I could join the guardians of this town?"
-NPC=_"The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can fix things."
-NPC=_"Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here."
-NPC=_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax."
 LuaCode={
-    hide(10)
+	npc_says(_"The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can fix things.")
+	npc_says(_"Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here.")
+	npc_says(_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax.")
+	hide(10)
 }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"What bots are in the 100 class?"
-NPC=_"I know of two types. The 123 and the 139."
-NPC=_"Because they are neither fast nor dangerous, the Red Guard uses them for target practice."
-NPC=_"If I were you, I would not overestimate them. "
-NPC=_"Nec Hercules contra plures."
 LuaCode={
-    hide(11)
+	npc_says(_"I know of two types. The 123 and the 139.")
+	npc_says(_"Because they are neither fast nor dangerous, the Red Guard uses them for target practice.")
+	npc_says(_"If I were you, I would not overestimate them. ")
+	npc_says(_"Nec Hercules contra plures.")
+	hide(11)
 }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"What bots are in the 200 class?"
-NPC=_"Well, those are a bit tricky."
-NPC=_"The 247 is often called the 'Banshee'."
-NPC=_"It comes close to you and tries to punch you."
-NPC=_"The 249 is much more dangerous."
-NPC=_"Its machine gun has a high rate of fire, and each bullet can damage your equipment."
 LuaCode={
-    hide(12)
+	npc_says(_"Well, those are a bit tricky.")
+	npc_says(_"The 247 is often called the 'Banshee'.")
+	npc_says(_"It comes close to you and tries to punch you.")
+	npc_says(_"The 249 is much more dangerous.")
+	npc_says(_"Its machine gun has a high rate of fire, and each bullet can damage your equipment.")
+	hide(12)
 }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"What other bots are out there?"
-NPC=_"Well, I have no idea. I have heard only rumors."
-NPC=_"I think most of the people who have seen a better bot are now pushing up the daisies."
 LuaCode={
-    hide(13)
+	npc_says(_"Well, I have no idea. I have heard only rumors.")
+	npc_says(_"I think most of the people who have seen a better bot are now pushing up the daisies.")
+	hide(13)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"Thank you for your wise words."
-NPC=_"Feel free to come here any time you want."
 LuaCode={
+	npc_says(_"Feel free to come here any time you want.")
     end_dialog()
 }
 ----------------------------------------------------------------------

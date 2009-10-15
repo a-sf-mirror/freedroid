@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,37 +29,31 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 6, 99)
-}
-
+FirstTime LuaCode={ show(0, 6) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
-
 Nr=0  Text=_"Hi! I'm new here. "
-NPC=_"Hello. We are the Fleischer brothers."
-NPC=_"I am Engel. He is Geist, and he does not know the language."
 LuaCode={
-    hide(0)
-    show(1)
+	npc_says(_"Hello. We are the Fleischer brothers.")
+	npc_says(_"I am Engel. He is Geist, and he does not know the language.")
+	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"What are you doing here?"
-NPC=_"Revenge."
-NPC=_"The bots have killed our mother. Now we kill them."
-NPC=_"No mercy. We hunt them."
 LuaCode={
-    hide(1)
-    show(2, 11, 13)
+	npc_says(_"Revenge.")
+	npc_says(_"The bots have killed our mother. Now we kill them.")
+	npc_says(_"No mercy. We hunt them.")
+	hide(1) show(2, 11, 13)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Can I help you somehow?"
-NPC=_"Nein. Let us die as warriors. That is all we ask for."
 LuaCode={
-    hide(2)
-    show(3)
+	npc_says(_"Nein. Let us die as warriors. That is all we ask for.")
+	hide(2) show(3)
 }
 ----------------------------------------------------------------------
 
@@ -68,37 +61,35 @@ Nr=3  Text=_"If you keep standing here more bots will come and they will kill yo
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     next(4)
-    hide(3)
+	hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"If you keep standing here more bots will come and --"
-NPC=_"Sehr gut. Let them come. We are ready."
-NPC=_"What a beautiful day. Yes."
 LuaCode={
-    hide(4)
-    show(5)
+	npc_says(_"Sehr gut. Let them come. We are ready.")
+	npc_says(_"What a beautiful day. Yes.")
+	hide(4) show(5)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"You are insane. Get out of here while you still can."
-NPC=_"No."
-NPC=_"Every day since the mess started I come here to fight the bots."
-NPC=_"Today will be no different."
-NPC=_"Do not try to stop us. We have our rifles loaded."
 LuaCode={
-    hide(5)
-    show(7)
+	npc_says(_"No.")
+	npc_says(_"Every day since the mess started I come here to fight the bots.")
+	npc_says(_"Today will be no different.")
+	npc_says(_"Do not try to stop us. We have our rifles loaded.")
+	hide(5) show(7)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"Where can I get some help?"
-NPC=_"Nowhere. This is the end of the world. There is no help."
-NPC=_"There is a city a bit south from here, but if I were you, I would not go there."
-NPC=_"The Rot Guard is the ruler there, and cruelty is their solution to everything."
-NPC=_"Real freedom is really dead."
 LuaCode={
-    hide(6)
+	npc_says(_"Nowhere. This is the end of the world. There is no help.")
+	npc_says(_"There is a city a bit south from here, but if I were you, I would not go there.")
+	npc_says(_"The Rot Guard is the ruler there, and cruelty is their solution to everything.")
+	npc_says(_"Real freedom is really dead.")
+	hide(6)
 }
 ----------------------------------------------------------------------
 
@@ -106,64 +97,51 @@ Nr=7  Text=_"You guys are totally nuts. Get a life."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
     next(8)
-    hide(7)
+	hide(7)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"You guys are tota --"
-NPC=_"WHAT?! What is it that you want to say?"
 LuaCode={
-    next(9)
-    hide(8)
-}
-----------------------------------------------------------------------
-
-Nr=9  Text=_"Erm... I --"
-NPC=_"WHAT!? SPIT IT OUT!"
-LuaCode={
-    next(10)
-    hide(9)
-}
-----------------------------------------------------------------------
-
-Nr=10  Text=_"Er... You guys are really great and I admire your bravery in the face of certain death."
-NPC=_"Donnerwetter, you are a funny one."
-NPC=_"I hope that one day we shall meet again, maybe in a better time."
-NPC=_"Maybe then you will tell us other gut jokes that you know."
-NPC=_"Maybe one day..."
-LuaCode={
-    hide(10)
+	npc_says(_"WHAT?! What is it that you want to say?")
+	tux_says(_"Erm... I --")
+	npc_says(_"WHAT!? SPIT IT OUT!")
+	tux_says(_"Er... You guys are really great and I admire your bravery in the face of certain death.")
+	npc_says(_"Donnerwetter, you are a funny one.")
+	npc_says(_"I hope that one day we shall meet again, maybe in a better time.")
+	npc_says(_"Maybe then you will tell us other gut jokes that you know.")
+	npc_says(_"Maybe one day...")
+	hide(8)
 }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"What did you use to do before you became a hunter?"
-NPC=_"I was a bot constructor. Built the killers of my mother."
-NPC=_"Now I sell the parts that I remove from the bots to buy more ammunition and food."
 LuaCode={
-    hide(11)
-    show(12)
+	npc_says(_"I was a bot constructor. Built the killers of my mother.")
+	npc_says(_"Now I sell the parts that I remove from the bots to buy more ammunition and food.")
+	hide(11) show(12)
 }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"I want to know how to extract modules from the bots."
-NPC=_"Yes."
-NPC=_"I will sell the information for a lot of cybergeld."
-NPC=_"Interested?"
 LuaCode={
+	npc_says(_"Yes.")
+	npc_says(_"I will sell the information for a lot of cybergeld.")
+	npc_says(_"Interested?")
     run_subdialog("subdlg_Darwin.dialog")
 }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"Can I join your hunt?"
-NPC=_"Nein. Our problem. Our hunt."
 LuaCode={
-    hide(13)
+	npc_says(_"Nein. Our problem. Our hunt.")
+	hide(13)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be going then."
-NPC=_"Goodbye and viel gluck."
 LuaCode={
+	npc_says(_"Goodbye and viel gluck.")
     end_dialog()
 }
 ----------------------------------------------------------------------
