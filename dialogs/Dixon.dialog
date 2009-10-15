@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,8 +29,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX")
 
-FirstTime LuaCode={ show(0, 99) }
-
+FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
     if (has_item_backpack("Dixon's Toolbox") > 0) then
         if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
@@ -62,6 +60,7 @@ EveryTime LuaCode={
     else end
 
     if (has_cookie("dixon_saved_and_talked")) then hide(46) else end
+	show(99)
 }
 ----------------------------------------------------------------------
 
@@ -294,7 +293,7 @@ LuaCode={
     end_quest("The yellow toolkit")
     add_diary_entry("The yellow toolkit", "I sold the toolkit to Dixon for a nice sum of money. Life is good.")
     del_item_backpack("Dixon's Toolbox", 1)
-    hide(38, 41)
+	hide(38, 41)
 }
 ----------------------------------------------------------------------
 
