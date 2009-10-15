@@ -88,7 +88,7 @@ LuaCode={
 
 Nr=5  Text=_"Arena? What arena?"
 LuaCode={
-	npc_says(_"The underground arena.")
+	npc_says(_"The underground arena. With holographic bots to train combat techniques against.")
 	npc_says(_"Wanna fight?")
 	hide(5) show(6, 12, 13)
 }
@@ -98,6 +98,7 @@ Nr=6  Text=_"Yeah. I want to fight."
 LuaCode={
 	npc_says(_"Good. I opened up the south arena gate for you, so just climb down the ladder.")
 	npc_says(_"But remember, the door out won't be opened until you kill all the bots.")
+	npc_says(_"And be careful, your brain get so fooled by what happens that you get physical damaged for real. So even if the enemies are only holograms, they can still hurt you and even kill you.")
     add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
     change_obstacle_state("NoviceArenaAccessDoor", "opened")
 	hide(6, 12, 13)

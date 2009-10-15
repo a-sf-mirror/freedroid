@@ -457,7 +457,7 @@ Allowed Type of Random Droid for this level: 751
 SForce: T=598 Fixed=0 Marker=1030 Friendly=0 StartLabel="MasterArenaBot1StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Melissa.I" attack_run_only_when_direct_line="no"
 SForce: T=615 Fixed=0 Marker=1030 Friendly=0 StartLabel="MasterArenaBot2StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"ILOVEYOU" attack_run_only_when_direct_line="no"
 SForce: T=629 Fixed=0 Marker=1030 Friendly=0 StartLabel="MasterArenaBot3StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"W32.YourDoom" attack_run_only_when_direct_line="no"
-SForce: T=711 Fixed=0 Marker=1030 Friendly=0 StartLabel="MasterArenaBot4StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"CIH.1103" attack_run_only_when_direct_line="no"
+SForce: T=999 Fixed=0 Marker=1030 Friendly=0 StartLabel="MasterArenaBot4StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"CIH.1103" attack_run_only_when_direct_line="no"
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
