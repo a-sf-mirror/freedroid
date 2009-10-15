@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,152 +29,142 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 3, 99)
-}
-
+FirstTime LuaCode={	show(0, 3) }
 EveryTime LuaCode={
-    if has_cookie("drank_all_ewald_had") then
-	-- enable tux to get a bit of water for free cooling
-	show(14)
-    end;
+    if has_cookie("drank_all_ewald_had") then show(14) else end;
+	show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi. You look really happy."
-NPC=_"Hey! I'm Ewald. I'm a bartender."
-NPC=_"I used to do a lot of drugs, and I destroyed my brain."
-NPC=_"I'm not too smart now, but I'm very happy all the time!"
-NPC=_"Want something to drink?"
 LuaCode={
-    hide(0)
-    show(1, 2, 13)
+	npc_says(_"Hey! I'm Ewald. I'm a bartender.")
+	npc_says(_"I used to do a lot of drugs, and I destroyed my brain.")
+	npc_says(_"I'm not too smart now, but I'm very happy all the time!")
+	npc_says(_"Want something to drink?")
+	hide(0) show(1, 2, 13)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"How is your business doing?"
-NPC=_"Nah, No darn good at all."
-NPC=_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high."
-NPC=_"No one wants to pay 499 triangles for bottom shelf swill that even Bender would not drink..."
-NPC=_"The tax is quite brutal as well. And the Red Guard always demands discounts too."
-NPC=_"Life is tough. I am still happy though."
 LuaCode={
-    hide(1)
+	npc_says(_"Nah, No darn good at all.")
+	npc_says(_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high.")
+	npc_says(_"No one wants to pay 499 triangles for bottom shelf swill that even Bender would not drink...")
+	npc_says(_"The tax is quite brutal as well. And the Red Guard always demands discounts too.")
+	npc_says(_"Life is tough. I am still happy though.")
+	hide(1)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Are you selling something other than drinks?"
-NPC=_"Yeah, I have some junk here... Want to see?"
 LuaCode={
+	npc_says(_"Yeah, I have some junk here... Want to see?")
     trade_with("Ewald")
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"I could use a drink. What is there to be had?"
-NPC=_"Well... We are a bit short on supplies right now... Erm... AH! I know!"
-NPC=_"I have WATER!"
 LuaCode={
-    hide(3)
-    show(4, 5, 6)
+	npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
+	npc_says(_"I have WATER!")
+	hide(3)
+	show(4, 5, 6)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"I want double water on the rocks. Stirred, not shaken."
-NPC=_"Here you go. That one is on the house. And if the water is not enough, just ask me for more."
 LuaCode={
-    hide(4, 5, 6)
-    show(9)
+	npc_says(_"Here you go. That one is on the house. And if the water is not enough, just ask me for more.")
+	hide(4, 5, 6) show(9)
 }
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"Long Island iced water please."
-NPC=_"Here you go."
 LuaCode={
-    hide(4, 5, 6)
-    show(8)
+	npc_says(_"Here you go.")
+	hide(4, 5, 6) show(8)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"I want something cheap... Give me some fortified water."
-NPC=_"Eh... Sure, as you wish. Here you go."
 LuaCode={
-    hide(4, 5, 6)
-    show(7)
+	npc_says(_"Eh... Sure, as you wish. Here you go.")
+	hide(4, 5, 6) show(7)
 }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_"Ugh... Ahh... I like it. Give me some more of that."
-NPC=_"Uh... Sure..."
 LuaCode={
-    hide(7)
-    show(10)
+	npc_says(_"Uh... Sure...")
+    heat_tux(-1000);
+	hide(7) show(10)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"Ahh... Fresh water! Give me some more of that."
-NPC=_"Yeah, I thought you would like it. Here is more."
 LuaCode={
-    hide(8)
-    show(10)
+	npc_says(_"Yeah, I thought you would like it. Here is more.")
+    heat_tux(-1000);
+	hide(8) show(10)
 }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"Hmm... Lots of ice. Give me one more double water, but now without any ice."
-NPC=_"One double water coming up."
 LuaCode={
-    hide(9)
-    show(10)
+	npc_says(_"One double water coming up.")
+    heat_tux(-1000);
+	hide(9)	show(10)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"MORE! I want more water!"
-NPC=_"Erm... Ok... Here, have some of my special, water colada."
 LuaCode={
-    hide(10)
-    show(11)
+	npc_says(_"Erm... Ok... Here, have some of my special, water colada.")
+    heat_tux(-1000);
+	hide(10) show(11)
 }
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"I am really thirsty! I want water."
-NPC=_"Well, you drank all my water, so you cannot have any more. There is none left."
-NPC=_"I heard Linarians can drink a lot of water, but seven liters..."
 LuaCode={
-    hide(11)
-    show(12)
+	npc_says(_"Well, you drank all my water, so you cannot have any more. There is none left.")
+	npc_says(_"I heard Linarians can drink a lot of water, but seven liters...")
+	hide(11) show(12)
 }
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
-NPC=_"Eh... I think you've had enough... Maybe you should just go for a walk for now?"
-NPC=_"You have had everything that I had."
 LuaCode={
-    hide(12)
+	npc_says(_"Eh... I think you've had enough... Maybe you should just go for a walk for now?")
+	npc_says(_"You have had everything that I had.")
     add_cookie("drank_all_ewald_had")
+	hide(12)
 }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"Any idea where I can find some entertainment here?"
-NPC=_"Well... Erm... No."
-NPC=_"What the bots did not smash, the Red Guard taxed."
-NPC=_"Fun is kinda dead right now."
-NPC=_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot..."
-NPC=_"Now THAT'S fun, if you ask me."
 LuaCode={
-    hide(13)
+	npc_says(_"Well... Erm... No.")
+	npc_says(_"What the bots did not smash, the Red Guard taxed.")
+	npc_says(_"Fun is kinda dead right now.")
+	npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
+	npc_says(_"Now THAT'S fun, if you ask me.")
+	hide(13)
 }
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"Hey, I could use a refreshing drink!"
-NPC=_"Here, have a watery mary."
 LuaCode={
+	npc_says(_"Here, have a watery mary.")
     heat_tux(-1000);
-    hide(14);
+	hide(14);
 }
 -----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
-NPC=_"Goodbye and remember: My bar is always open."
 LuaCode={
+	npc_says(_"Goodbye and remember: My bar is always open.")
     end_dialog()
 }
 ----------------------------------------------------------------------

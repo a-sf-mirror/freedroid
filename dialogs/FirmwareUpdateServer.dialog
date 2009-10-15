@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,52 +29,39 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0)
-}
-
+FirstTime LuaCode={ }
+EveryTime LuaCode={ next(0) show(1, 3, 99) }
 ----------------------------------------------------------------------
-
 
 Nr=0  Text="THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Welcome to MS firmware upgrade server for region #54658."
-NPC=_"Please select action"
 LuaCode={
-    hide(0, 3)
-    show(1, 2, 99)
+	npc_says(_"Welcome to MS firmware upgrade server for region #54658.")
+	npc_says(_"Please select action")
 }
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Get current OS version"
-NPC=_"Currently deployed firmware is v. 5.0.8+worldto-nogpl."
 LuaCode={
-    hide(1)
+	if (not has_cookie("uploaded_faulty_firmware")) then 
+		npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
+	else 
+		npc_says(_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl")
+	    set_bot_state("free")
+	end;
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Propagate firmware update"
-NPC=_"Compressing image...."
-NPC=_"Advertising update to clients..."
-NPC=_"Waiting for all connections...."
-NPC=_"..."
-NPC=_"..."
-NPC=_"Firmware update propagated!"
+Nr=3  Text=_"Propagate firmware update"
 LuaCode={
+	npc_says(_"Compressing image....")
+	npc_says(_"Advertising update to clients...")
+	npc_says(_"Waiting for all connections....")
+	npc_says(_"...")
+	npc_says(_"...")
+	npc_says(_"Firmware update propagated!")
+    add_cookie("uploaded_faulty_firmware")
     end_quest("Propagating a faulty firmware")
-    hide(1, 2)
-    show(3)
-}
-----------------------------------------------------------------------
-
-Nr=3  Text=_"Get current OS version"
-NPC=_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl"
-LuaCode={
-    set_bot_state("free")
-    hide(1, 2)
-    show(3)
 }
 ----------------------------------------------------------------------
 
