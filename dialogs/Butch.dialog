@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,199 +29,171 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
-
-----------------------------------------------------------------------
-
-
-Nr=0  Text=_"Hi! I'm new here."
-NPC=_"Yeah, what do you want newbie?"
-LuaCode={
-    hide(0)
-    show(1, 4)
-}
-----------------------------------------------------------------------
-
-Nr=1  Text=_"Say 'newbie' again and I will rip your spine out."
-NPC=_"Fine, newbie. You are greener than green and a total newbie."
-NPC=_"You can start ripping out my spine now."
-NPC=_"Ha!"
-LuaCode={
-    hide(1)
-    show(2)
-}
-----------------------------------------------------------------------
-
-Nr=2  Text=_"I really mean it. I will kill you for that insult."
-NPC=_"Go for it."
-LuaCode={
-    hide(2)
-    show(3)
-}
-----------------------------------------------------------------------
-
-Nr=3  Text=_"BANZAI! DIE DIE DIE!"
-NPC=_"Wha --"
-LuaCode={
-    hide(3)
-    drop_dead()
-    everybody_hostile()
-}
-----------------------------------------------------------------------
-
-Nr=4  Text=_"And who are you?"
-NPC=_"Butch... The arena master."
-LuaCode={
-    hide(1, 4)
-    show(5)
-}
-----------------------------------------------------------------------
-
-Nr=5  Text=_"Arena? What arena?"
-NPC=_"The underground arena."
-NPC=_"Wanna fight?"
-LuaCode={
-    hide(5)
-    show(6, 12, 13)
-}
-----------------------------------------------------------------------
-
-Nr=6  Text=_"Yeah. I want to fight."
-NPC=_"Good. I opened up the south arena gate for you, so just climb down the ladder."
-NPC=_"But remember, the door out won't be opened until you kill all the bots."
-LuaCode={
-    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-    change_obstacle_state("NoviceArenaAccessDoor", "opened")
-    hide(6, 12, 13)
-}
-----------------------------------------------------------------------
-
-Nr=7  Text=_"The bots are dead."
-NPC=_"Good for you."
-NPC=_"You are a total newbie. But, a good newbie."
-NPC=_"I will say a good word to Spencer about this."
-LuaCode={
-    add_diary_entry("Novice Arena", "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
-    hide(7, 8)
-    show(9, 11)
-}
-----------------------------------------------------------------------
-
-Nr=8  Text=_"I thought I was going to fight you, coward."
-NPC=_"I NEVER said that, newbie."
-NPC=_"You wanted a fight, and you got one."
-NPC=_"I offered a fight, and you wanted that."
-NPC=_"There is nothing more to say, newbie."
-LuaCode={
-    hide(7, 8)
-    show(9, 11)
-}
-----------------------------------------------------------------------
-
-Nr=9  Text=_"I want a bigger challenge."
-NPC=_"Newbie, I have a second arena."
-NPC=_"You will die if you go there."
-NPC=_"I pity you, silly bird. Don't go there."
-NPC=_"But if you really want it, the door is open."
-LuaCode={
-    add_quest("Time to say goodnight", "I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to enter the teleport and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
-    change_obstacle_state("MasterArenaAccessDoor", "opened")
-    hide(9)
-}
-----------------------------------------------------------------------
-
-Nr=10  Text=_"The master arena is clear."
-NPC=_"What!? Impossible! No one ever survives the second arena!"
-NPC=_"One has to be insane to try the second arena."
-NPC=_"You are not a newbie, but you are a TOTAL IDIOT!"
-NPC=_"I pity you, poor fool. You will die young."
-LuaCode={
-    add_xp(8000)
-    add_diary_entry("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
-    hide(10)
-}
-----------------------------------------------------------------------
-
-Nr=11  Text=_"What is wrong with you? Why do you keep calling me a newbie?"
-NPC=_"Beacuse you ARE a newbie, newbie!"
-LuaCode={
-    hide(11)
-}
-----------------------------------------------------------------------
-
-Nr=12  Text=_"Why the hell are you organizing fights? Enough people have died already!"
-NPC=_"I have a very good reason not to tell you."
-NPC=_"Not like someone as inexperienced as you could understand it anyway."
-LuaCode={
-    hide(12)
-}
-----------------------------------------------------------------------
-
-Nr=13  Text=_"No way! Violence is wrong! Make love not war!"
-NPC=_" . . ."
-LuaCode={
-    hide(6, 13)
-    show(14)
-}
-----------------------------------------------------------------------
-
-Nr=14  Text=_"Roses, not destruction!"
-NPC=_" . . ."
-LuaCode={
-    hide(14)
-    show(15)
-}
-----------------------------------------------------------------------
-
-Nr=15  Text=_"End the violence! All blood is red!"
-NPC=_"Hey, the bots bleed black. With oil."
-LuaCode={
-    hide(15)
-    next(16)
-}
-----------------------------------------------------------------------
-
-Nr=16  Text=_"But... But... "
-NPC=_"No 'but' about it, newbie."
-NPC=_"The bots bleed black."
-LuaCode={
-    next(17)
-}
-----------------------------------------------------------------------
-
-Nr=17  Text=_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!"
-NPC=_"Great. Get in the door, newbie."
-LuaCode={
-    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-    change_obstacle_state("NoviceArenaAccessDoor", "opened")
-}
-----------------------------------------------------------------------
-
-Nr=50  Text="CHECK FOR FIRST ARENA VICTORY"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ 
     if (done_quest("Novice Arena")) then 
         if (not has_cookie("butch_enable_first_set")) then 
             add_cookie("butch_enable_first_set")
-            show(7, 8)
+			show(7, 8)
         else end
     else end
     if (done_quest("Time to say goodnight")) then 
         if (not has_cookie("butch_enable_second_set")) then
             add_cookie("butch_enable_second_set")
-            show(10)
+			show(10)
         else end
     else end
+	show(99) 
 }
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
+----------------------------------------------------------------------
 
+Nr=0  Text=_"Hi! I'm new here."
+LuaCode={
+	npc_says(_"Yeah, what do you want newbie?")
+	hide(0) show(1, 4)
+}
+----------------------------------------------------------------------
+
+Nr=1  Text=_"Say 'newbie' again and I will rip your spine out."
+LuaCode={
+	npc_says(_"Fine, newbie. You are greener than green and a total newbie.")
+	npc_says(_"You can start ripping out my spine now.")
+	npc_says(_"Ha!")
+	hide(1) show(2)
+}
+----------------------------------------------------------------------
+
+Nr=2  Text=_"I really mean it. I will kill you for that insult."
+LuaCode={
+	npc_says(_"Go for it.")
+	hide(2) show(3)
+}
+----------------------------------------------------------------------
+
+Nr=3  Text=_"BANZAI! DIE DIE DIE!"
+LuaCode={
+	npc_says(_"Wha --")
+    drop_dead()
+    everybody_hostile()
+	hide(3)
+}
+----------------------------------------------------------------------
+
+Nr=4  Text=_"And who are you?"
+LuaCode={
+	npc_says(_"Butch... The arena master.")
+	hide(1, 4) show(5)
+}
+----------------------------------------------------------------------
+
+Nr=5  Text=_"Arena? What arena?"
+LuaCode={
+	npc_says(_"The underground arena.")
+	npc_says(_"Wanna fight?")
+	hide(5) show(6, 12, 13)
+}
+----------------------------------------------------------------------
+
+Nr=6  Text=_"Yeah. I want to fight."
+LuaCode={
+	npc_says(_"Good. I opened up the south arena gate for you, so just climb down the ladder.")
+	npc_says(_"But remember, the door out won't be opened until you kill all the bots.")
+    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+    change_obstacle_state("NoviceArenaAccessDoor", "opened")
+	hide(6, 12, 13)
+}
+----------------------------------------------------------------------
+
+Nr=7  Text=_"The bots are dead."
+LuaCode={
+	npc_says(_"Good for you.")
+	npc_says(_"You are a total newbie. But, a good newbie.")
+	npc_says(_"I will say a good word to Spencer about this.")
+    add_diary_entry("Novice Arena", "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
+	hide(7, 8) show(9, 11)
+}
+----------------------------------------------------------------------
+
+Nr=8  Text=_"I thought I was going to fight you, coward."
+LuaCode={
+	npc_says(_"I NEVER said that, newbie.")
+	npc_says(_"You wanted a fight, and you got one.")
+	npc_says(_"I offered a fight, and you wanted that.")
+	npc_says(_"There is nothing more to say, newbie.")
+	hide(7, 8) show(9, 11)
+}
+----------------------------------------------------------------------
+
+Nr=9  Text=_"I want a bigger challenge."
+LuaCode={
+	npc_says(_"Newbie, I have a second arena.")
+	npc_says(_"You will die if you go there.")
+	npc_says(_"I pity you, silly bird. Don't go there.")
+	npc_says(_"But if you really want it, the door is open.")
+    add_quest("Time to say goodnight", "I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to enter the teleport and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
+    change_obstacle_state("MasterArenaAccessDoor", "opened")
+	hide(9)
+}
+----------------------------------------------------------------------
+
+Nr=10  Text=_"The master arena is clear."
+LuaCode={
+	npc_says(_"What!? Impossible! No one ever survives the second arena!")
+	npc_says(_"One has to be insane to try the second arena.")
+	npc_says(_"You are not a newbie, but you are a TOTAL IDIOT!")
+	npc_says(_"I pity you, poor fool. You will die young.")
+    add_xp(8000)
+    add_diary_entry("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
+	hide(10)
+}
+----------------------------------------------------------------------
+
+Nr=11  Text=_"What is wrong with you? Why do you keep calling me a newbie?"
+LuaCode={
+	npc_says(_"Beacuse you ARE a newbie, newbie!")
+	hide(11)
+}
+----------------------------------------------------------------------
+
+Nr=12  Text=_"Why the hell are you organizing fights? Enough people have died already!"
+LuaCode={
+	npc_says(_"I have a very good reason not to tell you.")
+	npc_says(_"Not like someone as inexperienced as you could understand it anyway.")
+	hide(12)
+}
+----------------------------------------------------------------------
+
+Nr=13  Text=_"No way! Violence is wrong! Make love not war!"
+LuaCode={
+	npc_says(_" . . .")
+	hide(6, 13) show(14)
+}
+----------------------------------------------------------------------
+
+Nr=14  Text=_"Roses, not destruction!"
+LuaCode={
+	npc_says(_" . . .")
+	hide(14) show(15)
+}
+----------------------------------------------------------------------
+
+Nr=15  Text=_"End the violence! All blood is red!"
+LuaCode={
+	npc_says(_"Hey, the bots bleed black. With oil.")
+	tux_says(_"But... But...")
+	npc_says(_"No 'but' about it, newbie.")
+	npc_says(_"The bots bleed black.")
+	tux_says(_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!")
+	npc_says(_"Great. Get in the door, newbie.")
+    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+    change_obstacle_state("NoviceArenaAccessDoor", "opened")
+	hide(15)
+}
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be going then."
-NPC=_"Sure."
 LuaCode={
+	npc_says(_"Sure.")
     end_dialog()
 }
 ----------------------------------------------------------------------

@@ -28,140 +28,164 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0, 99) }
+FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
 	if (has_quest("Bender's problem")) then 
 		if (done_quest("Bender's problem")) then next(13)
 		else
 			hide(1, 2, 3, 4, 6, 7, 8)
 			if (has_item_backpack("Brain Enlargement Pills Antidote") > 0) then
-				hide(5, 10, 11, 12, 50)
-				show(9)
+				hide(5, 10, 11, 12, 50)	show(9)
 			else 
-				hide(9)
-				show(12)
+				hide(9)	show(12)
 			end
 		end
 	else end
+	show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hello! I'm new here."
-NPC=_"Hello. I'm Bender, the dead man of this camp."
-LuaCode={ hide(0) show(1) }
+LuaCode={ 
+	npc_says(_"Hello. I'm Bender, the dead man of this camp.")
+	hide(0) show(1)
+}
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
-NPC=_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills."
-NPC=_"And yet, I might be dead soon. The doc warned me, but I didn't listen. Damn."
-LuaCode={ hide(1) show(2, 3) }
+LuaCode={ 
+	npc_says(_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills.")
+	npc_says(_"And yet, I might be dead soon. The doc warned me, but I didn't listen. Damn.")
+	hide(1) show(2, 3)
+}
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"You took too many strength pills and now you're sick?"
-NPC=_"Nah. The strength pills were fine. They made me strong. The doc said so."
-NPC=_"It was the brain enlargement pills. They did me no good, man."
-LuaCode={ hide(2, 3) show(4, 10) }
+LuaCode={
+	npc_says(_"Nah. The strength pills were fine. They made me strong. The doc said so.")
+	npc_says(_"It was the brain enlargement pills. They did me no good, man.")
+	hide(2, 3) show(4, 10)
+}
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"What did make you so sick?"
-NPC=_"It was the brain enlargement pills. They did me no good, man."
-LuaCode={ hide(2, 3) show(4, 10) }
+LuaCode={
+	npc_says(_"It was the brain enlargement pills. They did me no good, man.")
+	hide(2, 3) show(4, 10)
+}
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"Brain enlargement pills? Sounds ridiculous!"
-NPC=_"You know man, I got those offers everybody gets."
-NPC=_"They offer some brain enlargement pills to enhance brain performance."
-NPC=_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'"
-NPC=_"And everybody in the camp said I was dumb, which is not true."
-NPC=_"So I thought these pills might make them think differently about me."
-LuaCode={ hide(4) show(5, 6) }
+LuaCode={
+	npc_says(_"You know man, I got those offers everybody gets.")
+	npc_says(_"They offer some brain enlargement pills to enhance brain performance.")
+	npc_says(_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'")
+	npc_says(_"And everybody in the camp said I was dumb, which is not true.")
+	npc_says(_"So I thought these pills might make them think differently about me.")
+	hide(4) show(5, 6)
+}
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"But if you aren't dumb, why the brain enlargement pills?"
-NPC=_"Because they said I was dumb. So I had to do something about it, eh?"
-LuaCode={ hide(5) }
+LuaCode={
+	npc_says(_"Because they said I was dumb. So I had to do something about it, eh?")
+	hide(5)
+}
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"Isn't there some doctor in town who could cure you?"
-NPC=_"Yeah, the doc could help. But he won't. I've threatened him, but he won't."
-NPC=_"He's so angry cause I didn't listen. He warned me about the brain enlargement pill offers."
-NPC=_"They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man."
-LuaCode={ hide(6) show(7, 8) }
+LuaCode={ 
+	npc_says(_"Yeah, the doc could help. But he won't. I've threatened him, but he won't.")
+	npc_says(_"He's so angry cause I didn't listen. He warned me about the brain enlargement pill offers.")
+	npc_says(_"They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man.")
+	hide(6) show(7, 8)
+}
 ----------------------------------------------------------------------
 
 Nr=7  Text=_"Maybe I can help you somehow?"
-NPC=_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left."
-NPC=_"Also I could vote for you if you seek to join the guard of the town."
-NPC=_"Just get me some cure, and I'll be forever grateful!"
 LuaCode={
+	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
+	npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
+	npc_says(_"Just get me some cure, and I'll be forever grateful!")
     add_quest("Bender's problem", "I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
-    hide(7, 8)
-    show(11)
+	hide(7, 8) show(11)
 }
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"I'm sorry, but it looks like there's nothing I could do for you."
-NPC=_"Of course not. You're not a doctor. Only the doctor has the right medicine."
-NPC=_"But this rat would rather let me die!"
-NPC=_"I'll rip his guts out as soon as I get my hands on him, man."
-LuaCode={ hide(7, 8) }
+LuaCode={ 
+	npc_says(_"Of course not. You're not a doctor. Only the doctor has the right medicine.")
+	npc_says(_"But this rat would rather let me die!")
+	npc_says(_"I'll rip his guts out as soon as I get my hands on him, man.")
+	hide(7, 8)
+}
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"I've got your medicine. With best wishes from the doctor."
-NPC=_"Wow, you really did it! I guess you beat the hell out of him."
-NPC=_"He wouldn't help me even after I pounded him a bit. A big bit."
-NPC=_"Man, you are the greatest hero!"
-NPC=_"Now, take this as a reward. And you can be sure that I'll vote for you if you seek membership in the Red Guard!"
-NPC=_"Thanks, man!"
 LuaCode={
+	npc_says(_"Wow, you really did it! I guess you beat the hell out of him.")
+	npc_says(_"He wouldn't help me even after I pounded him a bit. A big bit.")
+	npc_says(_"Man, you are the greatest hero!")
+	npc_says(_"Now, take this as a reward. And you can be sure that I'll vote for you if you seek membership in the Red Guard!")
+	npc_says(_"Thanks, man!")
 	change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
     end_quest("Bender's problem")
     add_xp(150)
     del_item_backpack("Brain Enlargement Pills Antidote", 1)
     add_item("Strength Pill",2)
     add_diary_entry("Bender's problem", "Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
-    hide(9)
+	hide(9)
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"Maybe taking the brain enlargement pills really was stupid."
-NPC=_"WHAT? Did you just say I'm stupid?"
-NPC=_"Don't say it, man."
-NPC=_"I can kill you so much, that no one will recognize you!"
-LuaCode={ hide(10) show(50) }
+LuaCode={
+	npc_says(_"WHAT? Did you just say I'm stupid?")
+	npc_says(_"Don't say it, man.")
+	npc_says(_"I can kill you so much, that no one will recognize you!")
+	hide(10) show(50)
+}
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"Where can I find this doctor?"
-NPC=_"He's right inside this building. I'm waiting here for him, man."
-NPC=_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!"
-NPC=_"Yes, he'll get a good beating. That will make him reconsider! That rat!"
-LuaCode={ hide(11) }
+LuaCode={
+	npc_says(_"He's right inside this building. I'm waiting here for him, man.")
+	npc_says(_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!")
+	npc_says(_"Yes, he'll get a good beating. That will make him reconsider! That rat!")
+	hide(11)
+}
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"About that medicine that you need..."
-NPC=_"What have you got?"
-NPC=_"What, you have nothing?"
-NPC=_"Man, what are you doing here? Get the medicine! I need it now!"
-LuaCode={ hide(12) }
+LuaCode={ 
+	npc_says(_"What have you got?")
+	npc_says(_"What, you have nothing?")
+	npc_says(_"Man, what are you doing here? Get the medicine! I need it now!")
+	hide(12)
+}
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"How are you doing?"
-NPC=_"Much better. I'm cured. Thanks again man! I'll vote for you if you want into the city guard! You're a good guy, man!"
+LuaCode={ 
+	npc_says(_"Much better. I'm cured. Thanks again man! I'll vote for you if you want into the city guard! You're a good guy, man!")
+}
 ----------------------------------------------------------------------
 
 Nr=50  Text=_"Yeah, it was a totally idiotic idea to take those pills."
-NPC=_"What? I'm not an idiot! Understood?"
-NPC=_"No one says I'm stupid! I'm NOT STUPID!"
-NPC=_"I'LL BEAT YOU TO SPLINTERS!"
 LuaCode={
+	npc_says(_"What? I'm not an idiot! Understood?")
+	npc_says(_"No one says I'm stupid! I'm NOT STUPID!")
+	npc_says(_"I'LL BEAT YOU TO SPLINTERS!")
     break_off_and_attack()
-    hide(50)
+	hide(50)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
-NPC=_"Later, man!"
-LuaCode={ end_dialog() }
+LuaCode={ 
+	npc_says(_"Later, man!")
+	end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

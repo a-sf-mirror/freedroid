@@ -82,7 +82,7 @@ LuaCode={
 Nr=99  Text=_"See you later."
 LuaCode={
 	npc_says(_"Resuming guard program.")
-    hide(4)
+	hide(4)
     end_dialog()
 }
 ----------------------------------------------------------------------
