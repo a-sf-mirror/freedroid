@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,159 +29,182 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(2, 6, 11, 13, 99) 
-}
-
+FirstTime LuaCode={	show(2, 6, 11, 13) }
 EveryTime LuaCode={
-    if (partner_started()) then
-	npc_says("Oh, thank heavens! You are still alive. Maybe all hope is not lost.")
-    end
+	if (partner_started()) then
+		npc_says("Oh, thank heavens! You are still alive. Maybe all hope is not lost.")
+	else end
+	show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Who am I?"
-NPC=_"Oh dear. This is not good. Not good."
-NPC=_"*sigh* Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here."
-NPC=_"It will all come back to you in a few hours, but I guess I will make it easier for you if I say what I know."
-NPC=_"You are a Linarian, a species not native to this planet. Twenty of you arrived here close to a century ago."
-NPC=_"There was a... misunderstanding of some sort and humans welcomed your expedition with blaster fire. A terrible mistake on our part."
-NPC=_"A few of you survived the slaughter and went into hiding and obscurity."
-NPC=_"During that time Linarians became known as helpers and heroes. Of course now most people think it all was just a fairy tale."
 LuaCode={
+	npc_says(_"Oh dear. This is not good. Not good.")
+	npc_says(_"*sigh* Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here.")
+	npc_says(_"It will all come back to you in a few hours, but I guess I will make it easier for you if I say what I know.")
+	npc_says(_"You are a Linarian, a species not native to this planet. Twenty of you arrived here close to a century ago.")
+	npc_says(_"There was a... misunderstanding of some sort and humans welcomed your expedition with blaster fire. A terrible mistake on our part.")
+	npc_says(_"A few of you survived the slaughter and went into hiding and obscurity.")
+	npc_says(_"During that time Linarians became known as helpers and heroes. Of course now most people think it all was just a fairy tale.")
     npc_says(_"If the computer is not lying, then your name is " .. get_player_name() .. ".")
-    hide(2)
-    show(7)
+	hide(2) show(7)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"How did the war start?"
-NPC=_"It is a long story. It all happened five months ago."
-NPC=_"I was at a protest against MegaSys, a computer company. They killed free software by finding a loophole in the GPL3.14 licence. It all became their property. Bastards."
-NPC=_"Lots of people were angry about this. Protests and riots spread in waves all around the world."
-NPC=_"When the police bots approached at dawn, we thought that they were going to simply disperse the crowds. Instead, they started killing us."
-NPC=_"I broke into a parked hover car and used it to escape. The sight from the air was horrible."
-NPC=_"The city was full of flames, flashes of gunfire and screaming people. That image still does not let me sleep at night."
-NPC=_"First we made them, and then they unmade us. How ironic."
-LuaCode={ next(5) hide(3) show(15) }
+LuaCode={
+	npc_says(_"It is a long story. It all happened five months ago.")
+	npc_says(_"I was at a protest against MegaSys, a computer company. They killed free software by finding a loophole in the GPL3.14 licence. It all became their property. Bastards.")
+	npc_says(_"Lots of people were angry about this. Protests and riots spread in waves all around the world.")
+	npc_says(_"When the police bots approached at dawn, we thought that they were going to simply disperse the crowds. Instead, they started killing us.")
+	npc_says(_"I broke into a parked hover car and used it to escape. The sight from the air was horrible.")
+	npc_says(_"The city was full of flames, flashes of gunfire and screaming people. That image still does not let me sleep at night.")
+	npc_says(_"First we made them, and then they unmade us. How ironic.")
+	hide(3) show(5, 15)
+}
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"What happened then?"
-NPC=_"I got shot down and I crashed a few kilometers away from here."
-NPC=_"Later I learned that the bots started attacking all around the globe. The journalists called it 'The Great Assault'. The name stuck."
-NPC=_"Then the bots started jamming our broadcasts and long distance communication became impossible. I have no idea what happened in the world after that. We are cut off." 
-NPC=_"For all I know the war might be already over."
-LuaCode={ hide(5) }
+LuaCode={
+	npc_says(_"I got shot down and I crashed a few kilometers away from here.")
+	npc_says(_"Later I learned that the bots started attacking all around the globe. The journalists called it 'The Great Assault'. The name stuck.")
+	npc_says(_"Then the bots started jamming our broadcasts and long distance communication became impossible. I have no idea what happened in the world after that. We are cut off.")
+	npc_says(_"For all I know the war might be already over.")
+	hide(5)
+}
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"Where am I?"
-NPC=_"The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault."
-NPC=_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However, I'm alone here with only 1 droid for security."
-NPC=_"There are just too few humans alive and awake to allow us to properly protect this place, and nobody else is foolish enough to stay out here alone." 
-NPC=_"I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place are quite sturdy."
-LuaCode={ hide(6) show(8, 14, 17, 18) }
+LuaCode={
+	npc_says(_"The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault.")
+	npc_says(_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However, I'm alone here with only 1 droid for security.")
+	npc_says(_"There are just too few humans alive and awake to allow us to properly protect this place, and nobody else is foolish enough to stay out here alone.")
+	npc_says(_"I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place are quite sturdy.")
+	hide(6) show(8, 14, 17, 18)
+}
 ----------------------------------------------------------------------
 
 Nr=7  Text=_"Why did the Linarians come to this world?"
-NPC=_"The planet you mean? No one knows that. None of you ever said anything about it."
-NPC=_"Sorry, I cannot help you with that."
-LuaCode={ hide(7) }
+LuaCode={ 
+	npc_says(_"The planet you mean? No one knows that. None of you ever said anything about it.")
+	npc_says(_"Sorry, I cannot help you with that.")
+	hide(7)
+}
 ----------------------------------------------------------------------
 
 Nr=8  Text=_"Where in the void is this world?"
-NPC=_"I guess you mean in the universe?"
-LuaCode={ next(10) hide(8) }
-----------------------------------------------------------------------
-
-Nr=10  Text=_"Yes, I think that is your name for it."
-NPC=_"Well, we are in a barred spiral galaxy, twenty-six thousand light years away from the galactic core."
-NPC=_"The galactic radius is 43,000 light years and the circumference is estimated at 270,000 light years."
-NPC=_"This is a planetary system of ten planets, and we are presently located on the third one from our star, Sun."
-NPC=_"I am not an astronomer, so I could be wrong. I am too tired to keep track of what is a planet and what is just an oversized rock."
-LuaCode={ next(12) hide(10) }
+LuaCode={
+	npc_says(_"I guess you mean in the universe?")
+	tux_says(_"Yes, I think that is your name for it.")
+	npc_says(_"Well, we are in a barred spiral galaxy, twenty-six thousand light years away from the galactic core.")
+	npc_says(_"The galactic radius is 43,000 light years and the circumference is estimated at 270,000 light years.")
+	npc_says(_"This is a planetary system of ten planets, and we are presently located on the third one from our star, Sun.")
+	npc_says(_"I am not an astronomer, so I could be wrong. I am too tired to keep track of what is a planet and what is just an oversized rock.")
+	tux_says(_"This could be just about anywhere. Your description is too ambiguous.")
+	npc_says(_"Sorry, star sciences are my weak point. Maybe someone in the town might know something more.")
+	hide(8)
+}
 ----------------------------------------------------------------------
 
 Nr=11  Text=_"Who are you? What is going on?"
-NPC=_"I guess I will start with myself."
-NPC=_"Francis. Francis Spark. I used to be a teacher at a small university before all hell broke loose."
-NPC=_"Currently, there is a war raging all around the globe. Humans are fighting against bots."
-NPC=_"And it looks like we are losing the war."
-LuaCode={ hide(11) show(3) }
-----------------------------------------------------------------------
-
-Nr=12  Text=_"This could be just about anywhere. Your description is too ambiguous."
-NPC=_"Sorry, star sciences are my weak point. Maybe someone in the town might know something more."
-LuaCode={ hide(12) }
+LuaCode={
+	npc_says(_"I guess I will start with myself.")
+	npc_says(_"Francis. Francis Spark. I used to be a teacher at a small university before all hell broke loose.")
+	npc_says(_"Currently, there is a war raging all around the globe. Humans are fighting against bots.")
+	npc_says(_"And it looks like we are losing the war.")
+	hide(11) show(3)
+}
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower striking a planet full of life and killing everything on it..."
-NPC=_"This is normal. You were in stasis sleep for over 70 years. Stasis is not too kind on the mind. Your strange dreams will keep recurring for several years."
-NPC=_"Whatever the reason was for putting yourself through this, it must have been a damn good one."
-NPC=_"You are lucky that I found you and woke you up. A few more decades in there and you would end up insane."
-LuaCode={ hide(13) show(16, 21) }
+LuaCode={
+	npc_says(_"This is normal. You were in stasis sleep for over 70 years. Stasis is not too kind on the mind. Your strange dreams will keep recurring for several years.")
+	npc_says(_"Whatever the reason was for putting yourself through this, it must have been a damn good one.")
+	npc_says(_"You are lucky that I found you and woke you up. A few more decades in there and you would end up insane.")
+	hide(13) show(16, 21)
+}
 ----------------------------------------------------------------------
 
 Nr=14  Text=_"Tell me more about the town you mentioned."
-NPC=_"It is a small mining community of no more than 500 inhabitants..."
-NPC=_"It was a stroke of luck that it did not get destroyed by the bots. Because of poor funding, the city could not afford new models."
-NPC=_"All they had at the time of the bot attack were the 614 battle bot platforms. They were running an old operating system and were not affected by whatever caused the other bots to go crazy."
-NPC=_"Right now the place is protected by the Red Guard, a bunch of volunteers. I cannot say I agree with their methods."
-NPC=_"However, I must admit that being a prisoner of a walled town looks pretty good compared to the alternative of being eviscerated alive."
-LuaCode={ hide(14) }
+LuaCode={
+	npc_says(_"It is a small mining community of no more than 500 inhabitants...")
+	npc_says(_"It was a stroke of luck that it did not get destroyed by the bots. Because of poor funding, the city could not afford new models.")
+	npc_says(_"All they had at the time of the bot attack were the 614 battle bot platforms. They were running an old operating system and were not affected by whatever caused the other bots to go crazy.")
+	npc_says(_"Right now the place is protected by the Red Guard, a bunch of volunteers. I cannot say I agree with their methods.")
+	npc_says(_"However, I must admit that being a prisoner of a walled town looks pretty good compared to the alternative of being eviscerated alive.")
+	hide(14)
+}
 ----------------------------------------------------------------------
 
 Nr=15  Text=_"Why did the bots attack?"
-NPC=_"We don't really know the reason for this insanity. However..."
-NPC=_"All of the attacking bots are using a MegaSys operating system, so we think they are responsible."
-NPC=_"Not surprisingly, the bastards deny everything."
-NPC=_"Of course, because nearly every single bot in the world runs on that junk, the situation does not look pretty."
-LuaCode={ hide(15) show(20) }
+LuaCode={
+	npc_says(_"We don't really know the reason for this insanity. However...")
+	npc_says(_"All of the attacking bots are using a MegaSys operating system, so we think they are responsible.")
+	npc_says(_"Not surprisingly, the bastards deny everything.")
+	npc_says(_"Of course, because nearly every single bot in the world runs on that junk, the situation does not look pretty.")
+	hide(15) show(20)
+}
 ----------------------------------------------------------------------
 
 Nr=16  Text=_"I also heard a voice... Someone calling himself Dvorak... "
-NPC=_"Relax. Everything will be fine in a few hours."
-NPC=_"This is perfectly normal."
-LuaCode={ hide(16) }
+LuaCode={
+	npc_says(_"Relax. Everything will be fine in a few hours.")
+	npc_says(_"This is perfectly normal.")
+	hide(16)
+}
 ----------------------------------------------------------------------
 
 Nr=17  Text=_"Why not wake up all these people and attack the bots?"
-NPC=_"Well, some have a disease that can't be cured yet. Some are just old and want to be woken up when technology can give them an extended life. Some have other reasons."
-NPC=_"But suffice it to say, most of these people are not really good at fighting. Besides, we don't have enough weapons to mount a full scale counter attack at present."
-NPC=_"And an even bigger problem would be to feed everyone. Our food resources are quite scarce. So for now they are better off sleeping."
-LuaCode={ hide(17) }
+LuaCode={
+	npc_says(_"Well, some have a disease that can't be cured yet. Some are just old and want to be woken up when technology can give them an extended life. Some have other reasons.")
+	npc_says(_"But suffice it to say, most of these people are not really good at fighting. Besides, we don't have enough weapons to mount a full scale counter attack at present.")
+	npc_says(_"And an even bigger problem would be to feed everyone. Our food resources are quite scarce. So for now they are better off sleeping.")
+	hide(17)
+}
 ----------------------------------------------------------------------
 
 Nr=18  Text=_"Can you tell me how to get to town?"
-NPC=_"Sure. You just need to follow the road outside. After the bridge, turn right and continue follow the road and you will soon be outside of the town main gate."
-NPC=_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there."
-NPC=_"Once in town you will be able to purchase a few items for protection at Mrs. Stone's shop just inside the town gate."
-LuaCode={ show(19) }
+LuaCode={
+	npc_says(_"Sure. You just need to follow the road outside. After the bridge, turn right and continue follow the road and you will soon be outside of the town main gate.")
+	npc_says(_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there.")
+	npc_says(_"Once in town you will be able to purchase a few items for protection at Mrs. Stone's shop just inside the town gate.")
+	show(19)
+}
 ----------------------------------------------------------------------
 
 Nr=19  Text=_"How do I get out from here?"
-NPC=_"Oh, just take the small door and corridor out to the waiting room. And from there you can get out through the customer entrance."
-NPC=_"I keep the back entrance, close to my sleeping quarters, locked at all times for safety reasons. Better safe than sorry."
-LuaCode={ hide(19) }
+LuaCode={
+	npc_says(_"Oh, just take the small door and corridor out to the waiting room. And from there you can get out through the customer entrance.")
+	npc_says(_"I keep the back entrance, close to my sleeping quarters, locked at all times for safety reasons. Better safe than sorry.")
+	hide(19)
+}
 ----------------------------------------------------------------------
 
 Nr=20  Text=_"It cannot be true. One company cannot control all of the bot software on a whole world."
-NPC=_"It can. They got close to a monopoly 30 years ago, but their last competitor, the open source community, was defeated by them about a year ago."
-NPC=_"Since then all of the newly made bots have been made with MegaSys firmware burnt into their circuits."
-LuaCode={ hide(20) }
+LuaCode={ 
+	npc_says(_"It can. They got close to a monopoly 30 years ago, but their last competitor, the open source community, was defeated by them about a year ago.")
+	npc_says(_"Since then all of the newly made bots have been made with MegaSys firmware burnt into their circuits.")
+	hide(20)
+}
 ----------------------------------------------------------------------
 
 Nr=21  Text=_"Why did you wake me up? "
-NPC=_"The situation at the town is not good. The walls are crumbling and we have lost a lot of good people."
-NPC=_"I heard the Linarians have a special gift for computers and can hack them just by thinking about it."
-NPC=_"Even if this is only partly true, we need it. The situation is quite ugly."
-NPC=_"We need you."
-LuaCode={ hide(21) }
+LuaCode={
+	npc_says(_"The situation at the town is not good. The walls are crumbling and we have lost a lot of good people.")
+	npc_says(_"I heard the Linarians have a special gift for computers and can hack them just by thinking about it.")
+	npc_says(_"Even if this is only partly true, we need it. The situation is quite ugly.")
+	npc_says(_"We need you.")
+	hide(21)
+}
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"Thanks for the help. I'll be going now."
-NPC=_"I am glad I could help you. You should be careful around here. Best head straight for our town."
-NPC=_"Remember to not veer too far off the path, or your quest could be over before it begins."
-LuaCode={ end_dialog() }
+LuaCode={
+	npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
+	npc_says(_"Remember to not veer too far off the path, or your quest could be over before it begins.")
+	end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
