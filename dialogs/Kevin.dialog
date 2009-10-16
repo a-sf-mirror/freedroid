@@ -43,7 +43,7 @@ EveryTime LuaCode={
 	else end
 
 	if (get_gold() < 300 ) then hide(30) else end
-	if (not get_training_points() > 4) then hide(30) else end
+	if (get_training_points() > 4) then else hide(30) end
 }
 ----------------------------------------------------------------------
 
