@@ -28,76 +28,118 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-    show(0, 99)
+	show(0, 99)
 }
 EveryTime LuaCode={
 	if (has_quest("And there was light...")) then
 		if (done_quest("And there was light...")) then
 			add_diary_entry("And there was light...", "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
-			show(3, 10, 18)
+			show(3, 8, 10)
 		else show(6, 7) end
 	else end
 
 	if (has_cookie("jasmine_sigsegv")) then
-		if (has_cookie("kevin_sigtalk")) then hide(25) else show(25) end
+		if (has_cookie("kevin_sigtalk")) then hide(20) else show(20) end
 	else end
+
+	if (get_gold() < 300 ) then hide(30) else end
+	if (not get_training_points() > 4) then hide(30) else end
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
-NPC=_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired."
-NPC=_"Don't worry about me. I'll be fine."
-NPC=_"I'm Kevin, a computer security expert."
-LuaCode={ next(20) hide(0) }
-----------------------------------------------------------------------
-
-Nr=2  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"As I've told you, I cannot teach you anything right now. I don't have the time."
-NPC=_"I must see that the flaky energy stream is distributed in such a way that my research project can continue."
-NPC=_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something."
+LuaCode={ 
+	npc_says(_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired.")
+	npc_says(_"Don't worry about me. I'll be fine.")
+	npc_says(_"I'm Kevin, a computer security expert.")
+	tux_says(_"In other words: You are a hacker.")
+	npc_says(_"Eh... I guess you could put it that way, yes.")
+	hide(0)	show(3)
+}
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"What can you teach me about hacking?"
 LuaCode={
-	if (done_quest("And there was light...")) then 
+	if (not done_quest("And there was light...")) then 
+		if (has_quest("And there was light...")) then
+			npc_says(_"As I've told you, I cannot teach you anything right now. I don't have the time.")
+			npc_says(_"I must see that the flaky energy stream is distributed in such a way that my research project can continue.")
+			npc_says(_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something.")
+		else
+			npc_says(_"Not now, I'm busy.")
+			npc_says(_"I've got an important research project going on. In fact this project might be crucial to the survival of the whole town.")
+			npc_says(_"There is tremendous importance in it. But the project is in danger. There are some maintenance bots down at the energy source.")
+			npc_says(_"They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place.")
+			npc_says(_"I must balance the remaining power in such a way that my project can continue uninterrupted.")
+			npc_says(_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something.")
+			add_quest("And there was light...", "Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
+			hide(3) show(6, 7)
+		end
+	else
 		npc_says(_"I can teach you everything. For three hundred, up front. Still interested?")
-		next(34)
-	else 
-		if (has_quest("And there was light...")) then next(2) else next(5) end
+		if (get_gold() < 300 ) then
+			tux_says(_"Sorry, don't have that much money right now.")
+			npc_says(_"Ok, come back when you can afford to pay me if you are interested.")
+		else
+			if (get_training_points() > 4) then show(30) 
+			else 
+				tux_says(_"Sorry, my memory databank is filled to the brim right now. Can't learn more until I get some more experience.")
+				npc_says(_"You Linarians are funny creatures. Come back later when you feel ready if you please.")
+			end
+		end
 	end
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Not now, I'm busy."
-NPC=_"I've got an important research project going on. In fact this project might be crucial to the survival of the whole town."
-NPC=_"There is tremendous importance in it. But the project is in danger. There are some maintenance bots down at the energy source."
-NPC=_"They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place."
-NPC=_"I must balance the remaining power in such a way that my project can continue uninterrupted."
-NPC=_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something."
-LuaCode={
-    add_quest("And there was light...", "Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
-	hide(3)
-	show(6, 7)
-}
-----------------------------------------------------------------------
-
 Nr=6  Text=_"I'll see after the energy supply now."
-NPC=_"That's great. You can't miss it. It's not hard to find. Enter my garden and find the lower station entrance there."
-NPC=_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level."
-NPC=_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them."
-NPC=_"Best make it quick. I'm already sick of stabilizing the stupid power grid."
 LuaCode={
+	npc_says(_"That's great. You can't miss it. It's not hard to find. Enter my garden and find the lower station entrance there.")
+	npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
+	npc_says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
+	npc_says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
     add_diary_entry("And there was light...", "The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
-    hide(6, 7)
+	hide(6, 7)
 }
 ----------------------------------------------------------------------
 
 Nr=7  Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
-NPC=_"Too bad. Now get out of my sight."
-LuaCode={ hide(6, 7) }
+LuaCode={ 
+	npc_says(_"Too bad. Now get out of my sight.")
+	hide(6, 7)
+}
+----------------------------------------------------------------------
+
+Nr=8  Text=_"About that project you said you have running..."
+LuaCode={
+    if (done_quest("A kingdom for a cluster!")) then
+		npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
+	else
+		npc_says(_"Yes, since the energy supply has been constant, results were much better. I've achieved my goal.")
+		npc_says(_"I've obtained secret data on the town surroundings. We'll need a big computer cluster to evaluate it properly.")
+		npc_says(_"Once we've evaluated the data, we might find a way to secure the town and ensure our survival. But it's too early to tell yet.")
+		npc_says(_"If I only had a suitable cluster. Then we could start data evaluation right away.")
+		show(9)
+	end
+	hide(8)
+}
+----------------------------------------------------------------------
+
+Nr=9  Text=_"Maybe I can help somehow to find a suitable cluster."
+LuaCode={
+    if (has_quest("A kingdom for a cluster!")) then 
+		npc_says(_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore.")
+		npc_says(_"The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly.")
+	else
+		npc_says(_"That would be great of course. I know that the old town is maintaining a suitable information infrastructure and has had a proper cluster running for some time now.")
+		npc_says(_"The only problem is, I can't go back to town. They would probably kill me because of... a misunderstanding.")
+		npc_says(_"Also, the cluster is inside of the guard citadel. I hear that only members of the Red Guard are allowed to enter the complex.")
+		npc_says(_"But maybe you can arrange that somehow. For me it would be impossible, because of my reputation.")
+		npc_says(_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there.")
+		add_quest("A kingdom for a cluster!", "Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
+		add_item("Kevin's Data Cube",1)
+	end
+	hide(9)
+}
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"How about some reward for securing your energy supply area?"
@@ -106,98 +148,70 @@ LuaCode={
 		npc_says(_"I've already rewarded you for that. Don't steal my time. I'm busy.")
 	else
 		npc_says(_"What do you want?")
-		run_subdialog("subdlg_kevin_reward1.dialog")
+		show(11, 12, 13)
 	end
-    hide(10)
+	hide(10)
+}
+----------------------------------------------------------------------
+Nr=11  Text=_"I want to become a hacker."
+LuaCode={
+	npc_says(_"Your desire for information amuses me. Your wish will be granted. I will teach you how to hack.")
+	npc_says(_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill.")
+	npc_says(_"Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder stops and thinks.")
+	npc_says(_"You must know when to hack and when not to hack. You must attack when the enemy is unprepared for you.")
+	npc_says(_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star...")
+	npc_says(_"...only to die seconds after, as the system far away collapses under it's own weight... It's done.")
+	npc_says(_"That is all I want to show you for now. Maybe later I will teach you something else.")
+	add_cookie("kevin_reward1_given")
+	improve_program("Hacking")
+	end_dialog()
+	hide(11, 12, 13)
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Yes, since the energy supply has been constant, results were much better. I've achieved my goal."
-NPC=_"I've obtained secret data on the town surroundings. We'll need a big computer cluster to evaluate it properly."
-NPC=_"Once we've evaluated the data, we might find a way to secure the town and ensure our survival. But it's too early to tell yet."
-NPC=_"If I only had a suitable cluster. Then we could start data evaluation right away."
-LuaCode={ show(16) }
-----------------------------------------------------------------------
-
-Nr=15  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"That would be great of course. I know that the old town is maintaining a suitable information infrastructure and has had a proper cluster running for some time now."
-NPC=_"The only problem is, I can't go back to town. They would probably kill me because of... a misunderstanding."
-NPC=_"Also, the cluster is inside of the guard citadel. I hear that only members of the Red Guard are allowed to enter the complex."
-NPC=_"But maybe you can arrange that somehow. For me it would be impossible, because of my reputation."
-NPC=_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there."
+Nr=12  Text=_"I don't want any reward. Just gratitude."
 LuaCode={
-    add_quest("A kingdom for a cluster!", "Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
-    add_item("Kevin's Data Cube",1)
-    hide(15)
+	npc_says(_"Of course you can have that. There, I'm most grateful to you. That should do.")
+	add_cookie("kevin_reward1_given")
+	-- reward here could be bonus to joining faction
+	end_dialog()
+	hide(11, 12, 13)
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"Maybe I can help somehow to find a suitable cluster."
+Nr=13  Text=_"I want money."
 LuaCode={
-    if (has_quest("A kingdom for a cluster!")) then next(17) else next(15) end
-    hide(16)
+	npc_says(_"Eh... Here, take these 900 bucks. That should be enough.")
+    add_gold(900)
+    add_cookie("kevin_reward1_given")
+	end_dialog()
+	hide(11, 12, 13)
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore."
-NPC=_"The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly."
-----------------------------------------------------------------------
-
-Nr=18  Text=_"About that project you said you have running..."
+Nr=20  Text=_"Jasmine just blew up."
 LuaCode={
-    if (done_quest("A kingdom for a cluster!")) then
-		npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
-	else next(14) end
-    hide(18)
-}
-----------------------------------------------------------------------
-
-Nr=20  Text=_"In other words: You are a hacker."
-NPC=_"Eh... I guess you could put it that way, yes."
-LuaCode={ hide(20) show(3) }
-----------------------------------------------------------------------
-
-Nr=25  Text=_"Jasmine just blew up."
-NPC=_"Oh. Right."
-NPC=_"Well, thanks for telling me."
-NPC=_"Back to the drawing board, I guess..."
-LuaCode={
+	npc_says(_"Oh. Right.")
+	npc_says(_"Well, thanks for telling me.")
+	npc_says(_"Back to the drawing board, I guess...")
     add_cookie("kevin_sigtalk")
-    hide(25)
-    show(26)
+	hide(20) show(21)
 }
 ----------------------------------------------------------------------
 
-Nr=26  Text=_"I thought you would be more worried about her death."
-NPC=_"Why? I have backups from last Friday. No reason to worry at all."
-NPC=_"It will be a while till I get her together again, but she will be fine."
-LuaCode={ hide(26) }
-----------------------------------------------------------------------
-
-Nr=34  Text=_"Improve Hacking Ability (cost 300 cash, 5 ability points)"
+Nr=21  Text=_"I thought you would be more worried about her death."
 LuaCode={
-	if (get_gold() < 300 ) then
-		npc_says(_"You don't have enough cash, cheapskate. Come back when you can afford to pay me.")
-	else
-		if (get_training_points() > 4) then next(35) 
-		else 
-			npc_says(_"You don't have enough experience. I can't teach you anything more this way.")
-		end
-	end
+ 	npc_says(_"Why? I have backups from last Friday. No reason to worry at all.")
+	npc_says(_"It will be a while till I get her together again, but she will be fine.")
+	hide(21)
 }
 ----------------------------------------------------------------------
 
-Nr=35  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack."
-NPC=_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it."
-NPC=_"Now I see your hacking skill has already improved a lot."
+Nr=30  Text="Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
+	npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
+	npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
+	npc_says(_"Now I see your hacking skill has already improved a lot.")
     add_gold(-300)
     del_training_points(5)
     improve_program("Hacking")
@@ -205,8 +219,10 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be off then."
-NPC=_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy."
-LuaCode={ end_dialog() }
+LuaCode={ 
+	npc_says(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.")
+	end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
