@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,50 +29,46 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
+FirstTime LuaCode={	show(0) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hello. Any idea where I can get some help here?"
-NPC=_"Verschwinde."
 LuaCode={
-    hide(0)
-    show(1, 2)
+	npc_says(_"Verschwinde.")
+	hide(0) show(1, 2)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Erm... What do you mean?"
-NPC=_"Ich bin der Geist, der stets verneint."
-NPC=_"Und das mit Recht; denn alles, was entsteht,"
-NPC=_"ist wert, dass es zugrunde geht."
 LuaCode={
-    hide(1)
-    show(3)
+	npc_says(_"Ich bin der Geist, der stets verneint.")
+	npc_says(_"Und das mit Recht; denn alles, was entsteht,")
+	npc_says(_"ist wert, dass es zugrunde geht.")
+	hide(1) show(3)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"I really do not understand you."
-NPC=_"Wer sie nicht kennte, die Elemente,"
-NPC=_"ihre Kraft und Eigenschaft,"
-NPC=_"waere kein Meister ueber die Geister."
 LuaCode={
-    hide(2)
-    show(3)
+	npc_says(_"Wer sie nicht kennte, die Elemente,")
+	npc_says(_"ihre Kraft und Eigenschaft,")
+	npc_says(_"waere kein Meister ueber die Geister.")
+	hide(2) show(3)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"I wish I knew what you are talking about."
-NPC=_"Verschwinde."
 LuaCode={
+	npc_says(_"Verschwinde.")
     end_dialog()
-    hide(3)
+	hide(3)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I need to go now."
-NPC=_" . . ."
+Nr=99  Text=_"I need to go now.")
 LuaCode={
+	npc_says(_" . . .")
     end_dialog()
 }
 ----------------------------------------------------------------------
