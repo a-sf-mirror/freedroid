@@ -54,6 +54,8 @@
 #define min(x,y) ((x) > (y) ? (y) : (x) )
 #endif
 
+#define USE_SDL_FRAMERATE
+
 //--------------------
 // Here you can control the debug level for the various modules, or at least
 // that's the way it is planned to be.  Turn on and off debugging as you like.

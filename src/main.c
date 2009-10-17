@@ -113,13 +113,8 @@ void Game()
 
 		CheckIfMissionIsComplete();
 
-		float period = 1/30.0;
-		if (Frame_Time() < period) {
-			SDL_Delay(5000*(period-Frame_Time()));
-		}
-
-		/*if (!GameConfig.hog_CPU)
-			SDL_Delay(1);	// we allow the CPU to also do something else..*/
+		if (!GameConfig.hog_CPU)
+			SDL_Delay(1);	// we allow the CPU to also do something else..
 
 		ComputeFPSForThisFrame();
 
