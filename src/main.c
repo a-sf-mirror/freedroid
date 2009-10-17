@@ -75,7 +75,8 @@ void Game()
 {
 	GameOver = FALSE;
 	get_visible_levels();
-
+	animation_timeline_reset();
+	
 	while ((!GameOver && !QuitProgram)) {
 		game_status = INSIDE_GAME;
 

@@ -43,10 +43,19 @@
 //--------------------
 // Animation timelines.
 //
-static float teleport_timeline = 0;
-static float refresh_timeline = 0;
-static float autogun_timeline = 0;
-static float door_timeline = 0;
+static float teleport_timeline = 0.0;
+static float refresh_timeline = 0.0;
+static float autogun_timeline = 0.0;
+static float door_timeline = 0.0;
+
+void animation_timeline_reset()
+{
+	teleport_timeline = 0.0;	
+	refresh_timeline = 0.0;
+	autogun_timeline = 0.0;
+	door_timeline = 0.0;
+
+}
 
 /*
  * This function advances all animation timelines to their next value

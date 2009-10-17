@@ -532,7 +532,10 @@ int LoadGame(void)
 	our_SDL_flip_wrapper();
 
 	load_game_command_came_from_inside_running_game = TRUE;
-
+	
+	reset_visible_levels();
+	animation_timeline_reset();
+	
 	append_new_game_message(_("Game loaded."));
 	return OK;
 };				// int LoadGame ( void ) 

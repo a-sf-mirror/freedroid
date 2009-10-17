@@ -138,6 +138,7 @@ int set_rotation_model_for_this_robot(enemy * ThisRobot);
 void grab_enemy_images_from_archive(int enemy_model_nr);
 int level_is_visible(int level_num);
 void get_visible_levels();
+void reset_visible_levels();
 
 #define next_valid_visible_level(pos, start) ({ \
 	pos = start; \
@@ -764,6 +765,7 @@ int autostr_printf(struct auto_string *, const char *, ...);
 int autostr_append(struct auto_string *, const char *, ...);
 
 // animate.c
+void animation_timeline_reset();
 void animation_timeline_advance();
 int animate_door(level* obstacle_lvl, int obstacle_idx);
 int animate_teleporter(level* obstacle_lvl, int obstacle_idx);

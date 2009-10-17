@@ -77,6 +77,7 @@ iso_image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTION
 char *motion_class_string[ALL_TUX_MOTION_CLASSES] = { "sword_motion", "gun_motion" };
 
 int previously_used_motion_class = -4;	// something we'll never really use...
+static int old_current_level = -1;
 
 void FdFlashWindow(SDL_Color Flashcolor);
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_directions[RADIAL_SPELL_DIRECTIONS], float age);
@@ -849,11 +850,11 @@ int level_is_visible(int level_num)
 
 /**
  * Construct a linked list of visible levels.
- * Also compute the distance between Tux and each level boundaries.
+ * Also compute the distance between Tux and each level boundaries, and fill
+ * the lists of animated obstacles.
  */
 void get_visible_levels()
 {
-	static int old_current_level = -1;
 	struct visible_level *e, *n;
 	
 	//--------------------
@@ -968,6 +969,27 @@ void get_visible_levels()
 			}
 		}
 	}
+}
+
+/*
+ * This function resets the visible levels list, as well as all animated
+ * obstacle lists.
+ */
+void reset_visible_levels()
+{
+	struct visible_level *e, *n;
+	
+	// Clear current list
+	list_for_each_entry_safe(e, n, &visible_level_list, node) {
+		clear_animated_obstacle_lists(e);
+		list_del(&e->node);
+		free(e);
+	}
+	
+	old_current_level = -1;
+	
+	// Get new list
+	get_visible_levels();
 }
 
 /*
