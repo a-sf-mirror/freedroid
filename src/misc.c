@@ -806,11 +806,6 @@ void Pause(void)
 /**
  * This function starts the time-taking process.  Later the results
  * of this function will be used to calculate the current framerate
- * 
- * Two methods of time-taking are available.  One uses the SDL 
- * ticks.  This seems LESS ACCURATE.  The other one uses the
- * standard ansi c gettimeofday functions and are MORE ACCURATE
- * but less convenient to use.
  */
 void StartTakingTimeForFPSCalculation(void)
 {
@@ -820,28 +815,12 @@ void StartTakingTimeForFPSCalculation(void)
 	 * (DO NOT MOVE THIS COMMAND PLEASE!) */
 	framenr++;
 
-#ifdef USE_SDL_FRAMERATE
 	One_Frame_SDL_Ticks = SDL_GetTicks();
 	if (framenr % 10 == 1)
 		Ten_Frame_SDL_Ticks = SDL_GetTicks();
 	if (framenr % 100 == 1) {
 		Onehundred_Frame_SDL_Ticks = SDL_GetTicks();
-		// printf("\n%f",1/Frame_Time());
-		// printf("Me.pos.x: %g Me.pos.y: %g Me.speed.x: %g Me.speed.y: %g \n",
-		//Me.pos.x, Me.pos.y, Me.speed.x, Me.speed.y );
-		//printf("Me.maxspeed.x: %g \n",
-		//             Druidmap[Me.type].maxspeed );
 	}
-#else
-	gettimeofday(&oneframetimestamp, NULL);
-	if (framenr % 10 == 1)
-		gettimeofday(&tenframetimestamp, NULL);
-	if (framenr % 100 == 1) {
-		gettimeofday(&onehundredframetimestamp, NULL);
-		printf("\n%f", 1 / Frame_Time());
-	}
-#endif
-
 };				// void StartTakingTimeForFPSCalculation(void)
 
 /**
@@ -851,27 +830,9 @@ void StartTakingTimeForFPSCalculation(void)
  * 
  * NOTE:  To query the actual framerate a DIFFERENT function must
  *        be used, namely Frame_Time().
- *
- *        Two methods of time-taking are available.  One uses the SDL 
- *        ticks.  This seems LESS ACCURATE.  The other one uses the
- *        standard ansi c gettimeofday functions and are MORE ACCURATE
- *        but less convenient to use.
  */
 void ComputeFPSForThisFrame(void)
 {
-	// static int time;
-	// static int FPS_Displayed;
-
-	// In the following paragraph the framerate calculation is done.
-	// There are basically two ways to do this:
-	// The first way is to use SDL_GetTicks(), a function measuring milliseconds
-	// since the initialisation of the SDL.
-	// The second way is to use gettimeofday, a standard ANSI C function I guess,
-	// defined in time.h or so.
-	// 
-	// I have arranged for a definition set in defs.h to switch between the two
-	// methods of ramerate calculation.  
-#ifdef USE_SDL_FRAMERATE
 
 	Now_SDL_Ticks = SDL_GetTicks();
 	oneframedelay = Now_SDL_Ticks - One_Frame_SDL_Ticks;
@@ -892,40 +853,6 @@ void ComputeFPSForThisFrame(void)
 		FPSover100 = 1000 * 100 / 0.5;
 	else
 		FPSover100 = 1000 * 100 / (float)onehundredframedelay;
-
-#else
-
-	gettimeofday(&now, NULL);
-
-	oneframedelay = (now.tv_usec - oneframetimestamp.tv_usec) + (now.tv_sec - oneframetimestamp.tv_sec) * 1000000;
-	if (framenr % 10 == 0)
-		tenframedelay = ((now.tv_usec - tenframetimestamp.tv_usec)) + (now.tv_sec - tenframetimestamp.tv_sec) * 1000000;
-	if ((framenr % 100) == 0) {
-		onehundredframedelay =
-		    (now.tv_sec - onehundredframetimestamp.tv_sec) * 1000000 + (now.tv_usec - onehundredframetimestamp.tv_usec);
-		framenr = 0;
-	}
-
-	FPSover1 = 1000000 * 1 / (float)oneframedelay;
-	FPSover10 = 1000000 * 10 / (float)tenframedelay;
-	FPSover100 = 1000000 * 100 / (float)onehundredframedelay;
-
-#endif
-
-	/*
-	   time++;
-	   if ( time > 100 )
-	   {
-	   time = 0 ;
-	   if ( Frame_Time() > 0 )
-	   FPS_Displayed=(int)(1.0/Frame_Time());
-	   else
-	   FPS_Displayed=(int)9999;
-	   // TimeSinceLastFPSUpdate=0;
-
-	   DebugPrintf ( -2 , "\nFPS_Displayed: %d. " , FPS_Displayed );
-	   }
-	 */
 
 };				// void ComputeFPSForThisFrame(void)
 
