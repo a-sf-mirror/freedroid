@@ -50,6 +50,7 @@ Level DecodeLoadedLeveldata(char *data);
 
 struct animated_obstacle {
 	int index;
+	int (*animate_fn)(level* obstacle_lvl, int obstacle_idx);
 	struct list_head node;
 };
 
@@ -1044,89 +1045,19 @@ Uint16 GetMapBrick(level * lvl, float x, float y)
 void get_animated_obstacle_lists(struct visible_level *vis_lvl)
 {
 	int obstacle_index;
-	struct list_head *target_list = NULL;
 	level *Lev = vis_lvl->lvl_pointer;
 
-	INIT_LIST_HEAD(&vis_lvl->droid_nests_head);
-	INIT_LIST_HEAD(&vis_lvl->teleporters_head);
-	INIT_LIST_HEAD(&vis_lvl->doors_head);
-	INIT_LIST_HEAD(&vis_lvl->autoguns_head);
+	INIT_LIST_HEAD(&vis_lvl->animated_obstacles_list);
 
-	/* Now browse obstacles and fill our lists of animated obstacles. */
+	/* Now browse obstacles and fill our list of animated obstacles. */
 	for (obstacle_index = 0; obstacle_index < MAX_OBSTACLES_ON_MAP; obstacle_index++) {
-		switch (Lev->obstacle_list[obstacle_index].type) {
-		case ISO_H_DOOR_000_OPEN:
-		case ISO_H_DOOR_025_OPEN:
-		case ISO_H_DOOR_050_OPEN:
-		case ISO_H_DOOR_075_OPEN:
-		case ISO_H_DOOR_100_OPEN:
-
-		case ISO_V_DOOR_000_OPEN:
-		case ISO_V_DOOR_025_OPEN:
-		case ISO_V_DOOR_050_OPEN:
-		case ISO_V_DOOR_075_OPEN:
-		case ISO_V_DOOR_100_OPEN:
-
-		case ISO_OUTER_DOOR_V_00:
-		case ISO_OUTER_DOOR_V_25:
-		case ISO_OUTER_DOOR_V_50:
-		case ISO_OUTER_DOOR_V_75:
-		case ISO_OUTER_DOOR_V_100:
-
-		case ISO_OUTER_DOOR_H_00:
-		case ISO_OUTER_DOOR_H_25:
-		case ISO_OUTER_DOOR_H_50:
-		case ISO_OUTER_DOOR_H_75:
-		case ISO_OUTER_DOOR_H_100:
-
-		case ISO_DH_DOOR_000_OPEN:
-		case ISO_DH_DOOR_025_OPEN:
-		case ISO_DH_DOOR_050_OPEN:
-		case ISO_DH_DOOR_075_OPEN:
-		case ISO_DH_DOOR_100_OPEN:
-
-		case ISO_DV_DOOR_000_OPEN:
-		case ISO_DV_DOOR_025_OPEN:
-		case ISO_DV_DOOR_050_OPEN:
-		case ISO_DV_DOOR_075_OPEN:
-		case ISO_DV_DOOR_100_OPEN:
-			target_list = &vis_lvl->doors_head;
-			break;
-
-		case ISO_REFRESH_1:
-		case ISO_REFRESH_2:
-		case ISO_REFRESH_3:
-		case ISO_REFRESH_4:
-		case ISO_REFRESH_5:
-			target_list = &vis_lvl->droid_nests_head;
-			break;
-
-		case ISO_TELEPORTER_1:
-		case ISO_TELEPORTER_2:
-		case ISO_TELEPORTER_3:
-		case ISO_TELEPORTER_4:
-		case ISO_TELEPORTER_5:
-			target_list = &vis_lvl->teleporters_head;
-			break;
-
-		case ISO_AUTOGUN_N:
-		case ISO_AUTOGUN_S:
-		case ISO_AUTOGUN_E:
-		case ISO_AUTOGUN_W:
-			target_list = &vis_lvl->autoguns_head;
-			break;
-
-		default:
-			target_list = NULL;
-			break;
-		}
-
-		if (target_list) {
+		if (obstacle_map[Lev->obstacle_list[obstacle_index].type].animate_fn != NULL) {
 			struct animated_obstacle *a = MyMalloc(sizeof(struct animated_obstacle));
 			a->index = obstacle_index;
-			list_add(&a->node, target_list);
+			a->animate_fn = obstacle_map[Lev->obstacle_list[obstacle_index].type].animate_fn;
+			list_add(&a->node, &vis_lvl->animated_obstacles_list);
+			continue;
 		}
-
 	}
 	
 	vis_lvl->animated_obstacles_dirty_flag = FALSE;
@@ -1153,109 +1084,15 @@ void dirty_animated_obstacle_lists(int lvl_num)
  */
 void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
 {
-	int i;
-	struct list_head *target_list = NULL;
 	struct animated_obstacle *a, *next;
 
-	for (i = 0; i < 4; i++) {
-		switch (i) {
-		case 0:
-			target_list = &vis_lvl->droid_nests_head;
-			break;
-		case 1:
-			target_list = &vis_lvl->teleporters_head;
-			break;
-		case 2:
-			target_list = &vis_lvl->doors_head;
-			break;
-		case 3:
-			target_list = &vis_lvl->autoguns_head;
-			break;
-		}
-		list_for_each_entry_safe(a, next, target_list, node) {
-			list_del(&a->node);
-			free(a);
-		}
+	list_for_each_entry_safe(a, next, &vis_lvl->animated_obstacles_list, node) {
+		list_del(&a->node);
+		free(a);
 	}
 	
 	vis_lvl->animated_obstacles_dirty_flag = TRUE;
 }
-
-/**
- * This function moves all the refresh fields to their next phase (if
- * it's time already).
- */
-static void AnimateRefresh(void)
-{
-	static float InnerWaitCounter = 0;
-	struct animated_obstacle *a;
-	struct visible_level *visible_lvl, *next_lvl;
-
-	InnerWaitCounter += Frame_Time() * 3;
-
-	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
-		level *RefreshLevel = visible_lvl->lvl_pointer;
-	
-		list_for_each_entry(a, &visible_lvl->droid_nests_head, node) {
-	
-			switch (RefreshLevel->obstacle_list[a->index].type) {
-			case ISO_REFRESH_1:
-			case ISO_REFRESH_2:
-			case ISO_REFRESH_3:
-			case ISO_REFRESH_4:
-			case ISO_REFRESH_5:
-				//--------------------
-				// All is well :)
-				//
-				break;
-			default:
-				ErrorMessage(__FUNCTION__, "\
-				Error:  A refresh index pointing not to a refresh obstacles found.", PLEASE_INFORM, IS_FATAL);
-				break;
-			}
-	
-			RefreshLevel->obstacle_list[a->index].type = (((int)rintf(InnerWaitCounter)) % 5) + ISO_REFRESH_1;
-	
-		}
-	}
-};				// void AnimateRefresh ( void )
-
-/**
- * This function moves all the teleporter fields to their next phase (if
- * it's time already).
- */
-static void AnimateTeleports(void)
-{
-	static float InnerWaitCounter = 0;
-	struct animated_obstacle *a;
-	struct visible_level *visible_lvl, *next_lvl;
-
-	InnerWaitCounter += Frame_Time() * 10;
-
-	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
-		level *TeleportLevel = visible_lvl->lvl_pointer;
-	
-		list_for_each_entry(a, &visible_lvl->teleporters_head, node) {
-			switch (TeleportLevel->obstacle_list[a->index].type) {
-			case ISO_TELEPORTER_1:
-			case ISO_TELEPORTER_2:
-			case ISO_TELEPORTER_3:
-			case ISO_TELEPORTER_4:
-			case ISO_TELEPORTER_5:
-				//--------------------
-				// All is well :)
-				//
-				break;
-			default:
-				ErrorMessage(__FUNCTION__, "\
-				Error:  A teleporter index pointing not to a teleporter obstacle found.", PLEASE_INFORM, IS_FATAL);
-				break;
-			}
-	
-			TeleportLevel->obstacle_list[a->index].type = (((int)rintf(InnerWaitCounter)) % 5) + ISO_TELEPORTER_1;
-		}
-	}
-};				// void AnimateTeleports ( void )
 
 /**
  * This function loads the data for a whole ship
@@ -2717,315 +2554,6 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 
 };				// void GetThisLevelsDroids( char* SectionPointer )
 
-/** 
- * This funtion moves the level doors in the sense that they are opened
- * or closed depending on whether there is a robot close to the door or
- * not.  
- */
-void MoveLevelDoors()
-{
-	struct animated_obstacle *a;
-	float xdist, ydist;
-	float dist2;
-	int *Pos;
-	int one_player_close_enough = FALSE;
-	int door_obstacle_index;
-	int some_bot_was_close_to_this_door = FALSE;
-	struct visible_level *visible_lvl, *next_lvl;
-
-	//--------------------
-	// This prevents animation going too quick.
-	// The constant should be replaced by a variable, that can be
-	// set from within the theme, but that may be done later...
-	//
-	if (LevelDoorsNotMovedTime < 0.05)
-		return;
-
-	LevelDoorsNotMovedTime = 0;
-
-	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
-		level *DoorLevel = visible_lvl->lvl_pointer;
-
-		list_for_each_entry(a, &visible_lvl->doors_head, node) {
-			door_obstacle_index = a->index;
-	
-			//--------------------
-			// We make a convenient pointer to the type of the obstacle, that
-			// is supposed to be a door and might need to be changed as far as
-			// it's opening status is concerned...
-			//
-			Pos = &(DoorLevel->obstacle_list[door_obstacle_index].type);
-	
-			//--------------------
-			// Some security check against changing anything that isn't a door here...
-			//
-			switch (*Pos) {
-			case ISO_H_DOOR_000_OPEN:
-			case ISO_H_DOOR_025_OPEN:
-			case ISO_H_DOOR_050_OPEN:
-			case ISO_H_DOOR_075_OPEN:
-			case ISO_H_DOOR_100_OPEN:
-	
-			case ISO_V_DOOR_000_OPEN:
-			case ISO_V_DOOR_025_OPEN:
-			case ISO_V_DOOR_050_OPEN:
-			case ISO_V_DOOR_075_OPEN:
-			case ISO_V_DOOR_100_OPEN:
-	
-			case ISO_OUTER_DOOR_V_00:
-			case ISO_OUTER_DOOR_V_25:
-			case ISO_OUTER_DOOR_V_50:
-			case ISO_OUTER_DOOR_V_75:
-			case ISO_OUTER_DOOR_V_100:
-	
-			case ISO_OUTER_DOOR_H_00:
-			case ISO_OUTER_DOOR_H_25:
-			case ISO_OUTER_DOOR_H_50:
-			case ISO_OUTER_DOOR_H_75:
-			case ISO_OUTER_DOOR_H_100:
-	
-			case ISO_DH_DOOR_000_OPEN:
-			case ISO_DH_DOOR_025_OPEN:
-			case ISO_DH_DOOR_050_OPEN:
-			case ISO_DH_DOOR_075_OPEN:
-			case ISO_DH_DOOR_100_OPEN:
-	
-			case ISO_DV_DOOR_000_OPEN:
-			case ISO_DV_DOOR_025_OPEN:
-			case ISO_DV_DOOR_050_OPEN:
-			case ISO_DV_DOOR_075_OPEN:
-			case ISO_DV_DOOR_100_OPEN:
-	
-				break;
-	
-			default:
-				fprintf(stderr, "\n*Pos: '%d'.\nlevelnum: %d\nObstacle index: %d", *Pos, DoorLevel->levelnum, door_obstacle_index);
-				ErrorMessage(__FUNCTION__, "\
-				Error:  Doors pointing not to door obstacles found.", PLEASE_INFORM, IS_FATAL);
-				break;
-			}
-	
-			//--------------------
-			// First we see if one of the players is close enough to the
-			// door, so that it would get opened.
-			//
-			one_player_close_enough = FALSE;
-	
-			//--------------------
-			// Maybe this player is on the door's level, we need to check it's distance 
-			// to this door.
-			//
-			if (Me.pos.z == DoorLevel->levelnum) {
-				xdist = Me.pos.x - DoorLevel->obstacle_list[door_obstacle_index].pos.x;
-				ydist = Me.pos.y - DoorLevel->obstacle_list[door_obstacle_index].pos.y;
-				dist2 = xdist * xdist + ydist * ydist;
-				if (dist2 < DOOROPENDIST2) {
-					one_player_close_enough = TRUE;
-				}
-			}
-			
-			// --------------------
-			// If one of the players is close enough, the door gets opened
-			// and we are done.
-			//
-			if (one_player_close_enough) {
-				if ((*Pos != ISO_H_DOOR_100_OPEN) && (*Pos != ISO_V_DOOR_100_OPEN)
-					&& (*Pos != ISO_DH_DOOR_100_OPEN) && (*Pos != ISO_DV_DOOR_100_OPEN)
-					&& (*Pos != ISO_OUTER_DOOR_H_100) && (*Pos != ISO_OUTER_DOOR_V_100))
-					*Pos += 1;
-			} else {
-				//--------------------
-				// But if the Tux is not close enough, then we must
-				// see if perhaps one of the enemys is close enough, so that
-				// the door would still get opened instead of closed.
-				//
-				some_bot_was_close_to_this_door = FALSE;
-	
-				enemy *erot;
-				BROWSE_LEVEL_BOTS(erot, DoorLevel->levelnum) {
-					//--------------------
-					// We will only consider droids, that are at least within a range of
-					// say 2 squares in each direction.  Anything beyond that distance
-					// can be safely ignored for this door.
-					//
-					xdist = abs(erot->pos.x - DoorLevel->obstacle_list[door_obstacle_index].pos.x);
-					if (xdist < 2.0) {
-						ydist = abs(erot->pos.y - DoorLevel->obstacle_list[door_obstacle_index].pos.y);
-						if (ydist < 2.0) {
-	
-							//--------------------
-							// Now that we know, that there is some droid at least halfway
-							// close to this door, we can start to go into more details and
-							// compute the exact distance from the droid to the door.
-							//
-							dist2 = xdist * xdist + ydist * ydist;
-							if (dist2 < DOOROPENDIST2_FOR_DROIDS) {
-								if ((*Pos != ISO_H_DOOR_100_OPEN) && (*Pos != ISO_V_DOOR_100_OPEN)
-									&& (*Pos != ISO_DH_DOOR_100_OPEN) && (*Pos != ISO_DV_DOOR_100_OPEN)
-									&& (*Pos != ISO_OUTER_DOOR_H_100) && (*Pos != ISO_OUTER_DOOR_V_100))
-									*Pos += 1;
-	
-								//--------------------
-								// Just to make sure the last bot doesn't look like the whole loop
-								// went through without any bot being close...
-								//
-								some_bot_was_close_to_this_door = TRUE;
-								break;
-							}
-	
-						}	// ydist < 2.0
-					}	// xdist < 2.0
-	
-				}	// bots
-	
-				//--------------------
-				// So if the whole loop when through, that means that no bot was close
-				// enough to this door.  That means that we can close this door a bit
-				// more...
-				//
-				if (!some_bot_was_close_to_this_door)
-					if ((*Pos != ISO_V_DOOR_000_OPEN) && (*Pos != ISO_H_DOOR_000_OPEN)
-						&& (*Pos != ISO_DV_DOOR_000_OPEN) && (*Pos != ISO_DH_DOOR_000_OPEN)
-						&& (*Pos != ISO_OUTER_DOOR_V_00) && (*Pos != ISO_OUTER_DOOR_H_00))
-						*Pos -= 1;
-	
-			}		/* else */
-		}			/* for */
-	}
-};				// void MoveLevelDoors ( void )
-
-/**
- * This function does all the firing for the autocannons installed in
- * the map of this level.
- */
-void WorkLevelGuns()
-{
-	float autogunx, autoguny;
-	int *AutogunType;
-
-	//--------------------
-	// The variables for the gun.
-	//
-	int j = 0;
-	/*XXX hardcoded weapon item type */
-	int weapon_item_type = GetItemIndexByName("Laser pistol");
-	bullet *CurBullet = NULL;	// the bullet we're currentl dealing with
-	int bullet_image_type = ItemMap[weapon_item_type].item_gun_bullet_image_type;	// which gun do we have ? 
-	float BulletSpeed = ItemMap[weapon_item_type].item_gun_speed;
-	double speed_norm;
-	moderately_finepoint speed;
-	struct animated_obstacle *a;
-	struct visible_level *visible_lvl, *next_lvl;
-
-	if (LevelGunsNotFiredTime < 0.2)
-		return;
-	LevelGunsNotFiredTime = 0;
-
-	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
-		level *GunLevel = visible_lvl->lvl_pointer;
-	
-		list_for_each_entry(a, &visible_lvl->autoguns_head, node) {
-	
-			autogunx = (GunLevel->obstacle_list[a->index].pos.x);
-			autoguny = (GunLevel->obstacle_list[a->index].pos.y);
-	
-			AutogunType = &(GunLevel->obstacle_list[a->index].type);
-	
-			//--------------------
-			// search for the next free bullet list entry
-			//
-			for (j = 0; j < (MAXBULLETS); j++) {
-				if (AllBullets[j].type == INFOUT) {
-					CurBullet = &AllBullets[j];
-					break;
-				}
-			}
-	
-			// didn't find any free bullet entry? --> take the first
-			if (CurBullet == NULL)
-				CurBullet = &AllBullets[0];
-	
-			CurBullet->type = bullet_image_type;
-	
-			CurBullet->damage = 5;
-			CurBullet->mine = FALSE;
-			CurBullet->owner = -1;
-			CurBullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
-			CurBullet->ignore_wall_collisions = ItemMap[weapon_item_type].item_gun_bullet_ignore_wall_collisions;
-			CurBullet->time_in_frames = 0;
-			CurBullet->time_in_seconds = 0;
-			CurBullet->was_reflected = FALSE;
-			CurBullet->reflect_other_bullets = ItemMap[weapon_item_type].item_gun_bullet_reflect_other_bullets;
-			CurBullet->pass_through_explosions = ItemMap[weapon_item_type].item_gun_bullet_pass_through_explosions;
-			CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
-	
-			CurBullet->is_friendly = 0;
-	
-			CurBullet->to_hit = 90;
-	
-			//--------------------
-			// Maybe the bullet has some magic properties.  This is handled here.
-			//
-			CurBullet->freezing_level = 0;
-			CurBullet->poison_duration = 0;
-			CurBullet->poison_damage_per_sec = 0;
-			CurBullet->paralysation_duration = 0;
-	
-			speed.x = 0.0;
-			speed.y = 0.0;
-	
-			CurBullet->pos.x = autogunx;
-			CurBullet->pos.y = autoguny;
-			CurBullet->pos.z = GunLevel->levelnum;
-	
-			switch (*AutogunType) {
-			case ISO_AUTOGUN_W:
-				speed.x = -0.2;
-				CurBullet->pos.x -= 0.5;
-				CurBullet->pos.y -= 0.25;
-				break;
-			case ISO_AUTOGUN_E:
-				speed.x = 0.2;
-				CurBullet->pos.x += 0.4;
-				break;
-			case ISO_AUTOGUN_N:
-				speed.y = -0.2;
-				CurBullet->pos.x += -0.25;
-				CurBullet->pos.y += -0.5;
-				break;
-			case ISO_AUTOGUN_S:
-				speed.y = +0.2;
-				CurBullet->pos.y += 0.4;
-				break;
-			default:
-				fprintf(stderr, "\n*AutogunType: '%d'.\n", *AutogunType);
-				ErrorMessage(__FUNCTION__, "\
-	There seems to be an autogun in the autogun list of this level, but it\n\
-	is not really an autogun.  Instead it's something else.", PLEASE_INFORM, IS_FATAL);
-				break;
-			}
-	
-			speed_norm = sqrt(speed.x * speed.x + speed.y * speed.y);
-			CurBullet->speed.x = (speed.x / speed_norm);
-			CurBullet->speed.y = (speed.y / speed_norm);
-	
-			//--------------------
-			// Now we determine the angle of rotation to be used for
-			// the picture of the bullet itself
-			//
-	
-			CurBullet->angle = -(atan2(speed.y, speed.x) * 180 / M_PI + 90 + 45);
-	
-			DebugPrintf(1, "\nWorkLevelGuns(...) : Phase of bullet=%d.", CurBullet->phase);
-			DebugPrintf(1, "\nWorkLevelGuns(...) : angle of bullet=%f.", CurBullet->angle);
-	
-			CurBullet->speed.x *= BulletSpeed;
-			CurBullet->speed.y *= BulletSpeed;
-	
-		}			// for
-	}
-};				// void WorkLevelGuns ( void )
-
 /**
  * This function determines wether a given object on x/y is visible to
  * the 001 or not (due to some walls or something in between
@@ -3059,11 +2587,22 @@ int IsVisible(GPS objpos)
 /**
  * This function moves all periodically changing map tiles...
  */
-void AnimateCyclingMapTiles(void)
+void animate_obstacles(void)
 {
-	AnimateRefresh();
-	// AnimateConsumer();
-	AnimateTeleports();
+	struct animated_obstacle *a;
+	struct visible_level *visible_lvl, *next_lvl;
+
+	animation_timeline_advance();
+	
+	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {	
+		list_for_each_entry(a, &visible_lvl->animated_obstacles_list, node) {
+			if (a->animate_fn != NULL) {
+				a->animate_fn(visible_lvl->lvl_pointer, a->index);
+			}
+		}
+	}
+	
+
 };				// void AnimateCyclingMapTiles (void)
 
 /*----------------------------------------------------------------------

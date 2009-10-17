@@ -54,13 +54,9 @@ void UpdateCountersForThisFrame();
  */
 void DoAllMovementAndAnimations(void)
 {
-	MoveLevelDoors();
-
-	WorkLevelGuns();	// this should fire all autocannons on this level
-
 	CheckForTriggeredEvents();
 
-	AnimateCyclingMapTiles();	// this is a pure client issue.  Not dependent upon the players.
+	animate_obstacles();	// this is a pure client issue.  Not dependent upon the players.
 
 	animate_blasts();	// move blasts to the right current "phase" of the blast
 
@@ -309,8 +305,6 @@ void UpdateCountersForThisFrame()
 	LastGotIntoBlastSound += latest_frame_time;
 	LastRefreshSound += latest_frame_time;
 
-	LevelDoorsNotMovedTime += latest_frame_time;
-	LevelGunsNotFiredTime += latest_frame_time;
 	if (SkipAFewFrames)
 		SkipAFewFrames--;
 

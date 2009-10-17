@@ -120,12 +120,6 @@
 #define OBSTACLE_DESCRIPTION_INDEX_STRING "d"
 
 //--------------------
-// Distance, where door opens 
-//
-#define DOOROPENDIST2 (2.0)
-#define DOOROPENDIST2_FOR_DROIDS (1.0)
-
-//--------------------
 // How big is the margin the walls have as far as collisions are concerned.
 //
 #define WALLPASS (4.0/64.0)

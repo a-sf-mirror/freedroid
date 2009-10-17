@@ -1465,7 +1465,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	location StartPosition;
 
 	Activate_Conservative_Frame_Computation();
-	LevelDoorsNotMovedTime = 0.0;
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 
 	//--------------------
@@ -1941,8 +1940,8 @@ void ThouArtDefeated(void)
 		animate_blasts();
 		MoveBullets();
 		MoveEnemys();
-		MoveLevelDoors();
-
+		animate_obstacles();
+		
 		for (j = 0; j < MAXBULLETS; j++)
 			CheckBulletCollisions(j);
 
@@ -1983,7 +1982,7 @@ void ThouHastWon(void)
 		animate_blasts();
 		MoveBullets();
 		MoveEnemys();
-		MoveLevelDoors();
+		animate_obstacles();
 
 		// ReactToSpecialKeys();
 

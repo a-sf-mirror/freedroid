@@ -114,8 +114,6 @@ EXTERN iso_image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];
 EXTERN iso_image SpellLevelButtonImageList[NUMBER_OF_SKILL_PAGES];
 
 EXTERN int Number_Of_Droids_On_Ship;
-EXTERN float LevelDoorsNotMovedTime;
-EXTERN float LevelGunsNotFiredTime;
 EXTERN configuration_for_freedroid GameConfig;
 EXTERN BFont_Info *Menu_BFont;
 EXTERN BFont_Info *Messagevar_BFont;

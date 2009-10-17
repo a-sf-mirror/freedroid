@@ -236,48 +236,6 @@ typedef struct event_trigger_s {
 	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
 } event_trigger, *Event_trigger;
 
-typedef struct obstacle_spec_s {
-	iso_image image;
-	iso_image shadow_image;
-	SDL_Surface *automap_version;
-
-	char image_loaded;
-
-	//--------------------
-	// Some obstacles will block the Tux from walking through them.
-	// Currently only rectangles are supported block areas.  The width
-	// (i.e. east-west=parm1) and height (i.e. north-south=parm2) of
-	// the blocking rectangle can ge specified below.
-	//
-	float block_area_parm_1;
-	float block_area_parm_2;
-	float upper_border;
-	float lower_border;
-	float left_border;
-	float right_border;
-
-	float diaglength;
-
-	char block_area_type;
-	int result_type_after_smashing_once;
-
-	unsigned int flags;
-
-	//--------------------
-	// Some obstacles will emitt light.  Specify light strength here.
-	// A value of 0 light will be sufficient in most cases...
-	//
-	short emitted_light_strength;
-	char transparent;
-	//--------------------
-	// This is a special property for obstacles, that can be 
-	// stepped on, like a rug or floor plate, for proper visibility...
-	//
-	char *filename;
-	char *obstacle_short_name;
-	char *obstacle_long_description;
-} obstacle_spec, *Obstacle_spec;
-
 typedef struct item_image_spec_s {
 	point inv_size;
 	SDL_Surface *Surface;
@@ -827,14 +785,58 @@ typedef struct level_s {
 	item ChestItemList[MAX_ITEMS_PER_LEVEL];
 } level, *Level;
 
+typedef struct obstacle_spec_s {
+	iso_image image;
+	iso_image shadow_image;
+	SDL_Surface *automap_version;
+
+	char image_loaded;
+
+	//--------------------
+	// Some obstacles will block the Tux from walking through them.
+	// Currently only rectangles are supported block areas.  The width
+	// (i.e. east-west=parm1) and height (i.e. north-south=parm2) of
+	// the blocking rectangle can ge specified below.
+	//
+	float block_area_parm_1;
+	float block_area_parm_2;
+	float upper_border;
+	float lower_border;
+	float left_border;
+	float right_border;
+
+	float diaglength;
+
+	char block_area_type;
+	int result_type_after_smashing_once;
+
+	unsigned int flags;
+
+	//--------------------
+	// Some obstacles will emitt light.  Specify light strength here.
+	// A value of 0 light will be sufficient in most cases...
+	//
+	short emitted_light_strength;
+	char transparent;
+	//--------------------
+	// This is a special property for obstacles, that can be 
+	// stepped on, like a rug or floor plate, for proper visibility...
+	//
+	char *filename;
+	char *obstacle_short_name;
+	char *obstacle_long_description;
+	
+	//--------------------
+	// Some obstacles have an associated animation.
+	// This property defines the function to call to animate them
+	int (*animate_fn) (level *obstacle_lvl, int obstacle_idx);
+} obstacle_spec, *Obstacle_spec;
+
 struct visible_level {
 	int valid;
 	level *lvl_pointer;
 	float boundary_squared_dist;
-	struct list_head droid_nests_head;
-	struct list_head teleporters_head;
-	struct list_head doors_head;
-	struct list_head autoguns_head;
+	struct list_head animated_obstacles_list;
 	int animated_obstacles_dirty_flag;
 	struct list_head node;
 };

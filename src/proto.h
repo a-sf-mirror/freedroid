@@ -372,7 +372,7 @@ void dirty_animated_obstacle_lists(int lvl_num);
 void clear_animated_obstacle_lists(struct visible_level *vis_lvl);
 int GetCrew(char *shipname);
 
-void AnimateCyclingMapTiles(void);
+void animate_obstacles(void);
 void MoveLevelDoors(void);
 void WorkLevelGuns(void);
 int IsVisible(GPS objpos);
@@ -762,5 +762,12 @@ struct auto_string *alloc_autostr(int);
 void free_autostr(struct auto_string *);
 int autostr_printf(struct auto_string *, const char *, ...);
 int autostr_append(struct auto_string *, const char *, ...);
+
+// animate.c
+void animation_timeline_advance();
+int animate_door(level* obstacle_lvl, int obstacle_idx);
+int animate_teleporter(level* obstacle_lvl, int obstacle_idx);
+int animate_refresh(level* obstacle_lvl, int obstacle_idx);
+int animate_autogun(level* obstacle_lvl, int obstacle_idx);
 
 #endif
