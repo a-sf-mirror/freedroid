@@ -1459,9 +1459,12 @@ void InitVideo(void)
 	//
 	sprintf(window_title_string, "FreedroidRPG %s", VERSION);
 	if (vid_info->wm_available) {	/* if there's a window-manager */
+		SDL_Surface *icon;
 		SDL_WM_SetCaption(window_title_string, "");
 		find_file(ICON_FILE, GRAPHICS_DIR, fpath, 0);
-		SDL_WM_SetIcon(IMG_Load(fpath), NULL);
+		icon = IMG_Load(fpath);
+		SDL_WM_SetIcon(icon, NULL);
+		SDL_FreeSurface(icon);
 	}
 
 	InitOurBFonts();
