@@ -1435,6 +1435,8 @@ int SaveGameConfig(void)
 	save_configuration_for_freedroid("GameConfig", &(GameConfig));
 	fwrite(savestruct_autostr->value, 1, savestruct_autostr->length, config_file);
 
+	free_autostr(savestruct_autostr);
+
 	GameConfig.screen_width = current_width;
 	GameConfig.screen_height = current_height;
 	fclose(config_file);
