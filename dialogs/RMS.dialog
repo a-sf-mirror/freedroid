@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,63 +29,54 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ 
+    if (has_item_backpack("Kevin's Data Cube") > 0) then show(6) else end
+	show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here. "
-NPC=_"Welcome, welcome! I'm Richard. I'm the computer guy around here."
-NPC=_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time."
 LuaCode={
-    hide(0)
-    show(1)
+	npc_says(_"Welcome, welcome! I'm Richard. I'm the computer guy around here.")
+	npc_says(_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time.")
+	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"A computer cluster? What's that?"
-NPC=_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems."
-NPC=_"As they say, 'two heads are better than one'. And we have a lot of heads here."
-NPC=_"That is why I call this cluster 'Hydra'. A lot of heads indeed."
 LuaCode={
-    hide(1)
+	npc_says(_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems.")
+	npc_says(_"As they say, 'two heads are better than one'. And we have a lot of heads here.")
+	npc_says(_"That is why I call this cluster 'Hydra'. A lot of heads indeed.")
+	hide(1)
 }
-----------------------------------------------------------------------
-
-Nr=5  Text="THIS WILL NOT EVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    if (has_item_backpack("Kevin's Data Cube") > 0) then show(6) else end
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"I have a data cube with some information. Can you tell me something more about it?"
-NPC=_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data."
-NPC=_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!"
-NPC=_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down."
 LuaCode={
+	npc_says(_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data.")
+	npc_says(_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!")
+	npc_says(_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down.")
     end_quest("A kingdom for a cluster!")
     add_diary_entry("A kingdom for a cluster!", "Yes, that was simple. I wish everything else went as smoothly as this one did...")
     del_item_backpack("Kevin's Data Cube", 1)
-    hide(6)
-    show(9)
+	hide(6) show(9)
 }
 ----------------------------------------------------------------------
 
 Nr=9  Text=_"Hey, did you get something out of that data cube?"
-NPC=_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes."
-NPC=_"Seems like the disruptor shield which thwarts all our attacks on Hell Fortress can be controlled from somewhere outside, or something like that."
-NPC=_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more."
 LuaCode={
-    hide(9)
+	npc_says(_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes.")
+	npc_says(_"Seems like the disruptor shield which thwarts all our attacks on Hell Fortress can be controlled from somewhere outside, or something like that.")
+	npc_says(_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more.")
+	hide(9)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
-NPC=_"Take care, Linarian."
 LuaCode={
+	npc_says(_"Take care, Linarian.")
     end_dialog()
 }
 ----------------------------------------------------------------------

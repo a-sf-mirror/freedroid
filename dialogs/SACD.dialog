@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,78 +29,61 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
+FirstTime LuaCode={ }
+EveryTime LuaCode={ 
+	tux_says(_"Login : admin  Password : *******")
+	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #")
+	if (has_quest("Tania's sanitary")) then add_diary_entry("Tania's sanitary", "I have found that SACD and hacked it's system.") else end
+	if (not has_cookie("SACDOvertaken")) then
+		add_xp(1000)
+		add_cookie("SACDOvertaken")
+	else end
+	hide(2) show(1, 3, 4, 99)
 }
-----------------------------------------------------------------------
-
-Nr=0  Text=_"Login : admin  Password : *******"
-NPC=_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #"
-LuaCode={
-    if (has_quest("Tania's sanitary")) then add_diary_entry("Tania's sanitary", "I have found that SACD and took him over.") else end
-
-    if (has_cookie("SACDOvertaken")) then    -- possible to leave empty then?
-    else
-        add_xp(1000)
-        add_cookie("SACDOvertaken")
-    end
-
-    hide(0, 2)
-    show(1, 3, 4)
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"/usr/bin/guns --disable"
-NPC=_"Disabling guns..."
-NPC=_"Connecting to peripheral controller..."
-NPC=_"Guns disabled."
 LuaCode={
+	npc_says(_"Disabling guns...")
+	npc_says(_"Connecting to peripheral controller...")
+	npc_says(_"Guns disabled.")
     add_cookie("SAGunsOff")
     change_obstacle_state("SADDGun1", "disabled")
     change_obstacle_state("SADDGun2", "disabled")
-    hide(1)
-    show(2)
+	hide(1) show(2)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"/usr/bin/guns --enable"
-NPC=_"Enabling guns..."
-NPC=_"Connecting to peripheral controller..."
-NPC=_"Guns enabled."
 LuaCode={
+	npc_says(_"Enabling guns...")
+	npc_says(_"Connecting to peripheral controller...")
+	npc_says(_"Guns enabled.")
     change_obstacle_state("SADDGun1", "enabled")
     change_obstacle_state("SADDGun2", "enabled")
     del_cookie("SAGunsOff")
-    hide(2)
-    show(1)
+	hide(2) show(1)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"/usr/bin/hermodoors --open"
-NPC=_"Opening doors..."
-NPC=_"Connecting to peripheral controller..."
-NPC=_"Please enter unlock security password:"
 LuaCode={
-    next(5)
+	npc_says(_"Opening doors...")
+	npc_says(_"Connecting to peripheral controller...")
+	npc_says(_"Please enter unlock security password:")
+	tux_says(_"CTRL+C")
+	npc_says(_"An error occured while opening doors.")
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"./hcf.py"
-NPC=_"Executing: Halt and Catch Fire."
-NPC=_"Cooling subsystems disabled."
-NPC=_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,"
-NPC=_"SsTeM=#faiPure%^#n 3 S 1()$++"
 LuaCode={
+	npc_says(_"Executing: Halt and Catch Fire.")
+	npc_says(_"Cooling subsystems disabled.")
+	npc_says(_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,")
+	npc_says(_"SsTeM=#faiPure%^#n 3 S 1()$++")
     drop_dead()
-    hide(4)
-}
-----------------------------------------------------------------------
-
-Nr=5  Text=_"CTRL+C"
-NPC=_"An error occured while opening doors."
-LuaCode={
-    hide(5)
+	hide(4)
 }
 ----------------------------------------------------------------------
 
