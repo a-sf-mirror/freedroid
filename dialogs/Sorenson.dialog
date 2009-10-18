@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,118 +29,204 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(20, 30, 40, 50, 99)
+FirstTime LuaCode={ show(20, 30, 40, 50) }
+EveryTime LuaCode={ 
+	tux_says(_"Um... Hello?")
+	npc_says(_"AH! A Visitor! Come in! Come in!")
+	tux_says(_"I think I should go now. Right now. See you later.")
+	npc_says(_"No, don't go. I will not let you go before we talk. Important things.")
+	npc_says(_"I can help you understand computers... Greater than ever before.")
+	show(99)
 }
-----------------------------------------------------------------------
-
-Nr=0  Text=_"Um... Hello?"
-NPC=_"AH! A Visitor! Come in! Come in!"
-LuaCode={
-    next(1)
-}
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
-----------------------------------------------------------------------
-
-Nr=1  Text=_"I think I should go now. Right now. See you later."
-NPC=_"No, don't go. I will not let you go before we talk. Important things."
-NPC=_"I can help you understand computers... Greater than ever before."
-
 ----------------------------------------------------------------------
 
 Nr=20  Text=_"Who are you?"
-NPC=_"I? Sorenson is a great computer person."
-NPC=_"Knows the deep codes. Walks the paths."
-NPC=_"Sees the light of all chips. Knows how to use every keyboard."
 LuaCode={
-    next(21)
-    hide(20)
-}
-----------------------------------------------------------------------
-
-Nr=21  Text=_"Erm..."
-NPC=_"Sees the bit. Knows the bytes. Explores the great networks."
-NPC=_"The best friend of the clean and pure code."
-NPC=_"The great light on the night sky of the hollow web of computer power."
-LuaCode={
-    next(22)
-}
-----------------------------------------------------------------------
-
-Nr=22  Text=_"Yes, I get the idea..."
-NPC=_"Seeker of clean languages. The great knower of obscure secrets."
-NPC=_"The one who speaks to hard drives. The best --"
-LuaCode={
-    next(23)
-}
-----------------------------------------------------------------------
-
-Nr=23  Text=_"I KNOW! I KNOW!"
-NPC=_"Oh."
-NPC=_"Sorenson did not tell you most yet."
-NPC=_"She did not tell you she is the great controller of light."
-NPC=_"She did not tell you she is the walker of the dark corridors --"
-LuaCode={
-    next(24)
-}
-----------------------------------------------------------------------
-
-Nr=24  Text=_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!"
-NPC=_"Apology is being extended by me. Sorenson overdid it."
-NPC=_"Sorenson the coder greets you."
-LuaCode={
-    hide(24)
+	npc_says(_"I? Sorenson is a great computer person.")
+	npc_says(_"Knows the deep codes. Walks the paths.")
+	npc_says(_"Sees the light of all chips. Knows how to use every keyboard.")
+	tux_says(_"Erm...")
+	npc_says(_"Sees the bit. Knows the bytes. Explores the great networks.")
+	npc_says(_"The best friend of the clean and pure code.")
+	npc_says(_"The great light on the night sky of the hollow web of computer power.")
+	tux_says(_"Yes, I get the idea...")
+	npc_says(_"Seeker of clean languages. The great knower of obscure secrets.")
+	npc_says(_"The one who speaks to hard drives. The best --")
+	tux_says(_"I KNOW! I KNOW!")
+	npc_says(_"Oh.")
+	npc_says(_"Sorenson did not tell you most yet.")
+	npc_says(_"She did not tell you she is the great controller of light.")
+	npc_says(_"She did not tell you she is the walker of the dark corridors --")
+	tux_says(_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!")
+	npc_says(_"Apology is being extended by me. Sorenson overdid it.")
+	npc_says(_"Sorenson the coder greets you.")
+	hide(20)
 }
 ----------------------------------------------------------------------
 
 Nr=30  Text=_"Why are you like this? What happened to you?"
-NPC=_"Was learning COBOL. Pain. Torture. Horrible screaming."
-NPC=_"Sorenson asked for help. Many days and nights."
-NPC=_"Light arrived. Light offered help. Sorenson changed."
-NPC=_"Free person now."
 LuaCode={
-    hide(30)
-    show(31)
+	npc_says(_"Was learning COBOL. Pain. Torture. Horrible screaming.")
+	npc_says(_"Sorenson asked for help. Many days and nights.")
+	npc_says(_"Light arrived. Light offered help. Sorenson changed.")
+	npc_says(_"Free person now.")
+	hide(30) show(31)
 }
 ----------------------------------------------------------------------
 
 Nr=31  Text=_"What is this COBOL?"
-NPC=_"COBOL is the mind-crippler."
-NPC=_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate."
 LuaCode={
-    hide(31)
+	npc_says(_"COBOL is the mind-crippler.")
+	npc_says(_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate.")
+	hide(31)
 }
 ----------------------------------------------------------------------
 
 Nr=40  Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
-NPC=_"Of course not. Trade is good."
 LuaCode={
+	npc_says(_"Of course not. Trade is good.")
     trade_with("Sorenson")
-    hide(40)
-    show(41)
+	hide(40) show(41)
 }
 ----------------------------------------------------------------------
 
 Nr=41  Text=_"Can I take a look at your books again?"
-NPC=_"Yes. Sure. Of course."
 LuaCode={
+	npc_says(_"Yes. Sure. Of course.")
     trade_with("Sorenson")
 }
 ----------------------------------------------------------------------
 
 Nr=50  Text=_"You got me curious. How can you help me understand computers better?"
-NPC=_"Simplicity! Sign this contract. No need to read it."
-NPC=_"You trust Sorenson, right?"
 LuaCode={
-    run_subdialog("subdlg_Sorenson.dialog")
-    hide(50)
+	npc_says(_"Simplicity! Sign this contract. No need to read it.")
+	npc_says(_"You trust Sorenson, right?")
+	hide(50) show(51, 79)
+}
+----------------------------------------------------------------------
+
+Nr=51  Text=_"Sure. I'll sign it."
+LuaCode={
+	npc_says(_"Go0d. H3re is th3 con7ract. S1gn it!")
+	tux_says(_"Ok, here go --")
+	npc_says(_"N0! 1n bl00d!")
+	hide(51) show(52, 55, 78)
+}
+----------------------------------------------------------------------
+
+Nr=52  Text=_"Um... Your voice sounds strange. Is everything fine?"
+LuaCode={
+	npc_says(_"519n 7h3 (0n7r4(7!!!!")
+	hide(52) show(53)
+}
+----------------------------------------------------------------------
+
+Nr=53  Text=_"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
+LuaCode={
+	npc_says(_"519n 17!!!!")
+	hide(53)
+}
+----------------------------------------------------------------------
+
+Nr=55  Text=_"Sure, no problem... Now, how shall I sign this?"
+LuaCode={
+	hide(52, 53, 78, 79)
+	show(60, 61, 62, 63, 64, 65, 66)
+}
+----------------------------------------------------------------------
+
+Nr=60  Text=_"Tux."
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"Yes! I am free! At last I am free!")
+	hide(60, 61, 62, 63, 64, 65, 66) next(70)
+}
+----------------------------------------------------------------------
+
+Nr=61  Text=_"Tux, the Linarian"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"Yes! I am free!")
+	hide(60, 61, 62, 63, 64, 65, 66) next(70)
+}
+----------------------------------------------------------------------
+
+Nr=62  Text=_"I accept the contract, Tux"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"Yes! I am free at last!")
+	hide(60, 61, 62, 63, 64, 65, 66) next(70)
+}
+----------------------------------------------------------------------
+
+Nr=63  Text=_"Elbereth"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"4444! 17 burn5! 7'm m3171n9!")
+	npc_says(_"44444444444444444!")
+    drop_dead()
+}
+----------------------------------------------------------------------
+
+Nr=64  Text=_"Francis"
+LuaCode={
+	npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
+	npc_says(_"Wh47? N07 w0rk1b9?")
+	tux_says(_"Erm. I have a confession to make. My name is not Francis.")
+	npc_says(_"N0000000000!!!!!!!")
+    break_off_and_attack()
+	hide(64)
+}
+----------------------------------------------------------------------
+
+Nr=65  Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
+LuaCode={
+	npc_says(_"Huh?")
+	tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
+	npc_says(_"N0! Idi07!")
+    kill_tux()
+	hide(65)
+}
+----------------------------------------------------------------------
+
+Nr=66  Text=_"X"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
+	hide(66)
+    break_off_and_attack()
+}
+----------------------------------------------------------------------
+
+Nr=70  Text=_"Huh? I d0n'7 f33l g00d."
+LuaCode={
+	npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
+	tux_says(_"W417... 1 f331... H0rr1b13...")
+    improve_skill("programming")
+    drop_dead()
+	hide(70)
+}
+----------------------------------------------------------------------
+
+Nr=78  Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
+LuaCode={
+	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
+	hide(78)
+    break_off_and_attack()
+}
+----------------------------------------------------------------------
+
+Nr=79  Text=_"There is no way I will sign something without reading it. Forget about it."
+LuaCode={
+	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
+	hide(79)
+    break_off_and_attack()
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I really must be going now. Goodbye."
-NPC=_"Please come back later, Linarian. We must talk again."
 LuaCode={
+	npc_says(_"Please come back later, Linarian. We must talk again.")
     end_dialog()
 }
 ----------------------------------------------------------------------
