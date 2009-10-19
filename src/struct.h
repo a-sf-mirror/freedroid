@@ -143,7 +143,6 @@ typedef struct configuration_for_freedroid_s {
 	int next_time_height_of_screen;
 	float automap_display_scale;
 	int skip_shadow_blitting;
-	int language;		// index of language, see in defs.h
 	int do_fadings;		// do the screen fadings
 	int auto_display_to_help;	// display the takeover help
 	int fullscreen_on;

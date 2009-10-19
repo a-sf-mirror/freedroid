@@ -60,7 +60,6 @@ EXTERN Bulletspec Bulletmap;
 EXTERN blastspec Blastmap[ALLBLASTTYPES];
 EXTERN int skip_initial_menus;
 EXTERN int number_of_skills;
-EXTERN supported_languages_t supported_languages[];
 EXTERN int last_bot_number;
 EXTERN enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;
 #endif

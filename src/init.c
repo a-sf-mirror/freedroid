@@ -292,9 +292,6 @@ void PlayATitleFile(char *Filename)
 
 	snprintf(finaldir, 50, "%s/", TITLES_DIR);
 
-	if (strcmp(supported_languages[GameConfig.language].code, "C"))
-		strcat(finaldir, supported_languages[GameConfig.language].code);
-
 	//--------------------
 	// Now its time to start loading the title file...
 	//
@@ -1654,22 +1651,6 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.xray_vision_for_tux = FALSE;
 	GameConfig.lazyload = 1;
 
-#if ENABLE_NLS
-	char *lang = setlocale(LC_MESSAGES, NULL);
-
-	GameConfig.language = 0;
-	if (lang) {
-		int i = 0;
-		while (supported_languages[i].code != NULL) {
-			if (!strcmp(lang, supported_languages[i].code))
-				GameConfig.language = i;
-			i++;
-		}
-	}
-#else
-	GameConfig.language = 0;
-#endif
-
 	GameConfig.auto_display_to_help = 1;
 };				// void Reset_GameConfig_To_Default_Values ( void )
 
@@ -1745,16 +1726,6 @@ void InitFreedroid(int argc, char **argv)
 	// feenableexcept ( FE_ALL_EXCEPT );
 	// feenableexcept ( FE_DIVBYZERO | FE_INVALID ); // FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW 
 	// fesetexceptflag (const fexcept_t *flagp, int excepts);
-
-#ifdef ENABLE_NLS
-#include <locale.h>
-	//--------------------
-	// Portable localization
-	setlocale(LC_COLLATE, "C");
-	setlocale(LC_MONETARY, "C");
-	setlocale(LC_NUMERIC, "C");
-	setlocale(LC_TIME, "C");
-#endif
 
 	//--------------------
 	// We hack the default signal handlers to print out a backtrace

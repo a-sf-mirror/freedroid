@@ -1286,15 +1286,6 @@ settings file will be generated.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		GameConfig.screen_width = original_width_of_screen;
 		GameConfig.screen_height = original_height_of_screen;
 	}
-#if ENABLE_NLS
-	setlocale(LC_MESSAGES, "C");
-	setlocale(LC_CTYPE, "C");
-
-	if (GameConfig.language > 0) {
-		setlocale(LC_MESSAGES, supported_languages[GameConfig.language].code);
-		setlocale(LC_CTYPE, supported_languages[GameConfig.language].code);
-	}
-#endif
 	return (OK);
 
 };				// int LoadGameConfig ( void )

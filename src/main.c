@@ -132,34 +132,6 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Couldn't change working directory to %s.\n", dirname(argv[0]));
 #endif
 
-#if ENABLE_NLS
-	DIR *tmp_dir;
-	setlocale(LC_MESSAGES, "C");
-	setlocale(LC_CTYPE, "C");
-	tmp_dir = opendir("../po");
-	if (tmp_dir != NULL) {
-		bindtextdomain("freedroidrpg", "../po");
-		bindtextdomain("freedroidrpg_data", "../po");
-		bindtextdomain("freedroidrpg_dialogs", "../po");
-		closedir(tmp_dir);
-	}
-#ifdef __WIN32__
-	else if ((tmp_dir = opendir("po")) != NULL) {	/* win32 special: allow running the game from the root of the tree */
-		printf("WIN32: binding gettext stuff to ./po\n");
-		bindtextdomain("freedroidrpg", "po");
-		bindtextdomain("freedroidrpg_data", "po");
-		bindtextdomain("freedroidrpg_dialogs", "po");
-		closedir(tmp_dir);
-	}
-#endif
-	else {
-		bindtextdomain("freedroidrpg", LOCALE_DIR);
-		bindtextdomain("freedroidrpg_data", LOCALE_DIR);
-		bindtextdomain("freedroidrpg_dialogs", LOCALE_DIR);
-	}
-	textdomain("freedroidrpg");
-#endif
-
 	//--------------------
 	// First we issue some message, that should appear in the debug log for
 	// windows users.

@@ -1192,7 +1192,7 @@ void Cheatmenu(void)
 #define MENU_LIST MENU(Startup, STARTUP) MENU(Escape, ESCAPE)		\
     MENU(Options, OPTIONS) MENU(Resolution, RESOLUTION)			\
     MENU(Graphics, GRAPHICS) MENU(Sound, SOUND)				\
-    MENU(Performance, PERFORMANCE) MENU(Language, LANGUAGE)		\
+    MENU(Performance, PERFORMANCE) \
     MENU(OSD, OSD) MENU(Droid, DROID) \
     MENU(Game, GAME)
 
@@ -1400,7 +1400,6 @@ static int Options_handle(int n)
 		GRAPHICS_OPTIONS,
 		SOUND_OPTIONS,
 		KEYMAP_OPTIONS,
-		LANGUAGE_OPTIONS,
 		DROID_TALK_OPTIONS,
 		ON_SCREEN_DISPLAYS,
 		PERFORMANCE_TWEAKS_OPTIONS,
@@ -1419,21 +1418,6 @@ static int Options_handle(int n)
 	case KEYMAP_OPTIONS:
 		keychart();
 		return CONTINUE_MENU;
-	case LANGUAGE_OPTIONS:
-#if ENABLE_NLS
-#if defined(__WIN32__) || defined(__MACOSX__)
-		GiveMouseAlertWindow(_("\nYou cannot change the language\n"
-				       "under Windows or Mac OS X.\n\n"
-				       "FreedroidRPG uses your system's language\n"
-				       "by default for your convenience.\n\n" "    Thank you\n"));
-#else
-		return MENU_LANGUAGE;
-#endif
-#else
-		GiveMouseAlertWindow(_("\nThe game has NOT been\n"
-				       "compiled with gettext support\n" "therefore translations are NOT\n" "available.\n" "Thanks\n"));
-#endif
-		break;
 	case DROID_TALK_OPTIONS:
 		return MENU_DROID;
 	case ON_SCREEN_DISPLAYS:
@@ -1454,12 +1438,11 @@ static void Options_fill(char *MenuTexts[10])
 	strncpy(MenuTexts[1], _("Graphics Options"), 1024);
 	strncpy(MenuTexts[2], _("Sound Options"), 1024);
 	strncpy(MenuTexts[3], _("Keys"), 1024);
-	strncpy(MenuTexts[4], _("Language"), 1024);
-	strncpy(MenuTexts[5], _("Droid Talk"), 1024);
-	strncpy(MenuTexts[6], _("On-Screen Displays"), 1024);
-	strncpy(MenuTexts[7], _("Performance Tweaks"), 1024);
-	strncpy(MenuTexts[8], _("Back"), 1024);
-	MenuTexts[9][0] = '\0';
+	strncpy(MenuTexts[4], _("Droid Talk"), 1024);
+	strncpy(MenuTexts[5], _("On-Screen Displays"), 1024);
+	strncpy(MenuTexts[6], _("Performance Tweaks"), 1024);
+	strncpy(MenuTexts[7], _("Back"), 1024);
+	MenuTexts[8][0] = '\0';
 }
 
 static int Escape_handle(int n)
@@ -1872,35 +1855,6 @@ static void Performance_fill(char *MenuTexts[])
 	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);
 	MenuTexts[i++][0] = '\0';
-}
-
-static int Language_handle(int n)
-{
-	int nb_languages = 0;
-	while (supported_languages[nb_languages].code != NULL)
-		nb_languages++;
-	if (n <= nb_languages && n > 0) {
-		GameConfig.language = n - 1;
-#if ENABLE_NLS
-		setlocale(LC_MESSAGES, supported_languages[n - 1].code);
-		setlocale(LC_CTYPE, supported_languages[n - 1].code);
-#endif
-		FreeOurBFonts();
-		InitOurBFonts();
-	}
-	return EXIT_MENU;
-}
-
-static void Language_fill(char *MenuTexts[10])
-{
-	// If there are more than 8 languages supported,
-	// it may crash.
-	int i = 0;
-	while (supported_languages[i].code != NULL) {
-		strncpy(MenuTexts[i], supported_languages[i].name, 1024);
-		i++;
-	}
-	MenuTexts[i][0] = '\0';
 }
 
 static int OSD_handle(int n)
