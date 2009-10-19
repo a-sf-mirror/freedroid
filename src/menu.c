@@ -1793,7 +1793,7 @@ static void Sound_fill(char *MenuTexts[10])
 static int Performance_handle(int n)
 {
 	enum {
-		SET_HOG_CPU_FLAG = 1,
+		SET_LIMIT_FRAMERATE_FLAG = 1,
 		SET_HIGHLIGHTING_MODE,
 		SKIP_LIGHT_RADIUS_MODE,
 		SKIP_SHADOWS,
@@ -1804,9 +1804,9 @@ static int Performance_handle(int n)
 	case (-1):
 		return EXIT_MENU;
 
-	case SET_HOG_CPU_FLAG:
+	case SET_LIMIT_FRAMERATE_FLAG:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) ;
-		GameConfig.hog_CPU = !GameConfig.hog_CPU;
+		GameConfig.limit_framerate = !GameConfig.limit_framerate;
 		break;
 
 	case SET_HIGHLIGHTING_MODE:
@@ -1845,8 +1845,8 @@ static void Performance_fill(char *MenuTexts[])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("Hog CPU for max. performance"));
-	sprintf(Options[i + 1], ": %s", GameConfig.hog_CPU ? _("YES") : _("NO"));
+	sprintf(Options[i], _("Limit framerate (powersaving)"));
+	sprintf(Options[i + 1], ": %s", GameConfig.limit_framerate ? _("YES") : _("NO"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;

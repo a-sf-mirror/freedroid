@@ -769,8 +769,8 @@ void LevelEditor()
 	while (!level_editor_done) {
 		game_status = INSIDE_LVLEDITOR;
 
-		if (!GameConfig.hog_CPU)
-			SDL_Delay(1);
+		if (GameConfig.limit_framerate)
+			SDL_Delay(10);
 
 		leveleditor_process_input();
 

@@ -110,8 +110,9 @@ void Game()
 
 		CheckIfMissionIsComplete();
 
-		if (!GameConfig.hog_CPU)
-			SDL_Delay(1);	// we allow the CPU to also do something else..
+		if (GameConfig.limit_framerate && Frame_Time() < 1/30.0) {
+			SDL_Delay(10);
+		}
 
 		ComputeFPSForThisFrame();
 
