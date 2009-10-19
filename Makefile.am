@@ -10,7 +10,7 @@ else
 extradirs = win32 croppy 
 endif 
 
-SUBDIRS = src po gluem $(extradirs)
+SUBDIRS = src gluem $(extradirs)
 
 man_MANS = freedroidRPG.6
 

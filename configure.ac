@@ -10,8 +10,6 @@ AM_INIT_AUTOMAKE([tar-ustar dist-bzip2])
 
 AM_CONFIG_HEADER(config.h)
 
-AM_GNU_GETTEXT(external)
-
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_MAKE_SET
@@ -139,15 +137,6 @@ AC_DEFINE(HAVE_LIBOGG,0, [Define to 1 if ogg libs were found])
 AC_DEFINE(HAVE_LIBVORBIS,0, [Define to 1 if Vorbis libs were found])
 fi
 
-if test x$macosx = xtrue; then
-	AC_CHECK_LIB([intl], [gettext],, AC_MSG_WARN([
---------------------------------------------------
-libintl not found!
-Unable to provide translation support without
-gettext/libintl.
---------------------------------------------------]))
-fi
-
 if test x$bsd = xtrue; then
 	AC_CHECK_LIB([execinfo], [backtrace],, AC_MSG_WARN([
 --------------------------------------------------
@@ -217,6 +206,6 @@ AM_CONDITIONAL(WIN32, test x$win32 = xtrue)
 
 AM_CONDITIONAL(NONLINUX, test x$macosx = xtrue -o x$win32 = xtrue)
 
-AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile win32/Makefile po/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile win32/Makefile])
 
 AC_OUTPUT
