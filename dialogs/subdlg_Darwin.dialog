@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,12 +29,11 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
-Nr=0  Text=" I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
+Nr=0  Text="I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
 LuaCode={
     next(2)
 }
@@ -74,10 +72,10 @@ LuaCode={
 
 Nr=10  Text="1st LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Let us start with entropy inverters. This is quite simple."
-NPC=_"Just take a hammer and hit the bot sehr hard on the head."
-NPC=_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for."
 LuaCode={
+	npc_says(_"Let us start with entropy inverters. This is quite simple.")
+	npc_says(_"Just take a hammer and hit the bot sehr hard on the head.")
+	npc_says(_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for.")
     add_cookie("know_extract1")
     next(60)
 }
@@ -85,10 +83,10 @@ LuaCode={
 
 Nr=20  Text="2nd LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"How about... Plasma transistors? Trivial."
-NPC=_"Remove the bot's engine and look around somewhere close to the battery."
-NPC=_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe."
 LuaCode={
+	npc_says(_"How about... Plasma transistors? Trivial.")
+	npc_says(_"Remove the bot's engine and look around somewhere close to the battery.")
+	npc_says(_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe.")
     add_cookie("know_extract2")
     next(60)
 }
@@ -96,11 +94,11 @@ LuaCode={
 
 Nr=30  Text="3rd LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Hmmm... Ah, gut. Superconductors."
-NPC=_"They are relatively easy to get out."
-NPC=_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there."
-NPC=_"Wear rubber gloves. Just in case, you know."
 LuaCode={
+	npc_says(_"Hmmm... Ah, gut. Superconductors.")
+	npc_says(_"They are relatively easy to get out.")
+	npc_says(_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there.")
+	npc_says(_"Wear rubber gloves. Just in case, you know.")
     add_cookie("know_extract3")
     next(60)
 }
@@ -108,12 +106,12 @@ LuaCode={
 
 Nr=40  Text="4th LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I will tell you everything about matter-antimatter converters."
-NPC=_"Yes... Converters are a problem."
-NPC=_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:"
-NPC=_"Make sure you turn the converter off before you remove it."
-NPC=_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there."
 LuaCode={
+	npc_says(_"I will tell you everything about matter-antimatter converters.")
+	npc_says(_"Yes... Converters are a problem.")
+	npc_says(_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:")
+	npc_says(_"Make sure you turn the converter off before you remove it.")
+	npc_says(_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there.")
     add_cookie("know_extract4")
     next(60)
 }
@@ -121,12 +119,12 @@ LuaCode={
 
 Nr=50  Text="5th LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"I will teach you about tachyon converters."
-NPC=_"Tachyons are very interesting particles. Many stories have been told about them."
-NPC=_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function."
-NPC=_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal."
-NPC=_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one."
 LuaCode={
+	npc_says(_"I will teach you about tachyon converters.")
+	npc_says(_"Tachyons are very interesting particles. Many stories have been told about them.")
+	npc_says(_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function.")
+	npc_says(_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal.")
+	npc_says(_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one.")
     add_cookie("know_extract5")
     next(60)
 }
@@ -139,35 +137,34 @@ LuaCode={
     del_training_points(1)
     improve_program("Extract bot parts")
     end_dialog()
-    hide(0)
-    show(1)
+	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
 Nr=70  Text="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Nein, I told you everything I know about that. No use asking me twice, ja?"
 LuaCode={
+	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?")
     end_dialog()
 }
 ----------------------------------------------------------------------
 
 Nr=80  Text="NO FREE POINTS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Hmmm..."
-NPC=_"You look green. Toughen up. Get some experience, kill some bots."
-NPC=_"Then we can talk."
 LuaCode={
+	npc_says(_"Hmmm...")
+	npc_says(_"You look green. Toughen up. Get some experience, kill some bots.")
+	npc_says(_"Then we can talk.")
     end_dialog()
 }
 ----------------------------------------------------------------------
 
 Nr=90  Text="TUX IS TOO POOR TO TRAIN"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Hmmm..."
-NPC=_"Kein geld, Keine hilfe."
-NPC=_"Come back with some money."
 LuaCode={
+	npc_says(_"Hmmm...")
+	npc_says(_"Kein geld, Keine hilfe.")
+	npc_says(_"Come back with some money.")
     end_dialog()
 }
 ----------------------------------------------------------------------

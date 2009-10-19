@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,53 +29,49 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here."
-NPC=_"Great. Now back to where you came from. This is no place for you."
 LuaCode={
-    hide(0)
-    show(1)
+	npc_says(_"Great. Now back to where you came from. This is no place for you.")
+	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"What's the matter with this gate?"
-NPC=_"This is a gate to an automated bot factory we call the Hell Fortress."
-NPC=_"You must be crazy if you want to get in there. That place is full of bots."
-NPC=_"Get out of here. They might attack at any moment!"
 LuaCode={
-    hide(1)
-    show(2)
+	npc_says(_"This is a gate to an automated bot factory we call the Hell Fortress.")
+	npc_says(_"You must be crazy if you want to get in there. That place is full of bots.")
+	npc_says(_"Get out of here. They might attack at any moment!")
+	hide(1) show(2)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"What if I just walk in there? Will you try to stop me?"
-NPC=_"Of course not. Murdering you would be a complete waste of time."
-NPC=_"The bots and disruptor shield will take care of that for me."
-NPC=_"Just remember to give me your valuables before you commit suicide."
-NPC=_"You won't need any money once you're damn dead, and I could use it, eh?"
 LuaCode={
-    hide(2)
-    show(3)
+	npc_says(_"Of course not. Murdering you would be a complete waste of time.")
+	npc_says(_"The bots and disruptor shield will take care of that for me.")
+	npc_says(_"Just remember to give me your valuables before you commit suicide.")
+	npc_says(_"You won't need any money once you're damn dead, and I could use it, eh?")
+	hide(2) show(3)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"Thanks for the advice."
-NPC=_"You're dead if you don't take it."
 LuaCode={
-    hide(3)
+	npc_says(_"You're dead if you don't take it.")
+	hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'll be going then."
-NPC=_"Finally."
-NPC=_"Don't come back."
 LuaCode={
+	npc_says(_"Finally.")
+	npc_says(_"Don't come back.")
     end_dialog()
-    show(1)
+	show(1)
 }
 ----------------------------------------------------------------------
 

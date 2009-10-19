@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,111 +29,80 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here."
-NPC=_"Hello. I'm Tybalt. I'm guarding the guardhouse gate. Only authorized personnel are permitted."
 LuaCode={
-    hide(0)
-    show(1, 2)
+	npc_says(_"Hello. I'm Tybalt. I'm guarding the guardhouse gate. Only authorized personnel are permitted.")
+	hide(0) show(1, 2)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"Why is the guardhouse locked most of the time?"
-NPC=_"It's locked so no one can sneak inside while I'm not looking. That's why."
 LuaCode={
-    hide(1)
+	npc_says(_"It's locked so no one can sneak inside while I'm not looking. That's why.")
+	hide(1)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"I want to get into the guardhouse."
 LuaCode={
-    if (has_cookie("tux_has_joined_guard")) then next(3) else next(4) end
-    hide(2)
-}
-----------------------------------------------------------------------
-
-Nr=3  Text="THE GATE OPENS"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay."
-LuaCode={
-    change_obstacle_state("OldTownGuardHouseEntrance", "opened")
-}
-----------------------------------------------------------------------
-
-Nr=4  Text="YOU SHALL NOT PASS"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-NPC=_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard."
-NPC=_"Talk to Spencer if you have any business inside. I cannot let you pass."
-LuaCode={
-    -- do we propose a bribe ?
-    if(not has_cookie("tybalt_bribe")) then show(50) else end
+    if (has_cookie("tux_has_joined_guard")) then 
+		npc_says(_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay.")
+		change_obstacle_state("OldTownGuardHouseEntrance", "opened")
+	else
+		npc_says(_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard.")
+		npc_says(_"Talk to Spencer if you have any business inside. I cannot let you pass.")
+		-- do we propose a bribe ?
+		if(not has_cookie("tybalt_bribe")) then show(50) else end
+	end
+	hide(2)
 }
 ----------------------------------------------------------------------
 
 Nr=50  Text=_"I have a lot of money for you."
-NPC=_"Fascinating. Can I have a hundred please?"
 LuaCode={
+	npc_says(_"Fascinating. Can I have a hundred please?")
     if(get_gold() < 100) then show(54) else	show(55) end
-    hide(50)
+	hide(50)
 }
 ----------------------------------------------------------------------
 
 Nr=54  Text=_"Erm... I don't have that much."
-NPC=_"Well, too bad."
 LuaCode={
-    hide(54)
+	npc_says(_"Well, too bad.")
+	hide(54)
 }
 ----------------------------------------------------------------------
 
 Nr=55  Text=_"Here you go."
-NPC=_"Thank you."
 LuaCode={
+	npc_says(_"Thank you.")
     add_cookie("tybalt_bribe")
-    hide(55)
-    show(56)
+	hide(55) show(56)
 }
 ----------------------------------------------------------------------
 
 Nr=56  Text=_"Ok, now please open the door for me."
-NPC=_"What door?"
 LuaCode={
-    hide(56)
-    next(57)
-}
-----------------------------------------------------------------------
-
-Nr=57  Text=_"The door to the citadel!"
-NPC=_"But you are not a member of the Red Guard."
-NPC=_"You cannot come in."
-LuaCode={
-    hide(57)
-    show(58)
-}
-----------------------------------------------------------------------
-
-Nr=58  Text=_"I paid you!"
-NPC=_"Really? I don't remember that."
-LuaCode={
-    hide(58)
-    show(59)
-}
-----------------------------------------------------------------------
-
-Nr=59  Text=_"I want my money back."
-NPC=_"What money?"
-LuaCode={
-    hide(59)
+	npc_says(_"What door?")
+	tux_says(_"The door to the citadel!")
+	npc_says(_"But you are not a member of the Red Guard.")
+	npc_says(_"You cannot come in.")
+	tux_says(_"I paid you!")
+	npc_says(_"Really? I don't remember that.")
+	tux_says(_"I want my money back.")
+	npc_says(_"What money?")
+	hide(56) 
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
-NPC=_"Good riddance."
 LuaCode={
-    show(2)
+	npc_says(_"Good riddance.")
+	show(2)
     end_dialog()
 }
 ----------------------------------------------------------------------

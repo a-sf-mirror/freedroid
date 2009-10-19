@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,17 +29,14 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"This is a MegaSys test bot, running a very basic version of their OS. I can do nothing with this bot, because it doesn't know how to do anything."
 LuaCode={
     hide(0)
 }
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
-
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"

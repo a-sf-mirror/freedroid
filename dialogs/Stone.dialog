@@ -28,14 +28,14 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0, 99) }
-
+FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
     if (has_cookie("Stone_helping")) then
         if (not has_cookie("Stone_done")) then
             if (get_gold() > 1600) then show(23) else hide(23) end
         else end
-    else end
+	else end
+	show(99)
 }
 ----------------------------------------------------------------------
 

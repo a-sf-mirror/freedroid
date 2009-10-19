@@ -1,4 +1,3 @@
-% -*- mode: flyspell; mode: fill -*-
 ----------------------------------------------------------------------
  *  This file is part of Freedroid
  *
@@ -30,214 +29,191 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-    show(0, 99)
-}
-----------------------------------------------------------------------
-
-Nr=0  Text=_"Em, hi."
-NPC=_"Oh! It happened! I have been waiting for you for 3226 hours!"
-LuaCode={
-    hide(0)
-    show(1, 3, 14, 19)
-}
-----------------------------------------------------------------------
-
-Nr=1  Text=_"You knew I would come?"
-NPC=_"Of course, my little imaginary friend!"
-LuaCode={
-    hide(1)
-    show(2, 5)
-}
-----------------------------------------------------------------------
-
-Nr=2  Text=_"Imaginary?! I am as real as you are."
-NPC=_"This place is locked. Hermetically sealed and guarded by bots. So you can be nothing more than the product of my imagination."
-LuaCode={
-    hide(2)
-    show(12)
-}
-----------------------------------------------------------------------
-
-Nr=3  Text=_"Where am I?"
-NPC=_"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Big room, plenty of food, a waterfall behind the window..."
-LuaCode={
-    hide(3)
-    show(4, 6)
-}
-----------------------------------------------------------------------
-
-Nr=4  Text=_"All I see through the window are ray emitters. And we are below ground level.."
-NPC=_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!"
-LuaCode={
-    hide(4)
-}
-----------------------------------------------------------------------
-
-Nr=5  Text=_"It is dark here."
-NPC=_"The main power supply is down, so only the emergency lights work. Peter tried to switch it back on, but he didn't succeed."
-LuaCode={
-    hide(5)
-}
-----------------------------------------------------------------------
-
-Nr=6  Text=_"This place doesn't look like a prison."
-NPC=_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on the strength ones."
-LuaCode={
-    hide(6)
-    show(7, 8)
-}
-----------------------------------------------------------------------
-
-Nr=7  Text=_"Can you give me some pills then?"
-NPC=_"No, Peter ate them all. That killed him."
-NPC=_"*cries*"
-LuaCode={
-    next(9)
-    hide(7)
-}
---------------------------------------------------------------------
-
-Nr=8  Text=_"So you are a biologist? Could you heal me?"
-NPC=_"That would be something different from what I've done in the last months at least. Some entertainment."
-NPC=_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute."
-LuaCode={
-    heal_tux()
-}
-----------------------------------------------------------------------
-
-Nr=9  Text=_"They say that strength pills are absolutely safe!"
-NPC=_"They are like money. Having money is good, but if you have too much, you can decide that you can do anything."
-NPC=_"Peter became not very strong, but very-very-very strong. He thought he could make an exit with his bare hands."
-NPC=_"*cries*"
-NPC=_"If you go further down the corridor, you will find debris and a big stone. That is his grave."
-LuaCode={
-    hide(9)
-    show(10, 11)
-}
-----------------------------------------------------------------------
-
-Nr=10  Text=_"You loved him?"
-NPC=_"I still do."
-LuaCode={
-    hide(10)
-}
-----------------------------------------------------------------------
-
-Nr=11  Text=_"But why not go out through the door?"
-NPC=_"It is locked and very reliable. Even a tank would not be able to smash it! And if a door was broken, SADDs would attack, that's their program."
-LuaCode={
-    hide(11)
-    show(18)
-}
-----------------------------------------------------------------------
-
-Nr=12  Text=_"Autoguns have made a hole in the wall. I came through this hole."
-NPC=_"Do you mean I can go out to the surface ?!"
-NPC=_"Oh god! I've told Peter that he chosed the wrong place, but he was so stubborn!"
-LuaCode={
-    hide(12)
-    show(13)
-}
-----------------------------------------------------------------------
-
-Nr=13  Text=_"Yes, you can get to the surface. But the guns are still on."
-NPC=_"All hope is lost! I'm a scientist, not a warrior."
-LuaCode={
-    hide(13)
-    show(15)
-}
-----------------------------------------------------------------------
-
-Nr=14  Text=_"It is strange to see a girl in such a beautiful dress here."
-NPC=_"I'm going to spend all my life here! So forgive me some little indulgences."
-LuaCode={
-    hide(14)
-}
-----------------------------------------------------------------------
-
-Nr=15  Text=_"Maybe is it possible to disable the guns?"
-NPC=_"Theoretically yes, but in practice I'm not sure you would be able to do that."
-LuaCode={
-    hide(15)
-    show(16)
-}
-----------------------------------------------------------------------
-
-Nr=16  Text=_"How can I disable the guns?"
-NPC=_"Somewhere in a distant part of the lab should be an SACD - secret area control droid. It controls all the defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him."
-LuaCode={
-    hide(16)
-    show(17)
-}
-----------------------------------------------------------------------
-
-Nr=17  Text=_"I will disable the guns for you."
-NPC=_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels."
-LuaCode={
-    add_quest("Tania's sanitary", "I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
-    hide(17)
-}
-----------------------------------------------------------------------
-
-Nr=18  Text=_"Why not just open them? There should be a way of unlocking the base."
-NPC=_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. The commander was killed by bots as soon as the assault started, and the deputy was in town, I don't know what happened to him."
-LuaCode={
-    hide(18)
-}
-----------------------------------------------------------------------
-
-Nr=19  Text=_"Carpets, sofa, bookshelfs. Where did you get all this?"
-NPC=_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge..."
-LuaCode={
-    hide(19)
-}
-----------------------------------------------------------------------
-
-Nr=21 Text="IS MISSION ASSIGNED"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
+FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ 
     if (has_quest("Tania's sanitary")) then
-        hide(6)
+    	hide(6)
         if (has_cookie("SAGunsOff")) then
             if (done_quest("Tania's sanitary")) then hide(17, 27, 28) show(29) 
             else hide(17, 28, 29) show(27) end
         else hide(17, 27, 29) show(28) end
     else hide(27, 28, 29) end
+	show(99)
 }
-AlwaysExecuteThisOptionPriorToDialogStart="yes"
+----------------------------------------------------------------------
 
+Nr=0  Text=_"Em, hi."
+LuaCode={
+	npc_says(_"Oh! It happened! I have been waiting for you for 3226 hours!")
+	hide(0) show(1, 3, 14, 19)
+}
+----------------------------------------------------------------------
+
+Nr=1  Text=_"You knew I would come?"
+LuaCode={
+	npc_says(_"Of course, my little imaginary friend!")
+	hide(1) show(2, 5)
+}
+----------------------------------------------------------------------
+
+Nr=2  Text=_"Imaginary?! I am as real as you are."
+LuaCode={
+	npc_says(_"This place is locked. Hermetically sealed and guarded by bots. So you can be nothing more than the product of my imagination.")
+	hide(2) show(12)
+}
+----------------------------------------------------------------------
+
+Nr=3  Text=_"Where am I?"
+LuaCode={
+	npc_says(_"In a prison, a luxurious prison. I am feeling quite lonely, as you can see. Big room, plenty of food, a waterfall behind the window...")
+	hide(3) show(4, 6)
+}
+----------------------------------------------------------------------
+
+Nr=4  Text=_"All I see through the window are ray emitters. And we are below ground level.."
+LuaCode={
+	npc_says(_"Yes, I know. But I so badly want to see sun, rivers, trees... there definitely is waterfall behind them!")
+	hide(4)
+}
+----------------------------------------------------------------------
+
+Nr=5  Text=_"It is dark here."
+LuaCode={
+	npc_says(_"The main power supply is down, so only the emergency lights work. Peter tried to switch it back on, but he didn't succeed.")
+	hide(5)
+}
+----------------------------------------------------------------------
+
+Nr=6  Text=_"This place doesn't look like a prison."
+LuaCode={
+	npc_says(_"In the past it was a secret lab. You heard about those strength pills? They were invented here. Other pills too, but I was working on the strength ones.")
+	hide(6) show(7, 8)
+}
+----------------------------------------------------------------------
+
+Nr=7  Text=_"Can you give me some pills then?"
+LuaCode={
+	npc_says(_"No, Peter ate them all. That killed him.")
+	npc_says(_"*cries*")
+	tux_says(_"They say that strength pills are absolutely safe!")
+	npc_says(_"They are like money. Having money is good, but if you have too much, you can decide that you can do anything.")
+	npc_says(_"Peter became not very strong, but very-very-very strong. He thought he could make an exit with his bare hands.")
+	npc_says(_"*cries*")
+	npc_says(_"If you go further down the corridor, you will find debris and a big stone. That is his grave.")
+	hide(7) show(10, 11)
+}
+--------------------------------------------------------------------
+
+Nr=8  Text=_"So you are a biologist? Could you heal me?"
+LuaCode={
+	npc_says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
+	npc_says(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.")
+    heal_tux()
+}
+----------------------------------------------------------------------
+
+Nr=10  Text=_"You loved him?"
+LuaCode={
+	npc_says(_"I still do.")
+	hide(10)
+}
+----------------------------------------------------------------------
+
+Nr=11  Text=_"But why not go out through the door?"
+LuaCode={
+	npc_says(_"It is locked and very reliable. Even a tank would not be able to smash it! And if a door was broken, SADDs would attack, that's their program.")
+	hide(11) show(18)
+}
+----------------------------------------------------------------------
+
+Nr=12  Text=_"Autoguns have made a hole in the wall. I came through this hole."
+LuaCode={
+	npc_says(_"Do you mean I can go out to the surface?!")
+	npc_says(_"Oh god! I've told Peter that he chosed the wrong place, but he was so stubborn!")
+	hide(12) show(13)
+}
+----------------------------------------------------------------------
+
+Nr=13  Text=_"Yes, you can get to the surface. But the guns are still on."
+LuaCode={
+	npc_says(_"All hope is lost! I'm a scientist, not a warrior.")
+	hide(13) show(15)
+}
+----------------------------------------------------------------------
+
+Nr=14  Text=_"It is strange to see a girl in such a beautiful dress here."
+LuaCode={
+	npc_says(_"I'm going to spend all my life here! So forgive me some little indulgences.")
+	hide(14)
+}
+----------------------------------------------------------------------
+
+Nr=15  Text=_"Maybe is it possible to disable the guns?"
+LuaCode={
+	npc_says(_"Theoretically yes, but in practice I'm not sure you would be able to do that.")
+	hide(15) show(16)
+}
+----------------------------------------------------------------------
+
+Nr=16  Text=_"How can I disable the guns?"
+LuaCode={
+	npc_says(_"Somewhere in a distant part of the lab should be an SACD - secret area control droid. It controls all the defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him.")
+	hide(16) show(17)
+}
+----------------------------------------------------------------------
+
+Nr=17  Text=_"I will disable the guns for you."
+LuaCode={
+	npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
+    add_quest("Tania's sanitary", "I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
+	hide(17)
+}
+----------------------------------------------------------------------
+
+Nr=18  Text=_"Why not just open them? There should be a way of unlocking the base."
+LuaCode={
+	npc_says(_"To open the door you need to know the password. Only the commander of the area and his deputy knew it. The commander was killed by bots as soon as the assault started, and the deputy was in town, I don't know what happened to him.")
+	hide(18)
+}
+----------------------------------------------------------------------
+
+Nr=19  Text=_"Carpets, sofa, bookshelfs. Where did you get all this?"
+LuaCode={
+	npc_says(_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge...")
+	hide(19)
+}
 ----------------------------------------------------------------------
 
 Nr=27  Text=_"The sentry guns are off. You can go now!"
-NPC=_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!"
-NPC=_"I hope these books will help you survive in this world."
 LuaCode={
+	npc_says(_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!")
+	npc_says(_"I hope these books will help you survive in this world.")
     display_big_message("Tania is now free!")
     add_xp(1500)
     end_quest("Tanias sanitary")
     add_item("Source Book of Check system integrity",1)
     add_item("Source Book of Sanctuary",1)
     add_diary_entry("Tania's sanitary", "Tania is free now!")
-    hide(27)
+	hide(27)
 }
 ----------------------------------------------------------------------
 
 Nr=28  Text=_"Where can I find that SACD?"
-NPC=_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. The cable collectors may help you."
-
+LuaCode={
+	npc_says(_"To the right from the entrance of the area, there is a hall. In the south part of this hall you will find a triple hermetic door. The control center is behind that door. But it is locked, so you will have to find another way there. The cable collectors may help you.")
+}
 ----------------------------------------------------------------------
 
 Nr=29  Text=_"Are you staying here? I can help you get to the town."
-NPC=_"No, thanks. I don't want to go far from Peter."
 LuaCode={
-    hide(29)
+	npc_says(_"No, thanks. I don't want to go far from Peter.")
+	hide(29)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I think I have to go."
-NPC=_"That's ok. But please, please, come back. I'm so lonely."
 LuaCode={
+	npc_says(_"That's ok. But please, please, come back. I'm so lonely.")
     end_dialog()
 }
 ----------------------------------------------------------------------
