@@ -28,11 +28,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-	show(0, 99)
--- hide(1) -- does this work to hide an option first time that is in everytime?
-}
-
+FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"Greetings fellow Red Guard member.")
@@ -44,6 +40,7 @@ EveryTime LuaCode={
     else end
 
     if (done_quest("Opening access to MS Office")) then show(44) else end    -- Ready for HF?
+	show(99)
 }
 ----------------------------------------------------------------------
 
@@ -77,12 +74,6 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text="ASSIGN WAREHOUSE MISSION"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-}
-----------------------------------------------------------------------
-
 Nr=5  Text=_"Maybe I could help somehow?"
 LuaCode={
 	npc_says(_"That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us.")
@@ -90,7 +81,7 @@ LuaCode={
 	npc_says(_"I've unlocked the access-way to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast.")
 	npc_says(_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there.", "NO_WAIT")
 	npc_says(_"I wish you the best of luck.")
-	add_quest("Opening a can of bots...", "I am supposed to clean out the first level of some warehouse. Sounds easy.")
+	add_quest("Opening a can of bots...", "I am supposed to clean out the first level of some warehouse. Sounds easy. It lies nearby, somewhat hidden in the woods north-east of town.")
 	change_obstacle_state("AccessDoorToWarehouse", "opened")
 	hide(5)
 }
@@ -126,7 +117,9 @@ LuaCode={
 
 Nr=12  Text=_"Have I done enough quests to become a member now?"
 LuaCode={
-    if (done_quest("The yellow toolkit")) then 
+    if (not done_quest("The yellow toolkit")) then
+		npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.")
+	else
 		if (has_cookie("dixon_angry_250")) then
 			npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
 			npc_says(_"He was in bad mood and told me he had to pay you for getting his own property back.")
@@ -144,7 +137,7 @@ LuaCode={
 				if (has_cookie("dixon_very_angry")) then
 					npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
 					npc_says(_"He did rail against you though. He said he had to give you 400 bucks to get his toolkit back, his own property.")
-					npc_says(_"That was nearly all money he had. He said you were to greedy to become a good member and he doesn't want to see you anymore.")
+					npc_says(_"That was nearly all money he had. He said you were too greedy to become a good member and he doesn't want to see you anymore.")
 					npc_says(_"I think everybody has to get a chance. But look ahead! When you are negatively conspicuous again, we will ban you from our town!")
 					-- Tux needs to pay 800 bucks to join the guard.
 				else
@@ -152,7 +145,7 @@ LuaCode={
 				end
 			end
 		end
-	else npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.") end
+	end
 
     if (done_quest("Anything but the army snacks, please!")) then
 		npc_says(_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I.")
@@ -175,11 +168,19 @@ LuaCode={
     if (done_quest("Opening a can of bots...")) then
 		npc_says(_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget.")
 	else
-		npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse.")
+		npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse. It's filled with bots and we just dont have the manpower to spare to clean them out.")
 	end
 
 -- ARE THERE ENOUGH POINTS TO JOIN RG
-    if (get_town_score() > 49) then next(28)
+    if (get_town_score() > 49) then
+		npc_says(_"OK. Your list of achievements is long enough. You can join us. So I hereby declare you a member of the Red Guard.")
+		npc_says(_"But now that you are in the Guard, know this: There is only one rule for us guards: We stick together. We survive together or we die together. But we do it together.")
+		npc_says(_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter will give you your armor.")
+		npc_says(_"I hope you will prove yourself a worthy member of the Red Guard.")
+		display_big_message("Joined Town Guard!!")
+		add_cookie("tux_has_joined_guard")
+		make_tux_red_guard()
+		hide(3, 12)
     else
         if (get_town_score() > 29) then 
 			npc_says(_"All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it.")
@@ -187,20 +188,6 @@ LuaCode={
 			npc_says(_"I can't accept you into the guard like this. Get going. There are still many things to do for you.")
 		end
     end
-}
-----------------------------------------------------------------------
-
-Nr=28  Text="JOINING TOWN GUARD"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	npc_says(_"OK. Your list of achievements is long enough. You can join us. So I hereby declare you a member of the Red Guard.")
-	npc_says(_"But now that you are in the Guard, know this: There is only one rule for us guards: We stick together. We survive together or we die together. But we do it together.")
-	npc_says(_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter will give you your armor.")
-	npc_says(_"I hope you will prove yourself a worthy member of the Red Guard.")
-	display_big_message("Joined Town Guard!!")
-	add_cookie("tux_has_joined_guard")
-	make_tux_red_guard()
-	hide(3, 12)
 }
 ----------------------------------------------------------------------
 
@@ -267,7 +254,6 @@ Nr=99  Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"See you later.")
     end_dialog()
-    show(2)
 }
 ----------------------------------------------------------------------
 
