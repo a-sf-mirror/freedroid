@@ -108,7 +108,8 @@ enum {
 	BLITTING_TYPE_TUX = 3,
 	BLITTING_TYPE_BULLET = 4,
 	BLITTING_TYPE_BLAST = 5,
-	BLITTING_TYPE_THROWN_ITEM = 6
+	BLITTING_TYPE_THROWN_ITEM = 6,
+	BLITTING_TYPE_MOVE_CURSOR = 7
 };
 
 LIST_HEAD(visible_level_list);
@@ -828,6 +829,19 @@ void insert_one_blast_into_blitting_list(int blast_num)
 }				// void insert_one_blast_into_blitting_list ( int enemy_num )
 
 /**
+ * 
+ * 
+ */
+void insert_move_cursor_into_blitting_list()
+{
+	float norm;
+
+	norm = Me.mouse_move_target.x + Me.mouse_move_target.y;
+
+	insert_new_element_into_blitting_list(norm, BLITTING_TYPE_MOVE_CURSOR, NULL, 0);
+};
+
+/**
  * We need to display bots, objects, bullets... that are on the current level or on one of the
  * levels glued to this one.
  */
@@ -1432,8 +1446,7 @@ void insert_thrown_items_into_blitting_list(void)
 	Item CurItem = &ItemLevel->ItemList[0];
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		if (CurItem->throw_time > 0)
-			insert_one_thrown_item_into_blitting_list(i);
+		insert_one_thrown_item_into_blitting_list(i);
 		CurItem++;
 	}
 
@@ -1467,6 +1480,8 @@ void set_up_ordered_blitting_list(int mask)
 	insert_bullets_into_blitting_list();
 
 	insert_blasts_into_blitting_list();
+
+	insert_move_cursor_into_blitting_list();
 
 	insert_thrown_items_into_blitting_list();
 
@@ -1512,10 +1527,12 @@ static void show_obstacle(int mask, obstacle * o, int code_number)
 void blit_preput_objects_according_to_blitting_list(int mask)
 {
 	obstacle *our_obstacle = NULL;
+	int item_under_cursor = -1;
 
 	struct blitting_list_element *e, *n;
 	list_for_each_entry_safe(e, n, &blitting_list, node) {
-		if (e->element_type == BLITTING_TYPE_OBSTACLE) {
+		switch (e->element_type) {
+		case BLITTING_TYPE_OBSTACLE:
 			//--------------------
 			// We do some sanity checking for illegal obstacle types.
 			// Can't hurt to do that so as to be on the safe side.
@@ -1574,24 +1591,43 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			blit_obstacle_collision_rectangle(our_obstacle);
 
 			//--------------------
-			// If the obstacle isn't otherwise a preput obstacle, we're done here and can 
-			// move on to the next list element
+			// Draw the obstacle by itself if it is a preput obstacle
 			//
-			if (!(obstacle_map[((obstacle *) e->element_pointer)->type].flags & NEEDS_PRE_PUT))
-				continue;
-
-			show_obstacle(mask, ((obstacle *) e->element_pointer), e->code_number);
-
-		}
-		//--------------------
-		// Enemies, which are dead already become like decoration on the floor.  
-		// They should never obscur the Tux, so we blit them beforehand and not
-		// again later from the list.
-		//
-		if ((e->element_type == BLITTING_TYPE_ENEMY) && (((enemy *) e->element_pointer)->animation_type == DEATH_ANIMATION)) {
-			if (!(mask & OMIT_ENEMIES)) {
-				PutEnemy((enemy *) (e->element_pointer), -1, -1, mask, FALSE);
+			if (obstacle_map[((obstacle *) e->element_pointer)->type].flags & NEEDS_PRE_PUT)
+				show_obstacle(mask, ((obstacle *) e->element_pointer), e->code_number);
+			break;
+		
+		case BLITTING_TYPE_ENEMY:
+			//--------------------
+			// Enemies, which are dead already become like decoration on the floor.  
+			// They should never obscur the Tux, so we blit them beforehand and not
+			// again later from the list.
+			//
+			if (((enemy *)e->element_pointer)->animation_type == DEATH_ANIMATION) {
+				if (!(mask & OMIT_ENEMIES)) {
+					PutEnemy((enemy *) (e->element_pointer), -1, -1, mask, FALSE);
+				}
 			}
+			break;
+			
+		case BLITTING_TYPE_THROWN_ITEM:
+			if (mask & SHOW_ITEMS) {
+				// Preput thrown items when they are on the floor (i.e. not during the
+				// throwing animation)
+				item *the_item = (item*)e->element_pointer;
+				item_under_cursor = get_floor_item_index_under_mouse_cursor();
+				if (the_item->throw_time <= 0) {
+					if (item_under_cursor == e->code_number)
+						PutItem(e->code_number, mask, PUT_NO_THROWN_ITEMS, TRUE);
+					else
+						PutItem(e->code_number, mask, PUT_NO_THROWN_ITEMS, FALSE);				
+				}
+			}
+			break;
+			
+		case BLITTING_TYPE_MOVE_CURSOR:
+			PutMouseMoveCursor();
+			break;
 		}
 	}
 
@@ -1660,12 +1696,18 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 				PutBlast(e->code_number);
 			break;
 		case BLITTING_TYPE_THROWN_ITEM:
-			if (item_under_cursor == e->code_number)
-				PutItem(e->code_number, mask, PUT_ONLY_THROWN_ITEMS, TRUE);
-			else
-				PutItem(e->code_number, mask, PUT_ONLY_THROWN_ITEMS, FALSE);
-
+			{
+				item *the_item = (item*)e->element_pointer;
+				if (the_item->throw_time > 0) {
+					if (item_under_cursor == e->code_number)
+						PutItem(e->code_number, mask, PUT_ONLY_THROWN_ITEMS, TRUE);
+					else
+						PutItem(e->code_number, mask, PUT_ONLY_THROWN_ITEMS, FALSE);
+				}
+			}
 			// DebugPrintf ( -1 , "\nThrown item now blitted..." );
+			break;
+		case BLITTING_TYPE_MOVE_CURSOR:
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "\
@@ -2006,9 +2048,6 @@ void draw_grid_on_the_floor(int mask)
  * ----------------------------------------------------------------- */
 void AssembleCombatPicture(int mask)
 {
-	int i;
-	int item_under_cursor = get_floor_item_index_under_mouse_cursor();
-
 	DebugPrintf(2, "\n%s(): inside display code now.", __FUNCTION__);
 
 	if (mask & USE_OWN_MOUSE_CURSOR || mask & NO_CURSOR)
@@ -2031,19 +2070,9 @@ void AssembleCombatPicture(int mask)
 	set_up_ordered_blitting_list(mask);
 
 	blit_preput_objects_according_to_blitting_list(mask);
-
-	PutMouseMoveCursor();
-
-	if (mask & SHOW_ITEMS) {
-		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-			if (i == item_under_cursor)
-				PutItem(i, mask, PUT_NO_THROWN_ITEMS, TRUE);
-			else
-				PutItem(i, mask, PUT_NO_THROWN_ITEMS, FALSE);
-		}
-	}
-
+	
 	blit_nonpreput_objects_according_to_blitting_list(mask);
+
 	if ((!GameConfig.skip_light_radius) && (!(mask & SKIP_LIGHT_RADIUS)))
 		blit_light_radius();
 
@@ -3990,19 +4019,17 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 							      CurItem->pos.x, CurItem->pos.y);
 		}
 	} else {
+		float anim_tr = (CurItem->throw_time <= 0) ? 0.0 : 3.0 * sinf(CurItem->throw_time * 3.0);
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-							      CurItem->pos.x - 3.0 * sinf(CurItem->throw_time * 3.0),
-							      CurItem->pos.y - 3.0 * sinf(CurItem->throw_time * 3.0),
+							      CurItem->pos.x - anim_tr, CurItem->pos.y - anim_tr,
 							      1.0, 1.0, 1.0, highlight_item, FALSE, 1.0);
 		} else {
 			blit_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-						       CurItem->pos.x - 3.0 * sinf(CurItem->throw_time * 3.0),
-						       CurItem->pos.y - 3.0 * sinf(CurItem->throw_time * 3.0));
+						       CurItem->pos.x - anim_tr, CurItem->pos.y - anim_tr);
 			if (highlight_item)
 				blit_outline_of_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-									  CurItem->pos.x - 3.0 * sinf(CurItem->throw_time * 3.0),
-									  CurItem->pos.y - 3.0 * sinf(CurItem->throw_time * 3.0));
+									  CurItem->pos.x - anim_tr, CurItem->pos.y - anim_tr);
 		}
 	}
 
