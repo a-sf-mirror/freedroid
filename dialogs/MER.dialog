@@ -29,17 +29,21 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-	npc_says(_"Login : admin  Password : *******")
-	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #")
+FirstTime LuaCode={ }
+EveryTime LuaCode={
+	if (not has_cookie("met_mer")) then
+		npc_says(_"Login : admin  Password : *******")
+		npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@shielddefense: ~ #")
+		add_cookie("met_mer")	
+	else end
+
     if (has_cookie("MER_Password")) then
-		hide(1, 3, 7) show(8)
+		hide(1, 7) show(8)
 	else
 		hide(4, 8) show(1, 7)
 	end
-	show(7)
- }
-EveryTime LuaCode={ show(99) }
+	show(99)
+}
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"passwd"

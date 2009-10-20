@@ -28,34 +28,36 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
--- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
-	change_obstacle_state("TutorialZigzag1", "closed")
-	change_obstacle_state("TutorialZigzag2", "closed")
-	change_obstacle_state("TutorialZigzag3", "closed")
-	change_obstacle_state("TutorialZigzag4", "closed")
-	change_obstacle_state("TutorialZigzagOut", "closed")
-	change_obstacle_state("TutorialEquipOut", "closed")
-	change_obstacle_state("TutorialExit1", "closed")
-	change_obstacle_state("TutorialMeleeOut", "closed")
-	change_obstacle_state("TutorialStorage", "closed")
-	change_obstacle_state("TutorialShootingOut", "closed")
-	change_obstacle_state("TutorialTakeover", "closed")
--- we also need remove all tux skills, except use weapon
-	downgrade_program("Hacking")
-	downgrade_program("Repair equipment")
-	downgrade_program("Emergency shutdown")
-	show(99)
-}
+FirstTime LuaCode={ }
 
-EveryTime LuaCode={ 
-	show(99) 
+EveryTime LuaCode={
+	if (not has_cookie("met_tutorialtom")) then
+		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
+		change_obstacle_state("TutorialZigzag1", "closed")
+		change_obstacle_state("TutorialZigzag2", "closed")
+		change_obstacle_state("TutorialZigzag3", "closed")
+		change_obstacle_state("TutorialZigzag4", "closed")
+		change_obstacle_state("TutorialZigzagOut", "closed")
+		change_obstacle_state("TutorialEquipOut", "closed")
+		change_obstacle_state("TutorialExit1", "closed")
+		change_obstacle_state("TutorialMeleeOut", "closed")
+		change_obstacle_state("TutorialStorage", "closed")
+		change_obstacle_state("TutorialShootingOut", "closed")
+		change_obstacle_state("TutorialTakeover", "closed")
+		-- we also need remove all tux skills, except use weapon
+		downgrade_program("Hacking")
+		downgrade_program("Repair equipment")
+		downgrade_program("Emergency shutdown")
+		add_cookie("met_tutorialtom")
+	else end
+
 	if (partner_started()) then
 		npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
 		npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
 		npc_says(_"So let's start with the basics, shall we?")
 		show(1, 7)
 	end
+	show(99)
 }
 ----------------------------------------------------------------------
 

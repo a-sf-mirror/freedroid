@@ -30,14 +30,10 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={ }
-EveryTime LuaCode={ next(0) show(1, 3, 99) }
-----------------------------------------------------------------------
-
-Nr=0  Text="THIS WILL NEVER BE VISIBLE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
+EveryTime LuaCode={ 
 	npc_says(_"Welcome to MS firmware upgrade server for region #54658.")
 	npc_says(_"Please select action")
+	show(1, 3, 99)
 }
 ----------------------------------------------------------------------
 

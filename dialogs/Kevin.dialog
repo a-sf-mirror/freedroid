@@ -27,9 +27,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-	show(0, 99)
-}
+FirstTime LuaCode={	show(0) }
 EveryTime LuaCode={
 	if (has_quest("And there was light...")) then
 		if (done_quest("And there was light...")) then
@@ -44,6 +42,7 @@ EveryTime LuaCode={
 
 	if (get_gold() < 300 ) then hide(30) else end
 	if (get_training_points() > 4) then else hide(30) end
+	show(99)
 }
 ----------------------------------------------------------------------
 

@@ -29,7 +29,7 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(1, 99) }
+FirstTime LuaCode={ show(1) }
 EveryTime LuaCode={
 	npc_says(_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once.") 
 
@@ -43,6 +43,7 @@ EveryTime LuaCode={
 			end
 		end
 	else end
+	show(99)
 }
 ----------------------------------------------------------------------
 

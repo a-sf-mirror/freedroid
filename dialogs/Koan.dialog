@@ -29,14 +29,18 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={	
-	npc_says(_"So you have come. I knew Duncan would not let me live for too long.")
-	npc_says(_"Once I am gone this oasis of peace in the world will dry up and die. A shame.")
-	npc_says(_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true.")
-	npc_says(_"Do what you must.")
-	hide(1) show(5, 6)
- }
-EveryTime LuaCode={ }
+FirstTime LuaCode={ show(5, 6) }
+EveryTime LuaCode={ 
+	if (not has_cookie("met_koan")) then
+		npc_says(_"So you have come. I knew Duncan would not let me live for too long.")
+		npc_says(_"Once I am gone this oasis of peace in the world will dry up and die. A shame.")
+		npc_says(_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true.")
+		npc_says(_"Do what you must.")
+		add_cookie("met_koan")	
+	else
+		npc_says(_"It's a pleasure to meet you again.")
+	end
+}
 ----------------------------------------------------------------------
 
 Nr=5  Text=_"With pleasure."
