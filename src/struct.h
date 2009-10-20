@@ -852,8 +852,6 @@ typedef struct dialogue_option_s {
 	char *reply_sample_list[MAX_REPLIES_PER_OPTION];
 	char *reply_subtitle_list[MAX_REPLIES_PER_OPTION];
 
-	int always_execute_this_option_prior_to_dialog_start;
-
 	luacode lua_code;
 
 	char exists;

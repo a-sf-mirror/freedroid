@@ -118,8 +118,6 @@ static void clear_dialog_option(dialogue_option * d)
 		d->reply_subtitle_list[i] = "";
 	}
 
-	d->always_execute_this_option_prior_to_dialog_start = 0;
-
 	d->lua_code = NULL;
 	d->exists = 0;
 }
@@ -446,25 +444,6 @@ severe error.", PLEASE_INFORM, IS_FATAL);
 			//
 			ReplyPointer = LocateStringInData(ReplyPointer, NEW_REPLY_SUBTITLE_STRING);
 			ReplyPointer++;
-		}
-
-		//--------------------
-		// Next thing we do will be to get the always-on-startup flag status.
-		//
-		if (CountStringOccurences(SectionPointer, "AlwaysExecuteThisOptionPriorToDialogStart")) {
-			// Now we read in if this item can be used by the influ without help
-			YesNoString = ReadAndMallocStringFromData(SectionPointer, "AlwaysExecuteThisOptionPriorToDialogStart=\"", "\"");
-			if (strcmp(YesNoString, "yes") == 0) {
-				ChatRoster[OptionIndex].always_execute_this_option_prior_to_dialog_start = TRUE;
-			} else if (strcmp(YesNoString, "no") == 0) {
-				ChatRoster[OptionIndex].always_execute_this_option_prior_to_dialog_start = FALSE;
-			} else {
-				ErrorMessage(__FUNCTION__, "\
-			AlwaysExecuteThisOptionPriorToDialogStart must be yes or no, was %s in file %s. \n", PLEASE_INFORM, IS_FATAL, YesNoString, FullPathAndFullFilename);
-			}
-			free(YesNoString);
-		} else {
-			ChatRoster[OptionIndex].always_execute_this_option_prior_to_dialog_start = FALSE;
 		}
 
 		if (strstr(SectionPointer, "LuaCode")) {
@@ -825,20 +804,6 @@ static void DoChatFromChatRosterData(int ChatPartnerCode, Enemy ChatDroid, int c
 		}
 	}
 	// DialogMenuTexts [ MAX_ANSWERS_PER_PERSON - 1 ] = " END ";
-
-	//--------------------
-	// Now we execute all the options that were marked to be executed
-	// prior to dialog startup
-	//
-	// DEPRECATED
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-		if (ChatRoster[i].always_execute_this_option_prior_to_dialog_start) {
-			DebugPrintf(CHAT_DEBUG_LEVEL, "\nExecuting option no. %d prior to dialog start.\n", i);
-			ProcessThisChatOption(i, ChatPartnerCode, ChatDroid);
-			if (chat_control_end_dialog)
-				goto wait_click_and_out;
-		}
-	}
 
 	while (1) {
 		// Now we run the startup code
