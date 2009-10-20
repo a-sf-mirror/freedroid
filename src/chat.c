@@ -811,6 +811,13 @@ static void DoChatFromChatRosterData(int ChatPartnerCode, Enemy ChatDroid, int c
 			run_lua(chat_startup_code);
 			free(chat_startup_code);
 			chat_startup_code = NULL;	//and free it immediately so as not to run it again in this session
+
+			if (chat_control_end_dialog)
+				goto wait_click_and_out;
+ 		}
+ 
+ 		if (chat_control_next_node == -1) {
+
 		}
 
 		if (chat_control_next_node == -1) {
