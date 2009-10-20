@@ -1623,6 +1623,9 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			break;
 		switch (e->element_type) {
 		case BLITTING_TYPE_OBSTACLE:
+			// Skip preput obstacles
+			if (obstacle_map[((obstacle*)(e->element_pointer))->type].flags & NEEDS_PRE_PUT)
+				continue;
 			show_obstacle(mask, e->element_pointer, e->code_number);
 			break;
 		case BLITTING_TYPE_TUX:
