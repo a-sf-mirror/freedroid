@@ -988,6 +988,7 @@ move_all_items_in_area(Level source_level,
 		memcpy(&(target_level->ItemList[j]), &(source_level->ItemList[i]), sizeof(item));
 		target_level->ItemList[j].pos.x = target_start_x + source_level->ItemList[i].pos.x - source_start_x;
 		target_level->ItemList[j].pos.y = target_start_y + source_level->ItemList[i].pos.y - source_start_y;
+		target_level->ItemList[j].pos.z = target_level->levelnum;
 
 		DeleteItem(&(source_level->ItemList[i]));
 

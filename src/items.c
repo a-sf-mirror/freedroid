@@ -493,6 +493,7 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 	item_drop_map_level->ItemList[i].type = ItemType;
 	item_drop_map_level->ItemList[i].pos.x = x;
 	item_drop_map_level->ItemList[i].pos.y = y;
+	item_drop_map_level->ItemList[i].pos.z = level_num;
 	item_drop_map_level->ItemList[i].prefix_code = prefix;
 	item_drop_map_level->ItemList[i].suffix_code = suffix;
 
@@ -746,6 +747,7 @@ void MakeHeldFloorItemOutOf(item * SourceItem)
 
 	CURLEVEL()->ItemList[i].pos.x = Me.pos.x;
 	CURLEVEL()->ItemList[i].pos.y = Me.pos.y;
+	CURLEVEL()->ItemList[i].pos.z = Me.pos.z;
 	CURLEVEL()->ItemList[i].currently_held_in_hand = TRUE;
 
 	Item_Held_In_Hand = CURLEVEL()->ItemList[i].type;
@@ -1555,6 +1557,7 @@ void DropItemToTheFloor(Item DropItemPointer, float x, float y, int levelnum)
 	// DropLevel->ItemList[ i ].pos.y = Me.pos.y;
 	DropLevel->ItemList[i].pos.x = x;
 	DropLevel->ItemList[i].pos.y = y;
+	DropLevel->ItemList[i].pos.z = levelnum;
 	DropLevel->ItemList[i].currently_held_in_hand = FALSE;
 	DropLevel->ItemList[i].throw_time = 0.01;	// something > 0 
 	// DropLevel->ItemList[ i ].type = Me.Inventory[ InvPos ].type;

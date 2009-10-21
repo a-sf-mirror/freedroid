@@ -845,6 +845,7 @@ void CreateNewMapLevel(int level_num)
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
 		NewLevel->ItemList[i].pos.x = (-1);
 		NewLevel->ItemList[i].pos.y = (-1);
+		NewLevel->ItemList[i].pos.z = (-1);
 		NewLevel->ItemList[i].type = (-1);
 		NewLevel->ItemList[i].currently_held_in_hand = FALSE;
 
@@ -855,6 +856,7 @@ void CreateNewMapLevel(int level_num)
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
 		NewLevel->ChestItemList[i].pos.x = (-1);
 		NewLevel->ChestItemList[i].pos.y = (-1);
+		NewLevel->ChestItemList[i].pos.z = (-1);
 		NewLevel->ChestItemList[i].type = (-1);
 		NewLevel->ChestItemList[i].currently_held_in_hand = FALSE;
 	}
@@ -946,6 +948,7 @@ void level_editor_edit_chest(obstacle * o)
 			if (tmp) {
 				tmp->pos.x = o->pos.x;
 				tmp->pos.y = o->pos.y;
+				tmp->pos.z = o->pos.z;
 
 				for (idx = 0; idx < MAX_CHEST_ITEMS_PER_LEVEL; idx++) {
 					if (EditLevel()->ChestItemList[idx].type == -1)

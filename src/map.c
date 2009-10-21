@@ -1857,6 +1857,7 @@ static void DecodeItemSectionOfThisLevel(Level loadlevel, char *data)
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
 		loadlevel->ItemList[i].pos.x = (-1);
 		loadlevel->ItemList[i].pos.y = (-1);
+		loadlevel->ItemList[i].pos.z = (-1);
 		loadlevel->ItemList[i].type = (-1);
 		loadlevel->ItemList[i].currently_held_in_hand = FALSE;
 	}
@@ -1884,6 +1885,7 @@ static void DecodeItemSectionOfThisLevel(Level loadlevel, char *data)
 			if (NextItemPointer)
 				NextItemPointer[0] = 0;
 			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ItemList[i]));
+			loadlevel->ItemList[i].pos.z = loadlevel->levelnum;
 			if (NextItemPointer)
 				NextItemPointer[0] = ITEM_NAME_STRING[0];
 		}
@@ -1911,6 +1913,7 @@ static void DecodeChestItemSectionOfThisLevel(Level loadlevel, char *data)
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
 		loadlevel->ChestItemList[i].pos.x = (-1);
 		loadlevel->ChestItemList[i].pos.y = (-1);
+		loadlevel->ChestItemList[i].pos.z = (-1);
 		loadlevel->ChestItemList[i].type = (-1);
 		loadlevel->ChestItemList[i].currently_held_in_hand = FALSE;
 	}
@@ -1937,6 +1940,7 @@ static void DecodeChestItemSectionOfThisLevel(Level loadlevel, char *data)
 			if (NextItemPointer)
 				NextItemPointer[0] = 0;
 			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ChestItemList[i]));
+			loadlevel->ChestItemList[i].pos.z = loadlevel->levelnum;
 			if (NextItemPointer)
 				NextItemPointer[0] = ITEM_NAME_STRING[0];
 		}

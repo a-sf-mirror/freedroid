@@ -249,6 +249,7 @@ void throw_out_all_chest_content(int obst_index)
 		find_position_near_obstacle(&item_x, &item_y, obst_index, chest_level);
 		chest_level->ItemList[j].pos.x = item_x;
 		chest_level->ItemList[j].pos.y = item_y;
+		chest_level->ItemList[j].pos.z = chest_level->levelnum;		
 		chest_level->ItemList[j].throw_time = 0.01;
 
 		icnt++;

@@ -343,7 +343,8 @@ typedef struct itemspec_s {
 
 typedef struct item_s {
 	// Here are the rather short-lived properties of the item
-	finepoint pos;
+	gps pos;
+	gps virt_pos;
 	SDL_Rect text_slot_rectangle;
 	int type;
 	int currently_held_in_hand;	// is the item currently held 'in hand' with the mouse cursor?

@@ -525,7 +525,8 @@ return 0;
 int save_item(char * tag, item * target)
 {
 autostr_append(savestruct_autostr, "<%s>\n",tag);
-save_finepoint("pos", &(target->pos));
+save_gps("pos", &(target->pos));
+save_gps("virt_pos", &(target->virt_pos));
 save_sdl_rect("text_slot_rectangle", &(target->text_slot_rectangle));
 save_int32_t("type", &(target->type));
 save_int32_t("currently_held_in_hand", &(target->currently_held_in_hand));
@@ -571,7 +572,8 @@ int read_item(char* buffer, char * tag, item * target)
 		char * epos = strstr(buffer, search);
 		if ( ! epos ) return 2;
 		*epos = 0;
-		read_finepoint(pos, "pos",  &(target->pos));
+		read_gps(pos, "pos",  &(target->pos));
+read_gps(pos, "virt_pos",  &(target->virt_pos));
 read_sdl_rect(pos, "text_slot_rectangle",  &(target->text_slot_rectangle));
 read_int32_t(pos, "type",  &(target->type));
 read_int32_t(pos, "currently_held_in_hand",  &(target->currently_held_in_hand));
