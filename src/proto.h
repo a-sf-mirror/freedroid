@@ -127,7 +127,7 @@ void blit_all_item_slots(void);
 void AssembleCombatPicture(int);
 void blit_tux(int x, int y);
 void PutBullet(int Bullet_number, int mask);
-void PutItem(int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item);
+void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item);
 void PutBlast(int);
 void PutEnemy(enemy * e, int x, int y, int mask, int highlight);
 void PutMouseMoveCursor(void);

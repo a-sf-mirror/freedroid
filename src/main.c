@@ -304,15 +304,20 @@ void UpdateCountersForThisFrame()
 	// Maybe some items are just thrown in the air and still in the air.
 	// We need to keep track of the time the item has spent in the air so far.
 	//
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		if (item_level->ItemList[i].type == (-1))
-			continue;
-		if (item_level->ItemList[i].throw_time > 0)
-			item_level->ItemList[i].throw_time += latest_frame_time;
-		if (item_level->ItemList[i].throw_time > (M_PI / 3.0))
-			item_level->ItemList[i].throw_time = 0;
+	struct visible_level *vis_lvl, *n;
+	
+	BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
+		level *lvl = vis_lvl->lvl_pointer;
+		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+			if (lvl->ItemList[i].type == (-1))
+				continue;
+			if (lvl->ItemList[i].throw_time > 0)
+				lvl->ItemList[i].throw_time += latest_frame_time;
+			if (lvl->ItemList[i].throw_time > (M_PI / 3.0))
+				lvl->ItemList[i].throw_time = 0;
+		}
 	}
-
+	
 	//--------------------
 	// Some bots might be frozen and some might be poisoned, some
 	// might still have a 'firewait' or a normal wait or a paralysation.

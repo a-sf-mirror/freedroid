@@ -49,6 +49,7 @@
 #include "lvledit/lvledit_tools.h"
 
 #include <zlib.h>
+#include <math.h>
 
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
 int rmask = 0x00FF0000;
@@ -773,18 +774,16 @@ void insert_one_enemy_into_blitting_list(enemy * erot)
  *
  *
  */
-void insert_one_thrown_item_into_blitting_list(int item_num)
+void insert_one_thrown_item_into_blitting_list(level *item_lvl, int item_num)
 {
 	float item_norm;
-	Level ItemLevel = curShip.AllLevels[Me.pos.z];
-	Item CurItem = &ItemLevel->ItemList[item_num];
+	Item CurItem = &item_lvl->ItemList[item_num];
 
-	item_norm = CurItem->pos.x + CurItem->pos.y;
+	update_virtual_position(&CurItem->virt_pos, &CurItem->pos, Me.pos.z);
+
+	item_norm = CurItem->virt_pos.x + CurItem->virt_pos.y;
 
 	insert_new_element_into_blitting_list(item_norm, BLITTING_TYPE_THROWN_ITEM, CurItem, item_num);
-
-	// fprintf ( stderr , "\nOne thrown item now inserted into blitting list. " );
-
 };				// void insert_one_item_into_blitting_list ( int enemy_num )
 
 /**
@@ -1442,14 +1441,15 @@ void insert_blasts_into_blitting_list(void)
 void insert_thrown_items_into_blitting_list(void)
 {
 	int i;
-	Level ItemLevel = curShip.AllLevels[Me.pos.z];
-	Item CurItem = &ItemLevel->ItemList[0];
-
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		insert_one_thrown_item_into_blitting_list(i);
-		CurItem++;
+	struct visible_level *vis_lvl, *n;
+	
+	BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
+		level *lvl = vis_lvl->lvl_pointer;
+		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+			if (lvl->ItemList[i].type != -1)
+				insert_one_thrown_item_into_blitting_list(vis_lvl->lvl_pointer, i);
+		}
 	}
-
 };				// void insert_enemies_into_blitting_list ( void )
 
 /**
@@ -1617,10 +1617,10 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 				item *the_item = (item*)e->element_pointer;
 				item_under_cursor = get_floor_item_index_under_mouse_cursor();
 				if (the_item->throw_time <= 0) {
-					if (item_under_cursor == e->code_number)
-						PutItem(e->code_number, mask, PUT_NO_THROWN_ITEMS, TRUE);
+					if (the_item->pos.z == Me.pos.z && item_under_cursor == e->code_number)
+						PutItem(the_item, e->code_number, mask, PUT_NO_THROWN_ITEMS, TRUE);
 					else
-						PutItem(e->code_number, mask, PUT_NO_THROWN_ITEMS, FALSE);				
+						PutItem(the_item, e->code_number, mask, PUT_NO_THROWN_ITEMS, FALSE);				
 				}
 			}
 			break;
@@ -1699,10 +1699,10 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			{
 				item *the_item = (item*)e->element_pointer;
 				if (the_item->throw_time > 0) {
-					if (item_under_cursor == e->code_number)
-						PutItem(e->code_number, mask, PUT_ONLY_THROWN_ITEMS, TRUE);
+					if (the_item->pos.z == Me.pos.z && item_under_cursor == e->code_number)
+						PutItem(the_item, e->code_number, mask, PUT_ONLY_THROWN_ITEMS, TRUE);
 					else
-						PutItem(e->code_number, mask, PUT_ONLY_THROWN_ITEMS, FALSE);
+						PutItem(the_item, e->code_number, mask, PUT_ONLY_THROWN_ITEMS, FALSE);
 				}
 			}
 			// DebugPrintf ( -1 , "\nThrown item now blitted..." );
@@ -3970,17 +3970,14 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
  * The only given parameter is the number of the item within
  * the AllItems array.
  */
-void PutItem(int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item)
+void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item)
 {
-	Level ItemLevel = curShip.AllLevels[Me.pos.z];
-	Item CurItem = &ItemLevel->ItemList[ItemNumber];
-
 	//--------------------
 	// The unwanted cases MUST be handled first...
 	//
 	if (CurItem->type == (-1)) {
 		return;
-		fprintf(stderr, "\n\nItemNumber '%d'\n", ItemNumber);
+		fprintf(stderr, "\n\nItemNumber '%d' on level %d\n", ItemNumber, CurItem->pos.z);
 		ErrorMessage(__FUNCTION__, "\
 There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM, IS_FATAL);
 	}
@@ -4012,24 +4009,24 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	if (mask & ZOOM_OUT) {
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-							      CurItem->pos.x, CurItem->pos.y, 1.0, 1.0, 1.0, 0.25, FALSE,
+							      CurItem->virt_pos.x, CurItem->virt_pos.y, 1.0, 1.0, 1.0, 0.25, FALSE,
 							      lvledit_zoomfact_inv());
 		} else {
 			blit_zoomed_iso_image_to_map_position(&(ItemMap[CurItem->type].inv_image.ingame_iso_image),
-							      CurItem->pos.x, CurItem->pos.y);
+							      CurItem->virt_pos.x, CurItem->virt_pos.y);
 		}
 	} else {
-		float anim_tr = (CurItem->throw_time <= 0) ? 0.0 : 3.0 * sinf(CurItem->throw_time * 3.0);
+		float anim_tr = (CurItem->throw_time <= 0) ? 0.0 : (3.0 * sinf(CurItem->throw_time * 3.0));
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-							      CurItem->pos.x - anim_tr, CurItem->pos.y - anim_tr,
+							      CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr,
 							      1.0, 1.0, 1.0, highlight_item, FALSE, 1.0);
 		} else {
 			blit_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-						       CurItem->pos.x - anim_tr, CurItem->pos.y - anim_tr);
+						       CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
 			if (highlight_item)
 				blit_outline_of_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-									  CurItem->pos.x - anim_tr, CurItem->pos.y - anim_tr);
+									  CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
 		}
 	}
 
