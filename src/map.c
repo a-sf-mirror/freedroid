@@ -1797,8 +1797,8 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetI
 	TargetItem->type = GetItemIndexByName(iname);
 	free(iname);
 
-	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%lf", &(TargetItem->pos.x), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%lf", &(TargetItem->pos.y), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_AC_BONUS_STRING, "%d", "0", &(TargetItem->ac_bonus), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_DAMAGE_STRING, "%d", &(TargetItem->damage), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_DAMAGE_MODIFIER_STRING, "%d", &(TargetItem->damage_modifier), ItemsSectionEnd);
