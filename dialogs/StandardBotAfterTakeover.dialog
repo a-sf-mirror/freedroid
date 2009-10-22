@@ -53,8 +53,8 @@ Nr=2  Text=_"./follow_me.sh"
 LuaCode={
 	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
-	npc_says(string.format(_"Trying to keep up with %s position.", get_player_name(), "NO_WAIT"))
-	npc_says(string.format(_"Status: Following %s.", get_player_name(), "NO_WAIT"))
+	npc_says(_"Trying to keep up with " .. get_player_name() .. " position.", "NO_WAIT")
+	npc_says(_"Status: Following " .. get_player_name() .. ".", "NO_WAIT")
 	set_bot_state("follow_tux")
 	hide(2)	show(1, 3, 4)
 }
