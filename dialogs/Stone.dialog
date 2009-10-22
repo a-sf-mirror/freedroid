@@ -28,12 +28,16 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
-    if (has_cookie("Stone_helping")) then
-        if (not has_cookie("Stone_done")) then
-            if (get_gold() > 1600) then show(23) else hide(23) end
-        else end
+	if (not has_cookie("met_stone")) then
+		show(0)
+		add_cookie("met_stone")
+	else end
+
+	if (has_cookie("stone_helping")) then
+		if (not has_cookie("stone_done")) then
+			if (get_gold() > 1600) then show(23) else hide(23) end
+		else end
 	else end
 	show(99)
 }
@@ -49,7 +53,7 @@ LuaCode={
 Nr=1  Text=_"I would like to trade with you."
 LuaCode={
 	npc_says(_"Good! Here is the selection of items I have for sale.")
-	if (has_cookie("Stone_no_guns")) then hide(2) else show(2) end
+	if (has_cookie("stone_no_guns")) then hide(2) else show(2) end
 	trade_with("Stone")
 }
 ----------------------------------------------------------------------
@@ -58,7 +62,7 @@ Nr=2  Text=_"Swords, clubs and maces? What is this? I want guns!"
 LuaCode={
 	npc_says(_"Sorry, this is all we have for now. The Red Guard took away all of our poppers.", "NO_WAIT")
 	npc_says(_"For our own good. Of course.")
-	add_cookie("Stone_no_guns")
+	add_cookie("stone_no_guns")
 	hide(2)
 }
 ----------------------------------------------------------------------
@@ -98,7 +102,7 @@ LuaCode={
 
 Nr=10  Text=_"How is your business going?"
 LuaCode={
-    if (has_cookie("Stone_done")) then
+	if (has_cookie("stone_done")) then
 		npc_says(_"Thanks to you I have a chance now.", "NO_WAIT")
 		npc_says(_"Ha! It's time to show the world that Lily Stone is not going down without putting up a damn good fight.")
 	else
@@ -107,7 +111,7 @@ LuaCode={
 		npc_says(_"The new taxes, the worldwide economic collapse and other factors are slowly murdering the family store.")
 		show(13, 16)
 	end
-    hide(10)
+	hide(10)
 }
 ----------------------------------------------------------------------
 
@@ -123,10 +127,10 @@ LuaCode={
 Nr=15  Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?"
 LuaCode={
 	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles.")
-    add_cookie("Stone_helping")
-    add_quest("Saving the shop", "Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon.  She needs 2000 cyberbucks to stay afloat.  I could try to help her out.")
-    if (get_gold() > 1600) then show(23) else hide(23) end
-    hide(15)
+	add_cookie("stone_helping")
+	add_quest("Saving the shop", "Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon.  She needs 2000 cyberbucks to stay afloat.  I could try to help her out.")
+	if (get_gold() > 1600) then show(23) else hide(23) end
+	hide(15)
 }
 ----------------------------------------------------------------------
 
@@ -144,7 +148,7 @@ LuaCode={
 	npc_says(_"Thank you! Thank you! Thank you! Savior!")
 	npc_says(_"But this isn't fair to you. The Stones are a family of fair merchants and I intend to uphold that tradition.")
 	npc_says(_"I need 1,547 bucks to get through the month. I will accept only that and not a cent more.")
-    if (get_gold() < 1547) then 
+	if (get_gold() < 1547) then 
 		npc_says(_"Hold on a minute, you are still a bit short on money.")
 		npc_says(_"Please return with the full amount if you want to help. Otherwise Im going down anyway and I wont accept pulling you with me.")
 	else
@@ -154,7 +158,7 @@ LuaCode={
 		npc_says(string.format(_"You are %s, aren't you...", get_player_name()))
 		npc_says(_"The hero...")
 		add_gold(-1547)
-		add_cookie("Stone_done")
+		add_cookie("stone_done")
 		show(31, 32, 33)
 	end
 	hide(23)
@@ -169,10 +173,10 @@ LuaCode={
 	npc_says(_"I have something here for you. I managed to hide this Shotgun from the Red Guard.")
 	npc_says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
 	npc_says(_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!")
-    end_dialog()
-    add_item("Two Barrel shotgun",1)
-    end_quest("Saving the shop")
-    add_diary_entry("Saving the shop", "Ms. Stone was really grateful for my help.  She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
+	end_dialog()
+	add_item("Two Barrel shotgun",1)
+	end_quest("Saving the shop")
+	add_diary_entry("Saving the shop", "Ms. Stone was really grateful for my help.  She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 	hide(31, 32, 33)
 }
 ----------------------------------------------------------------------
@@ -181,9 +185,9 @@ Nr=32  Text=_"It's not important who I am."
 LuaCode={
 	npc_says(_"If you want to remain a stranger, I will respect your wishes.", "NO_WAIT")
 	npc_says(_"So be it.")
-    end_dialog()
-    end_quest("Saving the shop")
-    add_diary_entry("Saving the shop", "Ms. Stone was really grateful for my help.  She took only what she needed from me.")
+	end_dialog()
+	end_quest("Saving the shop")
+	add_diary_entry("Saving the shop", "Ms. Stone was really grateful for my help.  She took only what she needed from me.")
 	hide(31, 32, 33)
 }
 ----------------------------------------------------------------------
@@ -193,10 +197,10 @@ LuaCode={
 	npc_says(_"You... monster...", "NO_WAIT")
 	npc_says(_"No one makes fun of Lily Stone's family store!", "NO_WAIT")
 	npc_says(_"Say your prayers, you oversized duck!!!")
-    add_gold(1547)
-    end_quest("Saving the shop")
-    add_diary_entry("Saving the shop", "I tricked that Ms. Stone into believing I was going to help her out.  It was funny to see her get angry.")
-    break_off_and_attack()
+	add_gold(1547)
+	end_quest("Saving the shop")
+	add_diary_entry("Saving the shop", "I tricked that Ms. Stone into believing I was going to help her out.  It was funny to see her get angry.")
+	break_off_and_attack()
 	hide(31, 32, 33)
 }
 ----------------------------------------------------------------------
