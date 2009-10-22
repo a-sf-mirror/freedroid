@@ -29,37 +29,41 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX")
 
-FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
-    if (has_item_backpack("Dixon's Toolbox") > 0) then
-        if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
-    else end
+	if (not has_cookie("met_dixon")) then
+		show(0)
+		add_cookie("met_dixon")
+	else end
 
-    if (done_quest("The yellow toolkit")) then
-        if (has_cookie("singularity_dead")) then
-            if (has_cookie("singularity_killed")) then show(44) else show(43) end
-        else 
-            if (has_cookie("dixon_one")) then show(46) else show(45) end
-        end
-    else end
+	if (has_item_backpack("Dixon's Toolbox") > 0) then
+		if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
+	else end
 
-    if (has_cookie("dixon_angry_250")) then
-        if (has_cookie("dixon_very_angry")) then next(83) 
+	if (done_quest("The yellow toolkit")) then
+		if (has_cookie("singularity_dead")) then
+			if (has_cookie("singularity_killed")) then show(44) else show(43) end
+		else 
+			if (has_cookie("dixon_one")) then show(46) else show(45) end
+		end
+	else end
+
+	if (has_cookie("dixon_angry_250")) then
+		if (has_cookie("dixon_very_angry")) then next(83) 
 		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong and I have no desire to talk to you.")
 		end
-    else end
+	else end
 
-    if (has_cookie("dixon_angry_350")) then
-        if (has_cookie("dixon_very_angry")) then next(83)
+	if (has_cookie("dixon_angry_350")) then
+		if (has_cookie("dixon_very_angry")) then next(83)
 		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong and I have no desire to talk to you.")
 		end
-    else end
+	else end
 
-    if (has_cookie("singularity_saved")) then
-        if (has_cookie("dixon_one")) then show(46) else show(45) end
-    else end
+	if (has_cookie("singularity_saved")) then
+		if (has_cookie("dixon_one")) then show(46) else show(45) end
+	else end
 
-    if (has_cookie("dixon_saved_and_talked")) then hide(46) else end
+	if (has_cookie("dixon_saved_and_talked")) then hide(46) else end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -223,7 +227,7 @@ LuaCode={
 	add_cookie("singularity_saved")
 	add_diary_entry("The yellow toolkit", "I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
 	hide(28, 29, 30)
-}    
+}	
 ----------------------------------------------------------------------
 
 Nr=31  Text=_"How did it happen that the bots took your tools away?"
@@ -287,12 +291,12 @@ LuaCode={
 	npc_says(_"Here. It is all there.", "NO_WAIT")
 	npc_says(_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you.", "NO_WAIT")
 	npc_says(_"Get out of my sight.")
-    end_dialog()
-    add_gold(250)
-    add_cookie("dixon_angry_250")
-    end_quest("The yellow toolkit")
-    add_diary_entry("The yellow toolkit", "I sold the toolkit to Dixon for a nice sum of money. Life is good.")
-    del_item_backpack("Dixon's Toolbox", 1)
+	end_dialog()
+	add_gold(250)
+	add_cookie("dixon_angry_250")
+	end_quest("The yellow toolkit")
+	add_diary_entry("The yellow toolkit", "I sold the toolkit to Dixon for a nice sum of money. Life is good.")
+	del_item_backpack("Dixon's Toolbox", 1)
 	hide(38, 41)
 }
 ----------------------------------------------------------------------
@@ -419,7 +423,7 @@ LuaCode={
 
 Nr=99  Text=_"I must go now."
 LuaCode={
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

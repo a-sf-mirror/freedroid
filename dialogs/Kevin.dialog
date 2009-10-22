@@ -27,8 +27,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={	show(0) }
 EveryTime LuaCode={
+	if (not has_cookie("met_kevin")) then
+		show(0)
+		add_cookie("met_kevin")
+	else end
+
 	if (has_quest("And there was light...")) then
 		if (done_quest("And there was light...")) then
 			add_diary_entry("And there was light...", "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
@@ -96,7 +100,7 @@ LuaCode={
 	npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
 	npc_says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
 	npc_says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
-    add_diary_entry("And there was light...", "The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
+	add_diary_entry("And there was light...", "The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
 	hide(6, 7)
 }
 ----------------------------------------------------------------------
@@ -110,7 +114,7 @@ LuaCode={
 
 Nr=8  Text=_"About that project you said you have running..."
 LuaCode={
-    if (done_quest("A kingdom for a cluster!")) then
+	if (done_quest("A kingdom for a cluster!")) then
 		npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
 	else
 		npc_says(_"Yes, since the energy supply has been constant, results were much better. I've achieved my goal.")
@@ -125,7 +129,7 @@ LuaCode={
 
 Nr=9  Text=_"Maybe I can help somehow to find a suitable cluster."
 LuaCode={
-    if (has_quest("A kingdom for a cluster!")) then 
+	if (has_quest("A kingdom for a cluster!")) then 
 		npc_says(_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore.")
 		npc_says(_"The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly.")
 	else
@@ -181,8 +185,8 @@ LuaCode={
 Nr=13  Text=_"I want money."
 LuaCode={
 	npc_says(_"Eh... Here, take these 900 bucks. That should be enough.")
-    add_gold(900)
-    add_cookie("kevin_reward1_given")
+	add_gold(900)
+	add_cookie("kevin_reward1_given")
 	end_dialog()
 	hide(11, 12, 13)
 }
@@ -193,7 +197,7 @@ LuaCode={
 	npc_says(_"Oh. Right.")
 	npc_says(_"Well, thanks for telling me.")
 	npc_says(_"Back to the drawing board, I guess...")
-    add_cookie("kevin_sigtalk")
+	add_cookie("kevin_sigtalk")
 	hide(20) show(21)
 }
 ----------------------------------------------------------------------
@@ -211,9 +215,9 @@ LuaCode={
 	npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 	npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 	npc_says(_"Now I see your hacking skill has already improved a lot.")
-    add_gold(-300)
-    del_training_points(5)
-    improve_program("Hacking")
+	add_gold(-300)
+	del_training_points(5)
+	improve_program("Hacking")
 }
 ----------------------------------------------------------------------
 

@@ -155,7 +155,7 @@ LuaCode={
 		npc_says(_"Now it's fair. Thank you.", "NO_WAIT")
 		npc_says(_"You've given me a bit of hope.. ", "NO_WAIT")
 		npc_says(_"Wait a second... I think I recognize you...")
-		npc_says(string.format(_"You are %s, aren't you...", get_player_name()))
+		npc_says(_"You are " .. get_player_name() .. ", aren't you...")
 		npc_says(_"The hero...")
 		add_gold(-1547)
 		add_cookie("stone_done")

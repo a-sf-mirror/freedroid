@@ -29,8 +29,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(5, 6) }
-EveryTime LuaCode={ 
+EveryTime LuaCode={
+	if (not has_cookie("met_koan")) then
+		show(5, 6)
+		add_cookie("met_koan")
+	else end
+
 	if (not has_cookie("met_koan")) then
 		npc_says(_"So you have come. I knew Duncan would not let me live for too long.")
 		npc_says(_"Once I am gone this oasis of peace in the world will dry up and die. A shame.")
@@ -45,9 +49,9 @@ EveryTime LuaCode={
 
 Nr=5  Text=_"With pleasure."
 LuaCode={
-    drop_dead()
-    add_diary_entry("Doing Duncan a favour", "I took revenge for Duncan by killing Koan.")
-    respawn_level(18) -- Surely lvl 18 is the wrong lvl, but which was the originally intended?
+	drop_dead()
+	add_diary_entry("Doing Duncan a favour", "I took revenge for Duncan by killing Koan.")
+	respawn_level(18) -- Surely lvl 18 is the wrong lvl, but which was the originally intended?
 }
 ----------------------------------------------------------------------
 
@@ -56,8 +60,8 @@ LuaCode={
 	npc_says(_"Thank you.")
 	npc_says(_"Feel free to stay here. There is no danger.")
 	npc_says(_"The water is safe to drink and the fruit from the tree is quite delicious.")
-    add_cookie("koan_spared")
-    add_diary_entry("Doing Duncan a favour", "I met and talked to Koan, but didn't kill him.")
+	add_cookie("koan_spared")
+	add_diary_entry("Doing Duncan a favour", "I met and talked to Koan, but didn't kill him.")
 	hide(5, 6) show(10, 20, 99)
 }
 ----------------------------------------------------------------------
@@ -94,8 +98,8 @@ LuaCode={
 Nr=99  Text=_"I will go now."
 LuaCode={
 	npc_says(_"This place will always wait for you.")
-    heal_tux()
-    end_dialog()
+	heal_tux()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

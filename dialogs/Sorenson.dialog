@@ -29,8 +29,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(20, 30, 40, 50) }
 EveryTime LuaCode={ 
+	if (not has_cookie("met_sorenson")) then
+		show(20, 30, 40, 50)
+		add_cookie("met_sorenson")
+	else end
+
 	tux_says(_"Um... Hello?")
 	npc_says(_"AH! A Visitor! Come in! Come in!")
 	tux_says(_"I think I should go now. Right now. See you later.")
@@ -85,7 +89,7 @@ LuaCode={
 Nr=40  Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 LuaCode={
 	npc_says(_"Of course not. Trade is good.")
-    trade_with("Sorenson")
+	trade_with("Sorenson")
 	hide(40) show(41)
 }
 ----------------------------------------------------------------------
@@ -93,7 +97,7 @@ LuaCode={
 Nr=41  Text=_"Can I take a look at your books again?"
 LuaCode={
 	npc_says(_"Yes. Sure. Of course.")
-    trade_with("Sorenson")
+	trade_with("Sorenson")
 }
 ----------------------------------------------------------------------
 
@@ -164,7 +168,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"4444! 17 burn5! 7'm m3171n9!")
 	npc_says(_"44444444444444444!")
-    drop_dead()
+	drop_dead()
 }
 ----------------------------------------------------------------------
 
@@ -174,7 +178,7 @@ LuaCode={
 	npc_says(_"Wh47? N07 w0rk1b9?")
 	tux_says(_"Erm. I have a confession to make. My name is not Francis.")
 	npc_says(_"N0000000000!!!!!!!")
-    break_off_and_attack()
+	break_off_and_attack()
 	hide(64)
 }
 ----------------------------------------------------------------------
@@ -184,7 +188,7 @@ LuaCode={
 	npc_says(_"Huh?")
 	tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
 	npc_says(_"N0! Idi07!")
-    kill_tux()
+	kill_tux()
 	hide(65)
 }
 ----------------------------------------------------------------------
@@ -194,7 +198,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 	hide(66)
-    break_off_and_attack()
+	break_off_and_attack()
 }
 ----------------------------------------------------------------------
 
@@ -202,8 +206,8 @@ Nr=70  Text=_"Huh? I d0n'7 f33l g00d."
 LuaCode={
 	npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
 	tux_says(_"W417... 1 f331... H0rr1b13...")
-    improve_skill("programming")
-    drop_dead()
+	improve_skill("programming")
+	drop_dead()
 	hide(70)
 }
 ----------------------------------------------------------------------
@@ -212,7 +216,7 @@ Nr=78  Text=_"In blood? Yuck. I am not going to do this, blood is too messy for 
 LuaCode={
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 	hide(78)
-    break_off_and_attack()
+	break_off_and_attack()
 }
 ----------------------------------------------------------------------
 
@@ -220,14 +224,14 @@ Nr=79  Text=_"There is no way I will sign something without reading it. Forget a
 LuaCode={
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 	hide(79)
-    break_off_and_attack()
+	break_off_and_attack()
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I really must be going now. Goodbye."
 LuaCode={
 	npc_says(_"Please come back later, Linarian. We must talk again.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

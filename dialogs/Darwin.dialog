@@ -29,8 +29,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0, 6) }
-EveryTime LuaCode={ show(99) }
+EveryTime LuaCode={ 
+	if (not has_cookie("met_darwin")) then
+		show(0, 6)
+		add_cookie("met_darwin")
+	else end
+	show(99)
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here. "
@@ -60,7 +65,7 @@ LuaCode={
 Nr=3  Text=_"If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    next(4)
+	next(4)
 	hide(3)
 }
 ----------------------------------------------------------------------
@@ -96,7 +101,7 @@ LuaCode={
 Nr=7  Text=_"You guys are totally nuts. Get a life."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    next(8)
+	next(8)
 	hide(7)
 }
 ----------------------------------------------------------------------
@@ -142,7 +147,7 @@ LuaCode={
 Nr=99  Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Goodbye and viel gluck.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

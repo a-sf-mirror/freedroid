@@ -28,8 +28,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(1, 2, 3) }
 EveryTime LuaCode={
+	if (not has_cookie("met_oldtowngateguardleader")) then
+		show(1, 2, 3)
+		add_cookie("met_oldtowngateguardleader")
+	else end
+
 	if (partner_started()) then
 		npc_says(_"Hey you! Linarian! What do you want here?")
 	end
@@ -62,8 +66,8 @@ LuaCode={
 	change_obstacle_state("Main Gate Outer E", "closed")
 	change_obstacle_state("Main Gate Outer W", "closed")
 	change_obstacle_state("Main Gate Guardhouse", "closed")
-    break_off_and_attack()
-    everybody_hostile()
+	break_off_and_attack()
+	everybody_hostile()
 	hide(1, 2, 3) show(99)
 }
 ----------------------------------------------------------------------
@@ -91,8 +95,8 @@ LuaCode={
 
 Nr=20 Text=_"Let me get back to you on that one."
 LuaCode={
-    npc_says(_"Well you aren't going anywhere.  I'm watching you.")
-    end_dialog()
+	npc_says(_"Well you aren't going anywhere.  I'm watching you.")
+	end_dialog()
 }
 ---------------------------------------------------------------------
 
@@ -155,7 +159,7 @@ LuaCode={
 	tux_says("".. get_player_name() ..".")
 	npc_says(_"Talk to Spencer.  His office is straight ahead. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
-	add_cookie("OldTownGateGuardLeader_tux_nickname_loon")
+	add_cookie("oldtowngateguardleader_tux_nickname_loon")
 	change_obstacle_state("Main Gate Outer W", "opened")
 	change_obstacle_state("Main Gate Outer E", "opened")
 	change_obstacle_state("Main Gate Guardhouse", "opened")
@@ -171,7 +175,7 @@ LuaCode={
 	npc_says(_"But I guess she is in here, so it doesn't matter if we have another loon.")
 	tux_says(_"I'm a Linarian, not a loon. ".. get_player_name() .." the Linarian.")
 	npc_says(_"Get out of here ".. get_player_name() ..", the loon, and stop bothering me.")
-	add_cookie("OldTownGateGuardLeader_tux_nickname_loon")
+	add_cookie("oldtowngateguardleader_tux_nickname_loon")
 	change_obstacle_state("Main Gate Outer W", "opened")
 	change_obstacle_state("Main Gate Outer E", "opened")
 	change_obstacle_state("Main Gate Guardhouse", "opened")
@@ -183,8 +187,8 @@ LuaCode={
 Nr=99  Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Mhmmm.")
-        
-	if (has_cookie("OldTownGateGuardLeader_tux_nickname_loon")) then
+		
+	if (has_cookie("oldtowngateguardleader_tux_nickname_loon")) then
 		npc_says("".. get_player_name() .."... the Loon")
 	else end
 	end_dialog()

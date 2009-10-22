@@ -29,7 +29,6 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ }
 EveryTime LuaCode={ show(0, 1, 2, 3, 99) }
 ----------------------------------------------------------------------
 
@@ -79,7 +78,7 @@ Nr=99  Text=_"See you later."
 LuaCode={
 	npc_says(_"Resuming guard program.")
 	hide(4)
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

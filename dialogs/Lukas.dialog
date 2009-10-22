@@ -29,8 +29,14 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={	show(0) }
-EveryTime LuaCode={ show(99) }
+EveryTime LuaCode={
+	if (not has_cookie("met_lukas")) then
+		show(0)
+		add_cookie("met_lukas")
+	else end
+
+	show(99)
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here."
@@ -45,7 +51,7 @@ LuaCode={
 	npc_says(_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor. I can adjust it to fit any measurements, even yours.")
 	npc_says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing.")
 	npc_says(_"Now, what will it be?")
-    trade_with("Lukas")
+	trade_with("Lukas")
 }
 ----------------------------------------------------------------------
 
@@ -58,7 +64,7 @@ LuaCode={
 
 Nr=99  Text=_"See you later! "
 LuaCode={
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

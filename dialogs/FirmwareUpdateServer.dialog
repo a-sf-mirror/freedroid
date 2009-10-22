@@ -29,7 +29,6 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ }
 EveryTime LuaCode={ 
 	npc_says(_"Welcome to MS firmware upgrade server for region #54658.")
 	npc_says(_"Please select action")
@@ -43,7 +42,7 @@ LuaCode={
 		npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 	else 
 		npc_says(_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl")
-	    set_bot_state("free")
+		set_bot_state("free")
 	end;
 }
 ----------------------------------------------------------------------
@@ -56,14 +55,14 @@ LuaCode={
 	npc_says(_"...")
 	npc_says(_"...")
 	npc_says(_"Firmware update propagated!")
-    add_cookie("uploaded_faulty_firmware")
-    end_quest("Propagating a faulty firmware")
+	add_cookie("uploaded_faulty_firmware")
+	end_quest("Propagating a faulty firmware")
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"Logout"
 LuaCode={
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

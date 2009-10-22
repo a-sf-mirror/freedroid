@@ -29,14 +29,18 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
-EveryTime LuaCode={ 
+EveryTime LuaCode={
+	if (not has_cookie("met_butch")) then
+		show(0)
+		add_cookie("met_butch")
+	else end
+
 	if (has_quest("Novice Arena")) then
 		if (not done_quest("Novice Arena")) then 
 			npc_says(_"I've already opened the door for you. All you need to do is walk in there and crush all four bots.")
 		else
 			if (not has_cookie("butch_enable_first_set")) then 
-		    	add_cookie("butch_enable_first_set")
+				add_cookie("butch_enable_first_set")
 				show(7, 8)
 			else end
 			show(20)
@@ -48,10 +52,10 @@ EveryTime LuaCode={
 			npc_says(_"I've already opened the door. What are you waiting for? All you need to do is go down to the master arena and fight the bots.")
 			npc_says(_"But I can understand if you hesitate. The master arena is by no means an easy task. Maybe you should practice some more before you go down.")
 		else
-		    if (not has_cookie("butch_enable_second_set")) then
-		        add_cookie("butch_enable_second_set")
+			if (not has_cookie("butch_enable_second_set")) then
+				add_cookie("butch_enable_second_set")
 				show(10)
-		    else end
+			else end
 			show(21)
 		end
 	else end
@@ -85,8 +89,8 @@ LuaCode={
 Nr=3  Text=_"BANZAI! DIE DIE DIE!"
 LuaCode={
 	npc_says(_"Wha --")
-    drop_dead()
-    everybody_hostile()
+	drop_dead()
+	everybody_hostile()
 	hide(3)
 }
 ----------------------------------------------------------------------
@@ -112,8 +116,8 @@ LuaCode={
 	npc_says(_"But remember, the door out won't be opened until you kill all the bots.")
 	npc_says(_"And be careful, your brain get so fooled by what happens in the holographic world that you get physical damaged for real.")
 	npc_says(_"So even if the enemies are only holograms, they can still hurt you and even kill you.")
-    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-    change_obstacle_state("NoviceArenaAccessDoor", "opened")
+	add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+	change_obstacle_state("NoviceArenaAccessDoor", "opened")
 	hide(6, 12, 13) show(9)
 }
 ----------------------------------------------------------------------
@@ -123,7 +127,7 @@ LuaCode={
 	npc_says(_"Good for you.")
 	npc_says(_"You are a total newbie. But, a good newbie.")
 	npc_says(_"I will say a good word to Spencer about this.")
-    add_diary_entry("Novice Arena", "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
+	add_diary_entry("Novice Arena", "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
 	hide(7, 8) show(9, 11)
 }
 ----------------------------------------------------------------------
@@ -162,8 +166,8 @@ LuaCode={
 	npc_says(_"One has to be insane to try the second arena.")
 	npc_says(_"You are not a newbie, but you are a TOTAL IDIOT!")
 	npc_says(_"I pity you, poor fool. You will die young.")
-    add_xp(8000)
-    add_diary_entry("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
+	add_xp(8000)
+	add_diary_entry("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
 	hide(10)
 }
 ----------------------------------------------------------------------
@@ -205,8 +209,8 @@ LuaCode={
 	npc_says(_"The bots bleed black.")
 	tux_says(_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!")
 	npc_says(_"Great. Get in the door, newbie.")
-    add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
-    change_obstacle_state("NoviceArenaAccessDoor", "opened")
+	add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+	change_obstacle_state("NoviceArenaAccessDoor", "opened")
 	hide(15)
 }
 ----------------------------------------------------------------------
@@ -232,7 +236,7 @@ LuaCode={
 Nr=99  Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Sure.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

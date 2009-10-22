@@ -29,9 +29,8 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ }
 EveryTime LuaCode={
-    if (has_cookie("kevin_door_open")) then
+	if (has_cookie("kevin_door_open")) then
 		tux_says(_"It's me.")
 		npc_says(_"IDENTITY CONFIRMED. YOU MAY PASS.")
 		end_dialog()
@@ -68,8 +67,8 @@ LuaCode={
 
 Nr=4  Text=_"Thank you."
 LuaCode={
-    add_cookie("kevin_door_open")
-    change_obstacle_state("KevinsDoor", "opened")
+	add_cookie("kevin_door_open")
+	change_obstacle_state("KevinsDoor", "opened")
 	hide(4) show(99)
 }
 ----------------------------------------------------------------------
@@ -178,7 +177,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"EOT ACKNOWLEDGED. CONNECTION CLOSED.")
 	npc_says(_"GOODBYE.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

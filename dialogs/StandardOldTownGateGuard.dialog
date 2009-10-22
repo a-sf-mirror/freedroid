@@ -29,8 +29,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
-EveryTime LuaCode={ show(99) }
+EveryTime LuaCode={
+	if (not has_cookie("met_standardoldtowngateguard")) then
+		show(0)
+		add_cookie("met_standardoldtowngateguard")
+	else end
+	show(99)
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here."
@@ -55,7 +60,7 @@ LuaCode={
 Nr=99  Text=_"I'll be going, then."
 LuaCode={
 	npc_says(_"Goodbye.")
-    end_dialog()
+	end_dialog()
 	show(1)
 }
 ----------------------------------------------------------------------

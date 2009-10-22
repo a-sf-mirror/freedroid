@@ -29,8 +29,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={	show(0) }
 EveryTime LuaCode={
+	if (not has_cookie("met_michelangelo")) then
+		show(0)
+		add_cookie("met_michelangelo")
+	else end
+
 	if (has_quest("Anything but the army snacks, please!")) then
 		if (done_quest("Anything but the army snacks, please!")) then
 			show(24)
@@ -39,14 +43,14 @@ EveryTime LuaCode={
 					hide(75, 76, 77)
 				else
 					if (has_item_backpack("Red Dilithium Crystal") < 1) then show(40, 75) else end
-				end                                                                   
+				end																	
 			else end 
-		else                        
+		else						
 			if (has_item_backpack("Red Dilithium Crystal") > 2) then
 				show(29)	
 			else 
 				show(31, 32, 40, 83)
-				if (has_cookie("asked_Michelangelo_for_army_snacks")) then show(26) else show(12) end
+				if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
 			end
 		end
 	else end
@@ -80,7 +84,7 @@ LuaCode={
 	npc_says(_"They are made fully out of artificial nutrients and carcinogenic flavors. Even the army hated them.")
 	npc_says(_"It's better than starving, but some people have already committed suicide because that repulsive material is the only thing available to eat.")
 	npc_says(_"I can give you some, but it's not worthy of being called food.")
-	if (has_cookie("asked_Michelangelo_for_army_snacks")) then show(26) else show(12) end
+	if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
 	hide(11)
 }
 ----------------------------------------------------------------------
@@ -92,8 +96,8 @@ LuaCode={
 	npc_says(_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you.")
 	npc_says(_"Should the army meal model #23 prove poisonous, you agree to cover the cost of keeping you alive by the base medical staff or the costs of your cremation in our nuclear furnaces.'")
 	npc_says(_"Well, that is all. Here is the junk that you wanted. Enjoy.")
-    add_cookie("asked_Michelangelo_for_army_snacks")
-    next(27)
+	add_cookie("asked_michelangelo_for_army_snacks")
+	next(27)
 	hide(12)
 }
 ----------------------------------------------------------------------
@@ -135,7 +139,7 @@ LuaCode={
 	npc_says(_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly.")
 	npc_says(_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!")
 	npc_says(_"But if you are really hungry, I still have some of those disgusting army snacks.")
-    if (has_cookie("asked_Michelangelo_for_army_snacks")) then show(26) else show(12) end
+	if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
 	hide(24)
 }
 ----------------------------------------------------------------------
@@ -164,11 +168,11 @@ LuaCode={
 	npc_says(_"Really? I thought you were dead, but not only did you come back alive, you also brought some power crystals for my trusty oven.")
 	npc_says(_"I will start cooking at once.")
 	npc_says(_"Thank you, Linarian. As soon as the food cubes are ready I will be able to give them away to the hungry people.")
-    display_big_message("Restored Michelangelo's power supply")
-    add_xp(350)
-    end_quest("Anything but the army snacks, please!")
-    add_diary_entry("Anything but the army snacks, please!", "I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the city.")
-    del_item_backpack("Red Dilithium Crystal", 3)
+	display_big_message("Restored Michelangelo's power supply")
+	add_xp(350)
+	end_quest("Anything but the army snacks, please!")
+	add_diary_entry("Anything but the army snacks, please!", "I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the city.")
+	del_item_backpack("Red Dilithium Crystal", 3)
 	hide(29)
 }
 ----------------------------------------------------------------------
@@ -182,9 +186,9 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=32 Text=_"Where can I find dilithium crystals?"
 LuaCode={
-   npc_says(_"There is an old abandoned dilithium mine is to the east of the town.")
-   npc_says(_"Be careful if you go down there!")
-   hide(32)
+	npc_says(_"There is an old abandoned dilithium mine is to the east of the town.")
+	npc_says(_"Be careful if you go down there!")
+	hide(32)
 }
 ----------------------------------------------------------------------
 Nr=70  Text=_"Why don't you send someone for the dilithium?"
@@ -221,7 +225,7 @@ LuaCode={
 	tux_says(_"So you need three dilithium crystals?")
 	npc_says(_"Yes. Please get me three dilithium crystals.")
 	change_obstacle_state("EastGateOfTown", "opened")
-    add_quest("Anything but the army snacks, please!", "I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")    
+	add_quest("Anything but the army snacks, please!", "I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")	
 	hide(19, 40, 41, 42, 70, 81)
 }
 ----------------------------------------------------------------------
@@ -258,7 +262,7 @@ LuaCode={
 Nr=75  Text=_"I need a dilithium crystal."
 LuaCode={
 	npc_says(_"I am already using the ones you got me. They are being used to feed the town.")
-    if (has_cookie("asked_Michelangelo_for_spare_dilithium")) then show(76) else show(77) end
+	if (has_cookie("asked_michelangelo_for_spare_dilithium")) then show(76) else show(77) end
 	hide(75) show(32)
 }
 ----------------------------------------------------------------------
@@ -273,8 +277,8 @@ LuaCode={
 Nr=77 Text=_"I need one of the dilithium crystals back, it is a matter of life or death!"
 LuaCode={
 	npc_says(_"I guess I can spare one of them, since it is an emergency.")
-    add_cookie("asked_Michelangelo_for_spare_dilithium")
-    add_item("Red Dilithium Crystal", 1)
+	add_cookie("asked_michelangelo_for_spare_dilithium")
+	add_item("Red Dilithium Crystal", 1)
 	hide(77)
 }
 
@@ -282,7 +286,7 @@ LuaCode={
 Nr=99  Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"See you later.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

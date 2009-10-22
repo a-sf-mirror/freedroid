@@ -27,8 +27,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
-EveryTime LuaCode={ show(99) }
+EveryTime LuaCode={ 
+	if (not has_cookie("met_benjamin")) then
+		show(0)
+		add_cookie("met_benjamin")
+	show(99)
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hello!"
@@ -50,7 +54,7 @@ LuaCode={
 Nr=3  Text=_"Did you think about somehow gathering the excess heat and using it to make the beam stronger?"
 LuaCode={
 	npc_says(_"Hmm... There might be something in that idea. I will think about it.")
-	add_cookie("Ben_better_beams")
+	add_cookie("benjamin_better_beams")
 	hide(3, 4, 5)
 }
 ----------------------------------------------------------------------
@@ -58,7 +62,7 @@ LuaCode={
 Nr=4  Text=_"If I were you, I would focus my work on the firing rate."
 LuaCode={
 	npc_says(_"Hmm... I will think about it. Hmm...")
-	add_cookie("Ben_faster_shooting")
+	add_cookie("benjamin_faster_shooting")
 	hide(3, 4, 5)
 }
 ----------------------------------------------------------------------
@@ -66,7 +70,7 @@ LuaCode={
 Nr=5  Text=_"You know, laser pistols are not a very promising weapon. I think you should work on something different."
 LuaCode={
 	npc_says(_"Yeah, maybe you are right. I will think about it.")
-	add_cookie("Ben_something_else")
+	add_cookie("benjamin_something_else")
 	hide(3, 4, 5)
 }
 ----------------------------------------------------------------------

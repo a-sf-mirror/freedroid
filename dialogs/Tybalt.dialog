@@ -29,8 +29,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
-EveryTime LuaCode={ show(99) }
+EveryTime LuaCode={
+	if (not has_cookie("met_tybalt")) then
+		show(0)
+		add_cookie("met_tybalt")
+	else end
+	show(99)
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hi! I'm new here."
@@ -65,7 +70,7 @@ LuaCode={
 Nr=50  Text=_"I have a lot of money for you."
 LuaCode={
 	npc_says(_"Fascinating. Can I have a hundred please?")
-    if(get_gold() < 100) then show(54) else	show(55) end
+	if(get_gold() < 100) then show(54) else	show(55) end
 	hide(50)
 }
 ----------------------------------------------------------------------
@@ -80,7 +85,7 @@ LuaCode={
 Nr=55  Text=_"Here you go."
 LuaCode={
 	npc_says(_"Thank you.")
-    add_cookie("tybalt_bribe")
+	add_cookie("tybalt_bribe")
 	hide(55) show(56)
 }
 ----------------------------------------------------------------------
@@ -103,7 +108,7 @@ Nr=99  Text=_"See you later."
 LuaCode={
 	npc_says(_"Good riddance.")
 	show(2)
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

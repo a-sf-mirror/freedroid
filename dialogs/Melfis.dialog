@@ -29,8 +29,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={	show(0) }
-EveryTime LuaCode={ show(99) }
+EveryTime LuaCode={
+	if (not has_cookie("met_melfis")) then
+		show(0)
+		add_cookie("met_melfis")
+	else end
+	show(99)
+}
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Hello. Any idea where I can get some help here?"
@@ -61,7 +66,7 @@ LuaCode={
 Nr=3  Text=_"I wish I knew what you are talking about."
 LuaCode={
 	npc_says(_"Verschwinde.")
-    end_dialog()
+	end_dialog()
 	hide(3)
 }
 ----------------------------------------------------------------------
@@ -69,7 +74,7 @@ LuaCode={
 Nr=99  Text=_"I need to go now.")
 LuaCode={
 	npc_says(_" . . .")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

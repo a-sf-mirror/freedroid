@@ -29,21 +29,25 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
-    if (has_quest("Bender's problem")) then
-        if (not done_quest("Bender's problem")) then 
+	if (not has_cookie("met_docmoore")) then
+		show(0)
+		add_cookie("met_docmoore")
+	else end
+
+	if (has_quest("Bender's problem")) then
+		if (not done_quest("Bender's problem")) then 
 			show(2, 12)
 		else end
 	else end
 
-    if (has_item_backpack("Strength Pill")  > 0) then show(50) else end
-    if (has_item_backpack("Dexterity Pill") > 0) then show(51) else end
-    if (has_item_backpack("Code Pill") > 0)      then show(52) else end
+	if (has_item_backpack("Strength Pill")  > 0) then show(50) else end
+	if (has_item_backpack("Dexterity Pill") > 0) then show(51) else end
+	if (has_item_backpack("Code Pill") > 0) then show(52) else end
 
-    if (has_item_backpack("Diet supplement") > 0) then show(55) else end
-    if (has_item_backpack("Antibiotic") > 0)      then show(56) else end
-    if (has_item_backpack("Doc-in-a-can") > 0)    then show(57) else end
+	if (has_item_backpack("Diet supplement") > 0) then show(55) else end
+	if (has_item_backpack("Antibiotic") > 0) then show(56) else end
+	if (has_item_backpack("Doc-in-a-can") > 0) then show(57) else end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -51,9 +55,9 @@ EveryTime LuaCode={
 Nr=0  Text=_"Hello!"
 LuaCode={
 	npc_says(_"Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?")
-    tux_says(_"I'm ".. get_player_name() .. ".")
+	tux_says(_"I'm ".. get_player_name() .. ".")
 	npc_says(_"Um, what are you?  Some kind of overgrown penguin?")
-    tux_says(_"I'm a Linarian.")
+	tux_says(_"I'm a Linarian.")
 	npc_says(_"Oh, I vaguely remember reading something about Linarian biology back in my university days...")
 	npc_says(_"I should be able to heal you if you get hurt.")
 	hide(0) show(1, 3, 10)
@@ -63,7 +67,7 @@ LuaCode={
 Nr=1  Text=_"Do you also sell medical equipment?"
 LuaCode={
 	npc_says(_"Yes. Here is what I can offer today.")
-    trade_with("DocMoore")
+	trade_with("DocMoore")
 	hide(1) show(40)
 }
 ----------------------------------------------------------------------
@@ -71,13 +75,13 @@ LuaCode={
 Nr=40  Text=_"May I buy some medical equipment?"
 LuaCode={
 	npc_says(_"Sure. Here is what I can offer today.")
-    trade_with("DocMoore")
+	trade_with("DocMoore")
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Doc, I took some of those brain enlargement pills..."
 LuaCode={
-    if (has_cookie("doc_healed_tux")) then
+	if (has_cookie("doc_healed_tux")) then
 		npc_says(_"Sorry, but I already gave you some medical help.")
 		npc_says(_"If you poison yourself, that's entirely your business and I'm not responsible.")
 		npc_says(_"As far as I am concerned, in this town everyone gets everything equally.")
@@ -110,7 +114,7 @@ LuaCode={
 Nr=10  Text=_"Can you fix me up?"
 LuaCode={
 	npc_says(_"Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health.")
-	if (not has_cookie("asked_DocMoore_self_damage")) then
+	if (not has_cookie("asked_docmoore_self_damage")) then
 		npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
 		show(11)
 	else end
@@ -128,7 +132,7 @@ LuaCode={
 	npc_says(_"But guess what? He bought and took the stupid pills anyways, and then he came back to me to fix him.")
 	npc_says(_"If he, or anyone, is going to completely disregard my medical advice, and then think they are going to get my medical supplies, then they are wrong.")
 	npc_says(_"He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that.")
-	add_cookie("asked_DocMoore_self_damage")
+	add_cookie("asked_docmoore_self_damage")
 	hide(11)
 }
 ----------------------------------------------------------------------
@@ -161,18 +165,18 @@ LuaCode={
 	npc_says(_" . . .")
 	tux_says(_"Good. I am very glad not to hear a disapproval.")
 	npc_says(_" . . .")
-    add_cookie("killed_DocMoore")
-    drop_dead()
-    add_item("Diet supplement",15)
-    add_item("Diet supplement",15)
-    add_item("Doc-in-a-can",10)
-    add_item("Antibiotic",10)
-    add_item("Brain Enlargement Pills Antidote",5)
-    add_item("Laserscalpel",1)
-    add_item("Doc-in-a-can",10)
-    add_item("Antibiotic",10)
-    add_item("Brain Enlargement Pills Antidote",5)
-    add_item("Laserscalpel",1)
+	add_cookie("killed_docmoore")
+	drop_dead()
+	add_item("Diet supplement",15)
+	add_item("Diet supplement",15)
+	add_item("Doc-in-a-can",10)
+	add_item("Antibiotic",10)
+	add_item("Brain Enlargement Pills Antidote",5)
+	add_item("Laserscalpel",1)
+	add_item("Doc-in-a-can",10)
+	add_item("Antibiotic",10)
+	add_item("Brain Enlargement Pills Antidote",5)
+	add_item("Laserscalpel",1)
 	hide(22, 10, 11, 50, 51, 52, 55, 56, 57)
 }
 ----------------------------------------------------------------------
@@ -186,22 +190,22 @@ LuaCode={
 
 Nr=50  Text=_"What can you tell me about Strength Pills?"
 LuaCode={
-   hide(50)
-   next(53)
+	hide(50)
+	next(53)
 }
 ----------------------------------------------------------------------
 
 Nr=51  Text=_"What can you tell me about Dexterity Pills?"
 LuaCode={
-   hide(51)
-   next(53)
+	hide(51)
+	next(53)
 }
 ----------------------------------------------------------------------
 
 Nr=52  Text=_"What can you tell me about Code Pills?"
 LuaCode={
-   hide(52)
-   next(53)
+	hide(52)
+	next(53)
 }
 ----------------------------------------------------------------------
 
@@ -231,7 +235,7 @@ LuaCode={
 Nr=55  Text=_"What can you tell me about Diet supplements?"
 LuaCode={
 	npc_says(_"Have you tasted the army snacks that the cook, Michelangelo, has been handing out?")
-	if (has_cookie("asked_Michelangelo_for_army_snacks")) then
+	if (has_cookie("asked_michelangelo_for_army_snacks")) then
 		tux_says(_"Yes, those were horrible. They had a nice color though.")
 		npc_says(_"The dye used to make that color is a known carcinogen.")
 	else
@@ -266,7 +270,7 @@ LuaCode={
 Nr=99  Text=_"See you later."
 LuaCode={
 	npc_says(_"See you later.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

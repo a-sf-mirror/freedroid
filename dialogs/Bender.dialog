@@ -28,8 +28,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={
+	if (not has_cookie("met_bender")) then
+		show(0)
+		add_cookie("met_bender")
+	else end
+
 	if (has_quest("Bender's problem")) then 
 		if (done_quest("Bender's problem")) then next(13)
 		else
@@ -107,7 +111,7 @@ LuaCode={
 	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
 	npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
 	npc_says(_"Just get me some cure, and I'll be forever grateful!")
-    add_quest("Bender's problem", "I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
+	add_quest("Bender's problem", "I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
 	hide(7, 8) show(11)
 }
 ----------------------------------------------------------------------
@@ -129,11 +133,11 @@ LuaCode={
 	npc_says(_"Now, take this as a reward. And you can be sure that I'll vote for you if you seek membership in the Red Guard!")
 	npc_says(_"Thanks, man!")
 	change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
-    end_quest("Bender's problem")
-    add_xp(150)
-    del_item_backpack("Brain Enlargement Pills Antidote", 1)
-    add_item("Strength Pill",2)
-    add_diary_entry("Bender's problem", "Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
+	end_quest("Bender's problem")
+	add_xp(150)
+	del_item_backpack("Brain Enlargement Pills Antidote", 1)
+	add_item("Strength Pill",2)
+	add_diary_entry("Bender's problem", "Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
 	hide(9)
 }
 ----------------------------------------------------------------------
@@ -176,7 +180,7 @@ LuaCode={
 	npc_says(_"What? I'm not an idiot! Understood?")
 	npc_says(_"No one says I'm stupid! I'm NOT STUPID!")
 	npc_says(_"I'LL BEAT YOU TO SPLINTERS!")
-    break_off_and_attack()
+	break_off_and_attack()
 	hide(50)
 }
 ----------------------------------------------------------------------

@@ -29,7 +29,6 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ }
 EveryTime LuaCode={
 	if (not has_cookie("met_mer")) then
 		npc_says(_"Login : admin  Password : *******")
@@ -37,7 +36,7 @@ EveryTime LuaCode={
 		add_cookie("met_mer")	
 	else end
 
-    if (has_cookie("MER_Password")) then
+	if (has_cookie("mer_password")) then
 		hide(1, 7) show(8)
 	else
 		hide(4, 8) show(1, 7)
@@ -51,7 +50,7 @@ LuaCode={
 	npc_says(_"Changing password for admin. Enter new password: ")
 	npc_says(_"Enter new password again: ")
 	npc_says(_"Password successfully changed.")
-    add_cookie("MER_Password")
+	add_cookie("mer_password")
 	hide(1, 7) show(8)
 }
 ----------------------------------------------------------------------
@@ -69,14 +68,14 @@ Nr=8  Text=_"shieldmgr --disable --force"
 LuaCode={
 	npc_says(_"Disabling disruptor shield...")
 	npc_says(_"Shield disabled.")
-    end_quest("Opening access to MS Office")
-    add_diary_entry("Opening access to MS Office", "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
+	end_quest("Opening access to MS Office")
+	add_diary_entry("Opening access to MS Office", "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"
 LuaCode={
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

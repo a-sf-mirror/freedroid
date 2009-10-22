@@ -29,9 +29,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
-EveryTime LuaCode={ 
-    if (has_item_backpack("Kevin's Data Cube") > 0) then show(6) else end
+EveryTime LuaCode={
+	if (not has_cookie("met_rms")) then
+		show(0)
+		add_cookie("met_rms")
+	else end
+
+	if (has_item_backpack("Kevin's Data Cube") > 0) then show(6) else end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -58,9 +62,9 @@ LuaCode={
 	npc_says(_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data.")
 	npc_says(_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!")
 	npc_says(_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down.")
-    end_quest("A kingdom for a cluster!")
-    add_diary_entry("A kingdom for a cluster!", "Yes, that was simple. I wish everything else went as smoothly as this one did...")
-    del_item_backpack("Kevin's Data Cube", 1)
+	end_quest("A kingdom for a cluster!")
+	add_diary_entry("A kingdom for a cluster!", "Yes, that was simple. I wish everything else went as smoothly as this one did...")
+	del_item_backpack("Kevin's Data Cube", 1)
 	hide(6) show(9)
 }
 ----------------------------------------------------------------------
@@ -77,7 +81,7 @@ LuaCode={
 Nr=99  Text=_"See you later."
 LuaCode={
 	npc_says(_"Take care, Linarian.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

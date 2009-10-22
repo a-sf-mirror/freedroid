@@ -29,9 +29,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={	show(0, 3) }
 EveryTime LuaCode={
-    if has_cookie("drank_all_ewald_had") then show(14) else end;
+	if (not has_cookie("met_ewald")) then
+		show(0, 3)
+		add_cookie("met_ewald")
+	else end
+
+	if has_cookie("drank_all_ewald_had") then show(14) else end;
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -60,7 +64,7 @@ LuaCode={
 Nr=2  Text=_"Are you selling something other than drinks?"
 LuaCode={
 	npc_says(_"Yeah, I have some junk here... Want to see?")
-    trade_with("Ewald")
+	trade_with("Ewald")
 }
 ----------------------------------------------------------------------
 
@@ -97,7 +101,7 @@ LuaCode={
 Nr=7  Text=_"Ugh... Ahh... I like it. Give me some more of that."
 LuaCode={
 	npc_says(_"Uh... Sure...")
-    heat_tux(-1000);
+	heat_tux(-1000);
 	hide(7) show(10)
 }
 ----------------------------------------------------------------------
@@ -105,7 +109,7 @@ LuaCode={
 Nr=8  Text=_"Ahh... Fresh water! Give me some more of that."
 LuaCode={
 	npc_says(_"Yeah, I thought you would like it. Here is more.")
-    heat_tux(-1000);
+	heat_tux(-1000);
 	hide(8) show(10)
 }
 ----------------------------------------------------------------------
@@ -113,7 +117,7 @@ LuaCode={
 Nr=9  Text=_"Hmm... Lots of ice. Give me one more double water, but now without any ice."
 LuaCode={
 	npc_says(_"One double water coming up.")
-    heat_tux(-1000);
+	heat_tux(-1000);
 	hide(9)	show(10)
 }
 ----------------------------------------------------------------------
@@ -121,7 +125,7 @@ LuaCode={
 Nr=10  Text=_"MORE! I want more water!"
 LuaCode={
 	npc_says(_"Erm... Ok... Here, have some of my special, water colada.")
-    heat_tux(-1000);
+	heat_tux(-1000);
 	hide(10) show(11)
 }
 ----------------------------------------------------------------------
@@ -138,7 +142,7 @@ Nr=12  Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 LuaCode={
 	npc_says(_"Eh... I think you've had enough... Maybe you should just go for a walk for now?")
 	npc_says(_"You have had everything that I had.")
-    add_cookie("drank_all_ewald_had")
+	add_cookie("drank_all_ewald_had")
 	hide(12)
 }
 ----------------------------------------------------------------------
@@ -157,7 +161,7 @@ LuaCode={
 Nr=14 Text=_"Hey, I could use a refreshing drink!"
 LuaCode={
 	npc_says(_"Here, have a watery mary.")
-    heat_tux(-1000);
+	heat_tux(-1000);
 	hide(14);
 }
 -----------------------------------------------------------------------
@@ -165,7 +169,7 @@ LuaCode={
 Nr=99  Text=_"See you later."
 LuaCode={
 	npc_says(_"Goodbye and remember: My bar is always open.")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

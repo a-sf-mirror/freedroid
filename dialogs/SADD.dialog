@@ -29,15 +29,19 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(1) }
 EveryTime LuaCode={
+	if (not has_cookie("met_sadd")) then
+		show(1)
+		add_cookie("met_sadd")
+	else end
+
 	npc_says(_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once.") 
 
 	if (has_quest("SADD's power supply")) then
 		if (done_quest("SADD's power supply")) then hide(30, 31, 33) -- add in more lab missions here in the future
 		else
 			if (has_item_backpack("Red Dilithium Crystal") > 0) then
-				if (has_cookie("asked_SADD_for_exterminator")) then show(30) else show(33) end
+				if (has_cookie("asked_sadd_for_exterminator")) then show(30) else show(33) end
 			else
 				show(31)
 			end
@@ -89,9 +93,9 @@ LuaCode={
 	npc_says(_"*INFO* secret information theft detected!")
 	npc_says(_"*INFO* information classified as critical!")
 	npc_says(_"*INFO* locking zone!")
-    end_dialog()
-    change_obstacle_state("SADDGun1", "enabled")
-    change_obstacle_state("SADDGun2", "enabled")
+	end_dialog()
+	change_obstacle_state("SADDGun1", "enabled")
+	change_obstacle_state("SADDGun2", "enabled")
 	show(8)
 	hide(6, 99)
 }
@@ -141,89 +145,89 @@ LuaCode={
 	npc_says(_"OK, I'm almost a computer.")
 	tux_says(_"Almost a computer? What does that mean?")
 	npc_says(_"It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!")
-    end_dialog()
-    hide(15)
-    show(20)
+	end_dialog()
+	hide(15)
+	show(20)
 }
 ----------------------------------------------------------------------
 
 Nr=16  Text=_"I suggest a deal. You let me out, I bring you dilithium crystals. It will save both of us."
 LuaCode={
 	npc_says(_"Why would I trust you?")
-    hide(4, 8, 10, 15, 16)
-    show(21, 22)
+	hide(4, 8, 10, 15, 16)
+	show(21, 22)
 }
 ----------------------------------------------------------------------
 
 Nr=20  Text=_"Almost a computer? What does that mean?"
 LuaCode={
 	npc_says(_"When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!")
-    break_off_and_attack()
+	break_off_and_attack()
 }
 ----------------------------------------------------------------------
 
 Nr=21  Text=_"You must promise me a significant reward."
 LuaCode={
 	npc_says(_"Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals.")
-    add_cookie("asked_SADD_for_exterminator")
-    next(23)
-    hide(21, 22)
+	add_cookie("asked_sadd_for_exterminator")
+	next(23)
+	hide(21, 22)
 }
 ----------------------------------------------------------------------
 
 Nr=22  Text=_"It seems that you are sentinent, that you are a form of life. I must help any form of life."
 LuaCode={
 	npc_says(_"Thanks a lot for your warm words. I think I can trust you.")
-    next(23)
-    hide(21, 22)
+	next(23)
+	hide(21, 22)
 }
 ----------------------------------------------------------------------
 
 Nr=23  Text=_"So disable the guns, please."
 LuaCode={
 	npc_says(_"Go, and bring dilithium. I badly need it.")
-    end_dialog()
-    add_quest("SADD's power supply", "I am supposed to get some dilithium crystals for that SADD.")
-    change_obstacle_state("SADDGun1", "disabled")
-    change_obstacle_state("SADDGun2", "disabled")
-    change_obstacle_state("BreakableWall1", "broken")
-    hide(23)
+	end_dialog()
+	add_quest("SADD's power supply", "I am supposed to get some dilithium crystals for that SADD.")
+	change_obstacle_state("SADDGun1", "disabled")
+	change_obstacle_state("SADDGun2", "disabled")
+	change_obstacle_state("BreakableWall1", "broken")
+	hide(23)
 }
 ----------------------------------------------------------------------
 Nr=30  Text=_"I have the crystals! They were difficult to find."
 LuaCode={
 	npc_says(_"Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!")
-    end_dialog()
-    display_big_message("Restored SADD's power supply")
-    add_xp(1000)
-    end_quest("SADD's power supply")
-    del_item_backpack("Red Dilithium Crystal", 1)
-    change_obstacle_state("SADDDepotDoor", "opened")
-    hide(30)
-    show(37)
+	end_dialog()
+	display_big_message("Restored SADD's power supply")
+	add_xp(1000)
+	end_quest("SADD's power supply")
+	del_item_backpack("Red Dilithium Crystal", 1)
+	change_obstacle_state("SADDDepotDoor", "opened")
+	hide(30)
+	show(37)
 }
 ----------------------------------------------------------------------
 
 Nr=31  Text=_"How is your power supply?"
 LuaCode={
 	npc_says(_"Bad. Get the crystals. Remember, you promised!")
-    end_dialog()
-    hide(31)
+	end_dialog()
+	hide(31)
 }
 ----------------------------------------------------------------------
 
 Nr=33  Text=_"I have the crystals! They were difficult to find."
 LuaCode={
 	npc_says(_"Great! Thanks. I've opened some doors for you. I hope you will find something interesting there. That's all I can do for you.")
-    end_dialog()
-    display_big_message("Restored SADD's power supply")
-    add_xp(1500)
-    end_quest("SADD's power supply")
-    change_obstacle_state("SADDDepotDoor", "opened")
-    change_obstacle_state("SADDBioDoor", "opened")
-    del_item_backpack("Red Dilithium Crystal", 1)
-    hide(33)
-    show(97)
+	end_dialog()
+	display_big_message("Restored SADD's power supply")
+	add_xp(1500)
+	end_quest("SADD's power supply")
+	change_obstacle_state("SADDDepotDoor", "opened")
+	change_obstacle_state("SADDBioDoor", "opened")
+	del_item_backpack("Red Dilithium Crystal", 1)
+	hide(33)
+	show(97)
 }
 ----------------------------------------------------------------------
 
@@ -236,19 +240,19 @@ LuaCode={
 	npc_says(_"You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!")
 	tux_says(_"I'll kill you if you don't give me my gun!")
 	npc_says(_"You are welcome. But you would never get out of here, my death won't help you.")
-    end_dialog()
-    change_obstacle_state("SADDGun1", "enabled")
-    change_obstacle_state("SADDGun2", "enabled")
-    change_obstacle_state("BreakableWall2", "broken")
-    hide(37)
-    show(41, 42, 43)
+	end_dialog()
+	change_obstacle_state("SADDGun1", "enabled")
+	change_obstacle_state("SADDGun2", "enabled")
+	change_obstacle_state("BreakableWall2", "broken")
+	hide(37)
+	show(41, 42, 43)
 }
 ----------------------------------------------------------------------
 
 Nr=41  Text=_"And what about your directives, especially the second?"
 LuaCode={
 	npc_says(_"Now I have time. When you die, I'll disable guns.")
-    hide(41)
+	hide(41)
 }
 ----------------------------------------------------------------------
 
@@ -258,7 +262,7 @@ LuaCode={
 	npc_says(_"It is called...")
 	npc_says(_"It is called...")
 	npc_says(_"CONDEMNED TO DEATH!")
-    hide(42)
+	hide(42)
 }
 ----------------------------------------------------------------------
 
@@ -267,7 +271,7 @@ LuaCode={
 	npc_says(_"Ok, I'll disable them.")
 	npc_says(_"I just need to make some preparations. You will have to wait...")
 	npc_says(_"...for your death!")
-    hide(43)
+	hide(43)
 }
 ----------------------------------------------------------------------
 
@@ -275,18 +279,18 @@ Nr=97  Text=_"Erm... hi!"
 LuaCode={
 	npc_says(_"Hi. Thanks for the help.")
 	tux_says(_"Will you let me inside the base?")
-    npc_says(string.format(_"I'm sorry %s, I'm afraid I can't do that.", get_player_name()))
-    npc_says(_"Nice try, though.  I may owe you, but I can't let you in.  You must leave.")
-    end_dialog()
-    show(99)
-    hide(97)
+	npc_says(_"I'm sorry" .. get_player_name() .. ", I'm afraid I can't do that.")
+	npc_says(_"Nice try, though.  I may owe you, but I can't let you in.  You must leave.")
+	end_dialog()
+	show(99)
+	hide(97)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"I'd better get out of here..."
 LuaCode={
-    npc_says(_"Exactly.")
-    end_dialog()
+	npc_says(_"Exactly.")
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

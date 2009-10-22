@@ -29,8 +29,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={	show(2, 6, 11, 13) }
 EveryTime LuaCode={
+	if (not has_cookie("met_francis")) then
+		show(2, 6, 11, 13)
+		add_cookie("met_francis")
+	else end
+
 	if (partner_started()) then
 		npc_says("Oh, thank heavens! You are still alive. Maybe all hope is not lost.")
 	else end
@@ -47,7 +51,7 @@ LuaCode={
 	npc_says(_"There was a... misunderstanding of some sort and humans welcomed your expedition with blaster fire. A terrible mistake on our part.")
 	npc_says(_"A few of you survived the slaughter and went into hiding and obscurity.")
 	npc_says(_"During that time Linarians became known as helpers and heroes. Of course now most people think it all was just a fairy tale.")
-    npc_says(_"If the computer is not lying, then your name is " .. get_player_name() .. ".")
+	npc_says(_"If the computer is not lying, then your name is " .. get_player_name() .. ".")
 	hide(2) show(7)
 }
 ----------------------------------------------------------------------

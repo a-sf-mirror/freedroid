@@ -29,14 +29,13 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ }
 EveryTime LuaCode={ 
 	tux_says(_"Login : admin  Password : *******")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #")
 	if (has_quest("Tania's sanitary")) then add_diary_entry("Tania's sanitary", "I have found that SACD and hacked it's system.") else end
-	if (not has_cookie("SACDOvertaken")) then
+	if (not has_cookie("sacdovertaken")) then
 		add_xp(1000)
-		add_cookie("SACDOvertaken")
+		add_cookie("sacdovertaken")
 	else end
 	hide(2) show(1, 3, 4, 99)
 }
@@ -47,9 +46,9 @@ LuaCode={
 	npc_says(_"Disabling guns...")
 	npc_says(_"Connecting to peripheral controller...")
 	npc_says(_"Guns disabled.")
-    add_cookie("SAGunsOff")
-    change_obstacle_state("SADDGun1", "disabled")
-    change_obstacle_state("SADDGun2", "disabled")
+	add_cookie("sagunsoff")
+	change_obstacle_state("SADDGun1", "disabled")
+	change_obstacle_state("SADDGun2", "disabled")
 	hide(1) show(2)
 }
 ----------------------------------------------------------------------
@@ -59,9 +58,9 @@ LuaCode={
 	npc_says(_"Enabling guns...")
 	npc_says(_"Connecting to peripheral controller...")
 	npc_says(_"Guns enabled.")
-    change_obstacle_state("SADDGun1", "enabled")
-    change_obstacle_state("SADDGun2", "enabled")
-    del_cookie("SAGunsOff")
+	change_obstacle_state("SADDGun1", "enabled")
+	change_obstacle_state("SADDGun2", "enabled")
+	del_cookie("sagunsoff")
 	hide(2) show(1)
 }
 ----------------------------------------------------------------------
@@ -82,14 +81,14 @@ LuaCode={
 	npc_says(_"Cooling subsystems disabled.")
 	npc_says(_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit,")
 	npc_says(_"SsTeM=#faiPure%^#n 3 S 1()$++")
-    drop_dead()
+	drop_dead()
 	hide(4)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"
 LuaCode={
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
