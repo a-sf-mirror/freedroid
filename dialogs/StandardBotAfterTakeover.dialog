@@ -29,66 +29,75 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
-EveryTime LuaCode={ show(99) }
-----------------------------------------------------------------------
-
-Nr=0  Text=_"Login : tux  Password : *******
-Last login from dev/ttyS0 on Sun, 23 mar 2057.
-tux@hacked_bot: ~ #"
-LuaCode={
-	hide(0) show(1, 2, 3, 4)
+EveryTime LuaCode={
+	tux_says(_"Login : tux  Password : *******", "NO_WAIT")
+	tux_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
+	tux_says(_"tux@hacked_bot: ~ #", "NO_WAIT")
+	show(1, 2, 3, 4, 99)
 }
 ----------------------------------------------------------------------
 
 Nr=1  Text=_"./hold_position.sh"
 LuaCode={
-	npc_says(_"Holding position, using script V 1.0.2 (c) gnu.org, 2054 Checking requirements. Power-down movement unit. Done. Status: All movement suppressed.")
-    set_bot_state("fixed")
+	npc_says(_"Holding position.", "NO_WAIT")
+	npc_says(_"script V 1.0.2 (c) gnu.org, 2054", "NO_WAIT")
+	npc_says(_"Checking requirements...")
+	npc_says(_"Movement unit: Power-down... [Done].", "NO_WAIT")
+	npc_says(_"Status: All movement suppressed.", "NO_WAIT")
+	set_bot_state("fixed")
 	hide(1) show(2, 3, 4)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"./follow_me.sh"
 LuaCode={
-    npc_says(string.format(_"Initiating tracking sequence. Movement unit enabled. Ready. Trying to keep up with %s position now. Ok. Following %s.", get_player_name(), get_player_name()))
-    set_bot_state("follow_tux")
+	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
+	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
+	npc_says(string.format(_"Trying to keep up with %s position.", get_player_name(), "NO_WAIT"))
+	npc_says(string.format(_"Status: Following %s.", get_player_name(), "NO_WAIT"))
+	set_bot_state("follow_tux")
 	hide(2)	show(1, 3, 4)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"./move_freely.sh"
 LuaCode={
-	npc_says(_"Movement unit is starting up. Ready. Resuming normal patrol operations. Done. Status: Patrolling.")
-    set_bot_state("free")
+	npc_says(_"Enable movement.", "NO_WAIT")
+	npc_says(_"script V 1.0.5 (c) gnu.org, 2054", "NO_WAIT")
+	npc_says(_"Checking requirements...")
+	npc_says(_"Movement unit: Power-up...  [Done].", "NO_WAIT")
+	npc_says(_"Resuming normal patrol operations... [Done]", "NO_WAIT")
+	npc_says(_"Status: Patrolling.", "NO_WAIT")
+	set_bot_state("free")
 	hide(3) show(1, 2, 4)
 }
 ----------------------------------------------------------------------
 
 Nr=4  Text=_"./hcf.py"
 LuaCode={
-	npc_says(_"Executing: Halt and Catch Fire.")
-	npc_says(_"Warning! Cooling subsystems disabled.")
-	npc_says(_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.")
+	npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
+	npc_says(_"Warning! Cooling subsystems disabled.", "NO_WAIT")
+	npc_says(_"Warning! Spontaneous oxidization witH emis$ion of light aND heAt detecteddd in THE#main| procesIng unit.", "NO_WAIT")
 	npc_says(_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++")
-    if (has_cookie("dixon_very_angry")) then
-        if (has_cookie("bruce_hurt")) then
-            if (has_quest("Opening access to MS Office")) then
-                if (not has_cookie("tux_has_edge")) then 
+	if (has_cookie("dixon_very_angry")) then
+		if (has_cookie("bruce_hurt")) then
+			if (has_quest("Opening access to MS Office")) then
+				if (not has_cookie("tux_has_edge")) then 
 					npc_says(_"()%#@(% THE BLADE IS YOURS. )##%*&%*!")
 					add_cookie("tux_has_edge")
 					add_item("Nobody's edge",1)
 				else end
 			else end
 		else end
-    else end
-	drop_dead() 
+	else end
+	drop_dead()
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"
 LuaCode={
-    end_dialog()
+	npc_says(_"Closing remote connection...", "NO_WAIT")
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
