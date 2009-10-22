@@ -936,11 +936,6 @@ void get_visible_levels()
 					if (e->lvl_pointer->levelnum == level_neighbors_map[Me.pos.z][j][i]->lvl_idx) {
 						e->valid = TRUE;
 						e->boundary_squared_dist = longitude * longitude + latitude * latitude;
-						// if the animated obstacle lists are dirty, re-generate them
-						if (e->animated_obstacles_dirty_flag) {
-							clear_animated_obstacle_lists(e);
-							get_animated_obstacle_lists(e);						
-						}
 						in_list = TRUE;
 						break;
 					}
@@ -951,7 +946,8 @@ void get_visible_levels()
 					e->valid = TRUE;
 					e->lvl_pointer = curShip.AllLevels[level_neighbors_map[Me.pos.z][j][i]->lvl_idx];
 					e->boundary_squared_dist = longitude * longitude + latitude * latitude;
-					get_animated_obstacle_lists(e);
+					e->animated_obstacles_dirty_flag = TRUE;
+					INIT_LIST_HEAD(&e->animated_obstacles_list);
 					list_add_tail(&e->node, &visible_level_list);
 				}
 			}

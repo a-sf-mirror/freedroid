@@ -2598,7 +2598,13 @@ void animate_obstacles(void)
 
 	animation_timeline_advance();
 	
-	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {	
+	BROWSE_VISIBLE_LEVELS(visible_lvl, next_lvl) {
+		// If animated_obstacles list is dirty, regenerate it
+		if (visible_lvl->animated_obstacles_dirty_flag) {
+			clear_animated_obstacle_lists(visible_lvl);
+			get_animated_obstacle_lists(visible_lvl);
+		}
+		// Call animation function of each animated object
 		list_for_each_entry(a, &visible_lvl->animated_obstacles_list, node) {
 			if (a->animate_fn != NULL) {
 				a->animate_fn(visible_lvl->lvl_pointer, a->index);
