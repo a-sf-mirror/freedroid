@@ -44,7 +44,6 @@
 #include "lvledit/lvledit_display.h"
 #include "map.h"
 
-void TranslateToHumanReadable(Uint16 * HumanReadable, map_tile * MapInfo, int LineLength);
 void GetThisLevelsDroids(char *SectionPointer);
 Level DecodeLoadedLeveldata(char *data);
 
@@ -1280,61 +1279,45 @@ static void CheckWaypointIntegrity(Level Lev)
 
 	}
 
-};				// void CheckWaypointIntegrity(Level Lev)
+};				// void CheckWaypointIntegrity(level *Lev)
 
 /**
  * This should write the obstacle information in human-readable form into
  * a buffer.
  */
-static void encode_obstacles_of_this_level(char *LevelMem, Level Lev)
+static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *Lev)
 {
 	int i;
-	strcat(LevelMem, OBSTACLE_DATA_BEGIN_STRING);
-	strcat(LevelMem, "\n");
-	LevelMem += strlen(LevelMem);
+	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_BEGIN_STRING);
 
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		if (Lev->obstacle_list[i].type == (-1))
 			continue;
 
-		sprintf(LevelMem, "%s%d %s%3.2f %s%3.2f %s%d %s%d \n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
-			OBSTACLE_X_POSITION_STRING, Lev->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
-			Lev->obstacle_list[i].pos.y, OBSTACLE_LABEL_INDEX_STRING, Lev->obstacle_list[i].name_index,
-			OBSTACLE_DESCRIPTION_INDEX_STRING, Lev->obstacle_list[i].description_index);
-		LevelMem += strlen(LevelMem);
-
+		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f %s%d %s%d \n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
+				OBSTACLE_X_POSITION_STRING, Lev->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
+				Lev->obstacle_list[i].pos.y, OBSTACLE_LABEL_INDEX_STRING, Lev->obstacle_list[i].name_index,
+				OBSTACLE_DESCRIPTION_INDEX_STRING, Lev->obstacle_list[i].description_index);
 	}
 
-	strcat(LevelMem, OBSTACLE_DATA_END_STRING);
-	strcat(LevelMem, "\n");
+	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_END_STRING);
+}
 
-};				// void encode_obstacles_of_this_level ( LevelMem , Lev )
-
-/**
- * This function adds the statement data of this level to the chunk of 
- * data that will be written out to a file later.
- */
-static void EncodeMapLabelsOfThisLevel(char *LevelMem, Level Lev)
+static void EncodeMapLabelsOfThisLevel(struct auto_string *shipstr, level *Lev)
 {
 	int i;
-	strcat(LevelMem, MAP_LABEL_BEGIN_STRING);
-	strcat(LevelMem, "\n");
-	LevelMem += strlen(LevelMem);
+	autostr_append(shipstr, "%s\n", MAP_LABEL_BEGIN_STRING);
 
 	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
 		if (Lev->labels[i].pos.x == (-1))
 			continue;
 
-		sprintf(LevelMem, "%s%d %s%d %s%s\"\n", X_POSITION_OF_LABEL_STRING, Lev->labels[i].pos.x, Y_POSITION_OF_LABEL_STRING,
-			Lev->labels[i].pos.y, LABEL_ITSELF_ANNOUNCE_STRING, Lev->labels[i].label_name);
-
-		LevelMem += strlen(LevelMem);
+		autostr_append(shipstr, "%s%d %s%d %s%s\"\n", X_POSITION_OF_LABEL_STRING, Lev->labels[i].pos.x, Y_POSITION_OF_LABEL_STRING,
+				            Lev->labels[i].pos.y, LABEL_ITSELF_ANNOUNCE_STRING, Lev->labels[i].label_name);
 	}
 
-	strcat(LevelMem, MAP_LABEL_END_STRING);
-	strcat(LevelMem, "\n");
-
-};				// void EncodeMapLabelsOfThisLevel ( char* LevelMem , Level Lev )
+	autostr_append(shipstr, "%s\n", MAP_LABEL_END_STRING);
+}
 
 /**
  * Every map level in a FreedroidRPG 'ship' can have up to 
@@ -1345,26 +1328,20 @@ static void EncodeMapLabelsOfThisLevel(char *LevelMem, Level Lev)
  * this small subsection and puts all the obstacle data into a human
  * readable text string for saving with the map file.
  */
-static void encode_obstacle_names_of_this_level(char *LevelMem, Level Lev)
+static void encode_obstacle_names_of_this_level(struct auto_string *shipstr, level *Lev)
 {
 	int i;
 
-	strcat(LevelMem, OBSTACLE_LABEL_BEGIN_STRING);
-	strcat(LevelMem, "\n");
-	LevelMem += strlen(LevelMem);
+	autostr_append(shipstr, "%s\n", OBSTACLE_LABEL_BEGIN_STRING);
 
 	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
 		if (Lev->obstacle_name_list[i] == NULL)
 			continue;
-		LevelMem +=
-		    sprintf(LevelMem, "%s%d %s%s\"", INDEX_OF_OBSTACLE_NAME, i, OBSTACLE_LABEL_ANNOUNCE_STRING, Lev->obstacle_name_list[i]);
-		*LevelMem++ = '\n';
+		autostr_append(shipstr, "%s%d %s%s\"\n", INDEX_OF_OBSTACLE_NAME, i, OBSTACLE_LABEL_ANNOUNCE_STRING, Lev->obstacle_name_list[i]);
 	}
 
-	strcat(LevelMem, OBSTACLE_LABEL_END_STRING);
-	strcat(LevelMem, "\n");
-
-};				// void encode_obstacle_names_of_this_level ( char* LevelMem , Level Lev )
+	autostr_append(shipstr, "%s\n", OBSTACLE_LABEL_END_STRING);
+}
 
 /**
  * Every map level in a FreedroidRPG 'ship' can have up to 
@@ -1384,183 +1361,107 @@ static void encode_obstacle_names_of_this_level(char *LevelMem, Level Lev)
  * saving with the map file.
  *
  */
-static void encode_obstacle_descriptions_of_this_level(char *LevelMem, Level Lev)
+static void encode_obstacle_descriptions_of_this_level(struct auto_string *shipstr, level *Lev)
 {
 	int i;
-	strcat(LevelMem, OBSTACLE_DESCRIPTION_BEGIN_STRING);
-	strcat(LevelMem, "\n");
-	LevelMem += strlen(LevelMem);
+	autostr_append(shipstr, "%s\n", OBSTACLE_DESCRIPTION_BEGIN_STRING);
 
 	for (i = 0; i < MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL; i++) {
 		if (Lev->obstacle_description_list[i] == NULL)
 			continue;
-		sprintf(LevelMem, "%s%d %s%s\"\n", INDEX_OF_OBSTACLE_DESCRIPTION, i, OBSTACLE_DESCRIPTION_ANNOUNCE_STRING,
-			Lev->obstacle_description_list[i]);
-		LevelMem += strlen(LevelMem);
+		autostr_append(shipstr, "%s%d %s%s\"\n", INDEX_OF_OBSTACLE_DESCRIPTION, i, OBSTACLE_DESCRIPTION_ANNOUNCE_STRING,
+				Lev->obstacle_description_list[i]);
 	}
 
-	strcat(LevelMem, OBSTACLE_DESCRIPTION_END_STRING);
-	strcat(LevelMem, "\n\n");
-
-};				// void encode_obstacle_descriptions_of_this_level ( char* LevelMem , Level Lev )
+	autostr_append(shipstr, "%s\n\n", OBSTACLE_DESCRIPTION_END_STRING);
+}
 
 /**
  *
  * 
  */
-static void WriteOutOneItem(char *LevelMem, Item ItemToWriteOut)
+static void WriteOutOneItem(struct auto_string *shipstr, Item ItemToWriteOut)
 {
-	char linebuf[5000];
 
-	strcat(LevelMem, ITEM_NAME_STRING);
-	sprintf(linebuf, "%s\" ", ItemMap[ItemToWriteOut->type].item_name);
-	strcat(LevelMem, linebuf);
-
-	strcat(LevelMem, ITEM_POS_X_STRING);
-	sprintf(linebuf, "%f ", ItemToWriteOut->pos.x);
-	strcat(LevelMem, linebuf);
-
-	strcat(LevelMem, ITEM_POS_Y_STRING);
-	sprintf(linebuf, "%f ", ItemToWriteOut->pos.y);
-	strcat(LevelMem, linebuf);
+	autostr_append(shipstr, "%s%s\" %s%f %s%f ", ITEM_NAME_STRING, ItemMap[ItemToWriteOut->type].item_name,
+			ITEM_POS_X_STRING, ItemToWriteOut->pos.x, ITEM_POS_Y_STRING, ItemToWriteOut->pos.y);
 
 	if (ItemToWriteOut->ac_bonus) {
-		strcat(LevelMem, ITEM_AC_BONUS_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->ac_bonus);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_AC_BONUS_STRING, ItemToWriteOut->ac_bonus);
 	}
 
-	strcat(LevelMem, ITEM_DAMAGE_STRING);
-	sprintf(linebuf, "%d ", ItemToWriteOut->damage);
-	strcat(LevelMem, linebuf);
-
-	strcat(LevelMem, ITEM_DAMAGE_MODIFIER_STRING);
-	sprintf(linebuf, "%d ", ItemToWriteOut->damage_modifier);
-	strcat(LevelMem, linebuf);
-
-	strcat(LevelMem, ITEM_MAX_DURATION_STRING);
-	sprintf(linebuf, "%d ", ItemToWriteOut->max_duration);
-	strcat(LevelMem, linebuf);
-
-	strcat(LevelMem, ITEM_CUR_DURATION_STRING);
-	sprintf(linebuf, "%f ", ItemToWriteOut->current_duration);
-	strcat(LevelMem, linebuf);
-
-	strcat(LevelMem, ITEM_AMMO_CLIP_STRING);
-	sprintf(linebuf, "%d ", ItemToWriteOut->ammo_clip);
-	strcat(LevelMem, linebuf);
-
-	strcat(LevelMem, ITEM_MULTIPLICITY_STRING);
-	sprintf(linebuf, "%d ", ItemToWriteOut->multiplicity);
-	strcat(LevelMem, linebuf);
+	autostr_append(shipstr, "%s%d %s%d %s%d %s%f %s%d %s%d ", ITEM_DAMAGE_STRING, ItemToWriteOut->damage,
+			ITEM_DAMAGE_MODIFIER_STRING, ItemToWriteOut->damage_modifier,
+			ITEM_MAX_DURATION_STRING, ItemToWriteOut->max_duration,
+			ITEM_CUR_DURATION_STRING, ItemToWriteOut->current_duration,
+			ITEM_AMMO_CLIP_STRING, ItemToWriteOut->ammo_clip,
+			ITEM_MULTIPLICITY_STRING, ItemToWriteOut->multiplicity);
 
 	if (ItemToWriteOut->prefix_code != -1) {
-		strcat(LevelMem, ITEM_PREFIX_CODE_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->prefix_code);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_PREFIX_CODE_STRING, ItemToWriteOut->prefix_code);
 	}
 
 	if (ItemToWriteOut->suffix_code != -1) {
-		strcat(LevelMem, ITEM_SUFFIX_CODE_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->suffix_code);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_SUFFIX_CODE_STRING, ItemToWriteOut->suffix_code);
 	}
 
 	if (ItemToWriteOut->bonus_to_str) {
-		strcat(LevelMem, ITEM_BONUS_TO_STR_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_str);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_STR_STRING, ItemToWriteOut->bonus_to_str);
 	}
 	if (ItemToWriteOut->bonus_to_dex) {
-		strcat(LevelMem, ITEM_BONUS_TO_DEX_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_dex);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_DEX_STRING, ItemToWriteOut->bonus_to_dex);
 	}
 	if (ItemToWriteOut->bonus_to_vit) {
-		strcat(LevelMem, ITEM_BONUS_TO_VIT_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_vit);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_VIT_STRING, ItemToWriteOut->bonus_to_vit);
 	}
 	if (ItemToWriteOut->bonus_to_mag) {
-		strcat(LevelMem, ITEM_BONUS_TO_MAG_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_mag);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_MAG_STRING, ItemToWriteOut->bonus_to_mag);
 	}
 	if (ItemToWriteOut->bonus_to_all_attributes) {
-		strcat(LevelMem, ITEM_BONUS_TO_ALLATT_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_all_attributes);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_ALLATT_STRING, ItemToWriteOut->bonus_to_all_attributes);
 	}
 	// Now we save the secondary stat boni
 
 	if (ItemToWriteOut->bonus_to_life) {
-		strcat(LevelMem, ITEM_BONUS_TO_LIFE_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_life);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_LIFE_STRING, ItemToWriteOut->bonus_to_life);
 	}
 	if (ItemToWriteOut->bonus_to_health_recovery) {
-		strcat(LevelMem, ITEM_BONUS_TO_HEALTH_RECOVERY_STRING);
-		sprintf(linebuf, "%f ", ItemToWriteOut->bonus_to_health_recovery);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%f ", ITEM_BONUS_TO_HEALTH_RECOVERY_STRING, ItemToWriteOut->bonus_to_health_recovery);
 	}
 	if (ItemToWriteOut->bonus_to_force) {
-		strcat(LevelMem, ITEM_BONUS_TO_FORCE_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_force);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_FORCE_STRING, ItemToWriteOut->bonus_to_force);
 	}
 	if (ItemToWriteOut->bonus_to_cooling_rate) {
-		strcat(LevelMem, ITEM_BONUS_TO_MANA_RECOVERY_STRING);
-		sprintf(linebuf, "%f ", ItemToWriteOut->bonus_to_cooling_rate);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%f ", ITEM_BONUS_TO_MANA_RECOVERY_STRING, ItemToWriteOut->bonus_to_cooling_rate);
 	}
 	if (ItemToWriteOut->bonus_to_tohit) {
-		strcat(LevelMem, ITEM_BONUS_TO_TOHIT_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_tohit);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_TOHIT_STRING, ItemToWriteOut->bonus_to_tohit);
 	}
 	if (ItemToWriteOut->bonus_to_ac_or_damage) {
-		strcat(LevelMem, ITEM_BONUS_TO_ACDAM_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_ac_or_damage);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_ACDAM_STRING, ItemToWriteOut->bonus_to_ac_or_damage);
 	}
 	// Now we save the resistanc boni
 
 	if (ItemToWriteOut->bonus_to_resist_electricity) {
-		strcat(LevelMem, ITEM_BONUS_TO_RESELE_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_resist_electricity);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESELE_STRING, ItemToWriteOut->bonus_to_resist_electricity);
 	}
 	if (ItemToWriteOut->bonus_to_resist_disruptor) {
-		strcat(LevelMem, ITEM_BONUS_TO_RESFOR_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_resist_disruptor);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESFOR_STRING, ItemToWriteOut->bonus_to_resist_disruptor);
 	}
 	if (ItemToWriteOut->bonus_to_resist_fire) {
-		strcat(LevelMem, ITEM_BONUS_TO_RESFIR_STRING);
-		sprintf(linebuf, "%d ", ItemToWriteOut->bonus_to_resist_fire);
-		strcat(LevelMem, linebuf);
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESFIR_STRING, ItemToWriteOut->bonus_to_resist_fire);
 	}
-	strcat(LevelMem, ITEM_IS_IDENTIFIED_STRING);
-	sprintf(linebuf, "%d ", ItemToWriteOut->is_identified);
-	strcat(LevelMem, linebuf);
 
-	strcat(LevelMem, "\n");
+	autostr_append(shipstr, "%s%d ", ITEM_IS_IDENTIFIED_STRING, ItemToWriteOut->is_identified);
 
-};				// void WriteOutOneItem ( LevelMem , ItemToWriteOut ) 
+	autostr_append(shipstr, "\n");
+}
 
-/**
- *
- */
-static void EncodeItemSectionOfThisLevel(char *LevelMem, Level Lev)
+static void EncodeItemSectionOfThisLevel(struct auto_string *shipstr, level *Lev)
 {
-	// char linebuf[5000];        // Buffer 
 	int i;
 
-	//--------------------
-	// Now we write out a marker to announce the beginning of the items data
-	//
-	strcat(LevelMem, ITEMS_SECTION_BEGIN_STRING);
-	strcat(LevelMem, "\n");
+	autostr_append(shipstr, "%s\n", ITEMS_SECTION_BEGIN_STRING);
 
 	//--------------------
 	// Now we write out the bulk of items infos
@@ -1569,30 +1470,21 @@ static void EncodeItemSectionOfThisLevel(char *LevelMem, Level Lev)
 		if (Lev->ItemList[i].type == (-1))
 			continue;
 
-		WriteOutOneItem(LevelMem, &(Lev->ItemList[i]));
+		WriteOutOneItem(shipstr, &(Lev->ItemList[i]));
 
 	}
-	//--------------------
-	// Now we write out a marker to announce the end of the items data
-	//
-	strcat(LevelMem, ITEMS_SECTION_END_STRING);
-	strcat(LevelMem, "\n");
 
-};				// void EncodeItemSectionOfThisLevel ( LevelMem , Lev ) 
+	autostr_append(shipstr, "%s\n", ITEMS_SECTION_END_STRING);
+}
 
 /**
  *
  */
-static void EncodeChestItemSectionOfThisLevel(char *LevelMem, Level Lev)
+static void EncodeChestItemSectionOfThisLevel(struct auto_string *shipstr, level *Lev)
 {
-	// char linebuf[5000];        // Buffer 
 	int i;
 
-	//--------------------
-	// Now we write out a marker to announce the beginning of the items data
-	//
-	strcat(LevelMem, CHEST_ITEMS_SECTION_BEGIN_STRING);
-	strcat(LevelMem, "\n");
+	autostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_BEGIN_STRING);
 
 	//--------------------
 	// Now we write out the bulk of items infos
@@ -1601,82 +1493,60 @@ static void EncodeChestItemSectionOfThisLevel(char *LevelMem, Level Lev)
 		if (Lev->ChestItemList[i].type == (-1))
 			continue;
 
-		WriteOutOneItem(LevelMem, &(Lev->ChestItemList[i]));
-
+		WriteOutOneItem(shipstr, &(Lev->ChestItemList[i]));
 	}
-	//--------------------
-	// Now we write out a marker to announce the end of the items data
-	//
-	strcat(LevelMem, CHEST_ITEMS_SECTION_END_STRING);
-	strcat(LevelMem, "\n");
 
-};				// void EncodeChestItemSectionOfThisLevel ( LevelMem , Lev ) 
+	autostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_END_STRING);	
+}
 
-static void encode_waypoints_of_this_level(char *LevelMem, level *Lev)
+static void encode_waypoints_of_this_level(struct auto_string *shipstr, level *Lev)
 {
 	waypoint *this_wp;
-	char linebuf[5000];
 	int i,j;
 
 	// There might be LEADING -1 entries in front of other connection entries.
 	// This is unwanted and shall be corrected here.
 	CheckWaypointIntegrity(Lev);
 
-	strcat(LevelMem, WP_SECTION_BEGIN_STRING);
-	strcat(LevelMem, "\n");
+	autostr_append(shipstr, "%s\n", WP_SECTION_BEGIN_STRING);
 
 	for (i = 0; i < Lev->num_waypoints; i++) {
-		sprintf(linebuf, "Nr.=%3d x=%4d y=%4d rnd=%1d", i,
-				Lev->AllWaypoints[i].x, Lev->AllWaypoints[i].y, Lev->AllWaypoints[i].suppress_random_spawn);
-		strcat(LevelMem, linebuf);
-		strcat(LevelMem, "\t ");
-		strcat(LevelMem, CONNECTION_STRING);
+		autostr_append(shipstr, "Nr.=%3d x=%4d y=%4d rnd=%1d\t %s", i, Lev->AllWaypoints[i].x, Lev->AllWaypoints[i].y, Lev->AllWaypoints[i].suppress_random_spawn, CONNECTION_STRING);
 
 		this_wp = &Lev->AllWaypoints[i];
 		for (j = 0; j < this_wp->num_connections; j++) {
-			sprintf(linebuf, " %3d", Lev->AllWaypoints[i].connections[j]);
-			strcat(LevelMem, linebuf);
+			autostr_append(shipstr, " %3d", Lev->AllWaypoints[i].connections[j]);
 		}		// for connections 
-		strcat(LevelMem, "\n");
+
+		autostr_append(shipstr, "\n");
 	}			// for waypoints 
+}
+
+/**
+ * This function translates map data into human readable map code, that
+ * can later be written to the map file on disk.
+ */
+static void TranslateToHumanReadable(struct auto_string *str, map_tile * MapInfo, int LineLength)
+{
+	int col;
+
+	for (col = 0; col < LineLength; col++) {
+		autostr_append(str, "%3d ", MapInfo[col].floor_value);
+	}
+
+	autostr_append(str, "\n");
 }
 
 /**
  * This function generates savable text out of the current lavel data
  */
-static char *EncodeLevelForSaving(level *Lev)
+static void encode_level_for_saving(struct auto_string *shipstr, level *lvl)
 {
-	char *LevelMem;
 	int i;
-	unsigned int MemAmount = 0;	// the size of the level-data 
-	int xlen = Lev->xlen, ylen = Lev->ylen;
-	int anz_wp;		// number of Waypoints 
-	char linebuf[5000];	// Buffer 
-	Uint16 HumanReadableMapLine[10000];
+	int xlen = lvl->xlen, ylen = lvl->ylen;
 
-	// Get the number of waypoints 
-	anz_wp = 0;
-	while (Lev->AllWaypoints[anz_wp++].x != 0) ;
-	anz_wp--;		// we counted one too much 
-
-	// estimate the amount of memory needed 
-	MemAmount = (xlen + 1) * (ylen + 1);	// Map-memory 
-	MemAmount += MAXWAYPOINTS * MAX_WP_CONNECTIONS * 4;
-	MemAmount += 1000000;	// add some safety buffer for dimension-strings and marker strings...
-
-	//--------------------
-	// We allocate some memory, such that we should be able to fill
-	// all the data for the level into it.  If this estimate is wrong,
-	// we'll simply panic further below...
-	//
-	if ((LevelMem = (char *)MyMalloc(MemAmount)) == NULL) {
-		ErrorMessage(__FUNCTION__, "Did not get any more memory.", PLEASE_INFORM, IS_FATAL);
-		return (NULL);
-	}
-	//--------------------
-	// Write the data to memory:
-	// Here the levelnumber and general information about the level is written
-	sprintf(linebuf, "Levelnumber: %d\n\
+	// Write level header	
+	autostr_append(shipstr, "Levelnumber: %d\n\
 xlen of this level: %d\n\
 ylen of this level: %d\n\
 light radius bonus of this level: %d\n\
@@ -1691,77 +1561,46 @@ jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
 jump target west: %d\n\
-use underground lighting: %d\n", Lev->levelnum, Lev->xlen, Lev->ylen, Lev->light_bonus, Lev->minimum_light_value, Lev->infinite_running_on_this_level, Lev->random_dungeon, Lev->jump_threshold_north, Lev->jump_threshold_south, Lev->jump_threshold_east, Lev->jump_threshold_west, Lev->jump_target_north, Lev->jump_target_south, Lev->jump_target_east, Lev->jump_target_west, Lev->use_underground_lighting);
-	strcpy(LevelMem, linebuf);
-	strcat(LevelMem, LEVEL_NAME_STRING);
-	strcat(LevelMem, Lev->Levelname);
-	strcat(LevelMem, "\"\n");
-	strcat(LevelMem, BACKGROUND_SONG_NAME_STRING);
-	strcat(LevelMem, Lev->Background_Song_Name);
-	strcat(LevelMem, "\n");
+use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light_bonus, lvl->minimum_light_value, lvl->infinite_running_on_this_level, lvl->random_dungeon, lvl->jump_threshold_north, lvl->jump_threshold_south, lvl->jump_threshold_east, lvl->jump_threshold_west, lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east, lvl->jump_target_west, lvl->use_underground_lighting);
+	autostr_append(shipstr, "%s%s\"\n%s%s\n", LEVEL_NAME_STRING, lvl->Levelname,
+			BACKGROUND_SONG_NAME_STRING, lvl->Background_Song_Name);
 
-	// Now the beginning of the actual map data is marked:
-	strcat(LevelMem, MAP_BEGIN_STRING);
-	strcat(LevelMem, "\n");
+	autostr_append(shipstr, "%s\n", MAP_BEGIN_STRING);
 
 	// Now in the loop each line of map data should be saved as a whole
 	for (i = 0; i < ylen; i++) {
-		//--------------------
-		// But before we can write this line of the map to the disk, we need to
-		// convert is back to human readable format.
-		//
-		if (!Lev->random_dungeon) {
-			TranslateToHumanReadable(HumanReadableMapLine, Lev->map[i], xlen);
-			strncat(LevelMem, (char *)HumanReadableMapLine, xlen * 4 * 2);	// We need FOUR , no EIGHT chars per map tile
-			strcat(LevelMem, "\n");
+		if (!lvl->random_dungeon) {
+			TranslateToHumanReadable(shipstr, lvl->map[i], xlen);
 		} else {
 			int j = xlen;
 			while (j--) {
-				strcat(LevelMem, "  4 ");
+				autostr_append(shipstr, "  4 ");
 			}
-			strcat(LevelMem, "\n");
+			autostr_append(shipstr, "\n");
 		}
 	}
 
-	//--------------------
-	// Now we write out a marker at the end of the map data.  This marker is not really
-	// vital for reading in the file again, but it adds clearness to the files structure.
-	strcat(LevelMem, MAP_END_STRING);
-	strcat(LevelMem, "\n");
+	autostr_append(shipstr, "%s\n", MAP_END_STRING);
 
-	if (!Lev->random_dungeon) {
-		encode_obstacles_of_this_level(LevelMem, Lev);
+	if (!lvl->random_dungeon) {
+		encode_obstacles_of_this_level(shipstr, lvl);
 
-		EncodeMapLabelsOfThisLevel(LevelMem, Lev);
+		EncodeMapLabelsOfThisLevel(shipstr, lvl);
 
-		encode_obstacle_names_of_this_level(LevelMem, Lev);
+		encode_obstacle_names_of_this_level(shipstr, lvl);
 
-		encode_obstacle_descriptions_of_this_level(LevelMem, Lev);
+		encode_obstacle_descriptions_of_this_level(shipstr, lvl);
 
-		EncodeItemSectionOfThisLevel(LevelMem, Lev);
+		EncodeItemSectionOfThisLevel(shipstr, lvl);
 
-		EncodeChestItemSectionOfThisLevel(LevelMem, Lev);
+		EncodeChestItemSectionOfThisLevel(shipstr, lvl);
 
-		encode_waypoints_of_this_level(LevelMem, Lev);
+		encode_waypoints_of_this_level(shipstr, lvl);
 	}
-	strcat(LevelMem, LEVEL_END_STRING);
-	strcat(LevelMem, "\n----------------------------------------------------------------------\n");
 
-	//--------------------
-	// So we're done now.  Did the estimate for the amount of memory hit
-	// the target or was it at least sufficient? 
-	// If not, we're in trouble...
-	//
-	if (strlen(LevelMem) >= MemAmount) {
-		ErrorMessage(__FUNCTION__, "Estimate of needed memory was wrong!  How stupid!", PLEASE_INFORM, IS_FATAL);
-		return (NULL);
-	}
-	//--------------------
-	// all ok : 
-	//
-	return LevelMem;
-
-};				// char *EncodeLevelForSaving ( Level Lev )
+	autostr_append(shipstr, "%s\n----------------------------------------------------------------------\n", 
+			LEVEL_END_STRING);
+}
 
 /**
  * This function should save a whole ship to disk to the given filename.
@@ -1771,7 +1610,6 @@ use underground lighting: %d\n", Lev->levelnum, Lev->xlen, Lev->ylen, Lev->light
 int SaveShip(const char *filename)
 {
 	int i;
-	char *LevelMem = NULL;
 	FILE *ShipFile = NULL;
 	struct auto_string *shipstr;
 
@@ -1787,9 +1625,7 @@ int SaveShip(const char *filename)
 	// Save all the levels
 	for (i = 0; i < curShip.num_levels; i++) {
 		if (curShip.AllLevels[i] != NULL) {
-			LevelMem = EncodeLevelForSaving(curShip.AllLevels[i]);
-			autostr_append(shipstr, "%s", LevelMem);
-			free(LevelMem);
+			encode_level_for_saving(shipstr, curShip.AllLevels[i]);
 		}
 	}
 
@@ -2165,26 +2001,7 @@ Level DecodeLoadedLeveldata(char *data)
 	free(this_line);
 	return (loadlevel);
 
-};				// Level DecodeLoadedLeveldata (char *data)
-
-/**
- * This function translates map data into human readable map code, that
- * can later be written to the map file on disk.
- */
-void TranslateToHumanReadable(Uint16 * HumanReadable, map_tile * MapInfo, int LineLength)
-{
-	int col;
-
-	HumanReadable[0] = 0;	// Add a terminator at the beginning
-
-	HumanReadable += strlen((char *)HumanReadable);
-
-	for (col = 0; col < LineLength; col++) {
-		sprintf((char *)HumanReadable, "%3d ", MapInfo[col].floor_value);
-		HumanReadable += 2;
-	}
-
-};				// void TranslateToHumanReadable( ... )
+};				// level *DecodeLoadedLeveldata (char *data)
 
 /**
  * This function is used to calculate the number of the droids on the 
