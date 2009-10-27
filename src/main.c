@@ -265,7 +265,6 @@ void UpdateCountersForThisFrame()
 {
 	static long Overall_Frames_Displayed = 0;
 	int i;
-	Level item_level = curShip.AllLevels[Me.pos.z];
 	float my_speed;
 	float latest_frame_time = Frame_Time();
 	int level_num;
