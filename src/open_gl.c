@@ -84,7 +84,7 @@ int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surf
 				glRasterPos2i(0, GameConfig.screen_height - 1);
 			else {
 				target_x = dstrect->x;
-				target_y = dstrect->y + src->h;
+				target_y = dstrect->y + src->h - 1;
 
 				glRasterPos2i(target_x, target_y);
 			}
