@@ -74,6 +74,7 @@ void DoAllMovementAndAnimations(void)
 void Game()
 {
 	GameOver = FALSE;
+	reset_visible_levels();
 	get_visible_levels();
 	animation_timeline_reset();
 	
