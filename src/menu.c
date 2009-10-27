@@ -1294,12 +1294,13 @@ static int Startup_handle(int n)
 	};
 	switch (n) {
 	case SINGLE_PLAYER_POSITION:
+		game_root_mode = ROOT_IS_GAME;
 		if (Single_Player_Menu()) {
-			game_root_mode = ROOT_IS_GAME;
 			return EXIT_MENU;
 		}
 		break;
 	case LVLEDIT_POSITION:	//allow starting directly in leveleditor - the hack is a little dirty but it does its work.
+		game_root_mode = ROOT_IS_LVLEDIT;
 		skip_initial_menus = 1;
 		clear_player_inventory_and_stats();
 		UpdateAllCharacterStats();
@@ -1309,7 +1310,6 @@ static int Startup_handle(int n)
 		LoadShip(fp);
 		PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 		skip_initial_menus = 0;
-		game_root_mode = ROOT_IS_LVLEDIT;
 		return EXIT_MENU;
 		break;
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
