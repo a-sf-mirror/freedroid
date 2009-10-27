@@ -1663,9 +1663,6 @@ void ResetGameConfigToDefaultValues(void)
  * ----------------------------------------------------------------- */
 void InitFreedroid(int argc, char **argv)
 {
-#ifndef USE_SDL_FRAMERATE
-	struct timeval timestamp;
-#endif
 	struct stat statbuf;
 
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
