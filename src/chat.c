@@ -323,7 +323,6 @@ static void LoadDialog(char *FullPathAndFullFilename)
 	int NumberOfReplySamples;
 
 	char *ReplyPointer;
-	char *YesNoString;
 
 	sprintf(fpath, "%s", FullPathAndFullFilename);
 
