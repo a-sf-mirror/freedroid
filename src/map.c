@@ -401,9 +401,6 @@ static void decode_obstacles_of_this_level(level * loadlevel, char *DataPointer)
 		loadlevel->obstacle_list[i].description_index = -1;
 	}
 
-	if (loadlevel->random_dungeon)
-		return;
-
 	//--------------------
 	// Now we look for the beginning and end of the obstacle section
 	//
@@ -497,9 +494,6 @@ static void DecodeMapLabelsOfThisLevel(Level loadlevel, char *DataPointer)
 		loadlevel->labels[i].label_name = "no_label_defined";
 	}
 
-	if (loadlevel->random_dungeon)
-		return;
-
 	//--------------------
 	// Now we look for the beginning and end of the map labels section
 	//
@@ -562,9 +556,6 @@ static void decode_obstacle_names_of_this_level(Level loadlevel, char *DataPoint
 	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
 		loadlevel->obstacle_name_list[i] = NULL;
 	}
-
-	if (loadlevel->random_dungeon)
-		return;
 
 	//--------------------
 	// Now we look for the beginning and end of the map labels section
@@ -629,9 +620,6 @@ static void decode_obstacle_descriptions_of_this_level(Level loadlevel, char *Da
 	for (i = 0; i < MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL; i++) {
 		loadlevel->obstacle_description_list[i] = NULL;
 	}
-
-	if (loadlevel->random_dungeon)
-		return;
 
 	//--------------------
 	// Now we look for the beginning and end of the obstacle descriptions section
@@ -1094,6 +1082,32 @@ void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
 	vis_lvl->animated_obstacles_dirty_flag = TRUE;
 }
 
+/** 
+ * Call the random dungeon generator on this level 
+ * if this level is marked as being randomly generated,
+ * and if we are not in the "leveleditor" mode 
+ * in which case random dungeons must not be generated.
+ */
+static void generate_dungeon_if_needed(level *l)
+{
+	int clear_random_flag = 1;
+
+	if (!l->random_dungeon) {
+		return;
+	}
+
+	if (game_root_mode != ROOT_IS_GAME) {
+		clear_random_flag = 0;
+	}
+
+	// Generate random dungeon now
+	set_dungeon_output(l);
+	generate_dungeon(l->xlen, l->ylen, l->random_dungeon);
+
+	if (clear_random_flag)
+		l->random_dungeon = 0;
+}
+
 /**
  * This function loads the data for a whole ship
  * Possible return values are : OK and ERR
@@ -1172,6 +1186,8 @@ int LoadShip(char *filename)
 
 		curShip.AllLevels[this_levelnum] = this_level;
 		curShip.num_levels = this_levelnum + 1;	// levels are saved in ascending number, so the last one defines the number of levels in the ship
+
+		generate_dungeon_if_needed(this_level);
 
 		//--------------------
 		// The level structure contains an array with the locations of all
@@ -1596,18 +1612,46 @@ static void EncodeChestItemSectionOfThisLevel(char *LevelMem, Level Lev)
 
 };				// void EncodeChestItemSectionOfThisLevel ( LevelMem , Lev ) 
 
+static void encode_waypoints_of_this_level(char *LevelMem, level *Lev)
+{
+	waypoint *this_wp;
+	char linebuf[5000];
+	int i,j;
+
+	// There might be LEADING -1 entries in front of other connection entries.
+	// This is unwanted and shall be corrected here.
+	CheckWaypointIntegrity(Lev);
+
+	strcat(LevelMem, WP_SECTION_BEGIN_STRING);
+	strcat(LevelMem, "\n");
+
+	for (i = 0; i < Lev->num_waypoints; i++) {
+		sprintf(linebuf, "Nr.=%3d x=%4d y=%4d rnd=%1d", i,
+				Lev->AllWaypoints[i].x, Lev->AllWaypoints[i].y, Lev->AllWaypoints[i].suppress_random_spawn);
+		strcat(LevelMem, linebuf);
+		strcat(LevelMem, "\t ");
+		strcat(LevelMem, CONNECTION_STRING);
+
+		this_wp = &Lev->AllWaypoints[i];
+		for (j = 0; j < this_wp->num_connections; j++) {
+			sprintf(linebuf, " %3d", Lev->AllWaypoints[i].connections[j]);
+			strcat(LevelMem, linebuf);
+		}		// for connections 
+		strcat(LevelMem, "\n");
+	}			// for waypoints 
+}
+
 /**
  * This function generates savable text out of the current lavel data
  */
-static char *EncodeLevelForSaving(Level Lev)
+static char *EncodeLevelForSaving(level *Lev)
 {
 	char *LevelMem;
-	int i, j;
+	int i;
 	unsigned int MemAmount = 0;	// the size of the level-data 
 	int xlen = Lev->xlen, ylen = Lev->ylen;
 	int anz_wp;		// number of Waypoints 
 	char linebuf[5000];	// Buffer 
-	waypoint *this_wp;
 	Uint16 HumanReadableMapLine[10000];
 
 	// Get the number of waypoints 
@@ -1697,33 +1741,9 @@ use underground lighting: %d\n", Lev->levelnum, Lev->xlen, Lev->ylen, Lev->light
 		EncodeItemSectionOfThisLevel(LevelMem, Lev);
 
 		EncodeChestItemSectionOfThisLevel(LevelMem, Lev);
+
+		encode_waypoints_of_this_level(LevelMem, Lev);
 	}
-	// --------------------  
-	// The next thing we must do is write the waypoints of this level also
-	// to disk.
-
-	// There might be LEADING -1 entries in front of other connection entries.
-	// This is unwanted and shall be corrected here.
-	CheckWaypointIntegrity(Lev);
-
-	strcat(LevelMem, WP_SECTION_BEGIN_STRING);
-	strcat(LevelMem, "\n");
-
-	for (i = 0; i < Lev->num_waypoints; i++) {
-		sprintf(linebuf, "Nr.=%3d x=%4d y=%4d rnd=%1d", i,
-			Lev->AllWaypoints[i].x, Lev->AllWaypoints[i].y, Lev->AllWaypoints[i].suppress_random_spawn);
-		strcat(LevelMem, linebuf);
-		strcat(LevelMem, "\t ");
-		strcat(LevelMem, CONNECTION_STRING);
-
-		this_wp = &Lev->AllWaypoints[i];
-		for (j = 0; j < this_wp->num_connections; j++) {
-			sprintf(linebuf, " %3d", Lev->AllWaypoints[i].connections[j]);
-			strcat(LevelMem, linebuf);
-		}		// for connections 
-		strcat(LevelMem, "\n");
-	}			// for waypoints 
-
 	strcat(LevelMem, LEVEL_END_STRING);
 	strcat(LevelMem, "\n----------------------------------------------------------------------\n");
 
@@ -2141,12 +2161,6 @@ Level DecodeLoadedLeveldata(char *data)
 		loadlevel->AllWaypoints[i].num_connections = k;
 
 	}			// for i < MAXWAYPOINTS
-
-	if (loadlevel->random_dungeon) {
-		// Generate random dungeon now
-		set_dungeon_output(loadlevel);
-		generate_dungeon(loadlevel->xlen, loadlevel->ylen, loadlevel->random_dungeon);
-	}
 
 	free(this_line);
 	return (loadlevel);
