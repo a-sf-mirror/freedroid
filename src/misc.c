@@ -1170,6 +1170,9 @@ the bounds of this 'ship' which means the current collection of levels.\n\
 This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATAL);
 		}
 
+		// Refresh some speed-up data structures
+		get_visible_levels();
+		
 	} else {
 		//--------------------
 		// If no real level change has occured, everything
