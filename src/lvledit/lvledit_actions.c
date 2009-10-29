@@ -196,36 +196,6 @@ obstacle *action_create_obstacle_user(Level EditLevel, double x, double y, int n
 	return o;
 }
 
-void action_remove_obstacle(level * EditLevel, obstacle * our_obstacle)
-{
-	//--------------------
-	// The likely case that no obstacle was currently marked.
-	//
-	if (our_obstacle == NULL)
-		return;
-
-	our_obstacle->type = (-1);
-
-	//--------------------
-	// Now doing that must have shifted the glue!  That is a problem.  We need to
-	// reglue everything to the map...
-	//
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
-
-	//--------------------
-	// Now that we have disturbed the order of the obstacles on this level, we need
-	// to re-assemble the lists of pointers to obstacles, like the door list, the
-	// teleporter list and the refreshes list.
-	//
-	dirty_animated_obstacle_lists(EditLevel->levelnum);
-}
-
-void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
-{
-	action_push(ACT_CREATE_OBSTACLE, our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->type);
-	action_remove_obstacle(EditLevel, our_obstacle);
-}
-
 static void action_change_obstacle_label(level * EditLevel, obstacle * obstacle, char *name)
 {
 	int check_double;
@@ -322,6 +292,39 @@ void action_change_obstacle_label_user(level * EditLevel, obstacle * our_obstacl
 	}
 
 	action_change_obstacle_label(EditLevel, our_obstacle, name);
+}
+
+void action_remove_obstacle(level * EditLevel, obstacle * our_obstacle)
+{
+	//--------------------
+	// The likely case that no obstacle was currently marked.
+	//
+	if (our_obstacle == NULL)
+		return;
+
+	our_obstacle->type = (-1);
+
+	// Remove the obstacle label if we had one
+	action_change_obstacle_label(EditLevel, our_obstacle, NULL);
+
+	//--------------------
+	// Now doing that must have shifted the glue!  That is a problem.  We need to
+	// reglue everything to the map...
+	//
+	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
+
+	//--------------------
+	// Now that we have disturbed the order of the obstacles on this level, we need
+	// to re-assemble the lists of pointers to obstacles, like the door list, the
+	// teleporter list and the refreshes list.
+	//
+	dirty_animated_obstacle_lists(EditLevel->levelnum);
+}
+
+void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
+{
+	action_push(ACT_CREATE_OBSTACLE, our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->type);
+	action_remove_obstacle(EditLevel, our_obstacle);
 }
 
 void action_change_obstacle_description(level * EditLevel, obstacle * our_obstacle, char *predefined_description)
