@@ -394,21 +394,24 @@ void flip_image_vertically(SDL_Surface * tmp1)
  */
 SDL_Surface *our_IMG_load_wrapper(const char *file)
 {
-	SDL_Surface *tmp1;
+	SDL_Surface *surf;
+
+	surf = IMG_Load(file);
+
+	if (surf == NULL) {
+		ErrorMessage(__FUNCTION__, "IMG_Load returned NULL. IMG_GetError() : %s.\n", PLEASE_INFORM, IS_WARNING_ONLY, IMG_GetError());
+		return (NULL);
+	}
 
 	if (use_open_gl) {
-		tmp1 = IMG_Load(file);
 
-		if (tmp1 == NULL)
-			return (NULL);
+		flip_image_vertically(surf);
 
-		flip_image_vertically(tmp1);
-
-		return (tmp1);
+		return surf;;
 	} else {
-		return (IMG_Load(file));
+		return surf;
 	}
-};				// SDL_Surface* our_IMG_load_wrapper( const char *file )
+}
 
 /**
  * There is need to do some padding, cause OpenGL textures need to have
