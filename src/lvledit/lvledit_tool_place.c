@@ -77,6 +77,9 @@ static int do_waypoint_route(int rspawn)
 	int wpnum;
 	int isnew;
 
+	if (!mouse_in_level)
+		return 0;
+
 	wpnum = CreateWaypoint(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, &isnew);
 
 	if (our_mode != CONNECT_WAYPOINT) {
@@ -125,12 +128,18 @@ static void place_single_obstacle(struct leveleditor_typeselect *ts)
 	pos.x = mouse_mapcoord.x;
 	pos.y = mouse_mapcoord.y;
 
+	if (!mouse_in_level)
+		return;
+
 	action_create_obstacle_user(EditLevel(), pos.x, pos.y, ts->indices[ts->selected_tile_nb]);
 	//  quickbar_use ( GameConfig . level_editor_edit_mode, selected_tile_nb );
 }
 
 static void start_rectangle_floor(int findex)
 {
+	if (!mouse_in_level)
+		return;
+
 	our_mode = RECTANGLE_FLOOR;
 
 	// Starting values
@@ -156,12 +165,17 @@ static void start_rectangle_floor(int findex)
 	action_set_floor(EditLevel(), state.r_start.x, state.r_start.y, state.r_tile_used);
 	action_push(ACT_MULTIPLE_ACTIONS, 1);
 
+	return;
 }				// void start_rectangle_mode ( leveleditor_state cur_state , int already_defined )
 
 static void handle_rectangle_floor()
 {
 	int i, j;
 	int changed_tiles = 0;
+
+	if (!mouse_in_level)
+		return;
+
 	// If there is something to change
 	if (calc_euklid_distance(mouse_mapcoord.x, mouse_mapcoord.y,
 				 state.r_start.x + state.r_len_x, state.r_start.y + state.r_len_y) > 0.5) {
@@ -214,6 +228,9 @@ static void end_rectangle_floor(int commit)
 
 static void start_line_walls(int windex)
 {
+	if (!mouse_in_level)
+		return;
+
 	our_mode = LINE_WALLS;
 
 	// Initialize a line
@@ -240,6 +257,9 @@ static void handle_line_walls()
 	moderately_finepoint pos_last;
 	moderately_finepoint offset;
 	int direction_is_possible;
+
+	if (!mouse_in_level)
+		return;
 
 	wall = list_entry((state.l_elements).list.prev, line_element, list);
 	pos_last = wall->position;

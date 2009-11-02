@@ -41,6 +41,7 @@ static struct leveleditor_tool *selected_tool = NULL;
 static struct leveleditor_tool *active_tool = NULL;
 
 moderately_finepoint mouse_mapcoord;
+int mouse_in_level; // is the mouse cursor at an existing position on the level?
 
 static struct leveleditor_widget *tool_selection_menu;
 
@@ -138,6 +139,12 @@ void leveleditor_map_mousemove(SDL_Event * event, struct leveleditor_widget *vm)
 	mouse_mapcoord =
 	    translate_point_to_map_location((float)event->motion.x - (GameConfig.screen_width / 2),
 					    (float)event->motion.y - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
+
+	if (mouse_mapcoord.x < 0 || mouse_mapcoord.x >= EditLevel()->xlen ||
+			mouse_mapcoord.y < 0 || mouse_mapcoord.y >= EditLevel()->ylen)
+		mouse_in_level = 0;
+	else 
+		mouse_in_level = 1;
 
 	forward_event(event);
 }
