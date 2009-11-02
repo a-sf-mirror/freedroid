@@ -55,10 +55,7 @@ char VanishingMessage[10000] = "";
 float VanishingMessageEndDate = 0;
 int FirstBlock = 0;
 int *object_list;
-int number_of_walls[NUMBER_OF_LEVEL_EDITOR_GROUPS];
 int level_editor_done = FALSE;
-
-LIST_HEAD(quickbar_entries);
 
 /**
  * Return the X coordinate of the block we are on.
@@ -130,126 +127,6 @@ iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int *
 	return NULL;
 }
 
-/* ------------------
- * Quickbar functions
- * ------------------
- */
-struct quickbar_entry *quickbar_getentry(int id)
-{
-	int i = 0;
-	struct list_head *node;
-	list_for_each(node, &quickbar_entries) {
-		if (id == i) {
-			struct quickbar_entry *entry = list_entry(node, struct quickbar_entry, node);
-			return entry;
-		}
-		i++;
-	}
-	return NULL;
-}
-
-iso_image *quickbar_getimage(int selected_index, int *placing_floor)
-{
-/*    struct quickbar_entry *entry = quickbar_getentry ( selected_index );
-    if (!entry) 
-	return NULL;
-    if (entry->obstacle_type == LEVEL_EDITOR_SELECTION_FLOOR) {
-	*placing_floor = TRUE;
-	return &floor_iso_images  [ entry->id ];
-    } else {
-	return &obstacle_map [wall_indices [ entry -> obstacle_type ] [ entry->id ] ] . image;
-    }*/
-	return NULL;
-}
-
-/**
- *  @fn void quickbar_additem (struct quickbar_entry *entry)
- * 
- *  @brief Inserts an item in a sorted list 
- */
-void quickbar_additem(struct quickbar_entry *entry)
-{
-	struct quickbar_entry *tmp1, *tmp2;
-	struct quickbar_entry *smallest, *biggest;
-	struct list_head *node;
-	/* The smallest element (if the list is non-empty) is the last element */
-	smallest = list_entry(quickbar_entries.prev, struct quickbar_entry, node);
-	/* Biggest one */
-	biggest = list_entry(quickbar_entries.next, struct quickbar_entry, node);
-
-	/* If the list is empty or if the entry we want to insert is smaller than 
-	 * the smallest element, just insert the entry */
-	if ((list_empty(&quickbar_entries)) || (entry->used < smallest->used)) {
-		list_add_tail(&entry->node, &quickbar_entries);
-		/* If it's bigger than the biggest one, let it be the first */
-	} else if (entry->used > biggest->used) {
-		list_add(&entry->node, &quickbar_entries);
-	} else {
-		/* We know the element is between two entries, so let's find the place */
-		list_for_each(node, &quickbar_entries) {
-			tmp1 = list_entry(node, struct quickbar_entry, node);
-			tmp2 = list_entry(node->next, struct quickbar_entry, node);
-			if (tmp1->used >= entry->used && entry->used >= tmp2->used) {
-				list_add(&entry->node, &tmp1->node);
-				break;
-			}
-		}
-	}
-
-	int i = 0;
-	list_for_each(node, &quickbar_entries) i++;
-	number_of_walls[LEVEL_EDITOR_SELECTION_QUICK] = i;
-}
-
-void quickbar_use(int obstacle, int id)
-{
-	struct list_head *node;
-	struct quickbar_entry *entry = NULL;;
-	list_for_each(node, &quickbar_entries) {
-		entry = list_entry(node, struct quickbar_entry, node);
-		if (entry->id == id && entry->obstacle_type == obstacle) {
-			break;
-		}
-	}
-	if (entry && node != &quickbar_entries) {
-		entry->used++;
-		list_del(&entry->node);
-		quickbar_additem(entry);
-	} else {
-		entry = MyMalloc(sizeof *entry);
-		entry->obstacle_type = obstacle;
-		entry->id = id;
-		entry->used = 1;
-		quickbar_additem(entry);
-	}
-}
-
-/*
-void
-quickbar_click (level *level, int id, leveleditor_state *cur_state)
-{
-    struct quickbar_entry *entry = quickbar_getentry ( id );
-    if ( entry ) {
-	switch ( entry->obstacle_type )
-	{
-	    case LEVEL_EDITOR_SELECTION_FLOOR:
-		cur_state->r_tile_used = entry->id;
-		start_rectangle_mode(cur_state, TRUE);
-		break;
-	    case LEVEL_EDITOR_SELECTION_WALLS:
-		cur_state->l_selected_mode = entry->obstacle_type;
-		cur_state->l_id = entry->id;
-		start_line_mode(cur_state, TRUE);
-		break;
-	    default:
-	    action_create_obstacle_user (level, 
-		    cur_state->TargetSquare . x, cur_state->TargetSquare . y, 
-		    wall_indices [ entry -> obstacle_type ] [ entry -> id ]);
-	}
-	entry->used ++;
-    }
-}    
-*/
 /**
  *
  *

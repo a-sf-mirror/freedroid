@@ -37,13 +37,6 @@
 #define EXTERN
 #endif
 
-struct quickbar_entry {
-	struct list_head node;
-	int id;
-	int obstacle_type;
-	int used;
-};
-
 typedef struct line_element {
 	moderately_finepoint position;
 	obstacle *address;
@@ -669,9 +662,7 @@ EXTERN char VanishingMessage[10000];
 EXTERN float VanishingMessageEndDate;
 
 EXTERN int OriginWaypoint;
-EXTERN int number_of_walls[NUMBER_OF_LEVEL_EDITOR_GROUPS];
 
-EXTERN iso_image *quickbar_getimage(int, int *);
 EXTERN int marked_obstacle_is_glued_to_here(level *, float, float);
 
 EXTERN int level_editor_done;

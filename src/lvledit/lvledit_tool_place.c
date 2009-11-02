@@ -132,7 +132,6 @@ static void place_single_obstacle(struct leveleditor_typeselect *ts)
 		return;
 
 	action_create_obstacle_user(EditLevel(), pos.x, pos.y, ts->indices[ts->selected_tile_nb]);
-	//  quickbar_use ( GameConfig . level_editor_edit_mode, selected_tile_nb );
 }
 
 static void start_rectangle_floor(int findex)

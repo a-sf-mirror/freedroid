@@ -871,21 +871,6 @@ enum _attackhit {
 	ATTACK_HIT_ALL = 3,
 };
 
-//--------------------
-// The possible edito modes for the level editor
-//
-enum _level_editor_edit_modes {
-	LEVEL_EDITOR_SELECTION_FLOOR = 0,
-	LEVEL_EDITOR_SELECTION_WALLS = 1,
-	LEVEL_EDITOR_SELECTION_MACHINERY = 2,
-	LEVEL_EDITOR_SELECTION_FURNITURE = 3,
-	LEVEL_EDITOR_SELECTION_CONTAINERS = 4,
-	LEVEL_EDITOR_SELECTION_PLANTS = 5,
-	LEVEL_EDITOR_SELECTION_ALL = 6,
-	LEVEL_EDITOR_SELECTION_QUICK = 7,
-	NUMBER_OF_LEVEL_EDITOR_GROUPS = 8
-};
-
 // possible directions for a line of walls
 // We use 1 et -1, because north is the opposite of south.
 enum _level_editor_directions {
