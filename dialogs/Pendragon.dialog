@@ -78,7 +78,7 @@ LuaCode={
 				npc_says(_"Come closer...")
 				npc_says(_"HA!")
 				tux_says(_"Ouch! What the hell are you doing?")
-				npc_says(_"Lesson number one. Never trust the opponent."
+				npc_says(_"Lesson number one. Never trust the opponent.")
 				tux_says(_"Just let me get up an -- ouch! Stop it.")
 				npc_says(_"Lesson number two. The bots have no mercy.")
 				npc_says(_"They won't let you get up if you fall down. They will kill you.")
