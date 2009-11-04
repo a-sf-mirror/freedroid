@@ -31,6 +31,7 @@ EveryTime LuaCode={
 	if (not has_cookie("met_benjamin")) then
 		show(0)
 		add_cookie("met_benjamin")
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
