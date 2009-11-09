@@ -106,7 +106,7 @@ EXTERN char *character_descriptions[MAX_PERSONS];
 
 EXTERN char previous_part_strings[ALL_PART_GROUPS][50];
 EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
-EXTERN int Item_Held_In_Hand;
+EXTERN item *Item_Held_In_Hand;
 EXTERN point InventorySize;
 
 EXTERN iso_image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];

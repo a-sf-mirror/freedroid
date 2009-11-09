@@ -1524,7 +1524,8 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 {
 	obstacle *our_obstacle = NULL;
 	int item_under_cursor = -1;
-
+	level *item_under_cursor_lvl = NULL;
+	
 	struct blitting_list_element *e, *n;
 	list_for_each_entry_safe(e, n, &blitting_list, node) {
 		switch (e->element_type) {
@@ -1611,9 +1612,11 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 				// Preput thrown items when they are on the floor (i.e. not during the
 				// throwing animation)
 				item *the_item = (item*)e->element_pointer;
-				item_under_cursor = get_floor_item_index_under_mouse_cursor();
+				item_under_cursor_lvl = NULL;
 				if (the_item->throw_time <= 0) {
-					if (the_item->pos.z == Me.pos.z && item_under_cursor == e->code_number)
+					item_under_cursor = get_floor_item_index_under_mouse_cursor(&item_under_cursor_lvl);
+					if (item_under_cursor != -1 && item_under_cursor_lvl != NULL &&
+						the_item->pos.z == item_under_cursor_lvl->levelnum && item_under_cursor == e->code_number)
 						PutItem(the_item, e->code_number, mask, PUT_NO_THROWN_ITEMS, TRUE);
 					else
 						PutItem(the_item, e->code_number, mask, PUT_NO_THROWN_ITEMS, FALSE);				
@@ -1637,6 +1640,7 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 {
 	enemy *enemy_under_cursor = NULL;
 	int item_under_cursor = -1;
+	level *item_under_cursor_lvl = NULL;
 	struct blitting_list_element *e, *n;
 
 	//--------------------
@@ -1644,7 +1648,7 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 	// can properly highlight this enemy...
 	//
 	enemy_under_cursor = GetLivingDroidBelowMouseCursor();
-	item_under_cursor = get_floor_item_index_under_mouse_cursor();
+	item_under_cursor = get_floor_item_index_under_mouse_cursor(&item_under_cursor_lvl);
 
 	//--------------------
 	// Now it's time to blit all the elements from the list...
@@ -1695,7 +1699,8 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			{
 				item *the_item = (item*)e->element_pointer;
 				if (the_item->throw_time > 0) {
-					if (the_item->pos.z == Me.pos.z && item_under_cursor == e->code_number)
+					if (item_under_cursor != -1 && item_under_cursor == e->code_number
+						&& item_under_cursor_lvl->levelnum == the_item->pos.z)
 						PutItem(the_item, e->code_number, mask, PUT_ONLY_THROWN_ITEMS, TRUE);
 					else
 						PutItem(the_item, e->code_number, mask, PUT_ONLY_THROWN_ITEMS, FALSE);
@@ -4461,8 +4466,8 @@ void ShowInventoryScreen(void)
 
 	}
 
-	if (Item_Held_In_Hand != (-1)) {
-		DisplayItemImageAtMouseCursor(Item_Held_In_Hand);
+	if (Item_Held_In_Hand != NULL) {
+		DisplayItemImageAtMouseCursor(Item_Held_In_Hand->type);
 	} else {
 		// In case the player does not have anything in his hand, then of course we need to
 		// unset everything as 'not in his hand'.

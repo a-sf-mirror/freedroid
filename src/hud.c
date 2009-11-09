@@ -1057,27 +1057,29 @@ void prepare_text_window_content(char *ItemDescText)
 	//
 
 	if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
+		level *obj_lvl = NULL;
+		
 		// DebugPrintf( 2  , "\nCursor is in userfenster... --> see if hovering over an item...");
 
 		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 
-		index_of_floor_item_below_mouse_cursor = get_floor_item_index_under_mouse_cursor();
-
-		if (index_of_floor_item_below_mouse_cursor != (-1)) {
-			GiveItemDescription(ItemDescText, &(CURLEVEL()->ItemList[index_of_floor_item_below_mouse_cursor]), FALSE);
-			best_banner_pos_x =
-			    translate_map_point_to_screen_pixel_x(CURLEVEL()->ItemList[index_of_floor_item_below_mouse_cursor].pos.x,
-								  CURLEVEL()->ItemList[index_of_floor_item_below_mouse_cursor].pos.y) + 80;
-			best_banner_pos_y =
-			    translate_map_point_to_screen_pixel_y(CURLEVEL()->ItemList[index_of_floor_item_below_mouse_cursor].pos.x,
-								  CURLEVEL()->ItemList[index_of_floor_item_below_mouse_cursor].pos.y) - 30;
+		index_of_floor_item_below_mouse_cursor = get_floor_item_index_under_mouse_cursor(&obj_lvl);
+		
+		if (index_of_floor_item_below_mouse_cursor != (-1) && obj_lvl != NULL) {
+			gps item_vpos;
+			update_virtual_position(&item_vpos, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor].pos), Me.pos.z);
+			if (item_vpos.x != -1) {
+				GiveItemDescription(ItemDescText, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]), FALSE);
+				best_banner_pos_x =	translate_map_point_to_screen_pixel_x(item_vpos.x, item_vpos.y) + 80;
+				best_banner_pos_y =	translate_map_point_to_screen_pixel_y(item_vpos.x, item_vpos.y) - 30;
+			}
 		}
 		//--------------------
 		// Maybe the cursor in the user rect is hovering right over a closed chest.
 		// In this case we say so in the top status banner.
 		//
-		level *obj_lvl = NULL;
+		obj_lvl = NULL;
 		index_of_chest_below_mouse_cursor = closed_chest_below_mouse_cursor(&obj_lvl);
 		if (index_of_chest_below_mouse_cursor != (-1)) {
 			gps chest_vpos;

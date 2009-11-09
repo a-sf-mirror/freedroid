@@ -496,7 +496,7 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer);
 void CopyItem(item * SourceItem, item * DestItem, int MakeSound);
 void DeleteItem(item * Item);
 void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical);
-int get_floor_item_index_under_mouse_cursor(void);
+int get_floor_item_index_under_mouse_cursor(level **item_lvl);
 int item_is_currently_equipped(item * Item);
 int Get_Prefixes_Data(char *DataPointer);
 
@@ -505,6 +505,7 @@ void DisplayButtons(void);
 void UpdateAllCharacterStats(void);
 void ShowCharacterScreen(void);
 void HandleCharacterScreen(void);
+void update_all_primary_stats();
 
 // leveleditor.c
 void LevelEditor(void);

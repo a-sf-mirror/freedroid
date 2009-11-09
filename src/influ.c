@@ -48,7 +48,7 @@ void limit_tux_speed_to_a_maximum();
 int autorun_activated = 0;
 void check_for_chests_to_open(level * chest_lvl, int chest_index);
 void check_for_barrels_to_smash(level * barrel_lvl, int index_of_barrel_below_mouse_cursor);
-void check_for_items_to_pickup(int);
+void check_for_items_to_pickup(level *item_lvl, int item_index);
 void CheckForTuxOutOfMap();
 
 int no_left_button_press_in_previous_analyze_mouse_click = FALSE;
@@ -1000,7 +1000,7 @@ void move_tux_thowards_intermediate_point()
 			check_for_barrels_to_smash(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter);
 			break;
 		case COMBO_ACTION_PICK_UP_ITEM:
-			check_for_items_to_pickup(Me.mouse_move_target_combo_action_parameter);
+			check_for_items_to_pickup(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter);
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unhandled combo action for intermediate course encountered!", PLEASE_INFORM, IS_FATAL);
@@ -1196,7 +1196,7 @@ void move_tux()
 	//--------------------
 	// During inventory operations, there should not be any (new) movement
 	//
-	if (Item_Held_In_Hand != (-1)) {
+	if (Item_Held_In_Hand != NULL) {
 		Me.mouse_move_target.x = Me.pos.x;
 		Me.mouse_move_target.y = Me.pos.y;
 		Me.mouse_move_target.z = Me.pos.z;
@@ -1651,7 +1651,7 @@ int ButtonPressWasNotMeantAsFire()
 	// If the influencer is holding something from the inventory
 	// menu via the mouse, also just return
 	//
-	if (Item_Held_In_Hand != (-1))
+	if (Item_Held_In_Hand != NULL)
 		return (TRUE);
 	if (timeout_from_item_drop > 0)
 		return (TRUE);
@@ -2105,24 +2105,24 @@ void check_for_chests_to_open(level * chest_lvl, int chest_index)
 
 }				// void check_for_chests_to_open ( ) 
 
-void check_for_items_to_pickup(int index_of_item_under_mouse_cursor)
+void check_for_items_to_pickup(level *item_lvl, int item_index)
 {
-	Level our_level = curShip.AllLevels[Me.pos.z];
-
-	if (index_of_item_under_mouse_cursor != (-1)) {
-		//--------------------
+	gps item_vpos;
+	
+	if (item_lvl != NULL && item_index != -1) {
+		
+		update_virtual_position(&item_vpos, &item_lvl->ItemList[item_index].pos, Me.pos.z);
+		
 		// We only take the item directly into out 'hand' i.e. the mouse cursor,
+		//--------------------
 		// if the item in question can be reached directly and isn't blocked by
 		// some walls or something...
 		//
-		if ((calc_euklid_distance
-		     (Me.pos.x, Me.pos.y, our_level->ItemList[index_of_item_under_mouse_cursor].pos.x,
-		      our_level->ItemList[index_of_item_under_mouse_cursor].pos.y) < ITEM_TAKE_DIST)
-		    && DirectLineColldet(our_level->ItemList[index_of_item_under_mouse_cursor].pos.x,
-					 our_level->ItemList[index_of_item_under_mouse_cursor].pos.y, Me.pos.x, Me.pos.y, Me.pos.z, NULL)) {
+		if ((calc_euklid_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
+		    && DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL)) {
 			if (GameConfig.Inventory_Visible == FALSE
-			    || MatchItemWithName(our_level->ItemList[index_of_item_under_mouse_cursor].type, "Cyberbucks")) {
-				AddFloorItemDirectlyToInventory(&(our_level->ItemList[index_of_item_under_mouse_cursor]));
+			    || MatchItemWithName(item_lvl->ItemList[item_index].type, "Cyberbucks")) {
+				AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
 				return;
 			} else {
 				/* Handled in HandleInventoryScreen(). Dirty and I don't plan on changing that right now.
@@ -2130,16 +2130,16 @@ void check_for_items_to_pickup(int index_of_item_under_mouse_cursor)
 				;
 			}
 		} else {
-			Me.mouse_move_target.x = our_level->ItemList[index_of_item_under_mouse_cursor].pos.x;
-			Me.mouse_move_target.y = our_level->ItemList[index_of_item_under_mouse_cursor].pos.y;
-			Me.mouse_move_target.z = Me.pos.z;
+			Me.mouse_move_target.x = item_lvl->ItemList[item_index].pos.x;
+			Me.mouse_move_target.y = item_lvl->ItemList[item_index].pos.y;
+			Me.mouse_move_target.z = item_lvl->levelnum;
 
 			//--------------------
-			// We set up the combo_action, so that the barrel can be smashed later...
+			// We set up the combo_action, so that the item can be picked up later...
 			//
 			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 			Me.mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM;
-			Me.mouse_move_target_combo_action_parameter = index_of_item_under_mouse_cursor;
+			Me.mouse_move_target_combo_action_parameter = item_index;
 		}
 	}
 }
@@ -2547,8 +2547,8 @@ void AnalyzePlayersMouseClick()
 				break;
 			}
 
-			if ((tmp = get_floor_item_index_under_mouse_cursor()) != -1) {
-				check_for_items_to_pickup(tmp);
+			if ((tmp = get_floor_item_index_under_mouse_cursor(&obj_lvl)) != -1) {
+				check_for_items_to_pickup(obj_lvl, tmp);
 				if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 					wait_mouseleft_release = TRUE;
 				break;

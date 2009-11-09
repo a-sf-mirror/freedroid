@@ -1581,7 +1581,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Me.shield_item.currently_held_in_hand = FALSE;
 	Me.special_item.currently_held_in_hand = FALSE;
 	Me.drive_item.currently_held_in_hand = FALSE;
-	Item_Held_In_Hand = (-1);
+	Item_Held_In_Hand = NULL;
 
 	DebugPrintf(1, "\n%s():  Shuffling droids on all %d levels!", __FUNCTION__, curShip.num_levels);
 	for (i = 0; i < curShip.num_levels; i++) {

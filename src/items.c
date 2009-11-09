@@ -55,7 +55,7 @@ void silently_unhold_all_items(void)
 	int i;
 	Level ItemLevel = curShip.AllLevels[Me.pos.z];
 
-	Item_Held_In_Hand = (-1);
+	Item_Held_In_Hand = NULL;
 
 	//--------------------
 	// Now we remove all 'currently held' markers from all
@@ -750,7 +750,7 @@ void MakeHeldFloorItemOutOf(item * SourceItem)
 	CURLEVEL()->ItemList[i].pos.z = Me.pos.z;
 	CURLEVEL()->ItemList[i].currently_held_in_hand = TRUE;
 
-	Item_Held_In_Hand = CURLEVEL()->ItemList[i].type;
+	Item_Held_In_Hand = &(CURLEVEL()->ItemList[i]);
 
 	DeleteItem(SourceItem);
 };				// void MakeHeldFloorItemOutOf( item* SourceItem )
@@ -1530,12 +1530,7 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 };				// int ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y )
 
 /** 
- * This function should drop a given item to the floor. 
- *
- * Of couse this function should also initiate a signal to the server,
- * telling the server, that the item drop has occured and that the 
- * server should perform it too.
- *
+ * This function should drop a given item to the floor.
  */
 void DropItemToTheFloor(Item DropItemPointer, float x, float y, int levelnum)
 {
@@ -1553,54 +1548,49 @@ void DropItemToTheFloor(Item DropItemPointer, float x, float y, int levelnum)
 	// Now we enter the item into the item list of this level
 	//
 	CopyItem(DropItemPointer, &(DropLevel->ItemList[i]), TRUE);
-	// DropLevel->ItemList[ i ].pos.x = Me.pos.x;
-	// DropLevel->ItemList[ i ].pos.y = Me.pos.y;
 	DropLevel->ItemList[i].pos.x = x;
 	DropLevel->ItemList[i].pos.y = y;
 	DropLevel->ItemList[i].pos.z = levelnum;
 	DropLevel->ItemList[i].currently_held_in_hand = FALSE;
 	DropLevel->ItemList[i].throw_time = 0.01;	// something > 0 
-	// DropLevel->ItemList[ i ].type = Me.Inventory[ InvPos ].type;
 
-	// Me.Inventory[ InvPos ].type = ( -1 );
 	DeleteItem(DropItemPointer);
 };				// void DropItemToTheFloor ( void )
 
 /** 
  * This function should drop a held item to the floor. 
- *
- * Of couse this function should also initiate a signal to the server,
- * telling the server, that the item drop has occured and that the 
- * server should perform it too.
- *
  */
 int DropHeldItemToTheFloor(void)
 {
-	item *DropItemPointer;
 	float x, y;
 
-	// --------------------
-	// First we find out which item we want to drop onto the floor
-	//
-	DropItemPointer = GetHeldItemPointer();
-	if (DropItemPointer == NULL) {
-		DebugPrintf(0, "\nvoid DropHeldItemToTheFloor ( void ) : No item in inventory seems to be currently held in hand...");
-		return 1;
+	// Check validity of held item
+	
+	if (Item_Held_In_Hand == NULL) {
+		DebugPrintf(0, "\nDropHeldItemToTheFloor() : No item seems to be currently held in hand...");
+		return 1;		
 	}
-
+	
+	// Get the actual mouse cursor position on the map
+	
 	x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
 	y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
+	gps drop_pos = { x, y, Me.pos.z };
+	gps drop_rpos;
+	int can_resolve = resolve_virtual_position(&drop_rpos, &drop_pos);
 
-	if (DirectLineColldet(Me.pos.x, Me.pos.y, x, y, Me.pos.z, NULL))
-		DropItemToTheFloor(DropItemPointer, x, y, Me.pos.z);
-	else {
+	// If this position is valid, drop the item there
+	
+	if (can_resolve && DirectLineColldet(Me.pos.x, Me.pos.y, x, y, Me.pos.z, NULL)) {
+		DropItemToTheFloor(Item_Held_In_Hand, drop_rpos.x, drop_rpos.y, drop_rpos.z);
+		Item_Held_In_Hand = NULL;
+	} else {
 		fprintf(stderr, "Item drop failed because position is invalid.\n");
 		return 1;
 	}
 
 	timeout_from_item_drop = 0.4;
 	return 0;
-
 };				// void DropHeldItemToTheFloor ( void )
 
 /**
@@ -1635,18 +1625,13 @@ int ItemUsageRequirementsMet(item * UseItem, int MakeSound)
  */
 int HeldItemUsageRequirementsMet(void)
 {
-	item *DropItemPointer;
-
-	// --------------------
-	// First we find out which item we want to check
-	//
-	DropItemPointer = GetHeldItemPointer();
-	if (DropItemPointer == NULL) {
+	// Check validity of HeldItem
+	if (Item_Held_In_Hand == NULL) {
 		DebugPrintf(0, "\nvoid HeldItemUsageRequirementsMet ( void ) : No item in inventory seems to be currently held in hand...");
-		return (FALSE);
+		return (FALSE);		
 	}
-
-	return (ItemUsageRequirementsMet(DropItemPointer, TRUE));
+	
+	return (ItemUsageRequirementsMet(Item_Held_In_Hand, TRUE));
 };				// int HeldItemUsageRequirementsMet( void )
 
 /**
@@ -1656,16 +1641,14 @@ int HeldItemUsageRequirementsMet(void)
  */
 void DropHeldItemToSlot(item * SlotItem)
 {
-	item *DropItemPointer;
+	item *DropItemPointer; // temporary storage
 
-	// --------------------
-	// First we find out which item we want to drop into the weapon slot
-	//
-	DropItemPointer = GetHeldItemPointer();
-	if (DropItemPointer == NULL) {
+	// Chech validity of held item
+	if (Item_Held_In_Hand == NULL) {
 		DebugPrintf(0, "\nvoid DropHeldItemToSlot ( void ) : No item in inventory seems to be currently held in hand...");
-		return;
+		return;		
 	}
+
 	//--------------------
 	// If there is an old item in the slot, we make a held item on the
 	// floor out of it and also set the HeldItemType accordingly, so that
@@ -1676,9 +1659,12 @@ void DropHeldItemToSlot(item * SlotItem)
 	// But this may only be done of course, if the 'old item' is not
 	// the item we want to put there itself!!!!  HAHAHAHA!!!!
 	//
+	DropItemPointer = Item_Held_In_Hand;
 	if ((SlotItem->type != (-1)) && (SlotItem->currently_held_in_hand == FALSE))
 		MakeHeldFloorItemOutOf(SlotItem);
-
+	else
+		Item_Held_In_Hand = NULL;
+	
 	//--------------------
 	// Now the item is installed into the weapon slot of the influencer
 	//
@@ -1732,42 +1718,40 @@ severe bugs in the inventory system.", PLEASE_INFORM, IS_FATAL);
 void DropHeldItemToInventory(void)
 {
 	point CurPos;
-	item *DropItemPointer;
 	int FreeInvIndex;
 	int i;
 	FreeInvIndex = GetFreeInventoryIndex();
 
 	// --------------------
-	// First we find out which item we want to drop into the inventory
+	// First we check validity of held item
 	//
-	DropItemPointer = GetHeldItemPointer();
-	if (DropItemPointer == NULL) {
+	if (Item_Held_In_Hand == NULL) {
 		DebugPrintf(0, "\nvoid DropHeldItemToInventory ( void ) : No item in inventory seems to be currently held in hand...");
 		return;
 	}
+
 	// --------------------
 	// Now we want to drop the item to the right location again.
 	// Therefore we need to find out the right position, which of course
 	// depends as well on current mouse cursor location as well as the
 	// size of the dropped item.
 	//
-	CurPos.x = GetMousePos_x() - (16 * (ItemMap[DropItemPointer->type].inv_image.inv_size.x - 1));
-	CurPos.y = GetMousePos_y() - (16 * (ItemMap[DropItemPointer->type].inv_image.inv_size.y - 1));
+	CurPos.x = GetMousePos_x() - (16 * (ItemMap[Item_Held_In_Hand->type].inv_image.inv_size.x - 1));
+	CurPos.y = GetMousePos_y() - (16 * (ItemMap[Item_Held_In_Hand->type].inv_image.inv_size.y - 1));
 
-	if (ItemCanBeDroppedInInv(DropItemPointer->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
-		CopyItem(DropItemPointer, &(Me.Inventory[FreeInvIndex]), TRUE);
-		DeleteItem(DropItemPointer);
+	if (ItemCanBeDroppedInInv(Item_Held_In_Hand->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
+		CopyItem(Item_Held_In_Hand, &(Me.Inventory[FreeInvIndex]), TRUE);
 		Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
 		Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
 		Me.Inventory[FreeInvIndex].currently_held_in_hand = FALSE;
 
 		// --------------------
 		// Now that we know that the item could be dropped directly to inventory 
-		// without swapping any paces, we can as well make the item
+		// without swapping any spaces, we can as well make the item
 		// 'not held in hand' immediately and return
 		//
-		DropItemPointer->currently_held_in_hand = FALSE;
-		Item_Held_In_Hand = (-1);
+		DeleteItem(Item_Held_In_Hand);
+		Item_Held_In_Hand = NULL;
 		return;
 	} else {
 		//--------------------
@@ -1777,51 +1761,35 @@ void DropHeldItemToInventory(void)
 		//
 		for (i = 0; i < MAX_ITEMS_IN_INVENTORY - 1; i++) {
 			//--------------------
-			// So we make a copy of each of the items we remove in order to 
-			// try to create new space for the drop item.  After that, we can
-			// remove it.
-			//
-			// CopyItem ( & ( Me.Inventory[ i ] ) , & ( Temp ) , FALSE );
-			//
-			CopyItem(&(Me.Inventory[i]), &(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]), FALSE);
-
-			//--------------------
 			// FIRST: Security check against segfaults:  It might happen that we 
 			// delete the Dropitem itself while trying several items as candidates
 			// for removal.  This would cause testing dropability with a -1 item
 			// type and a SEGFAULT would result...
 			//
-			if (&(Me.Inventory[i]) == DropItemPointer)
+			if (&(Me.Inventory[i]) == Item_Held_In_Hand)
 				continue;
 
+			//--------------------
+			// So we make a copy of each of the items we remove in order to 
+			// try to create new space for the drop item.  After that, we can
+			// remove it.
+			//
+			CopyItem(&(Me.Inventory[i]), &(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]), FALSE);
 			Me.Inventory[i].type = (-1);
 
-			if (ItemCanBeDroppedInInv(DropItemPointer->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
-				//--------------------
-				// So if with the removed item Nr. i putting of the DropItem is 
-				// suddenly possible, then we make a held item on the floor out
-				// of it.  The other removed item can stay removed, since it will
-				// be overwritten anyway and a copy is now on the floor.
-				//
-				Item_Held_In_Hand = Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1].type;
-
-				// THIS FAR EVERYTHING WORKS FINE!!!
-
-				MakeHeldFloorItemOutOf(&(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]));
-				Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1].currently_held_in_hand = TRUE;
-
-				//--------------------
-				// Otherwise we just need to add the new item for the inventory
-				// grid as usual
-				//
-				CopyItem(DropItemPointer, &(Me.Inventory[FreeInvIndex]), TRUE);
-				DeleteItem(DropItemPointer);
+			if (ItemCanBeDroppedInInv(Item_Held_In_Hand->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
+				
+				// Copy the HelItem to the now free position
+				CopyItem(Item_Held_In_Hand, &(Me.Inventory[FreeInvIndex]), TRUE);
 				Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
 				Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
 				Me.Inventory[FreeInvIndex].currently_held_in_hand = FALSE;
+				DeleteItem(Item_Held_In_Hand);
 
-				// And of course the item is no longer held in hand as well
-				DropItemPointer->currently_held_in_hand = FALSE;
+				// The removed item Nr. i is put in hand in replacement of the
+				// prior HeldItem.
+				MakeHeldFloorItemOutOf(&(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]));
+
 				return;
 			}
 
@@ -1831,18 +1799,9 @@ void DropHeldItemToInventory(void)
 			// removed item to the inventory, so that no other items get lost.
 			//
 			CopyItem(&(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]), &(Me.Inventory[i]), FALSE);
-			// CopyItemWithoutHeldProperty ( & ( Me . Inventory [ MAX_ITEMS_IN_INVENTORY -1 ] ) , & ( Me.Inventory[ i ] ) , FALSE );
 
 		}		// for: try all items if removal is the solution
 	}			// if not immediately place findable
-
-	// --------------------
-	// So at this point we know, that even the removal of other items was not the 
-	// solution.  So the item cannot be put into inventory, even at best attampts
-	// to do so.  What a pitty.
-	//
-	Item_Held_In_Hand = GetHeldItemCode();
-
 };				// void DropHeldItemToInventory( void )
 
 /**
@@ -1887,10 +1846,10 @@ void ShowQuickInventory(void)
  *
  *
  */
-int get_floor_item_index_under_mouse_cursor()
+int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 {
 	Level PlayerLevel = curShip.AllLevels[Me.pos.z];
-	finepoint MapPositionOfMouse;
+	gps mouse_pos;
 	int i;
 
 	//--------------------
@@ -1913,16 +1872,27 @@ int get_floor_item_index_under_mouse_cursor()
 	// that very same (or a similar enough) position.
 	//
 	else {
-		MapPositionOfMouse.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
-		MapPositionOfMouse.y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
-
-		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-			if (PlayerLevel->ItemList[i].type == (-1))
-				continue;
-
-			if ((fabsf(MapPositionOfMouse.x - PlayerLevel->ItemList[i].pos.x) < 0.5) &&
-			    (fabsf(MapPositionOfMouse.y - PlayerLevel->ItemList[i].pos.y) < 0.5)) {
-				return (i);
+		mouse_pos.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
+		mouse_pos.y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
+		mouse_pos.z = Me.pos.z;
+		
+		gps virt_mouse_pos;
+		struct visible_level *vis_lvl, *n;
+		
+		BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
+			
+			level *lvl = vis_lvl->lvl_pointer;
+			update_virtual_position(&virt_mouse_pos, &mouse_pos, lvl->levelnum);
+			
+			for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+				if (lvl->ItemList[i].type == (-1))
+					continue;
+	
+				if ((fabsf(virt_mouse_pos.x - lvl->ItemList[i].pos.x) < 0.5) &&
+					(fabsf(virt_mouse_pos.y - lvl->ItemList[i].pos.y) < 0.5)) {
+					*item_lvl = lvl;
+					return (i);
+				}
 			}
 		}
 	}
@@ -2012,12 +1982,8 @@ void handle_player_identification_command()
 void HandleInventoryScreen(void)
 {
 	point CurPos;
-	point Inv_GrabLoc;
-	int Grabbed_InvPos;
 	finepoint MapPositionOfMouse = { 0.0, 0.0 };
-	Level PlayerLevel = curShip.AllLevels[Me.pos.z];
-	int index_of_item_under_mouse_cursor = (-1);
-
+	
 	struct {
 		int buttonidx;
 		item *slot;
@@ -2047,239 +2013,288 @@ void HandleInventoryScreen(void)
 		silently_unhold_all_items();
 	}
 
-	if (MouseLeftClicked() && (Item_Held_In_Hand == (-1)) &&
-	    (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY) && MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
-		/*Pick up something on the ground */
-		MapPositionOfMouse.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
-		MapPositionOfMouse.y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
-		index_of_item_under_mouse_cursor = get_floor_item_index_under_mouse_cursor();
-
-		if (index_of_item_under_mouse_cursor != (-1)) {
-			//--------------------
-			// We only take the item directly into out 'hand' i.e. the mouse cursor,
-			// if the item in question can be reached directly and isn't blocked by
-			// some walls or something...
-			//
-			if ((fabsf(MapPositionOfMouse.x - Me.pos.x) < ITEM_TAKE_DIST) &&
-			    (fabsf(MapPositionOfMouse.y - Me.pos.y) < ITEM_TAKE_DIST) &&
-			    DirectLineColldet(PlayerLevel->ItemList[index_of_item_under_mouse_cursor].pos.x,
-					      PlayerLevel->ItemList[index_of_item_under_mouse_cursor].pos.y, Me.pos.x, Me.pos.y, Me.pos.z,
-					      NULL)) {
-				if (GameConfig.Inventory_Visible == FALSE
-				    || MatchItemWithName(PlayerLevel->ItemList[index_of_item_under_mouse_cursor].type, "Cyberbucks")) {
-					/* Handled in check_for_items_to_pickup() */
-					return;
-				} else {
-					Item_Held_In_Hand = PlayerLevel->ItemList[index_of_item_under_mouse_cursor].type;
-					PlayerLevel->ItemList[index_of_item_under_mouse_cursor].currently_held_in_hand = TRUE;
-					goto NoMoreGrabbing;
-				}
-			} else {
-				/* Handled in check_for_items_to_pickup() */
-				;
-			}
-		}
-	}
-
-	if (MouseLeftClicked() && (Item_Held_In_Hand == (-1)) && (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY) && MouseCursorIsInInvRect(CurPos.x, CurPos.y)) {	/*Grab from inventory screen (grid and player slots) */
-		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
-			Inv_GrabLoc.x = GetInventorySquare_x(CurPos.x);
-			Inv_GrabLoc.y = GetInventorySquare_y(CurPos.y);
-
-			Grabbed_InvPos = GetInventoryItemAt(Inv_GrabLoc.x, Inv_GrabLoc.y);
-			if (Grabbed_InvPos == (-1)) {
-				Item_Held_In_Hand = (-1);
-			} else {
-				//--------------------
-				// At this point we know, that we have just grabbed something from the inventory
-				// So we set, that something should be displayed in the 'hand', and it should of
-				// course be the image of the item grabbed from inventory.
-				//
-				if (global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL) {
-					Item_Held_In_Hand = Me.Inventory[Grabbed_InvPos].type;
-					play_item_sound(Me.Inventory[Grabbed_InvPos].type);
-					Me.Inventory[Grabbed_InvPos].currently_held_in_hand = TRUE;
-				} else if (global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE) {
-					append_new_game_message("Examining %s: %s.",
-								D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_name),
-								D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_description));
-				}
-			}
-		} else {
-			unsigned int i;
-
-			for (i = 0; i < sizeof(allslots) / sizeof(allslots[0]); i++) {
-				if (MouseCursorIsOnButton(allslots[i].buttonidx, CurPos.x, CurPos.y)) {
-					if (allslots[i].slot->type > 0) {
-						Item_Held_In_Hand = allslots[i].slot->type;
-						allslots[i].slot->currently_held_in_hand = TRUE;
-						break;
-					}
-				}
-			}
-		}
-		goto NoMoreGrabbing;
-	}
 	//--------------------
-	// Now the OTHER CASE:  If the user now no longer presses the mouse button and it WAS pressed before,
-	// the the user has 'released' the item directly under the mouse button
+	// Case 1: The user left-clicks while not holding an item
 	//
-	if (MouseLeftClicked() && (Item_Held_In_Hand != (-1))) {
+	if (MouseLeftClicked() && (Item_Held_In_Hand == NULL) && (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY)) {
+		
 		//--------------------
-		// If the cursor is in the inventory window again, then we must see if 
-		// the item was dropped onto a correct inventory location and should from
-		// then on not only no longer be in the players hand but also remain at
-		// the newly assigned position.
-		//
-		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
-			Item_Held_In_Hand = (-1);
-			DropHeldItemToInventory();
-		}
-		//--------------------
-		// If the cursor is in the user_rect, i.e. the combat window, then
-		// the item should be dropped onto the players current location
+		// Case 1.1: The user left-clicks in the "UserRect" -> try to pick an
+		//           item in the floor
 		//
 		if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
-			if (!DropHeldItemToTheFloor()) {
-				Item_Held_In_Hand = (-1);
+		
+			int item_idx = (-1);
+			level *item_lvl = NULL;
+			item *picked_item = NULL;
+			gps *picked_item_pos = NULL;
+			gps picked_item_vpos;
+	
+			// Pick up something under the mouse cursor
+			
+			MapPositionOfMouse.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
+			MapPositionOfMouse.y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
+			item_idx = get_floor_item_index_under_mouse_cursor(&item_lvl);
+			
+			if (item_idx != -1 && item_lvl != NULL) {
+				picked_item = &(item_lvl->ItemList[item_idx]);
+				picked_item_pos = &(picked_item->pos);
+				update_virtual_position(&picked_item_vpos, picked_item_pos, Me.pos.z);
+			}
+			
+			// We only take the item directly into our 'hand' i.e. the mouse cursor,
+			// if the item in question can be reached directly and isn't blocked by
+			// some walls or something...
+			
+			if (picked_item) {
+				if (GameConfig.Inventory_Visible == FALSE || MatchItemWithName(picked_item->type, "Cyberbucks")) {
+					/* Handled in check_for_items_to_pickup() */
+					return;
+				}
+				if ((fabsf(picked_item_vpos.x - Me.pos.x) < ITEM_TAKE_DIST) &&
+					(fabsf(picked_item_vpos.y - Me.pos.y) < ITEM_TAKE_DIST) &&
+					DirectLineColldet(Me.pos.x, Me.pos.y, picked_item_vpos.x, picked_item_vpos.y, Me.pos.z, NULL)) {
+					Item_Held_In_Hand = picked_item;
+					Item_Held_In_Hand->currently_held_in_hand = TRUE;
+					return;
+				} else {
+					/* Handled in check_for_items_to_pickup() */
+					return;
+				}
+			}
+			
+			// No item was picked
+			
+			return;
+		}
+
+		//--------------------
+		// Case 1.2: The user left-clicks on the inventory grid
+		//
+		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
+			
+			point Inv_GrabLoc;
+			int Grabbed_InvPos;
+
+			Inv_GrabLoc.x = GetInventorySquare_x(CurPos.x);
+			Inv_GrabLoc.y = GetInventorySquare_y(CurPos.y);
+			Grabbed_InvPos = GetInventoryItemAt(Inv_GrabLoc.x, Inv_GrabLoc.y);
+			
+			if (Grabbed_InvPos == (-1)) {
+				/* No item under the cursor */
+				return;
+			}
+			
+			// At this point we know, that we have just grabbed something from the inventory
+			// So we set, that something should be displayed in the 'hand', and it should of
+			// course be the image of the item grabbed from inventory.
+			if (global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL) {
+				Item_Held_In_Hand = &(Me.Inventory[Grabbed_InvPos]);
+				Item_Held_In_Hand->currently_held_in_hand = TRUE;
+				play_item_sound(Item_Held_In_Hand->type);
+			} else if (global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE) {
+				append_new_game_message("Examining %s: %s.",
+						D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_name),
+						D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_description));
+			}			
+			
+			return;
+		}
+		
+		//--------------------
+		// Case 1.3: The user left-clicks on one of the equipment slots
+		//
+		unsigned int i;
+
+		for (i = 0; i < sizeof(allslots) / sizeof(allslots[0]); i++) {
+			if (MouseCursorIsOnButton(allslots[i].buttonidx, CurPos.x, CurPos.y)) {
+				if (allslots[i].slot->type > 0) {
+					Item_Held_In_Hand = allslots[i].slot;
+					Item_Held_In_Hand->currently_held_in_hand = TRUE;
+					return;
+				}
 			}
 		}
+		
+		// No item was picked
+		return;
+	}
+	
+	//--------------------
+	// Case 2: The user left-clicks somewhere to drop a held item
+	//
+	if (MouseLeftClicked() && (Item_Held_In_Hand != NULL)) {
+		
 		//--------------------
-		// If the cursor is in the weapons rect, i.e. the small box top left, then
-		// the item should be dropped onto the players current weapon slot
+		// Case 2.1: The left-clicks on the inventory grid -> we must see if 
+		//           the item was dropped onto a correct inventory location and 
+		//           should from then on not only no longer be in the players
+		//           hand but also remain at the newly assigned position.
+		//
+		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
+			DropHeldItemToInventory();
+			return;
+		}
+
+		//--------------------
+		// Case 2.2: The user left-clicks in the "UserRect" -> the item should 
+		//           be dropped onto the players current location
+		//
+		if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
+			DropHeldItemToTheFloor();
+			return;
+		}
+
+		//--------------------
+		// Case 2.3: The user left-clicks in the weapon's equipment slot
 		//
 		if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
-			if ((GetHeldItemCode() != (-1)) && (ItemMap[GetHeldItemCode()].item_can_be_installed_in_weapon_slot)) {
+			
+			// Check if the item can be installed in the weapon slot
+			if (!ItemMap[Item_Held_In_Hand->type].item_can_be_installed_in_weapon_slot) {
+				append_new_game_message(_("You cannot fight with this!"));
+				return;
+			}
+			
+			// Check if the user has enough skill to use the weapon
+			if (!HeldItemUsageRequirementsMet()) {
+				append_new_game_message(_("You cannot yet fight with this!"));
+				return;
+			}
+	
+			// Now a weapon is about to be dropped to the weapons rectangle and obviously
+			// the stat requirements for usage are met.  But maybe this is a 2-handed weapon.
+			// In this case we need to do some extra check.  If it isn't a 2-handed weapon,
+			// then we can just go ahead and equip the item
+			if (!ItemMap[Item_Held_In_Hand->type].item_gun_requires_both_hands) {
+				DropHeldItemToSlot(&(Me.weapon_item));
+				return;
+			}
+			
+			// So, this is a 2-handed weapon. If the shield slot is just empty, 
+			// that makes matters a lot simpler, because then we can just drop 
+			// this 2-handed weapon to the weapon slot and all is fine, because 
+			//no conflicts will result...
+			if (Me.shield_item.type == (-1)) {
+				DropHeldItemToSlot(&(Me.weapon_item));
+				return;
+			}
+			
+			// But if there is something in the shield slot too, then we need to be
+			// a bit more sophisticated and either swap the 2-handed item in for just
+			// the shield alone, which then will be held OR we need to refuse completely
+			// because there might be a weapon AND a shield equipped already.
+			if (Me.weapon_item.type == (-1)) {
+				// first of all check requirements again but without the shield :
+				// virtually remove the shield, compute requirements, if 
+				// everything's okay, proceed otherwise we inform the player
+				int shield_item_type = Me.shield_item.type;
+				Me.shield_item.type = (-1);
+				update_all_primary_stats();
 				if (HeldItemUsageRequirementsMet()) {
-					//--------------------
-					// Now a weapon is about to be dropped to the weapons rectangle and obviously
-					// the stat requirements for usage are met.  But maybe this is a 2-handed weapon.
-					// In this case we need to do some extra check.  If it isn't a 2-handed weapon,
-					// then we can just go ahead and equip the item
-					if (ItemMap[GetHeldItemCode()].item_gun_requires_both_hands) {
-						//--------------------
-						// Now if the shield slot is just empty, that makes matters a lot simpler,
-						// cause then we can just drop this 2-handed weapon to the weapon slot and
-						// all is fine, cause no conflicts will result...
-						//
-						if (Me.shield_item.type == (-1)) {
-							Item_Held_In_Hand = (-1);
-							DropHeldItemToSlot(&(Me.weapon_item));
-						} else {
-							//--------------------
-							// But if there is something in the shield slot too, then we need to be
-							// a bit more sophisticated and either swap the 2-handed item in for just
-							// the shield alone, which then will be held OR we need to refuse completely
-							// because there might be a weapon AND a shield equipped already.
-							//
-							if (Me.weapon_item.type == (-1)) {
-								//first of all check requirements again but without the shield
-								//virtually remove the shield, compute requirements, if everything's okay, proceed
-								//otherwise we inform the player
-								EXTERN void update_all_primary_stats(int);
-								int shield_item_type = Me.shield_item.type;
-								Me.shield_item.type = (-1);
-								update_all_primary_stats(0);
-								if (HeldItemUsageRequirementsMet()) {
-									DropHeldItemToSlot(&(Me.weapon_item));
-									Me.shield_item.type = shield_item_type;
-									Item_Held_In_Hand = (-1);
-									MakeHeldFloorItemOutOf(&(Me.shield_item));
-								} else {
-									append_new_game_message(_
-												("Two-handed weapon requirements not met: shield bonus doesn't count."));
-									Me.shield_item.type = shield_item_type;
-								}
-							} else {
-								PlayOnceNeededSoundSample
-								    ("effects/tux_ingame_comments/ThisItemRequiresBothHands.ogg", FALSE,
-								     FALSE);
-							}
-						}
-					} else {
-						Item_Held_In_Hand = (-1);
-						DropHeldItemToSlot(&(Me.weapon_item));
-					}
+					DropHeldItemToSlot(&(Me.weapon_item));
+					Me.shield_item.type = shield_item_type;
+					MakeHeldFloorItemOutOf(&(Me.shield_item));
+				} else {
+					append_new_game_message(
+							_("Two-handed weapon requirements not met: shield bonus doesn't count."));
+					Me.shield_item.type = shield_item_type;
 				}
 			} else {
-				append_new_game_message(_("You cannot fight with this!"));
+				PlayOnceNeededSoundSample("effects/tux_ingame_comments/ThisItemRequiresBothHands.ogg", 
+						FALSE, FALSE);
 			}
 		}
 
+		//--------------------
+		// Case 2.4: The user left-clicks in the shield's equipment slot
+		//
 		if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
-			if ((GetHeldItemCode() != (-1)) && (ItemMap[GetHeldItemCode()].item_can_be_installed_in_shield_slot)) {
-				//DebugPrintf( -1 , "\nItem dropped onto the shield rectangle!" );
-				//DebugPrintf( -1 , "\nGetHeldItemCode: %d." , GetHeldItemCode() );
-				if (HeldItemUsageRequirementsMet()) {
-					//--------------------
-					// Now if there isn't any weapon equipped right now, the matter
-					// is rather simple and we just need to do the normal drop-to-slot-thing.
-					//
-					if (Me.weapon_item.type == (-1)) {
-						Item_Held_In_Hand = (-1);
-						DropHeldItemToSlot(&(Me.shield_item));
-					} else {
+			
+			// Check if the item can be installed in the shield slot
+			if (!ItemMap[Item_Held_In_Hand->type].item_can_be_installed_in_shield_slot) {
+				append_new_game_message(_("You cannot equip this!"));
+				return;
+			}
+			
+			// Check if the user has enough skill to use the shield
+			if (!HeldItemUsageRequirementsMet()) {
+				append_new_game_message(_("You cannot yet equip this!"));
+				return;
+			}
+			
+			// Now if there isn't any weapon equipped right now, the matter
+			// is rather simple and we just need to do the normal drop-to-slot-thing.
+			if (Me.weapon_item.type == (-1)) {
+				DropHeldItemToSlot(&(Me.shield_item));
+				return;
+			}
 
-						//--------------------
-						// A shield, when equipped, will push out any 2-handed weapon currently
-						// equipped from it's weapon slot...
-						//
-						if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
-							EXTERN void update_all_primary_stats(int);
-							int weapon_item_type = Me.weapon_item.type;
-							Me.weapon_item.type = (-1);
-							update_all_primary_stats(0);
-							if (HeldItemUsageRequirementsMet()) {
-								DropHeldItemToSlot(&(Me.shield_item));
-								Me.weapon_item.type = weapon_item_type;
-								Item_Held_In_Hand = (-1);
-								MakeHeldFloorItemOutOf(&(Me.weapon_item));
-							} else {
-								append_new_game_message(_
-											("Shield requirements not met: two-handed weapon bonus doesn't count."));
-								Me.weapon_item.type = weapon_item_type;
-							}
-						} else {
-							Item_Held_In_Hand = (-1);
-							DropHeldItemToSlot(&(Me.shield_item));
-						}
-					}
-				}
+			// A shield, when equipped, will push out any 2-handed weapon currently
+			// equipped from it's weapon slot.... So first check if a 2-handed
+			// weapon is equipped.
+			if (!ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
+				DropHeldItemToSlot(&(Me.shield_item));
+				return;
+			}
+			
+			// There is a 2-handed weapon equipped, so first of all check 
+			// requirements again but without the weapon :
+			// virtually remove the weapon, compute requirements, if 
+			// everything's okay, proceed otherwise we inform the player
+			int weapon_item_type = Me.weapon_item.type;
+			Me.weapon_item.type = (-1);
+			update_all_primary_stats();
+			if (HeldItemUsageRequirementsMet()) {
+				DropHeldItemToSlot(&(Me.shield_item));
+				Me.weapon_item.type = weapon_item_type;
+				MakeHeldFloorItemOutOf(&(Me.weapon_item));
+			} else {
+				append_new_game_message(_
+							("Shield requirements not met: two-handed weapon bonus doesn't count."));
+				Me.weapon_item.type = weapon_item_type;
 			}
 		}
 
-		if (GetHeldItemCode() != -1) {
-			itemspec *tocheck = &ItemMap[GetHeldItemCode()];
-			struct {
-				int btnidx;
-				char propcheck;
-				item *slot;
-			} dropslots[] = { {
-			DRIVE_RECT_BUTTON, tocheck->item_can_be_installed_in_drive_slot, &(Me.drive_item)}, {
-			ARMOUR_RECT_BUTTON, tocheck->item_can_be_installed_in_armour_slot, &(Me.armour_item)}, {
-			HELMET_RECT_BUTTON, tocheck->item_can_be_installed_in_special_slot, &(Me.special_item)},};
-			int i;
-			for (i = 0; i < sizeof(dropslots) / sizeof(dropslots[0]); i++) {
-				if (MouseCursorIsOnButton(dropslots[i].btnidx, CurPos.x, CurPos.y) && dropslots[i].propcheck
-				    && HeldItemUsageRequirementsMet()) {
-					Item_Held_In_Hand = -1;
-					DropHeldItemToSlot(dropslots[i].slot);
-					break;
-				}
+		//--------------------
+		// Case 2.5: The user left-clicks in an other equipment slot
+		//
+		itemspec *tocheck = &ItemMap[Item_Held_In_Hand->type];
+		struct {
+			int btnidx;
+			char propcheck;
+			item *slot;
+		} dropslots[] = { {
+		DRIVE_RECT_BUTTON, tocheck->item_can_be_installed_in_drive_slot, &(Me.drive_item)}, {
+		ARMOUR_RECT_BUTTON, tocheck->item_can_be_installed_in_armour_slot, &(Me.armour_item)}, {
+		HELMET_RECT_BUTTON, tocheck->item_can_be_installed_in_special_slot, &(Me.special_item)},};
+		int i;
+		for (i = 0; i < sizeof(dropslots) / sizeof(dropslots[0]); i++) {
+			if (MouseCursorIsOnButton(dropslots[i].btnidx, CurPos.x, CurPos.y) && dropslots[i].propcheck
+			    && HeldItemUsageRequirementsMet()) {
+				DropHeldItemToSlot(dropslots[i].slot);
+				return;
 			}
 		}
 
-	}			// if release things...
-
- NoMoreGrabbing:
-	if (!GameConfig.Inventory_Visible)
+		//--------------------
+		// The left-click did not lead to anything useful
+		
 		return;
+	}
 
 	//--------------------
-	// Maybe the user is just pressing the RIGHT mouse button inside the inventory recatangle
-	// which would mean for us that he is applying the item under the mouse button
+	// There was no left-click, so we will now analyze right-click, but a right
+	// click is no-sense (here) if the Inventory screen is hidden
 	//
+	if (!GameConfig.Inventory_Visible) {
+		return;
+	}
 
+	//--------------------
+	// Case 3: The user is right-clicking inside the inventory rectangle which 
+	// would mean for us that he is applying the item under the mouse button
+	//
 	if (MouseRightClicked()) {
 
 		if (Me.readied_skill == get_program_index_with_name("Repair equipment")) {
@@ -2288,6 +2303,9 @@ void HandleInventoryScreen(void)
 			// repair the item currently under the mouse cursor.
 			//
 			if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
+				point Inv_GrabLoc;
+				int Grabbed_InvPos;
+				
 				Inv_GrabLoc.x = GetInventorySquare_x(CurPos.x);
 				Inv_GrabLoc.y = GetInventorySquare_y(CurPos.y);
 
@@ -2317,6 +2335,9 @@ void HandleInventoryScreen(void)
 			}
 		} else {
 			if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
+				point Inv_GrabLoc;
+				int Grabbed_InvPos;
+
 				Inv_GrabLoc.x = GetInventorySquare_x(CurPos.x);
 				Inv_GrabLoc.y = GetInventorySquare_y(CurPos.y);
 

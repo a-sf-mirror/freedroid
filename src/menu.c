@@ -2289,7 +2289,7 @@ static int do_savegame_selection_and_act(int action)
 		if (LoadGame() == OK) {
 			GetEventTriggers("freedroid.events");
 			GetQuestList("freedroid.quests");
-			Item_Held_In_Hand = (-1);
+			Item_Held_In_Hand = NULL;
 			rtn = TRUE;
 		} else {
 			rtn = FALSE;
