@@ -35,14 +35,22 @@ EveryTime LuaCode={
 	else end
 
 	if (has_quest("Bender's problem")) then 
-		if (done_quest("Bender's problem")) then next(13)
-		else
+		if (not done_quest("Bender's problem")) then 
 			hide(1, 2, 3, 4, 6, 7, 8)
 			if (has_item_backpack("Brain Enlargement Pills Antidote") > 0) then
 				hide(5, 10, 11, 12, 50)	show(9)
 			else 
 				hide(9)	show(12)
 			end
+		else
+			if (has_cookie("tux_has_joined_guard" and (not has_cookie("bender_congrats"))) then
+				npc_says(_"Congratulations on getting into the Red Guard! I voted for you and that was what got you in! I said we'd be buddies, didn't I? Want to stand guard at the gate with me? It gets boring with just that 614 to talk to. I could tell you all the secrets of the Red Guard.")
+				add_cookie("bender_congrats")
+				show(14)
+			else
+				next(13)
+			end
+
 		end
 	else end
 	show(99)
@@ -173,6 +181,43 @@ Nr=13  Text=_"How are you doing?"
 LuaCode={ 
 	npc_says(_"Much better. I'm cured. Thanks again man! I'll vote for you if you want into the city guard! You're a good guy, man!")
 }
+----------------------------------------------------------------------
+
+Nr=14  Text=_"What secrets?  Like a secret handshake?"
+LuaCode={ 
+	hide(14)
+	npc_says(_"Nah.  But that is an awesome idea.")
+	npc_says(_"Let's work it out -- just be sure not to let the Doc in on it.")
+	show(15)
+}
+----------------------------------------------------------------------
+
+Nr=15 Text=_"Do you actually know any *real* secrets?"
+LuaCode={
+	hide(15)
+	npc_says(_"Yeah, sure.")
+	npc_says(_"I know the shop keeper Lily's password.")
+	npc_says(_"I sometimes login to her account and mess with it for the LULZ.")
+	npc_says(_"It is the end of the world, and I am so incredibly bored.")
+	show(16,17)
+}
+----------------------------------------------------------------------
+
+Nr=16 Text=_"Hey, could you let tell me Lily's password?"
+LuaCode={
+	npc_says(_"Sure, but we will have to shake on it.")
+	tux_says(_"OK...")
+	npc_says(_"It is an asterisk repeated four times.")
+	tux_says(_"Wow.")
+	has_cookie("know_lily_password")
+	hide(16)
+}
+----------------------------------------------------------------------
+Nr=17 Text=_"What are you doing now?"
+LuaCode={
+	npc_says(_"I'm killing time.  Guard work is very boring.")
+}
+
 ----------------------------------------------------------------------
 
 Nr=50  Text=_"Yeah, it was a totally idiotic idea to take those pills."
