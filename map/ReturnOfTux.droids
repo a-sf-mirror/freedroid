@@ -216,10 +216,9 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 139
 Allowed Type of Random Droid for this level: 247
 
-SForce: T=329 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker1StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Stalker" attack_run_only_when_direct_line="no"
-SForce: T=302 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker2StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Stalker" attack_run_only_when_direct_line="no"
-SForce: T=249 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker3StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Stalker" attack_run_only_when_direct_line="no"
-SForce: T=247 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker4StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"Stalker" attack_run_only_when_direct_line="no"
+SForce: T=329 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker1StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"329" attack_run_only_when_direct_line="no"
+SForce: T=302 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker2StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"302" attack_run_only_when_direct_line="no"
+SForce: T=249 Fixed=0 Marker=1009 Friendly=0 StartLabel="Level9Stalker3StartGameSquare" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"249" attack_run_only_when_direct_line="no"
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
