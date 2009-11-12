@@ -175,11 +175,6 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			sprintf(linebuf, _("Dam: %d-%d "), CurItem->damage, CurItem->damage_modifier + CurItem->damage);
 		strcat(ItemDescText, linebuf);
 	}
-
-	if (ItemMap[CurItem->type].item_gun_ammo_clip_size) {
-		sprintf(linebuf, _("Ammo : %d of %d\n"), CurItem->ammo_clip, ItemMap[CurItem->type].item_gun_ammo_clip_size);
-		strcat(ItemDescText, linebuf);
-	}
 	//--------------------
 	// If this item has a multiplicity, we print it out
 	//
@@ -212,6 +207,10 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 		strcat(ItemDescText, _(" Indestructible\n"));
 	};
 
+	if (ItemMap[CurItem->type].item_gun_ammo_clip_size) {
+		sprintf(linebuf, _("Ammo : %d of %d\n"), CurItem->ammo_clip, ItemMap[CurItem->type].item_gun_ammo_clip_size);
+		strcat(ItemDescText, linebuf);
+	}
 	// --------------------
 	// If this item has some strength or dex or magic requirements, we say so
 	//
