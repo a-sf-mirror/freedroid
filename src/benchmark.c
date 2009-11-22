@@ -31,7 +31,6 @@
 #include "global.h"
 #include "proto.h"
 
-#include "valgrind/callgrind.h"
 static int start_stamp;
 static int stop_stamp;
 
@@ -56,7 +55,6 @@ static void text_bench()
 	// Display the string many times	
 	int nb = 10000;
 
-	CALLGRIND_START_INSTRUMENTATION;
 	timer_start();
 	while (nb--) {
 		PutString(Screen, 0, 0, str);
@@ -64,7 +62,6 @@ static void text_bench()
 
 	our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 	timer_stop();
-	CALLGRIND_STOP_INSTRUMENTATION;
 }
 
 void benchmark()
