@@ -193,24 +193,23 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 		c = '.';
 	if ((c != ' ') && (c != '\n')) {
 		if (use_open_gl) {
-			//--------------------
-			// We need to simulate the clipping is would be done by SDL.
-			// We simply do "all or none" clipping for left and right, but for the top/bottom of the screen,
-			// we use GL to do proper clipping in order not to see a whole line disappear at once.
-
-			// glClipPlane simply does a little math.
-
 			SDL_GetClipRect(Surface, &clipping_rect);
 
-#ifdef HAVE_LIBGL
-			GLdouble eqntop[4] = { 0.0, 1.0, 0.0, -clipping_rect.y };
-			GLdouble eqnbottom[4] = { 0.0, -1.0, 0.0, clipping_rect.y + clipping_rect.h };
-			glClipPlane(GL_CLIP_PLANE0, eqntop);
-			glEnable(GL_CLIP_PLANE0);
-			glClipPlane(GL_CLIP_PLANE1, eqnbottom);
-			glEnable(GL_CLIP_PLANE1);
-#endif
 			if ((dest.x < clipping_rect.x + clipping_rect.w) && (dest.x >= clipping_rect.x)) {
+#ifdef HAVE_LIBGL
+				//--------------------
+				// We need to simulate the clipping as would be done by SDL.
+				// We simply do "all or none" clipping for left and right, but for the top/bottom of the screen,
+				// we use GL to do proper clipping in order not to see a whole line disappear at once.
+
+				GLdouble eqntop[4] = { 0.0, 1.0, 0.0, -clipping_rect.y };
+				GLdouble eqnbottom[4] = { 0.0, -1.0, 0.0, clipping_rect.y + clipping_rect.h };
+				glClipPlane(GL_CLIP_PLANE0, eqntop);
+				glEnable(GL_CLIP_PLANE0);
+				glClipPlane(GL_CLIP_PLANE1, eqnbottom);
+				glEnable(GL_CLIP_PLANE1);
+#endif
+
 				if (!Font->char_iso_image[c].texture_has_been_created) {
 					// If the character is not ready to be printed on screen
 					if (Font->char_iso_image[c].surface == NULL) {
