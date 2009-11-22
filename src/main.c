@@ -171,6 +171,12 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
 	InitFreedroid(argc, argv);	// Initialisation of global variables and arrays
 
+	if (do_benchmark) {
+		/* Benchmark mode? Do not run the regular game from here. */
+		benchmark();
+		Terminate(0);
+	}
+
 	while (!QuitProgram) {
 		StartupMenu();
 		input_handle();

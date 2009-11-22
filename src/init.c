@@ -1255,13 +1255,14 @@ void ParseCommandLine(int argc, char *const argv[])
 		{"window", 0, 0, 'w'},
 		{"fullscreen", 0, 0, 'f'},
 		{"resolution", 1, 0, 'r'},
+		{"benchmark", 1, 0, 'b'},
 		{0, 0, 0, 0}
 	};
 
 	command_line_override_for_screen_resolution = FALSE;
 
 	while (1) {
-		c = getopt_long(argc, argv, "vonqst:h?d::r:wf", long_options, NULL);
+		c = getopt_long(argc, argv, "vonqsb:h?d::r:wf", long_options, NULL);
 		if (c == -1)
 			break;
 
@@ -1339,7 +1340,14 @@ void ParseCommandLine(int argc, char *const argv[])
 				}
 			}
 			break;
+		case 'b':
+			if (!optarg) {
+				fprintf(stderr, "Please specify what to benchmark.\n");
+				exit(1);
+			}
 
+			do_benchmark = strdup(optarg);
+			break;
 		case 'f':
 			GameConfig.fullscreen_on = TRUE;
 			break;

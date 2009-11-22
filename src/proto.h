@@ -773,4 +773,7 @@ int animate_teleporter(level* obstacle_lvl, int obstacle_idx);
 int animate_refresh(level* obstacle_lvl, int obstacle_idx);
 int animate_autogun(level* obstacle_lvl, int obstacle_idx);
 
+// benchmark.c
+void benchmark(void);
+
 #endif

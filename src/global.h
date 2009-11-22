@@ -353,4 +353,12 @@ enum {
 #endif
 EXTERN struct auto_string *savestruct_autostr;
 
+#undef EXTERN
+#ifdef _benchmark_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN char *do_benchmark;
+
 #endif				// _global_h
