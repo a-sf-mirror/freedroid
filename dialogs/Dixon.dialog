@@ -352,7 +352,7 @@ LuaCode={
 	npc_says(_"All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds.")
 	npc_says(_"Thanks to the autotools we can start building instead of just trying to repair the damage.", "NO_WAIT")
 	npc_says(_"Once this is sick war is over, I will make sure you get keys to the city Linarian.")
-	hide(43) show(1)
+	hide(43)
 }
 ----------------------------------------------------------------------
 
