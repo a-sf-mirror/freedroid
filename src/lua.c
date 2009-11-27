@@ -623,6 +623,12 @@ static int lua_chat_takeover(lua_State * L)
 	return 1;
 }
 
+static int lua_chat_bot_name(lua_State * L)
+{
+	lua_pushstring(L, Druidmap[chat_control_chat_droid->type].druidname);
+	return 1;
+}
+
 luaL_reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -780,6 +786,8 @@ luaL_reg lfuncs[] = {
 	,
 
 	{"npc_dead", lua_event_npc_dead},
+	
+	{"bot_name", lua_chat_bot_name},
 
 	{NULL, NULL}
 	,
