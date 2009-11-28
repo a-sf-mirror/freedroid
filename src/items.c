@@ -1848,7 +1848,6 @@ void ShowQuickInventory(void)
  */
 int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 {
-	Level PlayerLevel = curShip.AllLevels[Me.pos.z];
 	gps mouse_pos;
 	int i;
 
@@ -1857,12 +1856,19 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 	// we use the item slot rectangles from the item texts.
 	//
 	if (XPressed()) {
-		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-			if (PlayerLevel->ItemList[i].type == (-1))
-				continue;
+		struct visible_level *vis_lvl, *n;
+		
+		BROWSE_VISIBLE_LEVELS(vis_lvl, n) {	
+			level *lvl = vis_lvl->lvl_pointer;
 
-			if (MouseCursorIsInRect(&(PlayerLevel->ItemList[i].text_slot_rectangle), GetMousePos_x(), GetMousePos_y())) {
-				return (i);
+			for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+				if (lvl->ItemList[i].type == (-1))
+					continue;
+	
+				if (MouseCursorIsInRect(&(lvl->ItemList[i].text_slot_rectangle), GetMousePos_x(), GetMousePos_y())) {
+					*item_lvl = lvl;
+					return (i);
+				}
 			}
 		}
 	}

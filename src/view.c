@@ -1795,98 +1795,123 @@ void show_obstacle_labels(int mask)
 void blit_all_item_slots(void)
 {
 	int i;
-	level *item_level = curShip.AllLevels[Me.pos.z];
+	struct visible_level *vis_lvl, *n;
+	
+	BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
+		
+		level *item_level = vis_lvl->lvl_pointer;
 
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		//--------------------
-		// We don't work with unused item slots...
-		//
-		if (item_level->ItemList[i].type == (-1))
-			continue;
-
-		//--------------------
-		// Now we check if the cursor is on that slot, because then the
-		// background of the slot will be highlighted...
-		//
-		if (MouseCursorIsInRect(&(item_level->ItemList[i].text_slot_rectangle), GetMousePos_x(), GetMousePos_y()))
-			our_SDL_fill_rect_wrapper(Screen, &(item_level->ItemList[i].text_slot_rectangle),
-						  SDL_MapRGB(Screen->format, 0x000, 0x000, 0x099));
-		else {
-			if (use_open_gl) {
-				if ((item_level->ItemList[i].text_slot_rectangle.x + item_level->ItemList[i].text_slot_rectangle.w <= 0) ||
-				    (item_level->ItemList[i].text_slot_rectangle.y + item_level->ItemList[i].text_slot_rectangle.h <= 0) ||
-				    (item_level->ItemList[i].text_slot_rectangle.x >= GameConfig.screen_width) ||
-				    (item_level->ItemList[i].text_slot_rectangle.y >= GameConfig.screen_height))
-					continue;
-				GL_HighlightRectangle(Screen, &(item_level->ItemList[i].text_slot_rectangle), 0, 0, 0,
-						      BACKGROUND_TEXT_RECT_ALPHA);
-			} else {
-				SDL_Rect our_rect = item_level->ItemList[i].text_slot_rectangle;	//we need that because SDL_FillRect modifies the dstrect
-				our_SDL_fill_rect_wrapper(Screen, &(our_rect), SDL_MapRGB(Screen->format, 0x000, 0x000, 0x000));
+		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+			//--------------------
+			// We don't work with unused item slots...
+			//
+			if (item_level->ItemList[i].type == (-1))
+				continue;
+	
+			//--------------------
+			// Now we check if the cursor is on that slot, because then the
+			// background of the slot will be highlighted...
+			//
+			if (MouseCursorIsInRect(&(item_level->ItemList[i].text_slot_rectangle), GetMousePos_x(), GetMousePos_y()))
+				our_SDL_fill_rect_wrapper(Screen, &(item_level->ItemList[i].text_slot_rectangle),
+							  SDL_MapRGB(Screen->format, 0x000, 0x000, 0x099));
+			else {
+				if (use_open_gl) {
+					if ((item_level->ItemList[i].text_slot_rectangle.x + item_level->ItemList[i].text_slot_rectangle.w <= 0) ||
+						(item_level->ItemList[i].text_slot_rectangle.y + item_level->ItemList[i].text_slot_rectangle.h <= 0) ||
+						(item_level->ItemList[i].text_slot_rectangle.x >= GameConfig.screen_width) ||
+						(item_level->ItemList[i].text_slot_rectangle.y >= GameConfig.screen_height))
+						continue;
+					GL_HighlightRectangle(Screen, &(item_level->ItemList[i].text_slot_rectangle), 0, 0, 0,
+								  BACKGROUND_TEXT_RECT_ALPHA);
+				} else {
+					SDL_Rect our_rect = item_level->ItemList[i].text_slot_rectangle;	//we need that because SDL_FillRect modifies the dstrect
+					our_SDL_fill_rect_wrapper(Screen, &(our_rect), SDL_MapRGB(Screen->format, 0x000, 0x000, 0x000));
+				}
 			}
+	
+			//--------------------
+			// Finally it's time to insert the font into the item slot.  We
+			// use the item name, but currently font color is not adapted for
+			// special item properties...
+			//
+			PutStringFont(Screen, FPS_Display_BFont, item_level->ItemList[i].text_slot_rectangle.x,
+					  item_level->ItemList[i].text_slot_rectangle.y, D_(ItemMap[item_level->ItemList[i].type].item_name));
+	
 		}
-
-		//--------------------
-		// Finally it's time to insert the font into the item slot.  We
-		// use the item name, but currently font color is not adapted for
-		// special item properties...
-		//
-		PutStringFont(Screen, FPS_Display_BFont, item_level->ItemList[i].text_slot_rectangle.x,
-			      item_level->ItemList[i].text_slot_rectangle.y, D_(ItemMap[item_level->ItemList[i].type].item_name));
-
 	}
-
 };				// void blit_all_item_slots ( void )
 
 /**
  *
  *
  */
-int item_slot_position_blocked(item * given_item, int last_slot_to_check)
+int item_slot_position_blocked(item * given_item, int item_slot)
 {
 	int i;
 	item *cur_item;
-	level *item_level = curShip.AllLevels[Me.pos.z];
+	struct visible_level *vis_lvl, *n;
+	int item_level_reached = FALSE;
+	int last_slot_to_check;
+	
+	// We will browse all visible levels, until we reach the item's level.
+	// For each browsed level, we check against all items.
+	// But, on the item's level, we stop when the current item is reached.
+	
+	BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
+		
+		level *item_level = vis_lvl->lvl_pointer;
 
-	for (i = 0; i < last_slot_to_check + 1; i++) {
-		cur_item = &(item_level->ItemList[i]);
-
-		if (cur_item->type == (-1))
-			continue;
-
-		if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
-					given_item->text_slot_rectangle.x, given_item->text_slot_rectangle.y)) {
-			return (TRUE);
+		if (item_level->levelnum == given_item->pos.z) {
+			item_level_reached = TRUE;
+			last_slot_to_check = item_slot;
+		} else {
+			last_slot_to_check = MAX_ITEMS_PER_LEVEL;
 		}
-		if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
-					given_item->text_slot_rectangle.x,
-					given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
-			return (TRUE);
+		
+		for (i = 0; i < last_slot_to_check + 1; i++) {
+			cur_item = &(item_level->ItemList[i]);
+	
+			if (cur_item->type == (-1))
+				continue;
+	
+			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
+						given_item->text_slot_rectangle.x, given_item->text_slot_rectangle.y)) {
+				return (TRUE);
+			}
+			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
+						given_item->text_slot_rectangle.x,
+						given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
+				return (TRUE);
+			}
+			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
+						given_item->text_slot_rectangle.x +
+						given_item->text_slot_rectangle.w, given_item->text_slot_rectangle.y)) {
+				return (TRUE);
+			}
+			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
+						given_item->text_slot_rectangle.x +
+						given_item->text_slot_rectangle.w,
+						given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
+				return (TRUE);
+			}
+			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
+						given_item->text_slot_rectangle.x +
+						given_item->text_slot_rectangle.w / 2, given_item->text_slot_rectangle.y)) {
+				return (TRUE);
+			}
+			if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
+						given_item->text_slot_rectangle.x +
+						given_item->text_slot_rectangle.w / 2,
+						given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
+				return (TRUE);
+			}
 		}
-		if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
-					given_item->text_slot_rectangle.x +
-					given_item->text_slot_rectangle.w, given_item->text_slot_rectangle.y)) {
-			return (TRUE);
-		}
-		if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
-					given_item->text_slot_rectangle.x +
-					given_item->text_slot_rectangle.w,
-					given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
-			return (TRUE);
-		}
-		if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
-					given_item->text_slot_rectangle.x +
-					given_item->text_slot_rectangle.w / 2, given_item->text_slot_rectangle.y)) {
-			return (TRUE);
-		}
-		if (MouseCursorIsInRect(&(cur_item->text_slot_rectangle),
-					given_item->text_slot_rectangle.x +
-					given_item->text_slot_rectangle.w / 2,
-					given_item->text_slot_rectangle.y + FontHeight(FPS_Display_BFont))) {
-			return (TRUE);
-		}
+		
+		if (item_level_reached) 
+			break;
 	}
-
+	
 	return (FALSE);
 };				// void item_slot_position_blocked ( int x , int y , int last_slot_to_check )
 
@@ -1904,50 +1929,64 @@ int item_slot_position_blocked(item * given_item, int last_slot_to_check)
 void update_item_text_slot_positions(void)
 {
 	int i;
-	level *item_level = curShip.AllLevels[Me.pos.z];
 	BFont_Info *BFont_to_use = FPS_Display_BFont;
 	item *cur_item;
-
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		cur_item = &(item_level->ItemList[i]);
-
-		if (cur_item->type == (-1))
-			continue;
-
-		//--------------------
-		// We try to use a text rectangle that is close to the
-		// actual item...
-		//
-		cur_item->text_slot_rectangle.h = FontHeight(BFont_to_use);
-		cur_item->text_slot_rectangle.w = TextWidthFont(BFont_to_use, D_(ItemMap[cur_item->type].item_name));
-		cur_item->text_slot_rectangle.x =
-		    translate_map_point_to_screen_pixel_x(cur_item->pos.x, cur_item->pos.y) - cur_item->text_slot_rectangle.w / 2;
-		cur_item->text_slot_rectangle.y =
-		    translate_map_point_to_screen_pixel_y(cur_item->pos.x, cur_item->pos.y) - cur_item->text_slot_rectangle.h / 2;
-
-		//--------------------
-		// But maybe the situation is already very crowded, i.e. maybe there are
-		// already (a lot of) items there with slot positions conflicting...
-		// Well, what to do?  If there is already an item there, we try to escape,
-		// that's it.
-		//
-		if ((item_slot_position_blocked(cur_item, i - 1))) {
-			while (item_slot_position_blocked(cur_item, i - 1)) {
-				if (i % 2)
-					cur_item->text_slot_rectangle.y += 2;
-				else
-					cur_item->text_slot_rectangle.y -= 2;
-
-				//--------------------
-				// Maybe just a hundred left or right would also do...  but if it
-				// doesn't, we'll undo the changes made.
-				//
-				cur_item->text_slot_rectangle.x += 50;
-				if (item_slot_position_blocked(cur_item, i - 1))
-					cur_item->text_slot_rectangle.x -= 50;
-				cur_item->text_slot_rectangle.x -= 50;
-				if (item_slot_position_blocked(cur_item, i - 1))
-					cur_item->text_slot_rectangle.x += 50;
+	struct visible_level *vis_lvl, *n;
+	
+	BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
+		
+		level *item_level = vis_lvl->lvl_pointer;
+	
+		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+			cur_item = &(item_level->ItemList[i]);
+	
+			if (cur_item->type == (-1))
+				continue;
+	
+			//--------------------
+			// We try to use a text rectangle that is close to the
+			// actual item...
+			//
+			update_virtual_position(&cur_item->virt_pos, &cur_item->pos, Me.pos.z);
+			cur_item->text_slot_rectangle.h = FontHeight(BFont_to_use);
+			cur_item->text_slot_rectangle.w = TextWidthFont(BFont_to_use, D_(ItemMap[cur_item->type].item_name));
+			cur_item->text_slot_rectangle.x =
+				translate_map_point_to_screen_pixel_x(cur_item->virt_pos.x, cur_item->virt_pos.y) - cur_item->text_slot_rectangle.w / 2;
+			cur_item->text_slot_rectangle.y =
+				translate_map_point_to_screen_pixel_y(cur_item->virt_pos.x, cur_item->virt_pos.y) - cur_item->text_slot_rectangle.h / 2;
+	
+			//--------------------
+			// But maybe the situation is already very crowded, i.e. maybe there are
+			// already (a lot of) items there with slot positions conflicting...
+			// Well, what to do?  If there is already an item there, we try to escape,
+			// that's it.
+			// We will however only try a given amount of times, to protect against
+			// an "infinite" loop.
+			if ((item_slot_position_blocked(cur_item, i - 1))) {
+				int max_tries = 10;
+				while (max_tries >= 0) {
+					if (i % 2)
+						cur_item->text_slot_rectangle.y += cur_item->text_slot_rectangle.h + 2;
+					else
+						cur_item->text_slot_rectangle.y -= cur_item->text_slot_rectangle.h + 2;
+	
+					//--------------------
+					// Maybe just a hundred left or right would also do...  but if it
+					// doesn't, we'll undo the changes made.
+					//
+					Sint16 tmp = cur_item->text_slot_rectangle.x;
+					
+					cur_item->text_slot_rectangle.x += 100;
+					if (!item_slot_position_blocked(cur_item, i - 1))
+						break;
+					
+					cur_item->text_slot_rectangle.x = tmp - 100;
+					if (!item_slot_position_blocked(cur_item, i - 1))
+						break;
+					
+					cur_item->text_slot_rectangle.x = tmp;
+					max_tries--;
+				}
 			}
 		}
 	}

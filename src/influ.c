@@ -2113,8 +2113,8 @@ void check_for_items_to_pickup(level *item_lvl, int item_index)
 		
 		update_virtual_position(&item_vpos, &item_lvl->ItemList[item_index].pos, Me.pos.z);
 		
-		// We only take the item directly into out 'hand' i.e. the mouse cursor,
 		//--------------------
+		// We only take the item directly into our 'hand' i.e. the mouse cursor,
 		// if the item in question can be reached directly and isn't blocked by
 		// some walls or something...
 		//
