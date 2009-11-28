@@ -264,7 +264,7 @@ Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
 	sprintf(TextChunk, _("\nArmament : %s\n"), item_name);
 	strcat(InfoText, TextChunk);
 	if (Me.TakeoverSuccesses[droidtype]+Me.TakeoverFailures[droidtype]) {
-		sprintf(TextChunk, _("\nTakeover Success : %2d\%\n"), 
+		sprintf(TextChunk, _("\nTakeover Success : %2d%%\n"),
         		((100*Me.TakeoverSuccesses[droidtype])/ (Me.TakeoverSuccesses[droidtype]+Me.TakeoverFailures[droidtype])) );
 		strcat(InfoText, TextChunk);
 	}
