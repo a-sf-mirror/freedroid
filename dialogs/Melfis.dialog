@@ -71,7 +71,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I need to go now.")
+Nr=99  Text=_"I need to go now."
 LuaCode={
 	npc_says(_" . . .")
 	end_dialog()

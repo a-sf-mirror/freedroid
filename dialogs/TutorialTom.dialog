@@ -275,7 +275,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"Tell me about health drinks.")
+Nr=22  Text=_"Tell me about health drinks."
 LuaCode={
 	npc_says(_"Man has practiced medicine in one form or another for hundreds of years.")
 	npc_says(_"Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health.")
@@ -389,7 +389,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29  Text=_"I'm ready to move on.")
+Nr=29  Text=_"I'm ready to move on."
 LuaCode={
 	if (has_cookie("has_gun")) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
