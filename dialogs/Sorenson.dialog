@@ -120,7 +120,7 @@ LuaCode={
 
 Nr=52  Text=_"Um... Your voice sounds strange. Is everything fine?"
 LuaCode={
-	npc_says(_"519n 7h3 (0n7r4(7!!!!")
+	npc_says(_"519n 7h3 c0n7r4c7!!!!")
 	hide(52) show(53)
 }
 ----------------------------------------------------------------------
