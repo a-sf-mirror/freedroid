@@ -37,7 +37,7 @@ EveryTime LuaCode={
 
 	if (has_quest("Bender's problem")) then
 		if (not done_quest("Bender's problem")) then 
-			show(2, 12)
+			show(2)
 		else end
 	else end
 
