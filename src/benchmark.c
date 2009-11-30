@@ -64,6 +64,14 @@ static void text_bench()
 	timer_stop();
 }
 
+/* Dialog validator (not an actual benchmark) */
+static void dialog_test()
+{
+	timer_start();
+	validate_dialogs();
+	timer_stop();
+}
+
 void benchmark()
 {
 	struct {
@@ -71,7 +79,7 @@ void benchmark()
 		void (*func)();
 	} benchs[] = {
 			{ "text", text_bench },
-			{ "dialog", validate_dialogs },
+			{ "dialog", dialog_test },
 	};
 
 	int i;
