@@ -54,6 +54,7 @@ int teleporter_square_below_mouse_cursor(char *ItemDescText);
 // lua.c
 void init_lua(void);
 void run_lua(const char *code);
+void load_lua(const char *code);
 
 // influ.c 
 float calc_euklid_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);
@@ -746,6 +747,7 @@ void DeleteCookie(const char *);
 int ResolveDialogSectionToChatFlagsIndex(const char *SectionName);
 void run_subdialog(const char *);
 void GiveSubtitleNSample(const char *, const char *, enemy *, int);
+void validate_dialogs(void);
 
 // leveleditor_input.c
 void leveleditor_process_input(void);

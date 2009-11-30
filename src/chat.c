@@ -1089,4 +1089,57 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 
 };				// void ChatWithFriendlyDroid( int Enum );
 
+/**
+ * Map the internal index to the dialog filename. This is used to iterate over the dialogs FreedroidRPG might load.
+ */
+static const char *get_dialog_basename(int index)
+{
+	if (index >= sizeof(dialog_name_to_index) / sizeof(dialog_name_to_index[0]))
+		return NULL;
+
+	return dialog_name_to_index[index].name;
+}
+
+
+/**
+ * Validate dialogs syntax and Lua code 
+ */
+void validate_dialogs()
+{
+	int i = 0;
+	int j;
+	const char *basename;
+	char filename[1024];
+	char fpath[2048];
+	
+	while ((basename = get_dialog_basename(i++)) != NULL) {
+		printf("Testing dialog \"%s\"...\n", basename);
+		sprintf(filename, "%s.dialog", basename);
+
+		find_file(filename, DIALOG_DIR, fpath, 0);
+
+		LoadDialog(fpath);
+
+		if (chat_initialization_code) {
+			printf("\tinit code\n");
+			load_lua(chat_initialization_code);
+		}
+
+
+		if (chat_startup_code) {
+			printf("\tstartup code\n");
+			load_lua(chat_startup_code);
+		}
+
+		for (j = 0; j < MAX_DIALOGUE_OPTIONS_IN_ROSTER; j++) {
+			if (ChatRoster[j].lua_code) {
+				printf("\tnode %d\n", j);
+				load_lua(ChatRoster[j].lua_code);
+			}
+		}
+
+		printf("... dialog OK\n");
+	}
+}
+
 #undef _chat_c

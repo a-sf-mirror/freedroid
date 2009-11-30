@@ -71,6 +71,7 @@ void benchmark()
 		void (*func)();
 	} benchs[] = {
 			{ "text", text_bench },
+			{ "dialog", validate_dialogs },
 	};
 
 	int i;
