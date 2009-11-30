@@ -55,7 +55,7 @@ struct {
 	"614_cryo", PERSON_614_CRYO}, {
 	"Bender", PERSON_BENDER}, {
 	"Benjamin", PERSON_BENJAMIN}, {
-	"Boris", PERSON_BORIS}, {
+//	"Boris", PERSON_BORIS}, {
 	"Bruce", PERSON_BRUCE}, {
 	"Butch", PERSON_BUTCH}, {
 	"Chandra", PERSON_CHA}, {
@@ -70,10 +70,10 @@ struct {
 	"Kevin", PERSON_KEVIN}, {
 	"KevinGuard", PERSON_KEVINS_GUARD}, {
 	"Koan", PERSON_KOAN}, {
-	"Lina", PERSON_LINA}, {
+//	"Lina", PERSON_LINA}, {
 	"Lukas", PERSON_LUKAS}, {
 	"MER", PERSON_MER}, {
-	"MSCD", PERSON_MSCD}, {
+//	"MSCD", PERSON_MSCD}, {
 	"MSFacilityGateGuardLeader", PERSON_MS_FACILITY_GATE_GUARD_LEADER}, {
 	"Melfis", PERSON_MELFIS}, {
 	"Michelangelo", PERSON_MICHELANGELO}, {
@@ -82,7 +82,7 @@ struct {
 	"RMS", PERSON_RMS}, {
 	"SACD", PERSON_SACD}, {
 	"SADD", PERSON_SADD}, {
-	"Serge", PERSON_SERGE}, {
+//	"Serge", PERSON_SERGE}, {
 	"Skippy", PERSON_SKIPPY}, {
 	"Sorenson", PERSON_SORENSON}, {
 	"Spencer", PERSON_SPENCER}, {
@@ -93,8 +93,8 @@ struct {
 	"Tania", PERSON_TANIA}, {
 	"TestDroid", PERSON_TEST_DROID}, {
 	"TutorialTom", PERSON_TUTORIALTOM}, {
-	"Tybalt", PERSON_TYBALT}, {
-"subdlg_", PERSON_SUBDIALOG_DUMMY},};
+	"Tybalt", PERSON_TYBALT},
+};
 
 char *chat_initialization_code;	//first time with a character-code
 char *chat_startup_code;	//every time we start this dialog-code
