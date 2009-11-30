@@ -72,6 +72,22 @@ static void dialog_test()
 	timer_stop();
 }
 
+/* LoadShip (level loading) performance test */
+static void loadship_bench()
+{
+	int loop = 10;
+
+	// Find a ship file to load
+	char fp[2048];
+	find_file("freedroid.levels", MAP_DIR, fp, 0);
+
+	// Load it many times
+	timer_start();
+	while (loop--) {
+		LoadShip(fp);
+	}
+}
+
 void benchmark()
 {
 	struct {
@@ -80,24 +96,27 @@ void benchmark()
 	} benchs[] = {
 			{ "text", text_bench },
 			{ "dialog", dialog_test },
+			{ "loadship", loadship_bench },
 	};
 
 	int i;
+	char str[1024];
 
 	ClearGraphMem();
-	PutString(Screen, 10, 100, "Benchmarking...");
+	sprintf(str, "Testing \"%s\"...", do_benchmark);
+	PutString(Screen, 10, 100, str);
 	our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 
 
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
 		if (!strcmp(do_benchmark, benchs[i].name)) {
 			benchs[i].func();
-			printf("Running benchmark %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
+			printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
 			return;
 		}
 	}
 	
-	fprintf(stderr, "Unrecognized benchmark %s. Existing tests are:\n", do_benchmark);
+	fprintf(stderr, "Unrecognized test %s. Existing tests are:\n", do_benchmark);
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
 		fprintf(stderr, "\t%s\n", benchs[i].name);
 	}
