@@ -1257,9 +1257,7 @@ int TryToIntegrateItemIntoInventory(item * BuyItem, int AmountToBuyAtMost)
 {
 	int x, y;
 	int FreeIndex;
-	char linebuf[1000];
 	int i;
-	char *MenuTexts[10];
 
 	//--------------------
 	// At first we try to see if we can just add the multiplicity of the item in question
@@ -1317,11 +1315,6 @@ int TryToIntegrateItemIntoInventory(item * BuyItem, int AmountToBuyAtMost)
 		}
 	}
 
-	MenuTexts[0] = _(" BACK ");
-	MenuTexts[1] = "";
-	GiveItemDescription(linebuf, BuyItem, TRUE);
-	strcat(linebuf, _("\n\n   No room for this item in inventory!"));
-	DoMenuSelection(linebuf, MenuTexts, 1, -1, NULL);
 	return (FALSE);
 
 };				// void TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost )
