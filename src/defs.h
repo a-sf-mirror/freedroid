@@ -59,8 +59,6 @@
 // that's the way it is planned to be.  Turn on and off debugging as you like.
 //
 #define SAVE_LOAD_GAME_DEBUG 1
-#define INVENTORY_RECTANGLE_DEBUG_LEVEL 2
-#define INVENTORY_MOUSE_BUTTON_DEBUG 2
 enum {
 	NO_NEED_TO_INFORM = 0,
 	PLEASE_INFORM = 1
@@ -102,10 +100,6 @@ enum {
 #define DEATH_ANIMATION 116
 #define STAND_ANIMATION 117
 
-#define LIGHT_RADIUS_CHUNK_SIZE (1.0/5.0)
-#define LIGHT_RADIUS_CRUDENESS_FACTOR 1
-#define LIGHT_RADIUS_STRETCH_TEXTURE_WIDTH 64
-#define LIGHT_RADIUS_STRETCH_TEXTURE_HEIGHT 64
 #define NUMBER_OF_SHADOW_IMAGES 20
 
 #define MAX_OBSTACLES_ON_MAP 4000
@@ -113,8 +107,6 @@ enum {
 #define MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL 100
 
 #define FLOOR_TILES_VISIBLE_AROUND_TUX ((GameConfig . screen_width >= 1024 ? 12 : GameConfig . screen_width >= 800 ? 9 : 7))
-#define MAX_FLOOR_TILES_VISIBLE_AROUND_TUX 12
-// #define MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE 4
 #define MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE 5
 #define MAX_ITEMS_PER_LEVEL 300
 #define MAX_CHEST_ITEMS_PER_LEVEL (MAX_ITEMS_PER_LEVEL)
@@ -124,7 +116,6 @@ enum {
 #define INVENTORY_GRID_HEIGHT 6
 #define INV_SUBSQUARE_WIDTH (31)
 #define INV_SUBSQUARE_HEIGHT 32
-#define NUMBER_OF_ITEM_PICTURES 70
 #define NUMBER_OF_MOUSE_CURSOR_PICTURES 2
 
 #define ITEM_DROP_PERCENTAGE 15
@@ -134,7 +125,6 @@ enum {
 
 #define MAX_DIALOGUE_OPTIONS_IN_ROSTER 100
 #define MAX_REPLIES_PER_OPTION 100
-#define MAX_SUBTITLES_N_SAMPLES_PER_DIALOGUE_OPTION 20
 #define CHAT_DEBUG_LEVEL 1
 
 #define MAX_BIG_SCREEN_MESSAGES 10
@@ -171,11 +161,8 @@ enum _game_config_screen_visible_parameters {
 };
 
 #define END_OF_OFFSET_FILE_STRING "** End of iso_image offset file **"
-#define START_OF_OFFSET_FILE_STRING "** Start of iso_image offset file **"
 #define OFFSET_FILE_OFFSETX_STRING "OffsetX="
 #define OFFSET_FILE_OFFSETY_STRING "OffsetY="
-
-#define JOY_MAX_VAL 32767	// maximal amplitude of joystick axis values
 
 #define Set_Rect(rect, xx, yy, ww, hh) {\
 (rect).x = (xx); (rect).y = (yy); (rect).w = (ww); (rect).h = (hh); }
@@ -233,26 +220,16 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3 };
 #define TITLES_DIR		"map/titles/"
 #define DIALOG_DIR		"dialogs/"
 
-#define MOUSE_CURSOR_BLOCK_FILE "mouse_move_cursor.png"
-#define SKILL_ICON_FILE         "skills.png"
 #define SKILL_LEVEL_BUTTON_FILE "skill_buttons.png"
-
-#define HS_BACKGROUND_FILE     "backgrounds/transfer.jpg"
 
 #define INVENTORY_SCREEN_BACKGROUND_CODE 0
 #define CHARACTER_SCREEN_BACKGROUND_CODE 1
 #define SKILL_SCREEN_BACKGROUND_CODE 2
 #define SKILL_SCREEN_EXPLANATION_BACKGROUND_CODE 3
 #define NE_TITLE_PIC_BACKGROUND_CODE 4
-#define NE_CREDITS_PIC_BACKGROUND_CODE 5
 #define SHOP_BACKGROUND_IMAGE_CODE 6
 #define ITEM_BROWSER_BG_PIC_BACKGROUND_CODE 7
 #define ITEM_BROWSER_SHOP_BACKGROUND_CODE 8
-#define NE_CONSOLE_FG_1_PIC_CODE 9
-#define NE_CONSOLE_FG_2_PIC_CODE 10
-#define NE_CONSOLE_FG_3_PIC_CODE 11
-#define NE_CONSOLE_FG_4_PIC_CODE 12
-#define NE_CONSOLE_BACKGROUND_CODE 13
 #define LEVEL_EDITOR_BANNER_CODE 14
 // #define LEVEL_EDITOR_BANNER_CODE2 15
 // #define LEVEL_EDITOR_BANNER_CODE3 16 
@@ -261,15 +238,12 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3 };
 // #define LEVEL_EDITOR_BANNER_CODE6 19 
 // #define LEVEL_EDITOR_BANNER_CODE7 20 
 #define FREEDROID_LOADING_PICTURE_CODE 21
-#define MOUSE_BUTTON_INV_BACKGROUND_PICTURE_CODE 23
-#define MOUSE_BUTTON_SKI_BACKGROUND_PICTURE_CODE 24
 #define MOUSE_BUTTON_PLUS_BACKGROUND_PICTURE_CODE 25
 #define CHAT_DIALOG_BACKGROUND_PICTURE_CODE 26
 #define CHAT_DIALOG_BACKGROUND_EXCERPT_CODE 27
 #define TAKEOVER_BACKGROUND_CODE 28
 #define QUEST_BROWSER_BACKGROUND_CODE 29
 #define NUMBER_SELECTOR_BACKGROUND_CODE 30
-#define GAME_MESSAGE_WINDOW_BACKGROUND_CODE 31
 #define HUD_BACKGROUND_CODE 32
 
 #define ICON_FILE		"paraicon.bmp"
@@ -280,29 +254,15 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3 };
 #define SKILL_LEVEL_BUTTON_HEIGHT 32
 #define SKILL_LEVEL_BUTTON_WIDTH 30
 
-#define FIRST_MENU_ITEM_POS_X (64)
-#define FIRST_MENU_ITEM_POS_XX ( GameConfig . screen_width - FIRST_MENU_ITEM_POS_X )
-#define FIRST_MENU_ITEM_POS_Y (BANNER_HEIGHT + FontHeight(Menu_BFont) * 3 )
-
 #define NUMBER_OF_ITEMS_ON_ONE_SCREEN 4
 #define ITEM_MENU_DISTANCE 80
 #define ITEM_FIRST_POS_Y 130
 
 #define INITIAL_BLOCK_WIDTH	64
 #define INITIAL_BLOCK_HEIGHT	64
-#define BLOCKMEM  		INITIAL_BLOCK_WIDTH*INITIAL_BLOCK_HEIGHT
-#define MAX_AMOUNT_OF_TEXTURES_WE_WILL_USE 10000
 
 #define TABCHAR 'W'
 #define TABWIDTH 8
-
-#define INITIAL_DIGIT_LENGTH (8*2)
-#define INITIAL_DIGIT_HEIGHT (9*2)
-#define INITIAL_DIGIT_POS_X 5*2
-#define INITIAL_DIGIT_POS_Y 12*2
-#define DRUIDIMAGE_LENGTH       66
-#define DRUIDIMAGE_HEIGHT       90
-
 //--------------------
 // Startpos + dimesnions of Banner-Texts 
 //
@@ -328,14 +288,7 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3 };
 #define DRUIDRADIUSXY	        (7*2/64.0)
 #define BULLET_BULLET_COLLISION_DIST (10/64.0)
 
-//--------------------
-// Some definitions for the menus
-//
-#define SINGLE_PLAYER_MENU_POINTER_POS_X (INITIAL_BLOCK_WIDTH/2)
-
 #define TAKEOVER_BACKGROUND_MUSIC_SOUND "TheBeginning.ogg"
-#define CONSOLE_BACKGROUND_MUSIC_SOUND "TheBeginning.ogg"
-#define CREDITS_BACKGROUND_MUSIC_SOUND "TheBeginning.ogg"
 #define MENU_BACKGROUND_MUSIC_SOUND "menu.ogg"
 #define BIGFIGHT_BACKGROUND_MUSIC_SOUND "hellforce.ogg"
 #define SILENCE (NULL)
@@ -620,15 +573,6 @@ enum {
 #define CHARACTERRECT_W (320)
 #define CHARACTERRECT_H (480)
 
-#define EL_BLOCK_LEN		8
-#define EL_BLOCK_HEIGHT		8
-#define EL_BLOCK_MEM 		EL_BLOCK_LEN * EL_BLOCK_HEIGHT
-
-#define BULLETSPEEDINFLUENCE 	2
-
-#define DROID_PHASES            8
-#define DEAD_DROID_PHASES       1
-
 #define TUX_SWING_PHASES 	14
 #define TUX_BREATHE_PHASES 	1
 #define TUX_GOT_HIT_PHASES      0
@@ -639,7 +583,6 @@ enum {
 #define TUX_RUNNING_SPEED (5.5)
 #define TUX_WALKING_SPEED (2.5)
 
-#define TUX_MODELS              13
 #define MAX_TUX_DIRECTIONS      16
 #define RADIAL_SPELL_DIRECTIONS 16
 #define BULLET_DIRECTIONS       16
@@ -656,9 +599,6 @@ enum {
 #define MAX_MELEE_SHOTS		100
 #define MAXBULLETS		100	/* maximum possible Bullets in the air */
 #define MAXBLASTS		100	/* max. possible Blasts visible */
-#define AGGRESSIONMAX  		100
-#define ROBOT_MAX_WAIT_BETWEEN_SHOTS 5	// how long shoud each droid wait at most until
-					// is considers fireing again?
 #define ATTACK_MOVE_RATE 0.2	// Minimum number of seconds between to displacement computation
 			     // during attack
 
@@ -691,10 +631,6 @@ enum {
 #define MAX_EVENT_TRIGGERS      500	// how many event triggers at most to allow
 
 #define MAXWAYPOINTS 		500
-#define MAX_DOORS_ON_LEVEL 	150
-#define MAX_AUTOGUNS_ON_LEVEL 	60
-#define MAX_REFRESHES_ON_LEVEL	39
-#define MAX_TELEPORTERS_ON_LEVEL 20
 
 #define MAX_PHASES_IN_A_BULLET 12
 #define PHASES_OF_EACH_BLAST 20
@@ -739,9 +675,6 @@ enum {
 #define WHOLE_HEALTH_RECT_W 6
 #define WHOLE_HEALTH_RECT_H 50
 #define WHOLE_HEALTH_RECT_X 614
-#define HEALTH_RECT_COLOR (63*64*64 + 64*8)
-
-#define GOLDEN_SCHNITT ((sqrt(5)-1)/2)
 
 #define WHOLE_RUNNING_POWER_RECT_X 6
 #define WHOLE_RUNNING_POWER_RECT_Y (480-85)
@@ -757,7 +690,6 @@ enum {
 #define WHOLE_FORCE_RECT_W ( WHOLE_HEALTH_RECT_W )
 #define WHOLE_FORCE_RECT_H ( WHOLE_HEALTH_RECT_H )
 #define WHOLE_FORCE_RECT_X ( 640-12)
-#define FORCE_RECT_COLOR ( 0 * 64 * 64 + 64 * 0 + 63 )
 
 //--------------------
 // The weapon rectangle is of course for the weapon the Tux is
@@ -1573,7 +1505,6 @@ enum {
 // Maximum and minimum distance for a melee fight
 #define SQUARED_MELEE_MAX_DIST (2.25)
 #define MELEE_MIN_DIST (1.0)
-#define SQUARED_MELEE_MIN_DIST (MELEE_MIN_DIST*MELEE_MIN_DIST)
 // Distance at which a bot with a melee weapon will start to find 
 // a free place around its target 
 #define SQUARED_MELEE_APPROACH_DIST (16.0)
