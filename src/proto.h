@@ -54,7 +54,6 @@ int teleporter_square_below_mouse_cursor(char *ItemDescText);
 // lua.c
 void init_lua(void);
 void run_lua(const char *code);
-void load_lua(const char *code);
 
 // influ.c 
 float calc_euklid_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);

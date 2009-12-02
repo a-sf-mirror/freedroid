@@ -801,14 +801,6 @@ void run_lua(const char *code)
 	}
 }
 
-void load_lua(const char *code)
-{
-	if (luaL_loadstring(global_lua_state, code)) {
-		ErrorMessage(__FUNCTION__, "Error running Lua code {%s}: %s.\n", PLEASE_INFORM, IS_FATAL, code,
-			     lua_tostring(global_lua_state, -1));
-	}
-}
-
 void init_lua()
 {
 	char fpath[2048];
