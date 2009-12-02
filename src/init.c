@@ -1925,8 +1925,8 @@ void ThouArtDefeated(void)
 
 	}
 
-	DebugPrintf(2, "\n%s():  Usual end of function reached.", __FUNCTION__);
 
+	input_handle();
 };				// void ThouArtDefeated(void)
 
 /**
@@ -1976,7 +1976,7 @@ void ThouHastWon(void)
 
 	PlayATitleFile("Credits.title");
 
-	DebugPrintf(2, "\n%s():  Usual end of function reached.", __FUNCTION__);
+	input_handle();
 
 };				// void ThouHastWon(void)
 
