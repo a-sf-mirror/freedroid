@@ -1103,6 +1103,14 @@ static const char *get_dialog_basename(int index)
 
 /**
  * Validate dialogs syntax and Lua code 
+ * This validator loads all known dialogs, checking them for syntax. 
+ * It tries to compile each Lua code snippet in the dialogs, checking them for syntax as well.
+ * It then proceeds to executing each Lua code snippet, which makes it possible to check for some errors
+ * such as typos in function calls (calls to non existing functions). However, this runtime check does not cover 100% of 
+ * the Lua code because of branches (when it encounters a if, it will not test both the "then" and "else" branches).
+ *
+ * As a result, the fact that the validator finds no error does not imply there are no errors in dialogs. 
+ * Syntax is checked fully, but runtime validation cannot check all of the code.
  */
 void validate_dialogs()
 {
@@ -1111,7 +1119,38 @@ void validate_dialogs()
 	const char *basename;
 	char filename[1024];
 	char fpath[2048];
+	enemy *dummy_partner;
 	
+	skip_initial_menus = 1;
+
+	find_file("freedroid.levels", MAP_DIR, fpath, 0);
+	LoadShip(fpath);
+	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+	clear_player_inventory_and_stats();
+
+	/* _says functions are not run by the validator, as they display
+	   text on screen and wait for clicks */
+	run_lua("function npc_says(a)\nend\n");
+	run_lua("function tux_says(a)\nend\n");
+
+	/* Subdialogs will be tested anyway, no need to run them from Lua */
+	run_lua("function run_subdialog(a)\nend\n");
+
+	/* Shops must not be run (display + wait for clicks) */
+	run_lua("function trade_with(a)\nend\n");
+	
+	/* drop_dead cannot be tested because it means we would try to kill our dummy bot
+	 several times, which is not allowed by the engine */
+	run_lua("function drop_dead(a)\nend\n");
+	
+
+	/* This dummy will be used to test break_off_and_attack() functions and such. */
+	BROWSE_ALIVE_BOTS(dummy_partner) {
+		break;
+	}
+
+	chat_control_chat_droid = dummy_partner;
+
 	while ((basename = get_dialog_basename(i++)) != NULL) {
 		printf("Testing dialog \"%s\"...\n", basename);
 		sprintf(filename, "%s.dialog", basename);
@@ -1122,19 +1161,19 @@ void validate_dialogs()
 
 		if (chat_initialization_code) {
 			printf("\tinit code\n");
-			load_lua(chat_initialization_code);
+			run_lua(chat_initialization_code);
 		}
 
 
 		if (chat_startup_code) {
 			printf("\tstartup code\n");
-			load_lua(chat_startup_code);
+			run_lua(chat_startup_code);
 		}
 
 		for (j = 0; j < MAX_DIALOGUE_OPTIONS_IN_ROSTER; j++) {
 			if (ChatRoster[j].lua_code) {
 				printf("\tnode %d\n", j);
-				load_lua(ChatRoster[j].lua_code);
+				run_lua(ChatRoster[j].lua_code);
 			}
 		}
 
