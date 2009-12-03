@@ -380,7 +380,7 @@ void InsertColumnVeryEast(level * EditLevel)
 		EditLevel->map[i] = MyMalloc(sizeof(map_tile) * (EditLevel->xlen + 1));
 		memcpy(EditLevel->map[i], OldMapPointer, (EditLevel->xlen - 1) * sizeof(map_tile));
 		// We don't want to fill the new area with junk, do we? So we make it floor tiles
-		EditLevel->map[i][EditLevel->xlen - 1].floor_value = FLOOR;
+		EditLevel->map[i][EditLevel->xlen - 1].floor_value = 0;
 	}
 
 };				// void InsertColumnVeryEast (level *EditLevel )
@@ -430,7 +430,7 @@ void InsertColumnEasternInterface(level * EditLevel)
 		memmove(&(EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 1]),
 			&(EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 2]),
 			EditLevel->jump_threshold_east * sizeof(map_tile));
-		EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 1].floor_value = FLOOR;
+		EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 1].floor_value = 0;
 	}
 
 	MoveWaypointsEastOf(EditLevel->xlen - EditLevel->jump_threshold_east - 1, +1, EditLevel);
