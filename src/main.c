@@ -343,7 +343,6 @@ void UpdateCountersForThisFrame()
 
 	Me.LastCrysoundTime += latest_frame_time;
 	Me.MissionTimeElapsed += latest_frame_time;
-	Me.LastTransferSoundTime += latest_frame_time;
 	Me.TextVisibleTime += latest_frame_time;
 
 	//--------------------

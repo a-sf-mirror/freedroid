@@ -110,9 +110,6 @@ typedef struct configuration_for_freedroid_s {
 	float Current_BG_Music_Volume;
 	float Current_Sound_FX_Volume;
 	float current_gamma_correction;
-	int StandardEnemyMessages_On_Off;
-	int StandardInfluencerMessages_On_Off;
-	int Mouse_Input_Permitted;
 
 	int Inventory_Visible;
 	int CharacterScreen_Visible;
@@ -566,7 +563,6 @@ typedef struct tux_s {
 	mission AllMissions[MAX_MISSIONS_IN_GAME];	// What must be done to fullfill this mission?
 	int marker;		// In case you've taken over a marked droid, this will contain the marker
 	float LastCrysoundTime;
-	float LastTransferSoundTime;
 	float TextVisibleTime;
 	char *TextToBeDisplayed;
 
