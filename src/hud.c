@@ -575,7 +575,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
  * This function writes the description of a droid into the description
  * string.
  */
-void create_and_blit_droid_description(enemy * cur_enemy)
+void create_and_blit_droid_description(enemy * cur_enemy, gps* description_pos)
 {
 	int text_length;
 	SDL_Rect temp_fill_rect;
@@ -595,10 +595,10 @@ void create_and_blit_droid_description(enemy * cur_enemy)
 	// temp_fill_rect . y = 50 ;
 	// temp_fill_rect . x = UserCenter_x - text_length / 2 ;
 	//
-	temp_fill_rect.x = translate_map_point_to_screen_pixel_x(cur_enemy->pos.x, cur_enemy->pos.y) - text_length / 2;;
+	temp_fill_rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
 	temp_fill_rect.y =
-	    translate_map_point_to_screen_pixel_y(cur_enemy->pos.x,
-						  cur_enemy->pos.y) + enemy_iso_images[cur_enemy->type][0][0].offset_y -
+	    translate_map_point_to_screen_pixel_y(description_pos->x,
+	    		description_pos->y) + enemy_iso_images[cur_enemy->type][0][0].offset_y -
 	    2.5 * FontHeight(BFont_to_use);
 
 	//--------------------
@@ -638,7 +638,7 @@ void create_and_blit_droid_description(enemy * cur_enemy)
 	// Now we can blit the actual droid short description text
 	//
 	// temp_fill_rect . x = UserCenter_x - text_length / 2 ;
-	temp_fill_rect.x = translate_map_point_to_screen_pixel_x(cur_enemy->pos.x, cur_enemy->pos.y) - text_length / 2;
+	temp_fill_rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
 	PutStringFont(Screen, BFont_to_use, temp_fill_rect.x, temp_fill_rect.y, cur_enemy->short_description_text);
 
 };				// void GiveDroidDescription ( char* ItemDescText , item* CurItem )
@@ -917,7 +917,6 @@ void prepare_text_window_content(char *ItemDescText)
 	point CurPos;
 	point inv_square;
 	int InvIndex;
-	enemy *droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
 	int index_of_floor_item_below_mouse_cursor = (-1);
 	int index_of_chest_below_mouse_cursor = (-1);
 	int index_of_barrel_below_mouse_cursor = (-1);
@@ -1134,10 +1133,14 @@ A barrel was detected, but the barrel type was not valid.", PLEASE_INFORM, IS_FA
 		//--------------------
 		// Maybe there is a living droid below the current mouse cursor, and it is visible to the player.
 		// In this case, we'll give the decription of the corresponding bot.
+		// Nota : the call to GetLivingDroidBelowMouseCursor() does set the virt_pos attribute
+		// of the found droid to be the bot's position relatively to Tux current level
+		//
+		enemy *droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
 		if (droid_below_mouse_cursor != NULL
-		    && DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y, Me.pos.z,
+		    && DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y, Me.pos.z,
 					 &VisiblePassFilter)) {
-			create_and_blit_droid_description(droid_below_mouse_cursor);
+			create_and_blit_droid_description(droid_below_mouse_cursor, &droid_below_mouse_cursor->virt_pos);
 			return;
 		}
 	}

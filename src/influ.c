@@ -1382,23 +1382,25 @@ void check_tux_enemy_collision(void)
  */
 enemy *GetLivingDroidBelowMouseCursor()
 {
-	float Mouse_Blocks_X, Mouse_Blocks_Y;
-	// float DistanceFound = 1000;
-	// float CurrentDistance;
-	// SDL_Rect enemy_screen_rectangle;
+	gps mouse_vpos, mouse_pos;
 	int RotationModel, RotationIndex;
 	iso_image *our_iso_image;
-
-	Mouse_Blocks_X = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-	Mouse_Blocks_Y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
-
 	enemy *this_bot;
-	BROWSE_ALIVE_BOTS(this_bot) {
-		if (this_bot->pos.z != Me.pos.z)
+
+	mouse_vpos.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
+	mouse_vpos.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
+	mouse_vpos.z = Me.pos.z;
+
+	// Find the actual level (and related position) where the mouse cursor is pointing at.
+	resolve_virtual_position(&mouse_pos, &mouse_vpos);
+	if (mouse_pos.z == -1)
+		return NULL;
+
+	// Browse all bots on that actual level, to find if the mouse is hovering one of them
+	BROWSE_LEVEL_BOTS(this_bot, mouse_pos.z) {
+		if (fabsf(this_bot->pos.x - mouse_pos.x) >= 5.0)
 			continue;
-		if (fabsf(this_bot->pos.x - (Mouse_Blocks_X)) >= 5.0)
-			continue;
-		if (fabsf(this_bot->pos.y - (Mouse_Blocks_Y)) >= 5.0)
+		if (fabsf(this_bot->pos.y - mouse_pos.y) >= 5.0)
 			continue;
 
 		//--------------------
@@ -1414,7 +1416,8 @@ enemy *GetLivingDroidBelowMouseCursor()
 
 		our_iso_image = &(enemy_iso_images[RotationModel][RotationIndex][(int)this_bot->animation_phase]);
 
-		if (mouse_cursor_is_on_that_iso_image(this_bot->pos.x, this_bot->pos.y, our_iso_image)) {
+		update_virtual_position(&this_bot->virt_pos, &this_bot->pos, Me.pos.z);
+		if (mouse_cursor_is_on_that_iso_image(this_bot->virt_pos.x, this_bot->virt_pos.y, our_iso_image)) {
 			return this_bot;
 		}
 	}
@@ -1805,12 +1808,13 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 			DebugPrintf(1, "\n%s(): Using droid under mouse cursor for attack positioning...", __FUNCTION__);
 		}
 
+		update_virtual_position(&droid_under_melee_attack_cursor->virt_pos, &droid_under_melee_attack_cursor->pos, Me.pos.z);
 		if (droid_under_melee_attack_cursor != NULL) {
 			angle = -(atan2(Me.pos.y -
-					droid_under_melee_attack_cursor->pos.y,
-					Me.pos.x - droid_under_melee_attack_cursor->pos.x) * 180 / M_PI - 90 + 22.5);
-			target_location.x = droid_under_melee_attack_cursor->pos.x;
-			target_location.y = droid_under_melee_attack_cursor->pos.y;
+					droid_under_melee_attack_cursor->virt_pos.y,
+					Me.pos.x - droid_under_melee_attack_cursor->virt_pos.x) * 180 / M_PI - 90 + 22.5);
+			target_location.x = droid_under_melee_attack_cursor->virt_pos.x;
+			target_location.y = droid_under_melee_attack_cursor->virt_pos.y;
 		} else {
 			//--------------------
 			// We leave the angle at the current value...
@@ -2341,6 +2345,9 @@ void check_for_barrels_to_smash(level * barrel_lvl, int barrel_index)
  */
 void check_for_droids_to_attack_or_talk_with()
 {
+	/* NOTA : the call to GetLivingDroidBelowMouseCursor() does set the virt_pos attribute
+	 * of the found droid to be the bot's position relatively to Tux current level
+	 */
 	enemy *droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
 	if (droid_below_mouse_cursor == NULL && (!APressed())) {
 		Me.mouse_move_target.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
@@ -2356,7 +2363,7 @@ void check_for_droids_to_attack_or_talk_with()
 	}
 
 	if (droid_below_mouse_cursor != NULL &&
-	    DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y, Me.pos.z,
+	    DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y, Me.pos.z,
 			      &VisiblePassFilter)) {
 
 		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, droid_below_mouse_cursor);
@@ -2377,12 +2384,12 @@ void check_for_droids_to_attack_or_talk_with()
 
 		if (Me.weapon_item.type >= 0) {
 			if ((ItemMap[Me.weapon_item.type].item_weapon_is_melee) &&
-			    (calc_euklid_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y)
+			    (calc_euklid_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y)
 			     > BEST_MELEE_DISTANCE + 0.1)) {
 
 				return;
 			}
-		} else if (calc_euklid_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->pos.x, droid_below_mouse_cursor->pos.y)
+		} else if (calc_euklid_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y)
 			   > BEST_MELEE_DISTANCE + 0.1) {
 
 			return;
