@@ -1939,8 +1939,6 @@ static int Droid_handle(int n)
 		LEAVE_DROID_TALK_OPTIONS_MENU
 	};
 	int *ptrs[] = {
-		&GameConfig.Enemy_Hit_Text, &GameConfig.Enemy_Bump_Text,
-		&GameConfig.Enemy_Aim_Text, &GameConfig.All_Texts_Switch,
 		&GameConfig.talk_to_bots_after_takeover
 	};
 
@@ -1959,16 +1957,6 @@ static void Droid_fill(char *MenuTexts[10])
 	int i = 0;
 	sprintf(Options[i], _("Enemy Hit Texts"));
 	sprintf(Options[i + 1], ": %s", GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF"));
-	strcat(Options[i], Options[i + 1]);
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
-	sprintf(Options[i], _("Enemy Bumped Texts"));
-	sprintf(Options[i + 1], ": %s", GameConfig.Enemy_Bump_Text ? _("ON") : _("OFF"));
-	strcat(Options[i], Options[i + 1]);
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
-	sprintf(Options[i], _("Enemy Aim Texts"));
-	sprintf(Options[i + 1], ": %s", GameConfig.Enemy_Aim_Text ? _("ON") : _("OFF"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
