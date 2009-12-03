@@ -682,8 +682,6 @@ save_float("WantedTextVisibleTime", &(target->WantedTextVisibleTime));
 save_int32_t("Draw_Framerate", &(target->Draw_Framerate));
 save_int32_t("Draw_Position", &(target->Draw_Position));
 save_int32_t("Enemy_Hit_Text", &(target->Enemy_Hit_Text));
-save_int32_t("Enemy_Bump_Text", &(target->Enemy_Bump_Text));
-save_int32_t("Enemy_Aim_Text", &(target->Enemy_Aim_Text));
 save_int32_t("All_Texts_Switch", &(target->All_Texts_Switch));
 save_float("Current_BG_Music_Volume", &(target->Current_BG_Music_Volume));
 save_float("Current_Sound_FX_Volume", &(target->Current_Sound_FX_Volume));
@@ -745,8 +743,6 @@ int read_configuration_for_freedroid(char* buffer, char * tag, configuration_for
 read_int32_t(pos, "Draw_Framerate",  &(target->Draw_Framerate));
 read_int32_t(pos, "Draw_Position",  &(target->Draw_Position));
 read_int32_t(pos, "Enemy_Hit_Text",  &(target->Enemy_Hit_Text));
-read_int32_t(pos, "Enemy_Bump_Text",  &(target->Enemy_Bump_Text));
-read_int32_t(pos, "Enemy_Aim_Text",  &(target->Enemy_Aim_Text));
 read_int32_t(pos, "All_Texts_Switch",  &(target->All_Texts_Switch));
 read_float(pos, "Current_BG_Music_Volume",  &(target->Current_BG_Music_Volume));
 read_float(pos, "Current_Sound_FX_Volume",  &(target->Current_Sound_FX_Volume));
