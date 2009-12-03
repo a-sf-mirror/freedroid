@@ -686,11 +686,7 @@ write_offset_file ( )
   fwrite ( "\n\n" , strlen( "\n\n" ), 
 	   sizeof(char), OffsetFile );
 
-  fwrite ( START_OF_OFFSET_FILE_STRING , strlen( START_OF_OFFSET_FILE_STRING ), 
-	   sizeof(char), OffsetFile );
-
-  // fwrite ( OFFSET_EXPLANATION_STRING , strlen( OFFSET_EXPLANATION_STRING ), 
-  // sizeof(char), OffsetFile );
+  fprintf(OffsetFile, "%s\n", "** Start of iso_image offset file **");
 
   fwrite ( "\n\n" , strlen( "\n\n" ), 
 	   sizeof(char), OffsetFile );
