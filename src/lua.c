@@ -263,6 +263,20 @@ static int lua_event_give_item(lua_State * L)
 	return 0;
 }
 
+static int lua_event_sell_item(lua_State *L)
+{
+	const char *itemname = luaL_checkstring(L, 1);
+	const char *charname = luaL_optstring(L, 2, NULL);
+
+	if (!charname) {
+		charname = chat_control_chat_droid->dialog_section_name;
+	}
+
+	npc_add_shoplist(charname, itemname);
+
+	return 0;
+}
+
 static int lua_event_has_item_backpack(lua_State * L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
@@ -445,8 +459,8 @@ static int lua_event_trade_with(lua_State * L)
 {
 	const char *cname = luaL_checkstring(L, 1);
 
-	int id = ResolveDialogSectionToChatFlagsIndex(cname);
-	InitTradeWithCharacter(id);
+	struct npc *n = npc_get(cname);
+	InitTradeWithCharacter(n);
 
 	return 0;
 }
@@ -543,7 +557,7 @@ static int __lua_chat_toggle_node(lua_State * L, int value)
 				     IS_WARNING_ONLY, value == 1 ? "enable" : "disable", flag);
 			continue;
 		}
-		Me.Chat_Flags[chat_control_partner_code][flag] = value;
+		chat_control_chat_flags[flag] = value;
 	}
 	return 0;
 }
@@ -719,6 +733,8 @@ luaL_reg lfuncs[] = {
 	{"has_item_backpack", lua_event_has_item_backpack}
 	,
 
+	{"sell_item", lua_event_sell_item}
+	,
 	{"add_diary_entry", lua_event_add_diary_entry}
 	,
 	{"add_cookie", lua_event_plant_cookie}

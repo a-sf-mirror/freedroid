@@ -104,10 +104,8 @@ static void clear_out_arrays_for_fresh_game(void)
 	clear_active_spells();
 	ClearAutomapData();
 
-	for (i = 0; i < MAX_PERSONS; i++)
-		Me.chat_character_initialized[i] = 0;
-
-};				// void clear_out_arrays_for_fresh_game ( void )
+	clear_npcs();
+}
 
 /** 
  * Each character inside the game can have a (lengthly) description of
@@ -1397,24 +1395,6 @@ void InitInfluencerStartupSkills(void)
 };				// void InitInfluencerStartupSkills( )
 
 /**
- * Now we disable all chat flags (i.e. the Tux hasn't spoken to
- * that person at all) for all the non-player-characters in the game,
- * except for the 0-chat alternative, which is always set to open.  WHY???????
- */
-void InitInfluencerChatFlags(void)
-{
-	int i, j;
-
-	for (i = 0; i < MAX_PERSONS; i++) {
-		for (j = 0; j < MAX_ANSWERS_PER_PERSON; j++) {
-			Me.Chat_Flags[i][j] = 0;
-		}
-//        Me . Chat_Flags [ i ] [ END_ANSWER ] = 1 ;
-	}
-
-};				// void InitInfluencerChatFlags( )
-
-/**
  * When a completely fresh and new game is started, some more or less
  * harmless status variables need to be initialized.  This is what is
  * done in here.
@@ -1509,6 +1489,8 @@ void PrepareStartOfNewCharacter(char *startpos)
 
 	GetCrew("ReturnOfTux.droids");
 
+	init_npcs();
+
 	ResolveMapLabelOnShip(startpos, &StartPosition);
 	Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE);
 	clear_active_bullets();
@@ -1538,8 +1520,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	InitInfluencerStartupSkills();
 
 	UpdateAllCharacterStats();
-
-	InitInfluencerChatFlags();
 
 	clear_out_intermediate_points(&Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
 

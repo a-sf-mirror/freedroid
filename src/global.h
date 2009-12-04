@@ -191,8 +191,8 @@ EXTERN event_trigger AllEventTriggers[MAX_EVENT_TRIGGERS];
 #endif
 int chat_control_next_node;	//what is the next node to use?
 int chat_control_end_dialog;	//end current dialog?
-int chat_control_partner_code;	//our partner code to access chat flags from Lua
 int chat_control_partner_started;	//the dialog partner is the one who started the talk
+unsigned char *chat_control_chat_flags; //current chat flags
 enemy *chat_control_chat_droid;	//droid we are chatting with
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 
@@ -361,4 +361,12 @@ EXTERN struct auto_string *savestruct_autostr;
 #endif
 EXTERN char *do_benchmark;
 
+#undef EXTERN
+#ifdef _npc_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
+EXTERN list_head_t npc_head;
 #endif				// _global_h

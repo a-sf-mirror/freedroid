@@ -451,8 +451,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
  */
 int
 ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PERSON],
-			   unsigned char Chat_Flags[MAX_ANSWERS_PER_PERSON], int FirstItem,
-			   int background_code, void *MenuFont, enemy * ChatDroid)
+			   int FirstItem, int background_code, void *MenuFont, enemy * ChatDroid)
 {
 	int MenuSelection = (-1);
 	char *FilteredChatMenuTexts[MAX_ANSWERS_PER_PERSON];
@@ -467,7 +466,7 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
 	DebugPrintf(MENU_SELECTION_DEBUG, "\n%s(): %d \n", __FUNCTION__, FirstItem);
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 		FilteredChatMenuTexts[i] = "";
-		if (Chat_Flags[i]) {
+		if (chat_control_chat_flags[i]) {
 
 			DebugPrintf(MENU_SELECTION_DEBUG, "%2d. ", i);
 			DebugPrintf(MENU_SELECTION_DEBUG, "%s\n", MenuTexts[i]);
@@ -495,7 +494,7 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
 		use_counter = 0;
 		for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 
-			if (Chat_Flags[i]) {
+			if (chat_control_chat_flags[i]) {
 				FilteredChatMenuTexts[use_counter] = MenuTexts[i];
 				use_counter++;
 				if (MenuSelection == use_counter) {

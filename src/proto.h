@@ -336,8 +336,6 @@ void read_string_array(const char *, const char *, string *, int);
 /* Hacks */
 void save_keybind_t_array(const char *, keybind_t *, int);
 void read_keybind_t_array(const char *, const char *, keybind_t *, int);
-void save_chatflags_t_array(const char *, chatflags_t *, int);
-void read_chatflags_t_array(const char *, const char *, chatflags_t *, int);
 #define save_automap_data_t_array save_automap_data
 void save_automap_data(const char *, automap_data_t *, int);
 void read_automap_data_t_array(char *, char *, automap_data_t *, int);
@@ -573,7 +571,7 @@ void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
 int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, int background_code, void *MenuFont);
 int ChatDoMenuSelectionFlagged(char *InitialText, char **MenuTexts,
-			       unsigned char *Chat_Flags, int FirstItem, int background_code, void *MenuFont, enemy * ChatDroid);
+			       int FirstItem, int background_code, void *MenuFont, enemy * ChatDroid);
 int ChatDoMenuSelection(char **MenuTexts, int FirstItem, void *MenuFont, enemy * ChatDroid);
 void StartupMenu(void);
 void InitiateMenu(int background_code);
@@ -694,7 +692,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem);
 int TryToIntegrateItemIntoInventory(item * BuyItem, int AmountToBuyAtMost);
 int AssemblePointerListForChestShow(item **, gps);
 int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWornItems);
-void InitTradeWithCharacter(int CharacterCode);
+void InitTradeWithCharacter(struct npc *);
 int GreatShopInterface(int, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY], int, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY],
 		       shop_decision *);
 
@@ -743,7 +741,6 @@ int load_texture_atlas(const char *, const char *, char *filenames[], iso_image 
 // chat.c
 void PlantCookie(const char *);
 void DeleteCookie(const char *);
-int ResolveDialogSectionToChatFlagsIndex(const char *SectionName);
 void run_subdialog(const char *);
 void GiveSubtitleNSample(const char *, const char *, enemy *, int);
 void validate_dialogs(void);
@@ -776,5 +773,13 @@ int animate_autogun(level* obstacle_lvl, int obstacle_idx);
 
 // benchmark.c
 void benchmark(void);
+
+// npc.c
+struct npc *npc_get(const char *);
+void npc_insert(struct npc *);
+void npc_add(const char *);
+int npc_add_shoplist(const char *, const char *);
+void init_npcs(void);
+void clear_npcs(void);
 
 #endif

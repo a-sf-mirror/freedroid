@@ -51,7 +51,7 @@ special_types = {
     'unsigned_char' : 'uchar'
 }
 
-only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_t", "item", "enemy", "bullet", "melee_shot", "mission", "configuration_for_freedroid" ]
+only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_t", "item", "enemy", "bullet", "melee_shot", "mission", "configuration_for_freedroid", "npc" ]
 
 def main():
     if len(sys.argv) < 3:

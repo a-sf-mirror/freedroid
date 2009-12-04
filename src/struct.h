@@ -479,9 +479,17 @@ typedef struct enemy_s {
 	list_head_t level_list;	// entry of this bot in the level bot list (alive only)
 } enemy, *Enemy;
 
-typedef char automap_data_t[100][100];
-typedef unsigned char chatflags_t[MAX_ANSWERS_PER_PERSON];
+typedef struct npc {
+	string dialog_basename;
+	unsigned char chat_character_initialized;
+	unsigned char chat_flags[MAX_ANSWERS_PER_PERSON];
 
+	string shoplist[MAX_ITEMS_IN_INVENTORY];
+
+	list_head_t node; 
+} npc;
+
+typedef char automap_data_t[100][100];
 typedef struct tux_s {
 	float current_game_date;	// seconds since game start, will be printed as a different 'date'
 	// inside the game, like 14:23 is afternoon
@@ -595,16 +603,8 @@ typedef struct tux_s {
 	unsigned char HaveBeenToLevel[MAX_LEVELS];	// record of the levels the player has visited yet.
 	float time_since_last_visit_or_respawn[MAX_LEVELS];	// record of the levels the player has visited yet.
 
-	//--------------------
-	// Some story-based variables:  which persons has the Tux talked to and
-	// what are the dialog options currently open, which 'cookies' have been
-	// set by the dialogs for coordination among each other, and also status
-	// of the Tux like town guard member or not and the like...
-	//
-	chatflags_t Chat_Flags[MAX_PERSONS];
 	string cookie_list[MAX_COOKIES];
 	int is_town_guard_member;
-	unsigned char chat_character_initialized[MAX_PERSONS];
 
 	//--------------------
 	// THE FOLLOWING ARE INFORMATION, THAT ARE HUGE AND THAT ALSO DO NOT NEED

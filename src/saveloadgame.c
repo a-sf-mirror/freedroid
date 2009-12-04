@@ -298,6 +298,16 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 		}
 	}
 
+	/* Save NPCs */
+	a = 0;
+	struct npc *n;
+	list_for_each_entry(n, &npc_head, node) {
+		char str[20];
+		sprintf(str, "npc %d", a);
+		save_npc(str, n);
+		a++;
+	}
+
 	/* Save all bullets */
 	for (i = 0; i < MAXBULLETS; i++) {
 		char str[20];
@@ -369,6 +379,84 @@ int LoadBackupGame()
 	return ret;
 }
 
+static void load_enemies(volatile char *LoadGameData)
+{
+	ClearEnemys();
+
+	enemy *newen;
+	int done;
+	int a = 0, i;
+	for (i = 0; i < 2; i++) {
+		volatile char *cpos = LoadGameData;
+		done = 0;
+		while (!done) {
+			newen = (enemy *) calloc(1, sizeof(enemy));
+			char str[25];
+			sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
+			cpos = strstr(cpos, str);
+			if (!cpos) {
+				done = 1;
+				free(newen);
+				break;
+			}
+			cpos -= 5;
+			if (read_enemy(cpos, str, newen)) {
+				done = 1;
+				free(newen);
+			} else {
+				list_add(&(newen->global_list), i ? &dead_bots_head : &alive_bots_head);
+			}
+			a++;
+		}
+	}
+}
+
+static void load_npcs(volatile char *LoadGameData)
+{
+	clear_npcs();
+
+	struct npc *npc;
+	volatile char *cpos = LoadGameData;
+	int a = 0, done = 0;
+	while (!done) {
+		npc = calloc(1, sizeof(struct npc));
+		char str[25];
+		sprintf(str, "npc %d", a);
+		cpos = strstr(cpos, str);
+		if (!cpos) {
+			done = 1;
+			free(npc);
+			break;
+		}
+		cpos -= 5;
+		if (read_npc(cpos, str, npc)) {
+			done = 1;
+			free(npc);
+		} else {
+			npc_insert(npc);
+		}
+		a++;
+	}
+}
+
+static void load_bullets(volatile char *LoadGameData)
+{
+	volatile char *cpos = LoadGameData;
+	int done = 0;
+	int i;
+	for (i = 0; i < MAXBULLETS && !done; i++) {
+		char str[20];
+		sprintf(str, "blt%d", i);
+		cpos = strstr(cpos, str);
+		if (!cpos) {
+			done = 1;
+			break;
+		}
+		cpos -= 5;
+		read_bullet(cpos, str, &AllBullets[i]);
+	}
+}
+
 /**
  * This function loads an old saved game of Freedroid from a file.
  */
@@ -427,50 +515,11 @@ int LoadGame(void)
 	memset(&Me, 0, sizeof(tux_t));
 	read_tux_t(LoadGameData, "player", &Me);
 
-	/* read enemies */
-	ClearEnemys();
+	load_enemies(LoadGameData);
 
-	enemy *newen;
-	int done;
-	int a = 0;
-	for (i = 0; i < 2; i++) {
-		volatile char *cpos = LoadGameData;
-		done = 0;
-		while (!done) {
-			newen = (enemy *) calloc(1, sizeof(enemy));
-			char str[25];
-			sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
-			cpos = strstr(cpos, str);
-			if (!cpos) {
-				done = 1;
-				free(newen);
-				break;
-			}
-			cpos -= 5;
-			if (read_enemy(cpos, str, newen)) {
-				done = 1;
-				free(newen);
-			} else {
-				list_add(&(newen->global_list), i ? &dead_bots_head : &alive_bots_head);
-			}
-			a++;
-		}
-	}
+	load_npcs(LoadGameData);
 
-	/* read bullets */
-	volatile char *cpos = LoadGameData;
-	done = 0;
-	for (i = 0; i < MAXBULLETS && !done; i++) {
-		char str[20];
-		sprintf(str, "blt%d", i);
-		cpos = strstr(cpos, str);
-		if (!cpos) {
-			done = 1;
-			break;
-		}
-		cpos -= 5;
-		read_bullet(cpos, str, &AllBullets[i]);
-	}
+	load_bullets(LoadGameData);
 
 	/* properly restore pointers and references */
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): now correcting dangerous pointers....", __FUNCTION__);
@@ -783,105 +832,6 @@ int read_sdl_rect(const char *buffer, const char *tag, SDL_Rect * target)
 	read_uint16_t(pos, "h", &(target->h));
 	*epos = '>';
 	return 0;
-}
-
-void save_chatflags_t_array(const char *tag, chatflags_t * chatflags, int size)
-{
-	autostr_append(savestruct_autostr, "<ChatFlags mpeople=%d manswers=%d>\n", MAX_PERSONS, MAX_ANSWERS_PER_PERSON);
-	int i, j;
-	for (i = 0; i < MAX_PERSONS; i++) {
-		for (j = 0; j < MAX_ANSWERS_PER_PERSON; j++) {
-			autostr_append(savestruct_autostr, "%hhd ", (chatflags)[i][j]);
-		}
-		autostr_append(savestruct_autostr, "\n");
-	}
-	autostr_append(savestruct_autostr, "</ChatFlags>\n");
-}
-
-void read_chatflags_t_array(const char *buffer, const char *tag, chatflags_t * chatflags, int size)
-{
-	char *pos = strstr(buffer, "<ChatFlags mpeople=");
-	if (!pos)
-		WrapErrorMessage(__FUNCTION__, "Unable to find ChatFlags array\n", PLEASE_INFORM, IS_FATAL);
-	char *epos = strstr(pos, "</ChatFlags>\n");
-	if (!epos)
-		WrapErrorMessage(__FUNCTION__, "Unable to find ChatFlags array end\n", PLEASE_INFORM, IS_FATAL);
-	epos += strlen("</ChatFlags>\n");
-	char savechar = *(epos + 1);
-	*(epos + 1) = '\0';
-	int mp = 0;
-	int ma = 0;
-	char *runp = pos + 1;
-	runp += strlen("ChatFlags n=");
-	while (!isdigit(*runp))
-		runp++;
-	char *erunp = runp;
-	while ((*erunp) != ' ')
-		erunp++;
-	*erunp = '\0';
-	mp = atoi(runp);
-	*erunp = ' ';
-	runp = erunp;
-	while (!isdigit(*runp))
-		runp++;
-	erunp = runp;
-	while (*erunp != '>')
-		erunp++;
-	*erunp = '\0';
-	ma = atoi(runp);
-	*erunp = '>';
-
-	if (mp != MAX_PERSONS) {
-		/* If the savegame array is smaller than the game array, this is not a fatal error, however breakage is highly
-		 * likely to occur in any case. */
-		int inf = PLEASE_INFORM;
-		int fat = IS_FATAL;
-		if (mp < MAX_PERSONS) {
-			inf = NO_NEED_TO_INFORM;
-			fat = IS_WARNING_ONLY;
-		}
-
-		WrapErrorMessage(__FUNCTION__, "MAX_PERSONS mismatch for array ChatFlags, %d in file, %d in game\n", inf, fat, mp,
-				 MAX_PERSONS);
-	}
-
-	if (ma != MAX_ANSWERS_PER_PERSON) {
-		int inf = PLEASE_INFORM;
-		int fat = IS_FATAL;
-		if (ma < MAX_ANSWERS_PER_PERSON) {
-			inf = NO_NEED_TO_INFORM;
-			fat = IS_WARNING_ONLY;
-		}
-		WrapErrorMessage(__FUNCTION__, "MAX_ANSWERS_PER_PERSON mismatch for array ChatFlags, %d in file, %d in game\n", inf, fat,
-				 ma, MAX_ANSWERS_PER_PERSON);
-	}
-
-	while (*runp != '\n')
-		runp++;
-	runp++;
-
-	int i = 0, j;
-	while (i < mp) {
-		j = 0;
-		while (j < ma) {
-			while (!isdigit(*runp))
-				runp++;
-			erunp = runp + 1;
-			while (*erunp != ' ')
-				erunp++;
-			*erunp = '\0';
-
-			(chatflags)[i][j] = atoi(runp);
-			*erunp = ' ';
-			runp = erunp;
-			j++;
-		}
-
-		while (*runp != '\n')
-			runp++;
-		i++;
-	}
-	*(epos + 1) = savechar;
 }
 
 void save_keybind_t_array(const char *tag, keybind_t * keybinds, int size)

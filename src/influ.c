@@ -2411,36 +2411,10 @@ void handle_player_examine_command(void)
 {
 	int obstacle_index;
 	obstacle *our_obstacle;
-	int chat_section;
-	enemy *final_bot_found = NULL;
 
 	if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
 		return;
 
-	//--------------------
-	// The highest priority is other droids and characters.  If one
-	// of those is under the mouse cursor, then the examine/look command
-	// is interpretet to
-	final_bot_found = GetLivingDroidBelowMouseCursor();
-	if (final_bot_found != NULL) {
-		//--------------------
-		// If the character encountered is a character with a 
-		// unique and special dialog section associated to him,
-		// then we will also print out the unique description for
-		// that character according to the dialog section used.
-		// Otherwise we will revert to using the standard droid
-		// model description found in the droid archetypes.
-		//
-		chat_section = ResolveDialogSectionToChatFlagsIndex(final_bot_found->dialog_section_name);
-		if (chat_section != PERSON_STANDARD_BOT_AFTER_TAKEOVER) {
-			append_new_game_message("%s", character_descriptions[chat_section]);
-		} else
-			append_new_game_message(_("This is a %s. %s"), Druidmap[final_bot_found->type].druidname,
-						Druidmap[final_bot_found->type].notes);
-
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-		return;
-	}
 	//--------------------
 	// Now if there wasn't any living droid encountered, we can now
 	// start thinking about obstacles.  Let's see if we find something here

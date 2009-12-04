@@ -43,65 +43,12 @@
 #define PUSH_ROSTER 2
 #define POP_ROSTER 3
 
-/* This table links dialog file names to the internal
- * chat flags code.
- */
-struct {
-	const char *name;
-	int person_id;
-} dialog_name_to_index[] = {
-	{
-	"614", PERSON_614}, {
-	"614_cryo", PERSON_614_CRYO}, {
-	"Bender", PERSON_BENDER}, {
-	"Benjamin", PERSON_BENJAMIN}, {
-//	"Boris", PERSON_BORIS}, {
-	"Bruce", PERSON_BRUCE}, {
-	"Butch", PERSON_BUTCH}, {
-	"Chandra", PERSON_CHA}, {
-	"Darwin", PERSON_DARWIN}, {
-	"Dixon", PERSON_DIXON}, {
-	"DocMoore", PERSON_DOC_MOORE}, {
-	"Duncan", PERSON_DUNCAN}, {
-	"Ewald", PERSON_EWALD}, {
-	"FirmwareUpdateServer", PERSON_FIRMWARE_SERVER}, {
-	"Francis", PERSON_FRANCIS}, {
-	"Jasmine", PERSON_JASMINE}, {
-	"Kevin", PERSON_KEVIN}, {
-	"KevinGuard", PERSON_KEVINS_GUARD}, {
-	"Koan", PERSON_KOAN}, {
-//	"Lina", PERSON_LINA}, {
-	"Lukas", PERSON_LUKAS}, {
-	"MER", PERSON_MER}, {
-//	"MSCD", PERSON_MSCD}, {
-	"MSFacilityGateGuardLeader", PERSON_MS_FACILITY_GATE_GUARD_LEADER}, {
-	"Melfis", PERSON_MELFIS}, {
-	"Michelangelo", PERSON_MICHELANGELO}, {
-	"OldTownGateGuardLeader", PERSON_OLD_TOWN_GATE_GUARD_LEADER}, {
-	"Pendragon", PERSON_PENDRAGON}, {
-	"RMS", PERSON_RMS}, {
-	"SACD", PERSON_SACD}, {
-	"SADD", PERSON_SADD}, {
-//	"Serge", PERSON_SERGE}, {
-	"Skippy", PERSON_SKIPPY}, {
-	"Sorenson", PERSON_SORENSON}, {
-	"Spencer", PERSON_SPENCER}, {
-	"StandardBotAfterTakeover", PERSON_STANDARD_BOT_AFTER_TAKEOVER}, {
-	"StandardMSFacilityGateGuard", PERSON_STANDARD_MS_FACILITY_GATE_GUARD}, {
-	"StandardOldTownGateGuard", PERSON_STANDARD_OLD_TOWN_GATE_GUARD}, {
-	"Stone", PERSON_STONE}, {
-	"Tania", PERSON_TANIA}, {
-	"TestDroid", PERSON_TEST_DROID}, {
-	"TutorialTom", PERSON_TUTORIALTOM}, {
-	"Tybalt", PERSON_TYBALT},
-};
-
 char *chat_initialization_code;	//first time with a character-code
 char *chat_startup_code;	//every time we start this dialog-code
 EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 char *chat_protocol = NULL;
 
-static void DoChatFromChatRosterData(int ChatPartnerCode, Enemy ChatDroid, int ClearProtocol);
+static void DoChatFromChatRosterData(enemy *ChatDroid, int ClearProtocol);
 
 /**
  * This function resets a dialog option to "empty" default values. It does NOT free the strings, this has to be done
@@ -202,27 +149,6 @@ There was an unrecognized parameter handled to this function.", PLEASE_INFORM, I
 	}
 
 };				// push_or_pop_chat_roster ( int push_or_pop )
-
-/**
- * This function finds the index of the array where the chat flags for
- * this person are stored.  It does this by exploiting on the (unique?)
- * dialog section to use entry of each (friendly) droid.
- */
-int ResolveDialogSectionToChatFlagsIndex(const char *SectionName)
-{
-	int i;
-	for (i = 0; i < sizeof(dialog_name_to_index) / sizeof(dialog_name_to_index[0]); i++) {
-		if (!strcmp(SectionName, dialog_name_to_index[i].name))
-			return dialog_name_to_index[i].person_id;
-	}
-
-	DebugPrintf(-1000, "\n--------------------\nSectionName: %s.", SectionName);
-	ErrorMessage(__FUNCTION__, "\
-There was a dialog section to be used with a droid (name %s), that does not have a \n\
-corresponding chat flags array index as defined in chat.c.", PLEASE_INFORM, IS_FATAL, SectionName);
-	return (-1);
-
-};				// int ResolveDialogSectionToChatFlagsIndex ( Enemy ChatDroid )
 
 /**
  * This function plants a cookie, i.e. sets a new text string with the
@@ -677,7 +603,11 @@ void run_subdialog(const char *tmp_filename)
 {
 	char fpath[2048];
 	char finaldir[50];
-	int old_partner_code = chat_control_partner_code;
+	unsigned char dummyflags[MAX_ANSWERS_PER_PERSON];
+	unsigned char *old_chat_flags = chat_control_chat_flags;
+
+	memset(dummyflags, 0, MAX_ANSWERS_PER_PERSON);
+	chat_control_chat_flags = &dummyflags[0];
 
 	push_or_pop_chat_roster(PUSH_ROSTER);
 
@@ -686,23 +616,21 @@ void run_subdialog(const char *tmp_filename)
 
 	LoadDialog(fpath);
 
-	chat_control_partner_code = PERSON_SUBDIALOG_DUMMY;
-
 	// we always initialize subdialogs..
 	//
 	int i;
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-		Me.Chat_Flags[PERSON_SUBDIALOG_DUMMY][i] = 0;
+		dummyflags[i] = 0;
 	}
 
 	if (chat_initialization_code)
 		run_lua(chat_initialization_code);
 
-	DoChatFromChatRosterData(PERSON_SUBDIALOG_DUMMY, chat_control_chat_droid, FALSE);
+	DoChatFromChatRosterData(chat_control_chat_droid, FALSE);
 
 	push_or_pop_chat_roster(POP_ROSTER);
 
-	chat_control_partner_code = old_partner_code;
+	chat_control_chat_flags = old_chat_flags;
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
 	chat_control_partner_started = 0;
@@ -712,7 +640,7 @@ void run_subdialog(const char *tmp_filename)
  *
  *
  */
-static void ProcessThisChatOption(int MenuSelection, int ChatPartnerCode, Enemy ChatDroid)
+static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 {
 	int i;
 	//reset chat control variables for this option
@@ -726,7 +654,6 @@ static void ProcessThisChatOption(int MenuSelection, int ChatPartnerCode, Enemy 
 	// But it might be the case that this option is more technical and not accompanied
 	// by any reply.  This case must also be caught.
 	//
-	//printf("Processing option %d with partner %d\n", MenuSelection, ChatPartnerCode);
 	if (strcmp(ChatRoster[MenuSelection].option_sample_file_name, "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER")) {
 		strcat(chat_protocol, "\1TUX: ");
 		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
@@ -752,7 +679,7 @@ static void ProcessThisChatOption(int MenuSelection, int ChatPartnerCode, Enemy 
 	if (ChatRoster[MenuSelection].lua_code) {
 		run_lua(ChatRoster[MenuSelection].lua_code);
 	}
-};				// int ProcessThisChatOption ( int MenuSelection , int ChatPartnerCode , Enemy ChatDroid )
+}
 
 /**
  * This is the most important subfunction of the whole chat with friendly
@@ -760,7 +687,7 @@ static void ProcessThisChatOption(int MenuSelection, int ChatPartnerCode, Enemy 
  * disk, this function is invoked to handle the actual chat interaction
  * and the dialog flow.
  */
-static void DoChatFromChatRosterData(int ChatPartnerCode, Enemy ChatDroid, int clear_protocol)
+static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 {
 	int i;
 	SDL_Rect Chat_Window;
@@ -814,14 +741,10 @@ static void DoChatFromChatRosterData(int ChatPartnerCode, Enemy ChatDroid, int c
 			if (chat_control_end_dialog)
 				goto wait_click_and_out;
  		}
- 
- 		if (chat_control_next_node == -1) {
-
-		}
 
 		if (chat_control_next_node == -1) {
 			chat_control_next_node =
-			    ChatDoMenuSelectionFlagged(_("What will you say?"), DialogMenuTexts, Me.Chat_Flags[ChatPartnerCode], 1, -1,
+			    ChatDoMenuSelectionFlagged(_("What will you say?"), DialogMenuTexts, 1, -1,
 						       FPS_Display_BFont, ChatDroid);
 			//--------------------
 			// We do some correction of the menu selection variable:
@@ -836,8 +759,8 @@ static void DoChatFromChatRosterData(int ChatPartnerCode, Enemy ChatDroid, int c
 			chat_control_next_node = END_ANSWER;
 		}
 
-		ProcessThisChatOption(chat_control_next_node, ChatPartnerCode, ChatDroid);
-
+		ProcessThisChatOption(chat_control_next_node, ChatDroid);
+			
 		if (chat_control_end_dialog)
 			goto wait_click_and_out;
 	}
@@ -1027,9 +950,9 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	int i;
 	SDL_Rect Chat_Window;
 	char *DialogMenuTexts[MAX_ANSWERS_PER_PERSON];
-	int ChatFlagsIndex = (-1);
 	char fpath[2048];
 	char tmp_filename[5000];
+	struct npc *npc;
 
 	chat_control_chat_droid = ChatDroid;
 	//--------------------
@@ -1059,7 +982,9 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	//
 	InitChatRosterForNewDialogue();
 
-	ChatFlagsIndex = ResolveDialogSectionToChatFlagsIndex(ChatDroid->dialog_section_name);
+	npc = npc_get(ChatDroid->dialog_section_name);
+	if (!npc)
+		return;
 
 	strcpy(tmp_filename, ChatDroid->dialog_section_name);
 	strcat(tmp_filename, ".dialog");
@@ -1068,38 +993,26 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	find_file(tmp_filename, finaldir, fpath, 0);
 	LoadDialog(fpath);
 
-	chat_control_partner_code = ChatFlagsIndex;
+	chat_control_chat_flags = &npc->chat_flags[0];
 
-	if (!Me.chat_character_initialized[ChatFlagsIndex]) {	// then we must initialize this character
+	if (npc->chat_character_initialized) {
 		int i;
 		for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-			Me.Chat_Flags[ChatFlagsIndex][i] = 0;
+			chat_control_chat_flags[i] = 0;
 		}
 
 		if (chat_initialization_code)
 			run_lua(chat_initialization_code);
 
-		Me.chat_character_initialized[ChatFlagsIndex] = 1;
+		npc->chat_character_initialized = 1;
 	}
 
 	//--------------------
 	// Now with the loaded chat data, we can do the real chat now...
 	//
-	DoChatFromChatRosterData(ChatFlagsIndex, ChatDroid, TRUE);
+	DoChatFromChatRosterData(ChatDroid, TRUE);
 
 };				// void ChatWithFriendlyDroid( int Enum );
-
-/**
- * Map the internal index to the dialog filename. This is used to iterate over the dialogs FreedroidRPG might load.
- */
-static const char *get_dialog_basename(int index)
-{
-	if (index >= sizeof(dialog_name_to_index) / sizeof(dialog_name_to_index[0]))
-		return NULL;
-
-	return dialog_name_to_index[index].name;
-}
-
 
 /**
  * Validate dialogs syntax and Lua code 
@@ -1114,12 +1027,12 @@ static const char *get_dialog_basename(int index)
  */
 void validate_dialogs()
 {
-	int i = 0;
 	int j;
 	const char *basename;
 	char filename[1024];
 	char fpath[2048];
 	enemy *dummy_partner;
+	struct npc *n;
 	
 	skip_initial_menus = 1;
 
@@ -1151,12 +1064,16 @@ void validate_dialogs()
 
 	chat_control_chat_droid = dummy_partner;
 
-	while ((basename = get_dialog_basename(i++)) != NULL) {
+	list_for_each_entry(n, &npc_head, node) {
+		basename = n->dialog_basename;
+		chat_control_chat_flags = &n->chat_flags[0];
+
 		printf("Testing dialog \"%s\"...\n", basename);
 		sprintf(filename, "%s.dialog", basename);
 
 		find_file(filename, DIALOG_DIR, fpath, 0);
 
+		InitChatRosterForNewDialogue();
 		LoadDialog(fpath);
 
 		if (chat_initialization_code) {

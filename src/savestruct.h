@@ -8,6 +8,8 @@ int save_moderately_finepoint(char *, moderately_finepoint *);
  int read_moderately_finepoint(char *, char *, moderately_finepoint *);
 int save_mission(char *, mission *);
  int read_mission(char *, char *, mission *);
+int save_npc(char *, npc *);
+ int read_npc(char *, char *, npc *);
 int save_tux_t(char *, tux_t *);
  int read_tux_t(char *, char *, tux_t *);
 int save_item(char *, item *);

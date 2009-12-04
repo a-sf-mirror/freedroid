@@ -303,6 +303,39 @@ read_int32_t(pos, "expanded_display_for_this_mission",  &(target->expanded_displ
 return 0;
 }
 
+int save_npc(char * tag, npc * target)
+{
+autostr_append(savestruct_autostr, "<%s>\n",tag);
+save_string("dialog_basename", &(target->dialog_basename));
+save_uchar("chat_character_initialized", &(target->chat_character_initialized));
+save_uchar_array("chat_flags", (target->chat_flags), MAX_ANSWERS_PER_PERSON);
+save_string_array("shoplist", (target->shoplist), MAX_ITEMS_IN_INVENTORY);
+save_list_head_t("node", &(target->node));
+autostr_append(savestruct_autostr, "</%s>\n", tag);
+return 0;
+}
+
+int read_npc(char* buffer, char * tag, npc * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_string(pos, "dialog_basename",  &(target->dialog_basename));
+read_uchar(pos, "chat_character_initialized",  &(target->chat_character_initialized));
+read_uchar_array(pos, "chat_flags",  (target->chat_flags), MAX_ANSWERS_PER_PERSON);
+read_string_array(pos, "shoplist",  (target->shoplist), MAX_ITEMS_IN_INVENTORY);
+read_list_head_t(pos, "node",  &(target->node));
+*epos = '>'; 
+return 0;
+}
+
 int save_tux_t(char * tag, tux_t * target)
 {
 autostr_append(savestruct_autostr, "<%s>\n",tag);
@@ -386,10 +419,8 @@ save_item("shield_item", &(target->shield_item));
 save_item("special_item", &(target->special_item));
 save_uchar_array("HaveBeenToLevel", (target->HaveBeenToLevel), MAX_LEVELS);
 save_float_array("time_since_last_visit_or_respawn", (target->time_since_last_visit_or_respawn), MAX_LEVELS);
-save_chatflags_t_array("Chat_Flags", (target->Chat_Flags), MAX_PERSONS);
 save_string_array("cookie_list", (target->cookie_list), MAX_COOKIES);
 save_int32_t("is_town_guard_member", &(target->is_town_guard_member));
-save_uchar_array("chat_character_initialized", (target->chat_character_initialized), MAX_PERSONS);
 save_moderately_finepoint_array("next_intermediate_point", (target->next_intermediate_point), MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
 save_uint16_t_array("KillRecord", (target->KillRecord), 200);
 save_uint16_t_array("TakeoverSuccesses", (target->TakeoverSuccesses), 200);
@@ -501,10 +532,8 @@ read_item(pos, "shield_item",  &(target->shield_item));
 read_item(pos, "special_item",  &(target->special_item));
 read_uchar_array(pos, "HaveBeenToLevel",  (target->HaveBeenToLevel), MAX_LEVELS);
 read_float_array(pos, "time_since_last_visit_or_respawn",  (target->time_since_last_visit_or_respawn), MAX_LEVELS);
-read_chatflags_t_array(pos, "Chat_Flags",  (target->Chat_Flags), MAX_PERSONS);
 read_string_array(pos, "cookie_list",  (target->cookie_list), MAX_COOKIES);
 read_int32_t(pos, "is_town_guard_member",  &(target->is_town_guard_member));
-read_uchar_array(pos, "chat_character_initialized",  (target->chat_character_initialized), MAX_PERSONS);
 read_moderately_finepoint_array(pos, "next_intermediate_point",  (target->next_intermediate_point), MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
 read_uint16_t_array(pos, "KillRecord",  (target->KillRecord), 200);
 read_uint16_t_array(pos, "TakeoverSuccesses",  (target->TakeoverSuccesses), 200);

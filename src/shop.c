@@ -43,168 +43,39 @@ SDL_Rect ShopItemRowRect;
 SDL_Rect TuxItemRowRect;
 
 /**
- * This function prepares a new set of items, that will be displayed for
- * the Tux to buy.
- *
- * This function is different from the other 'AssemblePointerList..'
- * functions in the sense, that here we really must first CREATE the items.
- *
- * Since the shop will always COPY and DELETE items and not only point
- * some pointer to different directions, recurrent calls of this function
- * should not cause any damage, as long as there is only ONE player in 
- * the game.
+ * This function creates the inventory list for an npc based on its shoplist (available items).
  */
-void AssembleItemListForTradeCharacter(item * ListToBeFilled, int ShopCharacterCode)
+static void generate_inventory_for_npc(item *list_to_fill, struct npc *n)
 {
-	item *ListPointer = ListToBeFilled;
+	item *cur;
 	int i;
 
-	//--------------------
-	// At first we clean out the given list.
-	//
-	ListPointer = ListToBeFilled;
+	// Clear out the list first
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		ListPointer->type = (-1);
-		ListPointer->prefix_code = (-1);
-		ListPointer->suffix_code = (-1);
-		ListPointer++;
+		cur = &list_to_fill[i];
+		cur->type = -1;
+		cur->prefix_code = -1;
+		cur->suffix_code = -1;
 	}
 
-	//--------------------
-	// Depending on the character code given, we'll now refill the list
-	// of items to be made available
-	//
-	ListPointer = ListToBeFilled;
-	if (ShopCharacterCode == PERSON_STONE) {
-		ListPointer->type = GetItemIndexByName("Big kitchen knife");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Meat cleaver");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Iron pipe");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Big wrench");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Crowbar");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Cap");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Buckler");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Simple Jacket");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Shoes");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName(".22 LR Ammunition");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Shotgun shells");
-		ListPointer++;
-	} else if (ShopCharacterCode == PERSON_DOC_MOORE) {
-		ListPointer->type = GetItemIndexByName("Diet supplement");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Antibiotic");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Doc-in-a-can");
-		ListPointer++;
-	} else if (ShopCharacterCode == PERSON_LUKAS) {
-		ListPointer->type = GetItemIndexByName("Laser pistol");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Laser power pack");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Plasma pistol");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Plasma energy container");
-		ListPointer++;
-//      ListPointer->type = GetItemIndexByName("9x19mm Ammunition"); ListPointer++;
-//      ListPointer->type = GetItemIndexByName("7.62x39mm Ammunition"); ListPointer++;
-//      ListPointer->type = GetItemIndexByName(".50 BMG (12.7x99mm) Ammunition"); ListPointer++;
-		ListPointer->type = GetItemIndexByName("Red Guard's Light Robe");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Red Guard's Heavy Robe");
-		ListPointer++;
-	} else if (ShopCharacterCode == PERSON_SKIPPY) {
-		ListPointer->type = GetItemIndexByName("Map Maker");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Teleporter homing beacon");
-		ListPointer++;
-	} else if (ShopCharacterCode == PERSON_DUNCAN) {
-		ListPointer->type = GetItemIndexByName("VMX Gas Grenade");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("EMP Shockwave Generator");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Plasma Shockwave Emitter");
-		ListPointer++;
-	} else if (ShopCharacterCode == PERSON_EWALD) {
-		ListPointer->type = GetItemIndexByName("Bottled ice");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Industrial coolant");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Liquid nitrogen");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Barf's Energy Drink");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Running Power Capsule");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Fork");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Plate");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Mug");
-		ListPointer++;
-	} else if (ShopCharacterCode == PERSON_SORENSON) {
-		ListPointer->type = GetItemIndexByName("Source Book of Emergency shutdown");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Check system integrity");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Sanctuary");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Analyze item");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Malformed packet");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Blue Screen");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Broadcast Blue Screen");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Calculate Pi");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Virus");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Broadcast virus");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Dispel smoke");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Killer poke");
-		ListPointer++;
-//      ListPointer->type = GetItemIndexByName("Source Book of Reverse-engineer"); ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Plasma discharge");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Nethack");
-		ListPointer++;
-		ListPointer->type = GetItemIndexByName("Source Book of Invisibility");
-		ListPointer++;
-//      ListPointer->type = GetItemIndexByName("Source Book of Ricer CFLAGS"); ListPointer++;
-//      ListPointer->type = GetItemIndexByName("Source Book of Light"); ListPointer++;
-//      ListPointer->type = GetItemIndexByName("Source Book of Satellite image"); ListPointer++;
-	} else {
-		ErrorMessage(__FUNCTION__, "\
-		The function has received an unexpected character code.  This is not handled\n\
-		currently and therefore initiates immediate termination now...", PLEASE_INFORM, IS_FATAL);
-	}
-
-	//--------------------
-	// Now it's time to fill in the correct item properties and set
-	// the right flags, so that we get a 'normal' item.
-	//
-	ListPointer = ListToBeFilled;
+	// Pick out items types to present to the player
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		if (ListPointer->type == (-1))
+		cur = &list_to_fill[i];
+		if (!n->shoplist[i])
 			break;
-		FillInItemProperties(ListPointer, TRUE, 1);
-		ListPointer->is_identified = TRUE;
-		ListPointer++;
+		cur->type = GetItemIndexByName(n->shoplist[i]);
 	}
-
-};				// void AssembleItemListForTradeCharacter ( .. )
+	
+	// Fill in the correct item properties and set
+	// the right flags, so that we get a 'normal' item.
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		cur = &list_to_fill[i];
+		if (cur->type == -1)
+			break;
+		FillInItemProperties(cur, TRUE, 1);
+		cur->is_identified = TRUE;
+	}
+}
 
 /**
  * At some points in the game, like when at the shop interface or at the
@@ -1422,7 +1293,7 @@ void TryToBuyItem(item * BuyItem, int WithBacktalk, int AmountToBuyAtMost)
  *
  *
  */
-void InitTradeWithCharacter(int CharacterCode)
+void InitTradeWithCharacter(struct npc *npc)
 {
 #define FIXED_SHOP_INVENTORY TRUE
 #define NUMBER_OF_ITEMS_IN_SHOP 17
@@ -1437,14 +1308,14 @@ void InitTradeWithCharacter(int CharacterCode)
 	int NumberOfItemsInTuxRow = 0;
 	int NumberOfItemsInShop = 0;
 
-	AssembleItemListForTradeCharacter(&(SalesList[0]), CharacterCode);
+	generate_inventory_for_npc(&SalesList[0], npc);
+
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 		if (SalesList[i].type == (-1))
 			BuyPointerList[i] = NULL;
 		else
 			BuyPointerList[i] = &(SalesList[i]);
 	}
-
 	//--------------------
 	// Now here comes the new thing:  This will be a loop from now
 	// on.  The buy and buy and buy until at one point we say 'BACK'
@@ -1479,7 +1350,7 @@ void InitTradeWithCharacter(int CharacterCode)
 			break;
 		};
 
-		AssembleItemListForTradeCharacter(&(SalesList[0]), CharacterCode);
+		generate_inventory_for_npc(&SalesList[0], npc);
 		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 			if (SalesList[i].type == (-1))
 				BuyPointerList[i] = NULL;
