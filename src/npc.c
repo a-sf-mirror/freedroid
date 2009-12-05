@@ -286,7 +286,7 @@ static int npc_shoplist_size(struct npc *n)
 /**
  * Remove an item from the NPC inventory, preserving others.
  */
-static void remove_item(struct npc *n, int index)
+void npc_inventory_delete_item(struct npc *n, int index)
 {
 	if (index == MAX_ITEMS_IN_INVENTORY - 1) {
 		// If we are removing the last item of the list, it is easy
@@ -297,7 +297,7 @@ static void remove_item(struct npc *n, int index)
 	}
 
 	// Otherwise, erase this item with the next ones
-	memmove(&n->npc_inventory[index], &n->npc_inventory[index+1], sizeof(item));
+	memmove(&n->npc_inventory[index], &n->npc_inventory[index+1], sizeof(item)*(MAX_ITEMS_IN_INVENTORY - index - 1));
 }
 
 /**
@@ -342,7 +342,7 @@ static void npc_refresh_inventory(struct npc *n)
 		// The loop is backwards so repeated remove_item calls
 		// do as little memory traffic as possible
 		if (MyRandom(100) < 50) {
-			remove_item(n, i);
+			npc_inventory_delete_item(n, i);
 		}
 	}
 

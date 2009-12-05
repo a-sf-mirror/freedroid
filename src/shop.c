@@ -1034,9 +1034,6 @@ void TryToIdentifyItem(item * IdentifyItem)
  */
 void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 {
-#define ANSWER_YES 1
-#define ANSWER_NO 2
-
 	//--------------------
 	// We catch the case, that not even one item was selected
 	// for buying in the number selector...
@@ -1080,16 +1077,17 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 };				// void TryToSellItem( item* SellItem )
 
 /**
- * This function tries to put an item into the inventory, either by adding
+ * This function tries to put an item (copy it) into the player inventory, either by adding
  * this items multiplicity to the multiplicity of an already present item
  * of the very same type or by allocating a new inventory item for this
  * new item and putting it there.
  *
- * In the case that both methods couldn't succeed, a FALSE value is 
- * returned to let the caller know, that this procedure has failed.
- * Otherwise TRUE will indicate that everything is ok and went well.
+ * In the case that both methods couldn't succeed, a nonzero value is 
+ * returned to let the caller know that it is not possible
+ * to integrate the item into the player's inventory.
+ * Zero return value means everything is ok, the caller can proceed to deleting its copy of the item.
  */
-int TryToIntegrateItemIntoInventory(item * BuyItem, int AmountToBuyAtMost)
+int copy_item_into_inventory(item *BuyItem, int amount)
 {
 	int x, y;
 	int FreeIndex;
@@ -1103,153 +1101,82 @@ int TryToIntegrateItemIntoInventory(item * BuyItem, int AmountToBuyAtMost)
 		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 			if (Me.Inventory[i].type == BuyItem->type) {
 				while (1) {
-					while (EnterPressed() || SpacePressed()) ;
-					Me.Inventory[i].multiplicity += AmountToBuyAtMost;
-
-					//--------------------
-					// This is new.  I hope it's not dangerous.
-					//
-					if (AmountToBuyAtMost >= BuyItem->multiplicity)
-						DeleteItem(BuyItem);
-					else
-						BuyItem->multiplicity -= AmountToBuyAtMost;
-					return (TRUE);
+					Me.Inventory[i].multiplicity += amount;
+					BuyItem->multiplicity -= amount;
+					return 0;
 				}
 			}
 		}
 	}
+
 	//--------------------
 	// Now we must find out if there is an inventory position where we can put the
 	// item in question.
 	//
 	FreeIndex = GetFreeInventoryIndex();
-
 	for (x = 0; x < INVENTORY_GRID_WIDTH; x++) {
 		for (y = 0; y < INVENTORY_GRID_HEIGHT; y++) {
 			if (ItemCanBeDroppedInInv(BuyItem->type, x, y)) {
 				while (1) {
-					while (EnterPressed() || SpacePressed()) ;
-
 					CopyItem(BuyItem, &(Me.Inventory[FreeIndex]), FALSE);
-					Me.Inventory[FreeIndex].multiplicity = AmountToBuyAtMost;
+					Me.Inventory[FreeIndex].multiplicity = amount;
 
 					Me.Inventory[FreeIndex].currently_held_in_hand = FALSE;
 					Me.Inventory[FreeIndex].inventory_position.x = x;
 					Me.Inventory[FreeIndex].inventory_position.y = y;
 
-					//--------------------
-					// This is new.  I hope it's not dangerous.
-					//
-					if (BuyItem->multiplicity <= AmountToBuyAtMost)
-						DeleteItem(BuyItem);
-					else
-						BuyItem->multiplicity -= AmountToBuyAtMost;
-
-					return (TRUE);
+					BuyItem->multiplicity -= amount;
+					return 0;
 				}
 			}
 		}
 	}
 
-	return (FALSE);
+	return -1;
 
-};				// void TryToIntegrateItemIntoInventory ( item* BuyItem , int AmountToBuyAtMost )
-
-/**
- * This function tries to buy the item given as parameter.  Currently
- * is just drops the item to the floor under the influencer and will
- * reduce influencers money.
- */
-void TryToTakeItem(item * BuyItem, int AmountToBuyAtMost)
-{
-	int StoredItemType;
-
-	StoredItemType = BuyItem->type;
-
-	//--------------------
-	// We catch the case, that not even one item was selected
-	// for taking out from the chest in the number selector...
-	//
-	if (AmountToBuyAtMost <= 0) {
-		DebugPrintf(0, _("\nTried to take 0 items of a kind from chest or cointainer... doing nothing... "));
-		return;
-	}
-	//--------------------
-	// We prevent some take-put-cheating here.  For buying items this must
-	// NOT be done.
-	//
-	if (AmountToBuyAtMost >= BuyItem->multiplicity)
-		AmountToBuyAtMost = BuyItem->multiplicity;
-
-	if (TryToIntegrateItemIntoInventory(BuyItem, AmountToBuyAtMost)) {
-		// PlayItemSound( ItemMap[ StoredItemType ].sound_number );
-		play_item_sound(StoredItemType);
-	}
-};				// void TryToTakeItem( item* BuyItem , int AmountToBuyAtMost )
+}
 
 /**
- * This function tries to buy the item given as parameter.  Currently
- * is just drops the item to the floor under the influencer and will
- * reduce influencers money.
+ * This function tries to buy the item given as parameter.
+ * Returns 0 if buying was possible, 1 otherwise.
  */
-void TryToBuyItem(item * BuyItem, int WithBacktalk, int AmountToBuyAtMost)
+static int buy_item(item *BuyItem, int amount)
 {
 	int FreeIndex;
-	char linebuf[1000];
-	float PotentialPrice;
+	float item_price;
 
-#define ANSWER_YES 1
-#define ANSWER_NO 2
-
-	char *MenuTexts[10];
-	MenuTexts[0] = _("Yes");
-	MenuTexts[1] = _("No");
-	MenuTexts[2] = "";
-
-	DebugPrintf(0, "\nTryToBuyItem (...):  function called.");
-
-	//--------------------
-	// We catch the case, that not even one item was selected
-	// for buying in the number selector...
-	//
-	if (AmountToBuyAtMost <= 0) {
-		DebugPrintf(0, "\nTried to buy 0 items of a kind... doing nothing... ");
-		return;
+	if (amount <= 0) {
+		return 1;
 	}
 
-	BuyItem->multiplicity = AmountToBuyAtMost;
+	BuyItem->multiplicity = amount;
 
 	FreeIndex = GetFreeInventoryIndex();
 
-	while (SpacePressed() || EnterPressed() || MouseLeftPressed()) ;
+	item_price = calculate_item_buy_price(BuyItem);
 
-	if (calculate_item_buy_price(BuyItem) > Me.Gold) {
-		if (WithBacktalk) {
-			MenuTexts[0] = _(" BACK ");
-			MenuTexts[1] = "";
-			GiveItemDescription(linebuf, BuyItem, TRUE);
-			strcat(linebuf, _("\n\n    You can't afford to purchase this item!"));
-			SetCurrentFont(Menu_BFont);
-			DoMenuSelection(linebuf, MenuTexts, 1, -1, NULL);
-		}
-		return;
+	// If the item is too expensive, bail out
+	if (item_price > Me.Gold) {
+		char *MenuTexts[10];
+		char linebuf[1000];
+		MenuTexts[0] = _(" BACK ");
+		MenuTexts[1] = "";
+		GiveItemDescription(linebuf, BuyItem, TRUE);
+		strcat(linebuf, _("\n\n    You can't afford to purchase this item!"));
+		SetCurrentFont(Menu_BFont);
+		DoMenuSelection(linebuf, MenuTexts, 1, -1, NULL);
+		return 1;
 	}
-	//--------------------
-	// In the case that the item could be afforded in theory, we need to
-	// calculate the price, then have the item integrated into the inventory
-	// if that's possible, and if so, subtract the items price from the
-	// current gold.
-	//
-	PotentialPrice = calculate_item_buy_price(BuyItem);
 
-	if (TryToIntegrateItemIntoInventory(BuyItem, AmountToBuyAtMost)) {
-		Me.Gold -= PotentialPrice;
+	// Check if there is room in the inventory
+	if (!copy_item_into_inventory(BuyItem, amount)) {
+		Me.Gold -= item_price;
 		PlayOnceNeededSoundSample("effects/Shop_ItemBoughtSound_0.ogg", FALSE, FALSE);
+		return 0;
 	} else {
-		// bad luck.  couldn't store item in inventory, so no price paid...
+		return 1;
 	}
-
-};				// void TryToBuyItem( item* BuyItem )
+}
 
 /**
  * This is some preparation for the shop interface.  We assemble some
@@ -1299,7 +1226,10 @@ void InitTradeWithCharacter(struct npc *npc)
 		ItemSelected = GreatShopInterface(NumberOfItemsInShop, BuyPointerList, NumberOfItemsInTuxRow, TuxItemsList, &(ShopOrder));
 		switch (ShopOrder.shop_command) {
 		case BUY_1_ITEM:
-			TryToBuyItem(BuyPointerList[ShopOrder.item_selected], TRUE, ShopOrder.number_selected);
+			if (!buy_item(BuyPointerList[ShopOrder.item_selected], ShopOrder.number_selected)) {
+				// destroy our copy of the item
+				npc_inventory_delete_item(npc, ShopOrder.item_selected);
+			}
 			break;
 		case SELL_1_ITEM:
 			TryToSellItem(TuxItemsList[ShopOrder.item_selected], ShopOrder.number_selected);
@@ -1321,9 +1251,7 @@ void InitTradeWithCharacter(struct npc *npc)
 			else
 				BuyPointerList[i] = &(SalesList[i]);
 		}
-
 	}
-
-};				// void InitTradeWithCharacter( void )
+}
 
 #undef _shop_c

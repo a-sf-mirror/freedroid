@@ -689,12 +689,12 @@ void toggle_game_config_screen_visibility(int screen_visible);
 
 // shop.c 
 void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem);
-int TryToIntegrateItemIntoInventory(item * BuyItem, int AmountToBuyAtMost);
 int AssemblePointerListForChestShow(item **, gps);
 int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWornItems);
 void InitTradeWithCharacter(struct npc *);
 int GreatShopInterface(int, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY], int, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY],
 		       shop_decision *);
+int copy_item_into_inventory(item *, int);
 
 // takeover.c 
 
@@ -782,5 +782,6 @@ int npc_add_shoplist(const char *, const char *);
 void init_npcs(void);
 void clear_npcs(void);
 item *npc_get_inventory(struct npc *);
+void npc_inventory_delete_item(struct npc *, int);
 
 #endif
