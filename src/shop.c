@@ -43,41 +43,6 @@ SDL_Rect ShopItemRowRect;
 SDL_Rect TuxItemRowRect;
 
 /**
- * This function creates the inventory list for an npc based on its shoplist (available items).
- */
-static void generate_inventory_for_npc(item *list_to_fill, struct npc *n)
-{
-	item *cur;
-	int i;
-
-	// Clear out the list first
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		cur = &list_to_fill[i];
-		cur->type = -1;
-		cur->prefix_code = -1;
-		cur->suffix_code = -1;
-	}
-
-	// Pick out items types to present to the player
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		cur = &list_to_fill[i];
-		if (!n->shoplist[i])
-			break;
-		cur->type = GetItemIndexByName(n->shoplist[i]);
-	}
-	
-	// Fill in the correct item properties and set
-	// the right flags, so that we get a 'normal' item.
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		cur = &list_to_fill[i];
-		if (cur->type == -1)
-			break;
-		FillInItemProperties(cur, TRUE, 1);
-		cur->is_identified = TRUE;
-	}
-}
-
-/**
  * At some points in the game, like when at the shop interface or at the
  * items browser at the console, we wish to show a list of the items 
  * currently in inventory.  This function assembles this list.  It lets
@@ -1299,7 +1264,7 @@ void InitTradeWithCharacter(struct npc *npc)
 #define NUMBER_OF_ITEMS_IN_SHOP 17
 	// #define NUMBER_OF_ITEMS_IN_SHOP 4
 
-	item SalesList[MAX_ITEMS_IN_INVENTORY];
+	item *SalesList;
 	item *BuyPointerList[MAX_ITEMS_IN_INVENTORY];
 	item *TuxItemsList[MAX_ITEMS_IN_INVENTORY];
 	int i;
@@ -1308,7 +1273,7 @@ void InitTradeWithCharacter(struct npc *npc)
 	int NumberOfItemsInTuxRow = 0;
 	int NumberOfItemsInShop = 0;
 
-	generate_inventory_for_npc(&SalesList[0], npc);
+	SalesList = npc_get_inventory(npc);
 
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 		if (SalesList[i].type == (-1))
@@ -1350,7 +1315,6 @@ void InitTradeWithCharacter(struct npc *npc)
 			break;
 		};
 
-		generate_inventory_for_npc(&SalesList[0], npc);
 		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 			if (SalesList[i].type == (-1))
 				BuyPointerList[i] = NULL;

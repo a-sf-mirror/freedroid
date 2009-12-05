@@ -781,5 +781,6 @@ void npc_add(const char *);
 int npc_add_shoplist(const char *, const char *);
 void init_npcs(void);
 void clear_npcs(void);
+item *npc_get_inventory(struct npc *);
 
 #endif

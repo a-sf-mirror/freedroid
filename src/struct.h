@@ -484,7 +484,10 @@ typedef struct npc {
 	unsigned char chat_character_initialized;
 	unsigned char chat_flags[MAX_ANSWERS_PER_PERSON];
 
-	string shoplist[MAX_ITEMS_IN_INVENTORY];
+	string shoplist[MAX_ITEMS_IN_INVENTORY]; //list of items that can be put in the inventory of the NPC
+	item npc_inventory[MAX_ITEMS_IN_INVENTORY]; // current NPC stock (what can be readily bought)
+
+	float last_trading_date; // when did we trade with this NPC the last time?
 
 	list_head_t node; 
 } npc;

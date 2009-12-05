@@ -37,6 +37,8 @@
 #include "global.h"
 #include "SDL_rotozoom.h"
 
+static void npc_clear_inventory(struct npc *);
+
 // List of NPCs in the game
 LIST_HEAD(npc_head);
 
@@ -63,7 +65,9 @@ void npc_add(const char *dialog_basename)
 
 	n->dialog_basename = strdup(dialog_basename);
 	n->chat_character_initialized = 0;
+	n->last_trading_date = 0.0f;
 
+	npc_clear_inventory(n);
 	npc_insert(n);	
 }
 
@@ -245,6 +249,141 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name)
 
 	n->shoplist[i] = strdup(item_name);
 	return 0;
+}
+
+static void npc_clear_inventory(struct npc *n)
+{
+	int i;
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		n->npc_inventory[i].type = -1;
+		n->npc_inventory[i].prefix_code = -1;
+		n->npc_inventory[i].suffix_code = -1;
+	}
+}
+
+static int npc_inventory_size(struct npc *n)
+{
+	int i;
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		if (n->npc_inventory[i].type == -1)
+			break;
+	}
+
+	return i;
+}
+
+static int npc_shoplist_size(struct npc *n)
+{
+	int i;
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		if (n->shoplist[i] == NULL)
+			break;
+	}
+
+	return i;
+}
+
+/**
+ * Remove an item from the NPC inventory, preserving others.
+ */
+static void remove_item(struct npc *n, int index)
+{
+	if (index == MAX_ITEMS_IN_INVENTORY - 1) {
+		// If we are removing the last item of the list, it is easy
+		n->npc_inventory[index].type = -1;
+		n->npc_inventory[index].prefix_code = -1;
+		n->npc_inventory[index].suffix_code = -1;
+		return;
+	}
+
+	// Otherwise, erase this item with the next ones
+	memmove(&n->npc_inventory[index], &n->npc_inventory[index+1], sizeof(item));
+}
+
+/**
+ * Add an item in the NPC inventory, given its name
+ * Returns 0 on success.
+ */
+static int add_item(struct npc *n, const char *item_name)
+{
+	int i;
+
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		if (n->npc_inventory[i].type == -1)
+			break;
+	}
+
+	if (i == MAX_ITEMS_IN_INVENTORY) {
+		ErrorMessage(__FUNCTION__, "Unable to add item \"%s\" inside NPC \"%s\" inventory, because the inventory is full.\n", PLEASE_INFORM, IS_WARNING_ONLY, item_name, n->dialog_basename);
+		return 1;
+	}
+
+	printf("adding item %s\n", item_name);
+	n->npc_inventory[i].type = GetItemIndexByName(item_name);
+	FillInItemProperties(&n->npc_inventory[i], TRUE, 1);
+	n->npc_inventory[i].is_identified = TRUE;
+
+	return 0;
+}
+
+/**
+ * Refresh the inventory of an NPC so as to introduce a bit 
+ * of variation in what NPCs sell.
+ */
+static void npc_refresh_inventory(struct npc *n)
+{
+	int i;
+	int target_size;
+	int shoplist_size = npc_shoplist_size(n);
+
+	// Remove each item with a given probability
+	for (i = npc_inventory_size(n) - 1; i >= 0; i--) {
+		printf("refresh: removing item %d\n", i);
+		// The loop is backwards so repeated remove_item calls
+		// do as little memory traffic as possible
+		if (MyRandom(100) < 50) {
+			remove_item(n, i);
+		}
+	}
+
+	// Compute the target size and add items to match it
+	target_size = (3*npc_shoplist_size(n)) / 4;
+	printf("refresh: target size is %d, inventory size %d, shoplist size %d\n", target_size, npc_inventory_size(n), shoplist_size);
+
+	if (npc_inventory_size(n) >= target_size) {
+		// We do not need to add any items, we have too many already
+		return;
+	}
+
+	// Add the required number of items
+	i = target_size - npc_inventory_size(n);
+	while (i--) {
+		add_item(n, n->shoplist[MyRandom(shoplist_size - 1)]);
+	}
+}
+
+/**
+ * This function is used by shops to get a list of the items
+ * a NPC will sell.
+ * It takes care of refreshing the list when necessary.
+ */
+item *npc_get_inventory(struct npc *n)
+{
+	// Time based refresh
+	if ((Me.current_game_date - n->last_trading_date) > 360) {
+		printf("time based  refresh\n");
+		// Refresh every 360 secondes
+		npc_refresh_inventory(n);
+	}
+
+	// Low-stock based refresh
+	if (npc_inventory_size(n) < (1 + npc_shoplist_size(n) / 2)) {
+		printf("stock based  refresh\n");
+		// If stock < 50% of catalog
+		npc_refresh_inventory(n);
+	}
+
+	return n->npc_inventory;
 }
 
 #undef _npc_c
