@@ -379,7 +379,7 @@ int LoadBackupGame()
 	return ret;
 }
 
-static void load_enemies(volatile char *LoadGameData)
+static void load_enemies(char *LoadGameData)
 {
 	ClearEnemys();
 
@@ -387,7 +387,7 @@ static void load_enemies(volatile char *LoadGameData)
 	int done;
 	int a = 0, i;
 	for (i = 0; i < 2; i++) {
-		volatile char *cpos = LoadGameData;
+		char *cpos = LoadGameData;
 		done = 0;
 		while (!done) {
 			newen = (enemy *) calloc(1, sizeof(enemy));
@@ -411,12 +411,12 @@ static void load_enemies(volatile char *LoadGameData)
 	}
 }
 
-static void load_npcs(volatile char *LoadGameData)
+static void load_npcs(char *LoadGameData)
 {
 	clear_npcs();
 
 	struct npc *npc;
-	volatile char *cpos = LoadGameData;
+	char *cpos = LoadGameData;
 	int a = 0, done = 0;
 	while (!done) {
 		npc = calloc(1, sizeof(struct npc));
@@ -439,9 +439,9 @@ static void load_npcs(volatile char *LoadGameData)
 	}
 }
 
-static void load_bullets(volatile char *LoadGameData)
+static void load_bullets(char *LoadGameData)
 {
-	volatile char *cpos = LoadGameData;
+	char *cpos = LoadGameData;
 	int done = 0;
 	int i;
 	for (i = 0; i < MAXBULLETS && !done; i++) {
@@ -463,7 +463,7 @@ static void load_bullets(volatile char *LoadGameData)
 int LoadGame(void)
 {
 	char version_check_string[1000];
-	volatile char *LoadGameData = NULL;
+	char *LoadGameData = NULL;
 	char filename[1000];
 	int i;
 	FILE *DataFile;
@@ -862,7 +862,7 @@ void read_keybind_t_array(const char *buffer, const char *tag, keybind_t * kbs, 
 	*epos = '\0';
 	int mc = 0;
 	char tmpname[100];
-	int tmpcode;
+	int tmpcode = 0;
 	int tmpmod;
 
 	pos += strlen("<keybinds cmd=");
