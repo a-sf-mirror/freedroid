@@ -116,7 +116,6 @@ EXTERN void duplicate_all_obstacles_in_area(Level source_level,
 					    float source_start_x, float source_start_y,
 					    float source_area_width, float source_area_height,
 					    Level target_level, float target_start_x, float target_start_y);
-EXTERN void ReportInconsistenciesForLevel(int);
 EXTERN void TestMap();
 EXTERN void close_all_chests_on_level(int);
 

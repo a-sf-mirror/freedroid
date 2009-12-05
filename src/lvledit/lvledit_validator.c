@@ -47,13 +47,9 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 static void *lvlval_waypoint_parse_excpt(char *string);
 static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2);
 
-static int lvlval_interface_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
-static void *lvlval_interface_parse_excpt(char *string);
-static int lvlval_interface_cmp_data(void *opaque_data1, void *opaque_data2);
-
-static int lvlval_jumptarget_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
-static void *lvlval_jumptarget_parse_excpt(char *string);
-static int lvlval_jumptarget_cmp_data(void *opaque_data1, void *opaque_data2);
+static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
+static void *lvlval_neighborhood_parse_excpt(char *string);
+static int lvlval_neighborhood_cmp_data(void *opaque_data1, void *opaque_data2);
 
 struct level_validator level_validators[] = {
 	{'C',
@@ -68,14 +64,9 @@ struct level_validator level_validators[] = {
 	 lvlval_waypoint_cmp_data},
 	{'J',
 	 LIST_HEAD_INIT(level_validators[2].excpt_list),
-	 lvlval_jumptarget_execute,
-	 lvlval_jumptarget_parse_excpt,
-	 lvlval_jumptarget_cmp_data},
-	{'I',
-	 LIST_HEAD_INIT(level_validators[3].excpt_list),
-	 lvlval_interface_execute,
-	 lvlval_interface_parse_excpt,
-	 lvlval_interface_cmp_data},
+	 lvlval_neighborhood_execute,
+	 lvlval_neighborhood_parse_excpt,
+	 lvlval_neighborhood_cmp_data},
 	{.initial = '\0'}
 };
 
@@ -84,7 +75,7 @@ struct level_validator level_validators[] = {
 //===========================================================
 
 /**
- * Ouput to the console the validator's title and associated comment
+ * Output to the console the validator's title and associated comment
  */
 
 static void validator_print_header(struct lvlval_ctx *val_ctx, char *title, char *comment)
@@ -198,7 +189,7 @@ static void get_excpt_list(char *section_pointer)
 			if (one_validator->parse_excpt == NULL)
 				continue;
 
-			// Call sub-validator's parse fonction
+			// Call sub-validator's parse function
 
 			struct lvlval_excpt_item *item = (struct lvlval_excpt_item *)malloc(sizeof(struct lvlval_excpt_item));
 			item->caught = FALSE;
@@ -293,7 +284,7 @@ static int lookup_exception(struct level_validator *this, void *opaque_data)
 
 /*
  * This function prints all uncaught exceptions of a validator
- * Ouput : TRUE if there were uncaught exceptions
+ * Output : TRUE if there were uncaught exceptions
  */
 
 static int print_uncaught_exceptions()
@@ -842,24 +833,24 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 }
 
 //===========================================================
-// Jumptarget Validator
+// Neighborhood Validator
 //
-// This validator checks if jump targets are valid
+// This validator checks if neighborhood is valid
 //===========================================================
 
-struct jumptarget_excpt_data {
+struct neighborhood_excpt_data {
 	char jumptarget;
 	int from_level;
 	int to_level;
 };
 
 /*
- * Parse a 'jumptarger' exception
+ * Parse a 'neighborhood' exception
  */
 
-static void *lvlval_jumptarget_parse_excpt(char *string)
+static void *lvlval_neighborhood_parse_excpt(char *string)
 {
-	struct jumptarget_excpt_data *data = (struct jumptarget_excpt_data *)malloc(sizeof(struct jumptarget_excpt_data));
+	struct neighborhood_excpt_data *data = (struct neighborhood_excpt_data *)malloc(sizeof(struct neighborhood_excpt_data));
 
 	char *direction_name = ReadAndMallocStringFromData(string, "Interface:", " ");
 	if (!direction_name) {
@@ -876,13 +867,13 @@ static void *lvlval_jumptarget_parse_excpt(char *string)
 }
 
 /*
- * Compare two 'jumptarget' exception data structures 
+ * Compare two 'neighborhood' exception data structures
  */
 
-static int lvlval_jumptarget_cmp_data(void *opaque_data1, void *opaque_data2)
+static int lvlval_neighborhood_cmp_data(void *opaque_data1, void *opaque_data2)
 {
-	struct jumptarget_excpt_data *data1 = opaque_data1;
-	struct jumptarget_excpt_data *data2 = opaque_data2;
+	struct neighborhood_excpt_data *data1 = opaque_data1;
+	struct neighborhood_excpt_data *data2 = opaque_data2;
 
 	if (data1->jumptarget != data2->jumptarget)
 		return FALSE;
@@ -895,19 +886,23 @@ static int lvlval_jumptarget_cmp_data(void *opaque_data1, void *opaque_data2)
 }
 
 /*
- * 'jumptarget' validator
+ * 'neighborhood' validator
  */
 
-static int lvlval_jumptarget_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
+static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
 {
 	int is_invalid = FALSE;
 
+	/*
+	 * 1) check for existence of the defined neighbor
+	 */
+
 	if (validator_ctx->this_level->jump_target_north != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_north] == NULL) {
-		struct jumptarget_excpt_data to_check =
+		struct neighborhood_excpt_data to_check =
 		    { 'N', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north };
 
 		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existant jump target",
+			validator_print_header(validator_ctx, "Non existent neighbor",
 					       "The north jump target on a level points to a non existing level.");
 			is_invalid = TRUE;
 
@@ -917,11 +912,11 @@ static int lvlval_jumptarget_execute(struct level_validator *this, struct lvlval
 	}
 
 	if (validator_ctx->this_level->jump_target_west != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_west] == NULL) {
-		struct jumptarget_excpt_data to_check =
+		struct neighborhood_excpt_data to_check =
 		    { 'W', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west };
 
 		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existant jump target",
+			validator_print_header(validator_ctx, "Non existent neighbor",
 					       "The west jump target on a level points to a non existing level.");
 			is_invalid = TRUE;
 
@@ -931,11 +926,11 @@ static int lvlval_jumptarget_execute(struct level_validator *this, struct lvlval
 	}
 
 	if (validator_ctx->this_level->jump_target_east != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_east] == NULL) {
-		struct jumptarget_excpt_data to_check =
+		struct neighborhood_excpt_data to_check =
 		    { 'E', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east };
 
 		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existant jump target",
+			validator_print_header(validator_ctx, "Non existent neighbor",
 					       "The east jump target on a level points to a non existing level.");
 			is_invalid = TRUE;
 
@@ -945,11 +940,11 @@ static int lvlval_jumptarget_execute(struct level_validator *this, struct lvlval
 	}
 
 	if (validator_ctx->this_level->jump_target_south != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_south] == NULL) {
-		struct jumptarget_excpt_data to_check =
+		struct neighborhood_excpt_data to_check =
 		    { 'S', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south };
 
 		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existant jump target",
+			validator_print_header(validator_ctx, "Non existent neighbor",
 					       "The south jump target on a level points to a non existing level.");
 			is_invalid = TRUE;
 
@@ -958,107 +953,101 @@ static int lvlval_jumptarget_execute(struct level_validator *this, struct lvlval
 		}
 	}
 
-	return is_invalid;
-}
+	/*
+	 * 2) Check "reverse connections" and consistency of neighbors dimension
+	 */
 
-//===========================================================
-// Interface Validator
-//
-// This validator checks if level interfaces are valid
-//===========================================================
+	if (validator_ctx->this_level->jump_target_north != -1) {
+		if (curShip.AllLevels[validator_ctx->this_level->jump_target_north]->jump_target_south != validator_ctx->this_level->levelnum) {
+			validator_print_header(validator_ctx, "Neighborhood inconsistency",
+					               "The northern neighbor of a level is not back-connected to that level.");
+			is_invalid = TRUE;
 
-struct interface_excpt_data {
-	int obj_id;
-	gps obj_pos;
-};
+			printf("[ERROR] Interface:South of Level:%d points to Level:%d instead of Level:%d.\n",
+				   validator_ctx->this_level->jump_target_north,
+				   curShip.AllLevels[validator_ctx->this_level->jump_target_north]->jump_target_south,
+				   validator_ctx->this_level->levelnum);
+		} else {
+			if (curShip.AllLevels[validator_ctx->this_level->jump_target_north]->xlen != validator_ctx->this_level->xlen) {
+				validator_print_header(validator_ctx, "Neighborhood inconsistency",
+						               "The northern neighbor of a level has a different width");
+				is_invalid = TRUE;
 
-/*
- * Parse "interface" validator exception
- */
-
-static void *lvlval_interface_parse_excpt(char *string)
-{
-	struct interface_excpt_data *data = (struct interface_excpt_data *)malloc(sizeof(struct interface_excpt_data));
-
-	ReadValueFromString(string, "Idx=", "%d", &(data->obj_id), NULL);
-	ReadValueFromString(string, "X=", "%f", &(data->obj_pos.x), NULL);
-	ReadValueFromString(string, "Y=", "%f", &(data->obj_pos.y), NULL);
-	ReadValueFromString(string, "L=", "%d", &(data->obj_pos.z), NULL);
-
-	return (data);
-}
-
-/*
- * Compare two "interface" exception data structures
- */
-
-static int lvlval_interface_cmp_data(void *opaque_data1, void *opaque_data2)
-{
-#	define DIST_EPSILON 0.01f
-
-	struct interface_excpt_data *data1 = opaque_data1;
-	struct interface_excpt_data *data2 = opaque_data2;
-
-	if (data1->obj_id != data2->obj_id)
-		return FALSE;
-	if (data1->obj_pos.z != data2->obj_pos.z)
-		return FALSE;
-
-	float dist = calc_euklid_distance(data1->obj_pos.x, data1->obj_pos.y, data2->obj_pos.x, data2->obj_pos.y);
-	if (dist > DIST_EPSILON)
-		return FALSE;
-
-	return TRUE;
-
-#	undef DIST_EPSILON
-}
-
-/*
- * "interface" validator
- */
-
-static int lvlval_interface_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
-{
-	int x_tile, y_tile, glue_index;
-	int is_invalid = FALSE;
-
-	for (y_tile = 0; y_tile < validator_ctx->this_level->ylen; ++y_tile) {
-		for (x_tile = 0; x_tile < validator_ctx->this_level->xlen; ++x_tile) {
-			if ((y_tile >= validator_ctx->this_level->jump_threshold_north)
-			    && (y_tile <= (validator_ctx->this_level->ylen - validator_ctx->this_level->jump_threshold_south))
-			    && (x_tile >= validator_ctx->this_level->jump_threshold_west)
-			    && (x_tile <= (validator_ctx->this_level->xlen - validator_ctx->this_level->jump_threshold_east)))
-				continue;
-
-			for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; ++glue_index) {
-				int obs_index = validator_ctx->this_level->map[y_tile][x_tile].obstacles_glued_to_here[glue_index];
-				if (obs_index == (-1))
-					break;
-
-				obstacle *this_obs = &(validator_ctx->this_level->obstacle_list[obs_index]);
-
-				struct interface_excpt_data to_check =
-				    { obs_index, {this_obs->pos.x, this_obs->pos.y, validator_ctx->this_level->levelnum} };
-
-				if (lookup_exception(this, &to_check))
-					continue;
-
-				if (!(IS_CHEST(this_obs->type) || IS_BARREL(this_obs->type)))
-					continue;
-
-				if (!(is_invalid)) {	// First error : print header
-					validator_print_header(validator_ctx, "Invalid level-interfaces list",
-							       "The following objects were found on the interface area.\n"
-							       "The activation of those objects will not be reflected on the neighborhood.");
-					is_invalid = TRUE;
-				}
-				printf("[Type=\"I\"] Obj Idx=%d (X=%f:Y=%f:L=%d) : %s\n", obs_index, this_obs->pos.x, this_obs->pos.y,
-				       validator_ctx->this_level->levelnum, obstacle_map[this_obs->type].obstacle_short_name);
+				printf("[ERROR] Level:%d and its northern neighbor:%d have not the same width.\n",
+						validator_ctx->this_level->levelnum,
+						validator_ctx->this_level->jump_target_north);
 			}
 		}
 	}
-	if (is_invalid)
-		puts(line);
+
+	if (validator_ctx->this_level->jump_target_south != -1) {
+		if (curShip.AllLevels[validator_ctx->this_level->jump_target_south]->jump_target_north != validator_ctx->this_level->levelnum) {
+			validator_print_header(validator_ctx, "Neighborhood inconsistency",
+					               "The southern neighbor of a level is not back-connected to that level.");
+			is_invalid = TRUE;
+
+			printf("[ERROR] Interface:North of Level:%d points to Level:%d instead of Level:%d.\n",
+		           validator_ctx->this_level->jump_target_south,
+		           curShip.AllLevels[validator_ctx->this_level->jump_target_south]->jump_target_north,
+		           validator_ctx->this_level->levelnum);
+		} else {
+			if (curShip.AllLevels[validator_ctx->this_level->jump_target_south]->xlen != validator_ctx->this_level->xlen) {
+				validator_print_header(validator_ctx, "Neighborhood inconsistency",
+						               "The southern neighbor of a level has a different width");
+				is_invalid = TRUE;
+
+				printf("[ERROR] Level:%d and its southern neighbor:%d have not the same width.\n",
+						validator_ctx->this_level->levelnum,
+						validator_ctx->this_level->jump_target_south);
+			}
+		}
+	}
+
+	if (validator_ctx->this_level->jump_target_east != -1) {
+		if (curShip.AllLevels[validator_ctx->this_level->jump_target_east]->jump_target_west != validator_ctx->this_level->levelnum) {
+			validator_print_header(validator_ctx, "Neighborhood inconsistency",
+					               "The eastern neighbor of a level is not back-connected to that level.");
+			is_invalid = TRUE;
+
+			printf("[ERROR] Interface:West of Level:%d points to Level:%d instead of Level:%d.\n",
+		           validator_ctx->this_level->jump_target_east,
+		           curShip.AllLevels[validator_ctx->this_level->jump_target_east]->jump_target_west,
+		           validator_ctx->this_level->levelnum);
+		} else {
+			if (curShip.AllLevels[validator_ctx->this_level->jump_target_east]->ylen != validator_ctx->this_level->ylen) {
+				validator_print_header(validator_ctx, "Neighborhood inconsistency",
+						               "The eastern neighbor of a level has a different width");
+				is_invalid = TRUE;
+
+				printf("[ERROR] Level:%d and its eastern neighbor:%d have not the same width.\n",
+						validator_ctx->this_level->levelnum,
+						validator_ctx->this_level->jump_target_east);
+			}
+		}
+	}
+
+	if (validator_ctx->this_level->jump_target_west != -1) {
+		if (curShip.AllLevels[validator_ctx->this_level->jump_target_west]->jump_target_east != validator_ctx->this_level->levelnum) {
+			validator_print_header(validator_ctx, "Neighborhood inconsistency",
+					               "The western neighbor of a level is not back-connected to that level.");
+			is_invalid = TRUE;
+
+			printf("[ERROR] Interface:East of Level:%d points to Level:%d instead of Level:%d.\n",
+		           validator_ctx->this_level->jump_target_west,
+		           curShip.AllLevels[validator_ctx->this_level->jump_target_west]->jump_target_east,
+		           validator_ctx->this_level->levelnum);
+		} else {
+			if (curShip.AllLevels[validator_ctx->this_level->jump_target_west]->ylen != validator_ctx->this_level->ylen) {
+				validator_print_header(validator_ctx, "Neighborhood inconsistency",
+						               "The western neighbor of a level has a different width");
+				is_invalid = TRUE;
+
+				printf("[ERROR] Level:%d and its western neighbor:%d have not the same width.\n",
+						validator_ctx->this_level->levelnum,
+						validator_ctx->this_level->jump_target_west);
+			}
+		}
+	}
 
 	return is_invalid;
 }

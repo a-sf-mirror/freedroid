@@ -225,7 +225,6 @@ static void SetLevelInterfaces(void)
 		JUMP_TARGET_EAST,
 		JUMP_TARGET_SOUTH,
 		JUMP_TARGET_WEST,
-		REPORT_INTERFACE_INCONSISTENCIES,
 		QUIT_THRESHOLD_EDITOR_POSITION
 	};
 
@@ -263,7 +262,6 @@ static void SetLevelInterfaces(void)
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
-		MenuTexts[i++] = _("Report interface inconsistencies");
 		MenuTexts[i++] = _("Back");
 		MenuTexts[i++] = "";
 
@@ -277,15 +275,6 @@ static void SetLevelInterfaces(void)
 			while (EscapePressed())
 				SDL_Delay(1);
 			proceed_now = !proceed_now;
-			break;
-		case REPORT_INTERFACE_INCONSISTENCIES:
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
-			ReportInconsistenciesForLevel(Me.pos.z);
-			while (!EnterPressed() && !SpacePressed() && !MouseLeftPressed())
-				SDL_Delay(1);
-			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
-				SDL_Delay(1);
 			break;
 
 		case QUIT_THRESHOLD_EDITOR_POSITION:
