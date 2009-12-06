@@ -1808,8 +1808,8 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 			DebugPrintf(1, "\n%s(): Using droid under mouse cursor for attack positioning...", __FUNCTION__);
 		}
 
-		update_virtual_position(&droid_under_melee_attack_cursor->virt_pos, &droid_under_melee_attack_cursor->pos, Me.pos.z);
 		if (droid_under_melee_attack_cursor != NULL) {
+			update_virtual_position(&droid_under_melee_attack_cursor->virt_pos, &droid_under_melee_attack_cursor->pos, Me.pos.z);
 			angle = -(atan2(Me.pos.y -
 					droid_under_melee_attack_cursor->virt_pos.y,
 					Me.pos.x - droid_under_melee_attack_cursor->virt_pos.x) * 180 / M_PI - 90 + 22.5);
