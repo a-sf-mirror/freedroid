@@ -534,20 +534,10 @@ static int input_key(int keynum, int value)
 
 			if (!assign_shortcut) {
 				if (Me.program_shortcuts[number] != -1)
-					activate_nth_aquired_skill(Me.program_shortcuts[number]);
+					activate_nth_skill(Me.program_shortcuts[number]);
 			} else {
-				int ski =
-				    CursorIsOnWhichSkillButton(GetMousePos_x(),
-							       GetMousePos_y()) +
-				    NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible;
-				int i;
+				set_nth_quick_skill(number);
 
-				for (i = 0; i < 10; i++) {
-					if (Me.program_shortcuts[i] == ski && i != number)
-						Me.program_shortcuts[i] = -1;
-				}
-
-				Me.program_shortcuts[number] = ski;
 			}
 		} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "quick_inventory", strlen("quick_inventory"))
 			   && value == KEY_PRESS) {

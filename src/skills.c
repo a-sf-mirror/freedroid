@@ -600,35 +600,61 @@ static void establish_skill_subset_map(int *SkillSubsetMap)
 	}
 };				// void establish_skill_subset_map ( int *SkillSubsetMap );
 
-/**
- *
+/** Activate nth skill from all skills.
+ * @param skill_num is a index into all skills array. 
+ *        It must points an aquired skill.
  *
  */
-void activate_nth_aquired_skill(int skill_num)
+void activate_nth_skill(int skill_num)
 {
-	int SkillSubsetMap[number_of_skills];
-	int i;
-
-	//--------------------
-	// We will choose only from those skills, that have been aquired already,
-	// so we prepare a list of exactly these skills...
-	//
-	establish_skill_subset_map(&(SkillSubsetMap[0]));
 
 	//--------------------
 	// If the n-th skill does exist, we activate the n-th skill,
-	// otherwise we activate the last aquired skill.
+	// otherwise we leave the last readied skill.
 	//
-	if (SkillSubsetMap[skill_num] != (-1)) {
-		Me.readied_skill = SkillSubsetMap[skill_num];
+	if (Me.SkillLevel[skill_num] > 0) {
+		Me.readied_skill = skill_num;
 	} else {
-		for (i = 0; i < number_of_skills; i++) {
-			if (SkillSubsetMap[i] != (-1))
-				Me.readied_skill = SkillSubsetMap[i];
-		}
+		ErrorMessage(__FUNCTION__,
+			"Tried to activate skill number %d which was not aquired yet.\n",
+				PLEASE_INFORM, IS_WARNING_ONLY, skill_num);
 	}
 
 };				// void activate_nth_skill ( int skill_num )
+
+/** Set quick skill to the skill on which is mouse cursor
+ * @param quick_skill Index of quick skill slot 
+ */
+void set_nth_quick_skill(int quick_skill)
+{
+		int ski =
+		    CursorIsOnWhichSkillButton(GetMousePos_x(),
+					       GetMousePos_y()) +
+		    NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible;
+		
+		//--------------------
+		// Variable number is an index into already aquired skills.
+		// We change it into index into array of all skills.
+		int SkillSubsetMap[number_of_skills];
+		establish_skill_subset_map(&(SkillSubsetMap[0]));
+		ski = SkillSubsetMap[ski];
+			
+		if (Me.SkillLevel[ski] <=  0) {
+			// Invalid skill was selected
+			ErrorMessage(__FUNCTION__,
+				"Tried to set skill number %d in quick skills. Skill was not aquired yet.\n",
+					PLEASE_INFORM, IS_WARNING_ONLY, ski);
+			return;
+		}
+		int i;
+	
+		for (i = 0; i < 10; i++) {
+			if (Me.program_shortcuts[i] == ski && i != quick_skill)
+				Me.program_shortcuts[i] = -1;
+		}
+
+		Me.program_shortcuts[quick_skill] = ski;
+}; // void set_nth_quick_skill(int quick_skill)
 
 /**
  * This function displays the SKILLS SCREEN.  This is NOT the same as the
