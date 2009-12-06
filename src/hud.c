@@ -500,20 +500,6 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 				}
 			}
 
-			if (CurItem->bonus_to_resist_disruptor) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				if (CurItem->bonus_to_all_attributes > 0)
-					strcat(ItemDescText, "+");
-				AppendToLine = TRUE;
-				sprintf(linebuf, _("+%d to resist disruptor"), CurItem->bonus_to_resist_disruptor);
-				strcat(ItemDescText, linebuf);
-			}
-
 			if (CurItem->bonus_to_resist_fire) {
 				if (AppendToLine) {
 					if (ForShop)

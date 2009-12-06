@@ -314,7 +314,6 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 
 	ThisItem->bonus_to_resist_fire = 0;
 	ThisItem->bonus_to_resist_electricity = 0;
-	ThisItem->bonus_to_resist_disruptor = 0;
 
 	ThisItem->throw_time = 0;
 
@@ -348,8 +347,6 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_resist_fire);
 		ThisItem->bonus_to_resist_electricity += SuffixList[ThisItem->suffix_code].base_bonus_to_resist_electricity +
 		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_resist_electricity);
-		ThisItem->bonus_to_resist_disruptor += SuffixList[ThisItem->suffix_code].base_bonus_to_resist_disruptor +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_resist_disruptor);
 
 		ThisItem->is_identified = FALSE;
 	}
@@ -381,8 +378,6 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_resist_fire);
 		ThisItem->bonus_to_resist_electricity += PrefixList[ThisItem->prefix_code].base_bonus_to_resist_electricity +
 		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_resist_electricity);
-		ThisItem->bonus_to_resist_disruptor += PrefixList[ThisItem->prefix_code].base_bonus_to_resist_disruptor +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_resist_disruptor);
 
 		ThisItem->is_identified = FALSE;
 	}

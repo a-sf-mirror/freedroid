@@ -1445,9 +1445,6 @@ static void WriteOutOneItem(struct auto_string *shipstr, Item ItemToWriteOut)
 	if (ItemToWriteOut->bonus_to_resist_electricity) {
 		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESELE_STRING, ItemToWriteOut->bonus_to_resist_electricity);
 	}
-	if (ItemToWriteOut->bonus_to_resist_disruptor) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESFOR_STRING, ItemToWriteOut->bonus_to_resist_disruptor);
-	}
 	if (ItemToWriteOut->bonus_to_resist_fire) {
 		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESFIR_STRING, ItemToWriteOut->bonus_to_resist_fire);
 	}
@@ -1686,8 +1683,6 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetI
 				       &(TargetItem->bonus_to_resist_electricity), ItemsSectionEnd);
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESFIR_STRING, "%d", "0",
 				       &(TargetItem->bonus_to_resist_fire), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESFOR_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_resist_disruptor), ItemsSectionEnd);
 	// Now we see if the item is identified...
 	ReadValueFromString(ItemPointer, ITEM_IS_IDENTIFIED_STRING, "%d", &(TargetItem->is_identified), ItemsSectionEnd);
 

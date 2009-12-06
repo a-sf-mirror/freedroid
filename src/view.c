@@ -80,7 +80,6 @@ char *motion_class_string[ALL_TUX_MOTION_CLASSES] = { "sword_motion", "gun_motio
 int previously_used_motion_class = -4;	// something we'll never really use...
 static int old_current_level = -1;
 
-void FdFlashWindow(SDL_Color Flashcolor);
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_directions[RADIAL_SPELL_DIRECTIONS], float age);
 void insert_new_element_into_blitting_list(float new_element_norm, int new_element_type, void *new_element_pointer, int code_number);
 
@@ -88,9 +87,6 @@ EXTERN int MyCursorX;
 EXTERN int MyCursorY;
 
 EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
-
-SDL_Color flashcolor1 = { 100, 100, 100 };
-SDL_Color flashcolor2 = { 0, 0, 0 };
 
 struct blitting_list_element {
 	int element_type;
@@ -3954,25 +3950,6 @@ void PutBullet(int bullet_index, int mask)
 	if (CurBullet->time_to_hide_still > 0)
 		return;
 
-	//--------------------
-	// in case our bullet is of the type "FLASH", we only
-	// draw a big white or black rectangle right over the 
-	// combat window, white for even frames and black for 
-	// odd frames.
-	if (CurBullet->type == FLASH) {
-		// Now the whole window will be filled with either white
-		// or black each frame until the flash is over.  (Flash 
-		// deletion after some time is done in CheckBulletCollisions.)
-		if ((CurBullet->time_in_frames % 2) == 1) {
-			FdFlashWindow(flashcolor1);
-			return;
-		}
-		if ((CurBullet->time_in_frames % 2) == 0) {
-			FdFlashWindow(flashcolor2);
-			return;
-		}
-	}			// if type == FLASH
-
 	// DebugPrintf( 0 , "\nBulletType before calculating phase : %d." , CurBullet->type );
 	if ((CurBullet->type >= Number_Of_Bullet_Types) || (CurBullet->type < 0)) {
 		fprintf(stderr, "\nPutBullet:  bullet type received: %d.", CurBullet->type);
@@ -4253,15 +4230,6 @@ exist at all.", PLEASE_INFORM, IS_FATAL);
 
 	blit_iso_image_to_map_position(&Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y);
 }				// void PutBlast(int Blast_number)
-
-/**
- * This function fills the combat window with one single color, given as
- * the only parameter to the function.
- */
-void FdFlashWindow(SDL_Color Flashcolor)
-{
-	FdFillRect(User_Rect, Flashcolor);
-};				// void FlashWindow(int Flashcolor)
 
 /* -----------------------------------------------------------------
  * Fill given rectangle with given RBG color

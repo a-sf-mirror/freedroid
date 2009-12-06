@@ -562,10 +562,6 @@ void Fire_Bullet_Sound(int BulletType)
 		play_sample_using_WAV_cache("effects/Fire_Bullet_Military_Sound_0.ogg", FALSE, FALSE);
 		break;
 
-	case FLASH:
-		play_sample_using_WAV_cache("effects/Fire_Bullet_Flash_Sound_0.ogg", FALSE, FALSE);
-		break;
-
 	case EXTERMINATOR:
 		play_sample_using_WAV_cache("effects/Fire_Bullet_Exterminator_Sound_0.ogg", FALSE, FALSE);
 		break;

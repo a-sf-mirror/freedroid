@@ -592,7 +592,6 @@ enum {
 #define WAIT_AFTER_GAME_WON	5.0	// how long to show tux after the game is won
 #define WAIT_COLLISION		1	// after a little collision with Tux or another enemy, hold position for a while
 				    // this variable describes the amount of time in SECONDS 
-#define FLASH_DURATION_IN_SECONDS 0.1
 
 #define ALLBLASTTYPES		3	/* number of different exposions */
 
@@ -750,7 +749,6 @@ enum _bullets {
 	PULSE = 0,
 	SINGLE_PULSE,
 	MILITARY,
-	FLASH,
 	EXTERMINATOR,
 	LASER_RIFLE,
 	SINGLE_LASER,

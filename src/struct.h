@@ -267,8 +267,6 @@ typedef struct item_bonus_s {
 	char modifier_to_bonus_to_resist_fire;	// this is a percentage
 	char base_bonus_to_resist_electricity;	// this is a percentage
 	char modifier_to_bonus_to_resist_electricity;	// this is a percentage
-	char base_bonus_to_resist_disruptor;	// this is a percentage
-	char modifier_to_bonus_to_resist_disruptor;	// this is a percentage
 
 	short int light_bonus_value;
 
@@ -365,7 +363,6 @@ typedef struct item_s {
 	int bonus_to_ac_or_damage;	// this is a percentage
 	int bonus_to_resist_fire;	// this is a percentage
 	int bonus_to_resist_electricity;	// this is a percentage
-	int bonus_to_resist_disruptor;	// this is a percentage
 
 	int ac_bonus;		// how much is ac increased by this item worn
 	int damage;		// how much damage does this item
@@ -388,7 +385,6 @@ typedef struct druidspec_s {
 
 	float maxspeed;
 
-	short flashimmune;	// is the droid immune to FLASH-bullets 
 	short experience_reward;	// experience_reward for the elimination of one droid of this type 
 	short int brain;
 	short int sensor1;
@@ -557,7 +553,6 @@ typedef struct tux_s {
 	float AC;		// the current Armour Class of the influencer
 	float to_hit;		// percentage chance, that Tux will hit a random lv 1 bot
 	int lv_1_bot_will_hit_percentage;	// percentage chance that a random lv 1 bot will hit
-	int resist_disruptor;	// percentage to reduce from discruptor aka. "flash" damage
 	int resist_fire;	// percentage to reduce from fire damage
 	int resist_electricity;	// percentage to reduce from electricity damage
 

@@ -75,7 +75,6 @@
 #define ITEM_BONUS_TO_ACDAM_STRING " StrACDam="
 #define ITEM_BONUS_TO_RESELE_STRING " ResEle="
 #define ITEM_BONUS_TO_RESFIR_STRING " ResFir="
-#define ITEM_BONUS_TO_RESFOR_STRING " ResFor="
 #define ITEM_IS_IDENTIFIED_STRING " IsIdent="
 #define CHEST_ITEMS_SECTION_BEGIN_STRING "pchestinfolvl"
 #define CHEST_ITEMS_SECTION_END_STRING "/pchestinfolvl"

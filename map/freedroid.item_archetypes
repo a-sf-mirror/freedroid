@@ -2617,7 +2617,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid weaponry - 629,821,999 (Advanced Twin Laser)"
+Item name=_"Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2649,39 +2649,6 @@ Item as gun: pass through explosions="no"
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=30
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid weaponry - 711,742 (Disruptor Class Alpha)"
-Item min class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="inventory_image_7.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=2500
-Item description text=_" This weapons name speaks for itself-more of a brute force weapon than most, it is best used on well-defended enemies."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.000000
-Item as gun: reloading time=1.000000
-Item as gun: speed of bullets=16.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=80
-Item as gun: modifier for damage of bullets=24
-Item as gun: bullet_image_type=3
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: ignore collisions with wall="no"
-Item as gun: reflect other bullets="no"
-Item as gun: pass through explosions="no"
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **

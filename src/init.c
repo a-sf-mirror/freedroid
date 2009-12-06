@@ -549,7 +549,6 @@ static void Get_Robot_Data(void *DataPointer)
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define LOSEHEALTH_BEGIN_STRING "Rate of healing: "
-#define FLASHIMMUNE_BEGIN_STRING "Is this droid immune to disruptor blasts? "
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
 #define DRIVE_BEGIN_STRING "Drive of this droid : "
 #define BRAIN_BEGIN_STRING "Brain of this droid : "
@@ -646,10 +645,6 @@ static void Get_Robot_Data(void *DataPointer)
 		// Now we read in range of vision of this droid
 		ReadValueFromString(RobotPointer, "Time spent eyeing Tux=", "%f",
 				    &Druidmap[RobotIndex].time_spent_eyeing_tux, EndOfDataPointer);
-
-		// Now we read in the flash immunity of this droid.
-		ReadValueFromStringWithDefault(RobotPointer, FLASHIMMUNE_BEGIN_STRING, "%hd", "0",
-					       &Druidmap[RobotIndex].flashimmune, EndOfDataPointer);
 
 		// Now we experience_reward to be had for destroying one droid of this type
 		ReadValueFromString(RobotPointer, EXPERIENCE_REWARD_BEGIN_STRING, "%hd",

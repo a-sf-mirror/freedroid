@@ -177,7 +177,6 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 		Me.health_recovery_rate += BonusItem->bonus_to_health_recovery;
 		Me.cooling_rate += BonusItem->bonus_to_cooling_rate;
 
-		Me.resist_disruptor += BonusItem->bonus_to_resist_disruptor;
 		Me.resist_fire += BonusItem->bonus_to_resist_fire;
 		Me.resist_electricity += BonusItem->bonus_to_resist_electricity;
 
@@ -480,20 +479,11 @@ void UpdateAllCharacterStats()
 	// SECONDARY stats due to 'magical' items and spells and the like
 	//
 	Me.light_bonus_from_tux = 0;
-	Me.resist_disruptor = 0;
 	AddInfluencerItemSecondaryBonus(&Me.armour_item);
 	AddInfluencerItemSecondaryBonus(&Me.weapon_item);
 	AddInfluencerItemSecondaryBonus(&Me.drive_item);
 	AddInfluencerItemSecondaryBonus(&Me.shield_item);
 	AddInfluencerItemSecondaryBonus(&Me.special_item);
-
-	//--------------------
-	// There also should be an upper limit to disruptor protection,
-	// so that negative values can be avoided and also such that
-	// disruptor bots don't become completely useless...
-	//
-	if (Me.resist_disruptor > 85)
-		Me.resist_disruptor = 85;
 
 	//--------------------
 	// Check player's health and temperature
