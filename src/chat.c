@@ -519,11 +519,11 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 	int lines_needed;
 	int protocol_offset;
 
-#define LINES_IN_PROTOCOL_WINDOW (UNIVERSAL_COORD_H(9))
+#define LINES_IN_PROTOCOL_WINDOW (int)(CHAT_SUBDIALOG_WINDOW_H / (FontHeight(GetCurrentFont()) * TEXT_STRETCH))
 
 	SetCurrentFont(FPS_Display_BFont);
 
-	lines_needed = GetNumberOfTextLinesNeeded(chat_protocol, Subtitle_Window, TEXT_STRETCH);
+	lines_needed = GetNumberOfTextLinesNeeded(chat_protocol, Subtitle_Window, TEXT_STRETCH) - 1;
 
 	if (lines_needed <= LINES_IN_PROTOCOL_WINDOW) {
 		//--------------------
