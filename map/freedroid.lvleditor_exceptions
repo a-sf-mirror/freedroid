@@ -37,8 +37,8 @@ The specification of an exception depends on the sub-validator that
 uses it (defined by the "Type" value) :
 
   - for "C" (chest), "WP" (waypoint position), "WO" (waypoint orhpan),
-    "WS" (waypoint self-connected), "I" (interface), the parser extracts
-    the following pattern:
+    "WS" (waypoint self-connected), "I, the parser extracts the following
+    pattern:
         Idx=iiii X=xxxx Y=yyyy L=llll
 
   - for "WD" (waypoints distance), "WW" (waypoints walkability), 
@@ -58,7 +58,6 @@ This enables to simply copypaste the console output of the LevelValidator.
 Some examples:
 
 Rule=1 [Type="C"] Obj Idx=715 (X=22.524876:Y=52.808456:L=37) : Chest
-Rule=2 [Type="I"] Obj Idx=2615 (X=18.129999:Y=84.440002:L=31) : Wooden crate
 Rule=3 [Type="J"] Interface:North of Level:37 points to Level:45 which does not exist.
 Rule=4 [Type="WP"] WP Idx=47 (X=24.500000:Y=45.500000:L=37)
 Rule=5 [Type="WO"] WP Idx=47 (X=24.500000:Y=45.500000:L=37)
