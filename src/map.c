@@ -1127,12 +1127,22 @@ int LoadShip(char *filename)
 			int ydim = curShip.AllLevels[i]->ylen;
 			int row = 0;
 			for (row = 0; row < ydim; row++) {
-				free(curShip.AllLevels[i]->map[row]);
-				curShip.AllLevels[i]->map[row] = NULL;
+				if (curShip.AllLevels[i]->map[row]) {
+					free(curShip.AllLevels[i]->map[row]);
+					curShip.AllLevels[i]->map[row] = NULL;
+				}	
 			}
 
-			if (curShip.AllLevels[i]->Background_Song_Name)
+			if (curShip.AllLevels[i]->Levelname) {
+				free(curShip.AllLevels[i]->Levelname);
+				curShip.AllLevels[i]->Levelname = NULL;
+			}
+
+			if (curShip.AllLevels[i]->Background_Song_Name) {
 				free(curShip.AllLevels[i]->Background_Song_Name);
+				curShip.AllLevels[i]->Background_Song_Name = NULL;
+			}
+			
 			free(curShip.AllLevels[i]);
 			curShip.AllLevels[i] = NULL;
 		}

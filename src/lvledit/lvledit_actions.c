@@ -768,8 +768,8 @@ void CreateNewMapLevel(int level_num)
 	NewLevel->ylen = 90;
 	NewLevel->light_bonus = 19;
 	NewLevel->minimum_light_value = 19;
-	NewLevel->Levelname = "New level just created";
-	NewLevel->Background_Song_Name = "TheBeginning.ogg";
+	NewLevel->Levelname = strdup("New level just created");
+	NewLevel->Background_Song_Name = strdup("TheBeginning.ogg");
 	//--------------------
 	// Now we initialize the obstacle name list with 'empty' values
 	//
