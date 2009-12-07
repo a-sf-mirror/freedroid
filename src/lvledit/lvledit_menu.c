@@ -182,7 +182,6 @@ void EditLevelDimensions(void)
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
-			gps_transform_map_dirty_flag = TRUE;
 			break;
 
 		case (-1):
@@ -435,28 +434,6 @@ static void AddRemLevel(void)
 		InitiateMenu(-1);
 		i = 0;
 		MenuTexts[i++] = _("Add New Level");
-/*
-		sprintf( Options [ i ] , _("Add New Level") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("Unconnected") );
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Add New Level") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("North") );
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Add New Level") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("East") );
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Add New Level") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("South") );
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-		sprintf( Options [ i ] , _("Add New Level") );
-			strcat( Options [ i ] , " " );
-			strcat( Options [ i ] , _("West") );
-		MenuTexts[ i ] = Options [ i ]; i++ ;
-*/
 		MenuTexts[i++] = _("Remove Current Level");
 		MenuTexts[i++] = _("Back");
 		MenuTexts[i++] = "";
@@ -492,11 +469,13 @@ static void AddRemLevel(void)
 				if (new_level_num == curShip.num_levels)
 					curShip.num_levels += 1;
 				CreateNewMapLevel(new_level_num);
-				Me.pos.z = new_level_num;
-				Me.pos.x = 3;
-				Me.pos.y = 3;
+
+				gps_transform_map_dirty_flag = TRUE;
+				gps_transform_map_init();
+				dirty_animated_obstacle_lists(new_level_num);
+				// Teleporting Tux will re-render the menu background
+				Teleport(new_level_num, 3, 3, FALSE);
 			}
-			gps_transform_map_dirty_flag = TRUE;
 			break;
 		case REMOVE_CURRENT_LEVEL:
 			if (game_root_mode == ROOT_IS_GAME)
@@ -509,12 +488,18 @@ static void AddRemLevel(void)
 				break;
 			}
 
-			delete_map_level(EditLevel()->levelnum);
+			{
+				int tmp = EditLevel()->levelnum; // needed due to Teleport changing EditLevel() result
 
-			Me.pos.z = 0;
-			Me.pos.x = 3;
-			Me.pos.y = 3;
-			gps_transform_map_dirty_flag = TRUE;
+				dirty_animated_obstacle_lists(tmp);
+
+				gps_transform_map_dirty_flag = TRUE;
+				gps_transform_map_init();
+				// Teleporting Tux will re-render the menu background
+				Teleport(0, 3, 3, FALSE);
+
+				delete_map_level(tmp);
+			}
 			break;
 		case LEAVE_OPTIONS_MENU:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
@@ -525,8 +510,6 @@ static void AddRemLevel(void)
 			break;
 
 		}		// switch
-
-		gps_transform_map_init();
 
 	}
 
