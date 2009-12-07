@@ -566,10 +566,8 @@ static void LevelOptions(void)
 		sprintf(Options[i + 1], _("Interface"));
 		strcat(Options[i], Options[i + 1]);
 		strcat(Options[i], ":");
-		if (EditLevel()->jump_target_north == -1 && EditLevel()->jump_threshold_north == 0 && EditLevel()->jump_target_east == -1
-		    && EditLevel()->jump_threshold_east == 0 && EditLevel()->jump_target_south == -1
-		    && EditLevel()->jump_threshold_south == 0 && EditLevel()->jump_target_west == -1
-		    && EditLevel()->jump_threshold_west == 0) {
+		if (EditLevel()->jump_target_north == -1 && EditLevel()->jump_target_east == -1
+		    && EditLevel()->jump_target_south == -1 && EditLevel()->jump_target_west == -1) {
 			strcat(Options[i], " none");
 		} else {
 			if (EditLevel()->jump_target_north != -1)

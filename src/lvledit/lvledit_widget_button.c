@@ -47,7 +47,7 @@ static void activate_button(struct leveleditor_button *b)
 	struct leveleditor_typeselect *ts;
 	switch (idx) {
 	case EXPORT_THIS_LEVEL_BUTTON:
-		ExportLevelInterface(Me.pos.z);
+		// TODO : remove this button 
 		break;
 	case LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON:
 		EditLevel()->use_underground_lighting = !EditLevel()->use_underground_lighting;

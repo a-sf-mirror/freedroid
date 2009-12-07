@@ -23,23 +23,10 @@
  *
  */
 
-void ExportLevelInterface(int);
-
 void InsertLineVeryNorth(level *);
 void InsertLineVerySouth(level *);
 void InsertColumnVeryWest(level *);
 void InsertColumnVeryEast(level *);
 
-void InsertLineSouthernInterface(level *);
-void InsertLineNorthernInterface(level *);
-void InsertColumnWesternInterface(level *);
-void InsertColumnEasternInterface(level *);
-void RemoveLineSouthernInterface(level *);
-void RemoveLineNorthernInterface(level *);
-void RemoveColumnWesternInterface(level *);
-void RemoveColumnEasternInterface(level *);
-
 void RemoveColumnVeryWest(level *);
 void RemoveLineVeryNorth(level *);
-
-void MoveMapLabelsEastOf(int, int, level *);

@@ -42,48 +42,7 @@
  *
  *
  */
-void floor_copy(map_tile * target_pointer, map_tile * source_pointer, int amount)
-{
-	int i;
-
-	for (i = 0; i < amount; i++) {
-		target_pointer->floor_value = source_pointer->floor_value;
-		target_pointer++;
-		source_pointer++;
-	}
-};				// void floor_copy ( map_tile* target_pointer , map_tile* source_pointer , int amount )
-
-/**
- * If we want to synchronize two levels, we need to remove the old obstacles
- * before we can add new ones.  Else the place might get too crowded with
- * obstacles. :)
- */
-void delete_all_obstacles_in_area(level * TargetLevel, float start_x, float start_y, float area_width, float area_height)
-{
-	int i;
-
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		if (TargetLevel->obstacle_list[i].type <= (-1))
-			continue;
-		if (TargetLevel->obstacle_list[i].pos.x < start_x)
-			continue;
-		if (TargetLevel->obstacle_list[i].pos.y < start_y)
-			continue;
-		if (TargetLevel->obstacle_list[i].pos.x > start_x + area_width)
-			continue;
-		if (TargetLevel->obstacle_list[i].pos.y > start_y + area_height)
-			continue;
-		action_remove_obstacle(TargetLevel, &(TargetLevel->obstacle_list[i]));
-		i--;		// this is so that this obstacle will be processed AGAIN, since deleting might
-		// have moved a different obstacle to this list position.
-	}
-};				// void delete_all_obstacles_in_area ( curShip . AllLevels [ TargetLevel ] , 0 , TargetLevel->ylen-AreaHeight , AreaWidth , AreaHeight )
-
-/**
- *
- *
- */
-void move_obstacles_and_items_south_of(float from_where, float by_what, level * edit_level)
+void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 {
 	int i;
 
@@ -94,24 +53,20 @@ void move_obstacles_and_items_south_of(float from_where, float by_what, level * 
 		//
 		if (edit_level->obstacle_list[i].type <= (-1))
 			continue;
-		// if ( edit_level -> obstacle_list [ i ] . pos . y <= ( -1 ) ) continue;
 
 		//--------------------
-		// Maybe the obstacle is right on the spot where it must be deleted
-		// because the floor under it will move out.
+		// Move the obstacle
 		//
-		if ((edit_level->obstacle_list[i].pos.y >= from_where) && (edit_level->obstacle_list[i].pos.y <= from_where - by_what)) {
+		edit_level->obstacle_list[i].pos.y += by_what;
+		
+		//--------------------
+		// Maybe the obstacle is now outside of the map, so just remove it
+		//
+		if ((edit_level->obstacle_list[i].pos.y < 0) || (edit_level->obstacle_list[i].pos.y >= edit_level->ylen)) {
 			action_remove_obstacle(edit_level, &(edit_level->obstacle_list[i]));
-			i--;
 			DebugPrintf(0, "\nRemoved another obstacle in resizing operation.");
 			continue;
 		}
-		//--------------------
-		// Now at this point we can be sure that the obstacle just needs to be 
-		// moved a bit.  That shouldn't be too hard to do...
-		//
-		if (edit_level->obstacle_list[i].pos.y > from_where)
-			edit_level->obstacle_list[i].pos.y += by_what;
 	}
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -125,25 +80,23 @@ void move_obstacles_and_items_south_of(float from_where, float by_what, level * 
 			continue;
 
 		//--------------------
-		// Maybe the item is right on the spot where it must be deleted
-		// because the floor under it will move out.
+		// Move the item
 		//
-		if ((edit_level->ItemList[i].pos.y >= from_where) && (edit_level->ItemList[i].pos.y <= from_where - by_what)) {
+		edit_level->ItemList[i].pos.y += by_what;
+
+		//--------------------
+		// Maybe the item is is now outside of the map, so just remove it
+		//
+		if ((edit_level->ItemList[i].pos.y < 0) || (edit_level->ItemList[i].pos.y >= edit_level->ylen)) {
 			DeleteItem(&(edit_level->ItemList[i]));
 			DebugPrintf(0, "\nRemoved another item in resizing operation.");
 			continue;
 		}
-		//--------------------
-		// Now at this point we can be sure that the obstacle just needs to be 
-		// moved a bit.  That shouldn't be too hard to do...
-		//
-		if (edit_level->ItemList[i].pos.y > from_where)
-			edit_level->ItemList[i].pos.y += by_what;
 	}
 
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
 		//--------------------
-		// Maybe the item entry isn't used at all.  That's the simplest
+		// Maybe the chest item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
 		if (edit_level->ChestItemList[i].type <= (-1))
@@ -152,31 +105,29 @@ void move_obstacles_and_items_south_of(float from_where, float by_what, level * 
 			continue;
 
 		//--------------------
-		// Maybe the item is right on the spot where it must be deleted
-		// because the floor under it will move out.
+		// Move the chest item
 		//
-		if ((edit_level->ChestItemList[i].pos.y >= from_where) && (edit_level->ChestItemList[i].pos.y <= from_where - by_what)) {
+		edit_level->ChestItemList[i].pos.y += by_what;
+
+		//--------------------
+		// Maybe the chest item is is now outside of the map, so just remove it
+		//
+		if ((edit_level->ChestItemList[i].pos.y < 0) || (edit_level->ChestItemList[i].pos.y >= edit_level->ylen)) {
 			DeleteItem(&(edit_level->ChestItemList[i]));
-			DebugPrintf(0, "\nRemoved another item in resizing operation.");
+			DebugPrintf(0, "\nRemoved another chest item in resizing operation.");
 			continue;
 		}
-		//--------------------
-		// Now at this point we can be sure that the obstacle just needs to be 
-		// moved a bit.  That shouldn't be too hard to do...
-		//
-		if (edit_level->ChestItemList[i].pos.y > from_where)
-			edit_level->ChestItemList[i].pos.y += by_what;
 	}
 
 	glue_obstacles_to_floor_tiles_for_level(edit_level->levelnum);
 
-};				// void move_obstacles_south_of ( float from_where , float by_what, level *edit_level )
+}				// void move_obstacles_north_south(float by_what, level *edit_level)
 
 /**
  *
  *
  */
-void move_obstacles_east_of(float from_where, float by_what, level * edit_level)
+void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 {
 	int i;
 
@@ -191,21 +142,18 @@ void move_obstacles_east_of(float from_where, float by_what, level * edit_level)
 			continue;
 
 		//--------------------
-		// Maybe the obstacle is right on the spot where it must be deleted
-		// because the floor under it will move out.
+		// Move the obstacle
 		//
-		if ((edit_level->obstacle_list[i].pos.x >= from_where) && (edit_level->obstacle_list[i].pos.x <= from_where - by_what)) {
+		edit_level->obstacle_list[i].pos.x += by_what;
+
+		//--------------------
+		// Maybe the obstacle is now outside of the map, then just remove it.
+		//
+		if ((edit_level->obstacle_list[i].pos.x < 0) || (edit_level->obstacle_list[i].pos.x >= edit_level->xlen)) {
 			action_remove_obstacle(edit_level, &(edit_level->obstacle_list[i]));
-			i--;
 			DebugPrintf(0, "\nRemoved another obstacle in resizing operation.");
 			continue;
 		}
-		//--------------------
-		// Now at this point we can be sure that the obstacle just needs to be 
-		// moved a bit.  That shouldn't be too hard to do...
-		//
-		if (edit_level->obstacle_list[i].pos.x > from_where)
-			edit_level->obstacle_list[i].pos.x += by_what;
 	}
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -219,25 +167,23 @@ void move_obstacles_east_of(float from_where, float by_what, level * edit_level)
 			continue;
 
 		//--------------------
-		// Maybe the item is right on the spot where it must be deleted
-		// because the floor under it will move out.
+		// Move the item
 		//
-		if ((edit_level->ItemList[i].pos.x >= from_where) && (edit_level->ItemList[i].pos.x <= from_where - by_what)) {
+		edit_level->ItemList[i].pos.x += by_what;
+		
+		//--------------------
+		// Maybe the item is now outside of the map, then just remove it.
+		//
+		if ((edit_level->ItemList[i].pos.x < 0) || (edit_level->ItemList[i].pos.x >= edit_level->xlen)) {
 			DeleteItem(&(edit_level->ItemList[i]));
 			DebugPrintf(0, "\nRemoved another item in resizing operation.");
 			continue;
 		}
-		//--------------------
-		// Now at this point we can be sure that the obstacle just needs to be 
-		// moved a bit.  That shouldn't be too hard to do...
-		//
-		if (edit_level->ItemList[i].pos.x > from_where)
-			edit_level->ItemList[i].pos.x += by_what;
 	}
 
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
 		//--------------------
-		// Maybe the item entry isn't used at all.  That's the simplest
+		// Maybe the chest item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
 		if (edit_level->ChestItemList[i].type <= (-1))
@@ -246,103 +192,115 @@ void move_obstacles_east_of(float from_where, float by_what, level * edit_level)
 			continue;
 
 		//--------------------
-		// Maybe the item is right on the spot where it must be deleted
-		// because the floor under it will move out.
+		// Move the chest item
 		//
-		if ((edit_level->ChestItemList[i].pos.x >= from_where) && (edit_level->ChestItemList[i].pos.x <= from_where - by_what)) {
+		edit_level->ChestItemList[i].pos.x += by_what;
+
+		//--------------------
+		// Maybe the item now outside of the map, then just remove it.
+		//
+		if ((edit_level->ChestItemList[i].pos.x < 0) || (edit_level->ChestItemList[i].pos.x >= edit_level->xlen)) {
 			DeleteItem(&(edit_level->ChestItemList[i]));
-			DebugPrintf(0, "\nRemoved another item in resizing operation.");
+			DebugPrintf(0, "\nRemoved another chest item in resizing operation.");
 			continue;
 		}
-		//--------------------
-		// Now at this point we can be sure that the obstacle just needs to be 
-		// moved a bit.  That shouldn't be too hard to do...
-		//
-		if (edit_level->ChestItemList[i].pos.x > from_where)
-			edit_level->ChestItemList[i].pos.x += by_what;
 	}
 
 	glue_obstacles_to_floor_tiles_for_level(edit_level->levelnum);
 
-};				// void move_obstacles_and_items_east_of ( float from_where , float by_what, level *edit_level )
+};				// void move_obstacles_and_items_west_east(float by_what, level *edit_level )
 
 /**
- * When new lines are inserted into the map, the map labels south of this
- * line must move too with the rest of the map.  This function sees to it.
+ * When a new line is inserted or removed at north of a map, the map labels must move
+ * too with the rest of the map.
  */
-static void MoveMapLabelsSouthOf(int FromWhere, int ByWhat, level * EditLevel)
+static void MoveMapLabelsNorthSouth(int ByWhat, level *EditLevel)
 {
 	int i;
 
 	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
 		if (EditLevel->labels[i].pos.x <= (-1))
 			continue;
-
-		if (EditLevel->labels[i].pos.y >= FromWhere)
-			EditLevel->labels[i].pos.y += ByWhat;
+		EditLevel->labels[i].pos.y += ByWhat;
 	}
 
 };				// void MoveMapLabelsSouthOf ( int FromWhere , int ByWhat, level *EditLevel)
 
 /**
- * When new lines are inserted into the map, the waypoints south of this
- * line must move too with the rest of the map.  This function sees to it.
+ * When a new column is inserted or removed at west of a map, the map labels must move
+ * too with the rest of the map.
  */
-static void MoveWaypointsSouthOf(int FromWhere, int ByWhat, level * EditLevel)
+static void MoveMapLabelsWestEast(int ByWhat, level *EditLevel)
 {
 	int i;
 
-	for (i = 0; i < MAXWAYPOINTS; i++) {
-		if (EditLevel->AllWaypoints[i].x == (0))
+	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
+		if (EditLevel->labels[i].pos.x <= (-1))
 			continue;
-
-		if (EditLevel->AllWaypoints[i].y >= FromWhere)
-			EditLevel->AllWaypoints[i].y += ByWhat;
+		EditLevel->labels[i].pos.x += ByWhat;
 	}
 
-};				// void MoveWaypointsSouthOf ( int FromWhere , int ByWhat, level *EditLevel)
+};				// void MoveMapLabelsWestEast(int ByWhat, level *EditLevel)
 
 /**
- * When new lines are inserted into the map, the waypoints east of this
- * line must move too with the rest of the map.  This function sees to it.
+ * When a new line is inserted or removed at north of a map, the waypoints must move
+ * too with the rest of the map.
  */
-static void MoveWaypointsEastOf(int FromWhere, int ByWhat, level * EditLevel)
+static void MoveWaypointsNorthSouth(int ByWhat, level *EditLevel)
 {
 	int i;
 
 	for (i = 0; i < MAXWAYPOINTS; i++) {
 		if (EditLevel->AllWaypoints[i].x == (0))
 			continue;
-
-		if (EditLevel->AllWaypoints[i].x >= FromWhere)
-			EditLevel->AllWaypoints[i].x += ByWhat;
+		EditLevel->AllWaypoints[i].y += ByWhat;
 	}
 
-};				// void MoveWaypointsEastOf ( int FromWhere , int ByWhat, level *EditLevel)
+}				// void MoveWaypointsNorthSouth(int ByWhat, level *EditLevel)
+
+/**
+ * When a new column is inserted or removed at west of a map, the waypoints must move
+ * too with the rest of the map.
+ */
+static void MoveWaypointsWestEast(int ByWhat, level *EditLevel)
+{
+	int i;
+
+	for (i = 0; i < MAXWAYPOINTS; i++) {
+		if (EditLevel->AllWaypoints[i].x == (0))
+			continue;
+		EditLevel->AllWaypoints[i].x += ByWhat;
+	}
+
+}				// void MoveWaypointsWestEast(int ByWhat, level *EditLevel)
 
 void InsertLineVeryNorth(level * EditLevel)
 {
-	int OldSouthernInterface;
-
+	int i;
+	map_tile *tmp;
+	
 	if (EditLevel->ylen + 1 >= MAX_MAP_LINES)
 		return;
 
-	//--------------------
-	// We shortly change the southern interface to reuse the code for there
-	//
-	OldSouthernInterface = EditLevel->jump_threshold_south;
+	// To insert a north line, we first extend the level to the south, and then
+	// we 'rotate' the map lines
+	InsertLineVerySouth(EditLevel);
+	tmp = EditLevel->map[EditLevel->ylen -1];
+	for (i = EditLevel->ylen -1; i > 0; i--) {
+		EditLevel->map[i] = EditLevel->map[i-1];
+	}
+	EditLevel->map[0] = tmp;
 
-	EditLevel->jump_threshold_south = EditLevel->ylen - 0;
-	InsertLineSouthernInterface(EditLevel);
+	// Now we also have to shift the position of all elements
+	MoveWaypointsNorthSouth(+1, EditLevel);
+	MoveMapLabelsNorthSouth(+1, EditLevel);
+	move_obstacles_and_items_north_south(+1, EditLevel);
 
-	EditLevel->jump_threshold_south = OldSouthernInterface;
-
-};				// void InsertLineVeryNorth ( EditLevel )
+}				// void InsertLineVeryNorth ( EditLevel )
 
 void InsertLineVerySouth(level * EditLevel)
 {
-	int i;
-	int j;
+	int i, j;
 
 	//--------------------
 	// The enlargement of levels in y direction is limited by a constant
@@ -353,12 +311,9 @@ void InsertLineVerySouth(level * EditLevel)
 		return;
 
 	EditLevel->ylen++;
-	// In case of enlargement, we need to do more:
+	
+	// Create the new line, and fill it with default values
 	EditLevel->map[EditLevel->ylen - 1] = MyMalloc((EditLevel->xlen + 1) * sizeof(map_tile));
-	// We don't want to fill the new area with junk, do we? So we make it floor tiles
-
-	//--------------------
-	// Now we insert the new line.
 	for (i = 0; i < EditLevel->xlen; i++) {
 		EditLevel->map[EditLevel->ylen - 1][i].floor_value = ISO_FLOOR_SAND;
 		for (j = 0; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; j++) {
@@ -366,89 +321,55 @@ void InsertLineVerySouth(level * EditLevel)
 		}
 	}
 
-};				// void InsertLineVerySouth (level *EditLevel )
+}				// void InsertLineVerySouth (level *EditLevel )
 
 void InsertColumnVeryEast(level * EditLevel)
 {
-	int i;
-	map_tile *OldMapPointer;
+	int i, j;
+	map_tile *MapPointer;
 
 	EditLevel->xlen++;
-	// In case of enlargement, we need to do more:
+
+	// We have to enlarge each map line, and fill those new tiles with default values
+	
 	for (i = 0; i < EditLevel->ylen; i++) {
-		OldMapPointer = EditLevel->map[i];
-		EditLevel->map[i] = MyMalloc(sizeof(map_tile) * (EditLevel->xlen + 1));
-		memcpy(EditLevel->map[i], OldMapPointer, (EditLevel->xlen - 1) * sizeof(map_tile));
-		// We don't want to fill the new area with junk, do we? So we make it floor tiles
-		EditLevel->map[i][EditLevel->xlen - 1].floor_value = 0;
+		MapPointer = (map_tile*)realloc(EditLevel->map[i], sizeof(map_tile) * (EditLevel->xlen + 1));
+		MapPointer[EditLevel->xlen - 1].floor_value = ISO_FLOOR_SAND;
+		for (j = 0; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; j++) {
+			MapPointer[EditLevel->xlen - 1].obstacles_glued_to_here[j] = (-1);
+		}
+		EditLevel->map[i] = MapPointer;
 	}
 
-};				// void InsertColumnVeryEast (level *EditLevel )
+}				// void InsertColumnVeryEast (level *EditLevel )
 
 void InsertColumnVeryWest(level * EditLevel)
 {
-	int OldEasternInterface;
-
-	//--------------------
-	// We shortly change the eastern interface to reuse the code for there
-	//
-	OldEasternInterface = EditLevel->jump_threshold_south;
-
-	EditLevel->jump_threshold_east = EditLevel->xlen - 0;
-	InsertColumnEasternInterface(EditLevel);
-
-	EditLevel->jump_threshold_east = OldEasternInterface;
-
-};				// void InsertColumnVeryWest ( EditLevel )
-
-void InsertColumnEasternInterface(level * EditLevel)
-{
 	int i;
+	map_tile MapTile;
 
-	//--------------------
-	// First a sanity check:  If there's no eastern threshold, this
-	// must be a mistake and will just be ignored...
-	//
-	if (EditLevel->jump_threshold_east <= 0)
-		return;
-
-	//--------------------
-	// We use availabel methods to add a column, even if in the wrong
-	// place for now.
-	//
+	// To insert a west column, we first extend the level to the east, and then
+	// we 'rotate' each line
 	InsertColumnVeryEast(EditLevel);
 
-	//--------------------
-	// Now the new memory and everything is done.  All we
-	// need to do is move the information to the east
-	//
 	for (i = 0; i < EditLevel->ylen; i++) {
-		//--------------------
-		// REMEMBER:  WE MUST NO USE MEMCPY HERE, CAUSE THE AREAS IN QUESTION
-		// MIGHT (EVEN WILL) OVERLAP!!  THAT MUST NOT BE THE CASE WITH MEMCPY!!
-		//
-		memmove(&(EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 1]),
-			&(EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 2]),
-			EditLevel->jump_threshold_east * sizeof(map_tile));
-		EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 1].floor_value = 0;
+		memcpy(&MapTile, &(EditLevel->map[i][EditLevel->xlen - 1]), sizeof(map_tile));
+		// REMEMBER:  WE MUST NO USE MEMCPY HERE, CAUSE THE AREAS IN QUESTION OVERLAP !!
+		memmove(&(EditLevel->map[i][1]), &(EditLevel->map[i][0]), (EditLevel->xlen-1) * sizeof(map_tile));
+		memcpy(&(EditLevel->map[i][0]), &MapTile, sizeof(map_tile));
 	}
 
-	MoveWaypointsEastOf(EditLevel->xlen - EditLevel->jump_threshold_east - 1, +1, EditLevel);
-	MoveMapLabelsEastOf(EditLevel->xlen - EditLevel->jump_threshold_east - 1, +1, EditLevel);
-	move_obstacles_east_of(EditLevel->xlen - EditLevel->jump_threshold_east - 1.0, +1, EditLevel);
+	// Now we also have to shift the position of all elements
+	MoveWaypointsWestEast(+1, EditLevel);
+	MoveMapLabelsWestEast(+1, EditLevel);
+	move_obstacles_and_items_west_east(+1, EditLevel);
+	
+}				// void InsertColumnVeryWest ( EditLevel )
 
-};				// void InsertColumnEasternInterface( EditLevel );
-
-void RemoveColumnEasternInterface(level * EditLevel)
+void RemoveColumnVeryWest(level *EditLevel)
 {
 	int i;
-
-	//--------------------
-	// First a sanity check:  If there's no eastern threshold, this
-	// must be a mistake and will just be ignored...
-	//
-	if (EditLevel->jump_threshold_east <= 0)
-		return;
+	map_tile *MapPointer;
 
 	//--------------------
 	// First we move the obstacles, cause they will be glued and moved and doing that should
@@ -456,143 +377,29 @@ void RemoveColumnEasternInterface(level * EditLevel)
 	//
 	// But of course we should glue once more later...
 	//
-	move_obstacles_east_of(EditLevel->xlen - EditLevel->jump_threshold_east + 1.0, -1, EditLevel);
+	move_obstacles_and_items_west_east(-1, EditLevel);
 
 	//--------------------
 	// Now the new memory and everything is done.  All we
 	// need to do is move the information to the east
 	//
 	for (i = 0; i < EditLevel->ylen; i++) {
-		//--------------------
-		// REMEMBER:  WE MUST NO USE MEMCPY HERE, CAUSE THE AREAS IN QUESTION
-		// MIGHT (EVEN WILL) OVERLAP!!  THAT MUST NOT BE THE CASE WITH MEMCPY!!
-		//
-		memmove(&(EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 1]),
-			&(EditLevel->map[i][EditLevel->xlen - EditLevel->jump_threshold_east - 0]),
-			EditLevel->jump_threshold_east * sizeof(map_tile));
-		// EditLevel->map [ i ] [ EditLevel->xlen - EditLevel->jump_threshold_east - 1 ] = FLOOR ;
+		memmove(&(EditLevel->map[i][0]), &(EditLevel->map[i][1]), (EditLevel->xlen-1) * sizeof(map_tile));
+		MapPointer = (map_tile*)realloc(EditLevel->map[i], (EditLevel->xlen-1) * sizeof(map_tile));
+		EditLevel->map[i] = MapPointer;
 	}
-
 	EditLevel->xlen--;
 
-	MoveWaypointsEastOf(EditLevel->xlen - EditLevel->jump_threshold_east + 1, -1, EditLevel);
-	MoveMapLabelsEastOf(EditLevel->xlen - EditLevel->jump_threshold_east + 1, -1, EditLevel);
+	MoveWaypointsWestEast(-1, EditLevel);
+	MoveMapLabelsWestEast(-1, EditLevel);
 
 	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 
-};				// void RemoveColumnEasternInterface(level *EditLevel );
+}				// void RemoveColumnVeryWest(level *EditLevel)
 
-void InsertColumnWesternInterface(level * EditLevel)
-{
-	int BackupOfEasternInterface;
-
-	//--------------------
-	// First a sanity check:  If there's no western threshold, this
-	// must be a mistake and will just be ignored...
-	//
-	if (EditLevel->jump_threshold_west <= 0)
-		return;
-
-	//--------------------
-	// Again we exploit existing code, namely the insertion procedure
-	// for the eastern interface.  We shortly change the interface, use
-	// that code from the eastern interface and restore the eastern interface.
-	//
-	BackupOfEasternInterface = EditLevel->jump_threshold_east;
-	EditLevel->jump_threshold_east = EditLevel->xlen - EditLevel->jump_threshold_west;
-	InsertColumnEasternInterface(EditLevel);
-	EditLevel->jump_threshold_east = BackupOfEasternInterface;
-
-};				// void InsertColumnWesternInterface(level *EditLevel )
-
-void RemoveColumnWesternInterface(level * EditLevel)
-{
-	int BackupOfEasternInterface;
-
-	//--------------------
-	// First a sanity check:  If there's no western threshold, this
-	// must be a mistake and will just be ignored...
-	//
-	if (EditLevel->jump_threshold_west <= 0)
-		return;
-
-	//--------------------
-	// Again we exploit existing code, namely the insertion procedure
-	// for the eastern interface.  We shortly change the interface, use
-	// that code from the eastern interface and restore the eastern interface.
-	//
-	BackupOfEasternInterface = EditLevel->jump_threshold_east;
-	EditLevel->jump_threshold_east = EditLevel->xlen - EditLevel->jump_threshold_west - 1;
-	RemoveColumnEasternInterface(EditLevel);
-	EditLevel->jump_threshold_east = BackupOfEasternInterface;
-
-};				// void RemoveColumnWesternInterface(level *EditLevel )
-
-void RemoveColumnVeryWest(level * EditLevel)
-{
-	int OldEasternInterface;
-
-	//--------------------
-	// We shortly change the eastern interface to reuse the code for there
-	//
-	OldEasternInterface = EditLevel->jump_threshold_east;
-
-	EditLevel->jump_threshold_east = EditLevel->xlen - 1;
-	RemoveColumnEasternInterface(EditLevel);
-
-	EditLevel->jump_threshold_east = OldEasternInterface;
-
-};				// void RemoveColumnVeryEast (level *EditLevel )
-
-void InsertLineSouthernInterface(level * EditLevel)
-{
-	map_tile *temp;
-	int i;
-
-	//--------------------
-	// First a sanity check for existing interface
-	//
-	if (EditLevel->jump_threshold_south <= 0)
-		return;
-
-	if (EditLevel->ylen >= MAX_MAP_LINES)
-		return;
-
-	//--------------------
-	// We build upon the existing code again.
-	//
-	InsertLineVerySouth(EditLevel);
-
-	//--------------------
-	// Now we do some swapping of lines
-	//
-	temp = EditLevel->map[EditLevel->ylen - 1];
-
-	for (i = 0; i < EditLevel->jump_threshold_south; i++) {
-		EditLevel->map[EditLevel->ylen - i - 1] = EditLevel->map[EditLevel->ylen - i - 2];
-	}
-	EditLevel->map[EditLevel->ylen - 1 - EditLevel->jump_threshold_south] = temp;
-
-	//--------------------
-	// Now we have the waypoints moved as well
-	//
-	MoveWaypointsSouthOf(EditLevel->ylen - 1 - EditLevel->jump_threshold_south, +1, EditLevel);
-	MoveMapLabelsSouthOf(EditLevel->ylen - 1 - EditLevel->jump_threshold_south, +1, EditLevel);
-	move_obstacles_and_items_south_of(EditLevel->ylen - 1 - EditLevel->jump_threshold_south, +1, EditLevel);
-
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
-
-};				// void InsertLineSouthernInterface ( EditLevel )
-
-void RemoveLineSouthernInterface(level * EditLevel)
+void RemoveLineVeryNorth(level * EditLevel)
 {
 	int i;
-
-	//--------------------
-	// First a sanity check for existing interface
-	//
-	if (EditLevel->jump_threshold_south <= 0)
-		return;
 
 	//--------------------
 	// First we move the obstacles, cause they will be glued and moved and doing that should
@@ -600,268 +407,27 @@ void RemoveLineSouthernInterface(level * EditLevel)
 	//
 	// But of course we should glue once more later...
 	//
-	move_obstacles_and_items_south_of(EditLevel->ylen - 0 - EditLevel->jump_threshold_south, -1, EditLevel);
+	move_obstacles_and_items_north_south(-1, EditLevel);
 
 	//--------------------
-	// Now we do some swapping of lines
+	// Now we do some shifting of lines
 	//
-	for (i = EditLevel->ylen - 1 - EditLevel->jump_threshold_south; i < EditLevel->ylen - 1; i++) {
+	free(EditLevel->map[0]);
+	for (i = 0; i < EditLevel->ylen - 1; i++) {
 		EditLevel->map[i] = EditLevel->map[i + 1];
 	}
+	EditLevel->map[EditLevel->ylen - 1] = NULL;
 	EditLevel->ylen--;
 
 	//--------------------
 	// Now we have the waypoints moved as well
 	//
-	MoveWaypointsSouthOf(EditLevel->ylen - 0 - EditLevel->jump_threshold_south, -1, EditLevel);
-	MoveMapLabelsSouthOf(EditLevel->ylen - 0 - EditLevel->jump_threshold_south, -1, EditLevel);
+	MoveWaypointsNorthSouth(-1, EditLevel);
+	MoveMapLabelsNorthSouth(-1, EditLevel);
 
+	//--------------------
+	// And finally, re-glue all obstacles to the new map
+	//
 	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 
-};				// void RemoveLineSouthernInterface ( EditLevel )
-
-void InsertLineNorthernInterface(level * EditLevel)
-{
-	int OldSouthernInterface;
-
-	//--------------------
-	// First a sanity check for existing interface
-	//
-	if (EditLevel->jump_threshold_north <= 0)
-		return;
-
-	//--------------------
-	// We shortly change the southern interface to reuse the code for there
-	//
-	OldSouthernInterface = EditLevel->jump_threshold_south;
-
-	EditLevel->jump_threshold_south = EditLevel->ylen - EditLevel->jump_threshold_north - 0;
-	InsertLineSouthernInterface(EditLevel);
-
-	EditLevel->jump_threshold_south = OldSouthernInterface;
-
-};				// void InsertLineNorthernInterface ( EditLevel )
-
-void RemoveLineNorthernInterface(level * EditLevel)
-{
-	int OldSouthernInterface;
-
-	//--------------------
-	// First a sanity check for existing interface
-	//
-	if (EditLevel->jump_threshold_north <= 0)
-		return;
-
-	//--------------------
-	// We shortly change the southern interface to reuse the code for there
-	//
-	OldSouthernInterface = EditLevel->jump_threshold_south;
-
-	EditLevel->jump_threshold_south = EditLevel->ylen - EditLevel->jump_threshold_north - 1;
-	RemoveLineSouthernInterface(EditLevel);
-
-	EditLevel->jump_threshold_south = OldSouthernInterface;
-
-};				// void RemoveLineNorthernInterface (level *EditLevel )
-
-void RemoveLineVeryNorth(level * EditLevel)
-{
-	int OldSouthernInterface;
-
-	//--------------------
-	// We shortly change the southern interface to reuse the code for there
-	//
-	OldSouthernInterface = EditLevel->jump_threshold_south;
-
-	EditLevel->jump_threshold_south = EditLevel->ylen - 1;
-	RemoveLineSouthernInterface(EditLevel);
-
-	EditLevel->jump_threshold_south = OldSouthernInterface;
-
-};				// void RemoveLineVeryNorth (level *EditLevel )
-
-/**
- * When new lines are inserted into the map, the map labels east of this
- * line must move too with the rest of the map.  This function sees to it.
- */
-void MoveMapLabelsEastOf(int FromWhere, int ByWhat, level * EditLevel)
-{
-	int i;
-
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		if (EditLevel->labels[i].pos.x <= (-1))
-			continue;
-
-		if (EditLevel->labels[i].pos.x >= FromWhere)
-			EditLevel->labels[i].pos.x += ByWhat;
-	}
-
-};				// void MoveMapLabelsEastOf ( int FromWhere , int ByWhat, level *EditLevel)
-
-/**
- * When we connect two maps smoothly together, we want an area in both
- * maps, that is really synchronized with the other level we connect to.
- * But this isn't a task that should be done manually.  We rather make
- * a function, that does this synchronisation work, overwriting the 
- * higher level number with the data from the lower level number.
- */
-void ExportLevelInterface(int LevelNum)
-{
-	int AreaWidth;
-	int AreaHeight;
-	int TargetLevel;
-	int y;
-	int TargetStartLine;
-
-	//--------------------
-	// First we see if we need to copy the northern interface region
-	// into another map.
-	//
-	TargetLevel = curShip.AllLevels[LevelNum]->jump_target_north;
-	if (TargetLevel != (-1)) {
-		//--------------------
-		// First we find out the dimensions of the area we want to copy
-		//
-		if (curShip.AllLevels[LevelNum]->xlen < curShip.AllLevels[TargetLevel]->xlen)
-			AreaWidth = curShip.AllLevels[LevelNum]->xlen;
-		else
-			AreaWidth = curShip.AllLevels[TargetLevel]->xlen;
-
-		AreaHeight = curShip.AllLevels[LevelNum]->jump_threshold_north;
-
-		if (AreaHeight <= 0)
-			return;
-
-		TargetStartLine = (curShip.AllLevels[TargetLevel]->ylen) - 1;
-
-		//--------------------
-		// Now we can start to make the copy...
-		//
-		for (y = 0; y < AreaHeight; y++) {
-			floor_copy(curShip.AllLevels[TargetLevel]->map[TargetStartLine - y],
-				   curShip.AllLevels[LevelNum]->map[AreaHeight - 1 - y], AreaWidth);
-			// memset ( curShip . AllLevels [ TargetLevel ] -> map[ TargetStartLine - y ] , 0 , AreaWidth ); 
-			// DebugPrintf ( 0 , "\nAreaWidth: %d." , AreaWidth * sizeof ( );
-		}
-
-		delete_all_obstacles_in_area(curShip.AllLevels[TargetLevel], 0, curShip.AllLevels[TargetLevel]->ylen - AreaHeight,
-					     AreaWidth, AreaHeight);
-
-		duplicate_all_obstacles_in_area(curShip.AllLevels[LevelNum], 0, 0,
-						AreaWidth, AreaHeight,
-						curShip.AllLevels[TargetLevel], 0, curShip.AllLevels[TargetLevel]->ylen - AreaHeight);
-
-		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
-	}
-	//--------------------
-	// Now we see if we need to copy the southern interface region
-	// into another map.
-	//
-	TargetLevel = curShip.AllLevels[LevelNum]->jump_target_south;
-	if (TargetLevel != (-1)) {
-		//--------------------
-		// First we find out the dimensions of the area we want to copy
-		//
-		if (curShip.AllLevels[LevelNum]->xlen < curShip.AllLevels[TargetLevel]->xlen)
-			AreaWidth = curShip.AllLevels[LevelNum]->xlen;
-		else
-			AreaWidth = curShip.AllLevels[TargetLevel]->xlen;
-
-		AreaHeight = curShip.AllLevels[LevelNum]->jump_threshold_south;
-
-		if (AreaHeight <= 0)
-			return;
-
-		TargetStartLine = (curShip.AllLevels[LevelNum]->ylen) - 1;
-
-		//--------------------
-		// Now we can start to make the copy...
-		//
-		for (y = 0; y < AreaHeight; y++) {
-			floor_copy(curShip.AllLevels[TargetLevel]->map[AreaHeight - 1 - y],
-				   curShip.AllLevels[LevelNum]->map[TargetStartLine - y], AreaWidth);
-		}
-
-		delete_all_obstacles_in_area(curShip.AllLevels[TargetLevel], 0, 0, AreaWidth, AreaHeight);
-
-		duplicate_all_obstacles_in_area(curShip.AllLevels[LevelNum], 0, curShip.AllLevels[LevelNum]->ylen - AreaHeight,
-						AreaWidth, AreaHeight, curShip.AllLevels[TargetLevel], 0, 0);
-
-		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
-	}
-	//--------------------
-	// Now we see if we need to copy the eastern interface region
-	// into another map.
-	//
-	TargetLevel = curShip.AllLevels[LevelNum]->jump_target_east;
-	if (TargetLevel != (-1)) {
-		//--------------------
-		// First we find out the dimensions of the area we want to copy
-		//
-		if (curShip.AllLevels[LevelNum]->ylen < curShip.AllLevels[TargetLevel]->ylen)
-			AreaHeight = curShip.AllLevels[LevelNum]->ylen;
-		else
-			AreaHeight = curShip.AllLevels[TargetLevel]->ylen;
-
-		AreaWidth = curShip.AllLevels[LevelNum]->jump_threshold_east;
-
-		if (AreaWidth <= 0)
-			return;
-
-		TargetStartLine = (curShip.AllLevels[TargetLevel]->ylen) - 1;
-
-		//--------------------
-		// Now we can start to make the copy...
-		//
-		for (y = 0; y < AreaHeight; y++) {
-			floor_copy(curShip.AllLevels[TargetLevel]->map[y],
-				   (curShip.AllLevels[LevelNum]->map[y]) + curShip.AllLevels[LevelNum]->xlen - 0 - AreaWidth, AreaWidth);
-		}
-
-		delete_all_obstacles_in_area(curShip.AllLevels[TargetLevel], 0, 0, AreaWidth, AreaHeight);
-
-		duplicate_all_obstacles_in_area(curShip.AllLevels[LevelNum], curShip.AllLevels[LevelNum]->xlen - AreaWidth, 0,
-						AreaWidth, AreaHeight, curShip.AllLevels[TargetLevel], 0, 0);
-
-		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
-	}
-	//--------------------
-	// Now we see if we need to copy the western interface region
-	// into another map.
-	//
-	TargetLevel = curShip.AllLevels[LevelNum]->jump_target_west;
-	if (TargetLevel != (-1)) {
-		//--------------------
-		// First we find out the dimensions of the area we want to copy
-		//
-		if (curShip.AllLevels[LevelNum]->ylen < curShip.AllLevels[TargetLevel]->ylen)
-			AreaHeight = curShip.AllLevels[LevelNum]->ylen;
-		else
-			AreaHeight = curShip.AllLevels[TargetLevel]->ylen;
-
-		AreaWidth = curShip.AllLevels[LevelNum]->jump_threshold_west;
-
-		if (AreaWidth <= 0)
-			return;
-
-		TargetStartLine = (curShip.AllLevels[TargetLevel]->ylen) - 1;
-
-		//--------------------
-		// Now we can start to make the copy...
-		//
-		for (y = 0; y < AreaHeight; y++) {
-			floor_copy((curShip.AllLevels[TargetLevel]->map[y]) +
-				   curShip.AllLevels[TargetLevel]->xlen - 0 - AreaWidth,
-				   (curShip.AllLevels[LevelNum]->map[y]) + 0, AreaWidth);
-		}
-
-		delete_all_obstacles_in_area(curShip.AllLevels[TargetLevel], curShip.AllLevels[TargetLevel]->xlen - AreaWidth, 0, AreaWidth,
-					     AreaHeight);
-
-		duplicate_all_obstacles_in_area(curShip.AllLevels[LevelNum], 0, 0, AreaWidth, AreaHeight,
-						curShip.AllLevels[TargetLevel], curShip.AllLevels[TargetLevel]->xlen - AreaWidth, 0);
-
-		dirty_animated_obstacle_lists(curShip.AllLevels[TargetLevel]->levelnum);
-	}
-
-};				// void SynchronizeLevelInterfaces ( void )
+}				// void RemoveLineVeryNorth (level *EditLevel)

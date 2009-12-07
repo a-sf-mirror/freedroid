@@ -257,23 +257,6 @@ static void DecodeInterfaceDataForThisLevel(Level loadlevel, char *DataPointer)
 
 #define DEBUG_LEVEL_INTERFACES 1
 
-	ReadValueFromString(DataPointer, "jump threshold north: ", "%d", &(loadlevel->jump_threshold_north), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump theshold north : %d ", loadlevel->jump_threshold_north);
-	if (loadlevel->jump_threshold_north < 0)
-		loadlevel->jump_threshold_north = 0;
-	ReadValueFromString(DataPointer, "jump threshold south: ", "%d", &(loadlevel->jump_threshold_south), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump theshold south : %d ", loadlevel->jump_threshold_south);
-	if (loadlevel->jump_threshold_south < 0)
-		loadlevel->jump_threshold_south = 0;
-	ReadValueFromString(DataPointer, "jump threshold east: ", "%d", &(loadlevel->jump_threshold_east), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump theshold east : %d ", loadlevel->jump_threshold_east);
-	if (loadlevel->jump_threshold_east < 0)
-		loadlevel->jump_threshold_east = 0;
-	ReadValueFromString(DataPointer, "jump threshold west: ", "%d", &(loadlevel->jump_threshold_west), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump theshold west : %d ", loadlevel->jump_threshold_west);
-	if (loadlevel->jump_threshold_west < 0)
-		loadlevel->jump_threshold_west = 0;
-
 	ReadValueFromString(DataPointer, "jump target north: ", "%d", &(loadlevel->jump_target_north), TempSectionPointer);
 	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump target north : %d ", loadlevel->jump_target_north);
 	ReadValueFromString(DataPointer, "jump target south: ", "%d", &(loadlevel->jump_target_south), TempSectionPointer);
@@ -1560,15 +1543,11 @@ light radius bonus of this level: %d\n\
 minimal light on this level: %d\n\
 infinite_running_on_this_level: %d\n\
 random dungeon: %d\n\
-jump threshold north: %d\n\
-jump threshold south: %d\n\
-jump threshold east: %d\n\
-jump threshold west: %d\n\
 jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
 jump target west: %d\n\
-use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light_bonus, lvl->minimum_light_value, lvl->infinite_running_on_this_level, lvl->random_dungeon, lvl->jump_threshold_north, lvl->jump_threshold_south, lvl->jump_threshold_east, lvl->jump_threshold_west, lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east, lvl->jump_target_west, lvl->use_underground_lighting);
+use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light_bonus, lvl->minimum_light_value, lvl->infinite_running_on_this_level, lvl->random_dungeon, lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east, lvl->jump_target_west, lvl->use_underground_lighting);
 	autostr_append(shipstr, "%s%s\"\n%s%s\n", LEVEL_NAME_STRING, lvl->Levelname,
 			BACKGROUND_SONG_NAME_STRING, lvl->Background_Song_Name);
 
