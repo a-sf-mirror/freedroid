@@ -137,6 +137,8 @@ void EvaluatePlayground(void);
 float EvaluatePosition(int color, int row, int layer);
 void AdvancedEnemyTakeoverMovements(void);
 
+static void ShowPlayground(void);
+
 /** 
  * Display the picture of a droid
  */
@@ -452,7 +454,6 @@ static void PlayGame(int countdown)
 		/* time for movement */
 		if (cur_time > prev_move_tick + move_tick_len) {
 			prev_move_tick += move_tick_len;	/* set for next motion tick */
-			// EnemyMovements ();
 			AdvancedEnemyTakeoverMovements();
 
 			if (up) {
@@ -766,66 +767,6 @@ int droid_takeover(enemy * target)
 };				// int Takeover( int enemynum ) 
 
 /*-----------------------------------------------------------------
- * This function performs the enemy movements in the takeover game.
- *-----------------------------------------------------------------*/
-void EnemyMovements(void)
-{
-	static int Actions = 3;
-	static int MoveProbability = 100;
-	static int TurnProbability = 10;
-	static int SetProbability = 80;
-
-	int action;
-	static int direction = 1;	/* start with this direction */
-	int row = CapsuleCurRow[OpponentColor] - 1;
-
-	if (NumCapsules[ENEMY] == 0)
-		return;
-
-	action = MyRandom(Actions);
-	switch (action) {
-	case 0:		/* Move along */
-		if (MyRandom(100) <= MoveProbability) {
-			row += direction;
-			if (row > NUM_LINES - 1)
-				row = 0;
-			if (row < 0)
-				row = NUM_LINES - 1;
-		}
-		break;
-
-	case 1:		/* Turn around */
-		if (MyRandom(100) <= TurnProbability) {
-			direction *= -1;
-		}
-		break;
-
-	case 2:		/* Try to set  capsule */
-		if (MyRandom(100) <= SetProbability) {
-			if ((row >= 0) &&
-			    (ToPlayground[OpponentColor][0][row] != KABELENDE) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
-				NumCapsules[ENEMY]--;
-				Takeover_Set_Capsule_Sound();
-				ToPlayground[OpponentColor][0][row] = VERSTAERKER;
-				ActivationMap[OpponentColor][0][row] = ACTIVE1;
-				CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
-				row = -1;	/* For the next capsule: startpos */
-			}
-		}
-		/* if MyRandom */
-		break;
-
-	default:
-		break;
-
-	}			/* switch action */
-
-	CapsuleCurRow[OpponentColor] = row + 1;
-
-	return;
-}				/* EnemyMovements */
-
-/*-----------------------------------------------------------------
  * This function performs the enemy movements in the takeover game,
  * but it does this in an advaned way, that has not been there in
  * the classic freedroid game.
@@ -1031,14 +972,7 @@ int GetTakeoverGraphics(void)
 	return OK;
 };				// int GetTakeoverGraphics ( void )
 
-/* -----------------------------------------------------------------
- * @Desc: prepares _and displays_ the current Playground
- *
- *   NOTE: this function should only change the USERFENSTER part
- *         so that we can do Infoline-setting before this
- *
- * ----------------------------------------------------------------- */
-void ShowPlayground(void)
+static void ShowPlayground(void)
 {
 	int i, j;
 	int color, player;

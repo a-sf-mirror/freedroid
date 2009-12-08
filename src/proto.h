@@ -701,10 +701,8 @@ int copy_item_into_inventory(item *, int);
 
 int droid_takeover(enemy *);
 int do_takeover(int, int, int);
-void EnemyMovements(void);
 
 int GetTakeoverGraphics(void);
-void ShowPlayground(void);
 void InventPlayground(void);
 
 void ProcessPlayground(void);
