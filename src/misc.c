@@ -118,17 +118,14 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[GO_LEVEL_EAST_BUTTON_PUSHED] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelEastButtonPushed.png", {-50, -50, 30, 30}, FALSE, FALSE},
 	[GO_LEVEL_WEST_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelWestButton.png", {-85, -85, 30, 30}, FALSE, FALSE},
 	[GO_LEVEL_WEST_BUTTON_PUSHED] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelWestButtonPushed.png", {-85, -85, 30, 30}, FALSE, FALSE},
-	[EXPORT_THIS_LEVEL_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/ExportThisLevelButton.png", {-60, 90, 0, 0}, FALSE, FALSE},
-	[EXPORT_THIS_LEVEL_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/ExportThisLevelButtonPushed.png", {-60, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-90, 90, 0, 0}, FALSE, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-60, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonPushed.png", {-90, 90, 0, 0}, FALSE, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonPushed.png", {-60, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOff.png", {-90, 90, 0, 0}, FALSE, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOff.png", {-60, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-90, 90, 0, 0}, FALSE, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-60, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorToggleWaypointButton.png", {00, 150, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON_PUSHED] =

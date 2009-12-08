@@ -188,7 +188,6 @@ void leveleditor_init_widgets()
 
 	/* Build our interface */
 	int t[] = {
-		EXPORT_THIS_LEVEL_BUTTON,
 		LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON,
 		LEVEL_EDITOR_UNDO_BUTTON,
 		LEVEL_EDITOR_REDO_BUTTON,
