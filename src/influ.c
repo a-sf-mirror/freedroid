@@ -213,6 +213,10 @@ void throw_out_all_chest_content(int obst_index)
 	// First some check if the given obstacle is really a closed chest.
 	//
 	switch (chest_level->obstacle_list[obst_index].type) {
+	case ISO_N_CHEST2_CLOSED:
+	case ISO_S_CHEST2_CLOSED:
+	case ISO_E_CHEST2_CLOSED:
+	case ISO_W_CHEST2_CLOSED:
 	case ISO_H_CHEST_CLOSED:
 	case ISO_V_CHEST_CLOSED:
 		// all is ok in this case.  it's really a chest.  fine.
@@ -386,6 +390,10 @@ int closed_chest_below_mouse_cursor(level ** chest_lvl)
 					continue;
 
 				switch (lvl->obstacle_list[obst_index].type) {
+				case ISO_N_CHEST2_CLOSED:
+				case ISO_S_CHEST2_CLOSED:
+				case ISO_E_CHEST2_CLOSED:
+				case ISO_W_CHEST2_CLOSED:
 				case ISO_H_CHEST_CLOSED:
 				case ISO_V_CHEST_CLOSED:
 					if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
@@ -2045,6 +2053,14 @@ void check_for_chests_to_open(level * chest_lvl, int chest_index)
 				chest_lvl->obstacle_list[chest_index].type = ISO_H_CHEST_OPEN;
 			if (chest_lvl->obstacle_list[chest_index].type == ISO_V_CHEST_CLOSED)
 				chest_lvl->obstacle_list[chest_index].type = ISO_V_CHEST_OPEN;
+			if (chest_lvl->obstacle_list[chest_index].type == ISO_N_CHEST2_CLOSED)
+				chest_lvl->obstacle_list[chest_index].type = ISO_N_CHEST2_OPEN;
+			if (chest_lvl->obstacle_list[chest_index].type == ISO_E_CHEST2_CLOSED)
+				chest_lvl->obstacle_list[chest_index].type = ISO_E_CHEST2_OPEN;
+			if (chest_lvl->obstacle_list[chest_index].type == ISO_S_CHEST2_CLOSED)
+				chest_lvl->obstacle_list[chest_index].type = ISO_S_CHEST2_OPEN;
+			if (chest_lvl->obstacle_list[chest_index].type == ISO_W_CHEST2_CLOSED)
+				chest_lvl->obstacle_list[chest_index].type = ISO_W_CHEST2_OPEN;
 		}
 		//--------------------
 		// Maybe a combo_action has made us come here and open the chest.  Then of
@@ -2065,29 +2081,30 @@ void check_for_chests_to_open(level * chest_lvl, int chest_index)
 		// can retrieve the chest later (at the end the combo action)
 		//
 		DebugPrintf(2, "\ncheck_for_chests_to_open:  setting up combined mouse move target!");
+			
+		Me.mouse_move_target.x = chest_lvl->obstacle_list[chest_index].pos.x;
+		Me.mouse_move_target.y = chest_lvl->obstacle_list[chest_index].pos.y;
+		Me.mouse_move_target.z = chest_lvl->levelnum;
+		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+		Me.mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST;
+		Me.mouse_move_target_combo_action_parameter = chest_index;
 
 		switch (chest_lvl->obstacle_list[chest_index].type) {
 		case ISO_V_CHEST_CLOSED:
 		case ISO_V_CHEST_OPEN:
-			Me.mouse_move_target.x = chest_lvl->obstacle_list[chest_index].pos.x;
-			Me.mouse_move_target.y = chest_lvl->obstacle_list[chest_index].pos.y;
-			Me.mouse_move_target.z = chest_lvl->levelnum;
+		case ISO_E_CHEST2_CLOSED:
 			Me.mouse_move_target.x += 0.8;
-			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-			Me.mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST;
-			Me.mouse_move_target_combo_action_parameter = chest_index;
-
 			break;
 		case ISO_H_CHEST_CLOSED:
 		case ISO_H_CHEST_OPEN:
-			Me.mouse_move_target.x = chest_lvl->obstacle_list[chest_index].pos.x;
-			Me.mouse_move_target.y = chest_lvl->obstacle_list[chest_index].pos.y;
-			Me.mouse_move_target.z = chest_lvl->levelnum;
+		case ISO_S_CHEST2_CLOSED:
 			Me.mouse_move_target.y += 0.8;
-			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-			Me.mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST;
-			Me.mouse_move_target_combo_action_parameter = chest_index;
-
+			break;
+		case ISO_W_CHEST2_CLOSED:
+			Me.mouse_move_target.x -= 0.8;
+			break;
+		case ISO_N_CHEST2_CLOSED:
+			Me.mouse_move_target.y -= 0.8;
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "chest to be approached is not a chest obstacle!!", PLEASE_INFORM, IS_FATAL);

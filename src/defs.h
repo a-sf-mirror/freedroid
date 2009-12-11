@@ -908,10 +908,6 @@ enum obstacle_types {
 	ISO_REFRESH_4 = 24,
 	ISO_REFRESH_5 = 25,
 
-	//--------------------
-	// These obstacles currently don't have a blender file in the cvs tree,
-	// but their meaning should be fairly obvious:
-	//
 	ISO_H_DOOR_LOCKED = 26,
 	ISO_V_DOOR_LOCKED = 27,
 
@@ -1360,6 +1356,16 @@ enum obstacle_types {
 
 	ISO_EXIT_5,
 	ISO_EXIT_6,
+	
+	ISO_E_CHEST2_CLOSED,
+	ISO_S_CHEST2_CLOSED,
+	ISO_E_CHEST2_OPEN,
+	ISO_S_CHEST2_OPEN,
+	ISO_N_CHEST2_CLOSED,
+	ISO_W_CHEST2_CLOSED,
+	ISO_N_CHEST2_OPEN,
+	ISO_W_CHEST2_OPEN,
+
 	NUMBER_OF_OBSTACLE_TYPES
 };
 

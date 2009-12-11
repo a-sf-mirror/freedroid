@@ -2001,6 +2001,63 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_H_CHEST_CLOSED].obstacle_short_name = _("Chest");
 	obstacle_map[ISO_H_CHEST_CLOSED].obstacle_long_description = _("This chest is closed.");
 
+	obstacle_map[ISO_E_CHEST2_CLOSED].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_E_CHEST2_CLOSED].block_area_parm_1 = 1.1;
+	obstacle_map[ISO_E_CHEST2_CLOSED].block_area_parm_2 = 0.8;
+	obstacle_map[ISO_E_CHEST2_CLOSED].filename = "iso_container_0006.png";
+	obstacle_map[ISO_E_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_E_CHEST2_CLOSED].flags |= GROUND_LEVEL;
+	
+	obstacle_map[ISO_W_CHEST2_CLOSED].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_W_CHEST2_CLOSED].block_area_parm_1 = 1.1;
+	obstacle_map[ISO_W_CHEST2_CLOSED].block_area_parm_2 = 0.8;
+	obstacle_map[ISO_W_CHEST2_CLOSED].filename = "iso_container_0010.png";
+	obstacle_map[ISO_W_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_W_CHEST2_CLOSED].flags |= GROUND_LEVEL;
+	
+	obstacle_map[ISO_S_CHEST2_CLOSED].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_S_CHEST2_CLOSED].block_area_parm_1 = 0.8;
+	obstacle_map[ISO_S_CHEST2_CLOSED].block_area_parm_2 = 1.1;
+	obstacle_map[ISO_S_CHEST2_CLOSED].filename = "iso_container_0005.png";
+	obstacle_map[ISO_S_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_S_CHEST2_CLOSED].flags |= GROUND_LEVEL;
+	
+	obstacle_map[ISO_N_CHEST2_CLOSED].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_N_CHEST2_CLOSED].block_area_parm_1 = 0.8;
+	obstacle_map[ISO_N_CHEST2_CLOSED].block_area_parm_2 = 1.1;
+	obstacle_map[ISO_N_CHEST2_CLOSED].filename = "iso_container_0009.png";
+	obstacle_map[ISO_N_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_N_CHEST2_CLOSED].flags |= GROUND_LEVEL;
+	
+	obstacle_map[ISO_E_CHEST2_OPEN].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_E_CHEST2_OPEN].block_area_parm_1 = 1.1;
+	obstacle_map[ISO_E_CHEST2_OPEN].block_area_parm_2 = 0.8;
+	obstacle_map[ISO_E_CHEST2_OPEN].filename = "iso_container_0008.png";
+	obstacle_map[ISO_E_CHEST2_OPEN].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_E_CHEST2_OPEN].flags |= GROUND_LEVEL;
+	
+	obstacle_map[ISO_W_CHEST2_OPEN].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_W_CHEST2_OPEN].block_area_parm_1 = 1.1;
+	obstacle_map[ISO_W_CHEST2_OPEN].block_area_parm_2 = 0.8;
+	obstacle_map[ISO_W_CHEST2_OPEN].filename = "iso_container_0012.png";
+	obstacle_map[ISO_W_CHEST2_OPEN].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_W_CHEST2_OPEN].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_W_CHEST2_OPEN].obstacle_short_name = _("Chest");
+	
+	obstacle_map[ISO_S_CHEST2_OPEN].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_S_CHEST2_OPEN].block_area_parm_1 = 0.8;
+	obstacle_map[ISO_S_CHEST2_OPEN].block_area_parm_2 = 1.1;
+	obstacle_map[ISO_S_CHEST2_OPEN].filename = "iso_container_0007.png";
+	obstacle_map[ISO_S_CHEST2_OPEN].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_S_CHEST2_OPEN].flags |= GROUND_LEVEL;
+	
+	obstacle_map[ISO_N_CHEST2_OPEN].block_area_type = COLLISION_TYPE_RECTANGLE;
+	obstacle_map[ISO_N_CHEST2_OPEN].block_area_parm_1 = 0.8;
+	obstacle_map[ISO_N_CHEST2_OPEN].block_area_parm_2 = 1.1;
+	obstacle_map[ISO_N_CHEST2_OPEN].filename = "iso_container_0011.png";
+	obstacle_map[ISO_N_CHEST2_OPEN].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_N_CHEST2_OPEN].flags |= GROUND_LEVEL;
+
 	obstacle_map[ISO_AUTOGUN_N].block_area_parm_1 = 0.7;
 	obstacle_map[ISO_AUTOGUN_N].block_area_parm_2 = 0.7;
 	obstacle_map[ISO_AUTOGUN_N].filename = "iso_autogun_act_0002.png";
