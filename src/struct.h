@@ -808,13 +808,8 @@ typedef struct obstacle_spec_s {
 	//
 	short emitted_light_strength;
 	char transparent;
-	//--------------------
-	// This is a special property for obstacles, that can be 
-	// stepped on, like a rug or floor plate, for proper visibility...
-	//
+	
 	char *filename;
-	char *obstacle_short_name;
-	char *obstacle_long_description;
 	
 	//--------------------
 	// Some obstacles have an associated animation.

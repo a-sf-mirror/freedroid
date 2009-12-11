@@ -428,9 +428,8 @@ static int lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx 
 								       "The center of the following objects was found to be inside an obstacle, preventing Tux from activating them.");
 						is_invalid = TRUE;
 					}
-					printf("[Type=\"C\"] Obj Idx=%d (X=%f:Y=%f:L=%d) : %s\n", obs_index, this_obs->pos.x,
-					       this_obs->pos.y, validator_ctx->this_level->levelnum,
-					       obstacle_map[this_obs->type].obstacle_short_name);
+					printf("[Type=\"C\"] Obj Idx=%d (X=%f:Y=%f:L=%d)\n", obs_index, this_obs->pos.x,
+					       this_obs->pos.y, validator_ctx->this_level->levelnum);
 				}
 			}
 		}
