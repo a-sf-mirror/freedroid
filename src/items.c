@@ -2093,12 +2093,8 @@ void HandleInventoryScreen(void)
 				Item_Held_In_Hand = &(Me.Inventory[Grabbed_InvPos]);
 				Item_Held_In_Hand->currently_held_in_hand = TRUE;
 				play_item_sound(Item_Held_In_Hand->type);
-			} else if (global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE) {
-				append_new_game_message("Examining %s: %s.",
-						D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_name),
-						D_(ItemMap[Me.Inventory[Grabbed_InvPos].type].item_description));
-			}			
-			
+			}
+
 			return;
 		}
 		

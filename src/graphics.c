@@ -279,9 +279,6 @@ Error loading flag image.", PLEASE_INFORM, IS_FATAL);
 	case GLOBAL_INGAME_MODE_NORMAL:
 		cursor_index = 0;
 		break;
-	case GLOBAL_INGAME_MODE_EXAMINE:
-		cursor_index = 2;
-		break;
 	case GLOBAL_INGAME_MODE_REPAIR:
 		cursor_index = 6;
 		break;

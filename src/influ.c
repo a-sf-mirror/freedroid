@@ -1040,7 +1040,6 @@ void move_tux_thowards_intermediate_point()
  */
 void adapt_global_mode_for_player()
 {
-	static int right_pressed_previous_frame = FALSE;
 	static int left_pressed_previous_frame = FALSE;
 
 	//--------------------
@@ -1071,26 +1070,15 @@ void adapt_global_mode_for_player()
 		return;
 	}
 
- done_handling_scroll_updown:
+done_handling_scroll_updown:
 	if ((global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_UP) || (global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_DOWN)) {
 		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 	}
 
-	if ((RightPressed() && (!right_pressed_previous_frame)) || MouseWheelDownPressed()) {
-		if (global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL)
-			global_ingame_mode = GLOBAL_INGAME_MODE_EXAMINE;
-		else if (global_ingame_mode == GLOBAL_INGAME_MODE_EXAMINE)
-			global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-	}
-
 	if ((LeftPressed() && (!left_pressed_previous_frame)) || MouseWheelUpPressed()) {
-		if (global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL)
-			global_ingame_mode = GLOBAL_INGAME_MODE_EXAMINE;
-		else
-			global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 	}
 
-	right_pressed_previous_frame = RightPressed();
 	left_pressed_previous_frame = LeftPressed();
 
 };				// void adapt_global_mode_for_player ( )
@@ -2403,53 +2391,6 @@ void check_for_droids_to_attack_or_talk_with()
 };				// void check_for_droids_to_attack ( ) 
 
 /**
- * When the player has actiavted global examine aid and clicked the
- * left button, the examine command must be executed.  This function
- * should deal with the effects of one such examine click by the player.
- */
-void handle_player_examine_command(void)
-{
-	int obstacle_index;
-	obstacle *our_obstacle;
-
-	if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
-		return;
-
-	//--------------------
-	// Now if there wasn't any living droid encountered, we can now
-	// start thinking about obstacles.  Let's see if we find something here
-	//
-	obstacle_index = GetObstacleBelowMouseCursor();
-	if (obstacle_index != (-1)) {
-		our_obstacle = &(curShip.AllLevels[Me.pos.z]->obstacle_list[obstacle_index]);
-		char *longdesc;
-
-		//--------------------
-		// Now if the obstacle has an individual description text, then we can 
-		// use that for the obstacle examination result.  Otherwise we'll revert
-		// to the generic description text for the obstacle type of this obstacle.
-		//
-		if (our_obstacle->description_index >= 0) {
-			longdesc = curShip.AllLevels[Me.pos.z]->obstacle_description_list[our_obstacle->description_index];
-		} else {
-			longdesc = obstacle_map[our_obstacle->type].obstacle_long_description;
-		}
-
-		append_new_game_message(_("Examining %s. %s"), obstacle_map[our_obstacle->type].obstacle_short_name, longdesc);
-
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-		return;
-	}
-	//--------------------
-	// So here we know that neither living droid nor obstacle
-	// was found under the mouse cursor.  Then it's the floor being
-	// examined.  We say so, currently rather unspecific, but still.
-	//
-	append_new_game_message(_("There is nothing here."));
-	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-};				// void handle_player_examine_command ( ) 
-
-/**
  * If the user clicked his mouse, this might have several reasons.  It 
  * might happen to open some windows, pick up some stuff, smash a box,
  * move somewhere or fire a shot or make a weapon swing.
@@ -2542,10 +2483,6 @@ void AnalyzePlayersMouseClick()
 		if (!wait_mouseleft_release)
 			check_for_droids_to_attack_or_talk_with();
 
-		break;
-
-	case GLOBAL_INGAME_MODE_EXAMINE:
-		handle_player_examine_command();
 		break;
 
 	default:
