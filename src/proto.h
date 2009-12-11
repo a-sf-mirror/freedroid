@@ -258,7 +258,6 @@ void set_mouse_cursor_to_shape(int given_shape);
 void make_sure_system_mouse_cursor_is_turned_off(void);
 void make_sure_system_mouse_cursor_is_turned_on(void);
 void blit_our_own_mouse_cursor(void);
-void blit_mouse_cursor_corona(void);
 SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect our_rect);
 SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterType);
 void fade_out_using_gamma_ramp(void);

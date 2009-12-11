@@ -2147,7 +2147,6 @@ void AssembleCombatPicture(int mask)
 
 	if (mask & USE_OWN_MOUSE_CURSOR && !(mask & NO_CURSOR)) {
 		blit_our_own_mouse_cursor();
-		blit_mouse_cursor_corona();
 	}
 #if 0
 	/* This code displays the player tracks with red dots. */
