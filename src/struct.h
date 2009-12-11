@@ -101,6 +101,8 @@ typedef struct keybind_s {
 	     /**< Key modifiers */
 } keybind_t;
 
+typedef char *string;
+
 typedef struct configuration_for_freedroid_s {
 	float WantedTextVisibleTime;
 	int Draw_Framerate;
@@ -117,7 +119,7 @@ typedef struct configuration_for_freedroid_s {
 	int Automap_Visible;
 	int spell_level_visible;
 
-	char freedroid_version_string[500];
+	string freedroid_version_string;
 	int skip_light_radius;
 	int skill_explanation_screen_visible;
 	int enemy_energy_bars_visible;
@@ -186,8 +188,6 @@ typedef struct map_label_s {
 } map_label, *Map_Label;
 
 typedef char *luacode;
-typedef char *string;
-
 typedef struct mission_s {
 	string mission_name;
 	int MissionWasAssigned;	// has be influencer been assigned to this mission? , currently uninitialized

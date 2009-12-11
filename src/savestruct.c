@@ -718,7 +718,7 @@ save_int32_t("CharacterScreen_Visible", &(target->CharacterScreen_Visible));
 save_int32_t("SkillScreen_Visible", &(target->SkillScreen_Visible));
 save_int32_t("Automap_Visible", &(target->Automap_Visible));
 save_int32_t("spell_level_visible", &(target->spell_level_visible));
-save_char_array("freedroid_version_string", (target->freedroid_version_string), 500);
+save_string("freedroid_version_string", &(target->freedroid_version_string));
 save_int32_t("skip_light_radius", &(target->skip_light_radius));
 save_int32_t("skill_explanation_screen_visible", &(target->skill_explanation_screen_visible));
 save_int32_t("enemy_energy_bars_visible", &(target->enemy_energy_bars_visible));
@@ -776,7 +776,7 @@ read_int32_t(pos, "CharacterScreen_Visible",  &(target->CharacterScreen_Visible)
 read_int32_t(pos, "SkillScreen_Visible",  &(target->SkillScreen_Visible));
 read_int32_t(pos, "Automap_Visible",  &(target->Automap_Visible));
 read_int32_t(pos, "spell_level_visible",  &(target->spell_level_visible));
-read_char_array(pos, "freedroid_version_string",  (target->freedroid_version_string), 500);
+read_string(pos, "freedroid_version_string",  &(target->freedroid_version_string));
 read_int32_t(pos, "skip_light_radius",  &(target->skip_light_radius));
 read_int32_t(pos, "skill_explanation_screen_visible",  &(target->skill_explanation_screen_visible));
 read_int32_t(pos, "enemy_energy_bars_visible",  &(target->enemy_energy_bars_visible));
