@@ -973,7 +973,6 @@ int DoLevelEditorMainMenu()
 				break;
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			close_all_chests_on_level(Me.pos.z);
 			char fp[2048];
 			find_file("freedroid.levels", MAP_DIR, fp, 0);
 			SaveShip(fp);

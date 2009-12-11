@@ -57,7 +57,6 @@ static void activate_button(struct leveleditor_button *b)
 		break;
 	case LEVEL_EDITOR_SAVE_SHIP_BUTTON:
 		if (game_root_mode == ROOT_IS_LVLEDIT) {	/*don't allow saving if root mode is GAME */
-			close_all_chests_on_level(Me.pos.z);
 			char fp[2048];
 			find_file("freedroid.levels", MAP_DIR, fp, 0);
 			SaveShip(fp);

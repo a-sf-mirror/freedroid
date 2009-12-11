@@ -113,7 +113,6 @@ enum {
 EXTERN void LevelEditor(void);
 EXTERN item *ItemDropFromLevelEditor(void);
 EXTERN void TestMap();
-EXTERN void close_all_chests_on_level(int);
 
 enum leveleditor_object_type {
 	OBJECT_FLOOR,

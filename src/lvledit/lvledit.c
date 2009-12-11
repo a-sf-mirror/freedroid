@@ -128,29 +128,6 @@ iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int *
 }
 
 /**
- *
- *
- */
-void close_all_chests_on_level(int l_num)
-{
-	int i;
-
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		switch (curShip.AllLevels[l_num]->obstacle_list[i].type) {
-		case ISO_H_CHEST_OPEN:
-			curShip.AllLevels[l_num]->obstacle_list[i].type = ISO_H_CHEST_CLOSED;
-			break;
-		case ISO_V_CHEST_OPEN:
-			curShip.AllLevels[l_num]->obstacle_list[i].type = ISO_V_CHEST_CLOSED;
-			break;
-		default:
-			break;
-		}
-	}
-
-};				// void close_all_chests_on_level ( int l_num ) 
-
-/**
  * This function should associate the current mouse position with an
  * index in the level editor item drop screen.
  * (-1) is returned when cursor is not on any item in the item drop grid.
