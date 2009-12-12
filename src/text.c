@@ -217,6 +217,8 @@ int ScrollText(char *Text, int background_code)
 	int StartInsertLine, InsertLine;
 	int speed = +1;
 	int maxspeed = 8;
+	int done = 0;
+	SDL_Event event;
 
 	Activate_Conservative_Frame_Computation();
 
@@ -225,9 +227,12 @@ int ScrollText(char *Text, int background_code)
 	StartInsertLine = ScrollRect.y + ScrollRect.h;
 	InsertLine = StartInsertLine;
 
-	while (!MouseLeftPressed()
+	while (!done) {
+		
+		/*MouseLeftPressed()
 	       || (MouseCursorIsOnButton(SCROLL_TEXT_UP_BUTTON, GetMousePos_x(), GetMousePos_y()))
-	       || (MouseCursorIsOnButton(SCROLL_TEXT_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y()))) {
+	       || (MouseCursorIsOnButton(SCROLL_TEXT_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y()))) {*/
+
 		if (background_code != (-1))
 			blit_special_background(background_code);
 		Number_Of_Line_Feeds = DisplayText(Text, ScrollRect.x, InsertLine, &ScrollRect, TEXT_STRETCH);
@@ -241,33 +246,51 @@ int ScrollText(char *Text, int background_code)
 		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
 
-		save_mouse_state();
-		input_handle();
+		while (SDL_PollEvent(&event)) {
+			if (event.type == SDL_MOUSEBUTTONDOWN) {
+				//mange the event to make it look like an arrow key press
+				event.type = SDL_KEYDOWN;
+				switch (event.button.button) {
+					case SDL_BUTTON_WHEELUP:
+						event.key.keysym.sym = SDLK_UP;
+						break;
+					case SDL_BUTTON_WHEELDOWN:
+						event.key.keysym.sym = SDLK_DOWN;
+						break;
+					case SDL_BUTTON_LEFT:
+						if (MouseCursorIsOnButton(SCROLL_TEXT_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+							event.key.keysym.sym = SDLK_UP;
+						} else if (MouseCursorIsOnButton(SCROLL_TEXT_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+							event.key.keysym.sym = SDLK_DOWN;
+						} else {
+							done = 1;
+						}
+						break;	
+					default:
+						;
+				}
+			}
 
-		if (UpPressed()
-		    || (MouseLeftClicked()
-			&& (MouseCursorIsOnButton(SCROLL_TEXT_UP_BUTTON, GetMousePos_x(), GetMousePos_y())))) {
-			speed--;
-			if (speed < -maxspeed)
-				speed = -maxspeed;
-		}
-		if (DownPressed()
-		    || (MouseLeftClicked()
-			&& (MouseCursorIsOnButton(SCROLL_TEXT_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())))) {
-			speed++;
-			if (speed > maxspeed)
-				speed = maxspeed;
-		}
+			if (event.type == SDL_KEYDOWN) {
+				switch (event.key.keysym.sym) {
+					case SDLK_UP:
+						speed--;
+						if (speed < -maxspeed)
+							speed = -maxspeed;
+						break;
+					case SDLK_DOWN:
+						speed++;
+						if (speed > maxspeed)
+							speed = maxspeed;
+						break;
+					case SDLK_ESCAPE:
+						done = 1;
+						break;
+					default:
+						;
+				}
+			}
 
-		if (MouseWheelDownPressed()) {
-			speed++;
-			if (speed > maxspeed)
-				speed = maxspeed;
-		}
-		if (MouseWheelUpPressed()) {
-			speed--;
-			if (speed < -maxspeed)
-				speed = -maxspeed;
 		}
 
 		InsertLine -= speed;

@@ -141,7 +141,6 @@ typedef struct configuration_for_freedroid_s {
 	float automap_display_scale;
 	int skip_shadow_blitting;
 	int do_fadings;		// do the screen fadings
-	int auto_display_to_help;	// display the takeover help
 	int fullscreen_on;
 	int talk_to_bots_after_takeover;
 	int xray_vision_for_tux;

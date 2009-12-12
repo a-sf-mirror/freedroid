@@ -1632,7 +1632,6 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.xray_vision_for_tux = FALSE;
 	GameConfig.lazyload = 1;
 
-	GameConfig.auto_display_to_help = 1;
 };				// void Reset_GameConfig_To_Default_Values ( void )
 
 /* -----------------------------------------------------------------

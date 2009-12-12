@@ -740,7 +740,6 @@ save_int32_t("next_time_height_of_screen", &(target->next_time_height_of_screen)
 save_float("automap_display_scale", &(target->automap_display_scale));
 save_int32_t("skip_shadow_blitting", &(target->skip_shadow_blitting));
 save_int32_t("do_fadings", &(target->do_fadings));
-save_int32_t("auto_display_to_help", &(target->auto_display_to_help));
 save_int32_t("fullscreen_on", &(target->fullscreen_on));
 save_int32_t("talk_to_bots_after_takeover", &(target->talk_to_bots_after_takeover));
 save_int32_t("xray_vision_for_tux", &(target->xray_vision_for_tux));
@@ -798,7 +797,6 @@ read_int32_t(pos, "next_time_height_of_screen",  &(target->next_time_height_of_s
 read_float(pos, "automap_display_scale",  &(target->automap_display_scale));
 read_int32_t(pos, "skip_shadow_blitting",  &(target->skip_shadow_blitting));
 read_int32_t(pos, "do_fadings",  &(target->do_fadings));
-read_int32_t(pos, "auto_display_to_help",  &(target->auto_display_to_help));
 read_int32_t(pos, "fullscreen_on",  &(target->fullscreen_on));
 read_int32_t(pos, "talk_to_bots_after_takeover",  &(target->talk_to_bots_after_takeover));
 read_int32_t(pos, "xray_vision_for_tux",  &(target->xray_vision_for_tux));
