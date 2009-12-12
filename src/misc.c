@@ -1174,8 +1174,8 @@ int SaveGameConfig(void)
 	//
 	if (GameConfig.freedroid_version_string) {
 		free(GameConfig.freedroid_version_string);
-		GameConfig.freedroid_version_string = strdup(VERSION);
 	}
+	GameConfig.freedroid_version_string = strdup(VERSION);
 
 	//--------------------
 	// We preseve the current resolution, modify it a bit, such that
