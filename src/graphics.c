@@ -388,14 +388,6 @@ void fade_in_using_gamma_ramp(void)
 
 };				// void fade_in_using_gamma_ramp ( void )
 
-/**
- * There is need to do some padding, cause OpenGL textures need to have
- * a format: width and length both each a power of two.  Therefore some
- * extra alpha to the sides must be inserted.  This is what this function
- * is supposed to do:  manually adding hte proper amount of padding to
- * the surface, so that the dimensions will reach the next biggest power
- * of two in both directions, width and length.
- */
 SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect our_rect)
 {
 	SDL_Surface *padded_surf;
@@ -423,7 +415,9 @@ SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect 
 
 	SDL_SetAlpha(tmp_surf, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
 
-	flip_image_vertically(tmp_surf);
+	if (use_open_gl) {
+		flip_image_vertically(tmp_surf);
+	}
 
 	return (tmp_surf);
 
