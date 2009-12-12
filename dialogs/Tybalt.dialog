@@ -67,6 +67,16 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
+Nr=10  Text="So why is it you keep the guardhouse locked? Is there anything secret in there?"
+NPC=_"We need to protect our equipment and documents, because lives depend on it."
+NPC=_"Also, we don't have to answer questions."
+LuaCode={
+	hide(10)
+	-- this is meant to introduce that there have been thefts - we can use it for both the rebel faction
+	-- and Kevin introduction. Kevin might even be a member of the rebel faction.
+}
+----------------------------------------------------------------------
+
 Nr=50  Text=_"I have a lot of money for you."
 LuaCode={
 	npc_says(_"Fascinating. Can I have a hundred please?")

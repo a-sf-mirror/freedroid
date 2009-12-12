@@ -27,6 +27,12 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={
+    show(0, 99)
+	end_quest("A strange guy stealing from town")
+	add_xp(100)
+}
+
 EveryTime LuaCode={
 	if (not has_cookie("met_kevin")) then
 		show(0)
