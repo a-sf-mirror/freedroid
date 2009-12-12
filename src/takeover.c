@@ -990,8 +990,10 @@ static void ShowPlayground(void)
 
 	blit_tux(xoffs + DruidStart[YourColor].x, yoffs + DruidStart[YourColor].y + 30);
 
-	if (cDroid)
-		PutEnemy(cDroid, xoffs + DruidStart[!YourColor].x, yoffs + DruidStart[!YourColor].y, FALSE, FALSE);
+	if (cDroid) {
+		Set_Rect(Target_Rect, xoffs + DruidStart[!YourColor].x, yoffs + DruidStart[!YourColor].y, User_Rect.w, User_Rect.h);
+		PutIndividuallyShapedDroidBody(cDroid, Target_Rect, FALSE, FALSE);
+	}
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 

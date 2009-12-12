@@ -139,6 +139,7 @@ void grab_enemy_images_from_archive(int enemy_model_nr);
 int level_is_visible(int level_num);
 void get_visible_levels();
 void reset_visible_levels();
+void PutIndividuallyShapedDroidBody(enemy *, SDL_Rect, int, int);
 
 #define next_valid_visible_level(pos, start) ({ \
 	pos = start; \
