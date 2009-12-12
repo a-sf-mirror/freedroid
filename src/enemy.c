@@ -1412,18 +1412,11 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	ThisRobot->state_timeout += Frame_Time();
 	if (ThisRobot->state_timeout > Druidmap[ThisRobot->type].time_spent_eyeing_tux) {
 		ThisRobot->state_timeout = 0;
-		if (!ThisRobot->attack_run_only_when_direct_line
-		    || DirectLineColldet(ThisRobot->pos.x, ThisRobot->pos.y, tpos->x, tpos->y, ThisRobot->pos.z, NULL)) {
-			SetRestOfGroupToState(ThisRobot, ATTACK);
-			ThisRobot->combat_state = ATTACK;
-			ThisRobot->last_combat_step = 1.0;	// So that attack will start immediately
-			if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
-				play_enter_attack_run_state_sound(Druidmap[ThisRobot->type].greeting_sound_type);
-			}
-		} else {
-			ThisRobot->combat_state = UNDEFINED_STATE;
-			ThisRobot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
-			enemy_set_reference(&ThisRobot->bot_target_n, &ThisRobot->bot_target_addr, NULL);
+		SetRestOfGroupToState(ThisRobot, ATTACK);
+		ThisRobot->combat_state = ATTACK;
+		ThisRobot->last_combat_step = 1.0;	// So that attack will start immediately
+		if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
+			play_enter_attack_run_state_sound(Druidmap[ThisRobot->type].greeting_sound_type);
 		}
 	}
 }

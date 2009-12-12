@@ -452,7 +452,6 @@ typedef struct enemy_s {
 	char attack_target_type;	// attack NOTHING, PLAYER, or BOT
 	short int bot_target_n;
 	struct enemy_s *bot_target_addr;
-	char attack_run_only_when_direct_line;	// require direct line to target before switching into attach run mode
 	string dialog_section_name;
 	string short_description_text;
 	char will_rush_tux;	// will this robot approach the Tux on sight and open communication?
