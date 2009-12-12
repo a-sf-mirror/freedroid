@@ -1573,6 +1573,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_V_DOOR_000_OPEN].filename = "iso_doors_0006.png";
 	obstacle_map[ISO_V_DOOR_000_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_V_DOOR_000_OPEN].animate_fn = animate_door;
+	obstacle_map[ISO_V_DOOR_000_OPEN].flags |= IS_VERTICAL;
 	obstacle_map[ISO_V_DOOR_025_OPEN].block_area_parm_1 = standard_wall_thickness;
 	obstacle_map[ISO_V_DOOR_025_OPEN].block_area_parm_2 = standard_door_width;
 	obstacle_map[ISO_V_DOOR_025_OPEN].flags &= ~BLOCKS_VISION_TOO;
@@ -1625,6 +1626,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_H_DOOR_000_OPEN].filename = "iso_doors_0001.png";
 	obstacle_map[ISO_H_DOOR_000_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_H_DOOR_000_OPEN].animate_fn = animate_door;
+	obstacle_map[ISO_H_DOOR_000_OPEN].flags |= IS_HORIZONTAL;
 	obstacle_map[ISO_H_DOOR_025_OPEN].block_area_parm_1 = standard_door_width;
 	obstacle_map[ISO_H_DOOR_025_OPEN].block_area_parm_2 = standard_wall_thickness;
 	obstacle_map[ISO_H_DOOR_025_OPEN].flags &= ~BLOCKS_VISION_TOO;
