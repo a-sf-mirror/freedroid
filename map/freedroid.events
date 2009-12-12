@@ -296,6 +296,25 @@ LuaCode={
 ##############
 ## Level 31 ##
 ##############
+* New event trigger *
+Name=_"lock player inside firmware room"
+Silent=1
+Trigger at label="UpgradeFirmwareRoomCloseComeBack"
+Delete the event trigger after it has been triggered=1
+LuaCode={
+	change_obstacle_state("UpgradeFirmwareRoomNoComeBack", "closed")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Open firmware upgrade room"
+Silent=0
+Trigger at label="OpenFirmwareUpgradeRoom"
+Delete the event trigger after it has been triggered=1
+LuaCode={
+	change_obstacle_state("UpgradeFirmwareRoomFinal", "opened")
+}
+* End of trigger *
 
 ##############
 ## Level 32 ##
