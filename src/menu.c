@@ -1931,14 +1931,14 @@ static int Droid_handle(int n)
 {
 	enum {
 		ENEMY_HIT_TEXT = 1,
-		ENEMY_BUMP_TEXT,
-		ENEMY_AIM_TEXT,
 		ALL_TEXTS,
 		TALK_AFTER_TO,
 		LEAVE_DROID_TALK_OPTIONS_MENU
 	};
 	int *ptrs[] = {
-		&GameConfig.talk_to_bots_after_takeover
+		&GameConfig.Enemy_Hit_Text,
+		&GameConfig.All_Texts_Switch,
+		&GameConfig.talk_to_bots_after_takeover,
 	};
 
 	if (n < LEAVE_DROID_TALK_OPTIONS_MENU && n > 0)
