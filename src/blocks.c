@@ -2705,8 +2705,8 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BRICK_WALL_V].flags |= IS_VERTICAL;
 
 	obstacle_map[ISO_BRICK_WALL_END].block_area_type = COLLISION_TYPE_RECTANGLE;
-	obstacle_map[ISO_BRICK_WALL_END].block_area_parm_1 = 1.2;
-	obstacle_map[ISO_BRICK_WALL_END].block_area_parm_2 = 1.2;
+	obstacle_map[ISO_BRICK_WALL_END].block_area_parm_1 = 1.0;
+	obstacle_map[ISO_BRICK_WALL_END].block_area_parm_2 = 1.0;
 	obstacle_map[ISO_BRICK_WALL_END].filename = "iso_brick_wall_0003.png";
 
 	obstacle_map[ISO_BRICK_WALL_CABLES_H].block_area_type = COLLISION_TYPE_RECTANGLE;
