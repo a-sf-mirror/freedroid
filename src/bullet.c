@@ -40,6 +40,15 @@
 #define DRUIDHITDIST2 (DRUIDHITDIST*DRUIDHITDIST)
 
 /**
+ * Hit/miss rules depend on the level of the enemy, among other things.
+ * This function computes the multiplier used in those rules.
+ */
+static float compute_hit_multiplier(int level)
+{
+	return (1 + logf(level));
+}
+
+/**
  *
  *
  */
@@ -161,7 +170,7 @@ void DoMeleeDamage(void)
 				continue;
 			}
 
-			if (((float)Druidmap[tg->type].monster_level * (float)MyRandom(100) < CurMelS->to_hit)) {
+			if ((compute_hit_multiplier(Druidmap[tg->type].monster_level) * (float)MyRandom(100) < CurMelS->to_hit)) {
 				hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
 			}
 
@@ -172,7 +181,7 @@ void DoMeleeDamage(void)
 
 		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
 			/* hit player */
-			if (MyRandom(100) <= Me.lv_1_bot_will_hit_percentage * CurMelS->level) {
+			if (MyRandom(100) <= Me.lv_1_bot_will_hit_percentage * compute_hit_multiplier(CurMelS->level)) {
 				Me.energy -= CurMelS->damage;
 				if (MyRandom(100) <= 20)
 					tux_scream_sound();
@@ -730,7 +739,7 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 		if ((xdist * xdist + ydist * ydist) >= DRUIDHITDIST2)
 			continue;
 
-		if ((float)Druidmap[ThisRobot->type].monster_level * (float)MyRandom(100) >= CurBullet->to_hit)
+		if (compute_hit_multiplier(Druidmap[ThisRobot->type].monster_level) * (float)MyRandom(100) >= CurBullet->to_hit)
 			continue;
 		if (CurBullet->hit_type == ATTACK_HIT_BOTS && Druidmap[ThisRobot->type].is_human)
 			continue;
