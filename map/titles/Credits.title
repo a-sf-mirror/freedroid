@@ -1,5 +1,5 @@
 The title picture in the graphics subdirectory for this mission is : backgrounds/credits.jpg
-The title song in the sound subdirectory for this mission is : TheBeginning.ogg
+The title song in the sound subdirectory for this mission is : HellFortressTwo.ogg
 *** START OF PURE SCROLLTEXT DATA ***
                                  FreedroidRPG 0.12
 
@@ -17,21 +17,12 @@ GAME CONTENT:
         JK Wood
 
 
-GRAPHICS:
-
-        Bastian Salmela
-
-
-
 MUSIC:
 
         Nick "Nario" Hagman
 
-
-
 MISC:
 
-        Armin Winterer
         
         LOTS OF PLAYERS - bug reports and very welcomed feedback
 
@@ -54,7 +45,9 @@ PROGRAMMING:
 
         Simon Castellan
 
+GRAPHICS:
 
+        Bastian Salmela
 
 DIALOGUES:
 
@@ -102,6 +95,8 @@ MISC:
         Ian Griffiths
                                               
         David Kremer
+        
+		Armin Winterer
 
 *** END OF PURE SCROLLTEXT DATA ***
 
