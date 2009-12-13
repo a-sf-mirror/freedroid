@@ -1,5 +1,3 @@
--*- auto-fill -*-
-
  *  --------------------------------------------------
  *
  *   Copyright (c) 2003 Johannes Prix
@@ -33,7 +31,7 @@
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 0:  Find a cure for Bender, suffering from brain enlargement pills
++++ Find a cure for Bender, suffering from brain enlargement pills
 +++
 Mission Name=_"Bender's problem"
 Mission target is to fetch item : "Brain Enlargement Pills Antidote"
@@ -49,7 +47,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 1:  Retrieve the toolkit lost by Dixon
++++ Retrieve the toolkit lost by Dixon
 +++
 Mission Name=_"The yellow toolkit"
 Mission target is to fetch item : "Dixon's Toolbox"
@@ -65,7 +63,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 2:  Find some energy crystals for the cook Michelangelo
++++ Find some energy crystals for the cook Michelangelo
 +++
 Mission Name=_"Anything but the army snacks, please!"
 Mission target is to fetch item : "Red Dilithium Crystal"
@@ -81,7 +79,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 3:  Defeat the bots in the novice arena
++++ Defeat the bots in the novice arena
 +++
 Mission Name=_"Novice Arena"
 Mission target is to kill droids with marker : 1029
@@ -100,7 +98,7 @@ Completion LuaCode={
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 4:  Defeat the bots in the master arena
++++ Defeat the bots in the master arena
 +++
 Mission Name=_"Time to say goodnight"
 Mission target is to kill droids with marker : 1030
@@ -119,7 +117,7 @@ Completion LuaCode={
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 5:  Clean out the first level of the warehouse
++++ Clean out the first level of the warehouse
 +++
 Mission Name=_"Opening a can of bots..."
 Mission target is to kill droids with marker : -1
@@ -134,7 +132,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 6:  Clean out the second level under Kevins station
++++ Clean out the second level under Kevins station
 +++
 Mission Name=_"And there was light..."
 Mission target is to kill droids with marker : -1
@@ -152,9 +150,8 @@ Completion LuaCode={
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 7:  Take Kevins data cube to the 
-+++                              cluster maintainance people inside 
-+++                              the red guard complex
++++ Take Kevins data cube to the cluster maintainance
++++ people inside the red guard complex
 +++
 Mission Name=_"A kingdom for a cluster!"
 Mission target is to kill droids with marker : -1
@@ -170,8 +167,7 @@ computer cluster for analysis. Ought to be simple."
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 8:  Reach the disruptor shield generator and 
-+++ activate it, if possible
++++ Reach the disruptor shield generator and activate it, if possible
 +++
 Mission Name=_"Opening access to MS Office"
 Mission target is to kill droids with marker : 1007
@@ -186,7 +182,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++ 
-+++ This is quest 9: ENDGAME MISSION - propagate faulty firmware upgrade.
++++ ENDGAME MISSION - propagate faulty firmware upgrade.
 +++ This mission can only be finished through a talk with the firmware update server.
 +++ 
 Mission Name=_"Propagating a faulty firmware"
@@ -202,7 +198,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 10:  Bring SADD dilithium cristals 
++++ Bring SADD dilithium cristals 
 +++
 Mission Name=_"SADD's power supply"
 Mission target is to fetch item : "Red Dilithium Crystal"
@@ -218,7 +214,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 11:  Free Tania 
++++ Free Tania 
 +++
 Mission Name=_"Tania's sanitary"
 Mission target is to kill droids with marker : -1
@@ -233,7 +229,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 12: Help Stone pay tax
++++ Help Stone pay tax
 +++
 Mission Name=_"Saving the shop"
 Mission target is to kill droids with marker : -1
@@ -248,22 +244,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 13: Find Kevin
-+++
-Mission Name=_"The stranger east of town"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
-** End of this mission target subsection **
-
-** Start of this mission target subsection **
-+++
-+++ This is quest 14: Find Koan?
++++ Find Koan
 +++
 Mission Name=_"Doing Duncan a favour"
 Mission target is to kill droids with marker : -1
@@ -278,7 +259,7 @@ Mission target is to live for how many seconds : -1
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 15:  Defeat the shooting range bots in the Tutorial
++++ Defeat the shooting range bots in the Tutorial
 +++
 Mission Name=_"Tutorial Shooting"
 Mission target is to kill droids with marker : 3037
@@ -296,7 +277,7 @@ Completion LuaCode={
 
 ** Start of this mission target subsection **
 +++
-+++ This is quest 16:  Defeat the hacking area bots in the Tutorial
++++ Defeat the hacking area bots in the Tutorial
 +++
 Mission Name=_"Tutorial Hacking"
 Mission target is to kill droids with marker : 4037
