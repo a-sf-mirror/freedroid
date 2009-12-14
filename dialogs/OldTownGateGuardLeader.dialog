@@ -47,7 +47,7 @@ LuaCode={
 	npc_says(_"On that day all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
 	npc_says(_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
 	npc_says(_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
-	add_diary_entry("A strange guy stealing from town", "The guard in faction at the entrance of the town mentionned that somebody sneaked into town recently, and stole food and hardware. I might want to find out who this person is - apparently he lives somewhere to the east.")
+	add_quest("A strange guy stealing from town", "The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. I might want to find out who this person is - apparently he lives somewhere to the east. But maybe I should gain some experience and equipment first before traveling far outside of town, with all those lethal bots roaming around I might not get far otherwise.")
 	hide(1, 2, 3) show(10,11)
 }
 ----------------------------------------------------------------------
