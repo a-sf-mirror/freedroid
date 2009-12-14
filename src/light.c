@@ -688,8 +688,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 			light_sources[next_light_emitter_index].pos.z = erot->pos.z;
 			update_virtual_position(&light_sources[next_light_emitter_index].vpos,
 					&light_sources[next_light_emitter_index].pos, Me.pos.z);
-			light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
-
 			light_sources[next_light_emitter_index].strength = 5;
 			next_light_emitter_index++;
 
