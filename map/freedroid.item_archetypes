@@ -29,7 +29,7 @@ Copyright (c) 2007-2009 Stefan Huszics
 /****************************************************************************************
  * Hit and miss stats by/on bots is affected by bot level via an LN-function (x 1-3,2)  *
  * Remember this when balancing Armor and "magic" items                                 *
- * See SVN rev 2161 for details                                                         *
+ * See SVN rev 2161 and 2162 for details                                                *
  ****************************************************************************************/
 
 
@@ -3827,6 +3827,8 @@ Item can be installed in slot with name="none"
 Item uses rotation series with prefix="eating_plate"
 Items of this type collect together in inventory="yes"
 File or directory name for inventory image="eating_plate/inv_image.png"
+inventory_size_x=2
+inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
 Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
