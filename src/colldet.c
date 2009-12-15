@@ -66,7 +66,7 @@ inline int normalize_vect(float x1, float y1, float *x2, float *y2)
 }
 
 /** 
- * Compute the distance between a segment and a point.
+ * Compute the squared distance between a segment and a point.
  *
  * @param x1 segment x1
  * @param y1 segment y1
@@ -75,9 +75,9 @@ inline int normalize_vect(float x1, float y1, float *x2, float *y2)
  * @param px point x
  * @param py point y
  *
- * @return distance
+ * @return squared distance
  */
-static inline float calc_distance_seg_point_normalized(float x1, float y1, float x2, float y2, float x2n, float y2n, float px, float py)
+static inline float calc_squared_distance_seg_point_normalized(float x1, float y1, float x2, float y2, float x2n, float y2n, float px, float py)
 {
 
 	float dotprod = (x2 - x1) * (px - x1) + (y2 - y1) * (py - y1);
@@ -90,10 +90,10 @@ static inline float calc_distance_seg_point_normalized(float x1, float y1, float
 	} else {
 		/* We are not quite done yet ! */
 		if (dotprod < 0) {
-			return sqrt((px - x1) * (px - x1) + (py - y1) * (py - y1));
+			return ((px - x1) * (px - x1) + (py - y1) * (py - y1));
 		} else		//dotprod > length^2
 		{
-			return sqrt((px - x2) * (px - x2) + (py - y2) * (py - y2));
+			return ((px - x2) * (px - x2) + (py - y2) * (py - y2));
 		}
 	}
 }
@@ -185,8 +185,8 @@ int CheckIfWayIsFreeOfDroids(float x1, float y1, float x2, float y2, int OurLeve
 	normalize_vect(x1, y1, &x2n, &y2n);
 
 	if (ctx->check_tux) {
-		float dist = calc_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, Me.pos.x, Me.pos.y);
-		if (dist < Druid_Radius)
+		float dist = calc_squared_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, Me.pos.x, Me.pos.y);
+		if (dist < Druid_Radius*Druid_Radius)
 			return FALSE;
 	}
 
@@ -197,9 +197,9 @@ int CheckIfWayIsFreeOfDroids(float x1, float y1, float x2, float y2, int OurLeve
 		    (ctx->except_bots[1] != NULL && ctx->except_bots[1] == this_enemy))
 			continue;
 
-		float dist = calc_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, this_enemy->pos.x, this_enemy->pos.y);
+		float dist = calc_squared_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, this_enemy->pos.x, this_enemy->pos.y);
 
-		if (dist < Druid_Radius)
+		if (dist < Druid_Radius*Druid_Radius)
 			return FALSE;
 	}
 
