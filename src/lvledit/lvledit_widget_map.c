@@ -59,7 +59,7 @@ void select_tool(void *t)
 void leveleditor_map_init()
 {
 	leveleditor_init_tools();
-	selected_tool = &tool_place;
+	selected_tool = &tool_select;
 }
 
 static void forward_event(SDL_Event * event)
