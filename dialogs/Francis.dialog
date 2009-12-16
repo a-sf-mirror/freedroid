@@ -172,7 +172,7 @@ Nr=18  Text=_"Can you tell me how to get to town?"
 LuaCode={
 	npc_says(_"Sure. You just need to follow the road outside. After the bridge, turn right and continue follow the road and you will soon be outside of the town main gate.")
 	npc_says(_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there.")
-	npc_says(_"Once in town you will be able to purchase a few items for protection at Mrs. Stone's shop just inside the town gate.")
+	npc_says(_"Once in town you will be able to purchase or trade a few more items for protection at Mrs. Stone's shop just inside the town gate.")
 	show(19)
 }
 ----------------------------------------------------------------------
@@ -207,7 +207,8 @@ Nr=22  Text=_"Where are all my things?"
 LuaCode={
 	npc_says(_"I already took out your chest with personal belongings from storage.", "NO_WAIT")
 	npc_says(_"It is standing there next to the door.")
-	npc_says(_"That is all the records show you had with you when your where frozen.")
+	tux_says(_"Is that it?")
+	npc_says(_"That is all the records show you had with you when your were frozen.")
 	npc_says(_"There are also some references to a bank account of yours, but as you probably understand, there is no working banking system presently.")
 	hide(22)
 }
