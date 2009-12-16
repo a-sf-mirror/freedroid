@@ -302,7 +302,6 @@ Drops item class=4
 Maximum energy of this droid: 40.1
 Maximum mana of this droid: 40.1
 Rate of healing: 2.1
-Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 300
 Aggression distance of this droid=10
 Time spent eyeing Tux=2.0
@@ -591,7 +590,6 @@ Drops item class=7
 Maximum energy of this droid: 180.1
 Maximum mana of this droid: 180.1
 Rate of healing: 4.1
-Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 650
 Aggression distance of this droid=16.12
 Time spent eyeing Tux=1.0
@@ -624,7 +622,6 @@ Drops item class=7
 Maximum energy of this droid: 210.1
 Maximum mana of this droid: 210.1
 Rate of healing: 4.1
-Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 700
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.75
@@ -688,7 +685,6 @@ Drops item class=8
 Maximum energy of this droid: 200.1
 Maximum mana of this droid: 200.1
 Rate of healing: 4.1
-Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 1000
 Aggression distance of this droid=16.11
 Time spent eyeing Tux=0.5
@@ -784,7 +780,6 @@ Drops item class=9
 Maximum energy of this droid: 300.1
 Maximum mana of this droid: 300.1
 Rate of healing: 15.1
-Is this droid immune to disruptor blasts? 1
 Experience_Reward gained for destroying one of this type: 2000
 Aggression distance of this droid=16.116
 Time spent eyeing Tux=0.25
