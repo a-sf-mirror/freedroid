@@ -45,7 +45,8 @@
  */
 static float compute_hit_multiplier(int level)
 {
-	return (1 + logf(level));
+	if (level < 1 || level > 9) {  ErrorMessage(__FUNCTION__, "Requested non existing level %d.\n", PLEASE_INFORM, IS_WARNING_ONLY, level); return 1.0; }
+	return  HitBotMultiplierTable[level - 1];
 }
 
 /**

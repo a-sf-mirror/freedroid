@@ -48,6 +48,7 @@ EXTERN char font_switchto_neon[2];
 EXTERN char font_switchto_msgstat[2];
 EXTERN char font_switchto_msgvar[2];
 
+EXTERN float HitBotMultiplierTable[];
 EXTERN int SpellHitPercentageTable[];
 EXTERN float MeleeDamageMultiplierTable[];
 EXTERN float MeleeRechargeMultiplierTable[];

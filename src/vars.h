@@ -171,6 +171,15 @@ float MeleeRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53,
 float RangedDamageMultiplierTable[] = { 1.0, 1.1, 1.21, 1.33, 1.46, 1.61, 1.77, 1.95, 2.14, 2.36 };
 float RangedRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53, 0.48, 0.43, 0.39 };
 
+// Hitting bots becomes increasinly difficult with the bots level
+// Linear 
+//             1      2      3      4      5      6      7      8      9     10
+// -0,0875 -> 1.000, 0.913, 0.825, 0.738, 0.650, 0.563, 0.475, 0.388, 0.300, 0.213
+// -0,09   -> 1.000, 0.91,  0.82,  0.73,  0.64,  0.55,  0.46,  0.37,  0.28 , 0.19
+// -0,10   -> 1.000, 0.9,   0.8,   0.7,   0.6,   0.5,   0.4,   0.3,   0.2  , 0.1
+
+float HitBotMultiplierTable[] = { 1.0,  0.91,  0.82,  0.73,  0.64,  0.55,  0.46,  0.37,  0.28,  0.19 };
+
 //--------------------
 // In the game, a few spells are still internally similar
 // to bullets flying around.  But what hit chance shall this
