@@ -286,10 +286,21 @@ Allowed Type of Random Droid for this level: 420
 
 ** Beginning of new Level **
 Level=15
-Maximum number of Random Droids=0
-Minimum number of Random Droids=0
-Allowed Type of Random Droid for this level: 614
-Allowed Type of Random Droid for this level: 615
+Maximum number of Random Droids=35
+Minimum number of Random Droids=35
+Allowed Type of Random Droid for this level: 123
+Allowed Type of Random Droid for this level: 247
+Allowed Type of Random Droid for this level: 302
+Allowed Type of Random Droid for this level: 329
+Allowed Type of Random Droid for this level: 420
+Allowed Type of Random Droid for this level: 476
+Allowed Type of Random Droid for this level: 493
+SForce: T=711 Fixed=0 Marker=1015 Friendly=0 StartLabel="L15-711" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"711 - Pure death"
+SForce: T=742 Fixed=0 Marker=1015 Friendly=0 StartLabel="L15-742" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"742 - Double death"
+SForce: T=821 Fixed=0 Marker=1015 Friendly=0 StartLabel="L15-821" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"821"
+SForce: T=834 Fixed=0 Marker=1015 Friendly=0 StartLabel="L15-834" RushTux="no" UseDialog="StandardBotAfterTakeover" ShortLabel=_"834"
+
+
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
