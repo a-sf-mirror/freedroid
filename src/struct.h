@@ -736,7 +736,6 @@ typedef struct obstacle_s {
 	gps pos;
 	gps vpos;
 	int name_index;
-	int description_index;
 } obstacle, *Obstacle;
 
 typedef struct map_tile_s {
@@ -755,7 +754,6 @@ typedef struct level_s {
 	char *Levelname;
 	char *Background_Song_Name;
 	char *obstacle_name_list[MAX_OBSTACLE_NAMES_PER_LEVEL];
-	char *obstacle_description_list[MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL];
 
 	map_tile *map[MAX_MAP_LINES];	// this is a vector of pointers
 	int jump_target_north;

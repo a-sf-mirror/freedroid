@@ -327,67 +327,6 @@ void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
 	action_remove_obstacle(EditLevel, our_obstacle);
 }
 
-void action_change_obstacle_description(level * EditLevel, obstacle * our_obstacle, char *predefined_description)
-{
-	int i;
-	int free_index = (-1);
-
-	//--------------------
-	// If the obstacle already has a name, we can use that index for the 
-	// new name now.
-	//
-	if (our_obstacle->description_index >= 0)
-		free_index = our_obstacle->description_index;
-	else {
-		//--------------------
-		// Else we must find a free index in the list of obstacle names for this level
-		//
-		for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
-			if (EditLevel->obstacle_description_list[i] == NULL) {
-				free_index = i;
-				break;
-			}
-		}
-		if (free_index < 0) {
-			ErrorMessage(__FUNCTION__, "\
-		    Ran out of obstacle description positions on this map level!", PLEASE_INFORM, IS_WARNING_ONLY);
-			return;
-		}
-	}
-
-	//--------------------
-	// Maybe we must query the user for the desired new name.
-	// On the other hand, it might be that a name has been
-	// supplied as an argument.  That depends on whether the
-	// argument string is NULL or not.
-	//
-	if (EditLevel->obstacle_description_list[free_index] == NULL)
-		EditLevel->obstacle_description_list[free_index] = "";
-	if (predefined_description == NULL) {
-		EditLevel->obstacle_description_list[free_index] = GetEditableStringInPopupWindow(1000, _("\n\
-Please enter new description text for this obstacle: \n\n"), EditLevel->obstacle_description_list[free_index]);
-	} else {
-		EditLevel->obstacle_description_list[free_index] = MyMalloc(10000);
-		strncpy(EditLevel->obstacle_description_list[free_index], predefined_description, 9900);
-	}
-
-	//--------------------
-	// We must select the right index as the name of this obstacle.
-	//
-	our_obstacle->description_index = free_index;
-
-	//--------------------
-	// But if the given name was empty, then we remove everything again
-	// and RETURN
-	//
-	if (strlen(EditLevel->obstacle_description_list[free_index]) == 0) {
-		free(EditLevel->obstacle_description_list[free_index]);
-		EditLevel->obstacle_description_list[free_index] = NULL;
-		our_obstacle->description_index = (-1);
-	}
-
-};
-
 void action_toggle_waypoint(level * EditLevel, int BlockX, int BlockY, int toggle_random_spawn)
 {
 	int wpnum;
@@ -776,12 +715,7 @@ void CreateNewMapLevel(int level_num)
 	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
 		NewLevel->obstacle_name_list[i] = NULL;
 	}
-	//--------------------
-	// Now we initialize the obstacle description list with 'empty' values
-	//
-	for (i = 0; i < MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL; i++) {
-		NewLevel->obstacle_description_list[i] = NULL;
-	}
+	
 	//--------------------
 	// First we initialize the floor with 'empty' values
 	//

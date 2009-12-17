@@ -478,9 +478,6 @@ static void show_level_editor_tooltips(void)
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
 					    ("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n Note that you can also use the hotkey 'h' for this."));
-	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_NEW_OBSTACLE_DESCRIPTION_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
-			show_button_tooltip(_("New obstacle description\n\nedits the description seen when the item is selected"));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_

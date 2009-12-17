@@ -97,11 +97,6 @@
 #define OBSTACLE_LABEL_STATES_STRING "states=\""
 #define INDEX_OF_OBSTACLE_NAME "obstacle_label.index="
 
-#define OBSTACLE_DESCRIPTION_BEGIN_STRING "pobsdescinfolvl"
-#define OBSTACLE_DESCRIPTION_END_STRING "/pobsdescinfolvl"
-#define INDEX_OF_OBSTACLE_DESCRIPTION "obstacle_description.index="
-#define OBSTACLE_DESCRIPTION_ANNOUNCE_STRING "obstacle_description_text=\""
-
 #define BIG_MAP_INSERT_SECTION_BEGIN_STRING "Start of big graphics insert information for this level"
 #define BIG_MAP_INSERT_SECTION_END_STRING "End of big graphics insert information for this level"
 #define POSITION_X_OF_BIG_MAP_INSERT_STRING "BigGraphicsInsertPosX="

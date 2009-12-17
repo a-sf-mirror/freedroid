@@ -380,7 +380,6 @@ static void decode_obstacles_of_this_level(level * loadlevel, char *DataPointer)
 		loadlevel->obstacle_list[i].pos.y = -1;
 		loadlevel->obstacle_list[i].pos.z = loadlevel->levelnum;
 		loadlevel->obstacle_list[i].name_index = -1;
-		loadlevel->obstacle_list[i].description_index = -1;
 	}
 
 	//--------------------
@@ -430,16 +429,7 @@ static void decode_obstacles_of_this_level(level * loadlevel, char *DataPointer)
 		(*curfieldend) = 0;
 		loadlevel->obstacle_list[i].name_index = atoi(curfield);
 
-		//description #
-		curfield = curfieldend + 2;
 		(*curfieldend) = ' ';
-		curfieldend += 2;
-		while ((*curfieldend) != ' ')
-			curfieldend++;
-		(*curfieldend) = 0;
-		loadlevel->obstacle_list[i].description_index = atoi(curfield);
-		(*curfieldend) = ' ';
-
 		while ((*curfield) != '\n')
 			curfield++;
 		curfield++;
@@ -573,73 +563,6 @@ static void decode_obstacle_names_of_this_level(Level loadlevel, char *DataPoint
 	obstacle_nameSectionEnd[0] = PreservedLetter;
 
 };				// void decode_obstacle_names_of_this_level ( loadlevel , DataPointer )
-
-/**
- * Every map level in a FreedroidRPG 'ship' can have up to 
- * MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL obstacles, that have a label 
- * attached to them.  
- * Such obstacle labels are very useful when modifying obstacles
- * from within game events and triggers.  
- *
- * The obstacle labels are stored in a small subsection of the whole 
- * level data.  This function decodes this small subsection and loads all 
- * the obstacle data into the ship struct.
- */
-static void decode_obstacle_descriptions_of_this_level(Level loadlevel, char *DataPointer)
-{
-	int i;
-	char PreservedLetter;
-	char *obstacle_descriptionPointer;
-	char *obstacle_descriptionSectionBegin;
-	char *obstacle_descriptionSectionEnd;
-	int NumberOfobstacle_descriptionsInThisLevel;
-	int target_index;
-
-	//--------------------
-	// At first we set all the obstacle description pointers to NULL in order to
-	// mark them as unused.
-	//
-	for (i = 0; i < MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL; i++) {
-		loadlevel->obstacle_description_list[i] = NULL;
-	}
-
-	//--------------------
-	// Now we look for the beginning and end of the obstacle descriptions section
-	//
-	obstacle_descriptionSectionBegin = LocateStringInData(DataPointer, OBSTACLE_DESCRIPTION_BEGIN_STRING);
-	obstacle_descriptionSectionEnd = LocateStringInData(obstacle_descriptionSectionBegin, OBSTACLE_DESCRIPTION_END_STRING);
-
-	//--------------------
-	// We add a terminator at the end, but ONLY TEMPORARY.  The damage will be restored later!
-	//
-	PreservedLetter = obstacle_descriptionSectionEnd[0];
-	obstacle_descriptionSectionEnd[0] = 0;
-	NumberOfobstacle_descriptionsInThisLevel =
-	    CountStringOccurences(obstacle_descriptionSectionBegin, OBSTACLE_DESCRIPTION_ANNOUNCE_STRING);
-	DebugPrintf(1, "\nNumber of obstacle descriptions found in this level : %d.", NumberOfobstacle_descriptionsInThisLevel);
-
-	//--------------------
-	// Now we decode all the map label information
-	//
-	obstacle_descriptionPointer = obstacle_descriptionSectionBegin;
-	for (i = 0; i < NumberOfobstacle_descriptionsInThisLevel; i++) {
-		obstacle_descriptionPointer = strstr(obstacle_descriptionPointer + 1, INDEX_OF_OBSTACLE_DESCRIPTION);
-		ReadValueFromString(obstacle_descriptionPointer, INDEX_OF_OBSTACLE_DESCRIPTION, "%d",
-				    &(target_index), obstacle_descriptionSectionEnd);
-
-		loadlevel->obstacle_description_list[target_index] =
-		    ReadAndMallocStringFromData(obstacle_descriptionPointer, OBSTACLE_DESCRIPTION_ANNOUNCE_STRING, "\"");
-
-		DebugPrintf(1, "\nobstacle_description_index=%d obstacle_description=\"%s\"", target_index,
-			    loadlevel->obstacle_description_list[target_index]);
-	}
-
-	//--------------------
-	// Now we repair the damage done to the loaded level data
-	//
-	obstacle_descriptionSectionEnd[0] = PreservedLetter;
-
-};				// void decode_obstacle_descriptions_of_this_level ( loadlevel , DataPointer )
 
 /**
  *
@@ -1287,10 +1210,9 @@ static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *L
 		if (Lev->obstacle_list[i].type == (-1))
 			continue;
 
-		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f %s%d %s%d \n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
+		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f %s%d \n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
 				OBSTACLE_X_POSITION_STRING, Lev->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
-				Lev->obstacle_list[i].pos.y, OBSTACLE_LABEL_INDEX_STRING, Lev->obstacle_list[i].name_index,
-				OBSTACLE_DESCRIPTION_INDEX_STRING, Lev->obstacle_list[i].description_index);
+				Lev->obstacle_list[i].pos.y, OBSTACLE_LABEL_INDEX_STRING, Lev->obstacle_list[i].name_index);
 	}
 
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_END_STRING);
@@ -1334,39 +1256,6 @@ static void encode_obstacle_names_of_this_level(struct auto_string *shipstr, lev
 	}
 
 	autostr_append(shipstr, "%s\n", OBSTACLE_LABEL_END_STRING);
-}
-
-/**
- * Every map level in a FreedroidRPG 'ship' can have up to 
- * MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL obstacles, that have a label 
- * attached to them.  
- * These obstacle descriptions will be displayed, if present, instead of
- * the default generic obstacle-type specific obstacle explanation.
- * For examply, traffic signs with the same obstacle type being used in
- * multiple places shouldn't read 'this is a traffic sign' all the time,
- * but should have individual route names even though the obstacle type
- * is the same every time.  That's what such individual obstacle 
- * descriptions are for.
- *
- * The obstacle descriptions are stored in a small subsection of the 
- * whole level data.  This function encodes this small subsection and 
- * puts all the obstacle data into a human readable text string for 
- * saving with the map file.
- *
- */
-static void encode_obstacle_descriptions_of_this_level(struct auto_string *shipstr, level *Lev)
-{
-	int i;
-	autostr_append(shipstr, "%s\n", OBSTACLE_DESCRIPTION_BEGIN_STRING);
-
-	for (i = 0; i < MAX_OBSTACLE_DESCRIPTIONS_PER_LEVEL; i++) {
-		if (Lev->obstacle_description_list[i] == NULL)
-			continue;
-		autostr_append(shipstr, "%s%d %s%s\"\n", INDEX_OF_OBSTACLE_DESCRIPTION, i, OBSTACLE_DESCRIPTION_ANNOUNCE_STRING,
-				Lev->obstacle_description_list[i]);
-	}
-
-	autostr_append(shipstr, "%s\n\n", OBSTACLE_DESCRIPTION_END_STRING);
 }
 
 /**
@@ -1574,8 +1463,6 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light
 		EncodeMapLabelsOfThisLevel(shipstr, lvl);
 
 		encode_obstacle_names_of_this_level(shipstr, lvl);
-
-		encode_obstacle_descriptions_of_this_level(shipstr, lvl);
 
 		EncodeItemSectionOfThisLevel(shipstr, lvl);
 
@@ -1852,8 +1739,6 @@ Level DecodeLoadedLeveldata(char *data)
 	DecodeMapLabelsOfThisLevel(loadlevel, DataPointer);
 
 	decode_obstacle_names_of_this_level(loadlevel, DataPointer);
-
-	decode_obstacle_descriptions_of_this_level(loadlevel, DataPointer);
 
 	//--------------------
 	// Next we extract the statments of the influencer on this level WITHOUT destroying
