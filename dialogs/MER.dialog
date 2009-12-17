@@ -39,7 +39,7 @@ EveryTime LuaCode={
 	if (has_cookie("mer_password")) then
 		hide(1, 7) show(8)
 	else
-		hide(4, 8) show(1, 7)
+		hide(8) show(1, 7)
 	end
 	show(99)
 }
