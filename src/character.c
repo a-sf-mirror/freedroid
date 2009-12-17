@@ -38,7 +38,6 @@
 
 #define Energy_Gain_Per_Vit_Point 2;
 #define Maxtemp_Gain_Per_CPU_Point 4;
-#define AC_Gain_Per_Dex_Point 0.5;
 
 #define RECHARGE_SPEED_PERCENT_PER_DEX_POINT 0
 #define TOHIT_PERCENT_PER_DEX_POINT (1.0)
@@ -68,7 +67,7 @@
 #define HEALTH_STAT_Y 289
 #define TEMP_STAT_Y 308
 #define STAMINA_STAT_Y 327
-#define AC_Y 140
+#define DR_Y 140
 #define TOHIT_Y 165
 #define DAMAGE_Y 190
 
@@ -406,32 +405,31 @@ void update_damage_tux_can_do()
  *
  *
  */
-void update_tux_armour_class()
+void update_tux_armour_damage_reduction()
 {
 	//--------------------
-	// We initialize the armour class value from the primary stat, 
-	// using the dexterity value (and the 'character class')
-	//
-	Me.AC = (Me.Dexterity - 15) * AC_Gain_Per_Dex_Point;
+	// We initialize the armour damage reduction
+
+	Me.DR = 0 ;
 
 	//--------------------
 	// Now we apply the armour bonuses from the currently equipped
 	// items to the total defence value
 	//
 	if (Me.armour_item.type != (-1)) {
-		Me.AC += Me.armour_item.ac_bonus;
+		Me.DR += Me.armour_item.dr_bonus;
 	}
 	if (Me.shield_item.type != (-1)) {
-		Me.AC += Me.shield_item.ac_bonus;
+		Me.DR += Me.shield_item.dr_bonus;
 	}
 	if (Me.special_item.type != (-1)) {
-		Me.AC += Me.special_item.ac_bonus;
+		Me.DR += Me.special_item.dr_bonus;
 	}
 	if (Me.drive_item.type != (-1)) {
-		Me.AC += Me.drive_item.ac_bonus;
+		Me.DR += Me.drive_item.dr_bonus;
 	}
 
-};				// void update_tux_armour_class ( )
+};				// void update_tux_armour_damage_reduction ( )
 
 /**
  * This function should re-compute all character stats according to the
@@ -472,7 +470,7 @@ void UpdateAllCharacterStats()
 	//--------------------
 	// Update tux armour class
 	//
-	update_tux_armour_class();
+	update_tux_armour_damage_reduction();
 
 	//--------------------
 	// So at this point we can finally apply all the modifiers to the influencers
@@ -496,7 +494,7 @@ void UpdateAllCharacterStats()
 	// Now that the defence stat is computed, we can compute the chance, that
 	// a randomly chosen lv. 1 bot will hit the Tux in any given strike...
 	//
-	Me.lv_1_bot_will_hit_percentage = (int)(exp(-0.019 * ((float)Me.AC)) * 100.0);
+	Me.lv_1_bot_will_hit_percentage = (int)(exp(-0.019 * ((float)Me.DR)) * 100.0);
 
 };				// void UpdateAllCharacterStats ( void )
 
@@ -678,10 +676,10 @@ void ShowCharacterScreen()
 	DisplayText(CharText, HEALTH_NR_X + CharacterRect.x, STAMINA_STAT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Armor"), RIGHT_TXT_X + CharacterRect.x, AC_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(_("Armor"), RIGHT_TXT_X + CharacterRect.x, DR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d", (int)Me.AC);
-	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, AC_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	sprintf(CharText, "%d%%", (int)Me.DR);
+	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Attack"), RIGHT_TXT_X + CharacterRect.x, TOHIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);

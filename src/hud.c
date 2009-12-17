@@ -187,8 +187,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// --------------------
 	// If this item gives some armour bonus, we say so
 	//
-	if (CurItem->ac_bonus) {
-		sprintf(linebuf, _("Armor: %d"), CurItem->ac_bonus);
+	if (CurItem->dr_bonus) {
+		sprintf(linebuf, _("Armor: %d%%"), CurItem->dr_bonus);
 		strcat(ItemDescText, linebuf);
 		if (!ForShop)
 			strcat(ItemDescText, " \n ");
@@ -469,8 +469,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 				strcat(ItemDescText, linebuf);
 			}
 			// Now we display the percentage bonus to ac or damage
-			if (CurItem->bonus_to_ac_or_damage) {
-				if (ItemMap[CurItem->type].base_ac_bonus) {
+			if (CurItem->bonus_to_dr_or_damage) {
+				if (ItemMap[CurItem->type].base_dr_bonus) {
 					// if ( ForShop ) strcat( ItemDescText , "             " );
 					if (AppendToLine) {
 						if (ForShop)
@@ -479,9 +479,9 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 							strcat(ItemDescText, "\n");
 					}
 					AppendToLine = TRUE;
-					if (CurItem->bonus_to_ac_or_damage > 0)
+					if (CurItem->bonus_to_dr_or_damage > 0)
 						strcat(ItemDescText, "+");
-					sprintf(linebuf, _("%d%% to armor"), CurItem->bonus_to_ac_or_damage);
+					sprintf(linebuf, _("%d%% to armor"), CurItem->bonus_to_dr_or_damage);
 					strcat(ItemDescText, linebuf);
 				}
 				if (ItemMap[CurItem->type].base_item_gun_damage) {
@@ -493,9 +493,9 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 							strcat(ItemDescText, "\n");
 					}
 					AppendToLine = TRUE;
-					if (CurItem->bonus_to_ac_or_damage > 0)
+					if (CurItem->bonus_to_dr_or_damage > 0)
 						strcat(ItemDescText, "+");
-					sprintf(linebuf, _("%d%% to damage"), CurItem->bonus_to_ac_or_damage);
+					sprintf(linebuf, _("%d%% to damage"), CurItem->bonus_to_dr_or_damage);
 					strcat(ItemDescText, linebuf);
 				}
 			}

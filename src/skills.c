@@ -55,8 +55,8 @@
 #define RECHARGE_X 260
 #define RECHARGE_Y 200
 
-#define AC_X 260
-#define AC_Y 171
+#define DR_X 260
+#define DR_Y 171
 
 #define INV_BUTTON_X 600
 #define INV_BUTTON_Y 400

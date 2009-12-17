@@ -1268,8 +1268,8 @@ static void WriteOutOneItem(struct auto_string *shipstr, Item ItemToWriteOut)
 	autostr_append(shipstr, "%s%s\" %s%f %s%f ", ITEM_NAME_STRING, ItemMap[ItemToWriteOut->type].item_name,
 			ITEM_POS_X_STRING, ItemToWriteOut->pos.x, ITEM_POS_Y_STRING, ItemToWriteOut->pos.y);
 
-	if (ItemToWriteOut->ac_bonus) {
-		autostr_append(shipstr, "%s%d ", ITEM_AC_BONUS_STRING, ItemToWriteOut->ac_bonus);
+	if (ItemToWriteOut->dr_bonus) {
+		autostr_append(shipstr, "%s%d ", ITEM_DR_BONUS_STRING, ItemToWriteOut->dr_bonus);
 	}
 
 	autostr_append(shipstr, "%s%d %s%d %s%d %s%f %s%d %s%d ", ITEM_DAMAGE_STRING, ItemToWriteOut->damage,
@@ -1319,8 +1319,8 @@ static void WriteOutOneItem(struct auto_string *shipstr, Item ItemToWriteOut)
 	if (ItemToWriteOut->bonus_to_tohit) {
 		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_TOHIT_STRING, ItemToWriteOut->bonus_to_tohit);
 	}
-	if (ItemToWriteOut->bonus_to_ac_or_damage) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_ACDAM_STRING, ItemToWriteOut->bonus_to_ac_or_damage);
+	if (ItemToWriteOut->bonus_to_dr_or_damage) {
+		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_DRDAM_STRING, ItemToWriteOut->bonus_to_dr_or_damage);
 	}
 	// Now we save the resistanc boni
 
@@ -1528,7 +1528,7 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetI
 
 	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_AC_BONUS_STRING, "%d", "0", &(TargetItem->ac_bonus), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_DR_BONUS_STRING, "%d", "0", &(TargetItem->dr_bonus), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_DAMAGE_STRING, "%d", &(TargetItem->damage), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_DAMAGE_MODIFIER_STRING, "%d", &(TargetItem->damage_modifier), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_MAX_DURATION_STRING, "%d", &(TargetItem->max_duration), ItemsSectionEnd);
@@ -1552,8 +1552,8 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetI
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_MANA_RECOVERY_STRING, "%f", "0.000",
 				       &(TargetItem->bonus_to_cooling_rate), ItemsSectionEnd);
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_TOHIT_STRING, "%d", "0", &(TargetItem->bonus_to_tohit), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_ACDAM_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_ac_or_damage), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DRDAM_STRING, "%d", "0",
+				       &(TargetItem->bonus_to_dr_or_damage), ItemsSectionEnd);
 	// Now we read in the boni for resistances
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESELE_STRING, "%d", "0",
 				       &(TargetItem->bonus_to_resist_electricity), ItemsSectionEnd);
