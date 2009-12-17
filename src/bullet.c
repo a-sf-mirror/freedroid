@@ -650,26 +650,12 @@ void apply_bullet_damage_to_player(int damage, int owner)
 	// NEW RULE:  Even when the bullet hits, there's still a chance that
 	// the armour will compensate the shot
 	//
-	int monster_level = -1;
-	if (owner >= 0)
-		monster_level = Druidmap[owner].monster_level;
-	if (!monster_level || monster_level == -1)
-		monster_level = 1;
-	if (MyRandom(100) / monster_level >= Me.lv_1_bot_will_hit_percentage) {
-		Me.TextVisibleTime = 0;
-		Me.TextToBeDisplayed = _("That one went into the armor.");
-		DamageProtectiveEquipment();
-		BulletReflectedSound();
-	} else {
-
-		Me.TextVisibleTime = 0;
-		Me.TextToBeDisplayed = "Ouch!";
+		real_damage *= (1 - (Me.DR / 100.0));
 		Me.energy -= real_damage;	// loose some energy
+		DamageProtectiveEquipment();    // chance worn items gets damaged on each hit
 		DebugPrintf(1, "\n%s(): Tux took damage from bullet: %f.", __FUNCTION__, real_damage);
-
 		tux_scream_sound();
-	}
-};				// void apply_bullet_damage_to_player ( int damage ) 
+};				// void apply_bullet_damage_to_player ( int damage )
 
 /**
  *
