@@ -8,7 +8,7 @@
  *
  *  Freedroid is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -40,7 +40,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Just taking a look around."
+Nr=1 Text=_"Just taking a look around."
 LuaCode={
 	npc_says(_"Oh, great. Another curious one.")
 	npc_says(_"About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again.")
@@ -52,7 +52,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"I'd like to get into town."
+Nr=2 Text=_"I'd like to get into town."
 LuaCode={
 	npc_says(_"Funny, exactly the same could be said about all of the crazy bots out there.")
 	npc_says(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?")
@@ -60,7 +60,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"I'm here to assassinate your leader and you won't stop me!"
+Nr=3 Text=_"I'm here to assassinate your leader and you won't stop me!"
 LuaCode={
 	npc_says(_"Ok, Linarian! You asked for it!")
 	npc_says(_"Open fire!")
@@ -84,7 +84,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"No.  Not at all. Your mother dresses you funny."
+Nr=11 Text=_"No. Not at all. Your mother dresses you funny."
 LuaCode={
 	npc_says(_"What did you say you oversized duck?")
 	change_obstacle_state("Main Gate Outer W", "closed")
@@ -96,15 +96,15 @@ LuaCode={
 
 Nr=20 Text=_"Let me get back to you on that one."
 LuaCode={
-	npc_says(_"Well you aren't going anywhere.  I'm watching you.")
+	npc_says(_"Well you aren't going anywhere. I'm watching you.")
 	end_dialog()
 }
 ---------------------------------------------------------------------
 
 Nr=21 Text=_"... I was only wondering who you were, and why you were wearing such a bright scarlet outfit."
 LuaCode={
-	npc_says(_"My apologies, Linarian.  You are new here, and do not know.")
-	npc_says(_"The red outfit indicates that I am of the Red Guard.  We are the defenders of the town and impose the law.")
+	npc_says(_"My apologies, Linarian. You are new here, and do not know.")
+	npc_says(_"The red outfit indicates that I am of the Red Guard. We are the defenders of the town and impose the law.")
 	npc_says(_"With the continued bot attacks, and the grumbling townsfolk, all of us are a little on edge.")
 	npc_says(_"Tell me your name, and then you may pass.")
 	tux_says(_"My name is ".. get_player_name() ..".")
@@ -131,19 +131,32 @@ LuaCode={
 Nr=23 Text=_"I said: THIS PLACE LOOKS CLASSY."
 LuaCode={
 	npc_says(_"Sure you said that.")
-	hide(21, 22, 23, 30) show(30, 31, 32)   
+	hide(21, 22, 23, 30) show(30, 31, 32)
 }
 ----------------------------------------------------------------------
-   
+
 Nr=30 Text=_"Please don't hurt me."
 LuaCode={
 	npc_says(_"How about I punch you until you spit out your name, and get out of here and we call it even?")
 	tux_says(_"OW")
 	npc_says(_"Your name?")
 	tux_says("".. get_player_name() ..".")
-	tux_says(_"OW.  That HURT.")
+	tux_says(_"OW. That HURT!")
 	npc_says(_"Get out of here. The Doc is the third path door on the right.")
-	hurt_tux(30)
+	if (get_tux_hp() > 40) then hurt_tux(40)
+	else 
+		if (get_tux_hp() > 30) then hurt_tux(30)
+		else 
+			if (get_tux_hp() > 20) then hurt_tux(20)
+			else
+				if (get_tux_hp() > 10) then hurt_tux(10)
+				else 
+					if (get_tux_hp() > 5) then hurt_tux(5)
+					else end
+				end
+			end
+		end
+	end
 	change_obstacle_state("Main Gate Outer W", "opened")
 	change_obstacle_state("Main Gate Outer E", "opened")
 	change_obstacle_state("Main Gate Guardhouse", "opened")
@@ -156,9 +169,9 @@ LuaCode={
 
 Nr=31 Text=_"I want to talk to your manager, moron."
 LuaCode={
-	npc_says(_"I'm happy to send you his way.  I need your name before I let you in.")
+	npc_says(_"I'm happy to send you his way. I need your name before I let you in.")
 	tux_says("".. get_player_name() ..".")
-	npc_says(_"Talk to Spencer.  His office is straight ahead. You can't miss it.")
+	npc_says(_"Talk to Spencer. His office is straight ahead. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
 	add_cookie("oldtowngateguardleader_tux_nickname_loon")
 	change_obstacle_state("Main Gate Outer W", "opened")
@@ -185,7 +198,7 @@ LuaCode={
 	hide(20, 30, 31, 32) show(99)
 }
 ----------------------------------------------------------------------
-Nr=99  Text=_"I'll be going then."
+Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Mhmmm.")
 		
