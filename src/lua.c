@@ -157,6 +157,12 @@ static int lua_event_hurt_tux(lua_State * L)
 	return 0;
 }
 
+static int lua_event_get_tux_hp(lua_State * L)
+{
+	lua_pushinteger(L, (int)Me.energy);
+	return 1;
+}
+
 static int lua_event_heat_tux(lua_State * L)
 {
 	int temp = luaL_checkinteger(L, 1);
@@ -698,6 +704,8 @@ luaL_reg lfuncs[] = {
 	{"hurt_tux", lua_event_hurt_tux}
 	,
 	{"heat_tux", lua_event_heat_tux}
+	,
+	{"get_tux_hp", lua_event_get_tux_hp}
 	,
 
 	/* improve_skill(string skill_name)
