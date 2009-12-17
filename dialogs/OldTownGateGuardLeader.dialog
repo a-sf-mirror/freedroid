@@ -143,8 +143,8 @@ LuaCode={
 	tux_says("".. get_player_name() ..".")
 	tux_says(_"OW. That HURT!")
 	npc_says(_"Get out of here. The Doc is the third path door on the right.")
-	if (get_tux_hp() < 40) then hp = 1 
-	else hp = get_tux_hp()- 40 
+	if (get_tux_hp() <= 40) then hp = 1 
+	else hp = get_tux_hp() - 40 
 	end
 	hurt_tux(hp)
 	change_obstacle_state("Main Gate Outer W", "opened")
