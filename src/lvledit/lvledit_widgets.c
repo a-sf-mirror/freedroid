@@ -313,9 +313,11 @@ void leveleditor_update_button_states()
 			if (o)
 				switch (o->type) {
 				case ISO_H_CHEST_CLOSED:
-				case ISO_H_CHEST_OPEN:
 				case ISO_V_CHEST_CLOSED:
-				case ISO_V_CHEST_OPEN:
+				case ISO_E_CHEST2_CLOSED:
+				case ISO_S_CHEST2_CLOSED:
+				case ISO_N_CHEST2_CLOSED:
+				case ISO_W_CHEST2_CLOSED:
 					w->enabled = 1;
 					break;
 				default:

@@ -857,6 +857,10 @@ void level_editor_edit_chest(obstacle * o)
 	case ISO_H_CHEST_OPEN:
 	case ISO_V_CHEST_CLOSED:
 	case ISO_V_CHEST_OPEN:
+	case ISO_E_CHEST2_CLOSED:
+	case ISO_S_CHEST2_CLOSED:
+	case ISO_N_CHEST2_CLOSED:
+	case ISO_W_CHEST2_CLOSED:
 		break;
 	default:
 		ErrorMessage(__FUNCTION__, "Tried to edit the contents of a chest, but the obstacle is not a chest.\n", PLEASE_INFORM,
