@@ -672,6 +672,10 @@ void DamageItem(item * CurItem)
 	// a destructable sort, then we apply the usual damage to it
 	if ((CurItem->type != (-1)) && (CurItem->max_duration != (-1))) {
 		CurItem->current_duration -= (MyRandom(100) < ARMOUR_DURABILITYLOSS_PERCENTAGE_WHEN_HIT) ? 1 : 0;
+		
+		//--------------------
+		// Make sound denoting some protective item was damaged
+		BulletReflectedSound();
 
 		//--------------------
 		// If the item has gone over it's threshhold of duration, it finally
@@ -699,18 +703,23 @@ void DamageWeapon(item * CurItem)
 };				// void DamageWeapon( item* CurItem )
 
 /**
- * When the influencer gets hit, all of his equipment suffers some damage.
+ * When the influencer gets hit, some of his equipment might suffer some damage.
  * This is exactly what this function does:  apply the damage.
  */
 void DamageProtectiveEquipment()
 {
+	int ItemHit = MyRandom(6);
 
-	DamageItem(&(Me.armour_item));
-	DamageItem(&(Me.shield_item));
-	DamageItem(&(Me.drive_item));
-	DamageItem(&(Me.special_item));
+	if (ItemHit < 2)
+		DamageItem(&(Me.armour_item));
+	else if (ItemHit < 4)
+		DamageItem(&(Me.shield_item));
+	else if (ItemHit < 5)
+		DamageItem(&(Me.drive_item));
+	else		
+                DamageItem(&(Me.special_item));
 
-};				// void DamageAllEquipment( void )
+};				// void DamageProtectiveEquipment( void )
 
 /**
  * This function is used when an equipment EXCHANGE is performed, i.e.
