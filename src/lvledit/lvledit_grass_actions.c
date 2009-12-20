@@ -38,6 +38,7 @@
 #include "SDL_rotozoom.h"
 
 #include "lvledit/lvledit.h"
+#include "lvledit/lvledit_actions.h"
 
 static int grass_change_count = 0;
 
@@ -110,7 +111,6 @@ static int is_some_grass_tile(map_tile * this_tile)
  */
 static void fix_corners_in_this_grass_tile(level * EditLevel, int x, int y)
 {
-	map_tile *this_tile = &(EditLevel->map[y][x]);
 	int north_grass = 0;
 	int south_grass = 0;
 	int east_grass = 0;
@@ -162,7 +162,6 @@ static void fix_corners_in_this_grass_tile(level * EditLevel, int x, int y)
  */
 static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
 {
-	map_tile *this_tile = &(EditLevel->map[y][x]);
 	int north_grass = 0;
 	int south_grass = 0;
 	int east_grass = 0;
@@ -218,7 +217,6 @@ static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
  */
 static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 {
-	map_tile *this_tile = &(EditLevel->map[y][x]);
 	int north_grass = 0;
 	int south_grass = 0;
 	int east_grass = 0;
@@ -278,7 +276,6 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
  */
 static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 {
-	map_tile *this_tile = &(EditLevel->map[y][x]);
 	int north_grass = 0;
 	int south_grass = 0;
 	int east_grass = 0;
