@@ -171,7 +171,7 @@ void DoMeleeDamage(void)
 				continue;
 			}
 
-			if ((compute_hit_multiplier(Druidmap[tg->type].monster_level) * (float)MyRandom(100) < CurMelS->to_hit)) {
+			if ((float)MyRandom(100) < (compute_hit_multiplier(Druidmap[tg->type].monster_level) * CurMelS->to_hit )) {
 				hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
 			}
 
