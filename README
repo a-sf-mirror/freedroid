@@ -93,14 +93,24 @@
  General
    * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding 
      and attack animations. If you are skilled with 3D modelling, please help us out to fix this.
-   * Nvidia Geforce 8&9 cards: Transparency in some parts of the game works incorrectly. E.g. instead of 
-     making the walls semi transparent when Tux comes close (in "key T" mode), they vanish completely.
 
  Windows 
    * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not 
      handle filenames without extensions. Please use other options, e.g. 7zip, winzip, winrar etc, to 
      correctly unpack the game.
-   * The game will use the system language by default, you cannot select another language in-game.
+
+ Mac
+    * Open Files: OSX max number of open files defaults to 256 (as of 10.6). This can lead to errors when 
+      loading images: "In Function: get_iso_image_from_file_and_path. Could not load image 
+      /usr/local/share/freedroidrpg/graphics//obstcles/<filename>.png"
+      Solution:
+        1) Check value of open files limit with $ ulimit -n
+        2) Set new value for open files limit with $ ulimit -n 2048
+      (issue #2913487)
+    * Font rendering: If you get no fonts in the main menu with SDL or if in openGL mode, the game dies 
+      with the error message "In Function: PutCharFont. Surface for character 46 was NULL pointer!", 
+      check your display configuration and set the color profile to sRGB.
+      (issues #2913485 and #2913484)
 
  Linux
    * Pulseaudio: Using SDL-pulseaudio you are currently likely to not get sound. This has nothing to do 
