@@ -19,11 +19,9 @@ Copyright (c) 2007-2009 Stefan Huszics
 
 /****************************************************************************************
  * If you change a name (CASE sensitive) make sure to check so you dont break things.   *
- * From the source root folder do:  grep -Rn old_name *                                 *
- * or to save time                                                                      *
- * grep -Rn old_name dialogs/ map/ src/                                                 *
- *                                                                                      *
- * eg:  grep -Rn Droid\ weaponry                                                        *
+ * From the source root folder do: grep -nR 'old_name' dialogs/ map/ src/               *
+ * eg:  grep -nR 'Droid weaponry' dialogs/ map/ src/                                    *
+ * Then change all occurances of the old name to the new name                           *
  ****************************************************************************************/
 
 /****************************************************************************************
@@ -82,19 +80,19 @@ Other items can potentially be bigger
  Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  6-8  - 500
 -> * Cleaving *
  Meat cleaver         - 1H - Size 2x2 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 30-40 -  50
- Axe small            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 40-60 -  80 
- Axe large            - 2H - Size 2x5 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 40-60 - 120
+ Small Axe            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 40-60 -  80 
+ Large Axe            - 2H - Size 2x5 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 40-60 - 120
 -> * Piercing *
  Hunting knife        - 1H - Size 1x2 - lvl 1 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.4  - Dur  6-10 -  40
 *Metal spear          - 1H - Size 1x6 - lvl 3 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 30-40 -  80
 -> * Impact *
- Iron pipe            - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 35-55 -  30
++Iron pipe            - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 35-55 -  30
  Big wrench           - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-4  - Recharge: 0.75 - Dur 30-50 -  60
  Crowbar              - 1H - Size 1x3 - lvl 0 - str15 dex 0 - Dam: 1-4  - Recharge: 0.6  - Dur 45-65 -  60
  Power hammer         - 1H - Size 2x3 - lvl 2 - str 0 dex 0 - Dam: 2-3  - Recharge: 0.25 - Dur 30-40 - 250 (laser ammo - reload 2 - clip 60)
- Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 50-70 - 180
++Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 50-70 - 180
  Baseball bat         - 2H - Size 2x4 - lvl 1 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur 10-15 -  30
- Iron bar             - 2H - Size 1x5 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 60-75 -  70
++Iron bar             - 2H - Size 1x5 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 60-75 -  70
 *Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 40-60 - 150
 -> * Energy *
  Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 1000  -1500 (laser ammo - reload 2 - clip 20)
@@ -2701,29 +2699,34 @@ Item as gun: weapon requires both hands="yes"
 /**********************************************************************************************************
  *       Armor                                                                                            *
  *         - Body                        DR %    Dur    lvl   Str/Dex  Cost                               *
-              Jacket                     3-10   10-20    0               50 - in shop
-              Reinforced Jacket          8-15   20-30    0     Str 15   150 - in shop
+              Normal Jacket              3-6    10-20    0               50 - in shop
+              Reinforced Jacket          8-15   20-30    0     Str 15   350 - in shop
               Protective Jacket         15-25   30-40    0     Str 25   600 - in shop
               Red Guard's Light Robe      28      35    -1     Str 20   800 - in RG shop
               Red Guard's Heavy Robe      35      40    -1     Str 30  1000 - in RG shop
- *         - Head                                                                                         *
-              Pot Helm                   3-10    5-15   1-7              20 - Scavanged parts from bots
-              Worker Cap                 3-6    10-25    0               90 - in shop
-              Miner Cap (with LIGHT)     3-9    10-20    0              250 - in shop
-              Light Battle Cap           5-9    30-40    0     Str 15   360 - in RG shop
-              Battle Cap                10-14   40-50    0     Str 20   480 - in RG shop
-              Dixon's helmet (LIGHT)      9       3     -1               55 - Mission reward
  *         - Handheld                                                                                     *
               Improvised Buckler         3-10    5-15   1-7              20 - Scavanged parts from bots
-              Bot carapace               5-10   10-25   3-9              40 - Scavanged parts from bots
-              Standard shield            8-12   30-40    0              250 - in shop
-              Large shield              10-14   30-40    0     Str 20   360 - in shop
-              Riot shield               15-20   40-50    0     Str 25   480 - in RG shop
+              Bot Carapace               5-10   10-25   3-9              40 - Scavanged parts from bots
+              Standard Shield            8-12   30-40    0              250 - in shop
+              Large Shield              10-14   30-40    0     Str 20   360 - in shop
+              Riot Shield               15-20   40-50    0     Str 25   480 - in RG shop
+ *         - Head                                                                                         *
+              Pot Helmet                 3-10    5-10   1-7              20 - Scavanged parts from bots
+              Worker Helmet              3-6    10-25    0               90 - in shop
+              Miner Helmet (with LIGHT)  3-9    10-20    0              250 - in shop
+              Light Battle Helmet        5-9    30-40    0     Str 15   360 - in RG shop
+              Battle Helmet             10-14   40-50    0     Str 20   480 - in RG shop
+              Dixon's Helmet (LIGHT)      9       3     -1               55 - Mission reward
  *         - Feet                                                                                         *
               Shoes                      1-2     5-10    0               27 - in shop
-              Steel tipped worker shoes  3-4    10-20    0               85 - in shop
-              Battle shoes               4-6    15-25    0              250 - in RG shop
-             
+              Worker Shoes               3-4    10-20    0               85 - in shop
+              Battle Shoes               4-6    15-25    0              250 - in RG shop
+*Light Boots
+*Boots
+*Item name=_"Reinforced Boots"
+*Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
+*Item name=_"Hiking Boots"
+*Item description text=_"These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
  **********************************************************************************************************/
 /*
 if (MyRandom(100) / monster_level >= Me.lv_1_bot_will_hit_percentage) then 
@@ -2742,7 +2745,7 @@ Shoes 2-6%
 // *** Body ***
 
 ** Start of new item specification subsection **
-Item name=_"Simple Jacket"
+Item name=_"Normal Jacket"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
@@ -2750,7 +2753,7 @@ Item can be installed in slot with name="armour"
 Item uses rotation series with prefix="armours/basic"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=7
+Item as defensive item: dr_bonus_modifier=3
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="armours/basic/inv_image.png"
@@ -2776,7 +2779,7 @@ Base item duration=20
 plus duration modifier=10
 File or directory name for inventory image="armours/basic2/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
-Base list price=150
+Base list price=350
 inventory_size_x=2
 inventory_size_y=2
 Item description text=_"One step up from a normal jacket."
@@ -2845,128 +2848,10 @@ Item description text=_"Defense is acquired at a high level with this durable pi
 
 
 
-// *** Head ***
-
-** Start of new item specification subsection **
-Item name=_"Pot-Helm"
-Item min class for drop=1
-Item max class for drop=7
-Item can be applied in combat="no"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmets/skull_cap"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=7
-Base item duration=5
-plus duration modifier=10
-File or directory name for inventory image="helmets/skull_cap/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=20
-Item description text=_"Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Cap"
-Item min class for drop=0
-Item max class for drop=0
-Item can be applied in combat="no"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmets/yellow"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=3
-Base item duration=10
-plus duration modifier=15
-File or directory name for inventory image="helmets/yellow/inv_image.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=90
-Item description text=_"A simple cover for your head. Don't expect to be incognito."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Iron-Helm"
-Item min class for drop=0
-Item max class for drop=0
-Item can be applied in combat="no"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmets/yellow4"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=6
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="helmets/yellow4/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=250
-Item description text=_"It might look a bit silly, but it will save your life many times"
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Small Helm"
-Item min class for drop=0
-Item max class for drop=0
-Item can be applied in combat="no"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmets/yellow2"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=15
-Item as defensive item: base_dr_bonus=5
-Item as defensive item: dr_bonus_modifier=4
-Base item duration=30
-plus duration modifier=10
-File or directory name for inventory image="helmets/yellow2/inv_image.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=360
-Item description text=_"A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Iron Hat"
-Item min class for drop=0
-Item max class for drop=0
-Item can be applied in combat="no"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmets/yellow3"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=20
-Item as defensive item: base_dr_bonus=10
-Item as defensive item: dr_bonus_modifier=4
-Base item duration=30
-plus duration modifier=10
-File or directory name for inventory image="helmets/yellow3/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=480
-Item description text=_"Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats"
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Dixon's helmet"
-Item min class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="special"
-Item uses rotation series with prefix="helmets/yellow4"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=9
-Base item duration=3
-plus duration modifier=0
-File or directory name for inventory image="helmets/yellow4/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=55
-Item description text=_"A gift from Dixon. It looks like it is about to turn into dust."
-** End of new item specification subsection **
-
-
-
-
-
 // *** Handheld ***
 
 ** Start of new item specification subsection **
-Item name=_"Buckler"
+Item name=_"Improvised Buckler"
 Item min class for drop=1
 Item max class for drop=7
 Item can be applied in combat="no"
@@ -2986,7 +2871,7 @@ Item description text=_"This shield is a compilation of various objects which ha
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Small Shield"
+Item name=_"Bot Carapace"
 Item min class for drop=3
 Item max class for drop=9
 Item can be applied in combat="no"
@@ -3026,7 +2911,7 @@ Item description text=_"Better than a buckler, and a lot more effective."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Medium Shield"
+Item name=_"Large Shield"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
@@ -3045,7 +2930,7 @@ Item description text=_"A medium sized, lightweight and pretty straightforward s
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Large Shield"
+Item name=_"Riot Shield"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
@@ -3061,6 +2946,124 @@ File or directory name for inventory image="shields/large/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=480
 Item description text=_"A powerful shield, as useful to protect from bots as it is to control big crowds of angry protesters."
+** End of new item specification subsection **
+
+
+
+
+
+// *** Head ***
+
+** Start of new item specification subsection **
+Item name=_"Pot Helmet"
+Item min class for drop=1
+Item max class for drop=7
+Item can be applied in combat="no"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmets/skull_cap"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_dr_bonus=3
+Item as defensive item: dr_bonus_modifier=7
+Base item duration=5
+plus duration modifier=5
+File or directory name for inventory image="helmets/skull_cap/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=20
+Item description text=_"Top of the line head gear, for bots. But rip it off their metal necks and take out the circuits it also manages to protect living beings decently against a myriad of close range and long range attacks."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Worker Helmet"
+Item min class for drop=0
+Item max class for drop=0
+Item can be applied in combat="no"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmets/yellow"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_dr_bonus=3
+Item as defensive item: dr_bonus_modifier=3
+Base item duration=10
+plus duration modifier=15
+File or directory name for inventory image="helmets/yellow/inv_image.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=90
+Item description text=_"A simple cover for your head. Don't expect to be incognito."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Miner Helmet"
+Item min class for drop=0
+Item max class for drop=0
+Item can be applied in combat="no"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmets/yellow4"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_dr_bonus=3
+Item as defensive item: dr_bonus_modifier=6
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="helmets/yellow4/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=250
+Item description text=_"It might look a bit silly, but it will save your life many times"
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Light Battle Helmet"
+Item min class for drop=0
+Item max class for drop=0
+Item can be applied in combat="no"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmets/yellow2"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=15
+Item as defensive item: base_dr_bonus=5
+Item as defensive item: dr_bonus_modifier=4
+Base item duration=30
+plus duration modifier=10
+File or directory name for inventory image="helmets/yellow2/inv_image.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=360
+Item description text=_"A rather useful helmet, has a few defense issues here and there but mainly is worth the wear."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Battle Helmet"
+Item min class for drop=0
+Item max class for drop=0
+Item can be applied in combat="no"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmets/yellow3"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=20
+Item as defensive item: base_dr_bonus=10
+Item as defensive item: dr_bonus_modifier=4
+Base item duration=30
+plus duration modifier=10
+File or directory name for inventory image="helmets/yellow3/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=480
+Item description text=_"Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats"
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Dixon's Helmet"
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="special"
+Item uses rotation series with prefix="helmets/yellow4"
+Items of this type collect together in inventory="no"
+Item as defensive item: base_dr_bonus=9
+Base item duration=3
+plus duration modifier=0
+File or directory name for inventory image="helmets/yellow4/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=55
+Item description text=_"A gift from Dixon. It looks like it is about to turn into dust."
 ** End of new item specification subsection **
 
 
@@ -3088,7 +3091,7 @@ Item description text=_"These simple boots are designed for comfort of the weare
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Light Boots"
+Item name=_"Worker Shoes"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
@@ -3102,11 +3105,11 @@ plus duration modifier=10
 File or directory name for inventory image="armours/boots/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=85
-Item description text=_"These boots are a bit lighter than the normal version, giving of course worse protection but certainly extra comfort for the wearer."
+Item description text=_"These footwear are steel tipped, and generally quite sturdy, giving a bit extra protection."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Boots"
+Item name=_"Battle Shoes"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
@@ -3123,41 +3126,6 @@ Base list price=250
 Item description text=_"These boots are similar to the simple shoes, but the material they are made of is hardened for extra protection."
 ** End of new item specification subsection **
 
-** Start of new item specification subsection **
-Item name=_"Reinforced Boots"
-Item min class for drop=-1
-Item max class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="armours/boots"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=0
-Item as defensive item: dr_bonus_modifier=1
-Base item duration=27
-plus duration modifier=5
-File or directory name for inventory image="armours/boots/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=175
-Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Hiking Boots"
-Item min class for drop=-1
-Item max class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="drive"
-Item uses rotation series with prefix="armours/boots"
-Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=0
-Item as defensive item: dr_bonus_modifier=1
-Base item duration=37
-plus duration modifier=5
-File or directory name for inventory image="armours/boots/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=275
-Item description text=_"These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
-** End of new item specification subsection **
 
 
 

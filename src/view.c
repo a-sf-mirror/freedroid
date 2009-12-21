@@ -2934,7 +2934,7 @@ void iso_put_tux_torso(int x, int y, int rotation_index)
 	static int first_call = 1;
 	static int jacket1, jacket2, jacket3, robe1, robe2;
 	if (first_call) {
-		jacket1 = GetItemIndexByName("Simple Jacket");
+		jacket1 = GetItemIndexByName("Normal Jacket");
 		jacket2 = GetItemIndexByName("Reinforced Jacket");
 		jacket3 = GetItemIndexByName("Protective Jacket");
 		robe1 = GetItemIndexByName("Red Guard's Light Robe");
@@ -2963,11 +2963,11 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 	static int shield1, shield2, shield3, shield4, shield5;
 
 	if (first_call) {
-		shield1 = GetItemIndexByName("Buckler");
-		shield2 = GetItemIndexByName("Small Shield");
-		shield3 = GetItemIndexByName("Medium Shield");
-		shield4 = GetItemIndexByName("Standard Shield");
-		shield5 = GetItemIndexByName("Large Shield");
+		shield1 = GetItemIndexByName("Improvised Buckler");
+		shield2 = GetItemIndexByName("Bot Carapace");
+		shield3 = GetItemIndexByName("Standard Shield");
+		shield4 = GetItemIndexByName("Large Shield");
+		shield5 = GetItemIndexByName("Riot Shield");
 		first_call = 0;
 	}
 	//--------------------

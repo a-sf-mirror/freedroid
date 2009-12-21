@@ -264,7 +264,7 @@ LuaCode={
 	add_cookie("singularity_dead")
 	del_item_backpack("Dixon's Toolbox", 1)
 	add_diary_entry("The yellow toolkit", "I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
-	add_item("Dixon's helmet",1)
+	add_item("Dixon's Helmet",1)
 	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
