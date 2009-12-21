@@ -184,7 +184,7 @@ void DoMeleeDamage(void)
 			/* hit player */
 			if (MyRandom(100) <= Me.lv_1_bot_will_hit_percentage * compute_hit_multiplier(CurMelS->level)) {
 				Me.energy -= CurMelS->damage;
-				if (MyRandom(100) <= 20)
+				if (Me.energy/10 < CurMelS->damage)
 					tux_scream_sound();
 			}
 		}
@@ -654,7 +654,8 @@ void apply_bullet_damage_to_player(int damage, int owner)
 		Me.energy -= real_damage;	// loose some energy
 		DamageProtectiveEquipment();    // chance worn items gets damaged on each hit
 		DebugPrintf(1, "\n%s(): Tux took damage from bullet: %f.", __FUNCTION__, real_damage);
-		tux_scream_sound();
+		if (Me.energy/10 < real_damage)
+			tux_scream_sound();
 };				// void apply_bullet_damage_to_player ( int damage )
 
 /**

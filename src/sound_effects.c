@@ -436,9 +436,6 @@ void GotHitSound(void)
  */
 void tux_scream_sound(void)
 {
-	if (MyRandom(7) <= 5)
-		return;
-
 	switch (MyRandom(4)) {
 	case 0:
 		play_sample_using_WAV_cache("effects/Influencer_Scream_Sound_0.ogg", FALSE, FALSE);
