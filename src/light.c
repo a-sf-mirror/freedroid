@@ -446,10 +446,15 @@ void LightRadiusInit()
 		LightRadiusConfig.cells_w = pot_w;
 		LightRadiusConfig.texture_w = pot_w;
 		// Compute the actual scale factor when using the whole texture width
-		LightRadiusConfig.scale_factor = (float)GameConfig.screen_width / (float)LightRadiusConfig.cells_w;
+		// Note : The flicker-free code will translate the darkness texture.
+		//        The translation can be up to one whole cell, so the scale factor
+		//        is computed to be one cell wider than needed.
+		LightRadiusConfig.scale_factor = (float)GameConfig.screen_width / (float)(LightRadiusConfig.cells_w - 1);
 		// Since we have an homogeneous scale factor in X and Y,
-		// compute the new number of cells in Y
-		LightRadiusConfig.cells_h = (int)ceilf((float)GameConfig.screen_height / LightRadiusConfig.scale_factor);
+		// compute the new number of cells in Y.
+		// Note : Here again, we take into account the translation applied by the
+		//        flicker-free code, by adding one more cell.
+		LightRadiusConfig.cells_h = (int)ceilf((float)GameConfig.screen_height / LightRadiusConfig.scale_factor) + 1;
 		// Check if the texture's height is now big enough. If not, take the next power-of-two
 		if (LightRadiusConfig.cells_h <= pot_h)
 			LightRadiusConfig.texture_h = pot_h;
@@ -461,13 +466,17 @@ void LightRadiusInit()
 		// it could be :-)
 		LightRadiusConfig.cells_h = pot_h;
 		LightRadiusConfig.texture_h = pot_h;
-		LightRadiusConfig.scale_factor = (float)GameConfig.screen_height / (float)LightRadiusConfig.cells_h;
-		LightRadiusConfig.cells_w = (int)ceilf((float)GameConfig.screen_width / LightRadiusConfig.scale_factor);
+		LightRadiusConfig.scale_factor = (float)GameConfig.screen_height / (float)(LightRadiusConfig.cells_h - 1);
+		LightRadiusConfig.cells_w = (int)ceilf((float)GameConfig.screen_width / LightRadiusConfig.scale_factor) + 1;
 		if (LightRadiusConfig.cells_w <= pot_w)
 			LightRadiusConfig.texture_w = pot_w;
 		else
 			LightRadiusConfig.texture_w = pot_w << 1;
 	}
+
+	// The scale factor has to be an integer (due to a modulo operation in the
+	// flicker-free code).
+	LightRadiusConfig.scale_factor = round(LightRadiusConfig.scale_factor);
 
 	//----------
 	// The center of the light_radius texture will be translated along the Y axe,
@@ -894,7 +903,7 @@ static void soften_light_distribution(void)
  * This function is used to find the light intensity at any given point
  * on the map.
  */
-void set_up_light_strength_buffer(void)
+void set_up_light_strength_buffer(int *decay_x, int *decay_y)
 {
 	uint32_t x;
 	uint32_t y;
@@ -902,14 +911,42 @@ void set_up_light_strength_buffer(void)
 	int screen_x;
 	int screen_y;
 
+	//--------------------
+	// Flicker-free code :
+	//
+	// To avoid flickering, the darkness map is 'stuck' to the floor, that is :
+	// when Tux moves, the darkness's textured rectangle is translated in the
+	// opposite direction, to follow the apparent move of the floor.
+	// The same translation has thus to be applied when generating the light
+	// strength buffer.
+	//
+	// However, the darkness's textured rectangle does only cover the screen,
+	// we will thus apply a modulo to the translation. The value of the modulo
+	// is "scale_factor", that is the width (and height) of a darkness cell.
+	// This ensures that a given point on the floor is always inside the "same"
+	// (relative) darkness cell.
+	//
+	// Finally, we only keep negative translations, so that the darkness's
+	// textured rectangle top-left corner is always outside the screen.
+	// (note: the bottom-right corner is also always outside of the screen, due
+	// to the large enough value of scale_factor (see: LightRadiusInit())
+	//
+	*decay_x = - (ceilf(Me.pos.x * iso_floor_tile_width*0.5) - ceilf(Me.pos.y * iso_floor_tile_width*0.5));
+	*decay_x = *decay_x % (int)LightRadiusConfig.scale_factor;
+	if (*decay_x > 0) *decay_x -= (int)LightRadiusConfig.scale_factor;
+
+	*decay_y = - (ceilf(Me.pos.x * iso_floor_tile_height*0.5) + ceilf(Me.pos.y * iso_floor_tile_height*0.5));
+	*decay_y = *decay_y % (int)LightRadiusConfig.scale_factor;
+	if (*decay_y > 0) *decay_y -= (int)LightRadiusConfig.scale_factor;
+
 	prepare_light_interpolation();
 	
 	for (y = 0; y < LightRadiusConfig.cells_h; y++) {
 		for (x = 0; x < LightRadiusConfig.cells_w; x++) {
-			screen_x = (int)(x * LightRadiusConfig.scale_factor) - UserCenter_x;
+			screen_x = (int)(x * LightRadiusConfig.scale_factor) - UserCenter_x + *decay_x;
 			// Apply a translation to Y coordinate, to simulate a light coming from bot/tux heads, instead
 			// of their feet.
-			screen_y = (int)(y * LightRadiusConfig.scale_factor) - UserCenter_y + LightRadiusConfig.translate_y;
+			screen_y = (int)(y * LightRadiusConfig.scale_factor) - UserCenter_y + LightRadiusConfig.translate_y + *decay_y;
 
 			// Transform the screen coordinates into a virtual point on the map, relatively to
 			// Tux's current level.
@@ -986,8 +1023,17 @@ int get_light_strength(moderately_finepoint target_pos)
  * This function should blit the shadows on the floor, that are used to
  * generate the impression of a 'light radius' around the players 
  * character.
+ *
+ * decay_x and decay_y does translate the textured rectangle to avoid
+ * darkness flickering. See flicker-free code's note in set_up_light_strength_buffer()
+ *
+ * Note : the flicker-free light_strength_buffer is not really compatible with this function.
+ * The light_strength_buffer is indeed based on an orthogonal grid, but in SDL mode the darkness
+ * map does use an isometric grid.
+ * However the use of the flicker-free light_strength_buffer does reduce flickering even in
+ * SDL mode. So, we use it.
  */
-void blit_classic_SDL_light_radius(void)
+void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 {
 	// Number of tiles along X and Y
 	static int lrc_nb_columns = 0;
@@ -1031,8 +1077,8 @@ void blit_classic_SDL_light_radius(void)
 			SDL_FreeSurface(tmp);
 		}
 
-		lrc_nb_columns = (int)ceilf((float)GameConfig.screen_width / (float)(LRC_ISO_WIDTH + LRC_ISO_GAP_X));
-		lrc_nb_lines = (int)ceilf((float)GameConfig.screen_height / (float)(LRC_ISO_HEIGHT));
+		lrc_nb_columns = (int)ceilf((float)GameConfig.screen_width / (float)(LRC_ISO_WIDTH + LRC_ISO_GAP_X)) + 1;
+		lrc_nb_lines = (int)ceilf((float)GameConfig.screen_height / (float)(LRC_ISO_HEIGHT)) + 1;
 	}
 	//----------
 	// Fill the screen with the tiles
@@ -1046,12 +1092,12 @@ void blit_classic_SDL_light_radius(void)
 
 	// First line
 	center_y = 0;
-	target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2;
+	target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2 + decay_y;
 
 	for (l = 0; l < lrc_nb_lines; ++l) {
 		// First column of the first half-line
 		center_x = 0;
-		target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2;
+		target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2 + decay_x;
 
 		for (c = 0; c <= lrc_nb_columns; ++c) {
 			int light_strength;
@@ -1061,17 +1107,17 @@ void blit_classic_SDL_light_radius(void)
 
 			// Next tile along X
 			center_x += (LRC_ISO_WIDTH + LRC_ISO_GAP_X);
-			target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2;
-			target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2;
+			target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2 + decay_x;
+			target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2 + decay_y;
 		}
 
 		// Second half-line, translated by a tile's half-height
 		center_y += (LRC_ISO_HEIGHT) / 2;
-		target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2;
+		target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2 + decay_y;
 
 		// First column of the second half-line, translated by a tile's half-width
 		center_x = (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2;
-		target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2;
+		target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2 + decay_x;
 
 		for (c = 0; c <= lrc_nb_columns; ++c) {
 			int light_strength;
@@ -1081,13 +1127,13 @@ void blit_classic_SDL_light_radius(void)
 
 			// Next tile along X
 			center_x += LRC_ISO_WIDTH + LRC_ISO_GAP_X;
-			target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2;
-			target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2;
+			target_rectangle.x = center_x - (LRC_ISO_WIDTH + LRC_ISO_GAP_X) / 2 + decay_x;
+			target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2 + decay_y;
 		}
 
 		// Next line
 		center_y += (LRC_ISO_HEIGHT) / 2;
-		target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2;
+		target_rectangle.y = center_y - (LRC_ISO_HEIGHT) / 2 +decay_y;
 	}
 }				// void blit_classic_SDL_light_radius( void )
 
@@ -1104,21 +1150,22 @@ void blit_classic_SDL_light_radius(void)
  */
 void blit_light_radius(void)
 {
+	int decay_x, decay_y;
+
 	//--------------------
 	// Before making any reference to the light, it's best to 
 	// first calculate the values in the light buffer, because
 	// those will be used when drawing the light radius.
 	//
-	set_up_light_strength_buffer();
+	set_up_light_strength_buffer(&decay_x, &decay_y);
 
 	if (use_open_gl) {
 		// blit_open_gl_light_radius ();
 		// blit_open_gl_cheap_light_radius ();
-		blit_open_gl_stretched_texture_light_radius();
+		blit_open_gl_stretched_texture_light_radius(decay_x, decay_y);
 	} else {
-		blit_classic_SDL_light_radius();
+		blit_classic_SDL_light_radius(decay_x, decay_y);
 	}
-
-}				// void blit_light_radius ( void )
+}	// void blit_light_radius ( void )
 
 #undef _light_c

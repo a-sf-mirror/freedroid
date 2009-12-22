@@ -29,6 +29,7 @@
 
 #define _open_gl_c
 
+#include <math.h>
 #include "system.h"
 
 #include "defs.h"
@@ -1018,8 +1019,11 @@ void light_radius_update_stretched_texture(void)
  * small texture (to be modified with pixel operations every frame) that
  * can be stretched out over the whole screen via OpenGL.
  * This function is here to set up the texture in the first place.
+ *
+ * decay_x and decay_y does translate the textured rectangle to avoid
+ * darkness flickering. See flicker-free code's note in set_up_light_strength_buffer()
  */
-void blit_open_gl_stretched_texture_light_radius(void)
+void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 {
 #ifdef HAVE_LIBGL
 	iso_image local_iso_image;
@@ -1053,7 +1057,7 @@ void blit_open_gl_stretched_texture_light_radius(void)
 
 	glEnable(GL_BLEND);
 
-	draw_gl_scaled_textured_quad_at_screen_position(&local_iso_image, 0, 0, LightRadiusConfig.scale_factor);
+	draw_gl_scaled_textured_quad_at_screen_position(&local_iso_image, decay_x, decay_y, LightRadiusConfig.scale_factor);
 	glDisable(GL_BLEND);
 
 #endif
