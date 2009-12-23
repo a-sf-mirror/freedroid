@@ -593,26 +593,50 @@ void correct_tux_position_according_to_jump()
 	//---------------
 	// Update the mouse target position
 	//
-#if 0
-	if ((Me.mouse_move_target_combo_action_type == NO_COMBO_ACTION_SET) &&
-	    (enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) == NULL))
-#endif
-	{
-		// The purpose is to define mouse_move_target relatively to new Tux's level.
-		// However, if Tux had to move from one level to one of its diagonal neighbor, it has
-		// eventually not yet reach the final destination level.
-		// So we first have to get the real mouse_target position, and then transform it into a
-		// virtual position according to Tux's new level.
-		int rtn = resolve_virtual_position(&Me.mouse_move_target, &old_mouse_move_target);
-		if (rtn)
-			update_virtual_position(&Me.mouse_move_target, &Me.mouse_move_target, newpos.z);
-		if (!rtn || (Me.mouse_move_target.x == -1)
-		    || !SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
-			Me.mouse_move_target.x = (-1);
-			Me.mouse_move_target.y = (-1);
-			Me.mouse_move_target.z = (-1);
-		}
+	// The purpose is to define mouse_move_target relatively to new Tux's level.
+	// However, if Tux had to move from one level to one of its diagonal neighbor, it has
+	// eventually not yet reach the final destination level.
+	// So we first have to get the real mouse_target position, and then transform it into a
+	// virtual position according to Tux's new level.
+	int rtn = resolve_virtual_position(&Me.mouse_move_target, &old_mouse_move_target);
+	if (rtn)
+		update_virtual_position(&Me.mouse_move_target, &Me.mouse_move_target, newpos.z);
+
+	if (!rtn || (Me.mouse_move_target.x == -1)
+	    || !SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
+		Me.mouse_move_target.x = (-1);
+		Me.mouse_move_target.y = (-1);
+		Me.mouse_move_target.z = (-1);
 	}
+
+	//---------------
+	// Update the intermediate waypoints
+	//
+	// Intermediate waypoints are defined relatively to Tux's current level.
+	// They thus also have to be updated<Fluzz>
+	//
+	int i;
+	for (i = 0; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX; i++)
+	{
+		if (Me.next_intermediate_point[i].x == -1)
+			break;
+
+		gps old_point = { Me.next_intermediate_point[i].x, Me.next_intermediate_point[i].y, oldpos.z };
+		gps new_point;
+
+		int rtn = resolve_virtual_position(&new_point, &old_point);
+		if (rtn)
+			update_virtual_position(&new_point, &new_point, newpos.z);
+
+		if (!rtn || new_point.x == -1) {
+			clear_out_intermediate_points(&newpos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
+			break;
+		}
+
+		Me.next_intermediate_point[i].x = new_point.x;
+		Me.next_intermediate_point[i].y = new_point.y;
+	}
+
 	//--------------------
 	// Even the Tux must not leave the map!  A sanity check is done
 	// here...
