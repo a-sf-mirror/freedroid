@@ -995,7 +995,7 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 
 	chat_control_chat_flags = &npc->chat_flags[0];
 
-	if (npc->chat_character_initialized) {
+	if (!npc->chat_character_initialized) {
 		int i;
 		for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 			chat_control_chat_flags[i] = 0;
