@@ -476,7 +476,7 @@ void LightRadiusInit()
 
 	// The scale factor has to be an integer (due to a modulo operation in the
 	// flicker-free code).
-	LightRadiusConfig.scale_factor = round(LightRadiusConfig.scale_factor);
+	LightRadiusConfig.scale_factor = ceilf(LightRadiusConfig.scale_factor);
 
 	//----------
 	// The center of the light_radius texture will be translated along the Y axe,
