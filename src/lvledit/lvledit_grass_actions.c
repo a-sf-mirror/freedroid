@@ -310,7 +310,7 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
  * beautify the grass.  If focuses on replacing 'full' grass tiles with 
  * proper full and part-full grass tiles.
  */
-void level_editor_beautify_grass_tiles(level * EditLevel)
+void level_editor_beautify_grass_tiles(level * EditLevel, int xstart, int ystart, int xend, int yend)
 {
 	int x;
 	int y;
@@ -322,8 +322,8 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	//--------------------
 	// First we fix the pure corner pieces, cutting away quit some grass
 	// 
-	for (x = 1; x < EditLevel->xlen - 1; x++) {
-		for (y = 1; y < EditLevel->ylen - 1; y++) {
+	for (x = xstart; x < xend; x++) {
+		for (y = ystart; y < yend; y++) {
 			this_tile = &(EditLevel->map[y][x]);
 
 			if (is_full_grass_tile(this_tile)) {
@@ -336,8 +336,8 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	//--------------------
 	// Now we fix the anticorner pieces, cutting away much less grass
 	// 
-	for (x = 1; x < EditLevel->xlen - 1; x++) {
-		for (y = 1; y < EditLevel->ylen - 1; y++) {
+	for (x = xstart; x < xend; x++) {
+		for (y = ystart; y < yend; y++) {
 			this_tile = &(EditLevel->map[y][x]);
 
 			if (is_full_grass_tile(this_tile)) {
@@ -350,8 +350,8 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	//--------------------
 	// Now we fix the halftile pieces, cutting away much less grass
 	// 
-	for (x = 1; x < EditLevel->xlen - 1; x++) {
-		for (y = 1; y < EditLevel->ylen - 1; y++) {
+	for (x = xstart; x < xend; x++) {
+		for (y = ystart; y < yend; y++) {
 			this_tile = &(EditLevel->map[y][x]);
 
 			if (is_full_grass_tile(this_tile)) {
@@ -364,8 +364,8 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	//--------------------
 	// Finally we randomize the full grass tiles
 	// 
-	for (x = 1; x < EditLevel->xlen - 1; x++) {
-		for (y = 1; y < EditLevel->ylen - 1; y++) {
+	for (x = xstart; x < xend; x++) {
+		for (y = ystart; y < yend; y++) {
 			this_tile = &(EditLevel->map[y][x]);
 
 			if (is_full_grass_tile(this_tile)) {
@@ -391,8 +391,8 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	//--------------------
 	// Finally we randomize the full grass tiles
 	// 
-	for (x = 1; x < EditLevel->xlen - 1; x++) {
-		for (y = 1; y < EditLevel->ylen - 1; y++) {
+	for (x = xstart; x < xend; x++) {
+		for (y = ystart; y < yend; y++) {
 			this_tile = &(EditLevel->map[y][x]);
 
 			if (is_full_grass_tile(this_tile)) {
@@ -404,6 +404,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 
 	done_beautify_grass();
 
-};				// void level_editor_beautify_grass_tiles ( void )
+}
 
 #undef _leveleditor_grass_actions_c

@@ -74,7 +74,7 @@ static void activate_button(struct leveleditor_button *b)
 		level_editor_action_toggle_waypoint_connection_user(EditLevel(), EditX(), EditY());
 		break;
 	case LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON:
-		level_editor_beautify_grass_tiles(EditLevel());
+		level_editor_beautify_grass_tiles(EditLevel(), 1, 1, EditLevel()->xlen - 1, EditLevel()->ylen - 1);
 		break;
 	case LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON:
 		level_editor_cut_selection();

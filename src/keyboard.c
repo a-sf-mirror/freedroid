@@ -604,7 +604,7 @@ static int input_key(int keynum, int value)
 			level_editor_action_redo();
 			return 0;
 		} else if (KEYPRESS("beautify_grass")) {
-			level_editor_beautify_grass_tiles(EditLevel());
+			level_editor_beautify_grass_tiles(EditLevel(), 1, 1, EditLevel()->xlen - 1, EditLevel()->ylen - 1);
 			return 0;
 		} else if (KEYPRESS("toolbar_scroll_left")) {
 			leveleditor_toolbar_scroll_left();
