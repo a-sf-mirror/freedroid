@@ -138,12 +138,15 @@ void init_npcs()
 		"Power hammer",
 		"Baseball bat",
 		"Normal Jacket",
+		"Normal Jacket",
 		"Reinforced Jacket",
 		"Protective Jacket",
 		"Standard Shield",
 		"Large Shield",
 		"Worker Helmet",
+		"Worker Helmet",
 		"Miner Helmet",
+		"Shoes",
 		"Shoes",
 		"Worker Shoes",
 		".22 LR Ammunition",
@@ -151,6 +154,8 @@ void init_npcs()
 	};
 
 	const char *moore_shop[] = {
+		"Diet supplement",
+		"Diet supplement",
 		"Diet supplement",
 		"Antibiotic",
 		"Doc-in-a-can",
@@ -170,13 +175,21 @@ void init_npcs()
 	};
 
 	const char *skippy_shop[] = {
-		"Map Maker",
+//		"Map Maker",
+//		Sniper wristband
+//		Hacker wristband
+//		Script?
+		"Teleporter homing beacon",
+		"Teleporter homing beacon",
 		"Teleporter homing beacon",
 	};
 
 	const char *duncan_shop[] = {
 		"VMX Gas Grenade",
+		"VMX Gas Grenade",
 		"EMP Shockwave Generator",
+		"EMP Shockwave Generator",
+		"Plasma Shockwave Emitter",
 		"Plasma Shockwave Emitter",
 	};
 
@@ -361,7 +374,10 @@ static void npc_refresh_inventory(struct npc *n)
 	}
 
 	// Compute the target size and add items to match it
-	target_size = (3*npc_shoplist_size(n)) / 4;
+	target_size = npc_shoplist_size(n);
+	if (target_size > 8)
+		target_size = 8;
+
 	printf("refresh: target size is %d, inventory size %d, shoplist size %d\n", target_size, npc_inventory_size(n), shoplist_size);
 
 	if (npc_inventory_size(n) >= target_size) {

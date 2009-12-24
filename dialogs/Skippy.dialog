@@ -47,24 +47,23 @@ LuaCode={
 	npc_says(_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!")
 	npc_says(_"And as a special favour, I'll sell you a mapping device for half price!")
 	npc_says(_"What a GREAT offer! You're so lucky!")
-	hide(0) show(1, 2, 3, 20)
+	hide(0) show(1, 2, 3, 10, 20)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Show me some of those map-making devices."
+Nr=1  Text=_"Ok, if I want to buy me one of those mapping pills. How much are they?"
 LuaCode={
-	npc_says(_"Sure! I've got one that will perfectly fit your head.")
-	trade_with("Skippy")
+	npc_says(_"They only cost 50. Special price only for you!")
+	hide(1) show(11, 12)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"How do I activate such a device?"
+Nr=2  Text=_"How do I activate a mapping device?"
 LuaCode={
 	npc_says(_"Oh, that's so simple. No need to activate anything at all.")
-	npc_says(_"Just put that thing on your head, and the nanotechnological bots will enter your body.")
+	npc_says(_"Just swallow the pill and the nanotechnological bots will enter your body.")
 	npc_says(_"They'll merge with your eyes and transmit data to your brain using the optical nerves. Nice, eh?")
-	npc_says(_"Everything within 7 meters of you will be displayed on your retinas.")
-	npc_says(_"(Just press tab to see the automap.)")
+	npc_says(_"Everything within 50 meters of you will be displayed on your retinas.")
 	hide(2) show(4)
 }
 ----------------------------------------------------------------------
@@ -102,6 +101,42 @@ LuaCode={
 	add_cookie("skippy_angry")
 	end_dialog()
 	hide(6)
+}
+----------------------------------------------------------------------
+
+Nr=10  Text=_"Do you sell anything else?"
+LuaCode={
+	npc_says(_"Sure! I also build some electronics devices, depending on what parts I can get my hands on.", "NO_WAIT") 
+	-- We can potentially add more elcetronics things he can do in the future, or perhaps "add magic" to an item of Tux for a price
+	npc_says(_"Resources are a bit scarse nowdays though.")
+	trade_with("Skippy")
+}
+----------------------------------------------------------------------
+
+Nr=11  Text=_"Ok, I'll take one."
+LuaCode={
+	if (get_gold() < 49) then
+		npc_says(_"Hey, I'm not a bank!", "NO_WAIT")
+		npc_says(_"Come back when you can afford it.")
+		show(1)
+	else
+		npc_says(_"Here is your pill.", "NO_WAIT")
+		npc_says(_"Just swallow it, and it should work.")
+		npc_says(_"I give a 30 day warranty and adjustments, in case it doesnt work as expected.")
+		add_item("Map Maker",1)
+		display_big_message(_"Swallow pill and Press tab to see automap.")
+		add_gold(-50)
+	end
+	hide(11, 12)
+}
+----------------------------------------------------------------------
+
+Nr=12  Text=_"Nah, dont think so. "
+LuaCode={
+	npc_says(_"Your loss.", "NO_WAIT")
+	npc_says(_"Hope you wont get lost and killed out there.", "NO_WAIT")
+	npc_says(_"But don't count on it.")
+	hide(11, 12) show(1)
 }
 ----------------------------------------------------------------------
 
