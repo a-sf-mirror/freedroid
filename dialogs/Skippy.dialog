@@ -115,7 +115,7 @@ LuaCode={
 
 Nr=11  Text=_"Ok, I'll take one."
 LuaCode={
-	if (get_gold() < 49) then
+	if (get_gold() < 50) then
 		npc_says(_"Hey, I'm not a bank!", "NO_WAIT")
 		npc_says(_"Come back when you can afford it.")
 		show(1)
