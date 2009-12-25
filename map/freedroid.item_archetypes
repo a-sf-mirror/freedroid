@@ -134,7 +134,7 @@ Conventional main disadvantage - Expensive ammo!!
 //Browning MG          - 2H - Size 3x5 - lvl 9 - Dam:40-120- Recharge: 0.2 - Reload: 3.0 - Clip: 100- Dur 10-20 - 4000 (str 30)
 -> * Energy *
  Laser Ammo                  Size 1x1 - lvl 4 - Speed: 45 - stack 20                                           - 2 
- Laser Pistol         - 1H - Size 1x2 - lvl 6 - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 20 - Dur100-110 - 500
+ Laser Pistol         - 1H - Size 2x1 - lvl 6 - Dam: 4-10 - Recharge: 0.4 - Reload: 3.0 - Clip: 20 - Dur100-110 - 500
  Laser Rifle          - 2H - Size 1x4 - lvl 7 - Dam: 8-16 - Recharge: 0.6 - Reload: 4.0 - Clip: 20 - Dur100-110 - 1000
  Laser Pulse Rifle    - 2H - Size 3x3 - lvl 7 - Dam: 4-8  - Recharge: 0.15- Reload: 4.0 - Clip: 60 - Dur140-160 - 1000 (str 21)
  Laser Pulse Cannon   - 2H - Size 4x4 - lvl 8 - Dam: 6-14 - Recharge: 0.15- Reload: 4.0 - Clip: 80 - Dur140-160 - 2000 (str 28)
@@ -1640,8 +1640,8 @@ plus duration modifier=10
 File or directory name for inventory image="weapons/laser_pistol/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=500
-inventory_size_x=1
-inventory_size_y=2
+inventory_size_x=2
+inventory_size_y=1
 Item description text=_"A basic laser, but it has good uses in certain situations. No warranty of any kind, though."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
