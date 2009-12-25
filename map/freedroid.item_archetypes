@@ -93,7 +93,7 @@ Other items can potentially be bigger
 +Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 50-70 - 180
  Baseball bat         - 2H - Size 2x4 - lvl 1 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur 10-15 -  30
 +Iron bar             - 2H - Size 1x5 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 60-75 -  70
-*Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 40-60 - 150
+ Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 40-60 - 150
 -> * Energy *
  Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 1000  -1500 (laser ammo - reload 2 - clip 20)
  Laserstaff           - 2H - Size 1x3 - lvl 8 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 1000  -2000 (laser ammo - reload 2 - clip 20)
@@ -896,19 +896,19 @@ Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-*disabled-v0.11* Start of new item specification subsection **
+** Start of new item specification subsection **
 Item name=_"Sledgehammer"
 Item min class for drop=4
 Item max class for drop=7
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Item uses rotation series with prefix="weapons/sledgehammer"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=25
 Dexterity minimum required to wear/wield this item=20
 Base item duration=40
 plus duration modifier=20
-File or directory name for inventory image="weapons/laser_sword_yellow/inv_image.png"
+File or directory name for inventory image="weapons/sledgehammer/inv_image.png"
 inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
