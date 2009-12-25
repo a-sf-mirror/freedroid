@@ -117,7 +117,7 @@ Conventional main disadvantage - Expensive ammo!!
 -> * Conventional *
  .22 LR Ammo                 Size 2x1 - lvl 3 - Speed: 30 - stack 90                                           - 4
  .22 LR Automatic     - 1H - Size 1x2 - lvl 3 - Dam: 1-3  - Recharge: 0.4 - Reload: 3.0 - Clip: 11 - Dur 70-80 - 150
- .22 LR Rifle         - 2H - Size 1x5 - lvl 4 - Dam: 2-8  - Recharge: 0.75- Reload: 6.0 - Clip: 11 - Dur 70-80 - 250
+ .22 LR H Rifle       - 2H - Size 1x5 - lvl 4 - Dam: 2-8  - Recharge: 0.75- Reload: 6.0 - Clip: 11 - Dur 70-80 - 250
  Shotgun Ammo                Size 2x1 - lvl 4 - Speed: 30 - stack 24                                           - 12
  Sawn off shotgun     - 1H - Size 2x2 - lvl 4 - Dam: 2-10 - Recharge: 0.2 - Reload: 3.0 - Clip:  2 - Dur 50-60 - 200
  2 barrel shotgun     - 2H - Size 2x4 - lvl 4 - Dam: 2-18 - Recharge: 0.2 - Reload: 4.0 - Clip:  2 - Dur 50-60 - 250
@@ -126,8 +126,8 @@ Conventional main disadvantage - Expensive ammo!!
  9mm Automatic        - 1H - Size 2x1 - lvl 5 - Dam: 4-10 - Recharge: 0.5 - Reload: 3.0 - Clip: 19 - Dur 50-60 - 400
  9mm SMG              - 2H - Size 2x3 - lvl 6 - Dam: 3-8  - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 60-70 - 950
  7.62x39mm Ammo              Size 1x3 - lvl 6 - Speed: 30 - stack 45                                           - 24 
-* 7.62mm Rifle         - 2H - Size 2x5 - lvl 6 - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Dur 50-60 - 800
- 7.62mm AK-47         - 2H - Size 2x5 - lvl 7 - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 70-80 - 1400
+ 7.62mm H Rifle       - 2H - Size 2x5 - lvl 6 - Dam:10-16 - Recharge: 0.8 - Reload: 5.0 - Clip:  5 - Dur 50-60 - 800
+ 7.62mm AK-47         - 2H - Size 2x4 - lvl 7 - Dam: 6-12 - Recharge: 0.2 - Reload: 3.0 - Clip: 30 - Dur 70-80 - 1400
 //5.56x45mm Ammo - Skipped due to too many & more common ammotypes already
  .50 BMG Ammo         - lvl 7 - Speed: 30  no stack, pass through                                              - 200
  Heavysniperrifle     - 2H - Size 2x5 - lvl 8 - Dam:40-240- Recharge: 1.2 - Reload: 4.0 - Clip: 10 - Dur 40-50 - 2000 (str 24)
@@ -1466,30 +1466,24 @@ Base list price=24
 Item description text=_"7.62mm ammo."
 ** End of new item specification subsection **
 
-/*
-Image inspiration
-CZ 527 Hunting rifle (7.62) - (6) 1.5 7 5
-http://www.theothersideofkim.com/index.php/ggps/5956/
-*/
-
-*disabled-v0.11* Start of new item specification subsection **
-Item name=_"7.62mm Hunting rifle"
+** Start of new item specification subsection **
+Item name=_"7.62mm Hunting Rifle"
 Item min class for drop=6
 Item max class for drop=8
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_pulse_rifle"
+Item uses rotation series with prefix="weapons/7_62mm_hunting_rifle"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=-1
 Dexterity minimum required to wear/wield this item=-1
 Base item duration=50
 plus duration modifier=10
-File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
+File or directory name for inventory image="weapons/7_62mm_hunting_rifle/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=800
 inventory_size_x=2
 inventory_size_y=5
-Item description text=_"7.62 millimeter ammo is commonly used in assault rifles.  This is a more civilian take on that concept."
+Item description text=_"7.62 millimeter ammo is commonly used in assault rifles. This is a more civilian take on that concept."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.800000
 Item as gun: reloading time=5.000000
