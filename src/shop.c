@@ -464,7 +464,7 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 		}
 
 		if (ItemMap[ShowItem->type].item_group_together_in_inventory) {
-			if (!MatchItemWithName(ShowItem->type, "Cyberbucks")) {
+			if (!MatchItemWithName(ShowItem->type, "Valuable Circuts")) {
 				strcat(InfoText, _("Multiplicity: "));
 				sprintf(TextChunk, "%d \n", (int)ShowItem->multiplicity);
 				strcat(InfoText, TextChunk);

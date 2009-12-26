@@ -2154,7 +2154,7 @@ void check_for_items_to_pickup(level *item_lvl, int item_index)
 		if ((calc_euklid_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
 		    && DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL)) {
 			if (GameConfig.Inventory_Visible == FALSE
-			    || MatchItemWithName(item_lvl->ItemList[item_index].type, "Cyberbucks")) {
+			    || MatchItemWithName(item_lvl->ItemList[item_index].type, "Valuable Circuts")) {
 				AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
 				return;
 			} else {

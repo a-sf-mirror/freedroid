@@ -405,7 +405,7 @@ static int lua_event_add_gold(lua_State * L)
 	char tmpstr[150];
 
 	if (nb < 0 && -nb > Me.Gold) {
-		ErrorMessage(__FUNCTION__, "Tried to remove %d cyberbucks from the player that only has %d!\n", PLEASE_INFORM,
+		ErrorMessage(__FUNCTION__, "Tried to remove %d gold from the player that only has %d!\n", PLEASE_INFORM,
 			     IS_WARNING_ONLY, -nb, Me.Gold);
 		nb = -Me.Gold;
 	}

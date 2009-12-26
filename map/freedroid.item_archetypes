@@ -49,7 +49,7 @@ Received an item type that was outside of range of the allowed item types.
 */
 
 ** Start of new item specification subsection **
-Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Dont click this!  OK this seemes fixed now. However the first item is still VERY buggy ingame (cant be dropped, can't be switched to from inventory etc)"
+Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Dont click this! OK this seemes fixed now. However the first item is still VERY buggy ingame (cant be dropped, can't be switched to from inventory etc)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -1295,7 +1295,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=250
 inventory_size_x=2
 inventory_size_y=4
-Item description text=_"An old standby of farmers and bird hunters.  While capable of causing a fair amount of damage to droid armor, the limited rounds capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
+Item description text=_"An old standby of farmers and bird hunters. While capable of causing a fair amount of damage to droid armor, the limited rounds capacity and fairly slow reloading time make this weapon preferable to melee weapons, but only just. Requires two hands to wield."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.200000
 Item as gun: reloading time=4.000000
@@ -1389,7 +1389,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=400
 inventory_size_x=2
 inventory_size_y=1
-Item description text=_"Nine millimeter ammo is a common caliber.  While not very powerful, it allows for more rounds per clip than bigger ammunition."
+Item description text=_"Nine millimeter ammo is a common caliber. While not very powerful, it allows for more rounds per clip than bigger ammunition."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=3.000000
@@ -2718,7 +2718,7 @@ Item as gun: weapon requires both hands="yes"
 *Light Boots
 *Boots
 *Item name=_"Reinforced Boots"
-*Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer.  Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
+*Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer. Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
 *Item name=_"Hiking Boots"
 *Item description text=_"These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
  **********************************************************************************************************/
@@ -3620,7 +3620,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pills_potions/energy_capsule/inv_image_E.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=45
-Item description text=_"These small containers hold purified running strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
+Item description text=_"These small containers hold purified running strength. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 ** End of new item specification subsection **
  
 ** Start of new item specification subsection **
@@ -3634,7 +3634,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pills_potions/energy_capsule/inv_image_E.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
-Item description text=_"These small containers hold purified strength.  This item will give a temporary boost to strength.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
+Item description text=_"These small containers hold purified strength. This item will give a temporary boost to strength. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3648,7 +3648,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pills_potions/energy_capsule/inv_image_E.png"
 Item uses drop sound with filename="drop_potion_sound.ogg"
 Base list price=150
-Item description text=_"These small containers hold purified dexterity.  This item will give a temporary bonus to dexterity.  Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
+Item description text=_"These small containers hold purified dexterity. This item will give a temporary bonus to dexterity. Each capsule can be used only once, but many of them can be grouped together like one item in your inventory."
 ** End of new item specification subsection **
 
 
@@ -3660,7 +3660,7 @@ Item description text=_"These small containers hold purified dexterity.  This it
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
-Item name=_"Cyberbucks"
+Item name=_"Valuable Circuts"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -3669,7 +3669,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="cyberbucks/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_2.ogg"
 Base list price=1
-Item description text=_"The monetary standard of the world.  You'll be needing these."
+Item description text=_"The new monetary standard of the world. With the collapse of the banking system, the precious metals in bot circutry has literally become hard cash. A bit hard to come by though, as the bots are not likely to just hand it over..."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3830,7 +3830,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="eating_fork/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault. All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time. It comes with its own power supply, and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3845,7 +3845,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault. All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time. It comes with its own power supply, and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3858,7 +3858,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="drinking_mug/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
-Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault.  All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time.  It comes with its own power supply, and has a supposed duration of 200 years."
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault. All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time. It comes with its own power supply, and has a supposed duration of 200 years."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3888,7 +3888,7 @@ Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=40
 inventory_size_x=1
 inventory_size_y=1
-Item description text=_"This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place.  Note:  Multiple of these may be grouped together in the inventory."
+Item description text=_"This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place. Note: Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **

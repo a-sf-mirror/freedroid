@@ -1875,7 +1875,7 @@ void ThouArtDefeated(void)
 		DropItemAt(Me.special_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y, -1, -1, 1);
 	}
 	if (Me.Gold > 0) {
-		DropItemAt(GetItemIndexByName("Cyberbucks"), Me.pos.z, Me.pos.x, Me.pos.y, -1, -1, 1);
+		DropItemAt(GetItemIndexByName("Valuable Circuts"), Me.pos.z, Me.pos.x, Me.pos.y, -1, -1, 1);
 	}
 
 	GameOver = TRUE;
