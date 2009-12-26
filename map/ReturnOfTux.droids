@@ -81,7 +81,8 @@ SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="ButchStartGameSquare" R
 SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="NewSpencer" RushTux="no" UseDialog="Spencer" ShortLabel=_"Spencer -- Leader of the Red Guard" 
 SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="LukasStartGameSquare" RushTux="no" UseDialog="Lukas" ShortLabel=_"Lukas -- Head of the Armory" 
 SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="TybaltStartGameSquare" RushTux="no" UseDialog="Tybalt" ShortLabel=_"Tybalt -- Citadel Gate Guard" 
-SForce: T=BAR Fixed=0 Marker=9999 Friendly=1 StartLabel="EwaldStartGameSquare" RushTux="no" UseDialog="Ewald" ShortLabel=_"Ewald -- Barkeeper" 
+SForce: T=BAR Fixed=0 Marker=9999 Friendly=1 StartLabel="EwaldStartGameSquare" RushTux="no" UseDialog="Ewald" ShortLabel=_"Ewald -- Barkeeper"
+SForce: T=FSC Fixed=0 Marker=9999 Friendly=1 StartLabel="TamaraStartGameSquare" RushTux="no" UseDialog="Tamara" ShortLabel=_"Tamara -- Librarian"  
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------

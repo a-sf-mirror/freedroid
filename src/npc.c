@@ -114,6 +114,7 @@ void init_npcs()
 		"StandardMSFacilityGateGuard",
 		"StandardOldTownGateGuard",
 		"Stone",
+		"Tamara",
 		"Tania",
 		"TestDroid",
 		"TutorialTom",
@@ -223,6 +224,25 @@ void init_npcs()
 		"Source Book of Invisibility",
 	};
 
+	const char *tamara_shop[] = {
+		"Source Book of Emergency shutdown",
+		"Source Book of Check system integrity",
+		"Source Book of Sanctuary",
+		"Source Book of Analyze item",
+		"Source Book of Malformed packet",
+		"Source Book of Blue Screen",
+		"Source Book of Broadcast Blue Screen",
+		"Source Book of Calculate Pi",
+		"Source Book of Virus",
+		"Source Book of Broadcast virus",
+		"Source Book of Dispel smoke",
+		"Source Book of Killer poke",
+		"Source Book of Reverse-engineer",
+		"Source Book of Plasma discharge",
+		"Source Book of Nethack",
+		"Source Book of Invisibility",
+	};
+
 #define ADD_AR(a, name) \
 	for (i=0; i < sizeof(a)/sizeof(a[0]); i++) { \
 		npc_add_shoplist(name, a[i]); \
@@ -235,6 +255,7 @@ void init_npcs()
 	ADD_AR(duncan_shop, "Duncan");
 	ADD_AR(ewald_shop, "Ewald");
 	ADD_AR(sorenson_shop, "Sorenson");
+	ADD_AR(tamara_shop, "Tamara");
 }
 
 void clear_npcs()
