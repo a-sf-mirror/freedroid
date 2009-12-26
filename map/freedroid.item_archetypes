@@ -2983,7 +2983,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=90
-Item description text=_"A simple cover for your head. Don't expect to be incognito."
+Item description text=_"A simple cover for protecting your head. Don't expect to be incognito, your flippers and penguin like body are hard to miss."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3141,7 +3141,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=500
-Item description text=_"Everyone needs to blow some steam every now and then."
+Item description text=_"Everyone needs to blow off some steam every now and then."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
@@ -3826,7 +3826,7 @@ Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="eating_fork"
-Items of this type collect together in inventory="yes"
+Items of this type collect together in inventory="no"
 File or directory name for inventory image="eating_fork/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
@@ -3839,7 +3839,7 @@ Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="eating_plate"
-Items of this type collect together in inventory="yes"
+Items of this type collect together in inventory="no"
 File or directory name for inventory image="eating_plate/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
@@ -3854,7 +3854,7 @@ Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="drinking_mug"
-Items of this type collect together in inventory="yes"
+Items of this type collect together in inventory="no"
 File or directory name for inventory image="drinking_mug/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=50
