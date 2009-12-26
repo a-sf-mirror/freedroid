@@ -37,6 +37,8 @@
 #include "global.h"
 #include "SDL_rotozoom.h"
 
+#define DEBUG_SHOP 0
+
 static void npc_clear_inventory(struct npc *);
 
 // List of NPCs in the game
@@ -366,7 +368,7 @@ static int add_item(struct npc *n, const char *item_name)
 		return 1;
 	}
 
-	printf("adding item %s\n", item_name);
+	DebugPrintf(DEBUG_SHOP, "adding item %s\n", item_name);
 	n->npc_inventory[i].type = GetItemIndexByName(item_name);
 	FillInItemProperties(&n->npc_inventory[i], TRUE, 1);
 	n->npc_inventory[i].is_identified = TRUE;
@@ -386,7 +388,7 @@ static void npc_refresh_inventory(struct npc *n)
 
 	// Remove each item with a given probability
 	for (i = npc_inventory_size(n) - 1; i >= 0; i--) {
-		printf("refresh: removing item %d\n", i);
+		DebugPrintf(DEBUG_SHOP, "refresh: removing item %d\n", i);
 		// The loop is backwards so repeated remove_item calls
 		// do as little memory traffic as possible
 		if (MyRandom(100) < 50) {
@@ -399,7 +401,7 @@ static void npc_refresh_inventory(struct npc *n)
 	if (target_size > 8)
 		target_size = 8;
 
-	printf("refresh: target size is %d, inventory size %d, shoplist size %d\n", target_size, npc_inventory_size(n), shoplist_size);
+	DebugPrintf(DEBUG_SHOP, "refresh: target size is %d, inventory size %d, shoplist size %d\n", target_size, npc_inventory_size(n), shoplist_size);
 
 	if (npc_inventory_size(n) >= target_size) {
 		// We do not need to add any items, we have too many already
@@ -422,14 +424,14 @@ item *npc_get_inventory(struct npc *n)
 {
 	// Time based refresh
 	if ((Me.current_game_date - n->last_trading_date) > 360) {
-		printf("time based  refresh\n");
+		DebugPrintf(DEBUG_SHOP, "time based  refresh\n");
 		// Refresh every 360 secondes
 		npc_refresh_inventory(n);
 	}
 
 	// Low-stock based refresh
 	if (npc_inventory_size(n) < (1 + npc_shoplist_size(n) / 2)) {
-		printf("stock based  refresh\n");
+		DebugPrintf(DEBUG_SHOP, "stock based  refresh\n");
 		// If stock < 50% of catalog
 		npc_refresh_inventory(n);
 	}
