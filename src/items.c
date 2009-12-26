@@ -398,7 +398,7 @@ void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 		strcat(full_item_name, font_switchto_neon);
 	}
 
-	if (MatchItemWithName(ShowItem->type, "Valuable Circuts"))
+	if (MatchItemWithName(ShowItem->type, "Valuable Circuits"))
 		sprintf(full_item_name, "%d ", ShowItem->multiplicity);
 
 	strcat(full_item_name, D_(ItemMap[ShowItem->type].item_name));
@@ -639,7 +639,7 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 	// simple, so we do this first.
 	//
 	if ((DropDecision > 100 - GOLD_DROP_PERCENTAGE)) {
-		DropItemAt(GetItemIndexByName("Valuable Circuts"), level_num, x, y, -1, -1, 10 * class + MyRandom(9));
+		DropItemAt(GetItemIndexByName("Valuable Circuits"), level_num, x, y, -1, -1, 10 * class + MyRandom(9));
 	}
 
 	if ((DropDecision < ITEM_DROP_PERCENTAGE)) {
@@ -1965,7 +1965,7 @@ void handle_player_identification_command()
 		char iname[500];
 		*iname = '\0';
 
-		if (MatchItemWithName(GrabbedItem->type, "Valuable Circuts"))
+		if (MatchItemWithName(GrabbedItem->type, "Valuable Circuits"))
 			sprintf(iname, "%d ", GrabbedItem->multiplicity);
 
 		if ((GrabbedItem->prefix_code != (-1)))
@@ -2057,7 +2057,7 @@ void HandleInventoryScreen(void)
 			// some walls or something...
 			
 			if (picked_item) {
-				if (GameConfig.Inventory_Visible == FALSE || MatchItemWithName(picked_item->type, "Valuable Circuts")) {
+				if (GameConfig.Inventory_Visible == FALSE || MatchItemWithName(picked_item->type, "Valuable Circuits")) {
 					/* Handled in check_for_items_to_pickup() */
 					return;
 				}
@@ -2446,7 +2446,7 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 	// In the special case of money, we add the amount of money to our
 	// money counter and eliminate the item on the floor.
 	//
-	if (MatchItemWithName(ItemPointer->type, "Valuable Circuts")) {
+	if (MatchItemWithName(ItemPointer->type, "Valuable Circuits")) {
 		play_item_sound(ItemPointer->type);
 		Me.Gold += ItemPointer->multiplicity;
 		DeleteItem(ItemPointer);

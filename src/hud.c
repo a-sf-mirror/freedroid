@@ -179,7 +179,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// If this item has a multiplicity, we print it out
 	//
 	if (ItemMap[CurItem->type].item_group_together_in_inventory) {
-		if (!MatchItemWithName(CurItem->type, "Valuable Circuts")) {
+		if (!MatchItemWithName(CurItem->type, "Valuable Circuits")) {
 			sprintf(linebuf, _("Multiplicity: %d \n"), CurItem->multiplicity);
 			strcat(ItemDescText, linebuf);
 		}

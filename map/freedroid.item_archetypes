@@ -3660,7 +3660,7 @@ Item description text=_"These small containers hold purified dexterity. This ite
  **********************************************************************************************************/
 
 ** Start of new item specification subsection **
-Item name=_"Valuable Circuts"
+Item name=_"Valuable Circuits"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
