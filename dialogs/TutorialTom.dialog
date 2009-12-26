@@ -156,7 +156,7 @@ Nr=11  Text=_"Some items came out."
 LuaCode={
 	npc_says(_"Well, you've discovered a great secret: chests sometimes contain items.")
 	npc_says(_"We humans have a fascination with hiding our treasures. What comprises a treasure means different things to different people.")
-	npc_says(_"For some, it's cyberbucks. That's the current monetary standard on our world.")
+	npc_says(_"For some, it's valuable metals in robotic circutry. That's the current monetary standard on our world.")
 	npc_says(_"For others, it may be weapons, or even just items that may be used as weapons in a pinch.")
 	npc_says(_"Still others, odd as it may sound, keep dishes hidden away.")
 	npc_says(_"Perhaps the best thing you can find, though, is armor. At least, given the current situation with the bots, that is.")
@@ -452,7 +452,6 @@ LuaCode={
 	hide(33) show(37)
 	add_quest("Tutorial Shooting", "Tutorial Tom wants me to shoot those bots.")
 	add_cookie("opened_door")
-  
 	change_obstacle_state("TutorialStorage", "opened")
 	end_dialog()
 }
@@ -467,7 +466,7 @@ LuaCode={
 		npc_says(_"But first, you'll need to give me your weapons.")
 		npc_says(_"Unequip all your weapons, then talk to me and we'll move on.")
 		add_diary_entry("Tutorial Shooting", "That was like shooting fish in a barrel. I could use a fish about now.")
-    hide(37) show(38)
+		hide(37) show(38)
 		end_dialog()
 	else
 		npc_says(_"I don't mind if you don't want to do this, but please don't try to trick me.")
@@ -497,8 +496,8 @@ LuaCode={
 Nr=39  Text=_"I'd rather just move on to the next section of the tutorial."
 LuaCode={
 	npc_says(_"As you wish, Linarian.")
-  add_diary_entry("Tutorial Shooting", "I decided not to finish the shooting tutorial.")
-  end_quest("Tutorial Shooting")
+	add_diary_entry("Tutorial Shooting", "I decided not to finish the shooting tutorial.")
+	end_quest("Tutorial Shooting")
 	change_obstacle_state("TutorialShootingOut", "opened")
 	hide(30, 31, 32, 33, 37, 38, 39) show(40)
 	end_dialog()
@@ -655,7 +654,7 @@ LuaCode={
 			npc_says(_"Well done! That concludes our tutorial.")
 			del_cookie("hacking_bots")
 			hide(51, 52, 53, 54, 55)
-      add_diary_entry("Tutorial Hacking", "Well, it took a lot of work, but I showed those bots who's boss.")
+			add_diary_entry("Tutorial Hacking", "Well, it took a lot of work, but I showed those bots who's boss.")
 		end
 	else end
 	npc_says(_"Now, there's one last thing you should know.")
