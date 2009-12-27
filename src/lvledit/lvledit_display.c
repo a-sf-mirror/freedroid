@@ -412,6 +412,9 @@ static void show_level_editor_tooltips(void)
 
 	previous_function_call_time = SDL_GetTicks();
 
+	if (!GameConfig.show_tooltips)
+		return;
+
 #define TICKS_UNTIL_TOOLTIP 1200
 
 	if (MouseCursorIsOnButton(GO_LEVEL_NORTH_BUTTON, GetMousePos_x(), GetMousePos_y())) {
