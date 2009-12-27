@@ -1267,6 +1267,12 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
 	//--------------------
 	// Transform the gps position
 	//
+	if (source_pos->z < 0 || source_pos->z >= sizeof(gps_transform_matrix)/sizeof(gps_transform_matrix[0]) ||
+		level_num < 0 || level_num >= sizeof(gps_transform_matrix[0])/sizeof(gps_transform_matrix[0][0])) {
+		ErrorMessage(__FUNCTION__, "Virtual position update was required for level %d relative to level %d - one of those are incorrect level numbers.\n", PLEASE_INFORM, IS_WARNING_ONLY, source_pos->z, level_num);
+		return;
+	}
+
 	struct neighbor_data_cell *ngb_data = &gps_transform_matrix[source_pos->z][level_num];
 
 	if (ngb_data->valid) {
