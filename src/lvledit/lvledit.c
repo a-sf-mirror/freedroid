@@ -366,6 +366,9 @@ void LevelEditor()
 {
 	leveleditor_init();
 
+	reset_visible_levels();
+	animation_timeline_reset();
+
 	while (!level_editor_done) {
 		game_status = INSIDE_LVLEDITOR;
 
