@@ -380,6 +380,10 @@ void iso_load_bullet_surfaces(void)
 	int i, j, k;
 	char fpath[2048];
 	char constructed_filename[5000];
+
+	// Important Note : the following array HAS to be in sync with the
+	// enum _bullets (in defs.h), and so also with the 'bullet_image_type'
+	// values in freedroid.item_archetypes
 	char *bullet_identifiers[] = {
 		"pulse",	// 0 "pluse" or "classic 001"
 		"single",	// 1 "single" or "classic 476"

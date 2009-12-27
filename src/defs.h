@@ -742,10 +742,15 @@ enum {
 //--------------------
 // bullet types
 //
+// Important Note : this enum HAS to be in sync with bullet_identifiers[]
+// defined in iso_load_bullet_surfaces(), and so also with the
+// 'bullet_image_type' values in freedroid.item_archetypes
+//
 enum _bullets {
 	PULSE = 0,
 	SINGLE_PULSE,
 	MILITARY,
+	FLASH, // Not used
 	EXTERMINATOR,
 	LASER_RIFLE,
 	SINGLE_LASER,
