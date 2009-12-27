@@ -101,55 +101,6 @@ void HomeMadeItemRepair(Item RepairItem)
 };				// void HomeMadeItemRepair ( Item RepairItem ) 
 
 /**
- * Same as GetPositionCode makes a position code out of a pointer, we now
- * want to it the other way around and find a pointer to a given position
- * code and player number.
- */
-Item FindPointerToPositionCode(int SlotCode)
-{
-
-	DebugPrintf(0, "\nSlotCode received : %d . Me Number : %d. ", SlotCode);
-	switch (SlotCode) {
-	case WEAPON_SLOT:
-		DebugPrintf(0, "\nItem Found! It's of type %d. It's from weapon slot. ", Me.weapon_item.type);
-		return (&(Me.weapon_item));
-		break;
-	case SPECIAL_SLOT:
-		DebugPrintf(0, "\nItem Found! It's of type %d. It's from special slot. ", Me.special_item.type);
-		return (&(Me.special_item));
-		break;
-	case SHIELD_SLOT:
-		DebugPrintf(0, "\nItem Found! It's of type %d. It's from shield slot. ", Me.shield_item.type);
-		return (&(Me.shield_item));
-		break;
-	case ARMOUR_SLOT:
-		DebugPrintf(0, "\nItem Found! It's of type %d. It's from armour slot. ", Me.armour_item.type);
-		return (&(Me.armour_item));
-		break;
-	case DRIVE_SLOT:
-		return (&(Me.drive_item));
-		break;
-	default:
-		if (SlotCode < FIRST_INV_SLOT + MAX_ITEMS_IN_INVENTORY) {
-			DebugPrintf(0, "\nItem Found! It's of type %d. It's directly from inventory. ",
-				    Me.Inventory[SlotCode - FIRST_INV_SLOT].type);
-			return (&(Me.Inventory[SlotCode - FIRST_INV_SLOT]));
-		} else if (SlotCode < FIRST_INV_SLOT + MAX_ITEMS_IN_INVENTORY + MAX_ITEMS_PER_LEVEL) {
-			DebugPrintf(0, "\nPosition code to find indicated level item Nr. %d. ",
-				    SlotCode - FIRST_INV_SLOT - MAX_ITEMS_IN_INVENTORY);
-			return (&(curShip.AllLevels[Me.pos.z]->ItemList[SlotCode - FIRST_INV_SLOT - MAX_ITEMS_IN_INVENTORY]));
-		} else {
-			DebugPrintf(0,
-				    "\nERROR! Unidentifiable item slot code given to Item FindPointerToPositionCode ( int , int ). Terminating... ");
-			Terminate(ERR);
-		}
-	}
-
-	return NULL;
-
-};				// Item FindPointerToPositionCode ( PositionCode )
-
-/**
  * This function calculates the price of a given item, taking into account
  * (*) the items base list price 
  * (*) the items given prefix modifier

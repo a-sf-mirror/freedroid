@@ -475,7 +475,6 @@ void ApplyItem(item * CurItem);
 int Inv_Pos_Is_Free(int x, int y);
 int GetInventoryItemAt(int x, int y);
 item *GetHeldItemPointer(void);
-Item FindPointerToPositionCode(int PositionCode);
 int ItemUsageRequirementsMet(item * UseItem, int MakeSound);
 int MouseCursorIsInInventoryGrid(int x, int y);
 int MouseCursorIsInUserRect(int x, int y);
