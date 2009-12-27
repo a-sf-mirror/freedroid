@@ -502,8 +502,8 @@ void MakeConnect(int x, int y, enum connection_type type)
 	int wp1 = CreateWaypoint(target_level, wp_x, wp_y, &useless);
 	int wp2 = CreateWaypoint(target_level, wp_nx, wp_ny, &useless);
 
-	action_toggle_waypoint_connection(target_level, wp1, wp2, 0);
-	action_toggle_waypoint_connection(target_level, wp2, wp1, 0);
+	action_toggle_waypoint_connection(target_level, wp1, wp2, 0, 0);
+	action_toggle_waypoint_connection(target_level, wp2, wp1, 0, 0);
 }
 
 static int find_waypoints(int x1, int y1, int x2, int y2, int *wps, int max)
@@ -545,8 +545,8 @@ static void connect_waypoints()
 				wp2 = rand() % max_wps;
 
 			if (wp1 != wp2) {
-				action_toggle_waypoint_connection(target_level, wps[wp1], wps[wp2], 0);
-				action_toggle_waypoint_connection(target_level, wps[wp2], wps[wp1], 0);
+				action_toggle_waypoint_connection(target_level, wps[wp1], wps[wp2], 0, 0);
+				action_toggle_waypoint_connection(target_level, wps[wp2], wps[wp1], 0, 0);
 			}
 		}
 	}
