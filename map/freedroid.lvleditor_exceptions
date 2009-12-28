@@ -69,5 +69,11 @@ Rule=8 [Type="WD"] WP1 Idx1=48 (X1=25.500000:Y1=49.500000:L1=37) <-> WP2 Idx2=49
 
 *** Beginning of LevelValidator Exceptions List ***
 
+# The path in Rules 1 and 2 is blocked by a locked red door. This is intended 
+# because we want Bender to hang around the Doc while he is sick, and when cured,
+# stop stalking the Doc and go to W gate and guard it
+
+Rule=1 [Type="WW"] WP1 Idx1=202 (X1=13.500000:Y1=35.500000:L1=0) -> WP2 Idx2=203 (X2=11.500000:Y2=25.500000:L2=0)
+Rule=2 [Type="WQ"] WP1 Idx1=202 (X1=13.500000:Y1=35.500000:L1=0) -> WP2 Idx2=203 (X2=11.500000:Y2=25.500000:L2=0)
 
 *** End of LevelValidator Exceptions List ***
