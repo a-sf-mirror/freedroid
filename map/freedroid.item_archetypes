@@ -2983,7 +2983,7 @@ inventory_size_x=2
 inventory_size_y=2
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=90
-Item description text=_"A simple cover for protecting your head. Don't expect to be incognito, your flippers and penguin like body are hard to miss."
+Item description text=_"A simple cover to protect your head. Don't expect to be incognito, your flippers and penguin like body are hard to miss."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
