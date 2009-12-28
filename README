@@ -122,20 +122,6 @@
    * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
      of the whole screen instead of just the game window, if the option
      (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
-   * Ubuntu: Changing language in game will not work by default since Ubuntu does not ship with standard 
-     ISO locales, only UTF-8 versions. You will have to manually add them to make language selection work.
-     Procedure
-        1) In commandline write 
-                sudo nano /var/lib/locales/supported.d/local
-        2) Add the locales you are interested in, 1 entry on each line, e.g.
-                de_DE ISO-8859-15
-                fr_FR ISO-8859-15
-                sv_SE ISO-8859-15
-                ru_RU.cp1251 cp1251
-           and then exit with ctrl+x and yes to saving the changes.
-        3) Run
-                sudo dpkg-reconfigure locales
-        4) You should now be able to chose the corresponding languages in the in game menu.
 
 
 5. Screen resolution
