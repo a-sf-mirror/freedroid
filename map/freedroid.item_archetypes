@@ -2892,8 +2892,6 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
 Item uses rotation series with prefix="shields/standard"
 Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=25
-Dexterity minimum required to wear/wield this item=25
 Item as defensive item: base_dr_bonus=8
 Item as defensive item: dr_bonus_modifier=4
 Base item duration=30
@@ -3877,8 +3875,8 @@ Item description text=_"Point and click. Point and know anything. Point, and I w
 
 ** Start of new item specification subsection **
 Item name=_"Teleporter homing beacon"
-Item min class for drop=0
-Item max class for drop=7
+Item min class for drop=3
+Item max class for drop=9
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="vmx_grenade"

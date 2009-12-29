@@ -102,7 +102,7 @@ LuaCode={
 	npc_says(_"Using most programs increases your body temperature.")
 	npc_says(_"However, using a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds.")
 	npc_says(_"Normally, you would have this ability as well as the ability to hack bots, but your mind is probably still recovering from the stasis.")
-	npc_says(_"We'll talk about programs in depth later on, but for now you can access the Skills menu by pressing S.")
+	npc_says(_"We'll talk about programs in depth later on, but for now you can access the Skills/Programs menu by pressing S.")
 	hide(4)
 }
 ----------------------------------------------------------------------
@@ -117,7 +117,7 @@ LuaCode={
 	npc_says(_"Unlike people, you can even examine items from behind a wall using this technique.")
 	npc_says(_"Moving your mouse over an item will tell you more about that item.")
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
-	npc_says(_"Feel free to stop and examine them to get practice. You can also pick them up, and view the inventory by pressing I.")
+	npc_says(_"Feel free to stop and examine them to get practice. You can also pick them up, and view the inventory by pressing i.")
 	hide(5)
 }
 ----------------------------------------------------------------------
@@ -143,9 +143,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"What is in those chests?"
+Nr=10  Text=_"What is in that chest?"
 LuaCode={
-	npc_says(_"Well, open them up and find out by simply clicking on each one of them with the left mouse button.")
+	npc_says(_"Well, open it up and find out by simply clicking on it with the left mouse button.")
 	npc_says(_"I'll tell you more after you've done it.")
 	hide(10) show(11, 19)
 	end_dialog()
@@ -156,7 +156,7 @@ Nr=11  Text=_"Some items came out."
 LuaCode={
 	npc_says(_"Well, you've discovered a great secret: chests sometimes contain items.")
 	npc_says(_"We humans have a fascination with hiding our treasures. What comprises a treasure means different things to different people.")
-	npc_says(_"For some, it's valuable metals in robotic circutry. That's the current monetary standard on our world.")
+	npc_says(_"For some, it's valuable metals in robotic circuitry. That's the current monetary standard on our world.")
 	npc_says(_"For others, it may be weapons, or even just items that may be used as weapons in a pinch.")
 	npc_says(_"Still others, odd as it may sound, keep dishes hidden away.")
 	npc_says(_"Perhaps the best thing you can find, though, is armor. At least, given the current situation with the bots, that is.")
@@ -206,7 +206,7 @@ LuaCode={
 	npc_says(_"If you don't unequip the item then, you run the risk of it becoming ruined.")
 	npc_says(_"There are three things you can do when an item reaches critical condition.")
 	npc_says(_"The first is to sell or discard the item.")
-	npc_says(_"A better choice would be to use your repair skill on the item. This allows you to repair the item, at the cost of losing a percentage of its maximum useful life.")
+	npc_says(_"A better choice would be to use your repair equipment program on the item. This allows you to repair the item, at the cost of losing a percentage of its maximum useful life.")
 	npc_says(_"Most of the time, though, your best choice will be to pay to have the item repaired at a shop. This maintains the useful life of the item.")
 	hide(15) show(17)
 }
@@ -225,13 +225,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_"Repair skill? How do I use that?"
+Nr=17  Text=_"Repair equipment program? How do I use that?"
 LuaCode={
-	npc_says(_"Perhaps I should start by explaining skills. You already know about programs, and that they can be accessed through your HUD.")
-	npc_says(_"Programs are a type of skill, along with repairing and firing your weapon. Skills can be used in a couple of different ways")
-	npc_says(_"To use a skill, select it through your HUD. Then, apply the skill by right clicking. This can be used on an enemy, an item, or just the world depending on the skill.")
-	npc_says(_"If you're curious what a skill does, you can find out by clicking the question mark in the Skills menu.")
-	npc_says(_"Now, to answer your question, you use your repair skill by selecting it in the Skills menu, then right clicking on the item you wish to repair.")
+	npc_says(_"Perhaps I should start by explaining programs in general. You already know about some programs, and that they can be accessed through your HUD.")
+	npc_says(_"To use a program, select it through your HUD. Then, run the program by right clicking. You can target an enemy, an item, or just the world depending on the program.")
+	npc_says(_"If you're curious what a program does, you can find out by clicking the question mark in the Skills/Program menu.")
+	npc_says(_"Now, to answer your question, you use your repair equipment program by selecting it in the Skills/Program menu, then right clicking on the item you wish to repair.")
+	improve_program("Repair equipment")
+	add_cookie("has_repair")
 	hide(17)
 }
 ----------------------------------------------------------------------
@@ -239,8 +240,9 @@ LuaCode={
 Nr=19  Text=_"I think I'm ready for the next section of the tutorial."
 LuaCode={
 	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand to hand combat.")
+	if (has_cookie("has_repair")) then
+	else improve_program("Repair equipment") end
 	hide(10, 11, 12, 13, 14, 15, 16, 17, 19) show(20, 29)
-	improve_program("Repair equipment")
 	change_obstacle_state("TutorialEquipOut", "opened")
 	end_dialog()
 }
@@ -298,7 +300,9 @@ LuaCode={
 	npc_says(_"The first bot is carrying an Entropy Inverter . Bring it to me to prove you've beaten it.")
 	npc_says(_"Come back and talk to me when you have the Entropy Inverter.")
 	change_obstacle_state("TutorialMelee1", "opened")
-	add_item("Doc-in-a-can", 3)
+	add_item("Doc-in-a-can", 1)
+	add_item("Doc-in-a-can", 1)
+	add_item("Doc-in-a-can", 1)
 	hide(23) show(24, 25)
 	end_dialog()
 }
@@ -352,7 +356,7 @@ LuaCode={
 	npc_says(_"A 247 is nothing to trifle with, so I'm giving you a shield in the hopes that it'll help keep you alive.")
 	npc_says(_"Finally, I'm giving you couple of somewhat experimental pills that will temporarily increase your strength and dexterity, respectively.")
 	npc_says(_"Use them in the same way you would use a health drink.")
-	npc_says(_"If I were you, I would think about using your repair skill on your armor and that wrench before you go into the room.")
+	npc_says(_"If I were you, I would think about using your repair equipment program on your armor and that wrench before you go into the room.")
 	npc_says(_"You'll also need to equip them. I won't do that for you.")
 	npc_says(_"Like the last bot, this one will be carrying an item. Bring me the Tachyon Condensator it is carrying to continue.")
 	npc_says(_"I've unlocked the door. Good luck, and talk to me when you have the Tachyon Condensator.")
@@ -360,8 +364,8 @@ LuaCode={
 	heal_tux()
 	add_item("Doc-in-a-can", 1)
 	add_item("Strength Capsule", 1)
-	add_item("Dexterity Capsule", 2)
-	add_item("Medium Shield", 1)
+	add_item("Dexterity Capsule", 1)
+	add_item("Standard Shield", 1)
 	hide(27) show(28)
 	end_dialog()
 }
@@ -414,10 +418,10 @@ Nr=31  Text=_"So what can you tell me about guns?"
 LuaCode={
 	npc_says(_"The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come in swinging range.")
 	npc_says(_"There are three basic ways to do this: traditional firearms, lasers, and plasma weapons.")
-	npc_says(_"Traditional firearms are things that go bang. A small explosion accelerates the ammunition towards the target at a high velocity, causing injory.")
+	npc_says(_"Traditional firearms are things that go bang. A small explosion accelerates the ammunition towards the target at a high velocity, causing injury.")
 	npc_says(_"Lasers use an intensified beam of light to burn through the intended victim. These operate on replaceable charge packs.")
 	npc_says(_"Plasma weapons use superheated ionized gas to burn the target. The gas comes in loadable canisters.")
-	npc_says(_"All the other weapons are variations of these three. We have a few in storage for training purposes.")
+	npc_says(_"Most other ranged weapons are variations of these three. We have a few in storage for training purposes.")
 	hide(31) show(32)
 }
 ----------------------------------------------------------------------
@@ -426,11 +430,12 @@ Nr=32  Text=_"So how do I use guns?"
 LuaCode={
 	npc_says(_"Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for.")
 	npc_says(_"Next, simply left click on your target, and you'll begin firing.")
-	npc_says(_"Alternatively, you can select the Fire Weapon skill, and right click on the enemy.")
+	npc_says(_"Alternatively, you can select the Fire Weapon program, and right click on the enemy.", "NO_WAIT")
+	npc_says(_"That is the best way if you are trying to conserve precious ammo with high rate of fire guns.")
 	npc_says(_"There are a couple of new tricks with ranged weapons. If you want to move while firing, simply hold shift and left click your desired position.")
 	npc_says(_"If you'd rather stay in place, Hold A, then left click your target.")
 	npc_says(_"When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it.")
-	npc_says(_"Sometimes, you will need to manually reload. You can do this by pressing R.")
+	npc_says(_"Sometimes, you will need or want to manually reload. You can do this by pressing R.")
 	if (not has_cookie("opened_door")) then show(33) else end
 }
 ----------------------------------------------------------------------
@@ -439,20 +444,25 @@ Nr=33  Text=_"I think I understand how to use guns now."
 LuaCode={
 	npc_says(_"In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition.")
 	if (has_cookie("has_gun")) then
-		npc_says(_"You already got a .22 pistol from that 247 you killed earlier. It's not much as guns go, but it can do the trick.")
+		npc_says(_"You already got the .22 pistol I gave you earlier when destroying that 247. It's not much as guns go, but it can do the trick.")
 	else
 		npc_says(_"Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick.")
 		add_item(".22 Automatic", 1)
-		add_item(".22 LR Ammunition", 1)
 	end
+	npc_says(_"Here is some more ammunition for it")
+	add_item(".22 LR Ammunition", 50)
+
 	npc_says(_"You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter.")
 	npc_says(_"Practice switching weapons and reloading.")
 	npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
 	npc_says(_"Once you've gotten rid of them all, we can move on.")
 	hide(33) show(37)
 	add_quest("Tutorial Shooting", "Tutorial Tom wants me to shoot those bots.")
+-- TODO we need to talk about questlogs here as well
+-- TODO probably explain leveling as well as balancing changes to XP always risk causing leveling here. Or somehow make sure Tux cant level
 	add_cookie("opened_door")
 	change_obstacle_state("TutorialStorage", "opened")
+	change_obstacle_state("TutorialShootCage", "opened")
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -462,9 +472,9 @@ LuaCode={
 	if (done_quest("Tutorial Shooting")) then
 		npc_says(_"Excellent job.")
 		npc_says(_"Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo.")
-		npc_says(_"Next, we'll be moving on to learning the TakeOver skill.")
+		npc_says(_"Next, we'll be moving on to learning the TakeOver program.")
 		npc_says(_"But first, you'll need to give me your weapons.")
-		npc_says(_"Unequip all your weapons, then talk to me and we'll move on.")
+		npc_says(_"Put all your ranged weapons in your inventory, then talk to me and we'll move on.")
 		add_diary_entry("Tutorial Shooting", "That was like shooting fish in a barrel. I could use a fish about now.")
 		hide(37) show(38)
 		end_dialog()
@@ -488,6 +498,7 @@ LuaCode={
 	else
 		npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
 		npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
+		npc_says(_"That includes the laser and plasma pistols in the storage room to the west.")
 		end_dialog()
 	end
 }
@@ -520,7 +531,7 @@ LuaCode={
 	npc_says(_"They are general Melee and Ranged fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
 	npc_says(_"You also have the Programming skill, which essentially is about programming in an energy efficient manner so programs cause less heat.")
 	npc_says(_"Apart from this, a few programs require a teacher and training points to improve.")
-	npc_says(_"Extract bot parts is a special skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
+	npc_says(_"Extract bot parts is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
 	npc_says(_"The Hacking program we will speak a bit more of in a little while.")
 	hide(40) show(41)
 }
@@ -549,14 +560,14 @@ LuaCode={
 
 Nr=50  Text=_"So how does this work?"
 LuaCode={
-	npc_says(_"We talked about skills before. Now, we're going to focus on hacking skills in particular.")
+	npc_says(_"We talked about programs before. Now, we're going to focus on hacking programs in particular.")
 	npc_says(_"As I mentioned before, your brain works in a way remarkably similar to a central processing unit.")
 	npc_says(_"In many ways, you interact with the world around you as a virtual environment.")
 	npc_says(_"You seem to have access to an API that isn't exposed to humans. You can interact with the environment in ways we only dream of.")
 	npc_says(_"Because of this, you can run various programs on the bots.")
 	npc_says(_"You can attempt to take them over, or monkey with their programming, or even cause them to damage themselves.")
 	npc_says(_"Likewise, there are certain programs that affect you or items around you.")
-	hide(50) show(51, 52, 53)
+	hide(50) show(51)
 }
 ----------------------------------------------------------------------
 
@@ -565,7 +576,7 @@ LuaCode={
 	npc_says(_"I'm afraid that you will have to experience it for yourself to really understand.")
 	npc_says(_"However, you did leave yourself instructions before you went into stasis sleep.")
 	npc_says(_"Takeover, or hacking, comes in the form of a game or competition placing you against the bot.")
-	npc_says(_"You initiate it by selecting the Hacking skill, then right-clicking on a hostile bot.")
+	npc_says(_"You initiate it by selecting the Hacking program, then right-clicking on a hostile bot.")
 	npc_says(_"The field of play is split into two sides, one green, one maroon, representing circuit boards.")
 	npc_says(_"In the center of the field is a column of boxes known as logic cores. These cores have wires attached to them from both circuit boards.")
 	npc_says(_"Your objective is to activate as many cores in your chosen color as possible at the end of each round.")
@@ -574,7 +585,7 @@ LuaCode={
 	npc_says(_"At that point, you have 10 more seconds in which to activate more cores than the bot.")
 	npc_says(_"You have a limited number of charges, 3 by default, so choose your targets carefully.")
 	npc_says(_"I can tell you about some more advanced techniques, if you'd like.")
-	show(52, 53, 54)
+	show(52, 53, 54) hide(51)
 }
 ----------------------------------------------------------------------
 
@@ -585,6 +596,7 @@ LuaCode={
 	npc_says(_"Fortunately for you, software bugs do indeed exist, and therefore some cores will be on your side from the beginning.")
 	npc_says(_"Likewise, the bots only have a limited number of charges. Occasionally, they will have more than you, but that is a risk you have to take.")
 	npc_says(_"Because you are initiating the attack, you do get to choose your side, which can let you handicap the bot greatly if used wisely.")
+	hide(52)
 }
 ----------------------------------------------------------------------
 
@@ -599,6 +611,7 @@ LuaCode={
 	npc_says(_"Sometimes these splitters will be stacked. Tracing the route ahead of time will be crucial to your tactical success.")
 	npc_says(_"Ideally, you want to stick your opponent with 2-to-1 splitters, while you have 1-to-2 splitters at your disposal.")
 	npc_says(_"Finally, remember that patience is often a virtue. Taking over all cores early on only to lose them later can be a crushing blow.")
+	hide(53)
 }
 ----------------------------------------------------------------------
 
@@ -606,7 +619,7 @@ Nr=54  Text=_"I'm ready to try hacking bots."
 LuaCode={
 	npc_says(_"I certainly hope so.")
 	npc_says(_"I should, however, take the time to tell you a few more things.")
-	npc_says(_"Hacking, like most other skills, incurs a cost to you.")
+	npc_says(_"Hacking, like most other programs, incurs a cost to you.")
 	npc_says(_"Processing programs seems to heat up your brain.")
 	npc_says(_"You seem to be able to handle quite a bit of heat, but you have your limits.")
 	npc_says(_"If you accumulate too much heat, you will automatically shut down in order to cool off.")
@@ -615,10 +628,11 @@ LuaCode={
 	npc_says(_"You also have a special program called Emergency Shutdown that will lower your heat level drastically, although not without cost.")
 	npc_says(_"Using it will paralyze you for several seconds, during which you are a sitting duck... er, penguin.")
 	tux_says(_"I take it that was a joke also?")
-	npc_says(_"Quite. In addition to hacking, you have the ability to execute arbitrary code on bots.")
+	npc_says(_"Quite.", "NO_WAIT")
+	npc_says(_"In addition to hacking, you have the ability to execute arbitrary code on bots.")
 	npc_says(_"These scripts and programs can be learned through reading source code books. To read a book, right-click on it in inventory.")
 	npc_says(_"You should have recovered your hacking ability by now, and I'll give you a couple of source code books as well.")
-	show(55)
+	show(55, 57) hide(54)
 }
 ----------------------------------------------------------------------
 
@@ -632,14 +646,14 @@ LuaCode={
 	improve_program("Hacking")
 	improve_program("Emergency shutdown")
 	add_item("Liquid nitrogen", 1)
-	add_item("Source Book of Emergency shutdown", 1)
 	add_item("Source Book of Calculate Pi", 1)
-	add_item("Source Book of Analyze item", 1)
 	add_item("Source Book of Malformed packet", 1)
 	add_cookie("hacking_bots")
 	add_quest("Tutorial Hacking", "Tutorial Tom wants me to hack those bots.")
+	change_obstacle_state("TutorialTakeoverCage", "opened")
 	hide(55) show(56)
 	end_dialog()
+-- TODO Also explain improving program revisions
 }
 ----------------------------------------------------------------------
 
@@ -666,8 +680,16 @@ LuaCode={
 		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
 		npc_says(_"You'll need it if our world is to survive.")
 	else end
-	hide(51, 52, 53, 54, 55)
+	hide(51, 52, 53, 54, 55, 57)
 	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=57  Text=_"Tell me again about take over, I'm not sure I got it all."
+LuaCode={
+	npc_says(_"Tell me exactly what part you want me to explain again.")
+	npc_says(_"But things will be much clearer once you try for yourself then when i try to explain by only reading your notes as experience.")
+	show(51, 52, 53) hide(57)
 }
 ----------------------------------------------------------------------
 
