@@ -367,6 +367,7 @@ void LevelEditor()
 	leveleditor_init();
 
 	reset_visible_levels();
+	get_visible_levels();
 	animation_timeline_reset();
 
 	while (!level_editor_done) {

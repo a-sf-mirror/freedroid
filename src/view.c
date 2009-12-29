@@ -992,9 +992,7 @@ void reset_visible_levels()
 	}
 	
 	old_current_level = -1;
-	
-	// Get new list
-	get_visible_levels();
+	DebugPrintf(-1, "reset_visible_levels\n");
 }
 
 /*

@@ -474,6 +474,7 @@ static void AddRemLevel(void)
 				gps_transform_map_init();
 				dirty_animated_obstacle_lists(new_level_num);
 				// Teleporting Tux will re-render the menu background
+				reset_visible_levels();
 				Teleport(new_level_num, 3, 3, FALSE);
 			}
 			break;
@@ -496,6 +497,7 @@ static void AddRemLevel(void)
 				gps_transform_map_dirty_flag = TRUE;
 				gps_transform_map_init();
 				// Teleporting Tux will re-render the menu background
+				reset_visible_levels();
 				Teleport(0, 3, 3, FALSE);
 
 				delete_map_level(tmp);
@@ -656,8 +658,10 @@ static void LevelOptions(void)
 			tgt = EditLevelNrPopup();
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
-				if (curShip.AllLevels[tgt] != NULL)
+				if (curShip.AllLevels[tgt] != NULL) {
+					reset_visible_levels();
 					Teleport(tgt, 3, 3, FALSE);
+				}
 				proceed_now = !proceed_now;
 			}
 			break;
@@ -685,6 +689,7 @@ static void LevelOptions(void)
 					l = 0;
 			} else
 				l = 2;
+			reset_visible_levels();
 			Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
 			break;
 		case SET_LEVEL_NAME:
@@ -748,8 +753,10 @@ static void LevelOptions(void)
 					while (curShip.AllLevels[newlevel] == NULL && newlevel >= 0)
 						--newlevel;
 					// teleport if new level exists
-					if (newlevel >= 0)
+					if (newlevel >= 0) {
+						reset_visible_levels();
 						Teleport(newlevel, 3, 3, FALSE);
+					}
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
@@ -758,8 +765,10 @@ static void LevelOptions(void)
 					while (curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels)
 						++newlevel;
 					// teleport if new level exists
-					if (newlevel < curShip.num_levels)
+					if (newlevel < curShip.num_levels) {
+						reset_visible_levels();
 						Teleport(newlevel, 3, 3, FALSE);
+					}
 					while (RightPressed()) ;
 				}
 				break;
@@ -778,6 +787,7 @@ static void LevelOptions(void)
 							EditLevel()->minimum_light_value = 0;
 						while (LeftPressed()) ;
 					}
+					reset_visible_levels();
 					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
 					break;
 				} else {
@@ -791,6 +801,7 @@ static void LevelOptions(void)
 							EditLevel()->light_bonus = 0;
 						while (LeftPressed()) ;
 					}
+					reset_visible_levels();
 					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
 					break;
 				}
@@ -947,8 +958,10 @@ int DoLevelEditorMainMenu()
 			tgt = EditLevelNrPopup();
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
-				if (curShip.AllLevels[tgt] != NULL)
+				if (curShip.AllLevels[tgt] != NULL) {
+					reset_visible_levels();
 					Teleport(tgt, 3, 3, FALSE);
+				}
 				proceed_now = !proceed_now;
 			}
 			break;
@@ -1013,8 +1026,10 @@ int DoLevelEditorMainMenu()
 					while (curShip.AllLevels[newlevel] == NULL && newlevel >= 0)
 						--newlevel;
 					// teleport if new level exists
-					if (newlevel >= 0)
+					if (newlevel >= 0) {
+						reset_visible_levels();
 						Teleport(newlevel, 3, 3, FALSE);
+					}
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
@@ -1023,8 +1038,10 @@ int DoLevelEditorMainMenu()
 					while (curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels)
 						++newlevel;
 					// teleport if new level exists
-					if (newlevel < curShip.num_levels)
+					if (newlevel < curShip.num_levels) {
+						reset_visible_levels();
 						Teleport(newlevel, 3, 3, FALSE);
+					}
 					while (RightPressed()) ;
 				}
 				break;

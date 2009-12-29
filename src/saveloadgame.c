@@ -583,6 +583,7 @@ int LoadGame(void)
 	load_game_command_came_from_inside_running_game = TRUE;
 	
 	reset_visible_levels();
+	get_visible_levels();
 	animation_timeline_reset();
 	
 	append_new_game_message(_("Game loaded."));

@@ -169,11 +169,13 @@ static void TeleportHome(void)
 		Me.teleport_anchor.z = Me.pos.z;
 		teleport_arrival_sound();
 		ResolveMapLabelOnShip("TeleportHomeTarget", &(HomeSpot));
+		reset_visible_levels();
 		Teleport(HomeSpot.level, HomeSpot.x, HomeSpot.y, TRUE);
 		clear_active_bullets();
 	} else			//we must teleport back to the anchor
 	{
 		teleport_arrival_sound();
+		reset_visible_levels();
 		Teleport(Me.teleport_anchor.z, Me.teleport_anchor.x, Me.teleport_anchor.y, TRUE);
 		clear_active_bullets();
 		Me.teleport_anchor.x = 0;

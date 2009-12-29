@@ -1487,6 +1487,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	init_npcs();
 
 	ResolveMapLabelOnShip(startpos, &StartPosition);
+	reset_visible_levels();
 	Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE);
 	clear_active_bullets();
 
