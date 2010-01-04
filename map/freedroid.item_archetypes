@@ -3337,25 +3337,9 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Source Book of Nethack"
-Item min class for drop=4
-Item max class for drop=9
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="spellbook"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="spellbook/inv_image_yellow.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=450
-Item description text=_"The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
-inventory_size_x=2
-inventory_size_y=2
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
 Item name=_"Source Book of Plasma discharge"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
@@ -3369,9 +3353,25 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Source Book of Nethack"
+Item min class for drop=-1
+Item max class for drop=-1
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_yellow.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=450
+Item description text=_"The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Source Book of Ricer CFLAGS"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
@@ -3386,8 +3386,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name=_"Source Book of Reverse-engineer"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
@@ -3402,8 +3402,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name=_"Source Book of Light"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
@@ -3418,8 +3418,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name=_"Source Book of Satellite image"
-Item min class for drop=8888
-Item max class for drop=9999
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
