@@ -165,10 +165,22 @@ void init_npcs()
 	};
 
 	const char *lukas_shop[] = {
-		"Laser pistol",
+		"9x19mm Ammunition",
+		"7.62x39mm Ammunition",
+		".50 BMG (12.7x99mm) Ammunition",
+		"2 mm Exterminator Ammunition",
 		"Laser power pack",
-		"Plasma pistol",
+		"Laser power pack",
+		"Laser power pack",
+		"Laser pistol",
+		"Laser pistol",
+// too ugly and missing rotationimages		"Laser Rifle",
 		"Plasma energy container",
+		"Plasma energy container",
+		"Plasma energy container",
+		"Plasma pistol",
+		"Plasma pistol",
+		"Plasma gun",
 		"Riot Shield",
 		"Light Battle Helmet",
 		"Battle Helmet",
@@ -220,10 +232,10 @@ void init_npcs()
 		"Source Book of Broadcast virus",
 		"Source Book of Dispel smoke",
 		"Source Book of Killer poke",
-		"Source Book of Reverse-engineer",
-		"Source Book of Plasma discharge",
-		"Source Book of Nethack",
 		"Source Book of Invisibility",
+//		"Source Book of Plasma discharge",
+//		"Source Book of Reverse-engineer",
+//		"Source Book of Nethack",
 	};
 
 	const char *tamara_shop[] = {
@@ -239,10 +251,10 @@ void init_npcs()
 		"Source Book of Broadcast virus",
 		"Source Book of Dispel smoke",
 		"Source Book of Killer poke",
-		"Source Book of Reverse-engineer",
-		"Source Book of Plasma discharge",
-		"Source Book of Nethack",
 		"Source Book of Invisibility",
+//		"Source Book of Plasma discharge",
+//		"Source Book of Reverse-engineer",
+//		"Source Book of Nethack",
 	};
 
 #define ADD_AR(a, name) \
