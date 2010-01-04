@@ -105,7 +105,7 @@ Other items can potentially be bigger
 //Sharpened screwdriver- lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x2 - Dur  6-8  - 20  
 //Folding stiletto     - lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.4 - Inv size 1x2 - Dur  4-5  - 20
 //Golf club            - lvl 1 - str 0 dex23 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 1x4 - Dur  6-10 -100 
-//Tree branch          - lvl 1 - str 0 dex 0 - 1H - Dam: 0-3 - Recharge: 0.7 - Inv size 2x3 - Dur  5-10 -  5
+//Tree branch/walking stick - lvl 1 - str 0 dex 0 - 1H - Dam: 0-3 - Recharge: 0.7 - Inv size 2x3 - Dur  5-10 -  5
 //Table leg            - 1H - Size 1x4 - lvl 1 - str 0 dex 0 - Dam: 1-2  - Recharge: 0.5  - Dur  5-10 -  10
 //Energy whip
 
@@ -158,7 +158,7 @@ Conventional main disadvantage - Expensive ammo!!
 ** Start of new item specification subsection **
 Item name=_"Big kitchen knife"
 Item min class for drop=0
-Item max class for drop=4
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/big_kitchen_knife_resized"
@@ -195,8 +195,8 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_"Antique sword"
-Item min class for drop=2
-Item max class for drop=5
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/sword"
@@ -231,48 +231,10 @@ Item as gun: weapon requires both hands="no"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
-** S*tart of new item specification subsection **
-Item name=_"Great sword"
-Item min class for drop=3
-Item max class for drop=7
-Item can be applied in combat="no"
-Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=25
-Dexterity minimum required to wear/wield this item=20
-Base item duration=10
-plus duration modifier=5
-File or directory name for inventory image="weapons/laser_sword_yellow/inv_image.png"
-inventory_size_x=2
-inventory_size_y=5
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=300
-Item description text=_"The size and kinetic force achievable with this 2 handed sword is enough to cleave straight through the armor of a low level droid. The strain on the sword from high impact hits into metal will however require frequent maintenance to keep it from breaking in half exactly when it's most needed."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.800000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.100000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=7
-Item as gun: modifier for damage of bullets=7
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: ignore collisions with wall="yes"
-Item as gun: reflect other bullets="yes"
-Item as gun: pass through explosions="yes"
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="yes"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
 ** Start of new item specification subsection **
 Item name=_"Chainsaw"
-Item min class for drop=4
-Item max class for drop=9
+Item min class for drop=5
+Item max class for drop=5
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/chainsaw"
@@ -316,7 +278,7 @@ Item as gun: weapon requires both hands="yes"
 ** Start of new item specification subsection **
 Item name=_"Meat cleaver"
 Item min class for drop=0
-Item max class for drop=3
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/meat_cleaver"
@@ -353,8 +315,8 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_"Small Axe"
-Item min class for drop=2
-Item max class for drop=5
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/axe"
@@ -391,8 +353,8 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_"Large Axe"
-Item min class for drop=3
-Item max class for drop=7
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/axe"
@@ -435,8 +397,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"Hunting knife"
-Item min class for drop=1
-Item max class for drop=4
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/hunting_knife"
@@ -518,7 +480,7 @@ Item as gun: weapon requires both hands="no"
 ** Start of new item specification subsection **
 Item name=_"Iron pipe"
 Item min class for drop=0
-Item max class for drop=3
+Item max class for drop=9
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/iron_pipe"
@@ -556,7 +518,7 @@ Item as gun: weapon requires both hands="no"
 ** Start of new item specification subsection **
 Item name=_"Big wrench"
 Item min class for drop=0
-Item max class for drop=3
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/big_wrench"
@@ -595,7 +557,7 @@ Item as gun: weapon requires both hands="no"
 ** Start of new item specification subsection **
 Item name=_"Crowbar"
 Item min class for drop=0
-Item max class for drop=3
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/crowbar"
@@ -632,8 +594,8 @@ Item as gun: weapon requires both hands="no"
 
 ** S*tart of new item specification subsection **
 Item name=_"Golf club"
-Item min class for drop=1
-Item max class for drop=4
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/laser_sword_yellow"
@@ -822,8 +784,8 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_"Baseball bat"
-Item min class for drop=1
-Item max class for drop=5
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/baseball_bat"
@@ -898,8 +860,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"Sledgehammer"
-Item min class for drop=4
-Item max class for drop=7
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/sledgehammer"
@@ -1123,7 +1085,7 @@ From blocks.c - Should be updated one day.
 
 ** Start of new item specification subsection **
 Item name=_".22 LR Ammunition"
-Item min class for drop=3
+Item min class for drop=2
 Item max class for drop=6
 Item number dropped min=10
 Item number dropped max=60
@@ -1142,8 +1104,8 @@ Item description text=_".22 Long Rifle ammunition used to be a very common ammo 
 
 ** Start of new item specification subsection **
 Item name=_".22 Automatic"
-Item min class for drop=3
-Item max class for drop=6
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/22_automatic"
@@ -1180,8 +1142,8 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_".22 Hunting Rifle"
-Item min class for drop=4
-Item max class for drop=6
+Item min class for drop=0
+Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/22_rifle"
@@ -1218,8 +1180,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"Shotgun shells"
-Item min class for drop=4
-Item max class for drop=7
+Item min class for drop=-1
+Item max class for drop=-1
 Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
@@ -1242,8 +1204,8 @@ can make dents or disable bots by destroing their sensors
 
 ** Start of new item specification subsection **
 Item name=_"Two Barrel sawn off shotgun"
-Item min class for drop=4
-Item max class for drop=6
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/shotgun_sawn_off"
@@ -1280,8 +1242,8 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_"Two Barrel shotgun"
-Item min class for drop=4
-Item max class for drop=6
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/shotgun_2_barrel"
@@ -1318,8 +1280,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"Pump action shotgun"
-Item min class for drop=5
-Item max class for drop=7
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/shotgun_pump"
@@ -1374,8 +1336,8 @@ Item description text=_"Plasma crystal load. This is the most common way of load
 
 ** Start of new item specification subsection **
 Item name=_"9mm Automatic"
-Item min class for drop=5
-Item max class for drop=7
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/9mm_pistol"
@@ -1412,8 +1374,8 @@ Item as gun: weapon requires both hands="no"
 
 ** Start of new item specification subsection **
 Item name=_"9mm Sub Machine Gun"
-Item min class for drop=6
-Item max class for drop=8
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/9mm_smg"
@@ -1450,8 +1412,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"7.62x39mm Ammunition"
-Item min class for drop=6
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item number dropped min=10
 Item number dropped max=20
 Item can be applied in combat="no"
@@ -1468,8 +1430,8 @@ Item description text=_"7.62mm ammo."
 
 ** Start of new item specification subsection **
 Item name=_"7.62mm Hunting Rifle"
-Item min class for drop=6
-Item max class for drop=8
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/7_62mm_hunting_rifle"
@@ -1506,8 +1468,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"7.62mm AK-47"
-Item min class for drop=7
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/7_62mm_ak47"
@@ -1544,8 +1506,8 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_".50 BMG (12.7x99mm) Ammunition"
-Item min class for drop=7
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item number dropped min=1
 Item number dropped max=2
 Item can be applied in combat="no"
@@ -1564,8 +1526,8 @@ Item description text=_"Browning Machine Gun ammo."
 
 ** Start of new item specification subsection **
 Item name=_"Barrett M82 Sniper Rifle"
-Item min class for drop=8
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
 Item uses rotation series with prefix="weapons/50_barrett_m82"
@@ -1602,7 +1564,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"Laser power pack"
-Item min class for drop=4
+Item min class for drop=2
 Item max class for drop=9
 Item number dropped min=10
 Item number dropped max=20
@@ -1773,7 +1735,7 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"Plasma energy container"
-Item min class for drop=4
+Item min class for drop=2
 Item max class for drop=9
 Item number dropped min=10
 Item number dropped max=20
@@ -2009,8 +1971,8 @@ Item as gun: weapon requires both hands="yes"
 ** Start of new item specification subsection **
 Item name=_"VMX Gas Grenade"
 It**em name="Acid Grenade"
-Item min class for drop=4
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="vmx_grenade"
@@ -2025,8 +1987,8 @@ Item description text=_"The gas does not look terrifying. It even smells somewha
 
 ** Start of new item specification subsection **
 Item name=_"EMP Shockwave Generator"
-Item min class for drop=4
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="emp_grenade"
@@ -2041,8 +2003,8 @@ Item description text=_"This sphere contains a few strange bits of technology in
 
 ** Start of new item specification subsection **
 Item name=_"Plasma Shockwave Emitter"
-Item min class for drop=4
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="plasma_grenade"
