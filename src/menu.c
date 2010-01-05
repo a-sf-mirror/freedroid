@@ -386,7 +386,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 					MoveMenuPositionSound();
 					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
 					HighlightRect.y = first_menu_item_pos_y + (MenuPosition - 1) * h;
-					SDL_WarpMouse(HighlightRect.x, HighlightRect.y);
+					SDL_WarpMouse(HighlightRect.x, HighlightRect.y + h/2);
 					break;
 
 				case SDLK_DOWN:
@@ -395,7 +395,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 					MoveMenuPositionSound();
 					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
 					HighlightRect.y = first_menu_item_pos_y + (MenuPosition - 1) * h;
-					SDL_WarpMouse(HighlightRect.x, HighlightRect.y);
+					SDL_WarpMouse(HighlightRect.x, HighlightRect.y + h/2);
 					break;
 
 				default:
