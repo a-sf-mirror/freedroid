@@ -256,6 +256,14 @@ LuaCode={
 ##############
 ## Level 25 ##
 ##############
+* New event trigger *
+Name=_"Hatch with broken ladder"
+Trigger at label="Lv25to43"
+Silent=0
+LuaCode={
+	teleport("ToLv43X0")
+}
+* End of trigger *
 
 ##############
 ## Level 26 ##
@@ -401,6 +409,49 @@ LuaCode={
 }
 * End of trigger *
 
+##############
+## Level 41 ##
+##############
+
+##############
+## Level 42 ##
+##############
+
+##############
+## Level 43 ##
+##############
+* New event trigger *
+Name=_"Hidden way out"
+Trigger at label="FromLv43X1"
+Silent=0
+LuaCode={
+	teleport("Lv25from43")
+}
+* End of trigger *
+
+##############
+## Level 44 ##
+##############
+
+##############
+## Level 45 ##
+##############
+
+##############
+## Level 46 ##
+##############
+
+##############
+## Level 47 ##
+##############
+
+##############
+## Level 48 ##
+##############
+
+##############
+## Level 49 ##
+##############
 
 ** End of Mission Event Section **
 *** End of Mission File ***

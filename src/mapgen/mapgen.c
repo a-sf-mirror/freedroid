@@ -180,10 +180,10 @@ static void add_teleport(int telnum, int x, int y)
 	char *warp, *fromwarp;
 	char tmp[500];
 
-	sprintf(tmp, "Lv%dtoX%d", target_level->levelnum, telnum);
+	sprintf(tmp, "ToLv%dX%d", target_level->levelnum, telnum);
 	warp = strdup(tmp);
 
-	sprintf(tmp, "Lv%dfromX%d", target_level->levelnum, telnum);
+	sprintf(tmp, "FromLv%dX%d", target_level->levelnum, telnum);
 	fromwarp = strdup(tmp);
 
 	add_obstacle(x, y, 16);
