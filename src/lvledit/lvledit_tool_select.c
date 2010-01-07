@@ -197,6 +197,7 @@ static void start_rect_select()
 	state.type = get_current_object_type()->type;
 	switch (state.type) {
 	case OBJECT_OBSTACLE:
+	case OBJECT_FLOOR:
 	case OBJECT_WAYPOINT:
 		break;
 	default:
@@ -234,6 +235,7 @@ static void start_rect_select()
 		break;
 	default:
 		GiveMouseAlertWindow("Cannot select elements of the chosen type.");
+		fprintf(stderr, "Type %d\n", state.type);
 		break;
 	}
 }
@@ -291,6 +293,7 @@ static void do_rect_select()
 					break;
 				case OBJECT_WAYPOINT:
 					select_waypoint_on_tile(i, j);
+					break;
 				default:
 					GiveMouseAlertWindow("Cannot select elements of the chosen type.");
 					break;
