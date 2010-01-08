@@ -12,11 +12,9 @@ endif
 
 SUBDIRS = src gluem $(extradirs)
 
-man_MANS = freedroidRPG.6
-
 freedroid_data = map graphics sound dialogs
 
-EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic lua
+EXTRA_DIST = m4 $(freedroid_data) HELP_WANTED INSTALL.generic lua
 
 dist-hook:
 	find $(distdir) -name ".svn"                 | xargs rm -rf
@@ -51,7 +49,6 @@ dist-win32: src/freedroidRPG.exe
 	cp -r graphics map sound dialogs $(win_dir)
 	cp src/freedroidRPG.exe $(win_dir)
 	find src -name "*Editor.exe" -exec cp {} $(win_dir) \;
-	nroff -man freedroidRPG.6 > freedroidRPG-man
 	for i in $(win_txts); do \
 	   cp $$i $(win_dir)/$$i.txt; \
 	   emacs -batch -q -l unix2dos.el --visit=$(win_dir)/$$i.txt -f unix2dos;\
