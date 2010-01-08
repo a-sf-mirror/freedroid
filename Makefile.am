@@ -12,14 +12,11 @@ endif
 
 SUBDIRS = src gluem $(extradirs)
 
-man_MANS = freedroidRPG.6 README
+man_MANS = freedroidRPG.6
 
 freedroid_data = map graphics sound dialogs
 
 EXTRA_DIST = m4 $(man_MANS) $(freedroid_data) HELP_WANTED INSTALL.generic lua
-
-README: freedroidRPG.6
-	man ./freedroidRPG.6 > README
 
 dist-hook:
 	find $(distdir) -name ".svn"                 | xargs rm -rf
