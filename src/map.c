@@ -693,19 +693,19 @@ void CollectAutomapData(void)
 	//
 	// when maximal automap was generated.  Now we only add to the automap what really is on screen...
 	//
-	start_x = Me.pos.x - 9;
-	end_x = Me.pos.x + 9;
-	start_y = Me.pos.y - 9;
-	end_y = Me.pos.y + 9;
+	start_x = Me.pos.x - FLOOR_TILES_VISIBLE_AROUND_TUX;
+	end_x = Me.pos.x + FLOOR_TILES_VISIBLE_AROUND_TUX;
+	start_y = Me.pos.y - FLOOR_TILES_VISIBLE_AROUND_TUX;
+	end_y = Me.pos.y + FLOOR_TILES_VISIBLE_AROUND_TUX;
 
 	if (start_x < 0)
 		start_x = 0;
 	if (end_x >= automap_level->xlen)
-		end_x = automap_level->xlen - 1;
+		end_x = automap_level->xlen;
 	if (start_y < 0)
 		start_y = 0;
 	if (end_y >= automap_level->ylen)
-		end_y = automap_level->ylen - 1;
+		end_y = automap_level->ylen;
 
 	//--------------------
 	// Now we do the actual checking for visible wall components.
