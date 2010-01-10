@@ -1,4 +1,113 @@
 ------------------------------------------------------------------------
+r2270 | ahuillet | 2010-01-10 17:07:31 +0100 (dim., 10 janv. 2010) | 1 line
+
+make "SDL missing" error message clearer.
+------------------------------------------------------------------------
+r2269 | ahuillet | 2010-01-10 16:24:22 +0100 (dim., 10 janv. 2010) | 1 line
+
+Automap takes S&B borders into account. Increased range of mapping to match what tux can see.
+------------------------------------------------------------------------
+r2268 | ahuillet | 2010-01-08 15:00:38 +0100 (ven., 08 janv. 2010) | 1 line
+
+Remove the man from the game completely.
+------------------------------------------------------------------------
+r2267 | ahuillet | 2010-01-08 14:55:53 +0100 (ven., 08 janv. 2010) | 1 line
+
+Revert "generate README automatically from the manpage." We do not want that.
+------------------------------------------------------------------------
+r2266 | stedevil | 2010-01-08 00:46:57 +0100 (ven., 08 janv. 2010) | 1 line
+
+fix maplabel naming to from random levels
+------------------------------------------------------------------------
+r2265 | stedevil | 2010-01-07 11:24:09 +0100 (jeu., 07 janv. 2010) | 1 line
+
+integrate lv43 as a 1way in 1 way out random dungeon to lvl 25
+------------------------------------------------------------------------
+r2264 | ahuillet | 2010-01-07 10:58:44 +0100 (jeu., 07 janv. 2010) | 1 line
+
+Fix floor and waypoint selection not working.
+------------------------------------------------------------------------
+r2263 | ahuillet | 2010-01-07 10:44:19 +0100 (jeu., 07 janv. 2010) | 1 line
+
+generate README automatically from the manpage.
+------------------------------------------------------------------------
+r2262 | fluzz | 2010-01-05 14:00:49 +0100 (mar., 05 janv. 2010) | 1 line
+
+Put mouse cursor in the middle of the menu entries, when using the arrow keys to navigate inside the menu. Patch submitted by NJ
+------------------------------------------------------------------------
+r2261 | stedevil | 2010-01-04 03:50:51 +0100 (lun., 04 janv. 2010) | 3 lines
+
+Rebalancing of item/gold drop
+Remove most illogical weapondrops by bots
+
+------------------------------------------------------------------------
+r2260 | stedevil | 2010-01-04 03:12:42 +0100 (lun., 04 janv. 2010) | 1 line
+
+Availability balancing for Lukas and removing some books that are not fully functional
+------------------------------------------------------------------------
+r2259 | stedevil | 2010-01-04 01:05:46 +0100 (lun., 04 janv. 2010) | 1 line
+
+Make really really sure some books cant be dropped
+------------------------------------------------------------------------
+r2258 | fluzz | 2009-12-30 00:02:17 +0100 (mer., 30 déc. 2009) | 4 lines
+
+Do not call GetQuestList(), which resets some attributes of the quests, after 
+loading a savegame. All quests current attributes are saved in the savegame,
+so there is no need to re-read them from freedroid.quests
+
+------------------------------------------------------------------------
+r2257 | fluzz | 2009-12-29 23:27:23 +0100 (mar., 29 déc. 2009) | 1 line
+
+Remove a debug message that was left out in rev 2256
+------------------------------------------------------------------------
+r2256 | fluzz | 2009-12-29 22:59:13 +0100 (mar., 29 déc. 2009) | 3 lines
+
+Call reset_visible_levels() before each call to Teleport() (apart from when 
+Teleport() is used to let Tux cross a level's boundary)
+
+------------------------------------------------------------------------
+r2255 | stedevil | 2009-12-29 10:37:15 +0100 (mar., 29 déc. 2009) | 1 line
+
+Bunch of updates, corrections and bugfixes for the Tutorial
+------------------------------------------------------------------------
+r2254 | stedevil | 2009-12-28 23:47:18 +0100 (lun., 28 déc. 2009) | 1 line
+
+Fixed my E & W confusment in the comment
+------------------------------------------------------------------------
+r2253 | fluzz | 2009-12-28 23:16:23 +0100 (lun., 28 déc. 2009) | 3 lines
+
+Add two exception rules, to avoid the level validator to complain about an 
+expected invalid pathway
+
+------------------------------------------------------------------------
+r2252 | stedevil | 2009-12-28 15:41:50 +0100 (lun., 28 déc. 2009) | 1 line
+
+Removing know issue and solution to generating non utf-8 locales on ubuntu since we dont have languages any more
+------------------------------------------------------------------------
+r2251 | stedevil | 2009-12-28 15:37:06 +0100 (lun., 28 déc. 2009) | 1 line
+
+0.13RC1 is out the door (svn 2249), bumping versionstring
+------------------------------------------------------------------------
+r2250 | stedevil | 2009-12-28 15:02:37 +0100 (lun., 28 déc. 2009) | 1 line
+
+fix indentation and update credits
+------------------------------------------------------------------------
+r2249 | stedevil | 2009-12-28 12:48:55 +0100 (lun., 28 déc. 2009) | 1 line
+
+Integrating new floortiles into the game
+------------------------------------------------------------------------
+r2248 | stedevil | 2009-12-28 12:46:41 +0100 (lun., 28 déc. 2009) | 1 line
+
+Text update
+------------------------------------------------------------------------
+r2247 | ahuillet | 2009-12-28 12:33:38 +0100 (lun., 28 déc. 2009) | 1 line
+
+fix version number in credits
+------------------------------------------------------------------------
+r2246 | ahuillet | 2009-12-28 11:47:59 +0100 (lun., 28 déc. 2009) | 1 line
+
+update changelog for .13rc1
+------------------------------------------------------------------------
 r2245 | ahuillet | 2009-12-28 11:13:22 +0100 (lun., 28 déc. 2009) | 1 line
 
 Credits: add matthias krueger and miles mccammon
