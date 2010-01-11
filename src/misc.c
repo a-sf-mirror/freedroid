@@ -371,6 +371,7 @@ struct sigaction new_action, old_action;
 
 /** 
  * Obtain a backtrace and print it to stdout.
+ * If signum != 0, call Terminate()
  */
 void print_trace(int signum)
 {
@@ -413,13 +414,18 @@ void print_trace(int signum)
 
 #endif
 
-	if (signum == SIGSEGV) {
+	switch (signum) {
+	case 0:
+		return;
+		break;
+	case SIGSEGV:
 		fprintf(stderr, "\n%s():  received SIGSEGV!\n", __FUNCTION__);
-	} else if (signum == SIGFPE)
+		break;
+	case SIGFPE:
 		fprintf(stderr, "\n%s():  received SIGFPE!\n", __FUNCTION__);
-	else {
-		fprintf(stderr, "\n%s():  received UNKNOWN SIGNAL!  ERROR! \n", __FUNCTION__);
-		Terminate(ERR);
+		break;
+	default:
+		fprintf(stderr, "\n%s():  received UNKNOWN SIGNAL %d!  ERROR! \n", __FUNCTION__, signum);
 	}
 
 	Terminate(ERR);
