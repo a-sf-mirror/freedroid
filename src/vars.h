@@ -168,6 +168,12 @@ char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES] = {
 	"iso_square_tile_dab2.png",
 	"iso_square_tile_dab.png",
 	"iso_square_tile_ddb.png",
+	"iso_complicated_cmm.png",
+	"iso_complicated_cmm2.png",
+	"iso_complicated_p4.png",
+	"iso_complicated_pmg.png",
+	"iso_complicated_pmg2.png",
+	"iso_complicated_pmm.png",
 };
 
 tux_t Me;
