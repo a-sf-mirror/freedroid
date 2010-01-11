@@ -1412,8 +1412,7 @@ enemy *GetLivingDroidBelowMouseCursor()
 	mouse_vpos.z = Me.pos.z;
 
 	// Find the actual level (and related position) where the mouse cursor is pointing at.
-	resolve_virtual_position(&mouse_pos, &mouse_vpos);
-	if (mouse_pos.z == -1)
+	if (!resolve_virtual_position(&mouse_pos, &mouse_vpos))
 		return NULL;
 
 	// Browse all bots on that actual level, to find if the mouse is hovering one of them

@@ -1297,13 +1297,25 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
  * If not, the function returns FALSE. 
  * (a recursive call could be used to remove this limitation)
  */
-int resolve_virtual_position(gps * rpos, gps * vpos)
+int resolve_virtual_position(gps *rpos, gps *vpos)
 {
 	int valid = FALSE;
-	level *lvl = curShip.AllLevels[vpos->z];
+	level *lvl;
+
+	// Check pre-conditions
+
+	if (vpos->z == -1) {
+		ErrorMessage(__FUNCTION__, "Resolve virtual position was called with an invalid virtual position (%f:%f:%d).\n", PLEASE_INFORM, IS_WARNING_ONLY, vpos->x, vpos->y, vpos->z);
+		print_trace(0);
+		rpos->x = vpos->x;
+		rpos->y = vpos->y;
+		rpos->z = vpos->z;
+		return FALSE;
+	}
 
 	// Get the gps transformation data cell, according to virtual position value
 
+	lvl = curShip.AllLevels[vpos->z];
 	int idX = NEIGHBOR_IDX(vpos->x, lvl->xlen);
 	int idY = NEIGHBOR_IDX(vpos->y, lvl->ylen);
 
@@ -1315,6 +1327,7 @@ int resolve_virtual_position(gps * rpos, gps * vpos)
 		rpos->z = vpos->z;
 		return TRUE;
 	}
+
 	// Do the transformation
 
 	struct neighbor_data_cell *ngb_data = level_neighbors_map[vpos->z][idY][idX];

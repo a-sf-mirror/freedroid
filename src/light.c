@@ -728,8 +728,7 @@ static int calculate_light_strength(gps *cell_vpos)
 	//------------------------------------------
 	// 1. Light interpolation
 	//
-	resolve_virtual_position(&cell_rpos, cell_vpos);
-	if (cell_rpos.z == -1)
+	if (!resolve_virtual_position(&cell_rpos, cell_vpos))
 		return NUMBER_OF_SHADOW_IMAGES - 1;
 
 	interpolate_light_data(&cell_rpos, &ilights);
