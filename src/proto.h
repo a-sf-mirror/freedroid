@@ -59,10 +59,7 @@ void run_lua(const char *code);
 float calc_euklid_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);
 float vect_len(moderately_finepoint our_vector);
 enemy *GetLivingDroidBelowMouseCursor(void);
-int GetObstacleBelowMouseCursor(void);
 int find_free_floor_items_index(int levelnum);
-int closed_chest_below_mouse_cursor(level ** chest_lvl);
-int smashable_barrel_below_mouse_cursor(level ** barrel_lvl);
 void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting);
 int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting);
 void TuxReloadWeapon(void);
@@ -72,16 +69,22 @@ float GetInfluPositionHistoryX(int Index);
 float GetInfluPositionHistoryY(int Index);
 float GetInfluPositionHistoryZ(int Index);
 void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short int weapon_item_type);
-void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, bullet *, moderately_finepoint target_location);
+void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, bullet *bullet_parameters, moderately_finepoint target_location);
 void move_tux(void);
 void animate_tux(void);
 void check_tux_enemy_collision(void);
 void start_tux_death_explosions(void);
-void skew_and_blit_rect(float x1, float y1, float x2, float y2, Uint32 color);
-moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on);
-void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
-int tux_can_walk_this_line(float x1, float y1, float x2, float y2);
-void adapt_position_for_jump_thresholds(gps * old_position, gps * new_position);
+
+// action.c
+void find_position_near_obstacle(float *item_x, float *item_y, int obst_index, Level         obst_level);
+void throw_out_all_chest_content(int obst_index);
+int mouse_cursor_is_on_that_obstacle(level * lvl, int obst_index);
+int closed_chest_below_mouse_cursor(level ** chest_lvl);
+int smashable_barrel_below_mouse_cursor(level ** barrel_lvl);
+void check_for_chests_to_open(level * chest_lvl, int chest_index);
+void check_for_barrels_to_smash(level * barrel_lvl, int barrel_index);
+void check_for_items_to_pickup(level *item_lvl, int item_index);
+
 
 // pathfinder.c
 int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints,
@@ -253,6 +256,8 @@ void load_all_obstacles(void);
 void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_iso_image_to_screen_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_outline_of_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
+void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
+int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image * our_iso_image);
 
 // graphics.c 
 void set_mouse_cursor_to_shape(int given_shape);
@@ -370,6 +375,7 @@ void get_animated_obstacle_lists(struct visible_level *vis_lvl);
 void dirty_animated_obstacle_lists(int lvl_num);
 void clear_animated_obstacle_lists(struct visible_level *vis_lvl);
 int GetCrew(char *shipname);
+moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on);
 
 void animate_obstacles(void);
 void MoveLevelDoors(void);
