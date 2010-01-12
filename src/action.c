@@ -2,8 +2,7 @@
  *
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *   Copyright (c) 1994, 2002 Reinhard Prix
- *   Copyright (c) 2004-2007 Arthur Huillet 
- *
+ *   Copyright (c) 2004-2007 Arthur Huillet
  *
  *  This file is part of Freedroid
  *
@@ -25,7 +24,7 @@
  */
 
 /**
- * This file contains most of the obstacle/user interaction framework. 
+ * This file contains most of the activable's object/user interaction framework.
  */
 
 #define _action_c
@@ -40,13 +39,20 @@
 /**
  * Find a reachable position to drop an item near a chest.
  *
- * This function looks for a position near a given obstacle that
- * satisfies : DLC(obstacle, item) && DLW(Tux, item)
- * If no position is found, Tux current position is used as a fallback.
+ * This function looks for a position near a given chest that
+ * satisfies : DLC(chest, item) && DLW(Tux, item)
+ *
+ * The use of the DLC() call has 2 purposes:
+ * - ensure that the item will be dropped on a position that is in
+ *   line of sight with the chest
+ * - ensure that there are no other items already dropped there
+ *
+ * If no position is found, Tux current position is used as a fallback
+ * (we know that Tux is near the chest, because he is opening it)
  *
  * Note: a real random position is not used, in order to minimize the CPU cost
  */
-void find_position_near_obstacle(float *item_x, float *item_y, int obst_index, level *obst_level)
+static void find_dropable_position_near_chest(float *item_x, float *item_y, int obst_index, level *obst_level)
 {
 	float obst_x = obst_level->obstacle_list[obst_index].pos.x;
 	float obst_y = obst_level->obstacle_list[obst_index].pos.y;
@@ -57,7 +63,7 @@ void find_position_near_obstacle(float *item_x, float *item_y, int obst_index, l
 	*item_x = Me.pos.x;
 	*item_y = Me.pos.y;
 
-	// Step 1: randomly choose one of the 8 main 45° directions around the obstacle
+	// Step 1: randomly choose one of the 8 main 45° directions around the chest
 	float obs_diag = obstacle_map[obst_level->obstacle_list[obst_index].type].diaglength;
 	offset_vector.x = obs_diag + 0.5;
 	offset_vector.y = 0.0;
@@ -82,6 +88,8 @@ void find_position_near_obstacle(float *item_x, float *item_y, int obst_index, l
 	*item_y = obst_y + offset_vector.y;
 
 	// Step 3 : randomly choose an available position around that start position
+	// Note: If we were only using the position computed on step 2, then we would
+	// limit the potential dropable positions.
 	tries = 0;
 	float trimmer_x, trimmer_y;
 	do {
@@ -98,14 +106,15 @@ void find_position_near_obstacle(float *item_x, float *item_y, int obst_index, l
 	// Step 4 : position found
 	*item_x += trimmer_x;
 	*item_y += trimmer_y;
-
-}				// void find_position_near_obstacle( float* item_x, float* item_y, int obst_index, int obst_level )
+}
 
 /**
- *
- *
+ * This function will drop the content of a chest on the floor, around
+ * the chest.
+ * If the chest does not contain specific items, then eventually drop a
+ * random item.
  */
-void throw_out_all_chest_content(int obst_index)
+static void throw_out_all_chest_content(int obst_index)
 {
 	level *chest_level;
 	int i;
@@ -158,7 +167,7 @@ void throw_out_all_chest_content(int obst_index)
 		j = find_free_floor_items_index(Me.pos.z);
 		MoveItem(&(chest_level->ChestItemList[i]), &(chest_level->ItemList[j]));
 
-		find_position_near_obstacle(&item_x, &item_y, obst_index, chest_level);
+		find_dropable_position_near_chest(&item_x, &item_y, obst_index, chest_level);
 		chest_level->ItemList[j].pos.x = item_x;
 		chest_level->ItemList[j].pos.y = item_y;
 		chest_level->ItemList[j].pos.z = chest_level->levelnum;		
@@ -169,26 +178,20 @@ void throw_out_all_chest_content(int obst_index)
 
 	// If the chest was empty, maybe generate a random item to be dropped
 	if (!icnt) {
-		find_position_near_obstacle(&item_x, &item_y, obst_index, chest_level);
+		find_dropable_position_near_chest(&item_x, &item_y, obst_index, chest_level);
 		DropRandomItem(Me.pos.z, item_x, item_y, 1, FALSE);
 	}
 	//--------------------
 	// We play the sound, now that the chest is really opened...
 	//
 	play_open_chest_sound();
-
-};				// void throw_out_all_chest_content ( int obst_index )
+}
 
 /**
- * This is a useful utilitiy subfunction for the checks whether the 
- * mouse cursor is on an enemy, a closed chest or a barrel.
- * The function detects, if the current mouse cursor is over the graphics
- * mentioned in that obstacle.
- *
- * TRUE or FALSE is returned, depending on whether the cursor IS or 
- * IS NOT on that particular iso_image, if positioned on that obstacle.
+ * The function detects, if the current mouse cursor is over a given object.
+ * The iso image of the object will be used to check hovering.
  */
-int mouse_cursor_is_on_that_obstacle(level *lvl, int obst_index)
+static int mouse_cursor_is_on_that_object(level *lvl, int obst_index)
 {
 	// mouse_cursor_is_on_that_iso_image() needs a position defined relatively to
 	// current level
@@ -205,7 +208,7 @@ int mouse_cursor_is_on_that_obstacle(level *lvl, int obst_index)
 		return (TRUE);
 	}
 	return (FALSE);
-}				// int mouse_cursor_is_on_that_obstacle ( int obst_index ) 
+}
 
 /**
  * This function checks if there is a closed chest beneath the current 
@@ -218,7 +221,7 @@ int mouse_cursor_is_on_that_obstacle(level *lvl, int obst_index)
  * return the obstacle index of the chest in question.  Else -1 will be
  * returned.
  */
-int closed_chest_below_mouse_cursor(level ** chest_lvl)
+int closed_chest_below_mouse_cursor(level **chest_lvl)
 {
 	int x, y;
 	finepoint MapPositionOfMouse;
@@ -276,7 +279,7 @@ int closed_chest_below_mouse_cursor(level ** chest_lvl)
 				case ISO_W_CHEST2_CLOSED:
 				case ISO_H_CHEST_CLOSED:
 				case ISO_V_CHEST_CLOSED:
-					if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
+					if (mouse_cursor_is_on_that_object(lvl, obst_index)) {
 						DebugPrintf(1, "\n%s(): closed chest under cursor identified.", __FUNCTION__);
 						*chest_lvl = lvl;
 						return (obst_index);
@@ -292,8 +295,7 @@ int closed_chest_below_mouse_cursor(level ** chest_lvl)
 	}
 
 	return (-1);
-
-}				// int closed_chest_below_mouse_cursor ( )
+}
 
 /**
  * This function checks if there is a barrel beneath the current mouse
@@ -305,7 +307,7 @@ int closed_chest_below_mouse_cursor(level ** chest_lvl)
  * return the obstacle index of the chest in question.  Else -1 will be
  * returned.
  */
-int smashable_barrel_below_mouse_cursor(level ** barrel_lvl)
+int smashable_barrel_below_mouse_cursor(level **barrel_lvl)
 {
 	int x, y;
 	finepoint MapPositionOfMouse;
@@ -360,7 +362,7 @@ int smashable_barrel_below_mouse_cursor(level ** barrel_lvl)
 				case ISO_BARREL_2:
 				case ISO_BARREL_3:
 				case ISO_BARREL_4:
-					if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
+					if (mouse_cursor_is_on_that_object(lvl, obst_index)) {
 						DebugPrintf(1, "\n%s(): barrel under cursor identified.", __FUNCTION__);
 						*barrel_lvl = lvl;
 						return (obst_index);
@@ -376,19 +378,14 @@ int smashable_barrel_below_mouse_cursor(level ** barrel_lvl)
 	}
 
 	return (-1);
-
-}				// int smashable_barrel_below_mouse_cursor ( ) 
+}
 
 /**
- * When the player has left-clicked into the game area (i.e. the isometric
- * display of the game world), we need to check if maybe the click was
- * targeted on a chest, that can be opened.
- *
- * This function checks if that really was the case, taking into account 
- * not only the floor position of the mouse cursor (which would lead to 
- * rather unintuitive clicking areas) but rather the full chest graphics.
+ * This function executes a chest's action, if Tux is near enough to activate it.
+ * If Tux is too far, a combo action will be started, to first move Tux near
+ * the chest.
  */
-void check_for_chests_to_open(level * chest_lvl, int chest_index)
+void check_for_chests_to_open(level *chest_lvl, int chest_index)
 {
 	if (chest_index == (-1))
 		return;
@@ -476,20 +473,14 @@ void check_for_chests_to_open(level * chest_lvl, int chest_index)
 			break;
 		}
 	}
-
-}				// void check_for_chests_to_open ( ) 
+}
 
 /**
- * When the player has left-clicked into the game area (i.e. the isometric
- * display of the game world), we need to check if maybe the click was
- * targeted on a barrel or crate that can be smashed.
- *
- * This 
- * function checks if that is really so, taking into account not only the
- * floor position of the mouse cursor (which would lead to rather 
- * unintuitive clicking areas) but rather the full chest graphics.
+ * This function executes a barrel's action, if Tux is near enough to activate it.
+ * If Tux is too far, a combo action will be started, to first move Tux near
+ * the barrel.
  */
-void check_for_barrels_to_smash(level * barrel_lvl, int barrel_index)
+void check_for_barrels_to_smash(level *barrel_lvl, int barrel_index)
 {
 	int i;
 	moderately_finepoint step_vector;
@@ -617,6 +608,7 @@ void check_for_barrels_to_smash(level * barrel_lvl, int barrel_index)
 
 		return;
 	}
+
 	//===================
 	// The character is near enough from the barrel to smash it.
 	//
@@ -665,10 +657,12 @@ void check_for_barrels_to_smash(level * barrel_lvl, int barrel_index)
 	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 	Me.mouse_move_target_combo_action_parameter = (-1);
 	DebugPrintf(2, "\ncheck_for_barrels_to_smash(...):  combo_action now unset.");
-};				// void check_for_barrels_to_smash ( int barrel_index ) 
+}
 
 /**
- *
+ * This function picks an item, if Tux is near enough to pick it.
+ * If Tux is too far, a combo action will be started, to first move Tux near
+ * the item.
  */
 void check_for_items_to_pickup(level *item_lvl, int item_index)
 {
@@ -710,4 +704,3 @@ void check_for_items_to_pickup(level *item_lvl, int item_index)
 }
 
 #undef _action_c
-

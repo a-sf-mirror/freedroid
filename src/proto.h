@@ -76,15 +76,11 @@ void check_tux_enemy_collision(void);
 void start_tux_death_explosions(void);
 
 // action.c
-void find_position_near_obstacle(float *item_x, float *item_y, int obst_index, Level         obst_level);
-void throw_out_all_chest_content(int obst_index);
-int mouse_cursor_is_on_that_obstacle(level * lvl, int obst_index);
-int closed_chest_below_mouse_cursor(level ** chest_lvl);
-int smashable_barrel_below_mouse_cursor(level ** barrel_lvl);
-void check_for_chests_to_open(level * chest_lvl, int chest_index);
-void check_for_barrels_to_smash(level * barrel_lvl, int barrel_index);
+int closed_chest_below_mouse_cursor(level **chest_lvl);
+int smashable_barrel_below_mouse_cursor(level **barrel_lvl);
+void check_for_chests_to_open(level *chest_lvl, int chest_index);
+void check_for_barrels_to_smash(level *barrel_lvl, int barrel_index);
 void check_for_items_to_pickup(level *item_lvl, int item_index);
-
 
 // pathfinder.c
 int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints,
@@ -257,7 +253,6 @@ void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, floa
 void blit_iso_image_to_screen_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_outline_of_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
-int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image * our_iso_image);
 
 // graphics.c 
 void set_mouse_cursor_to_shape(int given_shape);
@@ -592,6 +587,7 @@ void implant_backtrace_into_signal_handlers(void);
 void adapt_button_positions_to_screen_resolution(void);
 void ErrorMessage(const char *FunctionName, const char *ProblemDescription, int InformDevelopers, int IsFatal, ...);
 void ShowGenericButtonFromList(int ButtonIndex);
+int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image *our_iso_image);
 int MouseCursorIsInRect(SDL_Rect * our_rect, int x, int y);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);

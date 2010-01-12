@@ -686,35 +686,6 @@ void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_
 
 };				// void blit_zoomed_iso_image_to_map_position ( iso_image our_iso_image , float pos_x , float pos_y )
 
-
-/**
- * This is a useful utility subfunction for the checks whether the
- * mouse cursor is on an enemy, a closed chest or a barrel.
- * The function detects, if the current mouse cursor is over the graphics
- * mentioned in that iso image, using the given position from the
- * parameter list.
- *
- * TRUE or FALSE is returned, depending on whether the cursor IS or
- * IS NOT on that particular iso_image, if positioned on that given spot.
- */
-int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image *our_iso_image)
-{
-	// our_iso_image = & ( enemy_iso_images [ RotationModel ] [ RotationIndex ] [ (int) this_bot -> animation_phase ] ) ;
-	SDL_Rect screen_rectangle;
-
-	screen_rectangle.x = translate_map_point_to_screen_pixel_x(pos_x, pos_y) + our_iso_image->offset_x;
-	screen_rectangle.y = translate_map_point_to_screen_pixel_y(pos_x, pos_y) + our_iso_image->offset_y;
-	screen_rectangle.w = our_iso_image->original_image_width;
-	screen_rectangle.h = our_iso_image->original_image_height;
-
-	if (MouseCursorIsInRect(&(screen_rectangle),
-				input_axis.x + User_Rect.w / 2 + User_Rect.x, input_axis.y + User_Rect.h / 2 + User_Rect.y)) {
-		return (TRUE);
-	}
-
-	return (FALSE);
-}
-
 /**
  *
  *
