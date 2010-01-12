@@ -1788,10 +1788,7 @@ Level DecodeLoadedLeveldata(char *data)
 		/* Decode it */
 		Buffer = MyMalloc((loadlevel->xlen + 10) * sizeof(map_tile));
 		for (col = 0; col < loadlevel->xlen; col++) {
-			//sscanf( ( ( (char*)(Lev->map[row]) ) + 4 * col) , "%04d " , &tmp);
-			*(this_line + 4 * col + 4) = '0';
-			tmp = atoi(this_line + 4 * col);
-			*(this_line + 4 * col + 4) = ' ';
+			tmp = strtol(this_line + 4 * col, NULL, 10);
 			Buffer[col].floor_value = (Uint16) tmp;
 			memset(Buffer[col].obstacles_glued_to_here, -1, MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE);
 		}
