@@ -23,7 +23,6 @@ FILES                 : This file.
 NEWS                  : What has changed recently, targetting end users.
 ChangeLog             : What has changed recently, targetting developers.
 INSTALL               : Instructions for building and installing from source.
-freedroidrpg.6        : The README file in a "man" friendly format
 
 
 Legal documents
