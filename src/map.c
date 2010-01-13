@@ -729,12 +729,27 @@ void CollectAutomapData(void)
 
 				//printf("pos %f %f - border %f %f to %f %f\n", our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . upper_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . left_border, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . lower_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . right_border);
 
+				int obstacle_start_x = (our_obstacle->pos.x + obstacle_map[our_obstacle->type].upper_border);
+				int obstacle_end_x = (our_obstacle->pos.x + obstacle_map[our_obstacle->type].lower_border);
+				int obstacle_start_y = (our_obstacle->pos.y + obstacle_map[our_obstacle->type].left_border);
+				int obstacle_end_y = (our_obstacle->pos.y + obstacle_map[our_obstacle->type].right_border);
+
+				if (obstacle_start_x < 0)
+					obstacle_start_x = 0;
+				if (obstacle_end_x >= automap_level->xlen)
+					obstacle_end_x = automap_level->xlen;
+				if (obstacle_start_y < 0)
+					obstacle_start_y = 0;
+				if (obstacle_end_y >= automap_level->ylen)
+					obstacle_end_y = automap_level->ylen;
+
 				int a, b;
-				for (a = rintf(our_obstacle->pos.x + obstacle_map[our_obstacle->type].upper_border);
-				     (a) < (our_obstacle->pos.x + obstacle_map[our_obstacle->type].lower_border); a++) {
-					for (b = rintf(our_obstacle->pos.y + obstacle_map[our_obstacle->type].left_border);
-					     (b) < ((our_obstacle->pos.y + obstacle_map[our_obstacle->type].right_border)); b++) {
+
+				for (a = obstacle_start_x; a <  obstacle_end_x; a++) {
+					for (b = obstacle_start_y; b <  obstacle_end_y; b++) {
+
 						if (obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_RECTANGLE) {
+
 							if (obstacle_map[our_obstacle->type].block_area_parm_1 > 0.80) {
 								if (Me.pos.x < our_obstacle->pos.x)
 									Me.Automap[level][b][a] |= LEFT_WALL_BIT;
