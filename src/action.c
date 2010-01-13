@@ -179,7 +179,7 @@ static void throw_out_all_chest_content(int obst_index)
 	// If the chest was empty, maybe generate a random item to be dropped
 	if (!icnt) {
 		find_dropable_position_near_chest(&item_x, &item_y, obst_index, chest_level);
-		DropRandomItem(Me.pos.z, item_x, item_y, 1, FALSE);
+		DropRandomItem(Me.pos.z, item_x, item_y, 0, FALSE);
 	}
 	//--------------------
 	// We play the sound, now that the chest is really opened...
