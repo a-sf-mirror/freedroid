@@ -94,40 +94,40 @@ void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 		for (x = 0; x < w; x++) {
 			switch (tiles[y * w + x]) {
 			case 4:
-				add_obstacle(x + 0.5, y + 1, 2);
+				add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
 				set_floor(x, y, 0);
 				break;
 			case 5:
-				add_obstacle(x + 0.5, y, 2);
+				add_obstacle(x + 0.5, y, ISO_H_WALL);
 				set_floor(x, y, 0);
 				break;
 			case 6:
-				add_obstacle(x + 1.0, y + 0.5, 1);
+				add_obstacle(x + 1.0, y + 0.5, ISO_V_WALL);
 				set_floor(x, y, 0);
 				break;
 			case 7:
-				add_obstacle(x, y + 0.5, 1);
+				add_obstacle(x, y + 0.5, ISO_V_WALL);
 				set_floor(x, y, 0);
 				break;
 			case 11:
-				add_obstacle(x + 0.5, y, 2);
-				add_obstacle(x, y + 0.5, 1);
+				add_obstacle(x + 0.5, y, ISO_H_WALL);
+				add_obstacle(x, y + 0.5, ISO_V_WALL);
 				set_floor(x, y, 0);
 				break;
 			case 10:
-				add_obstacle(x + 0.5, y, 2);
-				add_obstacle(x + 1, y + 0.5, 1);
+				add_obstacle(x + 0.5, y, ISO_H_WALL);
+				add_obstacle(x + 1, y + 0.5, ISO_V_WALL);
 				set_floor(x, y, 0);
 				break;
 			case 9:
-				add_obstacle(x, y + 0.5, 1);
-				add_obstacle(x + 0.5, y + 1, 2);
+				add_obstacle(x, y + 0.5, ISO_V_WALL);
+				add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
 				set_floor(x, y, 0);
 				break;
 			case 8:
-				add_obstacle(x + 1, y + 0.5, 1);
+				add_obstacle(x + 1, y + 0.5, ISO_V_WALL);
 				set_floor(x, y, 0);
-				add_obstacle(x + 0.5, y + 1, 2);
+				add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
 				break;
 
 			case 12:
@@ -147,12 +147,12 @@ void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 				break;
 
 			case 15:
-				add_obstacle(x + 1, y + 0.5, 11);
+				add_obstacle(x + 1, y + 0.5, ISO_V_DOOR_000_OPEN);
 				set_floor(x, y, 58);
 				break;
 
 			case 14:
-				add_obstacle(x + 0.5, y, 6);
+				add_obstacle(x + 0.5, y, ISO_H_DOOR_000_OPEN);
 				set_floor(x, y, 57);
 				break;
 
@@ -186,7 +186,7 @@ static void add_teleport(int telnum, int x, int y)
 	sprintf(tmp, "Lv%dfromX%d", target_level->levelnum, telnum);
 	fromwarp = strdup(tmp);
 
-	add_obstacle(x, y, 16);
+	add_obstacle(x, y, ISO_TELEPORTER_1);
 	add_label(telnum * 2, x, y, warp);
 	add_label(telnum * 2 + 1, x + 1, y, fromwarp);
 
@@ -204,7 +204,7 @@ void mapgen_exit_at(struct roominfo *r)
 
 void mapgen_gift(struct roominfo *r)
 {
-	int obstacle_id = 50 + rand() % 4;
+	int obstacle_id = ISO_BARREL_1 + rand() % 4;
 	int pos = rand() % 4;
 
 	struct {
