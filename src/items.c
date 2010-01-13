@@ -599,10 +599,10 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 
 		Suf = (-1);
 		Pre = (-1);
-		if (ForceMagical || (MyRandom(14) <= 2)) {
+		if (ForceMagical || (MyRandom(100) <= 2)) {
 			Suf = find_suitable_bonus_for_item(drop_item_type, class, SuffixList);
 		}
-		if (ForceMagical || (MyRandom(14) <= 2)) {
+		if (ForceMagical || (MyRandom(100) <= 2)) {
 			Pre = find_suitable_bonus_for_item(drop_item_type, class, PrefixList);
 		}
 
