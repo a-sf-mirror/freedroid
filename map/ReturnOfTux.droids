@@ -554,7 +554,7 @@ Allowed Type of Random Droid for this level: 249
 Allowed Type of Random Droid for this level: 629
 
 SForce: T=883 Fixed=0 Marker=1035 Friendly=1 StartLabel="SADDStartGameSquare" RushTux="yes" UseDialog="SADD" ShortLabel=_"SADD - Secret Area Defence Droid" 
-SForce: T=JAS Fixed=0 Marker=2035 Friendly=1 StartLabel="TaniaStartGameSquare" RushTux="no" UseDialog="Tania" ShortLabel=_"Tania - lonely scientistr" 
+SForce: T=JAS Fixed=0 Marker=2035 Friendly=1 StartLabel="TaniaStartGameSquare" RushTux="no" UseDialog="Tania" ShortLabel=_"Tania - lonely scientist" 
 SForce: T=598 Fixed=0 Marker=3035 Friendly=0 StartLabel="SecretAreaDefenceControl" RushTux="no" UseDialog="SACD" ShortLabel=_"SACD - Secret Area Control Droid" 
 
 //--------------------
