@@ -2289,8 +2289,6 @@ void free_one_loaded_tux_image_series(int tux_part_group)
 
 			SDL_FreeSurface(loaded_tux_images[tux_part_group][j][k].surface);
 
-			free(loaded_tux_images[tux_part_group][j][k].attached_pixel_data);
-
 			loaded_tux_images[tux_part_group][j][k].surface = NULL;
 		}
 	}
@@ -2562,7 +2560,6 @@ Received some non-positive Tux surface dimensions.  That's a bug for sure!", PLE
 				endian_swap(tmp_buff, 4, img_xlen * img_ylen);
 #               endif
 
-				loaded_tux_images[tux_part_group][our_phase][rotation_index].attached_pixel_data = tmp_buff;
 				loaded_tux_images[tux_part_group][our_phase][rotation_index].surface =
 				    SDL_CreateRGBSurfaceFrom(tmp_buff, img_xlen, img_ylen, 32, 4 * img_xlen,
 							     0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);

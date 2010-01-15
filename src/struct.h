@@ -71,7 +71,6 @@ typedef struct iso_image_s {
 	short original_image_width;
 	short original_image_height;
 	int texture_has_been_created;
-	void *attached_pixel_data;
 #ifdef HAVE_LIBGL
 	GLuint texture;		// this is to store an open_gl texture...
 #else
@@ -82,7 +81,7 @@ typedef struct iso_image_s {
 	float ty0;
 	float ty1;
 } iso_image, *Iso_image;
-#define UNLOADED_ISO_IMAGE { NULL , 0 , 0 , NULL , 0 , 0 , 0, 0, 0, NULL, 0, 0.0, 0.0, 0.0, 0.0 }
+#define UNLOADED_ISO_IMAGE { NULL , 0 , 0 , NULL , 0 , 0 , 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0 }
 
 typedef struct mouse_press_button_s {
 	iso_image button_image;
