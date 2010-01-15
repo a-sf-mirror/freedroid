@@ -198,6 +198,11 @@ static void get_string_for_phase(int p, char *out)
 		str = "death";
 		offset = p - first_death_animation_image;
 	}
+	
+	if (p >= first_stand_animation_image && p <= last_stand_animation_image) {
+		str = "stand";
+		offset = p - first_death_animation_image;
+	}
 
 	if (offset == 999) 
 		fprintf(stderr, "Unknown phase %d passed\n", p);
@@ -334,7 +339,7 @@ static void extract_tux_archive(unsigned char *ptr, int sdl)
 		for (our_phase = 0; our_phase < TUX_TOTAL_PHASES; our_phase++) {
 			char output_name[4096];
 
-			sprintf(output_name, "tux_phase_%02d_rot_%02d.png", our_phase, rotation_index);
+			sprintf(output_name, "tux_rot_%02d_phase_%02d.png", rotation_index, our_phase);
 			extract_and_write_file(output_name, &ptr, sdl);
 		}
 	}
@@ -360,6 +365,11 @@ static void extract_enemy_archive(unsigned char *ptr, int sdl)
 		printf("SDL mode for enemy archives not supported by ungluem (yet)\n");
 	}
 
+	printf("Walk phases: %d (%d -> %d)\nAttack phases: %d (%d -> %d)\nGethit phases: %d (%d -> %d)\nDeath phases: %d (%d -> %d)\nStand phases: %d (%d -> %d)\n",
+		cooked_walk_object_phases, first_walk_animation_image, last_walk_animation_image, cooked_attack_object_phases, first_attack_animation_image, last_attack_animation_image,
+		cooked_gethit_object_phases, first_gethit_animation_image, last_gethit_animation_image, cooked_death_object_phases, first_death_animation_image, last_death_animation_image,
+		cooked_stand_object_phases, first_stand_animation_image, last_stand_animation_image);
+
 	for (rotation_index = 0; rotation_index < ROTATION_ANGLES_PER_ROTATION_MODEL; rotation_index++) {
 		for (enemy_phase = 0; enemy_phase < last_stand_animation_image; enemy_phase++) {
 			char phase_str[50];
@@ -369,7 +379,7 @@ static void extract_enemy_archive(unsigned char *ptr, int sdl)
 
 			sprintf(output_name, "enemy_rot_%02d_%s.png", rotation_index, phase_str);
 
-			printf("Extracting %s at %p\n", output_name, ptr);
+		//	printf("Extracting %s at %p\n", output_name, ptr);
 			extract_and_write_file(output_name, &ptr, sdl);
 		}
 	}
