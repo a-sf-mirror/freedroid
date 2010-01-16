@@ -2715,11 +2715,11 @@ void init_obstacle_data(void)
 
 	obstacle_map[ISO_BRICK_WALL_CABLES_H].block_area_type = COLLISION_TYPE_RECTANGLE;
 	obstacle_map[ISO_BRICK_WALL_CABLES_H].block_area_parm_1 = 1.2;
-	obstacle_map[ISO_BRICK_WALL_CABLES_H].block_area_parm_2 = 1.2;
+	obstacle_map[ISO_BRICK_WALL_CABLES_H].block_area_parm_2 = 0.8;
 	obstacle_map[ISO_BRICK_WALL_CABLES_H].filename = "iso_brick_wall_cables_0001.png";
 	obstacle_map[ISO_BRICK_WALL_CABLES_H].flags |= IS_HORIZONTAL;
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].block_area_type = COLLISION_TYPE_RECTANGLE;
-	obstacle_map[ISO_BRICK_WALL_CABLES_V].block_area_parm_1 = 1.2;
+	obstacle_map[ISO_BRICK_WALL_CABLES_V].block_area_parm_1 = 0.8;
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].block_area_parm_2 = 1.2;
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].filename = "iso_brick_wall_cables_0002.png";
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].flags |= IS_VERTICAL;
@@ -2815,14 +2815,14 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].flags |= IS_HORIZONTAL;
 
 	obstacle_map[ISO_BRICK_WALL_EH].block_area_type = COLLISION_TYPE_RECTANGLE;
-	obstacle_map[ISO_BRICK_WALL_EH].block_area_parm_1 = 1.2;
+	obstacle_map[ISO_BRICK_WALL_EH].block_area_parm_1 = 0.8;
 	obstacle_map[ISO_BRICK_WALL_EH].block_area_parm_2 = 1.2;
 	obstacle_map[ISO_BRICK_WALL_EH].filename = "iso_brick_wall_0016.png";
 	obstacle_map[ISO_BRICK_WALL_EH].flags |= IS_HORIZONTAL;
 	obstacle_map[ISO_BRICK_WALL_EH].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1;
 	obstacle_map[ISO_BRICK_WALL_EV].block_area_type = COLLISION_TYPE_RECTANGLE;
 	obstacle_map[ISO_BRICK_WALL_EV].block_area_parm_1 = 1.2;
-	obstacle_map[ISO_BRICK_WALL_EV].block_area_parm_2 = 1.2;
+	obstacle_map[ISO_BRICK_WALL_EV].block_area_parm_2 = 0.8;
 	obstacle_map[ISO_BRICK_WALL_EV].filename = "iso_brick_wall_0017.png";
 	obstacle_map[ISO_BRICK_WALL_EV].flags |= IS_VERTICAL;
 	obstacle_map[ISO_BRICK_WALL_EV].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_2;
