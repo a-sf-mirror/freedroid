@@ -53,6 +53,32 @@ void ClearAutomapData(void)
 };				// void ClearAutomapData ( void )
 
 /**
+ * This function does a special rounding that is used by the automap
+ * to compute the start and end position of an obstacle on the map.
+ * Its key property is that it preserves the distance between the two
+ * numbers, which is important in order for a 1 tile wall to appear
+ * as occupying only one tile on the automap regardless of its exact position.
+ */
+static void round_automap_pos(float a, float b, int *ra, int *rb)
+{
+	float delta;
+	int dist;
+#define AUTOMAP_COLLRECT_SHRINK 0.9
+
+	if (a > b) {
+		float c = a;
+		a = b;
+		b = c;
+	}
+
+	delta = (b - a) * AUTOMAP_COLLRECT_SHRINK;
+	dist = floor(delta);
+
+	*ra = lrint(a);
+	*rb = *ra + dist;
+}
+
+/**
  * This function collects the automap data and stores it in the Me data
  * structure.
  */
@@ -128,12 +154,16 @@ void CollectAutomapData(void)
 				if ((our_obstacle->type >= ISO_OUTER_DOOR_V_00) && (our_obstacle->type <= ISO_OUTER_DOOR_H_100))
 					continue;
 
-				//printf("pos %f %f - border %f %f to %f %f\n", our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . upper_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . left_border, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . lower_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . right_border);
+				int obstacle_start_x;
+				int obstacle_end_x;
+				int obstacle_start_y;
+				int obstacle_end_y;
 
-				int obstacle_start_x = ceil(our_obstacle->pos.x + obstacle_map[our_obstacle->type].upper_border);
-				int obstacle_end_x = floor(our_obstacle->pos.x + obstacle_map[our_obstacle->type].lower_border);
-				int obstacle_start_y = ceil(our_obstacle->pos.y + obstacle_map[our_obstacle->type].left_border);
-				int obstacle_end_y = floor(our_obstacle->pos.y + obstacle_map[our_obstacle->type].right_border);
+				round_automap_pos(our_obstacle->pos.x + obstacle_map[our_obstacle->type].upper_border, our_obstacle->pos.x + obstacle_map[our_obstacle->type].lower_border,
+						&obstacle_start_x, &obstacle_end_x);
+
+				round_automap_pos(our_obstacle->pos.y + obstacle_map[our_obstacle->type].left_border, our_obstacle->pos.y + obstacle_map[our_obstacle->type].right_border,
+						&obstacle_start_y, &obstacle_end_y);
 
 				if (obstacle_start_x < 0)
 					obstacle_start_x = 0;
@@ -151,6 +181,8 @@ void CollectAutomapData(void)
 					obstacle_end_x = automap_level->xlen - 1;
 				if (obstacle_end_y >= automap_level->ylen)
 					obstacle_end_y = automap_level->ylen - 1;
+
+				//printf("pos %f %f - border %f %f to %f %f - xstart %d xend %d ystart %d yend %d\n", our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . upper_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . left_border, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . lower_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . right_border, obstacle_start_x, obstacle_end_x, obstacle_start_y, obstacle_end_y);
 
 				int a, b;
 
