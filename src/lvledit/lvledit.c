@@ -175,8 +175,7 @@ item *ItemDropFromLevelEditor(void)
 	make_sure_system_mouse_cursor_is_turned_on();
 
 	while (!SelectionDone) {
-		save_mouse_state();
-
+		SDL_Event event;
 		our_SDL_fill_rect_wrapper(Screen, NULL, 0);
 
 		for (j = 0; j < row_len; j++) {
@@ -225,42 +224,43 @@ item *ItemDropFromLevelEditor(void)
 
 		our_SDL_flip_wrapper();
 
-		if (EscapePressed()) {	//Pressing escape cancels the dropping
-			while (EscapePressed()) ;
-			return NULL;
-		}
+		while (SDL_PollEvent(&event)) {
+			if (event.type == SDL_KEYDOWN) {
+				if (event.key.keysym.sym == SDLK_ESCAPE) {
+					return NULL;
+				}
+			} else if (event.type == SDL_MOUSEBUTTONDOWN) {
+				if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON, event.button.x, event.button.y)) {
+					if ((item_group + 1) * line_len * row_len < Number_Of_Item_Types)
+						item_group++;
+				} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_ITEM_GROUP_BUTTON, event.button.x, event.button.y)) {
+					if (item_group > 0)
+						item_group--;
+				}
 
-		if (MouseLeftClicked()) {
-			if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if ((item_group + 1) * line_len * row_len < Number_Of_Item_Types)
-					item_group++;
-			} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_ITEM_GROUP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (item_group > 0)
-					item_group--;
-			}
+				if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_PREFIX_BUTTON, event.button.x, event.button.y)) {
+					if (PrefixList[previous_prefix_selected + 1].bonus_name != NULL)
+						previous_prefix_selected++;
+				} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_PREFIX_BUTTON, event.button.x, event.button.y)) {
+					if (previous_prefix_selected > (-1))
+						previous_prefix_selected--;
+				}
 
-			if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_PREFIX_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (PrefixList[previous_prefix_selected + 1].bonus_name != NULL)
-					previous_prefix_selected++;
-			} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_PREFIX_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (previous_prefix_selected > (-1))
-					previous_prefix_selected--;
-			}
-
-			if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_SUFFIX_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (SuffixList[previous_suffix_selected + 1].bonus_name != NULL)
-					previous_suffix_selected++;
-			} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_SUFFIX_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (previous_suffix_selected > (-1))
-					previous_suffix_selected--;
-			} else if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				return NULL;
-			} else if (level_editor_item_drop_index(row_len, line_len) != (-1)) {
-				NewItemCode = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len;
-				if (NewItemCode < 0)
-					NewItemCode = 0;	// just if the mouse has moved away in that little time...
-				if (NewItemCode < Number_Of_Item_Types)
-					SelectionDone = TRUE;
+				if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_SUFFIX_BUTTON, event.button.x, event.button.y)) {
+					if (SuffixList[previous_suffix_selected + 1].bonus_name != NULL)
+						previous_suffix_selected++;
+				} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_SUFFIX_BUTTON, event.button.x, event.button.y)) {
+					if (previous_suffix_selected > (-1))
+						previous_suffix_selected--;
+				} else if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, event.button.x, event.button.y)) {
+					return NULL;
+				} else if (level_editor_item_drop_index(row_len, line_len) != (-1)) {
+					NewItemCode = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len;
+					if (NewItemCode < 0)
+						NewItemCode = 0;	// just if the mouse has moved away in that little time...
+					if (NewItemCode < Number_Of_Item_Types)
+						SelectionDone = TRUE;
+				}
 			}
 		}
 	}
@@ -278,10 +278,6 @@ item *ItemDropFromLevelEditor(void)
 	dropped_item = DropItemAt(NewItemCode, Me.pos.z, rintf(Me.pos.x), rintf(Me.pos.y),
 				  previous_prefix_selected, previous_suffix_selected, our_multiplicity);
 
-	while (MouseLeftPressed())
-		SDL_Delay(1);
-
-	save_mouse_state();
 	game_status = INSIDE_LVLEDITOR;
 
 	return dropped_item;

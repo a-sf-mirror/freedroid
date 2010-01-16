@@ -450,10 +450,6 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 
 	int old_game_status = game_status;
 
-	DebugPrintf(1, "\n%s(): graphical number selection invoked.", __FUNCTION__);
-
-	// MakeGridOnScreen ( NULL );
-
 	StoreMenuBackground(1);
 
 	//--------------------
@@ -473,19 +469,7 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!", PLEASE_INFORM, IS_FATAL);
 	knob_target_rect.w = SelectionKnob->w;
 	knob_target_rect.h = SelectionKnob->h;
 
-	while (SpacePressed() || MouseLeftPressed()) ;
 	while (!ok_button_was_pressed) {
-		save_mouse_state();	//activate the *Clicked functions
-
-		//--------------------
-		// Now we assemble and show the screen, which includes 
-		// 1. the background
-		// 2. the ok button
-		// 3. the knob of the scale
-		// 4. the writing in the number selector
-		//
-		// then: show it.
-		//
 		RestoreMenuBackground(1);
 		blit_special_background(NUMBER_SELECTOR_BACKGROUND_CODE);
 		ShowGenericButtonFromList(NUMBER_SELECTOR_OK_BUTTON);
@@ -497,77 +481,82 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!", PLEASE_INFORM, IS_FATAL);
 		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
 
-		SDL_WaitEvent(&event);
+		while (SDL_PollEvent(&event)) {
 
-		if (event.type == SDL_QUIT) {
-			Terminate(0);
-		}
+			if (event.type == SDL_QUIT) {
+				Terminate(0);
+			}
 
-		if (event.type == SDL_KEYDOWN) {
-			if (event.key.keysym.sym == SDLK_RIGHT) {
-				if (knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range))) {
-					knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+			if (event.type == SDL_KEYDOWN) {
+				if (event.key.keysym.sym == SDLK_RIGHT) {
+					if (knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range))) {
+						knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+					}
+					if (knob_offset_x < knob_end_x - knob_start_x - 1)
+						knob_offset_x++;
 				}
-				if (knob_offset_x < knob_end_x - knob_start_x - 1)
-					knob_offset_x++;
-			}
 
-			if (event.key.keysym.sym == SDLK_LEFT) {
-				if (knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1))) {
-					knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+				if (event.key.keysym.sym == SDLK_LEFT) {
+					if (knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1))) {
+						knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+					}
+					if (knob_offset_x > 0)
+						knob_offset_x--;
 				}
-				if (knob_offset_x > 0)
-					knob_offset_x--;
+
+				if (event.key.keysym.sym == SDLK_RETURN) {
+					ok_button_was_pressed = TRUE;
+				}
 			}
 
-			if (event.key.keysym.sym == SDLK_RETURN) {
-				ok_button_was_pressed = TRUE;
+			if (event.type == SDL_MOUSEBUTTONDOWN) {
+				if (event.button.button == SDL_BUTTON_LEFT) {
+					//--------------------
+					// Maybe the user has just 'grabbed the knob?  Then we need to
+					// mark the knob as grabbed.
+					//
+					if ((abs(event.button.x - (knob_target_rect.x + knob_target_rect.w / 2)) < knob_target_rect.w) &&
+							(abs(event.button.y - (knob_target_rect.y + knob_target_rect.h / 2)) < knob_target_rect.h)) {
+						knob_is_grabbed = TRUE;
+					}
+					//--------------------
+					// OK pressed?  Then we can return the current scale value and
+					// that's it...
+					//
+					if (MouseCursorIsOnButton(NUMBER_SELECTOR_OK_BUTTON, event.button.x, event.button.y))
+						ok_button_was_pressed = TRUE;
+					if (MouseCursorIsOnButton(NUMBER_SELECTOR_LEFT_BUTTON, event.button.x, event.button.y)) {
+						if (knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1))) {
+							knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+						}
+						if (knob_offset_x > 0)
+							knob_offset_x--;
+					}
+
+					if (MouseCursorIsOnButton(NUMBER_SELECTOR_RIGHT_BUTTON, event.button.x, event.button.y)) {
+						if (knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range))) {
+							knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+						}
+						if (knob_offset_x < knob_end_x - knob_start_x - 1)
+							knob_offset_x++;
+					}
+				}
+			}
+
+			if (event.type == SDL_MOUSEBUTTONUP) {
+				if (event.button.button == SDL_BUTTON_LEFT) { 
+					knob_is_grabbed = FALSE;
+				}
+			}
+
+			if (knob_is_grabbed) {
+				knob_offset_x = GetMousePos_x() - knob_start_x;
+				if (knob_offset_x >= knob_end_x - knob_start_x)
+					knob_offset_x = knob_end_x - knob_start_x - 1;
+				if (knob_offset_x <= 0)
+					knob_offset_x = 0;
 			}
 		}
-
-		if (MouseLeftClicked()) {
-			//--------------------
-			// Maybe the user has just 'grabbed the knob?  Then we need to
-			// mark the knob as grabbed.
-			//
-			if ((abs(GetMousePos_x() - (knob_target_rect.x + knob_target_rect.w / 2)) < knob_target_rect.w) &&
-			    (abs(GetMousePos_y() - (knob_target_rect.y + knob_target_rect.h / 2)) < knob_target_rect.h)) {
-				knob_is_grabbed = TRUE;
-			}
-			//--------------------
-			// OK pressed?  Then we can return the current scale value and
-			// that's it...
-			//
-			if (MouseCursorIsOnButton(NUMBER_SELECTOR_OK_BUTTON, GetMousePos_x(), GetMousePos_y()))
-				ok_button_was_pressed = TRUE;
-			if (MouseCursorIsOnButton(NUMBER_SELECTOR_LEFT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1))) {
-					knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
-				}
-				if (knob_offset_x > 0)
-					knob_offset_x--;
-			}
-
-			if (MouseCursorIsOnButton(NUMBER_SELECTOR_RIGHT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range))) {
-					knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
-				}
-				if (knob_offset_x < knob_end_x - knob_start_x - 1)
-					knob_offset_x++;
-			}
-		}
-		if (!MouseLeftPressed())
-			knob_is_grabbed = FALSE;
-
-		if (knob_is_grabbed) {
-			knob_offset_x = GetMousePos_x() - knob_start_x;
-			if (knob_offset_x >= knob_end_x - knob_start_x)
-				knob_offset_x = knob_end_x - knob_start_x - 1;
-			if (knob_offset_x <= 0)
-				knob_offset_x = 0;
-		}
-
-		SDL_Delay(1);
 	}
 
 	game_status = old_game_status;
