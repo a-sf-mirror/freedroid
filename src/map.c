@@ -729,24 +729,32 @@ void CollectAutomapData(void)
 
 				//printf("pos %f %f - border %f %f to %f %f\n", our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . upper_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . left_border, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . lower_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . right_border);
 
-				int obstacle_start_x = (our_obstacle->pos.x + obstacle_map[our_obstacle->type].upper_border);
-				int obstacle_end_x = (our_obstacle->pos.x + obstacle_map[our_obstacle->type].lower_border);
-				int obstacle_start_y = (our_obstacle->pos.y + obstacle_map[our_obstacle->type].left_border);
-				int obstacle_end_y = (our_obstacle->pos.y + obstacle_map[our_obstacle->type].right_border);
+				int obstacle_start_x = ceil(our_obstacle->pos.x + obstacle_map[our_obstacle->type].upper_border);
+				int obstacle_end_x = floor(our_obstacle->pos.x + obstacle_map[our_obstacle->type].lower_border);
+				int obstacle_start_y = ceil(our_obstacle->pos.y + obstacle_map[our_obstacle->type].left_border);
+				int obstacle_end_y = floor(our_obstacle->pos.y + obstacle_map[our_obstacle->type].right_border);
 
 				if (obstacle_start_x < 0)
 					obstacle_start_x = 0;
-				if (obstacle_end_x >= automap_level->xlen)
-					obstacle_end_x = automap_level->xlen;
 				if (obstacle_start_y < 0)
 					obstacle_start_y = 0;
+				if (obstacle_end_x < 0)
+					obstacle_end_x = 0;
+				if (obstacle_end_y < 0)
+					obstacle_end_y = 0;
+				if (obstacle_start_x >= automap_level->xlen)
+					obstacle_start_x = automap_level->xlen - 1;
+				if (obstacle_start_y >= automap_level->ylen)
+					obstacle_start_y = automap_level->ylen - 1;
+				if (obstacle_end_x >= automap_level->xlen)
+					obstacle_end_x = automap_level->xlen - 1;
 				if (obstacle_end_y >= automap_level->ylen)
-					obstacle_end_y = automap_level->ylen;
+					obstacle_end_y = automap_level->ylen - 1;
 
 				int a, b;
 
-				for (a = obstacle_start_x; a <  obstacle_end_x; a++) {
-					for (b = obstacle_start_y; b <  obstacle_end_y; b++) {
+				for (a = obstacle_start_x; a <=  obstacle_end_x; a++) {
+					for (b = obstacle_start_y; b <=  obstacle_end_y; b++) {
 
 						if (obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_RECTANGLE) {
 
