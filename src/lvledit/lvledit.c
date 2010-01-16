@@ -98,7 +98,7 @@ void leveleditor_print_object_info(enum leveleditor_object_type type, int *array
 		sprintf(str, "Floor tile number %d\n", array[idx]);
 		break;
 	case OBJECT_OBSTACLE:
-		sprintf(str, "Obs. number %d, %s\n", array[idx], obstacle_map[array[idx]].filename);
+		sprintf(str, "Obs. number %d, %s, flags %d\n", array[idx], obstacle_map[array[idx]].filename, obstacle_map[array[idx]].flags);
 		break;
 	case OBJECT_WAYPOINT:
 		sprintf(str, "Waypt %s connection, %s for random spawn\n", "two way", array[idx] ? "NOK" : "OK");
