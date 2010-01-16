@@ -33,6 +33,7 @@ void Game(void);
 // automap.c
 void display_automap(void);
 void toggle_automap(void);
+void CollectAutomapData(void);
 
 // init.c
 void ResetGameConfigToDefaultValues(void);
@@ -360,7 +361,6 @@ int GetMissionIndexByName(const char *);
 void respawn_level(int level_num);
 void glue_obstacles_to_floor_tiles_for_level(int level_num);
 void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer);
-void CollectAutomapData(void);
 int smash_obstacle(float x, float y, int level);
 Uint16 GetMapBrick(level *, float, float);
 void CountNumberOfDroidsOnShip(void);
