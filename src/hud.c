@@ -999,7 +999,7 @@ void prepare_text_window_content(char *ItemDescText)
 	    (CurPos.y > WHOLE_HEALTH_RECT_Y * GameConfig.screen_height / 480) &&
 	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_HEALTH_RECT_Y + WHOLE_HEALTH_RECT_H)) {
 		best_banner_pos_x = (WHOLE_HEALTH_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_HEALTH_RECT_Y - 25) * GameConfig.screen_height / 480;
+		best_banner_pos_y = (WHOLE_HEALTH_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
 		sprintf(ItemDescText, _("Health\n%s%d/%d"), Me.energy / Me.maxenergy <= 0.1 ? font_switchto_red : "", (int)rintf(Me.energy),
 			(int)rintf(Me.maxenergy));
 	}
@@ -1009,7 +1009,7 @@ void prepare_text_window_content(char *ItemDescText)
 	    (CurPos.y > WHOLE_FORCE_RECT_Y * GameConfig.screen_height / 480) &&
 	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_FORCE_RECT_Y + WHOLE_FORCE_RECT_H)) {
 		best_banner_pos_x = (WHOLE_FORCE_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_FORCE_RECT_Y - 25) * GameConfig.screen_height / 480;
+		best_banner_pos_y = (WHOLE_FORCE_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
 		sprintf(ItemDescText, _("Temperature \n%s%d/%d"), Me.temperature / Me.max_temperature >= 0.9 ? font_switchto_red : "",
 			(int)rintf(Me.temperature), (int)rintf(Me.max_temperature));
 	}
@@ -1019,7 +1019,7 @@ void prepare_text_window_content(char *ItemDescText)
 	    (CurPos.y > WHOLE_RUNNING_POWER_RECT_Y * GameConfig.screen_height / 480) &&
 	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_RUNNING_POWER_RECT_Y + WHOLE_RUNNING_POWER_RECT_H)) {
 		best_banner_pos_x = (WHOLE_RUNNING_POWER_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_RUNNING_POWER_RECT_Y - 25) * GameConfig.screen_height / 480;
+		best_banner_pos_y = (WHOLE_RUNNING_POWER_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
 		sprintf(ItemDescText, _("Run\n%s%d/%d"), Me.running_power / Me.max_running_power <= 0.1 ? font_switchto_red : "",
 			(int)rintf(Me.running_power), (int)rintf(Me.max_running_power));
 	}
@@ -1029,7 +1029,7 @@ void prepare_text_window_content(char *ItemDescText)
 	    (CurPos.y > WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y * GameConfig.screen_height / 480) &&
 	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y + WHOLE_EXPERIENCE_COUNTDOWN_RECT_H)) {
 		best_banner_pos_x = (WHOLE_EXPERIENCE_COUNTDOWN_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y - 25) * GameConfig.screen_height / 480;
+		best_banner_pos_y = (WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
 		sprintf(ItemDescText, _("XP\n%d/%d"), Me.Experience, Me.ExpRequired);
 	}
 
