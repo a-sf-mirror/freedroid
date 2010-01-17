@@ -2954,8 +2954,8 @@ void init_obstacle_data(void)
 	// as it's not a particularly high object, so you can see over it.
 	//
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].block_area_type = COLLISION_TYPE_RECTANGLE;
-	obstacle_map[ISO_ROCKS_N_PLANTS_1].block_area_parm_1 = 1.0;
-	obstacle_map[ISO_ROCKS_N_PLANTS_1].block_area_parm_2 = 1.0;
+	obstacle_map[ISO_ROCKS_N_PLANTS_1].block_area_parm_1 = 0.4;
+	obstacle_map[ISO_ROCKS_N_PLANTS_1].block_area_parm_2 = 0.4;
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].filename = "iso_rocks_n_plants_0000.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_1].flags |= GROUND_LEVEL;
@@ -2997,15 +2997,15 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_ROCKS_N_PLANTS_6].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_ROCKS_N_PLANTS_6].emitted_light_strength = 9;
 
-	obstacle_map[ISO_ROCKS_N_PLANTS_7].block_area_parm_1 = 1.0;
-	obstacle_map[ISO_ROCKS_N_PLANTS_7].block_area_parm_2 = 1.0;
+	obstacle_map[ISO_ROCKS_N_PLANTS_7].block_area_parm_1 = 0.9;
+	obstacle_map[ISO_ROCKS_N_PLANTS_7].block_area_parm_2 = 0.9;
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].filename = "iso_rocks_n_plants_0006.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_ROCKS_N_PLANTS_7].emitted_light_strength = 8;
 
-	obstacle_map[ISO_ROCKS_N_PLANTS_8].block_area_parm_1 = 1.0;
-	obstacle_map[ISO_ROCKS_N_PLANTS_8].block_area_parm_2 = 1.0;
+	obstacle_map[ISO_ROCKS_N_PLANTS_8].block_area_parm_1 = 0.9;
+	obstacle_map[ISO_ROCKS_N_PLANTS_8].block_area_parm_2 = 0.9;
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].filename = "iso_rocks_n_plants_0007.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_ROCKS_N_PLANTS_8].flags |= GROUND_LEVEL;
@@ -3420,11 +3420,11 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_SHELF_SMALL_FULL_H].block_area_parm_2 = 1.1;
 	obstacle_map[ISO_SHELF_SMALL_FULL_H].filename = "iso_obstacle_0096.png";
 
-	obstacle_map[ISO_SHELF_SMALL_EMPTY_V].block_area_parm_1 = 1.1;
-	obstacle_map[ISO_SHELF_SMALL_EMPTY_V].block_area_parm_2 = 0.6;
+	obstacle_map[ISO_SHELF_SMALL_EMPTY_V].block_area_parm_1 = 0.6;
+	obstacle_map[ISO_SHELF_SMALL_EMPTY_V].block_area_parm_2 = 1.1;
 	obstacle_map[ISO_SHELF_SMALL_EMPTY_V].filename = "iso_obstacle_0097.png";
-	obstacle_map[ISO_SHELF_SMALL_EMPTY_H].block_area_parm_1 = 0.6;
-	obstacle_map[ISO_SHELF_SMALL_EMPTY_H].block_area_parm_2 = 1.1;
+	obstacle_map[ISO_SHELF_SMALL_EMPTY_H].block_area_parm_1 = 1.1;
+	obstacle_map[ISO_SHELF_SMALL_EMPTY_H].block_area_parm_2 = 0.6;
 	obstacle_map[ISO_SHELF_SMALL_EMPTY_H].filename = "iso_obstacle_0098.png";
 
 	obstacle_map[ISO_SIGN_1].block_area_parm_1 = 0.9;
