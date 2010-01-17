@@ -1697,12 +1697,27 @@ Level DecodeLoadedLeveldata(char *data)
 
 	DebugPrintf(2, "\nReached Waypoint-read-routine.");
 
-	level_end = LocateStringInData(wp_begin, LEVEL_END_STRING);
+	//-----------------
+	// Before to read the waypoint data, we first reset all the
+	// waypoint structs.
+	//
+
+	for (i = 0; i < MAXWAYPOINTS; i++) {
+		loadlevel->AllWaypoints[i].x = 0;
+		loadlevel->AllWaypoints[i].y = 0;
+
+		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
+			loadlevel->AllWaypoints[i].connections[k] = -1;
+		}
+	}
+	loadlevel->num_waypoints = 0;
 
 	//--------------------
 	// We decode the waypoint data from the data file into the waypoint
 	// structs...
 	//
+	level_end = LocateStringInData(wp_begin, LEVEL_END_STRING);
+
 	curlinepos = 0;
 	for (i = 0; i < MAXWAYPOINTS; i++) {
 		/* Select the next line */
