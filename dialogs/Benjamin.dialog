@@ -198,7 +198,9 @@ LuaCode={
 
 Nr=22  Text=_"Yes I want even more training. (cost 6 training points, 200 cash)"
 LuaCode={
-	npc_says(_"Blabla") --FIXME
+	npc_says(_"You must remain calm whilst shooting.", "NO_WAIT")
+	npc_says(_"Try breathing out as you pull the trigger and squeeze it gently rather than jerking it.")
+	npc_says(_"That's right. You will find yourself hitting the target much more often now.")
 	add_gold(-200)
 	del_training_points(6)
 	improve_skill("ranged")
@@ -208,7 +210,10 @@ LuaCode={
 
 Nr=23  Text=_"Yes I accept. (cost 9 training points, 300 cash)"
 LuaCode={
-	npc_says(_"Blabla") --FIXME
+	npc_says(_"Next lesson is hitting a moving target.")
+	npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead.")
+	npc_says(_"It's easy when you know how, especially with bots, because they tend to move in straight lines, not bob and weave like people.")
+	npc_says(_"I think that is enough training for now. Next time, firing on the move!")
 	add_gold(-300)
 	del_training_points(9)
 	improve_skill("ranged")
@@ -218,7 +223,10 @@ LuaCode={
 
 Nr=24  Text=_"Yes I accept. (cost 12 training points, 400 cash)"
 LuaCode={
-	npc_says(_"Blabla") --FIXME
+	npc_says(_"Firing on the move is difficult, but can make survival much more likely!")
+	npc_says(_"The secret is to keep a stable platform and hold the weapon loosely so that it doesn't jar.")
+	npc_says(_"Oh yes, and remember not to trip over, because you should be looking where you are firing, not where you are stepping.")
+	npc_says(_"Keep practicing and you will get the hang of it eventually.")
 	add_gold(-400)
 	del_training_points(12)
 	improve_skill("ranged")
@@ -228,7 +236,10 @@ LuaCode={
 
 Nr=25  Text=_"Yes I want to become a god in ranged combat. (cost 15 training points, 500 cash)"
 LuaCode={
-	npc_says(_"Blabla") --FIXME
+	npc_says(_"I don't tell everyone this, so keep it to yourself, alright?")
+	npc_says(_"To become a god in ranged combat you need to...")
+	npc_says(_"...practice. A lot.")
+	npc_says(_"Go ahead and use my firing range as much as you need.")
 	add_gold(-500)
 	del_training_points(15)
 	improve_skill("ranged")
