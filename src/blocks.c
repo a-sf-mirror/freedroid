@@ -3634,6 +3634,46 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DESKCHAIR_3].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DESKCHAIR_3].filename = "iso_deskchair_0003.png";
 
+	obstacle_map[ISO_SECURITY_GATE_GREEN_E].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_GREEN_E].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_GREEN_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_GREEN_E].filename = "iso_security_gate_0001.png";
+
+	obstacle_map[ISO_SECURITY_GATE_GREEN_S].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_GREEN_S].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_GREEN_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_GREEN_S].filename = "iso_security_gate_0002.png";
+
+	obstacle_map[ISO_SECURITY_GATE_RED_E].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_RED_E].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_RED_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_RED_E].filename = "iso_security_gate_0003.png";
+
+	obstacle_map[ISO_SECURITY_GATE_RED_S].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_RED_S].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_RED_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_RED_S].filename = "iso_security_gate_0004.png";
+	
+	obstacle_map[ISO_SECURITY_GATE_OPEN_E].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_OPEN_E].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_OPEN_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_OPEN_E].filename = "iso_security_gate_0005.png";
+	
+	obstacle_map[ISO_SECURITY_GATE_OPEN_S].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_OPEN_S].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_OPEN_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_OPEN_S].filename = "iso_security_gate_0006.png";
+	
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_E].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_E].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_E].filename = "iso_security_gate_0007.png";
+	
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].block_area_parm_1 = 0.95;
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].block_area_parm_2 = 1.05;
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].filename = "iso_security_gate_0008.png";
+
 	//--------------------
 	// Now that we have defined the block area paramters, it's time to do some
 	// simple but often required computations in advance:  Calculating the offsets
