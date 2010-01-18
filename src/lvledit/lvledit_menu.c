@@ -854,7 +854,7 @@ static void AdvancedOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 			LevelValidation();
-			while (!SpacePressed())
+			while (!SpacePressed() && !EnterPressed() && !MouseLeftPressed())
 				SDL_Delay(0);
 			//Hack: eat all pending events.
 			input_handle();

@@ -1063,14 +1063,16 @@ void LevelValidation()
 	int uncaught_excpt = FALSE;
 
 	SDL_Rect background_rect = { UNIVERSAL_COORD_W(20), UNIVERSAL_COORD_H(20), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(440) };
-	SDL_Rect report_rect = { UNIVERSAL_COORD_W(30), UNIVERSAL_COORD_H(30), UNIVERSAL_COORD_W(580), UNIVERSAL_COORD_H(420) };
+	SDL_Rect report_rect = { UNIVERSAL_COORD_W(30), UNIVERSAL_COORD_H(30), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(430) };
 
 	BFont_Info *current_font = GetCurrentFont();
 	int raw_height = FontHeight(current_font);
 	int max_raws = (report_rect.h / raw_height) - 4;	// 4 lines are reserved for header and footer 
-	int column_width = TextWidth("Level 000: empty");
+	int column_width = TextWidth("000: empty");
 
-	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS);
+	AssembleCombatPicture(ONLY_SHOW_MAP | NO_CURSOR | SKIP_LIGHT_RADIUS); //ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS);
+	SetCurrentFont(current_font);	// Reset font, in case it was modified by AssembleCombatPicture()
+
 	ShadowingRectangle(Screen, background_rect);
 
 	//--------------------
@@ -1103,7 +1105,7 @@ void LevelValidation()
 		if (curShip.AllLevels[l] == NULL) {
 			// Empty level
 			char txt[40];
-			sprintf(txt, "%s %3d: \2empty\n", "Level", l);
+			sprintf(txt, "%03d: \2empty\n", l);
 			DisplayText(txt, col_pos, -1, &report_rect, 1.0);
 			SetCurrentFont(current_font);	// Reset font
 		} else {
@@ -1117,7 +1119,7 @@ void LevelValidation()
 
 			// Display report
 			char txt[40];
-			sprintf(txt, "%s %3d: %s\n", "Level", l, (level_is_invalid) ? "\1fail" : "pass");
+			sprintf(txt, "%03d: %s\n", l, (level_is_invalid) ? "\1fail" : "pass");
 			DisplayText(txt, col_pos, -1, &report_rect, 1.0);
 			SetCurrentFont(current_font);	// Reset font in case of the red "fail" was displayed
 
