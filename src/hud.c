@@ -1069,7 +1069,7 @@ void prepare_text_window_content(char *ItemDescText)
 			gps chest_vpos;
 			update_virtual_position(&chest_vpos, &(obj_lvl->obstacle_list[index_of_chest_below_mouse_cursor].pos), Me.pos.z);
 			if (chest_vpos.x != -1) {
-				strcpy(ItemDescText, _(" C H E S T "));
+				strcpy(ItemDescText, _("   Chest   "));
 				best_banner_pos_x = translate_map_point_to_screen_pixel_x(chest_vpos.x, chest_vpos.y) + 70;
 				best_banner_pos_y = translate_map_point_to_screen_pixel_y(chest_vpos.x, chest_vpos.y) - 20;
 			}
@@ -1090,11 +1090,11 @@ void prepare_text_window_content(char *ItemDescText)
 			switch (obs_type) {
 			case ISO_BARREL_1:
 			case ISO_BARREL_2:
-				strcpy(ItemDescText, _(" B A R R E L "));
+				strcpy(ItemDescText, _("   Barrel   "));
 				break;
 			case ISO_BARREL_3:
 			case ISO_BARREL_4:
-				strcpy(ItemDescText, _(" C R A T E "));
+				strcpy(ItemDescText, _("   Crate   "));
 				break;
 			default:
 				fprintf(stderr, "\nobs_type: %d.", obs_type);
