@@ -167,7 +167,14 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 	} else {
 	}
 
-	inflate_stream(DataFile, &buf, &sz);
+	if (!strstr(fpath, ".z")) {
+		printf("This seems to be an uncompressed file.\n");
+		buf = MyMalloc(FS_filelength(DataFile));
+
+		fread(buf, FS_filelength(DataFile), 1, DataFile);
+	} else {
+		inflate_stream(DataFile, &buf, &sz);
+	}
 
 	fclose(DataFile);
 	return buf;
