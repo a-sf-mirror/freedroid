@@ -1310,9 +1310,15 @@ static void TranslateToHumanReadable(struct auto_string *str, map_tile * MapInfo
 }
 
 /**
- * This function generates savable text out of the current lavel data
+ * This function generates savable text out of the current level data
+ *
+ * If keep_random_levels is FALSE, then the current generated map of the
+ * random levels is stored as a "normal" map (typical usage: the MapEd
+ * playtest savegame), else the random levels are saved "un-generated"
+ * (typical usage: freedroid.levels).
+ *
  */
-static void encode_level_for_saving(struct auto_string *shipstr, level *lvl)
+static void encode_level_for_saving(struct auto_string *shipstr, level *lvl, int keep_random_levels)
 {
 	int i;
 	int xlen = lvl->xlen, ylen = lvl->ylen;
@@ -1329,7 +1335,13 @@ jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
 jump target west: %d\n\
-use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light_bonus, lvl->minimum_light_value, lvl->infinite_running_on_this_level, lvl->random_dungeon, lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east, lvl->jump_target_west, lvl->use_underground_lighting);
+use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen,
+		lvl->light_bonus, lvl->minimum_light_value,
+		lvl->infinite_running_on_this_level,
+		(keep_random_levels) ? lvl->random_dungeon : 0,
+		lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east,
+		lvl->jump_target_west, lvl->use_underground_lighting);
+
 	autostr_append(shipstr, "%s%s\"\n%s%s\n", LEVEL_NAME_STRING, lvl->Levelname,
 			BACKGROUND_SONG_NAME_STRING, lvl->Background_Song_Name);
 
@@ -1337,7 +1349,7 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light
 
 	// Now in the loop each line of map data should be saved as a whole
 	for (i = 0; i < ylen; i++) {
-		if (!lvl->random_dungeon) {
+		if (!keep_random_levels || !lvl->random_dungeon) {
 			TranslateToHumanReadable(shipstr, lvl->map[i], xlen);
 		} else {
 			int j = xlen;
@@ -1350,7 +1362,7 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light
 
 	autostr_append(shipstr, "%s\n", MAP_END_STRING);
 
-	if (!lvl->random_dungeon) {
+	if (!keep_random_levels || !lvl->random_dungeon) {
 		encode_obstacles_of_this_level(shipstr, lvl);
 
 		EncodeMapLabelsOfThisLevel(shipstr, lvl);
@@ -1372,8 +1384,13 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen, lvl->light
  * This function should save a whole ship to disk to the given filename.
  * It is not only used by the level editor, but also by the function that
  * saves whole games.
+ *
+ * If keep_random_levels is FALSE, then the current generated map of the
+ * random levels is stored as a "normal" map (typical usage: the MapEd
+ * playtest savegame), else the random levels are saved "un-generated"
+ * (typical usage: freedroid.levels).
  */
-int SaveShip(const char *filename)
+int SaveShip(const char *filename, int keep_random_levels)
 {
 	int i;
 	FILE *ShipFile = NULL;
@@ -1391,7 +1408,7 @@ int SaveShip(const char *filename)
 	// Save all the levels
 	for (i = 0; i < curShip.num_levels; i++) {
 		if (curShip.AllLevels[i] != NULL) {
-			encode_level_for_saving(shipstr, curShip.AllLevels[i]);
+			encode_level_for_saving(shipstr, curShip.AllLevels[i], keep_random_levels);
 		}
 	}
 

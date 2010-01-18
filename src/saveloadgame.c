@@ -258,7 +258,7 @@ int SaveGame(void)
 	CenteredPutStringFont(Screen, Menu_BFont, 10, _("Saving"));
 	our_SDL_flip_wrapper();
 
-	if (SaveShip(filename) != OK) {
+	if (SaveShip(filename, FALSE) != OK) {
 		ErrorMessage(__FUNCTION__, "\
 The SAVING OF THE SHIP DATA FOR THE SAVED GAME FAILED!\n\
 This is either a bug in Freedroid or an indication, that the directory\n\

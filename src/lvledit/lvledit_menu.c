@@ -988,7 +988,7 @@ int DoLevelEditorMainMenu()
 				SDL_Delay(1);
 			char fp[2048];
 			find_file("freedroid.levels", MAP_DIR, fp, 0);
-			SaveShip(fp);
+			SaveShip(fp, TRUE);
 			CenteredPutString(Screen, 11 * FontHeight(Menu_BFont), _("Your ship was saved..."));
 			our_SDL_flip_wrapper();
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
