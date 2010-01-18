@@ -590,11 +590,11 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 	// simple, so we do this first.
 	//
 	if ((DropDecision > 100 - GOLD_DROP_PERCENTAGE)) {
-		// If class == 0, we want to avoid to drop 0 valuable circuits
+		// If class == 0, we want to avoid to drop 0-1 valuable circuits
 		int how_many = 0;
 		do {
 			how_many = 10 * class + MyRandom(9);
-		} while (how_many == 0);
+		} while (how_many < 2);
 		
 		DropItemAt(GetItemIndexByName("Valuable Circuits"), level_num, x, y, -1, -1, how_many);
 	}
