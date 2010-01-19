@@ -821,7 +821,7 @@ static void AdvancedOptions(void)
 
 	enum {
 		RUN_MAP_VALIDATION = 1,
-		RUN_LUA_VALIDATION,
+//		RUN_LUA_VALIDATION,
 		LEAVE_OPTIONS_MENU,
 	};
 
@@ -833,7 +833,7 @@ static void AdvancedOptions(void)
 
 		i = 0;
 		MenuTexts[i++] = _("Run Map Level Validator");
-		MenuTexts[i++] = _("Run Dialog Lua Validator");
+//		MenuTexts[i++] = _("Run Dialog Lua Validator");
 		MenuTexts[i++] = _("Back");
 		MenuTexts[i++] = "";
 
