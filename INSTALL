@@ -3,25 +3,42 @@ FreedroidRPG Installation
 
 To build FreedroidRPG from source on a Unix-like system, you will use the "standard" GNU autotools way.
 
+
+
 Building with autotools
 =========================
 
-1) If you are running an SVN version of the game, you will first need to generate the 
-   configure script by running ./autogen.sh.
+1) Open a terminal. 
+   a) Via right click in some file browsers.
+   
+   b) Via main menu (usually "System" entry).
+      Move to the FreedroidRPG source directory using "cd ./XYZ/" command. XYZ = path to the FreedroidRPG source.
+   
+2) If you are running an SVN version of the game, you will first need to generate the 
+   configure script by running:
+   ./autogen.sh
+   If you don't know what the SVN version is, you are not running it and can skip this step.
 
-2) Run the configure script, ./configure
+3) Run the configure script: 
+   ./configure
    You can check the options it accepts with --help.
    If you are running MAC OSX you will probably want to use ./configure --with-apple-opengl-framework
+   During the configure process, the terminal may notify you that some software is required.
+   Install the required packages and restart ./configure.
 
-3) Type "make" to build the game.
+4) If ./configure finishes without errors or warnings, then procede with building the game with:
+   make
 
-4) Installation
-  a) "make install" will install the game. The binary name is freedroidRPG.
+5) Installation
+   a) "make install" will install the game. The binary name is freedroidRPG.
+      If you want all users on your computer to use your built of FreedroidRPG, execute "make install" as root.
 
-  b) If you are working with the source tree and want to svn update regularly we 
-     recomend the following instead : 
-     Do not issue "make install", instead, simply go to the src/ subdirectory, and run
-     ./freedroidRPG. 
+   b) If you are working with the source tree and want to svn update regularly we 
+      recommend the following instead: 
+      Do not issue "make install", instead, simply go to the src/ subdirectory, and run
+      ./freedroidRPG.
+
+
 
 Cross compile for Windows with autotools
 ========================================
@@ -44,4 +61,3 @@ If you have problems with the compilation/installation, please
 contact us : #freedroid on irc.freenode.net (we don't bite!),
 or send a mail to freedroid-discussion@lists.sourceforge.net.
 ==============================================================
- 
