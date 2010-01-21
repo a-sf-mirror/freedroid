@@ -102,19 +102,17 @@ Freedroid has encountered a problem:\n");
 
 	if (InformDevelopers) {
 		fprintf(stderr, "\
+\n\
+\n\
 If you encounter this message, please inform the Freedroid developers\n\
-about the problem, by sending e-mail to \n\
+about the problem, by either\n\
 \n\
-freedroid-discussion@lists.sourceforge.net\n\
-\n\
-Or you can mention it to someone of the developers on our\n\
-IRC channel.  The channel is:\n\
-\n\
-channel: #freedroid on irc.freenode.net\n\
-\n\
-Or post on our forum at:\n\
-\n\
-https://sourceforge.net/apps/phpbb/freedroid\n\
+  sending e-mail to:\n\
+    freedroid-discussion@lists.sourceforge.net\n\
+  mention it to someone of the developers on our IRC channel:\n\
+    channel: #freedroid on irc.freenode.net\n\
+  post on our forum at:\n\
+    https://sourceforge.net/apps/phpbb/freedroid\n\
 \n\
 Thanks a lot!\n\n");
 	}
