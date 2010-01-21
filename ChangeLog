@@ -1,4 +1,236 @@
 ------------------------------------------------------------------------
+r2324 | stedevil | 2010-01-21 14:12:43 +0100 (jeu., 21 janv. 2010) | 1 line
+
+Update version string, 0.13 (final)
+------------------------------------------------------------------------
+r2323 | stedevil | 2010-01-21 14:07:55 +0100 (jeu., 21 janv. 2010) | 1 line
+
+pretty up fatal exit text a bit
+------------------------------------------------------------------------
+r2322 | stedevil | 2010-01-21 14:02:28 +0100 (jeu., 21 janv. 2010) | 1 line
+
+fix indentation in credits
+------------------------------------------------------------------------
+r2321 | stedevil | 2010-01-21 09:09:06 +0100 (jeu., 21 janv. 2010) | 1 line
+
+mention forum in RC popup and fatal exits
+------------------------------------------------------------------------
+r2320 | stedevil | 2010-01-21 08:31:27 +0100 (jeu., 21 janv. 2010) | 1 line
+
+Make forum link shorter
+------------------------------------------------------------------------
+r2319 | stedevil | 2010-01-21 08:21:44 +0100 (jeu., 21 janv. 2010) | 1 line
+
+README contact info update
+------------------------------------------------------------------------
+r2318 | salimiles | 2010-01-21 01:14:21 +0100 (jeu., 21 janv. 2010) | 1 line
+
+Partial fix of #2510656 'But AI gets stuck'. The AI still goes in stupid places, but now moves on afterwords. Also made it so it can go after low point value places.
+------------------------------------------------------------------------
+r2317 | stedevil | 2010-01-19 12:35:20 +0100 (mar., 19 janv. 2010) | 1 line
+
+Mattias and my updates to INSTALL
+------------------------------------------------------------------------
+r2316 | stedevil | 2010-01-19 11:40:24 +0100 (mar., 19 janv. 2010) | 1 line
+
+Make Tamara not end dialog immediately on first visit
+------------------------------------------------------------------------
+r2315 | stedevil | 2010-01-19 09:22:11 +0100 (mar., 19 janv. 2010) | 1 line
+
+Comment out Lua validator which presently is not available from inside the editor (only commandline)
+------------------------------------------------------------------------
+r2314 | salimiles | 2010-01-19 02:07:03 +0100 (mar., 19 janv. 2010) | 1 line
+
+
+------------------------------------------------------------------------
+r2313 | fluzz | 2010-01-18 23:26:56 +0100 (lun., 18 janv. 2010) | 2 lines
+
+Level validator output screen: do not display information text on the screen's background and use shorter output strings
+
+------------------------------------------------------------------------
+r2312 | ahuillet | 2010-01-18 19:08:18 +0100 (lun., 18 janv. 2010) | 1 line
+
+ungluem: add support for uncompressed (not .z) tux_image_archive files
+------------------------------------------------------------------------
+r2311 | fluzz | 2010-01-18 15:22:57 +0100 (lun., 18 janv. 2010) | 1 line
+
+When creating MapEd savegame, store the generated map of the random levels
+------------------------------------------------------------------------
+r2310 | stedevil | 2010-01-18 13:49:55 +0100 (lun., 18 janv. 2010) | 1 line
+
+Avoid also to drop 1 valuable circuits (avoiding any future plural knitpicking :D)
+------------------------------------------------------------------------
+r2309 | stedevil | 2010-01-18 06:21:25 +0100 (lun., 18 janv. 2010) | 1 line
+
+replace C H E S T/ B A R R E L/C R A T E  with Chest/Barrel/Crate in UI
+------------------------------------------------------------------------
+r2308 | fluzz | 2010-01-18 00:06:15 +0100 (lun., 18 janv. 2010) | 1 line
+
+LoadShip: reset waypoint data structs before to load them from file. This lowers the chance of bug
+------------------------------------------------------------------------
+r2307 | ahuillet | 2010-01-17 16:23:20 +0100 (dim., 17 janv. 2010) | 1 line
+
+Integrated security gates into the code
+------------------------------------------------------------------------
+r2306 | bastiansalmela | 2010-01-17 15:49:54 +0100 (dim., 17 janv. 2010) | 5 lines
+
+
+first draft of security gate
+
+
+
+------------------------------------------------------------------------
+r2305 | bastiansalmela | 2010-01-17 13:20:51 +0100 (dim., 17 janv. 2010) | 5 lines
+
+
+a quick first test how these files work in blender 2.5. 
+seems to work. so this is a new render of a mug. slightly more stylished too..
+
+
+------------------------------------------------------------------------
+r2304 | ahuillet | 2010-01-17 11:06:15 +0100 (dim., 17 janv. 2010) | 1 line
+
+Improve block areas of ISO_ROCKS_AND_PLANTS* and ISO_SHELF_SMALL_EMPTY_*
+------------------------------------------------------------------------
+r2303 | stedevil | 2010-01-17 07:11:03 +0100 (dim., 17 janv. 2010) | 1 line
+
+Adding Gloccus Vespasianus imjprovments to Benjamins dialogs
+------------------------------------------------------------------------
+r2302 | ahuillet | 2010-01-17 01:13:21 +0100 (dim., 17 janv. 2010) | 1 line
+
+jeremybubs improved the mouse hover text for health/temperature bars so it does not occlude the bars
+------------------------------------------------------------------------
+r2301 | ahuillet | 2010-01-16 18:07:19 +0100 (sam., 16 janv. 2010) | 1 line
+
+Improve blocksize of certain brickwalls.
+------------------------------------------------------------------------
+r2300 | ahuillet | 2010-01-16 18:01:59 +0100 (sam., 16 janv. 2010) | 1 line
+
+Make blockarea of new chest model (CHEST2) closer to reality.
+------------------------------------------------------------------------
+r2299 | fluzz | 2010-01-16 16:26:19 +0100 (sam., 16 janv. 2010) | 1 line
+
+Add ungluem to svn:ignore property
+------------------------------------------------------------------------
+r2298 | ahuillet | 2010-01-16 16:04:07 +0100 (sam., 16 janv. 2010) | 3 lines
+
+Make graphical number selector and item drop from level editor use SDL events directly.
+
+Fixes the bug that when dropping a stackable item (potion or pill), a wall was placed as well.
+------------------------------------------------------------------------
+r2297 | ahuillet | 2010-01-16 13:29:10 +0100 (sam., 16 janv. 2010) | 1 line
+
+leveleditor object info: also display obstacles flags (numeric value for now)
+------------------------------------------------------------------------
+r2296 | ahuillet | 2010-01-16 12:56:51 +0100 (sam., 16 janv. 2010) | 1 line
+
+automap: standard walls now occupy only one square on the automap. Fixes doors being invisible in random dungeons.
+------------------------------------------------------------------------
+r2295 | ahuillet | 2010-01-16 11:08:28 +0100 (sam., 16 janv. 2010) | 1 line
+
+move CollectAutomapData() in automap.c instead of map.c
+------------------------------------------------------------------------
+r2294 | ahuillet | 2010-01-16 11:01:37 +0100 (sam., 16 janv. 2010) | 1 line
+
+automap: now displays elements both on the N&W and S&E borders. :)
+------------------------------------------------------------------------
+r2293 | fluzz | 2010-01-15 23:20:00 +0100 (ven., 15 janv. 2010) | 1 line
+
+Avoid to drop 0 valuable circuits
+------------------------------------------------------------------------
+r2292 | ahuillet | 2010-01-15 19:15:51 +0100 (ven., 15 janv. 2010) | 1 line
+
+ungluem: fix "stand" animation missing for enemy archives + remove debug output
+------------------------------------------------------------------------
+r2291 | ahuillet | 2010-01-15 18:53:20 +0100 (ven., 15 janv. 2010) | 1 line
+
+Added a new tool, ungluem, to extract PNG files from .tux_image_archive.z files. It is a (working) prototype.
+------------------------------------------------------------------------
+r2290 | ahuillet | 2010-01-15 18:51:30 +0100 (ven., 15 janv. 2010) | 1 line
+
+Remove useless attached_pixel_data field in struct iso_image.
+------------------------------------------------------------------------
+r2289 | stedevil | 2010-01-15 06:42:15 +0100 (ven., 15 janv. 2010) | 1 line
+
+fix typo
+------------------------------------------------------------------------
+r2288 | stedevil | 2010-01-15 05:41:21 +0100 (ven., 15 janv. 2010) | 1 line
+
+Patch from Jeremybub to improve Francis direction to town advice
+------------------------------------------------------------------------
+r2287 | ahuillet | 2010-01-13 09:58:52 +0100 (mer., 13 janv. 2010) | 1 line
+
+Fix automap not displaying obstacles that are placed *on* the S & E borders.
+------------------------------------------------------------------------
+r2286 | ahuillet | 2010-01-13 09:58:30 +0100 (mer., 13 janv. 2010) | 1 line
+
+Use obstacle symbolic names in mapgen instead of magic numeric constants.
+------------------------------------------------------------------------
+r2285 | stedevil | 2010-01-13 06:15:50 +0100 (mer., 13 janv. 2010) | 1 line
+
+Fix warehouse breakable walls on lvl 8 and redesign it a bit
+------------------------------------------------------------------------
+r2284 | stedevil | 2010-01-13 05:25:08 +0100 (mer., 13 janv. 2010) | 1 line
+
+Lower magic item drop%, in prep of complete remake of magic items for 0.14
+------------------------------------------------------------------------
+r2283 | stedevil | 2010-01-13 04:58:50 +0100 (mer., 13 janv. 2010) | 1 line
+
+Make chests drop lvl 0 not lvl 1 items
+------------------------------------------------------------------------
+r2282 | stedevil | 2010-01-13 03:42:37 +0100 (mer., 13 janv. 2010) | 1 line
+
+Fix missing connections to waypoint in tutorial
+------------------------------------------------------------------------
+r2281 | fluzz | 2010-01-12 23:00:37 +0100 (mar., 12 janv. 2010) | 1 line
+
+Rename some functions in action.c to reflect their actual usage. Fix some erroneous or incomplete comments
+------------------------------------------------------------------------
+r2280 | fluzz | 2010-01-12 22:37:16 +0100 (mar., 12 janv. 2010) | 2 lines
+
+Move functions related to interaction with activable objects (barrel, chest, item) into a new action.c file. Move mouse_cursor_is_on_that_iso_image() into blocks.c. Remove the unused GetObstacleBelowMouseCursor function. Patch submitted by hdanak.
+
+------------------------------------------------------------------------
+r2279 | ahuillet | 2010-01-12 12:18:44 +0100 (mar., 12 janv. 2010) | 1 line
+
+Typography + minor updates to documentation by Matthias Krueger
+------------------------------------------------------------------------
+r2278 | ahuillet | 2010-01-12 12:11:48 +0100 (mar., 12 janv. 2010) | 1 line
+
+Fixed reading floor tiles with value >= 100 on the map.
+------------------------------------------------------------------------
+r2277 | fluzz | 2010-01-11 20:56:30 +0100 (lun., 11 janv. 2010) | 1 line
+
+Protect resolve_virtual_position() against an invalid value of the vpos parameter. Correctly handle the resolve_virtual_position()'s return code on every call
+------------------------------------------------------------------------
+r2276 | fluzz | 2010-01-11 20:37:50 +0100 (lun., 11 janv. 2010) | 1 line
+
+Change print_trace(), so that a call to print_trace(0) prints the backtrace, but does not terminate fdrpg
+------------------------------------------------------------------------
+r2275 | ahuillet | 2010-01-11 11:29:59 +0100 (lun., 11 janv. 2010) | 1 line
+
+fix typo in version string
+------------------------------------------------------------------------
+r2274 | ahuillet | 2010-01-11 11:24:55 +0100 (lun., 11 janv. 2010) | 1 line
+
+rc2 is out. change version string to rc2+
+------------------------------------------------------------------------
+r2273 | salimiles | 2010-01-11 07:45:30 +0100 (lun., 11 janv. 2010) | 3 lines
+
+Yet another set of floor tiles, this time based upon an actual ordimental tile.
+
+
+------------------------------------------------------------------------
+r2272 | salimiles | 2010-01-11 06:29:10 +0100 (lun., 11 janv. 2010) | 3 lines
+
+Modified the MegaSys base to use MegaSys themed tiles.  Also replaced a number of road curve tiles.
+
+
+------------------------------------------------------------------------
+r2271 | ahuillet | 2010-01-10 20:04:40 +0100 (dim., 10 janv. 2010) | 1 line
+
+update Changelog for rc2
+------------------------------------------------------------------------
 r2270 | ahuillet | 2010-01-10 17:07:31 +0100 (dim., 10 janv. 2010) | 1 line
 
 make "SDL missing" error message clearer.
