@@ -112,6 +112,10 @@ IRC channel.  The channel is:\n\
 \n\
 channel: #freedroid on irc.freenode.net\n\
 \n\
+Or post on our forum at:\n\
+\n\
+https://sourceforge.net/apps/phpbb/freedroid\n\
+\n\
 Thanks a lot!\n\n");
 	}
 

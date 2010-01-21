@@ -1826,7 +1826,7 @@ I will not be able to load or save games or configurations\n\
 
 	if (strstr(VERSION, "rc"))
 		GiveMouseAlertWindow(_
-				     ("\nYou are playing a Release Candidate.\nMany strange bugs might still be present in the game.\nPlease report anything you may find to #freedroid at irc.freenode.net, or\n by mail to freedroid-discussion at lists.sourceforge.net\nThank you for helping us test the game.\nGood luck!\n"));
+				     ("\nYou are playing a Release Candidate.\nStrange bugs might still be present in the game.\nPlease report any issues you find to either of:\n\n#freedroid at irc.freenode.net\nfreedroid-discussion@lists.sourceforge.net\nhttps://sourceforge.net/apps/phpbb/freedroid\n\nor directly to the bugtracker at the SF website\nThank you for helping us test the game.\n\nGood luck!\n"));
 
 };				// void InitFreedroid ( void ) 
 
