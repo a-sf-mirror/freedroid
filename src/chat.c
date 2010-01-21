@@ -693,7 +693,6 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 	SDL_Rect Chat_Window;
 	char *DialogMenuTexts[MAX_ANSWERS_PER_PERSON];
 	chat_control_partner_started = (ChatDroid->will_rush_tux);
-	SDL_Event event;
 
 	// Reset chat control variables.
 	chat_control_end_dialog = 0;
@@ -765,18 +764,8 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 			goto wait_click_and_out;
 	}
 
- wait_click_and_out:
-	while (1) {
-		SDL_WaitEvent(&event);
-		switch (event.type) {
-		case SDL_KEYDOWN:
-		case SDL_MOUSEBUTTONDOWN:
-			return;
-		case SDL_QUIT:
-			Terminate(0);
-		}
-	}
-
+wait_click_and_out:
+	while (EscapePressed() || MouseLeftPressed() || SpacePressed());
 };				// void DoChatFromChatRosterData( ... )
 
 /**
