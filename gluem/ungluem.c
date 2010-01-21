@@ -64,6 +64,7 @@ int amask = 0x000000FF;
 
 SDL_Surface *Screen;
 
+int extract_offset = 0;
 int display = 0;
 int debug_level = 0;
 //--------------------
@@ -100,15 +101,21 @@ static void parse_commandline(int argc, char *const argv[])
 	static struct option long_options[] = {
 		{"version", 0, 0, 'v'},
 		{"help", 0, 0, 'h'},
+		{"extract-offset", 0, 0, 'o'},
 		{0, 0, 0, 0}
 	};
 
 	while (1) {
-		c = getopt_long(argc, argv, "dvh?i:", long_options, NULL);
+		c = getopt_long(argc, argv, "odvh?i:", long_options, NULL);
+
 		if (c == -1)
 			break;
 
 		switch (c) {
+			case 'o':
+				extract_offset = 1;
+				break;
+
 			case 'i':
 				input_file = optarg;
 				break;
@@ -123,7 +130,7 @@ static void parse_commandline(int argc, char *const argv[])
 
 			case 'h':
 			case '?':
-				fprintf(stderr, "Usage: %s [-h] [-d] -i input_file\n", argv[0]);
+				fprintf(stderr, "Usage: %s [-o] [-h] [-d] -i input_file\n", argv[0]);
 				exit(0);
 				break;
 
@@ -277,6 +284,21 @@ void flip_image_vertically(SDL_Surface * tmp1)
 
 };				// void flip_image_vertically ( SDL_Surface* tmp1 ) 
 
+static void write_offset_file(const char *basename, Sint16 xoff, Sint16 yoff) 
+{
+	char name[1024];
+	FILE *off;
+
+	sprintf(name, "%s.offset", basename);
+
+	off = fopen(name, "w");
+	
+	fprintf(off, "OffsetX=%d\nOffsetY=%d\nGraphicsFileName=%s\n", xoff, yoff, basename);
+
+	fclose(off);
+
+}
+
 static void extract_and_write_file(const char *name, unsigned char **pos, int sdl)
 {
 	Sint16 img_xlen;
@@ -289,7 +311,7 @@ static void extract_and_write_file(const char *name, unsigned char **pos, int sd
 	SDL_Surface *surf;
 
 	unsigned char *ptr = *pos;
-			
+
 	img_xlen = ReadSint16(ptr);
 	ptr += sizeof(Sint16);
 	img_ylen = ReadSint16(ptr);
@@ -329,6 +351,10 @@ static void extract_and_write_file(const char *name, unsigned char **pos, int sd
 
 	SDL_FreeSurface(surf);
 	free(tmpbuf);
+
+	if (extract_offset) {
+		write_offset_file(name, img_x_offs, img_y_offs);
+	}
 
 	*pos = ptr;
 }
