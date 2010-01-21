@@ -442,9 +442,9 @@ item *npc_get_inventory(struct npc *n)
 	}
 
 	// Low-stock based refresh
-	if (npc_inventory_size(n) < (1 + npc_shoplist_size(n) / 2)) {
+	if (npc_inventory_size(n) < 6) {
 		DebugPrintf(DEBUG_SHOP, "stock based  refresh\n");
-		// If stock < 50% of catalog
+		// Less than 6 items in stock? Buy more
 		npc_refresh_inventory(n);
 	}
 
