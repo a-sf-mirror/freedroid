@@ -787,6 +787,7 @@ void AdvancedEnemyTakeoverMovements(void)
 	static int direction = 1;	/* start with this direction */
 	int row = CapsuleCurRow[OpponentColor] - 1;
 	int test_row;
+	int test_value;
 
 	int BestTarget = -1;
 	float BestValue = (-10000);	// less than any capsule can have
@@ -801,9 +802,10 @@ void AdvancedEnemyTakeoverMovements(void)
 	// best choice for the next capsule setting.
 	//
 	for (test_row = 0; test_row < NUM_LINES; test_row++) {
-		if (EvaluatePosition(OpponentColor, test_row, 1) > BestValue) {
+		test_value = EvaluatePosition(OpponentColor, test_row, 1);
+		if (test_value > BestValue) {
 			BestTarget = test_row;
-			BestValue = EvaluatePosition(OpponentColor, test_row, 1);
+			BestValue = test_value;
 		}
 	}
 	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
@@ -845,7 +847,7 @@ void AdvancedEnemyTakeoverMovements(void)
 
 	case 2:		/* Try to set  capsule */
 		if (MyRandom(100) <= SetProbability) {
-			if ((row >= 0) &&
+			if ((row >= 0) && 
 			    (ToPlayground[OpponentColor][0][row] != KABELENDE) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
 				NumCapsules[ENEMY]--;
 				Takeover_Set_Capsule_Sound();
@@ -853,6 +855,10 @@ void AdvancedEnemyTakeoverMovements(void)
 				ActivationMap[OpponentColor][0][row] = ACTIVE1;
 				CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
 				row = -1;	/* For the next capsule: startpos */
+			}
+			else
+			{
+				row += direction;
 			}
 		}
 		/* if MyRandom */
@@ -1410,9 +1416,11 @@ float EvaluatePosition(int color, int row, int layer)
 			return (0.5);
 		} else {
 			DebugPrintf(EVAL_DEBUG, "different color... returning 1.5 ");
-			return (1.5);
+			return (150);
 		}
 	}
+
+	if (ActivationMap[color][layer][row] == ACTIVE1) { return (0); }
 
 	newElement = ToPlayground[color][layer][row];
 
