@@ -1043,6 +1043,11 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 		//
 		Me.pos.x = X;
 		Me.pos.y = Y;
+
+		// Teleport could have been called by the leveleditor, due to
+		// some changes in the current level (light values, for example),
+		// so we refresh the speed-up data structures
+		get_visible_levels();
 	}
 
 	//--------------------

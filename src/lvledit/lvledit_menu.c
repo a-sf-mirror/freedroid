@@ -689,8 +689,6 @@ static void LevelOptions(void)
 					l = 0;
 			} else
 				l = 2;
-			reset_visible_levels();
-			Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
 			break;
 		case SET_LEVEL_NAME:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
