@@ -3774,7 +3774,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 			bot_pos.x = ThisRobot->virt_pos.x;
 			bot_pos.y = ThisRobot->virt_pos.y;
 
-			if (!GameConfig.skip_light_radius) {
+			if (!(mask & SKIP_LIGHT_RADIUS) && !GameConfig.skip_light_radius) {
 				darkness = (float)get_light_strength(bot_pos) / (float)(NUMBER_OF_SHADOW_IMAGES-1);
 				if (darkness > 1.0)
 					darkness = 1.0;
