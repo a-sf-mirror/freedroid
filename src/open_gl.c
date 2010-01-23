@@ -106,7 +106,7 @@ int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surf
 			bytes = src->pitch / src->w;
 
 			glDisable(GL_TEXTURE_2D);
-			glEnable(GL_ALPHA_TEST);
+			glEnable(GL_BLEND);
 
 			switch (bytes) {
 			case 4:
@@ -127,7 +127,7 @@ int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surf
 					     IS_WARNING_ONLY);
 			}
 
-			glDisable(GL_ALPHA_TEST);
+			glDisable(GL_BLEND);
 			glEnable(GL_TEXTURE_2D);
 			return (0);
 		}
