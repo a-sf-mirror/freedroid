@@ -31,9 +31,14 @@ Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
 	tux_says(_"Login : tux  Password : *******", "NO_WAIT")
-	tux_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	tux_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
+	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
+	hide(10,11)
 	show(1, 2, 3, 4, 99)
+	if (npc_damage_amount() >0) then
+		npc_says(_"This ".. bot_name().." unit needs repair.")
+		show(10)
+	end
+	npc_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
@@ -95,6 +100,33 @@ LuaCode={
 	else end
 	drop_dead()
 }
+
+----------------------------------------------------------------------
+Nr=10  Text=_"./est_repair.plx"
+LuaCode={
+	damage = npc_damage_amount()
+	npc_says(_"".. bot_name() .." unit reporting " .. damage .." damage.", "NO_WAIT")
+	npc_says(_"Repairs will take ".. damage .." seconds, require ".. damage*10 .." valuable circuits, and cause " .. damage*5 .." heat.")
+	hide(10)
+	if (get_gold() < damage*10) then
+		npc_says(_"You do not have enough valuable circuits to repair this ".. bot_name() .." unit.")
+	else
+		show(11)
+	end
+}
+
+----------------------------------------------------------------------
+Nr=11 Text=_"./repair.plx"
+LuaCode={
+	npc_says(_"Repair in progress.")
+	heal_npc()
+	freeze_tux_npc(damage)
+	add_gold(-damage*10)
+	heat_tux(damage*5)
+	hide(10,11)
+	end_dialog()
+}
+
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"

@@ -414,9 +414,9 @@ static int lua_event_add_gold(lua_State * L)
 	Me.Gold += nb;
 
 	if (nb > 0)
-		sprintf(tmpstr, _("Gained %d bucks!"), nb);
+		sprintf(tmpstr, _("Gained %d valuable circuits!"), nb);
 	else
-		sprintf(tmpstr, _("Lost %d bucks!"), nb);
+		sprintf(tmpstr, _("Lost %d valuable circuits!"), nb);
 
 	SetNewBigScreenMessage(tmpstr);
 	return 0;
@@ -472,6 +472,18 @@ static int lua_event_trade_with(lua_State * L)
 	return 0;
 }
 
+static int lua_event_heal_npc(lua_State * L)
+{
+	chat_control_chat_droid->energy = Druidmap[chat_control_chat_droid->type].maxenergy;
+	return 0;
+}
+
+static int lua_display_npc_damage_amount(lua_State * L)
+{
+	lua_pushinteger(L, (int)(Druidmap[chat_control_chat_droid->type].maxenergy - chat_control_chat_droid->energy)); 
+	return 1;
+}
+
 static int lua_event_npc_dead(lua_State *L)
 {
 	const char *cname = luaL_checkstring(L, 1);
@@ -487,6 +499,14 @@ static int lua_event_npc_dead(lua_State *L)
 	
 	lua_pushboolean(L, dead);
 	return 1;
+}
+
+static int lua_event_freeze_tux_npc(lua_State * L)
+{
+	int duration = luaL_checkinteger(L, 1);
+	chat_control_chat_droid->paralysation_duration_left = duration;
+	Me.paralyze_duration = duration;
+	return 0;
 }
 
 static int lua_chat_player_name(lua_State * L)
@@ -809,7 +829,12 @@ luaL_reg lfuncs[] = {
 
 	{"takeover", lua_chat_takeover}
 	,
-
+	{"heal_npc", lua_event_heal_npc}
+	,
+	{"npc_damage_amount", lua_display_npc_damage_amount}
+	,
+	{"freeze_tux_npc", lua_event_freeze_tux_npc}
+	,
 	{"npc_dead", lua_event_npc_dead},
 	
 	{"bot_name", lua_chat_bot_name},
