@@ -271,7 +271,7 @@ item *ItemDropFromLevelEditor(void)
 
 	if (ItemMap[NewItemCode].item_group_together_in_inventory) {
 		our_multiplicity =
-		    do_graphical_number_selection_in_range(1, (!MatchItemWithName(NewItemCode, "Cyberbucks")) ? 100 : 1000, 1);
+		    do_graphical_number_selection_in_range(1, (!MatchItemWithName(NewItemCode, "Valuable Circuits")) ? 100 : 1000, 1);
 		if (our_multiplicity == 0)
 			our_multiplicity = 1;
 	}
