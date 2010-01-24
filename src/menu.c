@@ -1306,7 +1306,7 @@ static int Startup_handle(int n)
 		strcpy(Me.character_name, "MapEd");
 		char fp[2048];
 		find_file("freedroid.levels", MAP_DIR, fp, 0);
-		LoadShip(fp);
+		LoadShip(fp, 0);
 		PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 		skip_initial_menus = 0;
 		return EXIT_MENU;
@@ -1318,7 +1318,7 @@ static int Startup_handle(int n)
 		strcpy(Me.character_name, "TutorialTux");
 		char fpp[2048];
 		find_file("freedroid.levels", MAP_DIR, fpp, 0);
-		LoadShip(fpp);
+		LoadShip(fpp, 0);
 		PrepareStartOfNewCharacter("TutorialTuxStart");
 		skip_initial_menus = 0;
 		game_root_mode = ROOT_IS_GAME;
@@ -2359,7 +2359,7 @@ int Single_Player_Menu(void)
 			if (PrepareNewHero() == TRUE) {
 				char fp[2048];
 				find_file("freedroid.levels", MAP_DIR, fp, 0);
-				LoadShip(fp);
+				LoadShip(fp, 0);
 				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 				can_continue = TRUE;
 				load_game_command_came_from_inside_running_game = TRUE;

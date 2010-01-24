@@ -258,7 +258,7 @@ int SaveGame(void)
 	CenteredPutStringFont(Screen, Menu_BFont, 10, _("Saving"));
 	our_SDL_flip_wrapper();
 
-	if (SaveShip(filename, FALSE) != OK) {
+	if (SaveShip(filename, FALSE, 1) != OK) {
 		ErrorMessage(__FUNCTION__, "\
 The SAVING OF THE SHIP DATA FOR THE SAVED GAME FAILED!\n\
 This is either a bug in Freedroid or an indication, that the directory\n\
@@ -499,7 +499,7 @@ int LoadGame(void)
 		return (ERR);
 	}
 
-	LoadShip(filename);
+	LoadShip(filename, 1);
 
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
 

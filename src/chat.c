@@ -1026,7 +1026,7 @@ void validate_dialogs()
 	skip_initial_menus = 1;
 
 	find_file("freedroid.levels", MAP_DIR, fpath, 0);
-	LoadShip(fpath);
+	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 	clear_player_inventory_and_stats();
 

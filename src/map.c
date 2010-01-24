@@ -910,7 +910,7 @@ static void generate_dungeon_if_needed(level *l)
  * This function loads the data for a whole ship
  * Possible return values are : OK and ERR
  */
-int LoadShip(char *filename)
+int LoadShip(char *filename, int compressed)
 {
 	char *ShipData = NULL;
 	FILE *ShipFile;
@@ -955,8 +955,14 @@ int LoadShip(char *filename)
 		ErrorMessage(__FUNCTION__, "Unable to open ship file %s: %s.\n", PLEASE_INFORM, IS_FATAL, filename, strerror(errno));
 	}
 
-	if (inflate_stream(ShipFile, (unsigned char **)&ShipData, NULL)) {
-		ErrorMessage(__FUNCTION__, "Unable to decompress ship file %s.\n", PLEASE_INFORM, IS_FATAL, filename);
+	if (compressed) {
+		if (inflate_stream(ShipFile, (unsigned char **)&ShipData, NULL)) {
+			ErrorMessage(__FUNCTION__, "Unable to decompress ship file %s.\n", PLEASE_INFORM, IS_FATAL, filename);
+		}
+	} else {
+		int length = FS_filelength(ShipFile);
+		ShipData = malloc(length + 1);
+		fread(ShipData, length, 1, ShipFile);
 	}
 
 	fclose(ShipFile);
@@ -1390,7 +1396,7 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen,
  * playtest savegame), else the random levels are saved "un-generated"
  * (typical usage: freedroid.levels).
  */
-int SaveShip(const char *filename, int keep_random_levels)
+int SaveShip(const char *filename, int keep_random_levels, int compress)
 {
 	int i;
 	FILE *ShipFile = NULL;
@@ -1414,7 +1420,11 @@ int SaveShip(const char *filename, int keep_random_levels)
 
 	autostr_append(shipstr, "%s\n\n", END_OF_SHIP_DATA_STRING);
 
-	deflate_to_stream((unsigned char *)shipstr->value, shipstr->length+1, ShipFile);
+	if (compress) { 
+		deflate_to_stream((unsigned char *)shipstr->value, shipstr->length+1, ShipFile);
+	}	else {
+		fwrite((unsigned char *)shipstr->value, shipstr->length+1, 1, ShipFile); 
+	}
 
 	if (fclose(ShipFile) == EOF) {
 		ErrorMessage(__FUNCTION__, "Closing of ship file failed!", PLEASE_INFORM, IS_FATAL);

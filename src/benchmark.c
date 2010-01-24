@@ -84,7 +84,7 @@ static void loadship_bench()
 	// Load it many times
 	timer_start();
 	while (loop--) {
-		LoadShip(fp);
+		LoadShip(fp, 0);
 	}
 }
 

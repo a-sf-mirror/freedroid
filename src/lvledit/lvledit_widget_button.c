@@ -59,7 +59,7 @@ static void activate_button(struct leveleditor_button *b)
 		if (game_root_mode == ROOT_IS_LVLEDIT) {	/*don't allow saving if root mode is GAME */
 			char fp[2048];
 			find_file("freedroid.levels", MAP_DIR, fp, 0);
-			SaveShip(fp, TRUE);
+			SaveShip(fp, TRUE, 0);
 
 			GiveMouseAlertWindow(_
 					     ("\nM E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team."));
