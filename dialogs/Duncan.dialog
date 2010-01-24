@@ -145,7 +145,7 @@ LuaCode={
 
 Nr=55  Text=_"What are those bots?"
 LuaCode={
-	npc_says(_"We call them 'Sawmill'.")
+	npc_says(_"We call them 'Harvester'.")
 	npc_says(_"They were designed to chop down trees in the mountains.")
 	npc_says(_"Now they chop down people.")
 	npc_says(_"Their only weak point is their security system. But no one has managed to stay alive long enough to hack them.")
@@ -213,9 +213,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=64  Text=_"A 'few' bots? The place was crawling with Sawmills! I nearly got killed!"
+Nr=64  Text=_"A 'few' bots? The place was crawling with Harvesters! I nearly got killed!"
 LuaCode={
-	npc_says(_"There were only fourty bots in the desert region. This hardly qualifies as many.")
+	npc_says(_"There were only one hundred and twenty bots in the entire desert region. This hardly qualifies as many, considering the size of the area.")
 	tux_says(_"What? You know exactly how many bots were on the desert? Without being there? I don't like this.")
 	npc_says(_"I just know a lot of things. You do not need to worry about it.")
 	tux_says(_"I don't like this at all. I'm getting out of here.")

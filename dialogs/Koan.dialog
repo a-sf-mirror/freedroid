@@ -33,14 +33,10 @@ EveryTime LuaCode={
 	if (not has_cookie("met_koan")) then
 		show(5, 6)
 		add_cookie("met_koan")
-	else end
-
-	if (not has_cookie("met_koan")) then
 		npc_says(_"So you have come. I knew Duncan would not let me live for too long.")
 		npc_says(_"Once I am gone this oasis of peace in the world will dry up and die. A shame.")
 		npc_says(_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true.")
 		npc_says(_"Do what you must.")
-		add_cookie("met_koan")	
 	else
 		npc_says(_"It's a pleasure to meet you again.")
 	end
@@ -51,7 +47,7 @@ Nr=5  Text=_"With pleasure."
 LuaCode={
 	drop_dead()
 	add_diary_entry("Doing Duncan a favour", "I took revenge for Duncan by killing Koan.")
-	respawn_level(18) -- Surely lvl 18 is the wrong lvl, but which was the originally intended?
+	respawn_level(38) -- Changed to 38 (the desert above the bunker) from 18 (Kevin's underground power supply).
 }
 ----------------------------------------------------------------------
 

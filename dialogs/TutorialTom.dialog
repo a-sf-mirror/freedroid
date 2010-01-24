@@ -229,6 +229,7 @@ Nr=17  Text=_"Repair equipment program? How do I use that?"
 LuaCode={
 	npc_says(_"Perhaps I should start by explaining programs in general. You already know about some programs, and that they can be accessed through your HUD.")
 	npc_says(_"To use a program, select it through your HUD. Then, run the program by right clicking. You can target an enemy, an item, or just the world depending on the program.")
+	npc_says(_"You can also assign quick-select keys to programs. Simply hover over the program in the Skills/Program menu and press one of the keys F5 to F12. Then, whenever you press this button, you will select the corresponding program.")
 	npc_says(_"If you're curious what a program does, you can find out by clicking the question mark in the Skills/Program menu.")
 	npc_says(_"Now, to answer your question, you use your repair equipment program by selecting it in the Skills/Program menu, then right clicking on the item you wish to repair.")
 	improve_program("Repair equipment")
@@ -443,6 +444,7 @@ LuaCode={
 Nr=33  Text=_"I think I understand how to use guns now."
 LuaCode={
 	npc_says(_"In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition.")
+	npc_says(_"Be careful though, smashing open crates and barrels could hurt you.")
 	if (has_cookie("has_gun")) then
 		npc_says(_"You already got the .22 pistol I gave you earlier when destroying that 247. It's not much as guns go, but it can do the trick.")
 	else
