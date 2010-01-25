@@ -1414,8 +1414,11 @@ float EvaluatePosition(int color, int row, int layer)
 		if (DisplayColumn[row] == color) {
 			DebugPrintf(EVAL_DEBUG, "same color... returning 0.5 ");
 			return (0.5);
+		} else if (IsActive(YourColor, row)) {
+			DebugPrintf(EVAL_DEBUG, "different color, but active... returning 110 ");
+			return (110);
 		} else {
-			DebugPrintf(EVAL_DEBUG, "different color... returning 1.5 ");
+			DebugPrintf(EVAL_DEBUG, "different color... returning 150 ");
 			return (150);
 		}
 	}
