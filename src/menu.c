@@ -1713,15 +1713,17 @@ static int Sound_handle(int n)
 	case SET_BG_MUSIC_VOLUME:
 		if (RightPressed()) {
 			while (RightPressed()) ;
-			if (GameConfig.Current_BG_Music_Volume < 1)
-				GameConfig.Current_BG_Music_Volume += 0.05;
+			GameConfig.Current_BG_Music_Volume += 0.05;
+			if (GameConfig.Current_BG_Music_Volume > 1.0)
+				GameConfig.Current_BG_Music_Volume = 1.0;
 			SetBGMusicVolume(GameConfig.Current_BG_Music_Volume);
 		}
 
 		if (LeftPressed()) {
 			while (LeftPressed()) ;
-			if (GameConfig.Current_BG_Music_Volume > 0)
-				GameConfig.Current_BG_Music_Volume -= 0.05;
+			GameConfig.Current_BG_Music_Volume -= 0.05;
+			if (GameConfig.Current_BG_Music_Volume < 0.0)
+				GameConfig.Current_BG_Music_Volume = 0.0;
 			SetBGMusicVolume(GameConfig.Current_BG_Music_Volume);
 		}
 
@@ -1730,15 +1732,17 @@ static int Sound_handle(int n)
 	case SET_SOUND_FX_VOLUME:
 		if (RightPressed()) {
 			while (RightPressed()) ;
-			if (GameConfig.Current_Sound_FX_Volume < 1)
-				GameConfig.Current_Sound_FX_Volume += 0.05;
+			GameConfig.Current_Sound_FX_Volume += 0.05;
+			if (GameConfig.Current_Sound_FX_Volume > 1.0)
+				GameConfig.Current_Sound_FX_Volume = 1.0;
 			SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
 		}
 
 		if (LeftPressed()) {
 			while (LeftPressed()) ;
-			if (GameConfig.Current_Sound_FX_Volume > 0)
-				GameConfig.Current_Sound_FX_Volume -= 0.05;
+			GameConfig.Current_Sound_FX_Volume -= 0.05;
+			if (GameConfig.Current_Sound_FX_Volume < 0.0)
+				GameConfig.Current_Sound_FX_Volume = 0.0;
 			SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
 		}
 		break;
