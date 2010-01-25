@@ -236,6 +236,13 @@ static int lua_event_downgrade_program(lua_State * L)
 	return 0;
 }
 
+static int lua_event_get_program_revision(lua_State * L)
+{
+	const char *pname = luaL_checkstring(L, 1);
+	lua_pushinteger(L, Me.base_skill_level[get_program_index_with_name(pname)]);
+        return 1;
+}
+
 static int lua_event_delete_item(lua_State * L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
@@ -742,11 +749,14 @@ luaL_reg lfuncs[] = {
 
 	/* improve_program(string program_name)
 	 * Improve the program given by one level.
+	 * get_program_revision(string program_name) returns current program revision level
 	 */
 	{"improve_program", lua_event_improve_program}
 	,
 	{"downgrade_program", lua_event_downgrade_program}
 	,
+	{"get_program_revision", lua_event_get_program_revision}
+        ,
 
 	/* del_item_backpack(string item_name[, int multiplicity = 1])
 	 * add_item(string item_name, int multiplicity)
