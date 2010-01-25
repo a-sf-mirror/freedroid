@@ -135,11 +135,32 @@ LuaCode={
 
 Nr=24  Text=_"Got any food yet?"
 LuaCode={
-	npc_says(_"I had prepared some delicacies, but the ravenous Red Guard ate it all.")
-	npc_says(_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly.")
-	npc_says(_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!")
-	npc_says(_"But if you are really hungry, I still have some of those disgusting army snacks.")
-	if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+	random_var = math.random()
+	if (random_var > 0.9) then
+		npc_says(_"Here, try this slice of lemon meringue pie.")
+		tux_says(_"It is as if a cloud of heaven was made into a pie.")
+		hurt_tux(-20)	
+	elseif (random_var > 0.8) then
+		npc_says(_"Try this crab cake.")
+		tux_says(_"Such an intense, delectable, blend of savory spices... it melts in my mouth.")
+		hurt_tux(-40) -- cholesterol not included ;-)
+	elseif (random_var > 0.6) then
+		npc_says(_"May I interest you in some Eggs Sardou?")
+		tux_says(_"EGGS!?")
+		npc_says(_"Oh, Michelangelo had forgotten...")
+		npc_says(_"How about a... yummy army snack instead?")
+		if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+	elseif (random_var > 0.4) then
+		npc_says(_"I am in the midst of a culinary masterpiece.")
+		npc_says(_"I cannot rush art for I am an artist!")
+		if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+	else
+		npc_says(_"I had prepared some delicacies, but the ravenous Red Guard ate it all.")
+		npc_says(_"Not a big loss, I have a second batch of food cubes in the oven and they will be ready shortly.")
+		npc_says(_"I think the mood in the town will improve once the cooking master Michelangelo gets to work. Ha!")
+		npc_says(_"But if you are really hungry, I still have some of those disgusting army snacks.")
+		if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
+	end
 	hide(24)
 }
 ----------------------------------------------------------------------
