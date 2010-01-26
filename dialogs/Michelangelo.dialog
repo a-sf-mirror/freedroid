@@ -150,7 +150,7 @@ LuaCode={
 		end
 	elseif (random_var > 0.8) then
 		npc_says(_"Try this crab cake.")
-		if ( (not has_item_backpack("Fork") ) and (not has_item_backpack("Plate") )  then
+		if ( (not has_item_backpack("Fork") ) and (not has_item_backpack("Plate") ) ) then
 			npc_says(_"Where is your Plate and Fork?")
 		else
 			tux_says(_"Such an intense, delectable, blend of savory spices... it melts in my mouth.")
