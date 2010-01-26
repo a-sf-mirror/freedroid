@@ -159,10 +159,10 @@ void CollectAutomapData(void)
 				int obstacle_start_y;
 				int obstacle_end_y;
 
-				round_automap_pos(our_obstacle->pos.x + obstacle_map[our_obstacle->type].upper_border, our_obstacle->pos.x + obstacle_map[our_obstacle->type].lower_border,
+				round_automap_pos(our_obstacle->pos.x + obstacle_map[our_obstacle->type].left_border, our_obstacle->pos.x + obstacle_map[our_obstacle->type].right_border,
 						&obstacle_start_x, &obstacle_end_x);
 
-				round_automap_pos(our_obstacle->pos.y + obstacle_map[our_obstacle->type].left_border, our_obstacle->pos.y + obstacle_map[our_obstacle->type].right_border,
+				round_automap_pos(our_obstacle->pos.y + obstacle_map[our_obstacle->type].upper_border, our_obstacle->pos.y + obstacle_map[our_obstacle->type].lower_border,
 						&obstacle_start_y, &obstacle_end_y);
 
 				if (obstacle_start_x < 0)
@@ -182,7 +182,7 @@ void CollectAutomapData(void)
 				if (obstacle_end_y >= automap_level->ylen)
 					obstacle_end_y = automap_level->ylen - 1;
 
-				//printf("pos %f %f - border %f %f to %f %f - xstart %d xend %d ystart %d yend %d\n", our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . upper_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . left_border, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . lower_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . right_border, obstacle_start_x, obstacle_end_x, obstacle_start_y, obstacle_end_y);
+				//printf("pos %f %f - border %f %f to %f %f - xstart %d xend %d ystart %d yend %d\n", our_obstacle->pos.x, our_obstacle->pos.y, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . left_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . upper_border, our_obstacle->pos.x + obstacle_map [ our_obstacle -> type ] . right_border, our_obstacle->pos.y + obstacle_map [ our_obstacle -> type ] . lower_border, obstacle_start_x, obstacle_end_x, obstacle_start_y, obstacle_end_y);
 
 				int a, b;
 

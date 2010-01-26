@@ -785,10 +785,10 @@ typedef struct obstacle_spec_s {
 	//
 	float block_area_parm_1;
 	float block_area_parm_2;
-	float upper_border;
-	float lower_border;
 	float left_border;
 	float right_border;
+	float upper_border;
+	float lower_border;
 
 	float diaglength;
 

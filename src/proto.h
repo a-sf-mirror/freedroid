@@ -247,13 +247,15 @@ void Load_Bullet_Surfaces(void);
 void Load_Blast_Surfaces(void);
 void load_floor_tiles(void);
 iso_image *get_obstacle_image(int);
-void init_obstacle_data(void);
 void load_obstacle(int);
 void load_all_obstacles(void);
 void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_iso_image_to_screen_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_outline_of_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
+
+// block_areas.c
+void init_obstacle_data(void);
 
 // graphics.c 
 void set_mouse_cursor_to_shape(int given_shape);

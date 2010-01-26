@@ -13,7 +13,9 @@ EXTRA_DIST =
 freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c \
 	event.c \
 	lua.c \
-	blocks.c graphics.c map.c colldet.c init.c \
+	blocks.c \
+	block_area.c \
+	graphics.c map.c colldet.c init.c \
 	takeover.c bullet.c influ.c action.c misc.c text.c text_public.c sound.c \
 	enemy.c input.c keyboard.c main.c hud.c view.c automap.c BFont.c \
 	defs.h map.h vars.h takeover.h global.h \

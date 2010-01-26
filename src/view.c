@@ -519,10 +519,10 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 
 	update_virtual_position(&our_obstacle->vpos, &our_obstacle->pos, Me.pos.z);
 
-	up = obstacle_map[our_obstacle->type].upper_border;
 	left = obstacle_map[our_obstacle->type].left_border;
-	right = obstacle_map[our_obstacle->type].right_border;
+	up = obstacle_map[our_obstacle->type].upper_border;
 	low = obstacle_map[our_obstacle->type].lower_border;
+	right = obstacle_map[our_obstacle->type].right_border;
 	x = our_obstacle->vpos.x;
 	y = our_obstacle->vpos.y;
 
@@ -542,7 +542,7 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 	//--------------------
 	// Now we draw the collision rectangle.  We use the same parameters
 	// of the obstacle spec, that are also used for the collision checks.
-	skew_and_blit_rect(x + up, y + left, x + low, y + right, 0x00FEEAA);
+	skew_and_blit_rect(x + left, y + up, x + right, y + low, 0x00FEEAA);
 
 	//    x1 = translate_map_point_to_screen_pixel_x ( x + up , y + left );
 	//    y1 = translate_map_point_to_screen_pixel_y ( x + up , y + left );
