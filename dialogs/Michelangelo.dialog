@@ -91,6 +91,9 @@ LuaCode={
 
 Nr=12  Text=_"I want some yummy army snacks!"
 LuaCode={
+	if ( (not has_item_backpack("Fork") ) and (not has_item_backpack("Plate") and (not has_item_backpack("Mug"))  then
+	npc_says(_"You need to have a full mess kit with a Fork, Mug, and Plate before I can give you any army snacks.")
+	else
 	npc_says(_"I am supposed to read this out to all newcomers. Here goes:")
 	npc_says(_"'Please note that the army rations model #23 you are about to eat is provided 'as is' without warranty of any kind.")
 	npc_says(_"That includes the implied warranty of edibility or fitness for a particular purpose. The entire risk as to the quality of the food is with you.")
@@ -98,6 +101,7 @@ LuaCode={
 	npc_says(_"Well, that is all. Here is the junk that you wanted. Enjoy.")
 	add_cookie("asked_michelangelo_for_army_snacks")
 	next(27)
+	end
 	hide(12)
 }
 ----------------------------------------------------------------------
@@ -138,12 +142,20 @@ LuaCode={
 	random_var = math.random()
 	if (random_var > 0.9) then
 		npc_says(_"Here, try this slice of lemon meringue pie.")
-		tux_says(_"It is as if a cloud of heaven was made into a pie.")
-		hurt_tux(-20)	
+		if (not has_item_backpack("Fork") ) then
+			npc_says(_"Wait, you don't have a Fork.  You need a fork...")
+		else
+			tux_says(_"It is as if a cloud of heaven was made into a pie.")
+			hurt_tux(-20)
+		end
 	elseif (random_var > 0.8) then
 		npc_says(_"Try this crab cake.")
-		tux_says(_"Such an intense, delectable, blend of savory spices... it melts in my mouth.")
-		hurt_tux(-40) -- cholesterol not included ;-)
+		if ( (not has_item_backpack("Fork") ) and (not has_item_backpack("Plate") )  then
+			npc_says(_"Where is your Plate and Fork?")
+		else
+			tux_says(_"Such an intense, delectable, blend of savory spices... it melts in my mouth.")
+			hurt_tux(-40) -- cholesterol not included ;-)
+		end
 	elseif (random_var > 0.6) then
 		npc_says(_"May I interest you in some Eggs Sardou?")
 		tux_says(_"EGGS!?")
