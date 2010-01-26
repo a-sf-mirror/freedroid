@@ -296,7 +296,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DH_DOOR_100_OPEN].animate_fn = animate_door;
 
 	obstacle_map[ISO_DH_DOOR_LOCKED].filename = "iso_doubledoors_0011.png";
-	block_2param(ISO_DH_DOOR_LOCKED, outer_door_width, standard_wall_thickness);
+	block_4param(ISO_DH_DOOR_LOCKED, 1.51, standard_wall_thickness / 2, 0.6, standard_wall_thickness / 2);
 	obstacle_map[ISO_DH_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DH_DOOR_LOCKED].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DH_DOOR_LOCKED].flags |= IS_HORIZONTAL;
