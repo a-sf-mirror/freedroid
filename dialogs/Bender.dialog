@@ -208,8 +208,10 @@ LuaCode={
 	npc_says(_"Sure, but we will have to shake on it.")
 	tux_says(_"OK...")
 	npc_says(_"It is an asterisk repeated four times.")
-	tux_says(_"Wow.")
 	has_cookie("know_lily_password")
+	tux_says(_"Wow.")
+	npc_says(_"I am the most awesome hacker ever.")
+	tux_says(_"Sure...")
 	hide(16)
 }
 ----------------------------------------------------------------------
@@ -232,7 +234,12 @@ LuaCode={
 
 Nr=99  Text=_"See you later."
 LuaCode={ 
-	npc_says(_"Later, man!")
+	random_var = math.random()
+	if (random_var > 0.5) then
+		npc_says(_"Later, man!")
+	else
+		npc_says(_"Stay cool dude.")
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------

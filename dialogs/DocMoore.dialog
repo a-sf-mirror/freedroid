@@ -118,7 +118,12 @@ LuaCode={
 		npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
 		show(11)
 	else end
-	npc_says(_"There, it's done. You're completely fixed. You can go now.")
+	random_var = math.random()
+	if (random_var > 0.5) then
+		npc_says(_"There, it's done. You're completely fixed. You can go now.")
+	else
+		npc_says(_"You need to keep better care of yourself.  You're completely fixed. You can go now.")
+	end
 	heal_tux()
 	hide(0)
 }
@@ -226,7 +231,7 @@ Nr=54  Text=_"What can you tell me about Brain Pills?"
 LuaCode={
 	if(has_cookie("doc_healed_tux")) then
   		npc_says(_"I already warned you about those!")
-	else end 
+	else end
 	npc_says(_"Those pills are almost pure biological waste! They are sold to stupid ignorant gullible people. Never EVER take one.")
 	hide(54)
 }
@@ -269,7 +274,12 @@ LuaCode={
 
 Nr=99  Text=_"See you later."
 LuaCode={
-	npc_says(_"See you later.")
+	random_var = math.random()
+	if (random_var > 0.5) then
+		npc_says(_"See you later.")
+	else
+		npc_says(_"Keep healthy!")
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------

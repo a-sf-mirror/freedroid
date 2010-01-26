@@ -55,7 +55,7 @@ LuaCode={
 	npc_says(_"Well, it's understandable. We are sisters.")
 	npc_says(_"Or actually half sisters. She is also half crazy, so we don't communicate much.")
 	npc_says(_"We used to, even ran this liberary together.")
-	npc_says(_"Then she started reading more and more books and sitting infront of the computer day and night, never sleeping.")
+	npc_says(_"Then she started reading more and more books and sitting in front of the computer day and night, never sleeping.")
 	npc_says(_"In the end she completely lost her marbles, sadly.")
 	npc_says(_"Now all she does is sit locked in her house staring into the computer.")
 	add_cookie("talked_about_sister")
@@ -64,7 +64,7 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=40  Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 LuaCode={
-	npc_says(_"This is a liberary, not a book shop.")
+	npc_says(_"This is a library, not a book shop.")
 	npc_says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...") 
 	npc_says(_"Especially strangers just passing by...")
 	npc_says(_"Thus I'm forced to take a deposit for each book.")
@@ -73,13 +73,25 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=41  Text=_"So what interesting books do you have available right now?"
 LuaCode={
-	npc_says(_"Some of these might interest you.")
+	random_var = math.random()
+	if (random_var > 0.6) then
+		npc_says(_"Some of these might interest you.")
+	else
+		npc_says(_"I only have a few programming volumes, feel free to look through them.")
+	end
 	trade_with("Tamara")
 }
 ----------------------------------------------------------------------
 Nr=99  Text=_"Thank you for the help."
 LuaCode={
-	npc_says(_"No problem, and remeber to return your books in time.")
+	random_var = math.random()
+	if (random_var > 0.6) then
+		npc_says(_"No problem, and remember to return your books in time.")
+	elseif (random_var > 0.4) then
+		npc_says(_"I aim to ensure that the great works of literature will survive this horrible apocalypse.")
+	else
+		npc_says(_"That is what I'm here for. Come back at any time.")
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------

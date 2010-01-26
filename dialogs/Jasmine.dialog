@@ -36,7 +36,7 @@ EveryTime LuaCode={
 	else end
 
 	if (has_cookie("jasmine_count1")) then
-		if (has_cookie("jasmine_count2")) then show(12) else show(11) end   -- 2 or 1 counter
+		if (has_cookie("jasmine_count2")) then show(12) else show(10) end   -- 2 or 1 counter
 	else show(10) end   -- no counters yet
 }
 ----------------------------------------------------------------------
@@ -104,19 +104,15 @@ LuaCode={
 Nr=10  Text=_"See you later."
 LuaCode={
 	npc_says(_"Yeah. Whatever.")
-	add_cookie("jasmine_count1")
+	if ( has_cookie("jasmine_count1") ) then
+		add_cookie("jasmine_count2")
+	else
+		add_cookie("jasmine_count1")
+	end
 	end_dialog()
 	hide(10)
 }
-----------------------------------------------------------------------
 
-Nr=11  Text=_"See you later."
-LuaCode={
-	npc_says(_"Yeah. Whatever.")
-	add_cookie("jasmine_count2")
-	end_dialog()
-	hide(11)
-}
 ----------------------------------------------------------------------
 
 Nr=12  Text=_"See you later."

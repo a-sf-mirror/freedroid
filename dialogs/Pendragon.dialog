@@ -67,11 +67,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"Yes (cost 100 cash, 5 ability points)"
+Nr=12  Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
 LuaCode={
 	if (get_skill("melee") < 1) then
 		if (get_gold() < 100) then
-			npc_says(_"You don't have enough bucks on you! Come back when you have the money.")
+			npc_says(_"You don't have enough valuable circuits on you! Come back when you have the money.")
 		else 
 			if (get_training_points() > 4) then
 				npc_says(_"Let us begin then.")
@@ -157,7 +157,12 @@ LuaCode={
 
 Nr=99  Text=_"See you later."
 LuaCode={
-	npc_says(_"Have courage.")
+	random_var = math.random()
+	if (random_var > 0.4) then
+		npc_says(_"Have courage.")
+	else
+		npc_says(_"Be strong.")
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------
