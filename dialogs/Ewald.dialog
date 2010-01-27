@@ -36,6 +36,7 @@ EveryTime LuaCode={
 	else end
 
 	if has_cookie("drank_all_ewald_had") then show(14) else end;
+	if has_cookie("ewald_dicegame") then show(30) end;
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -170,20 +171,21 @@ LuaCode={
 
 Nr=30 Text=_"Sure, I'll gambol with you.  What do you play?"
 LuaCode={
+	if (not has_cookie("ewald_dicegame")) then add_cookie("ewald_dicegame") end
 	npc_says(_"I play a dice game.")
 	show(31)
 	bet   = 0
 	tux1, tux2, tux3 = 0, 0, 0
 	ewd1, ewd2, ewd3 = 0, 0, 0
-	-- Ewald encourages you to gambol responsibly ;-)
+	-- Ewald forces you to gambol semi-responsibly ;-)
 	max   = get_gold() * 0.8
 	if (max > 30) then  show(32) 
 		if (max > 300) then show(33) 
 		if (max > 600) then show(34) 
 	end end else 
 	npc_says(_"You should come back when you have more to gambol with.")
-	hide(30)
 	end
+	hide(30)
 }
 
 -----------------------------------------------------------------------
@@ -193,6 +195,8 @@ LuaCode={
 	npc_says(_"You bet. Then you throw one die.")
 	npc_says(_"Then you decide on a betting multiplier, up to 3x.")
 	npc_says(_"Then you throw two dice and I throw three dice. If sum of your three dice are better than my three dice, you win twice your bet, minus a tax for the Red Guard.")
+	npc_says(_"Remember: the odds are slightly against you, so don't gambol anything you can't afford to lose.") 
+	hide(31)
 }
 
 -----------------------------------------------------------------------
@@ -279,6 +283,7 @@ LuaCode={
 -----------------------------------------------------------------------
 Nr=99  Text=_"See you later."
 LuaCode={
+	hide(32,33,34,40,41,42) --end any partial gamboling
 	npc_says(_"Goodbye and remember: My bar is always open.")
 	end_dialog()
 }
