@@ -36,7 +36,7 @@ EveryTime LuaCode={
 	else end
 
 	if has_cookie("drank_all_ewald_had") then show(14) else end;
-	if has_cookie("ewald_dicegame") then show(30) end;
+	if has_cookie("ewald_gambling") then show(30) end;
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -73,8 +73,12 @@ Nr=3  Text=_"I could use a drink. What is there to be had?"
 LuaCode={
 	npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
 	npc_says(_"I have WATER!")
-	hide(3)
-	show(4, 5, 6)
+	if (not has_item_backpack("Mug")) then
+		npc_says(_"But you'll need a mug for me to put it in.")
+	else
+		hide(3)
+		show(4, 5, 6)
+	end
 }
 ----------------------------------------------------------------------
 
@@ -156,7 +160,7 @@ LuaCode={
 	npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
 	npc_says(_"Now THAT'S fun, if you ask me.")
 	hide(13)
-	npc_says(_"If you are really board, you can try gamboling with me.  But the Red Guard taxes it.")
+	npc_says(_"If you are really board, you can try gambling with me.  But the Red Guard taxes it.")
 	show(30)
 }
 ----------------------------------------------------------------------
@@ -169,21 +173,22 @@ LuaCode={
 }
 -----------------------------------------------------------------------
 
-Nr=30 Text=_"Sure, I'll gambol with you.  What do you play?"
+Nr=30 Text=_"Sure, I'll gamble with you.  What do you play?"
 LuaCode={
-	if (not has_cookie("ewald_dicegame")) then add_cookie("ewald_dicegame") end
-	npc_says(_"I play a dice game.")
-	show(31)
+	if (not has_cookie("ewald_gambling")) then add_cookie("ewald_gambling") end
+	npc_says(_"I play a dice game and a coin-flipping game.")
+	show(31,32)
+	-- Initialize some variables here
 	bet   = 0
 	tux1, tux2, tux3 = 0, 0, 0
-	ewd1, ewd2, ewd3 = 0, 0, 0
-	-- Ewald forces you to gambol semi-responsibly ;-)
+	ewd1, ewd2, ewd3 = 0, 0, 0, 0, 0 
+	-- Ewald forces you to gamble semi-responsibly ;-)
 	max   = get_gold() * 0.8
-	if (max > 30) then  show(32) 
-		if (max > 300) then show(33) 
-		if (max > 600) then show(34) 
+	if (max > 30) then  show(33) 
+		if (max > 300) then show(34) 
+		if (max > 600) then show(35) 
 	end end else 
-	npc_says(_"You should come back when you have more to gambol with.")
+	npc_says(_"You should come back when you have more to gamble with.")
 	end
 	hide(30)
 }
@@ -195,38 +200,77 @@ LuaCode={
 	npc_says(_"You bet. Then you throw one die.")
 	npc_says(_"Then you decide on a betting multiplier, up to 3x.")
 	npc_says(_"Then you throw two dice and I throw three dice. If sum of your three dice are better than my three dice, you win twice your bet, minus a tax for the Red Guard.")
-	npc_says(_"Remember: the odds are slightly against you, so don't gambol anything you can't afford to lose.") 
+	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.") 
 	hide(31)
 }
+-----------------------------------------------------------------------
+Nr=32 Text=_"Tell me the rules for your 'coin-flip game'."
+LuaCode={
+	npc_says(_"It is simple. Five coin flips.")
+	npc_says(_"You bet. Then you tell me if I will flip more 'heads' or 'tails'.")
+	npc_says(_"I flip one coin.")
+	npc_says(_"Then you tell me if there will be an 'odd' or 'even' number of flips for what you chose.")
+	npc_says(_"I flip the other four coins. If you were completely right, I give you twice what your bet, if completely wrong, you get 3/4 of your bet back.")
+	npc_says(_"But if you are only partially wrong... well, then you get nothing.")
+	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.") 
+	hide(32)
+	------------------------------------------------
+	-- Assuming optimal playing: 
+	-- Winning both: 11/32 (expected payout: 88/128)
+	-- Losing both:  11/32 (expected payout: 33/128)
+	-- Intermediate: 10/32 (expected payout:  0/128)
+	-- Expected payout: 121/128
+}
 
 -----------------------------------------------------------------------
-Nr=32 Text=_"How about a bet of 10 circuits"
+Nr=33 Text=_"How about a bet of 10 circuits"
 LuaCode={
 	bet=10
-	next(35)
-	hide(30,31,32,33,34)
+	next(36)
+	hide(30,31,32,33,34,35)
 }
 
 -----------------------------------------------------------------------
-Nr=33 Text="I'm feeling I'll start with a bet of 100 circuits"
+Nr=34 Text="I'm feeling I'll start with a bet of 100 circuits"
 LuaCode={
 	bet = 100
-	next(35)
-	hide(30,31,32,33,34)
+	next(36)
+	hide(30,31,32,33,34,35)
 }
 
 -----------------------------------------------------------------------
-Nr=34 Text="I want to bet 200 circuits"
+Nr=35 Text="I want to bet 200 circuits"
 LuaCode={
 	bet = 200
-	next(35)
-	hide(30,31,32,33,34)
+	next(36)
+	hide(30,31,32,33,34,35)
+}
+-----------------------------------------------------------------------
+Nr=36 Text="Initial roll"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"Name your game.")
+	show(37,38)
+}
+-----------------------------------------------------------------------
+Nr=37 Text="Dice"
+LuaCode={
+	hide(37,38)
+	next(39)
+}
+	
+-----------------------------------------------------------------------
+Nr=38 Text="Coin-flipping"
+LuaCode={
+	hide(37,38)
+	next(50)
 }
 
 -----------------------------------------------------------------------
-Nr=35 Text="Initial roll"
+Nr=39 Text="Initial roll"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	npc_says(_"Dice it is. Roll your first die.")
 	tux1=math.random(1,6)
 	tux_says(_"I rolled a ".. tux1 ..".")
 	npc_says(_"What multiplier are you going to bet?")
@@ -270,21 +314,255 @@ LuaCode={
 
 	if ((ewd1+ewd2+ewd3) < (tux1+tux2+tux3)) then --Tux wins!
 		npc_says(_"You won! Good job.")
-		get_gold(bet*1.8)
-		display_console_message("You won ".. bet*1.8 .." valuable circuits by gamboling with Ewald.")
+		add_gold(bet*1.8)
+		display_console_message("You won ".. bet*1.8 .." valuable circuits by gambling dice with Ewald.")
 	else -- House Wins!
 		npc_says(_"You lost. Bad luck.")
-		get_gold(-bet)
-		display_console_message("You lost "..bet.." valuable circuits by gamboling with Ewald.")
+		add_gold(-bet)
+		display_console_message("You lost ".. bet .." valuable circuits by gambling dice with Ewald.")
 	end
+	show(30)
+}
+
+-----------------------------------------------------------------------
+Nr=50 Text="Coin-flipping Game"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"Coin flipping it is.")
+	npc_says(_"So.  What do you think?  Heads or tails?")
+	show(51,52)
+}
+-----------------------------------------------------------------------
+Nr=51 Text="Heads"
+LuaCode={
+	hide(51,52)
+	random_var = math.random()
+ 	if (random_var > 0.8) then
+		npc_says(_"Heads, eh? I always like heads.")
+	elseif (random_var > 0.6) then
+		npc_says(_"Heads? Sometimes I pick heads... when I don't pick tails.")
+	elseif (random_var > 0.4) then
+		npc_says(_"When I think too much about it, I end up picking heads.")
+	elseif (random_var > 0.2) then
+		npc_says(_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.")
+	else
+		npc_says(_"I think I would have picked tails this time.")
+	end
+	tux1 = 0
+	next(53)
+}
+-----------------------------------------------------------------------
+Nr=52 Text="Tails"
+LuaCode={
+	hide(51,52)
+	random_var = math.random()
+ 	if (random_var > 0.8) then
+		npc_says(_"Tails? Fits, since you've got one.")
+	elseif (random_var > 0.6) then
+		npc_says(_"Tails? I always liked that game... good times.")
+	elseif (random_var > 0.4) then
+		npc_says(_"Tails. When I don't pick heads, I always pick tails.")
+	elseif (random_var > 0.2) then
+		npc_says(_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.")
+	else
+		npc_says(_"I think I would have picked heads this time.")
+	end
+	tux1 = 1
+	next(53)
+}
+-----------------------------------------------------------------------
+Nr=53 Text="Coin-flipping Game - first flip"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"Here goes nothing.")
+	ewd1=math.random(0,1)
+	if (ewd1 == 1) then
+		npc_says(_"Looks like it is 'tails'.")
+	else
+		npc_says(_"Looks like it is 'heads'.")
+	end
+	if (tux1 == 1) then
+		npc_says(_"So do you think there will be an even or odd number of 'tails' flips?")
+	else
+		npc_says(_"So do you think there will be an even or odd number of 'heads' flips?")
+	end
+	show(54,55)
+}
+-----------------------------------------------------------------------
+Nr=54 Text="Even number"
+LuaCode={
+	tux2 = 0 -- Set to 'even'
+	hide(54,55)
+	random_var = math.random()
+ 	if (random_var > 0.8) then
+		npc_says(_"Even, eh? I always like even. It is so symmetric.")
+	elseif (random_var > 0.6) then
+		npc_says(_"Even? Sometimes I pick even... when I don't pick odd.")
+	elseif (random_var > 0.4) then
+		npc_says(_"When I think too much about it, I end up picking even.")
+	elseif (random_var > 0.2) then
+		if (ewd1 ~= tux1) then
+			npc_says(_"Hoping to guess them all wrong, eh?")
+		else
+			npc_says(_"Bucking the statistics. I like that.")
+		end
+	else
+		npc_says(_"I think I would have picked even this time.")
+	end
+	next(56)
+}
+-----------------------------------------------------------------------
+Nr=55 Text="Odd number"
+LuaCode={
+	tux2 = 1 -- Set to 'odd'
+	hide(54,55)
+	random_var = math.random()
+ 	if (random_var > 0.8) then
+		npc_says(_"Odd? Fits, since you're pretty odd yourself.")
+	elseif (random_var > 0.6) then
+		npc_says(_"Odd? Well that is odd... I was thinking of odd.")
+	elseif (random_var > 0.4) then
+		npc_says(_"Odd. When I don't pick even, I always pick odd too.")
+	elseif (random_var > 0.2) then
+		if (ewd1 == tux1 ) then
+			npc_says(_"Honing up on your math, eh?")
+		else
+			npc_says(_"Betting against the game. I like that.")
+		end
+	else
+		npc_says(_"I think I would have picked odd this time.")
+	end
+	next(56)
+}
+-----------------------------------------------------------------------
+Nr=56 Text="Coin-flipping Game - last four flips"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says(_"The last four coin flips:")
+	ewd2=math.random(0,1)
+	if (ewd2 == 1) then
+		npc_says(_"'Tails'.")
+	else
+		npc_says(_"'Heads'.")
+	end
+	ewd3=math.random(0,1)
+	if (ewd3 == 1) then
+		npc_says(_"'Tails'.")
+	else
+		npc_says(_"'Heads'.")
+	end
+	ewd4=math.random(0,1)
+	if (ewd4 == 1) then
+		npc_says(_"'Tails'.")
+	else
+		npc_says(_"'Heads'.")
+	end
+	tux_says(_"Last flip. I hope it is the one I want!")
+	ewd5=math.random(0,1)
+	if (ewd5 == 1) then
+		npc_says(_"'Tails'.")
+	else
+		npc_says(_"'Heads'.")
+	end
+	ewald_sum = ewd1 + ewd2 + ewd3 + ewd4 + ewd5
+	npc_says(_"Looks like that is ".. ewald_sum .." tails, and ".. 5-ewald_sum.." heads.")
+
+	win=0 --find if tux won...
+	if (ewald_sum > 2) then
+		npc_says(_"Tails won...")
+		if (tux1 == 1) then win = 0.5 end		
+	else
+		npc_says(_"Heads won...")
+		if (tux1 == 0) then win = 0.5 end		
+	end
+
+
+	if (math.fmod(ewald_sum,2) == 0) then
+		if (tux1 == 1) then
+			npc_says(_"...and there was an even number of tails.")
+			if (tux2 == 0) then win = win + 0.5 end
+		else
+			npc_says(_"...and there was an odd number of heads.")
+			if (tux2 == 1) then win = win + 0.5 end
+		end
+	else
+		if (tux1 == 1) then
+			npc_says(_"...and there was an odd number of tails.")
+			if (tux2 == 1) then win = win + 0.5 end	
+		else
+			npc_says(_"...and there was an even number of heads.")
+			if (tux2 == 0) then win = win + 0.5 end
+		end
+	end
+
+
+	if (win == 1) then
+		random_var = math.random()
+ 		if (random_var > 0.8) then
+			npc_says(_"Looks like another winning combination! Good job!")
+		elseif (random_var > 0.6) then
+			npc_says(_"You have the best luck! You won!")
+		elseif (random_var > 0.4) then
+			npc_says(_"Too many of these and I'll go out of business. You won!")
+		elseif (random_var > 0.2) then
+			npc_says(_"You will have to tell me how you did it. You Won!")
+		else
+			npc_says(_"Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
+		end
+		add_gold(bet*2)
+		display_console_message("You won ".. bet*2 .." valuable circuits in the coin-flip game with Ewald.")
+	elseif (win == 0) then
+		random_var = math.random()
+ 		if (random_var > 0.8) then
+			npc_says(_"Looks like you got everything wrong... here is most of your bet back.")
+		elseif (random_var > 0.6) then
+			npc_says(_"Well, close, but exactly wrong.  Here is most of your bet back.")
+		elseif (random_var > 0.4) then
+			npc_says(_"You need to do exactly opposite of what you did here. Here is 3/4 of your bet back.")
+		elseif (random_var > 0.2) then
+			npc_says(_"Close, but no cigar.  Here is most of your money back.")
+		else
+			npc_says(_"Next time pick the opposite of what you did this time... or something.")
+		end
+		add_gold(-bet*0.25)
+		display_console_message("You lost ".. bet*0.25 .." valuable circuits in the coin-flip game with Ewald.")
+	elseif (win == 0.5) then
+		random_var = math.random()
+ 		if (random_var > 0.8) then
+			npc_says(_"You lost. You were half right, but half wrong. Pick one and stay with it.")
+		elseif (random_var > 0.6) then
+			npc_says(_"You lost. You were all messed up. Better luck next time.")
+		elseif (random_var > 0.4) then
+			npc_says(_"You lost. Maybe you sould try something else for a while?")
+		elseif (random_var > 0.2) then
+			npc_says(_"You lost.")
+		else
+			npc_says(_"You lost. You might try flipping a coin next time.")
+		end
+		add_gold(-bet)
+		display_console_message("You lost ".. bet .." valuable circuits in the coin-flip game with Ewald.")
+
+	else
+		npc_says(_"THIS IS AN ERROR! REPORT IT PLEASE!")
+	end
+
 	show(30)
 }
 
 -----------------------------------------------------------------------
 Nr=99  Text=_"See you later."
 LuaCode={
-	hide(32,33,34,40,41,42) --end any partial gamboling
-	npc_says(_"Goodbye and remember: My bar is always open.")
+	hide(32,33,34,35,36,37,38,39,40,41,42,50,51,52,53,54,55,56) --end any partial gambling
+	random_var = math.random()
+ 	if (random_var > 0.75) then
+		npc_says(_"Goodbye and remember: My bar is always open.")
+	elseif (random_var > 0.5) then
+		npc_says(_"Come back soon!")
+	elseif (random_var > 0.25) then
+		npc_says(_"You are welcome to unwind on old Ewald any time. Come back soon.")
+	else
+		npc_says(_"Remember, you can always come back here to relax and kick back.")
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------
