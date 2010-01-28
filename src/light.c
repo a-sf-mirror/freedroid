@@ -832,7 +832,7 @@ static int calculate_light_strength(gps *cell_vpos)
 		//--------------------
 		// Visibility check (line 3 of pseudo_code)
 		// with a small optimization : no visibility check if the target is very closed to the light
-		if ((squared_dist > (0.5*0.5)) && curShip.AllLevels[cell_rpos.z]->use_underground_lighting) {
+		if (squared_dist > (0.5*0.5)) {
 			if (!DirectLineColldet(light_sources[i].vpos.x, light_sources[i].vpos.y, cell_vpos->x, cell_vpos->y, cell_vpos->z, &VisiblePassFilter))
 				continue;
 		}
