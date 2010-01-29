@@ -73,7 +73,7 @@ LuaCode={
 
 Nr=3  Text=_"What about some money instead?"
 LuaCode={
-	npc_says(_"For 15 million bucks, no less, hehe.")
+	npc_says(_"For 15 million circuits, no less, hehe.")
 	hide(3)
 }
 ----------------------------------------------------------------------
@@ -100,7 +100,7 @@ LuaCode={
 				npc_says(_"Rest assured that we will never forget your brave activity for our community.")
 			else
 				npc_says(_"Man, you really did it! I can hardly believe it, but all the bots are gone!", "NO_WAIT")
-				npc_says(_"Take these 500 bucks as a reward.  And be assured that you've earned my deepest respect, Linarian.")
+				npc_says(_"Take these 500 circuits as a reward.  And be assured that you've earned my deepest respect, Linarian.")
 				npc_says(_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots.")
 				add_gold(500)
 				add_cookie("reward_for_warehouse_given")
@@ -129,21 +129,21 @@ LuaCode={
 			npc_says(_"He was in bad mood and told me he had to pay you for getting his own property back.")
 			npc_says(_"I think it is the best for him if we leave him alone the next days.", "NO_WAIT")
 			npc_says(_"I'm sure he has to do a lot now.")
-			-- Joining the guard, tux has to pay 500 bucks.
+			-- Joining the guard, tux has to pay 500 circuits.
 		else
 			if (has_cookie("dixon_angry_350")) then
 				npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
 				npc_says(_"He seemed quite aggressive and stressed.")
 				npc_says(_"Poor guy, if we weren't in such a bad situation, he could have some work-free days, but bot attacks continue all the time.", "NO_WAIT")
 				npc_says(_"You better don't bother him the next days.")
-				-- Tux will have to pay 700 bucks to join the red guard
+				-- Tux will have to pay 700 circuits to join the red guard
 			else
 				if (has_cookie("dixon_very_angry")) then
 					npc_says(_"Dixon has his toolkit back.", "NO_WAIT")
-					npc_says(_"He did rail against you though. He said he had to give you 400 bucks to get his toolkit back, his own property.")
+					npc_says(_"He did rail against you though. He said he had to give you 400 circuits to get his toolkit back, his own property.")
 					npc_says(_"That was nearly all money he had. He said you were too greedy to become a good member and he doesn't want to see you anymore.")
 					npc_says(_"I think everybody has to get a chance. But look ahead! When you are negatively conspicuous again, we will ban you from our town!")
-					-- Tux needs to pay 800 bucks to join the guard.
+					-- Tux needs to pay 800 circuits to join the guard.
 				else
 					npc_says(_"Dixon told me about the matter with his toolkit. He seemed pretty impressed by you.")
 				end

@@ -131,7 +131,7 @@ LuaCode={
 Nr=12  Text=_"I want to know how to extract modules from the bots."
 LuaCode={
 	npc_says(_"Yes.")
-	npc_says(_"I will sell the information for a lot of cybergeld.")
+	npc_says(_"I will sell the information for a lot of Schaltkreise.")
 	npc_says(_"Interested?")
     run_subdialog("subdlg_Darwin.dialog")
 }
