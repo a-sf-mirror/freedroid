@@ -94,6 +94,7 @@ LuaCode={
 
 Nr=55  Text=_"Here you go."
 LuaCode={
+	add_gold(-100)
 	npc_says(_"Thank you.")
 	add_cookie("tybalt_bribe")
 	hide(55) show(56)
