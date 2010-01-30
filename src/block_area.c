@@ -133,7 +133,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_GLASS_WALL_2].flags |= IS_HORIZONTAL;
 
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BROKEN_GLASS_WALL_1, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].flags |= IS_WALKABLE;
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].filename = "iso_walls_0030.png";
@@ -212,9 +211,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_V_DOOR_075_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_V_DOOR_075_OPEN].animate_fn = animate_door;
 	obstacle_map[ISO_V_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_V_DOOR_100_OPEN, standard_wall_thickness, standard_door_width);
 	obstacle_map[ISO_V_DOOR_100_OPEN].filename = "iso_doors_0010.png";
-	obstacle_map[ISO_V_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_V_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_V_DOOR_100_OPEN].animate_fn = animate_door;
 	//would you find it abnormal if I told you the 8 non-locked doors have the same desc ?
@@ -258,9 +255,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_H_DOOR_075_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_H_DOOR_075_OPEN].animate_fn = animate_door;
 	obstacle_map[ISO_H_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_H_DOOR_100_OPEN, standard_door_width, standard_wall_thickness);
 	obstacle_map[ISO_H_DOOR_100_OPEN].filename = "iso_doors_0005.png";
-	obstacle_map[ISO_H_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_H_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_H_DOOR_100_OPEN].animate_fn = animate_door;
 
@@ -289,9 +284,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DH_DOOR_075_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DH_DOOR_075_OPEN].animate_fn = animate_door;
 	obstacle_map[ISO_DH_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_DH_DOOR_100_OPEN, outer_door_width, standard_wall_thickness);
 	obstacle_map[ISO_DH_DOOR_100_OPEN].filename = "iso_doubledoors_0005.png";
-	obstacle_map[ISO_DH_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DH_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DH_DOOR_100_OPEN].animate_fn = animate_door;
 
@@ -327,9 +320,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DV_DOOR_075_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_075_OPEN].animate_fn = animate_door;
 	obstacle_map[ISO_DV_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_DV_DOOR_100_OPEN, standard_wall_thickness, outer_door_width);
 	obstacle_map[ISO_DV_DOOR_100_OPEN].filename = "iso_doubledoors_0010.png";
-	obstacle_map[ISO_DV_DOOR_100_OPEN].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DV_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_100_OPEN].animate_fn = animate_door;
 
@@ -833,10 +824,8 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_V_WASHTUB].flags &= ~BLOCKS_VISION_TOO;
 
 	obstacle_map[ISO_V_CURTAIN].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_V_CURTAIN, -1, -1);
 	obstacle_map[ISO_V_CURTAIN].flags |= IS_VERTICAL;
 	obstacle_map[ISO_H_CURTAIN].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_H_CURTAIN, -1, -1);
 	obstacle_map[ISO_H_CURTAIN].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_N_SOFA, 1.0, 0.5);
@@ -1076,11 +1065,9 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BRICK_WALL_CRACKED_2].flags |= IS_HORIZONTAL;
 
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BRICK_WALL_RUBBLE_1, 1.2, 1.0);
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].filename = "iso_brick_wall_0014.png";
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].flags |= IS_VERTICAL;
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BRICK_WALL_RUBBLE_2, 1.0, 1.2);
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].filename = "iso_brick_wall_0015.png";
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].flags |= IS_HORIZONTAL;
 
@@ -1094,102 +1081,80 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BRICK_WALL_EV].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_2;
 
 	obstacle_map[ISO_BLOOD_1].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_1, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_1].filename = "iso_blood_0001.png";
 	obstacle_map[ISO_BLOOD_1].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_BLOOD_2].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_2, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_2].filename = "iso_blood_0002.png";
 	obstacle_map[ISO_BLOOD_2].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_BLOOD_3].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_3, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_3].filename = "iso_blood_0003.png";
 	obstacle_map[ISO_BLOOD_3].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_BLOOD_4].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_4, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_4].filename = "iso_blood_0004.png";
 	obstacle_map[ISO_BLOOD_4].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_BLOOD_5].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_5, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_5].filename = "iso_blood_0005.png";
 	obstacle_map[ISO_BLOOD_5].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_BLOOD_6].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_6, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_6].filename = "iso_blood_0006.png";
 	obstacle_map[ISO_BLOOD_6].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_BLOOD_7].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_7, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_7].filename = "iso_blood_0007.png";
 	obstacle_map[ISO_BLOOD_7].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_BLOOD_8].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_BLOOD_8, 1.0, 1.0);
 	obstacle_map[ISO_BLOOD_8].filename = "iso_blood_0008.png";
 	obstacle_map[ISO_BLOOD_8].flags |= NEEDS_PRE_PUT;
 	// the eight blood tiles have the same description - normal, right ?
 
 	obstacle_map[ISO_OIL_STAINS_1].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_1, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_1].filename = "iso_oil_stains_0001.png";
 	obstacle_map[ISO_OIL_STAINS_1].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_OIL_STAINS_2].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_2, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_2].filename = "iso_oil_stains_0002.png";
 	obstacle_map[ISO_OIL_STAINS_2].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_OIL_STAINS_3].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_3, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_3].filename = "iso_oil_stains_0003.png";
 	obstacle_map[ISO_OIL_STAINS_3].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_OIL_STAINS_4].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_4, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_4].filename = "iso_oil_stains_0004.png";
 	obstacle_map[ISO_OIL_STAINS_4].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_OIL_STAINS_5].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_5, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_5].filename = "iso_oil_stains_0005.png";
 	obstacle_map[ISO_OIL_STAINS_5].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_OIL_STAINS_6].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_6, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_6].filename = "iso_oil_stains_0006.png";
 	obstacle_map[ISO_OIL_STAINS_6].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_OIL_STAINS_7].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_7, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_7].filename = "iso_oil_stains_0007.png";
 	obstacle_map[ISO_OIL_STAINS_7].flags |= NEEDS_PRE_PUT;
 	obstacle_map[ISO_OIL_STAINS_8].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_OIL_STAINS_8, 1.0, 1.0);
 	obstacle_map[ISO_OIL_STAINS_8].filename = "iso_oil_stains_0008.png";
 	obstacle_map[ISO_OIL_STAINS_8].flags |= NEEDS_PRE_PUT;
 	// the eight blood tiles have the same description - normal, right ?
 
 	obstacle_map[ISO_EXIT_1].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_EXIT_1, 1.0, 1.0);
 	obstacle_map[ISO_EXIT_1].filename = "iso_exits_0001.png";
 	obstacle_map[ISO_EXIT_1].flags &= ~NEEDS_PRE_PUT;
 
 	obstacle_map[ISO_EXIT_2].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_EXIT_2, 1.0, 1.0);
 	obstacle_map[ISO_EXIT_2].filename = "iso_exits_0002.png";
 	obstacle_map[ISO_EXIT_2].flags &= ~NEEDS_PRE_PUT;
 
 	obstacle_map[ISO_EXIT_3].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_EXIT_3, 1.0, 1.0);
 	obstacle_map[ISO_EXIT_3].filename = "iso_exits_0003.png";
 	obstacle_map[ISO_EXIT_3].flags &= ~NEEDS_PRE_PUT;
 	obstacle_map[ISO_EXIT_3].emitted_light_strength = 29;
 
 	obstacle_map[ISO_EXIT_4].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_EXIT_4, 1.0, 1.0);
 	obstacle_map[ISO_EXIT_4].filename = "iso_exits_0004.png";
 	obstacle_map[ISO_EXIT_4].flags &= ~NEEDS_PRE_PUT;
 	obstacle_map[ISO_EXIT_4].emitted_light_strength = 29;
 
 	obstacle_map[ISO_EXIT_5].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_EXIT_5, 1.0, 1.0);
 	obstacle_map[ISO_EXIT_5].filename = "iso_exits_0005.png";
 	obstacle_map[ISO_EXIT_5].flags &= ~NEEDS_PRE_PUT;
 
 	obstacle_map[ISO_EXIT_6].block_area_type = COLLISION_TYPE_NONE;
-	block_2param(ISO_EXIT_6, 1.0, 1.0);
 	obstacle_map[ISO_EXIT_6].filename = "iso_exits_0006.png";
 	obstacle_map[ISO_EXIT_6].flags &= ~NEEDS_PRE_PUT;
 	//--------------------
@@ -1209,7 +1174,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_ROCKS_N_PLANTS_2].flags |= GROUND_LEVEL;
 
 	obstacle_map[ISO_ROCKS_N_PLANTS_3].block_area_type = COLLISION_TYPE_NONE;
-	//block_2param(ISO_ROCKS_N_PLANTS_3, 1.0, 1.0);
 	obstacle_map[ISO_ROCKS_N_PLANTS_3].filename = "iso_rocks_n_plants_0002.png";
 	obstacle_map[ISO_ROCKS_N_PLANTS_3].flags |= NEEDS_PRE_PUT;
 
