@@ -104,15 +104,16 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=10  Text=_"./est_repair.plx"
 LuaCode={
+	repair_level = get_program_revision("Repair equipment")
 	damage = npc_damage_amount()
 	-- Estimate the average repair costs: --
-	cost_time = damage/ math.log( get_program_revision("Repair equipment")*get_program_revision("Check system integrity") + math.exp(1) -1)
-	cost_materials = damage*10/ math.log( get_program_revision("Repair equipment")*get_program_revision("Extract bot parts") + math.exp(1) )
-	cost_heat = damage*5/ math.log( get_program_revision("Repair equipment")*get_program_revision("Hacking") + math.exp(1) )
+	cost_time = damage / math.log(repair_level * get_program_revision("Check system integrity") + math.exp(1) - 1)
+	cost_materials = damage * 10 / math.log(repair_level * get_program_revision("Extract bot parts") + math.exp(1))
+	cost_heat = damage * 5 / math.log(repair_level * get_program_revision("Hacking") + math.exp(1))
 	-- Display the maximum repair costs: --
-	npc_says(_"Repairs on this ".. bot_name() .." unit will take less than ".. math.ceil(cost_time*1.2) .." seconds, ".. math.ceil(cost_materials*1.2) .." valuable circuits, and " .. math.ceil(cost_heat*1.2) .." heat.")
+	npc_says(_"Repairs on this ".. bot_name() .." unit will take less than ".. math.ceil(cost_time * 1.2) .." seconds, ".. math.ceil(cost_materials * 1.2) .." valuable circuits, and " .. math.ceil(cost_heat * 1.2) .." heat.")
 	hide(10)
-	if (get_gold() < cost_materials*1.2) then
+	if (get_gold() < cost_materials * 1.2) then
 		npc_says(_"You do not have enough valuable circuits to ensure repair of this ".. bot_name() .." unit.")
 	else
 		show(11)
