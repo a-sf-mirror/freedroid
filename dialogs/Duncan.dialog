@@ -228,7 +228,7 @@ LuaCode={
 Nr=67  Text=_"Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
 LuaCode={
 	npc_says(_"I will.")
-	hide(67)
+	hide(67, 68)
 	next(69)
 }
 ----------------------------------------------------------------------
@@ -238,6 +238,7 @@ LuaCode={
 	npc_says(_"I understand. So be it.")
 	end_quest("Doing Duncan a favour")
 	end_dialog()
+	hide(67, 68)
 }
 ----------------------------------------------------------------------
 
