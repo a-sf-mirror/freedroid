@@ -214,12 +214,21 @@ LuaCode={
 
 Nr=30  Text="Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
+	if (get_training_points() < 5) then 
+		npc_says("I cannot teach you when you have no training points. Come back when you are more prepared.")
+		hide(30)
+	elseif (get_gold() < 300 ) then
+		tux_says(_"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
+		hide(30)
+	else
 	npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 	npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 	npc_says(_"Now I see your hacking skill has already improved a lot.")
 	add_gold(-300)
 	del_training_points(5)
 	improve_program("Hacking")
+	if ((get_training_points() < 5) or (get_gold() < 300 )) then hide(30) end
+	end
 }
 ----------------------------------------------------------------------
 
