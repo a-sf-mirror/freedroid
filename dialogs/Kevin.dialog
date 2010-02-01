@@ -37,8 +37,11 @@ EveryTime LuaCode={
 
 	if (has_quest("And there was light...")) then
 		if (done_quest("And there was light...")) then
-			add_diary_entry("And there was light...", "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 			show(3, 8, 10)
+			if (not has_cookie("did_And there was light...")) then
+				add_cookie("did_And there was light...")
+				add_diary_entry("And there was light...", "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
+			else end
 		else show(6, 7) end
 	else end
 
