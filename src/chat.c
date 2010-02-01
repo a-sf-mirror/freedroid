@@ -655,7 +655,7 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 	// by any reply.  This case must also be caught.
 	//
 	if (strcmp(ChatRoster[MenuSelection].option_sample_file_name, "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER")) {
-		strcat(chat_protocol, "\1TUX: ");
+		strcat(chat_protocol, "\1- ");
 		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
 				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
 		strcat(chat_protocol, "\2");

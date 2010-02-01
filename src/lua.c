@@ -528,7 +528,7 @@ static int lua_chat_tux_says(lua_State * L)
 	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
 	extern char *chat_protocol;
 
-	strcat(chat_protocol, "\1TUX: ");
+	strcat(chat_protocol, "\1- ");
 	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
 	strcat(chat_protocol, "\2");
 
