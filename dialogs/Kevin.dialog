@@ -224,7 +224,7 @@ LuaCode={
 	add_gold(-300)
 	del_training_points(5)
 	improve_program("Hacking")
-	if ((get_training_points() < 5) or (get_gold() < 300 )) then hide(30) end
+	hide(30)
 }
 ----------------------------------------------------------------------
 
