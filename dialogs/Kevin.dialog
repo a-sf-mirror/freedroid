@@ -49,8 +49,7 @@ EveryTime LuaCode={
 		if (has_cookie("kevin_sigtalk")) then hide(20) else show(20) end
 	else end
 
-	if (get_gold() < 300 ) then hide(30) else end
-	if (get_training_points() > 4) then else hide(30) end
+	if ((get_training_points() < 5) or (get_gold() < 300 )) then hide(30) else end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -88,11 +87,13 @@ LuaCode={
 		if (get_gold() < 300 ) then
 			tux_says(_"Sorry, don't have that much money right now.")
 			npc_says(_"Ok, come back when you can afford to pay me if you are interested.")
+-- Future alternative/variation text		tux_says(_"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
 		else
 			if (get_training_points() > 4) then show(30) 
 			else 
 				tux_says(_"Sorry, my memory databank is filled to the brim right now. Can't learn more until I get some more experience.")
 				npc_says(_"You Linarians are funny creatures. Come back later when you feel ready if you please.")
+-- Future alternative/variation text		npc_says("I cannot teach you when you have no training points. Come back when you are more prepared.")
 			end
 		end
 	end
@@ -217,13 +218,6 @@ LuaCode={
 
 Nr=30  Text="Improve Hacking Ability (cost 300 cash, 5 ability points)"
 LuaCode={
-	if (get_training_points() < 5) then 
-		npc_says("I cannot teach you when you have no training points. Come back when you are more prepared.")
-		hide(30)
-	elseif (get_gold() < 300 ) then
-		tux_says(_"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
-		hide(30)
-	else
 	npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 	npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 	npc_says(_"Now I see your hacking skill has already improved a lot.")
@@ -231,7 +225,6 @@ LuaCode={
 	del_training_points(5)
 	improve_program("Hacking")
 	if ((get_training_points() < 5) or (get_gold() < 300 )) then hide(30) end
-	end
 }
 ----------------------------------------------------------------------
 
