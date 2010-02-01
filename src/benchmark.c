@@ -86,6 +86,7 @@ static void loadship_bench()
 	while (loop--) {
 		LoadShip(fp, 0);
 	}
+	timer_stop();
 }
 
 void benchmark()
