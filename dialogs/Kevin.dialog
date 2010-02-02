@@ -30,9 +30,13 @@ Beginning of new chat dialog for character="XXXXX"
 EveryTime LuaCode={
 	if (not has_cookie("met_kevin")) then
 		show(0)
+		add_cookie("met_kevin")
+	else end
+
+	if ( (has_quest("A strange guy stealing from town")) and (not done_quest("A strange guy stealing from town")) ) then
+		update_quest("A strange guy stealing from town", "Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force mke to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
 		end_quest("A strange guy stealing from town")
 		add_xp(100)
-		add_cookie("met_kevin")
 	else end
 
 	if (has_quest("And there was light...")) then
