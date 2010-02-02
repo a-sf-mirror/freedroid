@@ -2,6 +2,8 @@
 next = set_next_node
 show = enable_node
 hide = disable_node
+update_quest = add_diary_entry
+
 
 -- gettext function for dialogs
 function _(a)
