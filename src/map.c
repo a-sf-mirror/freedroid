@@ -977,11 +977,11 @@ int LoadShip(char *filename, int compressed)
 	endpt = ShipData;
 	LevelStart[level_anz] = ShipData;
 	while ((endpt = strstr(endpt, LEVEL_END_STRING)) != NULL) {
+		if (level_anz >= MAX_LEVELS)
+			ErrorMessage(__FUNCTION__, "Size mismatch for level array : at least %d in file, %d in game.\n", 
+                                     PLEASE_INFORM, IS_FATAL, level_anz + 1, MAX_LEVELS);
 		endpt += strlen(LEVEL_END_STRING);
 		level_anz++;
-		if (level_anz >= MAX_LEVELS)
-			ErrorMessage(__FUNCTION__, "Size mismatch for level array : at least %d in file, %d in game.\n", PLEASE_INFORM,
-				     IS_FATAL, level_anz + 1, MAX_LEVELS);
 		LevelStart[level_anz] = endpt + 1;
 	}
 
