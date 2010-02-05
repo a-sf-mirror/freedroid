@@ -117,3 +117,7 @@ function change_obstacle_state(label, state)
 	change_obstacle_type(label, get_obstacle_state_id(id, state));
 end
 
+function npc_says_random(...)
+	npc_says(arg[math.random(#arg)])
+end
+
