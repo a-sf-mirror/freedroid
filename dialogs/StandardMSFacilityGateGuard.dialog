@@ -73,15 +73,7 @@ LuaCode={
 
 Nr=99  Text=_"I'll be going then."
 LuaCode={
-	npc_says(_"Finally.")
-	random_var = math.random()
-	if (random_var > 0.7) then
-	npc_says(_"Don't come back.")
-	elseif (random_var > 0.3) then
-	npc_says(_"It is dangerous here.")
-	else
-	npc_says(_"Leave and stay away.")
-	end
+	npc_says_random(_"Finally.","Don't come back.","It is dangerous here.","Leave and stay away.")
 	end_dialog()
 	show(1)
 }

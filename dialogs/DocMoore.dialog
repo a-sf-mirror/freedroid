@@ -117,13 +117,8 @@ LuaCode={
 	if (not has_cookie("asked_docmoore_self_damage")) then
 		npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
 		show(11)
-	else end
-	random_var = math.random()
-	if (random_var > 0.5) then
-		npc_says(_"There, it's done. You're completely fixed. You can go now.")
-	else
-		npc_says(_"You need to keep better care of yourself.  You're completely fixed. You can go now.")
 	end
+	npc_says_random(_"There, it's done. You're completely fixed. You can go now.","You need to keep better care of yourself.  You're completely fixed. You can go now.")
 	heal_tux()
 	hide(0)
 }
@@ -274,12 +269,7 @@ LuaCode={
 
 Nr=99  Text=_"See you later."
 LuaCode={
-	random_var = math.random()
-	if (random_var > 0.5) then
-		npc_says(_"See you later.")
-	else
-		npc_says(_"Keep healthy!")
-	end
+	npc_says_random(_"See you later.","Keep healthy!")
 	end_dialog()
 }
 ----------------------------------------------------------------------

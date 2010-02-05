@@ -167,12 +167,7 @@ LuaCode={
 
 Nr=99  Text=_"Thank you for your wise words."
 LuaCode={
-	random_var = math.random()
-	if (random_var > 0.4) then
-		npc_says(_"Feel free to come here any time you want.")
-	else
-		npc_says(_"You flatter me.")
-	end
+	npc_says_random(_"Feel free to come here any time you want.","You flatter me.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

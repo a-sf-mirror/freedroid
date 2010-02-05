@@ -235,16 +235,7 @@ LuaCode={
 
 Nr=99  Text=_"I'll be going then."
 LuaCode={
-	random_var = math.random()
-	if (random_var > 0.6) then
-		npc_says(_"Sure.")
-	elseif (random_var > 0.4) then
-		npc_says(_"See you around.")
-	elseif (random_var > 0.2) then
-		npc_says(_"Remember: pain is temporary but glory is forever.")
-	else
-		npc_says(_"Go kill some bots.")
-	end
+	npc_says_random(_"Sure.","See you around.","Remember: pain is temporary but glory is forever.","Go kill some bots.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

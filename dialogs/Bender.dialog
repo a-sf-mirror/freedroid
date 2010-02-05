@@ -234,12 +234,7 @@ LuaCode={
 
 Nr=99  Text=_"See you later."
 LuaCode={ 
-	random_var = math.random()
-	if (random_var > 0.5) then
-		npc_says(_"Later, man!")
-	else
-		npc_says(_"Stay cool dude.")
-	end
+	npc_says_random(_"Later, man!",_"Stay cool dude.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

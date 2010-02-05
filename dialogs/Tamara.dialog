@@ -73,25 +73,13 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=41  Text=_"So what interesting books do you have available right now?"
 LuaCode={
-	random_var = math.random()
-	if (random_var > 0.6) then
-		npc_says(_"Some of these might interest you.")
-	else
-		npc_says(_"I only have a few programming volumes, feel free to look through them.")
-	end
+	npc_says_random(_"Some of these might interest you.",_"I only have a few programming volumes, feel free to look through them.")
 	trade_with("Tamara")
 }
 ----------------------------------------------------------------------
 Nr=99  Text=_"Thank you for the help."
 LuaCode={
-	random_var = math.random()
-	if (random_var > 0.6) then
-		npc_says(_"No problem, and remember to return your books in time.")
-	elseif (random_var > 0.4) then
-		npc_says(_"I aim to ensure that the great works of literature will survive this horrible apocalypse.")
-	else
-		npc_says(_"That is what I'm here for. Come back at any time.")
-	end
+	npc_says_random(_"No problem, and remember to return your books in time.","I aim to ensure that the great works of literature will survive this horrible apocalypse.","That is what I'm here for. Come back at any time.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
