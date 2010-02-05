@@ -586,7 +586,6 @@ void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, e
 	int do_wait = 1;
 
 	strcat(chat_protocol, SubtitleText);
-	strcat(chat_protocol, "\n");
 
 	if (!strcmp(SampleFilename, "NO_WAIT")) {
 		do_wait = 0;
@@ -658,7 +657,7 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 		strcat(chat_protocol, "\1- ");
 		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
 				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
-		strcat(chat_protocol, "\2");
+		strcat(chat_protocol, "\n\2");
 	}
 	//--------------------
 	// Now we can proceed to execute
@@ -1034,6 +1033,7 @@ void validate_dialogs()
 	   text on screen and wait for clicks */
 	run_lua("function npc_says(a)\nend\n");
 	run_lua("function tux_says(a)\nend\n");
+	run_lua("function cli_says(a)\nend\n");
 
 	/* Subdialogs will be tested anyway, no need to run them from Lua */
 	run_lua("function run_subdialog(a)\nend\n");

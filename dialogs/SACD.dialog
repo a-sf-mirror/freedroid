@@ -30,13 +30,17 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
-	tux_says(_"Login : admin  Password : *******")
-	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057. admin@sadefence: ~ #")
+	cli_says(_"Login : ", "NO_WAIT")
+	tux_says(_"admin", "NO_WAIT")
+	cli_says(_"  Password : ", "NO_WAIT")
+	tux_says(_"*******", "NO_WAIT")
+	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 	if (has_quest("Tania's sanitary")) then add_diary_entry("Tania's sanitary", "I have found that SACD and hacked it's system.") else end
 	if (not has_cookie("sacdovertaken")) then
 		add_xp(1000)
 		add_cookie("sacdovertaken")
 	else end
+	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 	hide(2) show(1, 3, 4, 99)
 }
 ----------------------------------------------------------------------
@@ -49,6 +53,7 @@ LuaCode={
 	add_cookie("sagunsoff")
 	change_obstacle_state("SADDGun1", "disabled")
 	change_obstacle_state("SADDGun2", "disabled")
+	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 	hide(1) show(2)
 }
 ----------------------------------------------------------------------
@@ -61,6 +66,7 @@ LuaCode={
 	change_obstacle_state("SADDGun1", "enabled")
 	change_obstacle_state("SADDGun2", "enabled")
 	del_cookie("sagunsoff")
+	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 	hide(2) show(1)
 }
 ----------------------------------------------------------------------
@@ -72,6 +78,7 @@ LuaCode={
 	npc_says(_"Please enter unlock security password:")
 	tux_says(_"CTRL+C")
 	npc_says(_"An error occured while opening doors.")
+	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 }
 ----------------------------------------------------------------------
 

@@ -530,7 +530,7 @@ static int lua_chat_tux_says(lua_State * L)
 
 	strcat(chat_protocol, "\1- ");
 	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
-	strcat(chat_protocol, "\2");
+	strcat(chat_protocol, "\n\2");
 
 	return 0;
 }
@@ -539,11 +539,27 @@ static int lua_chat_npc_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
 	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
+	extern char *chat_protocol;
 
 	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
+	strcat(chat_protocol, "\n");
 
 	return 0;
 }
+
+static int lua_chat_cli_says(lua_State * L)
+{
+	const char *answer = luaL_checkstring(L, 1);
+	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
+	extern char *chat_protocol;
+
+	strcat(chat_protocol, "\1- ");
+	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
+	strcat(chat_protocol, "\n\2");
+
+	return 0;
+}
+
 
 static int lua_chat_run_subdialog(lua_State * L)
 {
@@ -812,6 +828,8 @@ luaL_reg lfuncs[] = {
 	{"tux_says", lua_chat_tux_says}
 	,
 	{"npc_says", lua_chat_npc_says}
+	,
+	{"cli_says", lua_chat_cli_says}
 	,
 	{"run_subdialog", lua_chat_run_subdialog}
 	,
