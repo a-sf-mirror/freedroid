@@ -1001,18 +1001,6 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 		//
 		Activate_Conservative_Frame_Computation();
 
-		//--------------------
-		// If the level we're coming out from is the one where the homespot is, the teleport anchor has to be removed,
-		// because it means that the player decided not to teleport back to the previous location
-		// It is a ugly hack but it works :)
-
-		location HomeSpot;
-		ResolveMapLabelOnShip("TeleportHomeTarget", &(HomeSpot));
-		if (Me.pos.z == HomeSpot.level) {
-			Me.teleport_anchor.x = 0;
-			Me.teleport_anchor.y = 0;
-		}
-
 		Me.pos.x = X;
 		Me.pos.y = Y;
 		Me.pos.z = LNum;

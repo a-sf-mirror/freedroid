@@ -162,28 +162,49 @@ static void TeleportHome(void)
 {
 	location HomeSpot;
 
-	if ((!Me.teleport_anchor.x) && (!Me.teleport_anchor.y))	//if there is no anchor, teleport home
-	{
-		Me.teleport_anchor.x = Me.pos.x;
-		Me.teleport_anchor.y = Me.pos.y;
-		Me.teleport_anchor.z = Me.pos.z;
-		teleport_arrival_sound();
-		ResolveMapLabelOnShip("TeleportHomeTarget", &(HomeSpot));
-		reset_visible_levels();
-		Teleport(HomeSpot.level, HomeSpot.x, HomeSpot.y, TRUE);
-		clear_active_bullets();
-	} else			//we must teleport back to the anchor
-	{
+	// Find homespot position.
+
+	ResolveMapLabelOnShip("TeleportHomeTarget", &(HomeSpot));
+
+	// If homespot was not found, a fatal error has been generated, but we
+	// however check it once again, to prevent any bug.
+
+	if (HomeSpot.x == -1)
+		return;
+
+	//--------------------
+	// Case 1 : Tux is in homespot's level, and there is a teleport anchor
+	//          -> teleport back to previous position
+	//
+	if (Me.pos.z == HomeSpot.level && ((Me.teleport_anchor.x != 0) || (Me.teleport_anchor.y != 0))) {
+
+		// Teleport
 		teleport_arrival_sound();
 		reset_visible_levels();
 		Teleport(Me.teleport_anchor.z, Me.teleport_anchor.x, Me.teleport_anchor.y, TRUE);
 		clear_active_bullets();
+
+		// Reset teleport anchor
 		Me.teleport_anchor.x = 0;
 		Me.teleport_anchor.y = 0;
 		Me.teleport_anchor.z = 0;
+
+		return;
 	}
 
-};				// void TeleportHome ( void )
+	//--------------------
+	// Any other cases : Store current position and teleport Tux to homespot
+	//
+	Me.teleport_anchor.x = Me.pos.x;
+	Me.teleport_anchor.y = Me.pos.y;
+	Me.teleport_anchor.z = Me.pos.z;
+
+	teleport_arrival_sound();
+	reset_visible_levels();
+	Teleport(HomeSpot.level, HomeSpot.x, HomeSpot.y, TRUE);
+	clear_active_bullets();
+
+}				// void TeleportHome ( void )
 
 /**
  * This function handles the program the player has just activated.
