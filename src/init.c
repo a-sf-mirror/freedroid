@@ -246,21 +246,21 @@ void ShowStartupPercentage(int Percentage)
 	if (use_open_gl)
 		blit_special_background(FREEDROID_LOADING_PICTURE_CODE);
 
-	Bar_Rect.x = 200 * GameConfig.screen_width / 640;
-	Bar_Rect.y = 275 * GameConfig.screen_height / 480;
-	Bar_Rect.w = 2 * Percentage * GameConfig.screen_width / 640;
+	Bar_Rect.x = 160 * GameConfig.screen_width / 640;
+	Bar_Rect.y = 288 * GameConfig.screen_height / 480;
+	Bar_Rect.w = 3 * Percentage * GameConfig.screen_width / 640;
 	Bar_Rect.h = 30 * GameConfig.screen_height / 480;
 	our_SDL_fill_rect_wrapper(Screen, &Bar_Rect, FillColor);
 
-	Bar_Rect.x = (200 + 2 * Percentage) * GameConfig.screen_width / 640;
-	Bar_Rect.y = 275 * GameConfig.screen_height / 480;
-	Bar_Rect.w = (200 - 2 * Percentage) * GameConfig.screen_width / 640;
+	Bar_Rect.x = (160 + 3 * Percentage) * GameConfig.screen_width / 640;
+	Bar_Rect.y = 288 * GameConfig.screen_height / 480;
+	Bar_Rect.w = (300 - 3 * Percentage) * GameConfig.screen_width / 640;
 	Bar_Rect.h = 30 * GameConfig.screen_height / 480;
 	our_SDL_fill_rect_wrapper(Screen, &Bar_Rect, 0);
 
 	SDL_SetClipRect(Screen, NULL);
 
-	PrintString(Screen, 300 * GameConfig.screen_width / 640 - 9, 288 * GameConfig.screen_height / 480 - 7, "%d%%", Percentage);
+	PrintString(Screen, 310 * GameConfig.screen_width / 640 - 9, 301 * GameConfig.screen_height / 480 - 7, "%d%%", Percentage);
 
 	our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 
