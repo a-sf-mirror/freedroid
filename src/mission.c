@@ -259,7 +259,7 @@ void quest_browser_display_mission_list(int list_type)
 			DisplayText(_("No completed quests yet."), -1, -1, &mission_description_rect, TEXT_STRETCH);
 			break;
 		case QUEST_BROWSER_SHOW_NOTES:
-			DisplayText(_("No notes yet."), -1, -1, &mission_description_rect, TEXT_STRETCH);
+			DisplayText(_("Greetings Valued Customer.\n\nThe Parafunken QuickNotes license expired 76 years ago.\nPlease update your subscription to continue using this software.\n\nThank you."), -1, -1, &mission_description_rect, TEXT_STRETCH);
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "\
