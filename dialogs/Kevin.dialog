@@ -90,14 +90,16 @@ LuaCode={
 		npc_says(_"I can teach you everything. For three hundred, up front. Still interested?")
 		if (get_gold() < 300 ) then
 			tux_says(_"Sorry, don't have that much money right now.")
-			npc_says(_"Ok, come back when you can afford to pay me if you are interested.")
--- Future alternative/variation text		tux_says(_"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
+			npc_says_random(_
+				"Ok, come back when you can afford to pay me if you are interested.",
+				"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
 		else
 			if (get_training_points() > 4) then show(30) 
 			else 
 				tux_says(_"Sorry, my memory databank is filled to the brim right now. Can't learn more until I get some more experience.")
-				npc_says(_"You Linarians are funny creatures. Come back later when you feel ready if you please.")
--- Future alternative/variation text		npc_says("I cannot teach you when you have no training points. Come back when you are more prepared.")
+				npc_says_random(_
+					"You Linarians are funny creatures. Come back later when you feel ready if you please.",
+					"I cannot teach you when you have no training points. Come back when you are more prepared.")
 			end
 		end
 	end

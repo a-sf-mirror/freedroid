@@ -84,8 +84,9 @@ LuaCode={
 		add_xp(100)
 	end
 	npc_says(_"In any case...")
-	npc_says(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?")
--- Future alternative say	npc_says(_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
+	npc_says_random(_
+		"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
+		"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
 	hide(5) show(10,11)
 }
 ----------------------------------------------------------------------
