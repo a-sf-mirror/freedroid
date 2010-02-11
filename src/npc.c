@@ -145,7 +145,7 @@ void init_npcs()
 		"Reinforced Jacket",
 		"Protective Jacket",
 		"Standard Shield",
-		"Large Shield",
+		"Heavy Shield",
 		"Worker Helmet",
 		"Worker Helmet",
 		"Miner Helmet",

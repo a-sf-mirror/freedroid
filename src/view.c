@@ -2979,7 +2979,7 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 		shield1 = GetItemIndexByName("Improvised Buckler");
 		shield2 = GetItemIndexByName("Bot Carapace");
 		shield3 = GetItemIndexByName("Standard Shield");
-		shield4 = GetItemIndexByName("Large Shield");
+		shield4 = GetItemIndexByName("Heavy Shield");
 		shield5 = GetItemIndexByName("Riot Shield");
 		first_call = 0;
 	}

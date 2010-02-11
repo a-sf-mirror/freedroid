@@ -860,20 +860,21 @@ Item as gun: weapon requires both hands="yes"
 
 ** Start of new item specification subsection **
 Item name=_"Sledgehammer"
+Item uses animation with prefix="iso_sledgehammer"
+Item uses rotation series with prefix="weapons/sledgehammer"
+File or directory name for inventory image="weapons/sledgehammer/inv_image.png"
+Item uses drop sound with filename="drop_sword_sound.ogg"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/sledgehammer"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=25
 Dexterity minimum required to wear/wield this item=20
 Base item duration=40
 plus duration modifier=20
-File or directory name for inventory image="weapons/sledgehammer/inv_image.png"
 inventory_size_x=2
 inventory_size_y=5
-Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=150
 Item description text=_"Very slow and only for the strongest wielder, but only the tougher droids can survive more than 1-2 direct hits."
 ----- the following part is only relevant for weapons -----
@@ -2664,7 +2665,7 @@ Item as gun: weapon requires both hands="yes"
               Improvised Buckler         3-10    5-15   1-7              20 - Scavanged parts from bots
               Bot Carapace               5-10   10-25   3-9              40 - Scavanged parts from bots
               Standard Shield            8-12   30-40    0              250 - in shop
-              Large Shield              10-14   30-40    0     Str 20   360 - in shop
+              Heavy Shield              10-14   30-40    0     Str 20   360 - in shop
               Riot Shield               15-20   40-50    0     Str 25   480 - in RG shop
  *         - Head                                                                                         *
               Pot Helmet                 3-10    5-10   1-7              20 - Scavanged parts from bots
@@ -2848,56 +2849,56 @@ Item description text=_"A small, lightweight and pretty straightforward shield. 
 
 ** Start of new item specification subsection **
 Item name=_"Standard Shield"
+Item uses rotation series with prefix="shields/medium"
+File or directory name for inventory image="shields/medium/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="shields/standard"
 Items of this type collect together in inventory="no"
 Item as defensive item: base_dr_bonus=8
 Item as defensive item: dr_bonus_modifier=4
 Base item duration=30
 plus duration modifier=10
-File or directory name for inventory image="shields/standard/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=250
 Item description text=_"Better than a buckler, and a lot more effective."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Large Shield"
+Item name=_"Heavy Shield"
+Item uses rotation series with prefix="shields/heavy"
+File or directory name for inventory image="shields/heavy/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="shields/medium"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
 Item as defensive item: base_dr_bonus=10
 Item as defensive item: dr_bonus_modifier=4
 Base item duration=30
 plus duration modifier=10
-File or directory name for inventory image="shields/medium/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=360
 Item description text=_"A medium sized, lightweight and pretty straightforward shield. Provides decent protection."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
 Item name=_"Riot Shield"
+Item uses rotation series with prefix="shields/riot"
+File or directory name for inventory image="shields/riot/inv_image.png"
+Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
-Item uses rotation series with prefix="shields/large"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=25
 Item as defensive item: base_dr_bonus=15
 Item as defensive item: dr_bonus_modifier=5
 Base item duration=40
 plus duration modifier=10
-File or directory name for inventory image="shields/large/inv_image.png"
-Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=480
 Item description text=_"A powerful shield, as useful to protect from bots as it is to control big crowds of angry protesters."
 ** End of new item specification subsection **
