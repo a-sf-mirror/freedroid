@@ -65,7 +65,7 @@ int amask = 0x000000FF;
 
 char *part_group_strings[ALL_PART_GROUPS] = {
 	"",
-	"shields/",
+	"../shields/",
 	"",
 	"",
 	"../weapons/",
@@ -2988,8 +2988,12 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 	// display the empty shieldarm.
 	//
 	if (Me.shield_item.type == (-1)) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, rotation_index);
-		return;
+		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee == 1) {
+			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, rotation_index);
+			return;
+		} else {
+			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, rotation_index);
+		}
 	}
 	//--------------------
 	// If there is no weapon item present, we just need to blit the shield, cause
@@ -3002,9 +3006,9 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 		// and then decide which shield to use.
 		//
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee == 0) {
-			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, rotation_index);
+			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, rotation_index);
 			return;
-		}
+		} 
 	}
 	//--------------------
 	// Now at this point we know, that a 'sword motion class' item is present, and that
