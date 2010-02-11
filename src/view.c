@@ -156,8 +156,8 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 
 	ItemImageCode = AlarmItem->type;
 
-	TargetRect.x = GameConfig.screen_width - 64 * Position;
-	TargetRect.y = 10;
+	TargetRect.x = GameConfig.screen_width / 2 - 224 + 64 * Position;
+	TargetRect.y = GameConfig.screen_height * 390/480;
 
 	if (AlarmItem->current_duration <= 5) {
 		if (AlarmItem->current_duration < 3)
