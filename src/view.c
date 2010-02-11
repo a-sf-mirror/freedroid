@@ -2993,6 +2993,7 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 			return;
 		} else {
 			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, rotation_index);
+			return;
 		}
 	}
 	//--------------------
