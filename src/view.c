@@ -3007,8 +3007,10 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 		// and then decide which shield to use.
 		//
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee == 0) {
-			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, rotation_index);
-			return;
+			if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands == 1) {
+				iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, rotation_index);
+				return;
+			}
 		} 
 	}
 	//--------------------
