@@ -3013,7 +3013,7 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 	if (Me.shield_item.type == shield1) {
 		iso_put_tux_part(PART_GROUP_SHIELD, "iso_buckler", x, y, rotation_index);
 	} else if (Me.shield_item.type == shield2 || Me.shield_item.type == shield3) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_small_shield", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_standard_shield", x, y, rotation_index);
 	} else if (Me.shield_item.type == shield4) {
 		iso_put_tux_part(PART_GROUP_SHIELD, "iso_heavy_shield", x, y, rotation_index);
 	} else if (Me.shield_item.type == shield5) {
