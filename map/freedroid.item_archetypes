@@ -2849,8 +2849,8 @@ Item description text=_"A small, lightweight and pretty straightforward shield. 
 
 ** Start of new item specification subsection **
 Item name=_"Standard Shield"
-Item uses rotation series with prefix="shields/medium"
-File or directory name for inventory image="shields/medium/inv_image.png"
+Item uses rotation series with prefix="shields/standard"
+File or directory name for inventory image="shields/standard/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Item min class for drop=0
 Item max class for drop=0

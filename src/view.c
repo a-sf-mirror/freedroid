@@ -3015,9 +3015,9 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 	} else if (Me.shield_item.type == shield2 || Me.shield_item.type == shield3) {
 		iso_put_tux_part(PART_GROUP_SHIELD, "iso_small_shield", x, y, rotation_index);
 	} else if (Me.shield_item.type == shield4) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_standard_shield", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_heavy_shield", x, y, rotation_index);
 	} else if (Me.shield_item.type == shield5) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_large_shield", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_riot_shield", x, y, rotation_index);
 	} else {
 		ErrorMessage(__FUNCTION__, "Shield type %d is not yet rendered for Tux.", PLEASE_INFORM, IS_FATAL, Me.shield_item.type);
 	}
