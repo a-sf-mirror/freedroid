@@ -2723,9 +2723,8 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 	// currently allowed from the array size...
 	//
 	if (last_stand_animation_image[enemy_model_nr] >= MAX_ENEMY_MOVEMENT_PHASES) {
-		DebugPrintf(-4, "\nenemy_model_nr=%d.", enemy_model_nr);
 		ErrorMessage(__FUNCTION__, "\
-The number of images found in the image collection is bigger than currently allowed.", PLEASE_INFORM, IS_FATAL);
+The number of images found in the image collection for enemy model %d is bigger than currently allowed (found %d images, max. %d).", PLEASE_INFORM, IS_FATAL, enemy_model_nr, last_stand_animation_image[enemy_model_nr], MAX_ENEMY_MOVEMENT_PHASES);
 	}
 	//--------------------
 	// Now we can proceed to read in the pure image data from the image
