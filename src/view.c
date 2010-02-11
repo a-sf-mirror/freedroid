@@ -65,10 +65,10 @@ int amask = 0x000000FF;
 
 char *part_group_strings[ALL_PART_GROUPS] = {
 	"",
-	"shield_items/",
+	"shields/",
 	"",
 	"",
-	"",
+	"../weapons/",
 	""
 };
 
