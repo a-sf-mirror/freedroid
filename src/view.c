@@ -155,8 +155,12 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 		return;
 
 	ItemImageCode = AlarmItem->type;
-
-	TargetRect.x = GameConfig.screen_width / 2 - 224 + 64 * Position;
+	
+	if (GameConfig.screen_width > 800) {
+		TargetRect.x = GameConfig.screen_width / 2 + 160 - 64 * Position; // Centered
+	} else {
+		TargetRect.x = GameConfig.screen_width - GameConfig.screen_width * 100/640 - 64 * Position; // Right-aligned
+	}
 	TargetRect.y = GameConfig.screen_height * 390/480;
 
 	if (AlarmItem->current_duration <= 5) {
@@ -189,10 +193,13 @@ void ShowItemAlarm(void)
 {
 
 	ShowOneItemAlarm(&Me.weapon_item, 1);
-	ShowOneItemAlarm(&Me.drive_item, 2);
-	ShowOneItemAlarm(&Me.shield_item, 3);
+	ShowOneItemAlarm(&Me.shield_item, 2);
+	ShowOneItemAlarm(&Me.special_item, 3);
 	ShowOneItemAlarm(&Me.armour_item, 4);
-	ShowOneItemAlarm(&Me.special_item, 5);
+	ShowOneItemAlarm(&Me.drive_item, 5);
+
+
+
 
 };				// void ShowItemAlarm( void )
 
