@@ -1,0 +1,174 @@
+----------------------------------------------------------------------
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+BEGIN OF AUTORS NOTES
+
+END OF AUTORS NOTES 
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+EveryTime LuaCode={ show(0, 99) }
+----------------------------------------------------------------------
+
+Nr=0 Text=_"ls"
+LuaCode={
+
+-- all things related to ls should be subdialog as well
+
+	if (username == "tux")     then next(40)
+	elseif (username =="root") then next(60)
+	elseif (username =="lily")  then next(70)
+	elseif (username =="cpain") then next(80)
+	else
+		tux_says("ls", "NO_WAIT")
+		npc_says(".", "NO_WAIT")
+		cli_says(username .. "@c-net:~$", "NO_WAIT")
+	end
+}
+----------------------------------------------------------------------
+
+Nr=40 Text=_"ls"
+LuaCode={
+   npc_says(_"documents/ mountdisk.sh@ statistics.pl*", "NO_WAIT")
+   cli_says(username .. "@c-net:~$", "NO_WAIT")
+   show(40,41,42,59)
+}
+----------------------------------------------------------------------
+
+Nr=41 Text=_"ls documents/*"
+LuaCode={
+   hide(41)
+   npc_says(_".", "NO_WAIT")
+   cli_says(_"tux@c-net:~$", "NO_WAIT")
+}
+
+
+----------------------------------------------------------------------
+Nr=59 Text=_"logout"
+LuaCode={
+	hide(40,41,42,59)
+	next(98)
+}
+
+----------------------------------------------------------------------
+-- Nodes 60-69: root-only files
+----------------------------------------------------------------------
+Nr=60 Text=_"ls"
+LuaCode={
+   npc_says(_"forkBOMB.sh", "NO_WAIT")
+   cli_says(username .. "@c-net:~$", "NO_WAIT")
+   show(60,66,69)
+}
+
+
+----------------------------------------------------------------------
+Nr=66  Text=_"forkBOMB.sh -arm bomb"
+LuaCode={
+	npc_says(_"bomb armed", "NO_WAIT")
+	cli_says(_"root@c-net:~$", "NO_WAIT")
+	show(67,68)
+}
+
+----------------------------------------------------------------------
+Nr=67  Text=_"forkBOMB.sh -disarm bomb"
+LuaCode={
+	npc_says(_"bomb defused", "NO_WAIT")
+	cli_says(_"root@c-net:~$", "NO_WAIT")
+	hide(67,68)
+	show(66)
+}
+
+----------------------------------------------------------------------
+Nr=68 Text=_"forkBOMB.sh -execute"
+LuaCode={
+	add_cookie("Terminals_disabled")
+	display_big_message("Terminals Disabled")
+--   add_xp(30)  -- Eventually make this a quest goal.
+	next(69)
+}
+----------------------------------------------------------------------
+Nr=69 Text=_"logout"
+LuaCode={
+	hide(60,66,67,68,69)
+	next(98)
+}
+
+
+----------------------------------------------------------------------
+-- Nodes 70-79: lily -only files
+----------------------------------------------------------------------
+
+Nr=70 Text=_"ls"
+LuaCode={
+   npc_says(_"forkBOMB.sh", "NO_WAIT")
+   cli_says(username .. "@c-net:~$", "NO_WAIT")
+   show(70,79)
+}
+----------------------------------------------------------------------
+Nr=79 Text=_"logout"
+LuaCode={
+	hide(70,79)
+	next(98)
+}
+----------------------------------------------------------------------
+-- Nodes 80-89: cpain-only files
+----------------------------------------------------------------------
+
+Nr=80 Text=_"ls"
+LuaCode={
+   npc_says(_".", "NO_WAIT")
+   cli_says(username .. "@c-net:~$", "NO_WAIT")
+   show(80,89)
+}
+----------------------------------------------------------------------
+Nr=89 Text=_"logout"
+LuaCode={
+	hide(80,89)
+	next(98)
+}
+
+----------------------------------------------------------------------
+-- Nodes 90-99: logout/misc files
+----------------------------------------------------------------------
+
+Nr=98  Text=_"logout"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+  --  set_internet_login_time()
+	npc_says(_"Connection to c-net closed.")
+	end_dialog()
+}
+
+----------------------------------------------------------------------
+
+Nr=99  Text=_"logout"
+LuaCode={
+--	set_internet_login_time()
+	hide(20,30,40,99)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"
