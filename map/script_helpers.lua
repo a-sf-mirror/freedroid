@@ -118,7 +118,11 @@ function change_obstacle_state(label, state)
 end
 
 function npc_says_random(...)
-	npc_says(arg[math.random(#arg)])
+	if (arg[#arg] == "NO_WAIT") then
+		npc_says(arg[math.random(#arg-1)],"NO_WAIT")
+	else
+		npc_says(arg[math.random(#arg)])
+	end
 end
 
 function get_random(...)

@@ -328,13 +328,13 @@ LuaCode={
 			npc_says(n_god.." awaits you at the surface", "NO_WAIT")
 			yendor = "yes"
 		else
-			npc_says_random("You find nothing new here.","You find a Fake Amulet of Yendor.","You find emptiness.","You find an empty room.")
+			npc_says_random("You find nothing new here.","You find a Fake Amulet of Yendor.","You find emptiness.","You find an empty room.", "NO_WAIT")
 		end
 			npc_says("There is an exit above.", "NO_WAIT")
 			show(62)
 	elseif (n_level == 0) then -- At surface
 		if (yendor == "no") then
-			npc_says_random(n_god.." looks at you with impatience and points you back to the entrance of the dungeon.","You find your goddess, "..n_god..", at lunch. She points back the way you came.")
+			npc_says_random(n_god.." looks at you with impatience and points you back to the entrance of the dungeon.","You find your goddess, "..n_god..", at lunch. She points back the way you came.","You come up and nearly catch "..n_god.." bathing. You quickly head back the way you came.", "NO_WAIT")
 			hide(62)
 			show(63)
 		else  -- have Amulet of Yendor -- WIN!
@@ -346,14 +346,14 @@ LuaCode={
 	else
 		npc_says("You are on level \3"..n_level.."\2:", "NO_WAIT")
 	--Describe the level
-		npc_says_random("You find yourself in a series of passages all alike.","You find yourself in an underground office building.","You find yourself in a labyrinth, with 1980's music playing mysteriously.","You find yourself inside a Cretaceous limestone cave.","You find yourself in an abandoned coal mine.", "You find yourself in a flooded room.","You find yourself in a room filled with huge, transparent, hexagonal dipyramidal crystals.","You find yourself in a passage filled with bones from the ancient past.","You find yourself in a room filled with fresh bones.","You find yourself in a room filled with rotting corpses.","You find yourself in a goblin village.","You find yourself in an abandoned gold mine.","You find yourself. You are in a yoga room.", "You lose yourself in a misty passageway.","You find yourself in a room filled with blinking lights.","You find youself in a lava tube.")
+		npc_says_random("You find yourself in a series of passages all alike.","You find yourself in an underground office building.","You find yourself in a labyrinth, with 1980's music playing mysteriously.","You find yourself inside a Cretaceous limestone cave.","You find yourself in an abandoned coal mine.", "You find yourself in a flooded room.","You find yourself in a room filled with huge, transparent, hexagonal dipyramidal crystals.","You find yourself in a passage filled with bones from the ancient past.","You find yourself in a room filled with fresh bones.","You find yourself in a room filled with rotting corpses.","You find yourself in a goblin village.","You find yourself in an abandoned gold mine.","You find yourself. You are in a yoga room.", "You lose yourself in a misty passageway.","You find yourself in a room filled with blinking lights.","You find youself in a lava tube.","You find yourself lost in darkness.", "NO_WAIT")
 
 	--Random happenings:
 		random_var = math.random(5)+n_level
 		if (random_var > 11) then
 			n_emtype = 4 -- very difficult enemy
 		--get_random(...) returns a random argument
-			n_emname = get_random("balrog","daemon","demagogue","ex-girlfriend","jabberwock")
+			n_emname = get_random("balrog","daemon","demagogue","ex-girlfriend","jabberwock","grue")
 			n_emac = 5 + math.random(3)
 			n_emhp = 130 + math.random(20)
 			n_emiq = 70 + math.random(20)
@@ -386,7 +386,7 @@ LuaCode={
 			n_emhp = 1 + math.random(20)
 			n_emiq = 1 + math.random(20)
 		end
-		npc_says_random("A wild \3"..n_emname.."\2 appears!","You notice a \3"..n_emname.."\2 in front of you.","You turn around and see a \3"..n_emname.."\2 right behind you!")
+		npc_says_random("A wild \3"..n_emname.."\2 appears!","You notice a \3"..n_emname.."\2 in front of you.","You turn around and see a \3"..n_emname.."\2 right behind you!","A \3"..n_emname.."\2 jumps out in front of you!","You sneek up upon a \3"..n_emname.."\2.","NO_WAIT")
 
 		npc_says("Your stats are: \3".. n_ac .."\2  attack/armor, \3".. n_tricks .."\2 tricks, and \3"..n_hp.."\2 health.","NO_WAIT")
 		show(50,51,53,54)
@@ -401,15 +401,15 @@ LuaCode={
 Nr=50 Text=_"Attack"
 LuaCode={
 	if (n_emtype == 0) then --inanimate object
-		npc_says_random("You attack the inaimate "..n_emname..".","You go to attack, but then think better.","You charge the "..n_emname.." and strike a mighty blow...","You are puzzeled as to what you plan to attack.","You throw a fireball at the "..n_emname..". It is super effective!")
+		npc_says_random("You attack the inaimate "..n_emname..".","You go to attack, but then think better.","You charge the "..n_emname.." and strike a mighty blow...","You are puzzeled as to what you plan to attack.","You throw a fireball at the "..n_emname..". It is super effective!","You attack the "..n_emname..".", "NO_WAIT")
 		next(61)
 	else
 		damage = math.random((n_ac+1)*10)
 		if (damage > n_emac) then --check if you hit
-			npc_says_random("Your fireball hits the "..n_emname.." causing "..damage.." damage.","A bolt from your crossbow hits the "..n_emname..".","Your credit card causes a massive papercut of "..damage.." damage.","You freeze the middle of the "..n_emname.." causing "..damage.." damage.","Your fist of wrath smites the "..n_emname.." causing internal bleeding and "..damage.." damage.")
+			npc_says_random("Your fireball hits the "..n_emname.." causing "..damage.." damage.","A bolt from your crossbow hits the "..n_emname.." causing "..damage.." damage.","Your credit card causes a massive papercut of "..damage.." damage.","You freeze the middle of the "..n_emname.." causing "..damage.." damage.","Your fist of wrath smites the "..n_emname.." causing internal bleeding and "..damage.." damage.","You throw your bola at the "..n_emname..", causing it to trip and take "..damage.." damage.","NO_WAIT")
 			n_emhp = n_emhp - damage + n_emac
 		else -- no hit
-			npc_says_random("Your arrow misses the "..n_emname..".","Blow after blow is rained down upon the "..n_emname.." but they all miss.","Your sword glances off the magical aura of the "..n_emname..".","Your really awesome attack took to long to power up, and the "..n_emname.." moved.")
+			npc_says_random("Your arrow misses the "..n_emname..".","Blow after blow is rained down upon the "..n_emname.." but they all miss.","Your sword glances off the magical aura of the "..n_emname..".","Your really awesome attack took to long to power up, and the "..n_emname.." moved.","NO_WAIT")
 		end
 		next(60)
 	end
@@ -424,7 +424,7 @@ LuaCode={
 	elseif (random_var > 1) then
 		next(63)	
 	else 
-		npc_says_random("You stand there like a deer in the headlights.","You try to go, but the "..n_emname.." grabs you.",n_emgod.." strikes you with fear, and you cannot move.","The "..n_emname.." tackles you and pins you to the floor.")
+		npc_says_random("You stand there like a deer in the headlights.","You try to go, but the "..n_emname.." grabs you.",n_emgod.." strikes you with fear, and you cannot move.","The "..n_emname.." tackles you and pins you to the floor.","NO_WAIT")
 		next(60)
 	end
 }
@@ -434,26 +434,26 @@ LuaCode={
 	if (n_tricks>0) then
 		n_tricks = n_tricks - 1
 		if (math.random(3)>1) then
-			npc_says_random("You toss a rock. The sound distracts the "..n_emname..".","You toss a smoke-bomb and escape.","You stumble over a rock, creating a chain of reactions, ending in the tunnel collapsing on the "..n_emname..".","You stab yourself with a fake dagger and pretend to be dead.","You walk like a duck, quack like a duck and swim like a duck.  The "..n_emname.." figures you must be a duck.","You pretend to be a mime.")
+			npc_says_random("You toss a rock. The sound distracts the "..n_emname..".","You toss a smoke-bomb and escape.","You stumble over a rock, creating a chain of reactions, ending in the tunnel collapsing on the "..n_emname..".","You stab yourself with a fake dagger and pretend to be dead.","You walk like a duck, quack like a duck and swim like a duck.  The "..n_emname.." figures you must be a duck.","You pretend to be a mime.","You pull a rabbit from your tophat.","NO_WAIT")
 			next(61)
 		else
-			npc_says_random("The "..n_emname.." is not impressed by your tricks.",n_emname.." has seen this one before, and is not impressed.","You try to act like a duck, but "..n_emname.." has an elephant and a lighter, and you don't want to be the punchline.",n_emname.." sees your trick, and shows you an even better one.")
+			npc_says_random("The "..n_emname.." is not impressed by your tricks.",n_emname.." has seen this one before, and is not impressed.","You try to act like a duck, but "..n_emname.." has an elephant and a lighter, and you don't want to be the punchline.",n_emname.." sees your trick, and shows you an even better one.","NO_WAIT")
 			next(60)
 		end
 	elseif (n_sex == "female") then
 		npc_says("Not having any tricks left, you resort to you trying your feminine wiles.","NO_WAIT")
 		if  (n_hp > n_emiq) then 
 			if (math.random(6)>1) then
-				npc_says_random("You succeed getting past the "..n_emname..".","You distract the "..n_emname.." long enough to escape.","Your plight is noticed by a hero, who valiantly rescues you from the dasterdly "..n_emname..".")
+				npc_says_random("You succeed getting past the "..n_emname..".","You distract the "..n_emname.." long enough to escape.","Your plight is noticed by a hero, who valiantly rescues you from the dasterdly "..n_emname..".","NO_WAIT")
 				next(61)
 			else
-				npc_says_random("The "..n_emname.." casts change gender on you.","The "..n_emname.." curses you.","The "..n_emname.." casts a polymorph spell.")
+				npc_says_random("The "..n_emname.." casts change gender on you.","The "..n_emname.." curses you.","The "..n_emname.." casts a polymorph spell.","NO_WAIT")
 				n_sex = "male"
 				npc_says("You are now a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
 				next(60)
 			end
 		else
-			npc_says_random("The "..n_emname.." notes your physique, but has too high of an IQ to be impressed.",n_emname.." might be more malleable if you were in better health.")
+			npc_says_random("The "..n_emname.." notes your physique, but has too high of an IQ to be impressed.",n_emname.." might be more malleable if you were in better health.","NO_WAIT")
 			next(60)
 		end
 	else
@@ -473,11 +473,11 @@ LuaCode={
 		n_ac = n_ac + 2
 		n_tricks = n_tricks + 1
 	elseif (random_var > 2) then -- 54% chance:
-		npc_says_random("Your enemy "..n_emgod.." bestows some burdens upon you.",n_emgod .." overhears your prayers and curses you.")
+		npc_says_random("Your enemy "..n_emgod.." bestows some burdens upon you.",n_emgod .." overhears your prayers and curses you.","While you were praying a leprechaun stole your sword.","While you were praying a hermit crab moved into your helmet. It's his now.","NO_WAIT")
 		n_ac = n_ac - 2
 		if (n_ac < 1) then n_ac =0 end
 	else -- 54% chance:
-		npc_says_random("Nothing happens.",n_god.." can't take your prayers right now, please leave a message...","Twice nothing happens.",n_god.." left her cellphone at home today.","Something, somewhere else happened.")
+		npc_says_random("Nothing happens.",n_god.." can't take your prayers right now, please leave a message...","Twice nothing happens.",n_god.." left her cellphone at home today.","Something, somewhere else happened.","NO_WAIT")
 	end 
 	next(60)
 }
@@ -486,16 +486,22 @@ LuaCode={
 Nr=54 Text=_"Xyzzy"
 LuaCode={
 	if (math.random(10)>1) then --90% chance:
-		npc_says_random(_"Nothing happens.", "Surprisingly, nothing happens.", "You are shocked, SHOCKED, to find nothing happens.","Time was frozen then unfrozen but for you, nothing happens.","Unexpecedly, nothing happens.","You wait for a moment, then, suddenly, nothing happens.","Twice nothing happens.")
+		npc_says_random(_"Nothing happens.", "Surprisingly, nothing happens.", "You are shocked, SHOCKED, to find nothing happens.","Time was frozen then unfrozen but for you, nothing happens.","Unexpecedly, nothing happens.","You wait for a moment, then, suddenly, nothing happens.","Twice nothing happens.","NO_WAIT")
 		if (n_emtype == 0) then
-			npc_says("You take a short nap, and feel quite refreshed.","NO_WAIT")
-			n_hp = n_hp + math.random(51)
+			npc_says_random("You take a short nap.","You meditate.","You check your e-mail.","You sip a cup of late-afternoon tea in quiet retrospection.","You take a power nap.","You take a long nap.","You take a cat nap.","NO_WAIT")
+			n_temphp = n_hp + math.random(51)
+			if (n_temphp < 251) then
+				n_hp = n_temphp
+			else
+				n_hp = 251
+			end
+			npc_says("You feel refreshed.","NO_WAIT")
 			next(61)
 		else
 			next(60)
 		end
 	else --10% chance:
-		npc_says_random("Suddenly you find yourself teleported to the next level.","Everything goes black.", "Everything goes white.","Suddenly, there is nothing.","Surprisingly, something happens.","Everything goes cold and dark.","You feel a sharp pain in your neck, and everything goes blue.")
+		npc_says_random("Suddenly you find yourself teleported to the next level.","Everything goes black.", "Everything goes white.","Suddenly, there is nothing.","Surprisingly, something happens.","Everything goes cold and dark.","You feel a sharp pain in your neck, and everything goes blue.","NO_WAIT")
 		n_level = n_level + 1
 		next(30)
 	end
@@ -514,50 +520,53 @@ LuaCode={
 		next(61) 
 	else
 		if (n_emhp < 1) then 
-			npc_says_random("The "..n_emname.." passed out.","The "..n_emname.." suddenly is gone.","The "..n_emname.." ran away.")
+			npc_says_random("The "..n_emname.." passed out.","The "..n_emname.." suddenly is gone.","The "..n_emname.." ran away.", "You push the "..n_emname.." off a convenient cliff.", "NO_WAIT")
 		-- Rewards:
 			random_var = math.random(1,4)
 			if (random_var == 4) then --Improve AC
-				npc_says_random("You find a sword of greater death.","You find a vorpal dagger.","You find a breast plate of awesome.","You find a spell of doom.","You find a helmet of fire.", "You find a left boot of anit-fungus.","You find a right boot of speed.","You find a shank.")
+				npc_says_random("You find a sword of greater death.","You find a vorpal dagger.","You find a breast plate of awesome.","You find a spell of doom.","You find a helmet of fire.", "You find a left boot of anit-fungus.","You find a right boot of speed.","You find a shank.","You find a kevlar vest.","You find a Hawaiian t-shirt.","You find an credit card.","You find a sharpened pencil.","You find a broken glass bottle.","You find a \"weapon\".","NO_WAIT")
 				n_ac = n_ac + n_emtype
 			elseif (random_var == 3) then --Improve HP
-				npc_says_random("A nurse patches some of your wounds.","You drink a bottle of greater healing.",n_god.." sends some salve to sooth your wounds.","You find an aloe vera plant.","You apply some sunscreen from your backpack.")
+				npc_says_random("A nurse patches some of your wounds.","You drink a bottle of greater healing.",n_god.." sends some salve to sooth your wounds.","You find an aloe vera plant.","You apply some sunscreen from your backpack.","You decide that you are healthier than you thought.", "NO_WAIT")
 				n_hp = n_hp +(n_emtype * 20)
-				npc_says("Your health improves.","NO_WAIT")
+				npc_says_random("Your health improves.","You feel more vigorous.","Your arm spontaneously regenerates.","Your leg grows back.","Your acne clears up.","You stop hemorrhaging blood.","NO_WAIT")
 			elseif (random_var == 2) then --Get a trick!
-				npc_says_random("You find a tophat with a rabbit.","You find a deck of cards.","You find a coin with two heads.","You find a stick with two snakes wrapped around it.","You find a magic wand.","You find a skipping stone.","You find a trick dagger.")
+				npc_says_random("You find a tophat with a rabbit.","You find a deck of cards.","You find a coin with two heads.","You find a stick with two snakes wrapped around it.","You find a magic wand.","You find a skipping stone.","You find a trick dagger.", "NO_WAIT")
 				n_tricks=n_tricks+1
 
 			elseif(random_var == 1) then --Status change
-				random_var = math.random(1,4)
-				if (random_var == 4) then --become good
+				random_var = math.random(1,5)
+				if (random_var == 1) then --become good
 					npc_says("You reform your wicked ways, and join the side of good.","NO_WAIT")
+					npc_says(n_god.." is unhappy about this.","NO_WAIT")
 					n_alignment = "good"
-				elseif (random_var == 3) then --become evil
-					npc_says("The urge to sin fills you, you now are evil!","NO_WAIT") 
+				elseif (random_var == 2) then --become evil
+					npc_says("The urge to sin fills you, you now are evil!","NO_WAIT")
+					npc_says(n_emgod.." is happy about this.","NO_WAIT")
 					n_alignment="evil"
-				elseif (random_var == 2) then --become neutral
+				elseif (random_var == 3) then --become neutral
 					npc_says("You decide good and evil are too two sides of the same coin.","NO_WAIT") 
 					n_alignment = "neutral"
-				elseif (random_var == 1) then --change gender
-					npc_says_random("You put on a tarnished belt, and you feel something strange happen.","You have been cursed.","You have been blessed.","You drink from a sparkling well, and something weird happens.","You try on the shiny necklace you find.")
+				else --change gender
+					npc_says_random("You put on a tarnished belt, and you feel something strange happen.","You have been cursed.","You have been blessed.","You drink from a sparkling well, and something weird happens.","You try on the shiny necklace you find.", "NO_WAIT")
 					if (n_sex == "female") then n_sex="male" else n_sex="female" end
 				end
 				npc_says("You are now a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
 			end
+			n_emtype = 0 --no more monsters
 		else
 			damage = math.random((n_emac+1)*10)
 			if (damage > n_ac) then
-				npc_says_random("The devious "..n_emname.." stabs you, causing ".. damage-n_ac.." damage.","You suffer "..damage-n_ac.." damage as the "..n_emname.." tosses you up into the air like a ragdoll.","The "..n_emname.." breathes fire at you, burning your map and causing "..damage-n_ac.." damage.","The "..n_emname.." throws an exploding bananna at you, but you duck, so it only causes "..damage-n_ac.." damage.")
+				npc_says_random("The devious "..n_emname.." stabs you, causing ".. damage-n_ac.." damage.","You suffer "..damage-n_ac.." damage as the "..n_emname.." tosses you up into the air like a ragdoll.","The "..n_emname.." breathes fire at you, burning your map and causing "..damage-n_ac.." damage.","The "..n_emname.." throws an exploding bananna at you, but you duck, so it only causes "..damage-n_ac.." damage.","The "..n_emname.." hits you with its best shot, causing "..damage-n_ac.."damage.", "The "..n_emname.." hits you against the wall, causing "..damage-n_ac.." of hurt.", "The "..n_emname.." snipes you with an arrow causing "..damage-n_ac.." damage.","The "..n_emname.." bites you causing "..damage-n_ac.." damage.", "NO_WAIT")
 				n_hp = n_hp - damage + n_ac
 			else
-				npc_says_random("You doge a blow from the "..n_emname,n_emname.." trys to hit you, but misses.",n_emname.." blow hits your cap of cool, causing no damage.",n_emname.." pokes you really hard. You are annoyed.",n_emname.." takes a swing at you, but can't reach you from there.")
+				npc_says_random("You doge a blow from the "..n_emname,n_emname.." trys to hit you, but misses.",n_emname.." blow hits your cap of cool, causing no damage.",n_emname.." pokes you really hard. You are annoyed.",n_emname.." takes a swing at you, but can't reach you from there.", "NO_WAIT")
 			end
 		end
 
 	-- Did you survive?
 		if (n_hp < 1) then  --No :-(
-			npc_says_random("You died.","A Valkyrie carries you off to Valhalla.","Hermes, with Death and Sleep, asks if you've seen his Caduceus anywhere, and then brings you to the river Leith.","Your soul finds itself traveling along the path of the moon, far away from your broken body.")
+			npc_says_random("You died.","A Valkyrie carries you off to Valhalla.","Hermes, with Death and Sleep, asks if you've seen his Caduceus anywhere, and then brings you to the river Leith.","Your soul finds itself traveling along the path of the moon, far away from your broken body.","You are fully one with everything. Your battered body no longer concerns you.","NO_WAIT")
 			npc_says("Game over.","NO_WAIT")
 			next(70)
 		else --Yes :-)
@@ -587,7 +596,7 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=62 Text=_"Go Up"
 LuaCode={
-	npc_says_random("You climb up the ladder with care.","You shimmy up the crevasse.","You ascend the Gothic staircase.","You untie the balloon.","You wave your arms vigorously and slowly levitate up.","You grab a nice rope someone left, and climb up it.","Using magic, you cut foot and handholds into the rock, and use them.","Reaching a state of total ONE-ness with the world, you break your earthly bonds, and rise upwards.")
+	npc_says_random("You climb up the ladder with care.","You shimmy up the crevasse.","You ascend the Gothic staircase.","You untie the balloon.","You wave your arms vigorously and slowly levitate up.","You grab a nice rope someone left, and climb up it.","Using magic, you cut foot and handholds into the rock, and use them.","Reaching a state of total ONE-ness with the world, you break your earthly bonds, and rise upwards.","You climb the cliff-face.","You jump up, and pull yourself up to the next level.","NO_WAIT")
 	n_level=n_level-1
 	next(30)
 }
@@ -595,7 +604,7 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=63 Text=_"Go Down"
 LuaCode={
-	npc_says_random("You rappel down the pit to the level below.","You lower yourself using footholds cut long ago into the living earth.","You take the staircase down to the lower level.","By playing with the levers before you, you teleport into the depths below.","You take out a shovel and start digging.  Eventually you hit rock bottom.")
+	npc_says_random("You rappel down the pit to the level below.","You lower yourself using footholds cut long ago into the living earth.","You take the staircase down to the lower level.","By playing with the levers before you, you teleport into the depths below.","You take out a shovel and start digging.  Eventually you hit rock bottom.","You carefully climb down the ladder.","You jump into the darkness and land in the depths.","NO_WAIT")
 	n_level=n_level+1
 	next(30)
 }
