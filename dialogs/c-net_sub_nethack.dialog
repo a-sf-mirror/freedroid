@@ -29,10 +29,11 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ show(0) }
+EveryTime LuaCode={ next(0) }
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"nethack" -- start a new nethack game
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(0)
 	-- Start at level 1, amulet at level 7, win with amulet at level 1
@@ -274,9 +275,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	-- Goddess/Gods don't give you a choice
 	random_var = math.random(3)
-	if     (random_var == 1) then n_race = "good"
-	elseif (random_var == 2) then n_race = "chaotic"
-	elseif (random_var == 3) then n_race = "evil"
+	if     (random_var == 1) then n_alignment = "good"
+	elseif (random_var == 2) then n_alignment = "chaotic"
+	elseif (random_var == 3) then n_alignment = "evil"
 	end
 
 	random_var = math.random(3)
@@ -442,8 +443,14 @@ LuaCode={
 	elseif (n_sex == "female") then
 		npc_says("Not having any tricks left, you resort to you trying your feminine wiles.","NO_WAIT")
 		if  (n_hp > n_emiq) then 
-			npc_says_random("You succeed getting past the "..n_emname..".","You distract the "..n_emname.." long enough to escape.","Your plight is noticed by a hero, who valiantly rescues you from the dasterdly "..n_emname..".")
-			next(61)
+			if (math.random(6)>1) then
+				npc_says_random("You succeed getting past the "..n_emname..".","You distract the "..n_emname.." long enough to escape.","Your plight is noticed by a hero, who valiantly rescues you from the dasterdly "..n_emname..".")
+				next(61)
+			else
+				npc_says_random("The "..n_emname.." casts change gender on you.","The "..n_emname.." curses you.","The "..n_emname.." casts a polymorph spell.")
+				n_sex = "male"
+				npc_says("You are now a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
+			end
 		else
 			npc_says_random("The "..n_emname.." notes your physique, but has too high of an IQ to be impressed.",n_emname.." might be more malleable if you were in better health.")
 			next(60)
