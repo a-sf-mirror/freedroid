@@ -15420,6 +15420,7 @@ plabelinfolvl
 x=62 y=21 name="Lev12-614-complex-guard"
 x=36 y=36 name="NewTuxStartGameSquare"
 x=36 y=34 name="FrancisStartGameSquare"
+x=33 y=51 name="nethacktestbot"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -15473,6 +15474,8 @@ Nr.= 35 x=  83 y=  22 rnd=0	 c:   31  30  36  37
 Nr.= 36 x=  83 y=  26 rnd=0	 c:   30  35
 Nr.= 37 x=  81 y=  20 rnd=1	 c:   31  35
 Nr.= 38 x=  63 y=  22 rnd=1	 c:   21
+Nr.= 39 x=  33 y=  52 rnd=1	 c:   40
+Nr.= 40 x=  33 y=  49 rnd=1	 c:   39
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 13

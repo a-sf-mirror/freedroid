@@ -1,0 +1,229 @@
+----------------------------------------------------------------------
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+BEGIN OF AUTORS NOTES
+
+END OF AUTORS NOTES 
+
+
+Beginning of new chat dialog for character="XXXXX"
+EveryTime LuaCode={
+	if (has_cookie("Terminals_disabled")) then
+		npc_says(_"  . ")
+		end_dialog()
+	else
+		cli_says(_"Login : ", "NO_WAIT")
+		if has_cookie("knows_c-net_users") then show(0,1,2,3) else show(0) end
+	end
+}
+----------------------------------------------------------------------
+
+Nr=0 Text=_"tux"
+LuaCode={
+	if (not has_cookie("terminal_logged_in")) then
+		add_cookie("terminal_logged_in") 
+		npc_says(_"Welcome to the Community Network.", "NO_WAIT")
+		npc_says(_"Please set your login password for user \"tux\"", "NO_WAIT")
+		npc_says(_"Use at least one lower case letter, one upper case letter, one number, and one symbol.")
+		cli_says(_"Password : ", "NO_WAIT")
+		tux_says(_"******")
+	else
+		cli_says(_"Password : ", "NO_WAIT")
+		tux_says(_"******", "NO_WAIT")
+	end
+	username = "tux"
+        npc_says(_"Last login from dev/tty3 on unknown", "NO_WAIT")
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+	show(20,30,40,99) hide(0,1,2,3)
+}
+----------------------------------------------------------------------
+
+Nr=1 Text=_"root"
+LuaCode={
+	cli_says(_"Password : ", "NO_WAIT")
+	tux_says(_"******")
+	if (not has_cookie("know_root_password")) then
+		 npc_says(_"Login incorrect")
+		 end_dialog()
+	else
+		username = "root"
+        	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+		cli_says(username .. "@c-net:~$", "NO_WAIT")
+		show(20,30,40,99) hide(0,1,2,3)
+	end
+
+}
+----------------------------------------------------------------------
+
+Nr=2 Text=_"lily"
+LuaCode={
+	cli_says(_"Password : ", "NO_WAIT")
+	if (not has_cookie("know_lily_password")) then
+		tux_says(_"******")
+		npc_says(_"Login incorrect")
+		end_dialog()
+	else
+		tux_says(_"****", "NO_WAIT")
+		username = "lily"
+        	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+		cli_says(username .. "@c-net:~$", "NO_WAIT")
+		show(20,30,40,99) hide(0,1,2,3)
+	end
+}
+----------------------------------------------------------------------
+
+Nr=3 Text=_"cpain"
+LuaCode={
+	cli_says(_"Password: ", "NO_WAIT")
+	if (not has_cookie("know_sorenson_password")) then
+		tux_says(_"******")
+		npc_says(_"Login incorrect")
+		end_dialog()
+	else
+		tux_says(_"************************************", "NO_WAIT")
+		username = "cpain"
+		npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+		cli_says(username .. "@c-net:~$", "NO_WAIT")
+		show(20,30,40,99) hide(0,1,2,3)
+	end
+}
+----------------------------------------------------------------------
+
+Nr=20 Text=_"Show Commands" -- ../ ls finger readdrive users
+LuaCode={
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+--	show(21,22,23,24,25) hide(20,30,40,99)
+	show(21,23,24,25) hide(20,30,40,99)
+}
+----------------------------------------------------------------------
+
+Nr=21 Text=_"../"
+LuaCode={
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+	show(20,30,40,99) hide(21,22,23,24,25)
+}
+----------------------------------------------------------------------
+
+Nr=22 Text=_"ls"
+LuaCode={
+-- all things related to ls should be subdialog as well
+	run_subdialog("c-net_sub_ls.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=23 Text=_"finger"
+LuaCode={
+	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
+	npc_says(_"Login         Name          Tty", "NO_WAIT")
+	npc_says(_"bossman   Spencer       tty7", "NO_WAIT")
+	npc_says(_"cpain         Sorenson      tty5", "NO_WAIT")
+	npc_says(_"lily             Lily Stone    tty2", "NO_WAIT")
+	npc_says(_"tux        " .. get_player_name() .. "     tty3", "NO_WAIT")
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=24 Text=_"readdrive"
+LuaCode={
+	npc_says(_"no disk found", "NO_WAIT")
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=25 Text=_"users"
+LuaCode={
+	npc_says(_"bossman  cpain  lily  tux", "NO_WAIT")
+	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=30 Text=_"Show Info" -- ../ date whoami ./statistics.pl
+LuaCode={
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+	show(31,32,33,34) hide(20,30,40,99)
+}
+----------------------------------------------------------------------
+
+Nr=31 Text=_"../"
+LuaCode={
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+	show(20,30,40,99) hide(31,32,33,34)
+}
+----------------------------------------------------------------------
+
+Nr=32 Text=_"date"
+LuaCode={
+--	npc_says(get_date() ,"NO_WAIT")
+	npc_says("Date unknown","NO_WAIT")
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=33 Text=_"whoami"
+LuaCode={
+	npc_says(username)
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=34 Text=_"./statistics.pl"
+LuaCode={
+	npc_says(_"Corrupted file.")
+--	npc_says(_"  Bot   #Dead# Tux #Hacked/Failed#Ratio", "NO_WAIT")
+--	npc_says(print_stats(),"NO_WAIT")
+	cli_says(_"tux@c-net:~$", "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=40 Text=_"Show Games"
+LuaCode={
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+	show(41,42) hide(20,30,40,99)
+}
+----------------------------------------------------------------------
+
+Nr=41 Text=_"../"
+LuaCode={
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+	show(20,30,40,99) hide(41,42)
+}
+----------------------------------------------------------------------
+
+Nr=42 Text=_"nethack"
+LuaCode={
+	run_subdialog("c-net_sub_nethack.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=99  Text=_"logout"
+LuaCode={
+	npc_says(_"Connection to c-net closed.")
+--	set_internet_login_time()
+	hide(20,30,40,99)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"

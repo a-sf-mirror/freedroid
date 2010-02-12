@@ -85,6 +85,7 @@ void init_npcs()
 		"Bruce",
 		"Butch",
 		"Chandra",
+		"c-net",
 		"Darwin",
 		"Dixon",
 		"DocMoore",
