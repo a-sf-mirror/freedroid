@@ -40,7 +40,7 @@
 		yendor = "no"
 		n_level = 0  --level you are on
 		n_yendorlevel = 7+math.random(6) --level where you get the Amulet of Yendor!
-		if (has_cookie("won_nethack") then n_yendorlevel = n_yendorlevel*2 end
+		if (has_cookie("won_nethack")) then n_yendorlevel = n_yendorlevel*2 end
 		n_hp = 0     --your hitpoints
 		n_ac = 0     --your attack/armor
 		n_tricks  = 0 --your tricks
