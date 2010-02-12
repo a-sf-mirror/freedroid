@@ -3076,10 +3076,12 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
 			if (MatchItemWithName(Me.weapon_item.type, "Mace"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_mace", x, y, rotation_index);
-			else if (MatchItemWithName(Me.weapon_item.type, "Sledgehammer"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sledgehammer", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Big wrench"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_wrench", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Iron pipe"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_iron_pipe", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Sledgehammer"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sledgehammer", x, y, rotation_index);
 			else
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sword", x, y, rotation_index);
 		} else {
