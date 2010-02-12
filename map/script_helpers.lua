@@ -121,3 +121,6 @@ function npc_says_random(...)
 	npc_says(arg[math.random(#arg)])
 end
 
+function get_random(...)
+	return arg[math.random(#arg)]
+end
