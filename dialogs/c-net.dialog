@@ -39,7 +39,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"tux"
+Nr=0 Text=_" tux "
 LuaCode={
 	if (not has_cookie("terminal_logged_in")) then
 		add_cookie("terminal_logged_in") 
@@ -59,7 +59,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"root"
+Nr=1 Text=_" root "
 LuaCode={
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says(_"******")
@@ -76,7 +76,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2 Text=_"lily"
+Nr=2 Text=_" lily "
 LuaCode={
 	cli_says(_"Password : ", "NO_WAIT")
 	if (not has_cookie("know_lily_password")) then
@@ -93,7 +93,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3 Text=_"cpain"
+Nr=3 Text=_" cpain "
 LuaCode={
 	cli_says(_"Password: ", "NO_WAIT")
 	if (not has_cookie("know_sorenson_password")) then
@@ -110,7 +110,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20 Text=_"Show Commands" -- ../ ls finger readdrive users
+Nr=20 Text=_"show commands" -- ../ ls finger readdrive users
 LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
 	show(21,22,23,24,25) hide(20,30,40,99)
@@ -133,11 +133,11 @@ LuaCode={
 Nr=23 Text=_"finger"
 LuaCode={
 	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
-	npc_says(_"Login         Name          Tty", "NO_WAIT")
-	npc_says(_"bossman   Spencer       tty7", "NO_WAIT")
-	npc_says(_"cpain          Sorenson      tty5", "NO_WAIT")
-	npc_says(_"lily              Lily Stone    tty2", "NO_WAIT")
-	npc_says(_"tux              " .. get_player_name() .. "     tty3", "NO_WAIT")
+	npc_says(_"Tty     Login          Name", "NO_WAIT")
+	npc_says(_"tty7   bossman    Spencer", "NO_WAIT")
+	npc_says(_"tty5   cpain          Sorenson", "NO_WAIT")
+	npc_says(_"tty2   lily              Lily Stone", "NO_WAIT")
+	npc_says(_"tty3   tux              " .. get_player_name() .. "", "NO_WAIT")
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
 }
 ----------------------------------------------------------------------
@@ -157,7 +157,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30 Text=_"Show Info" -- ../ date whoami ./statistics.pl
+Nr=30 Text=_"show info" -- ../ date whoami ./statistics.pl
 LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
 	show(31,32,33,34) hide(20,30,40,99)
@@ -195,7 +195,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40 Text=_"Show Games"
+Nr=40 Text=_"show games"
 LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
 	show(41,42) hide(20,30,40,99)
