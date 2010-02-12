@@ -450,6 +450,7 @@ LuaCode={
 				npc_says_random("The "..n_emname.." casts change gender on you.","The "..n_emname.." curses you.","The "..n_emname.." casts a polymorph spell.")
 				n_sex = "male"
 				npc_says("You are now a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
+				next(60)
 			end
 		else
 			npc_says_random("The "..n_emname.." notes your physique, but has too high of an IQ to be impressed.",n_emname.." might be more malleable if you were in better health.")
