@@ -25,6 +25,31 @@
 #include <png.h>
 #include <SDL/SDL.h>
 
+enum pixelFormat {
+	RGBA_PIXEL_FORMAT = 0,
+	BGRA_PIXEL_FORMAT = 1
+};
+
+static enum pixelFormat surface_pixel_format(SDL_Surface *surface)
+{
+	// This defines BGRA pixel format
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+	int rmask = 0x00FF0000;
+	int gmask = 0x0000FF00;
+	int bmask = 0x000000FF;
+	int amask = 0xFF000000;
+#else
+	int rmask = 0x0000FF00;
+	int gmask = 0x00FF0000;
+	int bmask = 0xFF000000;
+	int amask = 0x000000FF;
+#endif
+
+	if ((surface->format->Rmask == rmask) && (surface->format->Gmask == gmask) && (surface->format->Bmask == bmask))
+		return BGRA_PIXEL_FORMAT;
+	else
+		return RGBA_PIXEL_FORMAT;
+}
 
 static int png_colortype_from_surface(SDL_Surface *surface)
 {
@@ -97,7 +122,9 @@ int png_save_surface(const char *filename, SDL_Surface *surf)
 	png_write_info(png_ptr, info_ptr);
 	png_set_packing(png_ptr);
 
-	png_set_bgr(png_ptr);
+    /* If the surface image is in BGR mode, then ask libpng to swap red and blue channels */
+	if (surface_pixel_format(surf) == BGRA_PIXEL_FORMAT)
+		png_set_bgr(png_ptr);
 
 	row_pointers = (png_bytep*) malloc(sizeof(png_bytep)*surf->h);
 	for (i = 0; i < surf->h; i++)
