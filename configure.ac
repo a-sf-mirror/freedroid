@@ -26,7 +26,7 @@ if test x$have_x = xyes; then
 	CFLAGS="$CFLAGS $X_CFLAGS"
 fi
 
-CFLAGS="$CFLAGS -Wall"
+CFLAGS="$CFLAGS -Wall -Wno-unused-result"
 
 case "$target" in
 	*-*-cygwin* | *-*-mingw32*)
