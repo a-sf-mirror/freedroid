@@ -700,8 +700,7 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 		if (dynamic_WAV_cache[next_free_position_in_cache] == NULL) {
 			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
 			ErrorMessage(__FUNCTION__, "\
-			                           The SDL MIXER WAS UNABLE TO LOAD A CERTAIN SOUND FILE INTO MEMORY.\n\
-			                           This should not happen for samples that are supposed to be cached...", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			                           Could not load sound file \"%s\": %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, Mix_GetError());
 			//--------------------
 			// If the sample couldn't be loaded, we just quit, not marking anything
 			// as loaded and inside the cache and also not trying to play anything...
