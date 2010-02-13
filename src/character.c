@@ -56,7 +56,7 @@
 // x-offset for numbers in the "health / temperature / stamina" box
 #define HEALTH_NR_X 125
 // x-offset for numbers in the "armor / attack / damage" box
-#define ARMOR_NR_X 255
+#define ARMOR_NR_X 260
 // x-offset for values in the skills box
 #define SKILLS_VALUE_X 198
 
@@ -67,9 +67,10 @@
 #define HEALTH_STAT_Y 289
 #define TEMP_STAT_Y 308
 #define STAMINA_STAT_Y 327
-#define DR_Y 140
-#define TOHIT_Y 165
-#define DAMAGE_Y 190
+#define TOHIT_Y 138
+#define DAMAGE_Y 158
+#define DR_Y 178
+#define DR_Y2 193
 
 /**
  * This function displays all the buttons that open up the character
@@ -652,10 +653,16 @@ void ShowCharacterScreen()
 
 	SDL_Rect tmprect = CharacterRect;
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Training points"), LEFT_TXT_X + CharacterRect.x, POINTS_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
+	DisplayText(_("Development points"), LEFT_TXT_X + CharacterRect.x, D_POINTS_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
 	sprintf(CharText, "%d", Me.points_to_distribute);
-	DisplayText(CharText, 150 + CharacterRect.x, POINTS_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(CharText, 155 + CharacterRect.x, D_POINTS_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Training points"), LEFT_TXT_X + CharacterRect.x, T_POINTS_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.points_to_distribute);
+	DisplayText(CharText, 155 + CharacterRect.x, T_POINTS_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Health"), LEFT_TXT_X + CharacterRect.x, HEALTH_STAT_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
@@ -676,12 +683,6 @@ void ShowCharacterScreen()
 	DisplayText(CharText, HEALTH_NR_X + CharacterRect.x, STAMINA_STAT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Armor"), RIGHT_TXT_X + CharacterRect.x, DR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
-	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d%%", (int)Me.DR);
-	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
-
-	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Attack"), RIGHT_TXT_X + CharacterRect.x, TOHIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
 	sprintf(CharText, "%d%%", (int)Me.to_hit);
@@ -692,6 +693,13 @@ void ShowCharacterScreen()
 	SetCurrentFont(Messagevar_BFont);
 	sprintf(CharText, "%d-%d", (int)Me.base_damage, (int)Me.base_damage + (int)Me.damage_modifier);
 	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Armor protection"), RIGHT_TXT_X + CharacterRect.x, DR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(_("Average"), RIGHT_TXT_X + CharacterRect.x, DR_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d%%", (int)Me.DR);
+	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DR_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	//--------------------
 	// Now we print out the current skill levels in hacking skill, 
