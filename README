@@ -118,7 +118,7 @@
         #define SDL_BYTEORDER=1234
       says
         #define SDL_BYTEORDER=4321
-      After editing and save the file you're done.
+      After editing and saving the file recompile freedroidRPG and it should work correctly.
       Using SDL compiled from source instead of from MacPorts will work as well.
 
  Linux
