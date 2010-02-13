@@ -699,8 +699,7 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 		dynamic_WAV_cache[next_free_position_in_cache] = Mix_LoadWAV(fpath);
 		if (dynamic_WAV_cache[next_free_position_in_cache] == NULL) {
 			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
-			ErrorMessage(__FUNCTION__, "\
-			                           Could not load sound file \"%s\": %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, Mix_GetError());
+			ErrorMessage(__FUNCTION__, "Could not load sound file \"%s\": %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fpath, Mix_GetError());
 			//--------------------
 			// If the sample couldn't be loaded, we just quit, not marking anything
 			// as loaded and inside the cache and also not trying to play anything...
