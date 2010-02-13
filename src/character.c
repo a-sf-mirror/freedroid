@@ -60,17 +60,22 @@
 // x-offset for values in the skills box
 #define SKILLS_VALUE_X 198
 
-// y-offsets
-#define MELEE_SKILL_Y 230
-#define RANGED_SKILL_Y 268
-#define SPELLCASTING_SKILL_Y 306
+// y-offsets - left
+// STR_X_Y - VIT_Y in defs.h
+#define D_POINTS_Y 238
+#define T_POINTS_Y 256
 #define HEALTH_STAT_Y 289
 #define TEMP_STAT_Y 308
 #define STAMINA_STAT_Y 327
+
+// y-offsets - right
 #define TOHIT_Y 138
 #define DAMAGE_Y 158
 #define DR_Y 178
 #define DR_Y2 193
+#define MELEE_SKILL_Y 230
+#define RANGED_SKILL_Y 268
+#define SPELLCASTING_SKILL_Y 306
 
 /**
  * This function displays all the buttons that open up the character

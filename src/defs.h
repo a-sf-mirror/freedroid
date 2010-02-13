@@ -561,8 +561,6 @@ enum {
 #define DEX_Y 165
 #define MAG_Y 190
 #define VIT_Y 215
-#define D_POINTS_Y 238
-#define T_POINTS_Y 256
 
 #define BUTTON_WIDTH 35
 #define BUTTON_HEIGHT 19
