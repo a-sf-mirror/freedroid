@@ -3080,6 +3080,8 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_wrench", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Iron pipe"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_iron_pipe", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Baseball bat"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_baseball_bat", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Sledgehammer"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sledgehammer", x, y, rotation_index);
 			else
