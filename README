@@ -111,6 +111,15 @@
       with the error message "In Function: PutCharFont. Surface for character 46 was NULL pointer!", 
       check your display configuration and set the color profile to sRGB.
       (issues #2913485 and #2913484)
+    * SDL installed via MacPorts: SDL installed via MacPorts will give freedroidRPG wrong information 
+      about the byteorder if you have a big-endian (PowerPC) CPU, so the colors may be wrong and you 
+      probably couldn't start a new game because fdRPG crashes.
+      To fix it, with root privileges edit the /opt/include/SDL/SDL_config.h file so the line
+        #define SDL_BYTEORDER=1234
+      says
+        #define SDL_BYTEORDER=4321
+      After editing and save the file you're done.
+      Using SDL compiled from source instead of from MacPorts will work as well.
 
  Linux
    * Pulseaudio: Using SDL-pulseaudio you are currently likely to not get sound. This has nothing to do 
