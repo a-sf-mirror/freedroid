@@ -15400,8 +15400,9 @@ it: n="Big wrench"  X=40.879433  Y=31.337690  Dmg=1  DmgMod=3  MDur=43  CDur=13.
 it: n="Fork"  X=40.879433  Y=31.337690  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Plate"  X=40.879433  Y=31.337690  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Mug"  X=40.879433  Y=31.337690  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Normal Jacket"  X=40.880001  Y=31.340000  DR=3  Dmg=0  DmgMod=0  MDur=20  CDur=10.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Worker Helmet"  X=40.880001  Y=31.340000  DR=4  Dmg=0  DmgMod=0  MDur=10  CDur=4.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Worker Helmet"  X=40.880001  Y=31.340000  DR=21  Dmg=0  DmgMod=0  MDur=21  CDur=5.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Normal Jacket"  X=40.880001  Y=31.340000  DR=15  Dmg=0  DmgMod=0  MDur=18  CDur=12.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Shoes"  X=40.880001  Y=31.340000  DR=14  Dmg=0  DmgMod=0  MDur=9  CDur=4.000000  AClip=0  Multi=1  IsIdent=1 
 /pchestinfolvl
 wp
 Nr.=  0 x=  45 y=  36 rnd=1	 c:   11  14   3   8
@@ -33936,9 +33937,9 @@ it: n="Laser pistol"  X=23.500000  Y=51.000000  Dmg=4  DmgMod=6  MDur=108  CDur=
 it: n="Laser power pack"  X=23.500000  Y=52.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=80  IsIdent=1 
 it: n="Plasma pistol"  X=23.500000  Y=49.000000  Dmg=12  DmgMod=6  MDur=30  CDur=13.000000  AClip=0  Multi=1  IsIdent=1 
 it: n="Plasma energy container"  X=23.500000  Y=48.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=40  IsIdent=1 
-it: n="Worker Helmet"  X=15.500000  Y=41.000000  DR=3  Dmg=0  DmgMod=0  MDur=15  CDur=9.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Normal Jacket"  X=15.500000  Y=41.000000  DR=5  Dmg=0  DmgMod=0  MDur=18  CDur=10.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Shoes"  X=15.500000  Y=41.000000  DR=2  Dmg=0  DmgMod=0  MDur=10  CDur=6.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Worker Helmet"  X=15.500000  Y=41.000000  DR=32  Dmg=0  DmgMod=0  MDur=25  CDur=6.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Normal Jacket"  X=15.500000  Y=41.000000  DR=11  Dmg=0  DmgMod=0  MDur=11  CDur=5.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Shoes"  X=15.500000  Y=41.000000  DR=16  Dmg=0  DmgMod=0  MDur=9  CDur=4.000000  AClip=0  Multi=1  IsIdent=1 
 /pchestinfolvl
 wp
 Nr.=  0 x=  38 y=  42 rnd=0	 c:    5
