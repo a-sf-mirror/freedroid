@@ -188,7 +188,11 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// If this item gives some armour bonus, we say so
 	//
 	if (CurItem->dr_bonus) {
-		sprintf(linebuf, _("Armor: %d%%"), CurItem->dr_bonus);
+		if (ItemMap[CurItem->type].item_can_be_installed_in_shield_slot) {
+			sprintf(linebuf, _("Block: %d%%"), CurItem->dr_bonus);
+		} else {
+			sprintf(linebuf, _("Armor: %d%%"), CurItem->dr_bonus);
+		}
 		strcat(ItemDescText, linebuf);
 		if (!ForShop)
 			strcat(ItemDescText, " \n ");

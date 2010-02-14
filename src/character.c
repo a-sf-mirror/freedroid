@@ -423,17 +423,23 @@ void update_tux_armour_damage_reduction()
 	// items to the total defence value
 	//
 	if (Me.armour_item.type != (-1)) {
-		Me.DR += Me.armour_item.dr_bonus;
+		if (Me.shield_item.type != (-1)) {
+			Me.DR += (60 - Me.shield_item.dr_bonus) * Me.armour_item.dr_bonus;
+		} else {
+			Me.DR += 60 * Me.armour_item.dr_bonus;
+		}
 	}
 	if (Me.shield_item.type != (-1)) {
-		Me.DR += Me.shield_item.dr_bonus;
+		Me.DR += 100 * Me.shield_item.dr_bonus;
 	}
 	if (Me.special_item.type != (-1)) {
-		Me.DR += Me.special_item.dr_bonus;
+		Me.DR += 20 * Me.special_item.dr_bonus;
 	}
 	if (Me.drive_item.type != (-1)) {
-		Me.DR += Me.drive_item.dr_bonus;
+		Me.DR += 20 * Me.drive_item.dr_bonus;
 	}
+
+	Me.DR = Me.DR/100 ;
 
 };				// void update_tux_armour_damage_reduction ( )
 
@@ -641,20 +647,20 @@ void ShowCharacterScreen()
 	DisplayText(CharText, STR_X + CharacterRect.x, DEX_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("CPU"), LEFT_TXT_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
-	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d", Me.Magic);
-	if (Me.Magic != Me.base_magic)
-		sprintf(CharText + strlen(CharText), " (%+d)", Me.Magic - Me.base_magic);
-	DisplayText(CharText, STR_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
-
-	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Life"), LEFT_TXT_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(_("Physique"), LEFT_TXT_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
 	sprintf(CharText, "%d", Me.Vitality);
 	if (Me.Vitality != Me.base_vitality)
 		sprintf(CharText + strlen(CharText), " (%+d)", Me.Vitality - Me.base_vitality);
 	DisplayText(CharText, STR_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Cooling"), LEFT_TXT_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+	sprintf(CharText, "%d", Me.Magic);
+	if (Me.Magic != Me.base_magic)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.Magic - Me.base_magic);
+	DisplayText(CharText, STR_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SDL_Rect tmprect = CharacterRect;
 	SetCurrentFont(Messagestat_BFont);
