@@ -312,7 +312,7 @@ LuaCode={
 Nr=30 Text=_"At a new level" -- Description + Random Encounter
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	if (n_level < 0) then n_level = 0
+	if (n_level < 0) then n_level = 0 end
 	hide(62,63,30)
 	if (n_level == n_yendorlevel) then -- At Yendor level
 		if (yendor == "no") then -- get yendor
@@ -328,6 +328,10 @@ LuaCode={
 		end
 	elseif (n_level == 0) then -- At surface
 		if (yendor == "no") then
+			if(n_hp<70) then
+				n_hp = 70
+				npc_says_random("You drink from the spring at the entrance to the cave.","You make a quick trip to the hospital.","NO_WAIT")
+			end
 			npc_says_random(n_god.." looks at you with impatience and points you back to the entrance of the dungeon.","You find your goddess, "..n_god..", at lunch. She points back the way you came.","You come up and nearly catch "..n_god.." bathing. You quickly head back the way you came.", "NO_WAIT")
 			hide(62)
 			next(63)
