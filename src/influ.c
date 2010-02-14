@@ -630,9 +630,6 @@ static int move_tux_thowards_raw_position(float x, float y)
 void move_tux_thowards_intermediate_point()
 {
 	int i;
-	Level PlayerLevel;
-
-	PlayerLevel = curShip.AllLevels[Me.pos.z];
 
 	//--------------------
 	// If there is no intermediate course, we don't need to do anything

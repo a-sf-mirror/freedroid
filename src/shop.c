@@ -936,10 +936,9 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
  */
 int ClickedMenuItemPosition(void)
 {
-	int CursorX, CursorY;
+	int CursorY;
 	int i;
 
-	CursorX = GetMousePos_x();	// this is already the position corrected for 16 pixels!!
 	CursorY = GetMousePos_y();	// this is already the position corrected for 16 pixels!!
 
 #define ITEM_MENU_DISTANCE 80

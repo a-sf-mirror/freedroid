@@ -91,7 +91,6 @@ static int MouseCursorIsOverMenuItem(int first_menu_item_pos_y, int h)
 static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu_item_pos_y, int background_code, void *MenuFont)
 {
 	char open_gl_string[2000];
-	int h = FontHeight(GetCurrentFont());
 
 	//--------------------
 	// We need to prepare the background for the menu, so that
@@ -130,7 +129,6 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 		SetCurrentFont(Menu_BFont);
 	else
 		SetCurrentFont((BFont_Info *) MenuFont);
-	h = FontHeight(GetCurrentFont());
 
 };				// void print_menu_text ( ... )
 

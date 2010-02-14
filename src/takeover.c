@@ -1732,13 +1732,11 @@ void to_show_banner(const char *left, const char *right)
 	left_len = strlen(left);
 	if (left_len > LEFT_TEXT_LEN) {
 		printf("\nWarning: String %s too long for Left Infoline!!", left);
-		left_len = LEFT_TEXT_LEN;	// too long, so we cut it! 
 		Terminate(ERR);
 	}
 	right_len = strlen(right);
 	if (right_len > RIGHT_TEXT_LEN) {
 		printf("\nWarning: String %s too long for Right Infoline!!", right);
-		right_len = RIGHT_TEXT_LEN;	// too long, so we cut it! 
 		Terminate(ERR);
 	}
 	// Now prepare the left/right text-boxes 
