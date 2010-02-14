@@ -439,6 +439,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 	free(MenuTextWidths);
 	while (MouseLeftPressed())	//eat the click that may have happened
 		SDL_Delay(1);
+	input_handle();
 	game_status = old_game_status;
 	return ret;
 };				// int DoMenuSelection( ... )
