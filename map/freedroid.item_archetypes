@@ -2655,35 +2655,58 @@ Item as gun: weapon requires both hands="yes"
 
 /**********************************************************************************************************
  *       Armor                                                                                            *
- *         - Body                        DR %    Dur    lvl   Str/Dex  Cost                               *
-              Normal Jacket              3-6    10-20    0               50 - in shop
-              Reinforced Jacket          8-15   20-30    0     Str 15   350 - in shop
-              Protective Jacket         15-25   30-40    0     Str 25   600 - in shop
-              Red Guard's Light Robe      28      35    -1     Str 20   800 - in RG shop
-              Red Guard's Heavy Robe      35      40    -1     Str 30  1000 - in RG shop
+ *         - Body                     DR/Blck %  Dur    lvl   Str/Dex  Cost                               *
+              Normal Jacket              5-15   10-20    0               50 - in shop
+              Reinforced Jacket         15-30   20-30    0     Str 15   350 - in shop
+              Protective Jacket         30-50   30-40    0     Str 25   600 - in shop
+              Red Guard's Light Robe    60-70     35    -1     Str 20   800 - in RG shop
+              Red Guard's Heavy Robe    70-80     40    -1     Str 30  1000 - in RG shop
  *         - Handheld                                                                                     *
-              Improvised Buckler         3-10    5-15   1-7              20 - Scavanged parts from bots
-              Bot Carapace               5-10   10-25   3-9              40 - Scavanged parts from bots
-              Standard Shield            8-12   30-40    0              250 - in shop
-              Heavy Shield              10-14   30-40    0     Str 20   360 - in shop
-              Riot Shield               15-20   40-50    0     Str 25   480 - in RG shop
+              Improvised Buckler        10-20    5-15   1-7              20 - Scavanged parts from bots
+              Bot Carapace              15-25   15-25   3-9              40 - Scavanged parts from bots
+**            Small Round               15-20   20-25    0              120 - in shop
+              Standard Shield           25-30   20-30    0              250 - in shop
+              Heavy Shield              25-30   30-40    0     Str 20   250 - in shop
+              Riot Shield               35-40   40-50    0     Str 25   480 - in RG shop
  *         - Head                                                                                         *
-              Pot Helmet                 3-10    5-10   1-7              20 - Scavanged parts from bots
-              Worker Helmet              3-6    10-25    0               90 - in shop
-              Miner Helmet (with LIGHT)  3-9    10-20    0              250 - in shop
-              Light Battle Helmet        5-9    30-40    0     Str 15   360 - in RG shop
-              Battle Helmet             10-14   40-50    0     Str 20   480 - in RG shop
-              Dixon's Helmet (LIGHT)      9       3     -1               55 - Mission reward
+              Pot Helmet                15-50    5-20   1-7              20 - Scavanged parts from bots
+              Worker Helmet             20-35   15-25    0               90 - in shop
+              Miner Helmet (with LIGHT) 20-55   10-20    0              250 - in shop
+              Light Battle Helmet       40-60   25-35    0     Str 15   360 - in RG shop
+              Battle Helmet             60-80   25-40    0     Str 20   480 - in RG shop
+              Dixon's Helmet (LIGHT)     55       3     -1               55 - Mission reward
  *         - Feet                                                                                         *
-              Shoes                      1-2     5-10    0               27 - in shop
-              Worker Shoes               3-4    10-20    0               85 - in shop
-              Battle Shoes               4-6    15-25    0              250 - in RG shop
+              Shoes                     10-30    5-10    0               27 - in shop
+              Worker Shoes              30-50   10-20    0               85 - in shop
+              Battle Shoes              50-70   15-25    0              250 - in RG shop
+
 *Light Boots
 *Boots
+*Battleboots
 *Item name=_"Reinforced Boots"
 *Item description text=_"These boots were originally normal boots, but have been fitted with some extra reinforcements to give better protection to the wearer. Of course this makes them a bit less elegant and also less comfy to wear, but the extra protection might be worth it, at less than the price of hiking boots."
 *Item name=_"Hiking Boots"
 *Item description text=_"These hiking boots are a very sophisticated product, combining optimal comfort for the wearer with a good protection from collisions with blunt objects like stones, which of course also makes for a higher price."
+
+----------------------------------
+
+Shield size class: small-medium-large-tower
+    Block % guide:  10%   20%    30%   40%
+
+  Shieldsize %-hittable
+  ---------------------
+  Head   20 20 20 20 20 
+  Feet   20 20 20 20 20 
+  Shield 00 10 20 30 40
+  Body   60 50 40 30 20
+   =
+   Torso 20 20 20 10 05
+   Waist 20 20 10 10 05
+   R arm 10 10 10 10 10
+   L arm 10 00 00 00 00
+  =====================
+
+
  **********************************************************************************************************/
 /*
 if (MyRandom(100) / monster_level >= Me.lv_1_bot_will_hit_percentage) then 
@@ -2693,10 +2716,6 @@ if (MyRandom(100) / monster_level >= exp(-0.019 * (Me.AC)) * 100.0; then hit arm
 
 AC 0 = e^0 = 1
 
-Body 5-35%
-Helm 4-14%
-Shield 7-20%
-Shoes 2-6%
 */
 
 // *** Body ***
@@ -2709,8 +2728,8 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="armour"
 Item uses rotation series with prefix="armours/basic"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=3
+Item as defensive item: base_dr_bonus=5
+Item as defensive item: dr_bonus_modifier=10
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="armours/basic/inv_image.png"
@@ -2730,8 +2749,8 @@ Item can be installed in slot with name="armour"
 Item uses rotation series with prefix="armours/basic2"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=15
-Item as defensive item: base_dr_bonus=8
-Item as defensive item: dr_bonus_modifier=7
+Item as defensive item: base_dr_bonus=15
+Item as defensive item: dr_bonus_modifier=15
 Base item duration=20
 plus duration modifier=10
 File or directory name for inventory image="armours/basic2/inv_image.png"
@@ -2751,7 +2770,7 @@ Item can be installed in slot with name="armour"
 Item uses rotation series with prefix="armours/basic3"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=25
-Item as defensive item: base_dr_bonus=15
+Item as defensive item: base_dr_bonus=30
 Item as defensive item: dr_bonus_modifier=20
 Base item duration=30
 plus duration modifier=10
@@ -2772,8 +2791,8 @@ Item can be installed in slot with name="armour"
 Item uses rotation series with prefix="armours/green"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
-Item as defensive item: base_dr_bonus=28
-Item as defensive item: dr_bonus_modifier=0
+Item as defensive item: base_dr_bonus=60
+Item as defensive item: dr_bonus_modifier=10
 Base item duration=35
 plus duration modifier=0
 File or directory name for inventory image="armours/green/inv_image_yellow.png"
@@ -2791,8 +2810,8 @@ Item can be installed in slot with name="armour"
 Item uses rotation series with prefix="armours/green"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=30
-Item as defensive item: base_dr_bonus=35
-Item as defensive item: dr_bonus_modifier=0
+Item as defensive item: base_dr_bonus=70
+Item as defensive item: dr_bonus_modifier=10
 Base item duration=40
 plus duration modifier=0
 File or directory name for inventory image="armours/green/inv_image.png"
@@ -2815,10 +2834,10 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
 Item uses rotation series with prefix="shields/buckler"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=7
+Item as defensive item: base_dr_bonus=10
+Item as defensive item: dr_bonus_modifier=10
 Base item duration=5
-plus duration modifier=15
+plus duration modifier=10
 File or directory name for inventory image="shields/buckler/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
@@ -2835,10 +2854,10 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
 Item uses rotation series with prefix="shields/small"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=5
-Item as defensive item: dr_bonus_modifier=5
-Base item duration=10
-plus duration modifier=15
+Item as defensive item: base_dr_bonus=15
+Item as defensive item: dr_bonus_modifier=10
+Base item duration=15
+plus duration modifier=10
 File or directory name for inventory image="shields/small/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
@@ -2857,9 +2876,9 @@ Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=8
-Item as defensive item: dr_bonus_modifier=4
-Base item duration=30
+Item as defensive item: base_dr_bonus=25
+Item as defensive item: dr_bonus_modifier=5
+Base item duration=20
 plus duration modifier=10
 Base list price=250
 Item description text=_"Better than a buckler, and a lot more effective."
@@ -2876,11 +2895,11 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
-Item as defensive item: base_dr_bonus=10
-Item as defensive item: dr_bonus_modifier=4
+Item as defensive item: base_dr_bonus=25
+Item as defensive item: dr_bonus_modifier=5
 Base item duration=30
 plus duration modifier=10
-Base list price=360
+Base list price=250
 Item description text=_"A medium sized, lightweight and pretty straightforward shield. Provides decent protection."
 ** End of new item specification subsection **
 
@@ -2895,7 +2914,7 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="shield"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=25
-Item as defensive item: base_dr_bonus=15
+Item as defensive item: base_dr_bonus=35
 Item as defensive item: dr_bonus_modifier=5
 Base item duration=40
 plus duration modifier=10
@@ -2917,10 +2936,10 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="special"
 Item uses rotation series with prefix="helmets/skull_cap"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=7
+Item as defensive item: base_dr_bonus=15
+Item as defensive item: dr_bonus_modifier=35
 Base item duration=5
-plus duration modifier=5
+plus duration modifier=15
 File or directory name for inventory image="helmets/skull_cap/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=20
@@ -2935,10 +2954,10 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="special"
 Item uses rotation series with prefix="helmets/yellow"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=3
-Base item duration=10
-plus duration modifier=15
+Item as defensive item: base_dr_bonus=20
+Item as defensive item: dr_bonus_modifier=15
+Base item duration=15
+plus duration modifier=10
 File or directory name for inventory image="helmets/yellow/inv_image.png"
 inventory_size_x=2
 inventory_size_y=2
@@ -2955,8 +2974,8 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="special"
 Item uses rotation series with prefix="helmets/yellow4"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=6
+Item as defensive item: base_dr_bonus=20
+Item as defensive item: dr_bonus_modifier=35
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="helmets/yellow4/inv_image.png"
@@ -2974,9 +2993,9 @@ Item can be installed in slot with name="special"
 Item uses rotation series with prefix="helmets/yellow2"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=15
-Item as defensive item: base_dr_bonus=5
-Item as defensive item: dr_bonus_modifier=4
-Base item duration=30
+Item as defensive item: base_dr_bonus=40
+Item as defensive item: dr_bonus_modifier=20
+Base item duration=25
 plus duration modifier=10
 File or directory name for inventory image="helmets/yellow2/inv_image.png"
 inventory_size_x=2
@@ -2995,10 +3014,10 @@ Item can be installed in slot with name="special"
 Item uses rotation series with prefix="helmets/yellow3"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=20
-Item as defensive item: base_dr_bonus=10
-Item as defensive item: dr_bonus_modifier=4
-Base item duration=30
-plus duration modifier=10
+Item as defensive item: base_dr_bonus=60
+Item as defensive item: dr_bonus_modifier=20
+Base item duration=25
+plus duration modifier=15
 File or directory name for inventory image="helmets/yellow3/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=480
@@ -3012,7 +3031,7 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="special"
 Item uses rotation series with prefix="helmets/yellow4"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=9
+Item as defensive item: base_dr_bonus=55
 Base item duration=3
 plus duration modifier=0
 File or directory name for inventory image="helmets/yellow4/inv_image.png"
@@ -3035,8 +3054,8 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
 Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=1
-Item as defensive item: dr_bonus_modifier=1
+Item as defensive item: base_dr_bonus=10
+Item as defensive item: dr_bonus_modifier=20
 Base item duration=5
 plus duration modifier=5
 File or directory name for inventory image="armours/boots/inv_image.png"
@@ -3053,8 +3072,8 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
 Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=3
-Item as defensive item: dr_bonus_modifier=1
+Item as defensive item: base_dr_bonus=30
+Item as defensive item: dr_bonus_modifier=20
 Base item duration=10
 plus duration modifier=10
 File or directory name for inventory image="armours/boots/inv_image.png"
@@ -3071,8 +3090,8 @@ Item can be applied in combat="no"
 Item can be installed in slot with name="drive"
 Item uses rotation series with prefix="armours/boots"
 Items of this type collect together in inventory="no"
-Item as defensive item: base_dr_bonus=4
-Item as defensive item: dr_bonus_modifier=2
+Item as defensive item: base_dr_bonus=50
+Item as defensive item: dr_bonus_modifier=20
 Base item duration=15
 plus duration modifier=10
 File or directory name for inventory image="armours/boots/inv_image.png"
