@@ -559,8 +559,8 @@ enum {
 #define STR_X 95
 #define STR_Y 140
 #define DEX_Y 165
-#define MAG_Y 190
-#define VIT_Y 215
+#define VIT_Y 190
+#define MAG_Y 215
 
 #define BUTTON_WIDTH 35
 #define BUTTON_HEIGHT 19
