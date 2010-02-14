@@ -1064,10 +1064,10 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		}
 
 		// Now we read in the armour value of this item as armour or shield or whatever
-		ReadValueFromStringWithDefault(ItemPointer, "Item as defensive item: base_dr_bonus=", "%hd", "0",
-					       &ItemMap[ItemIndex].base_dr_bonus, EndOfItemData);
-		ReadValueFromStringWithDefault(ItemPointer, "Item as defensive item: dr_bonus_modifier=", "%hd", "0",
-					       &ItemMap[ItemIndex].dr_bonus_modifier, EndOfItemData);
+		ReadValueFromStringWithDefault(ItemPointer, "Item as defensive item: base_damred_bonus=", "%hd", "0",
+					       &ItemMap[ItemIndex].base_damred_bonus, EndOfItemData);
+		ReadValueFromStringWithDefault(ItemPointer, "Item as defensive item: damred_bonus_modifier=", "%hd", "0",
+					       &ItemMap[ItemIndex].damred_bonus_modifier, EndOfItemData);
 
 		// Now we read in the base item duration and the duration modifier
 		ReadValueFromStringWithDefault(ItemPointer, "Base item duration=", "%hd", "-1",

@@ -55,8 +55,8 @@
 #define RECHARGE_X 260
 #define RECHARGE_Y 200
 
-#define DR_X 260
-#define DR_Y 171
+#define DAMRED_X 260
+#define DAMRED_Y 171
 
 #define INV_BUTTON_X 600
 #define INV_BUTTON_Y 400

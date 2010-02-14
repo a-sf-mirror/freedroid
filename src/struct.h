@@ -258,8 +258,8 @@ typedef struct item_bonus_s {
 
 	short base_bonus_to_tohit;
 	short modifier_to_bonus_to_tohit;
-	short base_bonus_to_dr_or_damage;	// this is a percentage
-	short modifier_to_bonus_to_dr_or_damage;	// this is a percentage
+	short base_bonus_to_damred_or_damage;	// this is a percentage
+	short modifier_to_bonus_to_damred_or_damage;	// this is a percentage
 
 	char base_bonus_to_resist_fire;	// this is a percentage /*XXX bonus to resist whatever ARE NOT READ YET!*/
 	char modifier_to_bonus_to_resist_fire;	// this is a percentage
@@ -310,8 +310,8 @@ typedef struct itemspec_s {
 	char item_gun_requires_both_hands;	// is this a (strictly) 2-handed weapon?
 
 	// how good is the item as armour or shield or other protection???
-	short base_dr_bonus;
-	short dr_bonus_modifier;
+	short base_damred_bonus;
+	short damred_bonus_modifier;
 
 	// which requirement for strength, dexterity and magic (force) does the item have?
 	short int item_require_strength;
@@ -358,11 +358,11 @@ typedef struct item_s {
 	float bonus_to_cooling_rate;
 	int bonus_to_tohit;
 	int bonus_to_all_attributes;
-	int bonus_to_dr_or_damage;	// this is a percentage
+	int bonus_to_damred_or_damage;	// this is a percentage
 	int bonus_to_resist_fire;	// this is a percentage
 	int bonus_to_resist_electricity;	// this is a percentage
 
-	int dr_bonus;		// how much is dr increased by this item worn
+	int damred_bonus;		// how much is damred increased by this item worn
 	int damage;		// how much damage does this item
 	int damage_modifier;	// how much additional damage can add to the base damage
 	int multiplicity;
@@ -547,7 +547,7 @@ typedef struct tux_s {
 	int points_to_distribute;	// these are the points that are available to distribute upon the character stats
 	float base_damage;	// the current damage the influencer does
 	float damage_modifier;	// the modifier to the damage the influencer currently does
-	float DR;		// the current Armour Damage Reduction of the influencer
+	float DAMRED;		// the current Armour Damage Reduction of the influencer
 	float to_hit;		// percentage chance, that Tux will hit a random lv 1 bot
 	int lv_1_bot_will_hit_percentage;	// percentage chance that a random lv 1 bot will hit
 	int resist_fire;	// percentage to reduce from fire damage

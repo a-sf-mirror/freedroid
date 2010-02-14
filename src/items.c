@@ -223,7 +223,7 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 
 	ThisItem->damage = ItemMap[ThisItem->type].base_item_gun_damage;
 	ThisItem->damage_modifier = ItemMap[ThisItem->type].item_gun_damage_modifier;
-	ThisItem->dr_bonus = ItemMap[ThisItem->type].base_dr_bonus + MyRandom(ItemMap[ThisItem->type].dr_bonus_modifier);
+	ThisItem->damred_bonus = ItemMap[ThisItem->type].base_damred_bonus + MyRandom(ItemMap[ThisItem->type].damred_bonus_modifier);
 	ThisItem->multiplicity = multiplicity;
 	ThisItem->ammo_clip = 0;
 	if (ItemMap[ThisItem->type].item_gun_ammo_clip_size)
@@ -261,7 +261,7 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 	ThisItem->bonus_to_cooling_rate = 0;
 	ThisItem->bonus_to_force = 0;
 	ThisItem->bonus_to_tohit = 0;
-	ThisItem->bonus_to_dr_or_damage = 0;
+	ThisItem->bonus_to_damred_or_damage = 0;
 
 	ThisItem->bonus_to_resist_fire = 0;
 	ThisItem->bonus_to_resist_electricity = 0;
@@ -291,8 +291,8 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 
 		ThisItem->bonus_to_tohit += SuffixList[ThisItem->suffix_code].base_bonus_to_tohit +
 		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_tohit);
-		ThisItem->bonus_to_dr_or_damage += SuffixList[ThisItem->suffix_code].base_bonus_to_dr_or_damage +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_dr_or_damage);
+		ThisItem->bonus_to_damred_or_damage += SuffixList[ThisItem->suffix_code].base_bonus_to_damred_or_damage +
+		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_damred_or_damage);
 
 		ThisItem->bonus_to_resist_fire += SuffixList[ThisItem->suffix_code].base_bonus_to_resist_fire +
 		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_resist_fire);
@@ -322,8 +322,8 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 
 		ThisItem->bonus_to_tohit += PrefixList[ThisItem->prefix_code].base_bonus_to_tohit +
 		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_tohit);
-		ThisItem->bonus_to_dr_or_damage += PrefixList[ThisItem->prefix_code].base_bonus_to_dr_or_damage +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_dr_or_damage);
+		ThisItem->bonus_to_damred_or_damage += PrefixList[ThisItem->prefix_code].base_bonus_to_damred_or_damage +
+		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_damred_or_damage);
 
 		ThisItem->bonus_to_resist_fire += PrefixList[ThisItem->prefix_code].base_bonus_to_resist_fire +
 		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_resist_fire);
@@ -2606,9 +2606,9 @@ int Get_Prefixes_Data(char *DataPointer)
 						       &BonusToFill->modifier_to_bonus_to_tohit, EndOfPrefixData);
 
 			ReadValueFromStringWithDefault(PrefixPointer, "Bonus to armor damage reduction or damage=", "%hd", "0",
-						       &BonusToFill->base_bonus_to_dr_or_damage, EndOfPrefixData);
+						       &BonusToFill->base_bonus_to_damred_or_damage, EndOfPrefixData);
 			ReadValueFromStringWithDefault(PrefixPointer, "Bonus to armor damage reduction or damage modifier=", "%hd", "0",
-						       &BonusToFill->modifier_to_bonus_to_dr_or_damage, EndOfPrefixData);
+						       &BonusToFill->modifier_to_bonus_to_damred_or_damage, EndOfPrefixData);
 
 			ReadValueFromStringWithDefault(PrefixPointer, "Bonus to life=", "%hd", "0",
 						       &BonusToFill->base_bonus_to_life, EndOfPrefixData);

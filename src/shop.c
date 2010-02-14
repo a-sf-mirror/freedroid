@@ -569,8 +569,8 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 			strcat(InfoText, TextChunk);
 		}
 
-		if (ShowItem->dr_bonus > 0) {
-			sprintf(TextChunk, _("Damage Reduction: %d%%\n"), ShowItem->dr_bonus);
+		if (ShowItem->damred_bonus > 0) {
+			sprintf(TextChunk, _("Damage Reduction: %d%%\n"), ShowItem->damred_bonus);
 			strcat(InfoText, TextChunk);
 		}
 

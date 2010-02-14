@@ -187,11 +187,11 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// --------------------
 	// If this item gives some armour bonus, we say so
 	//
-	if (CurItem->dr_bonus) {
+	if (CurItem->damred_bonus) {
 		if (ItemMap[CurItem->type].item_can_be_installed_in_shield_slot) {
-			sprintf(linebuf, _("Block: %d%%"), CurItem->dr_bonus);
+			sprintf(linebuf, _("Block: %d%%"), CurItem->damred_bonus);
 		} else {
-			sprintf(linebuf, _("Armor: %d%%"), CurItem->dr_bonus);
+			sprintf(linebuf, _("Armor: %d%%"), CurItem->damred_bonus);
 		}
 		strcat(ItemDescText, linebuf);
 		if (!ForShop)
@@ -473,8 +473,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 				strcat(ItemDescText, linebuf);
 			}
 			// Now we display the percentage bonus to ac or damage
-			if (CurItem->bonus_to_dr_or_damage) {
-				if (ItemMap[CurItem->type].base_dr_bonus) {
+			if (CurItem->bonus_to_damred_or_damage) {
+				if (ItemMap[CurItem->type].base_damred_bonus) {
 					// if ( ForShop ) strcat( ItemDescText , "             " );
 					if (AppendToLine) {
 						if (ForShop)
@@ -483,9 +483,9 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 							strcat(ItemDescText, "\n");
 					}
 					AppendToLine = TRUE;
-					if (CurItem->bonus_to_dr_or_damage > 0)
+					if (CurItem->bonus_to_damred_or_damage > 0)
 						strcat(ItemDescText, "+");
-					sprintf(linebuf, _("%d%% to armor"), CurItem->bonus_to_dr_or_damage);
+					sprintf(linebuf, _("%d%% to armor"), CurItem->bonus_to_damred_or_damage);
 					strcat(ItemDescText, linebuf);
 				}
 				if (ItemMap[CurItem->type].base_item_gun_damage) {
@@ -497,9 +497,9 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 							strcat(ItemDescText, "\n");
 					}
 					AppendToLine = TRUE;
-					if (CurItem->bonus_to_dr_or_damage > 0)
+					if (CurItem->bonus_to_damred_or_damage > 0)
 						strcat(ItemDescText, "+");
-					sprintf(linebuf, _("%d%% to damage"), CurItem->bonus_to_dr_or_damage);
+					sprintf(linebuf, _("%d%% to damage"), CurItem->bonus_to_damred_or_damage);
 					strcat(ItemDescText, linebuf);
 				}
 			}

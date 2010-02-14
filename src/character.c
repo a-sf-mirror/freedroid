@@ -71,8 +71,8 @@
 // y-offsets - right
 #define TOHIT_Y 138
 #define DAMAGE_Y 158
-#define DR_Y 178
-#define DR_Y2 193
+#define DAMRED_Y 178
+#define DAMRED_Y2 193
 #define MELEE_SKILL_Y 230
 #define RANGED_SKILL_Y 268
 #define SPELLCASTING_SKILL_Y 306
@@ -416,7 +416,7 @@ void update_tux_armour_damage_reduction()
 	//--------------------
 	// We initialize the armour damage reduction
 
-	Me.DR = 0 ;
+	Me.DAMRED = 0 ;
 
 	//--------------------
 	// Now we apply the armour bonuses from the currently equipped
@@ -424,22 +424,22 @@ void update_tux_armour_damage_reduction()
 	//
 	if (Me.armour_item.type != (-1)) {
 		if (Me.shield_item.type != (-1)) {
-			Me.DR += (60 - Me.shield_item.dr_bonus) * Me.armour_item.dr_bonus;
+			Me.DAMRED += (60 - Me.shield_item.damred_bonus) * Me.armour_item.damred_bonus;
 		} else {
-			Me.DR += 60 * Me.armour_item.dr_bonus;
+			Me.DAMRED += 60 * Me.armour_item.damred_bonus;
 		}
 	}
 	if (Me.shield_item.type != (-1)) {
-		Me.DR += 100 * Me.shield_item.dr_bonus;
+		Me.DAMRED += 100 * Me.shield_item.damred_bonus;
 	}
 	if (Me.special_item.type != (-1)) {
-		Me.DR += 20 * Me.special_item.dr_bonus;
+		Me.DAMRED += 20 * Me.special_item.damred_bonus;
 	}
 	if (Me.drive_item.type != (-1)) {
-		Me.DR += 20 * Me.drive_item.dr_bonus;
+		Me.DAMRED += 20 * Me.drive_item.damred_bonus;
 	}
 
-	Me.DR = Me.DR/100 ;
+	Me.DAMRED = Me.DAMRED/100 ;
 
 };				// void update_tux_armour_damage_reduction ( )
 
@@ -706,11 +706,11 @@ void ShowCharacterScreen()
 	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Armor protection"), RIGHT_TXT_X + CharacterRect.x, DR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
-	DisplayText(_("Average"), RIGHT_TXT_X + CharacterRect.x, DR_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(_("Armor protection"), RIGHT_TXT_X + CharacterRect.x, DAMRED_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(_("Average"), RIGHT_TXT_X + CharacterRect.x, DAMRED_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d%%", (int)Me.DR);
-	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DR_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	sprintf(CharText, "%d%%", (int)Me.DAMRED);
+	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMRED_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	//--------------------
 	// Now we print out the current skill levels in hacking skill, 
