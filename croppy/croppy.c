@@ -21,6 +21,7 @@
  *
  */
 
+#include "../gluem/pngfuncs.h"
 #include "../src/system.h"
 #include "../src/defs.h"
 #include "../src/getopt.h"
@@ -53,7 +54,7 @@ For more information about these matters, see the file named COPYING.\n";
 
 char usage_string[] =
   "Usage: croppy    [-v|--version] \n\
-                    [-q|--quiet] \n\
+                    [-o|--output_file] \n\
                     [-i|--input_file] \n\
                     [-n|--nographicsoutput] (default!)\n\
                     [-g|--graphicsoutput] \n\
@@ -156,15 +157,11 @@ void *MyMalloc(long Mamount)
 void DebugPrintf(int db_level, char *fmt, ...)
 {
 	va_list args;
-	char *tmp;
 	va_start(args, fmt);
 
 	if (db_level <= debug_level) {
-		tmp = (char *)MyMalloc(1000000 + 1);
-		vsprintf(tmp, fmt, args);
-		fprintf(stdout, "%s", tmp);
+		vfprintf(stdout, fmt, args);
 		fflush(stdout);
-		free(tmp);
 	}
 
 	va_end(args);
@@ -200,15 +197,16 @@ void ParseCommandLine(int argc, char *const argv[])
 		{ "help",             0, 0,  'h' },
 		{ "nographicsoutput", 0, 0,  'n' },
 		{ "graphicsoutput",   0, 0,  'g' },
-		{ "offset_x",         2, 0,  'x' },
-		{ "offset_y",         2, 0,  'y' },
+		{ "offset_x",         optional_argument, 0,  'x' },
+		{ "offset_y",         optional_argument, 0,  'y' },
+		{ "output_file",      required_argument , 0,  'o' },
 		{ "input_file",       required_argument , 0,  'i' },
-		{ "debug",            2, 0,  'd' },
+		{ "debug",            optional_argument, 0,  'd' },
 		{  0,                 0, 0,   0  }
 	};
 
 	while (1) {
-		c = getopt_long(argc, argv, "gqnvi:h?d::", long_options, NULL);
+		c = getopt_long(argc, argv, "gqnvi:o:h?d::", long_options, NULL);
 		if (c == -1)
 			break;
 
@@ -229,6 +227,16 @@ void ParseCommandLine(int argc, char *const argv[])
 
 		case 'g':
 			no_graphics_output = FALSE;
+			break;
+
+		case 'o':
+			if (optarg) {
+				output_filename = strdup(optarg);
+				DebugPrintf(1, "\nOutput file name set to : %s ", output_filename);
+			} else {
+				printf("\nERROR! -o specified, but no output file given... Exiting.\n\n");
+				exit (EXIT_FAILURE);
+			}
 			break;
 
 		case 'i':
@@ -262,21 +270,26 @@ void ParseCommandLine(int argc, char *const argv[])
 			break;
 
 		case 'd':
-			// if (!optarg) 
-			// debug_level = 1;
-			// else
-			// debug_level = atoi (optarg);
+			if (!optarg) {
+				debug_level = 1;
+			} else {
+				debug_level = atoi(optarg);
+			}
 			break;
 
 		default:
-			printf("\nOption %c not implemented yet! Ignored.", c);
+			printf("\nOption %c not implemented yet! Ignored.\n", c);
 			break;
 		} // switch(c) 
 	}  // while(1) 
 
 	if (input_filename == NULL) {
-		DebugPrintf(-1, "\nERROR:  No input file specified... Terminating... ");
+		DebugPrintf(-1, "\nERROR:  No input file specified... Terminating...\n");
 		Terminate(EXIT_FAILURE);
+    }
+
+	if (output_filename == NULL) {
+		output_filename = strdup(input_filename);
     }
 
 } // ParseCommandLine 
@@ -287,11 +300,6 @@ void ParseCommandLine(int argc, char *const argv[])
  * -----------------------------------------------------------------*/
 void InitVideo (void)
 {
-	const SDL_VideoInfo *vid_info;
-	SDL_Rect **vid_modes;
-	char vid_driver[81];
-	Uint32 flags;  // flags for SDL video mode 
-
 	/* Initialize the SDL library */
 	if (SDL_Init ( SDL_INIT_VIDEO ) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n",SDL_GetError());
@@ -308,29 +316,8 @@ void InitVideo (void)
       DebugPrintf(1, "\nSDL Timer initialisation successful.\n");
 	}
 	
-	/* clean up on exit */
-	atexit (SDL_Quit);
-
-	vid_info = SDL_GetVideoInfo (); /* just curious */
-	SDL_VideoDriverName (vid_driver, 80);
-  
-	flags = SDL_SWSURFACE | SDL_HWPALETTE ;
-	flags &= !SDL_FULLSCREEN;
-
-	vid_modes = SDL_ListModes (NULL, SDL_SWSURFACE);
-
-	/* 
-	 * currently only the simple 320x200 mode is supported for 
-	 * simplicity, as all our graphics are in this format
-	 * once this is up and running, we'll provide others modes
-	 * as well.
-	 */
-	vid_bpp = 16; /* start with the simplest */
-
-#define SCALE_FACTOR 2
-
 	if (!no_graphics_output) {
-		if (!(Screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 0, flags))) {
+		if (!(Screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0))) {
 			fprintf(stderr, "Couldn't set (2*) 320x240*SCALE_FACTOR video mode: %s\n",
 					SDL_GetError()); 
 			exit (EXIT_FAILURE);
@@ -338,9 +325,8 @@ void InitVideo (void)
 		SDL_Flip(Screen);
 	}
 
-	vid_info = SDL_GetVideoInfo(); /* info about current video mode */
-
-	SDL_SetGamma(1, 1, 1);
+	/* clean up on exit */
+	atexit (SDL_Quit);
 
 } // InitVideo () 
 
@@ -383,7 +369,6 @@ void create_output_surface(void)
 
 	SDL_SetAlpha(input_surface, 0, SDL_ALPHA_OPAQUE);
 	SDL_BlitSurface(input_surface, &source_rect, output_surface, &target_rect);
-
 } // void create_output_surface ( void )
 
 /* ----------------------------------------------------------------------
@@ -396,8 +381,9 @@ void examine_input_surface(void)
 	int line_not_empty = FALSE;
 	int i, j;
 
-	// #define INPUT_EXAM_DEBUG -1000
 #define INPUT_EXAM_DEBUG 1
+
+	DebugPrintf(INPUT_EXAM_DEBUG, "\nInput surface dimension %d/%d", input_surface->w, input_surface->h);
 
 	//--------------------
 	// Now we examine the left side..
@@ -416,6 +402,7 @@ void examine_input_surface(void)
 				column_not_empty = TRUE;
 				DebugPrintf(INPUT_EXAM_DEBUG, "\nFound alpha value of %d at location (%d/%d).", 
 						GetAlphaComponent(input_surface, i, j), i, j);
+				break;
 			}
 		}
 		if (column_not_empty) {
@@ -443,6 +430,7 @@ void examine_input_surface(void)
 				column_not_empty = TRUE;
 				DebugPrintf(INPUT_EXAM_DEBUG, "\nFound alpha value of %d at location (%d/%d).",
 						GetAlphaComponent(input_surface, input_surface->w - i - 1, j), input_surface->w - i - 1, j);
+				break;
 			}
 		}
 		if (column_not_empty) {
@@ -470,6 +458,7 @@ void examine_input_surface(void)
 				line_not_empty = TRUE;
 				DebugPrintf(INPUT_EXAM_DEBUG, "\nFound alpha value of %d at location (%d/%d).",
 						GetAlphaComponent(input_surface, j, i), j, i);
+				break;
 			}
 		}
 		if (line_not_empty) {
@@ -497,6 +486,7 @@ void examine_input_surface(void)
 				line_not_empty = TRUE;
 				DebugPrintf(INPUT_EXAM_DEBUG, "\nFound alpha value of %d at location (%d/%d).", 
 						GetAlphaComponent(input_surface, j, input_surface -> h - i - 1), j, input_surface -> h - i - 1);
+				break;
 			}
 		}
 		if (line_not_empty) {
@@ -511,15 +501,8 @@ void examine_input_surface(void)
 
 } // void examine_input_surface ( void )
 
-/* ----------------------------------------------------------------------
- *
- *
- * ---------------------------------------------------------------------- */
-void write_offset_file() 
+int get_default_center(int *default_center_x, int *default_center_y)
 {
-	char filename[10000];
-	char linebuf[10000];
-	
 	//--------------------
 	// Now the center of the object, what position in the png 
 	// file does it have?
@@ -528,55 +511,81 @@ void write_offset_file()
 	// int default_center_y = 436;
 	// int default_center_x = 98;
 	// int default_center_y = 167;
-	int default_center_x = 99;
-	int default_center_y = 162;
-
-	FILE *OffsetFile;  // to this file we will save all the ship data...
-
-#define OFFSET_EXPLANATION_STRING "FreedroidRPG uses isometric viewpoint and at the same time images of various sizes for objects within the game.  To determine the correct location for each of these images in the main game screen, FreedroidRPG must somehow know where the 'origin' of the object in question is within the given graphics file.  This is what these offset files are for:  They describe how much and in which direction the top left corner of the visible object is shifted away from the 'origin' or rather 'feet point' of the object in the image displayed.\n\n"
+	*default_center_x = 99;
+	*default_center_y = 162;
 
 	//--------------------
 	// If the given image has some special size, we use different
 	// default offset values
 	//
 	if ((input_surface->w == 60) && (input_surface->h == 60)) {
-		default_center_x = 30;
-		default_center_y = 45;
-		DebugPrintf(1, "\nCROPPY: Image size 60x60 recognized.  Using %d/%d default origin.", default_center_x, default_center_y);
-	} else if ((input_surface->w == 64) && (input_surface->h == 64)) {
-		default_center_x = 32;
-		default_center_y = 37;
-		DebugPrintf(1, "\nCROPPY: Image size 64x64 recognized.  Using %d/%d default origin.", default_center_x, default_center_y);
-	} else if ((input_surface->w == 80) && (input_surface->h == 80)) {
-		default_center_x = 40;
-		default_center_y = 40;
-		DebugPrintf(1, "\nCROPPY: Image size 80x80 recognized.  Using %d/%d default origin.", default_center_x, default_center_y);
-	} else if ((input_surface->w == 100) && (input_surface->h == 100)) {
-		default_center_x = 50;
-		default_center_y = 71;
-		DebugPrintf(1, "\nCROPPY: Image size 100x100 recognized.  Using %d/%d default origin.", default_center_x, default_center_y);
-	} else if ((input_surface->w == 120) && (input_surface->h == 120)) {
-		default_center_x = 60;
-		default_center_y = 100;
-		DebugPrintf(1, "\nCROPPY: Image size 120x120 recognized.  Using %d/%d default origin.", default_center_x, default_center_y);
-	} else if ((input_surface->w == 128) && (input_surface->h == 128)) {
-		default_center_x = 64;
-		default_center_y = 100;
-		DebugPrintf(1, "\nCROPPY: Image size 128x128 recognized.  Using %d/%d default origin.", default_center_x, default_center_y);
-	} else if ((input_surface->w == 200) && (input_surface->h == 240)) {
-		default_center_x = 99;
-		default_center_y = 190;
-		DebugPrintf(1, "\nCROPPY: Image size 200x240 (typical smaller tux part rendering).  Using %d/%d default origin.",
-				default_center_x, default_center_y);
-	} else if ((input_surface->w == 400) && (input_surface->h == 480)) {
-		default_center_x = 199;
-		default_center_y = 381;
-		DebugPrintf(1, "\nCROPPY: Image size 400x480 (typical larger tux part rendering).  Using %d/%d default origin.",
-				default_center_x, default_center_y);
-	} else {
-		DebugPrintf(-1, "\nCROPPY ERROR:  Unrecognized image format received... terminating in order to prevent accidents...");
-		Terminate(EXIT_FAILURE);
+		*default_center_x = 30;
+		*default_center_y = 45;
+		DebugPrintf(1, "\nCROPPY: Image size 60x60 recognized.  Using %d/%d default origin.", *default_center_x, *default_center_y);	
+		return TRUE;
 	}
+	
+	if ((input_surface->w == 64) && (input_surface->h == 64)) {
+		*default_center_x = 32;
+		*default_center_y = 37;
+		DebugPrintf(1, "\nCROPPY: Image size 64x64 recognized.  Using %d/%d default origin.", *default_center_x, *default_center_y);
+		return TRUE;
+	}
+	
+	if ((input_surface->w == 80) && (input_surface->h == 80)) {
+		*default_center_x = 40;
+		*default_center_y = 40;
+		DebugPrintf(1, "\nCROPPY: Image size 80x80 recognized.  Using %d/%d default origin.", *default_center_x, *default_center_y);
+		return TRUE;
+	}
+	
+	if ((input_surface->w == 100) && (input_surface->h == 100)) {
+		*default_center_x = 50;
+		*default_center_y = 71;
+		DebugPrintf(1, "\nCROPPY: Image size 100x100 recognized.  Using %d/%d default origin.", *default_center_x, *default_center_y);
+		return TRUE;
+	}
+	
+	if ((input_surface->w == 120) && (input_surface->h == 120)) {
+		*default_center_x = 60;
+		*default_center_y = 100;
+		DebugPrintf(1, "\nCROPPY: Image size 120x120 recognized.  Using %d/%d default origin.", *default_center_x, *default_center_y);
+		return TRUE;
+	}
+	
+	if ((input_surface->w == 128) && (input_surface->h == 128)) {
+		*default_center_x = 64;
+		*default_center_y = 100;
+		DebugPrintf(1, "\nCROPPY: Image size 128x128 recognized.  Using %d/%d default origin.", *default_center_x, *default_center_y);
+		return TRUE;
+	}
+	
+	if ((input_surface->w == 200) && (input_surface->h == 240)) {
+		*default_center_x = 99;
+		*default_center_y = 190;
+		DebugPrintf(1, "\nCROPPY: Image size 200x240 (typical smaller tux part rendering).  Using %d/%d default origin.",
+				*default_center_x, *default_center_y);
+		return TRUE;
+	}
+	
+	if ((input_surface->w == 400) && (input_surface->h == 480)) {
+		*default_center_x = 199;
+		*default_center_y = 381;
+		DebugPrintf(1, "\nCROPPY: Image size 400x480 (typical larger tux part rendering).  Using %d/%d default origin.",
+				*default_center_x, *default_center_y);
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+void write_offset_file(int default_center_x, int default_center_y) 
+{
+	char filename[10000];
+	
+	FILE *OffsetFile;  // to this file we will save all the ship data...
+
+#define OFFSET_EXPLANATION_STRING "FreedroidRPG uses isometric viewpoint and at the same time images of various sizes for objects within the game.  To determine the correct location for each of these images in the main game screen, FreedroidRPG must somehow know where the 'origin' of the object in question is within the given graphics file.  This is what these offset files are for:  They describe how much and in which direction the top left corner of the visible object is shifted away from the 'origin' or rather 'feet point' of the object in the image displayed.\n\n"
 
 	//--------------------
 	// Maybe some extra information was passed via the command line, which overrides
@@ -591,7 +600,7 @@ void write_offset_file()
 	//--------------------
 	// Now we must determine the output filename
 	//
-	sprintf(filename, "%s", input_filename);
+	sprintf(filename, "%s", output_filename);
 	if (strstr(filename, ".png") == NULL) {
 		strcat(filename, ".offset");
 	} else {
@@ -607,26 +616,23 @@ void write_offset_file()
 		Terminate(EXIT_FAILURE);
 	}
 
-	fwrite("\n\n", strlen("\n\n"), sizeof(char), OffsetFile);
+	fprintf(OffsetFile, "\n\n");
+	fprintf(OffsetFile, "** Start of iso_image offset file **\n");
+	fprintf(OffsetFile, "\n\n");
 
-	fprintf(OffsetFile, "%s\n", "** Start of iso_image offset file **");
+	fprintf(OffsetFile, "\n%s%d\n", OFFSET_FILE_OFFSETX_STRING, cut_left - default_center_x);
 
-	fwrite("\n\n", strlen("\n\n"), sizeof(char), OffsetFile);
+	fprintf(OffsetFile, "\n%s%d\n", OFFSET_FILE_OFFSETY_STRING, cut_up - default_center_y);
 
-	sprintf(linebuf, "\n%s%d\n", OFFSET_FILE_OFFSETX_STRING, cut_left - default_center_x);
-	fwrite(linebuf, strlen(linebuf), sizeof(char), OffsetFile);  
+	fprintf(OffsetFile, "\nGraphicsFileName=%s\n", input_filename);
 
-	sprintf(linebuf, "\n%s%d\n", OFFSET_FILE_OFFSETY_STRING, cut_up - default_center_y);
-	fwrite(linebuf, strlen(linebuf), sizeof(char), OffsetFile);  
+	fprintf(OffsetFile, "\n\n");
 
-	sprintf(linebuf, "\nGraphicsFileName=%s\n", input_filename);
-	fwrite(linebuf, strlen(linebuf), sizeof(char), OffsetFile);  
+	fprintf(OffsetFile, "%s", END_OF_OFFSET_FILE_STRING);
 
-	fwrite("\n\n", strlen("\n\n"), sizeof(char), OffsetFile);
+	fprintf(OffsetFile, "\n\n");
 
-	fwrite(END_OF_OFFSET_FILE_STRING, strlen(END_OF_OFFSET_FILE_STRING), sizeof(char), OffsetFile);
-
-	fwrite("\n\n", strlen("\n\n"), sizeof(char), OffsetFile);
+	fflush(OffsetFile);
 
 	if (fclose(OffsetFile) == EOF) {
 		DebugPrintf(-1, "\n\nClosing of .offset file failed...\n\nTerminating\n\n");
@@ -641,37 +647,12 @@ void write_offset_file()
  *
  *
  * ---------------------------------------------------------------------- */
-void copy_and_crop_input_file() 
+void save_output_surface() 
 {
-	char parameter_buf[5000];
-	char mgk_filename[5000];
-
-	sprintf(parameter_buf, "mogrify -crop %dx%d+%d+%d %s", input_surface->w - cut_left - cut_right,
-			input_surface->h - cut_up - cut_down, cut_left, cut_up, input_filename);
-	DebugPrintf(1, "\nCROPPY:  Now executing command : %s", parameter_buf);
-	system(parameter_buf);
-
-	//--------------------
-	// Now we must determine mgk-filename
-	//
-	strcpy(mgk_filename, input_filename);
-	if (strstr(mgk_filename, ".png") == NULL) {
-		DebugPrintf(-1, "\nCROPPY ERROR:  input_filename doesn't have .png?  strange!");      
+	if (png_save_surface(output_filename, output_surface) != 0) {
+		DebugPrintf(-1, "\nCROPPY ERROR: unable to save the cropped png");      
 		Terminate(EXIT_FAILURE);
-	} else {
-		mgk_filename[strlen(mgk_filename) - 4] = 0;
-		strcat(mgk_filename, ".mgk");
 	}
-
-	//--------------------
-	// Now we can copy any existing .mgk file over the surely existing .png file.
-	// (This measure seems to be nescessary with mogrify versions like the one used
-	// on basse's machine.)
-	//
-	sprintf(parameter_buf, "mv %s %s 2>/dev/null", mgk_filename, input_filename);
-	DebugPrintf(1, "\nCROPPY:  Now executing command : %s", parameter_buf);
-	system(parameter_buf);
-	
 } // void copy_and_crop_input_file ( ) ;
 
 /* -----------------------------------------------------------------
@@ -681,6 +662,7 @@ void copy_and_crop_input_file()
 int main(int argc, char *const argv[])
 {
 	SDL_Rect fill_rect;
+	int default_center_x, default_center_y;
 
 #define MAIN_DEBUG 1 
 
@@ -690,7 +672,8 @@ int main(int argc, char *const argv[])
 
 	DebugPrintf(MAIN_DEBUG, "\nFreedroidRPG 'Croppy' Tool, initializing video....\n");
 
-	InitVideo();
+	if (!no_graphics_output)
+		InitVideo();
 
 	DebugPrintf(MAIN_DEBUG, "\nFreedroidRPG 'Croppy' Tool, now loading input file...\n");
 
@@ -701,6 +684,11 @@ int main(int argc, char *const argv[])
 		Terminate(EXIT_FAILURE);
 	}
 
+	if (!get_default_center(&default_center_x, &default_center_y)) {
+		DebugPrintf(-1, "\nCROPPY ERROR:  Unrecognized image format received... terminating in order to prevent accidents...\n");
+		Terminate(EXIT_FAILURE);		
+	}
+	
 	if (!no_graphics_output) {
 		SDL_BlitSurface(input_surface, NULL, Screen, NULL);
 		SDL_Flip(Screen);
@@ -713,14 +701,13 @@ int main(int argc, char *const argv[])
 
 	DebugPrintf(MAIN_DEBUG, "\nFreedroidRPG 'Croppy' Tool, now cropping surface...\n");
 	
-	if (!no_graphics_output) 
-		create_output_surface(); 
+	create_output_surface(); 
 
 	DebugPrintf(MAIN_DEBUG, "\nFreedroidRPG 'Croppy' Tool, now saving output surface...\n");
 
-	copy_and_crop_input_file();
+	save_output_surface();
 
-	write_offset_file();
+	write_offset_file(default_center_x, default_center_y);
 
 	if (!no_graphics_output) {
 		background_surface = IMG_Load(background_filename);
@@ -745,6 +732,10 @@ int main(int argc, char *const argv[])
 
 	DebugPrintf(1, "\n");
 
+	if (output_filename) {
+		free(output_filename);
+	}
+	
 	return (EXIT_SUCCESS);
 
 } // int main ( ... )
