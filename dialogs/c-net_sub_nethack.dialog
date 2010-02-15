@@ -431,9 +431,11 @@ LuaCode={
 	hide(50,51,52,53,54)
 	random_var = math.random(3)
 	if (random_var > 2) then
+		npc_says_random("You escape!","You run away!","You chicken out!","NO_WAIT")
 		next(62)
 		n_level=n_level-1
 	elseif (random_var > 1) then
+		npc_says_random("You escape!","You run away!","You chicken out!","NO_WAIT")
 		next(63)
 	else 
 		npc_says_random("The "..n_emname.." throws a bola at you, tripping you and stopping your escape","You stand there like a deer in the headlights.","You try to go, but the "..n_emname.." grabs you.",n_emgod.." strikes you with fear, and you cannot move.","The "..n_emname.." tackles you and pins you to the floor.","You go to run, but you trip over your shoelace.","NO_WAIT")
@@ -459,7 +461,7 @@ LuaCode={
 				npc_says_random("You succeed getting past the "..n_emname..".","You distract the "..n_emname.." long enough to escape.","Your plight is noticed by a hero, who valiantly rescues you from the dasterdly "..n_emname..".","NO_WAIT")
 				next(61)
 			else
-				npc_says_random("The "..n_emname.." casts change gender on you.","The "..n_emname.." curses you.","The "..n_emname.." casts a polymorph spell.","NO_WAIT")
+				npc_says_random("The "..n_emname.." casts change gender on you.","The "..n_emname.." curses you.","The "..n_emname.." casts a polymorph spell.","The Random Number God stikes you, changing your gender.","NO_WAIT")
 				n_sex = "male"
 				npc_says("You are now a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
 				next(60)
@@ -494,7 +496,7 @@ LuaCode={
 		if (n_tricks < 1) then n_tricks =0 end
 		npc_says("Your stats are: \3".. n_ac .."\2  attack/armor, \3".. n_tricks .."\2 tricks, and \3"..n_hp.."\2 health.","NO_WAIT")
 	else -- 54% chance:
-		npc_says_random("Nothing happens.",n_god.." can't take your prayers right now, please leave a message...","Twice nothing happens.",n_god.." left her cellphone at home today.","Something, somewhere else happened.","NO_WAIT")
+		npc_says_random("Nothing happens.",n_god.." can't take your prayers right now, please leave a message...","Twice nothing happens.",n_god.." left her cellphone at home today.","Something, somewhere else happened.","The Random Number God is not swayed by your petty prayers.","NO_WAIT")
 	end 
 	next(60)
 }
@@ -545,8 +547,8 @@ LuaCode={
 		-- Rewards:
 			random_var = math.random(1,4)
 			if (random_var == 4) then --Improve AC
-				npc_says_random("You find a sword of greater death.","You find a vorpal dagger.","You find a breast plate of awesome.","You find a spell of doom.","You find a helmet of fire.", "You find a left boot of anit-fungus.","You find a right boot of speed.","You find a shank.","You find a kevlar vest.","You find a Hawaiian t-shirt.","You find an credit card.","You find a sharpened pencil.","You find a broken glass bottle.","You find a \"weapon\".","NO_WAIT")
-				n_ac = n_ac + n_emtype
+				npc_says_random("You find prayer beads invoking the goodwill of the Random Number God.","You find a lightning rod.","You find a sword of greater death.","You find a vorpal dagger.","You find a breast plate of awesome.","You find a spell of doom.","You find a helmet of fire.", "You find a left boot of anit-fungus.","You find a right boot of speed.","You find a shank.","You find a kevlar vest.","You find a Hawaiian t-shirt.","You find an credit card.","You find a sharpened pencil.","You find a broken glass bottle.","You find a \"weapon\".","NO_WAIT")
+				n_ac = n_ac + (math.random(n_emtype + 1) +1) 
 			elseif (random_var == 3) then --Improve HP
 				npc_says_random("You find a bandage and put it on.","A nurse patches some of your wounds.","You drink a bottle of greater healing.",n_god.." sends some salve to sooth your wounds.","You find an aloe vera plant.","You apply some sunscreen from your backpack.","You decide that you are healthier than you thought.", "NO_WAIT")
 				n_hp = n_hp +(n_emtype * 10 * math.random(3))
@@ -587,7 +589,7 @@ LuaCode={
 
 		-- Did you survive?
 		if (n_hp < 1) then  --No :-(
-			npc_says_random("You died.","A Valkyrie carries you off to Valhalla.","Hermes, with Death and Sleep, asks if you've seen his Caduceus anywhere, and then brings you to the river Leith.","Your soul finds itself traveling along the path of the moon, far away from your broken body.","You are fully one with everything. Your battered body no longer concerns you.","NO_WAIT")
+			npc_says_random("You died.","A Valkyrie carries you off to Valhalla.","Hermes, with Death and Sleep, asks if you've seen his Caduceus anywhere, and then brings you to the river Leith.","Your soul finds itself traveling along the path of the moon, far away from your broken body.","You are fully one with everything. Your battered body no longer concerns you.","You failed to enlist the Random Number God to your side.  You died.","NO_WAIT")
 			npc_says("Game over.","NO_WAIT")
 			next(70)
 		else --Yes :-)
@@ -609,7 +611,7 @@ Nr=61 Text=_"End Level"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(50,51,52,53,54)
-	if ((yendor == "yes") and (math.random(2)>1)) then --have the Amulet of Yendor
+	if ((yendor == "yes") and (math.random(3)>2)) then --have the Amulet of Yendor
 		npc_says("You come to the end of level "..n_level.." and the \3Amulet of Yendor\2 compels you down, deeper into the depths.","NO_WAIT")
 		next(63)
 	else --still need the Amulet of Yendor
