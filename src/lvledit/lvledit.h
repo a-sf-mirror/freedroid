@@ -467,6 +467,8 @@ int machinery_tiles_list[] = {
 	ISO_EXIT_5,
 	ISO_EXIT_6,
 
+	ISO_SOLAR_PANEL_E,
+
 	-1,
 };
 

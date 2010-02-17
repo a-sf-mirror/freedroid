@@ -1725,6 +1725,10 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].filename = "iso_security_gate_0008.png";
 
+	block_2param(ISO_SOLAR_PANEL_E, 0.95, 1.05);
+	obstacle_map[ISO_SOLAR_PANEL_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SOLAR_PANEL_E].filename = "iso_solar_panel_0001.png";
+
 	//--------------------
 	// Now that we have defined the block area paramters, it's time to do some
 	// simple but often required computations in advance:  Calculating the offsets
