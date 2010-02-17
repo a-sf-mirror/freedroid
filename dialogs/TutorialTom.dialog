@@ -112,7 +112,7 @@ LuaCode={
 	npc_says(_"Ah, yes.", "NO_WAIT")
 	npc_says(_"Linarians seem to have some sort of affinity for the detection of items.")
 	npc_says(_"Like any sighted being, you can detect items by looking at them as they enter your field of view.")
-	npc_says(_"Pressing the Z key will turn on labels for all items on the ground. Pressing it a second time will turn the labels off.")
+	npc_says(_"Pressing the Z key will enable augmented reality and turn on labels for all items on the ground. Pressing Z a second time will return to normal reality displaying.")
 	npc_says(_"If you just want to look for a moment, you can press and hold the X key to do the same thing.")
 	npc_says(_"Unlike people, you can even examine items from behind a wall using this technique.")
 	npc_says(_"Moving your mouse over an item will tell you more about that item.")
@@ -202,7 +202,7 @@ LuaCode={
 Nr=15  Text=_"I wouldn't want to lose any armor. What can I do about that?"
 LuaCode={
 	npc_says(_"Well, there are several ways to keep that from happening.")
-	npc_says(_"First, any equipped item in poor condition will show up yellow on your HUD. If the item reaches critical condition, it will be red.")
+	npc_says(_"First, any equipped item in poor condition will show up yellow on your HUD. If the item reaches critical condition, it will be red. Well, at least if you interface with reality through OGL. If your visual reality interface is done with only SDL, colors won't change.")
 	npc_says(_"If you don't unequip the item then, you run the risk of it becoming ruined.")
 	npc_says(_"There are three things you can do when an item reaches critical condition.")
 	npc_says(_"The first is to sell or discard the item.")
