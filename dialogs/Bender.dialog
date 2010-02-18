@@ -179,7 +179,11 @@ LuaCode={
 
 Nr=13  Text=_"How are you doing?"
 LuaCode={ 
-	npc_says(_"Much better. I'm cured. Thanks again man! I'll vote for you if you want into the city guard! You're a good guy, man!")
+	npc_says(_"Much better. I'm cured. You're a good guy, man!","NO_WAIT")
+	npc_says(_"What was you name again?")
+	tux_says(_"" .. get_player_name() .. "")
+	npc_says(_"Thanks ".. get_player_name() ..", I owe you one.","NO_WAIT")
+	npc_says(_"And I'll sure vote for you if you want into the city guard! ")
 }
 ----------------------------------------------------------------------
 
