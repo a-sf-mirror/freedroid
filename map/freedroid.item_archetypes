@@ -3842,6 +3842,19 @@ Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) p
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Mug"
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="drinking_mug_2"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="drinking_mug_2/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=50
+Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) project from before the Great Assault. All of the items in the SCK project have an inner mechanism that will clean the object automatically if left alone for a given time. It comes with its own power supply, and has a supposed duration of 200 years."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Identification Script"
 Item min class for drop=0
 Item max class for drop=5
