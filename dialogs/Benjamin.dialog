@@ -99,8 +99,9 @@ LuaCode={
 
 Nr=8  Text=_"Tell me more about laser weapons."
 LuaCode={
+	npc_says(_"Light amplification by stimulated emission of radiation.")
 	npc_says(_"Laser is the technology employed in most of our weaponry. It uses a focused light beam to cause damage.")
-	npc_says(_"Because the beam is composed out of light, it travels REALLY fast. Also it is not affected by gravity or wind, which makes aiming easier.")
+	npc_says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of lights so to say. Also it is not affected by gravity or wind, which makes aiming easier.")
 	npc_says(_"However, other than being a good training tool for newbies, that design just fails to deliver.")
 	npc_says(_"The shots tend to be underpowered, the gun takes a long while to power up for a shot and can overheat during intense combat.")
 	npc_says(_"This is why I am trying to improve it, but so far I have had no success. I just feel like giving up.")
@@ -120,7 +121,7 @@ LuaCode={
 	if (get_skill("ranged") == 0) then
 		npc_says(_"If anyone in this city knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
 		npc_says(_"Of course, I will need compensation for the ammunition spent in the training and for my time.")
-		npc_says(_"Say... A hundred triangles and three training points should be enough for a beginner lesson.")
+		npc_says(_"Say... A hundred circuits and three training points should be enough for a beginner lesson.")
 		if (get_gold() > 99) then
 			if (get_training_points() > 2) then 
 				npc_says(_"Interested?")
@@ -131,7 +132,7 @@ LuaCode={
 		if (get_skill("ranged") == 1) then
 			npc_says(_"Oh, you are ready for some more training?", "NO_WAIT")
 			npc_says(_"It will of course cost a bit more money as well as mental focus on your part.")
-			npc_says(_"It will take you two hundred triangles and double the effort on your part to become a true apprentice.")
+			npc_says(_"It will take you two hundred circuits and double the effort on your part to become a true apprentice.")
 			if (get_gold() > 199) then
 				if (get_training_points() > 5) then 
 					npc_says(_"Interested?")
@@ -140,7 +141,7 @@ LuaCode={
 			else npc_says(_"You don't have enough money! I cannot afford to just give away training for free.") end
 		else
 			if (get_skill("ranged") == 2) then
-				npc_says(_"I see you have taken a liking to guns", "NO_WAIT")
+				npc_says(_"I see you have taken a liking to guns.", "NO_WAIT")
 				npc_says(_"But the next step will cost even more money and require the mental focus equalling all your previous training.")
 				if (get_gold() > 299) then
 					if (get_training_points() > 8) then 
@@ -150,7 +151,7 @@ LuaCode={
 			else
 				if (get_skill("ranged") == 3) then
 					npc_says(_"Oh, you want to become a real master with shooters?", "NO_WAIT")
-					npc_says(_"It will cost you 400 triangles and an awful lot of mental focusing on the task.")
+					npc_says(_"It will cost you 400 valuable circuits and an awful lot of mental focusing on the task.")
 					if (get_gold() > 399) then
 						if (get_training_points() > 11) then 
 							npc_says(_"Interested?")
@@ -159,7 +160,7 @@ LuaCode={
 					else npc_says(_"So come back when you have both.") end
 				else
 					if (get_skill("ranged") == 4) then
-						npc_says(_"To become a true god of firearms, you need ridiculous amounts of training.", "NO_WAIT")
+						npc_says(_"To become a true god of firearms, just like me, you need ridiculous amounts of training.", "NO_WAIT")
 						npc_says(_"It will of course cost a fair bit of cash as well. 500 cold ones to be precise.")
 						if (get_gold() > 499) then
 							if (get_training_points() > 14) then 
@@ -211,7 +212,7 @@ LuaCode={
 Nr=23  Text=_"Yes I accept. (cost 9 training points, 300 cash)"
 LuaCode={
 	npc_says(_"Next lesson is hitting a moving target.")
-	npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead.")
+	npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead in case you use a non-laser gun.")
 	npc_says(_"It's easy when you know how, especially with bots, because they tend to move in straight lines, not bob and weave like people.")
 	npc_says(_"I think that is enough training for now. Next time, firing on the move!")
 	add_gold(-300)
