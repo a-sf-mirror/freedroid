@@ -62,7 +62,7 @@ LuaCode={
 	n_randomchoice = "no"
 	selection = 0
 	show(1,2)
-	show(71) --Exit game option
+	show(99) --Exit game option
 }
 
 ----------------------------------------------------------------------
@@ -645,13 +645,13 @@ LuaCode={
 Nr=70 Text=_"End Game - Win/Loss"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(20,62,63,30,50,51,52,53,54,60,71)
+	hide(20,62,63,30,50,51,52,53,54,60,99)
 	end_dialog()
 }
 ----------------------------------------------------------------------
-Nr=71 Text=_"End Game"
+Nr=99 Text=_"End Game"
 LuaCode={
-	hide(20,62,63,30,50,51,52,53,54,60,71)
+	hide(20,62,63,30,50,51,52,53,54,60,99)
 	end_dialog()
 }
 
