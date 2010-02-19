@@ -17,28 +17,28 @@ Each trigger has the following field:
 ##############
 * New event trigger *
 Name=_"To maintenance tunnels"
-Trigger at label="NorthernMaintainanceTeleporter"
+Trigger at label="0to6"
 Silent=0
 LuaCode={
-	teleport("MaintainanceTunnelArrivalPoint")
+	teleport("6from0")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"Enter novice arena"
-Trigger at label="NoviceArenaTeleporter"
+Trigger at label="0to29"
 Silent=0
 LuaCode={
-	teleport("NoviceArenaTeleportInPoint")
+	teleport("29from0")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"Enter master arena"
-Trigger at label="MasterArenaTeleporter"
+Trigger at label="0to30"
 Silent=0
 LuaCode={
-	teleport("MasterArenaTeleportInPoint")
+	teleport("30from0")
 }
 * End of trigger *
 
@@ -47,19 +47,19 @@ LuaCode={
 ############## 
 * New event trigger *
 Name=_"Exit warehouse"
-Trigger at label="TeleportFromWarehouseToWood"
+Trigger at label="1to8"
 Silent=0
 LuaCode={
-	teleport("ArrivePointBackFromWarehouse")
+	teleport("8from1")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"To warehouse level 2"
-Trigger at label="TeleportToWarehouseSecondLevel"
+Trigger at label="1to2"
 Silent=0
 LuaCode={
-	teleport("ArriveFromWarehouseFirstLevel")
+	teleport("2from1")
 }
 * End of trigger *
 
@@ -68,10 +68,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To warehouse level 1"
-Trigger at label="TeleportBackToFirstCombatLevel"
+Trigger at label="2to1"
 Silent=0
 LuaCode={
-	teleport("ReturnFromWarehouseSecondLevel")
+	teleport("1from2")
 }
 * End of trigger *
 
@@ -80,19 +80,19 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Back to Kevin's garden"
-Trigger at label="TeleportBackToSecondCombatLevel"
+Trigger at label="3to17"
 Silent=0
 LuaCode={
-	teleport("ReturnFromKevinsUndergroundStation")
+	teleport("17from3")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"To energy station"
-Trigger at label="TeleportToKevinsEnergyStation"
+Trigger at label="3to18"
 Silent=0
 LuaCode={
-	teleport("KevinEnergyArrivalPoint")
+	teleport("18from3")
 }
 * End of trigger *
 
@@ -101,19 +101,19 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Escape from disruption deck"
-Trigger at label="Lv4to5"
+Trigger at label="4to5"
 Silent=0
 LuaCode={
-	teleport("Lv5from4")
+	teleport("5from4")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"Access disruptor shield control"
-Trigger at label="Lv4to7"
+Trigger at label="4to7"
 Silent=0
 LuaCode={
-	teleport("Lv7from4")
+	teleport("7from4")
 }
 * End of trigger *
 
@@ -122,10 +122,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To disruption machine deck"
-Trigger at label="Lv5to4"
+Trigger at label="5to4"
 Silent=0
 LuaCode={
-	teleport("Lv4from5")
+	teleport("4from5")
 }
 * End of trigger *
 
@@ -134,10 +134,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Back from maintenance tunnels"
-Trigger at label="FromMaintainanceTunnelToTown"
+Trigger at label="6to0"
 Silent=0
 LuaCode={
-	teleport("NorthernMaintainanceTeleporterReturn")
+	teleport("0from6")
 }
 * End of trigger *
 
@@ -146,10 +146,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To disruption machine deck"
-Trigger at label="Lv7to4"
+Trigger at label="7to4"
 Silent=0
 LuaCode={
-	teleport("Lv4from7")
+	teleport("4from7")
 }
 * End of trigger *
 
@@ -158,10 +158,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Enter warehouse"
-Trigger at label="TeleportIntoTheWarehouse"
+Trigger at label="8to1"
 Silent=0
 LuaCode={
-	teleport("ArrivePointInWarehouse")
+	teleport("1from8")
 }
 * End of trigger *
 
@@ -170,10 +170,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Down into Crystal Caves"
-Trigger at label="CrystalCavensDown"
+Trigger at label="9to33"
 Silent=0
 LuaCode={
-	teleport("CrystalCavensEnter")
+	teleport("33from9")
 }
 * End of trigger *
 
@@ -210,10 +210,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To Kevin's underground station"
-Trigger at label="EntryToKevinsUndergroundStation"
+Trigger at label="17to3"
 Silent=0
 LuaCode={
-	teleport("ArriveAtKevinsUndergroundStation")
+	teleport("3from17")
 }
 * End of trigger *
 
@@ -222,10 +222,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To underground station"
-Trigger at label="KevinEnergyExitPoint"
+Trigger at label="18to3"
 Silent=0
 LuaCode={
-	teleport("ReturnToKevinUndergroundStation")
+	teleport("3from18")
 }
 * End of trigger *
 
@@ -258,7 +258,7 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Hatch with broken ladder"
-Trigger at label="Lv25to43"
+Trigger at label="25to43"
 Silent=0
 LuaCode={
 	teleport("Lv43fromX0")
@@ -282,10 +282,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Exit novice arena"
-Trigger at label="NoviceArenaTeleportOutPoint"
+Trigger at label="29to0"
 Silent=0
 LuaCode={
-	teleport("NoviceArenaTeleporterReturn")
+	teleport("0from29")
 }
 * End of trigger *
 
@@ -294,10 +294,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Exit master arena"
-Trigger at label="MasterArenaTeleportOutPoint"
+Trigger at label="30to0"
 Silent=0
 LuaCode={
-	teleport("MasterArenaTeleporterReturn")
+	teleport("0from30")
 }
 * End of trigger *
 
@@ -342,10 +342,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Exit Crystal Caves"
-Trigger at label="CrystalCavensUp"
+Trigger at label="33to9"
 Silent=0
 LuaCode={
-	teleport("CrystalCavensReturn")
+	teleport("9from33")
 }
 * End of trigger *
 
@@ -354,10 +354,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Back from bunker"
-Trigger at label="Lv34to38"
+Trigger at label="34to38"
 Silent=0
 LuaCode={
-	teleport("Lv38from34");
+	teleport("38from34");
 }
 * End of trigger *
 
@@ -366,10 +366,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Back to the desert"
-Trigger at label="Lv35to40"
+Trigger at label="35to40"
 Silent=0
 LuaCode={
-	teleport("Lv40from35")
+	teleport("40from35")
 }
 * End of trigger *
 
@@ -386,10 +386,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"To a forgotten bunker"
-Trigger at label="Lv38to34"
+Trigger at label="38to34"
 Silent=0
 LuaCode={
-	teleport("Lv34from38")
+	teleport("34from38")
 }
 * End of trigger *
 
@@ -402,10 +402,10 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Unknown place"
-Trigger at label="Lv40to35"
+Trigger at label="40to35"
 Silent=0
 LuaCode={
-	teleport("Lv35from40")
+	teleport("35from40")
 }
 * End of trigger *
 
@@ -425,7 +425,7 @@ Name=_"Hidden way out"
 Trigger at label="Lv43toX1"
 Silent=0
 LuaCode={
-	teleport("Lv25from43")
+	teleport("25from43")
 }
 * End of trigger *
 

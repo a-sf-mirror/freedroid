@@ -80,7 +80,7 @@ beginning_of_map
   4   4   4   4  52  48  48  48  48  48  48  35  54  52   7   1   1  66  53  65   1   4   4  54  52   4  54  52   4   4   1  66  53  65   1  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32   8  54  52  33   5   5   5   5   5   5  51  51  51  51  51  48  49  48  49  73  20   4   4   4   4 
   4   4   4   4  52  48  48   1  48  48  54   9  54  52   7   1   1   1   1   1   1   4   4  54  52   4  54  52   4  74   1   1   1   1   1  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  55  55  55  55  59  59  64   8  54  52   7   5   5   5   5   5   5  51  51  51  51  51  48  48  48  48  22  14   4   4   4   4 
   4   4   4   4  52  12   6   6   8   9   8  35  54  52  33   7  14   1   1   1   4   4   4  54  52   4  54  52   4   4   1   1   1   1   1   3  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  68  53  53  53  53  69  52   6  54  52   9   5   5   5  46  46  46  51  51  51  51  51  48  49  48  49  15  20  22  17  17   7 
-  4   4   4   4  52  94  55  55  55  55  55  55  70  71  55  55  55  55  55  55  55  55  55  70  71  55  70  71  55  55  55  55  55  55  55  91   4   0  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  52  30  30  30  30  54  52   8  54  52   6   5   5   5  46  46  46  51  51  51  51  51  48  48  48  48   4   4  12   6   6   7 
+  4   4   4   4  52  94  55  55  55  55  55  55  70  71  55  55  55  55  55  55  55  55  55  70  71  55  70  71  55  55  55  55  55  55  55  91   4  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  52  30  30  30  30  54  52   8  54  52   6   5   5   5  46  46  46  51  51  51  51  51  48  48  48  48   4   4  12   6   6   7 
  75   4   4   4  52  54  68  53  53  53  69  68  53  53  53  53  53  53  53  53  53  53  53  69  68  53  69  68  53  53  53  53  53  53  69  52   4  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  52  30  30  30  30  54  52   9  54  52   9  31  31  31  46  46  46 109 109 114 114 114  48  49  48  49  17  19  21   7   7   7 
   4   4   4   4  52  54  52  30  30  30  54  52  17   1   1   1   1   1   1   1   1   1   1  57  57   1  57  57   1   1   1   1   4   4  54  52   4  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  52  30  30  30  30  54  52   7  54  52   6  32  32  31  46  46  46 109 109 114 113 113  48  48  48  48  73  73   4   7   7   7 
   4   4   4   4  52  54  52  30  30  30  54  52   6   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   4  54  52   4  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  32  52  30  30  30  30  54  52   6  54  52   8  32  32  32  46  46  46 109 109 114 113 113  48  49  48  49  73  73  21  23  23   6 
@@ -3564,12 +3564,12 @@ x=38 y=44 name="LukasStartGameSquare"
 x=53 y=53 name="RichardStartGameSquare"
 x=38 y=60 name="BenjaminCitadelStartGameSquare"
 x=16 y=18 name="TeleportHomeTarget"
-x=32 y=62 name="NorthernMaintainanceTeleporter"
-x=32 y=61 name="NorthernMaintainanceTeleporterReturn"
-x=18 y=62 name="NoviceArenaTeleporter"
-x=18 y=61 name="NoviceArenaTeleporterReturn"
-x=17 y=40 name="MasterArenaTeleporter"
-x=17 y=41 name="MasterArenaTeleporterReturn"
+x=32 y=62 name="0to6"
+x=32 y=61 name="0from6"
+x=18 y=62 name="0to29"
+x=18 y=61 name="0from29"
+x=17 y=40 name="0to30"
+x=17 y=41 name="0from30"
 x=80 y=38 name="614StartGameSquare4"
 x=73 y=21 name="TamaraStartGameSquare"
 /plabelinfolvl
@@ -4674,10 +4674,10 @@ t11 x64.00 y41.50 l-1
 t11 x64.00 y40.50 l-1 
 /obsdata
 plabelinfolvl
-x=73 y=49 name="TeleportToWarehouseSecondLevel"
-x=72 y=48 name="ReturnFromWarehouseSecondLevel"
-x=34 y=18 name="TeleportFromWarehouseToWood"
-x=34 y=19 name="ArrivePointInWarehouse"
+x=73 y=49 name="1to2"
+x=72 y=48 name="1from2"
+x=34 y=18 name="1to8"
+x=34 y=19 name="1from8"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -5349,10 +5349,10 @@ t132 x17.00 y24.50 l-1
 t271 x20.61 y2.43 l-1 
 /obsdata
 plabelinfolvl
-x=20 y=2 name="TeleportBackToFirstCombatLevel"
+x=20 y=2 name="2to1"
 x=30 y=20 name="TeleportToThirdCombatLevel"
 x=29 y=21 name="ReturnFromThirdCombatLevel"
-x=19 y=2 name="ArriveFromWarehouseFirstLevel"
+x=19 y=2 name="2from1"
 x=47 y=22 name="Lv2DalekStartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
@@ -5860,10 +5860,10 @@ t49 x35.50 y20.00 l-1
 t49 x34.50 y20.00 l-1 
 /obsdata
 plabelinfolvl
-x=27 y=14 name="TeleportBackToSecondCombatLevel"
-x=28 y=14 name="ArriveAtKevinsUndergroundStation"
-x=11 y=1 name="TeleportToKevinsEnergyStation"
-x=11 y=2 name="ReturnToKevinUndergroundStation"
+x=27 y=14 name="3to17"
+x=28 y=14 name="3from17"
+x=11 y=1 name="3to18"
+x=11 y=2 name="3from18"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -6643,10 +6643,10 @@ t53 x31.50 y4.50 l-1
 t1 x14.00 y32.50 l-1 
 /obsdata
 plabelinfolvl
-x=30 y=2 name="Lv4from5"
-x=4 y=31 name="Lv4to7"
-x=5 y=31 name="Lv4from7"
-x=31 y=1 name="Lv4to5"
+x=30 y=2 name="4from5"
+x=4 y=31 name="4to7"
+x=5 y=31 name="4from7"
+x=31 y=1 name="4to5"
 x=31 y=1 name="FromLv5"
 /plabelinfolvl
 pobstaclelabelinfolvl
@@ -7352,8 +7352,8 @@ t1 x60.00 y67.50 l-1
 t2 x59.50 y68.00 l-1 
 /obsdata
 plabelinfolvl
-x=57 y=68 name="Lv5from4"
-x=56 y=67 name="Lv5to4"
+x=57 y=68 name="5from4"
+x=56 y=67 name="5to4"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -7946,8 +7946,8 @@ t50 x30.50 y7.50 l-1
 /obsdata
 plabelinfolvl
 x=35 y=11 name="ToolkitBossMonsterStartGameSquare"
-x=11 y=4 name="FromMaintainanceTunnelToTown"
-x=11 y=3 name="MaintainanceTunnelArrivalPoint"
+x=11 y=4 name="6to0"
+x=11 y=3 name="6from0"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -8693,8 +8693,8 @@ t272 x5.50 y9.50 l-1
 /obsdata
 plabelinfolvl
 x=11 y=9 name="MERStartGameSquare"
-x=5 y=9 name="Lv7to4"
-x=6 y=9 name="Lv7from4"
+x=5 y=9 name="7to4"
+x=6 y=9 name="7from4"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -10423,8 +10423,8 @@ plabelinfolvl
 x=35 y=57 name="DarwinStartGameSquare"
 x=37 y=55 name="MelfisStartGameSquare"
 x=42 y=12 name="The302InFrontOfTheTempleStart"
-x=83 y=26 name="TeleportIntoTheWarehouse"
-x=84 y=27 name="ArrivePointBackFromWarehouse"
+x=83 y=26 name="8to1"
+x=84 y=27 name="8from1"
 x=8 y=62 name="Lev8-302"
 /plabelinfolvl
 pobstaclelabelinfolvl
@@ -11536,8 +11536,8 @@ plabelinfolvl
 x=67 y=69 name="Level9Stalker1StartGameSquare"
 x=63 y=65 name="Level9Stalker2StartGameSquare"
 x=63 y=73 name="Level9Stalker3StartGameSquare"
-x=41 y=44 name="CrystalCavensDown"
-x=40 y=45 name="CrystalCavensReturn"
+x=41 y=44 name="9to33"
+x=40 y=45 name="9from33"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="brickWall"
@@ -19828,8 +19828,8 @@ x=63 y=41 name="Kevins821StartGameSquare"
 x=66 y=41 name="Kevins751StartGameSquare"
 x=69 y=41 name="Kevins883StartGameSquare"
 x=75 y=29 name="KevensLawnMowerStart"
-x=75 y=16 name="EntryToKevinsUndergroundStation"
-x=74 y=16 name="ReturnFromKevinsUndergroundStation"
+x=75 y=16 name="17to3"
+x=74 y=16 name="17from3"
 x=66 y=51 name="JasmineStartGameSquare"
 /plabelinfolvl
 pobstaclelabelinfolvl
@@ -20416,8 +20416,8 @@ t193 x19.50 y13.50 l-1
 t193 x17.50 y11.50 l-1 
 /obsdata
 plabelinfolvl
-x=8 y=8 name="KevinEnergyArrivalPoint"
-x=8 y=7 name="KevinEnergyExitPoint"
+x=8 y=8 name="18from3"
+x=8 y=7 name="18to3"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -23915,8 +23915,8 @@ t342 x59.04 y42.35 l-1
 t150 x18.50 y31.55 l-1 
 /obsdata
 plabelinfolvl
-x=18 y=31 name="Lv25to43"
-x=13 y=18 name="Lv25from43"
+x=18 y=31 name="25to43"
+x=13 y=18 name="25from43"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -24953,8 +24953,8 @@ t2 x1.49 y19.99 l-1
 t271 x23.22 y11.09 l-1 
 /obsdata
 plabelinfolvl
-x=10 y=10 name="NoviceArenaTeleportInPoint"
-x=22 y=10 name="NoviceArenaTeleportOutPoint"
+x=10 y=10 name="29from0"
+x=22 y=10 name="29to0"
 x=5 y=10 name="NoviceArenaBot1StartGameSquare"
 x=10 y=18 name="NoviceArenaBot2StartGameSquare"
 x=18 y=10 name="NoviceArenaBot3StartGameSquare"
@@ -25198,8 +25198,8 @@ t2 x2.51 y19.98 l-1
 t2 x1.51 y19.98 l-1 
 /obsdata
 plabelinfolvl
-x=10 y=10 name="MasterArenaTeleportInPoint"
-x=22 y=10 name="MasterArenaTeleportOutPoint"
+x=10 y=10 name="30from0"
+x=22 y=10 name="30to0"
 x=5 y=10 name="MasterArenaBot1StartGameSquare"
 x=10 y=18 name="MasterArenaBot2StartGameSquare"
 x=18 y=10 name="MasterArenaBot3StartGameSquare"
@@ -31154,8 +31154,8 @@ t206 x31.19 y46.20 l-1
 t204 x41.37 y50.93 l-1 
 /obsdata
 plabelinfolvl
-x=27 y=35 name="CrystalCavensEnter"
-x=26 y=36 name="CrystalCavensUp"
+x=27 y=35 name="33from9"
+x=26 y=36 name="33to9"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -31490,8 +31490,8 @@ t321 x12.05 y17.29 l-1
 /obsdata
 plabelinfolvl
 x=22 y=16 name="Koan"
-x=20 y=35 name="Lv34to38"
-x=19 y=35 name="Lv34from38"
+x=20 y=35 name="34to38"
+x=19 y=35 name="34from38"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -32741,8 +32741,8 @@ x=37 y=28 name="SecretAreaEnterance2"
 x=41 y=37 name="BorisStartGameSquare"
 x=40 y=47 name="LinaStartGameSquare"
 x=36 y=51 name="SergeStartGameSquare"
-x=24 y=43 name="Lv35to40"
-x=24 y=42 name="Lv35from40"
+x=24 y=43 name="35to40"
+x=24 y=42 name="35from40"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="SADDGun"
@@ -34291,8 +34291,8 @@ t154 x46.51 y55.72 l-1
 t154 x44.36 y57.75 l-1 
 /obsdata
 plabelinfolvl
-x=40 y=53 name="Lv38to34"
-x=41 y=53 name="Lv38from34"
+x=40 y=53 name="38to34"
+x=41 y=53 name="38from34"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
@@ -35147,8 +35147,8 @@ t154 x63.90 y29.09 l-1
 t154 x64.51 y29.39 l-1 
 /obsdata
 plabelinfolvl
-x=59 y=26 name="Lv40to35"
-x=60 y=26 name="Lv40from35"
+x=59 y=26 name="40to35"
+x=60 y=26 name="40from35"
 /plabelinfolvl
 pobstaclelabelinfolvl
 /pobstaclelabelinfolvl
