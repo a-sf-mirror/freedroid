@@ -261,7 +261,7 @@ Name=_"Hatch with broken ladder"
 Trigger at label="25to43"
 Silent=0
 LuaCode={
-	teleport("Lv43fromX0")
+	teleport("43fromX0")
 }
 * End of trigger *
 
@@ -422,7 +422,7 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Hidden way out"
-Trigger at label="Lv43toX1"
+Trigger at label="43toX1"
 Silent=0
 LuaCode={
 	teleport("25from43")
