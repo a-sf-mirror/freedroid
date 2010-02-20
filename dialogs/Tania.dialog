@@ -111,7 +111,7 @@ LuaCode={
 Nr=8  Text=_"So you are a biologist? Could you heal me?"
 LuaCode={
 	npc_says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
-	npc_says(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.")
+	npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.","You are completely healed, you should take more care of yourself.")
 	heal_tux()
 }
 ----------------------------------------------------------------------
@@ -197,7 +197,7 @@ LuaCode={
 	end_quest("Tania's sanitary")
 	add_item("Source Book of Check system integrity",1)
 	add_item("Source Book of Sanctuary",1)
-	add_diary_entry("Tania's sanitary", "Tania is free now!")
+	add_diary_entry("Tania's sanitary", "Tania is free now, I got some books as reward.")
 	hide(27)
 }
 ----------------------------------------------------------------------
@@ -217,7 +217,7 @@ LuaCode={
 
 Nr=99  Text=_"I think I have to go."
 LuaCode={
-	npc_says(_"That's ok. But please, please, come back. I'm so lonely.")
+	npc_says_random(_"That's ok. But please, please, come back. I'm so lonely.","Please come back again and get me out of here.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
