@@ -3084,6 +3084,8 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_meat_cleaver", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Iron pipe"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_iron_pipe", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Crowbar"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_crowbar", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Antique sword"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_antique_sword", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Power hammer"))
