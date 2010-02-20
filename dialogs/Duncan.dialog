@@ -55,7 +55,7 @@ LuaCode={
 
 Nr=1  Text=_"I would like to buy a bomb."
 LuaCode={
-	npc_says(_"Yes. I am sure we can arrange something. Take a look.")
+	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.","Sure. These are my offers today.")
 	trade_with("Duncan")
 	hide(1) show(2, 7)
 }
@@ -91,7 +91,7 @@ LuaCode={
 
 Nr=5  Text=_"I want to buy some grenades."
 LuaCode={
-	npc_says(_"Certainly.")
+	npc_says_random(_"Certainly.","Sure.", "With pleasure I am showing you my offers.")
 	trade_with("Duncan")
 }
 ----------------------------------------------------------------------

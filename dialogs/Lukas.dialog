@@ -50,7 +50,9 @@ Nr=1  Text=_"Spencer said you'd be able to provide me with better armor and equi
 LuaCode={
 	npc_says(_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor. I can adjust it to fit any measurements, even yours.")
 	npc_says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing.")
-	npc_says(_"Now, what will it be?")
+	nps_says(_"But we also trade guns and some ammo.")
+	npc_says_random(_"Now, what will it be?","So, what do you want to buy?")
+	show(3)
 	trade_with("Lukas")
 }
 ----------------------------------------------------------------------
@@ -61,8 +63,19 @@ LuaCode={
 	hide(2)
 }
 ----------------------------------------------------------------------
+Nr=3 Text=_"I'd like to buy an exterminator"
+LuaCode={
+	npc_says(_"Haha, good one.")
+	npc_says(_"Sorry, they are not for sale.")
+	tux_says(_"I'll get one for free?")
+	npc_says(_"You are the most funny Linarian I've ever seen.")
+	npc_says(_"And the only one.")
+	npc_says(_"Now go, kill some bots.")
+	hide(3)
+}
+----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later! "
+Nr=99  Text=_"See you later!"
 LuaCode={
 	end_dialog()
 }
