@@ -28,17 +28,31 @@ END OF AUTORS NOTES
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={ show(0, 1, 2, 3, 99) }
+EveryTime LuaCode={ show(0, 2, 3, 4, 99) }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"Who are you? "
 LuaCode={
 	npc_says(_"I am a 614 security bot, once one of the best-selling products of the Nicholson company.")
-	hide(0)	show(4)
+	hide(0)	show(1, 4)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Have you detected any hostile bot activity?"
+Nr=1 Text=_"What can you tell me about the Nicholson company?"
+LuaCode={
+	npc_says(_"The Nicholson company produces security bots.")
+	npc_says(_"It was founded by Karl Nicholson, a former Kernel hacker who was not satisfied with the development of the GPL license.")
+	npc_says(_"Nicholson decided to stick to one GPL version because they saw things getting worse.")
+	npc_says(_"Others were warned, but nobody listened to Nicholsons announcements.")
+	npc_says(_"He built up a team and developed an own Kernel called 'Nkernel'.")
+	npc_says(_"The Nkernel development team grew fast and technicians started to produce own droids optimized for the Nkernel.")
+	npc_says(_"The Team became a company which released their first security droid, the 610 lovely.")
+	npc_says(_"I am the 4th generation version of their security droid line.")
+	hide(1)
+}
+----------------------------------------------------------------------
+
+Nr=2  Text=_"Have you detected any hostile bot activity?"
 LuaCode={
 	npc_says(_"Order Received. Inititiating proximity energy level scan...")
 	npc_says(_"***** Proximity Scan Results *****", "NO_WAIT")
@@ -46,42 +60,42 @@ LuaCode={
 	npc_says(_"Enemy Energy Levels: LOW", "NO_WAIT")
 	npc_says(_"Threat Degree Analysis: MODERATE", "NO_WAIT")
 	npc_says(_"Complex Gate Status: OPEN")
-	hide(1)
+	hide(2)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"What can you tell me about the 614 type?"
+Nr=3  Text=_"What can you tell me about the 614 type?"
 LuaCode={ 
 	npc_says(_"The official manual classifies the 614 as a high class security droid.")
 	npc_says(_"It was mainly used within ships to protect certain areas from intruders.")
 	npc_says(_"It is considered an old but reliable device.")
 	npc_says(_"So don't worry. I'm still in pretty good shape.")
-	hide(2)
-}
-----------------------------------------------------------------------
-
-Nr=3  Text=_"What are your orders?"
-LuaCode={
-	npc_says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
-	npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: HIGH.")
 	hide(3)
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"Why are you not hostile as all the other bots?"
+Nr=4  Text=_"What are your orders?"
+LuaCode={
+	npc_says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
+	npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: HIGH.")
+	hide(4)
+}
+----------------------------------------------------------------------
+
+Nr=5  Text=_"Why are you not hostile as all the other bots?"
 LuaCode={
 	npc_says(_"I belong to a an older generation of bots, running a custom-made security guard operating system.")
 	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
 	npc_says(_"Even though discontinued from Nicholson Company long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
 	npc_says(_"Don't forget to buy products from Nicholson Company. They are the best.")
-	hide(4)
+	hide(5)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"See you later."
 LuaCode={
 	npc_says(_"Resuming guard program.")
-	hide(4)
+	hide(5)
 	end_dialog()
 }
 ----------------------------------------------------------------------
