@@ -45,7 +45,7 @@ EveryTime LuaCode={
 Nr=0  Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!")
-	nps_says(_"I already saw you coming. Due to my mapping device! It's great stuff!)
+	npc_says(_"I already saw you coming. Due to my mapping device! It's great stuff!")
 	npc_says(_"And as a special favour, I'll sell you a mapping device for half price!")
 	npc_says(_"What a GREAT offer! You're so lucky!")
 	hide(0) show(1, 2, 3, 10, 20)
@@ -83,7 +83,7 @@ LuaCode={
 	npc_says(_"No way, man, I guarantee it. Don't believe anything you might have heard.")
 	npc_says(_"This is a perfectly safe and tried technology. No risk at all! Really!")
 	npc_says(_"There is no risk of your head being eaten by a nanotechnological nightmare, or anything funny like that.")
-	nps_says(_"I've used one myself for many years now: no side effects! It works just as great as on the first day!)
+	npc_says(_"I've used one myself for many years now: no side effects! It works just as great as on the first day!")
 	npc_says(_"Trust me! I'm your best friend and I wouldn't lie to you! Never!")
 	hide(4) show(5)
 }
