@@ -45,7 +45,7 @@ EveryTime LuaCode={
 Nr=0  Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!")
-	nps_says(_"I already saw you comming. Due to my mapping device! It's greate stuff!)
+	nps_says(_"I already saw you coming. Due to my mapping device! It's great stuff!)
 	npc_says(_"And as a special favour, I'll sell you a mapping device for half price!")
 	npc_says(_"What a GREAT offer! You're so lucky!")
 	hide(0) show(1, 2, 3, 10, 20)
@@ -54,7 +54,7 @@ LuaCode={
 
 Nr=1  Text=_"Ok, if I want to buy me one of those mapping pills. How much are they?"
 LuaCode={
-	npc_says_random(_"They only cost 50. Special price only for you!","You're so lucky! I just decided to reduce the price to 50% of it's origin!")
+	npc_says_random(_"They only cost 50. Special price only for you!","You're so lucky! I just decided to cut the price in half!")
 	hide(1) show(11, 12)
 }
 ----------------------------------------------------------------------
@@ -83,7 +83,7 @@ LuaCode={
 	npc_says(_"No way, man, I guarantee it. Don't believe anything you might have heard.")
 	npc_says(_"This is a perfectly safe and tried technology. No risk at all! Really!")
 	npc_says(_"There is no risk of your head being eaten by a nanotechnological nightmare, or anything funny like that.")
-	nps_says(_"I use one myself for many years now, no side effects. It works just as great as on the first day!)
+	nps_says(_"I've used one myself for many years now: no side effects! It works just as great as on the first day!)
 	npc_says(_"Trust me! I'm your best friend and I wouldn't lie to you! Never!")
 	hide(4) show(5)
 }
@@ -110,7 +110,7 @@ Nr=10  Text=_"Do you sell anything else?"
 LuaCode={
 	npc_says(_"Sure! I also build some electronics devices, depending on what parts I can get my hands on.", "NO_WAIT") 
 	-- We can potentially add more electronics things he can do in the future, or perhaps "add magic" to an item of Tux for a price
-	npc_says(_"Resources are a bit scarse nowdays though.")
+	npc_says(_"Resources are a bit scarce nowdays though.")
 	trade_with("Skippy")
 }
 ----------------------------------------------------------------------
