@@ -99,8 +99,8 @@ LuaCode={
 ##############
 ## Level  4 ##
 ##############
-* N*ew event trigger *
-Name=_"Escape from disruption deck"
+* New event trigger *
+Name=_"Back to catacombs"
 Trigger at label="4to55"
 Silent=0
 LuaCode={
@@ -120,8 +120,8 @@ LuaCode={
 ##############
 ## Level  5 ##
 ##############
-* N*ew event trigger *
-Name=_"To disruption machine deck"
+* New event trigger *
+Name=_"Way to disruption machine deck"
 Trigger at label="5to55"
 Silent=0
 LuaCode={
@@ -476,8 +476,8 @@ LuaCode={
 ##############
 ## Level 55 ##
 ##############
-* N*ew event trigger *
-Name=_"Hidden way out"
+* New event trigger *
+Name=_"Back to Disruptor Shield Control"
 Trigger at label="55toX0"
 Silent=0
 LuaCode={
@@ -485,8 +485,8 @@ LuaCode={
 }
 * End of trigger *
 
-* N*ew event trigger *
-Name=_"Hidden way out"
+* New event trigger *
+Name=_"To Disruptor Mashine Deck"
 Trigger at label="55toX1"
 Silent=0
 LuaCode={
