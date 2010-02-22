@@ -170,7 +170,7 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=11  Text=_"I want to become a hacker."
 LuaCode={
-	npc_says(_"Your desire for information amuses me. Your wish will be granted. I will teach you how to hack.")
+	npc_says(_"Your desire for information amuses me. Your wish will be granted. I will teach you how to improve your skill in designing hacking programs.")
 	npc_says(_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill.")
 	npc_says(_"Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder stops and thinks.")
 	npc_says(_"You must know when to hack and when not to hack. You must attack when the enemy is unprepared for you.")
@@ -196,7 +196,7 @@ LuaCode={
 
 Nr=13  Text=_"I want money."
 LuaCode={
-	npc_says(_"Eh... Here, take these 900 bucks. That should be enough.")
+	npc_says(_"Eh... Here, take these 900 circuits. That should be enough.")
 	add_gold(900)
 	add_cookie("kevin_reward1_given")
 	end_dialog()
@@ -222,11 +222,11 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text="Improve Hacking Ability (cost 300 cash, 5 ability points)"
+Nr=30  Text="Improve Hacking Program (cost 300 cash, 5 ability points)"
 LuaCode={
 	npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 	npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
-	npc_says(_"Now I see your hacking skill has already improved a lot.")
+	npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
 	add_gold(-300)
 	del_training_points(5)
 	improve_program("Hacking")
