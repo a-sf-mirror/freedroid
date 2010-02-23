@@ -32,11 +32,10 @@ Beginning of new chat dialog for character="XXXXX"
 EveryTime LuaCode={
 	if (not has_cookie("met_docmoore")) then
 		show(0)
-		add_cookie("met_docmoore")
 	else end
 
 	if (has_quest("Bender's problem")) then
-		if (not done_quest("Bender's problem")) then 
+		if ( (has_cookie("met_docmoore")) and (not done_quest("Bender's problem")) ) then 
 			show(2)
 		else end
 	else end
@@ -60,6 +59,10 @@ LuaCode={
 	tux_says(_"I'm a Linarian.")
 	npc_says(_"Oh, I vaguely remember reading something about Linarian biology back in my university days...")
 	npc_says(_"I should be able to heal you if you get hurt.")
+	add_cookie("met_docmoore")
+	if (has_quest("Bender's problem")) then
+		show(2)
+	else end
 	hide(0) show(1, 3, 10)
 }
 ----------------------------------------------------------------------
@@ -83,7 +86,7 @@ Nr=2  Text=_"Doc, I took some of those brain enlargement pills..."
 LuaCode={
 	if (has_cookie("doc_healed_tux")) then
 		npc_says(_"Sorry, but I already gave you some medical help.")
-		npc_says(_"If you poison yourself, that's entirely your business and I'm not responsible.")
+		npc_says(_"To poison yourself, 1 more time, that's entirely your own business and I'm not responsible.")
 		npc_says(_"As far as I am concerned, in this town everyone gets everything equally.")
 		show(20)
 	else
