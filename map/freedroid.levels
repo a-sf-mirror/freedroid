@@ -8019,7 +8019,8 @@ x=57 y=68 name="5from55"
 x=56 y=67 name="5to55"
 x=22 y=19 name="Shutdown sequence in quest, open doors on machinedeck"
 x=23 y=17 name="DSB-PCT"
-x=75 y=16 name="DSB-PCT-gateE"
+x=75 y=16 name="DSB-PCG1TerminalE"
+x=71 y=16 name="DSB-PCG1TerminalW"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="DSB-powerunit1"
@@ -8122,6 +8123,8 @@ Nr.= 83 x=  23 y=  16 rnd=1	 c:   84
 Nr.= 84 x=  23 y=  17 rnd=1	 c:   83
 Nr.= 85 x=  75 y=  16 rnd=1	 c:   86
 Nr.= 86 x=  75 y=  15 rnd=1	 c:   85
+Nr.= 87 x=  71 y=  16 rnd=1	 c:   88
+Nr.= 88 x=  72 y=  16 rnd=1	 c:   87
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 6

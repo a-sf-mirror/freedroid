@@ -91,7 +91,7 @@ void init_npcs()
 		"DocMoore",
 		"DSB-MachineDeckControl",
 		"DSB-PowerControl",
-		"DSB-PowerControlGate1E",
+		"DSB-PowerControlGate1",
 		"Duncan",
 		"Ewald",
 		"FirmwareUpdateServer",
