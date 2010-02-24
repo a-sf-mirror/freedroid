@@ -30,16 +30,16 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_DSB-MDCT")) then
+	terminal = "admin@main.mdc.dsb.ms: ~ #"
+	if (not has_cookie("met_dsb-mdc")) then
 		cli_says(_"Login : ", "NO_WAIT")
 		tux_says(_"admin", "NO_WAIT")
-		cli_says(_"  Password : ", "NO_WAIT")
+		cli_says(_"Password : ", "NO_WAIT")
 		tux_says(_"*******", "NO_WAIT")
 		npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-		add_cookie("met_DSB-MDCT")	
+		add_cookie("met_dsb-mdc")	
 	else end
-
-	cli_says(_"admin@machinedeckcontrol.dsb.ms: ~ #", "NO_WAIT")
+	cli_says(terminal, "NO_WAIT")
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -49,8 +49,8 @@ LuaCode={
 	npc_says(_"Changing password for admin. Enter new password: ")
 	npc_says(_"Enter new password again: ")
 	npc_says(_"Password successfully changed.")
-	add_cookie("DSB-MDCT_password")
-	cli_says(_"admin@machinedeckcontrol.dsb.ms: ~ #", "NO_WAIT")
+	add_cookie("dsb-mdc_password")
+	cli_says(terminal, "NO_WAIT")
 	hide(1)
 }
 ----------------------------------------------------------------------
@@ -59,14 +59,14 @@ Nr=7  Text=_"shieldmgr --disable --force"
 LuaCode={
 	npc_says(_"Disabling disruptor shield... ")
 	npc_says(_"Shield disabled.")
-	if (not has_cookie("DSB-MDCT_password")) then
+	if (not has_cookie("dsb-mdc_password")) then
 		npc_says(_"WARNING: Somebody else is using this computer.")
 		npc_says(_"Disruptor shield is active.")
 	else
 		end_quest("Opening access to MS Office")
 		add_diary_entry("Opening access to MS Office", "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 	end
-	cli_says(_"admin@machinedeckcontrol.dsb.ms: ~ #", "NO_WAIT")
+	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 

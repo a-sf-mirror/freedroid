@@ -32,6 +32,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
+	terminal = "guest@gate1.pc.dsb.ms: ~ #"
 	if (not has_cookie("met_dsb-pcg1e")) then
 		cli_says(_"Login : ", "NO_WAIT")
 		tux_says(_"admin", "NO_WAIT")
@@ -42,43 +43,61 @@ EveryTime LuaCode={
 		npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 		add_cookie("met_dsb-pcg1e")	
 	else end
-	cli_says(_"guest@gate1.powercontrol.dsb.ms: ~ #", "NO_WAIT")
-	show(0,1,99)
+	cli_says(terminal, "NO_WAIT")
+
+	if (cmp_obstacle_state("DSB-PCGate1", "closed")) then show(0)
+	else
+		if (cmp_obstacle_state("DSB-PCGate1", "opened")) then show(10)
+		else npc_says(_"GAME BUG. PLEASE REPORT.") end
+	end
+	show(98,99)
 }
 ----------------------------------------------------------------------
 
 Nr=0  Text=_"open gate"
 LuaCode={
-	npc_says(_"Security Access to this area not granted.")
-	npc_says(_"Contact personel in Machine Deck Control Room if you believe this to be an error.")
-	hide(0) show(10)
-	change_obstacle_state("DSB-PCGate1", "opened")
-}
-----------------------------------------------------------------------
-
-Nr=1  Text=_"state get test"
-LuaCode={
-	if (get_obstacle_state("DSB-PCGate1") == "opened") then 
-		npc_says(_"Get state working")
-	else end
-	npc_says(_"Access granted.", "NO_WAIT")
-	npc_says(_"Gate opened.", "NO_WAIT")
+	if (not has_cookie("dsb_pc_access")) then
+		npc_says(_"Gate status: CLOSED", "NO_WAIT")
+		npc_says(_"Security Access to this area not granted.")
+		npc_says(_"Contact personel in Machine Deck Control Room if you believe this to be in error.")
+	else
+		npc_says(_"Gate status: CLOSED", "NO_WAIT")
+		npc_says(_"Access granted. Opening gate ...")
+		npc_says(_"Gate status: OPEN", "NO_WAIT")
+		change_obstacle_state("DSB-PCGate1", "opened")
+		hide(0) show(10)
+	end
+	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
 Nr=10  Text=_"close gate"
 LuaCode={
-	npc_says(_"Access granted.", "NO_WAIT")
-	npc_says(_"Gate closed.", "NO_WAIT")
+	npc_says(_"Gate status: OPEN", "NO_WAIT")
+	npc_says(_"Access granted. Closing gate ...")
+	npc_says(_"Gate status: CLOSED", "NO_WAIT")
 	change_obstacle_state("DSB-PCGate1", "closed")
+	cli_says(terminal, "NO_WAIT")
 	hide(10) show(0)
+}
+----------------------------------------------------------------------
+
+Nr=98  Text=_"Debug: give cookie"
+LuaCode={
+	if (not has_cookie("dsb_pc_access")) then
+		add_cookie("dsb_pc_access")
+		npc_says(_"Cookie cheated")
+	else 
+		npc_says(_"Cookie already cheated")
+	end
+	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"
 LuaCode={
-	npc_says_random(_"Have a nice day.","Have a wonderful day.","NO_WAIT")
-	npc_says(_"Exiting")
+	npc_says(_"Exiting","NO_WAIT")
+	npc_says_random(_"Have a nice day.","Have a wonderful day.","Hope your day will be most productive.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

@@ -117,12 +117,11 @@ function change_obstacle_state(label, state)
 	change_obstacle_type(label, get_obstacle_state_id(id, state));
 end
 
-function get_obstacle_state(label)
+function cmp_obstacle_state(label, state)
 	id = get_obstacle_type(label);
 
-	get_obstacle_state_id(id, state);
+	return (id == get_obstacle_state_id(id, state));
 end
-
 
 function npc_says_random(...)
 	if (arg[#arg] == "NO_WAIT") then
