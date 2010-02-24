@@ -22,6 +22,8 @@ If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
+
 BEGIN OF AUTORS NOTES
 
 END OF AUTORS NOTES 
@@ -30,58 +32,29 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_mer")) then
+	if (not has_cookie("met_dsb-pc")) then
 		cli_says(_"Login : ", "NO_WAIT")
 		tux_says(_"admin", "NO_WAIT")
 		cli_says(_"  Password : ", "NO_WAIT")
 		tux_says(_"*******", "NO_WAIT")
 		npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-		add_cookie("met_mer")	
+		add_cookie("met_dsb-pc")	
 	else end
-
-	if (has_cookie("mer_password")) then
-		hide(1, 7) show(8)
-	else
-		hide(8) show(1, 7)
-	end
-	cli_says(_"admin@shielddefense: ~ #", "NO_WAIT")
+	cli_says(_"admin@dsb_powercontrol: ~ #", "NO_WAIT")
 	show(99)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"passwd"
+Nr=0  Text=_"<?>"
 LuaCode={
-	npc_says(_"Changing password for admin. Enter new password: ")
-	npc_says(_"Enter new password again: ")
-	npc_says(_"Password successfully changed.")
-	add_cookie("mer_password")
-	cli_says(_"admin@shielddefense: ~ #", "NO_WAIT")
-	hide(1, 7) show(8)
-}
-----------------------------------------------------------------------
-
-Nr=7  Text=_"shieldmgr --disable --force"
-LuaCode={
-	npc_says(_"Disabling disruptor shield... ")
-	npc_says(_"Shield disabled.")
-	npc_says(_"WARNING: somebody else is using this computer.")
-	npc_says(_"Disruptor shield is active.")
-	cli_says(_"admin@shielddefense: ~ #", "NO_WAIT")
-}
-----------------------------------------------------------------------
-
-Nr=8  Text=_"shieldmgr --disable --force"
-LuaCode={
-	npc_says(_"Disabling disruptor shield...")
-	npc_says(_"Shield disabled.")
-	end_quest("Opening access to MS Office")
-	add_diary_entry("Opening access to MS Office", "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
-	cli_says(_"admin@shielddefense: ~ #", "NO_WAIT")
+	npc_says(_"<?>")
+	hide(0)
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"
 LuaCode={
+	npc_says(_"Exiting")
 	end_dialog()
 }
 ----------------------------------------------------------------------

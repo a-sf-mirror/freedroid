@@ -100,20 +100,11 @@ LuaCode={
 ## Level  4 ##
 ##############
 * New event trigger *
-Name=_"Back to catacombs"
-Trigger at label="4to55"
+Name=_"Back to lower catacombs"
+Trigger at label="4to56"
 Silent=0
 LuaCode={
-	teleport("55fromX1")
-}
-* End of trigger *
-
-* New event trigger *
-Name=_"Access disruptor shield control"
-Trigger at label="4to7"
-Silent=0
-LuaCode={
-	teleport("7from4")
+	teleport("56fromX1")
 }
 * End of trigger *
 
@@ -144,14 +135,6 @@ LuaCode={
 ##############
 ## Level  7 ##
 ##############
-* New event trigger *
-Name=_"To disruption machine deck"
-Trigger at label="7to4"
-Silent=0
-LuaCode={
-	teleport("4from7")
-}
-* End of trigger *
 
 ##############
 ## Level  8 ##
@@ -486,17 +469,34 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"To Disruptor Mashine Deck"
+Name=_"To Mashine Deck Lower Catacombs"
 Trigger at label="55toX1"
 Silent=0
 LuaCode={
-	teleport("4from55")
+	teleport("56fromX0")
 }
 * End of trigger *
 
 ##############
 ## Level 56 ##
 ##############
+* New event trigger *
+Name=_"Back to Machine Deck Upper Catacombs"
+Trigger at label="56toX0"
+Silent=0
+LuaCode={
+	teleport("55fromX1")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"To Disruptor Mashine Deck"
+Trigger at label="56toX1"
+Silent=0
+LuaCode={
+	teleport("4from56")
+}
+* End of trigger *
 
 ##############
 ## Level 57 ##

@@ -170,13 +170,13 @@ computer cluster for analysis. Ought to be simple."
 +++ Reach the disruptor shield generator and activate it, if possible
 +++
 Mission Name=_"Opening access to MS Office"
-Mission target is to kill droids with marker : 1007
+Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : -1
 Mission target is to also kill all hostile droids on second level : -1
 Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 7
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
+Mission target is to reach level : 4
+Mission target is to reach X-Pos : 7.5
+Mission target is to reach Y-Pos : 33.5
 Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
