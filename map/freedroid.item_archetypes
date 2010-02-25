@@ -75,28 +75,29 @@ Other items can potentially be bigger
 /****** Hand to hand ********************************************************************************
 
 -> * Cutting *
- Big kitchen knife    - 1H - Size 1x2 - lvl 0 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.5  - Dur 10-15 -  30
- Antique sword        - 1H - Size 1x4 - lvl 2 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur 20-30 - 100
- Chainsaw             - 2H - Size 2x4 - lvl 4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  6-8  - 500
+ Big kitchen knife    - 1H - Size 1x2 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.5  - Dur 10-15 -  30 - stone
+ Cutlass              - 1H - Size 1x4 - str 0 dex20 - Dam: 2-4  - Recharge: 0.55 - Dur 20-30 - 100
+ Antique Greatsword   - 2H - Size 2x5 - str25 dex20 - Dam:10-16 - Recharge: 1.0  - Dur 20-30 - 400
+ Chainsaw             - 2H - Size 2x4 - str15 dex20 - Dam: 2-3  - Recharge: 0.15 - Dur  6-8  - 500
 -> * Cleaving *
- Meat cleaver         - 1H - Size 2x2 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 30-40 -  50
- Small Axe            - 1H - Size 2x3 - lvl 2 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 40-60 -  80 
- Large Axe            - 2H - Size 2x5 - lvl 3 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 40-60 - 120
+ Meat cleaver         - 1H - Size 2x2 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 30-40 -  50 - stone
+ Small Axe            - 1H - Size 2x3 - str14 dex15 - Dam: 2-6  - Recharge: 0.7  - Dur 40-60 -  80 - stone
+ Large Axe            - 2H - Size 2x5 - str25 dex18 - Dam:10-20 - Recharge: 1.2  - Dur 40-60 - 120 - stone
 -> * Piercing *
- Hunting knife        - 1H - Size 1x2 - lvl 1 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.4  - Dur  6-10 -  40
-*Metal spear          - 1H - Size 1x6 - lvl 3 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 30-40 -  80
+ Hunting knife        - 1H - Size 1x2 - str 0 dex 0 - Dam: 0-2  - Recharge: 0.4  - Dur  6-10 -  40 - stone
+*Metal spear          - 1H - Size 1x6 - str20 dex26 - Dam: 2-5  - Recharge: 0.4  - Dur 30-40 -  80
 -> * Impact *
-+Iron pipe            - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 35-55 -  30
- Big wrench           - 1H - Size 1x3 - lvl 0 - str 0 dex 0 - Dam: 1-4  - Recharge: 0.75 - Dur 30-50 -  60
- Crowbar              - 1H - Size 1x3 - lvl 0 - str15 dex 0 - Dam: 1-4  - Recharge: 0.6  - Dur 45-65 -  60
- Power hammer         - 1H - Size 2x3 - lvl 2 - str 0 dex 0 - Dam: 2-3  - Recharge: 0.25 - Dur 30-40 - 250 (laser ammo - reload 2 - clip 60)
-+Mace                 - 1H - Size 1x3 - lvl 3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 50-70 - 180
- Baseball bat         - 2H - Size 2x4 - lvl 1 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur 10-15 -  30
-+Iron bar             - 2H - Size 1x5 - lvl 2 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 60-75 -  70
- Sledgehammer         - 2H - Size 2x5 - lvl 4 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 40-60 - 150
+ Iron pipe            - 1H - Size 1x3 - str 0 dex 0 - Dam: 1-3  - Recharge: 0.6  - Dur 35-55 -  30 - stone
+ Big wrench           - 1H - Size 1x3 - str 0 dex 0 - Dam: 1-4  - Recharge: 0.75 - Dur 30-50 -  60 - stone
+ Crowbar              - 1H - Size 1x3 - str15 dex 0 - Dam: 1-4  - Recharge: 0.6  - Dur 45-65 -  60 - stone
+ Power hammer         - 1H - Size 2x3 - str 0 dex 0 - Dam: 2-3  - Recharge: 0.25 - Dur 30-40 - 250 - stone - (laser ammo - reload 2 - clip 60)
+ Mace                 - 1H - Size 1x3 - str25 dex15 - Dam: 3-8  - Recharge: 0.8  - Dur 50-70 - 180 
+ Baseball bat         - 2H - Size 2x4 - str12 dex15 - Dam: 4-10 - Recharge: 0.7  - Dur 10-15 -  30 - stone
+ Iron bar             - 2H - Size 1x5 - str20 dex15 - Dam: 6-12 - Recharge: 1.0  - Dur 60-75 -  70
+ Sledgehammer         - 2H - Size 2x5 - str25 dex20 - Dam:20-30 - Recharge: 1.5  - Dur 40-60 - 150
 -> * Energy *
- Lightsaber           - 2H - Size 1x2 - lvl 7 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 1000  -1500 (laser ammo - reload 2 - clip 20)
- Laserstaff           - 2H - Size 1x3 - lvl 8 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 1000  -2000 (laser ammo - reload 2 - clip 20)
+ Lightsaber           - 2H - Size 1x2 - str 0 dex30 - Dam:30-40 - Recharge: 0.5  - Dur 1000  -1500 (laser ammo - reload 2 - clip 20)
+ Laserstaff           - 2H - Size 1x3 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 1000  -2000 (laser ammo - reload 2 - clip 20)
 -> * Special *
  Nobody's edge
  Laser scalpel
@@ -194,18 +195,18 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Antique sword"
+Item name=_"Cutlass"
 Item min class for drop=0
 Item max class for drop=0
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
-Item uses rotation series with prefix="weapons/sword"
+Item uses rotation series with prefix="weapons/cutlass"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=-1
 Dexterity minimum required to wear/wield this item=20
 Base item duration=20
 plus duration modifier=10
-File or directory name for inventory image="weapons/sword/inv_image.png"
+File or directory name for inventory image="weapons/cutlass/inv_image.png"
 inventory_size_x=1
 inventory_size_y=4
 Item uses drop sound with filename="drop_sword_sound.ogg"
@@ -228,6 +229,44 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Antique Greatsword"
+Item min class for drop=0
+Item max class for drop=0
+Item can be applied in combat="no"
+Item can be installed in slot with name="weapon"
+Item uses rotation series with prefix="weapons/sword"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=25
+Dexterity minimum required to wear/wield this item=20
+Base item duration=20
+plus duration modifier=10
+File or directory name for inventory image="weapons/sword/inv_image.png"
+inventory_size_x=2
+inventory_size_y=5
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=400
+Item description text=_"Very maneuverable for it's size, and heavy enough to punch though weaker bot armor in 1 hit, the only real disadvantage of this old weapon is the same as for other swords. It just doesn't last long when cutting into metal parts."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.000000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.100000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=10
+Item as gun: modifier for damage of bullets=6
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: ignore collisions with wall="yes"
+Item as gun: reflect other bullets="yes"
+Item as gun: pass through explosions="yes"
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 

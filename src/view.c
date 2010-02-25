@@ -3074,22 +3074,24 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 {
 	if (Me.weapon_item.type != (-1)) {
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
-			if (MatchItemWithName(Me.weapon_item.type, "Mace"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_mace", x, y, rotation_index);
-			else if (MatchItemWithName(Me.weapon_item.type, "Big wrench"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_wrench", x, y, rotation_index);
-			else if (MatchItemWithName(Me.weapon_item.type, "Big kitchen knife"))
+			if      (MatchItemWithName(Me.weapon_item.type, "Big kitchen knife"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_big_kitchen_knife", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Cutlass"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_cutlass", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Antique Greatsword"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_antique_greatsword", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Meat cleaver"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_meat_cleaver", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Iron pipe"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_iron_pipe", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Big wrench"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_big_wrench", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Crowbar"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_crowbar", x, y, rotation_index);
-			else if (MatchItemWithName(Me.weapon_item.type, "Antique sword"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_antique_sword", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Power hammer"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_power_hammer", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Mace"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_mace", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Baseball bat"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_baseball_bat", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Sledgehammer"))
@@ -3097,7 +3099,24 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 			else
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sword", x, y, rotation_index);
 		} else {
-			iso_put_tux_part(PART_GROUP_WEAPON, "iso_gun1", x, y, rotation_index);
+
+			if      (
+				(MatchItemWithName(Me.weapon_item.type, "Exterminator")) ||
+				(MatchItemWithName(Me.weapon_item.type, "The Super Exterminator!!!"))
+				)
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_exterminator", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Barrett M82 Sniper Rifle"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_barrett_m82_sniper_rifle", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "9mm Sub Machine Gun"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_9mm_sub_machine_gun", x, y, rotation_index);
+			else if (
+				(MatchItemWithName(Me.weapon_item.type, "Two Barrel sawn off shotgun")) ||
+				(MatchItemWithName(Me.weapon_item.type, "Two Barrel shotgun")) ||
+				(MatchItemWithName(Me.weapon_item.type, "Pump action shotgun"))
+				)
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_shotgun", x, y, rotation_index);
+			else
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_gun1", x, y, rotation_index);
 		}
 	}
 
