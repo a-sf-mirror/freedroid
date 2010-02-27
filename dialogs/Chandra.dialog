@@ -47,31 +47,34 @@ LuaCode={
 
 Nr=1  Text=_"What can you tell me about this place?"
 LuaCode={
-	npc_says(_"This small town has existed since before the Great Assault. It used to be a somewhat successful mining community.")
+	npc_says(_"This small town used to be a somewhat successful mining community, exporting rare earth materials and other resources to the rest of the solar system.")
+	npc_says(_"The mines have depleted recently, however. The town was under a threat of bankruptcy. Living here became harder and many left to seek new opportunities elsewhere.")
 	npc_says(_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all.")
+	npc_says(_"Even with the Red Guard in charge, I suppose.")
 	hide(1) show(5, 10)
 }
 ----------------------------------------------------------------------
 
 Nr=2  Text=_"Where can I get better equipment?"
 LuaCode={
-	npc_says(_"The shop is to the north. Ms. Stone always has a good range of equipment there.")
-	npc_says(_"And the Red Guard always has the biggest guns and the best armor, but they do not sell them to the non-members.")
+	npc_says(_"The shop is to the north, near the gate. Ms. Stone always has a good range of equipment there, with fair prices too.")
+	npc_says(_"Not that you have much choice.")
+	npc_says(_"Of course, the Red Guard always has the biggest guns and the best armor, but they do not sell them to non-members.")
 	hide(2)
 }
 ----------------------------------------------------------------------
 
 Nr=3  Text=_"So what's so strange about the attack?"
 LuaCode={
-	npc_says(_"According to my calculations from the Fermi estimate, there are about seven million bots active in the region.")
+	npc_says(_"According to my calculations from the Fermi estimate, there are about seven million bots active in the region, everything from cleaner bots and servant droids to much more dangerous ones.")
 	npc_says(_"Now, I think you will agree with me that the following statement is true: If bots, then death to everything alive.")
 	npc_says(_"Now, I make the assumption that you and I are alive.")
 	npc_says(_"Now, if we are not dead, and if bots are killing everything alive...")
 	npc_says(_"... THEN SOMETHING IS NOT LOGICAL!")
 	tux_says(_"Calm down. There must be some logic behind this.")
 	npc_says(_"There is none!")
-	npc_says(_"They could just enter the city and massacre everyone.")
-	npc_says(_"But they do not do so.")
+	npc_says(_"They could just enter the city and massacre everyone...")
+	npc_says(_"But they do not even seem to try!")
 	npc_says(_"This makes no sense at all!")
 	hide(3)
 }
@@ -79,20 +82,20 @@ LuaCode={
 
 Nr=5  Text=_"What do you know about the hostile bots?"
 LuaCode={
-	npc_says(_"The phenomenon of hostile bots has occupied my mind for quite some time.  There are some strange irrationalities in this behaviour, that I cannot explain.")
-	npc_says(_"This concerns not only the irrationality of the attack but also the methods and the scale of it all.")
+	npc_says(_"The phenomenon of hostile bots has occupied my mind for quite some time. There are some strange irrationalities in this behaviour, that I cannot explain.")
+	npc_says(_"This concerns not only the suddenness of the attack but also the methods and the scale of it all.")
 	hide(5) show(3, 6, 7)
 }
 ----------------------------------------------------------------------
 
 Nr=6  Text=_"What types of bots are out there?"
 LuaCode={
-	npc_says(_"Hmm... Each kind of bot has a number consisting of three digits. The first one is the most significant, the class of a bot.")
+	npc_says(_"There are many. Each kind of bot has a number consisting of three digits. The first one is the most significant, the class of a bot.")
 	npc_says(_"I know a bit about three classes.")
-	npc_says(_"The 100s are cleaning bots of old. They are not too troublesome most of the time.")
-	npc_says(_"The 200s are more dangerous. Beware of being attacked by more than one at the same time.")
-	npc_says(_"An encounter with a 300 type bot equals death, so try to avoid it.")
-	npc_says(_"I am sure there are lots more of classes out there, but I know nothing about them.")
+	npc_says(_"The 100s are cleaning bots of old. Being that, they are quite common. Fortunately for us they aren't as good at killing things as they are at cleaning up the mess afterwards.")
+	npc_says(_"The 200s are servant bots, designed to come quickly when summoned and be able to lift heavy weights. That makes them more dangerous under most circumstances, so beware of being attacked by more than one at the same time.")
+	npc_says(_"Right now, an encounter with a 300 type bot equals death, so try to avoid it. They were messenger bots before the Great Assault, which means they have superb visual sensors and some are very fast.")
+	npc_says(_"There are many more classes out there. The military used bots, of course, and they were used on ships, but I know nothing about those types.")
 	hide(6) show(11, 12, 13)
 }
 ----------------------------------------------------------------------
@@ -117,11 +120,15 @@ LuaCode={
 
 Nr=9  Text=_"I keep getting beaten up by the bots. What can I do?"
 LuaCode={
-	npc_says(_"My advice is to invest in a ranged weapon. While that can create a huge puncture in your wallet, it is better than a huge puncture in you.")
+	npc_says(_"There are many things you can do. The first is to fight more bots.")
+	tux_says(_"Er... Wouldn't that cause me to get beaten up more and therefore be counter-productive?")
+	npc_says(_"Your logic is infallible, Linarian, but you are forgetting one thing: the more you fight, the more experienced you become, and the better at surviving you get.")
+	npc_says(_"Also, if you have the money and can find a supplier, it is wise to invest in better equipment - more protective clothing and better weaponry.")
+	npc_says(_"My advice is to invest in a ranged weapon. While that can create a huge puncture in your wallet, it also creates several in the bots, and is better than a huge puncture in you.")
 	npc_says(_"Currently there is a ban on selling such things. The Red Guard wants to be the only ones with good weapons.")
-	npc_says(_"Should you fail to find something decent to shoot with, there are always other options.")
-	npc_says(_"Ewald sells potions which can increase your abilities to fight for a while. He keeps the ingredients a secret, and the prices high.")
-	npc_says(_"There was a person selling grenades too. Eh... I forgot his name, my memory is not serving me very well today. I am sure he can help you out.")
+	npc_says(_"Should you fail to find something decent to shoot or hit with, there are always other options.")
+	npc_says(_"Ewald, the barkeeper, usually sells an assortment of junk, but even he sometimes has something worthwhile on display.")
+	npc_says(_"There was a person selling grenades, too. Eh... I forgot his name, my memory is not serving me very well today. He's a very mysterious fellow. Perhaps he can help you.")
 	npc_says(_"Other than that, you are on your own.")
 	hide(9)
 }
@@ -138,8 +145,10 @@ LuaCode={
 
 Nr=11  Text=_"What bots are in the 100 class?"
 LuaCode={
-	npc_says(_"I know of two types. The 123 and the 139.")
-	npc_says(_"Because they are neither fast nor dangerous, the Red Guard uses them for target practice.")
+	npc_says(_"I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't get your flippers get caught in one of those.")
+	tux_says(_"I've seen some of those on my way here. They were... Shooting at me.")
+	npc_says(_"Many strange things have happened since the Great Assault.")
+	npc_says(_"Any way, because the class 100 bots are neither fast nor dangerous, the Red Guard often uses them for target practice.")
 	npc_says(_"If I were you, I would not overestimate them. ")
 	npc_says(_"Nec Hercules contra plures.")
 	hide(11)
@@ -148,19 +157,24 @@ LuaCode={
 
 Nr=12  Text=_"What bots are in the 200 class?"
 LuaCode={
-	npc_says(_"Well, those are a bit tricky.")
-	npc_says(_"The 247 is often called the 'Banshee'.")
-	npc_says(_"It comes close to you and tries to punch you.")
-	npc_says(_"The 249 is much more dangerous.")
-	npc_says(_"Its machine gun has a high rate of fire, and each bullet can damage your equipment.")
+	npc_says(_"In fitting with the lazy nature of humans, there are several servant bots of the 200 class.")
+	npc_says(_"The 247 is often called the 'Banshee'. Being a simple servant robot, it isn't very well equipped to kill, although its arms are quite strong.")
+	npc_says(_"Also, as I said, the 200s were built to report quickly. The 247 is no exception, and moves faster than some of us can run. As a killer bot, it has a fast rate of attack. It is not something to be trifled with.")
+	npc_says(_"The 249 is a cheaper version of the Banshee. It uses a tripedal drive instead of anti-gravity propulsion, and is therefore slower. However it is much more dangerous: its machine gun has a very high rate of fire.")
+	tux_says(_"Machine gun?! But... But it's a servant bot!")
+	npc_says(_"I know, " .. get_player_name() .. ". I know.");
+	npc_says(_"Let's see... Oh, there is also the 296, which was used for serving drinks. Ewald once had one of those in his bar.")
+	tux_says(_"Once? What happened to it?")
+	npc_says(_"No one knows. One day it simply wasn't there. Ewald probably remembers more than I do, though.")
+	add_cookie("ewald_296")
 	hide(12)
 }
 ----------------------------------------------------------------------
 
 Nr=13  Text=_"What other bots are out there?"
 LuaCode={
-	npc_says(_"Well, I have no idea. I have heard only rumors.")
-	npc_says(_"I think most of the people who have seen a better bot are now pushing up the daisies.")
+	npc_says(_"Though I do not know the details, I assure you there are many. Robots and automated machinery served almost every purpose you can imagine, and probably some that you can't.")
+	npc_says(_"They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who know them up close are pushing up the daisies.")
 	hide(13)
 }
 ----------------------------------------------------------------------
