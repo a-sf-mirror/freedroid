@@ -75,6 +75,6 @@ Rule=8 [Type="WD"] WP1 Idx1=48 (X1=25.500000:Y1=49.500000:L1=37) <-> WP2 Idx2=49
 
 Rule=1 [Type="WW"] WP1 Idx1=201 (X1=13.500000:Y1=35.500000:L1=0) -> WP2 Idx2=202 (X2=11.500000:Y2=25.500000:L2=0) : path not found
 Rule=2 [Type="WQ"] WP1 Idx1=201 (X1=13.500000:Y1=35.500000:L1=0) -> WP2 Idx2=202 (X2=11.500000:Y2=25.500000:L2=0) (warning)
-
+Rule=3 [Type="WQ"] WP1 Idx1=202 (X1=11.500000:Y1=25.500000:L1=0) -> WP2 Idx2=203 (X2=13.500000:Y2=36.500000:L2=0) (warning)
 
 *** End of LevelValidator Exceptions List ***
