@@ -350,6 +350,22 @@ static void DecodeDimensionsOfThisLevel(Level loadlevel, char *DataPointer)
 	fp += off + 1;
 	off = 0;
 
+	if (!strncmp(fp, "dungeon generated:", 18)) {
+		fp += strlen("dungeon generated:");
+		while (*(fp + off) != '\n')
+			off++;
+		fp[off] = 0;
+		loadlevel->dungeon_generated = atoi(fp);
+		fp[off] = '\n';
+		fp += off + 1;
+		off = 0;
+	} else {
+		if (loadlevel->random_dungeon)
+			loadlevel->dungeon_generated = 0;
+		else
+			loadlevel->dungeon_generated = 1;
+	}
+
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
 		ErrorMessage(__FUNCTION__, "\
 A maplevel Freedroid was supposed to load has more map lines than allowed\n\
@@ -881,29 +897,21 @@ void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
 }
 
 /** 
- * Call the random dungeon generator on this level 
- * if this level is marked as being randomly generated,
- * and if we are not in the "leveleditor" mode 
- * in which case random dungeons must not be generated.
+ * Call the random dungeon generator on this level  if this level is marked
+ * as being randomly generated and if we are not in the "leveleditor" mode
+ * in which case random dungeons must not be considered as generated (so that
+ * they will be exported as being non-generated random levels).
  */
 static void generate_dungeon_if_needed(level *l)
 {
-	int clear_random_flag = 1;
-
-	if (!l->random_dungeon) {
+	if (!l->random_dungeon || l->dungeon_generated) {
 		return;
-	}
-
-	if (game_root_mode != ROOT_IS_GAME) {
-		clear_random_flag = 0;
 	}
 
 	// Generate random dungeon now
 	set_dungeon_output(l);
 	generate_dungeon(l->xlen, l->ylen, l->random_dungeon);
-
-	if (clear_random_flag)
-		l->random_dungeon = 0;
+	l->dungeon_generated = 1;
 }
 
 /**
@@ -1318,13 +1326,11 @@ static void TranslateToHumanReadable(struct auto_string *str, map_tile * MapInfo
 /**
  * This function generates savable text out of the current level data
  *
- * If keep_random_levels is FALSE, then the current generated map of the
- * random levels is stored as a "normal" map (typical usage: the MapEd
- * playtest savegame), else the random levels are saved "un-generated"
- * (typical usage: freedroid.levels).
+ * If reset_random_levels is TRUE, then the random levels are saved
+ * "un-generated" (typical usage: freedroid.levels).
  *
  */
-static void encode_level_for_saving(struct auto_string *shipstr, level *lvl, int keep_random_levels)
+static void encode_level_for_saving(struct auto_string *shipstr, level *lvl, int reset_random_levels)
 {
 	int i;
 	int xlen = lvl->xlen, ylen = lvl->ylen;
@@ -1337,6 +1343,7 @@ light radius bonus of this level: %d\n\
 minimal light on this level: %d\n\
 infinite_running_on_this_level: %d\n\
 random dungeon: %d\n\
+dungeon generated: %d\n\
 jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
@@ -1344,7 +1351,8 @@ jump target west: %d\n\
 use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen,
 		lvl->light_bonus, lvl->minimum_light_value,
 		lvl->infinite_running_on_this_level,
-		(keep_random_levels) ? lvl->random_dungeon : 0,
+		lvl->random_dungeon,
+		(reset_random_levels && lvl->random_dungeon) ? 0 : lvl->dungeon_generated,
 		lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east,
 		lvl->jump_target_west, lvl->use_underground_lighting);
 
@@ -1355,7 +1363,7 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen,
 
 	// Now in the loop each line of map data should be saved as a whole
 	for (i = 0; i < ylen; i++) {
-		if (!keep_random_levels || !lvl->random_dungeon) {
+		if (!(reset_random_levels && lvl->random_dungeon)) {
 			TranslateToHumanReadable(shipstr, lvl->map[i], xlen);
 		} else {
 			int j = xlen;
@@ -1368,7 +1376,7 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen,
 
 	autostr_append(shipstr, "%s\n", MAP_END_STRING);
 
-	if (!keep_random_levels || !lvl->random_dungeon) {
+	if (!(reset_random_levels && lvl->random_dungeon)) {
 		encode_obstacles_of_this_level(shipstr, lvl);
 
 		EncodeMapLabelsOfThisLevel(shipstr, lvl);
@@ -1391,12 +1399,10 @@ use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen,
  * It is not only used by the level editor, but also by the function that
  * saves whole games.
  *
- * If keep_random_levels is FALSE, then the current generated map of the
- * random levels is stored as a "normal" map (typical usage: the MapEd
- * playtest savegame), else the random levels are saved "un-generated"
- * (typical usage: freedroid.levels).
+ * If reset_random_levels is TRUE, then the random levels are saved
+ * "un-generated" (typical usage: freedroid.levels).
  */
-int SaveShip(const char *filename, int keep_random_levels, int compress)
+int SaveShip(const char *filename, int reset_random_levels, int compress)
 {
 	int i;
 	FILE *ShipFile = NULL;
@@ -1414,7 +1420,7 @@ int SaveShip(const char *filename, int keep_random_levels, int compress)
 	// Save all the levels
 	for (i = 0; i < curShip.num_levels; i++) {
 		if (curShip.AllLevels[i] != NULL) {
-			encode_level_for_saving(shipstr, curShip.AllLevels[i], keep_random_levels);
+			encode_level_for_saving(shipstr, curShip.AllLevels[i], reset_random_levels);
 		}
 	}
 
@@ -1509,7 +1515,7 @@ static void DecodeItemSectionOfThisLevel(Level loadlevel, char *data)
 		loadlevel->ItemList[i].currently_held_in_hand = FALSE;
 	}
 
-	if (loadlevel->random_dungeon)
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
 		return;
 
 	// We look for the beginning and end of the items section
@@ -1565,7 +1571,7 @@ static void DecodeChestItemSectionOfThisLevel(Level loadlevel, char *data)
 		loadlevel->ChestItemList[i].currently_held_in_hand = FALSE;
 	}
 
-	if (loadlevel->random_dungeon)
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
 		return;
 
 	// We look for the beginning and end of the items section
