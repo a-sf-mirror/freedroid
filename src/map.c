@@ -360,10 +360,7 @@ static void DecodeDimensionsOfThisLevel(Level loadlevel, char *DataPointer)
 		fp += off + 1;
 		off = 0;
 	} else {
-		if (loadlevel->random_dungeon)
-			loadlevel->dungeon_generated = 0;
-		else
-			loadlevel->dungeon_generated = 1;
+		loadlevel->dungeon_generated = 0;
 	}
 
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
