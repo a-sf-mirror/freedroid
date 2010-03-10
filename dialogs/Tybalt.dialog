@@ -80,7 +80,7 @@ LuaCode={
 Nr=50  Text=_"I have a lot of money for you."
 LuaCode={
 	npc_says(_"Fascinating. Can I have a hundred please?")
-	if(get_gold() < 100) then show(54) else	show(55) end
+	show(54,55)
 	hide(50)
 }
 ----------------------------------------------------------------------
@@ -88,16 +88,20 @@ LuaCode={
 Nr=54  Text=_"Erm... I don't have that much."
 LuaCode={
 	npc_says(_"Well, too bad.")
-	hide(54)
+	hide(54,55)
 }
 ----------------------------------------------------------------------
 
 Nr=55  Text=_"Here you go."
 LuaCode={
-	add_gold(-100)
-	npc_says(_"Thank you.")
-	add_cookie("tybalt_bribe")
-	hide(55) show(56)
+	hide(54,55)
+	if (del_gold(100)) then
+		npc_says(_"Thank you.")
+		add_cookie("tybalt_bribe")
+		show(56)
+	else
+		npc_says_random(_"That is not a hundred.","Um, count that again.","Talk to me when you have a bit more.")
+	end
 }
 ----------------------------------------------------------------------
 

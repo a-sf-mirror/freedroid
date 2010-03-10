@@ -135,7 +135,7 @@ LuaCode={
 	cost_heat      = math.ceil(cost_heat      * (math.random()*0.4 + 0.8) )
 	-- Apply repair costs: --
 	freeze_tux_npc(cost_time)
-	add_gold(-cost_materials)
+	del_gold(cost_materials)
 	heat_tux(cost_heat)
 	hide(10,11)
 	end_dialog()

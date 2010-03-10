@@ -47,26 +47,35 @@ LuaCode={
 Nr=2  Text="Checks"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-    if (get_gold() < 50) then next(90) -- No $$$
-    else
-        if (get_training_points() < 1) then next(80) -- No TP
-        else
-            if (has_cookie("know_extract5")) then next(70) -- Fully learned
-            else
-                if (has_cookie("know_extract4")) then next(50) -- Learn rev5
-                else
-                    if (has_cookie("know_extract3")) then next(40) -- Learn rev4
-                    else
-                        if (has_cookie("know_extract2")) then next(30) -- Learn rev3
-                        else
-                            if (has_cookie("know_extract1")) then next(20)  -- Learn rev2
-                            else next(10) end                               -- Learn rev1
-                        end
-                    end
-                end
-            end
-        end
-    end
+	if (del_gold(50)) then
+		if (del_points(1)) then
+			if (has_cookie("know_extract5")) then next(70) -- Fully learned
+            		else
+                		if (has_cookie("know_extract4")) then next(50) -- Learn rev5
+                		else
+                    			if (has_cookie("know_extract3")) then next(40) -- Learn rev4
+                    			else
+                        			if (has_cookie("know_extract2")) then next(30) -- Learn rev3
+                        			else
+                            				if (has_cookie("know_extract1")) then next(20)  -- Learn rev2
+                            				else next(10) end                               -- Learn rev1
+                        			end
+                    			end
+                		end
+            		end
+		else -- No TP
+			npc_says(_"Hmmm...")
+			npc_says(_"You look green. Toughen up. Get some experience, kill some bots.")
+			npc_says(_"Then we can talk.")
+			add_gold(50) --refund unused $$$
+			end_dialog()
+        	end
+	else -- No $$$
+		npc_says(_"Hmmm...")
+		npc_says(_"Kein geld, Keine hilfe.")
+		npc_says(_"Come back with some money.")
+		end_dialog()
+	end
 }
 ----------------------------------------------------------------------
 
@@ -77,7 +86,6 @@ LuaCode={
 	npc_says(_"Just take a hammer and hit the bot sehr hard on the head.")
 	npc_says(_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for.")
     add_cookie("know_extract1")
-    next(60)
 }
 ----------------------------------------------------------------------
 
@@ -88,7 +96,6 @@ LuaCode={
 	npc_says(_"Remove the bot's engine and look around somewhere close to the battery.")
 	npc_says(_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe.")
     add_cookie("know_extract2")
-    next(60)
 }
 ----------------------------------------------------------------------
 
@@ -100,7 +107,6 @@ LuaCode={
 	npc_says(_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there.")
 	npc_says(_"Wear rubber gloves. Just in case, you know.")
     add_cookie("know_extract3")
-    next(60)
 }
 ----------------------------------------------------------------------
 
@@ -113,7 +119,6 @@ LuaCode={
 	npc_says(_"Make sure you turn the converter off before you remove it.")
 	npc_says(_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there.")
     add_cookie("know_extract4")
-    next(60)
 }
 ----------------------------------------------------------------------
 
@@ -126,18 +131,6 @@ LuaCode={
 	npc_says(_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal.")
 	npc_says(_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one.")
     add_cookie("know_extract5")
-    next(60)
-}
-----------------------------------------------------------------------
-
-Nr=60  Text="Lesson effect"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-    add_gold(-50)
-    del_training_points(1)
-    improve_program("Extract bot parts")
-    end_dialog()
-	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
@@ -145,26 +138,6 @@ Nr=70  Text="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?")
-    end_dialog()
-}
-----------------------------------------------------------------------
-
-Nr=80  Text="NO FREE POINTS"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	npc_says(_"Hmmm...")
-	npc_says(_"You look green. Toughen up. Get some experience, kill some bots.")
-	npc_says(_"Then we can talk.")
-    end_dialog()
-}
-----------------------------------------------------------------------
-
-Nr=90  Text="TUX IS TOO POOR TO TRAIN"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	npc_says(_"Hmmm...")
-	npc_says(_"Kein geld, Keine hilfe.")
-	npc_says(_"Come back with some money.")
     end_dialog()
 }
 ----------------------------------------------------------------------

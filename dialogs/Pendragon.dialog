@@ -70,10 +70,8 @@ LuaCode={
 Nr=12  Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
 LuaCode={
 	if (get_skill("melee") < 1) then
-		if (get_gold() < 100) then
-			npc_says(_"You don't have enough valuable circuits on you! Come back when you have the money.")
-		else 
-			if (get_training_points() > 4) then
+		if (del_gold(100)) then
+			if (del_points(5)) then
 				npc_says(_"Let us begin then.")
 				npc_says(_"Come closer...")
 				npc_says(_"HA!")
@@ -90,14 +88,16 @@ LuaCode={
 				npc_says(_"I think you broke my ribs...")
 				npc_says(_"This is enough training for today.")
 				add_cookie("beat_up_pendragon")
-				end_dialog()
-				add_gold(-100)
-				del_training_points(5)
+				del_health(10)
 				improve_skill("melee")
+				end_dialog()
 			else
 				npc_says(_"You don't have enough experience. I can't teach you anything more right now.")
 				npc_says(_"First collect more experience. Then we can go on.")
+				add_gold(100) -- refund unused $$$
 			end
+		else 
+			npc_says(_"You don't have enough valuable circuits on you! Come back when you have the money.")
 		end
 	else
 		npc_says(_"Hey, wake up! I taught you that stuff already. Go practice on the bots, if you really want more training.")

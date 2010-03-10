@@ -148,18 +148,17 @@ LuaCode={
 	npc_says(_"Thank you! Thank you! Thank you! Savior!")
 	npc_says(_"But this isn't fair to you. The Stones are a family of fair merchants and I intend to uphold that tradition.")
 	npc_says(_"I need 1,547 bucks to get through the month. I will accept only that and not a cent more.")
-	if (get_gold() < 1547) then 
-		npc_says(_"Hold on a minute, you are still a bit short on money.")
-		npc_says(_"Please return with the full amount if you want to help. Otherwise Im going down anyway and I wont accept pulling you with me.")
-	else
+	if (del_gold(1547)) then 
 		npc_says(_"Now it's fair. Thank you.", "NO_WAIT")
 		npc_says(_"You've given me a bit of hope.. ", "NO_WAIT")
 		npc_says(_"Wait a second... I think I recognize you...")
 		npc_says(_"You are " .. get_player_name() .. ", aren't you...")
 		npc_says(_"The hero...")
-		add_gold(-1547)
 		add_cookie("stone_done")
 		show(31, 32, 33)
+	else
+		npc_says(_"Hold on a minute, you are still a bit short on money.")
+		npc_says(_"Please return with the full amount if you want to help. Otherwise Im going down anyway and I wont accept pulling you with me.")
 	end
 	hide(23)
 }

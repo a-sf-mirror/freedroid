@@ -117,17 +117,16 @@ LuaCode={
 
 Nr=11  Text=_"Ok, I'll take one."
 LuaCode={
-	if (get_gold() < 50) then
-		npc_says(_"Hey, I'm not a bank!", "NO_WAIT")
-		npc_says(_"Come back when you can afford it.")
-		show(1)
-	else
+	if (del_gold(50)) then
 		npc_says(_"Here is your pill.", "NO_WAIT")
 		npc_says(_"Just swallow it, and it should work.")
 		npc_says(_"I give a 30 day warranty and adjustments, in case it doesn't work as expected.")
 		add_item("Map Maker",1)
 		display_big_message(_"Swallow pill and Press tab to see automap.")
-		add_gold(-50)
+	else
+		npc_says(_"Hey, I'm not a bank!", "NO_WAIT")
+		npc_says(_"Come back when you can afford it.")
+		show(1)
 	end
 	hide(11, 12)
 }

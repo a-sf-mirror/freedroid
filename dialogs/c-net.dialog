@@ -36,7 +36,7 @@ EveryTime LuaCode={
 		cli_says(_"Login : ", "NO_WAIT")
 		if has_cookie("knows_c-net_users") then show(0,1,2,3) else show(0) end
 	end
-	hide(20,21,22,23,24,30,31,32,33,34,35,40,41,42,43)
+	hide(20,21,22,23,24,30,31,32,33,34,35,36,40,41,42,43)
 }
 ----------------------------------------------------------------------
 
@@ -155,14 +155,14 @@ LuaCode={
 Nr=30 Text=_"show info" -- ../ date finger users whoami 
 LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
-	show(31,32,33,34,35) hide(20,30,40,99)
+	show(31,32,33,34,35,36) hide(20,30,40,99)
 }
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"../"
 LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
-	show(20,30,40,99) hide(31,32,33,34,35)
+	show(20,30,40,99) hide(31,32,33,34,35,36)
 }
 ----------------------------------------------------------------------
 
@@ -200,7 +200,12 @@ LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
 }
 ----------------------------------------------------------------------
-
+Nr=36 Text=_"uname"
+LuaCode={
+	npc_says("Nkernel")
+	cli_says(username .. "@c-net:~$", "NO_WAIT")
+}
+----------------------------------------------------------------------
 Nr=40 Text=_"show games"
 LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")

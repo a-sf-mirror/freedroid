@@ -224,12 +224,14 @@ LuaCode={
 
 Nr=30  Text="Improve Hacking Program (cost 300 cash, 5 ability points)"
 LuaCode={
-	npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
-	npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
-	npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
-	add_gold(-300)
-	del_training_points(5)
-	improve_program("Hacking")
+	if (del_gold(300)) then
+		if (del_points(5)) then
+			npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
+			npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
+			npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
+			improve_program("Hacking")
+		end
+	end	
 	hide(30)
 }
 ----------------------------------------------------------------------

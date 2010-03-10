@@ -321,7 +321,7 @@ LuaCode={
 		display_console_message("You won ".. math.floor(bet*0.8) .." valuable circuits by gambling dice with Ewald.")
 	else -- House Wins!
 		npc_says_random(_"You lost. Bad luck.","You lost. Better luck next time.","You lost, try again?", "You lost. Maybe you might like coin-flipping better?")
-		add_gold(-bet)
+		del_gold(bet)
 		display_console_message("You lost ".. bet .." valuable circuits by gambling dice with Ewald.")
 	end
 	show(30)
@@ -483,11 +483,11 @@ LuaCode={
 		display_console_message("You won ".. bet*2 .." valuable circuits in the coin-flip game with Ewald.")
 	elseif (win == 0) then --LOSS (75% back)
 		npc_says_random(_"Looks like you got everything wrong... here is most of your bet back.","Well, close, but exactly wrong.  Here is most of your bet back.","You need to do exactly opposite of what you did here. Here is 3/4 of your bet back.","Close, but no cigar.  Here is most of your money back.","Next time pick the opposite of what you did this time... or something.")
-		add_gold(-bet*0.25)
+		del_gold(bet*0.25)
 		display_console_message("You lost ".. math.floor(bet*0.25) .." valuable circuits in the coin-flip game with Ewald.")
-	elseif (win == 0.5) then -- COMPLEAT LOSS (0% back)
+	elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
 		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.","You lost. You were all messed up. Better luck next time.","You lost. Maybe you sould try something else for a while?","You lost.","You lost. You might try the dice game next time.")
-		add_gold(-bet)
+		del_gold(bet)
 		display_console_message("You lost ".. bet .." valuable circuits in the coin-flip game with Ewald.")
 	else -- ERROR:
 		npc_says(_"THIS IS AN ERROR! REPORT IT PLEASE! E-MAIL: freedroid-discussion@lists.sourceforge.net")
