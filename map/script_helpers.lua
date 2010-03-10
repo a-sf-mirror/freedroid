@@ -134,3 +134,39 @@ end
 function get_random(...)
 	return arg[math.random(#arg)]
 end
+
+function del_gold(amount)
+	if (amount <= get_gold()) then
+		add_gold(-amount)
+		return true
+	else
+		return false
+	end
+end
+
+function del_item(item_name) 
+	if (has_item_backpack(item_name)) then
+		del_item_backpack(item_name)
+		return true
+	else
+		return false
+	end
+end
+
+function del_points(num_points)
+	if (get_training_points(num_points)) then
+		del_training_points(num_points)
+		return true
+	else
+		return false
+	end
+end
+
+function del_health(num_points)
+	if (num_points < get_tux_hp()) then
+		hurt_tux(num_points)
+		return true
+	else
+		return false
+	end
+end
