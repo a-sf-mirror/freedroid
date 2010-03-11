@@ -157,8 +157,9 @@ LuaCode={
 		add_cookie("stone_done")
 		show(31, 32, 33)
 	else
-		npc_says(_"Hold on a minute, you are still a bit short on money.")
-		npc_says(_"Please return with the full amount if you want to help. Otherwise Im going down anyway and I wont accept pulling you with me.")
+		npc_says(_"Hold on a minute, you are still a bit short on money.", "NO_WAIT")
+		npc_says(_"Please return with the full amount if you want to help.", "NO_WAIT")
+		npc_says(_"Otherwise you're throwing good money after bad, and I couldn't let you do that.")
 	end
 	hide(23)
 }

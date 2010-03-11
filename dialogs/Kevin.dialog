@@ -230,6 +230,8 @@ LuaCode={
 			npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 			npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
 			improve_program("Hacking")
+		else
+			add_gold(300)--refund
 		end
 	end	
 	hide(30)
