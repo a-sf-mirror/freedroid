@@ -6,6 +6,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 1
 random dungeon: 0
+dungeon generated: 0
 jump target north: 8
 jump target south: 11
 jump target east: 9
@@ -3254,7 +3255,7 @@ t50 x44.50 y7.00 l-1
 t53 x47.00 y5.50 l-1 
 t53 x47.00 y6.50 l-1 
 t27 x48.50 y8.00 l-1 
-t159 x34.00 y6.00 l-1 
+t159 x34.14 y6.05 l-1 
 t283 x32.50 y5.00 l-1 
 t283 x32.50 y8.00 l-1 
 t157 x32.50 y6.00 l-1 
@@ -3826,6 +3827,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -4801,6 +4803,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -5456,6 +5459,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -5924,6 +5928,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -6674,6 +6679,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: 14
@@ -8132,6 +8138,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -8708,6 +8715,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -9417,6 +9425,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 13
 jump target south: 0
 jump target east: 17
@@ -11282,6 +11291,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 17
 jump target south: 47
 jump target east: 44
@@ -12336,6 +12346,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 12
 jump target south: 39
 jump target east: 0
@@ -12820,6 +12831,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 0
 jump target south: 46
 jump target east: 47
@@ -13852,6 +13864,7 @@ light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 1
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: 10
 jump target east: 8
@@ -16123,6 +16136,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 14
 jump target south: 8
 jump target east: 19
@@ -16290,6 +16304,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 15
 jump target south: 13
 jump target east: 20
@@ -17769,6 +17784,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: 14
 jump target east: 16
@@ -18860,6 +18876,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 42
 jump target south: 20
 jump target east: 23
@@ -19733,6 +19750,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 19
 jump target south: 9
 jump target east: 25
@@ -20773,6 +20791,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -21003,6 +21022,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 20
 jump target south: 17
 jump target east: 21
@@ -21509,6 +21529,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 16
 jump target south: 19
 jump target east: 22
@@ -22129,6 +22150,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 22
 jump target south: 25
 jump target east: -1
@@ -22248,6 +22270,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 23
 jump target south: 21
 jump target east: -1
@@ -22367,6 +22390,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 41
 jump target south: 22
 jump target east: -1
@@ -22486,6 +22510,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -23593,6 +23618,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 21
 jump target south: 44
 jump target east: 26
@@ -24495,6 +24521,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: 27
@@ -24990,6 +25017,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: 28
@@ -25109,6 +25137,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -25305,6 +25334,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -25521,6 +25551,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -25737,6 +25768,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 49
 jump target south: 50
 jump target east: 54
@@ -28991,6 +29023,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -29294,6 +29327,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -31719,6 +31753,7 @@ light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -32013,6 +32048,7 @@ light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -33342,6 +33378,7 @@ light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -33578,6 +33615,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -34500,6 +34538,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: 40
 jump target east: 10
@@ -34849,6 +34888,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 10
 jump target south: -1
 jump target east: 11
@@ -35246,6 +35286,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 38
 jump target south: -1
 jump target east: 39
@@ -35707,6 +35748,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: 23
 jump target east: -1
@@ -35826,6 +35868,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: 16
 jump target east: 41
@@ -36058,6 +36101,7 @@ light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
 random dungeon: 2
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -36166,6 +36210,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 25
 jump target south: 48
 jump target east: -1
@@ -36312,6 +36357,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: 54
 jump target east: -1
@@ -36431,6 +36477,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 11
 jump target south: -1
 jump target east: 24
@@ -36927,6 +36974,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 9
 jump target south: -1
 jump target east: 48
@@ -37117,6 +37165,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 44
 jump target south: 49
 jump target east: -1
@@ -37534,6 +37583,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 48
 jump target south: 31
 jump target east: 45
@@ -38034,6 +38084,7 @@ light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 31
 jump target south: 52
 jump target east: 51
@@ -39107,6 +39158,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 54
 jump target south: 53
 jump target east: -1
@@ -39226,6 +39278,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 50
 jump target south: -1
 jump target east: 53
@@ -39345,6 +39398,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 51
 jump target south: -1
 jump target east: -1
@@ -39464,6 +39518,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: 45
 jump target south: 51
 jump target east: -1
@@ -39583,6 +39638,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 2
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -39691,6 +39747,7 @@ light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
 random dungeon: 2
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
@@ -39799,6 +39856,7 @@ light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
 random dungeon: 0
+dungeon generated: 0
 jump target north: -1
 jump target south: -1
 jump target east: -1
