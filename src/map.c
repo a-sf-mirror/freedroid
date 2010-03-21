@@ -45,7 +45,6 @@
 #include "map.h"
 
 void GetThisLevelsDroids(char *SectionPointer);
-Level DecodeLoadedLeveldata(char *data);
 
 struct animated_obstacle {
 	int index;
@@ -239,14 +238,10 @@ This is a severe error in the game data of Freedroid.", PLEASE_INFORM, IS_FATAL,
  * into the level struct, but WITHOUT destroying or damaging the 
  * human-readable data in the process!
  */
-static void DecodeInterfaceDataForThisLevel(Level loadlevel, char *DataPointer)
+static void decode_interfaces(level *loadlevel, char *DataPointer)
 {
 	char *TempSectionPointer;
 	char PreservedLetter;
-
-	//--------------------
-	// Now we read in the jump points associated with this map
-	//
 
 	// We look for the beginning and end of the map statement section
 	TempSectionPointer = LocateStringInData(DataPointer, MAP_BEGIN_STRING);
@@ -255,29 +250,17 @@ static void DecodeInterfaceDataForThisLevel(Level loadlevel, char *DataPointer)
 	PreservedLetter = TempSectionPointer[0];
 	TempSectionPointer[0] = 0;
 
-#define DEBUG_LEVEL_INTERFACES 1
-
 	ReadValueFromString(DataPointer, "jump target north: ", "%d", &(loadlevel->jump_target_north), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump target north : %d ", loadlevel->jump_target_north);
 	ReadValueFromString(DataPointer, "jump target south: ", "%d", &(loadlevel->jump_target_south), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump target south : %d ", loadlevel->jump_target_south);
 	ReadValueFromString(DataPointer, "jump target east: ", "%d", &(loadlevel->jump_target_east), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump target east : %d ", loadlevel->jump_target_east);
 	ReadValueFromString(DataPointer, "jump target west: ", "%d", &(loadlevel->jump_target_west), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read jump target west : %d ", loadlevel->jump_target_west);
 	ReadValueFromString(DataPointer, "use underground lighting: ", "%d", &(loadlevel->use_underground_lighting), TempSectionPointer);
-	DebugPrintf(DEBUG_LEVEL_INTERFACES, "\nSuccessfully read use_underground_lighting : %d ", loadlevel->use_underground_lighting);
 
 	TempSectionPointer[0] = PreservedLetter;
 
-};				// void DecodeInterfaceDataForThisLevel ( Level loadlevel , char* data )
+}
 
-/**
- * Next we extract the level parameters from the human-readable data into
- * the level struct, but WITHOUT destroying or damaging the human-readable
- * data in the process!
- */
-static void DecodeDimensionsOfThisLevel(Level loadlevel, char *DataPointer)
+static void decode_dimensions(level *loadlevel, char *DataPointer)
 {
 
 	int off = 0;
@@ -369,15 +352,34 @@ A maplevel Freedroid was supposed to load has more map lines than allowed\n\
 for a map level as by the constant MAX_MAP_LINES in defs.h.\n\
 Sorry, but unless this constant is raised, Freedroid will refuse to load this map.", PLEASE_INFORM, IS_FATAL);
 	}
+}
 
-};				// void DecodeDimensionsOfThisLevel ( Level loadlevel , char* DataPointer );
+static int decode_header(level *loadlevel, char *data)
+{
+	data = strstr(data, "Levelnumber:");
+	if (!data)
+		return 1;
+
+	decode_interfaces(loadlevel, data);
+	decode_dimensions(loadlevel, data);
+	
+	// Read the levelname.
+	// Accept legacy ship-files that are not yet marked-up for translation
+	if ((loadlevel->Levelname = ReadAndMallocStringFromDataOptional(data, LEVEL_NAME_STRING, "\"", 0)) == NULL) {
+		loadlevel->Levelname = ReadAndMallocStringFromData(data, LEVEL_NAME_STRING_LEGACY, "\n");
+	}
+
+	loadlevel->Background_Song_Name = ReadAndMallocStringFromData(data, BACKGROUND_SONG_NAME_STRING, "\n");
+
+	return 0;
+}
 
 /**
  * Next we extract the human readable obstacle data into the level struct
  * WITHOUT destroying or damaging the human-readable data in the process!
  * This is an improved parser that is not quite readable but very performant.
  */
-static void decode_obstacles_of_this_level(level * loadlevel, char *DataPointer)
+static void decode_obstacles(level *loadlevel, char *DataPointer)
 {
 	int i;
 	char *curfield = NULL;
@@ -394,6 +396,9 @@ static void decode_obstacles_of_this_level(level * loadlevel, char *DataPointer)
 		loadlevel->obstacle_list[i].pos.z = loadlevel->levelnum;
 		loadlevel->obstacle_list[i].name_index = -1;
 	}
+
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+		return;
 
 	//--------------------
 	// Now we look for the beginning and end of the obstacle section
@@ -451,13 +456,13 @@ static void decode_obstacles_of_this_level(level * loadlevel, char *DataPointer)
 		i++;
 	}
 
-};				// void decode_obstacles_of_this_level ( loadlevel , DataPointer )
+}
 
 /**
  * Next we extract the map labels of this level WITHOUT destroying
  * or damaging the data in the process!
  */
-static void DecodeMapLabelsOfThisLevel(Level loadlevel, char *DataPointer)
+static void decode_map_labels(level *loadlevel, char *DataPointer)
 {
 	int i;
 	char PreservedLetter;
@@ -478,6 +483,9 @@ static void DecodeMapLabelsOfThisLevel(Level loadlevel, char *DataPointer)
 		}
 		loadlevel->labels[i].label_name = "no_label_defined";
 	}
+
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+		return;
 
 	//--------------------
 	// Now we look for the beginning and end of the map labels section
@@ -513,7 +521,7 @@ static void DecodeMapLabelsOfThisLevel(Level loadlevel, char *DataPointer)
 	//
 	MapLabelSectionEnd[0] = PreservedLetter;
 
-};				// void DecodeMapLabelsOfThisLevel ( Level loadlevel , char* DataPointer );
+}
 
 /**
  * Every map level in a FreedroidRPG 'ship' can have up to 
@@ -524,7 +532,7 @@ static void DecodeMapLabelsOfThisLevel(Level loadlevel, char *DataPointer)
  * this small subsection and loads all the obstacle data into the ship
  * struct.
  */
-static void decode_obstacle_names_of_this_level(Level loadlevel, char *DataPointer)
+static void decode_obstacle_names(Level loadlevel, char *DataPointer)
 {
 	int i;
 	char PreservedLetter;
@@ -541,6 +549,9 @@ static void decode_obstacle_names_of_this_level(Level loadlevel, char *DataPoint
 	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
 		loadlevel->obstacle_name_list[i] = NULL;
 	}
+
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+		return;
 
 	//--------------------
 	// Now we look for the beginning and end of the map labels section
@@ -575,7 +586,304 @@ static void decode_obstacle_names_of_this_level(Level loadlevel, char *DataPoint
 	//
 	obstacle_nameSectionEnd[0] = PreservedLetter;
 
-};				// void decode_obstacle_names_of_this_level ( loadlevel , DataPointer )
+}
+
+static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetItem)
+{
+
+	char *iname = ReadAndMallocStringFromData(ItemPointer, ITEM_NAME_STRING, "\"");
+	TargetItem->type = GetItemIndexByName(iname);
+	free(iname);
+
+	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_DAMRED_BONUS_STRING, "%d", "0", &(TargetItem->damred_bonus), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_DAMAGE_STRING, "%d", &(TargetItem->damage), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_DAMAGE_MODIFIER_STRING, "%d", &(TargetItem->damage_modifier), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_MAX_DURATION_STRING, "%d", &(TargetItem->max_duration), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_CUR_DURATION_STRING, "%f", &(TargetItem->current_duration), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_AMMO_CLIP_STRING, "%d", &(TargetItem->ammo_clip), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_MULTIPLICITY_STRING, "%d", &(TargetItem->multiplicity), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_PREFIX_CODE_STRING, "%d", "-1", &(TargetItem->prefix_code), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_SUFFIX_CODE_STRING, "%d", "-1", &(TargetItem->suffix_code), ItemsSectionEnd);
+	// Now we read in the boni to the primary stats (attributes)
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_STR_STRING, "%d", "0", &(TargetItem->bonus_to_str), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DEX_STRING, "%d", "0", &(TargetItem->bonus_to_dex), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_MAG_STRING, "%d", "0", &(TargetItem->bonus_to_mag), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_VIT_STRING, "%d", "0", &(TargetItem->bonus_to_vit), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_ALLATT_STRING, "%d", "0",
+				       &(TargetItem->bonus_to_all_attributes), ItemsSectionEnd);
+	// Now we read in the boni for the secondary stats
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_LIFE_STRING, "%d", "0", &(TargetItem->bonus_to_life), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_HEALTH_RECOVERY_STRING, "%f", "0.000",
+				       &(TargetItem->bonus_to_health_recovery), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_FORCE_STRING, "%d", "0", &(TargetItem->bonus_to_force), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_MANA_RECOVERY_STRING, "%f", "0.000",
+				       &(TargetItem->bonus_to_cooling_rate), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_TOHIT_STRING, "%d", "0", &(TargetItem->bonus_to_tohit), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DAMREDDAM_STRING, "%d", "0",
+				       &(TargetItem->bonus_to_damred_or_damage), ItemsSectionEnd);
+	// Now we read in the boni for resistances
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESELE_STRING, "%d", "0",
+				       &(TargetItem->bonus_to_resist_electricity), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESFIR_STRING, "%d", "0",
+				       &(TargetItem->bonus_to_resist_fire), ItemsSectionEnd);
+	// Now we see if the item is identified...
+	ReadValueFromString(ItemPointer, ITEM_IS_IDENTIFIED_STRING, "%d", &(TargetItem->is_identified), ItemsSectionEnd);
+
+	DebugPrintf(1, "\nPosX=%f PosY=%f Item=%d", TargetItem->pos.x, TargetItem->pos.y, TargetItem->type);
+
+}
+
+static void decode_item_section(level *loadlevel, char *data)
+{
+	int i;
+	char Preserved_Letter;
+	int NumberOfItemsInThisLevel;
+	char *ItemPointer;
+	char *ItemsSectionBegin;
+	char *ItemsSectionEnd;
+
+	//--------------------
+	// First we initialize the items arrays with 'empty' information
+	//
+	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+		loadlevel->ItemList[i].pos.x = (-1);
+		loadlevel->ItemList[i].pos.y = (-1);
+		loadlevel->ItemList[i].pos.z = (-1);
+		loadlevel->ItemList[i].type = (-1);
+		loadlevel->ItemList[i].currently_held_in_hand = FALSE;
+	}
+
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+		return;
+
+	// We look for the beginning and end of the items section
+	ItemsSectionBegin = LocateStringInData(data, ITEMS_SECTION_BEGIN_STRING);
+	ItemsSectionEnd = LocateStringInData(ItemsSectionBegin, ITEMS_SECTION_END_STRING);
+
+	// We add a terminator at the end of the items section, but ONLY TEMPORARY.  
+	// The damage will be restored later!
+	Preserved_Letter = ItemsSectionEnd[0];
+	ItemsSectionEnd[0] = 0;
+	NumberOfItemsInThisLevel = CountStringOccurences(ItemsSectionBegin, ITEM_NAME_STRING);
+	DebugPrintf(1, "\nNumber of items found in this level : %d.", NumberOfItemsInThisLevel);
+
+	// Now we decode all the item information
+	ItemPointer = ItemsSectionBegin;
+	char *NextItemPointer;
+	for (i = 0; i < NumberOfItemsInThisLevel; i++) {
+		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING))) {
+			NextItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING);
+			if (NextItemPointer)
+				NextItemPointer[0] = 0;
+			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ItemList[i]));
+			loadlevel->ItemList[i].pos.z = loadlevel->levelnum;
+			if (NextItemPointer)
+				NextItemPointer[0] = ITEM_NAME_STRING[0];
+		}
+	}
+
+	// Now we repair the damage done to the loaded level data
+	ItemsSectionEnd[0] = Preserved_Letter;
+}
+
+//----------------------------------------------------------------------
+// From here on we take apart the chest items section of the loaded level...
+//----------------------------------------------------------------------
+static void decode_chest_item_section(level *loadlevel, char *data)
+{
+	int i;
+	char Preserved_Letter;
+	int NumberOfItemsInThisLevel;
+	char *ItemPointer;
+	char *ItemsSectionBegin;
+	char *ItemsSectionEnd;
+	char *NextItemPointer;
+	//--------------------
+	// First we initialize the items arrays with 'empty' information
+	//
+	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+		loadlevel->ChestItemList[i].pos.x = (-1);
+		loadlevel->ChestItemList[i].pos.y = (-1);
+		loadlevel->ChestItemList[i].pos.z = (-1);
+		loadlevel->ChestItemList[i].type = (-1);
+		loadlevel->ChestItemList[i].currently_held_in_hand = FALSE;
+	}
+
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+		return;
+
+	// We look for the beginning and end of the items section
+	ItemsSectionBegin = LocateStringInData(data, CHEST_ITEMS_SECTION_BEGIN_STRING);
+	ItemsSectionEnd = LocateStringInData(ItemsSectionBegin, CHEST_ITEMS_SECTION_END_STRING);
+
+	// We add a terminator at the end of the items section, but ONLY TEMPORARY.  
+	// The damage will be restored later!
+	Preserved_Letter = ItemsSectionEnd[0];
+	ItemsSectionEnd[0] = 0;
+	NumberOfItemsInThisLevel = CountStringOccurences(ItemsSectionBegin, ITEM_NAME_STRING);
+	DebugPrintf(1, "\nNumber of chest items found in this level : %d.", NumberOfItemsInThisLevel);
+
+	// Now we decode all the item information
+	ItemPointer = ItemsSectionBegin;
+	for (i = 0; i < NumberOfItemsInThisLevel; i++) {
+		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING))) {
+			NextItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING);
+			if (NextItemPointer)
+				NextItemPointer[0] = 0;
+			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ChestItemList[i]));
+			loadlevel->ChestItemList[i].pos.z = loadlevel->levelnum;
+			if (NextItemPointer)
+				NextItemPointer[0] = ITEM_NAME_STRING[0];
+		}
+	}
+
+	// Now we repair the damage done to the loaded level data
+	ItemsSectionEnd[0] = Preserved_Letter;
+
+}
+
+static int decode_map(level *loadlevel, char *data)
+{
+	char *map_begin, *map_end;
+	char *this_line;
+	int i;
+
+	if ((map_begin = strstr(data, MAP_BEGIN_STRING)) == NULL)
+		return 1;
+	map_begin += strlen(MAP_BEGIN_STRING) + 1;
+
+	if ((map_end = strstr(data, MAP_END_STRING)) == NULL)
+		return 1;
+	map_end += strlen(MAP_END_STRING) + 1;
+
+	/* now scan the map */
+	short int curlinepos = 0;
+	this_line = (char *)MyMalloc(4096);
+
+	/* read MapData */
+	for (i = 0; i < loadlevel->ylen; i++) {
+		int col;
+		map_tile *Buffer;
+		int tmp;
+
+		/* Select the next line */
+		short int nlpos = 0;
+		memset(this_line, 0, 4096);
+		while (map_begin[curlinepos + nlpos] != '\n')
+			nlpos++;
+		memcpy(this_line, map_begin + curlinepos, nlpos);
+		this_line[nlpos] = '\0';
+		nlpos++;
+
+		/* Decode it */
+		Buffer = MyMalloc((loadlevel->xlen + 10) * sizeof(map_tile));
+		for (col = 0; col < loadlevel->xlen; col++) {
+			tmp = strtol(this_line + 4 * col, NULL, 10);
+			Buffer[col].floor_value = (Uint16) tmp;
+			memset(Buffer[col].obstacles_glued_to_here, -1, MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE);
+		}
+
+		//--------------------
+		// Now the old text pointer can be replaced with a pointer to the
+		// correctly assembled struct...
+		//
+		loadlevel->map[i] = Buffer;
+
+		curlinepos += nlpos;
+	}
+
+	free(this_line);
+	return 0;
+}
+
+static int decode_waypoints(level *loadlevel, char *data)
+{
+	char *wp_begin, *wp_end;
+	char *this_line;
+	int i, k;
+	int nr, x, y, wp_rnd;
+	char *pos;
+
+	// Reset all waypoints prior to reading them from the file
+	for (i = 0; i < MAXWAYPOINTS; i++) {
+		loadlevel->AllWaypoints[i].x = 0;
+		loadlevel->AllWaypoints[i].y = 0;
+
+		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
+			loadlevel->AllWaypoints[i].connections[k] = -1;
+		}
+	}
+	loadlevel->num_waypoints = 0;
+
+	// Find the beginning and end of the waypoint list
+	if ((wp_begin = strstr(data, WP_BEGIN_STRING)) == NULL)
+		return 1;
+	wp_begin += strlen(WP_BEGIN_STRING) + 1;
+
+	if ((wp_end = strstr(data, WP_END_STRING)) == NULL)
+		return 1;
+
+	short int curlinepos = 0;
+	this_line = (char *)MyMalloc(4096);
+	
+	for (i = 0; i < MAXWAYPOINTS; i++) {
+		/* Select the next line */
+		short int nlpos = 0;
+		memset(this_line, 0, 4096);
+		while (wp_begin[curlinepos + nlpos] != '\n')
+			nlpos++;
+		memcpy(this_line, wp_begin + curlinepos, nlpos);
+		this_line[nlpos] = '\0';
+		nlpos++;
+		
+		curlinepos += nlpos;
+
+		if (!strncmp(this_line, wp_end, strlen(WP_END_STRING))) {
+			loadlevel->num_waypoints = i;
+			break;
+		}
+		wp_rnd = 0;
+		sscanf(this_line, "Nr.=%d \t x=%d \t y=%d   rnd=%d", &nr, &x, &y, &wp_rnd);
+
+		// completely ignore x=0/y=0 entries, which are considered non-waypoints!!
+		if (x == 0 && y == 0)
+			continue;
+
+		loadlevel->AllWaypoints[i].x = x;
+		loadlevel->AllWaypoints[i].y = y;
+		loadlevel->AllWaypoints[i].suppress_random_spawn = wp_rnd;
+
+		pos = strstr(this_line, CONNECTION_STRING);
+		if (pos == NULL) {
+			fprintf(stderr, "Unable to find connection string. i is %i, line is %s, level %i\n", i, this_line,
+				loadlevel->levelnum);
+		}
+		pos += strlen(CONNECTION_STRING);	// skip connection-string
+		pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace
+
+		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
+			if (*pos == '\0')
+				break;
+			int connection;
+			int res = sscanf(pos, "%d", &connection);
+			if ((connection == -1) || (res == 0) || (res == EOF))
+				break;
+			loadlevel->AllWaypoints[i].connections[k] = connection;
+			pos += strcspn(pos, WHITE_SPACE);	// skip last token
+			pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace for next one
+
+		}		// for k < MAX_WP_CONNECTIONS
+
+		loadlevel->AllWaypoints[i].num_connections = k;
+
+	}			// for i < MAXWAYPOINTS
+
+	free(this_line);
+	return 0;
+}
+
 
 /**
  *
@@ -893,6 +1201,32 @@ void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
 	vis_lvl->animated_obstacles_dirty_flag = TRUE;
 }
 
+/**
+ * This functions reads the specification for a level
+ * taken from the ship file.
+ */
+level *decode_level(char *data)
+{
+	level *loadlevel;
+
+	loadlevel = (level *)MyMalloc(sizeof(level));
+	
+	if (decode_header(loadlevel, data)) {
+		ErrorMessage(__FUNCTION__, "Unable to decode level header!", PLEASE_INFORM, IS_FATAL);
+	}
+
+	decode_obstacles(loadlevel, data);
+	decode_map_labels(loadlevel, data);
+	decode_obstacle_names(loadlevel, data);
+	decode_item_section(loadlevel, data);
+	decode_chest_item_section(loadlevel, data);
+	decode_map(loadlevel, data);
+	decode_waypoints(loadlevel, data);
+
+	return (loadlevel);
+}
+
+
 /** 
  * Call the random dungeon generator on this level  if this level is marked
  * as being randomly generated and if we are not in the "leveleditor" mode
@@ -994,7 +1328,7 @@ int LoadShip(char *filename, int compressed)
 	// Now we can start to take apart the information about each level...
 	//
 	for (i = 0; i < level_anz; ++i) {
-		Level this_level = DecodeLoadedLeveldata(LevelStart[i]);
+		level *this_level = decode_level(LevelStart[i]);
 		int this_levelnum = this_level->levelnum;
 		if (this_levelnum >= MAX_LEVELS)
 			ErrorMessage(__FUNCTION__, "One levelnumber in savegame (%d) is bigger than the maximum expected (%d).\n",
@@ -1291,7 +1625,7 @@ static void encode_waypoints_of_this_level(struct auto_string *shipstr, level *L
 	// This is unwanted and shall be corrected here.
 	CheckWaypointIntegrity(Lev);
 
-	autostr_append(shipstr, "%s\n", WP_SECTION_BEGIN_STRING);
+	autostr_append(shipstr, "%s\n", WP_BEGIN_STRING);
 
 	for (i = 0; i < Lev->num_waypoints; i++) {
 		autostr_append(shipstr, "Nr.=%3d x=%4d y=%4d rnd=%1d\t %s", i, Lev->AllWaypoints[i].x, Lev->AllWaypoints[i].y, Lev->AllWaypoints[i].suppress_random_spawn, CONNECTION_STRING);
@@ -1437,375 +1771,6 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 	free_autostr(shipstr);
 	return OK;
 }
-
-/**
- *
- *
- */
-static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetItem)
-{
-
-	char *iname = ReadAndMallocStringFromData(ItemPointer, ITEM_NAME_STRING, "\"");
-	TargetItem->type = GetItemIndexByName(iname);
-	free(iname);
-
-	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_DAMRED_BONUS_STRING, "%d", "0", &(TargetItem->damred_bonus), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_DAMAGE_STRING, "%d", &(TargetItem->damage), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_DAMAGE_MODIFIER_STRING, "%d", &(TargetItem->damage_modifier), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_MAX_DURATION_STRING, "%d", &(TargetItem->max_duration), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_CUR_DURATION_STRING, "%f", &(TargetItem->current_duration), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_AMMO_CLIP_STRING, "%d", &(TargetItem->ammo_clip), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_MULTIPLICITY_STRING, "%d", &(TargetItem->multiplicity), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_PREFIX_CODE_STRING, "%d", "-1", &(TargetItem->prefix_code), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_SUFFIX_CODE_STRING, "%d", "-1", &(TargetItem->suffix_code), ItemsSectionEnd);
-	// Now we read in the boni to the primary stats (attributes)
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_STR_STRING, "%d", "0", &(TargetItem->bonus_to_str), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DEX_STRING, "%d", "0", &(TargetItem->bonus_to_dex), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_MAG_STRING, "%d", "0", &(TargetItem->bonus_to_mag), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_VIT_STRING, "%d", "0", &(TargetItem->bonus_to_vit), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_ALLATT_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_all_attributes), ItemsSectionEnd);
-	// Now we read in the boni for the secondary stats
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_LIFE_STRING, "%d", "0", &(TargetItem->bonus_to_life), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_HEALTH_RECOVERY_STRING, "%f", "0.000",
-				       &(TargetItem->bonus_to_health_recovery), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_FORCE_STRING, "%d", "0", &(TargetItem->bonus_to_force), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_MANA_RECOVERY_STRING, "%f", "0.000",
-				       &(TargetItem->bonus_to_cooling_rate), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_TOHIT_STRING, "%d", "0", &(TargetItem->bonus_to_tohit), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DAMREDDAM_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_damred_or_damage), ItemsSectionEnd);
-	// Now we read in the boni for resistances
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESELE_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_resist_electricity), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESFIR_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_resist_fire), ItemsSectionEnd);
-	// Now we see if the item is identified...
-	ReadValueFromString(ItemPointer, ITEM_IS_IDENTIFIED_STRING, "%d", &(TargetItem->is_identified), ItemsSectionEnd);
-
-	DebugPrintf(1, "\nPosX=%f PosY=%f Item=%d", TargetItem->pos.x, TargetItem->pos.y, TargetItem->type);
-
-};				// void ReadInOneItem ( ItemPointer , &(loadlevel->ItemList[ i ]) )
-
-//----------------------------------------------------------------------
-// From here on we take apart the items section of the loaded level...
-//----------------------------------------------------------------------
-static void DecodeItemSectionOfThisLevel(Level loadlevel, char *data)
-{
-	int i;
-	char Preserved_Letter;
-	int NumberOfItemsInThisLevel;
-	char *ItemPointer;
-	char *ItemsSectionBegin;
-	char *ItemsSectionEnd;
-
-	//--------------------
-	// First we initialize the items arrays with 'empty' information
-	//
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		loadlevel->ItemList[i].pos.x = (-1);
-		loadlevel->ItemList[i].pos.y = (-1);
-		loadlevel->ItemList[i].pos.z = (-1);
-		loadlevel->ItemList[i].type = (-1);
-		loadlevel->ItemList[i].currently_held_in_hand = FALSE;
-	}
-
-	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return;
-
-	// We look for the beginning and end of the items section
-	ItemsSectionBegin = LocateStringInData(data, ITEMS_SECTION_BEGIN_STRING);
-	ItemsSectionEnd = LocateStringInData(ItemsSectionBegin, ITEMS_SECTION_END_STRING);
-
-	// We add a terminator at the end of the items section, but ONLY TEMPORARY.  
-	// The damage will be restored later!
-	Preserved_Letter = ItemsSectionEnd[0];
-	ItemsSectionEnd[0] = 0;
-	NumberOfItemsInThisLevel = CountStringOccurences(ItemsSectionBegin, ITEM_NAME_STRING);
-	DebugPrintf(1, "\nNumber of items found in this level : %d.", NumberOfItemsInThisLevel);
-
-	// Now we decode all the item information
-	ItemPointer = ItemsSectionBegin;
-	char *NextItemPointer;
-	for (i = 0; i < NumberOfItemsInThisLevel; i++) {
-		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING))) {
-			NextItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING);
-			if (NextItemPointer)
-				NextItemPointer[0] = 0;
-			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ItemList[i]));
-			loadlevel->ItemList[i].pos.z = loadlevel->levelnum;
-			if (NextItemPointer)
-				NextItemPointer[0] = ITEM_NAME_STRING[0];
-		}
-	}
-
-	// Now we repair the damage done to the loaded level data
-	ItemsSectionEnd[0] = Preserved_Letter;
-};				// void DecodeItemSectionOfThisLevel ( Level loadlevel , char* data )
-
-//----------------------------------------------------------------------
-// From here on we take apart the chest items section of the loaded level...
-//----------------------------------------------------------------------
-static void DecodeChestItemSectionOfThisLevel(Level loadlevel, char *data)
-{
-	int i;
-	char Preserved_Letter;
-	int NumberOfItemsInThisLevel;
-	char *ItemPointer;
-	char *ItemsSectionBegin;
-	char *ItemsSectionEnd;
-	char *NextItemPointer;
-	//--------------------
-	// First we initialize the items arrays with 'empty' information
-	//
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		loadlevel->ChestItemList[i].pos.x = (-1);
-		loadlevel->ChestItemList[i].pos.y = (-1);
-		loadlevel->ChestItemList[i].pos.z = (-1);
-		loadlevel->ChestItemList[i].type = (-1);
-		loadlevel->ChestItemList[i].currently_held_in_hand = FALSE;
-	}
-
-	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return;
-
-	// We look for the beginning and end of the items section
-	ItemsSectionBegin = LocateStringInData(data, CHEST_ITEMS_SECTION_BEGIN_STRING);
-	ItemsSectionEnd = LocateStringInData(ItemsSectionBegin, CHEST_ITEMS_SECTION_END_STRING);
-
-	// We add a terminator at the end of the items section, but ONLY TEMPORARY.  
-	// The damage will be restored later!
-	Preserved_Letter = ItemsSectionEnd[0];
-	ItemsSectionEnd[0] = 0;
-	NumberOfItemsInThisLevel = CountStringOccurences(ItemsSectionBegin, ITEM_NAME_STRING);
-	DebugPrintf(1, "\nNumber of chest items found in this level : %d.", NumberOfItemsInThisLevel);
-
-	// Now we decode all the item information
-	ItemPointer = ItemsSectionBegin;
-	for (i = 0; i < NumberOfItemsInThisLevel; i++) {
-		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING))) {
-			NextItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING);
-			if (NextItemPointer)
-				NextItemPointer[0] = 0;
-			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ChestItemList[i]));
-			loadlevel->ChestItemList[i].pos.z = loadlevel->levelnum;
-			if (NextItemPointer)
-				NextItemPointer[0] = ITEM_NAME_STRING[0];
-		}
-	}
-
-	// Now we repair the damage done to the loaded level data
-	ItemsSectionEnd[0] = Preserved_Letter;
-
-};				// void DecodeChestItemSectionOfThisLevel ( Level loadlevel , char* data )
-
-/**
- * This function is for LOADING map data!
- * This function extracts the data from *data and writes them 
- * into a Level-struct:
- *
- * NOTE:  Here, the map-data are NOT yet translated to their 
- *        their internal values, like "VOID", "H_OPEN_DOOR" and
- *         all the other values from the defs.h file.
- *
- * Doors and Waypoints Arrays are initialized too
- *
- * @Ret:  Level or NULL
- */
-Level DecodeLoadedLeveldata(char *data)
-{
-	Level loadlevel;
-	char *pos;
-	char *map_begin, *wp_begin;
-	int i;
-	int nr, x, y, wp_rnd;
-	int k;
-	int connection;
-	char *this_line;
-	char *DataPointer;
-	char *level_end;
-	int res;
-
-	//--------------------
-	// Get the memory for one level 
-	//
-	loadlevel = (Level) MyMalloc(sizeof(level));
-
-	DebugPrintf(2, "\n-----------------------------------------------------------------");
-	DebugPrintf(2, "\nStarting to process information for another level:\n");
-
-	//--------------------
-	// Read Header Data: levelnum and x/ylen 
-	//
-	DataPointer = strstr(data, "Levelnumber:");
-	if (DataPointer == NULL) {
-		ErrorMessage(__FUNCTION__, "No levelnumber entry found!", PLEASE_INFORM, IS_FATAL);
-	}
-
-	DecodeInterfaceDataForThisLevel(loadlevel, DataPointer);
-
-	DecodeDimensionsOfThisLevel(loadlevel, DataPointer);
-
-	//--------------------
-	// Read the levelname.
-	// Accept legacy ship-files that are not yet marked-up for translation
-	if ((loadlevel->Levelname = ReadAndMallocStringFromDataOptional(data, LEVEL_NAME_STRING, "\"", 0)) == NULL) {
-		loadlevel->Levelname = ReadAndMallocStringFromData(data, LEVEL_NAME_STRING_LEGACY, "\n");
-	}
-
-	loadlevel->Background_Song_Name = ReadAndMallocStringFromData(data, BACKGROUND_SONG_NAME_STRING, "\n");
-
-	decode_obstacles_of_this_level(loadlevel, DataPointer);
-
-	DecodeMapLabelsOfThisLevel(loadlevel, DataPointer);
-
-	decode_obstacle_names_of_this_level(loadlevel, DataPointer);
-
-	//--------------------
-	// Next we extract the statments of the influencer on this level WITHOUT destroying
-	// or damaging the data in the process!
-	//
-	DecodeItemSectionOfThisLevel(loadlevel, data);
-
-	DecodeChestItemSectionOfThisLevel(loadlevel, data);
-
-	//--------------------
-	// find the map data
-	// NOTE, that we here only set up a pointer to the map data
-	// as they are stored in the file.  This is NOT the same format
-	// as the map data stored internally for the game, but rather
-	// an easily human readable format with acceptable ascii 
-	// characters.  The transformation into game-usable data is
-	// done in a later step outside of this function!
-	//
-	if ((map_begin = strstr(data, MAP_BEGIN_STRING)) == NULL)
-		return NULL;
-	map_begin += strlen(MAP_BEGIN_STRING) + 1;
-
-	/* set position to Waypoint-Data */
-	if ((wp_begin = strstr(data, WP_SECTION_BEGIN_STRING)) == NULL)
-		return NULL;
-	wp_begin += strlen(WP_SECTION_BEGIN_STRING) + 1;
-
-	/* now scan the map */
-	short int curlinepos = 0;
-	this_line = (char *)MyMalloc(4096);
-
-	/* read MapData */
-	for (i = 0; i < loadlevel->ylen; i++) {
-		int col;
-		map_tile *Buffer;
-		int tmp;
-
-		/* Select the next line */
-		short int nlpos = 0;
-		memset(this_line, 0, 4096);
-		while (map_begin[curlinepos + nlpos] != '\n')
-			nlpos++;
-		memcpy(this_line, map_begin + curlinepos, nlpos);
-		this_line[nlpos] = '\0';
-		nlpos++;
-
-		/* Decode it */
-		Buffer = MyMalloc((loadlevel->xlen + 10) * sizeof(map_tile));
-		for (col = 0; col < loadlevel->xlen; col++) {
-			tmp = strtol(this_line + 4 * col, NULL, 10);
-			Buffer[col].floor_value = (Uint16) tmp;
-			memset(Buffer[col].obstacles_glued_to_here, -1, MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE);
-		}
-
-		//--------------------
-		// Now the old text pointer can be replaced with a pointer to the
-		// correctly assembled struct...
-		//
-		loadlevel->map[i] = Buffer;
-
-		curlinepos += nlpos;
-	}
-
-	DebugPrintf(2, "\nReached Waypoint-read-routine.");
-
-	//-----------------
-	// Before to read the waypoint data, we first reset all the
-	// waypoint structs.
-	//
-
-	for (i = 0; i < MAXWAYPOINTS; i++) {
-		loadlevel->AllWaypoints[i].x = 0;
-		loadlevel->AllWaypoints[i].y = 0;
-
-		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
-			loadlevel->AllWaypoints[i].connections[k] = -1;
-		}
-	}
-	loadlevel->num_waypoints = 0;
-
-	//--------------------
-	// We decode the waypoint data from the data file into the waypoint
-	// structs...
-	//
-	level_end = LocateStringInData(wp_begin, LEVEL_END_STRING);
-
-	curlinepos = 0;
-	for (i = 0; i < MAXWAYPOINTS; i++) {
-		/* Select the next line */
-		short int nlpos = 0;
-		memset(this_line, 0, 4096);
-		while (wp_begin[curlinepos + nlpos] != '\n')
-			nlpos++;
-		memcpy(this_line, wp_begin + curlinepos, nlpos);
-		this_line[nlpos] = '\0';
-		nlpos++;
-		/* Copy it */
-		curlinepos += nlpos;
-
-		if (*this_line != 'N')
-			if (!strcmp(this_line, LEVEL_END_STRING)) {
-				loadlevel->num_waypoints = i;
-				break;
-			}
-		wp_rnd = 0;
-		sscanf(this_line, "Nr.=%d \t x=%d \t y=%d   rnd=%d", &nr, &x, &y, &wp_rnd);
-
-		// completely ignore x=0/y=0 entries, which are considered non-waypoints!!
-		if (x == 0 && y == 0)
-			continue;
-
-		loadlevel->AllWaypoints[i].x = x;
-		loadlevel->AllWaypoints[i].y = y;
-		// loadlevel -> AllWaypoints [ i ] . suppress_random_spawn = 0 ;
-		loadlevel->AllWaypoints[i].suppress_random_spawn = wp_rnd;
-
-		pos = strstr(this_line, CONNECTION_STRING);
-		if (pos == NULL) {
-			fprintf(stderr, "Unable to find connection string? i is %i, line is %s, level %i\n", i, this_line,
-				loadlevel->levelnum);
-		}
-		pos += strlen(CONNECTION_STRING);	// skip connection-string
-		pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace
-
-		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
-			if (*pos == '\0')
-				break;
-			res = sscanf(pos, "%d", &connection);
-			if ((connection == -1) || (res == 0) || (res == EOF))
-				break;
-			loadlevel->AllWaypoints[i].connections[k] = connection;
-			pos += strcspn(pos, WHITE_SPACE);	// skip last token
-			pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace for next one
-
-		}		// for k < MAX_WP_CONNECTIONS
-
-		loadlevel->AllWaypoints[i].num_connections = k;
-
-	}			// for i < MAXWAYPOINTS
-
-	free(this_line);
-	return (loadlevel);
-
-};				// level *DecodeLoadedLeveldata (char *data)
 
 /**
  * This function is used to calculate the number of the droids on the 
