@@ -36,8 +36,8 @@
 #include "proto.h"
 
 /* Distances for hitting a druid */
-#define DRUIDHITDIST  (0.25)
-#define DRUIDHITDIST2 (DRUIDHITDIST*DRUIDHITDIST)
+#define DROIDHITDIST  (0.25)
+#define DROIDHITDIST2 (DROIDHITDIST*DROIDHITDIST)
 
 /**
  * Hit/miss rules depend on the level of the enemy, among other things.
@@ -279,7 +279,7 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
  * be specified, where possible values are defined in defs.h as follows:
  *
  * BULLETBLAST = 0 , (explosion of a small bullet hitting the wall)
- * DRUIDBLAST,       (explosion of a dying droid)
+ * DROIDBLAST,       (explosion of a dying droid)
  * OWNBLAST          (not implemented)
  *
  */
@@ -338,7 +338,7 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 	NewBlast->MessageWasDone = 0;
 	NewBlast->damage_per_second = dmg;
 
-	if (type == DRUIDBLAST) {
+	if (type == DROIDBLAST) {
 		DruidBlastSound();
 	}
 
@@ -384,7 +384,7 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 			// Druid blasts are dangerous, so we check if someone gets
 			// hurt by this particular droid explosion
 			//
-			if (CurBlast->type == DRUIDBLAST || CurBlast->type == OWNBLAST)
+			if (CurBlast->type == DROIDBLAST || CurBlast->type == OWNBLAST)
 				CheckBlastCollisions(i);
 
 			//--------------------
@@ -696,7 +696,7 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 	xdist = Me.pos.x - bullet_vpos.x;
 	ydist = Me.pos.y - bullet_vpos.y;
 
-	if ((xdist * xdist + ydist * ydist) < DRUIDHITDIST2) {
+	if ((xdist * xdist + ydist * ydist) < DROIDHITDIST2) {
 
 		apply_bullet_damage_to_player(CurBullet->damage, CurBullet->owner);
 		DeleteBullet(num, TRUE);	// we want a bullet-explosion
@@ -724,7 +724,7 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 		xdist = CurBullet->pos.x - ThisRobot->pos.x;
 		ydist = CurBullet->pos.y - ThisRobot->pos.y;
 
-		if ((xdist * xdist + ydist * ydist) >= DRUIDHITDIST2)
+		if ((xdist * xdist + ydist * ydist) >= DROIDHITDIST2)
 			continue;
 
 		if (compute_hit_multiplier(Druidmap[ThisRobot->type].monster_level) * (float)MyRandom(100) >= CurBullet->to_hit)
@@ -870,7 +870,7 @@ void CheckBulletCollisions(int num)
 				continue;
 
 			// If the bullet is too far from the level's border, no need to check that level
-			if (!pos_near_level(CurBullet->pos.x, CurBullet->pos.y, lvl, DRUIDHITDIST))
+			if (!pos_near_level(CurBullet->pos.x, CurBullet->pos.y, lvl, DROIDHITDIST))
 				continue;
 
 			// Now, collision detection...

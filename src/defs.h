@@ -283,7 +283,7 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3 };
 //--------------------
 // dimensions of the droids as required for functions NotPassable() and CheckEnemyCollsion() )
 //
-#define DRUIDRADIUSXY	        (7*2/64.0)
+#define DROIDRADIUSXY	        (7*2/64.0)
 #define BULLET_BULLET_COLLISION_DIST (10/64.0)
 
 #define TAKEOVER_BACKGROUND_MUSIC_SOUND "Bleostrada.ogg"
@@ -519,7 +519,7 @@ enum {
 	DESCRIPTION_WINDOW_UP_BUTTON,
 	DESCRIPTION_WINDOW_DOWN_BUTTON,
 
-	DRUID_SHOW_EXIT_BUTTON,
+	DROID_SHOW_EXIT_BUTTON,
 
 	CHAT_PROTOCOL_SCROLL_UP_BUTTON,
 	CHAT_PROTOCOL_SCROLL_DOWN_BUTTON,
@@ -774,7 +774,7 @@ enum _bullets {
 //
 enum _explosions {
 	BULLETBLAST = 0,
-	DRUIDBLAST,
+	DROIDBLAST,
 	OWNBLAST
 };
 

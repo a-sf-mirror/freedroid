@@ -956,7 +956,7 @@ void start_tux_death_explosions(void)
 		if (counter >= MAXBLASTS) {
 			ErrorMessage(__FUNCTION__, "Ran out of blasts!!!", PLEASE_INFORM, IS_FATAL);
 		}
-		AllBlasts[counter].type = DRUIDBLAST;
+		AllBlasts[counter].type = DROIDBLAST;
 		AllBlasts[counter].pos.x = Me.pos.x - 0.125 / 2 + MyRandom(10) * 0.05;
 		AllBlasts[counter].pos.y = Me.pos.y - 0.125 / 2 + MyRandom(10) * 0.05;
 		AllBlasts[counter].phase = i;

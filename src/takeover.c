@@ -81,12 +81,12 @@ int BlockClass[TO_BLOCKS] = {
 //
 #define MAX_PROB		100
 int ElementProb[TO_ELEMENTS] = {
-	100,			// EL_KABEL 
-	2,			// EL_KABELENDE 
-	5,			// EL_VERSTAERKER 
-	5,			// EL_FARBTAUSCHER: only on last layer 
-	5,			// EL_VERZWEIGUNG 
-	5			// EL_GATTER 
+	100,			// EL_CABLE 
+	2,			// EL_CABLE_END 
+	5,			// EL_AMPLIFIER 
+	5,			// EL_COLOR_EXCHANGER: only on last layer 
+	5,			// EL_SEPARATOR 
+	5			// EL_GATE 
 };
 
 int NumCapsules[TO_COLORS] = {
@@ -94,37 +94,37 @@ int NumCapsules[TO_COLORS] = {
 };
 
 point LeftCapsulesStart[TO_COLORS] = {
-	{GELB_LEFT_CAPSULES_X, GELB_LEFT_CAPSULES_Y},
-	{VIOLETT_LEFT_CAPSULES_X, VIOLETT_LEFT_CAPSULES_Y}
+	{YELLOW_LEFT_CAPSULES_X, YELLOW_LEFT_CAPSULES_Y},
+	{PURPLE_LEFT_CAPSULES_X, PURPLE_LEFT_CAPSULES_Y}
 };
 
 point CurCapsuleStart[TO_COLORS] = {
-	{GELB_CUR_CAPSULE_X, GELB_CUR_CAPSULE_Y},
-	{VIOLETT_CUR_CAPSULE_X, VIOLETT_CUR_CAPSULE_Y}
+	{YELLOW_CUR_CAPSULE_X, YELLOW_CUR_CAPSULE_Y},
+	{PURPLE_CUR_CAPSULE_X, PURPLE_CUR_CAPSULE_Y}
 };
 
 point PlaygroundStart[TO_COLORS] = {
-	{GELB_PLAYGROUND_X, GELB_PLAYGROUND_Y},
-	{VIOLETT_PLAYGROUND_X, VIOLETT_PLAYGROUND_Y}
+	{YELLOW_PLAYGROUND_X, YELLOW_PLAYGROUND_Y},
+	{PURPLE_PLAYGROUND_X, PURPLE_PLAYGROUND_Y}
 };
 
 point DruidStart[TO_COLORS] = {
-	{GELB_DRUID_X, GELB_DRUID_Y},
-	{VIOLETT_DRUID_X, VIOLETT_DRUID_Y}
+	{YELLOW_DROID_X, YELLOW_DROID_Y},
+	{PURPLE_DROID_X, PURPLE_DROID_Y}
 };
 
 int CapsuleCurRow[TO_COLORS] = { 0, 0 };
 
-int LeaderColor = GELB;		/* momentary leading color */
-int YourColor = GELB;
-int OpponentColor = VIOLETT;
+int LeaderColor = YELLOW;		/* momentary leading color */
+int YourColor = YELLOW;
+int OpponentColor = PURPLE;
 int OpponentType;		/* The druid-type of your opponent */
 enemy *cdroid;
 
 /* the display  column */
 int DisplayColumn[NUM_LINES] = {
-	GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT, GELB, VIOLETT,
-	GELB, VIOLETT
+	YELLOW, PURPLE, YELLOW, PURPLE, YELLOW, PURPLE, YELLOW, PURPLE, YELLOW, PURPLE,
+	YELLOW, PURPLE
 };
 
 SDL_Color to_bg_color = { 199, 199, 199 };
@@ -344,12 +344,12 @@ static void ChooseColor(void)
 			if (event.type == SDL_KEYDOWN) {
 				switch (event.key.keysym.sym) {
 				case SDLK_RIGHT:
-					YourColor = VIOLETT;
-					OpponentColor = GELB;
+					YourColor = PURPLE;
+					OpponentColor = YELLOW;
 					break;
 				case SDLK_LEFT:
-					YourColor = GELB;
-					OpponentColor = VIOLETT;
+					YourColor = YELLOW;
+					OpponentColor = PURPLE;
 					break;
 				case SDLK_SPACE:
 					ColorChosen = TRUE;
@@ -503,10 +503,10 @@ static void PlayGame(int countdown)
 				set = FALSE;
 				row = CapsuleCurRow[YourColor] - 1;
 				if ((row >= 0) &&
-				    (ToPlayground[YourColor][0][row] != KABELENDE) && (ActivationMap[YourColor][0][row] == INACTIVE)) {
+				    (ToPlayground[YourColor][0][row] != CABLE_END) && (ActivationMap[YourColor][0][row] == INACTIVE)) {
 					NumCapsules[YOU]--;
 					CapsuleCurRow[YourColor] = 0;
-					ToPlayground[YourColor][0][row] = VERSTAERKER;
+					ToPlayground[YourColor][0][row] = AMPLIFIER;
 					ActivationMap[YourColor][0][row] = ACTIVE1;
 					CapsuleCountdown[YourColor][0][row] = CAPSULE_COUNTDOWN * 2;
 
@@ -586,15 +586,15 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 		//
 		for (row = 0; row < NUM_LINES; row++) {
 			DisplayColumn[row] = (row % 2);
-			CapsuleCountdown[GELB][0][row] = -1;
-			CapsuleCountdown[VIOLETT][0][row] = -1;
+			CapsuleCountdown[YELLOW][0][row] = -1;
+			CapsuleCountdown[PURPLE][0][row] = -1;
 		}		// for row 
 
-		YourColor = GELB;
-		OpponentColor = VIOLETT;
+		YourColor = YELLOW;
+		OpponentColor = PURPLE;
 
-		CapsuleCurRow[GELB] = 0;
-		CapsuleCurRow[VIOLETT] = 0;
+		CapsuleCurRow[YELLOW] = 0;
+		CapsuleCurRow[PURPLE] = 0;
 
 		NumCapsules[YOU] = player_capsules;
 		NumCapsules[ENEMY] = opponent_capsules;
@@ -702,7 +702,7 @@ int droid_takeover(enemy * target)
 				} else if (MouseCursorIsOnButton(DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					MoveMenuPositionSound();
 					Displacement -= FontHeight(GetCurrentFont());
-				} else if (MouseCursorIsOnButton(DRUID_SHOW_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+				} else if (MouseCursorIsOnButton(DROID_SHOW_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					Finished = TRUE;
 				} else if (MouseCursorIsOnButton(TAKEOVER_HELP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					PlayATitleFile("TakeoverInstructions.title");
@@ -773,7 +773,7 @@ int droid_takeover(enemy * target)
 
 /*-----------------------------------------------------------------
  * This function performs the enemy movements in the takeover game,
- * but it does this in an advaned way, that has not been there in
+ * but it does this in an advanced way, that has not been there in
  * the classic freedroid game.
  *-----------------------------------------------------------------*/
 void AdvancedEnemyTakeoverMovements(void)
@@ -848,10 +848,10 @@ void AdvancedEnemyTakeoverMovements(void)
 	case 2:		/* Try to set  capsule */
 		if (MyRandom(100) <= SetProbability) {
 			if ((row >= 0) && 
-			    (ToPlayground[OpponentColor][0][row] != KABELENDE) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
+			    (ToPlayground[OpponentColor][0][row] != CABLE_END) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
 				NumCapsules[ENEMY]--;
 				Takeover_Set_Capsule_Sound();
-				ToPlayground[OpponentColor][0][row] = VERSTAERKER;
+				ToPlayground[OpponentColor][0][row] = AMPLIFIER;
 				ActivationMap[OpponentColor][0][row] = ACTIVE1;
 				CapsuleCountdown[OpponentColor][0][row] = CAPSULE_COUNTDOWN;
 				row = -1;	/* For the next capsule: startpos */
@@ -1009,24 +1009,24 @@ static void ShowPlayground(void)
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 
 	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[GELB_OBEN], Target_Rect.x, Target_Rect.y);
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[YELLOW_HIGH], Target_Rect.x, Target_Rect.y);
 	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[GELB_OBEN].surface, NULL, Screen, &Target_Rect);
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[YELLOW_HIGH].surface, NULL, Screen, &Target_Rect);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++) {
 		if (use_open_gl)
-			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[GELB_MITTE], Target_Rect.x, Target_Rect.y);
+			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[YELLOW_MIDDLE], Target_Rect.x, Target_Rect.y);
 		else
-			our_SDL_blit_surface_wrapper(ToGroundBlocks[GELB_MITTE].surface, NULL, Screen, &Target_Rect);
+			our_SDL_blit_surface_wrapper(ToGroundBlocks[YELLOW_MIDDLE].surface, NULL, Screen, &Target_Rect);
 		Target_Rect.y += GROUNDBLOCKHEIGHT;
 	}
 
 	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[GELB_UNTEN], Target_Rect.x, Target_Rect.y);
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[YELLOW_LOW], Target_Rect.x, Target_Rect.y);
 	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[GELB_UNTEN].surface, NULL, Screen, &Target_Rect);
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[YELLOW_LOW].surface, NULL, Screen, &Target_Rect);
 
 	// the middle column
 	Set_Rect(Target_Rect, xoffs + MID_OFFS_X, yoffs + MID_OFFS_Y, 0, 0);
@@ -1047,23 +1047,23 @@ static void ShowPlayground(void)
 	// the right column
 	Set_Rect(Target_Rect, xoffs + RIGHT_OFFS_X, yoffs + RIGHT_OFFS_Y, 0, 0);
 	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[VIOLETT_OBEN], Target_Rect.x, Target_Rect.y);
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[PURPLE_HIGH], Target_Rect.x, Target_Rect.y);
 	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[VIOLETT_OBEN].surface, NULL, Screen, &Target_Rect);
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[PURPLE_HIGH].surface, NULL, Screen, &Target_Rect);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++, Target_Rect.y += GROUNDBLOCKHEIGHT) {
 		if (use_open_gl)
-			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[VIOLETT_MITTE], Target_Rect.x, Target_Rect.y);
+			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[PURPLE_MIDDLE], Target_Rect.x, Target_Rect.y);
 		else
-			our_SDL_blit_surface_wrapper(ToGroundBlocks[VIOLETT_MITTE].surface, NULL, Screen, &Target_Rect);
+			our_SDL_blit_surface_wrapper(ToGroundBlocks[PURPLE_MIDDLE].surface, NULL, Screen, &Target_Rect);
 	}
 
 	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[VIOLETT_UNTEN], Target_Rect.x, Target_Rect.y);
+		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[PURPLE_LOW], Target_Rect.x, Target_Rect.y);
 	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[VIOLETT_UNTEN].surface, NULL, Screen, &Target_Rect);
+		our_SDL_blit_surface_wrapper(ToGroundBlocks[PURPLE_LOW].surface, NULL, Screen, &Target_Rect);
 
 	// Fill the leader-LED with its color 
 	Set_Rect(Target_Rect, xoffs + LEADERLED_X, yoffs + LEADERLED_Y, 0, 0);
@@ -1090,22 +1090,22 @@ static void ShowPlayground(void)
 	// Show the yellow playground 
 	for (i = 0; i < NUM_LAYERS - 1; i++)
 		for (j = 0; j < NUM_LINES; j++) {
-			Set_Rect(Target_Rect, xoffs + PlaygroundStart[GELB].x + i * TO_BLOCKLEN,
-				 yoffs + PlaygroundStart[GELB].y + j * TO_BLOCKHEIGHT, 0, 0);
-			block = ToPlayground[GELB][i][j] + ActivationMap[GELB][i][j] * TO_BLOCKS;
+			Set_Rect(Target_Rect, xoffs + PlaygroundStart[YELLOW].x + i * TO_BLOCKLEN,
+				 yoffs + PlaygroundStart[YELLOW].y + j * TO_BLOCKHEIGHT, 0, 0);
+			block = ToPlayground[YELLOW][i][j] + ActivationMap[YELLOW][i][j] * TO_BLOCKS;
 			if (use_open_gl)
 				draw_gl_textured_quad_at_screen_position(&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
 			else
 				our_SDL_blit_surface_wrapper(ToGameBlocks[block].surface, NULL, Screen, &Target_Rect);
 		}
 
-	// Show the violett playground 
+	// Show the purple playground 
 	for (i = 0; i < NUM_LAYERS - 1; i++)
 		for (j = 0; j < NUM_LINES; j++) {
 			Set_Rect(Target_Rect,
-				 xoffs + PlaygroundStart[VIOLETT].x + (NUM_LAYERS - i - 2) * TO_BLOCKLEN,
-				 yoffs + PlaygroundStart[VIOLETT].y + j * TO_BLOCKHEIGHT, 0, 0);
-			block = ToPlayground[VIOLETT][i][j] + (NUM_PHASES + ActivationMap[VIOLETT][i][j]) * TO_BLOCKS;
+				 xoffs + PlaygroundStart[PURPLE].x + (NUM_LAYERS - i - 2) * TO_BLOCKLEN,
+				 yoffs + PlaygroundStart[PURPLE].y + j * TO_BLOCKHEIGHT, 0, 0);
+			block = ToPlayground[PURPLE][i][j] + (NUM_PHASES + ActivationMap[PURPLE][i][j]) * TO_BLOCKS;
 			if (use_open_gl)
 				draw_gl_textured_quad_at_screen_position(&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
 			else
@@ -1153,12 +1153,12 @@ void ClearPlayground(void)
 {
 	int color, layer, row;
 
-	for (color = GELB; color < TO_COLORS; color++)
+	for (color = YELLOW; color < TO_COLORS; color++)
 		for (layer = 0; layer < NUM_LAYERS; layer++)
 			for (row = 0; row < NUM_LINES; row++) {
 				ActivationMap[color][layer][row] = INACTIVE;
 				if (layer < TO_COLORS - 1)
-					ToPlayground[color][layer][row] = KABEL;
+					ToPlayground[color][layer][row] = CABLE;
 				else
 					ToPlayground[color][layer][row] = INACTIVE;
 			}
@@ -1176,17 +1176,17 @@ void InventPlayground(void)
 	int anElement;
 	int newElement;
 	int row, layer;
-	int color = GELB;
+	int color = YELLOW;
 
 	//--------------------
 	// first clear the playground: we depend on this !! 
 	//
 	ClearPlayground();
 
-	for (color = GELB; color < TO_COLORS; color++) {
+	for (color = YELLOW; color < TO_COLORS; color++) {
 		for (layer = 1; layer < NUM_LAYERS - 1; layer++) {
 			for (row = 0; row < NUM_LINES; row++) {
-				if (ToPlayground[color][layer][row] != KABEL)
+				if (ToPlayground[color][layer][row] != CABLE)
 					continue;
 
 				newElement = MyRandom(TO_ELEMENTS);
@@ -1196,29 +1196,29 @@ void InventPlayground(void)
 				}
 
 				switch (newElement) {
-				case EL_KABEL:	/* has not to be set any more */
+				case EL_CABLE:	/* has not to be set any more */
 					anElement = ToPlayground[color][layer - 1][row];
 					if (BlockClass[anElement] == NON_CONNECTOR)
-						ToPlayground[color][layer][row] = LEER;
+						ToPlayground[color][layer][row] = EMPTY;
 					break;
 
-				case EL_KABELENDE:
+				case EL_CABLE_END:
 					anElement = ToPlayground[color][layer - 1][row];
 					if (BlockClass[anElement] == NON_CONNECTOR)
-						ToPlayground[color][layer][row] = LEER;
+						ToPlayground[color][layer][row] = EMPTY;
 					else
-						ToPlayground[color][layer][row] = KABELENDE;
+						ToPlayground[color][layer][row] = CABLE_END;
 					break;
 
-				case EL_VERSTAERKER:
+				case EL_AMPLIFIER:
 					anElement = ToPlayground[color][layer - 1][row];
 					if (BlockClass[anElement] == NON_CONNECTOR)
-						ToPlayground[color][layer][row] = LEER;
+						ToPlayground[color][layer][row] = EMPTY;
 					else
-						ToPlayground[color][layer][row] = VERSTAERKER;
+						ToPlayground[color][layer][row] = AMPLIFIER;
 					break;
 
-				case EL_FARBTAUSCHER:
+				case EL_COLOR_EXCHANGER:
 					if (layer != 2) {	/* only existing on layer 2 */
 						row--;
 						continue;
@@ -1226,12 +1226,12 @@ void InventPlayground(void)
 
 					anElement = ToPlayground[color][layer - 1][row];
 					if (BlockClass[anElement] == NON_CONNECTOR)
-						ToPlayground[color][layer][row] = LEER;
+						ToPlayground[color][layer][row] = EMPTY;
 					else
-						ToPlayground[color][layer][row] = FARBTAUSCHER;
+						ToPlayground[color][layer][row] = COLOR_EXCHANGER;
 					break;
 
-				case EL_VERZWEIGUNG:
+				case EL_SEPARATOR:
 					if (row > NUM_LINES - 3) {
 						/* try again */
 						row--;
@@ -1247,12 +1247,12 @@ void InventPlayground(void)
 
 					/* dont destroy verzweigungen in prev. layer */
 					anElement = ToPlayground[color][layer - 1][row];
-					if (anElement == VERZWEIGUNG_O || anElement == VERZWEIGUNG_U) {
+					if (anElement == SEPARATOR_H || anElement == SEPARATOR_L) {
 						row--;
 						break;
 					}
 					anElement = ToPlayground[color][layer - 1][row + 2];
-					if (anElement == VERZWEIGUNG_O || anElement == VERZWEIGUNG_U) {
+					if (anElement == SEPARATOR_H || anElement == SEPARATOR_L) {
 						row--;
 						break;
 					}
@@ -1260,21 +1260,21 @@ void InventPlayground(void)
 					/* cut off kabels in last layer, if any */
 					anElement = ToPlayground[color][layer - 1][row];
 					if (BlockClass[anElement] == CONNECTOR)
-						ToPlayground[color][layer - 1][row] = KABELENDE;
+						ToPlayground[color][layer - 1][row] = CABLE_END;
 
 					anElement = ToPlayground[color][layer - 1][row + 2];
 					if (BlockClass[anElement] == CONNECTOR)
-						ToPlayground[color][layer - 1][row + 2] = KABELENDE;
+						ToPlayground[color][layer - 1][row + 2] = CABLE_END;
 
 					/* set the verzweigung itself */
-					ToPlayground[color][layer][row] = VERZWEIGUNG_O;
-					ToPlayground[color][layer][row + 1] = VERZWEIGUNG_M;
-					ToPlayground[color][layer][row + 2] = VERZWEIGUNG_U;
+					ToPlayground[color][layer][row] = SEPARATOR_H;
+					ToPlayground[color][layer][row + 1] = SEPARATOR_M;
+					ToPlayground[color][layer][row + 2] = SEPARATOR_L;
 
 					row += 2;
 					break;
 
-				case EL_GATTER:
+				case EL_GATE:
 					if (row > NUM_LINES - 3) {
 						/* try again */
 						row--;
@@ -1297,12 +1297,12 @@ void InventPlayground(void)
 					/* cut off kabels in last layer, if any */
 					anElement = ToPlayground[color][layer - 1][row + 1];
 					if (BlockClass[anElement] == CONNECTOR)
-						ToPlayground[color][layer - 1][row + 1] = KABELENDE;
+						ToPlayground[color][layer - 1][row + 1] = CABLE_END;
 
-					/* set the GATTER itself */
-					ToPlayground[color][layer][row] = GATTER_O;
-					ToPlayground[color][layer][row + 1] = GATTER_M;
-					ToPlayground[color][layer][row + 2] = GATTER_U;
+					/* set the GATE itself */
+					ToPlayground[color][layer][row] = GATE_H;
+					ToPlayground[color][layer][row + 1] = GATE_M;
+					ToPlayground[color][layer][row + 2] = GATE_L;
 
 					row += 2;
 					break;
@@ -1328,12 +1328,12 @@ void EvaluatePlayground(void)
 {
 	int newElement;
 	int row, layer;
-	int color = GELB;
+	int color = YELLOW;
 	float ScoreFound[TO_COLORS];
 
 #define EVALUATE_PLAYGROUND_DEBUG 1
 
-	for (color = GELB; color < TO_COLORS; color++) {
+	for (color = YELLOW; color < TO_COLORS; color++) {
 
 		DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "\n----------------------------------------------------------------------\n\
 Starting to evaluate side nr. %d.  Results displayed below:\n", color);
@@ -1346,36 +1346,36 @@ Starting to evaluate side nr. %d.  Results displayed below:\n", color);
 				newElement = ToPlayground[color][layer][row];
 
 				switch (newElement) {
-				case KABEL:	/* has not to be set any more */
-				case LEER:
+				case CABLE:	/* has not to be set any more */
+				case EMPTY:
 					break;
 
-				case KABELENDE:
-					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "KABELENDE found --> score -= 1.0\n");
+				case CABLE_END:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "CABLE_END found --> score -= 1.0\n");
 					ScoreFound[color] -= 1.0;
 					break;
 
-				case VERSTAERKER:
-					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "VERSTAERKER found --> score += 0.5\n");
+				case AMPLIFIER:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "AMPLIFIER found --> score += 0.5\n");
 					ScoreFound[color] += 0.5;
 					break;
 
-				case FARBTAUSCHER:
-					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "FARBTAUSCHER found --> score -= 1.5\n");
+				case COLOR_EXCHANGER:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "COLOR_EXCHANGER found --> score -= 1.5\n");
 					ScoreFound[color] -= 1.5;
 					break;
 
-				case VERZWEIGUNG_O:
-				case VERZWEIGUNG_U:
-				case VERZWEIGUNG_M:
-					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "VERZWEIGUNG found --> score += 1.0\n");
+				case SEPARATOR_H:
+				case SEPARATOR_L:
+				case SEPARATOR_M:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "SEPARATOR found --> score += 1.0\n");
 					ScoreFound[color] += 1.0;
 					break;
 
-				case GATTER_M:
-				case GATTER_U:
-				case GATTER_O:
-					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "GATTER found --> score -= 1.0\n");
+				case GATE_M:
+				case GATE_L:
+				case GATE_H:
+					DebugPrintf(EVALUATE_PLAYGROUND_DEBUG, "GATE found --> score -= 1.0\n");
 					ScoreFound[color] -= 1.0;
 					break;
 
@@ -1428,54 +1428,54 @@ float EvaluatePosition(int color, int row, int layer)
 	newElement = ToPlayground[color][layer][row];
 
 	switch (newElement) {
-	case KABEL:		/* has not to be set any more */
-		DebugPrintf(EVAL_DEBUG, "KABEL reached... continuing...");
+	case CABLE:		/* has not to be set any more */
+		DebugPrintf(EVAL_DEBUG, "CABLE reached... continuing...");
 		return (EvaluatePosition(color, row, layer + 1));
-	case LEER:
-		DebugPrintf(EVAL_DEBUG, "LEER reached... stopping...");
+	case EMPTY:
+		DebugPrintf(EVAL_DEBUG, "EMPTY reached... stopping...");
 		return (0);
 		break;
 
-	case KABELENDE:
-		DebugPrintf(EVAL_DEBUG, "KABELENDE reached... returning now...");
+	case CABLE_END:
+		DebugPrintf(EVAL_DEBUG, "CABLE_END reached... returning now...");
 		return (0);
 		break;
 
-	case VERSTAERKER:
-		DebugPrintf(EVAL_DEBUG, "VERSTAERKER reached... continuing...");
+	case AMPLIFIER:
+		DebugPrintf(EVAL_DEBUG, "AMPLIFIER reached... continuing...");
 		return (1.5 * EvaluatePosition(color, row, layer + 1));
 		break;
 
-	case FARBTAUSCHER:
-		DebugPrintf(EVAL_DEBUG, "FARBTAUSCHER reached... continuing...");
+	case COLOR_EXCHANGER:
+		DebugPrintf(EVAL_DEBUG, "COLOR_EXCHANGER reached... continuing...");
 		return (-1.5 * EvaluatePosition(color, row, layer + 1));
 		break;
 
-	case VERZWEIGUNG_O:
-		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: VERZWEIGUNG_O !!!\n");
+	case SEPARATOR_H:
+		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: SEPARATOR_H !!!\n");
 		return (0);
 		break;
-	case VERZWEIGUNG_U:
-		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: VERZWEIGUNG_U !!!\n");
+	case SEPARATOR_L:
+		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: SEPARATOR_L !!!\n");
 		return (0);
 		break;
-	case GATTER_M:
-		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: GATTER_M !!!\n");
+	case GATE_M:
+		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: GATE_M !!!\n");
 		return (0);
 		break;
 
-	case VERZWEIGUNG_M:
-		DebugPrintf(EVAL_DEBUG, "VERZWEIGUNG reached... double-continuing...");
+	case SEPARATOR_M:
+		DebugPrintf(EVAL_DEBUG, "SEPARATOR reached... double-continuing...");
 		return (EvaluatePosition(color, row + 1, layer + 1) + EvaluatePosition(color, row - 1, layer + 1));
 		break;
 
-	case GATTER_O:
-		DebugPrintf(EVAL_DEBUG, "GATTER reached... stopping...\n");
+	case GATE_H:
+		DebugPrintf(EVAL_DEBUG, "GATE reached... stopping...\n");
 		return (0.3 * EvaluatePosition(color, row + 1, layer + 1));
 		break;
 
-	case GATTER_U:
-		DebugPrintf(EVAL_DEBUG, "GATTER reached... stopping...\n");
+	case GATE_L:
+		DebugPrintf(EVAL_DEBUG, "GATE reached... stopping...\n");
 		return (0.3 * EvaluatePosition(color, row - 1, layer + 1));
 		break;
 
@@ -1500,7 +1500,7 @@ void ProcessPlayground(void)
 	int color, layer, row;
 	int TurnActive = FALSE;
 
-	for (color = GELB; color < TO_COLORS; color++) {
+	for (color = YELLOW; color < TO_COLORS; color++) {
 		for (layer = 1; layer < NUM_LAYERS; layer++) {
 			for (row = 0; row < NUM_LINES; row++) {
 				if (layer == NUM_LAYERS - 1) {
@@ -1515,16 +1515,16 @@ void ProcessPlayground(void)
 				TurnActive = FALSE;
 
 				switch (ToPlayground[color][layer][row]) {
-				case FARBTAUSCHER:
-				case VERZWEIGUNG_M:
-				case GATTER_O:
-				case GATTER_U:
-				case KABEL:
+				case COLOR_EXCHANGER:
+				case SEPARATOR_M:
+				case GATE_H:
+				case GATE_L:
+				case CABLE:
 					if (ActivationMap[color][layer - 1][row] >= ACTIVE1)
 						TurnActive = TRUE;
 					break;
 
-				case VERSTAERKER:
+				case AMPLIFIER:
 					if (ActivationMap[color][layer - 1][row] >= ACTIVE1)
 						TurnActive = TRUE;
 
@@ -1534,20 +1534,20 @@ void ProcessPlayground(void)
 
 					break;
 
-				case KABELENDE:
+				case CABLE_END:
 					break;
 
-				case VERZWEIGUNG_O:
+				case SEPARATOR_H:
 					if (ActivationMap[color][layer][row + 1] >= ACTIVE1)
 						TurnActive = TRUE;
 					break;
 
-				case VERZWEIGUNG_U:
+				case SEPARATOR_L:
 					if (ActivationMap[color][layer][row - 1] >= ACTIVE1)
 						TurnActive = TRUE;
 					break;
 
-				case GATTER_M:
+				case GATE_M:
 					if ((ActivationMap[color][layer][row - 1] >= ACTIVE1)
 					    && (ActivationMap[color][layer][row + 1] >= ACTIVE1))
 						TurnActive = TRUE;
@@ -1590,38 +1590,38 @@ void ProcessDisplayColumn(void)
 
 	for (row = 0; row < NUM_LINES; row++) {
 		// unquestioned yellow
-		if ((ActivationMap[GELB][CLayer][row] >= ACTIVE1) && (ActivationMap[VIOLETT][CLayer][row] == INACTIVE)) {
+		if ((ActivationMap[YELLOW][CLayer][row] >= ACTIVE1) && (ActivationMap[PURPLE][CLayer][row] == INACTIVE)) {
 			// change color?
-			if (ToPlayground[GELB][CLayer - 1][row] == FARBTAUSCHER)
-				DisplayColumn[row] = VIOLETT;
+			if (ToPlayground[YELLOW][CLayer - 1][row] == COLOR_EXCHANGER)
+				DisplayColumn[row] = PURPLE;
 			else
-				DisplayColumn[row] = GELB;
+				DisplayColumn[row] = YELLOW;
 			continue;
 		}
 		// clearly magenta
-		if ((ActivationMap[GELB][CLayer][row] == INACTIVE) && (ActivationMap[VIOLETT][CLayer][row] >= ACTIVE1)) {
+		if ((ActivationMap[YELLOW][CLayer][row] == INACTIVE) && (ActivationMap[PURPLE][CLayer][row] >= ACTIVE1)) {
 			// change color?
-			if (ToPlayground[VIOLETT][CLayer - 1][row] == FARBTAUSCHER)
-				DisplayColumn[row] = GELB;
+			if (ToPlayground[PURPLE][CLayer - 1][row] == COLOR_EXCHANGER)
+				DisplayColumn[row] = YELLOW;
 			else
-				DisplayColumn[row] = VIOLETT;
+				DisplayColumn[row] = PURPLE;
 
 			continue;
 		}
 		// undecided: flimmering
-		if ((ActivationMap[GELB][CLayer][row] >= ACTIVE1) && (ActivationMap[VIOLETT][CLayer][row] >= ACTIVE1)) {
+		if ((ActivationMap[YELLOW][CLayer][row] >= ACTIVE1) && (ActivationMap[PURPLE][CLayer][row] >= ACTIVE1)) {
 			// change color?
-			if ((ToPlayground[GELB][CLayer - 1][row] == FARBTAUSCHER) &&
-			    (ToPlayground[VIOLETT][CLayer - 1][row] != FARBTAUSCHER))
-				DisplayColumn[row] = VIOLETT;
-			else if ((ToPlayground[GELB][CLayer - 1][row] != FARBTAUSCHER) &&
-				 (ToPlayground[VIOLETT][CLayer - 1][row] == FARBTAUSCHER))
-				DisplayColumn[row] = GELB;
+			if ((ToPlayground[YELLOW][CLayer - 1][row] == COLOR_EXCHANGER) &&
+			    (ToPlayground[PURPLE][CLayer - 1][row] != COLOR_EXCHANGER))
+				DisplayColumn[row] = PURPLE;
+			else if ((ToPlayground[YELLOW][CLayer - 1][row] != COLOR_EXCHANGER) &&
+				 (ToPlayground[PURPLE][CLayer - 1][row] == COLOR_EXCHANGER))
+				DisplayColumn[row] = YELLOW;
 			else {
 				if (flicker_color == 0)
-					DisplayColumn[row] = GELB;
+					DisplayColumn[row] = YELLOW;
 				else
-					DisplayColumn[row] = VIOLETT;
+					DisplayColumn[row] = PURPLE;
 			}	/* if - else if - else */
 
 		}
@@ -1632,17 +1632,17 @@ void ProcessDisplayColumn(void)
 	GelbCounter = 0;
 	ViolettCounter = 0;
 	for (row = 0; row < NUM_LINES; row++)
-		if (DisplayColumn[row] == GELB)
+		if (DisplayColumn[row] == YELLOW)
 			GelbCounter++;
 		else
 			ViolettCounter++;
 
 	if (ViolettCounter < GelbCounter)
-		LeaderColor = GELB;
+		LeaderColor = YELLOW;
 	else if (ViolettCounter > GelbCounter)
-		LeaderColor = VIOLETT;
+		LeaderColor = PURPLE;
 	else
-		LeaderColor = REMIS;
+		LeaderColor = DRAW;
 
 	return;
 };				// void ProcessDisplayColumn 
@@ -1656,7 +1656,7 @@ void ProcessCapsules(void)
 	int row;
 	int color;
 
-	for (color = GELB; color <= VIOLETT; color++)
+	for (color = YELLOW; color <= PURPLE; color++)
 		for (row = 0; row < NUM_LINES; row++) {
 			if (CapsuleCountdown[color][0][row] > 0)
 				CapsuleCountdown[color][0][row]--;
@@ -1664,7 +1664,7 @@ void ProcessCapsules(void)
 			if (CapsuleCountdown[color][0][row] == 0) {
 				CapsuleCountdown[color][0][row] = -1;
 				ActivationMap[color][0][row] = INACTIVE;
-				ToPlayground[color][0][row] = KABEL;
+				ToPlayground[color][0][row] = CABLE;
 			}
 
 		}		/* for row */
@@ -1695,7 +1695,7 @@ void AnimateCurrents(void)
 {
 	int color, layer, row;
 
-	for (color = GELB; color <= VIOLETT; color++)
+	for (color = YELLOW; color <= PURPLE; color++)
 		for (layer = 0; layer < NUM_LAYERS; layer++)
 			for (row = 0; row < NUM_LINES; row++)
 				if (ActivationMap[color][layer][row] >= ACTIVE1) {

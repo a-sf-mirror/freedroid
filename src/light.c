@@ -567,7 +567,7 @@ void update_light_list()
 	// These will typically emanate a lot of light.
 	//
 	for (blast = 0; blast < MAXBLASTS; blast++) {
-		if (!(AllBlasts[blast].type == DRUIDBLAST))
+		if (!(AllBlasts[blast].type == DROIDBLAST))
 			continue;
 
 		//--------------------

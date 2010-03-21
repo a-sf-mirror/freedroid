@@ -2495,7 +2495,7 @@ int CheckEnemyEnemyCollision(enemy * OurBot)
 		dist2 = sqrt(xdist * xdist + ydist * ydist);
 
 		// Is there a Collision?
-		if (dist2 <= 2 * DRUIDRADIUSXY) {
+		if (dist2 <= 2 * DROIDRADIUSXY) {
 			if (erot->pure_wait)
 				continue;
 

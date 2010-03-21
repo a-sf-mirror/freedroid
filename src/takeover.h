@@ -50,12 +50,12 @@ void to_show_banner(const char *left, const char *right);
 #define TO_BLOCKHEIGHT	 	2*8
 
 /* Dimensions of the fill-blocks (in led-column */
-#define NUM_FILL_BLOCKS		3	// yellow, violett and black
+#define NUM_FILL_BLOCKS		3	// yellow, purple and black
 #define FILL_BLOCK_LEN		2*16
 #define FILL_BLOCK_HEIGHT  	2*7
 
 /* Dimensions of a capsule */
-#define NUM_CAPS_BLOCKS		3	// yellow, violett and red (?what for)
+#define NUM_CAPS_BLOCKS		3	// yellow, purple and red (?what for)
 #define CAPSULE_LEN		2*7
 #define CAPSULE_HEIGHT		2*7
 
@@ -92,30 +92,30 @@ void to_show_banner(const char *left, const char *right);
 #define LEDCOLUMN_Y		2*27
 
 /* Positions of Druid-pictures */
-#define GELB_DRUID_X		2*40
-#define GELB_DRUID_Y		0
-#define VIOLETT_DRUID_X		2*220
-#define VIOLETT_DRUID_Y		GELB_DRUID_Y
+#define YELLOW_DROID_X		2*40
+#define YELLOW_DROID_Y		0
+#define PURPLE_DROID_X		2*220
+#define PURPLE_DROID_Y		YELLOW_DROID_Y
 
 /* Left-Capsules positions */
-#define GELB_LEFT_CAPSULES_X	4
-#define GELB_LEFT_CAPSULES_Y	2*27
-#define VIOLETT_LEFT_CAPSULES_X	RIGHT_OFFS_X + COLUMNBLOCKLEN -10
-#define VIOLETT_LEFT_CAPSULES_Y	2*27
+#define YELLOW_LEFT_CAPSULES_X	4
+#define YELLOW_LEFT_CAPSULES_Y	2*27
+#define PURPLE_LEFT_CAPSULES_X	RIGHT_OFFS_X + COLUMNBLOCKLEN -10
+#define PURPLE_LEFT_CAPSULES_Y	2*27
 
 /* start-pos of Current Capsule */
-#define GELB_CUR_CAPSULE_X	2*26
-#define GELB_CUR_CAPSULE_Y	2*19
-#define VIOLETT_CUR_CAPSULE_X	2*255
-#define VIOLETT_CUR_CAPSULE_Y	2*19
+#define YELLOW_CUR_CAPSULE_X	2*26
+#define YELLOW_CUR_CAPSULE_Y	2*19
+#define PURPLE_CUR_CAPSULE_X	2*255
+#define PURPLE_CUR_CAPSULE_Y	2*19
 
 #define MAX_CAPSULES		13	/* a 999 has 13 !!! */
 
 /* Start-Pos of playground */
-#define GELB_PLAYGROUND_X	2*33
-#define GELB_PLAYGROUND_Y	2*26
-#define VIOLETT_PLAYGROUND_X	2*159
-#define VIOLETT_PLAYGROUND_Y	2*26
+#define YELLOW_PLAYGROUND_X	2*33
+#define YELLOW_PLAYGROUND_Y	2*26
+#define PURPLE_PLAYGROUND_X	2*159
+#define PURPLE_PLAYGROUND_Y	2*26
 
 #define LEFT_OFFS_X		2*10	/* Offset der linken "Saeule" */
 #define LEFT_OFFS_Y		2*15
@@ -127,15 +127,15 @@ void to_show_banner(const char *left, const char *right);
 #define RIGHT_OFFS_Y		2*15
 
 enum _groundblocks {
-	GELB_OBEN,
-	GELB_MITTE,
-	GELB_UNTEN,
-	VIOLETT_OBEN,
-	VIOLETT_MITTE,
-	VIOLETT_UNTEN
+	YELLOW_HIGH,
+	YELLOW_MIDDLE,
+	YELLOW_LOW,
+	PURPLE_HIGH,
+	PURPLE_MIDDLE,
+	PURPLE_LOW
 };
 
-/* Konditions in Connection-layer */
+/* Conditions in Connection-layer */
 enum condition {
 	INACTIVE = 0,
 	ACTIVE1,
@@ -153,34 +153,34 @@ enum to_opponents {
 /* Color-names */
 #define TO_COLORS		2
 enum to_colors {
-	GELB = 0,
-	VIOLETT,
-	REMIS
+	YELLOW = 0,
+	PURPLE,
+	DRAW
 };
 
 /* Element - Names */
 enum to_elements {
-	EL_KABEL,
-	EL_KABELENDE,
-	EL_VERSTAERKER,
-	EL_FARBTAUSCHER,
-	EL_VERZWEIGUNG,
-	EL_GATTER
+	EL_CABLE,
+	EL_CABLE_END,
+	EL_AMPLIFIER,
+	EL_COLOR_EXCHANGER,
+	EL_SEPARATOR,
+	EL_GATE
 };
 
 /* Block-Names */
 enum to_block_tyes {
-	KABEL,
-	KABELENDE,
-	VERSTAERKER,
-	FARBTAUSCHER,
-	VERZWEIGUNG_O,
-	VERZWEIGUNG_M,
-	VERZWEIGUNG_U,
-	GATTER_O,
-	GATTER_M,
-	GATTER_U,
-	LEER
+	CABLE,
+	CABLE_END,
+	AMPLIFIER,
+	COLOR_EXCHANGER,
+	SEPARATOR_H,
+	SEPARATOR_M,
+	SEPARATOR_L,
+	GATE_H,
+	GATE_M,
+	GATE_L,
+	EMPTY
 };
 
 /* there are two classes of blocks: connectors and non-connectors */
