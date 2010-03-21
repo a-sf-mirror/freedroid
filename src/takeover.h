@@ -42,11 +42,11 @@ void to_show_banner(const char *left, const char *right);
 					/* inclusive "inactive" phase */
 
 /* Dimensions of the game-blocks */
-#define TO_BLOCKS		11	/* anzahl versch. Game- blocks */
+#define TO_BLOCKS		11	/* quantity of different game- blocks */
 
 #define NUM_TO_BLOCKS		2*NUM_PHASES*TO_BLOCKS	// total number of takover blocks
 #define TO_ELEMENTS		6
-#define TO_BLOCKLEN		2*32	/* dimension of a Game- block */
+#define TO_BLOCKLEN		2*32	/* dimension of a game- block */
 #define TO_BLOCKHEIGHT	 	2*8
 
 /* Dimensions of the fill-blocks (in led-column */
@@ -71,12 +71,12 @@ void to_show_banner(const char *left, const char *right);
 #define LEADERBLOCKHEIGHT	2*19
 
 /* --------------- Timing parameters --------------- */
-#define COLOR_COUNTDOWN		100	/* Zeit zum Farbe auswaehlen */
-#define GAME_COUNTDOWN		100	/* Zeit fuer das Spiel */
-#define CAPSULE_COUNTDOWN	 40	/* 1/10 sec. Lebensdauer einer Kapsel */
+#define COLOR_COUNTDOWN		100	/* time to choose color */
+#define GAME_COUNTDOWN		100	/* Time to end the game */
+#define CAPSULE_COUNTDOWN	 40	/* 1/10 sec. lifetime of a capsule */
 
-#define WAIT_MOVEMENT		0	/* 1/18 sekunden Bewegungsgeschw. */
-#define WAIT_COLOR_ROTATION	2	/* 1/18 sekunden aktive-Kabel */
+#define WAIT_MOVEMENT		0	/* 1/18 sec. ovementspeed. */
+#define WAIT_COLOR_ROTATION	2	/* 1/18 seC active-capsule */
 #define WAIT_AFTER_GAME		2*18	/* Wait after a deadlock */
 
 #define TO_TICK_LENGTH		40	/* Time in ms between ticks */
@@ -91,7 +91,7 @@ void to_show_banner(const char *left, const char *right);
 #define LEDCOLUMN_X		2*136
 #define LEDCOLUMN_Y		2*27
 
-/* Positions of Druid-pictures */
+/* Positions of Droid-pictures */
 #define YELLOW_DROID_X		2*40
 #define YELLOW_DROID_Y		0
 #define PURPLE_DROID_X		2*220
@@ -117,13 +117,13 @@ void to_show_banner(const char *left, const char *right);
 #define PURPLE_PLAYGROUND_X	2*159
 #define PURPLE_PLAYGROUND_Y	2*26
 
-#define LEFT_OFFS_X		2*10	/* Offset der linken "Saeule" */
+#define LEFT_OFFS_X		2*10	/* Offset of the left column */
 #define LEFT_OFFS_Y		2*15
 
-#define MID_OFFS_X		2*129	/* -- mittleren -- */
+#define MID_OFFS_X		2*129	/* -- of the middle one -- */
 #define MID_OFFS_Y		2*8
 
-#define RIGHT_OFFS_X		2*255	/* -- rechten --- */
+#define RIGHT_OFFS_X		2*255	/* -- and the right one --- */
 #define RIGHT_OFFS_Y		2*15
 
 enum _groundblocks {
