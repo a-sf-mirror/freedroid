@@ -541,7 +541,7 @@ static void show_level_editor_tooltips(void)
 		   || MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON_OFF, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
-					    ("Toggle display collision rectangles\n\nUse this button to toggle the visible collision rectangles on and off."));
+					    ("Toggle display collision rectangles\n\nUse this button to toggle the visible collision rectangles on and off.\nThis only works using OpenGL mode!"));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_GRID_BUTTON, GetMousePos_x(), GetMousePos_y())
 		   || MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_GRID_BUTTON_FULL, GetMousePos_x(), GetMousePos_y())
 		   || MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF, GetMousePos_x(), GetMousePos_y())) {
