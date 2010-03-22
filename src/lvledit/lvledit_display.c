@@ -67,6 +67,15 @@ int lvledit_set_zoomfact(float zf)
 }
 
 /**
+ * Displays the GPS in the editor
+ */
+static void gps_show() {
+	static char gps_text[200];
+	snprintf(gps_text, sizeof(gps_text) - 1, _(" GPS: X=%3.1f Y=%3.1f Lev=%d\n"), Me.pos.x, Me.pos.y, Me.pos.z);
+	DisplayText(gps_text, User_Rect.x + 1, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), NULL /*&User_Rect */ , 1.0);
+}
+
+/**
  * Now we print out the map label information about this map location.
  */
 static void PrintMapLabelInformationOfThisSquare(level * EditLevel)
@@ -578,6 +587,7 @@ void leveleditor_display()
 			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT *
 			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR);
 
+	gps_show();
 	Highlight_Current_Block(ZOOM_OUT * GameConfig.zoom_is_on);
 
 	ShowWaypoints(FALSE, ZOOM_OUT * GameConfig.zoom_is_on);

@@ -245,14 +245,6 @@ void ShowCombatScreenTexts(int mask)
 	BFont_Info *old_current_font = GetCurrentFont();
 	SetCurrentFont(FPS_Display_BFont);
 
-	SetTextCursor(User_Rect.x + 1, GameConfig.screen_height - 9 * FontHeight(GetCurrentFont()));
-
-	if (mask & ONLY_SHOW_MAP_AND_TEXT) {
-		snprintf(txt, sizeof(txt) - 1, _("GPS: X=%3.1f Y=%3.1f Lev=%d"), Me.pos.x, Me.pos.y, DisplayLevel->levelnum);
-		strcat(txt, "\n");
-		DisplayText(txt, -1, -1, NULL, 1.0);
-	}
-
 	SetTextCursor(User_Rect.x + 1, User_Rect.y + 1);
 
 	if (GameConfig.Draw_Framerate) {
