@@ -153,9 +153,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=56  Text=_"What is that thing he took from you?"
+Nr=56  Text=_"What is it that he took from you?"
 LuaCode={
-	npc_says(_"A cube. You can't miss it. Trust me.")
+	npc_says(_"A cube. Trust me, you can't miss it.")
 	hide(56)
 }
 ----------------------------------------------------------------------
@@ -206,7 +206,7 @@ LuaCode={
 
 Nr=63  Text=_"Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
 LuaCode={
-	npc_says(_"Just a memento after a friend.")
+	npc_says(_"Just a memento from a friend.")
 	npc_says(_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets.")
 	npc_says(_"Nothing that important.")
 	hide(62, 63) show(67, 68)
@@ -216,7 +216,7 @@ LuaCode={
 Nr=64  Text=_"A 'few' bots? The place was crawling with Harvesters! I nearly got killed!"
 LuaCode={
 	npc_says(_"There were only one hundred and twenty bots in the entire desert region. This hardly qualifies as many, considering the size of the area.")
-	tux_says(_"What? You know exactly how many bots were on the desert? Without being there? I don't like this.")
+	tux_says(_"What? You know exactly how many bots were in the desert? Without being there? I don't like this.")
 	npc_says(_"I just know a lot of things. You do not need to worry about it.")
 	tux_says(_"I don't like this at all. I'm getting out of here.")
 	npc_says(_"As you wish.")

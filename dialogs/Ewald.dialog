@@ -500,7 +500,7 @@ LuaCode={
 Nr=99  Text=_"See you later."
 LuaCode={
 	hide(32,33,34,35,36,37,38,39,40,41,42,50,51,52,53,54,55,56) --end any partial gambling
-	npc_says_random(_"Goodbye and remember: My bar is always open.","Come back soon!","You are welcome to unwind on old Ewald any time. Come back soon.","Remember, you can always come back here to relax and kick back.")
+	npc_says_random(_"Goodbye and remember: My bar is always open.","Come back soon!","You are welcome to unwind with old Ewald any time. Come back soon.","Remember, you can always come back here to relax and kick back.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

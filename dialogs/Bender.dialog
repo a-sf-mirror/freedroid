@@ -80,7 +80,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"What did make you so sick?"
+Nr=3  Text=_"What made you so sick?"
 LuaCode={
 	npc_says(_"It was the brain enlargement pills. They did me no good, man.")
 	hide(2, 3) show(4, 10)
@@ -92,7 +92,7 @@ LuaCode={
 	npc_says(_"You know man, I got those offers everybody gets.")
 	npc_says(_"They offer some brain enlargement pills to enhance brain performance.")
 	npc_says(_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'")
-	npc_says(_"And everybody in the camp said I was dumb, which is not true.")
+	npc_says(_"And everybody in the camp said I was dumb, which by the way IS NOT TRUE.")
 	npc_says(_"So I thought these pills might make them think differently about me.")
 	hide(4) show(5, 6)
 }
@@ -118,8 +118,8 @@ Nr=7  Text=_"Maybe I can help you somehow?"
 LuaCode={
 	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
 	npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
-	npc_says(_"Just get me some cure, and I'll be forever grateful!")
-	add_quest("Bender's problem", "I met a Red Guard named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
+	npc_says(_"Just get me a cure, and I'll be forever grateful!")
+	add_quest("Bender's problem", "I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
 	hide(7, 8) show(11)
 }
 ----------------------------------------------------------------------
@@ -128,7 +128,7 @@ Nr=8  Text=_"I'm sorry, but it looks like there's nothing I could do for you."
 LuaCode={ 
 	npc_says(_"Of course not. You're not a doctor. Only the doctor has the right medicine.")
 	npc_says(_"But this rat would rather let me die!")
-	npc_says(_"I'll rip his guts out as soon as I get my hands on him, man.")
+	npc_says(_"I'll rip his guts out as soon as I get my hands on him, man!")
 	hide(7, 8)
 }
 ----------------------------------------------------------------------
@@ -138,7 +138,7 @@ LuaCode={
 	npc_says(_"Wow, you really did it! I guess you beat the hell out of him.")
 	npc_says(_"He wouldn't help me even after I pounded him a bit. A big bit.")
 	npc_says(_"Man, you are the greatest hero!")
-	npc_says(_"Now, take this as a reward. And you can be sure that I'll vote for you if you seek membership in the Red Guard!")
+	npc_says(_"Here, take this as a reward - and you can be sure that I'll vote for you if you seek membership in the Red Guard!")
 	npc_says(_"Thanks, man!")
 	change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
 	end_quest("Bender's problem")
@@ -171,7 +171,7 @@ LuaCode={
 Nr=12  Text=_"About that medicine that you need..."
 LuaCode={ 
 	npc_says(_"What have you got?")
-	npc_says(_"What, you have nothing?")
+	npc_says(_"What? You have nothing?")
 	npc_says(_"Man, what are you doing here? Get the medicine! I need it now!")
 	hide(12)
 }
@@ -180,7 +180,7 @@ LuaCode={
 Nr=13  Text=_"How are you doing?"
 LuaCode={ 
 	npc_says(_"Much better. I'm cured. You're a good guy, man!","NO_WAIT")
-	npc_says(_"What was you name again?")
+	npc_says(_"What was your name again?")
 	tux_says(_"" .. get_player_name() .. "")
 	npc_says(_"Thanks ".. get_player_name() ..", I owe you one.","NO_WAIT")
 	npc_says(_"And I'll sure vote for you if you want into the city guard! ")
@@ -190,7 +190,7 @@ LuaCode={
 Nr=14  Text=_"What secrets?  Like a secret handshake?"
 LuaCode={ 
 	hide(14)
-	npc_says(_"Nah.  But that is an awesome idea.")
+	npc_says(_"Nah. But that is an awesome idea.")
 	npc_says(_"Let's work it out -- just be sure not to let the Doc in on it.")
 	show(15)
 }
@@ -202,7 +202,9 @@ LuaCode={
 	npc_says(_"Yeah, sure.")
 	npc_says(_"I know the shop keeper Lily's password.")
 	npc_says(_"I sometimes login to her account and mess with it for the LULZ.")
-	npc_says(_"It is the end of the world, and I am so incredibly bored.")
+	npc_says(_"It's the end of the world as we know it, and I... am so incredibly bored.")
+  tux_says(_"Erm... excuse me?")
+  npc_says(_"Just a song my mother used to sing to me.")
 	show(16,17)
 }
 ----------------------------------------------------------------------

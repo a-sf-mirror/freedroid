@@ -99,7 +99,7 @@ LuaCode={
 
 Nr=8  Text=_"Tell me more about laser weapons."
 LuaCode={
-	npc_says(_"Light amplification by stimulated emission of radiation.")
+	npc_says(_"Laser is an acronym for Light Amplification by Stimulated Emission of Radiation.")
 	npc_says(_"Laser is the technology employed in most of our weaponry. It uses a focused light beam to cause damage.")
 	npc_says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of lights so to say. Also it is not affected by gravity or wind, which makes aiming easier.")
 	npc_says(_"However, other than being a good training tool for newbies, that design just fails to deliver.")
@@ -126,7 +126,7 @@ LuaCode={
 			if (get_training_points() > 2) then 
 				npc_says(_"Interested?")
 				hide(20) show(21, 29)
-			else npc_says(_"Waving that cash infront of me when you are too unfocused to train wont help. I can take your money, but you won't learn anything.") end
+			else npc_says(_"Waving that cash in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
 		else npc_says(_"Come back when you have both.") end
 	else
 		if (get_skill("ranged") == 1) then
@@ -137,12 +137,12 @@ LuaCode={
 				if (get_training_points() > 5) then 
 					npc_says(_"Interested?")
 					hide(20) show(22, 29)
-				else npc_says(_"Waving that cash infront of me when you are too unfocused to train wont help. I can take your money, but you won't learn anything.") end
+				else npc_says(_"Waving that cash in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
 			else npc_says(_"You don't have enough money! I cannot afford to just give away training for free.") end
 		else
 			if (get_skill("ranged") == 2) then
 				npc_says(_"I see you have taken a liking to guns.", "NO_WAIT")
-				npc_says(_"But the next step will cost even more money and require the mental focus equalling all your previous training.")
+				npc_says(_"But the next step will cost even more money and require the mental focus equaling all your previous training.")
 				if (get_gold() > 299) then
 					if (get_training_points() > 8) then 
 						hide(20) show(23, 29)
@@ -161,7 +161,7 @@ LuaCode={
 				else
 					if (get_skill("ranged") == 4) then
 						npc_says(_"To become a true god of firearms, just like me, you need ridiculous amounts of training.", "NO_WAIT")
-						npc_says(_"It will of course cost a fair bit of cash as well. 500 cold ones to be precise.")
+						npc_says(_"It will of course cost a fair bit of cold, hard cash as well. 500, to be precise.")
 						if (get_gold() > 499) then
 							if (get_training_points() > 14) then 
 								npc_says(_"Interested?")
@@ -249,7 +249,7 @@ LuaCode={
 		if (del_points(12)) then
 			npc_says(_"Firing on the move is difficult, but can make survival much more likely!")
 			npc_says(_"The secret is to keep a stable platform and hold the weapon loosely so that it doesn't jar.")
-			npc_says(_"Oh yes, and remember not to trip over, because you should be looking where you are firing, not where you are stepping.")
+			npc_says(_"Oh yes, and remember not to trip, because you should be looking where you are firing, not where you are stepping.")
 			npc_says(_"Keep practicing and you will get the hang of it eventually.")
 			improve_skill("ranged")
 			hide(24, 29) show(20)
@@ -258,7 +258,7 @@ LuaCode={
 			npc_says(_"Come back after some more practice in the field.")
 		end
 	else
-		npc_says(_"Please have enough to pay for the targets you destroy.")
+		npc_says(_"Please bring enough to pay for the targets you destroy.")
 	end
 }
 ----------------------------------------------------------------------
@@ -275,7 +275,7 @@ LuaCode={
 			hide(25, 29) show(20)
 		else
 			add_gold(500) --refund
-			npc_says(_"Only a well prepared mind is open to the ultimate ranged combat secret.")
+			npc_says(_"Only a well prepared mind is open to the ultimate in ranged combat secrets.")
 		end
 	else
 		npc_says(_"The ultimate secret to becoming a god in ranged combat is something you should value.")
@@ -292,7 +292,7 @@ LuaCode={
 Nr=40  Text="I will make it worth your while..."
 LuaCode={
 	npc_says(_"Intriguing.")
-	npc_says(_"Fifty triangles per bit of information.", "NO_WAIT")
+	npc_says(_"Fifty circuits per bit of information.", "NO_WAIT")
 	npc_says(_"So... What do you exactly want to know?")
 	hide(40) show(41, 46, 47, 51, 69)
 }
@@ -302,7 +302,7 @@ Nr=41  Text=_"How many exterminators does the Red Guard have?"
 LuaCode={
 	if (del_gold(50)) then 
 		npc_says(_"It might come as a surprise to you, but we don't have many. A bit over twenty, last time I checked.", "NO_WAIT")
-		npc_says(_"However, as you can clearly see, this is more than enough to keep all of the damn bots away.")
+		npc_says(_"However, as you can clearly see, it's more than enough to keep all of the damn bots away.")
 		hide(41) show(44)
 	else
 		next(43)
@@ -321,7 +321,7 @@ LuaCode={
 Nr=44  Text=_"That is not a lot. Why there are so few of them right now?"
 LuaCode={
 	if (del_gold(50)) then
-		npc_says(_"All of them are a very lucky find.", "NO_WAIT")
+		npc_says(_"All of them were a very lucky find.", "NO_WAIT")
 		npc_says(_"We found a crashed army truck on the Terminal Field. It had six crates inside it, each containing five exterminators.")
 		npc_says(_"We tried, but we could not replicate the technology, only bullets.", "NO_WAIT")
 		npc_says(_"A few got damaged in battle, and we failed to recover five after a failed scout mission. We have twenty-two right now.")
@@ -335,10 +335,10 @@ LuaCode={
 Nr=46  Text=_"What is the exterminator ammunition made from?"
 LuaCode={
 	if (del_gold(50)) then
-		npc_says(_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, be we are not too picky.")
-		npc_says(_"When we get low on ammo, we send in a chain gang of criminals and lazybums into the mine shaft K-17.")
+		npc_says(_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, but we are not too picky.")
+		npc_says(_"When we get low on ammo, we send in a chain gang of criminals and sluggards into the mine shaft K-17.")
 		npc_says(_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and power our nuclear reactors.")
-		npc_says(_"We get our fission materials and they get their sentence. It was one of the best ideas we have ever had.")
+		npc_says(_"We get our fission materials, and they serve their sentence. It was one of the best ideas we have ever had.")
 		hide(46)
 	else
 		next(43)
@@ -359,7 +359,7 @@ LuaCode={
 	npc_says(_"Ugh. That will cost you triple.", "NO_WAIT")
 	npc_says(_"No. Wait.")
 	npc_says(_"I changed my mind.", "NO_WAIT")
-	npc_says(_"Keep your money Linarian. No amount of triangles can make me talk about that accursed day.")
+	npc_says(_"Keep your money Linarian. No amount of circuits can make me talk about that accursed day.")
 	hide(49)
 }
 ----------------------------------------------------------------------

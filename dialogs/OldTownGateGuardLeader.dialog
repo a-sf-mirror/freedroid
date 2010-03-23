@@ -71,8 +71,8 @@ LuaCode={
 
 Nr=5 Text=_"Oh? Who was he? And Why?"
 LuaCode={
-	npc_says(_"Heh, you sure are a curious littel bird, in more than one way I might say.")
-	npc_says(_"On the day he wisited all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
+	npc_says(_"Heh, you sure are a curious little bird, in more than one way I might say.")
+	npc_says(_"On the day he visited all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
 	npc_says(_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
 	if (not has_cookie("met_kevin")) then
 		add_quest("A strange guy stealing from town", "The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. I might want to find out who this person is - apparently he lives somewhere to the east. But maybe I should get some experience and better equipment first before traveling far outside of town. With all those lethal bots roaming around I might not get far otherwise.")
@@ -160,7 +160,7 @@ LuaCode={
 	npc_says(_"Your name?")
 	tux_says("".. get_player_name() ..".")
 	tux_says(_"OW. That HURT!")
-	npc_says(_"Get out of here. The Doc is the third path door on the right.")
+	npc_says(_"Get out of here. The Doc is the third door on the right along the main path.")
 	if (del_health(40)) then else 
 		del_health(1)
 	end
@@ -176,7 +176,7 @@ LuaCode={
 
 Nr=31 Text=_"I want to talk to your manager, moron."
 LuaCode={
-	npc_says(_"I'm happy to send you his way. I need your name before I let you in.")
+	npc_says(_"I'll be happy to send you his way, but I need your name before I let you in.")
 	tux_says("".. get_player_name() ..".")
 	npc_says(_"Talk to Spencer. His office is straight ahead. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
@@ -193,7 +193,7 @@ LuaCode={
 Nr=32 Text=_"That is exactly what I said."
 LuaCode={
 	npc_says(_"You are as out of your mind as that Sorenson lady.")
-	npc_says(_"But I guess she is in here, so it doesn't matter if we have another loon.")
+	npc_says(_"But I guess she's already here, so it doesn't matter if we have another loon.")
 	tux_says(_"I'm a Linarian, not a loon. ".. get_player_name() .." the Linarian.")
 	npc_says(_"Get out of here ".. get_player_name() ..", the loon, and stop bothering me.")
 	add_cookie("oldtowngateguardleader_tux_nickname_loon")

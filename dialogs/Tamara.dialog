@@ -54,7 +54,8 @@ Nr=10  Text=_"Hmm, you look very similar to another person I met, by the name of
 LuaCode={
 	npc_says(_"Well, it's understandable. We are sisters.")
 	npc_says(_"Or actually half sisters. She is also half crazy, so we don't communicate much.")
-	npc_says(_"We used to, even ran this liberary together.")
+	npc_says(_"*sigh*")
+	npc_says(_"We used to. Even ran this library together.")
 	npc_says(_"Then she started reading more and more books and sitting in front of the computer day and night, never sleeping.")
 	npc_says(_"In the end she completely lost her marbles, sadly.")
 	npc_says(_"Now all she does is sit locked in her house staring into the computer.")

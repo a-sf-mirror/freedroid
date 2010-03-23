@@ -60,7 +60,7 @@ LuaCode={
 	npc_says(_"Disabling disruptor shield... ")
 	npc_says(_"Shield disabled.")
 	if (not has_cookie("dsb-mdc_password")) then
-		npc_says(_"WARNING: Somebody else is using this computer.")
+		npc_says(_"WARNING: Another user is using this computer.")
 		npc_says(_"Disruptor shield is active.")
 	else
 		end_quest("Opening access to MS Office")

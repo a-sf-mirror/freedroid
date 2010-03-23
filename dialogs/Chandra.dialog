@@ -124,9 +124,9 @@ LuaCode={
 	tux_says(_"Er... Wouldn't that cause me to get beaten up more and therefore be counter-productive?")
 	npc_says(_"Your logic is infallible, Linarian, but you are forgetting one thing: the more you fight, the more experienced you become, and the better at surviving you get.")
 	npc_says(_"Also, if you have the money and can find a supplier, it is wise to invest in better equipment - more protective clothing and better weaponry.")
-	npc_says(_"My advice is to invest in a ranged weapon. While that can create a huge puncture in your wallet, it also creates several in the bots, and is better than a huge puncture in you.")
+	npc_says(_"My advice is to invest in a ranged weapon. While that can create a huge hole in your wallet, it also creates several in the bots, and is better than a huge hole in you.")
 	npc_says(_"Currently there is a ban on selling such things. The Red Guard wants to be the only ones with good weapons.")
-	npc_says(_"Should you fail to find something decent to shoot or hit with, there are always other options.")
+	npc_says(_"Should you fail to find something decent to shoot or swing with, there are always other options.")
 	npc_says(_"Ewald, the barkeeper, usually sells an assortment of junk, but even he sometimes has something worthwhile on display.")
 	npc_says(_"There was a person selling grenades, too. Eh... I forgot his name, my memory is not serving me very well today. He's a very mysterious fellow. Perhaps he can help you.")
 	npc_says(_"Other than that, you are on your own.")
@@ -174,7 +174,7 @@ LuaCode={
 Nr=13  Text=_"What other bots are out there?"
 LuaCode={
 	npc_says(_"Though I do not know the details, I assure you there are many. Robots and automated machinery served almost every purpose you can imagine, and probably some that you can't.")
-	npc_says(_"They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who know them up close are pushing up the daisies.")
+	npc_says(_"They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who know them up close are pushing up daisies.")
 	hide(13)
 }
 ----------------------------------------------------------------------

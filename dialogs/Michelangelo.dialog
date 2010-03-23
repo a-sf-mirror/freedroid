@@ -145,7 +145,7 @@ LuaCode={
 		if (not has_item_backpack("Fork") ) then
 			npc_says(_"Wait, you don't have a Fork.  You need a fork...")
 		else
-			tux_says(_"It is as if a cloud of heaven was made into a pie.")
+			tux_says(_"It is as if a cloud from heaven was made into a pie.")
 			hurt_tux(-20)
 		end
 	elseif (random_var > 0.8) then

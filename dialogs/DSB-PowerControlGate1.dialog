@@ -61,7 +61,7 @@ LuaCode={
 	if (not has_cookie("dsb_pc_access")) then
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
 		npc_says(_"Security Access to this area not granted.")
-		npc_says(_"Contact personel in Machine Deck Control Room if you believe this to be in error.")
+		npc_says(_"Contact personell in Machine Deck Control Room if you believe this to be in error.")
 	else
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
 		npc_says(_"Access granted. Opening gate ...")

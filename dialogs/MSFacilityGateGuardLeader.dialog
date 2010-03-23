@@ -85,10 +85,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all bots around! Didn't Spencer inform you?"
+Nr=10  Text=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all the bots around! Didn't Spencer inform you?"
 LuaCode={
 	npc_says(_"WHAT?! Not an attack?!")
-	npc_says(_"I hope you are honest. One second...")
+	npc_says(_"I hope you are telling the truth. One second...")
 	if (has_quest("Propagating a faulty firmware")) then
 		change_obstacle_state("MSAreaDoor", "opened")
 		add_cookie("msfacilitygateguardleader_informed")

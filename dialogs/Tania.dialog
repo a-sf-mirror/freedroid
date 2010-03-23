@@ -46,7 +46,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Em, hi."
+Nr=0  Text=_"Um, hi."
 LuaCode={
 	npc_says(_"Oh! It happened! I have been waiting for you for 3226 hours!")
 	hide(0) show(1, 3, 14, 19)
@@ -62,7 +62,7 @@ LuaCode={
 
 Nr=2  Text=_"Imaginary?! I am as real as you are."
 LuaCode={
-	npc_says(_"This place is locked. Hermetically sealed and guarded by bots. So you can be nothing more than the product of my imagination.")
+	npc_says(_"This place is locked. Hermetically sealed and guarded by bots. So you can't possibly be anything more than the product of my imagination.")
 	hide(2) show(12)
 }
 ----------------------------------------------------------------------
@@ -111,7 +111,7 @@ LuaCode={
 Nr=8  Text=_"So you are a biologist? Could you heal me?"
 LuaCode={
 	npc_says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
-	npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.","You are completely healed, you should take more care of yourself.")
+	npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.","You are completely healed, you should take better care of yourself.")
 	heal_tux()
 }
 ----------------------------------------------------------------------
@@ -133,7 +133,7 @@ LuaCode={
 Nr=12  Text=_"Autoguns have made a hole in the wall. I came through this hole."
 LuaCode={
 	npc_says(_"Do you mean I can go out to the surface?!")
-	npc_says(_"Oh god! I've told Peter that he chosed the wrong place, but he was so stubborn!")
+	npc_says(_"Oh god! I - I told Peter that he chose the wrong place, but he was so stubborn!")
 	hide(12) show(13)
 }
 ----------------------------------------------------------------------
@@ -161,7 +161,7 @@ LuaCode={
 
 Nr=16  Text=_"How can I disable the guns?"
 LuaCode={
-	npc_says(_"Somewhere in a distant part of the lab should be an SACD - secret area control droid. It controls all the defense systems in the base. If you manage to persuade him, you will be able to control the base. But it's very hard to find him.")
+	npc_says(_"Somewhere in a distant part of the lab should be an SACD - Secret Area Control Droid. It controls all the defense systems in the base. If you manage to persuade it, you would be able to control the base. However, it's very hard to find and get to the SACD.")
 	hide(16) show(17)
 }
 ----------------------------------------------------------------------

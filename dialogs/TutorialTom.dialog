@@ -690,7 +690,8 @@ LuaCode={
 Nr=57  Text=_"Tell me again about take over, I'm not sure I got it all."
 LuaCode={
 	npc_says(_"Tell me exactly what part you want me to explain again.")
-	npc_says(_"But things will be much clearer once you try for yourself then when i try to explain by only reading your notes as experience.")
+	npc_says(_"But things will be much clearer once you try for yourself than when I try to explain.")
+  npc_says(_"Use your experience as notes, and all should be clear.")
 	show(51, 52, 53) hide(57)
 }
 ----------------------------------------------------------------------

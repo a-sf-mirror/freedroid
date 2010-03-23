@@ -89,8 +89,8 @@ Nr=18  Text=_"Can you repair my equipment?"
 LuaCode={ 
 	npc_says(_"While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now.", "NO_WAIT")
 	npc_says(_"Our security wall is full of holes, and they need to be plugged up.")
-	npc_says(_"We need to perform a statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing a lot of megawatts.")
-	npc_says(_"Our defensive bots are falling into disrepair and many are in desperate need of a lot of maintenance.")
+	npc_says(_"We need to perform a statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing many megawatts.")
+	npc_says(_"Our defensive bots are falling into disrepair and many are in desperate need of maintenance.")
 	npc_says(_"The technical division is very understaffed right now. On average one person has to do the jobs of three people.", "NO_WAIT")
 	npc_says(_"We just cannot afford to do any non-critical jobs right now. ")
 	hide(18) show(22)
@@ -123,7 +123,7 @@ LuaCode={
 Nr=21  Text=_"I am ready. Open the tunnels for me, Dixon."
 LuaCode={
 	npc_says(_"Great. Be careful down there. Just try to get the toolkit and get out of there as soon as possible.")
-	npc_says(_"I will give you two small devices charged with plasma. If you get in trouble just activate one and it will send a shockwave of plasma around you damaging anything in it's way. It should give you some breathing room.")
+	npc_says(_"I will give you two small devices charged with plasma. If you get in trouble just activate one and it will send a shockwave of plasma around you damaging anything in its way. It should give you some breathing room.")
 	npc_says(_"The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates.")
 	npc_says(_"There you will find the maintenance access hatch.", "NO_WAIT")
 	npc_says(_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all.")
