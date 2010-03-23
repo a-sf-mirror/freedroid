@@ -39,6 +39,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
+#include "lvledit/lvledit_tool_select.h"
 
 static int grass_change_count = 0;
 
@@ -310,12 +311,22 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
  * beautify the grass.  If focuses on replacing 'full' grass tiles with 
  * proper full and part-full grass tiles.
  */
-void level_editor_beautify_grass_tiles(level * EditLevel, int xstart, int ystart, int xend, int yend)
+void level_editor_beautify_grass_tiles(level * EditLevel)
 {
 	int x;
 	int y;
 	int our_rand;
 	map_tile *this_tile;
+	int xstart = 1, xend = EditLevel->xlen - 1;
+	int ystart = 1, yend = EditLevel->ylen - 1;
+
+	if(selection_type() == OBJECT_FLOOR) {
+		point start = selection_start(), len = selection_len();
+		xstart = start.x;
+		xend = start.x + len.x;
+		ystart = start.y;
+		yend = start.y + len.y;
+	}
 
 	DebugPrintf(-4, "\nlevel_editor_beautify_grass_tiles (...): process started...");
 

@@ -107,6 +107,18 @@ int element_in_selection(void *data)
 	return 0;
 }
 
+point selection_start() {
+	return state.rect_start;
+}
+
+point selection_len() {
+	return state.rect_len;
+}
+
+int selection_type() {
+	return state.type;
+}
+
 static void add_floor_tile_to_list(struct list_head *list, map_tile * a)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
