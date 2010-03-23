@@ -172,8 +172,6 @@ item *ItemDropFromLevelEditor(void)
 	while (MouseLeftPressed())
 		SDL_Delay(1);
 
-	make_sure_system_mouse_cursor_is_turned_on();
-
 	while (!SelectionDone) {
 		SDL_Event event;
 		our_SDL_fill_rect_wrapper(Screen, NULL, 0);
@@ -222,6 +220,7 @@ item *ItemDropFromLevelEditor(void)
 				      _("NO SUFFIX"));
 		}
 
+		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
 
 		while (SDL_PollEvent(&event)) {
