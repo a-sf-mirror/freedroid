@@ -693,6 +693,12 @@ static int lua_chat_bot_name(lua_State * L)
 	return 1;
 }
 
+static int lua_difficulty_level(lua_State * L)
+{
+	lua_pushnumber(L, GameConfig.difficulty_level);
+	return 1;
+}
+
 luaL_reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -866,6 +872,8 @@ luaL_reg lfuncs[] = {
 	{"npc_dead", lua_event_npc_dead},
 	
 	{"bot_name", lua_chat_bot_name},
+
+	{"difficulty_level", lua_difficulty_level},
 
 	{NULL, NULL}
 	,

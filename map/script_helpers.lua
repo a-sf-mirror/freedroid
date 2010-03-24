@@ -170,3 +170,8 @@ function del_health(num_points)
 		return false
 	end
 end
+
+function difficulty()
+	levels = {"easy", "normal", "hard"}
+	return levels[difficulty_level()+1]
+end
