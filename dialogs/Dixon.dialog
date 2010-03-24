@@ -225,7 +225,7 @@ LuaCode={
 	npc_says(_"After all, it seems like they need them more than I do.", "NO_WAIT")
 	npc_says(_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots.")
 	add_cookie("singularity_saved")
-  end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit")
 	add_diary_entry("The yellow toolkit", "I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
 	hide(28, 29, 30)
 }	
