@@ -587,11 +587,10 @@ void leveleditor_display()
 			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT *
 			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR);
 
-	Highlight_Current_Block(ZOOM_OUT * GameConfig.zoom_is_on);
-
 	ShowWaypoints(FALSE, ZOOM_OUT * GameConfig.zoom_is_on);
-	gps_show();
 	ShowMapLabels(ZOOM_OUT * GameConfig.zoom_is_on);
+	Highlight_Current_Block(ZOOM_OUT * GameConfig.zoom_is_on);
+	gps_show();
 
 	SetCurrentFont(FPS_Display_BFont);
 
