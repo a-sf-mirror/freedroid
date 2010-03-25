@@ -476,7 +476,7 @@ static void show_level_editor_tooltips(void)
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
-					    ("Beautify grass button\n\nUse this button to 'beautify' rough edges of the grass-sand tiles on this entire level automatically.  The function will attempt to create 'round' borders and corners.\n\nYou can also use Ctrl-B for this."));
+			    ("Beautify grass button\n\nUse this button to automatically 'beautify' rough edges of the grass-sand tiles. It will apply to the selected floor or, if not applicable, to the entire level.\n\nYou can also use Ctrl-b for this."));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_ZOOM_OUT_BUTTON, GetMousePos_x(), GetMousePos_y())
 		   || MouseCursorIsOnButton(LEVEL_EDITOR_ZOOM_IN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)

@@ -64,6 +64,8 @@ struct selected_element {
 static LIST_HEAD(selected_elements);
 static LIST_HEAD(clipboard_elements);
 
+
+
 /**
  * Check whether the selection is currently empty.
  */
@@ -116,7 +118,7 @@ point selection_len() {
 }
 
 int selection_type() {
-	return state.type;
+	return get_current_object_type()->type;
 }
 
 static void add_floor_tile_to_list(struct list_head *list, map_tile * a)
