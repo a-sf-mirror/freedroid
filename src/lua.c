@@ -277,6 +277,54 @@ static int lua_event_give_item(lua_State * L)
 	return 0;
 }
 
+static int lua_event_equip_item(lua_State * L)
+{
+	const char *item_name = luaL_checkstring(L, 1);
+	item new_item;
+	item *old_item;
+	itemspec *new_itemspec;
+	
+	if (!item_name) {
+		ErrorMessage(__FUNCTION__, "Tried to add item that does not exist\n", PLEASE_INFORM,
+			     IS_WARNING_ONLY);
+		return 0;
+	}
+		
+	new_item.type = GetItemIndexByName(item_name);
+	new_item.prefix_code = -1;
+	new_item.suffix_code = -1;
+	FillInItemProperties(&new_item, TRUE, 1);
+	
+	new_itemspec = &ItemMap[new_item.type];
+	
+	//The item may need both hands to be cleared
+	if (new_itemspec->item_gun_requires_both_hands)
+	{
+		//the default will handle the weapon so remove the shield
+		item *shield_item = &Me.shield_item;
+		if (shield_item && copy_item_into_inventory(shield_item, shield_item->multiplicity))
+		{
+			DropItemToTheFloor(shield_item, Me.pos.x, Me.pos.y, Me.pos.z);
+		}
+		else
+		{
+			//copy_into_inventory doesn't delete the old item
+			DeleteItem(shield_item);
+		}
+	}
+	
+	old_item = get_equipped_item_of_type(new_itemspec);
+
+	
+	if  (old_item && copy_item_into_inventory(old_item, old_item->multiplicity)) {
+		// the item didn't fit in the inventory
+		DropItemToTheFloor(old_item, Me.pos.x, Me.pos.y, Me.pos.z);
+	}
+	CopyItem(&new_item, old_item, FALSE);			
+	return 0;
+}
+
+
 static int lua_event_sell_item(lua_State *L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
@@ -788,6 +836,8 @@ luaL_reg lfuncs[] = {
 	 * has_time returns the number of items of the given name currently in the inventory.
 	 */
 	{"del_item_backpack", lua_event_delete_item}
+	,
+	{"equip_item", lua_event_equip_item}
 	,
 	{"add_item", lua_event_give_item}
 	,
