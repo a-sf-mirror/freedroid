@@ -452,7 +452,9 @@ void play_melee_weapon_missed_sound(void);
 void play_open_chest_sound(void);
 void play_sample_using_WAV_cache(char *SoundSampleFileName, int With_Waiting, int no_double_catching);
 void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, int no_double_catching, double volume);
+
 // items.c
+item *get_equipped_item_of_type(itemspec *spec);
 void handle_player_identification_command(void);
 void MoveItem(item * SourceItem, item * DestItem);
 void silently_unhold_all_items(void);
