@@ -203,16 +203,20 @@ int leveleditor_map_keybevent(SDL_Event * event, struct leveleditor_widget *vm)
 void leveleditor_map_display_cursor()
 {
 	int oldmode = global_ingame_mode;
+	static int dragging = FALSE;
 
 	if (active_tool)
 		active_tool->display();
 
 	if (selected_tool == &tool_select) {
-		if (ShiftPressed() && !selection_empty()) {
+		if ((ShiftPressed() || dragging == TRUE) && MouseLeftPressed()
+		    && !selection_empty()) {
 			//dragdrop
 			global_ingame_mode = GLOBAL_INGAME_MODE_DRAGDROP_TOOL;
+			dragging = TRUE;
 		} else {
 			global_ingame_mode = GLOBAL_INGAME_MODE_SELECT_TOOL;
+			dragging = FALSE;
 		}
 	}
 
