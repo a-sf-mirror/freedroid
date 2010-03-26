@@ -45,6 +45,45 @@ enum {
 	FIRST_INV_SLOT
 };
 
+void equip_item_with_name(char *item_name)
+{
+	item new_item;
+	item *old_item;
+	itemspec *new_itemspec;
+	
+	new_item.type = GetItemIndexByName(item_name);
+	new_item.prefix_code = -1;
+	new_item.suffix_code = -1;
+	FillInItemProperties(&new_item, TRUE, 1);
+	
+	new_itemspec = &ItemMap[new_item.type];
+	
+	//The item may need both hands to be cleared
+	if (new_itemspec->item_gun_requires_both_hands)
+	{
+		//the default will handle the weapon so remove the shield
+		item *shield_item = &Me.shield_item;
+		if (shield_item && copy_item_into_inventory(shield_item, shield_item->multiplicity))
+		{
+			DropItemToTheFloor(shield_item, Me.pos.x, Me.pos.y, Me.pos.z);
+		}
+		else
+		{
+			//copy_into_inventory doesn't delete the old item
+			DeleteItem(shield_item);
+		}
+	}
+	
+	old_item = get_equipped_item_of_type(new_itemspec);
+
+	
+	if  (old_item && copy_item_into_inventory(old_item, old_item->multiplicity)) {
+		// the item didn't fit in the inventory
+		DropItemToTheFloor(old_item, Me.pos.x, Me.pos.y, Me.pos.z);
+	}
+	CopyItem(&new_item, old_item, FALSE);
+}
+
 /**
  * Gets a pointer to the currently equipped item of the
  * same type as newItem
