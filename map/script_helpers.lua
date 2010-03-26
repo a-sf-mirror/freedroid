@@ -175,3 +175,8 @@ function difficulty()
 	levels = {"easy", "normal", "hard"}
 	return levels[difficulty_level()+1]
 end
+
+function equip_new_item(item_name)
+  equip_item(item_name)
+  return true
+end
