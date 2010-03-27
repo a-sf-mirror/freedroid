@@ -277,21 +277,6 @@ static int lua_event_give_item(lua_State * L)
 	return 0;
 }
 
-static int lua_event_equip_item(lua_State * L)
-{
-	const char *item_name = luaL_checkstring(L, 1);
-
-	if (!item_name) {
-		ErrorMessage(__FUNCTION__, "Tried to add item without a name\n", PLEASE_INFORM,
-			     IS_WARNING_ONLY);
-		return 0;
-	}
-	equip_item_with_name(item_name);
-	SetNewBigScreenMessage(_("1 Item received!"));
-	return 0;
-}
-
-
 static int lua_event_sell_item(lua_State *L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
@@ -803,8 +788,6 @@ luaL_reg lfuncs[] = {
 	 * has_time returns the number of items of the given name currently in the inventory.
 	 */
 	{"del_item_backpack", lua_event_delete_item}
-	,
-	{"equip_item", lua_event_equip_item}
 	,
 	{"add_item", lua_event_give_item}
 	,
