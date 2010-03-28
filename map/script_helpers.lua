@@ -154,12 +154,24 @@ function del_item(item_name)
 end
 
 function del_points(num_points)
-	if (get_training_points(num_points)) then
+	if (get_training_points() >= num_points) then
 		del_training_points(num_points)
 		return true
 	else
 		return false
 	end
+end
+
+function can_tux_train(gold_amount, num_points)
+	if (get_gold() < gold_amount) then
+		return false
+	end
+	
+	if (get_training_points() < num_points) then
+		return false
+	end
+
+	return true
 end
 
 function del_health(num_points)
