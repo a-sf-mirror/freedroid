@@ -113,7 +113,6 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num);
 int resolve_virtual_position(gps * actual_pos, gps * virtual_pos);
 int pos_inside_level(float x, float y, level * lvl);
 int pos_near_level(float x, float y, level * lvl, float dist);
-void FdFillRect(SDL_Rect rect, SDL_Color color);
 void ShowPosition(void);
 void ShowCombatScreenTexts(int mask);
 void set_up_ordered_blitting_list(int mask);

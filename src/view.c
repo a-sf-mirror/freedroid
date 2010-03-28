@@ -4267,22 +4267,6 @@ exist at all.", PLEASE_INFORM, IS_FATAL);
 	blit_iso_image_to_map_position(&Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y);
 }				// void PutBlast(int Blast_number)
 
-/* -----------------------------------------------------------------
- * Fill given rectangle with given RBG color
- * ----------------------------------------------------------------- */
-void FdFillRect(SDL_Rect rect, SDL_Color color)
-{
-	Uint32 pixcolor;
-	SDL_Rect tmp;
-
-	Set_Rect(tmp, rect.x, rect.y, rect.w, rect.h);
-
-	pixcolor = SDL_MapRGB(Screen->format, color.r, color.g, color.b);
-
-	our_SDL_fill_rect_wrapper(Screen, &tmp, pixcolor);
-
-};				// void FillRect (SDL_Rect rect, SDL_Color color)
-
 /**
  * When the inventory screen is visible, we do not only show the items
  * present in inventory, but we also show the inventory squares, that each
