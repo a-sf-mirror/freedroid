@@ -166,11 +166,9 @@ static unsigned char *open_tux_image_archive_file(const char *fpath)
 	int sz;
 
 	if ((DataFile = fopen(fpath, "rb")) == NULL) {
-		fprintf(stderr, "\n\nfilename: '%s'\n", fpath);
-
 		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to open a given tux image archive.\n\
-This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
+ungluem was unable to open tux image archive file %s.\n\
+Please specify a valid file to open using -i on the commandline.", PLEASE_INFORM, IS_FATAL, fpath);
 	} else {
 	}
 
