@@ -35,47 +35,41 @@ EveryTime LuaCode={ show(99) }
 
 Nr=0  Text="I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
 LuaCode={
-    next(2)
+	next(2)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Sure. Teach me all that you know. (cost 50 cash, 1 ability point)"
-LuaCode={
-    next(2)
-}
-----------------------------------------------------------------------
 Nr=2  Text="Checks"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	if (del_gold(50)) then
-		if (del_points(1)) then
-			if (has_cookie("know_extract5")) then next(70) -- Fully learned
-            		else
-                		if (has_cookie("know_extract4")) then next(50) -- Learn rev5
-                		else
-                    			if (has_cookie("know_extract3")) then next(40) -- Learn rev4
-                    			else
-                        			if (has_cookie("know_extract2")) then next(30) -- Learn rev3
-                        			else
-                            				if (has_cookie("know_extract1")) then next(20)  -- Learn rev2
-                            				else next(10) end                               -- Learn rev1
-                        			end
-                    			end
-                		end
-            		end
-		else -- No TP
+	rev = get_program_revision("Extract bot parts")
+	if (can_tux_train(50, 1)) then
+		if (rev == 0) then next_node = 10 end -- Learn rev1
+		if (rev == 1) then next_node = 20 end -- Learn rev2
+		if (rev == 2) then next_node = 30 end -- Learn rev3
+		if (rev == 3) then next_node = 40 end -- Learn rev4
+		if (rev == 4) then next_node = 50 end -- Learn rev5
+	else -- Can't train
+		next_node = 99 -- This stops a crash
+		if (get_gold() >= 50) then -- Training points were the problem
 			npc_says(_"Hmmm...")
 			npc_says(_"You look green. Toughen up. Get some experience, kill some bots.")
 			npc_says(_"Then we can talk.")
-			add_gold(50) --refund unused $$$
 			end_dialog()
-        	end
-	else -- No $$$
-		npc_says(_"Hmmm...")
-		npc_says(_"Kein geld, Keine hilfe.")
-		npc_says(_"Come back with some money.")
-		end_dialog()
+        	else -- No $$$
+			npc_says(_"Hmmm...")
+			npc_says(_"Kein geld, Keine hilfe.")
+			npc_says(_"Come back with some money.")
+			end_dialog()
+		end
 	end
+	if (rev == 5) then -- Max level
+		next_node = 70
+	elseif (can_tux_train(50, 1)) then
+		del_gold(50)
+		del_points(1)
+	end
+	next(next_node)
 }
 ----------------------------------------------------------------------
 
@@ -85,8 +79,7 @@ LuaCode={
 	npc_says(_"Let us start with entropy inverters. This is quite simple.")
 	npc_says(_"Just take a hammer and hit the bot sehr hard on the head.")
 	npc_says(_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for.")
-  improve_program("Extract bot parts")  
-  add_cookie("know_extract1")
+	improve_program("Extract bot parts")
 }
 ----------------------------------------------------------------------
 
@@ -96,8 +89,7 @@ LuaCode={
 	npc_says(_"How about... Plasma transistors? Trivial.")
 	npc_says(_"Remove the bot's engine and look around somewhere close to the battery.")
 	npc_says(_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe.")
-  improve_program("Extract bot parts")
-  add_cookie("know_extract2")
+	improve_program("Extract bot parts")
 }
 ----------------------------------------------------------------------
 
@@ -108,8 +100,7 @@ LuaCode={
 	npc_says(_"They are relatively easy to get out.")
 	npc_says(_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there.")
 	npc_says(_"Wear rubber gloves. Just in case, you know.")
-  improve_program("Extract bot parts")
-  add_cookie("know_extract3")
+	improve_program("Extract bot parts")
 }
 ----------------------------------------------------------------------
 
@@ -121,8 +112,7 @@ LuaCode={
 	npc_says(_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:")
 	npc_says(_"Make sure you turn the converter off before you remove it.")
 	npc_says(_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there.")
-  improve_program("Extract bot parts")
-  add_cookie("know_extract4")
+	improve_program("Extract bot parts")
 }
 ----------------------------------------------------------------------
 
@@ -134,8 +124,7 @@ LuaCode={
 	npc_says(_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function.")
 	npc_says(_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal.")
 	npc_says(_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one.")
-  improve_program("Extract bot parts")
-  add_cookie("know_extract5")
+	improve_program("Extract bot parts")
 }
 ----------------------------------------------------------------------
 
@@ -143,13 +132,13 @@ Nr=70  Text="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?")
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"Maybe another time."
 LuaCode={
-    end_dialog()
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
