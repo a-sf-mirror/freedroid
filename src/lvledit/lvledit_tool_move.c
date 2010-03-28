@@ -70,8 +70,8 @@ int leveleditor_move_input(SDL_Event * event)
 						    GetMousePos_y() - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
 
 		// Calculate the new position
-		Me.pos.x += exp((b.x - a.x) / 5.0) - 1.0;
-		Me.pos.y += exp((b.y - a.y) / 5.0) - 1.0;
+		Me.pos.x += exp((b.x - a.x) / 10.0) - 1.0;
+		Me.pos.y += exp((b.y - a.y) / 10.0) - 1.0;
 
 		if (Me.pos.x > curShip.AllLevels[Me.pos.z]->xlen)
 			Me.pos.x = curShip.AllLevels[Me.pos.z]->xlen - 1;
