@@ -562,76 +562,71 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 };				// void GiveItemDescription ( char* ItemDescText , item* CurItem , int ForShop )
 
 /**
- * This function writes the description of a droid into the description
- * string.
+ * This function writes the description of a droid above its head,
+ * and shows the remaining energy.
  */
-void create_and_blit_droid_description(enemy * cur_enemy, gps* description_pos)
+static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 {
 	int text_length;
-	SDL_Rect temp_fill_rect;
+	int bar_width; //size of the energy bar
+	int barc_width; //size of the enery bar complement (black part)
+	int bar_y;
+	int bar_x;
+	SDL_Rect rect;
 	BFont_Info *BFont_to_use = Blue_BFont;
+	Uint8 r, g, b;
 
 	text_length = TextWidthFont(BFont_to_use, cur_enemy->short_description_text);
 
-	temp_fill_rect.h = FontHeight(BFont_to_use);
-	temp_fill_rect.w = (text_length * cur_enemy->energy) / Druidmap[cur_enemy->type].maxenergy;
-	if (cur_enemy->energy <= 0)
-		temp_fill_rect.w = 0;
+	rect.h = FontHeight(BFont_to_use);
 
-	//--------------------
-	// Instead of having a centered top bar, we now move to have a bar right
-	// over the character in question...
-	//
-	// temp_fill_rect . y = 50 ;
-	// temp_fill_rect . x = UserCenter_x - text_length / 2 ;
-	//
-	temp_fill_rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
-	temp_fill_rect.y =
+	// Hostile droids' bars are shown in red, friendly in green.
+	if (!cur_enemy->is_friendly) {
+		r = 0x99;
+		g = 0x00;
+		b = 0x00;
+	} else {
+		r = 0x00;
+		g = 0x55;
+		b = 0x00;
+	}
+
+	// Position of the bar
+	bar_x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
+	bar_y =
 	    translate_map_point_to_screen_pixel_y(description_pos->x,
 	    		description_pos->y) + enemy_iso_images[cur_enemy->type][0][0].offset_y -
 	    2.5 * FontHeight(BFont_to_use);
 
-	//--------------------
-	// If the 'enemy' is hostile, then we use red underlying color.  If
-	// it's a friendly entity, then we use green underlying color for the
-	// enemy's name.
-	//
-	if (!cur_enemy->is_friendly) {
-		if (use_open_gl) {
-			GL_HighlightRectangle(Screen, &temp_fill_rect, 0x99, 0x00, 0, BACKGROUND_TEXT_RECT_ALPHA);
-		} else {
-			our_SDL_fill_rect_wrapper(Screen, &(temp_fill_rect), SDL_MapRGB(Screen->format, 0x099, 0x000, 0x000));
-		}
+	// Width of bars
+	bar_width = (text_length) * (cur_enemy->energy / Druidmap[cur_enemy->type].maxenergy);
+	barc_width = (text_length) * (1.0 - cur_enemy->energy / Druidmap[cur_enemy->type].maxenergy);
+	if (bar_width < 0)
+		bar_width = 0;
+	if (barc_width < 0)
+		barc_width = 0;
+
+
+	// Draw the energy bar
+	rect.x = bar_x;
+	rect.y = bar_y;
+	rect.w = bar_width;
+	if (use_open_gl) {
+		GL_HighlightRectangle(Screen, &rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
 	} else {
-		if (use_open_gl) {
-			GL_HighlightRectangle(Screen, &temp_fill_rect, 0, 0x55, 0, BACKGROUND_TEXT_RECT_ALPHA);
-		} else {
-			our_SDL_fill_rect_wrapper(Screen, &(temp_fill_rect), SDL_MapRGB(Screen->format, 0x000, 0x055, 0x000));
-		}
+		our_SDL_fill_rect_wrapper(Screen, &rect, SDL_MapRGB(Screen->format, r, g, b));
 	}
 
-	//--------------------
-	// Now depending on the energy status of this enemy, there will
-	// also be some dark area under the short description text
-	//
-	// We take some extra precautions here to prevent some unsigned
-	// int underflow (and ugly too wide rectangles...)
-	//
-	temp_fill_rect.x = temp_fill_rect.x + temp_fill_rect.w;
-	if (temp_fill_rect.w < text_length)
-		temp_fill_rect.w = text_length - temp_fill_rect.w;
-	else
-		temp_fill_rect.w = 0;
-	our_SDL_fill_rect_wrapper(Screen, &(temp_fill_rect), SDL_MapRGB(Screen->format, 0x000, 0x000, 0x000));
+	// Draw the energy bar complement
+	rect.x = bar_x + bar_width;
+	rect.y = bar_y;
+	rect.w = barc_width;
+	our_SDL_fill_rect_wrapper(Screen, &rect, SDL_MapRGB(Screen->format, 0x000, 0x000, 0x000));
 
-	//--------------------
-	// Now we can blit the actual droid short description text
-	//
-	// temp_fill_rect . x = UserCenter_x - text_length / 2 ;
-	temp_fill_rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
-	PutStringFont(Screen, BFont_to_use, temp_fill_rect.x, temp_fill_rect.y, cur_enemy->short_description_text);
-
-};				// void GiveDroidDescription ( char* ItemDescText , item* CurItem )
+	// Display droid's short description text
+	rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
+	PutStringFont(Screen, BFont_to_use, rect.x, rect.y, cur_enemy->short_description_text);
+}
 
 /**
  * This function displays the icon of the current readied skill 
@@ -1130,7 +1125,7 @@ A barrel was detected, but the barrel type was not valid.", PLEASE_INFORM, IS_FA
 		if (droid_below_mouse_cursor != NULL
 		    && DirectLineColldet(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y, Me.pos.z,
 					 &VisiblePassFilter)) {
-			create_and_blit_droid_description(droid_below_mouse_cursor, &droid_below_mouse_cursor->virt_pos);
+			show_droid_description(droid_below_mouse_cursor, &droid_below_mouse_cursor->virt_pos);
 			return;
 		}
 	}
