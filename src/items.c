@@ -44,6 +44,64 @@ enum {
 	DRIVE_SLOT,
 	FIRST_INV_SLOT
 };
+item create_item_with_name(const char *item_name, int full_duration, int multiplicity)
+{
+	item new_item;
+	
+	new_item.type = GetItemIndexByName(item_name);
+	new_item.prefix_code = -1;
+	new_item.suffix_code = -1;
+	FillInItemProperties(&new_item, full_duration, multiplicity);
+	
+	return new_item;
+}
+
+void equip_item(item *new_item)
+{
+	item *old_item;
+	itemspec *new_itemspec;
+	
+	new_itemspec = &ItemMap[new_item->type];
+	
+	/*
+	 * now that we know the item type the case
+	 * of a 2 handed weapon needs to be handled
+	 */
+	if (new_itemspec->item_gun_requires_both_hands)
+	{
+		/*
+		 * We're equipping a 2 handed weapon so both the
+		 * shield and weapon need to be unequipped.  Here
+		 * we handle moving the shield to inventory/floor.
+		 * the normal case below will handle the weapon
+		 * since it looks for the equipped item of the same
+		 * type.  
+		 */
+		item *shield_item = &Me.shield_item;
+		
+		// if the shield item exists and we fail to put it in the inventory
+		if (shield_item && copy_item_into_inventory(shield_item, shield_item->multiplicity)) {
+			DropItemToTheFloor(shield_item, Me.pos.x, Me.pos.y, Me.pos.z);
+		} else {
+			/* otherwise it was successfully copied into the inventory.
+			 * copy_item_into_inventory doesn't delete the source item
+			 * though so we have to do that here. 
+			 */
+			DeleteItem(shield_item);
+		}
+	}
+	
+	// get the currently equipped item of the same type, if any
+	old_item = get_equipped_item_in_slot_for(new_item->type);
+
+	
+	if  (old_item && copy_item_into_inventory(old_item, old_item->multiplicity)) {
+		// the item didn't fit in the inventory
+		DropItemToTheFloor(old_item, Me.pos.x, Me.pos.y, Me.pos.z);
+	}
+	CopyItem(new_item, old_item, FALSE);
+}
+
 
 /**
  * Gets a pointer to the currently equipped item of the

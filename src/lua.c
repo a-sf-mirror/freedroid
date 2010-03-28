@@ -300,6 +300,22 @@ static int lua_event_has_item_backpack(lua_State * L)
 	return 1;
 }
 
+static int lua_event_equip_item(lua_State * L)
+{
+	const char *item_name = luaL_checkstring(L, 1);
+
+	if (!item_name) {
+		ErrorMessage(__FUNCTION__, "Tried to add item without a name\n", PLEASE_INFORM,
+			     IS_WARNING_ONLY);
+		return 0;
+	}
+	item new_item = create_item_with_name(item_name, TRUE, 1);
+	equip_item(&new_item);
+	SetNewBigScreenMessage(_("1 Item received!"));
+	return 0;
+}
+
+
 static int lua_event_add_diary_entry(lua_State * L)
 {
 	const char *mis_name = luaL_checkstring(L, 1);
@@ -793,7 +809,8 @@ luaL_reg lfuncs[] = {
 	,
 	{"has_item_backpack", lua_event_has_item_backpack}
 	,
-
+	{"equip_item", lua_event_equip_item}
+	,
 	{"sell_item", lua_event_sell_item}
 	,
 	{"add_diary_entry", lua_event_add_diary_entry}
