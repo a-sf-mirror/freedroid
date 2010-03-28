@@ -24,4 +24,4 @@
  */
 
 int leveleditor_place_input(SDL_Event * event);
-int leveleditor_place_display();
+int leveleditor_place_display(void);

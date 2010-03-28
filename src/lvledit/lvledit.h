@@ -112,7 +112,7 @@ enum {
 
 EXTERN void LevelEditor(void);
 EXTERN item *ItemDropFromLevelEditor(void);
-EXTERN void TestMap();
+EXTERN void TestMap(void);
 
 enum leveleditor_object_type {
 	OBJECT_FLOOR,
@@ -700,9 +700,9 @@ EXTERN int waypoint_list[];
 
 EXTERN int all_obstacles_list[NUMBER_OF_OBSTACLE_TYPES + 1];
 
-EXTERN int EditX();
-EXTERN int EditY();
-EXTERN level *EditLevel();
+EXTERN int EditX(void);
+EXTERN int EditY(void);
+EXTERN level *EditLevel(void);
 
 EXTERN char VanishingMessage[10000];
 EXTERN float VanishingMessageEndDate;

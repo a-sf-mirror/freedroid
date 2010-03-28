@@ -23,7 +23,7 @@
  */
 
 int leveleditor_move_input(SDL_Event * event);
-int leveleditor_move_display();
+int leveleditor_move_display(void);
 
 struct leveleditor_move {
 	/* click&drag */

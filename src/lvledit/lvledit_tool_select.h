@@ -24,20 +24,20 @@
  */
 
 int leveleditor_select_input(SDL_Event * event);
-int leveleditor_select_display();
+int leveleditor_select_display(void);
 
-int selection_empty();
+int selection_empty(void);
 void *single_tile_selection(int);
 int element_in_selection(void *);
 
-point selection_start();
-point selection_len();
-int selection_type();
+point selection_start(void);
+point selection_len(void);
+int selection_type(void);
 
-int level_editor_can_cycle_obs();
-void level_editor_cycle_marked_obstacle();
-void level_editor_cut_selection();
-void level_editor_copy_selection();
-void level_editor_paste_selection();
+int level_editor_can_cycle_obs(void);
+void level_editor_cycle_marked_obstacle(void);
+void level_editor_cut_selection(void);
+void level_editor_copy_selection(void);
+void level_editor_paste_selection(void);
 
 void clear_selection(int);

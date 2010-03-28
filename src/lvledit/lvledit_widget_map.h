@@ -41,7 +41,7 @@ void leveleditor_map_mousemove(SDL_Event *, struct leveleditor_widget *);
 int leveleditor_map_keybevent(SDL_Event *, struct leveleditor_widget *);
 
 void leveleditor_map_display(struct leveleditor_widget *);
-void leveleditor_map_display_cursor();
+void leveleditor_map_display_cursor(void);
 
 void leveleditor_map_init(void);
 

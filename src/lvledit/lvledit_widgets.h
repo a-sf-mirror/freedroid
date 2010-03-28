@@ -90,7 +90,7 @@ void leveleditor_update_button_states(void);
 
 struct leveleditor_widget *get_active_widget(int, int);
 struct leveleditor_widget *create_button(int);
-struct leveleditor_widget *create_menu();
+struct leveleditor_widget *create_menu(void);
 EXTERN struct list_head leveleditor_widget_list;
 EXTERN struct leveleditor_widget *previously_active_widget;
 

@@ -28,7 +28,7 @@
 #define EXTERN
 #endif
 
-void leveleditor_display();
+void leveleditor_display(void);
 void draw_connection_between_tiles(float, float, float, float, int);
 
 float lvledit_zoomfact(void);
