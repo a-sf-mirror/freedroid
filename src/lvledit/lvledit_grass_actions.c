@@ -41,6 +41,16 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_tool_select.h"
 
+enum _vertical_neighbors {
+	NORTH_T = -1,
+	SOUTH_T = 1
+};
+
+enum _horizontal_neighbors {
+	WEST_T = -1,
+	EAST_T = 1
+};
+
 static int grass_change_count = 0;
 
 static void grass_change_floor(level *l, int x, int y, int type)
@@ -55,14 +65,58 @@ static void done_beautify_grass()
 	grass_change_count = 0;
 }
 
+// gets the tile value, crossing levels if necessary
+static int get_tile_value(level *l, int y, int x) {
+	int levelnum = l->levelnum;
+
+	if(x < 0) {
+		if(l->jump_target_west == -1) {
+			levelnum = -1;
+		} else {
+			l = curShip.AllLevels[l->jump_target_west];
+			x = l->xlen - 1;
+		}
+	} else if (x >= l->xlen) {
+		if(l->jump_target_east == -1) {
+			levelnum = -1;
+		} else {
+			l = curShip.AllLevels[l->jump_target_east];
+			x = 0;
+		}
+	}
+
+	if (y < 0) {
+		if(l->jump_target_north == -1) {
+			levelnum = -1;
+		} else {
+			l = curShip.AllLevels[l->jump_target_north];
+			y = l->ylen - 1;
+		}
+	} else if(y >= l->ylen) {
+		if(l->jump_target_south == -1) {
+			levelnum = -1;
+		} else {
+			l = curShip.AllLevels[l->jump_target_south];
+			y = 0;
+		}
+	}
+
+	if(levelnum == -1) {
+		return ISO_FLOOR_SAND_WITH_GRASS_1; 
+	} else {
+		return l->map[y][x].floor_value;
+	}
+}
+
+
 /**
  * Is this tile a 'full' grass tile, i.e. a grass tile with ABSOLUTELY
  * NO SAND on it?
  */
-static int is_full_grass_tile(map_tile * this_tile)
+static int is_full_grass_tile(int floor_value)
 {
 
-	switch (this_tile->floor_value) {
+	switch (floor_value) {
 	case ISO_FLOOR_SAND_WITH_GRASS_1:
 	case ISO_FLOOR_SAND_WITH_GRASS_2:
 	case ISO_FLOOR_SAND_WITH_GRASS_3:
@@ -84,15 +138,15 @@ static int is_full_grass_tile(map_tile * this_tile)
  * Is this tile 'some' grass tile, i.e. a grass tile with JUST ANY BIT
  * OF GRASS ON IT?
  */
-static int is_some_grass_tile(map_tile * this_tile)
+static int is_some_grass_tile(int floor_value)
 {
 
-	if (this_tile->floor_value < ISO_FLOOR_SAND_WITH_GRASS_1)
+	if (floor_value < ISO_FLOOR_SAND_WITH_GRASS_1)
 		return (FALSE);
-	if (this_tile->floor_value > ISO_FLOOR_SAND_WITH_GRASS_29)
+	if (floor_value > ISO_FLOOR_SAND_WITH_GRASS_29)
 		return (FALSE);
 
-	switch (this_tile->floor_value) {
+	switch (floor_value) {
 	case ISO_WATER:
 	case ISO_COMPLETELY_DARK:
 	case ISO_RED_WAREHOUSE_FLOOR:
@@ -117,41 +171,41 @@ static void fix_corners_in_this_grass_tile(level * EditLevel, int x, int y)
 	int east_grass = 0;
 	int west_grass = 0;
 
-	if (is_full_grass_tile(&(EditLevel->map[y - 1][x])))
+	if (is_full_grass_tile(get_tile_value(EditLevel, y + NORTH_T, x)))
 		north_grass = TRUE;
-	if (is_full_grass_tile(&(EditLevel->map[y + 1][x])))
+	if (is_full_grass_tile(get_tile_value(EditLevel, y + SOUTH_T, x)))
 		south_grass = TRUE;
-	if (is_full_grass_tile(&(EditLevel->map[y][x + 1])))
+	if (is_full_grass_tile(get_tile_value(EditLevel, y, x + EAST_T)))
 		east_grass = TRUE;
-	if (is_full_grass_tile(&(EditLevel->map[y][x - 1])))
+	if (is_full_grass_tile(get_tile_value(EditLevel, y, x + WEST_T)))
 		west_grass = TRUE;
 
 	//--------------------
 	// Upper left corner:
 	//
-	if (north_grass && west_grass && (EditLevel->map[y][x + 1].floor_value == ISO_FLOOR_SAND)
-	    && (EditLevel->map[y + 1][x].floor_value == ISO_FLOOR_SAND)) {
+	if ((north_grass && west_grass && get_tile_value(EditLevel, y, x + EAST_T) == ISO_FLOOR_SAND)
+	    && (get_tile_value(EditLevel, y + SOUTH_T, x) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_15);
 	}
 	//--------------------
 	// Upper right corner
 	//
-	if (north_grass && east_grass && (EditLevel->map[y][x - 1].floor_value == ISO_FLOOR_SAND)
-	    && (EditLevel->map[y + 1][x].floor_value == ISO_FLOOR_SAND)) {
+	if ((north_grass && east_grass && get_tile_value(EditLevel, y, x + WEST_T) == ISO_FLOOR_SAND)
+	    && (get_tile_value(EditLevel, y + SOUTH_T, x) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_16);
 	}
 	//--------------------
 	// Lower left corner:
 	//
-	if (south_grass && west_grass && (EditLevel->map[y][x + 1].floor_value == ISO_FLOOR_SAND)
-	    && (EditLevel->map[y - 1][x].floor_value == ISO_FLOOR_SAND)) {
+	if ((south_grass && west_grass && get_tile_value(EditLevel, y, x + EAST_T) == ISO_FLOOR_SAND)
+	    && (get_tile_value(EditLevel, y + NORTH_T, x) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_14);
 	}
 	//--------------------
 	// Lower right corner
 	//
-	if (south_grass && east_grass && (EditLevel->map[y][x - 1].floor_value == ISO_FLOOR_SAND)
-	    && (EditLevel->map[y - 1][x].floor_value == ISO_FLOOR_SAND)) {
+	if ((south_grass && east_grass && get_tile_value(EditLevel, y, x + WEST_T) == ISO_FLOOR_SAND)
+	    && (get_tile_value(EditLevel, y + NORTH_T, x) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_17);
 	}
 
@@ -169,44 +223,44 @@ static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
 	int west_grass = 0;
 	int x_offset, y_offset;
 
-	if (is_some_grass_tile(&(EditLevel->map[y - 1][x]))) {
+	if (is_some_grass_tile(get_tile_value(EditLevel, y + NORTH_T, x))) {
 		north_grass = TRUE;
 		y_offset = -1;
 	}
-	if (is_some_grass_tile(&(EditLevel->map[y + 1][x]))) {
+	if (is_some_grass_tile(get_tile_value(EditLevel, y + SOUTH_T, x))) {
 		south_grass = TRUE;
 		y_offset = 1;
 	}
-	if (is_some_grass_tile(&(EditLevel->map[y][x + 1]))) {
+	if (is_some_grass_tile(get_tile_value(EditLevel, y, x + EAST_T))) {
 		east_grass = TRUE;
 		x_offset = 1;
 	}
-	if (is_some_grass_tile(&(EditLevel->map[y][x - 1]))) {
+	if (is_some_grass_tile(get_tile_value(EditLevel, y, x + WEST_T))) {
 		west_grass = TRUE;
 		x_offset = -1;
 	}
 	//--------------------
 	// Upper left corner:
 	//
-	if (north_grass && west_grass && (EditLevel->map[y - 1][x - 1].floor_value == ISO_FLOOR_SAND)) {
+	if (north_grass && west_grass && get_tile_value(EditLevel, y + NORTH_T, x + WEST_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_21);
 	}
 	//--------------------
 	// Upper right corner
 	//
-	if (north_grass && east_grass && (EditLevel->map[y - 1][x + 1].floor_value == ISO_FLOOR_SAND)) {
+	if (north_grass && east_grass && get_tile_value(EditLevel, y + NORTH_T, x + EAST_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_20);
 	}
 	//--------------------
 	// Lower left corner:
 	//
-	if (south_grass && west_grass && (EditLevel->map[y + 1][x - 1].floor_value == ISO_FLOOR_SAND)) {
+	if (south_grass && west_grass && get_tile_value(EditLevel, y + SOUTH_T, x + WEST_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_18);
 	}
 	//--------------------
 	// Lower right corner
 	//
-	if (south_grass && east_grass && (EditLevel->map[y + 1][x + 1].floor_value == ISO_FLOOR_SAND)) {
+	if (south_grass && east_grass && get_tile_value(EditLevel, y + SOUTH_T, x + EAST_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_19);
 	}
 
@@ -223,13 +277,13 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 	int east_grass = 0;
 	int west_grass = 0;
 
-	if (is_some_grass_tile(&(EditLevel->map[y - 1][x])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y + NORTH_T, x)))
 		north_grass = TRUE;
-	if (is_some_grass_tile(&(EditLevel->map[y + 1][x])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y + SOUTH_T, x)))
 		south_grass = TRUE;
-	if (is_some_grass_tile(&(EditLevel->map[y][x + 1])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y, x + EAST_T)))
 		east_grass = TRUE;
-	if (is_some_grass_tile(&(EditLevel->map[y][x - 1])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y, x + WEST_T)))
 		west_grass = TRUE;
 
 	//--------------------
@@ -283,13 +337,13 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 	int west_grass = 0;
 	int our_rand;
 
-	if (is_some_grass_tile(&(EditLevel->map[y - 1][x])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y + NORTH_T, x)))
 		north_grass = TRUE;
-	if (is_some_grass_tile(&(EditLevel->map[y + 1][x])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y + SOUTH_T, x)))
 		south_grass = TRUE;
-	if (is_some_grass_tile(&(EditLevel->map[y][x + 1])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y, x + EAST_T)))
 		east_grass = TRUE;
-	if (is_some_grass_tile(&(EditLevel->map[y][x - 1])))
+	if (is_some_grass_tile(get_tile_value(EditLevel, y, x + WEST_T)))
 		west_grass = TRUE;
 
 	if (!north_grass && !south_grass && !east_grass && !west_grass) {
@@ -316,9 +370,9 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	int x;
 	int y;
 	int our_rand;
-	map_tile *this_tile;
-	int xstart = 1, xend = EditLevel->xlen - 1;
-	int ystart = 1, yend = EditLevel->ylen - 1;
+	int this_tile_value;
+	int xstart = 0, xend = EditLevel->xlen;
+	int ystart = 0, yend = EditLevel->ylen;
 
 	if(selection_type() == OBJECT_FLOOR) {
 		point start = selection_start(), len = selection_len();
@@ -335,9 +389,9 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile = &(EditLevel->map[y][x]);
+			this_tile_value = get_tile_value(EditLevel, y, x);
 
-			if (is_full_grass_tile(this_tile)) {
+			if (is_full_grass_tile(this_tile_value)) {
 				fix_corners_in_this_grass_tile(EditLevel, x, y);
 				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
@@ -349,9 +403,9 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile = &(EditLevel->map[y][x]);
+			this_tile_value = get_tile_value(EditLevel, y, x);
 
-			if (is_full_grass_tile(this_tile)) {
+			if (is_full_grass_tile(this_tile_value)) {
 				fix_anticorners_in_this_grass_tile(EditLevel, x, y);
 				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
@@ -363,9 +417,9 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile = &(EditLevel->map[y][x]);
+			this_tile_value = get_tile_value(EditLevel, y, x);
 
-			if (is_full_grass_tile(this_tile)) {
+			if (is_full_grass_tile(this_tile_value)) {
 				fix_halfpieces_in_this_grass_tile(EditLevel, x, y);
 				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
@@ -377,9 +431,9 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile = &(EditLevel->map[y][x]);
+			this_tile_value = get_tile_value(EditLevel, y, x);
 
-			if (is_full_grass_tile(this_tile)) {
+			if (is_full_grass_tile(this_tile_value)) {
 				our_rand = MyRandom(106);
 				if (our_rand < 25)
 					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_1);
@@ -400,13 +454,13 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	}
 
 	//--------------------
-	// Finally we randomize the full grass tiles
+	// Finally we randomize the isolated grass tiles
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile = &(EditLevel->map[y][x]);
+			this_tile_value = get_tile_value(EditLevel, y, x);
 
-			if (is_full_grass_tile(this_tile)) {
+			if (is_full_grass_tile(this_tile_value)) {
 				fix_isolated_grass_tile(EditLevel, x, y);
 				DebugPrintf(1, "\nlevel_editor_beautify_grass_tiles (...): found a grass tile.");
 			}
