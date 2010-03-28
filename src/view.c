@@ -235,7 +235,6 @@ void ShowCombatScreenTexts(int mask)
 	static int Frames_Counted = 1;
 	static int FPS_Displayed;
 #define UPDATE_FPS_HOW_OFTEN 0.75
-	Level DisplayLevel = curShip.AllLevels[Me.pos.z];
 	int minutes;
 	int seconds;
 	int i;
@@ -264,8 +263,6 @@ void ShowCombatScreenTexts(int mask)
 		if (!Me.AllMissions[i].MissionWasAssigned)
 			continue;
 
-		DebugPrintf(0, "\nYES, Something was assigned at all....");
-
 		if (Me.AllMissions[i].MustLiveTime != (-1)) {
 			minutes = floor((Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) / 60);
 			seconds = rintf(Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) - 60 * minutes;
@@ -290,7 +287,6 @@ void ShowCombatScreenTexts(int mask)
 			snprintf(txt, sizeof(txt) - 1, _("Bots remaining on level: %d\n"), remaining_bots);
 			strcat(txt, "\n");
 			DisplayText(txt, -1, -1, NULL, 1.0);
-			DebugPrintf(0, "\nYES, this is the level....");
 		}
 	}
 
@@ -298,7 +294,7 @@ void ShowCombatScreenTexts(int mask)
 
 	DisplayBigScreenMessage();
 
-};				// void ShowCombatScreenTexts ( int mask )
+}
 
 static void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *ColStart, int *ColEnd)
 {
@@ -3559,7 +3555,7 @@ int ThisEnemyNeedsToBeBlitted(enemy * e, int x, int y)
  *
  *
  */
-void PutEnemyEnergyBar(enemy * e, SDL_Rect TargetRectangle)
+void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 {
 	float Percentage;
 	SDL_Rect FillRect;
@@ -3630,10 +3626,7 @@ void PutEnemyEnergyBar(enemy * e, SDL_Rect TargetRectangle)
 		FillRect.h = ENEMY_ENERGY_BAR_WIDTH;
 		FillRect.w = Percentage * TargetRectangle.w;
 
-		//--------------------
-		// If the enemy is friendly, then we needn't display his health, right?
-		// Or better yet, we might show a green energy bar instead.  That's even
-		// better!
+		// The color of the bar depends on the friendly/hostile status
 		if (e->is_friendly)
 			our_SDL_fill_rect_wrapper(Screen, &FillRect, full_color_friend);
 		else
