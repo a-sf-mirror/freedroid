@@ -91,7 +91,7 @@
 4. Known Issues
 ================
  General
-   * Most melee and ranged weapons only have placeholder laserswords/rifles for their Tux holding 
+   * Some melee and ranged weapons still have placeholder laserswords/rifles for their Tux holding 
      and attack animations. If you are skilled with 3D modelling, please help us out to fix this.
 
  Windows 
@@ -131,7 +131,7 @@
    * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
      of the whole screen instead of just the game window, if the option
      (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
-
+   * The "Toggle display collision rectangles" function of the level editor does not work in SDL mode.
 
 5. Screen resolution
 =====================
