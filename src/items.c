@@ -47,11 +47,14 @@ enum {
 
 /**
  * Gets a pointer to the currently equipped item of the
- * same type as newItem
+ * specified type
  */
-item *get_equipped_item_of_type(itemspec *spec)
+item *get_equipped_item_in_slot_for(int item_type)
 {
 	item *equipped_item;
+	itemspec *spec;
+
+	spec = &ItemMap[item_type];
 	
 	if (spec->item_can_be_installed_in_weapon_slot) {
 		equipped_item = &Me.weapon_item;
