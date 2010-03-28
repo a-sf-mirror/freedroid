@@ -136,8 +136,8 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot);
 int set_rotation_model_for_this_robot(enemy * ThisRobot);
 void grab_enemy_images_from_archive(int enemy_model_nr);
 int level_is_visible(int level_num);
-void get_visible_levels();
-void reset_visible_levels();
+void get_visible_levels(void);
+void reset_visible_levels(void);
 void PutIndividuallyShapedDroidBody(enemy *, SDL_Rect, int, int);
 
 #define next_valid_visible_level(pos, start) ({ \
@@ -506,7 +506,7 @@ void DisplayButtons(void);
 void UpdateAllCharacterStats(void);
 void ShowCharacterScreen(void);
 void HandleCharacterScreen(void);
-void update_all_primary_stats();
+void update_all_primary_stats(void);
 
 // leveleditor.c
 void LevelEditor(void);
@@ -767,8 +767,8 @@ int autostr_printf(struct auto_string *, const char *, ...);
 int autostr_append(struct auto_string *, const char *, ...);
 
 // animate.c
-void animation_timeline_reset();
-void animation_timeline_advance();
+void animation_timeline_reset(void);
+void animation_timeline_advance(void);
 int animate_door(level* obstacle_lvl, int obstacle_idx);
 int animate_teleporter(level* obstacle_lvl, int obstacle_idx);
 int animate_refresh(level* obstacle_lvl, int obstacle_idx);
