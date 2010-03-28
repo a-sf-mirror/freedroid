@@ -3887,10 +3887,10 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 			TargetRectangle.w = enemy_iso_images[RotationModel][RotationIndex][0].original_image_width * zf;
 			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].original_image_height * zf;
 		} else {
-			TargetRectangle.x = screen_x - (enemy_iso_images[RotationModel][RotationIndex][0].surface->w) / 2;
-			TargetRectangle.y = screen_y - (enemy_iso_images[RotationModel][RotationIndex][0].surface->h) / 1;
-			TargetRectangle.w = enemy_iso_images[RotationModel][RotationIndex][0].surface->w;
-			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].surface->h;
+			TargetRectangle.x = screen_x - (enemy_iso_images[RotationModel][RotationIndex][0].surface->w * zf) / 2;
+			TargetRectangle.y = screen_y - (enemy_iso_images[RotationModel][RotationIndex][0].surface->h * zf) / 1;
+			TargetRectangle.w = enemy_iso_images[RotationModel][RotationIndex][0].surface->w * zf;
+			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].surface->h * zf;
 		}
 
 		if (GameConfig.enemy_energy_bars_visible)
