@@ -771,7 +771,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		// of the whole screen again for this.
 		//
 		sprintf(GoldString, "%6d", (int)Me.Gold);
-		PutStringFont(Screen, FPS_Display_BFont, 40 * GameConfig.screen_width / 640,
+		PutStringFont(Screen, FPS_Display_BFont, 40 * GameConfig.screen_width / 640 - 15,
 			      370 * GameConfig.screen_height / 480, GoldString);
 
 		blit_our_own_mouse_cursor();
