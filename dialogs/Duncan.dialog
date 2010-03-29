@@ -43,6 +43,10 @@ EveryTime LuaCode={
 			if (not has_cookie("koan_quest_done")) then next(60) else end
 		else end
 	end
+
+	if (has_cookie("tux_has_joined_guard")) then
+		hide(3, 4)
+	end
 }
 ----------------------------------------------------------------------
 
