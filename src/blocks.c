@@ -37,7 +37,6 @@
 #include "lvledit/lvledit_display.h"
 
 char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
-int ModelMultiplier[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 /**
  *
@@ -1101,7 +1100,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 8;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "139";	// 1
@@ -1110,7 +1108,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 8;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "247";	// 2 
@@ -1119,7 +1116,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 8;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "249";	// 3
@@ -1128,7 +1124,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 8;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "296";	// 4
@@ -1137,7 +1132,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "302";	// 5
@@ -1146,7 +1140,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 15;
 	droid_death_animation_speed_factor[i] = 15;
 	droid_stand_animation_speed_factor[i] = 15;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "329";	// 6
@@ -1155,7 +1148,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 8;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "420";	// 7 
@@ -1164,7 +1156,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "476";	// 8 
@@ -1173,7 +1164,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "493";	// 9
@@ -1182,7 +1172,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 18;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "516";	// 10
@@ -1191,7 +1180,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "571";	// 11
@@ -1200,7 +1188,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "598";	// 12
@@ -1209,7 +1196,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 8;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "614";	// 13
@@ -1218,7 +1204,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 3;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "615";	// 14
@@ -1227,7 +1212,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "629";	// 15
@@ -1236,7 +1220,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "711";	// 16
@@ -1245,7 +1228,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "742";	// 17
@@ -1254,7 +1236,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "751";	// 18
@@ -1263,7 +1244,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "821";	// 19
@@ -1272,7 +1252,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "834";	// 20
@@ -1281,7 +1260,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "883";	// 21, the 'dallek' model...
@@ -1290,7 +1268,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "999";	// 22
@@ -1299,7 +1276,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "professor";	// 23
@@ -1308,7 +1284,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 2;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "red_guard";	// 24
@@ -1317,7 +1292,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 8;
 	droid_death_animation_speed_factor[i] = 7;
 	droid_stand_animation_speed_factor[i] = 2;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "hot_mama";	// 25
@@ -1326,7 +1300,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 1;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "female_scientist";	// 26
@@ -1335,7 +1308,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 1;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "default_male";	// 27
@@ -1344,7 +1316,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "blue_guard";	// 28
@@ -1353,7 +1324,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 5;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "cook";	// 29
@@ -1362,7 +1332,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 5;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 1;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "kevin";	// 30
@@ -1371,7 +1340,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 10;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 6;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "jasmine";	// 31
@@ -1380,7 +1348,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 10;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 6;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "bartender";	// 32
@@ -1389,7 +1356,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 10;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 6;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	PrefixToFilename[i] = "harvester";	// 33
@@ -1398,7 +1364,6 @@ void Load_Enemy_Surfaces(void)
 	droid_gethit_animation_speed_factor[i] = 10;
 	droid_death_animation_speed_factor[i] = 5;
 	droid_stand_animation_speed_factor[i] = 6;
-	ModelMultiplier[i] = 1;
 	i++;
 
 	//--------------------
