@@ -8596,7 +8596,6 @@ t50 x33.50 y7.50 l-1
 t50 x32.50 y7.50 l-1 
 t50 x31.50 y7.50 l-1 
 t50 x30.50 y7.50 l-1 
-t358 x26.00 y5.50 l-1 
 /obsdata
 plabelinfolvl
 x=35 y=11 name="ToolkitBossMonsterStartGameSquare"
