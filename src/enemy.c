@@ -503,97 +503,126 @@ void MoveThisRobotThowardsHisCurrentTarget(enemy * ThisRobot)
 };				// void MoveThisRobotThowardsHisCurrentTarget ( int EnemyNum )
 
 /**
- * This function sets a new random waypoint to a bot.
+ * This function sets a new waypoint to a bot.
  *
- * Returns 0 if everything was OK, 1 if couldn't set a new waypoint.
+ * Returns TRUE if everything was OK, FALSE if couldn't set a new waypoint.
+ *
+ * The new waypoint is randomly chosen in a list of potentially usable
+ * connections. We want the previous waypoint to have a lower probability
+ * in order to avoid bots going back on their steps too often.
+ *
+ * This should imply to generate a non-uniform random value. However this
+ * is not needed here. Let's say that we have 3 potential new waypoints
+ * { A, B, C }, A being the previous waypoint. If p(A) is 3 times lower
+ * than the probability of the other waypoints, then we can use a uniform
+ * random value, to choose a waypoint in the following set:
+ * { A, B, B, B, C, C, C }
+ *
+ * Implementation:
+ *
+ * instead of replicating waypoints, we only keep a restricted { B, C } set,
+ * and use the following trick:
+ *
+ * - rnd is a random value in the [0, 7[ range. (7 = cardinality of the
+ *   whole set, with replicated waypoints).
+ * - if rnd is 0, then 'A' is chosen.
+ * - if 1 <= rnd <= 3, so if (rnd-1)/3 == 0, then 'B' is chosen
+ * - if 4 <= rnd <= 6, so if (rnd-1)/3 == 1, then 'C' is chosen
+ *
+ * so, if rnd != 0, then (rnd-1)/3 is the index of the waypoint to
+ * choose in the 'restricted' set.
  */
-static int SetNewRandomWaypoint(Enemy ThisRobot)
+static int set_new_random_waypoint(enemy *this_robot)
 {
+	const int PMULT = 3; // Probability multiplier
 	int i;
-	Waypoint WpList;
-	int nextwp;
-	finepoint nextwp_pos;
-	waypoint *this_wp;
-	int num_conn;
-	int trywp = 0;
-	int FreeWays[MAX_WP_CONNECTIONS];
-	int SolutionFound;
-	int TestConnection;
-	Level WaypointLevel = curShip.AllLevels[ThisRobot->pos.z];
+	int free_waypoints[MAX_WP_CONNECTIONS];
+	int nb_free_waypoints;
+	int lastwaypoint_is_free;
+
+	level *bot_level = curShip.AllLevels[this_robot->pos.z];
+	// nextwaypoint is actually the waypoint that the bot just reached.
+	waypoint *current_waypoint = &(bot_level->AllWaypoints[this_robot->nextwaypoint]);
 
 	//--------------------
-	// We do some definitions to save us some more typing later...
+	// Pre-condition: there must be some connections
 	//
-	WpList = WaypointLevel->AllWaypoints;
-	nextwp = ThisRobot->nextwaypoint;
-	nextwp_pos.x = WpList[nextwp].x + 0.5;
-	nextwp_pos.y = WpList[nextwp].y + 0.5;
-
-	ThisRobot->lastwaypoint = ThisRobot->nextwaypoint;
-
-	this_wp = &WpList[nextwp];
-	num_conn = this_wp->num_connections;
-
+	int num_conn = current_waypoint->num_connections;
 	if (num_conn == 0)	// no connections found!
 	{
-		fprintf(stderr, "\nFound a waypoint without connection\n");
-		fprintf(stderr, "\nThe offending waypoint nr. is: %d at %d, %d.", nextwp, WpList[nextwp].x, WpList[nextwp].y);
-		fprintf(stderr, "\nThe map level in question got nr.: %d.", ThisRobot->pos.z);
-		return 1;
+		ErrorMessage(__FUNCTION__,
+				     "Found a waypoint without connection\n"
+				     "The offending waypoint nr. is: %d at %d, %d.\n"
+				     "The map level in question got nr.: %d.\n",
+				     PLEASE_INFORM,
+				     IS_WARNING_ONLY,
+				     this_robot->nextwaypoint, current_waypoint->x, current_waypoint->y,
+				     this_robot->pos.z);
+		return FALSE;
 	}
+
 	//--------------------
-	// At this point, we should check, if there is another waypoint 
-	// and also if the way there is free of other droids
+	// For each connected waypoint, check if the path to this waypoint
+	// is free of droids, and if so, store the waypoint.
+	// Special case (see function's comment): the previous waypoint
+	// (called 'lastwaypoint') is not stored, but a flag is set if its
+	// path is free.
 	//
-	freeway_context frw_ctx = { TRUE, {ThisRobot, NULL}
-	};
+	nb_free_waypoints = 0;
+	lastwaypoint_is_free = FALSE;
+	freeway_context frw_ctx = { .check_tux = TRUE, .except_bots = {this_robot, NULL} };
 
 	for (i = 0; i < num_conn; i++) {
-		FreeWays[i] = CheckIfWayIsFreeOfDroids(WpList[ThisRobot->lastwaypoint].x + 0.5,
-						       WpList[ThisRobot->lastwaypoint].y + 0.5,
-						       WpList[WpList[ThisRobot->lastwaypoint].connections[i]].x + 0.5,
-						       WpList[WpList[ThisRobot->lastwaypoint].connections[i]].y + 0.5,
-						       ThisRobot->pos.z, &frw_ctx);
+		int is_free = CheckIfWayIsFreeOfDroids(current_waypoint->x + 0.5, current_waypoint->y + 0.5,
+				bot_level->AllWaypoints[current_waypoint->connections[i]].x + 0.5,
+				bot_level->AllWaypoints[current_waypoint->connections[i]].y + 0.5,
+				this_robot->pos.z, &frw_ctx);
+		if (is_free) {
+			if (current_waypoint->connections[i] != this_robot->lastwaypoint) {
+				free_waypoints[nb_free_waypoints++] = current_waypoint->connections[i];
+			} else {
+				lastwaypoint_is_free = TRUE;
+			}
+		}
 	}
 
 	//--------------------
-	// Now see whether any way point at all is free in that sense
-	// otherwise we set this robot to waiting and return;
+	// If no paths are free, make the bot wait a bit (use a random waiting
+	// time, to help avoid 'deadlocks' between bots).
 	//
-	for (i = 0; i < num_conn; i++) {
-		if (FreeWays[i])
-			break;
+	if (nb_free_waypoints == 0 && !lastwaypoint_is_free) {
+		this_robot->pure_wait = 0.5 + (float)MyRandom(4)/8.0;
+		return TRUE;
 	}
-	if (i == num_conn) {
-		DebugPrintf(2, "\n%s(): Sorry, there seems no free way out.  I'll wait then... , num_conn was : %d .", __FUNCTION__,
-			    num_conn);
-		ThisRobot->pure_wait = 0.5;
-		return 1;
-	}
+
 	//--------------------
-	// Now that we know, there is some way out of this, we can test around
-	// and around randomly until we finally find some solution.
+	// Randomly chose one of the free connected waypoints.
+	// (see function's comment)
 	//
-	// ThisRobot->nextwaypoint = WpList [ nextwp ] . connections [ i ] ;
-	// 
-	SolutionFound = FALSE;
-	while (!SolutionFound) {
-		TestConnection = MyRandom(WpList[nextwp].num_connections - 1);
+	int next_waypoint_id;
 
-		if (WpList[nextwp].connections[TestConnection] == (-1))
-			continue;
-		if (!FreeWays[TestConnection])
-			continue;
-
-		trywp = WpList[nextwp].connections[TestConnection];
-		SolutionFound = TRUE;
+	if (lastwaypoint_is_free) {
+		int rnd = MyRandom(PMULT*nb_free_waypoints); // range: [0, PMULT*nb_free_waypoints + 1[
+		if (rnd != 0) {
+			next_waypoint_id = free_waypoints[(rnd-1)/PMULT];
+		} else {
+			next_waypoint_id = this_robot->lastwaypoint;
+		}
+	} else {
+		// If the previous waypoint is not free, then there's no need for any
+		// specific random law...
+		int rnd = MyRandom(nb_free_waypoints - 1);
+		next_waypoint_id = free_waypoints[rnd];
 	}
 
-	// set new waypoint...
-	ThisRobot->nextwaypoint = trywp;
+	//--------------------
+	// Set the new path
+	//
+	this_robot->lastwaypoint = this_robot->nextwaypoint;
+	this_robot->nextwaypoint = next_waypoint_id;
 
-	return 0;
-};
+	return TRUE;
+}
 
 /**
  * If the droid in question is currently not following the waypoint system
@@ -1655,7 +1684,7 @@ static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_fine
 	new_move_target->y = ThisRobot->pos.y;
 
 	/* Bot must select a new waypoint randomly, and turn towards it. No move this step. */
-	if (SetNewRandomWaypoint(ThisRobot)) {	/* couldn't find a waypoint ? go waypointless  */
+	if (!set_new_random_waypoint(ThisRobot)) {	/* couldn't find a waypoint ? go waypointless  */
 		ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
 	}
 
