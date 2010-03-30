@@ -204,7 +204,7 @@ LuaCode={
 	hide(31)
 	------------------------------------------------
 	-- Assuming optimal playing then
-	-- Expected payout: 92.69%
+	-- Expected payout: 105.96% (easy), 97.11% (normal), 92.69% (hard)
 }
 -----------------------------------------------------------------------
 Nr=32 Text=_"Tell me the rules for your 'coin-flip game'."
@@ -213,16 +213,22 @@ LuaCode={
 	npc_says(_"You bet. Then you tell me if I will flip more 'heads' or 'tails'.")
 	npc_says(_"I flip one coin.")
 	npc_says(_"Then you tell me if there will be an 'odd' or 'even' number of flips for what you chose.")
-	npc_says(_"I flip the other four coins. If you were completely right, I give you twice what your bet, if completely wrong, you get 3/4 of your bet back.")
+	if (difficulty() == "easy") then
+		npc_says(_"I flip the other four coins. If you were completely right, I give you three times what your bet, if wrong, you get nothing.")
+	elseif (difficulty() == "normal") then
+		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what your bet, if completely wrong, you get 3/4 of your bet back.")
+	else
+		npc_says(_"I flip the other four coins. If you were completely right, I give you twice what your bet, if completely wrong, you get half of your bet back.")
+	end
 	npc_says(_"But if you are only partially wrong... well, then you get nothing.")
 	npc_says(_"Remember: the odds are slightly against you, so don't gamble anything you can't afford to lose.") 
 	hide(32)
 	------------------------------------------------
 	-- Assuming optimal playing: 
-	-- Winning both: 11/32 (expected payout: 88/128)
-	-- Losing both:  11/32 (expected payout: 33/128)
-	-- Intermediate: 10/32 (expected payout:  0/128)
-	-- Expected payout: 121/128
+	-- Winning both: 11/32 expected payout: 132/128 (easy), 88/128 (normal/hard)
+	-- Losing both:  11/32 expected payout:   0/128 (easy), 33/128 (normal), 22/128 (hard)
+	-- Intermediate: 10/32 expected payout:   0/128
+	-- Expected payout: 132/128 (easy), 121/128 (normal), 110/128 (hard)
 }
 
 -----------------------------------------------------------------------
@@ -317,8 +323,15 @@ LuaCode={
 
 	if ((ewd1+ewd2+ewd3) < (tux1+tux2+tux3)) then --Tux wins!
 		npc_says_random(_"You won! Good job.","You won! Man you are luckey!","You won!")
-		add_gold(bet*0.8)
-		display_console_message("You won ".. math.floor(bet*0.8) .." valuable circuits by gambling dice with Ewald.")
+		if (difficulty() == "easy") then
+			bet=bet*0.95
+		elseif (difficulty() == "normal") then
+			bet=bet*0.85
+		else
+			bet=bet*0.8
+		end
+		add_gold(bet)
+		display_console_message("You won ".. math.floor(bet) .." valuable circuits by gambling dice with Ewald.")
 	else -- House Wins!
 		npc_says_random(_"You lost. Bad luck.","You lost. Better luck next time.","You lost, try again?", "You lost. Maybe you might like coin-flipping better?")
 		del_gold(bet)
@@ -477,14 +490,27 @@ LuaCode={
 	end
 
 
-	if (win == 1) then  -- WIN (200% back)
+	if (win == 1) then  -- WIN
 		npc_says_random(_"Looks like another winning combination! Good job!","You have the best luck! You won!","Too many of these and I'll go out of business. You won!","You will have to tell me how you did it. You Won!","Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
-		add_gold(bet*2)
-		display_console_message("You won ".. bet*2 .." valuable circuits in the coin-flip game with Ewald.")
-	elseif (win == 0) then --LOSS (75% back)
-		npc_says_random(_"Looks like you got everything wrong... here is most of your bet back.","Well, close, but exactly wrong.  Here is most of your bet back.","You need to do exactly opposite of what you did here. Here is 3/4 of your bet back.","Close, but no cigar.  Here is most of your money back.","Next time pick the opposite of what you did this time... or something.")
-		del_gold(bet*0.25)
-		display_console_message("You lost ".. math.floor(bet*0.25) .." valuable circuits in the coin-flip game with Ewald.")
+		if (difficulty() == "easy") then  bet = bet*3
+		else  bet = bet*2
+		end
+		add_gold(bet)
+		display_console_message("You won ".. bet .." valuable circuits in the coin-flip game with Ewald.")
+	elseif (win == 0) then --LOSS
+		if (difficulty() == "easy") then--easy: 0% back
+			npc_says_random(_"Looks like you got everything wrong.","Well, close, but exactly wrong.","Close, but no cigar.","Close only counts in handgrenades and horseshoes.")
+			del_gold(bet)
+		else
+			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.","Well, close, but exactly wrong.  Here is some of your bet back.","You need to do exactly opposite of what you did here. Here is part of your bet back.","Close, but no cigar.  Here is some of your money back.","Next time pick the opposite of what you did this time... or something.")
+			if (difficulty() == "normal") then --normal: 75% back
+				bet = bet*0.25
+			else --hard: 50% back
+				bet = bet*0.5
+			end
+			del_gold(bet)
+		end
+		display_console_message("You lost ".. math.floor(bet) .." valuable circuits in the coin-flip game with Ewald.")
 	elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
 		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.","You lost. You were all messed up. Better luck next time.","You lost. Maybe you sould try something else for a while?","You lost.","You lost. You might try the dice game next time.")
 		del_gold(bet)
