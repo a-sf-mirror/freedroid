@@ -468,7 +468,7 @@ static void show_level_editor_tooltips(void)
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
-					    ("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use the X key for this."));
+					    ("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use Ctrl-X for this."));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
