@@ -1547,12 +1547,14 @@ enum {
 // Minimum distance to shoot with a range weapon
 #define SQUARED_RANGE_SHOOT_MIN_DIST (7.0)
 
-// Margin's size added to obstacles size when colldet is called by the pathfinder
-#define COLLDET_MARGIN (0.05)
-// Distance to next intermediate point before to follow the next subpath
+// Margin's size added to obstacles size when colldet is called by the pathfinder.
+// Also used to validate the walkability of a path between 2 waypoints.
+#define COLLDET_MARGIN (0.04)
+// Distance to next intermediate point before to follow the next subpath.
+// Also used as the distance to next waypoint before to choose a new one.
 // It has to be smaller than COLLDET_MARGIN. Near half of COLLDET_MARGIN is a
 // good candidate
-#define DIST_TO_INTERM_POINT (0.03)
+#define DIST_TO_INTERM_POINT (0.02)
 
 //-----
 // Pathfinder constants

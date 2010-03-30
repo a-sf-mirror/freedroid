@@ -1690,7 +1690,7 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
 
 	/* Action */
 	if ((new_move_target->x - ThisRobot->pos.x) * (new_move_target->x - ThisRobot->pos.x) +
-	    (new_move_target->y - ThisRobot->pos.y) * (new_move_target->y - ThisRobot->pos.y) < 0.3) {
+	    (new_move_target->y - ThisRobot->pos.y) * (new_move_target->y - ThisRobot->pos.y) < DIST_TO_INTERM_POINT*DIST_TO_INTERM_POINT) {
 		ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
 		return;
 	}
