@@ -618,7 +618,7 @@ ParseCommandLine (int argc, char *const argv[])
 		
 	    case 'h':
 	    case '?':
-		printf (usage_string);
+		printf ("%s",usage_string);
 		exit (0);
 		break;
 		
