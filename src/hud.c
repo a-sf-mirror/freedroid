@@ -292,10 +292,10 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			sprintf(linebuf, _("To implant the automap device\n"));
 			strcat(ItemDescText, linebuf);
 		} else if (MatchItemWithName(CurItem->type, "Strength Pill")) {
-			sprintf(linebuf, _("Increase strength\n"));
+			sprintf(linebuf, _("Permanently gain +1 strength\n"));
 			strcat(ItemDescText, linebuf);
 		} else if (MatchItemWithName(CurItem->type, "Dexterity Pill")) {
-			sprintf(linebuf, _("Increase dexterity\n"));
+			sprintf(linebuf, _("Permanently gain +1 dexterity\n"));
 			strcat(ItemDescText, linebuf);
 		} else if (MatchItemWithName(CurItem->type, "Code Pill")) {
 			sprintf(linebuf, _("Permanently gain +1 CPU\n"));
