@@ -218,22 +218,24 @@ void correct_tux_position_according_to_jump()
 	Me.mouse_move_target.z = old_mouse_move_target.z;
 
 	//---------------
-	// Update the mouse target position
+	// Update the mouse target position, if needed
 	//
 	// The purpose is to define mouse_move_target relatively to new Tux's level.
 	// However, if Tux had to move from one level to one of its diagonal neighbor, it has
 	// eventually not yet reach the final destination level.
 	// So we first have to get the real mouse_target position, and then transform it into a
 	// virtual position according to Tux's new level.
-	int rtn = resolve_virtual_position(&Me.mouse_move_target, &old_mouse_move_target);
-	if (rtn)
-		update_virtual_position(&Me.mouse_move_target, &Me.mouse_move_target, newpos.z);
-
-	if (!rtn || (Me.mouse_move_target.x == -1)
-	    || !SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
-		Me.mouse_move_target.x = (-1);
-		Me.mouse_move_target.y = (-1);
-		Me.mouse_move_target.z = (-1);
+	//
+	if (old_mouse_move_target.z != -1) {
+		int rtn = resolve_virtual_position(&Me.mouse_move_target, &old_mouse_move_target);
+		if (rtn)
+			update_virtual_position(&Me.mouse_move_target, &Me.mouse_move_target, newpos.z);
+		if (!rtn || (Me.mouse_move_target.x == -1)
+				 || !SinglePointColldet(Me.mouse_move_target.x, Me.mouse_move_target.y, Me.mouse_move_target.z, NULL)) {
+			Me.mouse_move_target.x = (-1);
+			Me.mouse_move_target.y = (-1);
+			Me.mouse_move_target.z = (-1);
+		}
 	}
 
 	//---------------
