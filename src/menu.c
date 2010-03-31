@@ -950,7 +950,7 @@ void InitiateMenu(int background_code)
 
 	if (background_code == (-1)) {
 		DisplayBanner();
-		AssembleCombatPicture(USE_OWN_MOUSE_CURSOR);
+		AssembleCombatPicture(SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
 		MakeGridOnScreen(NULL);
 	} else {
 		// DisplayImage ( find_file ( BackgroundToUse , GRAPHICS_DIR, FALSE ) );
