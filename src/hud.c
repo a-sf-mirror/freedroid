@@ -298,7 +298,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			sprintf(linebuf, _("Permanently gain +1 dexterity\n"));
 			strcat(ItemDescText, linebuf);
 		} else if (MatchItemWithName(CurItem->type, "Code Pill")) {
-			sprintf(linebuf, _("Permanently gain +1 CPU\n"));
+			sprintf(linebuf, _("Permanently gain +1 cooling\n"));
 			strcat(ItemDescText, linebuf);
 		} else if (strstr(ItemMap[CurItem->type].item_name, "Source Book of")) {
 			sprintf(linebuf, _("Permanently acquire/enhance this program\n"));
