@@ -1,0 +1,118 @@
+----------------------------------------------------------------------
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid; see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+BEGIN OF AUTORS NOTES
+
+END OF AUTORS NOTES 
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+EveryTime LuaCode={
+	cli_says(_"tux@hacked_".. bot_name().."/repair&settings: ~ #", "NO_WAIT")
+	show(0,20,50)
+}
+----------------------------------------------------------------------
+
+Nr=0  Text=_"cd ../"
+LuaCode={
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=20  Text=_"./est_repair.plx"
+LuaCode={
+	repair_level = get_program_revision("Repair equipment")
+	damage = npc_damage_amount()
+	-- Estimate the average repair costs: --
+	cost_time = damage / math.log(repair_level * get_program_revision("Check system integrity") + math.exp(1) - 1)
+	cost_materials = damage * 10 / math.log(repair_level * get_program_revision("Extract bot parts") + math.exp(1))
+	cost_heat = damage * 5 / math.log(repair_level * get_program_revision("Hacking") + math.exp(1))
+	-- Display the maximum repair costs: --
+	npc_says(_"Repairs on this ".. bot_name() .." unit will take less than ".. math.ceil(cost_time * 1.2) .." seconds, ".. math.ceil(cost_materials * 1.2) .." valuable circuits, and " .. math.ceil(cost_heat * 1.2) .." heat.")
+	hide(20)
+	if (get_gold() < cost_materials * 1.2) then
+		npc_says(_"You do not have enough valuable circuits to ensure repair of this ".. bot_name() .." unit.")
+	else
+		show(21)
+	end
+	cli_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=21 Text=_"./repair.plx"
+LuaCode={
+	npc_says(_"Repair in progress.")
+	heal_npc()
+	-- Calculate the true repair costs: --
+	cost_time      = math.ceil(cost_time      * (math.random()*0.4 + 0.8) )
+	cost_materials = math.ceil(cost_materials * (math.random()*0.4 + 0.8) )
+	cost_heat      = math.ceil(cost_heat      * (math.random()*0.4 + 0.8) )
+	-- Apply repair costs: --
+	freeze_tux_npc(cost_time)
+	del_gold(cost_materials)
+	heat_tux(cost_heat)
+	hide(20,21)
+}
+----------------------------------------------------------------------
+
+Nr=50 Text=_"./settings.plx"
+LuaCode={
+	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
+	npc_says(_"Version: 1.82c", "NO_WAIT")
+	npc_says(_"No upgrades found.", "NO_WAIT")
+	npc_says(_"Always ask for confirmation before execution of ./hcf.py? Y/N")
+	hide(0,20,21,50) show(51,52)
+}
+----------------------------------------------------------------------
+
+Nr=51 Text=_"Yes, always ask."
+LuaCode={
+	npc_says(_"Confirmation will now be asked before execution of ./hcf.py.")
+	npc_says(_"Settings saved")
+	if (not has_cookie("StandardBotAfterTakeover_confirm_hcf")) then 
+		add_cookie("StandardBotAfterTakeover_confirm_hcf")
+	else end	
+	hide(51,52) show(0,20,50)
+}
+----------------------------------------------------------------------
+
+Nr=52 Text=_"No, don't ask"
+LuaCode={
+	npc_says(_"./hcf.py will be executed without asking for confirmation.")
+	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
+		del_cookie("StandardBotAfterTakeover_confirm_hcf")
+	else end
+	hide(51,52) show(0,20,50)
+}
+----------------------------------------------------------------------
+
+Nr=99  Text="This is a bug, please report me-99"
+LuaCode={
+	npc_says(_"Closing remote connection...")
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"

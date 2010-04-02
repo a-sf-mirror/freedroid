@@ -35,17 +35,21 @@ EveryTime LuaCode={
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	hide(10,11)
-	show(1, 2, 3, 4, 99)
+	show(1,11,12,13,20,99)
 	if (npc_damage_amount() >0) then
 		npc_says(_"This ".. bot_name().." unit needs repair.")
-		show(10)
 	end
 	cli_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"./hold_position.sh"
+Nr=1  Text=_"cd repair&settings/"
+LuaCode={
+	run_subdialog("StandardBotAfterTakeover_sub.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=11  Text=_"./hold_position.sh"
 LuaCode={
 	npc_says(_"Holding position.", "NO_WAIT")
 	npc_says(_"script V 1.0.2 (c) gnu.org, 2054", "NO_WAIT")
@@ -54,11 +58,11 @@ LuaCode={
 	npc_says(_"Status: All movement suppressed.", "NO_WAIT")
 	set_bot_state("fixed")
 	cli_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
-	hide(1) show(2, 3, 4)
+	hide(11) show(12,13)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"./follow_me.sh"
+Nr=12  Text=_"./follow_me.sh"
 LuaCode={
 	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
@@ -66,11 +70,11 @@ LuaCode={
 	npc_says(_"Status: Following " .. get_player_name() .. ".", "NO_WAIT")
 	set_bot_state("follow_tux")
 	cli_says("tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
-	hide(2)	show(1, 3, 4)
+	hide(12) show(11,13)
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"./move_freely.sh"
+Nr=13  Text=_"./move_freely.sh"
 LuaCode={
 	npc_says(_"Enable movement.", "NO_WAIT")
 	npc_says(_"script V 1.0.5 (c) gnu.org, 2054", "NO_WAIT")
@@ -80,11 +84,36 @@ LuaCode={
 	npc_says(_"Status: Patrolling.", "NO_WAIT")
 	set_bot_state("free")
 	cli_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
-	hide(3) show(1, 2, 4)
+	hide(13) show(11,12)
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"./hcf.py"
+Nr=20  Text=_"./hcf.py"
+LuaCode={
+	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
+		npc_says(_"Are you really sure you want to destroy this robot? Y/N")
+		hide(1,11,12,13,20) show(21,22)
+	else next(23) end
+}
+----------------------------------------------------------------------
+
+Nr=21  Text=_"Yes"
+LuaCode={
+	npc_says(_"Destruction confirmed.")
+	hide(21,22)
+	next(23)
+}
+----------------------------------------------------------------------
+
+Nr=22  Text=_"No"
+LuaCode={
+	npc_says(_"Destrucion averted.")
+	hide(21,22) show(1,11,12,13,20,99)
+}
+----------------------------------------------------------------------
+
+Nr=23 Text="This is a bug, please report me-23"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
 	npc_says(_"Warning! Cooling subsystems disabled.", "NO_WAIT")
@@ -103,44 +132,6 @@ LuaCode={
 	else end
 	drop_dead()
 }
-
-----------------------------------------------------------------------
-Nr=10  Text=_"./est_repair.plx"
-LuaCode={
-	repair_level = get_program_revision("Repair equipment")
-	damage = npc_damage_amount()
-	-- Estimate the average repair costs: --
-	cost_time = damage / math.log(repair_level * get_program_revision("Check system integrity") + math.exp(1) - 1)
-	cost_materials = damage * 10 / math.log(repair_level * get_program_revision("Extract bot parts") + math.exp(1))
-	cost_heat = damage * 5 / math.log(repair_level * get_program_revision("Hacking") + math.exp(1))
-	-- Display the maximum repair costs: --
-	npc_says(_"Repairs on this ".. bot_name() .." unit will take less than ".. math.ceil(cost_time * 1.2) .." seconds, ".. math.ceil(cost_materials * 1.2) .." valuable circuits, and " .. math.ceil(cost_heat * 1.2) .." heat.")
-	hide(10)
-	if (get_gold() < cost_materials * 1.2) then
-		npc_says(_"You do not have enough valuable circuits to ensure repair of this ".. bot_name() .." unit.")
-	else
-		show(11)
-	end
-	cli_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
-}
-
-----------------------------------------------------------------------
-Nr=11 Text=_"./repair.plx"
-LuaCode={
-	npc_says(_"Repair in progress.")
-	heal_npc()
-	-- Calculate the true repair costs: --
-	cost_time      = math.ceil(cost_time      * (math.random()*0.4 + 0.8) )
-	cost_materials = math.ceil(cost_materials * (math.random()*0.4 + 0.8) )
-	cost_heat      = math.ceil(cost_heat      * (math.random()*0.4 + 0.8) )
-	-- Apply repair costs: --
-	freeze_tux_npc(cost_time)
-	del_gold(cost_materials)
-	heat_tux(cost_heat)
-	hide(10,11)
-	end_dialog()
-}
-
 ----------------------------------------------------------------------
 
 Nr=99  Text=_"logout"
