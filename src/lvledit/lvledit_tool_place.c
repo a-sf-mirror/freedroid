@@ -77,9 +77,6 @@ static int do_waypoint_route(int rspawn)
 	int wpnum;
 	int isnew;
 
-	if (!mouse_in_level)
-		return 0;
-
 	wpnum = CreateWaypoint(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, &isnew);
 
 	if (our_mode != CONNECT_WAYPOINT) {
@@ -128,17 +125,11 @@ static void place_single_obstacle(struct leveleditor_typeselect *ts)
 	pos.x = mouse_mapcoord.x;
 	pos.y = mouse_mapcoord.y;
 
-	if (!mouse_in_level)
-		return;
-
 	action_create_obstacle_user(EditLevel(), pos.x, pos.y, ts->indices[ts->selected_tile_nb]);
 }
 
 static void start_rectangle_floor(int findex)
 {
-	if (!mouse_in_level)
-		return;
-
 	our_mode = RECTANGLE_FLOOR;
 
 	// Starting values
@@ -171,9 +162,6 @@ static void handle_rectangle_floor()
 {
 	int i, j;
 	int changed_tiles = 0;
-
-	if (!mouse_in_level)
-		return;
 
 	// If there is something to change
 	if (calc_euklid_distance(mouse_mapcoord.x, mouse_mapcoord.y,
@@ -227,9 +215,6 @@ static void end_rectangle_floor(int commit)
 
 static void start_line_walls(int windex)
 {
-	if (!mouse_in_level)
-		return;
-
 	our_mode = LINE_WALLS;
 
 	// Initialize a line
@@ -256,9 +241,6 @@ static void handle_line_walls()
 	moderately_finepoint pos_last;
 	moderately_finepoint offset;
 	int direction_is_possible;
-
-	if (!mouse_in_level)
-		return;
 
 	wall = list_entry((state.l_elements).list.prev, line_element, list);
 	pos_last = wall->position;
@@ -373,6 +355,9 @@ int leveleditor_place_input(SDL_Event * event)
 {
 	struct leveleditor_typeselect *ts;
 	ts = get_current_object_type();
+
+	if(!mouse_in_level)
+		return 0;
 
 	if (our_mode == DISABLED) {
 		// Try to place something

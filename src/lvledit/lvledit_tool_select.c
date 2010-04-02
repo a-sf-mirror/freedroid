@@ -526,6 +526,9 @@ void level_editor_paste_selection()
 
 int leveleditor_select_input(SDL_Event * event)
 {
+	if(!mouse_in_level)
+		return 0;
+
 	switch (mode) {
 	case DISABLED:
 		if (EVENT_LEFT_PRESS(event)) {
