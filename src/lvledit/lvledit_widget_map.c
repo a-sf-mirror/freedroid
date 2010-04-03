@@ -91,7 +91,7 @@ void leveleditor_map_mouserelease(SDL_Event * event, struct leveleditor_widget *
 void leveleditor_map_mousepress(SDL_Event * event, struct leveleditor_widget *vm)
 {
 	(void)vm;
-	if (!active_tool) {
+	if (!active_tool && mouse_in_level) {
 		active_tool = selected_tool;
 
 		/* disable temporary-switching by CTRL because it conflicts with modifiers used in select tool
