@@ -547,9 +547,11 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 	// too high (negative protocol offset)
 	//
 	if (protocol_offset < 0) {
-		//makes the scroll override equal to the value as if the user had stopped scrolling once they reached the top
-		//chat_protocol_scroll_override has a range of 0 (at the bottom of the text) to 
-		//-lines_needed + LINES_IN_PROTOCOL_WINDOW (pushing the view all the way back to the top of the text)
+		//--------------------
+		// Set the scroll override value as if the user had stopped
+		// scrolling when they hit the top of the box - in essence,
+		// preventing the user from scrolling up too far.
+		//
 		chat_protocol_scroll_override_from_user = -lines_needed + LINES_IN_PROTOCOL_WINDOW;
 		protocol_offset = 0;
 	}
