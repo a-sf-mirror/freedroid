@@ -30,12 +30,13 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	cli_says(_"tux@hacked_".. bot_name().."/repair&settings: ~ #", "NO_WAIT")
+	terminal_sub = "tux@hacked_".. bot_name().."/repair&settings: ~ #"
+	cli_says(terminal_sub, "NO_WAIT")
 	show(0,20,50)
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"cd ../"
+Nr=0  Text=_"cd .."
 LuaCode={
 	end_dialog()
 }
@@ -57,7 +58,7 @@ LuaCode={
 	else
 		show(21)
 	end
-	cli_says(_"tux@hacked_".. bot_name()..": ~ #", "NO_WAIT")
+	cli_says(terminal_sub, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
@@ -74,6 +75,7 @@ LuaCode={
 	del_gold(cost_materials)
 	heat_tux(cost_heat)
 	hide(20,21)
+	cli_says(terminal_sub, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
@@ -95,6 +97,7 @@ LuaCode={
 		add_cookie("StandardBotAfterTakeover_confirm_hcf")
 	else end	
 	hide(51,52) show(0,20,50)
+	cli_says(terminal_sub, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
@@ -105,6 +108,7 @@ LuaCode={
 		del_cookie("StandardBotAfterTakeover_confirm_hcf")
 	else end
 	hide(51,52) show(0,20,50)
+	cli_says(terminal_sub, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
