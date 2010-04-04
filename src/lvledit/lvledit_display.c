@@ -427,19 +427,19 @@ static void show_level_editor_tooltips(void)
 #define TICKS_UNTIL_TOOLTIP 1200
 
 	if (MouseCursorIsOnButton(GO_LEVEL_NORTH_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
+		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && EditLevel()->jump_target_north > 0)
 			show_button_tooltip(_
 					    ("Go level north\n\nUse this button to move one level north, i.e. to the level that is glued to the northern side of this level."));
 	} else if (MouseCursorIsOnButton(GO_LEVEL_SOUTH_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
+		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && EditLevel()->jump_target_south > 0)
 			show_button_tooltip(_
 					    ("Go level south\n\nUse this button to move one level south, i.e. to the level that is glued to the southern side of this level."));
 	} else if (MouseCursorIsOnButton(GO_LEVEL_EAST_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
+		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && EditLevel()->jump_target_east > 0)
 			show_button_tooltip(_
 					    ("Go level east\n\nUse this button to move one level east, i.e. to the level that is glued to the eastern side of this level."));
 	} else if (MouseCursorIsOnButton(GO_LEVEL_WEST_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
+		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP && EditLevel()->jump_target_west > 0)
 			show_button_tooltip(_
 					    ("Go level west\n\nUse this button to move one level west, i.e. to the level that is glued to the western side of this level."));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_SAVE_SHIP_BUTTON, GetMousePos_x(), GetMousePos_y())
