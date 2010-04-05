@@ -1540,8 +1540,6 @@ static int Resolution_handle(int n)
 			while (EnterPressed() || SpacePressed()) ;
 			GameConfig.next_time_width_of_screen = screen_resolutions[i].xres;
 			GameConfig.next_time_height_of_screen = screen_resolutions[i].yres;
-// In Windows, the mouse pointer gets corrupted when resolution is changed instantaneously.
-#ifdef __WIN32__			
 			char *fmt = _("\nYou selected %d x %d pixel.\n\n"
 				      "Change of screen resolution will\n"
 				      "take effect automatically when you next\n" "start FreedroidRPG.\n" "\n" "Thank you.\n");
@@ -1549,12 +1547,7 @@ static int Resolution_handle(int n)
 			sprintf(txt, fmt, screen_resolutions[i].xres, screen_resolutions[i].yres);
 			GiveMouseAlertWindow(txt);
 			free(txt);
-#else
-			SaveGameConfig();
-			LoadGameConfig();
-			InitVideo();
-#endif
-		return CONTINUE_MENU;
+			return CONTINUE_MENU;
 		}
 		++j;
 	}
