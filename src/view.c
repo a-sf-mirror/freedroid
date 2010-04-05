@@ -2920,9 +2920,10 @@ Empty part string received!", PLEASE_INFORM, IS_FATAL);
 #endif
 		}
 	} else {
-		ErrorMessage(__FUNCTION__, "Unable to load tux part!", PLEASE_INFORM, IS_FATAL);
+		ErrorMessage(__FUNCTION__, "Unable to load tux part : tux_part_group=%d, our_phase=%d, rotation_index=%d", 
+			PLEASE_INFORM, IS_FATAL, tux_part_group, our_phase, rotation_index);
 	}
-
+	
 };				// void iso_put_tux_part ( char* part_string , int x , int y )
 
 /**
