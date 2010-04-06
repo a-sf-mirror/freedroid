@@ -139,6 +139,7 @@ LuaCode={
 Nr=99  Text=_"logout"
 LuaCode={
 	npc_says(_"Closing remote connection...")
+	hide(21, 22)
 	end_dialog()
 }
 ----------------------------------------------------------------------

@@ -113,6 +113,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99  Text="This is a bug, please report me-99"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Closing remote connection...")
 	end_dialog()
