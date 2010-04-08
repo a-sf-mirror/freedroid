@@ -1744,7 +1744,7 @@ void to_show_banner(const char *left, const char *right)
 	memset(right_box, ' ', RIGHT_TEXT_LEN);
 
 	strncpy(left_box, left, left_len);	// this drops terminating \0 ! 
-	strncpy(right_box, right, left_len);	// this drops terminating \0 ! 
+	strncpy(right_box, right, right_len);	// this drops terminating \0 ! 
 
 	left_box[LEFT_TEXT_LEN] = '\0';	// that's right, we want padding!
 	right_box[RIGHT_TEXT_LEN] = '\0';
