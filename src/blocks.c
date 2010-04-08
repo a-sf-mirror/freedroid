@@ -1041,6 +1041,57 @@ void LoadAndPrepareRedEnemyRotationModelNr(int ModelNr)
 };				// void LoadAndPrepareRedEnemyRotationModelNr ( int ModelNr )
 
 /**
+ * Read the Enemy Surfaces details from the data stream.
+ */
+void get_enemy_surfaces_data(char *DataPointer)
+{
+	char *SurfacePointer;
+	char *EndOfSurfaceData;
+	int SurfaceIndex = 0;
+
+#define ENEMY_SURFACES_SECTION_BEGIN_STRING "*** Start of Enemy Surfaces Section: ***"
+#define ENEMY_SURFACES_SECTION_END_STRING "*** End of Enemy Surfaces Section: ***"
+#define NEW_SURFACE_BEGIN_STRING "** Start of new surface specification subsection **"
+
+#define SURFACES_FILE_NAME_BEGIN_STRING "PrefixToFilename=\""
+#define SURFACES_WALK_ANI_SPEED_BEGIN_STRING "droid_walk_animation_speed_factor="
+#define SURFACES_ATTACK_ANI_SPEED_BEGIN_STRING "droid_attack_animation_speed_factor="
+#define SURFACES_GETHIT_ANI_SPEED_BEGIN_STRING "droid_gethit_animation_speed_factor="
+#define SURFACES_DEATH_ANI_SPEED_BEGIN_STRING "droid_death_animation_speed_factor="
+#define SURFACES_STAND_ANI_SPEED_BEGIN_STRING "droid_stand_animation_speed_factor="
+
+
+	SurfacePointer = LocateStringInData(DataPointer, ENEMY_SURFACES_SECTION_BEGIN_STRING);
+	EndOfSurfaceData = LocateStringInData(DataPointer, ENEMY_SURFACES_SECTION_END_STRING);
+
+ 	DebugPrintf(1, "\n\nStarting to read surfaces data...\n\n");
+
+	SurfacePointer = DataPointer;
+
+	while ((SurfacePointer = strstr(SurfacePointer, NEW_SURFACE_BEGIN_STRING)) != NULL) {
+ 		DebugPrintf(1, "\n\nFound another surface specification entry!  Lets add that to the others!");
+		SurfacePointer++;
+
+		PrefixToFilename[SurfaceIndex] = ReadAndMallocStringFromData(SurfacePointer, SURFACES_FILE_NAME_BEGIN_STRING, "\"");
+
+		ReadValueFromStringWithDefault(SurfacePointer, SURFACES_WALK_ANI_SPEED_BEGIN_STRING,
+			"%d", "0", &(droid_walk_animation_speed_factor[SurfaceIndex]), EndOfSurfaceData);
+		ReadValueFromStringWithDefault(SurfacePointer, SURFACES_ATTACK_ANI_SPEED_BEGIN_STRING,
+			"%d", "0", &(droid_attack_animation_speed_factor[SurfaceIndex]), EndOfSurfaceData);
+		ReadValueFromStringWithDefault(SurfacePointer, SURFACES_GETHIT_ANI_SPEED_BEGIN_STRING,
+			"%d", "0", &(droid_gethit_animation_speed_factor[SurfaceIndex]), EndOfSurfaceData);
+		ReadValueFromStringWithDefault(SurfacePointer, SURFACES_DEATH_ANI_SPEED_BEGIN_STRING,
+			"%d", "0", &(droid_death_animation_speed_factor[SurfaceIndex]), EndOfSurfaceData);
+		ReadValueFromStringWithDefault(SurfacePointer, SURFACES_STAND_ANI_SPEED_BEGIN_STRING,
+			"%d", "0", &(droid_stand_animation_speed_factor[SurfaceIndex]), EndOfSurfaceData);
+
+		SurfaceIndex++;
+	}
+
+ 	DebugPrintf(1, "\nEnd of get_enemy_surfaces_data ( char* DataPointer ) reached.");
+}
+
+/**
  * This function creates all the surfaces, that are nescessary to blit the
  * 'head' and 'shoes' of an enemy.  The numbers are not dealt with here.
  */
@@ -1088,283 +1139,15 @@ void Load_Enemy_Surfaces(void)
 		use_default_stand_image[i] = TRUE;
 	}
 
-	//--------------------
-	// This needs to be initialized once, and this just seems a good place
-	// to do this, so we can use the i++ syntax.
-	//
-	i = 0;
 
-	PrefixToFilename[i] = "123";	// 0 
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 8;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 8;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
+	char fpath[2048];
+	char *Data;
 
-	PrefixToFilename[i] = "139";	// 1
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 8;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 8;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
+	find_file("freedroid.enemy_surfaces", MAP_DIR, fpath, 0);
+	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
+	get_enemy_surfaces_data(Data);
+	free(Data);
 
-	PrefixToFilename[i] = "247";	// 2 
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 16;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 8;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "249";	// 3
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 8;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 8;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "296";	// 4
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "302";	// 5
-	droid_walk_animation_speed_factor[i] = 15;
-	droid_attack_animation_speed_factor[i] = 15;
-	droid_gethit_animation_speed_factor[i] = 15;
-	droid_death_animation_speed_factor[i] = 15;
-	droid_stand_animation_speed_factor[i] = 15;
-	i++;
-
-	PrefixToFilename[i] = "329";	// 6
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 8;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 8;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "420";	// 7 
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "476";	// 8 
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "493";	// 9
-	droid_walk_animation_speed_factor[i] = 6;
-	droid_attack_animation_speed_factor[i] = 14;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 18;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "516";	// 10
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "571";	// 11
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "598";	// 12
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 8;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 8;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "614";	// 13
-	droid_walk_animation_speed_factor[i] = 18;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 3;
-	i++;
-
-	PrefixToFilename[i] = "615";	// 14
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "629";	// 15
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "711";	// 16
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "742";	// 17
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "751";	// 18
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "821";	// 19
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "834";	// 20
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "883";	// 21, the 'dallek' model...
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 10;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "999";	// 22
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "professor";	// 23
-	droid_walk_animation_speed_factor[i] = 8;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 2;
-	i++;
-
-	PrefixToFilename[i] = "red_guard";	// 24
-	droid_walk_animation_speed_factor[i] = 8;
-	droid_attack_animation_speed_factor[i] = 8;
-	droid_gethit_animation_speed_factor[i] = 8;
-	droid_death_animation_speed_factor[i] = 7;
-	droid_stand_animation_speed_factor[i] = 2;
-	i++;
-
-	PrefixToFilename[i] = "hot_mama";	// 25
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 1;
-	i++;
-
-	PrefixToFilename[i] = "female_scientist";	// 26
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 20;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 1;
-	i++;
-
-	PrefixToFilename[i] = "default_male";	// 27
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "blue_guard";	// 28
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 5;
-	i++;
-
-	PrefixToFilename[i] = "cook";	// 29
-	droid_walk_animation_speed_factor[i] = 5;
-	droid_attack_animation_speed_factor[i] = 5;
-	droid_gethit_animation_speed_factor[i] = 5;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 1;
-	i++;
-
-	PrefixToFilename[i] = "kevin";	// 30
-	droid_walk_animation_speed_factor[i] = 8;
-	droid_attack_animation_speed_factor[i] = 10;
-	droid_gethit_animation_speed_factor[i] = 10;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 6;
-	i++;
-
-	PrefixToFilename[i] = "jasmine";	// 31
-	droid_walk_animation_speed_factor[i] = 8;
-	droid_attack_animation_speed_factor[i] = 10;
-	droid_gethit_animation_speed_factor[i] = 10;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 6;
-	i++;
-
-	PrefixToFilename[i] = "bartender";	// 32
-	droid_walk_animation_speed_factor[i] = 8;
-	droid_attack_animation_speed_factor[i] = 10;
-	droid_gethit_animation_speed_factor[i] = 10;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 6;
-	i++;
-
-	PrefixToFilename[i] = "harvester";	// 33
-	droid_walk_animation_speed_factor[i] = 8;
-	droid_attack_animation_speed_factor[i] = 10;
-	droid_gethit_animation_speed_factor[i] = 10;
-	droid_death_animation_speed_factor[i] = 5;
-	droid_stand_animation_speed_factor[i] = 6;
-	i++;
 
 	//--------------------
 	// Finally we do some test to make sure we don't write

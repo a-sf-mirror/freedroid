@@ -1,0 +1,336 @@
+
+ ----------------------------------------------------------------------
+ *
+ *  Copyright (c) 2010 Maleesh Prasan.
+ *
+ *  This file is part of Freedroid
+ *
+ *  Freedroid is free software you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Freedroid is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Freedroid see the file COPYING. If not, write to the 
+ *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ *  MA  02111-1307  USA
+ *
+
+----------------------------------------------------------------------
+
+*** Start of Enemy Surfaces Section: ***
+
+** Start of new surface specification subsection **
+PrefixToFilename="123"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="139"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="247"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=16
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="249"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="296"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="302"
+droid_walk_animation_speed_factor=15
+droid_attack_animation_speed_factor=15
+droid_gethit_animation_speed_factor=15
+droid_death_animation_speed_factor=15
+droid_stand_animation_speed_factor=15
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="329"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="420"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="476"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="493"
+droid_walk_animation_speed_factor=6
+droid_attack_animation_speed_factor=14
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=18
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="516"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="571"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="598"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="614"
+droid_walk_animation_speed_factor=18
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=3
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="615"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="629"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="711"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="742"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="751"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="821"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="834"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="883"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=10
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="999"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="professor"
+droid_walk_animation_speed_factor=8
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=2
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="red_guard"
+droid_walk_animation_speed_factor=8
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=7
+droid_stand_animation_speed_factor=2
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="hot_mama"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=1
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="female_scientist"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=20
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=1
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="default_male"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="blue_guard"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=5
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="cook"
+droid_walk_animation_speed_factor=5
+droid_attack_animation_speed_factor=5
+droid_gethit_animation_speed_factor=5
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=1
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="kevin"
+droid_walk_animation_speed_factor=8
+droid_attack_animation_speed_factor=10
+droid_gethit_animation_speed_factor=10
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=6
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="jasmine"
+droid_walk_animation_speed_factor=8
+droid_attack_animation_speed_factor=10
+droid_gethit_animation_speed_factor=10
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=6
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="bartender"
+droid_walk_animation_speed_factor=8
+droid_attack_animation_speed_factor=10
+droid_gethit_animation_speed_factor=10
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=6
+** End of new surface specification subsection **
+
+** Start of new surface specification subsection **
+PrefixToFilename="harvester"
+droid_walk_animation_speed_factor=8
+droid_attack_animation_speed_factor=10
+droid_gethit_animation_speed_factor=10
+droid_death_animation_speed_factor=5
+droid_stand_animation_speed_factor=6
+** End of new surface specification subsection **
+
+*** End of Enemy Surfaces Section: ***
+
+*** End of this Freedroid data File ***
