@@ -865,3 +865,56 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 };				// void printf_SDL (SDL_Surface *screen, int x, int y, char *fmt, ...)
 
 #undef _text_c
+
+int  LongestTextLine (const char *Text)
+{
+    char *tmp;		 // mobile pointer to the current position in the string
+    char *Resttext;
+    short int longestWidth = 0;
+    short int actWidth = 0;
+    short int widthPixels = 0;
+    int kerning = 3;
+
+    tmp = (char *)Text;   // this is no longer a 'const' char*, but only a char*
+    Resttext = (char *)Text;
+
+    while (*tmp) {                            //Finding the longest line in text
+        if (*tmp == '\n') {
+            if (actWidth>longestWidth) {
+                longestWidth = actWidth;
+                Resttext = (char *)(tmp-longestWidth);    //Start of longest line
+            }
+                
+            actWidth = 0;
+            tmp++;
+            continue;
+        }
+        actWidth++;
+        tmp++;
+        
+    }
+    if (longestWidth == 0 && actWidth != 0) {      //When text have only one line
+        longestWidth = actWidth;
+    }
+    //widthPixels = longestWidth*10;              //Estimated width in pixels
+
+    //Finding width of the line, based on ImprovedCheckLineBreak
+        
+    while ((*Resttext != '\n') && (*Resttext != 0)) {
+
+        if (*Resttext == '\t') {
+            widthPixels += TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + kerning);
+        } else {
+            widthPixels += CharWidth(GetCurrentFont(), *Resttext) + kerning;
+        }
+		Resttext++;
+    }
+
+    widthPixels += 20;         //Adding free space on the edges of line
+
+    DebugPrintf(1, "\nWidth needed: %d, %d", longestWidth, widthPixels);
+
+    return widthPixels;
+
+
+}

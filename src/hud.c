@@ -1158,11 +1158,13 @@ void ShowCurrentTextWindow(void)
 
 	Banner_Text_Rect.x = best_banner_pos_x;
 	Banner_Text_Rect.y = best_banner_pos_y;
-
-	Banner_Text_Rect.w = LOWER_BANNER_TEXT_RECT_W;
+	
 	Banner_Text_Rect.h = LOWER_BANNER_TEXT_RECT_H;
-	if (strlen(ItemDescText) < 15)
-		Banner_Text_Rect.w = strlen(ItemDescText) * 10;
+
+        // Banner width required for a given text.
+        Banner_Text_Rect.w = LongestTextLine(ItemDescText);
+        
+
 	//--------------------
 	// We count the text lines needed for the banner rectangle, just
 	// to make sure we don't wast too much space here.
