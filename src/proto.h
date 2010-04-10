@@ -523,6 +523,7 @@ int DoSkill(int skill_index, int SpellCost);
 void activate_nth_skill(int skill_num);
 void set_nth_quick_skill(int quick_skill);
 void ImproveSkill(int *skill);
+int improve_program(int);
 int get_program_index_with_name(const char *);
 int calculate_program_heat_cost(int program_id);
 int CursorIsOnWhichSkillButton(int x, int y);

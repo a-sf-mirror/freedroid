@@ -1091,6 +1091,7 @@ int MatchItemWithName(int type, const char *name)
 void ApplyItem(item * CurItem)
 {
 	DebugPrintf(1, "\n%s(): function call confirmed.", __FUNCTION__);
+	int failed_usage = 0; // if an item cannot be applied, to not remove it from inventory
 
 	// If the inventory slot is not at all filled, we need not do anything more...
 	if (CurItem->type < 0)
@@ -1209,9 +1210,14 @@ void ApplyItem(item * CurItem)
 		DoSkill(get_program_index_with_name("Sanctuary"), 0);
 	} else if (strstr(ItemMap[CurItem->type].item_name, "Source Book of")) {
 		int sidx = associate_skill_with_item(CurItem->type);
-		if (sidx >= 0)
-			Me.base_skill_level[associate_skill_with_item(CurItem->type)]++;
-		Play_Spell_ForceToEnergy_Sound();
+		failed_usage = improve_program(sidx);
+
+		if(failed_usage == 0) {
+			Play_Spell_ForceToEnergy_Sound();
+		} else {
+			append_new_game_message(_("You have reached the maximum skill level for %s"),ItemMap[CurItem->type].item_name + strlen("Source Book of "));
+			Takeover_Game_Deadlock_Sound();
+		}
 	}
 
 	if (Me.energy > Me.maxenergy)
@@ -1226,10 +1232,12 @@ void ApplyItem(item * CurItem)
 	// evaporize after the first application.  Therefore we delete the item from the inventory list.
 	//
 
-	if (CurItem->multiplicity > 1)
-		CurItem->multiplicity--;
-	else
-		DeleteItem(CurItem);
+	if (!failed_usage) {
+		if (CurItem->multiplicity > 1)
+			CurItem->multiplicity--;
+		else
+			DeleteItem(CurItem);
+	}
 
 	while (MouseRightPressed())
 		SDL_Delay(1);

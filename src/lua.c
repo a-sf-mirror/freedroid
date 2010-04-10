@@ -223,7 +223,7 @@ static int lua_event_get_skill(lua_State * L)
 static int lua_event_improve_program(lua_State * L)
 {
 	const char *pname = luaL_checkstring(L, 1);
-	Me.base_skill_level[get_program_index_with_name(pname)]++;
+	improve_program(get_program_index_with_name(pname));
 	return 0;
 }
 

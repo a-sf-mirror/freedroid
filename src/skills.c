@@ -82,6 +82,23 @@ void ImproveSkill(int *skill)
 	(*skill)++;
 };				// void ImproveSkill ( int * skill )
 
+/**
+ * This function improves a program by one
+ * returns 1 if it can't be improved any further, returns 0 otherwise
+ *
+ */
+int improve_program(int prog_id)
+{
+	if(prog_id < 0)
+		return 0;
+
+	if(Me.base_skill_level[prog_id] >= NUMBER_OF_SKILL_LEVELS - 1)
+		return 1;
+
+	Me.base_skill_level[prog_id]++;
+	return 0;
+}
+
 /* ------------------
  * This function calculates the heat cost of running a given program (source or blob), based on current program level and casting ability
  * -----------------*/
