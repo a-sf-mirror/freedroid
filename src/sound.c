@@ -1,7 +1,7 @@
 /*
  *
  *   Copyright (c) 2006 Arvid Picciani
- *   Copyright (c) 2004-2007 Arthur Huillet 
+ *   Copyright (c) 2004-2010 Arthur Huillet 
  *   Copyright (c) 1994, 2002 Reinhard Prix
  *   Copyright (c) 1994, 2002, 2003 Johannes Prix
  *

@@ -1,5 +1,5 @@
 /* 
- *   Copyright (c) 2009 Arthur Huillet
+ *   Copyright (c) 2009-2010 Arthur Huillet
  *
  *
  *  This file is part of Freedroid

@@ -1,6 +1,6 @@
 /*
  *
- *   Copyright (c) 2007 Arthur Huillet
+ *   Copyright (c) 2010 Arthur Huillet
  *   Copyright (c) 2003 Johannes Prix
  *
  *

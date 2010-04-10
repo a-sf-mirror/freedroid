@@ -1,6 +1,6 @@
 /* 
  *
- *   Copyright (c) 2008 Arthur Huillet
+ *   Copyright (c) 2008-2010 Arthur Huillet
  *
  *
  *  This file is part of Freedroid
