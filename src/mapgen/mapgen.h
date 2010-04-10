@@ -1,6 +1,28 @@
 #ifndef MAPGEN_H
 #define MAPGEN_H
 
+/* Bind tile numbers to named constants, considering
+ * that Y axis is vector (N, S) and X is (W, E)
+ */
+// straight walls
+#define TILE_WALL_S		4
+#define TILE_WALL_N		5
+#define TILE_WALL_E		6
+#define TILE_WALL_W		7
+// corner walls
+#define TILE_WALL_SE	8
+#define TILE_WALL_SW	9
+#define TILE_WALL_NE	10
+#define TILE_WALL_NW	11
+// ramps and doors
+#define TILE_RAMP_H		13	
+#define TILE_DOOR_H		14
+#define TILE_DOOR_V		15
+#define TILE_RAMP_V		16
+// other
+#define TILE_EMPTY		17
+#define TILE_FLOOR		12
+
 struct roominfo {
 	int x, y;
 	int w, h;

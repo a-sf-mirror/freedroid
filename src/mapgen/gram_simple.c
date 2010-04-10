@@ -344,8 +344,8 @@ void fusion(int id, int cible)
 		nx = 0;
 		ny = 0;
 		adj(cplist[correct_directory[k]], x, y, &nx, &ny);
-		mapgen_put_tile(x, y, 12, id);
-		mapgen_put_tile(nx, ny, 12, cible);
+		mapgen_put_tile(x, y, TILE_FLOOR, id);
+		mapgen_put_tile(nx, ny, TILE_FLOOR, cible);
 
 		if (k == 0 && cplist[correct_directory[k]].t == UP) {
 			if (rooms[id].x > rooms[cible].x) {
