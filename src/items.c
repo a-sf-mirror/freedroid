@@ -945,13 +945,11 @@ void Quick_ApplyItem(int ItemKey)
 {
 	int FoundItemNr;
 
-	DebugPrintf(0, "\nvoid Quick_ApplyItem( ... ): function call confirmed.");
+	if (ItemKey == 0) {
+		//quick_inventory0 is slot 10
+		ItemKey = 10;
+	}
 
-	//--------------------
-	// At first we find out which item occupies the given position, and 
-	// we return immediately of course, if there is nothing at all at that
-	// given location.
-	//
 	FoundItemNr = GetInventoryItemAt(ItemKey - 1, INVENTORY_GRID_HEIGHT - 1);
 	if (FoundItemNr == (-1))
 		return;
