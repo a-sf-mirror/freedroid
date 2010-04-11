@@ -598,9 +598,13 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	    		description_pos->y) + enemy_iso_images[cur_enemy->type][0][0].offset_y -
 	    2.5 * FontHeight(BFont_to_use);
 
-	// Width of bars
-	bar_width = (text_length) * (cur_enemy->energy / Druidmap[cur_enemy->type].maxenergy);
-	barc_width = (text_length) * (1.0 - cur_enemy->energy / Druidmap[cur_enemy->type].maxenergy);
+	//--------------------
+	// Calculates the width of the remaining health bar. Rounds the
+	// width up to the nearest integer to ensure that at least one
+	// pixel of health is always shown.
+	//
+	bar_width = (int) ceil((text_length) * (cur_enemy->energy / Druidmap[cur_enemy->type].maxenergy));
+	barc_width = (int) floor((text_length) * (1.0 - cur_enemy->energy / Druidmap[cur_enemy->type].maxenergy));
 	if (bar_width < 0)
 		bar_width = 0;
 	if (barc_width < 0)

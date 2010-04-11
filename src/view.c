@@ -3622,10 +3622,17 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 	} else {
 		//sdl stuff here
 
+		//--------------------
+		// Calculates the width of the remaining health bar. Rounds the
+		// width up to the nearest integer to ensure that at least one
+		// pixel of health is always shown.
+		//
+		int health_pixels = (int) ceil(Percentage * TargetRectangle.w);
+
 		FillRect.x = TargetRectangle.x;
 		FillRect.y = TargetRectangle.y - ENEMY_ENERGY_BAR_WIDTH - ENEMY_ENERGY_BAR_OFFSET_Y;
 		FillRect.h = ENEMY_ENERGY_BAR_WIDTH;
-		FillRect.w = Percentage * TargetRectangle.w;
+		FillRect.w = health_pixels;
 
 		// The color of the bar depends on the friendly/hostile status
 		if (e->is_friendly)
@@ -3638,8 +3645,8 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		// empty part of the energy bar (but only of course, if there is some
 		// empty part at all!  (Otherwise we get indefinately large energy
 		// bars...
-		FillRect.x = TargetRectangle.x + (Percentage * TargetRectangle.w);
-		FillRect.w = (1 - Percentage) * TargetRectangle.w;
+		FillRect.x = TargetRectangle.x + health_pixels;
+		FillRect.w = TargetRectangle.w - health_pixels;
 
 		if (Percentage < 1.0)
 			our_SDL_fill_rect_wrapper(Screen, &FillRect, energy_empty_color);
