@@ -379,7 +379,7 @@ static int decode_header(level *loadlevel, char *data)
  * WITHOUT destroying or damaging the human-readable data in the process!
  * This is an improved parser that is not quite readable but very performant.
  */
-static void decode_obstacles(level *loadlevel, char *DataPointer)
+static char *decode_obstacles(level *loadlevel, char *DataPointer)
 {
 	int i;
 	char *curfield = NULL;
@@ -398,7 +398,7 @@ static void decode_obstacles(level *loadlevel, char *DataPointer)
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return;
+		return DataPointer;
 
 	//--------------------
 	// Now we look for the beginning and end of the obstacle section
@@ -456,13 +456,14 @@ static void decode_obstacles(level *loadlevel, char *DataPointer)
 		i++;
 	}
 
+	return curfield;
 }
 
 /**
  * Next we extract the map labels of this level WITHOUT destroying
  * or damaging the data in the process!
  */
-static void decode_map_labels(level *loadlevel, char *DataPointer)
+static char *decode_map_labels(level *loadlevel, char *DataPointer)
 {
 	int i;
 	char PreservedLetter;
@@ -485,7 +486,7 @@ static void decode_map_labels(level *loadlevel, char *DataPointer)
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return;
+		return DataPointer;
 
 	//--------------------
 	// Now we look for the beginning and end of the map labels section
@@ -520,7 +521,7 @@ static void decode_map_labels(level *loadlevel, char *DataPointer)
 	// Now we repair the damage done to the loaded level data
 	//
 	MapLabelSectionEnd[0] = PreservedLetter;
-
+	return MapLabelSectionEnd;
 }
 
 /**
@@ -532,7 +533,7 @@ static void decode_map_labels(level *loadlevel, char *DataPointer)
  * this small subsection and loads all the obstacle data into the ship
  * struct.
  */
-static void decode_obstacle_names(Level loadlevel, char *DataPointer)
+static char *decode_obstacle_names(Level loadlevel, char *DataPointer)
 {
 	int i;
 	char PreservedLetter;
@@ -551,7 +552,7 @@ static void decode_obstacle_names(Level loadlevel, char *DataPointer)
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return;
+		return DataPointer;
 
 	//--------------------
 	// Now we look for the beginning and end of the map labels section
@@ -585,7 +586,7 @@ static void decode_obstacle_names(Level loadlevel, char *DataPointer)
 	// Now we repair the damage done to the loaded level data
 	//
 	obstacle_nameSectionEnd[0] = PreservedLetter;
-
+	return obstacle_nameSectionEnd;
 }
 
 static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetItem)
@@ -635,7 +636,7 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetI
 
 }
 
-static void decode_item_section(level *loadlevel, char *data)
+static char *decode_item_section(level *loadlevel, char *data)
 {
 	int i;
 	char Preserved_Letter;
@@ -656,7 +657,7 @@ static void decode_item_section(level *loadlevel, char *data)
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return;
+		return data;
 
 	// We look for the beginning and end of the items section
 	ItemsSectionBegin = LocateStringInData(data, ITEMS_SECTION_BEGIN_STRING);
@@ -686,12 +687,13 @@ static void decode_item_section(level *loadlevel, char *data)
 
 	// Now we repair the damage done to the loaded level data
 	ItemsSectionEnd[0] = Preserved_Letter;
+	return ItemsSectionEnd;
 }
 
 //----------------------------------------------------------------------
 // From here on we take apart the chest items section of the loaded level...
 //----------------------------------------------------------------------
-static void decode_chest_item_section(level *loadlevel, char *data)
+static char *decode_chest_item_section(level *loadlevel, char *data)
 {
 	int i;
 	char Preserved_Letter;
@@ -712,7 +714,7 @@ static void decode_chest_item_section(level *loadlevel, char *data)
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return;
+		return data;
 
 	// We look for the beginning and end of the items section
 	ItemsSectionBegin = LocateStringInData(data, CHEST_ITEMS_SECTION_BEGIN_STRING);
@@ -741,22 +743,21 @@ static void decode_chest_item_section(level *loadlevel, char *data)
 
 	// Now we repair the damage done to the loaded level data
 	ItemsSectionEnd[0] = Preserved_Letter;
-
+	return ItemsSectionEnd;
 }
 
-static int decode_map(level *loadlevel, char *data)
+static char *decode_map(level *loadlevel, char *data)
 {
 	char *map_begin, *map_end;
 	char *this_line;
 	int i;
 
 	if ((map_begin = strstr(data, MAP_BEGIN_STRING)) == NULL)
-		return 1;
+		return NULL;
 	map_begin += strlen(MAP_BEGIN_STRING) + 1;
 
 	if ((map_end = strstr(data, MAP_END_STRING)) == NULL)
-		return 1;
-	map_end += strlen(MAP_END_STRING) + 1;
+		return NULL;
 
 	/* now scan the map */
 	short int curlinepos = 0;
@@ -795,10 +796,10 @@ static int decode_map(level *loadlevel, char *data)
 	}
 
 	free(this_line);
-	return 0;
+	return map_end;
 }
 
-static int decode_waypoints(level *loadlevel, char *data)
+static char *decode_waypoints(level *loadlevel, char *data)
 {
 	char *wp_begin, *wp_end;
 	char *this_line;
@@ -819,11 +820,11 @@ static int decode_waypoints(level *loadlevel, char *data)
 
 	// Find the beginning and end of the waypoint list
 	if ((wp_begin = strstr(data, WP_BEGIN_STRING)) == NULL)
-		return 1;
+		return NULL;
 	wp_begin += strlen(WP_BEGIN_STRING) + 1;
 
 	if ((wp_end = strstr(data, WP_END_STRING)) == NULL)
-		return 1;
+		return NULL;
 
 	short int curlinepos = 0;
 	this_line = (char *)MyMalloc(4096);
@@ -881,7 +882,7 @@ static int decode_waypoints(level *loadlevel, char *data)
 	}			// for i < MAXWAYPOINTS
 
 	free(this_line);
-	return 0;
+	return wp_end;
 }
 
 
@@ -1214,14 +1215,18 @@ level *decode_level(char *data)
 	if (decode_header(loadlevel, data)) {
 		ErrorMessage(__FUNCTION__, "Unable to decode level header!", PLEASE_INFORM, IS_FATAL);
 	}
-
-	decode_obstacles(loadlevel, data);
-	decode_map_labels(loadlevel, data);
-	decode_obstacle_names(loadlevel, data);
-	decode_item_section(loadlevel, data);
-	decode_chest_item_section(loadlevel, data);
-	decode_map(loadlevel, data);
-	decode_waypoints(loadlevel, data);
+	
+	// The order of sections in the file has to match this.	
+	data = decode_map(loadlevel, data);
+	if (!data) {
+		ErrorMessage(__FUNCTION__, "Unable to decode the map for level %d\n", PLEASE_INFORM, IS_FATAL, loadlevel->levelnum);
+	}
+	data = decode_obstacles(loadlevel, data);
+	data = decode_map_labels(loadlevel, data);
+	data = decode_obstacle_names(loadlevel, data);
+	data = decode_item_section(loadlevel, data);
+	data = decode_chest_item_section(loadlevel, data);
+	data = decode_waypoints(loadlevel, data);
 
 	return (loadlevel);
 }
