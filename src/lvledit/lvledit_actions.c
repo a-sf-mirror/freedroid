@@ -284,7 +284,7 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 		//
 		if (!strcmp(EditLevel->obstacle_name_list[index], EditLevel->obstacle_name_list[check_double])) {
 			ErrorMessage(__FUNCTION__, "\
-		    The label %s did already exist on this map!  Deleting old entry in favour of the new one!", NO_NEED_TO_INFORM, IS_WARNING_ONLY, EditLevel->obstacle_name_list[index]);
+		    The label %s already exists on this map!  Replacing old entry with the new one!", NO_NEED_TO_INFORM, IS_WARNING_ONLY, EditLevel->obstacle_name_list[index]);
 			EditLevel->obstacle_name_list[index] = NULL;
 			obstacle->name_index = check_double;
 			break;
