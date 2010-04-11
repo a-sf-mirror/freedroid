@@ -186,70 +186,28 @@ static int change_cote(int depart, int ajout)
 		return ajout;
 	}
 	switch (depart) {
-	case 4:{
-			switch (ajout) {
-			case 6:{
-					return 0;
-				}
-				break;
-			case 7:{
-					return 1;
-				}
-				break;
-			default:{
-					return ajout;
-				}
-				break;
-			}
-		}
-		break;
+	case 4:
 	case 5:{
 			switch (ajout) {
-			case 6:{
-					return 2;
-				}
+			case 6:
+			case 7:
+				return TILE_FLOOR;
 				break;
-			case 7:{
-					return 3;
-				}
-				break;
-			default:{
-					return ajout;
-				}
+			default:
+				return ajout;
 				break;
 			}
 		}
 		break;
-	case 6:{
-			switch (ajout) {
-			case 4:{
-					return 0;
-				}
-				break;
-			case 5:{
-					return 2;
-				}
-				break;
-			default:{
-					return ajout;
-				}
-				break;
-			}
-		}
-		break;
+	case 6:
 	case 7:{
 			switch (ajout) {
-			case 4:{
-					return 1;
-				}
+			case 4:
+			case 5:
+				return TILE_FLOOR;
 				break;
-			case 5:{
-					return 3;
-				}
-				break;
-			default:{
-					return ajout;
-				}
+			default:
+				return ajout;
 				break;
 			}
 		}
@@ -349,106 +307,106 @@ void fusion(int id, int cible)
 
 		if (k == 0 && cplist[correct_directory[k]].t == UP) {
 			if (rooms[id].x > rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), 7), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), 1), cible);
+				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
+				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_FLOOR), cible);
 			} else if (rooms[id].x == rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), 7), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), 7), cible);
+				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
+				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
 			} else {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), 3), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), 7), cible);
+				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_FLOOR), id);
+				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
 			}
 		}
 
 		if (k == l - 1 && cplist[correct_directory[k]].t == UP) {
 			if (rooms[id].x + rooms[id].w > rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), 2), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), 6), cible);
+				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_FLOOR), id);
+				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
 			} else if (rooms[id].x + rooms[id].w == rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), 6), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), 6), cible);
+				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
+				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
 
 			} else {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), 6), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), 0), cible);
+				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
+				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_FLOOR), cible);
 			}
 		}
 
 		if (k == 0 && cplist[correct_directory[k]].t == DOWN) {
 			if (rooms[id].x < rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), 1), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), 7), cible);
+				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_FLOOR), id);
+				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
 			} else if (rooms[id].x == rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), 7), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), 7), cible);
+				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
+				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
 			} else {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), 7), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), 3), cible);
+				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
+				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_FLOOR), cible);
 			}
 		}
 
 		if (k == l - 1 && cplist[correct_directory[k]].t == DOWN) {
 			if (rooms[id].x + rooms[id].w < rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), 6), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), 2), cible);
+				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
+				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_FLOOR), cible);
 			} else if (rooms[id].x + rooms[id].w == rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), 6), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), 6), cible);
+				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
+				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
 			} else {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), 0), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), 6), cible);
+				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_FLOOR), id);
+				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
 			}
 		}
 
 		if (k == 0 && cplist[correct_directory[k]].t == LEFT) {
 			if (rooms[id].y > rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), 5), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), 2), cible);
+				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
+				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_FLOOR), cible);
 			} else if (rooms[id].y == rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), 5), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), 5), cible);
+				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
+				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
 			} else {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), 3), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), 5), cible);
+				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_FLOOR), id);
+				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
 			}
 		}
 
 		if (k == l - 1 && cplist[correct_directory[k]].t == LEFT) {
 			if (rooms[id].y + rooms[id].h < rooms[cible].y + rooms[cible].h) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), 4), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), 0), cible);
+				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
+				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_FLOOR), cible);
 			} else if (rooms[id].y + rooms[id].h == rooms[cible].y + rooms[cible].h) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), 4), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), 4), cible);
+				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
+				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
 			} else {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), 1), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), 4), cible);
+				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_FLOOR), id);
+				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
 			}
 		}
 
 		if (k == 0 && cplist[correct_directory[k]].t == RIGHT) {
 			if (rooms[id].y < rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), 2), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), 5), cible);
+				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_FLOOR), id);
+				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
 			} else if (rooms[id].y == rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), 5), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), 5), cible);
+				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
+				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
 			} else {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), 5), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), 3), cible);
+				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
+				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_FLOOR), cible);
 			}
 		}
 
 		if (k == l - 1 && cplist[correct_directory[k]].t == RIGHT) {
 			if (rooms[id].y + rooms[id].h > rooms[cible].y + rooms[cible].h) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), 0), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), 4), cible);
+				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_FLOOR), id);
+				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
 			} else if ((rooms[id].y + rooms[id].h) == (rooms[cible].y + rooms[cible].h)) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), 4), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), 4), cible);
+				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
+				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
 			} else {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), 4), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), 1), cible);
+				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
+				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_FLOOR), cible);
 			}
 		}
 	}

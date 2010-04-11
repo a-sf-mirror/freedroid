@@ -131,10 +131,6 @@ void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 				break;
 
 			case TILE_FLOOR:
-			case 0:
-			case 1:
-			case 2:
-			case 3:
 				set_floor(x, y, 0);
 				break;
 
