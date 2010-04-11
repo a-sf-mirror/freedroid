@@ -204,7 +204,7 @@ char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartI
 	char *Limit;
 	int StringLength;
 
-	for (Limit = SearchString; *Limit && *Limit != Terminator; Limit++) ;
+	Limit = strchr(SearchString, Terminator);
 
 	SearchPointer = strstr(SearchString, StartIndicationString);
 
