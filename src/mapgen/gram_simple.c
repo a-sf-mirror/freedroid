@@ -18,6 +18,12 @@ static int dim_y_init;
 /* Worst y/x and x/y ratios accepted. */
 #define WORST_ROOM_RATIO 2.0
 
+static enum cut_axis {
+	CUT_HORIZONTALLY = 0,
+	CUT_VERTICALLY   = 1,
+	DO_NOT_CUT       = 2
+};
+
 /** Check if the two proposed room sizes satisfy the minimal surface criteria or not.
  */
 static int check_surf(int w_creator, int h_creator, int w_newroom, int h_newroom)
@@ -34,7 +40,7 @@ static int check_surf(int w_creator, int h_creator, int w_newroom, int h_newroom
  *
  * This function picks a ratio for the cut and sets r accordingly.
  */
-static int trycut(int dim_x, int dim_y, int *r, int vert)
+static int trycut(int dim_x, int dim_y, int *r, enum cut_axis vert)
 {
 	/*
 	 * Example computation for a vertical cut : 
@@ -53,14 +59,16 @@ static int trycut(int dim_x, int dim_y, int *r, int vert)
 	float rmin = 1, rmin2 = 1, rmax = 0, rmax2 = 0;
 
 	switch (vert) {
-	case 0:		// coupe horizontale
+	case CUT_HORIZONTALLY:
 		rmax = WORST_ROOM_RATIO * (float)dim_x / dim_y;
 		rmin2 = (1.0 / WORST_ROOM_RATIO) * dim_x / dim_y;
 		break;
-	case 1:		// coupe verticale
+	case CUT_VERTICALLY:
 		rmax = WORST_ROOM_RATIO * (float)dim_y / dim_x;
 		rmin2 = (1.0 / WORST_ROOM_RATIO) * dim_y / dim_x;
 		break;
+	default:
+		;
 	}
 
 	rmin = 1 - rmax;
@@ -83,17 +91,16 @@ static int trycut(int dim_x, int dim_y, int *r, int vert)
  * Make a decision about a cut in a room: whether to cut at all,
  *  what way to cut, and at what position
  */
-static int cut(int dim_x, int dim_y, int *r)
+static enum cut_axis cut(int dim_x, int dim_y, int *r)
 {
-	int ret = 2;		//do not cut
+	enum cut_axis ret = DO_NOT_CUT;
 	// linear probability of cut
 	float chancetocut = (1 / (dim_x_init * dim_y_init)) * dim_x * dim_y - (Smin / (dim_x_init * dim_y_init - Smin));
 	float p = rand() % 10000 + 1;
 
 	// Test whether to cut at all
 	if (p / 10000 < chancetocut) {
-		// no cut
-		return 2;
+		return DO_NOT_CUT;
 	}
 	// Pick a random direction to cut along
 	ret = rand() % 2;
@@ -102,20 +109,22 @@ static int cut(int dim_x, int dim_y, int *r)
 	if (!trycut(dim_x, dim_y, r, ret)) {
 		// If we cannot, try the other direction
 		if (!trycut(dim_x, dim_y, r, !ret))
-			return 2;
+			return DO_NOT_CUT;
 		else
 			ret = !ret;
 	}
 	// Rooms need to be 4 tiles wide at least
 	switch (ret) {
-	case 0:		//horizontal cut
+	case CUT_HORIZONTALLY:
 		if ((*r / 100.0 * dim_y) < 4 || ((100.0 - *r) / 100.0 * dim_y) < 4)
-			return 2;
+			return DO_NOT_CUT;
 		break;
-	case 1:
+	case CUT_VERTICALLY:
 		if ((*r / 100.0 * dim_x) < 4 || ((100.0 - *r) / 100.0 * dim_x) < 4)
-			return 2;
+			return DO_NOT_CUT;
 		break;
+	default:
+		;
 	}
 
 	return ret;
@@ -148,14 +157,12 @@ static void deriv_P(int id)
 	   v vertical cut
 	 */
 	switch (p) {
-	case 0:
-		/* Horizontal cut */
+	case CUT_HORIZONTALLY:
 		h_creator = rooms[creator].h * prop / 100.0;
 		h_newroom = dim_y - h_creator;
 		y_newroom = y + h_creator;
 		break;
-	case 1:
-		/* Vertical cut */
+	case CUT_VERTICALLY:
 		w_creator = rooms[creator].w * prop / 100.0;
 		w_newroom = dim_x - w_creator;
 		x_newroom = x + w_creator;
