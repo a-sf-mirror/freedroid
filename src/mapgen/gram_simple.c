@@ -289,12 +289,6 @@ void fusion(int id, int cible)
 		}
 		k++;
 	}
-	if (l == 0) {
-		printf("erreur dans fusion\n");
-		printf("fusion de %d=(%d,%d) avec %d=(%d,%d)\n", id, rooms[id].x, rooms[id].y, cible, rooms[cible].x, rooms[cible].y);
-		printf("dim de %d=(%d,%d) avec %d=(%d,%d)\n", id, rooms[id].w, rooms[id].h, cible, rooms[cible].w, rooms[cible].h);
-		return;
-	}
 
 	for (k = 0; k < l; k++) {
 		x = cplist[correct_directory[k]].x;
@@ -415,44 +409,11 @@ void fusion(int id, int cible)
 static void add_rel(int x, int y, enum connection_type type, int cible)
 {
 	int id = mapgen_get_room(x, y);
+	MakeConnect(x, y, type);
 	if ((((rooms[id].x != rooms[cible].x) || (rooms[id].w != rooms[cible].w)) && (type == UP || type == DOWN))
 	    || (((rooms[id].y != rooms[cible].y) || (rooms[id].h != rooms[cible].h)) && (type == RIGHT || type == LEFT))) {
-		struct cplist_t *cplist;
-		cplist = malloc(sizeof(struct cplist_t) * 100);
-		memset(cplist, -1, 100 * sizeof(int));
-		int nb_max;
-		nb_max = find_connection_points(id, cplist);
-		int k = 0;
-		// tableau de tout les cases a fusionner dans la bonne direction
-		// pas plus de 100 possibilités par coté
-		int *correct_directory = malloc(sizeof(int) * 100);
-		memset(correct_directory, -1, 100 * sizeof(int));
-		int l = 0;	//index du tableau correct_directory
-		while (k < nb_max) {
-			int x2, y2;
-			x2 = cplist[k].x;
-			y2 = cplist[k].y;
-			int nx, ny;
-			nx = 0;
-			ny = 0;
-			adj(cplist[k], x2, y2, &nx, &ny);
-			if (cplist[k].r == cible && !is_room_corner(x2, y2) && !is_room_corner(nx, ny)) {
-				correct_directory[l] = k;
-				l++;
-			}
-			k++;
-		}
-		free(correct_directory);
-		free(cplist);
-		int p = rand() % 4;
-		if (p == 0 && l) {
-			MakeConnect(x, y, type);
+		if (!(rand() % 4))
 			fusion(id, cible);
-		} else {
-			MakeConnect(x, y, type);
-		}
-	} else {
-		MakeConnect(x, y, type);
 	}
 }
 
