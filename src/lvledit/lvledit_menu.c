@@ -477,6 +477,8 @@ static void AddRemLevel(void)
 				reset_visible_levels();
 				Teleport(new_level_num, 3, 3, FALSE);
 			}
+			else      //curShip.num_levels >= MAX_LEVELS
+				GiveMouseAlertWindow(_("Reached the maximum number of levels"));
 			break;
 		case REMOVE_CURRENT_LEVEL:
 			if (game_root_mode == ROOT_IS_GAME)
