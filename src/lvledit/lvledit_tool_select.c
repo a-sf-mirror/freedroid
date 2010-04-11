@@ -163,6 +163,7 @@ static void select_floor_on_tile(int x, int y)
 {
 	if (!element_in_selection(&EditLevel()->map[y][x])) {
 		add_floor_tile_to_list(&selected_elements, &EditLevel()->map[y][x]);
+		state.rect_nbelem_selected++;
 	}
 }
 
@@ -184,6 +185,7 @@ static void select_waypoint_on_tile(int x, int y)
 	for (i = 0; i < EditLevel()->num_waypoints; i++) {
 		if (EditLevel()->AllWaypoints[i].x == x && EditLevel()->AllWaypoints[i].y == y) {
 			add_waypoint_to_list(&selected_elements, &EditLevel()->AllWaypoints[i]);
+			state.rect_nbelem_selected++;
 			return;
 		}
 	}
