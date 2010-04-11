@@ -1315,7 +1315,6 @@ int LoadShip(char *filename, int compressed)
 	// Now we count the number of levels and remember their start-addresses.
 	// This is done by searching for the LEVEL_END_STRING again and again
 	// until it is no longer found in the ship file.  good.
-	// Note : this is actually only needed to display the progressbar
 	//
 	level_anz = 0;
 	endpt = ShipData;
