@@ -269,7 +269,7 @@ void fusion(int id, int cible)
 	int correct_directory[100];
 
 	memset(correct_directory, -1, 100 * sizeof(int));
-	memset(cplist, -1, 100 * sizeof(int));
+	memset(cplist, -1, 100 * sizeof(struct cplist_t));
 
 	int nb_max;
 	nb_max = find_connection_points(id, cplist);
