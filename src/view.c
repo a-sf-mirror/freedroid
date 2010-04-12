@@ -2119,7 +2119,7 @@ void AssembleCombatPicture(int mask)
 
 	ShowCombatScreenTexts(mask);
 
-	if (XPressed() || always_show_items_text) {
+	if (XPressed() || GameConfig.show_item_labels) {
 		update_item_text_slot_positions();
 		blit_all_item_slots();
 	}

@@ -144,6 +144,7 @@ typedef struct configuration_for_freedroid_s {
 	int talk_to_bots_after_takeover;
 	int xray_vision_for_tux;
 	int lazyload;
+	int show_item_labels;
 
 	int difficulty_level;
 

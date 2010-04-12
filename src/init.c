@@ -1632,6 +1632,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.skip_shadow_blitting = FALSE;
 	GameConfig.xray_vision_for_tux = FALSE;
 	GameConfig.lazyload = 1;
+	GameConfig.show_item_labels = 0;
 
 };				// void Reset_GameConfig_To_Default_Values ( void )
 

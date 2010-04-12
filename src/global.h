@@ -308,7 +308,6 @@ EXTERN SDL_Rect Droid_Image_Window;
 #define EXTERN extern
 #endif
 EXTERN point input_axis;	/* joystick (and mouse) axis values */
-EXTERN int always_show_items_text;
 
 #undef EXTERN
 #ifdef _takeover_c

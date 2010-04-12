@@ -517,7 +517,7 @@ static int input_key(int keynum, int value)
 			Pause();
 			return 0;
 		} else if (KEYPRESS("show_item_labels")) {
-			always_show_items_text = !always_show_items_text;
+			GameConfig.show_item_labels = !GameConfig.show_item_labels;
 			return 0;
 		} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "activate_program", strlen("activate_program"))
 			   && value == KEY_PRESS) {
