@@ -270,6 +270,10 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 			if (MenuTextWidths[i] == 0)
 				break;
 
+			// Don't select empty menu entries
+			if (strcmp(MenuTexts[i], " ") == 0)
+				continue;
+
 			//--------------------
 			// Define the actual text to display
 			// If the text is too long, handle autoscroll and clip it
@@ -381,6 +385,11 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 				case SDLK_UP:
 					if (MenuPosition > 1)
 						MenuPosition--;
+
+					// Skip any blank positions when moving with the keyboard
+					if (strcmp(MenuTexts[MenuPosition - 1], " ") == 0)
+						MenuPosition = (MenuPosition == 1) ? MenuPosition + 1 : MenuPosition - 1;
+
 					MoveMenuPositionSound();
 					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
 					HighlightRect.y = first_menu_item_pos_y + (MenuPosition - 1) * h;
@@ -390,6 +399,11 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 				case SDLK_DOWN:
 					if (MenuPosition < NumberOfOptionsGiven)
 						MenuPosition++;
+
+					// Skip any blank positions when moving with the keyboard
+					if (strcmp(MenuTexts[MenuPosition - 1], " ") == 0)
+						MenuPosition = (MenuPosition == NumberOfOptionsGiven) ? MenuPosition - 1 : MenuPosition + 1;
+
 					MoveMenuPositionSound();
 					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
 					HighlightRect.y = first_menu_item_pos_y + (MenuPosition - 1) * h;
@@ -407,9 +421,11 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 			//--------------------
 			// Only when the mouse click really occured on the menu do we
 			// interpret it as a menu choice.  Otherwise we'll just ignore
-			// it.
-			//
-			if (MouseCursorIsOverMenuItem(first_menu_item_pos_y, h) == MenuPosition) {
+			// it. Also, we completely ignore any clicks if the clicked
+			// position is blank.
+			if (MouseCursorIsOverMenuItem(first_menu_item_pos_y, h) == MenuPosition &&
+				strcmp(MenuTexts[MenuPosition - 1], " ") != 0) {
+
 				MenuItemSelectedSound();
 				ret = MenuPosition;
 				goto out;
@@ -2224,7 +2240,7 @@ static int do_savegame_selection_and_act(int action)
 				MenuTexts[cnt] = eps[cnt + saveoffset - 1]->d_name;
 			}
 
-			if (cnt >= 6) {
+			if (cnt >= 7) {
 				/* Display "down" */
 				MenuTexts[cnt++] = _("[down]");
 			} else
