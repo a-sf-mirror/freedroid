@@ -195,7 +195,8 @@ enum {
 	DROPS_RANDOM_TREASURE = 32,
 	NEEDS_PRE_PUT = 64,
 	GROUND_LEVEL = 128,	/* This obstacle has a small height */
-	IS_WALKABLE = 256	/* A bot can traverse this obstacle */
+	IS_WALKABLE = 256,	/* A bot can traverse this obstacle */
+    IS_CLICKABLE = 512  /* Player can click on this obstacle */
 };
 
 #define AUTOMAP_ZOOM_OUT_FACT 8.0
@@ -849,9 +850,8 @@ enum {
 //
 enum _combo_action_types {
 	NO_COMBO_ACTION_SET = -10,
-	COMBO_ACTION_OPEN_CHEST = 15,
+	COMBO_ACTION_OBSTACLE = 15,
 	COMBO_ACTION_PICK_UP_ITEM = 16,
-	COMBO_ACTION_SMASH_BARREL = 17,
 };
 
 //--------------------

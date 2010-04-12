@@ -1492,13 +1492,8 @@ void set_up_ordered_blitting_list(int mask)
 
 static void show_obstacle(int mask, obstacle * o, int code_number)
 {
-	int barrel_under_cursor = -1;
-	level *barrel_lvl;
-	int chest_under_cursor = -1;
-	level *chest_lvl;
+	level *obst_lvl;
 
-	barrel_under_cursor = smashable_barrel_below_mouse_cursor(&barrel_lvl);
-	chest_under_cursor = closed_chest_below_mouse_cursor(&chest_lvl);
 
 	// Safety checks
 	if ((o->type <= -1) || (o->type >= NUMBER_OF_OBSTACLE_TYPES)) {
@@ -1509,7 +1504,7 @@ static void show_obstacle(int mask, obstacle * o, int code_number)
 		if (mask & ZOOM_OUT) {
 			blit_one_obstacle(o, NOHIGHLIGHT, ZOOM_OUT);
 		} else {
-			if ((code_number == barrel_under_cursor) || (code_number == chest_under_cursor)) {
+			if (code_number == clickable_obstacle_below_mouse_cursor(&obst_lvl)) {
 				blit_one_obstacle(o, HIGHLIGHT, !ZOOM_OUT);
 			} else {
 				// Do not blit "transp for water" obstacle when not in leveleditor mode

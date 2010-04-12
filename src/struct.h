@@ -777,6 +777,7 @@ typedef struct obstacle_spec_s {
 	SDL_Surface *automap_version;
 
 	char image_loaded;
+    char *label; 
 
 	//--------------------
 	// Some obstacles will block the Tux from walking through them.
@@ -806,6 +807,7 @@ typedef struct obstacle_spec_s {
 	char transparent;
 	
 	char *filename;
+    void (*action) (level *obst_lvl, int obstacle_id);
 	
 	//--------------------
 	// Some obstacles have an associated animation.

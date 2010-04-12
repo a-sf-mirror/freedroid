@@ -188,10 +188,10 @@ static void throw_out_all_chest_content(int obst_index)
 }
 
 /**
- * The function detects, if the current mouse cursor is over a given object.
- * The iso image of the object will be used to check hovering.
+ * The function detects, if the current mouse cursor is over a given obstacle.
+ * The iso image of the obstacle will be used to check hovering.
  */
-static int mouse_cursor_is_on_that_object(level *lvl, int obst_index)
+static int mouse_cursor_is_on_that_obstacle(level *lvl, int obst_index)
 {
 	// mouse_cursor_is_on_that_iso_image() needs a position defined relatively to
 	// current level
@@ -211,35 +211,34 @@ static int mouse_cursor_is_on_that_object(level *lvl, int obst_index)
 }
 
 /**
- * This function checks if there is a closed chest beneath the current 
+ * This function checks if there is an obstacle beneath the current 
  * mouse cursor.  
- * It takes into account the actual size of the barrel/crate
+ * It takes into account the actual size of the 
  * graphics and not only the geographic position of the mouse cursor on
  * the floor.
  *
- * If there is a closed chest below the mouse cursor, the function will
- * return the obstacle index of the chest in question.  Else -1 will be
- * returned.
+ * If there is an obstacle below the mouse cursor, the function will
+ * return its obstacle index.  Else -1 will be returned.
  */
-int closed_chest_below_mouse_cursor(level **chest_lvl)
+int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 {
 	int x, y;
 	finepoint MapPositionOfMouse;
 	int i;
 	int obst_index;
 
-	*chest_lvl = NULL;
+	*obst_lvl = NULL;
 
 	//--------------------
 	// Now if the cursor is not inside the user rectangle at all, then
-	// there can never be a barrel under the mouse cursor...
+	// there can never be an obstacle under the mouse cursor...
 	//
 	if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
 		return (-1);
 
 	//--------------------
 	// We find the approximate position of the mouse cursor on the floor.
-	// We will use that as the basis for our scanning for barrels under the
+	// We will use that as the basis for our scanning for obstacles under the
 	// current mouse cursor.
 	//
 	MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
@@ -268,124 +267,217 @@ int closed_chest_below_mouse_cursor(level **chest_lvl)
 			// scan all obstacles of the level targeted by the mouse cursor 
 			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
 				obst_index = lvl->map[y][x].obstacles_glued_to_here[i];
-
 				if (obst_index == (-1))
 					continue;
-
-				switch (lvl->obstacle_list[obst_index].type) {
-				case ISO_N_CHEST2_CLOSED:
-				case ISO_S_CHEST2_CLOSED:
-				case ISO_E_CHEST2_CLOSED:
-				case ISO_W_CHEST2_CLOSED:
-				case ISO_H_CHEST_CLOSED:
-				case ISO_V_CHEST_CLOSED:
-					if (mouse_cursor_is_on_that_object(lvl, obst_index)) {
-						DebugPrintf(1, "\n%s(): closed chest under cursor identified.", __FUNCTION__);
-						*chest_lvl = lvl;
-						return (obst_index);
+				if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
+					DebugPrintf(1, "\n%s(): obstacle under cursor identified.", __FUNCTION__);
+					if (obstacle_map[lvl->obstacle_list[obst_index].type].flags & IS_CLICKABLE) {
+						*obst_lvl = lvl;
+						return obst_index;
+					} else {
+						continue;
 					}
-					break;
-
-				default:
-					break;
 				}
-
 			}
 		}
 	}
 
 	return (-1);
-}
+}				// int obstacle_below_mouse_cursor (level **, int [], int)
 
 /**
- * This function checks if there is a barrel beneath the current mouse
- * cursor.  It takes into account the actual size of the barrel/crate
- * graphics and not only the geographic position of the mouse cursor on
- * the floor.
- *
- * If there is a barrel below the mouse cursor, the function will
- * return the obstacle index of the chest in question.  Else -1 will be
- * returned.
+ * In order to perform a click-action, tux must first move to the obstacle.
+ * He can either approach it from a specific direction or any direction. This 
+ * function handles the case where direction doesn't matter, like for barrels
+ * and crates. Returns 1 if tux is close enought to the obstacle.
  */
-int smashable_barrel_below_mouse_cursor(level **barrel_lvl)
-{
-	int x, y;
-	finepoint MapPositionOfMouse;
+static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
+	gps obst_vpos;
+	update_virtual_position(&obst_vpos, &(obst_lvl->obstacle_list[obst_index].pos), Me.pos.z);
+	int obst_type = obst_lvl->obstacle_list[obst_index].type;
+    if (calc_distance(Me.pos.x, Me.pos.y, obst_vpos.x, obst_vpos.y)
+		<= (obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0 + 0.5) {
+        //--------------------
+    	// Maybe a combo_action has made us come here and open the chest.  Then of
+    	// course we can remove the combo action setting now...
+    	//
+    	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+    	Me.mouse_move_target_combo_action_parameter = -1;
+        return 1;
+    }	
+    
+    //--------------------
+	// We set up a course, that will lead us directly to the barrel, that we are
+	// supposed to smash (upon arrival, later).
+	//
+	// For this purpose, we take a vector and rotate it around the barrel center to
+	// find the 'best' location to go to for the smashing motion...
+
+	// First, if the barrel is in direct line with Tux, we search a position that the
+	// Tux can reach.
+	// We normalize the distance of the final walk-point to the barrel center just
+	// so, that it will be within the 'strike_distance' we have used just above in
+	// the 'distance-met' query.
+	//
+
+	moderately_finepoint step_vector;
+	float vec_len;
 	int i;
-	int obst_index;
+	step_vector.x = Me.pos.x - obst_vpos.x;
+	step_vector.y = Me.pos.y - obst_vpos.y;
+	vec_len = vect_len(step_vector);
 
-	*barrel_lvl = NULL;
+	step_vector.x *= ((obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
+	step_vector.y *= ((obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
 
-	//--------------------
-	// Now if the cursor is not inside the user rectangle at all, then
-	// there can never be a barrel under the mouse cursor...
-	//
-	if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
-		return (-1);
+	for (i = 0; i < 8; i++) {
+		if (DirectLineColldet(Me.pos.x, Me.pos.y, obst_vpos.x, obst_vpos.y, Me.pos.z, &WalkablePassFilter)) {
+			//--------------------
+			// The obstacle plus the step vector give us the position to move the
+			// Tux to for the optimal strike...
+			// This position has to be defined relatively to the barrel's level, so that we
+			// can retrieve the barrel later (at the end the combo action)
+			//
+			Me.mouse_move_target.x = step_vector.x + obst_lvl->obstacle_list[obst_index].pos.x;
+			Me.mouse_move_target.y = step_vector.y + obst_lvl->obstacle_list[obst_index].pos.y;
+			Me.mouse_move_target.z = obst_lvl->obstacle_list[obst_index].pos.z;
 
-	//--------------------
-	// We find the approximate position of the mouse cursor on the floor.
-	// We will use that as the basis for our scanning for barrels under the
-	// current mouse cursor.
-	//
-	MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-	MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
-
-	//--------------------
-	// We will scan a small area around the mouse cursor, to ease object's selection
-	// Each scanned position could be on a neighbor of the current's level,
-	// so we should resolve all those virtual positions.
-	// But resolving a virtual position is a bit CPU costly, so in order
-	// to minimize cost, we only resolve the mouse cursor position.
-	//
-	gps mouse_target_vpos = { MapPositionOfMouse.x, MapPositionOfMouse.y, Me.pos.z };
-	gps mouse_target_pos;
-	if (!resolve_virtual_position(&mouse_target_pos, &mouse_target_vpos))
-		return -1;
-	if (!level_is_visible(mouse_target_pos.z))
-		return -1;
-	level *lvl = curShip.AllLevels[mouse_target_pos.z];
-
-	for (y = mouse_target_pos.y + 3; y > mouse_target_pos.y - 3; y--) {
-		for (x = mouse_target_pos.x + 3; x > mouse_target_pos.x - 3; x--) {
-			if (!pos_inside_level(x, y, lvl))
-				continue;
-
-			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
-				obst_index = lvl->map[y][x].obstacles_glued_to_here[i];
-
-				if (obst_index == (-1))
-					continue;
-
-				switch (lvl->obstacle_list[obst_index].type) {
-				case ISO_BARREL_1:
-				case ISO_BARREL_2:
-				case ISO_BARREL_3:
-				case ISO_BARREL_4:
-					if (mouse_cursor_is_on_that_object(lvl, obst_index)) {
-						DebugPrintf(1, "\n%s(): barrel under cursor identified.", __FUNCTION__);
-						*barrel_lvl = lvl;
-						return (obst_index);
-					}
-					break;
-
-				default:
-					break;
-				}
-
-			}
+			//--------------------
+			// We set up the combo_action, so that the barrel can be smashed later...
+			//
+			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+			Me.mouse_move_target_combo_action_type = COMBO_ACTION_OBSTACLE;
+			Me.mouse_move_target_combo_action_parameter = obst_index;
+			return 0;
 		}
+		//--------------------
+		// If this vector didn't bring us any luck, we rotate by 45 degrees and try anew...
+		//
+		RotateVectorByAngle(&step_vector, 45.0);
 	}
 
-	return (-1);
-}
+	// Second : if the barrel is not in direct line with Tux, we search a position
+	// near the barrel that is free of obstacle. However, it could happen that the
+	// pathfinder will not be able to find a way to go there, but it would be too
+	// costly to launch the pathfinder here. Anyway, if no path exists, Tux will
+	// not start to move, so the player will certainly try to get closer to the
+	// barrel.
+	// We will rotate step_vector around the center of the barrel
+	//
+	step_vector.x = Me.pos.x - obst_vpos.x;
+	step_vector.y = Me.pos.y - obst_vpos.y;
+	vec_len = vect_len(step_vector);
+	step_vector.x /= vec_len;
+	step_vector.y /= vec_len;
 
+	// point_near_barrel is a point very near the barrel in the step_vector's direction,
+	// point_away_from_barrel is a point in the same direction but a bit farther
+	moderately_finepoint point_near_obst, point_away_from_obst;
+
+	// half-size of the barrel
+	moderately_finepoint half_size = { (obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0,
+		(obstacle_map[obst_type].block_area_parm_2 * sqrt(2)) / 2.0
+	};
+
+	for (i = 0; i < 8; i++) {
+		// (no need to optimize this, the compiler will do its job...)
+		point_near_obst.x = obst_vpos.x + step_vector.x * (half_size.x + 0.05);
+		point_near_obst.y = obst_vpos.y + step_vector.y * (half_size.y + 0.05);
+		point_away_from_obst.x = obst_vpos.x + step_vector.x * (half_size.x + 0.2);
+		point_away_from_obst.y = obst_vpos.y + step_vector.y * (half_size.y + 0.2);
+
+		// check if the line from point_near_barrel to point_away_from_barrel is walkable
+		if (DirectLineColldet(point_near_obst.x, point_near_obst.y,
+					  point_away_from_obst.x, point_away_from_obst.y, Me.pos.z, &WalkablePassFilter)) {
+			//--------------------
+			// point_to_barrel seems good, move Tux there
+			// This position has to be defined relatively to the barrel's level, so that we
+			// can retrieve the barrel later (at the end the combo action)
+			//
+			Me.mouse_move_target.x =
+				obst_lvl->obstacle_list[obst_index].pos.x + step_vector.x * (half_size.x + 0.05);
+			Me.mouse_move_target.y =
+				obst_lvl->obstacle_list[obst_index].pos.y + step_vector.y * (half_size.y + 0.05);
+			Me.mouse_move_target.z = obst_lvl->obstacle_list[obst_index].pos.z;
+
+			//--------------------
+			// We set up the combo_action, so that the barrel can be smashed later, on the
+			// second call (made by move_tux_thowards_intermediate_point)...
+			//
+			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+			Me.mouse_move_target_combo_action_type = COMBO_ACTION_OBSTACLE;
+			Me.mouse_move_target_combo_action_parameter = obst_index;
+
+			return 0;
+		}
+		// rotate the step_vector to check an other point
+		RotateVectorByAngle(&step_vector, 45.0);
+	}
+
+	return 0;
+};			  // int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index)
+
+/**
+ * In order to perform a click-action, tux must first move to the obstacle.
+ * He can either approach it from a specific direction or any direction. This 
+ * function handles the case where direction does matter, like for chests, 
+ * terminals, and signs. Returns 1 if tux is close enought to the obstacle.
+ */
+static int reach_obstacle_from_specific_direction(level *obst_lvl, int obst_index, int direction) {
+	gps obst_vpos;
+	update_virtual_position(&obst_vpos, &(obst_lvl->obstacle_list[obst_index].pos), Me.pos.z);
+	if (fabsf(Me.pos.x - obst_vpos.x) + fabsf(Me.pos.y - obst_vpos.y) < 1.1) {
+    	//--------------------
+    	// Maybe a combo_action has made us come here and open the chest.  Then of
+    	// course we can remove the combo action setting now...
+    	//
+    	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+    	Me.mouse_move_target_combo_action_parameter = -1;
+        return 1;
+    }
+
+	//--------------------
+	// So here we know, that we must set the course thowards the chest.  We
+	// do so first.
+	// The target's position has to be defined relatively to the chest's level, so that we
+	// can retrieve the chest later (at the end the combo action)
+	//
+	DebugPrintf(2, "\nreach_obstacle_from_specific_direction:  setting up combined mouse move target!");
+		
+	Me.mouse_move_target.x = obst_lvl->obstacle_list[obst_index].pos.x;
+	Me.mouse_move_target.y = obst_lvl->obstacle_list[obst_index].pos.y;
+	Me.mouse_move_target.z = obst_lvl->levelnum;
+	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+	Me.mouse_move_target_combo_action_type = COMBO_ACTION_OBSTACLE;
+	Me.mouse_move_target_combo_action_parameter = obst_index;
+	int obst_type = obst_lvl->obstacle_list[obst_index].type;
+
+	switch (direction) {
+	case EAST:
+		Me.mouse_move_target.x += obstacle_map[obst_type].block_area_parm_1;
+		break;
+	case SOUTH:
+		Me.mouse_move_target.y += obstacle_map[obst_type].block_area_parm_2;
+		break;
+	case WEST:
+		Me.mouse_move_target.x -= obstacle_map[obst_type].block_area_parm_1;
+		break;
+	case NORTH:
+		Me.mouse_move_target.y -= obstacle_map[obst_type].block_area_parm_2;
+		break;
+	default:
+		ErrorMessage(__FUNCTION__, "Invalid direction!!", PLEASE_INFORM, IS_FATAL);
+		break;
+	}
+    return 0;
+};			  // int reach_obstacle_from_specific_direction(level **obst_lvl, int obst_index, int direction)
+// ------ INSERT ACTION FUNCTION BELOW ------
 /**
  * This function executes a chest's action, if Tux is near enough to activate it.
  * If Tux is too far, a combo action will be started, to first move Tux near
  * the chest.
  */
-void check_for_chests_to_open(level *chest_lvl, int chest_index)
+void chest_open_action(level *chest_lvl, int chest_index)
 {
 	if (chest_index == (-1))
 		return;
@@ -395,15 +487,37 @@ void check_for_chests_to_open(level *chest_lvl, int chest_index)
 	// enough, it should be sufficient to just spill out the contents of the
 	// chest and then return.  However, if the player was not yet close enough
 	// to the chest, or if the player is on an other level, we need to 
-	// SET A COMBINED_ACTION, i.e. first set the walk thowards the chest and 
-	// then set the open_chest action, which is more complicated of course.
-	//
+    // SET A COMBINED_ACTION, i.e. first set the walk thowards the chest and 
+    // then set the open_chest action, which is more complicated of course.
 
 	// get the chest position relatively to Tux's level, in order to compute a distance
 	gps chest_vpos;
 	update_virtual_position(&chest_vpos, &(chest_lvl->obstacle_list[chest_index].pos), Me.pos.z);
-
-	if (fabsf(Me.pos.x - chest_vpos.x) + fabsf(Me.pos.y - chest_vpos.y) < 1.1) {
+	int direction = 0;
+	switch (chest_lvl->obstacle_list[chest_index].type) {
+    	case ISO_V_CHEST_CLOSED:
+    	case ISO_V_CHEST_OPEN:
+    	case ISO_E_CHEST2_CLOSED:
+    		direction = EAST;
+    		break;
+    	case ISO_H_CHEST_CLOSED:
+    	case ISO_H_CHEST_OPEN:
+    	case ISO_S_CHEST2_CLOSED:
+    		direction = SOUTH;
+    		break;
+    	case ISO_W_CHEST2_CLOSED:
+    		direction = WEST;
+    		break;
+    	case ISO_N_CHEST2_CLOSED:
+    		direction = NORTH;
+    		break;
+    	default:
+    		ErrorMessage(__FUNCTION__, "chest to be approached is not a chest obstacle!!", PLEASE_INFORM, IS_FATAL);
+    		break;
+	}
+	if (!reach_obstacle_from_specific_direction(chest_lvl, chest_index, direction)) 
+        return;
+    else {
 		//--------------------
 		// Check that the chest is really reachable, and not behind an obstacle
 		colldet_filter filter = ObstacleByIdPassFilter;
@@ -425,54 +539,10 @@ void check_for_chests_to_open(level *chest_lvl, int chest_index)
 				chest_lvl->obstacle_list[chest_index].type = ISO_W_CHEST2_OPEN;
 		}
 		//--------------------
-		// Maybe a combo_action has made us come here and open the chest.  Then of
-		// course we can remove the combo action setting now...
-		//
-		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
-		Me.mouse_move_target_combo_action_parameter = -1;
-
-		//--------------------
 		// Now that the chest has been possibly opened, we don't need to do anything more
 		//
 		return;
-	} else {
-		//--------------------
-		// So here we know, that we must set the course thowards the chest.  We
-		// do so first.
-		// The target's position has to be defined relatively to the chest's level, so that we
-		// can retrieve the chest later (at the end the combo action)
-		//
-		DebugPrintf(2, "\ncheck_for_chests_to_open:  setting up combined mouse move target!");
-			
-		Me.mouse_move_target.x = chest_lvl->obstacle_list[chest_index].pos.x;
-		Me.mouse_move_target.y = chest_lvl->obstacle_list[chest_index].pos.y;
-		Me.mouse_move_target.z = chest_lvl->levelnum;
-		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-		Me.mouse_move_target_combo_action_type = COMBO_ACTION_OPEN_CHEST;
-		Me.mouse_move_target_combo_action_parameter = chest_index;
-
-		switch (chest_lvl->obstacle_list[chest_index].type) {
-		case ISO_V_CHEST_CLOSED:
-		case ISO_V_CHEST_OPEN:
-		case ISO_E_CHEST2_CLOSED:
-			Me.mouse_move_target.x += 0.8;
-			break;
-		case ISO_H_CHEST_CLOSED:
-		case ISO_H_CHEST_OPEN:
-		case ISO_S_CHEST2_CLOSED:
-			Me.mouse_move_target.y += 0.8;
-			break;
-		case ISO_W_CHEST2_CLOSED:
-			Me.mouse_move_target.x -= 0.8;
-			break;
-		case ISO_N_CHEST2_CLOSED:
-			Me.mouse_move_target.y -= 0.8;
-			break;
-		default:
-			ErrorMessage(__FUNCTION__, "chest to be approached is not a chest obstacle!!", PLEASE_INFORM, IS_FATAL);
-			break;
-		}
-	}
+	} 
 }
 
 /**
@@ -480,11 +550,9 @@ void check_for_chests_to_open(level *chest_lvl, int chest_index)
  * If Tux is too far, a combo action will be started, to first move Tux near
  * the barrel.
  */
-void check_for_barrels_to_smash(level *barrel_lvl, int barrel_index)
+void barrel_action(level *barrel_lvl, int barrel_index)
 {
-	int i;
 	moderately_finepoint step_vector;
-	float vec_len;
 	gps barrel_vpos;
 
 	if (barrel_index == (-1))
@@ -499,122 +567,14 @@ void check_for_barrels_to_smash(level *barrel_lvl, int barrel_index)
 	// a course that will lead us to the barrel and also a combo_action specification,
 	// that will cause the corresponding barrel to be smashed upon arrival.
 	//
-	if (calc_euklid_distance(Me.pos.x, Me.pos.y, barrel_vpos.x, barrel_vpos.y)
-	    > (obstacle_map[ISO_BARREL_1].block_area_parm_1 * sqrt(2)) / 2.0 + 0.5) {
-		//--------------------
-		// We set up a course, that will lead us directly to the barrel, that we are
-		// supposed to smash (upon arrival, later).
-		//
-		// For this purpose, we take a vector and rotate it around the barrel center to
-		// find the 'best' location to go to for the smashing motion...
-
-		// First, if the barrel is in direct line with Tux, we search a position that the
-		// Tux can reach.
-		// We normalize the distance of the final walk-point to the barrel center just
-		// so, that it will be within the 'strike_distance' we have used just above in
-		// the 'distance-met' query.
-		//
-		step_vector.x = Me.pos.x - barrel_vpos.x;
-		step_vector.y = Me.pos.y - barrel_vpos.y;
-		vec_len = vect_len(step_vector);
-
-		step_vector.x *= ((obstacle_map[ISO_BARREL_1].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
-		step_vector.y *= ((obstacle_map[ISO_BARREL_1].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
-
-		for (i = 0; i < 8; i++) {
-			if (DirectLineColldet(Me.pos.x, Me.pos.y, barrel_vpos.x, barrel_vpos.y, Me.pos.z, &WalkablePassFilter)) {
-				//--------------------
-				// The obstacle plus the step vector give us the position to move the
-				// Tux to for the optimal strike...
-				// This position has to be defined relatively to the barrel's level, so that we
-				// can retrieve the barrel later (at the end the combo action)
-				//
-				Me.mouse_move_target.x = step_vector.x + barrel_lvl->obstacle_list[barrel_index].pos.x;
-				Me.mouse_move_target.y = step_vector.y + barrel_lvl->obstacle_list[barrel_index].pos.y;
-				Me.mouse_move_target.z = barrel_lvl->obstacle_list[barrel_index].pos.z;
-
-				//--------------------
-				// We set up the combo_action, so that the barrel can be smashed later...
-				//
-				enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-				Me.mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL;
-				Me.mouse_move_target_combo_action_parameter = barrel_index;
-				return;
-			}
-			//--------------------
-			// If this vector didn't bring us any luck, we rotate by 45 degrees and try anew...
-			//
-			RotateVectorByAngle(&step_vector, 45.0);
-		}
-
-		// Second : if the barrel is not in direct line with Tux, we search a position
-		// near the barrel that is free of obstacle. However, it could happen that the
-		// pathfinder will not be able to find a way to go there, but it would be too
-		// costly to launch the pathfinder here. Anyway, if no path exists, Tux will
-		// not start to move, so the player will certainly try to get closer to the
-		// barrel.
-		// We will rotate step_vector around the center of the barrel
-		//
-		step_vector.x = Me.pos.x - barrel_vpos.x;
-		step_vector.y = Me.pos.y - barrel_vpos.y;
-		vec_len = vect_len(step_vector);
-		step_vector.x /= vec_len;
-		step_vector.y /= vec_len;
-
-		// point_near_barrel is a point very near the barrel in the step_vector's direction,
-		// point_away_from_barrel is a point in the same direction but a bit farther
-		moderately_finepoint point_near_barrel, point_away_from_barrel;
-
-		// half-size of the barrel
-		int barrel_type = barrel_lvl->obstacle_list[barrel_index].type;
-		moderately_finepoint half_size = { (obstacle_map[barrel_type].block_area_parm_1 * sqrt(2)) / 2.0,
-			(obstacle_map[barrel_type].block_area_parm_2 * sqrt(2)) / 2.0
-		};
-
-		for (i = 0; i < 8; i++) {
-			// (no need to optimize this, the compiler will do its job...)
-			point_near_barrel.x = barrel_vpos.x + step_vector.x * (half_size.x + 0.05);
-			point_near_barrel.y = barrel_vpos.y + step_vector.y * (half_size.y + 0.05);
-			point_away_from_barrel.x = barrel_vpos.x + step_vector.x * (half_size.x + 0.2);
-			point_away_from_barrel.y = barrel_vpos.y + step_vector.y * (half_size.y + 0.2);
-
-			// check if the line from point_near_barrel to point_away_from_barrel is walkable
-			if (DirectLineColldet(point_near_barrel.x, point_near_barrel.y,
-					      point_away_from_barrel.x, point_away_from_barrel.y, Me.pos.z, &WalkablePassFilter)) {
-				//--------------------
-				// point_to_barrel seems good, move Tux there
-				// This position has to be defined relatively to the barrel's level, so that we
-				// can retrieve the barrel later (at the end the combo action)
-				//
-				Me.mouse_move_target.x =
-				    barrel_lvl->obstacle_list[barrel_index].pos.x + step_vector.x * (half_size.x + 0.05);
-				Me.mouse_move_target.y =
-				    barrel_lvl->obstacle_list[barrel_index].pos.y + step_vector.y * (half_size.y + 0.05);
-				Me.mouse_move_target.z = barrel_lvl->obstacle_list[barrel_index].pos.z;
-
-				//--------------------
-				// We set up the combo_action, so that the barrel can be smashed later, on the
-				// second call (made by move_tux_thowards_intermediate_point)...
-				//
-				enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-				Me.mouse_move_target_combo_action_type = COMBO_ACTION_SMASH_BARREL;
-				Me.mouse_move_target_combo_action_parameter = barrel_index;
-
-				return;
-			}
-			// rotate the step_vector to check an other point
-			RotateVectorByAngle(&step_vector, 45.0);
-		}
-
-		return;
-	}
-
+	if (!reach_obstacle_from_any_direction(barrel_lvl, barrel_index)) 
+        return;
 	//===================
 	// The character is near enough from the barrel to smash it.
 	//
 
 	//--------------------
-	// Before the barrel can get destroyed and we loose the position information,
+	// Before the barrel can get destroyed and we lose the position information,
 	// we record the vector of the charecter's strike direction...
 	//
 	step_vector.x = -Me.pos.x + barrel_vpos.x;
@@ -632,7 +592,7 @@ void check_for_barrels_to_smash(level *barrel_lvl, int barrel_index)
 		// Tux would be otherwise a miss...
 		//
 		smash_obstacle(barrel_lvl->obstacle_list[barrel_index].pos.x,
-			       barrel_lvl->obstacle_list[barrel_index].pos.y, barrel_lvl->obstacle_list[barrel_index].pos.z);
+				   barrel_lvl->obstacle_list[barrel_index].pos.y, barrel_lvl->obstacle_list[barrel_index].pos.z);
 
 		//--------------------
 		// We start an attack motion...
@@ -654,10 +614,8 @@ void check_for_barrels_to_smash(level *barrel_lvl, int barrel_index)
 			Me.angle += 360;
 	}
 
-	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
-	Me.mouse_move_target_combo_action_parameter = (-1);
 	DebugPrintf(2, "\ncheck_for_barrels_to_smash(...):  combo_action now unset.");
-}
+};				// void barrel_action ( level *, int ) 
 
 /**
  * This function picks an item, if Tux is near enough to pick it.
@@ -677,10 +635,10 @@ void check_for_items_to_pickup(level *item_lvl, int item_index)
 		// if the item in question can be reached directly and isn't blocked by
 		// some walls or something...
 		//
-		if ((calc_euklid_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
-		    && DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL)) {
+		if ((calc_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
+			&& DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL)) {
 			if (GameConfig.Inventory_Visible == FALSE
-			    || MatchItemWithName(item_lvl->ItemList[item_index].type, "Valuable Circuits")) {
+				|| MatchItemWithName(item_lvl->ItemList[item_index].type, "Valuable Circuits")) {
 				AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
 				return;
 			} else {

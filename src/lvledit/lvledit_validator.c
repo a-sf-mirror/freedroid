@@ -393,7 +393,7 @@ static int lvlval_chest_cmp_data(void *opaque_data1, void *opaque_data2)
 	if (data1->obj_pos.z != data2->obj_pos.z)
 		return FALSE;
 
-	float dist = calc_euklid_distance(data1->obj_pos.x, data1->obj_pos.y, data2->obj_pos.x, data2->obj_pos.y);
+	float dist = calc_distance(data1->obj_pos.x, data1->obj_pos.y, data2->obj_pos.x, data2->obj_pos.y);
 	if (dist > DIST_EPSILON)
 		return FALSE;
 
@@ -534,7 +534,7 @@ static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2)
 		if (data1->wp_pos[i].z != data2->wp_pos[i].z)
 			return FALSE;
 
-		float dist = calc_euklid_distance(data1->wp_pos[i].x, data1->wp_pos[i].y, data2->wp_pos[i].x, data2->wp_pos[i].y);
+		float dist = calc_distance(data1->wp_pos[i].x, data1->wp_pos[i].y, data2->wp_pos[i].x, data2->wp_pos[i].y);
 		if (dist > DIST_EPSILON)
 			return FALSE;
 	}
@@ -661,7 +661,7 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			gps wp_j =
 			    { validator_ctx->this_level->AllWaypoints[j].x + 0.5, validator_ctx->this_level->AllWaypoints[j].y + 0.5,
 			     validator_ctx->this_level->levelnum };
-			float dist = calc_euklid_distance(wp_i.x, wp_i.y, wp_j.x, wp_j.y);
+			float dist = calc_distance(wp_i.x, wp_i.y, wp_j.x, wp_j.y);
 
 			if (dist < MIN_DIST) {
 				if (!dist_is_invalid) {	// First error : print header

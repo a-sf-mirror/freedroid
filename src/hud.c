@@ -906,11 +906,9 @@ void prepare_text_window_content(char *ItemDescText)
 	point CurPos;
 	point inv_square;
 	int InvIndex;
+    int index_of_obst_below_mouse_cursor = (-1);
 	int index_of_floor_item_below_mouse_cursor = (-1);
-	int index_of_chest_below_mouse_cursor = (-1);
-	int index_of_barrel_below_mouse_cursor = (-1);
 	finepoint MapPositionOfMouse;
-	int obs_type;
 
 #define REQUIREMENTS_NOT_MET_TEXT _("REQUIREMENTS NOT MET")
 
@@ -1062,52 +1060,22 @@ void prepare_text_window_content(char *ItemDescText)
 				best_banner_pos_y =	translate_map_point_to_screen_pixel_y(item_vpos.x, item_vpos.y) - 30;
 			}
 		}
-		//--------------------
-		// Maybe the cursor in the user rect is hovering right over a closed chest.
-		// In this case we say so in the top status banner.
+
+        //--------------------
+		// Display Clickable Obstacle label  in the top status banner.
 		//
 		obj_lvl = NULL;
-		index_of_chest_below_mouse_cursor = closed_chest_below_mouse_cursor(&obj_lvl);
-		if (index_of_chest_below_mouse_cursor != (-1)) {
-			gps chest_vpos;
-			update_virtual_position(&chest_vpos, &(obj_lvl->obstacle_list[index_of_chest_below_mouse_cursor].pos), Me.pos.z);
-			if (chest_vpos.x != -1) {
-				strcpy(ItemDescText, _("   Chest   "));
-				best_banner_pos_x = translate_map_point_to_screen_pixel_x(chest_vpos.x, chest_vpos.y) + 70;
-				best_banner_pos_y = translate_map_point_to_screen_pixel_y(chest_vpos.x, chest_vpos.y) - 20;
+		index_of_obst_below_mouse_cursor = clickable_obstacle_below_mouse_cursor(&obj_lvl);
+		if (index_of_obst_below_mouse_cursor != (-1)) {
+			gps obst_vpos;
+			update_virtual_position(&obst_vpos, &(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].pos), Me.pos.z);
+			if (obst_vpos.x != -1) {
+				strcpy(ItemDescText, _(obstacle_map[obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type].label));
+				best_banner_pos_x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 70;
+				best_banner_pos_y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
 			}
 		}
-		//--------------------
-		// Maybe the cursor in the user rect is hovering right over a closed chest.
-		// In this case we say so in the top status banner.
-		//
-		index_of_barrel_below_mouse_cursor = smashable_barrel_below_mouse_cursor(&obj_lvl);
-		if (index_of_barrel_below_mouse_cursor != (-1)) {
-			gps barrel_vpos;
-			update_virtual_position(&barrel_vpos, &(obj_lvl->obstacle_list[index_of_barrel_below_mouse_cursor].pos), Me.pos.z);
-			//--------------------
-			// We do some case separation for the type of barrel/crate
-			// in question.
-			//
-			obs_type = obj_lvl->obstacle_list[index_of_barrel_below_mouse_cursor].type;
-			switch (obs_type) {
-			case ISO_BARREL_1:
-			case ISO_BARREL_2:
-				strcpy(ItemDescText, _("   Barrel   "));
-				break;
-			case ISO_BARREL_3:
-			case ISO_BARREL_4:
-				strcpy(ItemDescText, _("   Crate   "));
-				break;
-			default:
-				fprintf(stderr, "\nobs_type: %d.", obs_type);
-				ErrorMessage(__FUNCTION__, "\
-A barrel was detected, but the barrel type was not valid.", PLEASE_INFORM, IS_FATAL);
-				break;
-			}
-			best_banner_pos_x = translate_map_point_to_screen_pixel_x(barrel_vpos.x, barrel_vpos.y) + 70;
-			best_banner_pos_y = translate_map_point_to_screen_pixel_y(barrel_vpos.x, barrel_vpos.y) - 20;
-		}
+
 		//--------------------
 		// Maybe there is a teleporter event connected to the square where the mouse
 		// cursor is currently hovering.  In this case we should create a message about

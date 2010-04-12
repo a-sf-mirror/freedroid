@@ -57,7 +57,7 @@ void init_lua(void);
 void run_lua(const char *code);
 
 // influ.c 
-float calc_euklid_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);
+float calc_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);
 float vect_len(moderately_finepoint our_vector);
 enemy *GetLivingDroidBelowMouseCursor(void);
 int find_free_floor_items_index(int levelnum);
@@ -77,10 +77,11 @@ void check_tux_enemy_collision(void);
 void start_tux_death_explosions(void);
 
 // action.c
-int closed_chest_below_mouse_cursor(level **chest_lvl);
-int smashable_barrel_below_mouse_cursor(level **barrel_lvl);
-void check_for_chests_to_open(level *chest_lvl, int chest_index);
-void check_for_barrels_to_smash(level *barrel_lvl, int barrel_index);
+void chest_open_action(level *chest_lvl, int chest_index);
+void barrel_action(level *barrel_lvl, int barrel_index);
+void terminal_action(level *terminal_lvl, int terminal_index);
+void sign_action(level *sign_lvl, int sign_index);
+int clickable_obstacle_below_mouse_cursor(level **obst_lvl);
 void check_for_items_to_pickup(level *item_lvl, int item_index);
 
 // pathfinder.c

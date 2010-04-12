@@ -164,7 +164,7 @@ static void handle_rectangle_floor()
 	int changed_tiles = 0;
 
 	// If there is something to change
-	if (calc_euklid_distance(mouse_mapcoord.x, mouse_mapcoord.y,
+	if (calc_distance(mouse_mapcoord.x, mouse_mapcoord.y,
 				 state.r_start.x + state.r_len_x, state.r_start.y + state.r_len_y) > 0.5) {
 		// Redefine the rectangle dimensions
 		state.r_len_x = (int)mouse_mapcoord.x - state.r_start.x;
@@ -244,7 +244,7 @@ static void handle_line_walls()
 
 	wall = list_entry((state.l_elements).list.prev, line_element, list);
 	pos_last = wall->position;
-	distance = calc_euklid_distance(pos_last.x, pos_last.y, mouse_mapcoord.x, mouse_mapcoord.y);
+	distance = calc_distance(pos_last.x, pos_last.y, mouse_mapcoord.x, mouse_mapcoord.y);
 
 	// Calculate the difference of position since last time
 	offset.x = pos_last.x - mouse_mapcoord.x;

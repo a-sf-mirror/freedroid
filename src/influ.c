@@ -54,7 +54,7 @@ int no_left_button_press_in_previous_analyze_mouse_click = FALSE;
  *
  *
  */
-float calc_euklid_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y)
+float calc_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y)
 {
 	return sqrt((pos1_x - pos2_x) * (pos1_x - pos2_x) + (pos1_y - pos2_y) * (pos1_y - pos2_y));
 };
@@ -651,11 +651,10 @@ void move_tux_thowards_intermediate_point()
 		switch (Me.mouse_move_target_combo_action_type) {
 		case NO_COMBO_ACTION_SET:
 			break;
-		case COMBO_ACTION_OPEN_CHEST:
-			check_for_chests_to_open(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter);
-			break;
-		case COMBO_ACTION_SMASH_BARREL:
-			check_for_barrels_to_smash(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter);
+		case COMBO_ACTION_OBSTACLE:
+			obstacle_map[curShip.AllLevels[Me.mouse_move_target.z]->obstacle_list[Me.mouse_move_target_combo_action_parameter].type].action(
+                    curShip.AllLevels[Me.mouse_move_target.z], 
+                    Me.mouse_move_target_combo_action_parameter);
 			break;
 		case COMBO_ACTION_PICK_UP_ITEM:
 			check_for_items_to_pickup(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter);
@@ -1647,12 +1646,12 @@ void check_for_droids_to_attack_or_talk_with()
 
 		if (Me.weapon_item.type >= 0) {
 			if ((ItemMap[Me.weapon_item.type].item_weapon_is_melee) &&
-			    (calc_euklid_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y)
+			    (calc_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y)
 			     > BEST_MELEE_DISTANCE + 0.1)) {
 
 				return;
 			}
-		} else if (calc_euklid_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y)
+		} else if (calc_distance(Me.pos.x, Me.pos.y, droid_below_mouse_cursor->virt_pos.x, droid_below_mouse_cursor->virt_pos.y)
 			   > BEST_MELEE_DISTANCE + 0.1) {
 
 			return;
@@ -1729,20 +1728,12 @@ void AnalyzePlayersMouseClick()
 
 			Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 
-			if ((tmp = closed_chest_below_mouse_cursor(&obj_lvl)) != -1) {
-				check_for_chests_to_open(obj_lvl, tmp);
+			if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl)) != -1) {
+				obstacle_map[obj_lvl->obstacle_list[tmp].type].action(obj_lvl, tmp);
 				if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 					wait_mouseleft_release = TRUE;
-				break;
-			}
-			// Nota : If 'A' key is held down, we don't directly smash a barrel.
-			// This will possibly be the result of the character's attack.
-			if (!APressed() && (tmp = smashable_barrel_below_mouse_cursor(&obj_lvl)) != -1) {
-				check_for_barrels_to_smash(obj_lvl, tmp);
-				if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
-					wait_mouseleft_release = TRUE;
-				break;
-			}
+			    break;
+            }
 
 			if ((tmp = get_floor_item_index_under_mouse_cursor(&obj_lvl)) != -1) {
 				check_for_items_to_pickup(obj_lvl, tmp);
