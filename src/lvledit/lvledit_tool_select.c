@@ -489,6 +489,11 @@ void level_editor_paste_selection()
 		// We get called from the outside so check mode coherency first
 		return;
 	}
+	
+	if (!mouse_in_level) {
+		// We must not paste objects outside of the level
+		return;
+	}
 
 	list_for_each_entry(e, &clipboard_elements, node) {
 		if (e->type != OBJECT_OBSTACLE)
