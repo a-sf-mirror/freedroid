@@ -1133,9 +1133,8 @@ void ShowCurrentTextWindow(void)
 	
 	Banner_Text_Rect.h = LOWER_BANNER_TEXT_RECT_H;
 
-        // Banner width required for a given text.
-        Banner_Text_Rect.w = LongestTextLine(ItemDescText);
-        
+	// Banner width required for a given text.
+	Banner_Text_Rect.w = LongestTextLine(ItemDescText);
 
 	//--------------------
 	// We count the text lines needed for the banner rectangle, just

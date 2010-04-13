@@ -677,6 +677,7 @@ char *PreviousLine(char *textstart, char *text);
 char *NextLine(char *text);
 char *GetString(int max_len, int background_code, const char *text_for_overhead_promt);
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...);
+int LongestTextLine(const char *Text);
 
 // text_public.c 
 

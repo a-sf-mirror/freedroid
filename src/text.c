@@ -864,9 +864,7 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
 
 };				// void printf_SDL (SDL_Surface *screen, int x, int y, char *fmt, ...)
 
-#undef _text_c
-
-int  LongestTextLine (const char *Text)
+int LongestTextLine(const char *Text)
 {
     char *tmp;		 // mobile pointer to the current position in the string
     char *Resttext;
@@ -918,3 +916,4 @@ int  LongestTextLine (const char *Text)
 
 
 }
+#undef _text_c
