@@ -43,16 +43,19 @@ int EditLevelNrPopup(void)
 	char *str, *cstr;
 	int tgt = 0;
 	str = GetEditableStringInPopupWindow(1000, _("\n Please enter new level number: \n\n"), "");
-	cstr = str;
-	while (*cstr) {
-		if (!isdigit(*cstr))
-			tgt = -1;
-		cstr++;
-	}
+	if (str) {
+		cstr = str;
+		while (*cstr) {
+			if (!isdigit(*cstr))
+				tgt = -1;
+			cstr++;
+		}
 
-	if (!tgt)
-		tgt = atoi(str);
-
+		if (!tgt)
+			tgt = atoi(str);
+	} else
+		tgt = -1;
+	
 	free(str);
 
 	return (tgt);
@@ -695,15 +698,18 @@ static void LevelOptions(void)
 		case SET_LEVEL_NAME:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			EditLevel()->Levelname =
-			    GetEditableStringInPopupWindow(1000, _("\n Please enter new level name: \n\n"), EditLevel()->Levelname);
+			char *newLevelname = GetEditableStringInPopupWindow(1000, _("\n Please enter new level name: \n\n"), EditLevel()->Levelname);
+			if (newLevelname)
+				EditLevel()->Levelname = newLevelname;
 			break;
 		case SET_BACKGROUND_SONG_NAME:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			EditLevel()->Background_Song_Name =
-			    GetEditableStringInPopupWindow(1000, _("\n Please enter new music file name: \n\n"),
+			char* newBackgroundSongName =
+				GetEditableStringInPopupWindow(1000, _("\n Please enter new music file name: \n\n"),
 							   EditLevel()->Background_Song_Name);
+			if (newBackgroundSongName)
+				EditLevel()->Background_Song_Name = newBackgroundSongName;
 			break;
 		case SET_LEVEL_INTERFACE_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
@@ -854,7 +860,7 @@ static void AdvancedOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 			LevelValidation();
-			while (!SpacePressed() && !EnterPressed() && !MouseLeftPressed())
+			while (!SpacePressed() && !EnterPressed() && !MouseLeftPressed() && !EscapePressed())
 				SDL_Delay(0);
 			//Hack: eat all pending events.
 			input_handle();

@@ -319,9 +319,10 @@ void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle,
 		name = strdup(predefined_name);
 	}
 
-	action_change_obstacle_label(EditLevel, our_obstacle, name, 1);
-
-	free(name);
+	if (name) {
+		action_change_obstacle_label(EditLevel, our_obstacle, name, 1);
+		free(name);
+	}
 }
 
 /**
@@ -596,7 +597,8 @@ void level_editor_action_change_map_label_user(level * EditLevel)
 						   ("\nOverwriting existing map label list entry...\n Please enter new label for this map position: \n\n"),
 						   EditLevel->labels[i].label_name);
 	}
-	action_change_map_label(EditLevel, i, NewCommentOnThisSquare);
+	if (NewCommentOnThisSquare)
+		action_change_map_label(EditLevel, i, NewCommentOnThisSquare);
 }
 
 /**

@@ -752,6 +752,10 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 		if (key == SDLK_RETURN || key == SDLK_KP_ENTER) {
 			// input[curpos] = 0;
 			finished = TRUE;
+		} else if (key == SDLK_ESCAPE) {
+			while (EscapePressed())
+				SDL_Delay(1);
+			return NULL;
 		} else if (isprint(key) && (curpos < MaxLen)) {
 			//--------------------
 			// If a printable character has been entered, it is either appended to
