@@ -18,7 +18,7 @@ static int dim_y_init;
 /* Worst y/x and x/y ratios accepted. */
 #define WORST_ROOM_RATIO 2.0
 
-static enum cut_axis {
+enum cut_axis {
 	CUT_HORIZONTALLY = 0,
 	CUT_VERTICALLY   = 1,
 	DO_NOT_CUT       = 2
