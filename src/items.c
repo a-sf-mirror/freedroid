@@ -295,8 +295,11 @@ unsigned long calculate_item_repair_price(item * repair_item)
 	// This can only be requested for repair items
 	//
 	if (repair_item->max_duration != (-1)) {
-		return (Multiplicity * ItemMap[repair_item->type].base_list_price * SuffixMultiplier * PrefixMultiplier *
-			(repair_item->max_duration - repair_item->current_duration) / repair_item->max_duration);
+		unsigned long price = (Multiplicity * ItemMap[repair_item->type].base_list_price * SuffixMultiplier *
+		    PrefixMultiplier * (repair_item->max_duration - repair_item->current_duration) / repair_item->max_duration);
+
+		// Never repair for free, minimum price is 1
+		return price ? price : 1;
 	} else {
 		DebugPrintf(0, "\n\nERROR!! CALCULATING REPAIR PRICE FOR INDESTRUCTIBLE ITEM!! \n\n Terminating...");
 		Terminate(ERR);
