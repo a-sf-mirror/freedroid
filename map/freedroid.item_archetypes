@@ -3020,7 +3020,7 @@ plus duration modifier=10
 File or directory name for inventory image="helmets/yellow4/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=250
-Item description text=_"It might look a bit silly, but it will save your life many times"
+Item description text=_"It might look a bit silly, but it will save your life many times."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3060,7 +3060,7 @@ plus duration modifier=15
 File or directory name for inventory image="helmets/yellow3/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=480
-Item description text=_"Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats"
+Item description text=_"Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
