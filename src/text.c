@@ -82,60 +82,96 @@ void show_backgrounded_label_at_map_position(char *LabelText, float fill_status,
 
 };				// void show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y )
 
-/**
- *
- *
- */
-void show_backgrounded_text_rectangle(const char *text, int x, int y, int w, int h)
-{
-	SDL_Rect TargetRect;
-
-	TargetRect.w = w;
-	TargetRect.h = h;
-	TargetRect.x = x;
-	TargetRect.y = y;
-	our_SDL_fill_rect_wrapper(Screen, &TargetRect, SDL_MapRGB(Screen->format, 0, 0, 0));
-
 #define IN_WINDOW_TEXT_OFFSET 15
-	TargetRect.w -= IN_WINDOW_TEXT_OFFSET;
-	TargetRect.h -= IN_WINDOW_TEXT_OFFSET;
-	TargetRect.x += IN_WINDOW_TEXT_OFFSET;
-	TargetRect.y += IN_WINDOW_TEXT_OFFSET;
 
-	SetCurrentFont(FPS_Display_BFont);
-	DisplayText(text, TargetRect.x, TargetRect.y, &TargetRect, 1.0);
+/**
+ * Show text inside a filled rectangle. The specified height is taken as a
+ * minimum value, and it will be expanded vertically to fit the given text.
+ * @Ret: The height of the rectangle
+ */
+static int show_backgrounded_text_rectangle(const char *text, BFont_Info *font, int x, int y, int w, int h)
+{
+	BFont_Info *old_font = GetCurrentFont();
+	SetCurrentFont(font);
 
+	SDL_Rect t_rect;
+	t_rect.x = x;
+	t_rect.y = y;
+	
+	// Find out the number of lines the text will occupy. This is done by
+	// using the drawing function with drawing temporarily disabled.
+	t_rect.w = w - (IN_WINDOW_TEXT_OFFSET * 2);
+	t_rect.h = GameConfig.screen_height;
+	display_char_disabled = TRUE;
+	int lines = DisplayText(text, x, y, &t_rect, 1.0);
+	display_char_disabled = FALSE;
+
+	// Calculate the rectangle height
+	int f_height = FontHeight(GetCurrentFont());
+	int r_height = (lines * f_height) + (IN_WINDOW_TEXT_OFFSET * 2);
+
+	// Set up and fill the rectangle.
+	t_rect.w = w;
+	t_rect.h = r_height;
+	our_SDL_fill_rect_wrapper(Screen, &t_rect, SDL_MapRGB(Screen->format, 0, 0, 0));
+	
+	// Show the text inside our newly drawn rectangle.
+	t_rect.w -= IN_WINDOW_TEXT_OFFSET * 2;
+	t_rect.h -= IN_WINDOW_TEXT_OFFSET;
+	t_rect.x += IN_WINDOW_TEXT_OFFSET;
+	t_rect.y += IN_WINDOW_TEXT_OFFSET;
+	DisplayText(text, t_rect.x, t_rect.y, &t_rect, 1.0);
+
+	SetCurrentFont(old_font);
+	return r_height;
 };				// void show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h )
 
 /**
- * In some cases it will be nescessary to inform the user of something in
+ * In some cases it will be necessary to inform the user of something in
  * a big important style.  Then a popup window is suitable, with a mouse
- * button to confirm and make it go away again.
+ * click to confirm and make it go away again.
  */
-void GiveMouseAlertWindow(const char *WindowText)
+void alert_window(const char *text)
 {
-	SDL_Event e;
+	int w = 440;   // arbitrary
+	int h = 60;    // arbitrary
+	int x = (GameConfig.screen_width  - w) / 2;	// center of screen
+	int y = (GameConfig.screen_height - h) / 5 * 2; // 2/5 of screen from top
 
 	Activate_Conservative_Frame_Computation();
+	make_sure_system_mouse_cursor_is_turned_off();
+	StoreMenuBackground(1);
 
-	show_backgrounded_text_rectangle(WindowText, (640 - 440) / 2, (480 - 340) / 2, 440, 340);
-
-	our_SDL_flip_wrapper();
-
+	SDL_Event e;
 	while (1) {
+		SDL_Delay(1);
+		RestoreMenuBackground(1);
+
+		int r_height = show_backgrounded_text_rectangle(text, FPS_Display_BFont, x, y, w, h);
+		show_backgrounded_text_rectangle(_("Click to continue..."), Red_BFont, x, y + r_height, w, 10);
+
+		blit_our_own_mouse_cursor();
+		our_SDL_flip_wrapper();
+		save_mouse_state();
+		
 		SDL_WaitEvent(&e);
+		
 		switch (e.type) {
 		case SDL_KEYDOWN:
 			if (e.key.keysym.sym == SDLK_SPACE || e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_ESCAPE)
-				return;
+				goto wait_click_and_out;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			if (e.button.button == 1)
-				return;
+				goto wait_click_and_out;
 			break;
 		}
 	}
-};				// void GiveMouseAlertWindow( char* WindowText )
+
+wait_click_and_out:
+	while (SpacePressed() || EnterPressed() || EscapePressed() || MouseLeftPressed());
+
+};				// void alert_window( char* text )
 
 /**
  * 

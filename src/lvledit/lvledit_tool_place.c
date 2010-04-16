@@ -380,7 +380,7 @@ int leveleditor_place_input(SDL_Event * event)
 				return do_waypoint_route(ts->indices[ts->selected_tile_nb]);
 				break;
 			default:
-				GiveMouseAlertWindow("Place tool does not support this type of object.");
+				alert_window("Place tool does not support this type of object.");
 			}
 
 		}

@@ -595,7 +595,7 @@ static int input_key(int keynum, int value)
 			level_editor_cycle_marked_obstacle();
 			return 0;
 		} else if (KEYPRESS("next_tab")) {
-			GiveMouseAlertWindow("Reimplement that");
+			alert_window("Reimplement that");
 			return 0;
 		} else if (KEYPRESS("undo")) {
 			level_editor_action_undo();

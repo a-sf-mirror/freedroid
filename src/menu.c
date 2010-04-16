@@ -1383,8 +1383,7 @@ static int Game_handle(int n)
 	case DIFFICULTY:
 		GameConfig.difficulty_level++;
 		GameConfig.difficulty_level %= 3;
-		GiveMouseAlertWindow(_
-				     ("You need to restart FreedroidRPG for the difficulty change to be taken into account.\n\nSorry for the inconvenience.\n"));
+		alert_window(_("You need to restart FreedroidRPG for the difficulty change to take effect.\n\nSorry for the inconvenience."));
 		return CONTINUE_MENU;
 	case LEAVE_MENU:
 		return EXIT_MENU;
@@ -1556,12 +1555,10 @@ static int Resolution_handle(int n)
 			while (EnterPressed() || SpacePressed()) ;
 			GameConfig.next_time_width_of_screen = screen_resolutions[i].xres;
 			GameConfig.next_time_height_of_screen = screen_resolutions[i].yres;
-			char *fmt = _("\nYou selected %d x %d pixel.\n\n"
-				      "Change of screen resolution will\n"
-				      "take effect automatically when you next\n" "start FreedroidRPG.\n" "\n" "Thank you.\n");
+			char *fmt = _("You selected %d x %d pixels.\n\nYou need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience.");
 			char *txt = (char *)malloc(strlen(fmt) + 20);	// 20 chars should be enough to store 2 integers
 			sprintf(txt, fmt, screen_resolutions[i].xres, screen_resolutions[i].yres);
-			GiveMouseAlertWindow(txt);
+			alert_window(txt);
 			free(txt);
 			return CONTINUE_MENU;
 		}
@@ -1629,7 +1626,7 @@ static int Graphics_handle(int n)
 #ifndef __WIN32__
 		SDL_WM_ToggleFullScreen(Screen);
 #else
-		GiveMouseAlertWindow(_("\nThis option will be taken into account after you restart the game.\n\n   Thank you.\n"));
+		alert_window(_("You need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience."));
 #endif
 		break;
 

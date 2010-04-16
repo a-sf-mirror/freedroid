@@ -226,7 +226,7 @@ void make_sure_system_mouse_cursor_is_turned_on(void)
 		SDL_ShowCursor(SDL_ENABLE);
 	}
 
-};				// void make_sure_system_mouse_cursor_is_turned_off ( void )
+};				// void make_sure_system_mouse_cursor_is_turned_on ( void )
 
 /**
  * When the system mouse cursor is now shown, we need to blit our own 

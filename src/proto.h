@@ -653,9 +653,8 @@ int TeleportToRandomWaypoint(enemy *, level *, char *);
 
 // text.c 
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
-void show_backgrounded_text_rectangle(const char *text, int x, int y, int w, int h);
 char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *DefaultString);
-void GiveMouseAlertWindow(const char *WindowText);
+void alert_window(const char *text);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);

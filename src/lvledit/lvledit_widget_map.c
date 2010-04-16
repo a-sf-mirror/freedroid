@@ -50,7 +50,7 @@ void select_tool(void *t)
 	if (!active_tool)
 		selected_tool = t;
 	else
-		GiveMouseAlertWindow("Cannot select another tool: busy\n");
+		alert_window("Cannot select another tool: busy");
 
 	if (tool_selection_menu)
 		tool_selection_menu->enabled = 0;

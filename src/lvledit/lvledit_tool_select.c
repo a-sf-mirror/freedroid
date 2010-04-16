@@ -250,7 +250,7 @@ static void start_rect_select()
 		select_waypoint_on_tile(state.rect_start.x, state.rect_start.y);
 		break;
 	default:
-		GiveMouseAlertWindow("Cannot select elements of the chosen type.");
+		alert_window("Cannot select elements of the chosen type.");
 		fprintf(stderr, "Type %d\n", state.type);
 		break;
 	}
@@ -311,7 +311,7 @@ static void do_rect_select()
 					select_waypoint_on_tile(i, j);
 					break;
 				default:
-					GiveMouseAlertWindow("Cannot select elements of the chosen type.");
+					alert_window("Cannot select elements of the chosen type.");
 					break;
 				}
 			}

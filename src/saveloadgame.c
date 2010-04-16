@@ -55,7 +55,7 @@ jmp_buf saveload_jmpbuf;
 
 #define WrapErrorMessage(a, b, c, d, ...) do { \
 	ErrorMessage(a,b,c,IS_WARNING_ONLY, ##__VA_ARGS__);\
-    	GiveMouseAlertWindow(_("An error occured when trying to load the savegame.\nA common reason for this is that the game has been updated to a newer version since the save was made, in which case the savegame is very likely not compatible.\nHowever if you see this message and you have not updated the game, make sure to report this to the developers.\nThanks!"));\
+    	alert_window(_("An error occured when trying to load the savegame.\nA common reason for this is that FreedroidRPG has been updated to a newer version since the save was made, in which case the savegame is very likely not compatible.\nIf you see this message and you have not updated the game, make sure to report this to the developers.\nThanks!"));\
         if (d==IS_FATAL)\
     	    longjmp(saveload_jmpbuf, 1);\
 } while (0)
@@ -229,7 +229,7 @@ int SaveGame(void)
 	FILE *SaveGameFile;
 
 	if (Me.energy <= 0) {
-		GiveMouseAlertWindow(_("You are dead. Savegame not modified."));
+		alert_window(_("You are dead. Savegame not modified."));
 		return (ERR);
 	}
 
@@ -484,8 +484,7 @@ int LoadGame(void)
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
 
 	if ((DataFile = fopen(filename, "rb")) == NULL) {
-		GiveMouseAlertWindow(_
-				     ("\nW A R N I N G !\n\nFreedroidRPG was unable to locate the saved game file you requested to load.\nThis might mean that it really isn't there cause you tried to load a game without ever having saved the game before.  \nThe other explanation of this error might be a severe error in FreedroidRPG.\nNothing will be done about it."));
+		alert_window(_("W A R N I N G !\n\nFreedroidRPG was unable to locate the saved game file you requested to load.\nThis might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\nThe other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."));
 		append_new_game_message(_("Failed to load old game."));
 		return (ERR);
 	} else {
@@ -506,7 +505,7 @@ int LoadGame(void)
 	DataFile = fopen(filename, "rb");
 	if (inflate_stream(DataFile, (unsigned char **)&LoadGameData, NULL)) {
 		fclose(DataFile);
-		GiveMouseAlertWindow("Unable to decompress saved game - this is probably an old, incompatible game. Sorry.\n");
+		alert_window("Unable to decompress saved game - this is probably an old, incompatible game. Sorry.");
 		return ERR;
 	}
 
@@ -539,8 +538,7 @@ int LoadGame(void)
 		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
 
 	if (strcmp(Me.savegame_version_string, version_check_string) != 0) {
-		GiveMouseAlertWindow(_
-				     ("Version or structsize mismatch! The savegame is not from the same version of freedroidRPG... possible breakage.\n"));
+		alert_window(_("Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."));
 		our_SDL_flip_wrapper();
 		while (!MouseLeftPressed())
 			SDL_Delay(1);

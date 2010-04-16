@@ -707,7 +707,7 @@ void level_editor_place_aligned_obstacle(int positionid)
 
 	switch (ts->type) {
 	case OBJECT_ANY:
-		GiveMouseAlertWindow("Quickbar support was removed.");
+		alert_window("Quickbar support was removed.");
 		break;
 
 	case OBJECT_OBSTACLE:
