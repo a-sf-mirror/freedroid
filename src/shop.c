@@ -538,7 +538,11 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 				repairPrice = 0;
 			else
 				repairPrice = calculate_item_repair_price(ShowItem);
-			sprintf(TextChunk, _("Repair cost: %ld\n"), repairPrice);
+			// We handle items with no repair cost differently
+			if (ShowItem->max_duration == (-1))
+				sprintf(TextChunk, _("Indestructible\n"));
+			else
+				sprintf(TextChunk, _("Repair cost: %ld\n"), repairPrice);
 			strcat(InfoText, TextChunk);
 		} else {
 			sprintf(TextChunk, _("Unsellable\n"));
