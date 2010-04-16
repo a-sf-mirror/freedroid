@@ -816,11 +816,17 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 		if (givexp)
 			append_new_game_message(_("For defeating %s, you receive %d experience."), Druidmap[target->type].druidname,
 						reward);
-		else if (killertype && killertype != -1)
+
+//	The below section is much more of debug info that something that actually should be "spammed" to the user by default.
+//	Possibly Tux could know about fighting going on in the immediate vincinity, but for sure not on the other side of the world map.
+//	It just confuses newbeginners while giving little or no valuable info to even an experienced player.
+/*
+ 		else if (killertype && killertype != -1)
 			append_new_game_message(_("%s was killed by %s."), Druidmap[target->type].druidname,
 						Druidmap[killertype].druidname);
 		else
 			append_new_game_message(_("%s died."), Druidmap[target->type].druidname);
+*/
 	}
 
 	if (MakeSureEnemyIsInsideHisLevel(target)) {
