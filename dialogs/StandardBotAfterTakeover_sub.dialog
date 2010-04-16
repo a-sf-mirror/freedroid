@@ -84,14 +84,14 @@ LuaCode={
 	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
 	npc_says(_"Version: 1.82c", "NO_WAIT")
 	npc_says(_"No upgrades found.", "NO_WAIT")
-	npc_says(_"Always ask for confirmation before execution of ./hcf.py? Y/N")
+	npc_says(_"Always ask for confirmation before execution of hcf.py? Y/N", "NO_WAIT")
 	hide(0,20,21,50) show(51,52)
 }
 ----------------------------------------------------------------------
 
 Nr=51 Text=_"Yes, always ask."
 LuaCode={
-	npc_says(_"Confirmation will now be asked before execution of ./hcf.py.")
+	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
 	npc_says(_"Settings saved")
 	if (not has_cookie("StandardBotAfterTakeover_confirm_hcf")) then 
 		add_cookie("StandardBotAfterTakeover_confirm_hcf")
@@ -103,7 +103,7 @@ LuaCode={
 
 Nr=52 Text=_"No, don't ask"
 LuaCode={
-	npc_says(_"./hcf.py will be executed without asking for confirmation.")
+	npc_says(_"hcf.py will be executed without asking for confirmation.")
 	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
 		del_cookie("StandardBotAfterTakeover_confirm_hcf")
 	else end
