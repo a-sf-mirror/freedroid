@@ -57,7 +57,7 @@ LuaCode={
 	n_god = "" --your goddess
 	n_emgod = "" --your enemy god
 
-	npc_says(_"Shall I pick a character's race, role, gender and alignment for you? \3[yn]\2","NO_WAIT")
+	npc_says(_"Shall I pick a character's race, role, gender and alignment for you? \3[y/n]\2","NO_WAIT")
 	cli_says(_"> ","NO_WAIT")
 	n_randomchoice = "no"
 	selection = 0
