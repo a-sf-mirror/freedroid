@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -56,7 +56,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"open gate"
+Nr=0 Text=_"open gate"
 LuaCode={
 	if (not has_cookie("dsb_pc_access")) then
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"close gate"
+Nr=10 Text=_"close gate"
 LuaCode={
 	npc_says(_"Gate status: OPEN", "NO_WAIT")
 	npc_says(_"Access granted. Closing gate ...")
@@ -84,7 +84,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=98  Text=_"Debug: give cookie"
+Nr=98 Text=_"Debug: give cookie"
 LuaCode={
 	if (not has_cookie("dsb_pc_access")) then
 		add_cookie("dsb_pc_access")
@@ -96,7 +96,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"logout"
+Nr=99 Text=_"logout"
 LuaCode={
 	npc_says(_"Exiting","NO_WAIT")
 	npc_says_random(_"Have a nice day.","Have a wonderful day.","Hope your day will be most productive.")

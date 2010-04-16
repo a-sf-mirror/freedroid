@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -43,21 +43,21 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"I must talk to your master."
+Nr=1 Text=_"I must talk to your master."
 LuaCode={
 	npc_says(_"STATE YOUR REASON.")
 	hide(1, 3, 17) show(5, 6, 7)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Don't shoot! I come in peace."
+Nr=2 Text=_"Don't shoot! I come in peace."
 LuaCode={
 	npc_says(_"STATE THE PURPOSE OF YOUR PRESENCE HERE.")
 	hide(2, 8) show(1, 3, 17)
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"I saw this building as I was walking by, and I decided to take a look inside."
+Nr=3 Text=_"I saw this building as I was walking by, and I decided to take a look inside."
 LuaCode={
 	npc_says(_"YOUR REASON IS CURIOSITY. MASTER KEVIN LIKES CURIOUS PEOPLE.")
 	npc_says(_"YOU MAY PASS.")
@@ -65,7 +65,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"Thank you."
+Nr=4 Text=_"Thank you."
 LuaCode={
 	add_cookie("kevin_door_open")
 	change_obstacle_state("KevinsDoor", "opened")
@@ -73,21 +73,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"Umm... His life is in grave danger. "
+Nr=5 Text=_"Umm... His life is in grave danger. "
 LuaCode={
 	npc_says(_"ERROR: REASON INVALID.")
 	hide(5) show(12)
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"The people from the uhh... city want me to have a word with him. Yeah, that's it."
+Nr=6 Text=_"The people from the uhh... city want me to have a word with him. Yeah, that's it."
 LuaCode={
 	npc_says(_"ERROR: REASON INVALID.")
 	hide(6)
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"I have some very valuable information. Your master might be interested in it."
+Nr=7 Text=_"I have some very valuable information. Your master might be interested in it."
 LuaCode={
 	npc_says(_"MASTER KEVIN WILL BE PLEASED. YOU MAY PASS.")
 	npc_says(_"DOOR OPENING SEQUENCE INITIATED.")
@@ -95,7 +95,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"Step aside, you stupid tin can!"
+Nr=8 Text=_"Step aside, you stupid tin can!"
 LuaCode={
 	npc_says(_"YOU SHALL NOT PASS. ACTIVATING DISINTEGRATOR BEAM IN TEN SECONDS.")
 	npc_says(_"NINE.")
@@ -104,7 +104,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"Wait, that's not what I meant!"
+Nr=9 Text=_"Wait, that's not what I meant!"
 LuaCode={
 	npc_says(_"SEVEN.")
 	npc_says(_"SIX.")
@@ -112,7 +112,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"I am not afraid of you."
+Nr=10 Text=_"I am not afraid of you."
 LuaCode={
 	npc_says(_"SEVEN.")
 	npc_says(_"SIX.")
@@ -120,7 +120,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"Wait, that's not what I meant!"
+Nr=11 Text=_"Wait, that's not what I meant!"
 LuaCode={
 	npc_says(_"FIVE.")
 	npc_says(_"FOUR.")
@@ -128,28 +128,28 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"The enemies are approaching from every side!"
+Nr=12 Text=_"The enemies are approaching from every side!"
 LuaCode={
 	npc_says(_"ERROR: REASON INVALID.")
 	hide(12) show(13)
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"We are surrounded! They will attack any second now!"
+Nr=13 Text=_"We are surrounded! They will attack any second now!"
 LuaCode={
 	npc_says(_"ERROR: REASON INVALID.")
 	hide(13) show(14)
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_"Are you listening to me?"
+Nr=14 Text=_"Are you listening to me?"
 LuaCode={
 	npc_says(_"ERROR: REASON INVALID.")
 	hide(14) show(18)
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_"I do not have to tell you anything, bot."
+Nr=17 Text=_"I do not have to tell you anything, bot."
 LuaCode={
 	npc_says(_"ENGAGING AGGRESSION CIRCUITS. YOU SHALL BE DISINTEGRATED IN TEN SECONDS.")
 	npc_says(_"NINE.")
@@ -158,21 +158,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=18  Text=_"I think I just found an error in your programming."
+Nr=18 Text=_"I think I just found an error in your programming."
 LuaCode={
 	npc_says(_"ERROR: REASON INVALID.")
 	hide(18) show(19)
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_"Thought so."
+Nr=19 Text=_"Thought so."
 LuaCode={
 	npc_says(_"ERROR: REASON INVALID.")
 	hide(19)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later, tin can."
+Nr=99 Text=_"See you later, tin can."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"EOT ACKNOWLEDGED. CONNECTION CLOSED.")

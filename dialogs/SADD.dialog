@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -52,7 +52,7 @@ EveryTime LuaCode={
 ----------------------------------------------------------------------
 
 
-Nr=1  Text=_"Who are you and what are you doing?"
+Nr=1 Text=_"Who are you and what are you doing?"
 LuaCode={
 	npc_says(_"I am a SADD - Secret Area Defence Droid")
 	npc_says(_"PRIMARY TARGET 1: do not let unauthorized people in.", "NO_WAIT")
@@ -63,7 +63,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"What is this place?"
+Nr=4 Text=_"What is this place?"
 LuaCode={
 	npc_says(_"SECONDARY TARGET: prevent secret information leakage")
 	npc_says(_"*INFO* secret information theft attempt detected")
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"Why are you not hostile?"
+Nr=5 Text=_"Why are you not hostile?"
 LuaCode={
 	npc_says(_"Hostile? What do you mean?")
 	tux_says(_"I mean, you are not attacking me... Don't you kill like other bots?")
@@ -84,7 +84,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"What about the Great Assault?"
+Nr=6 Text=_"What about the Great Assault?"
 LuaCode={ 
 	npc_says(_"For security reasons, SADDs are not equipped with wireless modules.")
 	npc_says(_"I know only that I have to be recharged, checked and have my firmware updated every 3 months.")
@@ -101,7 +101,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"What have you done?! How am I supposed to get out of here?"
+Nr=8 Text=_"What have you done?! How am I supposed to get out of here?"
 LuaCode={ 
 	npc_says(_"You are not. You have secret information, so I won't let you out.")
 	tux_says(_"Why not kill me immediately?")
@@ -111,14 +111,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
+Nr=10 Text=_"I'm thirsty and hungry. I will die within days, and you will not have an interlocutor any more!"
 LuaCode={
 	npc_says(_"My power supply will deplete earlier.")
 	hide(10)
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"You speak almost like a human..."
+Nr=11 Text=_"You speak almost like a human..."
 LuaCode={
 	npc_says(_"Maybe I'm almost like a human?")
 	npc_says(_"Anyway, that's none of your business. Soon I'll be dead. You will be too, and nobody will enter this place ever again!")
@@ -137,7 +137,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=15  Text=_"Then please, break the rules, disable the guns and let me go."
+Nr=15 Text=_"Then please, break the rules, disable the guns and let me go."
 LuaCode={
 	npc_says(_"No way. I'm a computer, I can't break rules.")
 	tux_says(_"And what about your human nature?")
@@ -151,7 +151,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"I suggest a deal. You let me out, I bring you dilithium crystals. It will save both of us."
+Nr=16 Text=_"I suggest a deal. You let me out, I bring you dilithium crystals. It will save both of us."
 LuaCode={
 	npc_says(_"Why would I trust you?")
 	hide(4, 8, 10, 15, 16)
@@ -159,14 +159,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Almost a computer? What does that mean?"
+Nr=20 Text=_"Almost a computer? What does that mean?"
 LuaCode={
 	npc_says(_"When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!")
 	break_off_and_attack()
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"You must promise me a significant reward."
+Nr=21 Text=_"You must promise me a significant reward."
 LuaCode={
 	npc_says(_"Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals.")
 	add_cookie("asked_sadd_for_exterminator")
@@ -175,7 +175,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"It seems that you are sentinent, that you are a form of life. I must help any form of life."
+Nr=22 Text=_"It seems that you are sentinent, that you are a form of life. I must help any form of life."
 LuaCode={
 	npc_says(_"Thanks a lot for your warm words. I think I can trust you.")
 	next(23)
@@ -183,7 +183,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_"So disable the guns, please."
+Nr=23 Text=_"So disable the guns, please."
 LuaCode={
 	npc_says(_"Go, and bring dilithium. I badly need it.")
 	end_dialog()
@@ -194,7 +194,7 @@ LuaCode={
 	hide(23)
 }
 ----------------------------------------------------------------------
-Nr=30  Text=_"I have the crystals! They were difficult to find."
+Nr=30 Text=_"I have the crystals! They were difficult to find."
 LuaCode={
 	npc_says(_"Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!")
 	end_dialog()
@@ -208,7 +208,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31  Text=_"How is your power supply?"
+Nr=31 Text=_"How is your power supply?"
 LuaCode={
 	npc_says(_"Bad. Get the crystals. Remember, you promised!")
 	end_dialog()
@@ -216,7 +216,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=33  Text=_"I have the crystals! They were difficult to find."
+Nr=33 Text=_"I have the crystals! They were difficult to find."
 LuaCode={
 	npc_says(_"Great! Thanks. I've opened some doors for you. I hope you will find something interesting there. That's all I can do for you.")
 	end_dialog()
@@ -231,7 +231,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=37  Text=_"You call this a super exterminator?"
+Nr=37 Text=_"You call this a super exterminator?"
 LuaCode={
 	npc_says(_"I do. Now please leave this place before I terminate you.")
 	tux_says(_"This is rubbish! Nobody can use this damned gun!")
@@ -249,14 +249,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_"And what about your directives, especially the second?"
+Nr=41 Text=_"And what about your directives, especially the second?"
 LuaCode={
 	npc_says(_"Now I have time. When you die, I'll disable guns.")
 	hide(41)
 }
 ----------------------------------------------------------------------
 
-Nr=42  Text=_"Please forgive me!"
+Nr=42 Text=_"Please forgive me!"
 LuaCode={
 	npc_says(_"Too late. I'm watching this great show now.")
 	npc_says(_"It is called...")
@@ -266,7 +266,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=43  Text=_"Please, disable the guns!"
+Nr=43 Text=_"Please, disable the guns!"
 LuaCode={
 	npc_says(_"Ok, I'll disable them.")
 	npc_says(_"I just need to make some preparations. You will have to wait...")
@@ -275,19 +275,19 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=97  Text=_"Erm... hi!"
+Nr=97 Text=_"Erm... hi!"
 LuaCode={
 	npc_says(_"Hi. Thanks for the help.")
 	tux_says(_"Will you let me inside the base?")
 	npc_says(_"I'm sorry" .. get_player_name() .. ", I'm afraid I can't do that.")
-	npc_says(_"Nice try, though.  I may owe you, but I can't let you in.  You must leave.")
+	npc_says(_"Nice try, though. I may owe you, but I can't let you in. You must leave.")
 	end_dialog()
 	show(99)
 	hide(97)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I'd better get out of here..."
+Nr=99 Text=_"I'd better get out of here..."
 LuaCode={
 	npc_says(_"Exactly.")
 	end_dialog()

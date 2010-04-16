@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -42,7 +42,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Who am I?"
+Nr=2 Text=_"Who am I?"
 LuaCode={
 	npc_says(_"Oh dear. This is not good. Not good.")
 	npc_says(_"*sigh* Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here.")
@@ -56,7 +56,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"How did the war start?"
+Nr=3 Text=_"How did the war start?"
 LuaCode={
 	npc_says(_"It is a long story. It all happened five months ago.")
 	npc_says(_"I was at a protest against MegaSys, a computer company. They killed free software by finding a loophole in the GPL3.14 licence. It all became their property. Bastards.")
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"What happened then?"
+Nr=5 Text=_"What happened then?"
 LuaCode={
 	npc_says(_"I got shot down and I crashed a few kilometers away from here.")
 	npc_says(_"Later I learned that the bots started attacking all around the globe. The journalists called it 'The Great Assault'. The name stuck.")
@@ -79,7 +79,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"Where am I?"
+Nr=6 Text=_"Where am I?"
 LuaCode={
 	npc_says(_"The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault.")
 	npc_says(_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However, I'm alone here with only 1 droid for security.")
@@ -89,7 +89,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"Why did the Linarians come to this world?"
+Nr=7 Text=_"Why did the Linarians come to this world?"
 LuaCode={ 
 	npc_says(_"The planet you mean? No one knows that. None of you ever said anything about it.")
 	npc_says(_"Sorry, I cannot help you with that.")
@@ -97,7 +97,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"Where in the void is this world?"
+Nr=8 Text=_"Where in the void is this world?"
 LuaCode={
 	npc_says(_"I guess you mean in the universe?")
 	tux_says(_"Yes, I think that is your name for it.")
@@ -111,7 +111,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"Who are you? What is going on?"
+Nr=11 Text=_"Who are you? What is going on?"
 LuaCode={
 	npc_says(_"I guess I will start with myself.")
 	npc_says(_"Francis. Francis Spark. I used to be a teacher at a small university before all hell broke loose.")
@@ -121,7 +121,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower striking a planet full of life and killing everything on it..."
+Nr=13 Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower striking a planet full of life and killing everything on it..."
 LuaCode={
 	npc_says(_"This is normal. You were in stasis sleep for over 70 years. Stasis is not too kind on the mind. Your strange dreams will keep recurring for several years.")
 	npc_says(_"Whatever the reason was for putting yourself through this, it must have been a damn good one.")
@@ -130,7 +130,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_"Tell me more about the town you mentioned."
+Nr=14 Text=_"Tell me more about the town you mentioned."
 LuaCode={
 	npc_says(_"It is a small mining community of no more than 500 inhabitants...")
 	npc_says(_"It was a stroke of luck that it did not get destroyed by the bots. Because of poor funding, the city could not afford new models.")
@@ -141,7 +141,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=15  Text=_"Why did the bots attack?"
+Nr=15 Text=_"Why did the bots attack?"
 LuaCode={
 	npc_says(_"We don't really know the reason for this insanity. However...")
 	npc_says(_"All of the attacking bots are using a MegaSys operating system, so we think they are responsible.")
@@ -151,7 +151,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"I also heard a voice... Someone calling himself Dvorak... "
+Nr=16 Text=_"I also heard a voice... Someone calling himself Dvorak... "
 LuaCode={
 	npc_says(_"Relax. Everything will be fine in a few hours.")
 	npc_says(_"This is perfectly normal.")
@@ -159,7 +159,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_"Why not wake up all these people and attack the bots?"
+Nr=17 Text=_"Why not wake up all these people and attack the bots?"
 LuaCode={
 	npc_says(_"Well, some have a disease that can't be cured yet. Some are just old and want to be woken up when technology can give them an extended life. Some have other reasons.")
 	npc_says(_"But suffice it to say, most of these people are not really good at fighting. Besides, we don't have enough weapons to mount a full scale counter attack at present.")
@@ -168,7 +168,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=18  Text=_"Can you tell me how to get to town?"
+Nr=18 Text=_"Can you tell me how to get to town?"
 LuaCode={
 	npc_says(_"Sure. You just need to follow the road outside to the east. After the bridge, turn right and continue to follow the road and you will soon be outside of the town main gate.")
 	npc_says(_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there.")
@@ -177,7 +177,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_"How do I get out from here?"
+Nr=19 Text=_"How do I get out from here?"
 LuaCode={
 	npc_says(_"Oh, just take the small door and corridor out to the waiting room. And from there you can get out through the customer entrance.")
 	npc_says(_"I keep the back entrance, close to my sleeping quarters, locked at all times for safety reasons. Better safe than sorry.")
@@ -185,7 +185,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"It cannot be true. One company cannot control all of the bot software on a whole world."
+Nr=20 Text=_"It cannot be true. One company cannot control all of the bot software on a whole world."
 LuaCode={ 
 	npc_says(_"It can. They got close to a monopoly 30 years ago, but their last competitor, the open source community, was defeated by them about a year ago.")
 	npc_says(_"Since then all of the newly made bots have been made with MegaSys firmware burnt into their circuits.")
@@ -193,7 +193,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"Why did you wake me up?"
+Nr=21 Text=_"Why did you wake me up?"
 LuaCode={
 	npc_says(_"The situation at the town is not good. The walls are crumbling and we have lost a lot of good people.")
 	npc_says(_"I heard the Linarians have a special gift for computers and can hack them just by thinking about it.")
@@ -203,7 +203,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"Where are all my things?"
+Nr=22 Text=_"Where are all my things?"
 LuaCode={
 	npc_says(_"I already took out your chest with personal belongings from storage.", "NO_WAIT")
 	npc_says(_"It is standing there next to the door.")
@@ -214,7 +214,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"Thanks for the help. I'll be going now."
+Nr=99 Text=_"Thanks for the help. I'll be going now."
 LuaCode={
 	npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
 	npc_says(_"Remember to not veer too far off the path, or your quest could be over before it begins.")

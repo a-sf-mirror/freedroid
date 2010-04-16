@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 If you have questions concerning FreedroidRPG, please send an email to:
@@ -43,14 +43,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here."
+Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Welcome to this camp! I'm Ms. Stone. I run this shop.")
 	hide(0) show(1, 3, 10)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"I would like to trade with you."
+Nr=1 Text=_"I would like to trade with you."
 LuaCode={
 	npc_says(_"Good! Here is the selection of items I have for sale.")
 	if (has_cookie("stone_no_guns")) then hide(2) else show(2) end
@@ -58,7 +58,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Swords, clubs and maces? What is this? I want guns!"
+Nr=2 Text=_"Swords, clubs and maces? What is this? I want guns!"
 LuaCode={
 	npc_says(_"Sorry, this is all we have for now. The Red Guard took away all of our poppers.", "NO_WAIT")
 	npc_says(_"For our own good. Of course.")
@@ -67,7 +67,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"What can you tell me about the guards here?"
+Nr=3 Text=_"What can you tell me about the guards here?"
 LuaCode={
 	npc_says(_"Ah, the Red Guard.", "NO_WAIT")
 	npc_says(_"Stranger, best if you don't ask such questions.", "NO_WAIT")
@@ -76,7 +76,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"But...?"
+Nr=4 Text=_"But...?"
 LuaCode={
 	npc_says(_"They run the city with strict laws and demand total obedience.", "NO_WAIT")
 	npc_says(_"We all need to obey their rules. We need to work hard or they hurt us.")
@@ -87,12 +87,12 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"If things are so bad right now, why don't you leave?"
+Nr=8 Text=_"If things are so bad right now, why don't you leave?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={ next(9) hide(8) }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"If things are so bad right now, why --"
+Nr=9 Text=_"If things are so bad right now, why --"
 LuaCode={
 	npc_says(_"I don't want to hear this jabberwocky.", "NO_WAIT")
 	npc_says(_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way.", "NO_WAIT")
@@ -100,7 +100,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"How is your business going?"
+Nr=10 Text=_"How is your business going?"
 LuaCode={
 	if (has_cookie("stone_done")) then
 		npc_says(_"Thanks to you I have a chance now.", "NO_WAIT")
@@ -115,7 +115,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"Can I help you somehow Ms. Stone?"
+Nr=13 Text=_"Can I help you somehow Ms. Stone?"
 LuaCode={
 	npc_says(_"No, there's nothing that can be done anymore. I don't have enough money to lift the shop from the downward spiral.")
 	npc_says(_"I'd need thousands to just survive the month.", "NO_WAIT")
@@ -124,17 +124,17 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=15  Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?"
+Nr=15 Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?"
 LuaCode={
 	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles.")
 	add_cookie("stone_helping")
-	add_quest("Saving the shop", "Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon.  She needs 2000 in cash to stay afloat. I could try to help her out.")
+	add_quest("Saving the shop", "Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
 	if (get_gold() > 1600) then show(23) else hide(23) end
 	hide(15)
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"A pity that nothing can be done about your store."
+Nr=16 Text=_"A pity that nothing can be done about your store."
 LuaCode={
 	npc_says(_"Yes. A tradition of six generations will die with this shop...", "NO_WAIT")
 	npc_says(_"I guess it just had to happen one day...")
@@ -142,7 +142,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_"I have the money you need Ms. Stone. You can have it."
+Nr=23 Text=_"I have the money you need Ms. Stone. You can have it."
 LuaCode={
 	npc_says(_"Is... Is this a joke? So much money? And you just give it to me?", "NO_WAIT")
 	npc_says(_"Thank you! Thank you! Thank you! Savior!")
@@ -165,7 +165,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31  Text=_"Yes, its me."
+Nr=31 Text=_"Yes, its me."
 LuaCode={
 	npc_says(_"I thought so. My grandfather used to tell me stories about you. He said you would come here in a time of despair.", "NO_WAIT")
 	npc_says(_"And here you are.")
@@ -181,7 +181,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=32  Text=_"It's not important who I am."
+Nr=32 Text=_"It's not important who I am."
 LuaCode={
 	npc_says(_"If you want to remain a stranger, I will respect your wishes.", "NO_WAIT")
 	npc_says(_"So be it.")
@@ -192,7 +192,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=33  Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
+Nr=33 Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
 LuaCode={
 	npc_says(_"You... monster...", "NO_WAIT")
 	npc_says(_"No one makes fun of Lily Stone's family store!", "NO_WAIT")
@@ -205,7 +205,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 

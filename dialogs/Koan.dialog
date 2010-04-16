@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -43,7 +43,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"With pleasure."
+Nr=5 Text=_"With pleasure."
 LuaCode={
 	drop_dead()
 	add_diary_entry("Doing Duncan a favour", "I took revenge for Duncan by killing Koan.")
@@ -51,7 +51,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"No. I have not come here to kill you."
+Nr=6 Text=_"No. I have not come here to kill you."
 LuaCode={
 	npc_says(_"Thank you.")
 	npc_says(_"Feel free to stay here. There is no danger.")
@@ -62,7 +62,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"What is this place? Why is there grass and water under the desert?"
+Nr=10 Text=_"What is this place? Why is there grass and water under the desert?"
 LuaCode={
 	npc_says(_"Ah, yes. That is my fault, I am afraid.")
 	npc_says(_"Wherever I go, life follows me.")
@@ -72,7 +72,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"This was a bunker?"
+Nr=11 Text=_"This was a bunker?"
 LuaCode={
 	npc_says(_"Yes. The place has changed a bit, as you can see.")
 	npc_says(_"I like the way it is right now. The water cools everything down and the plants give the air a very fresh smell.")
@@ -83,7 +83,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Why does Duncan want you dead?"
+Nr=20 Text=_"Why does Duncan want you dead?"
 LuaCode={
 	npc_says(_"Very simple. He likes destruction, and I am creation.")
 	npc_says(_"There is nothing more to it.")
@@ -91,7 +91,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I will go now."
+Nr=99 Text=_"I will go now."
 LuaCode={
 	npc_says(_"This place will always wait for you.")
 	heal_tux()

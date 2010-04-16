@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 EveryTime LuaCode={
 	if (has_cookie("Terminals_disabled")) then
-		npc_says(_"  . ")
+		npc_says(_" . ")
 		end_dialog()
 	else
 		cli_says(_"Login : ", "NO_WAIT")
@@ -54,7 +54,7 @@ LuaCode={
 		tux_says(_"******", "NO_WAIT")
 	end
 	username = "tux"
-        npc_says(_"Last login from dev/tty3 on unknown", "NO_WAIT")
+	npc_says(_"Last login from dev/tty3 on unknown", "NO_WAIT")
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
 	show(20,30,40,99) hide(0,1,2,3)
 }
@@ -69,7 +69,7 @@ LuaCode={
 		 end_dialog()
 	else
 		username = "root"
-        	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+	 	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
 		cli_says(username .. "@c-net:~$", "NO_WAIT")
 		show(20,30,40,99) hide(0,1,2,3)
 	end
@@ -87,7 +87,7 @@ LuaCode={
 	else
 		tux_says(_"****", "NO_WAIT")
 		username = "lily"
-        	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+		npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
 		cli_says(username .. "@c-net:~$", "NO_WAIT")
 		show(20,30,40,99) hide(0,1,2,3)
 	end
@@ -146,7 +146,7 @@ LuaCode={
 Nr=24 Text=_"./statistics.pl"
 LuaCode={
 	npc_says(_"Corrupted file.")
---	npc_says(_"  Bot   #Dead# Tux #Hacked/Failed#Ratio", "NO_WAIT")
+--	npc_says(_" Bot #Dead# Tux #Hacked/Failed#Ratio", "NO_WAIT")
 --	npc_says(print_stats(),"NO_WAIT")
 	cli_says(_"tux@c-net:~$", "NO_WAIT")
 }
@@ -232,7 +232,7 @@ LuaCode={
 	cli_says(username .. "@c-net:~$", "NO_WAIT")
 }
 ----------------------------------------------------------------------
-Nr=99  Text=_"logout"
+Nr=99 Text=_"logout"
 LuaCode={
 	npc_says(_"Connection to c-net closed.")
 --	set_internet_login_time()

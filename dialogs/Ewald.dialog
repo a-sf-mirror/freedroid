@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -41,7 +41,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi. You look really happy."
+Nr=0 Text=_"Hi. You look really happy."
 LuaCode={
 	npc_says(_"Hey! I'm Ewald. I'm a bartender.")
 	npc_says(_"I used to do a lot of drugs, and I destroyed my brain.")
@@ -51,7 +51,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"How is your business doing?"
+Nr=1 Text=_"How is your business doing?"
 LuaCode={
 	npc_says(_"Nah, No darn good at all.")
 	npc_says(_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high.")
@@ -62,14 +62,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Are you selling something other than drinks?"
+Nr=2 Text=_"Are you selling something other than drinks?"
 LuaCode={
 	npc_says(_"Yeah, I have some junk here... Want to see?")
 	trade_with("Ewald")
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"I could use a drink. What is there to be had?"
+Nr=3 Text=_"I could use a drink. What is there to be had?"
 LuaCode={
 	npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
 	npc_says(_"I have WATER!")
@@ -82,28 +82,28 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"I want double water on the rocks. Stirred, not shaken."
+Nr=4 Text=_"I want double water on the rocks. Stirred, not shaken."
 LuaCode={
 	npc_says(_"Here you go. That one is on the house. And if the water is not enough, just ask me for more.")
 	hide(4, 5, 6) show(9)
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"Long Island iced water please."
+Nr=5 Text=_"Long Island iced water please."
 LuaCode={
 	npc_says(_"Here you go.")
 	hide(4, 5, 6) show(8)
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"I want something cheap... Give me some fortified water."
+Nr=6 Text=_"I want something cheap... Give me some fortified water."
 LuaCode={
 	npc_says(_"Eh... Sure, as you wish. Here you go.")
 	hide(4, 5, 6) show(7)
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"Ugh... Ahh... I like it. Give me some more of that."
+Nr=7 Text=_"Ugh... Ahh... I like it. Give me some more of that."
 LuaCode={
 	npc_says(_"Uh... Sure...")
 	heat_tux(-1000);
@@ -111,7 +111,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"Ahh... Fresh water! Give me some more of that."
+Nr=8 Text=_"Ahh... Fresh water! Give me some more of that."
 LuaCode={
 	npc_says(_"Yeah, I thought you would like it. Here is more.")
 	heat_tux(-1000);
@@ -119,7 +119,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"Hmm... Lots of ice. Give me one more double water, but now without any ice."
+Nr=9 Text=_"Hmm... Lots of ice. Give me one more double water, but now without any ice."
 LuaCode={
 	npc_says(_"One double water coming up.")
 	heat_tux(-1000);
@@ -127,7 +127,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"MORE! I want more water!"
+Nr=10 Text=_"MORE! I want more water!"
 LuaCode={
 	npc_says(_"Erm... Ok... Here, have some of my special, water colada.")
 	heat_tux(-1000);
@@ -135,7 +135,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"I am really thirsty! I want water."
+Nr=11 Text=_"I am really thirsty! I want water."
 LuaCode={
 	npc_says(_"Well, you drank all my water, so you cannot have any more. There is none left.")
 	npc_says(_"I heard Linarians can drink a lot of water, but seven liters...")
@@ -143,7 +143,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
+Nr=12 Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
 LuaCode={
 	npc_says(_"Eh... I think you've had enough... Maybe you should just go for a walk for now?")
 	npc_says(_"You have had everything that I had.")
@@ -152,7 +152,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"Any idea where I can find some entertainment here?"
+Nr=13 Text=_"Any idea where I can find some entertainment here?"
 LuaCode={
 	npc_says(_"Well... Erm... No.")
 	npc_says(_"What the bots did not smash, the Red Guard taxed.")
@@ -160,7 +160,7 @@ LuaCode={
 	npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
 	npc_says(_"Now THAT'S fun, if you ask me.")
 	hide(13)
-	npc_says(_"If you are really board, you can try gambling with me.  But the Red Guard taxes it.")
+	npc_says(_"If you are really board, you can try gambling with me. But the Red Guard taxes it.")
 	show(30)
 }
 ----------------------------------------------------------------------
@@ -173,18 +173,18 @@ LuaCode={
 }
 -----------------------------------------------------------------------
 
-Nr=30 Text=_"Sure, I'll gamble with you.  What do you play?"
+Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
 LuaCode={
 	if (not has_cookie("ewald_gambling")) then add_cookie("ewald_gambling") end
 	npc_says(_"I play a dice game and a coin-flipping game.")
 	show(31,32)
 	-- Initialize some variables here
-	bet   = 0
+	bet = 0
 	tux1, tux2, tux3 = 0, 0, 0
 	ewd1, ewd2, ewd3 = 0, 0, 0, 0, 0 
 	-- Ewald forces you to gamble semi-responsibly ;-)
-	max   = get_gold() * 0.8
-	if (max > 30) then  show(33) 
+	max = get_gold() * 0.8
+	if (max > 30) then show(33) 
 		if (max > 300) then show(34) 
 		if (max > 600) then show(35) 
 	end end else 
@@ -226,8 +226,8 @@ LuaCode={
 	------------------------------------------------
 	-- Assuming optimal playing: 
 	-- Winning both: 11/32 expected payout: 132/128 (easy), 88/128 (normal/hard)
-	-- Losing both:  11/32 expected payout:   0/128 (easy), 33/128 (normal), 22/128 (hard)
-	-- Intermediate: 10/32 expected payout:   0/128
+	-- Losing both: 11/32 expected payout: 0/128 (easy), 33/128 (normal), 22/128 (hard)
+	-- Intermediate: 10/32 expected payout: 0/128
 	-- Expected payout: 132/128 (easy), 121/128 (normal), 110/128 (hard)
 }
 
@@ -345,7 +345,7 @@ Nr=50 Text="Coin-flipping Game"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Coin flipping it is.")
-	npc_says(_"So.  What do you think?  Heads or tails?")
+	npc_says(_"So. What do you think? Heads or tails?")
 	show(51,52)
 }
 -----------------------------------------------------------------------
@@ -490,10 +490,10 @@ LuaCode={
 	end
 
 
-	if (win == 1) then  -- WIN
+	if (win == 1) then -- WIN
 		npc_says_random(_"Looks like another winning combination! Good job!","You have the best luck! You won!","Too many of these and I'll go out of business. You won!","You will have to tell me how you did it. You Won!","Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
-		if (difficulty() == "easy") then  bet = bet*3
-		else  bet = bet*2
+		if (difficulty() == "easy") then bet = bet*3
+		else bet = bet*2
 		end
 		add_gold(bet)
 		display_console_message("You won ".. bet .." valuable circuits in the coin-flip game with Ewald.")
@@ -502,7 +502,7 @@ LuaCode={
 			npc_says_random(_"Looks like you got everything wrong.","Well, close, but exactly wrong.","Close, but no cigar.","Close only counts in handgrenades and horseshoes.")
 			del_gold(bet)
 		else
-			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.","Well, close, but exactly wrong.  Here is some of your bet back.","You need to do exactly opposite of what you did here. Here is part of your bet back.","Close, but no cigar.  Here is some of your money back.","Next time pick the opposite of what you did this time... or something.")
+			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.","Well, close, but exactly wrong. Here is some of your bet back.","You need to do exactly opposite of what you did here. Here is part of your bet back.","Close, but no cigar. Here is some of your money back.","Next time pick the opposite of what you did this time... or something.")
 			if (difficulty() == "normal") then --normal: 75% back
 				bet = bet*0.25
 			else --hard: 50% back
@@ -523,7 +523,7 @@ LuaCode={
 }
 
 -----------------------------------------------------------------------
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
 	hide(32,33,34,35,36,37,38,39,40,41,42,50,51,52,53,54,55,56) --end any partial gambling
 	npc_says_random(_"Goodbye and remember: My bar is always open.","Come back soon!","You are welcome to unwind with old Ewald any time. Come back soon.","Remember, you can always come back here to relax and kick back.")

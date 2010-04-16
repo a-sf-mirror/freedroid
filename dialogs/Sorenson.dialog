@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -44,7 +44,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Who are you?"
+Nr=20 Text=_"Who are you?"
 LuaCode={
 	npc_says(_"I? Sorenson is a great computer person.")
 	npc_says(_"Knows the deep codes. Walks the paths.")
@@ -68,7 +68,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_"Why are you like this? What happened to you?"
+Nr=30 Text=_"Why are you like this? What happened to you?"
 LuaCode={
 	npc_says(_"Was learning COBOL. Pain. Torture. Horrible screaming.")
 	npc_says(_"Sorenson asked for help. Many days and nights.")
@@ -78,7 +78,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31  Text=_"What is this COBOL?"
+Nr=31 Text=_"What is this COBOL?"
 LuaCode={
 	npc_says(_"COBOL is the mind-crippler.")
 	npc_says(_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate.")
@@ -86,7 +86,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
+Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 LuaCode={
 	npc_says(_"Of course not. Trade is good.")
 	trade_with("Sorenson")
@@ -94,14 +94,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_"Can I take a look at your books again?"
+Nr=41 Text=_"Can I take a look at your books again?"
 LuaCode={
 	npc_says(_"Yes. Sure. Of course.")
 	trade_with("Sorenson")
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_"You got me curious. How can you help me understand computers better?"
+Nr=50 Text=_"You got me curious. How can you help me understand computers better?"
 LuaCode={
 	npc_says(_"Simplicity! Sign this contract. No need to read it.")
 	npc_says(_"You trust Sorenson, right?")
@@ -109,7 +109,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=51  Text=_"Sure. I'll sign it."
+Nr=51 Text=_"Sure. I'll sign it."
 LuaCode={
 	npc_says(_"Go0d. H3re is th3 con7ract. S1gn it!")
 	tux_says(_"Ok, here go --")
@@ -118,43 +118,43 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=52  Text=_"Um... Your voice sounds strange. Is everything fine?"
+Nr=52 Text=_"Um... Your voice sounds strange. Is everything fine?"
 LuaCode={
 	npc_says(_"519n 7h3 c0n7r4c7!!!!")
 	hide(52) show(53)
 }
 ----------------------------------------------------------------------
 
-Nr=53  Text=_"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
+Nr=53 Text=_"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
 LuaCode={
 	npc_says(_"519n 17!!!!")
 	hide(53)
 }
 ----------------------------------------------------------------------
 
-Nr=55  Text=_"Sure, no problem... Now, how shall I sign this?"
+Nr=55 Text=_"Sure, no problem... Now, how shall I sign this?"
 LuaCode={
 	hide(52, 53, 55, 78, 79)
 	show(60, 61, 62, 63, 64, 65, 66)
 }
 ----------------------------------------------------------------------
 
-Nr=60  Text=_"Tux."
+Nr=60 Text=_"Tux."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={ next(70) }
 ----------------------------------------------------------------------
 
-Nr=61  Text=_"Tux, the Linarian"
+Nr=61 Text=_"Tux, the Linarian"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={ next(70) }
 ----------------------------------------------------------------------
 
-Nr=62  Text=_"I accept the contract, Tux"
+Nr=62 Text=_"I accept the contract, Tux"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={ next(70) }
 ----------------------------------------------------------------------
 
-Nr=63  Text=_"Elbereth"
+Nr=63 Text=_"Elbereth"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"4444! 17 burn5! 7'm m3171n9!")
@@ -163,7 +163,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=64  Text=_"Francis"
+Nr=64 Text=_"Francis"
 LuaCode={
 	npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
 	npc_says(_"Wh47? N07 w0rk1b9?")
@@ -174,7 +174,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=65  Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
+Nr=65 Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
 LuaCode={
 	npc_says(_"Huh?")
 	tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
@@ -184,7 +184,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=66  Text=_"X"
+Nr=66 Text=_"X"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
@@ -193,7 +193,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=70  Text=_"Huh? I d0n'7 f33l g00d."
+Nr=70 Text=_"Huh? I d0n'7 f33l g00d."
 LuaCode={
 	npc_says_random(_"Yes! I am free! At last I am free!","Yes! I am free!","Yes! I am free at last!")
 	tux_says(_"W417... 1 f331... H0rr1b13...")
@@ -204,7 +204,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=78  Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
+Nr=78 Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
 LuaCode={
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 	hide(78)
@@ -212,7 +212,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=79  Text=_"There is no way I will sign something without reading it. Forget about it."
+Nr=79 Text=_"There is no way I will sign something without reading it. Forget about it."
 LuaCode={
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 	hide(79)
@@ -220,7 +220,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I really must be going now. Goodbye."
+Nr=99 Text=_"I really must be going now. Goodbye."
 LuaCode={
 	npc_says(_"Please come back later, Linarian. We must talk again.")
 	end_dialog()

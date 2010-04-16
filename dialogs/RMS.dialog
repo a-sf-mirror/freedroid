@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -40,7 +40,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here. "
+Nr=0 Text=_"Hi! I'm new here. "
 LuaCode={
 	npc_says(_"Welcome, welcome! I'm Richard. I'm the computer guy around here.")
 	npc_says(_"I mostly work with this huge computer cluster here, although I also program the 614 bots in my spare time.")
@@ -48,7 +48,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"A computer cluster? What's that?"
+Nr=1 Text=_"A computer cluster? What's that?"
 LuaCode={
 	npc_says(_"A cluster is a group of computers, connected in a way that helps them collaborate in solving problems.")
 	npc_says(_"As they say, 'two heads are better than one'. And we have a lot of heads here.")
@@ -57,7 +57,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"I have a data cube with some information. Can you tell me something more about it?"
+Nr=6 Text=_"I have a data cube with some information. Can you tell me something more about it?"
 LuaCode={
 	npc_says(_"Interesting. Let me see this thing. Hmm... Yes, there is quite a lot of data in there. Maybe we could use Hydra to evaluate the data.")
 	npc_says(_"Hey, what do we have here? The data is already prepared for processing by a cluster just like ours. Wow! That's excellent!")
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"Hey, did you get something out of that data cube?"
+Nr=9 Text=_"Hey, did you get something out of that data cube?"
 LuaCode={
 	npc_says(_"Of course! I told you, Hydra has never failed me! I designed it myself, and I know computers very well. I never make mistakes.")
 	npc_says(_"Seems like the disruptor shield which thwarts all our attacks on Hell Fortress can be controlled from somewhere outside, or something like that.")
@@ -78,7 +78,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says(_"Take care, Linarian.")
 	end_dialog()

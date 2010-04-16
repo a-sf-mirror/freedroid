@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -40,7 +40,7 @@ EveryTime LuaCode={
 		else end
 	else end
 
-	if (has_item_backpack("Strength Pill")  > 0) then show(50) else end
+	if (has_item_backpack("Strength Pill") > 0) then show(50) else end
 	if (has_item_backpack("Dexterity Pill") > 0) then show(51) else end
 	if (has_item_backpack("Code Pill") > 0) then show(52) else end
 
@@ -51,11 +51,11 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hello!"
+Nr=0 Text=_"Hello!"
 LuaCode={
 	npc_says(_"Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?")
 	tux_says(_"I'm ".. get_player_name() .. ".")
-	npc_says(_"Um, what are you?  Some kind of overgrown penguin?")
+	npc_says(_"Um, what are you? Some kind of overgrown penguin?")
 	tux_says(_"I'm a Linarian.")
 	npc_says(_"Oh, I vaguely remember reading something about Linarian biology back in my university days...")
 	npc_says(_"I should be able to heal you if you get hurt.")
@@ -67,7 +67,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Do you also sell medical equipment?"
+Nr=1 Text=_"Do you also sell medical equipment?"
 LuaCode={
 	npc_says(_"Yes. Here is what I can offer today.")
 	trade_with("DocMoore")
@@ -75,14 +75,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"May I buy some medical equipment?"
+Nr=40 Text=_"May I buy some medical equipment?"
 LuaCode={
 	npc_says(_"Sure. Here is what I can offer today.")
 	trade_with("DocMoore")
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Doc, I took some of those brain enlargement pills..."
+Nr=2 Text=_"Doc, I took some of those brain enlargement pills..."
 LuaCode={
 	if (has_cookie("doc_healed_tux")) then
 		npc_says(_"Sorry, but I already gave you some medical help.")
@@ -103,7 +103,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"Doctor, how can I keep healthy and alive?"
+Nr=3 Text=_"Doctor, how can I keep healthy and alive?"
 LuaCode={
 	npc_says(_"Always remember L-I-F-E")
 	npc_says(_"L - Look at your health status regularly.")
@@ -114,20 +114,20 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"Can you fix me up?"
+Nr=10 Text=_"Can you fix me up?"
 LuaCode={
 	npc_says(_"Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health.")
 	if (not has_cookie("asked_docmoore_self_damage")) then
 		npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
 		show(11)
 	end
-	npc_says_random(_"There, it's done. You're completely fixed. You can go now.","You need to keep better care of yourself.  You're completely fixed. You can go now.")
+	npc_says_random(_"There, it's done. You're completely fixed. You can go now.","You need to keep better care of yourself. You're completely fixed. You can go now.")
 	heal_tux()
 	hide(0)
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"What do you mean, self-inflicted damage?"
+Nr=11 Text=_"What do you mean, self-inflicted damage?"
 LuaCode={
 	npc_says(_"Well, you see that idiotic Bender character on my doorstep?")
 	tux_says(_"What can you tell me about Bender?")
@@ -140,21 +140,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Doc... I really want the antidote."
+Nr=20 Text=_"Doc... I really want the antidote."
 LuaCode={
 	npc_says(_"No! I am not giving it to you. Forget about it.")
 	hide(20) show(21, 30)
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"My patience is running out. Give me the antidote. Now."
+Nr=21 Text=_"My patience is running out. Give me the antidote. Now."
 LuaCode={
 	npc_says(_"No! Over my dead body.")
 	hide(21) show(22, 30)
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"Your wish is my command!"
+Nr=22 Text=_"Your wish is my command!"
 LuaCode={
 	npc_says(_"Huh? What?")
 	tux_says(_"Humans... You are so interesting. I always wanted to know exactly how much blood you have.")
@@ -184,28 +184,28 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_"Forget it. Getting the antidote is not worth the effort."
+Nr=30 Text=_"Forget it. Getting the antidote is not worth the effort."
 LuaCode={
 	npc_says(_"I am not giving it to you, and that won't change.")
 	hide(21, 22, 30)
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_"What can you tell me about Strength Pills?"
+Nr=50 Text=_"What can you tell me about Strength Pills?"
 LuaCode={
 	hide(50)
 	next(53)
 }
 ----------------------------------------------------------------------
 
-Nr=51  Text=_"What can you tell me about Dexterity Pills?"
+Nr=51 Text=_"What can you tell me about Dexterity Pills?"
 LuaCode={
 	hide(51)
 	next(53)
 }
 ----------------------------------------------------------------------
 
-Nr=52  Text=_"What can you tell me about Code Pills?"
+Nr=52 Text=_"What can you tell me about Code Pills?"
 LuaCode={
 	hide(52)
 	next(53)
@@ -216,7 +216,7 @@ Nr=53 Text=_"THIS WILL NEVER BE VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Those pills are only one variant of a fantastic scientific breakthrough that happened shortly before the Great Assault.")
-	npc_says(_"Three kinds of enhancement pills were developed.  One for strength, one for dexterity and one for programming abilities.")
+	npc_says(_"Three kinds of enhancement pills were developed. One for strength, one for dexterity and one for programming abilities.")
 	npc_says(_"These pills work on a nanotechnological basis with small machines connecting to your muscle and nerve tissue.")
 	npc_says(_"The machines connect together and form some inorganic artificial tissue that has been optimized for certain qualities.")
 	npc_says(_"Since this invention only came about shortly before the Great Assault, these pills are now very rare.")
@@ -225,17 +225,17 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=54  Text=_"What can you tell me about Brain Pills?"
+Nr=54 Text=_"What can you tell me about Brain Pills?"
 LuaCode={
 	if(has_cookie("doc_healed_tux")) then
-  		npc_says(_"I already warned you about those!")
+		npc_says(_"I already warned you about those!")
 	else end
 	npc_says(_"Those pills are almost pure biological waste! They are sold to stupid ignorant gullible people. Never EVER take one.")
 	hide(54)
 }
 ----------------------------------------------------------------------
 
-Nr=55  Text=_"What can you tell me about Diet supplements?"
+Nr=55 Text=_"What can you tell me about Diet supplements?"
 LuaCode={
 	npc_says(_"Have you tasted the army snacks that the cook, Michelangelo, has been handing out?")
 	if (has_cookie("asked_michelangelo_for_army_snacks")) then
@@ -251,16 +251,16 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=56  Text=_"What can you tell me about Antibiotics?"
+Nr=56 Text=_"What can you tell me about Antibiotics?"
 LuaCode={
 	npc_says(_"Basically it is bottled up poison made by bacteria.")
 	tux_says(_"And that is good for me?")
-	npc_says(_"Yep. It kills the bacteria that want to kill you.  It improves your health significantly.")
+	npc_says(_"Yep. It kills the bacteria that want to kill you. It improves your health significantly.")
 	hide(56)
 }
 ----------------------------------------------------------------------
 
-Nr=57  Text=_"What is a Doc-in-a-can?"
+Nr=57 Text=_"What is a Doc-in-a-can?"
 LuaCode={
 	npc_says(_"It is a device that releases millions of short-lived nanobots that swarm all over your body inside and out repairing and fixing almost all but the most serious wounds.")
 	tux_says(_"Wouldn't long-lived nanobots work better?")
@@ -270,7 +270,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says_random(_"See you later.","Keep healthy!")
 	end_dialog()

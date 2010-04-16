@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -36,19 +36,19 @@ EveryTime LuaCode={
 	else end
 
 	if (has_cookie("jasmine_count1")) then
-		if (has_cookie("jasmine_count2")) then show(12) else show(10) end   -- 2 or 1 counter
-	else show(10) end   -- no counters yet
+		if (has_cookie("jasmine_count2")) then show(12) else show(10) end -- 2 or 1 counter
+	else show(10) end -- no counters yet
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here."
+Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Yes. Hello. What do you want?")
 	hide(0) show(1, 8)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Who are you?"
+Nr=1 Text=_"Who are you?"
 LuaCode={
 	npc_says(_"People call me Jasmine...")
 	npc_says(_"That is not my real name, but it will do for now.")
@@ -56,7 +56,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"What are you doing in Kevin's place?"
+Nr=2 Text=_"What are you doing in Kevin's place?"
 LuaCode={
 	npc_says(_"I live with him, stupid.")
 	npc_says(_"I like him. He... He is very much like me.")
@@ -64,21 +64,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"How are you?"
+Nr=3 Text=_"How are you?"
 LuaCode={
 	npc_says(_"Shitty. Now leave me alone.")
 	hide(3)
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"Why does such a nice lady act so harshly? Can't we all just get along?"
+Nr=4 Text=_"Why does such a nice lady act so harshly? Can't we all just get along?"
 LuaCode={
 	npc_says(_"No.")
 	hide(4)
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"What are you up to?"
+Nr=5 Text=_"What are you up to?"
 LuaCode={
 	npc_says(_"Nothing. Quit asking questions.")
 	npc_says(_"Don't bore me.")
@@ -86,7 +86,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"You are the most beautiful human I have ever seen."
+Nr=8 Text=_"You are the most beautiful human I have ever seen."
 LuaCode={
 	npc_says(_"And you are at least a quarter wrong.")
 	npc_says(_"Now, please get out of my sight.")
@@ -94,14 +94,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"Will you marry me?"
+Nr=9 Text=_"Will you marry me?"
 LuaCode={
 	npc_says(_"Forget it.")
 	hide(9)
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"See you later."
+Nr=10 Text=_"See you later."
 LuaCode={
 	npc_says(_"Yeah. Whatever.")
 	if ( has_cookie("jasmine_count1") ) then
@@ -115,7 +115,7 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"See you later."
+Nr=12 Text=_"See you later."
 LuaCode={
 	npc_says(_"Yeah. Wha -- SIGSEGV.")
 	npc_says(_"Segmentation fault.")

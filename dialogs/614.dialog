@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -32,7 +32,7 @@ Beginning of new chat dialog for character="XXXXX"
 EveryTime LuaCode={ show(0, 2, 3, 4, 99) }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Who are you?"
+Nr=0 Text=_"Who are you?"
 LuaCode={
 	npc_says(_"I am a 614 security bot, once one of the best-selling products of \3Nicholson, Inc.\2.")
 	hide(0) show(1, 4)
@@ -52,14 +52,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Have you detected any hostile bot activity?"
+Nr=2 Text=_"Have you detected any hostile bot activity?"
 LuaCode={
 	npc_says(_"No. The hostiles have not shown up within the last 24 hours.")
 	hide(2)
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"What can you tell me about the 614 type? "
+Nr=3 Text=_"What can you tell me about the 614 type? "
 LuaCode={
 	npc_says(_"The official manual classifies the 614 as a high class security droid.")
 	npc_says(_"It was mainly used within ships to protect certain areas from intruders.")
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"What are your orders?"
+Nr=4 Text=_"What are your orders?"
 LuaCode={
 	npc_says(_"My orders are to protect the living beings in this camp from attacks by hostile bots.")
 	npc_says(_"This has top priority. There are no other priorities.")
@@ -77,7 +77,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"Why are you not hostile, as are all the other bots?"
+Nr=5 Text=_"Why are you not hostile, as are all the other bots?"
 LuaCode={
 	npc_says(_"I belong to a an older generation of bots, running a custom-made security guard operating system.")
 	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
@@ -87,7 +87,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says(_"Resuming guard program.")
 	hide(5)

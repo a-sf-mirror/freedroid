@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -41,7 +41,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi, I'm Tux."
+Nr=0 Text=_"Hi, I'm Tux."
 LuaCode={
 	npc_says(_"Welcome to the Library, I'm Tamara.")
 	npc_says(_"Please take a look around and see if there is something here that interests you.")
@@ -50,7 +50,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"Hmm, you look very similar to another person I met, by the name of Sorenson."
+Nr=10 Text=_"Hmm, you look very similar to another person I met, by the name of Sorenson."
 LuaCode={
 	npc_says(_"Well, it's understandable. We are sisters.")
 	npc_says(_"Or actually half sisters. She is also half crazy, so we don't communicate much.")
@@ -63,7 +63,7 @@ LuaCode={
 	hide(10) show(99)
 }
 ----------------------------------------------------------------------
-Nr=40  Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
+Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 LuaCode={
 	npc_says(_"This is a library, not a book shop.")
 	npc_says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...") 
@@ -72,13 +72,13 @@ LuaCode={
 	hide(40) show(41)
 }
 ----------------------------------------------------------------------
-Nr=41  Text=_"So what interesting books do you have available right now?"
+Nr=41 Text=_"So what interesting books do you have available right now?"
 LuaCode={
 	npc_says_random(_"Some of these might interest you.",_"I only have a few programming volumes, feel free to look through them.")
 	trade_with("Tamara")
 }
 ----------------------------------------------------------------------
-Nr=99  Text=_"Thank you for the help."
+Nr=99 Text=_"Thank you for the help."
 LuaCode={
 	npc_says_random(_"No problem, and remember to return your books in time.","I aim to ensure that the great works of literature will survive this horrible apocalypse.","That is what I'm here for. Come back at any time.")
 	end_dialog()

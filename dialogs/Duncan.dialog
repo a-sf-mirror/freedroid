@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -50,14 +50,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi... Erm... Who are you?"
+Nr=0 Text=_"Hi... Erm... Who are you?"
 LuaCode={
 	npc_says(_"Duncan McNamara, The Red Guard's resident bomb maker, at your service.")
 	hide(0, 90) show(1)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"I would like to buy a bomb."
+Nr=1 Text=_"I would like to buy a bomb."
 LuaCode={
 	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.","Sure. These are my offers today.")
 	trade_with("Duncan")
@@ -65,7 +65,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"I see only grenades. Do you have something bigger?"
+Nr=2 Text=_"I see only grenades. Do you have something bigger?"
 LuaCode={
 	npc_says(_"My deepest apologies, I do not.")
 	npc_says(_"The Red Guard prohibits the sales of extremely destructive munitions.")
@@ -74,7 +74,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"The fall of the Red Guard? I am going to report that you are preparing a revolution!"
+Nr=3 Text=_"The fall of the Red Guard? I am going to report that you are preparing a revolution!"
 LuaCode={
 	npc_says(_"My word against yours. If you wish to try it, please, be my guest.")
 	npc_says(_"I am not preparing anything. I am just stating what I see as inevitable in the future.")
@@ -85,7 +85,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"The fall of the Red Guard? Tell me more about it."
+Nr=4 Text=_"The fall of the Red Guard? Tell me more about it."
 LuaCode={
 	npc_says(_"It is not the time to speak of such things yet. Come another day, and we shall talk about it in more detail.")
 	npc_says(_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them.")
@@ -93,21 +93,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"I want to buy some grenades."
+Nr=5 Text=_"I want to buy some grenades."
 LuaCode={
 	npc_says_random(_"Certainly.","Sure.", "With pleasure I am showing you my offers.")
 	trade_with("Duncan")
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"What kind of grenade is the best?"
+Nr=6 Text=_"What kind of grenade is the best?"
 LuaCode={
 	npc_says(_"You get what you pay for.")
 	hide(6)
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"How did you get into making explosives?"
+Nr=7 Text=_"How did you get into making explosives?"
 LuaCode={
 	npc_says(_"Twenty years ago there was a conflict.")
 	npc_says(_"A grenade I threw destroyed a being which killed many of... my people.")
@@ -116,7 +116,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text="STARTING KOAN QUEST"
+Nr=50 Text="STARTING KOAN QUEST"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Ah. Welcome again Linarian.")
@@ -127,7 +127,7 @@ LuaCode={
 	show(51, 59)
 }
 ----------------------------------------------------------------------
-Nr=51  Text=_"Tell me more."
+Nr=51 Text=_"Tell me more."
 LuaCode={
 	npc_says(_"Ah, excellent.")
 	npc_says(_"A... friend of mine, Koan, stole something of great value to me.")
@@ -136,7 +136,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=52  Text=_"I will get your property back."
+Nr=52 Text=_"I will get your property back."
 LuaCode={
 	npc_says(_"Excellent. I am pleased to hear this.")
 	npc_says(_"There is something you must know.")
@@ -147,7 +147,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=55  Text=_"What are those bots?"
+Nr=55 Text=_"What are those bots?"
 LuaCode={
 	npc_says(_"We call them 'Harvester'.")
 	npc_says(_"They were designed to chop down trees in the mountains.")
@@ -157,14 +157,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=56  Text=_"What is it that he took from you?"
+Nr=56 Text=_"What is it that he took from you?"
 LuaCode={
 	npc_says(_"A cube. Trust me, you can't miss it.")
 	hide(56)
 }
 ----------------------------------------------------------------------
 
-Nr=57  Text=_"That is all I need to know. I will find Koan."
+Nr=57 Text=_"That is all I need to know. I will find Koan."
 LuaCode={
 	npc_says(_"Only time will tell.")
 	npc_says(_"In any case, I'll let the Red Guard know to open the western gate to the desert.")
@@ -175,14 +175,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=59  Text=_"No, I don't find bloodshed a pleasurable activity."
+Nr=59 Text=_"No, I don't find bloodshed a pleasurable activity."
 LuaCode={
 	npc_says(_"That is fine. I will find someone else.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
 
-Nr=60  Text="MURDERING DONE OR SAVED HIM"
+Nr=60 Text="MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"So... Any news on the Koan matter?")
@@ -200,7 +200,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=62  Text=_"Yeah. I got him. I think this is your cube."
+Nr=62 Text=_"Yeah. I got him. I think this is your cube."
 LuaCode={
 	npc_says(_"Yes. I appreciate your help.")
 	hide(62, 63)
@@ -208,7 +208,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=63  Text=_"Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
+Nr=63 Text=_"Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
 LuaCode={
 	npc_says(_"Just a memento from a friend.")
 	npc_says(_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets.")
@@ -217,7 +217,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=64  Text=_"A 'few' bots? The place was crawling with Harvesters! I nearly got killed!"
+Nr=64 Text=_"A 'few' bots? The place was crawling with Harvesters! I nearly got killed!"
 LuaCode={
 	npc_says(_"There were only one hundred and twenty bots in the entire desert region. This hardly qualifies as many, considering the size of the area.")
 	tux_says(_"What? You know exactly how many bots were in the desert? Without being there? I don't like this.")
@@ -229,7 +229,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=67  Text=_"Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
+Nr=67 Text=_"Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
 LuaCode={
 	npc_says(_"I will.")
 	hide(67, 68)
@@ -237,7 +237,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=68  Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
+Nr=68 Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
 LuaCode={
 	npc_says(_"I understand. So be it.")
 	end_quest("Doing Duncan a favour")
@@ -246,7 +246,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=69  Text="DUMMY"
+Nr=69 Text="DUMMY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	end_dialog()
@@ -256,7 +256,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=90  Text=_"I feel you are... Different."
+Nr=90 Text=_"I feel you are... Different."
 LuaCode={
 	npc_says(_"What a great way to start a conversation.")
 	npc_says(_"Yes, that is true. I am not who I seem to be.")
@@ -268,7 +268,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=92  Text=_"Tell me who you are. I need to know."
+Nr=92 Text=_"Tell me who you are. I need to know."
 LuaCode={
 	npc_says(_"Twenty years ago, the people were kinder to each other.")
 	npc_says(_"I suggest you be kind to me as well, and I will be kind to you.")
@@ -277,14 +277,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=93  Text=_"I don't have any secrets."
+Nr=93 Text=_"I don't have any secrets."
 LuaCode={
 	npc_says(_"And neither do I.")
 	hide(93)
 }
 ----------------------------------------------------------------------
 
-Nr=96  Text=_"See you later."
+Nr=96 Text=_"See you later."
 LuaCode={
 	npc_says(_"I wish you cold winds.")
 	tux_says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")
@@ -294,7 +294,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=98  Text=_"I wish you cold winds."
+Nr=98 Text=_"I wish you cold winds."
 LuaCode={
 	npc_says(_"May the ice bring you wisdom.")
 	end_dialog()
@@ -302,7 +302,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says(_"See you later.")
 	end_dialog()

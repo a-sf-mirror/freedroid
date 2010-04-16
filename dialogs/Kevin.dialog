@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 If you have questions concerning FreedroidRPG, please send an email to:
 
@@ -58,7 +58,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
+Nr=0 Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
 LuaCode={ 
 	npc_says(_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired.")
 	npc_says(_"Don't worry about me. I'll be fine.")
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"What can you teach me about hacking?"
+Nr=3 Text=_"What can you teach me about hacking?"
 LuaCode={
 	if (not done_quest("And there was light...")) then 
 		if (has_quest("And there was light...")) then
@@ -106,7 +106,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"I'll see after the energy supply now."
+Nr=6 Text=_"I'll see after the energy supply now."
 LuaCode={
 	npc_says(_"That's great. You can't miss it. It's not hard to find. Enter my garden and find the lower station entrance there.")
 	npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
@@ -117,14 +117,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
+Nr=7 Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
 LuaCode={ 
 	npc_says(_"Too bad. Now get out of my sight.")
 	hide(6, 7)
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"About that project you said you have running..."
+Nr=8 Text=_"About that project you said you have running..."
 LuaCode={
 	if (done_quest("A kingdom for a cluster!")) then
 		npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
@@ -139,7 +139,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"Maybe I can help somehow to find a suitable cluster."
+Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
 LuaCode={
 	if (has_quest("A kingdom for a cluster!")) then 
 		npc_says(_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore.")
@@ -157,7 +157,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"How about some reward for securing your energy supply area?"
+Nr=10 Text=_"How about some reward for securing your energy supply area?"
 LuaCode={
 	if (has_cookie("kevin_reward1_given")) then
 		npc_says(_"I've already rewarded you for that. Don't steal my time. I'm busy.")
@@ -168,7 +168,7 @@ LuaCode={
 	hide(10)
 }
 ----------------------------------------------------------------------
-Nr=11  Text=_"I want to become a hacker."
+Nr=11 Text=_"I want to become a hacker."
 LuaCode={
 	npc_says(_"Your desire for information amuses me. Your wish will be granted. I will teach you how to improve your skill in designing hacking programs.")
 	npc_says(_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill.")
@@ -184,7 +184,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"I don't want any reward. Just gratitude."
+Nr=12 Text=_"I don't want any reward. Just gratitude."
 LuaCode={
 	npc_says(_"Of course you can have that. There, I'm most grateful to you. That should do.")
 	add_cookie("kevin_reward1_given")
@@ -194,7 +194,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"I want money."
+Nr=13 Text=_"I want money."
 LuaCode={
 	npc_says(_"Eh... Here, take these 900 circuits. That should be enough.")
 	add_gold(900)
@@ -204,7 +204,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Jasmine just blew up."
+Nr=20 Text=_"Jasmine just blew up."
 LuaCode={
 	npc_says(_"Oh. Right.")
 	npc_says(_"Well, thanks for telling me.")
@@ -214,7 +214,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"I thought you would be more worried about her death."
+Nr=21 Text=_"I thought you would be more worried about her death."
 LuaCode={
  	npc_says(_"Why? I have backups from last Friday. No reason to worry at all.")
 	npc_says(_"It will be a while till I get her together again, but she will be fine.")
@@ -222,7 +222,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text="Improve Hacking Program (cost 300 cash, 5 ability points)"
+Nr=30 Text="Improve Hacking Program (cost 300 cash, 5 ability points)"
 LuaCode={
 	if (del_gold(300)) then
 		if (del_points(5)) then
@@ -238,7 +238,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I'll be off then."
+Nr=99 Text=_"I'll be off then."
 LuaCode={ 
 	npc_says(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.")
 	end_dialog()

@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 If you have questions concerning FreedroidRPG, please send an email to:
@@ -48,14 +48,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here."
+Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
 	hide(0) show(1, 6)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"I want to join the Red Guard."
+Nr=1 Text=_"I want to join the Red Guard."
 LuaCode={
 	npc_says(_"Hmm... Really? Well, you cannot join just like that, you know...", "NO_WAIT")
 	npc_says(_"You must prove that you would make a good new member.")
@@ -63,7 +63,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"I really want to become a member."
+Nr=2 Text=_"I really want to become a member."
 LuaCode={
 	npc_says(_"This is not so easy. First you must establish a reputation around here. Ask around, talk to people and build your reputation.")
 	npc_says(_"Once you're a known character around here, we might let you join the ranks of the Guard.")
@@ -71,14 +71,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"What about some money instead?"
+Nr=3 Text=_"What about some money instead?"
 LuaCode={
 	npc_says(_"For 15 million circuits, no less, hehe.")
 	hide(3)
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"Maybe I could help somehow?"
+Nr=5 Text=_"Maybe I could help somehow?"
 LuaCode={
 	npc_says(_"That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us.")
 	npc_says(_"But since you are said to be powerful and a former hero, I'll once more put trust into a stranger.")
@@ -91,7 +91,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"How is it going?"
+Nr=6 Text=_"How is it going?"
 LuaCode={
 	if (has_quest("Opening a can of bots...")) then
 		if (done_quest("Opening a can of bots...")) then
@@ -100,7 +100,7 @@ LuaCode={
 				npc_says(_"Rest assured that we will never forget your brave activity for our community.")
 			else
 				npc_says(_"Man, you really did it! I can hardly believe it, but all the bots are gone!", "NO_WAIT")
-				npc_says(_"Take these 500 circuits as a reward.  And be assured that you've earned my deepest respect, Linarian.")
+				npc_says(_"Take these 500 circuits as a reward. And be assured that you've earned my deepest respect, Linarian.")
 				npc_says(_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots.")
 				add_gold(500)
 				add_cookie("reward_for_warehouse_given")
@@ -119,7 +119,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"Have I done enough quests to become a member now?"
+Nr=12 Text=_"Have I done enough quests to become a member now?"
 LuaCode={
 	if (not done_quest("The yellow toolkit")) then
 		npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.")
@@ -195,7 +195,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=37  Text=_"I've heard Richard obtained new information on the town."
+Nr=37 Text=_"I've heard Richard obtained new information on the town."
 LuaCode={
 	npc_says(_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots.")
 	npc_says(_"The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility.")
@@ -206,7 +206,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=38  Text=_"I'd like to participate in this operation."
+Nr=38 Text=_"I'd like to participate in this operation."
 LuaCode={
 	npc_says(_"That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate.")
 	npc_says(_"That is a good sign, because it shows that the key combinations from the data cube were correct.")
@@ -216,7 +216,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=39  Text=_"OK. I'll be careful. But I'll do it."
+Nr=39 Text=_"OK. I'll be careful. But I'll do it."
 LuaCode={
 	npc_says(_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore.")
 	npc_says(_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance.")
@@ -227,7 +227,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"I don't feel like doing it now. I'd rather prepare some more."
+Nr=40 Text=_"I don't feel like doing it now. I'd rather prepare some more."
 LuaCode={
 	npc_says(_"Good. You should be well prepared if you intend to go.")
 	npc_says(_"Also there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach.")
@@ -235,7 +235,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=44  Text=_"It's done. Your soldiers were killed, but I managed to have a word with the shield control droid. The access to the bot factory is now open."
+Nr=44 Text=_"It's done. Your soldiers were killed, but I managed to have a word with the shield control droid. The access to the bot factory is now open."
 LuaCode={
 	npc_says(_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office.")
 	npc_says(_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office.")
@@ -248,13 +248,13 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=45  Text=_"I will need some time to get myself ready before I clean up the Hell Fortress."
+Nr=45 Text=_"I will need some time to get myself ready before I clean up the Hell Fortress."
 LuaCode={
 	npc_says(_"You had better be ready.")
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I'll be going then."
+Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"See you later.")
 	end_dialog()

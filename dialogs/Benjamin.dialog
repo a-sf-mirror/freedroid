@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 If you have questions concerning FreedroidRPG, please send an email to:
 
@@ -36,14 +36,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hello!"
+Nr=0 Text=_"Hello!"
 LuaCode={
 	npc_says(_"Ah, so you are the new member. Welcome. My name is Benjamin, and I take care of our ranged weaponry here in the citadel.")
 	hide(0) show(1, 6, 20)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"What are you doing here alone? "
+Nr=1 Text=_"What are you doing here alone? "
 LuaCode={
 	npc_says(_"I'm experimenting with new designs. I want to redesign the laser pistol.")
 	npc_says(_"A lot of energy is wasted somewhere during firing, and I have no idea where. If I could find the source of the problem, the gun would become much more powerful.")
@@ -52,7 +52,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"Did you think about somehow gathering the excess heat and using it to make the beam stronger?"
+Nr=3 Text=_"Did you think about somehow gathering the excess heat and using it to make the beam stronger?"
 LuaCode={
 	npc_says(_"Hmm... There might be something in that idea. I will think about it.")
 	add_cookie("benjamin_better_beams")
@@ -60,7 +60,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"If I were you, I would focus my work on the firing rate."
+Nr=4 Text=_"If I were you, I would focus my work on the firing rate."
 LuaCode={
 	npc_says(_"Hmm... I will think about it. Hmm...")
 	add_cookie("benjamin_faster_shooting")
@@ -68,7 +68,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"You know, laser pistols are not a very promising weapon. I think you should work on something different."
+Nr=5 Text=_"You know, laser pistols are not a very promising weapon. I think you should work on something different."
 LuaCode={
 	npc_says(_"Yeah, maybe you are right. I will think about it.")
 	add_cookie("benjamin_something_else")
@@ -76,7 +76,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"What weapons are available to the members of the Red Guard?"
+Nr=6 Text=_"What weapons are available to the members of the Red Guard?"
 LuaCode={
 	npc_says(_"Well, for novice members there are simple laser and plasma pistols. They have their share of problems, but they do the trick nine times out of ten.")
 	npc_says(_"For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency or to highly experienced people.")
@@ -84,7 +84,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"Plasma sounds deadly."
+Nr=7 Text=_"Plasma sounds deadly."
 LuaCode={
 	npc_says(_"It is!", "NO_WAIT")
 	npc_says(_"While many people find the ammunition canisters too big, and the bullets too slow, they cannot deny that once plasma hits, it leaves big holes.")
@@ -97,7 +97,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"Tell me more about laser weapons."
+Nr=8 Text=_"Tell me more about laser weapons."
 LuaCode={
 	npc_says(_"Laser is an acronym for Light Amplification by Stimulated Emission of Radiation.")
 	npc_says(_"Laser is the technology employed in most of our weaponry. It uses a focused light beam to cause damage.")
@@ -109,14 +109,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"I am curious about the exterminator."
+Nr=9 Text=_"I am curious about the exterminator."
 LuaCode={
 	npc_says(_"Sorry, but that is classified and confidential. I have said too much already.")
 	hide(9) show(40)
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Can you teach me how to properly use rifles and guns?"
+Nr=20 Text=_"Can you teach me how to properly use rifles and guns?"
 LuaCode={ 
 	if (get_skill("ranged") == 0) then
 		npc_says(_"If anyone in this city knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
@@ -181,21 +181,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"Yes, I want to improve my ranged weapons skill. (cost 3 training points, 100 cash)"
+Nr=21 Text=_"Yes, I want to improve my ranged weapons skill. (cost 3 training points, 100 cash)"
 LuaCode={
 	if (del_gold(100)) then
 		if (del_points(3)) then
 			npc_says(_"Now the most important thing is that you turn off the auto-aim on your weapon, like this.", "NO_WAIT")
 			npc_says(_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire.")
 			npc_says(_"Next important thing is to remember how to properly fire a shot.", "NO_WAIT")
-			npc_says(_"Watch your target closely.  Pretend you're moving with it. Aim for the head.")
+			npc_says(_"Watch your target closely. Pretend you're moving with it. Aim for the head.")
 			npc_says(_"When you feel completely in sync with your target, then you pull the trigger.", "NO_WAIT")
 			npc_says(_"Good. You are learning fast. Try it a few more times.")
 			npc_says(_"Good. I think that it is enough for today.")
 			improve_skill("ranged")
 			hide(21, 29) show(20)
 		else
-			npc_says(_"You are not ready.  Go kill some bots and come back.")
+			npc_says(_"You are not ready. Go kill some bots and come back.")
 			add_gold(100)--refund
 		end
 	else
@@ -204,7 +204,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"Yes I want even more training. (cost 6 training points, 200 cash)"
+Nr=22 Text=_"Yes I want even more training. (cost 6 training points, 200 cash)"
 LuaCode={
 	if (del_gold(200)) then
 		if (del_points(6)) then
@@ -223,7 +223,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_"Yes I accept. (cost 9 training points, 300 cash)"
+Nr=23 Text=_"Yes I accept. (cost 9 training points, 300 cash)"
 LuaCode={
 	if (del_gold(300)) then
 		if (del_points(9)) then
@@ -243,7 +243,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24  Text=_"Yes I accept. (cost 12 training points, 400 cash)"
+Nr=24 Text=_"Yes I accept. (cost 12 training points, 400 cash)"
 LuaCode={
 	if (del_gold(400)) then
 		if (del_points(12)) then
@@ -263,7 +263,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=25  Text=_"Yes I want to become a god in ranged combat. (cost 15 training points, 500 cash)"
+Nr=25 Text=_"Yes I want to become a god in ranged combat. (cost 15 training points, 500 cash)"
 LuaCode={
 	if (del_gold(500)) then
 		if (del_points(15)) then
@@ -283,13 +283,13 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29  Text=_"No, thanks, I dont feel I can afford that currently."
+Nr=29 Text=_"No, thanks, I dont feel I can afford that currently."
 LuaCode={
 	hide(21, 22, 23, 24, 25, 29) show(20)
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text="I will make it worth your while..."
+Nr=40 Text="I will make it worth your while..."
 LuaCode={
 	npc_says(_"Intriguing.")
 	npc_says(_"Fifty circuits per bit of information.", "NO_WAIT")
@@ -298,7 +298,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_"How many exterminators does the Red Guard have?"
+Nr=41 Text=_"How many exterminators does the Red Guard have?"
 LuaCode={
 	if (del_gold(50)) then 
 		npc_says(_"It might come as a surprise to you, but we don't have many. A bit over twenty, last time I checked.", "NO_WAIT")
@@ -310,7 +310,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=43  Text=_"Well, I am a bit short on cash right now..."
+Nr=43 Text=_"Well, I am a bit short on cash right now..."
 LuaCode={
 	npc_says(_"Linarian, I thought we had an agreement. Fifty per infobit. My silence can be only broken with currency, so if you want to know, you have to pay.", "NO_WAIT")
 	npc_says(_"This conversation is now over.")
@@ -318,7 +318,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=44  Text=_"That is not a lot. Why there are so few of them right now?"
+Nr=44 Text=_"That is not a lot. Why there are so few of them right now?"
 LuaCode={
 	if (del_gold(50)) then
 		npc_says(_"All of them were a very lucky find.", "NO_WAIT")
@@ -332,7 +332,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=46  Text=_"What is the exterminator ammunition made from?"
+Nr=46 Text=_"What is the exterminator ammunition made from?"
 LuaCode={
 	if (del_gold(50)) then
 		npc_says(_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, but we are not too picky.")
@@ -346,7 +346,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=47  Text=_"Tell me who designed the exterminator."
+Nr=47 Text=_"Tell me who designed the exterminator."
 LuaCode={
 	npc_says(_"That answer is on the house. Heh.", "NO_WAIT")
 	npc_says(_"We do not know, Linarian. We have absolutely no clue.")
@@ -354,7 +354,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=49  Text=_"What was the failed mission?"
+Nr=49 Text=_"What was the failed mission?"
 LuaCode={
 	npc_says(_"Ugh. That will cost you triple.", "NO_WAIT")
 	npc_says(_"No. Wait.")
@@ -364,7 +364,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=51  Text=_"What makes the exterminator so powerful?"
+Nr=51 Text=_"What makes the exterminator so powerful?"
 LuaCode={
 	if (get_gold(50)) then
 		npc_says(_"This is a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something.")
@@ -377,13 +377,13 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=69  Text=_"That is all I want to know."
+Nr=69 Text=_"That is all I want to know."
 LuaCode={
 	npc_says(_"Very well. This conversation never happened.")
 	hide(41, 44, 46, 47, 49, 51, 69)
 }
 ----------------------------------------------------------------------
-Nr=99  Text=_"I will be going then."
+Nr=99 Text=_"I will be going then."
 LuaCode={
 	npc_says(_"See you later!")
 	end_dialog()

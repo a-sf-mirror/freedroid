@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 If you have questions concerning FreedroidRPG, please send an email to:
@@ -57,14 +57,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hello! I'm new here."
+Nr=0 Text=_"Hello! I'm new here."
 LuaCode={ 
 	npc_says(_"Hello. I'm Bender, the dead man of this camp.")
 	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
+Nr=1 Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
 LuaCode={ 
 	npc_says(_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills.")
 	npc_says(_"And yet, I might be dead soon. The doc warned me, but I didn't listen. Damn.")
@@ -72,7 +72,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"You took too many strength pills and now you're sick?"
+Nr=2 Text=_"You took too many strength pills and now you're sick?"
 LuaCode={
 	npc_says(_"Nah. The strength pills were fine. They made me strong. The doc said so.")
 	npc_says(_"It was the brain enlargement pills. They did me no good, man.")
@@ -80,14 +80,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"What made you so sick?"
+Nr=3 Text=_"What made you so sick?"
 LuaCode={
 	npc_says(_"It was the brain enlargement pills. They did me no good, man.")
 	hide(2, 3) show(4, 10)
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"Brain enlargement pills? Sounds ridiculous!"
+Nr=4 Text=_"Brain enlargement pills? Sounds ridiculous!"
 LuaCode={
 	npc_says(_"You know man, I got those offers everybody gets.")
 	npc_says(_"They offer some brain enlargement pills to enhance brain performance.")
@@ -98,14 +98,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"But if you aren't dumb, why the brain enlargement pills?"
+Nr=5 Text=_"But if you aren't dumb, why the brain enlargement pills?"
 LuaCode={
 	npc_says(_"Because they said I was dumb. So I had to do something about it, eh?")
 	hide(5)
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"Isn't there some doctor in town who could cure you?"
+Nr=6 Text=_"Isn't there some doctor in town who could cure you?"
 LuaCode={ 
 	npc_says(_"Yeah, the doc could help. But he won't. I've threatened him, but he won't.")
 	npc_says(_"He's so angry cause I didn't listen. He warned me about the brain enlargement pill offers.")
@@ -114,7 +114,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"Maybe I can help you somehow?"
+Nr=7 Text=_"Maybe I can help you somehow?"
 LuaCode={
 	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
 	npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
@@ -124,7 +124,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"I'm sorry, but it looks like there's nothing I could do for you."
+Nr=8 Text=_"I'm sorry, but it looks like there's nothing I could do for you."
 LuaCode={ 
 	npc_says(_"Of course not. You're not a doctor. Only the doctor has the right medicine.")
 	npc_says(_"But this rat would rather let me die!")
@@ -133,7 +133,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"I've got your medicine. With best wishes from the doctor."
+Nr=9 Text=_"I've got your medicine. With best wishes from the doctor."
 LuaCode={
 	npc_says(_"Wow, you really did it! I guess you beat the hell out of him.")
 	npc_says(_"He wouldn't help me even after I pounded him a bit. A big bit.")
@@ -150,7 +150,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"Maybe taking the brain enlargement pills really was stupid."
+Nr=10 Text=_"Maybe taking the brain enlargement pills really was stupid."
 LuaCode={
 	npc_says(_"WHAT? Did you just say I'm stupid?")
 	npc_says(_"Don't say it, man.")
@@ -159,7 +159,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"Where can I find this doctor?"
+Nr=11 Text=_"Where can I find this doctor?"
 LuaCode={
 	npc_says(_"He's right inside this building. I'm waiting here for him, man.")
 	npc_says(_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!")
@@ -168,7 +168,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"About that medicine that you need..."
+Nr=12 Text=_"About that medicine that you need..."
 LuaCode={ 
 	npc_says(_"What have you got?")
 	npc_says(_"What? You have nothing?")
@@ -177,7 +177,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"How are you doing?"
+Nr=13 Text=_"How are you doing?"
 LuaCode={ 
 	npc_says(_"Much better. I'm cured. You're a good guy, man!","NO_WAIT")
 	npc_says(_"What was your name again?")
@@ -187,7 +187,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_"What secrets?  Like a secret handshake?"
+Nr=14 Text=_"What secrets? Like a secret handshake?"
 LuaCode={ 
 	hide(14)
 	npc_says(_"Nah. But that is an awesome idea.")
@@ -203,8 +203,8 @@ LuaCode={
 	npc_says(_"I know the shop keeper Lily's password.")
 	npc_says(_"I sometimes login to her account and mess with it for the LULZ.")
 	npc_says(_"It's the end of the world as we know it, and I... am so incredibly bored.")
-  tux_says(_"Erm... excuse me?")
-  npc_says(_"Just a song my mother used to sing to me.")
+	tux_says(_"Erm... excuse me?")
+	npc_says(_"Just a song my mother used to sing to me.")
 	show(16,17)
 }
 ----------------------------------------------------------------------
@@ -223,12 +223,12 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=17 Text=_"What are you doing now?"
 LuaCode={
-	npc_says(_"I'm killing time.  Guard work is very boring.")
+	npc_says(_"I'm killing time. Guard work is very boring.")
 }
 
 ----------------------------------------------------------------------
 
-Nr=50  Text=_"Yeah, it was a totally idiotic idea to take those pills."
+Nr=50 Text=_"Yeah, it was a totally idiotic idea to take those pills."
 LuaCode={
 	npc_says(_"What? I'm not an idiot! Understood?")
 	npc_says(_"No one says I'm stupid! I'm NOT STUPID!")
@@ -238,7 +238,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={ 
 	npc_says_random(_"Later, man!",_"Stay cool dude.")
 	end_dialog()

@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -44,14 +44,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"cd repair&settings/"
+Nr=1 Text=_"cd repair&settings/"
 LuaCode={
 	run_subdialog("StandardBotAfterTakeover_sub.dialog")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"./hold_position.sh"
+Nr=11 Text=_"./hold_position.sh"
 LuaCode={
 	npc_says(_"Holding position.", "NO_WAIT")
 	npc_says(_"script V 1.0.2 (c) gnu.org, 2054", "NO_WAIT")
@@ -64,7 +64,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"./follow_me.sh"
+Nr=12 Text=_"./follow_me.sh"
 LuaCode={
 	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
@@ -76,12 +76,12 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"./move_freely.sh"
+Nr=13 Text=_"./move_freely.sh"
 LuaCode={
 	npc_says(_"Enable movement.", "NO_WAIT")
 	npc_says(_"script V 1.0.5 (c) gnu.org, 2054", "NO_WAIT")
 	npc_says(_"Checking requirements...")
-	npc_says(_"Movement unit: Power-up...  [Done].", "NO_WAIT")
+	npc_says(_"Movement unit: Power-up... [Done].", "NO_WAIT")
 	npc_says(_"Resuming normal patrol operations... [Done]", "NO_WAIT")
 	npc_says(_"Status: Patrolling.", "NO_WAIT")
 	set_bot_state("free")
@@ -90,7 +90,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"./hcf.py"
+Nr=20 Text=_"./hcf.py"
 LuaCode={
 	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
 		npc_says(_"Are you really sure you want to destroy this robot? Y/N")
@@ -99,7 +99,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"Yes"
+Nr=21 Text=_"Yes"
 LuaCode={
 	npc_says(_"Destruction confirmed.")
 	hide(21,22)
@@ -107,7 +107,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"No"
+Nr=22 Text=_"No"
 LuaCode={
 	npc_says(_"Destrucion averted.")
 	hide(21,22) show(1,11,12,13,20,99)
@@ -136,7 +136,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"logout"
+Nr=99 Text=_"logout"
 LuaCode={
 	npc_says(_"Closing remote connection...")
 	hide(21, 22)

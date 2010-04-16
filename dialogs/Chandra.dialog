@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -38,14 +38,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here."
+Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Welcome. I am Chandra, the local sage in this old town.")
 	hide(0) show(1, 2, 9)
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"What can you tell me about this place?"
+Nr=1 Text=_"What can you tell me about this place?"
 LuaCode={
 	npc_says(_"This small town used to be a somewhat successful mining community, exporting rare earth materials and other resources to the rest of the solar system.")
 	npc_says(_"The mines have depleted recently, however. The town was under a threat of bankruptcy. Living here became harder and many left to seek new opportunities elsewhere.")
@@ -55,7 +55,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Where can I get better equipment?"
+Nr=2 Text=_"Where can I get better equipment?"
 LuaCode={
 	npc_says(_"The shop is to the north, near the gate. Ms. Stone always has a good range of equipment there, with fair prices too.")
 	npc_says(_"Not that you have much choice.")
@@ -64,7 +64,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"So what's so strange about the attack?"
+Nr=3 Text=_"So what's so strange about the attack?"
 LuaCode={
 	npc_says(_"According to my calculations from the Fermi estimate, there are about seven million bots active in the region, everything from cleaner bots and servant droids to much more dangerous ones.")
 	npc_says(_"Now, I think you will agree with me that the following statement is true: If bots, then death to everything alive.")
@@ -80,7 +80,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"What do you know about the hostile bots?"
+Nr=5 Text=_"What do you know about the hostile bots?"
 LuaCode={
 	npc_says(_"The phenomenon of hostile bots has occupied my mind for quite some time. There are some strange irrationalities in this behaviour, that I cannot explain.")
 	npc_says(_"This concerns not only the suddenness of the attack but also the methods and the scale of it all.")
@@ -88,7 +88,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"What types of bots are out there?"
+Nr=6 Text=_"What types of bots are out there?"
 LuaCode={
 	npc_says(_"There are many. Each kind of bot has a number consisting of three digits. The first one is the most significant, the class of a bot.")
 	npc_says(_"I know a bit about three classes.")
@@ -100,7 +100,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"I want to leave this place."
+Nr=7 Text=_"I want to leave this place."
 LuaCode={
 	npc_says(_"We all do, Linarian, we all do.")
 	npc_says(_"The act in question is made impossible by the quasi-infinite bots outside of the city walls.")
@@ -109,7 +109,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"No, I meant I would like to leave this world."
+Nr=8 Text=_"No, I meant I would like to leave this world."
 LuaCode={
 	npc_says(_"Simple. Walk outside the city walls, and the bots will send you to the other world within a few minutes.")
 	npc_says(_"Unless you mean leave the planet, in which case that is impossible.")
@@ -118,7 +118,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=9  Text=_"I keep getting beaten up by the bots. What can I do?"
+Nr=9 Text=_"I keep getting beaten up by the bots. What can I do?"
 LuaCode={
 	npc_says(_"There are many things you can do. The first is to fight more bots.")
 	tux_says(_"Er... Wouldn't that cause me to get beaten up more and therefore be counter-productive?")
@@ -134,7 +134,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"Do you think I could join the guardians of this town?"
+Nr=10 Text=_"Do you think I could join the guardians of this town?"
 LuaCode={
 	npc_says(_"The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can fix things.")
 	npc_says(_"Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here.")
@@ -143,7 +143,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"What bots are in the 100 class?"
+Nr=11 Text=_"What bots are in the 100 class?"
 LuaCode={
 	npc_says(_"I know of two types, the 123 and the 139. The former is a simple cleaning bot, and is fairly weak. The latter is a mobile trash compactor. Don't get your flippers get caught in one of those.")
 	tux_says(_"I've seen some of those on my way here. They were... Shooting at me.")
@@ -155,7 +155,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"What bots are in the 200 class?"
+Nr=12 Text=_"What bots are in the 200 class?"
 LuaCode={
 	npc_says(_"In fitting with the lazy nature of humans, there are several servant bots of the 200 class.")
 	npc_says(_"The 247 is often called the 'Banshee'. Being a simple servant robot, it isn't very well equipped to kill, although its arms are quite strong.")
@@ -171,7 +171,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"What other bots are out there?"
+Nr=13 Text=_"What other bots are out there?"
 LuaCode={
 	npc_says(_"Though I do not know the details, I assure you there are many. Robots and automated machinery served almost every purpose you can imagine, and probably some that you can't.")
 	npc_says(_"They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who know them up close are pushing up daisies.")
@@ -179,7 +179,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"Thank you for your wise words."
+Nr=99 Text=_"Thank you for your wise words."
 LuaCode={
 	npc_says_random(_"Feel free to come here any time you want.","You flatter me.")
 	end_dialog()

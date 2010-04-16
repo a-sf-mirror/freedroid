@@ -59,14 +59,14 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Yes, it would be most kind of you. I dont remember anything."
+Nr=1 Text=_"Yes, it would be most kind of you. I dont remember anything."
 LuaCode={
 	npc_says(_"What can I help you with?")
 	hide(1, 7) show(2, 3, 4, 5, 8)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"What can you tell me about finding my way in the world?"
+Nr=2 Text=_"What can you tell me about finding my way in the world?"
 LuaCode={
 	npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.")
 	npc_says(_"I'll use the term HUD to denote that in this explanation.")
@@ -81,7 +81,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"My limbs don't seem to want to work properly. Can you help me with that?"
+Nr=3 Text=_"My limbs don't seem to want to work properly. Can you help me with that?"
 LuaCode={
 	npc_says(_"Ah yes, movement. It's second nature to us humans, but our research with you in the past showed that your brain seems to work more like a computer.")
 	npc_says(_"To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.")
@@ -95,7 +95,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"What else makes me different as a Linarian?"
+Nr=4 Text=_"What else makes me different as a Linarian?"
 LuaCode={
 	npc_says(_"As a Linarian, you have some special abilities that no human does. In specific, you seem to be able to translate programming source code into something like magic.")
 	npc_says(_"Using these abilities, called programs, seems to affect your body temperature, which you must regulate.")
@@ -107,7 +107,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"I'm sensing some sort of strange presence in the vicinity."
+Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 LuaCode={
 	npc_says(_"Ah, yes.", "NO_WAIT")
 	npc_says(_"Linarians seem to have some sort of affinity for the detection of items.")
@@ -122,15 +122,15 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"No, thanks, I still remember how to walk, run and pick up things and which way is north."
+Nr=7 Text=_"No, thanks, I still remember how to walk, run and pick up things and which way is north."
 LuaCode={ next(9) hide(7) }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"Thank you, that was very informative. Can we move on now?"
+Nr=8 Text=_"Thank you, that was very informative. Can we move on now?"
 LuaCode={ next(9) hide(8) }
 ----------------------------------------------------------------------
 
-Nr=9  Text="I'm eager to learn more."
+Nr=9 Text="I'm eager to learn more."
 LuaCode={
 	npc_says(_"Ok, follow me into the next area then.")
 	change_obstacle_state("TutorialZigzag1", "opened")
@@ -143,7 +143,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"What is in that chest?"
+Nr=10 Text=_"What is in that chest?"
 LuaCode={
 	npc_says(_"Well, open it up and find out by simply clicking on it with the left mouse button.")
 	npc_says(_"I'll tell you more after you've done it.")
@@ -152,7 +152,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"Some items came out."
+Nr=11 Text=_"Some items came out."
 LuaCode={
 	npc_says(_"Well, you've discovered a great secret: chests sometimes contain items.")
 	npc_says(_"We humans have a fascination with hiding our treasures. What comprises a treasure means different things to different people.")
@@ -164,7 +164,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"Armor? I should know more about this."
+Nr=12 Text=_"Armor? I should know more about this."
 LuaCode={
 	npc_says(_"In the years since you entered stasis, mankind has done much research in the field of robotics.")
 	npc_says(_"One branch in particular that has served us well is the realm of nanotechnology.")
@@ -175,7 +175,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"How does wearing clothes and holding shields help me?"
+Nr=13 Text=_"How does wearing clothes and holding shields help me?"
 LuaCode={
 	npc_says(_"Well, it can help you avoid indecent exposure charges.")
 	tux_says(_"...")
@@ -187,7 +187,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=14  Text=_"That sounds useful. How do I use armor?"
+Nr=14 Text=_"That sounds useful. How do I use armor?"
 LuaCode={
 	npc_says(_"Well, let me start by saying that there are four classes of armor: headgear, shoes, body armor, and shields.")
 	npc_says(_"When you pick up a piece of armor of a particular class, and you don't already have one equipped, you will automatically equip it if you can.")
@@ -199,7 +199,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=15  Text=_"I wouldn't want to lose any armor. What can I do about that?"
+Nr=15 Text=_"I wouldn't want to lose any armor. What can I do about that?"
 LuaCode={
 	npc_says(_"Well, there are several ways to keep that from happening.")
 	npc_says(_"First, any equipped item in poor condition will show up yellow on your HUD. If the item reaches critical condition, it will be red. Well, at least if you interface with reality through OGL. If your visual reality interface is done with only SDL, colors won't change.")
@@ -212,7 +212,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16  Text=_"You mentioned discarding an item. Why would I want to do that?"
+Nr=16 Text=_"You mentioned discarding an item. Why would I want to do that?"
 LuaCode={
 	npc_says(_"Well, I can think of a few reasons.")
 	npc_says(_"The most obvious would be not having enough room in your inventory. If you need a different item more, then you shouldn't be afraid to drop a less valuable item.")
@@ -225,7 +225,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=17  Text=_"Repair equipment program? How do I use that?"
+Nr=17 Text=_"Repair equipment program? How do I use that?"
 LuaCode={
 	npc_says(_"Perhaps I should start by explaining programs in general. You already know about some programs, and that they can be accessed through your HUD.")
 	npc_says(_"To use a program, select it through your HUD. Then, run the program by right clicking. You can target an enemy, an item, or just the world depending on the program.")
@@ -238,7 +238,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_"I think I'm ready for the next section of the tutorial."
+Nr=19 Text=_"I think I'm ready for the next section of the tutorial."
 LuaCode={
 	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand to hand combat.")
 	if (has_cookie("has_repair")) then
@@ -249,7 +249,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Can you tell me how to fight the bots?"
+Nr=20 Text=_"Can you tell me how to fight the bots?"
 LuaCode={
 	npc_says(_"I will certainly try my best.")
 	npc_says(_"It's odd to think that a flightless bird would be such a scrapper, but you Linarians have been surprising us since the beginning.")
@@ -261,7 +261,7 @@ LuaCode={
 }
 ---------------------------------------------------------------------
 
-Nr=21  Text=_"So I'm supposed to fight bots with my fists?"
+Nr=21 Text=_"So I'm supposed to fight bots with my fists?"
 LuaCode={
 	npc_says(_"There may be times when you have no choice.")
 	npc_says(_"Melee combat, armed or unarmed, can be initiated by left clicking on an enemy.")
@@ -278,7 +278,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"Tell me about health drinks."
+Nr=22 Text=_"Tell me about health drinks."
 LuaCode={
 	npc_says(_"Man has practiced medicine in one form or another for hundreds of years.")
 	npc_says(_"Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health.")
@@ -292,7 +292,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_"I'm ready to fight my first bot."
+Nr=23 Text=_"I'm ready to fight my first bot."
 LuaCode={
 	npc_says(_"We keep two bots captive for melee practice.")
 	npc_says(_"I've unlocked the door leading to the first bot. Take care of it, then come back and talk to me.")
@@ -309,7 +309,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24  Text=_"Can you heal me?"
+Nr=24 Text=_"Can you heal me?"
 LuaCode={
 	npc_says(_"You should be more careful, Linarian. But yes, I can heal you.")
 	npc_says(_"There, all better.")
@@ -317,7 +317,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=25  Text=_"I've beaten the first bot."
+Nr=25 Text=_"I've beaten the first bot."
 LuaCode={
 	if (has_item_backpack("Entropy Inverter") > 0) then
 		npc_says(_"So you have. Well done.")
@@ -338,7 +338,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=26  Text=_"You mentioned another bot?"
+Nr=26 Text=_"You mentioned another bot?"
 LuaCode={
 	npc_says(_"That's correct. The second bot is a lot more dangerous, and you're not likely to make much headway against it with your fists.")
 	npc_says(_"Lucky for you, there's another dimension to melee combat.")
@@ -350,7 +350,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=27  Text=_"I'm ready to take the next bot on."
+Nr=27 Text=_"I'm ready to take the next bot on."
 LuaCode={
 	npc_says(_"I certainly hope so. I will heal you before you go to the next room.")
 	npc_says(_"I'm also giving you another healing drink, just in case.")
@@ -372,7 +372,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=28  Text=_"I've beaten the second bot."
+Nr=28 Text=_"I've beaten the second bot."
 LuaCode={
 	if (has_item_backpack("Tachyon Condensator") > 0) then
 		npc_says(_"Very good! You've completed your melee training.")
@@ -394,7 +394,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29  Text=_"I'm ready to move on."
+Nr=29 Text=_"I'm ready to move on."
 LuaCode={
 	if (has_cookie("has_gun")) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
@@ -407,7 +407,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30  Text=_"Ranged weaponry seems safer than getting up close and personal."
+Nr=30 Text=_"Ranged weaponry seems safer than getting up close and personal."
 LuaCode={
 	npc_says(_"Well, Linarian, most of the time, it is.")
 	npc_says(_"There are some bots with ranged weaponry, but we don't have any of those in captivity.")
@@ -415,7 +415,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31  Text=_"So what can you tell me about guns?"
+Nr=31 Text=_"So what can you tell me about guns?"
 LuaCode={
 	npc_says(_"The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come in swinging range.")
 	npc_says(_"There are three basic ways to do this: traditional firearms, lasers, and plasma weapons.")
@@ -427,7 +427,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=32  Text=_"So how do I use guns?"
+Nr=32 Text=_"So how do I use guns?"
 LuaCode={
 	npc_says(_"Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for.")
 	npc_says(_"Next, simply left click on your target, and you'll begin firing.")
@@ -441,7 +441,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=33  Text=_"I think I understand how to use guns now."
+Nr=33 Text=_"I think I understand how to use guns now."
 LuaCode={
 	npc_says(_"In that case, I'll let you in to the armory. There are some crates and chests in there with weapons and ammunition.")
 	npc_says(_"Be careful though, smashing open crates and barrels could hurt you.")
@@ -469,7 +469,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=37  Text=_"I killed all the bots."
+Nr=37 Text=_"I killed all the bots."
 LuaCode={
 	if (done_quest("Tutorial Shooting")) then
 		npc_says(_"Excellent job.")
@@ -487,7 +487,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=38  Text=_"I'm ready to move on."
+Nr=38 Text=_"I'm ready to move on."
 LuaCode={
 	if (has_item_backpack(".22 Automatic") > 0 and has_item_backpack("Laser pistol") > 0 and has_item_backpack("Plasma pistol") > 0) then
 		npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
@@ -506,7 +506,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=39  Text=_"I'd rather just move on to the next section of the tutorial."
+Nr=39 Text=_"I'd rather just move on to the next section of the tutorial."
 LuaCode={
 	npc_says(_"As you wish, Linarian.")
 	add_diary_entry("Tutorial Shooting", "I decided not to finish the shooting tutorial.")
@@ -517,7 +517,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"Why are we stopping?"
+Nr=40 Text=_"Why are we stopping?"
 LuaCode={
 	npc_says(_"You've done well so far, Linarian. Let's take a little break.")
 	npc_says(_"Once you get out into the real world, you'll find that your current abilities aren't always enough to survive.")
@@ -539,7 +539,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_"I'll have to keep that in mind."
+Nr=41 Text=_"I'll have to keep that in mind."
 LuaCode={
 	npc_says(_"Well, how about you try it out?")
 	npc_says(_"I'll give you some points to spend, and you can distribute them as you like.")
@@ -551,7 +551,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=42  Text=_"Alright, I'm ready to go hack some bots."
+Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 LuaCode={
 	npc_says(_"I'll unlock the door then. Talk to me in the next area.")
 	change_obstacle_state("TutorialTakeover", "opened")
@@ -560,7 +560,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50  Text=_"So how does this work?"
+Nr=50 Text=_"So how does this work?"
 LuaCode={
 	npc_says(_"We talked about programs before. Now, we're going to focus on hacking programs in particular.")
 	npc_says(_"As I mentioned before, your brain works in a way remarkably similar to a central processing unit.")
@@ -573,7 +573,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=51  Text=_"Tell me about taking bots over."
+Nr=51 Text=_"Tell me about taking bots over."
 LuaCode={
 	npc_says(_"I'm afraid that you will have to experience it for yourself to really understand.")
 	npc_says(_"However, you did leave yourself instructions before you went into stasis sleep.")
@@ -591,7 +591,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=52  Text=_"What was that about activating more cores than the bot?"
+Nr=52 Text=_"What was that about activating more cores than the bot?"
 LuaCode={
 	npc_says(_"Ah, yes. While you are busy trying to take the bot over, it will be busy trying to stop you.")
 	npc_says(_"The truth is, if the bot programming was perfect, it would be almost impossible to defeat.")
@@ -602,7 +602,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=53  Text=_"Tell me about more advanced techniques."
+Nr=53 Text=_"Tell me about more advanced techniques."
 LuaCode={
 	npc_says(_"Each charge will activate and remain active for a certain amount of time. This will let you take over a core that a bot just took over.")
 	npc_says(_"Sometimes, the bots will already have charges on the wires. When you activate one of these, it will increase the time that wire is activated for.")
@@ -617,7 +617,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=54  Text=_"I'm ready to try hacking bots."
+Nr=54 Text=_"I'm ready to try hacking bots."
 LuaCode={
 	npc_says(_"I certainly hope so.")
 	npc_says(_"I should, however, take the time to tell you a few more things.")
@@ -638,7 +638,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=55  Text=_"Thanks. I'm ready now."
+Nr=55 Text=_"Thanks. I'm ready now."
 LuaCode={
 	npc_says(_"We have several bots behind that fence for you to practice on.")
 	npc_says(_"Take them over, then talk to me when they're all dead, and we'll be done with the tutorial.")
@@ -659,7 +659,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=56  Text=_"I'm finished. I'm ready to move on."
+Nr=56 Text=_"I'm finished. I'm ready to move on."
 LuaCode={
 	if (has_cookie("hacking_bots")) then
 		if (not done_quest("Tutorial Hacking")) then
@@ -687,16 +687,16 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=57  Text=_"Tell me again about take over, I'm not sure I got it all."
+Nr=57 Text=_"Tell me again about take over, I'm not sure I got it all."
 LuaCode={
 	npc_says(_"Tell me exactly what part you want me to explain again.")
 	npc_says(_"But things will be much clearer once you try for yourself than when I try to explain.")
-  npc_says(_"Use your experience as notes, and all should be clear.")
+ npc_says(_"Use your experience as notes, and all should be clear.")
 	show(51, 52, 53) hide(57)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"Let me take a short break and practice on my own for a while."
+Nr=99 Text=_"Let me take a short break and practice on my own for a while."
 LuaCode={
 	npc_says(_"Ok, I'll be around if you need any more questions answered. Don't hesitate to ask.")
 	end_dialog()

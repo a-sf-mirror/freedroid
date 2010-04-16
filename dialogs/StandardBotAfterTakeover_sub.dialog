@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -36,13 +36,13 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"cd .."
+Nr=0 Text=_"cd .."
 LuaCode={
 	end_dialog()
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"./est_repair.plx"
+Nr=20 Text=_"./est_repair.plx"
 LuaCode={
 	repair_level = get_program_revision("Repair equipment")
 	damage = npc_damage_amount()
@@ -67,9 +67,9 @@ LuaCode={
 	npc_says(_"Repair in progress.")
 	heal_npc()
 	-- Calculate the true repair costs: --
-	cost_time      = math.ceil(cost_time      * (math.random()*0.4 + 0.8) )
+	cost_time = math.ceil(cost_time * (math.random()*0.4 + 0.8) )
 	cost_materials = math.ceil(cost_materials * (math.random()*0.4 + 0.8) )
-	cost_heat      = math.ceil(cost_heat      * (math.random()*0.4 + 0.8) )
+	cost_heat = math.ceil(cost_heat * (math.random()*0.4 + 0.8) )
 	-- Apply repair costs: --
 	freeze_tux_npc(cost_time)
 	del_gold(cost_materials)
@@ -112,7 +112,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text="This is a bug, please report me-99"
+Nr=99 Text="This is a bug, please report me-99"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Closing remote connection...")

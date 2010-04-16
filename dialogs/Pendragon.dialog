@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -38,7 +38,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here."
+Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"You don't say. I'm not living here either. I'm just on vacation.")
 	npc_says(_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun.")
@@ -47,7 +47,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Could you teach me how to fight?"
+Nr=1 Text=_"Could you teach me how to fight?"
 LuaCode={
 	if (has_cookie("beat_up_pendragon")) then 
 		npc_says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
@@ -59,7 +59,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"Teach me the basic stuff."
+Nr=11 Text=_"Teach me the basic stuff."
 LuaCode={
 	npc_says(_"Are you sure?")
 	npc_says(_"I only accept students that already have some experience in fighting bots.")
@@ -67,7 +67,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
+Nr=12 Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
 LuaCode={
 	if (get_skill("melee") < 1) then
 		if (del_gold(100)) then
@@ -106,7 +106,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_"Teach me how to smash concrete blocks with my bare hands."
+Nr=19 Text=_"Teach me how to smash concrete blocks with my bare hands."
 LuaCode={
 	npc_says(_"Oh, Linarian, you amuse me so.")
 	npc_says(_"You are quite an ambitious fellow.")
@@ -115,14 +115,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Teach me Ninjitsu."
+Nr=20 Text=_"Teach me Ninjitsu."
 LuaCode={
 	npc_says(_"Go away.")
 	hide(20) show(21)
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
+Nr=21 Text=_"I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
 LuaCode={
 	npc_says(_"Wow.")
 	npc_says(_"You have a very rich imagination. There is no such thing. Get a life.")
@@ -130,14 +130,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22  Text=_"I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no oto."
+Nr=22 Text=_"I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no oto."
 LuaCode={
 	npc_says(_"This is starting to make me angry. Shut up and go away.")
 	hide(22) show(23)
 }
 ----------------------------------------------------------------------
 
-Nr=23  Text=_"Teach me how to flip out and kill people!"
+Nr=23 Text=_"Teach me how to flip out and kill people!"
 LuaCode={
 	npc_says(_"*sigh*")
 	npc_says(_"Very well. Observe very carefully.")
@@ -148,14 +148,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29  Text=_"Enough for now."
+Nr=29 Text=_"Enough for now."
 LuaCode={
 	npc_says(_"Fine.")
 	hide(11, 12, 19, 20, 21, 22, 23, 29)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says_random(_"Have courage.","Be strong.")
 	end_dialog()

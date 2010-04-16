@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -38,7 +38,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here. "
+Nr=0 Text=_"Hi! I'm new here. "
 LuaCode={
 	npc_says(_"Hello. We are the Fleischer brothers.")
 	npc_says(_"I am Engel. He is Geist, and he does not know the language.")
@@ -46,7 +46,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"What are you doing here?"
+Nr=1 Text=_"What are you doing here?"
 LuaCode={
 	npc_says(_"Revenge.")
 	npc_says(_"The bots have killed our mother. Now we kill them.")
@@ -55,14 +55,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"Can I help you somehow?"
+Nr=2 Text=_"Can I help you somehow?"
 LuaCode={
 	npc_says(_"Nein. Let us die as warriors. That is all we ask for.")
 	hide(2) show(3)
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
+Nr=3 Text=_"If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	next(4)
@@ -70,7 +70,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"If you keep standing here more bots will come and --"
+Nr=4 Text=_"If you keep standing here more bots will come and --"
 LuaCode={
 	npc_says(_"Sehr gut. Let them come. We are ready.")
 	npc_says(_"What a beautiful day. Yes.")
@@ -78,7 +78,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"You are insane. Get out of here while you still can."
+Nr=5 Text=_"You are insane. Get out of here while you still can."
 LuaCode={
 	npc_says(_"No.")
 	npc_says(_"Every day since the mess started I come here to fight the bots.")
@@ -88,7 +88,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"Where can I get some help?"
+Nr=6 Text=_"Where can I get some help?"
 LuaCode={
 	npc_says(_"Nowhere. This is the end of the world. There is no help.")
 	npc_says(_"There is a city a bit south from here, but if I were you, I would not go there.")
@@ -98,7 +98,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=7  Text=_"You guys are totally nuts. Get a life."
+Nr=7 Text=_"You guys are totally nuts. Get a life."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	next(8)
@@ -106,7 +106,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8  Text=_"You guys are tota --"
+Nr=8 Text=_"You guys are tota --"
 LuaCode={
 	npc_says(_"WHAT?! What is it that you want to say?")
 	tux_says(_"Erm... I --")
@@ -120,7 +120,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"What did you use to do before you became a hunter?"
+Nr=11 Text=_"What did you use to do before you became a hunter?"
 LuaCode={
 	npc_says(_"I was a bot constructor. Built the killers of my mother.")
 	npc_says(_"Now I sell the parts that I remove from the bots to buy more ammunition and food.")
@@ -128,23 +128,23 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"I want to know how to extract modules from the bots."
+Nr=12 Text=_"I want to know how to extract modules from the bots."
 LuaCode={
 	npc_says(_"Yes.")
 	npc_says(_"I will sell the information for a lot of Schaltkreise.")
 	npc_says(_"Interested?")
-    run_subdialog("subdlg_Darwin.dialog")
+	run_subdialog("subdlg_Darwin.dialog")
 }
 ----------------------------------------------------------------------
 
-Nr=13  Text=_"Can I join your hunt?"
+Nr=13 Text=_"Can I join your hunt?"
 LuaCode={
 	npc_says(_"Nein. Our problem. Our hunt.")
 	hide(13)
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"I'll be going then."
+Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Goodbye and viel gluck.")
 	end_dialog()

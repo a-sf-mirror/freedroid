@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -42,7 +42,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here."
+Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Great! A newcomer! Welcome! Welcome! I'm Skippy, and I'm your new best friend!")
 	npc_says(_"I already saw you coming. Due to my mapping device! It's great stuff!")
@@ -52,14 +52,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Ok, if I want to buy me one of those mapping pills. How much are they?"
+Nr=1 Text=_"Ok, if I want to buy me one of those mapping pills. How much are they?"
 LuaCode={
 	npc_says_random(_"They only cost 50. Special price only for you!","You're so lucky! I just decided to cut the price in half!")
 	hide(1) show(11, 12)
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"How do I activate a mapping device?"
+Nr=2 Text=_"How do I activate a mapping device?"
 LuaCode={
 	npc_says(_"Oh, that's so simple. No need to activate anything at all.")
 	npc_says(_"Just swallow the pill and the nanotechnological bots will enter your body.")
@@ -69,7 +69,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"You said you make these things yourself? How do you do that?"
+Nr=3 Text=_"You said you make these things yourself? How do you do that?"
 LuaCode={
 	npc_says(_"Oh, I've always been a geek. And I got blueprints from before the Great Assault.")
 	npc_says(_"You can't order anything from a catalogue anymore.")
@@ -78,7 +78,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4  Text=_"Nanotechnology? Isn't that dangerous?"
+Nr=4 Text=_"Nanotechnology? Isn't that dangerous?"
 LuaCode={
 	npc_says(_"No way, man, I guarantee it. Don't believe anything you might have heard.")
 	npc_says(_"This is a perfectly safe and tried technology. No risk at all! Really!")
@@ -89,14 +89,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5  Text=_"I don't trust you."
+Nr=5 Text=_"I don't trust you."
 LuaCode={
 	npc_says(_"WHAT? But I'm your best friend! You must trust me!")
 	hide(5) show(6)
 }
 ----------------------------------------------------------------------
 
-Nr=6  Text=_"I still do not trust you. You are selling junk to people."
+Nr=6 Text=_"I still do not trust you. You are selling junk to people."
 LuaCode={
 	npc_says(_"WHAT? Fine, you can forget about my great deals now! I don't want to trade with you anymore!")
 	npc_says(_"I'm no longer your best friend. Go away, you dirty hoser!")
@@ -106,7 +106,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"Do you sell anything else?"
+Nr=10 Text=_"Do you sell anything else?"
 LuaCode={
 	npc_says(_"Sure! I also build some electronics devices, depending on what parts I can get my hands on.", "NO_WAIT") 
 	-- We can potentially add more electronics things he can do in the future, or perhaps "add magic" to an item of Tux for a price
@@ -115,7 +115,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"Ok, I'll take one."
+Nr=11 Text=_"Ok, I'll take one."
 LuaCode={
 	if (del_gold(50)) then
 		npc_says(_"Here is your pill.", "NO_WAIT")
@@ -132,7 +132,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"Nah, dont think so. "
+Nr=12 Text=_"Nah, dont think so. "
 LuaCode={
 	npc_says(_"Your loss.", "NO_WAIT")
 	npc_says(_"Hope you won't get lost and killed out there.", "NO_WAIT")
@@ -141,7 +141,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"Why are you so friendly?"
+Nr=20 Text=_"Why are you so friendly?"
 LuaCode={
 	npc_says(_"Because you are my best friend!")
 	npc_says(_"I always take good care of my special buddies!")
@@ -149,7 +149,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21  Text=_"You are friendly only to sell me your stuff, aren't you?"
+Nr=21 Text=_"You are friendly only to sell me your stuff, aren't you?"
 LuaCode={
 	npc_says(_"No, never! I would never be so shallow!")
 	npc_says(_"I am friendly because I like you.")
@@ -157,14 +157,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=98  Text=_"See you later."
+Nr=98 Text=_"See you later."
 LuaCode={
 	npc_says(_"Don't come back. I hate you.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
 
-Nr=99  Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says(_"Yes, we'll meet again, my friend, and I'll have other great deals for you.")
 	end_dialog()

@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 If you have questions concerning FreedroidRPG, please send an email to:
@@ -49,7 +49,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1  Text=_"Just taking a look around."
+Nr=1 Text=_"Just taking a look around."
 LuaCode={
 	npc_says(_"Oh, look. The bird wants to go for a walk.", "NO_WAIT")
 	npc_says(_"We don't call this place 'hell' for nothing.")
@@ -58,7 +58,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2  Text=_"I'd like to go through that gate."
+Nr=2 Text=_"I'd like to go through that gate."
 LuaCode={
 	npc_says(_"Are you totally out of your mind?", "NO_WAIT")
 	npc_says(_"There are trillions of millions of quintillions of bots in there!")
@@ -77,7 +77,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3  Text=_"I have some business on the other side!"
+Nr=3 Text=_"I have some business on the other side!"
 LuaCode={
 	npc_says(_"Are you in a rush to die?")
 	npc_says(_"Go away!")
@@ -85,7 +85,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all the bots around! Didn't Spencer inform you?"
+Nr=10 Text=_"Calm down. This is not an attack. I've disabled the shield and I'm going to disable all the bots around! Didn't Spencer inform you?"
 LuaCode={
 	npc_says(_"WHAT?! Not an attack?!")
 	npc_says(_"I hope you are telling the truth. One second...")
@@ -100,14 +100,14 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text="NEVER VISIBLE"
+Nr=20 Text="NEVER VISIBLE"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!")
 	end_dialog()
 }
 ----------------------------------------------------------------------
-Nr=99  Text=_"Relax, I'm leaving."
+Nr=99 Text=_"Relax, I'm leaving."
 LuaCode={
 	npc_says(_"You better be. AND DON'T COME BACK!")
 	end_dialog()

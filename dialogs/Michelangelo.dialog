@@ -1,20 +1,20 @@
 ----------------------------------------------------------------------
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
 ----------------------------------------------------------------------
 
 
@@ -58,7 +58,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0  Text=_"Hi! I'm new here."
+Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Hello. I'm Michelangelo. I haven't been here for long either.")
 	npc_says(_"I wish the bots had just killed me, but I got 'lucky' and ended up in this hellhole.")
@@ -66,7 +66,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10  Text=_"How is it going?"
+Nr=10 Text=_"How is it going?"
 LuaCode={
 	npc_says(_"Don't ask.")
 	npc_says(_"'Terribly' would be a huge understatement.")
@@ -74,7 +74,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=11  Text=_"Can I buy some food here?"
+Nr=11 Text=_"Can I buy some food here?"
 LuaCode={
 	if (done_quest("Anything but the army snacks, please!")) then
 		npc_says(_"Until my next batch of food comes out of the macrowave oven, all I have are the odoriferous military rations.")
@@ -89,7 +89,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12  Text=_"I want some yummy army snacks!"
+Nr=12 Text=_"I want some yummy army snacks!"
 LuaCode={
 	if ( has_item_backpack("Fork") and has_item_backpack("Plate") and has_item_backpack("Mug") ) then
 		npc_says(_"I am supposed to read this out to all newcomers. Here goes:")
@@ -106,7 +106,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=18  Text=_"You do not sound happy. What is wrong?"
+Nr=18 Text=_"You do not sound happy. What is wrong?"
 LuaCode={
 	npc_says(_"EVERYTHING!")
 	npc_says(_"Just look at this stupid town!")
@@ -119,7 +119,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=19  Text=_"Cheer up! All will be fine! Happy days are coming! Hurray!"
+Nr=19 Text=_"Cheer up! All will be fine! Happy days are coming! Hurray!"
 LuaCode={
 	npc_says(_"...")
 	npc_says(_"Linarian, have you been gorging on psychoactive pills or something?")
@@ -128,7 +128,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20  Text=_"You are a cook. Stop complaining about the poor food! Make some yourself."
+Nr=20 Text=_"You are a cook. Stop complaining about the poor food! Make some yourself."
 LuaCode={
 	npc_says(_"I cannot! My beautiful macrowave oven is out of power. The wretched Red Guard took away my uranium battery.")
 	npc_says(_"I wish I could kill them all with my bare hands. They deserve it.")
@@ -137,13 +137,13 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24  Text=_"Got any food yet?"
+Nr=24 Text=_"Got any food yet?"
 LuaCode={
 	random_var = math.random()
 	if (random_var > 0.9) then
 		npc_says(_"Here, try this slice of lemon meringue pie.")
 		if (not has_item_backpack("Fork") ) then
-			npc_says(_"Wait, you don't have a Fork.  You need a fork...")
+			npc_says(_"Wait, you don't have a Fork. You need a fork...")
 		else
 			tux_says(_"It is as if a cloud from heaven was made into a pie.")
 			hurt_tux(-20)
@@ -186,7 +186,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=27  Text=_"Hmm... Crunchy... That is... Oh... No. Ugh. Help."
+Nr=27 Text=_"Hmm... Crunchy... That is... Oh... No. Ugh. Help."
 LuaCode={
 	npc_says(_"Oh yes. You were warned, so don't blame me.")
 	tux_says(_"Bleah! That is not food!")
@@ -196,7 +196,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29  Text=_"I have the dilithium you wanted."
+Nr=29 Text=_"I have the dilithium you wanted."
 LuaCode={
 	npc_says(_"Really? I thought you were dead, but not only did you come back alive, you also brought some power crystals for my trusty oven.")
 	npc_says(_"I will start cooking at once.")
@@ -210,7 +210,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31  Text=_"What was I supposed to do again?"
+Nr=31 Text=_"What was I supposed to do again?"
 LuaCode={
 	npc_says(_"Get me three dilithium crystals before the whole stupid town commits mass suicide because of poor food quality.")
 	npc_says(_"Of course our heinous food might do us in far before that. I swear I saw that stuff glow it the dark and try to sneak away from my plate a few times.")
@@ -224,7 +224,7 @@ LuaCode={
 	hide(32)
 }
 ----------------------------------------------------------------------
-Nr=70  Text=_"Why don't you send someone for the dilithium?"
+Nr=70 Text=_"Why don't you send someone for the dilithium?"
 LuaCode={
 	npc_says(_"I did.")
 	npc_says(_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood.")
@@ -233,7 +233,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=80  Text=_"Maybe I can get you some dilithium."
+Nr=80 Text=_"Maybe I can get you some dilithium."
 LuaCode={
 	npc_says(_"Have you gotten overheated, Linarian?")
 	npc_says(_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot.")
@@ -242,7 +242,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=81  Text=_"Don't worry, I'll be fine."
+Nr=81 Text=_"Don't worry, I'll be fine."
 LuaCode={
 	npc_says(_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly.")
 	npc_says(_"I have seen corpses with nearly all of the fingers ripped off. People with eyes drilled out by some big tool.")
@@ -254,7 +254,7 @@ LuaCode={
 	npc_says(_"I will talk to the guards, they will open the eastern gate for you.")
 	npc_says(_"Good luck. Try not to get yourself killed.")
 	tux_says(_"How many dilithium crystals do you need?")
-	npc_says(_"A single small crystal could power my oven for a decade if it is of good quality.  But unfortunately my oven requires two to operate correctly.  And since it is so dangerous to send anyone to get dilithium, could you get me a spare as well?")
+	npc_says(_"A single small crystal could power my oven for a decade if it is of good quality. But unfortunately my oven requires two to operate correctly. And since it is so dangerous to send anyone to get dilithium, could you get me a spare as well?")
 	tux_says(_"So you need three dilithium crystals?")
 	npc_says(_"Yes. Please get me three dilithium crystals.")
 	change_obstacle_state("EastGateOfTown", "opened")
@@ -263,7 +263,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40  Text=_"What is this 'dilithium'?"
+Nr=40 Text=_"What is this 'dilithium'?"
 LuaCode={
 	npc_says(_"You do not know? I thought Linarians were unmatched in their knowledge of the universe. Anyway...")
 	npc_says(_"Dilithium is a substance which is usually seen in the form of a small crystal.")
@@ -272,7 +272,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=41  Text=_"I have an idea. Use fire to cook the food for the city."
+Nr=41 Text=_"I have an idea. Use fire to cook the food for the city."
 LuaCode={
 	npc_says(_"A nice idea, but there is a couple of major problems with it.")
 	npc_says(_"We are a town of 450 hungry people. It would need to be a very big fire to supply heat for all of the meals.")
@@ -284,7 +284,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=42  Text=_"Tell the Red Guard that you need your battery back."
+Nr=42 Text=_"Tell the Red Guard that you need your battery back."
 LuaCode={
 	npc_says(_"I did.")
 	npc_says(_"They said it was already fed to their reactor as fuel.")
@@ -292,7 +292,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=75  Text=_"I need a dilithium crystal."
+Nr=75 Text=_"I need a dilithium crystal."
 LuaCode={
 	npc_says(_"I am already using the ones you got me. They are being used to feed the town.")
 	if (has_cookie("asked_michelangelo_for_spare_dilithium")) then show(76) else show(77) end
@@ -316,7 +316,7 @@ LuaCode={
 }
 
 ----------------------------------------------------------------------
-Nr=99  Text=_"I'll be going then."
+Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"See you later.")
 	end_dialog()
