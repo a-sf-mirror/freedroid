@@ -248,6 +248,4 @@ char font_switchto_msgvar[2] = { 5, 0 };
 
 int skip_initial_menus = FALSE;
 
-int last_bot_number;
-
 enum { INSIDE_MENU = 0, INSIDE_GAME, INSIDE_LVLEDITOR } game_status;

@@ -1567,13 +1567,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Me.drive_item.currently_held_in_hand = FALSE;
 	Item_Held_In_Hand = NULL;
 
-	DebugPrintf(1, "\n%s():  Shuffling droids on all %d levels!", __FUNCTION__, curShip.num_levels);
-	for (i = 0; i < curShip.num_levels; i++) {
-		if (curShip.AllLevels[i] == NULL)
-			continue;
-		ShuffleEnemys(i);
-	}
-
 	Me.mouse_move_target.x = (-1);
 	Me.mouse_move_target.y = (-1);
 	Me.mouse_move_target.z = (-1);

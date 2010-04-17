@@ -414,63 +414,89 @@ typedef struct druidspec_s {
 } druidspec, *Druidspec;
 
 typedef struct enemy_s {
-	short int id;
-	short type;		// the number of the droid specifications in Druidmap 
-	gps pos;		// coordinates of the current position in the level
-	gps virt_pos;		// the virtual position (position of the bot if he was on this level, differs from above when it is on a neighboring level)
-	finepoint speed;	// current speed  
-	float energy;		// current energy of this droid
+	// There are three sets of attributes, which are initialized and
+	// possibly re-initialized by 3 different codes:
+	//
+	// 1) 'identity' attributes.
+	//    The identity attributes define the basic information about a droid.
+	//    They should not change during the game, apart in some very
+	//    specific cases.
+	// 2) global state' attributes.
+	//    Those attributes define the global behavior of the enemy.
+	//    The global state of a droid can possibly change during the game.
+	// 3) 'transient state' attributes
+	//    Their values are used by the animation and AI code.
+	//    They change very frequently during the game.
+	//
+	// 1st and 2nd sets are initialized to default values in enemy_new().
+	// The 3rd set is unconditionally reseted in enemy_reset().
+	// The 2nd set contains attributes whose values depend on the
+	// type of the droid. They are first positioned in GetThisLevelsDroids()
+	// and GetThisLevelsSpecialForces(), and are conditionally reseted in
+	// respawn_level().
 
-	float animation_phase;	// the current animation frame for this enemy (starting at 0 of course...)
-	short animation_type;	// walk-animation, attack-animation, gethit animation, death animation
-
-	short nextwaypoint;	// the next waypoint target
-	short lastwaypoint;	// the waypoint from whence this robot just came from
-	short homewaypoint;	// the waypoint this robot started at
-	short max_distance_to_home;	// how far this robot will go before returning to it's home waypoint
-
-	int combat_state;	// current state of the bot
-	float state_timeout;	// time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
-
-	float frozen;		// is this droid currently frozen and for how long will it stay this way?
-	float poison_duration_left;	// is this droid currently poisoned and for how long will it stay this way?
-	float poison_damage_per_sec;	// is this droid currently poisoned and how much poison is at work?
-	float paralysation_duration_left;	// is this droid currently paralyzed and for how long will it stay this way?
-	float pure_wait;	// time till the droid will start to move again
-	float firewait;		// time this robot still takes until its weapon will be fully reloaded
-	short ammo_left;	// ammunition left in the charger
-
-	short int CompletelyFixed;	// set this flag to make the robot entirely immobile
-	char follow_tux;	// does this robot try to follow tux via it's random movements?
-	char SpecialForce;	// This flag will exclude the droid from initial shuffling of droids
-	short on_death_drop_item_code;	// drop a pre-determined item when dying?
-
-	int marker;		// This provides a marker for special mission targets
-
-	short int is_friendly;	// is this a friendly droid or is it a MS controlled one?
-	char has_been_taken_over;	// has the Tux made this a friendly bot via takeover subgame?
-	char attack_target_type;	// attack NOTHING, PLAYER, or BOT
-	short int bot_target_n;
-	struct enemy_s *bot_target_addr;
+	//--------------------
+	// 1st set (identity)
+	//
+	short int id;                       // unique id of the droid. start at 1.
+	short int type;                     // the number of the droid specifications in Druidmap
+	char SpecialForce;                  // this flag will exclude the droid from initial shuffling of droids
+	int marker;                         // this provides a marker for special mission targets
+	short int max_distance_to_home;     // how far this robot will go before returning to it's home waypoint
 	string dialog_section_name;
 	string short_description_text;
-	char will_rush_tux;	// will this robot approach the Tux on sight and open communication?
-	char has_greeted_influencer;	// has this robot issued his first-time-see-the-Tux message?
-	float previous_angle;	// which angle has this robot been facing the frame before?
-	float current_angle;	// which angle will the robot be facing now?
-	float last_phase_change;	// when did the robot last change his (8-way-)direction of facing
-	float previous_phase;	// which (8-way) direction did the robot face before?
-	float last_combat_step;	// when did this robot last make a step to move in closer or farther away from Tux in combat?
+	short int on_death_drop_item_code;  // drop a pre-determined item when dying
 
+	//--------------------
+	// 2nd set ('global state')
+	//
+	short int is_friendly;        // is this a friendly droid or is it a MS controlled one?
+	char will_rush_tux;           // will this robot approach the Tux on sight and open communication?
+	int combat_state;             // current state of the bot
+	float state_timeout;          // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
+	short int CompletelyFixed;    // set this flag to make the robot entirely immobile
+	char has_been_taken_over;     // has the Tux made this a friendly bot via takeover subgame?
+	char follow_tux;              // does this robot try to follow tux via it's random movements?
+	char has_greeted_influencer;  // has this robot issued his first-time-see-the-Tux message?
+	short int nextwaypoint;       // the next waypoint target
+	short int lastwaypoint;       // the waypoint from whence this robot just came from
+	short int homewaypoint;       // the waypoint this robot started at
+	gps pos;                      // coordinates of the current position in the level
+
+	//--------------------
+	// 3rd set ('transient state')
+	//
+	finepoint speed;                   // current speed
+	float energy;                      // current energy of this droid
+	float animation_phase;             // the current animation frame for this enemy (starting at 0 of course...)
+	short int animation_type;          // walk-animation, attack-animation, gethit animation, death animation
+	float frozen;                      // is this droid currently frozen and for how long will it stay this way?
+	float poison_duration_left;        // is this droid currently poisoned and for how long will it stay this way?
+	float poison_damage_per_sec;       // is this droid currently poisoned and how much poison is at work?
+	float paralysation_duration_left;  // is this droid currently paralyzed and for how long will it stay this way?
+	float pure_wait;                   // time till the droid will start to move again
+	float firewait;                    // time this robot still takes until its weapon will be fully reloaded
+	short int ammo_left;               // ammunition left in the charger
+	char attack_target_type;           // attack NOTHING, PLAYER, or BOT
+	short int bot_target_n;
+	struct enemy_s *bot_target_addr;
+	float previous_angle;              // which angle has this robot been facing the frame before?
+	float current_angle;               // which angle will the robot be facing now?
+	float previous_phase;              // which (8-way) direction did the robot face before?
+	float last_phase_change;           // when did the robot last change his (8-way-)direction of facing
+	float last_combat_step;            // when did this robot last make a step to move in closer or farther away from Tux in combat?
 	float TextVisibleTime;
 	char *TextToBeDisplayed;
 	moderately_finepoint PrivatePathway[5];
-
 	char bot_stuck_in_wall_at_previous_check;
 	float time_since_previous_stuck_in_wall_check;
 
-	list_head_t global_list;	// entry of this bot in the global bot lists (alive or dead)
-	list_head_t level_list;	// entry of this bot in the level bot list (alive only)
+	//--------------------
+	// Misc attributes
+	//
+	gps virt_pos;             // the virtual position (position of the bot if he was on this level, differs from above when it is on a neighboring level)
+	list_head_t global_list;  // entry of this bot in the global bot lists (alive or dead)
+	list_head_t level_list;   // entry of this bot in the level bot list (alive only)
 } enemy, *Enemy;
 
 typedef struct npc {

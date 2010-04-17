@@ -3685,7 +3685,7 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
 	if (RotationIndex == ThisRobot->previous_phase) {
 		ThisRobot->last_phase_change += Frame_Time();
 	} else {
-		if (ThisRobot->last_phase_change >= 0.7) {
+		if (ThisRobot->last_phase_change >= WAIT_BEFORE_ROTATE) {
 			ThisRobot->last_phase_change = 0.0;
 			ThisRobot->previous_phase = RotationIndex;
 		} else {

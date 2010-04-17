@@ -632,16 +632,18 @@ int give_level_of_obstacle_with_label(const char *obstacle_label);
 void robot_group_turn_hostile(enemy *);
 void SetRestOfGroupToState(Enemy ThisRobot, short NewState);
 int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot);
-void ShuffleEnemys(int LevelNum);
 int CheckEnemyEnemyCollision(enemy *);
 void MoveEnemys(void);
 void ClearEnemys(void);
-void InitEnemy(enemy *);
+void enemy_reset(enemy *this_bot);
+void enemy_reset_fabric();
+enemy *enemy_new(int type);
 void animate_enemy(enemy * our_bot);
 void hit_enemy(enemy * target, float hit, char givexp, short int killertype, char mine);
 enemy *enemy_resolve_address(short int enemy_number, enemy ** enemy_addr);
 void enemy_set_reference(short int *enemy_number, enemy ** enemy_addr, enemy * addr);
 void enemy_generate_level_lists(void);
+int TeleportToClosestWaypoint(enemy *ThisRobot);
 int TeleportToRandomWaypoint(enemy *, level *, char *);
 
 #define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)

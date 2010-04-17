@@ -589,6 +589,7 @@ enum {
 #define WAIT_AFTER_GAME_WON	5.0	// how long to show tux after the game is won
 #define WAIT_COLLISION		1	// after a little collision with Tux or another enemy, hold position for a while
 				    // this variable describes the amount of time in SECONDS 
+#define WAIT_BEFORE_ROTATE 0.7 // Wait a bit to avoid jittering between two rotation angles
 
 #define ALLBLASTTYPES		3	/* number of different exposions */
 

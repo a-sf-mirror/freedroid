@@ -40,8 +40,9 @@
 #include "proto.h"
 
 #define COL_SPEED		3
-
 #define IS_FRIENDLY_EYE_DISTANCE (2.0)
+
+static int next_bot_id = 1; // defines the id of the next created enemy.
 
 void check_if_switching_to_stopandeyetuxmode_makes_sense(enemy *);
 static int TurnABitTowardsPosition(Enemy, float, float, float);
@@ -61,7 +62,7 @@ list_head_t level_bots_head[MAX_LEVELS];	//THIS IS NOT STATICALLY PROPERLY INITI
  * waypoint system, i.e. current waypoint and next waypoint initialized.
  * This is what this function is supposed to do.
  */
-void TeleportToClosestWaypoint(Enemy ThisRobot)
+int TeleportToClosestWaypoint(enemy *ThisRobot)
 {
 	int i;
 	float BestDistanceSqu = 10000;
@@ -91,10 +92,14 @@ void TeleportToClosestWaypoint(Enemy ThisRobot)
 
 	ThisRobot->pos.x = ThisLevel->AllWaypoints[BestWaypoint].x + 0.5;
 	ThisRobot->pos.y = ThisLevel->AllWaypoints[BestWaypoint].y + 0.5;
+	ThisRobot->pos.z = ThisLevel->levelnum;
+
 	ThisRobot->nextwaypoint = BestWaypoint;
 	ThisRobot->lastwaypoint = BestWaypoint;
 	DebugPrintf(1, "\n%s(): Final teleport target: Wp no. %d position: %f/%f on level %d.", __FUNCTION__,
 		    BestWaypoint, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
+
+	return BestWaypoint;
 };				// void TeleportToClosestWaypoint ( Enemy ThisRobot )
 
 int TeleportToRandomWaypoint(enemy * erot, level * ShuffleLevel, char *wp_used)
@@ -126,6 +131,7 @@ int TeleportToRandomWaypoint(enemy * erot, level * ShuffleLevel, char *wp_used)
 
 	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x + 0.5;
 	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y + 0.5;
+	erot->pos.z = ShuffleLevel->levelnum;
 
 	erot->lastwaypoint = wp;
 	erot->nextwaypoint = wp;
@@ -161,58 +167,96 @@ void PermanentHealRobots(void)
 
 }				// void PermanentHealRobots(void)
 
-void InitEnemy(enemy * our_bot)
+/**
+ * This function resets the 'transient state' of a bot.
+ * (see the 'struct enemy' comments)
+ */
+void enemy_reset(enemy *this_enemy)
 {
-	memset(our_bot, 0, sizeof(enemy));
-
 	int j;
-	our_bot->type = -1;
-	our_bot->pos.z = our_bot->virt_pos.z = our_bot->energy = 0;
-	our_bot->nextwaypoint = our_bot->lastwaypoint = our_bot->homewaypoint = 0;
-	our_bot->max_distance_to_home = 0;
-	our_bot->pure_wait = 0;
-	our_bot->frozen = 0;
-	our_bot->poison_duration_left = 0;
-	our_bot->poison_damage_per_sec = 0;
-	our_bot->firewait = 0;
-	our_bot->energy = 0;
-	our_bot->SpecialForce = 0;
-	our_bot->CompletelyFixed = 0;
-	our_bot->follow_tux = 0;
-	our_bot->marker = 0;
-	our_bot->is_friendly = 0;
-	our_bot->has_been_taken_over = FALSE;	// has the Tux made this a friendly bot via takeover subgame?
-	our_bot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
-	enemy_set_reference(&our_bot->bot_target_n, &our_bot->bot_target_addr, NULL);
-	our_bot->TextVisibleTime = 0;
-	our_bot->TextToBeDisplayed = "";
-	our_bot->ammo_left = 0;
 
-	our_bot->animation_type = WALK_ANIMATION;
-	our_bot->animation_phase = 0.0;
-
-	our_bot->previous_angle = 0;	// which angle has this robot been facing the frame before?
-	our_bot->current_angle = 0;	// which angle will the robot be facing now?
-	our_bot->last_phase_change = 100;	// when did the robot last change his (8-way-)direction of facing
-	our_bot->previous_phase = 0;	// which (8-way) direction did the robot face before?
-	our_bot->has_greeted_influencer = FALSE;	// has this robot issued his first-time-see-the-Tux message?
-	our_bot->will_rush_tux = FALSE;
-	our_bot->last_combat_step = 100;	// when did this robot last make a step to move in closer or farther away from Tux in combat?
+	this_enemy->speed.x = this_enemy->speed.y = 0.0;
+	this_enemy->energy = Druidmap[this_enemy->type].maxenergy;
+	this_enemy->animation_phase = 0;
+	this_enemy->animation_type = WALK_ANIMATION;
+	this_enemy->frozen = 0.0;
+	this_enemy->poison_duration_left = 0.0;
+	this_enemy->poison_damage_per_sec = 0.0;
+	this_enemy->paralysation_duration_left = 0.0;
+	this_enemy->pure_wait = 0.0;
+	this_enemy->firewait = 0.0;
+	this_enemy->ammo_left = ItemMap[Druidmap[this_enemy->type].weapon_item.type].item_gun_ammo_clip_size;
+	this_enemy->attack_target_type = ATTACK_TARGET_IS_NOTHING;
+	enemy_set_reference(&this_enemy->bot_target_n, &this_enemy->bot_target_addr, NULL);
+	this_enemy->previous_angle = 0.0;
+	this_enemy->current_angle = 0.0;
+	this_enemy->previous_phase = 0.0;
+	this_enemy->last_phase_change = WAIT_BEFORE_ROTATE + 1.0;
+	this_enemy->last_combat_step = ATTACK_MOVE_RATE + 1.0;
+	this_enemy->TextVisibleTime = 0.0;
+	this_enemy->TextToBeDisplayed = "";
 	for (j = 0; j < 5; j++) {
-		our_bot->PrivatePathway[j].x = -1;
-		our_bot->PrivatePathway[j].y = -1;
+		this_enemy->PrivatePathway[j].x = -1;
+		this_enemy->PrivatePathway[j].y = -1;
 	}
+	this_enemy->bot_stuck_in_wall_at_previous_check = FALSE;
+	this_enemy->time_since_previous_stuck_in_wall_check = ((float)MyRandom(1000)) / 1000.1;
+}
 
-	our_bot->time_since_previous_stuck_in_wall_check = ((float)MyRandom(1000)) / 1000.1;
-	our_bot->bot_stuck_in_wall_at_previous_check = FALSE;
+/**
+ * This function prepares the droid's fabric to create a whole new
+ * set of droids.
+ */
+void enemy_reset_fabric()
+{
+	next_bot_id = 1;
+}
+
+/**
+ * This function creates a new enemy, and initializes its 'identity' and
+ * 'global state'.
+ * (see the 'struct enemy' comments)
+ */
+enemy *enemy_new(int type)
+{
+	enemy *this_enemy = (enemy*)MyMalloc(sizeof(enemy));
+	memset(this_enemy, 0, sizeof(enemy));
+
+	this_enemy->id = next_bot_id++;
+	this_enemy->type = type;
+
+	// Init 'identity' attributes.
+	this_enemy->SpecialForce = 0;
+	this_enemy->marker = 0;
+	this_enemy->max_distance_to_home = 0;
+	this_enemy->dialog_section_name = NULL;
+	this_enemy->short_description_text = NULL;
+	this_enemy->on_death_drop_item_code = -1;
+
+	// Set the default value of the 'global state' attributes
+	this_enemy->is_friendly = 0;
+	this_enemy->will_rush_tux = FALSE;
+	this_enemy->combat_state = SELECT_NEW_WAYPOINT;
+	this_enemy->state_timeout = 0.0;
+	this_enemy->CompletelyFixed = 0;
+	this_enemy->has_been_taken_over = FALSE;
+	this_enemy->follow_tux = FALSE;
+	this_enemy->has_greeted_influencer = FALSE;
+	this_enemy->homewaypoint = this_enemy->lastwaypoint = this_enemy->nextwaypoint = -1;
+
+	return this_enemy;
 }
 
 static void free_enemy(enemy *e)
 {
-	free(e->dialog_section_name);
-	e->dialog_section_name = NULL;
-	free(e->short_description_text);
-	e->short_description_text = NULL;
+	if (e->dialog_section_name) {
+		free(e->dialog_section_name);
+		e->dialog_section_name = NULL;
+	}
+	if (e->short_description_text) {
+		free(e->short_description_text);
+		e->short_description_text = NULL;
+	}
 }
 
 /* -----------------------------------------------------------------
@@ -241,76 +285,6 @@ void ClearEnemys(void)
 	INIT_LIST_HEAD(&alive_bots_head);
 	INIT_LIST_HEAD(&dead_bots_head);
 };				// void ClearEnemys ( void ) 
-
-/* -----------------------------------------------------------------
- * Right after loading a ship (load game, start new game, etc.), 
- * we tie every enemy to a given waypoint on the map.
- * -----------------------------------------------------------------*/
-void ShuffleEnemys(int LevelNum)
-{
-	int j;
-	int wp_num;
-	int BestWaypoint;
-	Level ShuffleLevel = curShip.AllLevels[LevelNum];
-
-	wp_num = ShuffleLevel->num_waypoints;
-	char wp_used[wp_num];	//is this waypoint used?
-	memset(wp_used, 0, wp_num);
-
-	enemy *erot;
-	BROWSE_LEVEL_BOTS(erot, LevelNum) {
-
-		if (erot->CompletelyFixed)
-			continue;
-
-		//--------------------
-		// A special force, that is not completely fixed, needs to be integrated
-		// into the waypoint system:  We find the closest waypoint for it and put
-		// it simply there.  For simplicity we use sum norm as distance.
-		//
-		TeleportToClosestWaypoint(erot);
-
-		erot->combat_state = SELECT_NEW_WAYPOINT;
-		erot->homewaypoint = erot->lastwaypoint;
-		if (erot->SpecialForce) {
-
-			//--------------------
-			// For every special force, that is exactly positioned in the map anyway,
-			// we find the waypoint he's standing on.  That will be his current target
-			// and source waypoint.  That's it for special forces.
-			//
-			BestWaypoint = 0;
-			for (j = 0; j < wp_num; j++) {
-				if (fabsf((ShuffleLevel->AllWaypoints[j].x - erot->pos.x) *
-					  (ShuffleLevel->AllWaypoints[j].x - erot->pos.x) +
-					  (ShuffleLevel->AllWaypoints[j].y - erot->pos.y) *
-					  (ShuffleLevel->AllWaypoints[j].y - erot->pos.y)) <
-				    fabsf((ShuffleLevel->AllWaypoints[BestWaypoint].x - erot->pos.x) *
-					  (ShuffleLevel->AllWaypoints[BestWaypoint].x - erot->pos.x) +
-					  (ShuffleLevel->AllWaypoints[BestWaypoint].y - erot->pos.y) *
-					  (ShuffleLevel->AllWaypoints[BestWaypoint].y - erot->pos.y)))
-					BestWaypoint = j;
-			}
-
-			erot->nextwaypoint = BestWaypoint;
-			erot->lastwaypoint = BestWaypoint;
-
-			erot->pos.x = ShuffleLevel->AllWaypoints[BestWaypoint].x + 0.5;
-			erot->pos.y = ShuffleLevel->AllWaypoints[BestWaypoint].y + 0.5;
-			if (wp_used[BestWaypoint] == 1)
-				ErrorMessage(__FUNCTION__,
-					     "Waypoint %d at %d %d  on level %d is used for a special force but open to random placement of bots. This should be fixed.\n",
-					     NO_NEED_TO_INFORM, IS_WARNING_ONLY, BestWaypoint, ShuffleLevel->AllWaypoints[BestWaypoint].x,
-					     ShuffleLevel->AllWaypoints[BestWaypoint].y, LevelNum);
-
-			wp_used[BestWaypoint] = 1;
-			continue;
-		}
-
-		TeleportToRandomWaypoint(erot, ShuffleLevel, wp_used);
-	}
-
-};				// void ShuffleEnemys ( void ) 
 
 static void enemy_get_current_walk_target(enemy * ThisRobot, moderately_finepoint * a)
 {
@@ -1449,7 +1423,7 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 		ThisRobot->state_timeout = 0;
 		SetRestOfGroupToState(ThisRobot, ATTACK);
 		ThisRobot->combat_state = ATTACK;
-		ThisRobot->last_combat_step = 1.0;	// So that attack will start immediately
+		ThisRobot->last_combat_step = ATTACK_MOVE_RATE + 1.0;	// So that attack will start immediately
 		if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
 			play_enter_attack_run_state_sound(Druidmap[ThisRobot->type].greeting_sound_type);
 		}
@@ -1703,7 +1677,7 @@ static void state_machine_turn_towards_next_waypoint(enemy * ThisRobot, moderate
 	/* XXX */
 	new_move_target->x = ThisRobot->pos.x;
 	new_move_target->y = ThisRobot->pos.y;
-	ThisRobot->last_phase_change = 100;
+	ThisRobot->last_phase_change = WAIT_BEFORE_ROTATE + 1.0;
 
 	if (TurnABitTowardsPosition(ThisRobot,
 				    curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5,

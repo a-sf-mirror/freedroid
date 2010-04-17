@@ -104,14 +104,15 @@ static void remove_blood_obstacles_for_respawning(int level_num)
 };				// void remove_blood_obstacles_for_respawning ( int level_num )
 
 /**
- * This function will make all blood obstacles vanish and all dead bots
- * (and characters) come back to life and resume their previous operation
- * from before thier death.
+ * This function will make all blood obstacles vanish, all dead bots come
+ * back to life, and get all bots return to a wandering state.
  */
 void respawn_level(int level_num)
 {
+	enemy *erot, *nerot;
+
 	int wp_num = curShip.AllLevels[level_num]->num_waypoints;
-	char wp_used[wp_num];
+	char wp_used[wp_num]; // is a waypoint already used ?
 	memset(wp_used, 0, wp_num);
 
 	//--------------------
@@ -120,53 +121,63 @@ void respawn_level(int level_num)
 	remove_blood_obstacles_for_respawning(level_num);
 
 	//--------------------
-	// Now we can start to fill the enemies on this level with new life...
+	// Now we can give new life to dead bots...
 	//
-	enemy *aerot, *next, *erot, *nerot;
-	BROWSE_DEAD_BOTS_SAFE(aerot, next) {
-		if (aerot->pos.z != level_num)
+	BROWSE_DEAD_BOTS_SAFE(erot, nerot) {
+		if (erot->pos.z != level_num || Druidmap[erot->type].is_human)
 			continue;
-
-		if (Druidmap[aerot->type].is_human)
-			continue;
-
 		/* Move the bot to the alive list */
-		list_move(&(aerot->global_list), &alive_bots_head);
-
-		/* reinsert it into the current level list */
-		list_add(&(aerot->level_list), &level_bots_head[level_num]);
+		list_move(&(erot->global_list), &alive_bots_head);
+		/* Reinsert it into the current level list */
+		list_add(&(erot->level_list), &level_bots_head[level_num]);
 	}
 
-	BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
-		if (erot->pos.z != level_num)
-			continue;
+	//--------------------
+	// Finally, we reset the runtime attributes of the bots, place them
+	// on a waypoint, and ask them to start wandering...
+	//
+	BROWSE_LEVEL_BOTS(erot, level_num) {
 
-		erot->energy = Druidmap[erot->type].maxenergy;
-		erot->animation_phase = 0;
-		erot->animation_type = WALK_ANIMATION;
-		erot->follow_tux = 0;
-		erot->CompletelyFixed = 0;
+		// Unconditional reset of the 'transient state' attributes
+		enemy_reset(erot);
 
-		if (erot->has_been_taken_over == TRUE) {
+		// Conditional reset of some 'global state' attributes
+		if (erot->has_been_taken_over) {
 			erot->is_friendly = FALSE;
 			erot->has_been_taken_over = FALSE;
+			erot->CompletelyFixed = FALSE;
+			erot->follow_tux = FALSE;
 		}
-
 		if (!erot->is_friendly) {
-			erot->combat_state = SELECT_NEW_WAYPOINT;
-
 			erot->has_greeted_influencer = FALSE;
-			erot->state_timeout = 0;
 		}
 
+		// Re-place the bots onto the waypoint system
 		if (!erot->SpecialForce) {
-			int out = TeleportToRandomWaypoint(erot, curShip.AllLevels[level_num], wp_used);
-			if (out > 0)
-				wp_used[out] = 1;
+			// Standard bots are randomly placed on one waypoint
+			int wp = TeleportToRandomWaypoint(erot, curShip.AllLevels[level_num], wp_used);
+			wp_used[wp] = 1;
+			erot->homewaypoint = erot->lastwaypoint;
+			erot->combat_state = SELECT_NEW_WAYPOINT;
+			erot->state_timeout = 0.0;
+		} else {
+			if (erot->homewaypoint == -1) {
+				// If a special force droid has not yet been integrated onto
+				// the waypoint system, place it near its current position.
+				int wp = TeleportToClosestWaypoint(erot);
+				wp_used[wp] = 1;
+				erot->homewaypoint = erot->lastwaypoint;
+				erot->combat_state = SELECT_NEW_WAYPOINT;
+				erot->state_timeout = 0.0;
+			} else {
+				// Consider that the nextwaypoint of a special force droid
+				// is occupied, so that a standard bot will not be placed here
+				if (erot->nextwaypoint != -1)
+					wp_used[erot->nextwaypoint] = 1;
+			}
 		}
 	}
-
-};				// void respawn_level ( int level_num )
+}
 
 /**
  * Now that we plan not to use hard-coded and explicitly human written 
@@ -1795,17 +1806,6 @@ void CountNumberOfDroidsOnShip(void)
 
 };				// void CountNumberOfDroidsOnShip ( void )
 
-static void ReviveAllDroidsOnShip(void)
-{
-	int i;
-
-	for (i = 0; i < curShip.num_levels; i++) {
-		if (curShip.AllLevels[i] == NULL)
-			continue;
-		respawn_level(i);
-	}
-};				// void ReviveAllDroidsOnShip ( void )
-
 /* -----------------------------------------------------------------
  * This function initializes all enemys, which means that enemys are
  * filled in into the enemy list according to the enemys types that 
@@ -1828,7 +1828,6 @@ int GetCrew(char *filename)
 	//For that, we must get it into memory first.
 	//The procedure is the same as with LoadShip
 	//
-
 	find_file(filename, MAP_DIR, fpath, 0);
 
 	MainDroidsFilePointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DROID_DATA_STRING);
@@ -1838,6 +1837,8 @@ int GetCrew(char *filename)
 	// It's now time to decode the file and to fill the array of enemys with
 	// new droids of the given types.
 	//
+	enemy_reset_fabric();
+
 	DroidSectionPointer = MainDroidsFilePointer;
 	while ((DroidSectionPointer = strstr(DroidSectionPointer, DROIDS_LEVEL_DESCRIPTION_START_STRING)) != NULL) {
 		DroidSectionPointer += strlen(DROIDS_LEVEL_DESCRIPTION_START_STRING);
@@ -1850,16 +1851,6 @@ int GetCrew(char *filename)
 		GetThisLevelsDroids(DroidSectionPointer);
 		DroidSectionPointer = EndOfThisDroidSectionPointer + 2;	// Move past the inserted String terminator
 	}
-
-	//--------------------
-	// Now that the correct crew types have been filled into the 
-	// right structure, it's time to set the energy of the corresponding
-	// droids to "full" which means to the maximum of each type.
-	//
-	CountNumberOfDroidsOnShip();
-	ReviveAllDroidsOnShip();
-
-	enemy_generate_level_lists();
 
 	free(MainDroidsFilePointer);
 	return (OK);
@@ -1878,9 +1869,7 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 	char *YesNoString;
 	location StartupLocation;
 
-	enemy newen;
 	while ((SearchPointer = strstr(SearchPointer, SPECIAL_FORCE_INDICATION_STRING)) != NULL) {
-		InitEnemy(&newen);
 		SearchPointer += strlen(SPECIAL_FORCE_INDICATION_STRING);
 		strncpy(TypeIndicationString, SearchPointer, 3);	// Every type is 3 characters long
 		TypeIndicationString[3] = 0;
@@ -1905,23 +1894,29 @@ file you use.", PLEASE_INFORM, IS_FATAL);
 				    TypeIndicationString, ListIndex);
 		}
 
-		ReadValueFromString(SearchPointer, "Fixed=", "%hd", &newen.CompletelyFixed, EndOfThisLevelData);
-		ReadValueFromString(SearchPointer, "Marker=", "%d", &newen.marker, EndOfThisLevelData);
-		ReadValueFromStringWithDefault(SearchPointer, "MaxDistanceToHome=", "%hd", "0", &newen.max_distance_to_home,
+		// Create a new enemy, and initialize its 'identity' and 'global state'
+		// (the enemy will be fully initialized by respawn_level())
+		enemy *newen = enemy_new(ListIndex);
+		newen->SpecialForce = 1;
+
+		ReadValueFromString(SearchPointer, "Fixed=", "%hd", &(newen->CompletelyFixed), EndOfThisLevelData);
+		ReadValueFromString(SearchPointer, "Marker=", "%d", &(newen->marker), EndOfThisLevelData);
+		ReadValueFromStringWithDefault(SearchPointer, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
 					       EndOfThisLevelData);
-		ReadValueFromString(SearchPointer, "Friendly=", "%hd", &newen.is_friendly, EndOfThisLevelData);
+		ReadValueFromString(SearchPointer, "Friendly=", "%hd", &(newen->is_friendly), EndOfThisLevelData);
+
 		StartMapLabel = ReadAndMallocStringFromData(SearchPointer, "StartLabel=\"", "\"");
 		ResolveMapLabelOnShip(StartMapLabel, &StartupLocation);
-		newen.pos.x = StartupLocation.x;
-		newen.pos.y = StartupLocation.y;
-
+		newen->pos.x = StartupLocation.x;
+		newen->pos.y = StartupLocation.y;
+		newen->pos.z = OurLevelNumber;
 		free(StartMapLabel);
 
 		YesNoString = ReadAndMallocStringFromData(SearchPointer, "RushTux=\"", "\"");
 		if (strcmp(YesNoString, "yes") == 0) {
-			newen.will_rush_tux = TRUE;
+			newen->will_rush_tux = TRUE;
 		} else if (strcmp(YesNoString, "no") == 0) {
-			newen.will_rush_tux = FALSE;
+			newen->will_rush_tux = FALSE;
 		} else {
 			ErrorMessage(__FUNCTION__, "\
 The droid specification of a droid in ReturnOfTux.droids should contain an \n\
@@ -1929,19 +1924,18 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
 This indicated a corrupted freedroid.ruleset file with an error at least in\n\
 the item specification section.", PLEASE_INFORM, IS_FATAL);
 		}
-
 		free(YesNoString);
 
-		newen.dialog_section_name = ReadAndMallocStringFromData(SearchPointer, "UseDialog=\"", "\"");
-		if (strlen(newen.dialog_section_name) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME - 1) {
+		newen->dialog_section_name = ReadAndMallocStringFromData(SearchPointer, "UseDialog=\"", "\"");
+		if (strlen(newen->dialog_section_name) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME - 1) {
 			ErrorMessage(__FUNCTION__, "\
 The dialog section specification string for a bot was too large.\n\
 This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
 the dialog section name for one special force droid/character.", PLEASE_INFORM, IS_FATAL);
 		}
 
-		newen.short_description_text = ReadAndMallocStringFromData(SearchPointer, "ShortLabel=_\"", "\"");
-		if (strlen(newen.short_description_text) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING) {
+		newen->short_description_text = ReadAndMallocStringFromData(SearchPointer, "ShortLabel=_\"", "\"");
+		if (strlen(newen->short_description_text) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING) {
 			ErrorMessage(__FUNCTION__, "\
 The short description specification string for a bot was too large.\n\
 This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
@@ -1950,24 +1944,15 @@ the dialog section name for one special force droid/character.", PLEASE_INFORM, 
 
 		if (strstr(SearchPointer, "on_death_drop_item_name")) {
 			YesNoString = ReadAndMallocStringFromData(SearchPointer, "on_death_drop_item_name=\"", "\"");
-			newen.on_death_drop_item_code = GetItemIndexByName(YesNoString);
+			newen->on_death_drop_item_code = GetItemIndexByName(YesNoString);
 			free(YesNoString);
 		} else
-			newen.on_death_drop_item_code = -1;
+			newen->on_death_drop_item_code = -1;
 
-		newen.type = ListIndex;
-		newen.pos.z = OurLevelNumber;
-		newen.SpecialForce = 1;
-		newen.id = last_bot_number;
-		newen.has_been_taken_over = FALSE;
-		enemy *ne = (enemy *) calloc(1, sizeof(enemy));
-		memcpy(ne, &newen, sizeof(enemy));
-		list_add(&(ne->global_list), &alive_bots_head);
-		last_bot_number++;
+		list_add(&(newen->global_list), &alive_bots_head);
+		list_add(&(newen->level_list), &level_bots_head[OurLevelNumber]);
 
 	}			// while Special force droid found...
-
-	CountNumberOfDroidsOnShip();
 
 };				// void GetThisLevelsSpecialForces ( char* SearchPointer )
 
@@ -1989,7 +1974,6 @@ void GetThisLevelsDroids(char *SectionPointer)
 	int ListIndex;
 	char TypeIndicationString[1000];
 	short int ListOfTypesAllowed[1000];
-	enemy newen;
 
 #define DROIDS_LEVEL_INDICATION_STRING "Level="
 #define DROIDS_LEVEL_END_INDICATION_STRING "** End of this levels droid data **"
@@ -2014,7 +1998,6 @@ void GetThisLevelsDroids(char *SectionPointer)
 	DifferentRandomTypes = 0;
 	SearchPointer = SectionPointer;
 	while ((SearchPointer = strstr(SearchPointer, ALLOWED_TYPE_INDICATION_STRING)) != NULL) {
-		InitEnemy(&newen);
 		SearchPointer += strlen(ALLOWED_TYPE_INDICATION_STRING);
 		strncpy(TypeIndicationString, SearchPointer, 3);	// Every type is 3 characters long
 		TypeIndicationString[3] = 0;
@@ -2043,109 +2026,107 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 		ListOfTypesAllowed[DifferentRandomTypes] = ListIndex;
 		DifferentRandomTypes++;
 	}
-	//fprintf( stderr , "\nFound %d different allowed random types for this level. " , DifferentRandomTypes );
 
 	//--------------------
 	// At this point, the List "ListOfTypesAllowed" has been filled with the NUMBERS of
 	// the allowed types.  The number of different allowed types found is also available.
-	// That means that now we can add the apropriate droid types into the list of existing
+	// That means that now we can add the appropriate droid types into the list of existing
 	// droids in that mission.
 
 	RealNumberOfRandomDroids = MyRandom(MaxRand - MinRand) + MinRand;
 
 	while (RealNumberOfRandomDroids--) {
-		newen.type = ListOfTypesAllowed[MyRandom(DifferentRandomTypes - 1)];
-		newen.pos.z = OurLevelNumber;
-		newen.on_death_drop_item_code = (-1);
-		newen.ammo_left = ItemMap[Druidmap[newen.type].weapon_item.type].item_gun_ammo_clip_size;
-		newen.id = last_bot_number + 1;
+		// Create a new enemy, and initialize its 'identity' and 'global state'
+		// (the enemy will be fully initialized by respawn_level())
+		enemy *newen = enemy_new(ListOfTypesAllowed[MyRandom(DifferentRandomTypes - 1)]);
+		newen->pos.x = newen->pos.y = -1;
+		newen->pos.z = OurLevelNumber;
+		newen->on_death_drop_item_code = -1;
+		newen->dialog_section_name = strdup("StandardBotAfterTakeover");
 
-		newen.dialog_section_name = strdup("StandardBotAfterTakeover");
-
-		switch (atoi(Druidmap[newen.type].druidname)) {
+		switch (atoi(Druidmap[newen->type].druidname)) {
 		case 123:
-			newen.short_description_text = strdup(_("123 Acolyte"));
+			newen->short_description_text = strdup(_("123 Acolyte"));
 			break;
 		case 139:
-			newen.short_description_text = strdup(_("139 Templar"));
+			newen->short_description_text = strdup(_("139 Templar"));
 			break;
 		case 247:
-			newen.short_description_text = strdup(_("247 Banshee"));
+			newen->short_description_text = strdup(_("247 Banshee"));
 			break;
 		case 249:
-			newen.short_description_text = strdup(_("249 Chicago"));
+			newen->short_description_text = strdup(_("249 Chicago"));
 			break;
 		case 296:
-			newen.short_description_text = strdup(_("296 Sawmill"));
+			newen->short_description_text = strdup(_("296 Sawmill"));
 			break;
 		case 302:
-			newen.short_description_text = strdup(_("302 Nemesis"));
+			newen->short_description_text = strdup(_("302 Nemesis"));
 			break;
 		case 329:
-			newen.short_description_text = strdup(_("329 Sparkie"));
+			newen->short_description_text = strdup(_("329 Sparkie"));
 			break;
 		case 420:
-			newen.short_description_text = strdup(_("420 Surgeon"));
+			newen->short_description_text = strdup(_("420 Surgeon"));
 			break;
 		case 476:
-			newen.short_description_text = strdup(_("476 Coward"));
+			newen->short_description_text = strdup(_("476 Coward"));
 			break;
 		case 493:
-			newen.short_description_text = strdup(_("493 Spinster"));
+			newen->short_description_text = strdup(_("493 Spinster"));
 			break;
 		case 516:
-			newen.short_description_text = strdup(_("516 Ghoul"));
+			newen->short_description_text = strdup(_("516 Ghoul"));
 			break;
 		case 543:
-			newen.short_description_text = strdup(_("543 Forest Harvester"));
+			newen->short_description_text = strdup(_("543 Forest Harvester"));
 			break;
 		case 571:
-			newen.short_description_text = strdup(_("571 Apollo"));
+			newen->short_description_text = strdup(_("571 Apollo"));
 			break;
 		case 598:
-			newen.short_description_text = strdup(_("598 Minister"));
+			newen->short_description_text = strdup(_("598 Minister"));
 			break;
 		case 615:
-			newen.short_description_text = strdup(_("615 Firedevil"));
+			newen->short_description_text = strdup(_("615 Firedevil"));
 			break;
 		case 629:
-			newen.short_description_text = strdup(_("629 Spitfire"));
+			newen->short_description_text = strdup(_("629 Spitfire"));
 			break;
 		case 711:
-			newen.short_description_text = strdup(_("711 Grillmeister"));
+			newen->short_description_text = strdup(_("711 Grillmeister"));
 			break;
 		case 742:
-			newen.short_description_text = strdup(_("742 Zeus"));
+			newen->short_description_text = strdup(_("742 Zeus"));
 			break;
 		case 751:
-			newen.short_description_text = strdup(_("751 Soviet"));
+			newen->short_description_text = strdup(_("751 Soviet"));
 			break;
 		case 821:
-			newen.short_description_text = strdup(_("821 Ufo"));
+			newen->short_description_text = strdup(_("821 Ufo"));
 			break;
 		case 834:
-			newen.short_description_text = strdup(_("834 Wisp"));
+			newen->short_description_text = strdup(_("834 Wisp"));
 			break;
 		case 883:
-			newen.short_description_text = strdup(_("883 Dalex"));
+			newen->short_description_text = strdup(_("883 Dalex"));
 			break;
 		case 999:
-			newen.short_description_text = strdup(_("999 Cerebrum"));
+			newen->short_description_text = strdup(_("999 Cerebrum"));
 			break;
 		default:
-			newen.short_description_text = strdup(_("No Description For This One"));
+			newen->short_description_text = strdup(_("No Description For This One"));
 		};
 
-		enemy *ne = (enemy *) calloc(1, sizeof(enemy));
-		memcpy(ne, &newen, sizeof(enemy));
-		list_add(&(ne->global_list), &alive_bots_head);
-		last_bot_number++;
+		list_add(&(newen->global_list), &alive_bots_head);
+		list_add(&(newen->level_list), &level_bots_head[OurLevelNumber]);
 	}			// while (enemy-limit of this level not reached) 
 
 	SearchPointer = SectionPointer;
-
 	GetThisLevelsSpecialForces(SearchPointer, OurLevelNumber, EndOfThisLevelData);
 
+	// End bot's initialization, and put them onto a waypoint.
+	respawn_level(OurLevelNumber);
 };				// void GetThisLevelsDroids( char* SectionPointer )
 
 /**
