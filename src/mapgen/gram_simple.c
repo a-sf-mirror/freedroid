@@ -134,11 +134,11 @@ static void deriv_P(int id)
 {
 	int p;
 	int prop;
-	int x = rooms[id].x;
-	int y = rooms[id].y;
+	int x = rooms[id].x - 1;
+	int y = rooms[id].y - 1;
 	int creator = id;
-	int dim_x = rooms[creator].w;
-	int dim_y = rooms[creator].h;
+	int dim_x = rooms[creator].w + 2;
+	int dim_y = rooms[creator].h + 2;
 	int newroom;
 	p = cut(dim_x, dim_y, &prop);
 
@@ -159,13 +159,13 @@ static void deriv_P(int id)
 	switch (p) {
 	case CUT_HORIZONTALLY:
 		h_creator = rooms[creator].h * prop / 100.0;
-		h_newroom = dim_y - h_creator;
-		y_newroom = y + h_creator;
+		h_newroom = dim_y - h_creator + 1;
+		y_newroom = y + h_creator - 1;
 		break;
 	case CUT_VERTICALLY:
 		w_creator = rooms[creator].w * prop / 100.0;
-		w_newroom = dim_x - w_creator;
-		x_newroom = x + w_creator;
+		w_newroom = dim_x - w_creator + 1;
+		x_newroom = x + w_creator - 1;
 		break;
 	default:
 		return;
@@ -177,53 +177,13 @@ static void deriv_P(int id)
 
 	newroom = mapgen_add_room(x_newroom, y_newroom, w_newroom, h_newroom);
 
-	rooms[creator].w = w_creator;
-	rooms[creator].h = h_creator;
+	rooms[creator].w = w_creator-2;
+	rooms[creator].h = h_creator-2;
 
-	mapgen_draw_room(rooms[newroom].x, rooms[newroom].y, rooms[newroom].w, rooms[newroom].h, newroom);
-	mapgen_draw_room(rooms[creator].x, rooms[creator].y, rooms[creator].w, rooms[creator].h, creator);
+	mapgen_draw_room(newroom);
+	mapgen_draw_room(creator);
 	deriv_P(id);
 	deriv_P(newroom);
-}
-
-static int change_cote(int depart, int ajout)
-{
-
-	if (depart > 7) {
-		return ajout;
-	}
-	switch (depart) {
-	case 4:
-	case 5:{
-			switch (ajout) {
-			case 6:
-			case 7:
-				return TILE_FLOOR;
-				break;
-			default:
-				return ajout;
-				break;
-			}
-		}
-		break;
-	case 6:
-	case 7:{
-			switch (ajout) {
-			case 4:
-			case 5:
-				return TILE_FLOOR;
-				break;
-			default:
-				return ajout;
-				break;
-			}
-		}
-		break;
-	default:{
-			return ajout;
-		}
-		break;
-	}
 }
 
 /**
@@ -231,40 +191,113 @@ static int change_cote(int depart, int ajout)
  */
 static int is_room_corner(int x, int y)
 {
-	int id = mapgen_get_room(x, y);
-	if ((x == rooms[id].x && y == rooms[id].y) ||
-	    (x == rooms[id].x && y == rooms[id].y + rooms[id].h - 1) ||
-	    (x == rooms[id].x + rooms[id].w - 1 && y == rooms[id].y) ||
-	    (x == rooms[id].x + rooms[id].w - 1 && y == rooms[id].y + rooms[id].h - 1)) {
+	int tile = mapgen_get_tile(x, y);
+	if (tile == TILE_WALL_SW || tile == TILE_WALL_SE ||
+			tile == TILE_WALL_NW || tile == TILE_WALL_NE
+	   ) 
+	{
 		return 1;
 	}
 	return 0;
 }
 
-static void adj(struct cplist_t cplist, int x, int y, int *nx, int *ny)
+static void adj(struct cplist_t *cplist, int *nx, int *ny)
 {
-	switch (cplist.t) {
+	switch (cplist->t) {
 	case UP:
-		*nx = x;
-		*ny = y - 1;
+		*nx = cplist->x;
+		*ny = cplist->y - 1;
 		break;
 	case DOWN:
-		*nx = x;
-		*ny = y + 1;
+		*nx = cplist->x;
+		*ny = cplist->y + 1;
 		break;
 	case LEFT:
-		*nx = x - 1;
-		*ny = y;
+		*nx = cplist->x - 1;
+		*ny = cplist->y;
 		break;
 	case RIGHT:
-		*nx = x + 1;
-		*ny = y;
+		*nx = cplist->x + 1;
+		*ny = cplist->y;
 		break;
 	default:
 		*nx = 0;
 		*ny = 0;
 		break;
 	}
+}
+
+/* This function checks corner wall tiles that may look ugly after wall fusion
+ * and changes them to straight walls if necessary. 
+ */
+static void fix_corner(int x, int y, enum connection_type t, enum connection_type t2) {
+	if (mapgen_get_room(x, y) != -1)
+		return;
+
+	int tile = mapgen_get_tile(x, y);
+	switch(tile) {
+		case TILE_WALL_NW:
+			if (mapgen_get_tile(x + 1, y) == TILE_FLOOR)
+				tile = TILE_WALL_W;
+			if (mapgen_get_tile(x, y + 1) == TILE_FLOOR)
+				tile = TILE_WALL_N;
+			break;
+		case TILE_WALL_NE:
+			if (mapgen_get_tile(x - 1, y) == TILE_FLOOR)
+				tile = TILE_WALL_E;
+			if (mapgen_get_tile(x, y + 1) == TILE_FLOOR)
+				tile = TILE_WALL_N;
+			break;
+		case TILE_WALL_SW:
+			if (mapgen_get_tile(x + 1, y) == TILE_FLOOR)
+				tile = TILE_WALL_W;
+			if (mapgen_get_tile(x, y - 1) == TILE_FLOOR)
+				tile = TILE_WALL_S;
+			break;
+		case TILE_WALL_SE:
+			if (mapgen_get_tile(x - 1, y) == TILE_FLOOR)
+				tile = TILE_WALL_E;
+			if (mapgen_get_tile(x, y - 1) == TILE_FLOOR)
+				tile = TILE_WALL_S;
+			break;
+		/* Sometimes it is possible to see "pseudo" corner composed of
+		 * straight walls, that is appear due to tile overlapping. That code
+		 * checks all such combinations and make correction if necessary.
+		 */
+		default:
+			switch(tile) {
+			case TILE_WALL_N:
+				if (
+						(t2 == RIGHT && mapgen_get_tile(x, y - 1) == TILE_WALL_E) ||
+						(t2 == LEFT && mapgen_get_tile(x, y - 1) == TILE_WALL_W)
+				  )
+					tile = TILE_FLOOR;
+			break;
+			case TILE_WALL_S:
+				if (
+						(t2 == RIGHT && mapgen_get_tile(x, y + 1) == TILE_WALL_E) ||
+						(t2 == LEFT && mapgen_get_tile(x, y + 1) == TILE_WALL_W)
+				  )
+					tile = TILE_FLOOR; 
+			break;
+			case TILE_WALL_W:
+				if (
+						(t2 == UP && mapgen_get_tile(x - 1, y) == TILE_WALL_N) ||
+						(t2 == DOWN && mapgen_get_tile(x - 1, y) == TILE_WALL_S)
+				  )
+					tile = TILE_FLOOR;
+				break;
+			case TILE_WALL_E:
+				if (
+						(t2 == UP && mapgen_get_tile(x + 1, y) == TILE_WALL_N) ||
+						(t2 == DOWN && mapgen_get_tile(x + 1, y) == TILE_WALL_S)
+				  )
+					tile = TILE_FLOOR;
+				break;
+			}
+	}
+	mapgen_put_tile(x, y, tile, -1);
+	return;
 }
 
 /**
@@ -279,19 +312,23 @@ void fusion(int id, int cible)
 	memset(cplist, -1, 100 * sizeof(struct cplist_t));
 
 	int nb_max;
-	nb_max = find_connection_points(id, cplist);
+	nb_max = find_connection_points(id, cplist, 0);
 	int k = 0;
 	int l = 0;		//index du tableau correct_directory
-	int nx, ny;
-	int x, y;
+	int x, y; 
+	int minx = 10000;
+	int miny = 10000;	
+	int maxx = -1;
+	int maxy = -1;
 	while (k < nb_max) {
 		x = cplist[k].x;
 		y = cplist[k].y;
-		nx = 0;
-		ny = 0;
-		adj(cplist[k], x, y, &nx, &ny);
-		if (cplist[k].r == cible && !is_room_corner(x, y) && !is_room_corner(nx, ny)) {
+		if (cplist[k].r == cible && !is_room_corner(x, y)) {
 			correct_directory[l] = k;
+			minx = min(minx, cplist[k].x);
+			maxx = max(maxx, cplist[k].x);
+			miny = min(miny, cplist[k].y);
+			maxy = max(maxy, cplist[k].y);
 			l++;
 		}
 		k++;
@@ -300,134 +337,36 @@ void fusion(int id, int cible)
 	for (k = 0; k < l; k++) {
 		x = cplist[correct_directory[k]].x;
 		y = cplist[correct_directory[k]].y;
-		nx = 0;
-		ny = 0;
-		adj(cplist[correct_directory[k]], x, y, &nx, &ny);
-		mapgen_put_tile(x, y, TILE_FLOOR, id);
-		mapgen_put_tile(nx, ny, TILE_FLOOR, cible);
+		mapgen_put_tile(x, y, TILE_FLOOR, -1);
+	}
 
-		if (k == 0 && cplist[correct_directory[k]].t == UP) {
-			if (rooms[id].x > rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_FLOOR), cible);
-			} else if (rooms[id].x == rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
-			} else {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_FLOOR), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
-			}
+	if (l) {
+		k = cplist[correct_directory[0]].t;
+		if (miny == maxy) {
+			fix_corner(minx - 1, miny, k, LEFT);
+			fix_corner(maxx + 1, miny, k, RIGHT);
 		}
-
-		if (k == l - 1 && cplist[correct_directory[k]].t == UP) {
-			if (rooms[id].x + rooms[id].w > rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_FLOOR), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
-			} else if (rooms[id].x + rooms[id].w == rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
-
-			} else {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_FLOOR), cible);
-			}
-		}
-
-		if (k == 0 && cplist[correct_directory[k]].t == DOWN) {
-			if (rooms[id].x < rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_FLOOR), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
-			} else if (rooms[id].x == rooms[cible].x) {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_WALL_W), cible);
-			} else {
-				mapgen_put_tile(x - 1, y, change_cote(mapgen_get_tile(x - 1, y), TILE_WALL_W), id);
-				mapgen_put_tile(nx - 1, ny, change_cote(mapgen_get_tile(nx - 1, ny), TILE_FLOOR), cible);
-			}
-		}
-
-		if (k == l - 1 && cplist[correct_directory[k]].t == DOWN) {
-			if (rooms[id].x + rooms[id].w < rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_FLOOR), cible);
-			} else if (rooms[id].x + rooms[id].w == rooms[cible].x + rooms[cible].w) {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_WALL_E), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
-			} else {
-				mapgen_put_tile(x + 1, y, change_cote(mapgen_get_tile(x + 1, y), TILE_FLOOR), id);
-				mapgen_put_tile(nx + 1, ny, change_cote(mapgen_get_tile(nx + 1, ny), TILE_WALL_E), cible);
-			}
-		}
-
-		if (k == 0 && cplist[correct_directory[k]].t == LEFT) {
-			if (rooms[id].y > rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_FLOOR), cible);
-			} else if (rooms[id].y == rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
-			} else {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_FLOOR), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
-			}
-		}
-
-		if (k == l - 1 && cplist[correct_directory[k]].t == LEFT) {
-			if (rooms[id].y + rooms[id].h < rooms[cible].y + rooms[cible].h) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_FLOOR), cible);
-			} else if (rooms[id].y + rooms[id].h == rooms[cible].y + rooms[cible].h) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
-			} else {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_FLOOR), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
-			}
-		}
-
-		if (k == 0 && cplist[correct_directory[k]].t == RIGHT) {
-			if (rooms[id].y < rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_FLOOR), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
-			} else if (rooms[id].y == rooms[cible].y) {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_WALL_N), cible);
-			} else {
-				mapgen_put_tile(x, y - 1, change_cote(mapgen_get_tile(x, y - 1), TILE_WALL_N), id);
-				mapgen_put_tile(nx, ny - 1, change_cote(mapgen_get_tile(nx, ny - 1), TILE_FLOOR), cible);
-			}
-		}
-
-		if (k == l - 1 && cplist[correct_directory[k]].t == RIGHT) {
-			if (rooms[id].y + rooms[id].h > rooms[cible].y + rooms[cible].h) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_FLOOR), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
-			} else if ((rooms[id].y + rooms[id].h) == (rooms[cible].y + rooms[cible].h)) {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_WALL_S), cible);
-			} else {
-				mapgen_put_tile(x, y + 1, change_cote(mapgen_get_tile(x, y + 1), TILE_WALL_S), id);
-				mapgen_put_tile(nx, ny + 1, change_cote(mapgen_get_tile(nx, ny + 1), TILE_FLOOR), cible);
-			}
+		if (minx == maxx) {
+			fix_corner(minx, miny - 1, k, UP);
+			fix_corner(minx, maxy + 1, k, DOWN); 
 		}
 	}
 }
 
-static void add_rel(int x, int y, enum connection_type type, int cible)
+static void add_rel(int x, int y, enum connection_type type, int r, int cible)
 {
-	int id = mapgen_get_room(x, y);
 	MakeConnect(x, y, type);
-	if ((((rooms[id].x != rooms[cible].x) || (rooms[id].w != rooms[cible].w)) && (type == UP || type == DOWN))
-	    || (((rooms[id].y != rooms[cible].y) || (rooms[id].h != rooms[cible].h)) && (type == RIGHT || type == LEFT))) {
+	if ((((rooms[r].x != rooms[cible].x) || (rooms[r].w != rooms[cible].w)) && (type == UP || type == DOWN))
+	    || (((rooms[r].y != rooms[cible].y) || (rooms[r].h != rooms[cible].h)) && (type == RIGHT || type == LEFT))) {
 		if (!(rand() % 4))
-			fusion(id, cible);
+			fusion(r, cible);
 	}
 }
 
 static void bulldozer(unsigned char *seen, int r)
 {
 	struct cplist_t cplist[300];
-	int max_connections = find_connection_points(r, cplist);
+	int max_connections = find_connection_points(r, cplist, 1);
 
 	// Mark the room as seen by a bulldozer
 	seen[r] = 1;
@@ -436,14 +375,14 @@ static void bulldozer(unsigned char *seen, int r)
 	int i = rand() % max_connections;
 	int x2 = cplist[i].x;
 	int y2 = cplist[i].y;
-	adj(cplist[i], x2, y2, &x2, &y2);
+	adj(&cplist[i], &x2, &y2);
 
 	// if the rooms are already connected we do not create a new connection and stop the bulldozer
 	if (mapgen_are_connected(r, cplist[i].r))
 		return;
 
 	// else we create a connection
-	add_rel(cplist[i].x, cplist[i].y, cplist[i].t, cplist[i].r);
+	add_rel(cplist[i].x, cplist[i].y, cplist[i].t, r, cplist[i].r);
 
 	// and move the bulldozer to the next room
 	bulldozer(seen, mapgen_get_room(x2, y2));
@@ -476,7 +415,7 @@ static void launch_buldo()
 				int n;
 				struct cplist_t neigh[100];
 				int nbconn, prevneigh = -1;
-				nbconn = find_connection_points(i, neigh);
+				nbconn = find_connection_points(i, neigh, 1);
 				for (n = 0; n < nbconn; n++) {
 					if (neigh[n].r == prevneigh)
 						continue;
@@ -493,7 +432,7 @@ static void launch_buldo()
 					prevneigh = neigh[n].r;
 
 					if (connected_to_room_0[neigh[n].r]) {
-						add_rel(neigh[n].x, neigh[n].y, neigh[n].t, neigh[n].r);
+						add_rel(neigh[n].x, neigh[n].y, neigh[n].t, i, neigh[n].r);
 
 						if (!(rand() % 3)) {
 							recalculate_components = 1;
@@ -515,7 +454,7 @@ int generate_dungeon_gram(int dim_x, int dim_y)
 
 	// Create first room
 	mapgen_add_room(0, 0, dim_x_init, dim_y_init);
-	mapgen_draw_room(0, 0, dim_x_init, dim_y_init, total_rooms);
+	mapgen_draw_room(0);
 
 	// Recursively cut
 	deriv_P(0);
