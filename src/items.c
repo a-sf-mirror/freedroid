@@ -2426,12 +2426,14 @@ void raw_move_picked_up_item_to_entry(item * ItemPointer, item * TargetPointer, 
 {
 	char TempText[1000];
 
-	// We announce that we have taken the item
+	// Announce that we have taken the item. Pointless for purposes other than debugging.
+	// If you pointed and clicked on something, if it vanishes, you picked it up...
+/*	
 	Me.TextVisibleTime = 0;
 	sprintf(TempText, _("Item taken: %s."), D_(ItemMap[ItemPointer->type].item_name));
 	append_new_game_message(TempText);	// this can be freed/destroyed afterwards.  it's ok.
 	Me.TextToBeDisplayed = strdup(TempText);
-
+*/
 	// We add the new item to the inventory
 	CopyItem(ItemPointer, TargetPointer, FALSE);
 	TargetPointer->inventory_position.x = Inv_Loc.x;
@@ -2505,6 +2507,13 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 	// money counter and eliminate the item on the floor.
 	//
 	if (MatchItemWithName(ItemPointer->type, "Valuable Circuits")) {
+	// Announce that we have taken the money. Pointless for purposes other than debugging.
+	// If you pointed and clicked on something, if it vanishes, you picked it up...
+	/*
+		char tmp[100];
+		sprintf(tmp, _("Picked up %d valuable circuits."), ItemPointer->multiplicity);
+		append_new_game_message(tmp);
+	*/
 		play_item_sound(ItemPointer->type);
 		Me.Gold += ItemPointer->multiplicity;
 		DeleteItem(ItemPointer);
