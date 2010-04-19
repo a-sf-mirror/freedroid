@@ -413,8 +413,8 @@ static void npc_refresh_inventory(struct npc *n)
 
 	// Compute the target size and add items to match it
 	target_size = npc_shoplist_size(n);
-	if (target_size > 8)
-		target_size = 8;
+	if (target_size > 12)
+		target_size = 12;
 
 	DebugPrintf(DEBUG_SHOP, "refresh: target size is %d, inventory size %d, shoplist size %d\n", target_size, npc_inventory_size(n), shoplist_size);
 
