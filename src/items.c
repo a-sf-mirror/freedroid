@@ -1877,15 +1877,6 @@ void ShowQuickInventory(void)
 	int Index;
 
 	//--------------------
-	// We must not blit something right over the active character screen or the
-	// active skill screen of course.  That would be irritating.
-	// This does not apply to high resolutions though.
-
-	if (GameConfig.screen_height == 480
-	    && ((GameConfig.SkillScreen_Visible) || (GameConfig.CharacterScreen_Visible) || (GameConfig.Inventory_Visible)))
-		return;
-
-	//--------------------
 	// Now we can blit all the objects in the quick inventory, but of course only
 	// those small objects, that have a 1x1 inventory grid size, so that they really
 	// can be drawn from the 'belt' that is actually the quick inventory.

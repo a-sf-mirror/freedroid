@@ -2134,13 +2134,13 @@ void AssembleCombatPicture(int mask)
 		ShowItemAlarm();
 		// ShowQuickInventory ();
 		display_current_game_message_window();
+		ShowQuickInventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();
 		ShowInventoryScreen();
 		DisplayButtons();
 		if (!GameOver)
 			DisplayBanner();
-		ShowQuickInventory();
 	}
 
 	if (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) {
