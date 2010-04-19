@@ -131,7 +131,7 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
  * This function writes the description of an item into the item description
  * string.
  */
-void GiveItemDescription(char *ItemDescText, item * CurItem, int ForShop)
+void GiveItemDescription(char *ItemDescText, item *CurItem, int ForShop)
 {
 	char linebuf[5000];
 	char AppendToLine = 0;	// if we should write the next bonus with a comma as separator or with a newline
@@ -208,7 +208,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			sprintf(linebuf, _(" Dur: %d/%d\n"), (int)CurItem->current_duration, (int)CurItem->max_duration);
 		strcat(ItemDescText, linebuf);
 	} else {
-		strcat(ItemDescText, _(" Indestructible\n"));
+		if (!MatchItemWithName(CurItem->type, "Valuable Circuits"))
+			strcat(ItemDescText, _(" Indestructible\n"));
 	};
 
 	if (ItemMap[CurItem->type].item_gun_ammo_clip_size) {
