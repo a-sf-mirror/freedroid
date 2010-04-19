@@ -61,6 +61,14 @@ struct selected_element {
 	void *data;
 };
 
+/* Selected floor tiles are wrapped into a struct lvledit_map_tile, that holds 
+ * coordinate information. struct map_tile does not have coordinate information,
+ * and the game doesn't need it, only the leveleditor. */
+struct lvledit_map_tile {
+	map_tile *tile;
+	point coord;
+};
+
 static LIST_HEAD(selected_elements);
 static LIST_HEAD(clipboard_elements);
 
@@ -102,8 +110,16 @@ int element_in_selection(void *data)
 {
 	struct selected_element *e;
 	list_for_each_entry(e, &selected_elements, node) {
-		if (e->data == data)
-			return 1;
+		switch(e->type) {
+		case OBJECT_FLOOR:
+			// We must compare the floor tiles in the wrapper structure
+			if (((struct lvledit_map_tile *) (e->data))->tile == data)
+				return 1;
+			break;
+		default:
+			if (e->data == data)
+				return 1;
+		}		
 	}
 
 	return 0;
@@ -121,25 +137,25 @@ int selection_type() {
 	return get_current_object_type()->type;
 }
 
-static void add_floor_tile_to_list(struct list_head *list, map_tile * a)
+static void add_floor_tile_to_list(struct list_head *list, struct lvledit_map_tile *t)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
 	e->type = OBJECT_FLOOR;
-	e->data = a;
+	e->data = t;
 
 	list_add(&e->node, list);
 }
 
-static void add_obstacle_to_list(struct list_head *list, obstacle * a)
+static void add_obstacle_to_list(struct list_head *list, obstacle *o)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
 	e->type = OBJECT_OBSTACLE;
-	e->data = a;
+	e->data = o;
 
 	list_add(&e->node, list);
 }
 
-static void add_waypoint_to_list(struct list_head *list, waypoint * w)
+static void add_waypoint_to_list(struct list_head *list, waypoint *w)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
 	e->type = OBJECT_WAYPOINT;
@@ -154,6 +170,11 @@ static void __clear_selected_list(struct list_head *lst, int nbelem)
 	list_for_each_entry_safe(e, ne, lst, node) {
 		if (nbelem-- == 0)
 			return;
+
+		if (e->type == OBJECT_FLOOR) {
+			/* Unselecting a floor tile requires freeing its wrapper structure. */				
+			free(e->data);
+		}
 		list_del(&e->node);
 		free(e);
 	}
@@ -162,7 +183,12 @@ static void __clear_selected_list(struct list_head *lst, int nbelem)
 static void select_floor_on_tile(int x, int y)
 {
 	if (!element_in_selection(&EditLevel()->map[y][x])) {
-		add_floor_tile_to_list(&selected_elements, &EditLevel()->map[y][x]);
+		struct lvledit_map_tile *t = MyMalloc(sizeof(struct lvledit_map_tile));
+		t->tile = &EditLevel()->map[y][x];
+		t->coord.x = x;
+		t->coord.y = y;
+		
+		add_floor_tile_to_list(&selected_elements, t);
 		state.rect_nbelem_selected++;
 	}
 }
@@ -427,8 +453,9 @@ void level_editor_cycle_marked_obstacle()
 void level_editor_copy_selection()
 {
 	struct selected_element *e;
+	struct lvledit_map_tile *t;	
 	obstacle *o;
-
+	
 	if (mode != FD_RECTDONE) {
 		// We get called from the outside so check mode coherency first
 		return;
@@ -442,7 +469,17 @@ void level_editor_copy_selection()
 			o = MyMalloc(sizeof(obstacle));
 			memcpy(o, e->data, sizeof(obstacle));
 
-			add_obstacle_to_list(&clipboard_elements, o);
+			add_obstacle_to_list(&clipboard_elements, o);			
+			break;
+		case OBJECT_FLOOR:	
+			t = MyMalloc(sizeof(struct lvledit_map_tile));
+			t->tile = MyMalloc(sizeof(map_tile));		
+				
+			memcpy(t->tile, ((struct lvledit_map_tile *) (e->data))->tile, sizeof(map_tile));
+			t->coord.x = ((struct lvledit_map_tile *) (e->data))->coord.x;
+			t->coord.y = ((struct lvledit_map_tile *) (e->data))->coord.y;		
+			
+			add_floor_tile_to_list(&clipboard_elements, t);
 			break;
 		default:
 			;
@@ -467,19 +504,28 @@ void level_editor_cut_selection()
 			action_remove_obstacle_user(EditLevel(), e->data);
 			nbelem++;
 			break;
+		case OBJECT_FLOOR:
+			// We replace the tile we cut by a black tile
+			action_set_floor(EditLevel(), 
+				((struct lvledit_map_tile *) (e->data))->coord.x,
+				((struct lvledit_map_tile *) (e->data))->coord.y,
+				ISO_COMPLETELY_DARK);
+			nbelem++;
+			break;
 		default:
 			break;
 		}
 	}
-
+	
 	action_push(ACT_MULTIPLE_ACTIONS, nbelem);
 
 	clear_selection(-1);
 }
 
 void level_editor_paste_selection()
-{
+{		
 	struct selected_element *e;
+	struct lvledit_map_tile *t;	
 	obstacle *o;
 	int nbact = 0;
 	moderately_finepoint cmin = { 77777, 7777 }, cmax = {
@@ -489,45 +535,97 @@ void level_editor_paste_selection()
 		// We get called from the outside so check mode coherency first
 		return;
 	}
-	
+
 	if (!mouse_in_level) {
 		// We must not paste objects outside of the level
 		return;
 	}
-
+	
+	// Before a paste operation we want to unselect the previous selection
+	clear_selection(-1);
+	
 	list_for_each_entry(e, &clipboard_elements, node) {
-		if (e->type != OBJECT_OBSTACLE)
-			return;	//XXX
-		o = e->data;
+		switch (e->type) {
+		case OBJECT_OBSTACLE:
+			o = e->data;
 
-		if (o->pos.x < cmin.x)
-			cmin.x = o->pos.x;
-		if (o->pos.y < cmin.y)
-			cmin.y = o->pos.y;
-		if (o->pos.x > cmax.x)
-			cmax.x = o->pos.x;
-		if (o->pos.y > cmax.y)
-			cmax.y = o->pos.y;
+			if (o->pos.x < cmin.x)
+				cmin.x = o->pos.x;
+			if (o->pos.y < cmin.y)
+				cmin.y = o->pos.y;
+			if (o->pos.x > cmax.x)
+				cmax.x = o->pos.x;
+			if (o->pos.y > cmax.y)
+				cmax.y = o->pos.y;
+			break;
+		case OBJECT_FLOOR:	
+			t = e->data;
+			
+			if (t->coord.x < cmin.x)
+				cmin.x = t->coord.x;
+			if (t->coord.y < cmin.y)
+				cmin.y = t->coord.y;
+			if (t->coord.x > cmax.x)
+				cmax.x = t->coord.x;
+			if (t->coord.y > cmax.y)
+				cmax.y = t->coord.y;
+			break;
+		default:
+			return;
+		}
 	}
-
+	
 	center.x = (cmax.x + cmin.x) / 2;
 	center.y = (cmax.y + cmin.y) / 2;
-
+		
 	list_for_each_entry(e, &clipboard_elements, node) {
+		switch (e->type) {
+		case OBJECT_OBSTACLE:	
+			o = e->data;
+			
+			o->pos.x -= center.x;
+			o->pos.y -= center.y;
 
-		o = e->data;
-		o->pos.x -= center.x;
-		o->pos.y -= center.y;
+			o->pos.x += mouse_mapcoord.x;
+			o->pos.y += mouse_mapcoord.y;
+			
+			if (o->pos.x >= EditLevel()->xlen || o->pos.y >= EditLevel()->ylen
+				|| o->pos.x < 0 || o->pos.y < 0) {
+				// We must not paste obstacles outside the boundaries of level
+				break;
+			}
+			
+			// Add and select
+			add_obstacle_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type));
+			
+			nbact++;
+			break;
+		case OBJECT_FLOOR:
+			t = e->data;
+			
+			t->coord.x -= ceil(center.x);
+			t->coord.y -= ceil(center.y);
+					
+			t->coord.x += (int)Me.pos.x;
+			t->coord.y += (int)Me.pos.y;
+						
+			if (t->coord.x >= EditLevel()->xlen || t->coord.y >= EditLevel()->ylen
+				|| t->coord.x < 0 || t->coord.y < 0) {
+				// We must not paste tiles outside the boundaries of level
+				break;
+			}
 
-		o->pos.x += mouse_mapcoord.x;
-		o->pos.y += mouse_mapcoord.y;
-
-		// Add and select
-		add_obstacle_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type));
-
-		nbact++;
+			// Set and select	current tile
+			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_value);
+			select_floor_on_tile(t->coord.x, t->coord.y);
+			
+			nbact++;
+			break;
+		default:
+			break;
+		}
 	}
-
+	
 	action_push(ACT_MULTIPLE_ACTIONS, nbact);
 }
 
