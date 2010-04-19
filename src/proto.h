@@ -633,7 +633,7 @@ void robot_group_turn_hostile(enemy *);
 void SetRestOfGroupToState(Enemy ThisRobot, short NewState);
 int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot);
 int CheckEnemyEnemyCollision(enemy *);
-void MoveEnemys(void);
+void move_enemies(void);
 void ClearEnemys(void);
 void enemy_reset(enemy *this_bot);
 void enemy_reset_fabric();

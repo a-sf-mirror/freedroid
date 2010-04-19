@@ -103,7 +103,7 @@ void Game()
 
 		UpdateAllCharacterStats();
 
-		MoveEnemys();	// move all the enemys:
+		move_enemies();
 
 		check_tux_enemy_collision();
 

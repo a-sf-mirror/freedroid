@@ -1602,7 +1602,8 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			// They should never obscur the Tux, so we blit them beforehand and not
 			// again later from the list.
 			//
-			if (((enemy *)e->element_pointer)->animation_type == DEATH_ANIMATION) {
+			if (((enemy *)e->element_pointer)->animation_type == DEATH_ANIMATION
+			    || ((enemy *)e->element_pointer)->animation_type == DEAD_ANIMATION) {
 				if (!(mask & OMIT_ENEMIES)) {
 					PutEnemy((enemy *) (e->element_pointer), -1, -1, mask, FALSE);
 				}
@@ -1677,6 +1678,8 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 				if (((enemy *) e->element_pointer)->energy < 0)
 					continue;
 				if (((enemy *) e->element_pointer)->animation_type == DEATH_ANIMATION)
+					continue;
+				if (((enemy *) e->element_pointer)->animation_type == DEAD_ANIMATION)
 					continue;
 
 				//--------------------

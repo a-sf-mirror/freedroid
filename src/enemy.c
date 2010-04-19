@@ -140,18 +140,14 @@ int TeleportToRandomWaypoint(enemy * erot, level * ShuffleLevel, char *wp_used)
 }
 
 /**
- * Enemys recover with time, just so.  This is done in this function, and
- * it is of course independent of the current framerate.
+ * Enemies recover with time, independently of the current frame rate.
  */
-void PermanentHealRobots(void)
+static void heal_robots_over_time(void)
 {
 	static float time_since_last_heal = 0;
 #define HEAL_INTERVAL (3.0)
 
-	//--------------------
-	// For performance issues, we won't heal each robot every frame.  Instead it
-	// will be enough to heal the bots every HEAL_INTERVAL seconds or something like that.
-	//
+	// Heal the bots every HEAL_INTERVAL seconds
 	time_since_last_heal += Frame_Time();
 	if (time_since_last_heal < HEAL_INTERVAL)
 		return;
@@ -164,8 +160,7 @@ void PermanentHealRobots(void)
 		if (erot->energy > Druidmap[erot->type].maxenergy)
 			erot->energy = Druidmap[erot->type].maxenergy;
 	}
-
-}				// void PermanentHealRobots(void)
+}
 
 /**
  * This function resets the 'transient state' of a bot.
@@ -909,7 +904,7 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 }
 
 /**
- * This function moves a single enemy.  It is used by MoveEnemys().
+ * This function moves a single enemy.  It is used by update_enemy().
  */
 void MoveThisEnemy(enemy * ThisRobot)
 {
@@ -1934,41 +1929,30 @@ void update_enemy(enemy * ThisRobot)
  * Note that no enemy must be killed by the logic function. It's a technical limitation
  * and a requirement in freedroidRPG.
  */
-void MoveEnemys(void)
+void move_enemies(void)
 {
-	//--------------------
-	// We heal the robots as time passes.
-	PermanentHealRobots();
+	heal_robots_over_time();
 
-	//--------------------
-	// Now the per-enemy stuff
-	//
-	enemy *ThisRobot, *nerot;
-	int i;			// i = 0 mean dead bots, 1 means alive
-	for (i = 0; i < 2; i++)
-		list_for_each_entry_safe(ThisRobot, nerot, i ? &alive_bots_head : &dead_bots_head, global_list) {
-
-		//--------------------
-		// Ignore robots on other levels, except those 
-		// on levels that can be "seen"
-		// 
-		if ((!level_is_visible(ThisRobot->pos.z)))
+	enemy *erot, *nerot;
+	BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
+		// Ignore robots on levels that can't be seen
+		if (!level_is_visible(erot->pos.z))
 			continue;
 
-		animate_enemy(ThisRobot);
+		animate_enemy(erot);
 
-		/* If we are processing dead bots, simply do animation stuff.
-		 * The rest is for alive bots only. */
-		if (i == 0)
-			continue;
-
-		//--------------------
 		// Run a new cycle of the bot's state machine
-		update_enemy(ThisRobot);
+		update_enemy(erot);
+	}
 
-		}
+	BROWSE_DEAD_BOTS_SAFE(erot, nerot) {
+		// Ignore robots on levels that can't be seen
+		if (!level_is_visible(erot->pos.z))
+			continue;
 
-};				// MoveEnemys( void ) 
+		animate_enemy(erot);
+	}
+}
 
 /**
  * When an enemy is firing a shot, the newly created bullet must be 
@@ -2523,16 +2507,15 @@ int CheckEnemyEnemyCollision(enemy * OurBot)
 };				// int CheckEnemyEnemyCollision
 
 /**
- * This function increases the phase counters for animation of a bot.
+ * This function increases the phase counters for the animation of a bot.
  */
-void animate_enemy(enemy * our_enemy)
+void animate_enemy(enemy *our_enemy)
 {
 	switch (our_enemy->animation_type) {
 
 	case WALK_ANIMATION:
 		our_enemy->animation_phase += Frame_Time() * droid_walk_animation_speed_factor[our_enemy->type];
 
-		//--------------------
 		// While we're in the walk animation cycle, we have the walk animation
 		// images cycle.
 		//
@@ -2540,15 +2523,13 @@ void animate_enemy(enemy * our_enemy)
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
-		//--------------------
 		// But as soon as the walk stops and the 'bot' is standing still, we switch
 		// to the standing cycle...
 		//
 		if ((fabsf(our_enemy->speed.x) < 0.1) && (fabsf(our_enemy->speed.y) < 0.1)) {
-			our_enemy->animation_type = STAND_ANIMATION;
 			our_enemy->animation_phase = first_stand_animation_image[our_enemy->type] - 1;
+			our_enemy->animation_type = STAND_ANIMATION;
 		}
-
 		break;
 	case ATTACK_ANIMATION:
 		our_enemy->animation_phase += Frame_Time() * droid_attack_animation_speed_factor[our_enemy->type];
@@ -2557,7 +2538,6 @@ void animate_enemy(enemy * our_enemy)
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
-
 		break;
 	case GETHIT_ANIMATION:
 		our_enemy->animation_phase += Frame_Time() * droid_gethit_animation_speed_factor[our_enemy->type];
@@ -2566,15 +2546,17 @@ void animate_enemy(enemy * our_enemy)
 			our_enemy->animation_phase = 0;
 			our_enemy->animation_type = WALK_ANIMATION;
 		}
-
 		break;
 	case DEATH_ANIMATION:
 		our_enemy->animation_phase += Frame_Time() * droid_death_animation_speed_factor[our_enemy->type];
 
 		if (our_enemy->animation_phase >= last_death_animation_image[our_enemy->type] - 1) {
 			our_enemy->animation_phase = last_death_animation_image[our_enemy->type] - 1;
-			our_enemy->animation_type = DEATH_ANIMATION;
+			our_enemy->animation_type = DEAD_ANIMATION;
 		}
+		break;
+	case DEAD_ANIMATION:
+		our_enemy->animation_phase = last_death_animation_image[our_enemy->type] - 1;
 		break;
 	case STAND_ANIMATION:
 		our_enemy->animation_phase += Frame_Time() * droid_stand_animation_speed_factor[our_enemy->type];
@@ -2583,9 +2565,7 @@ void animate_enemy(enemy * our_enemy)
 			our_enemy->animation_phase = first_stand_animation_image[our_enemy->type] - 1;
 			our_enemy->animation_type = STAND_ANIMATION;
 		}
-
 		break;
-
 	default:
 		fprintf(stderr, "\nThe animation type found is: %d.", our_enemy->animation_type);
 		ErrorMessage(__FUNCTION__, "\
@@ -2593,8 +2573,7 @@ void animate_enemy(enemy * our_enemy)
 		    That means:  Something is going *terribly* wrong!", PLEASE_INFORM, IS_FATAL);
 		break;
 	}
-
-};				// void animate_enemy ( enemy *)
+}
 
 /******************************************************
  * Resolve the address of an enemy, given its number (primary key) and 

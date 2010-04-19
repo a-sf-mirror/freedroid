@@ -1098,6 +1098,9 @@ void Cheatmenu(void)
 						case DEATH_ANIMATION:
 							printf_SDL(Screen, -1, -1, " Deth");
 							break;
+						case DEAD_ANIMATION:
+							printf_SDL(Screen, -1, -1, " Dead");
+							break;
 						case STAND_ANIMATION:
 							printf_SDL(Screen, -1, -1, " Stnd");
 							break;

@@ -1881,7 +1881,7 @@ void ThouArtDefeated(void)
 		DisplayBanner();
 		animate_blasts();
 		MoveBullets();
-		MoveEnemys();
+		move_enemies();
 		animate_obstacles();
 		
 		for (j = 0; j < MAXBULLETS; j++)
@@ -1923,7 +1923,7 @@ void ThouHastWon(void)
 		DisplayBanner();
 		animate_blasts();
 		MoveBullets();
-		MoveEnemys();
+		move_enemies();
 		animate_obstacles();
 
 		// ReactToSpecialKeys();

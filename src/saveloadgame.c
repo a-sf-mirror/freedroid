@@ -514,21 +514,34 @@ int LoadGame(void)
 	memset(&Me, 0, sizeof(tux_t));
 	read_tux_t(LoadGameData, "player", &Me);
 
+	reset_visible_levels();
+	get_visible_levels();
+
 	load_enemies(LoadGameData);
-
 	load_npcs(LoadGameData);
-
 	load_bullets(LoadGameData);
 
 	/* properly restore pointers and references */
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): now correcting dangerous pointers....", __FUNCTION__);
 	Me.TextToBeDisplayed = "";
-	for (i = 0; i < 2; i++) {
-		enemy *erot, *n;
-		list_for_each_entry_safe(erot, n, i ? &alive_bots_head : &dead_bots_head, global_list) {
-			erot->TextToBeDisplayed = "";
-			erot->TextVisibleTime = 0;
-		}
+	enemy *erot;
+	BROWSE_ALIVE_BOTS(erot) {
+		erot->TextToBeDisplayed = "";
+		erot->TextVisibleTime = 0;
+	}
+	BROWSE_DEAD_BOTS(erot) {
+		erot->TextToBeDisplayed = "";
+		erot->TextVisibleTime = 0;
+		/*
+		 * It is sufficient to set ->animation_type, since ->animation_phase will be set to
+		 * last_death_animation_image[erot->type] inside animate_enemy();
+		 *
+		 * Also, we might not know the correct value of last_death_animation_image[] yet,
+		 * since it's initialized by grab_enemy_images_from_archive(erot->type), and that
+		 * function may not have been called for the current bot type.
+		 */
+		if (!level_is_visible(erot->pos.z))
+			erot->animation_type = DEAD_ANIMATION;
 	}
 
 	for (i = 0; i < MAXBULLETS; i++) {
@@ -579,14 +592,12 @@ int LoadGame(void)
 	our_SDL_flip_wrapper();
 
 	load_game_command_came_from_inside_running_game = TRUE;
-	
-	reset_visible_levels();
-	get_visible_levels();
+
 	animation_timeline_reset();
-	
+
 	append_new_game_message(_("Game loaded."));
 	return OK;
-};				// int LoadGame ( void ) 
+}
 
 void read_enemy_ptr(const char *buffer, const char *tag, enemy ** val)
 {
