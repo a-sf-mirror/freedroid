@@ -29,10 +29,10 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_msfacilitygateguardleader")) then
+	if (not has_cookie("met_hf-gateguardleader")) then
 		npc_says(_"Hey, Linarian! What do you want here?")
 		show(1, 2, 3)
-		add_cookie("met_msfacilitygateguardleader")
+		add_cookie("met_hf-gateguardleader")
 	else
 		if (done_quest("Opening access to MS Office")) then
 			if (has_cookie("msfacilitygateguardleader_informed")) then
