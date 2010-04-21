@@ -77,7 +77,6 @@ void init_npcs()
 {
 	/* Create NPCs*/
 	const char *npcs[] = {
-		"614",
 		"614_cryo",
 		"Bender",
 		"Benjamin",
@@ -105,9 +104,7 @@ void init_npcs()
 		"Koan",
 		//	"Lina",
 		"Lukas",
-		//	"MSCD",
 		"Michelangelo",
-		"OldTownGateGuardLeader",
 		"Pendragon",
 		"Richard",
 		"SACD",
@@ -117,8 +114,11 @@ void init_npcs()
 		"Sorenson",
 		"Spencer",
 		"StandardBotAfterTakeover",
-		"StandardOldTownGateGuard",
 		"Stone",
+		"Town-614",
+		"Town-GuardhouseGuard",
+		"Town-NorthGateGuard",
+		"Town-TeleporterGuard",
 		"Tamara",
 		"Tania",
 		"TestDroid",

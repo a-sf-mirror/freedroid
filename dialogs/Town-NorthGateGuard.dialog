@@ -29,9 +29,9 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_oldtowngateguardleader")) then
+	if (not has_cookie("met_town-northgateguard")) then
 		show(1, 2, 3)
-		add_cookie("met_oldtowngateguardleader")
+		add_cookie("met_town-northgateguard")
 	else end
 
 	if (partner_started()) then
@@ -180,7 +180,7 @@ LuaCode={
 	tux_says("".. get_player_name() ..".")
 	npc_says(_"Talk to Spencer. His office is straight ahead. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
-	add_cookie("oldtowngateguardleader_tux_nickname_loon")
+	add_cookie("town-northgateguard_tux_nickname_loon")
 	change_obstacle_state("Main Gate Outer W", "opened")
 	change_obstacle_state("Main Gate Outer E", "opened")
 	change_obstacle_state("Main Gate Guardhouse", "opened")
@@ -196,7 +196,7 @@ LuaCode={
 	npc_says(_"But I guess she's already here, so it doesn't matter if we have another loon.")
 	tux_says(_"I'm a Linarian, not a loon. ".. get_player_name() .." the Linarian.")
 	npc_says(_"Get out of here ".. get_player_name() ..", the loon, and stop bothering me.")
-	add_cookie("oldtowngateguardleader_tux_nickname_loon")
+	add_cookie("town-northgateguard_tux_nickname_loon")
 	change_obstacle_state("Main Gate Outer W", "opened")
 	change_obstacle_state("Main Gate Outer E", "opened")
 	change_obstacle_state("Main Gate Guardhouse", "opened")
@@ -209,7 +209,7 @@ Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Mhmmm.")
 		
-	if (has_cookie("oldtowngateguardleader_tux_nickname_loon")) then
+	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 		npc_says("".. get_player_name() .."... the Loon")
 	else end
 	end_dialog()
