@@ -495,10 +495,10 @@ SForce: T=420 Fixed=0 Marker=2031 Friendly=1 StartLabel="MSOTestDroid1StartGameS
 SForce: T=420 Fixed=0 Marker=2031 Friendly=1 StartLabel="MSOTestDroid2StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
 SForce: T=420 Fixed=0 Marker=2031 Friendly=1 StartLabel="MSOTestDroid3StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
 SForce: T=420 Fixed=0 Marker=2031 Friendly=1 StartLabel="MSOTestDroid4StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
-SForce: T=883 Fixed=0 Marker=3031 Friendly=1 StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" UseDialog="FirmwareUpdateServer" ShortLabel=_"Update Server" 
+SForce: T=883 Fixed=0 Marker=3031 Friendly=1 StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" UseDialog="HF-FirmwareUpdateServer" ShortLabel=_"Update Server" 
 
-SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="MSAreaGuardStartGameSquare" RushTux="no" UseDialog="StandardMSFacilityGateGuard" ShortLabel=_"Bot Factory Gate Guard" 
-SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="MSAreaGuardChiefStartGameSquare" RushTux="no" UseDialog="MSFacilityGateGuardLeader" ShortLabel=_"Bot Factory Gate Guard" 
+SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="MSAreaGuardStartGameSquare" RushTux="no" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard" 
+SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="MSAreaGuardChiefStartGameSquare" RushTux="no" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard" 
 
 ** End of this levels droid data **
 
