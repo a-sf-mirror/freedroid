@@ -3223,13 +3223,13 @@ t176 x17.00 y4.00 l-1
 t247 x21.00 y5.50 l-1 
 t168 x21.50 y4.50 l-1 
 t68 x21.00 y3.50 l-1 
-t302 x18.00 y3.50 l-1 
-t302 x19.00 y3.50 l-1 
-t302 x20.00 y3.50 l-1 
-t79 x18.00 y8.00 l-1 
-t77 x18.50 y8.00 l-1 
+t302 x18.02 y3.64 l-1 
+t302 x19.02 y3.64 l-1 
+t302 x20.03 y3.65 l-1 
+t79 x17.69 y7.91 l-1 
+t77 x18.17 y7.93 l-1 
 t177 x20.50 y5.00 l-1 
-t309 x18.00 y7.00 l-1 
+t309 x17.81 y6.83 l-1 
 t176 x17.00 y6.00 l-1 
 t176 x17.00 y5.00 l-1 
 t26 x17.87 y5.58 l-1 
@@ -3484,7 +3484,6 @@ t192 x24.50 y11.00 l10
 t192 x27.50 y11.00 l11 
 t186 x24.50 y4.50 l4 
 t186 x27.50 y4.50 l8 
-t181 x20.00 y7.00 l12 
 t321 x81.50 y2.50 l-1 
 t321 x0.50 y7.50 l-1 
 t321 x1.50 y7.50 l-1 
@@ -3535,6 +3534,7 @@ t321 x76.50 y85.50 l-1
 t321 x77.50 y85.50 l-1 
 t321 x78.50 y85.50 l-1 
 t321 x79.50 y85.50 l-1 
+t191 x20.00 y7.00 l18 
 /obsdata
 plabelinfolvl
 x=35 y=7 name="StoneStartGameSquare"
@@ -3553,9 +3553,8 @@ x=34 y=67 name="614StartGameSquare5"
 x=50 y=24 name="614StartGameSquare6"
 x=7 y=33 name="PendragonStartGameSquare"
 x=22 y=28 name="BenderStartGameSquare"
-x=28 y=8 name="OldTownNorthGateGuardLeader"
-x=23 y=8 name="OldTownNorthGateGuard1"
-x=21 y=17 name="OldTownNorthGateGuard2"
+x=28 y=8 name="L0NorthGateGuard"
+x=21 y=17 name="L0TeleporterGuard"
 x=33 y=48 name="NewSpencer"
 x=25 y=72 name="DixonStartGameSquare"
 x=18 y=52 name="ButchStartGameSquare"
@@ -3572,6 +3571,7 @@ x=17 y=40 name="0to30"
 x=17 y=41 name="0from30"
 x=80 y=38 name="614StartGameSquare4"
 x=73 y=21 name="TamaraStartGameSquare"
+x=18 y=6 name="L0GateGuardhouseGuard"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor"
@@ -3586,12 +3586,12 @@ obstacle_label.index=8 obstacle_label_name="Main Gate Outer E"
 obstacle_label.index=9 obstacle_label_name="EastGateOfTown"
 obstacle_label.index=10 obstacle_label_name="Main Gate Inner W"
 obstacle_label.index=11 obstacle_label_name="Main Gate Inner E"
-obstacle_label.index=12 obstacle_label_name="Main Gate Guardhouse"
 obstacle_label.index=13 obstacle_label_name="TownDocBackdoor"
 obstacle_label.index=14 obstacle_label_name="South Gate Outer W"
 obstacle_label.index=15 obstacle_label_name="South Gate Inner W"
 obstacle_label.index=16 obstacle_label_name="South Gate Outer E"
 obstacle_label.index=17 obstacle_label_name="South Gate Inner E"
+obstacle_label.index=18 obstacle_label_name="Main Gate Guardhouse"
 /pobstaclelabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -3606,7 +3606,7 @@ Nr.=  4 x=  28 y=   8 rnd=0	 c:    5   6
 Nr.=  5 x=  28 y=   9 rnd=0	 c:    4   7   6 194
 Nr.=  6 x=  28 y=   6 rnd=0	 c:    5   4   7
 Nr.=  7 x=  28 y=   7 rnd=0	 c:    5   6 195
-Nr.=  8 x=  23 y=   8 rnd=0	 c:   47  46
+Nr.=  8 x=  23 y=   8 rnd=0	 c:   47  46 195 194
 Nr.=  9 x=  25 y=   6 rnd=0	 c:   11  10
 Nr.= 10 x=  23 y=   5 rnd=0	 c:   11   9
 Nr.= 11 x=  27 y=   5 rnd=0	 c:   10   9
@@ -3644,7 +3644,7 @@ Nr.= 42 x=  17 y=  18 rnd=0	 c:   41  43
 Nr.= 43 x=  19 y=  17 rnd=0	 c:   38  44  41  42
 Nr.= 44 x=  21 y=  18 rnd=0	 c:   38  43
 Nr.= 45 x=  23 y=  19 rnd=0	 c:   38  40  39  14
-Nr.= 46 x=  21 y=   6 rnd=0	 c:    8  47 199
+Nr.= 46 x=  21 y=   6 rnd=0	 c:    8  47
 Nr.= 47 x=  22 y=   9 rnd=0	 c:    8  46
 Nr.= 48 x=   8 y=   7 rnd=0	 c:   86  83  79
 Nr.= 49 x=  53 y=  16 rnd=0	 c:   50  56  51
@@ -3792,12 +3792,12 @@ Nr.=190 x=  37 y=  53 rnd=0	 c:  188
 Nr.=191 x=  33 y=  46 rnd=0	 c:  187 108
 Nr.=192 x=  27 y=  55 rnd=0	 c:  188 193 196
 Nr.=193 x=  32 y=  58 rnd=0	 c:  188
-Nr.=194 x=  25 y=   9 rnd=0	 c:    5 195
-Nr.=195 x=  25 y=   7 rnd=0	 c:  194   7
+Nr.=194 x=  25 y=   9 rnd=0	 c:    5 195   8
+Nr.=195 x=  25 y=   7 rnd=0	 c:  194   7   8
 Nr.=196 x=  27 y=  49 rnd=0	 c:  192 188
 Nr.=197 x=   3 y=  33 rnd=0	 c:   70
 Nr.=198 x=  11 y=   5 rnd=0	 c:   86  87
-Nr.=199 x=  18 y=   6 rnd=0	 c:   46
+Nr.=199 x=  18 y=   6 rnd=0	 c:  220
 Nr.=200 x=  27 y=  12 rnd=0	 c:  120
 Nr.=201 x=  13 y=  35 rnd=0	 c:   60 202
 Nr.=202 x=  11 y=  25 rnd=0	 c:  203
@@ -3818,6 +3818,7 @@ Nr.=216 x=  74 y=  31 rnd=0	 c:  215 217
 Nr.=217 x=  79 y=  31 rnd=0	 c:  216
 Nr.=218 x=  72 y=  28 rnd=0	 c:  211
 Nr.=219 x=  35 y=  19 rnd=0	 c:   22
+Nr.=220 x=  18 y=   8 rnd=0	 c:  199
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 1
