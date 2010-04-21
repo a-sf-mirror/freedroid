@@ -109,7 +109,7 @@ void init_npcs()
 		"Michelangelo",
 		"OldTownGateGuardLeader",
 		"Pendragon",
-		"RMS",
+		"Richard",
 		"SACD",
 		"SADD",
 		//	"Serge",

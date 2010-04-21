@@ -69,7 +69,7 @@ SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartLabel="614StartGameSquare3" Ru
 SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartLabel="614StartGameSquare4" RushTux="no" UseDialog="614" ShortLabel=_"614 -- East Gate Guard Bot" 
 SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartLabel="614StartGameSquare5" RushTux="no" UseDialog="614" ShortLabel=_"614 -- Patrolling Guard Bot" 
 SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartLabel="614StartGameSquare6" RushTux="no" UseDialog="614" ShortLabel=_"614 -- Patrolling Guard Bot" 
-SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartLabel="RichardStartGameSquare" RushTux="no" UseDialog="RMS" ShortLabel=_"Richard -- Programmer" 
+SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartLabel="RichardStartGameSquare" RushTux="no" UseDialog="Richard" ShortLabel=_"Richard -- Programmer" 
 SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="BenjaminCitadelStartGameSquare" RushTux="no" UseDialog="Benjamin" ShortLabel=_"Benjamin -- Gunsmith" 
 SForce: T=GUA Fixed=0 Marker=9999 Friendly=1 StartLabel="DixonStartGameSquare" RushTux="no" UseDialog="Dixon" ShortLabel=_"Dixon -- Mechanic" 
 SForce: T=COO Fixed=0 Marker=9999 Friendly=1 StartLabel="MichelangeloStartGameSquare" RushTux="no" UseDialog="Michelangelo" ShortLabel=_"Michelangelo -- Colony Cook" 
