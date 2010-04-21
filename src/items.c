@@ -2415,16 +2415,18 @@ void HandleInventoryScreen(void)
  */
 void raw_move_picked_up_item_to_entry(item * ItemPointer, item * TargetPointer, point Inv_Loc)
 {
+	/*
 	char TempText[1000];
 
 	// Announce that we have taken the item. Pointless for purposes other than debugging.
 	// If you pointed and clicked on something, if it vanishes, you picked it up...
-/*	
+
 	Me.TextVisibleTime = 0;
 	sprintf(TempText, _("Item taken: %s."), D_(ItemMap[ItemPointer->type].item_name));
 	append_new_game_message(TempText);	// this can be freed/destroyed afterwards.  it's ok.
 	Me.TextToBeDisplayed = strdup(TempText);
-*/
+	*/
+
 	// We add the new item to the inventory
 	CopyItem(ItemPointer, TargetPointer, FALSE);
 	TargetPointer->inventory_position.x = Inv_Loc.x;
