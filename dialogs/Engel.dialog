@@ -30,9 +30,9 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
-	if (not has_cookie("met_darwin")) then
+	if (not has_cookie("met_engel")) then
 		show(0, 6)
-		add_cookie("met_darwin")
+		add_cookie("met_engel")
 	else end
 	show(99)
 }
@@ -133,7 +133,7 @@ LuaCode={
 	npc_says(_"Yes.")
 	npc_says(_"I will sell the information for a lot of Schaltkreise.")
 	npc_says(_"Interested?")
-	run_subdialog("subdlg_Darwin.dialog")
+	run_subdialog("Engel_sub.dialog")
 }
 ----------------------------------------------------------------------
 
