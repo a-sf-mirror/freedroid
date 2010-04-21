@@ -237,16 +237,12 @@ static inline void PutPixel_automap_wrapper(SDL_Surface * abc, int x, int y, Uin
 void toggle_automap(void)
 {
 	GameConfig.Automap_Visible = !GameConfig.Automap_Visible;
-	if (Me.map_maker_is_present) {
+
+	if (!Me.map_maker_is_present) {
 		if (GameConfig.Automap_Visible)
-			append_new_game_message(_("Automap ON."));
+			append_new_game_message(_("Compass on. You need a Map Maker to enable the minimap."));
 		else
-			append_new_game_message(_("Automap OFF."));
-	} else {
-		if (GameConfig.Automap_Visible)
-			append_new_game_message(_("Compass ON (no automap yet: map maker not present.)"));
-		else
-			append_new_game_message(_("Compass OFF."));
+			append_new_game_message(_("Compass off."));
 	}
 }
 

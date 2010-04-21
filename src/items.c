@@ -2274,7 +2274,7 @@ void HandleInventoryScreen(void)
 			
 			// Check if the user has enough skill to use the shield
 			if (!HeldItemUsageRequirementsMet()) {
-				append_new_game_message(_("You cannot yet equip this!"));
+				append_new_game_message(_("You cannot equip this yet!"));
 				return;
 			}
 			

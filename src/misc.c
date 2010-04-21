@@ -797,7 +797,6 @@ void Pause(void)
 	Activate_Conservative_Frame_Computation();
 
 	AssembleCombatPicture(DO_SCREEN_UPDATE | USE_OWN_MOUSE_CURSOR);
-	append_new_game_message(_("Pausing game..."));
 
 	input_get_keybind("pause", &key, NULL);
 
@@ -826,10 +825,8 @@ void Pause(void)
 		SDL_Delay(10);
 	}
 
-	append_new_game_message(_("Game resumed."));
 	return;
-
-};				// void Pause ( void ) 
+}
 
 /**
  * This function starts the time-taking process.  Later the results
