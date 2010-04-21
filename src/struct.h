@@ -143,6 +143,7 @@ typedef struct configuration_for_freedroid_s {
 	int fullscreen_on;
 	int talk_to_bots_after_takeover;
 	int xray_vision_for_tux;
+	int cheat_running_stamina;
 	int lazyload;
 	int show_item_labels;
 

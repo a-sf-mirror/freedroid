@@ -349,7 +349,7 @@ void UpdateCountersForThisFrame()
 	// We take care of the running stamina...
 	//
 	my_speed = sqrt(Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y);
-	if (my_speed >= (TUX_WALKING_SPEED + TUX_RUNNING_SPEED) * 0.5) {
+	if ((my_speed >= (TUX_WALKING_SPEED + TUX_RUNNING_SPEED) * 0.5) && (!GameConfig.cheat_running_stamina)) {
 		Me.running_power -= latest_frame_time * 3.0;
 	} else {
 		Me.running_power += latest_frame_time * 3.0;

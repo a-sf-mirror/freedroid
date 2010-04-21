@@ -1624,10 +1624,10 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.automap_display_scale = 2.0;
 	GameConfig.skip_shadow_blitting = FALSE;
 	GameConfig.xray_vision_for_tux = FALSE;
+	GameConfig.cheat_running_stamina = FALSE;
 	GameConfig.lazyload = 1;
 	GameConfig.show_item_labels = 0;
-
-};				// void Reset_GameConfig_To_Default_Values ( void )
+}
 
 /* -----------------------------------------------------------------
  * This function initializes the whole Freedroid game.
