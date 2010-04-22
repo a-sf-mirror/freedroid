@@ -457,7 +457,6 @@ static int lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx 
 
 struct waypoint_excpt_data {
 	char subtest;
-	int wp_id[2];
 	gps wp_pos[2];
 };
 
@@ -482,11 +481,9 @@ static void *lvlval_waypoint_parse_excpt(char *string)
 	case 'P':
 	case 'O':
 	case 'S':
-		ReadValueFromString(string, "Idx=", "%d", &(data->wp_id[0]), NULL);
 		ReadValueFromString(string, "X=", "%f", &(data->wp_pos[0].x), NULL);
 		ReadValueFromString(string, "Y=", "%f", &(data->wp_pos[0].y), NULL);
 		ReadValueFromString(string, "L=", "%d", &(data->wp_pos[0].z), NULL);
-		data->wp_id[1] = 0;
 		data->wp_pos[1].x = data->wp_pos[1].y = 0.0;
 		data->wp_pos[1].z = 0;
 		break;
@@ -494,11 +491,9 @@ static void *lvlval_waypoint_parse_excpt(char *string)
 	case 'D':
 	case 'W':
 	case 'Q':
-		ReadValueFromString(string, "Idx1=", "%d", &(data->wp_id[0]), NULL);
 		ReadValueFromString(string, "X1=", "%f", &(data->wp_pos[0].x), NULL);
 		ReadValueFromString(string, "Y1=", "%f", &(data->wp_pos[0].y), NULL);
 		ReadValueFromString(string, "L1=", "%d", &(data->wp_pos[0].z), NULL);
-		ReadValueFromString(string, "Idx2=", "%d", &(data->wp_id[1]), NULL);
 		ReadValueFromString(string, "X2=", "%f", &(data->wp_pos[1].x), NULL);
 		ReadValueFromString(string, "Y2=", "%f", &(data->wp_pos[1].y), NULL);
 		ReadValueFromString(string, "L2=", "%d", &(data->wp_pos[1].z), NULL);
@@ -529,8 +524,6 @@ static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2)
 
 	int i;
 	for (i = 0; i < 2; ++i) {
-		if (data1->wp_id[i] != data2->wp_id[i])
-			return FALSE;
 		if (data1->wp_pos[i].z != data2->wp_pos[i].z)
 			return FALSE;
 
@@ -561,7 +554,6 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 	// Check waypoints position
 	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
 		struct waypoint_excpt_data to_check = { 'P',
-			{i, 0},
 			{
 			 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 			  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
@@ -582,7 +574,7 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 						       "This could lead to some bots being stuck.");
 				pos_is_invalid = TRUE;
 			}
-			printf("[Type=\"WP\"] WP Idx=%d (X=%f:Y=%f:L=%d)\n", i, validator_ctx->this_level->AllWaypoints[i].x + 0.5,
+			printf("[Type=\"WP\"] WP X=%f:Y=%f:L=%d\n", validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 			       validator_ctx->this_level->AllWaypoints[i].y + 0.5, validator_ctx->this_level->levelnum);
 		}
 	}
@@ -592,7 +584,6 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 	// Check waypoints connectivity
 	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
 		struct waypoint_excpt_data to_check = { 'O',
-			{i, 0},
 			{
 			 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 			  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
@@ -609,7 +600,7 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 						       "This could lead to some bots being stuck on those waypoints.");
 				conn_is_invalid = TRUE;
 			}
-			printf("[Type=\"WO\"] WP Idx=%d (X=%f:Y=%f:L=%d)\n", i, validator_ctx->this_level->AllWaypoints[i].x + 0.5,
+			printf("[Type=\"WO\"] WP X=%f:Y=%f:L=%d\n", validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 			       validator_ctx->this_level->AllWaypoints[i].y + 0.5, validator_ctx->this_level->levelnum);
 		}
 
@@ -627,7 +618,7 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 							       "This could lead to some bots being stuck on those waypoints.");
 					conn_is_invalid = TRUE;
 				}
-				printf("[Type=\"WS\"] WP Idx=%d (X=%f:Y=%f:L=%d)\n", i, validator_ctx->this_level->AllWaypoints[i].x + 0.5,
+				printf("[Type=\"WS\"] WP X=%f:Y=%f:L=%d\n", validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 				       validator_ctx->this_level->AllWaypoints[i].y + 0.5, validator_ctx->this_level->levelnum);
 				continue;
 			}
@@ -644,7 +635,6 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 
 		for (j = i + 1; j < validator_ctx->this_level->num_waypoints; ++j) {
 			struct waypoint_excpt_data to_check = { 'D',
-				{i, j},
 				{
 				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
@@ -670,8 +660,8 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 					dist_is_invalid = TRUE;
 				}
 				printf
-				    ("[Type=\"WD\"] WP1 Idx1=%d (X1=%f:Y1=%f:L1=%d) <-> WP2 Idx2=%d (X2=%f:Y2=%f:L2=%d) : distance = %.3f\n",
-				     i, wp_i.x, wp_i.y, validator_ctx->this_level->levelnum, j, wp_j.x, wp_j.y,
+				    ("[Type=\"WD\"] WP1 X1=%f:Y1=%f:L1=%d <-> WP2 X2=%f:Y2=%f:L2=%d : distance = %.3f\n",
+				     wp_i.x, wp_i.y, validator_ctx->this_level->levelnum, wp_j.x, wp_j.y,
 				     validator_ctx->this_level->levelnum, dist);
 			}
 		}
@@ -690,7 +680,6 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			int wp = validator_ctx->this_level->AllWaypoints[i].connections[j];
 
 			struct waypoint_excpt_data to_check = { 'W',
-				{i, wp},
 				{
 				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
@@ -716,9 +705,9 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 							       "This could lead those paths to not being usable.");
 					path_is_invalid = TRUE;
 				}
-				printf("[Type=\"WW\"] WP1 Idx1=%d (X1=%f:Y1=%f:L1=%d) -> WP2 Idx2=%d (X2=%f:Y2=%f:L2=%d) : %s\n",
-				       i, from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
-				       wp, to_pos.x, to_pos.y, validator_ctx->this_level->levelnum,
+				printf("[Type=\"WW\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d : %s\n",
+				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
+				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum,
 				       (rtn & COMPLEX_PATH) ? "too complex" : "path not found");
 			}
 		}
@@ -739,7 +728,6 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			int wp = validator_ctx->this_level->AllWaypoints[i].connections[j];
 
 			struct waypoint_excpt_data to_check = { 'Q',
-				{i, wp},
 				{
 				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
@@ -787,9 +775,9 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 							       "This could lead some bots to get stuck along those paths.");
 					path_warning = TRUE;
 				}
-				printf("[Type=\"WQ\"] WP1 Idx1=%d (X1=%f:Y1=%f:L1=%d) -> WP2 Idx2=%d (X2=%f:Y2=%f:L2=%d) (warning)\n",
-				       i, from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
-				       wp, to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
+				printf("[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)\n",
+				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
+				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
 
 				continue;	// Next connection
 			}
@@ -807,9 +795,9 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 							       "This could lead some bots to get stuck along those paths.");
 					path_warning = TRUE;
 				}
-				printf("[Type=\"WQ\"] WP1 Idx1=%d (X1=%f:Y1=%f:L1=%d) -> WP2 Idx2=%d (X2=%f:Y2=%f:L2=%d) (warning)\n",
-				       i, from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
-				       wp, to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
+				printf("[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)\n",
+				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
+				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
 
 				continue;	// Next connection
 			}
@@ -827,9 +815,9 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 							       "This could lead some bots to get stuck along those paths.");
 					path_warning = TRUE;
 				}
-				printf("[Type=\"WQ\"] WP1 Idx1=%d (X1=%f:Y1=%f:L1=%d) -> WP2 Idx2=%d (X2=%f:Y2=%f:L2=%d) (warning)\n",
-				       i, from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
-				       wp, to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
+				printf("[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)\n",
+				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
+				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
 			}
 		}
 	}
