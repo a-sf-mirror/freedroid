@@ -40,8 +40,8 @@ EveryTime LuaCode={
 
 Nr=0 Text=_"Hi! I'm new here. "
 LuaCode={
-	npc_says(_"Hello. We are the Fleischer brothers.")
-	npc_says(_"I am Engel. He is Geist, and he does not know the language.")
+	npc_says(_"Hello. We are the Fleischer brothers.") -- Fleischer is a name, but also means "butcher"
+	npc_says(_"I am Engel. He is Geist, and he does not know the language.") -- Engel = Angle, Geist = Ghost or Spirit
 	hide(0) show(1)
 }
 ----------------------------------------------------------------------
@@ -57,7 +57,7 @@ LuaCode={
 
 Nr=2 Text=_"Can I help you somehow?"
 LuaCode={
-	npc_says(_"Nein. Let us die as warriors. That is all we ask for.")
+	npc_says(_"Nein. Let us die as warriors. That is all we ask for.") -- Nein = No
 	hide(2) show(3)
 }
 ----------------------------------------------------------------------
@@ -72,7 +72,7 @@ LuaCode={
 
 Nr=4 Text=_"If you keep standing here more bots will come and --"
 LuaCode={
-	npc_says(_"Sehr gut. Let them come. We are ready.")
+	npc_says(_"Sehr gut. Let them come. We are ready.") -- Sehr gut = Very good or very well.
 	npc_says(_"What a beautiful day. Yes.")
 	hide(4) show(5)
 }
@@ -92,7 +92,7 @@ Nr=6 Text=_"Where can I get some help?"
 LuaCode={
 	npc_says(_"Nowhere. This is the end of the world. There is no help.")
 	npc_says(_"There is a city a bit south from here, but if I were you, I would not go there.")
-	npc_says(_"The Rot Guard is the ruler there, and cruelty is their solution to everything.")
+	npc_says(_"The Rot Guard is the ruler there, and cruelty is their solution to everything.") -- Rot = red
 	npc_says(_"Real freedom is really dead.")
 	hide(6)
 }
@@ -112,7 +112,7 @@ LuaCode={
 	tux_says(_"Erm... I --")
 	npc_says(_"WHAT!? SPIT IT OUT!")
 	tux_says(_"Er... You guys are really great and I admire your bravery in the face of certain death.")
-	npc_says(_"Donnerwetter, you are a funny one.")
+	npc_says(_"Donnerwetter, you are a funny one.") -- donner = thunder, wetter = weather, Thunderstorm. In this sense Donnerwetter means "wow!".
 	npc_says(_"I hope that one day we shall meet again, maybe in a better time.")
 	npc_says(_"Maybe then you will tell us other gut jokes that you know.")
 	npc_says(_"Maybe one day...")
@@ -131,7 +131,7 @@ LuaCode={
 Nr=12 Text=_"I want to know how to extract modules from the bots."
 LuaCode={
 	npc_says(_"Yes.")
-	npc_says(_"I will sell the information for a lot of Schaltkreise.")
+	npc_says(_"I will sell the information for a lot of Schaltkreise.") -- Schaltkreise = circuits
 	npc_says(_"Interested?")
 	run_subdialog("Engel_sub.dialog")
 }
@@ -139,14 +139,14 @@ LuaCode={
 
 Nr=13 Text=_"Can I join your hunt?"
 LuaCode={
-	npc_says(_"Nein. Our problem. Our hunt.")
+	npc_says(_"Nein. Our problem. Our hunt.") -- nein = no
 	hide(13)
 }
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be going then."
 LuaCode={
-	npc_says(_"Goodbye and viel gluck.")
+	npc_says(_"Goodbye and viel Gluck.") -- viel Gluck = good luck (should be "viel Glück, but the ü is missing in the font)
 	end_dialog()
 }
 ----------------------------------------------------------------------

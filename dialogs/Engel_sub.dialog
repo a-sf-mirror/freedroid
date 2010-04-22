@@ -58,7 +58,7 @@ LuaCode={
 			end_dialog()
 		else -- No $$$
 			npc_says(_"Hmmm...")
-			npc_says(_"Kein geld, Keine hilfe.")
+			npc_says(_"Kein geld, keine hilfe.") -- No money, no help.
 			npc_says(_"Come back with some money.")
 			end_dialog()
 		end
@@ -77,7 +77,7 @@ Nr=10 Text="1st LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Let us start with entropy inverters. This is quite simple.")
-	npc_says(_"Just take a hammer and hit the bot sehr hard on the head.")
+	npc_says(_"Just take a hammer and hit the bot sehr hard on the head.") -- sehr = very
 	npc_says(_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for.")
 	improve_program("Extract bot parts")
 }
@@ -98,7 +98,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Hmmm... Ah, gut. Superconductors.")
 	npc_says(_"They are relatively easy to get out.")
-	npc_says(_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there.")
+	npc_says(_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there.") -- sehr gut = very good
 	npc_says(_"Wear rubber gloves. Just in case, you know.")
 	improve_program("Extract bot parts")
 }
@@ -131,7 +131,7 @@ LuaCode={
 Nr=70 Text="NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?")
+	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?") -- nein = no , ja = yes, in this case it can be understood as "did you understand?"
 	end_dialog()
 }
 ----------------------------------------------------------------------
