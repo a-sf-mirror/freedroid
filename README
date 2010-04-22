@@ -98,6 +98,8 @@
      looking as intended.
    * Alt tab in/out of the game in OpenGL while a static popup is displayed makes the screen completely black.
      Clicking or pressing the required key to close the popup will redraw/bring back the screen.
+   * Some graphical enhancements, such as enemies changing their color if they are affected by a spell
+     (frozen or slowed) and transparent windows are only visible using OpenGL mode.
 
  Windows 
    * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not 
