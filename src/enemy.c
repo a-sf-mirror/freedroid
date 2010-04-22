@@ -62,7 +62,7 @@ list_head_t level_bots_head[MAX_LEVELS];	//THIS IS NOT STATICALLY PROPERLY INITI
  * waypoint system, i.e. current waypoint and next waypoint initialized.
  * This is what this function is supposed to do.
  */
-int TeleportToClosestWaypoint(enemy *ThisRobot)
+int teleport_to_closest_waypoint(enemy *ThisRobot)
 {
 	int i;
 	float BestDistanceSqu = 10000;
@@ -100,43 +100,70 @@ int TeleportToClosestWaypoint(enemy *ThisRobot)
 		    BestWaypoint, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
 
 	return BestWaypoint;
-};				// void TeleportToClosestWaypoint ( Enemy ThisRobot )
+}
 
-int TeleportToRandomWaypoint(enemy * erot, level * ShuffleLevel, char *wp_used)
+/**
+ * Randomly teleports a standard bot to a free (not already occupied) waypoint.
+ *
+ * A random waypoint is chosen. All waypoints are examined in turn, starting
+ * from the random one, until a free one is found.
+ * If no free waypoint is found, the bot is teleported to the last checked
+ * waypoint.
+ *
+ * Note: only the waypoints not forbidden for randomly placed bots are scanned.
+ */
+int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 {
-	int wp_num = ShuffleLevel->num_waypoints;
-	int testwp = MyRandom(wp_num - 1);
-	int wp;
+	int wp_num = this_level->num_waypoints;
 
-	if (wp_used[testwp] || ShuffleLevel->AllWaypoints[testwp].suppress_random_spawn)	//test a random waypoint
-	{
-		int found = 0;
-		int a;
+	int start_wp = MyRandom(wp_num - 1);
+	int current_wp = start_wp;
+	int last_checked_wp = -1;
+	int found_wp = -1;
 
-		for (a = (testwp == wp_num - 1) ? 0 : testwp + 1; a != testwp; a = (a >= wp_num - 1) ? 0 : a + 1) {	/* Test waypoints starting from the current one to the last, and back from zero */
-			if (!wp_used[a] && !ShuffleLevel->AllWaypoints[a].suppress_random_spawn) {
-				found = 1;
-				testwp = a;
+	// Find a free waypoint
+
+	do {
+		if (!this_level->AllWaypoints[current_wp].suppress_random_spawn) {
+			last_checked_wp = current_wp;
+			if (!wp_used[current_wp]) {
+				found_wp = current_wp;
 				break;
 			}
 		}
+		// next waypoint, going to 0 if at end of list
+		current_wp++;
+		if (current_wp == wp_num)
+			current_wp = 0;
+	} while (found_wp == -1 && current_wp != start_wp); // stop when found, or when all waypoints have been scanned
 
-		if (!found)
+	// Use a fallback waypoint if no free waypoint is found
+
+	if (found_wp == -1) {
+		if (last_checked_wp == -1) {
+			ErrorMessage(__FUNCTION__, "All waypoints on level %d are forbidden for random bots. Something is wrong."
+			                           " Forcing the bot to teleport to a forbidden waypoint.\n",
+			                           PLEASE_INFORM, IS_WARNING_ONLY, this_level->levelnum);
+			found_wp = start_wp;
+		} else {
 			ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n",
-				     PLEASE_INFORM, IS_WARNING_ONLY, ShuffleLevel->levelnum);
+			                           PLEASE_INFORM, IS_WARNING_ONLY, this_level->levelnum);
+			found_wp = last_checked_wp;
+		}
 	}
 
-	wp = testwp;
-	wp_used[testwp] = 1;
+	wp_used[found_wp] = 1;
 
-	erot->pos.x = ShuffleLevel->AllWaypoints[wp].x + 0.5;
-	erot->pos.y = ShuffleLevel->AllWaypoints[wp].y + 0.5;
-	erot->pos.z = ShuffleLevel->levelnum;
+	// 'Teleport' the bot
 
-	erot->lastwaypoint = wp;
-	erot->nextwaypoint = wp;
+	erot->pos.x = this_level->AllWaypoints[found_wp].x + 0.5;
+	erot->pos.y = this_level->AllWaypoints[found_wp].y + 0.5;
+	erot->pos.z = this_level->levelnum;
 
-	return wp;
+	erot->lastwaypoint = found_wp;
+	erot->nextwaypoint = found_wp;
+
+	return found_wp;
 }
 
 /**

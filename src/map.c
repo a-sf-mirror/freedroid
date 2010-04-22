@@ -155,7 +155,7 @@ void respawn_level(int level_num)
 		// Re-place the bots onto the waypoint system
 		if (!erot->SpecialForce) {
 			// Standard bots are randomly placed on one waypoint
-			int wp = TeleportToRandomWaypoint(erot, curShip.AllLevels[level_num], wp_used);
+			int wp = teleport_to_random_waypoint(erot, curShip.AllLevels[level_num], wp_used);
 			wp_used[wp] = 1;
 			erot->homewaypoint = erot->lastwaypoint;
 			erot->combat_state = SELECT_NEW_WAYPOINT;
@@ -164,7 +164,7 @@ void respawn_level(int level_num)
 			if (erot->homewaypoint == -1) {
 				// If a special force droid has not yet been integrated onto
 				// the waypoint system, place it near its current position.
-				int wp = TeleportToClosestWaypoint(erot);
+				int wp = teleport_to_closest_waypoint(erot);
 				wp_used[wp] = 1;
 				erot->homewaypoint = erot->lastwaypoint;
 				erot->combat_state = SELECT_NEW_WAYPOINT;

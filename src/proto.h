@@ -643,8 +643,8 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 enemy *enemy_resolve_address(short int enemy_number, enemy ** enemy_addr);
 void enemy_set_reference(short int *enemy_number, enemy ** enemy_addr, enemy * addr);
 void enemy_generate_level_lists(void);
-int TeleportToClosestWaypoint(enemy *ThisRobot);
-int TeleportToRandomWaypoint(enemy *, level *, char *);
+int teleport_to_closest_waypoint(enemy *ThisRobot);
+int teleport_to_random_waypoint(enemy *, level *, char *);
 
 #define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)
 #define BROWSE_ALIVE_BOTS(X) list_for_each_entry(X, &alive_bots_head, global_list)
