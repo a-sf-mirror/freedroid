@@ -125,6 +125,47 @@ int element_in_selection(void *data)
 	return 0;
 }
 
+static void __calc_min_max(float x, float y, moderately_finepoint *cmin, moderately_finepoint *cmax)
+{
+	if (x < cmin->x)
+		cmin->x = x;
+	if (y < cmin->y)
+		cmin->y = y;
+	if (x > cmax->x)
+		cmax->x = x;
+	if (y > cmax->y)
+		cmax->y = y;
+}
+
+static void calc_min_max_selection(struct list_head *list, moderately_finepoint *cmin, moderately_finepoint *cmax)
+{
+	struct selected_element *e;
+	struct lvledit_map_tile *t;
+	obstacle *o;
+	
+	cmin->x = 9999;
+	cmin->y = 9999;
+	cmax->x = 0;
+	cmax->y = 0;
+	
+	list_for_each_entry(e, list, node) {
+		switch (e->type) {
+		case OBJECT_OBSTACLE:
+			o = e->data;
+		
+			__calc_min_max(o->pos.x, o->pos.y, cmin, cmax);
+			break;
+		case OBJECT_FLOOR:	
+			t = e->data;
+
+			__calc_min_max(t->coord.x, t->coord.y, cmin, cmax);
+			break;
+		default:
+			;
+		}
+	}
+}
+
 point selection_start() {
 	return state.rect_start;
 }
@@ -368,17 +409,29 @@ static void start_drag_drop()
 static void do_drag_drop()
 {
 	struct selected_element *e;
+	moderately_finepoint cmin, cmax, diff;
+	
+	// Calculate the coordinates min/max of the selection
+	calc_min_max_selection(&selected_elements, &cmin, &cmax);
+	
+	// Calculate the new displacement of the selection
+	diff.x = mouse_mapcoord.x - state.cur_drag_pos.x;
+	diff.y = mouse_mapcoord.y - state.cur_drag_pos.y;
+
 	list_for_each_entry(e, &selected_elements, node) {
-		switch (e->type) {
-		case OBJECT_OBSTACLE:
-			((obstacle *) (e->data))->pos.x += (mouse_mapcoord.x - state.cur_drag_pos.x);
-			((obstacle *) (e->data))->pos.y += (mouse_mapcoord.y - state.cur_drag_pos.y);
-			break;
-		case OBJECT_WAYPOINT:
-		default:
-			;
+		if (e->type != OBJECT_OBSTACLE)
+			return;
+
+		if ((cmax.y + diff.y) >= EditLevel()->ylen || (cmax.x + diff.x) >= EditLevel()->xlen
+			|| (cmin.x + diff.x) < 0 || (cmin.y + diff.y) < 0) {
+			// Do not place obstacles outside of the level
+			return;
 		}
-	}
+		
+		// Calculate the new coordinates of the obstacle
+		((obstacle *) (e->data))->pos.x += diff.x;
+		((obstacle *) (e->data))->pos.y += diff.y;
+	}	
 	state.cur_drag_pos.x = mouse_mapcoord.x;
 	state.cur_drag_pos.y = mouse_mapcoord.y;
 }
@@ -528,8 +581,7 @@ void level_editor_paste_selection()
 	struct lvledit_map_tile *t;	
 	obstacle *o;
 	int nbact = 0;
-	moderately_finepoint cmin = { 77777, 7777 }, cmax = {
-	0, 0}, center;
+	moderately_finepoint cmin, cmax, center;
 
 	if (mode != FD_RECTDONE) {
 		// We get called from the outside so check mode coherency first
@@ -544,37 +596,10 @@ void level_editor_paste_selection()
 	// Before a paste operation we want to unselect the previous selection
 	clear_selection(-1);
 	
-	list_for_each_entry(e, &clipboard_elements, node) {
-		switch (e->type) {
-		case OBJECT_OBSTACLE:
-			o = e->data;
+	// Calculate the coordinates min/max of the selection
+	calc_min_max_selection(&clipboard_elements, &cmin, &cmax);
 
-			if (o->pos.x < cmin.x)
-				cmin.x = o->pos.x;
-			if (o->pos.y < cmin.y)
-				cmin.y = o->pos.y;
-			if (o->pos.x > cmax.x)
-				cmax.x = o->pos.x;
-			if (o->pos.y > cmax.y)
-				cmax.y = o->pos.y;
-			break;
-		case OBJECT_FLOOR:	
-			t = e->data;
-			
-			if (t->coord.x < cmin.x)
-				cmin.x = t->coord.x;
-			if (t->coord.y < cmin.y)
-				cmin.y = t->coord.y;
-			if (t->coord.x > cmax.x)
-				cmax.x = t->coord.x;
-			if (t->coord.y > cmax.y)
-				cmax.y = t->coord.y;
-			break;
-		default:
-			return;
-		}
-	}
-	
+	// Calculate the center of the selection
 	center.x = (cmax.x + cmin.x) / 2;
 	center.y = (cmax.y + cmin.y) / 2;
 		
