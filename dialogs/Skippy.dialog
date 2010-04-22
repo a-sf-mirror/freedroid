@@ -31,13 +31,16 @@ Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
 	if (not has_cookie("met_skippy")) then
-		show(0, 99)
+		show(0,99)
 		add_cookie("met_skippy")
 	else end
  
 	if (has_cookie("skippy_angry")) then
+-- We probably at some point want to be able to make skippy happy again, maybe by Tux finishing a quest or something that helps skippy or a friend of his or similar.
 		npc_says(_"What? You again? I don't want you here, get out.")
-		hide(1, 3, 20, 21, 91, 99) show(98)
+		tux_says(_"See you later.")
+		npc_says(_"Don't come back. I hate you.")
+		end_dialog()
 	else end
 }
 ----------------------------------------------------------------------
@@ -102,7 +105,7 @@ LuaCode={
 	npc_says(_"I'm no longer your best friend. Go away, you dirty hoser!")
 	add_cookie("skippy_angry")
 	end_dialog()
-	hide(6)
+	hide(1,3,6,10,11,12,20,21,99)
 }
 ----------------------------------------------------------------------
 
@@ -132,7 +135,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"Nah, dont think so. "
+Nr=12 Text=_"Nah, don't think so. "
 LuaCode={
 	npc_says(_"Your loss.", "NO_WAIT")
 	npc_says(_"Hope you won't get lost and killed out there.", "NO_WAIT")
@@ -154,13 +157,6 @@ LuaCode={
 	npc_says(_"No, never! I would never be so shallow!")
 	npc_says(_"I am friendly because I like you.")
 	hide(21)
-}
-----------------------------------------------------------------------
-
-Nr=98 Text=_"See you later."
-LuaCode={
-	npc_says(_"Don't come back. I hate you.")
-	end_dialog()
 }
 ----------------------------------------------------------------------
 
