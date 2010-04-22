@@ -33,20 +33,15 @@ Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
 	if (not has_cookie("met_tamara")) then
-		show(0)
+		tux_says(_"Hi, I'm " .. get_player_name() .. ".")
+		npc_says(_"Welcome to the Library, I'm Tamara.")
+		npc_says(_"Please take a look around and see if there is something here that interests you.")
+		npc_says(_"You are welcome to ask me if you have any questions.")
+		show(40, 99)
 		add_cookie("met_tamara")
 	else npc_says(_"What can I help you with.") end
 
 	if (has_cookie("met_sorenson") and (not has_cookie("talked_about_sister")) ) then show(10) else end
-}
-----------------------------------------------------------------------
-
-Nr=0 Text=_"Hi, I'm Tux."
-LuaCode={
-	npc_says(_"Welcome to the Library, I'm Tamara.")
-	npc_says(_"Please take a look around and see if there is something here that interests you.")
-	npc_says(_"You are welcome to ask me if you have any questions.")
-	hide(0) show(40, 99)
 }
 ----------------------------------------------------------------------
 
@@ -63,6 +58,7 @@ LuaCode={
 	hide(10) show(99)
 }
 ----------------------------------------------------------------------
+
 Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
 LuaCode={
 	npc_says(_"This is a library, not a book shop.")
@@ -72,12 +68,14 @@ LuaCode={
 	hide(40) show(41)
 }
 ----------------------------------------------------------------------
+
 Nr=41 Text=_"So what interesting books do you have available right now?"
 LuaCode={
 	npc_says_random(_"Some of these might interest you.",_"I only have a few programming volumes, feel free to look through them.")
 	trade_with("Tamara")
 }
 ----------------------------------------------------------------------
+
 Nr=99 Text=_"Thank you for the help."
 LuaCode={
 	npc_says_random(_"No problem, and remember to return your books in time.","I aim to ensure that the great works of literature will survive this horrible apocalypse.","That is what I'm here for. Come back at any time.")
