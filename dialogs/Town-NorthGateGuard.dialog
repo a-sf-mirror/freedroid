@@ -30,12 +30,16 @@ Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
 	if (not has_cookie("met_town-northgateguard")) then
+		npc_says(_"Hey you! Linarian! What do you want here?")
 		show(1, 2, 3)
 		add_cookie("met_town-northgateguard")
-	else end
-
-	if (partner_started()) then
-		npc_says(_"Hey you! Linarian! What do you want here?")
+	else 
+		tux_says(_"Can I ask you something?")
+		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
+			npc_says(_"Yes, Loon.", "NO_WAIT")
+		else end
+		npc_says(_"You can ask, but don't expect a reply.", "NO_WAIT")
+		npc_says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
 	end
 }
 ----------------------------------------------------------------------
