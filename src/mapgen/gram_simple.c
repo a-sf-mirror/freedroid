@@ -203,28 +203,14 @@ static int is_room_corner(int x, int y)
 
 static void adj(struct cplist_t *cplist, int *nx, int *ny)
 {
-	switch (cplist->t) {
-	case UP:
-		*nx = cplist->x;
-		*ny = cplist->y - 1;
-		break;
-	case DOWN:
-		*nx = cplist->x;
-		*ny = cplist->y + 1;
-		break;
-	case LEFT:
-		*nx = cplist->x - 1;
-		*ny = cplist->y;
-		break;
-	case RIGHT:
-		*nx = cplist->x + 1;
-		*ny = cplist->y;
-		break;
-	default:
+	static const int dx[] = {0, 0, -1, 1};
+	static const int dy[] = {-1, 1, 0, 0}; 
+	if (cplist->t != UP && cplist->t != DOWN && cplist->t != LEFT && cplist->t != RIGHT) {
 		*nx = 0;
 		*ny = 0;
-		break;
 	}
+	*nx = cplist->x + dx[cplist->t];
+	*ny = cplist->y + dy[cplist->t];
 }
 
 /* This function checks corner wall tiles that may look ugly after wall fusion
