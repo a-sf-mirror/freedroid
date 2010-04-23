@@ -1697,14 +1697,14 @@ void AnalyzePlayersMouseClick()
 	switch (global_ingame_mode) {
 	case GLOBAL_INGAME_MODE_SCROLL_UP:
 		if (no_left_button_press_in_previous_analyze_mouse_click) {
-			game_message_protocol_scroll_override_from_user--;
+			message_log_scroll_override_from_user--;
 			Activate_Conservative_Frame_Computation();
 		}
 		break;
 
 	case GLOBAL_INGAME_MODE_SCROLL_DOWN:
 		if (no_left_button_press_in_previous_analyze_mouse_click) {
-			game_message_protocol_scroll_override_from_user++;
+			message_log_scroll_override_from_user++;
 			Activate_Conservative_Frame_Computation();
 		}
 		break;

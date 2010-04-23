@@ -694,7 +694,8 @@ void DisplayBanner(void);
 int get_days_of_game_duration(float current_game_date);
 int get_hours_of_game_duration(float current_game_date);
 int get_minutes_of_game_duration(float current_game_date);
-void append_new_game_message(const char *message, ...);
+void reset_message_log(void);
+void append_new_game_message(const char *fmt, ...);
 void display_current_game_message_window(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 
@@ -770,6 +771,7 @@ void set_dungeon_output(level *);
 struct auto_string *alloc_autostr(int);
 void free_autostr(struct auto_string *);
 int autostr_printf(struct auto_string *, const char *, ...);
+int autostr_vappend(struct auto_string *str, const char *fmt, va_list args);
 int autostr_append(struct auto_string *, const char *, ...);
 
 // animate.c

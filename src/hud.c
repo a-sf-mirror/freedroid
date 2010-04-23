@@ -58,7 +58,7 @@
 #define BANNER_TEXT_REC_BACKGROUNDCOLOR 0x00
 
 int best_banner_pos_x, best_banner_pos_y;
-char *game_message_protocol = NULL;
+static struct auto_string *message_log;
 
 /**
  * The hud contains several status graphs.  These graphs appear as 
@@ -1230,30 +1230,30 @@ int get_days_of_game_duration(float current_game_date)
 };				// void get_days_of_game_duration ( float current_game_date )
 
 /**
- *
- *
+ * Add a new message to the game log.
  */
-
-void append_new_game_message(const char *message, ...)
+void append_new_game_message(const char *fmt, ...)
 {
+	autostr_append(message_log, "\n* ");
+
 	va_list args;
-	va_start(args, message);
-	static char *msg_ptr = NULL;
-
-	if (game_message_protocol == NULL) {
-		game_message_protocol = MyMalloc(500000);	// enough for any protocol
-		msg_ptr = game_message_protocol;
-		msg_ptr += sprintf(msg_ptr, _("--- Message Protocol ---"));
-	}
-
-	msg_ptr += sprintf(msg_ptr, "\n* ");
-	msg_ptr += vsprintf(msg_ptr, message, args);
-
+	va_start(args, fmt);
+	autostr_vappend(message_log, fmt, args);
 	va_end(args);
 
-	game_message_protocol_scroll_override_from_user = 0;
+	message_log_scroll_override_from_user = 0;
+}
 
-};				// void append_new_game_message ( const char* message, ... )
+/**
+ * Clear message log, initializing message_log as needed.
+ */
+void reset_message_log(void)
+{
+	if (message_log == NULL)
+		message_log = alloc_autostr(10000);
+	message_log->length = 0;
+	autostr_printf(message_log, _("--- Message Log ---"));
+}
 
 /**
  * We display a window with the current text messages.
@@ -1262,64 +1262,53 @@ void display_current_game_message_window(void)
 {
 	SDL_Rect Subtitle_Window;
 	int lines_needed;
-	int protocol_offset;
-	float our_stretch_factor = 1.00;	// TEXT_STRETCH
+	int log_offset;
+	float text_stretch = 1.00;
 	// float extra_stretch_calibrator = ((float)1.0/(float)1.07) ;  // 1.04
 	float extra_stretch_calibrator = 1.00;
 
 #define AVERAGE_LINES_IN_MESSAGE_WINDOW 3*GameConfig . screen_height/480
-
 	SetCurrentFont(Messagevar_BFont);
-	if (game_message_protocol == NULL) {
-		game_message_protocol = MyMalloc(500000);	// enough for any protocol
-		sprintf(game_message_protocol,
-			_
-			("This is the protocol.\nOh yes, it is indeed!\nIt has multiple lines too!\nIsn't that great?  But how long may any one line be?  Is there a limit for that?  Anyway, it looks good."));
-	}
 
 	Subtitle_Window.x = UNIVERSAL_COORD_W(SUBTITLEW_RECT_X);
 	Subtitle_Window.y = UNIVERSAL_COORD_H(SUBTITLEW_RECT_Y);
 	Subtitle_Window.w = UNIVERSAL_COORD_W(SUBTITLEW_RECT_W);
 	Subtitle_Window.h = UNIVERSAL_COORD_H(SUBTITLEW_RECT_H);
 
-	//--------------------
 	// First we need to know where to begin with our little display.
 	//
-	lines_needed = GetNumberOfTextLinesNeeded(game_message_protocol, Subtitle_Window, our_stretch_factor);
+	lines_needed = GetNumberOfTextLinesNeeded(message_log->value, Subtitle_Window, text_stretch);
 	DebugPrintf(1, "\nLines needed: %d. ", lines_needed);
 
 	if (lines_needed <= AVERAGE_LINES_IN_MESSAGE_WINDOW) {
-		//--------------------
 		// When there isn't anything to scroll yet, we keep the default
 		// position and also the users clicks on up/down button will be
 		// reset immediately
 		//
-		protocol_offset = 0;
-		game_message_protocol_scroll_override_from_user = 0;
+		log_offset = 0;
+		message_log_scroll_override_from_user = 0;
 	} else
-		protocol_offset = (FontHeight(GetCurrentFont()) * our_stretch_factor)
+		log_offset = (FontHeight(GetCurrentFont()) * text_stretch)
 		    * (lines_needed - AVERAGE_LINES_IN_MESSAGE_WINDOW +
-		       game_message_protocol_scroll_override_from_user) * extra_stretch_calibrator;
+		       message_log_scroll_override_from_user) * extra_stretch_calibrator;
 
-	//--------------------
-	// Now if the protocol offset is really negative, we don't really want
-	// that and force the user offset back to something sane again.
-	//
-	if (protocol_offset < 0) {
-		game_message_protocol_scroll_override_from_user++;
-		protocol_offset = 0;
+	/*
+	 * If the log offset is negative, that means the user was at the
+	 * beginning of the text and tried to scroll up.  Let's not allow that.
+	 */
+	if (log_offset < 0) {
+		message_log_scroll_override_from_user++;
+		log_offset = 0;
 	}
 
 	blit_special_background(HUD_BACKGROUND_CODE);
 
-	//--------------------
 	// Now we can display the text and update the screen...
 	//
 	SDL_SetClipRect(Screen, NULL);
 	SetCurrentFont(Messagevar_BFont);
-	DisplayText(game_message_protocol, Subtitle_Window.x, Subtitle_Window.y - protocol_offset, &Subtitle_Window, our_stretch_factor);
-
-};				// void display_current_game_message_window ( int background_picture_code , int with_update )
+	DisplayText(message_log->value, Subtitle_Window.x, Subtitle_Window.y - log_offset, &Subtitle_Window, text_stretch);
+}
 
 /**
  * This function updates the various displays that are usually blitted

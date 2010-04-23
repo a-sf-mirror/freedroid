@@ -1582,9 +1582,12 @@ void PrepareStartOfNewCharacter(char *startpos)
 	//
 	our_SDL_flip_wrapper();
 
-	append_new_game_message(_("Starting new game."));
-
-};				// void PrepareStartOfNewCharacter ( char* MissionName )
+	reset_message_log();
+	if (strcmp(startpos, "TutorialTuxStart") == 0)
+		append_new_game_message(_("Starting tutorial."));
+	else
+		append_new_game_message(_("Starting new game."));
+}
 
 /**
  * This function sets the GameConfig back to the default values, NOT THE

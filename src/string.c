@@ -117,7 +117,7 @@ int autostr_printf(struct auto_string *str, const char *fmt, ...)
 	return err;
 }
 
-static int autostr_vappend(struct auto_string *str, const char *fmt, va_list args)
+int autostr_vappend(struct auto_string *str, const char *fmt, va_list args)
 {
 	return autostr_vprintf(str, str->length, fmt, args);
 }
