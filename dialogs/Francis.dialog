@@ -36,7 +36,7 @@ EveryTime LuaCode={
 	else end
 
 	if (partner_started()) then
-		npc_says("Oh, thank heavens! You are still alive. Maybe all hope is not lost.")
+		npc_says(_"Oh, thank heavens! You are still alive. Maybe all hope is not lost.")
 	else end
 	show(99)
 }
