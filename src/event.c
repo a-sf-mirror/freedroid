@@ -223,7 +223,7 @@ int teleporter_square_below_mouse_cursor(char *ItemDescText)
 			// question to be answered still is whether this trigger also triggers a teleporter
 			// action or not and if yes, where the connection leads to...
 			//
-			sprintf(ItemDescText, "%s...", D_(AllEventTriggers[i].name));
+			sprintf(ItemDescText, "%s", D_(AllEventTriggers[i].name));
 			return (TRUE);
 		}
 	}

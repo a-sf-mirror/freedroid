@@ -16,7 +16,7 @@ Each trigger has the following field:
 ## Level  0 ##
 ##############
 * New event trigger *
-Name=_"To maintenance tunnels"
+Name=_"To Maintenance Tunnels"
 Trigger at label="0to6"
 Silent=0
 LuaCode={
@@ -25,7 +25,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"Enter novice arena"
+Name=_"To Novice Arena"
 Trigger at label="0to29"
 Silent=0
 LuaCode={
@@ -34,7 +34,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"Enter master arena"
+Name=_"To Master Arena"
 Trigger at label="0to30"
 Silent=0
 LuaCode={
@@ -46,7 +46,7 @@ LuaCode={
 ## Level  1 ##
 ############## 
 * New event trigger *
-Name=_"Exit warehouse"
+Name=_"Exit Warehouse"
 Trigger at label="1to8"
 Silent=0
 LuaCode={
@@ -55,7 +55,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"To warehouse level 2"
+Name=_"To Warehouse Level 2"
 Trigger at label="1to2"
 Silent=0
 LuaCode={
@@ -67,7 +67,7 @@ LuaCode={
 ## Level  2 ##
 ##############
 * New event trigger *
-Name=_"To warehouse level 1"
+Name=_"To Warehouse Level 1"
 Trigger at label="2to1"
 Silent=0
 LuaCode={
@@ -79,7 +79,7 @@ LuaCode={
 ## Level  3 ##
 ##############
 * New event trigger *
-Name=_"Back to Kevin's garden"
+Name=_"Back to Kevin's Garden"
 Trigger at label="3to17"
 Silent=0
 LuaCode={
@@ -88,7 +88,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"To energy station"
+Name=_"To Energy Station"
 Trigger at label="3to18"
 Silent=0
 LuaCode={
@@ -100,7 +100,7 @@ LuaCode={
 ## Level  4 ##
 ##############
 * New event trigger *
-Name=_"Back to lower catacombs"
+Name=_"Back to Lower Catacombs"
 Trigger at label="4to56"
 Silent=0
 LuaCode={
@@ -112,7 +112,7 @@ LuaCode={
 ## Level  5 ##
 ##############
 * New event trigger *
-Name=_"Way to disruption machine deck"
+Name=_"Way to Disruptor Machine Deck"
 Trigger at label="5to55"
 Silent=0
 LuaCode={
@@ -124,7 +124,7 @@ LuaCode={
 ## Level  6 ##
 ##############
 * New event trigger *
-Name=_"Back from maintenance tunnels"
+Name=_"Back to Town"
 Trigger at label="6to0"
 Silent=0
 LuaCode={
@@ -140,7 +140,7 @@ LuaCode={
 ## Level  8 ##
 ##############
 * New event trigger *
-Name=_"Enter warehouse"
+Name=_"Enter Warehouse"
 Trigger at label="8to1"
 Silent=0
 LuaCode={
@@ -192,7 +192,7 @@ LuaCode={
 ## Level 17 ##
 ##############
 * New event trigger *
-Name=_"To Kevin's underground station"
+Name=_"To Kevin's Underground Station"
 Trigger at label="17to3"
 Silent=0
 LuaCode={
@@ -204,7 +204,7 @@ LuaCode={
 ## Level 18 ##
 ##############
 * New event trigger *
-Name=_"To underground station"
+Name=_"To Underground Station"
 Trigger at label="18to3"
 Silent=0
 LuaCode={
@@ -264,7 +264,7 @@ LuaCode={
 ## Level 29 ##
 ##############
 * New event trigger *
-Name=_"Exit novice arena"
+Name=_"Exit Novice Arena"
 Trigger at label="29to0"
 Silent=0
 LuaCode={
@@ -276,7 +276,7 @@ LuaCode={
 ## Level 30 ##
 ##############
 * New event trigger *
-Name=_"Exit master arena"
+Name=_"Exit Master Arena"
 Trigger at label="30to0"
 Silent=0
 LuaCode={
@@ -336,7 +336,7 @@ LuaCode={
 ## Level 34 ##
 ##############
 * New event trigger *
-Name=_"Back from bunker"
+Name=_"Back to the Desert"
 Trigger at label="34to38"
 Silent=0
 LuaCode={
@@ -348,7 +348,7 @@ LuaCode={
 ## Level 35 ##
 ##############
 * New event trigger *
-Name=_"Back to the desert"
+Name=_"Back to the Desert"
 Trigger at label="35to40"
 Silent=0
 LuaCode={
@@ -368,7 +368,7 @@ LuaCode={
 ## Level 38 ##
 ##############
 * New event trigger *
-Name=_"To a forgotten bunker"
+Name=_"To a Forgotten Bunker"
 Trigger at label="38to34"
 Silent=0
 LuaCode={
