@@ -3098,6 +3098,8 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_barrett_m82_sniper_rifle", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "9mm Sub Machine Gun"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_9mm_sub_machine_gun", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Laser Pulse Rifle"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_pulse_rifle", x, y, rotation_index);
 			else if (
 				(MatchItemWithName(Me.weapon_item.type, "Two Barrel sawn off shotgun")) ||
 				(MatchItemWithName(Me.weapon_item.type, "Two Barrel shotgun")) ||
