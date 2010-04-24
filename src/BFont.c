@@ -168,13 +168,54 @@ int FontHeight(BFont_Info * Font)
 	return (Font->h);
 };				// int FontHeight (BFont_Info * Font)
 
-/* Return the width of the "c" character */
+/**
+ * Return the width of specified character
+ */
 int CharWidth(BFont_Info * Font, unsigned char c)
 {
-
 	if (c < ' ' || c > Font->number_of_chars - 1)
 		c = '.';
 	return Font->Chars[c].w;
+}
+
+/**
+ * Get letter-spacing for specified font.
+ *
+ * Letter-spacing refers to the overall spacing of a word or block of text
+ * affecting its overall density and texture.
+ */
+int get_letter_spacing(BFont_Info *font) {
+	if (font == FPS_Display_BFont || font == Blue_BFont || font == Red_BFont)
+		return -2;
+	else if (font == Menu_BFont)
+		return -4;
+	else
+		return 0;
+}
+
+/**
+ * Handle font switching on special characters. Returns 1 if the font was
+ * changed and 0 if it was not.
+ */
+int handle_switch_font_char(unsigned char c)
+{
+	if (c == font_switchto_red[0]) {
+		SetCurrentFont(Red_BFont);
+		return TRUE;
+	} else if (c == font_switchto_blue[0]) {
+		SetCurrentFont(Blue_BFont);
+		return TRUE;
+	} else if (c == font_switchto_neon[0]) {
+		SetCurrentFont(FPS_Display_BFont);
+		return TRUE;
+	} else if (c == font_switchto_msgstat[0]) {
+		SetCurrentFont(Messagestat_BFont);
+		return TRUE;
+	} else if (c == font_switchto_msgvar[0]) {
+		SetCurrentFont(Messagevar_BFont);
+		return TRUE;
+	}
+	return FALSE;
 }
 
 /**
@@ -263,58 +304,28 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 
 /**
  *
- *
  */
-void PutString(SDL_Surface * Surface, int x, int y, char *text)
+void PutString(SDL_Surface *surface, int x, int y, char *text)
 {
-	PutStringFont(Surface, CurrentFont, x, y, text);
-};				// void PutString (SDL_Surface * Surface, int x, int y, char *text)
+	PutStringFont(surface, CurrentFont, x, y, text);
+}
 
 /**
- *
- *
+ * Write a string on a surface using specified font, taking letter-spacing
+ * into account.
  */
-void PutStringFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, char *text)
+void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, char *text)
 {
 	int i = 0;
-	//--------------------
-	// I added little hack to kern MenuFont..
-	// This basicly just prints them more tight on the screen.
-	// basse, 15.2.03
-	//
-	int kerning = 0;
-	if (Font == Menu_BFont)
-		kerning = -4;
-
-	if (Font == FPS_Display_BFont || Font == Blue_BFont || Font == Red_BFont)
-		kerning = -2;
-
+	int letter_spacing = get_letter_spacing(font);
 	while (text[i] != '\0') {
-		//--------------------
-		// Here I've added some hack to allow to give a font switching
-		// directive with a text through various menus and therefore
-		// switch the font even multiple times in one big text.
-		//                                          jp, 27.7.2002
-		//
-		switch (text[i]) {
-		case 1:
-			Font = Red_BFont;
-			kerning = -2;
-			break;
-		case 2:
-			Font = Blue_BFont;
-			kerning = -2;
-			break;
-		case 3:
-			Font = FPS_Display_BFont;
-			kerning = -2;
-			break;
-		default:
-			x += PutCharFont(Surface, Font, x, y, text[i]) + kerning;
-		}
+		if (handle_switch_font_char(text[i]))
+			letter_spacing = get_letter_spacing(font);
+		else
+			x += PutCharFont(surface, font, x, y, text[i]) + letter_spacing;
 		i++;
 	}
-};				// void PutStringFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, char *text)
+}
 
 /**
  *
@@ -322,51 +333,48 @@ void PutStringFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, char 
  */
 int TextWidth(char *text)
 {
-	return (TextWidthFont(CurrentFont, text));
-};				// int TextWidth (char *text)
+	return TextWidthFont(CurrentFont, text);
+}
+
+/**
+ * Calculate the width of a string using a certain font, taking letter-spacing
+ * into account.
+ */
+int TextWidthFont(BFont_Info *font, char *text)
+{
+	int i = 0, width = 0;
+	int letter_spacing = get_letter_spacing(font);
+	while (text[i] != '\0') {
+		if (handle_switch_font_char(text[i]))
+			letter_spacing = get_letter_spacing(font);
+		else
+			width += CharWidth(font, text[i]) + letter_spacing;
+		i++;
+	}
+	return width;
+}
 
 /**
  *
  *
  */
-int TextWidthFont(BFont_Info * Font, char *text)
+static int LimitTextWidthFont(BFont_Info *font, char *text, int limit)
 {
-	int i = 0, x = 0;
-	//--------------------
-	// Based on Bastians hack: 
-	// 
-	// 'I added little hack to kern MenuFont..
-	// This basicly just prints them more tight on the screen.
-	// basse, 15.2.03'
-	//
-	// I extend this to give new text width results...
-	//
-	int kerning = 0;
-	if (Font == Menu_BFont)
-		kerning = -4;
-	if (Font == FPS_Display_BFont || Font == Blue_BFont || Font == Red_BFont)
-		kerning = -2;
-
+	int i = 0, width = 0;
+	int letter_spacing = get_letter_spacing(font);
 	while (text[i] != '\0') {
-		switch (text[i]) {
-		case 1:
-			Font = Red_BFont;
-			kerning = -2;
-			break;
-		case 2:
-			Font = Blue_BFont;
-			kerning = -2;
-			break;
-		case 3:
-			Font = FPS_Display_BFont;
-			kerning = -2;
-			break;
+		if (handle_switch_font_char(text[i])) {
+			letter_spacing = get_letter_spacing(font);
+			i++;
+			continue;
 		}
-		x += CharWidth(Font, text[i]) + kerning;
+		width += CharWidth(font, text[i]) + letter_spacing;
 		i++;
+		if (width >= limit)
+			return i;
 	}
-	return x;
-};				// int TextWidthFont (BFont_Info * Font, char *text)
+	return -1;
+}
 
 /**
  *
@@ -375,52 +383,7 @@ int TextWidthFont(BFont_Info * Font, char *text)
 int LimitTextWidth(char *text, int limit)
 {
 	return (LimitTextWidthFont(CurrentFont, text, limit));
-};				// int LimitTextWidth (char *text, int limit)
-
-/**
- *
- *
- */
-int LimitTextWidthFont(BFont_Info * Font, char *text, int limit)
-{
-	int i = 0, x = 0;
-	//--------------------
-	// Based on Bastians hack: 
-	// 
-	// 'I added little hack to kern MenuFont..
-	// This basicly just prints them more tight on the screen.
-	// basse, 15.2.03'
-	//
-	// I extend this to give new text width results...
-	//
-	int kerning = 0;
-	if (Font == Menu_BFont)
-		kerning = -4;
-	if (Font == FPS_Display_BFont || Font == Blue_BFont || Font == Red_BFont)
-		kerning = -2;
-
-	while (text[i] != '\0') {
-		switch (text[i]) {
-		case 1:
-			Font = Red_BFont;
-			kerning = -2;
-			break;
-		case 2:
-			Font = Blue_BFont;
-			kerning = -2;
-			break;
-		case 3:
-			Font = FPS_Display_BFont;
-			kerning = -2;
-			break;
-		}
-		x += CharWidth(Font, text[i]) + kerning;
-		i++;
-		if (x >= limit)
-			return i;
-	}
-	return -1;
-};				// int LimitTextWidthFont (BFont_Info * Font, char *text, int limit)
+}
 
 /* counts the spaces of the strings */
 int count(char *text)

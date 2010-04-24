@@ -50,6 +50,23 @@ int MyCursorY;
 int display_char_disabled_local;
 
 /**
+ * Display one character, updating MyCursorX to new position.
+ */
+static void display_char(unsigned char c)
+{
+	if (handle_switch_font_char(c))
+		return;
+
+	if (c < ' ' || c > GetCurrentFont()->number_of_chars - 1)
+		c = '.';
+
+	if ((!display_char_disabled) && (!display_char_disabled_local))
+		PutCharFont(Screen, GetCurrentFont(), MyCursorX, MyCursorY, c);
+
+	MyCursorX += CharWidth(GetCurrentFont(), c) + get_letter_spacing(GetCurrentFont());
+}
+
+/**
  *
  *
  */
@@ -425,10 +442,8 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	SDL_Rect store_clip;
 	short int nblines = 1;
 
-	int kerning = 0;
-	if (GetCurrentFont() == FPS_Display_BFont || GetCurrentFont() == Blue_BFont || GetCurrentFont() == Red_BFont)
-		kerning = -2;
-	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + kerning);
+	int letter_spacing = get_letter_spacing(GetCurrentFont());
+	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
 
 	//--------------------
 	// We position the internal text cursor on the right spot for
@@ -484,7 +499,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 		} else {
 			if (MyCursorY <= clip->y - (int)(FontHeight(GetCurrentFont()) * text_stretch))
 				display_char_disabled_local = TRUE;
-			DisplayChar(*tmp);
+			display_char(*tmp);
 			display_char_disabled_local = FALSE;
 		}
 
@@ -497,45 +512,6 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	return nblines;
 
 };				// int DisplayText(...)
-
-/* -----------------------------------------------------------------
- * This function displays a char.  It uses Menu_BFont now
- * to do this.  MyCursorX is  updated to new position.
- * ----------------------------------------------------------------- */
-void DisplayChar(unsigned char c)
-{
-
-	if (c == font_switchto_red[0]) {
-		SetCurrentFont(Red_BFont);
-		return;
-	} else if (c == font_switchto_blue[0]) {
-		SetCurrentFont(Blue_BFont);
-		return;
-	} else if (c == font_switchto_neon[0]) {
-		SetCurrentFont(FPS_Display_BFont);
-		return;
-	} else if (c == font_switchto_msgstat[0]) {
-		SetCurrentFont(Messagestat_BFont);
-		return;
-	} else if (c == font_switchto_msgvar[0]) {
-		SetCurrentFont(Messagevar_BFont);
-		return;
-	}
-	// stupid kerning hack, to get smooth font, but tighter look
-	int kerning = 0;
-	if (GetCurrentFont() == FPS_Display_BFont || GetCurrentFont() == Blue_BFont || GetCurrentFont() == Red_BFont)
-		kerning = -2;
-
-	if (c < ' ' || c > GetCurrentFont()->number_of_chars - 1) {
-		//printf("l: %u of %u \n",c,GetCurrentFont()->number_of_chars);
-		c = '.';
-	}
-	if (!display_char_disabled && !display_char_disabled_local)
-		PutCharFont(Screen, GetCurrentFont(), MyCursorX, MyCursorY, c);
-
-	MyCursorX += CharWidth(GetCurrentFont(), c) + kerning;
-
-};				// void DisplayChar(...)
 
 /**
  * This function checks if the next word still fits in this line
@@ -552,18 +528,16 @@ int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float text_str
 {
 	int NeededSpace = 0;
 
-	int kerning = 0;
-	if (GetCurrentFont() == FPS_Display_BFont || GetCurrentFont() == Blue_BFont || GetCurrentFont() == Red_BFont)
-		kerning = -2;
+	int letter_spacing = get_letter_spacing(GetCurrentFont());
 
 	if (*Resttext == ' ')
-		NeededSpace = CharWidth(GetCurrentFont(), ' ') + kerning;
+		NeededSpace = CharWidth(GetCurrentFont(), ' ') + letter_spacing;
 	else if (*Resttext == '\t')
-		NeededSpace = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + kerning);
+		NeededSpace = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
 
 	Resttext++;
 	while ((*Resttext != ' ') && (*Resttext != '\t') && (*Resttext != '\n') && (*Resttext != 0)) {
-		NeededSpace += CharWidth(GetCurrentFont(), *Resttext) + kerning;
+		NeededSpace += CharWidth(GetCurrentFont(), *Resttext) + letter_spacing;
 		Resttext++;
 	}
 

@@ -41,6 +41,12 @@ int FontHeight(BFont_Info * Font);
 /* Returns the character width of the specified font */
 int CharWidth(BFont_Info * Font, unsigned char c);
 
+/* Get letter-spacing for specified font. */
+int get_letter_spacing(BFont_Info *font);
+
+/* Handle font switching on special characters. */
+int handle_switch_font_char(unsigned char c);
+
 /* Write a single character on the "Surface" with the specified font */
 int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned char c);
 
@@ -53,14 +59,11 @@ int TextWidthFont(BFont_Info * Font, char *text);
 /* Returns the index of the last character than is inside the width limit, with the current font */
 int LimitTextWidth(char *text, int limit);
 
-/* Returns the index of the last character than is inside the width limit */
-int LimitTextWidthFont(BFont_Info * Font, char *text, int limit);
-
 /* Write a string on the "Surface" with the current font */
-void PutString(SDL_Surface * Surface, int x, int y, char *text);
+void PutString(SDL_Surface *surface, int x, int y, char *text);
 
 /* Write a string on the "Surface" with the specified font */
-void PutStringFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, char *text);
+void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, char *text);
 
 /* Write a left-aligned string on the "Surface" with the current font */
 void LeftPutString(SDL_Surface * Surface, int y, char *text);

@@ -670,7 +670,6 @@ void SetLineLength(int);
 int DisplayText(const char *text, int startx, int starty, const SDL_Rect * clip, float text_stretch);
 void display_current_chat_protocol(int background_picture_code, enemy * ChatDroid, int with_update);
 
-void DisplayChar(unsigned char c);
 int ScrollText(char *text, int background_code);
 
 int ImprovedCheckLineBreak(char *text, const SDL_Rect * clip, float text_stretch);
