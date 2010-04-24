@@ -1107,100 +1107,75 @@ void prepare_text_window_content(char *ItemDescText)
 
 /**
  * At various points in the game, especially when the mouse in over an
- * interesting object inside the game, a popup window will appear, e.g.
- * to describe the object in question.
- * This function is responsible for bringing up these text windows.
+ * interesting object inside the game, a text banner will appear, e.g.
+ * to describe the item in question.
  */
-void ShowCurrentTextWindow(void)
+void show_current_text_banner(void)
 {
-	SDL_Rect Banner_Text_Rect;
-	char ItemDescText[5000] = " ";
-	char TextLine[10][1000];
-	int i;
-	int NumberOfLinesInText = 1;
-	char *LongTextPointer;
-	int InterLineDistance;
-	int StringLength;
-	int lines_needed;
+	SDL_Rect banner_rect;
+	char banner_text[5000] = "";
 
-	//--------------------
-	// We prepare the string, that is to be displayed inside the text 
-	// rectangle...
-	//
-	prepare_text_window_content(ItemDescText);
+	// Prepare the string, that is to be displayed inside the text rectangle
+	prepare_text_window_content(banner_text);
 
-	Banner_Text_Rect.x = best_banner_pos_x;
-	Banner_Text_Rect.y = best_banner_pos_y;
-	
-	Banner_Text_Rect.h = LOWER_BANNER_TEXT_RECT_H;
-
-	// Banner width required for a given text.
-	Banner_Text_Rect.w = LongestTextLine(ItemDescText);
-
-	//--------------------
-	// We count the text lines needed for the banner rectangle, just
-	// to make sure we don't wast too much space here.
-	//
-	lines_needed = GetNumberOfTextLinesNeeded(ItemDescText, Banner_Text_Rect, 1.0);
-	if (lines_needed <= 20) {
-		Banner_Text_Rect.h = (lines_needed + 2) * FontHeight(FPS_Display_BFont);
-	}
-	//--------------------
-	// Now we add some extra correction, so that the banner rectangle can not
-	// reach outside of the visible screen...
-	//
-	if (Banner_Text_Rect.x + Banner_Text_Rect.w > GameConfig.screen_width) {
-		Banner_Text_Rect.x = GameConfig.screen_width - Banner_Text_Rect.w;
-	}
-	if (Banner_Text_Rect.y + Banner_Text_Rect.h > GameConfig.screen_height) {
-		Banner_Text_Rect.y = GameConfig.screen_height - Banner_Text_Rect.h;
-	}
-	//--------------------
-	// Now we can start to draw the rectangle
-	//
-	SDL_SetClipRect(Screen, NULL);	// this unsets the clipping rectangle
-	if (strlen(ItemDescText) > 1) {
-		if (use_open_gl)
-			GL_HighlightRectangle(Screen, &Banner_Text_Rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
-		else
-			our_SDL_fill_rect_wrapper(Screen, &Banner_Text_Rect, BANNER_TEXT_REC_BACKGROUNDCOLOR);
-	} else {
+	// Do not show anything if the description is too short
+	if (strlen(banner_text) <= 1)
 		return;
-	}
 
-	if (strcmp(ItemDescText, REQUIREMENTS_NOT_MET_TEXT) == 0) {
+	// Set font before making any font specific calculations
+	if (strcmp(banner_text, REQUIREMENTS_NOT_MET_TEXT) == 0) {
 		SetCurrentFont(Red_BFont);
 	} else {
 		SetCurrentFont(FPS_Display_BFont);
 	}
 
-	//--------------------
-	// Now we count how many lines are to be printed
-	//
-	NumberOfLinesInText = 1 + CountStringOccurences(ItemDescText, "\n");
+	banner_rect.x = best_banner_pos_x;
+	banner_rect.y = best_banner_pos_y;
+	banner_rect.h = LOWER_BANNER_TEXT_RECT_H;
 
-	//--------------------
-	// Now we separate the lines and fill them into the line-array
-	//
-	InterLineDistance = (Banner_Text_Rect.h - NumberOfLinesInText * FontHeight(GetCurrentFont())) / (NumberOfLinesInText + 1);
+	// Set banner width
+	banner_rect.w = longest_line_width(banner_text);
+	banner_rect.w += 30; // add some margin
 
-	LongTextPointer = ItemDescText;
-	for (i = 0; i < NumberOfLinesInText - 1; i++) {
-		StringLength = strstr(LongTextPointer, "\n") - LongTextPointer;
+	// Set banner height
+	int lines_needed = GetNumberOfTextLinesNeeded(banner_text, banner_rect, 1.0);
+	if (lines_needed <= 20)
+		banner_rect.h = (lines_needed + 2) * FontHeight(GetCurrentFont());
 
-		strncpy(TextLine[i], LongTextPointer, StringLength);
-		TextLine[i][StringLength] = 0;
-
-		LongTextPointer += StringLength + 1;
-		PutString(Screen,
-			  Banner_Text_Rect.x + (Banner_Text_Rect.w - TextWidth(TextLine[i])) / 2,
-			  Banner_Text_Rect.y + InterLineDistance + i * (InterLineDistance + FontHeight(GetCurrentFont())), TextLine[i]);
+	// Add extra correction to ensure the banner rectangle stays inside
+	// the visible screen.
+	if (banner_rect.x + banner_rect.w > GameConfig.screen_width) {
+		banner_rect.x = GameConfig.screen_width - banner_rect.w;
 	}
-	PutString(Screen,
-		  Banner_Text_Rect.x + (Banner_Text_Rect.w - TextWidth(LongTextPointer)) / 2,
-		  Banner_Text_Rect.y + InterLineDistance + i * (InterLineDistance + FontHeight(GetCurrentFont())), LongTextPointer);
+	if (banner_rect.y + banner_rect.h > GameConfig.screen_height) {
+		banner_rect.y = GameConfig.screen_height - banner_rect.h;
+	}
 
-};				// void ShowCurrentTextWindow ( void )
+	// Draw the rectangle inside which the text will be drawn
+	SDL_SetClipRect(Screen, NULL);	// this unsets the clipping rectangle
+	if (use_open_gl)
+		GL_HighlightRectangle(Screen, &banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
+	else
+		our_SDL_fill_rect_wrapper(Screen, &banner_rect, BANNER_TEXT_REC_BACKGROUNDCOLOR);
+
+	// Print the text
+	int lines_in_text = 1 + CountStringOccurences(banner_text, "\n");
+	int line_spacing = (banner_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);
+	char *ptr = banner_text;
+	int i;
+	for (i = 0; i < lines_in_text; i++) {
+		char *this_line = ptr;
+		char *next_newline = strstr(ptr, "\n");
+		if (next_newline) {
+			int pos = next_newline - ptr;
+			this_line[pos] = '\0';
+			ptr += pos + 1;
+		}
+		PutString(Screen,
+			  banner_rect.x + (banner_rect.w - TextWidth(this_line)) / 2,
+			  banner_rect.y + line_spacing + i * (line_spacing + FontHeight(GetCurrentFont())), this_line);
+	}
+}
 
 /** 
  * This function derives the 'minutes' component of the time already 
@@ -1325,7 +1300,7 @@ void DisplayBanner(void)
 
 	ShowCurrentSkill();
 	ShowCurrentWeapon();
-	ShowCurrentTextWindow();
+	show_current_text_banner();
 
 	//--------------------
 	// We display the name of the current level and the current time inside
