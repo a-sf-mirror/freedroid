@@ -599,8 +599,7 @@ int MouseCursorIsInRect(SDL_Rect * our_rect, int x, int y);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
 char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicationString, const char *EndIndicationString);
-char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartIndicationString, const char *EndIndicationString,
-					  char Terminator);
+char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartIndicationString, const char *EndIndicationString);
 int CountStringOccurences(char *SearchString, const char *TargetString);
 void ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString,
 				    const char *DefaultValueString, void *TargetValue, char *EndOfSearchSectionPointer);

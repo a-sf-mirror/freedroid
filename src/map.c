@@ -376,7 +376,7 @@ static int decode_header(level *loadlevel, char *data)
 	
 	// Read the levelname.
 	// Accept legacy ship-files that are not yet marked-up for translation
-	if ((loadlevel->Levelname = ReadAndMallocStringFromDataOptional(data, LEVEL_NAME_STRING, "\"", 0)) == NULL) {
+	if ((loadlevel->Levelname = ReadAndMallocStringFromDataOptional(data, LEVEL_NAME_STRING, "\"")) == NULL) {
 		loadlevel->Levelname = ReadAndMallocStringFromData(data, LEVEL_NAME_STRING_LEGACY, "\n");
 	}
 

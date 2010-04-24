@@ -270,13 +270,13 @@ static void LoadDialog(char *FullPathAndFullFilename)
 		free(chat_initialization_code);
 		chat_initialization_code = NULL;
 	}
-	chat_initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "FirstTime LuaCode={", "}", 0);
+	chat_initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "FirstTime LuaCode={", "}");
 
 	if (chat_startup_code) {
 		free(chat_startup_code);
 		chat_startup_code = NULL;
 	}
-	chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "EveryTime LuaCode={", "}", 0);
+	chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "EveryTime LuaCode={", "}");
 
 	//--------------------
 	// At first we go take a look on how many options we have
@@ -308,7 +308,7 @@ static void LoadDialog(char *FullPathAndFullFilename)
 		// Anything that is loaded into the chat roster doesn't need to be freed,
 		// cause this will be done by the next 'InitChatRoster' function anyway.
 		//
-		ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromDataOptional(SectionPointer, "Text=\"", "\"", 0);
+		ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromDataOptional(SectionPointer, "Text=\"", "\"");
 		if (!ChatRoster[OptionIndex].option_text) {
 			ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromData(SectionPointer, "Text=_\"", "\"");
 		}
@@ -316,7 +316,7 @@ static void LoadDialog(char *FullPathAndFullFilename)
 		DebugPrintf(CHAT_DEBUG_LEVEL, "\nText found : \"%s\".", ChatRoster[OptionIndex].option_text);
 
 		ChatRoster[OptionIndex].option_sample_file_name =
-		    ReadAndMallocStringFromDataOptional(SectionPointer, "OptionSample=\"", "\"", 0);
+		    ReadAndMallocStringFromDataOptional(SectionPointer, "OptionSample=\"", "\"");
 
 		if (!ChatRoster[OptionIndex].option_sample_file_name)
 			ChatRoster[OptionIndex].option_sample_file_name = strdup("Sorry_No_Voice_Sample_Yet_0.wav");

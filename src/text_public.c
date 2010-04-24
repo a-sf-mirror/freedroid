@@ -192,23 +192,17 @@ void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlele
  * it, copies it there and returns it.
  * The original source string specified should in no way be modified.
  * Returns 0 if the prefix string is not present
- * Optionally, a char can be given as "end of record".  Usually '\n'.
- * Set to 0 when not used.
  */
-char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartIndicationString, const char *EndIndicationString,
-					  char Terminator)
+char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartIndicationString, const char *EndIndicationString)
 {
 	char *SearchPointer;
 	char *EndOfStringPointer;
 	char *ReturnString = "";
-	char *Limit;
 	int StringLength;
-
-	Limit = strchr(SearchString, Terminator);
 
 	SearchPointer = strstr(SearchString, StartIndicationString);
 
-	if ((!SearchPointer) || (SearchPointer >= Limit))
+	if (!SearchPointer)
 		return 0;
 	else {
 		// Now we move to the beginning
@@ -216,7 +210,7 @@ char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartI
 
 		// Now we move to the end with the end pointer
 		EndOfStringPointer = strstr(SearchPointer, EndIndicationString);
-		if ((!EndOfStringPointer) || (EndOfStringPointer >= Limit))
+		if (!EndOfStringPointer)
 			return 0;
 
 		// Now we allocate memory and copy the string...
@@ -229,11 +223,9 @@ char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartI
 		} else {
 			ReturnString = "";
 		}
-
-		DebugPrintf(2, "\nchar* ReadAndMalocStringFromData (...): Successfully identified string : %s.", ReturnString);
 	}
-	return (ReturnString);
-};				// char* ReadAndMallocStringFromDataOptional ( ... )
+	return ReturnString;
+}
 
 /**
  * This function looks for a string begin indicator and takes the string
@@ -244,7 +236,7 @@ char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartI
  */
 char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicationString, const char *EndIndicationString)
 {
-	char *result = ReadAndMallocStringFromDataOptional(SearchString, StartIndicationString, EndIndicationString, 0);
+	char *result = ReadAndMallocStringFromDataOptional(SearchString, StartIndicationString, EndIndicationString);
 	if (!result) {
 		fprintf(stderr, "\n\nStartIndicationString: '%s'\nEndIndicationString: '%s'\n", StartIndicationString, EndIndicationString);
 		ErrorMessage(__FUNCTION__, "\
