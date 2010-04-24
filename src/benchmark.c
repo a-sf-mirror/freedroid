@@ -89,7 +89,7 @@ static void loadship_bench()
 	timer_stop();
 }
 
-/* LoadGame (level loading) performance test */
+/* LoadGame (savegame loading) performance test */
 static void loadgame_bench()
 {
 	int loop = 3;
