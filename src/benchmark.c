@@ -89,6 +89,22 @@ static void loadship_bench()
 	timer_stop();
 }
 
+/* LoadGame (level loading) performance test */
+static void loadgame_bench()
+{
+	int loop = 3;
+
+	// Use MapEd.savegame
+	sprintf(Me.character_name, "MapEd");
+
+	// Load it many times
+	timer_start();
+	while (loop--) {
+		LoadGame();
+	}
+	timer_stop();
+}
+
 void benchmark()
 {
 	struct {
@@ -98,6 +114,7 @@ void benchmark()
 			{ "text", text_bench },
 			{ "dialog", dialog_test },
 			{ "loadship", loadship_bench },
+			{ "loadgame", loadgame_bench },
 	};
 
 	int i;
