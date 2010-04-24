@@ -46,6 +46,7 @@ static struct leveleditor_select {
 	int rect_nbelem_selected;
 
 	int single_tile_mark_index;
+	int drag_drop_floor_undoable;
 
 	moderately_finepoint drag_start;
 	moderately_finepoint cur_drag_pos;
@@ -395,6 +396,11 @@ static void end_rect_select()
 		mode = DISABLED;
 
 	state.single_tile_mark_index = 0;
+	
+	// A drag&drop operation for the floor is finished when the floor tiles are 
+	// unselected.
+	// Do not allow to undo the previous actions for drag&drop
+	state.drag_drop_floor_undoable = 0;
 }
 
 static void start_drag_drop()
@@ -471,6 +477,13 @@ static void do_drag_drop_floor()
 			// we must undo the actions to the old selection
 			level_editor_action_undo();
 		}
+
+		if (state.drag_drop_floor_undoable)	{
+			// When the last action is a floor drag&drop operation, we need to undo
+			// it in order not to overwrite the tiles underneath
+			level_editor_action_undo();
+			state.drag_drop_floor_undoable = 0;
+		}
 		
 		// When moving the selection, new tiles will be selected, so, we must 
 		// unselect the previous selection because we must not change the original 
@@ -542,6 +555,14 @@ static void end_drag_drop()
 		action_push(ACT_MULTIPLE_ACTIONS, enb);
 
 	mode = FD_RECTDONE;
+	
+	if (selection_type() == OBJECT_FLOOR) {
+		// Remember that we have just dragged some floor tiles.
+		// As long as they remain selected, a subsequent drag operation
+		// will need to undo the placement of those tiles, in order
+		// to avoid seeing existing tiles overwritten.
+		state.drag_drop_floor_undoable = 1;
+	}
 }
 
 int level_editor_can_cycle_obs()
