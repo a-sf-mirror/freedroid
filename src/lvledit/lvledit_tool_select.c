@@ -399,6 +399,12 @@ static void end_rect_select()
 
 static void start_drag_drop()
 {
+	if (selection_type() == OBJECT_FLOOR) {
+		// Copy the original selection in order not to change it during a drag&drop
+		// operation
+		level_editor_copy_selection();
+	}
+	
 	mode = DRAGDROP;
 	state.drag_start.x = mouse_mapcoord.x;
 	state.drag_start.y = mouse_mapcoord.y;
@@ -406,7 +412,7 @@ static void start_drag_drop()
 	state.cur_drag_pos.y = mouse_mapcoord.y;
 }
 
-static void do_drag_drop()
+static void do_drag_drop_obstacle()
 {
 	struct selected_element *e;
 	moderately_finepoint cmin, cmax, diff;
@@ -434,6 +440,80 @@ static void do_drag_drop()
 	}	
 	state.cur_drag_pos.x = mouse_mapcoord.x;
 	state.cur_drag_pos.y = mouse_mapcoord.y;
+}
+
+static void do_drag_drop_floor()
+{
+	struct selected_element *e;
+	struct lvledit_map_tile *t;
+	moderately_finepoint cmin, cmax, diff;
+	int changed_tiles = 0;
+
+	// Calculate the coordinates min/max of the selection
+	calc_min_max_selection(&clipboard_elements, &cmin, &cmax);
+	
+	// Calculate the new displacement of the selection
+	diff.x = mouse_mapcoord.x - state.cur_drag_pos.x;
+	diff.y = mouse_mapcoord.y - state.cur_drag_pos.y;
+
+	// Move the selection if the displacement exceeds half a tile
+	if (abs(diff.x) >= 0.5 || abs(diff.y) >= 0.5 ) {
+		
+		if ((cmax.y + diff.y) >= EditLevel()->ylen || (cmax.x + diff.x) >= EditLevel()->xlen
+			|| (cmin.x + diff.x) <= 0 || (cmin.y + diff.y) <= 0) {
+			// Do not place obstacles outside of the level
+			return;
+		}
+
+		if ((state.drag_start.x != state.cur_drag_pos.x) 
+			|| (state.drag_start.y != state.cur_drag_pos.y)) {
+			// When the selection has already moved during the drag&drop, 
+			// we must undo the actions to the old selection
+			level_editor_action_undo();
+		}
+		
+		// When moving the selection, new tiles will be selected, so, we must 
+		// unselect the previous selection because we must not change the original 
+		// selection
+		clear_selection(-1);
+		
+		// Browse the original selection in order to set the floor of the new selection
+		list_for_each_entry(e, &clipboard_elements, node) {
+			if (e->type != OBJECT_FLOOR)
+				return;
+				
+			t = e->data;
+
+			// Calculate the new coordinates of the tile
+			t->coord.x += (int)diff.x;
+			t->coord.y += (int)diff.y;
+
+			// Set the floor for the new current tile
+			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_value);
+			changed_tiles++;
+
+			// Select the new tile
+			select_floor_on_tile(t->coord.x, t->coord.y);
+		}		
+		state.cur_drag_pos.x += (int)diff.x;
+		state.cur_drag_pos.y += (int)diff.y;
+		
+		action_push(ACT_MULTIPLE_ACTIONS, changed_tiles);		
+	}
+}
+
+static void do_drag_drop()
+{
+	switch (selection_type()) {
+	case OBJECT_OBSTACLE:
+		do_drag_drop_obstacle();
+		break;
+	case OBJECT_FLOOR:
+		do_drag_drop_floor();
+		break;
+	default:
+		break;	
+	}
 }
 
 static void end_drag_drop()
