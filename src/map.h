@@ -43,6 +43,7 @@
 #define WP_BEGIN_STRING		"wp"
 #define LEVEL_END_STRING	"end_of_level"
 #define WP_END_STRING		LEVEL_END_STRING
+#define LEVEL_HEADER_LEVELNUMBER "Levelnumber:"
 
 #define LEVEL_NAME_STRING "Name of this level=_\""
 #define LEVEL_NAME_STRING_LEGACY "Name of this level="

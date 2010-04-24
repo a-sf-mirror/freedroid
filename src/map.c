@@ -277,8 +277,8 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 	int off = 0;
 
 	/* Read levelnumber */
-	char *fp = DataPointer;	//strstr(DataPointer, "Levelnumber");
-	fp += 12;
+	char *fp = DataPointer;
+	fp += strlen(LEVEL_HEADER_LEVELNUMBER);
 	while (*(fp + off) != '\n')
 		off++;
 	fp[off] = 0;
@@ -367,7 +367,7 @@ Sorry, but unless this constant is raised, Freedroid will refuse to load this ma
 
 static int decode_header(level *loadlevel, char *data)
 {
-	data = strstr(data, "Levelnumber:");
+	data = strstr(data, LEVEL_HEADER_LEVELNUMBER);
 	if (!data)
 		return 1;
 
@@ -1216,10 +1216,14 @@ void clear_animated_obstacle_lists(struct visible_level *vis_lvl)
 /**
  * This functions reads the specification for a level
  * taken from the ship file.
+ *
+ * @return pointer to the level
+ * @param text buffer containing level description
  */
-level *decode_level(char *data)
+static level *decode_level(char **buffer)
 {
 	level *loadlevel;
+	char *data = *buffer;
 
 	loadlevel = (level *)MyMalloc(sizeof(level));
 	
@@ -1239,7 +1243,9 @@ level *decode_level(char *data)
 	data = decode_chest_item_section(loadlevel, data);
 	data = decode_waypoints(loadlevel, data);
 
-	return (loadlevel);
+	// Point the buffer to the end of this level, so the next level can be read
+	*buffer = data;
+	return loadlevel;
 }
 
 
@@ -1269,9 +1275,6 @@ int LoadShip(char *filename, int compressed)
 {
 	char *ShipData = NULL;
 	FILE *ShipFile;
-	char *endpt;		// Pointer to end-strings
-	char *LevelStart[MAX_LEVELS];	// Pointer to a level-start
-	int level_anz;
 	int i;
 
 #define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
@@ -1322,59 +1325,37 @@ int LoadShip(char *filename, int compressed)
 
 	fclose(ShipFile);
 
-	//--------------------
-	// Now we count the number of levels and remember their start-addresses.
-	// This is done by searching for the LEVEL_END_STRING again and again
-	// until it is no longer found in the ship file.  good.
-	//
-	level_anz = 0;
-	endpt = ShipData;
-	LevelStart[level_anz] = ShipData;
-	while ((endpt = strstr(endpt, LEVEL_END_STRING)) != NULL) {
-		if (level_anz >= MAX_LEVELS)
-			ErrorMessage(__FUNCTION__, "Size mismatch for level array : at least %d in file, %d in game.\n", 
-                                     PLEASE_INFORM, IS_FATAL, level_anz + 1, MAX_LEVELS);
-		endpt += strlen(LEVEL_END_STRING);
-		level_anz++;
-		LevelStart[level_anz] = endpt + 1;
-	}
-
-	//--------------------
-	// Now we can start to take apart the information about each level...
-	//
-	for (i = 0; i < level_anz; ++i) {
-		level *this_level = decode_level(LevelStart[i]);
+	// Read each level
+	int done = 0;
+	char *pos = ShipData;
+	while (!done) {
+		level *this_level = decode_level(&pos);
 		int this_levelnum = this_level->levelnum;
+
 		if (this_levelnum >= MAX_LEVELS)
-			ErrorMessage(__FUNCTION__, "One levelnumber in savegame (%d) is bigger than the maximum expected (%d).\n",
+			ErrorMessage(__FUNCTION__, "One levelnumber in savegame (%d) is bigger than the maximum allowed (%d).\n",
 				     PLEASE_INFORM, IS_FATAL, this_levelnum, MAX_LEVELS - 1);
 		if (curShip.AllLevels[this_levelnum] != NULL)
 			ErrorMessage(__FUNCTION__, "Two levels with same levelnumber (%d) found in the savegame.\n", PLEASE_INFORM,
 				     IS_FATAL, this_levelnum);
 
 		curShip.AllLevels[this_levelnum] = this_level;
-		curShip.num_levels = this_levelnum + 1;	// levels are saved in ascending number, so the last one defines the number of levels in the ship
-
+		curShip.num_levels = this_levelnum + 1;
+		
 		generate_dungeon_if_needed(this_level);
-
-		//--------------------
-		// The level structure contains an array with the locations of all
-		// doors that might have to be opened or closed during the game.  This
-		// list is prepared in advance, so that we don't have to search for doors
-		// on all of the map during program runtime.
-		//
-		// It requires, that the obstacles have been read in already.
-		//
-		// Mark the list as dirty so it is regenerated automatically.
-		//animated_obstacles_lists_level = -1;
-
-		//--------------------
-		// We attach each obstacle to a floor tile, just so that we can sort
-		// out the obstacles 'close' more easily within an array of literally
-		// thousands of obstacles...
-		//
+		
+		// We attach each obstacle to a floor tile, as a help for 
+		// collision detection.
 		glue_obstacles_to_floor_tiles_for_level(this_levelnum);
 
+		// Move to the level termination marker
+		pos = strstr(pos, LEVEL_END_STRING);
+		pos += strlen(LEVEL_END_STRING) + 1;
+
+		// Check if there is another level
+		if (!strstr(pos, LEVEL_HEADER_LEVELNUMBER)) {
+			done = 1;
+		} 
 	}
 
 	//--------------------
@@ -1682,7 +1663,7 @@ static void encode_level_for_saving(struct auto_string *shipstr, level *lvl, int
 	int xlen = lvl->xlen, ylen = lvl->ylen;
 
 	// Write level header	
-	autostr_append(shipstr, "Levelnumber: %d\n\
+	autostr_append(shipstr, "%s %d\n\
 xlen of this level: %d\n\
 ylen of this level: %d\n\
 light radius bonus of this level: %d\n\
@@ -1694,7 +1675,7 @@ jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
 jump target west: %d\n\
-use underground lighting: %d\n", lvl->levelnum, lvl->xlen, lvl->ylen,
+use underground lighting: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->xlen, lvl->ylen,
 		lvl->light_bonus, lvl->minimum_light_value,
 		lvl->infinite_running_on_this_level,
 		lvl->random_dungeon,
