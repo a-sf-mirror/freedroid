@@ -52,7 +52,4 @@ clean-local:
 	cd ../lua; make clean
 
 ../lua/liblua.a: 
-	cd ../lua; make CC=${CC} AR="${AR} rcu" liblua.a
-if WIN32
-	i686-pc-mingw32-ranlib ../lua/liblua.a
-endif
+	cd ../lua; make CC=${CC} AR="${AR} rcu" RANLIB="${RANLIB}" liblua.a
