@@ -130,437 +130,304 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 /**
  * This function writes the description of an item into the item description
  * string.
+ *
+ *  Note: We do not want a trailing newline, since that will make text areas
+ *  larger than necessary.
  */
-void GiveItemDescription(char *ItemDescText, item *CurItem, int ForShop)
+void give_item_description(char *target, item *item, int for_shop)
 {
-	char linebuf[5000];
-	char AppendToLine = 0;	// if we should write the next bonus with a comma as separator or with a newline
+	strcpy(target, "");
 
-	//--------------------
-	// We initialize the description text, so that at least something,
-	// i.e. something terminated with a null charcter is in there.
-	//
-	strcpy(ItemDescText, "");
-
-	//--------------------
-	// In case of a NULL given as item pointer, we can return immediately.
-	//
-	if (CurItem == NULL)
+	if (item == NULL)
 		return;
-	if (CurItem->type == (-1)) {
+
+	if (item->type == (-1)) {
 		ErrorMessage(__FUNCTION__, "\
 An item description was requested for an item, that does not seem to \n\
 exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 		return;
 	}
-	//--------------------
-	// we get the pure item name, also with font changes enabled.
-	//
-	write_full_item_name_into_string(CurItem, linebuf);
-	strcat(ItemDescText, linebuf);
 
-	if (ForShop) {
-		strcat(ItemDescText, "\n             ");
-	} else {
-		strcat(ItemDescText, "\n");
+	// Get the pure item name, also with font changes enabled.
+	write_full_item_name_into_string(item, target);
+
+	// We don't want any more information for Valuable Circuits
+	if (MatchItemWithName(item->type, "Valuable Circuits"))
+		return;
+	
+	struct auto_string *desc = alloc_autostr(100);
+
+	if (for_shop)
+		autostr_append(desc, "\n             ");
+
+	// Weapon damage
+	if (ItemMap[item->type].item_can_be_installed_in_weapon_slot) {
+		if (!for_shop) {
+			autostr_append(desc, "\n");
+			autostr_append(desc, _("Damage: %d to %d"), item->damage, item->damage_modifier + item->damage);
+		} else
+			autostr_append(desc, _("Dam: %d-%d "), item->damage, item->damage_modifier + item->damage);
 	}
-
-	// --------------------
-	// If it's a weapon, then we give out the damage value of that weapon as well
-	//
-	if (ItemMap[CurItem->type].item_can_be_installed_in_weapon_slot) {
-		if (!ForShop)
-			sprintf(linebuf, _("Damage: %d to %d \n"), CurItem->damage, CurItem->damage_modifier + CurItem->damage);
+	// Multiplicity
+	if (ItemMap[item->type].item_group_together_in_inventory) {
+		autostr_append(desc, "\n");
+		autostr_append(desc, _("Multiplicity: %d"), item->multiplicity);
+	}
+	// Armor bonus
+	if (item->damred_bonus) {
+		autostr_append(desc, "\n");
+		if (ItemMap[item->type].item_can_be_installed_in_shield_slot)
+			autostr_append(desc, _("Block: %d%%"), item->damred_bonus);
 		else
-			sprintf(linebuf, _("Dam: %d-%d "), CurItem->damage, CurItem->damage_modifier + CurItem->damage);
-		strcat(ItemDescText, linebuf);
+			autostr_append(desc, _("Armor: %d%%"), item->damred_bonus);
 	}
-	//--------------------
-	// If this item has a multiplicity, we print it out
-	//
-	if (ItemMap[CurItem->type].item_group_together_in_inventory) {
-		if (!MatchItemWithName(CurItem->type, "Valuable Circuits")) {
-			sprintf(linebuf, _("Multiplicity: %d \n"), CurItem->multiplicity);
-			strcat(ItemDescText, linebuf);
-		}
-	}
-	// --------------------
-	// If this item gives some armour bonus, we say so
-	//
-	if (CurItem->damred_bonus) {
-		if (ItemMap[CurItem->type].item_can_be_installed_in_shield_slot) {
-			sprintf(linebuf, _("Block: %d%%"), CurItem->damred_bonus);
-		} else {
-			sprintf(linebuf, _("Armor: %d%%"), CurItem->damred_bonus);
-		}
-		strcat(ItemDescText, linebuf);
-		if (!ForShop)
-			strcat(ItemDescText, " \n ");
-	}
-	// --------------------
-	// If this is a destructible item, we finally give it's current condition
-	// and if it can be equipped, but not destroyed, we will also say so
-	//
-	if (CurItem->max_duration != (-1)) {
-		if (!ForShop)
-			sprintf(linebuf, _(" Durability: %d of %d\n"), (int)CurItem->current_duration, (int)CurItem->max_duration);
-		else
-			sprintf(linebuf, _(" Dur: %d/%d\n"), (int)CurItem->current_duration, (int)CurItem->max_duration);
-		strcat(ItemDescText, linebuf);
+	// Durability or indestructible status
+	if (item->max_duration != (-1)) {
+		if (!for_shop) {
+			autostr_append(desc, "\n");
+			autostr_append(desc, _("Durability: %d of %d"), (int)item->current_duration, (int)item->max_duration);
+		} else
+			autostr_append(desc, _("Dur: %d/%d\n"), (int)item->current_duration, (int)item->max_duration);
 	} else {
-		if (!MatchItemWithName(CurItem->type, "Valuable Circuits"))
-			strcat(ItemDescText, _(" Indestructible\n"));
-	};
-
-	if (ItemMap[CurItem->type].item_gun_ammo_clip_size) {
-		sprintf(linebuf, _("Ammo : %d of %d\n"), CurItem->ammo_clip, ItemMap[CurItem->type].item_gun_ammo_clip_size);
-		strcat(ItemDescText, linebuf);
+		autostr_append(desc, "\n");
+		autostr_append(desc, _("Indestructible"));
 	}
-	// --------------------
-	// If this item has some strength or dex or magic requirements, we say so
-	//
-	if ((ItemMap[CurItem->type].item_require_strength != (-1)) || (ItemMap[CurItem->type].item_require_dexterity != (-1))) {
-		if (!ForShop)
-			strcat(ItemDescText, "\n");
-		if (ForShop)
-			strcat(ItemDescText, _(" Required:"));
-		if (ItemMap[CurItem->type].item_require_strength != (-1)) {
-			if (ForShop)
-				sprintf(linebuf, _("   Str: %d"), ItemMap[CurItem->type].item_require_strength);
-			else
-				sprintf(linebuf, _(" Required strength: %d "), ItemMap[CurItem->type].item_require_strength);
-			strcat(ItemDescText, linebuf);
-			if (!ForShop)
-				strcat(ItemDescText, "\n");
+	// Ranged weapon amunition
+	if (ItemMap[item->type].item_gun_ammo_clip_size) {
+		autostr_append(desc, "\n");
+		autostr_append(desc, _("Ammo: %d of %d"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
+	}
+	// Strength, dexterity or magic requirements
+	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
+		if (!for_shop)
+			autostr_append(desc, "\n"); // separate requirements from the rest of description
+		if (for_shop)
+			autostr_append(desc, _("Required:"));
+		if (ItemMap[item->type].item_require_strength != (-1)) {
+			if (!for_shop) {
+				autostr_append(desc, "\n");
+				autostr_append(desc, _("Required strength: %d"), ItemMap[item->type].item_require_strength);
+			} else
+				autostr_append(desc, _("   Str: %d"), ItemMap[item->type].item_require_strength);
 		}
-		if (ItemMap[CurItem->type].item_require_dexterity != (-1)) {
-			if (ForShop)
-				sprintf(linebuf, _("   Dex: %d"), ItemMap[CurItem->type].item_require_dexterity);
-			else
-				sprintf(linebuf, _(" Required dexterity: %d "), ItemMap[CurItem->type].item_require_dexterity);
-			strcat(ItemDescText, linebuf);
-			if (!ForShop)
-				strcat(ItemDescText, "\n");
+		if (ItemMap[item->type].item_require_dexterity != (-1)) {
+			if (!for_shop) {
+				autostr_append(desc, "\n");
+				autostr_append(desc, _("Required dexterity: %d"), ItemMap[item->type].item_require_dexterity);
+			} else
+				autostr_append(desc, _("   Dex: %d"), ItemMap[item->type].item_require_dexterity);
 		}
-	} else if (ItemMap[CurItem->type].item_can_be_applied_in_combat) {
-		//--------------------
+	}/* else if (ItemMap[item->type].item_can_be_applied_in_combat) {
 		// Maybe it's an applicable item, that still has some stat
 		// requirements.  Typically spellbooks fall into that category.
-		//
-		if (strstr(ItemMap[CurItem->type].item_name, "Source Book of")) {
-/*		sprintf( linebuf , "Program execution status: %s\n " ,  
-			 _(AllSkillTexts [ required_spellcasting_skill_for_item ( CurItem -> type ) ]));
-		strcat( ItemDescText , linebuf );*/
-/*		sprintf( linebuf , "Required for next upgrade: %d\n " ,  
-			 required_magic_stat_for_next_level_and_item ( CurItem -> type ) );
-		strcat( ItemDescText , linebuf );*/
+		if (strstr(ItemMap[item->type].item_name, "Source Book of")) {
+			autostr_append( desc , "Program execution status: %s\n " ,  
+				_(AllSkillTexts [ required_spellcasting_skill_for_item ( item -> type ) ]));
+			autostr_append( desc , "Required for next upgrade: %d\n " ,  
+				required_magic_stat_for_next_level_and_item ( item -> type ) );
 		}
-	} else if (ForShop) {
-		strcat(ItemDescText, _(" , No required attributes "));
+	}*/
+	// Usable items should say that it can be used via right-clicking on it
+	if ((ItemMap[item->type].item_can_be_applied_in_combat) && (!for_shop)) {
+		autostr_append(desc, "\n");
+		if (MatchItemWithName(item->type, "Diet supplement") || MatchItemWithName(item->type, "Antibiotic")
+		    || MatchItemWithName(item->type, "Doc-in-a-can")) {
+			autostr_append(desc, _("Recover Health"));
+		} else if (MatchItemWithName(item->type, "Identification Script")) {
+			autostr_append(desc, _("Analyze one item"));
+		} else if (MatchItemWithName(item->type, "Teleporter homing beacon")) {
+			autostr_append(desc, _("Teleports you to a safe place or\n back to your previous position"));
+		} else if (MatchItemWithName(item->type, "Bottled ice") || MatchItemWithName(item->type, "Industrial coolant")
+			   || MatchItemWithName(item->type, "Liquid nitrogen")) {
+			autostr_append(desc, _("Cooling aid"));
+		} else if (MatchItemWithName(item->type, "Barf's Energy Drink")) {
+			autostr_append(desc, _("Recover Health, Force\nand Running Power"));
+		} else if (MatchItemWithName(item->type, "Running Power Capsule")) {
+			autostr_append(desc, _("Recover Running Power"));
+		} else if (MatchItemWithName(item->type, "Strength Capsule")) {
+			autostr_append(desc, _("Temporary Boost to Strength"));
+		} else if (MatchItemWithName(item->type, "Dexterity Capsule")) {
+			autostr_append(desc, _("Temporary Boost to Dexterity"));
+		} else if (MatchItemWithName(item->type, "Map Maker")) {
+			autostr_append(desc, _("To implant the automap device"));
+		} else if (MatchItemWithName(item->type, "Strength Pill")) {
+			autostr_append(desc, _("Permanently gain +1 strength"));
+		} else if (MatchItemWithName(item->type, "Dexterity Pill")) {
+			autostr_append(desc, _("Permanently gain +1 dexterity"));
+		} else if (MatchItemWithName(item->type, "Code Pill")) {
+			autostr_append(desc, _("Permanently gain +1 cooling"));
+		} else if (strstr(ItemMap[item->type].item_name, "Source Book of")) {
+			autostr_append(desc, _("Permanently acquire/enhance this program"));
+		} else if (MatchItemWithName(item->type, "EMP Shockwave Generator")) {
+			autostr_append(desc, _("Electromagnetic pulse"));
+		} else if (MatchItemWithName(item->type, "VMX Gas Grenade")) {
+			autostr_append(desc, _("Gas attack"));
+		} else if (MatchItemWithName(item->type, "Plasma Shockwave Emitter")) {
+			autostr_append(desc, _("Huge explosion"));
+		} else {
+			autostr_append(desc, _("USE UNDESCRIBED YET (bug)"));
+		}
+		autostr_append(desc, "\n");
+		autostr_append(desc, _("Right click to use"));
 	}
+	// Prefix and/or suffix bonuses
+	if ((item->suffix_code != (-1)) || (item->prefix_code != (-1))) {
+		if (item->is_identified == FALSE) {
+			autostr_append(desc, "\n");
+			autostr_append(desc, font_switchto_red);
+			autostr_append(desc, _("UNIDENTIFIED"));
+		} else {
+			autostr_append(desc, "\n");
 
-	// --------------------
-	// If it's a usable item, then we say, that it can be used via right-clicking on it
-	//
-	if ((ItemMap[CurItem->type].item_can_be_applied_in_combat) && (!ForShop)) {
-		if (MatchItemWithName(CurItem->type, "Diet supplement") || MatchItemWithName(CurItem->type, "Antibiotic")
-		    || MatchItemWithName(CurItem->type, "Doc-in-a-can")) {
-			sprintf(linebuf, _("Recover Health\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Identification Script")) {
-			sprintf(linebuf, _("Analyze one item\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Teleporter homing beacon")) {
-			sprintf(linebuf, _("Teleports you to a safe place or\n back to your previous position\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Bottled ice") || MatchItemWithName(CurItem->type, "Industrial coolant")
-			   || MatchItemWithName(CurItem->type, "Liquid nitrogen")) {
-			sprintf(linebuf, _("Cooling aid\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Barf's Energy Drink")) {
-			sprintf(linebuf, _("Recover Health, Force\nand Running Power\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Running Power Capsule")) {
-			sprintf(linebuf, _("Recover Running Power\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Strength Capsule")) {
-			sprintf(linebuf, _("Temporary Boost to Strength\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Dexterity Capsule")) {
-			sprintf(linebuf, _("Temporary Boost to Dexterity\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Map Maker")) {
-			sprintf(linebuf, _("To implant the automap device\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Strength Pill")) {
-			sprintf(linebuf, _("Permanently gain +1 strength\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Dexterity Pill")) {
-			sprintf(linebuf, _("Permanently gain +1 dexterity\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Code Pill")) {
-			sprintf(linebuf, _("Permanently gain +1 cooling\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (strstr(ItemMap[CurItem->type].item_name, "Source Book of")) {
-			sprintf(linebuf, _("Permanently acquire/enhance this program\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "EMP Shockwave Generator")) {
-			sprintf(linebuf, _("Electromagnetic pulse\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "VMX Gas Grenade")) {
+			// separate the next bonus with a comma or a newline?
+			int need_separation = 0;
 
-			sprintf(linebuf, _("Gas attack\n"));
-			strcat(ItemDescText, linebuf);
-		} else if (MatchItemWithName(CurItem->type, "Plasma Shockwave Emitter")) {
-			sprintf(linebuf, _("Huge explosion\n"));
-			strcat(ItemDescText, linebuf);
-		}
+			char separator[3];
+			if (for_shop)
+				strcpy(separator, ", ");
+			else
+				strcpy(separator, "\n");
 
-		else {
-			sprintf(linebuf, _("USE UNDESCRIBED YET (bug)\n"));
-			strcat(ItemDescText, linebuf);
-
-		}
-		sprintf(linebuf, _("Right click to use"));
-		strcat(ItemDescText, linebuf);
-	}
-	//--------------------
-	// If the item has some suffixes, we describe these as well, but ONLY IF
-	// THE ITEM HAS BEEN IDENTIFIED YET of course.
-	//
-	if ((CurItem->suffix_code != (-1)) || (CurItem->prefix_code != (-1))) {
-		if (CurItem->is_identified == TRUE) {
-			strcat(ItemDescText, "\n");
-			//strcat ( ItemDescText , font_switchto_red );
-			AppendToLine = 0;
-
-			if (ForShop)
-				strcat(ItemDescText, "             ");
-
-			if (CurItem->bonus_to_str) {
-				if (CurItem->bonus_to_str > 0)
-					strcat(ItemDescText, "+");
+			if (for_shop)
+				autostr_append(desc, "             ");
+			if (item->bonus_to_str) {
+				if (item->bonus_to_str > 0)
+					autostr_append(desc, "+");
 				else
-					strcat(ItemDescText, "-");
-				sprintf(linebuf, _("%d to strength"), CurItem->bonus_to_str);
-				AppendToLine = TRUE;
-				strcat(ItemDescText, linebuf);
+					autostr_append(desc, "-");
+				autostr_append(desc, _("%d to strength"), item->bonus_to_str);
+				need_separation = TRUE;
 			}
+			if (item->bonus_to_dex) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_dex > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%d to dexterity"), item->bonus_to_dex);
+			}
+			if (item->bonus_to_mag) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_mag > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%d to CPU"), item->bonus_to_mag);
+			}
+			if (item->bonus_to_vit) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_vit > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%d to life"), item->bonus_to_vit);
+			}
+			if (item->bonus_to_life) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_life > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%d health points"), item->bonus_to_life);
+			}
+			if (item->bonus_to_health_recovery) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_health_recovery > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%0.1f health points per second"), item->bonus_to_health_recovery);
 
-			if (CurItem->bonus_to_dex) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				AppendToLine = TRUE;
-				if (CurItem->bonus_to_dex > 0)
-					strcat(ItemDescText, "+");
-				sprintf(linebuf, _("%d to dexterity"), CurItem->bonus_to_dex);
-				strcat(ItemDescText, linebuf);
 			}
-
-			if (CurItem->bonus_to_mag) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				AppendToLine = TRUE;
-				if (CurItem->bonus_to_mag > 0)
-					strcat(ItemDescText, "+");
-				sprintf(linebuf, _("%d to CPU"), CurItem->bonus_to_mag);
-				strcat(ItemDescText, linebuf);
+			if (item->bonus_to_cooling_rate) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_cooling_rate > 0)
+					autostr_append(desc, _("%0.1f cooling per second"), item->bonus_to_cooling_rate);
+				else if (item->bonus_to_cooling_rate < 0)
+					autostr_append(desc, _("%0.1f heating per second"), -item->bonus_to_cooling_rate);
 			}
-
-			if (CurItem->bonus_to_vit) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				if (CurItem->bonus_to_vit > 0)
-					strcat(ItemDescText, "+");
-				AppendToLine = TRUE;
-				sprintf(linebuf, _("%d to life"), CurItem->bonus_to_vit);
-				strcat(ItemDescText, linebuf);
+			if (item->bonus_to_force) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_force > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%d Force"), item->bonus_to_force);
 			}
-
-			if (CurItem->bonus_to_life) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				AppendToLine = TRUE;
-				if (CurItem->bonus_to_life > 0)
-					strcat(ItemDescText, "+");
-				sprintf(linebuf, _("%d health points"), CurItem->bonus_to_life);
-				strcat(ItemDescText, linebuf);
+			if (item->bonus_to_tohit) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_tohit > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%d%% to hit"), item->bonus_to_tohit);
 			}
-
-			if (CurItem->bonus_to_health_recovery) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				AppendToLine = TRUE;
-				if (CurItem->bonus_to_health_recovery > 0)
-					strcat(ItemDescText, "+");
-				sprintf(linebuf, _("%0.1f health points per second"), CurItem->bonus_to_health_recovery);
-				strcat(ItemDescText, linebuf);
+			if (item->bonus_to_all_attributes) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_all_attributes > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("%d to all attributes"), item->bonus_to_all_attributes);
 			}
-
-			if (CurItem->bonus_to_cooling_rate) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				AppendToLine = TRUE;
-				if (CurItem->bonus_to_cooling_rate > 0)
-					sprintf(linebuf, _("%0.1f cooling per second"), CurItem->bonus_to_cooling_rate);
-				else if (CurItem->bonus_to_cooling_rate < 0)
-					sprintf(linebuf, _("%0.1f heating per second"), -CurItem->bonus_to_cooling_rate);
-				strcat(ItemDescText, linebuf);
-			}
-
-			if (CurItem->bonus_to_force) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				AppendToLine = TRUE;
-				if (CurItem->bonus_to_force > 0)
-					strcat(ItemDescText, "+");
-				sprintf(linebuf, _("%d Force"), CurItem->bonus_to_force);
-				strcat(ItemDescText, linebuf);
-			}
-
-			if (CurItem->bonus_to_tohit) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				if (CurItem->bonus_to_tohit > 0)
-					strcat(ItemDescText, "+");
-				AppendToLine = TRUE;
-				sprintf(linebuf, _("%d%% to hit"), CurItem->bonus_to_tohit);
-				strcat(ItemDescText, linebuf);
-			}
-
-			if (CurItem->bonus_to_all_attributes) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				if (CurItem->bonus_to_all_attributes > 0)
-					strcat(ItemDescText, "+");
-				AppendToLine = TRUE;
-				sprintf(linebuf, _("%d to all attributes"), CurItem->bonus_to_all_attributes);
-				strcat(ItemDescText, linebuf);
-			}
-			// Now we display the percentage bonus to ac or damage
-			if (CurItem->bonus_to_damred_or_damage) {
-				if (ItemMap[CurItem->type].base_damred_bonus) {
-					// if ( ForShop ) strcat( ItemDescText , "             " );
-					if (AppendToLine) {
-						if (ForShop)
-							strcat(ItemDescText, ", ");
-						else
-							strcat(ItemDescText, "\n");
-					}
-					AppendToLine = TRUE;
-					if (CurItem->bonus_to_damred_or_damage > 0)
-						strcat(ItemDescText, "+");
-					sprintf(linebuf, _("%d%% to armor"), CurItem->bonus_to_damred_or_damage);
-					strcat(ItemDescText, linebuf);
+			// Percentage bonus to ac or damage
+			if (item->bonus_to_damred_or_damage) {
+				if (ItemMap[item->type].base_damred_bonus) {
+					// if ( for_shop ) strcat( target , "             " );
+					if (need_separation)
+						autostr_append(desc, separator);
+					need_separation = TRUE;
+					if (item->bonus_to_damred_or_damage > 0)
+						autostr_append(desc, "+");
+					autostr_append(desc, _("%d%% to armor"), item->bonus_to_damred_or_damage);
 				}
-				if (ItemMap[CurItem->type].base_item_gun_damage) {
-					// if ( ForShop ) strcat( ItemDescText , "             " );
-					if (AppendToLine) {
-						if (ForShop)
-							strcat(ItemDescText, ", ");
-						else
-							strcat(ItemDescText, "\n");
-					}
-					AppendToLine = TRUE;
-					if (CurItem->bonus_to_damred_or_damage > 0)
-						strcat(ItemDescText, "+");
-					sprintf(linebuf, _("%d%% to damage"), CurItem->bonus_to_damred_or_damage);
-					strcat(ItemDescText, linebuf);
+				if (ItemMap[item->type].base_item_gun_damage) {
+					// if ( for_shop ) strcat( target , "             " );
+					if (need_separation)
+						autostr_append(desc, separator);
+					need_separation = TRUE;
+					if (item->bonus_to_damred_or_damage > 0)
+						autostr_append(desc, "+");
+					autostr_append(desc, _("%d%% to damage"), item->bonus_to_damred_or_damage);
 				}
 			}
-
-			if (CurItem->bonus_to_resist_fire) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				if (CurItem->bonus_to_all_attributes > 0)
-					strcat(ItemDescText, "+");
-				AppendToLine = TRUE;
-				sprintf(linebuf, _("+%d to resist fire"), CurItem->bonus_to_resist_fire);
-				strcat(ItemDescText, linebuf);
+			if (item->bonus_to_resist_fire) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_all_attributes > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("+%d to resist fire"), item->bonus_to_resist_fire);
 			}
-
-			if (CurItem->bonus_to_resist_electricity) {
-				if (AppendToLine) {
-					if (ForShop)
-						strcat(ItemDescText, ", ");
-					else
-						strcat(ItemDescText, "\n");
-				};
-				if (CurItem->bonus_to_all_attributes > 0)
-					strcat(ItemDescText, "+");
-				AppendToLine = TRUE;
-				sprintf(linebuf, _("+%d to resist electricity"), CurItem->bonus_to_resist_electricity);
-				strcat(ItemDescText, linebuf);
+			if (item->bonus_to_resist_electricity) {
+				if (need_separation)
+					autostr_append(desc, separator);
+				need_separation = TRUE;
+				if (item->bonus_to_all_attributes > 0)
+					autostr_append(desc, "+");
+				autostr_append(desc, _("+%d to resist electricity"), item->bonus_to_resist_electricity);
 			}
-
-			//--------------------
 			// Maybe this item will give some bonus to the light radius?
 			// (That is a very special case, because light bonuses are 
 			// currently attached to the suffix/prefix, not to the item 
 			// itself, so they also have no randomness...)
-			//
-			if (CurItem->prefix_code != (-1)) {
-				if (PrefixList[CurItem->prefix_code].light_bonus_value) {
-					if (AppendToLine) {
-						if (ForShop)
-							strcat(ItemDescText, ", ");
-						else
-							strcat(ItemDescText, "\n");
-					};
-					strcat(ItemDescText, "+");
-					AppendToLine = TRUE;
-					sprintf(linebuf, _("%d to light radius"), PrefixList[CurItem->prefix_code].light_bonus_value);
-					strcat(ItemDescText, linebuf);
+			if (item->prefix_code != (-1)) {
+				if (PrefixList[item->prefix_code].light_bonus_value) {
+					if (need_separation)
+						autostr_append(desc, separator);
+					need_separation = TRUE;
+					autostr_append(desc, "+");
+					autostr_append(desc, _("%d to light radius"), PrefixList[item->prefix_code].light_bonus_value);
 				}
 			}
-
-		} else {
-			strcat(ItemDescText, "\n");
-			strcat(ItemDescText, font_switchto_red);
-			strcat(ItemDescText, _(" UNIDENTIFIED "));
 		}
 	}
-};				// void GiveItemDescription ( char* ItemDescText , item* CurItem , int ForShop )
+	strcat(target, desc->value);
+	free_autostr(desc);
+	return;
+}
 
 /**
  * This function writes the description of a droid above its head,
@@ -950,7 +817,7 @@ void prepare_text_window_content(char *ItemDescText)
 			InvIndex = GetInventoryItemAt(inv_square.x, inv_square.y);
 			// DebugPrintf( 0 , "\nInv Index targeted: %d." , InvIndex );
 			if (InvIndex != (-1)) {
-				GiveItemDescription(ItemDescText, &(Me.Inventory[InvIndex]), FALSE);
+				give_item_description(ItemDescText, &(Me.Inventory[InvIndex]), FALSE);
 				best_banner_pos_x =
 				    (Me.Inventory[InvIndex].inventory_position.x +
 				     ItemMap[Me.Inventory[InvIndex].type].inv_image.inv_size.x) * 30 + 16;
@@ -958,37 +825,37 @@ void prepare_text_window_content(char *ItemDescText)
 			}
 		} else if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.weapon_item.type > 0) {
-				GiveItemDescription(ItemDescText, &(Me.weapon_item), FALSE);
+				give_item_description(ItemDescText, &(Me.weapon_item), FALSE);
 				best_banner_pos_x = WEAPON_RECT_X + 30 + WEAPON_RECT_WIDTH;
 				best_banner_pos_y = WEAPON_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(DRIVE_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.drive_item.type > 0) {
-				GiveItemDescription(ItemDescText, &(Me.drive_item), FALSE);
+				give_item_description(ItemDescText, &(Me.drive_item), FALSE);
 				best_banner_pos_x = DRIVE_RECT_X + 30 + DRIVE_RECT_WIDTH;
 				best_banner_pos_y = DRIVE_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.shield_item.type > 0) {
-				GiveItemDescription(ItemDescText, &(Me.shield_item), FALSE);
+				give_item_description(ItemDescText, &(Me.shield_item), FALSE);
 				best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 				best_banner_pos_y = SHIELD_RECT_Y - 30;
 			} else if (Me.weapon_item.type > 0) {
 				if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
-					GiveItemDescription(ItemDescText, &(Me.weapon_item), FALSE);
+					give_item_description(ItemDescText, &(Me.weapon_item), FALSE);
 					best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 					best_banner_pos_y = SHIELD_RECT_Y - 30;
 				}
 			}
 		} else if (MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.armour_item.type > 0) {
-				GiveItemDescription(ItemDescText, &(Me.armour_item), FALSE);
+				give_item_description(ItemDescText, &(Me.armour_item), FALSE);
 				best_banner_pos_x = ARMOUR_RECT_X + 30 + ARMOUR_RECT_WIDTH;
 				best_banner_pos_y = ARMOUR_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(HELMET_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.special_item.type > 0) {
-				GiveItemDescription(ItemDescText, &(Me.special_item), FALSE);
+				give_item_description(ItemDescText, &(Me.special_item), FALSE);
 				best_banner_pos_x = HELMET_RECT_X + 30 + HELMET_RECT_WIDTH;
 				best_banner_pos_y = HELMET_RECT_Y - 30;
 			}
@@ -1035,7 +902,6 @@ void prepare_text_window_content(char *ItemDescText)
 		sprintf(ItemDescText, _("XP\n%d/%d"), Me.Experience, Me.ExpRequired);
 	}
 
-	//--------------------
 	// If the mouse cursor is within the user rectangle, then we check if
 	// either the cursor is over an inventory item or over some other droid
 	// and in both cases, we give a description of the object in the small
@@ -1056,13 +922,12 @@ void prepare_text_window_content(char *ItemDescText)
 			gps item_vpos;
 			update_virtual_position(&item_vpos, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor].pos), Me.pos.z);
 			if (item_vpos.x != -1) {
-				GiveItemDescription(ItemDescText, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]), FALSE);
+				give_item_description(ItemDescText, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]), FALSE);
 				best_banner_pos_x =	translate_map_point_to_screen_pixel_x(item_vpos.x, item_vpos.y) + 80;
 				best_banner_pos_y =	translate_map_point_to_screen_pixel_y(item_vpos.x, item_vpos.y) - 30;
 			}
 		}
 
-        //--------------------
 		// Display Clickable Obstacle label  in the top status banner.
 		//
 		obj_lvl = NULL;
@@ -1102,8 +967,7 @@ void prepare_text_window_content(char *ItemDescText)
 			return;
 		}
 	}
-
-};				// void prepare_text_window_content ( ItemDescText ) 
+}
 
 /**
  * At various points in the game, especially when the mouse in over an

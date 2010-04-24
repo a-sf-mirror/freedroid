@@ -689,7 +689,7 @@ int inflate_stream(FILE *, unsigned char **, int *);
 int deflate_to_stream(unsigned char *, int, FILE *);
 
 // hud.c 
-void GiveItemDescription(char *ItemDescText, item * CurItem, int ForShop);
+void give_item_description(char *target, item *item, int for_shop);
 void DisplayBanner(void);
 int get_days_of_game_duration(float current_game_date);
 int get_hours_of_game_duration(float current_game_date);

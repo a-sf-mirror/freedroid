@@ -447,7 +447,7 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 
 		if ((ShowItem->suffix_code != (-1)) || (ShowItem->prefix_code != (-1))) {
 			if (ShowItem->is_identified == TRUE) {
-				GiveItemDescription(TextChunk, ShowItem, TRUE);
+				give_item_description(TextChunk, ShowItem, TRUE);
 				// Now clean up TextChunk to get only information about the special abilities of the object
 				char *tmp = strstr(TextChunk, "             +");
 				if (tmp)	//In case something would go wrong...
@@ -1164,7 +1164,7 @@ static int buy_item(item *BuyItem, int amount)
 		char linebuf[1000];
 		MenuTexts[0] = _(" BACK ");
 		MenuTexts[1] = "";
-		GiveItemDescription(linebuf, BuyItem, TRUE);
+		give_item_description(linebuf, BuyItem, TRUE);
 		strcat(linebuf, _("\n\n    You can't afford to purchase this item!"));
 		SetCurrentFont(Menu_BFont);
 		DoMenuSelection(linebuf, MenuTexts, 1, -1, NULL);
