@@ -618,9 +618,12 @@ void barrel_action(level *barrel_lvl, int barrel_index)
 };				// void barrel_action ( level *, int ) 
 
 /**
- * This function picks an item, if Tux is near enough to pick it.
- * If Tux is too far, a combo action will be started, to first move Tux near
- * the item.
+ * Have Tux pick up an item if it is close enough and isn't blocked by any
+ * obstacles (e.g. walls).
+ *
+ * If Tux is too far away, a combo action will be started, which will first make
+ * Tux walk towards item. If the action is not cancelled, the item is picked up
+ * on arrival.
  */
 void check_for_items_to_pickup(level *item_lvl, int item_index)
 {
@@ -630,30 +633,15 @@ void check_for_items_to_pickup(level *item_lvl, int item_index)
 
 		update_virtual_position(&item_vpos, &item_lvl->ItemList[item_index].pos, Me.pos.z);
 
-		//--------------------
-		// We only take the item directly into our 'hand' i.e. the mouse cursor,
-		// if the item in question can be reached directly and isn't blocked by
-		// some walls or something...
-		//
 		if ((calc_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
 			&& DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL)) {
-			if (GameConfig.Inventory_Visible == FALSE
-				|| MatchItemWithName(item_lvl->ItemList[item_index].type, "Valuable Circuits")) {
-				AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
-				return;
-			} else {
-				/* Handled in HandleInventoryScreen(). Dirty and I don't plan on changing that right now.
-				 * A.H., 2008-04-06 */
-				;
-			}
+			AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
 		} else {
 			Me.mouse_move_target.x = item_lvl->ItemList[item_index].pos.x;
 			Me.mouse_move_target.y = item_lvl->ItemList[item_index].pos.y;
 			Me.mouse_move_target.z = item_lvl->levelnum;
 
-			//--------------------
-			// We set up the combo_action, so that the item can be picked up later...
-			//
+			// Set up the combo_action
 			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 			Me.mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM;
 			Me.mouse_move_target_combo_action_parameter = item_index;

@@ -2034,14 +2034,16 @@ void handle_player_identification_command()
 	}
 };				// void handle_player_identification_command( )
 
-/* ------------------------------------------
- * Handle inventory screen stuff: interact with items on floor, in inventory grid, in 
- * inventory slots, and apply (right click) items.
- * ------------------------------------------*/
+/**
+ * Handle inventory screen and related things: interact with items in inventory
+ * grid, in inventory slots and in hand. Also handle dropping items in hand and
+ * apply (right click) items.
+ *
+ * Picking up items is handled in check_for_items_to_pickup()
+ */
 void HandleInventoryScreen(void)
 {
 	point CurPos;
-	finepoint MapPositionOfMouse = { 0.0, 0.0 };
 	
 	struct {
 		int buttonidx;
@@ -2054,16 +2056,12 @@ void HandleInventoryScreen(void)
 	ARMOUR_RECT_BUTTON, &(Me.armour_item)}, {
 	HELMET_RECT_BUTTON, &(Me.special_item)},};
 
-	//--------------------
 	// In case the Tux is dead already, we do not need to display any inventory screen
 	// or even to pick up any stuff for the Tux...
-	//
 	if (Me.energy <= 0) {
 		return;
 	}
-	// --------------------
 	// We will need the current mouse position on several spots...
-	//
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
 
@@ -2072,64 +2070,10 @@ void HandleInventoryScreen(void)
 		silently_unhold_all_items();
 	}
 
-	//--------------------
 	// Case 1: The user left-clicks while not holding an item
-	//
 	if (MouseLeftClicked() && (Item_Held_In_Hand == NULL) && (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY)) {
-		
-		//--------------------
-		// Case 1.1: The user left-clicks in the "UserRect" -> try to pick an
-		//           item in the floor
-		//
-		if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
-		
-			int item_idx = (-1);
-			level *item_lvl = NULL;
-			item *picked_item = NULL;
-			gps *picked_item_pos = NULL;
-			gps picked_item_vpos;
-	
-			// Pick up something under the mouse cursor
-			
-			MapPositionOfMouse.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
-			MapPositionOfMouse.y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
-			item_idx = get_floor_item_index_under_mouse_cursor(&item_lvl);
-			
-			if (item_idx != -1 && item_lvl != NULL) {
-				picked_item = &(item_lvl->ItemList[item_idx]);
-				picked_item_pos = &(picked_item->pos);
-				update_virtual_position(&picked_item_vpos, picked_item_pos, Me.pos.z);
-			}
-			
-			// We only take the item directly into our 'hand' i.e. the mouse cursor,
-			// if the item in question can be reached directly and isn't blocked by
-			// some walls or something...
-			
-			if (picked_item) {
-				if (GameConfig.Inventory_Visible == FALSE || MatchItemWithName(picked_item->type, "Valuable Circuits")) {
-					/* Handled in check_for_items_to_pickup() */
-					return;
-				}
-				if ((fabsf(picked_item_vpos.x - Me.pos.x) < ITEM_TAKE_DIST) &&
-					(fabsf(picked_item_vpos.y - Me.pos.y) < ITEM_TAKE_DIST) &&
-					DirectLineColldet(Me.pos.x, Me.pos.y, picked_item_vpos.x, picked_item_vpos.y, Me.pos.z, NULL)) {
-					Item_Held_In_Hand = picked_item;
-					Item_Held_In_Hand->currently_held_in_hand = TRUE;
-					return;
-				} else {
-					/* Handled in check_for_items_to_pickup() */
-					return;
-				}
-			}
-			
-			// No item was picked
-			
-			return;
-		}
 
-		//--------------------
-		// Case 1.2: The user left-clicks on the inventory grid
-		//
+		// Case 1.1: The user left-clicks on the inventory grid
 		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
 			
 			point Inv_GrabLoc;
@@ -2156,9 +2100,7 @@ void HandleInventoryScreen(void)
 			return;
 		}
 		
-		//--------------------
-		// Case 1.3: The user left-clicks on one of the equipment slots
-		//
+		// Case 1.2: The user left-clicks on one of the equipment slots
 		unsigned int i;
 
 		for (i = 0; i < sizeof(allslots) / sizeof(allslots[0]); i++) {
