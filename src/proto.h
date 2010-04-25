@@ -787,7 +787,7 @@ void benchmark(void);
 struct npc *npc_get(const char *);
 void npc_insert(struct npc *);
 void npc_add(const char *);
-int npc_add_shoplist(const char *, const char *);
+int npc_add_shoplist(const char *, const char *, int);
 void init_npcs(void);
 void clear_npcs(void);
 item *npc_get_inventory(struct npc *);

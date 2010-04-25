@@ -308,6 +308,7 @@ save_string("dialog_basename", &(target->dialog_basename));
 save_uchar("chat_character_initialized", &(target->chat_character_initialized));
 save_uchar_array("chat_flags", (target->chat_flags), MAX_ANSWERS_PER_PERSON);
 save_string_array("shoplist", (target->shoplist), MAX_ITEMS_IN_INVENTORY);
+save_int32_t_array("shoplistweight", (target->shoplistweight), MAX_ITEMS_IN_INVENTORY);
 save_item_array("npc_inventory", (target->npc_inventory), MAX_ITEMS_IN_NPC_INVENTORY);
 save_float("last_trading_date", &(target->last_trading_date));
 save_list_head_t("node", &(target->node));
@@ -331,6 +332,7 @@ int read_npc(char* buffer, char * tag, npc * target)
 read_uchar(pos, "chat_character_initialized",  &(target->chat_character_initialized));
 read_uchar_array(pos, "chat_flags",  (target->chat_flags), MAX_ANSWERS_PER_PERSON);
 read_string_array(pos, "shoplist",  (target->shoplist), MAX_ITEMS_IN_INVENTORY);
+read_int32_t_array(pos, "shoplistweight",  (target->shoplistweight), MAX_ITEMS_IN_INVENTORY);
 read_item_array(pos, "npc_inventory",  (target->npc_inventory), MAX_ITEMS_IN_NPC_INVENTORY);
 read_float(pos, "last_trading_date",  &(target->last_trading_date));
 read_list_head_t(pos, "node",  &(target->node));

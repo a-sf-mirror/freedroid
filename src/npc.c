@@ -131,138 +131,142 @@ void init_npcs()
 		npc_add(npcs[i]);
 	}
 
+	struct shop {
+		const char *item_name;
+		int weight;
+	};
+
 	/* Create NPC default shoplists */
-	const char *stone_shop[] = {
-		"Big kitchen knife",
-		"Meat cleaver",
-		"Small Axe",
-		"Large Axe",
-		"Hunting knife",
-		"Iron pipe",
-		"Big wrench",
-		"Crowbar",
-		"Power hammer",
-		"Baseball bat",
-		"Normal Jacket",
-		"Normal Jacket",
-		"Reinforced Jacket",
-		"Protective Jacket",
-		"Standard Shield",
-		"Heavy Shield",
-		"Worker Helmet",
-		"Worker Helmet",
-		"Miner Helmet",
-		"Shoes",
-		"Shoes",
-		"Worker Shoes",
-		".22 LR Ammunition",
-		"Shotgun shells",
+	struct shop stone_shop[] = {
+			{ "Big kitchen knife", 1 },
+			{ "Meat cleaver", 1 },
+			{ "Small Axe", 1 },
+			{ "Large Axe", 1 },
+			{ "Hunting knife", 1 },
+			{ "Iron pipe", 1 },
+			{ "Big wrench", 1 },
+			{ "Crowbar", 1 },
+			{ "Power hammer", 1 },
+			{ "Baseball bat", 1 },
+			{ "Normal Jacket", 1 },
+			{ "Normal Jacket", 1 },
+			{ "Reinforced Jacket", 1 },
+			{ "Protective Jacket", 1 },
+			{ "Standard Shield", 1 },
+			{ "Heavy Shield", 1 },
+			{ "Worker Helmet", 1 },
+			{ "Worker Helmet", 1 },
+			{ "Miner Helmet", 1 },
+			{ "Shoes", 1 },
+			{ "Shoes", 1 },
+			{ "Worker Shoes", 1 },
+			{ ".22 LR Ammunition", 1 },
+			{ "Shotgun shells", 1 },
 	};
 
-	const char *moore_shop[] = {
-		"Diet supplement",
-		"Diet supplement",
-		"Diet supplement",
-		"Antibiotic",
-		"Doc-in-a-can",
+	struct shop moore_shop[] = { 
+			{ "Diet supplement", 3 },
+			{ "Antibiotic", 1 },
+			{ "Doc-in-a-can", 1 },
 	};
 
-	const char *lukas_shop[] = {
-		"9x19mm Ammunition",
-		"7.62x39mm Ammunition",
-		".50 BMG (12.7x99mm) Ammunition",
-		"2 mm Exterminator Ammunition",
-		"Laser power pack",
-		"Laser power pack",
-		"Laser power pack",
-		"Laser pistol",
-		"Laser pistol",
-// too ugly and missing rotationimages		"Laser Rifle",
-		"Plasma energy container",
-		"Plasma energy container",
-		"Plasma energy container",
-		"Plasma pistol",
-		"Plasma pistol",
-		"Plasma gun",
-		"Riot Shield",
-		"Light Battle Helmet",
-		"Battle Helmet",
-		"Battle Shoes",
-		"Red Guard's Light Robe",
-		"Red Guard's Heavy Robe",
+	struct shop lukas_shop[] = { 
+			{ "9x19mm Ammunition", 1 },
+			{ "7.62x39mm Ammunition", 1 },
+			{ ".50 BMG (12.7x99mm) Ammunition", 1 },
+			{ "2 mm Exterminator Ammunition", 1 },
+			{ "Laser power pack", 1 },
+			{ "Laser power pack", 1 },
+			{ "Laser power pack", 1 },
+			{ "Laser pistol", 1 },
+			{ "Laser pistol", 1 },
+			// too ugly and missing rotationimages		"Laser Rifle",
+			{ "Plasma energy container", 1 },
+			{ "Plasma energy container", 1 },
+			{ "Plasma energy container", 1 },
+			{ "Plasma pistol", 1 },
+			{ "Plasma pistol", 1 },
+			{ "Plasma gun", 1 },
+			{ "Riot Shield", 1 },
+			{ "Light Battle Helmet", 1 },
+			{ "Battle Helmet", 1 },
+			{ "Battle Shoes", 1 },
+			{ "Red Guard's Light Robe", 1 },
+			{ "Red Guard's Heavy Robe", 1 },
 	};
 
-	const char *skippy_shop[] = {
-//		"Map Maker",
-//		Sniper wristband
-//		Hacker wristband
-//		Script?
-		"Teleporter homing beacon",
-		"Teleporter homing beacon",
-		"Teleporter homing beacon",
+	struct shop skippy_shop[] = { 
+		//		"Map Maker",  
+		//		Sniper wristband
+		//		Hacker wristband
+		//		Script?
+			{ "Teleporter homing beacon", 1 },
+			{ "Teleporter homing beacon", 1 },
+			{ "Teleporter homing beacon", 1 },
 	};
 
-	const char *duncan_shop[] = {
-		"VMX Gas Grenade",
-		"VMX Gas Grenade",
-		"EMP Shockwave Generator",
-		"EMP Shockwave Generator",
-		"Plasma Shockwave Emitter",
-		"Plasma Shockwave Emitter",
+	struct shop duncan_shop[] = { 
+			{ "VMX Gas Grenade", 1 },
+			{ "VMX Gas Grenade", 1 },
+			{ "EMP Shockwave Generator", 1 },
+			{ "EMP Shockwave Generator", 1 },
+			{ "Plasma Shockwave Emitter", 1 },
+			{ "Plasma Shockwave Emitter", 1 },
 	};
 
-	const char *ewald_shop[] = {
-		"Bottled ice",
-		"Industrial coolant",
-		"Liquid nitrogen",
-		"Barf's Energy Drink",
-		"Running Power Capsule",
-		"Fork",
-		"Plate",
-		"Mug",
+	struct shop ewald_shop[] = { 
+			{ "Bottled ice", 1 },
+			{ "Industrial coolant", 1 },
+			{ "Liquid nitrogen", 1 },
+			{ "Barf's Energy Drink", 1 },
+			{ "Running Power Capsule", 1 },
+			{ "Fork", 1 },
+			{ "Plate", 1 },
+			{ "Mug", 1 },
 	};
 
-	const char *sorenson_shop[] = {
-		"Source Book of Emergency shutdown",
-		"Source Book of Check system integrity",
-		"Source Book of Sanctuary",
-		"Source Book of Analyze item",
-		"Source Book of Malformed packet",
-		"Source Book of Blue Screen",
-		"Source Book of Broadcast Blue Screen",
-		"Source Book of Calculate Pi",
-		"Source Book of Virus",
-		"Source Book of Broadcast virus",
-		"Source Book of Dispel smoke",
-		"Source Book of Killer poke",
-		"Source Book of Invisibility",
-//		"Source Book of Plasma discharge",
-//		"Source Book of Reverse-engineer",
-//		"Source Book of Nethack",
+	struct shop sorenson_shop[] = { 
+			{ "Source Book of Emergency shutdown", 1 },
+			{ "Source Book of Check system integrity", 1 },
+			{ "Source Book of Sanctuary", 1 },
+			{ "Source Book of Analyze item", 1 },
+			{ "Source Book of Malformed packet", 1 },
+			{ "Source Book of Blue Screen", 1 },
+			{ "Source Book of Broadcast Blue Screen", 1 },
+			{ "Source Book of Calculate Pi", 1 },
+			{ "Source Book of Virus", 1 },
+			{ "Source Book of Broadcast virus", 1 },
+			{ "Source Book of Dispel smoke", 1 },
+			{ "Source Book of Killer poke", 1 },
+			{ "Source Book of Invisibility", 1 },
+			//		"Source Book of Plasma discharge",
+			//		"Source Book of Reverse-engineer",
+			//		"Source Book of Nethack",
 	};
 
-	const char *tamara_shop[] = {
-		"Source Book of Emergency shutdown",
-		"Source Book of Check system integrity",
-		"Source Book of Sanctuary",
-		"Source Book of Analyze item",
-		"Source Book of Malformed packet",
-		"Source Book of Blue Screen",
-		"Source Book of Broadcast Blue Screen",
-		"Source Book of Calculate Pi",
-		"Source Book of Virus",
-		"Source Book of Broadcast virus",
-		"Source Book of Dispel smoke",
-		"Source Book of Killer poke",
-		"Source Book of Invisibility",
-//		"Source Book of Plasma discharge",
-//		"Source Book of Reverse-engineer",
-//		"Source Book of Nethack",
+	struct shop tamara_shop[] = { 
+			{ "Source Book of Emergency shutdown", 1 },
+			{ "Source Book of Check system integrity", 1 },
+			{ "Source Book of Sanctuary", 1 },
+			{ "Source Book of Analyze item", 1 },
+			{ "Source Book of Malformed packet", 1 },
+			{ "Source Book of Blue Screen", 1 },
+			{ "Source Book of Broadcast Blue Screen", 1 },
+			{ "Source Book of Calculate Pi", 1 },
+			{ "Source Book of Virus", 1 },
+			{ "Source Book of Broadcast virus", 1 },
+			{ "Source Book of Dispel smoke", 1 },
+			{ "Source Book of Killer poke", 1 },
+			{ "Source Book of Invisibility" , 1 },
+			//		"Source Book of Plasma discharge",
+			//		"Source Book of Reverse-engineer",
+			//		"Source Book of Nethack",
 	};
+
 
 #define ADD_AR(a, name) \
 	for (i=0; i < sizeof(a)/sizeof(a[0]); i++) { \
-		npc_add_shoplist(name, a[i]); \
+		npc_add_shoplist(name, a[i].item_name, a[i].weight); \
 	}
 
 	ADD_AR(stone_shop, "Stone");
@@ -288,6 +292,7 @@ void clear_npcs()
 			if (!n->shoplist[i])
 				break;
 			free(n->shoplist[i]);
+			n->shoplistweight[i] = 0;
 		}
 
 		free(n);
@@ -296,7 +301,7 @@ void clear_npcs()
 	INIT_LIST_HEAD(&npc_head);
 }
 
-int npc_add_shoplist(const char *dialog_basename, const char *item_name)
+int npc_add_shoplist(const char *dialog_basename, const char *item_name, int weight)
 {
 	int i;
 	struct npc *n;
@@ -313,6 +318,7 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name)
 	}
 
 	n->shoplist[i] = strdup(item_name);
+	n->shoplistweight[i] = weight;
 	return 0;
 }
 
@@ -337,15 +343,19 @@ static int npc_inventory_size(struct npc *n)
 	return i;
 }
 
-static int npc_shoplist_size(struct npc *n)
+static int npc_shoplist_weight(struct npc *n)
 {
+	int total_weight = 0;
 	int i;
+
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		if (n->shoplist[i] == NULL)
+		if (n->shoplistweight[i] == 0)
 			break;
+
+		total_weight += n->shoplistweight[i];
 	}
 
-	return i;
+	return total_weight;
 }
 
 /**
@@ -391,6 +401,27 @@ static int add_item(struct npc *n, const char *item_name)
 	return 0;
 }
 
+/** 
+ * Pick an item at random from the NPC shoplist
+ */
+static const char *npc_pick_item(struct npc *n)
+{
+	int total_weight;
+	int i;
+	int pick;
+
+	total_weight = npc_shoplist_weight(n);
+	pick = MyRandom(total_weight);
+
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		pick -= n->shoplistweight[i];
+		if (pick <= 0)
+			break;
+	}
+
+	return n->shoplist[i];
+}
+
 /**
  * Refresh the inventory of an NPC so as to introduce a bit 
  * of variation in what NPCs sell.
@@ -399,7 +430,7 @@ static void npc_refresh_inventory(struct npc *n)
 {
 	int i;
 	int target_size;
-	int shoplist_size = npc_shoplist_size(n);
+	int shoplist_weight = npc_shoplist_weight(n);
 
 	// Remove each item with a given probability
 	for (i = npc_inventory_size(n) - 1; i >= 0; i--) {
@@ -412,11 +443,11 @@ static void npc_refresh_inventory(struct npc *n)
 	}
 
 	// Compute the target size and add items to match it
-	target_size = npc_shoplist_size(n);
+	target_size = npc_shoplist_weight(n);
 	if (target_size > 12)
 		target_size = 12;
 
-	DebugPrintf(DEBUG_SHOP, "refresh: target size is %d, inventory size %d, shoplist size %d\n", target_size, npc_inventory_size(n), shoplist_size);
+	DebugPrintf(DEBUG_SHOP, "refresh: target size is %d, inventory size %d, shoplist weight %d\n", target_size, npc_inventory_size(n), shoplist_weight);
 
 	if (npc_inventory_size(n) >= target_size) {
 		// We do not need to add any items, we have too many already
@@ -426,7 +457,7 @@ static void npc_refresh_inventory(struct npc *n)
 	// Add the required number of items
 	i = target_size - npc_inventory_size(n);
 	while (i--) {
-		add_item(n, n->shoplist[MyRandom(shoplist_size - 1)]);
+		add_item(n, npc_pick_item(n));
 	}
 }
 

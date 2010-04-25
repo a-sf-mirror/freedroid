@@ -280,13 +280,10 @@ static int lua_event_give_item(lua_State * L)
 static int lua_event_sell_item(lua_State *L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
-	const char *charname = luaL_optstring(L, 2, NULL);
+	int weight = luaL_optint(L, 2, 1);
+	const char *charname = luaL_optstring(L, 3, chat_control_chat_droid->dialog_section_name);
 
-	if (!charname) {
-		charname = chat_control_chat_droid->dialog_section_name;
-	}
-
-	npc_add_shoplist(charname, itemname);
+	npc_add_shoplist(charname, itemname, weight);
 
 	return 0;
 }
