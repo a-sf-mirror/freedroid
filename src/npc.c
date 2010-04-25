@@ -284,7 +284,7 @@ void clear_npcs()
 
 		free(n->dialog_basename);
 
-		for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
+		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 			if (!n->shoplist[i])
 				break;
 			free(n->shoplist[i]);
@@ -302,12 +302,12 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name)
 	struct npc *n;
 
 	n = npc_get(dialog_basename); 
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 		if (n->shoplist[i] == NULL)
 			break;
 	}
 
-	if (i == MAX_ITEMS_IN_NPC_INVENTORY) {
+	if (i == MAX_ITEMS_IN_INVENTORY) {
 		ErrorMessage(__FUNCTION__, "Shop list for character \"%s\" is full. Cannot add item \"%s\".\n", PLEASE_INFORM, IS_WARNING_ONLY, n->dialog_basename, item_name);
 		return 1;
 	}
@@ -340,7 +340,7 @@ static int npc_inventory_size(struct npc *n)
 static int npc_shoplist_size(struct npc *n)
 {
 	int i;
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
 		if (n->shoplist[i] == NULL)
 			break;
 	}
