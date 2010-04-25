@@ -284,7 +284,7 @@ void clear_npcs()
 
 		free(n->dialog_basename);
 
-		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 			if (!n->shoplist[i])
 				break;
 			free(n->shoplist[i]);
@@ -302,12 +302,12 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name)
 	struct npc *n;
 
 	n = npc_get(dialog_basename); 
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		if (n->shoplist[i] == NULL)
 			break;
 	}
 
-	if (i == MAX_ITEMS_IN_INVENTORY) {
+	if (i == MAX_ITEMS_IN_NPC_INVENTORY) {
 		ErrorMessage(__FUNCTION__, "Shop list for character \"%s\" is full. Cannot add item \"%s\".\n", PLEASE_INFORM, IS_WARNING_ONLY, n->dialog_basename, item_name);
 		return 1;
 	}
@@ -319,7 +319,7 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name)
 static void npc_clear_inventory(struct npc *n)
 {
 	int i;
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		n->npc_inventory[i].type = -1;
 		n->npc_inventory[i].prefix_code = -1;
 		n->npc_inventory[i].suffix_code = -1;
@@ -329,7 +329,7 @@ static void npc_clear_inventory(struct npc *n)
 static int npc_inventory_size(struct npc *n)
 {
 	int i;
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		if (n->npc_inventory[i].type == -1)
 			break;
 	}
@@ -340,7 +340,7 @@ static int npc_inventory_size(struct npc *n)
 static int npc_shoplist_size(struct npc *n)
 {
 	int i;
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		if (n->shoplist[i] == NULL)
 			break;
 	}
@@ -353,7 +353,7 @@ static int npc_shoplist_size(struct npc *n)
  */
 void npc_inventory_delete_item(struct npc *n, int index)
 {
-	if (index == MAX_ITEMS_IN_INVENTORY - 1) {
+	if (index == MAX_ITEMS_IN_NPC_INVENTORY - 1) {
 		// If we are removing the last item of the list, it is easy
 		n->npc_inventory[index].type = -1;
 		n->npc_inventory[index].prefix_code = -1;
@@ -362,7 +362,7 @@ void npc_inventory_delete_item(struct npc *n, int index)
 	}
 
 	// Otherwise, erase this item with the next ones
-	memmove(&n->npc_inventory[index], &n->npc_inventory[index+1], sizeof(item)*(MAX_ITEMS_IN_INVENTORY - index - 1));
+	memmove(&n->npc_inventory[index], &n->npc_inventory[index+1], sizeof(item)*(MAX_ITEMS_IN_NPC_INVENTORY - index - 1));
 }
 
 /**
@@ -373,12 +373,12 @@ static int add_item(struct npc *n, const char *item_name)
 {
 	int i;
 
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		if (n->npc_inventory[i].type == -1)
 			break;
 	}
 
-	if (i == MAX_ITEMS_IN_INVENTORY) {
+	if (i == MAX_ITEMS_IN_NPC_INVENTORY) {
 		ErrorMessage(__FUNCTION__, "Unable to add item \"%s\" inside NPC \"%s\" inventory, because the inventory is full.\n", PLEASE_INFORM, IS_WARNING_ONLY, item_name, n->dialog_basename);
 		return 1;
 	}
