@@ -382,10 +382,20 @@ void npc_inventory_delete_item(struct npc *n, int index)
 static int add_item(struct npc *n, const char *item_name)
 {
 	int i;
+	int stack_item = 0;
+	int item_type = GetItemIndexByName(item_name);
 
+	// Look for a free item index in the NPC inventory,
+	// or, if the item is stackable, look for the item index
+	// to stack at.
 	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		if (n->npc_inventory[i].type == -1)
 			break;
+
+		if (ItemMap[item_type].item_group_together_in_inventory && n->npc_inventory[i].type == item_type) {
+			stack_item = 1;
+			break;
+		}
 	}
 
 	if (i == MAX_ITEMS_IN_NPC_INVENTORY) {
@@ -394,9 +404,13 @@ static int add_item(struct npc *n, const char *item_name)
 	}
 
 	DebugPrintf(DEBUG_SHOP, "adding item %s\n", item_name);
-	n->npc_inventory[i].type = GetItemIndexByName(item_name);
-	FillInItemProperties(&n->npc_inventory[i], TRUE, 1);
-	n->npc_inventory[i].is_identified = TRUE;
+	if (stack_item) {
+		n->npc_inventory[i].multiplicity ++;
+	} else {
+		n->npc_inventory[i].type = GetItemIndexByName(item_name);
+		FillInItemProperties(&n->npc_inventory[i], TRUE, 1);
+		n->npc_inventory[i].is_identified = TRUE;
+	}
 
 	return 0;
 }
