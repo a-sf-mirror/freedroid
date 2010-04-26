@@ -948,8 +948,8 @@ enum obstacle_types {
 	// These obstacles are generated from 'iso_pillars_and_barrels.blend' file
 	// in the cvs rep.
 	//
-	ISO_BLOCK_1 = 47,
-	ISO_BLOCK_2 = 48,
+	ISO_PILLAR_TALL = 47,
+	ISO_PILLAR_SHORT = 48,
 	ISO_TV_PILLAR_W = 49,
 
 	ISO_BARREL_1 = 50,

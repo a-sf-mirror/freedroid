@@ -335,11 +335,15 @@ void init_obstacle_data(void)
 
 	//--------------------
 	// These are the normal pillars, that appear here and there in the game.
-	//
-	block_2param(ISO_BLOCK_1, 1.05, 1.05);
-	obstacle_map[ISO_BLOCK_1].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_BLOCK_2, 1.05, 1.05);
-	obstacle_map[ISO_BLOCK_2].flags &= ~BLOCKS_VISION_TOO;
+	// 4param is used to allow Tux to walk ontop the pillar base in S&E yet
+	// not appear as walking under the pillar base N&W of the pillar.
+
+	block_4param(ISO_PILLAR_TALL, 0.25, 0.25, 0.5, 0.5);
+	obstacle_map[ISO_PILLAR_TALL].filename = "iso_obstacle_0047.png";
+	obstacle_map[ISO_PILLAR_TALL].flags &= ~BLOCKS_VISION_TOO;
+	block_4param(ISO_PILLAR_SHORT, 0.25, 0.25, 0.5, 0.5);
+	obstacle_map[ISO_PILLAR_SHORT].filename = "iso_obstacle_0048.png";
+	obstacle_map[ISO_PILLAR_SHORT].flags &= ~BLOCKS_VISION_TOO;
 
 	//--------------------
 	// These files originate from iso_machinery.blend
@@ -356,21 +360,20 @@ void init_obstacle_data(void)
 	block_2param(ISO_TV_PILLAR_S, 1.0, 1.0);
 	obstacle_map[ISO_TV_PILLAR_S].filename = "iso_machinery_0004.png";
 	obstacle_map[ISO_TV_PILLAR_S].flags &= ~BLOCKS_VISION_TOO;
-// Magotari: Not sure if you are going to agree with the above. I just wanted an ominous description, something unknown and big, to cause awe and maybe a bit of fear. Those are my reasons. Feel free to revert or change it if you still disagree.
 
-	block_2param(ISO_ENHANCER_LD, 1.2, 1.2);
+	block_4param(ISO_ENHANCER_LD, 0.55, 0.5, 0.6, 0.6);
 	obstacle_map[ISO_ENHANCER_LD].filename = "iso_machinery_0005.png";
 	obstacle_map[ISO_ENHANCER_LD].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_ENHANCER_LD].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_ENHANCER_LU, 1.2, 1.2);
+	block_4param(ISO_ENHANCER_LU, 0.55, 0.55, 0.6, 0.6);
 	obstacle_map[ISO_ENHANCER_LU].filename = "iso_machinery_0006.png";
 	obstacle_map[ISO_ENHANCER_LU].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_ENHANCER_LU].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_ENHANCER_RU, 1.2, 1.2);
+	block_4param(ISO_ENHANCER_RU, 0.5, 0.55, 0.6, 0.6);
 	obstacle_map[ISO_ENHANCER_RU].filename = "iso_machinery_0007.png";
 	obstacle_map[ISO_ENHANCER_RU].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_ENHANCER_RU].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_ENHANCER_RD, 1.2, 1.2);
+	block_4param(ISO_ENHANCER_RD, 0.5, 0.5, 0.6, 0.6);
 	obstacle_map[ISO_ENHANCER_RD].filename = "iso_machinery_0008.png";
 	obstacle_map[ISO_ENHANCER_RD].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_ENHANCER_RD].flags &= ~BLOCKS_VISION_TOO;
