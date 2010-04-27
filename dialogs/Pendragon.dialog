@@ -70,11 +70,8 @@ LuaCode={
 Nr=12 Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
 LuaCode={
 	if (get_skill("melee") < 1) then
-		if (can_tux_train(100, 5)) then
-			del_gold(100)
-			del_points(5)
+		if (train_skill(100, 5, "melee")) then
 			del_health(25)
-			improve_skill("melee")
 			npc_says(_"Let us begin then.")
 			npc_says(_"Come closer...")
 			npc_says(_"HA!")
