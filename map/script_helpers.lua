@@ -131,6 +131,14 @@ function npc_says_random(...)
 	end
 end
 
+function tux_says_random(...)
+	if (arg[#arg] == "NO_WAIT") then
+		tux_says(arg[math.random(#arg-1)],"NO_WAIT")
+	else
+		tux_says(arg[math.random(#arg)])
+	end
+end
+
 function get_random(...)
 	return arg[math.random(#arg)]
 end
