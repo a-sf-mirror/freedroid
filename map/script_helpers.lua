@@ -2,7 +2,6 @@
 next = set_next_node
 show = enable_node
 hide = disable_node
-update_quest = add_diary_entry
 
 
 -- gettext function for dialogs
@@ -121,6 +120,14 @@ function cmp_obstacle_state(label, state)
 	id = get_obstacle_type(label);
 
 	return (id == get_obstacle_state_id(id, state));
+end
+
+function update_quest(quest, text)
+	add_diary_entry(quest, text)
+	npc_says("","NO_WAIT")
+	cli_says(_"Quest log updated.","NO_WAIT")
+	npc_says("","NO_WAIT")
+	npc_says("")
 end
 
 function npc_says_random(...)
