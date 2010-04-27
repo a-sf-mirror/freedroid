@@ -34,8 +34,12 @@ EveryTime LuaCode={
 		show(0)
 		add_cookie("met_bruce")
 	else end
-
-	if (has_cookie("bruce_hurt")) then show(98) else show(99) end
+	if (has_cookie("tux_has_joined_guard")) then
+		npc_says(_"I am tired.")
+		npc_says(_"Go away.")
+		end_dialog()
+	else end
+	show(99)
 }
 ----------------------------------------------------------------------
 
@@ -134,16 +138,13 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=98 Text=_"I'll be going then."
-LuaCode={
-	npc_says(_". . .")
-	end_dialog()
-}
-----------------------------------------------------------------------
-
 Nr=99 Text=_"I'll be going then."
 LuaCode={
-	npc_says(_"Good. I need sleep.")
+	if (has_cookie("bruce_hurt")) then
+		npc_says(_". . .")	
+	else
+		npc_says(_"Good. I need sleep.")	
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------
