@@ -471,7 +471,7 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 			}
 		}
 
-		strcat(InfoText, _("Duration: "));
+		strcat(InfoText, _("Durability: "));
 		if (ShowItem->max_duration >= 0)
 			sprintf(TextChunk, "%d / %d\n", (int)ShowItem->current_duration, ShowItem->max_duration);
 		else
