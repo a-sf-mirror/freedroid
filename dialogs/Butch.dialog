@@ -127,7 +127,7 @@ LuaCode={
 	npc_says(_"Good for you.")
 	npc_says(_"You are a total newbie. But, a good newbie.")
 	npc_says(_"I will say a good word to Spencer about this.")
-	add_diary_entry("Novice Arena", "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
+	update_quest("Novice Arena", "Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
 	hide(7, 8) show(9, 11)
 }
 ----------------------------------------------------------------------
@@ -167,7 +167,7 @@ LuaCode={
 	npc_says(_"You are not a newbie, but you are COMPLETELY INSANE!")
 	npc_says(_"I pity you, poor fool. You will die young.")
 	add_xp(8000)
-	add_diary_entry("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
+	update_quest("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
 	hide(10)
 }
 ----------------------------------------------------------------------

@@ -35,7 +35,7 @@ EveryTime LuaCode={
 	cli_says(_" Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	if (has_quest("Tania's sanitary")) then add_diary_entry("Tania's sanitary", "I have found that SACD and hacked it's system.") else end
+	if (has_quest("Tania's sanitary")) then update_quest("Tania's sanitary", "I have found that SACD and hacked it's system.") else end
 	if (not has_cookie("sacdovertaken")) then
 		add_xp(1000)
 		add_cookie("sacdovertaken")

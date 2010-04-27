@@ -64,7 +64,7 @@ LuaCode={
 		npc_says(_"Disruptor shield is active.")
 	else
 		end_quest("Opening access to MS Office")
-		add_diary_entry("Opening access to MS Office", "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
+		update_quest("Opening access to MS Office", "I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 	end
 	cli_says(terminal, "NO_WAIT")
 }

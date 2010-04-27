@@ -197,7 +197,7 @@ LuaCode={
 	end_quest("Tania's sanitary")
 	add_item("Source Book of Check system integrity",1)
 	add_item("Source Book of Sanctuary",1)
-	add_diary_entry("Tania's sanitary", "Tania is free now, I got some books as reward.")
+	update_quest("Tania's sanitary", "Tania is free now, I got some books as reward.")
 	hide(27)
 }
 ----------------------------------------------------------------------

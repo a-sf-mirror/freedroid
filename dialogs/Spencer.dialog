@@ -115,7 +115,7 @@ LuaCode={
 				npc_says(_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots.")
 				add_gold(500)
 				add_cookie("reward_for_warehouse_given")
-				add_diary_entry("Opening a can of bots...", "Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*.")
+				update_quest("Opening a can of bots...", "Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*.")
 			end
 		else
 			npc_says(_"Not too good. Without the supplies from the warehouse we are doomed. So my problems are still the same.")

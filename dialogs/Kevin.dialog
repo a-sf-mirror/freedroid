@@ -44,7 +44,7 @@ EveryTime LuaCode={
 			show(3, 8, 10)
 			if (not has_cookie("did_And there was light...")) then
 				add_cookie("did_And there was light...")
-				add_diary_entry("And there was light...", "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
+				update_quest("And there was light...", "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 			else end
 		else show(6, 7) end
 	else end
@@ -112,7 +112,7 @@ LuaCode={
 	npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
 	npc_says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
 	npc_says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
-	add_diary_entry("And there was light...", "The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
+	update_quest("And there was light...", "The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
 	hide(6, 7)
 }
 ----------------------------------------------------------------------
