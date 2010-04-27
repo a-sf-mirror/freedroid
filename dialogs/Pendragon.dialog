@@ -52,16 +52,16 @@ LuaCode={
 	if (has_cookie("beat_up_pendragon")) then 
 		npc_says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
 	else 
-		npc_says(_"Sure. I can help you.")
+		npc_says(_"Sure. I can help you.","NO_WAIT")
 		npc_says(_"For a price. Hundred circuits should be enough.")
-		show(11, 19)
+		hide(1, 99) show(11, 19)
 	end
 }
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Teach me the basic stuff."
 LuaCode={
-	npc_says(_"Are you sure?")
+	npc_says(_"Are you sure?","NO_WAIT")
 	npc_says(_"I only accept students that already have some experience in fighting bots.")
 	hide(11, 19) show(12, 29)
 }
@@ -70,45 +70,45 @@ LuaCode={
 Nr=12 Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
 LuaCode={
 	if (get_skill("melee") < 1) then
-		if (del_gold(100)) then
-			if (del_points(5)) then
-				npc_says(_"Let us begin then.")
-				npc_says(_"Come closer...")
-				npc_says(_"HA!")
-				tux_says(_"Ouch! What the hell are you doing?")
-				npc_says(_"Lesson number one. Never trust the opponent.")
-				tux_says(_"Just let me get up an -- ouch! Stop it.")
-				npc_says(_"Lesson number two. The bots have no mercy.")
-				npc_says(_"They won't let you get up if you fall down. They will kill you.")
-				npc_says(_"Now, lesson number -- ugh! That hurt!")
-				tux_says(_"Lesson number three. Never underestimate the enemy.")
-				npc_says(_"Ugh. Yes. You are correct.")
-				npc_says(_"I need to... Lie down for a while... My head hurts...")
-				npc_says(_"Lesson number four. Never hit your sparring partner with full force.")
-				npc_says(_"I think you broke my ribs...")
-				npc_says(_"This is enough training for today.")
-				add_cookie("beat_up_pendragon")
-				del_health(10)
-				improve_skill("melee")
-				end_dialog()
-			else
+		if (can_tux_train(100, 5)) then
+			del_gold(100)
+			del_points(5)
+			del_health(25)
+			improve_skill("melee")
+			npc_says(_"Let us begin then.")
+			npc_says(_"Come closer...")
+			npc_says(_"HA!")
+			tux_says(_"Ouch! What the hell are you doing?")
+			npc_says(_"Lesson number one. Never trust the opponent.")
+			tux_says(_"Just let me get up an -- ouch! Stop it.")
+			npc_says(_"Lesson number two. The bots have no mercy.")
+			npc_says(_"They won't let you get up if you fall down. They will kill you.")
+			npc_says(_"Now, lesson number -- ugh! That hurt!")
+			tux_says(_"Lesson number three. Never underestimate the enemy.")
+			npc_says(_"Ugh. Yes. You are correct.")
+			npc_says(_"I need to... Lie down for a while... My head hurts...")
+			npc_says(_"Lesson number four. Never hit your sparring partner with full force.")
+			npc_says(_"I think you broke my ribs...")
+			npc_says(_"This is enough training for today.")
+			add_cookie("beat_up_pendragon")
+		else 
+			if (get_gold() >= 100)  then
 				npc_says(_"You don't have enough experience. I can't teach you anything more right now.")
 				npc_says(_"First collect more experience. Then we can go on.")
-				add_gold(100) -- refund unused $$$
+			else
+				npc_says(_"You don't have enough valuable circuits on you! Come back when you have the money.")		
 			end
-		else 
-			npc_says(_"You don't have enough valuable circuits on you! Come back when you have the money.")
 		end
 	else
 		npc_says(_"Hey, wake up! I taught you that stuff already. Go practice on the bots, if you really want more training.")
 	end
-	hide(12) show(29)
+	hide(12)
 }
 ----------------------------------------------------------------------
 
 Nr=19 Text=_"Teach me how to smash concrete blocks with my bare hands."
 LuaCode={
-	npc_says(_"Oh, Linarian, you amuse me so.")
+	npc_says(_"Oh, Linarian, you amuse me so.","NO_WAIT")
 	npc_says(_"You are quite an ambitious fellow.")
 	npc_says(_"First learn the basics. Spend a year working on that, and then I'll be able to teach you some advanced tricks.")
 	hide(19) show(20)
@@ -124,7 +124,7 @@ LuaCode={
 
 Nr=21 Text=_"I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
 LuaCode={
-	npc_says(_"Wow.")
+	npc_says(_"Wow.","NO_WAIT")
 	npc_says(_"You have a very rich imagination. There is no such thing. Get a life.")
 	hide(21) show(22)
 }
@@ -151,7 +151,7 @@ LuaCode={
 Nr=29 Text=_"Enough for now."
 LuaCode={
 	npc_says(_"Fine.")
-	hide(11, 12, 19, 20, 21, 22, 23, 29)
+	hide(11, 12, 19, 20, 21, 22, 23, 29) show(1, 99)
 }
 ----------------------------------------------------------------------
 
