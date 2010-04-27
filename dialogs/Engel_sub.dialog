@@ -33,7 +33,7 @@ FirstTime LuaCode={ show(0) }
 EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
-Nr=0 Text="I'm ready. Please show me how to extract bot parts. (cost 50 cash, 1 ability point)"
+Nr=0 Text="I'm ready. Please show me how to extract bot parts. (cost 50 circuits, 1 ability point)"
 LuaCode={
 	next(2)
 }

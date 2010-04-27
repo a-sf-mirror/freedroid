@@ -222,7 +222,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30 Text="Improve Hacking Program (cost 300 cash, 5 ability points)"
+Nr=30 Text="Improve Hacking Program (cost 300 circuits, 5 ability points)"
 LuaCode={
 	if (del_gold(300)) then
 		if (del_points(5)) then

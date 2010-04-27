@@ -126,7 +126,7 @@ LuaCode={
 			if (get_training_points() > 2) then 
 				npc_says(_"Interested?")
 				hide(20) show(21, 29)
-			else npc_says(_"Waving that cash in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
+			else npc_says(_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
 		else npc_says(_"Come back when you have both.") end
 	else
 		if (get_skill("ranged") == 1) then
@@ -137,7 +137,7 @@ LuaCode={
 				if (get_training_points() > 5) then 
 					npc_says(_"Interested?")
 					hide(20) show(22, 29)
-				else npc_says(_"Waving that cash in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
+				else npc_says(_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
 			else npc_says(_"You don't have enough money! I cannot afford to just give away training for free.") end
 		else
 			if (get_skill("ranged") == 2) then
@@ -161,7 +161,7 @@ LuaCode={
 				else
 					if (get_skill("ranged") == 4) then
 						npc_says(_"To become a true god of firearms, just like me, you need ridiculous amounts of training.", "NO_WAIT")
-						npc_says(_"It will of course cost a fair bit of cold, hard cash as well. 500, to be precise.")
+						npc_says(_"It will of course cost a fair bit of cold, hard circuits as well. 500, to be precise.")
 						if (get_gold() > 499) then
 							if (get_training_points() > 14) then 
 								npc_says(_"Interested?")
@@ -181,7 +181,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=21 Text=_"Yes, I want to improve my ranged weapons skill. (cost 3 training points, 100 cash)"
+Nr=21 Text=_"Yes, I want to improve my ranged weapons skill. (cost 3 training points, 100 circuits)"
 LuaCode={
 	if (del_gold(100)) then
 		if (del_points(3)) then
@@ -204,7 +204,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22 Text=_"Yes I want even more training. (cost 6 training points, 200 cash)"
+Nr=22 Text=_"Yes I want even more training. (cost 6 training points, 200 circuits)"
 LuaCode={
 	if (del_gold(200)) then
 		if (del_points(6)) then
@@ -223,7 +223,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23 Text=_"Yes I accept. (cost 9 training points, 300 cash)"
+Nr=23 Text=_"Yes I accept. (cost 9 training points, 300 circuits)"
 LuaCode={
 	if (del_gold(300)) then
 		if (del_points(9)) then
@@ -243,7 +243,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24 Text=_"Yes I accept. (cost 12 training points, 400 cash)"
+Nr=24 Text=_"Yes I accept. (cost 12 training points, 400 circuits)"
 LuaCode={
 	if (del_gold(400)) then
 		if (del_points(12)) then
@@ -263,7 +263,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=25 Text=_"Yes I want to become a god in ranged combat. (cost 15 training points, 500 cash)"
+Nr=25 Text=_"Yes I want to become a god in ranged combat. (cost 15 training points, 500 circuits)"
 LuaCode={
 	if (del_gold(500)) then
 		if (del_points(15)) then
@@ -310,7 +310,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=43 Text=_"Well, I am a bit short on cash right now..."
+Nr=43 Text=_"Well, I am a bit short on circuits right now..."
 LuaCode={
 	npc_says(_"Linarian, I thought we had an agreement. Fifty per infobit. My silence can be only broken with currency, so if you want to know, you have to pay.", "NO_WAIT")
 	npc_says(_"This conversation is now over.")

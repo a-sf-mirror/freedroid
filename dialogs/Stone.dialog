@@ -126,7 +126,7 @@ LuaCode={
 
 Nr=15 Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?"
 LuaCode={
-	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand triangles.")
+	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand circuits.")
 	add_cookie("stone_helping")
 	add_quest("Saving the shop", "Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
 	if (get_gold() > 1600) then show(23) else hide(23) end
@@ -147,7 +147,7 @@ LuaCode={
 	npc_says(_"Is... Is this a joke? So much money? And you just give it to me?", "NO_WAIT")
 	npc_says(_"Thank you! Thank you! Thank you! Savior!")
 	npc_says(_"But this isn't fair to you. The Stones are a family of fair merchants and I intend to uphold that tradition.")
-	npc_says(_"I need 1,547 bucks to get through the month. I will accept only that and not a cent more.")
+	npc_says(_"I need 1,547 circuits to get through the month. I will accept only that and not a transistor more.")
 	if (del_gold(1547)) then 
 		npc_says(_"Now it's fair. Thank you.", "NO_WAIT")
 		npc_says(_"You've given me a bit of hope.. ", "NO_WAIT")

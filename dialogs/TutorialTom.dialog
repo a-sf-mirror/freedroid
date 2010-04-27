@@ -323,7 +323,7 @@ LuaCode={
 		npc_says(_"So you have. Well done.")
 		npc_says(_"I'll trade you this wrench for it. I think you'll find it handy.")
 		npc_says(_"Now would be an appropriate time to mention bot parts, I guess.")
-		npc_says(_"Certain parts in the bots are valuable. You can sell them at stores for cash.")
+		npc_says(_"Certain parts in the bots are extra valuable. You can sell them at stores for cash.")
 		npc_says(_"If you can learn to extract these parts, it can help improve your lot in the world.")
 		npc_says(_"Hopefully, you can find someone to teach you.")
 		del_item_backpack("Entropy Inverter", 1)

@@ -53,7 +53,7 @@ LuaCode={
 		npc_says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
 	else 
 		npc_says(_"Sure. I can help you.")
-		npc_says(_"For a price. Hundred bucks should be enough.")
+		npc_says(_"For a price. Hundred circuits should be enough.")
 		show(11, 19)
 	end
 }
