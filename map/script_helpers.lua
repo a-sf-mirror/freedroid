@@ -135,9 +135,9 @@ function get_random(...)
 	return arg[math.random(#arg)]
 end
 
-function del_gold(amount)
-	if (amount <= get_gold()) then
-		add_gold(-amount)
+function del_gold(gold_amount)
+	if (gold_amount <= get_gold()) then
+		add_gold(-gold_amount)
 		return true
 	else
 		return false
@@ -171,6 +171,36 @@ function can_tux_train(gold_amount, num_points)
 		return false
 	end
 
+	return true
+end
+
+function train_skill(gold_amount, num_points, skill)
+	if (get_gold() < gold_amount) then
+		return false
+	end
+	
+	if (get_training_points() < num_points) then
+		return false
+	end
+
+	add_gold(-gold_amount)
+	del_training_points(num_points)
+	improve_skill(skill)
+	return true
+end
+
+function train_program(gold_amount, num_points, program)
+	if (get_gold() < gold_amount) then
+		return false
+	end
+	
+	if (get_training_points() < num_points) then
+		return false
+	end
+
+	add_gold(-gold_amount)
+	del_training_points(num_points)
+	improve_program(program)
 	return true
 end
 
