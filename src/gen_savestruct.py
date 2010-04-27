@@ -57,7 +57,7 @@ def main():
     if len(sys.argv) < 3:
         print "Usage: %s <input.h> <output>" % sys.argv[0]
         sys.exit(1)
-    
+
     # Filenames
     inpfn, outfn = sys.argv[1:]
     inpf = open(inpfn, 'r')
@@ -91,7 +91,7 @@ def main():
                 in_comment_block = False
                 l = l.split('*/')[1]
             if not in_comment_block: lines.append(l)
-        
+
         # This list will contain all the (type, field, size) tuples
         a = []
         for l in lines:
@@ -105,23 +105,17 @@ def main():
         for f in a:
             type, field, size = f
             type = type.lower().strip()
-           
-            #print("got type " + str(type) + " field is " + str(field) + " size is " + str(size))
 
-            # Pointers - do not save them. It does not make sense.
-            if '*' in type:
-                type = type.replace('*', '').strip() + '_ptr'
-                continue
+            #print("got type " + str(type) + " field is " + str(field) + " size is " + str(size))
 
             # Spaces
             type = type.replace(' ', '_')
             if type in special_types.keys(): type = special_types[type]
-            
-            
-	    if size: 
-			type += '[%s]' % size
+
+	    if size:
+		type += '[%s]' % size
             data[name].append((type, field))
-   
+
     # Writing loop
     for s_name in data.keys():
         str_save = str_read = ''
@@ -143,9 +137,18 @@ def main():
             size = None
             if "[" in type:
                 size = type.split('[')[1][:-1]
-                type = type.split('[')[0] + '_array'
-            str_save += 'save_%s("%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
-            str_read += 'read_%s(pos, "%s", %s %s(target->%s)%s);\n' % (type, field, '', '' if size else '&', field, (', %s' % size) if size else '')
+                elt_type = type.split('[')[0]
+                type = elt_type + '_array'
+            if '*' in type:
+                # Pointers are not saved (it does not make sense). They are initialized to NULL during loading
+		if size == None:
+                    str_read += 'target->%s = NULL;\n' % field
+                else:
+                    str_read += 'memset(target->%s, 0, %s * sizeof(%s));\n' % (field, size, elt_type)
+            else:
+                str_save += 'save_%s("%s", %s(target->%s)%s);\n' % (type, field, '' if size else '&', field, (', %s' % size) if size else '')
+                str_read += 'read_%s(pos, "%s", %s %s(target->%s)%s);\n' % (type, field, '', '' if size else '&', field, (', %s' % size) if size else '')
+
         str_save += 'autostr_append(savestruct_autostr, "</%s>\\n", tag);\nreturn 0;\n}\n\n'
         str_read += '''*epos = '>'; \nreturn 0;\n}\n\n'''
         outf.write(str_save)
