@@ -87,7 +87,7 @@ LuaCode={
 	npc_says(_"Those are pretty painful and distant memories.")
 	npc_says(_"After the Great Assault, I joined the Red Guard. They needed help and were looking for volunteers.")
 	npc_says(_"I served there for a short while, and they even let me use an exterminator. But then after a failed mission, I resigned and never wore a uniform again.")
-	hide(5) show(6, 7, 98)
+	hide(5) show(6, 7, 99)
 }
 ----------------------------------------------------------------------
 
