@@ -40,22 +40,22 @@ EveryTime LuaCode={
 
 Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
-	npc_says(_"Hello. I'm Tybalt. I'm guarding the guardhouse gate. Only authorized personnel are permitted.")
+	npc_says(_"Hello. I'm Tybalt. I'm guarding the town citadel gate. Only authorized personnel are permitted.")
 	hide(0) show(1, 2)
 }
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"Why is the guardhouse locked most of the time?"
+Nr=1 Text=_"Why is this gate locked most of the time?"
 LuaCode={
 	npc_says(_"It's locked so no one can sneak inside while I'm not looking. That's why.")
 	hide(1)
 }
 ----------------------------------------------------------------------
 
-Nr=2 Text=_"I want to get into the guardhouse."
+Nr=2 Text=_"I want to get into the citadel."
 LuaCode={
 	if (has_cookie("tux_has_joined_guard")) then 
-		npc_says(_"Of course. Guard members are always authorized to enter the guardhouse. The gate is open. Enjoy your stay.")
+		npc_says(_"Of course. Guard members are always authorized to enter the town citadel. The gate is open. Enjoy your stay.")
 		change_obstacle_state("OldTownGuardHouseEntrance", "opened")
 	else
 		npc_says(_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard.")
@@ -67,10 +67,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10 Text="So why is it you keep the guardhouse locked? Is there anything secret in there?"
-NPC=_"We need to protect our equipment and documents, because lives depend on it."
-NPC=_"Also, we don't have to answer questions."
+Nr=10 Text="So why is it you keep the citadel locked? Is there anything secret in there?"
 LuaCode={
+	npc_says(_"We need to protect our equipment and documents, because lives depend on it.")
+	npc_says(_"Also, we don't have to answer questions.")
 	hide(10)
 	-- this is meant to introduce that there have been thefts - we can use it for both the rebel faction
 	-- and Kevin introduction. Kevin might even be a member of the rebel faction.
