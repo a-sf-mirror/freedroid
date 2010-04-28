@@ -160,7 +160,7 @@ LuaCode={
 Nr=10 Text=_"How about some reward for securing your energy supply area?"
 LuaCode={
 	if (has_cookie("kevin_reward1_given")) then
-		npc_says(_"I've already rewarded you for that. Don't steal my time. I'm busy.")
+		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.", "I am not as confused as you think. Go away now.")
 	else
 		npc_says(_"What do you want?")
 		show(11, 12, 13)
@@ -188,7 +188,7 @@ Nr=12 Text=_"I don't want any reward. Just gratitude."
 LuaCode={
 	npc_says(_"Of course you can have that. There, I'm most grateful to you. That should do.")
 	add_cookie("kevin_reward1_given")
-	-- reward here could be bonus to joining faction
+	-- reward here could be bonus to joining faction or a powerfull hacked (friedly) bot that supports Tux fighting in Hell Fortress.
 	end_dialog()
 	hide(11, 12, 13)
 }
@@ -240,7 +240,7 @@ LuaCode={
 
 Nr=99 Text=_"I'll be off then."
 LuaCode={ 
-	npc_says(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.")
+	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.", "If you need to contact me, my number is 127.0.0.1", "Keep your system up to date, Linarian.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
