@@ -630,8 +630,8 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	// Now we set some viable choice window and we compute the maximum number of lines
 	// that will still fit well into the choice window.
 	//
-	Choice_Window.x = 35 * GameConfig.screen_width / 640;
-	Choice_Window.y = 335 * GameConfig.screen_height / 480;
+	Choice_Window.x = 37 * GameConfig.screen_width / 640;
+	Choice_Window.y = 336 * GameConfig.screen_height / 480;
 	Choice_Window.w = (640 - 70) * GameConfig.screen_width / 640;
 	Choice_Window.h = 118 * GameConfig.screen_height / 480;
 	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
@@ -715,7 +715,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			//--------------------
 			// If there is not enough room any more, we quit blitting...
 			//
-			if (SpaceUsedSoFar > MaxLinesInMenuRectangle * FontHeight(GetCurrentFont())) {
+			if (SpaceUsedSoFar > MaxLinesInMenuRectangle * h) {
 				BreakOffCauseAllDisplayed = FALSE;
 				BreakOffCauseNoRoom = TRUE;
 				LastOptionVisible = i;
@@ -728,7 +728,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			MenuPosY[i] = Choice_Window.y + SpaceUsedSoFar;
 			MenuOptionLineRequirement[i] =
 			    DisplayText(MenuTexts[i], Choice_Window.x, Choice_Window.y + SpaceUsedSoFar, &Choice_Window, TEXT_STRETCH);
-			SpaceUsedSoFar += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+			SpaceUsedSoFar += MenuOptionLineRequirement[i] * h * TEXT_STRETCH;
 		}
 
 		//--------------------
@@ -736,22 +736,23 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		//
 		// (and we add some security against 'empty' chat selection menus causing
 		// some segfaults rather easily...)
-		//
-		DebugPrintf(1, "\n%s(): menu_position_to_remember: %d.", __FUNCTION__, menu_position_to_remember);
-		DebugPrintf(1, "\n%s(): FirstItem: %d.", __FUNCTION__, FirstItem);
 		if (menu_position_to_remember <= 0)
 			menu_position_to_remember = 1;
-		HighlightRect.x = MenuPosX[menu_position_to_remember - 1] - 0 * h;
+
+#define HIGHLIGHT_H_MARGIN 4
+		HighlightRect.x = MenuPosX[menu_position_to_remember - 1] - HIGHLIGHT_H_MARGIN;
 		HighlightRect.y = MenuPosY[menu_position_to_remember - 1];
-		HighlightRect.w = TextWidth(MenuTexts[menu_position_to_remember - 1]) + 0 * h;
+		HighlightRect.w = TextWidth(MenuTexts[menu_position_to_remember - 1])
+			+ 2 * HIGHLIGHT_H_MARGIN;
 		if (HighlightRect.w > 580 * GameConfig.screen_width / 640)
 			HighlightRect.w = 580 * GameConfig.screen_width / 640;
-		HighlightRect.h = MenuOptionLineRequirement[menu_position_to_remember - 1] * (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+		HighlightRect.h = MenuOptionLineRequirement[menu_position_to_remember - 1] * h + 1;
 		if (HighlightRect.h + HighlightRect.y > UNIVERSAL_COORD_H(457))
 			HighlightRect.h = UNIVERSAL_COORD_H(457) - HighlightRect.y;
 		HighlightRectangle(Screen, HighlightRect);
 		// Display again the highlighted line
-		DisplayText(MenuTexts[menu_position_to_remember - 1], MenuPosX[menu_position_to_remember - 1],
+		DisplayText(MenuTexts[menu_position_to_remember - 1],
+			    MenuPosX[menu_position_to_remember - 1],
 			    MenuPosY[menu_position_to_remember - 1], &Choice_Window, TEXT_STRETCH);
 
 		if (BreakOffCauseNoRoom)
