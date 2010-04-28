@@ -917,54 +917,30 @@ void InitPictures(void)
 	// could box the influencer out of the ship....
 	Activate_Conservative_Frame_Computation();
 
-	ShowStartupPercentage(18);
-
 	set_mouse_cursor_to_shape(MOUSE_CURSOR_ARROW_SHAPE);
-
-	ShowStartupPercentage(22);
 
 	load_floor_tiles();
 
-	ShowStartupPercentage(25);
+	next_startup_percentage(33);
 
 	init_obstacle_data();
 	if (!GameConfig.lazyload)
 		load_all_obstacles();
 
-	ShowStartupPercentage(26);
-
-	DebugPrintf(1, "\nvoid InitPictures(void): preparing to load droids.");
-
 	Load_Enemy_Surfaces();
-
-	ShowStartupPercentage(38);
-
-	ShowStartupPercentage(43);
 
 	clear_all_loaded_tux_images(FALSE);
 
-	ShowStartupPercentage(65);
-
-	DebugPrintf(1, "\nvoid InitPictures(void): preparing to load blast image file.");
 	Load_Blast_Surfaces();
 
-	ShowStartupPercentage(70);
-
-	DebugPrintf(1, "\nvoid InitPictures(void): preparing to load items image file.");
-
-	ShowStartupPercentage(75);
+	next_startup_percentage(19);
 
 	Load_Mouse_Move_Cursor_Surfaces();
 
-	ShowStartupPercentage(80);
-
-	DebugPrintf(1, "\nvoid InitPictures(void): preparing to load bullet file.");
-	DebugPrintf(1, "\nvoid InitPictures(void): Number_Of_Bullet_Types : %d.", Number_Of_Bullet_Types);
 	iso_load_bullet_surfaces();
 
-	ShowStartupPercentage(92);
-
-};				// void InitPictures ( void )
+	next_startup_percentage(5);
+}
 
 /**
  * This function should load all the fonts we'll be using via the SDL
@@ -1372,8 +1348,6 @@ void InitVideo(void)
 
 	blit_special_background(FREEDROID_LOADING_PICTURE_CODE);
 	our_SDL_flip_wrapper();
-
-	ShowStartupPercentage(1);
 
 	SDL_SetGamma(GameConfig.current_gamma_correction, GameConfig.current_gamma_correction, GameConfig.current_gamma_correction);
 

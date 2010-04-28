@@ -37,7 +37,7 @@ void CollectAutomapData(void);
 
 // init.c
 void ResetGameConfigToDefaultValues(void);
-void ShowStartupPercentage(int Percentage);
+void next_startup_percentage(int Percentage);
 void ParseCommandLine(int argc, char *const argv[]);
 void ClearAutomapData(void);
 void InitFreedroid(int, char **);

@@ -238,35 +238,36 @@ static void init_character_descriptions(void)
  * This function displays a startup status bar that shows a certain
  * percentage of loading done.
  */
-void ShowStartupPercentage(int Percentage)
+void next_startup_percentage(int done)
 {
+	static int startup_percent = 0;
 	SDL_Rect Bar_Rect;
 	Uint32 FillColor = SDL_MapRGB(Screen->format, 150, 200, 225);
+
+	startup_percent += done;
 
 	if (use_open_gl)
 		blit_special_background(FREEDROID_LOADING_PICTURE_CODE);
 
 	Bar_Rect.x = 160 * GameConfig.screen_width / 640;
 	Bar_Rect.y = 288 * GameConfig.screen_height / 480;
-	Bar_Rect.w = 3 * Percentage * GameConfig.screen_width / 640;
+	Bar_Rect.w = 3 * startup_percent * GameConfig.screen_width / 640;
 	Bar_Rect.h = 30 * GameConfig.screen_height / 480;
 	our_SDL_fill_rect_wrapper(Screen, &Bar_Rect, FillColor);
 
-	Bar_Rect.x = (160 + 3 * Percentage) * GameConfig.screen_width / 640;
+	Bar_Rect.x = (160 + 3 * startup_percent) * GameConfig.screen_width / 640;
 	Bar_Rect.y = 288 * GameConfig.screen_height / 480;
-	Bar_Rect.w = (300 - 3 * Percentage) * GameConfig.screen_width / 640;
+	Bar_Rect.w = (300 - 3 * startup_percent) * GameConfig.screen_width / 640;
 	Bar_Rect.h = 30 * GameConfig.screen_height / 480;
 	our_SDL_fill_rect_wrapper(Screen, &Bar_Rect, 0);
 
 	SDL_SetClipRect(Screen, NULL);
 
-	PrintString(Screen, 310 * GameConfig.screen_width / 640 - 9, 301 * GameConfig.screen_height / 480 - 7, "%d%%", Percentage);
+	PrintString(Screen, 310 * GameConfig.screen_width / 640 - 9, 301 * GameConfig.screen_height / 480 - 7, "%d%%", startup_percent);
 
 	our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 
-	DebugPrintf(1, "\nNow at percentage: %d.", Percentage);
-
-};				// void ShowStartupPercentage ( int Percentage )
+}
 
 /**
  * This function can be used to play a generic title file, containing 
@@ -1143,6 +1144,8 @@ void Init_Game_Data()
 	Get_Prefixes_Data(Data);
 	free(Data);
 
+	next_startup_percentage(2);
+
 	//--------------------
 	// Load programs (spells) informations
 	//
@@ -1160,6 +1163,8 @@ void Init_Game_Data()
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Item_Data(Data);
 	free(Data);
+
+	next_startup_percentage(39);
 
 	find_file("freedroid.difficulty_params", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
@@ -1788,11 +1793,7 @@ I will not be able to load or save games or configurations\n\
 	init_keyboard_input_array();
 	init_lua();
 
-	ShowStartupPercentage(2);
-
 	InitAudio();
-
-	ShowStartupPercentage(8);
 
 	//--------------------
 	// Now that the music files have been loaded successfully, it's time to set
@@ -1803,13 +1804,7 @@ I will not be able to load or save games or configurations\n\
 	//
 	SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
 
-	ShowStartupPercentage(10);
-
-	ShowStartupPercentage(14);
-
 	Init_Game_Data();
-
-	ShowStartupPercentage(16);
 
 	/* 
 	 * Initialise random-number generator in order to make 
@@ -1818,8 +1813,6 @@ I will not be able to load or save games or configurations\n\
 	srand(time(NULL));
 
 	InitPictures();
-
-	ShowStartupPercentage(100);
 
 	if (strstr(VERSION, "rc"))
 		alert_window(_("You are playing a Release Candidate.\nStrange bugs might still be present in the game.\nPlease report any issues you find to either of:\n\n#freedroid at irc.freenode.net\nfreedroid-discussion@lists.sourceforge.net\nhttps://sourceforge.net/apps/phpbb/freedroid\n\nor directly to the bugtracker at the SF website\nThank you for helping us test the game.\n\nGood luck!\n"));
