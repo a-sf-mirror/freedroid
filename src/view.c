@@ -3067,6 +3067,8 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_cutlass", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Antique Greatsword"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_antique_greatsword", x, y, rotation_index);
+// Too broken anim			else if (MatchItemWithName(Me.weapon_item.type, "Chainsaw"))
+//				iso_put_tux_part(PART_GROUP_WEAPON, "iso_chainsaw", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Meat cleaver"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_meat_cleaver", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Hunting knife"))
@@ -3094,12 +3096,22 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 				(MatchItemWithName(Me.weapon_item.type, "The Super Exterminator!!!"))
 				)
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_exterminator", x, y, rotation_index);
-			else if (MatchItemWithName(Me.weapon_item.type, "Barrett M82 Sniper Rifle"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_barrett_m82_sniper_rifle", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, ".22 Hunting Rifle"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_22_hunting_rifle", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "9mm Sub Machine Gun"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_9mm_sub_machine_gun", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "7.62mm Hunting Rifle"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_7_62mm_hunting_rifle", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "7.62mm AK-47"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_7_62mm_ak47", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Barrett M82 Sniper Rifle"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_barrett_m82_sniper_rifle", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Laser Rifle"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_rifle", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Laser Pulse Rifle"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_pulse_rifle", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Laser Pulse Cannon"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_pulse_cannon", x, y, rotation_index);
 			else if (
 				(MatchItemWithName(Me.weapon_item.type, "Two Barrel sawn off shotgun")) ||
 				(MatchItemWithName(Me.weapon_item.type, "Two Barrel shotgun")) ||
