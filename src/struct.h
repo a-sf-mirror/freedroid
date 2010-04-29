@@ -880,7 +880,7 @@ typedef struct supported_languages_s {
 typedef struct colldet_filter_s {
 	int (*callback) (struct colldet_filter_s * filter, obstacle * obs, int obs_idx);
 	void *data;
-	int use_margin;
+	float extra_margin;
 	struct colldet_filter_s *next;
 } colldet_filter;
 

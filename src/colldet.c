@@ -113,7 +113,7 @@ int WalkablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_id
 	return FALSE;
 }
 colldet_filter WalkablePassFilter = { WalkablePassFilterCallback, NULL, 0, NULL };
-colldet_filter WalkableWithMarginPassFilter = { WalkablePassFilterCallback, NULL, 1, NULL };
+colldet_filter WalkableWithMarginPassFilter = { WalkablePassFilterCallback, NULL, COLLDET_MARGIN, NULL };
 
 /**
  * This colldet filter is used to ignore the obstacles (such as water)
@@ -301,11 +301,13 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 				// from the path computed by the pathfinder. If that computed path is passing very close
 				// to an obstacle, then the actual path could go inside the obstacle, leading the character
 				// to be stuck.
-				if (filter && filter->use_margin) {
-					rect1.x -= COLLDET_MARGIN;
-					rect1.y -= COLLDET_MARGIN;
-					rect2.x += COLLDET_MARGIN;
-					rect2.y += COLLDET_MARGIN;
+				//
+				// Also, we will want to use this when dropping items.
+				if (filter && filter->extra_margin != 0.0) {
+					rect1.x -= filter->extra_margin;
+					rect1.y -= filter->extra_margin;
+					rect2.x += filter->extra_margin;
+					rect2.y += filter->extra_margin;
 				}
 
 				char p1flags = get_point_flag(rect1.x, rect1.y, rect2.x, rect2.y, p1->x, p1->y);
