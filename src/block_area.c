@@ -1656,27 +1656,27 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_RESTAURANT_BIGSHELF_2].filename = "iso_restaurant_desk_0004.png";
 
 	// crystals
-	block_2param(ISO_CRYSTALS_1, 1.05, 1.05);
+	block_2param(ISO_CRYSTALS_1, 0.5, 0.5);
 	obstacle_map[ISO_CRYSTALS_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CRYSTALS_1].filename = "iso_crystal_fields_0001.png";
 
-	block_2param(ISO_CRYSTALS_2, 1.05, 1.05);
+	block_2param(ISO_CRYSTALS_2, 1.15, 1.15);
 	obstacle_map[ISO_CRYSTALS_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CRYSTALS_2].filename = "iso_crystal_fields_0002.png";
 
-	block_2param(ISO_CRYSTALS_3, 1.05, 1.05);
+	block_2param(ISO_CRYSTALS_3, 0.95, 0.95);
 	obstacle_map[ISO_CRYSTALS_3].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CRYSTALS_3].filename = "iso_crystal_fields_0003.png";
 
-	block_2param(ISO_CRYSTALS_4, 1.05, 1.05);
+	block_2param(ISO_CRYSTALS_4, 1.25, 1.05);
 	obstacle_map[ISO_CRYSTALS_4].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CRYSTALS_4].filename = "iso_crystal_fields_0004.png";
 
-	block_2param(ISO_CRYSTALS_5, 1.05, 1.05);
+	block_2param(ISO_CRYSTALS_5, 1.20, 1.05);
 	obstacle_map[ISO_CRYSTALS_5].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CRYSTALS_5].filename = "iso_crystal_fields_0005.png";
 
-	block_2param(ISO_CRYSTALS_6, 1.05, 1.05);
+	block_2param(ISO_CRYSTALS_6, 1.1, 1.1);
 	obstacle_map[ISO_CRYSTALS_6].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CRYSTALS_6].filename = "iso_crystal_fields_0006.png";
 
