@@ -257,7 +257,7 @@ Maximum number of Random Droids=8
 Minimum number of Random Droids=6
 Allowed Type of Random Droid for this level: 123
 
-SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartLabel="FrancisStartGameSquare" RushTux="yes" UseDialog="Francis" ShortLabel=_"Francis" 
+SForce: T=PRO Fixed=0 Marker=9999 Friendly=1 StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Francis" 
 SForce: T=614 Fixed=0 Marker=1012 Friendly=1 StartLabel="Lev12-614-complex-guard" RushTux="no" UseDialog="614_cryo" ShortLabel=_"614 -- Cryo Lab Guard Bot" 
 SForce: T=614 Fixed=0 Marker=9999 Friendly=1 StartLabel="nethacktestbot" RushTux="no" UseDialog="c-net" ShortLabel=_"614 -- Terminal Test" 
 ** End of this levels droid data **
