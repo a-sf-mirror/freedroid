@@ -818,11 +818,11 @@ luaL_reg lfuncs[] = {
 	,
 	{"del_cookie", lua_event_remove_cookie}
 	,
-	{"add_quest", lua_event_assign_mission}
+	{"assign_quest", lua_event_assign_mission}
 	,
 	{"has_quest", lua_event_is_mission_assigned}
 	,
-	{"end_quest", lua_event_complete_mission}
+	{"complete_quest", lua_event_complete_mission}
 	,
 	{"done_quest", lua_event_is_mission_complete}
 	,
