@@ -31,6 +31,9 @@ EveryTime LuaCode={
 	if (not has_cookie("met_benjamin")) then
 		show(0)
 		add_cookie("met_benjamin")
+	else
+		tux_says_random(_"Hello.","Greetings master Benjamin.")
+		npc_says_random(_"Well, hello again.","Hello hello.","Welcome back.")
 	end
 	show(99)
 }
@@ -39,7 +42,7 @@ EveryTime LuaCode={
 Nr=0 Text=_"Hello!"
 LuaCode={
 	npc_says(_"Ah, so you are the new member. Welcome. My name is Benjamin, and I take care of our ranged weaponry here in the citadel.")
-	hide(0) show(1, 6, 20)
+	hide(0) show(1, 20, 30)
 }
 ----------------------------------------------------------------------
 
@@ -76,15 +79,172 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6 Text=_"What weapons are available to the members of the Red Guard?"
-LuaCode={
-	npc_says(_"Well, for novice members there are simple laser and plasma pistols. They have their share of problems, but they do the trick nine times out of ten.")
-	npc_says(_"For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency or to highly experienced people.")
-	hide(6) show(7, 8, 9)
+
+Nr=20 Text=_"Can you teach me how to properly use rifles and guns?"
+LuaCode={ 
+	if (get_skill("ranged") == 0) then
+		npc_says(_"If anyone in this city knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
+		npc_says(_"Of course, I will need compensation for the ammunition spent in the training and for my time.")
+		npc_says(_"Say... A hundred circuits should be enough for a beginner lesson.")
+		npc_says(_"Interested?")
+		show(21)
+	elseif (get_skill("ranged") == 1) then
+		npc_says(_"Oh, you are ready for some more training?", "NO_WAIT")
+		npc_says(_"It will of course cost a bit more money as well as mental focus on your part.")
+		npc_says(_"It will take you two hundred circuits and double the effort on your part to become a true apprentice.")
+		npc_says(_"Interested?")
+		show(22)
+	elseif (get_skill("ranged") == 2) then
+		npc_says(_"I see you have taken a liking to guns.", "NO_WAIT")
+		npc_says(_"But the next step will cost even more money and require the mental focus equaling all your previous training.")
+		npc_says(_"Interested?")
+		show(23)
+	elseif (get_skill("ranged") == 3) then
+		npc_says(_"Oh, you want to become a real master with shooters?", "NO_WAIT")
+		npc_says(_"It will cost you 400 valuable circuits and an awful lot of mental focusing on the task.")
+		npc_says(_"Interested?")
+		show(24)
+	elseif (get_skill("ranged") == 4) then
+		npc_says(_"To become a true god of firearms, just like me, you need ridiculous amounts of training.", "NO_WAIT")
+		npc_says(_"It will of course cost a fair bit of cold, hard circuits as well. 500, to be precise.")
+		npc_says(_"Interested?")
+		show(25)
+	else 
+		npc_says(_"Sorry, there is no human alive that could give you further training.")
+	end
+	hide(20)
 }
 ----------------------------------------------------------------------
 
-Nr=7 Text=_"Plasma sounds deadly."
+Nr=21 Text=_"Sign up for a course in improving my ranged weapons skill. (cost 100 circuits, 3 training points)"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"Yes, I'd like some basic training in ranged combat.")
+	cost = 100
+	if train_skill(cost, 3, "ranged") then
+		npc_says(_"Suits me well, I'm not busy at the moment anyway.")
+		npc_says(_"Now the most important thing is that you turn off the auto-aim on your weapon, like this.", "NO_WAIT")
+		npc_says(_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire.")
+		npc_says(_"Next important thing is to remember how to properly fire a shot.", "NO_WAIT")
+		npc_says(_"Watch your target closely. Pretend you're moving with it. Aim for the head.")
+		npc_says(_"When you feel completely in sync with your target, then you pull the trigger.", "NO_WAIT")
+		npc_says(_"Good. You are learning fast. Try it a few more times.")
+		npc_says(_"Good. I think that it is enough for today.")
+		hide(21) show(20)
+	else
+		if (get_gold() < cost ) then next(27) else next(28) end
+	end
+}
+----------------------------------------------------------------------
+
+Nr=22 Text=_"Yes I want even more training. (cost 200 circuits, 6 training points)"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"So lets start the second course?")
+	cost = 200
+	if train_skill(cost, 6, "ranged") then
+		npc_says(_"Very well.")
+		npc_says(_"You must remain calm whilst shooting.", "NO_WAIT")
+		npc_says(_"Try breathing out as you pull the trigger and squeeze it gently rather than jerking it.")
+		npc_says(_"That's right. You will find yourself hitting the target much more often now.")
+		hide(22) show(20)
+	else
+		if (get_gold() < cost ) then next(27) else next(28) end
+	end
+}
+----------------------------------------------------------------------
+
+Nr=23 Text=_"Yes I'm eager for more training. (cost 300 circuits, 9 training points)"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"So can you help me get even better with guns?")
+	cost = 300
+	if train_skill(cost, 9, "ranged") then
+		npc_says(_"Of course.")
+		npc_says(_"Next lesson is hitting a moving target.")
+		npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead in case you use a non-laser gun.")
+		npc_says(_"It's easy when you know how, especially with bots, because they tend to move in straight lines, not bob and weave like people.")
+		npc_says(_"I think that is enough training for now. Next time, firing on the move!")
+		hide(23) show(20)
+	else
+		if (get_gold() < cost ) then next(27) else next(28) end
+	end
+}
+----------------------------------------------------------------------
+
+Nr=24 Text=_"Yes I accept. (cost 400 circuits, 12 training points)"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"I'd like to learn how to be a master shot.")
+	cost = 400
+	if train_skill(cost, 12, "ranged") then
+		npc_says(_"Firing on the move is difficult, but can make survival much more likely!")
+		npc_says(_"The secret is to keep a stable platform and hold the weapon loosely so that it doesn't jar.")
+		npc_says(_"Oh yes, and remember not to trip, because you should be looking where you are firing, not where you are stepping.")
+		npc_says(_"Keep practicing and you will get the hang of it eventually.")
+		hide(24) show(20)
+	else
+		if (get_gold() < cost ) then next(27) else next(28) end
+	end
+}
+----------------------------------------------------------------------
+
+Nr=25 Text=_"Yes I want to become a god in ranged combat. (cost 500 circuits, 15 training points)"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"Teach me how to be at one with my weapon.")
+	cost = 500
+	if train_skill(cost, 15, "ranged") then
+		npc_says(_"The ultimate secret to becoming a god in ranged combat is something you should value.")
+		npc_says(_"I don't tell everyone this, so keep it to yourself, alright?")
+		npc_says(_"To become a god in ranged combat you need to...")
+		npc_says(_"...practice. A lot.")
+		npc_says(_"Go ahead and use my firing range as much as you need.")
+		hide(25) show(20)
+	else
+		if (get_gold() < cost ) then next(27) else next(28) end
+	end
+}
+----------------------------------------------------------------------
+
+Nr=27 Text="BUG, REPORT ME! node27"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says_random(_
+		"You need more gold.",
+		"Please don't bother me if you can't pay me.",
+		"Please defray the costs of the ammo used in training.",
+		"I repeat, you need to bring enough to pay for the practice targets you destroy and for my time.",
+		"You don't have enough money! I cannot afford to just give away training for free.",
+		"Come back when you have enough circuits.",
+		"So come back when you have some valuables.")
+}
+----------------------------------------------------------------------
+
+Nr=28 Text="BUG, REPORT ME! node28"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	npc_says_random(_
+		"You are not ready. Go kill some bots and come back.",
+		"Come back when you are mentally ready to learn.",
+		"Come back after some more practice in the field.",
+		"Only a well prepared mind is open to the ultimate in ranged combat secrets.",
+		"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
+		"But I dont think you have enough experience for this. Come back here after you see some more action.",
+		"Then come back when you have a real will to learn.",
+		"You don't have enough experience. Come here after you see some more action.") 
+}
+----------------------------------------------------------------------
+
+Nr=30 Text=_"What weapons are available to the members of the Red Guard?"
+LuaCode={
+	npc_says(_"Well, for novice members there are simple laser and plasma pistols. They have their share of problems, but they do the trick nine times out of ten.")
+	npc_says(_"For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency or to highly experienced people.")
+	hide(30) show(31, 32, 33)
+}
+----------------------------------------------------------------------
+
+Nr=31 Text=_"Plasma sounds deadly."
 LuaCode={
 	npc_says(_"It is!", "NO_WAIT")
 	npc_says(_"While many people find the ammunition canisters too big, and the bullets too slow, they cannot deny that once plasma hits, it leaves big holes.")
@@ -93,11 +253,11 @@ LuaCode={
 	npc_says(_"If you are going to use plasma weapons you need to remember one thing: Don't let the weapon get damaged.")
 	npc_says(_"Even though our armor is designed to resist high temperatures, once the plasma containment module goes, you will die, along with anything within ten meters of you.")
 	npc_says(_"Because of all those drawbacks plasma weapons are not too popular. Quite a pity, they have great potential.")
-	hide(7)
+	hide(31)
 }
 ----------------------------------------------------------------------
 
-Nr=8 Text=_"Tell me more about laser weapons."
+Nr=32 Text=_"Tell me more about laser weapons."
 LuaCode={
 	npc_says(_"Laser is an acronym for Light Amplification by Stimulated Emission of Radiation.")
 	npc_says(_"Laser is the technology employed in most of our weaponry. It uses a focused light beam to cause damage.")
@@ -105,187 +265,14 @@ LuaCode={
 	npc_says(_"However, other than being a good training tool for newbies, that design just fails to deliver.")
 	npc_says(_"The shots tend to be underpowered, the gun takes a long while to power up for a shot and can overheat during intense combat.")
 	npc_says(_"This is why I am trying to improve it, but so far I have had no success. I just feel like giving up.")
-	hide(8)
+	hide(32)
 }
 ----------------------------------------------------------------------
 
-Nr=9 Text=_"I am curious about the exterminator."
+Nr=33 Text=_"I am curious about the exterminator."
 LuaCode={
 	npc_says(_"Sorry, but that is classified and confidential. I have said too much already.")
-	hide(9) show(40)
-}
-----------------------------------------------------------------------
-
-Nr=20 Text=_"Can you teach me how to properly use rifles and guns?"
-LuaCode={ 
-	if (get_skill("ranged") == 0) then
-		npc_says(_"If anyone in this city knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
-		npc_says(_"Of course, I will need compensation for the ammunition spent in the training and for my time.")
-		npc_says(_"Say... A hundred circuits and three training points should be enough for a beginner lesson.")
-		if (get_gold() > 99) then
-			if (get_training_points() > 2) then 
-				npc_says(_"Interested?")
-				hide(20) show(21, 29)
-			else npc_says(_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
-		else npc_says(_"Come back when you have both.") end
-	else
-		if (get_skill("ranged") == 1) then
-			npc_says(_"Oh, you are ready for some more training?", "NO_WAIT")
-			npc_says(_"It will of course cost a bit more money as well as mental focus on your part.")
-			npc_says(_"It will take you two hundred circuits and double the effort on your part to become a true apprentice.")
-			if (get_gold() > 199) then
-				if (get_training_points() > 5) then 
-					npc_says(_"Interested?")
-					hide(20) show(22, 29)
-				else npc_says(_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.") end
-			else npc_says(_"You don't have enough money! I cannot afford to just give away training for free.") end
-		else
-			if (get_skill("ranged") == 2) then
-				npc_says(_"I see you have taken a liking to guns.", "NO_WAIT")
-				npc_says(_"But the next step will cost even more money and require the mental focus equaling all your previous training.")
-				if (get_gold() > 299) then
-					if (get_training_points() > 8) then 
-						hide(20) show(23, 29)
-					else npc_says(_"But I dont think you have enough experience for this. Come back here after you see some more action.") end
-				else npc_says(_"Then come back when you have both.") end
-			else
-				if (get_skill("ranged") == 3) then
-					npc_says(_"Oh, you want to become a real master with shooters?", "NO_WAIT")
-					npc_says(_"It will cost you 400 valuable circuits and an awful lot of mental focusing on the task.")
-					if (get_gold() > 399) then
-						if (get_training_points() > 11) then 
-							npc_says(_"Interested?")
-							hide(20) show(24, 29)
-						else npc_says(_"You don't have enough experience. Come here after you see some more action.") end
-					else npc_says(_"So come back when you have both.") end
-				else
-					if (get_skill("ranged") == 4) then
-						npc_says(_"To become a true god of firearms, just like me, you need ridiculous amounts of training.", "NO_WAIT")
-						npc_says(_"It will of course cost a fair bit of cold, hard circuits as well. 500, to be precise.")
-						if (get_gold() > 499) then
-							if (get_training_points() > 14) then 
-								npc_says(_"Interested?")
-								hide(20) show(25, 29)
-							else npc_says(_"You don't have enough experience. Come here after you see some more action.") end
-						else npc_says(_"Then come back when you have both.") end
-					else
-						if (get_skill("ranged") > 4) then 
-							npc_says(_"Sorry, there is no human alive that could give you further training.")
-							hide(20)
-						else end
-					end
-				end
-			end
-		end
-	end
-}
-----------------------------------------------------------------------
-
-Nr=21 Text=_"Yes, I want to improve my ranged weapons skill. (cost 3 training points, 100 circuits)"
-LuaCode={
-	if (del_gold(100)) then
-		if (del_points(3)) then
-			npc_says(_"Now the most important thing is that you turn off the auto-aim on your weapon, like this.", "NO_WAIT")
-			npc_says(_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire.")
-			npc_says(_"Next important thing is to remember how to properly fire a shot.", "NO_WAIT")
-			npc_says(_"Watch your target closely. Pretend you're moving with it. Aim for the head.")
-			npc_says(_"When you feel completely in sync with your target, then you pull the trigger.", "NO_WAIT")
-			npc_says(_"Good. You are learning fast. Try it a few more times.")
-			npc_says(_"Good. I think that it is enough for today.")
-			improve_skill("ranged")
-			hide(21, 29) show(20)
-		else
-			npc_says(_"You are not ready. Go kill some bots and come back.")
-			add_gold(100)--refund
-		end
-	else
-		npc_says(_"You need more gold.")
-	end
-}
-----------------------------------------------------------------------
-
-Nr=22 Text=_"Yes I want even more training. (cost 6 training points, 200 circuits)"
-LuaCode={
-	if (del_gold(200)) then
-		if (del_points(6)) then
-			npc_says(_"You must remain calm whilst shooting.", "NO_WAIT")
-			npc_says(_"Try breathing out as you pull the trigger and squeeze it gently rather than jerking it.")
-			npc_says(_"That's right. You will find yourself hitting the target much more often now.")
-			improve_skill("ranged")
-			hide(22, 29) show(20)
-		else
-			add_gold(200)--refund
-			npc_says(_"Come back when you are ready to learn.")
-		end
-	else
-		npc_says(_"Please don't bother me if you can't pay me.")
-	end
-}
-----------------------------------------------------------------------
-
-Nr=23 Text=_"Yes I accept. (cost 9 training points, 300 circuits)"
-LuaCode={
-	if (del_gold(300)) then
-		if (del_points(9)) then
-			npc_says(_"Next lesson is hitting a moving target.")
-			npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead in case you use a non-laser gun.")
-			npc_says(_"It's easy when you know how, especially with bots, because they tend to move in straight lines, not bob and weave like people.")
-			npc_says(_"I think that is enough training for now. Next time, firing on the move!")
-			improve_skill("ranged")
-			hide(23, 29) show(20)
-		else
-			add_gold(300)--refund
-			npc_says(_"Come back when you are ready to learn.")
-		end
-	else
-		npc_says(_"Please defray the costs of the ammo used in training.")
-	end
-}
-----------------------------------------------------------------------
-
-Nr=24 Text=_"Yes I accept. (cost 12 training points, 400 circuits)"
-LuaCode={
-	if (del_gold(400)) then
-		if (del_points(12)) then
-			npc_says(_"Firing on the move is difficult, but can make survival much more likely!")
-			npc_says(_"The secret is to keep a stable platform and hold the weapon loosely so that it doesn't jar.")
-			npc_says(_"Oh yes, and remember not to trip, because you should be looking where you are firing, not where you are stepping.")
-			npc_says(_"Keep practicing and you will get the hang of it eventually.")
-			improve_skill("ranged")
-			hide(24, 29) show(20)
-		else
-			add_gold(400)--refund
-			npc_says(_"Come back after some more practice in the field.")
-		end
-	else
-		npc_says(_"Please bring enough to pay for the targets you destroy.")
-	end
-}
-----------------------------------------------------------------------
-
-Nr=25 Text=_"Yes I want to become a god in ranged combat. (cost 15 training points, 500 circuits)"
-LuaCode={
-	if (del_gold(500)) then
-		if (del_points(15)) then
-			npc_says(_"I don't tell everyone this, so keep it to yourself, alright?")
-			npc_says(_"To become a god in ranged combat you need to...")
-			npc_says(_"...practice. A lot.")
-			npc_says(_"Go ahead and use my firing range as much as you need.")
-			improve_skill("ranged")
-			hide(25, 29) show(20)
-		else
-			add_gold(500) --refund
-			npc_says(_"Only a well prepared mind is open to the ultimate in ranged combat secrets.")
-		end
-	else
-		npc_says(_"The ultimate secret to becoming a god in ranged combat is something you should value.")
-	end
-}
-----------------------------------------------------------------------
-
-Nr=29 Text=_"No, thanks, I dont feel I can afford that currently."
-LuaCode={
-	hide(21, 22, 23, 24, 25, 29) show(20)
+	hide(33) show(40)
 }
 ----------------------------------------------------------------------
 
