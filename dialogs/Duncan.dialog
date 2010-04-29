@@ -143,7 +143,12 @@ LuaCode={
 	npc_says(_"There are not too many bots in the desert, but they are undefeatable. It is best to avoid them.")
 	npc_says(_"I will be waiting here for your return.")
 	add_quest("Doing Duncan a favour", "Find Koan in the desert.")
-	hide(52, 59) show(55, 56, 57)
+	tux_says(_"That is all I need to know. I will find Koan.")
+	npc_says(_"Only time will tell.")
+	npc_says(_"In any case, I'll let the Red Guard know to open the western gate to the desert.")
+	npc_says(_"Good luck!")
+	change_obstacle_state("DesertGate", "opened")
+	hide(52, 59) show(55, 56)
 }
 ----------------------------------------------------------------------
 
@@ -161,17 +166,6 @@ Nr=56 Text=_"What is it that he took from you?"
 LuaCode={
 	npc_says(_"A cube. Trust me, you can't miss it.")
 	hide(56)
-}
-----------------------------------------------------------------------
-
-Nr=57 Text=_"That is all I need to know. I will find Koan."
-LuaCode={
-	npc_says(_"Only time will tell.")
-	npc_says(_"In any case, I'll let the Red Guard know to open the western gate to the desert.")
-	npc_says(_"Good luck!")
-	change_obstacle_state("DesertGate", "opened")
-	end_dialog()
-	hide(57)
 }
 ----------------------------------------------------------------------
 
