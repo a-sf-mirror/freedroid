@@ -296,7 +296,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[MORE_VIT_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 45, VIT_Y - 5, 38, 22}, FALSE, FALSE},
 
-	//--------------------
 	// These two buttons are for the scrolling text during the
 	// title display, the credits menu and the level editor 
 	// keyboard explanation...
@@ -310,7 +309,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 
 	[DROID_SHOW_EXIT_BUTTON] = {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {202, 311, 47, 47}, TRUE, FALSE},
 
-	//--------------------
 	// These are the scrollbuttons for the chat protocal inside the
 	// chat window, like when talking to a character/bot.
 	//
@@ -342,7 +340,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 
 	[TAKEOVER_HELP_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/takeover_help_button.png", {78, 23, 153, 38}, FALSE, FALSE},
 
-	// ------------------
 	// This button is for changing the current weapon mode/reloading
 	[WEAPON_MODE_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {CURRENT_WEAPON_RECT_X, 400, CURRENT_WEAPON_RECT_W, CURRENT_WEAPON_RECT_H},
@@ -381,7 +378,6 @@ void print_trace(int signum)
 	// fprintf ( stderr , "print_trace:  Now attempting backtrace from within the code!\n" );
 	// fprintf ( stderr , "print_trace:  Allowing a maximum of %d function calls on the stack!\n" , MAX_CALLS_IN_BACKTRACE );
 
-	//--------------------
 	// We attempt to get a backtrace of all function calls so far, even
 	// including the operating system (or rather libc) call to main() in 
 	// the beginning of execution.
@@ -390,7 +386,6 @@ void print_trace(int signum)
 
 	fprintf(stderr, "print_trace:  Obtained %zd stack frames.\n", backtrace_size);
 
-	//--------------------
 	// Now we attempt to translate the trace information we've got to the
 	// symbol names that might still reside in the binary.
 	//
@@ -406,7 +401,6 @@ void print_trace(int signum)
 	for (backtrace_counter = 0; backtrace_counter < backtrace_size; backtrace_counter++)
 		fprintf(stderr, "%s\n", backtrace_strings[backtrace_counter]);
 
-	//--------------------
 	// The strings generated in the backtrace_symbols function need to 
 	// get freed.  Well, this isn't terribly important, but clean.
 	//
@@ -455,7 +449,6 @@ void implant_backtrace_into_signal_handlers(void)
 Setting up signal handlers for internal backtrace:\n\
 Now catching SIGSEGV: ");
 
-	//--------------------
 	// We set up the structure for the new signal handling
 	// to give to the opterating system
 	//
@@ -463,7 +456,6 @@ Now catching SIGSEGV: ");
 	sigemptyset(&new_action.sa_mask);
 	new_action.sa_flags = 0;
 
-	//--------------------
 	// Now it's time to activate the new signal handling...
 	//
 	sigaction(SIGSEGV, NULL, &old_action);
@@ -474,7 +466,6 @@ Now catching SIGSEGV: ");
 		DebugPrintf(-4, "NO");
 	}
 
-	//--------------------
 	// 
 	DebugPrintf(-4, "\nNow catching FPE (if raised, that is!): ");
 	sigaction(SIGFPE, NULL, &old_action);
@@ -566,7 +557,6 @@ int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image *our_i
  */
 int MouseCursorIsInRect(SDL_Rect * our_rect, int x, int y)
 {
-	//--------------------
 	// Now we can start to check if the mouse cursor really is on that
 	// rectangle or not.
 	//
@@ -579,7 +569,6 @@ int MouseCursorIsInRect(SDL_Rect * our_rect, int x, int y)
 	if (y < our_rect->y)
 		return (FALSE);
 
-	//--------------------
 	// So since the cursor is not outside of this rectangle, it must
 	// we inside, and so we'll return this answer.
 	//
@@ -595,7 +584,6 @@ int MouseCursorIsOnButton(int ButtonIndex, int x, int y)
 {
 	SDL_Rect temp_rect;
 
-	//--------------------
 	// First a sanity check if the button index given does make
 	// some sense.
 	//
@@ -606,7 +594,6 @@ button index given exceeds the number of buttons defined in freedroid.", PLEASE_
 	}
 
 	Copy_Rect(AllMousePressButtons[ButtonIndex].button_rect, temp_rect);
-	//--------------------
 	// If this button needs scaling still, then we do it now...
 	//
 	if (AllMousePressButtons[ButtonIndex].scale_this_button) {
@@ -619,7 +606,6 @@ button index given exceeds the number of buttons defined in freedroid.", PLEASE_
 	if (y < AllMousePressButtons[ButtonIndex].button_rect.y)
 		return (FALSE);
 
-	//--------------------
 	// So since the cursor is not outside of this rectangle, it must
 	// we inside, and so we'll return this answer.
 	//
@@ -641,7 +627,6 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	char fpath[2048];
 	SDL_Rect Temp_Blitting_Rect;
 
-	//--------------------
 	// First a sanity check if the button index given does make
 	// some sense.
 	//
@@ -650,14 +635,12 @@ void ShowGenericButtonFromList(int ButtonIndex)
 		ErrorMessage(__FUNCTION__, "Request to display button index %d could not be fulfilled: the\n\
 				button index given exceeds the number of buttons defined in freedroid.", PLEASE_INFORM, IS_FATAL, ButtonIndex);
 	}
-	//--------------------
 	// Now check if this button needs blitting, and if not, we do the scaling once
 	// and disable the scaling ever afterwards...
 	//
 	if (!strcmp(AllMousePressButtons[ButtonIndex].button_image_file_name, "THIS_DOESNT_NEED_BLITTING")) {
 		return;
 	}
-	//--------------------
 	// Now we check if we have to load the button image still
 	// or if it is perhaps already loaded into memory.
 	//
@@ -690,7 +673,6 @@ void ShowGenericButtonFromList(int ButtonIndex)
 			AllMousePressButtons[ButtonIndex].button_rect.h *= ((float)GameConfig.screen_height) / 480.0;
 			AllMousePressButtons[ButtonIndex].scale_this_button = FALSE;
 		}
-		//--------------------
 		// Maybe we had '0' entries for the height or width of this button in the list.
 		// This means that we will take the real width and the real height from the image
 		// and overwrite the 0 entries with this.
@@ -701,7 +683,6 @@ void ShowGenericButtonFromList(int ButtonIndex)
 		if (AllMousePressButtons[ButtonIndex].button_rect.h == (0)) {
 			AllMousePressButtons[ButtonIndex].button_rect.h = AllMousePressButtons[ButtonIndex].button_image.surface->h;
 		}
-		//--------------------
 		// With OpenGL output method, we'll make a texture for faster and 
 		// better blitting.
 		//
@@ -710,7 +691,6 @@ void ShowGenericButtonFromList(int ButtonIndex)
 		}
 
 	}
-	//--------------------
 	// Now that we know we have the button image loaded, we can start
 	// to blit the button image to the screen.
 	//
@@ -980,7 +960,6 @@ int MyRandom(int UpperBound)
  */
 void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 {
-	//--------------------
 	// Maybe the 'teleport' really comes from a teleportation device or
 	// teleport spell or maybe even from accessing some sewer accessway.
 	// In that case we'll fade out the screen a bit using the gamme ramp
@@ -992,7 +971,6 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 	}
 
 	if (LNum != Me.pos.z) {
-		//--------------------
 		// In case a real level change has happend,
 		// we need to do a lot of work.  Therefore we start by activating
 		// the conservative frame time computation to avoid a 'jump'.
@@ -1005,7 +983,6 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 
 		silently_unhold_all_items();
 
-		//--------------------
 		// We add some sanity check against teleporting to non-allowed
 		// locations (like outside of map that is)
 		//
@@ -1023,7 +1000,6 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 		get_visible_levels();
 		
 	} else {
-		//--------------------
 		// If no real level change has occured, everything
 		// is simple and we just need to set the new coordinates, haha
 		//
@@ -1036,7 +1012,6 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 		get_visible_levels();
 	}
 
-	//--------------------
 	// After the teleport, the mouse move target might be
 	// completely out of date.  Therefore we simply delete it.  In cases
 	// where the jump came from crossing a jump threshold (levels glued
@@ -1050,7 +1025,6 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 	if (with_sound_and_fading) {
 		teleport_arrival_sound();
 	}
-	//--------------------
 	// Perhaps the player is visiting this level for the first time.  Then, the
 	// tux should make it's initial statement about the location, if there is one.
 	//
@@ -1061,7 +1035,6 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 		// if ( ( LNum != 0 ) && ( Shuffling ) ) ShuffleEnemys ( array_num );
 		// ShuffleEnemys ( array_num );
 	}
-	//--------------------
 	// No more shuffling once the game is up and running...
 	// else there are hostile bots inside some buildings and such things...
 	//
@@ -1069,7 +1042,6 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 
 	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
 
-	//--------------------
 	// Since we've mightily changed position now, we should clear the
 	// position history, so that noone get's confused...
 	//
@@ -1130,7 +1102,6 @@ settings file will be generated.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		return (ERR);
 	};
 
-	//--------------------
 	// Now we will turn off the skills and inventory screen and that, cause
 	// this should be off when the game starts...
 	//
@@ -1159,7 +1130,6 @@ int SaveGameConfig(void)
 	int current_height;
 	FILE *config_file;
 
-	//--------------------
 	// Maybe the Terminate function was invoked BEFORE the startup process
 	// was complete at all (like e.g. some illegal command line parameter).
 	// Then the config dir is not initialized.  We catch this case and return
@@ -1174,7 +1144,6 @@ int SaveGameConfig(void)
 #endif
 		exit(ERR);
 	}
-	//--------------------
 	// Now we know, that the config dir has been initialized already.
 	// That indicates, that the game did start up already.
 	// Therefore we can do the normal save config stuff...
@@ -1187,7 +1156,6 @@ int SaveGameConfig(void)
 		DebugPrintf(0, "WARNING: failed to create config-file: %s\n");
 		return (ERR);
 	}
-	//--------------------
 	// We put the current version number of freedroid into the 
 	// version number string.  This will be usefull so that later
 	// versions of freedroid can identify old config files and decide
@@ -1198,7 +1166,6 @@ int SaveGameConfig(void)
 	}
 	GameConfig.freedroid_version_string = strdup(VERSION);
 
-	//--------------------
 	// We preseve the current resolution, modify it a bit, such that
 	// the preseleted resolution will come to effect next time, save
 	// it and then we restore the current settings again.
@@ -1208,7 +1175,6 @@ int SaveGameConfig(void)
 	GameConfig.screen_width = GameConfig.next_time_width_of_screen;
 	GameConfig.screen_height = GameConfig.next_time_height_of_screen;
 
-	//--------------------
 	// Now write the actual data
 	savestruct_autostr = alloc_autostr(4096);
 	save_configuration_for_freedroid("GameConfig", &(GameConfig));
@@ -1233,7 +1199,6 @@ void Terminate(int ExitCode)
 	printf("\n----------------------------------------------------------------------");
 	printf("\nTermination of freedroidRPG initiated...");
 
-	//--------------------
 	// We save the config file in any case.
 	//
 	SaveGameConfig();
@@ -1241,7 +1206,6 @@ void Terminate(int ExitCode)
 	printf("Thank you for playing freedroidRPG.\n\n");
 	SDL_Quit();
 
-	//--------------------
 	// Finally, especially on win32 systems, we should open an editor with
 	// the last debug output, since people in general won't know how and where
 	// to find the material for proper reporting of bugs.
@@ -1253,7 +1217,6 @@ void Terminate(int ExitCode)
 	}
 #endif
 
-	//--------------------
 	// Now we drop control back to the operating system.  The FreedroidRPG
 	// program has finished.
 	//
@@ -1268,7 +1231,6 @@ obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label)
 {
 	int i, j, k;
 
-	//--------------------
 	// Now we try to resolve the obstacle given in the labels of all the decks
 	// of the current ship.
 	//
@@ -1279,7 +1241,6 @@ obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label)
 		for (j = 0; j < MAX_OBSTACLE_NAMES_PER_LEVEL; j++) {
 			if (curShip.AllLevels[i]->obstacle_name_list[j] != NULL) {
 				if (strcmp(curShip.AllLevels[i]->obstacle_name_list[j], obstacle_label) == 0) {
-					//--------------------
 					// Now we need to find out which obstacle is pointing to this label
 					//
 					for (k = 0; k < MAX_OBSTACLES_ON_MAP; k++) {
@@ -1288,7 +1249,6 @@ obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label)
 							return (&(curShip.AllLevels[i]->obstacle_list[k]));
 						}
 					}
-					//--------------------
 					// So here we've encountered an error!  There seems to be no obstacle
 					// pointing to this obstacle label (any more).
 					//
@@ -1300,7 +1260,6 @@ The obstacle label was found in the label list,\n but no obstacle seems to point
 		}
 	}
 
-	//--------------------
 	// So here we've encountered an error!  There seems to be no obstacle
 	// pointing to this obstacle label (any more).
 	//
@@ -1318,7 +1277,6 @@ int give_level_of_obstacle_with_label(const char *obstacle_label)
 {
 	int i, j, k;
 
-	//--------------------
 	// Now we try to resolve the obstacle given in the labels of all the decks
 	// of the current ship.
 	//
@@ -1329,7 +1287,6 @@ int give_level_of_obstacle_with_label(const char *obstacle_label)
 		for (j = 0; j < MAX_OBSTACLE_NAMES_PER_LEVEL; j++) {
 			if (curShip.AllLevels[i]->obstacle_name_list[j] != NULL) {
 				if (strcmp(curShip.AllLevels[i]->obstacle_name_list[j], obstacle_label) == 0) {
-					//--------------------
 					// Now we need to find out which obstacle is pointing to this label
 					//
 					for (k = 0; k < MAX_OBSTACLES_ON_MAP; k++) {
@@ -1338,7 +1295,6 @@ int give_level_of_obstacle_with_label(const char *obstacle_label)
 							return (i);
 						}
 					}
-					//--------------------
 					// So here we've encountered an error!  There seems to be no obstacle
 					// pointing to this obstacle label (any more).
 					//
@@ -1349,7 +1305,6 @@ The obstacle label was found in the label list,\n but no obstacle seems to point
 		}
 	}
 
-	//--------------------
 	// So here we've encountered an error!  There seems to be no obstacle
 	// pointing to this obstacle label (any more).
 	//

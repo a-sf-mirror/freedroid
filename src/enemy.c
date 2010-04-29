@@ -84,7 +84,6 @@ int teleport_to_closest_waypoint(enemy *ThisRobot)
 		}
 	}
 
-	//--------------------
 	// Now we have found a global minimum.  So we 'teleport' there.
 
 	if (BestWaypoint == -1)
@@ -352,7 +351,6 @@ static float remaining_distance_to_current_walk_target(Enemy ThisRobot)
  */
 static void DetermineAngleOfFacing(enemy * e)
 {
-	//--------------------
 	// The phase now depends upon the direction this robot
 	// is heading.
 	//
@@ -378,7 +376,6 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 	float maxspeed;
 	int old_map_level;
 
-	//--------------------
 	// According to properties of the robot like being frozen or not,
 	// we define the maximum speed of this machine for later use...
 	// A frozen robot is slow while a paralyzed robot can do absolutely nothing.
@@ -390,7 +387,6 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 	else
 		maxspeed = 0.2 * Druidmap[ThisRobot->type].maxspeed;
 
-	//--------------------
 	// While getting hit, the bot or person shouldn't be running, but
 	// when standing, it should move over to the 'walk' animation type...
 	//
@@ -427,7 +423,6 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 		}
 	}
 
-	//--------------------
 	// Now the bot is moving, so maybe it's moving over a jump threshold?
 	// In any case, it might be best to check...
 	//
@@ -540,7 +535,6 @@ static int set_new_random_waypoint(enemy *this_robot)
 	// nextwaypoint is actually the waypoint that the bot just reached.
 	waypoint *current_waypoint = &(bot_level->AllWaypoints[this_robot->nextwaypoint]);
 
-	//--------------------
 	// Pre-condition: there must be some connections
 	//
 	int num_conn = current_waypoint->num_connections;
@@ -557,7 +551,6 @@ static int set_new_random_waypoint(enemy *this_robot)
 		return FALSE;
 	}
 
-	//--------------------
 	// For each connected waypoint, check if the path to this waypoint
 	// is free of droids, and if so, store the waypoint.
 	// Special case (see function's comment): the previous waypoint
@@ -582,7 +575,6 @@ static int set_new_random_waypoint(enemy *this_robot)
 		}
 	}
 
-	//--------------------
 	// If no paths are free, make the bot wait a bit (use a random waiting
 	// time, to help avoid 'deadlocks' between bots).
 	//
@@ -591,7 +583,6 @@ static int set_new_random_waypoint(enemy *this_robot)
 		return TRUE;
 	}
 
-	//--------------------
 	// Randomly chose one of the free connected waypoints.
 	// (see function's comment)
 	//
@@ -611,7 +602,6 @@ static int set_new_random_waypoint(enemy *this_robot)
 		next_waypoint_id = free_waypoints[rnd];
 	}
 
-	//--------------------
 	// Set the new path
 	//
 	this_robot->lastwaypoint = this_robot->nextwaypoint;
@@ -634,7 +624,6 @@ static void set_new_waypointless_walk_target(enemy * ThisRobot, moderately_finep
 #define MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP 4
 
 	for (i = 0; i < MAX_RANDOM_WALK_ATTEMPTS_BEFORE_GIVING_UP; i++) {
-		//--------------------
 		// We select a possible new walktarget for this bot, not too
 		// far away from the current position...
 		//
@@ -675,7 +664,6 @@ int IsActiveLevel(int levelnum)
 void DropEnemyTreasure(Enemy ThisRobot)
 {
 
-	//--------------------
 	// If the Tux has the skill to extract certain components from dead bots,
 	// these components will be thrown out automatically, when the bot is killed.
 	//
@@ -711,7 +699,6 @@ void DropEnemyTreasure(Enemy ThisRobot)
 	}
 
 	if (ThisRobot->on_death_drop_item_code != (-1)) {
-		//--------------------
 		// We make sure the item created is of a reasonable type
 		//
 		if ((ThisRobot->on_death_drop_item_code <= 0) || (ThisRobot->on_death_drop_item_code >= Number_Of_Item_Types)) {
@@ -723,7 +710,6 @@ Item to be dropped (forced for this bot) is of illegal type!", PLEASE_INFORM, IS
 		DropItemAt(ThisRobot->on_death_drop_item_code, ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, -1, -1, 1);
 		ThisRobot->on_death_drop_item_code = -1;
 	}
-	//--------------------
 	// Apart from the parts, that the Tux might be able to extract from the bot,
 	// there is still some chance, that the enemy will have (and drop) some other
 	// valuables, that the Tux can then collect afterwards.
@@ -738,7 +724,6 @@ Item to be dropped (forced for this bot) is of illegal type!", PLEASE_INFORM, IS
  */
 int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot)
 {
-	//--------------------
 	// If the enemy is outside of the current map, 
 	// that's an error and needs to be correted.
 	//
@@ -830,7 +815,6 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 
 		DropEnemyTreasure(target);
 
-		//--------------------
 		// NOTE:  We reset the animation phase to the first death animation image
 		//        here.  But this may be WRONG!  In the case that the enemy graphics
 		//        hasn't been loaded yet, this will result in '1' for the animation
@@ -861,7 +845,6 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
  */
 static void start_gethit_animation(enemy * ThisRobot)
 {
-	//--------------------
 	// Maybe this robot is fully animated.  In this case, after getting
 	// hit, the gethit animation should be displayed, which we'll initiate here.
 	//
@@ -935,7 +918,6 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
  */
 void MoveThisEnemy(enemy * ThisRobot)
 {
-	//--------------------
 	// robots that still have to wait also do not need to
 	// be processed for movement
 	//
@@ -1090,7 +1072,6 @@ void enemy_say_current_state_on_screen(enemy * ThisRobot)
  */
 void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 {
-	//--------------------
 	// Maybe the time for the next check for this bot has not yet come.
 	// in that case we can return right away.
 	//
@@ -1099,12 +1080,10 @@ void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 		return;
 	ThisRobot->time_since_previous_stuck_in_wall_check = 0;
 
-	//--------------------
 	// First we take a look if this bot is currently stuck in a
 	// wall somewhere.
 	//
 	if (!SinglePointColldet(ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z, &WalkablePassFilter)) {
-		//--------------------
 		// So at this point we know, that we have a bot that is stuck right now,
 		// has been stuck one second ago and also is not moving along wapoints, which
 		// would lead to the bot reaching some sensible spot sooner or later anyway.
@@ -1230,7 +1209,6 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 	float aggression_distance = Druidmap[this_robot->type].aggression_distance;
 	float squared_aggression_distance = aggression_distance * aggression_distance;
 
-	//--------------------
 	// Check validity of old target (if any)
 	//
 	// Logic : 
@@ -1273,7 +1251,6 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 			}
 		}
 	}
-	//--------------------
 	// Search for a new target
 	//
 
@@ -1310,18 +1287,15 @@ static void state_machine_inconditional_updates(enemy * ThisRobot)
 	// Robots that are paralyzed are completely stuck and do not 
 	// see their state machine running
 
-	//--------------------
 	// For debugging purposes we display the current state of the robot
 	// in game
 	enemy_say_current_state_on_screen(ThisRobot);
 
-	//--------------------
 	// we check whether the current robot is 
 	// stuck inside a wall or something...
 	//
 	enemy_handle_stuck_in_walls(ThisRobot);
 
-	//--------------------
 	// determine the distance vector to the target of this shot.  The target
 	// depends of course on wheter it's a friendly device or a hostile device.
 	//
@@ -1434,7 +1408,6 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 
 	/* Check state timeout */
 
-	//--------------------
 	// After some time, we'll no longer eye the Tux but rather do something,
 	// like attack the Tux or maybe also return to 'normal' operation and do
 	// nothing.  When Tux is still visible at timeout, then it will be attacked... otherwise
@@ -1508,7 +1481,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	// in the target's level
 	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, tpos->z);
 
-	//--------------------
 	// First compute the type of the bot's move, and if the target can be shot,
 	// depending on the weapon's type and the distance to the target
 	//
@@ -1537,7 +1509,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	int melee_weapon = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee;
 
 	if (melee_weapon) {
-		//-----
 		// Check visibility
 		int target_visible =
 		    DirectLineColldet(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, move_pos.x, move_pos.y, move_pos.z,
@@ -1548,7 +1519,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 			shoot_target = FALSE;
 			goto EXECUTE_ATTACK;
 		}
-		//-----
 		// Check distance               
 		float dist2 =
 		    (ThisRobot->virt_pos.x - move_pos.x) * (ThisRobot->virt_pos.x - move_pos.x) + (ThisRobot->virt_pos.y -
@@ -1574,7 +1544,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 	else			// Range weapon
 
 	{
-		//-----
 		// Check visibility                     
 		int target_visible =
 		    DirectLineColldet(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, move_pos.x, move_pos.y, move_pos.z, &FlyablePassFilter);
@@ -1584,7 +1553,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 			shoot_target = FALSE;
 			goto EXECUTE_ATTACK;
 		}
-		//-----
 		// Check distance
 		float dist2 =
 		    (ThisRobot->virt_pos.x - move_pos.x) * (ThisRobot->virt_pos.x - move_pos.x) + (ThisRobot->virt_pos.y -
@@ -1614,7 +1582,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 
  EXECUTE_ATTACK:
 
-	//--------------------
 	// Execute the bot's move
 	//
 	// We will often have to move towards our target.
@@ -1643,7 +1610,6 @@ static void state_machine_attack(enemy * ThisRobot, moderately_finepoint * new_m
 		ThisRobot->last_combat_step += Frame_Time();
 	}
 
-	//---------------
 	// Execute the bot's shoot
 
 	/* Great suggestion of Sarayan : we do not care about friendly fire, and make bullets go through people of the same side. */
@@ -1988,7 +1954,6 @@ void move_enemies(void)
  */
 void set_bullet_speed_to_target_direction(bullet * NewBullet, float bullet_speed, float xdist, float ydist)
 {
-	//--------------------
 	// determine the direction of the shot, so that it will go into the direction of
 	// the target
 	//
@@ -2023,7 +1988,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 	bullet *NewBullet = NULL;
 	int bullet_index = 0;
 
-	//--------------------
 	// If the robot is not in walk or stand animation, i.e. if it's in
 	// gethit, death or attack animation, then we can't start another
 	// shot/attack right now...
@@ -2033,24 +1997,20 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 
 	/* First of all, check what kind of weapon the bot has : ranged or melee */
 	if (!ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_weapon_is_melee) {	/* ranged */
-		//--------------------
 		// find a bullet entry, that isn't currently used... 
 		//
 		bullet_index = find_free_bullet_index();
 		NewBullet = &(AllBullets[bullet_index]);
 
-		//--------------------
 		// We send the bullet onto it's way thowards the given target
 		//
 		set_bullet_speed_to_target_direction(NewBullet, bullet_speed, xdist, ydist);
 
-		//--------------------
 		// Newly, also enemys have to respect the angle modifier in their weapons...
 		//
 		RotateVectorByAngle(&(NewBullet->speed), ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_start_angle_modifier);
 		NewBullet->angle = -(90 + 45 + 180 * atan2(NewBullet->speed.y, NewBullet->speed.x) / M_PI);
 
-		//--------------------
 		// At this point we mention, that when not moving anywhere, the robot should also
 		// face into the direction of the shot
 		//
@@ -2075,7 +2035,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->time_in_seconds = 0;
 		NewBullet->time_in_frames = 0;
 
-		//--------------------
 		// Most enemy shots will not have any special 'magic' property...
 		//
 		NewBullet->poison_duration = 0;
@@ -2157,7 +2116,6 @@ enemy *ClosestOtherEnemyDroid(Enemy ThisRobot)
 		if (ThisRobot->pos.z != erot->pos.z) {
 			continue;
 		}
-		//--------------------
 		// If we compare us with ourselves, this is also no good...
 		//
 		if (ThisRobot == erot) {
@@ -2287,7 +2245,6 @@ static void MoveAwayFromMeleeCombat(Enemy ThisRobot, moderately_finepoint * set_
 	StepVector.x = VictimPosition.x - CurrentPosition.x;
 	StepVector.y = VictimPosition.y - CurrentPosition.y;
 
-	//--------------------
 	// Now some protection against division by zero when two bots
 	// have _exactly_ the same position, i.e. are standing on top
 	// of each other:
@@ -2312,7 +2269,6 @@ static void MoveAwayFromMeleeCombat(Enemy ThisRobot, moderately_finepoint * set_
 		RotatedStepVector.y = StepVector.y;
 		RotateVectorByAngle(&RotatedStepVector, RotationAngleTryList[i]);
 
-		//--------------------
 		// Maybe we've found a solution, then we can take it and quit
 		// trying around...
 		//
@@ -2324,7 +2280,6 @@ static void MoveAwayFromMeleeCombat(Enemy ThisRobot, moderately_finepoint * set_
 			set_move_tgt->y = ThisRobot->pos.y + RotatedStepVector.y;
 			break;
 		}
-		//--------------------
 		// No solution, don't move
 		set_move_tgt->x = ThisRobot->pos.x;
 		set_move_tgt->y = ThisRobot->pos.y;
@@ -2373,7 +2328,6 @@ static int TurnABitTowardsPosition(Enemy ThisRobot, float x, float y, float Turn
 	if (ThisRobot->pos.x == x && ThisRobot->pos.y == y)
 		return TRUE;
 
-	//--------------------
 	// Now we find out what the final target direction of facing should
 	// be.
 	//
@@ -2391,7 +2345,6 @@ static int TurnABitTowardsPosition(Enemy ThisRobot, float x, float y, float Turn
 	//
 	RightAngle += 90;
 
-	//--------------------
 	// Now it's time do determine which direction to move, i.e. if to 
 	// turn to the left or to turn to the right...  For this purpose
 	// we convert the current angle, which is between 270 and -90 degrees
@@ -2400,7 +2353,6 @@ static int TurnABitTowardsPosition(Enemy ThisRobot, float x, float y, float Turn
 	if (RightAngle > 180.0)
 		RightAngle -= 360.0;
 
-	//--------------------
 	// Having done these preparations, it's now easy to determine the right
 	// direction of rotation...
 	//
@@ -2415,7 +2367,6 @@ static int TurnABitTowardsPosition(Enemy ThisRobot, float x, float y, float Turn
 	else
 		TurningDirection = -1;
 
-	//--------------------
 	// Now we turn and show the image until both chat partners are
 	// facing each other, mostly the chat partner is facing the Tux,
 	// since the Tux may still turn around to somewhere else all the 
@@ -2423,7 +2374,6 @@ static int TurnABitTowardsPosition(Enemy ThisRobot, float x, float y, float Turn
 	//
 	ThisRobot->current_angle += TurningDirection * TurnSpeed * Frame_Time();
 
-	//--------------------
 	// In case of positive turning direction, we wait, till our angle is greater
 	// than the right angle.
 	// Otherwise we wait till our angle is lower than the right angle.
@@ -2500,7 +2450,6 @@ int CheckEnemyEnemyCollision(enemy * OurBot)
 	if (OurBot->pure_wait)
 		return FALSE;
 
-	//--------------------
 	// Now we check through all the other enemys on this level if 
 	// there is perhaps a collision with them...
 

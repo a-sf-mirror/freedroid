@@ -165,11 +165,9 @@ static void ShowDroidPicture(int PosX, int PosY, int Number)
 	if (!strcmp(Druidmap[Number].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
 		return;		// later this should be a default-correction instead
 
-	//--------------------
 	// Maybe we have to reload the whole image series
 	//
 	if (strcmp(LastImageSeriesPrefix, Druidmap[Number].droid_portrait_rotation_series_prefix)) {
-		//--------------------
 		// Maybe we have to free the series from an old item display first
 		//
 		if (DroidRotationSurfaces[0] != NULL) {
@@ -177,7 +175,6 @@ static void ShowDroidPicture(int PosX, int PosY, int Number)
 				SDL_FreeSurface(DroidRotationSurfaces[i]);
 			}
 		}
-		//--------------------
 		// Now we can start to load the whole series into memory
 		//
 		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
@@ -237,7 +234,6 @@ static void ShowDroidInfo(int droidtype, int Displacement, char ShowArrows)
 	char InfoText[10000];
 	char TextChunk[2000];
 
-	//--------------------
 	// We initialize the text rectangle
 	//
 	Cons_Text_Rect.x = 258 * GameConfig.screen_width / 640;
@@ -251,7 +247,6 @@ static void ShowDroidInfo(int droidtype, int Displacement, char ShowArrows)
 
 	ShowDroidPicture(45 * GameConfig.screen_width / 640, 190 * GameConfig.screen_height / 480, droidtype);
 
-	//--------------------
 	// We fill out the header area of the items browser.
 	//
 	SetCurrentFont(Menu_BFont);
@@ -468,7 +463,6 @@ static void PlayGame(int countdown)
 
 			if (up) {
 				if (!up_counter || (up_counter > wait_move_ticks)) {
-					//--------------------
 					// Here I have to change some things in order to make
 					// mouse movement work properly with the wheel...
 					//
@@ -484,7 +478,6 @@ static void PlayGame(int countdown)
 			}
 			if (down) {
 				if (!down_counter || (down_counter > wait_move_ticks)) {
-					//--------------------
 					// Here I have to change some things in order to make
 					// mouse movement work properly with the wheel...
 					//
@@ -571,7 +564,6 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// Maybe takeover graphics haven't been loaded yet.  Then we do this
 	// here now and for once.  Later calls will be ignored inside the function.
 	//
@@ -581,7 +573,6 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 	input_handle();
 
 	while (!FinishTakeover) {
-		//--------------------
 		// Init Color-column and Capsule-Number for each opponenet and your color 
 		//
 		for (row = 0; row < NUM_LINES; row++) {
@@ -607,7 +598,6 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 
 		ChooseColor();
 
-		//--------------------
 		// This following function plays the takeover game, until one
 		// of THREE states is reached, i.e. until YOU WON, YOU LOST
 		// or until DEADLOCK is reached.  Well, so maybe after that
@@ -616,7 +606,6 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 		//
 		PlayGame(game_length);
 
-		//--------------------
 		// We we evaluate the final score of the game.  Maybe we're done
 		// already, maybe not...
 		//
@@ -662,13 +651,11 @@ int droid_takeover(enemy * target)
 	int reward = 0;
 	SDL_Event event;
 
-	//--------------------
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spent in the menu.
 	//
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// We set the UserRect to full again, no matter what other windows might
 	// be open right now...
 	//
@@ -729,7 +716,6 @@ int droid_takeover(enemy * target)
 		Me.Experience += reward;
 		append_new_game_message(_("For taking control of your enemy, you receive %d experience."), reward);
 
-		//--------------------
 		// Maybe the enemy in question was a kind of 'boss monster' or it had
 		// some special item, that is relevant to a mission or quest.  In that
 		// case (like also when the bot is finally destroyed, the quest item
@@ -746,7 +732,6 @@ int droid_takeover(enemy * target)
 
 		target->combat_state = WAYPOINTLESS_WANDERING;
 
-		//--------------------
 		// When the bot is taken over, it should not turn hostile when
 		// the rest of his former combat group (identified by having the
 		// same marker) is attacked by the Tux.
@@ -797,7 +782,6 @@ void AdvancedEnemyTakeoverMovements(void)
 	if (NumCapsules[ENEMY] == 0)
 		return;
 
-	//--------------------
 	// First we're going to find out which target place is
 	// best choice for the next capsule setting.
 	//
@@ -810,7 +794,6 @@ void AdvancedEnemyTakeoverMovements(void)
 	}
 	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
 
-	//--------------------
 	// Now we can start to move into the right direction.
 	// Previously this was a pure random choice like
 	//
@@ -887,7 +870,6 @@ int GetTakeoverGraphics(void)
 	SDL_Rect tmp;
 	SDL_Surface *TempLoadSurface;
 
-	//--------------------
 	// Maybe this function has been called before and everything
 	// has been loaded already.  Then of course we don't need to
 	// do anything any more and can just return.
@@ -895,7 +877,6 @@ int GetTakeoverGraphics(void)
 	if (TakeoverGraphicsAreAlreadyLoaded)
 		return (OK);
 
-	//--------------------
 	// Now we start loading all the takeover graphics.
 	//
 	Set_Rect(tmp, User_Rect.x, User_Rect.y, 0, 0);
@@ -952,7 +933,6 @@ int GetTakeoverGraphics(void)
 	cury += GROUNDBLOCKHEIGHT + 2;
 	curx = 0;
 
-	//--------------------
 	// Now the rectangle for the column blocks will be set and after
 	// that we can create the new surface for blitting.
 	//
@@ -961,11 +941,9 @@ int GetTakeoverGraphics(void)
 	if (use_open_gl)
 		make_texture_out_of_surface(&(ToColumnBlock));
 
-	//--------------------
 	// 
 	curx += COLUMNBLOCKLEN + 2;
 
-	//--------------------
 	// Now the rectangle for the leader block will be set and after
 	// that we can create the new surface for blitting.
 	//
@@ -974,7 +952,6 @@ int GetTakeoverGraphics(void)
 	if (use_open_gl)
 		make_texture_out_of_surface(&(ToLeaderBlock));
 
-	//--------------------
 	// Now that everything was loaded, we should remember this, so we
 	// don't load anything again next time...
 	//
@@ -1178,7 +1155,6 @@ void InventPlayground(void)
 	int row, layer;
 	int color = YELLOW;
 
-	//--------------------
 	// first clear the playground: we depend on this !! 
 	//
 	ClearPlayground();
@@ -1717,7 +1693,6 @@ void to_show_banner(const char *left, const char *right)
 	char right_box[RIGHT_TEXT_LEN + 10];
 	int left_len, right_len;	// the actualy string lengths
 
-	// --------------------
 	// At first the text is prepared.  This can't hurt.
 	// we will decide whether to dispaly it or not later...
 	//

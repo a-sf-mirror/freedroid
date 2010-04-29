@@ -95,7 +95,6 @@ void CollectAutomapData(void)
 
 	ObjPos.z = Me.pos.z;
 
-	//--------------------
 	// Checking the whole map for passablility will surely take a lot
 	// of computation.  Therefore we only do this once every second of
 	// real time.
@@ -106,14 +105,12 @@ void CollectAutomapData(void)
 
 	// DebugPrintf ( -3 , "\nCollecting Automap data... " );
 
-	//--------------------
 	// Also if there is no map-maker present in inventory, then we need not
 	// do a thing here...
 	//
 	if (!Me.map_maker_is_present)
 		return;
 
-	//--------------------
 	// Earlier we had
 	//
 	// start_x = 0 ; start_y = 0 ; end_x = automap_level->xlen ; end_y = automap_level->ylen ;
@@ -134,7 +131,6 @@ void CollectAutomapData(void)
 	if (end_y >= automap_level->ylen)
 		end_y = automap_level->ylen;
 
-	//--------------------
 	// Now we do the actual checking for visible wall components.
 	//
 	for (y = start_y; y < end_y; y++) {
@@ -287,7 +283,6 @@ void display_automap(void)
 	Level automap_level = curShip.AllLevels[Me.pos.z];
 	int level = Me.pos.z;
 
-	//--------------------
 	// Of course we only display the automap on demand of the user...
 	//
 	if (GameConfig.Automap_Visible == FALSE)
@@ -296,7 +291,6 @@ void display_automap(void)
 	// Display the compass
 	display_automap_compass();
 
-	//--------------------
 	// Also if there is no map-maker present in inventory, then we need not
 	// do a thing here...
 	//
@@ -310,7 +304,6 @@ void display_automap(void)
 	}
 #endif
 
-	//--------------------
 	// At first, we only blit the known data about the pure wall-type
 	// obstacles on this level.
 	for (y = 0; y < automap_level->ylen; y++) {

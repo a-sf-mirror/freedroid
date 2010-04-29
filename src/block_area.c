@@ -73,12 +73,10 @@ void init_obstacle_data(void)
 
 	iso_image empty_iso_image = UNLOADED_ISO_IMAGE;
 
-	//--------------------
 	// First we enter some default values.  The exceptions from the default values
 	// can be added after that.
 	//
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
-		//--------------------
 		// In adition to the pure image information, we'll also need some
 		// collision information for obstacles...
 		//
@@ -99,7 +97,6 @@ void init_obstacle_data(void)
 		obstacle_map[i].action = NULL; // no action 
 		obstacle_map[i].animate_fn = NULL; // no animation
 	}
-	//--------------------
 	// Now we define all exceptions from the default values
 	//
 	block_2param(ISO_V_WALL, standard_wall_thickness, standard_wall_width);
@@ -333,7 +330,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DV_DOOR_LOCKED].flags |= IS_HORIZONTAL;
 	//locked doors have the same description
 
-	//--------------------
 	// These are the normal pillars, that appear here and there in the game.
 	// 4param is used to allow Tux to walk ontop the pillar base in S&E yet
 	// not appear as walking under the pillar base N&W of the pillar.
@@ -345,7 +341,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_PILLAR_SHORT].filename = "iso_obstacle_0048.png";
 	obstacle_map[ISO_PILLAR_SHORT].flags &= ~BLOCKS_VISION_TOO;
 
-	//--------------------
 	// These files originate from iso_machinery.blend
 	//
 	block_2param(ISO_TV_PILLAR_W, 1.0, 1.0);
@@ -622,7 +617,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LAMP_W].emitted_light_strength = 24;
 	obstacle_map[ISO_LAMP_W].filename = "iso_obstacle_0057.png";
 
-	//--------------------
 	// We have several types of fences.  These are typically rather
 	// long and slender obstacles, which is a case that our method
 	// of planting obstacles so that the visibility properties are
@@ -1010,7 +1004,6 @@ void init_obstacle_data(void)
 		obstacle_map[i].transparent = TRANSPARENCY_FOR_WALLS;
 	}
 
-	//--------------------
 	// Brick walls are smashable.  When you smash them, there should be
 	// first a cracked brick wall, then when smashing again, there will
 	// be only some rubble left, and that should be *passable*.
@@ -1073,7 +1066,6 @@ void init_obstacle_data(void)
 
 	//all brick walls above share the same description
 
-	//--------------------
 	// Brick walls are smashable.  When you smash them, there should be
 	// first a cracked brick wall, then when smashing again, there will
 	// be only some rubble left, and that should be *passable*.
@@ -1182,7 +1174,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_EXIT_6].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_EXIT_6].filename = "iso_exits_0006.png";
 	obstacle_map[ISO_EXIT_6].flags &= ~NEEDS_PRE_PUT;
-	//--------------------
 	// This is the wonderful littel exotic plant provided by Basse.
 	// It will block the Tux movement but vision should pass through
 	// as it's not a particularly high object, so you can see over it.
@@ -1250,7 +1241,6 @@ void init_obstacle_data(void)
 	block_2param(ISO_ROOM_WALL_H_GREEN, standard_wall_width, standard_wall_thickness);
 	obstacle_map[ISO_ROOM_WALL_H_GREEN].filename = "iso_walls_0019.png";
 	obstacle_map[ISO_ROOM_WALL_H_GREEN].flags |= IS_HORIZONTAL;
-	//--------------------
 	// These two are for the big long shop counter.  It has a suitable
 	// collision rectangle, but light may pass through, so you can see
 	// the person behind the counter
@@ -1754,7 +1744,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_SOLAR_PANEL_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SOLAR_PANEL_E].filename = "iso_solar_panel_0001.png";
 
-	//--------------------
 	// Now that we have defined the block area paramters, it's time to do some
 	// simple but often required computations in advance:  Calculating the offsets
 	// each obstacle's block area has from the obstacle center.

@@ -278,7 +278,6 @@ void leveleditor_process_input()
 
 	HandleLevelEditorCursorKeys();
 
-	//--------------------
 	// If the person using the level editor pressed w, the waypoint is
 	// toggled on the current square.  That means either removed or added.
 	// And in case of removal, also the connections must be removed.

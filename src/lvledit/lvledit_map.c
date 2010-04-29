@@ -47,19 +47,16 @@ void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 	int i;
 
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		//--------------------
 		// Maybe the obstacle entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
 		if (edit_level->obstacle_list[i].type <= (-1))
 			continue;
 
-		//--------------------
 		// Move the obstacle
 		//
 		edit_level->obstacle_list[i].pos.y += by_what;
 		
-		//--------------------
 		// Maybe the obstacle is now outside of the map, so just remove it
 		//
 		if ((edit_level->obstacle_list[i].pos.y < 0) || (edit_level->obstacle_list[i].pos.y >= edit_level->ylen)) {
@@ -70,7 +67,6 @@ void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 	}
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		//--------------------
 		// Maybe the item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
@@ -79,12 +75,10 @@ void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 		if (edit_level->ItemList[i].pos.y <= (-1))
 			continue;
 
-		//--------------------
 		// Move the item
 		//
 		edit_level->ItemList[i].pos.y += by_what;
 
-		//--------------------
 		// Maybe the item is is now outside of the map, so just remove it
 		//
 		if ((edit_level->ItemList[i].pos.y < 0) || (edit_level->ItemList[i].pos.y >= edit_level->ylen)) {
@@ -95,7 +89,6 @@ void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 	}
 
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		//--------------------
 		// Maybe the chest item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
@@ -104,12 +97,10 @@ void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 		if (edit_level->ChestItemList[i].pos.y <= (-1))
 			continue;
 
-		//--------------------
 		// Move the chest item
 		//
 		edit_level->ChestItemList[i].pos.y += by_what;
 
-		//--------------------
 		// Maybe the chest item is is now outside of the map, so just remove it
 		//
 		if ((edit_level->ChestItemList[i].pos.y < 0) || (edit_level->ChestItemList[i].pos.y >= edit_level->ylen)) {
@@ -132,7 +123,6 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 	int i;
 
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		//--------------------
 		// Maybe the obstacle entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
@@ -141,12 +131,10 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 		if (edit_level->obstacle_list[i].pos.x <= (-1))
 			continue;
 
-		//--------------------
 		// Move the obstacle
 		//
 		edit_level->obstacle_list[i].pos.x += by_what;
 
-		//--------------------
 		// Maybe the obstacle is now outside of the map, then just remove it.
 		//
 		if ((edit_level->obstacle_list[i].pos.x < 0) || (edit_level->obstacle_list[i].pos.x >= edit_level->xlen)) {
@@ -157,7 +145,6 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 	}
 
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		//--------------------
 		// Maybe the item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
@@ -166,12 +153,10 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 		if (edit_level->ItemList[i].pos.x <= (-1))
 			continue;
 
-		//--------------------
 		// Move the item
 		//
 		edit_level->ItemList[i].pos.x += by_what;
 		
-		//--------------------
 		// Maybe the item is now outside of the map, then just remove it.
 		//
 		if ((edit_level->ItemList[i].pos.x < 0) || (edit_level->ItemList[i].pos.x >= edit_level->xlen)) {
@@ -182,7 +167,6 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 	}
 
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		//--------------------
 		// Maybe the chest item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
 		//
@@ -191,12 +175,10 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 		if (edit_level->ChestItemList[i].pos.x <= (-1))
 			continue;
 
-		//--------------------
 		// Move the chest item
 		//
 		edit_level->ChestItemList[i].pos.x += by_what;
 
-		//--------------------
 		// Maybe the item now outside of the map, then just remove it.
 		//
 		if ((edit_level->ChestItemList[i].pos.x < 0) || (edit_level->ChestItemList[i].pos.x >= edit_level->xlen)) {
@@ -302,7 +284,6 @@ void InsertLineVerySouth(level * EditLevel)
 {
 	int i, j;
 
-	//--------------------
 	// The enlargement of levels in y direction is limited by a constant
 	// defined in defs.h.  This is carefully checked or no operation at
 	// all will be performed.
@@ -371,7 +352,6 @@ void RemoveColumnVeryWest(level *EditLevel)
 	int i;
 	map_tile *MapPointer;
 
-	//--------------------
 	// First we move the obstacles, cause they will be glued and moved and doing that should
 	// be done before the floor to glue them to vanishes in the very east.
 	//
@@ -379,7 +359,6 @@ void RemoveColumnVeryWest(level *EditLevel)
 	//
 	move_obstacles_and_items_west_east(-1, EditLevel);
 
-	//--------------------
 	// Now the new memory and everything is done.  All we
 	// need to do is move the information to the east
 	//
@@ -401,7 +380,6 @@ void RemoveLineVeryNorth(level * EditLevel)
 {
 	int i;
 
-	//--------------------
 	// First we move the obstacles, cause they will be glued and moved and doing that should
 	// be done before the floor to glue them to vanishes in the very south.
 	//
@@ -409,7 +387,6 @@ void RemoveLineVeryNorth(level * EditLevel)
 	//
 	move_obstacles_and_items_north_south(-1, EditLevel);
 
-	//--------------------
 	// Now we do some shifting of lines
 	//
 	free(EditLevel->map[0]);
@@ -419,13 +396,11 @@ void RemoveLineVeryNorth(level * EditLevel)
 	EditLevel->map[EditLevel->ylen - 1] = NULL;
 	EditLevel->ylen--;
 
-	//--------------------
 	// Now we have the waypoints moved as well
 	//
 	MoveWaypointsNorthSouth(-1, EditLevel);
 	MoveMapLabelsNorthSouth(-1, EditLevel);
 
-	//--------------------
 	// And finally, re-glue all obstacles to the new map
 	//
 	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);

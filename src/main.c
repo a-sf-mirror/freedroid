@@ -133,7 +133,6 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Couldn't change working directory to %s.\n", dirname(argv[0]));
 #endif
 
-	//--------------------
 	// First we issue some message, that should appear in the debug log for
 	// windows users.
 	//
@@ -288,7 +287,6 @@ void UpdateCountersForThisFrame()
 	if (SkipAFewFrames)
 		SkipAFewFrames--;
 
-	//--------------------
 	// This is the timeout, that the tux should not start a movement
 	// some fraction of a second after an item drop.
 	//
@@ -306,7 +304,6 @@ void UpdateCountersForThisFrame()
 		}
 	}
 
-	//--------------------
 	// Maybe some items are just thrown in the air and still in the air.
 	// We need to keep track of the time the item has spent in the air so far.
 	//
@@ -324,7 +321,6 @@ void UpdateCountersForThisFrame()
 		}
 	}
 	
-	//--------------------
 	// Some bots might be frozen and some might be poisoned, some
 	// might still have a 'firewait' or a normal wait or a paralysation.
 	// In any case those counteres must be updated, but we'll only to 
@@ -335,7 +331,6 @@ void UpdateCountersForThisFrame()
 			update_timeouts_for_bots_on_level(level_num, latest_frame_time);
 	}
 
-	//--------------------
 	// Now we do all the things, that need to be updated for each connected
 	// player separatedly.
 	//
@@ -345,7 +340,6 @@ void UpdateCountersForThisFrame()
 	Me.MissionTimeElapsed += latest_frame_time;
 	Me.TextVisibleTime += latest_frame_time;
 
-	//--------------------
 	// We take care of the running stamina...
 	//
 	my_speed = sqrt(Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y);
@@ -360,7 +354,6 @@ void UpdateCountersForThisFrame()
 			Me.running_must_rest = FALSE;
 	}
 
-	//-------------------
 	// Mana and health recover over time
 	Me.energy += Me.health_recovery_rate * latest_frame_time;
 	if (Me.energy > Me.maxenergy)
@@ -419,7 +412,6 @@ void UpdateCountersForThisFrame()
 	if (Me.invisible_duration < 0)
 		Me.invisible_duration = 0;
 
-	//--------------------
 	// In order to know when a level can finally be respawned with
 	// enemies, we keep track to the time spent actually in the game, i.e.
 	// time actually spent passing frames...
@@ -431,7 +423,6 @@ void UpdateCountersForThisFrame()
 			if (Me.time_since_last_visit_or_respawn[i] > (-1)) {
 				Me.time_since_last_visit_or_respawn[i] += latest_frame_time;
 			}
-			//--------------------
 			// Now maybe it's time to respawn?  If we really have multiple
 			// players of course, this check would have to look a bit different...
 			//
@@ -447,7 +438,6 @@ void UpdateCountersForThisFrame()
 			}
 
 		} else {
-			//--------------------
 			// When the Tux is right on this level, there is absolutely no need 
 			// for respawning anything...
 			//
@@ -455,7 +445,6 @@ void UpdateCountersForThisFrame()
 		}
 	}
 
-	//--------------------
 	// On some maps, the Tux will have no enemies.  Therefore it would
 	// make sense that (for better gameplay) the running bar does not
 	// run out.

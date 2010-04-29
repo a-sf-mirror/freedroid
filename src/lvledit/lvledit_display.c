@@ -113,7 +113,6 @@ static void Highlight_Current_Block(int mask)
 	EditLevel = curShip.AllLevels[Me.pos.z];
 #define HIGHLIGHTCOLOR 255
 
-	//--------------------
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
 	//
@@ -158,7 +157,6 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 	static iso_image level_editor_dot_cursor = UNLOADED_ISO_IMAGE;
 	char fpath[2048];
 
-	//--------------------
 	// Maybe, if the level editor dot cursor has not yet been loaded,
 	// we need to load it.
 	//
@@ -173,12 +171,10 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 		if (use_open_gl)
 			make_texture_out_of_surface(&level_editor_dot_cursor);
 	}
-	//--------------------
 	// So now that the dot cursor has been loaded, we can start to
 	// actually draw the dots.
 	//
 
-	//--------------------
 	// We measure the distance that we have to go and then we draw some
 	// dots at some convex combinations of our two vectors.  Very fine.
 	//
@@ -227,7 +223,6 @@ static void ShowWaypoints(int PrintConnectionList, int mask)
 
 #define ACTIVE_WP_COLOR 0x0FFFFFFFF
 
-	//--------------------
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
 	//
@@ -275,7 +270,6 @@ static void ShowWaypoints(int PrintConnectionList, int mask)
 							       this_wp->x + 0.5, this_wp->y + 0.5);
 		}
 
-		//--------------------
 		// Draw the connections to other waypoints, BUT ONLY FOR THE WAYPOINT CURRENTLY TARGETED
 		//
 		if (PrintConnectionList) {
@@ -290,7 +284,6 @@ static void ShowWaypoints(int PrintConnectionList, int mask)
 					// printf(" Found a connection!! ");
 					// printf_SDL ( Screen  , 100 , 100 , "Waypoint connection to: " );
 
-					//--------------------
 					// If this is desired, we also print a list of connections from
 					// this waypoint to other waypoints in text form...
 					//
@@ -313,7 +306,6 @@ static void ShowWaypoints(int PrintConnectionList, int mask)
 		}
 	}
 
-	//--------------------
 	// Now we do something extra:  If there is a connection attempt currently
 	// going on, then we also draw a connection from the origin point to the
 	// current cursor (i.e. 'me') position.
@@ -338,7 +330,6 @@ static void ShowMapLabels(int mask)
 	char fpath[2048];
 	EditLevel = curShip.AllLevels[Me.pos.z];
 
-	//--------------------
 	// On the first function call to this function, we must load the map label indicator
 	// iso image from the disk to memory and keep it there as static.  That should be
 	// it for here.
@@ -351,7 +342,6 @@ static void ShowMapLabels(int mask)
 		if (use_open_gl)
 			make_texture_out_of_surface(&map_label_indicator);
 	}
-	//--------------------
 	// Now we can draw a fine indicator at all the position nescessary...
 	//
 	for (LabelNr = 0; LabelNr < MAX_MAP_LABELS_PER_LEVEL; LabelNr++) {
@@ -594,7 +584,6 @@ void leveleditor_display()
 
 	SetCurrentFont(FPS_Display_BFont);
 
-	//--------------------
 	// Now we print out the current status directly onto the window:
 	//
 	if (OriginWaypoint != -1) {
@@ -602,7 +591,6 @@ void leveleditor_display()
 			EditLevel()->AllWaypoints[OriginWaypoint].x, EditLevel()->AllWaypoints[OriginWaypoint].y);
 		LeftPutString(Screen, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), linebuf);
 	}
-	//--------------------
 	// Now we print out the latest connection operation success or failure...
 	//
 	if (VanishingMessageEndDate > SDL_GetTicks()) {
@@ -618,7 +606,6 @@ void leveleditor_display()
 			    1.0);
 
 	display_cursor();
-	//--------------------
 	// Now that everything is blitted and printed, we may update the screen again...
 	//
 	our_SDL_flip_wrapper();

@@ -124,7 +124,6 @@ void DisplayItemImageAtMouseCursor(int ItemImageCode)
 		DebugPrintf(2, "\nCurrently no (-1 code) item held in hand.");
 		return;
 	}
-	//--------------------
 	// We define the target location for the item.  This will be the current
 	// mouse cursor position of course, but -16 for the crosshair center, 
 	// which is somewhat (16) to the lower right of the cursor top left 
@@ -210,7 +209,6 @@ void PutMiscellaneousSpellEffects(void)
 {
 	int i;
 
-	//--------------------
 	// Now we put all the spells in the list of active spells
 	//
 	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
@@ -521,20 +519,17 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 	x = our_obstacle->vpos.x;
 	y = our_obstacle->vpos.y;
 
-	//--------------------
 	// If collision rectangles are turned off, then we need not do 
 	// anything more here...
 	//
 	if (!draw_collision_rectangles)
 		return;
 
-	//--------------------
 	// If there is no collision rectangle to draw, we are done
 	//
 	if (obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_NONE)
 		return;
 
-	//--------------------
 	// Now we draw the collision rectangle.  We use the same parameters
 	// of the obstacle spec, that are also used for the collision checks.
 	skew_and_blit_rect(x + left, y + up, x + right, y + low, 0x00FEEAA);
@@ -679,7 +674,6 @@ void insert_obstacles_into_blitting_list(int mask)
 
 			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
 				if (obstacle_level->map[py][px].obstacles_glued_to_here[i] != (-1)) {
-					//--------------------
 					// Now we have to insert this obstacle.  We do this of course respecting
 					// the blitting order, as always...
 					OurObstacle =
@@ -861,14 +855,12 @@ void get_visible_levels()
 {
 	struct visible_level *e, *n;
 	
-	//--------------------
 	// Invalidate all entries in the visible_level list
 	
 	list_for_each_entry(e, &visible_level_list, node) {
 		e->valid = FALSE;
 	}
 
-	//--------------------
 	// Find the 4 visible levels
 	//
 	// Those 4 levels form a square (eventually a degenerated one), one corner 
@@ -902,7 +894,6 @@ void get_visible_levels()
 		top_or_bottom_distance = CURLEVEL()->ylen - Me.pos.y;
 	}
 	
-	//--------------------
 	// Add or re-validate entries in the visible_level list
 
 	int i, j;
@@ -945,7 +936,6 @@ void get_visible_levels()
 		}
 	}
 	
-	//--------------------
 	// If the current level changed, remove useless invalid entries.
 	// An entry is useless if the associated level is not a neighbor of the
 	// current level. To find if two levels are connected, we look at the content
@@ -1029,7 +1019,6 @@ void gps_transform_map_init()
 	if (!gps_transform_map_dirty_flag)
 		return;
 
-	//----------
 	// Reset maps
 	//
 
@@ -1048,7 +1037,6 @@ void gps_transform_map_init()
 		}
 	}
 
-	//----------
 	// Scan direct neighbors and fill maps
 	//
 
@@ -1107,7 +1095,6 @@ void gps_transform_map_init()
 		}
 	}
 
-	//----------
 	// Scan diagonal levels and fill maps
 	//
 	// Now that we know the direct neighbors, we can use that knowledge to ease
@@ -1245,7 +1232,6 @@ void gps_transform_map_init()
  */
 void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
 {
-	//--------------------
 	// The case where the position in question is already directly on 
 	// the virtual level, things are really simple and we can quit
 	// almost immediately...
@@ -1256,7 +1242,6 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
 		target_pos->z = source_pos->z;
 		return;
 	}
-	//--------------------
 	// Transform the gps position
 	//
 	if (source_pos->z < 0 || source_pos->z >= sizeof(gps_transform_matrix)/sizeof(gps_transform_matrix[0]) ||
@@ -1273,7 +1258,6 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
 		target_pos->z = level_num;
 		return;
 	}
-	//--------------------
 	// The gps position cannot be expressed in terms of the virtual level.
 	// That means we'll best 'erase' the virtual positions, so that
 	// no 'phantoms' will occur...
@@ -1377,7 +1361,6 @@ void insert_enemies_into_blitting_list(void)
 	int i;
 	enemy *ThisRobot;
 
-	//--------------------
 	// Now that we plan to also show bots on other levels, we must be
 	// a bit more general and proceed through all the levels...
 	//
@@ -1390,7 +1373,6 @@ void insert_enemies_into_blitting_list(void)
 			if (!level_is_visible(ThisRobot->pos.z))
 				continue;
 
-			//--------------------
 			// We update the virtual position of this bot, such that we can handle it 
 			// with easier expressions later...
 			//
@@ -1470,7 +1452,6 @@ void set_up_ordered_blitting_list(int mask)
 		free(e);
 	}
 
-	//--------------------
 	// Now we can start to fill in the obstacles around the
 	// tux...
 	//
@@ -1532,7 +1513,6 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 	list_for_each_entry_safe(e, n, &blitting_list, node) {
 		switch (e->element_type) {
 		case BLITTING_TYPE_OBSTACLE:
-			//--------------------
 			// We do some sanity checking for illegal obstacle types.
 			// Can't hurt to do that so as to be on the safe side.
 			//
@@ -1545,7 +1525,6 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 
 			our_obstacle = e->element_pointer;
 
-			//--------------------
 			// If the obstacle has a shadow, it seems like now would be a good time
 			// to blit it.
 			//
@@ -1583,13 +1562,11 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 					}
 				}
 			}
-			//--------------------
 			// If the obstacle in question does have a collision rectangle, then we
 			// draw that on the floor now.
 			//
 			blit_obstacle_collision_rectangle(our_obstacle);
 
-			//--------------------
 			// Draw the obstacle by itself if it is a preput obstacle
 			//
 			if (obstacle_map[((obstacle *) e->element_pointer)->type].flags & NEEDS_PRE_PUT)
@@ -1597,7 +1574,6 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			break;
 		
 		case BLITTING_TYPE_ENEMY:
-			//--------------------
 			// Enemies, which are dead already become like decoration on the floor.  
 			// They should never obscur the Tux, so we blit them beforehand and not
 			// again later from the list.
@@ -1646,14 +1622,12 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 	level *item_under_cursor_lvl = NULL;
 	struct blitting_list_element *e, *n;
 
-	//--------------------
 	// We memorize which 'enemy' is currently under the mouse target, so that we
 	// can properly highlight this enemy...
 	//
 	enemy_under_cursor = GetLivingDroidBelowMouseCursor();
 	item_under_cursor = get_floor_item_index_under_mouse_cursor(&item_under_cursor_lvl);
 
-	//--------------------
 	// Now it's time to blit all the elements from the list...
 	//
 	list_for_each_entry_safe(e, n, &blitting_list, node) {
@@ -1682,7 +1656,6 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 				if (((enemy *) e->element_pointer)->animation_type == DEAD_ANIMATION)
 					continue;
 
-				//--------------------
 				// A droid can either be rendered in normal mode or in highlighted
 				// mode, depending in whether the mouse cursor is right over it or not.
 				//
@@ -1744,7 +1717,6 @@ void show_obstacle_labels(int mask)
 		}
 	}
 
-	//--------------------
 	// Now that the obstacles labels are all displayed, we can start to 
 	// display the obstacle descriptions.  Since those are larger and would
 	// clutter up the screen pretty much if we drew them all, we'll just
@@ -1756,7 +1728,6 @@ void show_obstacle_labels(int mask)
 	   {
 	   if ( level_editor_marked_obstacle -> description_index >= 0 )
 	   {
-	   //--------------------
 	   // We do some extra security checks against non-present descriptions
 	   //
 	   if ( EditLevel -> obstacle_description_list [ level_editor_marked_obstacle -> description_index ] == NULL )
@@ -1807,13 +1778,11 @@ void blit_all_item_slots(void)
 		level *item_level = vis_lvl->lvl_pointer;
 
 		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-			//--------------------
 			// We don't work with unused item slots...
 			//
 			if (item_level->ItemList[i].type == (-1))
 				continue;
 	
-			//--------------------
 			// Now we check if the cursor is on that slot, because then the
 			// background of the slot will be highlighted...
 			//
@@ -1835,7 +1804,6 @@ void blit_all_item_slots(void)
 				}
 			}
 	
-			//--------------------
 			// Finally it's time to insert the font into the item slot.  We
 			// use the item name, but currently font color is not adapted for
 			// special item properties...
@@ -1948,7 +1916,6 @@ void update_item_text_slot_positions(void)
 			if (cur_item->type == (-1))
 				continue;
 	
-			//--------------------
 			// We try to use a text rectangle that is close to the
 			// actual item...
 			//
@@ -1960,7 +1927,6 @@ void update_item_text_slot_positions(void)
 			cur_item->text_slot_rectangle.y =
 				translate_map_point_to_screen_pixel_y(cur_item->virt_pos.x, cur_item->virt_pos.y) - cur_item->text_slot_rectangle.h / 2;
 	
-			//--------------------
 			// But maybe the situation is already very crowded, i.e. maybe there are
 			// already (a lot of) items there with slot positions conflicting...
 			// Well, what to do?  If there is already an item there, we try to escape,
@@ -1975,7 +1941,6 @@ void update_item_text_slot_positions(void)
 					else
 						cur_item->text_slot_rectangle.y -= cur_item->text_slot_rectangle.h + 2;
 	
-					//--------------------
 					// Maybe just a hundred left or right would also do...  but if it
 					// doesn't, we'll undo the changes made.
 					//
@@ -2084,7 +2049,6 @@ void AssembleCombatPicture(int mask)
 	else
 		make_sure_system_mouse_cursor_is_turned_on();
 
-	//--------------------
 	// We generate a list of obstacles (and other stuff) that might
 	// emitt some light.  It should be sufficient to establish this
 	// list once in the code and the to use it for all light computations
@@ -2126,7 +2090,6 @@ void AssembleCombatPicture(int mask)
 		update_item_text_slot_positions();
 		blit_all_item_slots();
 	}
-	//--------------------
 	// Here are some more things, that are not needed in the level editor
 	// view...
 	//
@@ -2196,7 +2159,6 @@ void AssembleCombatPicture(int mask)
 	glEnable(GL_TEXTURE_2D);
 #endif
 
-	//--------------------
 	// At this point we are done with the drawing procedure
 	// and all that remains to be done is updating the screen.
 	//
@@ -2263,7 +2225,6 @@ void free_one_loaded_tux_image_series(int tux_part_group)
 	int j;
 	int k;
 
-	//--------------------
 	if (strcmp(previous_part_strings[tux_part_group], NOT_LOADED_MARKER) == 0) {
 		DebugPrintf(1, "\n%s(): refusing to free group %d because it's free already.", __FUNCTION__, tux_part_group);
 		return;
@@ -2298,7 +2259,6 @@ void clear_all_loaded_tux_images(int with_free)
 {
 	int i, j, k;
 
-	//--------------------
 	// Some more debug output...
 	//
 	DebugPrintf(1, "\n%s(): clearing tux surfaces.  with_free=%d.", __FUNCTION__, with_free);
@@ -2332,7 +2292,6 @@ int get_current_phase(int tux_part_group, int motion_class)
 	if (Me.weapon_swing_time < 0) {
 		our_phase = (int)Me.walk_cycle_phase;
 
-		//--------------------
 		// Maybe the Tux speed is so high, that he should be considered running...
 		// But then we should use the running motion, which is just 10 frames shifted
 		// but otherwise in sync with the normal walkcycle...
@@ -2366,7 +2325,6 @@ int get_motion_class()
 			motion_class = 1;
 	}
 
-	//--------------------
 	// If the motion class has changed, then everything needs to be reloaded...
 	//
 	if (motion_class != previously_used_motion_class) {
@@ -2388,14 +2346,12 @@ FILE *open_tux_image_archive_file(int tux_part_group, int motion_class, char *pa
 	char fpath[2048];
 	FILE *DataFile;
 
-	//--------------------
 	// We need a file name!
 	//
 	sprintf(constructed_filename, "tux_motion_parts/%s/%s%s.tux_image_archive.z",
 		motion_class_string[motion_class], part_group_strings[tux_part_group], part_string);
 	find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
 
-	//--------------------
 	// First we need to open the file
 	//
 	if ((DataFile = fopen(fpath, "rb")) == NULL) {
@@ -2444,7 +2400,6 @@ void grab_tux_images_from_archive(int tux_part_group, int motion_class, char *pa
 	Sint16 img_x_offs;
 	Sint16 img_y_offs;
 
-	//--------------------
 	// A short message for debug purposes
 	//
 	DebugPrintf(1, "\n%s():  grabbing new image series...", __FUNCTION__);
@@ -2458,7 +2413,6 @@ void grab_tux_images_from_archive(int tux_part_group, int motion_class, char *pa
 	fclose(DataFile);
 
 	ptr = DataBuffer;
-	//--------------------
 	// We store the currently loaded part string, so that we can later
 	// decide if we need to do something upon an equipment change or
 	// not.
@@ -2466,7 +2420,6 @@ void grab_tux_images_from_archive(int tux_part_group, int motion_class, char *pa
 	strcpy(previous_part_strings[tux_part_group], part_string);
 	DebugPrintf(1, "\n%s(): getting image series for group %d.", __FUNCTION__, tux_part_group);
 
-	//--------------------
 	// Now we assume, that this is an image collection file for tux
 	// and therefore it should have the right header bytes (keyword tuxX)
 	// and it also should be suitable for pure SDL (keyword sdlX)
@@ -2476,7 +2429,6 @@ void grab_tux_images_from_archive(int tux_part_group, int motion_class, char *pa
 	memcpy(ogl_support_string, ptr, 4);
 	ptr += 4;
 
-	//--------------------
 	// We check if this is really an image archive of ENEMY type...
 	//
 	if (strncmp("tuxX", archive_type_string, 4)) {
@@ -2484,7 +2436,6 @@ void grab_tux_images_from_archive(int tux_part_group, int motion_class, char *pa
 Initial archive type string doesn't look like it's from an image archive of TUX type.\n\
 This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// We check if this is really an image archive of ENEMY type...
 	//
 	if (strncmp("sdlX", ogl_support_string, 4)) {
@@ -2494,7 +2445,6 @@ arranged image archive.  While this is not impossible to use, it's\n\
 still quite inefficient, and I can only recommend to use sdl-sized\n\
 images.  Therefore I refuse to process this file any further here.", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Now we know that this is an archive of tux type.  Therefore
 	// we can start to read out some entries, that are only found in
 	// enemy image collections and then disregard them, because for
@@ -2512,12 +2462,10 @@ images.  Therefore I refuse to process this file any further here.", PLEASE_INFO
 	cooked_stand_object_phases = ReadSint16(ptr);
 	ptr += sizeof(Sint16);
 
-	//--------------------
 	// Now we can start to really load the images.
 	//
 	for (rotation_index = 0; rotation_index < MAX_TUX_DIRECTIONS; rotation_index++) {
 		for (our_phase = 0; our_phase < TUX_TOTAL_PHASES; our_phase++) {
-			//--------------------
 			// Now if the iso_image we want to blit right now has not yet been loaded,
 			// then we need to do something about is and at least attempt to load the
 			// surface
@@ -2532,7 +2480,6 @@ images.  Therefore I refuse to process this file any further here.", PLEASE_INFO
 				img_y_offs = ReadSint16(ptr);
 				ptr += sizeof(Sint16);
 
-				//--------------------
 				// Some extra checks against illegal values for the length and height
 				// of the tux images.
 				//
@@ -2540,7 +2487,6 @@ images.  Therefore I refuse to process this file any further here.", PLEASE_INFO
 					ErrorMessage(__FUNCTION__, "\
 Received some non-positive Tux surface dimensions.  That's a bug for sure!", PLEASE_INFORM, IS_FATAL);
 				}
-				//--------------------
 				// New code:  read data into some area.  Have SDL make a surface around the
 				// loaded data.  That is much cleaner than hard-writing the data into the 
 				// memory, that SDL has prepared internally.
@@ -2577,7 +2523,6 @@ Creation of an Tux SDL software surface from pixel data failed.", PLEASE_INFORM,
 					make_texture_out_of_surface(&loaded_tux_images[tux_part_group][our_phase][rotation_index]);
 				}
 			} else {
-				//--------------------
 				// If the surface pointer hasn't been NULL in the first place, then
 				// obviously something with the initialisation was wrong in the first
 				// place...
@@ -2631,19 +2576,16 @@ void grab_enemy_images_from_archive(int enemy_model_nr)
 	Sint16 cooked_death_object_phases;
 	Sint16 cooked_stand_object_phases;
 
-	//--------------------
 	// A short message for debug purposes
 	//
 	DebugPrintf(1, "\n%s:  grabbing new image series...", __FUNCTION__);
 
-	//--------------------
 	// We need a file name!
 	//
 	sprintf(constructed_filename, "droids/%s/%s.tux_image_archive.z",
 		PrefixToFilename[enemy_model_nr], PrefixToFilename[enemy_model_nr]);
 	find_file(constructed_filename, GRAPHICS_DIR, fpath, 1);
 
-	//--------------------
 	// First we need to open the file
 	//
 	if ((DataFile = fopen(fpath, "rb")) == NULL) {
@@ -2661,7 +2603,6 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 
 	ptr = DataBuffer;
 
-	//--------------------
 	// Now we assume, that this is an image collection file for an enemy
 	// and therefore it should have the right header bytes (keyword eneX)
 	// and it also should be suitable for use with OpenGl (keyword oglX)
@@ -2671,7 +2612,6 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 	memcpy(ogl_support_string, ptr, 4);
 	ptr += 4;
 
-	//--------------------
 	// We check if this is really an image archive of ENEMY type...
 	//
 	if (strncmp("eneX", archive_type_string, 4)) {
@@ -2679,7 +2619,6 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 Initial archive type string doesn't look like it's from an image archive of ENEMY type.\n\
 This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Now we know that this is an archive of enemy type.  Therefore
 	// we can start to read out some entries, that are only found in
 	// enemy image collections.
@@ -2695,7 +2634,6 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 	cooked_stand_object_phases = ReadSint16(ptr);
 	ptr += sizeof(Sint16);
 
-	//--------------------
 	// The information about cycle length needs to be entered into the 
 	// corresponding arrays (usually initialized in blocks.c, for those
 	// series, that don't have an image archive yet...)
@@ -2711,7 +2649,6 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 	first_stand_animation_image[enemy_model_nr] = last_death_animation_image[enemy_model_nr] + 1;
 	last_stand_animation_image[enemy_model_nr] = last_death_animation_image[enemy_model_nr] + cooked_stand_object_phases;
 
-	//--------------------
 	// Now some error checking against more phases in this enemy animation than
 	// currently allowed from the array size...
 	//
@@ -2719,13 +2656,11 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 		ErrorMessage(__FUNCTION__, "\
 The number of images found in the image collection for enemy model %d is bigger than currently allowed (found %d images, max. %d).", PLEASE_INFORM, IS_FATAL, enemy_model_nr, last_stand_animation_image[enemy_model_nr], MAX_ENEMY_MOVEMENT_PHASES);
 	}
-	//--------------------
 	// Now we can proceed to read in the pure image data from the image
 	// collection archive file
 	//
 	for (rotation_index = 0; rotation_index < ROTATION_ANGLES_PER_ROTATION_MODEL; rotation_index++) {
 		for (enemy_phase = 0; enemy_phase < last_stand_animation_image[enemy_model_nr]; enemy_phase++) {
-			//--------------------
 			// We read the image parameters.  We need those to construct the
 			// surface.  Therefore this must come first.
 			//
@@ -2750,7 +2685,6 @@ The number of images found in the image collection for enemy model %d is bigger 
 			memcpy(dest, ptr, tmplen);
 			ptr += tmplen;
 
-			//--------------------
 			// This might be useful later, when using only SDL output...
 			//
 			// SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
@@ -2774,7 +2708,6 @@ The number of images found in the image collection for enemy model %d is bigger 
 					make_texture_out_of_prepadded_image(&(enemy_iso_images[enemy_model_nr][rotation_index]
 									      [enemy_phase]));
 				} else {
-					//--------------------
 					// Of course we could handle the case on non-open-gl optimized image
 					// collection files used with OpenGL output.  But that would be a
 					// sign of a bug, so we don't properly handle it (like below) but
@@ -2814,7 +2747,6 @@ void make_sure_whole_part_group_is_ready(int tux_part_group, int motion_class, c
 {
 	grab_tux_images_from_archive(tux_part_group, motion_class, part_string);
 
-	//--------------------
 	// It can be expected, that this operation HAS TAKEN CONSIDERABLE TIME!
 	// Therefore we must activate the conservative frame time compution now,
 	// so as to prevent any unwanted jumps right now...
@@ -2833,25 +2765,21 @@ void iso_put_tux_part(int tux_part_group, char *part_string, int x, int y, int r
 	int our_phase = 0;
 	int motion_class;
 
-	//--------------------
 	// Now we find out which weapon class to use in this case.
 	//
 	motion_class = get_motion_class();
 
-	//--------------------
 	// Now we need to resolve the part_string given as parameter
 	//
 	if (strlen(part_string) == 0) {
 		ErrorMessage(__FUNCTION__, "\
 Empty part string received!", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Now we determine the phase to use.  This is not all the same
 	// phase any more for all tux parts now that we've introduced a walk cycle.
 	//
 	our_phase = get_current_phase(tux_part_group, motion_class);
 
-	//--------------------
 	// If some part string given is unlike the part string we were using so
 	// far, then we'll need to free that old part and (later) load the new
 	// part.
@@ -2863,7 +2791,6 @@ Empty part string received!", PLEASE_INFORM, IS_FATAL);
 		}
 	}
 
-	//--------------------
 	// Now everything should be loaded correctly and we just need to blit the Tux.  Anything
 	// that isn't loaded yet should be considered a serious bug and a reason to terminate 
 	// immediately...
@@ -2976,7 +2903,6 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 		shield5 = GetItemIndexByName("Riot Shield");
 		first_call = 0;
 	}
-	//--------------------
 	// In case of no shielditem present at all, it's clear that we'll just
 	// display the empty shieldarm.
 	//
@@ -2992,13 +2918,11 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 			return;
 		}
 	}
-	//--------------------
 	// If there is no weapon item present, we just need to blit the shield, cause
 	// it's 'sword motion class' then.
 	//
 
 	if (Me.weapon_item.type != (-1)) {
-		//--------------------
 		// In case of a weapon item present, we need to look up the weapon item motion class
 		// and then decide which shield to use.
 		//
@@ -3009,7 +2933,6 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 			}
 		} 
 	}
-	//--------------------
 	// Now at this point we know, that a 'sword motion class' item is present, and that
 	// we therefore need to blit the shield details.
 	//
@@ -3143,7 +3066,6 @@ void iso_put_all_tux_parts_for_sword_motion(int x, int y, int rotation_index)
 	DebugPrintf(2, "\nDirection given: %d.", rotation_index);
 	// DebugPrintf ( 0 , "\nphase: %d." , (int) Me . phase );
 
-	//--------------------
 	// The correct order of blitting for all the Tux parts stongly depends
 	// on the direction the Tux is facing, therefore we need to do careful
 	// case separation for the tux direction.
@@ -3218,7 +3140,6 @@ void iso_put_all_tux_parts_for_gun_motion(int x, int y, int rotation_index)
 	DebugPrintf(2, "\nDirection given: %d.", rotation_index);
 	// DebugPrintf ( 1 , "\nphase: %d." , (int) Me . phase );
 
-	//--------------------
 	// The correct order of blitting for all the Tux parts stongly depends
 	// on the direction the Tux is facing, therefore we need to do careful
 	// case separation for the tux direction and sometimes even handle
@@ -3367,18 +3288,15 @@ void iso_put_tux(int x, int y)
 	int rotation_index;
 	float angle;
 
-	//--------------------
 	// In case there is no weapon swing going on, we can select the direction
 	// of facing by examining the current speed.
 	//
 	if ((Me.phase > 0) && (Me.phase <= TUX_SWING_PHASES)) {
-		//--------------------
 		// Don't touch the direction of heading here, cause it's set correctly
 		// within the raw tux attack function anyway.
 		//
 		angle = Me.angle;
 	} else {
-		//--------------------
 		// We make the angle dependent upon direction of movement, but only if there really is
 		// at least some movement.
 		//
@@ -3393,7 +3311,6 @@ void iso_put_tux(int x, int y)
 		}
 	}
 
-	//--------------------
 	// From the angle we can compute the index to use...
 	//
 	rotation_index = (angle * MAX_TUX_DIRECTIONS) / 360.0 + (MAX_TUX_DIRECTIONS / 2);
@@ -3437,7 +3354,6 @@ void blit_tux(int x, int y)
 	DebugPrintf(2, "\n%s(): real function call confirmed.", __FUNCTION__);
 
 	if (x == -1) {
-		//--------------------
 		// The (-1) parameter indicates, that the tux should be drawn right 
 		// into the game field at it's apropriate location.
 		//
@@ -3452,7 +3368,6 @@ void blit_tux(int x, int y)
 		UpperLeftBlitCorner.y = UserCenter_y - 32;
 
 	} else {
-		//--------------------
 		// The not (-1) parameter indicates, that the tux should be drawn 
 		// for cursor purposes.  This will be done anyway, regardless of
 		// whether the tux is currently out or not.
@@ -3464,7 +3379,6 @@ void blit_tux(int x, int y)
 	TargetRectangle.x = UpperLeftBlitCorner.x;
 	TargetRectangle.y = UpperLeftBlitCorner.y;
 
-	//--------------------
 	// Maybe the influencer is fading due to low energy?
 	// to achive this, is might be nescessary to add some 
 	// alpha to the surface, that will later be
@@ -3486,13 +3400,11 @@ void blit_tux(int x, int y)
 			CrySound();
 		}
 	}
-	//--------------------
 	// Either we draw the classical influencer or we draw the more modern
 	// tux, a descendant of the influencer :)
 	//
 	iso_put_tux(x, y);
 
-	//--------------------
 	// Maybe the influencer has something to say :)
 	// so let him say it..
 	//
@@ -3515,7 +3427,6 @@ void PrintCommentOfThisEnemy(enemy * e)
 {
 	int x_pos, y_pos;
 
-	//--------------------
 	// At this point we can assume, that the enemys has been blittet to the
 	// screen, whether it's a friendly enemy or not.
 	// 
@@ -3531,7 +3442,6 @@ void PrintCommentOfThisEnemy(enemy * e)
 		y_pos = translate_map_point_to_screen_pixel_y(e->virt_pos.x, e->virt_pos.y)
 		    - 100;
 
-		//--------------------
 		// First we display the normal text to be displayed...
 		//
 #	if 0
@@ -3587,20 +3497,17 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 
 #define ENEMY_ENERGY_BAR_WIDTH 7
 
-	//--------------------
 	// If the enemy is dead already, there's nothing to do here...
 	//
 	if (e->energy <= 0)
 		return;
 
-	//--------------------
 	// Now we need to find the right colors to fill our bars with...
 	//
 	full_color_enemy = SDL_MapRGB(Screen->format, 255, 0, 0);
 	full_color_friend = SDL_MapRGB(Screen->format, 0, 255, 0);
 	energy_empty_color = SDL_MapRGB(Screen->format, 0, 0, 0);
 
-	//--------------------
 	// work out the percentage health
 	//
 	Percentage = (e->energy) / Druidmap[e->type].maxenergy;
@@ -3639,7 +3546,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 	} else {
 		//sdl stuff here
 
-		//--------------------
 		// Calculates the width of the remaining health bar. Rounds the
 		// width up to the nearest integer to ensure that at least one
 		// pixel of health is always shown.
@@ -3657,7 +3563,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		else
 			our_SDL_fill_rect_wrapper(Screen, &FillRect, full_color_enemy);
 
-		//--------------------
 		// Now after the energy bar has been drawn, we can start to draw the
 		// empty part of the energy bar (but only of course, if there is some
 		// empty part at all!  (Otherwise we get indefinately large energy
@@ -3679,7 +3584,6 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
 {
 	int RotationIndex;
 
-	//--------------------
 	// By now the angle the robot is facing is determined, so we just need to
 	// translate this angle into an index within the image series, i.e. into 
 	// a 'phase' of rotation. 
@@ -3687,7 +3591,6 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
 	RotationIndex = ((ThisRobot->current_angle - 45.0 + 360.0 + 360 /
 			  (2 * ROTATION_ANGLES_PER_ROTATION_MODEL)) * ROTATION_ANGLES_PER_ROTATION_MODEL / 360);
 
-	//--------------------
 	// But it might happen, that the angle of rotation is 'out of scale' i.e.
 	// it's more than 360 degree or less than 0 degree.  Therefore, we need to
 	// be especially careful to generate only proper indices for our arrays.
@@ -3699,7 +3602,6 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
 	while (RotationIndex >= ROTATION_ANGLES_PER_ROTATION_MODEL)
 		RotationIndex -= ROTATION_ANGLES_PER_ROTATION_MODEL;
 
-	//--------------------
 	// Now to prevent some jittering in some cases, where the droid uses an angle that is
 	// right at the borderline between two possible 8-way directions, we introduce some
 	// enforced consistency onto the droid...
@@ -3711,7 +3613,6 @@ int set_rotation_index_for_this_robot(enemy * ThisRobot)
 			ThisRobot->last_phase_change = 0.0;
 			ThisRobot->previous_phase = RotationIndex;
 		} else {
-			//--------------------
 			// In this case we don't permit to use a new 8-way direction now...
 			//
 			RotationIndex = ThisRobot->previous_phase;
@@ -3733,7 +3634,6 @@ int set_rotation_model_for_this_robot(enemy * ThisRobot)
 {
 	int RotationModel = Druidmap[ThisRobot->type].individual_shape_nr;
 
-	//--------------------
 	// A sanity check for roation model to use can never hurt...
 	//
 	if ((RotationModel < 0) || (RotationModel >= ENEMY_ROTATION_MODELS_AVAILABLE)) {
@@ -3765,25 +3665,21 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	// if ( ThisRobot -> pos . z != Me . pos . z )
 	// DebugPrintf ( -4 , "\n%s(): Now attempting to blit bot on truly virtual position..." , __FUNCTION__ );
 
-	//--------------------
 	// We properly set the direction this robot is facing.
 	//
 	RotationIndex = set_rotation_index_for_this_robot(ThisRobot);
 
-	//--------------------
 	// We properly set the rotation model number for this robot, i.e.
 	// which shape (like 302, 247 or proffa) to use for drawing this bot.
 	//
 	RotationModel = set_rotation_model_for_this_robot(ThisRobot);
 
-	//--------------------
 	// Maybe the rotation model we're going to use now isn't yet loaded. 
 	// Now in this case, we must load it immediately, or a segfault may
 	// result...
 	//
 	LoadAndPrepareEnemyRotationModelNr(RotationModel);
 
-	//--------------------
 	// Maybe we don't have an enemy here that would really stick to the 
 	// exact size of a block but be somewhat bigger or smaller instead.
 	// In this case, we'll just adapt the given target rectangle a little
@@ -3803,7 +3699,6 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].surface->h;
 		}
 	}
-	//--------------------
 	// Maybe the enemy is desired e.g. for the takeover game, so a pixel position on
 	// the screen is given and we blit the enemy to that position, not taking into 
 	// account any map coordinates or stuff like that...
@@ -3818,7 +3713,6 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		}
 		return;
 	}
-	//--------------------
 	// But here we know, that the enemy is desired inside the game, so we need to
 	// taking into account map coordinates and all that stuff...
 	//
@@ -3853,7 +3747,6 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 							      darkness * g, darkness * b, highlight, FALSE, zf);
 		} else {	/*Using SDL */
 			if (mask & ZOOM_OUT) {
-				//--------------------
 				// When no OpenGL is used, we need to proceed with SDL for
 				// blitting the small enemies...
 				//
@@ -3861,7 +3754,6 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 								      ThisRobot->virt_pos.x, ThisRobot->virt_pos.y);
 			} else {
 
-				//--------------------
 				// First we catch the case of a dead bot (no color filteres SDL surfaces
 				// availabe for that case).  In the other cases, we use the prepared color-
 				// filtered stuff...
@@ -3927,7 +3819,6 @@ void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 {
 	SDL_Rect TargetRectangle;
 
-	//--------------------
 	// We check for things like visibility and distance and the like,
 	// so that we know whether to consider this enemy for blitting to
 	// the screen or not.  Since there are many things to consider, we
@@ -3936,7 +3827,6 @@ void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 	if ((!ThisEnemyNeedsToBeBlitted(e, x, y)) && (!GameConfig.xray_vision_for_tux))
 		return;
 
-	//--------------------
 	// We check for incorrect droid types, which sometimes might occor, especially after
 	// heavy editing of the crew initialisation functions ;)
 	//
@@ -3945,7 +3835,6 @@ void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 There was a droid type on this level, that does not really exist.", PLEASE_INFORM, IS_FATAL);
 		e->type = 0;
 	}
-	//--------------------
 	// Since we will need that several times in the sequel, we find out the correct
 	// target location on the screen for our surface blit once and remember it for
 	// later.  ( THE TARGET RECTANGLE GETS MODIFIED IN THE SDL BLIT!!! )
@@ -3988,7 +3877,6 @@ There was a droid type on this level, that does not really exist.", PLEASE_INFOR
 	}
 #endif
 
-	//--------------------
 	// Only if this robot is not dead, we consider printing the comments
 	// this robot might have to make on the current situation.
 	//
@@ -4050,7 +3938,6 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
  */
 void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item)
 {
-	//--------------------
 	// The unwanted cases MUST be handled first...
 	//
 	if (CurItem->type == (-1)) {
@@ -4063,7 +3950,6 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	if (CurItem->currently_held_in_hand == TRUE)
 		return;
 
-	//--------------------
 	// In case the flag filters this item, we don't blit it
 	//
 	if ((put_thrown_items_flag == PUT_ONLY_THROWN_ITEMS) && (CurItem->throw_time <= 0))
@@ -4071,7 +3957,6 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	if ((put_thrown_items_flag == PUT_NO_THROWN_ITEMS) && (CurItem->throw_time > 0))
 		return;
 
-	//--------------------
 	// Now we can go take a look if maybe there is an ingame surface 
 	// for this item available.  If not, the function will automatically
 	// load the inventory surface instead, so we really can assume that
@@ -4081,7 +3966,6 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	    (!ItemMap[CurItem->type].inv_image.ingame_iso_image.texture_has_been_created))
 		try_to_load_ingame_item_surface(CurItem->type);
 
-	//--------------------
 	// When zoomed out, you can't see any items clearly anyway...
 	//
 	if (mask & ZOOM_OUT) {
@@ -4131,7 +4015,6 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ch
 	char ConstructedFilename[5000];
 	int current_active_direction;
 
-	//--------------------
 	// We do some sanity check against too small a radius
 	// given as parameter.  This can be loosened later.
 	//
@@ -4140,7 +4023,6 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ch
 
 	PictureType = (int)(4 * age) % 4;
 
-	//--------------------
 	// Now if we do not yet have all the prototype images in memory,
 	// we need to load them now and for once...
 	//
@@ -4181,7 +4063,6 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 			SparkPrototypeSurface[SparkType][k] = our_SDL_display_format_wrapperAlpha(tmp_surf);
 			SDL_FreeSurface(tmp_surf);
 
-			//--------------------
 			// Now that the loading is successfully done, we can do the
 			// prerotation of the images...using a constant for simplicity...
 			//
@@ -4192,7 +4073,6 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 
 				PrerotatedSparkSurfaces[SparkType][k][i].surface = our_SDL_display_format_wrapperAlpha(tmp_surf);
 
-				//--------------------
 				// Maybe opengl is in use.  Then we need to prepare some textures too...
 				//
 				if (use_open_gl) {
@@ -4209,7 +4089,6 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 	NumberOfPicturesToUse = 2 * (2 * Radius * 64 * 3.14) / (float)SparkPrototypeSurface[SparkType][PictureType]->w;
 	NumberOfPicturesToUse += 3;	// we want some overlap
 
-	//--------------------
 	// Now we blit all the pictures we like to use...in this case using
 	// multiple dynamic rotations (oh god!)...
 	//
@@ -4324,13 +4203,11 @@ void draw_inventory_occupied_rectangle(SDL_Rect TargetRect, int bgcolor)
 		if (bgcolor & REQUIREMENTS_NOT_MET)
 			GL_HighlightRectangle(Screen, &TargetRect, 255, 0, 0, 100);
 	} else {
-		// --------------------
 		// Some things like the loading of the inventory and initialisation of the
 		// inventory rectangle need to be done only once at the first call of this
 		// function. 
 		//
 		if (TransparentRedPlateImage == NULL) {
-			//--------------------
 			// Now we load the red intentory plate
 			//
 			find_file(fname1, GRAPHICS_DIR, fpath, 0);
@@ -4343,7 +4220,6 @@ The red transparent plate for the inventory could not be loaded.  This is a fata
 			TransparentRedPlateImage = our_SDL_display_format_wrapperAlpha(tmp);
 			SDL_FreeSurface(tmp);
 
-			//--------------------
 			// Now we load the blue inventory plate
 			//
 			find_file(fname2, GRAPHICS_DIR, fpath, 0);
@@ -4356,7 +4232,6 @@ The blue transparent plate for the inventory could not be loaded.  This is a fat
 			TransparentBluePlateImage = our_SDL_display_format_wrapperAlpha(tmp);
 			SDL_FreeSurface(tmp);
 
-			//--------------------
 			// Now we load the grey inventory plate
 			//
 			find_file(fname3, GRAPHICS_DIR, fpath, 0);
@@ -4392,7 +4267,6 @@ void ShowInventoryScreen(void)
 	int SlotNum;
 	int i, j;
 
-	//--------------------
 	// We define the left side of the user screen as the rectangle
 	// for our inventory screen.
 	//
@@ -4404,13 +4278,11 @@ void ShowInventoryScreen(void)
 	if (GameConfig.Inventory_Visible == FALSE)
 		return;
 
-	//--------------------
 	// At this point we know, that the inventory screen is desired and must be
 	// displayed in-game:
 	//
 	blit_special_background(INVENTORY_SCREEN_BACKGROUND_CODE);
 
-	//--------------------
 	// Now we display the item in the influencer drive slot
 	//
 	TargetRect.x = InventoryRect.x + DRIVE_RECT_X;
@@ -4418,7 +4290,6 @@ void ShowInventoryScreen(void)
 	if ((!Me.drive_item.currently_held_in_hand) && (Me.drive_item.type != (-1))) {
 		our_SDL_blit_surface_wrapper(ItemMap[Me.drive_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 	}
-	//--------------------
 	// Now we display the item in the influencer weapon slot
 	// At this point we have to pay extra care, cause the weapons in Freedroid
 	// really come in many different sizes.
@@ -4430,7 +4301,6 @@ void ShowInventoryScreen(void)
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_image.inv_size.y);
 		our_SDL_blit_surface_wrapper(ItemMap[Me.weapon_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 
-		//--------------------
 		// Maybe this is also a 2-handed weapon.  In this case we need to blit the
 		// weapon a second time, this time in the center of the shield rectangle to
 		// visibly reflect the fact, that the shield hand is required too for this
@@ -4448,7 +4318,6 @@ void ShowInventoryScreen(void)
 
 		}
 	}
-	//--------------------
 	// Now we display the item in the influencer armour slot
 	//
 	TargetRect.x = InventoryRect.x + ARMOUR_RECT_X;
@@ -4456,13 +4325,11 @@ void ShowInventoryScreen(void)
 	if ((!Me.armour_item.currently_held_in_hand) && (Me.armour_item.type != (-1))) {
 		our_SDL_blit_surface_wrapper(ItemMap[Me.armour_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 	}
-	//--------------------
 	// Now we display the item in the influencer shield slot
 	//
 	TargetRect.x = InventoryRect.x + SHIELD_RECT_X;
 	TargetRect.y = InventoryRect.y + SHIELD_RECT_Y;
 	if ((!Me.shield_item.currently_held_in_hand) && (Me.shield_item.type != (-1))) {
-		//--------------------
 		// Not all shield have the same height, therefore we do a little safety
 		// correction here, so that the shield will always appear in the center
 		// of the shield slot
@@ -4470,7 +4337,6 @@ void ShowInventoryScreen(void)
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.shield_item.type].inv_image.inv_size.y);
 		our_SDL_blit_surface_wrapper(ItemMap[Me.shield_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 	}
-	//--------------------
 	// Now we display the item in the influencer special slot
 	//
 	TargetRect.x = InventoryRect.x + HELMET_RECT_X;
@@ -4478,7 +4344,6 @@ void ShowInventoryScreen(void)
 	if ((!Me.special_item.currently_held_in_hand) && (Me.special_item.type != (-1))) {
 		our_SDL_blit_surface_wrapper(ItemMap[Me.special_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 	}
-	//--------------------
 	// Now we display all the items the influencer is carrying with him
 	//
 	for (SlotNum = 0; SlotNum < MAX_ITEMS_IN_INVENTORY - 1; SlotNum++) {

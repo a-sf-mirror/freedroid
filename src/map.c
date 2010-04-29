@@ -62,13 +62,11 @@ static void remove_blood_obstacles_for_respawning(int level_num)
 {
 	int i;
 
-	//--------------------
 	// We pass through all the obstacles, deleting those
 	// that are 'blood'.
 	//
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		switch (curShip.AllLevels[level_num]->obstacle_list[i].type) {
-			//--------------------
 			// In case we encounter the -1 obstacle, we're done, cause 'holes'
 			// aren't permitted inside the obstacle list of a level...
 			//
@@ -89,7 +87,6 @@ static void remove_blood_obstacles_for_respawning(int level_num)
 		case ISO_OIL_STAINS_7:
 		case ISO_OIL_STAINS_8:
 			action_remove_obstacle(curShip.AllLevels[level_num], &(curShip.AllLevels[level_num]->obstacle_list[i]));
-			//--------------------
 			// Now the obstacles have shifted a bit to close the gap from the
 			// deletion.  We need to re-process the current index in the next
 			// loop of this cycle...
@@ -115,12 +112,10 @@ void respawn_level(int level_num)
 	char wp_used[wp_num]; // is a waypoint already used ?
 	memset(wp_used, 0, wp_num);
 
-	//--------------------
 	// First we remove all the blood obstacles...
 	//
 	remove_blood_obstacles_for_respawning(level_num);
 
-	//--------------------
 	// Now we can give new life to dead bots...
 	//
 	BROWSE_DEAD_BOTS_SAFE(erot, nerot) {
@@ -132,7 +127,6 @@ void respawn_level(int level_num)
 		list_add(&(erot->level_list), &level_bots_head[level_num]);
 	}
 
-	//--------------------
 	// Finally, we reset the runtime attributes of the bots, place them
 	// on a waypoint, and ask them to start wandering...
 	//
@@ -218,14 +212,12 @@ void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer)
 {
 	int i;
 
-	//--------------------
 	// We empty the given target pointer, so that we can tell
 	// a successful resolve later...
 	//
 	PositionPointer->x = -1;
 	PositionPointer->y = -1;
 
-	//--------------------
 	// Now we check each level of the ship, if it maybe contains this
 	// label...
 	//
@@ -397,7 +389,6 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 	char *curfieldend = NULL;
 	char *obstacle_SectionBegin;
 
-	//--------------------
 	// First we initialize the obstacles with 'empty' information
 	//
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
@@ -411,12 +402,10 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
 		return DataPointer;
 
-	//--------------------
 	// Now we look for the beginning and end of the obstacle section
 	//
 	obstacle_SectionBegin = LocateStringInData(DataPointer, OBSTACLE_DATA_BEGIN_STRING) + strlen(OBSTACLE_DATA_BEGIN_STRING) + 1;
 
-	//--------------------
 	// Now we decode all the obstacle information
 	//
 	curfield = obstacle_SectionBegin;
@@ -483,7 +472,6 @@ static char *decode_map_labels(level *loadlevel, char *DataPointer)
 	char *MapLabelSectionEnd;
 	int NumberOfMapLabelsInThisLevel;
 
-	//--------------------
 	// First we initialize the map labels array with 'empty' information
 	//
 	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
@@ -499,13 +487,11 @@ static char *decode_map_labels(level *loadlevel, char *DataPointer)
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
 		return DataPointer;
 
-	//--------------------
 	// Now we look for the beginning and end of the map labels section
 	//
 	MapLabelSectionBegin = LocateStringInData(DataPointer, MAP_LABEL_BEGIN_STRING) + strlen(MAP_LABEL_BEGIN_STRING) + 1;
 	MapLabelSectionEnd = LocateStringInData(MapLabelSectionBegin, MAP_LABEL_END_STRING);
 
-	//--------------------
 	// We add a terminator at the end, but ONLY TEMPORARY.  The damage will be restored later!
 	//
 	PreservedLetter = MapLabelSectionEnd[0];
@@ -513,7 +499,6 @@ static char *decode_map_labels(level *loadlevel, char *DataPointer)
 	NumberOfMapLabelsInThisLevel = CountStringOccurences(MapLabelSectionBegin, LABEL_ITSELF_ANNOUNCE_STRING);
 	DebugPrintf(1, "\nNumber of map labels found in this level : %d.", NumberOfMapLabelsInThisLevel);
 
-	//--------------------
 	// Now we decode all the map label information
 	//
 	MapLabelPointer = MapLabelSectionBegin;
@@ -528,7 +513,6 @@ static char *decode_map_labels(level *loadlevel, char *DataPointer)
 			    loadlevel->labels[i].pos.y, loadlevel->labels[i].label_name);
 	}
 
-	//--------------------
 	// Now we repair the damage done to the loaded level data
 	//
 	MapLabelSectionEnd[0] = PreservedLetter;
@@ -554,7 +538,6 @@ static char *decode_obstacle_names(Level loadlevel, char *DataPointer)
 	int NumberOfobstacle_namesInThisLevel;
 	int target_index;
 
-	//--------------------
 	// At first we set all the obstacle name pointers to NULL in order to
 	// mark them as unused.
 	//
@@ -565,13 +548,11 @@ static char *decode_obstacle_names(Level loadlevel, char *DataPointer)
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
 		return DataPointer;
 
-	//--------------------
 	// Now we look for the beginning and end of the map labels section
 	//
 	obstacle_nameSectionBegin = LocateStringInData(DataPointer, OBSTACLE_LABEL_BEGIN_STRING);
 	obstacle_nameSectionEnd = LocateStringInData(obstacle_nameSectionBegin, OBSTACLE_LABEL_END_STRING);
 
-	//--------------------
 	// We add a terminator at the end, but ONLY TEMPORARY.  The damage will be restored later!
 	//
 	PreservedLetter = obstacle_nameSectionEnd[0];
@@ -579,7 +560,6 @@ static char *decode_obstacle_names(Level loadlevel, char *DataPointer)
 	NumberOfobstacle_namesInThisLevel = CountStringOccurences(obstacle_nameSectionBegin, OBSTACLE_LABEL_ANNOUNCE_STRING);
 	DebugPrintf(1, "\nNumber of obstacle labels found in this level : %d.", NumberOfobstacle_namesInThisLevel);
 
-	//--------------------
 	// Now we decode all the map label information
 	//
 	obstacle_namePointer = obstacle_nameSectionBegin;
@@ -593,7 +573,6 @@ static char *decode_obstacle_names(Level loadlevel, char *DataPointer)
 		DebugPrintf(1, "\nobstacle_name_index=%d obstacle_label_name=\"%s\"", target_index,
 			    loadlevel->obstacle_name_list[target_index]);
 	}
-	//--------------------
 	// Now we repair the damage done to the loaded level data
 	//
 	obstacle_nameSectionEnd[0] = PreservedLetter;
@@ -656,7 +635,6 @@ static char *decode_item_section(level *loadlevel, char *data)
 	char *ItemsSectionBegin;
 	char *ItemsSectionEnd;
 
-	//--------------------
 	// First we initialize the items arrays with 'empty' information
 	//
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -713,7 +691,6 @@ static char *decode_chest_item_section(level *loadlevel, char *data)
 	char *ItemsSectionBegin;
 	char *ItemsSectionEnd;
 	char *NextItemPointer;
-	//--------------------
 	// First we initialize the items arrays with 'empty' information
 	//
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -797,7 +774,6 @@ static char *decode_map(level *loadlevel, char *data)
 			memset(Buffer[col].obstacles_glued_to_here, -1, MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE);
 		}
 
-		//--------------------
 		// Now the old text pointer can be replaced with a pointer to the
 		// correctly assembled struct...
 		//
@@ -910,7 +886,6 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 	int glue_index;
 	int next_free_index;
 
-	//--------------------
 	// We clean out any obstacle glue information that might be still
 	// in this level.
 	//
@@ -922,7 +897,6 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 		}
 	}
 
-	//--------------------
 	// Each obstacles must to be anchored to exactly one (the closest!)
 	// map tile, so that we can find out obstacles 'close' to somewhere
 	// more easily...
@@ -931,7 +905,6 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 		if (loadlevel->obstacle_list[obstacle_counter].type == -1)
 			continue;
 
-		//--------------------
 		// We need to glue this one and we glue it to the closest map tile center we have...
 		// For this we need first to prepare some things...
 		//
@@ -958,7 +931,6 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 			}
 		}
 
-		//--------------------
 		// some safety check against writing beyond the bonds of the
 		// array.
 		//
@@ -975,7 +947,6 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 			 */
 			continue;
 		}
-		//--------------------
 		// Now it can be glued...
 		//
 		loadlevel->map[y_tile][x_tile].obstacles_glued_to_here[next_free_index] = obstacle_counter;
@@ -1000,18 +971,15 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 	int smashed_something = FALSE;
 	moderately_finepoint blast_start_pos;
 
-	//--------------------
 	// First some security checks against touching the outsides of the map...
 	//
 	if (!pos_inside_level(map_x, map_y, BoxLevel))
 		return (FALSE);
 
-	//--------------------
 	// We check all the obstacles on this square if they are maybe destructable
 	// and if they are, we destruct them, haha
 	//
 	for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
-		//--------------------
 		// First we see if there is something glued to this map tile at all.
 		//
 		target_idx = BoxLevel->map[map_y][map_x].obstacles_glued_to_here[i];
@@ -1023,7 +991,6 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		if (!(obstacle_map[target_obstacle->type].flags & IS_SMASHABLE))
 			continue;
 
-		//--------------------
 		// Now we check if the item really was close enough to the strike target.
 		// A range of 0.5 should do.
 		//
@@ -1048,14 +1015,12 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 
 		smashed_something = TRUE;
 
-		//--------------------
 		// Before we destroy the obstacle (and lose the obstacle type) we see if we
 		// should maybe drop some item.
 		//
 		if (obstacle_map[target_obstacle->type].flags & DROPS_RANDOM_TREASURE)
 			DropRandomItem(level, target_obstacle->pos.x, target_obstacle->pos.y, 0, FALSE);
 
-		//--------------------
 		// Since the obstacle is destroyed, we start a blast at it's position.
 		// But here a WARNING WARNING WARNING! is due!  We must not start the
 		// blast before the obstacle is removed, because the blast will again
@@ -1066,7 +1031,6 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		blast_start_pos.x = target_obstacle->pos.x;
 		blast_start_pos.y = target_obstacle->pos.y;
 
-		//--------------------
 		// Now we really smash the obstacle, i.e. we can set it's type to the debirs that has
 		// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
 		// then we'll just delete the obstacle in question entirely.  For this we got a standard function to
@@ -1078,7 +1042,6 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 			target_obstacle->type = obstacle_map[target_obstacle->type].result_type_after_smashing_once;
 		}
 
-		//--------------------
 		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
 		// removed, we may start a blast at this position.  Otherwise we would
 		// run into trouble, see the warning further above.
@@ -1135,7 +1098,6 @@ Uint16 GetMapBrick(level * lvl, float x, float y)
 	RoundX = (int)rintf(rpos.x);
 	RoundY = (int)rintf(rpos.y);
 
-	//--------------------
 	// Now we can return the floor tile information, but again we
 	// do so with sanitiy check for the range of allowed floor tile
 	// types and that...
@@ -1305,7 +1267,6 @@ int LoadShip(char *filename, int compressed)
 		}
 	}
 
-	//--------------------
 	// Read the whole ship-data to memory 
 	//
 	ShipFile = fopen(filename, "rb");
@@ -1358,7 +1319,6 @@ int LoadShip(char *filename, int compressed)
 		} 
 	}
 
-	//--------------------
 	// Now that all the information has been copied, we can free the loaded data
 	// again.
 	//
@@ -1576,7 +1536,6 @@ static void EncodeItemSectionOfThisLevel(struct auto_string *shipstr, level *Lev
 
 	autostr_append(shipstr, "%s\n", ITEMS_SECTION_BEGIN_STRING);
 
-	//--------------------
 	// Now we write out the bulk of items infos
 	//
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -1599,7 +1558,6 @@ static void EncodeChestItemSectionOfThisLevel(struct auto_string *shipstr, level
 
 	autostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_BEGIN_STRING);
 
-	//--------------------
 	// Now we write out the bulk of items infos
 	//
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -1804,7 +1762,6 @@ int GetCrew(char *filename)
 #define DROIDS_LEVEL_DESCRIPTION_START_STRING "** Beginning of new Level **"
 #define DROIDS_LEVEL_DESCRIPTION_END_STRING "** End of this levels droid data **"
 
-	//--------------------
 	//Now its time to start decoding the droids file.
 	//For that, we must get it into memory first.
 	//The procedure is the same as with LoadShip
@@ -1813,7 +1770,6 @@ int GetCrew(char *filename)
 
 	MainDroidsFilePointer = ReadAndMallocAndTerminateFile(fpath, END_OF_DROID_DATA_STRING);
 
-	//--------------------
 	// The Droid crew file for this map is now completely read into memory
 	// It's now time to decode the file and to fill the array of enemys with
 	// new droids of the given types.
@@ -2008,7 +1964,6 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 		DifferentRandomTypes++;
 	}
 
-	//--------------------
 	// At this point, the List "ListOfTypesAllowed" has been filled with the NUMBERS of
 	// the allowed types.  The number of different allowed types found is also available.
 	// That means that now we can add the appropriate droid types into the list of existing
@@ -2120,7 +2075,6 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 int IsVisible(GPS objpos)
 {
 
-	//--------------------
 	// For the purpose of visibility checking, we might as well exclude objects
 	// that are too far away to ever be visible and thereby save some checks of
 	// longer lines on the map, that wouldn't be nescessary or helpful anyway.
@@ -2129,7 +2083,6 @@ int IsVisible(GPS objpos)
 	    (fabsf(Me.pos.y - objpos->y) > FLOOR_TILES_VISIBLE_AROUND_TUX))
 		return (FALSE);
 
-	//--------------------
 	// So if the object in question is close enough to be visible, we'll do the
 	// actual check and see if the line of sight is free or blocked, a rather
 	// time-consuming and often re-iterated process.  (Maybe some do-it-every-
@@ -2256,7 +2209,6 @@ int CreateWaypoint(level * Lev, int x, int y, int *isnew)
 inline float translate_pixel_to_map_location(float axis_x, float axis_y, int give_x)
 {
 
-	//--------------------
 	// NOTE:  This function does not expect absolute screen coordinates but rather coordinates relative
 	// to the center of the screen.
 	//

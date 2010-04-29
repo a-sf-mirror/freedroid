@@ -136,28 +136,24 @@ static void fix_corners_in_this_grass_tile(level * EditLevel, int x, int y)
 	if (is_full_grass_tile(GetMapBrick(EditLevel, x + WEST_T, y)))
 		west_grass = TRUE;
 
-	//--------------------
 	// Upper left corner:
 	//
 	if ((north_grass && west_grass && GetMapBrick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
 	    && (GetMapBrick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_15);
 	}
-	//--------------------
 	// Upper right corner
 	//
 	if ((north_grass && east_grass && GetMapBrick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
 	    && (GetMapBrick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_16);
 	}
-	//--------------------
 	// Lower left corner:
 	//
 	if ((south_grass && west_grass && GetMapBrick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
 	    && (GetMapBrick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_14);
 	}
-	//--------------------
 	// Lower right corner
 	//
 	if ((south_grass && east_grass && GetMapBrick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
@@ -195,25 +191,21 @@ static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
 		west_grass = TRUE;
 		x_offset = -1;
 	}
-	//--------------------
 	// Upper left corner:
 	//
 	if (north_grass && west_grass && GetMapBrick(EditLevel, x + WEST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_21);
 	}
-	//--------------------
 	// Upper right corner
 	//
 	if (north_grass && east_grass && GetMapBrick(EditLevel, x + EAST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_20);
 	}
-	//--------------------
 	// Lower left corner:
 	//
 	if (south_grass && west_grass && GetMapBrick(EditLevel, x + WEST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_18);
 	}
-	//--------------------
 	// Lower right corner
 	//
 	if (south_grass && east_grass && GetMapBrick(EditLevel, x + EAST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
@@ -242,7 +234,6 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 	if (is_some_grass_tile(GetMapBrick(EditLevel, x + WEST_T, y)))
 		west_grass = TRUE;
 
-	//--------------------
 	// Fix sand on the west:
 	//
 	if (east_grass && !west_grass) {
@@ -251,7 +242,6 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 		else
 			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_7);
 	}
-	//--------------------
 	// Fix sand on the east:
 	//
 	if (!east_grass && west_grass) {
@@ -260,7 +250,6 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 		else
 			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_8);
 	}
-	//--------------------
 	// Fix sand on the north:
 	//
 	if (south_grass && !north_grass) {
@@ -269,7 +258,6 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 		else
 			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_12);
 	}
-	//--------------------
 	// Fix sand on the south:
 	//
 	if (!south_grass && north_grass) {
@@ -340,7 +328,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 
 	DebugPrintf(-4, "\nlevel_editor_beautify_grass_tiles (...): process started...");
 
-	//--------------------
 	// First we fix the pure corner pieces, cutting away quit some grass
 	// 
 	for (x = xstart; x < xend; x++) {
@@ -354,7 +341,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 		}
 	}
 
-	//--------------------
 	// Now we fix the anticorner pieces, cutting away much less grass
 	// 
 	for (x = xstart; x < xend; x++) {
@@ -368,7 +354,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 		}
 	}
 
-	//--------------------
 	// Now we fix the halftile pieces, cutting away much less grass
 	// 
 	for (x = xstart; x < xend; x++) {
@@ -382,7 +367,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 		}
 	}
 
-	//--------------------
 	// Finally we randomize the full grass tiles
 	// 
 	for (x = xstart; x < xend; x++) {
@@ -409,7 +393,6 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 		}
 	}
 
-	//--------------------
 	// Finally we randomize the isolated grass tiles
 	// 
 	for (x = xstart; x < xend; x++) {

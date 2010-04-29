@@ -321,7 +321,6 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 				if (ispoint)	// degenerated line, and outside the rectangle, no collision
 					continue;
 
-				//----------
 				// possible collision, check if the line is crossing the rectangle
 				// by looking if all vertices of the rectangle are in the same half-space
 				//
@@ -418,7 +417,6 @@ int DirectLineColldet(float x1, float y1, float x2, float y2, int z, colldet_fil
 	int x_start, y_start, x_end, y_end;	// intersection between the bbox and one level's limits
 	struct neighbor_data_cell *ngb_cell = NULL;
 
-	//--------------------
 	// First check on current level (small optimization)
 	//
 
@@ -434,7 +432,6 @@ int DirectLineColldet(float x1, float y1, float x2, float y2, int z, colldet_fil
 	if (!dlc_on_one_level(x_start, x_end, y_start, y_end, &p1, &p2, lvl, filter))
 		return FALSE;
 
-	//--------------------
 	// Get the neighborhood covered by the segment's bbox (see function's comment)
 	// and check each of the neighbors
 	//
@@ -517,7 +514,6 @@ int MoveOutOfObstacle(float *posX, float *posY, int posZ, obstacle * ThisObstacl
 	unsigned int i;
 	moderately_finepoint new_pos = { 0.5, 0.5 };
 
-	//--------------------
 	// Construct a sorted list of distance between character's position and the rectangle's edges
 	//
 	moderately_finepoint rect1 = { ThisObstacle->pos.x + obstacle_map[ThisObstacle->type].left_border,
@@ -535,7 +531,6 @@ int MoveOutOfObstacle(float *posX, float *posY, int posZ, obstacle * ThisObstacl
 
 	qsort(dist_arr, 4, sizeof(struct dist_elt), cmp_dist_elt);
 
-	//--------------------
 	// Check each direction of the sorted list
 	//
 	for (i = 0; i < 5; ++i) {
@@ -624,7 +619,6 @@ int EscapeFromObstacle(float *posX, float *posY, int posZ, colldet_filter * filt
 				if (obstacle_map[our_obs->type].block_area_type == COLLISION_TYPE_NONE)
 					continue;
 
-				//--------------------
 				// Now if the position lies inside the collision rectangle, then there's
 				// a collision.
 				//

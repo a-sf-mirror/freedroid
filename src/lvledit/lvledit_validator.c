@@ -1128,17 +1128,14 @@ void LevelValidation()
 
 	ShadowingRectangle(Screen, background_rect);
 
-	//--------------------
 	// Title
 	//
 	CenteredPutString(Screen, report_rect.y, "Level Validation tests - Summary\n");
 
-	//--------------------
 	// Load exceptions rules
 	//
 	load_excpt_lists("freedroid.lvleditor_exceptions");
 
-	//--------------------
 	// Loop on each level
 	//
 	int l;
@@ -1181,17 +1178,14 @@ void LevelValidation()
 		}
 	}
 
-	//--------------------
 	// Outputs uncaught exception rules
 	//
 
 	uncaught_excpt = print_uncaught_exceptions();
 
-	//--------------------
 
 	free_exception_lists();
 
-	//--------------------
 	// This was it.  We can say so and return.
 	//
 	int posy = report_rect.y + report_rect.h - raw_height;

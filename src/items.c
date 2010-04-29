@@ -149,7 +149,6 @@ void silently_unhold_all_items(void)
 
 	Item_Held_In_Hand = NULL;
 
-	//--------------------
 	// Now we remove all 'currently held' markers from all
 	// items in inventory and in slots and also from all items on the floor.
 	//
@@ -176,7 +175,6 @@ void silently_unhold_all_items(void)
  */
 void HomeMadeItemRepair(Item RepairItem)
 {
-	//--------------------
 	// At this point we know, that we have just selected an item
 	// for home-made repair.
 	//
@@ -205,7 +203,6 @@ unsigned long calculate_item_buy_price(item * BuyItem)
 	float SuffixMultiplier = 1;
 	float Multiplicity = BuyItem->multiplicity;
 
-	//--------------------
 	// Maybe the item is magical in one way or the other.  Then we have to
 	// multiply a factor to the price, no matter whether repairing or buying
 	// or selling the item.
@@ -233,7 +230,6 @@ unsigned long calculate_item_sell_price(item * BuyItem)
 	float SuffixMultiplier = 1;
 	float Multiplicity = BuyItem->multiplicity;
 
-	//--------------------
 	// Maybe the item is magical in one way or the other.  Then we have to
 	// multiply a factor to the price, no matter whether repairing or buying
 	// or selling the item.
@@ -244,7 +240,6 @@ unsigned long calculate_item_sell_price(item * BuyItem)
 	if (BuyItem->suffix_code != (-1))
 		SuffixMultiplier = SuffixList[BuyItem->suffix_code].price_factor;
 
-	//--------------------
 	// When selling an item, you don't get the full value of the item, but
 	// instead, only half of the original list price, cause it's a used good.
 	//
@@ -273,7 +268,6 @@ unsigned long calculate_item_repair_price(item * repair_item)
 	float SuffixMultiplier = 1;
 	float Multiplicity = repair_item->multiplicity;
 
-	//--------------------
 	// Maybe the item is magical in one way or the other.  Then we have to
 	// multiply a factor to the price, no matter whether repairing or buying
 	// or selling the item.
@@ -284,13 +278,11 @@ unsigned long calculate_item_repair_price(item * repair_item)
 	if (repair_item->suffix_code != (-1))
 		SuffixMultiplier = SuffixList[repair_item->suffix_code].price_factor;
 
-	//--------------------
 	// For repair, it's not the full 'buy' cost...
 	//
 #define REPAIR_PRICE_FACTOR (0.5)
 	PrefixMultiplier *= REPAIR_PRICE_FACTOR;
 
-	//--------------------
 	// This is the price of the DAMAGE in the item, haha
 	// This can only be requested for repair items
 	//
@@ -323,7 +315,6 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 	ThisItem->ammo_clip = 0;
 	if (ItemMap[ThisItem->type].item_gun_ammo_clip_size)
 		ThisItem->ammo_clip = MyRandom(ItemMap[ThisItem->type].item_gun_ammo_clip_size);
-	//--------------------
 	// We now have to set a duration : a maximum duration
 	// and a current duration. The latter is
 	// a fraction of the maximum duration.
@@ -340,7 +331,6 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 		ThisItem->current_duration = 1;
 	}
 
-	//--------------------
 	// Now it's time to fill in the magic properties of the item.  We have
 	// the basic ranges for the modifiers given in the prefix and suffix lists
 	// and just need to create random values in the given ranges for the item.
@@ -434,7 +424,6 @@ void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 {
 	strcpy(full_item_name, "");
 
-	// --------------------
 	// First clear the string and the we print out the item name.  That's simple.
 	// we also add the extension of the name, the 'suffix' to it.
 	//
@@ -449,7 +438,6 @@ void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 
 	strcat(full_item_name, D_(ItemMap[ShowItem->type].item_name));
 
-	//--------------------
 	// If the item is magical but not identified, we might add the word
 	// in parentheses and red font afterwards...
 	//
@@ -457,7 +445,6 @@ void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 		strcat(full_item_name, font_switchto_red);
 		strcat(full_item_name, _(" (Unidentified)"));
 	}
-	//--------------------
 	// Now that the item name is out, we can switch back to the standard font color...
 	//
 	strcat(full_item_name, font_switchto_neon);
@@ -474,7 +461,6 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 	gps item_pos;
 	level *item_drop_map_level = NULL;
 
-	//--------------------
 	// Some check against illegal item types
 	//
 	if ((ItemType < 0) || (ItemType >= Number_Of_Item_Types)) {
@@ -482,7 +468,6 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 		ErrorMessage(__FUNCTION__, "\
 				Received an item type that was outside of range of the allowed item types.", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Maybe the given position is from a virtual position of a dying robot.
 	// Then of course we must fix it first.  But fortunately we have suitable
 	// methods already...
@@ -497,12 +482,10 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 	y = item_pos.y;
 	level_num = item_pos.z;
 
-	//--------------------
 	// Now we can properly set the level...
 	//
 	item_drop_map_level = curShip.AllLevels[level_num];
 
-	//--------------------
 	// If given a non-existent item type, we don't do anything
 	// of course (and also don't produce a SEGFAULT or something...)
 	//
@@ -515,7 +498,6 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 				DropItemAt( ... ), which is pointing beyond the scope of the known\n\
 				item types.  This indicates a severe bug in Freedroid.", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// At first we must find a free item index on this level,
 	// so that we can enter the new item there.
 	//
@@ -528,7 +510,6 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 		ErrorMessage(__FUNCTION__, "\
 				Couldn't find another array entry to drop another item.", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Now we can construct the new item
 	//
 	item_drop_map_level->ItemList[i].type = ItemType;
@@ -580,7 +561,6 @@ int item_type_cannot_be_equipped(int drop_item_type)
  **- */
 int find_suitable_bonus_for_item(int drop_item_type, int TreasureChestRange, item_bonus * btype)
 {
-	//--------------------
 	// First we catch the case of non-equipable items being magical.
 	// This does not make sense and therefore is caught.
 	//
@@ -667,20 +647,17 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 	int drop_item_type = 1;
 	int drop_item_multiplicity = 1;
 
-	//--------------------
 	// First we determine if there is something dropped at all or not,
 	// cause in the later case, we can return immediately.  If a drop is
 	// forced, we need not check for not do drop.
 	//
 	DropDecision = MyRandom(100);
 
-	//--------------------
 	// We decide whether we drop something at all or not
 	//
 	if ((DropDecision < 100 - GOLD_DROP_PERCENTAGE) && (DropDecision > ITEM_DROP_PERCENTAGE))
 		return;
 
-	//--------------------
 	// Perhaps it's some gold that will be dropped.  That's rather
 	// simple, so we do this first.
 	//
@@ -719,17 +696,14 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 void DamageItem(item * CurItem)
 {
 
-	//--------------------
 	// If the item mentioned as parameter exists and if it is of 
 	// a destructable sort, then we apply the usual damage to it
 	if ((CurItem->type != (-1)) && (CurItem->max_duration != (-1))) {
 		CurItem->current_duration -= (MyRandom(100) < ARMOUR_DURABILITYLOSS_PERCENTAGE_WHEN_HIT) ? 1 : 0;
 		
-		//--------------------
 		// Make sound denoting some protective item was damaged
 		BulletReflectedSound();
 
-		//--------------------
 		// If the item has gone over it's threshhold of duration, it finally
 		// breaks and vaporizes
 		//
@@ -796,7 +770,6 @@ void MakeHeldFloorItemOutOf(item * SourceItem)
 		i = 0;
 		Terminate(ERR);
 	}
-	// --------------------
 	// Now we enter the item into the item list of this level
 	//
 	CopyItem(SourceItem, &(CURLEVEL()->ItemList[i]), FALSE);
@@ -820,7 +793,6 @@ int GetHeldItemInventoryIndex(void)
 {
 	int InvPos;
 
-	// --------------------
 	// First we find out the inventory index of the item we want to
 	// drop
 	//
@@ -864,7 +836,6 @@ item *GetHeldItemPointer(void)
 		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
 		return (&(Me.special_item));
 	} else {
-		// --------------------
 		// Not that we find that no item is held in hand in the entire inventory 
 		// and all the slots, we go and look if one of the items on this levels
 		// map is perhaps held in hand, but if that also fails, then no item at
@@ -1001,7 +972,6 @@ int required_magic_stat_for_next_level_and_item(int item_type)
     int associated_skill = (-1) ;
     associated_skill = associate_skill_with_item ( item_type );
 
-    //--------------------
     // In case we're not dealing with a spell book, the question
     // for skill requirement for the next level is senseless.  In
     // that case, we always allow to apply the item in question.
@@ -1009,7 +979,6 @@ int required_magic_stat_for_next_level_and_item(int item_type)
     if ( associated_skill == (-1) ) 
 	return ( 0 );
 
-    //--------------------
     // Now we know the associated skill, so all we need to do is
     // return the proper value from the magic requirements entry
     // of the SkillMap.
@@ -1027,7 +996,6 @@ There was a skill level mentioned, that exceeds the range of allowed skill level
 				   PLEASE_INFORM, IS_FATAL );
     }
 TODO I removed this, need to put this back in*/
-	//--------------------
 	// Just to make the compiler happy.  (This line can't be
 	// ever reached from inside the code...)
 	//
@@ -1133,7 +1101,6 @@ void ApplyItem(item * CurItem)
 		append_new_game_message(_("How do you expect to do two things at a time? %s"), msg);
 		return;		//if the player is busy reloading or anything
 	}
-	//--------------------
 	// At this point we know that the item is applicable in combat situation
 	// and therefore all we need to do from here on is execute the item effect
 	// upon the influencer or his environment.
@@ -1228,7 +1195,6 @@ void ApplyItem(item * CurItem)
 
 	play_item_sound(CurItem->type);
 
-	//--------------------
 	// In some cases the item concerned is a one-shot-device like a health potion, which should
 	// evaporize after the first application.  Therefore we delete the item from the inventory list.
 	//
@@ -1341,7 +1307,6 @@ int FindFirstInventoryIndexWithItemType(int Itemtype)
 			return (i);
 	}
 
-	//--------------------
 	// Severe error:  Item type NOT found in inventory!!!
 	//
 	fprintf(stderr, "\n\nItemType: '%d'.\n", Itemtype);
@@ -1390,7 +1355,6 @@ void DeleteOneInventoryItemsOfType(int Itemtype)
 		}
 	}
 
-	//--------------------
 	// This point must never be reached or a severe error has occured...
 	//
 	fprintf(stderr, "\n\nItemType: '%d'.\n", Itemtype);
@@ -1544,7 +1508,6 @@ int GetHeldItemCode(void)
 	if (ItemPointer != NULL) {
 		return (ItemPointer->type);
 	}
-	//--------------------
 	// If we ever reach this point, that means that the held items code
 	// could not be correctly computed, which should mean a reason to
 	// terminate immediately with severe error
@@ -1566,7 +1529,6 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 	int item_height;
 	int item_width;
 
-	//--------------------
 	// Perhaps the item reaches even outside the inventory grid.  Then of course
 	// it does not fit and we need/should not even test the details...
 	//
@@ -1577,7 +1539,6 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 	if (ItemMap[ItemType].inv_image.inv_size.y - 1 + InvPos_y >= INVENTORY_GRID_HEIGHT)
 		return (FALSE);
 
-	// --------------------
 	// Now that we know, that the desired position is at least inside the inventory
 	// grid, we can start to test for the details of the available inventory space
 	//
@@ -1599,14 +1560,12 @@ void DropItemToTheFloor(Item DropItemPointer, float x, float y, int levelnum)
 	int i;
 	Level DropLevel = curShip.AllLevels[levelnum];
 
-	// --------------------
 	// Now we want to drop the item to the floor.
 	// We therefore find a free position in the item list of this level
 	// where we can add the item later.
 	//
 	i = find_free_floor_items_index(levelnum);
 
-	//--------------------
 	// Now we enter the item into the item list of this level
 	//
 	CopyItem(DropItemPointer, &(DropLevel->ItemList[i]), TRUE);
@@ -1711,7 +1670,6 @@ void DropHeldItemToSlot(item * SlotItem)
 		return;		
 	}
 
-	//--------------------
 	// If there is an old item in the slot, we make a held item on the
 	// floor out of it and also set the HeldItemType accordingly, so that
 	// after the new item was placed successfully, the old item will
@@ -1727,7 +1685,6 @@ void DropHeldItemToSlot(item * SlotItem)
 	else
 		Item_Held_In_Hand = NULL;
 	
-	//--------------------
 	// Now the item is installed into the weapon slot of the influencer
 	//
 	CopyItem(DropItemPointer, SlotItem, TRUE);
@@ -1750,7 +1707,6 @@ int GetFreeInventoryIndex(void)
 {
 	int InvPos;
 
-	// --------------------
 	// We find out the first free inventory index:
 	//
 	for (InvPos = 0; InvPos < MAX_ITEMS_IN_INVENTORY - 1; InvPos++) {
@@ -1759,7 +1715,6 @@ int GetFreeInventoryIndex(void)
 		}
 	}
 
-	// --------------------
 	// If this point is reached, the severe error mentioned above has
 	// occured, an error message must be printed out and the program
 	// must be terminated.
@@ -1784,7 +1739,6 @@ void DropHeldItemToInventory(void)
 	int i;
 	FreeInvIndex = GetFreeInventoryIndex();
 
-	// --------------------
 	// First we check validity of held item
 	//
 	if (Item_Held_In_Hand == NULL) {
@@ -1792,7 +1746,6 @@ void DropHeldItemToInventory(void)
 		return;
 	}
 
-	// --------------------
 	// Now we want to drop the item to the right location again.
 	// Therefore we need to find out the right position, which of course
 	// depends as well on current mouse cursor location as well as the
@@ -1807,7 +1760,6 @@ void DropHeldItemToInventory(void)
 		Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
 		Me.Inventory[FreeInvIndex].currently_held_in_hand = FALSE;
 
-		// --------------------
 		// Now that we know that the item could be dropped directly to inventory 
 		// without swapping any spaces, we can as well make the item
 		// 'not held in hand' immediately and return
@@ -1816,13 +1768,11 @@ void DropHeldItemToInventory(void)
 		Item_Held_In_Hand = NULL;
 		return;
 	} else {
-		//--------------------
 		// So the item could not be placed into inventory directly, but maybe
 		// it can be placed there if we swap our dropitem with some other item.
 		// Let's test this opportunity here.
 		//
 		for (i = 0; i < MAX_ITEMS_IN_INVENTORY - 1; i++) {
-			//--------------------
 			// FIRST: Security check against segfaults:  It might happen that we 
 			// delete the Dropitem itself while trying several items as candidates
 			// for removal.  This would cause testing dropability with a -1 item
@@ -1831,7 +1781,6 @@ void DropHeldItemToInventory(void)
 			if (&(Me.Inventory[i]) == Item_Held_In_Hand)
 				continue;
 
-			//--------------------
 			// So we make a copy of each of the items we remove in order to 
 			// try to create new space for the drop item.  After that, we can
 			// remove it.
@@ -1855,7 +1804,6 @@ void DropHeldItemToInventory(void)
 				return;
 			}
 
-			//--------------------
 			// But if even the removal of one item was not enough, so that the new
 			// item would fit into the inventory, then of course we should re-add the
 			// removed item to the inventory, so that no other items get lost.
@@ -1876,7 +1824,6 @@ void ShowQuickInventory(void)
 	SDL_Rect TargetRect;
 	int Index;
 
-	//--------------------
 	// Now we can blit all the objects in the quick inventory, but of course only
 	// those small objects, that have a 1x1 inventory grid size, so that they really
 	// can be drawn from the 'belt' that is actually the quick inventory.
@@ -1904,7 +1851,6 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 	gps mouse_pos;
 	int i;
 
-	//--------------------
 	// In the case that X was pressed, we don't use the item positions but rather
 	// we use the item slot rectangles from the item texts.
 	//
@@ -1925,7 +1871,6 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 			}
 		}
 	}
-	//--------------------
 	// If no X was pressed, we only use the floor position the mouse
 	// has pointed to and see if we can find an item that has geographically
 	// that very same (or a similar enough) position.
@@ -1974,7 +1919,6 @@ void handle_player_identification_command()
 	int Grabbed_InvPos = (-1);
 	item *GrabbedItem = NULL;
 
-	//--------------------
 	// If the inventory sceen isn't open at all, then we can cancel
 	// the whole operation right away
 	//
@@ -1982,7 +1926,6 @@ void handle_player_identification_command()
 		append_new_game_message(_("Identified air."));
 		return;
 	}
-	// --------------------
 	// We will need the current mouse position on several spots...
 	//
 	CurPos.x = GetMousePos_x();
@@ -2117,12 +2060,10 @@ void HandleInventoryScreen(void)
 		return;
 	}
 	
-	//--------------------
 	// Case 2: The user left-clicks somewhere to drop a held item
 	//
 	if (MouseLeftClicked() && (Item_Held_In_Hand != NULL)) {
 		
-		//--------------------
 		// Case 2.1: The left-clicks on the inventory grid -> we must see if 
 		//           the item was dropped onto a correct inventory location and 
 		//           should from then on not only no longer be in the players
@@ -2133,7 +2074,6 @@ void HandleInventoryScreen(void)
 			return;
 		}
 
-		//--------------------
 		// Case 2.2: The user left-clicks in the "UserRect" -> the item should 
 		//           be dropped onto the players current location
 		//
@@ -2142,7 +2082,6 @@ void HandleInventoryScreen(void)
 			return;
 		}
 
-		//--------------------
 		// Case 2.3: The user left-clicks in the weapon's equipment slot
 		//
 		if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
@@ -2203,7 +2142,6 @@ void HandleInventoryScreen(void)
 			}
 		}
 
-		//--------------------
 		// Case 2.4: The user left-clicks in the shield's equipment slot
 		//
 		if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
@@ -2253,7 +2191,6 @@ void HandleInventoryScreen(void)
 			}
 		}
 
-		//--------------------
 		// Case 2.5: The user left-clicks in an other equipment slot
 		//
 		itemspec *tocheck = &ItemMap[Item_Held_In_Hand->type];
@@ -2274,13 +2211,11 @@ void HandleInventoryScreen(void)
 			}
 		}
 
-		//--------------------
 		// The left-click did not lead to anything useful
 		
 		return;
 	}
 
-	//--------------------
 	// There was no left-click, so we will now analyze right-click, but a right
 	// click is no-sense (here) if the Inventory screen is hidden
 	//
@@ -2288,14 +2223,12 @@ void HandleInventoryScreen(void)
 		return;
 	}
 
-	//--------------------
 	// Case 3: The user is right-clicking inside the inventory rectangle which 
 	// would mean for us that he is applying the item under the mouse button
 	//
 	if (MouseRightClicked()) {
 
 		if (Me.readied_skill == get_program_index_with_name("Repair equipment")) {
-			//--------------------
 			// Here we know, that the repair skill is selected, therefore we try to 
 			// repair the item currently under the mouse cursor.
 			//
@@ -2341,7 +2274,6 @@ void HandleInventoryScreen(void)
 				Grabbed_InvPos = GetInventoryItemAt(Inv_GrabLoc.x, Inv_GrabLoc.y);
 
 				if (Grabbed_InvPos != -1) {
-					//--------------------
 					// At this point we know, that we have just applied something from the inventory
 					//
 					ApplyItem(&(Me.Inventory[Grabbed_InvPos]));
@@ -2408,7 +2340,6 @@ int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_Loc, in
 	Me.Inventory[InvPos].inventory_position.y = Inv_Loc.y;
 	DebugPrintf(1, "\nAddFloorItemDirectlyToInventory:  FINE INVENTORY POSITION FOUND!!");
 
-	//--------------------
 	if ((InvPos >= MAX_ITEMS_IN_INVENTORY - 1) || (Me.Inventory[InvPos].inventory_position.x == (-1))) {
 		Me.TextVisibleTime = 0;
 		Me.TextToBeDisplayed = _("I can't carry any more.");
@@ -2437,7 +2368,6 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 	if (ItemPointer == NULL)
 		return -1;
 
-	//--------------------
 	// In the special case of money, we add the amount of money to our
 	// money counter and eliminate the item on the floor.
 	//
@@ -2454,7 +2384,6 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 		DeleteItem(ItemPointer);
 		return 0;
 	}
-	//--------------------
 	// In the special case, that this is an item, that groups together with others
 	// of the same type AND we also have as item of this type already in inventory,
 	// then we just need to manipulate multiplicity a bit and we're done.  Very easy.
@@ -2468,13 +2397,11 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 			return 0;
 		}
 	}
-	//--------------------
 	// Maybe the item is of a kind that can be equipped right now.  Then
 	// we decide to directly drop it to the corresponding slot.
 	//
 	if ((Me.weapon_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_weapon_slot)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
-			//--------------------
 			// Now we're picking up a weapon while no weapon is equipped.  But still
 			// it might be a 2-handed weapon while there is some shield equipped.  Well,
 			// when that is the case, we refuse to put it directly to the proper slot, 
@@ -2484,7 +2411,6 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.weapon_item), Inv_Loc);
 				return 0;
 			}
-			//--------------------
 			// So now we know that some shield item is equipped.  Let's be careful:  2-handed
 			// weapons will be rejected from direct addition to the slot.
 			//
@@ -2496,7 +2422,6 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 	}
 	if ((Me.shield_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_shield_slot)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
-			//--------------------
 			// Auto-equipping shields can be done.  But only if there isn't a 2-handed
 			// weapon equipped already.  Well, in case of no weapon present it's easy:
 			//
@@ -2504,7 +2429,6 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.shield_item), Inv_Loc);
 				return 0;
 			}
-			//--------------------
 			// But now we know, that there is some weapon present.  We need to be careful:
 			// it might be a 2-handed weapon.
 			// 
@@ -2538,7 +2462,6 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 			break;
 	}
 
-	//--------------------
 	// Maybe the item in question is something, that would best be placed inside
 	// the quick inventory.  If that is so, we try to put it there first.  If that
 	// isn't possible, it can still be placed somewhere outside of the quick 
@@ -2554,7 +2477,6 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 		}
 	}
 
-	//--------------------
 	// find enough free squares in the inventory to fit
 	for (Inv_Loc.y = 0; Inv_Loc.y < InventorySize.y - ItemMap[ItemPointer->type].inv_image.inv_size.y + 1; Inv_Loc.y++) {
 		for (Inv_Loc.x = 0; Inv_Loc.x < InventorySize.x - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {

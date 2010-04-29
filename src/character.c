@@ -100,7 +100,6 @@ void DisplayButtons(void)
 	if (GameConfig.screen_height == 480 && (GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible))
 		return;
 
-	//--------------------
 	// When the Tux has some extra skill points, that can be distributed
 	// to some character stats or saved for later training with some trainer
 	// character in the city, we mark the character screen toggle button as
@@ -125,13 +124,11 @@ void DisplayButtons(void)
  */
 static void AddInfluencerItemAttributeBonus(item * BonusItem)
 {
-	//--------------------
 	// In case of no item, the thing to do is pretty easy...
 	//
 	if (BonusItem->type == (-1))
 		return;
 
-	//--------------------
 	// In case of a suffix modifier, we need to apply the suffix...
 	//
 	if (((BonusItem->suffix_code != (-1)) || (BonusItem->prefix_code != (-1))) && BonusItem->is_identified) {
@@ -149,18 +146,15 @@ static void AddInfluencerItemAttributeBonus(item * BonusItem)
  */
 static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 {
-	//--------------------
 	// In case of no item, the thing to do is pretty easy...
 	//
 	if (BonusItem->type == (-1))
 		return;
 
-	//--------------------
 	// In case of present suffix or prefix modifiers, we need to apply the suffix...
 	//
 	if (((BonusItem->suffix_code != (-1)) || (BonusItem->prefix_code != (-1))) && BonusItem->is_identified) {
 
-		//--------------------
 		// Some modifiers might not be random at all but fixed to the 
 		// item prefix or item suffix.  In that case, we must get the
 		// modifier strength from the suffix/prefix spec itself...
@@ -170,7 +164,6 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 		if (BonusItem->prefix_code != (-1))
 			Me.light_bonus_from_tux += PrefixList[BonusItem->prefix_code].light_bonus_value;
 
-		//--------------------
 		// Now we can apply the modifiers, that have been generated from
 		// the suffix spec and then (with some randomness) written into the
 		// item itself.  In that case we won't need the suffix- or 
@@ -204,7 +197,6 @@ void check_for_new_experience_level_reached()
 
 	Me.ExpRequired = BaseExpRequired * (exp((Me.exp_level - 1) * log(2)));
 
-	//--------------------
 	// For display reasons in the experience graph, we also state the experience 
 	// needed for the previous level inside the tux struct.  Therefore all exp/level
 	// calculations are found in this function.
@@ -223,13 +215,11 @@ void check_for_new_experience_level_reached()
 			return;
 		}
 
-		//--------------------
 		// Like in the Gothic 1 game, maximum life force will now automatically
 		// be increased upon reaching a new character level.
 		//
 		Me.base_vitality += 3;
 
-		//--------------------
 		// When a droid reaches a new experience level, all health and 
 		// force are restored to full this one time no longer.  Gothic
 		// rulez more than Diablo rulez.
@@ -237,7 +227,6 @@ void check_for_new_experience_level_reached()
 		// Me .energy = Me .maxenergy ;
 		// Me .mana   = Me .maxmana   ;
 
-		//--------------------
 		// Also when a new level is reached, we will display a big message
 		// right over the combat window.
 		//
@@ -254,7 +243,6 @@ void update_all_primary_stats()
 {
 	int i;
 
-	//--------------------
 	// Now we base PRIMARY stats
 	//
 	Me.Strength = Me.base_strength;
@@ -265,13 +253,11 @@ void update_all_primary_stats()
 	Me.freezing_melee_targets = 0;
 	Me.double_ranged_damage = FALSE;
 
-	//--------------------
 	// Now we re-initialize the SKILL LEVELS
 	//
 	for (i = 0; i < number_of_skills; i++)
 		Me.SkillLevel[i] = Me.base_skill_level[i];
 
-	//--------------------
 	// Now we add all bonuses to the influencers PRIMARY stats
 	//
 	AddInfluencerItemAttributeBonus(&Me.armour_item);
@@ -300,7 +286,6 @@ void update_all_primary_stats()
 		i++;
 	}
 
-	//--------------------
 	// Maybe there is some boost from a potion or magic spell going on right
 	// now...
 	//
@@ -319,28 +304,23 @@ void update_all_primary_stats()
  */
 void update_secondary_stats_from_primary_stats()
 {
-	//--------------------
 	// The chance that this player character will score a hit on an enemy
 	//
 	Me.to_hit = 60 + (Me.Dexterity) * TOHIT_PERCENT_PER_DEX_POINT;
 
-	//--------------------
 	// How many life points can this character aquire currently
 	//
 	Me.maxenergy = (Me.Vitality) * Energy_Gain_Per_Vit_Point;
 
-	//--------------------
 	// The maximum mana value computed from the primary stats
 	//
 	Me.max_temperature = (Me.Magic) * Maxtemp_Gain_Per_CPU_Point;
 
-	//--------------------
 	// How long can this character run until he must take a break and
 	// walk a bit
 	//
 	Me.max_running_power = (Me.Strength) + (Me.Dexterity) + (Me.Vitality) + Me.running_power_bonus;
 
-	//--------------------
 	// base regeneration speed set to 0.2 points per second
 	Me.health_recovery_rate = 0.2;
 	Me.cooling_rate = 1.0;
@@ -356,7 +336,6 @@ void update_damage_tux_can_do()
 {
 	if (Me.weapon_item.type != (-1)) {
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
-			//--------------------
 			// Damage modifier in case of MELEE WEAPON is computed:  
 			// weapon's modifier * (100+Strength)%
 			//
@@ -364,28 +343,24 @@ void update_damage_tux_can_do()
 
 			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.Strength + 100.0) / 100.0;
 
-			//--------------------
 			// Damage AND damage modifier a modified by additional melee weapon
 			// skill:  A multiplier is applied!
 			//
 			Me.damage_modifier *= MeleeDamageMultiplierTable[Me.melee_weapon_skill];
 			Me.base_damage *= MeleeDamageMultiplierTable[Me.melee_weapon_skill];
 		} else {
-			//--------------------
 			// Damage modifier in case of RANGED WEAPON is computed:  
 			// weapon's modifier * (100+Dexterity)%
 			//
 			Me.base_damage = Me.weapon_item.damage * (Me.Dexterity + 100.0) / 100.0;
 			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.Dexterity + 100.0) / 100.0;
 
-			//--------------------
 			// Damage AND damage modifier a modified by additional ranged weapon
 			// skill:  A multiplier is applied!
 			//
 			Me.damage_modifier *= RangedDamageMultiplierTable[Me.ranged_weapon_skill];
 			Me.base_damage *= RangedDamageMultiplierTable[Me.ranged_weapon_skill];
 
-			//--------------------
 			// Maybe there is a plugin for double damage with ranged
 			// weapons present?
 			//
@@ -395,7 +370,6 @@ void update_damage_tux_can_do()
 			}
 		}
 	} else {
-		//--------------------
 		// In case of no weapon equipped at all, we initialize
 		// the damage values with some simple numbers.  Currently
 		// strength and dexterity play NO ROLE in weaponless combat.
@@ -413,12 +387,10 @@ void update_damage_tux_can_do()
  */
 void update_tux_armour_damage_reduction()
 {
-	//--------------------
 	// We initialize the armour damage reduction
 
 	Me.DAMRED = 0 ;
 
-	//--------------------
 	// Now we apply the armour bonuses from the currently equipped
 	// items to the total defence value
 	//
@@ -449,20 +421,17 @@ void update_tux_armour_damage_reduction()
  */
 void UpdateAllCharacterStats()
 {
-	//--------------------
 	// Maybe the influencer has reached a new experience level?
 	// Let's check this...
 	// 
 	check_for_new_experience_level_reached();
 
-	//--------------------
 	// The primary status must be computed/updated first, because
 	// the secondary status (chances and the like) will depend on
 	// them...
 	//
 	update_all_primary_stats();
 
-	//--------------------
 	// At this point we know, that the primary stats of the influencer
 	// have been fully computed.  So that means, that finally we can compute
 	// all base SECONDARY stats, that are dependent upon the influencer primary
@@ -471,7 +440,6 @@ void UpdateAllCharacterStats()
 	//
 	update_secondary_stats_from_primary_stats();
 
-	//--------------------
 	// Now we compute the possible damage the player character can do.
 	// The damage value of course depends on the weapon type that the
 	// character is using.  And depending on the weapon type (melee or
@@ -479,12 +447,10 @@ void UpdateAllCharacterStats()
 	//
 	update_damage_tux_can_do();
 
-	//--------------------
 	// Update tux armour class
 	//
 	update_tux_armour_damage_reduction();
 
-	//--------------------
 	// So at this point we can finally apply all the modifiers to the influencers
 	// SECONDARY stats due to 'magical' items and spells and the like
 	//
@@ -495,14 +461,12 @@ void UpdateAllCharacterStats()
 	AddInfluencerItemSecondaryBonus(&Me.shield_item);
 	AddInfluencerItemSecondaryBonus(&Me.special_item);
 
-	//--------------------
 	// Check player's health and temperature
 	if (Me.energy > Me.maxenergy)
 		Me.energy = Me.maxenergy;
 	if (Me.temperature < 0)
 		Me.temperature = 0;
 
-	//--------------------
 	// Now that the defence stat is computed, we can compute the chance, that
 	// a randomly chosen lv. 1 bot will hit the Tux in any given strike...
 	//
@@ -517,7 +481,6 @@ void UpdateAllCharacterStats()
 void show_character_screen_skills()
 {
 
-	//--------------------
 	// We add some security against skill values out of allowed
 	// bounds.
 	//
@@ -532,7 +495,6 @@ Error: melee weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
 	DisplayText(_(AllSkillTexts[Me.melee_weapon_skill]),
 		    SKILLS_VALUE_X + CharacterRect.x, MELEE_SKILL_Y + 17 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-	//--------------------
 	// We add some security against skill values out of allowed
 	// bounds.
 	//
@@ -547,7 +509,6 @@ Error: ranged weapon skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
 	DisplayText(_(AllSkillTexts[Me.ranged_weapon_skill]),
 		    SKILLS_VALUE_X + CharacterRect.x, RANGED_SKILL_Y + 17 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-	//--------------------
 	// We add some security against skill values out of allowed
 	// bounds.
 	//
@@ -574,7 +535,6 @@ void ShowCharacterScreen()
 
 	DebugPrintf(2, "\n%s(): Function call confirmed.", __FUNCTION__);
 
-	//--------------------
 	// If the log is not set to visible right now, we do not need to 
 	// do anything more, but to restore the usual user rectangle size
 	// back to normal and to return...
@@ -584,13 +544,11 @@ void ShowCharacterScreen()
 
 	SetCurrentFont(Messagestat_BFont);
 
-	// --------------------
 	// We will need the current mouse position on several spots...
 	//
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
 
-	//--------------------
 	// We define the right side of the user screen as the rectangle
 	// for our inventory screen.
 	//
@@ -712,7 +670,6 @@ void ShowCharacterScreen()
 	sprintf(CharText, "%d%%", (int)Me.DAMRED);
 	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMRED_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
-	//--------------------
 	// Now we print out the current skill levels in hacking skill, 
 	// spellcasting, melee combat, ranged weapon combat and repairing things
 	//

@@ -498,7 +498,6 @@ void make_texture_out_of_surface(iso_image * our_image)
 
 	SDL_Surface *right_sized_image;
 
-	//--------------------
 	// This fills up the image with transparent material, so that 
 	// it will have powers of 2 as the dimensions, which is a requirement
 	// for textures on most OpenGL capable cards.
@@ -509,14 +508,12 @@ void make_texture_out_of_surface(iso_image * our_image)
 	our_image->original_image_width = our_image->surface->w;
 	our_image->original_image_height = our_image->surface->h;
 
-	//--------------------
 	// Having prepared the raw image it's now time to create the real
 	// textures.
 	//
 	do_make_texture_out_of_surface(our_image, right_sized_image->w, right_sized_image->h, right_sized_image->pixels);
 	SDL_FreeSurface(right_sized_image);
 
-	//--------------------
 	// Now that the texture has been created, we assume that the image is
 	// not needed any more and can be freed now!  
 
@@ -550,7 +547,6 @@ void open_gl_check_error_status(const char *name_of_calling_function)
 
 	switch (glGetError()) {
 	case GL_NO_ERROR:
-		//--------------------
 		// All is well.  No messages need to be generated...
 		break;
 	case GL_INVALID_ENUM:
@@ -643,7 +639,6 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 int safely_initialize_our_default_open_gl_parameters(void)
 {
 #ifdef HAVE_LIBGL
-	//--------------------
 	// Set up the screne, viewport matrix, coordinate system and all that...
 	//
 	safely_set_open_gl_viewport_and_matrix_mode();
@@ -716,7 +711,6 @@ draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE);
 
-		//--------------------
 		// Now we draw our quad AGAIN!
 		//
 		draw_gl_textured_quad_helper(x, y, x + our_iso_image->original_image_width * zoom_factor,
@@ -902,7 +896,6 @@ void StoreMenuBackground(int backup_slot)
 
 #endif
 	} else {
-		//--------------------
 		// If the memory was not yet allocated, we need to do that now...
 		//
 		// otherwise we free the old surface and create a new copy of the
@@ -930,27 +923,23 @@ void set_up_stretched_texture_for_light_radius(void)
 
 	static int texture_is_set_up_already = FALSE;
 
-	//--------------------
 	// In the non-open-gl case, this function shouldn't be called ever....
 	//
 	if (!use_open_gl)
 		return;
 
-	//--------------------
 	// Some protection against creating this texture twice...
 	//
 	if (texture_is_set_up_already)
 		return;
 	texture_is_set_up_already = TRUE;
 
-	//--------------------
 	// We create an SDL surface, so that we can make the texture for the
 	// stretched-texture method light radius from it...
 	//
 	light_radius_stretch_surface =
 	    SDL_CreateRGBSurface(SDL_SWSURFACE, LightRadiusConfig.texture_w, LightRadiusConfig.texture_h, 32, rmask, gmask, bmask, amask);
 
-	//--------------------
 	// Having prepared the raw image it's now time to create the real
 	// textures.
 	//
@@ -987,7 +976,6 @@ void light_radius_update_stretched_texture(void)
 	int alpha = 0;
 	int light_strength;
 	static float alpha_factor = 255.0 / (float)NUMBER_OF_SHADOW_IMAGES;
-	//--------------------
 	// Now it's time to edit the automap texture.
 	//
 	for (y = 0; y < LightRadiusConfig.cells_h; y++) {
@@ -1028,7 +1016,6 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 #ifdef HAVE_LIBGL
 	iso_image local_iso_image;
 
-	//--------------------
 	// We make sure, that there is one single texture created before
 	// doing any of our texture-blitting or texture-modification stuff
 	// with it.
@@ -1037,7 +1024,6 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 
 	light_radius_update_stretched_texture();
 
-	//--------------------
 	// Now we blit the current automap texture to the screen.  We use standard
 	// texture blitting code for this, so we need to embed the automap texture
 	// in a surrounting 'iso_image', but that shouldn't be costly or anything...
@@ -1290,7 +1276,6 @@ void blit_special_background(int background_code)
 		find_file(background_filenames[background_code], GRAPHICS_DIR, fpath, 0);
 		get_iso_image_from_file_and_path(fpath, &(our_backgrounds[background_code]), FALSE);
 
-		//--------------------
 		// For the dialog, we need not only the dialog background, but also some smaller
 		// parts of the background image, so we can re-do the background part that is in
 		// the dialog partners chat output window.  We don't make a separate image on disk
@@ -1304,7 +1289,6 @@ void blit_special_background(int background_code)
 			src_rect.x = CHAT_SUBDIALOG_WINDOW_X;
 			src_rect.w = CHAT_SUBDIALOG_WINDOW_W;
 			src_rect.h = CHAT_SUBDIALOG_WINDOW_H;
-			//--------------------
 			// With OpenGL, the image is flipped at this point already, so we
 			// just copy the image in flipped form, cause later it should be 
 			// flipped anyway.  Cool, eh?  Of course this way only the location

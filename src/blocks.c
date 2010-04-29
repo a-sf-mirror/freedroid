@@ -76,7 +76,6 @@ void Load_Blast_Surfaces(void)
 	char fpath[2048] = "";
 	char constructed_filename[5000];
 
-	//--------------------
 	// Now that we're here, we can as well load the blast surfaces, that we might be using
 	// later...
 	//
@@ -119,7 +118,6 @@ void load_item_surfaces_for_item_type(int item_type)
 	char fpath[2048];
 	char our_filename[2000];
 
-	//--------------------
 	// First we load the inventory image.
 	//
 	sprintf(our_filename, "items/%s", ItemMap[item_type].item_inv_file_name);
@@ -135,7 +133,6 @@ Inventory image for item type %d, at path %s was not found", PLEASE_INFORM, IS_F
 	if (use_open_gl)
 		flip_image_vertically(original_img);
 
-	//--------------------
 	// Now we try to guess the inventory image tile sizes (in the 
 	// inventory screen) from the pixel size of the inventory image
 	// loaded.
@@ -178,7 +175,6 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 	} else
 		ItemMap[item_type].inv_image.Surface = our_SDL_display_format_wrapperAlpha(original_img);
 
-	//--------------------
 	// For the shop, we need versions of each image, where the image is scaled so
 	// that it takes up a whole 64x64 shop display square.  So we prepare scaled
 	// versions here and now...
@@ -210,7 +206,6 @@ void try_to_load_ingame_item_surface(int item_type)
 	char fpath[2048];
 	SDL_Surface *Whole_Image;
 
-	//--------------------
 	// First we handle a case, that shouldn't really be happening due to
 	// calling function checking already.  But it can't hurt to always double-check
 	//
@@ -219,11 +214,9 @@ void try_to_load_ingame_item_surface(int item_type)
 		ErrorMessage(__FUNCTION__, "\
 Surface for item type %d has been already loaded", PLEASE_INFORM, IS_FATAL, item_type);
 	}
-	//--------------------
 	// Now we should try to load the real in-game item surface...
 	// That will be added later...
 	//
-	//--------------------
 	// At first we will try to find some item rotation models in the
 	// new directory structure.
 	//
@@ -231,12 +224,10 @@ Surface for item type %d has been already loaded", PLEASE_INFORM, IS_FATAL, item
 	find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
 	Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
 
-	//--------------------
 	// If that didn't work, then it's time to try out the 'classic' rotation models directory.
 	// Maybe there's still some rotation image there.
 	//
 	if (Whole_Image == NULL) {
-		//--------------------
 		// No ingame item surface found? -- give error message and then use
 		// the inventory item_surface for the job.
 		//
@@ -256,7 +247,6 @@ item surface will be used as a substitute for now.", NO_NEED_TO_INFORM, IS_WARNI
 		ItemMap[item_type].inv_image.ingame_iso_image.offset_y = -ItemMap[item_type].inv_image.Surface->h / 2;
 
 	} else {
-		//--------------------
 		// So if an image of the required type can be found there, we 
 		// can start to load it.  But for this we will use standard iso
 		// object loading function, so that offset gets respected too...
@@ -271,7 +261,6 @@ item surface will be used as a substitute for now.", NO_NEED_TO_INFORM, IS_WARNI
 		SDL_FreeSurface(Whole_Image);
 	}
 
-	//--------------------
 	// Now that it has been made sure, that a dispensable image is
 	// loaded for the ingame surface, we can destroy it and make a
 	// textured quad from it...
@@ -319,14 +308,12 @@ void Load_Skill_Level_Button_Surfaces(void)
 	int j;
 	char fpath[2048];
 
-	//--------------------
 	// Maybe this function has been called before.  Then we do not
 	// need to do anything (again) here and can just return.
 	//
 	if (SkillLevelButtonsAreAlreadyLoaded)
 		return;
 
-	//--------------------
 	// Now we proceed to load all the skill circle buttons.
 	//
 	find_file(SKILL_LEVEL_BUTTON_FILE, GRAPHICS_DIR, fpath, 0);
@@ -400,7 +387,6 @@ void iso_load_bullet_surfaces(void)
 	DebugPrintf(1, "Number_Of_Bullet_Types: %d.", Number_Of_Bullet_Types);
 
 	for (i = 0; i < Number_Of_Bullet_Types; i++) {
-		//--------------------
 		// Flash is not something we would have to load.
 		//
 		if (strlen(bullet_identifiers[i]) && !strcmp(bullet_identifiers[i], "flash_dummy"))
@@ -410,7 +396,6 @@ void iso_load_bullet_surfaces(void)
 
 		for (j = 0; j < Bulletmap[i].phases; j++) {
 			for (k = 0; k < BULLET_DIRECTIONS; k++) {
-				//--------------------
 				// We construct the file name
 				//
 				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", bullet_identifiers[i], k, j + 1);
@@ -434,21 +419,18 @@ void LoadOneSkillSurfaceIfNotYetLoaded(int SkillSpellNr)
 	char fpath[2048];
 	char AssembledFileName[2000];
 
-	//--------------------
 	// Maybe this spell/skill icon surface has already been loaded, i.e. it's not
 	// NULL any more.  Then we needn't do anything here.
 	//
 	if (SpellSkillMap[SkillSpellNr].icon_surface.surface || SpellSkillMap[SkillSpellNr].icon_surface.texture_has_been_created)
 		return;
 
-	//--------------------
 	// Now it's time to assemble the file name to get the image from
 	//
 	strcpy(AssembledFileName, "skill_icons/");
 	strcat(AssembledFileName, SpellSkillMap[SkillSpellNr].icon_name);
 	find_file(AssembledFileName, GRAPHICS_DIR, fpath, 0);
 
-	//--------------------
 	// Now we can load and prepare the image and that's it
 	//
 	Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
@@ -685,7 +667,6 @@ static void get_offset_for_iso_image_from_file_and_path(char *fpath, iso_image *
 	char offset_file_name[10000];
 	FILE *OffsetFile;
 	char *offset_data;
-	//--------------------
 	// Now we try to load the associated offset file, that we'll be needing
 	// in order to properly fine-position the image later when blitting is to
 	// a map location.
@@ -694,7 +675,6 @@ static void get_offset_for_iso_image_from_file_and_path(char *fpath, iso_image *
 	offset_file_name[strlen(offset_file_name) - 4] = 0;
 	strcat(offset_file_name, ".offset");
 
-	//--------------------
 	// Let's see if we can find an offset file...
 	//
 	if ((OffsetFile = fopen(offset_file_name, "rb")) == NULL) {
@@ -710,7 +690,6 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFO
 		fclose(OffsetFile);
 	}
 
-	//--------------------
 	// So at this point we can be certain, that the offset file is there.
 	// That means, that we can now use the (otherwise terminating) read-and-malloc-...
 	// functions.
@@ -738,7 +717,6 @@ void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, in
 {
 	SDL_Surface *Whole_Image;
 
-	//--------------------
 	// First we (try to) load the image given in the parameter
 	// from hard disk into memory and convert it to the right
 	// format for fast blitting later.
@@ -755,7 +733,6 @@ void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, in
 	our_iso_image->texture_has_been_created = FALSE;
 
 	SDL_SetColorKey(our_iso_image->surface, 0, 0);	// this should clear any color key in the dest surface
-	//--------------------
 	// Some test here...
 	//
 	// our_iso_image -> surface -> format -> Bmask = 0 ; 
@@ -763,21 +740,18 @@ void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, in
 
 	SDL_FreeSurface(Whole_Image);
 
-	//--------------------
 	// Now that we have loaded the image, it's time to get the proper
 	// offset information for it.
 	//
 	if (use_offset_file)
 		get_offset_for_iso_image_from_file_and_path(fpath, our_iso_image);
 	else {
-		//--------------------
 		// We _silently_ assume there is no offset file...
 		//
 		our_iso_image->offset_x = -INITIAL_BLOCK_WIDTH / 2;
 		our_iso_image->offset_y = -INITIAL_BLOCK_HEIGHT / 2;
 	}
 
-	//--------------------
 	// In the case of no open_gl (and therefore no conversion to a texture)
 	// we make sure, that the open_gl optiomized methods will also find
 	// suitable correspondents in the SDL-loaded images, like the original
@@ -798,7 +772,6 @@ static void get_iso_image_with_colorkey_from_file_and_path(char *fpath, iso_imag
 	int x, y;
 	Uint32 color_key_value;
 
-	//--------------------
 	// First we (try to) load the image given in the parameter
 	// from hard disk into memory and convert it to the right
 	// format for fast blitting later.
@@ -817,7 +790,6 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 
 	for (x = 0; x < Whole_Image->w; x++) {
 		for (y = 0; y < Whole_Image->h; y++) {
-			//--------------------
 			// Any pixel that is halfway transparent will now be made 
 			// into the color key...
 			//
@@ -830,7 +802,6 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 	our_iso_image->zoomed_out_surface = NULL;
 	SDL_SetColorKey(our_iso_image->surface, SDL_SRCCOLORKEY, color_key_value);	// this should clear any color key in the dest surface
 
-	//--------------------
 	// Some test here...
 	//
 	// our_iso_image -> surface -> format -> Bmask = 0 ; 
@@ -838,13 +809,11 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 	//
 	SDL_FreeSurface(Whole_Image);
 
-	//--------------------
 	// Now that we have loaded the image, it's time to get the proper
 	// offset information for it.
 	//
 	get_offset_for_iso_image_from_file_and_path(fpath, our_iso_image);
 
-	//--------------------
 	// Now finally we need to set the 'original_image_width/height', because
 	// this is the default value used with both, OpenGL and SDL.
 	//
@@ -863,7 +832,6 @@ void LoadAndPrepareEnemyRotationModelNr(int ModelNr)
 	static int FirstCallEver = TRUE;
 	static int EnemyFullyPrepared[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-	//--------------------
 	// Maybe this function has just been called for the first time ever.
 	// Then of course we need to initialize the array, that is used for
 	// keeping track of the currently loaded enemy rotation surfaces.
@@ -875,7 +843,6 @@ void LoadAndPrepareEnemyRotationModelNr(int ModelNr)
 		}
 		FirstCallEver = FALSE;
 	}
-	//--------------------
 	// Now a sanity check against using rotation types, that don't exist
 	// in Freedroid RPG at all!
 	//
@@ -883,7 +850,6 @@ void LoadAndPrepareEnemyRotationModelNr(int ModelNr)
 		ErrorMessage(__FUNCTION__, "\
 Freedroid received a rotation model number that does not exist: %d\n", PLEASE_INFORM, IS_FATAL, ModelNr);
 	}
-	//--------------------
 	// Now we can check if the given rotation model type was perhaps already
 	// allocated and loaded and fully prepared.  Then of course we need not 
 	// do anything here...  Otherwise we can have trust and mark it as loaded
@@ -909,7 +875,6 @@ void LoadAndPrepareGreenEnemyRotationModelNr(int ModelNr)
 	static int FirstCallEver = TRUE;
 	static int EnemyFullyPrepared[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-	//--------------------
 	// Maybe this function has just been called for the first time ever.
 	// Then of course we need to initialize the array, that is used for
 	// keeping track of the currently loaded enemy rotation surfaces.
@@ -921,7 +886,6 @@ void LoadAndPrepareGreenEnemyRotationModelNr(int ModelNr)
 		}
 		FirstCallEver = FALSE;
 	}
-	//--------------------
 	// Now we can check if the given rotation model type was perhaps already
 	// allocated and loaded and fully prepared.  Then of course we need not 
 	// do anything here...  Otherwise we can have trust and mark it as loaded
@@ -932,7 +896,6 @@ void LoadAndPrepareGreenEnemyRotationModelNr(int ModelNr)
 	EnemyFullyPrepared[ModelNr] = TRUE;
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// Now that we have our enemy surfaces ready, we can create some modified
 	// copies of those surfaces but this a color filter applied to them...
 	//
@@ -960,7 +923,6 @@ void LoadAndPrepareBlueEnemyRotationModelNr(int ModelNr)
 	static int FirstCallEver = TRUE;
 	static int EnemyFullyPrepared[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-	//--------------------
 	// Maybe this function has just been called for the first time ever.
 	// Then of course we need to initialize the array, that is used for
 	// keeping track of the currently loaded enemy rotation surfaces.
@@ -972,7 +934,6 @@ void LoadAndPrepareBlueEnemyRotationModelNr(int ModelNr)
 		}
 		FirstCallEver = FALSE;
 	}
-	//--------------------
 	// Now we can check if the given rotation model type was perhaps already
 	// allocated and loaded and fully prepared.  Then of course we need not 
 	// do anything here...  Otherwise we can have trust and mark it as loaded
@@ -983,7 +944,6 @@ void LoadAndPrepareBlueEnemyRotationModelNr(int ModelNr)
 	EnemyFullyPrepared[ModelNr] = TRUE;
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// Now that we have our enemy surfaces ready, we can create some modified
 	// copies of those surfaces but this a color filter applied to them...
 	//
@@ -1005,7 +965,6 @@ void LoadAndPrepareRedEnemyRotationModelNr(int ModelNr)
 	static int FirstCallEver = TRUE;
 	static int EnemyFullyPrepared[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-	//--------------------
 	// Maybe this function has just been called for the first time ever.
 	// Then of course we need to initialize the array, that is used for
 	// keeping track of the currently loaded enemy rotation surfaces.
@@ -1017,7 +976,6 @@ void LoadAndPrepareRedEnemyRotationModelNr(int ModelNr)
 		}
 		FirstCallEver = FALSE;
 	}
-	//--------------------
 	// Now we can check if the given rotation model type was perhaps already
 	// allocated and loaded and fully prepared.  Then of course we need not 
 	// do anything here...  Otherwise we can have trust and mark it as loaded
@@ -1028,7 +986,6 @@ void LoadAndPrepareRedEnemyRotationModelNr(int ModelNr)
 	EnemyFullyPrepared[ModelNr] = TRUE;
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// Now that we have our enemy surfaces ready, we can create some modified
 	// copies of those surfaces but this a color filter applied to them...
 	//
@@ -1100,7 +1057,6 @@ void Load_Enemy_Surfaces(void)
 	int i;
 	int j;
 
-	//--------------------
 	// We clean out the rotated enemy surface pointers, so that later we
 	// can judge securely which of them have been initialized (non-Null)
 	// and which of them have not.
@@ -1111,7 +1067,6 @@ void Load_Enemy_Surfaces(void)
 		}
 	}
 
-	//--------------------
 	// When using the new tux image collection files, the animation cycle
 	// lengthes for droids will be taken from the image collection file itself.
 	// That is good, because it's so dynamic.  However, it also means, that
@@ -1149,7 +1104,6 @@ void Load_Enemy_Surfaces(void)
 	free(Data);
 
 
-	//--------------------
 	// Finally we do some test to make sure we don't write
 	// over the bounds of our array or so
 	//
@@ -1191,7 +1145,6 @@ void load_obstacle(int i)
 			     IS_WARNING_ONLY, i);
 		return;
 	}
-	//--------------------
 	// At first we construct the file name of the single tile file we are about to load...
 	//
 	strcpy(ConstructedFileName, "obstacles/");
@@ -1209,7 +1162,6 @@ void load_obstacle(int i)
 
 	obstacle_map[i].image_loaded = 1;
 
-	//--------------------
 	// Maybe the obstacle in question also has a shadow image?  In that
 	// case we should load the shadow image now.  Otherwise we might just
 	// mark the shadow image as not in use, so we won't face problems with

@@ -289,7 +289,6 @@ int ScrollText(char *Text, int background_code)
 		if (background_code != (-1))
 			blit_special_background(background_code);
 		Number_Of_Line_Feeds = DisplayText(Text, ScrollRect.x, InsertLine, &ScrollRect, TEXT_STRETCH);
-		//--------------------
 		// We might add some buttons to be displayed here, so that, if you don't have
 		// a mouse wheel and don't know about cursor keys, you can still click on these
 		// buttons to control the scrolling speed of the text.
@@ -348,7 +347,6 @@ int ScrollText(char *Text, int background_code)
 
 		InsertLine -= speed;
 
-		//--------------------
 		// impose some limit on the amount to scroll away downwards and topwards
 		//
 		if (InsertLine > StartInsertLine && (speed < 0)) {
@@ -445,7 +443,6 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	int letter_spacing = get_letter_spacing(GetCurrentFont());
 	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
 
-	//--------------------
 	// We position the internal text cursor on the right spot for
 	// the first character to be printed.
 	//
@@ -454,13 +451,11 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	if (starty != -1)
 		MyCursorY = starty;
 
-	//--------------------
 	// We make a backup of the current clipping rect, so we can respore
 	// it later.
 	//
 	SDL_GetClipRect(Screen, &store_clip);
 
-	//--------------------
 	// If we did receive some clipping rect in the parameter list (like e.g. it's
 	// always the case with dialog output) we enforce this new clipping rect, otherwise
 	// we just set the clipping rect to contain the whole screen.
@@ -475,7 +470,6 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 		Temp_Clipping_Rect.h = GameConfig.screen_height;
 	}
 
-	//--------------------
 	// Now we can start to print the actual text to the screen.
 	//
 	// The running text pointer must be initialized.
@@ -686,7 +680,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 	if (((int)strlen(DefaultString)) >= MaxLen - 1)
 		DefaultString[MaxLen - 1] = 0;
 
-	//--------------------
 	// We prepare a new string, mostly empty...
 	//
 	input = MyMalloc(MaxLen + 5);
@@ -696,7 +689,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 	strcpy(input, DefaultString);
 	curpos = strlen(input);
 
-	//--------------------
 	// Now we prepare a rectangle for our popup window...
 	//
 	TargetRect.w = 440;
@@ -708,7 +700,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 	TargetRect.x += EDIT_WINDOW_TEXT_OFFSET;
 	TargetRect.y += EDIT_WINDOW_TEXT_OFFSET;
 
-	//--------------------
 	// Now we find the right position for the new string to start by writing
 	// out the title text once, just to get the cursor positioned right...
 	//
@@ -717,7 +708,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 	y0 = MyCursorY;
 
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
-	//--------------------
 	// Now we can start the enter-string cycle...
 	//
 	finished = FALSE;
@@ -743,7 +733,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 		TargetRect.y = y0;
 		DisplayText(input, TargetRect.x, TargetRect.y, &TargetRect, TEXT_STRETCH);
 
-		//--------------------
 		// We position the cursor right on its real location
 		//
 		tmp_char = input[curpos];
@@ -767,7 +756,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 				SDL_Delay(1);
 			return NULL;
 		} else if (isprint(key) && (curpos < MaxLen)) {
-			//--------------------
 			// If a printable character has been entered, it is either appended to
 			// the end of the current input string or the rest of the string is being
 			// moved and the new character inserted at the end.

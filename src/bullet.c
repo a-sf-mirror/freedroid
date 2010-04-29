@@ -61,7 +61,6 @@ static void move_this_bullet_and_check_its_collisions(int num)
 	int i;
 	float number_of_steps;
 
-	//--------------------
 	// In case of a bullet, which is not a melee weapon, we just move
 	// the bullets as specified in it's speed vector.  But of course we
 	// must make several stops and check for collisions in case the 
@@ -69,7 +68,6 @@ static void move_this_bullet_and_check_its_collisions(int num)
 	//
 	whole_step_size = max(fabsf(CurBullet->speed.x * Frame_Time()), fabsf(CurBullet->speed.y * Frame_Time()));
 
-	//--------------------
 	// NOTE:  The number 0.25 here is the value of thickness of the collision
 	// rectangle of a standard wall.  Since we might not have loaded all wall tiles
 	// at every time of the game, also during game, guessing the minimum thickness
@@ -202,12 +200,10 @@ void MoveBullets(void)
 	int i;
 	Bullet CurBullet;
 
-	//--------------------
 	// We move all the bullets
 	//
 	for (i = 0; i < MAXBULLETS; i++) {
 		CurBullet = &AllBullets[i];
-		//--------------------
 		// We need not move any bullets, that are INFOUT already...
 		//
 		if (CurBullet->type == INFOUT)
@@ -218,7 +214,6 @@ void MoveBullets(void)
 
 		move_this_bullet_and_check_its_collisions(i);
 
-		//--------------------
 		// WARNING!  The bullet collision check might have deleted the bullet, so 
 		//           maybe there's nothing sensible at the end of that 'CurBullet'
 		//           pointer any more at this point.  So we check AGAIN for 'OUT'
@@ -227,7 +222,6 @@ void MoveBullets(void)
 		if (CurBullet->type == INFOUT)
 			continue;
 
-		//--------------------
 		// Maybe the bullet has a limited lifetime.  In that case we check if the
 		// bullet has expired yet or not.
 		//
@@ -250,7 +244,6 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 {
 	Bullet CurBullet = &(AllBullets[Bulletnumber]);
 
-	//--------------------
 	// At first we generate the blast at the collision spot of the bullet,
 	// cause later, after the bullet is deleted, it will be hard to know
 	// the correct location ;)
@@ -304,12 +297,10 @@ warning message was created prior to the error in your report.\n\
 However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		return;
 	}
-	//--------------------
 	// If the blast is not on a visible level, we do not take care of it
 	if (!level_is_visible(blast_pos.z))
 		return;
 
-	//--------------------
 	// Maybe there is a box under the blast.  In this case, the box will
 	// get smashed and perhaps an item will drop.
 	// 
@@ -360,7 +351,6 @@ void animate_blasts(void)
 	for (i = 0; i < MAXBLASTS; i++, CurBlast++) {
 		if (CurBlast->type != INFOUT) {
 
-			//--------------------
 			// But maybe the blast is also outside the map already, which would
 			// cause a SEGFAULT directly afterwards, when the map is queried.
 			// Therefore we introduce some extra security here...
@@ -380,21 +370,18 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 				DeleteBlast(i);
 				continue;
 			}
-			//--------------------
 			// Druid blasts are dangerous, so we check if someone gets
 			// hurt by this particular droid explosion
 			//
 			if (CurBlast->type == DROIDBLAST || CurBlast->type == OWNBLAST)
 				CheckBlastCollisions(i);
 
-			//--------------------
 			// And now we advance the phase of the blast according to the
 			// time that has passed since the last frame (approximately)
 			//
 			// CurBlast->phase += Frame_Time () * Blastmap[ CurBlast->type ].phases / Blastmap[ CurBlast->type ].total_animation_time;
 			CurBlast->phase += Frame_Time() * PHASES_OF_EACH_BLAST / Blastmap[CurBlast->type].total_animation_time;
 
-			//--------------------
 			// Maybe the blast has lived over his normal lifetime already.
 			// Then of course it's time to delete the blast, which is done
 			// here.
@@ -429,13 +416,11 @@ void MoveActiveSpells(void)
 	float Angle;
 
 	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
-		//--------------------
 		// We can ignore all unused entries...
 		//
 		if (AllActiveSpells[i].img_type == (-1))
 			continue;
 
-		//--------------------
 		// All spells should count their lifetime...
 		//
 		AllActiveSpells[i].spell_age += PassedTime;
@@ -443,7 +428,6 @@ void MoveActiveSpells(void)
 		// We hardcode a speed here
 		AllActiveSpells[i].spell_radius += 5.0 * PassedTime;
 
-		//--------------------
 		// We do some collision checking with the obstacles in each
 		// 'active_direction' of the spell and deactivate those directions,
 		// where some collision with solid material has happend.
@@ -477,7 +461,6 @@ void MoveActiveSpells(void)
 				AllActiveSpells[i].active_directions[direction_index] = FALSE;
 		}
 
-		//--------------------
 		// Here we also do the spell damage application here
 		//
 		float minDist = (0.2 + AllActiveSpells[i].spell_radius) * (0.2 + AllActiveSpells[i].spell_radius);
@@ -498,7 +481,6 @@ void MoveActiveSpells(void)
 					    (AllActiveSpells[i].hit_type == ATTACK_HIT_HUMANS && !Druidmap[erot->type].is_human))
 						continue;
 
-					//--------------------
 					// Let's see if that enemy has a direction, that is still
 					// active for the spell. 
 					// We get the angle in radians but with zero at the 'north' direction.
@@ -543,7 +525,6 @@ void MoveActiveSpells(void)
 			}
 		}
 
-		//--------------------
 		// Such a spell can not live for longer than 1.0 seconds, say
 		//
 		if (AllActiveSpells[i].spell_age >= 1.0)
@@ -609,7 +590,6 @@ int find_free_bullet_index(void)
 		}
 	}
 
-	//--------------------
 	// If this point is ever reached, there's a severe bug in here...
 	//
 	ErrorMessage(__FUNCTION__, "\
@@ -646,7 +626,6 @@ void apply_bullet_damage_to_player(int damage, int owner)
 
 	UpdateAllCharacterStats();
 
-	//--------------------
 	// NEW RULE:  Even when the bullet hits, there's still a chance that
 	// the armour will compensate the shot
 	//
@@ -666,13 +645,11 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 {
 	double xdist, ydist;
 
-	//--------------------
 	// Of course only active player may be checked!
 	//
 	if (Me.energy <= 0)
 		return;
 
-	//--------------------
 	// A player is supposed not to hit himself with his bullets, so we may
 	// check for that case as well....
 	//
@@ -682,7 +659,6 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 	if (CurBullet->is_friendly)
 		return;
 
-	//--------------------
 	// Now we see if the distance to the bullet is as low as hitting
 	// distance or not.
 	//
@@ -713,12 +689,10 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 	double xdist, ydist;
 	int level = CurBullet->pos.z;
 
-	//--------------------
 	// Check for collision with enemys
 	//
 	enemy *ThisRobot, *nerot;
 	BROWSE_LEVEL_BOTS_SAFE(ThisRobot, nerot, level) {
-		//--------------------
 		// Check several hitting conditions
 		//
 		xdist = CurBullet->pos.x - ThisRobot->pos.x;
@@ -736,7 +710,6 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 		if (ThisRobot->is_friendly == CurBullet->is_friendly)
 			continue;
 
-		//--------------------
 		// Hit the ennemy
 		//
 		hit_enemy(ThisRobot, CurBullet->damage, (CurBullet->mine ? 1 : 0) /*givexp */ , CurBullet->owner,
@@ -749,7 +722,6 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 
 		ThisRobot->paralysation_duration_left += CurBullet->paralysation_duration;
 
-		//--------------------
 		// If the blade can pass through dead and not dead bodies, it will so
 		// so and create a small explosion passing by.  But if it can't, it should
 		// be completely deleted of course, with the same small explosion as well
@@ -829,13 +801,11 @@ void CheckBulletCollisions(int num)
 
 	switch (CurBullet->type) {
 	case INFOUT:
-		// --------------------
 		// Never do any collision checking if the bullet is INFOUT already...
 		return;
 		break;
 
 	default:
-		// --------------------
 		// If its a "normal" Bullet, several checks have to be
 		// done, one for collisions with background, 
 		// one for collision with influencer
@@ -912,7 +882,6 @@ void CheckBlastCollisions(int num)
 	Blast CurBlast = &(AllBlasts[num]);
 	static const float Blast_Radius = 1.5;
 
-	//--------------------
 	// At first, we check for collisions of this blast with all bullets 
 	//
 	if (CurBlast->phase <= 4) {
@@ -936,7 +905,6 @@ void CheckBlastCollisions(int num)
 			DeleteBullet(i, TRUE);	// we want a bullet-explosion
 		}
 	}
-	//--------------------
 	// Now we check for enemys, that might have stepped into this
 	// one blasts area of effect...
 	//
@@ -970,7 +938,6 @@ void CheckBlastCollisions(int num)
 		}
 	}
 
-	//--------------------
 	// Now we check, if perhaps the influencer has stepped into the area
 	// of effect of this one blast.  Then he'll get burnt ;)
 	// 

@@ -93,7 +93,6 @@ int animate_door(level* door_lvl, int door_idx)
 	if (door_timeline != 0.0)
 		return TRUE;
 
-	//--------------------
 	// First we see if the Tux is close enough to the door, so that it would get
 	// opened.
 	//
@@ -106,7 +105,6 @@ int animate_door(level* door_lvl, int door_idx)
 		}
 	}
 			
-	//--------------------
 	// If the Tux is not close enough, then we must see if perhaps one of the 
 	// enemies is close enough, so that the door would still get opened.
 	//
@@ -114,7 +112,6 @@ int animate_door(level* door_lvl, int door_idx)
 
 		enemy *erot;
 		BROWSE_LEVEL_BOTS(erot, door_lvl->levelnum) {
-			//--------------------
 			// We will only consider droids that are at least within a range of
 			// say 2 squares in each direction.  Anything beyond that distance
 			// can be safely ignored for this door.
@@ -124,7 +121,6 @@ int animate_door(level* door_lvl, int door_idx)
 				ydist = abs(erot->pos.y - door_lvl->obstacle_list[door_idx].pos.y);
 				if (ydist < 2.0) {
 	
-					//--------------------
 					// Now that we know, that there is some droid at least halfway
 					// close to this door, we can start to go into more details and
 					// compute the exact distance from the droid to the door.
@@ -141,7 +137,6 @@ int animate_door(level* door_lvl, int door_idx)
 		}	// bots
 	}
 	
-	//---------------
 	// Depending on the presence or not of someone near the door, open it or
 	// close it.
 	Pos = &(door_lvl->obstacle_list[door_idx].type);
@@ -192,7 +187,6 @@ int animate_autogun(level* autogun_lvl, int autogun_idx)
 	int j = 0;
 	bullet *CurBullet = NULL;
 
-	//--------------------
 	// Initialization of the weapon item type associated to the autoguns
 	//
 	static int static_initialized = FALSE;
@@ -207,13 +201,11 @@ int animate_autogun(level* autogun_lvl, int autogun_idx)
 		static_initialized = TRUE;
 	}
 	
-	//--------------------
 	// Wait until it's time to fire a new bullet
 	//
 	if (autogun_timeline != 0.0)
 		return TRUE;
 	
-	//--------------------
 	// Fire a new bullet
 	//
 	autogunx = (autogun_lvl->obstacle_list[autogun_idx].pos.x);

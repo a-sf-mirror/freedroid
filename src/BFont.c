@@ -66,7 +66,6 @@ static void InitFont(BFont_Info * Font)
 			flip_image_vertically(Font->char_iso_image[i].surface);
 
 			SDL_FreeSurface(tmp_char1);
-			//--------------------
 			// Now we can go on to the next char
 			//
 			i++;
@@ -238,7 +237,6 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 
 			if ((dest.x < clipping_rect.x + clipping_rect.w) && (dest.x >= clipping_rect.x)) {
 #ifdef HAVE_LIBGL
-				//--------------------
 				// We need to simulate the clipping as would be done by SDL.
 				// We simply do "all or none" clipping for left and right, but for the top/bottom of the screen,
 				// we use GL to do proper clipping in order not to see a whole line disappear at once.
@@ -693,7 +691,6 @@ void PutPixel(SDL_Surface * surface, int x, int y, Uint32 pixel)
 		}
 	}
 
-	//--------------------
 	// Here I add a security query against segfaults due to writing
 	// perhaps even far outside of the surface pixmap data.
 	//

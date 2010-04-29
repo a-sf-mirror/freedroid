@@ -76,7 +76,6 @@ static void delete_one_dialog_option(int i, int FirstInitialisation)
 {
 	int j;
 
-	//--------------------
 	// If this is not the first initialisation, we have to free the allocated
 	// strings first, or we'll be leaking memory otherwise...
 	//
@@ -92,7 +91,6 @@ static void delete_one_dialog_option(int i, int FirstInitialisation)
 	ChatRoster[i].lua_code = NULL;
 
 	for (j = 0; j < MAX_REPLIES_PER_OPTION; j++) {
-		//--------------------
 		// If this is not the first initialisation, we have to free the allocated
 		// strings first, or we'll be leaking memory otherwise...
 		//
@@ -120,7 +118,6 @@ static void InitChatRosterForNewDialogue(void)
 		delete_one_dialog_option(i, FirstInitialisation);
 	}
 
-	//--------------------
 	// Next time, we WILL have to free every used entry before cleaning it
 	// out, or we will be leaking memory...
 	//
@@ -160,7 +157,6 @@ void PlantCookie(const char *CookieString)
 {
 	int i;
 
-	//--------------------
 	// Check if the cookie has already been set. 
 	//
 	for (i = 0; i < MAX_COOKIES; i++) {
@@ -172,7 +168,6 @@ void PlantCookie(const char *CookieString)
 		}
 	}
 
-	//--------------------
 	// Now we find a good new and free position for our new cookie...
 	//
 	for (i = 0; i < MAX_COOKIES; i++) {
@@ -181,7 +176,6 @@ void PlantCookie(const char *CookieString)
 		}
 	}
 
-	//--------------------
 	// Maybe the position we have found is the last one.  That would mean too
 	// many cookies, a case that should never occur in FreedroidRPG and that is
 	// a considered a fatal error...
@@ -192,7 +186,6 @@ There were no more free positions available to store this cookie.\n\
 This should not be possible without a severe bug in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	}
 	
-	//--------------------
 	// Now that we know that we have found a good position for storing our
 	// new cookie, we can do it.
 	Me.cookie_list[i] = MyMalloc(strlen(CookieString)+1);
@@ -257,13 +250,11 @@ static void LoadDialog(char *FullPathAndFullFilename)
 #define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
 #define NEW_OPTION_BEGIN_STRING "\nNr="
 
-	//--------------------
 	// At first we read the whole chat file information into memory
 	//
 	ChatData = ReadAndMallocAndTerminateFile(fpath, CHAT_CHARACTER_END_STRING);
 	SectionPointer = ChatData;
 
-	//--------------------
 	// Read the initialization code
 	//
 	if (chat_initialization_code) {
@@ -278,14 +269,12 @@ static void LoadDialog(char *FullPathAndFullFilename)
 	}
 	chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "EveryTime LuaCode={", "}");
 
-	//--------------------
 	// At first we go take a look on how many options we have
 	// to decode from this section.
 	//
 	NumberOfOptionsInSection = CountStringOccurences(SectionPointer, NEW_OPTION_BEGIN_STRING);
 	DebugPrintf(CHAT_DEBUG_LEVEL, "\nWe have counted %d Option entries in this section.", NumberOfOptionsInSection);
 
-	//--------------------
 	// Now we see which option index is assigned to this option.
 	// It may happen, that some numbers are OMITTED here!  This
 	// should be perfectly ok and allowed as far as the code is
@@ -326,7 +315,6 @@ static void LoadDialog(char *FullPathAndFullFilename)
 #define NEW_REPLY_SAMPLE_STRING "ReplySample=\""
 #define NEW_REPLY_SUBTITLE_STRING "NPC=_\""
 
-		//--------------------
 		// We count the number of Subtitle and Sample combinations and then
 		// we will read them out
 		//
@@ -344,7 +332,6 @@ one subtitle per reply, or no subtitle at all.\n\
 This is currently not allowed in Freedroid and therefore indicates a\n\
 severe error.", PLEASE_INFORM, IS_FATAL);
 		}
-		//--------------------
 		// Now that we know exactly how many Sample and Subtitle sections 
 		// to read out, we can well start reading exactly that many of them.
 		// 
@@ -364,7 +351,6 @@ severe error.", PLEASE_INFORM, IS_FATAL);
 
 			DebugPrintf(CHAT_DEBUG_LEVEL, "\nReplySample found : \"%s\".", ChatRoster[OptionIndex].reply_sample_list[j]);
 
-			//--------------------
 			// Now we must move the reply pointer to after the previous combination.
 			//
 			ReplyPointer = LocateStringInData(ReplyPointer, NEW_REPLY_SUBTITLE_STRING);
@@ -382,7 +368,6 @@ severe error.", PLEASE_INFORM, IS_FATAL);
 			*EndOfSectionPointer = NEW_OPTION_BEGIN_STRING[0];
 	}
 
-	//--------------------
 	// Now we've got all the information we wanted from the dialogues file.
 	// We can now free the loaded file again.  Upon a new character dialogue
 	// being initiated, we'll just reload the file.  This is very conveninet,
@@ -408,7 +393,6 @@ void make_sure_chat_portraits_loaded_for_this_droid(Enemy this_droid)
 	static int first_call = TRUE;
 	static int this_type_has_been_loaded[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-	//--------------------
 	// We make sure we only load the portrait files once and not
 	// every time...
 	//
@@ -418,12 +402,10 @@ void make_sure_chat_portraits_loaded_for_this_droid(Enemy this_droid)
 	}
 	first_call = FALSE;
 
-	//--------------------
 	// We look up the model number for this chat partner.
 	//
 	model_number = this_droid->type;
 
-	//--------------------
 	// We should make sure, that we don't double-load images that we have loaded
 	// already, thereby wasting more resources, including OpenGL texture positions.
 	//
@@ -431,7 +413,6 @@ void make_sure_chat_portraits_loaded_for_this_droid(Enemy this_droid)
 		return;
 	this_type_has_been_loaded[model_number] = TRUE;
 
-	//--------------------
 	// At first we try to load the image, that is named after this
 	// chat section.  If that succeeds, perfect.  If not, we'll revert
 	// to a default image.
@@ -478,19 +459,16 @@ chat interface of Freedroid.  But:  Loading this file has ALSO failed.", PLEASE_
  */
 static void PrepareMultipleChoiceDialog(Enemy ChatDroid, int with_flip)
 {
-	//--------------------
 	// The dialog will always take more than a few seconds to process
 	// so we need to prevent framerate distortion...
 	//
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// We make sure that all the chat portraits we might need are
 	// loaded....
 	//
 	make_sure_chat_portraits_loaded_for_this_droid(ChatDroid);
 
-	//--------------------
 	// We select small font for the menu interaction...
 	//
 	SetCurrentFont(FPS_Display_BFont);
@@ -526,7 +504,6 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 	lines_needed = GetNumberOfTextLinesNeeded(chat_protocol, Subtitle_Window, TEXT_STRETCH) - 1;
 
 	if (lines_needed <= LINES_IN_PROTOCOL_WINDOW) {
-		//--------------------
 		// When there isn't anything to scroll yet, we keep the default
 		// position and also the users clicks on up/down button will be
 		// reset immediately
@@ -542,12 +519,10 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 				   (lines_needed - LINES_IN_PROTOCOL_WINDOW + chat_protocol_scroll_override_from_user));
 	}
 
-	//--------------------
 	// Prevent the player from scrolling 
 	// too high (negative protocol offset)
 	//
 	if (protocol_offset < 0) {
-		//--------------------
 		// Set the scroll override value as if the user had stopped
 		// scrolling when they hit the top of the box - in essence,
 		// preventing the user from scrolling up too far.
@@ -555,13 +530,11 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 		chat_protocol_scroll_override_from_user = -lines_needed + LINES_IN_PROTOCOL_WINDOW;
 		protocol_offset = 0;
 	}
-	//--------------------
 	// Now we need to clear this window, cause there might still be some
 	// garbage from the previous subtitle in there...
 	//
 	PrepareMultipleChoiceDialog(ChatDroid, FALSE);
 
-	//--------------------
 	// Now we can display the text and update the screen...
 	//
 	SDL_SetClipRect(Screen, NULL);
@@ -651,7 +624,6 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
 
-	//--------------------
 	// Now a menu section has been made.  We do the reaction:
 	// say the samples and the replies, later we'll set the new option values
 	//
@@ -664,13 +636,11 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
 		strcat(chat_protocol, "\n\2");
 	}
-	//--------------------
 	// Now we can proceed to execute
 	// the rest of the reply that has been set up for this (the now maybe modified)
 	// dialog option.
 	//
 	for (i = 0; i < MAX_REPLIES_PER_OPTION; i++) {
-		//--------------------
 		// Once we encounter an empty string here, we're done with the reply...
 		//
 		if (!strlen(ChatRoster[MenuSelection].reply_subtitle_list[i]))
@@ -702,7 +672,6 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
 
-	//--------------------
 	// We always should clear the chat protocol.  Only for SUBDIALOGS it is
 	// suitable not to clear the chat protocol.
 	//
@@ -724,7 +693,6 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 	Chat_Window.w = 380;
 	Chat_Window.h = 314;
 
-	//--------------------
 	// We load the option texts into the dialog options variable..
 	//
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
@@ -749,7 +717,6 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 			chat_control_next_node =
 			    ChatDoMenuSelectionFlagged(_("What will you say?"), DialogMenuTexts, 1, -1,
 						       FPS_Display_BFont, ChatDroid);
-			//--------------------
 			// We do some correction of the menu selection variable:
 			// The first entry of the menu will give a 1 and so on and therefore
 			// we need to correct this to more C style.
@@ -795,7 +762,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 
 #define TURN_SPEED 900.0
 
-	//--------------------
 	// We reset the mouse cursor shape and abort any other
 	// mouse global mode operation.
 	//
@@ -803,7 +769,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// We make sure the one droid in question is in the standing and not
 	// in the middle of the walking motion when turning to the chat partner...
 	//
@@ -812,7 +777,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 	ChatDroid->speed.x = 0;
 	ChatDroid->speed.y = 0;
 
-	//--------------------
 	// At first do some waiting before the turning around starts...
 	//
 	TurningStartTime = SDL_GetTicks();
@@ -830,7 +794,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 		ComputeFPSForThisFrame();
 	}
 
-	//--------------------
 	// Now we find out what the final target direction of facing should
 	// be.
 	//
@@ -848,7 +811,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 	//
 	RightAngle += 90;
 
-	//--------------------
 	// Now it's time do determine which direction to move, i.e. if to 
 	// turn to the left or to turn to the right...  For this purpose
 	// we convert the current angle, which is between 270 and -90 degrees
@@ -860,7 +822,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 	// DebugPrintf ( 0 , "\nRightAngle: %f." , RightAngle );
 	// DebugPrintf ( 0 , "\nCurrent angle: %f." , ChatDroid -> current_angle );
 
-	//--------------------
 	// Having done these preparations, it's now easy to determine the right
 	// direction of rotation...
 	//
@@ -875,7 +836,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 	else
 		TurningDirection = -1;
 
-	//--------------------
 	// Now we turn and show the image until both chat partners are
 	// facing each other, mostly the chat partner is facing the Tux,
 	// since the Tux may still turn around to somewhere else all the 
@@ -893,7 +853,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 
 		ChatDroid->current_angle = OldAngle + TurningDirection * Frame_Time() * TURN_SPEED;
 
-		//--------------------
 		// In case of positive turning direction, we wait, till our angle is greater
 		// than the right angle.
 		// Otherwise we wait till our angle is lower than the right angle.
@@ -912,7 +871,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 		ComputeFPSForThisFrame();
 	}
 
-	//--------------------
 	// Now that turning around is basically done, we still wait a few frames
 	// until we start the dialog...
 	//
@@ -948,7 +906,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	struct npc *npc;
 
 	chat_control_chat_droid = ChatDroid;
-	//--------------------
 	// Now that we know, that a chat with a friendly droid is planned, the 
 	// friendly droid and the Tux should first turn to each other before the
 	// real dialog is started...
@@ -960,7 +917,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	Chat_Window.w = 380;
 	Chat_Window.h = 314;
 
-	//--------------------
 	// First we empty the array of possible answers in the
 	// chat interface.
 	//
@@ -970,7 +926,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 
 	while (MouseLeftPressed() || MouseRightPressed()) ;
 
-	//--------------------
 	// We clean out the chat roster from any previous use
 	//
 	InitChatRosterForNewDialogue();
@@ -1000,7 +955,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 		npc->chat_character_initialized = 1;
 	}
 
-	//--------------------
 	// Now with the loaded chat data, we can do the real chat now...
 	//
 	DoChatFromChatRosterData(ChatDroid, TRUE);

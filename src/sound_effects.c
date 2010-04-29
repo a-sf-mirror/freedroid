@@ -218,14 +218,12 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 {
 	char filename[5000];
 
-	//--------------------
 	// If the keyword 'none' for the death sound file name is encountered,
 	// nothing will be done...
 	//.
 	if (!strcmp(Druidmap[ThisRobot->type].droid_death_sound_file_name, "none"))
 		return;
 
-	//--------------------
 	// Now we play the given death sound, looking for the file in the
 	// appropriate sound folder.
 	//
@@ -245,14 +243,12 @@ void play_attack_animation_sound_for_bot(enemy * ThisRobot)
 {
 	char filename[5000];
 
-	//--------------------
 	// If the keyword 'none' for the death sound file name is encountered,
 	// nothing will be done...
 	//
 	if (!strcmp(Druidmap[ThisRobot->type].droid_attack_animation_sound_file_name, "none"))
 		return;
 
-	//--------------------
 	// Now we play the given death sound, looking for the file in the
 	// appropriate sound folder.
 	//
@@ -333,7 +329,6 @@ void play_item_sound(int item_type)
 {
 	char final_file_name[5000];
 
-	//--------------------
 	// First some sanity check...
 	//
 	if (item_type < 0) {
@@ -341,7 +336,6 @@ void play_item_sound(int item_type)
 		ErrorMessage(__FUNCTION__, "\
 		                           negative item type received!\n", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Now we can proceed and just play the sound associated with that item...
 	//
 	strcpy(final_file_name, "effects/item_sounds/");

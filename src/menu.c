@@ -70,7 +70,6 @@ static int MouseCursorIsOverMenuItem(int first_menu_item_pos_y, int h)
 
 	PureFraction = (GetMousePos_y() - first_menu_item_pos_y) / h;
 
-	//--------------------
 	// Now it can be that the pure difference is negative or that it is positive.
 	// However we should not always round thowards zero here, but rather always to
 	// the next LOWER integer!  This will be done here:
@@ -92,13 +91,11 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 {
 	char open_gl_string[2000];
 
-	//--------------------
 	// We need to prepare the background for the menu, so that
 	// it can be accessed with proper speed later...
 	//
 	InitiateMenu(background_code);
 
-	//--------------------
 	// Maybe if this is the very first startup menu, we should also print
 	// out some status variables like whether using OpenGL or not DIRECTLY
 	// ON THE MENU SCREEN...
@@ -121,7 +118,6 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 			strcat(open_gl_string, _(" NO "));
 		LeftPutString(Screen, GameConfig.screen_height - FontHeight(GetCurrentFont()), open_gl_string);
 	}
-	//--------------------
 	// Now that the possible font-changing small info printing is
 	// done, we can finally set the right font for the menu itself.
 	//
@@ -160,20 +156,17 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 
 	game_status = INSIDE_MENU;
 
-	//--------------------
 	// At first we hide the system mouse cursor, because we want to use
 	// our own creation in the menus too...
 	//
 	make_sure_system_mouse_cursor_is_turned_off();
 
-	//--------------------
 	// We set the given font, if appropriate, and set the font height variable...
 	//
 	if (MenuFont != NULL)
 		SetCurrentFont(MenuFont);
 	h = FontHeight(GetCurrentFont());
 
-	//--------------------
 	// Some menus are intended to start with the default setting of the
 	// first menu option selected.  However this is not always desired.
 	// It might happen, that a submenu returns to the upper menu and then
@@ -185,7 +178,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 	if (FirstItem != (-1))
 		MenuPosition = FirstItem;
 
-	//--------------------
 	// First thing we do is find out how may options we have
 	// been given for the menu
 	// For each option, we compute and store its pixel-width
@@ -205,12 +197,10 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 	}
 	MenuTextWidths[NumberOfOptionsGiven] = 0;
 
-	//--------------------
 	// Clamp the longest option to the available width on the screen
 	// (50 pixels around the menu's background, and 1.5 fontheigth around the text)
 	LongestOption = min(GameConfig.screen_width - 100 - 3 * h, LongestOption);
 
-	//--------------------
 	// In those cases where we don't reset the menu position upon 
 	// initalization of the menu, we must check for menu positions
 	// outside the bounds of the current menu.
@@ -232,14 +222,12 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 	while (1) {
 		save_mouse_state();
 
-		//--------------------
 		// We write out the normal text of the menu, either by doing it once more
 		// in the open_gl case or by restoring what we have saved earlier, in the 
 		// SDL output case.
 		//
 		RestoreMenuBackground(0);
 
-		//--------------------
 		// Maybe we should display some thumbnails with the saved games entries?
 		// But this will only apply for the load_hero and the delete_hero menus...
 		//
@@ -248,18 +236,15 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 		    strcmp(MenuTexts[MenuPosition - 1], _("[down]")) &&
 		    strcmp(MenuTexts[MenuPosition - 1], _("[up]")) &&
 		    strcmp(MenuTexts[MenuPosition - 1], " ") && MenuPosition < NumberOfOptionsGiven) {
-			//--------------------
 			// We load the thumbnail, or at least we try to do it...
 			//
 			LoadAndShowThumbnail(MenuTexts[MenuPosition - 1]);
 			LoadAndShowStats(MenuTexts[MenuPosition - 1]);
 		}
-		//--------------------
 		// Draw the menu's  background
 		//
 		ShadowingRectangle(Screen, BackgroundRect);
 
-		//-------------------
 		// Display each option
 		//
 		for (i = 0; TRUE; i++) {
@@ -274,7 +259,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 			if (strcmp(MenuTexts[i], " ") == 0)
 				continue;
 
-			//--------------------
 			// Define the actual text to display
 			// If the text is too long, handle autoscroll and clip it
 			if (MenuTextWidths[i] > LongestOption) {
@@ -296,7 +280,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 				width = MenuTextWidths[i];
 			}
 
-			//--------------------
 			// Depending on what highlight method has been used, we so some highlighting
 			// of the currently selected menu options location on the screen...
 			//
@@ -311,7 +294,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 					auto_scroll_start += AUTO_SCROLL_RATE;
 				}
 			}
-			//--------------------
 			// Draw the option's text
 			CenteredPutString(Screen, first_menu_item_pos_y + i * h, str);
 
@@ -321,18 +303,15 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 		if (strlen(InitialText) > 0)
 			DisplayText(InitialText, 50, 50, NULL, TEXT_STRETCH);
 
-		//--------------------
 		// Now the mouse cursor must be brought to the screen
 		//
 		make_sure_system_mouse_cursor_is_turned_off();
 		blit_our_own_mouse_cursor();
 
-		//--------------------
 		// Image should be ready now, so we can show it...
 		//
 		our_SDL_flip_wrapper();
 
-		//--------------------
 		// Now it's time to handle the possible keyboard and mouse 
 		// input from the user...
 		//
@@ -372,7 +351,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 				case SDLK_SPACE:
 				case SDLK_LEFT:
 				case SDLK_RIGHT:
-					//--------------------
 					// The space key or enter key or arrow keys all indicate, that
 					// the user has made a selection.
 					//
@@ -418,7 +396,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 		}
 
 		if (MouseLeftClicked()) {
-			//--------------------
 			// Only when the mouse click really occured on the menu do we
 			// interpret it as a menu choice.  Otherwise we'll just ignore
 			// it. Also, we completely ignore any clicks if the clicked
@@ -438,13 +415,11 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 		if (MenuPosition > NumberOfOptionsGiven)
 			MenuPosition = NumberOfOptionsGiven;
 
-		//--------------------
 		// If the selected option has changed, halt eventual current autoscrolling
 		if (MenuPosition != old_menu_position) {
 			auto_scroll_run = TRUE;
 			auto_scroll_start = 0.0f;
 		}
-		//--------------------
 		// At this the while (1) overloop ends.  But for the menu, we really do not
 		// need to hog the CPU.  Therefore some waiting should be introduced here.
 		//
@@ -475,7 +450,6 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
 
 	DebugPrintf(2, "\nBEFORE:  First Item now: %d.", FirstItem);
 
-	//--------------------
 	// We filter out those answering options that are allowed by the flag mask
 	//
 	DebugPrintf(MENU_SELECTION_DEBUG, "\n%s(): %d \n", __FUNCTION__, FirstItem);
@@ -496,12 +470,10 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
 
 	DebugPrintf(2, "\nMIDDLE:  First Item now: %d.", FirstItem);
 
-	//--------------------
 	// Now we do the usual menu selection, using only the activated chat alternatives...
 	//
 	MenuSelection = ChatDoMenuSelection(FilteredChatMenuTexts, FirstItem, MenuFont, ChatDroid);
 
-	//--------------------
 	// Now that we have an answer, we must transpose it back to the original array
 	// of all theoretically possible answering possibilities.
 	//
@@ -536,7 +508,6 @@ int GetNumberOfTextLinesNeeded(char *GivenText, SDL_Rect GivenRectangle, float t
 	int TestPosition;
 	int stored_height;
 
-	//--------------------
 	// If we receive an empty string, we print out a warning message and then
 	// return one line as the required amount of lines.
 	//
@@ -548,14 +519,12 @@ int GetNumberOfTextLinesNeeded(char *GivenText, SDL_Rect GivenRectangle, float t
 		 */
 		return (1);
 	}
-	//--------------------
 	// First we make a backup of everything, so that we don't destory anything.
 	//
 	display_char_disabled = TRUE;
 	BackupOfMyCursorX = MyCursorX;
 	BackupOfMyCursorY = MyCursorY;
 
-	//--------------------
 	// Now in our simulated environment, we can blit the Text and see how many lines it takes...
 	//
 	MyCursorX = GivenRectangle.x;
@@ -567,7 +536,6 @@ int GetNumberOfTextLinesNeeded(char *GivenText, SDL_Rect GivenRectangle, float t
 	TextLinesNeeded = DisplayText(GivenText, GivenRectangle.x, GivenRectangle.y, &GivenRectangle, text_stretch);
 	GivenRectangle.h = stored_height;
 
-	//--------------------
 	// Now that we have found our solution, we can restore everything back to normal
 	//
 	// RestoreMenuBackground ( 1 ) ;
@@ -617,7 +585,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	int old_game_status = game_status;
 
 	game_status = INSIDE_MENU;
-	//--------------------
 	// First we initialize the menu positions
 	//
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
@@ -626,7 +593,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		MenuOptionLineRequirement[i] = 0;
 	}
 
-	//--------------------
 	// Now we set some viable choice window and we compute the maximum number of lines
 	// that will still fit well into the choice window.
 	//
@@ -637,7 +603,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
 	DebugPrintf(1, "\nComputed number of lines in choice window at most: %d.", MaxLinesInMenuRectangle);
 
-	//--------------------
 	// We don't need the system mouse cursor, as we do have our own for
 	// the same purpose.
 	//
@@ -646,7 +611,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	if (FirstItem != (-1))
 		menu_position_to_remember = FirstItem;
 
-	//--------------------
 	// First thing we do is find out how may options we have
 	// been given for the menu
 	//
@@ -663,7 +627,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	}
 	NumberOfOptionsGiven = i;
 
-	//--------------------
 	// We need to prepare the background for the menu, so that
 	// it can be accessed with proper speed later...
 	//
@@ -671,7 +634,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
 	StoreMenuBackground(0);
 
-	//--------------------
 	// Now that the possible font-changing background assembling is
 	// done, we can finally set the right font for the menu itself.
 	//
@@ -687,7 +649,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		RestoreMenuBackground(0);
 		save_mouse_state();
 
-		//--------------------
 		// Now that the possible font-changing chat protocol display is
 		// done, we can finally set the right font for the menu itself.
 		//
@@ -697,13 +658,11 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			SetCurrentFont((BFont_Info *) MenuFont);
 		h = FontHeight(GetCurrentFont());
 
-		//--------------------
 		// We blit to the screen all the options that are not empty and that still fit
 		// onto the screen
 		//
 		SpaceUsedSoFar = 0;
 		for (i = OptionOffset; i < MAX_ANSWERS_PER_PERSON; i++) {
-			//--------------------
 			// If all has been displayed already, we quit blitting...
 			//
 			if (strlen(MenuTexts[i]) == 0) {
@@ -712,7 +671,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 				LastOptionVisible = i;
 				break;
 			}
-			//--------------------
 			// If there is not enough room any more, we quit blitting...
 			//
 			if (SpaceUsedSoFar > MaxLinesInMenuRectangle * h) {
@@ -721,7 +679,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 				LastOptionVisible = i;
 				break;
 			}
-			//--------------------
 			// Now that we know, that there is enough room, we can blit the next menu option.
 			//
 			MenuPosX[i] = Choice_Window.x;
@@ -731,7 +688,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			SpaceUsedSoFar += MenuOptionLineRequirement[i] * h * TEXT_STRETCH;
 		}
 
-		//--------------------
 		// We highlight the currently selected option with a highlighting rectangle
 		//
 		// (and we add some security against 'empty' chat selection menus causing
@@ -760,13 +716,11 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		if (OptionOffset)
 			ShowGenericButtonFromList(SCROLL_DIALOG_MENU_UP_BUTTON);
 
-		//--------------------
 		// Now the mouse cursor must be brought to the screen
 		//
 		make_sure_system_mouse_cursor_is_turned_off();
 		blit_our_own_mouse_cursor();
 
-		//--------------------
 		// Now everything should become visible!
 		//
 		our_SDL_flip_wrapper();
@@ -859,7 +813,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		}
 
 		if (MouseLeftClicked()) {
-			//--------------------
 			// First we see if there was perhaps a click on one of the active scroll buttons
 			//
 			if ((MouseCursorIsOnButton(SCROLL_DIALOG_MENU_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) &&
@@ -878,12 +831,10 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 				display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
 				StoreMenuBackground(0);
 			}
-			//--------------------
 			// If not, then maybe it was a click into the options window.  That alone
 			// would be enough to call it a valid user decision.
 			//
 			else {
-				//--------------------
 				// Now if the click has occured within the lines of the menu, we will count
 				// this as a valid choice of the user.
 				//
@@ -919,7 +870,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		if (cursors_menu_position > LastOptionVisible)
 			cursors_menu_position = LastOptionVisible;
 
-		//--------------------
 		// If the mouse cursor was on one of the possible lines, than we can try to translate
 		// it into a real menu position
 		//
@@ -958,7 +908,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
  */
 void InitiateMenu(int background_code)
 {
-	//--------------------
 	// Here comes the standard initializer for all the menus and submenus
 	// of the big escape menu.  This prepares the screen, so that we can
 	// write on it further down.
@@ -990,13 +939,11 @@ void Cheatmenu(void)
 	int skip_dead = 0;
 	Waypoint WpList;	// pointer on current waypoint-list  
 
-	//--------------------
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spend in the menu.
 	//
 	Activate_Conservative_Frame_Computation();
 
-	//--------------------
 	// Some small font is needed, such that we can get a lot of lines on
 	// one single cheat menu page...
 	//
@@ -1024,7 +971,6 @@ void Cheatmenu(void)
 		printf_SDL(Screen, -1, -1, " w. Print current waypoints\n");
 		printf_SDL(Screen, -1, -1, " q. RESUME game\n");
 
-		//--------------------
 		// Now we show it...
 		//
 		our_SDL_flip_wrapper();
@@ -2018,13 +1964,11 @@ static void Get_New_Character_Name(void)
 	else
 		Temp = "MapEd";
 
-	//--------------------
 	// In case 'Escape has been pressed inside GetString, then a NULL pointer
 	// will be returned, which means no name has been given to the character
 	// yet, so we set an empty string for the character name.
 	//
 	if (Temp == NULL) {
-		//--------------------
 		// WARNING:  We should not use "" here, since that is also used inside
 		//           the menu code as the termination string for the list of menu
 		//           options.  That would cause problems in the load and display
@@ -2036,7 +1980,6 @@ static void Get_New_Character_Name(void)
 		strcpy(Me.character_name, "HaveNoName");
 		return;
 	}
-	//--------------------
 	// If a real name has been given to the character, we can copy that name into
 	// the corresponding structure and return here (not without freeing the string
 	// received.  Could be some valuable 20 bytes after all :)
@@ -2060,7 +2003,6 @@ void clear_player_inventory_and_stats(void)
 {
 	int i;
 
-	//--------------------
 	// At first we clear the inventory of the new character
 	// of any items (or numeric waste) that might be in there
 	//
@@ -2072,7 +2014,6 @@ void clear_player_inventory_and_stats(void)
 	}
 	DebugPrintf(1, "\n%s(): Inventory has been emptied...", __FUNCTION__);
 
-	//--------------------
 	// Now we add some safety, against 'none present' items
 	//
 	Me.weapon_item.type = (-1);
@@ -2121,14 +2062,12 @@ static int PrepareNewHero(void)
 
 	Me.is_town_guard_member = FALSE;
 
-	//--------------------
 	// If the special string "HaveNoName" is being supplied, then
 	// we treat this as no name given and will return false.
 	//
 	if (!strcmp(Me.character_name, "HaveNoName"))
 		return (FALSE);
 
-	//--------------------
 	// If a real name has been given, then we can proceed and start the
 	// game.  If no real name has been given or 'Escape' has been pressed,
 	// then the calling function will return to the menu and do nothing
@@ -2196,7 +2135,6 @@ static int do_savegame_selection_and_act(int action)
 
 	InitiateMenu(NE_TITLE_PIC_BACKGROUND_CODE);
 
-	//--------------------
 	// We use empty strings to denote the end of any menu selection, 
 	// therefore also for the end of the list of saved characters.
 	//
@@ -2204,7 +2142,6 @@ static int do_savegame_selection_and_act(int action)
 		MenuTexts[n] = "";
 	}
 
-	//--------------------
 	// First we must find the home directory of the user.  From there on
 	// we can then construct the full directory path of the saved games directory.
 	//
@@ -2220,7 +2157,6 @@ static int do_savegame_selection_and_act(int action)
 	}
 #endif
 
-	//--------------------
 	// Now we generate the right directory for loading from the home
 	// directory.
 	//

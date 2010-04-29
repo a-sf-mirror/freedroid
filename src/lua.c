@@ -107,7 +107,6 @@ static int event_change_obstacle_type(const char *obslabel, int type)
 		action_remove_obstacle(obstacle_level, our_obstacle);
 	}
 
-	//--------------------
 	// Now we make sure the door lists and that are all updated...
 	dirty_animated_obstacle_lists(obstacle_level->levelnum);
 
@@ -263,7 +262,6 @@ static int lua_event_give_item(lua_State * L)
 	FillInItemProperties(&NewItem, TRUE, 1);
 	NewItem.multiplicity = mult;
 
-	//--------------------
 	// Either we put the new item directly into inventory or we issue a warning
 	// that there is no room and then drop the item to the floor directly under 
 	// the current Tux position.  That can't fail, right?

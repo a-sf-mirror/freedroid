@@ -96,7 +96,6 @@ static void decode_event_triggers(char *EventSectionPointer)
 
 		DebugPrintf(1, "\nStarting to read details of this event trigger section\n\n");
 
-		//--------------------
 		// Now we decode the details of this event trigger section
 		//
 
@@ -164,14 +163,12 @@ void CheckForTriggeredEvents()
 {
 	int i;
 
-	//--------------------
 	// Now we check if some event trigger is fullfilled.
 	//
 	for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
 		if (AllEventTriggers[i].enabled == 0)
 			continue;	// this trigger is not enabled
 
-		// --------------------
 		// So at this point we know, that the event trigger is somehow meaningful. 
 		// Fine, so lets check the details, if the event is triggered now
 		//
@@ -218,7 +215,6 @@ int teleporter_square_below_mouse_cursor(char *ItemDescText)
 
 			// DebugPrintf ( -1000 , "\nSome trigger seems to be here..." );
 
-			//--------------------
 			// Now we know, that the mouse is currently exactly over an event trigger.  The
 			// question to be answered still is whether this trigger also triggers a teleporter
 			// action or not and if yes, where the connection leads to...

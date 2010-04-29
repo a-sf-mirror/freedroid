@@ -291,7 +291,6 @@ void PlayATitleFile(char *Filename)
 
 	snprintf(finaldir, 50, "%s/", TITLES_DIR);
 
-	//--------------------
 	// Now its time to start loading the title file...
 	//
 	if (find_file(Filename, finaldir, fpath, 0))	//if file not found, retry with english version
@@ -361,7 +360,6 @@ void Get_Bullet_Data(char *DataPointer)
 	EndOfBulletData = LocateStringInData(DataPointer, BULLET_SECTION_END_STRING);
 
 	DebugPrintf(1, "\n\nStarting to read bullet data...\n\n");
-	//--------------------
 	// At first, we must allocate memory for the droid specifications.
 	// How much?  That depends on the number of droids defined in freedroid.ruleset.
 	// So we have to count those first.  ok.  lets do it.
@@ -384,7 +382,6 @@ void Get_Bullet_Data(char *DataPointer)
 		// DebugPrintf ( 0 , "\nMEMORY HAS BEEN ALLOCATED.\nTHE READING CAN BEGIN.\n" );
 		// getchar();
 	}
-	//--------------------
 	// Now we start to read the values for each bullet type:
 	// 
 	BulletPointer = DataPointer;
@@ -576,7 +573,6 @@ static void Get_Robot_Data(void *DataPointer)
 	EndOfDataPointer = LocateStringInData(DataPointer, ROBOT_SECTION_END_STRING);
 
 	DebugPrintf(1, "\n\nStarting to read Robot data...\n\n");
-	//--------------------
 	// At first, we must allocate memory for the droid specifications.
 	// How much?  That depends on the number of droids defined in freedroid.ruleset.
 	// So we have to count those first.  ok.  lets do it.
@@ -590,7 +586,6 @@ static void Get_Robot_Data(void *DataPointer)
 	DebugPrintf(1, "\nWe have counted %d different druid types in the game data file.", Number_Of_Droid_Types);
 	DebugPrintf(2, "\nMEMORY HAS BEEN ALLOCATED.\nTHE READING CAN BEGIN.\n");
 
-	//--------------------
 	//Now we start to read the values for each robot:
 	//Of which parts is it composed, which stats does it have?
 	while ((RobotPointer = strstr(RobotPointer, NEW_ROBOT_BEGIN_STRING)) != NULL) {
@@ -604,20 +599,17 @@ static void Get_Robot_Data(void *DataPointer)
 		// line with the DROIDNAME_BEGIN_STRING until the "\n" is found.
 		Druidmap[RobotIndex].druidname = ReadAndMallocStringFromData(RobotPointer, DROIDNAME_BEGIN_STRING, "\n");
 
-		//--------------------
 		// Now we read in the prefix of the file names in the rotation series
 		// to use for the console droid rotation
 		Druidmap[RobotIndex].droid_portrait_rotation_series_prefix =
 		    ReadAndMallocStringFromData(RobotPointer, DROID_PORTRAIT_ROTATION_SERIES_NAME_PREFIX, "\"");
 
-		//--------------------
 		// Now we read in the file name of the death sound for this droid.  
 		// Is should be enclosed in double-quotes.
 		//
 		Druidmap[RobotIndex].droid_death_sound_file_name =
 		    ReadAndMallocStringFromData(RobotPointer, DROID_DEATH_SOUND_FILE_NAME, "\"");
 
-		//--------------------
 		// Now we read in the file name of the attack animation sound for this droid.  
 		// Is should be enclosed in double-quotes.
 		//
@@ -779,12 +771,10 @@ void Get_Item_Data(char *DataPointer)
 
 	Number_Of_Item_Types = CountStringOccurences(DataPointer, NEW_ITEM_TYPE_BEGIN_STRING);
 
-	//--------------------
 	// Now that we know how many item archetypes there are, we can allocate the proper
 	// amount of memory for this information.
 	//
 	ItemMap = (itemspec *) MyMalloc(sizeof(itemspec) * (Number_Of_Item_Types + 1));
-	//--------------------
 	// Now we start to read the values for each bullet type:
 	// 
 	ItemPointer = DataPointer;
@@ -857,14 +847,12 @@ void Get_Item_Data(char *DataPointer)
 		}
 		free(YesNoString);
 
-		//--------------------
 		// Next we read in the prefix for the image series in the items browser
 		// that this item is going to use.
 		//
 		ItemMap[ItemIndex].item_rotation_series_prefix =
 		    ReadAndMallocStringFromData(ItemPointer, ITEM_ROTATION_SERIES_NAME_PREFIX, "\"");
 
-		//--------------------
 		// Now we read in if this item will group together in inventory
 		//
 		YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_GROUP_TOGETHER_IN_INVENTORY, "\"");
@@ -879,7 +867,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		}
 		free(YesNoString);
 
-		//--------------------
 		// Now we read in minimum strength, dex and magic required to wear/wield this item
 		//
 		ReadValueFromStringWithDefault(ItemPointer, "Strength minimum required to wear/wield this item=", "%hd", "-1",
@@ -906,7 +893,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			}
 		}
 
-		//--------------------
 		// If the item is a gun, we read in the weapon specification...
 		//
 		if (ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot == TRUE) {
@@ -1000,7 +986,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			ReadValueFromString(ItemPointer, "Item as gun: ammo clip size=", "%hd",
 					    &ItemMap[ItemIndex].item_gun_ammo_clip_size, EndOfItemData);
 
-			//--------------------
 			// Some guns require some ammunition.  This will be read in and
 			// examined next...
 			//
@@ -1044,7 +1029,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			free(YesNoString);
 
 		} else {
-			//--------------------
 			// If it is not a gun, we set the weapon specifications to
 			// empty values...
 			//
@@ -1076,7 +1060,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		ReadValueFromStringWithDefault(ItemPointer, "plus duration modifier=", "%hd", "0",
 					       &ItemMap[ItemIndex].item_duration_modifier, EndOfItemData);
 
-		//--------------------
 		// Now we read in the name of the inventory item image, that is to be used
 		// on the inventory screen.
 		//
@@ -1096,7 +1079,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		// Now we read in the base list price for this item
 		ReadValueFromString(ItemPointer, "Base list price=", "%hd", &ItemMap[ItemIndex].base_list_price, EndOfItemData);
 
-		//--------------------
 		// Now that the picture name has been loaded, we can already load the
 		// surfaces associated with the picture...
 		//
@@ -1107,7 +1089,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			EndOfThisItem[0] = '*';	// We put back the star at its place    
 	}
 
-	//--------------------
 	// Now that all the calibrations factors have been read in, we can start to
 	// apply them to all the bullet types
 	//
@@ -1135,7 +1116,6 @@ void Init_Game_Data()
 
 #define INIT_GAME_DATA_DEBUG 1
 
-	//--------------------
 	// Load magical items informations
 	//
 	find_file("freedroid.prefix_archetypes", MAP_DIR, fpath, 0);
@@ -1146,7 +1126,6 @@ void Init_Game_Data()
 
 	next_startup_percentage(2);
 
-	//--------------------
 	// Load programs (spells) informations
 	//
 	find_file("freedroid.program_archetypes", MAP_DIR, fpath, 0);
@@ -1155,7 +1134,6 @@ void Init_Game_Data()
 	Get_Programs_Data(Data);
 	free(Data);
 
-	//--------------------
 	// Item archetypes must be loaded too
 	//
 	find_file("freedroid.item_archetypes", MAP_DIR, fpath, 0);
@@ -1171,7 +1149,6 @@ void Init_Game_Data()
 	Get_Difficulty_Parameters(Data);
 	free(Data);
 
-	//--------------------
 	// Time to eat some droid archetypes...
 	//
 	find_file("freedroid.droid_archetypes", MAP_DIR, fpath, 0);
@@ -1180,7 +1157,6 @@ void Init_Game_Data()
 	Get_Robot_Data(Data);
 	free(Data);
 
-	//--------------------
 	// Now finally it's time for all the bullet data...
 	//
 	find_file("freedroid.bullet_archetypes", MAP_DIR, fpath, 0);
@@ -1360,7 +1336,6 @@ void ParseCommandLine(int argc, char *const argv[])
 		}		/* switch(c) */
 	}			/* while(1) */
 
-	//--------------------
 	// By default, after starting up, the current resolution should be
 	// the resolution used at the next game startup too, so we preselect
 	// that for now.  The user can still change that later inside the
@@ -1452,7 +1427,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Activate_Conservative_Frame_Computation();
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 
-	//--------------------
 	// We mark all the big screen messages for this character
 	// as out of date, so they can be overwritten with new 
 	// messages...
@@ -1466,13 +1440,11 @@ void PrepareStartOfNewCharacter(char *startpos)
 		Me.BigScreenMessageDuration[i] = 10000;
 	}
 
-	//--------------------
 	// We make sure we don't have garbage in our arrays from a 
 	// previous game or failed load-game attempt...
 	//
 	clear_out_arrays_for_fresh_game();
 
-	//--------------------
 	// Now the mission file is read into memory.  That means we can start to decode the details given
 	// in the body of the mission file.  
 	//
@@ -1481,7 +1453,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	if (!skip_initial_menus)
 		PlayATitleFile("StartOfGame.title");
 
-	//--------------------
 	// We also load the comment for the influencer to say at the beginning of the mission
 	//
 	Me.TextToBeDisplayed = _("Huh? What?  Where am I?");
@@ -1502,12 +1473,10 @@ void PrepareStartOfNewCharacter(char *startpos)
 
 	DebugPrintf(1, "\nFinal starting position: Level=%d XPos=%d YPos=%d.", StartingLevel, StartingXPos, StartingYPos);
 
-	//--------------------
 	// At this point the position history can be initialized
 	//
 	InitInfluPositionHistory();
 
-	//--------------------
 	// Now we read in the mission targets for this mission
 	// Several different targets may be specified simultaneously
 	//
@@ -1535,7 +1504,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 		Me.program_shortcuts[j] = -1;
 	}
 
-	//--------------------
 	// Now that the prime character stats have been initialized, we can
 	// set these much-varying variables too...
 	//
@@ -1554,7 +1522,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Me.walk_cycle_phase = 0;
 	Me.TextToBeDisplayed = "";
 
-	//--------------------
 	// None of the inventory slots like currently equipped weapons
 	// or the like should be held in hand, like when you take it
 	// 'into your hand' by clicking on it with the mouse button in
@@ -1579,7 +1546,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;	// what extra action has to be done upon arrival?
 	Me.mouse_move_target_combo_action_parameter = (-1);	// extra data to use for the combo action
 
-	//--------------------
 	// Now we know that right after starting a new game, the Tux might have
 	// to 'change clothes' i.e. a lot of tux images need to be updated which can
 	// take a little time.  Therefore we print some message so the user will not
@@ -1603,7 +1569,6 @@ void PrepareStartOfNewCharacter(char *startpos)
  */
 void ResetGameConfigToDefaultValues(void)
 {
-	//--------------------
 	// At first we set audio volume to maximum value.
 	// This might be replaced later with values from a 
 	// private user Freedroid config file.  But for now
@@ -1650,12 +1615,10 @@ void InitFreedroid(int argc, char **argv)
 
 	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 
-	//--------------------
 	// We want DisplayChar to produce visible results by default...
 	//
 	display_char_disabled = FALSE;
 
-	//--------------------
 	// We mention the version of FreedroidRPG, so that debug reports
 	// are easier to assign to the different versions of the game.
 	//
@@ -1663,7 +1626,6 @@ void InitFreedroid(int argc, char **argv)
 
 #ifndef __WIN32__
 
-	//--------------------
 	// Let's see if we're dealing with a real release or rather if
 	// we're dealing with a cvs version.  The difference is this:
 	// Releases shouldn't terminate upon a floating point exception
@@ -1707,7 +1669,6 @@ void InitFreedroid(int argc, char **argv)
 	// feenableexcept ( FE_DIVBYZERO | FE_INVALID ); // FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW 
 	// fesetexceptflag (const fexcept_t *flagp, int excepts);
 
-	//--------------------
 	// We hack the default signal handlers to print out a backtrace
 	// in case of a fatal error of type 'segmentation fault' or the
 	// like...
@@ -1777,7 +1738,6 @@ I will not be able to load or save games or configurations\n\
 
 	LightRadiusInit();
 
-	//--------------------
 	// Adapt button positions for the current screen resolution.  (Note: At this
 	// point the command line has been evaluated already, therefore we know if OpenGL
 	// is used or not and also which screen resolution to use.
@@ -1795,7 +1755,6 @@ I will not be able to load or save games or configurations\n\
 
 	InitAudio();
 
-	//--------------------
 	// Now that the music files have been loaded successfully, it's time to set
 	// the music and sound volumes accoridingly, i.e. as specifies by the users
 	// configuration.
@@ -1845,7 +1804,6 @@ void ThouArtDefeated(void)
 	GameConfig.CharacterScreen_Visible = FALSE;
 	GameConfig.Inventory_Visible = FALSE;
 
-	//--------------------
 	// Now that the influencer is dead, all this precious items
 	// spring off of him...
 	//
@@ -1931,7 +1889,6 @@ void ThouHastWon(void)
 
 	}
 
-	//--------------------
 	// Now it's time for the end game title file...
 	//
 	PlayATitleFile("EndOfGame.title");

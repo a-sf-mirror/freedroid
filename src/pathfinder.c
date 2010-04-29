@@ -67,7 +67,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 	   return TRUE;
 	   } */
 
-	//--------------------
 	// If the target position cannot be reached at all, because of being inside an obstacle
 	// for example, then no path can be computed.
 	//
@@ -75,7 +74,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 		//DebugPrintf ( -1 , "\nSKIPPING RECURSION BECAUSE OF UNREACHABLENESS! %d: %f/%f ->  %f/%f %d, bot %#x\n", curpos->z,curpos->x, curpos->y, move_target->x, move_target->y, curpos->z, droid );
 		return (FALSE);
 	}
-	//--------------------
 	// We give out a well visible debug message, so that the heavy process
 	// can easily be seen as redundant if that's really the case.
 	//
@@ -84,7 +82,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 *** Setting up new intermediate course using recursion...\n\
 *******************************************\n");
 
-	//--------------------
 	// First we clear out the position grid and initialize the target
 	// point, which will be the result of the recursion.
 	//
@@ -98,7 +95,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 	    (curpos->z, curpos->x, curpos->y, move_target->x, move_target->y, 0, waypoints, &next_index_to_set_up, maxwp, ctx)) {
 		return FALSE;
 	}
-	//--------------------
 	// We print out the final result for debug purposes
 	//
 	if (DEBUG_TUX_PATHFINDING <= debug_level) {
@@ -109,7 +105,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 			}
 		}
 	}
-	//--------------------
 	// We invert the intermediate waypoint list, because the Tux is coming from the
 	// other side of course (that's due to the recursion call)...
 	//
@@ -124,7 +119,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 		waypoints[next_index_to_set_up - 1 - i].y = tmp.y;
 	}
 
-	//--------------------
 	// We print out the final result for debug purposes
 	//
 	if (DEBUG_TUX_PATHFINDING <= debug_level) {
@@ -139,7 +133,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 
 	streamline_intermediate_course(curpos, waypoints, maxwp, ctx);
 
-	//--------------------
 	// We print out the final result for debug purposes
 	//
 	if (DEBUG_TUX_PATHFINDING <= debug_level) {
@@ -150,7 +143,6 @@ int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepo
 			}
 		}
 	}
-	//--------------------
 	// We give the number of 4-way-unresolved situations here.
 	//
 	DebugPrintf(DEBUG_TUX_PATHFINDING,
@@ -168,7 +160,6 @@ void clear_out_intermediate_points(gps * curpos, moderately_finepoint * intermed
 {
 	int i;
 
-	//--------------------
 	// We clear out the waypoint list for the Tux and initialize the 
 	// very first entry.
 	//
@@ -193,19 +184,16 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 
 #define MAX_RECUSION_DEPTH 50
 
-	//--------------------
 	// At first we mark the current position as processed...
 	//
 	recursion_grid[(int)x1][(int)y1] = TILE_IS_PROCESSED;
 
-	//--------------------
 	// Maybe the recursion is too deep already.  Then we just return and report
 	// failure.
 	//
 	if (recursion_depth > MAX_RECUSION_DEPTH)
 		return (FALSE);
 
-	//--------------------
 	// If we can reach the final destination from here, then there is no need to
 	// go any further, but instead we select the current position as the preliminary
 	// walkable target for the Tux.
@@ -223,7 +211,6 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 		*next_index_to_set_up = 2;
 		return (TRUE);
 	}
-	//--------------------
 	// So at this point we know, that the current position is not one from where
 	// we would be able to reach our goal.
 	//
@@ -234,7 +221,6 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 	// ones...
 	//
 	if (fabsf(x1 - x2) >= fabsf(y1 - y2)) {
-		//--------------------
 		// More priority on x move into the right direction, least
 		// priority on x move into the wrong direction.
 		//
@@ -261,7 +247,6 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 			ordered_moves[2].y = -1.0;
 		}
 	} else {
-		//--------------------
 		// More prority on x move into the right direction, least
 		// priority on x move into the wrong direction.
 		//
@@ -289,7 +274,6 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 		}
 	}
 
-	//--------------------
 	// Now that we have set up our walk preferences, we can start to try out the directions we have...
 	//
 
@@ -307,7 +291,6 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 			if (recursive_find_walkable_point(levelnum,
 							  centered_x, centered_y,
 							  x2, y2, recursion_depth + 1, waypoints, next_index_to_set_up, maxwp, ctx)) {
-				//--------------------
 				// If there is still sight contact to the waypoint closer to the target, we just set this
 				// waypoint.
 				// Otherwise we set THE NEXT WAYPOINT.
@@ -333,7 +316,6 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 	// DebugPrintf ( DEBUG_TUX_PATHFINDING , "\nBad luck in all 4 directions!" );
 	bad_luck_in_4_directions_counter++;
 
-	//--------------------
 	// Here we know, that we didn't have any success finding some possible point...
 	//
 	return (FALSE);
@@ -359,33 +341,28 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 
 	DebugPrintf(DEBUG_TUX_PATHFINDING, "\nOPTIMISATION --> streamline_tux_intermediate_course: starting...");
 
-	//--------------------
 	// We process each index position of the course, starting with the point
 	// where the tux will be starting.
 	//
 	for (start_index = 0; start_index < maxwp; start_index++) {
-		//--------------------
 		// If the end of the course is reached in the outer loop, then we're done indeed 
 		// with the streamlining process and therefore can go home now...
 		//
 		if (waypoints[start_index].x == (-1))
 			break;
 
-		//--------------------
 		// Start of inner streamlining loop:
 		// We eliminate every point from here on up to the last point in the
 		// course, that can still be reached from here.
 		//
 		last_index = (-1);
 		for (scan_index = start_index + 1; scan_index < maxwp; scan_index++) {
-			//--------------------
 			// If we've reached the end of the course this way, then we know how much
 			// we can cut away and can quit the inner loop here.
 			//
 			if (waypoints[scan_index].x == (-1))
 				break;
 
-			//--------------------
 			// Otherwise we check if maybe this is (another) reachable intermediate point (AGAIN?)
 			//
 			if (DirectLineColldet
@@ -399,14 +376,12 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 			}
 		}
 
-		//--------------------
 		// Maybe the result of the scan indicated, that there is nothing to cut away at this
 		// point.  Then we must contine right after this point.
 		//
 		if (last_index == (-1))
 			continue;
 
-		//--------------------
 		// Now we know how much to cut away.  So we'll do it.
 		//
 		for (cut_away = 0; (start_index + 1 + cut_away) < maxwp; cut_away++) {
@@ -420,7 +395,6 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 		}
 	}
 
-	//--------------------
 	// At this point the waypoint history is fairly good.  However, it might
 	// be, that the very first waypoint entry (index 0) is not necessary and
 	// did not get overwritten in the process above, because the original course

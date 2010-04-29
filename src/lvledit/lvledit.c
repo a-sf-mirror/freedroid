@@ -139,7 +139,6 @@ int level_editor_item_drop_index(int row_len, int line_len)
 		return ((GetMousePos_x() - UNIVERSAL_COORD_W(55)) / (64 * GameConfig.screen_width / 640) +
 			((GetMousePos_y() - UNIVERSAL_COORD_H(32)) / (66 * GameConfig.screen_height / 480)) * line_len);
 	}
-	//--------------------
 	// If no level editor item grid index was found under the current
 	// mouse cursor position, we just return (-1) to indicate that.
 	//
@@ -298,13 +297,11 @@ static void leveleditor_init()
 {
 	level_editor_done = FALSE;
 
-	//--------------------
 	// We set the Tux position to something 'round'.
 	//
 	Me.pos.x = rintf(Me.pos.x) + 0.5;
 	Me.pos.y = rintf(Me.pos.y) + 0.5;
 
-	//--------------------
 	// We disable all the 'screens' so that we have full view on the
 	// map for the purpose of level editing.
 	//
@@ -315,7 +312,6 @@ static void leveleditor_init()
 	strcpy(VanishingMessage, "");
 	VanishingMessageEndDate = 0;
 
-	//--------------------
 	// For drawing new waypoints, we init this.
 	//
 	OriginWaypoint = (-1);

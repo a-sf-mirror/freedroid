@@ -78,7 +78,6 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 		max_value = 1;
 		current_value = 1;
 	}
-	//--------------------
 	// Now we might get the case of current value exceeding the max value by far.  This 
 	// does happen when we set ridiculously high energy values for invincible Tux in the
 	// course of testing and convenient debugging.  To prevent arithmetic exceptions, we
@@ -104,7 +103,6 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 	if (current_value > max_value)
 		un_running_power_rect.h = 0;
 
-	//--------------------
 	// If we are to scale the status bar, we do so :)
 	//
 	if (scale_to_screen_resolution) {
@@ -117,7 +115,6 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 		running_power_rect.w = running_power_rect.w * GameConfig.screen_width / 640.0;
 		running_power_rect.h = running_power_rect.h * GameConfig.screen_height / 480.0;
 	}
-	//--------------------
 	// Now wthat all our rects are set up, we can start to display the current
 	// running power status on screen...
 	//
@@ -466,7 +463,6 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	    		description_pos->y) + enemy_iso_images[cur_enemy->type][0][0].offset_y -
 	    2.5 * FontHeight(BFont_to_use);
 
-	//--------------------
 	// Calculates the width of the remaining health bar. Rounds the
 	// width up to the nearest integer to ensure that at least one
 	// pixel of health is always shown.
@@ -578,7 +574,6 @@ void blit_experience_countdown_bars(void)
 	if ((GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) && GameConfig.screen_width == 640) {
 		return;
 	}
-	//--------------------
 	// At game startup, it might be that an uninitialized Tux (with 0 in the
 	// max running power entry) is still in the data structure and when the
 	// title displayes, this causes division by zero... 
@@ -591,7 +586,6 @@ The current experience of the Tux is higher than the next level while trying\n\
 to blit the 'experience countdown' bar.  Graphics will be suppressed for now...");
 		return;
 	}
-	//--------------------
 	// Upon the very first function call, the health and force colors are not yet
 	// set.  Therefore we set these colors once and for the rest of the game.
 	//
@@ -619,7 +613,6 @@ void blit_running_power_bars(void)
 	static Uint32 rest_running_power_rect_color = 0;
 	static Uint32 infinite_running_power_rect_color = 0;
 
-	//--------------------
 	// At game startup, it might be that an uninitialized Tux (with 0 in the
 	// max running power entry) is still in the data structure and when the
 	// title displayes, this causes division by zero... 
@@ -627,7 +620,6 @@ void blit_running_power_bars(void)
 	if (Me.max_running_power <= 1)
 		return;
 
-	//--------------------
 	// Upon the very first function call, the health and force colors are not yet
 	// set.  Therefore we set these colors once and for the rest of the game.
 	//
@@ -641,7 +633,6 @@ void blit_running_power_bars(void)
 	if ((GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) && GameConfig.screen_width == 640) {
 		return;
 	}
-	//--------------------
 	// Now wthat all our rects are set up, we can start to display the current
 	// running power status on screen...
 	//
@@ -682,7 +673,6 @@ void blit_energy_and_mana_bars(void)
 	static Uint32 un_health_rect_color = 0;
 	static Uint32 un_force_rect_color = 0;
 
-	//--------------------
 	// Upon the very first function call, the health and force colors are not yet
 	// set.  Therefore we set these colors once and for the rest of the game.
 	//
@@ -786,7 +776,6 @@ void prepare_text_window_content(char *ItemDescText)
 	best_banner_pos_x = CurPos.x;
 	best_banner_pos_y = CurPos.y;
 
-	//--------------------
 	// In case some item is held in hand by the player, the situation is simple:
 	// we merely need to draw this items description into the description field and
 	// that's it OR WE MUST SAY THAT THE requirements for this item are not met
@@ -798,14 +787,12 @@ void prepare_text_window_content(char *ItemDescText)
 			strcpy(ItemDescText, REQUIREMENTS_NOT_MET_TEXT);
 		}
 	}
-	//--------------------
 	// in the other case however, that no item is currently held in hand, we need to
 	// work a little more:  we need to find out if the cursor is currently over some
 	// inventory or other item and in case that's true, we need to give the 
 	// description of this item.
 	//
 	else if (GameConfig.Inventory_Visible) {
-		//--------------------
 		// Perhaps the cursor is over some item of the inventory?
 		// let's check this case first.
 		//
@@ -942,18 +929,15 @@ void prepare_text_window_content(char *ItemDescText)
 			}
 		}
 
-		//--------------------
 		// Maybe there is a teleporter event connected to the square where the mouse
 		// cursor is currently hovering.  In this case we should create a message about
 		// where the teleporter connection would bring the Tux...
 		//
 		if (teleporter_square_below_mouse_cursor(ItemDescText)) {
-			//--------------------
 			// Do nothing here, 'cause the function above has filled in the proper
 			// text already...
 			//
 		}
-		//--------------------
 		// Maybe there is a living droid below the current mouse cursor, and it is visible to the player.
 		// In this case, we'll give the decription of the corresponding bot.
 		// Nota : the call to GetLivingDroidBelowMouseCursor() does set the virt_pos attribute
@@ -1166,7 +1150,6 @@ void DisplayBanner(void)
 	ShowCurrentWeapon();
 	show_current_text_banner();
 
-	//--------------------
 	// We display the name of the current level and the current time inside
 	// the game.
 	//

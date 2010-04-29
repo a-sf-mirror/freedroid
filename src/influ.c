@@ -111,7 +111,6 @@ int find_free_floor_items_index(int levelnum)
 			return (i);
 	}
 
-	//--------------------
 	// Now at this point we know, that we didn't succeed in finding a 
 	// free index for new items on the floor of this level.  Ok.  No need
 	// to panic.  We can overwrite one old item anyway.  In the mass of
@@ -134,14 +133,12 @@ int find_free_floor_items_index(int levelnum)
 void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 {
 
-	//--------------------
 	// Maybe the player requested an attack before the reload/retract
 	// phase is completed.  In that case, we don't attack.
 	//
 	if (Me.busy_time > 0) {
 		return;
 	}
-	//--------------------
 	// If the Tux has a weapon and this weapon requires some ammunition, then
 	// we have to check for enough ammunition first...
 	//
@@ -150,7 +147,6 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 			if (Me.weapon_item.ammo_clip <= 0) {
 				No_Ammo_Sound();
 
-				//--------------------
 				// So no ammunition... We should say so and reload...
 				//
 				append_new_game_message(_("Clip empty, reloading..."));
@@ -187,13 +183,11 @@ void correct_tux_position_according_to_jump()
 	gps oldpos = { Me.pos.x, Me.pos.y, Me.pos.z };
 	gps newpos;
 
-	//---------------
 	// If current Tux position is inside current level, there's nothing to change
 	//
 	if (pos_inside_level(Me.pos.x, Me.pos.y, CURLEVEL()))
 		return;
 
-	//---------------
 	// Else, try to retrieve the actual position
 	//
 	int pos_valid = resolve_virtual_position(&newpos, &oldpos);
@@ -203,7 +197,6 @@ void correct_tux_position_according_to_jump()
 		CheckForTuxOutOfMap();
 		return;
 	}
-	//---------------
 	// Tux is on another level, teleport it
 	// (note: Teleport() resets Me.mouse_move_target, so we have to restore it)
 	//
@@ -217,7 +210,6 @@ void correct_tux_position_according_to_jump()
 	Me.mouse_move_target.y = old_mouse_move_target.y;
 	Me.mouse_move_target.z = old_mouse_move_target.z;
 
-	//---------------
 	// Update the mouse target position, if needed
 	//
 	// The purpose is to define mouse_move_target relatively to new Tux's level.
@@ -238,7 +230,6 @@ void correct_tux_position_according_to_jump()
 		}
 	}
 
-	//---------------
 	// Update the intermediate waypoints
 	//
 	// Intermediate waypoints are defined relatively to Tux's current level.
@@ -266,7 +257,6 @@ void correct_tux_position_according_to_jump()
 		Me.next_intermediate_point[i].y = new_point.y;
 	}
 
-	//--------------------
 	// Even the Tux must not leave the map!  A sanity check is done
 	// here...
 	//
@@ -348,7 +338,6 @@ void CheckIfCharacterIsStillOk()
 	if (Me.god_mode)
 		Me.energy = Me.maxenergy;
 
-	//------------------------------
 	// Now we check if the main character is really still ok.
 	//
 	if (Me.energy <= 0) {
@@ -367,7 +356,6 @@ void CheckForTuxOutOfMap()
 {
 	Level MoveLevel = curShip.AllLevels[Me.pos.z];
 
-	//--------------------
 	// Now perhaps the influencer is out of bounds, i.e. outside of the map.
 	//
 	if (!pos_inside_level(Me.pos.x, Me.pos.y, MoveLevel)) {
@@ -410,7 +398,6 @@ void tux_get_move_target_and_attack(gps * movetgt)
 
 	update_virtual_position(&t->virt_pos, &t->pos, Me.pos.z);
 
-	//--------------------
 	// If we have a ranged weapon in hand, there is no need to approach the
 	// enemy in question.  We just try to fire a shot, and return.
 	//
@@ -424,7 +411,6 @@ void tux_get_move_target_and_attack(gps * movetgt)
 			return;
 		}
 	}
-	//--------------------
 	// Move to melee distance
 	//
 	RemainingWay.x = t->virt_pos.x - Me.pos.x;
@@ -458,7 +444,6 @@ static void MoveTuxAccordingToHisSpeed()
 	float planned_step_x;
 	float planned_step_y;
 
-	//--------------------
 	// Now we move influence according to current speed.  But there has been a problem
 	// reported from people, that the influencer would (*very* rarely) jump throught walls
 	// and even out of the ship.  This has *never* occured on my fast machine.  Therefore
@@ -471,7 +456,6 @@ static void MoveTuxAccordingToHisSpeed()
 	planned_step_x = Me.speed.x * Frame_Time();
 	planned_step_y = Me.speed.y * Frame_Time();
 
-	//--------------------
 	// Maybe the Tux is just executing a weapon strike.  In this case, there should
 	// be no movement at all, so in this case we'll just not go anywhere...
 	//
@@ -484,18 +468,15 @@ static void MoveTuxAccordingToHisSpeed()
 	Me.pos.x += planned_step_x;
 	Me.pos.y += planned_step_y;
 
-	//--------------------
 	// If the Tux got stuck, i.e. if he got no speed at all and still is 
 	// currently not in a 'passable' position, the fallback handling needs
 	// to be applied to move the Tux out of the offending obstacle (i.e. 
 	// simply away from the offending obstacles center)
 	//
 	if ((fabsf(Me.speed.x) < 0.1) && (fabsf(Me.speed.y) < 0.1)) {
-		//--------------------
 		// So there is no speed, so we check for passability...
 		//
 		if (!SinglePointColldet(Me.pos.x, Me.pos.y, Me.pos.z, &WalkablePassFilter)) {
-			//--------------------
 			// Now it's time to launch the stuck-fallback handling...
 			//
 			DebugPrintf(-3, "\nTux looks stuck...ESCAPING just for this frame...");
@@ -561,7 +542,6 @@ static int move_tux_thowards_raw_position(float x, float y)
 
 	squared_length = RemainingWay.x * RemainingWay.x + RemainingWay.y * RemainingWay.y;
 
-	//--------------------
 	// Maybe the remaining way is VERY small!  Then we must not do
 	// a division at all.  We also need not do any movement, so the
 	// speed can be eliminated and we're done here.
@@ -571,7 +551,6 @@ static int move_tux_thowards_raw_position(float x, float y)
 		Me.speed.y = 0;
 		return (TRUE);
 	}
-	//--------------------
 	// Now depending on whether the running key is pressed or not,
 	// we have the Tux go on running speed or on walking speed.
 	//
@@ -598,13 +577,11 @@ static int move_tux_thowards_raw_position(float x, float y)
 		// DebugPrintf ( -2 , "\nNow walking..." );
 	}
 
-	//--------------------
 	// Now that the speed is set, we can start to make the step
 	//
 	Me.speed.x = planned_step.x;
 	Me.speed.y = planned_step.y;
 
-	// --------------------
 	// If we might step over the target,
 	// we reduce the speed.
 	//
@@ -613,7 +590,6 @@ static int move_tux_thowards_raw_position(float x, float y)
 	if (fabsf(planned_step.y * Frame_Time()) >= fabsf(RemainingWay.y))
 		Me.speed.y = RemainingWay.y / Frame_Time();
 
-	//--------------------
 	// In case we have reached our target, we can remove this mouse_move_target again,
 	// but also if we have been thrown onto a different level, we cancel our current
 	// mouse move target...
@@ -633,12 +609,10 @@ void move_tux_thowards_intermediate_point()
 {
 	int i;
 
-	//--------------------
 	// If there is no intermediate course, we don't need to do anything
 	// in this function.
 	//
 	if (Me.next_intermediate_point[0].x == (-1)) {
-		//--------------------
 		// The fact that there is no more intermediate course can mean, that
 		// there never has been any intermediate course or we have now arrived
 		// at the end of the previous intermediate course.
@@ -670,7 +644,6 @@ void move_tux_thowards_intermediate_point()
 		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 		return;
 	}
-	//--------------------
 	// Now we move the Tux thowards the next intermediate course point
 	//
 
@@ -699,7 +672,6 @@ void adapt_global_mode_for_player()
 {
 	static int left_pressed_previous_frame = FALSE;
 
-	//--------------------
 	// At first we check if maybe the player is scrolling the game
 	// message window.
 	//
@@ -752,7 +724,6 @@ void move_tux()
 	// check, if the influencer is still ok
 	CheckIfCharacterIsStillOk();
 
-	//--------------------
 	// We store the influencers position for the history record and so that others
 	// can follow his trail.
 	//
@@ -771,7 +742,6 @@ void move_tux()
 		Me.speed.y = 0;
 		return;		//If tux is paralyzed, we do nothing more
 	}
-	//--------------------
 	// As a preparation for the later operations, we see if there is
 	// a living droid set as a target, and if yes, we correct the move
 	// target to something suiting that new droids position.
@@ -781,7 +751,6 @@ void move_tux()
 	tux_get_move_target_and_attack(&move_target);
 
 	if (move_target.x != -1) {
-		//--------------------
 		// For optimisation purposes, we'll not do anything unless a new target
 		// has been given.
 		//
@@ -815,19 +784,16 @@ void move_tux()
 	// 
 	adapt_global_mode_for_player();
 
-	//--------------------
 	// But in case of some mouse move target present, we proceed to move
 	// thowards this mouse move target.
 	//
 	move_tux_thowards_intermediate_point();
 
-	//--------------------
 	// Perhaps the player has pressed the right mouse button, indicating the use
 	// of the currently selected special function or spell.
 	//
 	HandleCurrentlyActivatedSkill();
 
-	// --------------------
 	// Maybe we need to fire a bullet or set a new mouse move target
 	// for the new move-to location
 	//
@@ -838,7 +804,6 @@ void move_tux()
 	else
 		no_left_button_press_in_previous_analyze_mouse_click = TRUE;
 
-	//--------------------
 	// During inventory operations, there should not be any (new) movement
 	//
 	if (Item_Held_In_Hand != NULL) {
@@ -848,7 +813,6 @@ void move_tux()
 		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 		return;
 	}
-	//--------------------
 	// The influ should lose some of his speed when no key is pressed and
 	// also no mouse move target is set.
 	//
@@ -876,7 +840,6 @@ void animate_tux()
 #define STEP_TIME (0.28)
 	static float step_countdown = 0;
 
-	//--------------------
 	// First we handle the case of just getting hit...
 	//
 	if (Me.got_hit_time != (-1)) {
@@ -885,7 +848,6 @@ void animate_tux()
 			Me.got_hit_time = (-1);
 		Me.walk_cycle_phase = 17;
 	}
-	//--------------------
 	// Now we handle the case of nothing going on and the Tux just standing around...
 	// or moving to some place.
 	//
@@ -914,7 +876,6 @@ void animate_tux()
 		}
 
 	}
-	//--------------------
 	// Now we handle the case of a weapon swing just going on...
 	//
 	else {
@@ -982,7 +943,6 @@ void check_tux_enemy_collision(void)
 		if (erot->type == (-1) || erot->pure_wait)
 			continue;
 
-		//--------------------
 		// We determine the distance and back out immediately if there
 		// is still one whole square distance or even more...
 		//
@@ -993,7 +953,6 @@ void check_tux_enemy_collision(void)
 		if (abs(ydist) > 1)
 			continue;
 
-		//--------------------
 		// Now at this point we know, that we are pretty close.  It is time
 		// to calculate the exact distance and to see if the exact distance
 		// indicates a collision or not, in which case we can again back out
@@ -1047,12 +1006,10 @@ enemy *GetLivingDroidBelowMouseCursor()
 		if (fabsf(this_bot->pos.y - mouse_pos.y) >= 5.0)
 			continue;
 
-		//--------------------
 		// We properly set the direction this robot is facing.
 		//
 		RotationIndex = set_rotation_index_for_this_robot(this_bot);
 
-		//--------------------
 		// We properly set the rotation model number for this robot, i.e.
 		// which shape (like 302, 247 or proffa) to use for drawing this bot.
 		//
@@ -1080,7 +1037,6 @@ void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short 
 	CurBullet->pos.z = Me.pos.z;
 	CurBullet->type = bullet_image_type;
 
-	//--------------------
 	// Previously, we had the damage done only dependant upon the weapon used.  Now
 	// the damage value is taken directly from the character stats, and the UpdateAll...stats
 	// has to do the right computation and updating of this value.  hehe. very conventient.
@@ -1126,7 +1082,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 
 	DebugPrintf(1, "\n%s(): target location: x=%f, y=%f.", __FUNCTION__, target_location.x, target_location.y);
 
-	//--------------------
 	// We search for the first free bullet entry in the 
 	// bullet list...
 	//
@@ -1138,7 +1093,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	else
 		FillInDefaultBulletStruct(CurBullet, bullet_image_type, weapon_item_type);
 
-	//--------------------
 	// Now we can set up recharging time for the Tux...
 	// The firewait time is now modified by the ranged weapon skill
 	// 
@@ -1146,7 +1100,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];
 	Me.busy_type = WEAPON_FIREWAIT;
 
-	//--------------------
 	// Use the map location to
 	// pixel translation and vice versa to compute firing direction...
 	//
@@ -1166,7 +1119,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 
 	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f.", speed_norm);
 
-	//--------------------
 	// Now the above vector would generate a fine bullet, but it will
 	// be modified later to come directly from the Tux weapon muzzle.
 	// Therefore it might often miss a target standing very close.
@@ -1177,7 +1129,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	offset.y = OffsetFactor * (CurBullet->speed.y / BulletSpeed);
 	RotateVectorByAngle(&(offset), -60);
 
-	//--------------------
 	// And now we re-do it all!  But this time with the extra offset
 	// applied to the SHOT TARGET POINT!
 	//
@@ -1191,7 +1142,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 
 	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : speed_norm = %f.", speed_norm);
 
-	//--------------------
 	// Now we determine the angle of rotation to be used for
 	// the picture of the bullet itself
 	//
@@ -1201,7 +1151,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : Phase of bullet=%d.", CurBullet->phase);
 	DebugPrintf(FIRE_TUX_RANGED_WEAPON_RAW_DEBUG, "\nFireTuxRangedWeaponRaw(...) : angle of bullet=%f.", CurBullet->angle);
 
-	//--------------------
 	// To prevent influ from hitting himself with his own bullets,
 	// move them a bit..
 	//
@@ -1230,7 +1179,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
  */
 int ButtonPressWasNotMeantAsFire()
 {
-	//--------------------
 	// If the influencer is holding something from the inventory
 	// menu via the mouse, also just return
 	//
@@ -1239,7 +1187,6 @@ int ButtonPressWasNotMeantAsFire()
 	if (timeout_from_item_drop > 0)
 		return (TRUE);
 
-	//--------------------
 	// Maybe the player just pressed the mouse button but INSIDE one of the character/skills/inventory
 	// screens.  Then of course we will not interpret the intention to fire the weapon but rather 
 	// return from here immediately.
@@ -1341,20 +1288,17 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 
 #define PERFORM_TUX_ATTACK_RAW_DEBUG 1
 
-	//--------------------
 	// We should always make the sound of a fired bullet (or weapon swing)
 	// and then of course also subtract a certain fee from the remaining weapon
 	// duration in the course of the swing/hit
 	//
 	DebugPrintf(PERFORM_TUX_ATTACK_RAW_DEBUG, "\nWeapon_item: %d guntype: %d . ", Me.weapon_item.type, guntype);
 
-	//--------------------
 	// We always start the weapon application cycle, i.e. change of Tux
 	// motion phases
 	//
 	Me.weapon_swing_time = 0;
 
-	//--------------------
 	// Now that an attack is being made, the Tux must turn thowards the direction
 	// of the attack, no matter what.
 	//
@@ -1366,7 +1310,6 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 	}
 
 	if (!APressed()) {
-		//--------------------
 		// By default, we set an attack target according to the mouse 
 		// cursor.  If there is something else going on, this will simply
 		// be overwritten.  But it's a good default this way.
@@ -1377,7 +1320,6 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 		target_location.x = MapPositionOfMouse.x;
 		target_location.y = MapPositionOfMouse.y;
 
-		//--------------------
 		//
 		if (enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr) != NULL) {
 			droid_under_melee_attack_cursor = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
@@ -1396,7 +1338,6 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 			target_location.x = droid_under_melee_attack_cursor->virt_pos.x;
 			target_location.y = droid_under_melee_attack_cursor->virt_pos.y;
 		} else {
-			//--------------------
 			// We leave the angle at the current value...
 			// (this is because later angle is written over Me[..].angle
 			//
@@ -1413,13 +1354,11 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 		// target_location . x , target_location . y ); 
 	}
 
-	//--------------------
 	// We need to write this back into the Tux struct, because the
 	// value from there is used in the blitting code.
 	//
 	Me.angle = angle;
 
-	//--------------------
 	// But if the currently used weapon is a melee weapon, the tux no longer
 	// generates a bullet, but rather does his weapon swinging motion and
 	// only the damage is done to the robots in the area of effect
@@ -1430,7 +1369,6 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 	else if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0)
 		do_melee_strike = TRUE;
 	if (do_melee_strike) {
-		//--------------------
 		// Since a melee weapon is swung, which may be only influencers fists,
 		// we calculate where the point
 		// of the weapon should be finally hitting and do some damage
@@ -1476,13 +1414,11 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 
 			melee_weapon_hit_something = TRUE;
 
-			//--------------------
 			// War tux freezes enemys with the appropriate plugin...
 			erot->frozen += Me.freezing_melee_targets;
 
 		}
 
-		//--------------------
 		// Also, we should check if there was perhaps a chest or box
 		// or something that can be smashed up, cause in this case, we
 		// must open pendoras box now.
@@ -1491,7 +1427,6 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 		if (smash_obstacle(Weapon_Target_Vector.x, Weapon_Target_Vector.y, Me.pos.z))
 			melee_weapon_hit_something = TRUE;
 
-		//--------------------
 		// Finally we add a new wait-counter, so that bullets or swings
 		// cannot be started in too rapid succession.  
 		// 
@@ -1515,7 +1450,6 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 
 		return 0;
 	}
-	//--------------------
 	//
 	if (Me.weapon_item.type != (-1))
 		Fire_Bullet_Sound(guntype);
@@ -1656,7 +1590,6 @@ void check_for_droids_to_attack_or_talk_with()
 
 			return;
 		}
-		//--------------------
 		// But if we're close enough or there is a ranged weapon in Tux hands,
 		// then we can finally start the attack motion right away...
 		//
@@ -1682,7 +1615,6 @@ void AnalyzePlayersMouseClick()
 	// LMB to start a combo action.
 	static int wait_mouseleft_release = FALSE;
 
-	//---------------
 	// No action is associated to MouseLeftRelease event or state.
 	//
 
@@ -1690,7 +1622,6 @@ void AnalyzePlayersMouseClick()
 		wait_mouseleft_release = FALSE;
 		return;
 	}
-	//---------------
 	// The action associated to MouseLeftPress depends on the global game state
 	//
 

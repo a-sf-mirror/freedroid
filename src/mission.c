@@ -104,7 +104,6 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 	strcat(complete_mission_display_text, _(Me.AllMissions[mis_num].mission_name));
 	strcat(complete_mission_display_text, "\n");
 
-	//--------------------
 	// Depending on whether we want the full mission description or only
 	// some closed file description, we can either return or must continue
 	// to the detailed description.
@@ -150,7 +149,6 @@ void quest_browser_display_mission_list(int list_type)
 	strcpy(complete_mission_display_text, "");
 
 	for (mis_num = 0; mis_num < MAX_MISSIONS_IN_GAME; mis_num++) {
-		//--------------------
 		// The mission short/long symbol positions must be initialized
 		// with some default values.
 		//
@@ -164,7 +162,6 @@ void quest_browser_display_mission_list(int list_type)
 		if (Me.AllMissions[mis_num].MissionWasAssigned != TRUE)
 			continue;
 
-		//--------------------
 		// We record the number of lines needed so far, so that we may later
 		// draw suitable long/short buttons in front of the text, so that the
 		// user can then select to see the full/short information on this quest.
@@ -199,7 +196,6 @@ void quest_browser_display_mission_list(int list_type)
 		DisplayText(complete_mission_display_text, mission_description_rect.x,
 			    mission_description_rect.y - mission_list_offset, &mission_description_rect, TEXT_STRETCH);
 
-		//--------------------
 		// Now it's time to display some short/long symbols in front
 		// of each of the missions.
 		//
@@ -212,7 +208,6 @@ void quest_browser_display_mission_list(int list_type)
 				continue;
 			if ((list_type == QUEST_BROWSER_SHOW_DONE_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE))
 				continue;
-			//--------------------
 			// At first we bring the short/long buttons into position.
 			// This position might be well off the screen.  That's no
 			// problem, because we won't blit the thing in this case
@@ -226,7 +221,6 @@ void quest_browser_display_mission_list(int list_type)
 				rect_long->y = rect_short->y;
 				rect_long->x = rect_short->x;
 			}
-			//--------------------
 			// Now we check if the y coordinate of the buttons are 
 			// somewhat reasonable or not.  For those buttons that are
 			// off the screen, things are simple, because then we can
@@ -284,7 +278,6 @@ void quest_browser_interface(void)
 
 	game_status = INSIDE_MENU;
 
-	//--------------------
 	// On the very first 
 	if (first_call) {
 		first_call = FALSE;
@@ -293,7 +286,6 @@ void quest_browser_interface(void)
 		mission_description_rect.w *= (((float)GameConfig.screen_width) / 640.0);
 		mission_description_rect.h *= (((float)GameConfig.screen_height) / 480.0);
 	}
-	//--------------------
 	// This might take some time, so we need to be careful here,
 	// so as not to generate a massive frame time, that would
 	// throw every moving thing from the map.
@@ -389,7 +381,6 @@ void CheckIfMissionIsComplete(void)
 
 #define MIS_COMPLETE_DEBUG 1
 
-	//--------------------
 	// We do not need to check for mission completed EVERY frame
 	// It will be enough to do it now and then..., e.g. every 50th frame
 	//
@@ -398,7 +389,6 @@ void CheckIfMissionIsComplete(void)
 		return;
 
 	for (mis_num = 0; mis_num < MAX_MISSIONS_IN_GAME; mis_num++) {
-		//--------------------
 		// We need not do anything, if the mission has already failed or if
 		// the mission is already completed or if the mission does not exist
 		// at all or if the mission was not assigned yet
@@ -416,7 +406,6 @@ void CheckIfMissionIsComplete(void)
 
 		this_mission_seems_completed = TRUE;
 
-		//--------------------
 		// Continue if the Mission target KillOne is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].KillOne != (-1)) {
@@ -432,7 +421,6 @@ void CheckIfMissionIsComplete(void)
 
 			}
 		}
-		//--------------------
 		// Continue if the Mission target fetch_item is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].fetch_item != (-1)) {
@@ -448,7 +436,6 @@ void CheckIfMissionIsComplete(void)
 				this_mission_seems_completed = FALSE;
 			}
 		}
-		//--------------------
 		// Continue if the Mission target must_clear_first_level is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].must_clear_first_level != (-1)) {
@@ -460,7 +447,6 @@ void CheckIfMissionIsComplete(void)
 				}
 			}
 		}
-		//--------------------
 		// Continue if the Mission target must_clear_second_level is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].must_clear_second_level != (-1)) {
@@ -473,7 +459,6 @@ void CheckIfMissionIsComplete(void)
 			}
 		}
 
-		//--------------------
 		// Continue if the Mission target MustReachLevel is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].MustReachLevel != (-1)) {
@@ -482,7 +467,6 @@ void CheckIfMissionIsComplete(void)
 				continue;
 			}
 		}
-		//--------------------
 		// Continue if the Mission target MustReachPoint.x is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].MustReachPoint.x != (-1)) {
@@ -491,7 +475,6 @@ void CheckIfMissionIsComplete(void)
 				continue;
 			}
 		}
-		//--------------------
 		// Continue if the Mission target MustReachPoint.y is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].MustReachPoint.y != (-1)) {
@@ -500,7 +483,6 @@ void CheckIfMissionIsComplete(void)
 				continue;
 			}
 		}
-		//--------------------
 		// Continue if the Mission target MustLiveTime is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].MustLiveTime != (-1)) {
@@ -509,7 +491,6 @@ void CheckIfMissionIsComplete(void)
 				continue;
 			}
 		}
-		//--------------------
 		// Continue if the Mission target MustBeOne is given but not fullfilled
 		//
 		if (Me.AllMissions[mis_num].MustBeOne != (-1)) {
@@ -570,7 +551,6 @@ void clear_tux_mission_info()
 	int MissionTargetIndex;
 	int diary_entry_nr;
 
-	//--------------------
 	// At first we clear out all existing mission entries, so that no 'zombies' remain
 	// when the game is restarted and (perhaps less) new missions are loaded.
 	//
@@ -629,7 +609,6 @@ void GetQuestList(char *QuestListFilename)
 #define MISSION_ASSIGNMENT_LUACODE_STRING "Assignment LuaCode={"
 #define MISSION_COMPLETION_LUACODE_STRING "Completion LuaCode={"
 
-	//--------------------
 	// At first we must load the quest list file given...
 	//
 	find_file(QuestListFilename, MAP_DIR, fpath, 0);
@@ -648,7 +627,6 @@ void GetQuestList(char *QuestListFilename)
 			ErrorMessage(__FUNCTION__, "The number of quests specified in %s exceeds MAX_MISSIONS_IN_GAME (%d).\n",
 				     PLEASE_INFORM, IS_FATAL, QuestListFilename, MAX_MISSIONS_IN_GAME);
 
-		//--------------------
 		// We need to add an inner terminator here, so that the strstr operation
 		// below will know where to stop within this subsection.
 		//
@@ -659,7 +637,6 @@ void GetQuestList(char *QuestListFilename)
 
 		Me.AllMissions[MissionTargetIndex].mission_name = ReadAndMallocStringFromData(MissionTargetPointer, MISSION_TARGET_NAME_INITIALIZER, "\"");
 
-		//--------------------
 		// From here on we read the details of the mission target, i.e. what the
 		// influencer has to do, so that the mission can be thought of as completed
 		//
@@ -707,7 +684,6 @@ void GetQuestList(char *QuestListFilename)
 		} else {
 			Me.AllMissions[MissionTargetIndex].assignment_lua_code = NULL;
 		}
-		//--------------------
 		// Now it is time to read in the mission diary entries, that might
 		// be displayed in the quest browser later.
 		//
@@ -715,7 +691,6 @@ void GetQuestList(char *QuestListFilename)
 			Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr] = NULL;
 		}
 
-		//--------------------
 		// Now we are done with reading in THIS one mission target
 		// We need to advance the MissionTargetPointer, so that we avoid doubly
 		// reading in this mission OR ONE OF THIS MISSIONS VALUES!!!!
@@ -725,7 +700,6 @@ void GetQuestList(char *QuestListFilename)
 		MissionTargetPointer = EndOfMissionTargetPointer;	// to avoid double entering the same target
 		MissionTargetIndex++;	// to avoid overwriting the same entry again
 
-		//--------------------
 		// We restore the termination character we added before, even if that
 		// is maybe not really nescessary...
 		//
@@ -733,7 +707,6 @@ void GetQuestList(char *QuestListFilename)
 
 	}			// while mission target found...
 
-	//--------------------
 	// Finally we record the number of mission targets scanned and are done with this function
 	DebugPrintf(1, "\nNUMBER OF MISSION TARGETS FOUND: %d.\n", MissionTargetIndex);
 	fflush(stdout);

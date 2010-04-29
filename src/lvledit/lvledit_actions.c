@@ -173,7 +173,6 @@ obstacle *action_create_obstacle(level * EditLevel, double x, double y, int new_
 			glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 			DebugPrintf(0, "\nNew obstacle has been added!!!");
 			fflush(stdout);
-			//--------------------
 			// Now that we have disturbed the order of the obstacles on this level, we need
 			// to re-assemble the lists of pointers to obstacles, like the door list, the
 			// teleporter list and the refreshes list.
@@ -222,14 +221,12 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 	if (name)
 		name = strdup(name);
 
-	//--------------------
 	// If the obstacle already has a name, we can use that index for the 
 	// new name now.
 	//
 	if (obstacle->name_index >= 0)
 		index = obstacle->name_index;
 	else {
-		//--------------------
 		// Else we must find a free index in the list of obstacle names for this level
 		//
 		for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
@@ -261,25 +258,21 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 	if (obstacle->name_index == -1)
 		goto ret;
 
-	//--------------------
 	// But even if we fill in something new, we should first
 	// check against double entries of the same label.  Let's
 	// do it...
 	//
 	for (check_double = 0; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL; check_double++) {
-		//--------------------
 		// We must not use null pointers for string comparison...
 		//
 		if (EditLevel->obstacle_name_list[check_double] == NULL)
 			continue;
 
-		//--------------------
 		// We must not overwrite ourself with us in foolish ways :)
 		//
 		if (check_double == index)
 			continue;
 
-		//--------------------
 		// But in case of real double-entries, we'll handle them right.
 		//
 		if (!strcmp(EditLevel->obstacle_name_list[index], EditLevel->obstacle_name_list[check_double])) {
@@ -305,7 +298,6 @@ void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle,
 
 	cur_idx = our_obstacle->name_index;
 
-	//--------------------
 	// Maybe we must query the user for the desired new name.
 	// On the other hand, it might be that a name has been
 	// supplied as an argument.  That depends on whether the
@@ -332,7 +324,6 @@ void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle,
  */
 void action_remove_obstacle(level *EditLevel, obstacle *our_obstacle)
 {
-	//--------------------
 	// The likely case that no obstacle was currently marked.
 	//
 	if (our_obstacle == NULL)
@@ -344,13 +335,11 @@ void action_remove_obstacle(level *EditLevel, obstacle *our_obstacle)
 	// with the current design this won't be undoable
 	action_change_obstacle_label(EditLevel, our_obstacle, NULL, 0);
 
-	//--------------------
 	// Now doing that must have shifted the glue!  That is a problem.  We need to
 	// reglue everything to the map...
 	//
 	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 
-	//--------------------
 	// Now that we have disturbed the order of the obstacles on this level, we need
 	// to re-assemble the lists of pointers to obstacles, like the door list, the
 	// teleporter list and the refreshes list.
@@ -380,7 +369,6 @@ void action_toggle_waypoint(level * EditLevel, int BlockX, int BlockY, int toggl
 
 	wpnum = CreateWaypoint(EditLevel, BlockX, BlockY, &isnew);
 
-	//--------------------
 	// If its waypoint already, this waypoint must either be deleted
 	// or the random spawn bit reset...
 	//
@@ -562,7 +550,6 @@ void level_editor_action_change_map_label_user(level * EditLevel)
 
 	SetCurrentFont(FPS_Display_BFont);
 
-	//--------------------
 	// Now we see if a map label entry is existing already for this spot
 	//
 	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
@@ -736,7 +723,6 @@ void CreateNewMapLevel(int level_num)
 	level *NewLevel;
 	int i, k, l;
 
-	//--------------------
 	// Get the memory for one level 
 	//
 	NewLevel = (Level) MyMalloc(sizeof(level));
@@ -744,7 +730,6 @@ void CreateNewMapLevel(int level_num)
 	DebugPrintf(0, "\n-----------------------------------------------------------------");
 	DebugPrintf(0, "\nStarting to create and add a completely new level to the ship.");
 
-	//--------------------
 	// Now we proceed in the order of the struct 'level' in the
 	// struct.h file so that we can easily verify if we've handled
 	// all the data structure or left something out which could
@@ -761,14 +746,12 @@ void CreateNewMapLevel(int level_num)
 	NewLevel->Levelname = strdup("New level just created");
 	NewLevel->Background_Song_Name = strdup("TheBeginning.ogg");
 
-	//--------------------
 	// Now we initialize the obstacle name list with 'empty' values
 	//
 	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
 		NewLevel->obstacle_name_list[i] = NULL;
 	}
 	
-	//--------------------
 	// First we initialize the floor with 'empty' values
 	//
 	for (i = 0; i < NewLevel->ylen; i++) {
@@ -780,7 +763,6 @@ void CreateNewMapLevel(int level_num)
 			}
 		}
 	}
-	//--------------------
 	// Now we initialize the level jump interface variables with 'empty' values
 	//
 	NewLevel->jump_target_north = (-1);
@@ -788,7 +770,6 @@ void CreateNewMapLevel(int level_num)
 	NewLevel->jump_target_east = (-1);
 	NewLevel->jump_target_west = (-1);
 
-	//--------------------
 	// Now we initialize the map obstacles with 'empty' information
 	//
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
@@ -805,7 +786,6 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->obstacle_list[i].name_index = (-1);
 	}
 
-	//--------------------
 	// Now we initialize the map labels array with 'empty' information
 	//
 	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
@@ -813,7 +793,6 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->labels[i].pos.y = (-1);
 		NewLevel->labels[i].label_name = "no_label_defined";
 	}
-	//--------------------
 	// Now we add empty waypoint information...
 	//
 	NewLevel->num_waypoints = 0;
@@ -825,7 +804,6 @@ void CreateNewMapLevel(int level_num)
 			NewLevel->AllWaypoints[i].connections[k] = -1;
 		}
 	}
-	//--------------------
 	// First we initialize the items arrays with 'empty' information
 	//
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -836,7 +814,6 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->ItemList[i].currently_held_in_hand = FALSE;
 
 	}
-	//--------------------
 	// Now we initialize the chest items arrays with 'empty' information
 	//
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {

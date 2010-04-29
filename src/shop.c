@@ -55,7 +55,6 @@ int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWo
 	item **CurrentItemPointer;
 	int NumberOfItems = 0;
 
-	//--------------------
 	// First we clean out the new Show_Pointer_List
 	//
 	CurrentItemPointer = ItemPointerListPointer;
@@ -64,7 +63,6 @@ int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWo
 		CurrentItemPointer++;
 	}
 
-	//--------------------
 	// Now we start to fill the Show_Pointer_List with the items
 	// currently equipped, if that is what is desired by parameters...
 	//
@@ -96,7 +94,6 @@ int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWo
 			NumberOfItems++;
 		}
 	}
-	//--------------------
 	// Now we start to fill the Show_Pointer_List with the items in the
 	// pure unequipped inventory
 	//
@@ -127,7 +124,6 @@ int AssemblePointerListForChestShow(item ** ItemPointerListPointer, gps chest_po
 	item **CurrentItemPointer;
 	int NumberOfItems = 0;
 
-	//--------------------
 	// First we clean out the new Show_Pointer_List
 	//
 	CurrentItemPointer = ItemPointerListPointer;
@@ -142,7 +138,6 @@ int AssemblePointerListForChestShow(item ** ItemPointerListPointer, gps chest_po
 		if (curShip.AllLevels[Me.pos.z]->ChestItemList[i].type == (-1))
 			continue;
 
-		//--------------------
 		// All the items in chests within a range of 1 square around the Tux 
 		// will be collected together to be shown in the chest inventory.
 		//
@@ -177,7 +172,6 @@ int ClickWasOntoItemRowPosition(int x, int y, int TuxItemRow)
 		if (x > TuxItemRowRect.x + TuxItemRowRect.w)
 			return (-1);
 
-		//--------------------
 		// Now at this point we know, that the click really was in the item
 		// overview row.  Therefore we just need to find out the index and
 		// can return;
@@ -193,7 +187,6 @@ int ClickWasOntoItemRowPosition(int x, int y, int TuxItemRow)
 		if (x > ShopItemRowRect.x + ShopItemRowRect.w)
 			return (-1);
 
-		//--------------------
 		// Now at this point we know, that the click really was in the item
 		// overview row.  Therefore we just need to find out the index and
 		// can return;
@@ -291,11 +284,9 @@ static void ShowItemPicture(int PosX, int PosY, int Number)
 	// if ( !strcmp ( ItemMap[ Number ] . item_rotation_series_prefix , "NONE_AVAILABLE_YET" ) )
 	// return; // later this should be a default-correction instead
 
-	//--------------------
 	// Maybe we have to reload the whole image series
 	//
 	if (strcmp(LastImageSeriesPrefix, ItemMap[Number].item_rotation_series_prefix)) {
-		//--------------------
 		// Maybe we have to free the series from an old item display first
 		//
 		if (ItemRotationSurfaces[0] != NULL) {
@@ -303,11 +294,9 @@ static void ShowItemPicture(int PosX, int PosY, int Number)
 				SDL_FreeSurface(ItemRotationSurfaces[i]);
 			}
 		}
-		//--------------------
 		// Now we can start to load the whole series into memory
 		//
 		for (i = 0; i < MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION; i++) {
-			//--------------------
 			// At first we will try to find some item rotation models in the
 			// new directory structure.
 			//
@@ -317,7 +306,6 @@ static void ShowItemPicture(int PosX, int PosY, int Number)
 			else
 				Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
 
-			//--------------------
 			// If that didn't work, then it's time to try the same directory with 'png' ending...
 			// Maybe there's still some (old) rotation image of this kind.
 			//
@@ -330,7 +318,6 @@ static void ShowItemPicture(int PosX, int PosY, int Number)
 				else
 					Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
 			}
-			//--------------------
 			// But at this point, we should have found the image!!
 			// or if not, this maybe indicates that we have reached the
 			// last image in the image series...
@@ -341,7 +328,6 @@ static void ShowItemPicture(int PosX, int PosY, int Number)
 				DebugPrintf(1, "\nDONE LOADING ITEM IMAGE SERIES.  Loaded %d images into memory.",
 					    NumberOfImagesInThisRotation);
 
-				//--------------------
 				// Maybe we've received the nothing loaded case even on the first attempt
 				// to load something.  This of course would mean a severe error in Freedroid!
 				//
@@ -354,7 +340,6 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 
 				break;
 			}
-			//--------------------
 			// Also we must check for our upper bound of the list of 
 			// item images.  This will most likely never be exceeded, but it
 			// can hurt to just be on the safe side.
@@ -414,7 +399,6 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 	ShowItemPicture(40 * GameConfig.screen_width / 1024 + ((250 * GameConfig.screen_width / 1024) - 132) / 2,
 			185 * GameConfig.screen_height / 768 + ((322 * GameConfig.screen_height / 768) - 180) / 2, ShowItem->type);
 
-	//--------------------
 	// If that is wanted, we fill out the title header line, announcing the
 	// currently browsed items name in full glory.
 	//
@@ -424,7 +408,6 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 		CutDownStringToMaximalSize(TextChunk, 225);
 		PutString(Screen, 330, 38, TextChunk);
 	}
-	//--------------------
 	// Now we can display the rest of the smaller-font item description.
 	// If the item has changed, we must first assemble the description
 	//
@@ -526,7 +509,6 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 			   break;
 			   } */
 		}
-		//--------------------
 		// Now we give some pricing information, the base list price for the item,
 		// the repair price and the sell value
 		if (calculate_item_buy_price(ShowItem)) {
@@ -553,7 +535,6 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 			if (ShowItem->is_identified == FALSE)
 				strcat(InfoText, _("Identification cost: 100\n"));
 		}
-		//--------------------
 		// If the item is a weapon, then we print out some weapon stats...
 		//
 		if (ItemMap[ShowItem->type].base_item_gun_damage + ItemMap[ShowItem->type].item_gun_damage_modifier > 0) {
@@ -608,7 +589,6 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 			break;
 		}
 
-		//-----------------------
 		// We cache the item
 		// 
 		memcpy(&LastItemShown, ShowItem, sizeof(item));
@@ -649,12 +629,10 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	int old_game_status = game_status;
 	game_status = INSIDE_MENU;
 
-	//--------------------
 	// For the shop, we'll also try to use our own mouse cursor
 	//
 	make_sure_system_mouse_cursor_is_turned_off();
 
-	//--------------------
 	// We add some secutiry against indexing beyond the
 	// range of items given in the list.
 	//
@@ -681,7 +659,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	if (NumberOfItems <= 0)
 		ItemIndex = (-1);
 
-	//--------------------
 	// We initialize the text rectangle
 	//
 	Cons_Text_Rect.x = 258 * GameConfig.screen_width / 640;
@@ -696,7 +673,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		save_mouse_state();
 		input_handle();
 
-		//--------------------
 		// We limit the 'displacement', i.e. how far up and down one can
 		// scroll the text of the item description up and down a bit, so
 		// it cannot be scrolled away ad infinitum...
@@ -709,7 +685,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		SDL_Delay(1);
 		ShopOrder->shop_command = DO_NOTHING;
 
-		//--------------------
 		// We show all the info and the buttons that should be in this
 		// interface...
 		//
@@ -769,7 +744,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			SellButtonActive = FALSE;
 		}
 
-		//--------------------
 		// We show the current amount of 'gold' or 'cyberbucks' the tux
 		// has on him.  However we need to take into account the scaling
 		// of the whole screen again for this.
@@ -874,12 +848,10 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					goto out;
 				}
 			} else if (MouseCursorIsOnButton(REPAIR_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				//--------------------
 				// Reference to the Tux item list must only be made, when the 'highlight'
 				// is really in the tux item row.  Otherwise we just get a segfault...
 				//
 				if (TuxItemIndex > (-1)) {
-					//--------------------
 					// Of course the repair button should only have effect, if there is
 					// really something to repair (and therefore the button is shown at
 					// all further above.
@@ -894,7 +866,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					}
 				}
 			} else if (MouseCursorIsOnButton(IDENTIFY_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				//--------------------
 				// Reference to the Tux item list must only be made, when the 'highlight'
 				// is really in the tux item row.  Otherwise we just get a segfault...
 				//
@@ -949,7 +920,6 @@ int ClickedMenuItemPosition(void)
 #define ITEM_FIRST_POS_Y 130
 #define NUMBER_OF_ITEMS_ON_ONE_SCREEN 4
 
-	//--------------------
 	// When a character is blitted to the screen at x y, then the x and y
 	// refer to the top left corner of the coming blit.  Using this information
 	// we will define the areas where a click 'on the blitted text' has occured
@@ -965,7 +935,6 @@ int ClickedMenuItemPosition(void)
 			return i;
 	}
 
-	//--------------------
 	// At this point we've already determined and returned to right click-area.
 	// if this point is ever reached, a severe error has occured, and Freedroid
 	// should therefore also say so.
@@ -1037,7 +1006,6 @@ void TryToIdentifyItem(item * IdentifyItem)
  */
 void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 {
-	//--------------------
 	// We catch the case, that not even one item was selected
 	// for buying in the number selector...
 	//
@@ -1045,7 +1013,6 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 		DebugPrintf(0, "\nTried to sell 0 items of a kind... doing nothing... ");
 		return;
 	}
-	//--------------------
 	// First some error-checking against illegal values.  This should not normally
 	// occur, but some items on the map are from very old times and therefore the
 	// engine might have made some mistakes back then or also changes that broke these
@@ -1067,7 +1034,6 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 
 	while (SpacePressed() || EnterPressed()) ;
 
-	//--------------------
 	// Ok.  Here we silently sell the item.
 	//
 	Me.Gold += calculate_item_sell_price(SellItem) * ((float)AmountToSellAtMost) / ((float)SellItem->multiplicity);
@@ -1096,7 +1062,6 @@ int copy_item_into_inventory(item *BuyItem, int amount)
 	int FreeIndex;
 	int i;
 
-	//--------------------
 	// At first we try to see if we can just add the multiplicity of the item in question
 	// to the existing multiplicity of an item of the same type
 	//
@@ -1112,7 +1077,6 @@ int copy_item_into_inventory(item *BuyItem, int amount)
 		}
 	}
 
-	//--------------------
 	// Now we must find out if there is an inventory position where we can put the
 	// item in question.
 	//
@@ -1211,7 +1175,6 @@ void InitTradeWithCharacter(struct npc *npc)
 		else
 			BuyPointerList[i] = &(SalesList[i]);
 	}
-	//--------------------
 	// Now here comes the new thing:  This will be a loop from now
 	// on.  The buy and buy and buy until at one point we say 'BACK'
 	//

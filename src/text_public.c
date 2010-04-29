@@ -153,18 +153,15 @@ void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlele
 	DebugPrintf(3, "%s(): haystack = %d, len = %d, needle=%s\n", __FUNCTION__, haystack, haystacklen, needle);
 
 	while (haystacklen - SearchPos > 0) {
-		//--------------------
 		// We search for the first match OF THE FIRST CHARACTER of needle
 		//
 		NextFoundPointer = memchr(haystack + SearchPos, needle[0], haystacklen - SearchPos);
 
-		//--------------------
 		// if not even that was found, we can immediately return and report our failure to find it
 		//
 		if (NextFoundPointer == NULL)
 			return (NULL);
 
-		//--------------------
 		// Otherwise we see, if also the rest of the strings match this time ASSUMING THEY ARE STRINGS!
 		// In case of a match, we can return immediately
 		//
@@ -177,7 +174,6 @@ void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlele
 		if (MatchPointer != NULL)
 			return (MatchPointer);
 
-		//--------------------
 		// At this point, we know that we had no luck with this one occasion of a first-character-match
 		// and must continue after this one occasion with our search
 		SearchPos = NextFoundPointer - haystack + 1;
@@ -280,7 +276,6 @@ char *ReadAndMallocAndTerminateFile(char *filename, const char *File_End_String)
 
 	DebugPrintf(1, "\n%s() : The filename is: %s", __FUNCTION__, filename);
 
-	//--------------------
 	// Read the whole theme data to memory.  We use binary mode, as we
 	// don't want to have to deal with any carriage return/line feed 
 	// convention mess on win32 or something...
@@ -381,7 +376,6 @@ ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePrecee
 	else
 		SourceLocation = DefaultValueString;
 
-	//--------------------
 	// Attention!!! 
 	// Now we try to read in the value!!!
 	//
@@ -417,7 +411,6 @@ ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText, cons
 	SourceLocation = LocateStringInData(SearchBeginPointer, ValuePreceedText);
 	SourceLocation += strlen(ValuePreceedText);
 
-	//--------------------
 	// Attention!!! 
 	// Now we try to read in the value!!!
 	//

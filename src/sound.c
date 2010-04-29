@@ -166,7 +166,6 @@ void InitAudio(void)
 		DebugPrintf(1, "\nSDL Audio initialisation successful.\n");
 	}
 
-	//--------------------
 	// Now that we have initialized the audio SubSystem, we must open
 	// an audio channel.  This will be done here (see code from Mixer-Tutorial):
 	//
@@ -191,7 +190,6 @@ void InitAudio(void)
 		DebugPrintf(1, "\nSuccessfully opened SDL audio channel.");
 	}
 
-	//--------------------
 	// Since we don't want some sounds to be omitted due to lack of mixing
 	// channels, we select to have some at our disposal.  The SDL will do this
 	// for a small increase in memory appetite as the price.  Whether this will
@@ -244,7 +242,6 @@ void channelDone(int channel)
 		DebugPrintf(1, "\nCALLBACK FUNCTION:  Detected soundchannel for sustained release.... freeing chunk...");
 		Mix_FreeChunk(List_Of_Sustained_Release_WAV_Files[channel]);
 	}
-	//--------------------
 	// Now we can safely mark the channel as unused again
 	//
 	SoundChannelList[channel] = 0;
@@ -295,7 +292,6 @@ void LoadAndFadeInBackgroundMusic(void)
 		MOD_Music_Channel = -1;
 		return;
 	}
-	//--------------------
 	// Now we LOAD the music file from disk into memory!!
 	// But before we free the old music.  This is not a danger, cause the music
 	// is first initialized in InitAudio with some dummy mod files, so that there
@@ -339,7 +335,6 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 	if (!sound_on)
 		return;
 
-	//--------------------
 	// Maybe the background music switch command given instructs us to initiate
 	// the same background music that has been playing all the while anyway in
 	// an endless loop.  So in this case, we need not touch anything at all and
@@ -354,7 +349,6 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 
 	strcpy(NewMusicTargetFileName, filename_raw_parameter);
 
-	//--------------------
 	// Now we can start to get some new music going, either directly or
 	// by issuing a fade out instruction, that will then launch a callback
 	// to get the new music going...
@@ -367,7 +361,6 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 		Mix_FadeOutMusic(200);
 		BackgroundMusicStateMachineState = FADING_OUT;
 
-		//--------------------
 		// We set up a function to be invoked by the SDL automatically as
 		// soon as the fading out effect is completed (and the new music
 		// can start to get going that is...)
@@ -420,7 +413,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 	char *extension;
 	char *extensions[] = { ".spx", ".ogg", ".wav", NULL };	// Extensions to try for audio
 
-	//--------------------
 	// These variables will only be needed when compiling with sound!
 	//
 
@@ -429,7 +421,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 	char Temp_Filename[5000];
 	char fpath[2048] = "no_fpath_has_been_set";
 
-	//--------------------
 	// In case the same sample is played again and again in a very
 	// short time, we might refuse operation here, since this could
 	// lead to non-loadability errors with the sound files.
@@ -439,7 +430,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 	    && ((TicksNow - PreviousStartTicks) < 2.5 * 1000) && (!no_double_catching))
 		return;
 
-	//--------------------
 	// For now, we disable the bombardment with 'no voice sample yet...'
 	//
 	// if ( ! strcmp ( "Sorry_No_Voice_Sample_Yet_0.wav" , SoundSampleFileName ) ) return;
@@ -448,7 +438,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 	strcpy(PreviousFileName, SoundSampleFileName);
 
 	if (!sound_on) {
-		//--------------------
 		// Maybe this sound sample was intended to be hooking the CPU and the
 		// program flow, so that nothing happens until the sample has been
 		// played fully.  In this case we must introduce a waiting time even
@@ -459,27 +448,23 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		if (With_Waiting) {
 			sample_wait();
 		}
-		//--------------------
 		// Since sound is disabled otherwise we MUST return here and not
 		// try to do any sound operations on this machine with perhaps no sound
 		// modules and no SDL sound initialized.
 		//
 		return;
 	}
-	//--------------------
 	// Now we set a callback function, that should be called by SDL
 	// as soon as ANY other sound channel finishes playing...
 	//
 	Mix_ChannelFinished(channelDone);
 
-	//--------------------
 	// Now we try to load the requested sound file into memory...
 	//
 	One_Shot_WAV_File = NULL;
 
 	strcpy(Temp_Filename, SoundSampleFileName);
 
-	//--------------------
 	// Only if the file name wasn't 'no_voice_sample', we really
 	// try to load anything...
 	//
@@ -495,7 +480,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		i = 0;
 		while (extensions[i] != NULL) {
 			strcpy(extension, extensions[i]);
-			//--------------------
 			// find_file_silent may return a NULL pointer, in case the file name
 			// composed hasn't been found.  We need to catch that case of course.
 			//
@@ -515,11 +499,9 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 	} else
 		One_Shot_WAV_File = NULL;
 
-	//--------------------
 	// Now some error checking against failed/missing sound samples...
 	//
 	if (One_Shot_WAV_File == NULL) {
-		//--------------------
 		// A warning message about a missing speech file should only be issued,
 		// if it wasn't the 'no_voice_sample' dummy entry anyway...
 		//
@@ -528,7 +510,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 			ErrorMessage(__FUNCTION__, "\
 		    There seems to be a sound file missing.", NO_NEED_TO_INFORM, FALSE);
 		}
-		//--------------------
 		// Maybe this sound sample was intended to be hooking the CPU and the
 		// program flow, so that nothing happens until the sample has been
 		// played fully.  In this case we must introduce a waiting time even
@@ -539,7 +520,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		if (With_Waiting) {
 			sample_wait();
 		}
-		//--------------------
 		// Now we must return, since we do not want to 'free' the sound sample, that
 		// hasn't been loaded successfully and produce a segfault, do we?
 		//
@@ -550,7 +530,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		DebugPrintf(1, "\nSuccessfully loaded file %s into memory for playing once, filename is %s .", SoundSampleFileName, fpath);
 	}
 
-	//--------------------
 	// Hoping, that this will not take up too much processor speed, we'll
 	// now change the volume of the sound sample in question to what is normal
 	// for sound effects right now...
@@ -561,7 +540,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 	if (One_Shot_WAV_File != NULL)
 		Mix_VolumeChunk(One_Shot_WAV_File, (int)rintf(GameConfig.Current_Sound_FX_Volume * MIX_MAX_VOLUME));
 
-	//--------------------
 	// Now we try to play the sound file that has just been successfully
 	// loaded into memory...
 	//
@@ -574,7 +552,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		ErrorMessage(__FUNCTION__, "\
 		The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.\n", PLEASE_INFORM, IS_WARNING_ONLY);
 
-		//--------------------
 		// If we receive an error playing a sound file here, this is very inconvenient.
 		// We must see to it that the callback code and allocation there and all that doesn't
 		// get touched.  I hope that the following fix does already what we want here...
@@ -589,14 +566,12 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		DebugPrintf(1, "\nSuccessfully playing the 'ONCE NEEDED' file %s.", SoundSampleFileName);
 	}
 
-	//--------------------
 	// Maybe this sound sample is intended to be hooking the CPU and the
 	// program flow, so that nothing happens until the sample has been
 	// played fully...
 	//
 	if (With_Waiting) {
 		while (SoundChannelList[Newest_Sound_Channel] && !EscapePressed() && !SpacePressed()) ;
-		//--------------------
 		// In case escape was pressed, the currently playing voice sample must
 		// be terminated immediately.
 		//
@@ -605,7 +580,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 			while (EscapePressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(10);
 
-			//--------------------
 			// Now the channel has finished playing (or we have stopped it) and
 			// now we can unallocate the resources used by it...
 			//
@@ -614,7 +588,6 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 
 		}
 	} else {
-		//--------------------
 		// Otherwise, if there was no 'With_Waiting' flag set,
 		// we do nothing here, cause we can't halt the channel and
 		// we also can't free the channel, that is still playing.
@@ -652,13 +625,11 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 	int sound_must_be_loaded = TRUE;
 	int i;
 
-	//--------------------
 	// In case sound has been disabled, we don't do anything here...
 	//
 	if (!sound_on)
 		return;
 
-	//--------------------
 	// First we go take a look if maybe the sound sample file name in question
 	// has been given to this function (at least) once before.  Then we can
 	// assume, that the corresponding sound sample is already loaded and still
@@ -680,17 +651,13 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 		}
 	}
 
-	//--------------------
 	// So if the sound sample isn't in the cache and therefore must still be loaded,
 	// we do so here before any playing takes place...
 	//
 	if (sound_must_be_loaded) {
-		//----------------------------------------------------------------------
 		// So now we know, that the sound sample in question has not yet ever been
 		// used before.  We must load it, play it and keep it in cache memory.
-		//----------------------------------------------------------------------
 
-		//--------------------
 		// Now we try to load the requested sound file into memory...
 		//
 		dynamic_WAV_cache[next_free_position_in_cache] = NULL;
@@ -700,25 +667,21 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 		if (dynamic_WAV_cache[next_free_position_in_cache] == NULL) {
 			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
 			ErrorMessage(__FUNCTION__, "Could not load sound file \"%s\": %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fpath, Mix_GetError());
-			//--------------------
 			// If the sample couldn't be loaded, we just quit, not marking anything
 			// as loaded and inside the cache and also not trying to play anything...
 			//
 			return;
 		}
-		//--------------------
 		// Hoping, that this will not take up too much processor speed, we'll
 		// now change the volume of the sound sample in question to what is normal
 		// for sound effects right now...
 		//
 		Mix_VolumeChunk(dynamic_WAV_cache[next_free_position_in_cache], (int)rintf(MIX_MAX_VOLUME * volume * GameConfig.Current_Sound_FX_Volume));	//aep
 
-		//--------------------
 		// We note the position of the sound file to be played
 		//
 		index_of_sample_to_be_played = next_free_position_in_cache;
 
-		//--------------------
 		// Now we store the corresponding file name as well.
 		//
 		sound_names_in_dynamic_wav_chache[next_free_position_in_cache] = MyMalloc(strlen(SoundSampleFileName) + 1);
@@ -726,7 +689,6 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 		DebugPrintf(1, "\nSuccessfully added sample '%s' to sound cache at new position %d.",
 			    sound_names_in_dynamic_wav_chache[next_free_position_in_cache], next_free_position_in_cache);
 
-		//--------------------
 		// Now we increase the 'next_sample' index and are done.
 		//
 		next_free_position_in_cache++;
@@ -736,7 +698,6 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 			                           ALERT!  Ran out of space in the dynamic wav sample cache!  Cache size too small?", PLEASE_INFORM, IS_FATAL);
 		}
 	}
-	//--------------------
 	// Now we try to play the sound file that has just been successfully
 	// loaded into memory or has resided in memory already for some time...
 	//
@@ -771,20 +732,17 @@ void remove_all_samples_from_WAV_cache(void)
 {
 
 	for (i = 0; i < next_free_position_in_cache; i++) {
-		//--------------------
 		// We free the allocated memory for the file name.  This is overly 'clean'
 		// code.  The amount of memory in question would be neglectable...
 		//
 		free(sound_names_in_dynamic_wav_chache[i]);
 
-		//--------------------
 		// We free the allocated music chunk.  This is more important since the
 		// music chunks in question can consume more memory...
 		//
 		Mix_FreeChunk(dynamic_WAV_cache[i]);
 	}
 
-	//--------------------
 	// Now that the cache has been emptied, it must be marked as such, or
 	// the next play function will search it and produce a segfault.
 	//

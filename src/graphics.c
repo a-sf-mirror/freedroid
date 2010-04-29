@@ -243,7 +243,6 @@ void blit_our_own_mouse_cursor(void)
 	int cursor_index = (-1);
 	point cursoff = { 0, 0 };
 
-	//--------------------
 	// On the first function call ever, we load the surfaces for the
 	// flags into memory.
 	//
@@ -296,7 +295,6 @@ Error loading flag image.", PLEASE_INFORM, IS_FATAL);
 		break;
 	}
 
-	//--------------------
 	// We can now blit the mouse cursor...
 	//
 	if (use_open_gl) {
@@ -452,7 +450,6 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 
 	StoreMenuBackground(1);
 
-	//--------------------
 	// Next we prepare the selection knob for all later operations
 	//
 	if (SelectionKnob == NULL) {
@@ -511,7 +508,6 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!", PLEASE_INFORM, IS_FATAL);
 
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
 				if (event.button.button == SDL_BUTTON_LEFT) {
-					//--------------------
 					// Maybe the user has just 'grabbed the knob?  Then we need to
 					// mark the knob as grabbed.
 					//
@@ -519,7 +515,6 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!", PLEASE_INFORM, IS_FATAL);
 							(abs(event.button.y - (knob_target_rect.y + knob_target_rect.h / 2)) < knob_target_rect.h)) {
 						knob_is_grabbed = TRUE;
 					}
-					//--------------------
 					// OK pressed?  Then we can return the current scale value and
 					// that's it...
 					//
@@ -576,7 +571,6 @@ static Uint8 GetGreenComponent(SDL_Surface * surface, int x, int y)
 	Uint8 green;
 	int bpp = surface->format->BytesPerPixel;
 
-	//--------------------
 	// First we extract the pixel itself and the
 	// format information we need.
 	//
@@ -584,7 +578,6 @@ static Uint8 GetGreenComponent(SDL_Surface * surface, int x, int y)
 	SDL_LockSurface(surface);
 	// pixel = * ( ( Uint32* ) surface -> pixels ) ;
 	//
-	//--------------------
 	// Now for the longest time we had this command here (which can actually segfault!!)
 	//
 	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
@@ -593,7 +586,6 @@ static Uint8 GetGreenComponent(SDL_Surface * surface, int x, int y)
 
 	SDL_UnlockSurface(surface);
 
-	//--------------------
 	// Now we can extract the green component
 	//
 	temp = pixel & fmt->Gmask;	/* Isolate green component */
@@ -616,14 +608,12 @@ static Uint8 GetRedComponent(SDL_Surface * surface, int x, int y)
 	Uint8 red;
 	int bpp = surface->format->BytesPerPixel;
 
-	//--------------------
 	// First we extract the pixel itself and the
 	// format information we need.
 	//
 	fmt = surface->format;
 	SDL_LockSurface(surface);
 	// pixel = * ( ( Uint32* ) surface -> pixels ) ;
-	//--------------------
 	// Now for the longest time we had this command here (which can actually segfault!!)
 	//
 	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
@@ -631,7 +621,6 @@ static Uint8 GetRedComponent(SDL_Surface * surface, int x, int y)
 	pixel = *((Uint32 *) (((Uint8 *) (surface->pixels)) + (x + y * surface->w) * bpp));
 	SDL_UnlockSurface(surface);
 
-	//--------------------
 	// Now we can extract the red component
 	//
 	temp = pixel & fmt->Rmask;	/* Isolate red component */
@@ -654,14 +643,12 @@ static Uint8 GetBlueComponent(SDL_Surface * surface, int x, int y)
 	Uint8 blue;
 	int bpp = surface->format->BytesPerPixel;
 
-	//--------------------
 	// First we extract the pixel itself and the
 	// format information we need.
 	//
 	fmt = surface->format;
 	SDL_LockSurface(surface);
 	// pixel = * ( ( Uint32* ) surface -> pixels ) ;
-	//--------------------
 	// Now for the longest time we had this command here (which can actually segfault!!)
 	//
 	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
@@ -669,7 +656,6 @@ static Uint8 GetBlueComponent(SDL_Surface * surface, int x, int y)
 	pixel = *((Uint32 *) (((Uint8 *) (surface->pixels)) + (x + y * surface->w) * bpp));
 	SDL_UnlockSurface(surface);
 
-	//--------------------
 	// Now we can extract the blue component
 	//
 	temp = pixel & fmt->Bmask;	/* Isolate blue component */
@@ -692,13 +678,11 @@ Uint8 GetAlphaComponent(SDL_Surface * surface, int x, int y)
 	Uint8 alpha;
 	int bpp = surface->format->BytesPerPixel;
 
-	//--------------------
 	// First we extract the pixel itself and the
 	// format information we need.
 	//
 	fmt = surface->format;
 	SDL_LockSurface(surface);
-	//--------------------
 	// Now for the longest time we had this command here (which can actually segfault!!)
 	//
 	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
@@ -706,7 +690,6 @@ Uint8 GetAlphaComponent(SDL_Surface * surface, int x, int y)
 	pixel = *((Uint32 *) (((Uint8 *) (surface->pixels)) + (x + y * surface->w) * bpp));
 	SDL_UnlockSurface(surface);
 
-	//--------------------
 	// Now we can extract the alpha component
 	//
 	temp = pixel & fmt->Amask;	/* Isolate alpha component */
@@ -732,20 +715,17 @@ SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterTy
 	Uint8 blue = 0;
 	float alpha3;
 
-	//--------------------
 	// First we check for NULL surfaces given...
 	//
 	if (FirstSurface == NULL) {
 		DebugPrintf(0, "\nERROR in SDL_Surface* CreateBlueColorFilteredSurface ( ... ) : NULL PARAMETER GIVEN.\n");
 		Terminate(ERR);
 	}
-	//--------------------
 	// Now we create a new surface, best in display format with alpha channel
 	// ready to be blitted.
 	//
 	ThirdSurface = our_SDL_display_format_wrapperAlpha(FirstSurface);
 
-	//--------------------
 	// Now we start to process through the whole surface and examine each
 	// pixel.
 	//
@@ -796,7 +776,6 @@ void MakeGridOnScreen(SDL_Rect * GridRectangle)
 
 	DebugPrintf(2, "\nvoid MakeGridOnScreen(...): real function call confirmed.");
 
-	//--------------------
 	// It's not very convenient to put a real grid over the screen using 
 	// OpenGL.  We do something similar but not quite as expensive in function
 	// overhead here.
@@ -806,12 +785,10 @@ void MakeGridOnScreen(SDL_Rect * GridRectangle)
 		return;
 	}
 
-	//--------------------
 	// We store the grid rectangle for later restoration.
 	//
 	Copy_Rect(*GridRectangle, TempRect);
 
-	//--------------------
 	// At first we do some sanity check to see if this rectangle does really
 	// make sense or not.
 	//
@@ -836,7 +813,6 @@ void MakeGridOnScreen(SDL_Rect * GridRectangle)
 	if ((GridRectangle->y + GridRectangle->h) > GameConfig.screen_height) {
 		GridRectangle->h = GameConfig.screen_height - GridRectangle->y;
 	}
-	//--------------------
 	// Now we can start to draw the actual grid rectangle.
 	// We do so completely correctly with locked surfaces and everything.
 	//
@@ -850,7 +826,6 @@ void MakeGridOnScreen(SDL_Rect * GridRectangle)
 	}
 	SDL_UnlockSurface(Screen);
 
-	//--------------------
 	// We restore the original rectangle..
 	//
 	Copy_Rect(TempRect, *GridRectangle);
@@ -874,7 +849,6 @@ static void get_standard_iso_floor_tile_size(void)
 		ErrorMessage(__FUNCTION__, "\
 UNABLE TO LOAD STANDARD TILE!", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Warning!  The standard tile sizes should be a multiple of 2 in
 	//           both directions to prevent jittering from numerical 
 	//           rounding.
@@ -905,7 +879,6 @@ UNABLE TO LOAD STANDARD TILE!", PLEASE_INFORM, IS_FATAL);
  * ----------------------------------------------------------------- */
 void InitPictures(void)
 {
-	//--------------------
 	// First thing to do is get the size of a typical isometric
 	// floor tile, i.e. height and width of the corresponding graphics
 	// bitmap
@@ -1030,7 +1003,6 @@ void FreeOurBFonts(void)
  * -----------------------------------------------------------------*/
 void InitTimer(void)
 {
-	//--------------------
 	// Now SDL_TIMER is initialized here:
 	//
 	if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1) {
@@ -1048,7 +1020,6 @@ void InitTimer(void)
  */
 static void check_open_gl_libraries_present(void)
 {
-	//--------------------
 	// Here we introduce some warning output in case open_gl output is
 	// requested while the game was compiled without having the GL libs...
 	//
@@ -1091,7 +1062,6 @@ static void check_open_gl_libraries_present(void)
 static void show_open_gl_driver_info(void)
 {
 #ifdef HAVE_LIBGL
-	//--------------------
 	// Since we want to use openGl, it might be good to check the OpenGL vendor string
 	// provided by the graphics driver.  Let's see...
 	//
@@ -1122,7 +1092,6 @@ static void set_double_buffering_attribute(void)
 		ErrorMessage(__FUNCTION__, "\
 Unable to set SDL_GL_DOUBLEBUFFER attribute!", PLEASE_INFORM, IS_FATAL);
 	}
-	//--------------------
 	// Since the OpenGL stuff hasn't been initialized yet, it's normal
 	// to get an GL_INVALID_OPERATION here, if we would really do the
 	// check.  So better refrain from OpenGL error checking here...
@@ -1147,7 +1116,6 @@ static void set_video_mode_for_open_gl(void)
 	Uint32 video_flags = 0;	// flags for SDL video mode 
 	int video_mode_ok_check_result;
 	int buffer_size, depth_size, red_size, green_size, blue_size, alpha_size;
-	//--------------------
 	// We need OpenGL double buffering, so we request it.  If we
 	// can't get it, something must be wrong, maybe an extremely bad 
 	// card/driver is present or some bad emulation.  Anyway, we'll
@@ -1155,13 +1123,11 @@ static void set_video_mode_for_open_gl(void)
 	//
 	set_double_buffering_attribute();
 
-	//--------------------
 	// Now we start setting up the proper OpenGL flags to pass to the
 	// SDL for creating the initial output window...
 	//
 	video_flags = SDL_OPENGL;	/* Enable OpenGL in SDL */
 
-	//--------------------
 	// Now according to the document http://sdldoc.csn.ul.ie/guidevideoopengl.php
 	// we do need the SDL_GL_SetAttribute ( SDL_GL_DOUBLEBUFFER, 1 ) and NOT
 	// this here...
@@ -1177,14 +1143,12 @@ static void set_video_mode_for_open_gl(void)
 	if (vid_info->blit_hw)
 		video_flags |= SDL_HWACCEL;
 
-	//--------------------
 	// We have 24 bit (or 32 bit) color depth in some of the graphics used,
 	// like e.g. backgrounds produced by Basse, so we try to get close to
 	// a target color depth of 24, or 32.
 	//
 	vid_bpp = 32;
 
-	//--------------------
 	// First we check to see if the mode we wish to set is really supported.  If it
 	// isn't supported, then we cancel the whole operation...
 	//
@@ -1210,7 +1174,6 @@ SDL reported, that the video mode mentioned above is not supported\nBreaking off
 		}
 	}
 
-	//--------------------
 	// Now that we know which mode to go for, we can give it a try and get the
 	// output surface we want.  Of course, some extra checking will be done, so
 	// that we know that the surface we're expecting is really there...
@@ -1235,13 +1198,11 @@ SDL reported, that the video mode mentioned above is not supported\nBreaking off
 
 	safely_initialize_our_default_open_gl_parameters();
 
-	//--------------------
 	// Maybe resize the window to standard size?
 	//
 	// resizeWindow( GameConfig . screen_width, GameConfig . screen_height );
 	//
 
-	//--------------------
 	// Now under win32 we're running into problems, because there seems to be some
 	// garbage in ONE OF THE TWO BUFFERS from the double-buffering.  Maybe cleaning
 	// that out solves part of the problem.  Well, not all, since there is still the
@@ -1268,7 +1229,6 @@ void InitVideo(void)
 	char fpath[2048];
 	char window_title_string[200];
 
-	//--------------------
 	// Initialize the SDL library 
 	//
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
@@ -1276,14 +1236,12 @@ void InitVideo(void)
 		Terminate(ERR);
 	} else {
 		DebugPrintf(1, "\nSDL Video initialisation successful.\n");
-		//--------------------
 		// So the video library could be initialized.  So it should also be
 		// cleaned up and closed once we're done and quit FreedroidRPG.
 		//
 		atexit(SDL_Quit);
 	}
 
-	//--------------------
 	// Let's get some info about the whole system here.  Is this a windows or x11 or
 	// mac or whatever graphical environment?
 	//
@@ -1296,19 +1254,16 @@ void InitVideo(void)
 		Terminate(ERR);
 	}
 
-	//--------------------
 	// We check if the program has been compiled with OpenGL libraries present
 	// and take care of the case OpenGL output requested when compiled without
 	// those libs...
 	//
 	check_open_gl_libraries_present();
 
-	//--------------------
 	// We note the screen resolution used.
 	//
 	DebugPrintf(-4, "\nUsing screen resolution %d x %d.", GameConfig.screen_width, GameConfig.screen_height);
 
-	//--------------------
 	// We query the available video configuration on this system.
 	//
 	vid_info = SDL_GetVideoInfo();
@@ -1331,7 +1286,6 @@ void InitVideo(void)
 
 	vid_bpp = 32;		/* start with the simplest */
 
-	//--------------------
 	// End of possibly open-gl dependant initialisation stuff...
 	//
 	sprintf(window_title_string, "FreedroidRPG %s", VERSION);
@@ -1379,7 +1333,6 @@ void SDL_HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
 	int max;
 	float EnhancementFactor;
 
-	//--------------------
 	// First some sanity checks.. one can never now...
 	//
 	if (Area.x < 0)
@@ -1391,7 +1344,6 @@ void SDL_HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
 	if (Area.y + Area.h >= Surface->h)
 		Area.h = Surface->h - Area.y - 1;
 
-	//--------------------
 	// Now we start to process through the whole surface and examine each
 	// pixel.
 	//
@@ -1576,7 +1528,6 @@ void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int 
 	if (use_open_gl)
 		return;
 
-	//---------------
 	// Draw edges
 	//
 	DrawLine(Surface, x1, y1, x2, y2, r, g, b, 1);
@@ -1584,7 +1535,6 @@ void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int 
 	DrawLine(Surface, x3, y3, x4, y4, r, g, b, 1);
 	DrawLine(Surface, x4, y4, x1, y1, r, g, b, 1);
 
-	//---------------
 	// Reorder vertices, so that bottom-most is the first one
 	//
 	struct vertex {
@@ -1626,7 +1576,6 @@ void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int 
 		--min_index;
 	}
 
-	//---------------
 	// Store the 2 left edges, and the 2 right edges
 	//
 	// Note : since spans can be drawn from left to right or right to left
@@ -1665,7 +1614,6 @@ void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int 
 	right_edges[1].deltax = (vertices[vindex[2]].x - vertices[vindex[3]].x);
 	right_edges[1].deltay = (vertices[vindex[2]].y - vertices[vindex[3]].y);
 
-	//---------------
 	// Quad filling, by creating horizontal spans between the left and right edges
 	// There is a 3 line step between two spans, to create hatches
 	//

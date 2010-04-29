@@ -195,7 +195,6 @@ static void TeleportHome(void)
 	if (HomeSpot.x == -1)
 		return;
 
-	//--------------------
 	// Case 1 : Tux is in homespot's level, and there is a teleport anchor
 	//          -> teleport back to previous position
 	//
@@ -215,7 +214,6 @@ static void TeleportHome(void)
 		return;
 	}
 
-	//--------------------
 	// Any other cases : Store current position and teleport Tux to homespot
 	//
 	Me.teleport_anchor.x = Me.pos.x;
@@ -423,7 +421,6 @@ int DoSkill(int skill_index, int SpellCost)
 			goto out;
 
 		if (!droid_below_mouse_cursor->is_friendly) {
-			//--------------------
 			// Only droids can be hacked.  Humans can't be 
 			// hacked.
 			//
@@ -452,7 +449,6 @@ int DoSkill(int skill_index, int SpellCost)
 	if (!strcmp(SpellSkillMap[skill_index].effect, "repair")) {
 		if (!MouseCursorIsInInvRect(GetMousePos_x(), GetMousePos_y())
 		    || (!GameConfig.Inventory_Visible)) {
-			//--------------------
 			// Do nothing here.  The right mouse click while in inventory screen
 			// will be handled in the inventory screen management function.
 			//
@@ -462,7 +458,6 @@ int DoSkill(int skill_index, int SpellCost)
 	}
 
 	if (!strcmp(SpellSkillMap[skill_index].effect, "identify")) {
-		//--------------------
 		// Maybe the identify mode has already been triggered and
 		// is activated right now.  Then of course this (second) mouse
 		// click must be ignored completely.
@@ -500,7 +495,6 @@ int DoSkill(int skill_index, int SpellCost)
  */
 int CursorIsOnWhichSkillButton(int x, int y)
 {
-	//--------------------
 	// First we check if the cursor is in at least horizontally
 	// in the row of the skill items
 	//
@@ -509,7 +503,6 @@ int CursorIsOnWhichSkillButton(int x, int y)
 	if (x < SkillScreenRect.x + 16)
 		return (-1);
 
-	//--------------------
 	// Now we can check on which skill rectangle exactly the cursor
 	// is hovering, since we know that it is hitting, horizontally
 	// at least, the row of skill icons.
@@ -551,7 +544,6 @@ static int CursorIsOnWhichSpellPageButton(int x, int y)
 {
 	int i;
 
-	//--------------------
 	// First we check if the cursor is in at least horizontally
 	// and vertically in the line with the spell level buttons.
 	//
@@ -564,7 +556,6 @@ static int CursorIsOnWhichSpellPageButton(int x, int y)
 	if (y < SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y)
 		return (-1);
 
-	//--------------------
 	// Now we can check on which skill rectangle exactly the cursor
 	// is hovering, since we know that it is hitting, horizontally
 	// at least, the row of skill icons.
@@ -588,12 +579,10 @@ static void ShowSkillsExplanationScreen(void)
 	int TEXT_OFFSET_X = 15;
 	SDL_Rect TargetSkillRect;
 
-	//--------------------
 	// This should draw the background...
 	//
 	blit_special_background(SKILL_SCREEN_EXPLANATION_BACKGROUND_CODE);
 
-	//--------------------
 	// Draws the skill icon at the correct position
 	//
 	TargetSkillRect.x = ICON_OFFSET_X;
@@ -606,7 +595,6 @@ static void ShowSkillsExplanationScreen(void)
 		our_SDL_blit_surface_wrapper(SpellSkillMap[Me.readied_skill].icon_surface.surface, NULL, Screen, &TargetSkillRect);
 	}
 
-	//--------------------
 	// Draws the explanation text
 	// (We will use the FPS display font, cause the small one isn't 
 	// very well readable on the silver background.)
@@ -654,7 +642,6 @@ static void establish_skill_subset_map(int *SkillSubsetMap)
 void activate_nth_skill(int skill_num)
 {
 
-	//--------------------
 	// If the n-th skill does exist, we activate the n-th skill,
 	// otherwise we leave the last readied skill.
 	//
@@ -678,7 +665,6 @@ void set_nth_quick_skill(int quick_skill)
 					       GetMousePos_y()) +
 		    NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible;
 		
-		//--------------------
 		// Variable number is an index into already aquired skills.
 		// We change it into index into array of all skills.
 		int SkillSubsetMap[number_of_skills];
@@ -734,7 +720,6 @@ void ShowSkillsScreen(void)
 		SkillRectLocations[i].y = SkillScreenRect.y + FIRST_SKILLRECT_Y + i * (64 + INTER_SKILLRECT_DIST) + 3;
 	}
 
-	//--------------------
 	// If the log is not set to visible right now, we do not need to 
 	// do anything more, but to restore the usual user rectangle size
 	// back to normal and to return...
@@ -742,26 +727,22 @@ void ShowSkillsScreen(void)
 	if (GameConfig.SkillScreen_Visible == FALSE)
 		return;
 
-	//--------------------
 	// We will use the FPS display font, cause the small one isn't 
 	// very well readable on the silver background
 	//
 	SetCurrentFont(FPS_Display_BFont);
 
-	//--------------------
 	// Maybe the skill circle images for clicking between different spell circles
 	// have not been loaded yet.  Then it is time to do so.  If this was already
 	// done before, then the function will know it and don't do anything anyway.
 	//
 	Load_Skill_Level_Button_Surfaces();
 
-	// --------------------
 	// We will need the current mouse position on several spots...
 	//
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
 
-	//--------------------
 	// We will draw only those skills to the skills inventory, that are
 	// already present in the Tux.  That way the game remains open for new
 	// skills to the player and he doesn't now in advance which skills there
@@ -769,7 +750,6 @@ void ShowSkillsScreen(void)
 	//
 	establish_skill_subset_map(SkillSubsetMap);
 
-	//--------------------
 	// At this point we know, that the skill screen is desired and must be
 	// displayed in-game:
 	//
@@ -781,7 +761,6 @@ void ShowSkillsScreen(void)
 	if (GameConfig.skill_explanation_screen_visible)
 		ShowSkillsExplanationScreen();
 
-	//--------------------
 	// According to the page in the spell book currently opened,
 	// we draw a 'button' or activation mark over the appropriate spot
 	//
@@ -789,7 +768,6 @@ void ShowSkillsScreen(void)
 	SpellLevelRect.y = SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y;
 	our_SDL_blit_surface_wrapper(SpellLevelButtonImageList[GameConfig.spell_level_visible].surface, NULL, Screen, &SpellLevelRect);
 
-	//--------------------
 	// Now we fill in the skills available to this bot.  ( For now, these skills 
 	// are not class-specific, like in diablo or something, but this is our first
 	// approach to the topic after all.... :)
@@ -917,7 +895,6 @@ void ShowSkillsScreen(void)
 
 	}
 
-	//--------------------
 	// Now we see if perhaps the player has just clicked on one of the skills
 	// available to this class.  In this case of course we must set a different
 	// skill/spell as the currently activated skill/spell.
@@ -936,7 +913,6 @@ void ShowSkillsScreen(void)
 		while (MouseLeftPressed())
 			SDL_Delay(1);
 	}
-	//--------------------
 	// Now we see if perhaps the player has just clicked on another skill level
 	// button.  In this case of course we must set a different skill/spell level
 	// as the currently visible spell level.
@@ -944,7 +920,6 @@ void ShowSkillsScreen(void)
 	if ((CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
 		GameConfig.spell_level_visible = CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y);
 	}
-	//--------------------
 	// We want to know, if the button was pressed the previous frame when we
 	// are in the next frame and back in this function.  Therefore we store
 	// the current button situation, so that we can conclude on button just

@@ -269,7 +269,6 @@ static void prepare_light_interpolation()
 		curr_lvl = visible_lvl->lvl_pointer;
 		curr_id  = curr_lvl->levelnum;
 		
-		//-----
 		// Step 1
 		//   Initialize all interpolation areas with the 'c_val'
 		//
@@ -282,7 +281,6 @@ static void prepare_light_interpolation()
 			}
 		}
 		
-		//-----
 		// Step 2
 		//   For each existing neighbor, add its data to the related areas
 		//
@@ -295,7 +293,6 @@ static void prepare_light_interpolation()
 		add_interpolation_values(curr_id, NEIGHBOR_ID_SW(curr_id), 2, 2, 0, 0, ALONG_XY);
 		add_interpolation_values(curr_id, NEIGHBOR_ID_SE(curr_id), 2, 2, 2, 2, ALONG_XY);
 		
-		//-----
 		// Step 3
 		//   Compute the mean of each value
 		//
@@ -338,7 +335,6 @@ static void interpolate_light_data(gps *pos, struct interpolation_data_cell *dat
 	int lvl_id = pos->z;
 	level *lvl = curShip.AllLevels[pos->z];
 	
-	//--------------------
 	// Interpolation macros
 	
 #	define INTERP_2_VALUES(dir, field) \
@@ -478,7 +474,6 @@ void LightRadiusInit()
 	// flicker-free code).
 	LightRadiusConfig.scale_factor = ceilf(LightRadiusConfig.scale_factor);
 
-	//----------
 	// The center of the light_radius texture will be translated along the Y axe,
 	// to simulate a light coming from bot/tux heads, instead of their feet.
 
@@ -495,7 +490,6 @@ void LightRadiusInit()
 	// Second : transform Tux universal height into screen height
 	LightRadiusConfig.translate_y = (int)(UNIVERSAL_TUX_HEIGHT / unit_screen_height);
 
-	//----------
 	// Allocate the light_radius buffer
 	light_strength_buffer = malloc(LightRadiusConfig.cells_w * LightRadiusConfig.cells_h * sizeof(int));
 
@@ -533,7 +527,6 @@ void update_light_list()
 	int blast;
 	gps me_vpos;
 
-	//--------------------
 	// At first we fill out the light sources array with 'empty' information,
 	// i.e. such positions, that won't affect our location for sure.
 	//
@@ -548,7 +541,6 @@ void update_light_list()
 	}
 	next_light_emitter_index = 0;
 
-	//--------------------
 	// Now we fill in the Tux position as the very first light source, that will
 	// always be present.
 	//
@@ -562,7 +554,6 @@ void update_light_list()
 		light_sources[0].strength = 1;
 	next_light_emitter_index = 1;
 
-	//--------------------
 	// Now we can fill in any explosions, that are currently going on.
 	// These will typically emanate a lot of light.
 	//
@@ -570,7 +561,6 @@ void update_light_list()
 		if (!(AllBlasts[blast].type == DROIDBLAST))
 			continue;
 
-		//--------------------
 		// We add some light strength according to the phase of the blast
 		//
 		int light_strength = 10 + AllBlasts[blast].phase / 2;
@@ -587,7 +577,6 @@ void update_light_list()
 		light_sources[next_light_emitter_index].strength = light_strength;
 		next_light_emitter_index++;
 
-		//--------------------
 		// We must not write beyond the bounds of our light sources array!
 		//
 		if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
@@ -597,7 +586,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 		}
 	}
 
-	//--------------------
 	// Now we can fill in the remaining light sources of this level.
 	// First we scan all the obstacles around Tux
 	//
@@ -634,7 +622,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 		for (map_y = intersection_start.y; map_y < intersection_end.y; map_y++) {
 			for (map_x = intersection_start.x; map_x < intersection_end.x; map_x++) {
 				for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
-					//--------------------
 					// end of obstacles glued to here?  great->next square
 					//
 					if (curr_lvl->map[map_y][map_x].obstacles_glued_to_here[glue_index] == (-1))
@@ -646,7 +633,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 					if (obstacle_map[emitter->type].emitted_light_strength == 0)
 						continue;
 
-					//--------------------
 					// Now we know that this one needs to be inserted!
 					//
 					light_sources[next_light_emitter_index].pos.x = emitter->pos.x;
@@ -660,7 +646,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 					light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
 					next_light_emitter_index++;
 
-					//--------------------
 					// We must not write beyond the bounds of our light sources array!
 					//
 					if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
@@ -689,7 +674,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 			if (fabsf(me_vpos.y - erot->pos.y) >= FLOOR_TILES_VISIBLE_AROUND_TUX)
 				continue;
 
-			//--------------------
 			// Now we know that this one needs to be inserted!
 			//
 			light_sources[next_light_emitter_index].pos.x = erot->pos.x;
@@ -700,7 +684,6 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 			light_sources[next_light_emitter_index].strength = 5;
 			next_light_emitter_index++;
 
-			//--------------------
 			// We must not write beyond the bounds of our light sources array!
 			//
 			if (next_light_emitter_index >= MAX_NUMBER_OF_LIGHT_SOURCES - 1) {
@@ -725,7 +708,6 @@ static int calculate_light_strength(gps *cell_vpos)
 	gps cell_rpos;
 	struct interpolation_data_cell ilights;
 
-	//------------------------------------------
 	// 1. Light interpolation
 	//
 	if (!resolve_virtual_position(&cell_rpos, cell_vpos))
@@ -741,9 +723,7 @@ static int calculate_light_strength(gps *cell_vpos)
 	// Interpolated light emitted from Tux
 	light_sources[0].strength = ilights.light_bonus + Me.light_bonus_from_tux;
 
-	//------------------------------------------
 	// 2. Compute the light strength value at "cell_vpos"
-	//--------------------
 	// Nota: the following code being quite obscure, some explanations are quite
 	//       mandatory
 	//
@@ -793,13 +773,10 @@ static int calculate_light_strength(gps *cell_vpos)
 	// 4:       final_strength = Abs_intensity - 4.0 * distance;
 	// 5:   }
 	// 6: }
-	//------------------------------------------
 
-	//--------------------
 	// Now, here is the final algorithm
 	//
 	for (i = 0; i < MAX_NUMBER_OF_LIGHT_SOURCES; i++) {
-		//--------------------
 		// If we've reached the end of the current list of light
 		// sources, then we can stop immediately.
 		//
@@ -808,7 +785,6 @@ static int calculate_light_strength(gps *cell_vpos)
 
 		float absolute_intensity = ilights.minimum_light_value + light_sources[i].strength;
 		
-		//--------------------
 		// Optimization 1:
 		// If absolute_intensity is lower than current intensity, we do not take
 		// the light source into account. It means that we do not accumulate
@@ -816,20 +792,17 @@ static int calculate_light_strength(gps *cell_vpos)
 		if ( absolute_intensity - final_light_strength < 0 )
 			break;
 
-		//--------------------
 		// Some pre-computations
 		// First transform light source's position into virtual position, related to Tux's current level
 		xdist = light_sources[i].vpos.x - cell_vpos->x;
 		ydist = light_sources[i].vpos.y - cell_vpos->y;
 		squared_dist = xdist * xdist + ydist * ydist;
 
-		//--------------------
 		// Comparison between current light strength and the light source's strength (line 2 of the pseudo-code)
 		if ((squared_dist * 4.0 * 4.0) >=
 		    (absolute_intensity - final_light_strength) * (absolute_intensity - final_light_strength))
 			continue;
 
-		//--------------------
 		// Visibility check (line 3 of pseudo_code)
 		// with a small optimization : no visibility check if the target is very closed to the light
 		if (squared_dist > (0.5*0.5)) {
@@ -837,7 +810,6 @@ static int calculate_light_strength(gps *cell_vpos)
 				continue;
 		}
 
-		//--------------------
 		// New final_light_strength
 		final_light_strength = absolute_intensity - 4.0 * sqrt(squared_dist); 
 
@@ -869,7 +841,6 @@ static void soften_light_distribution(void)
 #define MAX_LIGHT_STEP 3
 	uint32_t x, y;
 
-	//--------------------
 	// Now that the light buffer has been set up properly, we can start to
 	// smoothen it out a bit.  We do so in the direction of more light.
 	// Propagate from top-left to bottom-right
@@ -910,7 +881,6 @@ void set_up_light_strength_buffer(int *decay_x, int *decay_y)
 	int screen_x;
 	int screen_y;
 
-	//--------------------
 	// Flicker-free code :
 	//
 	// To avoid flickering, the darkness map is 'stuck' to the floor, that is :
@@ -982,7 +952,6 @@ int get_light_strength_screen(int x, int y)
 	if ((x >= 0) && (x < LightRadiusConfig.cells_w) && (y >= 0) && (y < LightRadiusConfig.cells_h)) {
 		return (LIGHT_STRENGTH_CELL(x, y));
 	} else {
-		//--------------------
 		// If a request reaches outside the prepared buffer, we use the
 		// nearest point, if we can get it easily, otherwise we'll use
 		// blackness by default.
@@ -1054,7 +1023,6 @@ void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 	// The design of the tiles implies a 2 pixels gap along X, to avoid tiles overlapping
 #	define LRC_ISO_GAP_X 2
 
-	//----------
 	// Load of light_radius_chunk images, and initializes some variables, during the first call
 	//
 	static int first_call = TRUE;
@@ -1079,7 +1047,6 @@ void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 		lrc_nb_columns = (int)ceilf((float)GameConfig.screen_width / (float)(LRC_ISO_WIDTH + LRC_ISO_GAP_X)) + 1;
 		lrc_nb_lines = (int)ceilf((float)GameConfig.screen_height / (float)(LRC_ISO_HEIGHT)) + 1;
 	}
-	//----------
 	// Fill the screen with the tiles
 	//
 
@@ -1151,7 +1118,6 @@ void blit_light_radius(void)
 {
 	int decay_x, decay_y;
 
-	//--------------------
 	// Before making any reference to the light, it's best to 
 	// first calculate the values in the light buffer, because
 	// those will be used when drawing the light radius.

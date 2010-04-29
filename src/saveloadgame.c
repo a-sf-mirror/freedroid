@@ -107,7 +107,6 @@ void LoadAndShowStats(char *CoreFilename)
 
 	DebugPrintf(2, "\nTrying to get file stats for character '%s'. ", CoreFilename);
 
-	//--------------------
 	// First we save the full ship information, same as with the level editor
 	//
 
@@ -128,13 +127,11 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 	PutString(Screen, UNIVERSAL_COORD_W(240), GameConfig.screen_height - 3 * FontHeight(GetCurrentFont()), _("Last Modified:"));
 	PutString(Screen, UNIVERSAL_COORD_W(240), GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), InfoString);
 
-	//--------------------
 	// Now that the modification time has been set up, we can start to compute
 	// the overall disk space of all files in question.
 	//
 	FileSize = FileInfoBuffer.st_size;
 
-	//--------------------
 	// The saved ship must exist.  On not, it's a sever error!
 	//    
 	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, ".shp");
@@ -148,7 +145,6 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 	}
 	FileSize += FileInfoBuffer.st_size;
 
-	//--------------------
 	// A thumbnail may not yet exist.  We won't make much fuss if it doesn't.
 	//
 	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, SAVE_GAME_THUMBNAIL_EXT);
@@ -174,7 +170,6 @@ void SaveThumbnailOfGame(void)
 	if (!our_config_dir)
 		return;
 
-	//--------------------
 	// First we save the full ship information, same as with the level editor
 	//
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
@@ -184,12 +179,10 @@ void SaveThumbnailOfGame(void)
 	if (use_open_gl) {
 #ifdef HAVE_LIBGL
 		SDL_Surface *FullView;
-		//--------------------
 		// We need to make a copy in processor memory. 
 		GLvoid *imgdata = malloc((GameConfig.screen_width + 2) * (GameConfig.screen_height + 2) * 4);
 		glReadPixels(0, 1, GameConfig.screen_width, GameConfig.screen_height - 1, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
 
-		//--------------------
 		// Now we need to make a real SDL surface from the raw image data we
 		// have just extracted.
 		//
@@ -347,14 +340,12 @@ int DeleteGame(void)
 	if (!our_config_dir)
 		return (OK);
 
-	//--------------------
 	// First we save the full ship information, same as with the level editor
 	//
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
 
 	remove(filename);
 
-	//--------------------
 	// First, we must determine the savedgame data file name
 	//
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
@@ -556,13 +547,11 @@ int LoadGame(void)
 		while (!MouseLeftPressed())
 			SDL_Delay(1);
 	}
-	//--------------------
 	// To prevent cheating, we remove all active spells, that might still be there
 	// from other games just played before.
 	//
 	clear_active_spells();
 
-	//--------------------
 	// Now that we have loaded the game, we must count and initialize the number
 	// of droids used in this ship.  Otherwise we might ignore some robots.
 	//
@@ -573,7 +562,6 @@ int LoadGame(void)
 
 	free((char *)LoadGameData);
 
-	//--------------------
 	// Maybe someone just lost in the game and has then pressed the load
 	// button.  Then a new game is loaded and the game-over status has
 	// to be restored as well of course.
@@ -582,7 +570,6 @@ int LoadGame(void)
 
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): end of function reached.", __FUNCTION__);
 
-	//--------------------
 	// Now we know that right after loading an old saved game, the Tux might have
 	// to 'change clothes' i.e. a lot of tux images need to be updated which can
 	// take a little time.  Therefore we print some message so the user will not
