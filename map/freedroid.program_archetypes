@@ -298,6 +298,8 @@ Picture="NoSkillAvailable.png"
 Form="radial"
 Effect="none"
 Cost=400
+Affect bots=1
+Affect humans=1
 Base damage=400
 Artwork internal code=2
 
@@ -308,6 +310,8 @@ Picture="NoSkillAvailable.png"
 Form="radial"
 Effect="none"
 Cost=400
+Affect bots=0
+Affect humans=1
 Base damage=300
 Artwork internal code=1
 
@@ -318,6 +322,8 @@ Picture="NoSkillAvailable.png"
 Form="radial"
 Effect="none"
 Cost=400
+Affect bots=1
+Affect humans=0
 Base damage=300
 Artwork internal code=0
 
