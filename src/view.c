@@ -82,6 +82,7 @@ static int old_current_level = -1;
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_directions[RADIAL_SPELL_DIRECTIONS], float age);
 void insert_new_element_into_blitting_list(float new_element_norm, int new_element_type, void *new_element_pointer, int code_number);
+static void show_inventory_screen(void);
 
 EXTERN int MyCursorX;
 EXTERN int MyCursorY;
@@ -2099,7 +2100,7 @@ void AssembleCombatPicture(int mask)
 		show_quick_inventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();
-		ShowInventoryScreen();
+		show_inventory_screen();
 		DisplayButtons();
 		if (!GameOver)
 			DisplayBanner();
@@ -4260,7 +4261,7 @@ The grey transparent plate for the inventory could not be loaded.  This is a fat
  * items the influencer is carrying in his inventory and also all the 
  * items the influencer is fitted with.
  */
-void ShowInventoryScreen(void)
+static void show_inventory_screen(void)
 {
 	SDL_Rect TargetRect;
 	int SlotNum;
@@ -4380,6 +4381,20 @@ void ShowInventoryScreen(void)
 
 		our_SDL_blit_surface_wrapper(ItemMap[Me.Inventory[SlotNum].type].inv_image.Surface, NULL, Screen, &TargetRect);
 
+		// Show amount
+		if (ItemMap[Me.Inventory[SlotNum].type].item_group_together_in_inventory) {
+			SetCurrentFont(Messagevar_BFont);
+			// Only 3 characters fit in one inventory square.
+			char amount[4];
+			if (Me.Inventory[SlotNum].multiplicity < 999)
+				sprintf(amount, "%d", Me.Inventory[SlotNum].multiplicity);
+			else
+				strcpy(amount, "+++");
+			TargetRect.w = TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.x;
+			int xpos = TargetRect.x + TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.y - TextWidth(amount) - 2;
+			int ypos = TargetRect.y + TargetRect.h - FontHeight(Messagevar_BFont);
+			DisplayText(amount, xpos, ypos, &TargetRect, 1.0);
+		}
 	}
 
 	if (Item_Held_In_Hand != NULL) {
@@ -4390,7 +4405,6 @@ void ShowInventoryScreen(void)
 		//
 		// printf("\n Mouse button should cause no image now."); 
 	}
-
-};				// void ShowInventoryScreen( void )
+}
 
 #undef _view_c

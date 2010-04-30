@@ -131,7 +131,6 @@ void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag,
 void PutBlast(int);
 void PutEnemy(enemy * e, int x, int y, int mask, int highlight);
 void PutMouseMoveCursor(void);
-void ShowInventoryScreen(void);
 void clear_all_loaded_tux_images(int with_free);
 int set_rotation_index_for_this_robot(enemy * ThisRobot);
 int set_rotation_model_for_this_robot(enemy * ThisRobot);
