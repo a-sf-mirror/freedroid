@@ -2095,9 +2095,8 @@ void AssembleCombatPicture(int mask)
 	//
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
 		ShowItemAlarm();
-		// ShowQuickInventory ();
 		display_current_game_message_window();
-		ShowQuickInventory();
+		show_quick_inventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();
 		ShowInventoryScreen();

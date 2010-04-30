@@ -1818,29 +1818,30 @@ void DropHeldItemToInventory(void)
  * This function shows the quick inventory items on the right side of
  * the screen.
  */
-void ShowQuickInventory(void)
+void show_quick_inventory(void)
 {
 	int i;
-	SDL_Rect TargetRect;
-	int Index;
+	SDL_Rect target_rect;
+	int index;
 
 	// Now we can blit all the objects in the quick inventory, but of course only
 	// those small objects, that have a 1x1 inventory grid size, so that they really
 	// can be drawn from the 'belt' that is actually the quick inventory.
-	//
+
 	for (i = 0; i < 10; i++) {
-		PutCharFont(Screen, Messagestat_BFont, (130 + i * 40 - 9) * GameConfig.screen_width / 640, GameConfig.screen_height - 16,
-			    (i < 9) ? ('1' + i) : '0');
-		if (((Index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != (-1)) && (Me.Inventory[Index].inventory_position.x == i)
-		    && (Me.Inventory[Index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1)) {
-			TargetRect.x = (130 + i * 40) * GameConfig.screen_width / 640;
-			TargetRect.y = GameConfig.screen_height - 32;
-
-			our_SDL_blit_surface_wrapper(ItemMap[Me.Inventory[Index].type].inv_image.Surface, NULL, Screen, &TargetRect);
-
+		PutCharFont(Screen, Messagestat_BFont, UNIVERSAL_COORD_W(130 + i * 40 - 9),
+					GameConfig.screen_height - UNIVERSAL_COORD_H(16), (i < 9) ? ('1' + i) : '0');
+		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
+			&& (Me.Inventory[index].inventory_position.x == i)
+			&& (Me.Inventory[index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1))
+		{
+			target_rect.x = UNIVERSAL_COORD_W(130 + i * 40);
+			target_rect.y = GameConfig.screen_height - UNIVERSAL_COORD_H(32);
+ 
+			our_SDL_blit_surface_wrapper(ItemMap[Me.Inventory[index].type].inv_image.Surface, NULL, Screen, &target_rect);
 		}
 	}
-};				// void ShowQuickInventory ( void )
+}
 
 /**
  *

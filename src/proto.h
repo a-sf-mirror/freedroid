@@ -494,7 +494,7 @@ int GetInventorySquare_y(int x);
 void DropHeldItemToInventory(void);
 int DropHeldItemToTheFloor(void);
 void DropItemToTheFloor(Item DropItemPointer, float x, float y, int levelnum);
-void ShowQuickInventory(void);
+void show_quick_inventory(void);
 void HandleInventoryScreen(void);
 int AddFloorItemDirectlyToInventory(item * ItemPointer);
 void CopyItem(item * SourceItem, item * DestItem, int MakeSound);
