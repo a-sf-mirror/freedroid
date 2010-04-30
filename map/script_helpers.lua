@@ -2,7 +2,7 @@
 next = set_next_node
 show = enable_node
 hide = disable_node
-
+get_program = get_program_revision
 
 -- gettext function for dialogs
 function _(a)
