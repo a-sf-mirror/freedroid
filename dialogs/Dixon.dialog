@@ -123,12 +123,26 @@ LuaCode={
 Nr=21 Text=_"I am ready. Open the tunnels for me, Dixon."
 LuaCode={
 	npc_says(_"Great. Be careful down there. Just try to get the toolkit and get out of there as soon as possible.")
-	npc_says(_"I will give you two small devices charged with plasma. If you get in trouble just activate one and it will send a shockwave of plasma around you damaging anything in its way. It should give you some breathing room.")
+	if difficulty("easy") then
+		npc_says(_"I will give you three small devices that can emit an Electro Magnetic Pulse.")
+	elseif difficulty("normal") then
+		npc_says(_"I will give you two small devices that can emit an Electro Magnetic Pulse.")
+	elseif difficulty("hard") then
+		npc_says(_"I will give you one small device that can emit an Electro Magnetic Pulse.")
+	end
+	npc_says(_"If you get in trouble just activate one and it will send a shockwave around you damaging any bot around you. It should give you some breathing room.")
+	npc_says(_"The best of it all, is that it's completely harmless for humans. But make sure to not fry the circuits of our own 614 guard bots or computer terminals.")
 	npc_says(_"The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates.")
 	npc_says(_"There you will find the maintenance access hatch.", "NO_WAIT")
 	npc_says(_"Good luck. Oh, and please come back alive. Better come back with nothing than not at all.")
 	change_obstacle_state("NorthernMaintainanceDoor", "opened")
-	add_item("Plasma Shockwave Emitter",2)
+	if difficulty("easy") then
+		add_item("EMP Shockwave Generator",3)
+	elseif difficulty("normal") then
+		add_item("EMP Shockwave Generator",2)
+	elseif difficulty("hard") then
+		add_item("EMP Shockwave Generator",1)
+	end
 	hide(21, 26) show(31)
 }
 ----------------------------------------------------------------------
