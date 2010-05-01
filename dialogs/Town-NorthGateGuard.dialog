@@ -67,8 +67,9 @@ LuaCode={
 	change_obstacle_state("Main Gate Outer E", "closed")
 	change_obstacle_state("Main Gate Outer W", "closed")
 	change_obstacle_state("Main Gate Guardhouse", "closed")
-	break_off_and_attack()
-	everybody_hostile()
+
+	set_faction_state("redguard", "hostile")
+	end_dialog()
 	hide(1, 2, 3) show(99)
 }
 ----------------------------------------------------------------------
@@ -144,8 +145,8 @@ Nr=22 Text=_"I said: YOUR MOTHER DRESSES YOU FUNNY."
 LuaCode={
 	npc_says(_"Nobody says things about my mother. Forget you, Linarian!")
 	npc_says(_"Open fire!")
-	everybody_hostile()
-	break_off_and_attack()
+	set_faction_state("redguard", "hostile")
+	end_dialog()
 	hide(20, 21, 22, 23, 30)
 }
 ----------------------------------------------------------------------

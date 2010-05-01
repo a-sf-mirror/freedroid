@@ -648,13 +648,6 @@ static int lua_chat_drop_dead(lua_State * L)
 	return 0;
 }
 
-static int lua_chat_everybody_hostile(lua_State * L)
-{
-	/* XXX lost when reimplement factions */
-	SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
-	return 0;
-}
-
 static int lua_chat_set_bot_state(lua_State * L)
 {
 	const char *cmd = luaL_checkstring(L, 1);
@@ -888,8 +881,6 @@ luaL_reg lfuncs[] = {
 	{"break_off_and_attack", lua_chat_break_off_and_attack}
 	,
 	{"drop_dead", lua_chat_drop_dead}
-	,
-	{"everybody_hostile", lua_chat_everybody_hostile}
 	,
 	{"set_bot_state", lua_chat_set_bot_state}
 	,

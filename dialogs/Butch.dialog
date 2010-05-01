@@ -90,7 +90,7 @@ Nr=3 Text=_"BANZAI! DIE DIE DIE!"
 LuaCode={
 	npc_says(_"Wha --")
 	drop_dead()
-	everybody_hostile()
+	set_faction_state("redguard", "hostile")
 	hide(3)
 }
 ----------------------------------------------------------------------
