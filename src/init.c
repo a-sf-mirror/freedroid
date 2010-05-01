@@ -342,7 +342,6 @@ void PlayATitleFile(char *Filename)
 void Get_Bullet_Data(char *DataPointer)
 {
 	char *BulletPointer;
-	char *EndOfBulletData;
 	int i;
 	int BulletIndex = 0;
 
@@ -357,7 +356,6 @@ void Get_Bullet_Data(char *DataPointer)
 #define BULLET_BLAST_TYPE_CAUSED_BEGIN_STRING "Type of blast this bullet causes when crashing e.g. against a wall :"
 
 	BulletPointer = LocateStringInData(DataPointer, BULLET_SECTION_BEGIN_STRING);
-	EndOfBulletData = LocateStringInData(DataPointer, BULLET_SECTION_END_STRING);
 
 	DebugPrintf(1, "\n\nStarting to read bullet data...\n\n");
 	// At first, we must allocate memory for the droid specifications.
