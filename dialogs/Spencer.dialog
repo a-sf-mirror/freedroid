@@ -194,7 +194,6 @@ LuaCode={
 		npc_says(_"I hope you will prove yourself a worthy member of the Red Guard.")
 		display_big_message("Joined Town Guard!!")
 		add_cookie("tux_has_joined_guard")
-		make_tux_red_guard()
 		change_obstacle_state("Main Gate Guardhouse", "opened")
 		hide(3, 12)
 	else

@@ -2060,8 +2060,6 @@ static int PrepareNewHero(void)
 
 	Get_New_Character_Name();
 
-	Me.is_town_guard_member = FALSE;
-
 	// If the special string "HaveNoName" is being supplied, then
 	// we treat this as no name given and will return false.
 	//

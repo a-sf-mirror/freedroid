@@ -628,7 +628,6 @@ typedef struct tux_s {
 	float time_since_last_visit_or_respawn[MAX_LEVELS];	// record of the levels the player has visited yet.
 
 	string cookie_list[MAX_COOKIES];
-	int is_town_guard_member;
 
 	//--------------------
 	// THE FOLLOWING ARE INFORMATION, THAT ARE HUGE AND THAT ALSO DO NOT NEED

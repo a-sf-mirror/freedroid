@@ -678,13 +678,6 @@ static int lua_chat_set_bot_state(lua_State * L)
 	return 0;
 }
 
-static int lua_chat_make_tux_red_guard(lua_State * L)
-{
-	/*XXX get rid of this */
-	Me.is_town_guard_member = TRUE;
-	return 0;
-}
-
 static int lua_chat_takeover(lua_State * L)
 {
 	int opponent_capsules = luaL_checkinteger(L, 1);
@@ -869,8 +862,6 @@ luaL_reg lfuncs[] = {
 	{"everybody_hostile", lua_chat_everybody_hostile}
 	,
 	{"set_bot_state", lua_chat_set_bot_state}
-	,
-	{"make_tux_red_guard", lua_chat_make_tux_red_guard}
 	,
 
 	{"takeover", lua_chat_takeover}
