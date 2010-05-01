@@ -499,7 +499,7 @@ struct dist_elt {
  */
 static int cmp_dist_elt(const void *elt1, const void *elt2)
 {
-	return (((struct dist_elt *)elt1)->value - ((struct dist_elt *)elt1)->value);
+	return (((struct dist_elt *)elt1)->value - ((struct dist_elt *)elt2)->value);
 }
 
 /**
@@ -539,26 +539,26 @@ int MoveOutOfObstacle(float *posX, float *posY, int posZ, obstacle * ThisObstacl
 		switch (dist_arr[i].direction) {
 		case (RIGHT):
 			{
-				new_pos.x = rect2.x + 0.01;	// small increment to really be outside the rectangle
+				new_pos.x = rect2.x + 0.1;	// small increment to really be outside the rectangle
 				new_pos.y = *posY;
 				break;
 			}
 		case (DOWN):
 			{
 				new_pos.x = *posX;
-				new_pos.y = rect1.y - 0.01;
+				new_pos.y = rect1.y - 0.1;
 				break;
 			}
 		case (LEFT):
 			{
-				new_pos.x = rect1.x - 0.01;
+				new_pos.x = rect1.x - 0.1;
 				new_pos.y = *posY;
 				break;
 			}
 		case (TOP):
 			{
 				new_pos.x = *posX;
-				new_pos.y = rect2.y + 0.01;
+				new_pos.y = rect2.y + 0.1;
 				break;
 			}
 		}
@@ -573,8 +573,7 @@ int MoveOutOfObstacle(float *posX, float *posY, int posZ, obstacle * ThisObstacl
 	// The caller will need to find a fallback
 	//
 	return FALSE;
-
-}				// void MoveOutOfObstacle( float* posX, float* posY, int posZ, obstacle* ThisObstacle )
+}
 
 /**
  * This function escapes a character from an obstacle, by
