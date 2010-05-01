@@ -44,7 +44,6 @@ static void activate_button(struct leveleditor_button *b)
 {
 	int idx = b->btn_index;
 	int new_x, new_y;
-	struct leveleditor_typeselect *ts;
 	switch (idx) {
 	case LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON:
 		EditLevel()->use_underground_lighting = !EditLevel()->use_underground_lighting;
