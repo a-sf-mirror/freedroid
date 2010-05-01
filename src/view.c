@@ -510,15 +510,16 @@ void skew_and_blit_rect(float x1, float y1, float x2, float y2, Uint32 color)
 void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 {
 	float up, left, right, low, x, y;
+	gps vpos;
 
-	update_virtual_position(&our_obstacle->vpos, &our_obstacle->pos, Me.pos.z);
+	update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
 
 	left = obstacle_map[our_obstacle->type].left_border;
 	up = obstacle_map[our_obstacle->type].upper_border;
 	low = obstacle_map[our_obstacle->type].lower_border;
 	right = obstacle_map[our_obstacle->type].right_border;
-	x = our_obstacle->vpos.x;
-	y = our_obstacle->vpos.y;
+	x = vpos.x;
+	y = vpos.y;
 
 	// If collision rectangles are turned off, then we need not do 
 	// anything more here...
@@ -1530,20 +1531,21 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			// to blit it.
 			//
 			if (!GameConfig.skip_shadow_blitting) {
-				update_virtual_position(&our_obstacle->vpos, &our_obstacle->pos, Me.pos.z);
+				gps vpos;
+				update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
 				if (use_open_gl) {
 					if (obstacle_map[our_obstacle->type].shadow_image.texture_has_been_created) {
 						if (mask & ZOOM_OUT) {
 							draw_gl_textured_quad_at_map_position(&obstacle_map
 											      [our_obstacle->type].shadow_image,
-											      our_obstacle->vpos.x, our_obstacle->vpos.y,
+											      vpos.x, vpos.y,
 											      1.0, 1.0, 1.0, FALSE,
 											      TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS,
 											      lvledit_zoomfact_inv());
 						} else {
 							draw_gl_textured_quad_at_map_position(&obstacle_map
 											      [our_obstacle->type].shadow_image,
-											      our_obstacle->vpos.x, our_obstacle->vpos.y,
+											      vpos.x, vpos.y,
 											      1.0, 1.0, 1.0, FALSE,
 											      TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0);
 						}
@@ -1554,10 +1556,10 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 							blit_zoomed_iso_image_to_map_position(&
 											      (obstacle_map
 											       [our_obstacle->type].shadow_image),
-											      our_obstacle->vpos.x, our_obstacle->vpos.y);
+											      vpos.x, vpos.y);
 						} else {
 							blit_iso_image_to_map_position(&obstacle_map[our_obstacle->type].shadow_image,
-										       our_obstacle->vpos.x, our_obstacle->vpos.y);
+										       vpos.x, vpos.y);
 						}
 						// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
 					}

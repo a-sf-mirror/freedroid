@@ -761,7 +761,6 @@ typedef struct waypoint_s {
 typedef struct obstacle_s {
 	int type;
 	gps pos;
-	gps vpos;
 	int name_index;
 } obstacle, *Obstacle;
 
