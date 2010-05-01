@@ -244,7 +244,6 @@ static void handle_line_walls()
 
 	wall = list_entry((state.l_elements).list.prev, line_element, list);
 	pos_last = wall->position;
-	distance = calc_distance(pos_last.x, pos_last.y, mouse_mapcoord.x, mouse_mapcoord.y);
 
 	// Calculate the difference of position since last time
 	offset.x = pos_last.x - mouse_mapcoord.x;
