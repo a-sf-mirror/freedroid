@@ -850,12 +850,14 @@ void read_keybind_t_array(const char *buffer, const char *tag, keybind_t * kbs, 
 	int tknb;
 	char *pos = strstr(buffer, "<keybinds cmd=");
 	if (!pos) {
-		ErrorMessage(__FUNCTION__, "Unable to find keybinds.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		WrapErrorMessage(__FUNCTION__, "Unable to find keybinds.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		return;
 	}
 	char *epos = strstr(pos, "</keybinds>\n");
-	if (!epos)
-		ErrorMessage(__FUNCTION__, "Unable to find keybinds end.\n", PLEASE_INFORM, IS_FATAL);
+	if (!epos) {
+		WrapErrorMessage(__FUNCTION__, "Unable to find keybinds end.\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		return;
+	}
 	char savechar = *epos;
 	*epos = '\0';
 	int mc = 0;
