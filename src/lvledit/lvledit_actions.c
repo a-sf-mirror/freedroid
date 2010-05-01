@@ -465,35 +465,6 @@ void action_set_floor(Level EditLevel, int x, int y, int type)
 	action_push(ACT_TILE_FLOOR_SET, x, y, old);
 }
 
-static void action_fill_user_recursive(level * EditLevel, int x, int y, int type, int *changed)
-{
-	int source_type = EditLevel->map[y][x].floor_value;
-	/* security */
-	if (!pos_inside_level(x, y, EditLevel))
-		return;
-
-#define at(x,y) (EditLevel -> map [ y ] [ x ] . floor_value)
-	if (at(x, y) == type)
-		return;
-	action_set_floor(EditLevel, x, y, type);
-	(*changed)++;
-	if (x > 0 && at(x - 1, y) == source_type)
-		action_fill_user_recursive(EditLevel, x - 1, y, type, changed);
-	if (x < EditLevel->xlen - 1 && at(x + 1, y) == source_type)
-		action_fill_user_recursive(EditLevel, x + 1, y, type, changed);
-	if (y > 0 && at(x, y - 1) == source_type)
-		action_fill_user_recursive(EditLevel, x, y - 1, type, changed);
-	if (y < EditLevel->ylen - 1 && at(x - 1, y + 1) == source_type)
-		action_fill_user_recursive(EditLevel, x, y + 1, type, changed);
-}
-
-void action_fill_user(level * EditLevel, int BlockX, int BlockY, int SpecialMapValue)
-{
-	int number_changed = 0;
-	action_fill_user_recursive(EditLevel, BlockX, BlockY, SpecialMapValue, &number_changed);
-	action_push(ACT_MULTIPLE_ACTIONS, number_changed);
-}
-
 static void action_change_map_label(level * EditLevel, int i, char *name)
 {
 	if (EditLevel->labels[i].pos.x != -1) {

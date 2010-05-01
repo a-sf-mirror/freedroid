@@ -80,12 +80,6 @@ static void activate_button(struct leveleditor_button *b)
 	case LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON:
 		level_editor_cycle_marked_obstacle();
 		break;
-	case LEVEL_EDITOR_RECURSIVE_FILL_BUTTON:
-		ts = get_current_object_type();
-		if (ts->type == OBJECT_FLOOR) {
-			action_fill_user(EditLevel(), EditX(), EditY(), ts->indices[ts->selected_tile_nb]);
-		}
-		break;
 	case LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON:
 		if (single_tile_selection(OBJECT_OBSTACLE)) {
 			action_change_obstacle_label_user(EditLevel(), single_tile_selection(OBJECT_OBSTACLE), NULL);

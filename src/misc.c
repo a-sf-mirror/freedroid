@@ -154,10 +154,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_ZOOM_OUT_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorZoomOutButton.png", {30, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_ZOOM_OUT_BUTTON_PUSHED] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorZoomOutButtonPushed.png", {30, 90, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_RECURSIVE_FILL_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRecursiveFillButton.png", {60, 90, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_RECURSIVE_FILL_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRecursiveFillButtonPushed.png", {60, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNewObstacleLabelButton.png", {90, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON_PUSHED] =

@@ -48,7 +48,6 @@ void level_editor_action_toggle_waypoint_connection_user(level *, int, int);
 
 /* Floor tiles manipulation */
 void action_set_floor(level *, int, int, int);
-void action_fill_user(level *, int, int, int);
 
 /* Map manipulation */
 void level_editor_action_change_map_label_user(level *);

@@ -472,10 +472,6 @@ static void show_level_editor_tooltips(void)
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
 					    ("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio (OpenGL only).\n"));
-	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_RECURSIVE_FILL_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
-			show_button_tooltip(_
-					    ("Fill\n\nUse this button to fill a concurrent area of the map with the currently selected map tile.  Filling will proceed from the cursor in all directions until a change of map tile is encountered."));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
