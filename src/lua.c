@@ -636,7 +636,7 @@ static int lua_chat_disable_node(lua_State * L)
 static int lua_chat_break_off_and_attack(lua_State * L)
 {
 	/* XXX lost when reimplementing factions */
-//	chat_control_chat_droid->is_friendly = FALSE;
+	ErrorMessage(__FUNCTION__, "This function has been deprecated when introducing multiple factions support.", PLEASE_INFORM, IS_WARNING_ONLY);
 	chat_control_end_dialog = 1;
 	return 0;
 }
