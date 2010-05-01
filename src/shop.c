@@ -1109,7 +1109,6 @@ int copy_item_into_inventory(item *BuyItem, int amount)
  */
 static int buy_item(item *BuyItem, int amount)
 {
-	int FreeIndex;
 	float item_price;
 
 	if (amount <= 0) {
@@ -1117,8 +1116,6 @@ static int buy_item(item *BuyItem, int amount)
 	}
 
 	BuyItem->multiplicity = amount;
-
-	FreeIndex = GetFreeInventoryIndex();
 
 	item_price = calculate_item_buy_price(BuyItem);
 
