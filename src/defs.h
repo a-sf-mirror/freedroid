@@ -1567,4 +1567,18 @@ enum {
 	DIFFICULTY_HARD
 };
 
+enum faction_id {
+	FACTION_SELF = 0,
+	FACTION_BOTS,
+	FACTION_REDGUARD,
+	FACTION_RESISTANCE,
+	FACTION_CIVILIAN,
+
+	FACTION_NUMBER_OF_FACTIONS, //keep this last
+};
+
+enum faction_state {
+	HOSTILE = 0,
+	FRIENDLY,
+};
 #endif

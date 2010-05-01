@@ -727,7 +727,7 @@ int droid_takeover(enemy * target)
 			target->on_death_drop_item_code = -1;
 		}
 
-		target->is_friendly = TRUE;
+		target->faction = FACTION_SELF;
 		target->has_been_taken_over = TRUE;
 
 		target->combat_state = WAYPOINTLESS_WANDERING;

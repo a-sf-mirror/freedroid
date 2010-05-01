@@ -315,6 +315,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 		save_melee_shot(str, &AllMeleeShots[i]);
 	}
 
+	save_factions(savestruct_autostr);
 	autostr_append(savestruct_autostr, "End of freedroidRPG savefile\n");
 	deflate_to_stream((unsigned char *)savestruct_autostr->value, savestruct_autostr->length+1, SaveGameFile);
 	fclose(SaveGameFile);
@@ -511,6 +512,7 @@ int LoadGame(void)
 	load_enemies(LoadGameData);
 	load_npcs(LoadGameData);
 	load_bullets(LoadGameData);
+	load_factions(LoadGameData);
 
 	/* properly restore pointers and references */
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): now correcting dangerous pointers....", __FUNCTION__);

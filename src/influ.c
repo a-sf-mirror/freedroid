@@ -403,7 +403,7 @@ void tux_get_move_target_and_attack(gps * movetgt)
 	//
 	if (Me.weapon_item.type != (-1)) {
 		if (!ItemMap[Me.weapon_item.type].item_weapon_is_melee) {	//ranged weapon
-			if (!t->is_friendly)
+			if (!is_friendly(t->faction, FACTION_SELF))
 				tux_wants_to_attack_now(FALSE);
 			movetgt->x = -1;
 			movetgt->y = -1;
@@ -423,7 +423,7 @@ void tux_get_move_target_and_attack(gps * movetgt)
 		RemainingWay.y = (RemainingWay.y / RemainingWayLength) * (RemainingWayLength - (BEST_MELEE_DISTANCE - 0.1));
 	}
 
-	if ((RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01) && (!t->is_friendly)) {
+	if ((RemainingWayLength <= BEST_MELEE_DISTANCE * sqrt(2) + 0.01) && (!is_friendly(t->faction, FACTION_SELF))) {
 		tux_wants_to_attack_now(FALSE);
 	}
 	// New move target.
@@ -1162,7 +1162,7 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	CurBullet->pos.y += offset.y;
 	CurBullet->pos.z = Me.pos.z;
 
-	CurBullet->is_friendly = 1;
+	CurBullet->faction = FACTION_SELF;
 
 	DebugPrintf(0, "\nOffset:  x=%f y=%f.", offset.x, offset.y);
 
@@ -1563,7 +1563,8 @@ void check_for_droids_to_attack_or_talk_with()
 
 		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, droid_below_mouse_cursor);
 
-		if (enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr)->is_friendly) {
+		enemy *e = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
+		if (is_friendly(e->faction, FACTION_SELF)) {
 			if (no_left_button_press_in_previous_analyze_mouse_click) {
 				ChatWithFriendlyDroid(enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr));
 				enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);

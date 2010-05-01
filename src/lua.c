@@ -635,7 +635,8 @@ static int lua_chat_disable_node(lua_State * L)
 
 static int lua_chat_break_off_and_attack(lua_State * L)
 {
-	chat_control_chat_droid->is_friendly = FALSE;
+	/* XXX lost when reimplementing factions */
+//	chat_control_chat_droid->is_friendly = FALSE;
 	chat_control_end_dialog = 1;
 	return 0;
 }
@@ -649,10 +650,7 @@ static int lua_chat_drop_dead(lua_State * L)
 
 static int lua_chat_everybody_hostile(lua_State * L)
 {
-	enemy *erot;
-	BROWSE_ALIVE_BOTS(erot) {
-		erot->is_friendly = FALSE;
-	}
+	/* XXX lost when reimplement factions */
 	SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
 	return 0;
 }
@@ -701,6 +699,38 @@ static int lua_difficulty_level(lua_State * L)
 {
 	lua_pushnumber(L, GameConfig.difficulty_level);
 	return 1;
+}
+
+static int lua_change_npc_faction(lua_State *L)
+{
+	const char *fact = luaL_checkstring(L, 1);
+
+	chat_control_chat_droid->faction = get_faction_id(fact);
+	return 0;
+}
+
+static int lua_set_faction_state(lua_State *L)
+{
+	const char *fact_name = luaL_checkstring(L, 1);
+	const char *state_str = luaL_checkstring(L, 2);
+	const char *fact2_name = luaL_checkstring(L, 3);
+
+	enum faction_state state;
+	enum faction_id fact_id = get_faction_id(fact_name);
+	enum faction_id fact2_id = get_faction_id(fact2_name);
+	
+	if (!strcmp(state_str, "hostile"))
+		state = HOSTILE;
+	else if (!strcmp(state_str, "friendly"))
+		state = FRIENDLY;
+	else {
+		ErrorMessage(__FUNCTION__, "Unknown faction state %s.", PLEASE_INFORM, IS_WARNING_ONLY);
+		return 0;
+	}
+
+	set_faction_state(fact_id, fact2_id, state);
+
+	return 0;
 }
 
 luaL_reg lfuncs[] = {
@@ -878,6 +908,8 @@ luaL_reg lfuncs[] = {
 
 	{"difficulty_level", lua_difficulty_level},
 
+	{"change_npc_faction", lua_change_npc_faction},
+	{"set_faction_state", lua_set_faction_state},
 	{NULL, NULL}
 	,
 };

@@ -451,7 +451,7 @@ typedef struct enemy_s {
 	//--------------------
 	// 2nd set ('global state')
 	//
-	short int is_friendly;        // is this a friendly droid or is it a MS controlled one?
+	int faction;
 	char will_rush_tux;           // will this robot approach the Tux on sight and open communication?
 	int combat_state;             // current state of the bot
 	float state_timeout;          // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
@@ -685,7 +685,7 @@ typedef struct bullet_s {
 	float poison_damage_per_sec;
 	float paralysation_duration;
 
-	char is_friendly;	//ugly hack, great idea - if the bot has the same value, the bullet just goes through
+	int faction;
 	char hit_type;		//hit bots, humans, both?
 } bullet, *Bullet;
 

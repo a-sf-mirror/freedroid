@@ -420,14 +420,11 @@ int DoSkill(int skill_index, int SpellCost)
 								       (float)input_axis.y, FALSE), Me.pos.z, &FlyablePassFilter))
 			goto out;
 
-		if (!droid_below_mouse_cursor->is_friendly) {
-			// Only droids can be hacked.  Humans can't be 
-			// hacked.
+		if (!is_friendly(droid_below_mouse_cursor->faction, FACTION_SELF)) {
+			// Only hostile droids can be hacked. 
 			//
 			if (droid_takeover(droid_below_mouse_cursor)) {
 				// upon successful takeover
-				// restore original heat
-				// Me . temperature -= SpellCost;
 				// go directly to chat to choose droid program
 				if (GameConfig.talk_to_bots_after_takeover)
 					ChatWithFriendlyDroid(droid_below_mouse_cursor);

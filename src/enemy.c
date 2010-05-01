@@ -255,7 +255,7 @@ enemy *enemy_new(int type)
 	this_enemy->on_death_drop_item_code = -1;
 
 	// Set the default value of the 'global state' attributes
-	this_enemy->is_friendly = 0;
+	this_enemy->faction = FACTION_BOTS;
 	this_enemy->will_rush_tux = FALSE;
 	this_enemy->combat_state = SELECT_NEW_WAYPOINT;
 	this_enemy->state_timeout = 0.0;
@@ -785,7 +785,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 		Me.Experience += reward;
 	}
 
-	if (target->is_friendly) {
+	if (is_friendly(target->faction, FACTION_SELF)) {
 		if (killertype && killertype != -1)	//killed by someone else, and we know who it is
 			append_new_game_message(_("Your friend %s was killed by %s."),
 						Druidmap[target->type].druidname, Druidmap[killertype].druidname);
@@ -880,12 +880,8 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 	 * check if droid is dead
 	 */
 
-	if (mine)		// tux hit ? we turn the group hostile !
-	{
-		robot_group_turn_hostile(target);
-	}
 	// no XP is given for killing a friendly bot
-	if (target->is_friendly && givexp)
+	if (is_friendly(target->faction, FACTION_SELF) && givexp)
 		givexp = 0;
 
 	// spray blood
@@ -1178,7 +1174,7 @@ void update_vector_to_shot_target_for_friend(enemy * ThisRobot)
 
 	enemy *erot;
 	BROWSE_LEVEL_BOTS(erot, ThisRobot->pos.z) {
-		if (erot->is_friendly)
+		if (is_friendly(ThisRobot->faction, erot->faction))
 			continue;
 
 		if (is_potential_target(ThisRobot, &erot->pos, &squared_best_dist)) {
@@ -1267,7 +1263,7 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 	// should attack this one instead, since it's much closer anyway.
 	enemy *erot;
 	BROWSE_LEVEL_BOTS(erot, our_level) {
-		if (!erot->is_friendly)
+		if (is_friendly(erot->faction, this_robot->faction))
 			continue;
 
 		if (is_potential_target(this_robot, &erot->pos, &squared_best_dist)) {
@@ -1299,7 +1295,7 @@ static void state_machine_inconditional_updates(enemy * ThisRobot)
 	// determine the distance vector to the target of this shot.  The target
 	// depends of course on wheter it's a friendly device or a hostile device.
 	//
-	if (ThisRobot->is_friendly) {
+	if (ThisRobot->faction != FACTION_BOTS) { //XXX
 		update_vector_to_shot_target_for_friend(ThisRobot);
 	} else {
 		update_vector_to_shot_target_for_enemy(ThisRobot);
@@ -2055,7 +2051,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_reflect_other_bullets;
 		NewBullet->pass_through_hit_bodies =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_pass_through_hit_bodies;
-		NewBullet->is_friendly = ThisRobot->is_friendly;
+		NewBullet->faction = ThisRobot->faction;
 	} else {		/* melee weapon */
 
 		int shot_index = find_free_melee_shot_index();
@@ -2170,9 +2166,9 @@ int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVector)
  * - halt as soon as one of those positions is free
  */
 
-static void MoveToMeleeCombat(Enemy ThisRobot, gps * target_pos, moderately_finepoint * set_move_tgt)
+static void MoveToMeleeCombat(enemy *ThisRobot, gps *target_pos, moderately_finepoint *set_move_tgt)
 {
-	freeway_context frw_ctx = { ThisRobot->is_friendly, {ThisRobot->bot_target_addr, NULL} };
+	freeway_context frw_ctx = { is_friendly(ThisRobot->faction, FACTION_SELF), {ThisRobot->bot_target_addr, NULL} };
 
 	// All computations are done in the target's level
 	gps bot_vpos;
@@ -2290,7 +2286,7 @@ static void MoveAwayFromMeleeCombat(Enemy ThisRobot, moderately_finepoint * set_
 /**
  * 
  */
-static void ReachMeleeCombat(Enemy ThisRobot, gps * tpos, moderately_finepoint * new_move_target, pathfinder_context * pf_ctx)
+static void ReachMeleeCombat(enemy *ThisRobot, gps *tpos, moderately_finepoint *new_move_target, pathfinder_context *pf_ctx)
 {
 	// Target not reachable -> roughly reach the target.
 	// The exact destination will be computed later.
@@ -2305,7 +2301,7 @@ static void ReachMeleeCombat(Enemy ThisRobot, gps * tpos, moderately_finepoint *
 	// is the target position, and so we have to add the target into the bot-collision
 	// exception's list.
 
-	if (ThisRobot->is_friendly)
+	if (is_friendly(ThisRobot->faction, FACTION_SELF))
 		pf_ctx->frw_ctx = NULL;
 	else
 		pf_ctx->frw_ctx->except_bots[1] = ThisRobot->bot_target_addr;
@@ -2413,26 +2409,6 @@ void SetRestOfGroupToState(Enemy ThisRobot, short NewState)
 	}
 
 };				// void SetRestOfGroupToState ( Enemy ThisRobot , int NewState )
-
-/**
- * Enemies act as groups.  If one is hit, all will attack and the like.
- * Similarly, if you attack one peaceful guard, all other guards will be
- * pissed as well...
- */
-void robot_group_turn_hostile(enemy * ThisRobot)
-{
-	int MarkerCode;
-
-	MarkerCode = ThisRobot->marker;
-	if (MarkerCode == 9999)	/* ugly hack */
-		SwitchBackgroundMusicTo(BIGFIGHT_BACKGROUND_MUSIC_SOUND);
-
-	enemy *erot;
-	BROWSE_ALIVE_BOTS(erot) {
-		if (erot->marker == MarkerCode && erot->has_been_taken_over == FALSE)
-			erot->is_friendly = FALSE;
-	}
-};				// void robot_group_turn_hostile ( int enemy_num )
 
 /**
  * This function checks for enemy collsions and returns TRUE if enemy 

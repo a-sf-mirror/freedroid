@@ -336,7 +336,7 @@ void display_automap(void)
 
 		for (x = 0; x < AUTOMAP_SQUARE_SIZE; x++) {
 			for (y = 0; y < AUTOMAP_SQUARE_SIZE; y++) {
-				if (erot->is_friendly) {
+				if (is_friendly(erot->faction, FACTION_SELF)) {
 					PutPixel_automap_wrapper(Screen,
 								 AUTOMAP_SQUARE_SIZE * erot->pos.x +
 								 AUTOMAP_SQUARE_SIZE * (automap_level->ylen - erot->pos.y) + x,

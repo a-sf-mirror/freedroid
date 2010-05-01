@@ -1459,6 +1459,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	GetCrew("ReturnOfTux.droids");
 
 	init_npcs();
+	init_factions();
 
 	ResolveMapLabelOnShip(startpos, &StartPosition);
 	reset_visible_levels();

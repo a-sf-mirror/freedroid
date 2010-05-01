@@ -227,7 +227,7 @@ int animate_autogun(level* autogun_lvl, int autogun_idx)
 	/* create a new bullet */
 	CurBullet->type = bullet_image_type;
 	CurBullet->damage = 5;
-	CurBullet->mine = FALSE;
+	CurBullet->faction = FACTION_BOTS;
 	CurBullet->owner = -1;
 	CurBullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
 	CurBullet->ignore_wall_collisions = ItemMap[weapon_item_type].item_gun_bullet_ignore_wall_collisions;
@@ -237,7 +237,6 @@ int animate_autogun(level* autogun_lvl, int autogun_idx)
 	CurBullet->reflect_other_bullets = ItemMap[weapon_item_type].item_gun_bullet_reflect_other_bullets;
 	CurBullet->pass_through_explosions = ItemMap[weapon_item_type].item_gun_bullet_pass_through_explosions;
 	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
-	CurBullet->is_friendly = 0;
 	CurBullet->to_hit = 90;
 	CurBullet->freezing_level = 0;
 	CurBullet->poison_duration = 0;

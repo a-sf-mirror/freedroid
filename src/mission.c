@@ -441,7 +441,7 @@ void CheckIfMissionIsComplete(void)
 		if (Me.AllMissions[mis_num].must_clear_first_level != (-1)) {
 			enemy *erot;
 			BROWSE_LEVEL_BOTS(erot, Me.AllMissions[mis_num].must_clear_first_level) {
-				if (!erot->is_friendly) {
+				if (!is_friendly(erot->faction, FACTION_SELF)) {
 					this_mission_seems_completed = FALSE;
 					break;
 				}
@@ -452,7 +452,7 @@ void CheckIfMissionIsComplete(void)
 		if (Me.AllMissions[mis_num].must_clear_second_level != (-1)) {
 			enemy *erot;
 			BROWSE_LEVEL_BOTS(erot, Me.AllMissions[mis_num].must_clear_second_level) {
-				if (!erot->is_friendly) {
+				if (!is_friendly(erot->faction, FACTION_SELF)) {
 					this_mission_seems_completed = FALSE;
 					break;
 				}

@@ -279,7 +279,7 @@ void ShowCombatScreenTexts(int mask)
 
 			enemy *erot, *nerot;
 			BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
-				if ((erot->pos.z == Me.pos.z) && (!erot->is_friendly))
+				if ((erot->pos.z == Me.pos.z) && (!is_friendly(erot->faction, FACTION_SELF)))
 					remaining_bots++;
 
 			}
@@ -3533,7 +3533,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 			w = TargetRectangle.w;
 			h = TargetRectangle.h;
 
-			if (e->is_friendly)
+			if (is_friendly(e->faction, FACTION_SELF))
 				c1.g = 255;
 			else
 				c1.r = 255;
@@ -3560,7 +3560,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		FillRect.w = health_pixels;
 
 		// The color of the bar depends on the friendly/hostile status
-		if (e->is_friendly)
+		if (is_friendly(e->faction, FACTION_SELF))
 			our_SDL_fill_rect_wrapper(Screen, &FillRect, full_color_friend);
 		else
 			our_SDL_fill_rect_wrapper(Screen, &FillRect, full_color_enemy);

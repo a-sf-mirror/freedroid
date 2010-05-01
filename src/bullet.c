@@ -656,7 +656,7 @@ void check_bullet_player_collisions(bullet * CurBullet, int num)
 	if (CurBullet->mine)
 		return;
 
-	if (CurBullet->is_friendly)
+	if (is_friendly(CurBullet->faction, FACTION_SELF))
 		return;
 
 	// Now we see if the distance to the bullet is as low as hitting
@@ -707,7 +707,7 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 			continue;
 		if (CurBullet->hit_type == ATTACK_HIT_HUMANS && !Druidmap[ThisRobot->type].is_human)
 			continue;
-		if (ThisRobot->is_friendly == CurBullet->is_friendly)
+		if (is_friendly(ThisRobot->faction, CurBullet->faction))
 			continue;
 
 		// Hit the ennemy

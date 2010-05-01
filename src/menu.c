@@ -1029,7 +1029,7 @@ void Cheatmenu(void)
 						} else {
 							printf_SDL(Screen, 15, -1, "SEVERE ERROR: Type=%d. ", erot->type);
 						}
-						if (erot->is_friendly)
+						if (is_friendly(erot->faction, FACTION_SELF))
 							printf_SDL(Screen, -1, -1, " YES");
 						else
 							printf_SDL(Screen, -1, -1, "  NO");

@@ -137,14 +137,13 @@ void respawn_level(int level_num)
 
 		// Conditional reset of some 'global state' attributes
 		if (erot->has_been_taken_over) {
-			erot->is_friendly = FALSE;
+			erot->faction = FACTION_BOTS;
 			erot->has_been_taken_over = FALSE;
 			erot->CompletelyFixed = FALSE;
 			erot->follow_tux = FALSE;
 		}
-		if (!erot->is_friendly) {
-			erot->has_greeted_influencer = FALSE;
-		}
+		
+		erot->has_greeted_influencer = FALSE;
 
 		// Re-place the bots onto the waypoint system
 		if (!erot->SpecialForce) {
@@ -1840,7 +1839,10 @@ file you use.", PLEASE_INFORM, IS_FATAL);
 		ReadValueFromString(SearchPointer, "Marker=", "%d", &(newen->marker), EndOfThisLevelData);
 		ReadValueFromStringWithDefault(SearchPointer, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
 					       EndOfThisLevelData);
-		ReadValueFromString(SearchPointer, "Friendly=", "%hd", &(newen->is_friendly), EndOfThisLevelData);
+		
+		char *faction = ReadAndMallocStringFromData(SearchPointer, "Faction=\"", "\"");
+		newen->faction = get_faction_id(faction);
+		free(faction);
 
 		StartMapLabel = ReadAndMallocStringFromData(SearchPointer, "StartLabel=\"", "\"");
 		ResolveMapLabelOnShip(StartMapLabel, &StartupLocation);
@@ -1979,6 +1981,7 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 		newen->pos.z = OurLevelNumber;
 		newen->on_death_drop_item_code = -1;
 		newen->dialog_section_name = strdup("StandardBotAfterTakeover");
+		newen->faction = FACTION_BOTS;
 
 		switch (atoi(Druidmap[newen->type].druidname)) {
 		case 123:

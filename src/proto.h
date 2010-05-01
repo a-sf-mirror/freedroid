@@ -627,7 +627,6 @@ obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label);
 int give_level_of_obstacle_with_label(const char *obstacle_label);
 
 // enemy.c 
-void robot_group_turn_hostile(enemy *);
 void SetRestOfGroupToState(Enemy ThisRobot, short NewState);
 int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot);
 int CheckEnemyEnemyCollision(enemy *);
@@ -792,4 +791,11 @@ void clear_npcs(void);
 item *npc_get_inventory(struct npc *);
 void npc_inventory_delete_item(struct npc *, int);
 
+// faction.c
+enum faction_id get_faction_id(const char *);
+void set_faction_state(enum faction_id, enum faction_id, enum faction_state);
+int is_friendly(enum faction_id, enum faction_id);
+void init_factions(void);
+void save_factions(struct auto_string *);
+void load_factions(char *);
 #endif

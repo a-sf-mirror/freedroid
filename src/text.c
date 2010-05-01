@@ -226,7 +226,7 @@ void EnemyHitByBulletText(enemy * ThisRobot)
 		return;
 
 	ThisRobot->TextVisibleTime = 0;
-	if (!ThisRobot->is_friendly)
+	if (ThisRobot->faction == FACTION_BOTS)
 		switch (MyRandom(4)) {
 		case 0:
 			ThisRobot->TextToBeDisplayed = _("Unhandled exception fault.  Press ok to reboot.");

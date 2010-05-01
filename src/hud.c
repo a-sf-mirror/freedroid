@@ -446,7 +446,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	rect.h = FontHeight(BFont_to_use);
 
 	// Hostile droids' bars are shown in red, friendly in green.
-	if (!cur_enemy->is_friendly) {
+	if (!is_friendly(cur_enemy->faction, FACTION_SELF)) {
 		r = 0x99;
 		g = 0x00;
 		b = 0x00;
