@@ -1316,7 +1316,6 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 		//
 		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
-		angle = -(atan2(Me.pos.y - MapPositionOfMouse.y, Me.pos.x - MapPositionOfMouse.x) * 180 / M_PI - 90 + 22.5);
 		target_location.x = MapPositionOfMouse.x;
 		target_location.y = MapPositionOfMouse.y;
 
