@@ -1295,7 +1295,7 @@ static void state_machine_inconditional_updates(enemy * ThisRobot)
 	// determine the distance vector to the target of this shot.  The target
 	// depends of course on wheter it's a friendly device or a hostile device.
 	//
-	if (ThisRobot->faction != FACTION_BOTS) { //XXX
+	if (is_friendly(ThisRobot->faction, FACTION_SELF)) {
 		update_vector_to_shot_target_for_friend(ThisRobot);
 	} else {
 		update_vector_to_shot_target_for_enemy(ThisRobot);
