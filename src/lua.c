@@ -713,7 +713,7 @@ static int lua_set_faction_state(lua_State *L)
 {
 	const char *fact_name = luaL_checkstring(L, 1);
 	const char *state_str = luaL_checkstring(L, 2);
-	const char *fact2_name = luaL_checkstring(L, 3);
+	const char *fact2_name = luaL_optstring(L, 3, "self");
 
 	enum faction_state state;
 	enum faction_id fact_id = get_faction_id(fact_name);
