@@ -465,26 +465,6 @@ void action_set_floor(Level EditLevel, int x, int y, int type)
 	action_push(ACT_TILE_FLOOR_SET, x, y, old);
 }
 
-static int tile_is_free(level * EditLevel, int y_old, int x_old, int y_new, int x_new)
-{
-	int i;
-	float x, y;
-	int wall_id = -1;
-	int obstacle_id;
-	for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; ++i) {
-		obstacle_id = EditLevel->map[y_new][x_new].obstacles_glued_to_here[i];
-		if (obstacle_id != -1 &&
-		    (EditLevel->obstacle_list[obstacle_id].type >= ISO_V_WALL ||
-		     EditLevel->obstacle_list[obstacle_id].type <= ISO_OUTER_WALL_E3)) {
-			wall_id = obstacle_id;
-			y = EditLevel->obstacle_list[obstacle_id].pos.y;
-			x = EditLevel->obstacle_list[obstacle_id].pos.x;
-			break;
-		}
-	}
-	return TRUE;
-}
-
 static void action_fill_user_recursive(level * EditLevel, int x, int y, int type, int *changed)
 {
 	int source_type = EditLevel->map[y][x].floor_value;
@@ -497,13 +477,13 @@ static void action_fill_user_recursive(level * EditLevel, int x, int y, int type
 		return;
 	action_set_floor(EditLevel, x, y, type);
 	(*changed)++;
-	if (x > 0 && at(x - 1, y) == source_type && tile_is_free(EditLevel, y, x, y, x - 1))
+	if (x > 0 && at(x - 1, y) == source_type)
 		action_fill_user_recursive(EditLevel, x - 1, y, type, changed);
-	if (x < EditLevel->xlen - 1 && at(x + 1, y) == source_type && tile_is_free(EditLevel, y, x, y, x + 1))
+	if (x < EditLevel->xlen - 1 && at(x + 1, y) == source_type)
 		action_fill_user_recursive(EditLevel, x + 1, y, type, changed);
-	if (y > 0 && at(x, y - 1) == source_type && tile_is_free(EditLevel, y, x, y - 1, x))
+	if (y > 0 && at(x, y - 1) == source_type)
 		action_fill_user_recursive(EditLevel, x, y - 1, type, changed);
-	if (y < EditLevel->ylen - 1 && at(x - 1, y + 1) == source_type && tile_is_free(EditLevel, y + 1, x, y, x))
+	if (y < EditLevel->ylen - 1 && at(x - 1, y + 1) == source_type)
 		action_fill_user_recursive(EditLevel, x, y + 1, type, changed);
 }
 
