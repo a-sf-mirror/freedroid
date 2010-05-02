@@ -140,7 +140,8 @@ LuaCode={
 	npc_says(_"Very well. Observe very carefully.")
 	npc_says(_"You will see this only once, so make sure to pay attention.")
 	npc_says(_"DIEEEE!")
-	break_off_and_attack()
+	set_npc_faction("crazy")
+	end_dialog()
 	hide(23)
 }
 ----------------------------------------------------------------------

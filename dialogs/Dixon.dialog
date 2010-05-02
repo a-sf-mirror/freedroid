@@ -432,7 +432,8 @@ LuaCode={
 	npc_says(_"LOST.")
 	npc_says(_"FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!")
 	npc_says(_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!")
-	break_off_and_attack()
+	set_npc_faction("crazy")
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

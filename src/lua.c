@@ -633,14 +633,6 @@ static int lua_chat_disable_node(lua_State * L)
 	return __lua_chat_toggle_node(L, 0);
 }
 
-static int lua_chat_break_off_and_attack(lua_State * L)
-{
-	/* XXX lost when reimplementing factions */
-	ErrorMessage(__FUNCTION__, "This function has been deprecated when introducing multiple factions support.", PLEASE_INFORM, IS_WARNING_ONLY);
-	chat_control_end_dialog = 1;
-	return 0;
-}
-
 static int lua_chat_drop_dead(lua_State * L)
 {
 	hit_enemy(chat_control_chat_droid, chat_control_chat_droid->energy + 1, 0, -1, 0);
@@ -878,8 +870,6 @@ luaL_reg lfuncs[] = {
 	{"disable_node", lua_chat_disable_node}
 	,
 
-	{"break_off_and_attack", lua_chat_break_off_and_attack}
-	,
 	{"drop_dead", lua_chat_drop_dead}
 	,
 	{"set_bot_state", lua_chat_set_bot_state}
