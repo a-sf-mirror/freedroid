@@ -106,6 +106,7 @@ void init_npcs()
 		"Lukas",
 		"Michelangelo",
 		"Pendragon",
+		"Peter",
 		"Richard",
 		"SACD",
 		"SADD",

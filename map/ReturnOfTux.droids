@@ -83,6 +83,7 @@ SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="LukasStartGameS
 SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="TybaltStartGameSquare" RushTux="no" UseDialog="Tybalt" ShortLabel=_"Tybalt -- Citadel Gate Guard" 
 SForce: T=BAR Fixed=0 Marker=9999 Faction="civilian" StartLabel="EwaldStartGameSquare" RushTux="no" UseDialog="Ewald" ShortLabel=_"Ewald -- Barkeeper"
 SForce: T=FSC Fixed=0 Marker=9999 Faction="civilian" StartLabel="TamaraStartGameSquare" RushTux="no" UseDialog="Tamara" ShortLabel=_"Tamara -- Librarian"  
+SForce: T=WOR Fixed=0 Marker=9999 Faction="resistance" StartLabel="CitadelPrison" RushTux="no" UseDialog="Peter" ShortLabel=_"Peter -- Inprisoned Rebel" 
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------

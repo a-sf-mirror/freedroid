@@ -3570,6 +3570,7 @@ x=80 y=38 name="614StartGameSquare4"
 x=73 y=21 name="TamaraStartGameSquare"
 x=18 y=6 name="L0GateGuardhouseGuard"
 x=22 y=10 name="614StartGameSquare1"
+x=62 y=44 name="CitadelPrison"
 /plabelinfolvl
 pobstaclelabelinfolvl
 obstacle_label.index=0 obstacle_label_name="NoviceArenaAccessDoor"
@@ -3819,6 +3820,8 @@ Nr.=219 x=  24 y=  70 rnd=0	 c:  143
 Nr.=220 x=  22 y=   7 rnd=0	 c:  222
 Nr.=221 x=  21 y=   9 rnd=0	 c:  220
 Nr.=222 x=  22 y=   9 rnd=0	 c:  221 220
+Nr.=223 x=  62 y=  44 rnd=0	 c:  224
+Nr.=224 x=  63 y=  44 rnd=0	 c:  223
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 1
