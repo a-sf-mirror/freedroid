@@ -1391,8 +1391,9 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, tpos->z);
 
 	/* Make sure we're looking at the target */
-	/*XXX won't work if tpos and ThisRobot are not on the same level */
-	TurnABitTowardsPosition(ThisRobot, tpos->x, tpos->y, 120);
+	gps target_vpos;
+	update_virtual_position(&target_vpos, tpos, ThisRobot->pos.z);
+	TurnABitTowardsPosition(ThisRobot, target_vpos.x, target_vpos.y, 120);
 
 	/* Do greet sound if not already done */
 	if (ThisRobot->has_greeted_influencer == FALSE) {
@@ -1403,6 +1404,8 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	}
 
 	/* Check state timeout */
+
+	//XXX if the target is out of sight, we should resume normal operation. not the case currently
 
 	// After some time, we'll no longer eye the Tux but rather do something,
 	// like attack the Tux or maybe also return to 'normal' operation and do
@@ -2315,7 +2318,7 @@ static void ReachMeleeCombat(enemy *ThisRobot, gps *tpos, moderately_finepoint *
  * The return value indicates, if the turning has already reached it's
  * target by now or not.
  */
-static int TurnABitTowardsPosition(Enemy ThisRobot, float x, float y, float TurnSpeed)
+static int TurnABitTowardsPosition(enemy *ThisRobot, float x, float y, float TurnSpeed)
 {
 	float RightAngle;
 	float AngleInBetween;
