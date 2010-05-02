@@ -66,9 +66,12 @@ void init_obstacle_data(void)
 	float standard_wall_width = 1.1;
 	float standard_door_width = 1.0;
 // Extreme values for outer wall, to slightly lower problem of tux walking through outer wall door post
-	float outer_wall_thickness = 1.8;
-	float outer_wall_width = 1.8;
-	float outer_door_thickness = 1.8;
+	float outer_wall_4_width = 0.55;
+	float outer_wall_4_thickness = 0.6;
+	float outer_wall_4_backside = 0.05;
+	float outer_door_4_width_long = 1.55;
+	float outer_door_4_width_short = 0.55;
+
 	float outer_door_width = 3.0;
 
 	iso_image empty_iso_image = UNLOADED_ISO_IMAGE;
@@ -1273,44 +1276,48 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LIBRARY_FURNITURE_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_LIBRARY_FURNITURE_2].flags |= GROUND_LEVEL;
 
-	for (i = ISO_OUTER_WALL_N1; i <= ISO_OUTER_WALL_CORNER_4; i++) {
+	for (i = ISO_OUTER_WALL_N1; i <= ISO_OUTER_DOOR_H_OFFLINE; i++) {
 		obstacle_map[i].transparent = TRANSPARENCY_FOR_WALLS;
 	}
 
-	block_2param(ISO_OUTER_WALL_N1, outer_wall_width, outer_wall_thickness);
+	block_4param(ISO_OUTER_WALL_N1, outer_wall_4_width, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_WALL_N1].filename = "iso_outer_walls_0002.png";
+// HORIZONTAL and VERTICAL, WTF does that mean in our 45degree rotated iso world?
+// Instead we should use e.g.
+// IS_EAST_TO_WEST
+// IS_NORTH_TO_SOUTH
 	obstacle_map[ISO_OUTER_WALL_N1].flags |= IS_HORIZONTAL;
-	block_2param(ISO_OUTER_WALL_N2, outer_wall_width, outer_wall_thickness);
+	block_4param(ISO_OUTER_WALL_N2, outer_wall_4_width, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_WALL_N2].filename = "iso_outer_walls_0006.png";
 	obstacle_map[ISO_OUTER_WALL_N2].flags |= IS_HORIZONTAL;
-	block_2param(ISO_OUTER_WALL_N3, outer_wall_width, outer_wall_thickness);
+	block_4param(ISO_OUTER_WALL_N3, outer_wall_4_width, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_WALL_N3].filename = "iso_outer_walls_0010.png";
 	obstacle_map[ISO_OUTER_WALL_N3].flags |= IS_HORIZONTAL;
-	block_2param(ISO_OUTER_WALL_S1, outer_wall_width, outer_wall_thickness);
+	block_4param(ISO_OUTER_WALL_S1, outer_wall_4_width, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_WALL_S1].filename = "iso_outer_walls_0004.png";
 	obstacle_map[ISO_OUTER_WALL_S1].flags |= IS_HORIZONTAL;
-	block_2param(ISO_OUTER_WALL_S2, outer_wall_width, outer_wall_thickness);
+	block_4param(ISO_OUTER_WALL_S2, outer_wall_4_width, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_WALL_S2].filename = "iso_outer_walls_0008.png";
 	obstacle_map[ISO_OUTER_WALL_S2].flags |= IS_HORIZONTAL;
-	block_2param(ISO_OUTER_WALL_S3, outer_wall_width, outer_wall_thickness);
+	block_4param(ISO_OUTER_WALL_S3, outer_wall_4_width, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_WALL_S3].filename = "iso_outer_walls_0012.png";
 	obstacle_map[ISO_OUTER_WALL_S3].flags |= IS_HORIZONTAL;
-	block_2param(ISO_OUTER_WALL_E1, outer_wall_thickness, outer_wall_width);
+	block_4param(ISO_OUTER_WALL_E1, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside, outer_wall_4_width);
 	obstacle_map[ISO_OUTER_WALL_E1].filename = "iso_outer_walls_0003.png";
 	obstacle_map[ISO_OUTER_WALL_E1].flags |= IS_VERTICAL;
-	block_2param(ISO_OUTER_WALL_E2, outer_wall_thickness, outer_wall_width);
+	block_4param(ISO_OUTER_WALL_E2, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside, outer_wall_4_width);
 	obstacle_map[ISO_OUTER_WALL_E2].filename = "iso_outer_walls_0007.png";
 	obstacle_map[ISO_OUTER_WALL_E2].flags |= IS_VERTICAL;
-	block_2param(ISO_OUTER_WALL_E3, outer_wall_thickness, outer_wall_width);
+	block_4param(ISO_OUTER_WALL_E3, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside, outer_wall_4_width);
 	obstacle_map[ISO_OUTER_WALL_E3].filename = "iso_outer_walls_0011.png";
 	obstacle_map[ISO_OUTER_WALL_E3].flags |= IS_VERTICAL;
-	block_2param(ISO_OUTER_WALL_W1, outer_wall_thickness, outer_wall_width);
+	block_4param(ISO_OUTER_WALL_W1, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside, outer_wall_4_width);
 	obstacle_map[ISO_OUTER_WALL_W1].filename = "iso_outer_walls_0001.png";
 	obstacle_map[ISO_OUTER_WALL_W1].flags |= IS_VERTICAL;
-	block_2param(ISO_OUTER_WALL_W2, outer_wall_thickness, outer_wall_width);
+	block_4param(ISO_OUTER_WALL_W2, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside, outer_wall_4_width);
 	obstacle_map[ISO_OUTER_WALL_W2].filename = "iso_outer_walls_0005.png";
 	obstacle_map[ISO_OUTER_WALL_W2].flags |= IS_VERTICAL;
-	block_2param(ISO_OUTER_WALL_W3, outer_wall_thickness, outer_wall_width);
+	block_4param(ISO_OUTER_WALL_W3, outer_wall_4_thickness, outer_wall_4_width, outer_wall_4_backside, outer_wall_4_width);
 	obstacle_map[ISO_OUTER_WALL_W3].filename = "iso_outer_walls_0009.png";
 	obstacle_map[ISO_OUTER_WALL_W3].flags |= IS_VERTICAL;
 	block_2param(ISO_OUTER_WALL_CORNER_1, 1.1, 1.1);
@@ -1331,75 +1338,63 @@ void init_obstacle_data(void)
 	block_2param(ISO_OUTER_WALL_SMALL_CORNER_4, 1.0, 1.0);
 	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_4].filename = "iso_outer_walls_0020.png";
 
-	block_2param(ISO_OUTER_DOOR_V_00, outer_door_thickness, outer_door_width);
+	block_4param(ISO_OUTER_DOOR_V_00, outer_wall_4_thickness, outer_door_4_width_short, outer_wall_4_backside, outer_door_4_width_long);
 	obstacle_map[ISO_OUTER_DOOR_V_00].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_V_00].flags |= IS_WALKABLE;
 	obstacle_map[ISO_OUTER_DOOR_V_00].filename = "iso_doors_0018.png";
-	obstacle_map[ISO_OUTER_DOOR_V_00].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_V_00].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_V_25].filename = "iso_doors_0019.png";
 	obstacle_map[ISO_OUTER_DOOR_V_25].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_V_25].flags |= IS_WALKABLE;
-	obstacle_map[ISO_OUTER_DOOR_V_25].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_V_25].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_V_50].filename = "iso_doors_0020.png";
 	obstacle_map[ISO_OUTER_DOOR_V_50].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_V_50].flags |= IS_WALKABLE;
-	obstacle_map[ISO_OUTER_DOOR_V_50].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_V_50].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_V_75].filename = "iso_doors_0021.png";
 	obstacle_map[ISO_OUTER_DOOR_V_75].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_V_75].flags |= IS_WALKABLE;
-	obstacle_map[ISO_OUTER_DOOR_V_75].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_V_75].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_V_100].filename = "iso_doors_0022.png";
 	obstacle_map[ISO_OUTER_DOOR_V_100].block_area_type = COLLISION_TYPE_NONE;
-	obstacle_map[ISO_OUTER_DOOR_V_100].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_V_100].animate_fn = animate_door;
 
-	block_2param(ISO_OUTER_DOOR_H_00, outer_door_width, outer_door_thickness);
+	block_4param(ISO_OUTER_DOOR_H_00, outer_door_4_width_short, outer_wall_4_thickness, outer_door_4_width_long, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_DOOR_H_00].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_H_00].flags |= IS_WALKABLE;
 	obstacle_map[ISO_OUTER_DOOR_H_00].filename = "iso_doors_0013.png";
-	obstacle_map[ISO_OUTER_DOOR_H_00].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_H_00].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_H_25].filename = "iso_doors_0014.png";
 	obstacle_map[ISO_OUTER_DOOR_H_25].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_H_25].flags |= IS_WALKABLE;
-	obstacle_map[ISO_OUTER_DOOR_H_25].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_H_25].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_H_50].filename = "iso_doors_0015.png";
 	obstacle_map[ISO_OUTER_DOOR_H_50].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_H_50].flags |= IS_WALKABLE;
-	obstacle_map[ISO_OUTER_DOOR_H_50].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_H_50].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_H_75].filename = "iso_doors_0016.png";
 	obstacle_map[ISO_OUTER_DOOR_H_75].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_OUTER_DOOR_H_75].flags |= IS_WALKABLE;
-	obstacle_map[ISO_OUTER_DOOR_H_75].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_H_75].animate_fn = animate_door;
 	obstacle_map[ISO_OUTER_DOOR_H_100].filename = "iso_doors_0017.png";
 	obstacle_map[ISO_OUTER_DOOR_H_100].block_area_type = COLLISION_TYPE_NONE;
-	obstacle_map[ISO_OUTER_DOOR_H_100].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_OUTER_DOOR_H_100].animate_fn = animate_door;
 
-	block_2param(ISO_OUTER_DOOR_V_LOCKED, outer_door_thickness, outer_door_width);
+	block_4param(ISO_OUTER_DOOR_V_LOCKED, outer_wall_4_thickness, outer_door_4_width_short, outer_wall_4_backside, outer_door_4_width_long);
 	obstacle_map[ISO_OUTER_DOOR_V_LOCKED].filename = "iso_doors_0024.png";
 	obstacle_map[ISO_OUTER_DOOR_V_LOCKED].flags &= ~BLOCKS_VISION_TOO;
 
-	block_2param(ISO_OUTER_DOOR_H_LOCKED, outer_door_width, outer_door_thickness);
+	block_4param(ISO_OUTER_DOOR_H_LOCKED, outer_door_4_width_short, outer_wall_4_thickness, outer_door_4_width_long, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_DOOR_H_LOCKED].filename = "iso_doors_0023.png";
 	obstacle_map[ISO_OUTER_DOOR_H_LOCKED].flags &= ~BLOCKS_VISION_TOO;
 
-	block_2param(ISO_OUTER_DOOR_V_OFFLINE, outer_door_thickness, outer_door_width);
+	block_4param(ISO_OUTER_DOOR_V_OFFLINE, outer_wall_4_thickness, outer_door_4_width_short, outer_wall_4_backside, outer_door_4_width_long);
 	obstacle_map[ISO_OUTER_DOOR_V_OFFLINE].filename = "iso_doors_0022.png";
 	obstacle_map[ISO_OUTER_DOOR_V_OFFLINE].block_area_type = COLLISION_TYPE_NONE;
-	obstacle_map[ISO_OUTER_DOOR_V_OFFLINE].transparent = TRANSPARENCY_FOR_WALLS;
 
-	block_2param(ISO_OUTER_DOOR_H_OFFLINE, outer_door_width, outer_door_thickness);
+	block_4param(ISO_OUTER_DOOR_H_OFFLINE, outer_door_4_width_short, outer_wall_4_thickness, outer_door_4_width_long, outer_wall_4_backside);
 	obstacle_map[ISO_OUTER_DOOR_H_OFFLINE].filename = "iso_doors_0017.png";
 	obstacle_map[ISO_OUTER_DOOR_H_OFFLINE].block_area_type = COLLISION_TYPE_NONE;
-	obstacle_map[ISO_OUTER_DOOR_H_OFFLINE].transparent = TRANSPARENCY_FOR_WALLS;
 
 	block_2param(ISO_YELLOW_CHAIR_N, 0.8, 0.8);
 	obstacle_map[ISO_YELLOW_CHAIR_N].flags &= ~BLOCKS_VISION_TOO;
