@@ -1396,9 +1396,6 @@ void InitHarmlessTuxStatusVariables()
 	Me.points_to_distribute = 0;
 	Me.ExpRequired = 1500;
 	Me.map_maker_is_present = FALSE;
-	for (i = 0; i < 1000; i++) {
-		Me.KillRecord[i] = 0;
-	}
 	for (i = 0; i < MAX_LEVELS; i++) {
 		Me.HaveBeenToLevel[i] = FALSE;
 		Me.time_since_last_visit_or_respawn[i] = (-1);

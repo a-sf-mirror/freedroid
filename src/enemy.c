@@ -811,7 +811,6 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 	}
 
 	if (MakeSureEnemyIsInsideHisLevel(target)) {
-		Me.KillRecord[target->type]++;
 
 		DropEnemyTreasure(target);
 

@@ -634,7 +634,6 @@ typedef struct tux_s {
 	// TO BE COMMUNICATED FROM THE CLIENT TO THE SERVER OR VICE VERSA
 	//
 	moderately_finepoint next_intermediate_point[MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX];	// waypoints for the tux, when target not directly reachable
-	unsigned short int KillRecord[200];	// how many ( of the first 1000 monster types) have been killed yet?
 	unsigned short int TakeoverSuccesses[200]; // how many (of each type) did Tux takeover and make friendly?
 	unsigned short int TakeoverFailures[200];  // how many times for (each type) did Tux fail at a takeover attempt?
 	automap_data_t Automap[MAX_LEVELS];
