@@ -169,7 +169,7 @@ LuaCode={
 	npc_says(_"Wh47? N07 w0rk1b9?")
 	tux_says(_"Erm. I have a confession to make. My name is not Francis.")
 	npc_says(_"N0000000000!!!!!!!")
-	change_npc_faction("crazy")
+	set_npc_faction("crazy")
 	end_dialog()
 	hide(64)
 }
@@ -190,7 +190,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 	hide(66)
-	change_npc_faction("crazy")
+	set_npc_faction("crazy")
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -210,7 +210,7 @@ Nr=78 Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a
 LuaCode={
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 	hide(78)
-	change_npc_faction("crazy")
+	set_npc_faction("crazy")
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -219,7 +219,7 @@ Nr=79 Text=_"There is no way I will sign something without reading it. Forget ab
 LuaCode={
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 	hide(79)
-	change_npc_faction("crazy")
+	set_npc_faction("crazy")
 	end_dialog()
 }
 ----------------------------------------------------------------------

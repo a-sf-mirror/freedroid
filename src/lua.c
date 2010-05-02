@@ -694,7 +694,7 @@ static int lua_difficulty_level(lua_State * L)
 	return 1;
 }
 
-static int lua_change_npc_faction(lua_State *L)
+static int lua_set_npc_faction(lua_State *L)
 {
 	const char *fact = luaL_checkstring(L, 1);
 
@@ -899,7 +899,7 @@ luaL_reg lfuncs[] = {
 
 	{"difficulty_level", lua_difficulty_level},
 
-	{"change_npc_faction", lua_change_npc_faction},
+	{"set_npc_faction", lua_set_npc_faction},
 	{"set_faction_state", lua_set_faction_state},
 	{NULL, NULL}
 	,
