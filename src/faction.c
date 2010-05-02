@@ -47,8 +47,12 @@ static struct {
 		{ FACTION_REDGUARD, "redguard" },
 		{ FACTION_RESISTANCE, "resistance" },
 		{ FACTION_CIVILIAN, "civilian" },
+		{ FACTION_CRAZY, "crazy" },
 };
 
+/**
+  * Returns the numerical ID corresponding to the name of a faction given as parameter.
+  */
 enum faction_id get_faction_id(const char *name) 
 {
 	int i;
@@ -62,17 +66,28 @@ enum faction_id get_faction_id(const char *name)
 	return FACTION_SELF;
 }
 
+/**
+  * Set the hostility parameter between two factions. This function takes care of the symmetry: two factions always have
+  * the same state towards each other, there can be no friendly one way/hostile the other way situation.
+  */
 void set_faction_state(enum faction_id fact1, enum faction_id fact2, enum faction_state state)
 {
 	hostility_matrix[fact1][fact2] = state;
 	hostility_matrix[fact2][fact1] = state;
 }
 
+/**
+  * Query the hostility matrix: are the two factions passed as parameter friendly?
+  * @return 1 if friendly, 0 if hostile
+  */
 int is_friendly(enum faction_id fact1, enum faction_id fact2)
 {
 	return (hostility_matrix[fact1][fact2] == FRIENDLY);
 }
 
+/**
+  * Fill in faction hostility matrix with the game default values.
+  */
 void init_factions()
 {
 	int i;
@@ -93,6 +108,13 @@ void init_factions()
 		set_faction_state(FACTION_CIVILIAN, i, FRIENDLY);
 	}
 	set_faction_state(FACTION_CIVILIAN, FACTION_BOTS, HOSTILE);
+	
+	/* Crazy faction is for people that were pissed off by tux. They are civilians that are hostile to Tux. */
+	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
+		set_faction_state(FACTION_CRAZY, i, FRIENDLY);
+	}
+	set_faction_state(FACTION_CRAZY, FACTION_BOTS, HOSTILE);
+	set_faction_state(FACTION_CRAZY, FACTION_SELF, HOSTILE);
 
 	/* The "red guard" faction is hostile to the resistance and bots, friendly towards the rest. */
 	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
@@ -119,6 +141,9 @@ void init_factions()
 	}
 }
 
+/**
+  * Save the faction hostility matrix.
+  */
 void save_factions(struct auto_string *s)
 {
 	int i;
@@ -130,6 +155,9 @@ void save_factions(struct auto_string *s)
 	autostr_append(s, "</factions>\n");
 }
 
+/**
+  * Load the faction hostility matrix.
+  */
 void load_factions(char *s)
 {
 	char *end;
