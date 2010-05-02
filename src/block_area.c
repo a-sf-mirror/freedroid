@@ -72,8 +72,6 @@ void init_obstacle_data(void)
 	float outer_door_4_width_long = 1.55;
 	float outer_door_4_width_short = 0.55;
 
-	float outer_door_width = 3.0;
-
 	iso_image empty_iso_image = UNLOADED_ISO_IMAGE;
 
 	// First we enter some default values.  The exceptions from the default values
@@ -216,7 +214,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_V_DOOR_100_OPEN].filename = "iso_doors_0010.png";
 	obstacle_map[ISO_V_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_V_DOOR_100_OPEN].animate_fn = animate_door;
-	//would you find it abnormal if I told you the 8 non-locked doors have the same desc ?
 
 	block_2param(ISO_V_DOOR_LOCKED, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_V_DOOR_LOCKED].filename = "iso_doors_0012.png";
@@ -229,7 +226,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_H_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_H_DOOR_LOCKED].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_H_DOOR_LOCKED].flags |= IS_HORIZONTAL;
-	//locked doors have the same description
 
 	block_2param(ISO_H_DOOR_000_OPEN, standard_door_width, standard_wall_thickness);
 	obstacle_map[ISO_H_DOOR_000_OPEN].flags &= ~BLOCKS_VISION_TOO;
@@ -261,25 +257,25 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_H_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_H_DOOR_100_OPEN].animate_fn = animate_door;
 
-	block_2param(ISO_DH_DOOR_000_OPEN, outer_door_width, standard_wall_thickness);
+	block_4param(ISO_DH_DOOR_000_OPEN, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short, standard_wall_thickness / 2);
 	obstacle_map[ISO_DH_DOOR_000_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DH_DOOR_000_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DH_DOOR_000_OPEN].filename = "iso_doubledoors_0001.png";
 	obstacle_map[ISO_DH_DOOR_000_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DH_DOOR_000_OPEN].animate_fn = animate_door;
-	block_2param(ISO_DH_DOOR_025_OPEN, outer_door_width, standard_wall_thickness);
+	block_4param(ISO_DH_DOOR_025_OPEN, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short, standard_wall_thickness / 2);
 	obstacle_map[ISO_DH_DOOR_025_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DH_DOOR_025_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DH_DOOR_025_OPEN].filename = "iso_doubledoors_0002.png";
 	obstacle_map[ISO_DH_DOOR_025_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DH_DOOR_025_OPEN].animate_fn = animate_door;
-	block_2param(ISO_DH_DOOR_050_OPEN, outer_door_width, standard_wall_thickness);
+	block_4param(ISO_DH_DOOR_050_OPEN, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short, standard_wall_thickness / 2);
 	obstacle_map[ISO_DH_DOOR_050_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DH_DOOR_050_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DH_DOOR_050_OPEN].filename = "iso_doubledoors_0003.png";
 	obstacle_map[ISO_DH_DOOR_050_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DH_DOOR_050_OPEN].animate_fn = animate_door;
-	block_2param(ISO_DH_DOOR_075_OPEN, outer_door_width, standard_wall_thickness);
+	block_4param(ISO_DH_DOOR_075_OPEN, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short, standard_wall_thickness / 2);
 	obstacle_map[ISO_DH_DOOR_075_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DH_DOOR_075_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DH_DOOR_075_OPEN].filename = "iso_doubledoors_0004.png";
@@ -290,32 +286,25 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DH_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DH_DOOR_100_OPEN].animate_fn = animate_door;
 
-	obstacle_map[ISO_DH_DOOR_LOCKED].filename = "iso_doubledoors_0011.png";
-	block_4param(ISO_DH_DOOR_LOCKED, 1.51, standard_wall_thickness / 2, 0.6, standard_wall_thickness * 2 );
-	obstacle_map[ISO_DH_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_DH_DOOR_LOCKED].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
-	obstacle_map[ISO_DH_DOOR_LOCKED].flags |= IS_HORIZONTAL;
-	//locked doors have the same description
-
-	block_2param(ISO_DV_DOOR_000_OPEN, standard_wall_thickness, outer_door_width);
+	block_4param(ISO_DV_DOOR_000_OPEN, standard_wall_thickness / 2, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short);
 	obstacle_map[ISO_DV_DOOR_000_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DV_DOOR_000_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DV_DOOR_000_OPEN].filename = "iso_doubledoors_0006.png";
 	obstacle_map[ISO_DV_DOOR_000_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_000_OPEN].animate_fn = animate_door;
-	block_2param(ISO_DV_DOOR_025_OPEN, standard_wall_thickness, outer_door_width);
+	block_4param(ISO_DV_DOOR_025_OPEN, standard_wall_thickness / 2, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short);
 	obstacle_map[ISO_DV_DOOR_025_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DV_DOOR_025_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DV_DOOR_025_OPEN].filename = "iso_doubledoors_0007.png";
 	obstacle_map[ISO_DV_DOOR_025_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_025_OPEN].animate_fn = animate_door;
-	block_2param(ISO_DV_DOOR_050_OPEN, standard_wall_thickness, outer_door_width);
+	block_4param(ISO_DV_DOOR_050_OPEN, standard_wall_thickness / 2, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short);
 	obstacle_map[ISO_DV_DOOR_050_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DV_DOOR_050_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DV_DOOR_050_OPEN].filename = "iso_doubledoors_0008.png";
 	obstacle_map[ISO_DV_DOOR_050_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_050_OPEN].animate_fn = animate_door;
-	block_2param(ISO_DV_DOOR_075_OPEN, standard_wall_thickness, outer_door_width);
+	block_4param(ISO_DV_DOOR_075_OPEN, standard_wall_thickness / 2, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short);
 	obstacle_map[ISO_DV_DOOR_075_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DV_DOOR_075_OPEN].flags |= IS_WALKABLE;
 	obstacle_map[ISO_DV_DOOR_075_OPEN].filename = "iso_doubledoors_0009.png";
@@ -326,12 +315,21 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DV_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_100_OPEN].animate_fn = animate_door;
 
+// standard_wall_thickness * 2 is used instead of "/ 2" to hide paining algo bug (missing z-level) 
+// that otherwise would show tux on the wrong side of the door sometimes
+
+	obstacle_map[ISO_DH_DOOR_LOCKED].filename = "iso_doubledoors_0011.png";
+	block_4param(ISO_DH_DOOR_LOCKED, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short, standard_wall_thickness * 2);
+	obstacle_map[ISO_DH_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_DH_DOOR_LOCKED].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
+	obstacle_map[ISO_DH_DOOR_LOCKED].flags |= IS_HORIZONTAL;
+
 	obstacle_map[ISO_DV_DOOR_LOCKED].filename = "iso_doubledoors_0012.png";
-	block_4param(ISO_DV_DOOR_LOCKED, standard_wall_thickness / 2, 1.51, standard_wall_thickness * 2, 0.6 );
+	block_4param(ISO_DV_DOOR_LOCKED, standard_wall_thickness / 2, outer_door_4_width_long, standard_wall_thickness * 2, outer_door_4_width_short);
 	obstacle_map[ISO_DV_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DV_DOOR_LOCKED].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_LOCKED].flags |= IS_HORIZONTAL;
-	//locked doors have the same description
+
 
 	// These are the normal pillars, that appear here and there in the game.
 	// 4param is used to allow Tux to walk ontop the pillar base in S&E yet
