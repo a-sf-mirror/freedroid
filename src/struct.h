@@ -551,9 +551,6 @@ typedef struct tux_s {
 	float health_recovery_rate;	//points of health recovered each second
 	float cooling_rate;	//temperature points recovered each second
 
-	int16_t LastMouse_X;	// mostly for other players:  Where was the last mouseclick...
-	int16_t LastMouse_Y;	// mostly for other players:  Where was the last mouseclick...
-
 	double busy_time;	// time remaining, until the weapon is ready to fire again...
 	int busy_type;		// reason why tux is busy (enum)
 	double phase;		// the current phase of animation 
