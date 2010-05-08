@@ -306,7 +306,7 @@ Nr=68 Text=_"forkBOMB.sh -execute"
 LuaCode={
 	add_cookie("Terminals_disabled")
 	display_big_message("Terminals Disabled")
-	npc_says(_"Script run. Once after logout terminal will be disabled.", "NO_WAIT")
+	npc_says(_"Script run. After logout this terminal will be disabled.", "NO_WAIT")
 	cli_says(_"root@c-net:~$", "NO_WAIT")
 --	add_xp(30) -- Eventually make this a quest goal.
 }
