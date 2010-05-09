@@ -268,7 +268,10 @@ enemy *enemy_new(int type)
 	return this_enemy;
 }
 
-static void free_enemy(enemy *e)
+/*
+ * Free an enemy data structure
+ */
+static void enemy_free(enemy *e)
 {
 	if (e->dialog_section_name) {
 		free(e->dialog_section_name);
@@ -278,6 +281,8 @@ static void free_enemy(enemy *e)
 		free(e->short_description_text);
 		e->short_description_text = NULL;
 	}
+
+	free(e);
 }
 
 /* -----------------------------------------------------------------
@@ -295,12 +300,12 @@ void ClearEnemys(void)
 
 	BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
 		list_del(&erot->global_list);
-		free_enemy(erot);
+		enemy_free(erot);
 	}
 
 	BROWSE_DEAD_BOTS_SAFE(erot, nerot) {
 		list_del(&erot->global_list);
-		free_enemy(erot);
+		enemy_free(erot);
 	}
 
 	INIT_LIST_HEAD(&alive_bots_head);
