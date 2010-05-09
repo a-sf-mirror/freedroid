@@ -136,6 +136,13 @@ void DisplayItemImageAtMouseCursor(int ItemImageCode)
 	TargetRect.x = GetMousePos_x() - ItemMap[ItemImageCode].inv_image.inv_size.x * 16;
 	TargetRect.y = GetMousePos_y() - ItemMap[ItemImageCode].inv_image.inv_size.y * 16;
 
+	// Do not move an item out of the screen
+	if (TargetRect.x < 0)
+		TargetRect.x = 0;
+	
+	if (TargetRect.y < 0)
+		TargetRect.y = 0;
+
 	our_SDL_blit_surface_wrapper(ItemMap[ItemImageCode].inv_image.Surface, NULL, Screen, &TargetRect);
 
 };				// void DisplayItemImageAtMouseCursor( int ItemImageCode )
