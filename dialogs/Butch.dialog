@@ -174,7 +174,7 @@ LuaCode={
 
 Nr=11 Text=_"What is wrong with you? Why do you keep calling me a newbie?"
 LuaCode={
-	npc_says(_"Beacuse you ARE a newbie, newbie!")
+	npc_says(_"Because you ARE a newbie, newbie!")
 	hide(11)
 }
 ----------------------------------------------------------------------
