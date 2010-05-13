@@ -62,13 +62,13 @@ dnl Commandline options
 AC_ARG_ENABLE(opengl,       [  --disable-opengl        Do not build the OpenGL support (not recommended!) [[default=auto]]], want_gl="$enableval", want_gl=yes)
 AC_ARG_ENABLE(vorbis,       [  --disable-vorbis        Do not include support for OGG/Vorbis audio files (no music) [[default=auto]]], want_vorbis="$enableval", want_vorbis=yes)
 AC_ARG_ENABLE(fastmath,     [  --enable-fastmath       Compile with -ffast-math [[default=yes]]], fast_math="$enableval", fast_math=yes)
-AC_ARG_ENABLE(profiling,    [  --enable-profiling      Compile with profiling code [[default=no]]], use_prof="$enableval", use_prof=no)
 AC_ARG_ENABLE(debug,        [  --enable-debug          Compile with debugging support [[default=no]]], use_debug="$enableval", use_debug=no)
+AC_ARG_ENABLE(native-arch,        [  --enable-native-arch          Compile with -march=native [[default=no]]], arch_native="$enableval",arch_native=no)
 AC_ARG_WITH(extra-warnings, [  --with-extra-warnings   Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
 AC_ARG_ENABLE(backtrace,    [  --disable-backtrace     Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
 
-if test x$use_prof = xyes; then
-	CFLAGS="$CFLAGS -pg"
+if test x$arch_native = xyes; then
+	CFLAGS="$CFLAGS -O3 -march=native"
 fi
 
 if test x$use_debug = xyes; then
