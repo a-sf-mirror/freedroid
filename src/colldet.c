@@ -58,7 +58,7 @@ inline int normalize_vect(float x1, float y1, float *x2, float *y2)
 	if (tmplen2 == 1)
 		return 0;
 
-	if (fabsf(tmplen2) < 0.00005)
+	if (fabsf(tmplen2) < 0.00005f)
 		return 1;	//could not normalize
 	*x2 = x1 + (*x2 - x1) * Q_rsqrt(tmplen2);
 	*y2 = y1 + (*y2 - y1) * Q_rsqrt(tmplen2);
@@ -170,15 +170,16 @@ colldet_filter FlyableExceptIdPassFilter = { ObstacleByIdPassFilterCallback, NUL
  * This function checks if the connection between two points is free of
  * droids.  
  *
- * friendly_check can take three values : check all droids, only friendly droids
- * (with respect to tux), or only enemy droids
- *
  * OBSTACLES ARE NOT TAKEN INTO CONSIDERATION, ONLY DROIDS!!!
  *
  */
 int CheckIfWayIsFreeOfDroids(float x1, float y1, float x2, float y2, int OurLevel, freeway_context * ctx)
 {
 	const float Druid_Radius = 0.5;
+	float minx = min(x1, x2) - 0.5;
+	float miny = min(y1, y2) - 0.5;
+	float maxx = max(x1, x2) + 0.5;
+	float maxy = max(y1, y2) + 0.5;
 
 	float x2n = x2;
 	float y2n = y2;
@@ -195,6 +196,9 @@ int CheckIfWayIsFreeOfDroids(float x1, float y1, float x2, float y2, int OurLeve
 		if ((this_enemy->pure_wait > 0) ||
 		    (ctx->except_bots[0] != NULL && ctx->except_bots[0] == this_enemy) ||
 		    (ctx->except_bots[1] != NULL && ctx->except_bots[1] == this_enemy))
+			continue;
+
+		if (this_enemy->pos.x < minx || this_enemy->pos.y < miny || this_enemy->pos.y > maxy || this_enemy->pos.x > maxx)
 			continue;
 
 		float dist = calc_squared_distance_seg_point_normalized(x1, y1, x2, y2, x2n, y2n, this_enemy->pos.x, this_enemy->pos.y);
