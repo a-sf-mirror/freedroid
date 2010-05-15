@@ -792,15 +792,15 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 
 	if (is_friendly(target->faction, FACTION_SELF)) {
 		if (killertype && killertype != -1)	//killed by someone else, and we know who it is
-			append_new_game_message(_("Your friend %s was killed by %s."),
-						Druidmap[target->type].druidname, Druidmap[killertype].druidname);
+			append_new_game_message(_("Your friend \4%s\5 was killed by a %s."),
+						target->short_description_text, Druidmap[killertype].druidname);
 		else if (!killertype)
-			append_new_game_message(_("You killed %s."), Druidmap[target->type].druidname);
+                        append_new_game_message(_("You killed \4%s\5."), target->short_description_text);
 		else
-			append_new_game_message(_("%s is dead."), Druidmap[target->type].druidname);
+                        append_new_game_message(_("\4%s\5 is dead."), target->short_description_text);
 	} else {
 		if (givexp)
-			append_new_game_message(_("For defeating %s, you receive %d experience."), Druidmap[target->type].druidname,
+			append_new_game_message(_("For defeating \4%s\5, you receive %d experience."), target->short_description_text,
 						reward);
 
 //	The below section is much more of debug info that something that actually should be "spammed" to the user by default.
@@ -808,10 +808,10 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 //	It just confuses newbeginners while giving little or no valuable info to even an experienced player.
 /*
  		else if (killertype && killertype != -1)
-			append_new_game_message(_("%s was killed by %s."), Druidmap[target->type].druidname,
+			append_new_game_message(_("\4%s\5 was killed by %s."), target->short_description_text,
 						Druidmap[killertype].druidname);
 		else
-			append_new_game_message(_("%s died."), Druidmap[target->type].druidname);
+			append_new_game_message(_("\4%s\5 died."), target->short_description_text);
 */
 	}
 
