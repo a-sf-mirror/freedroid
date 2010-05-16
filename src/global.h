@@ -56,8 +56,8 @@ EXTERN float RangedDamageMultiplierTable[];
 EXTERN float RangedRechargeMultiplierTable[];
 EXTERN spell_skill_spec *SpellSkillMap;
 EXTERN tux_t Me;		/* the influence data */
-EXTERN Druidspec Druidmap;
-EXTERN Bulletspec Bulletmap;
+EXTERN druidspec *Druidmap;
+EXTERN bulletspec *Bulletmap;
 EXTERN blastspec Blastmap[ALLBLASTTYPES];
 EXTERN int skip_initial_menus;
 EXTERN int number_of_skills;

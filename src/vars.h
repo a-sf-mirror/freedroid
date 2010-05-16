@@ -234,9 +234,9 @@ int SpellHitPercentageTable[] = { 50, 70, 90, 110, 130, 150, 190, 230, 270 };
 spell_skill_spec *SpellSkillMap;
 int number_of_skills;
 
-Druidspec Druidmap;
+druidspec *Druidmap;
 
-Bulletspec Bulletmap;
+bulletspec *Bulletmap;
 
 blastspec Blastmap[ALLBLASTTYPES];
 

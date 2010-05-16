@@ -937,7 +937,7 @@ void Cheatmenu(void)
 	int i, l;
 	int x0, y0, line;
 	int skip_dead = 0;
-	Waypoint WpList;	// pointer on current waypoint-list  
+	waypoint *WpList;	// pointer on current waypoint-list  
 
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spend in the menu.

@@ -158,34 +158,34 @@ typedef struct configuration_for_freedroid_s {
 typedef struct point_s {
 	int x;
 	int y;
-} point, *Point;
+} point;
 
 typedef struct moderately_finepoint_s {
 	float x;
 	float y;
-} moderately_finepoint, *Moderately_finepoint;
+} moderately_finepoint;
 
 typedef struct finepoint_s {
 	double x;
 	double y;
-} finepoint, *Finepoint;
+} finepoint;
 
 typedef struct gps_s {
 	float x;
 	float y;
 	int z;
-} gps, *GPS;
+} gps;
 
 typedef struct location_s {
 	unsigned char level;
 	int x;
 	int y;
-} location, *Location;
+} location;
 
 typedef struct map_label_s {
 	char *label_name;
 	point pos;		// how many blocks does this big map insert cover?
-} map_label, *Map_Label;
+} map_label;
 
 typedef char *luacode;
 typedef struct mission_s {
@@ -210,7 +210,7 @@ typedef struct mission_s {
 	string mission_diary_texts[MAX_MISSION_DESCRIPTION_TEXTS];
 	float mission_description_time[MAX_MISSION_DESCRIPTION_TEXTS];
 	int expanded_display_for_this_mission;
-} mission, *Mission;
+} mission;
 
 //--------------------
 // This structure can contain conditions that must be fulfilled, so that a special
@@ -228,14 +228,14 @@ typedef struct event_trigger_s {
 	char *name;
 	int enabled;		//is the trigger enabled?
 	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
-} event_trigger, *Event_trigger;
+} event_trigger;
 
 typedef struct item_image_spec_s {
 	point inv_size;
 	SDL_Surface *Surface;
 	iso_image ingame_iso_image;
 	SDL_Surface *scaled_surface_for_shop;
-} item_image_spec, *Item_image_spec;
+} item_image_spec;
 
 typedef struct item_bonus_s {
 	char *bonus_name;
@@ -273,7 +273,7 @@ typedef struct item_bonus_s {
 	short int level;	//"level" of the prefix (is it good or not)
 	float price_factor;
 
-} item_bonus, *Item_bonus;
+} item_bonus;
 
 typedef struct itemspec_s {
 	char *item_name;
@@ -332,7 +332,7 @@ typedef struct itemspec_s {
 	short int min_drop_class;
 	short int max_drop_class;
 
-} itemspec, *Itemspec;
+} itemspec;
 
 typedef struct item_s {
 	// Here are the rather short-lived properties of the item
@@ -412,7 +412,7 @@ typedef struct druidspec_s {
 	char *notes;		// notes on the druid of this type 
 	short int is_human;
 	short individual_shape_nr;
-} druidspec, *Druidspec;
+} druidspec;
 
 typedef struct enemy_s {
 	// There are three sets of attributes, which are initialized and
@@ -648,13 +648,13 @@ typedef struct tux_s {
 	int quest_browser_changed;
 
 	int program_shortcuts[10];
-} tux_t, *Tux_t;
+} tux_t;
 
 typedef struct bulletspec_s {
 	int phases;		// how many phases in motion to show 
 	double phase_changes_per_second;	// how many different phases to display every second
 	iso_image image[BULLET_DIRECTIONS][MAX_PHASES_IN_A_BULLET];
-} bulletspec, *Bulletspec;
+} bulletspec;
 
 typedef struct bullet_s {
 	short int type;
@@ -701,7 +701,7 @@ typedef struct blastspec_s {
 	int phases;
 	float total_animation_time;
 	iso_image image[PHASES_OF_EACH_BLAST];
-} blastspec, *Blastspec;
+} blastspec;
 
 typedef struct blast_s {
 	gps pos;
@@ -724,7 +724,7 @@ typedef struct spell_active_s {
 	char active_directions[RADIAL_SPELL_DIRECTIONS];
 	int mine;
 	char hit_type;
-} spell_active, *Spell_Active;
+} spell_active;
 
 typedef struct spell_skill_spec_s {
 	char *name;
@@ -744,7 +744,7 @@ typedef struct spell_skill_spec_s {
 	float effect_duration;
 	float effect_duration_per_level;
 	int graphics_code;
-} spell_skill_spec, *Spell_Skill_Spec;
+} spell_skill_spec;
 
 typedef struct waypoint_s {
 	int x;
@@ -752,18 +752,18 @@ typedef struct waypoint_s {
 	int num_connections;
 	int suppress_random_spawn;
 	int connections[MAX_WP_CONNECTIONS];
-} waypoint, *Waypoint;
+} waypoint;
 
 typedef struct obstacle_s {
 	int type;
 	gps pos;
 	int name_index;
-} obstacle, *Obstacle;
+} obstacle;
 
 typedef struct map_tile_s {
 	Uint16 floor_value;
 	int obstacles_glued_to_here[MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE];
-} map_tile, *Map_tile;
+} map_tile;
 
 typedef struct level_s {
 	int levelnum;
@@ -836,7 +836,7 @@ typedef struct obstacle_spec_s {
 	// Some obstacles have an associated animation.
 	// This property defines the function to call to animate them
 	int (*animate_fn) (level *obstacle_lvl, int obstacle_idx);
-} obstacle_spec, *Obstacle_spec;
+} obstacle_spec;
 
 struct visible_level {
 	int valid;
@@ -850,7 +850,7 @@ struct visible_level {
 typedef struct ship_s {
 	int num_levels;
 	level *AllLevels[MAX_LEVELS];
-} ship, *Ship;
+} ship;
 
 typedef struct dialogue_option_s {
 	char *option_text;
@@ -862,7 +862,7 @@ typedef struct dialogue_option_s {
 	luacode lua_code;
 
 	char exists;
-} dialogue_option, *Dialogue_option;
+} dialogue_option;
 
 typedef struct supported_languages_s {
 	char *code;

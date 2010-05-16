@@ -90,7 +90,7 @@ void CollectAutomapData(void)
 	static int TimePassed;
 	Level automap_level = curShip.AllLevels[Me.pos.z];
 	int i;
-	Obstacle our_obstacle;
+	obstacle *our_obstacle;
 	int level = Me.pos.z;
 
 	ObjPos.z = Me.pos.z;

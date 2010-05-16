@@ -966,7 +966,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 	Level BoxLevel = curShip.AllLevels[level];
 	int i;
 	int target_idx;
-	Obstacle target_obstacle;
+	obstacle *target_obstacle;
 	int smashed_something = FALSE;
 	moderately_finepoint blast_start_pos;
 
@@ -2072,7 +2072,7 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
  * Return values are TRUE or FALSE accodinly
  *
  */
-int IsVisible(GPS objpos)
+int IsVisible(gps *objpos)
 {
 
 	// For the purpose of visibility checking, we might as well exclude objects

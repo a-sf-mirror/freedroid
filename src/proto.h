@@ -376,7 +376,7 @@ moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y,
 void animate_obstacles(void);
 void MoveLevelDoors(void);
 void WorkLevelGuns(void);
-int IsVisible(GPS objpos);
+int IsVisible(gps *objpos);
 void DeleteWaypoint(level * Lev, int num);
 int CreateWaypoint(level * Lev, int x, int y, int *);
 #define translate_map_point_to_screen_pixel translate_map_point_to_screen_pixel_func
