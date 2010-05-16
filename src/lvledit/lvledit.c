@@ -53,8 +53,6 @@ int OriginWaypoint = (-1);
 
 char VanishingMessage[10000] = "";
 float VanishingMessageEndDate = 0;
-int FirstBlock = 0;
-int *object_list;
 int level_editor_done = FALSE;
 
 /**
