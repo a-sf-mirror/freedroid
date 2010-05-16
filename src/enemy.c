@@ -791,11 +791,13 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 	}
 
 	if (is_friendly(target->faction, FACTION_SELF)) {
-		if (killertype && killertype != -1)	//killed by someone else, and we know who it is
+		if (killertype > 0)	    //killed by someone else, and we know who it is
 			append_new_game_message(_("Your friend \4%s\5 was killed by a %s."),
 						target->short_description_text, Druidmap[killertype].druidname);
-		else if (!killertype)
+		else if (!killertype)       //You killed someone
                         append_new_game_message(_("You killed \4%s\5."), target->short_description_text);
+		else if (killertype == -2)  //bot killed itself
+                        append_new_game_message(_("\4%s\5 halted and caught fire."), target->short_description_text);
 		else
                         append_new_game_message(_("\4%s\5 is dead."), target->short_description_text);
 	} else {
@@ -870,7 +872,7 @@ static void start_gethit_animation(enemy * ThisRobot)
  *  hit is the amount of HPs to remove
  *  givexp (0 or 1) indicates whether to give an XP reward to the player or not
  *  killertype is the type of the bot who is responsible of the attack, or -1 if it is unknown
- *  or if it is the player.
+ *  or if it is the player, -2 for a non-human dialog-killed droid.  
  *  mine is 0 or 1 depending on whether it's the player who is responsible for the attack
  */
 void hit_enemy(enemy * target, float hit, char givexp, short int killertype, char mine)

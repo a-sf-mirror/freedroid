@@ -635,7 +635,7 @@ static int lua_chat_disable_node(lua_State * L)
 
 static int lua_chat_drop_dead(lua_State * L)
 {
-	hit_enemy(chat_control_chat_droid, chat_control_chat_droid->energy + 1, 0, -1, 0);
+	hit_enemy(chat_control_chat_droid, chat_control_chat_droid->energy + 1, 0, Druidmap[chat_control_chat_droid->type].is_human - 2, 0);
 	chat_control_end_dialog = 1;
 	return 0;
 }
