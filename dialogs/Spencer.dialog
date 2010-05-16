@@ -183,7 +183,7 @@ LuaCode={
 	if (done_quest("Opening a can of bots...")) then
 		npc_says(_"But most importantly, I was very impressed with you when you cleared out the warehouse. That was a huge deed I will never forget.")
 	else
-		npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse. It's filled with bots and we just dont have the manpower to spare to clean them out.")
+		npc_says(_"Personally I'm also worrying about how we will manage to get some necessary supplies from our warehouse. It's filled with bots and we just don't have the manpower to spare to clean them out.")
 	end
 
 -- ARE THERE ENOUGH POINTS TO JOIN RG

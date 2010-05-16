@@ -59,7 +59,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"Yes, it would be most kind of you. I dont remember anything."
+Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 LuaCode={
 	npc_says(_"What can I help you with?")
 	hide(1, 7) show(2, 3, 4, 5, 8)
