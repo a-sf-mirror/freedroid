@@ -765,15 +765,10 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->ItemList[i].currently_held_in_hand = FALSE;
 
 	}
+
 	// Now we initialize the chest items arrays with 'empty' information
-	//
-	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		NewLevel->ChestItemList[i].pos.x = (-1);
-		NewLevel->ChestItemList[i].pos.y = (-1);
-		NewLevel->ChestItemList[i].pos.z = (-1);
-		NewLevel->ChestItemList[i].type = (-1);
-		NewLevel->ChestItemList[i].currently_held_in_hand = FALSE;
-	}
+	NewLevel->obstacle_extensions = NULL;
+	NewLevel->obstacle_extensions_size = 0;
 
 	curShip.AllLevels[level_num] = NewLevel;
 
@@ -815,7 +810,7 @@ void delete_map_level(int lnum)
 
 }
 
-void level_editor_edit_chest(obstacle * o)
+void level_editor_edit_chest(obstacle *o)
 {
 	item *chest_items[MAX_CHEST_ITEMS_PER_LEVEL];
 	item *user_items[MAX_CHEST_ITEMS_PER_LEVEL];
@@ -824,6 +819,11 @@ void level_editor_edit_chest(obstacle * o)
 	shop_decision shop_order;
 	item *tmp;
 	int idx;
+	int obstacle_index = (o - &(CURLEVEL()->obstacle_list[0]))/sizeof(obstacle);
+
+	// debug test
+	if (o != &CURLEVEL()->obstacle_list[obstacle_index])
+		printf("prout\n");
 
 	item dummy_addtochest = {.type = 1,.suffix_code = -1,.prefix_code = -1,.is_identified = 1 };
 	FillInItemProperties(&dummy_addtochest, 2, 1);
@@ -867,7 +867,7 @@ void level_editor_edit_chest(obstacle * o)
 				tmp->pos.x = o->pos.x;
 				tmp->pos.y = o->pos.y;
 				tmp->pos.z = o->pos.z;
-
+/*XXX
 				for (idx = 0; idx < MAX_CHEST_ITEMS_PER_LEVEL; idx++) {
 					if (EditLevel()->ChestItemList[idx].type == -1)
 						break;
@@ -877,7 +877,7 @@ void level_editor_edit_chest(obstacle * o)
 					ErrorMessage(__FUNCTION__, "Chests on current level are full.", PLEASE_INFORM, IS_WARNING_ONLY);
 					idx = 0;
 				}
-				MoveItem(tmp, &EditLevel()->ChestItemList[idx]);
+				MoveItem(tmp, &EditLevel()->ChestItemList[idx]);*/
 			}
 			break;
 		default:

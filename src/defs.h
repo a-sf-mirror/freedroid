@@ -114,6 +114,7 @@ enum {
 #define MAX_MAP_LABELS_PER_LEVEL 100
 #define MAX_ITEMS_IN_INVENTORY 100
 #define MAX_ITEMS_IN_NPC_INVENTORY 20
+#define MAX_ITEMS_IN_CHEST 10
 #define INVENTORY_GRID_WIDTH 10
 #define INVENTORY_GRID_HEIGHT 6
 #define INV_SUBSQUARE_WIDTH (31)
@@ -1581,5 +1582,11 @@ enum faction_id {
 enum faction_state {
 	HOSTILE = 0,
 	FRIENDLY,
+};
+
+enum obstacle_extension_type {
+	OBSTACLE_LABEL = 30, // This extension denotes an obstacle label. The associated data is a const char * containing the label.
+	OBSTACLE_CHEST_ITEMS, // This extension indicates an item list. The associated data is a item *, the last item being of type -1
+	OBSTACLE_DIALOGFILE, // This extension indicates the dialog filename associated to an interactive obstacle. Contains the dialog basename.
 };
 #endif

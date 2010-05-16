@@ -798,4 +798,7 @@ int is_friendly(enum faction_id, enum faction_id);
 void init_factions(void);
 void save_factions(struct auto_string *);
 void load_factions(char *);
+
+// obstacle_extension.c
+void *get_obstacle_extension(level *, int, enum obstacle_extension_type);
 #endif
