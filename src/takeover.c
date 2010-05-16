@@ -714,7 +714,7 @@ int droid_takeover(enemy * target)
 
 		reward = Druidmap[target->type].experience_reward * 1;
 		Me.Experience += reward;
-		append_new_game_message(_("For taking control of your enemy, you receive %d experience."), reward);
+		append_new_game_message(_("For taking control of your enemy, \4%s\5, you receive %d experience."), target->short_description_text, reward);
 
 		// Maybe the enemy in question was a kind of 'boss monster' or it had
 		// some special item, that is relevant to a mission or quest.  In that
