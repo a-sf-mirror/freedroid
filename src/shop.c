@@ -134,7 +134,6 @@ int AssemblePointerListForChestShow(item ** ItemPointerListPointer, gps chest_po
 
 	CurrentItemPointer = ItemPointerListPointer;
 
-	/*XXX
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
 		if (curShip.AllLevels[Me.pos.z]->ChestItemList[i].type == (-1))
 			continue;
@@ -151,7 +150,7 @@ int AssemblePointerListForChestShow(item ** ItemPointerListPointer, gps chest_po
 			NumberOfItems++;
 		}
 	}
-*/
+
 	return (NumberOfItems);
 
 };				// void AssemblePointerListForChestShow ( .. )

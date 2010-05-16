@@ -692,7 +692,6 @@ static char *decode_chest_item_section(level *loadlevel, char *data)
 	char *NextItemPointer;
 	// First we initialize the items arrays with 'empty' information
 	//
-	/*XXX
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
 		loadlevel->ChestItemList[i].pos.x = (-1);
 		loadlevel->ChestItemList[i].pos.y = (-1);
@@ -700,7 +699,7 @@ static char *decode_chest_item_section(level *loadlevel, char *data)
 		loadlevel->ChestItemList[i].type = (-1);
 		loadlevel->ChestItemList[i].currently_held_in_hand = FALSE;
 	}
-*/
+
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
 		return data;
 
@@ -716,7 +715,7 @@ static char *decode_chest_item_section(level *loadlevel, char *data)
 	DebugPrintf(1, "\nNumber of chest items found in this level : %d.", NumberOfItemsInThisLevel);
 
 	// Now we decode all the item information
-/*	ItemPointer = ItemsSectionBegin;
+	ItemPointer = ItemsSectionBegin;
 	for (i = 0; i < NumberOfItemsInThisLevel; i++) {
 		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING))) {
 			NextItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING);
@@ -727,7 +726,7 @@ static char *decode_chest_item_section(level *loadlevel, char *data)
 			if (NextItemPointer)
 				NextItemPointer[0] = ITEM_NAME_STRING[0];
 		}
-	}*/
+	}
 
 	// Now we repair the damage done to the loaded level data
 	ItemsSectionEnd[0] = Preserved_Letter;
@@ -1546,25 +1545,14 @@ static void EncodeItemSectionOfThisLevel(struct auto_string *shipstr, level *Lev
 	autostr_append(shipstr, "%s\n", ITEMS_SECTION_END_STRING);
 }
 
-static void encode_obstacle_labels(struct auto_string *shipstr, level *l)
+/**
+ *
+ */
+static void EncodeChestItemSectionOfThisLevel(struct auto_string *shipstr, level *Lev)
 {
 	int i;
 
-	autostr_append(shipstr, "%s\n", OBSTACLE_LABEL_BEGIN_STRING);
-
-/*	for (i = 0; i < l->obstacle_extensions_size; i++) {
-		if (l->obstacle_extensions[i].type == OBSTACLE_LABEL) {
-			autostr_append(shipstr, "%s%d %s%s\"\n", INDEX_OF_OBSTACLE_NAME, i, OBSTACLE_LABEL_ANNOUNCE_STRING, Lev->obstacle_name_list[i]);
-		}
-	}
-*/
-	autostr_append(shipstr, "%s\n", OBSTACLE_LABEL_END_STRING);
-}
-
-
-static void encode_chest_items(struct auto_string *shipstr, level *l)
-{
-	/*XXXautostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_BEGIN_STRING);
+	autostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_BEGIN_STRING);
 
 	// Now we write out the bulk of items infos
 	//
@@ -1576,18 +1564,6 @@ static void encode_chest_items(struct auto_string *shipstr, level *l)
 	}
 
 	autostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_END_STRING);	
-	*/
-}
-
-static void encode_terminal_dialogs(struct auto_string *shipstr, level *l)
-{
-}
-
-static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
-{
-	encode_obstacle_labels(shipstr, l);
-	encode_chest_items(shipstr, l);
-	encode_terminal_dialogs(shipstr, l);
 }
 
 static void encode_waypoints_of_this_level(struct auto_string *shipstr, level *Lev)
@@ -1690,7 +1666,7 @@ use underground lighting: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->x
 
 		EncodeItemSectionOfThisLevel(shipstr, lvl);
 
-		encode_obstacle_extensions(shipstr, lvl);
+		EncodeChestItemSectionOfThisLevel(shipstr, lvl);
 
 		encode_waypoints_of_this_level(shipstr, lvl);
 	}

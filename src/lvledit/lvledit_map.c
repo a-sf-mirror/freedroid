@@ -88,7 +88,6 @@ void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 		}
 	}
 
-	/*XXX
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
 		// Maybe the chest item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
@@ -109,7 +108,7 @@ void move_obstacles_and_items_north_south(float by_what, level * edit_level)
 			DebugPrintf(0, "\nRemoved another chest item in resizing operation.");
 			continue;
 		}
-	}*/
+	}
 
 	glue_obstacles_to_floor_tiles_for_level(edit_level->levelnum);
 
@@ -167,7 +166,6 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 		}
 	}
 
-	/* XXX
 	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
 		// Maybe the chest item entry isn't used at all.  That's the simplest
 		// case...: do nothing.
@@ -189,7 +187,6 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
 			continue;
 		}
 	}
-	*/
 
 	glue_obstacles_to_floor_tiles_for_level(edit_level->levelnum);
 

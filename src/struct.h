@@ -765,12 +765,6 @@ typedef struct map_tile_s {
 	int obstacles_glued_to_here[MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE];
 } map_tile;
 
-struct obstacle_extension {
-	int index;
-	enum obstacle_extension_type type;
-	void *data;
-}; /** This contains "extension data" for obstacles - labels, item lists, ... */
-
 typedef struct level_s {
 	int levelnum;
 	int xlen;
@@ -797,9 +791,7 @@ typedef struct level_s {
 	int num_waypoints;
 	waypoint AllWaypoints[MAXWAYPOINTS];
 	item ItemList[MAX_ITEMS_PER_LEVEL];
-
-	struct obstacle_extension *obstacle_extensions;
-	int obstacle_extensions_size;
+	item ChestItemList[MAX_ITEMS_PER_LEVEL];
 } level, *Level;
 
 typedef struct obstacle_spec_s {
