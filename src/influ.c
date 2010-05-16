@@ -149,7 +149,7 @@ void tux_wants_to_attack_now(int use_mouse_cursor_for_targeting)
 
 				// So no ammunition... We should say so and reload...
 				//
-				append_new_game_message(_("Clip empty, reloading..."));
+				append_new_game_message(_("%s empty, reloading..."),ItemMap[Me.weapon_item.type].item_name);
 				TuxReloadWeapon();
 				return;
 
