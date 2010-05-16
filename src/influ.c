@@ -1467,7 +1467,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 
 void TuxReloadWeapon()
 {
-	int munition_type = -1;
+	char *munition_type = "";
 
 	if (ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size == Me.weapon_item.ammo_clip)
 		return;		//clip full, return without reloading 
@@ -1483,35 +1483,35 @@ void TuxReloadWeapon()
 		return;		//no reloading occurs
 		break;
 	case 1:		//laser
-		munition_type = GetItemIndexByName("Laser power pack");
+		munition_type = "Laser power pack";
 		break;
 	case 2:		//plasma
-		munition_type = GetItemIndexByName("Plasma energy container");
+		munition_type = "Plasma energy container";
 		break;
 	case 3:		//exterminator
-		munition_type = GetItemIndexByName("2 mm Exterminator Ammunition");
+		munition_type = "2 mm Exterminator Ammunition";
 		break;
 	case 4:		//22LR
-		munition_type = GetItemIndexByName(".22 LR Ammunition");
+		munition_type = ".22 LR Ammunition";
 		break;
 	case 5:		//Sshell
-		munition_type = GetItemIndexByName("Shotgun shells");
+		munition_type = "Shotgun shells";
 		break;
 	case 6:		//9mm
-		munition_type = GetItemIndexByName("9x19mm Ammunition");
+		munition_type = "9x19mm Ammunition";
 		break;
 	case 7:		//7.62mm
-		munition_type = GetItemIndexByName("7.62x39mm Ammunition");
+		munition_type = "7.62x39mm Ammunition";
 		break;
 	case 8:		//50BMG
-		munition_type = GetItemIndexByName(".50 BMG (12.7x99mm) Ammunition");
+		munition_type = ".50 BMG (12.7x99mm) Ammunition";
 		break;
 	default:
 		ErrorMessage(__FUNCTION__, "Got an unknown munition type %d for your current weapon %s.", PLEASE_INFORM, IS_FATAL,
 			     ItemMap[Me.weapon_item.type].item_gun_use_ammunition, ItemMap[Me.weapon_item.type].item_name);
 	}
 
-	int count = CountItemtypeInInventory(munition_type);
+	int count = CountItemtypeInInventory(GetItemIndexByName(munition_type));
 	if (count > ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip)
 		count = ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size - Me.weapon_item.ammo_clip;
 
@@ -1519,12 +1519,12 @@ void TuxReloadWeapon()
 	{
 		No_Ammo_Sound();
 		No_Ammo_Sound();
-		append_new_game_message(_("No more ammunition !"));
+		append_new_game_message(_("Out of \4%s\5!"), munition_type);
 		return;
 	}
 	int i;
 	for (i = 0; i < count; i++)
-		DeleteOneInventoryItemsOfType(munition_type);
+		DeleteOneInventoryItemsOfType(GetItemIndexByName(munition_type));
 	Me.weapon_item.ammo_clip += count;
 	Me.busy_time = ItemMap[Me.weapon_item.type].item_gun_reloading_time;
 	Me.busy_time *= RangedRechargeMultiplierTable[Me.ranged_weapon_skill];
