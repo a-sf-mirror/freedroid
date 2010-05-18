@@ -268,6 +268,18 @@ enemy *enemy_new(int type)
 	return this_enemy;
 }
 
+/**
+ * Insert an enemy into the global lists and the level lists, depending on its
+ * state (living or dead)
+ */
+void enemy_insert_into_lists(enemy *this_enemy, int is_living)
+{
+	list_add(&(this_enemy->global_list), is_living ? &alive_bots_head : &dead_bots_head);
+	if (is_living) {
+		list_add(&this_enemy->level_list, &level_bots_head[this_enemy->pos.z]);
+	}
+}
+
 /*
  * Free an enemy data structure
  */
@@ -2581,22 +2593,6 @@ void enemy_set_reference(short int *enemy_number, enemy ** enemy_addr, enemy * a
 		*enemy_addr = addr;
 		*enemy_number = addr->id;
 	}
-}
-
-/***************************************
- * Generate per level alive enemy lists
- *
- * This function assumes level_bots_head lists
- * have been properly initialized and emptied.
- ***************************************/
-void enemy_generate_level_lists()
-{
-	enemy *erot;
-
-	BROWSE_ALIVE_BOTS(erot) {
-		list_add(&erot->level_list, &level_bots_head[erot->pos.z]);
-	}
-
 }
 
 /**

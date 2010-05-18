@@ -635,6 +635,7 @@ void clear_enemies(void);
 void enemy_reset(enemy *this_bot);
 void enemy_reset_fabric();
 enemy *enemy_new(int type);
+void enemy_insert_into_lists(enemy *this_enemy, int is_living);
 void animate_enemy(enemy * our_bot);
 void hit_enemy(enemy * target, float hit, char givexp, short int killertype, char mine);
 enemy *enemy_resolve_address(short int enemy_number, enemy ** enemy_addr);

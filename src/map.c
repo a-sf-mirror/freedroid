@@ -1885,9 +1885,7 @@ the dialog section name for one special force droid/character.", PLEASE_INFORM, 
 		} else
 			newen->on_death_drop_item_code = -1;
 
-		list_add(&(newen->global_list), &alive_bots_head);
-		list_add(&(newen->level_list), &level_bots_head[OurLevelNumber]);
-
+		enemy_insert_into_lists(newen, TRUE);
 	}			// while Special force droid found...
 
 };				// void GetThisLevelsSpecialForces ( char* SearchPointer )
@@ -2054,8 +2052,7 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 			newen->short_description_text = strdup(_("No Description For This One"));
 		};
 
-		list_add(&(newen->global_list), &alive_bots_head);
-		list_add(&(newen->level_list), &level_bots_head[OurLevelNumber]);
+		enemy_insert_into_lists(newen, TRUE);
 	}			// while (enemy-limit of this level not reached) 
 
 	SearchPointer = SectionPointer;

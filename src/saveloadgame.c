@@ -400,7 +400,7 @@ static void load_enemies(char *game_data)
 			} else {
 				enemy *newen = enemy_new(one_enemy.type);
 				memcpy(newen, &one_enemy, sizeof(enemy));
-				list_add(&(newen->global_list), i ? &dead_bots_head : &alive_bots_head);
+				enemy_insert_into_lists(newen, (i==0));
 			}
 			a++;
 		}
@@ -562,7 +562,6 @@ int LoadGame(void)
 	// of droids used in this ship.  Otherwise we might ignore some robots.
 	//
 	CountNumberOfDroidsOnShip();
-	enemy_generate_level_lists();
 
 	SwitchBackgroundMusicTo(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
 
