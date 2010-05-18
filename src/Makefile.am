@@ -11,7 +11,7 @@ bin_PROGRAMS = freedroidRPG
 EXTRA_DIST =
 
 freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c \
-	event.c \
+	event.c dynarray.c \
 	lua.c \
 	blocks.c \
 	block_area.c \

@@ -925,4 +925,9 @@ struct auto_string {
 	unsigned long capacity;
 };
 
+struct dynarray {
+	void *arr;
+	int size;
+};
+
 #endif
