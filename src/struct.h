@@ -487,7 +487,7 @@ typedef struct enemy_s {
 	float last_phase_change;           // when did the robot last change his (8-way-)direction of facing
 	float last_combat_step;            // when did this robot last make a step to move in closer or farther away from Tux in combat?
 	float TextVisibleTime;
-	char *TextToBeDisplayed;
+	char *TextToBeDisplayed;           // WARNING!!! Only use static texts
 	moderately_finepoint PrivatePathway[5];
 	char bot_stuck_in_wall_at_previous_check;
 	float time_since_previous_stuck_in_wall_check;
@@ -593,7 +593,7 @@ typedef struct tux_s {
 	int marker;		// In case you've taken over a marked droid, this will contain the marker
 	float LastCrysoundTime;
 	float TextVisibleTime;
-	char *TextToBeDisplayed;
+	char *TextToBeDisplayed;                    // WARNING!!! Only use static texts
 
 	//--------------------
 	// Here we note all the 'skill levels' of the Tux and also which skill is

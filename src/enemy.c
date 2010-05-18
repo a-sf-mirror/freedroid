@@ -215,7 +215,7 @@ void enemy_reset(enemy *this_enemy)
 	this_enemy->last_phase_change = WAIT_BEFORE_ROTATE + 1.0;
 	this_enemy->last_combat_step = ATTACK_MOVE_RATE + 1.0;
 	this_enemy->TextVisibleTime = 0.0;
-	this_enemy->TextToBeDisplayed = "";
+	this_enemy->TextToBeDisplayed = NULL;
 	for (j = 0; j < 5; j++) {
 		this_enemy->PrivatePathway[j].x = -1;
 		this_enemy->PrivatePathway[j].y = -1;
@@ -1116,9 +1116,9 @@ void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 			    ThisRobot->nextwaypoint, curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5,
 			    curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y + 0.5);
 
-		enemy_say_current_state_on_screen(ThisRobot);	// safety:  init the TextToBeDisplayed 
+		enemy_say_current_state_on_screen(ThisRobot);
 		DebugPrintf(-2, "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s.",
-			    ThisRobot->nextwaypoint, ThisRobot->lastwaypoint, ThisRobot->TextToBeDisplayed);
+			    ThisRobot->nextwaypoint, ThisRobot->lastwaypoint, (ThisRobot->TextToBeDisplayed) ? ThisRobot->TextToBeDisplayed : "NONE");
 
 		if (!EscapeFromObstacle(&(ThisRobot->pos.x), &(ThisRobot->pos.y), ThisRobot->pos.z, &WalkablePassFilter)) {
 			// No free position was found outside the obstacle ???

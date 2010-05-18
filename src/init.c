@@ -1513,10 +1513,8 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Me.paralyze_duration = 0;
 	Me.invisible_duration = 0;
 
-	Me.TextVisibleTime = 0;
 	Me.readied_skill = 0;
 	Me.walk_cycle_phase = 0;
-	Me.TextToBeDisplayed = "";
 
 	// None of the inventory slots like currently equipped weapons
 	// or the like should be held in hand, like when you take it
@@ -1679,7 +1677,7 @@ void InitFreedroid(int argc, char **argv)
 
 	Overall_Average = 0.041;
 	SkipAFewFrames = 0;
-	Me.TextToBeDisplayed = "";
+	Me.TextToBeDisplayed = NULL;
 
 	InventorySize.x = INVENTORY_GRID_WIDTH;
 	InventorySize.y = INVENTORY_GRID_HEIGHT;

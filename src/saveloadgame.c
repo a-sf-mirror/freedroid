@@ -518,17 +518,9 @@ int LoadGame(void)
 	load_bullets(LoadGameData);
 	load_factions(LoadGameData);
 
-	/* properly restore pointers and references */
-	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): now correcting dangerous pointers....", __FUNCTION__);
-	Me.TextToBeDisplayed = "";
+	/* post-loading: Some transient states have to be adapted */
 	enemy *erot;
-	BROWSE_ALIVE_BOTS(erot) {
-		erot->TextToBeDisplayed = "";
-		erot->TextVisibleTime = 0;
-	}
 	BROWSE_DEAD_BOTS(erot) {
-		erot->TextToBeDisplayed = "";
-		erot->TextVisibleTime = 0;
 		/*
 		 * It is sufficient to set ->animation_type, since ->animation_phase will be set to
 		 * last_death_animation_image[erot->type] inside animate_enemy();

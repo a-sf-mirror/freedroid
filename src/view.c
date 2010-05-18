@@ -3417,7 +3417,8 @@ void blit_tux(int x, int y)
 	// Maybe the influencer has something to say :)
 	// so let him say it..
 	//
-	if ((x == (-1)) && (Me.TextVisibleTime < GameConfig.WantedTextVisibleTime) && GameConfig.All_Texts_Switch) {
+	if ((x == (-1)) && Me.TextToBeDisplayed && (Me.TextVisibleTime < GameConfig.WantedTextVisibleTime) &&
+		GameConfig.All_Texts_Switch) {
 		SetCurrentFont(FPS_Display_BFont);
 		DisplayText(Me.TextToBeDisplayed, UserCenter_x + 21, UserCenter_y - 32, &Text_Rect, TEXT_STRETCH);
 	}
@@ -3442,8 +3443,6 @@ void PrintCommentOfThisEnemy(enemy * e)
 	// So now we can add some text the enemys says.  That might be fun.
 	//
 	if (!(e->TextToBeDisplayed))
-		return;
-	if (e->TextToBeDisplayed[0] == '\0')
 		return;
 	if ((e->TextVisibleTime < GameConfig.WantedTextVisibleTime)
 	    && GameConfig.All_Texts_Switch) {
