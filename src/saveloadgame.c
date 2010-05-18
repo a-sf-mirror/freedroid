@@ -371,31 +371,35 @@ int LoadBackupGame()
 	return ret;
 }
 
-static void load_enemies(char *LoadGameData)
+/**
+ * Load all enemies from a savegame
+ */
+static void load_enemies(char *game_data)
 {
-	ClearEnemys();
-
-	enemy *newen;
+	enemy one_enemy;
 	int done;
 	int a = 0, i;
+
+	clear_enemies();
+
 	for (i = 0; i < 2; i++) {
-		char *cpos = LoadGameData;
+		char *cpos = game_data;
 		done = 0;
 		while (!done) {
-			newen = (enemy *) calloc(1, sizeof(enemy));
 			char str[25];
 			sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
 			cpos = strstr(cpos, str);
 			if (!cpos) {
 				done = 1;
-				free(newen);
 				break;
 			}
 			cpos -= 5;
-			if (read_enemy(cpos, str, newen)) {
+			memset(&one_enemy, 0, sizeof(enemy)); // all pointers have to be zeroed before to call read_xxx() functions
+			if (read_enemy(cpos, str, &one_enemy)) {
 				done = 1;
-				free(newen);
 			} else {
+				enemy *newen = enemy_new(one_enemy.type);
+				memcpy(newen, &one_enemy, sizeof(enemy));
 				list_add(&(newen->global_list), i ? &dead_bots_head : &alive_bots_head);
 			}
 			a++;

@@ -631,7 +631,7 @@ void SetRestOfGroupToState(Enemy ThisRobot, short NewState);
 int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot);
 int CheckEnemyEnemyCollision(enemy *);
 void move_enemies(void);
-void ClearEnemys(void);
+void clear_enemies(void);
 void enemy_reset(enemy *this_bot);
 void enemy_reset_fabric();
 enemy *enemy_new(int type);

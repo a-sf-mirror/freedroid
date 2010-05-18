@@ -285,11 +285,11 @@ static void enemy_free(enemy *e)
 	free(e);
 }
 
-/* -----------------------------------------------------------------
+/**
  * This function removes all enemy entries from the list of the
- * enemys.
- * ----------------------------------------------------------------- */
-void ClearEnemys(void)
+ * enemies.
+ */
+void clear_enemies(void)
 {
 	enemy *erot, *nerot;
 
@@ -310,7 +310,9 @@ void ClearEnemys(void)
 
 	INIT_LIST_HEAD(&alive_bots_head);
 	INIT_LIST_HEAD(&dead_bots_head);
-};				// void ClearEnemys ( void ) 
+
+	enemy_reset_fabric();
+}
 
 static void enemy_get_current_walk_target(enemy * ThisRobot, moderately_finepoint * a)
 {

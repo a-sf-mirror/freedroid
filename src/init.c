@@ -100,7 +100,7 @@ static void clear_out_arrays_for_fresh_game(void)
 		DeleteSpell(i);
 	}
 
-	ClearEnemys();
+	clear_enemies();
 	clear_active_spells();
 	ClearAutomapData();
 
