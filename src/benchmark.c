@@ -105,6 +105,34 @@ static void loadgame_bench()
 	timer_stop();
 }
 
+/* Test of dynamic arrays */
+static void dynarray_test()
+{
+	int loop = 10;
+	item dummy;
+	memset(&dummy, 0, sizeof(item));
+	dummy.pos.x = 1.0;
+	dummy.type = 52;
+
+	timer_start();
+	while (loop--) {
+		int i;
+		struct dynarray *dyn = dynarray_alloc(100, sizeof(item));
+		for (i = 0; i < 1000000; i++) {
+			dynarray_add(dyn, &dummy, sizeof(item));
+		}
+		for (i = 0; i < 1000000; i++) {
+			item *it = dyn->arr;
+			if (memcmp(&dummy, it, sizeof(item))) {
+				fprintf(stderr, "Error reading out item %d\n", i);
+			}
+		}
+		dynarray_free(dyn);
+	}
+
+	timer_stop();
+}
+
 void benchmark()
 {
 	struct {
@@ -115,6 +143,7 @@ void benchmark()
 			{ "dialog", dialog_test },
 			{ "loadship", loadship_bench },
 			{ "loadgame", loadgame_bench },
+			{ "dynarray", dynarray_test },
 	};
 
 	int i;

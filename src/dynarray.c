@@ -26,18 +26,33 @@
 #include "proto.h"
 
 /**
- * \brief Allocates a dynamic array and fills it with zeros.
+ * \brief Initializes a dynamic array to a base capacity
  * \param array Dynamic array.
  * \param membernum Number of members to allocate.
  * \param membersize Size of a member.
  */
-void dynarray_alloc(struct dynarray *array, int membernum, size_t membersize)
+void dynarray_init(struct dynarray *array, int membernum, size_t membersize)
 {
-	if (membernum)
-	{
+	if (membernum) {
 		array->arr = calloc(membernum, membersize);
-		array->size = membernum;
+		array->capacity = membernum;
+		array->size = 0;
+	} else {
+		ErrorMessage(__FUNCTION__, "membernum is 0, this is illegal.\n", PLEASE_INFORM, IS_WARNING_ONLY);
 	}
+}
+
+/**
+ * \brief Allocates a dynamic array structure and initializes it to a base capacity.
+ * \param membernum Number of member to allocate memory for.
+ * \param membersize Size of a member.
+ * \return Pointer to the freshly allocated dynamic array.
+ */
+struct dynarray *dynarray_alloc(int membernum, size_t membersize)
+{
+	struct dynarray *d = MyMalloc(sizeof(struct dynarray));
+	dynarray_init(d, membernum, membersize);
+	return d;
 }
 
 /**
@@ -49,7 +64,7 @@ void dynarray_alloc(struct dynarray *array, int membernum, size_t membersize)
 void dynarray_resize(struct dynarray *array, int membernum, size_t membersize)
 {
 	array->arr = realloc(array->arr, membernum * membersize);
-	array->size = membernum;
+	array->capacity = membernum;
 }
 
 /**
@@ -61,4 +76,21 @@ void dynarray_free(struct dynarray *array)
 	free(array->arr);
 	array->arr = NULL;
 	array->size = 0;
+	array->capacity = 0;
+}
+
+/**
+ * \brief Add an element to a dynamic array. This function will extend the array capacity as required.
+ * \param data Data to add.
+ * \param membersize Size of the data to copy into the array.
+ */
+void dynarray_add(struct dynarray *array, void *data, size_t membersize)
+{
+	array->size++;
+
+	if (array->size >= array->capacity) {
+		dynarray_resize(array, array->size * 2, membersize);
+	}
+
+	memcpy(array->arr + membersize * (array->size - 1), data, membersize);
 }

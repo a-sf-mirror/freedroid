@@ -928,6 +928,7 @@ struct auto_string {
 struct dynarray {
 	void *arr;
 	int size;
+	int capacity;
 };
 
 #endif

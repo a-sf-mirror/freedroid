@@ -772,9 +772,11 @@ int autostr_vappend(struct auto_string *str, const char *fmt, va_list args);
 int autostr_append(struct auto_string *, const char *, ...);
 
 // dynarray.c
-void dynarray_alloc(struct dynarray *, int, size_t);
+struct dynarray *dynarray_alloc(int, size_t);
+void dynarray_init(struct dynarray *, int, size_t);
 void dynarray_resize(struct dynarray *, int, size_t);
 void dynarray_free(struct dynarray *);
+void dynarray_add(struct dynarray *, void *, size_t);
 
 // animate.c
 void animation_timeline_reset(void);
