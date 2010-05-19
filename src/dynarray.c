@@ -94,3 +94,27 @@ void dynarray_add(struct dynarray *array, void *data, size_t membersize)
 
 	memcpy(array->arr + membersize * (array->size - 1), data, membersize);
 }
+
+/**
+ * \brief Remove an element from a dynamic array. This operation can be costly in terms of memory traffic.
+ * \param index Index of the element to remove
+ * \param membersize Size of the element to remove
+ */
+void dynarray_del(struct dynarray *array, int index, size_t membersize)
+{
+	// Check if we are removing the last element of the array
+	int remove_last = (index == array->size - 1);
+
+	if (remove_last) {
+		array->size--;
+		return;
+	} else {
+		void *addr = array->arr + membersize * index;
+		void *next = addr + membersize;
+		int nb = membersize * (array->size - index - 1);
+
+		memmove(addr, next, nb);
+
+		array->size--;
+	}
+}

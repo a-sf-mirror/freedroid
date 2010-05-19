@@ -777,6 +777,7 @@ void dynarray_init(struct dynarray *, int, size_t);
 void dynarray_resize(struct dynarray *, int, size_t);
 void dynarray_free(struct dynarray *);
 void dynarray_add(struct dynarray *, void *, size_t);
+void dynarray_del(struct dynarray *, int, size_t);
 
 // animate.c
 void animation_timeline_reset(void);
