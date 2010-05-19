@@ -1256,6 +1256,9 @@ void update_virtual_position(gps * target_pos, gps * source_pos, int level_num)
 	if (source_pos->z < 0 || source_pos->z >= sizeof(gps_transform_matrix)/sizeof(gps_transform_matrix[0]) ||
 		level_num < 0 || level_num >= sizeof(gps_transform_matrix[0])/sizeof(gps_transform_matrix[0][0])) {
 		ErrorMessage(__FUNCTION__, "Virtual position update was required for level %d relative to level %d - one of those are incorrect level numbers.\n", PLEASE_INFORM, IS_WARNING_ONLY, source_pos->z, level_num);
+		target_pos->x = (-1);
+		target_pos->y = (-1);
+		target_pos->z = (-1);
 		return;
 	}
 
