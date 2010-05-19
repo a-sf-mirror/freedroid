@@ -539,7 +539,7 @@ int MoveOutOfObstacle(float *posX, float *posY, int posZ, obstacle * ThisObstacl
 
 	// Check each direction of the sorted list
 	//
-	for (i = 0; i < 5; ++i) {
+	for (i = 0; i < 4; ++i) {
 		switch (dist_arr[i].direction) {
 		case (RIGHT):
 			{

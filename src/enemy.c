@@ -326,22 +326,22 @@ void clear_enemies(void)
 	enemy_reset_fabric();
 }
 
-static void enemy_get_current_walk_target(enemy * ThisRobot, moderately_finepoint * a)
+static void enemy_get_current_walk_target(enemy *ThisRobot, moderately_finepoint *a)
 {
-	int i = 0;
-	while (ThisRobot->PrivatePathway[i].x != (-1)) {
-		if (i == 5)
+	int count;
+
+	// Get the number of path nodes.
+	for (count = 0; count < 5; count++) {
+		if (ThisRobot->PrivatePathway[count].x == -1) 
 			break;
-		i++;
 	}
 
-	if (!i)
-		i = 1;
-
-	a->x = ThisRobot->PrivatePathway[i - 1].x;
-	a->y = ThisRobot->PrivatePathway[i - 1].y;
-
-	if (a->x == -1) {
+	// If the path isn't empty, return the coordinates of the last
+	// path node. Otherwise, return the current position of the bot.
+	if (count) {
+		a->x = ThisRobot->PrivatePathway[count - 1].x;
+		a->y = ThisRobot->PrivatePathway[count - 1].y;
+	} else {
 		a->x = ThisRobot->pos.x;
 		a->y = ThisRobot->pos.y;
 	}
