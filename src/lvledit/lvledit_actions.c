@@ -169,7 +169,6 @@ obstacle *action_create_obstacle(level * EditLevel, double x, double y, int new_
 			EditLevel->obstacle_list[i].pos.x = x;
 			EditLevel->obstacle_list[i].pos.y = y;
 			EditLevel->obstacle_list[i].pos.z = EditLevel->levelnum;
-			EditLevel->obstacle_list[i].name_index = (-1);
 			glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 			DebugPrintf(0, "\nNew obstacle has been added!!!");
 			fflush(stdout);
@@ -207,110 +206,52 @@ obstacle *action_create_obstacle_user(Level EditLevel, double x, double y, int n
 
 /**
  * Change an obstacle label, possibly removing it.
- * @return the number of actions that were pushed on the stack. Removing a non existing label 
- * will not create a undo action.
+ * @return the number of actions that were pushed on the stack.
  */
 static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, char *name, int undoable)
 {
-	int check_double;
-	char *old_name = NULL;
-	int index = -1;
-	int i;
-	int nbact = 0;
+	int obs_idx = get_obstacle_index(EditLevel, obstacle);
 
-	if (name)
-		name = strdup(name);
-
-	// If the obstacle already has a name, we can use that index for the 
-	// new name now.
-	//
-	if (obstacle->name_index >= 0)
-		index = obstacle->name_index;
-	else {
-		// Else we must find a free index in the list of obstacle names for this level
-		//
-		for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
-			if (EditLevel->obstacle_name_list[i] == NULL) {
-				index = i;
-				break;
-			}
-		}
-		if (index < 0)
-			goto ret;
+	// If the obstacle already has a label, remove it
+	char *old_label = get_obstacle_extension(EditLevel, obs_idx, OBSTACLE_EXTENSION_LABEL);
+	if (old_label) {
+		del_obstacle_extension(EditLevel, obs_idx, OBSTACLE_EXTENSION_LABEL);
 	}
 
-	old_name = EditLevel->obstacle_name_list[index];
-	if (!name || strlen(name) == 0) {
-		obstacle->name_index = -1;
-		EditLevel->obstacle_name_list[index] = NULL;
+	// Create the undo action if appropriate
+	if (undoable) {
+		action_push(ACT_SET_OBSTACLE_LABEL, obstacle, old_label);
 	} else {
-		EditLevel->obstacle_name_list[index] = name;
-		obstacle->name_index = index;
+		free(old_label);
 	}
 
-	if (undoable && old_name != name) {
-		action_push(ACT_SET_OBSTACLE_LABEL, obstacle, old_name);
-		nbact ++;
-	} else if (old_name) {
-		free(old_name);
-	}
+	// If the new label is empty, we are done
+	if (!name || !strlen(name))
+		return 0;
 
-	if (obstacle->name_index == -1)
-		goto ret;
+	name = strdup(name);
 
-	// But even if we fill in something new, we should first
-	// check against double entries of the same label.  Let's
-	// do it...
-	//
-	for (check_double = 0; check_double < MAX_OBSTACLE_NAMES_PER_LEVEL; check_double++) {
-		// We must not use null pointers for string comparison...
-		//
-		if (EditLevel->obstacle_name_list[check_double] == NULL)
-			continue;
+	// Assign the new label
+	add_obstacle_extension(EditLevel, obs_idx, OBSTACLE_EXTENSION_LABEL, name);
 
-		// We must not overwrite ourself with us in foolish ways :)
-		//
-		if (check_double == index)
-			continue;
-
-		// But in case of real double-entries, we'll handle them right.
-		//
-		if (!strcmp(EditLevel->obstacle_name_list[index], EditLevel->obstacle_name_list[check_double])) {
-			ErrorMessage(__FUNCTION__, "\
-		    The label %s already exists on this map!  Replacing old entry with the new one!", NO_NEED_TO_INFORM, IS_WARNING_ONLY, EditLevel->obstacle_name_list[index]);
-			EditLevel->obstacle_name_list[index] = NULL;
-			obstacle->name_index = check_double;
-			break;
-		}
-	}
-
-ret: 
-	return nbact;
+	return undoable;
 }
 
 void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle, char *predefined_name)
 {
-	int cur_idx;
-	char *name;
+	char *name = NULL;
 
 	if (!our_obstacle)
 		return;
 
-	cur_idx = our_obstacle->name_index;
-
-	// Maybe we must query the user for the desired new name.
-	// On the other hand, it might be that a name has been
-	// supplied as an argument.  That depends on whether the
-	// argument string is NULL or not.
-	//
 	if (predefined_name == NULL) {
-		name =
-		    GetEditableStringInPopupWindow(1000, _("\nPlease enter name for this obstacle: \n\n"),
-						   cur_idx != -1 ? EditLevel->obstacle_name_list[cur_idx] : "");
+		char *old_label = get_obstacle_extension(EditLevel, get_obstacle_index(EditLevel, our_obstacle), OBSTACLE_EXTENSION_LABEL);
+		name = GetEditableStringInPopupWindow(1000, _("\nPlease enter obstacle label: \n\n"),
+						   old_label ? old_label : "");
 	} else {
 		name = strdup(predefined_name);
 	}
-
+	
 	if (name) {
 		action_change_obstacle_label(EditLevel, our_obstacle, name, 1);
 		free(name);
@@ -697,12 +638,6 @@ void CreateNewMapLevel(int level_num)
 	NewLevel->Levelname = strdup("New level just created");
 	NewLevel->Background_Song_Name = strdup("TheBeginning.ogg");
 
-	// Now we initialize the obstacle name list with 'empty' values
-	//
-	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
-		NewLevel->obstacle_name_list[i] = NULL;
-	}
-	
 	// First we initialize the floor with 'empty' values
 	//
 	for (i = 0; i < NewLevel->ylen; i++) {
@@ -728,13 +663,6 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->obstacle_list[i].pos.x = (-1);
 		NewLevel->obstacle_list[i].pos.y = (-1);
 		NewLevel->obstacle_list[i].pos.z = level_num;
-		NewLevel->obstacle_list[i].name_index = (-1);
-	}
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		NewLevel->obstacle_list[i].type = (-1);
-		NewLevel->obstacle_list[i].pos.x = (-1);
-		NewLevel->obstacle_list[i].pos.y = (-1);
-		NewLevel->obstacle_list[i].name_index = (-1);
 	}
 
 	// Now we initialize the map labels array with 'empty' information
@@ -765,15 +693,9 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->ItemList[i].currently_held_in_hand = FALSE;
 
 	}
-	// Now we initialize the chest items arrays with 'empty' information
-	//
-	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		NewLevel->ChestItemList[i].pos.x = (-1);
-		NewLevel->ChestItemList[i].pos.y = (-1);
-		NewLevel->ChestItemList[i].pos.z = (-1);
-		NewLevel->ChestItemList[i].type = (-1);
-		NewLevel->ChestItemList[i].currently_held_in_hand = FALSE;
-	}
+
+	// Initialize obstacle extensions
+	dynarray_init(&NewLevel->obstacle_extensions, 10, sizeof(struct obstacle_extension));
 
 	curShip.AllLevels[level_num] = NewLevel;
 
@@ -815,21 +737,44 @@ void delete_map_level(int lnum)
 
 }
 
-void level_editor_edit_chest(obstacle * o)
+static int get_chest_contents(level *l, obstacle *o, item *items[MAX_ITEMS_IN_INVENTORY])
 {
-	item *chest_items[MAX_CHEST_ITEMS_PER_LEVEL];
-	item *user_items[MAX_CHEST_ITEMS_PER_LEVEL];
+	struct dynarray *itemlist = get_obstacle_extension(l, get_obstacle_index(l, o), OBSTACLE_EXTENSION_CHEST_ITEMS);
+
+	memset(items, 0, MAX_ITEMS_IN_INVENTORY);
+
+	if (!itemlist) {
+		return 0;
+	}
+
+	int i;
+	int curitem = 0;
+	for (i = 0; i < itemlist->size; i++) {
+		items[curitem++] = &((item *)itemlist->arr)[i];
+		if (curitem == MAX_ITEMS_IN_INVENTORY - 1)
+			break;
+	}
+
+	return curitem;
+}
+
+void level_editor_edit_chest(obstacle *o)
+{
+	item *chest_items[MAX_ITEMS_IN_INVENTORY];
+	item *user_items[2];
 	int chest_nb_items;
 	int done = 0;
 	shop_decision shop_order;
 	item *tmp;
-	int idx;
 
 	item dummy_addtochest = {.type = 1,.suffix_code = -1,.prefix_code = -1,.is_identified = 1 };
 	FillInItemProperties(&dummy_addtochest, 2, 1);
 
 	user_items[0] = &dummy_addtochest;
 	user_items[1] = NULL;
+
+	int obstacle_index = get_obstacle_index(CURLEVEL(), o);
+	struct dynarray *itemlist = get_obstacle_extension(CURLEVEL(), obstacle_index, OBSTACLE_EXTENSION_CHEST_ITEMS);
 
 	// Safety check
 	switch (o->type) {
@@ -850,7 +795,7 @@ void level_editor_edit_chest(obstacle * o)
 	while (!done) {
 
 		// Build the list of items in the chest
-		chest_nb_items = AssemblePointerListForChestShow(&chest_items[0], o->pos);
+		chest_nb_items = get_chest_contents(CURLEVEL(), o, chest_items);
 
 		// Display the shop interface
 		done = GreatShopInterface(chest_nb_items, chest_items, 1, user_items, &shop_order);
@@ -860,24 +805,21 @@ void level_editor_edit_chest(obstacle * o)
 		switch (shop_order.shop_command) {
 		case BUY_1_ITEM:
 			DeleteItem(chest_items[shop_order.item_selected]);
+			dynarray_del(itemlist, shop_order.item_selected, sizeof(item));
 			break;
 		case SELL_1_ITEM:
 			tmp = ItemDropFromLevelEditor();
 			if (tmp) {
-				tmp->pos.x = o->pos.x;
-				tmp->pos.y = o->pos.y;
-				tmp->pos.z = o->pos.z;
 
-				for (idx = 0; idx < MAX_CHEST_ITEMS_PER_LEVEL; idx++) {
-					if (EditLevel()->ChestItemList[idx].type == -1)
-						break;
+				if (!itemlist) {
+					itemlist = dynarray_alloc(10, sizeof(item));
+					add_obstacle_extension(CURLEVEL(), obstacle_index, OBSTACLE_EXTENSION_CHEST_ITEMS, itemlist);
 				}
 
-				if (idx == MAX_CHEST_ITEMS_PER_LEVEL) {
-					ErrorMessage(__FUNCTION__, "Chests on current level are full.", PLEASE_INFORM, IS_WARNING_ONLY);
-					idx = 0;
-				}
-				MoveItem(tmp, &EditLevel()->ChestItemList[idx]);
+				dynarray_add(itemlist, tmp, sizeof(item)); 
+
+				// delete the ground copy
+				DeleteItem(tmp);
 			}
 			break;
 		default:
@@ -886,4 +828,4 @@ void level_editor_edit_chest(obstacle * o)
 	}
 }
 
-#undef _leveleditor_action_c
+#undef _leveledijtor_action_c

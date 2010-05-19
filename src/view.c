@@ -1710,64 +1710,24 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 
 };				// void blit_nonpreput_objects_according_to_blitting_list ( ... )
 
-/**
- *
- *
- */
-void show_obstacle_labels(int mask)
+static void show_obstacle_labels(int mask)
 {
 	int i;
-	Level EditLevel = curShip.AllLevels[Me.pos.z];
+	level *l = CURLEVEL();
 
 	if (!(mask & SHOW_OBSTACLE_NAMES))
 		return;
 
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		if (EditLevel->obstacle_list[i].name_index >= 0) {
-			show_backgrounded_label_at_map_position(EditLevel->obstacle_name_list[EditLevel->obstacle_list[i].name_index],
-								0, EditLevel->obstacle_list[i].pos.x,
-								EditLevel->obstacle_list[i].pos.y, mask & ZOOM_OUT);
+	for (i = 0; i < l->obstacle_extensions.size; i++) {
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(l->obstacle_extensions, i);
+		
+		if (ext->type == OBSTACLE_EXTENSION_LABEL) {
+			show_backgrounded_label_at_map_position(ext->data,
+					0, l->obstacle_list[ext->index].pos.x,
+					l->obstacle_list[ext->index].pos.y, mask & ZOOM_OUT);
 		}
 	}
-
-	// Now that the obstacles labels are all displayed, we can start to 
-	// display the obstacle descriptions.  Since those are larger and would
-	// clutter up the screen pretty much if we drew them all, we'll just
-	// confine ourselves to the currently marked obstacle and blit the
-	// description of that one.
-	//
-	/*XXX
-	   if ( level_editor_marked_obstacle != NULL )
-	   {
-	   if ( level_editor_marked_obstacle -> description_index >= 0 )
-	   {
-	   // We do some extra security checks against non-present descriptions
-	   //
-	   if ( EditLevel -> obstacle_description_list [ level_editor_marked_obstacle -> description_index ] == NULL )
-	   {
-	   ErrorMessage ( __FUNCTION__  , "\
-	   WARNING!  Null string for description found.  Deleting description index in question.",
-	   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-	   level_editor_marked_obstacle -> description_index = (-1) ;
-	   return;
-	   }
-
-	   show_backgrounded_text_rectangle ( EditLevel -> obstacle_description_list [ level_editor_marked_obstacle -> description_index ]  , 
-	   translate_map_point_to_screen_pixel_x ( level_editor_marked_obstacle -> pos . x , level_editor_marked_obstacle -> pos . y ) ,
-	   translate_map_point_to_screen_pixel_y ( level_editor_marked_obstacle -> pos . x , level_editor_marked_obstacle -> pos . y ) ,
-	   320 , 240 ) ;
-
-	   //show_backgrounded_label_at_map_position ( EditLevel -> obstacle_description_list [ level_editor_marked_obstacle -> description_index ]  ,
-	   //                                             0 , level_editor_marked_obstacle -> pos . x , 
-	   //                                             level_editor_marked_obstacle -> pos . y ,
-	   //                                             mask & ZOOM_OUT );
-
-	   }
-	   } */
-
-	// show_backgrounded_label_at_map_position ( "This is a test" , 0 , Me . pos . x + 1 , Me . pos . y + 1 , mask & ZOOM_OUT );
-
-};				// void show_obstacle_labels ( int mask )
+}
 
 /**
  * Each item is lying on the floor.  But that means some of the items,

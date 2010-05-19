@@ -97,8 +97,8 @@ static int lua_event_disable_trigger(lua_State * L)
 
 static int event_change_obstacle_type(const char *obslabel, int type)
 {
-	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel);
-	int obstacle_level_num = give_level_of_obstacle_with_label(obslabel);
+	int obstacle_level_num;
+	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel, &obstacle_level_num);
 	level *obstacle_level = curShip.AllLevels[obstacle_level_num];
 
 	if (type != -1) {
@@ -125,7 +125,7 @@ static int lua_event_get_obstacle_type(lua_State * L)
 {
 	const char *obslabel = luaL_checkstring(L, 1);
 	
-	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel);
+	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel, NULL);
 
 	lua_pushinteger(L, our_obstacle->type);	
 	return 1;

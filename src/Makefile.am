@@ -25,6 +25,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h string.c pathfinder.c \
 	benchmark.c \
 	npc.c \
+	obstacle_extension.c \
 	faction.c \
 	lvledit/lvledit.c lvledit/lvledit.h \
 	lvledit/lvledit_actions.c lvledit/lvledit_actions.h \

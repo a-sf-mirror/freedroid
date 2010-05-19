@@ -78,8 +78,9 @@
 #define ITEM_BONUS_TO_RESELE_STRING " ResEle="
 #define ITEM_BONUS_TO_RESFIR_STRING " ResFir="
 #define ITEM_IS_IDENTIFIED_STRING " IsIdent="
-#define CHEST_ITEMS_SECTION_BEGIN_STRING "pchestinfolvl"
-#define CHEST_ITEMS_SECTION_END_STRING "/pchestinfolvl"
+
+#define OBSTACLE_EXTENSIONS_BEGIN_STRING "obstacleextensions"
+#define OBSTACLE_EXTENSIONS_END_STRING "/obstacleextensions"
 
 #define STATEMENT_BEGIN_STRING "pstmtinfolvl"
 #define STATEMENT_END_STRING "/pstmtinfolvl"
@@ -112,8 +113,6 @@
 #define OBSTACLE_TYPE_STRING "t"
 #define OBSTACLE_X_POSITION_STRING "x"
 #define OBSTACLE_Y_POSITION_STRING "y"
-#define OBSTACLE_LABEL_INDEX_STRING "l"
-#define OBSTACLE_DESCRIPTION_INDEX_STRING "d"
 
 //--------------------
 // How big is the margin the walls have as far as collisions are concerned.

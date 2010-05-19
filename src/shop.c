@@ -109,51 +109,7 @@ int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWo
 
 	return (NumberOfItems);
 
-};				// void AssemblePointerListForItemShow ( .. )
-
-/**
- * Before we enter the chest put/take interface menu, we must assemble
- * the list of pointers to the items currently in this chest.  An item
- * is in the chest at x/y if it's in the chest-item-list of the current
- * players level and if it's coordinates are those of the current players
- * chest.
- */
-int AssemblePointerListForChestShow(item ** ItemPointerListPointer, gps chest_pos)
-{
-	int i;
-	item **CurrentItemPointer;
-	int NumberOfItems = 0;
-
-	// First we clean out the new Show_Pointer_List
-	//
-	CurrentItemPointer = ItemPointerListPointer;
-	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		*CurrentItemPointer = NULL;
-		CurrentItemPointer++;
-	}
-
-	CurrentItemPointer = ItemPointerListPointer;
-
-	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		if (curShip.AllLevels[Me.pos.z]->ChestItemList[i].type == (-1))
-			continue;
-
-		// All the items in chests within a range of 1 square around the Tux 
-		// will be collected together to be shown in the chest inventory.
-		//
-		if (sqrt((chest_pos.x - curShip.AllLevels[Me.pos.z]->ChestItemList[i].pos.x) *
-			 (chest_pos.x - curShip.AllLevels[Me.pos.z]->ChestItemList[i].pos.x) +
-			 (chest_pos.y - curShip.AllLevels[Me.pos.z]->ChestItemList[i].pos.y) *
-			 (chest_pos.y - curShip.AllLevels[Me.pos.z]->ChestItemList[i].pos.y)) < 1) {
-			*CurrentItemPointer = &(curShip.AllLevels[Me.pos.z]->ChestItemList[i]);
-			CurrentItemPointer++;
-			NumberOfItems++;
-		}
-	}
-
-	return (NumberOfItems);
-
-};				// void AssemblePointerListForChestShow ( .. )
+}
 
 /**
  * Maybe the user has clicked right onto the item overview row.  Then of

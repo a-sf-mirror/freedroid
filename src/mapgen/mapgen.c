@@ -78,7 +78,7 @@ static void add_obstacle(double x, double y, int type)
 	target_level->obstacle_list[curobstacle].pos.x = x;
 	target_level->obstacle_list[curobstacle].pos.y = y;
 	target_level->obstacle_list[curobstacle].pos.z = target_level->levelnum;
-	target_level->obstacle_list[curobstacle++].name_index = -1;
+	curobstacle++;
 }
 
 static void set_floor(int x, int y, int type)

@@ -395,7 +395,6 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		loadlevel->obstacle_list[i].pos.x = -1;
 		loadlevel->obstacle_list[i].pos.y = -1;
 		loadlevel->obstacle_list[i].pos.z = loadlevel->levelnum;
-		loadlevel->obstacle_list[i].name_index = -1;
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
@@ -418,40 +417,30 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 			curfieldend++;
 		(*curfieldend) = 0;
 		loadlevel->obstacle_list[i].type = atoi(curfield);
+		(*curfieldend) = ' ';
 
 		//we read the X position
 		curfield = curfieldend + 2;
-		(*curfieldend) = ' ';
 		curfieldend += 2;
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
 		loadlevel->obstacle_list[i].pos.x = atof(curfield);
+		(*curfieldend) = ' ';
 
 		//Y position
 		curfield = curfieldend + 2;
-		(*curfieldend) = ' ';
 		curfieldend += 2;
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
 		loadlevel->obstacle_list[i].pos.y = atof(curfield);
-
-		//label #
-		curfield = curfieldend + 2;
 		(*curfieldend) = ' ';
-		curfieldend += 2;
-		while ((*curfieldend) != ' ')
-			curfieldend++;
-		(*curfieldend) = 0;
-		loadlevel->obstacle_list[i].name_index = atoi(curfield);
 
-		(*curfieldend) = ' ';
 		while ((*curfield) != '\n')
 			curfield++;
 		curfield++;
-		//fprintf( stderr , "\nobtacle_type=%d pos.x=%3.2f pos.y=%3.2f\n" , loadlevel -> obstacle_list [ i ] . type ,  loadlevel -> obstacle_list [ i ] . pos . 
-//x , loadlevel-> obstacle_list [ i ] . pos . y );
+
 		i++;
 	}
 
@@ -518,66 +507,6 @@ static char *decode_map_labels(level *loadlevel, char *DataPointer)
 	return MapLabelSectionEnd;
 }
 
-/**
- * Every map level in a FreedroidRPG 'ship' can have up to 
- * MAX_OBSTACLE_NAMES_PER_LEVEL obstacles, that have a label attached to
- * them.  Such obstacle labels are very useful when modifying obstacles
- * from within game events and triggers.  The obstacle labels are stored
- * in a small subsection of the whole level data.  This function decodes
- * this small subsection and loads all the obstacle data into the ship
- * struct.
- */
-static char *decode_obstacle_names(Level loadlevel, char *DataPointer)
-{
-	int i;
-	char PreservedLetter;
-	char *obstacle_namePointer;
-	char *obstacle_nameSectionBegin;
-	char *obstacle_nameSectionEnd;
-	int NumberOfobstacle_namesInThisLevel;
-	int target_index;
-
-	// At first we set all the obstacle name pointers to NULL in order to
-	// mark them as unused.
-	//
-	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
-		loadlevel->obstacle_name_list[i] = NULL;
-	}
-
-	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return DataPointer;
-
-	// Now we look for the beginning and end of the map labels section
-	//
-	obstacle_nameSectionBegin = LocateStringInData(DataPointer, OBSTACLE_LABEL_BEGIN_STRING);
-	obstacle_nameSectionEnd = LocateStringInData(obstacle_nameSectionBegin, OBSTACLE_LABEL_END_STRING);
-
-	// We add a terminator at the end, but ONLY TEMPORARY.  The damage will be restored later!
-	//
-	PreservedLetter = obstacle_nameSectionEnd[0];
-	obstacle_nameSectionEnd[0] = 0;
-	NumberOfobstacle_namesInThisLevel = CountStringOccurences(obstacle_nameSectionBegin, OBSTACLE_LABEL_ANNOUNCE_STRING);
-	DebugPrintf(1, "\nNumber of obstacle labels found in this level : %d.", NumberOfobstacle_namesInThisLevel);
-
-	// Now we decode all the map label information
-	//
-	obstacle_namePointer = obstacle_nameSectionBegin;
-	for (i = 0; i < NumberOfobstacle_namesInThisLevel; i++) {
-		obstacle_namePointer = strstr(obstacle_namePointer + 1, INDEX_OF_OBSTACLE_NAME);
-		ReadValueFromString(obstacle_namePointer, INDEX_OF_OBSTACLE_NAME, "%d", &(target_index), obstacle_nameSectionEnd);
-
-		loadlevel->obstacle_name_list[target_index] =
-		    ReadAndMallocStringFromData(obstacle_namePointer, OBSTACLE_LABEL_ANNOUNCE_STRING, "\"");
-
-		DebugPrintf(1, "\nobstacle_name_index=%d obstacle_label_name=\"%s\"", target_index,
-			    loadlevel->obstacle_name_list[target_index]);
-	}
-	// Now we repair the damage done to the loaded level data
-	//
-	obstacle_nameSectionEnd[0] = PreservedLetter;
-	return obstacle_nameSectionEnd;
-}
-
 static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetItem)
 {
 
@@ -625,6 +554,110 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetI
 
 }
 
+static char *decode_extension_chest(char *ext, void **data)
+{
+	struct dynarray *chest = dynarray_alloc(10, sizeof(item));
+	char *item_str, *item_end;
+	
+	item_str = ext;
+
+	while (*item_str != '}') {
+		// Find end of this item (beginning of next item)
+		item_end = item_str;
+		while (*item_end != '\n')
+			item_end++;
+		while (isspace(*item_end))
+			item_end++;
+
+		// Read the item on this line
+		item new_item;
+		ReadInOneItem(item_str, item_end, &new_item);
+
+		// Add the item to the dynarray
+		dynarray_add(chest, &new_item, sizeof(item));
+
+		// Move to the next item definition
+		item_str = item_end;
+	}
+
+
+	*data = chest;
+	return item_str;
+}
+
+static char *decode_extension_label(char *ext, void **data)
+{
+	char *end = ext;
+	while (*end != '\n')
+		end++;
+
+	*end = '\0';
+	*data = strdup(ext);
+	*end = '\n';
+
+	while (*end != '}')
+		end++;
+
+	return end;
+}
+
+static char *decode_extension_dialog(char *ext, void **data)
+{
+	// dialog and label extensions are both a string
+	return decode_extension_label(ext, data);
+}
+
+static char *decode_obstacle_extensions(level *loadlevel, char *data)
+{
+	dynarray_init(&loadlevel->obstacle_extensions, 10, sizeof(struct obstacle_extension));
+
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+		return data;
+
+	char *ext_begin = LocateStringInData(data, OBSTACLE_EXTENSIONS_BEGIN_STRING);
+	char *ext_end = LocateStringInData(ext_begin, OBSTACLE_EXTENSIONS_END_STRING);
+	*ext_end = '\0';
+
+	while (1) {
+		// Look for the next extension
+		ext_begin = strstr(ext_begin, "idx=");
+		if (!ext_begin)
+			break;
+
+		// Read extension information
+		int index;
+		int type;
+		void *ext_data;
+		sscanf(ext_begin, "idx=%d type=%d", &index, &type);
+
+		// Move to the extension data definition
+		ext_begin = strstr(ext_begin, "data={\n");
+		while (*ext_begin != '\n')
+			ext_begin++;
+		while (isspace(*ext_begin))
+			ext_begin++;
+
+		// Read the extension data
+		switch (type) {
+			case OBSTACLE_EXTENSION_CHEST_ITEMS:
+				ext_begin = decode_extension_chest(ext_begin, &ext_data);
+				break;
+			case OBSTACLE_EXTENSION_LABEL:
+				ext_begin = decode_extension_label(ext_begin, &ext_data);
+				break;
+			case OBSTACLE_EXTENSION_DIALOGFILE:
+				ext_begin = decode_extension_dialog(ext_begin, &ext_data);
+				break;
+		}
+
+		// Add the obstacle extension on the level
+		add_obstacle_extension(loadlevel, index, type, ext_data);
+	}
+
+	*ext_end = OBSTACLE_EXTENSIONS_END_STRING[0];
+	return ext_end;
+}
+
 static char *decode_item_section(level *loadlevel, char *data)
 {
 	int i;
@@ -668,61 +701,6 @@ static char *decode_item_section(level *loadlevel, char *data)
 				NextItemPointer[0] = 0;
 			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ItemList[i]));
 			loadlevel->ItemList[i].pos.z = loadlevel->levelnum;
-			if (NextItemPointer)
-				NextItemPointer[0] = ITEM_NAME_STRING[0];
-		}
-	}
-
-	// Now we repair the damage done to the loaded level data
-	ItemsSectionEnd[0] = Preserved_Letter;
-	return ItemsSectionEnd;
-}
-
-//----------------------------------------------------------------------
-// From here on we take apart the chest items section of the loaded level...
-//----------------------------------------------------------------------
-static char *decode_chest_item_section(level *loadlevel, char *data)
-{
-	int i;
-	char Preserved_Letter;
-	int NumberOfItemsInThisLevel;
-	char *ItemPointer;
-	char *ItemsSectionBegin;
-	char *ItemsSectionEnd;
-	char *NextItemPointer;
-	// First we initialize the items arrays with 'empty' information
-	//
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		loadlevel->ChestItemList[i].pos.x = (-1);
-		loadlevel->ChestItemList[i].pos.y = (-1);
-		loadlevel->ChestItemList[i].pos.z = (-1);
-		loadlevel->ChestItemList[i].type = (-1);
-		loadlevel->ChestItemList[i].currently_held_in_hand = FALSE;
-	}
-
-	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return data;
-
-	// We look for the beginning and end of the items section
-	ItemsSectionBegin = LocateStringInData(data, CHEST_ITEMS_SECTION_BEGIN_STRING);
-	ItemsSectionEnd = LocateStringInData(ItemsSectionBegin, CHEST_ITEMS_SECTION_END_STRING);
-
-	// We add a terminator at the end of the items section, but ONLY TEMPORARY.  
-	// The damage will be restored later!
-	Preserved_Letter = ItemsSectionEnd[0];
-	ItemsSectionEnd[0] = 0;
-	NumberOfItemsInThisLevel = CountStringOccurences(ItemsSectionBegin, ITEM_NAME_STRING);
-	DebugPrintf(1, "\nNumber of chest items found in this level : %d.", NumberOfItemsInThisLevel);
-
-	// Now we decode all the item information
-	ItemPointer = ItemsSectionBegin;
-	for (i = 0; i < NumberOfItemsInThisLevel; i++) {
-		if ((ItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING))) {
-			NextItemPointer = strstr(ItemPointer + 1, ITEM_NAME_STRING);
-			if (NextItemPointer)
-				NextItemPointer[0] = 0;
-			ReadInOneItem(ItemPointer, ItemsSectionEnd, &(loadlevel->ChestItemList[i]));
-			loadlevel->ChestItemList[i].pos.z = loadlevel->levelnum;
 			if (NextItemPointer)
 				NextItemPointer[0] = ITEM_NAME_STRING[0];
 		}
@@ -1196,9 +1174,8 @@ static level *decode_level(char **buffer)
 	}
 	data = decode_obstacles(loadlevel, data);
 	data = decode_map_labels(loadlevel, data);
-	data = decode_obstacle_names(loadlevel, data);
 	data = decode_item_section(loadlevel, data);
-	data = decode_chest_item_section(loadlevel, data);
+	data = decode_obstacle_extensions(loadlevel, data);
 	data = decode_waypoints(loadlevel, data);
 
 	// Point the buffer to the end of this level, so the next level can be read
@@ -1315,6 +1292,14 @@ int LoadShip(char *filename, int compressed)
 		} 
 	}
 
+	// Check for consistency of levels
+	int check_level = curShip.num_levels;
+	while (check_level--) {
+		if (curShip.AllLevels[check_level] == NULL) {
+			ErrorMessage(__FUNCTION__, "Level number %d should exist but is NULL.", PLEASE_INFORM, IS_FATAL, check_level);
+		}
+	}
+
 	// Now that all the information has been copied, we can free the loaded data
 	// again.
 	//
@@ -1400,9 +1385,9 @@ static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *L
 		if (Lev->obstacle_list[i].type == (-1))
 			continue;
 
-		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f %s%d \n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
+		autostr_append(shipstr, "%s%d %s%3.2f %s%3.2f\n", OBSTACLE_TYPE_STRING, Lev->obstacle_list[i].type,
 				OBSTACLE_X_POSITION_STRING, Lev->obstacle_list[i].pos.x, OBSTACLE_Y_POSITION_STRING,
-				Lev->obstacle_list[i].pos.y, OBSTACLE_LABEL_INDEX_STRING, Lev->obstacle_list[i].name_index);
+				Lev->obstacle_list[i].pos.y);
 	}
 
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_END_STRING);
@@ -1422,30 +1407,6 @@ static void EncodeMapLabelsOfThisLevel(struct auto_string *shipstr, level *Lev)
 	}
 
 	autostr_append(shipstr, "%s\n", MAP_LABEL_END_STRING);
-}
-
-/**
- * Every map level in a FreedroidRPG 'ship' can have up to 
- * MAX_OBSTACLE_NAMES_PER_LEVEL obstacles, that have a label attached to
- * them.  Such obstacle labels are very useful when modifying obstacles
- * from within game events and triggers.  The obstacle labels are stored
- * in a small subsection of the whole level data.  This function encodes
- * this small subsection and puts all the obstacle data into a human
- * readable text string for saving with the map file.
- */
-static void encode_obstacle_names_of_this_level(struct auto_string *shipstr, level *Lev)
-{
-	int i;
-
-	autostr_append(shipstr, "%s\n", OBSTACLE_LABEL_BEGIN_STRING);
-
-	for (i = 0; i < MAX_OBSTACLE_NAMES_PER_LEVEL; i++) {
-		if (Lev->obstacle_name_list[i] == NULL)
-			continue;
-		autostr_append(shipstr, "%s%d %s%s\"\n", INDEX_OF_OBSTACLE_NAME, i, OBSTACLE_LABEL_ANNOUNCE_STRING, Lev->obstacle_name_list[i]);
-	}
-
-	autostr_append(shipstr, "%s\n", OBSTACLE_LABEL_END_STRING);
 }
 
 /**
@@ -1545,25 +1506,62 @@ static void EncodeItemSectionOfThisLevel(struct auto_string *shipstr, level *Lev
 	autostr_append(shipstr, "%s\n", ITEMS_SECTION_END_STRING);
 }
 
-/**
- *
- */
-static void EncodeChestItemSectionOfThisLevel(struct auto_string *shipstr, level *Lev)
+static void encode_extension_chest(struct auto_string *shipstr, struct obstacle_extension *ext)
 {
 	int i;
+	struct dynarray *da = ext->data;
 
-	autostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_BEGIN_STRING);
-
-	// Now we write out the bulk of items infos
-	//
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		if (Lev->ChestItemList[i].type == (-1))
+	for (i = 0; i < da->size; i++) {
+		item *it = &((item *)da->arr)[i];
+		if (it->type == -1)
 			continue;
 
-		WriteOutOneItem(shipstr, &(Lev->ChestItemList[i]));
+		autostr_append(shipstr, "\t");
+		WriteOutOneItem(shipstr, it);
+		autostr_append(shipstr, "\n");
 	}
+}
 
-	autostr_append(shipstr, "%s\n", CHEST_ITEMS_SECTION_END_STRING);	
+static void encode_extension_label(struct auto_string *shipstr, struct obstacle_extension *ext)
+{
+	const char *label = ext->data;
+
+	autostr_append(shipstr, "\t%s\n", label);
+}
+
+static void encode_extension_dialog(struct auto_string *shipstr, struct obstacle_extension *ext)
+{
+	// dialog and label extensions are both a string
+	encode_extension_label(shipstr, ext);
+}
+
+static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
+{
+	int i;
+	autostr_append(shipstr, "%s\n", OBSTACLE_EXTENSIONS_BEGIN_STRING);
+	for (i = 0; i < l->obstacle_extensions.size; i++) {
+		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(l->obstacle_extensions, i);
+
+		if (ext->type == 0)
+			continue;
+
+		autostr_append(shipstr, "idx=%d type=%d data={\n\t", ext->index, ext->type);
+
+		switch ((enum obstacle_extension_type)(ext->type)) {
+			case OBSTACLE_EXTENSION_CHEST_ITEMS:
+				encode_extension_chest(shipstr, ext);
+				break;
+			case OBSTACLE_EXTENSION_LABEL:
+				encode_extension_label(shipstr, ext);
+				break;
+			case OBSTACLE_EXTENSION_DIALOGFILE:
+				encode_extension_dialog(shipstr, ext);
+				break;
+		}
+
+		autostr_append(shipstr, "}\n");
+	}
+	autostr_append(shipstr, "%s\n", OBSTACLE_EXTENSIONS_END_STRING);
 }
 
 static void encode_waypoints_of_this_level(struct auto_string *shipstr, level *Lev)
@@ -1662,11 +1660,9 @@ use underground lighting: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->x
 
 		EncodeMapLabelsOfThisLevel(shipstr, lvl);
 
-		encode_obstacle_names_of_this_level(shipstr, lvl);
-
 		EncodeItemSectionOfThisLevel(shipstr, lvl);
 
-		EncodeChestItemSectionOfThisLevel(shipstr, lvl);
+		encode_obstacle_extensions(shipstr, lvl);
 
 		encode_waypoints_of_this_level(shipstr, lvl);
 	}

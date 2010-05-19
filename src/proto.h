@@ -119,7 +119,6 @@ void ShowCombatScreenTexts(int mask);
 void set_up_ordered_blitting_list(int mask);
 void blit_preput_objects_according_to_blitting_list(int mask);
 void blit_nonpreput_objects_according_to_blitting_list(int mask);
-void show_obstacle_labels(int mask);
 void draw_grid_on_the_floor(int mask);
 void blit_leveleditor_point(int x, int y);
 void update_item_text_slot_positions(void);
@@ -587,7 +586,7 @@ void EscapeMenu(void);
 int GetNumberOfTextLinesNeeded(char *GivenText, SDL_Rect GivenRectangle, float text_stretch);
 
 // misc.c 
-#define CURLEVEL() (curShip . AllLevels [ Me . pos . z ])
+#define CURLEVEL() (curShip.AllLevels[Me.pos.z])
 void print_trace(int signum);
 void implant_backtrace_into_signal_handlers(void);
 void adapt_button_positions_to_screen_resolution(void);
@@ -623,8 +622,7 @@ void ShowDebugInfos(void);
 Sint16 ReadSint16(void *memory);
 void endian_swap(char *pdata, size_t dsize, size_t nelements);
 uint32_t pot_gte(uint32_t v);
-obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label);
-int give_level_of_obstacle_with_label(const char *obstacle_label);
+obstacle *give_pointer_to_obstacle_with_label(const char *, int *);
 
 // enemy.c 
 void SetRestOfGroupToState(Enemy ThisRobot, short NewState);
@@ -698,7 +696,6 @@ void toggle_game_config_screen_visibility(int screen_visible);
 
 // shop.c 
 void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem);
-int AssemblePointerListForChestShow(item **, gps);
 int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWornItems);
 void InitTradeWithCharacter(struct npc *);
 int GreatShopInterface(int, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY], int, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY],
@@ -807,4 +804,10 @@ int is_friendly(enum faction_id, enum faction_id);
 void init_factions(void);
 void save_factions(struct auto_string *);
 void load_factions(char *);
+
+// obstacle_extension.c
+void *get_obstacle_extension(level *, int, enum obstacle_extension_type);
+int get_obstacle_index(level *, obstacle *);
+void add_obstacle_extension(level *, int, enum obstacle_extension_type, void *);
+void del_obstacle_extension(level *, int, enum obstacle_extension_type);
 #endif

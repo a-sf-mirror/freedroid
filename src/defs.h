@@ -110,7 +110,6 @@ enum {
 #define FLOOR_TILES_VISIBLE_AROUND_TUX ((GameConfig . screen_width >= 1024 ? 13 : GameConfig . screen_width >= 800 ? 9 : 7))
 #define MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE 5
 #define MAX_ITEMS_PER_LEVEL 300
-#define MAX_CHEST_ITEMS_PER_LEVEL (MAX_ITEMS_PER_LEVEL)
 #define MAX_MAP_LABELS_PER_LEVEL 100
 #define MAX_ITEMS_IN_INVENTORY 100
 #define MAX_ITEMS_IN_NPC_INVENTORY 20
@@ -1581,5 +1580,13 @@ enum faction_id {
 enum faction_state {
 	HOSTILE = 0,
 	FRIENDLY,
+};
+
+#define ACCESS_OBSTACLE_EXTENSION(X,Y) ((struct obstacle_extension *)(X.arr))[Y]
+
+enum obstacle_extension_type {
+	OBSTACLE_EXTENSION_LABEL = 30, // This extension indicates an obstacle label. The associated data is a const char * containing the label.
+	OBSTACLE_EXTENSION_CHEST_ITEMS, // This extension indicates an item list. The associated data is a struct dynarray containing struct item.
+	OBSTACLE_EXTENSION_DIALOGFILE, // This extension indicates the dialog filename associated to an interactive obstacle. Contains the dialog basename.
 };
 #endif

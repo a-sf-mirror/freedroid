@@ -1220,95 +1220,38 @@ void Terminate(int ExitCode)
 };				// void Terminate ( int ExitCode )
 
 /**
- *
- *
+ * Return a pointer towards the obstacle designated by the given (unique) label.
+ * \param level_number If not NULL, this is set to the levelnumber where the obstacle was found.
  */
-obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label)
+obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label, int *level_number)
 {
-	int i, j, k;
+	int i, j;
 
-	// Now we try to resolve the obstacle given in the labels of all the decks
-	// of the current ship.
-	//
+	// On each level, browse the obstacle extensions until we find the label we are looking for
 	for (i = 0; i < curShip.num_levels; i++) {
-		if (curShip.AllLevels[i] == NULL)
+		level *l = curShip.AllLevels[i];
+
+		if (l == NULL)
 			continue;
 
-		for (j = 0; j < MAX_OBSTACLE_NAMES_PER_LEVEL; j++) {
-			if (curShip.AllLevels[i]->obstacle_name_list[j] != NULL) {
-				if (strcmp(curShip.AllLevels[i]->obstacle_name_list[j], obstacle_label) == 0) {
-					// Now we need to find out which obstacle is pointing to this label
-					//
-					for (k = 0; k < MAX_OBSTACLES_ON_MAP; k++) {
-						if (curShip.AllLevels[i]->obstacle_list[k].name_index == j) {
-							DebugPrintf(0, "\nSUCCESSFULLY RESOLVED OBSTACLE NAME %s.", obstacle_label);
-							return (&(curShip.AllLevels[i]->obstacle_list[k]));
-						}
+		for (j = 0; j < l->obstacle_extensions.size; j++) {
+			struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(l->obstacle_extensions, j);
+
+			if (ext->type == OBSTACLE_EXTENSION_LABEL) {
+				if (!strcmp(ext->data, obstacle_label)) {
+					if (level_number) {
+						*level_number = l->levelnum;
 					}
-					// So here we've encountered an error!  There seems to be no obstacle
-					// pointing to this obstacle label (any more).
-					//
-					fprintf(stderr, "\nlabel=\"%s\"", obstacle_label);
-					ErrorMessage(__FUNCTION__, "\
-The obstacle label was found in the label list,\n but no obstacle seems to point to this label.\nA possible reason for this could be a duplicate entry in the label list.\nDevelopers will have to fix manually...", PLEASE_INFORM, IS_FATAL);
+					return &l->obstacle_list[ext->index];
 				}
 			}
+
 		}
 	}
 
-	// So here we've encountered an error!  There seems to be no obstacle
-	// pointing to this obstacle label (any more).
-	//
-	ErrorMessage(__FUNCTION__, "\
-The obstacle label given was NOT found in any levels obstacle label list.", PLEASE_INFORM, IS_FATAL);
-	return (NULL);
-
-};				// obstacle* give_pointer_to_obstacle_with_label ( char* obstacle_label ) 
-
-/**
- *
- *
- */
-int give_level_of_obstacle_with_label(const char *obstacle_label)
-{
-	int i, j, k;
-
-	// Now we try to resolve the obstacle given in the labels of all the decks
-	// of the current ship.
-	//
-	for (i = 0; i < curShip.num_levels; i++) {
-		if (curShip.AllLevels[i] == NULL)
-			continue;
-
-		for (j = 0; j < MAX_OBSTACLE_NAMES_PER_LEVEL; j++) {
-			if (curShip.AllLevels[i]->obstacle_name_list[j] != NULL) {
-				if (strcmp(curShip.AllLevels[i]->obstacle_name_list[j], obstacle_label) == 0) {
-					// Now we need to find out which obstacle is pointing to this label
-					//
-					for (k = 0; k < MAX_OBSTACLES_ON_MAP; k++) {
-						if (curShip.AllLevels[i]->obstacle_list[k].name_index == j) {
-							DebugPrintf(0, "\nSUCCESSFULLY RESOLVED OBSTACLE NAME %s.", obstacle_label);
-							return (i);
-						}
-					}
-					// So here we've encountered an error!  There seems to be no obstacle
-					// pointing to this obstacle label (any more).
-					//
-					ErrorMessage(__FUNCTION__, "\
-The obstacle label was found in the label list,\n but no obstacle seems to point to this label.", PLEASE_INFORM, IS_FATAL);
-				}
-			}
-		}
-	}
-
-	// So here we've encountered an error!  There seems to be no obstacle
-	// pointing to this obstacle label (any more).
-	//
-	ErrorMessage(__FUNCTION__, "\
-The obstacle label given was NOT found in any levels obstacle label list.", PLEASE_INFORM, IS_FATAL);
-	return (-1);
-
-};				// int give_level_of_obstacle_with_label ( char* obstacle_label ) 
+	ErrorMessage(__FUNCTION__, "Obstacle label \"%s\" was not found on the map.", PLEASE_INFORM, IS_FATAL, obstacle_label);
+	return NULL;
+}
 
 /*----------------------------------------------------------------------
  * try getting round endian-differences with minimal intervention

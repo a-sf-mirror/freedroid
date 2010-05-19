@@ -116,71 +116,53 @@ static void find_dropable_position_near_chest(float *item_x, float *item_y, int 
  */
 static void throw_out_all_chest_content(int obst_index)
 {
-	level *chest_level;
-	int i;
+	int i = 0;
 	int j;
 	float item_x, item_y;
-	int icnt = 0;
+	int drop_count = 0;
+	level *lvl = CURLEVEL();
 
-	chest_level = curShip.AllLevels[Me.pos.z];
+	struct dynarray *item_list = get_obstacle_extension(CURLEVEL(), obst_index, OBSTACLE_EXTENSION_CHEST_ITEMS);
 
-	DebugPrintf(0, "\nthrow_out_all_chest_content: call confimed.");
+	play_open_chest_sound();
 
-	// First some check if the given obstacle is really a closed chest.
-	//
-	switch (chest_level->obstacle_list[obst_index].type) {
-	case ISO_N_CHEST2_CLOSED:
-	case ISO_S_CHEST2_CLOSED:
-	case ISO_E_CHEST2_CLOSED:
-	case ISO_W_CHEST2_CLOSED:
-	case ISO_H_CHEST_CLOSED:
-	case ISO_V_CHEST_CLOSED:
-		// all is ok in this case.  it's really a chest.  fine.
-		break;
-	default:
-		// no chest handed as the chest obstacle!  Clearly a severe error.!
-		ErrorMessage(__FUNCTION__, "Obstacle given to empty is not really a chest!", PLEASE_INFORM, IS_FATAL);
-		break;
+	if (item_list) {
+		int size = item_list->size;
+		for (i = 0; i < size; i++) {
+
+			item *it = &((item *)item_list->arr)[i];
+			
+			if (it->type == -1)
+				continue;
+
+			// Find a free items index on this level.
+			j = find_free_floor_items_index(Me.pos.z);
+			MoveItem(it, &(lvl->ItemList[j]));
+
+			find_dropable_position_near_chest(&item_x, &item_y, obst_index, lvl);
+			lvl->ItemList[j].pos.x = item_x;
+			lvl->ItemList[j].pos.y = item_y;
+			lvl->ItemList[j].pos.z = lvl->levelnum;		
+			lvl->ItemList[j].throw_time = 0.01;
+
+			drop_count++;
+		}
+
+		// Empty the item list
+		for (i = 0; i < size; i++) {
+			dynarray_del(item_list, 0, sizeof(item));
+		}
+		dynarray_free(item_list);
+
+		// Remove the chest items obstacle extension
+		del_obstacle_extension(lvl, obst_index, OBSTACLE_EXTENSION_CHEST_ITEMS);
 	}
-
-	// Now we can throw out all the items from inside the chest and maybe
-	// (later) also play a 'chest opening' sound.
-	//
-	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		if (chest_level->ChestItemList[i].type == (-1))
-			continue;
-
-		// An item is defined to be in a chest if it is at the same position than the chest
-		if (fabsf(chest_level->obstacle_list[obst_index].pos.x - chest_level->ChestItemList[i].pos.x) > 0.1)
-			continue;
-		if (fabsf(chest_level->obstacle_list[obst_index].pos.y - chest_level->ChestItemList[i].pos.y) > 0.1)
-			continue;
-
-		// So this item is one of the right one and will now get thrown out of the chest:
-		// 
-		// First we find a free items index on this level.
-		//
-		DebugPrintf(0, "\nOne item now thrown out of the chest...");
-		j = find_free_floor_items_index(Me.pos.z);
-		MoveItem(&(chest_level->ChestItemList[i]), &(chest_level->ItemList[j]));
-
-		find_dropable_position_near_chest(&item_x, &item_y, obst_index, chest_level);
-		chest_level->ItemList[j].pos.x = item_x;
-		chest_level->ItemList[j].pos.y = item_y;
-		chest_level->ItemList[j].pos.z = chest_level->levelnum;		
-		chest_level->ItemList[j].throw_time = 0.01;
-
-		icnt++;
-	}
-
+	
 	// If the chest was empty, maybe generate a random item to be dropped
-	if (!icnt) {
-		find_dropable_position_near_chest(&item_x, &item_y, obst_index, chest_level);
+	if (!drop_count) {
+		find_dropable_position_near_chest(&item_x, &item_y, obst_index, lvl);
 		DropRandomItem(Me.pos.z, item_x, item_y, 0, FALSE);
 	}
-	// We play the sound, now that the chest is really opened...
-	//
-	play_open_chest_sound();
 }
 
 /**
@@ -479,12 +461,10 @@ void chest_open_action(level *chest_lvl, int chest_index)
 	int direction = 0;
 	switch (chest_lvl->obstacle_list[chest_index].type) {
     	case ISO_V_CHEST_CLOSED:
-    	case ISO_V_CHEST_OPEN:
     	case ISO_E_CHEST2_CLOSED:
     		direction = EAST;
     		break;
     	case ISO_H_CHEST_CLOSED:
-    	case ISO_H_CHEST_OPEN:
     	case ISO_S_CHEST2_CLOSED:
     		direction = SOUTH;
     		break;
@@ -495,7 +475,7 @@ void chest_open_action(level *chest_lvl, int chest_index)
     		direction = NORTH;
     		break;
     	default:
-    		ErrorMessage(__FUNCTION__, "chest to be approached is not a chest obstacle!!", PLEASE_INFORM, IS_FATAL);
+    		ErrorMessage(__FUNCTION__, "chest to be approached is not a closed chest obstacle!!", PLEASE_INFORM, IS_FATAL);
     		break;
 	}
 	if (!reach_obstacle_from_specific_direction(chest_lvl, chest_index, direction)) 

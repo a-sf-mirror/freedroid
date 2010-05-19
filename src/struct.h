@@ -49,6 +49,16 @@ typedef struct list_head {
 	struct list_head *prev;
 } list_head_t;
 
+/**
+ * Dynamic arrays
+ */
+struct dynarray {
+	void *arr;
+	int size;
+	int capacity;
+};
+
+
 /* ----------------------------------------------------------------------
  * Here comes the struct for an iso image.  It also contains some 
  * placeholder for a possible 'zoomed-out' version of the iso image and
@@ -757,13 +767,18 @@ typedef struct waypoint_s {
 typedef struct obstacle_s {
 	int type;
 	gps pos;
-	int name_index;
 } obstacle;
 
 typedef struct map_tile_s {
 	Uint16 floor_value;
 	int obstacles_glued_to_here[MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE];
 } map_tile;
+
+struct obstacle_extension {
+	int index;
+	enum obstacle_extension_type type;
+	void *data;
+}; /** This contains "extension data" for obstacles - labels, item lists, ... */
 
 typedef struct level_s {
 	int levelnum;
@@ -776,7 +791,6 @@ typedef struct level_s {
 	int dungeon_generated;
 	char *Levelname;
 	char *Background_Song_Name;
-	char *obstacle_name_list[MAX_OBSTACLE_NAMES_PER_LEVEL];
 
 	map_tile *map[MAX_MAP_LINES];	// this is a vector of pointers
 	int jump_target_north;
@@ -791,7 +805,8 @@ typedef struct level_s {
 	int num_waypoints;
 	waypoint AllWaypoints[MAXWAYPOINTS];
 	item ItemList[MAX_ITEMS_PER_LEVEL];
-	item ChestItemList[MAX_ITEMS_PER_LEVEL];
+
+	struct dynarray obstacle_extensions;
 } level, *Level;
 
 typedef struct obstacle_spec_s {
@@ -923,12 +938,6 @@ struct auto_string {
 	char *value;
 	unsigned long length;
 	unsigned long capacity;
-};
-
-struct dynarray {
-	void *arr;
-	int size;
-	int capacity;
 };
 
 #endif
