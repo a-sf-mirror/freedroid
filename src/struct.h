@@ -156,6 +156,7 @@ typedef struct configuration_for_freedroid_s {
 	int cheat_running_stamina;
 	int lazyload;
 	int show_item_labels;
+	int last_edited_level;
 
 	int difficulty_level;
 

@@ -1460,7 +1460,10 @@ void PrepareStartOfNewCharacter(char *startpos)
 
 	ResolveMapLabelOnShip(startpos, &StartPosition);
 	reset_visible_levels();
-	Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE);
+	if(game_root_mode == ROOT_IS_LVLEDIT && GameConfig.last_edited_level != -1) 
+		Teleport(GameConfig.last_edited_level, 3, 3, FALSE);
+	else
+		Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE);
 	clear_active_bullets();
 
 	Me.teleport_anchor.x = 0;	//no anchor at the beginning
@@ -1594,6 +1597,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.cheat_running_stamina = FALSE;
 	GameConfig.lazyload = 1;
 	GameConfig.show_item_labels = 0;
+	GameConfig.last_edited_level = -1;
 }
 
 /* -----------------------------------------------------------------
