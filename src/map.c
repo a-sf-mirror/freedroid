@@ -1518,7 +1518,6 @@ static void encode_extension_chest(struct auto_string *shipstr, struct obstacle_
 
 		autostr_append(shipstr, "\t");
 		WriteOutOneItem(shipstr, it);
-		autostr_append(shipstr, "\n");
 	}
 }
 
@@ -1545,7 +1544,7 @@ static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
 		if (ext->type == 0)
 			continue;
 
-		autostr_append(shipstr, "idx=%d type=%d data={\n\t", ext->index, ext->type);
+		autostr_append(shipstr, "idx=%d type=%d data={\n", ext->index, ext->type);
 
 		switch ((enum obstacle_extension_type)(ext->type)) {
 			case OBSTACLE_EXTENSION_CHEST_ITEMS:
