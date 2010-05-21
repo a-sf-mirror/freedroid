@@ -314,25 +314,25 @@ void read_string(const char *, const char *, string *);
 
 /* Array writing/reading */
 void save_moderately_finepoint_array(const char *, moderately_finepoint *, int);
-void read_moderately_finepoint_array(const char *, const char *, moderately_finepoint *, int);
+void read_moderately_finepoint_array(char *, const char *, moderately_finepoint *, int);
 void save_mission_array(const char *, mission *, int);
-void read_mission_array(const char *, const char *, mission *, int);
+void read_mission_array(char *, const char *, mission *, int);
 void save_int32_t_array(const char *, int *, int);
-void read_int32_t_array(const char *, const char *, int *, int);
+void read_int32_t_array(char *, const char *, int *, int);
 void save_item_array(const char *, item *, int);
-void read_item_array(const char *, const char *, item *, int);
+void read_item_array(char *, const char *, item *, int);
 void save_uchar_array(const char *, unsigned char *, int);
-void read_uchar_array(const char *, const char *, unsigned char *, int);
+void read_uchar_array(char *, const char *, unsigned char *, int);
 void save_char_array(const char *, char *, int);
-void read_char_array(const char *, const char *, char *, int);
+void read_char_array(char *, const char *, char *, int);
 void save_uint16_t_array(const char *, uint16_t *, int);
-void read_uint16_t_array(const char *, const char *, uint16_t *, int);
+void read_uint16_t_array(char *, const char *, uint16_t *, int);
 void save_gps_array(const char *, gps *, int);
-void read_gps_array(const char *, const char *, gps *, int);
+void read_gps_array(char *, const char *, gps *, int);
 void save_float_array(const char *, float *, int);
-void read_float_array(const char *, const char *, float *, int);
+void read_float_array(char *, const char *, float *, int);
 void save_string_array(const char *, string *, int);
-void read_string_array(const char *, const char *, string *, int);
+void read_string_array(char *, const char *, string *, int);
 
 /* Hacks */
 void save_keybind_t_array(const char *, keybind_t *, int);

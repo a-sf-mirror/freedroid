@@ -735,6 +735,14 @@ for ( i = 0; i < size; i ++)\
 autostr_append(savestruct_autostr, "</%s>\n", tag);\
 }
 
+/* Save dynamic arrays of simple types.
+ * Requires you to first use define_save_xxx_array for the type.
+ */
+#define define_save_xxx_dynarray(X) void save_##X##_dynarray(const char *tag, X##_dynarray *array)\
+{\
+	save_##X##_array(tag, array->arr, array->size);\
+}
+
 define_save_xxx_array(int32_t);
 define_save_xxx_array(uint32_t);
 define_save_xxx_array(int16_t);
@@ -749,40 +757,72 @@ define_save_xxx_array(item);
 define_save_xxx_array(gps);
 define_save_xxx_array(moderately_finepoint);
 
+/**
+ * \brief Reads the number of elements stored to a generic savestruct array.
+ * \param buffer String from which to read.
+ * \param tag Tag name of the array.
+ * \return The size of the array.
+ */
+int read_array_size(const char *buffer, const char *tag)
+{
+	// Find the beginning element.
+	char search[strlen(tag) + 20];
+	sprintf(search, "<%s array", tag);
+	char *pos = strstr(buffer, search);
+	if (!pos) WrapErrorMessage(__FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);
+
+	// Find the size string.
+	char *runp = pos + 1;
+	runp += strlen(tag) + 1 + strlen("array") + 1;
+	while (!isdigit(*runp)) runp++;
+
+	// Convert it to an integer.
+	return atoi(runp);
+}
+
 /* Read arrays of simple types */
-#define define_read_xxx_array(X) void read_##X##_array(const char * buffer, const char * tag, X * val_ar, int size)\
+#define define_read_xxx_array(X) void read_##X##_array(char *buffer, const char *tag, X *val_ar, int size)\
 {\
-int i;\
-char search[strlen(tag) + 20];\
-sprintf(search, "<%s array", tag);\
-char * pos = strstr(buffer, search);\
-if ( ! pos ) WrapErrorMessage ( __FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);\
-sprintf(search, "</%s>", tag);\
-char * epos = strstr(pos, search);\
-if ( ! epos ) WrapErrorMessage ( __FUNCTION__, "Unable to find array end %s\n", PLEASE_INFORM, IS_FATAL, tag);\
-epos += strlen(search);\
-char savechar = *(epos + 1);\
-*(epos+1) = '\0';\
-int nb = 0;\
-char *runp = pos + 1;\
-runp += strlen(tag) + 1 + strlen("array") + 1;\
-while ( ! isdigit(*runp) ) runp++;\
-char * erunp = runp;\
-while ( *erunp != '>' ) erunp ++;\
-*erunp = '\0';\
-nb = atoi(runp);\
-*erunp = '>';\
-if ( nb != size )  WrapErrorMessage ( __FUNCTION__, "Size mismatch for array %s, %d in file, %d in game\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, tag, nb, size);\
-for ( i = 0; i < (nb <= size ? nb : size); i ++)\
-	{\
-	char str[10];\
-	sprintf(str, "%d", i);\
-	pos = strstr(pos, str);\
-	if (!pos) break;\
-	pos -= 5;\
-	read_##X(pos, str, &val_ar[i]);\
+	int i;\
+	/* Find the beginning element. */\
+	char search[strlen(tag) + 20];\
+	sprintf(search, "<%s array", tag);\
+	char * pos = strstr(buffer, search);\
+	if (!pos) WrapErrorMessage(__FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);\
+	sprintf(search, "</%s>", tag);\
+	/* Find the end element. */\
+	char * epos = strstr(pos, search);\
+	if ( ! epos ) WrapErrorMessage(__FUNCTION__, "Unable to find array end %s\n", PLEASE_INFORM, IS_FATAL, tag);\
+	epos += strlen(search);\
+	/* Check for valid size. */\
+	int nb = read_array_size(pos, tag);\
+	if ( nb != size ) WrapErrorMessage(__FUNCTION__, "Size mismatch for array %s, %d in file, %d in game\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, tag, nb, size);\
+	/* Overwrite the last character of the end element with NUL. */\
+	char savechar = *(epos + 1);\
+	*(epos+1) = '\0';\
+	/* Read array elements. */\
+	for (i = 0; i < (nb <= size ? nb : size); i++) {\
+		char str[10];\
+		sprintf(str, "%d", i);\
+		pos = strstr(pos, str);\
+		if (!pos) break;\
+		pos -= 5;\
+		read_##X(pos, str, &val_ar[i]);\
 	}\
-*(epos+1) = savechar;\
+	/* Restore the last character of the end element. */\
+	*(epos+1) = savechar;\
+}
+
+/* Read dynamic arrays of simple types
+ * Requires you to first use define_read_xxx_array for the type.
+ */
+#define define_read_xxx_dynarray(X) void read_##X##_dynarray(char *buffer, const char *tag, X##_dynarray *array)\
+{\
+	/* Read the size and allocate space. */\
+	int size = read_array_size(buffer, tag);\
+	dynarray_init((struct dynarray *) array, size, sizeof(X));\
+	/* Read the array elements. */\
+	read_##X##_array(buffer, tag, array->arr, array->size);\
 }
 
 define_read_xxx_array(int32_t);
