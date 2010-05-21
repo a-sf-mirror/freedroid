@@ -446,7 +446,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_V_CHEST_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_V_CHEST_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
 	obstacle_map[ISO_V_CHEST_CLOSED].action = &chest_open_action;
-	obstacle_map[ISO_V_CHEST_CLOSED].label = "   Chest   ";
+	obstacle_map[ISO_V_CHEST_CLOSED].label = "Chest";
 
 	block_2param(ISO_H_CHEST_OPEN, 0.8, standard_wall_thickness);
 	obstacle_map[ISO_H_CHEST_OPEN].filename = "iso_container_0003.png";
@@ -458,35 +458,35 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_H_CHEST_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_H_CHEST_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
 	obstacle_map[ISO_H_CHEST_CLOSED].action = &chest_open_action;
-	obstacle_map[ISO_H_CHEST_CLOSED].label = "   Chest   ";
+	obstacle_map[ISO_H_CHEST_CLOSED].label = "Chest";
 
 	block_2param(ISO_E_CHEST2_CLOSED, 0.6, 0.8);
 	obstacle_map[ISO_E_CHEST2_CLOSED].filename = "iso_container_0006.png";
 	obstacle_map[ISO_E_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_E_CHEST2_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
 	obstacle_map[ISO_E_CHEST2_CLOSED].action = &chest_open_action;
-	obstacle_map[ISO_E_CHEST2_CLOSED].label = "   Chest   ";
+	obstacle_map[ISO_E_CHEST2_CLOSED].label = "Chest";
 	
 	block_2param(ISO_W_CHEST2_CLOSED, 0.6, 0.8);
 	obstacle_map[ISO_W_CHEST2_CLOSED].filename = "iso_container_0010.png";
 	obstacle_map[ISO_W_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_W_CHEST2_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
 	obstacle_map[ISO_W_CHEST2_CLOSED].action = &chest_open_action;
-	obstacle_map[ISO_W_CHEST2_CLOSED].label = "   Chest   ";
+	obstacle_map[ISO_W_CHEST2_CLOSED].label = "Chest";
 	
 	block_2param(ISO_S_CHEST2_CLOSED, 0.8, 0.6);
 	obstacle_map[ISO_S_CHEST2_CLOSED].filename = "iso_container_0005.png";
 	obstacle_map[ISO_S_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_S_CHEST2_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
 	obstacle_map[ISO_S_CHEST2_CLOSED].action = &chest_open_action;
-	obstacle_map[ISO_S_CHEST2_CLOSED].label = "   Chest   ";
+	obstacle_map[ISO_S_CHEST2_CLOSED].label = "Chest";
 	
 	block_2param(ISO_N_CHEST2_CLOSED, 0.8, 0.6);
 	obstacle_map[ISO_N_CHEST2_CLOSED].filename = "iso_container_0009.png";
 	obstacle_map[ISO_N_CHEST2_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_N_CHEST2_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
 	obstacle_map[ISO_N_CHEST2_CLOSED].action = &chest_open_action;
-	obstacle_map[ISO_N_CHEST2_CLOSED].label = "   Chest   ";
+	obstacle_map[ISO_N_CHEST2_CLOSED].label = "Chest";
 	
 	block_2param(ISO_E_CHEST2_OPEN, 0.6, 0.8);
 	obstacle_map[ISO_E_CHEST2_OPEN].filename = "iso_container_0008.png";
@@ -576,23 +576,23 @@ void init_obstacle_data(void)
 	block_2param(ISO_BARREL_1, 0.7, 0.7);
 	obstacle_map[ISO_BARREL_1].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_1].action = &barrel_action;
-	obstacle_map[ISO_BARREL_1].label = "   Barrel   ";
+	obstacle_map[ISO_BARREL_1].label = "Barrel";
 	obstacle_map[ISO_BARREL_2].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_2, 0.7, 0.7);
 	obstacle_map[ISO_BARREL_2].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_2].action = &barrel_action;
-	obstacle_map[ISO_BARREL_2].label = "   Barrel   ";
+	obstacle_map[ISO_BARREL_2].label = "Barrel";
 	//wood crates
 	obstacle_map[ISO_BARREL_3].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_3, 0.80, 0.95);
 	obstacle_map[ISO_BARREL_3].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_3].action = &barrel_action;
-	obstacle_map[ISO_BARREL_3].label = "   Crate   ";
+	obstacle_map[ISO_BARREL_3].label = "Crate";
 	obstacle_map[ISO_BARREL_4].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_4, 0.8, 0.75);
 	obstacle_map[ISO_BARREL_4].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_4].action = &barrel_action;
-	obstacle_map[ISO_BARREL_4].label = "   Crate   ";
+	obstacle_map[ISO_BARREL_4].label = "Crate";
 
 	block_2param(ISO_LAMP_N, 0.5, 0.5);
 	obstacle_map[ISO_LAMP_N].flags &= ~BLOCKS_VISION_TOO;
