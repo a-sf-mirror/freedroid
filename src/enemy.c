@@ -808,7 +808,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 		if (killertype > 0)	    //killed by someone else, and we know who it is
 			append_new_game_message(_("Your friend \4%s\5 was killed by a %s."),
 						target->short_description_text, Druidmap[killertype].druidname);
-		else if (!killertype)       //You killed someone
+		else if (killertype==0)       //You killed someone
                         append_new_game_message(_("You killed \4%s\5."), target->short_description_text);
 		else if (killertype == -2)  //bot killed itself
                         append_new_game_message(_("\4%s\5 halted and caught fire."), target->short_description_text);
