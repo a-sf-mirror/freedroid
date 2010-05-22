@@ -1578,41 +1578,61 @@ void DropItemToTheFloor(Item DropItemPointer, float x, float y, int levelnum)
 	DeleteItem(DropItemPointer);
 };				// void DropItemToTheFloor ( void )
 
-/** 
- * This function should drop a held item to the floor. 
+/**
+ * Drop held item to the floor.
+ *
+ * Before calling this function, make sure Item_Held_In_Hand != NULL
  */
-int DropHeldItemToTheFloor(void)
+static void drop_held_item(void)
 {
-	float x, y;
+	float x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
+	float y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
 
-	// Check validity of held item
-	
-	if (Item_Held_In_Hand == NULL) {
-		DebugPrintf(0, "\nDropHeldItemToTheFloor() : No item seems to be currently held in hand...");
-		return 1;		
+	gps pos = { x, y, Me.pos.z };
+	gps rpos;
+
+	/* The vector from Tux to the map position where the player clicked */
+	float ax = x - Me.pos.x;
+	float ay = y - Me.pos.y;
+	/* The length of mentioned vector */
+	float length = sqrt(ax * ax + ay * ay);
+	/* The vector with the same direction but length ITEM_TAKE_DIST */
+	float ux = ITEM_TAKE_DIST * (ax / length);
+	float uy = ITEM_TAKE_DIST * (ay / length);
+
+	/* Don't let the player drop the item farther than ITEM_TAKE_DIST */
+	if (length > ITEM_TAKE_DIST) {
+		pos.x = Me.pos.x + ux;
+		pos.y = Me.pos.y + uy;
 	}
 	
-	// Get the actual mouse cursor position on the map
-	
-	x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
-	y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
-	gps drop_pos = { x, y, Me.pos.z };
-	gps drop_rpos;
-	int can_resolve = resolve_virtual_position(&drop_rpos, &drop_pos);
-
-	// If this position is valid, drop the item there
-	
-	if (can_resolve && DirectLineColldet(Me.pos.x, Me.pos.y, x, y, Me.pos.z, NULL)) {
-		DropItemToTheFloor(Item_Held_In_Hand, drop_rpos.x, drop_rpos.y, drop_rpos.z);
-		Item_Held_In_Hand = NULL;
-	} else {
-		fprintf(stderr, "Item drop failed because position is invalid.\n");
-		return 1;
+	/* If we have an invalid drop position, attempt positions closer to Tux
+	 * until we have a good position. */
+	colldet_filter margin = WalkableWithMarginPassFilter;
+	margin.extra_margin = 0.2;
+	int collision;
+	while ((collision = !(resolve_virtual_position(&rpos, &pos) &&
+						  DirectLineColldet(Me.pos.x, Me.pos.y, pos.x, pos.y, Me.pos.z, &margin)))
+		   && sqrt(ux * ux + uy * uy) > 0.1) // length > 0.1
+	{
+		ux *= 0.9;
+		uy *= 0.9;
+		pos.x = Me.pos.x + ux;
+		pos.y = Me.pos.y + uy;
 	}
 
+	// Fall back to Tux's feet if the position is still invalid
+	if (collision) {
+		rpos.x = Me.pos.x;
+		rpos.y = Me.pos.y;
+		rpos.z = Me.pos.z;
+	}
+
+	// Finally, drop the item
+	DropItemToTheFloor(Item_Held_In_Hand, rpos.x, rpos.y, rpos.z);
+	Item_Held_In_Hand = NULL;
 	timeout_from_item_drop = 0.4;
-	return 0;
-};				// void DropHeldItemToTheFloor ( void )
+}
 
 /**
  * This function checks if the usage requirements for a given item are
@@ -2076,10 +2096,9 @@ void HandleInventoryScreen(void)
 		}
 
 		// Case 2.2: The user left-clicks in the "UserRect" -> the item should 
-		//           be dropped onto the players current location
-		//
+		//           be dropped to the floor
 		if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
-			DropHeldItemToTheFloor();
+			drop_held_item();
 			return;
 		}
 

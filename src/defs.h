@@ -1537,7 +1537,8 @@ enum {
 	ALL_ISOMETRIC_FLOOR_TILES
 };
 
-#define ITEM_TAKE_DIST (1.2)
+// Maximum distance for both taking and dropping items
+#define ITEM_TAKE_DIST (0.7)
 // Maximum and minimum distance for a melee fight
 #define SQUARED_MELEE_MAX_DIST (2.25)
 #define MELEE_MIN_DIST (1.0)
