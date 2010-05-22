@@ -39,23 +39,8 @@
 
 #include "SDL_rotozoom.h"	// that's for rotating the speed-o-meter arrows
 
-//--------------------
-// Here we define the dimensions of the banner rectangle.  Note,
-// that some items have a lot of modifiers and magic boni, therefore
-// they need a lot of lines, so 120 really seems reasonable.  If you
-// want less, take care that the uppermost line is not omitted, a 
-// bug that only occurs when very little space is given for those
-// rectangles...
-//
-#define UPPER_BANNER_TEXT_RECT_X (GameConfig . screen_width/4)
-#define UPPER_BANNER_TEXT_RECT_Y 1
-#define UPPER_BANNER_TEXT_RECT_W (GameConfig . screen_width/3)
-#define UPPER_BANNER_TEXT_RECT_H 130
-#define LOWER_BANNER_TEXT_RECT_X UPPER_BANNER_TEXT_RECT_X
-#define LOWER_BANNER_TEXT_RECT_Y ( GameConfig . screen_height - UPPER_BANNER_TEXT_RECT_Y - UPPER_BANNER_TEXT_RECT_H )
-#define LOWER_BANNER_TEXT_RECT_W UPPER_BANNER_TEXT_RECT_W
-#define LOWER_BANNER_TEXT_RECT_H UPPER_BANNER_TEXT_RECT_H
-#define BANNER_TEXT_REC_BACKGROUNDCOLOR 0x00
+#define TEXT_BANNER_DEFAULT_FONT FPS_Display_BFont
+#define TEXT_BANNER_HORIZONTAL_MARGIN 4
 
 int best_banner_pos_x, best_banner_pos_y;
 static struct auto_string *message_log;
@@ -764,11 +749,9 @@ void prepare_text_window_content(char *ItemDescText)
 	point CurPos;
 	point inv_square;
 	int InvIndex;
-    int index_of_obst_below_mouse_cursor = (-1);
+	int index_of_obst_below_mouse_cursor = (-1);
 	int index_of_floor_item_below_mouse_cursor = (-1);
 	finepoint MapPositionOfMouse;
-
-#define REQUIREMENTS_NOT_MET_TEXT _("REQUIREMENTS NOT MET")
 
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
@@ -776,16 +759,21 @@ void prepare_text_window_content(char *ItemDescText)
 	best_banner_pos_x = CurPos.x;
 	best_banner_pos_y = CurPos.y;
 
-	// In case some item is held in hand by the player, the situation is simple:
-	// we merely need to draw this items description into the description field and
-	// that's it OR WE MUST SAY THAT THE requirements for this item are not met
-	//
+	/* If the player has an item in hand, draw the item name into the
+	 * description field.  If the requirements for this item are not met, we
+	 * show a text. */
 	if (GetHeldItemPointer() != NULL) {
-		if (ItemUsageRequirementsMet(GetHeldItemPointer(), FALSE))
-			strcpy(ItemDescText, D_(ItemMap[GetHeldItemCode()].item_name));
-		else {
-			strcpy(ItemDescText, REQUIREMENTS_NOT_MET_TEXT);
+		best_banner_pos_x = CurPos.x + 20;
+
+		strncpy(ItemDescText, font_switchto_neon, 1);
+		strcat(ItemDescText, D_(ItemMap[GetHeldItemCode()].item_name));
+
+		if (!ItemUsageRequirementsMet(GetHeldItemPointer(), FALSE)) {
+			strcat(ItemDescText, "\n");
+			strncat(ItemDescText, font_switchto_red, 1);
+			strcat(ItemDescText, _("REQUIREMENTS NOT MET"));
 		}
+		return;
 	}
 	// in the other case however, that no item is currently held in hand, we need to
 	// work a little more:  we need to find out if the cursor is currently over some
@@ -795,14 +783,10 @@ void prepare_text_window_content(char *ItemDescText)
 	else if (GameConfig.Inventory_Visible) {
 		// Perhaps the cursor is over some item of the inventory?
 		// let's check this case first.
-		//
 		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
 			inv_square.x = GetInventorySquare_x(CurPos.x);
 			inv_square.y = GetInventorySquare_y(CurPos.y);
-			// DebugPrintf( 0 , "\nInv target x: %d." , inv_square.x );
-			// DebugPrintf( 0 , "\nInv target y: %d." , inv_square.y );
 			InvIndex = GetInventoryItemAt(inv_square.x, inv_square.y);
-			// DebugPrintf( 0 , "\nInv Index targeted: %d." , InvIndex );
 			if (InvIndex != (-1)) {
 				give_item_description(ItemDescText, &(Me.Inventory[InvIndex]), FALSE);
 				best_banner_pos_x =
@@ -847,46 +831,66 @@ void prepare_text_window_content(char *ItemDescText)
 				best_banner_pos_y = HELMET_RECT_Y - 30;
 			}
 		}
-
 	}			// if nothing is 'held in hand' && inventory-screen visible
 
-	if ((CurPos.x > WHOLE_HEALTH_RECT_X * GameConfig.screen_width / 640) &&
-	    (CurPos.x * 640 / GameConfig.screen_width < WHOLE_HEALTH_RECT_X + WHOLE_HEALTH_RECT_W) &&
-	    (CurPos.y > WHOLE_HEALTH_RECT_Y * GameConfig.screen_height / 480) &&
-	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_HEALTH_RECT_Y + WHOLE_HEALTH_RECT_H)) {
-		best_banner_pos_x = (WHOLE_HEALTH_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_HEALTH_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
-		sprintf(ItemDescText, _("Health\n%s%d/%d"), Me.energy / Me.maxenergy <= 0.1 ? font_switchto_red : "", (int)rintf(Me.energy),
-			(int)rintf(Me.maxenergy));
-	}
+	/* Make the cursor position comparable to the coordinates of UI elements. */
+	int x = CurPos.x * 640.0 / GameConfig.screen_width;
+	int y = CurPos.y * 480.0 / GameConfig.screen_height;
 
-	if ((CurPos.x > WHOLE_FORCE_RECT_X * GameConfig.screen_width / 640) &&
-	    (CurPos.x * 640 / GameConfig.screen_width < WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W) &&
-	    (CurPos.y > WHOLE_FORCE_RECT_Y * GameConfig.screen_height / 480) &&
-	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_FORCE_RECT_Y + WHOLE_FORCE_RECT_H)) {
-		best_banner_pos_x = (WHOLE_FORCE_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_FORCE_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
-		sprintf(ItemDescText, _("Temperature \n%s%d/%d"), Me.temperature / Me.max_temperature >= 0.9 ? font_switchto_red : "",
-			(int)rintf(Me.temperature), (int)rintf(Me.max_temperature));
-	}
-
-	if ((CurPos.x > WHOLE_RUNNING_POWER_RECT_X * GameConfig.screen_width / 640) &&
-	    (CurPos.x * 640 / GameConfig.screen_width < WHOLE_RUNNING_POWER_RECT_X + WHOLE_RUNNING_POWER_RECT_W) &&
-	    (CurPos.y > WHOLE_RUNNING_POWER_RECT_Y * GameConfig.screen_height / 480) &&
-	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_RUNNING_POWER_RECT_Y + WHOLE_RUNNING_POWER_RECT_H)) {
-		best_banner_pos_x = (WHOLE_RUNNING_POWER_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_RUNNING_POWER_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
-		sprintf(ItemDescText, _("Run\n%s%d/%d"), Me.running_power / Me.max_running_power <= 0.1 ? font_switchto_red : "",
+	if (   x > WHOLE_RUNNING_POWER_RECT_X
+	    && x < WHOLE_RUNNING_POWER_RECT_X + WHOLE_RUNNING_POWER_RECT_W
+	    && y > WHOLE_RUNNING_POWER_RECT_Y
+	    && y < WHOLE_RUNNING_POWER_RECT_Y + WHOLE_RUNNING_POWER_RECT_H)
+	{
+		sprintf(ItemDescText, _("Run\n%s%d/%d"),
+			Me.running_power / Me.max_running_power <= 0.1 ? font_switchto_red : "",
 			(int)rintf(Me.running_power), (int)rintf(Me.max_running_power));
+		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X);
+		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_RUNNING_POWER_RECT_Y)
+			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
+		return;
 	}
 
-	if ((CurPos.x > WHOLE_EXPERIENCE_COUNTDOWN_RECT_X * GameConfig.screen_width / 640) &&
-	    (CurPos.x * 640 / GameConfig.screen_width < WHOLE_EXPERIENCE_COUNTDOWN_RECT_X + WHOLE_EXPERIENCE_COUNTDOWN_RECT_W) &&
-	    (CurPos.y > WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y * GameConfig.screen_height / 480) &&
-	    (CurPos.y * 480 / GameConfig.screen_height < WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y + WHOLE_EXPERIENCE_COUNTDOWN_RECT_H)) {
-		best_banner_pos_x = (WHOLE_EXPERIENCE_COUNTDOWN_RECT_X) * GameConfig.screen_width / 640;
-		best_banner_pos_y = (WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y) * GameConfig.screen_height / 480 - 5 * FontHeight(FPS_Display_BFont);
+	if (   x > WHOLE_EXPERIENCE_COUNTDOWN_RECT_X
+	    && x < WHOLE_EXPERIENCE_COUNTDOWN_RECT_X + WHOLE_EXPERIENCE_COUNTDOWN_RECT_W
+	    && y > WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y
+	    && y < WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y + WHOLE_EXPERIENCE_COUNTDOWN_RECT_H)
+	{
 		sprintf(ItemDescText, _("XP\n%d/%d"), Me.Experience, Me.ExpRequired);
+		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X + 5);
+		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y)
+			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
+		return;
+	}
+
+	if (   x > WHOLE_HEALTH_RECT_X
+	    && x < WHOLE_HEALTH_RECT_X + WHOLE_HEALTH_RECT_W
+	    && y > WHOLE_HEALTH_RECT_Y
+	    && y < WHOLE_HEALTH_RECT_Y + WHOLE_HEALTH_RECT_H)
+	{
+		sprintf(ItemDescText, _("Health\n%s%d/%d"),
+			Me.energy / Me.maxenergy <= 0.1 ? font_switchto_red : "",
+			(int)rintf(Me.energy), (int)rintf(Me.maxenergy));
+		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W - 5)
+			- longest_line_width(ItemDescText) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
+		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_HEALTH_RECT_Y)
+			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
+		return;
+	}
+
+	if (   x > WHOLE_FORCE_RECT_X
+	    && x < WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W
+	    && y > WHOLE_FORCE_RECT_Y
+	    && y < WHOLE_FORCE_RECT_Y + WHOLE_FORCE_RECT_H)
+	{
+		sprintf(ItemDescText, _("Temperature\n%s%d/%d"),
+			Me.temperature / Me.max_temperature >= 0.9 ? font_switchto_red : "",
+			(int)rintf(Me.temperature), (int)rintf(Me.max_temperature));
+		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W)
+			- longest_line_width(ItemDescText) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
+		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_FORCE_RECT_Y)
+			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
+		return;
 	}
 
 	// If the mouse cursor is within the user rectangle, then we check if
@@ -963,6 +967,9 @@ void show_current_text_banner(void)
 	SDL_Rect banner_rect;
 	char banner_text[5000] = "";
 
+	// Set font first, before making any font specific calculations
+	SetCurrentFont(TEXT_BANNER_DEFAULT_FONT);
+
 	// Prepare the string, that is to be displayed inside the text rectangle
 	prepare_text_window_content(banner_text);
 
@@ -970,44 +977,37 @@ void show_current_text_banner(void)
 	if (strlen(banner_text) <= 1)
 		return;
 
-	// Set font before making any font specific calculations
-	if (strcmp(banner_text, REQUIREMENTS_NOT_MET_TEXT) == 0) {
-		SetCurrentFont(Red_BFont);
-	} else {
-		SetCurrentFont(FPS_Display_BFont);
-	}
-
 	banner_rect.x = best_banner_pos_x;
 	banner_rect.y = best_banner_pos_y;
-	banner_rect.h = LOWER_BANNER_TEXT_RECT_H;
+	banner_rect.h = 100; // some default size
 
 	// Set banner width
 	banner_rect.w = longest_line_width(banner_text);
-	banner_rect.w += 30; // add some margin
+	banner_rect.w += TEXT_BANNER_HORIZONTAL_MARGIN * 2;
 
 	// Set banner height
-	int lines_needed = GetNumberOfTextLinesNeeded(banner_text, banner_rect, 1.0);
-	if (lines_needed <= 20)
-		banner_rect.h = (lines_needed + 2) * FontHeight(GetCurrentFont());
+	int lines_in_text = 1 + CountStringOccurences(banner_text, "\n");
+	banner_rect.h = lines_in_text * FontHeight(GetCurrentFont());
 
 	// Add extra correction to ensure the banner rectangle stays inside
 	// the visible screen.
-	if (banner_rect.x + banner_rect.w > GameConfig.screen_width) {
-		banner_rect.x = GameConfig.screen_width - banner_rect.w;
-	}
-	if (banner_rect.y + banner_rect.h > GameConfig.screen_height) {
-		banner_rect.y = GameConfig.screen_height - banner_rect.h;
-	}
+	if (banner_rect.x < 1)
+		banner_rect.x = 1;
+	else if (banner_rect.x + banner_rect.w > GameConfig.screen_width - 1)
+		banner_rect.x = GameConfig.screen_width - banner_rect.w - 1;
+	if (banner_rect.y < 1)
+		banner_rect.y = 1;
+	else if (banner_rect.y + banner_rect.h > GameConfig.screen_height - 1)
+		banner_rect.y = GameConfig.screen_height - banner_rect.h - 1;
 
 	// Draw the rectangle inside which the text will be drawn
 	SDL_SetClipRect(Screen, NULL);	// this unsets the clipping rectangle
 	if (use_open_gl)
 		GL_HighlightRectangle(Screen, &banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
 	else
-		our_SDL_fill_rect_wrapper(Screen, &banner_rect, BANNER_TEXT_REC_BACKGROUNDCOLOR);
+		our_SDL_fill_rect_wrapper(Screen, &banner_rect, 0x00);
 
 	// Print the text
-	int lines_in_text = 1 + CountStringOccurences(banner_text, "\n");
 	int line_spacing = (banner_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);
 	char *ptr = banner_text;
 	int i;
