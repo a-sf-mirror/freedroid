@@ -35,9 +35,19 @@ EveryTime LuaCode={
 		add_cookie("met_francis")
 	else end
 
-	if (partner_started()) then
+	if (has_cookie("tux_has_joined_guard") and (!has_cookie("Francis_guard_response"))) then
+		add_cookie("Francis_guard_response")
+		npc_says(_"Welcome back " .. get_player_name() .. ".")
+		tux_says(_"I joined the Red Guard.")
+		npc_says(_"Congratulations are in order, I guess.")
+		npc_says(_"I worked hard to join.")
+		npc_says(_"Linarian, don't forget your special gifts and how you can change things.")
+		tux_says(_"Life's busy as a Red Guard member.")
+		npc_says(_"I can imagine that.")
+		npc_says(_"But always remember who you are.")
+	elseif (partner_started()) then
 		npc_says(_"Oh, thank heavens! You are still alive. Maybe all hope is not lost.")
-	else end
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
