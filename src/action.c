@@ -570,7 +570,63 @@ void barrel_action(level *barrel_lvl, int barrel_index)
 	}
 
 	DebugPrintf(2, "\ncheck_for_barrels_to_smash(...):  combo_action now unset.");
-};				// void barrel_action ( level *, int ) 
+}
+
+/**
+ * This function connects the player to an interactive computer terminal ingame.
+ */
+void terminal_connect_action(level *lvl, int terminal_index)
+{
+	gps terminal_vpos;
+
+	if (terminal_index == (-1))
+		return;
+
+	update_virtual_position(&terminal_vpos, &(lvl->obstacle_list[terminal_index].pos), Me.pos.z);
+	if (terminal_vpos.x == -1)
+		return;
+
+	int direction;
+	switch (lvl->obstacle_list[terminal_index].type) {
+		// Console directions are backwards...
+		case ISO_CONSOLE_N:
+    		direction = SOUTH;
+    		break;
+		case ISO_CONSOLE_S:
+			direction = NORTH;
+			break;
+		case ISO_CONSOLE_E:
+			direction = WEST;
+			break;
+		case ISO_CONSOLE_W:
+			direction = EAST;
+			break;
+    	default:
+    		ErrorMessage(__FUNCTION__, "Tried to approach a terminal of type %d, but this type is unknown.", PLEASE_INFORM, IS_WARNING_ONLY, lvl->obstacle_list[terminal_index].type);
+			direction = NORTH;
+    		break;
+	}
+
+	if (!reach_obstacle_from_specific_direction(lvl, terminal_index, direction)) 
+        return;
+
+	colldet_filter filter = ObstacleByIdPassFilter;
+	filter.data = &terminal_index;
+
+	if (DirectLineColldet(Me.pos.x, Me.pos.y, terminal_vpos.x, terminal_vpos.y, Me.pos.z, &filter)) {
+		char *dialog = get_obstacle_extension(lvl, terminal_index, OBSTACLE_EXTENSION_DIALOGFILE);
+		if (!dialog) {
+			append_new_game_message("Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\".");
+			return;
+		}
+
+		enemy dummy_enemy;
+		dummy_enemy.dialog_section_name = dialog;
+		dummy_enemy.will_rush_tux = 0;
+		dummy_enemy.type = 34;
+		ChatWithFriendlyDroid(&dummy_enemy);
+	}
+}
 
 /**
  * Have Tux pick up an item if it is close enough and isn't blocked by any

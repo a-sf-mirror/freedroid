@@ -927,7 +927,13 @@ void prepare_text_window_content(char *ItemDescText)
 			gps obst_vpos;
 			update_virtual_position(&obst_vpos, &(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].pos), Me.pos.z);
 			if (obst_vpos.x != -1) {
-				strcpy(ItemDescText, _(obstacle_map[obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type].label));
+				const char *label =  _(obstacle_map[obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type].label);
+				if (!label) {
+					ErrorMessage(__FUNCTION__, "Obstacle type %d is clickable, and as such requires a label to be displayed on mouseover.\n", PLEASE_INFORM, IS_WARNING_ONLY, obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type);
+					label = "No label for this obstacle";
+				}
+
+				strcpy(ItemDescText, label);
 				best_banner_pos_x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 70;
 				best_banner_pos_y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
 			}
