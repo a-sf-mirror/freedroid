@@ -30,29 +30,34 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	terminal = "tux@hacked_".. bot_name()..": ~ #"
+	terminal = "tux@hacked_".. bot_type()..": ~ #"
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"tux", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
+	npc_says(_"Welcome to \3".. bot_name().."\2!")
 	show(1,11,12,13,20,99)
 	if (npc_damage_amount() >0) then
-		npc_says(_"This ".. bot_name().." unit needs repair.")
+		npc_says(_"This ".. bot_type().." unit needs repair.")
 	end
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"cd repair&settings/"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	tux_says(_"cd repair&settings/", "NO_WAIT")
 	run_subdialog("StandardBotAfterTakeover_sub.dialog")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"./hold_position.sh"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	tux_says(_"./hold_position.sh", "NO_WAIT")
 	npc_says(_"Holding position.", "NO_WAIT")
 	npc_says(_"script V 1.0.2 (c) gnu.org, 2054", "NO_WAIT")
 	npc_says(_"Checking requirements...")
@@ -65,7 +70,9 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"./follow_me.sh"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	tux_says(_"./follow_me.sh", "NO_WAIT")
 	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
 	npc_says(_"Trying to keep up with " .. get_player_name() .. " position.", "NO_WAIT")
@@ -77,7 +84,9 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"./move_freely.sh"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	tux_says(_"./move_freely.sh", "NO_WAIT")
 	npc_says(_"Enable movement.", "NO_WAIT")
 	npc_says(_"script V 1.0.5 (c) gnu.org, 2054", "NO_WAIT")
 	npc_says(_"Checking requirements...")
@@ -91,9 +100,11 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"./hcf.py"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	tux_says(_"./move_freely.sh", "NO_WAIT")
 	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
-		npc_says(_"Are you really sure you want to destroy this robot? Y/N")
+		npc_says(_"Are you really sure you want to destroy ".. bot_name().._"? Y/N")
 		hide(1,11,12,13,20) show(21,22)
 	else next(23) end
 }

@@ -674,10 +674,24 @@ static int lua_chat_takeover(lua_State * L)
 	return 1;
 }
 
-static int lua_chat_bot_name(lua_State * L)
+static int lua_chat_get_bot_type(lua_State * L)
 {
 	lua_pushstring(L, Druidmap[chat_control_chat_droid->type].druidname);
 	return 1;
+}
+
+static int lua_chat_get_bot_name(lua_State * L)
+{
+	lua_pushstring(L, chat_control_chat_droid->short_description_text);
+	return 1;
+}
+
+static int lua_chat_set_bot_name(lua_State * L)
+{
+	const char *bot_name = luaL_checkstring(L, 1);
+	free(chat_control_chat_droid->short_description_text);
+	chat_control_chat_droid->short_description_text = strdup(bot_name);
+	return 0;
 }
 
 static int lua_difficulty_level(lua_State * L)
@@ -884,8 +898,15 @@ luaL_reg lfuncs[] = {
 	{"freeze_tux_npc", lua_event_freeze_tux_npc}
 	,
 	{"npc_dead", lua_event_npc_dead},
-	
-	{"bot_name", lua_chat_bot_name},
+	/* bot_type() tells you what model
+	   bot_name() tells you what name it displays
+	   set_bot_name() puts a new name in
+	*/	
+	{"bot_type", lua_chat_get_bot_type}, 
+
+	{"bot_name", lua_chat_get_bot_name},
+
+	{"set_bot_name", lua_chat_set_bot_name}, 
 
 	{"difficulty_level", lua_difficulty_level},
 
