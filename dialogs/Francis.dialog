@@ -124,7 +124,8 @@ LuaCode={
 Nr=11 Text=_"Who are you? What is going on?"
 LuaCode={
 	npc_says(_"I guess I will start with myself.")
-	npc_says(_"Francis. Francis Spark. I used to be a teacher at a small university before all hell broke loose.")
+	npc_says(_"Francis. Dr. Francis Spark. I used to be a teacher at a small university before all hell broke loose.")
+	set_bot_name(_"Dr. Francis - Cryogenicist")
 	npc_says(_"Currently, there is a war raging all around the globe. Humans are fighting against bots.")
 	npc_says(_"And it looks like we are losing the war.")
 	hide(11) show(3)

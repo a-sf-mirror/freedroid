@@ -60,6 +60,7 @@ EveryTime LuaCode={
 Nr=0 Text=_"Hello! I'm new here."
 LuaCode={ 
 	npc_says(_"Hello. I'm Bender, the dead man of this camp.")
+	set_bot_name(_"Bender")
 	hide(0) show(1)
 }
 ----------------------------------------------------------------------
@@ -68,6 +69,7 @@ Nr=1 Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
 LuaCode={ 
 	npc_says(_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills.")
 	npc_says(_"And yet, I might be dead soon. The doc warned me, but I didn't listen. Damn.")
+	set_bot_name(_"Bender -- The strongest one")
 	hide(1) show(2, 3)
 }
 ----------------------------------------------------------------------

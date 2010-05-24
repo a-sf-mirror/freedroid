@@ -43,7 +43,8 @@ LuaCode={
 	npc_says(_"You don't say. I'm not living here either. I'm just on vacation.")
 	npc_says(_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun.")
 	npc_says(_"And in case you couldn't tell, that was sarcasm.")
-	hide(0) show(1)
+	set_bot_name(_"Fighter")
+	hide(0) show(1,2)
 }
 ----------------------------------------------------------------------
 
@@ -56,6 +57,15 @@ LuaCode={
 		npc_says(_"For a price. Hundred circuits should be enough.")
 		hide(1, 99) show(11, 19)
 	end
+}
+----------------------------------------------------------------------
+Nr=2 Text=_"Do you have a name?"
+LuaCode={
+	npc_says(_"I go by Pendragon, because I can pull a knife from thin air.")
+	npc_says(_"And you?")
+	tux_says(get_player_name().._", because it is my name?")
+	set_bot_name(_"Pendragon -- Fighter")
+	hide(2)
 }
 ----------------------------------------------------------------------
 

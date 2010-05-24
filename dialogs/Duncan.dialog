@@ -53,6 +53,7 @@ EveryTime LuaCode={
 Nr=0 Text=_"Hi... Erm... Who are you?"
 LuaCode={
 	npc_says(_"Duncan McNamara, The Red Guard's resident bomb maker, at your service.")
+	set_bot_name(_"Duncan -- Bombmaker")
 	hide(0, 90) show(1)
 }
 ----------------------------------------------------------------------

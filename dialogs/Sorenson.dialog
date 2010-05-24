@@ -64,6 +64,7 @@ LuaCode={
 	tux_says(_"STOP! STOP! I CANNOT TAKE THIS ANYMORE! MY HEAD HURTS!")
 	npc_says(_"Apology is being extended by me. Sorenson overdid it.")
 	npc_says(_"Sorenson the coder greets you.")
+	set_bot_name(_"Sorenson -- Mystery coder")
 	hide(20)
 }
 ----------------------------------------------------------------------
@@ -191,6 +192,7 @@ LuaCode={
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 	hide(66)
 	set_npc_faction("crazy")
+	set_bot_name(_"Sorenson -- Crazy")
 	end_dialog()
 }
 ----------------------------------------------------------------------

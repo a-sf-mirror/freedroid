@@ -54,7 +54,8 @@ EveryTime LuaCode={
 
 Nr=1 Text=_"Who are you and what are you doing?"
 LuaCode={
-	npc_says(_"I am a SADD - Secret Area Defence Droid")
+	npc_says(_"I am a SADD - Secret Area Defence Droid.")
+	set_bot_name(_"SADD - Secret Area Defence Droid")
 	npc_says(_"PRIMARY TARGET 1: do not let unauthorized people in.", "NO_WAIT")
 	npc_says(_"PRIMARY TARGET 2: authorized personnel must have access to the zone.", "NO_WAIT")
 	npc_says(_"SECONDARY TARGET: prevent secret information leakage")

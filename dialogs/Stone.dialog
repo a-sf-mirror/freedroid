@@ -46,6 +46,7 @@ EveryTime LuaCode={
 Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Welcome to this camp! I'm Ms. Stone. I run this shop.")
+	set_bot_name(_"Stone -- Shopowner")
 	hide(0) show(1, 3, 10)
 }
 ----------------------------------------------------------------------

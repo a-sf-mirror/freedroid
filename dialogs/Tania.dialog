@@ -63,6 +63,9 @@ LuaCode={
 Nr=2 Text=_"Imaginary?! I am as real as you are."
 LuaCode={
 	npc_says(_"This place is locked. Hermetically sealed and guarded by bots. So you can't possibly be anything more than the product of my imagination.")
+	tux_says(_"But who are you?")
+	npc_says(_"A figment of my imagination should know my name: Tania.")
+	set_bot_name(_"Tania - lonely scientist")
 	hide(2) show(12)
 }
 ----------------------------------------------------------------------

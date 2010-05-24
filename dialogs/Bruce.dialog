@@ -47,6 +47,7 @@ Nr=0 Text=_"Hi. Are you all right? You don't look too good."
 LuaCode={
 	npc_says(_"Good day. I am Bruce.")
 	npc_says(_"I am unwell.")
+	set_bot_name(_"Bruce -- Mine Worker")
 	hide(0) show(1)
 }
 ----------------------------------------------------------------------

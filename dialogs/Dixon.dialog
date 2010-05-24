@@ -71,6 +71,7 @@ EveryTime LuaCode={
 Nr=0 Text=_"Hi! I'm new here."
 LuaCode={ 
 	npc_says(_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division.")
+	set_bot_name(_"Dixon -- Mechanic")
 	hide(0) show(1, 19)
 }
 ----------------------------------------------------------------------

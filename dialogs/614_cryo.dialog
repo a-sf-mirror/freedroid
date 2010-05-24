@@ -34,6 +34,7 @@ EveryTime LuaCode={ show(0, 2, 3, 4, 99) }
 Nr=0 Text=_"Who are you? "
 LuaCode={
 	npc_says(_"I am a 614 security bot, once one of the best-selling products of \3Nicholson, Inc.\2.")
+	set_bot_name(_"614 -- Cryo Lab Guard Bot")
 	hide(0)	show(1, 4)
 }
 ----------------------------------------------------------------------
