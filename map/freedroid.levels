@@ -16242,7 +16242,6 @@ t353 x33.50 y37.50
 /obsdata
 plabelinfolvl
 x=62 y=21 name="Lev12-614-complex-guard"
-x=59 y=68 name="nethacktestbot"
 x=49 y=41 name="FrancisStart"
 x=42 y=40 name="NewTuxStartGameSquare3"
 x=43 y=40 name="NewTuxStartGameSquare"
@@ -16279,17 +16278,15 @@ Nr.= 11 x=  83 y=  22 rnd=0	 c:   10   9  12  13
 Nr.= 12 x=  83 y=  26 rnd=0	 c:    9  11
 Nr.= 13 x=  81 y=  20 rnd=1	 c:   10  11
 Nr.= 14 x=  63 y=  22 rnd=1	 c:    0
-Nr.= 15 x=  59 y=  70 rnd=1	 c:   16
-Nr.= 16 x=  59 y=  68 rnd=1	 c:   15
-Nr.= 17 x=  49 y=  41 rnd=1	 c:   19  18  25
-Nr.= 18 x=  47 y=  42 rnd=1	 c:   17  25
-Nr.= 19 x=  51 y=  43 rnd=1	 c:   20  17  24  25
-Nr.= 20 x=  51 y=  40 rnd=1	 c:   17  19  21  25
-Nr.= 21 x=  54 y=  42 rnd=1	 c:   20  22
-Nr.= 22 x=  56 y=  40 rnd=1	 c:   21
-Nr.= 23 x=  55 y=  40 rnd=1	 c:   22  21
-Nr.= 24 x=  51 y=  50 rnd=1	 c:   19
-Nr.= 25 x=  49 y=  42 rnd=1	 c:   19  18  17
+Nr.= 15 x=  49 y=  41 rnd=1	 c:   17  16  23
+Nr.= 16 x=  47 y=  42 rnd=1	 c:   15  23
+Nr.= 17 x=  51 y=  43 rnd=1	 c:   18  15  22  23
+Nr.= 18 x=  51 y=  40 rnd=1	 c:   15  17  19  23
+Nr.= 19 x=  54 y=  42 rnd=1	 c:   18  20
+Nr.= 20 x=  56 y=  40 rnd=1	 c:   19
+Nr.= 21 x=  55 y=  40 rnd=1	 c:   20  19
+Nr.= 22 x=  51 y=  50 rnd=1	 c:   17
+Nr.= 23 x=  49 y=  42 rnd=1	 c:   17  16  15
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 13
