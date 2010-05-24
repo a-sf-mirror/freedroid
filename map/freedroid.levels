@@ -3623,6 +3623,48 @@ idx=557 type=30 data={
 idx=545 type=30 data={
 	NoviceArenaAccessDoor
 }
+idx=224 type=32 data={
+	c-net
+}
+idx=223 type=32 data={
+	c-net
+}
+idx=225 type=32 data={
+	c-net
+}
+idx=226 type=32 data={
+	c-net
+}
+idx=227 type=32 data={
+	c-net
+}
+idx=228 type=32 data={
+	c-net
+}
+idx=2686 type=32 data={
+	c-net
+}
+idx=2719 type=32 data={
+	c-net
+}
+idx=2137 type=32 data={
+	c-net
+}
+idx=1193 type=32 data={
+	c-net
+}
+idx=1194 type=32 data={
+	c-net
+}
+idx=1348 type=32 data={
+	c-net
+}
+idx=1329 type=32 data={
+	c-net
+}
+idx=3126 type=32 data={
+	c-net
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  27 y=  17 rnd=0	 c:    1  57
@@ -6560,15 +6602,19 @@ t51 x5.50 y11.50
 t53 x29.50 y1.50
 t53 x31.50 y4.50
 t1 x14.00 y32.50
+t46 x2.30 y31.27
 /obsdata
 plabelinfolvl
 x=30 y=2 name="4from56"
 x=31 y=1 name="4to56"
-x=4 y=32 name="DSB-MDCT"
+x=4 y=32 name="DSB-MDCT-Guard"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
 obstacleextensions
+idx=568 type=32 data={
+	DSB-MachineDeckControl
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  15 y=   1 rnd=0	 c:   15   1
@@ -8054,14 +8100,14 @@ t2 x17.50 y12.00
 t2 x18.50 y12.00
 t2 x19.50 y12.00
 t2 x20.50 y12.00
+t45 x72.67 y16.40
+t45 x22.44 y16.42
+t46 x75.33 y19.03
 /obsdata
 plabelinfolvl
 x=57 y=68 name="5from55"
 x=56 y=67 name="5to55"
 x=22 y=19 name="Shutdown sequence in quest, open doors on machinedeck"
-x=23 y=17 name="DSB-PCT"
-x=75 y=16 name="DSB-PCG1TerminalE"
-x=71 y=16 name="DSB-PCG1TerminalW"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -8086,6 +8132,15 @@ idx=729 type=30 data={
 }
 idx=728 type=30 data={
 	DSB-powerunit1
+}
+idx=1279 type=32 data={
+	DSB-PowerControl
+}
+idx=1278 type=32 data={
+	DSB-PowerControlGate1
+}
+idx=1280 type=32 data={
+	DSB-PowerControlGate1
 }
 /obstacleextensions
 wp
@@ -8172,12 +8227,6 @@ Nr.= 79 x=  74 y=  65 rnd=0	 c:   78  80
 Nr.= 80 x=  69 y=  65 rnd=0	 c:   79
 Nr.= 81 x=  66 y=  66 rnd=0	 c:   82  68
 Nr.= 82 x=  64 y=  66 rnd=0	 c:   66  81
-Nr.= 83 x=  23 y=  16 rnd=1	 c:   84
-Nr.= 84 x=  23 y=  17 rnd=1	 c:   83
-Nr.= 85 x=  75 y=  16 rnd=1	 c:   86
-Nr.= 86 x=  75 y=  15 rnd=1	 c:   85
-Nr.= 87 x=  71 y=  16 rnd=1	 c:   88
-Nr.= 88 x=  72 y=  16 rnd=1	 c:   87
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 6
@@ -27445,19 +27494,15 @@ t197 x29.97 y34.22
 t197 x29.96 y32.65
 t197 x29.94 y31.05
 t197 x29.90 y29.26
-t199 x32.34 y34.21
-t199 x32.28 y32.76
+t79 x31.39 y34.28
 t199 x32.24 y31.29
 t199 x32.20 y29.81
-t79 x31.51 y34.14
-t79 x31.51 y32.98
 t79 x31.51 y31.11
 t79 x31.45 y30.13
 t44 x30.63 y34.71
 t81 x30.56 y33.15
 t81 x30.38 y31.03
 t81 x30.45 y29.92
-t46 x31.40 y34.85
 t46 x31.44 y32.27
 t46 x31.42 y31.74
 t46 x31.37 y29.36
@@ -27479,7 +27524,6 @@ t281 x25.08 y33.14
 t230 x28.18 y26.71
 t282 x29.17 y26.19
 t151 x33.61 y31.58
-t151 x32.56 y32.36
 t230 x28.56 y31.33
 t151 x29.20 y32.36
 t228 x26.74 y35.73
@@ -27488,7 +27532,6 @@ t229 x27.37 y35.85
 t227 x27.72 y34.59
 t227 x28.30 y36.44
 t227 x27.46 y35.33
-t230 x32.21 y33.56
 t151 x25.65 y33.41
 t290 x31.50 y38.00
 t290 x34.49 y38.03
@@ -28896,6 +28939,9 @@ idx=272 type=30 data={
 }
 idx=271 type=30 data={
 	GlassWallLaserTrap02
+}
+idx=1512 type=32 data={
+	HF-FirmwareUpdateServer
 }
 /obstacleextensions
 wp
