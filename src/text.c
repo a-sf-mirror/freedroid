@@ -661,7 +661,7 @@ char *GetString(int MaxLen, int background_code, const char *text_for_overhead_p
  * NOTE: MaxLen is the maximal _strlen_ of the string (excl. \0 !)
  * 
  * ----------------------------------------------------------------- */
-char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *DefaultString)
+char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString)
 {
 	char *input;		// pointer to the string entered by the user
 	int key;		// last 'character' entered 
@@ -675,18 +675,9 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 
 #define EDIT_WINDOW_TEXT_OFFSET 15
 
-	// if ( MaxLen > 60 ) MaxLen = 60;
-
-	if (((int)strlen(DefaultString)) >= MaxLen - 1)
-		DefaultString[MaxLen - 1] = 0;
-
-	// We prepare a new string, mostly empty...
-	//
 	input = MyMalloc(MaxLen + 5);
-	// memset (input, '.', MaxLen);
-	// input[MaxLen] = 0;
-	// input [ 0 ] = 0 ;
-	strcpy(input, DefaultString);
+	strncpy(input, DefaultString, MaxLen - 1);
+	input[MaxLen] = 0;
 	curpos = strlen(input);
 
 	// Now we prepare a rectangle for our popup window...
@@ -728,18 +719,20 @@ char *GetEditableStringInPopupWindow(int MaxLen, char *PopupWindowTitle, char *D
 
 		DisplayText(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect, TEXT_STRETCH);
 
-		// PutString (Screen, x0, y0, input);
-		TargetRect.y = x0;
-		TargetRect.y = y0;
+		if (PopupWindowTitle[strlen(PopupWindowTitle) - 1] != '\n')
+			DisplayText("\n\n", x0, y0, &TargetRect, TEXT_STRETCH);
+
+		TargetRect.y = MyCursorX;
+		TargetRect.y = MyCursorY;
 		DisplayText(input, TargetRect.x, TargetRect.y, &TargetRect, TEXT_STRETCH);
 
 		// We position the cursor right on its real location
 		//
 		tmp_char = input[curpos];
 		input[curpos] = 0;
-		CursorRect.x = x0 + TextWidth(input);
+		CursorRect.x = MyCursorX;
 		input[curpos] = tmp_char;
-		CursorRect.y = y0;
+		CursorRect.y = TargetRect.y;
 		CursorRect.h = FontHeight(GetCurrentFont());
 		CursorRect.w = 8;
 		HighlightRectangle(Screen, CursorRect);
