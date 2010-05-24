@@ -1185,8 +1185,8 @@ Please report bugs either by entering them into the bug tracker\n\
 on our sourceforge-website at:\n\n\
 http://sourceforge.net/projects/freedroid/\n\n\
 or by sending an e-mail to:\n\n\
-freedroid-discussion@lists.sourceforge.net\n\n\
-For more information and know issues please see README.\n\
+freedroid-discussion AT lists.sourceforge.net\n\n\
+For more information and known issues please see README.\n\
 Thanks a lot in advance.\n\
                           / The FreedroidRPG dev team.\n\n";
 
@@ -1772,7 +1772,7 @@ I will not be able to load or save games or configurations\n\
 	InitPictures();
 
 	if (strstr(VERSION, "rc"))
-		alert_window(_("You are playing a Release Candidate.\nStrange bugs might still be present in the game.\nPlease report any issues you find to either of:\n\n#freedroid at irc.freenode.net\nfreedroid-discussion@lists.sourceforge.net\nhttps://sourceforge.net/apps/phpbb/freedroid\n\nor directly to the bugtracker at the SF website\nThank you for helping us test the game.\n\nGood luck!\n"));
+		alert_window(_("You are playing a Release Candidate.\nStrange bugs might still be present in the game.\nPlease report any issues you find to either of:\n\n#freedroid at irc.freenode.net\nfreedroid-discussion AT lists.sourceforge.net\nhttps://sourceforge.net/apps/phpbb/freedroid\n\nor directly to the bugtracker at the SF website\nThank you for helping us test the game.\n\nGood luck!\n"));
 
 };				// void InitFreedroid ( void ) 
 

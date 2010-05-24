@@ -108,7 +108,7 @@ If you encounter this message, please inform the Freedroid developers\n\
 about the problem, by either\n\
 \n\
   sending e-mail to:\n\
-    freedroid-discussion@lists.sourceforge.net\n\
+    freedroid-discussion AT lists.sourceforge.net\n\
   mention it to someone of the developers on our IRC channel:\n\
     channel: #freedroid on irc.freenode.net\n\
   post on our forum at:\n\
