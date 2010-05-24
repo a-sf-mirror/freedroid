@@ -708,6 +708,22 @@ static int lua_set_npc_faction(lua_State *L)
 	return 0;
 }
 
+static int lua_user_input_string(lua_State *L)
+{
+	const char *title = luaL_checkstring(L, 1);
+	const char *default_str = luaL_optstring(L, 2, "");
+
+	const char *str = GetEditableStringInPopupWindow(100, title, default_str);
+
+	if (!str)
+		str = strdup("");
+
+	lua_pushstring(L, str);
+
+	free((void *)str);
+	return 1;
+}
+
 static int lua_set_faction_state(lua_State *L)
 {
 	const char *fact_name = luaL_checkstring(L, 1);
@@ -912,6 +928,8 @@ luaL_reg lfuncs[] = {
 
 	{"set_npc_faction", lua_set_npc_faction},
 	{"set_faction_state", lua_set_faction_state},
+
+	{"user_input_string", lua_user_input_string},
 	{NULL, NULL}
 	,
 };
