@@ -27,11 +27,17 @@ c_id = r'[\w\d]+' # Standard C identifier
 c_type = r'((?:(?:unsigned|signed|short|long)\s+)*' + c_id + r'(?:(?:\s+)|(?:\s*\*\s*)))' # C type
 
 # Regexp which search for a structure
-find_structure_rxp = re.compile(r'typedef struct .+?'
+find_structure_typedef_rxp = re.compile(r'typedef struct .+?'
                                 r'\{'
                                 r'([^\}]+)'
                                 r'\}'
                                 r'\s*(' + c_id + ').*?;', re.M | re.S)
+find_structure_notypedef_rxp = re.compile(
+                                r'^struct (' + c_id + ').*?'
+                                r'\{'
+                                r'([^\}]+)'
+                                r'\};', re.M | re.S)
+
 # Regexp which search for a field
 find_members_rxp = re.compile(r'\s*' + c_type + r'\s*(' + c_id + r')(?:\s*\[(.+)\])?\s*?;.*')
 
@@ -51,7 +57,7 @@ special_types = {
     'unsigned_char' : 'uchar'
 }
 
-only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_t", "item", "enemy", "bullet", "melee_shot", "mission", "configuration_for_freedroid", "npc" ]
+only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_t", "item", "enemy", "bullet", "melee_shot", "mission", "configuration_for_freedroid", "npc", "struct upgrade_socket" ]
 
 def main():
     if len(sys.argv) < 3:
@@ -70,7 +76,9 @@ def main():
     data = {}
 
     header = inpf.read()
-    structures = find_structure_rxp.findall(header)
+    structures = find_structure_typedef_rxp.findall(header)
+    for s in find_structure_notypedef_rxp.findall(header):
+        structures.append((s[1], 'struct ' + s[0]))
     for s in structures:
         # s is a tuple which contains (code, name) with code = the code inside the structure
         code, name = s
@@ -119,8 +127,9 @@ def main():
     # Writing loop
     for s_name in data.keys():
         str_save = str_read = ''
-	header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (s_name, s_name, s_name, s_name)
-	str_save += 'int save_%s(char * tag, %s * target)\n{\nautostr_append(savestruct_autostr, "<%%s>\\n",tag);\n' % (s_name,s_name)
+        func_name = s_name.replace('struct ', '')
+	header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (func_name, s_name, func_name, s_name)
+	str_save += 'int save_%s(char * tag, %s * target)\n{\nautostr_append(savestruct_autostr, "<%%s>\\n",tag);\n' % (func_name,s_name)
         str_read += '''int read_%s(char* buffer, char * tag, %s * target)\n{\n
 		char search[strlen(tag) + 5];
 		sprintf(search, "<%%s>", tag);
@@ -131,7 +140,7 @@ def main():
 		char * epos = strstr(buffer, search);
 		if ( ! epos ) return 2;
 		*epos = 0;
-		''' % (s_name, s_name)
+		''' % (func_name, s_name)
 
         for (type, field) in data[s_name]:
             size = None
