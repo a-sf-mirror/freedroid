@@ -958,7 +958,7 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 {
 	// Check if we are in editor and not in game test mode then we store the level number
 	//
-	if(game_root_mode == ROOT_IS_LVLEDIT && game_status == INSIDE_LVLEDITOR)
+	if(game_root_mode == ROOT_IS_LVLEDIT && game_status != INSIDE_GAME)
 		GameConfig.last_edited_level = LNum;
 	// Maybe the 'teleport' really comes from a teleportation device or
 	// teleport spell or maybe even from accessing some sewer accessway.
