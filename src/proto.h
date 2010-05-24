@@ -82,7 +82,7 @@ void barrel_action(level *barrel_lvl, int barrel_index);
 void terminal_connect_action(level *, int);
 void sign_action(level *sign_lvl, int sign_index);
 int clickable_obstacle_below_mouse_cursor(level **obst_lvl);
-void check_for_items_to_pickup(level *item_lvl, int item_index);
+int check_for_items_to_pickup(level *item_lvl, int item_index);
 
 // pathfinder.c
 int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints,

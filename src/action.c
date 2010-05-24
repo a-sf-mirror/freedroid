@@ -370,7 +370,7 @@ static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 			Me.mouse_move_target.z = obst_lvl->obstacle_list[obst_index].pos.z;
 
 			// We set up the combo_action, so that the barrel can be smashed later, on the
-			// second call (made by move_tux_thowards_intermediate_point)...
+			// second call (made by move_tux_towards_intermediate_point)...
 			//
 			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 			Me.mouse_move_target_combo_action_type = COMBO_ACTION_OBSTACLE;
@@ -636,28 +636,31 @@ void terminal_connect_action(level *lvl, int terminal_index)
  * Tux walk towards item. If the action is not cancelled, the item is picked up
  * on arrival.
  */
-void check_for_items_to_pickup(level *item_lvl, int item_index)
+int check_for_items_to_pickup(level *item_lvl, int item_index)
 {
 	gps item_vpos;
 
-	if (item_lvl != NULL && item_index != -1) {
+	if (item_lvl == NULL || item_index == -1)
+		return 0;
 
-		update_virtual_position(&item_vpos, &item_lvl->ItemList[item_index].pos, Me.pos.z);
+	update_virtual_position(&item_vpos, &item_lvl->ItemList[item_index].pos, Me.pos.z);
 
-		if ((calc_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
-			&& DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL)) {
-			AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
-		} else {
-			Me.mouse_move_target.x = item_lvl->ItemList[item_index].pos.x;
-			Me.mouse_move_target.y = item_lvl->ItemList[item_index].pos.y;
-			Me.mouse_move_target.z = item_lvl->levelnum;
+	if ((calc_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
+		&& DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL))
+	{
+		AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
+	} else {
+		Me.mouse_move_target.x = item_lvl->ItemList[item_index].pos.x;
+		Me.mouse_move_target.y = item_lvl->ItemList[item_index].pos.y;
+		Me.mouse_move_target.z = item_lvl->levelnum;
 
-			// Set up the combo_action
-			enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-			Me.mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM;
-			Me.mouse_move_target_combo_action_parameter = item_index;
-		}
+		// Set up the combo_action
+		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+		Me.mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM;
+		Me.mouse_move_target_combo_action_parameter = item_index;
 	}
+
+	return 1;
 }
 
 #undef _action_c

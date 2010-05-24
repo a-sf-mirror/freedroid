@@ -528,14 +528,14 @@ static void MoveTuxAccordingToHisSpeed()
  * approximated (TRUE) already or not (FALSE) .
  *
  */
-static int move_tux_thowards_raw_position(float x, float y)
+static int move_tux_towards_raw_position(float x, float y)
 {
 	moderately_finepoint RemainingWay;
 	moderately_finepoint planned_step;
 	float squared_length, length;
 
 	if (Me.energy <= 0)
-		return (FALSE);
+		return FALSE;
 
 	RemainingWay.x = -Me.pos.x + x;
 	RemainingWay.y = -Me.pos.y + y;
@@ -599,13 +599,13 @@ static int move_tux_thowards_raw_position(float x, float y)
 	}
 
 	return (FALSE);
-};				// int move_tux_thowards_raw_position ( float x , float y )
+}
 
 /**
  *
  *
  */
-void move_tux_thowards_intermediate_point()
+static void move_tux_towards_intermediate_point(void)
 {
 	int i;
 
@@ -644,18 +644,29 @@ void move_tux_thowards_intermediate_point()
 		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 		return;
 	}
-	// Now we move the Tux thowards the next intermediate course point
-	//
 
-	if (move_tux_thowards_raw_position(Me.next_intermediate_point[0].x, Me.next_intermediate_point[0].y)) {
+	// Stop Tux when he's close enough to an item to pick it up
+	if (Me.mouse_move_target_combo_action_type == COMBO_ACTION_PICK_UP_ITEM) {
+		float distance = calc_distance(Me.pos.x, Me.pos.y,
+									   Me.mouse_move_target.x, Me.mouse_move_target.y);
+		if (distance < ITEM_TAKE_DIST) {
+			for (i = 0; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX; i++) {
+				Me.next_intermediate_point[i].x = -1;
+				Me.next_intermediate_point[i].y = -1;
+			}
+			return;
+		}
+	}
+
+	// Move Tux towards the next intermediate course point
+	if (move_tux_towards_raw_position(Me.next_intermediate_point[0].x, Me.next_intermediate_point[0].y)) {
 		DebugPrintf(DEBUG_TUX_PATHFINDING, "\nMOVING ON TO NEXT INTERMEDIATE WAYPOINT! ");
 		for (i = 1; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX; i++) {
 			Me.next_intermediate_point[i - 1].x = Me.next_intermediate_point[i].x;
 			Me.next_intermediate_point[i - 1].y = Me.next_intermediate_point[i].y;
 		}
 	}
-
-}				// void move_tux_thowards_intermediate_point ( )
+}
 
 /** 
  * When the player has rolled the mouse wheel up or down, we change the
@@ -756,8 +767,7 @@ void move_tux()
 		//
 		if (!((fabsf(move_target.x - last_given_course_target.x) < 0.3) &&
 		      (fabsf(move_target.y - last_given_course_target.y) < 0.3))) {
-			freeway_context frw_ctx = { FALSE, {NULL, NULL}
-			};
+			freeway_context frw_ctx = { FALSE, {NULL, NULL} };
 			pathfinder_context pf_ctx = { &WalkableWithMarginPassFilter, &frw_ctx };
 			moderately_finepoint target_point = { move_target.x, move_target.y };
 			if (!set_up_intermediate_course_between_positions
@@ -784,10 +794,8 @@ void move_tux()
 	// 
 	adapt_global_mode_for_player();
 
-	// But in case of some mouse move target present, we proceed to move
-	// thowards this mouse move target.
-	//
-	move_tux_thowards_intermediate_point();
+	// If there is a mouse move target present, we move towards that.
+	move_tux_towards_intermediate_point();
 
 	// Perhaps the player has pressed the right mouse button, indicating the use
 	// of the currently selected special function or spell.
@@ -1608,7 +1616,6 @@ void check_for_droids_to_attack_or_talk_with()
  */
 void AnalyzePlayersMouseClick()
 {
-	DebugPrintf(2, "\n===> void AnalyzePlayersMouseClick(): real function call confirmed. ");
 	int tmp;
 
 	// This flag avoids the mouse_move_target to change while the user presses
@@ -1664,11 +1671,10 @@ void AnalyzePlayersMouseClick()
 				if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 					wait_mouseleft_release = TRUE;
 			    break;
-            }
+			}
 
 			if ((tmp = get_floor_item_index_under_mouse_cursor(&obj_lvl)) != -1) {
-				check_for_items_to_pickup(obj_lvl, tmp);
-				if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
+				if (check_for_items_to_pickup(obj_lvl, tmp))
 					wait_mouseleft_release = TRUE;
 				break;
 			}
@@ -1687,7 +1693,6 @@ void AnalyzePlayersMouseClick()
 		ErrorMessage(__FUNCTION__, "Illegal global ingame mode encountered!", PLEASE_INFORM, IS_FATAL);
 		break;
 	}
-
-};				// void AnalyzePlayersMouseClick ( )
+}
 
 #undef _influ_c
