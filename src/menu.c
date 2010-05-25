@@ -1282,6 +1282,7 @@ static int Startup_handle(int n)
 		return EXIT_MENU;
 		break;
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
+		game_root_mode = ROOT_IS_GAME;
 		skip_initial_menus = 1;
 		clear_player_inventory_and_stats();
 		UpdateAllCharacterStats();
@@ -1291,7 +1292,6 @@ static int Startup_handle(int n)
 		LoadShip(fpp, 0);
 		PrepareStartOfNewCharacter("TutorialTuxStart");
 		skip_initial_menus = 0;
-		game_root_mode = ROOT_IS_GAME;
 		return EXIT_MENU;
 		break;
 	case OPTIONS_POSITION:
