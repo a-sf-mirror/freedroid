@@ -1566,6 +1566,7 @@ void check_for_droids_to_attack_or_talk_with()
 		return;
 	} else if (APressed()) {
 		tux_wants_to_attack_now(TRUE);
+		return;
 	}
 
 	if (droid_below_mouse_cursor != NULL &&
