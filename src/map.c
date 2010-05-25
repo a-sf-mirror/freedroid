@@ -1381,6 +1381,8 @@ static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *L
 	int i;
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_BEGIN_STRING);
 
+	defrag_obstacle_array(Lev);
+
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		if (Lev->obstacle_list[i].type == (-1))
 			continue;

@@ -809,4 +809,5 @@ void *get_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
 int get_obstacle_index(level *, obstacle *);
 void add_obstacle_extension(level *, obstacle *, enum obstacle_extension_type, void *);
 void del_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
+void defrag_obstacle_array(level *);
 #endif

@@ -37,6 +37,38 @@ int get_obstacle_index(level *lvl, obstacle *o)
 }
 
 /**
+ * Defragment the obstacle array of a level, ie. make 
+ * its obstacle array contiguous instead of having empty
+ * entries in the middle, as can appear when deleting obstacles in the editor.
+ */
+void defrag_obstacle_array(level *lvl) 
+{
+	int i = MAX_OBSTACLES_ON_MAP - 1;
+	int array_end;
+
+	// Locate the last (existing) element of the array
+	while (i >= 0) {
+		if (lvl->obstacle_list[i].type != -1)
+			break;
+		i--;
+	}
+	array_end = i;
+
+	// Browse the array and fill in the voids
+	for (i = 0; i < array_end; i++) {
+		if (lvl->obstacle_list[i].type == -1) {
+			// Fill in this spot with the last obstacle
+			memcpy(&lvl->obstacle_list[i], &lvl->obstacle_list[array_end], sizeof(obstacle));
+			lvl->obstacle_list[array_end].type = -1;
+			array_end--;
+		}
+	}
+
+	// Update obstacle lists
+	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
+}
+
+/**
  * Retrieve the obstacle extension of a given type associated to an obstacle.
  */
 void *get_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_type type)
