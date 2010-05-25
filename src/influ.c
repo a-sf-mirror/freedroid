@@ -645,11 +645,14 @@ static void move_tux_towards_intermediate_point(void)
 		return;
 	}
 
-	// Stop Tux when he's close enough to an item to pick it up
+	/* Stop Tux when he's close enough to an item to pick it up. */
 	if (Me.mouse_move_target_combo_action_type == COMBO_ACTION_PICK_UP_ITEM) {
 		float distance = calc_distance(Me.pos.x, Me.pos.y,
 									   Me.mouse_move_target.x, Me.mouse_move_target.y);
-		if (distance < ITEM_TAKE_DIST) {
+		if (distance < ITEM_TAKE_DIST &&
+			DirectLineColldet(Me.pos.x, Me.pos.y, Me.mouse_move_target.x,
+							  Me.mouse_move_target.y, Me.pos.z, NULL))
+		{
 			for (i = 0; i < MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX; i++) {
 				Me.next_intermediate_point[i].x = -1;
 				Me.next_intermediate_point[i].y = -1;
