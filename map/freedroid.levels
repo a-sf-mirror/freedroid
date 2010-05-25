@@ -28867,17 +28867,8 @@ obstacleextensions
 idx=1342 type=30 data={
 	UpgradeFirmwareRoomFinal
 }
-idx=2293 type=30 data={
-	MSAreaDoor
-}
-idx=2118 type=30 data={
-	Security system operator
-}
 idx=1462 type=30 data={
 	UpgradeFirmwareRoomNoComeBack
-}
-idx=1754 type=30 data={
-	MSONoReturnDoor
 }
 idx=1613 type=30 data={
 	MSOMillerEntranceCounterDoor
@@ -28888,9 +28879,6 @@ idx=201 type=30 data={
 idx=202 type=30 data={
 	MSOMillerEntrance02
 }
-idx=2275 type=30 data={
-	MSOExitDoor00
-}
 idx=858 type=30 data={
 	MSOHQDoor02
 }
@@ -28899,15 +28887,6 @@ idx=820 type=30 data={
 }
 idx=203 type=30 data={
 	MSOMillerEntrance01
-}
-idx=2292 type=30 data={
-	IntruderLaserTrapMSO02
-}
-idx=2274 type=30 data={
-	IntruderLaserTrapMSO01
-}
-idx=1468 type=30 data={
-	CollapsingBrickWallMSOLobby01
 }
 idx=407 type=30 data={
 	BreakingGlassSecretDoorWH01
@@ -28941,6 +28920,9 @@ idx=271 type=30 data={
 }
 idx=1512 type=32 data={
 	HF-FirmwareUpdateServer
+}
+idx=2287 type=30 data={
+	MSAreaDoor
 }
 /obstacleextensions
 wp
