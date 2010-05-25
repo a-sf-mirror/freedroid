@@ -651,7 +651,7 @@ static char *decode_obstacle_extensions(level *loadlevel, char *data)
 		}
 
 		// Add the obstacle extension on the level
-		add_obstacle_extension(loadlevel, index, type, ext_data);
+		add_obstacle_extension(loadlevel, &(loadlevel->obstacle_list[index]), type, ext_data);
 	}
 
 	*ext_end = OBSTACLE_EXTENSIONS_END_STRING[0];
@@ -1544,7 +1544,7 @@ static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
 		if (ext->type == 0)
 			continue;
 
-		autostr_append(shipstr, "idx=%d type=%d data={\n", ext->index, ext->type);
+		autostr_append(shipstr, "idx=%d type=%d data={\n", get_obstacle_index(l, ext->obs), ext->type);
 
 		switch ((enum obstacle_extension_type)(ext->type)) {
 			case OBSTACLE_EXTENSION_CHEST_ITEMS:

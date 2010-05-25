@@ -776,7 +776,7 @@ typedef struct map_tile_s {
 } map_tile;
 
 struct obstacle_extension {
-	int index;
+	obstacle *obs;
 	enum obstacle_extension_type type;
 	void *data;
 }; /** This contains "extension data" for obstacles - labels, item lists, ... */

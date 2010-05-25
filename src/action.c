@@ -122,7 +122,7 @@ static void throw_out_all_chest_content(int obst_index)
 	int drop_count = 0;
 	level *lvl = CURLEVEL();
 
-	struct dynarray *item_list = get_obstacle_extension(CURLEVEL(), obst_index, OBSTACLE_EXTENSION_CHEST_ITEMS);
+	struct dynarray *item_list = get_obstacle_extension(CURLEVEL(), &(lvl->obstacle_list[obst_index]), OBSTACLE_EXTENSION_CHEST_ITEMS);
 
 	play_open_chest_sound();
 
@@ -155,7 +155,7 @@ static void throw_out_all_chest_content(int obst_index)
 		dynarray_free(item_list);
 
 		// Remove the chest items obstacle extension
-		del_obstacle_extension(lvl, obst_index, OBSTACLE_EXTENSION_CHEST_ITEMS);
+		del_obstacle_extension(lvl, &(lvl->obstacle_list[obst_index]), OBSTACLE_EXTENSION_CHEST_ITEMS);
 	}
 	
 	// If the chest was empty, maybe generate a random item to be dropped
@@ -578,11 +578,12 @@ void barrel_action(level *barrel_lvl, int barrel_index)
 void terminal_connect_action(level *lvl, int terminal_index)
 {
 	gps terminal_vpos;
+	obstacle *term = &(lvl->obstacle_list[terminal_index]);
 
 	if (terminal_index == (-1))
 		return;
 
-	update_virtual_position(&terminal_vpos, &(lvl->obstacle_list[terminal_index].pos), Me.pos.z);
+	update_virtual_position(&terminal_vpos, &term->pos, Me.pos.z);
 	if (terminal_vpos.x == -1)
 		return;
 
@@ -614,7 +615,7 @@ void terminal_connect_action(level *lvl, int terminal_index)
 	filter.data = &terminal_index;
 
 	if (DirectLineColldet(Me.pos.x, Me.pos.y, terminal_vpos.x, terminal_vpos.y, Me.pos.z, &filter)) {
-		char *dialog = get_obstacle_extension(lvl, terminal_index, OBSTACLE_EXTENSION_DIALOGFILE);
+		char *dialog = get_obstacle_extension(lvl, term, OBSTACLE_EXTENSION_DIALOGFILE);
 		if (!dialog) {
 			append_new_game_message("Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\".");
 			return;

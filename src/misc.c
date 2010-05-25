@@ -1246,7 +1246,7 @@ obstacle *give_pointer_to_obstacle_with_label(const char *obstacle_label, int *l
 					if (level_number) {
 						*level_number = l->levelnum;
 					}
-					return &l->obstacle_list[ext->index];
+					return ext->obs;
 				}
 			}
 

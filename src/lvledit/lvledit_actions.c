@@ -210,12 +210,10 @@ obstacle *action_create_obstacle_user(Level EditLevel, double x, double y, int n
  */
 static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, char *name, int undoable)
 {
-	int obs_idx = get_obstacle_index(EditLevel, obstacle);
-
 	// If the obstacle already has a label, remove it
-	char *old_label = get_obstacle_extension(EditLevel, obs_idx, OBSTACLE_EXTENSION_LABEL);
+	char *old_label = get_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL);
 	if (old_label) {
-		del_obstacle_extension(EditLevel, obs_idx, OBSTACLE_EXTENSION_LABEL);
+		del_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL);
 	}
 
 	// Create the undo action if appropriate
@@ -232,7 +230,7 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 	name = strdup(name);
 
 	// Assign the new label
-	add_obstacle_extension(EditLevel, obs_idx, OBSTACLE_EXTENSION_LABEL, name);
+	add_obstacle_extension(EditLevel, obstacle, OBSTACLE_EXTENSION_LABEL, name);
 
 	return undoable;
 }
@@ -245,7 +243,7 @@ void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle,
 		return;
 
 	if (predefined_name == NULL) {
-		char *old_label = get_obstacle_extension(EditLevel, get_obstacle_index(EditLevel, our_obstacle), OBSTACLE_EXTENSION_LABEL);
+		char *old_label = get_obstacle_extension(EditLevel, our_obstacle, OBSTACLE_EXTENSION_LABEL);
 		name = GetEditableStringInPopupWindow(1000, _("\nPlease enter obstacle label: \n\n"),
 						   old_label ? old_label : "");
 	} else {
@@ -739,7 +737,7 @@ void delete_map_level(int lnum)
 
 static int get_chest_contents(level *l, obstacle *o, item *items[MAX_ITEMS_IN_INVENTORY])
 {
-	struct dynarray *itemlist = get_obstacle_extension(l, get_obstacle_index(l, o), OBSTACLE_EXTENSION_CHEST_ITEMS);
+	struct dynarray *itemlist = get_obstacle_extension(l, o, OBSTACLE_EXTENSION_CHEST_ITEMS);
 
 	memset(items, 0, MAX_ITEMS_IN_INVENTORY);
 
@@ -773,8 +771,7 @@ void level_editor_edit_chest(obstacle *o)
 	user_items[0] = &dummy_addtochest;
 	user_items[1] = NULL;
 
-	int obstacle_index = get_obstacle_index(CURLEVEL(), o);
-	struct dynarray *itemlist = get_obstacle_extension(CURLEVEL(), obstacle_index, OBSTACLE_EXTENSION_CHEST_ITEMS);
+	struct dynarray *itemlist = get_obstacle_extension(CURLEVEL(), o, OBSTACLE_EXTENSION_CHEST_ITEMS);
 
 	// Safety check
 	switch (o->type) {
@@ -813,7 +810,7 @@ void level_editor_edit_chest(obstacle *o)
 
 				if (!itemlist) {
 					itemlist = dynarray_alloc(10, sizeof(item));
-					add_obstacle_extension(CURLEVEL(), obstacle_index, OBSTACLE_EXTENSION_CHEST_ITEMS, itemlist);
+					add_obstacle_extension(CURLEVEL(), o, OBSTACLE_EXTENSION_CHEST_ITEMS, itemlist);
 				}
 
 				dynarray_add(itemlist, tmp, sizeof(item)); 

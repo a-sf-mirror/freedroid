@@ -805,8 +805,8 @@ void save_factions(struct auto_string *);
 void load_factions(char *);
 
 // obstacle_extension.c
-void *get_obstacle_extension(level *, int, enum obstacle_extension_type);
+void *get_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
 int get_obstacle_index(level *, obstacle *);
-void add_obstacle_extension(level *, int, enum obstacle_extension_type, void *);
-void del_obstacle_extension(level *, int, enum obstacle_extension_type);
+void add_obstacle_extension(level *, obstacle *, enum obstacle_extension_type, void *);
+void del_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
 #endif

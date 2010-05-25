@@ -36,14 +36,17 @@ int get_obstacle_index(level *lvl, obstacle *o)
 	return obstacle_index;
 }
 
-void *get_obstacle_extension(level *lvl, int index, enum obstacle_extension_type type)
+/**
+ * Retrieve the obstacle extension of a given type associated to an obstacle.
+ */
+void *get_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_type type)
 {
 	int i;
 	struct obstacle_extension *ext;
 
 	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
 		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
-		if (ext->index == index) 
+		if (ext->obs == obs) 
 			if (ext->type == type)
 				return ext->data;
 	}
@@ -56,10 +59,9 @@ void *get_obstacle_extension(level *lvl, int index, enum obstacle_extension_type
  * This function does not free the associated data - it must have been freed after a call 
  * to get_obstacle_extension.
  * \param lvl Pointer towards the level where the obstacle lies
- * \param index Index of the obstacle on the level
  * \param type Type of the extension to be removed
  */
-void del_obstacle_extension(level *lvl, int index, enum obstacle_extension_type type)
+void del_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_type type)
 {
 	int i;
 	struct obstacle_extension *ext;
@@ -67,7 +69,7 @@ void del_obstacle_extension(level *lvl, int index, enum obstacle_extension_type 
 	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
 		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
 
-		if (ext->index != index)
+		if (ext->obs != obs)
 			continue;
 
 		if (ext->type != type)
@@ -80,15 +82,14 @@ void del_obstacle_extension(level *lvl, int index, enum obstacle_extension_type 
 /**
  * Add a new extension to an obstacle.
  * \param lvl Pointer towards the level where the obstacle lies
- * \param index Index of the obstacle on the level
  * \param type Type of the extension to add
  * \param data Data of the extension
  */
-void add_obstacle_extension(level *lvl, int index, enum obstacle_extension_type type, void *data)
+void add_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_type type, void *data)
 {
 	struct obstacle_extension ext;
 	ext.type = type;
-	ext.index = index;
+	ext.obs = obs;
 	ext.data = data;
 
 

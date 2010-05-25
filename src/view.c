@@ -1723,8 +1723,8 @@ static void show_obstacle_labels(int mask)
 		
 		if (ext->type == OBSTACLE_EXTENSION_LABEL) {
 			show_backgrounded_label_at_map_position(ext->data,
-					0, l->obstacle_list[ext->index].pos.x,
-					l->obstacle_list[ext->index].pos.y, mask & ZOOM_OUT);
+					0, ext->obs->pos.x,
+					ext->obs->pos.y, mask & ZOOM_OUT);
 		}
 	}
 }
