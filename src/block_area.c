@@ -637,26 +637,22 @@ void init_obstacle_data(void)
 	//
 	block_2param(ISO_V_WOOD_FENCE, 1.1, 2.2);
 	obstacle_map[ISO_V_WOOD_FENCE].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_V_WOOD_FENCE].flags |= IS_VERTICAL;
 	block_2param(ISO_V_DENSE_FENCE, 1.1, 2.2);
-	obstacle_map[ISO_V_DENSE_FENCE].flags |= IS_VERTICAL;
 	block_2param(ISO_V_MESH_FENCE, 1.1, 2.2);
 	obstacle_map[ISO_V_MESH_FENCE].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_V_MESH_FENCE].flags |= IS_VERTICAL | GROUND_LEVEL;
+	obstacle_map[ISO_V_MESH_FENCE].flags |= GROUND_LEVEL;
 	block_2param(ISO_V_WIRE_FENCE, 0.8, 2.2);
 	obstacle_map[ISO_V_WIRE_FENCE].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_V_WIRE_FENCE].flags |= IS_VERTICAL | GROUND_LEVEL;
+	obstacle_map[ISO_V_WIRE_FENCE].flags |= GROUND_LEVEL;
 	block_2param(ISO_H_WOOD_FENCE, 2.2, 1.1);
-	obstacle_map[ISO_H_WOOD_FENCE].flags |= IS_HORIZONTAL;
 	obstacle_map[ISO_H_WOOD_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_H_DENSE_FENCE, 2.2, 1.10);
-	obstacle_map[ISO_H_DENSE_FENCE].flags |= IS_HORIZONTAL;
 	block_2param(ISO_H_MESH_FENCE, 2.2, 1.10);
 	obstacle_map[ISO_H_MESH_FENCE].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_H_MESH_FENCE].flags |= IS_HORIZONTAL | GROUND_LEVEL;
+	obstacle_map[ISO_H_MESH_FENCE].flags |= GROUND_LEVEL;
 	block_2param(ISO_H_WIRE_FENCE, 2.2, 0.8);
 	obstacle_map[ISO_H_WIRE_FENCE].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_H_WIRE_FENCE].flags |= IS_HORIZONTAL | GROUND_LEVEL;
+	obstacle_map[ISO_H_WIRE_FENCE].flags |= GROUND_LEVEL;
 
 	block_2param(ISO_N_TOILET_SMALL, 0.4, 0.4);
 	obstacle_map[ISO_N_TOILET_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
@@ -1466,12 +1462,10 @@ void init_obstacle_data(void)
 	block_2param(ISO_RED_FENCE_H, 2.3, 0.80);
 	obstacle_map[ISO_RED_FENCE_H].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_RED_FENCE_H].filename = "iso_fence_0002.png";
-	obstacle_map[ISO_RED_FENCE_H].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_RED_FENCE_V, 0.80, 2.3);
 	obstacle_map[ISO_RED_FENCE_V].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_RED_FENCE_V].filename = "iso_fence_0001.png";
-	obstacle_map[ISO_RED_FENCE_V].flags |= IS_VERTICAL;
 
 	block_2param(ISO_BED_1, 1.2, 2.0);
 	obstacle_map[ISO_BED_1].flags &= ~BLOCKS_VISION_TOO;
