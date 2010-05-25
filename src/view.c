@@ -3006,6 +3006,8 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_7_62mm_ak47", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Barrett M82 Sniper Rifle"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_barrett_m82_sniper_rifle", x, y, rotation_index);
+			else if (MatchItemWithName(Me.weapon_item.type, "Electro Laser Rifle"))
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_electro_laser_rifle", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Laser Rifle"))
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_rifle", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Laser Pulse Rifle"))
