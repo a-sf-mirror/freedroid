@@ -3426,14 +3426,14 @@ void PrintCommentOfThisEnemy(enemy * e)
 #	endif
 	}
 
-};				// void PrintCommentOfThisEnemy ( int Enum, int x, int y )
+}
 
 /**
  * Not every enemy has to be blitted onto the combat screen every time.
  * This function is here to find out whether this enemy has to be blitted
  * or whether we can skip it.
  */
-int ThisEnemyNeedsToBeBlitted(enemy * e, int x, int y)
+static int must_blit_enemy(enemy *e, int x, int y)
 {
 	// if enemy is on other level, return 
 	if (e->virt_pos.z != Me.pos.z) {
@@ -3443,14 +3443,16 @@ int ThisEnemyNeedsToBeBlitted(enemy * e, int x, int y)
 	if (e->type == (-1)) {
 		return FALSE;
 	}
+	// if the enemy is dead, show him anyways
+	if (e->animation_type == DEAD_ANIMATION)
+		return TRUE;
 	// if the enemy is out of sight, we need not do anything more here
 	if ((!show_all_droids) && (!IsVisible(&e->virt_pos))) {
 		return FALSE;
 	}
 
 	return TRUE;
-
-};				// int ThisEnemyNeedsToBeBlitted ( int Enum , int x , int y )
+}
 
 /**
  *
@@ -3797,7 +3799,7 @@ void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 	// the screen or not.  Since there are many things to consider, we
 	// got a special function for this job.
 	//
-	if ((!ThisEnemyNeedsToBeBlitted(e, x, y)) && (!GameConfig.xray_vision_for_tux))
+	if ((!must_blit_enemy(e, x, y)) && (!GameConfig.xray_vision_for_tux))
 		return;
 
 	// We check for incorrect droid types, which sometimes might occor, especially after
