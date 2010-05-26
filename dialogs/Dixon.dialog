@@ -423,7 +423,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=83 Text="YES, QUITE A LOT. THIS IS THE END, FOLKS."
+Nr=83 Text="BUG, REPORT ME! dixon node83"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"YOU AGAIN!")

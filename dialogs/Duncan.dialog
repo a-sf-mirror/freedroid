@@ -117,7 +117,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50 Text="STARTING KOAN QUEST"
+Nr=50 Text="BUG, REPORT ME! duncan node50 -- starting koan quest"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Ah. Welcome again Linarian.")
@@ -177,7 +177,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=60 Text="MURDERING DONE OR SAVED HIM"
+Nr=60 Text="BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"So... Any news on the Koan matter?")
@@ -241,7 +241,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=69 Text="DUMMY"
+Nr=69 Text="BUG, REPORT ME! duncan node69"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	add_xp(3000)

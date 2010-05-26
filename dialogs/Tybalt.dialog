@@ -33,7 +33,7 @@ EveryTime LuaCode={
 	if (not has_cookie("met_tybalt")) then
 		show(0)
 		add_cookie("met_tybalt")
-	else end
+	else show(2) end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -68,7 +68,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10 Text="So why is it you keep the citadel locked? Is there anything secret in there?"
+Nr=10 Text=_"So why is it you keep the citadel locked? Is there anything secret in there?"
 LuaCode={
 	npc_says(_"We need to protect our equipment and documents, because lives depend on it.")
 	npc_says(_"Also, we don't have to answer questions.")
@@ -81,21 +81,19 @@ LuaCode={
 Nr=50 Text=_"I have a lot of money for you."
 LuaCode={
 	npc_says(_"Fascinating. Can I have a hundred please?")
-	show(54,55)
-	hide(50)
+	hide(50) show(54, 55)
 }
 ----------------------------------------------------------------------
 
 Nr=54 Text=_"Erm... I don't have that much."
 LuaCode={
 	npc_says(_"Well, too bad.")
-	hide(54,55)
+	hide(54, 55)
 }
 ----------------------------------------------------------------------
 
 Nr=55 Text=_"Here you go."
 LuaCode={
-	hide(54,55)
 	if (del_gold(100)) then
 		npc_says(_"Thank you.")
 		add_cookie("tybalt_bribe")
@@ -103,6 +101,7 @@ LuaCode={
 	else
 		npc_says_random(_"That is not a hundred.",_"Um, count that again.",_"Talk to me when you have a bit more.")
 	end
+	hide(54, 55)
 }
 ----------------------------------------------------------------------
 
@@ -123,7 +122,6 @@ LuaCode={
 Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says(_"Good riddance.")
-	show(2)
 	end_dialog()
 }
 ----------------------------------------------------------------------

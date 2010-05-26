@@ -39,7 +39,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=2 Text="Checks"
+Nr=2 Text="BUG, REPORT ME! engel_sub node2 -- checks"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	rev = get_program_revision("Extract bot parts")
@@ -73,7 +73,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10 Text="1st LESSON"
+Nr=10 Text="BUG, REPORT ME! engel_sub node10 -- 1st LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Let us start with entropy inverters. This is quite simple.")
@@ -83,7 +83,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=20 Text="2nd LESSON"
+Nr=20 Text="BUG, REPORT ME! engel_sub node20 -- 2nd LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"How about... Plasma transistors? Trivial.")
@@ -93,7 +93,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30 Text="3rd LESSON"
+Nr=30 Text="BUG, REPORT ME! engel_sub node30 -- 3rd LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Hmmm... Ah, gut. Superconductors.")
@@ -104,7 +104,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40 Text="4th LESSON"
+Nr=40 Text="BUG, REPORT ME! engel_sub node40 -- 4th LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"I will tell you everything about matter-antimatter converters.")
@@ -116,7 +116,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=50 Text="5th LESSON"
+Nr=50 Text="BUG, REPORT ME! engel_sub node50 -- 5th LESSON"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"I will teach you about tachyon converters.")
@@ -128,7 +128,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=70 Text="NO MORE LESSONS"
+Nr=70 Text="BUG, REPORT ME! engel_sub node70 -- NO MORE LESSONS"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?") -- nein = no , ja = yes, in this case it can be understood as "did you understand?"

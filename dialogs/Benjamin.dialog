@@ -277,7 +277,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40 Text="I will make it worth your while..."
+Nr=40 Text=_"I will make it worth your while..."
 LuaCode={
 	npc_says(_"Intriguing.")
 	npc_says(_"Fifty circuits per bit of information.", "NO_WAIT")
