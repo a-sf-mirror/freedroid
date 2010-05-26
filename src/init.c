@@ -51,7 +51,8 @@ void Get_Bullet_Data(char *DataPointer);
 static struct {
 	double maxspeed_calibrator;
 	double maxenergy_calibrator;
-	float energyloss_calibrator;
+	float healing_hostile_calibrator;
+	float healing_friendly_calibrator;
 	double experience_reward_calibrator;
 	double aggression_distance_calibrator;
 } difficulty_parameters[3];
@@ -495,7 +496,8 @@ static void Get_Difficulty_Parameters(void *DataPointer)
 
 #define MAXSPEED_CALIBRATOR_STRING "Droid maxspeed factor in %s: "
 #define MAXENERGY_CALIBRATOR_STRING "Droid maximum energy factor in %s: "
-#define ENERGYLOSS_CALIBRATOR_STRING "Droid healing speed factor in %s: "
+#define HEALING_HOSTILE_CALIBRATOR_STRING "Hostile healing speed factor in %s: "
+#define HEALING_FRIENDLY_CALIBRATOR_STRING "Friendly healing speed factor in %s: "
 #define EXPERIENCE_REWARD_CALIBRATOR_STRING "Droid experience_reward factor in %s: "
 #define AGGRESSION_DISTANCE_CALIBRATOR_STRING "Droid aggression distance factor in %s: "
 
@@ -510,8 +512,11 @@ static void Get_Difficulty_Parameters(void *DataPointer)
 		sprintf(tmp, MAXENERGY_CALIBRATOR_STRING, diffstr[i]);
 		ReadValueFromString(startptr, tmp, "%lf", &difficulty_parameters[i].maxenergy_calibrator, EndOfDataPointer);
 
-		sprintf(tmp, ENERGYLOSS_CALIBRATOR_STRING, diffstr[i]);
-		ReadValueFromString(startptr, tmp, "%f", &difficulty_parameters[i].energyloss_calibrator, EndOfDataPointer);
+		sprintf(tmp, HEALING_HOSTILE_CALIBRATOR_STRING, diffstr[i]);
+		ReadValueFromString(startptr, tmp, "%f", &difficulty_parameters[i].healing_hostile_calibrator, EndOfDataPointer);
+
+		sprintf(tmp, HEALING_FRIENDLY_CALIBRATOR_STRING, diffstr[i]);
+		ReadValueFromString(startptr, tmp, "%f", &difficulty_parameters[i].healing_friendly_calibrator, EndOfDataPointer);
 
 		sprintf(tmp, EXPERIENCE_REWARD_CALIBRATOR_STRING, diffstr[i]);
 		ReadValueFromString(startptr, tmp, "%lf", &difficulty_parameters[i].experience_reward_calibrator, EndOfDataPointer);
@@ -544,7 +549,7 @@ static void Get_Robot_Data(void *DataPointer)
 #define CLASS_BEGIN_STRING "Class of this droid: "
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
-#define LOSEHEALTH_BEGIN_STRING "Rate of healing: "
+#define BASE_HEALING_BEGIN_STRING "Rate of healing: "
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
 #define DRIVE_BEGIN_STRING "Drive of this droid : "
 #define BRAIN_BEGIN_STRING "Brain of this droid : "
@@ -627,7 +632,8 @@ static void Get_Robot_Data(void *DataPointer)
 		ReadValueFromString(RobotPointer, MAXMANA_BEGIN_STRING, "%f", &Druidmap[RobotIndex].max_temperature, EndOfDataPointer);
 
 		// Now we read in the lose_health rate.
-		ReadValueFromString(RobotPointer, LOSEHEALTH_BEGIN_STRING, "%f", &Druidmap[RobotIndex].lose_health, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, BASE_HEALING_BEGIN_STRING, "%f", &Druidmap[RobotIndex].healing_friendly, EndOfDataPointer);
+		Druidmap[RobotIndex].healing_hostile = Druidmap[RobotIndex].healing_friendly;
 
 		// Now we read in range of vision of this droid
 		ReadValueFromString(RobotPointer, "Aggression distance of this droid=", "%f",
@@ -706,15 +712,13 @@ static void Get_Robot_Data(void *DataPointer)
 			EndOfThisRobot[0] = '*';	// We put back the star at its place
 	}
 
-	DebugPrintf(1, "\n\nThat must have been the last robot.  We're done reading the robot data.");
-	DebugPrintf(1, "\n\nApplying the calibration factors to all droids...");
-
 	for (i = 0; i < Number_Of_Droid_Types; i++) {
 		Druidmap[i].maxspeed *= difficulty_parameters[GameConfig.difficulty_level].maxspeed_calibrator;
 		Druidmap[i].maxenergy *= difficulty_parameters[GameConfig.difficulty_level].maxenergy_calibrator;
 		Druidmap[i].experience_reward *= difficulty_parameters[GameConfig.difficulty_level].experience_reward_calibrator;
 		Druidmap[i].aggression_distance *= difficulty_parameters[GameConfig.difficulty_level].aggression_distance_calibrator;
-		Druidmap[i].lose_health *= difficulty_parameters[GameConfig.difficulty_level].energyloss_calibrator;
+		Druidmap[i].healing_friendly *= difficulty_parameters[GameConfig.difficulty_level].healing_friendly_calibrator;
+		Druidmap[i].healing_hostile *= difficulty_parameters[GameConfig.difficulty_level].healing_hostile_calibrator;
 		Druidmap[i].weapon_item.currently_held_in_hand = FALSE;
 	}
 };				// int Get_Robot_Data ( void )

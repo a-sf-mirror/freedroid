@@ -181,8 +181,13 @@ static void heal_robots_over_time(void)
 
 	enemy *erot;
 	BROWSE_ALIVE_BOTS(erot) {
+		float heal_factor;
+		if (is_friendly(erot->faction, FACTION_SELF))
+			heal_factor = Druidmap[erot->type].healing_friendly;
+		else
+			heal_factor = Druidmap[erot->type].healing_hostile;
 		if (erot->energy < Druidmap[erot->type].maxenergy)
-			erot->energy += floor(Druidmap[erot->type].lose_health * HEAL_INTERVAL);
+			erot->energy += heal_factor * HEAL_INTERVAL;
 		if (erot->energy > Druidmap[erot->type].maxenergy)
 			erot->energy = Druidmap[erot->type].maxenergy;
 	}

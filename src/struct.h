@@ -392,7 +392,8 @@ typedef struct druidspec_s {
 	float maxenergy;	// the maximum energy the batteries can carry 
 	float max_temperature;	// the maximum force this droids mind can carry 
 
-	float lose_health;	// the energy/time the droid gains (heals)
+	float healing_friendly; // the energy/second the droid heals as a friendly towards Tux
+	float healing_hostile;  // the energy/second the droid heals as a hostile towards Tux
 
 	float maxspeed;
 
