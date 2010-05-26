@@ -1867,6 +1867,9 @@ This indicated a corrupted ReturnOfTux.droids file with an error when specifying
 the dialog section name for one special force droid/character.", PLEASE_INFORM, IS_FATAL);
 		}
 
+		if (newen->short_description_text)
+			free(newen->short_description_text);
+
 		newen->short_description_text = ReadAndMallocStringFromData(SearchPointer, "ShortLabel=_\"", "\"");
 		if (strlen(newen->short_description_text) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING) {
 			ErrorMessage(__FUNCTION__, "\
@@ -1974,80 +1977,6 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 		newen->on_death_drop_item_code = -1;
 		newen->dialog_section_name = strdup("StandardBotAfterTakeover");
 		newen->faction = FACTION_BOTS;
-
-		switch (atoi(Druidmap[newen->type].druidname)) {
-		case 123:
-			newen->short_description_text = strdup(_("123 Acolyte"));
-			break;
-		case 139:
-			newen->short_description_text = strdup(_("139 Templar"));
-			break;
-		case 247:
-			newen->short_description_text = strdup(_("247 Banshee"));
-			break;
-		case 249:
-			newen->short_description_text = strdup(_("249 Chicago"));
-			break;
-		case 296:
-			newen->short_description_text = strdup(_("296 Sawmill"));
-			break;
-		case 302:
-			newen->short_description_text = strdup(_("302 Nemesis"));
-			break;
-		case 329:
-			newen->short_description_text = strdup(_("329 Sparkie"));
-			break;
-		case 420:
-			newen->short_description_text = strdup(_("420 Surgeon"));
-			break;
-		case 476:
-			newen->short_description_text = strdup(_("476 Coward"));
-			break;
-		case 493:
-			newen->short_description_text = strdup(_("493 Spinster"));
-			break;
-		case 516:
-			newen->short_description_text = strdup(_("516 Ghoul"));
-			break;
-		case 543:
-			newen->short_description_text = strdup(_("543 Forest Harvester"));
-			break;
-		case 571:
-			newen->short_description_text = strdup(_("571 Apollo"));
-			break;
-		case 598:
-			newen->short_description_text = strdup(_("598 Minister"));
-			break;
-		case 615:
-			newen->short_description_text = strdup(_("615 Firedevil"));
-			break;
-		case 629:
-			newen->short_description_text = strdup(_("629 Spitfire"));
-			break;
-		case 711:
-			newen->short_description_text = strdup(_("711 Grillmeister"));
-			break;
-		case 742:
-			newen->short_description_text = strdup(_("742 Zeus"));
-			break;
-		case 751:
-			newen->short_description_text = strdup(_("751 Soviet"));
-			break;
-		case 821:
-			newen->short_description_text = strdup(_("821 Ufo"));
-			break;
-		case 834:
-			newen->short_description_text = strdup(_("834 Wisp"));
-			break;
-		case 883:
-			newen->short_description_text = strdup(_("883 Dalex"));
-			break;
-		case 999:
-			newen->short_description_text = strdup(_("999 Cerebrum"));
-			break;
-		default:
-			newen->short_description_text = strdup(_("No Description For This One"));
-		};
 
 		enemy_insert_into_lists(newen, TRUE);
 	}			// while (enemy-limit of this level not reached) 
