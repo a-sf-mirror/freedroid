@@ -132,7 +132,7 @@ LuaCode={
 	tux_says(_"./hostname", "NO_WAIT")
 	npc_says(_"Welcome to the hostname menu.", "NO_WAIT")
 	npc_says(_"Version: 0.15.01", "NO_WAIT")
-	npc_says(_"Current botname: \3"..bot_name().."\2", "NO_WAIT")
+	npc_says(_"Current botname: [b]"..bot_name().."[/b]", "NO_WAIT")
 	npc_says(_"Select new name? Y/N", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
 	hide(0,20,21,30,40) show(41,42)
@@ -419,7 +419,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(new_animal,"NO_WAIT")
 	new_name = new_name .." ".. new_animal .." ".. bot_type()
-	npc_says(_"Confirm renaming from \3"..bot_name().._"\2 to \3"..new_name.._"\2? Y/N", "NO_WAIT")
+	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? Y/N", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
 	show(81,82)
 }
@@ -428,9 +428,9 @@ Nr=81 Text=_"Yes"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes","NO_WAIT")
-	display_console_message(_"Renamed \4"..bot_name().._"\5 to \4"..new_name.."\5.")
+	display_console_message(_"Renamed [b]"..bot_name().._"[/b] to [b]"..new_name.."[/b].")
 	set_bot_name(new_name)
-	npc_says(_"This "..bot_type().._" unit is now designated: \3"..bot_name().."\2", "NO_WAIT")
+	npc_says(_"This "..bot_type().._" unit is now designated: [b]"..bot_name().."[/b]", "NO_WAIT")
 	hide(81,82) show(0,20,30,40)
 	cli_says(terminal_sub, "NO_WAIT")
 }

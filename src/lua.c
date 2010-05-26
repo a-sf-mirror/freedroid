@@ -760,10 +760,10 @@ luaL_reg lfuncs[] = {
 	 */
 	{"display_big_message", lua_event_display_big_message}
 	,
-	/* display_console_message(string msg)
+	/* use display_console_message(string msg), supports [b] and [/b]
 	 * Displays a message on the game console.
 	 */
-	{"display_console_message", lua_event_display_console_message}
+	{"event_display_console_message", lua_event_display_console_message}
 	,
 
 	/* enable_trigger(string event_name)
@@ -883,7 +883,8 @@ luaL_reg lfuncs[] = {
 	,
 	{"tux_says", lua_chat_tux_says}
 	,
-	{"npc_says", lua_chat_npc_says}
+	/*use npc_says() rather than chat_npc_says() */
+	{"chat_npc_says", lua_chat_npc_says}
 	,
 	{"cli_says", lua_chat_cli_says}
 	,

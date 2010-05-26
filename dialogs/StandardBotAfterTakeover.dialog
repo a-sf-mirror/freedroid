@@ -36,7 +36,7 @@ EveryTime LuaCode={
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	npc_says(_"Welcome to \3".. bot_name().."\2!")
+	npc_says(_"Welcome to [b]".. bot_name().."[/b]!")
 	show(1,11,12,13,20,99)
 	if (npc_damage_amount() >0) then
 		npc_says(_"This ".. bot_type().." unit needs repair.")

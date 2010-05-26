@@ -34,13 +34,13 @@ EveryTime LuaCode={ show(0, 2, 3, 4, 99) }
 
 Nr=0 Text=_"Who are you?"
 LuaCode={
-	npc_says(_"I am a 614 security bot, once one of the best-selling products of \3Nicholson, Inc.\2.")
+	npc_says(_"I am a 614 security bot, once one of the best-selling products of Nicholson, Inc..")
 	hide(0) show(1, 4)
 }
 ----------------------------------------------------------------------
 Nr=1 Text=_"What can you tell me about the Nicholson company?"
 LuaCode={
-	npc_says(_"\3Nicholson, Inc.\2 produces security bots.")
+	npc_says(_"Nicholson, Inc. produces security bots.")
 	npc_says(_"It was founded by Karl Nicholson, a former Kernel hacker who was not satisfied with the development of the GPL license.")
 	npc_says(_"Nicholson decided to stick to one GPL version because he saw things getting worse.")
 	npc_says(_"Others were warned, but nobody listened to Nicholsons announcements.")
@@ -81,8 +81,8 @@ Nr=5 Text=_"Why are you not hostile, as are all the other bots?"
 LuaCode={
 	npc_says(_"I belong to a an older generation of bots, running a custom-made security guard operating system.")
 	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
-	npc_says(_"Even though discontinued by the \3Nicholson, Inc.\2 long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
-	npc_says(_"Don't forget to buy products from \3Nicholson, Inc.\2. They are the best.")
+	npc_says(_"Even though discontinued by the Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
+	npc_says(_"Don't forget to buy products from Nicholson, Inc.. They are the best.")
 	hide(5)
 }
 ----------------------------------------------------------------------

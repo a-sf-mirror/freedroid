@@ -141,6 +141,27 @@ function end_quest(quest, text)
 	npc_says("")
 end
 
+function npc_says(text)
+	chat_npc_says(apply_bbcode(text,"\3","\2"))
+end
+
+function display_console_message(text)
+	event_display_console_message(apply_bbcode(text,"\4","\5"))
+end
+
+-- Magic font-numbers table:
+-- number  font face         default
+-- '\1'    medium orange    tux_says()
+-- '\2'    medium yellow    npc_says()
+-- '\3'    medium blue      cli_cays()
+-- '\4'    small blue
+-- '\5'    small yellow   display_console_message()
+function apply_bbcode(text,magic_num_b,magic_num_nrm)
+	text = string.gsub(text,  '%[b%]', magic_num_b)
+	text = string.gsub(text, '%[/b%]', magic_num_nrm)
+	return text
+end
+
 function npc_says_random(...)
 	if (arg[#arg] == "NO_WAIT") then
 		npc_says(arg[math.random(#arg-1)],"NO_WAIT")

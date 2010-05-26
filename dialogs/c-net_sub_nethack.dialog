@@ -57,7 +57,7 @@ LuaCode={
 	n_god = "" --your goddess
 	n_emgod = "" --your enemy god
 
-	npc_says(_"Shall I pick a character's race, role, gender and alignment for you? \3[y/n]\2","NO_WAIT")
+	npc_says(_"Shall I pick a character's race, role, gender and alignment for you? [b][y/n][/b]","NO_WAIT")
 	cli_says("> ","NO_WAIT")
 	n_randomchoice = "no"
 	selection = 0
@@ -300,8 +300,8 @@ LuaCode={
 	if (n_tricks<1) then n_tricks = 1 end
 
 	npc_says(_"Hello, welcome to NetHack! You are a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
-	npc_says(_"Your goddess, \3"..n_god.._"\2 desires the Amulet of Yendor, which the evil god \3"..n_emgod.._"\2 has hidden at the bottom of this dungeon.", "NO_WAIT")
-	npc_says(_"Return with the \3Amulet of Yendor\2, and you shall be rewarded!", "NO_WAIT")
+	npc_says(_"Your goddess, [b]"..n_god.._"[/b] desires the Amulet of Yendor, which the evil god [b]"..n_emgod.._"[/b] has hidden at the bottom of this dungeon.", "NO_WAIT")
+	npc_says(_"Return with the [b]Amulet of Yendor[/b], and you shall be rewarded!", "NO_WAIT")
 	npc_says(_"You are all alone on the surface. There is a stairway down.", "NO_WAIT")
 	show(63)
 	cli_says("> ","NO_WAIT")
@@ -317,7 +317,7 @@ LuaCode={
 	if (n_level == n_yendorlevel) then -- At Yendor level
 		if (yendor == "no") then -- get yendor
 			npc_says(_"The door closes behind you.", "NO_WAIT")
-			npc_says(_"You find the \3Amulet of Yendor\2, and take it and suddenly feel a compulsion to go down, into the depths.", "NO_WAIT")
+			npc_says(_"You find the [b]Amulet of Yendor[/b], and take it and suddenly feel a compulsion to go down, into the depths.", "NO_WAIT")
 			npc_says(n_god.._" awaits you at the surface", "NO_WAIT")
 			yendor = "yes"
 			npc_says(_"There is only an exit into the depths.", "NO_WAIT")
@@ -336,7 +336,7 @@ LuaCode={
 			hide(62)
 			next(63)
 		else -- have Amulet of Yendor -- WIN!
-			npc_says(_"You present the \3Amulet of Yendor\2 to \3"..n_god.._"\2 and you are rewarded with everlasting life.", "NO_WAIT")
+			npc_says(_"You present the [b]Amulet of Yendor[/b] to [b]"..n_god.._"[/b] and you are rewarded with everlasting life.", "NO_WAIT")
 			npc_says(_"You win!", "NO_WAIT")
 			display_console_message(_"You ascended a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role .._" in Nethack!")
 			--improve_program("Nethack")
@@ -344,7 +344,7 @@ LuaCode={
 			next(70)
 		end
 	else
-		npc_says(_"You are on level \3"..n_level.."\2:", "NO_WAIT")
+		npc_says(_"You are on level [b]"..n_level.."[/b]:", "NO_WAIT")
 		--Describe the level
 		npc_says_random(_"You find yourself in a series of passages all alike.",_"You find yourself in an underground office building.",_"You find yourself in a labyrinth, with 1980's music playing mysteriously.",_"You find yourself inside a Cretaceous limestone cave.",_"You find yourself in an abandoned coal mine.",_"You find yourself in a flooded room.","You find yourself in a room filled with huge, transparent, hexagonal dipyramidal crystals.",_"You find yourself in a passage filled with bones from the ancient past.",_"You find yourself in a room filled with fresh bones.",_"You find yourself in a room filled with rotting corpses.",_"You find yourself in a goblin village.",_"You find yourself in an abandoned gold mine.",_"You find yourself. You are in a yoga room.",_"You lose yourself in a misty passageway.",_"You find yourself in a room filled with blinking lights.",_"You find youself in a lava tube.",_"You find yourself lost in darkness.", "NO_WAIT")
 
@@ -397,9 +397,9 @@ LuaCode={
 			n_emhp = 1 + math.random(20)
 			n_emiq = 1 + math.random(20)
 		end
-		npc_says_random(_"A wild \3"..n_emname.._"\2 appears!",_"You notice a \3"..n_emname.._"\2 in front of you.",_"You turn around and see a \3"..n_emname.._"\2 right behind you!",_"A \3"..n_emname.._"\2 jumps out in front of you!",_"You sneek up upon a \3"..n_emname.."\2.","NO_WAIT")
+		npc_says_random(_"A wild [b]"..n_emname.._"[/b] appears!",_"You notice a [b]"..n_emname.._"[/b] in front of you.",_"You turn around and see a [b]"..n_emname.._"[/b] right behind you!",_"A [b]"..n_emname.._"[/b] jumps out in front of you!",_"You sneek up upon a [b]"..n_emname.."[/b].","NO_WAIT")
 
-		npc_says(_"Your stats are: \3".. n_ac .._"\2 attack/armor, \3".. n_tricks .._"\2 tricks, and \3"..n_hp.._"\2 health.","NO_WAIT")
+		npc_says(_"Your stats are: [b]".. n_ac .._"[/b] attack/armor, [b]".. n_tricks .._"[/b] tricks, and [b]"..n_hp.._"[/b] health.","NO_WAIT")
 		show(50,51,53,54)
 		if ( (n_tricks>0) or (n_sex == _"female") ) then show(52) end
 		cli_says("> ","NO_WAIT")
@@ -482,19 +482,19 @@ LuaCode={
 		npc_says(_"Your goddess ".. n_god.._" comes to your aid and gives you strength.","NO_WAIT")
 		n_ac = n_ac + 2
 		n_hp = n_hp + 51
-		npc_says(_"Your stats are: \3".. n_ac .._"\2 attack/armor, \3".. n_tricks .._"\2 tricks, and \3"..n_hp.._"\2 health.","NO_WAIT")
+		npc_says(_"Your stats are: [b]".. n_ac .._"[/b] attack/armor, [b]".. n_tricks .._"[/b] tricks, and [b]"..n_hp.._"[/b] health.","NO_WAIT")
 	elseif ( random_var == 5 ) then --16% chance:
 		npc_says(_"Your goddess ".. n_god.._" comes to your aid and teaches you a new trick.","NO_WAIT")
 		n_ac = n_ac + 2
 		n_tricks = n_tricks + 1
-		npc_says(_"Your stats are: \3".. n_ac .._"\2 attack/armor, \3".. n_tricks .._"\2 tricks, and \3"..n_hp.._"\2 health.","NO_WAIT")
+		npc_says(_"Your stats are: [b]".. n_ac .._"[/b] attack/armor, [b]".. n_tricks .._"[/b] tricks, and [b]"..n_hp.._"[/b] health.","NO_WAIT")
 	elseif (random_var > 2) then -- 54% chance:
 		npc_says_random(_"Your enemy "..n_emgod.._" bestows some burdens upon you.",n_emgod .._" overhears your prayers and curses you.",_"While you were praying a leprechaun stole your sword.",_"While you were praying a hermit crab moved into your helmet. It's his now.","NO_WAIT")
 		n_ac = n_ac - 2
 		n_tricks = n_tricks - 1
 		if (n_ac < 1) then n_ac =0 end
 		if (n_tricks < 1) then n_tricks =0 end
-		npc_says(_"Your stats are: \3".. n_ac .._"\2 attack/armor, \3".. n_tricks .._"\2 tricks, and \3"..n_hp.._"\2 health.","NO_WAIT")
+		npc_says(_"Your stats are: [b]".. n_ac .._"[/b] attack/armor, [b]".. n_tricks .._"[/b] tricks, and [b]"..n_hp.._"[/b] health.","NO_WAIT")
 	else -- 54% chance:
 		npc_says_random(_"Nothing happens.",n_god.._" can't take your prayers right now, please leave a message...",_"Twice nothing happens.",n_god.._" left her cellphone at home today.",_"Something, somewhere else happened.",_"The Random Number God is not swayed by your petty prayers.","NO_WAIT")
 	end 
@@ -515,7 +515,7 @@ LuaCode={
 				if (n_hp < 256) then	n_hp = 256 end
 			end
 			npc_says(_"You feel refreshed.","NO_WAIT")
-			npc_says(_"Your stats are: \3".. n_ac .._"\2 attack/armor, \3".. n_tricks .._"\2 tricks, and \3"..n_hp.._"\2 health.","NO_WAIT")
+			npc_says(_"Your stats are: [b]".. n_ac .._"[/b] attack/armor, [b]".. n_tricks .._"[/b] tricks, and [b]"..n_hp.._"[/b] health.","NO_WAIT")
 			next(61)
 		else
 			next(60)
@@ -594,7 +594,7 @@ LuaCode={
 			npc_says(_"Game over.","NO_WAIT")
 			next(70)
 		else --Yes :-)
-			npc_says(_"Your stats are: \3".. n_ac .._"\2 attack/armor, \3".. n_tricks .._"\2 tricks, and \3"..n_hp.._"\2 health.","NO_WAIT")
+			npc_says(_"Your stats are: [b]".. n_ac .._"[/b] attack/armor, [b]".. n_tricks .._"[/b] tricks, and [b]"..n_hp.._"[/b] health.","NO_WAIT")
 			if (n_emhp < 1) then 
 				next(61)
 			else
@@ -613,7 +613,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(50,51,52,53,54)
 	if ((yendor == "yes") and (math.random(3)>2)) then --have the Amulet of Yendor
-		npc_says(_"You come to the end of level "..n_level.._" and the \3Amulet of Yendor\2 compels you down, deeper into the depths.","NO_WAIT")
+		npc_says(_"You come to the end of level "..n_level.._" and the [b]Amulet of Yendor[/b] compels you down, deeper into the depths.","NO_WAIT")
 		next(63)
 	else --still need the Amulet of Yendor
 		npc_says(_"You come to the end of level "..n_level.._" and see a way up and a way down. Which do you choose?","NO_WAIT")
