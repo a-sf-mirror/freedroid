@@ -540,8 +540,10 @@ void init_obstacle_data(void)
 
 	block_2param(ISO_CAVE_WALL_H, 1.5, 1.0);
 	obstacle_map[ISO_CAVE_WALL_H].filename = "iso_cave_wall_0001.png";
+	obstacle_map[ISO_CAVE_WALL_H].flags |= IS_HORIZONTAL;
 	block_2param(ISO_CAVE_WALL_V, 1.0, 1.5);
 	obstacle_map[ISO_CAVE_WALL_V].filename = "iso_cave_wall_0002.png";
+	obstacle_map[ISO_CAVE_WALL_V].flags |= IS_VERTICAL;
 	block_2param(ISO_CAVE_CORNER_NE, 1.0, 1.0);
 	obstacle_map[ISO_CAVE_CORNER_NE].filename = "iso_cave_wall_0003.png";
 	block_2param(ISO_CAVE_CORNER_SE, 1.0, 1.0);
