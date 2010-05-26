@@ -123,14 +123,18 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"No, thanks, I still remember how to walk, run and pick up things and which way is north."
-LuaCode={ next(9) hide(7) }
+LuaCode={ 
+	hide(7) next(9)
+}
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"Thank you, that was very informative. Can we move on now?"
-LuaCode={ next(9) hide(8) }
+LuaCode={ 
+	hide(8) next(9)
+}
 ----------------------------------------------------------------------
 
-Nr=9 Text="I'm eager to learn more."
+Nr=9 Text=_"I'm eager to learn more."
 LuaCode={
 	npc_says(_"Ok, follow me into the next area then.")
 	change_obstacle_state("TutorialZigzag1", "opened")
@@ -138,8 +142,8 @@ LuaCode={
 	change_obstacle_state("TutorialZigzag3", "opened")
 	change_obstacle_state("TutorialZigzag4", "opened")
 	change_obstacle_state("TutorialZigzagOut", "opened")
-	hide(1, 2, 3, 4, 5) show(10)
 	end_dialog()
+	hide(1, 2, 3, 4, 5) show(10)
 }
 ----------------------------------------------------------------------
 
@@ -243,9 +247,9 @@ LuaCode={
 	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand to hand combat.")
 	if (has_cookie("has_repair")) then
 	else improve_program("Repair equipment") end
-	hide(10, 11, 12, 13, 14, 15, 16, 17, 19) show(20, 29)
 	change_obstacle_state("TutorialEquipOut", "opened")
 	end_dialog()
+	hide(10, 11, 12, 13, 14, 15, 16, 17, 19) show(20, 29)
 }
 ----------------------------------------------------------------------
 
@@ -304,8 +308,8 @@ LuaCode={
 	add_item("Doc-in-a-can", 1)
 	add_item("Doc-in-a-can", 1)
 	add_item("Doc-in-a-can", 1)
-	hide(23) show(24, 25)
 	end_dialog()
+	hide(23) show(24, 25)
 }
 ----------------------------------------------------------------------
 
@@ -367,8 +371,8 @@ LuaCode={
 	add_item("Strength Capsule", 1)
 	add_item("Dexterity Capsule", 1)
 	add_item("Standard Shield", 1)
-	hide(27) show(28)
 	end_dialog()
+	hide(27) show(28)
 }
 ----------------------------------------------------------------------
 
@@ -382,8 +386,8 @@ LuaCode={
 		del_item_backpack("Tachyon Condensator", 1)
 		add_item(".22 Automatic", 1)
 		add_cookie("has_gun")
-		hide(28) show(29)
 		heal_tux()
+		hide(28) show(29)
 	else
 		npc_says(_"You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue.")
 		npc_says(_"I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there.")
@@ -402,8 +406,8 @@ LuaCode={
 	else end
 	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
 	change_obstacle_state("TutorialMeleeOut", "opened")
-	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(30, 39)
 	end_dialog()
+	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(30, 39)
 }
 ----------------------------------------------------------------------
 
@@ -458,7 +462,6 @@ LuaCode={
 	npc_says(_"Practice switching weapons and reloading.")
 	npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
 	npc_says(_"Once you've gotten rid of them all, we can move on.")
-	hide(33) show(37)
 	add_quest("Tutorial Shooting", "Tutorial Tom wants me to shoot those bots.")
 -- TODO we need to talk about questlogs here as well
 -- TODO probably explain leveling as well as balancing changes to XP always risk causing leveling here. Or somehow make sure Tux cant level
@@ -466,6 +469,7 @@ LuaCode={
 	change_obstacle_state("TutorialStorage", "opened")
 	change_obstacle_state("TutorialShootCage", "opened")
 	end_dialog()
+	hide(33) show(37)
 }
 ----------------------------------------------------------------------
 
@@ -478,8 +482,8 @@ LuaCode={
 		npc_says(_"But first, you'll need to give me your weapons.")
 		npc_says(_"Put all your ranged weapons in your inventory, then talk to me and we'll move on.")
 		update_quest("Tutorial Shooting", "That was like shooting fish in a barrel. I could use a fish about now.")
-		hide(37) show(38)
 		end_dialog()
+		hide(37) show(38)
 	else
 		npc_says(_"I don't mind if you don't want to do this, but please don't try to trick me.")
 		npc_says(_"I don't have verified kills on all those bots, so you're not moving on.")
@@ -495,8 +499,8 @@ LuaCode={
 		del_item_backpack(".22 Automatic")
 		del_item_backpack("Laser pistol")
 		del_item_backpack("Plasma pistol")
-		hide(30, 31, 32, 33, 37, 38, 39) show(40)
 		end_dialog()
+		hide(30, 31, 32, 33, 37, 38, 39) show(40)
 	else
 		npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
 		npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
@@ -546,8 +550,8 @@ LuaCode={
 	npc_says(_"Since you'll be hacking up ahead, you should probably use a few of them on CPU.")
 	npc_says(_"But, again, that's your choice.")
 	add_xp("2000")
-	hide(41) show(42)
 	end_dialog()
+	hide(41) show(42)
 }
 ----------------------------------------------------------------------
 
@@ -555,8 +559,8 @@ Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 LuaCode={
 	npc_says(_"I'll unlock the door then. Talk to me in the next area.")
 	change_obstacle_state("TutorialTakeover", "opened")
-	hide(42) show(50, 56)
 	end_dialog()
+	hide(42) show(50, 56)
 }
 ----------------------------------------------------------------------
 
@@ -653,8 +657,8 @@ LuaCode={
 	add_cookie("hacking_bots")
 	add_quest("Tutorial Hacking", "Tutorial Tom wants me to hack those bots.")
 	change_obstacle_state("TutorialTakeoverCage", "opened")
-	hide(55) show(56)
 	end_dialog()
+	hide(55) show(56)
 -- TODO Also explain improving program revisions
 }
 ----------------------------------------------------------------------
@@ -669,7 +673,6 @@ LuaCode={
 		else
 			npc_says(_"Well done! That concludes our tutorial.")
 			del_cookie("hacking_bots")
-			hide(51, 52, 53, 54, 55)
 			update_quest("Tutorial Hacking", "Well, it took a lot of work, but I showed those bots who's boss.")
 		end
 	else end
@@ -682,8 +685,8 @@ LuaCode={
 		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
 		npc_says(_"You'll need it if our world is to survive.")
 	else end
-	hide(51, 52, 53, 54, 55, 57)
 	end_dialog()
+	hide(51, 52, 53, 54, 55, 57)
 }
 ----------------------------------------------------------------------
 
