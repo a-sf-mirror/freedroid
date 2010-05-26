@@ -4024,8 +4024,7 @@ Item description text=_"Point and click. Point and know anything. Point, and I w
 
 ** Start of new item specification subsection **
 Item name=_"Teleporter homing beacon"
-Item min class for drop=3
-Item max class for drop=9
+Item min class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="tele_beacon"
