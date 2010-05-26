@@ -36,13 +36,13 @@ EveryTime LuaCode={
 	else
 		npc_says(_"Welcome to the Community Network.", "NO_WAIT")
 		cli_says(_"Login : ", "NO_WAIT")
-		if has_cookie("knows_c-net_users") then show(0,1,2,3,99) else show(0,99) end
+		if has_cookie("knows_c-net_users") then show(0, 1, 2, 3, 99) else show(0, 99) end
 	end
-	hide(10,11,12,13,14,15,16,20,21,23,24,30,31,80,81,82,83)
+	hide(10, 11, 12, 13, 14, 15, 16, 20, 21, 23, 24, 30, 31, 80, 81, 82, 83)
 }
 ----------------------------------------------------------------------
 
-Nr=0 Text=_" guest " -- We should hardcode all dialog options to have 1 leading and trailing space when displaying. Makes the highlight prettier
+Nr=0 Text=" guest " -- We should hardcode all dialog options to have 1 leading and trailing space when displaying. Makes the highlight prettier
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	username = get_player_name()
@@ -66,67 +66,67 @@ LuaCode={
 	end
 	npc_says(_"Last login from dev/tty3 on unknown", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(10,20,30,80,99) hide(0,1,2,3)
+	show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 }
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"root"
+Nr=1 Text="root"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"root", "NO_WAIT")
+	tux_says("root", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("******")
 	if (not has_cookie("know_root_password")) then
 		next(9)
 	else
-		username = _"root"
+		username = "root"
 		terminal = username .. "@c-net:~$"
 	 	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
 		cli_says(terminal, "NO_WAIT")
-		show(10,20,30,80,99) hide(0,1,2,3)
+		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
 
 }
 ----------------------------------------------------------------------
 
-Nr=2 Text=_"lily"
+Nr=2 Text="lily"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"lily", "NO_WAIT")
+	tux_says("lily", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("******")
 	if (not has_cookie("know_lily_password")) then
 		next(9)
 	else
-		username = _"lily"
+		username = "lily"
 		terminal = username .. "@c-net:~$"
 		npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
 		cli_says(terminal, "NO_WAIT")
-		show(10,20,30,80,99) hide(0,1,2,3)
+		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
 }
 ----------------------------------------------------------------------
 
-Nr=3 Text=_"cpain"
+Nr=3 Text="cpain"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"cpain", "NO_WAIT")
+	tux_says("cpain", "NO_WAIT")
 	cli_says(_"Password: ", "NO_WAIT")
 	if (not has_cookie("know_sorenson_password")) then
 		tux_says("******")
 		next(9)
 	else
 		tux_says("************************************")
-		username = _"cpain"
+		username = "cpain"
 		terminal = username .. "@c-net:~$"
 		npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
 		cli_says(terminal, "NO_WAIT")
-		show(10,20,30,80,99) hide(0,1,2,3)
+		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
 }
 ----------------------------------------------------------------------
 
-Nr=9 Text="IM A BUG. REPORT ME! NODE 9" 
+Nr=9 Text="BUG, REPORT ME! cnet node9" 
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Login incorrect", "NO_WAIT")
@@ -135,55 +135,55 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10 Text=_"cd info_commands/" -- ../ date finger users whoami 
+Nr=10 Text="cd info_commands/" -- ../ date finger users whoami 
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	terminal = username .. "@c-net:~/info_commands$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(11,12,13,14,15,16) hide(10,20,30,80,99)
+	show(11, 12, 13, 14, 15, 16) hide(10, 20, 30, 80, 99)
 }
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"cd ../"
+Nr=11 Text="cd ../"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(10,20,30,80,99) hide(11,12,13,14,15,16)
+	show(10, 20, 30, 80, 99) hide(11, 12, 13, 14, 15, 16)
 }
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"date"
+Nr=12 Text="date"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 --	npc_says(get_date() ,"NO_WAIT")
-	tux_says(_"date", "NO_WAIT")
+	tux_says("date", "NO_WAIT")
 	npc_says(_"Date unknown","NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
-Nr=13 Text=_"finger"
+Nr=13 Text="finger"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"finger", "NO_WAIT")
+	tux_says("finger", "NO_WAIT")
 	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
-	npc_says(_"Login	Tty	Name", "NO_WAIT")
-	npc_says(_"bossman	tty7	Spencer", "NO_WAIT")
-	npc_says(_"cpain	tty5	Sorenson", "NO_WAIT")
-	npc_says(_"guest	tty3	" .. get_player_name() .. "", "NO_WAIT")
-	npc_says(_"lily	tty2	Lily Stone", "NO_WAIT")
+	npc_says("Login	Tty	Name", "NO_WAIT")
+	npc_says("bossman	tty7	Spencer", "NO_WAIT")
+	npc_says("cpain	tty5	Sorenson", "NO_WAIT")
+	npc_says("guest	tty3	" .. get_player_name() .. "", "NO_WAIT")
+	npc_says("lily	tty2	Lily Stone", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
-Nr=14 Text=_"users"
+Nr=14 Text="users"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"users", "NO_WAIT")
-	npc_says(_"bossman cpain guest lily", "NO_WAIT")
+	tux_says("users", "NO_WAIT")
+	npc_says("bossman cpain guest lily", "NO_WAIT")
 	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
 	cli_says(terminal, "NO_WAIT")
 }
@@ -198,32 +198,32 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16 Text=_"uname"
+Nr=16 Text="uname"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"uname", "NO_WAIT")
-	npc_says(_"Nkernel", "NO_WAIT")
+	tux_says("uname", "NO_WAIT")
+	npc_says("Nkernel", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
 
-Nr=20 Text=_"cd file_commands/" -- ../ ls readdrive ./statistics.pl
+Nr=20 Text="cd file_commands/" -- ../ ls readdrive ./statistics.pl
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	terminal = username .. "@c-net:~/file_commands$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(21,23,24) hide(10,20,30,80,99)
+	show(21, 23, 24) hide(10, 20, 30, 80, 99)
 }
 ----------------------------------------------------------------------
 
-Nr=21 Text=_"cd ../"
+Nr=21 Text="cd ../"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(10,20,30,80,99) hide(21,23,24)
+	show(10, 20, 30, 80, 99) hide(21, 23, 24)
 }
 ----------------------------------------------------------------------
 
@@ -235,7 +235,7 @@ LuaCode={
 	npc_says("mountdisk.sh@", "NO_WAIT")
 	npc_says("statistics.pl*", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(23,24)
+	show(23, 24)
 }
 ----------------------------------------------------------------------
 
@@ -259,29 +259,29 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=30 Text=_"cd documents/"
+Nr=30 Text="cd documents/"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	terminal = username .. "@c-net:~/documents$"
 	tux_says("cd documents/ ", "NO_WAIT")
 	if (username == _"guest") then
-	elseif (username ==_"root") then
+	elseif (username =="root") then
 		show(66)
-	elseif (username ==_"lily") then -- no special files yet
-	elseif (username ==_"cpain") then -- no special files yet
+	elseif (username =="lily") then -- no special files yet
+	elseif (username =="cpain") then -- no special files yet
 	else end
 	cli_says(terminal, "NO_WAIT")
-	show(31) hide(10,20,30,80,99)
+	show(31) hide(10, 20, 30, 80, 99)
 }
 ----------------------------------------------------------------------
 
-Nr=31 Text=_"cd ../"
+Nr=31 Text="cd ../"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(10,20,30,80,99) hide(31)
+	show(10, 20, 30, 80, 99) hide(31)
 }
 ----------------------------------------------------------------------
 
@@ -289,16 +289,15 @@ Nr=66 Text=_"forkBOMB.sh -arm bomb"
 LuaCode={
 	npc_says(_"bomb armed", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(67,68)
+	show(67, 68)
 }
 ----------------------------------------------------------------------
 
 Nr=67 Text=_"forkBOMB.sh -disarm bomb"
 LuaCode={
 	npc_says(_"bomb defused", "NO_WAIT")
-	cli_says(_"root@c-net:~$", "NO_WAIT")
-	hide(67,68)
-	show(66)
+	cli_says("root@c-net:~$", "NO_WAIT")
+	hide(67, 68) show(66)
 }
 ----------------------------------------------------------------------
 
@@ -312,30 +311,30 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=80 Text=_"cd games/"
+Nr=80 Text="cd games/"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(" ", "NO_WAIT")
 	terminal = username .. "@c-net:~/games$"
 	cli_says(terminal, "NO_WAIT")
-	show(81,82,83) hide(10,20,30,80,99)
+	show(81, 82, 83) hide(10, 20, 30, 80, 99)
 }
 ----------------------------------------------------------------------
 
-Nr=81 Text=_"cd ../"
+Nr=81 Text="cd ../"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(10,20,30,80,99) hide(81,82,83)
+	show(10, 20, 30, 80, 99) hide(81, 82, 83)
 }
 ----------------------------------------------------------------------
 
-Nr=82 Text=_"nethack"
+Nr=82 Text="nethack"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"./nethack", "NO_WAIT")
+	tux_says("./nethack", "NO_WAIT")
 	run_subdialog("c-net_sub_nethack.dialog")
 	cli_says(terminal, "NO_WAIT")
 }
@@ -350,7 +349,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99 Text=_"logout"
+Nr=99 Text="logout"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says("logout", "NO_WAIT")
