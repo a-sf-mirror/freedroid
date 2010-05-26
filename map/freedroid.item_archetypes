@@ -100,7 +100,7 @@ Other items can potentially be bigger
  Laserstaff           - 2H - Size 1x3 - str 0 dex40 - Dam:40-60 - Recharge: 0.4  - Dur 1000  -2000 (laser ammo - reload 2 - clip 20)
 -> * Special *
  Nobody's edge
- Laser scalpel
+ Laser Scalpel
 -> * Yet not finished/implemented but with graphics *
  Shock knife
  Electric whip
@@ -1064,7 +1064,7 @@ Item as gun: weapon requires both hands="no"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Laserscalpel"
+Item name=_"Laser Scalpel"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
