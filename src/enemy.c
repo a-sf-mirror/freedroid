@@ -262,7 +262,7 @@ enemy *enemy_new(int type)
 	// Set the default value of the 'global state' attributes
 	this_enemy->faction = FACTION_BOTS;
 	this_enemy->will_rush_tux = FALSE;
-	this_enemy->combat_state = SELECT_NEW_WAYPOINT;
+	this_enemy->combat_state = WAYPOINTLESS_WANDERING;
 	this_enemy->state_timeout = 0.0;
 	this_enemy->CompletelyFixed = 0;
 	this_enemy->has_been_taken_over = FALSE;
@@ -728,13 +728,13 @@ static void set_new_waypointless_walk_target(enemy * ThisRobot, moderately_finep
 		target_candidate.x = ThisRobot->pos.x + (MyRandom(600) - 300) / 100;
 		target_candidate.y = ThisRobot->pos.y + (MyRandom(600) - 300) / 100;
 
-	}
 
-	if (DirectLineColldet(ThisRobot->pos.x, ThisRobot->pos.y,
-			      target_candidate.x, target_candidate.y, ThisRobot->pos.z, &WalkablePassFilter)) {
-		mt->x = target_candidate.x;
-		mt->y = target_candidate.y;
-		success = TRUE;
+		if (DirectLineColldet(ThisRobot->pos.x, ThisRobot->pos.y,
+					target_candidate.x, target_candidate.y, ThisRobot->pos.z, &WalkablePassFilter)) {
+			mt->x = target_candidate.x;
+			mt->y = target_candidate.y;
+			success = TRUE;
+		}
 	}
 
 	if (!success) {
@@ -2735,4 +2735,20 @@ static int is_potential_target(enemy * this_robot, gps * target_pos, float *squa
 
 }				// is_potential_target( enemy* this_robot, gps* target_pos, float* squared_best_dist )
 
+/**
+ * Return the numerical droid type corresponding to a given type name.
+ */
+int get_droid_type(const char *type_name)
+{
+	int i;
+
+	for (i = 0; i < Number_Of_Droid_Types; i++) {
+		if (!strcmp(Druidmap[i].druidname, type_name))
+			return i;
+	}
+
+	ErrorMessage(__FUNCTION__, "Droid type \"%s\" does not exist.", PLEASE_INFORM, IS_WARNING_ONLY, type_name);
+
+	return 0;
+}
 #undef _enemy_c
