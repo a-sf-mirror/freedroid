@@ -39,7 +39,7 @@ EveryTime LuaCode={
 	npc_says(_"Welcome to [b]".. bot_name().."[/b]!")
 	show(1,11,12,13,20,99)
 	if (npc_damage_amount() >0) then
-		npc_says(_"This ".. bot_type().." unit needs repair.")
+		npc_says(_"This ".. bot_type().._" unit needs repair.")
 	end
 	cli_says(terminal, "NO_WAIT")
 }
@@ -75,7 +75,7 @@ LuaCode={
 	tux_says(_"./follow_me.sh", "NO_WAIT")
 	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
-	npc_says(_"Trying to keep up with " .. get_player_name() .. " position.", "NO_WAIT")
+	npc_says(_"Trying to keep up with " .. get_player_name() .._" position.", "NO_WAIT")
 	npc_says(_"Status: Following " .. get_player_name() .. ".", "NO_WAIT")
 	set_bot_state("follow_tux")
 	cli_says(terminal, "NO_WAIT")

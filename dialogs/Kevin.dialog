@@ -32,12 +32,12 @@ EveryTime LuaCode={
 		show(0)
 		add_cookie("met_kevin")
 	else 
-		tux_says_random(_"Hello.","Hi there, Kevin.")
-		npc_says_random(_"Well, hello again.","Hello hello.","Welcome back.")
+		tux_says_random(_"Hello.",_"Hi there, Kevin.")
+		npc_says_random(_"Well, hello again.",_"Hello hello.",_"Welcome back.")
 	end
 
 	if ( (has_quest("A strange guy stealing from town")) and (not done_quest("A strange guy stealing from town")) ) then
-		update_quest("A strange guy stealing from town", "Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
+		update_quest("A strange guy stealing from town",_"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
 		end_quest("A strange guy stealing from town")
 		add_xp(100)
 	else end
@@ -47,7 +47,7 @@ EveryTime LuaCode={
 			show(30, 8, 10)
 			if (not has_cookie("did_And there was light...")) then
 				add_cookie("did_And there was light...")
-				update_quest("And there was light...", "Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
+				update_quest("And there was light...",_"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 			else end
 		else show(6, 7) end
 	else end
@@ -78,7 +78,7 @@ LuaCode={
 	npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
 	npc_says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
 	npc_says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
-	update_quest("And there was light...", "The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
+	update_quest("And there was light...",_"The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
 	hide(6, 7)
 }
 ----------------------------------------------------------------------
@@ -116,7 +116,7 @@ LuaCode={
 		npc_says(_"Also, the cluster is inside of the guard citadel. I hear that only members of the Red Guard are allowed to enter the complex.")
 		npc_says(_"But maybe you can arrange that somehow. For me it would be impossible, because of my reputation.")
 		npc_says(_"I'll give you the data cube. Take it to the computer cluster administration people. They will know what to do. And don't mention me there.")
-		add_quest("A kingdom for a cluster!", "Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
+		add_quest("A kingdom for a cluster!",_"Kevin gave me a cube full of some kind of data. I am supposed to take it to a computer cluster for analysis. Ought to be simple.")
 		add_item("Kevin's Data Cube",1)
 	end
 	hide(9)
@@ -126,7 +126,7 @@ LuaCode={
 Nr=10 Text=_"How about some reward for securing your energy supply area?"
 LuaCode={
 	if (has_cookie("kevin_reward1_given")) then
-		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.", "I am not as confused as you think. Go away now.")
+		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.",_"I am not as confused as you think. Go away now.")
 	else
 		npc_says(_"What do you want?")
 		show(11, 12, 13)
@@ -198,7 +198,7 @@ LuaCode={
 			npc_says(_"They are trying to 'maintain' machines by rebooting them all the time. This must stop, but I can't leave this place.")
 			npc_says(_"I must balance the remaining power in such a way that my project can continue uninterrupted.")
 			npc_says(_"Now, if you go down there and make the power flow stable, then I'll find the time to teach you something.")
-			add_quest("And there was light...", "Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
+			add_quest("And there was light...",_"Kevin has a problem with his energy supply. His bots keep rebooting the system, and he cannot conduct any experiments with an unstable power supply. My job is to stabilize the power. I think that implies removing the stupid bots.")
 			show(6, 7)
 		else
 			npc_says(_"As I've told you, I cannot teach you anything right now. I don't have the time.")
@@ -225,7 +225,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31 Text="Improve Hacking Program (cost 300 circuits, 2 training points)"
+Nr=31 Text=_"Improve Hacking Program (cost 300 circuits, 2 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.")
@@ -239,7 +239,7 @@ LuaCode={
 	end
 }
 ----------------------------------------------------------------------
-Nr=32 Text="Improve Hacking Program (cost 300 circuits, 4 training points)"
+Nr=32 Text=_"Improve Hacking Program (cost 300 circuits, 4 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.") -- FIXME
@@ -252,7 +252,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=33 Text="Improve Hacking Program (cost 300 circuits, 6 training points)"
+Nr=33 Text=_"Improve Hacking Program (cost 300 circuits, 6 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.") -- FIXME
@@ -265,7 +265,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=34 Text="Improve Hacking Program (cost 300 circuits, 8 training points)"
+Nr=34 Text=_"Improve Hacking Program (cost 300 circuits, 8 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.") -- FIXME
@@ -278,7 +278,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=35 Text="Improve Hacking Program (cost 300 circuits, 10 training points)"
+Nr=35 Text=_"Improve Hacking Program (cost 300 circuits, 10 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.") -- FIXME
@@ -291,7 +291,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=36 Text="Improve Hacking Program (cost 300 circuits, 12 training points)"
+Nr=36 Text=_"Improve Hacking Program (cost 300 circuits, 12 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.") -- FIXME
@@ -304,7 +304,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=37 Text="Improve Hacking Program (cost 300 circuits, 14 training points)"
+Nr=37 Text=_"Improve Hacking Program (cost 300 circuits, 14 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.") -- FIXME
@@ -317,7 +317,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=38 Text="Improve Hacking Program (cost 300 circuits, 16 training points)"
+Nr=38 Text=_"Improve Hacking Program (cost 300 circuits, 16 training points)"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes, please teach me.") -- FIXME
@@ -330,41 +330,41 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=40 Text="BUG, REPORT ME! node40"
+Nr=40 Text="BUG, REPORT ME! kevin node40"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says_random(_
-		"Hold on, I don't seem to have that much money right now.",
-		"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
-	npc_says_random(_
-		"Ok, come back when you can afford to pay me if you are interested.",
-		"Please don't bother me if you can't pay me.",
-		"You don't have enough money! I cannot afford to just give away training for free.",
-		"Come back when you have enough circuits.",
-		"So come back when you have some valuables.")
+	tux_says_random(
+		_"Hold on, I don't seem to have that much money right now.",
+		_"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
+	npc_says_random(
+		_"Ok, come back when you can afford to pay me if you are interested.",
+		_"Please don't bother me if you can't pay me.",
+		_"You don't have enough money! I cannot afford to just give away training for free.",
+		_"Come back when you have enough circuits.",
+		_"So come back when you have some valuables.")
 }
 ----------------------------------------------------------------------
 
-Nr=41 Text="BUG, REPORT ME! node41"
+Nr=41 Text="BUG, REPORT ME! kevin node41"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Sorry, my memory databank is filled to the brim right now. Can't learn more until I get some more experience.")
-	npc_says_random(_
-		"You Linarians are funny creatures. Come back later when you feel ready if you please.",
-		"I cannot teach you when you have no training points. Come back when you are more prepared.",
-		"You are not ready. Go kill some bots and come back.",
-		"Come back when you are mentally ready to learn.",
-		"Come back after some more practice in the field.",
-		"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
-		"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
-		"Then come back when you have a real will to learn.",
-		"You don't have enough experience. Come here after you see some more action.") 
+	npc_says_random(
+		_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
+		_"I cannot teach you when you have no training points. Come back when you are more prepared.",
+		_"You are not ready. Go kill some bots and come back.",
+		_"Come back when you are mentally ready to learn.",
+		_"Come back after some more practice in the field.",
+		_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
+		_"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
+		_"Then come back when you have a real will to learn.",
+		_"You don't have enough experience. Come here after you see some more action.") 
 }
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be off then."
 LuaCode={ 
-	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.", "If you need to contact me, my number is 127.0.0.1", "Keep your system up to date, Linarian.")
+	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",_"If you need to contact me, my number is 127.0.0.1",_"Keep your system up to date, Linarian.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

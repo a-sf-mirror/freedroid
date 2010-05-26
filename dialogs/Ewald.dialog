@@ -256,28 +256,28 @@ LuaCode={
 	hide(30,31,32,33,34,35)
 }
 -----------------------------------------------------------------------
-Nr=36 Text="Initial roll"
+Nr=36 Text="BUG, REPORT ME! ewald node36 -- Name Game"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Name your game.")
 	show(37,38)
 }
 -----------------------------------------------------------------------
-Nr=37 Text="Dice"
+Nr=37 Text=_"Dice"
 LuaCode={
 	hide(37,38)
 	next(39)
 }
 	
 -----------------------------------------------------------------------
-Nr=38 Text="Coin-flipping"
+Nr=38 Text=_"Coin-flipping"
 LuaCode={
 	hide(37,38)
 	next(50)
 }
 
 -----------------------------------------------------------------------
-Nr=39 Text="Initial roll"
+Nr=39 Text="BUG, REPORT ME! ewald node39 -- Dice - Initial roll"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Dice it is. Roll your first die.")
@@ -304,11 +304,11 @@ LuaCode={
 	next(43)
 }
 -----------------------------------------------------------------------
-Nr=43 Text="Finish Game" -- finish game here
+Nr=43 Text="BUG, REPORT ME! ewald node43 -- Dice - finish game" -- finish game here
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(40,41,42)
-	npc_says(_"You've bet ".. bet .." valuable circuits.")
+	npc_says(_"You've bet ".. bet .._" valuable circuits.")
 	ewd1=math.random(1,6)
 	npc_says(_"My first roll is a ".. ewd1 ..".")
 	tux2=math.random(1,6)
@@ -320,7 +320,7 @@ LuaCode={
 	ewd3=math.random(1,6)
 	npc_says(_"My third roll is a ".. ewd3 ..".")
 
-	npc_says(_"It looks like I scored ".. ewd1+ewd2+ewd3 .." and you scored "..tux1+tux2+tux3..".")
+	npc_says(_"It looks like I scored ".. ewd1+ewd2+ewd3 .._" and you scored "..tux1+tux2+tux3..".")
 
 	if ((ewd1+ewd2+ewd3) < (tux1+tux2+tux3)) then --Tux wins!
 		npc_says_random(_"You won! Good job.","You won! Man you are luckey!","You won!")
@@ -332,17 +332,17 @@ LuaCode={
 			bet=bet*0.8
 		end
 		add_gold(bet)
-		display_console_message("You won ".. math.floor(bet) .." valuable circuits by gambling dice with Ewald.")
+		display_console_message(_"You won ".. math.floor(bet) .._" valuable circuits by gambling dice with Ewald.")
 	else -- House Wins!
-		npc_says_random(_"You lost. Bad luck.","You lost. Better luck next time.","You lost, try again?", "You lost. Maybe you might like coin-flipping better?")
+		npc_says_random(_"You lost. Bad luck.",_"You lost. Better luck next time.",_"You lost, try again?",_"You lost. Maybe you might like coin-flipping better?")
 		del_gold(bet)
-		display_console_message("You lost ".. bet .." valuable circuits by gambling dice with Ewald.")
+		display_console_message(_"You lost ".. bet .._" valuable circuits by gambling dice with Ewald.")
 	end
 	show(30)
 }
 
 -----------------------------------------------------------------------
-Nr=50 Text="Coin-flipping Game"
+Nr=50 Text="BUG, REPORT ME! ewald node50 -- Coin-flipping game"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Coin flipping it is.")
@@ -350,23 +350,23 @@ LuaCode={
 	show(51,52)
 }
 -----------------------------------------------------------------------
-Nr=51 Text="Heads"
+Nr=51 Text=_"Heads"
 LuaCode={
 	hide(51,52)
-	npc_says_random(_"Heads, eh? I always like heads.","Heads? Sometimes I pick heads... when I don't pick tails.","When I think too much about it, I end up picking heads.","Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.","I think I would have picked tails this time.")
+	npc_says_random(_"Heads, eh? I always like heads.",_"Heads? Sometimes I pick heads... when I don't pick tails.",_"When I think too much about it, I end up picking heads.",_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.",_"I think I would have picked tails this time.")
 	tux1 = 0
 	next(53)
 }
 -----------------------------------------------------------------------
-Nr=52 Text="Tails"
+Nr=52 Text=_"Tails"
 LuaCode={
 	hide(51,52)
-	npc_says_random(_"Tails? Fits, since you've got one.","Tails? I always liked that game... good times.","Tails. When I don't pick heads, I always pick tails.","Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.","I think I would have picked heads this time.")
+	npc_says_random(_"Tails? Fits, since you've got one.",_"Tails? I always liked that game... good times.",_"Tails. When I don't pick heads, I always pick tails.",_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.",_"I think I would have picked heads this time.")
 	tux1 = 1
 	next(53)
 }
 -----------------------------------------------------------------------
-Nr=53 Text="Coin-flipping Game - first flip"
+Nr=53 Text="BUG, REPORT ME! ewald node53 -- Coin-flipping game - first flip"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Here goes nothing.")
@@ -384,7 +384,7 @@ LuaCode={
 	show(54,55)
 }
 -----------------------------------------------------------------------
-Nr=54 Text="Even number"
+Nr=54 Text=_"Even number"
 LuaCode={
 	tux2 = 0 -- Set to 'even'
 	hide(54,55)
@@ -407,7 +407,7 @@ LuaCode={
 	next(56)
 }
 -----------------------------------------------------------------------
-Nr=55 Text="Odd number"
+Nr=55 Text=_"Odd number"
 LuaCode={
 	tux2 = 1 -- Set to 'odd'
 	hide(54,55)
@@ -430,7 +430,7 @@ LuaCode={
 	next(56)
 }
 -----------------------------------------------------------------------
-Nr=56 Text="Coin-flipping Game - last four flips"
+Nr=56 Text="BUG, REPORT ME! ewald node56 -- Coin-flipping game - last four flips"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"The last four coin flips:")
@@ -460,7 +460,7 @@ LuaCode={
 		npc_says(_"Heads.")
 	end
 	ewald_sum = ewd1 + ewd2 + ewd3 + ewd4 + ewd5
-	npc_says(_"Looks like that is ".. ewald_sum .." tails, and ".. 5-ewald_sum.." heads.")
+	npc_says(_"Looks like that is ".. ewald_sum .._" tails, and ".. 5-ewald_sum.._" heads.")
 
 	win=0 --find if tux won...
 	if (ewald_sum > 2) then
@@ -492,18 +492,18 @@ LuaCode={
 
 
 	if (win == 1) then -- WIN
-		npc_says_random(_"Looks like another winning combination! Good job!","You have the best luck! You won!","Too many of these and I'll go out of business. You won!","You will have to tell me how you did it. You Won!","Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
+		npc_says_random(_"Looks like another winning combination! Good job!",_"You have the best luck! You won!",_"Too many of these and I'll go out of business. You won!",_"You will have to tell me how you did it. You Won!",_"Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
 		if (difficulty() == "easy") then bet = bet*3
 		else bet = bet*2
 		end
 		add_gold(bet)
-		display_console_message("You won ".. bet .." valuable circuits in the coin-flip game with Ewald.")
+		display_console_message(_"You won ".. bet .._" valuable circuits in the coin-flip game with Ewald.")
 	elseif (win == 0) then --LOSS
 		if (difficulty() == "easy") then--easy: 0% back
-			npc_says_random(_"Looks like you got everything wrong.","Well, close, but exactly wrong.","Close, but no cigar.","Close only counts in handgrenades and horseshoes.")
+			npc_says_random(_"Looks like you got everything wrong.",_"Well, close, but exactly wrong.",_"Close, but no cigar.",_"Close only counts in handgrenades and horseshoes.")
 			del_gold(bet)
 		else
-			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.","Well, close, but exactly wrong. Here is some of your bet back.","You need to do exactly opposite of what you did here. Here is part of your bet back.","Close, but no cigar. Here is some of your money back.","Next time pick the opposite of what you did this time... or something.")
+			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.",_"Well, close, but exactly wrong. Here is some of your bet back.",_"You need to do exactly opposite of what you did here. Here is part of your bet back.",_"Close, but no cigar. Here is some of your money back.",_"Next time pick the opposite of what you did this time... or something.")
 			if (difficulty() == "normal") then --normal: 75% back
 				bet = bet*0.25
 			else --hard: 50% back
@@ -511,11 +511,11 @@ LuaCode={
 			end
 			del_gold(bet)
 		end
-		display_console_message("You lost ".. math.floor(bet) .." valuable circuits in the coin-flip game with Ewald.")
+		display_console_message(_"You lost ".. math.floor(bet) .._" valuable circuits in the coin-flip game with Ewald.")
 	elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
-		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.","You lost. You were all messed up. Better luck next time.","You lost. Maybe you sould try something else for a while?","You lost.","You lost. You might try the dice game next time.")
+		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.",_"You lost. You were all messed up. Better luck next time.",_"You lost. Maybe you sould try something else for a while?",_"You lost.",_"You lost. You might try the dice game next time.")
 		del_gold(bet)
-		display_console_message("You lost ".. bet .." valuable circuits in the coin-flip game with Ewald.")
+		display_console_message(_"You lost ".. bet .._" valuable circuits in the coin-flip game with Ewald.")
 	else -- ERROR:
 		npc_says(_"THIS IS AN ERROR! REPORT IT PLEASE! E-MAIL: freedroid-discussion@lists.sourceforge.net")
 	end
@@ -527,7 +527,7 @@ LuaCode={
 Nr=99 Text=_"See you later."
 LuaCode={
 	hide(32,33,34,35,36,37,38,39,40,41,42,50,51,52,53,54,55,56) --end any partial gambling
-	npc_says_random(_"Goodbye and remember: My bar is always open.","Come back soon!","You are welcome to unwind with old Ewald any time. Come back soon.","Remember, you can always come back here to relax and kick back.")
+	npc_says_random(_"Goodbye and remember: My bar is always open.",_"Come back soon!",_"You are welcome to unwind with old Ewald any time. Come back soon.",_"Remember, you can always come back here to relax and kick back.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

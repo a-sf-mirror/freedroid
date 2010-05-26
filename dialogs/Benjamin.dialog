@@ -32,8 +32,8 @@ EveryTime LuaCode={
 		show(0)
 		add_cookie("met_benjamin")
 	else
-		tux_says_random(_"Hello.","Greetings master Benjamin.")
-		npc_says_random(_"Well, hello again.","Hello hello.","Welcome back.")
+		tux_says_random(_"Hello.",_"Greetings master Benjamin.")
+		npc_says_random(_"Well, hello again.",_"Hello hello.",_"Welcome back.")
 	end
 	show(99)
 }
@@ -211,29 +211,29 @@ LuaCode={
 Nr=27 Text="BUG, REPORT ME! node27"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	npc_says_random(_
-		"You need more gold.",
-		"Please don't bother me if you can't pay me.",
-		"Please defray the costs of the ammo used in training.",
-		"I repeat, you need to bring enough to pay for the practice targets you destroy and for my time.",
-		"You don't have enough money! I cannot afford to just give away training for free.",
-		"Come back when you have enough circuits.",
-		"So come back when you have some valuables.")
+	npc_says_random(
+		_"You need more gold.",
+		_"Please don't bother me if you can't pay me.",
+		_"Please defray the costs of the ammo used in training.",
+		_"I repeat, you need to bring enough to pay for the practice targets you destroy and for my time.",
+		_"You don't have enough money! I cannot afford to just give away training for free.",
+		_"Come back when you have enough circuits.",
+		_"So come back when you have some valuables.")
 }
 ----------------------------------------------------------------------
 
 Nr=28 Text="BUG, REPORT ME! node28"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	npc_says_random(_
-		"You are not ready. Go kill some bots and come back.",
-		"Come back when you are mentally ready to learn.",
-		"Come back after some more practice in the field.",
-		"Only a well prepared mind is open to the ultimate in ranged combat secrets.",
-		"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
-		"But I don't think you have enough experience for this. Come back here after you see some more action.",
-		"Then come back when you have a real will to learn.",
-		"You don't have enough experience. Come here after you see some more action.") 
+	npc_says_random(
+		_"You are not ready. Go kill some bots and come back.",
+		_"Come back when you are mentally ready to learn.",
+		_"Come back after some more practice in the field.",
+		_"Only a well prepared mind is open to the ultimate in ranged combat secrets.",
+		_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
+		_"But I don't think you have enough experience for this. Come back here after you see some more action.",
+		_"Then come back when you have a real will to learn.",
+		_"You don't have enough experience. Come here after you see some more action.") 
 }
 ----------------------------------------------------------------------
 

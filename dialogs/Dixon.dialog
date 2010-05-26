@@ -216,7 +216,7 @@ LuaCode={
 	add_cookie("singularity_killed")
 	add_cookie("singularity_dead")
 	change_obstacle_state("NorthernMaintainanceDoor", "opened")
-	update_quest("The yellow toolkit", "The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
+	update_quest("The yellow toolkit",_"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
 	hide(28, 29, 30)
 }
 ----------------------------------------------------------------------
@@ -227,7 +227,7 @@ LuaCode={
 	npc_says(_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter.")
 	npc_says(_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore.")
 	add_cookie("singularity_killed")
-	update_quest("The yellow toolkit", "The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
+	update_quest("The yellow toolkit",_"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
 	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	hide(28, 29, 30)
 }
@@ -241,7 +241,7 @@ LuaCode={
 	npc_says(_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots.")
 	add_cookie("singularity_saved")
 	end_quest("The yellow toolkit")
-	update_quest("The yellow toolkit", "I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
+	update_quest("The yellow toolkit",_"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
 	hide(28, 29, 30)
 }	
 ----------------------------------------------------------------------
@@ -263,7 +263,7 @@ LuaCode={
 	npc_says(_"I am sorry, but I must go now. My duties call.")
 	add_gold(150)
 	end_quest("The yellow toolkit")
-	update_quest("The yellow toolkit", "Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters.")
+	update_quest("The yellow toolkit",_"Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters.")
 	del_item_backpack("Dixon's Toolbox", 1)
 	hide(34, 35, 36)
 }
@@ -279,7 +279,7 @@ LuaCode={
 	end_quest("The yellow toolkit")
 	add_cookie("singularity_dead")
 	del_item_backpack("Dixon's Toolbox", 1)
-	update_quest("The yellow toolkit", "I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
+	update_quest("The yellow toolkit",_"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
 	add_item("Dixon's Helmet",1)
 	hide(34, 35, 36)
 }
@@ -311,7 +311,7 @@ LuaCode={
 	add_gold(250)
 	add_cookie("dixon_angry_250")
 	end_quest("The yellow toolkit")
-	update_quest("The yellow toolkit", "I sold the toolkit to Dixon for a nice sum of money. Life is good.")
+	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
 	del_item_backpack("Dixon's Toolbox", 1)
 	hide(38, 41)
 }
@@ -325,7 +325,7 @@ LuaCode={
 	add_gold(350)
 	add_cookie("dixon_angry_350")
 	end_quest("The yellow toolkit")
-	update_quest("The yellow toolkit", "I sold the toolkit to Dixon for a huge sum of money. Life is great.")
+	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
 	del_item_backpack("Dixon's Toolbox", 1)
 	hide(39, 42)
 }
@@ -340,7 +340,7 @@ LuaCode={
 	add_gold(400)
 	end_quest("The yellow toolkit")
 	add_cookie("dixon_very_angry")
-	update_quest("The yellow toolkit", "I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
+	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
 	del_item_backpack("Dixon's Toolbox", 1)
 	hide(40)
 }

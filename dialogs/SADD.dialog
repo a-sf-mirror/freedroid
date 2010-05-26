@@ -189,7 +189,7 @@ Nr=23 Text=_"So disable the guns, please."
 LuaCode={
 	npc_says(_"Go, and bring dilithium. I badly need it.")
 	end_dialog()
-	add_quest("SADD's power supply", "I am supposed to get some dilithium crystals for that SADD.")
+	add_quest("SADD's power supply",_"I am supposed to get some dilithium crystals for that SADD.")
 	change_obstacle_state("SADDGun1", "disabled")
 	change_obstacle_state("SADDGun2", "disabled")
 	change_obstacle_state("BreakableWall1", "broken")
@@ -200,7 +200,7 @@ Nr=30 Text=_"I have the crystals! They were difficult to find."
 LuaCode={
 	npc_says(_"Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!")
 	end_dialog()
-	display_big_message("Restored SADD's power supply")
+	display_big_message(_"Restored SADD's power supply")
 	add_xp(1000)
 	end_quest("SADD's power supply")
 	del_item_backpack("Red Dilithium Crystal", 1)
@@ -222,7 +222,7 @@ Nr=33 Text=_"I have the crystals! They were difficult to find."
 LuaCode={
 	npc_says(_"Great! Thanks. I've opened some doors for you. I hope you will find something interesting there. That's all I can do for you.")
 	end_dialog()
-	display_big_message("Restored SADD's power supply")
+	display_big_message(_"Restored SADD's power supply")
 	add_xp(1500)
 	end_quest("SADD's power supply")
 	change_obstacle_state("SADDDepotDoor", "opened")
@@ -281,7 +281,7 @@ Nr=97 Text=_"Erm... hi!"
 LuaCode={
 	npc_says(_"Hi. Thanks for the help.")
 	tux_says(_"Will you let me inside the base?")
-	npc_says(_"I'm sorry" .. get_player_name() .. ", I'm afraid I can't do that.")
+	npc_says(_"I'm sorry" .. get_player_name() .._", I'm afraid I can't do that.")
 	npc_says(_"Nice try, though. I may owe you, but I can't let you in. You must leave.")
 	end_dialog()
 	show(99)

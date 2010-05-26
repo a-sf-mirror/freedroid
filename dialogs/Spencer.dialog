@@ -96,7 +96,7 @@ LuaCode={
 	npc_says(_"I've unlocked the access-way to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast.")
 	npc_says(_"The stuff we need is on the first floor. Don't go any deeper, there are only bots in there.", "NO_WAIT")
 	npc_says(_"I wish you the best of luck.")
-	add_quest("Opening a can of bots...", "I am supposed to clean out the first level of some warehouse. Sounds easy. It lies nearby, somewhat hidden in the woods north-east of town.")
+	add_quest("Opening a can of bots...",_"I am supposed to clean out the first level of some warehouse. Sounds easy. It lies nearby, somewhat hidden in the woods north-east of town.")
 	change_obstacle_state("AccessDoorToWarehouse", "opened")
 	hide(6)
 }
@@ -115,7 +115,7 @@ LuaCode={
 				npc_says(_"Our people are transporting the goods as we speak. It can't be too long until new bots from ships in the orbit of the planet will beam down to replace the dead bots.")
 				add_gold(500)
 				add_cookie("reward_for_warehouse_given")
-				update_quest("Opening a can of bots...", "Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*.")
+				update_quest("Opening a can of bots...",_"Ouch. It wasn't. At least I am alive, and the warehouse is clear. *Whew*.")
 			end
 		else
 			npc_says(_"Not too good. Without the supplies from the warehouse we are doomed. So my problems are still the same.")
@@ -192,7 +192,7 @@ LuaCode={
 		npc_says(_"But now that you are in the Guard, know this: There is only one rule for us guards: We stick together. We survive together or we die together. But we do it together.")
 		npc_says(_"And now you might want to inspect the guard house. Tell Tybalt to open the door for you. Lukas at the arms counter will give you your armor.")
 		npc_says(_"I hope you will prove yourself a worthy member of the Red Guard.")
-		display_big_message("Joined Town Guard!!")
+		display_big_message(_"Joined Town Guard!!")
 		add_cookie("tux_has_joined_guard")
 		change_obstacle_state("Main Gate Guardhouse", "opened")
 		hide(3, 12)
@@ -232,7 +232,7 @@ LuaCode={
 	npc_says(_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore.")
 	npc_says(_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance.")
 	npc_says(_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield.")
-	add_quest("Opening access to MS Office", "Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility near the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
+	add_quest("Opening access to MS Office",_"Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility near the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
 	change_obstacle_state("DisruptorShieldBaseGate", "opened")
 	hide(39, 40)
 }
@@ -254,7 +254,7 @@ LuaCode={
 	npc_says(_"If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks.")
 	npc_says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
 	npc_says(_"Good luck.")
-	add_quest("Propagating a faulty firmware", "I can now enter the fortress and find the upgrade server bot. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me.")
+	add_quest("Propagating a faulty firmware",_"I can now enter the fortress and find the upgrade server bot. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me.")
 	hide(44) show(45)
 }
 ----------------------------------------------------------------------

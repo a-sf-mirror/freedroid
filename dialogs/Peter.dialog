@@ -36,8 +36,8 @@ EveryTime LuaCode={
 		show(0)
 		add_cookie("met_peter")
 	else
-		tux_says_random(_"Hello.","Hi there.","NO_WAIT")
-		npc_says_random(_"Well, hello again.","Hello hello.","Welcome back.")
+		tux_says_random(_"Hello.",_"Hi there.","NO_WAIT")
+		npc_says_random(_"Well, hello again.",_"Hello hello.",_"Welcome back.")
 	end
 	show(99)
 }

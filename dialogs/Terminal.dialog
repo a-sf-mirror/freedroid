@@ -35,10 +35,10 @@ EveryTime LuaCode={
 	if (not has_cookie("connected_terminal")) then
 		show(0)
 		add_cookie("connected_terminal")
-		cli_says("Welcome to this terminal.")
+		cli_says(_"Welcome to this terminal.")
 	else
-		tux_says_random(_"Hello.","Hi there.","NO_WAIT")
-		npc_says_random(_"Well, hello again.","Hello hello.","Welcome back.")
+		tux_says_random(_"Hello.",_"Hi there.","NO_WAIT")
+		npc_says_random(_"Well, hello again.",_"Hello hello.",_"Welcome back.")
 	end
 	show(99)
 }

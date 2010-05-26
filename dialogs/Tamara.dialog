@@ -134,7 +134,7 @@ LuaCode={
 Nr=99 Text=_"Thank you for the help."
 LuaCode={
 	hide(43,44,45,46)
-	npc_says_random(_"No problem, and remember to return your books in time.","I aim to ensure that the great works of literature will survive this horrible apocalypse.","That is what I'm here for. Come back at any time.")
+	npc_says_random(_"No problem, and remember to return your books in time.",_"I aim to ensure that the great works of literature will survive this horrible apocalypse.",_"That is what I'm here for. Come back at any time.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

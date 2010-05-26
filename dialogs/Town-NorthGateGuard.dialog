@@ -80,18 +80,18 @@ LuaCode={
 	npc_says(_"On the day he visited all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
 	npc_says(_"I think that damn freak lives somewhere to the east. I would love to get my hands on him and beat the life out of him. Slowly.")
 	if (not has_cookie("met_kevin")) then
-		add_quest("A strange guy stealing from town", "The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. I might want to find out who this person is - apparently he lives somewhere to the east. But maybe I should get some experience and better equipment first before traveling far outside of town. With all those lethal bots roaming around I might not get far otherwise.")
+		add_quest("A strange guy stealing from town",_"The guard in charge at the entrance of the town mentioned that somebody sneaked into town recently, and stole food and hardware. I might want to find out who this person is - apparently he lives somewhere to the east. But maybe I should get some experience and better equipment first before traveling far outside of town. With all those lethal bots roaming around I might not get far otherwise.")
 	else
-		add_quest("A strange guy stealing from town", "Ooops, the guard must be talking about Kevin. I'll better not mention I know him and where he lives or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
-		update_quest("A strange guy stealing from town", "Though I probably should ask Kevin some day what he was doing with the town computers.")
+		add_quest("A strange guy stealing from town",_"Ooops, the guard must be talking about Kevin. I'll better not mention I know him and where he lives or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
+		update_quest("A strange guy stealing from town",_"Though I probably should ask Kevin some day what he was doing with the town computers.")
 -- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
 		end_quest("A strange guy stealing from town")
 		add_xp(100)
 	end
 	npc_says(_"In any case...")
-	npc_says_random(_
-		"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
-		"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
+	npc_says_random(
+		_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
+		_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
 	hide(5) show(10,11)
 }
 ----------------------------------------------------------------------
@@ -100,7 +100,7 @@ Nr=10 Text=_"Yes. I understand."
 LuaCode={
 	npc_says(_"State your name Linarian.")
 	tux_says(_"My name is ".. get_player_name() ..".")
-	npc_says(_"You may now enter ".. get_player_name() ..". But we'll be watching you. I'll let the others know you've arrived.")
+	npc_says(_"You may now enter ".. get_player_name() .._". But we'll be watching you. I'll let the others know you've arrived.")
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
 	hide(10, 11) show(99)
@@ -199,8 +199,8 @@ Nr=32 Text=_"That is exactly what I said."
 LuaCode={
 	npc_says(_"You are as out of your mind as that Sorenson lady.")
 	npc_says(_"But I guess she's already here, so it doesn't matter if we have another loon.")
-	tux_says(_"I'm a Linarian, not a loon. ".. get_player_name() .." the Linarian.")
-	npc_says(_"Get out of here ".. get_player_name() ..", the loon, and stop bothering me.")
+	tux_says(_"I'm a Linarian, not a loon. ".. get_player_name() .._" the Linarian.")
+	npc_says(_"Get out of here ".. get_player_name() .._", the loon, and stop bothering me.")
 	add_cookie("town-northgateguard_tux_nickname_loon")
 	change_obstacle_state("Main Gate Outer W", "opened")
 	change_obstacle_state("Main Gate Outer E", "opened")
@@ -215,7 +215,7 @@ LuaCode={
 	npc_says(_"Mhmmm.")
 		
 	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
-		npc_says(_"".. get_player_name() .."... the Loon")
+		npc_says(get_player_name() .._"... the Loon")
 	else end
 	end_dialog()
 }

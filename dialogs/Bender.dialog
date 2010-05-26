@@ -121,7 +121,7 @@ LuaCode={
 	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
 	npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
 	npc_says(_"Just get me a cure, and I'll be forever grateful!")
-	add_quest("Bender's problem", "I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
+	add_quest("Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
 	hide(7, 8) show(11)
 }
 ----------------------------------------------------------------------
@@ -147,7 +147,7 @@ LuaCode={
 	add_xp(150)
 	del_item_backpack("Brain Enlargement Pills Antidote", 1)
 	add_item("Strength Pill",2)
-	update_quest("Bender's problem", "Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
+	update_quest("Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
 	hide(9)
 }
 ----------------------------------------------------------------------
@@ -183,8 +183,8 @@ Nr=13 Text=_"How are you doing?"
 LuaCode={ 
 	npc_says(_"Much better. I'm cured. You're a good guy, man!","NO_WAIT")
 	npc_says(_"What was your name again?")
-	tux_says(_"" .. get_player_name() .. "")
-	npc_says(_"Thanks ".. get_player_name() ..", I owe you one.","NO_WAIT")
+	tux_says(get_player_name())
+	npc_says(_"Thanks ".. get_player_name() .._", I owe you one.","NO_WAIT")
 	npc_says(_"And I'll sure vote for you if you want into the city guard! ")
 }
 ----------------------------------------------------------------------

@@ -46,7 +46,7 @@ EveryTime LuaCode={
 Nr=5 Text=_"With pleasure."
 LuaCode={
 	drop_dead()
-	update_quest("Doing Duncan a favour", "I took revenge for Duncan by killing Koan.")
+	update_quest("Doing Duncan a favour",_"I took revenge for Duncan by killing Koan.")
 	respawn_level(38) -- Changed to 38 (the desert above the bunker) from 18 (Kevin's underground power supply).
 }
 ----------------------------------------------------------------------
@@ -57,7 +57,7 @@ LuaCode={
 	npc_says(_"Feel free to stay here. There is no danger.")
 	npc_says(_"The water is safe to drink and the fruit from the tree is quite delicious.")
 	add_cookie("koan_spared")
-	update_quest("Doing Duncan a favour", "I met and talked to Koan, but didn't kill him.")
+	update_quest("Doing Duncan a favour",_"I met and talked to Koan, but didn't kill him.")
 	hide(5, 6) show(10, 20, 99)
 }
 ----------------------------------------------------------------------

@@ -154,7 +154,7 @@ LuaCode={
 		npc_says(_"You will die if you go there.")
 		npc_says(_"I pity you, silly bird. Don't go there.")
 		npc_says(_"But if you really want it, the door is now open.")
-		add_quest("Time to say goodnight", "I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
+		add_quest("Time to say goodnight",_"I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
 		change_obstacle_state("MasterArenaAccessDoor", "opened")
 	end
 	hide(9)
@@ -168,7 +168,7 @@ LuaCode={
 	npc_says(_"You are not a newbie, but you are COMPLETELY INSANE!")
 	npc_says(_"I pity you, poor fool. You will die young.")
 	add_xp(8000)
-	update_quest("Time to say goodnight", "I survived the master arena. A miracle. Whew.")
+	update_quest("Time to say goodnight",_"I survived the master arena. A miracle. Whew.")
 	hide(10)
 }
 ----------------------------------------------------------------------
@@ -210,7 +210,7 @@ LuaCode={
 	npc_says(_"The bots bleed black.")
 	tux_says(_"You... Have ruined my pacifistic slogan... I am angry... So angry that I want to smash things!")
 	npc_says(_"Great. Get in the door, newbie.")
-	add_quest("Novice Arena", "Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
+	add_quest("Novice Arena",_"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
 	change_obstacle_state("NoviceArenaAccessDoor", "opened")
 	hide(15)
 }
@@ -236,7 +236,7 @@ LuaCode={
 
 Nr=99 Text=_"I'll be going then."
 LuaCode={
-	npc_says_random(_"Sure.","See you around.","Remember: pain is temporary but glory is forever.","Go kill some bots.")
+	npc_says_random(_"Sure.",_"See you around.",_"Remember: pain is temporary but glory is forever.",_"Go kill some bots.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
