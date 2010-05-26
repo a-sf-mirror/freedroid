@@ -188,7 +188,7 @@ LuaCode={
 	end end else 
 	npc_says(_"You should come back when you have more to gamble with.")
 	end
-	show(31, 32) hide(30)
+	hide(30) show(31, 32)
 }
 -----------------------------------------------------------------------
 
@@ -234,25 +234,21 @@ LuaCode={
 Nr=33 Text=_"How about a bet of 10 circuits"
 LuaCode={
 	bet=10
-	next(36)
-	hide(30, 31, 32, 33, 34, 35)
+	hide(30, 31, 32, 33, 34, 35) next(36)
 }
-
 -----------------------------------------------------------------------
 
 Nr=34 Text=_"I'm feeling I'll start with a bet of 100 circuits"
 LuaCode={
 	bet = 100
-	next(36)
-	hide(30, 31, 32, 33, 34, 35)
+	hide(30, 31, 32, 33, 34, 35) next(36)
 }
 -----------------------------------------------------------------------
 
 Nr=35 Text=_"I want to bet 200 circuits"
 LuaCode={
 	bet = 200
-	next(36)
-	hide(30, 31, 32, 33, 34, 35)
+	hide(30, 31, 32, 33, 34, 35) next(36)
 }
 -----------------------------------------------------------------------
 
@@ -266,15 +262,13 @@ LuaCode={
 
 Nr=37 Text=_"Dice"
 LuaCode={
-	next(39)
-	hide(37, 38)
+	hide(37, 38) next(39)
 }	
 -----------------------------------------------------------------------
 
 Nr=38 Text=_"Coin-flipping"
 LuaCode={
-	next(50)
-	hide(37, 38)
+	hide(37, 38) next(50)
 }
 -----------------------------------------------------------------------
 
@@ -359,8 +353,7 @@ Nr=51 Text=_"Heads"
 LuaCode={
 	npc_says_random(_"Heads, eh? I always like heads.",_"Heads? Sometimes I pick heads... when I don't pick tails.",_"When I think too much about it, I end up picking heads.",_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.",_"I think I would have picked tails this time.")
 	tux1 = 0
-	next(53)
-	hide(51, 52)
+	hide(51, 52) next(53)
 }
 -----------------------------------------------------------------------
 
@@ -368,8 +361,7 @@ Nr=52 Text=_"Tails"
 LuaCode={
 	npc_says_random(_"Tails? Fits, since you've got one.",_"Tails? I always liked that game... good times.",_"Tails. When I don't pick heads, I always pick tails.",_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.",_"I think I would have picked heads this time.")
 	tux1 = 1
-	next(53)
-	hide(51, 52)
+	hide(51, 52) next(53)
 }
 -----------------------------------------------------------------------
 
@@ -411,8 +403,7 @@ LuaCode={
 	else
 		npc_says(_"I think I would have picked even this time.")
 	end
-	next(56)
-	hide(54, 55)
+	hide(54, 55) next(56)
 }
 -----------------------------------------------------------------------
 
@@ -435,8 +426,7 @@ LuaCode={
 	else
 		npc_says(_"I think I would have picked odd this time.")
 	end
-	next(56)
-	hide(54, 55)
+	hide(54, 55) next(56)
 }
 -----------------------------------------------------------------------
 
