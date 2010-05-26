@@ -197,10 +197,10 @@ LuaCode={
 	npc_says(_"I hope these books will help you survive in this world.")
 	display_big_message(_"Tania is now free!")
 	add_xp(1500)
-	end_quest("Tania's sanitary")
 	add_item("Source Book of Check system integrity",1)
 	add_item("Source Book of Sanctuary",1)
 	update_quest("Tania's sanitary", "Tania is free now, I got some books as reward.")
+	end_quest("Tania's sanitary")
 	hide(27)
 }
 ----------------------------------------------------------------------

@@ -37,9 +37,9 @@ EveryTime LuaCode={
 	end
 
 	if ( (has_quest("A strange guy stealing from town")) and (not done_quest("A strange guy stealing from town")) ) then
+		add_xp(100)
 		update_quest("A strange guy stealing from town",_"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
 		end_quest("A strange guy stealing from town")
-		add_xp(100)
 	else end
 
 	if (has_quest("And there was light...")) then

@@ -244,10 +244,10 @@ LuaCode={
 Nr=69 Text="DUMMY"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	end_dialog()
-	end_quest("Doing Duncan a favour")
 	add_xp(3000)
 	del_item_backpack("Pandora's Cube", 1)
+	end_quest("Doing Duncan a favour")
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

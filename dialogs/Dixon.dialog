@@ -240,8 +240,8 @@ LuaCode={
 	npc_says(_"After all, it seems like they need them more than I do.", "NO_WAIT")
 	npc_says(_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots.")
 	add_cookie("singularity_saved")
-	end_quest("The yellow toolkit")
 	update_quest("The yellow toolkit",_"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
+	end_quest("The yellow toolkit")
 	hide(28, 29, 30)
 }	
 ----------------------------------------------------------------------
@@ -261,10 +261,10 @@ LuaCode={
 	npc_says(_"Here is some money, you deserve it for getting my toolkit back.")
 	npc_says(_"Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them.")
 	npc_says(_"I am sorry, but I must go now. My duties call.")
-	add_gold(150)
-	end_quest("The yellow toolkit")
-	update_quest("The yellow toolkit",_"Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters.")
 	del_item_backpack("Dixon's Toolbox", 1)
+	add_gold(150)
+	update_quest("The yellow toolkit",_"Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters.")
+	end_quest("The yellow toolkit")
 	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
@@ -276,11 +276,11 @@ LuaCode={
 	npc_says(_"With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time.")
 	npc_says(_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day.")
 	add_gold(100)
-	end_quest("The yellow toolkit")
 	add_cookie("singularity_dead")
 	del_item_backpack("Dixon's Toolbox", 1)
-	update_quest("The yellow toolkit",_"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
 	add_item("Dixon's Helmet",1)
+	update_quest("The yellow toolkit",_"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
+	end_quest("The yellow toolkit")
 	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
@@ -307,12 +307,12 @@ LuaCode={
 	npc_says(_"Here. It is all there.", "NO_WAIT")
 	npc_says(_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you.", "NO_WAIT")
 	npc_says(_"Get out of my sight.")
-	end_dialog()
 	add_gold(250)
 	add_cookie("dixon_angry_250")
-	end_quest("The yellow toolkit")
-	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
 	del_item_backpack("Dixon's Toolbox", 1)
+	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
+	end_quest("The yellow toolkit")
+	end_dialog()
 	hide(38, 41)
 }
 ----------------------------------------------------------------------
@@ -321,12 +321,12 @@ Nr=39 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
 LuaCode={
 	npc_says(_"I am not happy about this. I suggest you leave the city.", "NO_WAIT")
 	npc_says(_"Accidents... Happen.")
-	end_dialog()
 	add_gold(350)
 	add_cookie("dixon_angry_350")
-	end_quest("The yellow toolkit")
-	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
 	del_item_backpack("Dixon's Toolbox", 1)
+	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
+	end_quest("The yellow toolkit")
+	end_dialog()
 	hide(39, 42)
 }
 ----------------------------------------------------------------------
@@ -336,12 +336,12 @@ LuaCode={
 	npc_says(_"Linarian. Now we part as usual. However should I ever see you after the war is over...", "NO_WAIT")
 	npc_says(_"I promise to kill you.")
 	npc_says(_"Now take your money and get out of my face. I do not want to see you here ever again.")
-	end_dialog()
 	add_gold(400)
-	end_quest("The yellow toolkit")
 	add_cookie("dixon_very_angry")
-	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
 	del_item_backpack("Dixon's Toolbox", 1)
+	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
+	end_quest("The yellow toolkit")
+	end_dialog()
 	hide(40)
 }
 ----------------------------------------------------------------------
@@ -396,7 +396,6 @@ LuaCode={
 	npc_says(_"Ha! Never better!", "NO_WAIT")
 	npc_says(_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types.")
 	npc_says(_"Life is good right now.")
-	end_quest("The yellow toolkit")
 	add_cookie("dixon_saved_and_talked")
 	hide(46) show(47)
 }
@@ -419,6 +418,7 @@ LuaCode={
 	npc_says(_"And this is just one of those things.", "NO_WAIT")
 	npc_says(_"Just go and see for yourself. Otherwise you will not believe me.")
 	update_quest("The yellow toolkit", "The tunnels bots seem to be working together with Dixon in keeping the city working. All is well that ends well.")
+	end_quest("The yellow toolkit")
 	hide(48)
 }
 ----------------------------------------------------------------------
