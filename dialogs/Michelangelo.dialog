@@ -313,6 +313,7 @@ LuaCode={
 	npc_says(_"I guess I can spare one of them, since it is an emergency.")
 	add_cookie("asked_michelangelo_for_spare_dilithium")
 	add_item("Red Dilithium Crystal", 1)
+	update_quest("SADD's power supply",_"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
 	hide(77)
 }
 
