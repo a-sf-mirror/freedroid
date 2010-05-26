@@ -141,8 +141,8 @@ function end_quest(quest, text)
 	npc_says("")
 end
 
-function npc_says(text)
-	chat_npc_says(apply_bbcode(text,"\3","\2"))
+function npc_says(text,no_wait)
+	chat_npc_says(apply_bbcode(text,"\3","\2"),no_wait)
 end
 
 function display_console_message(text)
