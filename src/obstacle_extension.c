@@ -36,6 +36,19 @@ int get_obstacle_index(level *lvl, obstacle *o)
 	return obstacle_index;
 }
 
+static void change_extensions(level *lvl, obstacle *from, obstacle *to)
+{
+	int i;
+	struct obstacle_extension *ext;
+
+	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
+		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+		if (ext->obs == from) {
+			ext->obs = to;
+		}
+	}
+}
+
 /**
  * Defragment the obstacle array of a level, ie. make 
  * its obstacle array contiguous instead of having empty
@@ -61,6 +74,9 @@ void defrag_obstacle_array(level *lvl)
 			memcpy(&lvl->obstacle_list[i], &lvl->obstacle_list[array_end], sizeof(obstacle));
 			lvl->obstacle_list[array_end].type = -1;
 			array_end--;
+
+			// Re-address obstacle extension pointing to the obstacle we've moved
+			change_extensions(lvl, &lvl->obstacle_list[array_end+1], &lvl->obstacle_list[i]);
 		}
 	}
 
