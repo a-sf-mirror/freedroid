@@ -77,8 +77,7 @@ LuaCode={
 	if (not has_item_backpack("Mug")) then
 		npc_says(_"But you'll need a mug for me to put it in.")
 	else
-		hide(3)
-		show(4, 5, 6)
+		hide(3) show(4, 5, 6)
 	end
 }
 ----------------------------------------------------------------------
@@ -124,7 +123,7 @@ Nr=9 Text=_"Hmm... Lots of ice. Give me one more double water, but now without a
 LuaCode={
 	npc_says(_"One double water coming up.")
 	heat_tux(-1000);
-	hide(9)	show(10)
+	hide(9) show(10)
 }
 ----------------------------------------------------------------------
 
@@ -160,9 +159,8 @@ LuaCode={
 	npc_says(_"Fun is kinda dead right now.")
 	npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
 	npc_says(_"Now THAT'S fun, if you ask me.")
-	hide(13)
 	npc_says(_"If you are really board, you can try gambling with me. But the Red Guard taxes it.")
-	show(30)
+	hide(13) show(30)
 }
 ----------------------------------------------------------------------
 
@@ -178,7 +176,6 @@ Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
 LuaCode={
 	if (not has_cookie("ewald_gambling")) then add_cookie("ewald_gambling") end
 	npc_says(_"I play a dice game and a coin-flipping game.")
-	show(31,32)
 	-- Initialize some variables here
 	bet = 0
 	tux1, tux2, tux3 = 0, 0, 0
@@ -191,10 +188,10 @@ LuaCode={
 	end end else 
 	npc_says(_"You should come back when you have more to gamble with.")
 	end
-	hide(30)
+	show(31, 32) hide(30)
 }
-
 -----------------------------------------------------------------------
+
 Nr=31 Text=_"Tell me the rules for your 'dice game'."
 LuaCode={
 	npc_says(_"It is simple. We both get three six sided dice.")
@@ -208,6 +205,7 @@ LuaCode={
 	-- Expected payout: 105.96% (easy), 97.11% (normal), 92.69% (hard)
 }
 -----------------------------------------------------------------------
+
 Nr=32 Text=_"Tell me the rules for your 'coin-flip game'."
 LuaCode={
 	npc_says(_"It is simple. Five coin flips.")
@@ -231,52 +229,55 @@ LuaCode={
 	-- Intermediate: 10/32 expected payout: 0/128
 	-- Expected payout: 132/128 (easy), 121/128 (normal), 110/128 (hard)
 }
-
 -----------------------------------------------------------------------
+
 Nr=33 Text=_"How about a bet of 10 circuits"
 LuaCode={
 	bet=10
 	next(36)
-	hide(30,31,32,33,34,35)
+	hide(30, 31, 32, 33, 34, 35)
 }
 
 -----------------------------------------------------------------------
-Nr=34 Text="I'm feeling I'll start with a bet of 100 circuits"
+
+Nr=34 Text=_"I'm feeling I'll start with a bet of 100 circuits"
 LuaCode={
 	bet = 100
 	next(36)
-	hide(30,31,32,33,34,35)
+	hide(30, 31, 32, 33, 34, 35)
 }
-
 -----------------------------------------------------------------------
-Nr=35 Text="I want to bet 200 circuits"
+
+Nr=35 Text=_"I want to bet 200 circuits"
 LuaCode={
 	bet = 200
 	next(36)
-	hide(30,31,32,33,34,35)
+	hide(30, 31, 32, 33, 34, 35)
 }
 -----------------------------------------------------------------------
+
 Nr=36 Text="BUG, REPORT ME! ewald node36 -- Name Game"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Name your game.")
-	show(37,38)
+	show(37, 38)
 }
 -----------------------------------------------------------------------
+
 Nr=37 Text=_"Dice"
 LuaCode={
-	hide(37,38)
 	next(39)
-}
-	
+	hide(37, 38)
+}	
 -----------------------------------------------------------------------
+
 Nr=38 Text=_"Coin-flipping"
 LuaCode={
-	hide(37,38)
 	next(50)
+	hide(37, 38)
 }
-
 -----------------------------------------------------------------------
+
 Nr=39 Text="BUG, REPORT ME! ewald node39 -- Dice - Initial roll"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
@@ -284,30 +285,33 @@ LuaCode={
 	tux1=math.random(1,6)
 	tux_says(_"I rolled a ".. tux1 ..".")
 	npc_says(_"What multiplier are you going to bet?")
-	show(40,41,42)
+	show(40, 41, 42)
 }
 -----------------------------------------------------------------------
+
 Nr=40 Text="1x"
 LuaCode={
 	next(43)
 } 
 -----------------------------------------------------------------------
+
 Nr=41 Text="2x"
 LuaCode={
 	bet=bet*2
 	next(43)
 }
 -----------------------------------------------------------------------
+
 Nr=42 Text="3x" 
 LuaCode={
 	bet=bet*3
 	next(43)
 }
 -----------------------------------------------------------------------
+
 Nr=43 Text="BUG, REPORT ME! ewald node43 -- Dice - finish game" -- finish game here
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(40,41,42)
 	npc_says(_"You've bet ".. bet .._" valuable circuits.")
 	ewd1=math.random(1,6)
 	npc_says(_"My first roll is a ".. ewd1 ..".")
@@ -338,34 +342,37 @@ LuaCode={
 		del_gold(bet)
 		display_console_message(_"You lost ".. bet .._" valuable circuits by gambling dice with Ewald.")
 	end
-	show(30)
+	hide(40, 41, 42) show(30)
 }
-
 -----------------------------------------------------------------------
+
 Nr=50 Text="BUG, REPORT ME! ewald node50 -- Coin-flipping game"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Coin flipping it is.")
 	npc_says(_"So. What do you think? Heads or tails?")
-	show(51,52)
+	show(51, 52)
 }
 -----------------------------------------------------------------------
+
 Nr=51 Text=_"Heads"
 LuaCode={
-	hide(51,52)
 	npc_says_random(_"Heads, eh? I always like heads.",_"Heads? Sometimes I pick heads... when I don't pick tails.",_"When I think too much about it, I end up picking heads.",_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.",_"I think I would have picked tails this time.")
 	tux1 = 0
 	next(53)
+	hide(51, 52)
 }
 -----------------------------------------------------------------------
+
 Nr=52 Text=_"Tails"
 LuaCode={
-	hide(51,52)
 	npc_says_random(_"Tails? Fits, since you've got one.",_"Tails? I always liked that game... good times.",_"Tails. When I don't pick heads, I always pick tails.",_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.",_"I think I would have picked heads this time.")
 	tux1 = 1
 	next(53)
+	hide(51, 52)
 }
 -----------------------------------------------------------------------
+
 Nr=53 Text="BUG, REPORT ME! ewald node53 -- Coin-flipping game - first flip"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
@@ -381,13 +388,13 @@ LuaCode={
 	else
 		npc_says(_"So do you think there will be an even or odd number of 'heads' flips?")
 	end
-	show(54,55)
+	show(54, 55)
 }
 -----------------------------------------------------------------------
+
 Nr=54 Text=_"Even number"
 LuaCode={
 	tux2 = 0 -- Set to 'even'
-	hide(54,55)
 	random_var = math.random()
  	if (random_var > 0.8) then
 		npc_says(_"Even, eh? I always like even. It is so symmetric.")
@@ -405,12 +412,13 @@ LuaCode={
 		npc_says(_"I think I would have picked even this time.")
 	end
 	next(56)
+	hide(54, 55)
 }
 -----------------------------------------------------------------------
+
 Nr=55 Text=_"Odd number"
 LuaCode={
 	tux2 = 1 -- Set to 'odd'
-	hide(54,55)
 	random_var = math.random()
  	if (random_var > 0.8) then
 		npc_says(_"Odd? Fits, since you're pretty odd yourself.")
@@ -428,8 +436,10 @@ LuaCode={
 		npc_says(_"I think I would have picked odd this time.")
 	end
 	next(56)
+	hide(54, 55)
 }
 -----------------------------------------------------------------------
+
 Nr=56 Text="BUG, REPORT ME! ewald node56 -- Coin-flipping game - last four flips"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
@@ -522,13 +532,13 @@ LuaCode={
 
 	show(30)
 }
-
 -----------------------------------------------------------------------
+
 Nr=99 Text=_"See you later."
 LuaCode={
-	hide(32,33,34,35,36,37,38,39,40,41,42,50,51,52,53,54,55,56) --end any partial gambling
 	npc_says_random(_"Goodbye and remember: My bar is always open.",_"Come back soon!",_"You are welcome to unwind with old Ewald any time. Come back soon.",_"Remember, you can always come back here to relax and kick back.")
 	end_dialog()
+	hide(32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 50, 51, 52, 53, 54, 55, 56) --end any partial gambling
 }
 ----------------------------------------------------------------------
 
