@@ -37,11 +37,11 @@ EveryTime LuaCode={
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 	npc_says(_"Welcome to [b]".. bot_name().."[/b]!")
-	show(1,11,12,13,20,99)
 	if (npc_damage_amount() >0) then
 		npc_says(_"This ".. bot_type().._" unit needs repair.")
 	end
 	cli_says(terminal, "NO_WAIT")
+	show(1, 11, 12, 13, 20, 99)
 }
 ----------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ LuaCode={
 	npc_says(_"Status: All movement suppressed.", "NO_WAIT")
 	set_bot_state("fixed")
 	cli_says(terminal, "NO_WAIT")
-	hide(11) show(12,13)
+	hide(11) show(12, 13)
 }
 ----------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ LuaCode={
 	npc_says(_"Status: Following " .. get_player_name() .. ".", "NO_WAIT")
 	set_bot_state("follow_tux")
 	cli_says(terminal, "NO_WAIT")
-	hide(12) show(11,13)
+	hide(12) show(11, 13)
 }
 ----------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ LuaCode={
 	npc_says(_"Status: Patrolling.", "NO_WAIT")
 	set_bot_state("free")
 	cli_says(terminal, "NO_WAIT")
-	hide(13) show(11,12)
+	hide(13) show(11, 12)
 }
 ----------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ LuaCode={
 	tux_says(_"./move_freely.sh", "NO_WAIT")
 	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
 		npc_says(_"Are you really sure you want to destroy ".. bot_name().._"? Y/N")
-		hide(1,11,12,13,20) show(21,22)
+		hide(1, 11, 12, 13, 20) show(21, 22)
 	else next(23) end
 }
 ----------------------------------------------------------------------
@@ -113,19 +113,18 @@ LuaCode={
 Nr=21 Text=_"Yes"
 LuaCode={
 	npc_says(_"Destruction confirmed.")
-	hide(21,22)
-	next(23)
+	hide(21, 22) next(23)
 }
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"No"
 LuaCode={
 	npc_says(_"Destrucion averted.")
-	hide(21,22) show(1,11,12,13,20,99)
+	hide(21, 22) show(1, 11, 12, 13, 20, 99)
 }
 ----------------------------------------------------------------------
 
-Nr=23 Text="This is a bug, please report me-23"
+Nr=23 Text="BUG, REPORT ME! standardbotaftertakeover node23"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
@@ -150,8 +149,8 @@ LuaCode={
 Nr=99 Text=_"logout"
 LuaCode={
 	npc_says(_"Closing remote connection...")
-	hide(21, 22)
 	end_dialog()
+	hide(21, 22)
 }
 ----------------------------------------------------------------------
 

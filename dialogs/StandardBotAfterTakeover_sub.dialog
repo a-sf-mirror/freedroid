@@ -32,14 +32,14 @@ Beginning of new chat dialog for character="XXXXX"
 EveryTime LuaCode={
 	terminal_sub = "tux@hacked_".. bot_type().."/repair&settings: ~ #"
 	cli_says(terminal_sub, "NO_WAIT")
-	show(0,20,30,40)
+	show(0, 20, 30, 40)
 }
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"cd .."
+Nr=0 Text="cd .."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"cd ..", "NO_WAIT")
+	tux_says("cd ..", "NO_WAIT")
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -86,8 +86,8 @@ LuaCode={
 	freeze_tux_npc(cost_time)
 	del_gold(cost_materials)
 	heat_tux(cost_heat)
-	hide(20,21)
 	cli_says(terminal_sub, "NO_WAIT")
+	hide(20, 21)
 }
 ----------------------------------------------------------------------
 
@@ -99,7 +99,7 @@ LuaCode={
 	npc_says(_"Version: 1.82c", "NO_WAIT")
 	npc_says(_"No upgrades found.", "NO_WAIT")
 	npc_says(_"Always ask for confirmation before execution of hcf.py? Y/N", "NO_WAIT")
-	hide(0,20,21,30,40) show(31,32)
+	hide(0, 20, 21, 30, 40) show(31, 32)
 }
 ----------------------------------------------------------------------
 
@@ -110,8 +110,8 @@ LuaCode={
 	if (not has_cookie("StandardBotAfterTakeover_confirm_hcf")) then 
 		add_cookie("StandardBotAfterTakeover_confirm_hcf")
 	else end	
-	hide(31,32) show(0,20,30,40)
 	cli_says(terminal_sub, "NO_WAIT")
+	hide(31, 32) show(0, 20, 30, 40)
 }
 ----------------------------------------------------------------------
 
@@ -121,8 +121,8 @@ LuaCode={
 	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
 		del_cookie("StandardBotAfterTakeover_confirm_hcf")
 	else end
-	hide(31,32) show(0,20,30,40)
 	cli_says(terminal_sub, "NO_WAIT")
+	hide(31, 32) show(0, 20, 30, 40)
 }
 ----------------------------------------------------------------------
 
@@ -135,8 +135,8 @@ LuaCode={
 	npc_says(_"Current botname: [b]"..bot_name().."[/b]", "NO_WAIT")
 	npc_says(_"Select new name? Y/N", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
-	hide(0,20,21,30,40) show(41,42)
 	new_name = ""
+	hide(0, 20, 21, 30, 40) show(41, 42)
 }
 ----------------------------------------------------------------------
 
@@ -146,7 +146,7 @@ LuaCode={
 	tux_says(_"Yes", "NO_WAIT")
 	npc_says(_"Pick an Adjective:", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
-	hide(41,42) show(43,44,45,46,47,48)
+	hide(41, 42) show(43, 44, 45, 46, 47, 48)
 }
 ----------------------------------------------------------------------
 
@@ -155,275 +155,313 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"No", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
-	hide(41,42) show(0,20,30,40)
+	hide(41, 42) show(0, 20, 30, 40)
 }
-
 ----------------------------------------------------------------------
+
 Nr=43 Text=_"Achy"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Achy"
-	hide(43,44,45,46,47,48) next(61)
+	hide(43, 44, 45, 46, 47, 48) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=44 Text=_"Bald"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Bald"
-	hide(43,44,45,46,47,48) next(61)
+	hide(43, 44, 45, 46, 47, 48) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=45 Text=_"Chic"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Chic"
-	hide(43,44,45,46,47,48) next(61)
+	hide(43, 44, 45, 46, 47, 48) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=46 Text=_"Drab"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Drab"
-	hide(43,44,45,46,47,48) next(61)
+	hide(43, 44, 45, 46, 47, 48) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=47 Text=_"Edgy"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Edgy"
-	hide(43,44,45,46,47,48) next(61)
+	hide(43, 44, 45, 46, 47, 48) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=48 Text=_"More Adjective Choices"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(43,44,45,46,47,48) show(49,50,51,52,53,54)
+	hide(43, 44, 45, 46, 47, 48) show(49, 50, 51, 52, 53, 54)
 }
 ----------------------------------------------------------------------
+
 Nr=49 Text=_"Foul"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Foul"
-	hide(49,50,51,52,53,54) next(61)
+	hide(49, 50, 51, 52, 53, 54) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=50 Text=_"Glib"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Glib"
-	hide(49,50,51,52,53,54) next(61)
+	hide(49, 50, 51, 52, 53, 54) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=51 Text=_"Homy"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Homy"
-	hide(49,50,51,52,53,54) next(61)
+	hide(49, 50, 51, 52, 53, 54) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=52 Text=_"Icky"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Icky"
-	hide(49,50,51,52,53,54) next(61)
+	hide(49, 50, 51, 52, 53, 54) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=53 Text=_"Jive"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Jive"
-	hide(49,50,51,52,53,54) next(61)
+	hide(49, 50, 51, 52, 53, 54) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=54 Text=_"More Adjective Choices"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(49,50,51,52,53,54) show(55,56,57,58,59,60)
+	hide(49, 50, 51, 52, 53, 54) show(55, 56, 57, 58, 59, 60)
 }
 ----------------------------------------------------------------------
+
 Nr=55 Text=_"Fluffy"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Fluffy"
-	hide(55,56,57,58,59,60) next(61)
+	hide(55, 56, 57, 58, 59, 60) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=56 Text=_"Cuddly"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Cuddly"
-	hide(55,56,57,58,59,60) next(61)
+	hide(55, 56, 57, 58, 59, 60) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=57 Text=_"Soft"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Soft"
-	hide(55,56,57,58,59,60) next(61)
+	hide(55, 56, 57, 58, 59, 60) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=58 Text=_"Fuzzy"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Fuzzy"
-	hide(55,56,57,58,59,60) next(61)
+	hide(55, 56, 57, 58, 59, 60) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=59 Text=_"Happy"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_name = _"Happy"
-	hide(55,56,57,58,59,60) next(61)
+	hide(55, 56, 57, 58, 59, 60) next(61)
 }
 ----------------------------------------------------------------------
+
 Nr=60 Text=_"More Adjective Choices"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(55,56,57,58,59,60) show(43,44,45,46,47,48)
+	hide(55, 56, 57, 58, 59, 60) show(43, 44, 45, 46, 47, 48)
 }
 ----------------------------------------------------------------------
-Nr=61 Text="This is a bug, please report me-61"
+
+Nr=61 Text="BUG, REPORT ME! standardbotaftertakeover_sub node61"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(new_name, "NO_WAIT")
 	npc_says(_"Pick an Animal:", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
-	show(62,63,64,65,66,67)
+	show(62, 63, 64, 65, 66, 67)
 }
 ----------------------------------------------------------------------
+
 Nr=62 Text=_"Asp"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Asp"
-	hide(62,63,64,65,66,67) next(80)
+	hide(62, 63, 64, 65, 66, 67) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=63 Text=_"Bat"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Bat"
-	hide(62,63,64,65,66,67) next(80)
+	hide(62, 63, 64, 65, 66, 67) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=64 Text=_"Cat"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Cat"
-	hide(62,63,64,65,66,67) next(80)
+	hide(62, 63, 64, 65, 66, 67) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=65 Text=_"Doe"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Doe"
-	hide(62,63,64,65,66,67) next(80)
+	hide(62, 63, 64, 65, 66, 67) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=66 Text=_"Emu"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Emu"
-	hide(62,63,64,65,66,67) next(80)
+	hide(62, 63, 64, 65, 66, 67) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=67 Text=_"More Animal Choices"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(62,63,64,65,66,67) show(68,69,70,71,72,73)
+	hide(62, 63, 64, 65, 66, 67) show(68, 69, 70, 71, 72, 73)
 }
 ----------------------------------------------------------------------
+
 Nr=68 Text=_"Fox"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Fox"
-	hide(68,69,70,71,72,73) next(80)
+	hide(68, 69, 70, 71, 72, 73) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=69 Text=_"Gnu"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Gnu"
-	hide(68,69,70,71,72,73) next(80)
+	hide(68, 69, 70, 71, 72, 73) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=70 Text=_"Hen"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Hen"
-	hide(68,69,70,71,72,73) next(80)
+	hide(68, 69, 70, 71, 72, 73) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=71 Text=_"Imp"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Imp"
-	hide(68,69,70,71,72,73) next(80)
+	hide(68, 69, 70, 71, 72, 73) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=72 Text=_"Jay"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Jay"
-	hide(68,69,70,71,72,73) next(80)
+	hide(68, 69, 70, 71, 72, 73) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=73 Text=_"More Animal Choices"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(68,69,70,71,72,73) show(74,75,76,77,78,79)
+	hide(68, 69, 70, 71, 72, 73) show(74, 75, 76, 77, 78, 79)
 }
 ----------------------------------------------------------------------
+
 Nr=74 Text=_"Duck" --world wide
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Duck"
-	hide(74,75,76,77,78,79) next(80)
+	hide(74, 75, 76, 77, 78, 79) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=75 Text=_"Bunny" --old world
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Bunny"
-	hide(74,75,76,77,78,79) next(80)
+	hide(74, 75, 76, 77, 78, 79) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=76 Text=_"Armadillo" --new world
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Armadillo"
-	hide(74,75,76,77,78,79) next(80)
+	hide(74, 75, 76, 77, 78, 79) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=77 Text=_"Koala" --austrialian
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Koala"
-	hide(74,75,76,77,78,79) next(80)
+	hide(74, 75, 76, 77, 78, 79) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=78 Text=_"Panda" --asian
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	new_animal = _"Panda"
-	hide(74,75,76,77,78,79) next(80)
+	hide(74, 75, 76, 77, 78, 79) next(80)
 }
 ----------------------------------------------------------------------
+
 Nr=79 Text=_"More Animal Choices"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	hide(74,75,76,77,78,79) show(62,63,64,65,66,67)
+	hide(74, 75, 76, 77, 78, 79) show(62, 63, 64, 65, 66, 67)
 }
 ----------------------------------------------------------------------
-Nr=80 Text="This is a bug, please report me-80"
+
+Nr=80 Text="BUG, REPORT ME! standardbotaftertakeover_sub node80"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(new_animal,"NO_WAIT")
 	new_name = new_name .." ".. new_animal .." ".. bot_type()
 	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? Y/N", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
-	show(81,82)
+	show(81, 82)
 }
 ----------------------------------------------------------------------
+
 Nr=81 Text=_"Yes"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
@@ -431,8 +469,8 @@ LuaCode={
 	display_console_message(_"Renamed [b]"..bot_name().._"[/b] to [b]"..new_name.."[/b].")
 	set_bot_name(new_name)
 	npc_says(_"This "..bot_type().._" unit is now designated: [b]"..bot_name().."[/b]", "NO_WAIT")
-	hide(81,82) show(0,20,30,40)
 	cli_says(terminal_sub, "NO_WAIT")
+	hide(81, 82) show(0, 20, 30, 40)
 }
 ----------------------------------------------------------------------
 
@@ -440,11 +478,12 @@ Nr=82 Text=_"No"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"No","NO_WAIT")
-	hide(81,82) show(0,20,30,40)
 	cli_says(terminal_sub, "NO_WAIT")
+	hide(81, 82) show(0, 20, 30, 40)
 }
 ----------------------------------------------------------------------
-Nr=99 Text="This is a bug, please report me-99"
+
+Nr=99 Text="BUG, REPORT ME! standardbotaftertakeover_sub node99"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"cd ..","NO_WAIT")
