@@ -42,7 +42,7 @@ EveryTime LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=0 Text=" guest " -- We should hardcode all dialog options to have 1 leading and trailing space when displaying. Makes the highlight prettier
+Nr=0 Text="guest"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	username = get_player_name()
