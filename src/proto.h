@@ -45,7 +45,6 @@ void PrepareStartOfNewCharacter(char *startpos);
 void ThouArtDefeated(void);
 void ThouHastWon(void);
 void PlayATitleFile(char *Filename);
-void Get_Item_Data(char *DataPointer);
 
 // event.c
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);

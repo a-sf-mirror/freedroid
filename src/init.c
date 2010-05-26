@@ -723,13 +723,13 @@ static void Get_Robot_Data(void *DataPointer)
 	}
 };				// int Get_Robot_Data ( void )
 
-/*----------------------------------------------------------------------
- * This function reads in all the item data from the freedroid.ruleset file,
+/**
+ * This function reads in all the item data from the freedroid.item_archetype file,
  * but IT DOES NOT LOAD THE FILE, IT ASSUMES IT IS ALREADY LOADED and
  * it only receives a pointer to the start of the bullet section from
  * the calling function.
- ----------------------------------------------------------------------*/
-void Get_Item_Data(char *DataPointer)
+ */
+static void get_item_data(char *DataPointer)
 {
 	char *ItemPointer;
 	char *EndOfItemData;
@@ -746,27 +746,19 @@ void Get_Item_Data(char *DataPointer)
 #define ITEM_NAME_INDICATION_STRING "Item name=_\""
 #define ITEM_DESCRIPTION_INDICATION_STRING "Item description text=_\""
 #define ITEM_CAN_BE_APPLIED_IN_COMBAT "Item can be applied in combat=\""
-#define ITEM_CAN_BE_INSTALLED_IN_WEAPON_SLOT "Item can be installed in weapon slot=\""
-#define ITEM_CAN_BE_INSTALLED_IN_DRIVE_SLOT "Item can be installed in drive slot=\""
-#define ITEM_CAN_BE_INSTALLED_IN_ARMOUR_SLOT "Item can be installed in armour slot=\""
-#define ITEM_CAN_BE_INSTALLED_IN_SHIELD_SLOT "Item can be installed in shield slot=\""
-#define ITEM_CAN_BE_INSTALLED_IN_SPECIAL_SLOT "Item can be installed in special slot=\""
 
 #define ITEM_CAN_BE_INSTALLED_IN_SLOT_WITH_NAME "Item can be installed in slot with name=\""
 #define ITEM_ROTATION_SERIES_NAME_PREFIX "Item uses rotation series with prefix=\""
 #define ITEM_GROUP_TOGETHER_IN_INVENTORY "Items of this type collect together in inventory=\""
 
 #define ITEM_GUN_IGNORE_WALL "Item as gun: ignore collisions with wall=\""
-// #define ITEM_DROP_SOUND_FILE_NAME "Item uses drop sound with filename=\""
-// #define ITEM_INVENTORY_IMAGE_FILE_NAME "File or directory name for inventory image=\""
+#define ITEM_INVENTORY_IMAGE_FILE_NAME "File or directory name for inventory image=\""
+#define ITEM_DROP_SOUND_FILE_NAME "Item uses drop sound with filename=\""
 
 #define ITEM_RECHARGE_TIME_BEGIN_STRING "Time is takes to recharge this bullet/weapon in seconds :"
 #define ITEM_SPEED_BEGIN_STRING "Flying speed of this bullet type :"
 #define ITEM_DAMAGE_BEGIN_STRING "Damage cause by a hit of this bullet type :"
 #define ITEM_ONE_SHOT_ONLY_AT_A_TIME "Cannot fire until previous bullet has been deleted : "
-
-#define ITEM_SPEED_CALIBRATOR_STRING "Common factor for all bullet's speed values: "
-#define ITEM_DAMAGE_CALIBRATOR_STRING "Common factor for all bullet's damage values: "
 
 	ItemPointer = LocateStringInData(DataPointer, ITEM_SECTION_BEGIN_STRING);
 	EndOfItemData = LocateStringInData(DataPointer, ITEM_SECTION_END_STRING);
@@ -775,10 +767,9 @@ void Get_Item_Data(char *DataPointer)
 
 	// Now that we know how many item archetypes there are, we can allocate the proper
 	// amount of memory for this information.
-	//
 	ItemMap = (itemspec *) MyMalloc(sizeof(itemspec) * (Number_Of_Item_Types + 1));
+
 	// Now we start to read the values for each bullet type:
-	// 
 	ItemPointer = DataPointer;
 
 	// Now we read in the speed calibration factor for all bullets
@@ -793,28 +784,26 @@ void Get_Item_Data(char *DataPointer)
 	ReadValueFromString(DataPointer, "Common factor for all melee weapons damage values:", "%f",
 			    &melee_weapon_damage_calibrator, EndOfItemData);
 
-	DebugPrintf(1, "\nCommon bullet speed factor: %f.\nCommon bullet damage factor: %f.\nCommon melee damage factor: %f.\n",
-		    ranged_weapon_speed_calibrator, ranged_weapon_damage_calibrator, melee_weapon_damage_calibrator);
-
 	while ((ItemPointer = strstr(ItemPointer, NEW_ITEM_TYPE_BEGIN_STRING)) != NULL) {
-		DebugPrintf(1, "\n\nFound another Item specification entry!  Lets add that to the others!");
 		ItemPointer++;
 		char *EndOfThisItem = strstr(ItemPointer, NEW_ITEM_TYPE_BEGIN_STRING);
 		if (EndOfThisItem)
 			EndOfThisItem[0] = 0;
 
+		itemspec *item = &ItemMap[ItemIndex];
+
 		// Now we read in the name of this item
-		ItemMap[ItemIndex].item_name = ReadAndMallocStringFromData(ItemPointer, ITEM_NAME_INDICATION_STRING, "\"");
+		item->item_name = ReadAndMallocStringFromData(ItemPointer, ITEM_NAME_INDICATION_STRING, "\"");
 
 		// Now we read in the description string of this item
-		ItemMap[ItemIndex].item_description = ReadAndMallocStringFromData(ItemPointer, ITEM_DESCRIPTION_INDICATION_STRING, "\"");
+		item->item_description = ReadAndMallocStringFromData(ItemPointer, ITEM_DESCRIPTION_INDICATION_STRING, "\"");
 
 		// Now we read in if this item can be used by the influ without help
 		YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_CAN_BE_APPLIED_IN_COMBAT, "\"");
 		if (strcmp(YesNoString, "yes") == 0) {
-			ItemMap[ItemIndex].item_can_be_applied_in_combat = TRUE;
+			item->item_can_be_applied_in_combat = TRUE;
 		} else if (strcmp(YesNoString, "no") == 0) {
-			ItemMap[ItemIndex].item_can_be_applied_in_combat = FALSE;
+			item->item_can_be_applied_in_combat = FALSE;
 		} else {
 			ErrorMessage(__FUNCTION__,
 				     "The item specification of an item in freedroid.item_archetypes should contain an \nanswer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\nThis indicated a corrupted freedroid.ruleset file with an error at least in\nthe item specification section.",
@@ -824,21 +813,21 @@ void Get_Item_Data(char *DataPointer)
 
 		// Now we read the label telling us in which slot the item can be installed
 		YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_CAN_BE_INSTALLED_IN_SLOT_WITH_NAME, "\"");
-		ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot = FALSE;
-		ItemMap[ItemIndex].item_can_be_installed_in_shield_slot = FALSE;
-		ItemMap[ItemIndex].item_can_be_installed_in_drive_slot = FALSE;
-		ItemMap[ItemIndex].item_can_be_installed_in_armour_slot = FALSE;
-		ItemMap[ItemIndex].item_can_be_installed_in_special_slot = FALSE;
+		item->item_can_be_installed_in_weapon_slot = FALSE;
+		item->item_can_be_installed_in_shield_slot = FALSE;
+		item->item_can_be_installed_in_drive_slot = FALSE;
+		item->item_can_be_installed_in_armour_slot = FALSE;
+		item->item_can_be_installed_in_special_slot = FALSE;
 		if (strcmp(YesNoString, "weapon") == 0) {
-			ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot = TRUE;
+			item->item_can_be_installed_in_weapon_slot = TRUE;
 		} else if (strcmp(YesNoString, "drive") == 0) {
-			ItemMap[ItemIndex].item_can_be_installed_in_drive_slot = TRUE;
+			item->item_can_be_installed_in_drive_slot = TRUE;
 		} else if (strcmp(YesNoString, "shield") == 0) {
-			ItemMap[ItemIndex].item_can_be_installed_in_shield_slot = TRUE;
+			item->item_can_be_installed_in_shield_slot = TRUE;
 		} else if (strcmp(YesNoString, "armour") == 0) {
-			ItemMap[ItemIndex].item_can_be_installed_in_armour_slot = TRUE;
+			item->item_can_be_installed_in_armour_slot = TRUE;
 		} else if (strcmp(YesNoString, "special") == 0) {
-			ItemMap[ItemIndex].item_can_be_installed_in_special_slot = TRUE;
+			item->item_can_be_installed_in_special_slot = TRUE;
 		} else if (strcmp(YesNoString, "none") == 0) {
 			// good.  Everything is ok, as long as at least 'none' was found
 		} else {
@@ -850,18 +839,15 @@ void Get_Item_Data(char *DataPointer)
 		free(YesNoString);
 
 		// Next we read in the prefix for the image series in the items browser
-		// that this item is going to use.
-		//
-		ItemMap[ItemIndex].item_rotation_series_prefix =
+		item->item_rotation_series_prefix =
 		    ReadAndMallocStringFromData(ItemPointer, ITEM_ROTATION_SERIES_NAME_PREFIX, "\"");
 
 		// Now we read in if this item will group together in inventory
-		//
 		YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_GROUP_TOGETHER_IN_INVENTORY, "\"");
 		if (strcmp(YesNoString, "yes") == 0) {
-			ItemMap[ItemIndex].item_group_together_in_inventory = TRUE;
+			item->item_group_together_in_inventory = TRUE;
 		} else if (strcmp(YesNoString, "no") == 0) {
-			ItemMap[ItemIndex].item_group_together_in_inventory = FALSE;
+			item->item_group_together_in_inventory = FALSE;
 		} else {
 			ErrorMessage(__FUNCTION__, "\
 The item specification of an item in freedroid.ruleset should contain an \n\
@@ -870,25 +856,24 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		free(YesNoString);
 
 		// Now we read in minimum strength, dex and magic required to wear/wield this item
-		//
 		ReadValueFromStringWithDefault(ItemPointer, "Strength minimum required to wear/wield this item=", "%hd", "-1",
-					       &ItemMap[ItemIndex].item_require_strength, EndOfItemData);
+					       &item->item_require_strength, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "Dexterity minimum required to wear/wield this item=", "%hd", "-1",
-					       &ItemMap[ItemIndex].item_require_dexterity, EndOfItemData);
+					       &item->item_require_dexterity, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "Magic minimum required to wear/wield this item=", "%hd", "-1",
-					       &ItemMap[ItemIndex].item_require_magic, EndOfItemData);
+					       &item->item_require_magic, EndOfItemData);
 
-		ReadValueFromStringWithDefault(ItemPointer, "Item min class for drop=", "%hd", "-1", &ItemMap[ItemIndex].min_drop_class,
+		ReadValueFromStringWithDefault(ItemPointer, "Item min class for drop=", "%hd", "-1", &item->min_drop_class,
 					       EndOfItemData);
-		ReadValueFromStringWithDefault(ItemPointer, "Item max class for drop=", "%hd", "-1", &ItemMap[ItemIndex].max_drop_class,
+		ReadValueFromStringWithDefault(ItemPointer, "Item max class for drop=", "%hd", "-1", &item->max_drop_class,
 					       EndOfItemData);
 
-		if (ItemMap[ItemIndex].min_drop_class != -1) {
+		if (item->min_drop_class != -1) {
 			int cc;
 			for (cc = 0; cc < 10; cc++) {
-				if (cc > ItemMap[ItemIndex].max_drop_class)
+				if (cc > item->max_drop_class)
 					break;
-				if (cc < ItemMap[ItemIndex].min_drop_class)
+				if (cc < item->min_drop_class)
 					continue;
 				else
 					item_count_per_class[cc]++;
@@ -896,120 +881,118 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		}
 
 		// If the item is a gun, we read in the weapon specification...
-		//
-		if (ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot == TRUE) {
+		if (item->item_can_be_installed_in_weapon_slot == TRUE) {
 			// Now we read in the damage bullets from this gun will do
 			ReadValueFromStringWithDefault(ItemPointer, "Item as gun: damage of bullets=", "%hd", "0",
-						       &ItemMap[ItemIndex].base_item_gun_damage, EndOfItemData);
+						       &item->base_item_gun_damage, EndOfItemData);
 			ReadValueFromStringWithDefault(ItemPointer, "Item as gun: modifier for damage of bullets=", "%hd", "0",
-						       &ItemMap[ItemIndex].item_gun_damage_modifier, EndOfItemData);
+						       &item->item_gun_damage_modifier, EndOfItemData);
 
 			// Now we read in the speed this bullet will go
 			ReadValueFromStringWithDefault(ItemPointer, "Item as gun: speed of bullets=", "%f", "0.000000",
-						       &ItemMap[ItemIndex].item_gun_speed, EndOfItemData);
+						       &item->item_gun_speed, EndOfItemData);
 
 			// Now we read in speed of melee application and melee offset from influ
 			ReadValueFromStringWithDefault(ItemPointer, "Item as gun: is melee weapon=", "%hd", "0",
-						       &ItemMap[ItemIndex].item_weapon_is_melee, EndOfItemData);
+						       &item->item_weapon_is_melee, EndOfItemData);
 			ReadValueFromStringWithDefault(ItemPointer, "Item as gun: modifier for starting angle=", "%f", "0.000000",
-						       &ItemMap[ItemIndex].item_gun_start_angle_modifier, EndOfItemData);
+						       &item->item_gun_start_angle_modifier, EndOfItemData);
 
 			// Now we read in if this weapon can pass through walls or not...
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_GUN_IGNORE_WALL, "\"");
 			if (strcmp(YesNoString, "yes") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_ignore_wall_collisions = TRUE;
+				item->item_gun_bullet_ignore_wall_collisions = TRUE;
 			} else if (strcmp(YesNoString, "no") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_ignore_wall_collisions = FALSE;
+				item->item_gun_bullet_ignore_wall_collisions = FALSE;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLEASE_INFORM, IS_FATAL);
-			};	// if ( ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot == TRUE )
+			};	// if ( item->item_can_be_installed_in_weapon_slot == TRUE )
 			free(YesNoString);
 
 			// Now we read in if this weapons bullets will reflect other bullets or not
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: reflect other bullets=\"", "\"");
 			if (strcmp(YesNoString, "yes") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_reflect_other_bullets = TRUE;
+				item->item_gun_bullet_reflect_other_bullets = TRUE;
 			} else if (strcmp(YesNoString, "no") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_reflect_other_bullets = FALSE;
+				item->item_gun_bullet_reflect_other_bullets = FALSE;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLEASE_INFORM, IS_FATAL);
-			};	// if ( ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot == TRUE )
+			};	// if ( item->item_can_be_installed_in_weapon_slot == TRUE )
 			free(YesNoString);
 
 			// Now we read in if this weapons bullets will reflect other bullets or not
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: pass through explosions=\"", "\"");
 			if (strcmp(YesNoString, "yes") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_pass_through_explosions = TRUE;
+				item->item_gun_bullet_pass_through_explosions = TRUE;
 			} else if (strcmp(YesNoString, "no") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_pass_through_explosions = FALSE;
+				item->item_gun_bullet_pass_through_explosions = FALSE;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLEASE_INFORM, IS_FATAL);
-			};	// if ( ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot == TRUE )
+			};	// if ( item->item_can_be_installed_in_weapon_slot == TRUE )
 			free(YesNoString);
 
 			// Now we read in if this weapons bullets will reflect other bullets or not
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: pass through hit bodies=\"", "\"");
 			if (strcmp(YesNoString, "yes") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_pass_through_hit_bodies = TRUE;
+				item->item_gun_bullet_pass_through_hit_bodies = TRUE;
 			} else if (strcmp(YesNoString, "no") == 0) {
-				ItemMap[ItemIndex].item_gun_bullet_pass_through_hit_bodies = FALSE;
+				item->item_gun_bullet_pass_through_hit_bodies = FALSE;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
 The item specification of an item in freedroid.ruleset should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLEASE_INFORM, IS_FATAL);
-			};	// if ( ItemMap[ItemIndex].item_can_be_installed_in_weapon_slot == TRUE )
+			};	// if ( item->item_can_be_installed_in_weapon_slot == TRUE )
 			free(YesNoString);
 
 			// Now we read in the recharging time this weapon will need
 			ReadValueFromString(ItemPointer, "Item as gun: recharging time=", "%f",
-					    &ItemMap[ItemIndex].item_gun_recharging_time, EndOfItemData);
+					    &item->item_gun_recharging_time, EndOfItemData);
 
 			// Now we read in the reloading time this weapon will need
 			ReadValueFromString(ItemPointer, "Item as gun: reloading time=", "%f",
-					    &ItemMap[ItemIndex].item_gun_reloading_time, EndOfItemData);
+					    &item->item_gun_reloading_time, EndOfItemData);
 
 			// Now we read in the image type that should be generated for this bullet
 			ReadValueFromString(ItemPointer, "Item as gun: bullet_image_type=", "%hd",
-					    &ItemMap[ItemIndex].item_gun_bullet_image_type, EndOfItemData);
+					    &item->item_gun_bullet_image_type, EndOfItemData);
 
 			// Now we read in the image type that should be generated for this bullet
 			ReadValueFromString(ItemPointer, "Item as gun: bullet_lifetime=", "%f",
-					    &ItemMap[ItemIndex].item_gun_bullet_lifetime, EndOfItemData);
-			if (ItemMap[ItemIndex].item_gun_bullet_lifetime == -1)
-				ItemMap[ItemIndex].item_gun_bullet_lifetime = DEFAULT_BULLET_LIFETIME;
+					    &item->item_gun_bullet_lifetime, EndOfItemData);
+			if (item->item_gun_bullet_lifetime == -1)
+				item->item_gun_bullet_lifetime = DEFAULT_BULLET_LIFETIME;
 
 			// Now we read in the image type that should be generated for this bullet
 			ReadValueFromString(ItemPointer, "Item as gun: ammo clip size=", "%hd",
-					    &ItemMap[ItemIndex].item_gun_ammo_clip_size, EndOfItemData);
+					    &item->item_gun_ammo_clip_size, EndOfItemData);
 
 			// Some guns require some ammunition.  This will be read in and
 			// examined next...
-			//
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: required ammunition type=\"", "\"");
 			if (strcmp(YesNoString, "none") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 0;
+				item->item_gun_use_ammunition = 0;
 			} else if (strcmp(YesNoString, "plasma_ammunition") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 2;
+				item->item_gun_use_ammunition = 2;
 			} else if (strcmp(YesNoString, "laser_ammunition") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 1;
+				item->item_gun_use_ammunition = 1;
 			} else if (strcmp(YesNoString, "exterminator_ammunition") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 3;
+				item->item_gun_use_ammunition = 3;
 			} else if (strcmp(YesNoString, "22LR") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 4;
+				item->item_gun_use_ammunition = 4;
 			} else if (strcmp(YesNoString, "Sshell") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 5;
+				item->item_gun_use_ammunition = 5;
 			} else if (strcmp(YesNoString, "9mm") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 6;
+				item->item_gun_use_ammunition = 6;
 			} else if (strcmp(YesNoString, "7.62mm") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 7;
+				item->item_gun_use_ammunition = 7;
 			} else if (strcmp(YesNoString, "50BMG") == 0) {
-				ItemMap[ItemIndex].item_gun_use_ammunition = 8;
+				item->item_gun_use_ammunition = 8;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
 The type of ammunition used by an item in freedroid.item_archetypes was not recognized. \n\
@@ -1020,9 +1003,9 @@ This string was: %s\n", PLEASE_INFORM, IS_FATAL, YesNoString);
 			// Now we read in if this weapons (strictly) requires both hands for usage
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: weapon requires both hands=\"", "\"");
 			if (strcmp(YesNoString, "yes") == 0) {
-				ItemMap[ItemIndex].item_gun_requires_both_hands = TRUE;
+				item->item_gun_requires_both_hands = TRUE;
 			} else if (strcmp(YesNoString, "no") == 0) {
-				ItemMap[ItemIndex].item_gun_requires_both_hands = FALSE;
+				item->item_gun_requires_both_hands = FALSE;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
 The item specification of an item in freedroid.item_archetypes should contain an \n\
@@ -1033,57 +1016,52 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		} else {
 			// If it is not a gun, we set the weapon specifications to
 			// empty values...
-			//
-			ItemMap[ItemIndex].base_item_gun_damage = 0;
-			ItemMap[ItemIndex].item_gun_damage_modifier = 0;
-			ItemMap[ItemIndex].item_gun_speed = 0;
-			ItemMap[ItemIndex].item_gun_start_angle_modifier = 0;
-			ItemMap[ItemIndex].item_gun_bullet_ignore_wall_collisions = FALSE;
-			ItemMap[ItemIndex].item_gun_bullet_reflect_other_bullets = FALSE;
-			ItemMap[ItemIndex].item_gun_bullet_pass_through_explosions = FALSE;
-			ItemMap[ItemIndex].item_gun_bullet_pass_through_hit_bodies = FALSE;
-			ItemMap[ItemIndex].item_gun_recharging_time = 0;
-			ItemMap[ItemIndex].item_gun_reloading_time = 0;
-			ItemMap[ItemIndex].item_gun_bullet_image_type = 0;
-			ItemMap[ItemIndex].item_gun_bullet_lifetime = 0;
-			ItemMap[ItemIndex].item_gun_use_ammunition = 0;
-			ItemMap[ItemIndex].item_gun_requires_both_hands = TRUE;
+			item->base_item_gun_damage = 0;
+			item->item_gun_damage_modifier = 0;
+			item->item_gun_speed = 0;
+			item->item_gun_start_angle_modifier = 0;
+			item->item_gun_bullet_ignore_wall_collisions = FALSE;
+			item->item_gun_bullet_reflect_other_bullets = FALSE;
+			item->item_gun_bullet_pass_through_explosions = FALSE;
+			item->item_gun_bullet_pass_through_hit_bodies = FALSE;
+			item->item_gun_recharging_time = 0;
+			item->item_gun_reloading_time = 0;
+			item->item_gun_bullet_image_type = 0;
+			item->item_gun_bullet_lifetime = 0;
+			item->item_gun_use_ammunition = 0;
+			item->item_gun_requires_both_hands = TRUE;
 		}
 
 		// Now we read in the armour value of this item as armour or shield or whatever
 		ReadValueFromStringWithDefault(ItemPointer, "Item as defensive item: base_damred_bonus=", "%hd", "0",
-					       &ItemMap[ItemIndex].base_damred_bonus, EndOfItemData);
+					       &item->base_damred_bonus, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "Item as defensive item: damred_bonus_modifier=", "%hd", "0",
-					       &ItemMap[ItemIndex].damred_bonus_modifier, EndOfItemData);
+					       &item->damred_bonus_modifier, EndOfItemData);
 
 		// Now we read in the base item duration and the duration modifier
 		ReadValueFromStringWithDefault(ItemPointer, "Base item duration=", "%hd", "-1",
-					       &ItemMap[ItemIndex].base_item_duration, EndOfItemData);
+					       &item->base_item_duration, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "plus duration modifier=", "%hd", "0",
-					       &ItemMap[ItemIndex].item_duration_modifier, EndOfItemData);
+					       &item->item_duration_modifier, EndOfItemData);
 
 		// Now we read in the name of the inventory item image, that is to be used
 		// on the inventory screen.
-		//
-		ItemMap[ItemIndex].item_inv_file_name = ReadAndMallocStringFromData(ItemPointer, ITEM_INVENTORY_IMAGE_FILE_NAME, "\"");
-		// DebugPrintf ( 0 , "\nName of item %d is: '%s'." , ItemIndex , ItemMap [ ItemIndex ] . item_name );
+		item->item_inv_file_name = ReadAndMallocStringFromData(ItemPointer, ITEM_INVENTORY_IMAGE_FILE_NAME, "\"");
 
 		// Now we read in the name of the sound sample to be played when this item is moved
-		ItemMap[ItemIndex].item_drop_sound_file_name = ReadAndMallocStringFromData(ItemPointer, ITEM_DROP_SOUND_FILE_NAME, "\"");
-		// DebugPrintf ( 0 , "\nName of item %d is: '%s'." , ItemIndex , ItemMap [ ItemIndex ] . item_name );
+		item->item_drop_sound_file_name = ReadAndMallocStringFromData(ItemPointer, ITEM_DROP_SOUND_FILE_NAME, "\"");
 
 		// Now we read the size of the item in the inventory. 0 equals "figure out automatically".
 		ReadValueFromStringWithDefault(ItemPointer, "inventory_size_x=", "%d", "0",
-					       &ItemMap[ItemIndex].inv_image.inv_size.x, EndOfItemData);
+					       &item->inv_image.inv_size.x, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "inventory_size_y=", "%d", "0",
-					       &ItemMap[ItemIndex].inv_image.inv_size.y, EndOfItemData);
+					       &item->inv_image.inv_size.y, EndOfItemData);
 
 		// Now we read in the base list price for this item
-		ReadValueFromString(ItemPointer, "Base list price=", "%hd", &ItemMap[ItemIndex].base_list_price, EndOfItemData);
+		ReadValueFromString(ItemPointer, "Base list price=", "%hd", &item->base_list_price, EndOfItemData);
 
 		// Now that the picture name has been loaded, we can already load the
 		// surfaces associated with the picture...
-		//
 		load_item_surfaces_for_item_type(ItemIndex);
 
 		ItemIndex++;
@@ -1093,19 +1071,18 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 
 	// Now that all the calibrations factors have been read in, we can start to
 	// apply them to all the bullet types
-	//
 	for (ItemIndex = 0; ItemIndex < Number_Of_Item_Types; ItemIndex++) {
-		if (ItemMap[ItemIndex].item_weapon_is_melee) {
-			ItemMap[ItemIndex].base_item_gun_damage *= melee_weapon_damage_calibrator;
-			ItemMap[ItemIndex].item_gun_damage_modifier *= melee_weapon_damage_calibrator;
+		itemspec *item = &ItemMap[ItemIndex];
+		if (item->item_weapon_is_melee) {
+			item->base_item_gun_damage *= melee_weapon_damage_calibrator;
+			item->item_gun_damage_modifier *= melee_weapon_damage_calibrator;
 		} else {
-			ItemMap[ItemIndex].item_gun_speed *= ranged_weapon_speed_calibrator;
-			ItemMap[ItemIndex].base_item_gun_damage *= ranged_weapon_damage_calibrator;
-			ItemMap[ItemIndex].item_gun_damage_modifier *= ranged_weapon_damage_calibrator;
+			item->item_gun_speed *= ranged_weapon_speed_calibrator;
+			item->base_item_gun_damage *= ranged_weapon_damage_calibrator;
+			item->item_gun_damage_modifier *= ranged_weapon_damage_calibrator;
 		}
 	}
-
-};				// void Get_Item_Data ( char* DataPointer );
+}
 
 /**
  * This function loads all the constant variables of the game from
@@ -1137,11 +1114,9 @@ void Init_Game_Data()
 	free(Data);
 
 	// Item archetypes must be loaded too
-	//
 	find_file("freedroid.item_archetypes", MAP_DIR, fpath, 0);
-	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
-	Get_Item_Data(Data);
+	get_item_data(Data);
 	free(Data);
 
 	next_startup_percentage(39);
