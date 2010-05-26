@@ -748,6 +748,29 @@ static int lua_set_faction_state(lua_State *L)
 	return 0;
 }
 
+static int lua_create_droid(lua_State *L)
+{
+	const char *map_label = luaL_checkstring(L, 1);
+	const char *type_name = luaL_checkstring(L, 2);
+	const char *fact_name = luaL_optstring(L, 3, "ms");
+	location loc;
+	int type;
+
+	ResolveMapLabelOnShip(map_label, &loc);
+
+	type = get_droid_type(type_name);
+
+	enemy *en = enemy_new(type);
+	enemy_reset(en);
+	en->pos.x = loc.x + 0.5;
+	en->pos.y = loc.y + 0.5;
+	en->pos.z = loc.level;
+	en->faction = get_faction_id(fact_name);
+	enemy_insert_into_lists(en, TRUE);
+
+	return 0;
+}
+
 luaL_reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -931,6 +954,8 @@ luaL_reg lfuncs[] = {
 	{"set_faction_state", lua_set_faction_state},
 
 	{"user_input_string", lua_user_input_string},
+
+	{"create_droid", lua_create_droid},
 	{NULL, NULL}
 	,
 };
