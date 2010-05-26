@@ -43,7 +43,7 @@ LuaCode={
 	else 
 		npc_says(_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl")
 		set_bot_state("free")
-	end;
+	end
 }
 ----------------------------------------------------------------------
 
@@ -52,8 +52,8 @@ LuaCode={
 	npc_says(_"Compressing image....")
 	npc_says(_"Advertising update to clients...")
 	npc_says(_"Waiting for all connections....")
-	npc_says(_"...")
-	npc_says(_"...")
+	npc_says("...")
+	npc_says("...")
 	npc_says(_"Firmware update propagated!")
 	add_cookie("uploaded_faulty_firmware")
 	end_quest("Propagating a faulty firmware")
