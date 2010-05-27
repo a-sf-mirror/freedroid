@@ -35,8 +35,8 @@ EveryTime LuaCode={
 		add_cookie("met_francis")
 	else end
 
-	if (has_cookie("tux_has_joined_guard") and (not has_cookie("Francis_guard_response"))) then
-		add_cookie("Francis_guard_response")
+	if (has_cookie("tux_has_joined_guard") and (not has_cookie("francis_guard_response"))) then
+		add_cookie("francis_guard_response")
 		npc_says(_"Welcome back " .. get_player_name() .. ".")
 		tux_says(_"I joined the Red Guard.")
 		npc_says(_"Congratulations are in order, I guess.")
