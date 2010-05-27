@@ -100,9 +100,11 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 
 	SetTextCursor(mission_description_rect.x, mission_description_rect.y);
 
-	strcat(complete_mission_display_text, _("Mission: "));
+	strcat(complete_mission_display_text, ("\3"));
+	strcat(complete_mission_display_text, _("Quest:"));
+	strcat(complete_mission_display_text, (" \1"));
 	strcat(complete_mission_display_text, _(Me.AllMissions[mis_num].mission_name));
-	strcat(complete_mission_display_text, "\n");
+	strcat(complete_mission_display_text, "\n\3");
 
 	// Depending on whether we want the full mission description or only
 	// some closed file description, we can either return or must continue
@@ -111,14 +113,18 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 	if (!full_description)
 		return;
 
-	strcat(complete_mission_display_text, _("Status: "));
+	strcat(complete_mission_display_text, ("\3"));
+	strcat(complete_mission_display_text, _("Status:"));
+	strcat(complete_mission_display_text, (" \2"));
 	if (Me.AllMissions[mis_num].MissionIsComplete)
 		strcat(complete_mission_display_text, _("COMPLETE"));
 	else if (Me.AllMissions[mis_num].MissionWasFailed)
 		strcat(complete_mission_display_text, _("FAILED"));
 	else
 		strcat(complete_mission_display_text, _("STILL OPEN"));
-	strcat(complete_mission_display_text, _("\nDetails:\n"));
+	strcat(complete_mission_display_text, ("\n\3"));
+	strcat(complete_mission_display_text, _("Details:"));
+	strcat(complete_mission_display_text, ("\n"));
 
 	for (mission_diary_index = 0; mission_diary_index < MAX_MISSION_DESCRIPTION_TEXTS; mission_diary_index++) {
 		if (Me.AllMissions[mis_num].mission_diary_texts[mission_diary_index]) {
@@ -126,11 +132,11 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 				get_days_of_game_duration(Me.AllMissions[mis_num].mission_description_time[mission_diary_index]),
 				get_hours_of_game_duration(Me.AllMissions[mis_num].mission_description_time[mission_diary_index]),
 				get_minutes_of_game_duration(Me.AllMissions[mis_num].mission_description_time[mission_diary_index]));
-			strcat(complete_mission_display_text, "-------- ");
+			strcat(complete_mission_display_text, "\3-------- \1");
 			strcat(complete_mission_display_text, temp_text);
-			strcat(complete_mission_display_text, " --------\n ");
+			strcat(complete_mission_display_text, "\3 --------\n\2");
 			strcat(complete_mission_display_text, D_(Me.AllMissions[mis_num].mission_diary_texts[mission_diary_index]));
-			strcat(complete_mission_display_text, "\n");
+			strcat(complete_mission_display_text, "\n\3");
 		}
 	}
 
