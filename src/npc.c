@@ -78,6 +78,7 @@ void init_npcs()
 	/* Create NPCs*/
 	const char *npcs[] = {
 		"614_cryo",
+		"AfterTakeover",
 		"Bender",
 		"Benjamin",
 		//	"Boris",
@@ -114,7 +115,6 @@ void init_npcs()
 		"Skippy",
 		"Sorenson",
 		"Spencer",
-		"StandardBotAfterTakeover",
 		"Stone",
 		"Town-614",
 		"Town-GuardhouseGuard",

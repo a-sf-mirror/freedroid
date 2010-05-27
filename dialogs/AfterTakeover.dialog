@@ -49,7 +49,7 @@ Nr=1 Text=_"cd repair&settings/"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"cd repair&settings/", "NO_WAIT")
-	run_subdialog("StandardBotAfterTakeover_sub.dialog")
+	run_subdialog("AfterTakeover_sub.dialog")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
@@ -103,7 +103,7 @@ Nr=20 Text=_"./hcf.py"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"./move_freely.sh", "NO_WAIT")
-	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
+	if (has_cookie("aftertakeover_confirm_hcf")) then
 		npc_says(_"Are you really sure you want to destroy ".. bot_name().._"? Y/N")
 		hide(1, 11, 12, 13, 20) show(21, 22)
 	else next(23) end
@@ -124,7 +124,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23 Text="BUG, REPORT ME! standardbotaftertakeover node23"
+Nr=23 Text="BUG, REPORT ME! aftertakeover node23"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")

@@ -1975,7 +1975,7 @@ game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
 		newen->pos.x = newen->pos.y = -1;
 		newen->pos.z = OurLevelNumber;
 		newen->on_death_drop_item_code = -1;
-		newen->dialog_section_name = strdup("StandardBotAfterTakeover");
+		newen->dialog_section_name = strdup("AfterTakeover");
 		newen->faction = FACTION_BOTS;
 
 		enemy_insert_into_lists(newen, TRUE);

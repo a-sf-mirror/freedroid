@@ -107,8 +107,8 @@ Nr=31 Text=_"Yes, always ask."
 LuaCode={
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
 	npc_says(_"Settings saved")
-	if (not has_cookie("StandardBotAfterTakeover_confirm_hcf")) then 
-		add_cookie("StandardBotAfterTakeover_confirm_hcf")
+	if (not has_cookie("aftertakeover_confirm_hcf")) then 
+		add_cookie("aftertakeover_confirm_hcf")
 	else end	
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(31, 32) show(0, 20, 30, 40)
@@ -118,8 +118,8 @@ LuaCode={
 Nr=32 Text=_"No, don't ask"
 LuaCode={
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
-	if (has_cookie("StandardBotAfterTakeover_confirm_hcf")) then
-		del_cookie("StandardBotAfterTakeover_confirm_hcf")
+	if (has_cookie("aftertakeover_confirm_hcf")) then
+		del_cookie("aftertakeover_confirm_hcf")
 	else end
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(31, 32) show(0, 20, 30, 40)
@@ -300,7 +300,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=61 Text="BUG, REPORT ME! standardbotaftertakeover_sub node61"
+Nr=61 Text="BUG, REPORT ME! aftertakeover_sub node61"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(new_name, "NO_WAIT")
@@ -451,7 +451,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=80 Text="BUG, REPORT ME! standardbotaftertakeover_sub node80"
+Nr=80 Text="BUG, REPORT ME! aftertakeover_sub node80"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(new_animal,"NO_WAIT")
@@ -483,7 +483,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99 Text="BUG, REPORT ME! standardbotaftertakeover_sub node99"
+Nr=99 Text="BUG, REPORT ME! aftertakeover_sub node99"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"cd ..","NO_WAIT")
