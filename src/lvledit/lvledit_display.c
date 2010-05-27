@@ -376,27 +376,15 @@ static void ShowMapLabels(int mask)
  * mouse cursor.  Bringing up this tooltip window is the purpose of this
  * function.
  */
-static void show_button_tooltip(char *tooltip_text)
+static void show_button_tooltip(const char *tooltip_text)
 {
-	SDL_Rect TargetRect;
+	float w = 400;
+	float h = 20; // will be expanded by show_backgrounded_text_rectangle()
+	float x = 120;
+	float y = 160;
 
-	TargetRect.w = 400;
-	TargetRect.h = 220;
-	TargetRect.x = (640 - TargetRect.w) / 2;
-	TargetRect.y = 2 * (480 - TargetRect.h) / 3;
-	our_SDL_fill_rect_wrapper(Screen, &TargetRect, SDL_MapRGB(Screen->format, 0, 0, 0));
-
-#define IN_WINDOW_TEXT_OFFSET 15
-	TargetRect.w -= IN_WINDOW_TEXT_OFFSET;
-	TargetRect.h -= IN_WINDOW_TEXT_OFFSET;
-	TargetRect.x += IN_WINDOW_TEXT_OFFSET;
-	TargetRect.y += IN_WINDOW_TEXT_OFFSET;
-
-	SetCurrentFont(FPS_Display_BFont);
-
-	DisplayText(tooltip_text, TargetRect.x, TargetRect.y, &TargetRect, 1.0);
-
-};				// void show_button_tooltip ( char* tooltip_text )
+	show_backgrounded_text_rectangle(tooltip_text, FPS_Display_BFont, x, y, w, h);
+}
 
 /**
  *

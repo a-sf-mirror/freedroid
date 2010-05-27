@@ -58,6 +58,8 @@ struct dynarray {
 	int capacity;
 };
 
+/* prototype for BFont_Info from BFont.h */
+struct BFont_Info;
 
 /* ----------------------------------------------------------------------
  * Here comes the struct for an iso image.  It also contains some 

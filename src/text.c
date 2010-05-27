@@ -106,7 +106,7 @@ void show_backgrounded_label_at_map_position(char *LabelText, float fill_status,
  * minimum value, and it will be expanded vertically to fit the given text.
  * @Ret: The height of the rectangle
  */
-static int show_backgrounded_text_rectangle(const char *text, BFont_Info *font, int x, int y, int w, int h)
+int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, int x, int y, int w, int h)
 {
 	BFont_Info *old_font = GetCurrentFont();
 	SetCurrentFont(font);
@@ -141,7 +141,7 @@ static int show_backgrounded_text_rectangle(const char *text, BFont_Info *font, 
 
 	SetCurrentFont(old_font);
 	return r_height;
-};				// void show_backgrounded_text_rectangle ( char* text , int x , int y , int w , int h )
+}
 
 /**
  * In some cases it will be necessary to inform the user of something in

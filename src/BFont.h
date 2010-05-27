@@ -8,7 +8,7 @@
 
 #define MAX_CHARS_IN_FONT 256
 
-typedef struct {
+typedef struct BFont_Info {
 	/* font height */
 	int h;
 	/* font surface */
