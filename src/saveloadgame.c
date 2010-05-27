@@ -722,17 +722,16 @@ void read_luacode(const char *buffer, const char *tag, luacode * val)
 }
 
 /* Save arrays of simple types */
-#define define_save_xxx_array(X) void save_##X##_array(const char * tag, X * val_ar, int size)\
+#define define_save_xxx_array(X) void save_##X##_array(const char *tag, X *val_ar, int size)\
 {\
-autostr_append(savestruct_autostr, "<%s array n=%d>\n", tag, size);\
-int i;\
-for ( i = 0; i < size; i ++)\
-	{\
-	char str[10];\
-	sprintf(str, "%i", i);\
-	save_##X(str, &val_ar[i]);\
+	autostr_append(savestruct_autostr, "<%s array n=%d>\n", tag, size);\
+	int i;\
+	for (i = 0; i < size; i++) {\
+		char str[strlen(tag) + 20];\
+		sprintf(str, "%s elem %d", tag, i);\
+		save_##X(str, &val_ar[i]);\
 	}\
-autostr_append(savestruct_autostr, "</%s>\n", tag);\
+	autostr_append(savestruct_autostr, "</%s>\n", tag);\
 }
 
 /* Save dynamic arrays of simple types.
@@ -802,8 +801,8 @@ int read_array_size(const char *buffer, const char *tag)
 	*(epos+1) = '\0';\
 	/* Read array elements. */\
 	for (i = 0; i < (nb <= size ? nb : size); i++) {\
-		char str[10];\
-		sprintf(str, "%d", i);\
+		char str[strlen(tag) + 20];\
+		sprintf(str, "%s elem %d", tag, i);\
 		pos = strstr(pos, str);\
 		if (!pos) break;\
 		pos -= 5;\
