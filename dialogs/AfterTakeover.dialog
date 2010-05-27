@@ -111,6 +111,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"Yes"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Destruction confirmed.")
 	hide(21, 22) next(23)
@@ -118,6 +119,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"No"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Destrucion averted.")
 	hide(21, 22) show(1, 11, 12, 13, 20, 99)

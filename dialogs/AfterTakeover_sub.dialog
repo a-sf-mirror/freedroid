@@ -98,15 +98,16 @@ LuaCode={
 	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
 	npc_says(_"Version: 1.82c", "NO_WAIT")
 	npc_says(_"No upgrades found.", "NO_WAIT")
-	npc_says(_"Always ask for confirmation before execution of hcf.py? Y/N", "NO_WAIT")
+	npc_says(_"Always ask for confirmation before execution of hcf.py? [Y/N]", "NO_WAIT")
 	hide(0, 20, 21, 30, 40) show(31, 32)
 }
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"Yes, always ask."
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
-	npc_says(_"Settings saved")
+	npc_says(_"Settings saved", "NO_WAIT")
 	if (not has_cookie("aftertakeover_confirm_hcf")) then 
 		add_cookie("aftertakeover_confirm_hcf")
 	else end	
@@ -116,8 +117,10 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=32 Text=_"No, don't ask"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
+	npc_says(_"Settings saved", "NO_WAIT")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		del_cookie("aftertakeover_confirm_hcf")
 	else end
@@ -133,7 +136,7 @@ LuaCode={
 	npc_says(_"Welcome to the hostname menu.", "NO_WAIT")
 	npc_says(_"Version: 0.15.01", "NO_WAIT")
 	npc_says(_"Current botname: [b]"..bot_name().."[/b]", "NO_WAIT")
-	npc_says(_"Select new name? Y/N", "NO_WAIT")
+	npc_says(_"Select new name? [Y/N]", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
 	new_name = ""
 	hide(0, 20, 21, 30, 40) show(41, 42)
@@ -456,7 +459,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(new_animal,"NO_WAIT")
 	new_name = new_name .." ".. new_animal .." ".. bot_type()
-	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? Y/N", "NO_WAIT")
+	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? [Y/N]", "NO_WAIT")
 	cli_says(">", "NO_WAIT")
 	show(81, 82)
 }
