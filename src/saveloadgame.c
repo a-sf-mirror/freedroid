@@ -818,9 +818,11 @@ int read_array_size(const char *buffer, const char *tag)
  */
 #define define_read_xxx_dynarray(X) void read_##X##_dynarray(char *buffer, const char *tag, X##_dynarray *array)\
 {\
-	/* Read the size and allocate space. */\
+	/* Read the size. */\
 	int size = read_array_size(buffer, tag);\
+	/* Allocate space. */\
 	dynarray_init((struct dynarray *) array, size, sizeof(X));\
+	array->size = size;\
 	/* Read the array elements. */\
 	read_##X##_array(buffer, tag, array->arr, array->size);\
 }

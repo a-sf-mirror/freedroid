@@ -35,11 +35,11 @@ void dynarray_init(struct dynarray *array, int membernum, size_t membersize)
 {
 	if (membernum) {
 		array->arr = calloc(membernum, membersize);
-		array->capacity = membernum;
-		array->size = 0;
 	} else {
-		ErrorMessage(__FUNCTION__, "membernum is 0, this is illegal.\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		array->arr = NULL;
 	}
+	array->capacity = membernum;
+	array->size = 0;
 }
 
 /**
