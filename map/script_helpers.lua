@@ -125,19 +125,19 @@ end
 -- Quest functions
 function add_quest(quest, text)
 	assign_quest(quest, text)
-	cli_says(_"   New Quest assigned.","NO_WAIT")
+	cli_says("   ".._"New Quest assigned.","NO_WAIT")
 	npc_says("")
 end
 
 function update_quest(quest, text)
 	add_diary_entry(quest, text)
-	cli_says(_"   Quest log updated.","NO_WAIT")
+	cli_says("   ".._"Quest log updated.","NO_WAIT")
 	npc_says("")
 end
 
-function end_quest(quest, text)
-	complete_quest(quest, text)
-	cli_says(_"   Quest completed.","NO_WAIT")
+function end_quest(quest)
+	complete_quest(quest)
+	cli_says("   ".._"Quest completed.","NO_WAIT")
 	npc_says("")
 end
 
