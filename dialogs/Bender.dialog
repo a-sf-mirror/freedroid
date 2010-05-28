@@ -146,8 +146,7 @@ LuaCode={
 	add_xp(150)
 	del_item_backpack("Brain Enlargement Pills Antidote", 1)
 	add_item("Strength Pill",2)
-	update_quest("Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
-	end_quest("Bender's problem")
+	end_quest("Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
 	hide(9)
 }
 ----------------------------------------------------------------------

@@ -364,8 +364,11 @@ static int lua_event_assign_mission(lua_State * L)
 static int lua_event_complete_mission(lua_State * L)
 {
 	const char *misname = luaL_checkstring(L, 1);
+	const char *diarytext = luaL_optstring(L, 2, NULL);
 
 	CompleteMission(misname);
+	if (diarytext != NULL)
+		quest_browser_diary_add(misname, diarytext);
 
 	return 0;
 }

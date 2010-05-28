@@ -63,8 +63,7 @@ LuaCode={
 		npc_says(_"WARNING: Another user is using this computer.")
 		npc_says(_"Disruptor shield is active.")
 	else
-		update_quest("Opening access to MS Office",_"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
-		end_quest("Opening access to MS Office")
+		end_quest("Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
 	end
 	cli_says(terminal, "NO_WAIT")
 }

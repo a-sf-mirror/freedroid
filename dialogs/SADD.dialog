@@ -204,7 +204,7 @@ LuaCode={
 	add_xp(1000)
 	del_item_backpack("Red Dilithium Crystal", 1)
 	change_obstacle_state("SADDDepotDoor", "opened")
-	end_quest("SADD's power supply")
+	end_quest("SADD's power supply", _"I managed to restore the SADD's power supply.")
 	hide(30) show(37)
 }
 ----------------------------------------------------------------------
@@ -226,7 +226,7 @@ LuaCode={
 	change_obstacle_state("SADDDepotDoor", "opened")
 	change_obstacle_state("SADDBioDoor", "opened")
 	del_item_backpack("Red Dilithium Crystal", 1)
-	end_quest("SADD's power supply")
+	end_quest("SADD's power supply", _"I managed to restore the SADD's power supply.")
 	hide(33) show(97)
 }
 ----------------------------------------------------------------------

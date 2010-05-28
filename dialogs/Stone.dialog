@@ -90,7 +90,9 @@ LuaCode={
 
 Nr=8 Text=_"If things are so bad right now, why don't you leave?"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={ next(9) hide(8) }
+LuaCode={
+	hide(8) next(9)
+}
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"If things are so bad right now, why --"
@@ -175,8 +177,7 @@ LuaCode={
 	npc_says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
 	npc_says(_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!")
 	add_item("Two Barrel shotgun",1)
-	update_quest("Saving the shop",_"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
-	end_quest("Saving the shop")
+	end_quest("Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 	end_dialog()
 	hide(31, 32, 33)
 }
@@ -186,8 +187,7 @@ Nr=32 Text=_"It's not important who I am."
 LuaCode={
 	npc_says(_"If you want to remain a stranger, I will respect your wishes.", "NO_WAIT")
 	npc_says(_"So be it.")
-	update_quest("Saving the shop",_"Ms. Stone was really grateful for my help. She took only what she needed from me.")
-	end_quest("Saving the shop")
+	end_quest("Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me.")
 	end_dialog()
 	hide(31, 32, 33)
 }
@@ -200,8 +200,7 @@ LuaCode={
 	npc_says(_"Say your prayers, you oversized duck!!!")
 	add_gold(1547)
 	set_npc_faction("crazy")
-	update_quest("Saving the shop",_"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
-	end_quest("Saving the shop")
+	end_quest("Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
 	end_dialog()
 	hide(31, 32, 33)
 }

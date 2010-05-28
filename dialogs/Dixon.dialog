@@ -240,8 +240,7 @@ LuaCode={
 	npc_says(_"After all, it seems like they need them more than I do.", "NO_WAIT")
 	npc_says(_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots.")
 	add_cookie("singularity_saved")
-	update_quest("The yellow toolkit",_"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
-	end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit", _"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
 	hide(28, 29, 30)
 }	
 ----------------------------------------------------------------------
@@ -263,8 +262,7 @@ LuaCode={
 	npc_says(_"I am sorry, but I must go now. My duties call.")
 	del_item_backpack("Dixon's Toolbox", 1)
 	add_gold(150)
-	update_quest("The yellow toolkit",_"Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters.")
-	end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit", _"Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters.")
 	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
@@ -279,8 +277,7 @@ LuaCode={
 	add_cookie("singularity_dead")
 	del_item_backpack("Dixon's Toolbox", 1)
 	add_item("Dixon's Helmet",1)
-	update_quest("The yellow toolkit",_"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
-	end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit", _"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
 	hide(34, 35, 36)
 }
 ----------------------------------------------------------------------
@@ -310,8 +307,7 @@ LuaCode={
 	add_gold(250)
 	add_cookie("dixon_angry_250")
 	del_item_backpack("Dixon's Toolbox", 1)
-	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
-	end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit", _"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
 	end_dialog()
 	hide(38, 41)
 }
@@ -324,8 +320,7 @@ LuaCode={
 	add_gold(350)
 	add_cookie("dixon_angry_350")
 	del_item_backpack("Dixon's Toolbox", 1)
-	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
-	end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit", _"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
 	end_dialog()
 	hide(39, 42)
 }
@@ -339,8 +334,7 @@ LuaCode={
 	add_gold(400)
 	add_cookie("dixon_very_angry")
 	del_item_backpack("Dixon's Toolbox", 1)
-	update_quest("The yellow toolkit",_"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
-	end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit", _"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
 	end_dialog()
 	hide(40)
 }
@@ -417,8 +411,7 @@ LuaCode={
 	npc_says(_"The Library of Alexandria, the Colossus of Rhodes, the Black Island...")
 	npc_says(_"And this is just one of those things.", "NO_WAIT")
 	npc_says(_"Just go and see for yourself. Otherwise you will not believe me.")
-	update_quest("The yellow toolkit", "The tunnels bots seem to be working together with Dixon in keeping the city working. All is well that ends well.")
-	end_quest("The yellow toolkit")
+	end_quest("The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the city working. All is well that ends well.")
 	hide(48)
 }
 ----------------------------------------------------------------------

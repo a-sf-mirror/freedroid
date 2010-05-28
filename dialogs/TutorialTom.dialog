@@ -514,8 +514,7 @@ Nr=39 Text=_"I'd rather just move on to the next section of the tutorial."
 LuaCode={
 	npc_says(_"As you wish, Linarian.")
 	change_obstacle_state("TutorialShootingOut", "opened")
-	update_quest("Tutorial Shooting", "I decided not to finish the shooting tutorial.")
-	end_quest("Tutorial Shooting")
+	end_quest("Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
 	end_dialog()
 	hide(30, 31, 32, 33, 37, 38, 39) show(40)
 }

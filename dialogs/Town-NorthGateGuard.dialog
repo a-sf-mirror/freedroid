@@ -84,9 +84,8 @@ LuaCode={
 	else
 		add_quest("A strange guy stealing from town",_"Ooops, the guard must be talking about Kevin. I'll better not mention I know him and where he lives or I might find myself in a holding cell or being forced to show the guards straight to his home. But I guess that explains where Kevin got that 614 bot from.")
 		add_xp(100)
-		update_quest("A strange guy stealing from town",_"Though I probably should ask Kevin some day what he was doing with the town computers.")
 -- We should perhaps not end quest here but later when talking again to Kevin and asking about the comps
-		end_quest("A strange guy stealing from town")
+		end_quest("A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
 	end
 	npc_says(_"In any case...")
 	npc_says_random(

@@ -205,8 +205,7 @@ LuaCode={
 	display_big_message("Restored Michelangelo's power supply")
 	add_xp(350)
 	del_item_backpack("Red Dilithium Crystal", 3)
-	update_quest("Anything but the army snacks, please!",_"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the city.")
-	end_quest("Anything but the army snacks, please!")
+	end_quest("Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the city.")
 	hide(29)
 }
 ----------------------------------------------------------------------

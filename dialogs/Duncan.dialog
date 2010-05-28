@@ -185,8 +185,8 @@ LuaCode={
 	if (has_cookie("koan_spared")) then 
 		tux_says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
 		npc_says(_"I see.")
+		end_quest("Doing Duncan a favour", _"I lied to Duncan about not finding Koan.")
 		end_dialog()
-		end_quest("Doing Duncan a favour")
 	else end
 
 	if (has_item_backpack("Pandora's Cube") > 0) then show(62, 63) else end
@@ -235,7 +235,7 @@ LuaCode={
 Nr=68 Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
 LuaCode={
 	npc_says(_"I understand. So be it.")
-	end_quest("Doing Duncan a favour")
+	end_quest("Doing Duncan a favour", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
 	end_dialog()
 	hide(67, 68)
 }
@@ -246,7 +246,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	add_xp(3000)
 	del_item_backpack("Pandora's Cube", 1)
-	end_quest("Doing Duncan a favour")
+	end_quest("Doing Duncan a favour", _"I gave Duncan the cube thingie. It feels nice to help people.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
