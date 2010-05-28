@@ -876,6 +876,7 @@ item *GetHeldItemPointer(void)
  */
 void DeleteItem(item *it)
 {
+	delete_upgrade_sockets(it);
 	init_item(it);
 }
 
@@ -888,6 +889,10 @@ void CopyItem(item * SourceItem, item * DestItem, int MakeSound)
 {
 
 	memcpy(DestItem, SourceItem, sizeof(item));
+
+	// Create a soft copy of the upgrade sockets. Memcpy just copied the
+	// pointer but we want the actual data to be duplicated.
+	copy_upgrade_sockets(SourceItem, DestItem);
 
 	if (MakeSound) {
 		// PlayItemSound( ItemMap[ SourceItem->type ].sound_number );

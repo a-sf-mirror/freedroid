@@ -2,6 +2,8 @@ int save_enemy(char *, enemy *);
  int read_enemy(char *, char *, enemy *);
 int save_bullet(char *, bullet *);
  int read_bullet(char *, char *, bullet *);
+int save_upgrade_socket(char *, upgrade_socket *);
+ int read_upgrade_socket(char *, char *, upgrade_socket *);
 int save_point(char *, point *);
  int read_point(char *, char *, point *);
 int save_moderately_finepoint(char *, moderately_finepoint *);

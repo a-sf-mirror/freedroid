@@ -332,6 +332,8 @@ void save_float_array(const char *, float *, int);
 void read_float_array(char *, const char *, float *, int);
 void save_string_array(const char *, string *, int);
 void read_string_array(char *, const char *, string *, int);
+void save_upgrade_socket_dynarray(const char *, struct upgrade_socket_dynarray *);
+void read_upgrade_socket_dynarray(char *, const char *, struct upgrade_socket_dynarray *);
 
 /* Hacks */
 void save_keybind_t_array(const char *, keybind_t *, int);
@@ -500,6 +502,11 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 int get_floor_item_index_under_mouse_cursor(level **item_lvl);
 int item_is_currently_equipped(item * Item);
 int Get_Prefixes_Data(char *DataPointer);
+
+// item_upgrades.c
+void create_upgrade_socket(item *, int, const char *);
+void delete_upgrade_sockets(item *);
+void copy_upgrade_sockets(item *, item *);
 
 // character.c
 void DisplayButtons(void);

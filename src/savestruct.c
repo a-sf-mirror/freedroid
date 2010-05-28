@@ -190,6 +190,33 @@ read_char(pos, "hit_type",  &(target->hit_type));
 return 0;
 }
 
+int save_upgrade_socket(char * tag, upgrade_socket * target)
+{
+autostr_append(savestruct_autostr, "<%s>\n",tag);
+save_int32_t("type", &(target->type));
+save_string("addon", &(target->addon));
+autostr_append(savestruct_autostr, "</%s>\n", tag);
+return 0;
+}
+
+int read_upgrade_socket(char* buffer, char * tag, upgrade_socket * target)
+{
+
+		char search[strlen(tag) + 5];
+		sprintf(search, "<%s>", tag);
+	        char * pos = strstr(buffer, search);
+		if ( ! pos ) return 1;
+		pos += 1 + strlen(tag);
+		sprintf(search, "</%s>", tag);
+		char * epos = strstr(buffer, search);
+		if ( ! epos ) return 2;
+		*epos = 0;
+		read_int32_t(pos, "type",  &(target->type));
+read_string(pos, "addon",  &(target->addon));
+*epos = '>'; 
+return 0;
+}
+
 int save_point(char * tag, point * target)
 {
 autostr_append(savestruct_autostr, "<%s>\n",tag);
@@ -584,6 +611,7 @@ save_int32_t("damage_modifier", &(target->damage_modifier));
 save_int32_t("multiplicity", &(target->multiplicity));
 save_int32_t("ammo_clip", &(target->ammo_clip));
 save_point("inventory_position", &(target->inventory_position));
+save_upgrade_socket_dynarray("upgrade_sockets", &(target->upgrade_sockets));
 autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
@@ -630,6 +658,7 @@ read_int32_t(pos, "damage_modifier",  &(target->damage_modifier));
 read_int32_t(pos, "multiplicity",  &(target->multiplicity));
 read_int32_t(pos, "ammo_clip",  &(target->ammo_clip));
 read_point(pos, "inventory_position",  &(target->inventory_position));
+read_upgrade_socket_dynarray(pos, "upgrade_sockets",  &(target->upgrade_sockets));
 *epos = '>'; 
 return 0;
 }

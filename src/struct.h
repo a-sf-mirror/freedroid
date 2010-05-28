@@ -58,6 +58,12 @@ struct dynarray {
 	int capacity;
 };
 
+typedef struct upgrade_socket_dynarray {
+	struct upgrade_socket *arr;
+	int size;
+	int capacity;
+} upgrade_socket_dynarray;
+
 /* prototype for BFont_Info from BFont.h */
 struct BFont_Info;
 
@@ -347,6 +353,11 @@ typedef struct itemspec_s {
 
 } itemspec;
 
+typedef struct upgrade_socket {
+	int type;
+	string addon;
+} upgrade_socket;
+
 typedef struct item_s {
 	// Here are the rather short-lived properties of the item
 	gps pos;
@@ -383,6 +394,8 @@ typedef struct item_s {
 	int multiplicity;
 	int ammo_clip;		// how much bullets in the clip, IN CASE OF WEAPON
 	point inventory_position;
+
+	struct upgrade_socket_dynarray upgrade_sockets;
 } item, *Item;
 
 typedef struct druidspec_s {
