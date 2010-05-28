@@ -76,7 +76,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 40
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 123 : Weak robotic arm"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -105,7 +104,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 50
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 139 : Plasma trash vaporiser"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=40
@@ -134,7 +132,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 70
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 247 : Weak robotic arm"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -163,7 +160,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 90
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 249 : Pulse Laser welder"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -192,7 +188,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 296 : Plasma beam cutter"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=60
@@ -221,7 +216,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.25
-Armament of this droid : 0
 Weapon item="Droid weaponry - 302"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -250,7 +244,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
 Time spent eyeing Tux=2.75
-Armament of this droid : 0
 Weapon item="Droid weaponry - 329"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -279,7 +272,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 300
 Aggression distance of this droid=10
 Time spent eyeing Tux=2.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 420"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -308,7 +300,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
-Armament of this droid : 1
 Weapon item="Droid weaponry - 476 (Small Single Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -337,7 +328,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.75
-Armament of this droid : 0
 Weapon item="Droid weaponry - 493"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -366,7 +356,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 516"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -395,7 +384,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 320
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
-Armament of this droid : 0
 Weapon item="Droid weaponry - 571"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -424,7 +412,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
-Armament of this droid : 0
 Weapon item="Droid weaponry - 598"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -453,7 +440,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 460
 Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.25
-Armament of this droid : 2
 Weapon item="Exterminator"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -482,7 +468,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 500
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.25
-Armament of this droid : 1
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -511,7 +496,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.0
-Armament of this droid : 1
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -540,7 +524,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 650
 Aggression distance of this droid=16.12
 Time spent eyeing Tux=1.0
-Armament of this droid : 3
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -569,7 +552,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 700
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.75
-Armament of this droid : 3
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -598,7 +580,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 800
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.75
-Armament of this droid : 1
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -627,7 +608,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1000
 Aggression distance of this droid=16.11
 Time spent eyeing Tux=0.5
-Armament of this droid : 1
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -656,7 +636,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1200
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.5
-Armament of this droid : 1
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -686,7 +665,6 @@ Experience_Reward gained for destroying one of this type: 1500
 Force how many additional magic items to be dropped=1
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.25
-Armament of this droid : 4
 Weapon item="Droid weaponry - 883 (Bot exterminator)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -715,7 +693,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 2000
 Aggression distance of this droid=16.116
 Time spent eyeing Tux=0.25
-Armament of this droid : 1
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
@@ -751,7 +728,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 23
 Notes concerning this droid=_"This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards."
@@ -775,7 +751,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 24
 Notes concerning this droid=_"This is a typical red (male) guard/fighter character.  They are equipped with powerful PowerExterminators."
@@ -799,7 +774,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 25
 Notes concerning this droid=_"This is the hot_mama shopkeeper character model."
@@ -823,7 +797,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 26
 Notes concerning this droid=_"This is the female scientist character model.  They are not armed as powerfully as e.g. the red guards."
@@ -847,7 +820,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 27
 Notes concerning this droid=_"This is the brown worker model.  They are not armed as powerfully as e.g. the red guards."
@@ -871,7 +843,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 28
 Notes concerning this droid=_"This is a useless comment. Thanks for your attention."
@@ -895,7 +866,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 29 
 Notes concerning this droid=_"This is the cook."
@@ -920,7 +890,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 30
 Notes concerning this droid=_"This is a typical professor/sage character of some older age. They are not armed as powerfully as e.g. the red guards."
@@ -944,7 +913,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 31
 Notes concerning this droid=_"This is a typical sex bomb.  This one is even armed."
@@ -968,7 +936,6 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Armament of this droid : 1
 Is this 'droid' a human : 1
 Individual shape of this droid or just -1 for classic ball shaped : 32
 Notes concerning this droid=_"This is the bartender."
@@ -985,7 +952,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10.0
 Time spent eyeing Tux=1.0
-Armament of this droid : 0
 Weapon item="Droid weaponry - 543 : Laser beam cutter"
 Greeting Sound number=11
 Got Hit Sound number=-1

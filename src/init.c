@@ -551,7 +551,6 @@ static void Get_Robot_Data(void *DataPointer)
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define BASE_HEALING_BEGIN_STRING "Rate of healing: "
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
-#define ARMAMENT_BEGIN_STRING "Armament of this droid : "
 #define WEAPON_ITEM_BEGIN_STRING "Weapon item=\""
 #define GREETING_SOUND_STRING "Greeting Sound number="
 #define ENEMY_GOT_HIT_SOUND_STRING "Got Hit Sound number="
