@@ -47,7 +47,6 @@ YOU CAN INSERT EXTRA LINES WITH EXTRA TEXT anywhere you like in this file.
 That will not cause any problems.  
 
 * ---------
-* Sensor range guidelines
 * Human/NPCs 8
 * Spectral 10 (Todo: Cant see invisible tux)
 * IR 11 (Todo: sees only heatsources but even through walls?)
@@ -77,8 +76,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 40
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
-Brain of this droid : 0
-Sensor 2 of this droid : 2
 Armament of this droid : 0
 Weapon item="Droid weaponry - 123 : Weak robotic arm"
 Percent to drop Entropy Inverter=10
@@ -108,8 +105,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 50
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Brain of this droid : 0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 139 : Plasma trash vaporiser"
 Percent to drop Entropy Inverter=10
@@ -139,7 +134,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 70
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 247 : Weak robotic arm"
 Percent to drop Entropy Inverter=10
@@ -169,7 +163,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 90
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 249 : Pulse Laser welder"
 Percent to drop Entropy Inverter=10
@@ -199,7 +192,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 296 : Plasma beam cutter"
 Percent to drop Entropy Inverter=10
@@ -229,8 +221,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.25
-Brain of this droid : 0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 302"
 Percent to drop Entropy Inverter=10
@@ -260,8 +250,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
 Time spent eyeing Tux=2.75
-Brain of this droid : 0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 329"
 Percent to drop Entropy Inverter=10
@@ -291,7 +279,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 300
 Aggression distance of this droid=10
 Time spent eyeing Tux=2.0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 420"
 Percent to drop Entropy Inverter=10
@@ -321,7 +308,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
-Sensor 2 of this droid : 2
 Armament of this droid : 1
 Weapon item="Droid weaponry - 476 (Small Single Laser)"
 Percent to drop Entropy Inverter=10
@@ -351,7 +337,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.75
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 493"
 Percent to drop Entropy Inverter=10
@@ -381,7 +366,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 516"
 Percent to drop Entropy Inverter=10
@@ -411,7 +395,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 320
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 571"
 Percent to drop Entropy Inverter=10
@@ -441,7 +424,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 598"
 Percent to drop Entropy Inverter=10
@@ -471,7 +453,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 460
 Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.25
-Sensor 2 of this droid : 3
 Armament of this droid : 2
 Weapon item="Exterminator"
 Percent to drop Entropy Inverter=10
@@ -501,7 +482,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 500
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.25
-Sensor 2 of this droid : 2
 Armament of this droid : 1
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
 Percent to drop Entropy Inverter=10
@@ -531,7 +511,6 @@ Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.0
-Sensor 2 of this droid : 3
 Armament of this droid : 1
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
@@ -561,7 +540,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 650
 Aggression distance of this droid=16.12
 Time spent eyeing Tux=1.0
-Sensor 1 of this droid : 4
 Armament of this droid : 3
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
@@ -620,7 +598,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 800
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.75
-Sensor 2 of this droid : 0
 Armament of this droid : 1
 Weapon item="Droid weaponry - 615,751,834 (Advanced Single Laser)"
 Percent to drop Entropy Inverter=10
@@ -650,7 +627,6 @@ Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1000
 Aggression distance of this droid=16.11
 Time spent eyeing Tux=0.5
-Sensor 3 of this droid : 2
 Armament of this droid : 1
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
@@ -739,9 +715,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 2000
 Aggression distance of this droid=16.116
 Time spent eyeing Tux=0.25
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Armament of this droid : 1
 Weapon item="Droid weaponry - 629,711,742,821,999 (Advanced Twin Laser)"
 Percent to drop Entropy Inverter=10
@@ -771,9 +744,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=4
 Got Hit Sound number=-1
@@ -798,9 +768,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=0.5
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="Exterminator"
 Greeting Sound number=6
 Got Hit Sound number=-1
@@ -825,9 +792,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="Pump action shotgun"
 Greeting Sound number=-1
 Got Hit Sound number=-1
@@ -852,9 +816,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=3
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=-1
 Got Hit Sound number=-1
@@ -879,9 +840,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=8
 Got Hit Sound number=-1
@@ -906,9 +864,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.5
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="Exterminator"
 Greeting Sound number=7
 Got Hit Sound number=-1
@@ -933,9 +888,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=6
 Got Hit Sound number=-1
@@ -961,9 +913,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=1.5
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=4
 Got Hit Sound number=-1
@@ -988,9 +937,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=3
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=4
 Got Hit Sound number=-1
@@ -1015,9 +961,6 @@ Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=1
-Brain of this droid : 2
-Sensor 1 of this droid : 2
-Sensor 3 of this droid : 3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=6
 Got Hit Sound number=-1
@@ -1042,7 +985,6 @@ Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10.0
 Time spent eyeing Tux=1.0
-Sensor 2 of this droid : 0
 Armament of this droid : 0
 Weapon item="Droid weaponry - 543 : Laser beam cutter"
 Greeting Sound number=11

@@ -413,10 +413,6 @@ typedef struct druidspec_s {
 	float maxspeed;
 
 	short experience_reward;	// experience_reward for the elimination of one droid of this type 
-	short int brain;
-	short int sensor1;
-	short int sensor2;
-	short int sensor3;
 
 	float aggression_distance;
 	float time_spent_eyeing_tux;

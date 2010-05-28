@@ -551,10 +551,6 @@ static void Get_Robot_Data(void *DataPointer)
 #define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define BASE_HEALING_BEGIN_STRING "Rate of healing: "
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
-#define BRAIN_BEGIN_STRING "Brain of this droid : "
-#define SENSOR1_BEGIN_STRING "Sensor 1 of this droid : "
-#define SENSOR2_BEGIN_STRING "Sensor 2 of this droid : "
-#define SENSOR3_BEGIN_STRING "Sensor 3 of this droid : "
 #define ARMAMENT_BEGIN_STRING "Armament of this droid : "
 #define WEAPON_ITEM_BEGIN_STRING "Weapon item=\""
 #define GREETING_SOUND_STRING "Greeting Sound number="
@@ -648,17 +644,6 @@ static void Get_Robot_Data(void *DataPointer)
 		// Now we read in the number of additional magical items this monster type must drop
 		ReadValueFromStringWithDefault(RobotPointer, "Force how many additional magic items to be dropped=", "%hd", "0",
 					       &Druidmap[RobotIndex].forced_magic_items, EndOfDataPointer);
-
-		// Now we read in the brain of this droid of this type
-		ReadValueFromStringWithDefault(RobotPointer, BRAIN_BEGIN_STRING, "%hd", "1", &Druidmap[RobotIndex].brain, EndOfDataPointer);
-
-		// Now we read in the sensor 1, 2 and 3 of this droid type
-		ReadValueFromStringWithDefault(RobotPointer, SENSOR1_BEGIN_STRING, "%hd", "1",
-					       &Druidmap[RobotIndex].sensor1, EndOfDataPointer);
-		ReadValueFromStringWithDefault(RobotPointer, SENSOR2_BEGIN_STRING, "%hd", "5",
-					       &Druidmap[RobotIndex].sensor2, EndOfDataPointer);
-		ReadValueFromStringWithDefault(RobotPointer, SENSOR3_BEGIN_STRING, "%hd", "0",
-					       &Druidmap[RobotIndex].sensor3, EndOfDataPointer);
 
 		char *tmp_item_name = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
 		Druidmap[RobotIndex].weapon_item.type = GetItemIndexByName(tmp_item_name);
