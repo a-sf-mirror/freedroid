@@ -175,10 +175,12 @@ item *ItemDropFromLevelEditor(void)
 
 		for (j = 0; j < row_len; j++) {
 			for (i = 0; i < line_len; i++) {
+				init_item(&temp_item);
 				temp_item.type = i + j * line_len + item_group * line_len * row_len;
 				if (temp_item.type >= Number_Of_Item_Types)
 					continue;	//temp_item.type = 1 ;
 				ShowRescaledItem(i, 32 + (64 * GameConfig.screen_height / 480 + 2) * j, &(temp_item));
+				DeleteItem(&temp_item);
 			}
 		}
 

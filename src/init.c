@@ -1498,16 +1498,11 @@ void PrepareStartOfNewCharacter(char *startpos)
 	// 'into your hand' by clicking on it with the mouse button in
 	// the inventory screen.
 	//
-	Me.weapon_item.type = -1;
-	Me.armour_item.type = -1;
-	Me.shield_item.type = -1;
-	Me.special_item.type = -1;
-	Me.drive_item.type = -1;
-	Me.weapon_item.currently_held_in_hand = FALSE;
-	Me.armour_item.currently_held_in_hand = FALSE;
-	Me.shield_item.currently_held_in_hand = FALSE;
-	Me.special_item.currently_held_in_hand = FALSE;
-	Me.drive_item.currently_held_in_hand = FALSE;
+	init_item(&Me.weapon_item);
+	init_item(&Me.armour_item);
+	init_item(&Me.shield_item);
+	init_item(&Me.special_item);
+	init_item(&Me.drive_item);
 	Item_Held_In_Hand = NULL;
 
 	Me.mouse_move_target.x = (-1);

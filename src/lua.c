@@ -256,11 +256,7 @@ static int lua_event_give_item(lua_State * L)
 	int mult = luaL_checkinteger(L, 2);
 
 	item NewItem;
-	NewItem.type = GetItemIndexByName(itemname);
-	NewItem.prefix_code = (-1);
-	NewItem.suffix_code = (-1);
-	FillInItemProperties(&NewItem, TRUE, 1);
-	NewItem.multiplicity = mult;
+	NewItem = create_item_with_name(itemname, TRUE, mult);
 
 	// Either we put the new item directly into inventory or we issue a warning
 	// that there is no room and then drop the item to the floor directly under 

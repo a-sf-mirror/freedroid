@@ -509,6 +509,7 @@ static char *decode_map_labels(level *loadlevel, char *DataPointer)
 
 static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetItem)
 {
+	init_item(TargetItem);
 
 	char *iname = ReadAndMallocStringFromData(ItemPointer, ITEM_NAME_STRING, "\"");
 	TargetItem->type = GetItemIndexByName(iname);
@@ -670,11 +671,7 @@ static char *decode_item_section(level *loadlevel, char *data)
 	// First we initialize the items arrays with 'empty' information
 	//
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		loadlevel->ItemList[i].pos.x = (-1);
-		loadlevel->ItemList[i].pos.y = (-1);
-		loadlevel->ItemList[i].pos.z = (-1);
-		loadlevel->ItemList[i].type = (-1);
-		loadlevel->ItemList[i].currently_held_in_hand = FALSE;
+		init_item(&loadlevel->ItemList[i]);
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)

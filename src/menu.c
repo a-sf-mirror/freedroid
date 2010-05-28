@@ -2007,38 +2007,17 @@ void clear_player_inventory_and_stats(void)
 	// of any items (or numeric waste) that might be in there
 	//
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		Me.Inventory[i].type = (-1);
-		Me.Inventory[i].prefix_code = (-1);
-		Me.Inventory[i].suffix_code = (-1);
-		Me.Inventory[i].currently_held_in_hand = FALSE;
+		init_item(&Me.Inventory[i]);
 	}
 	DebugPrintf(1, "\n%s(): Inventory has been emptied...", __FUNCTION__);
 
 	// Now we add some safety, against 'none present' items
 	//
-	Me.weapon_item.type = (-1);
-	Me.drive_item.type = (-1);
-	Me.armour_item.type = (-1);
-	Me.shield_item.type = (-1);
-	Me.special_item.type = (-1);
-
-	Me.weapon_item.prefix_code = (-1);
-	Me.drive_item.prefix_code = (-1);
-	Me.armour_item.prefix_code = (-1);
-	Me.shield_item.prefix_code = (-1);
-	Me.special_item.prefix_code = (-1);
-
-	Me.weapon_item.suffix_code = (-1);
-	Me.drive_item.suffix_code = (-1);
-	Me.armour_item.suffix_code = (-1);
-	Me.shield_item.suffix_code = (-1);
-	Me.special_item.suffix_code = (-1);
-
-	Me.weapon_item.currently_held_in_hand = (-1);
-	Me.drive_item.currently_held_in_hand = (-1);
-	Me.armour_item.currently_held_in_hand = (-1);
-	Me.shield_item.currently_held_in_hand = (-1);
-	Me.special_item.currently_held_in_hand = (-1);
+	init_item(&Me.weapon_item);
+	init_item(&Me.drive_item);
+	init_item(&Me.armour_item);
+	init_item(&Me.shield_item);
+	init_item(&Me.special_item);
 
 	Me.base_vitality = 25;
 	Me.base_strength = 10;

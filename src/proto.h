@@ -451,6 +451,7 @@ void play_sample_using_WAV_cache(char *SoundSampleFileName, int With_Waiting, in
 void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, int no_double_catching, double volume);
 
 // items.c
+void init_item(item *);
 item create_item_with_name(const char *item_name, int full_duration, int multiplicity);
 void equip_item(item *new_item);
 item *get_equipped_item_in_slot_for(int item_type);

@@ -44,13 +44,28 @@ enum {
 	DRIVE_SLOT,
 	FIRST_INV_SLOT
 };
+
+/**
+ * \brief Initializes an empty item.
+ * \param item_ Item.
+ */
+void init_item(item *it)
+{
+	memset(it, 0, sizeof(item));
+	it->type = -1;
+	it->prefix_code = -1;
+	it->suffix_code = -1;
+	it->pos.x = -1;
+	it->pos.y = -1;
+	it->pos.z = -1;
+}
+
 item create_item_with_name(const char *item_name, int full_duration, int multiplicity)
 {
 	item new_item;
 	
+	init_item(&new_item);
 	new_item.type = GetItemIndexByName(item_name);
-	new_item.prefix_code = -1;
-	new_item.suffix_code = -1;
 	FillInItemProperties(&new_item, full_duration, multiplicity);
 	
 	return new_item;
@@ -512,6 +527,7 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 	}
 	// Now we can construct the new item
 	//
+	init_item(&item_drop_map_level->ItemList[i]);
 	item_drop_map_level->ItemList[i].type = ItemType;
 	item_drop_map_level->ItemList[i].pos.x = x;
 	item_drop_map_level->ItemList[i].pos.y = y;
@@ -858,13 +874,10 @@ item *GetHeldItemPointer(void)
 /**
  * This function DELETES an item from the source location.
  */
-void DeleteItem(item * Item)
+void DeleteItem(item *it)
 {
-
-	Item->type = -1;
-	Item->currently_held_in_hand = FALSE;
-
-};				// void DeleteItem( item* Item )
+	init_item(it);
+}
 
 /**
  * This function COPIES an item from the source location to the destination
@@ -904,11 +917,8 @@ void CopyItemWithoutHeldProperty(item * SourceItem, item * DestItem, int MakeSou
  */
 void MoveItem(item * SourceItem, item * DestItem)
 {
-
 	memcpy(DestItem, SourceItem, sizeof(item));
-
-	SourceItem->type = (-1);
-
+	init_item(SourceItem);
 };				// void MoveItem( item* SourceItem , item* DestItem )
 
 /**
