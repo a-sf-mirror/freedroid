@@ -51,7 +51,7 @@ LuaCode={
 	npc_says(_"Of course. As a member of our Guard, you're entitled to wear one of our suits of armor. I can adjust it to fit any measurements, even yours.")
 	npc_says(_"There are two kinds or armor, a heavy Red Guard robe and a light version of the same thing.")
 	npc_says(_"But we also trade guns and some ammo.")
-	npc_says_random(_"Now, what will it be?",_"So, what do you want to buy?")
+	npc_says_random(_"Now, what will it be?", _"So, what do you want to buy?")
 	trade_with("Lukas")
 	show(3)
 }

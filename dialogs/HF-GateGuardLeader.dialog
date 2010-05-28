@@ -34,7 +34,7 @@ EveryTime LuaCode={
 		show(1, 2, 3)
 		add_cookie("met_hf-gateguardleader")
 	else
-		if (done_quest("Opening access to MS Office")) then
+		if (done_quest(_"Opening access to MS Office")) then
 			if (has_cookie("msfacilitygateguardleader_informed")) then
 				next(20)
 			else
@@ -64,7 +64,7 @@ LuaCode={
 	npc_says(_"There are trillions of millions of quintillions of bots in there!")
 	npc_says(_"Besides that, on the other side of the door is a disruptor shield, which we can't control.")
 	npc_says(_"* Throws a stone through the door")
-	if (done_quest("Opening access to MS Office")) then
+	if (done_quest(_"Opening access to MS Office")) then
 		npc_says(_"* Stone freely flies through the gate and drops on the ground on the other side")
 		npc_says(_"SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
 		next(10)
@@ -89,7 +89,7 @@ Nr=10 Text=_"Calm down. This is not an attack. I've disabled the shield and I'm 
 LuaCode={
 	npc_says(_"WHAT?! Not an attack?!")
 	npc_says(_"I hope you are telling the truth. One second...")
-	if (has_quest("Propagating a faulty firmware")) then
+	if (has_quest(_"Propagating a faulty firmware")) then
 		change_obstacle_state("MSAreaDoor", "opened")
 		add_cookie("msfacilitygateguardleader_informed")
 		next(20)

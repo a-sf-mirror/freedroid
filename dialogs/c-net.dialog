@@ -160,7 +160,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 --	npc_says(get_date() ,"NO_WAIT")
 	tux_says("date", "NO_WAIT")
-	npc_says(_"Date unknown","NO_WAIT")
+	npc_says(_"Date unknown", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
@@ -344,7 +344,7 @@ Nr=83 Text=_"global_thermonuclear_war"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"./global_thermonuclear_war", "NO_WAIT")
-	npc_says_random(_"Sorry, only winning move is not to play. New game?",_"Mankind exterminated. You lost!",_"No victory possible. LOSER! Play again?",_"Everyone dies, new game?","NO_WAIT")
+	npc_says_random(_"Sorry, only winning move is not to play. New game?", _"Mankind exterminated. You lost!", _"No victory possible. LOSER! Play again?", _"Everyone dies, new game?", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------

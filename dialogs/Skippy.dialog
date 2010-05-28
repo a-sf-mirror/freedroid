@@ -58,7 +58,7 @@ LuaCode={
 
 Nr=1 Text=_"Ok, if I want to buy me one of those mapping pills. How much are they?"
 LuaCode={
-	npc_says_random(_"They only cost 50. Special price only for you!","You're so lucky! I just decided to cut the price in half!")
+	npc_says_random(_"They only cost 50. Special price only for you!", _"You're so lucky! I just decided to cut the price in half!")
 	hide(1) show(11, 12)
 }
 ----------------------------------------------------------------------

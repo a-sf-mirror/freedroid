@@ -37,8 +37,8 @@ EveryTime LuaCode={
 
 	npc_says(_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once.") 
 
-	if (has_quest("SADD's power supply")) then
-		if (done_quest("SADD's power supply")) then hide(30, 31, 33) -- add in more lab missions here in the future
+	if (has_quest(_"SADD's power supply")) then
+		if (done_quest(_"SADD's power supply")) then hide(30, 31, 33) -- add in more lab missions here in the future
 		else
 			if (has_item_backpack("Red Dilithium Crystal") > 0) then
 				if (has_cookie("asked_sadd_for_exterminator")) then show(30) else show(33) end
@@ -189,7 +189,7 @@ Nr=23 Text=_"So disable the guns, please."
 LuaCode={
 	npc_says(_"Go, and bring dilithium. I badly need it.")
 	end_dialog()
-	add_quest("SADD's power supply",_"I am supposed to get some dilithium crystals for that SADD.")
+	add_quest(_"SADD's power supply", _"I am supposed to get some dilithium crystals for that SADD.")
 	change_obstacle_state("SADDGun1", "disabled")
 	change_obstacle_state("SADDGun2", "disabled")
 	change_obstacle_state("BreakableWall1", "broken")
@@ -204,7 +204,7 @@ LuaCode={
 	add_xp(1000)
 	del_item_backpack("Red Dilithium Crystal", 1)
 	change_obstacle_state("SADDDepotDoor", "opened")
-	end_quest("SADD's power supply", _"I managed to restore the SADD's power supply.")
+	end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
 	hide(30) show(37)
 }
 ----------------------------------------------------------------------
@@ -226,7 +226,7 @@ LuaCode={
 	change_obstacle_state("SADDDepotDoor", "opened")
 	change_obstacle_state("SADDBioDoor", "opened")
 	del_item_backpack("Red Dilithium Crystal", 1)
-	end_quest("SADD's power supply", _"I managed to restore the SADD's power supply.")
+	end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
 	hide(33) show(97)
 }
 ----------------------------------------------------------------------

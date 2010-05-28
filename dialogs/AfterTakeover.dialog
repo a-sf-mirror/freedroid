@@ -135,7 +135,7 @@ LuaCode={
 	npc_says(_"WArn|n*! SsTeM=#faiPure%^#n 3 S 1()$++")
 	if (has_cookie("dixon_very_angry")) then
 		if (has_cookie("bruce_hurt")) then
-			if (has_quest("Opening access to MS Office")) then
+			if (has_quest(_"Opening access to MS Office")) then
 				if (not has_cookie("tux_has_edge")) then 
 					npc_says(_"()%#@(% THE BLADE IS YOURS. )##%*&%*!")
 					add_cookie("tux_has_edge")

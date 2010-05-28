@@ -35,11 +35,11 @@ EveryTime LuaCode={
 		add_cookie("met_michelangelo")
 	else end
 
-	if (has_quest("Anything but the army snacks, please!")) then
-		if (done_quest("Anything but the army snacks, please!")) then
+	if (has_quest(_"Anything but the army snacks, please!")) then
+		if (done_quest(_"Anything but the army snacks, please!")) then
 			show(24)
-			if (has_quest("SADD's power supply")) then
-				if (done_quest("SADD's power supply")) then 
+			if (has_quest(_"SADD's power supply")) then
+				if (done_quest(_"SADD's power supply")) then 
 					hide(75, 76, 77)
 				else
 					if (has_item_backpack("Red Dilithium Crystal") < 1) then show(40, 75) else end
@@ -77,7 +77,7 @@ LuaCode={
 
 Nr=11 Text=_"Can I buy some food here?"
 LuaCode={
-	if (done_quest("Anything but the army snacks, please!")) then
+	if (done_quest(_"Anything but the army snacks, please!")) then
 		npc_says(_"Until my next batch of food comes out of the macrowave oven, all I have are the odoriferous military rations.")
 	else
 		npc_says(_"There is no food here, just the odious military rations.")
@@ -102,7 +102,7 @@ LuaCode={
 		next(27)
 		hide(12)
 	else
-		npc_says_random(_"You need to have a full mess kit with a Fork, Mug, and Plate before I can give you any army snacks.",_"You need a Fork, Plate, and Mug before I can issue any army snacks.",_"You need a full mess kit for army snacks.")
+		npc_says_random(_"You need to have a full mess kit with a Fork, Mug, and Plate before I can give you any army snacks.", _"You need a Fork, Plate, and Mug before I can issue any army snacks.", _"You need a full mess kit for army snacks.")
 	end
 }
 ----------------------------------------------------------------------
@@ -205,7 +205,7 @@ LuaCode={
 	display_big_message("Restored Michelangelo's power supply")
 	add_xp(350)
 	del_item_backpack("Red Dilithium Crystal", 3)
-	end_quest("Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the city.")
+	end_quest(_"Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the city.")
 	hide(29)
 }
 ----------------------------------------------------------------------
@@ -258,7 +258,7 @@ LuaCode={
 	tux_says(_"So you need three dilithium crystals?")
 	npc_says(_"Yes. Please get me three dilithium crystals.")
 	change_obstacle_state("EastGateOfTown", "opened")
-	add_quest("Anything but the army snacks, please!",_"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")	
+	add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking the whole city is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")	
 	hide(19, 40, 41, 42, 70, 81)
 }
 ----------------------------------------------------------------------
@@ -312,7 +312,7 @@ LuaCode={
 	npc_says(_"I guess I can spare one of them, since it is an emergency.")
 	add_cookie("asked_michelangelo_for_spare_dilithium")
 	add_item("Red Dilithium Crystal", 1)
-	update_quest("SADD's power supply",_"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
+	update_quest(_"SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
 	hide(77)
 }
 

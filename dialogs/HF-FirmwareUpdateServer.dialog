@@ -56,7 +56,7 @@ LuaCode={
 	npc_says("...")
 	npc_says(_"Firmware update propagated!")
 	add_cookie("uploaded_faulty_firmware")
-	end_quest("Propagating a faulty firmware", _"I managed to upload the faulty firmware to all bots within transmission range. Victory is mine!")
+	end_quest(_"Propagating a faulty firmware", _"I managed to upload the faulty firmware to all bots within transmission range. Victory is mine!")
 }
 ----------------------------------------------------------------------
 

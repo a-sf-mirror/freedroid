@@ -60,7 +60,7 @@ LuaCode={
 
 Nr=1 Text=_"I would like to buy a bomb."
 LuaCode={
-	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.",_"Sure. These are my offers today.")
+	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.", _"Sure. These are my offers today.")
 	trade_with("Duncan")
 	hide(1) show(2, 7)
 }
@@ -96,7 +96,7 @@ LuaCode={
 
 Nr=5 Text=_"I want to buy some grenades."
 LuaCode={
-	npc_says_random(_"Certainly.",_"Sure.",_"With pleasure I am showing you my offers.")
+	npc_says_random(_"Certainly.", _"Sure.", _"With pleasure I am showing you my offers.")
 	trade_with("Duncan")
 }
 ----------------------------------------------------------------------
@@ -143,7 +143,7 @@ LuaCode={
 	npc_says(_"There is something you must know.")
 	npc_says(_"There are not too many bots in the desert, but they are undefeatable. It is best to avoid them.")
 	npc_says(_"I will be waiting here for your return.")
-	add_quest("Doing Duncan a favour", "Find Koan in the desert.")
+	add_quest(_"Doing Duncan a favour", _"Find Koan in the desert.")
 	tux_says(_"That is all I need to know. I will find Koan.")
 	npc_says(_"Only time will tell.")
 	npc_says(_"In any case, I'll let the Red Guard know to open the western gate to the desert.")
@@ -185,7 +185,7 @@ LuaCode={
 	if (has_cookie("koan_spared")) then 
 		tux_says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
 		npc_says(_"I see.")
-		end_quest("Doing Duncan a favour", _"I lied to Duncan about not finding Koan.")
+		end_quest(_"Doing Duncan a favour", _"I lied to Duncan about not finding Koan.")
 		end_dialog()
 	else end
 
@@ -235,7 +235,7 @@ LuaCode={
 Nr=68 Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
 LuaCode={
 	npc_says(_"I understand. So be it.")
-	end_quest("Doing Duncan a favour", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
+	end_quest(_"Doing Duncan a favour", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
 	end_dialog()
 	hide(67, 68)
 }
@@ -246,7 +246,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	add_xp(3000)
 	del_item_backpack("Pandora's Cube", 1)
-	end_quest("Doing Duncan a favour", _"I gave Duncan the cube thingie. It feels nice to help people.")
+	end_quest(_"Doing Duncan a favour", _"I gave Duncan the cube thingie. It feels nice to help people.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

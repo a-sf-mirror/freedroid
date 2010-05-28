@@ -468,7 +468,7 @@ LuaCode={
 Nr=81 Text=_"Yes"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"Yes","NO_WAIT")
+	tux_says(_"Yes", "NO_WAIT")
 	display_console_message(_"Renamed [b]"..bot_name().._"[/b] to [b]"..new_name.."[/b].")
 	set_bot_name(new_name)
 	npc_says(_"This "..bot_type().._" unit is now designated: [b]"..bot_name().."[/b]", "NO_WAIT")
@@ -480,7 +480,7 @@ LuaCode={
 Nr=82 Text=_"No"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"No","NO_WAIT")
+	tux_says(_"No", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(81, 82) show(0, 20, 30, 40)
 }
@@ -489,7 +489,7 @@ LuaCode={
 Nr=99 Text="BUG, REPORT ME! aftertakeover_sub node99"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
-	tux_says(_"cd ..","NO_WAIT")
+	tux_says(_"cd ..", "NO_WAIT")
 	end_dialog()
 }
 ----------------------------------------------------------------------

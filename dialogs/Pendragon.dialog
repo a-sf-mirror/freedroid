@@ -53,7 +53,7 @@ LuaCode={
 	if (has_cookie("beat_up_pendragon")) then 
 		npc_says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
 	else 
-		npc_says(_"Sure. I can help you.","NO_WAIT")
+		npc_says(_"Sure. I can help you.", "NO_WAIT")
 		npc_says(_"For a price. Hundred circuits should be enough.")
 		hide(1, 99) show(11, 19)
 	end
@@ -71,7 +71,7 @@ LuaCode={
 
 Nr=11 Text=_"Teach me the basic stuff."
 LuaCode={
-	npc_says(_"Are you sure?","NO_WAIT")
+	npc_says(_"Are you sure?", "NO_WAIT")
 	npc_says(_"I only accept students that already have some experience in fighting bots.")
 	hide(11, 19) show(12, 29)
 }
@@ -115,7 +115,7 @@ LuaCode={
 
 Nr=19 Text=_"Teach me how to smash concrete blocks with my bare hands."
 LuaCode={
-	npc_says(_"Oh, Linarian, you amuse me so.","NO_WAIT")
+	npc_says(_"Oh, Linarian, you amuse me so.", "NO_WAIT")
 	npc_says(_"You are quite an ambitious fellow.")
 	npc_says(_"First learn the basics. Spend a year working on that, and then I'll be able to teach you some advanced tricks.")
 	hide(19) show(20)
@@ -131,7 +131,7 @@ LuaCode={
 
 Nr=21 Text=_"I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
 LuaCode={
-	npc_says(_"Wow.","NO_WAIT")
+	npc_says(_"Wow.", "NO_WAIT")
 	npc_says(_"You have a very rich imagination. There is no such thing. Get a life.")
 	hide(21) show(22)
 }
@@ -165,7 +165,7 @@ LuaCode={
 
 Nr=99 Text=_"See you later."
 LuaCode={
-	npc_says_random(_"Have courage.",_"Be strong.")
+	npc_says_random(_"Have courage.", _"Be strong.")
 	end_dialog()
 }
 ----------------------------------------------------------------------

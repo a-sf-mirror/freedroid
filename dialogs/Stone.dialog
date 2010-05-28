@@ -131,7 +131,7 @@ Nr=15 Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?
 LuaCode={
 	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand circuits.")
 	add_cookie("stone_helping")
-	add_quest("Saving the shop",_"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
+	add_quest(_"Saving the shop", _"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
 	if (get_gold() > 1600) then show(23) else hide(23) end
 	hide(15)
 }
@@ -177,7 +177,7 @@ LuaCode={
 	npc_says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
 	npc_says(_"Tux, if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!")
 	add_item("Two Barrel shotgun",1)
-	end_quest("Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
+	end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 	end_dialog()
 	hide(31, 32, 33)
 }
@@ -187,7 +187,7 @@ Nr=32 Text=_"It's not important who I am."
 LuaCode={
 	npc_says(_"If you want to remain a stranger, I will respect your wishes.", "NO_WAIT")
 	npc_says(_"So be it.")
-	end_quest("Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me.")
+	end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me.")
 	end_dialog()
 	hide(31, 32, 33)
 }
@@ -200,7 +200,7 @@ LuaCode={
 	npc_says(_"Say your prayers, you oversized duck!!!")
 	add_gold(1547)
 	set_npc_faction("crazy")
-	end_quest("Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
+	end_quest(_"Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
 	end_dialog()
 	hide(31, 32, 33)
 }

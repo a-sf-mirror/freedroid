@@ -98,8 +98,8 @@ LuaCode={
 
 Nr=99 Text=_"logout"
 LuaCode={
-	npc_says(_"Exiting","NO_WAIT")
-	npc_says_random(_"Have a nice day.",_"Have a wonderful day.",_"Hope your day will be most productive.")
+	npc_says(_"Exiting", "NO_WAIT")
+	npc_says_random(_"Have a nice day.", _"Have a wonderful day.", _"Hope your day will be most productive.")
 	end_dialog()
 }
 ----------------------------------------------------------------------
