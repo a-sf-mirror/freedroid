@@ -396,7 +396,7 @@ typedef struct item_s {
 	point inventory_position;
 
 	struct upgrade_socket_dynarray upgrade_sockets;
-} item, *Item;
+} item;
 
 typedef struct druidspec_s {
 	char *druidname;

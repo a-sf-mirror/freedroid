@@ -768,7 +768,7 @@ void insert_one_enemy_into_blitting_list(enemy * erot)
 void insert_one_thrown_item_into_blitting_list(level *item_lvl, int item_num)
 {
 	float item_norm;
-	Item CurItem = &item_lvl->ItemList[item_num];
+	item *CurItem = &item_lvl->ItemList[item_num];
 
 	update_virtual_position(&CurItem->virt_pos, &CurItem->pos, Me.pos.z);
 

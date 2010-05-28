@@ -507,7 +507,7 @@ static char *decode_map_labels(level *loadlevel, char *DataPointer)
 	return MapLabelSectionEnd;
 }
 
-static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, Item TargetItem)
+static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *TargetItem)
 {
 	init_item(TargetItem);
 
@@ -1412,7 +1412,7 @@ static void EncodeMapLabelsOfThisLevel(struct auto_string *shipstr, level *Lev)
  *
  * 
  */
-static void WriteOutOneItem(struct auto_string *shipstr, Item ItemToWriteOut)
+static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 {
 
 	autostr_append(shipstr, "%s%s\" %s%f %s%f ", ITEM_NAME_STRING, ItemMap[ItemToWriteOut->type].item_name,

@@ -188,7 +188,7 @@ void silently_unhold_all_items(void)
  * the repair skill in contrast to the item repair via the shop, which of
  * course works much better.
  */
-void HomeMadeItemRepair(Item RepairItem)
+void HomeMadeItemRepair(item *RepairItem)
 {
 	// At this point we know, that we have just selected an item
 	// for home-made repair.
@@ -1570,7 +1570,7 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 /** 
  * This function should drop a given item to the floor.
  */
-void DropItemToTheFloor(Item DropItemPointer, float x, float y, int levelnum)
+void DropItemToTheFloor(item *DropItemPointer, float x, float y, int levelnum)
 {
 	int i;
 	Level DropLevel = curShip.AllLevels[levelnum];
