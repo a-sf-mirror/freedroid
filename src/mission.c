@@ -79,6 +79,8 @@ void quest_browser_diary_add(const char *mis_name, const char *diarytext)
 		return;
 	}
 
+	Mission_Status_Change_Sound();
+
 	Me.AllMissions[mis_num].mission_description_time[idx] = Me.current_game_date;
 
 	Me.AllMissions[mis_num].mission_diary_texts[idx] = strdup(diarytext);
