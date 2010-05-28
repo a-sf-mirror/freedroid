@@ -33,7 +33,7 @@ find_structure_typedef_rxp = re.compile(r'typedef struct .+?'
                                 r'\}'
                                 r'\s*(' + c_id + ').*?;', re.M | re.S)
 find_structure_notypedef_rxp = re.compile(
-                                r'^struct (' + c_id + ').*?'
+                                r'^struct (' + c_id + ').'
                                 r'\{'
                                 r'([^\}]+)'
                                 r'\};', re.M | re.S)
