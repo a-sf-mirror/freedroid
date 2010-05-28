@@ -501,7 +501,7 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 
 	SetCurrentFont(FPS_Display_BFont);
 
-	lines_needed = GetNumberOfTextLinesNeeded(chat_protocol, Subtitle_Window, TEXT_STRETCH) - 1;
+	lines_needed = get_lines_needed(chat_protocol, Subtitle_Window, TEXT_STRETCH) - 1;
 
 	if (lines_needed <= LINES_IN_PROTOCOL_WINDOW) {
 		// When there isn't anything to scroll yet, we keep the default

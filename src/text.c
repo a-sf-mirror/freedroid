@@ -50,6 +50,20 @@ int MyCursorY;
 int display_char_disabled_local;
 
 /**
+ * This function determines how many lines of text it takes to write a string
+ * with the current font into the given rectangle, provided one would start at
+ * the left side.
+ */
+int get_lines_needed(const char *text, SDL_Rect t_rect, float text_stretch)
+{
+	t_rect.h = 32767; // arbitrary large number
+	display_char_disabled = TRUE;
+	int lines = DisplayText(text, t_rect.x, t_rect.y, &t_rect, text_stretch);
+	display_char_disabled = FALSE;
+	return lines;
+}
+
+/**
  * Display one character, updating MyCursorX to new position.
  */
 static void display_char(unsigned char c)
@@ -119,9 +133,7 @@ int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, 
 	// using the drawing function with drawing temporarily disabled.
 	t_rect.w = w - (IN_WINDOW_TEXT_OFFSET * 2);
 	t_rect.h = GameConfig.screen_height;
-	display_char_disabled = TRUE;
-	int lines = DisplayText(text, x, y, &t_rect, 1.0);
-	display_char_disabled = FALSE;
+	int lines = get_lines_needed(text, t_rect, 1.0);
 
 	// Calculate the rectangle height
 	int f_height = FontHeight(GetCurrentFont());

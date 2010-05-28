@@ -45,8 +45,6 @@ int Single_Player_Menu(void);
 void Options_Menu(void);
 
 EXTERN void LevelEditor(void);
-extern int MyCursorX;
-extern int MyCursorY;
 extern int load_game_command_came_from_inside_running_game;
 
 #define SELL_PRICE_FACTOR (0.25)
@@ -494,59 +492,6 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
 
 	return (MenuSelection);
 };				// int ChatDoMenuSelectionFlagged( char* InitialText , char* MenuTexts[ MAX_ANSWERS_PER_PERSON] , ... 
-
-/**
- * Without destroying or changing anything, this function should determine
- * how many lines of text it takes to write a string with the current 
- * font into the given rectangle, provided one would start at the left
- * side as one usually does...
- */
-int GetNumberOfTextLinesNeeded(char *GivenText, SDL_Rect GivenRectangle, float text_stretch)
-{
-	int BackupOfMyCursorX, BackupOfMyCursorY;
-	int TextLinesNeeded;
-	int TestPosition;
-	int stored_height;
-
-	// If we receive an empty string, we print out a warning message and then
-	// return one line as the required amount of lines.
-	//
-	if (strlen(GivenText) <= 1) {
-		/*
-		   ErrorMessage ( __FUNCTION__  , "\
-		   Warning.  Received empty or nearly empty string!",
-		   NO_NEED_TO_INFORM, IS_WARNING_ONLY );
-		 */
-		return (1);
-	}
-	// First we make a backup of everything, so that we don't destory anything.
-	//
-	display_char_disabled = TRUE;
-	BackupOfMyCursorX = MyCursorX;
-	BackupOfMyCursorY = MyCursorY;
-
-	// Now in our simulated environment, we can blit the Text and see how many lines it takes...
-	//
-	MyCursorX = GivenRectangle.x;
-	MyCursorY = GivenRectangle.y;
-	TestPosition = MyCursorY;
-
-	stored_height = GivenRectangle.h;
-	GivenRectangle.h = 32000;
-	TextLinesNeeded = DisplayText(GivenText, GivenRectangle.x, GivenRectangle.y, &GivenRectangle, text_stretch);
-	GivenRectangle.h = stored_height;
-
-	// Now that we have found our solution, we can restore everything back to normal
-	//
-	// RestoreMenuBackground ( 1 ) ;
-	display_char_disabled = FALSE;
-
-	MyCursorX = BackupOfMyCursorX;
-	MyCursorY = BackupOfMyCursorY;
-
-	return (TextLinesNeeded);
-
-};				// int GetNumberOfTextLinesNeeded ( MenuTexts [ i ] , Choice_Window )
 
 /**
  *

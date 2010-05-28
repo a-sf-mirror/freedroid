@@ -176,9 +176,7 @@ void quest_browser_display_mission_list(int list_type)
 		//
 		if (list_type != QUEST_BROWSER_SHOW_NOTES) {
 			quest_browser_mission_lines_needed[mis_num] =
-			    GetNumberOfTextLinesNeeded(complete_mission_display_text, mission_description_rect, TEXT_STRETCH);
-			DebugPrintf(2, "\n%s(): new mission start pos at lines needed: %d.",
-				    __FUNCTION__, quest_browser_mission_lines_needed[mis_num]);
+			    get_lines_needed(complete_mission_display_text, mission_description_rect, TEXT_STRETCH);
 		}
 
 		if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE)) {

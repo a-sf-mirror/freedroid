@@ -1105,9 +1105,7 @@ void display_current_game_message_window(void)
 	Subtitle_Window.h = UNIVERSAL_COORD_H(SUBTITLEW_RECT_H);
 
 	// First we need to know where to begin with our little display.
-	//
-	lines_needed = GetNumberOfTextLinesNeeded(message_log->value, Subtitle_Window, text_stretch);
-	DebugPrintf(1, "\nLines needed: %d. ", lines_needed);
+	lines_needed = get_lines_needed(message_log->value, Subtitle_Window, text_stretch);
 
 	if (lines_needed <= AVERAGE_LINES_IN_MESSAGE_WINDOW) {
 		// When there isn't anything to scroll yet, we keep the default

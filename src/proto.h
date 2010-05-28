@@ -589,7 +589,6 @@ void StartupMenu(void);
 void InitiateMenu(int background_code);
 void Cheatmenu(void);
 void EscapeMenu(void);
-int GetNumberOfTextLinesNeeded(char *GivenText, SDL_Rect GivenRectangle, float text_stretch);
 
 // misc.c 
 #define CURLEVEL() (curShip.AllLevels[Me.pos.z])
@@ -657,6 +656,7 @@ int get_droid_type(const char *);
 #define BROWSE_LEVEL_BOTS(T,L) list_for_each_entry(T, &level_bots_head[(L)], level_list)
 
 // text.c
+int get_lines_needed(const char *text, SDL_Rect t_rect, float text_stretch);
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
 char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString);
 int show_backgrounded_text_rectangle(const char *, struct BFont_Info *, int, int, int, int);
