@@ -1,0 +1,90 @@
+----------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
+
+BEGIN OF AUTORS NOTES
+
+END OF AUTORS NOTES 
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+EveryTime LuaCode={
+	terminal = "guest@example.com: ~ #"
+
+	cli_says("Login : ", "NO_WAIT")
+	tux_says("guest", "NO_WAIT")
+	cli_says(_"Entering as Guest", "NO_WAIT")
+	npc_says("", "NO_WAIT")
+	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
+	cli_says(terminal, "NO_WAIT")
+
+	if (cmp_obstacle_state("TutorialTakeover", "closed")) then
+		npc_says(_"Gate status: CLOSED", "NO_WAIT")
+		show(0)
+	elseif (cmp_obstacle_state("TutorialTakeover", "opened")) then 
+		npc_says(_"Gate status: OPEN", "NO_WAIT")
+		show(10)
+	else
+		npc_says(_"GAME BUG. PLEASE REPORT.")
+	end
+	show(99)
+}
+----------------------------------------------------------------------
+
+Nr=0 Text=_"open gate"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"open gate", "NO_WAIT")
+	npc_says(_"Access granted. Opening gate ...")
+	npc_says(_"Gate status: OPEN")
+	change_obstacle_state("TutorialTakeover", "opened")
+	cli_says(terminal, "NO_WAIT")
+	hide(0) show(10)
+}
+----------------------------------------------------------------------
+
+Nr=10 Text=_"close gate"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"close gate", "NO_WAIT")
+	npc_says(_"Access granted. Closing gate ...")
+	npc_says(_"Gate status: CLOSED")
+	change_obstacle_state("TutorialTakeover", "closed")
+	cli_says(terminal, "NO_WAIT")
+	hide(10) show(0)
+}
+----------------------------------------------------------------------
+
+Nr=99 Text=_"logout"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	tux_says(_"logout", "NO_WAIT")
+	npc_says(_"Exiting")
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"

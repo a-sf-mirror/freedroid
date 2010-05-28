@@ -363,6 +363,30 @@ LuaCode={
 ##############
 ## Level 37 ##
 ##############
+* New event trigger *
+Name=_"Red Square"
+Trigger at label="tutmove-1"
+Silent=1
+LuaCode={
+	if (has_cookie("learn_to_walk") and has_quest("Tutorial Movement") and (not has_cookie("move_red")) ) then
+		add_cookie("move_red")
+		add_diary_entry("Tutorial Movement",_"Good, now move to the black grating to the East.")
+               display_big_message(_"Quest log updated")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Black Dot"
+Trigger at label="tutmove-2"
+LuaCode={
+	if (has_quest("Tutorial Movement") and has_cookie("move_red") and (not has_cookie("move_black"))) then
+		add_cookie("move_black")
+		add_diary_entry("Tutorial Movement",_"Good, now talk to Tutorial Tom again.")
+               display_big_message(_"Quest log updated")
+	end
+}
+* End of trigger *
 
 ##############
 ## Level 38 ##

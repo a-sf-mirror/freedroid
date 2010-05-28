@@ -124,6 +124,7 @@ void init_npcs()
 		"Tania",
 		"TestDroid",
 		"Terminal",
+		"TutorialTerminal",
 		"TutorialTom",
 		"Tybalt",
 	};

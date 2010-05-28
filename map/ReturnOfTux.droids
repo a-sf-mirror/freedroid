@@ -612,7 +612,7 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux="yes" UseDialog="TutorialTom" ShortLabel=_"TutorialTom" 
+SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux="yes" UseDialog="TutorialTom" ShortLabel=_"???" 
 SForce: T=123 Fixed=0 Marker=1037 Faction="ms" StartLabel="melee1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
 SForce: T=247 Fixed=0 Marker=2037 Faction="ms" StartLabel="melee2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Kill Me Too" on_death_drop_item_name="Tachyon Condensator"
 SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target" 

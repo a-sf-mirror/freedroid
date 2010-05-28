@@ -31,6 +31,7 @@ Beginning of new chat dialog for character="XXXXX"
 EveryTime LuaCode={
 	if (not has_cookie("met_tutorialtom")) then
 		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
+		change_obstacle_state("TutorialEntry", "closed")
 		change_obstacle_state("TutorialZigzag1", "closed")
 		change_obstacle_state("TutorialZigzag2", "closed")
 		change_obstacle_state("TutorialZigzag3", "closed")
@@ -47,6 +48,8 @@ EveryTime LuaCode={
 		downgrade_program("Repair equipment")
 		downgrade_program("Emergency shutdown")
 		add_cookie("met_tutorialtom")
+		set_bot_name(_"Tutorial Tom")
+		display_console_message(_"Met [b]Tutorial Tom[/b]!")
 	else end
 
 	if (partner_started()) then
@@ -54,6 +57,16 @@ EveryTime LuaCode={
 		npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
 		npc_says(_"So let's start with the basics, shall we?")
 		show(1, 7)
+	
+	elseif (has_quest("Tutorial Movement") and not has_cookie("talk_to_tom")) then
+		add_cookie("talk_to_tom")
+		npc_says(_"Glad to see you figured out the quest log!")
+
+	elseif (has_quest("Tutorial Movement") and has_cookie("move_black") and not has_cookie("sprinting") ) then
+		add_cookie("sprinting")
+		npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
+		update_quest("Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
+		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
 	show(99)
 }
@@ -61,22 +74,26 @@ EveryTime LuaCode={
 
 Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 LuaCode={
-	npc_says(_"What can I help you with?")
+	npc_says(_"You Linarians keep a quest [b]Log[/b] where you write down key bits of information.")
+	npc_says(_"When you aren't speaking with someone, you can open it up or close it by pressing the [b]Q key[/b].")
+	npc_says(_"I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me.")
+	if (not has_quest("Tutorial Movement")) then
+		add_quest("Tutorial Movement", _"To talk to someone, left click on them! You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the Q key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
+	end
+       display_big_message(_"Press Q for Quests")
+	end_dialog()
 	hide(1, 7) show(2, 3, 4, 5, 8)
 }
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"What can you tell me about finding my way in the world?"
 LuaCode={
-	npc_says(_"As I understand it, you Linarians see the world in a way very similar to the Heads Up Displays used in our computer games of the past.")
-	npc_says(_"I'll use the term HUD to denote that in this explanation.")
-	npc_says(_"I'll start with your compass. Linarians have a remarkable internal sense of direction, represented on your HUD by four arrows in the upper right corner.")
-	npc_says(_"It's fairly simple, but it does show all four cardinal directions, and North is marked. Going clockwise from North, you have East, South, and West.")
-	npc_says(_"I'll go ahead and mention the automap. Rumor has it that there was once a world-wide mapping network that you as a Linarian could tap into.")
-	npc_says(_"Much of the bot activity has made it difficult or impossible to use.")
-	npc_says(_"That said, there is supposed to be a man in town that provides a very similar ability through the use of nanotechnology.")
-	npc_says(_"Rumors abound, of course, and there may not be a bit of truth to it, but if there's any chance it may help you on your journey, it may be worth investigating.")
-	tux_says(_"I'll have to keep that in mind.")
+	npc_says(_"You Linarians see the world similar to the Heads Up Displays, or [b]HUD[/b], used in computer games.")
+	npc_says(_"Linarians, like all birds, have a remarkable internal sense of direction.  Apparently your HUD has a [b]compass[/b], represented by four red arrows in the upper right corner with North marked on it.")
+	update_quest("Tutorial Movement", _"I learned the four red arrows in the upper-right of my HUD is a compass with north marked on it.")
+	npc_says(_"Rumor is there was a device Linarians used to remember every place they had been, called an [b]automap[/b].")
+	npc_says(_"Although, you don't currently have such a device, you might find someone with nanotechnology skills to make one.")
+	tux_says(_"I'll keep that in mind.")
 	hide(2)
 }
 ----------------------------------------------------------------------
@@ -84,25 +101,24 @@ LuaCode={
 Nr=3 Text=_"My limbs don't seem to want to work properly. Can you help me with that?"
 LuaCode={
 	npc_says(_"Ah yes, movement. It's second nature to us humans, but our research with you in the past showed that your brain seems to work more like a computer.")
-	npc_says(_"To move somewhere, you first need to determine where you want to go, then motivate yourself to go there.")
-	npc_says(_"As I understand it, this is represented on your HUD by moving a pointer to a location in your view and left clicking.")
-	npc_says(_"I hope that means more to you than it does to me.")
-	tux_says(_"I think I understand.")
-	npc_says(_"Going along with that, you do have the ability to run for a reasonable distance.")
-	npc_says(_"This distance is determined by your stamina; the more you have, the farther you can run without becoming winded. To do so, use the Control key.")
-	npc_says(_"Speaking of keys, F1 will let you set your keymap. Or that's what your notes say. I really can't make head nor tales of it.")
+	npc_says(_"To move somewhere, you first need to determine where you want to go by [b]left clicking[/b] where you want to go on your HUD.")
+	npc_says(_"If you can go there, you will do so.")
+	npc_says(_"Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again.") 
+	update_quest("Tutorial Movement", _"I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North.")
+	add_cookie("learn_to_walk")
+	end_dialog()
 	hide(3)
 }
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"What else makes me different as a Linarian?"
 LuaCode={
-	npc_says(_"As a Linarian, you have some special abilities that no human does. In specific, you seem to be able to translate programming source code into something like magic.")
-	npc_says(_"Using these abilities, called programs, seems to affect your body temperature, which you must regulate.")
-	npc_says(_"Using most programs increases your body temperature.")
-	npc_says(_"However, using a special ability called Emergency Shutdown, you can cool your body significantly, at the cost of shutting down for several seconds.")
-	npc_says(_"Normally, you would have this ability as well as the ability to hack bots, but your mind is probably still recovering from the stasis.")
-	npc_says(_"We'll talk about programs in depth later on, but for now you can access the Skills/Programs menu by pressing S.")
+	npc_says(_"As a Linarian, you have some special abilities that no human does: Linarians can translate programming source code into something like magic.")
+	npc_says(_"However, using these [b]Programs[/b], adversely affect your body temperature, which you must regulate.")
+	npc_says(_"But you normally have a special program called [b]Emergency Shutdown[/b], which freezes your motions for several seconds but significantly cools your body.")
+	npc_says(_"This, and the ability to hack bots will soon return once your mind recovers from the stasis.")
+	npc_says(_"Once it does, we'll talk more about programs. You can toggle the [b]Skills/Program menu[/b] by pressing the [b]S key[/b].")
+	update_quest("Tutorial Movement", _"View the Skills/Program menu by pressing the S key.")
 	hide(4)
 }
 ----------------------------------------------------------------------
@@ -110,19 +126,19 @@ LuaCode={
 Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 LuaCode={
 	npc_says(_"Ah, yes.", "NO_WAIT")
-	npc_says(_"Linarians seem to have some sort of affinity for the detection of items.")
-	npc_says(_"Like any sighted being, you can detect items by looking at them as they enter your field of view.")
-	npc_says(_"Pressing the Z key will enable augmented reality and turn on labels for all items on the ground. Pressing Z a second time will return to normal reality displaying.")
-	npc_says(_"If you just want to look for a moment, you can press and hold the X key to do the same thing.")
-	npc_says(_"Unlike people, you can even examine items from behind a wall using this technique.")
-	npc_says(_"Moving your mouse over an item will tell you more about that item.")
+	npc_says(_"Linarians seem to [b]detect items[/b] - even through walls - in an augmented reality.")
+	npc_says(_"The [b]Z key[/b] will toggles this augmentation, while the [b]X key[/b] momentarily flashes it.")
+	npc_says(_"Moving your pointer over an item will tell you more about that item.")
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
-	npc_says(_"Feel free to stop and examine them to get practice. You can also pick them up, and view the inventory by pressing i.")
+	npc_says(_"Feel free to stop and examine them to get practice.")
+	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]I key[/b], where you can examine it further.")
+	update_quest("Tutorial Movement", _"Toggle detect items by pressing the Z key, and press X to flash the ability.  To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing I.")
+	change_obstacle_state("TutorialEntry", "opened")
 	hide(5)
 }
 ----------------------------------------------------------------------
 
-Nr=7 Text=_"No, thanks, I still remember how to walk, run and pick up things and which way is north."
+Nr=7 Text=_"No, thanks, I still remember how to walk, run, navigate, and pick things up."
 LuaCode={ 
 	hide(7) next(9)
 }
@@ -130,13 +146,16 @@ LuaCode={
 
 Nr=8 Text=_"Thank you, that was very informative. Can we move on now?"
 LuaCode={ 
+	end_quest("Tutorial Movement")
+	npc_says(_"I just closed your first quest. You can still see what you learned by clicking on the 'done quests' tab in the quest screen.", "NO_WAIT")
 	hide(8) next(9)
 }
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"I'm eager to learn more."
 LuaCode={
-	npc_says(_"Ok, follow me into the next area then.")
+	npc_says(_"Ok, follow me into the next area.")
+	change_obstacle_state("TutorialEntry", "opened")
 	change_obstacle_state("TutorialZigzag1", "opened")
 	change_obstacle_state("TutorialZigzag2", "opened")
 	change_obstacle_state("TutorialZigzag3", "opened")
@@ -149,8 +168,9 @@ LuaCode={
 
 Nr=10 Text=_"What is in that chest?"
 LuaCode={
-	npc_says(_"Well, open it up and find out by simply clicking on it with the left mouse button.")
-	npc_says(_"I'll tell you more after you've done it.")
+	npc_says(_"Well, you can interact with several types of objects by simply [b]left clicking[/b] on them.")
+	npc_says(_"Left click on the chest to open it up and see what is inside.")
+	add_quest("Tutorial Melee", _"I'm supposed to left click on chests to open them up.")
 	hide(10) show(11, 19)
 	end_dialog()
 }
@@ -182,7 +202,7 @@ LuaCode={
 Nr=13 Text=_"How does wearing clothes and holding shields help me?"
 LuaCode={
 	npc_says(_"Well, it can help you avoid indecent exposure charges.")
-	tux_says(_"...")
+	tux_says("...")
 	npc_says(_"But all jokes aside, the bots will not mess around.")
 	npc_says(_"Even the best of fighters sometimes get hit by enemy blows. If I were you, I would seriously consider wearing some sort of armor before mixing it up with those bots.")
 	npc_says(_"They will help to mitigate some of the damage you take from melee or ranged combat.")
@@ -195,7 +215,7 @@ Nr=14 Text=_"That sounds useful. How do I use armor?"
 LuaCode={
 	npc_says(_"Well, let me start by saying that there are four classes of armor: headgear, shoes, body armor, and shields.")
 	npc_says(_"When you pick up a piece of armor of a particular class, and you don't already have one equipped, you will automatically equip it if you can.")
-	npc_says(_"Picking up armor and other items can be accomplished by left clicking on the item on the ground. If you have enough room in your inventory, you will pick the item up.")
+	npc_says(_"Picking up armor and items can be accomplished by [b]left clicking[/b] on the item. If your inventory has space, you will pick the item up.")
 	npc_says(_"If you currently have one piece of armor equipped that you would like to swap out for another, simply drag the new armor piece to the current armor piece and left click.")
 	npc_says(_"They will swap places, and you can put the other piece of armor back into your inventory.")
 	npc_says(_"Alternatively, you can drag it into your field of view and drop it on the ground.")
@@ -206,12 +226,13 @@ LuaCode={
 Nr=15 Text=_"I wouldn't want to lose any armor. What can I do about that?"
 LuaCode={
 	npc_says(_"Well, there are several ways to keep that from happening.")
-	npc_says(_"First, any equipped item in poor condition will show up yellow on your HUD. If the item reaches critical condition, it will be red. Well, at least if you interface with reality through OGL. If your visual reality interface is done with only SDL, colors won't change.")
-	npc_says(_"If you don't unequip the item then, you run the risk of it becoming ruined.")
-	npc_says(_"There are three things you can do when an item reaches critical condition.")
-	npc_says(_"The first is to sell or discard the item.")
-	npc_says(_"A better choice would be to use your repair equipment program on the item. This allows you to repair the item, at the cost of losing a percentage of its maximum useful life.")
-	npc_says(_"Most of the time, though, your best choice will be to pay to have the item repaired at a shop. This maintains the useful life of the item.")
+	npc_says(_"Equipped items in poor condition will show up yellow and should turn red if in critical condition.")
+	npc_says(_"However, if your visual acuity is only SDL, not OGL, apparently the colors won't change.")
+	npc_says(_"If you don't unequip an item in poor or critical condition it may be ruined!")
+	npc_says(_"There are three things you can do when an item reaches critical condition:")
+	npc_says(_"First, you can sell or discard the item.")
+	npc_says(_"Second, you can use your [b]repair equipment[/b] program on the item, which will repair the item at the cost of some of its durability.")
+	npc_says(_"Or third, you can have the item repaired at a shop, which maintains the item's durability at a price.")
 	hide(15) show(17)
 }
 ----------------------------------------------------------------------
@@ -219,32 +240,33 @@ LuaCode={
 Nr=16 Text=_"You mentioned discarding an item. Why would I want to do that?"
 LuaCode={
 	npc_says(_"Well, I can think of a few reasons.")
-	npc_says(_"The most obvious would be not having enough room in your inventory. If you need a different item more, then you shouldn't be afraid to drop a less valuable item.")
+	npc_says(_"You might not have enough room in your inventory for an item you need more, or can sell for more.")
 	npc_says(_"If an item is close to being destroyed, you might also consider dropping it.")
-	npc_says(_"You may also encounter items that give negative status effects. Certain pieces of armor or weapons may affect you in different ways.")
-	npc_says(_"Some will help you out, for example by increasing your cooling rate or increasing your dexterity. This is the work of specialized nanobots.")
-	npc_says(_"Some items, on the other hand, may affect you negatively. They may decrease your strength or cause you to heat up.")
-	npc_says(_"Because they are undesirable, these cannot be sold, and so must either be used or discarded. Discarding is usually the preferred choice.")
+	npc_says(_"And finally some items give negative status effects, and aren't worth selling.") 
+	npc_says(_"Armor or weapons may affect you in different ways.")
+	npc_says(_"Some will help you out, for example by increasing your cooling rate or increasing your dexterity. This is the work of specialized nanobots, but the reverse can happen too.")
 	hide(16)
 }
 ----------------------------------------------------------------------
 
 Nr=17 Text=_"Repair equipment program? How do I use that?"
 LuaCode={
-	npc_says(_"Perhaps I should start by explaining programs in general. You already know about some programs, and that they can be accessed through your HUD.")
-	npc_says(_"To use a program, select it through your HUD. Then, run the program by right clicking. You can target an enemy, an item, or just the world depending on the program.")
-	npc_says(_"You can also assign quick-select keys to programs. Simply hover over the program in the Skills/Program menu and press one of the keys F5 to F12. Then, whenever you press this button, you will select the corresponding program.")
+	npc_says(_"Perhaps I should start by explaining programs in general.")
+	npc_says(_"To use a program, select it through your HUD (remember the [b]S key[/b] toggles your [b]Skills/Program menu[/b]).")
+	npc_says(_"After you've selected a program, run the program by right clicking. Depending on the program you can target an enemy, an item, or just the world.")
+	npc_says(_"You can also assign quick-select keys to programs. Simply hover over the program in the Skills/Program menu and press one of the keys [b]F5[/b] to [b]F12[/b]. Then, whenever you press this button, you will select the corresponding program.")
 	npc_says(_"If you're curious what a program does, you can find out by clicking the question mark in the Skills/Program menu.")
 	npc_says(_"Now, to answer your question, you use your repair equipment program by selecting it in the Skills/Program menu, then right clicking on the item you wish to repair.")
 	improve_program("Repair equipment")
 	add_cookie("has_repair")
+	update_quest("Tutorial Melee", _"Run a program by right clicking after it has been selected from the Skills/Program menu. My shoes are damaged, so I might try the repair equipment program on them to slightly repair them.")
 	hide(17)
 }
 ----------------------------------------------------------------------
 
 Nr=19 Text=_"I think I'm ready for the next section of the tutorial."
 LuaCode={
-	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand to hand combat.")
+	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand-to-hand combat.")
 	if (has_cookie("has_repair")) then
 	else improve_program("Repair equipment") end
 	change_obstacle_state("TutorialEquipOut", "opened")
@@ -268,13 +290,13 @@ LuaCode={
 Nr=21 Text=_"So I'm supposed to fight bots with my fists?"
 LuaCode={
 	npc_says(_"There may be times when you have no choice.")
-	npc_says(_"Melee combat, armed or unarmed, can be initiated by left clicking on an enemy.")
+	npc_says(_"Melee combat, armed or unarmed, can be initiated by [b]left clicking[/b] on an enemy.")
 	npc_says(_"You will then walk over to the enemy and start hitting them.")
 	npc_says(_"Now, I understand you may have some concerns over your safety during this...")
-	tux_says(_"CONCERNS? Erm... Yes, this doesn't sound like a particularly healthy endeavour.")
+	tux_says(_"CONCERNS? Erm... Yes, this doesn't sound like a particularly healthy endeavor.")
 	npc_says(_"Fred, if you're afraid, you'll have to overlook it. Besides, you knew the job was dangerous when you took it.")
 	tux_says(_"I beg your pardon? Who is Fred?")
-	npc_says(_"Nevermind, just an old song.")
+	npc_says(_"Never mind, just an old song.")
 	npc_says(_"Fighting the bots hand-to-hand has risks, there is no question. However, there are things you can do to even the odds.")
 	npc_says(_"We already discussed armor. Another useful type of item is medical supplies.")
 	npc_says(_"There are a few different types of restorative items. The most common are health drinks.")
@@ -288,10 +310,11 @@ LuaCode={
 	npc_says(_"Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health.")
 	npc_says(_"There are many kinds, but all accomplish the same thing, to varying degrees.")
 	npc_says(_"Certain items, like health drinks, can be used directly without clicking on them.")
-	npc_says(_"At the bottom of your HUD, you'll notice your item access belt. Small items can go here and be used by pressing the numbers 0 through 9.")
+	npc_says(_"At the bottom of your HUD, you'll notice your item access belt. Small items can go here and be used by pressing the numbers [b]0[/b] through [b]8[/b].")
 	npc_says(_"Unlike armor or weapons, multiple of these items will group together in your inventory slots.")
 	npc_says(_"If you have Diet Supplements equipped in item slot 1, you can press 1 to use one.")
 	npc_says(_"This will restore your health, and will be invaluable in the heat of battle.")
+	update_quest("Tutorial Melee", _"Small one-time-use items, like diet supplements, can be placed in inventory spots labels 1 to 0, and can be used by pressing the corresponding key.")
 	hide(22)
 }
 ----------------------------------------------------------------------
@@ -302,12 +325,11 @@ LuaCode={
 	npc_says(_"I've unlocked the door leading to the first bot. Take care of it, then come back and talk to me.")
 	npc_says(_"I'm also giving you some health drinks. Feel free to use them, though I can heal you if you need it.")
 	npc_says(_"Your health will also regenerate over time. I wish it were so easy for us humans.")
-	npc_says(_"The first bot is carrying an Entropy Inverter . Bring it to me to prove you've beaten it.")
+	npc_says(_"The first bot is carrying an [b]Entropy Inverter[/b]. Bring it to me to prove you've beaten it.")
 	npc_says(_"Come back and talk to me when you have the Entropy Inverter.")
 	change_obstacle_state("TutorialMelee1", "opened")
-	add_item("Doc-in-a-can", 1)
-	add_item("Doc-in-a-can", 1)
-	add_item("Doc-in-a-can", 1)
+	add_item("Doc-in-a-can", 3)
+	update_quest("Tutorial Melee", _"I'm going to fight my first bot! To start melee combat left click on the bot. Tom wants the Entropy Inverter from the bot after I've defeated it, so I should pick that up.")
 	end_dialog()
 	hide(23) show(24, 25)
 }
@@ -332,11 +354,12 @@ LuaCode={
 		npc_says(_"Hopefully, you can find someone to teach you.")
 		del_item_backpack("Entropy Inverter", 1)
 		add_item("Big wrench", 1)
+		update_quest("Tutorial Melee", _"I brought the entropy inverter to Tom and he gave me my first weapon: a Big wrench. I should equip it.")
 		hide(25) show(26)
 	else
 		npc_says(_"Trying to cheat your way through the tutorial doesn't bode well for your chances in the real world.")
 		npc_says(_"I'll need proof that you've beaten the first bot.")
-		npc_says(_"Don't come back without the Entropy Inverter it was carrying.")
+		npc_says(_"Don't come back without the [b]Entropy Inverter[/b] it was carrying.")
 		end_dialog()
 	end
 }
@@ -363,7 +386,7 @@ LuaCode={
 	npc_says(_"Use them in the same way you would use a health drink.")
 	npc_says(_"If I were you, I would think about using your repair equipment program on your armor and that wrench before you go into the room.")
 	npc_says(_"You'll also need to equip them. I won't do that for you.")
-	npc_says(_"Like the last bot, this one will be carrying an item. Bring me the Tachyon Condensator it is carrying to continue.")
+	npc_says(_"Like the last bot, this one will be carrying an item. Bring me the [b]Tachyon Condensator[/b] it is carrying to continue.")
 	npc_says(_"I've unlocked the door. Good luck, and talk to me when you have the Tachyon Condensator.")
 	change_obstacle_state("TutorialMelee2", "opened")
 	heal_tux()
@@ -391,7 +414,7 @@ LuaCode={
 	else
 		npc_says(_"You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue.")
 		npc_says(_"I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there.")
-		npc_says(_"Don't come back without the Tachyon Condensator.")
+		npc_says(_"Don't come back without the [b]Tachyon Condensator[/b].")
 		heal_tux()
 		end_dialog()
 	end
@@ -400,6 +423,9 @@ LuaCode={
 
 Nr=29 Text=_"I'm ready to move on."
 LuaCode={
+	if (not done_quest("Tutorial Melee")) then
+		 complete_quest("Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
+	end
 	if (has_cookie("has_gun")) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
 		npc_says(_"Our next destination is the ranged combat training area, so you're in luck.")
@@ -407,7 +433,7 @@ LuaCode={
 	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
 	change_obstacle_state("TutorialMeleeOut", "opened")
 	end_dialog()
-	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(30, 39)
+	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(30, 38)
 }
 ----------------------------------------------------------------------
 
@@ -415,6 +441,7 @@ Nr=30 Text=_"Ranged weaponry seems safer than getting up close and personal."
 LuaCode={
 	npc_says(_"Well, Linarian, most of the time, it is.")
 	npc_says(_"There are some bots with ranged weaponry, but we don't have any of those in captivity.")
+	add_quest("Tutorial Shooting", _"I am learning about how to use ranged weapons.")
 	hide(30) show(31)
 }
 ----------------------------------------------------------------------
@@ -434,13 +461,18 @@ LuaCode={
 Nr=32 Text=_"So how do I use guns?"
 LuaCode={
 	npc_says(_"Well, firing is pretty simple. First, equip a ranged weapon that you have ammunition for.")
-	npc_says(_"Next, simply left click on your target, and you'll begin firing.")
-	npc_says(_"Alternatively, you can select the Fire Weapon program, and right click on the enemy.", "NO_WAIT")
+	npc_says(_"Next, simply [b]left click[/b] on your target, and you'll begin firing.")
+	npc_says(_"Alternatively, you can fire a single shot using the [b]Fire Weapon[/b] program, and [b]right clicking[/b] on the enemy.", "NO_WAIT")
 	npc_says(_"That is the best way if you are trying to conserve precious ammo with high rate of fire guns.")
-	npc_says(_"There are a couple of new tricks with ranged weapons. If you want to move while firing, simply hold shift and left click your desired position.")
-	npc_says(_"If you'd rather stay in place, Hold A, then left click your target.")
+	npc_says(_"There are a couple of new tricks with ranged weapons. If you want to [b]move while firing[/b]: hold [b]shift[/b] and [b]left click[/b] your desired position.")
+	npc_says(_"If you'd rather stay in place: Hold [b]A[/b], then [b]left click[/b] your target.")
 	npc_says(_"When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it.")
-	npc_says(_"Sometimes, you will need or want to manually reload. You can do this by pressing R.")
+	npc_says(_"Sometimes, you will need or want to manually reload. You can do this by pressing the [b]R key[/b].")
+	npc_says(_"If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get.")
+	if (not has_cookie("guns_how_to")) then 
+		add_cookie("guns_how_to")
+		update_quest("Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the R key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
+	end
 	if (not has_cookie("opened_door")) then show(33) else end
 }
 ----------------------------------------------------------------------
@@ -462,45 +494,45 @@ LuaCode={
 	npc_says(_"Practice switching weapons and reloading.")
 	npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
 	npc_says(_"Once you've gotten rid of them all, we can move on.")
-	add_quest("Tutorial Shooting", "Tutorial Tom wants me to shoot those bots.")
--- TODO we need to talk about questlogs here as well
+	update_quest("Tutorial Shooting", _"Tutorial Tom wants me to shoot those bots.")
 -- TODO probably explain leveling as well as balancing changes to XP always risk causing leveling here. Or somehow make sure Tux cant level
 	add_cookie("opened_door")
 	change_obstacle_state("TutorialStorage", "opened")
 	change_obstacle_state("TutorialShootCage", "opened")
 	end_dialog()
-	hide(33) show(37)
+	hide(33) show(34,36)
 }
 ----------------------------------------------------------------------
 
-Nr=37 Text=_"I killed all the bots."
+Nr=34 Text=_"I ran out of ammo. Can I have some more?"
+LuaCode={
+	npc_says(_"Check the storage room to the west for more guns and ammo.")
+	hide(34)
+}
+----------------------------------------------------------------------
+
+Nr=36 Text=_"I killed all the bots."
 LuaCode={
 	if (done_quest("Tutorial Shooting")) then
 		npc_says(_"Excellent job.")
 		npc_says(_"Keep shooting like that, and the bots will never stand a chance, as long as you still have ammo.")
-		npc_says(_"Next, we'll be moving on to learning the TakeOver program.")
+		npc_says(_"Next, we'll be moving on to learning the [b]Hacking[/b] program.")
 		npc_says(_"But first, you'll need to give me your weapons.")
 		npc_says(_"Put all your ranged weapons in your inventory, then talk to me and we'll move on.")
-		update_quest("Tutorial Shooting", "That was like shooting fish in a barrel. I could use a fish about now.")
+		update_quest("Tutorial Shooting", _"That was like shooting fish in a barrel. I could use a fish about now.")
 		end_dialog()
-		hide(37) show(38)
+		hide(36,38) show(37)
 	else
 		npc_says(_"I don't mind if you don't want to do this, but please don't try to trick me.")
-		npc_says(_"I don't have verified kills on all those bots, so you're not moving on.")
+		npc_says(_"I don't have verified kills on all those bots.")
 	end
 }
 ----------------------------------------------------------------------
 
-Nr=38 Text=_"I'm ready to move on."
+Nr=37 Text=_"I'm ready to move on."
 LuaCode={
 	if (has_item_backpack(".22 Automatic") > 0 and has_item_backpack("Laser pistol") > 0 and has_item_backpack("Plasma pistol") > 0) then
-		npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
-		change_obstacle_state("TutorialShootingOut", "opened")
-		del_item_backpack(".22 Automatic")
-		del_item_backpack("Laser pistol")
-		del_item_backpack("Plasma pistol")
-		end_dialog()
-		hide(30, 31, 32, 33, 37, 38, 39) show(40)
+		next(39)
 	else
 		npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
 		npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
@@ -510,13 +542,43 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=39 Text=_"I'd rather just move on to the next section of the tutorial."
+Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
 LuaCode={
 	npc_says(_"As you wish, Linarian.")
-	change_obstacle_state("TutorialShootingOut", "opened")
-	end_quest("Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
-	end_dialog()
-	hide(30, 31, 32, 33, 37, 38, 39) show(40)
+	if (has_cookie("opened_door")) then
+		if (has_item_backpack(".22 Automatic") > 0 and has_item_backpack("Laser pistol") > 0 and has_item_backpack("Plasma pistol") > 0) then
+			end_quest("Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
+			next(39)
+		else
+			npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
+			npc_says(_"You will need to have the guns in your inventory to give them to me, so if you dropped them, please go get them.")
+			npc_says(_"That includes the laser and plasma pistols in the storage room to the west.")
+		end
+	elseif has_cookie("has_gun") then
+		if  (has_item_backpack(".22 Automatic") > 0) then
+			end_quest("Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
+			next(39)
+		else
+			npc_says(_"I'll need you to surrender your .22 pistol. Unequip it, then talk to me again.")
+			end_dialog()
+		end
+	else
+		end_quest("Tutorial Shooting", _"I decided not to do the shooting tutorial.")
+		next(39)
+	end
+}
+----------------------------------------------------------------------
+
+Nr=39 Text="BUG, REPORT ME! tutorial node39 -- REMOVE WEAPONS" --hidden
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+LuaCode={
+	del_item_backpack(".22 Automatic")
+	del_item_backpack("Laser pistol")
+	del_item_backpack("Plasma pistol")
+	npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
+ 	change_obstacle_state("TutorialShootingOut", "opened")
+ 	end_dialog()
+ 	hide(30, 31, 32, 33, 37, 38, 39) show(40)
 }
 ----------------------------------------------------------------------
 
@@ -525,19 +587,18 @@ LuaCode={
 	npc_says(_"You've done well so far, Linarian. Let's take a little break.")
 	npc_says(_"Once you get out into the real world, you'll find that your current abilities aren't always enough to survive.")
 	npc_says(_"As you achieve combat experience, you'll be able to apply it to better yourself.")
-	npc_says(_"As with most things, you view this as a panel in your HUD. Press C to open the Character panel.")
+	npc_says(_"As with most things, you view this as a panel in your HUD. Press the [b]C key[/b] to open the [b]Character panel[/b].")
 	npc_says(_"Once you've gained enough experience, you'll level up. This will automatically improve some of your statistics.")
 	npc_says(_"You'll also be given 5 points to spend however you choose in three different areas. Characteristics, Skills and Programs.")
-	npc_says(_"Strength governs the amount of damage you do with each hit in melee combat.")
-	npc_says(_"Dexterity controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge a hit from them.")
-	npc_says(_"CPU is your processors cooling. or heat resilience, and determines how much you can process before your system starts overheating.")
-	npc_says(_"Finally, among your main characteristics, Life determines how much health you have.")
-	npc_says(_"You also have 3 main skills that you can improve with the use of your training points and a teacher.")
-	npc_says(_"They are general Melee and Ranged fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
-	npc_says(_"You also have the Programming skill, which essentially is about programming in an energy efficient manner so programs cause less heat.")
+	npc_says(_"[b]Strength[/b] governs the amount of damage you do with each hit in melee combat.")
+	npc_says(_"[b]Dexterity[/b] controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge a hit from them.")
+	npc_says(_"[b]Cooling[/b] is your processors cooling. or heat resilience, and determines how much you can process before your system starts overheating.")
+	npc_says(_"Finally, among your main characteristics, [b]Physique[/b] determines how much health you have.")
+	npc_says(_"They are general [b]Melee[/b] and [b]Ranged[/b] fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
+	npc_says(_"You also have the [b]Programming[/b] skill, which essentially is about programming in an energy efficient manner so programs cause less heat.")
 	npc_says(_"Apart from this, a few programs require a teacher and training points to improve.")
-	npc_says(_"Extract bot parts is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
-	npc_says(_"The Hacking program we will speak a bit more of in a little while.")
+	npc_says(_"[b]Extract Bot Parts[/b] is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
+	npc_says(_"The [b]Hacking[/b] program we will speak a bit more of in a little while.")
 	hide(40) show(41)
 }
 ----------------------------------------------------------------------
@@ -546,7 +607,7 @@ Nr=41 Text=_"I'll have to keep that in mind."
 LuaCode={
 	npc_says(_"Well, how about you try it out?")
 	npc_says(_"I'll give you some points to spend, and you can distribute them as you like.")
-	npc_says(_"Since you'll be hacking up ahead, you should probably use a few of them on CPU.")
+	npc_says(_"Since you'll be hacking up ahead, you should probably use a few of them on [b]Cooling[/b].")
 	npc_says(_"But, again, that's your choice.")
 	add_xp("2000")
 	end_dialog()
@@ -556,8 +617,11 @@ LuaCode={
 
 Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 LuaCode={
-	npc_says(_"I'll unlock the door then. Talk to me in the next area.")
-	change_obstacle_state("TutorialTakeover", "opened")
+	npc_says(_"First, you'll need to unlock the door.")
+	npc_says(_"See that [b]Terminal[/b] to the left?")
+	npc_says(_"You will need to login, by left clicking on it, and then select unlock door.")
+	npc_says(_"Terminals act very similar to hacked bots.")
+	add_quest("Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
 	end_dialog()
 	hide(42) show(50, 56)
 }
@@ -580,8 +644,8 @@ Nr=51 Text=_"Tell me about taking bots over."
 LuaCode={
 	npc_says(_"I'm afraid that you will have to experience it for yourself to really understand.")
 	npc_says(_"However, you did leave yourself instructions before you went into stasis sleep.")
-	npc_says(_"Takeover, or hacking, comes in the form of a game or competition placing you against the bot.")
-	npc_says(_"You initiate it by selecting the Hacking program, then right-clicking on a hostile bot.")
+	npc_says(_"Taking over a bot comes in the form of a game or competition placing you against the bot.")
+	npc_says(_"You initiate it by selecting the [b]Hacking[/b] program, then [b]right-clicking[/b] on a hostile bot.")
 	npc_says(_"The field of play is split into two sides, one green, one maroon, representing circuit boards.")
 	npc_says(_"In the center of the field is a column of boxes known as logic cores. These cores have wires attached to them from both circuit boards.")
 	npc_says(_"Your objective is to activate as many cores in your chosen color as possible at the end of each round.")
@@ -590,6 +654,7 @@ LuaCode={
 	npc_says(_"At that point, you have 10 more seconds in which to activate more cores than the bot.")
 	npc_says(_"You have a limited number of charges, 3 by default, so choose your targets carefully.")
 	npc_says(_"I can tell you about some more advanced techniques, if you'd like.")
+	update_quest("Tutorial Hacking", _"Apparently in order to hack, all I have to do is select the Hacking program, right click a bot, and play a little game. I've got this!")
 	show(52, 53, 54) hide(51)
 }
 ----------------------------------------------------------------------
@@ -630,8 +695,7 @@ LuaCode={
 	npc_says(_"If you accumulate too much heat, you will automatically shut down in order to cool off.")
 	npc_says(_"Over time, the heat will seep away from your body naturally. However, there are ways to speed up the process.")
 	npc_says(_"If you can find them, cooling drinks will quickly relieve your thermal discomfort, in much the same way healing drinks help your health.")
-	npc_says(_"You also have a special program called Emergency Shutdown that will lower your heat level drastically, although not without cost.")
-	npc_says(_"Using it will paralyze you for several seconds, during which you are a sitting duck... er, penguin.")
+	npc_says(_"Remember you also have a special program called [b]Emergency Shutdown[/b] that will lower your heat level drastically. Unfortunately using Emergency Shutdown will shut you down and render you paralyzed for several seconds. It makes you a sitting duck... er, penguin.")
 	tux_says(_"I take it that was a joke also?")
 	npc_says(_"Quite.", "NO_WAIT")
 	npc_says(_"In addition to hacking, you have the ability to execute arbitrary code on bots.")
@@ -654,7 +718,7 @@ LuaCode={
 	add_item("Source Book of Calculate Pi", 1)
 	add_item("Source Book of Malformed packet", 1)
 	add_cookie("hacking_bots")
-	add_quest("Tutorial Hacking", "Tutorial Tom wants me to hack those bots.")
+	update_quest("Tutorial Hacking", _"Tutorial Tom wants me to hack those bots. The only thing I need to worry about is overheating. But if I get too hot I can always try the Emergency shutdown program.")
 	change_obstacle_state("TutorialTakeoverCage", "opened")
 	end_dialog()
 	hide(55) show(56)
@@ -668,18 +732,18 @@ LuaCode={
 		if (not done_quest("Tutorial Hacking")) then
 			npc_says(_"The bots aren't dead, Linarian.")
 			npc_says(_"Come back and talk to me after they are.")
-			npc_says(_"If you're having trouble, you might try the Malformed packet program.")
+			npc_says(_"If you're having trouble, you might try the [b]Malformed Packet[/b] program.")
 		else
 			npc_says(_"Well done! That concludes our tutorial.")
 			del_cookie("hacking_bots")
-			update_quest("Tutorial Hacking", "Well, it took a lot of work, but I showed those bots who's boss.")
+			update_quest("Tutorial Hacking", _"Well, it took a lot of work, but I showed those bots who's boss.")
 		end
 	else end
 	npc_says(_"Now, there's one last thing you should know.")
 	npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
 	npc_says(_"Time stops, and everything freezes in place.")
-	npc_says(_"This can be accomplished by using the Esc key.")
-	if (not has_cookie(_"hacking_bots")) then
+	npc_says(_"This can be accomplished by using the [b]Esc key[/b].")
+	if (not has_cookie("hacking_bots")) then
 		npc_says(_"Your final task is to leave us using this menu.")
 		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
 		npc_says(_"You'll need it if our world is to survive.")
