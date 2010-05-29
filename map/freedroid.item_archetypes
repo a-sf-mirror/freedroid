@@ -1882,7 +1882,7 @@ Base list price=750
 inventory_size_x=2
 inventory_size_y=2
 Item description text=_"The basic plasma weapon in a conveniently small package."
-the following part is only relevant for weapons -----
+----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.750000
 Item as gun: reloading time=3.000000
 Item as gun: speed of bullets=15.000000
@@ -1920,7 +1920,7 @@ Base list price=1200
 inventory_size_x=2
 inventory_size_y=3
 Item description text=_"A somewhat slow weapon, but once you do hit plenty a bot will just down on the spot. A good alternative to a pulse laser for the skilled marksman."
-the following part is only relevant for weapons -----
+----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.000000
 Item as gun: reloading time=5.000000
 Item as gun: speed of bullets=15.000000
@@ -1958,7 +1958,7 @@ Base list price=1800
 inventory_size_x=3
 inventory_size_y=4
 Item description text=_"The very slow firing rate is made up for by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers' bread and butter pulse lasers, especially when attacking enemies behind cover."
-the following part is only relevant for weapons -----
+----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.500000
 Item as gun: reloading time=7.000000
 Item as gun: speed of bullets=15.000000
