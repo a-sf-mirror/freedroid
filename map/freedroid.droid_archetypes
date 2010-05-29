@@ -66,6 +66,7 @@ That will not cause any problems.
 
 ** Start of new Robot: ** 
 Droidname: 123
+Default description:_"123 Acolyte"
 Droid uses portrait rotation series with prefix="123"
 Maximum speed of this droid: 2.1
 Class of this droid: 1
@@ -94,6 +95,7 @@ Notes concerning this droid=_"A simple rubbish diposal robot. Common device in m
 
 ** Start of new Robot: ** 
 Droidname: 139
+Default description:_"139 Templar"
 Droid uses portrait rotation series with prefix="139"
 Maximum speed of this droid: 2.1
 Class of this droid: 1
@@ -122,6 +124,7 @@ Notes concerning this droid=_"Created by Dr. Masternak to clean up large heaps o
 
 ** Start of new Robot: ** 
 Droidname: 247
+Default description:_"247 Banshee"
 Droid uses portrait rotation series with prefix="247"
 Maximum speed of this droid: 5.1
 Class of this droid: 2
@@ -150,6 +153,7 @@ Notes concerning this droid=_"A light duty servant robot. One of the first to us
 
 ** Start of new Robot: ** 
 Droidname: 249
+Default description:_"249 Chicago"
 Droid uses portrait rotation series with prefix="249"
 Maximum speed of this droid: 3.1
 Class of this droid: 2
@@ -178,6 +182,7 @@ Notes concerning this droid=_"Cheaper version of the anti-grav servant robot."
 
 ** Start of new Robot: ** 
 Droidname: 296
+Default description:_"296 Sawmill"
 Droid uses portrait rotation series with prefix="296"
 Maximum speed of this droid: 2.1
 Class of this droid: 2
@@ -206,6 +211,7 @@ Notes concerning this droid=_"Run away! This bot will kill you!"
 
 ** Start of new Robot: ** 
 Droidname: 302
+Default description:_"302 Nemesis"
 Droid uses portrait rotation series with prefix="302"
 Maximum speed of this droid: 6.1
 Class of this droid: 3
@@ -234,6 +240,7 @@ Notes concerning this droid=_"Common device for moving small packages. Clamp is 
 
 ** Start of new Robot: ** 
 Droidname: 329
+Default description:_"329 Sparkie"
 Droid uses portrait rotation series with prefix="329"
 Maximum speed of this droid: 0.8
 Class of this droid: 3
@@ -262,6 +269,7 @@ Notes concerning this droid=_"Early type messenger robot. Large wheels impede mo
 
 ** Start of new Robot: ** 
 Droidname: 420
+Default description:_"420 Surgeon"
 Droid uses portrait rotation series with prefix="420"
 Maximum speed of this droid: 2.1
 Class of this droid: 4
@@ -290,6 +298,7 @@ Notes concerning this droid=_"A slow maintenance robot. Confined to drive mainte
 
 ** Start of new Robot: ** 
 Droidname: 476
+Default description:_"476 Coward"
 Droid uses portrait rotation series with prefix="476"
 Maximum speed of this droid: 3.1
 Class of this droid: 4
@@ -318,6 +327,7 @@ Notes concerning this droid=_"Ship maintenance robot. Fitted with multiple arms 
 
 ** Start of new Robot: ** 
 Droidname: 493
+Default description:_"493 Spinster"
 Droid uses portrait rotation series with prefix="493"
 Maximum speed of this droid: 3.1
 Class of this droid: 4
@@ -346,6 +356,7 @@ Notes concerning this droid=_"Slave maintenance droid. Standard version will car
 
 ** Start of new Robot: ** 
 Droidname: 516
+Default description:_"516 Ghoul"
 Droid uses portrait rotation series with prefix="516"
 Maximum speed of this droid: 3.6
 Class of this droid: 5
@@ -374,6 +385,7 @@ Notes concerning this droid=_"Early crew droid. Able to carry out simple flight 
 
 ** Start of new Robot: ** 
 Droidname: 571
+Default description:_"571 Apollo"
 Droid uses portrait rotation series with prefix="571"
 Maximum speed of this droid: 4.1
 Class of this droid: 5
@@ -402,6 +414,7 @@ Notes concerning this droid=_"A standard crew droid. Supplied with the ship."
 
 ** Start of new Robot: ** 
 Droidname: 598
+Default description:_"598 Minister"
 Droid uses portrait rotation series with prefix="598"
 Maximum speed of this droid: 3.1
 Class of this droid: 5
@@ -430,6 +443,7 @@ Notes concerning this droid=_"A highly sophisticated device. Able to control the
 
 ** Start of new Robot: ** 
 Droidname: 614
+Default description:_"614 Security Bot"
 Droid uses portrait rotation series with prefix="614"
 Maximum speed of this droid: 2.0
 Class of this droid: 6
@@ -458,6 +472,7 @@ Notes concerning this droid=_"A low security sentinel droid. Used to protect are
 
 ** Start of new Robot: ** 
 Droidname: 615
+Default description:_"615 Firedevil"
 Droid uses portrait rotation series with prefix="615"
 Maximum speed of this droid: 4.1
 Class of this droid: 6
@@ -486,6 +501,7 @@ Notes concerning this droid=_"Sophisticated sentinel droid. Only 2000 built by t
 
 ** Start of new Robot: ** 
 Droidname: 629
+Default description:_"629 Spitfire"
 Droid uses portrait rotation series with prefix="629"
 Maximum speed of this droid: 2.1
 Class of this droid: 6
@@ -514,6 +530,7 @@ Notes concerning this droid=_"A low sentinel droid. Lasers are built into the tu
 
 ** Start of new Robot: ** 
 Droidname: 711
+Default description:_"711 Grillmeister"
 Droid uses portrait rotation series with prefix="711"
 Maximum speed of this droid: 5.1
 Class of this droid: 7
@@ -542,6 +559,7 @@ Notes concerning this droid=_"A heavy duty battle droid. Disruptor is built into
 
 ** Start of new Robot: ** 
 Droidname: 742
+Default description:_"742 Zeus"
 Droid uses portrait rotation series with prefix="742"
 Maximum speed of this droid: 4.1
 Class of this droid: 7
@@ -570,6 +588,7 @@ Notes concerning this droid=_"This version is the one mainly used by the militar
 
 ** Start of new Robot: ** 
 Droidname: 751
+Default description:_"751 Soviet"
 Droid uses portrait rotation series with prefix="751"
 Maximum speed of this droid: 5.1
 Class of this droid: 7
@@ -598,6 +617,7 @@ Notes concerning this droid=_"A very heavy duty battle droid. Only a few have so
 
 ** Start of new Robot: ** 
 Droidname: 821
+Default description:_"821 Ufo"
 Droid uses portrait rotation series with prefix="821"
 Maximum speed of this droid: 6.1
 Class of this droid: 8
@@ -626,6 +646,7 @@ Notes concerning this droid=_"A very reliable anti-grav unit is fitted into this
 
 ** Start of new Robot: ** 
 Droidname: 834
+Default description:_"834 Wisp"
 Droid uses portrait rotation series with prefix="834"
 Maximum speed of this droid: 7.1
 Class of this droid: 8
@@ -654,6 +675,7 @@ Notes concerning this droid=_"Early type anti-grav security droid. Fitted with a
 
 ** Start of new Robot: ** 
 Droidname: 883
+Default description:_"883 Dalex"
 Droid uses portrait rotation series with prefix="883"
 Maximum speed of this droid: 2.1
 Class of this droid: 8
@@ -683,6 +705,7 @@ Notes concerning this droid=_"This droid was designed from archive data. For som
 
 ** Start of new Robot: ** 
 Droidname: 999
+Default description:_"999 Cerebrum"
 Droid uses portrait rotation series with prefix="999"
 Maximum speed of this droid: 6.1
 Class of this droid: 9
@@ -711,6 +734,7 @@ Notes concerning this droid=_"Experimental command cyborg. Fitted with a new typ
 
 ** Start of new Robot: ** 
 Droidname: PRO
+Default description:_"Older Man"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
@@ -734,6 +758,7 @@ Notes concerning this droid=_"This is a typical professor/sage character of some
 
 ** Start of new Robot: ** 
 Droidname: GUA
+Default description:_"Red Guard"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
@@ -757,6 +782,7 @@ Notes concerning this droid=_"This is a typical red (male) guard/fighter charact
 
 ** Start of new Robot: ** 
 Droidname: MUM
+Default description:_"Matron"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 3.1
 Class of this droid: 18
@@ -780,6 +806,7 @@ Notes concerning this droid=_"This is the hot_mama shopkeeper character model."
 
 ** Start of new Robot: ** 
 Droidname: FSC
+Default description:_"Female Scientist"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 3.1
 Class of this droid: 18
@@ -803,6 +830,7 @@ Notes concerning this droid=_"This is the female scientist character model.  The
 
 ** Start of new Robot: ** 
 Droidname: WOR
+Default description:_"Mine Worker"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
@@ -826,6 +854,7 @@ Notes concerning this droid=_"This is the brown worker model.  They are not arme
 
 ** Start of new Robot: ** 
 Droidname: GUB
+Default description:_"Blue Brother"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
@@ -849,6 +878,7 @@ Notes concerning this droid=_"This is a useless comment. Thanks for your attenti
 
 ** Start of new Robot: ** 
 Droidname: COO
+Default description:_"Cook"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 3.1
 Class of this droid: 18
@@ -873,6 +903,7 @@ Notes concerning this droid=_"This is the cook."
 
 ** Start of new Robot: ** 
 Droidname: KEV
+Default description:_"Balding Man"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
@@ -896,6 +927,7 @@ Notes concerning this droid=_"This is a typical professor/sage character of some
 
 ** Start of new Robot: ** 
 Droidname: JAS
+Default description:_"Pretty Woman"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 6.1
 Class of this droid: 18
@@ -919,6 +951,7 @@ Notes concerning this droid=_"This is a typical sex bomb.  This one is even arme
 
 ** Start of new Robot: ** 
 Droidname: BAR
+Default description:_"Bartender"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
 Maximum speed of this droid: 2.1
 Class of this droid: 18
@@ -942,6 +975,7 @@ Notes concerning this droid=_"This is the bartender."
 
 ** Start of new Robot: ** 
 Droidname: 543
+Default description:_"543 Forest Harvester"
 Droid uses portrait rotation series with prefix="harvester"
 Maximum speed of this droid: 2.1
 Class of this droid: 5

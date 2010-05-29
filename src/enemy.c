@@ -256,7 +256,7 @@ enemy *enemy_new(int type)
 	this_enemy->marker = 0;
 	this_enemy->max_distance_to_home = 0;
 	this_enemy->dialog_section_name = NULL;
-	this_enemy->short_description_text = NULL;
+	this_enemy->short_description_text = strdup(Druidmap[this_enemy->type].default_short_description);
 	this_enemy->on_death_drop_item_code = -1;
 
 	// Set the default value of the 'global state' attributes
@@ -269,80 +269,6 @@ enemy *enemy_new(int type)
 	this_enemy->follow_tux = FALSE;
 	this_enemy->has_greeted_influencer = FALSE;
 	this_enemy->homewaypoint = this_enemy->lastwaypoint = this_enemy->nextwaypoint = -1;
-	
-	switch (atoi(Druidmap[this_enemy->type].druidname)) {
-		case 123:
-			this_enemy->short_description_text = strdup(_("123 Acolyte"));
-			break;
-		case 139:
-			this_enemy->short_description_text = strdup(_("139 Templar"));
-			break;
-		case 247:
-			this_enemy->short_description_text = strdup(_("247 Banshee"));
-			break;
-		case 249:
-			this_enemy->short_description_text = strdup(_("249 Chicago"));
-			break;
-		case 296:
-			this_enemy->short_description_text = strdup(_("296 Sawmill"));
-			break;
-		case 302:
-			this_enemy->short_description_text = strdup(_("302 Nemesis"));
-			break;
-		case 329:
-			this_enemy->short_description_text = strdup(_("329 Sparkie"));
-			break;
-		case 420:
-			this_enemy->short_description_text = strdup(_("420 Surgeon"));
-			break;
-		case 476:
-			this_enemy->short_description_text = strdup(_("476 Coward"));
-			break;
-		case 493:
-			this_enemy->short_description_text = strdup(_("493 Spinster"));
-			break;
-		case 516:
-			this_enemy->short_description_text = strdup(_("516 Ghoul"));
-			break;
-		case 543:
-			this_enemy->short_description_text = strdup(_("543 Forest Harvester"));
-			break;
-		case 571:
-			this_enemy->short_description_text = strdup(_("571 Apollo"));
-			break;
-		case 598:
-			this_enemy->short_description_text = strdup(_("598 Minister"));
-			break;
-		case 615:
-			this_enemy->short_description_text = strdup(_("615 Firedevil"));
-			break;
-		case 629:
-			this_enemy->short_description_text = strdup(_("629 Spitfire"));
-			break;
-		case 711:
-			this_enemy->short_description_text = strdup(_("711 Grillmeister"));
-			break;
-		case 742:
-			this_enemy->short_description_text = strdup(_("742 Zeus"));
-			break;
-		case 751:
-			this_enemy->short_description_text = strdup(_("751 Soviet"));
-			break;
-		case 821:
-			this_enemy->short_description_text = strdup(_("821 Ufo"));
-			break;
-		case 834:
-			this_enemy->short_description_text = strdup(_("834 Wisp"));
-			break;
-		case 883:
-			this_enemy->short_description_text = strdup(_("883 Dalex"));
-			break;
-		case 999:
-			this_enemy->short_description_text = strdup(_("999 Cerebrum"));
-			break;
-		default:
-			this_enemy->short_description_text = strdup(_("No Description For This One"));
-	}
 
 	return this_enemy;
 }

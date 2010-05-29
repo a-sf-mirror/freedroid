@@ -592,6 +592,11 @@ static void Get_Robot_Data(void *DataPointer)
 		// line with the DROIDNAME_BEGIN_STRING until the "\n" is found.
 		Druidmap[RobotIndex].druidname = ReadAndMallocStringFromData(RobotPointer, DROIDNAME_BEGIN_STRING, "\n");
 
+		// Now we read in the default short_description_text for this droid.
+		Druidmap[RobotIndex].default_short_description = ReadAndMallocStringFromDataOptional(RobotPointer, "Default description:_\"", "\"");
+		if (!Druidmap[RobotIndex].default_short_description)
+			Druidmap[RobotIndex].default_short_description = strdup("");
+
 		// Now we read in the prefix of the file names in the rotation series
 		// to use for the console droid rotation
 		Druidmap[RobotIndex].droid_portrait_rotation_series_prefix =

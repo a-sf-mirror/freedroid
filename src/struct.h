@@ -400,6 +400,7 @@ typedef struct item_s {
 
 typedef struct druidspec_s {
 	char *druidname;
+	char *default_short_description;
 	char *droid_portrait_rotation_series_prefix;
 	char *droid_death_sound_file_name;
 	char *droid_attack_animation_sound_file_name;
