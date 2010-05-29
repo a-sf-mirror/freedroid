@@ -1543,15 +1543,21 @@ void init_obstacle_data(void)
 	block_2param(ISO_SIGN_1, 0.5, 0.6);
 	obstacle_map[ISO_SIGN_1].filename = "iso_signs_0000.png";
 	obstacle_map[ISO_SIGN_1].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_SIGN_1].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_SIGN_1].flags |= GROUND_LEVEL | IS_CLICKABLE;
+	obstacle_map[ISO_SIGN_1].label = "Sign";
+	obstacle_map[ISO_SIGN_1].action = &sign_read_action;
 	block_2param(ISO_SIGN_2, 0.6, 0.5);
 	obstacle_map[ISO_SIGN_2].filename = "iso_signs_0001.png";
 	obstacle_map[ISO_SIGN_2].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_SIGN_2].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_SIGN_2].flags |= GROUND_LEVEL | IS_CLICKABLE;
+	obstacle_map[ISO_SIGN_2].label = "Sign";
+	obstacle_map[ISO_SIGN_2].action = &sign_read_action;
 	block_2param(ISO_SIGN_3, 0.5, 0.6);
 	obstacle_map[ISO_SIGN_3].filename = "iso_signs_0002.png";
 	obstacle_map[ISO_SIGN_3].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_SIGN_3].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_SIGN_3].flags |= GROUND_LEVEL | IS_CLICKABLE;
+	obstacle_map[ISO_SIGN_3].label = "Sign";
+	obstacle_map[ISO_SIGN_3].action = &sign_read_action;
 
 	block_2param(ISO_COUNTER_MIDDLE_1, 0.8, 1.05);
 	obstacle_map[ISO_COUNTER_MIDDLE_1].filename = "iso_counter_0001.png";

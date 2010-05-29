@@ -437,7 +437,175 @@ static int reach_obstacle_from_specific_direction(level *obst_lvl, int obst_inde
 	}
     return 0;
 };			  // int reach_obstacle_from_specific_direction(level **obst_lvl, int obst_index, int direction)
-// ------ INSERT ACTION FUNCTION BELOW ------
+
+enum interactive_obstacle_type {
+	ACT_CHEST,
+	ACT_TERMINAL,
+	ACT_SIGN,
+	ACT_BARREL,
+};
+
+static int approach(int type)
+{
+	int i;
+
+	const struct {
+		int type;
+		int direction;
+	} lookup[] = {
+			{ ISO_V_CHEST_CLOSED, EAST },
+			{ ISO_E_CHEST2_CLOSED, EAST },
+			{ ISO_H_CHEST_CLOSED, SOUTH },
+			{ ISO_S_CHEST2_CLOSED, SOUTH },
+			{ ISO_W_CHEST2_CLOSED, WEST },
+			{ ISO_N_CHEST2_CLOSED, NORTH },
+			{ ISO_CONSOLE_N, SOUTH },
+			{ ISO_CONSOLE_S, NORTH },
+			{ ISO_CONSOLE_E, WEST },
+			{ ISO_CONSOLE_W, EAST },
+			{ ISO_SIGN_1, EAST },
+			{ ISO_SIGN_3, EAST },
+			{ ISO_SIGN_2, SOUTH },
+	};
+
+	for (i = 0; i < sizeof(lookup)/sizeof(lookup[0]); i++) {
+		if (lookup[i].type == type)
+			return lookup[i].direction;
+	}	
+
+
+	ErrorMessage(__FUNCTION__, "Tried to approach obstacle type %d, but this is not a known type.", PLEASE_INFORM, IS_WARNING_ONLY, type);
+
+	return UNDEFINED;
+}
+
+static void act_chest(level *l, obstacle *o)
+{
+	throw_out_all_chest_content(get_obstacle_index(l, o));
+
+	if (o->type == ISO_H_CHEST_CLOSED)
+		o->type = ISO_H_CHEST_OPEN;
+	if (o->type == ISO_V_CHEST_CLOSED)
+		o->type = ISO_V_CHEST_OPEN;
+	if (o->type == ISO_N_CHEST2_CLOSED)
+		o->type = ISO_N_CHEST2_OPEN;
+	if (o->type == ISO_E_CHEST2_CLOSED)
+		o->type = ISO_E_CHEST2_OPEN;
+	if (o->type == ISO_S_CHEST2_CLOSED)
+		o->type = ISO_S_CHEST2_OPEN;
+	if (o->type == ISO_W_CHEST2_CLOSED)
+		o->type = ISO_W_CHEST2_OPEN;
+}
+
+static void act_barrel(level *l, obstacle *o)
+{
+	smash_obstacle(o->pos.x, o->pos.y, o->pos.z);
+
+	// Do an attack motion with bare hands
+	int store_weapon_type = Me.weapon_item.type;
+	Me.weapon_item.type = -1;
+	tux_wants_to_attack_now(FALSE);
+	Me.weapon_item.type = store_weapon_type;
+}
+
+static void act_terminal(level *l, obstacle *o)
+{
+	char *dialog = get_obstacle_extension(l, o, OBSTACLE_EXTENSION_DIALOGFILE);
+	if (!dialog) {
+		append_new_game_message("Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\".");
+		return;
+	}
+
+	enemy dummy_enemy;
+	dummy_enemy.dialog_section_name = dialog;
+	dummy_enemy.will_rush_tux = 0;
+	dummy_enemy.type = 34;
+	ChatWithFriendlyDroid(&dummy_enemy);
+}
+
+static void act_sign(level *l, obstacle *o)
+{
+	const char *message = get_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE);
+	if (!message) {
+		message = "There is nothing on this sign.";
+	}
+
+	append_new_game_message(message);
+}
+
+static void __obstacle_action(level *lvl, int index, enum interactive_obstacle_type act)
+{
+	gps vpos;
+	int direction;
+	obstacle *o;
+
+	// Retrieve the obstacle
+	if (index == -1)
+		return;
+
+	o = &lvl->obstacle_list[index];
+
+	// Compute the position of the obtacle
+	update_virtual_position(&vpos, &o->pos, Me.pos.z);
+	if (vpos.z == -1)
+		return;
+
+	// Compute the approach direction
+	switch (act) {
+		case ACT_CHEST:
+		case ACT_TERMINAL:
+		case ACT_SIGN:
+			direction = approach(o->type);
+			break;
+		default:
+			direction = UNDEFINED; 
+	}
+
+	// Approach obstacle
+	if (direction == UNDEFINED) {
+		int reached = reach_obstacle_from_any_direction(lvl, index);
+		
+		if (!reached)
+			return;
+		
+		// We set a direction of facing the obstacle
+		// so that the further actions look authentic
+		moderately_finepoint step_vector;
+		step_vector.x = -Me.pos.x + vpos.x;
+		step_vector.y = -Me.pos.y + vpos.y;
+		Me.angle = -(atan2(step_vector.y, step_vector.x) * 180 / M_PI - 180 - 45);
+		Me.angle += 360 / (2 * MAX_TUX_DIRECTIONS);
+		while (Me.angle < 0)
+			Me.angle += 360;
+
+	} else {
+		if (!reach_obstacle_from_specific_direction(lvl, index, direction)) 
+			return;
+	}
+
+	// Check direct reachability
+	colldet_filter filter = ObstacleByIdPassFilter;
+	filter.data = &index;
+
+	if (DirectLineColldet(Me.pos.x, Me.pos.y, vpos.x, vpos.y, Me.pos.z, &filter)) {
+		// Do the specific action
+		switch (act) {
+			case ACT_CHEST:
+				act_chest(lvl, o);
+				break;
+			case ACT_TERMINAL:
+				act_terminal(lvl, o);
+				break;
+			case ACT_SIGN:
+				act_sign(lvl, o);
+				break;
+			case ACT_BARREL:
+				act_barrel(lvl, o);
+				break;
+		}
+	}
+}
+
 /**
  * This function executes a chest's action, if Tux is near enough to activate it.
  * If Tux is too far, a combo action will be started, to first move Tux near
@@ -445,65 +613,7 @@ static int reach_obstacle_from_specific_direction(level *obst_lvl, int obst_inde
  */
 void chest_open_action(level *chest_lvl, int chest_index)
 {
-	if (chest_index == (-1))
-		return;
-
-	// So the player clicked on a chest.  Well, if the chest is already close
-	// enough, it should be sufficient to just spill out the contents of the
-	// chest and then return.  However, if the player was not yet close enough
-	// to the chest, or if the player is on an other level, we need to 
-    // SET A COMBINED_ACTION, i.e. first set the walk thowards the chest and 
-    // then set the open_chest action, which is more complicated of course.
-
-	// get the chest position relatively to Tux's level, in order to compute a distance
-	gps chest_vpos;
-	update_virtual_position(&chest_vpos, &(chest_lvl->obstacle_list[chest_index].pos), Me.pos.z);
-	int direction = 0;
-	switch (chest_lvl->obstacle_list[chest_index].type) {
-    	case ISO_V_CHEST_CLOSED:
-    	case ISO_E_CHEST2_CLOSED:
-    		direction = EAST;
-    		break;
-    	case ISO_H_CHEST_CLOSED:
-    	case ISO_S_CHEST2_CLOSED:
-    		direction = SOUTH;
-    		break;
-    	case ISO_W_CHEST2_CLOSED:
-    		direction = WEST;
-    		break;
-    	case ISO_N_CHEST2_CLOSED:
-    		direction = NORTH;
-    		break;
-    	default:
-    		ErrorMessage(__FUNCTION__, "chest to be approached is not a closed chest obstacle!!", PLEASE_INFORM, IS_FATAL);
-    		break;
-	}
-	if (!reach_obstacle_from_specific_direction(chest_lvl, chest_index, direction)) 
-        return;
-    else {
-		// Check that the chest is really reachable, and not behind an obstacle
-		colldet_filter filter = ObstacleByIdPassFilter;
-		filter.data = &chest_index;
-		if (DirectLineColldet(Me.pos.x, Me.pos.y, chest_vpos.x, chest_vpos.y, Me.pos.z, &filter)) {
-			throw_out_all_chest_content(chest_index);
-
-			if (chest_lvl->obstacle_list[chest_index].type == ISO_H_CHEST_CLOSED)
-				chest_lvl->obstacle_list[chest_index].type = ISO_H_CHEST_OPEN;
-			if (chest_lvl->obstacle_list[chest_index].type == ISO_V_CHEST_CLOSED)
-				chest_lvl->obstacle_list[chest_index].type = ISO_V_CHEST_OPEN;
-			if (chest_lvl->obstacle_list[chest_index].type == ISO_N_CHEST2_CLOSED)
-				chest_lvl->obstacle_list[chest_index].type = ISO_N_CHEST2_OPEN;
-			if (chest_lvl->obstacle_list[chest_index].type == ISO_E_CHEST2_CLOSED)
-				chest_lvl->obstacle_list[chest_index].type = ISO_E_CHEST2_OPEN;
-			if (chest_lvl->obstacle_list[chest_index].type == ISO_S_CHEST2_CLOSED)
-				chest_lvl->obstacle_list[chest_index].type = ISO_S_CHEST2_OPEN;
-			if (chest_lvl->obstacle_list[chest_index].type == ISO_W_CHEST2_CLOSED)
-				chest_lvl->obstacle_list[chest_index].type = ISO_W_CHEST2_OPEN;
-		}
-		// Now that the chest has been possibly opened, we don't need to do anything more
-		//
-		return;
-	} 
+	__obstacle_action(chest_lvl, chest_index, ACT_CHEST);
 }
 
 /**
@@ -513,63 +623,7 @@ void chest_open_action(level *chest_lvl, int chest_index)
  */
 void barrel_action(level *barrel_lvl, int barrel_index)
 {
-	moderately_finepoint step_vector;
-	gps barrel_vpos;
-
-	if (barrel_index == (-1))
-		return;
-
-	update_virtual_position(&barrel_vpos, &(barrel_lvl->obstacle_list[barrel_index].pos), Me.pos.z);
-	if (barrel_vpos.x == -1)
-		return;
-
-	// If the smash distance for a barrel is not yet reached, then we must set up
-	// a course that will lead us to the barrel and also a combo_action specification,
-	// that will cause the corresponding barrel to be smashed upon arrival.
-	//
-	if (!reach_obstacle_from_any_direction(barrel_lvl, barrel_index)) 
-        return;
-	//===================
-	// The character is near enough from the barrel to smash it.
-	//
-
-	// Before the barrel can get destroyed and we lose the position information,
-	// we record the vector of the charecter's strike direction...
-	//
-	step_vector.x = -Me.pos.x + barrel_vpos.x;
-	step_vector.y = -Me.pos.y + barrel_vpos.y;
-
-	// Check that the barrel is really reachable, and not behind an obstacle
-	//
-	colldet_filter filter = ObstacleByIdPassFilter;
-	filter.data = &barrel_index;
-
-	if (DirectLineColldet(Me.pos.x, Me.pos.y, barrel_vpos.x, barrel_vpos.y, Me.pos.z, &filter)) {
-		// We make sure the barrel gets smashed, even if the strike made by the
-		// Tux would be otherwise a miss...
-		//
-		smash_obstacle(barrel_lvl->obstacle_list[barrel_index].pos.x,
-				   barrel_lvl->obstacle_list[barrel_index].pos.y, barrel_lvl->obstacle_list[barrel_index].pos.z);
-
-		// We start an attack motion...
-		// Since the character is just aside the barrel, we use a melee shot,
-		// in order to avoid the lost of an ammunition.
-		//
-		int store_weapon_type = Me.weapon_item.type;
-		Me.weapon_item.type = -1;
-		tux_wants_to_attack_now(FALSE);
-		Me.weapon_item.type = store_weapon_type;
-
-		// We set a direction of facing directly thowards the barrel in question
-		// so that the strike motion looks authentic...
-		//
-		Me.angle = -(atan2(step_vector.y, step_vector.x) * 180 / M_PI - 180 - 45);
-		Me.angle += 360 / (2 * MAX_TUX_DIRECTIONS);
-		while (Me.angle < 0)
-			Me.angle += 360;
-	}
-
-	DebugPrintf(2, "\ncheck_for_barrels_to_smash(...):  combo_action now unset.");
+	__obstacle_action(barrel_lvl, barrel_index, ACT_BARREL);
 }
 
 /**
@@ -577,56 +631,12 @@ void barrel_action(level *barrel_lvl, int barrel_index)
  */
 void terminal_connect_action(level *lvl, int terminal_index)
 {
-	gps terminal_vpos;
-	obstacle *term = &(lvl->obstacle_list[terminal_index]);
+	__obstacle_action(lvl, terminal_index, ACT_TERMINAL);
+}
 
-	if (terminal_index == (-1))
-		return;
-
-	update_virtual_position(&terminal_vpos, &term->pos, Me.pos.z);
-	if (terminal_vpos.x == -1)
-		return;
-
-	int direction;
-	switch (lvl->obstacle_list[terminal_index].type) {
-		// Console directions are backwards...
-		case ISO_CONSOLE_N:
-    		direction = SOUTH;
-    		break;
-		case ISO_CONSOLE_S:
-			direction = NORTH;
-			break;
-		case ISO_CONSOLE_E:
-			direction = WEST;
-			break;
-		case ISO_CONSOLE_W:
-			direction = EAST;
-			break;
-    	default:
-    		ErrorMessage(__FUNCTION__, "Tried to approach a terminal of type %d, but this type is unknown.", PLEASE_INFORM, IS_WARNING_ONLY, lvl->obstacle_list[terminal_index].type);
-			direction = NORTH;
-    		break;
-	}
-
-	if (!reach_obstacle_from_specific_direction(lvl, terminal_index, direction)) 
-        return;
-
-	colldet_filter filter = ObstacleByIdPassFilter;
-	filter.data = &terminal_index;
-
-	if (DirectLineColldet(Me.pos.x, Me.pos.y, terminal_vpos.x, terminal_vpos.y, Me.pos.z, &filter)) {
-		char *dialog = get_obstacle_extension(lvl, term, OBSTACLE_EXTENSION_DIALOGFILE);
-		if (!dialog) {
-			append_new_game_message("Colored patterns appear on the screen, but they do not look like any computer interface you have ever seen. Perhaps is this what they call a screen \"saver\".");
-			return;
-		}
-
-		enemy dummy_enemy;
-		dummy_enemy.dialog_section_name = dialog;
-		dummy_enemy.will_rush_tux = 0;
-		dummy_enemy.type = 34;
-		ChatWithFriendlyDroid(&dummy_enemy);
-	}
+void sign_read_action(level *lvl, int index)
+{
+	__obstacle_action(lvl, index, ACT_SIGN);
 }
 
 /**
