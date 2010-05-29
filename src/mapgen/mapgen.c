@@ -127,6 +127,20 @@ static void split_wall(int w, int h, unsigned char *tiles, int *rooms)
 					T(x    , y    ) = TILE_FLOOR;
 					T(x    , y + 1) = TILE_WALL_L;
 					break;
+				case TILE_DOOR_H2:
+					T(x - 1, y    ) = TILE_DOOR_H2;
+					T(x    , y - 1) = TILE_FLOOR;
+					T(x - 1, y - 1) = TILE_FLOOR;
+					T(x    , y    ) = TILE_FLOOR;
+					T(x + 1, y    ) = TILE_WALL_T;
+					break;
+				case TILE_DOOR_V2:
+					T(x    , y - 1) = TILE_DOOR_V2;
+					T(x    , y + 1) = TILE_FLOOR;
+					T(x - 1, y - 1) = TILE_FLOOR;
+					T(x    , y    ) = TILE_FLOOR;
+					T(x    , y + 1) = TILE_WALL_L;
+					break;
 			}
 		}
 }
@@ -167,6 +181,16 @@ void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 					add_obstacle(x, y + 1.5, ISO_V_WALL);
 					set_floor(x, y, 0);
 					set_floor(x - 1, y, 0);
+					break;
+				case TILE_DOOR_H2:
+					add_obstacle(x + 0.5, y, ISO_DH_DOOR_000_OPEN);
+					add_obstacle(x, y + 0.5, ISO_V_WALL);
+					set_floor(x, y, 0);
+					break;
+				case TILE_DOOR_V2:
+					add_obstacle(x, y + 0.5, ISO_DV_DOOR_000_OPEN);
+					add_obstacle(x + 0.5, y, ISO_H_WALL);
+					set_floor(x, y, 0);
 					break;
 				default:
 					set_floor(x, y, tiles[y * w + x]);
@@ -457,22 +481,22 @@ void MakeConnect(int x, int y, enum connection_type type)
 		case UP:
 			wp_ny = y - 1;
 			wp_y = y + 1;
-			tile = TILE_DOOR_H;
+			tile = (rand() % 2) ? TILE_DOOR_H : TILE_DOOR_H2;
 			break;
 		case DOWN:
 			wp_ny = y + 1;
 			wp_y = y - 1;
-			tile = TILE_DOOR_H;
+			tile = (rand() % 2) ? TILE_DOOR_H : TILE_DOOR_H2;
 			break;
 		case LEFT:
 			wp_nx = x - 1;
 			wp_x = x + 1;
-			tile = TILE_DOOR_V;
+			tile = (rand() % 2) ? TILE_DOOR_V : TILE_DOOR_V2;
 			break;
 		case RIGHT:
 			wp_nx = x + 1;
 			wp_x = x - 1;
-			tile = TILE_DOOR_V;
+			tile = (rand() % 2) ? TILE_DOOR_V : TILE_DOOR_V2;
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unknown connection type %d\n", PLEASE_INFORM, IS_FATAL, type);
