@@ -9,7 +9,7 @@
 #include "mapgen/mapgen.h"
 
 /* Minimum surface of a room */
-static const int Smin = 40;
+static const int Smin = 100;
 
 /* Dimensions of the dungeon */
 static int dim_x_init;
@@ -186,21 +186,6 @@ static void deriv_P(int id)
 	deriv_P(newroom);
 }
 
-/**
- * Is the given position a room corner?
- */
-static int is_room_corner(int x, int y)
-{
-	int tile = mapgen_get_tile(x, y);
-	if (tile == TILE_WALL_SW || tile == TILE_WALL_SE ||
-			tile == TILE_WALL_NW || tile == TILE_WALL_NE
-	   ) 
-	{
-		return 1;
-	}
-	return 0;
-}
-
 static void adj(struct cplist_t *cplist, int *nx, int *ny)
 {
 	static const int dx[] = {0, 0, -1, 1};
@@ -211,79 +196,6 @@ static void adj(struct cplist_t *cplist, int *nx, int *ny)
 	}
 	*nx = cplist->x + dx[cplist->t];
 	*ny = cplist->y + dy[cplist->t];
-}
-
-/* This function checks corner wall tiles that may look ugly after wall fusion
- * and changes them to straight walls if necessary. 
- */
-static void fix_corner(int x, int y, enum connection_type t, enum connection_type t2) {
-	if (mapgen_get_room(x, y) != -1)
-		return;
-
-	int tile = mapgen_get_tile(x, y);
-	switch(tile) {
-		case TILE_WALL_NW:
-			if (mapgen_get_tile(x + 1, y) == TILE_FLOOR)
-				tile = TILE_WALL_W;
-			if (mapgen_get_tile(x, y + 1) == TILE_FLOOR)
-				tile = TILE_WALL_N;
-			break;
-		case TILE_WALL_NE:
-			if (mapgen_get_tile(x - 1, y) == TILE_FLOOR)
-				tile = TILE_WALL_E;
-			if (mapgen_get_tile(x, y + 1) == TILE_FLOOR)
-				tile = TILE_WALL_N;
-			break;
-		case TILE_WALL_SW:
-			if (mapgen_get_tile(x + 1, y) == TILE_FLOOR)
-				tile = TILE_WALL_W;
-			if (mapgen_get_tile(x, y - 1) == TILE_FLOOR)
-				tile = TILE_WALL_S;
-			break;
-		case TILE_WALL_SE:
-			if (mapgen_get_tile(x - 1, y) == TILE_FLOOR)
-				tile = TILE_WALL_E;
-			if (mapgen_get_tile(x, y - 1) == TILE_FLOOR)
-				tile = TILE_WALL_S;
-			break;
-		/* Sometimes it is possible to see "pseudo" corner composed of
-		 * straight walls, that is appear due to tile overlapping. That code
-		 * checks all such combinations and make correction if necessary.
-		 */
-		default:
-			switch(tile) {
-			case TILE_WALL_N:
-				if (
-						(t2 == RIGHT && mapgen_get_tile(x, y - 1) == TILE_WALL_E) ||
-						(t2 == LEFT && mapgen_get_tile(x, y - 1) == TILE_WALL_W)
-				  )
-					tile = TILE_FLOOR;
-			break;
-			case TILE_WALL_S:
-				if (
-						(t2 == RIGHT && mapgen_get_tile(x, y + 1) == TILE_WALL_E) ||
-						(t2 == LEFT && mapgen_get_tile(x, y + 1) == TILE_WALL_W)
-				  )
-					tile = TILE_FLOOR; 
-			break;
-			case TILE_WALL_W:
-				if (
-						(t2 == UP && mapgen_get_tile(x - 1, y) == TILE_WALL_N) ||
-						(t2 == DOWN && mapgen_get_tile(x - 1, y) == TILE_WALL_S)
-				  )
-					tile = TILE_FLOOR;
-				break;
-			case TILE_WALL_E:
-				if (
-						(t2 == UP && mapgen_get_tile(x + 1, y) == TILE_WALL_N) ||
-						(t2 == DOWN && mapgen_get_tile(x + 1, y) == TILE_WALL_S)
-				  )
-					tile = TILE_FLOOR;
-				break;
-			}
-	}
-	mapgen_put_tile(x, y, tile, -1);
-	return;
 }
 
 /**
@@ -309,7 +221,7 @@ void fusion(int id, int cible)
 	while (k < nb_max) {
 		x = cplist[k].x;
 		y = cplist[k].y;
-		if (cplist[k].r == cible && !is_room_corner(x, y)) {
+		if (cplist[k].r == cible) {
 			correct_directory[l] = k;
 			minx = min(minx, cplist[k].x);
 			maxx = max(maxx, cplist[k].x);
@@ -328,14 +240,6 @@ void fusion(int id, int cible)
 
 	if (l) {
 		k = cplist[correct_directory[0]].t;
-		if (miny == maxy) {
-			fix_corner(minx - 1, miny, k, LEFT);
-			fix_corner(maxx + 1, miny, k, RIGHT);
-		}
-		if (minx == maxx) {
-			fix_corner(minx, miny - 1, k, UP);
-			fix_corner(minx, maxy + 1, k, DOWN); 
-		}
 	}
 }
 
@@ -352,7 +256,7 @@ static void add_rel(int x, int y, enum connection_type type, int r, int cible)
 static void bulldozer(unsigned char *seen, int r)
 {
 	struct cplist_t cplist[300];
-	int max_connections = find_connection_points(r, cplist, 1);
+	int max_connections = find_connection_points(r, cplist, 2);
 
 	// Mark the room as seen by a bulldozer
 	seen[r] = 1;
@@ -401,7 +305,7 @@ static void launch_buldo()
 				int n;
 				struct cplist_t neigh[100];
 				int nbconn, prevneigh = -1;
-				nbconn = find_connection_points(i, neigh, 1);
+				nbconn = find_connection_points(i, neigh, 2);
 				for (n = 0; n < nbconn; n++) {
 					if (neigh[n].r == prevneigh)
 						continue;

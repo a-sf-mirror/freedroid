@@ -86,92 +86,93 @@ static void set_floor(int x, int y, int type)
 	target_level->map[y][x].floor_value = type;
 }
 
+static void split_wall(int w, int h, unsigned char *tiles, int *rooms) 
+{
+	int y, x; 
+	int tile;
+#define T(X,Y) (tiles[(Y) * w + (X)])
+
+	for (y = 1; y < h - 1; y++) 
+		for(x = 1; x < w - 1; x++) {
+			tile = tiles[y * w + x];
+			switch(tile) {
+				case TILE_WALL_L:
+					T(x - 1, y) = TILE_WALL;
+					T(x    , y) = TILE_WALL;
+					break;
+				case TILE_WALL_T:
+					T(x, y - 1) = TILE_WALL;
+					T(x, y    ) = TILE_WALL;
+					break;
+				case TILE_WALL:
+					T(x - 1, y    ) = TILE_WALL;
+					T(x    , y - 1) = TILE_WALL;
+					T(x    , y    ) = TILE_WALL;
+					break;
+				case TILE_DOOR_H:
+					T(x - 1, y    ) = TILE_DOOR_H;
+					T(x    , y - 1) = TILE_FLOOR;
+					T(x - 1, y - 1) = TILE_FLOOR;
+					T(x - 2, y - 1) = TILE_FLOOR;
+					T(x - 2, y    ) = TILE_FLOOR; 
+					T(x    , y    ) = TILE_FLOOR;
+					T(x + 1, y    ) = TILE_WALL_T;
+					break;
+				case TILE_DOOR_V:
+					T(x    , y - 1) = TILE_DOOR_V;
+					T(x    , y + 1) = TILE_FLOOR;
+					T(x    , y - 2) = TILE_FLOOR;
+					T(x - 1, y - 2) = TILE_FLOOR;
+					T(x - 1, y - 1) = TILE_FLOOR;
+					T(x    , y    ) = TILE_FLOOR;
+					T(x    , y + 1) = TILE_WALL_L;
+					break;
+			}
+		}
+}
+
 void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 {
 	int y, x;
-	
-	for (y = 0; y < h; y++)
-		for (x = 0; x < w; x++)
-			set_floor(x, y, 0);
+
+	split_wall(w, h, tiles, rooms);
 
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
-			switch (tiles[y * w + x]) {
-			case TILE_WALL_S:
-				add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
-				set_floor(x, y, 0);
-				break;
-			case TILE_WALL_N:
-				add_obstacle(x + 0.5, y, ISO_H_WALL);
-				set_floor(x, y, 0);
-				break;
-			case TILE_WALL_E:
-				add_obstacle(x + 1.0, y + 0.5, ISO_V_WALL);
-				set_floor(x, y, 0);
-				break;
-			case TILE_WALL_W:
-				add_obstacle(x, y + 0.5, ISO_V_WALL);
-				set_floor(x, y, 0);
-				break;
-			case TILE_WALL_NW:
-				add_obstacle(x + 0.5, y, ISO_H_WALL);
-				add_obstacle(x, y + 0.5, ISO_V_WALL);
-				set_floor(x, y, 0);
-				break;
-			case TILE_WALL_NE:
-				add_obstacle(x + 0.5, y, ISO_H_WALL);
-				add_obstacle(x + 1, y + 0.5, ISO_V_WALL);
-				set_floor(x, y, 0);
-				break;
-			case TILE_WALL_SW:
-				add_obstacle(x, y + 0.5, ISO_V_WALL);
-				add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
-				set_floor(x, y, 0);
-				break;
-			case TILE_WALL_SE:
-				add_obstacle(x + 1, y + 0.5, ISO_V_WALL);
-				set_floor(x, y, 0);
-				add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
-				break;
-
-			case TILE_FLOOR:
-				/* do nothing in order not to overwrite ramp */
-				break;
-
-			case TILE_EMPTY:
-				set_floor(x, y, 31);
-				break;
-
-			case TILE_DOOR_N:
-				add_obstacle(x + 0.5, y, ISO_H_DOOR_000_OPEN);
-				set_floor(x, y, 57);
-				set_floor(x, y-1, 59);
-				break;
-
-			case TILE_DOOR_S:
-				add_obstacle(x + 0.5, y + 1, ISO_H_DOOR_000_OPEN);
-				set_floor(x, y, 59);
-				set_floor(x, y+1, 57);
-				break;
-
-			case TILE_DOOR_W:
-				add_obstacle(x, y + 0.5, ISO_V_DOOR_000_OPEN);
-				set_floor(x, y, 56);
-				set_floor(x - 1, y, 58);
-				break;
-
-			case TILE_DOOR_E:
-				add_obstacle(x + 1, y + 0.5, ISO_V_DOOR_000_OPEN);
-				set_floor(x, y, 58);
-				set_floor(x + 1, y, 56);
-				break;
-
-			default:
-				set_floor(x, y, tiles[y * w + x]);
+			switch(tiles[y * w + x]) {
+				case TILE_FLOOR:
+					if(tiles[y * w + x - 1] == TILE_WALL)
+						add_obstacle(x, y + 0.5, ISO_V_WALL);
+					if(tiles[y * w + x + 1] == TILE_WALL)
+						add_obstacle(x + 1, y + 0.5, ISO_V_WALL);
+					if(tiles[(y - 1) * w + x] == TILE_WALL)
+						add_obstacle(x + 0.5, y, ISO_H_WALL);
+					if(tiles[(y + 1) * w + x] == TILE_WALL)
+						add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
+					set_floor(x, y, 0);
+					break;	
+				case TILE_WALL:
+					set_floor(x, y, 31);
+					break;
+				case TILE_DOOR_H:
+					add_obstacle(x + 0.5, y, ISO_H_DOOR_000_OPEN);
+					add_obstacle(x - 0.5, y, ISO_H_WALL);
+					add_obstacle(x + 1.5, y, ISO_H_WALL);
+					set_floor(x, y, 0);
+					set_floor(x, y - 1, 0);
+					break;
+				case TILE_DOOR_V:
+					add_obstacle(x, y + 0.5, ISO_V_DOOR_000_OPEN);
+					add_obstacle(x, y - 0.5, ISO_V_WALL);
+					add_obstacle(x, y + 1.5, ISO_V_WALL);
+					set_floor(x, y, 0);
+					set_floor(x - 1, y, 0);
+					break;
+				default:
+					set_floor(x, y, tiles[y * w + x]);
 			}
 		}
-	}
-
+	} 
 }
 
 static void add_label(int labelnum, int posx, int posy, char *name)
@@ -293,19 +294,19 @@ void mapgen_draw_room(int room_id)
 	int x, y, i;
 
 	// Corners
-	mapgen_put_tile(place_x, place_y, TILE_WALL_NW, -1);
-	mapgen_put_tile(place_x + room_w, place_y, TILE_WALL_NE, -1);
-	mapgen_put_tile(place_x, place_y + room_h, TILE_WALL_SW, -1);
-	mapgen_put_tile(place_x + room_w, place_y + room_h, TILE_WALL_SE, -1);
+	mapgen_put_tile(place_x, place_y, TILE_WALL, -1);
+	mapgen_put_tile(place_x + room_w, place_y, TILE_WALL, -1);
+	mapgen_put_tile(place_x, place_y + room_h, TILE_WALL, -1);
+	mapgen_put_tile(place_x + room_w, place_y + room_h, TILE_WALL, -1);
 
 	// Walls 
 	for (i = 1; i < room_w; i++) {
-		mapgen_put_tile(place_x + i, place_y + room_h, TILE_WALL_S, -1);
-		mapgen_put_tile(place_x + i, place_y, TILE_WALL_N, -1);
+		mapgen_put_tile(place_x + i, place_y + room_h, TILE_WALL, -1);
+		mapgen_put_tile(place_x + i, place_y, TILE_WALL, -1);
 	}
 	for (i = 1; i < room_h; i++) {
-		mapgen_put_tile(place_x + room_w, place_y + i, TILE_WALL_E, -1);
-		mapgen_put_tile(place_x, place_y + i, TILE_WALL_W, -1);
+		mapgen_put_tile(place_x + room_w, place_y + i, TILE_WALL, -1);
+		mapgen_put_tile(place_x, place_y + i, TILE_WALL, -1);
 	}
 
 	// Floor 
@@ -314,9 +315,20 @@ void mapgen_draw_room(int room_id)
 			mapgen_put_tile(place_x + x, place_y + y, TILE_FLOOR, room_id);
 }
 
-static int SuitableConnection(int x, int y)
+// Check if the given cell is suitable for connections. Condition of success is that 
+// the current cell as well as 'offset' adjacent cells are free.
+static int SuitableConnection(int x, int y, enum connection_type t, int offset)
 {
-	return mapgen_get_tile(x, y) == TILE_FLOOR && mapgen_get_room(x, y) != -1;
+	int i;
+	const int dx[] = { -1, 1,  0, 0};
+	const int dy[] = {  0, 0, -1, 1};
+	if(mapgen_get_room(x, y) == -1)
+		return 0;
+	for (i = -offset; i <= offset; i++) {
+		if(mapgen_get_tile(x + i * dx[t], y + i * dy[t]) != TILE_FLOOR)
+			return 0;
+	}
+	return 1;
 }
 
 /** Find the possible connections at each square on the border of the
@@ -333,7 +345,7 @@ int find_connection_points(int room_id, struct cplist_t cplist[100], int offset)
 	struct roominfo *r = &rooms[room_id];
 
 	for (i = offset; i < r->w - offset; i++) {
-		if (SuitableConnection(r->x + i, r->y - 2)) {
+		if (SuitableConnection(r->x + i, r->y - 2, UP, offset)) {
 			cplist[connect_points].x = r->x + i;
 			cplist[connect_points].y = r->y - 1;
 			cplist[connect_points].r = mapgen_get_room(r->x + i, r->y - 2);
@@ -341,7 +353,7 @@ int find_connection_points(int room_id, struct cplist_t cplist[100], int offset)
 			connect_points++;
 		}
 
-		if (SuitableConnection(r->x + i, r->y + r->h + 1)) {
+		if (SuitableConnection(r->x + i, r->y + r->h + 1, DOWN, offset)) {
 			cplist[connect_points].x = r->x + i;
 			cplist[connect_points].y = r->y + r->h;
 			cplist[connect_points].r = mapgen_get_room(r->x + i, r->y + r->h + 1);
@@ -350,7 +362,7 @@ int find_connection_points(int room_id, struct cplist_t cplist[100], int offset)
 		}
 	}
 	for (i = offset; i < r->h - offset; i++) {
-		if (SuitableConnection(r->x - 2, r->y + i)) {
+		if (SuitableConnection(r->x - 2, r->y + i, LEFT, offset)) {
 			cplist[connect_points].x = r->x - 1;
 			cplist[connect_points].y = r->y + i;
 			cplist[connect_points].r = mapgen_get_room(r->x - 2, r->y + i);
@@ -358,7 +370,7 @@ int find_connection_points(int room_id, struct cplist_t cplist[100], int offset)
 			connect_points++;
 		}
 
-		if (SuitableConnection(r->x + r->w + 1, r->y + i)) {
+		if (SuitableConnection(r->x + r->w + 1, r->y + i, RIGHT, offset)) {
 			cplist[connect_points].x = r->x + r->w;
 			cplist[connect_points].y = r->y + i;
 			cplist[connect_points].r = mapgen_get_room(r->x + r->w + 1, r->y + i);
@@ -445,45 +457,28 @@ void MakeConnect(int x, int y, enum connection_type type)
 		case UP:
 			wp_ny = y - 1;
 			wp_y = y + 1;
+			tile = TILE_DOOR_H;
 			break;
 		case DOWN:
 			wp_ny = y + 1;
 			wp_y = y - 1;
+			tile = TILE_DOOR_H;
 			break;
 		case LEFT:
 			wp_nx = x - 1;
 			wp_x = x + 1;
+			tile = TILE_DOOR_V;
 			break;
 		case RIGHT:
 			wp_nx = x + 1;
 			wp_x = x - 1;
+			tile = TILE_DOOR_V;
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unknown connection type %d\n", PLEASE_INFORM, IS_FATAL, type);
 			break;
 
-	}
-
-	switch (mapgen_get_tile(x, y)) {
-		case TILE_WALL_N:
-		case TILE_DOOR_N:
-			tile = TILE_DOOR_N;
-			break;
-		case TILE_WALL_S:
-		case TILE_DOOR_S:
-			tile = TILE_DOOR_S;
-			break;
-		case TILE_WALL_W:
-		case TILE_DOOR_W:
-			tile = TILE_DOOR_W;
-			break;
-		case TILE_WALL_E:
-		case TILE_DOOR_E:
-			tile = TILE_DOOR_E;
-			break;
-		default:
-			ErrorMessage(__FUNCTION__, "Unexpected tile.\n", PLEASE_INFORM, IS_FATAL);
-	}
+	} 
 
 	mapgen_put_tile(x, y, tile, -1);
 	room_1 = mapgen_get_room(wp_nx, wp_ny);
