@@ -138,6 +138,22 @@ static int lua_event_delete_obstacle(lua_State * L)
 	return 0;
 }
 
+static int lua_change_obstacle_message(lua_State *L)
+{
+	const char *obslabel = luaL_checkstring(L, 1);
+	const char *message = luaL_checkstring(L, 2);
+	int obstacle_level_num;
+	obstacle *o = give_pointer_to_obstacle_with_label(obslabel, &obstacle_level_num);
+	level *l = curShip.AllLevels[obstacle_level_num];
+
+	message = strdup(message);
+
+	del_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE);
+	add_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE, (void *)message);
+
+	return 0;
+}
+
 static int lua_event_heal_tux(lua_State * L)
 {
 	Me.energy = Me.maxenergy;
@@ -807,6 +823,12 @@ luaL_reg lfuncs[] = {
 	 * Delete the given obstacle
 	 */
 	{"del_obstacle", lua_event_delete_obstacle}
+	,
+
+	/* change_obstacle_message(string obstacle_label, string message)
+	 * Change the SIGNMESSAGE of the given obstacle.
+	 */
+	{"change_obstacle_message", lua_change_obstacle_message}
 	,
 
 	/* kill_tux()
