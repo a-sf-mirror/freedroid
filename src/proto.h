@@ -672,7 +672,7 @@ void SetTextCursor(int x, int y);
 void SetLineLength(int);
 
 int DisplayText(const char *text, int startx, int starty, const SDL_Rect * clip, float text_stretch);
-void display_current_chat_protocol(int background_picture_code, enemy * ChatDroid, int with_update);
+void display_current_chat_log(int background_picture_code, enemy *ChatDroid, int with_update);
 
 int ScrollText(char *text, int background_code);
 

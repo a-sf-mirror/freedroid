@@ -308,11 +308,11 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	// These are the scrollbuttons for the chat protocal inside the
 	// chat window, like when talking to a character/bot.
 	//
-	[CHAT_PROTOCOL_SCROLL_UP_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuUp.png", {342, 3, 160, 20}, TRUE, TRUE},
-	[CHAT_PROTOCOL_SCROLL_DOWN_BUTTON] =
+	[CHAT_LOG_SCROLL_UP_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuUp.png", {342, 3, 160, 20}, TRUE, TRUE},
+	[CHAT_LOG_SCROLL_DOWN_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuDown.png", {342, 272, 160, 20}, TRUE, TRUE},
-	[CHAT_PROTOCOL_SCROLL_OFF_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 3, 160, 20}, TRUE, TRUE},
-	[CHAT_PROTOCOL_SCROLL_OFF2_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 272, 160, 20}, TRUE, TRUE},
+	[CHAT_LOG_SCROLL_OFF_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 3, 160, 20}, TRUE, TRUE},
+	[CHAT_LOG_SCROLL_OFF2_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 272, 160, 20}, TRUE, TRUE},
 
 	[QUEST_BROWSER_EXIT_BUTTON] = {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {486, 324, 73, 73}, TRUE, FALSE},
 	[QUEST_BROWSER_OPEN_QUESTS_BUTTON] =

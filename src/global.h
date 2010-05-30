@@ -281,7 +281,7 @@ EXTERN obstacle_spec obstacle_map[NUMBER_OF_OBSTACLE_TYPES];
 #define EXTERN extern
 #endif
 EXTERN int display_char_disabled;
-EXTERN int chat_protocol_scroll_override_from_user;
+EXTERN int chat_log_scroll_override_from_user;
 EXTERN int message_log_scroll_override_from_user;
 EXTERN SDL_Rect Droid_Image_Window;
 

@@ -576,7 +576,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	// it can be accessed with proper speed later...
 	//
 	SDL_SetClipRect(Screen, NULL);
-	display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
+	display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
 	StoreMenuBackground(0);
 
 	// Now that the possible font-changing background assembling is
@@ -594,7 +594,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		RestoreMenuBackground(0);
 		save_mouse_state();
 
-		// Now that the possible font-changing chat protocol display is
+		// Now that the possible font-changing chat log display is
 		// done, we can finally set the right font for the menu itself.
 		//
 		if (MenuFont == NULL)
@@ -725,14 +725,14 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 				break;
 
 			case SDLK_PAGEUP:
-				chat_protocol_scroll_override_from_user -= 3;
-				display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
+				chat_log_scroll_override_from_user -= 3;
+				display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
 				StoreMenuBackground(0);
 				break;
 
 			case SDLK_PAGEDOWN:
-				chat_protocol_scroll_override_from_user += 3;
-				display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
+				chat_log_scroll_override_from_user += 3;
+				display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
 				StoreMenuBackground(0);
 				break;
 
@@ -767,13 +767,13 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			} else if ((MouseCursorIsOnButton(SCROLL_DIALOG_MENU_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) &&
 				   (OptionOffset)) {
 				OptionOffset--;
-			} else if (MouseCursorIsOnButton(CHAT_PROTOCOL_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				chat_protocol_scroll_override_from_user--;
-				display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
+			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+				chat_log_scroll_override_from_user--;
+				display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
 				StoreMenuBackground(0);
-			} else if (MouseCursorIsOnButton(CHAT_PROTOCOL_SCROLL_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				chat_protocol_scroll_override_from_user++;
-				display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
+			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+				chat_log_scroll_override_from_user++;
+				display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, FALSE);
 				StoreMenuBackground(0);
 			}
 			// If not, then maybe it was a click into the options window.  That alone

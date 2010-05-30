@@ -26,7 +26,7 @@
 
 /**
  * This file contains all functions dealing with the dialog interface,
- * including blitting the chat protocol to the screen and drawing the
+ * including blitting the chat log to the screen and drawing the
  * right portrait images to the screen.
  */
 
@@ -46,9 +46,9 @@
 char *chat_initialization_code;	//first time with a character-code
 char *chat_startup_code;	//every time we start this dialog-code
 EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
-char *chat_protocol = NULL;
+struct auto_string *chat_log;
 
-static void DoChatFromChatRosterData(enemy *ChatDroid, int ClearProtocol);
+static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log);
 
 /**
  * This function resets a dialog option to "empty" default values. It does NOT free the strings, this has to be done
@@ -487,7 +487,7 @@ static void PrepareMultipleChoiceDialog(Enemy ChatDroid, int with_flip)
  * here to display said text window and it's content, scrolled to the
  * position desired by the player himself.
  */
-void display_current_chat_protocol(int background_picture_code, enemy * ChatDroid, int with_update)
+void display_current_chat_log(int background_picture_code, enemy *ChatDroid, int with_update)
 {
 	const SDL_Rect Subtitle_Window = {.x = CHAT_SUBDIALOG_WINDOW_X,
 		.y = CHAT_SUBDIALOG_WINDOW_Y,
@@ -495,40 +495,38 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 		.h = CHAT_SUBDIALOG_WINDOW_H
 	};
 	int lines_needed;
-	int protocol_offset;
+	int log_offset;
 
-#define LINES_IN_PROTOCOL_WINDOW (int)(CHAT_SUBDIALOG_WINDOW_H / (FontHeight(GetCurrentFont()) * TEXT_STRETCH))
+#define LINES_IN_LOG_WINDOW (int)(CHAT_SUBDIALOG_WINDOW_H / (FontHeight(GetCurrentFont()) * TEXT_STRETCH))
 
 	SetCurrentFont(FPS_Display_BFont);
 
-	lines_needed = get_lines_needed(chat_protocol, Subtitle_Window, TEXT_STRETCH) - 1;
+	lines_needed = get_lines_needed(chat_log->value, Subtitle_Window, TEXT_STRETCH) - 1;
 
-	if (lines_needed <= LINES_IN_PROTOCOL_WINDOW) {
+	if (lines_needed <= LINES_IN_LOG_WINDOW) {
 		// When there isn't anything to scroll yet, we keep the default
 		// position and also the users clicks on up/down button will be
 		// reset immediately
-		//
-		protocol_offset = 0;
-		chat_protocol_scroll_override_from_user = 0;
+		log_offset = 0;
+		chat_log_scroll_override_from_user = 0;
 	} else {
 		// prevent the user from scrolling down too far
-		if (chat_protocol_scroll_override_from_user >= 0)
-			chat_protocol_scroll_override_from_user = 0;
+		if (chat_log_scroll_override_from_user >= 0)
+			chat_log_scroll_override_from_user = 0;
 
-		protocol_offset = ((int)(FontHeight(GetCurrentFont()) * TEXT_STRETCH) *
-				   (lines_needed - LINES_IN_PROTOCOL_WINDOW + chat_protocol_scroll_override_from_user));
+		log_offset = ((int)(FontHeight(GetCurrentFont()) * TEXT_STRETCH) *
+				   (lines_needed - LINES_IN_LOG_WINDOW + chat_log_scroll_override_from_user));
 	}
 
 	// Prevent the player from scrolling 
-	// too high (negative protocol offset)
+	// too high (negative log offset)
 	//
-	if (protocol_offset < 0) {
+	if (log_offset < 0) {
 		// Set the scroll override value as if the user had stopped
 		// scrolling when they hit the top of the box - in essence,
 		// preventing the user from scrolling up too far.
-		//
-		chat_protocol_scroll_override_from_user = -lines_needed + LINES_IN_PROTOCOL_WINDOW;
-		protocol_offset = 0;
+		chat_log_scroll_override_from_user = -lines_needed + LINES_IN_LOG_WINDOW;
+		log_offset = 0;
 	}
 	// Now we need to clear this window, cause there might still be some
 	// garbage from the previous subtitle in there...
@@ -538,20 +536,19 @@ void display_current_chat_protocol(int background_picture_code, enemy * ChatDroi
 	// Now we can display the text and update the screen...
 	//
 	SDL_SetClipRect(Screen, NULL);
-	DisplayText(chat_protocol, Subtitle_Window.x, Subtitle_Window.y - protocol_offset, &Subtitle_Window, TEXT_STRETCH);
-	if (protocol_offset > 0)
-		ShowGenericButtonFromList(CHAT_PROTOCOL_SCROLL_UP_BUTTON);
+	DisplayText(chat_log->value, Subtitle_Window.x, Subtitle_Window.y - log_offset, &Subtitle_Window, TEXT_STRETCH);
+	if (log_offset > 0)
+		ShowGenericButtonFromList(CHAT_LOG_SCROLL_UP_BUTTON);
 	else
-		ShowGenericButtonFromList(CHAT_PROTOCOL_SCROLL_OFF_BUTTON);
-	if (lines_needed <= LINES_IN_PROTOCOL_WINDOW || chat_protocol_scroll_override_from_user >= 0)
-		ShowGenericButtonFromList(CHAT_PROTOCOL_SCROLL_OFF2_BUTTON);
+		ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF_BUTTON);
+	if (lines_needed <= LINES_IN_LOG_WINDOW || chat_log_scroll_override_from_user >= 0)
+		ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF2_BUTTON);
 	else
-		ShowGenericButtonFromList(CHAT_PROTOCOL_SCROLL_DOWN_BUTTON);
+		ShowGenericButtonFromList(CHAT_LOG_SCROLL_DOWN_BUTTON);
 
 	if (with_update)
 		our_SDL_flip_wrapper();
-
-};				// void display_current_chat_protocol ( int background_picture_code , int with_update )
+}
 
 /**
  * This function should first display a subtitle and then also a sound
@@ -563,18 +560,18 @@ void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, e
 	int do_display = 1;
 	int do_wait = 1;
 
-	strcat(chat_protocol, SubtitleText);
+	autostr_append(chat_log, SubtitleText);
 
 	if (!strcmp(SampleFilename, "NO_WAIT")) {
 		do_wait = 0;
 	}
 
 	if (do_display)
-		display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, with_update);
+		display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, with_update);
 
 	if (do_wait)
 		PlayOnceNeededSoundSample(SampleFilename, do_wait, FALSE);
-};				// void GiveSubtitleNSample( char* SubtitleText , char* SampleFilename )
+}
 
 void run_subdialog(const char *tmp_filename)
 {
@@ -631,10 +628,10 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 	// by any reply.  This case must also be caught.
 	//
 	if (strcmp(ChatRoster[MenuSelection].option_sample_file_name, "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER")) {
-		strcat(chat_protocol, "\1- ");
+		autostr_append(chat_log, "\1- ");
 		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
 				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
-		strcat(chat_protocol, "\n\2");
+		autostr_append(chat_log, "\n\2");
 	}
 	// Now we can proceed to execute
 	// the rest of the reply that has been set up for this (the now maybe modified)
@@ -661,7 +658,7 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
  * disk, this function is invoked to handle the actual chat interaction
  * and the dialog flow.
  */
-static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
+static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log)
 {
 	int i;
 	SDL_Rect Chat_Window;
@@ -672,21 +669,18 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
 
-	// We always should clear the chat protocol.  Only for SUBDIALOGS it is
-	// suitable not to clear the chat protocol.
-	//
-	if (clear_protocol) {
-		if (chat_protocol != NULL)
-			free(chat_protocol);
-		chat_protocol = MyMalloc(500000);	// enough for any chat...
-		strcpy(chat_protocol, "\2--- ");
-		strcat(chat_protocol, _("Start of Dialog"));
-		strcat(chat_protocol, " ---\n");
-		chat_protocol_scroll_override_from_user = 0;
+	// We should always clear the chat log, with the exception of SUBDIALOGS
+	if (clear_log) {
+		if (chat_log == NULL)
+			chat_log = alloc_autostr(5000);
+		chat_log->length = 0;
+		autostr_printf(chat_log, "\2");
+		autostr_append(chat_log, _("--- Start of Dialog ---\n"));
+		chat_log_scroll_override_from_user = 0;
 		SetCurrentFont(FPS_Display_BFont);
 	}
 
-	display_current_chat_protocol(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, TRUE);
+	display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, TRUE);
 
 	Chat_Window.x = 242;
 	Chat_Window.y = 100;
@@ -737,7 +731,7 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_protocol)
 
 wait_click_and_out:
 	while (EscapePressed() || MouseLeftPressed() || SpacePressed());
-};				// void DoChatFromChatRosterData( ... )
+}
 
 /**
  * When the Tux (or rather the player :) ) clicks on a friendly droid,

@@ -552,11 +552,11 @@ static int lua_chat_tux_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
 	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
-	extern char *chat_protocol;
+	extern struct auto_string *chat_log;
 
-	strcat(chat_protocol, "\1- ");
+	autostr_append(chat_log, "\1- ");
 	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
-	strcat(chat_protocol, "\n\2");
+	autostr_append(chat_log, "\n\2");
 
 	return 0;
 }
@@ -565,10 +565,10 @@ static int lua_chat_npc_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
 	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
-	extern char *chat_protocol;
+	extern struct auto_string *chat_log;
 
 	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
-	strcat(chat_protocol, "\n");
+	autostr_append(chat_log, "\n");
 
 	return 0;
 }
@@ -577,11 +577,11 @@ static int lua_chat_cli_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
 	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
-	extern char *chat_protocol;
+	extern struct auto_string *chat_log;
 
-	strcat(chat_protocol, "\3");
+	autostr_append(chat_log, "\3");
 	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid, TRUE);
-	strcat(chat_protocol, "\2");
+	autostr_append(chat_log, "\2");
 
 	return 0;
 }
