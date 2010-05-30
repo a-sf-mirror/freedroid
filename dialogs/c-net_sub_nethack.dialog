@@ -561,11 +561,11 @@ LuaCode={
 				random_var = math.random(1,5)
 				if (random_var == 1) then --become good
 					npc_says(_"You reform your wicked ways, and join the side of good.", "NO_WAIT")
-					npc_says(n_god.._" is unhappy about this.", "NO_WAIT")
+					npc_says_random(n_emgod.._" is unhappy about this.", n_god.._" likes this.", "NO_WAIT")
 					n_alignment = _"good"
 				elseif (random_var == 2) then --become evil
 					npc_says(_"The urge to sin fills you, you now are evil!", "NO_WAIT")
-					npc_says(n_emgod.._" is happy about this.", "NO_WAIT")
+					npc_says_random(n_emgod.._" is happy about this.", n_god.._" is unhappy about this.", "NO_WAIT")
 					n_alignment=_"evil"
 				elseif (random_var == 3) then --become neutral
 					npc_says(_"You decide good and evil are too two sides of the same coin, so you take the coin.", "NO_WAIT") 
