@@ -2505,16 +2505,16 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 	if ((ItemMap[ItemPointer->type].inv_image.inv_size.x == 1) &&
 	    (ItemMap[ItemPointer->type].inv_image.inv_size.y == 1) && (ItemMap[ItemPointer->type].item_can_be_applied_in_combat)) {
 		DebugPrintf(2, "\n\nTrying to place this item inside of the quick inventory first...");
-		Inv_Loc.y = InventorySize.y - 1;
-		for (Inv_Loc.x = 0; Inv_Loc.x < InventorySize.x - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
+		Inv_Loc.y = INVENTORY_GRID_HEIGHT - 1;
+		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
 			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
 				return 0;
 		}
 	}
 
 	// find enough free squares in the inventory to fit
-	for (Inv_Loc.y = 0; Inv_Loc.y < InventorySize.y - ItemMap[ItemPointer->type].inv_image.inv_size.y + 1; Inv_Loc.y++) {
-		for (Inv_Loc.x = 0; Inv_Loc.x < InventorySize.x - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
+	for (Inv_Loc.y = 0; Inv_Loc.y < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_image.inv_size.y + 1; Inv_Loc.y++) {
+		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
 			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
 				return 0;
 		}

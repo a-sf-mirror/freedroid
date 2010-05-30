@@ -1641,9 +1641,6 @@ void InitFreedroid(int argc, char **argv)
 	SkipAFewFrames = 0;
 	Me.TextToBeDisplayed = NULL;
 
-	InventorySize.x = INVENTORY_GRID_WIDTH;
-	InventorySize.y = INVENTORY_GRID_HEIGHT;
-
 	ResetGameConfigToDefaultValues();
 
 #if __WIN32__

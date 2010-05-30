@@ -108,7 +108,6 @@ EXTERN char *character_descriptions[MAX_PERSONS];
 EXTERN char previous_part_strings[ALL_PART_GROUPS][50];
 EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
 EXTERN item *Item_Held_In_Hand;
-EXTERN point InventorySize;
 
 EXTERN iso_image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];
 EXTERN iso_image SpellLevelButtonImageList[NUMBER_OF_SKILL_PAGES];
