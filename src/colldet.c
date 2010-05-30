@@ -113,7 +113,7 @@ int WalkablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_id
 	return FALSE;
 }
 colldet_filter WalkablePassFilter = { WalkablePassFilterCallback, NULL, 0, NULL };
-colldet_filter WalkableWithMarginPassFilter = { WalkablePassFilterCallback, NULL, COLLDET_MARGIN, NULL };
+colldet_filter WalkableWithMarginPassFilter = { WalkablePassFilterCallback, NULL, COLLDET_WALKABLE_MARGIN, NULL };
 
 /**
  * This colldet filter is used to ignore the obstacles (such as water)

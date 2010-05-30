@@ -63,20 +63,30 @@ static void find_dropable_position_near_chest(float *item_x, float *item_y, int 
 	*item_x = Me.pos.x;
 	*item_y = Me.pos.y;
 
-	// Step 1: randomly choose one of the 8 main 45° directions around the chest
+	// Step 1: randomly choose one of 16 main 22.5° directions around the chest
 	float obs_diag = obstacle_map[obst_level->obstacle_list[obst_index].type].diaglength;
 	offset_vector.x = obs_diag + 0.5;
 	offset_vector.y = 0.0;
-	RotateVectorByAngle(&offset_vector, (float)MyRandom(8) * 45.0);
+	RotateVectorByAngle(&offset_vector, (float)MyRandom(16) * 22.5);
 
 	// Step 2: rotate offset_vector by 45° until an available start position is found
-	colldet_filter filter = ObstacleByIdPassFilter;
-	filter.data = &obst_index;
+
+	// Filter by walkability, excluding chest
+	colldet_filter item_filter = WalkableWithMarginPassFilter;
+	item_filter.extra_margin = COLLDET_DROP_ITEM_MARGIN;
+
+	colldet_filter chest_filter = ObstacleByIdPassFilter;
+	chest_filter.data = &obst_index;
+	chest_filter.next = &item_filter;
+
+	// Filter by walkability
+	colldet_filter tux_filter = WalkableWithMarginPassFilter;
 
 	tries = 0;
-	while ((!DirectLineColldet(obst_x, obst_y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &filter) ||
-		!DirectLineColldet(Me.pos.x, Me.pos.y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &WalkablePassFilter))
-	       && (tries < 8)) {
+	while ((!DirectLineColldet(obst_x, obst_y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &chest_filter) ||
+			!DirectLineColldet(Me.pos.x, Me.pos.y, obst_x + offset_vector.x, obst_y + offset_vector.y, Me.pos.z, &tux_filter))
+	       && (tries < 8))
+	{
 		RotateVectorByAngle(&offset_vector, 45.0);
 		++tries;
 	}
@@ -97,8 +107,8 @@ static void find_dropable_position_near_chest(float *item_x, float *item_y, int 
 		trimmer_y = (float)MyRandom(10) / 20.0 - 0.25;
 		++tries;
 	}
-	while ((!DirectLineColldet(obst_x, obst_y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &filter) ||
-		!DirectLineColldet(Me.pos.x, Me.pos.y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &WalkablePassFilter))
+	while ((!DirectLineColldet(obst_x, obst_y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &chest_filter) ||
+		!DirectLineColldet(Me.pos.x, Me.pos.y, *item_x + trimmer_x, *item_y + trimmer_y, Me.pos.z, &tux_filter))
 	       && (tries < 100));
 	if (tries == 100)
 		return;		// No final position available : fallback to start position

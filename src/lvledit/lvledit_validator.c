@@ -757,8 +757,8 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			if (length < MIN_DIST)
 				continue;	// Too close waypoints. Already handled
 
-			line_vector.x = (line_vector.x * COLLDET_MARGIN) / length;
-			line_vector.y = (line_vector.y * COLLDET_MARGIN) / length;
+			line_vector.x = (line_vector.x * COLLDET_WALKABLE_MARGIN) / length;
+			line_vector.y = (line_vector.y * COLLDET_WALKABLE_MARGIN) / length;
 
 			// Translation normal
 			moderately_finepoint line_normal = { -line_vector.y, line_vector.x };
