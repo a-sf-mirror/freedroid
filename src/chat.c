@@ -661,7 +661,6 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log)
 {
 	int i;
-	SDL_Rect Chat_Window;
 	char *DialogMenuTexts[MAX_ANSWERS_PER_PERSON];
 	chat_control_partner_started = (ChatDroid->will_rush_tux);
 
@@ -681,11 +680,6 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log)
 	}
 
 	display_current_chat_log(ChatDroid, TRUE);
-
-	Chat_Window.x = 242;
-	Chat_Window.y = 100;
-	Chat_Window.w = 380;
-	Chat_Window.h = 314;
 
 	// We load the option texts into the dialog options variable..
 	//
@@ -893,7 +887,6 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 void ChatWithFriendlyDroid(enemy * ChatDroid)
 {
 	int i;
-	SDL_Rect Chat_Window;
 	char *DialogMenuTexts[MAX_ANSWERS_PER_PERSON];
 	char fpath[2048];
 	char tmp_filename[5000];
@@ -905,11 +898,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	// real dialog is started...
 	//
 	DialogPartnersTurnToEachOther(ChatDroid);
-
-	Chat_Window.x = 242;
-	Chat_Window.y = 100;
-	Chat_Window.w = 380;
-	Chat_Window.h = 314;
 
 	// First we empty the array of possible answers in the
 	// chat interface.
