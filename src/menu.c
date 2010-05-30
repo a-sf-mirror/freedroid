@@ -518,7 +518,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	SDL_Rect HighlightRect;
 	int MaxLinesInMenuRectangle;
 	int OptionOffset = 0;
-	int SpaceUsedSoFar;
+	int line_count;
 	int BreakOffCauseAllDisplayed;
 	int BreakOffCauseNoRoom = FALSE;
 	int LastOptionVisible = 0;
@@ -540,13 +540,11 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 
 	// Now we set some viable choice window and we compute the maximum number of lines
 	// that will still fit well into the choice window.
-	//
-	Choice_Window.x = 37 * GameConfig.screen_width / 640;
-	Choice_Window.y = 336 * GameConfig.screen_height / 480;
-	Choice_Window.w = (640 - 70) * GameConfig.screen_width / 640;
-	Choice_Window.h = 118 * GameConfig.screen_height / 480;
+	Choice_Window.x = UNIVERSAL_COORD_W(37);
+	Choice_Window.y = UNIVERSAL_COORD_H(336);
+	Choice_Window.w = UNIVERSAL_COORD_W(640 - 70);
+	Choice_Window.h = UNIVERSAL_COORD_H(118);
 	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
-	DebugPrintf(1, "\nComputed number of lines in choice window at most: %d.", MaxLinesInMenuRectangle);
 
 	// We don't need the system mouse cursor, as we do have our own for
 	// the same purpose.
@@ -606,7 +604,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		// We blit to the screen all the options that are not empty and that still fit
 		// onto the screen
 		//
-		SpaceUsedSoFar = 0;
+		line_count = 0;
 		for (i = OptionOffset; i < MAX_ANSWERS_PER_PERSON; i++) {
 			// If all has been displayed already, we quit blitting...
 			//
@@ -617,8 +615,8 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 				break;
 			}
 			// If there is not enough room any more, we quit blitting...
-			//
-			if (SpaceUsedSoFar > MaxLinesInMenuRectangle * h) {
+			int lines_needed = get_lines_needed(MenuTexts[i], Choice_Window, TEXT_STRETCH);
+			if ((line_count + lines_needed) > MaxLinesInMenuRectangle) {
 				BreakOffCauseAllDisplayed = FALSE;
 				BreakOffCauseNoRoom = TRUE;
 				LastOptionVisible = i;
@@ -627,10 +625,10 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			// Now that we know, that there is enough room, we can blit the next menu option.
 			//
 			MenuPosX[i] = Choice_Window.x;
-			MenuPosY[i] = Choice_Window.y + SpaceUsedSoFar;
+			MenuPosY[i] = Choice_Window.y + (line_count * h * TEXT_STRETCH);
 			MenuOptionLineRequirement[i] =
-			    DisplayText(MenuTexts[i], Choice_Window.x, Choice_Window.y + SpaceUsedSoFar, &Choice_Window, TEXT_STRETCH);
-			SpaceUsedSoFar += MenuOptionLineRequirement[i] * h * TEXT_STRETCH;
+			    DisplayText(MenuTexts[i], MenuPosX[i], MenuPosY[i], &Choice_Window, TEXT_STRETCH);
+			line_count += MenuOptionLineRequirement[i];
 		}
 
 		// We highlight the currently selected option with a highlighting rectangle
