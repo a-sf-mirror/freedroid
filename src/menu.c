@@ -45,7 +45,6 @@ int Single_Player_Menu(void);
 void Options_Menu(void);
 
 EXTERN void LevelEditor(void);
-extern int load_game_command_came_from_inside_running_game;
 
 #define SELL_PRICE_FACTOR (0.25)
 #define REPAIR_PRICE_FACTOR (0.5)
@@ -2243,7 +2242,6 @@ int Single_Player_Menu(void)
 				LoadShip(fp, 0);
 				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 				can_continue = TRUE;
-				load_game_command_came_from_inside_running_game = TRUE;
 				return (TRUE);
 			} else {
 				can_continue = FALSE;

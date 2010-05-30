@@ -49,8 +49,6 @@
 #define SAVEDGAME_EXT ".savegame"
 #define SAVE_GAME_THUMBNAIL_EXT ".thumbnail.bmp"
 
-int load_game_command_came_from_inside_running_game = FALSE;
-
 jmp_buf saveload_jmpbuf;
 
 #define WrapErrorMessage(a, b, c, d, ...) do { \
@@ -574,8 +572,6 @@ int LoadGame(void)
 	//
 	PutStringFont(Screen, FPS_Display_BFont, 75, 150, _("Updating Tux images (this may take a little while...)"));
 	our_SDL_flip_wrapper();
-
-	load_game_command_came_from_inside_running_game = TRUE;
 
 	animation_timeline_reset();
 
