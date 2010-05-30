@@ -28277,7 +28277,7 @@ t42 x81.89 y79.65
 t309 x77.15 y79.42
 t309 x80.88 y79.39
 t324 x81.50 y78.40
-t26 x74.50 y11.00
+t6 x74.50 y11.00
 t321 x87.50 y38.50
 t24 x76.70 y82.70
 t321 x86.50 y38.50
@@ -28920,9 +28920,6 @@ idx=271 type=30 data={
 }
 idx=1512 type=32 data={
 	HF-FirmwareUpdateServer
-}
-idx=2287 type=30 data={
-	MSAreaDoor
 }
 /obstacleextensions
 wp
@@ -38674,14 +38671,79 @@ t321 x62.50 y0.50
 t321 x63.50 y0.50
 t321 x64.50 y0.50
 t321 x82.50 y71.50
+t351 x41.00 y21.50
 /obsdata
 plabelinfolvl
+x=37 y=11 name="HF-GateGuard"
+x=42 y=11 name="HF-GateGuardLeader"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
 obstacleextensions
+idx=528 type=30 data={
+	MSAreaDoor
+}
 /obstacleextensions
 wp
+Nr.=  0 x=  38 y=  10 rnd=1	 c:    1   2
+Nr.=  1 x=  38 y=  13 rnd=1	 c:    2   0
+Nr.=  2 x=  37 y=  11 rnd=1	 c:    1   0
+Nr.=  3 x=  42 y=   8 rnd=1	 c:    4   5
+Nr.=  4 x=  42 y=  11 rnd=1	 c:    3   5
+Nr.=  5 x=  43 y=  10 rnd=1	 c:    4   3
+Nr.=  6 x=  42 y=  28 rnd=0	 c:    8
+Nr.=  7 x=  32 y=  34 rnd=0	 c:    8
+Nr.=  8 x=  41 y=  33 rnd=0	 c:    7   9   6
+Nr.=  9 x=  41 y=  40 rnd=0	 c:    8  10
+Nr.= 10 x=  48 y=  40 rnd=0	 c:    9  11
+Nr.= 11 x=  52 y=  31 rnd=0	 c:   10  12
+Nr.= 12 x=  60 y=  38 rnd=0	 c:   11  13
+Nr.= 13 x=  51 y=  37 rnd=0	 c:   12  14  44
+Nr.= 14 x=  47 y=  35 rnd=0	 c:   13  15
+Nr.= 15 x=  42 y=  38 rnd=0	 c:   14  16
+Nr.= 16 x=  33 y=  35 rnd=0	 c:   15  17
+Nr.= 17 x=  35 y=  41 rnd=0	 c:   16  18
+Nr.= 18 x=  44 y=  43 rnd=0	 c:   17  19
+Nr.= 19 x=  48 y=  50 rnd=0	 c:   18  20
+Nr.= 20 x=  53 y=  45 rnd=0	 c:   19  21
+Nr.= 21 x=  63 y=  47 rnd=0	 c:   20  22
+Nr.= 22 x=  63 y=  38 rnd=0	 c:   21  23  58
+Nr.= 23 x=  67 y=  35 rnd=0	 c:   22  24
+Nr.= 24 x=  69 y=  46 rnd=0	 c:   23  25
+Nr.= 25 x=  58 y=  51 rnd=0	 c:   24  26
+Nr.= 26 x=  57 y=  56 rnd=0	 c:   25  27
+Nr.= 27 x=  67 y=  56 rnd=0	 c:   26  28
+Nr.= 28 x=  72 y=  53 rnd=0	 c:   27  29
+Nr.= 29 x=  79 y=  51 rnd=0	 c:   28  30
+Nr.= 30 x=  85 y=  59 rnd=0	 c:   29  31
+Nr.= 31 x=  84 y=  65 rnd=0	 c:   30  32
+Nr.= 32 x=  72 y=  63 rnd=0	 c:   31  33
+Nr.= 33 x=  71 y=  70 rnd=0	 c:   32  34
+Nr.= 34 x=  73 y=  76 rnd=0	 c:   33  35  47  48
+Nr.= 35 x=  78 y=  75 rnd=0	 c:   34  36
+Nr.= 36 x=  75 y=  68 rnd=0	 c:   35  37
+Nr.= 37 x=  64 y=  62 rnd=0	 c:   36  38
+Nr.= 38 x=  71 y=  58 rnd=0	 c:   37  39
+Nr.= 39 x=  82 y=  59 rnd=0	 c:   38  40
+Nr.= 40 x=  78 y=  55 rnd=0	 c:   39  41
+Nr.= 41 x=  72 y=  47 rnd=0	 c:   40  42
+Nr.= 42 x=  65 y=  52 rnd=0	 c:   41  43
+Nr.= 43 x=  55 y=  46 rnd=0	 c:   42  44
+Nr.= 44 x=  57 y=  42 rnd=0	 c:   43  13
+Nr.= 45 x=  70 y=  76 rnd=0	 c:   46
+Nr.= 46 x=  73 y=  83 rnd=0	 c:   45  47
+Nr.= 47 x=  78 y=  83 rnd=0	 c:   46  34
+Nr.= 48 x=  80 y=  81 rnd=0	 c:   34  49
+Nr.= 49 x=  72 y=  87 rnd=0	 c:   48  50
+Nr.= 50 x=  67 y=  80 rnd=0	 c:   49  51
+Nr.= 51 x=  77 y=  87 rnd=0	 c:   50  52
+Nr.= 52 x=  75 y=  73 rnd=0	 c:   51  53
+Nr.= 53 x=  77 y=  59 rnd=0	 c:   52  54
+Nr.= 54 x=  82 y=  67 rnd=0	 c:   53  55
+Nr.= 55 x=  85 y=  54 rnd=0	 c:   54  56
+Nr.= 56 x=  78 y=  45 rnd=0	 c:   55  57
+Nr.= 57 x=  69 y=  42 rnd=0	 c:   56  58
+Nr.= 58 x=  64 y=  47 rnd=0	 c:   57  22
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 50

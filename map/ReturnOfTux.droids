@@ -493,10 +493,6 @@ SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid2St
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid3StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid4StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
 SForce: T=883 Fixed=0 Marker=3031 Faction="ms" StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" 
- 
-
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="MSAreaGuardStartGameSquare" RushTux="no" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="MSAreaGuardChiefStartGameSquare" RushTux="no" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard" 
 
 ** End of this levels droid data **
 
@@ -681,6 +677,24 @@ Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 598
 ** End of this levels droid data **
 
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+** Beginning of new Level **
+Level=49
+Maximum number of Random Droids=50
+Minimum number of Random Droids=50
+Allowed Type of Random Droid for this level: 123
+Allowed Type of Random Droid for this level: 247
+Allowed Type of Random Droid for this level: 302
+Allowed Type of Random Droid for this level: 329
+Allowed Type of Random Droid for this level: 476
+Allowed Type of Random Droid for this level: 598
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuard" RushTux="no" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard" 
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" RushTux="no" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader" 
+
+** End of this levels droid data **
 
 //----------------------------------------------------------------------
 // This marker must mark the very end of this file.
