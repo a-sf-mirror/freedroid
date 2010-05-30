@@ -487,7 +487,7 @@ static void PrepareMultipleChoiceDialog(Enemy ChatDroid, int with_flip)
  * here to display said text window and it's content, scrolled to the
  * position desired by the player himself.
  */
-void display_current_chat_log(int background_picture_code, enemy *ChatDroid, int with_update)
+void display_current_chat_log(enemy *ChatDroid, int with_update)
 {
 	const SDL_Rect Subtitle_Window = {.x = CHAT_SUBDIALOG_WINDOW_X,
 		.y = CHAT_SUBDIALOG_WINDOW_Y,
@@ -567,7 +567,7 @@ void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, e
 	}
 
 	if (do_display)
-		display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, with_update);
+		display_current_chat_log(ChatDroid, with_update);
 
 	if (do_wait)
 		PlayOnceNeededSoundSample(SampleFilename, do_wait, FALSE);
@@ -680,7 +680,7 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log)
 		SetCurrentFont(FPS_Display_BFont);
 	}
 
-	display_current_chat_log(CHAT_DIALOG_BACKGROUND_PICTURE_CODE, ChatDroid, TRUE);
+	display_current_chat_log(ChatDroid, TRUE);
 
 	Chat_Window.x = 242;
 	Chat_Window.y = 100;
