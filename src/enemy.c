@@ -907,13 +907,10 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 
 	if (is_friendly(target->faction, FACTION_SELF) ) {
 		// no XP is given for killing a friendly bot
-		if (givexp) {
-			givexp = 0;
-		}
+		givexp = 0;
 		// do not keep bots friendly if you cause a hit of >2% damage
-		if ((killertype == -1) && (hit / Druidmap[target->type].maxenergy >= 0.02)){
+		if ((killertype == -1) && (hit / Druidmap[target->type].maxenergy >= 0.02))
 			set_faction_state(target->faction, FACTION_SELF, HOSTILE);
-		}
 	}
 
 	// spray blood
