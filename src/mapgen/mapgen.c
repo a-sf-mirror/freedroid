@@ -107,7 +107,7 @@ static void split_wall(int w, int h, unsigned char *tiles, int *rooms)
 				case TILE_WALL:
 					T(x - 1, y    ) = TILE_WALL;
 					T(x    , y - 1) = TILE_WALL;
-					T(x    , y    ) = TILE_WALL;
+					T(x - 1, y - 1) = TILE_WALL;
 					break;
 				case TILE_DOOR_H:
 					T(x - 1, y    ) = TILE_DOOR_H;
