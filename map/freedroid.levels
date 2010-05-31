@@ -12307,6 +12307,8 @@ x=41 y=44 name="9to33"
 x=40 y=45 name="9from33"
 /plabelinfolvl
 piteminfolvl
+it: n="Source Book of Malformed packet"  X=4.000000  Y=4.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Bottled ice"  X=4.000000  Y=4.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=61  IsIdent=1 
 /piteminfolvl
 obstacleextensions
 /obstacleextensions

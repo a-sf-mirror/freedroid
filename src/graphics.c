@@ -251,15 +251,12 @@ void blit_our_own_mouse_cursor(void)
 			sprintf(constructed_filename, "mouse_cursor_%04d.png", i);
 			find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
 			get_iso_image_from_file_and_path(fpath, &(mouse_cursors[i]), FALSE);
-			if (mouse_cursors[i].surface == NULL) {
-				fprintf(stderr, "\nFull path used: %s.", fpath);
-				ErrorMessage(__FUNCTION__, "\
-Error loading flag image.", PLEASE_INFORM, IS_FATAL);
-			}
-			if (use_open_gl) {
-				DebugPrintf(1, "\n%s(): Texture made from mouse cursor surface...", __FUNCTION__);
+
+			if (mouse_cursors[i].surface == NULL)
+				ErrorMessage(__FUNCTION__, "Error loading flag image: %s.", PLEASE_INFORM, IS_FATAL, fpath);
+
+			if (use_open_gl)
 				make_texture_out_of_surface(&(mouse_cursors[i]));
-			}
 		}
 
 		first_call = FALSE;
@@ -268,15 +265,19 @@ Error loading flag image.", PLEASE_INFORM, IS_FATAL);
 	switch (global_ingame_mode) {
 	case GLOBAL_INGAME_MODE_SCROLL_UP:
 		cursor_index = 4;
+		cursoff.x = -12;
 		break;
 	case GLOBAL_INGAME_MODE_SCROLL_DOWN:
 		cursor_index = 5;
+		cursoff.x = -12;
 		break;
 	case GLOBAL_INGAME_MODE_IDENTIFY:
 		cursor_index = 1;
 		break;
 	case GLOBAL_INGAME_MODE_NORMAL:
 		cursor_index = 0;
+		cursoff.x = -5;
+		cursoff.y = -4;
 		break;
 	case GLOBAL_INGAME_MODE_REPAIR:
 		cursor_index = 6;
@@ -290,8 +291,7 @@ Error loading flag image.", PLEASE_INFORM, IS_FATAL);
 		cursor_index = 3;
 		break;
 	default:
-		DebugPrintf(-4, "\n%s(): global_ingame_mode: %d.", __FUNCTION__, global_ingame_mode);
-		ErrorMessage(__FUNCTION__, "Illegal global ingame mode encountered!", PLEASE_INFORM, IS_FATAL);
+		ErrorMessage(__FUNCTION__, "Illegal global ingame mode encountered: %d", PLEASE_INFORM, IS_FATAL, global_ingame_mode);
 		break;
 	}
 
@@ -303,8 +303,7 @@ Error loading flag image.", PLEASE_INFORM, IS_FATAL);
 	} else {
 		blit_iso_image_to_screen_position(&mouse_cursors[cursor_index], GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
 	}
-
-};				// void blit_our_own_mouse_cursor ( void )
+}
 
 /**
  * Occasionally it might come in handly to have the whole image fading
