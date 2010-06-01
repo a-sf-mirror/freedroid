@@ -34,9 +34,9 @@ EveryTime LuaCode={
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"tux", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
-	tux_says(_"*******", "NO_WAIT")
+	tux_says("*******")
 	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	npc_says(_"Welcome to [b]".. bot_name().."[/b]!")
+	npc_says(_"Welcome to [b]".. bot_name().."[/b]!", "NO_WAIT")
 	if (npc_damage_amount() >0) then
 		npc_says(_"This ".. bot_type().._" unit needs repair.")
 	end
@@ -148,8 +148,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99 Text=_"logout"
+Nr=99 Text="logout"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	tux_says("logout","NO_WAIT")
 	npc_says(_"Closing remote connection...")
 	end_dialog()
 	hide(21, 22)
