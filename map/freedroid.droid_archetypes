@@ -72,7 +72,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 1
 Drops item class=1
 Maximum energy of this droid: 10.1
-Maximum mana of this droid: 10.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 40
 Aggression distance of this droid=11
@@ -101,7 +100,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 1
 Drops item class=1
 Maximum energy of this droid: 15.1
-Maximum mana of this droid: 15.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 50
 Aggression distance of this droid=10
@@ -130,7 +128,6 @@ Maximum speed of this droid: 5.1
 Class of this droid: 2
 Drops item class=2
 Maximum energy of this droid: 16.1
-Maximum mana of this droid: 16.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 70
 Aggression distance of this droid=10
@@ -159,7 +156,6 @@ Maximum speed of this droid: 3.1
 Class of this droid: 2
 Drops item class=2
 Maximum energy of this droid: 20.1
-Maximum mana of this droid: 20.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 90
 Aggression distance of this droid=10
@@ -188,7 +184,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 2
 Drops item class=2
 Maximum energy of this droid: 300.1
-Maximum mana of this droid: 30.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
@@ -217,7 +212,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 3
 Drops item class=3
 Maximum energy of this droid: 30.1
-Maximum mana of this droid: 30.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=10
@@ -246,7 +240,6 @@ Maximum speed of this droid: 0.8
 Class of this droid: 3
 Drops item class=3
 Maximum energy of this droid: 35.1
-Maximum mana of this droid: 35.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
@@ -275,7 +268,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 4
 Drops item class=4
 Maximum energy of this droid: 40.1
-Maximum mana of this droid: 40.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 300
 Aggression distance of this droid=10
@@ -304,7 +296,6 @@ Maximum speed of this droid: 3.1
 Class of this droid: 4
 Drops item class=4
 Maximum energy of this droid: 15.1
-Maximum mana of this droid: 15.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=11
@@ -333,7 +324,6 @@ Maximum speed of this droid: 3.1
 Class of this droid: 4
 Drops item class=4
 Maximum energy of this droid: 80.1
-Maximum mana of this droid: 80.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
@@ -362,7 +352,6 @@ Maximum speed of this droid: 3.6
 Class of this droid: 5
 Drops item class=5
 Maximum energy of this droid: 70.1
-Maximum mana of this droid: 70.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
@@ -391,7 +380,6 @@ Maximum speed of this droid: 4.1
 Class of this droid: 5
 Drops item class=5
 Maximum energy of this droid: 50.1
-Maximum mana of this droid: 50.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 320
 Aggression distance of this droid=10
@@ -420,7 +408,6 @@ Maximum speed of this droid: 3.1
 Class of this droid: 5
 Drops item class=5
 Maximum energy of this droid: 120.1
-Maximum mana of this droid: 120.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=10
@@ -449,7 +436,6 @@ Maximum speed of this droid: 2.0
 Class of this droid: 6
 Drops item class=6
 Maximum energy of this droid: 130.1
-Maximum mana of this droid: 130.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 460
 Aggression distance of this droid=10.6
@@ -478,7 +464,6 @@ Maximum speed of this droid: 4.1
 Class of this droid: 6
 Drops item class=6
 Maximum energy of this droid: 140.1
-Maximum mana of this droid: 140.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 500
 Aggression distance of this droid=11
@@ -507,7 +492,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 6
 Drops item class=6
 Maximum energy of this droid: 160.1
-Maximum mana of this droid: 160.1
 Rate of healing: 3.1
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10.6
@@ -536,7 +520,6 @@ Maximum speed of this droid: 5.1
 Class of this droid: 7
 Drops item class=7
 Maximum energy of this droid: 180.1
-Maximum mana of this droid: 180.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 650
 Aggression distance of this droid=16.12
@@ -565,7 +548,6 @@ Maximum speed of this droid: 4.1
 Class of this droid: 7
 Drops item class=7
 Maximum energy of this droid: 210.1
-Maximum mana of this droid: 210.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 700
 Aggression distance of this droid=16
@@ -594,7 +576,6 @@ Maximum speed of this droid: 5.1
 Class of this droid: 7
 Drops item class=7
 Maximum energy of this droid: 150.1
-Maximum mana of this droid: 150.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 800
 Aggression distance of this droid=10
@@ -623,7 +604,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 8
 Drops item class=8
 Maximum energy of this droid: 200.1
-Maximum mana of this droid: 200.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1000
 Aggression distance of this droid=16.11
@@ -652,7 +632,6 @@ Maximum speed of this droid: 7.1
 Class of this droid: 8
 Drops item class=8
 Maximum energy of this droid: 220.1
-Maximum mana of this droid: 220.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1200
 Aggression distance of this droid=16
@@ -681,7 +660,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 8
 Drops item class=8
 Maximum energy of this droid: 120.1
-Maximum mana of this droid: 120.1
 Rate of healing: 4.1
 Experience_Reward gained for destroying one of this type: 1500
 Force how many additional magic items to be dropped=1
@@ -711,7 +689,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 9
 Drops item class=9
 Maximum energy of this droid: 300.1
-Maximum mana of this droid: 300.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 2000
 Aggression distance of this droid=16.116
@@ -740,7 +717,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -764,7 +740,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -788,7 +763,6 @@ Maximum speed of this droid: 3.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -812,7 +786,6 @@ Maximum speed of this droid: 3.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -836,7 +809,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -860,7 +832,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=10
@@ -884,7 +855,6 @@ Maximum speed of this droid: 3.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -909,7 +879,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -933,7 +902,6 @@ Maximum speed of this droid: 6.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -957,7 +925,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 18
 Drops item class=9
 Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
 Rate of healing: 15.1
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
@@ -981,7 +948,6 @@ Maximum speed of this droid: 2.1
 Class of this droid: 5
 Drops item class=5
 Maximum energy of this droid: 300.1
-Maximum mana of this droid: 30.1
 Rate of healing: 2.1
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10.0

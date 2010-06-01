@@ -551,7 +551,6 @@ static void Get_Robot_Data(void *DataPointer)
 #define MAXSPEED_BEGIN_STRING "Maximum speed of this droid: "
 #define CLASS_BEGIN_STRING "Class of this droid: "
 #define MAXENERGY_BEGIN_STRING "Maximum energy of this droid: "
-#define MAXMANA_BEGIN_STRING "Maximum mana of this droid: "
 #define BASE_HEALING_BEGIN_STRING "Rate of healing: "
 #define EXPERIENCE_REWARD_BEGIN_STRING "Experience_Reward gained for destroying one of this type: "
 #define WEAPON_ITEM_BEGIN_STRING "Weapon item=\""
@@ -625,9 +624,6 @@ static void Get_Robot_Data(void *DataPointer)
 
 		// Now we read in the maximal energy this droid can store. 
 		ReadValueFromString(RobotPointer, MAXENERGY_BEGIN_STRING, "%f", &Druidmap[RobotIndex].maxenergy, EndOfDataPointer);
-
-		// Now we read in the maximal mana this droid can store. 
-		ReadValueFromString(RobotPointer, MAXMANA_BEGIN_STRING, "%f", &Druidmap[RobotIndex].max_temperature, EndOfDataPointer);
 
 		// Now we read in the lose_health rate.
 		ReadValueFromString(RobotPointer, BASE_HEALING_BEGIN_STRING, "%f", &Druidmap[RobotIndex].healing_friendly, EndOfDataPointer);
