@@ -72,6 +72,11 @@ enum faction_id get_faction_id(const char *name)
   */
 void set_faction_state(enum faction_id fact1, enum faction_id fact2, enum faction_state state)
 {
+	/* Do not make a faction hostile to itself */
+	if (fact1 == fact2 && state == HOSTILE) {
+		return;
+	}
+
 	hostility_matrix[fact1][fact2] = state;
 	hostility_matrix[fact2][fact1] = state;
 }
