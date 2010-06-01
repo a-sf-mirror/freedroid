@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	terminal = "tux@hacked_".. bot_type()..": ~ #"
+	terminal = "tux@hacked_".. bot_type()..": ~ # "
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"tux", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
@@ -38,7 +38,8 @@ EveryTime LuaCode={
 	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 	npc_says(_"Welcome to [b]".. bot_name().."[/b]!", "NO_WAIT")
 	if (npc_damage_amount() >0) then
-		npc_says(_"This ".. bot_type().._" unit needs repair.")
+		npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
+		npc_says(_"This ".. bot_type().._" unit could need some repair.", "NO_WAIT")
 	end
 	cli_says(terminal, "NO_WAIT")
 	show(1, 11, 12, 13, 20, 99)

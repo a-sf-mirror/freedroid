@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	terminal_sub = "tux@hacked_".. bot_type().."/repair&settings: ~ #"
+	terminal_sub = "tux@hacked_".. bot_type().."/repair&settings: ~ # "
 	cli_says(terminal_sub, "NO_WAIT")
 	show(0, 20, 30, 40)
 }
@@ -137,7 +137,7 @@ LuaCode={
 	npc_says(_"Version: 0.15.01", "NO_WAIT")
 	npc_says(_"Current botname: [b]"..bot_name().."[/b]", "NO_WAIT")
 	npc_says(_"Select new name? [Y/N]", "NO_WAIT")
-	cli_says(">", "NO_WAIT")
+	cli_says("> ", "NO_WAIT")
 	new_name = ""
 	hide(0, 20, 21, 30, 40) show(41, 42)
 }
@@ -148,7 +148,7 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"Yes", "NO_WAIT")
 	npc_says(_"Pick an Adjective:", "NO_WAIT")
-	cli_says(">", "NO_WAIT")
+	cli_says("> ", "NO_WAIT")
 	hide(41, 42) show(43, 44, 45, 46, 47, 48)
 }
 ----------------------------------------------------------------------
@@ -460,7 +460,7 @@ LuaCode={
 	tux_says(new_animal,"NO_WAIT")
 	new_name = new_name .." ".. new_animal .." ".. bot_type()
 	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? [Y/N]", "NO_WAIT")
-	cli_says(">", "NO_WAIT")
+	cli_says("> ", "NO_WAIT")
 	show(81, 82)
 }
 ----------------------------------------------------------------------
