@@ -1026,6 +1026,10 @@ void get_enemy_surfaces_data(char *DataPointer)
 	SurfacePointer = DataPointer;
 
 	while ((SurfacePointer = strstr(SurfacePointer, NEW_SURFACE_BEGIN_STRING)) != NULL) {
+		if (SurfaceIndex >= ENEMY_ROTATION_MODELS_AVAILABLE) {
+			ErrorMessage(__FUNCTION__, "freedroid.enemy_surfaces specifies more surfaces than ENEMY_ROTATION_MODELS_AVAILABLE (%d) allows.", PLEASE_INFORM, IS_FATAL, ENEMY_ROTATION_MODELS_AVAILABLE);
+		}
+
  		DebugPrintf(1, "\n\nFound another surface specification entry!  Lets add that to the others!");
 		SurfacePointer++;
 
@@ -1102,18 +1106,7 @@ void Load_Enemy_Surfaces(void)
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	get_enemy_surfaces_data(Data);
 	free(Data);
-
-
-	// Finally we do some test to make sure we don't write
-	// over the bounds of our array or so
-	//
-	if (i >= ENEMY_ROTATION_MODELS_AVAILABLE) {
-		ErrorMessage(__FUNCTION__, "\
-There are %d models mentioned in freedroid.enemy_surfaces, but\n\
-only ENEMY_ROTATION_MODELS_AVAILABLE is only %d.\n\
-This should be investigated as soon as possible.", PLEASE_INFORM, IS_FATAL, i, ENEMY_ROTATION_MODELS_AVAILABLE);
-	}
-};				// void LoadEnemySurfaces( void )
+}
 
 /**
  * Return a pointer towards the iso_image structure
