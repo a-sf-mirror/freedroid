@@ -256,6 +256,7 @@ Minimum number of Random Droids=6
 Allowed Type of Random Droid for this level: 123
 
 SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Old Guy" 
+SForce: T=FEM Fixed=0 Marker=9999 Faction="civilian" StartLabel="Iris" RushTux="no" UseDialog="Iris" ShortLabel=_"Hot Girl"  
 SForce: T=614 Fixed=0 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" RushTux="no" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot" 
 ** End of this levels droid data **
 

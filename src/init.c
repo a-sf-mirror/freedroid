@@ -233,6 +233,9 @@ static void init_character_descriptions(void)
 	character_descriptions[PERSON_TANIA] =
 	    _("A lonely scientist. The months she's spent trapped here seem to have taken their toll on her sanity.");
 
+	character_descriptions[PERSON_IRIS] =
+	    ("TODO");
+
 };				// void init_character_descriptions ( void )
 
 /** 

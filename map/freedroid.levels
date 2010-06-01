@@ -16245,6 +16245,7 @@ x=62 y=21 name="Lev12-614-complex-guard"
 x=49 y=41 name="FrancisStart"
 x=42 y=40 name="NewTuxStartGameSquare3"
 x=43 y=40 name="NewTuxStartGameSquare"
+x=31 y=32 name="Iris"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -16287,6 +16288,8 @@ Nr.= 20 x=  56 y=  40 rnd=1	 c:   19
 Nr.= 21 x=  55 y=  40 rnd=1	 c:   20  19
 Nr.= 22 x=  51 y=  50 rnd=1	 c:   17
 Nr.= 23 x=  49 y=  42 rnd=1	 c:   17  16  15
+Nr.= 24 x=  31 y=  32 rnd=1	 c:   25
+Nr.= 25 x=  33 y=  34 rnd=1	 c:   24
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 13

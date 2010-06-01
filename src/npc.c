@@ -99,6 +99,7 @@ void init_npcs()
 		"HF-FirmwareUpdateServer",
 		"HF-GateGuard",
 		"HF-GateGuardLeader",
+		"Iris",
 		"Jasmine",
 		"Kevin",
 		"KevinGuard",
