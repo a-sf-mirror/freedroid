@@ -1107,11 +1107,11 @@ void Load_Enemy_Surfaces(void)
 	// Finally we do some test to make sure we don't write
 	// over the bounds of our array or so
 	//
-	if (i > ENEMY_ROTATION_MODELS_AVAILABLE) {
+	if (i >= ENEMY_ROTATION_MODELS_AVAILABLE) {
 		ErrorMessage(__FUNCTION__, "\
-There seem to be a bit more models mentioned in the game than\n\
-currently allowed (ENEMY_ROTATION_MODELS_AVAILABLE = %d in defs.h).\n\
-This should be investigated as soon as possible.", PLEASE_INFORM, IS_FATAL, ENEMY_ROTATION_MODELS_AVAILABLE);
+There are %d models mentioned in freedroid.enemy_surfaces, but\n\
+only ENEMY_ROTATION_MODELS_AVAILABLE is only %d.\n\
+This should be investigated as soon as possible.", PLEASE_INFORM, IS_FATAL, i, ENEMY_ROTATION_MODELS_AVAILABLE);
 	}
 };				// void LoadEnemySurfaces( void )
 
