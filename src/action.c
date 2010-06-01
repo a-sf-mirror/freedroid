@@ -529,7 +529,7 @@ static void act_terminal(level *l, obstacle *o)
 	enemy dummy_enemy;
 	dummy_enemy.dialog_section_name = dialog;
 	dummy_enemy.will_rush_tux = 0;
-	dummy_enemy.type = 34;
+	dummy_enemy.type = 35;
 	ChatWithFriendlyDroid(&dummy_enemy);
 }
 
