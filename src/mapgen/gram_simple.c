@@ -235,7 +235,7 @@ void fusion(int id, int cible)
 	for (k = 0; k < l; k++) {
 		x = cplist[correct_directory[k]].x;
 		y = cplist[correct_directory[k]].y;
-		mapgen_put_tile(x, y, TILE_FLOOR, -1);
+		mapgen_put_tile(x, y, TILE_FLOOR, id);
 	}
 
 	if (l) {

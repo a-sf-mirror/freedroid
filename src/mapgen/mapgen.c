@@ -89,57 +89,58 @@ static void set_floor(int x, int y, int type)
 static void split_wall(int w, int h, unsigned char *tiles, int *rooms) 
 {
 	int y, x; 
-	int tile;
-#define T(X,Y) (tiles[(Y) * w + (X)])
+	int tile, room;
+#define SET(X,Y,TILE) mapgen_put_tile(X, Y, TILE, room)
 
 	for (y = 1; y < h - 1; y++) 
 		for(x = 1; x < w - 1; x++) {
 			tile = tiles[y * w + x];
+			room = mapgen_get_room(x, y);
 			switch(tile) {
 				case TILE_WALL_L:
-					T(x - 1, y) = TILE_WALL;
-					T(x    , y) = TILE_WALL;
+					SET(x - 1, y, TILE_WALL);
+					SET(x    , y, TILE_WALL);
 					break;
 				case TILE_WALL_T:
-					T(x, y - 1) = TILE_WALL;
-					T(x, y    ) = TILE_WALL;
+					SET(x, y - 1, TILE_WALL);
+					SET(x, y    , TILE_WALL);
 					break;
 				case TILE_WALL:
-					T(x - 1, y    ) = TILE_WALL;
-					T(x    , y - 1) = TILE_WALL;
-					T(x - 1, y - 1) = TILE_WALL;
+					SET(x - 1, y    , TILE_WALL);
+					SET(x    , y - 1, TILE_WALL);
+					SET(x - 1, y - 1, TILE_WALL);
 					break;
 				case TILE_DOOR_H:
-					T(x - 1, y    ) = TILE_DOOR_H;
-					T(x    , y - 1) = TILE_FLOOR;
-					T(x - 1, y - 1) = TILE_FLOOR;
-					T(x - 2, y - 1) = TILE_FLOOR;
-					T(x - 2, y    ) = TILE_FLOOR; 
-					T(x    , y    ) = TILE_FLOOR;
-					T(x + 1, y    ) = TILE_WALL_T;
+					SET(x - 1, y    , TILE_DOOR_H);
+					SET(x    , y - 1, TILE_FLOOR);
+					SET(x - 1, y - 1, TILE_FLOOR);
+					SET(x - 2, y - 1, TILE_FLOOR);
+					SET(x - 2, y    , TILE_FLOOR); 
+					SET(x    , y    , TILE_FLOOR);
+					SET(x + 1, y    , TILE_WALL_T);
 					break;
 				case TILE_DOOR_V:
-					T(x    , y - 1) = TILE_DOOR_V;
-					T(x    , y + 1) = TILE_FLOOR;
-					T(x    , y - 2) = TILE_FLOOR;
-					T(x - 1, y - 2) = TILE_FLOOR;
-					T(x - 1, y - 1) = TILE_FLOOR;
-					T(x    , y    ) = TILE_FLOOR;
-					T(x    , y + 1) = TILE_WALL_L;
+					SET(x    , y - 1, TILE_DOOR_V);
+					SET(x    , y + 1, TILE_FLOOR);
+					SET(x    , y - 2, TILE_FLOOR);
+					SET(x - 1, y - 2, TILE_FLOOR);
+					SET(x - 1, y - 1, TILE_FLOOR);
+					SET(x    , y    , TILE_FLOOR);
+					SET(x    , y + 1, TILE_WALL_L);
 					break;
 				case TILE_DOOR_H2:
-					T(x - 1, y    ) = TILE_DOOR_H2;
-					T(x    , y - 1) = TILE_FLOOR;
-					T(x - 1, y - 1) = TILE_FLOOR;
-					T(x    , y    ) = TILE_FLOOR;
-					T(x + 1, y    ) = TILE_WALL_T;
+					SET(x - 1, y    , TILE_DOOR_H2);
+					SET(x    , y - 1, TILE_FLOOR);
+					SET(x - 1, y - 1, TILE_FLOOR);
+					SET(x    , y    , TILE_FLOOR);
+					SET(x + 1, y    , TILE_WALL_T);
 					break;
 				case TILE_DOOR_V2:
-					T(x    , y - 1) = TILE_DOOR_V2;
-					T(x    , y + 1) = TILE_FLOOR;
-					T(x - 1, y - 1) = TILE_FLOOR;
-					T(x    , y    ) = TILE_FLOOR;
-					T(x    , y + 1) = TILE_WALL_L;
+					SET(x    , y - 1, TILE_DOOR_V2);
+					SET(x    , y + 1, TILE_FLOOR);
+					SET(x - 1, y - 1, TILE_FLOOR);
+					SET(x    , y    , TILE_FLOOR);
+					SET(x    , y + 1, TILE_WALL_L);
 					break;
 			}
 		}
@@ -504,9 +505,9 @@ void MakeConnect(int x, int y, enum connection_type type)
 
 	} 
 
-	mapgen_put_tile(x, y, tile, -1);
 	room_1 = mapgen_get_room(wp_nx, wp_ny);
 	room_2 = mapgen_get_room(wp_x, wp_y);
+	mapgen_put_tile(x, y, tile, room_2);
 	add_neighbor(&rooms[room_1], room_2);
 	add_neighbor(&rooms[room_2], room_1);
 
