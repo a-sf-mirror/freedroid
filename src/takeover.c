@@ -807,7 +807,7 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 	}
 	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
 
-        if ((BestValue < 0.5) || (countdown < NumCapsules[ENEMY]*5)) //it isn't worth it
+        if ((BestValue < 0.5) && (countdown > NumCapsules[ENEMY]*5)) //it isn't worth it
                 return;
         
 	// Now we can start to move into the right direction.
