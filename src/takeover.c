@@ -89,6 +89,7 @@ int ElementProb[TO_ELEMENTS] = {
 	5			// EL_GATE 
 };
 
+int max_opponent_capsules;
 int NumCapsules[TO_COLORS] = {
 	0, 0
 };
@@ -134,8 +135,9 @@ playground_t ActivationMap;
 playground_t CapsuleCountdown;
 
 void EvaluatePlayground(void);
-float EvaluatePosition(int color, int row, int layer);
-void AdvancedEnemyTakeoverMovements(void);
+float EvaluatePosition(const int color, const int row, const int layer);
+float EvaluateCenterPosition(const int color, const int row, const int layer);
+void AdvancedEnemyTakeoverMovements(const int countdown);
 
 static void ShowPlayground(void);
 
@@ -459,7 +461,7 @@ static void PlayGame(int countdown)
 		/* time for movement */
 		if (cur_time > prev_move_tick + move_tick_len) {
 			prev_move_tick += move_tick_len;	/* set for next motion tick */
-			AdvancedEnemyTakeoverMovements();
+			AdvancedEnemyTakeoverMovements(countdown);
 
 			if (up) {
 				if (!up_counter || (up_counter > wait_move_ticks)) {
@@ -706,9 +708,9 @@ int droid_takeover(enemy * target)
 
 	cDroid = target;
 	int player_capsules = 2 + Me.base_skill_level[get_program_index_with_name("Hacking")];
-	int opponent_capsules = 2 + Druidmap[target->type].class;
+	max_opponent_capsules = 2 + Druidmap[target->type].class;
 
-	if (do_takeover(player_capsules, opponent_capsules, 100)) {
+	if (do_takeover(player_capsules, max_opponent_capsules, 100)) {
 		/* Won takeover */
 		Me.marker = target->marker;
 
@@ -731,6 +733,10 @@ int droid_takeover(enemy * target)
 		target->has_been_taken_over = TRUE;
 
 		target->combat_state = WAYPOINTLESS_WANDERING;
+
+		// Always use the AfterTakeover dialog
+		free(target->dialog_section_name);
+		target->dialog_section_name = strdup("AfterTakeover");
 
 		// When the bot is taken over, it should not turn hostile when
 		// the rest of his former combat group (identified by having the
@@ -761,7 +767,7 @@ int droid_takeover(enemy * target)
  * but it does this in an advanced way, that has not been there in
  * the classic freedroid game.
  *-----------------------------------------------------------------*/
-void AdvancedEnemyTakeoverMovements(void)
+void AdvancedEnemyTakeoverMovements(const int countdown)
 {
 	// static int Actions = 3;
 	static int MoveProbability = 100;
@@ -782,6 +788,13 @@ void AdvancedEnemyTakeoverMovements(void)
 	if (NumCapsules[ENEMY] == 0)
 		return;
 
+
+        if (GameConfig.difficulty_level!= DIFFICULTY_EASY){  //disable AI waiting on easy
+                // Wait for the player to move
+          if ((LeaderColor!=YourColor) && ((NumCapsules[YOU]-NumCapsules[ENEMY])>=0) && (countdown > NumCapsules[ENEMY]*10) && (NumCapsules[ENEMY]<max_opponent_capsules))
+                        return;
+        }
+        
 	// First we're going to find out which target place is
 	// best choice for the next capsule setting.
 	//
@@ -794,6 +807,9 @@ void AdvancedEnemyTakeoverMovements(void)
 	}
 	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
 
+        if ((BestValue < 0.5) || (countdown < NumCapsules[ENEMY]*5)) //it isn't worth it
+                return;
+        
 	// Now we can start to move into the right direction.
 	// Previously this was a pure random choice like
 	//
@@ -827,9 +843,8 @@ void AdvancedEnemyTakeoverMovements(void)
 			direction *= -1;
 		}
 		break;
-
 	case 2:		/* Try to set  capsule */
-		if (MyRandom(100) <= SetProbability) {
+                if (MyRandom(100) <= SetProbability) {
 			if ((row >= 0) && 
 			    (ToPlayground[OpponentColor][0][row] != CABLE_END) && (ActivationMap[OpponentColor][0][row] == INACTIVE)) {
 				NumCapsules[ENEMY]--;
@@ -1374,28 +1389,36 @@ Starting to evaluate side nr. %d.  Results displayed below:\n", color);
 };				// EvaluatePlayground 
 
 /* -----------------------------------------------------------------
- * This function generates a random playground for the takeover game
+ * This function Evaluates the AI side of the board for the takeover game
  * ----------------------------------------------------------------- */
-float EvaluatePosition(int color, int row, int layer)
+float EvaluatePosition(const int color, const int row, const int layer)
 {
+        int player = YOU;
+        if (color != YourColor)
+                player = ENEMY;
+
+        int opp_color = YELLOW;
+        if (opp_color == color)
+                opp_color = PURPLE;
+        
 	int newElement;
 	// float ScoreFound [ TO_COLORS ];
 
 #define EVAL_DEBUG 1
-
+        
 	DebugPrintf(EVAL_DEBUG, "\nEvaluatePlaygound ( %d , %d , %d ) called: ", color, row, layer);
 
 	if (layer == NUM_LAYERS - 1) {
 		DebugPrintf(EVAL_DEBUG, "End layer reached...");
 		if (DisplayColumn[row] == color) {
 			DebugPrintf(EVAL_DEBUG, "same color... returning 0.5 ");
-			return (0.5);
-		} else if (IsActive(YourColor, row)) {
-			DebugPrintf(EVAL_DEBUG, "different color, but active... returning 110 ");
-			return (110);
+			return (0.05*EvaluateCenterPosition(opp_color, row, layer));
+		} else if (IsActive(opp_color, row)) {
+			DebugPrintf(EVAL_DEBUG, "different color, but active... returning 9 ");
+			return ((9 - (1 * NumCapsules[player]))*EvaluateCenterPosition(opp_color, row, layer));
 		} else {
-			DebugPrintf(EVAL_DEBUG, "different color... returning 150 ");
-			return (150);
+			DebugPrintf(EVAL_DEBUG, "different color... returning 10 ");
+			return (10*EvaluateCenterPosition(opp_color, row, layer));
 		}
 	}
 
@@ -1419,7 +1442,7 @@ float EvaluatePosition(int color, int row, int layer)
 
 	case AMPLIFIER:
 		DebugPrintf(EVAL_DEBUG, "AMPLIFIER reached... continuing...");
-		return (1.5 * EvaluatePosition(color, row, layer + 1));
+		return ((1 + (0.2 * NumCapsules[player])) * EvaluatePosition(color, row, layer + 1));
 		break;
 
 	case COLOR_EXCHANGER:
@@ -1464,6 +1487,71 @@ float EvaluatePosition(int color, int row, int layer)
 	return (0);
 
 };				// float EvaluatePosition ( col , row , layer )
+
+/* -----------------------------------------------------------------
+ * This function Evaluates the Player side of the board from AI perspective
+ * ----------------------------------------------------------------- */
+float EvaluateCenterPosition(const int color, const int row, const int layer)
+{
+        int player = YOU;
+        if (color == YourColor)
+                player = ENEMY;
+
+        int newElement;
+                
+        if (layer == 1) {
+                return (1); //hit the player's end
+        }
+
+	newElement = ToPlayground[color][layer][row];
+
+	switch (newElement) {
+	case CABLE:		// has not to be set any more 
+		return (EvaluateCenterPosition(color, row, layer - 1));
+	case EMPTY:
+		return (1 + (0.2 * NumCapsules[player]));
+		break;
+	case CABLE_END:
+                return (1 + (0.2 * NumCapsules[player]));
+		break;
+	case AMPLIFIER:
+		return ((1 - (0.1 * NumCapsules[player])) * EvaluateCenterPosition(color, row, layer - 1));
+		break;
+	case COLOR_EXCHANGER:
+		return (1 + (0.2 * NumCapsules[player]));
+		break;
+        case SEPARATOR_H: //correctly evaluating this may lead to an infinite loop, using 0.5
+                if (NumCapsules[player]>0)
+                        return ((0.53 - (0.02 * NumCapsules[player])) * EvaluateCenterPosition(color, row - 1, layer - 1) );
+                else
+                        return (1);
+		break;
+	case SEPARATOR_M:
+		return (1 + (0.2 * NumCapsules[player]));
+		break;
+	case SEPARATOR_L:
+                if (NumCapsules[player]>0)
+                        return ((0.53 - (0.02 * NumCapsules[player])) * EvaluateCenterPosition(color, row + 1, layer - 1) );
+                else
+                        return (1);
+		break;
+	case GATE_H:
+		return (1 + (0.2 * NumCapsules[player]));
+		break;
+	case GATE_M:
+		return ((0.5 + (0.09 * NumCapsules[player])) * (EvaluateCenterPosition(color, row + 1, layer - 1) + EvaluateCenterPosition(color, row - 1, layer - 1)));
+		break;
+	case GATE_L:
+		return (1 + (0.2 * NumCapsules[player]));
+		break;              
+	default:
+		DebugPrintf(EVAL_DEBUG, "\nUNHANDLED TILE reached\n");
+		break;
+	}
+
+	return (0);
+
+};
 
 /*-----------------------------------------------------------------
  * @Desc: process the playground following its intrinsic logic
