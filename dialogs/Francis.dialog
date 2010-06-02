@@ -33,8 +33,12 @@ EveryTime LuaCode={
 	if (not has_cookie("met_francis")) then
 		show(2, 6, 11, 13)
 		add_cookie("met_francis")
-	else end
+	end
 
+	if (has_cookie("cryo_614_lock_gate") and (not has_cookie("cryo_outergate_code"))) then
+		show(30)
+	end
+		
 	if (has_cookie("tux_has_joined_guard") and (not has_cookie("francis_guard_response"))) then
 		add_cookie("francis_guard_response")
 		npc_says(_"Welcome back " .. get_player_name() .. ".")
@@ -222,6 +226,18 @@ LuaCode={
 	npc_says(_"That is all the records show you had with you when your were frozen.")
 	npc_says(_"There are also some references to a bank account of yours, but as you probably understand, there is no working banking system presently.")
 	hide(22)
+}
+----------------------------------------------------------------------
+
+Nr=30 Text=_"The 614 bot said he might shutdown the outside gate!"
+LuaCode={
+	add_cookie("cryo_outergate_code")
+	npc_says(_"Oh. You'll need to put the cryogenic terminals into admin mode to access the gate controls.")
+	tux_says(_"How do I do that?")
+	npc_says(_"You press star-pound-zero-six-pound and then enter the free-speech number.")
+	npc_says(_"It is kind of long, so I'll write it down for you.")
+	npc_says(_"If the 614 bot locks the gate, it is for a good reason. Lock the gate behind you!")
+	hide(30)
 }
 ----------------------------------------------------------------------
 

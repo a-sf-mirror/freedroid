@@ -86,6 +86,7 @@ void init_npcs()
 		"Butch",
 		"Chandra",
 		"c-net",
+		"Cryo-Terminal",
 		"Dixon",
 		"DocMoore",
 		"DSB-MachineDeckControl",

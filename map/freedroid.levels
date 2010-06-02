@@ -14286,7 +14286,7 @@ t92 x53.24 y16.50
 t302 x55.08 y16.54
 t310 x48.34 y20.90
 t93 x56.60 y20.80
-t45 x70.35 y25.73
+t46 x70.15 y25.20
 t202 x54.64 y17.68
 t278 x54.78 y18.72
 t200 x54.92 y19.79
@@ -16239,6 +16239,7 @@ t2 x32.50 y38.00
 t1 x33.00 y37.50
 t1 x35.00 y37.50
 t353 x33.50 y37.50
+t45 x55.56 y24.53
 /obsdata
 plabelinfolvl
 x=62 y=21 name="Lev12-614-complex-guard"
@@ -16259,8 +16260,26 @@ idx=2182 type=31 data={
 	it: n="Worker Helmet"  X=50.000000  Y=40.000000  DAMRED=22  Dmg=0  DmgMod=0  MDur=18  CDur=8.000000  AClip=0  Multi=1  IsIdent=1 
 	it: n="Big wrench"  X=50.000000  Y=40.000000  Dmg=1  DmgMod=3  MDur=45  CDur=19.000000  AClip=0  Multi=1  IsIdent=1 
 }
+idx=253 type=32 data={
+	Cryo-Terminal
+}
+idx=395 type=32 data={
+	Cryo-Terminal
+}
 idx=397 type=32 data={
-	Terminal
+	Cryo-Terminal
+}
+idx=396 type=32 data={
+	Cryo-Terminal
+}
+idx=7 type=30 data={
+	CryoOuterGate
+}
+idx=2206 type=32 data={
+	Cryo-Terminal
+}
+idx=29 type=30 data={
+	CryoInnerGate
 }
 /obstacleextensions
 wp
