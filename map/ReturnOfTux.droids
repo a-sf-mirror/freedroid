@@ -255,7 +255,7 @@ Maximum number of Random Droids=8
 Minimum number of Random Droids=6
 Allowed Type of Random Droid for this level: 123
 
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Old Guy" 
+SForce: T=PRO Fixed=0 Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Old Guy" 
 SForce: T=FEM Fixed=0 Marker=9999 Faction="civilian" StartLabel="Iris" RushTux="no" UseDialog="Iris" ShortLabel=_"Hot Girl"  
 SForce: T=614 Fixed=0 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" RushTux="no" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot" 
 ** End of this levels droid data **
@@ -336,7 +336,7 @@ Allowed Type of Random Droid for this level: 139
 Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 249
 
-SForce: T=614 Fixed=0 Marker=1017 MaxDistanceToHome=9 Faction="redguard" StartLabel="KevinGuardStartGameSquare" RushTux="yes" UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
+SForce: T=614 Fixed=0 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux="yes" UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
 SForce: T=KEV Fixed=0 Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" RushTux="no" UseDialog="Kevin" ShortLabel=_"Kevin" 
 SForce: T=JAS Fixed=0 Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" RushTux="no" UseDialog="Jasmine" ShortLabel=_"Cute Girl" 
 SForce: T=598 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins598StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
