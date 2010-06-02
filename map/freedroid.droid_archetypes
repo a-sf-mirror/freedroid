@@ -913,7 +913,7 @@ Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
-Is this 'droid' a human : 1
+Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 31
 Notes concerning this droid=_"This is a typical sex bomb.  This one is even armed."
 
