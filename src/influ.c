@@ -44,7 +44,6 @@
 
 #define LEVEL_JUMP_DEBUG 1
 
-int autorun_activated = 0;
 void CheckForTuxOutOfMap();
 void AnalyzePlayersMouseClick();
 
@@ -561,20 +560,18 @@ static int move_tux_towards_raw_position(float x, float y)
 	}
 
 	if (Me.running_must_rest) {
-		autorun_activated = 0;
+		GameConfig.autorun_activated = 0;
 		planned_step.x = RemainingWay.x * TUX_WALKING_SPEED / length;
 		planned_step.y = RemainingWay.y * TUX_WALKING_SPEED / length;
-		//DebugPrintf( -2, "\n Now walking...");
 	}
 
-	if ((LeftCtrlPressed() || autorun_activated) && !(LeftCtrlPressed() && autorun_activated) && (!Me.running_must_rest)) {
+	if ((LeftCtrlPressed() || GameConfig.autorun_activated) &&
+		!(LeftCtrlPressed() && GameConfig.autorun_activated) && (!Me.running_must_rest)) {
 		planned_step.x = RemainingWay.x * TUX_RUNNING_SPEED / length;
 		planned_step.y = RemainingWay.y * TUX_RUNNING_SPEED / length;
-		// DebugPrintf ( -2 , "\nNow running..." );
 	} else {
 		planned_step.x = RemainingWay.x * TUX_WALKING_SPEED / length;
 		planned_step.y = RemainingWay.y * TUX_WALKING_SPEED / length;
-		// DebugPrintf ( -2 , "\nNow walking..." );
 	}
 
 	// Now that the speed is set, we can start to make the step

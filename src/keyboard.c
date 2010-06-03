@@ -501,8 +501,7 @@ static int input_key(int keynum, int value)
 			quest_browser_interface();
 			return 0;
 		} else if (KEYPRESS("autorun")) {
-			extern int autorun_activated;
-			autorun_activated = !autorun_activated;
+			GameConfig.autorun_activated = !GameConfig.autorun_activated;
 			return 0;
 		} else if (KEYPRESS("reload")) {
 			TuxReloadWeapon();

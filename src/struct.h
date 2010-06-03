@@ -136,6 +136,8 @@ typedef struct configuration_for_freedroid_s {
 	int Automap_Visible;
 	int spell_level_visible;
 
+	int autorun_activated;
+
 	string freedroid_version_string;
 	int skip_light_radius;
 	int skill_explanation_screen_visible;
