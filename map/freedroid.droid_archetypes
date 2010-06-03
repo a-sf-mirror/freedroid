@@ -68,11 +68,11 @@ That will not cause any problems.
 Droidname: 123
 Default description:_"123 Acolyte"
 Droid uses portrait rotation series with prefix="123"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 1
 Drops item class=1
-Maximum energy of this droid: 10.1
-Rate of healing: 2.1
+Maximum energy of this droid: 10
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 40
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
@@ -96,11 +96,11 @@ Notes concerning this droid=_"A simple rubbish diposal robot. Common device in m
 Droidname: 139
 Default description:_"139 Templar"
 Droid uses portrait rotation series with prefix="139"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 1
 Drops item class=1
-Maximum energy of this droid: 15.1
-Rate of healing: 2.1
+Maximum energy of this droid: 15
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 50
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
@@ -124,11 +124,11 @@ Notes concerning this droid=_"Created by Dr. Masternak to clean up large heaps o
 Droidname: 247
 Default description:_"247 Banshee"
 Droid uses portrait rotation series with prefix="247"
-Maximum speed of this droid: 5.1
+Maximum speed of this droid: 5
 Class of this droid: 2
 Drops item class=2
-Maximum energy of this droid: 16.1
-Rate of healing: 2.1
+Maximum energy of this droid: 16
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 70
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
@@ -152,11 +152,11 @@ Notes concerning this droid=_"A light duty servant robot. One of the first to us
 Droidname: 249
 Default description:_"249 Chicago"
 Droid uses portrait rotation series with prefix="249"
-Maximum speed of this droid: 3.1
+Maximum speed of this droid: 3
 Class of this droid: 2
 Drops item class=2
-Maximum energy of this droid: 20.1
-Rate of healing: 2.1
+Maximum energy of this droid: 20
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 90
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
@@ -180,11 +180,11 @@ Notes concerning this droid=_"Cheaper version of the anti-grav servant robot."
 Droidname: 296
 Default description:_"296 Sawmill"
 Droid uses portrait rotation series with prefix="296"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 2
 Drops item class=2
-Maximum energy of this droid: 300.1
-Rate of healing: 2.1
+Maximum energy of this droid: 300
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
@@ -208,11 +208,11 @@ Notes concerning this droid=_"Run away! This bot will kill you!"
 Droidname: 302
 Default description:_"302 Nemesis"
 Droid uses portrait rotation series with prefix="302"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 3
 Drops item class=3
-Maximum energy of this droid: 30.1
-Rate of healing: 2.1
+Maximum energy of this droid: 30
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.25
@@ -236,11 +236,11 @@ Notes concerning this droid=_"Common device for moving small packages. Clamp is 
 Droidname: 329
 Default description:_"329 Sparkie"
 Droid uses portrait rotation series with prefix="329"
-Maximum speed of this droid: 0.8
+Maximum speed of this droid: 1
 Class of this droid: 3
 Drops item class=3
-Maximum energy of this droid: 35.1
-Rate of healing: 2.1
+Maximum energy of this droid: 35
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10
 Time spent eyeing Tux=2.75
@@ -264,11 +264,11 @@ Notes concerning this droid=_"Early type messenger robot. Large wheels impede mo
 Droidname: 420
 Default description:_"420 Surgeon"
 Droid uses portrait rotation series with prefix="420"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 4
 Drops item class=4
-Maximum energy of this droid: 40.1
-Rate of healing: 2.1
+Maximum energy of this droid: 40
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 300
 Aggression distance of this droid=10
 Time spent eyeing Tux=2.0
@@ -292,11 +292,11 @@ Notes concerning this droid=_"A slow maintenance robot. Confined to drive mainte
 Droidname: 476
 Default description:_"476 Coward"
 Droid uses portrait rotation series with prefix="476"
-Maximum speed of this droid: 3.1
+Maximum speed of this droid: 3
 Class of this droid: 4
 Drops item class=4
-Maximum energy of this droid: 15.1
-Rate of healing: 2.1
+Maximum energy of this droid: 15
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.0
@@ -320,11 +320,11 @@ Notes concerning this droid=_"Ship maintenance robot. Fitted with multiple arms 
 Droidname: 493
 Default description:_"493 Spinster"
 Droid uses portrait rotation series with prefix="493"
-Maximum speed of this droid: 3.1
+Maximum speed of this droid: 3
 Class of this droid: 4
 Drops item class=4
-Maximum energy of this droid: 80.1
-Rate of healing: 3.1
+Maximum energy of this droid: 80
+Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.75
@@ -348,11 +348,11 @@ Notes concerning this droid=_"Slave maintenance droid. Standard version will car
 Droidname: 516
 Default description:_"516 Ghoul"
 Droid uses portrait rotation series with prefix="516"
-Maximum speed of this droid: 3.6
+Maximum speed of this droid: 3.5
 Class of this droid: 5
 Drops item class=5
-Maximum energy of this droid: 70.1
-Rate of healing: 3.1
+Maximum energy of this droid: 70
+Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
@@ -376,11 +376,11 @@ Notes concerning this droid=_"Early crew droid. Able to carry out simple flight 
 Droidname: 571
 Default description:_"571 Apollo"
 Droid uses portrait rotation series with prefix="571"
-Maximum speed of this droid: 4.1
+Maximum speed of this droid: 4
 Class of this droid: 5
 Drops item class=5
-Maximum energy of this droid: 50.1
-Rate of healing: 3.1
+Maximum energy of this droid: 50
+Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 320
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
@@ -404,11 +404,11 @@ Notes concerning this droid=_"A standard crew droid. Supplied with the ship."
 Droidname: 598
 Default description:_"598 Minister"
 Droid uses portrait rotation series with prefix="598"
-Maximum speed of this droid: 3.1
+Maximum speed of this droid: 3
 Class of this droid: 5
 Drops item class=5
-Maximum energy of this droid: 120.1
-Rate of healing: 3.1
+Maximum energy of this droid: 120
+Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
@@ -432,11 +432,11 @@ Notes concerning this droid=_"A highly sophisticated device. Able to control the
 Droidname: 614
 Default description:_"614 Security Bot"
 Droid uses portrait rotation series with prefix="614"
-Maximum speed of this droid: 2.0
+Maximum speed of this droid: 2
 Class of this droid: 6
 Drops item class=6
-Maximum energy of this droid: 130.1
-Rate of healing: 3.1
+Maximum energy of this droid: 130
+Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 460
 Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.25
@@ -460,11 +460,11 @@ Notes concerning this droid=_"A low security sentinel droid. Used to protect are
 Droidname: 615
 Default description:_"615 Firedevil"
 Droid uses portrait rotation series with prefix="615"
-Maximum speed of this droid: 4.1
+Maximum speed of this droid: 4
 Class of this droid: 6
 Drops item class=6
-Maximum energy of this droid: 140.1
-Rate of healing: 3.1
+Maximum energy of this droid: 140
+Rate of healing: 3.5
 Experience_Reward gained for destroying one of this type: 500
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.25
@@ -488,11 +488,11 @@ Notes concerning this droid=_"Sophisticated sentinel droid. Only 2000 built by t
 Droidname: 629
 Default description:_"629 Spitfire"
 Droid uses portrait rotation series with prefix="629"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 6
 Drops item class=6
-Maximum energy of this droid: 160.1
-Rate of healing: 3.1
+Maximum energy of this droid: 160
+Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.0
@@ -516,11 +516,11 @@ Notes concerning this droid=_"A low sentinel droid. Lasers are built into the tu
 Droidname: 711
 Default description:_"711 Grillmeister"
 Droid uses portrait rotation series with prefix="711"
-Maximum speed of this droid: 5.1
+Maximum speed of this droid: 5
 Class of this droid: 7
 Drops item class=7
-Maximum energy of this droid: 180.1
-Rate of healing: 4.1
+Maximum energy of this droid: 180
+Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 650
 Aggression distance of this droid=16.12
 Time spent eyeing Tux=1.0
@@ -544,11 +544,11 @@ Notes concerning this droid=_"A heavy duty battle droid. Disruptor is built into
 Droidname: 742
 Default description:_"742 Zeus"
 Droid uses portrait rotation series with prefix="742"
-Maximum speed of this droid: 4.1
+Maximum speed of this droid: 4
 Class of this droid: 7
 Drops item class=7
-Maximum energy of this droid: 210.1
-Rate of healing: 4.1
+Maximum energy of this droid: 210
+Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 700
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.75
@@ -572,11 +572,11 @@ Notes concerning this droid=_"This version is the one mainly used by the militar
 Droidname: 751
 Default description:_"751 Soviet"
 Droid uses portrait rotation series with prefix="751"
-Maximum speed of this droid: 5.1
+Maximum speed of this droid: 5
 Class of this droid: 7
 Drops item class=7
-Maximum energy of this droid: 150.1
-Rate of healing: 4.1
+Maximum energy of this droid: 150
+Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 800
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.75
@@ -600,11 +600,11 @@ Notes concerning this droid=_"A very heavy duty battle droid. Only a few have so
 Droidname: 821
 Default description:_"821 Ufo"
 Droid uses portrait rotation series with prefix="821"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 8
 Drops item class=8
-Maximum energy of this droid: 200.1
-Rate of healing: 4.1
+Maximum energy of this droid: 200
+Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 1000
 Aggression distance of this droid=16.11
 Time spent eyeing Tux=0.5
@@ -628,11 +628,11 @@ Notes concerning this droid=_"A very reliable anti-grav unit is fitted into this
 Droidname: 834
 Default description:_"834 Wisp"
 Droid uses portrait rotation series with prefix="834"
-Maximum speed of this droid: 7.1
+Maximum speed of this droid: 7
 Class of this droid: 8
 Drops item class=8
-Maximum energy of this droid: 220.1
-Rate of healing: 4.1
+Maximum energy of this droid: 220
+Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 1200
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.5
@@ -656,11 +656,11 @@ Notes concerning this droid=_"Early type anti-grav security droid. Fitted with a
 Droidname: 883
 Default description:_"883 Dalex"
 Droid uses portrait rotation series with prefix="883"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 8
 Drops item class=8
-Maximum energy of this droid: 120.1
-Rate of healing: 4.1
+Maximum energy of this droid: 120
+Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 1500
 Force how many additional magic items to be dropped=1
 Aggression distance of this droid=16
@@ -685,11 +685,11 @@ Notes concerning this droid=_"This droid was designed from archive data. For som
 Droidname: 999
 Default description:_"999 Cerebrum"
 Droid uses portrait rotation series with prefix="999"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 9
 Drops item class=9
-Maximum energy of this droid: 300.1
-Rate of healing: 15.1
+Maximum energy of this droid: 300
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 2000
 Aggression distance of this droid=16.116
 Time spent eyeing Tux=0.25
@@ -713,11 +713,11 @@ Notes concerning this droid=_"Experimental command cyborg. Fitted with a new typ
 Droidname: PRO
 Default description:_"Older Man"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
@@ -736,11 +736,11 @@ Notes concerning this droid=_"This is a typical professor/sage character of some
 Droidname: GUA
 Default description:_"Red Guard"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=0.5
@@ -759,11 +759,11 @@ Notes concerning this droid=_"This is a typical red (male) guard/fighter charact
 Droidname: MUM
 Default description:_"Matron"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 3.1
+Maximum speed of this droid: 3
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
@@ -782,11 +782,11 @@ Notes concerning this droid=_"This is the hot_mama shopkeeper character model."
 Droidname: FSC
 Default description:_"Female Scientist"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 3.1
+Maximum speed of this droid: 3
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=3
@@ -805,11 +805,11 @@ Notes concerning this droid=_"This is the female scientist character model.  The
 Droidname: WOR
 Default description:_"Mine Worker"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
@@ -828,11 +828,11 @@ Notes concerning this droid=_"This is the brown worker model.  They are not arme
 Droidname: GUB
 Default description:_"Blue Brother"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=10
 Time spent eyeing Tux=0.5
@@ -851,11 +851,11 @@ Notes concerning this droid=_"This is a useless comment. Thanks for your attenti
 Droidname: COO
 Default description:_"Cook"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 3.1
+Maximum speed of this droid: 3
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=2
@@ -875,11 +875,11 @@ Notes concerning this droid=_"This is the cook."
 Droidname: KEV
 Default description:_"Balding Man"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=1.5
@@ -898,11 +898,11 @@ Notes concerning this droid=_"This is a typical professor/sage character of some
 Droidname: JAS
 Default description:_"Pretty Woman"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=3
@@ -921,11 +921,11 @@ Notes concerning this droid=_"This is a typical sex bomb.  This one is even arme
 Droidname: BAR
 Default description:_"Bartender"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=1
@@ -944,11 +944,11 @@ Notes concerning this droid=_"This is the bartender."
 Droidname: 543
 Default description:_"543 Forest Harvester"
 Droid uses portrait rotation series with prefix="harvester"
-Maximum speed of this droid: 2.1
+Maximum speed of this droid: 2
 Class of this droid: 5
 Drops item class=5
-Maximum energy of this droid: 300.1
-Rate of healing: 2.1
+Maximum energy of this droid: 300
+Rate of healing: 2
 Experience_Reward gained for destroying one of this type: 250
 Aggression distance of this droid=10.0
 Time spent eyeing Tux=1.0
@@ -967,12 +967,11 @@ Notes concerning this droid=_"Run away! This bot will kill you!"
 Droidname: FEM
 Default description:_"Female Hunter"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
-Maximum speed of this droid: 6.1
+Maximum speed of this droid: 6
 Class of this droid: 18
 Drops item class=9
-Maximum energy of this droid: 100.1
-Maximum mana of this droid: 100.1
-Rate of healing: 15.1
+Maximum energy of this droid: 100
+Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=8
 Time spent eyeing Tux=1.5
