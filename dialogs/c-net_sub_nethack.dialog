@@ -267,9 +267,9 @@ OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	-- Goddess/Gods don't give you a choice
 	random_var = math.random(3)
-	if (random_var == 1) then n_alignment = _"good"
-	elseif (random_var == 2) then n_alignment = _"chaotic"
-	elseif (random_var == 3) then n_alignment = _"evil"
+	if (random_var == 1) then n_alignment = _"a good"
+	elseif (random_var == 2) then n_alignment = _"a chaotic"
+	elseif (random_var == 3) then n_alignment = _"an evil"
 	end
 
 	random_var = math.random(3)
@@ -299,7 +299,7 @@ LuaCode={
 	if (n_ac<1) then n_ac = 0 end
 	if (n_tricks<1) then n_tricks = 1 end
 
-	npc_says(_"Hello, welcome to NetHack! You are a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
+	npc_says(_"Hello, welcome to NetHack! You are "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
 	npc_says(_"Your goddess, [b]"..n_god.._"[/b] desires the Amulet of Yendor, which the evil god [b]"..n_emgod.._"[/b] has hidden at the bottom of this dungeon.", "NO_WAIT")
 	npc_says(_"Return with the [b]Amulet of Yendor[/b], and you shall be rewarded!", "NO_WAIT")
 	npc_says(_"You are all alone on the surface. There is a stairway down.", "NO_WAIT")
@@ -463,7 +463,7 @@ LuaCode={
 			else
 				npc_says_random(_"The "..n_emname.._" casts change gender on you.", _"The "..n_emname.._" curses you.", _"The "..n_emname.._" casts a polymorph spell.", _"The Random Number God stikes you, changing your gender.", "NO_WAIT")
 				n_sex = _"male"
-				npc_says(_"You are now a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
+				npc_says(_"You are now "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
 				next(60)
 			end
 		else
@@ -562,20 +562,20 @@ LuaCode={
 				if (random_var == 1) then --become good
 					npc_says(_"You reform your wicked ways, and join the side of good.", "NO_WAIT")
 					npc_says_random(n_emgod.._" is unhappy about this.", n_god.._" likes this.", "NO_WAIT")
-					n_alignment = _"good"
+					n_alignment = _"a good"
 				elseif (random_var == 2) then --become evil
 					npc_says(_"The urge to sin fills you, you now are evil!", "NO_WAIT")
 					npc_says_random(n_emgod.._" is happy about this.", n_god.._" is unhappy about this.", "NO_WAIT")
-					n_alignment=_"evil"
+					n_alignment=_"an evil"
 				elseif (random_var == 3) then --become neutral
 					npc_says(_"You decide good and evil are too two sides of the same coin, so you take the coin.", "NO_WAIT") 
-					n_alignment = _"neutral"
+					n_alignment = _"a neutral"
 					npc_says(_"Both "..n_god.._" and "..n_emgod.._" don't know how to feel about this.", "NO_WAIT")
 				else --change gender
 					npc_says_random(_"You put on a tarnished belt, and you feel something strange happen.", _"You have been cursed.", _"You have been blessed.", _"You drink from a sparkling well, and something weird happens.", _"You try on the shiny necklace you find.", "NO_WAIT")
 					if (n_sex == _"female") then n_sex=_"male" else n_sex=_"female" end
 				end
-				npc_says(_"You are now a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
+				npc_says(_"You are now "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
 			end
 			n_emtype = 0 --no more monsters
 		else
