@@ -135,8 +135,8 @@ playground_t ActivationMap;
 playground_t CapsuleCountdown;
 
 void EvaluatePlayground(void);
-float EvaluatePosition(const int color, const int row, const int layer);
-float EvaluateCenterPosition(const int color, const int row, const int layer);
+float EvaluatePosition(const int color, const int row, const int layer, const int endgame);
+float EvaluateCenterPosition(const int color, const int row, const int layer, const int endgame);
 void AdvancedEnemyTakeoverMovements(const int countdown);
 
 static void ShowPlayground(void);
@@ -783,6 +783,10 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 	int BestTarget = -1;
 	float BestValue = (-10000);	// less than any capsule can have
 
+        int endgame = 0;
+        if (countdown < NumCapsules[ENEMY]*7)
+                endgame = 1;
+        
 #define TAKEOVER_MOVEMENT_DEBUG 1
 
 	if (NumCapsules[ENEMY] == 0)
@@ -791,7 +795,7 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 
         if (GameConfig.difficulty_level!= DIFFICULTY_EASY){  //disable AI waiting on easy
                 // Wait for the player to move
-          if ((LeaderColor!=YourColor) && ((NumCapsules[YOU]-NumCapsules[ENEMY])>=0) && (countdown > NumCapsules[ENEMY]*10) && (NumCapsules[ENEMY]<max_opponent_capsules))
+          if ((LeaderColor!=YourColor) && ((NumCapsules[YOU]-NumCapsules[ENEMY])>=0) && (!endgame) && (NumCapsules[ENEMY]<max_opponent_capsules))
                         return;
         }
         
@@ -799,15 +803,15 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 	// best choice for the next capsule setting.
 	//
 	for (test_row = 0; test_row < NUM_LINES; test_row++) {
-		test_value = EvaluatePosition(OpponentColor, test_row, 1);
-		if (test_value > BestValue) {
-			BestTarget = test_row;
-			BestValue = test_value;
-		}
+                test_value = EvaluatePosition(OpponentColor, test_row, 1, endgame) + 0.01*test_row;
+                if (test_value > BestValue) {
+                        BestTarget = test_row;
+                        BestValue = test_value;
+                }
 	}
 	DebugPrintf(TAKEOVER_MOVEMENT_DEBUG, "\nBest target row found : %d.", BestTarget);
 
-        if ((BestValue < 0.5) && (countdown > NumCapsules[ENEMY]*5)) //it isn't worth it
+        if ((BestValue < 0.5) && (!endgame) && (LeaderColor==OpponentColor)) //it isn't worth it
                 return;
         
 	// Now we can start to move into the right direction.
@@ -857,6 +861,7 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 			else
 			{
 				row += direction;
+                                return;
 			}
 		}
 		/* if MyRandom */
@@ -1391,7 +1396,7 @@ Starting to evaluate side nr. %d.  Results displayed below:\n", color);
 /* -----------------------------------------------------------------
  * This function Evaluates the AI side of the board for the takeover game
  * ----------------------------------------------------------------- */
-float EvaluatePosition(const int color, const int row, const int layer)
+float EvaluatePosition(const int color, const int row, const int layer, const int endgame)
 {
         int player = YOU;
         if (color != YourColor)
@@ -1410,15 +1415,24 @@ float EvaluatePosition(const int color, const int row, const int layer)
 
 	if (layer == NUM_LAYERS - 1) {
 		DebugPrintf(EVAL_DEBUG, "End layer reached...");
-		if (DisplayColumn[row] == color) {
-			DebugPrintf(EVAL_DEBUG, "same color... returning 0.5 ");
-			return (0.05*EvaluateCenterPosition(opp_color, row, layer));
+                if (IsActive(color, row)) {
+                        DebugPrintf(EVAL_DEBUG, "same color already active... returning 0.01 ");
+                        return (0.01*EvaluateCenterPosition(opp_color, row, layer, endgame));
+		} else if (DisplayColumn[row] == color) {
+			DebugPrintf(EVAL_DEBUG, "same color... returning 0.05 ");
+			return (0.05*EvaluateCenterPosition(opp_color, row, layer, endgame));
 		} else if (IsActive(opp_color, row)) {
 			DebugPrintf(EVAL_DEBUG, "different color, but active... returning 9 ");
-			return ((9 - (1 * NumCapsules[player]))*EvaluateCenterPosition(opp_color, row, layer));
+                        if (endgame)
+                                return (90*EvaluateCenterPosition(opp_color, row, layer, endgame));
+                        else
+                                return (8*EvaluateCenterPosition(opp_color, row, layer, endgame));
 		} else {
 			DebugPrintf(EVAL_DEBUG, "different color... returning 10 ");
-			return (10*EvaluateCenterPosition(opp_color, row, layer));
+                        if (endgame)
+                                return (100*EvaluateCenterPosition(opp_color, row, layer, endgame));
+                        else
+                                return (10*EvaluateCenterPosition(opp_color, row, layer, endgame));
 		}
 	}
 
@@ -1429,72 +1443,68 @@ float EvaluatePosition(const int color, const int row, const int layer)
 	switch (newElement) {
 	case CABLE:		/* has not to be set any more */
 		DebugPrintf(EVAL_DEBUG, "CABLE reached... continuing...");
-		return (EvaluatePosition(color, row, layer + 1));
-	case EMPTY:
-		DebugPrintf(EVAL_DEBUG, "EMPTY reached... stopping...");
-		return (0);
-		break;
-
-	case CABLE_END:
-		DebugPrintf(EVAL_DEBUG, "CABLE_END reached... returning now...");
-		return (0);
-		break;
+		return (EvaluatePosition(color, row, layer + 1, endgame));
 
 	case AMPLIFIER:
 		DebugPrintf(EVAL_DEBUG, "AMPLIFIER reached... continuing...");
-		return ((1 + (0.2 * NumCapsules[player])) * EvaluatePosition(color, row, layer + 1));
+                return ((1 + (0.2 * NumCapsules[player])) * EvaluatePosition(color, row, layer + 1, endgame));
 		break;
 
 	case COLOR_EXCHANGER:
 		DebugPrintf(EVAL_DEBUG, "COLOR_EXCHANGER reached... continuing...");
-		return (-1.5 * EvaluatePosition(color, row, layer + 1));
-		break;
-
-	case SEPARATOR_H:
-		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: SEPARATOR_H !!!\n");
-		return (0);
-		break;
-	case SEPARATOR_L:
-		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: SEPARATOR_L !!!\n");
-		return (0);
-		break;
-	case GATE_M:
-		DebugPrintf(EVAL_DEBUG, "\nERROR:  REACHED UNREACHABLE SPOT: GATE_M !!!\n");
-		return (0);
+                return (-1.5 * EvaluatePosition(color, row, layer + 1, endgame));
 		break;
 
 	case SEPARATOR_M:
 		DebugPrintf(EVAL_DEBUG, "SEPARATOR reached... double-continuing...");
-		return (EvaluatePosition(color, row + 1, layer + 1) + EvaluatePosition(color, row - 1, layer + 1));
+		return (EvaluatePosition(color, row + 1, layer + 1, endgame) + EvaluatePosition(color, row - 1, layer + 1, endgame));
 		break;
 
 	case GATE_H:
 		DebugPrintf(EVAL_DEBUG, "GATE reached... stopping...\n");
-		return (0.3 * EvaluatePosition(color, row + 1, layer + 1));
+                if (ActivationMap[color][layer][row + 2] >= ACTIVE1) {
+                        return (5 * EvaluatePosition(color, row + 1, layer + 1, endgame));
+                } else if (endgame) {
+                        return (0.5 * EvaluatePosition(color, row + 1, layer + 1, endgame));
+                } else {
+                        return (0.3 * EvaluatePosition(color, row + 1, layer + 1, endgame));
+                }
 		break;
 
 	case GATE_L:
 		DebugPrintf(EVAL_DEBUG, "GATE reached... stopping...\n");
-		return (0.3 * EvaluatePosition(color, row - 1, layer + 1));
+                if (ActivationMap[color][layer][row - 2] >= ACTIVE1) {
+                        return (5 * EvaluatePosition(color, row - 1, layer + 1, endgame));
+                } else if (endgame) {
+                        return (0.5 * EvaluatePosition(color, row - 1, layer + 1, endgame));
+                } else {
+                        return (0.3 * EvaluatePosition(color, row - 1, layer + 1, endgame));
+                }
 		break;
-
+        //treat the following cases the same:
+	case EMPTY:
+	case CABLE_END:
+	case SEPARATOR_H:
+	case SEPARATOR_L:
+	case GATE_M:
+		return (0);
+		break;
 	default:
 		DebugPrintf(EVAL_DEBUG, "\nUNHANDLED TILE reached\n");
 		break;
 
-	}			// switch NewElement 
-
+	}
 	return (0);
 
-};				// float EvaluatePosition ( col , row , layer )
+};
 
 /* -----------------------------------------------------------------
  * This function Evaluates the Player side of the board from AI perspective
  * ----------------------------------------------------------------- */
-float EvaluateCenterPosition(const int color, const int row, const int layer)
+float EvaluateCenterPosition(const int color, const int row, const int layer, const int endgame)
 {
-        int player = YOU;
-        if (color == YourColor)
+        int player = YOU;  //should match the color owner (and be opposite the AI)
+        if (color != YourColor)
                 player = ENEMY;
 
         int newElement;
@@ -1507,43 +1517,48 @@ float EvaluateCenterPosition(const int color, const int row, const int layer)
 
 	switch (newElement) {
 	case CABLE:		// has not to be set any more 
-		return (EvaluateCenterPosition(color, row, layer - 1));
-	case EMPTY:
-		return (1 + (0.2 * NumCapsules[player]));
-		break;
-	case CABLE_END:
-                return (1 + (0.2 * NumCapsules[player]));
-		break;
+		return (EvaluateCenterPosition(color, row, layer - 1, endgame));
 	case AMPLIFIER:
-		return ((1 - (0.1 * NumCapsules[player])) * EvaluateCenterPosition(color, row, layer - 1));
-		break;
-	case COLOR_EXCHANGER:
-		return (1 + (0.2 * NumCapsules[player]));
-		break;
-        case SEPARATOR_H: //correctly evaluating this may lead to an infinite loop, using 0.5
-                if (NumCapsules[player]>0)
-                        return ((0.53 - (0.02 * NumCapsules[player])) * EvaluateCenterPosition(color, row - 1, layer - 1) );
-                else
+                if (ActivationMap[color][layer+1][row] >= ACTIVE1) { //very low hope to take this over
+                        return (0.06);
+                } else if (endgame) {
                         return (1);
-		break;
-	case SEPARATOR_M:
-		return (1 + (0.2 * NumCapsules[player]));
+                } else { 
+                        return ((1 - (0.1 * NumCapsules[player])) * EvaluateCenterPosition(color, row, layer - 1, endgame));
+		}
+                break;
+        case SEPARATOR_H: //correctly evaluating this may lead to an infinite loop, using 0.5
+                if ((NumCapsules[player]>0) && (!endgame))
+                        return ((0.53 - (0.02 * NumCapsules[player])) * EvaluateCenterPosition(color, row - 1, layer - 1, endgame) );
+                else
+                        return (EvaluateCenterPosition(color, row - 1, layer - 1, endgame));
 		break;
 	case SEPARATOR_L:
-                if (NumCapsules[player]>0)
-                        return ((0.53 - (0.02 * NumCapsules[player])) * EvaluateCenterPosition(color, row + 1, layer - 1) );
+                if ((NumCapsules[player]>0) && (!endgame))
+                        return ((0.53 - (0.02 * NumCapsules[player])) * EvaluateCenterPosition(color, row + 1, layer - 1, endgame) );
+                else
+                        return (EvaluateCenterPosition(color, row + 1, layer - 1, endgame));
+		break;
+
+	case GATE_M:
+                if (!endgame)
+                        return ((0.5 + (0.09 * NumCapsules[player])) * (EvaluateCenterPosition(color, row + 1, layer - 1, endgame) + EvaluateCenterPosition(color, row - 1, layer - 1, endgame)));
                 else
                         return (1);
 		break;
-	case GATE_H:
-		return (1 + (0.2 * NumCapsules[player]));
-		break;
-	case GATE_M:
-		return ((0.5 + (0.09 * NumCapsules[player])) * (EvaluateCenterPosition(color, row + 1, layer - 1) + EvaluateCenterPosition(color, row - 1, layer - 1)));
-		break;
+
+        //Following cases act the same:
+        case COLOR_EXCHANGER:
+	case EMPTY:
+	case CABLE_END:
+	case SEPARATOR_M:
+       	case GATE_H:
 	case GATE_L:
-		return (1 + (0.2 * NumCapsules[player]));
-		break;              
+                if (!endgame)
+                        return (1 + (0.2 * NumCapsules[player]));
+                else
+                        return (1);
+                break;
 	default:
 		DebugPrintf(EVAL_DEBUG, "\nUNHANDLED TILE reached\n");
 		break;
@@ -1662,7 +1677,7 @@ void ProcessDisplayColumn(void)
 				DisplayColumn[row] = YELLOW;
 			continue;
 		}
-		// clearly magenta
+		// clearly purple
 		if ((ActivationMap[YELLOW][CLayer][row] == INACTIVE) && (ActivationMap[PURPLE][CLayer][row] >= ACTIVE1)) {
 			// change color?
 			if (ToPlayground[PURPLE][CLayer - 1][row] == COLOR_EXCHANGER)
