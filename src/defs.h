@@ -110,7 +110,6 @@ enum {
 #define FLOOR_TILES_VISIBLE_AROUND_TUX ((GameConfig . screen_width >= 1024 ? 13 : GameConfig . screen_width >= 800 ? 9 : 7))
 #define MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE 5
 #define MAX_ITEMS_PER_LEVEL 300
-#define MAX_MAP_LABELS_PER_LEVEL 100
 #define MAX_ITEMS_IN_INVENTORY 100
 #define MAX_ITEMS_IN_NPC_INVENTORY 20
 #define INVENTORY_GRID_WIDTH 10
@@ -1583,6 +1582,7 @@ enum faction_state {
 };
 
 #define ACCESS_OBSTACLE_EXTENSION(X,Y) ((struct obstacle_extension *)(X.arr))[Y]
+#define ACCESS_MAP_LABEL(X,Y) ((struct map_label_s *)(X.arr))[Y]
 
 enum obstacle_extension_type {
 	OBSTACLE_EXTENSION_LABEL = 30, // This extension indicates an obstacle label. The associated data is a const char * containing the label.

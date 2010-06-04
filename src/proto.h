@@ -819,4 +819,10 @@ int get_obstacle_index(level *, obstacle *);
 void add_obstacle_extension(level *, obstacle *, enum obstacle_extension_type, void *);
 void del_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
 void defrag_obstacle_array(level *);
+
+// map_label.c
+void add_map_label(level *, int, int, char *);
+void del_map_label(level *, const char *);
+struct map_label_s *get_map_label(level *, const char *);
+
 #endif

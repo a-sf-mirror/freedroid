@@ -404,78 +404,81 @@ void action_set_floor(Level EditLevel, int x, int y, int type)
 	action_push(ACT_TILE_FLOOR_SET, x, y, old);
 }
 
-static void action_change_map_label(level * EditLevel, int i, char *name)
+static int action_change_map_label(level *EditLevel, int i, char *name, int undoable)
 {
-	if (EditLevel->labels[i].pos.x != -1) {
-		int check_double;
-		if (name) {
-			for (check_double = 0; check_double < MAX_MAP_LABELS_PER_LEVEL; check_double++) {
-				if (!strcmp(name, EditLevel->labels[check_double].label_name)) {
-					ErrorMessage(__FUNCTION__, "\
-				    The label just entered did already exist on this map!  Deleting old entry in favour of the new one!", PLEASE_INFORM, IS_WARNING_ONLY);
-					i = check_double;
-					break;
-				}
-			}
-		}
-		action_push(ACT_SET_MAP_LABEL, i, EditLevel->labels[i].label_name);
-	} else {
-		action_push(ACT_SET_MAP_LABEL, i, NULL);
+	struct map_label_s *map_label;
+	char *old_label = NULL;
+
+	// If the map label exist, remove it
+	if (i < EditLevel->map_labels.size) {
+		// Get the map label
+		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
+
+		// Get the old label for undoable actions
+		old_label = map_label->label_name;
+
+		// Delete the map label
+		del_map_label(EditLevel, old_label);
 	}
-	if (name && strlen(name)) {
-		EditLevel->labels[i].label_name = name;
-		EditLevel->labels[i].pos.x = rintf(Me.pos.x - 0.5);
-		EditLevel->labels[i].pos.y = rintf(Me.pos.y - 0.5);
+
+	// Create the undo action if appropriate
+	if (undoable) {
+		action_push(ACT_SET_MAP_LABEL, i, old_label);
 	} else {
-		EditLevel->labels[i].label_name = ("NoLabelHere");
-		EditLevel->labels[i].pos.x = (-1);
-		EditLevel->labels[i].pos.y = (-1);
+		free(old_label);
 	}
+
+	// If the new label is empty, we are done
+	if (!name || !strlen(name))
+		return 0;
+
+	name = strdup(name);
+
+	// Create a new map label at the position of cursor
+	add_map_label(EditLevel, rintf(Me.pos.x - 0.5), rintf(Me.pos.y - 0.5), name);
+
+	return undoable;
 }
 
-void level_editor_action_change_map_label_user(level * EditLevel)
+void level_editor_action_change_map_label_user(level *EditLevel)
 {
-	char *NewCommentOnThisSquare;
+	struct map_label_s *map_label = NULL;
+	char *name = NULL;
+	char *old_label = "";
 	int i;
 
-	SetCurrentFont(FPS_Display_BFont);
+	// We check if a map label is already existing for this spot
+	for (i = 0; i < EditLevel->map_labels.size; i++) {
+		// Get the map label
+		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
-	// Now we see if a map label entry is existing already for this spot
-	//
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		if ((fabsf(EditLevel->labels[i].pos.x + 0.5 - Me.pos.x) < 0.5) &&
-		    (fabsf(EditLevel->labels[i].pos.y + 0.5 - Me.pos.y) < 0.5)) {
+		// When the map label is located at the position of the cursor
+		if ((fabsf(map_label->pos.x + 0.5 - Me.pos.x) < 0.5) && 
+			 (fabsf(map_label->pos.y + 0.5 - Me.pos.y) < 0.5)) {
+			// Get the old name of the map label
+			old_label = map_label->label_name;
 			break;
 		}
 	}
-	if (i >= MAX_MAP_LABELS_PER_LEVEL) {
-		NewCommentOnThisSquare =
-		    GetEditableStringInPopupWindow(1000,
-						   _
-						   ("\nNo existing map label entry for this position found...\n Please enter new label for this map position: \n\n"),
-						   "");
 
-		i = 0;
-		for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-			if (EditLevel->labels[i].pos.x == (-1))
-				break;
+	// Show popup window to enter a new map label
+	name = GetEditableStringInPopupWindow(1000, _("\nPlease enter map label: \n\n"), old_label);
+
+	if (name) {
+		// Then we must check if the new name of the map label already exists
+		// on this level
+		map_label = get_map_label(EditLevel, name);
+		if (map_label) {
+			// When the new name already exists, we must not create an other map
+			// label with the same name, but we want to display an alert window
+			alert_window(_("The new name of the map label already exists on this map, please choose an other name."));
+			free(name);
+			return;
 		}
-		if (i >= MAX_MAP_LABELS_PER_LEVEL) {
-			DisplayText(_("\nNo more free map label entry found... using first on instead ...\n"), -1, -1, &User_Rect, 1.0);
-			i = 0;
-		} else {
-			DisplayText(_("\nUsing new map label list entry...\n"), -1, -1, &User_Rect, 1.0);
-		}
-		// Terminate( ERR );
-	} else {
-		NewCommentOnThisSquare =
-		    GetEditableStringInPopupWindow(1000,
-						   _
-						   ("\nOverwriting existing map label list entry...\n Please enter new label for this map position: \n\n"),
-						   EditLevel->labels[i].label_name);
+
+		action_change_map_label(EditLevel, i, name, 1);
+		free(name);
 	}
-	if (NewCommentOnThisSquare)
-		action_change_map_label(EditLevel, i, NewCommentOnThisSquare);
 }
 
 /**
@@ -518,7 +521,7 @@ static void action_do(level * level, action * a)
 		action_change_obstacle_label(level, a->d.change_obstacle_name.obstacle, a->d.change_obstacle_name.new_name, 1);
 		break;
 	case ACT_SET_MAP_LABEL:
-		action_change_map_label(level, a->d.change_label_name.id, a->d.change_label_name.new_name);
+		action_change_map_label(level, a->d.change_label_name.id, a->d.change_label_name.new_name, 1);
 		break;
 	case ACT_JUMP_TO_LEVEL:
 		action_jump_to_level(a->d.jump_to_level.target_level, a->d.jump_to_level.x, a->d.jump_to_level.y);
@@ -663,13 +666,6 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->obstacle_list[i].pos.z = level_num;
 	}
 
-	// Now we initialize the map labels array with 'empty' information
-	//
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		NewLevel->labels[i].pos.x = (-1);
-		NewLevel->labels[i].pos.y = (-1);
-		NewLevel->labels[i].label_name = "no_label_defined";
-	}
 	// Now we add empty waypoint information...
 	//
 	NewLevel->num_waypoints = 0;
@@ -694,6 +690,9 @@ void CreateNewMapLevel(int level_num)
 
 	// Initialize obstacle extensions
 	dynarray_init(&NewLevel->obstacle_extensions, 10, sizeof(struct obstacle_extension));
+
+	// Initialize map labels
+	dynarray_init(&NewLevel->map_labels, 10, sizeof(struct map_label_s));
 
 	curShip.AllLevels[level_num] = NewLevel;
 

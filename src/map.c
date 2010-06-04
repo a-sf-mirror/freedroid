@@ -178,30 +178,29 @@ void respawn_level(int level_num)
  * should be a function to conveniently resolve a given label within a
  * given map.  That's what this function is supposed to do.
  */
-static void ResolveMapLabelOnLevel(const char *MapLabel, location * PositionPointer, int LevelNum)
+static void resolve_map_label_on_level(const char *label_name, location *position_pointer, int level_num)
 {
-	Level ResolveLevel = curShip.AllLevels[LevelNum];
-	int i;
+	level *lvl = curShip.AllLevels[level_num];
+	struct map_label_s *map_label;
 
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		if (ResolveLevel->labels[i].pos.x == (-1))
-			continue;
-
-		if (!strcmp(ResolveLevel->labels[i].label_name, MapLabel)) {
-			PositionPointer->x = ResolveLevel->labels[i].pos.x + 0.5;
-			PositionPointer->y = ResolveLevel->labels[i].pos.y + 0.5;
-			PositionPointer->level = LevelNum;
-			DebugPrintf(1, "\nResolving map label '%s' succeeded: pos.x=%d, pos.y=%d, pos.z=%d.",
-				    MapLabel, PositionPointer->x, PositionPointer->y, PositionPointer->level);
-			return;
-		}
+	// Get the map label on this level
+	map_label = get_map_label(lvl, label_name);
+	if (map_label) {
+		// The map label has been found, we must resolve it
+		position_pointer->x = map_label->pos.x + 0.5;
+		position_pointer->y = map_label->pos.y + 0.5;
+		position_pointer->level = level_num;
+		
+		DebugPrintf(1, "\nResolving map label '%s' succeeded: pos.x=%d, pos.y=%d, pos.z=%d.",
+			    label_name, position_pointer->x, position_pointer->y, position_pointer->level);
+		return;
 	}
 
-	PositionPointer->x = -1;
-	PositionPointer->y = -1;
-	PositionPointer->level = -1;
-	DebugPrintf(1, "\nResolving map label '%s' failed on level %d.", MapLabel, LevelNum);
-};				// void ResolveMapLabel ( char* MapLabel , grob_point* PositionPointer )
+	position_pointer->x = -1;
+	position_pointer->y = -1;
+	position_pointer->level = -1;
+	DebugPrintf(1, "\nResolving map label '%s' failed on level %d.", label_name, level_num);
+}
 
 /**
  * This is the ultimate function to resolve a given label within a
@@ -223,7 +222,7 @@ void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer)
 	for (i = 0; i < curShip.num_levels; i++) {
 		if (curShip.AllLevels[i] == NULL)
 			continue;
-		ResolveMapLabelOnLevel(MapLabel, PositionPointer, i);
+		resolve_map_label_on_level(MapLabel, PositionPointer, i);
 
 		if (PositionPointer->x != (-1))
 			return;
@@ -451,60 +450,46 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
  * Next we extract the map labels of this level WITHOUT destroying
  * or damaging the data in the process!
  */
-static char *decode_map_labels(level *loadlevel, char *DataPointer)
+static char *decode_map_labels(level *loadlevel, char *data)
 {
-	int i;
-	char PreservedLetter;
-	char *MapLabelPointer;
-	char *MapLabelSectionBegin;
-	char *MapLabelSectionEnd;
-	int NumberOfMapLabelsInThisLevel;
+	char *label_name;
+	int i, x, y;
 
-	// First we initialize the map labels array with 'empty' information
-	//
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		loadlevel->labels[i].pos.x = (-1);
-		loadlevel->labels[i].pos.y = (-1);
-		if (loadlevel->labels[i].label_name != NULL) {
-			free(loadlevel->labels[i].label_name);
-			loadlevel->labels[i].label_name = NULL;
-		}
-		loadlevel->labels[i].label_name = "no_label_defined";
-	}
+	// Initialize map labels
+	dynarray_init(&loadlevel->map_labels, 10, sizeof(struct map_label_s));
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
-		return DataPointer;
+		return data;
 
 	// Now we look for the beginning and end of the map labels section
-	//
-	MapLabelSectionBegin = LocateStringInData(DataPointer, MAP_LABEL_BEGIN_STRING) + strlen(MAP_LABEL_BEGIN_STRING) + 1;
-	MapLabelSectionEnd = LocateStringInData(MapLabelSectionBegin, MAP_LABEL_END_STRING);
+	char *map_label_begin = LocateStringInData(data, MAP_LABEL_BEGIN_STRING) + strlen(MAP_LABEL_BEGIN_STRING) + 1;
+	char *map_label_end = LocateStringInData(map_label_begin, MAP_LABEL_END_STRING);
+	*map_label_end = '\0';
 
-	// We add a terminator at the end, but ONLY TEMPORARY.  The damage will be restored later!
-	//
-	PreservedLetter = MapLabelSectionEnd[0];
-	MapLabelSectionEnd[0] = 0;
-	NumberOfMapLabelsInThisLevel = CountStringOccurences(MapLabelSectionBegin, LABEL_ITSELF_ANNOUNCE_STRING);
-	DebugPrintf(1, "\nNumber of map labels found in this level : %d.", NumberOfMapLabelsInThisLevel);
+	// Get the number of map labels in this level
+	int nb_map_labels_in_level = CountStringOccurences(map_label_begin, LABEL_ITSELF_ANNOUNCE_STRING);
+	DebugPrintf(1, "\nNumber of map labels found in this level : %d.", nb_map_labels_in_level);
 
 	// Now we decode all the map label information
-	//
-	MapLabelPointer = MapLabelSectionBegin;
-	for (i = 0; i < NumberOfMapLabelsInThisLevel; i++) {
+	for (i = 0; i < nb_map_labels_in_level ; i++) {
 		if (i)
-			MapLabelPointer = strstr(MapLabelPointer + 1, X_POSITION_OF_LABEL_STRING);
-		ReadValueFromString(MapLabelPointer, X_POSITION_OF_LABEL_STRING, "%d", &(loadlevel->labels[i].pos.x), MapLabelSectionEnd);
-		ReadValueFromString(MapLabelPointer, Y_POSITION_OF_LABEL_STRING, "%d", &(loadlevel->labels[i].pos.y), MapLabelSectionEnd);
-		loadlevel->labels[i].label_name = ReadAndMallocStringFromData(MapLabelPointer, LABEL_ITSELF_ANNOUNCE_STRING, "\"");
+			map_label_begin = strstr(map_label_begin + 1, X_POSITION_OF_LABEL_STRING);
 
-		DebugPrintf(1, "\npos.x=%d pos.y=%d label_name=\"%s\"", loadlevel->labels[i].pos.x,
-			    loadlevel->labels[i].pos.y, loadlevel->labels[i].label_name);
+		// Get the position of the map label
+		ReadValueFromString(map_label_begin, X_POSITION_OF_LABEL_STRING, "%d", &x, map_label_end);
+		ReadValueFromString(map_label_begin, Y_POSITION_OF_LABEL_STRING, "%d", &y, map_label_end);
+
+		// Get the name of the map label
+		label_name = ReadAndMallocStringFromData(map_label_begin, LABEL_ITSELF_ANNOUNCE_STRING, "\"");
+
+		// Add the map label on the level
+		add_map_label(loadlevel, x, y, label_name);
+
+		DebugPrintf(1, "\npos.x=%d pos.y=%d label_name=\"%s\"", x, y, label_name);
 	}
 
-	// Now we repair the damage done to the loaded level data
-	//
-	MapLabelSectionEnd[0] = PreservedLetter;
-	return MapLabelSectionEnd;
+	*map_label_end = MAP_LABEL_END_STRING[0];
+	return map_label_end;
 }
 
 static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *TargetItem)
@@ -1392,17 +1377,20 @@ static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *L
 	autostr_append(shipstr, "%s\n", OBSTACLE_DATA_END_STRING);
 }
 
-static void EncodeMapLabelsOfThisLevel(struct auto_string *shipstr, level *Lev)
+static void encode_map_labels(struct auto_string *shipstr, level *lvl)
 {
 	int i;
+	struct map_label_s *map_label;
+
 	autostr_append(shipstr, "%s\n", MAP_LABEL_BEGIN_STRING);
 
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		if (Lev->labels[i].pos.x == (-1))
-			continue;
+	for (i = 0; i < lvl->map_labels.size; i++) {
+		// Get the map label
+		map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
 
-		autostr_append(shipstr, "%s%d %s%d %s%s\"\n", X_POSITION_OF_LABEL_STRING, Lev->labels[i].pos.x, Y_POSITION_OF_LABEL_STRING,
-				            Lev->labels[i].pos.y, LABEL_ITSELF_ANNOUNCE_STRING, Lev->labels[i].label_name);
+		// Encode map label
+		autostr_append(shipstr, "%s%d %s%d %s%s\"\n", X_POSITION_OF_LABEL_STRING, map_label->pos.x, Y_POSITION_OF_LABEL_STRING,
+				            map_label->pos.y, LABEL_ITSELF_ANNOUNCE_STRING, map_label->label_name);
 	}
 
 	autostr_append(shipstr, "%s\n", MAP_LABEL_END_STRING);
@@ -1656,7 +1644,7 @@ use underground lighting: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->x
 	if (!(reset_random_levels && lvl->random_dungeon)) {
 		encode_obstacles_of_this_level(shipstr, lvl);
 
-		EncodeMapLabelsOfThisLevel(shipstr, lvl);
+		encode_map_labels(shipstr, lvl);
 
 		EncodeItemSectionOfThisLevel(shipstr, lvl);
 

@@ -200,13 +200,6 @@ void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 	} 
 }
 
-static void add_label(int labelnum, int posx, int posy, char *name)
-{
-	target_level->labels[labelnum].pos.x = posx;
-	target_level->labels[labelnum].pos.y = posy;
-	target_level->labels[labelnum].label_name = name;
-}
-
 static void add_teleport(int telnum, int x, int y)
 {
 	char *warp, *fromwarp;
@@ -219,9 +212,8 @@ static void add_teleport(int telnum, int x, int y)
 	fromwarp = strdup(tmp);
 
 	add_obstacle(x, y, ISO_TELEPORTER_1);
-	add_label(telnum * 2, x, y, warp);
-	add_label(telnum * 2 + 1, x + 1, y, fromwarp);
-
+	add_map_label(target_level, x, y, warp);
+	add_map_label(target_level, x + 1, y, fromwarp);
 }
 
 void mapgen_entry_at(struct roominfo *r)

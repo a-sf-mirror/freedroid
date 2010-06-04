@@ -199,33 +199,37 @@ void move_obstacles_and_items_west_east(float by_what, level * edit_level)
  * When a new line is inserted or removed at north of a map, the map labels must move
  * too with the rest of the map.
  */
-static void MoveMapLabelsNorthSouth(int ByWhat, level *EditLevel)
+static void move_map_labels_north_south(int ByWhat, level *EditLevel)
 {
+	struct map_label_s *map_label;
 	int i;
 
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		if (EditLevel->labels[i].pos.x <= (-1))
-			continue;
-		EditLevel->labels[i].pos.y += ByWhat;
-	}
+	for (i = 0; i < EditLevel->map_labels.size; i++) {
+		// Get the map label
+		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
-};				// void MoveMapLabelsSouthOf ( int FromWhere , int ByWhat, level *EditLevel)
+		// Move map labels on the vertical axis
+		map_label->pos.y += ByWhat;
+	}
+}
 
 /**
  * When a new column is inserted or removed at west of a map, the map labels must move
  * too with the rest of the map.
  */
-static void MoveMapLabelsWestEast(int ByWhat, level *EditLevel)
+static void move_map_labels_west_east(int ByWhat, level *EditLevel)
 {
+	struct map_label_s *map_label;
 	int i;
 
-	for (i = 0; i < MAX_MAP_LABELS_PER_LEVEL; i++) {
-		if (EditLevel->labels[i].pos.x <= (-1))
-			continue;
-		EditLevel->labels[i].pos.x += ByWhat;
-	}
+	for (i = 0; i < EditLevel->map_labels.size; i++) {
+		// Get the map label
+		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
-};				// void MoveMapLabelsWestEast(int ByWhat, level *EditLevel)
+		// Move map labels on the horizontal axis
+		map_label->pos.x += ByWhat;
+	}
+}
 
 /**
  * When a new line is inserted or removed at north of a map, the waypoints must move
@@ -278,7 +282,7 @@ void InsertLineVeryNorth(level * EditLevel)
 
 	// Now we also have to shift the position of all elements
 	MoveWaypointsNorthSouth(+1, EditLevel);
-	MoveMapLabelsNorthSouth(+1, EditLevel);
+	move_map_labels_north_south(+1, EditLevel);
 	move_obstacles_and_items_north_south(+1, EditLevel);
 
 }				// void InsertLineVeryNorth ( EditLevel )
@@ -345,7 +349,7 @@ void InsertColumnVeryWest(level * EditLevel)
 
 	// Now we also have to shift the position of all elements
 	MoveWaypointsWestEast(+1, EditLevel);
-	MoveMapLabelsWestEast(+1, EditLevel);
+	move_map_labels_west_east(+1, EditLevel);
 	move_obstacles_and_items_west_east(+1, EditLevel);
 	
 }				// void InsertColumnVeryWest ( EditLevel )
@@ -373,7 +377,7 @@ void RemoveColumnVeryWest(level *EditLevel)
 	EditLevel->xlen--;
 
 	MoveWaypointsWestEast(-1, EditLevel);
-	MoveMapLabelsWestEast(-1, EditLevel);
+	move_map_labels_west_east(-1, EditLevel);
 
 	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 
@@ -402,7 +406,7 @@ void RemoveLineVeryNorth(level * EditLevel)
 	// Now we have the waypoints moved as well
 	//
 	MoveWaypointsNorthSouth(-1, EditLevel);
-	MoveMapLabelsNorthSouth(-1, EditLevel);
+	move_map_labels_north_south(-1, EditLevel);
 
 	// And finally, re-glue all obstacles to the new map
 	//

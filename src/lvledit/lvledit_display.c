@@ -78,25 +78,31 @@ static void gps_show() {
 /**
  * Now we print out the map label information about this map location.
  */
-static void PrintMapLabelInformationOfThisSquare(level * EditLevel)
+static void print_label_information(level *EditLevel)
 {
-	int MapLabelIndex;
 	char PanelText[5000] = "";
+	struct map_label_s *map_label;
+	int i;
 
-	for (MapLabelIndex = 0; MapLabelIndex < MAX_MAP_LABELS_PER_LEVEL; MapLabelIndex++) {
-		if ((fabsf(Me.pos.x - (EditLevel->labels[MapLabelIndex].pos.x + 0.5)) <= 0.5) &&
-		    (fabsf(Me.pos.y - (EditLevel->labels[MapLabelIndex].pos.y + 0.5)) <= 0.5))
-			break;
+	for (i = 0; i < EditLevel->map_labels.size; i++) {
+		// Get the map label
+		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
+
+		if ((fabsf(Me.pos.x - (map_label->pos.x + 0.5)) <= 0.5) && 
+			 (fabsf(Me.pos.y - (map_label->pos.y + 0.5)) <= 0.5)) {
+			// When a map label is located at the same position than the cursor,
+			// we must print the map label information
+
+			// Create the map label information
+			sprintf(PanelText, _("\n Map label information: \n label_name=\"%s\"."), map_label->label_name);
+
+			// Display the map label information on the screen
+			DisplayText(PanelText, User_Rect.x, GameConfig.screen_height - 5 * FontHeight(GetCurrentFont()), NULL, 1.0);
+
+			return;
+		}
 	}
-
-	if (MapLabelIndex >= MAX_MAP_LABELS_PER_LEVEL)
-		return;
-
-	sprintf(PanelText, _("\n Map label information: \n label_name=\"%s\"."), EditLevel->labels[MapLabelIndex].label_name);
-
-	DisplayText(PanelText, User_Rect.x, GameConfig.screen_height - 5 * FontHeight(GetCurrentFont()), NULL /*&User_Rect */ , 1.0);
-
-};				// void PrintMapLabelInformationOfThisSquare (level *EditLevel )
+}
 
 /**
  * This function is used by thelevel *Editor integrated into 
@@ -140,7 +146,7 @@ static void Highlight_Current_Block(int mask)
 			blit_iso_image_to_map_position(&level_editor_cursor, Me.pos.x, Me.pos.y);
 	}
 
-	PrintMapLabelInformationOfThisSquare(EditLevel);
+	print_label_information(EditLevel);
 
 }				// void Highlight_Current_Block(void)
 
@@ -321,19 +327,18 @@ static void ShowWaypoints(int PrintConnectionList, int mask)
  * This function is used by thelevel *Editor integrated into 
  * freedroid.  It marks all places that have a label attached to them.
  */
-static void ShowMapLabels(int mask)
+static void show_map_labels(int mask)
 {
-	int LabelNr;
-	level *EditLevel;
 	static iso_image map_label_indicator = UNLOADED_ISO_IMAGE;
 	static int first_function_call = TRUE;
 	char fpath[2048];
-	EditLevel = curShip.AllLevels[Me.pos.z];
+	level *EditLevel = curShip.AllLevels[Me.pos.z];
+	struct map_label_s *map_label;
+	int i;
 
 	// On the first function call to this function, we must load the map label indicator
 	// iso image from the disk to memory and keep it there as static.  That should be
 	// it for here.
-	//
 	if (first_function_call) {
 		first_function_call = FALSE;
 		find_file("level_editor_map_label_indicator.png", GRAPHICS_DIR, fpath, 0);
@@ -342,32 +347,31 @@ static void ShowMapLabels(int mask)
 		if (use_open_gl)
 			make_texture_out_of_surface(&map_label_indicator);
 	}
+
 	// Now we can draw a fine indicator at all the position nescessary...
-	//
-	for (LabelNr = 0; LabelNr < MAX_MAP_LABELS_PER_LEVEL; LabelNr++) {
-		if (EditLevel->labels[LabelNr].pos.x == (-1))
-			continue;
+	for (i = 0; i < EditLevel->map_labels.size; i++) {	
+		// Get the map label
+		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
 		if (!(mask && ZOOM_OUT)) {
 			if (use_open_gl)
-				draw_gl_textured_quad_at_map_position(&map_label_indicator, EditLevel->labels[LabelNr].pos.x + 0.5,
-								      EditLevel->labels[LabelNr].pos.y + 0.5, 1.0, 1.0, 1.0, FALSE, FALSE,
+				draw_gl_textured_quad_at_map_position(&map_label_indicator, map_label->pos.x + 0.5,
+								      map_label->pos.y + 0.5, 1.0, 1.0, 1.0, FALSE, FALSE,
 								      1.);
 			else
-				blit_iso_image_to_map_position(&map_label_indicator, EditLevel->labels[LabelNr].pos.x + 0.5,
-							       EditLevel->labels[LabelNr].pos.y + 0.5);
+				blit_iso_image_to_map_position(&map_label_indicator, map_label->pos.x + 0.5,
+							       map_label->pos.y + 0.5);
 		} else {
 			if (use_open_gl)
-				draw_gl_textured_quad_at_map_position(&map_label_indicator, EditLevel->labels[LabelNr].pos.x + 0.5,
-								      EditLevel->labels[LabelNr].pos.y + 0.5, 1.0, 1.0, 1.0, 0.25, FALSE,
+				draw_gl_textured_quad_at_map_position(&map_label_indicator, map_label->pos.x + 0.5,
+								      map_label->pos.y + 0.5, 1.0, 1.0, 1.0, 0.25, FALSE,
 								      lvledit_zoomfact_inv());
 			else
-				blit_zoomed_iso_image_to_map_position(&(map_label_indicator), EditLevel->labels[LabelNr].pos.x + 0.5,
-								      EditLevel->labels[LabelNr].pos.y + 0.5);
+				blit_zoomed_iso_image_to_map_position(&(map_label_indicator), map_label->pos.x + 0.5,
+								      map_label->pos.y + 0.5);
 		}
 	}
-
-};				// void ShowMapLabels( void );
+}
 
 /**
  * When the mouse has rested idle on some mouse button in the level 
@@ -562,7 +566,7 @@ void leveleditor_display()
 			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR);
 
 	ShowWaypoints(FALSE, ZOOM_OUT * GameConfig.zoom_is_on);
-	ShowMapLabels(ZOOM_OUT * GameConfig.zoom_is_on);
+	show_map_labels(ZOOM_OUT * GameConfig.zoom_is_on);
 	Highlight_Current_Block(ZOOM_OUT * GameConfig.zoom_is_on);
 	gps_show();
 

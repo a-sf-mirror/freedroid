@@ -816,12 +816,12 @@ typedef struct level_s {
 
 	obstacle obstacle_list[MAX_OBSTACLES_ON_MAP];
 
-	map_label labels[MAX_MAP_LABELS_PER_LEVEL];
 	int num_waypoints;
 	waypoint AllWaypoints[MAXWAYPOINTS];
 	item ItemList[MAX_ITEMS_PER_LEVEL];
 
 	struct dynarray obstacle_extensions;
+	struct dynarray map_labels;
 } level, *Level;
 
 typedef struct obstacle_spec_s {
