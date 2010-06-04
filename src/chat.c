@@ -46,9 +46,8 @@
 char *chat_initialization_code;	//first time with a character-code
 char *chat_startup_code;	//every time we start this dialog-code
 EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
-struct auto_string *chat_log;
 
-static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log);
+static void run_chat(enemy *ChatDroid, int is_subdialog);
 
 /**
  * This function resets a dialog option to "empty" default values. It does NOT free the strings, this has to be done
@@ -451,35 +450,17 @@ chat interface of Freedroid.  But:  Loading this file has ALSO failed.", PLEASE_
 	} else
 		chat_portrait_of_droid[model_number].surface = Large_Droid;
 
-};				// void make_sure_chat_portraits_loaded_for_this_droid ( Enemy this_droid )
+}
 
-/**
- * This function prepares the chat background window and displays the
- * image of the dialog partner and also sets the right font.
- */
-static void PrepareMultipleChoiceDialog(Enemy ChatDroid, int with_flip)
+static void show_chat_up_button(void)
 {
-	// The dialog will always take more than a few seconds to process
-	// so we need to prevent framerate distortion...
-	//
-	Activate_Conservative_Frame_Computation();
+	ShowGenericButtonFromList(CHAT_LOG_SCROLL_UP_BUTTON);
+}
 
-	// We make sure that all the chat portraits we might need are
-	// loaded....
-	//
-	make_sure_chat_portraits_loaded_for_this_droid(ChatDroid);
-
-	// We select small font for the menu interaction...
-	//
-	SetCurrentFont(FPS_Display_BFont);
-
-	blit_special_background(CHAT_DIALOG_BACKGROUND_PICTURE_CODE);
-	our_SDL_blit_surface_wrapper(chat_portrait_of_droid[ChatDroid->type].surface, NULL, Screen, &Droid_Image_Window);
-
-	if (with_flip)
-		our_SDL_flip_wrapper();
-
-};				// void PrepareMultipleChoiceDialog ( int Enum )
+static void show_chat_down_button(void)
+{
+	ShowGenericButtonFromList(CHAT_LOG_SCROLL_DOWN_BUTTON);
+}
 
 /**
  * During the Chat with a friendly droid or human, there is a window with
@@ -487,67 +468,17 @@ static void PrepareMultipleChoiceDialog(Enemy ChatDroid, int with_flip)
  * here to display said text window and it's content, scrolled to the
  * position desired by the player himself.
  */
-void display_current_chat_log(enemy *ChatDroid, int with_update)
+void show_chat_log(enemy *chat_enemy)
 {
-	const SDL_Rect Subtitle_Window = {.x = CHAT_SUBDIALOG_WINDOW_X,
-		.y = CHAT_SUBDIALOG_WINDOW_Y,
-		.w = CHAT_SUBDIALOG_WINDOW_W,
-		.h = CHAT_SUBDIALOG_WINDOW_H
-	};
-	int lines_needed;
-	int log_offset;
+	blit_special_background(CHAT_DIALOG_BACKGROUND_PICTURE_CODE);
+	our_SDL_blit_surface_wrapper(chat_portrait_of_droid[chat_enemy->type].surface, NULL, Screen, &Droid_Image_Window);
 
-#define LINES_IN_LOG_WINDOW (int)(CHAT_SUBDIALOG_WINDOW_H / (FontHeight(GetCurrentFont()) * TEXT_STRETCH))
+	chat_log.content_above_func = show_chat_up_button;
+	chat_log.content_below_func = show_chat_down_button;
+	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF_BUTTON);
+	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF2_BUTTON);
 
-	SetCurrentFont(FPS_Display_BFont);
-
-	lines_needed = get_lines_needed(chat_log->value, Subtitle_Window, TEXT_STRETCH) - 1;
-
-	if (lines_needed <= LINES_IN_LOG_WINDOW) {
-		// When there isn't anything to scroll yet, we keep the default
-		// position and also the users clicks on up/down button will be
-		// reset immediately
-		log_offset = 0;
-		chat_log_scroll_override_from_user = 0;
-	} else {
-		// prevent the user from scrolling down too far
-		if (chat_log_scroll_override_from_user >= 0)
-			chat_log_scroll_override_from_user = 0;
-
-		log_offset = ((int)(FontHeight(GetCurrentFont()) * TEXT_STRETCH) *
-				   (lines_needed - LINES_IN_LOG_WINDOW + chat_log_scroll_override_from_user));
-	}
-
-	// Prevent the player from scrolling 
-	// too high (negative log offset)
-	//
-	if (log_offset < 0) {
-		// Set the scroll override value as if the user had stopped
-		// scrolling when they hit the top of the box - in essence,
-		// preventing the user from scrolling up too far.
-		chat_log_scroll_override_from_user = -lines_needed + LINES_IN_LOG_WINDOW;
-		log_offset = 0;
-	}
-	// Now we need to clear this window, cause there might still be some
-	// garbage from the previous subtitle in there...
-	//
-	PrepareMultipleChoiceDialog(ChatDroid, FALSE);
-
-	// Now we can display the text and update the screen...
-	//
-	SDL_SetClipRect(Screen, NULL);
-	DisplayText(chat_log->value, Subtitle_Window.x, Subtitle_Window.y - log_offset, &Subtitle_Window, TEXT_STRETCH);
-	if (log_offset > 0)
-		ShowGenericButtonFromList(CHAT_LOG_SCROLL_UP_BUTTON);
-	else
-		ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF_BUTTON);
-	if (lines_needed <= LINES_IN_LOG_WINDOW || chat_log_scroll_override_from_user >= 0)
-		ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF2_BUTTON);
-	else
-		ShowGenericButtonFromList(CHAT_LOG_SCROLL_DOWN_BUTTON);
-
-	if (with_update)
-		our_SDL_flip_wrapper();
+	show_text_widget(&chat_log);
 }
 
 /**
@@ -587,14 +518,18 @@ void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, e
 	int do_display = 1;
 	int do_wait = 1;
 
-	autostr_append(chat_log, SubtitleText);
+	autostr_append(chat_log.text, SubtitleText);
+	chat_log.scroll_offset = 0;
 
 	if (!strcmp(SampleFilename, "NO_WAIT")) {
 		do_wait = 0;
 	}
 
-	if (do_display)
-		display_current_chat_log(ChatDroid, with_update);
+	if (do_display) {
+		show_chat_log(ChatDroid);
+		if (with_update)
+			our_SDL_flip_wrapper();
+	}
 
 	if (do_wait)
 		wait_for_click();
@@ -627,7 +562,7 @@ void run_subdialog(const char *tmp_filename)
 	if (chat_initialization_code)
 		run_lua(chat_initialization_code);
 
-	DoChatFromChatRosterData(chat_control_chat_droid, FALSE);
+	run_chat(chat_control_chat_droid, TRUE);
 
 	push_or_pop_chat_roster(POP_ROSTER);
 
@@ -655,10 +590,9 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 	// by any reply.  This case must also be caught.
 	//
 	if (strcmp(ChatRoster[MenuSelection].option_sample_file_name, "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER")) {
-		autostr_append(chat_log, "\1- ");
+		autostr_append(chat_log.text, "\n\1- ");
 		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
 				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
-		autostr_append(chat_log, "\n\2");
 	}
 	// Now we can proceed to execute
 	// the rest of the reply that has been set up for this (the now maybe modified)
@@ -685,7 +619,7 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
  * disk, this function is invoked to handle the actual chat interaction
  * and the dialog flow.
  */
-static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log)
+static void run_chat(enemy *ChatDroid, int is_subdialog)
 {
 	int i;
 	char *DialogMenuTexts[MAX_ANSWERS_PER_PERSON];
@@ -695,18 +629,19 @@ static void DoChatFromChatRosterData(enemy *ChatDroid, int clear_log)
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
 
-	// We should always clear the chat log, with the exception of SUBDIALOGS
-	if (clear_log) {
-		if (chat_log == NULL)
-			chat_log = alloc_autostr(5000);
-		chat_log->length = 0;
-		autostr_printf(chat_log, "\2");
-		autostr_append(chat_log, _("--- Start of Dialog ---\n"));
-		chat_log_scroll_override_from_user = 0;
-		SetCurrentFont(FPS_Display_BFont);
-	}
+	/* Initialize the chat log widget. */
+	if (!is_subdialog)
+		init_text_widget(&chat_log, _("\3--- Start of Dialog ---"));
 
-	display_current_chat_log(ChatDroid, TRUE);
+	chat_log.rect.x = CHAT_SUBDIALOG_WINDOW_X;
+	chat_log.rect.y = CHAT_SUBDIALOG_WINDOW_Y;
+	chat_log.rect.w = CHAT_SUBDIALOG_WINDOW_W;
+	chat_log.rect.h = CHAT_SUBDIALOG_WINDOW_H;
+	chat_log.font = FPS_Display_BFont;
+	chat_log.text_stretch = TEXT_STRETCH;
+
+	show_chat_log(ChatDroid);
+	our_SDL_flip_wrapper();
 
 	// We load the option texts into the dialog options variable..
 	//
@@ -920,11 +855,12 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	struct npc *npc;
 
 	chat_control_chat_droid = ChatDroid;
-	// Now that we know, that a chat with a friendly droid is planned, the 
-	// friendly droid and the Tux should first turn to each other before the
-	// real dialog is started...
-	//
+
 	DialogPartnersTurnToEachOther(ChatDroid);
+
+	Activate_Conservative_Frame_Computation();
+
+	make_sure_chat_portraits_loaded_for_this_droid(ChatDroid);
 
 	// First we empty the array of possible answers in the
 	// chat interface.
@@ -964,11 +900,8 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 		npc->chat_character_initialized = 1;
 	}
 
-	// Now with the loaded chat data, we can do the real chat now...
-	//
-	DoChatFromChatRosterData(ChatDroid, TRUE);
-
-};				// void ChatWithFriendlyDroid( int Enum );
+	run_chat(ChatDroid, FALSE);
+}
 
 /**
  * Validate dialogs syntax and Lua code 

@@ -194,6 +194,7 @@ int chat_control_partner_started;	//the dialog partner is the one who started th
 unsigned char *chat_control_chat_flags; //current chat flags
 enemy *chat_control_chat_droid;	//droid we are chatting with
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
+EXTERN text_widget chat_log;
 
 #undef EXTERN
 #ifdef _sound_c
@@ -289,7 +290,6 @@ EXTERN obstacle_spec obstacle_map[NUMBER_OF_OBSTACLE_TYPES];
 #define EXTERN extern
 #endif
 EXTERN int display_char_disabled;
-EXTERN int chat_log_scroll_override_from_user;
 EXTERN SDL_Rect Droid_Image_Window;
 
 #undef EXTERN

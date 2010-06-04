@@ -573,7 +573,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	// it can be accessed with proper speed later...
 	//
 	SDL_SetClipRect(Screen, NULL);
-	display_current_chat_log(ChatDroid, FALSE);
+	show_chat_log(ChatDroid);
 	StoreMenuBackground(0);
 
 	// Now that the possible font-changing background assembling is
@@ -722,14 +722,14 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 				break;
 
 			case SDLK_PAGEUP:
-				chat_log_scroll_override_from_user -= 3;
-				display_current_chat_log(ChatDroid, FALSE);
+				chat_log.scroll_offset -= 3;
+				show_chat_log(ChatDroid);
 				StoreMenuBackground(0);
 				break;
 
 			case SDLK_PAGEDOWN:
-				chat_log_scroll_override_from_user += 3;
-				display_current_chat_log(ChatDroid, FALSE);
+				chat_log.scroll_offset += 3;
+				show_chat_log(ChatDroid);
 				StoreMenuBackground(0);
 				break;
 
@@ -765,12 +765,12 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 				   (OptionOffset)) {
 				OptionOffset--;
 			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				chat_log_scroll_override_from_user--;
-				display_current_chat_log(ChatDroid, FALSE);
+				chat_log.scroll_offset--;
+				show_chat_log(ChatDroid);
 				StoreMenuBackground(0);
 			} else if (MouseCursorIsOnButton(CHAT_LOG_SCROLL_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				chat_log_scroll_override_from_user++;
-				display_current_chat_log(ChatDroid, FALSE);
+				chat_log.scroll_offset++;
+				show_chat_log(ChatDroid);
 				StoreMenuBackground(0);
 			}
 			// If not, then maybe it was a click into the options window.  That alone
@@ -839,7 +839,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
  out:
 	game_status = old_game_status;
 	return ret;
-};				// int ChatDoMenuSelection( char* InitialText , char* MenuTexts[] , asdfasd .... )
+}
 
 /**
  * This function prepares the screen for the big Escape menu and 

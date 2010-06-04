@@ -51,9 +51,9 @@ void init_text_widget(text_widget *w, const char *start_text) {
 }
 
 /**
- * Handle the mouse cursor.
+ * Handle mouse clicks.
  *
- * @return TRUE if the cursor was handled, and no further handling should be
+ * @return TRUE if a mouse click was handled, and no further handling should be
  * done by the caller
  */
 int widget_handle_mouse(text_widget *w) {
