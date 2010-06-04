@@ -70,16 +70,6 @@ Cost=100
 Cost per level=-10
 
 ** Start of new program specification subsection **
-Program name=_"Analyze item"
-Program description=_"Effect: Identify
-There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
-Picture="IdentifySkill.png"
-Effect="identify"
-Form="self"
-Cost=120
-Cost per level=-15
-
-** Start of new program specification subsection **
 Program name=_"Invisibility"
 Program description=_"I am not the Linarian you are looking for."
 Picture="Invisibility.png"
@@ -224,8 +214,27 @@ Cost=100
 Cost per level=10
 
 ** Start of new program specification subsection **
+Program name=_"Extract bot parts"  
+Program description=_"With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out. This skill is always active even when not selected."
+Picture="ExtractBotParts.png"
+Form="self"
+Effect="passive"
+Cost=0
+
+** Start of new program specification subsection **
+Program name=_"Analyze item"
+Program description=_"Will be removed and possibly reimplemented for something else due to addon system replacing magic items Effect: Identify - There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
+Picture="IdentifySkill.png"
+Effect="identify"
+Form="self"
+Cost=120
+Cost per level=-15
+
+#Potential future implementation# Nethack = takeover for humans. Possibly with a new minigame where you somehow make the human get sucked into playing the game turning it to a somewhat stupid bot, freezing them in place and agreeing to do things for you (eg like Tybalt will open the gate to RG house and let you past even if you are not yet a member). This would open up a lot of options for creating alternative storylines (eg never becoming an RG member). 
+
+** Start of new program specification subsection **
 Program name=_"Nethack"
-Program description=_"The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
+Program description=_"NOT IMPLEMENTED YET The open source game called Nethack is one of the world's greatest wasters of time. Machines don't care about it, but humans can get sucked in quite deeply."
 Picture="Nethack.png"
 Form="bullet"
 Effect="paralyze"
@@ -238,22 +247,10 @@ Effect duration per level=5
 Cost=50
 Cost per level=-5
 
-#Potential future implementation# Nethack = takeover for humans. Possibly with a new minigame where you somehow make the human get sucked into playing the game turning it to a somewhat stupid bot, freezing them in place and agreeing to do things for you (eg like Tybalt will open the gate to RG house and let you past even if you are not yet a member). This would open up a lot of options for creating alternative storylines (eg never becoming an RG member). 
-
-
-
-** Start of new program specification subsection **
-Program name=_"Extract bot parts"  
-Program description=_"With a little knowledge, you can extract some useful parts out of the robots you kill. With each bot there is some hope of a part falling out. This skill is always active even when not selected."
-Picture="ExtractBotParts.png"
-Form="self"
-Effect="passive"
-Cost=0
-
 ## Or make it something that can increase melee/shooting/programming ? Permanently and/or Temporarily?
 ** Start of new program specification subsection **
 Program name=_"Reverse-engineer"
-Program description=_"There is some dark magic in the art of turning devices or programs inside-out, picking them appart to learn all their secrets and putting them back again."
+Program description=_"NOT IMPLEMENTED YET There is some dark magic in the art of turning devices or programs inside-out, picking them appart to learn all their secrets and putting them back again."
 Picture="ReverseEngineer.png"
 Form="self"
 F**orm="aura"
@@ -265,7 +262,7 @@ Cost=100
 ## Make this into something that increases tux fighting and movementspeed, but heats him up. Possibly make it into an "aura", active while program selected.
 ** Start of new program specification subsection **
 Program name=_"Ricer CFLAGS"
-Program description=_"Optimization is the root of all evil. You can gain some temporary speed improvements to your system, but in the end you will likely overheat and cause permanent damage if you are not careful."
+Program description=_"NOT IMPLEMENTED YET Optimization is the root of all evil. You can gain some temporary speed improvements to your system, but in the end you will likely overheat and cause permanent damage if you are not careful."
 Picture="cflag.png"
 Form="self"
 F**orm="aura"
@@ -274,7 +271,7 @@ Cost=0
 
 ** Start of new program specification subsection **
 Program name=_"Light"
-Program description=_"This does nothing in this version of freedroidRPG. Let there be light..."
+Program description=_"NOT IMPLEMENTED YET This does nothing in this version of freedroidRPG. Let there be light..."
 Picture="Light.png"
 Form="bullet"
 Effect="light"
@@ -282,9 +279,9 @@ Cost=3
 Base damage=0
 Artwork internal code=14
 
-#** Start of new program specification subsection **
+** Start of new program specification subsection **
 Program name=_"Satellite image"
-Program description=_"This does nothing in this version of freedroidRPG. Getting a map of an area is pretty easy when you can look at everything from above."
+Program description=_"NOT IMPLEMENTED YET Getting a map of an area is pretty easy when you can look at everything from above."
 Picture="SatelliteImage.png"
 Form="immediate"
 Effect="maplevel"
