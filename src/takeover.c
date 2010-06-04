@@ -362,7 +362,7 @@ static void ChooseColor(void)
 		}
 
 		countdown--;	// Count down 
-		sprintf(count_text, _("Color-%d"), countdown);
+		sprintf(count_text, _("Color-%d.%d"), countdown/10,countdown%10);
 
 		ShowPlayground();
 		to_show_banner(count_text, NULL);
@@ -448,7 +448,7 @@ static void PlayGame(int countdown)
 		if (cur_time > prev_count_tick + count_tick_len) {	/* time to count 1 down */
 			prev_count_tick += count_tick_len;	/* set for next countdown tick */
 			countdown--;
-			sprintf(count_text, _("Finish-%d"), countdown);
+			sprintf(count_text, _("Finish-%d.%d"), countdown/10,countdown%10);
 
 			if (countdown == 0)
 				FinishTakeover = TRUE;
