@@ -135,7 +135,7 @@ enum {
 #define MAX_NUMBER_OF_PROGRAMS 50
 
 enum skill_forms {
-	PROGRAM_FORM_IMMEDIATE = 10,	//instant hit whatever behind cursor
+	PROGRAM_FORM_INSTANT = 10,	//instant hit whatever behind cursor
 	PROGRAM_FORM_RADIAL,	//nova
 	PROGRAM_FORM_BULLET,	//fire a bullet
 	PROGRAM_FORM_SELF,	//instant hit player

@@ -448,8 +448,8 @@ There are more skills defined, than the maximum number specified in the code!", 
 		ProgramToFill->effect = ReadAndMallocStringFromData(ProgramPointer, "Effect=\"", "\"");
 
 		char *pform = ReadAndMallocStringFromData(ProgramPointer, "Form=\"", "\"");
-		if (!strcmp(pform, "immediate"))
-			ProgramToFill->form = PROGRAM_FORM_IMMEDIATE;
+		if (!strcmp(pform, "instant"))
+			ProgramToFill->form = PROGRAM_FORM_INSTANT;
 		if (!strcmp(pform, "bullet"))
 			ProgramToFill->form = PROGRAM_FORM_BULLET;
 		if (!strcmp(pform, "radial"))

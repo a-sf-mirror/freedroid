@@ -257,7 +257,7 @@ void HandleCurrentlyActivatedSkill()
 	Override_Power_Limit = 0;
 
 	switch (SpellSkillMap[Me.readied_skill].form) {
-	case PROGRAM_FORM_IMMEDIATE:
+	case PROGRAM_FORM_INSTANT:
 	case PROGRAM_FORM_BULLET:
 	case PROGRAM_FORM_RADIAL:
 		if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
@@ -289,7 +289,7 @@ int DoSkill(int skill_index, int SpellCost)
 
 	/*we handle the form of the program now */
 	switch (SpellSkillMap[skill_index].form) {
-	case PROGRAM_FORM_IMMEDIATE:
+	case PROGRAM_FORM_INSTANT:
 		droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
 		if (droid_below_mouse_cursor == NULL)
 			goto done_handling_instant_hits;
