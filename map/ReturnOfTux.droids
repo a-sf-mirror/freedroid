@@ -422,7 +422,28 @@ S*Force: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare"
 ----------------------------------------------------------------------
 
 ** Beginning of new Level **
+Level=25
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+** End of this levels droid data **
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+** Beginning of new Level **
 Level=26
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 123
+** End of this levels droid data **
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+** Beginning of new Level **
+Level=27
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
@@ -436,9 +457,32 @@ Allowed Type of Random Droid for this level: 123
 Level=28
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
-Allowed Type of Random Droid for this level: 123
-Allowed Type of Random Droid for this level: 302
-Allowed Type of Random Droid for this level: 751
+
+SForce: T=123 Fixed=0 Marker=1028 Faction="ms" StartLabel="123" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=139 Fixed=0 Marker=1028 Faction="ms" StartLabel="139" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=247 Fixed=0 Marker=1028 Faction="ms" StartLabel="247" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=249 Fixed=0 Marker=1028 Faction="ms" StartLabel="249" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=296 Fixed=0 Marker=1028 Faction="ms" StartLabel="296" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=302 Fixed=0 Marker=1028 Faction="ms" StartLabel="302" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=329 Fixed=0 Marker=1028 Faction="ms" StartLabel="329" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=420 Fixed=0 Marker=1028 Faction="ms" StartLabel="420" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=476 Fixed=0 Marker=1028 Faction="ms" StartLabel="476" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=493 Fixed=0 Marker=1028 Faction="ms" StartLabel="493" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=516 Fixed=0 Marker=1028 Faction="ms" StartLabel="516" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=543 Fixed=0 Marker=1028 Faction="ms" StartLabel="543" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=571 Fixed=0 Marker=1028 Faction="ms" StartLabel="571" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=598 Fixed=0 Marker=1028 Faction="ms" StartLabel="598" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=614 Fixed=0 Marker=1028 Faction="ms" StartLabel="614" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=615 Fixed=0 Marker=1028 Faction="ms" StartLabel="615" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=629 Fixed=0 Marker=1028 Faction="ms" StartLabel="629" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=711 Fixed=0 Marker=1028 Faction="ms" StartLabel="711" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=742 Fixed=0 Marker=1028 Faction="ms" StartLabel="742" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=751 Fixed=0 Marker=1028 Faction="ms" StartLabel="751" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=821 Fixed=0 Marker=1028 Faction="ms" StartLabel="821" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=834 Fixed=0 Marker=1028 Faction="ms" StartLabel="834" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=883 Fixed=0 Marker=1028 Faction="ms" StartLabel="883" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"testing" 
+
 ** End of this levels droid data **
 
 ----------------------------------------------------------------------
