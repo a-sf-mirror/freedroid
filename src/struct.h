@@ -955,4 +955,18 @@ struct auto_string {
 	unsigned long capacity;
 };
 
+/* text_widget.c */
+typedef struct text_widget {
+	SDL_Rect rect;             /* The area in which the text should be displayed */
+	struct BFont_Info *font;
+	struct auto_string *text;
+	float text_stretch;
+
+	int scroll_offset;         /* 0 means bottom, negative means above bottem. */
+	int mouse_already_handled;
+
+	void (*content_below_func)(void);
+	void (*content_above_func)(void);
+} text_widget;
+
 #endif

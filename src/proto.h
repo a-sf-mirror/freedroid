@@ -691,6 +691,11 @@ int FS_filelength(FILE * f);
 int inflate_stream(FILE *, unsigned char **, int *);
 int deflate_to_stream(unsigned char *, int, FILE *);
 
+// text_widget.c
+void init_text_widget(text_widget *, const char *);
+int widget_handle_mouse(text_widget *);
+void show_text_widget(text_widget *);
+
 // hud.c 
 void give_item_description(char *target, item *item, int for_shop);
 void DisplayBanner(void);
