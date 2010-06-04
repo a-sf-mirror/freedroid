@@ -1507,7 +1507,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	//
 	our_SDL_flip_wrapper();
 
-	reset_message_log();
+	init_message_log();
 	if (strcmp(startpos, "TutorialTuxStart") == 0)
 		append_new_game_message(_("Starting tutorial."));
 	else

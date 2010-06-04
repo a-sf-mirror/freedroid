@@ -634,14 +634,13 @@ enum {
 #define UNIVERSAL_COORD_H(H) (int)((float)(H) * ((float)(GameConfig . screen_height) / 480.0))
 
 //--------------------
-// And now we put here all the rectangle definitions and that...
-//
+// Rectangle definitions
 
 // Game message window
-#define SUBTITLEW_RECT_X 120
-#define SUBTITLEW_RECT_Y 389
-#define SUBTITLEW_RECT_W 415
-#define SUBTITLEW_RECT_H 44
+#define MESSAGE_TEXT_WIDGET_X UNIVERSAL_COORD_W(120)
+#define MESSAGE_TEXT_WIDGET_Y UNIVERSAL_COORD_H(389)
+#define MESSAGE_TEXT_WIDGET_W UNIVERSAL_COORD_W(415)
+#define MESSAGE_TEXT_WIDGET_H UNIVERSAL_COORD_H(44)
 
 // the inventory rect is the rectangle inside the inventory screen,
 // where all the items "in the backpack" including the quick inventory

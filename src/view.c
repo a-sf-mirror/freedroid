@@ -2065,7 +2065,8 @@ void AssembleCombatPicture(int mask)
 	//
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
 		ShowItemAlarm();
-		display_current_game_message_window();
+		blit_special_background(HUD_BACKGROUND_CODE);
+		show_text_widget(&message_log);
 		show_quick_inventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();

@@ -668,61 +668,6 @@ static void move_tux_towards_intermediate_point(void)
 	}
 }
 
-/** 
- * When the player has rolled the mouse wheel up or down, we change the
- * global mode of the game, i.e. switch to examine mode or loot mode or
- * the like.  The rolling of game mode can also be controlled with cursor
- * keys left and right.
- * After the mode is applied, it will be reset automatically to 'normal'
- * mode again.  The mode switching from mouse wheel/cursor action is done
- * in here.  Some global modes are currently not reachable via mouse
- * wheel action, simply because there implementation is far from finished
- * and we can't do everything at once and maybe not within one release.
- */
-void adapt_global_mode_for_player()
-{
-	static int left_pressed_previous_frame = FALSE;
-
-	// At first we check if maybe the player is scrolling the game
-	// message window.
-	//
-	SDL_Rect upper_rect =
-	    { (98 * GameConfig.screen_width) / 640, GameConfig.screen_height - (102 * GameConfig.screen_height) / 480,
-  444 * GameConfig.screen_width / 640, (48 / 2) * GameConfig.screen_height / 480 };
-	SDL_Rect lower_rect =
-	    { (98 * GameConfig.screen_width) / 640,
-  GameConfig.screen_height - (102 * GameConfig.screen_height) / 480 + (48 / 2) * GameConfig.screen_height / 480,
-  444 * GameConfig.screen_width / 640, (48 / 2) * GameConfig.screen_height / 480 };
-
-	if (GameConfig.screen_height == 480
-	    && (GameConfig.Inventory_Visible || GameConfig.CharacterScreen_Visible || GameConfig.SkillScreen_Visible
-		|| GameConfig.skill_explanation_screen_visible))
-		goto done_handling_scroll_updown;
-
-	if (MouseCursorIsInRect(&upper_rect, GetMousePos_x(), GetMousePos_y())) {
-		if (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY)
-			global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_UP;
-		return;
-	}
-	if (MouseCursorIsInRect(&lower_rect, GetMousePos_x(), GetMousePos_y())) {
-		if (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY)
-			global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_DOWN;
-		return;
-	}
-
-done_handling_scroll_updown:
-	if ((global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_UP) || (global_ingame_mode == GLOBAL_INGAME_MODE_SCROLL_DOWN)) {
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-	}
-
-	if ((LeftPressed() && (!left_pressed_previous_frame)) || MouseWheelUpPressed()) {
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-	}
-
-	left_pressed_previous_frame = LeftPressed();
-
-};				// void adapt_global_mode_for_player ( )
-
 /**
  * This function moves the influencer, adjusts his speed according to
  * keys pressed and also adjusts his status and current "phase" of his 
@@ -787,12 +732,6 @@ void move_tux()
 			}
 		}
 	}
-	// Perhaps the player has turned the mouse wheel.  In that case we might
-	// need to change the current global mode, depending on whether a change
-	// of global mode (with the current obstacles under the mouse cursor)
-	// makes sense or not.
-	// 
-	adapt_global_mode_for_player();
 
 	// If there is a mouse move target present, we move towards that.
 	move_tux_towards_intermediate_point();
@@ -1264,7 +1203,7 @@ int handle_click_in_hud()
 		return (TRUE);
 	}
 	// Finally, protect all the other parts of the hud from user's clicks
-	if (GetMousePos_y() >= UNIVERSAL_COORD_H(SUBTITLEW_RECT_Y))
+	if (GetMousePos_y() >= UNIVERSAL_COORD_H(MESSAGE_TEXT_WIDGET_Y))
 		return (TRUE);
 
 	// The mouse is outside the hud.
@@ -1619,6 +1558,11 @@ void AnalyzePlayersMouseClick()
 {
 	int tmp;
 
+	/* Handle the main message log. */
+	if (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY)
+		if (widget_handle_mouse(&message_log))
+			return;
+
 	// This flag avoids the mouse_move_target to change while the user presses
 	// LMB to start a combo action.
 	static int wait_mouseleft_release = FALSE;
@@ -1632,22 +1576,7 @@ void AnalyzePlayersMouseClick()
 	}
 	// The action associated to MouseLeftPress depends on the global game state
 	//
-
 	switch (global_ingame_mode) {
-	case GLOBAL_INGAME_MODE_SCROLL_UP:
-		if (no_left_button_press_in_previous_analyze_mouse_click) {
-			message_log_scroll_override_from_user--;
-			Activate_Conservative_Frame_Computation();
-		}
-		break;
-
-	case GLOBAL_INGAME_MODE_SCROLL_DOWN:
-		if (no_left_button_press_in_previous_analyze_mouse_click) {
-			message_log_scroll_override_from_user++;
-			Activate_Conservative_Frame_Computation();
-		}
-		break;
-
 	case GLOBAL_INGAME_MODE_IDENTIFY:
 		handle_player_identification_command();
 		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;

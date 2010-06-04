@@ -702,9 +702,8 @@ void DisplayBanner(void);
 int get_days_of_game_duration(float current_game_date);
 int get_hours_of_game_duration(float current_game_date);
 int get_minutes_of_game_duration(float current_game_date);
-void reset_message_log(void);
 void append_new_game_message(const char *fmt, ...);
-void display_current_game_message_window(void);
+void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 
 // shop.c 

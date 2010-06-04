@@ -43,7 +43,6 @@
 #define TEXT_BANNER_HORIZONTAL_MARGIN 4
 
 int best_banner_pos_x, best_banner_pos_y;
-static struct auto_string *message_log;
 
 /**
  * The hud contains several status graphs.  These graphs appear as 
@@ -1063,78 +1062,29 @@ int get_days_of_game_duration(float current_game_date)
  */
 void append_new_game_message(const char *fmt, ...)
 {
-	autostr_append(message_log, "\n* ");
+	autostr_append(message_log.text, "\n* ");
 
 	va_list args;
 	va_start(args, fmt);
-	autostr_vappend(message_log, fmt, args);
+	autostr_vappend(message_log.text, fmt, args);
 	va_end(args);
 
-	message_log_scroll_override_from_user = 0;
+	message_log.scroll_offset = 0;
 }
 
 /**
- * Clear message log, initializing message_log as needed.
+ * Initialize or reset the message log.
  */
-void reset_message_log(void)
+void init_message_log(void)
 {
-	if (message_log == NULL)
-		message_log = alloc_autostr(10000);
-	message_log->length = 0;
-	autostr_printf(message_log, _("--- Message Log ---"));
-}
+	init_text_widget(&message_log, _("--- Message Log ---"));
 
-/**
- * We display a window with the current text messages.
- */
-void display_current_game_message_window(void)
-{
-	SDL_Rect Subtitle_Window;
-	int lines_needed;
-	int log_offset;
-	float text_stretch = 1.00;
-	// float extra_stretch_calibrator = ((float)1.0/(float)1.07) ;  // 1.04
-	float extra_stretch_calibrator = 1.00;
-
-#define AVERAGE_LINES_IN_MESSAGE_WINDOW 3*GameConfig . screen_height/480
-	SetCurrentFont(Messagevar_BFont);
-
-	Subtitle_Window.x = UNIVERSAL_COORD_W(SUBTITLEW_RECT_X);
-	Subtitle_Window.y = UNIVERSAL_COORD_H(SUBTITLEW_RECT_Y);
-	Subtitle_Window.w = UNIVERSAL_COORD_W(SUBTITLEW_RECT_W);
-	Subtitle_Window.h = UNIVERSAL_COORD_H(SUBTITLEW_RECT_H);
-
-	// First we need to know where to begin with our little display.
-	lines_needed = get_lines_needed(message_log->value, Subtitle_Window, text_stretch);
-
-	if (lines_needed <= AVERAGE_LINES_IN_MESSAGE_WINDOW) {
-		// When there isn't anything to scroll yet, we keep the default
-		// position and also the users clicks on up/down button will be
-		// reset immediately
-		//
-		log_offset = 0;
-		message_log_scroll_override_from_user = 0;
-	} else
-		log_offset = (FontHeight(GetCurrentFont()) * text_stretch)
-		    * (lines_needed - AVERAGE_LINES_IN_MESSAGE_WINDOW +
-		       message_log_scroll_override_from_user) * extra_stretch_calibrator;
-
-	/*
-	 * If the log offset is negative, that means the user was at the
-	 * beginning of the text and tried to scroll up.  Let's not allow that.
-	 */
-	if (log_offset < 0) {
-		message_log_scroll_override_from_user++;
-		log_offset = 0;
-	}
-
-	blit_special_background(HUD_BACKGROUND_CODE);
-
-	// Now we can display the text and update the screen...
-	//
-	SDL_SetClipRect(Screen, NULL);
-	SetCurrentFont(Messagevar_BFont);
-	DisplayText(message_log->value, Subtitle_Window.x, Subtitle_Window.y - log_offset, &Subtitle_Window, text_stretch);
+	/* Set up the text widget. */
+	message_log.rect.x = MESSAGE_TEXT_WIDGET_X;
+	message_log.rect.y = MESSAGE_TEXT_WIDGET_Y;
+	message_log.rect.w = MESSAGE_TEXT_WIDGET_W;
+	message_log.rect.h = MESSAGE_TEXT_WIDGET_H;
+	message_log.font = Messagevar_BFont;
 }
 
 /**
