@@ -1,7 +1,7 @@
 *** Start of program data section: ***
 
 #Artwork internal code
-#Radial wave 0-2; 0=blue/white/black-sparks, 1=green/poison, 2=fire
+#Radial wave 0-2; 0=blue-sparks, 1=green/poison, 2=fire
 #Bullet 0-30?
 
 ** Start of new program specification subsection **
@@ -197,13 +197,14 @@ Damage per level=20
 Cost=160
 Cost per level=15
 
+# Possibly Tux should also get some damage from it? "Everything is equal to it, even Tux."
 ** Start of new program specification subsection **
 Program name=_"Plasma discharge"
-Program description=_"The overload setting exists for emergencies. The plasma does not discriminate between bots and humans. Everything is equal to it, even Tux."
+Program description=_"The overload setting exists for emergencies. The plasma does not discriminate between bots and humans."
 Picture="RadialPlasmaWaveSpell.png"
 Form="radial"
 Effect="none"
-Artwork internal code=2
+Artwork internal code=0
 Affect bots=1
 Affect humans=1
 Base damage=150
@@ -220,6 +221,11 @@ Picture="ExtractBotParts.png"
 Form="self"
 Effect="passive"
 Cost=0
+
+** S*tart of new program specification subsection **
+Program name=_"Below not implemented"
+Program description=_"The following programs does nothing in this version of freedroidRPG"
+Picture="IdentifySkill.png"
 
 ** Start of new program specification subsection **
 Program name=_"Analyze item"
