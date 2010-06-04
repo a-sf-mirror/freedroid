@@ -551,6 +551,33 @@ void display_current_chat_log(enemy *ChatDroid, int with_update)
 }
 
 /**
+ * Wait for a mouse click before continuing.
+ */
+static void wait_for_click()
+{
+	SDL_Event event;
+
+	while (1) {
+		SDL_WaitEvent(&event);
+
+		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == 1)
+			return;
+
+		else if (event.type == SDL_KEYDOWN) {
+			switch (event.key.keysym.sym) {
+			case SDLK_SPACE:
+			case SDLK_RETURN:
+			case SDLK_ESCAPE:
+				return;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}
+
+/**
  * This function should first display a subtitle and then also a sound
  * sample.  It is not very sophisticated or complicated, but nevertheless
  * important, because this combination does indeed occur so often.
@@ -570,7 +597,7 @@ void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, e
 		display_current_chat_log(ChatDroid, with_update);
 
 	if (do_wait)
-		PlayOnceNeededSoundSample(SampleFilename, do_wait, FALSE);
+		wait_for_click();
 }
 
 void run_subdialog(const char *tmp_filename)
