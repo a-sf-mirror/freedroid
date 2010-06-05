@@ -498,14 +498,13 @@ static void AddRemLevel(void)
 				int tmp = EditLevel()->levelnum; // needed due to Teleport changing EditLevel() result
 
 				dirty_animated_obstacle_lists(tmp);
+				delete_map_level(tmp);
 
 				gps_transform_map_dirty_flag = TRUE;
 				gps_transform_map_init();
 				// Teleporting Tux will re-render the menu background
 				reset_visible_levels();
 				Teleport(0, 3, 3, FALSE);
-
-				delete_map_level(tmp);
 			}
 			break;
 		case LEAVE_OPTIONS_MENU:
