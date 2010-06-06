@@ -3634,6 +3634,19 @@ Item description text=_"These pills can reverse the harmful effects of the 'brai
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Brain Enlargement Pill"
+Item min class for drop=-1
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pills_potions/brain_enlargement_antidode"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pills_potions/brain_enlargement_antidode/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"Doctors all over the planet have tried to suppress the amazing breakthrough which has brought increased altertness and concentration that comes with a larger brain. They are synthesized using cutting edge technology and 100% natual herbal ingreedients from a secret five thousand-year-old traditional holistic recipe.  Get yours direct from our online Canadian ph4rm4cy!!! 100% satisfaction guaranteed!!!"
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Diet supplement"
 Item min class for drop=0
 Item max class for drop=5

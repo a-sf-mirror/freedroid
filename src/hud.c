@@ -237,6 +237,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			autostr_append(desc, _("Permanently gain +1 dexterity"));
 		} else if (MatchItemWithName(item->type, "Code Pill")) {
 			autostr_append(desc, _("Permanently gain +1 cooling"));
+		} else if (MatchItemWithName(item->type, "Brain Enlargement Pill")) {
+			autostr_append(desc, _("Gives you fast acting cancer."));
 		} else if (strstr(ItemMap[item->type].item_name, "Source Book of")) {
 			autostr_append(desc, _("Permanently acquire/enhance this program"));
 		} else if (MatchItemWithName(item->type, "EMP Shockwave Generator")) {

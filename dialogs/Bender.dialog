@@ -147,7 +147,7 @@ LuaCode={
 	del_item_backpack("Brain Enlargement Pills Antidote", 1)
 	add_item("Strength Pill",2)
 	end_quest(_"Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
-	hide(9)
+	hide(9) show(20)
 }
 ----------------------------------------------------------------------
 
@@ -228,7 +228,15 @@ LuaCode={
 }
 
 ----------------------------------------------------------------------
+Nr=20 Text=_"Did you take all the Brain Enlargement Pills?"
+LuaCode={
+	npc_says(_"No. I have one left.")
+	npc_says(_"Here, take it. I don't want it.")
+	add_item("Brain Enlargement Pill", 1)
+	hide(20)
+}
 
+----------------------------------------------------------------------
 Nr=50 Text=_"Yeah, it was a totally idiotic idea to take those pills."
 LuaCode={
 	npc_says(_"What? I'm not an idiot! Understood?")

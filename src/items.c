@@ -1187,6 +1187,13 @@ void ApplyItem(item * CurItem)
 		Me.base_dexterity++;
 	} else if (MatchItemWithName(CurItem->type, "Code Pill")) {
 		Me.base_magic++;
+	} else if (MatchItemWithName(CurItem->type, "Brain Enlargement Pill")) {
+		Me.base_magic = 5;
+		Me.base_strength = 5;
+		Me.base_dexterity = 5;
+		Me.base_vitality = 5;
+		Takeover_Game_Lost_Sound();
+		append_new_game_message(_("The doctor warned you. You are now weak and sickly."));
 	} else if (MatchItemWithName(CurItem->type, "Identification Script")) {
 		DoSkill(get_program_index_with_name("Analyze item"), 0);
 	} else if (MatchItemWithName(CurItem->type, "Teleporter homing beacon")) {
