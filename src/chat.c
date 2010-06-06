@@ -590,10 +590,9 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 	// by any reply.  This case must also be caught.
 	//
 	if (strcmp(ChatRoster[MenuSelection].option_sample_file_name, "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER")) {
-		autostr_append(chat_log.text, "\1- ");
+		autostr_append(chat_log.text, "\n\1- ");
 		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
 				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
-		autostr_append(chat_log.text, "\n");
 	}
 	// Now we can proceed to execute
 	// the rest of the reply that has been set up for this (the now maybe modified)
@@ -632,7 +631,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 
 	/* Initialize the chat log widget. */
 	if (!is_subdialog)
-		init_text_widget(&chat_log, _("\3--- Start of Dialog ---\n"));
+		init_text_widget(&chat_log, _("\3--- Start of Dialog ---"));
 
 	chat_log.rect.x = CHAT_SUBDIALOG_WINDOW_X;
 	chat_log.rect.y = CHAT_SUBDIALOG_WINDOW_Y;
