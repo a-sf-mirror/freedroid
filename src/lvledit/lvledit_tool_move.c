@@ -41,7 +41,11 @@
 
 #include "lvledit/lvledit_tools.h"
 
-static struct leveleditor_move state;
+static struct leveleditor_move {
+	/* click&drag */
+	point origin;
+	moderately_finepoint c_corresponding_position;
+} state;
 
 /**
  * Input events get forwarded to us this way.
