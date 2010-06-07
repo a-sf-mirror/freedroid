@@ -2663,7 +2663,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid weaponry - 598"
+Item name=_"Droid 598 Robotic Fist"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"
@@ -2732,7 +2732,7 @@ Item as gun: weapon requires both hands="yes"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Droid 615,629,821,834,999 (Advanced Twin Laser)"
+Item name=_"Droid Advanced Twin Laser"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="weapon"

@@ -412,7 +412,7 @@ Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 400
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.5
-Weapon item="Droid weaponry - 598"
+Weapon item="Droid 598 Robotic Fist"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
@@ -468,7 +468,7 @@ Rate of healing: 3.5
 Experience_Reward gained for destroying one of this type: 500
 Aggression distance of this droid=11
 Time spent eyeing Tux=1.25
-Weapon item="Droid 615,629,821,834,999 (Advanced Twin Laser)"
+Weapon item="Droid Advanced Twin Laser"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
@@ -496,7 +496,7 @@ Rate of healing: 3
 Experience_Reward gained for destroying one of this type: 600
 Aggression distance of this droid=10.6
 Time spent eyeing Tux=1.0
-Weapon item="Droid 615,629,821,834,999 (Advanced Twin Laser)"
+Weapon item="Droid Advanced Twin Laser"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
@@ -608,7 +608,7 @@ Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 1000
 Aggression distance of this droid=16.11
 Time spent eyeing Tux=0.5
-Weapon item="Droid 615,629,821,834,999 (Advanced Twin Laser)"
+Weapon item="Droid Advanced Twin Laser"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
@@ -636,7 +636,7 @@ Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 1200
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.5
-Weapon item="Droid 615,629,821,834,999 (Advanced Twin Laser)"
+Weapon item="Droid Advanced Twin Laser"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
@@ -693,7 +693,7 @@ Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 2000
 Aggression distance of this droid=16.116
 Time spent eyeing Tux=0.25
-Weapon item="Droid 615,629,821,834,999 (Advanced Twin Laser)"
+Weapon item="Droid Advanced Twin Laser"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
