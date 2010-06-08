@@ -78,8 +78,12 @@ obstacle_states = {
 	[236] = {["broken"] = 237,},
 	[237] = {["broken"] = 237,},
 	[322] = {["broken"] = 237,},
-	[324] = {["disabled"] = 324, ["enabled"] = 32,},
-	[326] = {["disabled"] = 326, ["enabled"] = 34,},
+
+	[326] = {["disabled"] = 325, ["enabled"] = 33,}, -- N Autogun
+	[324] = {["disabled"] = 326, ["enabled"] = 34,}, -- E
+	[326] = {["disabled"] = 327, ["enabled"] = 35,}, -- S
+	[324] = {["disabled"] = 324, ["enabled"] = 32,}, -- W
+
 	[351] = {["closed"] = 351, ["opened"] = 353,},
 	[352] = {["closed"] = 352, ["opened"] = 358,},
 
