@@ -105,7 +105,7 @@ Random Droid Type: 123
 Random Droid Type: 247
 Random Droid Type: 249
 
-SForce: T=883 Fixed=0 Marker=1002 Faction="ms" StartLabel="Lv2DalekStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Dark Apprentice of MegaSys"
+SForce: T=883 Fixed=0 Marker=1002 Faction="ms" StartLabel="Lv2DalekStartGameSquare" RushTux="no" ShortLabel=_"Dark Apprentice of MegaSys"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -126,7 +126,7 @@ Random Droid Type: 420
 Random Droid Type: 476
 Random Droid Type: 302
 
-SForce: T=598 Fixed=0 Marker=1004 Faction="ms" StartLabel="DSB-MDCT-Guard" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"DSB Control Terminal Guard"
+SForce: T=598 Fixed=0 Marker=1004 Faction="ms" StartLabel="DSB-MDCT-Guard" RushTux="no" ShortLabel=_"DSB Control Terminal Guard"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -149,7 +149,7 @@ Random Droid Type: 123
 Random Droid Type: 247
 Random Droid Type: 249
 
-SForce: T=883 Fixed=0 Marker=1006 Faction="ms" StartLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
+SForce: T=883 Fixed=0 Marker=1006 Faction="ms" StartLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -170,8 +170,8 @@ Random Droid Type: 139
 
 SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" RushTux="no" UseDialog="Engel" ShortLabel=_"Blue Guy"
 SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" RushTux="no" UseDialog="Geist" ShortLabel=_"Blue Guy"
-SForce: T=302 Fixed=0 Marker=2008 Faction="ms" StartLabel="The302InFrontOfTheTempleStart" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Nemesis"
-SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"302 Nemesis"
+SForce: T=302 Fixed=0 Marker=2008 Faction="ms" StartLabel="The302InFrontOfTheTempleStart" RushTux="no" ShortLabel=_"Nemesis"
+SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no" ShortLabel=_"302 Nemesis"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -182,9 +182,9 @@ Random Droid Type: 123
 Random Droid Type: 139
 Random Droid Type: 247
 
-SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"329"
-SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"302"
-SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"249"
+SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no" ShortLabel=_"329"
+SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no" ShortLabel=_"302"
+SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGameSquare" RushTux="no" ShortLabel=_"249"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -239,10 +239,10 @@ Random Droid Type: 420
 Random Droid Type: 476
 Random Droid Type: 493
 
-SForce: T=711 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-711" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"711 - Pure death"
-SForce: T=742 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-742" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"742 - Double death"
-SForce: T=821 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-821" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"821"
-SForce: T=834 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-834" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"834"
+SForce: T=711 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-711" RushTux="no" ShortLabel=_"711 - Pure death"
+SForce: T=742 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-742" RushTux="no" ShortLabel=_"742 - Double death"
+SForce: T=821 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-821" RushTux="no" ShortLabel=_"821"
+SForce: T=834 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-834" RushTux="no" ShortLabel=_"834"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -270,10 +270,10 @@ Random Droid Type: 249
 SForce: T=614 Fixed=0 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux="yes" UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
 SForce: T=KEV Fixed=0 Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" RushTux="no" UseDialog="Kevin" ShortLabel=_"Kevin"
 SForce: T=JAS Fixed=0 Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" RushTux="no" UseDialog="Jasmine" ShortLabel=_"Cute Girl"
-SForce: T=598 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins598StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
-SForce: T=751 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins751StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
-SForce: T=883 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins883StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
-SForce: T=821 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins821StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
+SForce: T=598 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins598StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
+SForce: T=751 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins751StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
+SForce: T=883 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins883StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
+SForce: T=821 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins821StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -338,7 +338,7 @@ Random Droid Type: 751
 Random Droid Type: 629
 Random Droid Type: 883
 
-SForce: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"MSCD - MegaSys Control Droid"
+SForce: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" ShortLabel=_"MSCD - MegaSys Control Droid"
 S*Force: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -367,30 +367,30 @@ Level=28
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 
-SForce: T=123 Fixed=0 Marker=1028 Faction="ms" StartLabel="123" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"123"
-SForce: T=139 Fixed=0 Marker=1028 Faction="ms" StartLabel="139" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"139"
-SForce: T=247 Fixed=0 Marker=1028 Faction="ms" StartLabel="247" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"247"
-SForce: T=249 Fixed=0 Marker=1028 Faction="ms" StartLabel="249" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"249"
-SForce: T=296 Fixed=0 Marker=1028 Faction="ms" StartLabel="296" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"296"
-SForce: T=302 Fixed=0 Marker=1028 Faction="ms" StartLabel="302" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"302"
-SForce: T=329 Fixed=0 Marker=1028 Faction="ms" StartLabel="329" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"329"
-SForce: T=420 Fixed=0 Marker=1028 Faction="ms" StartLabel="420" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"420"
-SForce: T=476 Fixed=0 Marker=1028 Faction="ms" StartLabel="476" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"476"
-SForce: T=493 Fixed=0 Marker=1028 Faction="ms" StartLabel="493" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"493"
-SForce: T=516 Fixed=0 Marker=1028 Faction="ms" StartLabel="516" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"516"
-SForce: T=543 Fixed=0 Marker=1028 Faction="ms" StartLabel="543" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"543"
-SForce: T=571 Fixed=0 Marker=1028 Faction="ms" StartLabel="571" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"571"
-SForce: T=598 Fixed=0 Marker=1028 Faction="ms" StartLabel="598" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"598"
-SForce: T=614 Fixed=0 Marker=1028 Faction="ms" StartLabel="614" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"614"
-SForce: T=615 Fixed=0 Marker=1028 Faction="ms" StartLabel="615" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"615"
-SForce: T=629 Fixed=0 Marker=1028 Faction="ms" StartLabel="629" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"629"
-SForce: T=711 Fixed=0 Marker=1028 Faction="ms" StartLabel="711" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"711"
-SForce: T=742 Fixed=0 Marker=1028 Faction="ms" StartLabel="742" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"742"
-SForce: T=751 Fixed=0 Marker=1028 Faction="ms" StartLabel="751" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"751"
-SForce: T=821 Fixed=0 Marker=1028 Faction="ms" StartLabel="821" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"821"
-SForce: T=834 Fixed=0 Marker=1028 Faction="ms" StartLabel="834" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"834"
-SForce: T=883 Fixed=0 Marker=1028 Faction="ms" StartLabel="883" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"883"
-SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"999"
+SForce: T=123 Fixed=0 Marker=1028 Faction="ms" StartLabel="123" RushTux="no" ShortLabel=_"123"
+SForce: T=139 Fixed=0 Marker=1028 Faction="ms" StartLabel="139" RushTux="no" ShortLabel=_"139"
+SForce: T=247 Fixed=0 Marker=1028 Faction="ms" StartLabel="247" RushTux="no" ShortLabel=_"247"
+SForce: T=249 Fixed=0 Marker=1028 Faction="ms" StartLabel="249" RushTux="no" ShortLabel=_"249"
+SForce: T=296 Fixed=0 Marker=1028 Faction="ms" StartLabel="296" RushTux="no" ShortLabel=_"296"
+SForce: T=302 Fixed=0 Marker=1028 Faction="ms" StartLabel="302" RushTux="no" ShortLabel=_"302"
+SForce: T=329 Fixed=0 Marker=1028 Faction="ms" StartLabel="329" RushTux="no" ShortLabel=_"329"
+SForce: T=420 Fixed=0 Marker=1028 Faction="ms" StartLabel="420" RushTux="no" ShortLabel=_"420"
+SForce: T=476 Fixed=0 Marker=1028 Faction="ms" StartLabel="476" RushTux="no" ShortLabel=_"476"
+SForce: T=493 Fixed=0 Marker=1028 Faction="ms" StartLabel="493" RushTux="no" ShortLabel=_"493"
+SForce: T=516 Fixed=0 Marker=1028 Faction="ms" StartLabel="516" RushTux="no" ShortLabel=_"516"
+SForce: T=543 Fixed=0 Marker=1028 Faction="ms" StartLabel="543" RushTux="no" ShortLabel=_"543"
+SForce: T=571 Fixed=0 Marker=1028 Faction="ms" StartLabel="571" RushTux="no" ShortLabel=_"571"
+SForce: T=598 Fixed=0 Marker=1028 Faction="ms" StartLabel="598" RushTux="no" ShortLabel=_"598"
+SForce: T=614 Fixed=0 Marker=1028 Faction="ms" StartLabel="614" RushTux="no" ShortLabel=_"614"
+SForce: T=615 Fixed=0 Marker=1028 Faction="ms" StartLabel="615" RushTux="no" ShortLabel=_"615"
+SForce: T=629 Fixed=0 Marker=1028 Faction="ms" StartLabel="629" RushTux="no" ShortLabel=_"629"
+SForce: T=711 Fixed=0 Marker=1028 Faction="ms" StartLabel="711" RushTux="no" ShortLabel=_"711"
+SForce: T=742 Fixed=0 Marker=1028 Faction="ms" StartLabel="742" RushTux="no" ShortLabel=_"742"
+SForce: T=751 Fixed=0 Marker=1028 Faction="ms" StartLabel="751" RushTux="no" ShortLabel=_"751"
+SForce: T=821 Fixed=0 Marker=1028 Faction="ms" StartLabel="821" RushTux="no" ShortLabel=_"821"
+SForce: T=834 Fixed=0 Marker=1028 Faction="ms" StartLabel="834" RushTux="no" ShortLabel=_"834"
+SForce: T=883 Fixed=0 Marker=1028 Faction="ms" StartLabel="883" RushTux="no" ShortLabel=_"883"
+SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no" ShortLabel=_"999"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -399,10 +399,10 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 751
 
-SForce: T=123 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Race Condition"
-SForce: T=139 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Undeclared Variable"
-SForce: T=247 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Segmentation Fault"
-SForce: T=249 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot4StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Buffer Overflow"
+SForce: T=123 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot1StartGameSquare" RushTux="no" ShortLabel=_"Race Condition"
+SForce: T=139 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot2StartGameSquare" RushTux="no" ShortLabel=_"Undeclared Variable"
+SForce: T=247 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot3StartGameSquare" RushTux="no" ShortLabel=_"Segmentation Fault"
+SForce: T=249 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot4StartGameSquare" RushTux="no" ShortLabel=_"Buffer Overflow"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -411,10 +411,10 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 751
 
-SForce: T=598 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Melissa.I"
-SForce: T=615 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"ILOVEYOU"
-SForce: T=629 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"W32.YourDoom"
-SForce: T=999 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot4StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"CIH.1103"
+SForce: T=598 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot1StartGameSquare" RushTux="no" ShortLabel=_"Melissa.I"
+SForce: T=615 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot2StartGameSquare" RushTux="no" ShortLabel=_"ILOVEYOU"
+SForce: T=629 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot3StartGameSquare" RushTux="no" ShortLabel=_"W32.YourDoom"
+SForce: T=999 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot4StartGameSquare" RushTux="no" ShortLabel=_"CIH.1103"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -427,13 +427,13 @@ Random Droid Type: 516
 Random Droid Type: 615
 Random Droid Type: 629
 
-SForce: T=883 Fixed=0 Marker=1031 Faction="ms" StartLabel="MSDDStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"MSDD - MegaSys Defence Droid"
+SForce: T=883 Fixed=0 Marker=1031 Faction="ms" StartLabel="MSDDStartGameSquare" RushTux="no" ShortLabel=_"MSDD - MegaSys Defence Droid"
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid1StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid2StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid3StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid4StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=883 Fixed=0 Marker=3031 Faction="ms" StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard"
+SForce: T=883 Fixed=0 Marker=3031 Faction="ms" StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" ShortLabel=_"Update Server Guard"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -490,18 +490,18 @@ SForce: T=598 Fixed=0 Marker=3035 Faction="ms" StartLabel="SecretAreaDefenceCont
 // This is Serge -- storehouse keeper
 //
 //SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" RushTux="no" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
-SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Nemesis"
-SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEmmiters" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"SADD"
-SForce: T=139 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEnterance" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Ashman"
-SForce: T=249 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
-SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorComputers" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"SADD"
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaHall" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaStore" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaPassage" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
-SForce: T=247 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaRestroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Servant"
-SForce: T=476 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBedroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Criocapsules maintainer"
-SForce: T=329 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBathroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Sanitary technician"
-SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaToilet" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Toilet droid"
+SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage2" RushTux="no" ShortLabel=_"Nemesis"
+SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEmmiters" RushTux="no" ShortLabel=_"SADD"
+SForce: T=139 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEnterance" RushTux="no" ShortLabel=_"Ashman"
+SForce: T=249 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage" RushTux="no" ShortLabel=_"Guard"
+SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorComputers" RushTux="no" ShortLabel=_"SADD"
+SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaHall" RushTux="no" ShortLabel=_"Guard"
+SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaStore" RushTux="no" ShortLabel=_"Guard"
+SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaPassage" RushTux="no" ShortLabel=_"Guard"
+SForce: T=247 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaRestroom" RushTux="no" ShortLabel=_"Servant"
+SForce: T=476 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBedroom" RushTux="no" ShortLabel=_"Criocapsules maintainer"
+SForce: T=329 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBathroom" RushTux="no" ShortLabel=_"Sanitary technician"
+SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaToilet" RushTux="no" ShortLabel=_"Toilet droid"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -521,23 +521,23 @@ Minimum number of Random Droids=0
 Random Droid Type: 751
 
 SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux="yes" UseDialog="TutorialTom" ShortLabel=_"???"
-SForce: T=123 Fixed=0 Marker=1037 Faction="ms" StartLabel="melee1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
-SForce: T=247 Fixed=0 Marker=2037 Faction="ms" StartLabel="melee2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Kill Me Too" on_death_drop_item_name="Tachyon Condensator"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange3" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange4" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange5" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange6" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange7" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange8" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover3" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover4" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover5" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover6" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover7" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=1037 Faction="ms" StartLabel="melee1" RushTux="no" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
+SForce: T=247 Fixed=0 Marker=2037 Faction="ms" StartLabel="melee2" RushTux="no" ShortLabel=_"Kill Me Too" on_death_drop_item_name="Tachyon Condensator"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange1" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange2" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange3" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange4" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange5" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange6" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange7" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange8" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover1" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover2" RushTux="no" ShortLabel=_"Target"
+SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover3" RushTux="no" ShortLabel=_"Target"
+SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover4" RushTux="no" ShortLabel=_"Target"
+SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover5" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover6" RushTux="no" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover7" RushTux="no" ShortLabel=_"Target"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
