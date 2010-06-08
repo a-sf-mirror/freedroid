@@ -91,8 +91,9 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-    change_obstacle_state("NoviceArenaExitDoor", "opened")
-    display_console_message("Novice arena cleared!")
+	change_obstacle_state("NoviceArenaExitDoor", "opened")
+	display_console_message(_"Novice arena cleared!")
+	display_big_message(_"Level cleared!")
 }
 ** End of this mission target subsection **
 
@@ -110,8 +111,9 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-    change_obstacle_state("MasterArenaExitDoor", "opened")
-    display_console_message("Master arena cleared. Good job, man.")
+	change_obstacle_state("MasterArenaExitDoor", "opened")
+	display_console_message(_"Master arena cleared. Good job, man.")
+	display_big_message(_"Level cleared!")
 }
 ** End of this mission target subsection **
 
@@ -144,7 +146,10 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
+	-- this ends quest, but later update_quests still adds log text properly
 	add_diary_entry("And there was light...", "Hope everything is back to normal now. I better go check with Kevin.")
+	display_console_message(_"All hostiles on level disabled.")
+	display_big_message(_"Level cleared!")
 }
 ** End of this mission target subsection **
 
@@ -288,7 +293,7 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-    display_console_message("Melee droids destroyed!")
+	display_console_message(_"Melee droids destroyed!")
 }
 ** End of this mission target subsection **
 
@@ -306,7 +311,7 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-    display_console_message("Shooting range cleared!")
+	display_console_message(_"Shooting range cleared!")
 }
 ** End of this mission target subsection **
 
@@ -324,7 +329,7 @@ Mission target is to reach X-Pos : -1
 Mission target is to reach Y-Pos : -1
 Mission target is to live for how many seconds : -1
 Completion LuaCode={
-    display_console_message("Hacking area cleared!")
+	display_console_message(_"Hacking area cleared!")
 }
 ** End of this mission target subsection **
 
