@@ -1785,8 +1785,9 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 	location StartupLocation;
 
 	while ((SearchPointer = strstr(SearchPointer, SPECIAL_FORCE_INDICATION_STRING)) != NULL) {
-		SearchPointer += strlen(SPECIAL_FORCE_INDICATION_STRING);
-		strncpy(TypeIndicationString, SearchPointer, 3);	// Every type is 3 characters long
+		char *SpecialDroid = ReadAndMallocStringFromData(SearchPointer, SPECIAL_FORCE_INDICATION_STRING, "\n");
+		SearchPointer+= strlen(SPECIAL_FORCE_INDICATION_STRING);
+		strncpy(TypeIndicationString, SpecialDroid, 3);	// Every type is 3 characters long
 		TypeIndicationString[3] = 0;
 		DebugPrintf(1, "\nSpecial Force Type indication found!  It reads: %s.", TypeIndicationString);
 
@@ -1814,23 +1815,23 @@ file you use.", PLEASE_INFORM, IS_FATAL);
 		enemy *newen = enemy_new(ListIndex);
 		newen->SpecialForce = 1;
 
-		ReadValueFromString(SearchPointer, "Fixed=", "%hd", &(newen->CompletelyFixed), EndOfThisLevelData);
-		ReadValueFromString(SearchPointer, "Marker=", "%d", &(newen->marker), EndOfThisLevelData);
-		ReadValueFromStringWithDefault(SearchPointer, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
+		ReadValueFromString(SpecialDroid, "Fixed=", "%hd", &(newen->CompletelyFixed), EndOfThisLevelData);
+		ReadValueFromString(SpecialDroid, "Marker=", "%d", &(newen->marker), EndOfThisLevelData);
+		ReadValueFromStringWithDefault(SpecialDroid, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
 					       EndOfThisLevelData);
 		
-		char *faction = ReadAndMallocStringFromData(SearchPointer, "Faction=\"", "\"");
+		char *faction = ReadAndMallocStringFromData(SpecialDroid, "Faction=\"", "\"");
 		newen->faction = get_faction_id(faction);
 		free(faction);
 
-		StartMapLabel = ReadAndMallocStringFromData(SearchPointer, "StartLabel=\"", "\"");
+		StartMapLabel = ReadAndMallocStringFromData(SpecialDroid, "StartLabel=\"", "\"");
 		ResolveMapLabelOnShip(StartMapLabel, &StartupLocation);
 		newen->pos.x = StartupLocation.x;
 		newen->pos.y = StartupLocation.y;
 		newen->pos.z = OurLevelNumber;
 		free(StartMapLabel);
 
-		YesNoString = ReadAndMallocStringFromData(SearchPointer, "RushTux=\"", "\"");
+		YesNoString = ReadAndMallocStringFromData(SpecialDroid, "RushTux=\"", "\"");
 		if (strcmp(YesNoString, "yes") == 0) {
 			newen->will_rush_tux = TRUE;
 		} else if (strcmp(YesNoString, "no") == 0) {
@@ -1844,7 +1845,9 @@ the item specification section.", PLEASE_INFORM, IS_FATAL);
 		}
 		free(YesNoString);
 
-		newen->dialog_section_name = ReadAndMallocStringFromData(SearchPointer, "UseDialog=\"", "\"");
+		newen->dialog_section_name = ReadAndMallocStringFromDataOptional(SpecialDroid, "UseDialog=\"", "\"");
+		if (!newen->dialog_section_name)
+			newen->dialog_section_name = strdup("AfterTakeover");
 		if (strlen(newen->dialog_section_name) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME - 1) {
 			ErrorMessage(__FUNCTION__, "\
 The dialog section specification string for a bot was too large.\n\
@@ -1855,7 +1858,9 @@ the dialog section name for one special force droid/character.", PLEASE_INFORM, 
 		if (newen->short_description_text)
 			free(newen->short_description_text);
 
-		newen->short_description_text = ReadAndMallocStringFromData(SearchPointer, "ShortLabel=_\"", "\"");
+		newen->short_description_text = ReadAndMallocStringFromDataOptional(SpecialDroid, "ShortLabel=_\"", "\"");
+		if (!newen->short_description_text)
+			newen->short_description_text = strdup(Druidmap[newen->type].default_short_description);
 		if (strlen(newen->short_description_text) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING) {
 			ErrorMessage(__FUNCTION__, "\
 The short description specification string for a bot was too large.\n\
@@ -1863,13 +1868,14 @@ This indicated a corrupted ReturnOfTux.droids file with an error when specifying
 the dialog section name for one special force droid/character.", PLEASE_INFORM, IS_FATAL);
 		}
 
-		if (strstr(SearchPointer, "on_death_drop_item_name")) {
-			YesNoString = ReadAndMallocStringFromData(SearchPointer, "on_death_drop_item_name=\"", "\"");
+		if (strstr(SpecialDroid, "on_death_drop_item_name")) {
+			YesNoString = ReadAndMallocStringFromData(SpecialDroid, "on_death_drop_item_name=\"", "\"");
 			newen->on_death_drop_item_code = GetItemIndexByName(YesNoString);
 			free(YesNoString);
 		} else
 			newen->on_death_drop_item_code = -1;
 
+		free(SpecialDroid);
 		enemy_insert_into_lists(newen, TRUE);
 	}			// while Special force droid found...
 
