@@ -293,7 +293,7 @@ Base damage=0
 
 ** Start of new program specification subsection **
 Program name=_"Plasma grenade"
-Program description=_"This is a bug, report this to the developers, unless you cheated, in which case you deserve to see this stupid description."
+Program description=_"If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
 Picture="NoSkillAvailable.png"
 Form="radial"
 Effect="none"
@@ -305,7 +305,7 @@ Artwork internal code=2
 
 ** Start of new program specification subsection **
 Program name=_"Gas grenade"
-Program description=_"This is a bug, report this to the developers, unless you cheated, in which case you deserve to see this stupid description."
+Program description=_"If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
 Picture="NoSkillAvailable.png"
 Form="radial"
 Effect="none"
@@ -317,7 +317,7 @@ Artwork internal code=1
 
 ** Start of new program specification subsection **
 Program name=_"EMP grenade"
-Program description=_"This is a bug, report this to the developers, unless you cheated, in which case you deserve to see this stupid description."
+Program description=_"If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
 Picture="NoSkillAvailable.png"
 Form="radial"
 Effect="none"
