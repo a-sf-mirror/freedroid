@@ -192,12 +192,12 @@ Mission target is to live for how many seconds : -1
 +++ 
 Mission Name=_"Propagating a faulty firmware"
 Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : 31
-Mission target is to also kill all hostile droids on second level : 24
+Mission target is to kill all hostile droids this first level : -1
+Mission target is to also kill all hostile droids on second level : -1
 Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
+Mission target is to reach level : 0
+Mission target is to reach X-Pos : 0
+Mission target is to reach Y-Pos : 0
 Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
