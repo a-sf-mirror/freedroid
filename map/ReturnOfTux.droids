@@ -170,8 +170,8 @@ Random Droid Type: 139
 
 SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" RushTux="no" UseDialog="Engel" ShortLabel=_"Blue Guy"
 SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" RushTux="no" UseDialog="Geist" ShortLabel=_"Blue Guy"
-SForce: T=302 Fixed=0 Marker=2008 Faction="ms" StartLabel="The302InFrontOfTheTempleStart" RushTux="no" ShortLabel=_"Nemesis"
-SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no" ShortLabel=_"302 Nemesis"
+SForce: T=302 Fixed=0 Marker=2008 Faction="ms" StartLabel="The302InFrontOfTheTempleStart" RushTux="no"
+SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -182,9 +182,9 @@ Random Droid Type: 123
 Random Droid Type: 139
 Random Droid Type: 247
 
-SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no" ShortLabel=_"329"
-SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no" ShortLabel=_"302"
-SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGameSquare" RushTux="no" ShortLabel=_"249"
+SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no"
+SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no"
+SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGameSquare" RushTux="no"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -239,10 +239,10 @@ Random Droid Type: 420
 Random Droid Type: 476
 Random Droid Type: 493
 
-SForce: T=711 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-711" RushTux="no" ShortLabel=_"711 - Pure death"
-SForce: T=742 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-742" RushTux="no" ShortLabel=_"742 - Double death"
-SForce: T=821 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-821" RushTux="no" ShortLabel=_"821"
-SForce: T=834 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-834" RushTux="no" ShortLabel=_"834"
+SForce: T=711 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-711" RushTux="no"
+SForce: T=742 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-742" RushTux="no"
+SForce: T=821 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-821" RushTux="no"
+SForce: T=834 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-834" RushTux="no"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -367,30 +367,30 @@ Level=28
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 
-SForce: T=123 Fixed=0 Marker=1028 Faction="ms" StartLabel="123" RushTux="no" ShortLabel=_"123"
-SForce: T=139 Fixed=0 Marker=1028 Faction="ms" StartLabel="139" RushTux="no" ShortLabel=_"139"
-SForce: T=247 Fixed=0 Marker=1028 Faction="ms" StartLabel="247" RushTux="no" ShortLabel=_"247"
-SForce: T=249 Fixed=0 Marker=1028 Faction="ms" StartLabel="249" RushTux="no" ShortLabel=_"249"
-SForce: T=296 Fixed=0 Marker=1028 Faction="ms" StartLabel="296" RushTux="no" ShortLabel=_"296"
-SForce: T=302 Fixed=0 Marker=1028 Faction="ms" StartLabel="302" RushTux="no" ShortLabel=_"302"
-SForce: T=329 Fixed=0 Marker=1028 Faction="ms" StartLabel="329" RushTux="no" ShortLabel=_"329"
-SForce: T=420 Fixed=0 Marker=1028 Faction="ms" StartLabel="420" RushTux="no" ShortLabel=_"420"
-SForce: T=476 Fixed=0 Marker=1028 Faction="ms" StartLabel="476" RushTux="no" ShortLabel=_"476"
-SForce: T=493 Fixed=0 Marker=1028 Faction="ms" StartLabel="493" RushTux="no" ShortLabel=_"493"
-SForce: T=516 Fixed=0 Marker=1028 Faction="ms" StartLabel="516" RushTux="no" ShortLabel=_"516"
-SForce: T=543 Fixed=0 Marker=1028 Faction="ms" StartLabel="543" RushTux="no" ShortLabel=_"543"
-SForce: T=571 Fixed=0 Marker=1028 Faction="ms" StartLabel="571" RushTux="no" ShortLabel=_"571"
-SForce: T=598 Fixed=0 Marker=1028 Faction="ms" StartLabel="598" RushTux="no" ShortLabel=_"598"
-SForce: T=614 Fixed=0 Marker=1028 Faction="ms" StartLabel="614" RushTux="no" ShortLabel=_"614"
-SForce: T=615 Fixed=0 Marker=1028 Faction="ms" StartLabel="615" RushTux="no" ShortLabel=_"615"
-SForce: T=629 Fixed=0 Marker=1028 Faction="ms" StartLabel="629" RushTux="no" ShortLabel=_"629"
-SForce: T=711 Fixed=0 Marker=1028 Faction="ms" StartLabel="711" RushTux="no" ShortLabel=_"711"
-SForce: T=742 Fixed=0 Marker=1028 Faction="ms" StartLabel="742" RushTux="no" ShortLabel=_"742"
-SForce: T=751 Fixed=0 Marker=1028 Faction="ms" StartLabel="751" RushTux="no" ShortLabel=_"751"
-SForce: T=821 Fixed=0 Marker=1028 Faction="ms" StartLabel="821" RushTux="no" ShortLabel=_"821"
-SForce: T=834 Fixed=0 Marker=1028 Faction="ms" StartLabel="834" RushTux="no" ShortLabel=_"834"
-SForce: T=883 Fixed=0 Marker=1028 Faction="ms" StartLabel="883" RushTux="no" ShortLabel=_"883"
-SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no" ShortLabel=_"999"
+SForce: T=123 Fixed=0 Marker=1028 Faction="ms" StartLabel="123" RushTux="no"
+SForce: T=139 Fixed=0 Marker=1028 Faction="ms" StartLabel="139" RushTux="no"
+SForce: T=247 Fixed=0 Marker=1028 Faction="ms" StartLabel="247" RushTux="no"
+SForce: T=249 Fixed=0 Marker=1028 Faction="ms" StartLabel="249" RushTux="no"
+SForce: T=296 Fixed=0 Marker=1028 Faction="ms" StartLabel="296" RushTux="no"
+SForce: T=302 Fixed=0 Marker=1028 Faction="ms" StartLabel="302" RushTux="no"
+SForce: T=329 Fixed=0 Marker=1028 Faction="ms" StartLabel="329" RushTux="no"
+SForce: T=420 Fixed=0 Marker=1028 Faction="ms" StartLabel="420" RushTux="no"
+SForce: T=476 Fixed=0 Marker=1028 Faction="ms" StartLabel="476" RushTux="no"
+SForce: T=493 Fixed=0 Marker=1028 Faction="ms" StartLabel="493" RushTux="no"
+SForce: T=516 Fixed=0 Marker=1028 Faction="ms" StartLabel="516" RushTux="no"
+SForce: T=543 Fixed=0 Marker=1028 Faction="ms" StartLabel="543" RushTux="no"
+SForce: T=571 Fixed=0 Marker=1028 Faction="ms" StartLabel="571" RushTux="no"
+SForce: T=598 Fixed=0 Marker=1028 Faction="ms" StartLabel="598" RushTux="no"
+SForce: T=614 Fixed=0 Marker=1028 Faction="ms" StartLabel="614" RushTux="no"
+SForce: T=615 Fixed=0 Marker=1028 Faction="ms" StartLabel="615" RushTux="no"
+SForce: T=629 Fixed=0 Marker=1028 Faction="ms" StartLabel="629" RushTux="no"
+SForce: T=711 Fixed=0 Marker=1028 Faction="ms" StartLabel="711" RushTux="no"
+SForce: T=742 Fixed=0 Marker=1028 Faction="ms" StartLabel="742" RushTux="no"
+SForce: T=751 Fixed=0 Marker=1028 Faction="ms" StartLabel="751" RushTux="no"
+SForce: T=821 Fixed=0 Marker=1028 Faction="ms" StartLabel="821" RushTux="no"
+SForce: T=834 Fixed=0 Marker=1028 Faction="ms" StartLabel="834" RushTux="no"
+SForce: T=883 Fixed=0 Marker=1028 Faction="ms" StartLabel="883" RushTux="no"
+SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -490,7 +490,7 @@ SForce: T=598 Fixed=0 Marker=3035 Faction="ms" StartLabel="SecretAreaDefenceCont
 // This is Serge -- storehouse keeper
 //
 //SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" RushTux="no" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
-SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage2" RushTux="no" ShortLabel=_"Nemesis"
+SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage2" RushTux="no"
 SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEmmiters" RushTux="no" ShortLabel=_"SADD"
 SForce: T=139 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEnterance" RushTux="no" ShortLabel=_"Ashman"
 SForce: T=249 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage" RushTux="no" ShortLabel=_"Guard"
