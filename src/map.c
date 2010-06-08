@@ -1898,7 +1898,7 @@ void GetThisLevelsDroids(char *SectionPointer)
 #define DROIDS_LEVEL_END_INDICATION_STRING "** End of this levels droid data **"
 #define DROIDS_MAXRAND_INDICATION_STRING "Maximum number of Random Droids="
 #define DROIDS_MINRAND_INDICATION_STRING "Minimum number of Random Droids="
-#define ALLOWED_TYPE_INDICATION_STRING "Allowed Type of Random Droid for this level: "
+#define ALLOWED_TYPE_INDICATION_STRING "Random Droid Type: "
 
 	// printf("\nReceived another levels droid section for decoding. It reads: %s " , SectionPointer );
 
