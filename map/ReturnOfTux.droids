@@ -1,29 +1,29 @@
  * ----------------------------------------------------------------------
  *
- *   Copyright (c) 1994, 2002-2010 the Freedroid dev team
+ * Copyright (c) 1994, 2002-2010 the Freedroid dev team
  *
- *  This file is part of Freedroid
+ * This file is part of Freedroid
  *
- *  Freedroid is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- *  Freedroid is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with Freedroid; see the file COPYING. If not, write to the 
- *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
- *  MA  02111-1307  USA
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ * MA 02111-1307 USA
  *
  * ----------------------------------------------------------------------
 
 ----------------------------------------------------------------------
 
-This is a Freedroid droids file.  
+This is a Freedroid droids file.
 
 It describes the droids that are to be put into an area.
 
@@ -32,7 +32,7 @@ Convention for avoiding duplication of Marker (needs to be world unique)
 Marker = Group(1+) + Level(3 digits); Example 1037 for group 1 on lvl 37
 Groups that need to span several levels belong to level 999
 
-Note: 9999 is hardcoded in places, so dont change those 
+Note: 9999 is hardcoded in places, so dont change those
 without "fixing" it elsewhere as well
 In the future we should probably use eg
 9999 for Red Guard faction
@@ -50,46 +50,42 @@ and when "all go hostile" check which factions could still be friendly.
 ----------------------------------------------------------------------
 
 ** Beginning of new Level **
-Level=0 
+Level=0
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 476
 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0NorthGateGuard" RushTux="no" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" RushTux="no" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0TeleporterGuard" RushTux="no" UseDialog="Town-TeleporterGuard" ShortLabel=_"Town Teleporter Guard" 
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0NorthGateGuard" RushTux="no" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" RushTux="no" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0TeleporterGuard" RushTux="no" UseDialog="Town-TeleporterGuard" ShortLabel=_"Town Teleporter Guard"
 SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="BenderStartGameSquare" RushTux="no" UseDialog="Bender" ShortLabel=_"Red Guard Member"
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="ChandraStartGameSquare" RushTux="no" UseDialog="Chandra" ShortLabel=_"Chandra -- Town Sage" 
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="DocMooreStartGameSquare" RushTux="no" UseDialog="DocMoore" ShortLabel=_"Medic" 
-SForce: T=MUM Fixed=0 Marker=9999 Faction="civilian" StartLabel="StoneStartGameSquare" RushTux="no" UseDialog="Stone" ShortLabel=_"Shopowner" 
-SForce: T=FSC Fixed=0 Marker=9998 Faction="civilian" StartLabel="SorensonStartGameSquare" RushTux="no" UseDialog="Sorenson" ShortLabel=_"COBAL Programmer" 
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare1" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- North Gate Guard Bot" 
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare2" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot" 
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare3" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot" 
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare4" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- East Gate Guard Bot" 
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare5" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot" 
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare6" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot" 
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="RichardStartGameSquare" RushTux="no" UseDialog="Richard" ShortLabel=_"*nix Admin" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="BenjaminCitadelStartGameSquare" RushTux="no" UseDialog="Benjamin" ShortLabel=_"Red Guard Member" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="DixonStartGameSquare" RushTux="no" UseDialog="Dixon" ShortLabel=_"Red Guard Member" 
-SForce: T=COO Fixed=0 Marker=9999 Faction="civilian" StartLabel="MichelangeloStartGameSquare" RushTux="no" UseDialog="Michelangelo" ShortLabel=_"Cook" 
-SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="SkippyStartGameSquare" RushTux="no" UseDialog="Skippy" ShortLabel=_"Guy with Hat" 
-SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="DuncanStartGameSquare" RushTux="no" UseDialog="Duncan" ShortLabel=_"Sketchy Guy" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="PendragonStartGameSquare" RushTux="no" UseDialog="Pendragon" ShortLabel=_"Red Guard Member" 
-SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="BruceStartGameSquare" RushTux="no" UseDialog="Bruce" ShortLabel=_"Mine Worker" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="ButchStartGameSquare" RushTux="no" UseDialog="Butch" ShortLabel=_"Red Guard Member" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="NewSpencer" RushTux="no" UseDialog="Spencer" ShortLabel=_"Spencer -- Leader of the Red Guard" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="LukasStartGameSquare" RushTux="no" UseDialog="Lukas" ShortLabel=_"Lukas -- Head of the Armory" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="TybaltStartGameSquare" RushTux="no" UseDialog="Tybalt" ShortLabel=_"Red Guard Member" 
+SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="ChandraStartGameSquare" RushTux="no" UseDialog="Chandra" ShortLabel=_"Chandra -- Town Sage"
+SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="DocMooreStartGameSquare" RushTux="no" UseDialog="DocMoore" ShortLabel=_"Medic"
+SForce: T=MUM Fixed=0 Marker=9999 Faction="civilian" StartLabel="StoneStartGameSquare" RushTux="no" UseDialog="Stone" ShortLabel=_"Shopowner"
+SForce: T=FSC Fixed=0 Marker=9998 Faction="civilian" StartLabel="SorensonStartGameSquare" RushTux="no" UseDialog="Sorenson" ShortLabel=_"COBAL Programmer"
+SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare1" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- North Gate Guard Bot"
+SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare2" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
+SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare3" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
+SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare4" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- East Gate Guard Bot"
+SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare5" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
+SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare6" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
+SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="RichardStartGameSquare" RushTux="no" UseDialog="Richard" ShortLabel=_"*nix Admin"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="BenjaminCitadelStartGameSquare" RushTux="no" UseDialog="Benjamin" ShortLabel=_"Red Guard Member"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="DixonStartGameSquare" RushTux="no" UseDialog="Dixon" ShortLabel=_"Red Guard Member"
+SForce: T=COO Fixed=0 Marker=9999 Faction="civilian" StartLabel="MichelangeloStartGameSquare" RushTux="no" UseDialog="Michelangelo" ShortLabel=_"Cook"
+SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="SkippyStartGameSquare" RushTux="no" UseDialog="Skippy" ShortLabel=_"Guy with Hat"
+SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="DuncanStartGameSquare" RushTux="no" UseDialog="Duncan" ShortLabel=_"Sketchy Guy"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="PendragonStartGameSquare" RushTux="no" UseDialog="Pendragon" ShortLabel=_"Red Guard Member"
+SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="BruceStartGameSquare" RushTux="no" UseDialog="Bruce" ShortLabel=_"Mine Worker"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="ButchStartGameSquare" RushTux="no" UseDialog="Butch" ShortLabel=_"Red Guard Member"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="NewSpencer" RushTux="no" UseDialog="Spencer" ShortLabel=_"Spencer -- Leader of the Red Guard"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="LukasStartGameSquare" RushTux="no" UseDialog="Lukas" ShortLabel=_"Lukas -- Head of the Armory"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="TybaltStartGameSquare" RushTux="no" UseDialog="Tybalt" ShortLabel=_"Red Guard Member"
 SForce: T=BAR Fixed=0 Marker=9999 Faction="civilian" StartLabel="EwaldStartGameSquare" RushTux="no" UseDialog="Ewald" ShortLabel=_"Barkeeper"
-SForce: T=FSC Fixed=0 Marker=9999 Faction="civilian" StartLabel="TamaraStartGameSquare" RushTux="no" UseDialog="Tamara" ShortLabel=_"Librarian"  
-SForce: T=WOR Fixed=0 Marker=9999 Faction="resistance" StartLabel="CitadelPrison" RushTux="no" UseDialog="Peter" ShortLabel=_"Peter -- Inprisoned Rebel" 
+SForce: T=FSC Fixed=0 Marker=9999 Faction="civilian" StartLabel="TamaraStartGameSquare" RushTux="no" UseDialog="Tamara" ShortLabel=_"Librarian"
+SForce: T=WOR Fixed=0 Marker=9999 Faction="resistance" StartLabel="CitadelPrison" RushTux="no" UseDialog="Peter" ShortLabel=_"Peter -- Inprisoned Rebel"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=1
 Maximum number of Random Droids=80
@@ -99,11 +95,7 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 249
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=2
 Maximum number of Random Droids=90
@@ -113,13 +105,9 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 249
 
-SForce: T=883 Fixed=0 Marker=1002 Faction="ms" StartLabel="Lv2DalekStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Dark Apprentice of MegaSys" 
+SForce: T=883 Fixed=0 Marker=1002 Faction="ms" StartLabel="Lv2DalekStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Dark Apprentice of MegaSys"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=3
 Maximum number of Random Droids=50
@@ -128,11 +116,7 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 249
 Allowed Type of Random Droid for this level: 329
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=4
 Maximum number of Random Droids=85
@@ -142,13 +126,9 @@ Allowed Type of Random Droid for this level: 420
 Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 302
 
-SForce: T=598 Fixed=0 Marker=1004 Faction="ms" StartLabel="DSB-MDCT-Guard" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"DSB Control Terminal Guard" 
+SForce: T=598 Fixed=0 Marker=1004 Faction="ms" StartLabel="DSB-MDCT-Guard" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"DSB Control Terminal Guard"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=5
 Maximum number of Random Droids=80
@@ -159,11 +139,7 @@ Allowed Type of Random Droid for this level: 516
 Allowed Type of Random Droid for this level: 615
 Allowed Type of Random Droid for this level: 629
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=6
 Maximum number of Random Droids=40
@@ -173,13 +149,9 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 249
 
-SForce: T=883 Fixed=0 Marker=1006 Faction="ms" StartLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"The Singularity"  on_death_drop_item_name="Dixon's Toolbox"
+SForce: T=883 Fixed=0 Marker=1006 Faction="ms" StartLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=7
 Maximum number of Random Droids=15
@@ -188,11 +160,7 @@ Allowed Type of Random Droid for this level: 629
 Allowed Type of Random Droid for this level: 516
 Allowed Type of Random Droid for this level: 249
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=8
 Maximum number of Random Droids=80
@@ -200,16 +168,12 @@ Minimum number of Random Droids=60
 Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 139
 
-SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" RushTux="no" UseDialog="Engel" ShortLabel=_"Blue Guy" 
-SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" RushTux="no" UseDialog="Geist" ShortLabel=_"Blue Guy" 
-SForce: T=302 Fixed=0 Marker=2008 Faction="ms" StartLabel="The302InFrontOfTheTempleStart" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Nemesis" 
-SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"302 Nemesis" 
+SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" RushTux="no" UseDialog="Engel" ShortLabel=_"Blue Guy"
+SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" RushTux="no" UseDialog="Geist" ShortLabel=_"Blue Guy"
+SForce: T=302 Fixed=0 Marker=2008 Faction="ms" StartLabel="The302InFrontOfTheTempleStart" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Nemesis"
+SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"302 Nemesis"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=9
 Maximum number of Random Droids=50
@@ -218,63 +182,43 @@ Allowed Type of Random Droid for this level: 123
 Allowed Type of Random Droid for this level: 139
 Allowed Type of Random Droid for this level: 247
 
-SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"329" 
-SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"302" 
-SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"249" 
+SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"329"
+SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"302"
+SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"249"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=10
 Maximum number of Random Droids=30
 Minimum number of Random Droids=30
 Allowed Type of Random Droid for this level: 543
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=11
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=12
 Maximum number of Random Droids=8
 Minimum number of Random Droids=6
 Allowed Type of Random Droid for this level: 123
 
-SForce: T=PRO Fixed=0 Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Old Guy" 
-SForce: T=FEM Fixed=0 Marker=9999 Faction="civilian" StartLabel="Iris" RushTux="no" UseDialog="Iris" ShortLabel=_"Hot Girl"  
-SForce: T=614 Fixed=0 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" RushTux="no" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot" 
+SForce: T=PRO Fixed=0 Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Old Guy"
+SForce: T=FEM Fixed=0 Marker=9999 Faction="civilian" StartLabel="Iris" RushTux="no" UseDialog="Iris" ShortLabel=_"Hot Girl"
+SForce: T=614 Fixed=0 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" RushTux="no" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=13
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 883
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=14
 Maximum number of Random Droids=15
@@ -282,11 +226,7 @@ Minimum number of Random Droids=15
 Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 420
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=15
 Maximum number of Random Droids=35
@@ -298,18 +238,13 @@ Allowed Type of Random Droid for this level: 329
 Allowed Type of Random Droid for this level: 420
 Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 493
+
 SForce: T=711 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-711" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"711 - Pure death"
 SForce: T=742 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-742" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"742 - Double death"
 SForce: T=821 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-821" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"821"
 SForce: T=834 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-834" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"834"
-
-
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=16
 Maximum number of Random Droids=60
@@ -322,11 +257,7 @@ Allowed Type of Random Droid for this level: 420
 Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 493
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=17
 Maximum number of Random Droids=50
@@ -337,18 +268,14 @@ Allowed Type of Random Droid for this level: 247
 Allowed Type of Random Droid for this level: 249
 
 SForce: T=614 Fixed=0 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux="yes" UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
-SForce: T=KEV Fixed=0 Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" RushTux="no" UseDialog="Kevin" ShortLabel=_"Kevin" 
-SForce: T=JAS Fixed=0 Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" RushTux="no" UseDialog="Jasmine" ShortLabel=_"Cute Girl" 
+SForce: T=KEV Fixed=0 Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" RushTux="no" UseDialog="Kevin" ShortLabel=_"Kevin"
+SForce: T=JAS Fixed=0 Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" RushTux="no" UseDialog="Jasmine" ShortLabel=_"Cute Girl"
 SForce: T=598 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins598StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
 SForce: T=751 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins751StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
 SForce: T=883 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins883StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
 SForce: T=821 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins821StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Prisoner"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=18
 Maximum number of Random Droids=6
@@ -356,11 +283,7 @@ Minimum number of Random Droids=2
 Allowed Type of Random Droid for this level: 571
 Allowed Type of Random Droid for this level: 476
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=19
 Maximum number of Random Droids=30
@@ -372,11 +295,7 @@ Allowed Type of Random Droid for this level: 249
 Allowed Type of Random Droid for this level: 302
 Allowed Type of Random Droid for this level: 329
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=20
 Maximum number of Random Droids=40
@@ -389,22 +308,28 @@ Allowed Type of Random Droid for this level: 420
 Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 493
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=21
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 751
+** End of this levels droid data **
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=22
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=23
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 751
+** End of this levels droid data **
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=24
 Maximum number of Random Droids=10
@@ -413,46 +338,30 @@ Allowed Type of Random Droid for this level: 751
 Allowed Type of Random Droid for this level: 629
 Allowed Type of Random Droid for this level: 883
 
-SForce: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"MSCD - MegaSys Control Droid" 
-S*Force: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"   
+SForce: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"MSCD - MegaSys Control Droid"
+S*Force: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=25
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=26
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=27
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=28
 Maximum number of Random Droids=0
@@ -482,45 +391,32 @@ SForce: T=821 Fixed=0 Marker=1028 Faction="ms" StartLabel="821" RushTux="no" Use
 SForce: T=834 Fixed=0 Marker=1028 Faction="ms" StartLabel="834" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"834"
 SForce: T=883 Fixed=0 Marker=1028 Faction="ms" StartLabel="883" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"883"
 SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"999"
-
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=29
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=123 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Race Condition" 
-SForce: T=139 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Undeclared Variable" 
-SForce: T=247 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Segmentation Fault" 
-SForce: T=249 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot4StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Buffer Overflow" 
+SForce: T=123 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Race Condition"
+SForce: T=139 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Undeclared Variable"
+SForce: T=247 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Segmentation Fault"
+SForce: T=249 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot4StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Buffer Overflow"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=30
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=598 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Melissa.I" 
-SForce: T=615 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"ILOVEYOU" 
-SForce: T=629 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"W32.YourDoom" 
-SForce: T=999 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot4StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"CIH.1103" 
+SForce: T=598 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot1StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Melissa.I"
+SForce: T=615 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot2StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"ILOVEYOU"
+SForce: T=629 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot3StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"W32.YourDoom"
+SForce: T=999 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot4StartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"CIH.1103"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=31
 Maximum number of Random Droids=60
@@ -531,31 +427,22 @@ Allowed Type of Random Droid for this level: 516
 Allowed Type of Random Droid for this level: 615
 Allowed Type of Random Droid for this level: 629
 
-SForce: T=883 Fixed=0 Marker=1031 Faction="ms" StartLabel="MSDDStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"MSDD - MegaSys Defence Droid" 
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid1StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid2StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid3StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid4StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD" 
-SForce: T=883 Fixed=0 Marker=3031 Faction="ms" StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard" 
-
+SForce: T=883 Fixed=0 Marker=1031 Faction="ms" StartLabel="MSDDStartGameSquare" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"MSDD - MegaSys Defence Droid"
+SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid1StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid2StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid3StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid4StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=883 Fixed=0 Marker=3031 Faction="ms" StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Update Server Guard"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=32
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=33
 Maximum number of Random Droids=20
@@ -569,24 +456,16 @@ Allowed Type of Random Droid for this level: 516
 Allowed Type of Random Droid for this level: 571
 Allowed Type of Random Droid for this level: 598
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=34
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 123
 
-SForce: T=WOR Fixed=1 Marker=1034 Faction="civilian" StartLabel="Koan" RushTux="no" UseDialog="Koan" ShortLabel=_"Koan"  on_death_drop_item_name="Pandora's Cube"
+SForce: T=WOR Fixed=1 Marker=1034 Faction="civilian" StartLabel="Koan" RushTux="no" UseDialog="Koan" ShortLabel=_"Koan" on_death_drop_item_name="Pandora's Cube"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=35
 Maximum number of Random Droids=10
@@ -596,43 +475,35 @@ Allowed Type of Random Droid for this level: 883
 Allowed Type of Random Droid for this level: 249
 Allowed Type of Random Droid for this level: 629
 
-SForce: T=883 Fixed=0 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux="yes" UseDialog="SADD" ShortLabel=_"Hostile Droid" 
-SForce: T=JAS Fixed=0 Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" RushTux="no" UseDialog="Tania" ShortLabel=_"Scientist" 
-SForce: T=598 Fixed=0 Marker=3035 Faction="ms" StartLabel="SecretAreaDefenceControl" RushTux="no" UseDialog="SACD" ShortLabel=_"SACD - Secret Area Control Droid" 
-
+SForce: T=883 Fixed=0 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux="yes" UseDialog="SADD" ShortLabel=_"Hostile Droid"
+SForce: T=JAS Fixed=0 Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" RushTux="no" UseDialog="Tania" ShortLabel=_"Scientist"
+SForce: T=598 Fixed=0 Marker=3035 Faction="ms" StartLabel="SecretAreaDefenceControl" RushTux="no" UseDialog="SACD" ShortLabel=_"SACD - Secret Area Control Droid"
 //--------------------
 // This is Boris. Leader of scientists locked in secret area
 //
-//SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="BorisStartGameSquare" RushTux="no" UseDialog="Boris" ShortLabel=_"Boris -- scientists leader" 
-
+//SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="BorisStartGameSquare" RushTux="no" UseDialog="Boris" ShortLabel=_"Boris -- scientists leader"
 //--------------------
 // This is Lina -- librarian in secret area
 //
-//SForce: T=FSC Fixed=0 Marker=4035 Faction="civilian" StartLabel="LinaStartGameSquare" RushTux="no" UseDialog="Lina" ShortLabel=_"Lina -- librarian" 
-
+//SForce: T=FSC Fixed=0 Marker=4035 Faction="civilian" StartLabel="LinaStartGameSquare" RushTux="no" UseDialog="Lina" ShortLabel=_"Lina -- librarian"
 //--------------------
 // This is Serge -- storehouse keeper
 //
-//SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" RushTux="no" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper" 
-
-SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Nemesis" 
-SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEmmiters" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"SADD" 
-SForce: T=139 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEnterance" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Ashman" 
-SForce: T=249 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard" 
-SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorComputers" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"SADD" 
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaHall" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard" 
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaStore" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard" 
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaPassage" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard" 
-SForce: T=247 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaRestroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Servant" 
-SForce: T=476 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBedroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Criocapsules maintainer" 
-SForce: T=329 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBathroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Sanitary technician" 
-SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaToilet" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Toilet droid" 
+//SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" RushTux="no" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
+SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Nemesis"
+SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEmmiters" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"SADD"
+SForce: T=139 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEnterance" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Ashman"
+SForce: T=249 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
+SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorComputers" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"SADD"
+SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaHall" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
+SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaStore" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
+SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaPassage" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Guard"
+SForce: T=247 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaRestroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Servant"
+SForce: T=476 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBedroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Criocapsules maintainer"
+SForce: T=329 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBathroom" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Sanitary technician"
+SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaToilet" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Toilet droid"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=36
 Maximum number of Random Droids=7
@@ -642,74 +513,68 @@ Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 598
 Allowed Type of Random Droid for this level: 302
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=37
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Allowed Type of Random Droid for this level: 751
 
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux="yes" UseDialog="TutorialTom" ShortLabel=_"???" 
+SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux="yes" UseDialog="TutorialTom" ShortLabel=_"???"
 SForce: T=123 Fixed=0 Marker=1037 Faction="ms" StartLabel="melee1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
 SForce: T=247 Fixed=0 Marker=2037 Faction="ms" StartLabel="melee2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Kill Me Too" on_death_drop_item_name="Tachyon Condensator"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target" 
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange3" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange4" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange5" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target" 
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange6" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target" 
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange7" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target" 
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange8" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target" 
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange5" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange6" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange7" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
+SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange8" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover1" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target" 
+SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover2" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover3" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover4" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover5" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover6" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover7" RushTux="no" UseDialog="AfterTakeover" ShortLabel=_"Target"
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=38
 Maximum number of Random Droids=30
 Minimum number of Random Droids=30
 Allowed Type of Random Droid for this level: 543
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=39
 Maximum number of Random Droids=30
 Minimum number of Random Droids=30
 Allowed Type of Random Droid for this level: 543
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=40
 Maximum number of Random Droids=30
 Minimum number of Random Droids=30
 Allowed Type of Random Droid for this level: 543
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=41
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=42
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
 ----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=43
 Maximum number of Random Droids=90
@@ -721,11 +586,42 @@ Allowed Type of Random Droid for this level: 329
 Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 598
 ** End of this levels droid data **
-
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=44
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=45
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
 ----------------------------------------------------------------------
-
+** Beginning of new Level **
+Level=46
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=47
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=48
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=49
 Maximum number of Random Droids=50
@@ -736,9 +632,65 @@ Allowed Type of Random Droid for this level: 302
 Allowed Type of Random Droid for this level: 329
 Allowed Type of Random Droid for this level: 476
 Allowed Type of Random Droid for this level: 598
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuard" RushTux="no" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard" 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" RushTux="no" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader" 
 
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuard" RushTux="no" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard"
+SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" RushTux="no" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=50
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=51
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=52
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=53
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=54
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=55
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=56
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=57
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Allowed Type of Random Droid for this level: 543
 ** End of this levels droid data **
 
 //----------------------------------------------------------------------
