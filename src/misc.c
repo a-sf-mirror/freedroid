@@ -551,7 +551,7 @@ int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image *our_i
  * This function checks if a given screen position lies within the 
  * inventory screen toggle button or not.
  */
-int MouseCursorIsInRect(SDL_Rect * our_rect, int x, int y)
+int MouseCursorIsInRect(const SDL_Rect *our_rect, int x, int y)
 {
 	// Now we can start to check if the mouse cursor really is on that
 	// rectangle or not.

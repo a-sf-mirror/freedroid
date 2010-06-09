@@ -598,7 +598,7 @@ void adapt_button_positions_to_screen_resolution(void);
 void ErrorMessage(const char *FunctionName, const char *ProblemDescription, int InformDevelopers, int IsFatal, ...);
 void ShowGenericButtonFromList(int ButtonIndex);
 int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image *our_iso_image);
-int MouseCursorIsInRect(SDL_Rect * our_rect, int x, int y);
+int MouseCursorIsInRect(const SDL_Rect *, int, int);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
 char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicationString, const char *EndIndicationString);
