@@ -1779,7 +1779,7 @@ int GetCrew(char *filename)
 static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, char *EndOfThisLevelData)
 {
 	char TypeIndicationString[1000];
-	short int ListIndex;
+	int droid_type;
 	char *StartMapLabel;
 	char *YesNoString;
 	location StartupLocation;
@@ -1791,28 +1791,11 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 		TypeIndicationString[3] = 0;
 		DebugPrintf(1, "\nSpecial Force Type indication found!  It reads: %s.", TypeIndicationString);
 
-		// Now that we have got a type indication string, we only need to translate it
-		// into a number corresponding to that droid in the droid list
-		for (ListIndex = 0; ListIndex < Number_Of_Droid_Types; ListIndex++) {
-			if (!strcmp(Druidmap[ListIndex].druidname, TypeIndicationString))
-				break;
-		}
-		if (ListIndex == Number_Of_Droid_Types) {
-			fprintf(stderr, "\n\nTypeIndicationString: '%s' OurLevelNumber: %d .\n", TypeIndicationString, OurLevelNumber);
-			ErrorMessage(__FUNCTION__, "\
-The function reading and interpreting the crew file stunbled into something:\n\
-It was unable to assign the SPECIAL FORCE droid type identification string '%s' found \n\
-in the entry of the droid types allowed for level %d to an entry in\n\
-the List of droids obtained from the gama data specification\n\
-file you use.", PLEASE_INFORM, IS_FATAL);
-		} else {
-			DebugPrintf(1, "\nSpecial force's Type indication string %s translated to type Nr.%d.",
-				    TypeIndicationString, ListIndex);
-		}
+		droid_type = get_droid_type(TypeIndicationString);
 
 		// Create a new enemy, and initialize its 'identity' and 'global state'
 		// (the enemy will be fully initialized by respawn_level())
-		enemy *newen = enemy_new(ListIndex);
+		enemy *newen = enemy_new(droid_type);
 		newen->SpecialForce = 1;
 
 		ReadValueFromString(SpecialDroid, "Fixed=", "%hd", &(newen->CompletelyFixed), EndOfThisLevelData);
@@ -1960,16 +1943,7 @@ the maximum number (%d) of random droids.", PLEASE_INFORM, IS_WARNING_ONLY, OurL
 
 			// Now that we have got a type indication string, we only need to translate it
 			// into a number corresponding to that droid in the droid list
-			for (ListIndex = 0; ListIndex < Number_Of_Droid_Types; ListIndex++) {
-				if (!strcmp(Druidmap[ListIndex].druidname, TypeIndicationString))
-					break;
-			}
-			if (ListIndex >= Number_Of_Droid_Types) {
-				ErrorMessage(__FUNCTION__, "\
-On Level %d there is an illegal droid type (%s).\n\
-It lacks a corresponding entry in the droid archtype file.\n\
-Please correct this.", PLEASE_INFORM, IS_FATAL, OurLevelNumber, TypeIndicationString);
-			}
+			ListIndex = get_droid_type(TypeIndicationString);
 
 			ListOfTypesAllowed[DifferentRandomTypes] = ListIndex;
 			DifferentRandomTypes++;
