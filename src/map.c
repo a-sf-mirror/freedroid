@@ -1892,19 +1892,19 @@ void GetThisLevelsDroids(char *SectionPointer)
 	int OurLevelNumber;
 	char *SearchPointer;
 	char *EndOfThisLevelData;
-	int MaxRand;
-	int MinRand;
+	int MaxRand = 0;
+	int MinRand = 0;
 	int RealNumberOfRandomDroids;
-	int DifferentRandomTypes;
+	int DifferentRandomTypes = 1;
 	int ListIndex;
 	char TypeIndicationString[1000];
-	short int ListOfTypesAllowed[1000];
+	short int ListOfTypesAllowed[200];
+	ListOfTypesAllowed[0] = 0;
 
 #define DROIDS_LEVEL_INDICATION_STRING "Level="
 #define DROIDS_LEVEL_END_INDICATION_STRING "** End of this levels droid data **"
-#define DROIDS_MAXRAND_INDICATION_STRING "Maximum number of Random Droids="
-#define DROIDS_MINRAND_INDICATION_STRING "Minimum number of Random Droids="
-#define ALLOWED_TYPE_INDICATION_STRING "Random Droid Type: "
+#define DROIDS_NUMBER_INDICATION_STRING "Number of Random Droids="
+#define ALLOWED_TYPE_INDICATION_STRING "Random Droid Types: "
 
 	// printf("\nReceived another levels droid section for decoding. It reads: %s " , SectionPointer );
 
@@ -1913,43 +1913,72 @@ void GetThisLevelsDroids(char *SectionPointer)
 
 	// Now we read in the level number for this level
 	ReadValueFromString(SectionPointer, DROIDS_LEVEL_INDICATION_STRING, "%d", &OurLevelNumber, EndOfThisLevelData);
+	// Now we read in the min and max number of random droids for this level
+	if (strstr(SectionPointer, DROIDS_NUMBER_INDICATION_STRING)) {
+		SearchPointer = ReadAndMallocStringFromData(SectionPointer, DROIDS_NUMBER_INDICATION_STRING, "\n");
+		char *ptr;
+		MinRand = strtol(SearchPointer, &ptr, 10);
+		ptr++;
+		MaxRand = strtol(ptr, NULL, 10);
+		if (!MaxRand)
+			MaxRand = MinRand;
 
-	// Now we read in the maximal number of random droids for this level
-	ReadValueFromString(SectionPointer, DROIDS_MAXRAND_INDICATION_STRING, "%d", &MaxRand, EndOfThisLevelData);
-
-	// Now we read in the minimal number of random droids for this level
-	ReadValueFromString(SectionPointer, DROIDS_MINRAND_INDICATION_STRING, "%d", &MinRand, EndOfThisLevelData);
-
-	DifferentRandomTypes = 0;
-	SearchPointer = SectionPointer;
-	while ((SearchPointer = strstr(SearchPointer, ALLOWED_TYPE_INDICATION_STRING)) != NULL) {
-		SearchPointer += strlen(ALLOWED_TYPE_INDICATION_STRING);
-		strncpy(TypeIndicationString, SearchPointer, 3);	// Every type is 3 characters long
-		TypeIndicationString[3] = 0;
-		// printf("\nType indication found!  It reads: %s." , TypeIndicationString );
-
-		// Now that we have got a type indication string, we only need to translate it
-		// into a number corresponding to that droid in the droid list
-		for (ListIndex = 0; ListIndex < Number_Of_Droid_Types; ListIndex++) {
-			if (!strcmp(Druidmap[ListIndex].druidname, TypeIndicationString))
-				break;
-		}
-		if (ListIndex >= Number_Of_Droid_Types) {
-			fprintf(stderr, "\n\nTypeIndicationString: '%s' OurLevelNumber: %d .\n", TypeIndicationString, OurLevelNumber);
+		if (MinRand < 0) {
 			ErrorMessage(__FUNCTION__, "\
-The function reading and interpreting the crew file stunbled into something:\n\
-It was unable to assign the droid type identification string '%s' found \n\
-in the entry of the droid types allowed for level %d to an entry in\n\
-the List of droids obtained from the gama data specification\n\
-file you use.  \n\
-Please check that this type really is spelled correctly, that it consists of\n\
-only three characters and that it really has a corresponding entry in the\n\
-game data file with all droid type specifications.", PLEASE_INFORM, IS_FATAL);
-		} else {
-			DebugPrintf(1, "\nType indication string %s translated to type Nr.%d.", TypeIndicationString, ListIndex);
+On Level %d the minimum number (%d) of random droids is a negative number.\n\
+Setting the number of random droids to 0 for this level.", PLEASE_INFORM, IS_WARNING_ONLY, OurLevelNumber, MinRand);
+			MinRand = MaxRand = 0;
+		} else if (MaxRand < MinRand) {
+			ErrorMessage(__FUNCTION__, "\
+On Level %d the minimum number (%d) of random droids is greater than\n\
+the maximum number (%d) of random droids.", PLEASE_INFORM, IS_WARNING_ONLY, OurLevelNumber, MinRand, MaxRand);
+		} 
+		free(SearchPointer);
+	}
+
+	// Now we read in the type(s) of random droids for this level
+	if (strstr(SectionPointer, ALLOWED_TYPE_INDICATION_STRING)) {
+		DifferentRandomTypes = 0;
+		SearchPointer = ReadAndMallocStringFromData(SectionPointer, ALLOWED_TYPE_INDICATION_STRING, "\n");
+		char *RandomTypes = SearchPointer;
+		while (*RandomTypes) {
+			while (*RandomTypes && isspace(*RandomTypes)) {
+				RandomTypes++;
+			}
+			int droid_type_length = 0;
+			char *ptr = RandomTypes;
+			while (isalnum(*ptr)) {
+				ptr++;
+				droid_type_length++;
+			}
+			if (!droid_type_length)
+				break;
+
+			strncpy(TypeIndicationString, RandomTypes, droid_type_length);	// Every type is 3 characters long
+			TypeIndicationString[droid_type_length] = 0;
+			// printf("\nType indication found!  It reads: %s." , TypeIndicationString );
+
+			// Now that we have got a type indication string, we only need to translate it
+			// into a number corresponding to that droid in the droid list
+			for (ListIndex = 0; ListIndex < Number_Of_Droid_Types; ListIndex++) {
+				if (!strcmp(Druidmap[ListIndex].druidname, TypeIndicationString))
+					break;
+			}
+			if (ListIndex >= Number_Of_Droid_Types) {
+				ErrorMessage(__FUNCTION__, "\
+On Level %d there is an illegal droid type (%s).\n\
+It lacks a corresponding entry in the droid archtype file.\n\
+Please correct this.", PLEASE_INFORM, IS_FATAL, OurLevelNumber, TypeIndicationString);
+			}
+
+			ListOfTypesAllowed[DifferentRandomTypes] = ListIndex;
+			DifferentRandomTypes++;
+
+			RandomTypes += droid_type_length;
+			if (RandomTypes)
+				RandomTypes++; //skip the comma
 		}
-		ListOfTypesAllowed[DifferentRandomTypes] = ListIndex;
-		DifferentRandomTypes++;
+		free(SearchPointer);
 	}
 
 	// At this point, the List "ListOfTypesAllowed" has been filled with the NUMBERS of
