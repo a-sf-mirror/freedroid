@@ -783,6 +783,74 @@ static int lua_create_droid(lua_State *L)
 	return 0;
 }
 
+/**
+ * \brief Gets the value of a field of a Lua table.
+ * \param L Lua state.
+ * \param index Stack index where the table is.
+ * \param field Name of the field to fetch.
+ * \param type Either LUA_TNUMBER or LUA_TSTRING.
+ * \param result Return location for an int or a newly allocated string.
+ * \return TRUE if the value was read, FALSE if it could not be read.
+ */
+static int get_value_from_table(lua_State *L, int index, const char *field, int type, void *result)
+{
+	lua_getfield(L, index, field);
+	if (lua_type(L, -1) == type) {
+		switch (type) {
+		case LUA_TNUMBER:
+			*((int *) result) = lua_tointeger(L, -1);
+			break;
+		case LUA_TSTRING:
+			*((char **) result) = strdup(lua_tostring(L, -1));
+			break;
+		}
+		lua_pop(L, 1);
+		return TRUE;
+	} else {
+		lua_pop(L, 1);
+		return FALSE;
+	}
+}
+
+static int lua_register_addon(lua_State *L)
+{
+	char* name;
+	struct addon_bonus bonus;
+	struct addon_spec addonspec;
+
+	// Read the item name and find the item index.
+	memset(&addonspec, 0, sizeof(struct addon_spec));
+	get_value_from_table(L, 1, "name", LUA_TSTRING, &name);
+	addonspec.type = GetItemIndexByName(name);
+	free (name);
+
+	// Read the simple add-on specific fields.
+	get_value_from_table(L, 1, "require_socket", LUA_TSTRING, &addonspec.requires_socket);
+	get_value_from_table(L, 1, "require_item", LUA_TSTRING, &addonspec.requires_item);
+	get_value_from_table(L, 1, "upgrade_cost", LUA_TNUMBER, &addonspec.upgrade_cost);
+
+	// Process the table of bonuses. The keys of the table are the names
+	// of the bonuses and the values the attribute increase amounts.
+	lua_getfield(L, 1, "bonuses");
+	if (lua_type(L, -1) == LUA_TTABLE) {
+		lua_pushnil(L);
+		while (lua_next(L, -2) != 0) {
+			if (lua_type(L, -2) == LUA_TSTRING && lua_type(L, -1) == LUA_TNUMBER) {
+				bonus.name = strdup(lua_tostring(L, -2));
+				bonus.value = lua_tonumber(L, -1);
+				dynarray_add(&addonspec.bonuses, &bonus, sizeof(bonus));
+				lua_pop(L, 1);
+			}
+		}
+	}
+	lua_pop(L, 1);
+
+	// Register a new add-on specification.
+	add_addon_spec(&addonspec);
+
+	return 0;
+}
+
 luaL_reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -974,6 +1042,11 @@ luaL_reg lfuncs[] = {
 	{"user_input_string", lua_user_input_string},
 
 	{"create_droid", lua_create_droid},
+
+	/* addon()
+	 * Registers a new add-on specification.
+	 */
+	{"addon", lua_register_addon},
 	{NULL, NULL}
 	,
 };
@@ -983,6 +1056,14 @@ void run_lua(const char *code)
 	if (luaL_dostring(global_lua_state, code)) {
 		ErrorMessage(__FUNCTION__, "Error running Lua code {%s}: %s.\n", PLEASE_INFORM, IS_FATAL, code,
 			     lua_tostring(global_lua_state, -1));
+	}
+}
+
+void run_lua_file(const char *path)
+{
+	if (luaL_dofile(global_lua_state, path)) {
+		ErrorMessage(__FUNCTION__, "Cannot run script file %s: %s.\n",
+		         PLEASE_INFORM, IS_FATAL, path, lua_tostring(global_lua_state, -1));
 	}
 }
 
@@ -999,9 +1080,7 @@ void init_lua()
 		lua_setglobal(global_lua_state, lfuncs[i].name);
 	}
 
-	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1))
-		if (luaL_dofile(global_lua_state, fpath))
-			ErrorMessage(__FUNCTION__, "Cannot open script helpers file script_helpers.lua: %s.\n", PLEASE_INFORM, IS_FATAL,
-				     lua_tostring(global_lua_state, -1));
-
+	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
+		run_lua_file(fpath);
+	}
 }

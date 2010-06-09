@@ -1102,6 +1102,10 @@ void Init_Game_Data()
 	get_item_data(Data);
 	free(Data);
 
+	// Load add-on specifications.
+	find_file("addon_specs.lua", MAP_DIR, fpath, 1);
+	run_lua_file(fpath);
+
 	next_startup_percentage(39);
 
 	find_file("freedroid.difficulty_params", MAP_DIR, fpath, 0);
