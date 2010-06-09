@@ -51,6 +51,9 @@ and when "all go hostile" check which factions could still be friendly.
 
 ** Beginning of new Level **
 Level=0
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 476
 
 SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0NorthGateGuard" RushTux="no" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard"
 SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" RushTux="no" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard"
@@ -85,60 +88,85 @@ SForce: T=WOR Fixed=0 Marker=9999 Faction="resistance" StartLabel="CitadelPrison
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=1
-Number of Random Droids=80
-Random Droid Types: 139, 123, 247, 249
-
+Maximum number of Random Droids=80
+Minimum number of Random Droids=80
+Random Droid Type: 139
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 249
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=2
-Number of Random Droids=90
-Random Droid Types: 139, 123, 247, 249
+Maximum number of Random Droids=90
+Minimum number of Random Droids=90
+Random Droid Type: 139
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 249
 
 SForce: T=883 Fixed=0 Marker=1002 Faction="ms" StartLabel="Lv2DalekStartGameSquare" RushTux="no" ShortLabel=_"Dark Apprentice of MegaSys"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=3
-Number of Random Droids=45-50
-Random Droid Types: 123, 249, 329
-
+Maximum number of Random Droids=50
+Minimum number of Random Droids=45
+Random Droid Type: 123
+Random Droid Type: 249
+Random Droid Type: 329
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=4
-Number of Random Droids=75-85
-Random Droid Types: 516, 420, 476, 302
+Maximum number of Random Droids=85
+Minimum number of Random Droids=75
+Random Droid Type: 516
+Random Droid Type: 420
+Random Droid Type: 476
+Random Droid Type: 302
 
 SForce: T=598 Fixed=0 Marker=1004 Faction="ms" StartLabel="DSB-MDCT-Guard" RushTux="no" ShortLabel=_"DSB Control Terminal Guard"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=5
-Number of Random Droids=80
-Random Droid Types: 249, 302, 516, 615, 629
-
+Maximum number of Random Droids=80
+Minimum number of Random Droids=80
+Random Droid Type: 249
+Random Droid Type: 302
+Random Droid Type: 516
+Random Droid Type: 615
+Random Droid Type: 629
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=6
-Number of Random Droids=40-50
-Random Droid Types: 139, 123, 247, 249
+Maximum number of Random Droids=40
+Minimum number of Random Droids=50
+Random Droid Type: 139
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 249
 
 SForce: T=883 Fixed=0 Marker=1006 Faction="ms" StartLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=7
-Number of Random Droids=15
-Random Droid Types: 629, 516, 249
-
+Maximum number of Random Droids=15
+Minimum number of Random Droids=15
+Random Droid Type: 629
+Random Droid Type: 516
+Random Droid Type: 249
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=8
-Number of Random Droids=60-80
-Random Droid Types: 123, 139
+Maximum number of Random Droids=80
+Minimum number of Random Droids=60
+Random Droid Type: 123
+Random Droid Type: 139
 
 SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" RushTux="no" UseDialog="Engel" ShortLabel=_"Blue Guy"
 SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" RushTux="no" UseDialog="Geist" ShortLabel=_"Blue Guy"
@@ -148,8 +176,11 @@ SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=9
-Number of Random Droids=50-65
-Random Droid Types: 123, 139, 247
+Maximum number of Random Droids=50
+Minimum number of Random Droids=65
+Random Droid Type: 123
+Random Droid Type: 139
+Random Droid Type: 247
 
 SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no"
 SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no"
@@ -158,20 +189,23 @@ SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGa
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=10
-Number of Random Droids=30
-Random Droid Types: 543
-
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=11
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 123
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=12
-Number of Random Droids=6-8
-Random Droid Types: 123
+Maximum number of Random Droids=8
+Minimum number of Random Droids=6
+Random Droid Type: 123
 
 SForce: T=PRO Fixed=0 Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Old Guy"
 SForce: T=FEM Fixed=0 Marker=9999 Faction="civilian" StartLabel="Iris" RushTux="no" UseDialog="Iris" ShortLabel=_"Hot Girl"
@@ -180,20 +214,30 @@ SForce: T=614 Fixed=0 Marker=1012 Faction="redguard" StartLabel="Lev12-614-compl
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=13
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 883
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=14
-Number of Random Droids=15
-Random Droid Types: 476, 420
-
+Maximum number of Random Droids=15
+Minimum number of Random Droids=15
+Random Droid Type: 476
+Random Droid Type: 420
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=15
-Number of Random Droids=35
-Random Droid Types: 123, 247, 302, 329, 420, 476, 493
+Maximum number of Random Droids=35
+Minimum number of Random Droids=35
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 302
+Random Droid Type: 329
+Random Droid Type: 420
+Random Droid Type: 476
+Random Droid Type: 493
 
 SForce: T=711 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-711" RushTux="no"
 SForce: T=742 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-742" RushTux="no"
@@ -203,15 +247,25 @@ SForce: T=834 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-834" RushTux="no"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=16
-Number of Random Droids=60
-Random Droid Types: 123, 247, 302, 329, 420, 476, 493
-
+Maximum number of Random Droids=60
+Minimum number of Random Droids=60
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 302
+Random Droid Type: 329
+Random Droid Type: 420
+Random Droid Type: 476
+Random Droid Type: 493
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=17
-Number of Random Droids=50-60
-Random Droid Types: 123, 139, 247, 249
+Maximum number of Random Droids=50
+Minimum number of Random Droids=60
+Random Droid Type: 123
+Random Droid Type: 139
+Random Droid Type: 247
+Random Droid Type: 249
 
 SForce: T=614 Fixed=0 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux="yes" UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
 SForce: T=KEV Fixed=0 Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" RushTux="no" UseDialog="Kevin" ShortLabel=_"Kevin"
@@ -224,44 +278,65 @@ SForce: T=821 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins821StartGameSqu
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=18
-Number of Random Droids=2-6
-Random Droid Types: 571, 476
-
+Maximum number of Random Droids=6
+Minimum number of Random Droids=2
+Random Droid Type: 571
+Random Droid Type: 476
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=19
-Number of Random Droids=30
-Random Droid Types: 123, 139, 247, 249, 302, 329
-
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Random Droid Type: 123
+Random Droid Type: 139
+Random Droid Type: 247
+Random Droid Type: 249
+Random Droid Type: 302
+Random Droid Type: 329
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=20
-Number of Random Droids=40
-Random Droid Types: 123, 247, 302, 329, 420, 476, 493
-
+Maximum number of Random Droids=40
+Minimum number of Random Droids=40
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 302
+Random Droid Type: 329
+Random Droid Type: 420
+Random Droid Type: 476
+Random Droid Type: 493
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=21
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 751
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=22
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 751
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=23
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 751
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=24
-Number of Random Droids=7-10
-Random Droid Types: 751, 629, 883
+Maximum number of Random Droids=10
+Minimum number of Random Droids=7
+Random Droid Type: 751
+Random Droid Type: 629
+Random Droid Type: 883
 
 SForce: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" ShortLabel=_"MSCD - MegaSys Control Droid"
 S*Force: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"
@@ -269,21 +344,28 @@ S*Force: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=25
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=26
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 123
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=27
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 123
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=28
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
 
 SForce: T=123 Fixed=0 Marker=1028 Faction="ms" StartLabel="123" RushTux="no"
 SForce: T=139 Fixed=0 Marker=1028 Faction="ms" StartLabel="139" RushTux="no"
@@ -313,6 +395,9 @@ SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=29
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 751
 
 SForce: T=123 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot1StartGameSquare" RushTux="no" ShortLabel=_"Race Condition"
 SForce: T=139 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot2StartGameSquare" RushTux="no" ShortLabel=_"Undeclared Variable"
@@ -322,6 +407,9 @@ SForce: T=249 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot4StartG
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=30
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 751
 
 SForce: T=598 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot1StartGameSquare" RushTux="no" ShortLabel=_"Melissa.I"
 SForce: T=615 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot2StartGameSquare" RushTux="no" ShortLabel=_"ILOVEYOU"
@@ -331,8 +419,13 @@ SForce: T=999 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot4StartG
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=31
-Number of Random Droids=60-70
-Random Droid Types: 249, 302, 516, 615, 629
+Maximum number of Random Droids=60
+Minimum number of Random Droids=70
+Random Droid Type: 249
+Random Droid Type: 302
+Random Droid Type: 516
+Random Droid Type: 615
+Random Droid Type: 629
 
 SForce: T=883 Fixed=0 Marker=1031 Faction="ms" StartLabel="MSDDStartGameSquare" RushTux="no" ShortLabel=_"MSDD - MegaSys Defence Droid"
 SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
@@ -345,26 +438,42 @@ SForce: T=883 Fixed=0 Marker=3031 Faction="ms" StartLabel="MSOfficeFirmwareUpdat
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=32
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 751
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=33
-Number of Random Droids=10-20
-Random Droid Types: 123, 139, 247, 296, 302, 516, 571, 598
-
+Maximum number of Random Droids=20
+Minimum number of Random Droids=10
+Random Droid Type: 123
+Random Droid Type: 139
+Random Droid Type: 247
+Random Droid Type: 296
+Random Droid Type: 302
+Random Droid Type: 516
+Random Droid Type: 571
+Random Droid Type: 598
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=34
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 123
 
 SForce: T=WOR Fixed=1 Marker=1034 Faction="civilian" StartLabel="Koan" RushTux="no" UseDialog="Koan" ShortLabel=_"Koan" on_death_drop_item_name="Pandora's Cube"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=35
-Number of Random Droids=0-10
-Random Droid Types: 302, 883, 249, 629
+Maximum number of Random Droids=10
+Minimum number of Random Droids=0
+Random Droid Type: 302
+Random Droid Type: 883
+Random Droid Type: 249
+Random Droid Type: 629
 
 SForce: T=883 Fixed=0 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux="yes" UseDialog="SADD" ShortLabel=_"Hostile Droid"
 SForce: T=JAS Fixed=0 Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" RushTux="no" UseDialog="Tania" ShortLabel=_"Scientist"
@@ -397,13 +506,19 @@ SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaToilet" Rus
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=36
-Number of Random Droids=5-7
-Random Droid Types: 629, 476, 598, 302
-
+Maximum number of Random Droids=7
+Minimum number of Random Droids=5
+Random Droid Type: 629
+Random Droid Type: 476
+Random Droid Type: 598
+Random Droid Type: 302
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=37
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 751
 
 SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux="yes" UseDialog="TutorialTom" ShortLabel=_"???"
 SForce: T=123 Fixed=0 Marker=1037 Faction="ms" StartLabel="melee1" RushTux="no" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
@@ -427,71 +542,96 @@ SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover7" RushTux="n
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=38
-Number of Random Droids=30
-Random Droid Types: 543
-
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=39
-Number of Random Droids=30
-Random Droid Types: 543
-
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=40
-Number of Random Droids=30
-Random Droid Types: 543
-
+Maximum number of Random Droids=30
+Minimum number of Random Droids=30
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=41
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=42
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=43
-Number of Random Droids=30-90
-Random Droid Types: 123, 247, 302, 329, 476, 598
-
+Maximum number of Random Droids=90
+Minimum number of Random Droids=30
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 302
+Random Droid Type: 329
+Random Droid Type: 476
+Random Droid Type: 598
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=44
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=45
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=46
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=47
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=48
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=49
-Number of Random Droids=50
-Random Droid Types: 123, 247, 302, 329, 476, 598
+Maximum number of Random Droids=50
+Minimum number of Random Droids=50
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 302
+Random Droid Type: 329
+Random Droid Type: 476
+Random Droid Type: 598
 
 SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuard" RushTux="no" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard"
 SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" RushTux="no" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
@@ -499,42 +639,58 @@ SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLea
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=50
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=51
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=52
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=53
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=54
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=55
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=56
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=57
-
+Maximum number of Random Droids=0
+Minimum number of Random Droids=0
+Random Droid Type: 543
 ** End of this levels droid data **
 
 //----------------------------------------------------------------------
