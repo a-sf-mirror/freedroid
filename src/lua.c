@@ -763,6 +763,7 @@ static int lua_create_droid(lua_State *L)
 	const char *map_label = luaL_checkstring(L, 1);
 	const char *type_name = luaL_checkstring(L, 2);
 	const char *fact_name = luaL_optstring(L, 3, "ms");
+	const char *dialog    = luaL_optstring(L, 4, "AfterTakeover");
 	location loc;
 	int type;
 
@@ -776,6 +777,7 @@ static int lua_create_droid(lua_State *L)
 	en->pos.y = loc.y + 0.5;
 	en->pos.z = loc.level;
 	en->faction = get_faction_id(fact_name);
+	en->dialog_section_name = strdup(dialog);
 	enemy_insert_into_lists(en, TRUE);
 
 	return 0;
