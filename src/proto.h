@@ -507,6 +507,12 @@ int Get_Prefixes_Data(char *DataPointer);
 void create_upgrade_socket(item *, int, const char *);
 void delete_upgrade_sockets(item *);
 void copy_upgrade_sockets(item *, item *);
+int item_can_be_customized(item *);
+int item_can_be_installed_to_socket(item *, item *, int);
+struct addon_spec *get_addon_spec(int);
+void add_addon_spec(struct addon_spec *);
+void get_item_bonus_string(item *, const char *, struct auto_string *);
+void calculate_item_bonuses(item *);
 
 // character.c
 void DisplayButtons(void);

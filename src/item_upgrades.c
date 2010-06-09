@@ -1,6 +1,6 @@
 /* 
  *
- *   Copyright (c) 2010 Ari Mustonen
+ *  Copyright (c) 2010 Ari Mustonen
  *
  *  This file is part of Freedroid
  *
@@ -24,6 +24,8 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+
+static struct dynarray *addon_specs = NULL;
 
 /**
  * \brief Adds an upgrade socket to the item.
@@ -81,6 +83,284 @@ void copy_upgrade_sockets(item *srcitem, item *dstitem)
 		              sizeof(struct upgrade_socket));
 		if (srcitem->upgrade_sockets.arr[i].addon) {
 			dstitem->upgrade_sockets.arr[i].addon = strdup(srcitem->upgrade_sockets.arr[i].addon);
+		}
+	}
+}
+
+/**
+ * \brief Returns TRUE if the item is of a customizable type.
+ * \param it Item.
+ * \return TRUE if customizable, FALSE otherwise.
+ */
+int item_can_be_customized(item *it)
+{
+	itemspec *spec = &ItemMap[it->type];
+
+	return spec->item_can_be_installed_in_weapon_slot ||
+	       spec->item_can_be_installed_in_drive_slot ||
+	       spec->item_can_be_installed_in_armour_slot ||
+	       spec->item_can_be_installed_in_shield_slot ||
+	       spec->item_can_be_installed_in_special_slot;
+}
+
+/**
+ * \brief Checks if the spec of an add-on is compatible with an item.
+ * \param addonspec Spec of the add-on whose compatiblity to test.
+ * \param it Item to which the add-on would be installed.
+ * \return TRUE if compatible, FALSE if incompatible.
+ */
+static int addon_is_compatible_with_item(struct addon_spec *addonspec, item *it)
+{
+	int ret = TRUE;
+	const char *str = addonspec->requires_item;
+
+	if (str != NULL) {
+		itemspec* spec = &ItemMap[it->type];
+		if (strcmp(str, "melee weapon") == 0) {
+			ret = spec->item_can_be_installed_in_weapon_slot &&
+			      spec->item_weapon_is_melee;
+		} else if (strcmp(str, "ranged weapon") == 0) {
+			ret = spec->item_can_be_installed_in_weapon_slot &&
+			      !spec->item_weapon_is_melee;
+		} else if (strcmp(str, "boots") == 0) {
+			ret = spec->item_can_be_installed_in_drive_slot;
+		} else if (strcmp(str, "armor") == 0) {
+			ret = spec->item_can_be_installed_in_armour_slot;
+		} else if (strcmp(str, "shield") == 0) {
+			ret = spec->item_can_be_installed_in_shield_slot;
+		} else if (strcmp(str, "helmet") == 0) {
+			ret = spec->item_can_be_installed_in_special_slot;
+		} else {
+			ret = FALSE;
+		}
+	}
+
+	return ret;
+}
+
+/**
+ * \brief Returns TRUE if the item is compatible with the socket.
+ * \param dstitem Destionation item.
+ * \param addon Add-on item.
+ * \param socketid Socket index.
+ * \return TRUE if compatible, FALSE otherwise.
+ */
+int item_can_be_installed_to_socket(item *dstitem, item *addon, int socketid)
+{
+	const char *str;
+	struct addon_spec *spec;
+	enum upgrade_socket_types addon_type;
+	enum upgrade_socket_types socket_type;
+
+	// Make sure that the socket and the add-on exist.
+	if (socketid >= dstitem->upgrade_sockets.size) {
+		ErrorMessage(__FUNCTION__, "Socket index out of bounds", PLEASE_INFORM, IS_WARNING_ONLY);
+		return FALSE;
+	}
+	if (addon->type == -1) {
+		ErrorMessage(__FUNCTION__, "Add-on type was -1", PLEASE_INFORM, IS_WARNING_ONLY);
+		return FALSE;
+	}
+
+	// Make sure the item is an add-on.
+	spec = get_addon_spec(addon->type);
+	if (spec == NULL) {
+		return FALSE;
+	}
+	str = spec->requires_socket;
+	if (strcmp(str, "mechanical") == 0) {
+		addon_type = UPGRADE_SOCKET_TYPE_MECHANICAL;
+	} else if (strcmp(str, "electric") == 0) {
+		addon_type = UPGRADE_SOCKET_TYPE_ELECTRIC;
+	} else if (strcmp(str, "universal") == 0) {
+		addon_type = UPGRADE_SOCKET_TYPE_UNIVERSAL;
+	} else {
+		return FALSE;
+	}
+
+	// Check if the socket type is correct. The socket must be either of the
+	// type specified in itemspec for the add-on or universal.
+	socket_type = dstitem->upgrade_sockets.arr[socketid].type;
+	if (socket_type != addon_type && socket_type != UPGRADE_SOCKET_TYPE_UNIVERSAL) {
+		return FALSE;
+	}
+
+	// Make sure the add-on is compatible with the type of the customized item.
+	return addon_is_compatible_with_item(spec, dstitem);
+}
+
+/**
+ * \brief Gets the add-on specification for an item type.
+ * \param item_type Item type number.
+ * \return Add-on specification or NULL if the item isn't an add-on.
+ */
+struct addon_spec *get_addon_spec(int item_type)
+{
+	int i;
+	struct addon_spec *spec;
+
+	for (i = 0; i < addon_specs->size; i++) {
+		spec = &((struct addon_spec *) addon_specs->arr)[i];
+		if (spec->type == item_type) {
+			return spec;
+		}
+	}
+
+	return NULL;
+}
+
+/**
+ * \brief Registers an add-on specification.
+ *
+ * Only the contents of the passed spec are stored to the add-on spec array.
+ * The spec pointer itself isn't used and needs to be freed by the caller.
+ * \param spec Add-on specification to register.
+ */
+void add_addon_spec(struct addon_spec *spec)
+{
+	if (addon_specs == NULL) {
+		addon_specs = dynarray_alloc(32, sizeof(struct addon_spec));
+	}
+	dynarray_add(addon_specs, spec, sizeof(struct addon_spec));
+}
+
+/**
+ * \brief Writes the item bonuses of an item to a string suitable for displaying in the UI.
+ * \param it Item.
+ * \param separator Separator string to use between bonuses.
+ * \param desc An allocated auto string to which to append the string.
+ */
+void get_item_bonus_string(item *it, const char *separator, struct auto_string *desc)
+{
+	int orig_length = desc->length;
+
+	// Append the bonuses to the string.
+	if (it->bonus_to_str) {
+		autostr_append(desc, _("%+d to strength%s"), it->bonus_to_str, separator);
+	}
+	if (it->bonus_to_dex) {
+		autostr_append(desc, _("%+d to dexterity%s"), it->bonus_to_dex, separator);
+	}
+	if (it->bonus_to_mag) {
+		autostr_append(desc, _("%+d to CPU%s"), it->bonus_to_mag, separator, separator);
+	}
+	if (it->bonus_to_vit) {
+		autostr_append(desc, _("%+d to life%s"), it->bonus_to_vit);
+	}
+	if (it->bonus_to_life) {
+		autostr_append(desc, _("%+d health points%s"), it->bonus_to_life, separator);
+	}
+	if (it->bonus_to_health_recovery) {
+		autostr_append(desc, _("%+0.1f health points per second%s"), it->bonus_to_health_recovery, separator);
+	}
+	if (it->bonus_to_cooling_rate) {
+		if (it->bonus_to_cooling_rate > 0) {
+			autostr_append(desc, _("%0.1f cooling per second%s"), it->bonus_to_cooling_rate, separator);
+		} else {
+			autostr_append(desc, _("%0.1f heating per second%s"), -it->bonus_to_cooling_rate, separator);
+		}
+	}
+	if (it->bonus_to_force) {
+		autostr_append(desc, _("%+d Force%s"), it->bonus_to_force, separator);
+	}
+	if (it->bonus_to_tohit) {
+		autostr_append(desc, _("%+d%% to hit%s"), it->bonus_to_tohit, separator);
+	}
+	if (it->bonus_to_all_attributes) {
+		autostr_append(desc, _("%+d to all attributes%s"), it->bonus_to_all_attributes, separator);
+	}
+	if (it->bonus_to_damred_or_damage) {
+		autostr_append(desc, _("%+d%% to armor%s"), it->bonus_to_damred_or_damage, separator);
+	}
+	if (it->bonus_to_resist_fire) {
+		autostr_append(desc, _("+%d to resist fire%s"), it->bonus_to_resist_fire, separator);
+	}
+	if (it->bonus_to_resist_electricity) {
+		autostr_append(desc, _("%+d to resist electricity%s"), it->bonus_to_resist_electricity, separator);
+	}
+
+	// Remove the extraneous trailing separator.
+	if (desc->length > orig_length) {
+		desc->length -= strlen(separator);
+		desc->value[desc->length] = '\0';
+	}
+}
+
+/**
+ * \brief Applies an add-on bonus to the item.
+ * \param it Item.
+ * \param bonus Bonus to apply.
+ */
+static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
+{
+	if (strcmp(bonus->name, "all_attributes") == 0) {
+		it->bonus_to_all_attributes += bonus->value;
+	} else if (strcmp(bonus->name, "attack") == 0) {
+		it->bonus_to_tohit += bonus->value;
+	} else if (strcmp(bonus->name, "armor") == 0) {
+		it->bonus_to_damred_or_damage += bonus->value;
+	} else if (strcmp(bonus->name, "cooling") == 0) {
+		it->bonus_to_mag += bonus->value;
+	} else if (strcmp(bonus->name, "cooling_rate") == 0) {
+		it->bonus_to_cooling_rate += bonus->value;
+	} else if (strcmp(bonus->name, "dexterity") == 0) {
+		it->bonus_to_dex += bonus->value;
+	} else if (strcmp(bonus->name, "force") == 0) {
+		it->bonus_to_force += bonus->value;
+	} else if (strcmp(bonus->name, "health") == 0) {
+		it->bonus_to_life += bonus->value;
+	} else if (strcmp(bonus->name, "health_recovery") == 0) {
+		it->bonus_to_health_recovery += bonus->value;
+	} else if (strcmp(bonus->name, "physique") == 0) {
+		it->bonus_to_vit += bonus->value;
+	} else if (strcmp(bonus->name, "strength") == 0) {
+		it->bonus_to_str += bonus->value;
+	}
+}
+
+/**
+ * \brief Calculates the bonuses of the item.
+ *
+ * Can be used to initialize the bonuses of an item or to recalculate them
+ * when, for example, adding add-ons to it.
+ * \param it Item.
+ */
+void calculate_item_bonuses(item *it)
+{
+	int i;
+	int j;
+	const char *addon;
+	struct addon_spec *spec;
+
+	// Reset all the bonuses to defaults.
+	it->bonus_to_dex = 0;
+	it->bonus_to_str = 0;
+	it->bonus_to_vit = 0;
+	it->bonus_to_mag = 0;
+	it->bonus_to_life = 0;
+	it->bonus_to_force = 0;
+	it->bonus_to_health_recovery = 0.0f;
+	it->bonus_to_cooling_rate = 0.0f;
+	it->bonus_to_tohit = 0;
+	it->bonus_to_all_attributes = 0;
+	it->bonus_to_damred_or_damage = 0;
+	it->bonus_to_resist_fire = 0;
+	it->bonus_to_resist_electricity = 0;
+	it->damred_bonus = 0;
+	it->damage = ItemMap[it->type].base_item_gun_damage;
+	it->damage_modifier = ItemMap[it->type].item_gun_damage_modifier;
+	if (it->type < 0) {
+		return;
+	}
+
+	// Apply bonuses from add-ons.
+	for (i = 0; i < it->upgrade_sockets.size; i++) {
+		addon = it->upgrade_sockets.arr[i].addon;
+		if (addon) {
+			spec = get_addon_spec(GetItemIndexByName(addon));
+			for (j = 0; j < spec->bonuses.size; j++) {
+				apply_addon_bonus(it, &((struct addon_bonus*) spec->bonuses.arr)[j]);
+			}
 		}
 	}
 }

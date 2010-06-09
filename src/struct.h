@@ -296,6 +296,19 @@ typedef struct item_bonus_s {
 
 } item_bonus;
 
+struct addon_bonus {
+	char *name;
+	int value;
+};
+
+struct addon_spec {
+	int type;
+	int upgrade_cost;
+	char *requires_socket;
+	char *requires_item;
+	struct dynarray bonuses;
+};
+
 typedef struct itemspec_s {
 	char *item_name;
 	char *item_rotation_series_prefix;

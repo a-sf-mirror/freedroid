@@ -134,6 +134,12 @@ enum {
 #define MAX_ACTIVE_SPELLS 100
 #define MAX_NUMBER_OF_PROGRAMS 50
 
+enum upgrade_socket_types {
+	UPGRADE_SOCKET_TYPE_MECHANICAL,
+	UPGRADE_SOCKET_TYPE_ELECTRIC,
+	UPGRADE_SOCKET_TYPE_UNIVERSAL
+};
+
 enum skill_forms {
 	PROGRAM_FORM_INSTANT = 10,	//instant hit whatever behind cursor
 	PROGRAM_FORM_RADIAL,	//nova
