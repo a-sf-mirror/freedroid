@@ -671,7 +671,7 @@ void EnemyInfluCollisionText(enemy *);
 void SetTextCursor(int x, int y);
 void SetLineLength(int);
 
-int DisplayText(const char *text, int startx, int starty, const SDL_Rect * clip, float text_stretch);
+int DisplayText(const char *, int, int, const SDL_Rect *, float, ...);
 void show_chat_log(enemy *);
 
 int ScrollText(char *text, int background_code);

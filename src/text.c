@@ -432,7 +432,7 @@ void DisplayBigScreenMessage(void)
 };				// void DisplayBigScreenMessage( void )
 
 /*-----------------------------------------------------------------
- * This function prints *Text beginning at positions startx/starty,
+ * This function prints the formatted text *format beginning at positions startx/starty,
  * respecting the text-borders set by clip_rect.  This includes 
  * clipping but also automatic line-breaks when end-of-line is 
  * reached.  If clip_rect==NULL, no clipping is performed.
@@ -445,8 +445,10 @@ void DisplayBigScreenMessage(void)
  * @Ret: number of lines written (from the first text line up to the last
  *       displayed line)
  *-----------------------------------------------------------------*/
-int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip, float text_stretch)
+int DisplayText(const char *format, int startx, int starty, const SDL_Rect * clip, float text_stretch, ...)
 {
+	va_list args;
+	char buffer[4096];
 	char *tmp;		// mobile pointer to the current position in the string to be printed
 	SDL_Rect Temp_Clipping_Rect;	// adding this to prevent segfault in case of NULL as parameter
 	SDL_Rect store_clip;
@@ -482,11 +484,16 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 		Temp_Clipping_Rect.h = GameConfig.screen_height;
 	}
 
+	// Format the string into a temporary buffer in the stack.
+	va_start(args, text_stretch);
+	vsnprintf(buffer, sizeof(buffer), format, args);
+	va_end(args);
+
 	// Now we can start to print the actual text to the screen.
 	//
 	// The running text pointer must be initialized.
 	//
-	tmp = (char *)Text;	// this is no longer a 'const' char*, but only a char*
+	tmp = buffer;
 	while (*tmp && (MyCursorY < clip->y + clip->h)) {
 		if (((*tmp == ' ') || (*tmp == '\t'))
 		    && (ImprovedCheckLineBreak(tmp, clip, text_stretch) == 1))	// dont write over right border 
