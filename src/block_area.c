@@ -137,7 +137,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].flags |= IS_WALKABLE;
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].filename = "iso_walls_0030.png";
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
-	obstacle_map[ISO_BROKEN_GLASS_WALL_1].flags |= IS_VERTICAL;
 
 	block_2param(ISO_CYAN_WALL_WINDOW_1, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_CYAN_WALL_WINDOW_1].flags &= ~BLOCKS_VISION_TOO;
@@ -322,13 +321,11 @@ void init_obstacle_data(void)
 	block_4param(ISO_DH_DOOR_LOCKED, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short, standard_wall_thickness * 2);
 	obstacle_map[ISO_DH_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DH_DOOR_LOCKED].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
-	obstacle_map[ISO_DH_DOOR_LOCKED].flags |= IS_HORIZONTAL;
 
 	obstacle_map[ISO_DV_DOOR_LOCKED].filename = "iso_doubledoors_0012.png";
 	block_4param(ISO_DV_DOOR_LOCKED, standard_wall_thickness / 2, outer_door_4_width_long, standard_wall_thickness * 2, outer_door_4_width_short);
 	obstacle_map[ISO_DV_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DV_DOOR_LOCKED].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
-	obstacle_map[ISO_DV_DOOR_LOCKED].flags |= IS_HORIZONTAL;
 
 
 	// These are the normal pillars, that appear here and there in the game.
@@ -1090,10 +1087,8 @@ void init_obstacle_data(void)
 
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].filename = "iso_brick_wall_0014.png";
-	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].flags |= IS_VERTICAL;
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].filename = "iso_brick_wall_0015.png";
-	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_BRICK_WALL_EH, 0.8, 1.2);
 	obstacle_map[ISO_BRICK_WALL_EH].filename = "iso_brick_wall_0016.png";
