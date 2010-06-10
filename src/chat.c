@@ -870,8 +870,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 		DialogMenuTexts[i] = "";
 	}
 
-	while (MouseLeftPressed() || MouseRightPressed()) ;
-
 	// We clean out the chat roster from any previous use
 	//
 	InitChatRosterForNewDialogue();
