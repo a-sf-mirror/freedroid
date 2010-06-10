@@ -48,14 +48,19 @@ static enum {
 	CONNECT_WAYPOINT,
 } our_mode;
 
+
 static struct leveleditor_place {
 	/* Line mode */
 	int l_direction;
-	int l_orientation;
-	int l_id; /* Selected wall */
-	int l_type_h; /* Horizontal wall */
-	int l_type_v; /* Vertical wall */
-	line_element l_elements;
+	struct {
+		int h;
+		int v;
+		int se;
+		int sw;
+		int ne;
+		int nw;
+	} l_type;	
+	struct list_head l_elements_head;
 
 	/* Rectangle mode */
 	point r_start;
@@ -68,17 +73,6 @@ static struct leveleditor_place {
 	int startwp;
 	int nbactions;
 } state;
-
-enum obstacle_direction {
-	WE, // Horizontal
-	SN, // Vertical
-	
-	// Corners
-	NW,
-	SW,
-	NE,
-	SE
-};
 
 static void end_waypoint_route()
 {
@@ -169,8 +163,7 @@ static void start_rectangle_floor(int findex)
 	action_set_floor(EditLevel(), state.r_start.x, state.r_start.y, state.r_tile_used);
 	action_push(ACT_MULTIPLE_ACTIONS, 1);
 
-	return;
-}				// void start_rectangle_mode ( leveleditor_state cur_state , int already_defined )
+}
 
 static void handle_rectangle_floor()
 {
@@ -233,305 +226,427 @@ static void end_rectangle_floor(int commit)
  */
 static void pick_walls(int windex)
 {
+	state.l_type.nw = state.l_type.ne = -1;
+	state.l_type.sw = state.l_type.se = -1;
+
 	switch (windex) {
 	case ISO_BRICK_WALL_CABLES_V:
 	case ISO_BRICK_WALL_CABLES_H:
-		state.l_type_v = ISO_BRICK_WALL_CABLES_V;
-		state.l_type_h = ISO_BRICK_WALL_CABLES_H;
+		state.l_type.v = ISO_BRICK_WALL_CABLES_V;
+		state.l_type.h = ISO_BRICK_WALL_CABLES_H;
+
+		// Pick the corners
+		state.l_type.nw = ISO_BRICK_WALL_CABLES_CORNER_3;
+		state.l_type.ne = ISO_BRICK_WALL_CABLES_CORNER_1;
+		state.l_type.sw = ISO_BRICK_WALL_CABLES_CORNER_2;
+		state.l_type.se = ISO_BRICK_WALL_CABLES_CORNER_4;
 		break;
 	case ISO_THICK_WALL_V:
 	case ISO_THICK_WALL_H:
-		state.l_type_v = ISO_THICK_WALL_V;
-		state.l_type_h = ISO_THICK_WALL_H;
+		state.l_type.v = ISO_THICK_WALL_V;
+		state.l_type.h = ISO_THICK_WALL_H;
+
+		// Pick the corners
+		state.l_type.nw = ISO_THICK_WALL_CORNER_NW;
+		state.l_type.ne = ISO_THICK_WALL_CORNER_NE;
+		state.l_type.sw = ISO_THICK_WALL_CORNER_SW;
+		state.l_type.se = ISO_THICK_WALL_CORNER_SE;
 		break;
 	case ISO_V_DOOR_LOCKED:
 	case ISO_H_DOOR_LOCKED:
-		state.l_type_v = ISO_V_DOOR_LOCKED;
-		state.l_type_h = ISO_H_DOOR_LOCKED;
+		state.l_type.v = ISO_V_DOOR_LOCKED;
+		state.l_type.h = ISO_H_DOOR_LOCKED;
 		break;
 	case ISO_V_DOOR_000_OPEN:
 	case ISO_H_DOOR_000_OPEN:
-		state.l_type_v = ISO_V_DOOR_000_OPEN;
-		state.l_type_h = ISO_H_DOOR_000_OPEN;
+		state.l_type.v = ISO_V_DOOR_000_OPEN;
+		state.l_type.h = ISO_H_DOOR_000_OPEN;
 		break;
 	case ISO_OUTER_WALL_W1:
 	case ISO_OUTER_WALL_N1:
-		state.l_type_v = ISO_OUTER_WALL_W1;
-		state.l_type_h = ISO_OUTER_WALL_N1;
+		state.l_type.v = ISO_OUTER_WALL_W1;
+		state.l_type.h = ISO_OUTER_WALL_N1;
 		break;
 	case ISO_OUTER_WALL_W2:
 	case ISO_OUTER_WALL_N2:
-		state.l_type_v = ISO_OUTER_WALL_W2;
-		state.l_type_h = ISO_OUTER_WALL_N2;
+		state.l_type.v = ISO_OUTER_WALL_W2;
+		state.l_type.h = ISO_OUTER_WALL_N2;
 		break;
 	case ISO_OUTER_WALL_W3:
 	case ISO_OUTER_WALL_N3:
-		state.l_type_v = ISO_OUTER_WALL_W3;
-		state.l_type_h = ISO_OUTER_WALL_N3;
+		state.l_type.v = ISO_OUTER_WALL_W3;
+		state.l_type.h = ISO_OUTER_WALL_N3;
 		break;
 	case ISO_OUTER_WALL_E1:
 	case ISO_OUTER_WALL_S1:
-		state.l_type_v = ISO_OUTER_WALL_E1;
-		state.l_type_h = ISO_OUTER_WALL_S1;
+		state.l_type.v = ISO_OUTER_WALL_E1;
+		state.l_type.h = ISO_OUTER_WALL_S1;
 		break;
 	case ISO_OUTER_WALL_E2:
 	case ISO_OUTER_WALL_S2:
-		state.l_type_v = ISO_OUTER_WALL_E2;
-		state.l_type_h = ISO_OUTER_WALL_S2;
+		state.l_type.v = ISO_OUTER_WALL_E2;
+		state.l_type.h = ISO_OUTER_WALL_S2;
 		break;
 	case ISO_OUTER_WALL_E3:
 	case ISO_OUTER_WALL_S3:
-		state.l_type_v = ISO_OUTER_WALL_E3;
-		state.l_type_h = ISO_OUTER_WALL_S3;
+		state.l_type.v = ISO_OUTER_WALL_E3;
+		state.l_type.h = ISO_OUTER_WALL_S3;
 		break;
 	case ISO_CAVE_WALL_V:
 	case ISO_CAVE_WALL_H:
-		state.l_type_v = ISO_CAVE_WALL_V;
-		state.l_type_h = ISO_CAVE_WALL_H;
+		state.l_type.v = ISO_CAVE_WALL_V;
+		state.l_type.h = ISO_CAVE_WALL_H;
+		
+		// Pick the corners
+		state.l_type.nw = ISO_CAVE_CORNER_NW;
+		state.l_type.ne = ISO_CAVE_CORNER_NE;
+		state.l_type.sw = ISO_CAVE_CORNER_SW;
+		state.l_type.se = ISO_CAVE_CORNER_SE;
 		break;
 	default:
 		if (obstacle_map[windex].flags & IS_HORIZONTAL) {
-			state.l_type_h = windex;
-			state.l_type_v = windex - 1;
+			state.l_type.h = windex;
+			state.l_type.v = windex - 1;
 		}
 		else {
-			state.l_type_v = windex;
-			state.l_type_h = windex + 1;
+			state.l_type.v = windex;
+			state.l_type.h = windex + 1;		
 		}
 	}
 }
 
+/**
+ * Returns TRUE if the wall is horizontal
+ * \param type The type of the wall
+ */
 static int horizontal_wall(int type)
 {
 	return (obstacle_map[type].flags & IS_HORIZONTAL);
 }
 
+/**
+ * Returns TRUE if the wall is vertical
+ * \param type The type of the wall
+ */
 static int vertical_wall(int type)
 {
 	return (obstacle_map[type].flags & IS_VERTICAL);
 }
 
-static void create_wall_tile(float x, float y, enum _level_editor_directions orientation)
+/**
+ * Returns TRUE if the currently selected wall style has corners
+ */
+static int has_corners()
 {
-	line_element *wall = malloc(sizeof(line_element));
+	if (state.l_type.nw != -1)
+		return 1;
+	return 0;
+}
 
-	// Set the position of wall
+/**
+ * Add a wall and change the direction of the line of walls
+ * \param x The x position of the wall
+ * \param y The y position of the wall
+ * \param type The type of the wall
+ * \param direction The direction of the wall
+ */
+static void add_wall(float x, float y, int type, enum _level_editor_directions direction)
+{
+	line_element *wall;
+
+	// Keep wall elements in a linked list so as to be able to remove them
+	// if the users goes backwards
+	wall = malloc(sizeof(line_element));
+
+	// Set the position of the new wall
 	wall->position.x = x;
 	wall->position.y = y;
 
-	// Set the new orientation of wall line
-	state.l_orientation = orientation;
+	// Create the new wall on the map
+	wall->address = action_create_obstacle_user(EditLevel(), x, y, type);
 
-	// Add the wall in the linked list and on the map
-	list_add_tail(&(wall->list), &(state.l_elements.list));
-	wall->address = action_create_obstacle_user(EditLevel(), wall->position.x, wall->position.y, state.l_id);
+	// Add the new wall in the linked list
+	list_add_tail(&(wall->list), &(state.l_elements_head));
+
+	// Define the new direction of the line of walls
+	state.l_direction = direction;
 }
 
-static void wall_line_change_orientation(moderately_finepoint new_pos, moderately_finepoint last_pos, int type)
-{
-	// Set the new type of wall
-	state.l_id = type;
-
-	if (vertical_wall(state.l_id)) {
-		// The new direction of wall line is vertical
-		state.l_direction = SN;
-
-		// When the direction is vertical, we must define the new
-		// orientation on the vertical axis
-		state.l_orientation = (new_pos.y > last_pos.y) ? NORTH : SOUTH;
-	}
-	else {	
-		// The new direction of wall line is horizontal
-		state.l_direction = WE;
-
-		// When the direction is horizontal, we must define the new
-		// orientation on the horizontal axis
-		state.l_orientation = (new_pos.x > last_pos.x) ? WEST : EAST;
-	}
-}
-
-static void start_line_walls(int windex)
+/**
+ * Start freehand line drawing
+ * \param windex The type of the wall
+ */
+static void start_wall_line(int windex)
 {
 	our_mode = LINE_WALLS;
 
-	// Initialize a line
-	INIT_LIST_HEAD(&(state.l_elements.list));
+	// Initialize the linked list
+	INIT_LIST_HEAD(&(state.l_elements_head));
 
-	state.l_orientation = UNDEFINED;
-
-	state.l_id = windex;
-
-	// Before placing a first wall section, we must pick the horizontal and vertical type
+	// Before placing the first wall section, we must pick the types of the
+	// selected wall
 	pick_walls(windex);
 
-	// Before placing a first wall, we must define the direction of wall line
-	state.l_direction = (horizontal_wall(state.l_id)) ? WE: SN;
+	// Calculate the position of the first wall, it is placed at
+	// the edge of the nearest square, where the mouse is located
+	float x = (int)mouse_mapcoord.x + (horizontal_wall(windex) ? 0.5 : 0);
+	float y = (int)mouse_mapcoord.y + (horizontal_wall(windex) ? 0 : 0.5);
 
-	state.l_elements.position.x = (int)mouse_mapcoord.x + (horizontal_wall(state.l_id) ? 0.5 : 0);
+	// Find the type of the first wall
+	int type = (horizontal_wall(windex)) ? state.l_type.h : state.l_type.v;
 
-	state.l_elements.position.y = (int)mouse_mapcoord.y + (horizontal_wall(state.l_id) ? 0 : 0.5);
-
-	state.l_elements.address = action_create_obstacle_user(EditLevel(),
-							       state.l_elements.position.x, state.l_elements.position.y, state.l_id);
+	// Add a wall on the map and do not define the direction because it's the 
+	// first wall of the line
+	add_wall(x, y, type, UNDEFINED);
 }
 
-static void handle_line_walls()
+/**
+ * The user is moving backwards (ie. remove the last wall in the line)
+ */
+static void line_moving_backwards(void)
 {
 	line_element *last_wall;			// The last wall of the line
-	moderately_finepoint offset;		// Difference of position since last time
-	moderately_finepoint new_pos;		// The position of the new wall
-	moderately_finepoint last_pos;	// Position of the previous tile
-	int new_orientation;					// New orientation of the wall line
-	int new_direction;					// New direction of the wall line
-	float distance;						// Difference of distance since last time
+	int last_type;							// The type of the last wall
+	moderately_finepoint last_pos;	// The position of the last wall
+	moderately_finepoint offset;		// Difference of position
 
-	// Get the last wall of the line
-	last_wall = list_entry((state.l_elements).list.prev, line_element, list);
-	last_pos.x = last_wall->position.x;
-	last_pos.y = last_wall->position.y;
-	
-	// Calculate the difference of position since last time
-	offset.x = last_pos.x - mouse_mapcoord.x;
-	offset.y = last_pos.y - mouse_mapcoord.y;
+	// Get the last wall in the line
+	last_wall = list_entry(state.l_elements_head.prev, line_element, list);
 
-	// Then we want to find out in which direction the mouse has moved
-	// since the last time, and compute the distance relatively to the axis
-	if (fabsf(offset.y) > fabsf(offset.x)) {
-		// The new direction is vertical
-		new_direction = SN;
+	last_type = last_wall->address->type;
+	last_pos = last_wall->position;
 
-		// Then we define the new orientation on the vertical axis
-		new_orientation = (offset.y > 0) ? NORTH : SOUTH;
+	// Remove the last wall
+	action_remove_obstacle_user(EditLevel(), last_wall->address);
+	list_del(&last_wall->list);
+	free(last_wall);
 
-		// Calculate the vertical displacement
-		distance = fabsf(mouse_mapcoord.y - last_wall->position.y);
-	} else {
-		// The new direction is horizontal
-		new_direction = WE;
+	if (list_empty(&(state.l_elements_head))) {
+		// In case we've removed the only element in the list, 
+		// we want to put it back in order to make sure the "base" position
+		// of the line does not change.
 
-		// Then we define the new orientation on the horizontal axis
-		new_orientation = (offset.x > 0) ? WEST : EAST;
+		add_wall(last_pos.x, last_pos.y, last_type, UNDEFINED);
 
-		// Calculate the horizontal displacement
-		distance = fabsf(mouse_mapcoord.x - last_wall->position.x);
-	}
-
-	if (distance < 1) {
-		// When the displacement since last time is less than the width of a tile,
-		// we must not create or remove a wall
+		// Nothing more to do
 		return;
 	}
 
-	if (state.l_direction == new_direction) {
-		if (state.l_orientation == new_orientation || state.l_orientation == UNDEFINED) {
-			// The user want to create a straight wall line, we must create a new 
-			// wall in the same direction than the last wall
+	// Get the previous (last but one) wall
+	line_element *prev_wall = list_entry(state.l_elements_head.prev, line_element, list);
 
-			// Initialize the position of the new wall
-			new_pos.x = last_pos.x;
-			new_pos.y = last_pos.y;
+	// Calculate the offset between the two last walls
+	offset.x = prev_wall->position.x - last_pos.x;
+	offset.y = prev_wall->position.y - last_pos.y;
 
-			// Then we calculate the new position
-			switch (new_orientation) {
-			case NORTH:
-					new_pos.y--;
-					break;
-			case SOUTH:
-					new_pos.y++;
-					break;
-			case EAST:
-					new_pos.x++;
-					break;
-			case WEST:
-					new_pos.x--;
-					break;
-			default:
-					break;
-			}
-
-			// Add the new wall on the map and change the orientation of wall line
-			create_wall_tile(new_pos.x, new_pos.y, new_orientation);
-		} else if (state.l_orientation == (-new_orientation) && (!list_empty(&(state.l_elements.list)))) {
-			// Looks like the user wants to go back, so let's remove the line of walls
-
-			// Get the type of the last wall in order to say if two last walls form 
-			// a perpendicular corner
-			int last_wall_type = last_wall->address->type;
-
-			// Remove the last wall
-			action_remove_obstacle_user(EditLevel(), last_wall->address);
-			list_del(state.l_elements.list.prev);
-			free(last_wall);
-
-			// Get the previous wall
-			line_element *prev_wall = list_entry(state.l_elements.list.prev, line_element, list);
-
-			if (horizontal_wall(last_wall_type) && vertical_wall(prev_wall->address->type)) {
-				// When the last removed wall is horizontal and the previous is vertical,
-				// these two walls form a perpendicular corner, we must change the
-				// orientation of wall line in order to go back
-				wall_line_change_orientation(prev_wall->position, last_pos, state.l_type_v);
-			}
-
-			if (vertical_wall(last_wall_type) && horizontal_wall(prev_wall->address->type)) {
-				// When the last removed wall is vertical and the previous is horizontal,
-				// these two walls form a perpendicular corner, we must change the 
-				// orientation of wall line in order to go back
-				wall_line_change_orientation(prev_wall->position, last_pos, state.l_type_h);
-			}
-
-			if (list_empty(&(state.l_elements.list)))
-				state.l_orientation = UNDEFINED;
-		}
+	// After removing the last wall in the line, we must find the new direction
+	// of the line of walls
+	if (fabsf(offset.y) > fabsf(offset.x)) {
+		// Find the new direction on the vertical axis
+		state.l_direction = (offset.y > 0) ? NORTH : SOUTH;
+	} else if (fabsf(offset.y) < fabsf(offset.x)) {
+		// Find the new direction on the horizontal axis
+		state.l_direction = (offset.x > 0) ? WEST : EAST;		
 	} else {
-		// The user doesn't want to create a straight wall line, therefore the
-		// direction of wall line will be changed, and we must create a new wall
-		// perpendicular to the last wall
-
-		// Set the new direction of wall line
-		state.l_direction = new_direction;
-
-		// Define the type (ie. horizontal or vertical) of the new wall
-		state.l_id = (horizontal_wall(state.l_id)) ? state.l_type_v : state.l_type_h;
-
-		// Calculate the orientation of the new wall
-		int xsign = (offset.x > 0) ? -1 : 1;
-		int ysign = (offset.y > 0) ? -1 : 1;
-
-		// Then we calculate the new position
-		new_pos.x = last_pos.x + xsign * 0.5;
-		new_pos.y = last_pos.y + ysign * 0.5;
-
-		// Add the new wall on the map and change the orientation of wall line
-		create_wall_tile(new_pos.x, new_pos.y, new_orientation);
+		// We have to find a right angle between the two last walls of the line 
+		if (state.l_direction == WEST || state.l_direction == EAST) {
+			// Find the new direction on the vertical axis
+			state.l_direction = (last_pos.y < prev_wall->position.y) ? NORTH : SOUTH;
+		} else {
+			// Find the new direction on the horizontal axis
+			state.l_direction = (last_pos.x < prev_wall->position.x) ? WEST : EAST;
+		}
 	}
 }
 
-static void end_line_walls(int commit)
+/**
+ * The user is moving forwards (ie. create a new wall in the line)
+ * \param offset The difference of position since last time
+ */
+static void line_moving_forwards(moderately_finepoint offset)
 {
-	line_element *tmp;
-	int list_length = 1;
+	line_element *last_wall;	// The last wall of the line
+	int new_direction;			// New direction of the wall line
+	float distance;				// Difference of distance since last time
+	int type;						// The type of the new wall
 
+	// Get the last wall in the line of walls
+	last_wall = list_entry(state.l_elements_head.prev, line_element, list);
+
+	// We want to find out in which direction the mouse has moved
+	// since the last time, and compute the distance relatively to the axis
+	if (fabsf(offset.y) > fabsf(offset.x)) {
+		// Find the new direction on the vertical axis
+		new_direction = (offset.y > 0) ? NORTH : SOUTH;
+
+		// Calculate the vertical displacement
+		distance = fabsf(offset.y);
+	} else {
+		// Find the new direction on the horizontal axis
+		new_direction = (offset.x > 0) ? WEST : EAST;
+
+		// Calculate the horizontal displacement
+		distance = fabsf(offset.x);
+	}
+
+	if (distance < 1) {
+		// When the displacement since last time is less than the length of a tile,
+		// do not create a new wall
+		return;
+	}
+
+	if (state.l_direction == UNDEFINED) {
+		// The user wants to create a line of walls for the first time, we must find
+		// if he wants to create a straight line or create a first corner in the line
+
+		// When the current selected wall and the new direction of the line are
+		// horizontal/vertical, the user wants to create a straight line, define
+		// the direction of this line as the new direction
+		if ((horizontal_wall(last_wall->address->type) && (new_direction == WEST || new_direction == EAST))
+			|| (vertical_wall(last_wall->address->type) && (new_direction == SOUTH || new_direction == NORTH))) {
+			// The user wants to create a straight line
+			state.l_direction = new_direction;
+		}
+	}
+
+	// Initialize the position of the new wall
+	float x = last_wall->position.x;
+	float y = last_wall->position.y;
+
+	// Find the step of displacement in order to calculate the new position
+	int step_x = (offset.x > 0) ? -1 : 1;
+	int step_y = (offset.y > 0) ? -1 : 1;
+
+	if (state.l_direction == new_direction) {
+		// The user wants to create a straight wall line, create a new wall in the
+		// same direction as the last wall
+
+		// Calculate the new position on the horizontal/vertical axis when
+		// the new direction is horizontal/vertical and find the type of the new
+		// wall
+		if (new_direction == WEST || new_direction == EAST) {
+			x += step_x;
+			type = state.l_type.h;
+		} else {
+			y += step_y;
+			type = state.l_type.v;
+		}
+	} else {
+		// The user doesn't want to create a straight wall line, therefore the
+		// direction and the type of wall line will be changed, and we must create
+		// a new wall perpendicular to the last wall
+
+		if (has_corners()) {
+			// When the style of the current selected wall has corners, find the
+			// type (ie. NW, SW, NE, SE) of the new wall and calculate the position
+
+			// Find the type of the corner and calculate the position
+			switch (new_direction) {
+				case WEST:
+					type = (offset.y < 0) ? state.l_type.se : state.l_type.ne;
+					y += step_y;
+					break;
+				case EAST:
+					type = (offset.y < 0) ? state.l_type.sw : state.l_type.nw;
+					y += step_y;
+					break;
+				case SOUTH:
+					type = (offset.x < 0) ? state.l_type.ne : state.l_type.nw;
+					x += step_x;
+					break;
+				case NORTH:
+					type = (offset.x < 0) ? state.l_type.se : state.l_type.sw;
+					x += step_x;
+					break;
+			}
+		} else {
+			// When the style of the current selected wall have not corners,
+			// find the type (ie. horizontal/vertical) and calculate the position
+
+			// Find the type (ie. horizontal or vertical) of the new wall
+			type = (horizontal_wall(last_wall->address->type)) ? state.l_type.v : state.l_type.h;
+
+			// Calculate the position of the new wall
+			x += step_x * 0.5;
+			y += step_y * 0.5;
+		}
+	}
+
+	// Add the new wall in the line of walls and change the direction
+	add_wall(x, y, type, new_direction);
+}
+
+/**
+ * Create the freehand line drawing
+ */
+static void handle_wall_line()
+{
+	line_element *last_wall;			// The last wall of the line
+	moderately_finepoint offset;		// Difference of position since last time
+	int moving_backwards = FALSE;
+
+	// Get the last wall in the line of walls
+	last_wall = list_entry(state.l_elements_head.prev, line_element, list);
+
+	// Calculate the position offset since last time
+	offset.x = last_wall->position.x - mouse_mapcoord.x;
+	offset.y = last_wall->position.y - mouse_mapcoord.y;
+
+	// Check if the user wants to go backwards
+	switch (state.l_direction) {
+		case NORTH:
+			if (offset.y < 0)
+				moving_backwards = TRUE;
+			break;
+		case SOUTH:
+			if (offset.y > 0)
+				moving_backwards = TRUE;
+			break;
+		case WEST:
+			if (offset.x < 0)
+				moving_backwards = TRUE;
+			break;
+		case EAST:
+			if (offset.x > 0)
+				moving_backwards = TRUE;
+			break;
+	}
+
+	if (moving_backwards) {
+		// The user is moving backwards, we must delete the previous wall in the line
+		line_moving_backwards();
+	} else {
+		// The user is moving forwards, we must create a new wall in the line
+		line_moving_forwards(offset);
+	}
+}
+
+/**
+ * Stop the freehand line drawing
+ * \param commit FALSE if the user wants cancel the line
+ */
+static void end_wall_line(int commit)
+{
 	our_mode = DISABLED;
 
-	// Remove the linked list
-	while (!(list_empty(&(state.l_elements.list)))) {
-		tmp = list_entry(state.l_elements.list.prev, line_element, list);
-		free(tmp);
-		if (!commit)
-			action_remove_obstacle(EditLevel(), state.l_elements.address);
-		list_del(state.l_elements.list.prev);
-		list_length++;
-	}
-	if (!commit)
-		action_remove_obstacle(EditLevel(), state.l_elements.address);
+	line_element *e, *ne;
+	int nb_actions = 0;
 
-	// Remove the sentinel
-	list_del(&(state.l_elements.list));
+	// Remove the linked list
+	list_for_each_entry_safe(e, ne, &state.l_elements_head, list) {
+		list_del(&e->list);
+		free(e);
+
+		if (!commit) {
+			// When the user wants cancel the line of walls, we must remove all
+			// the walls
+			action_remove_obstacle(EditLevel(), e->address);
+		}
+		nb_actions++;
+	}
 
 	if (commit)
-		action_push(ACT_MULTIPLE_ACTIONS, list_length);
-
+		action_push(ACT_MULTIPLE_ACTIONS, nb_actions);
 }
 
 int leveleditor_place_input(SDL_Event * event)
@@ -552,7 +667,7 @@ int leveleditor_place_input(SDL_Event * event)
 			case OBJECT_OBSTACLE:
 				//Check whether to do line mode or single obstacle placement
 				if (obstacle_map[ts->indices[ts->selected_tile_nb]].flags & (IS_VERTICAL | IS_HORIZONTAL)) {
-					start_line_walls(ts->indices[ts->selected_tile_nb]);
+					start_wall_line(ts->indices[ts->selected_tile_nb]);
 					return 0;
 				} else {
 					place_single_obstacle(ts);
@@ -580,12 +695,12 @@ int leveleditor_place_input(SDL_Event * event)
 		}
 	} else if (our_mode == LINE_WALLS) {
 		if (EVENT_LEFT_RELEASE(event)) {
-			end_line_walls(1);
+			end_wall_line(1);
 			return 1;
 		} else if (EVENT_MOVE(event)) {
-			handle_line_walls();
+			handle_wall_line();
 		} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
-			end_line_walls(0);
+			end_wall_line(0);
 			return 1;
 		}
 	} else if (our_mode == CONNECT_WAYPOINT) {
