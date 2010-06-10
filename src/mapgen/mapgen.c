@@ -86,7 +86,7 @@ static void set_floor(int x, int y, int type)
 	target_level->map[y][x].floor_value = type;
 }
 
-static void split_wall(int w, int h, unsigned char *tiles) 
+static void split_wall(int w, int h, unsigned char *tiles, int *rooms) 
 {
 	int y, x; 
 	int tile, room;
@@ -111,20 +111,22 @@ static void split_wall(int w, int h, unsigned char *tiles)
 					SET(x - 1, y - 1, TILE_WALL);
 					break;
 				case TILE_DOOR_H:
-					SET(x - 1, y    , TILE_FLOOR);
+					SET(x - 1, y    , TILE_DOOR_H);
 					SET(x    , y - 1, TILE_FLOOR);
 					SET(x - 1, y - 1, TILE_FLOOR);
-					SET(x + 1, y - 1, TILE_FLOOR);
-					SET(x + 1, y    , TILE_FLOOR); 
-					SET(x + 2, y    , TILE_WALL_T);
+					SET(x - 2, y - 1, TILE_FLOOR);
+					SET(x - 2, y    , TILE_FLOOR); 
+					SET(x    , y    , TILE_FLOOR);
+					SET(x + 1, y    , TILE_WALL_T);
 					break;
 				case TILE_DOOR_V:
-					SET(x    , y - 1, TILE_FLOOR);
-					SET(x - 1, y    , TILE_FLOOR);
+					SET(x    , y - 1, TILE_DOOR_V);
 					SET(x    , y + 1, TILE_FLOOR);
-					SET(x - 1, y + 1, TILE_FLOOR);
+					SET(x    , y - 2, TILE_FLOOR);
+					SET(x - 1, y - 2, TILE_FLOOR);
 					SET(x - 1, y - 1, TILE_FLOOR);
-					SET(x    , y + 2, TILE_WALL_L);
+					SET(x    , y    , TILE_FLOOR);
+					SET(x    , y + 1, TILE_WALL_L);
 					break;
 				case TILE_DOOR_H2:
 					SET(x - 1, y    , TILE_DOOR_H2);
@@ -144,60 +146,11 @@ static void split_wall(int w, int h, unsigned char *tiles)
 		}
 }
 
-static void reduce_room_space() {
-	int x, y, dx, dy;
-	int i, j, k, tile;
-	int flag;
-	int point_x[4];
-	int point_y[4];
-	const int point_dx[4] = { 1,  0, -1,  0};
-	const int point_dy[4] = { 0,  1,  0, -1};
-	for(i=0; i<total_rooms; i++) {
-		if(rooms[i].w < 4 || rooms[i].h < 4)
-			continue;
-
-		point_x[0] = rooms[i].x;
-		point_y[0] = rooms[i].y - 1;
-
-		point_x[1] = rooms[i].x - 1;
-		point_y[1] = rooms[i].y; 
-
-		point_x[2] = rooms[i].x + rooms[i].w;
-		point_y[2] = rooms[i].y + rooms[i].h - 1;
-
-		point_x[3] = rooms[i].x + rooms[i].w - 1;
-		point_y[3] = rooms[i].y + rooms[i].h;
-
-		for(j=0; j<4; j++) {
-			x = point_x[j];
-			y = point_y[j];
-			//if((float)rand() / RAND_MAX > 0.75f) {
-			if(1) {
-				while(mapgen_get_tile(x, y) == TILE_WALL) {
-					flag = 1;
-					for(k = 0; k <= 2; k++) {
-						tile = mapgen_get_tile(x + k*point_dx[j], y + k*point_dy[j]);
-						if(tile == TILE_DOOR_H || tile == TILE_DOOR_V || tile == TILE_DOOR_H2 || tile == TILE_DOOR_V2) {
-							flag = 0;
-							break;
-						}
-					}
-					if(flag) 
-						mapgen_put_tile(x + point_dy[j], y + point_dx[j], TILE_WALL, -1);
-					x += point_dx[j];
-					y += point_dy[j];
-				}
-			}
-		}
-	}
-}
-
 void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
 {
 	int y, x;
 
-	reduce_room_space();
-	split_wall(w, h, tiles);
+	split_wall(w, h, tiles, rooms);
 
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
