@@ -323,11 +323,10 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 	if (ThisItem->type < 0)
 		return;
 
-	ThisItem->damage = ItemMap[ThisItem->type].base_item_gun_damage;
-	ThisItem->damage_modifier = ItemMap[ThisItem->type].item_gun_damage_modifier;
 	ThisItem->damred_bonus = ItemMap[ThisItem->type].base_damred_bonus + MyRandom(ItemMap[ThisItem->type].damred_bonus_modifier);
 	ThisItem->multiplicity = multiplicity;
 	ThisItem->ammo_clip = 0;
+	ThisItem->throw_time = 0;
 	if (ItemMap[ThisItem->type].item_gun_ammo_clip_size)
 		ThisItem->ammo_clip = MyRandom(ItemMap[ThisItem->type].item_gun_ammo_clip_size);
 	// We now have to set a duration : a maximum duration
@@ -346,93 +345,15 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 		ThisItem->current_duration = 1;
 	}
 
-	// Now it's time to fill in the magic properties of the item.  We have
-	// the basic ranges for the modifiers given in the prefix and suffix lists
-	// and just need to create random values in the given ranges for the item.
-	//
-	ThisItem->bonus_to_str = 0;
-	ThisItem->bonus_to_dex = 0;
-	ThisItem->bonus_to_mag = 0;
-	ThisItem->bonus_to_vit = 0;
-	ThisItem->bonus_to_all_attributes = 0;
-
-	ThisItem->bonus_to_life = 0;
-	ThisItem->bonus_to_health_recovery = 0;
-	ThisItem->bonus_to_cooling_rate = 0;
-	ThisItem->bonus_to_force = 0;
-	ThisItem->bonus_to_tohit = 0;
-	ThisItem->bonus_to_damred_or_damage = 0;
-
-	ThisItem->bonus_to_resist_fire = 0;
-	ThisItem->bonus_to_resist_electricity = 0;
-
-	ThisItem->throw_time = 0;
-
-	ThisItem->is_identified = TRUE;
-
-	if (ThisItem->suffix_code != (-1)) {
-		ThisItem->bonus_to_str += SuffixList[ThisItem->suffix_code].base_bonus_to_str +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_str);
-		ThisItem->bonus_to_dex += SuffixList[ThisItem->suffix_code].base_bonus_to_dex +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_dex);
-		ThisItem->bonus_to_mag += SuffixList[ThisItem->suffix_code].base_bonus_to_mag +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_mag);
-		ThisItem->bonus_to_vit += SuffixList[ThisItem->suffix_code].base_bonus_to_vit +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_vit);
-		ThisItem->bonus_to_all_attributes += SuffixList[ThisItem->suffix_code].base_bonus_to_all_attributes +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_all_attributes);
-
-		ThisItem->bonus_to_life += SuffixList[ThisItem->suffix_code].base_bonus_to_life +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_life);
-		ThisItem->bonus_to_health_recovery += SuffixList[ThisItem->suffix_code].base_bonus_to_health_recovery;
-		ThisItem->bonus_to_force += SuffixList[ThisItem->suffix_code].base_bonus_to_force +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_force);
-		ThisItem->bonus_to_cooling_rate += SuffixList[ThisItem->suffix_code].base_bonus_to_cooling_rate;
-
-		ThisItem->bonus_to_tohit += SuffixList[ThisItem->suffix_code].base_bonus_to_tohit +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_tohit);
-		ThisItem->bonus_to_damred_or_damage += SuffixList[ThisItem->suffix_code].base_bonus_to_damred_or_damage +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_damred_or_damage);
-
-		ThisItem->bonus_to_resist_fire += SuffixList[ThisItem->suffix_code].base_bonus_to_resist_fire +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_resist_fire);
-		ThisItem->bonus_to_resist_electricity += SuffixList[ThisItem->suffix_code].base_bonus_to_resist_electricity +
-		    MyRandom(SuffixList[ThisItem->suffix_code].modifier_to_bonus_to_resist_electricity);
-
+	// Mark the item as unidentified if it's magical.
+	if (ThisItem->suffix_code != (-1) || ThisItem->prefix_code != (-1)) {
 		ThisItem->is_identified = FALSE;
-	}
-	if (ThisItem->prefix_code != (-1)) {
-		ThisItem->bonus_to_str += PrefixList[ThisItem->prefix_code].base_bonus_to_str +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_str);
-		ThisItem->bonus_to_dex += PrefixList[ThisItem->prefix_code].base_bonus_to_dex +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_dex);
-		ThisItem->bonus_to_mag += PrefixList[ThisItem->prefix_code].base_bonus_to_mag +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_mag);
-		ThisItem->bonus_to_vit += PrefixList[ThisItem->prefix_code].base_bonus_to_vit +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_vit);
-		ThisItem->bonus_to_all_attributes += PrefixList[ThisItem->prefix_code].base_bonus_to_all_attributes +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_all_attributes);
-
-		ThisItem->bonus_to_life += PrefixList[ThisItem->prefix_code].base_bonus_to_life +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_life);
-		ThisItem->bonus_to_health_recovery += PrefixList[ThisItem->prefix_code].base_bonus_to_health_recovery;
-		ThisItem->bonus_to_force += PrefixList[ThisItem->prefix_code].base_bonus_to_force +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_force);
-		ThisItem->bonus_to_cooling_rate += PrefixList[ThisItem->prefix_code].base_bonus_to_cooling_rate;
-
-		ThisItem->bonus_to_tohit += PrefixList[ThisItem->prefix_code].base_bonus_to_tohit +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_tohit);
-		ThisItem->bonus_to_damred_or_damage += PrefixList[ThisItem->prefix_code].base_bonus_to_damred_or_damage +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_damred_or_damage);
-
-		ThisItem->bonus_to_resist_fire += PrefixList[ThisItem->prefix_code].base_bonus_to_resist_fire +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_resist_fire);
-		ThisItem->bonus_to_resist_electricity += PrefixList[ThisItem->prefix_code].base_bonus_to_resist_electricity +
-		    MyRandom(PrefixList[ThisItem->prefix_code].modifier_to_bonus_to_resist_electricity);
-
-		ThisItem->is_identified = FALSE;
+	} else {
+		ThisItem->is_identified = TRUE;
 	}
 
+	// Calculate the item bonuses affected by add-ons.
+	calculate_item_bonuses(ThisItem);
 };				// void FillInItemProperties( item* ThisItem , int FullDuration )
 
 void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
