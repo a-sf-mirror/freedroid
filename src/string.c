@@ -74,9 +74,9 @@ void free_autostr(struct auto_string *str)
 	free(str);
 }
 
-static unsigned long autostr_remaining(struct auto_string *str)
+static unsigned long autostr_remaining(struct auto_string *str, int offset)
 {
-	return str->capacity - str->length;
+	return str->capacity - offset;
 }
 
 static int autostr_vprintf(struct auto_string *str, unsigned long offset,
@@ -87,7 +87,7 @@ static int autostr_vprintf(struct auto_string *str, unsigned long offset,
 	int nr, err = 0;
 
   retry:
-	size = autostr_remaining(str);
+	size = autostr_remaining(str, offset);
 	va_copy(tmp_args, args);
 	nr = vsnprintf(str->value + offset, size, fmt, tmp_args);
 	va_end(tmp_args);
@@ -97,10 +97,9 @@ static int autostr_vprintf(struct auto_string *str, unsigned long offset,
 		if (err)
 			goto out;
 	
-		str->length = offset;
 		goto retry;
 	}
-	str->length += nr;
+	str->length = offset + nr;
 
   out:
 	return err;
