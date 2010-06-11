@@ -505,6 +505,13 @@ static int lua_event_trade_with(lua_State * L)
 	return 0;
 }
 
+static int lua_event_upgrade_items(lua_State * L)
+{
+	item_upgrade_ui();
+
+	return 0;
+}
+
 static int lua_event_heal_npc(lua_State * L)
 {
 	chat_control_chat_droid->energy = Druidmap[chat_control_chat_droid->type].maxenergy;
@@ -986,6 +993,8 @@ luaL_reg lfuncs[] = {
 	{"respawn_level", lua_event_respawn_level}
 	,
 	{"trade_with", lua_event_trade_with}
+	,
+	{"upgrade_items", lua_event_upgrade_items}
 	,
 
 	{"get_player_name", lua_chat_player_name}
