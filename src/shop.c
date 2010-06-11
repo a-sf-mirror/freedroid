@@ -220,7 +220,7 @@ Error loading flag image.", PLEASE_INFORM, IS_FATAL);
 /**
  * This function displays an item picture. 
  */
-static void ShowItemPicture(int PosX, int PosY, int Number)
+void ShowItemPicture(int PosX, int PosY, int Number)
 {
 	SDL_Surface *tmp;
 	SDL_Rect target;

@@ -109,6 +109,7 @@ int find_free_melee_shot_index(void);
 void delete_melee_shot(melee_shot *);
 
 // view.c 
+void DisplayItemImageAtMouseCursor(int);
 void gps_transform_map_init(void);
 void update_virtual_position(gps * target_pos, gps * source_pos, int level_num);
 int resolve_virtual_position(gps * actual_pos, gps * virtual_pos);
@@ -713,7 +714,11 @@ void append_new_game_message(const char *fmt, ...);
 void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 
+// item_upgrades_ui.c
+void item_upgrade_ui();
+
 // shop.c 
+void ShowItemPicture(int, int, int);
 void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem);
 int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWornItems);
 void InitTradeWithCharacter(struct npc *);

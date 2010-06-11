@@ -344,6 +344,14 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {CURRENT_SKILL_RECT_X, 400, CURRENT_SKILL_RECT_W, CURRENT_SKILL_RECT_H}, TRUE,
 	     FALSE},
 
+	// Buttons of the item upgrade UI.
+	[ITEM_UPGRADE_APPLY_BUTTON] = { UNLOADED_ISO_IMAGE, "item_upgrade/button_apply.png",
+	    { ITEM_UPGRADE_RECT_X + 250, ITEM_UPGRADE_RECT_Y + 389, 48, 48 }, FALSE, FALSE },
+	[ITEM_UPGRADE_APPLY_BUTTON_DISABLED] = { UNLOADED_ISO_IMAGE, "item_upgrade/button_apply_disabled.png",
+	    { ITEM_UPGRADE_RECT_X + 250, ITEM_UPGRADE_RECT_Y + 389, 48, 48 }, FALSE, FALSE },
+	[ITEM_UPGRADE_CLOSE_BUTTON] = { UNLOADED_ISO_IMAGE, "item_upgrade/button_close.png",
+	    { ITEM_UPGRADE_RECT_X + 215, ITEM_UPGRADE_RECT_Y + 406, 32, 32 }, FALSE, FALSE },
+
 };				// mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] 
 
 //--------------------

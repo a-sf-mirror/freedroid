@@ -1135,8 +1135,9 @@ GL_HighlightRectangle(SDL_Surface * Surface, SDL_Rect * dstrect, unsigned char r
 #define NUMBER_SELECTOR_BACKGROUND_IMAGE_FILE "backgrounds/number_selector.png"
 #define GAME_MESSAGE_WINDOW_BACKGROUND_IMAGE_FILE "backgrounds/game_message_window.png"
 #define HUD_BACKGROUND_IMAGE_FILE "backgrounds/hud_background.png"
+#define ITEM_UPGRADE_BACKGROUND_IMAGE_FILE "item_upgrade/background.png"
 
-#define ALL_KNOWN_BACKGROUNDS 33
+#define ALL_KNOWN_BACKGROUNDS 34
 static iso_image our_backgrounds[ALL_KNOWN_BACKGROUNDS];
 static int background_has_been_loaded[ALL_KNOWN_BACKGROUNDS];
 
@@ -1190,6 +1191,7 @@ void blit_special_background(int background_code)
 		NUMBER_SELECTOR_BACKGROUND_IMAGE_FILE,	// 30
 		GAME_MESSAGE_WINDOW_BACKGROUND_IMAGE_FILE,	// 31
 		HUD_BACKGROUND_IMAGE_FILE,	// 32
+		ITEM_UPGRADE_BACKGROUND_IMAGE_FILE,	// 33
 	};
 
 	static int scaling_done[ALL_KNOWN_BACKGROUNDS];
@@ -1231,7 +1233,8 @@ void blit_special_background(int background_code)
 		{0, 0, 0, 0},	// 29
 		{0, 0, 0, 0},	// 30
 		{(65 * GameConfig.screen_width) / 640, GameConfig.screen_height - (70 * GameConfig.screen_height) / 480, 500, 70},	// 31
-		{(0 * GameConfig.screen_width) / 640, GameConfig.screen_height - (118 * GameConfig.screen_height) / 480, 500, 70}	// 32
+		{(0 * GameConfig.screen_width) / 640, GameConfig.screen_height - (118 * GameConfig.screen_height) / 480, 500, 70},	// 32
+		{ITEM_UPGRADE_RECT_X, ITEM_UPGRADE_RECT_Y, ITEM_UPGRADE_RECT_W, ITEM_UPGRADE_RECT_H}	// 33
 	};
 
 	const int need_scaling[ALL_KNOWN_BACKGROUNDS] = {
@@ -1268,6 +1271,7 @@ void blit_special_background(int background_code)
 		TRUE,		// 30
 		TRUE,		// 31
 		TRUE,		// 32
+		FALSE,		// 33
 	};
 
 	if (!background_has_been_loaded[background_code]) {

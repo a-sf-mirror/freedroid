@@ -250,6 +250,7 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3 };
 #define QUEST_BROWSER_BACKGROUND_CODE 29
 #define NUMBER_SELECTOR_BACKGROUND_CODE 30
 #define HUD_BACKGROUND_CODE 32
+#define ITEM_UPGRADE_BACKGROUND_CODE 33
 
 #define ICON_FILE		"paraicon.bmp"
 
@@ -548,6 +549,10 @@ enum {
 	WEAPON_MODE_BUTTON,
 	SKI_ICON_BUTTON,
 
+	ITEM_UPGRADE_APPLY_BUTTON,
+	ITEM_UPGRADE_APPLY_BUTTON_DISABLED,
+	ITEM_UPGRADE_CLOSE_BUTTON,
+
 	//--------------------
 	// Please leave this here as the last entry, since it conveniently and
 	// automatically counts the number of buttons defined.  Other buttons
@@ -573,6 +578,11 @@ enum {
 #define CHARACTERRECT_X (GameConfig . screen_width-320)
 #define CHARACTERRECT_W (320)
 #define CHARACTERRECT_H (480)
+
+#define ITEM_UPGRADE_RECT_X 320
+#define ITEM_UPGRADE_RECT_Y 0
+#define ITEM_UPGRADE_RECT_W 320
+#define ITEM_UPGRADE_RECT_H 480
 
 #define TUX_SWING_PHASES 	14
 #define TUX_BREATHE_PHASES 	1
