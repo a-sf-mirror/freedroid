@@ -129,9 +129,8 @@ static void AddInfluencerItemAttributeBonus(item * BonusItem)
 	if (BonusItem->type == (-1))
 		return;
 
-	// In case of a suffix modifier, we need to apply the suffix...
-	//
-	if (((BonusItem->suffix_code != (-1)) || (BonusItem->prefix_code != (-1))) && BonusItem->is_identified) {
+	// Apply the bonuses to the stats of the character.
+	if (BonusItem->is_identified) {
 		Me.Strength += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes;
 		Me.Dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes;
 		Me.Magic += BonusItem->bonus_to_mag + BonusItem->bonus_to_all_attributes;
@@ -151,9 +150,8 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 	if (BonusItem->type == (-1))
 		return;
 
-	// In case of present suffix or prefix modifiers, we need to apply the suffix...
-	//
-	if (((BonusItem->suffix_code != (-1)) || (BonusItem->prefix_code != (-1))) && BonusItem->is_identified) {
+	// Apply the bonuses to the stats of the character.
+	if (BonusItem->is_identified) {
 
 		// Some modifiers might not be random at all but fixed to the 
 		// item prefix or item suffix.  In that case, we must get the
