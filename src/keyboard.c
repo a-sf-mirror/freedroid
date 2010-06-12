@@ -40,7 +40,7 @@
 /* name of each keybinding */
 const char *keybindNames[] = {
 	/* General */
-	"keychart", "fullscreen", "quit", "wall_transparency",
+	"keychart", "fullscreen", "quit", "wall_transparency", "grab_input",
 
 	/* Ingame */
 	"inventory", "skill", "character", "quests",
@@ -166,6 +166,7 @@ void input_set_default(void)
 
 	input_set_keybind("keychart", SDLK_F1, KMOD_NONE);
 	input_set_keybind("fullscreen", SDLK_F2, KMOD_NONE);
+	input_set_keybind("grab_input", SDLK_g, KMOD_LCTRL);
 	input_set_keybind("quit", SDLK_q, KMOD_LCTRL);
 	input_set_keybind("wall_transparency", SDLK_t, KMOD_NONE);
 
@@ -650,6 +651,14 @@ static int input_key(int keynum, int value)
 		GameConfig.fullscreen_on = !GameConfig.fullscreen_on;
 #endif
 		return 0;
+	} else if (KEYPRESS("grab_input")) {
+		SDL_GrabMode mode = SDL_WM_GrabInput(SDL_GRAB_QUERY);
+		if (mode == SDL_GRAB_OFF)
+			mode = SDL_GRAB_ON;
+		else
+			mode = SDL_GRAB_OFF;
+
+		SDL_WM_GrabInput(mode);
 	} else if (KEYPRESS("wall_transparency")) {
 		GameConfig.transparency = !GameConfig.transparency;
 		return 0;
