@@ -68,6 +68,7 @@ struct upgrade_ui_rects {
 
 // Global variables.
 static iso_image images[IMAGE_MAX];
+static int ui_visible = FALSE;
 static int images_loaded = FALSE;
 static struct upgrade_ui ui;
 static const struct upgrade_ui_rects rects = {
@@ -131,13 +132,19 @@ static void load_images()
  * images aren't drawn. Instead, a two column table that contains the available buy
  * or upgrade options and their prices is drawn to the socket area.
  */
-static void draw_ui()
+void show_item_upgrade_ui()
 {
 	int i;
 	iso_image *image;
 	SDL_Rect rect;
 	SDL_Surface *surface;
 	struct upgrade_socket_dynarray *sockets = &ui.custom_item.upgrade_sockets;
+
+	// We're being called every time the UI of the game is drawn so we need to
+	// make sure the upgrade UI is actually active before proceeding.
+	if (!ui_visible) {
+		return;
+	}
 
 	// Draw the background image.
 	blit_special_background(ITEM_UPGRADE_BACKGROUND_CODE);
@@ -673,6 +680,7 @@ void item_upgrade_ui()
 	GameConfig.CharacterScreen_Visible = FALSE;
 	GameConfig.SkillScreen_Visible = FALSE;
 	GameConfig.skill_explanation_screen_visible = FALSE;
+	ui_visible = TRUE;
 
 	// Loop until the player clicks the close button of the UI or presses and
 	// releases escape. We need to ensure that the escape key is released so
@@ -687,16 +695,9 @@ void item_upgrade_ui()
 		if (!handle_ui())
 			HandleInventoryScreen();
 
-		// Draw the UI.
-		item *tmp = Item_Held_In_Hand;
-		Item_Held_In_Hand = NULL;
-		AssembleCombatPicture(USE_OWN_MOUSE_CURSOR);
-		Item_Held_In_Hand = tmp;
-		draw_ui();
-		if (Item_Held_In_Hand)
-			DisplayItemImageAtMouseCursor(Item_Held_In_Hand->type);
-		blit_our_own_mouse_cursor();
-		our_SDL_flip_wrapper();
+		// Draw the UI. AssembleCombatPicture will take care of calling our
+		// drawing function in the right place.
+		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
 	}
 
 	// If the player left any items to the upgrade interface,
@@ -705,5 +706,7 @@ void item_upgrade_ui()
 
 	free_autostr(ui.bonus_text);
 
+	ui_visible = FALSE;
+	GameConfig.Inventory_Visible = FALSE;
 	game_status = old_game_status;
 }

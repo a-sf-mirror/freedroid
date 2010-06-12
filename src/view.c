@@ -2070,6 +2070,7 @@ void AssembleCombatPicture(int mask)
 		show_quick_inventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();
+		show_item_upgrade_ui();
 		show_inventory_screen();
 		DisplayButtons();
 		if (!GameOver)

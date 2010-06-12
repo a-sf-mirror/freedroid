@@ -715,6 +715,7 @@ void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 
 // item_upgrades_ui.c
+void show_item_upgrade_ui();
 void item_upgrade_ui();
 
 // shop.c 
