@@ -384,23 +384,17 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 		write_full_item_name_into_string(ShowItem, TextChunk);
 		sprintf(InfoText, _("Item: %s \nClass: %s\n"), TextChunk, ClassString);
 
-		if ((ShowItem->suffix_code != (-1)) || (ShowItem->prefix_code != (-1))) {
-			if (ShowItem->is_identified == TRUE) {
-				give_item_description(TextChunk, ShowItem, TRUE);
-				// Now clean up TextChunk to get only information about the special abilities of the object
-				char *tmp = strstr(TextChunk, "             +");
-				if (tmp)	//In case something would go wrong...
-				{
-					tmp = strstr(tmp, " +");
-					strcpy(TextChunk, tmp);
-				}
-				strcat(InfoText, _("Specials:"));
-				strcat(InfoText, font_switchto_red);
-				strcat(InfoText, TextChunk);
-				strcat(InfoText, "\n");
-				strcat(InfoText, font_switchto_neon);
-			}
+		// Append item bonuses.
+		struct auto_string *bonuses = alloc_autostr(128);
+		get_item_bonus_string(ShowItem, ", ", bonuses);
+		if (bonuses->length) {
+			strcat(InfoText, _("Specials: "));
+			strcat(InfoText, font_switchto_red);
+			strcat(InfoText, bonuses->value);
+			strcat(InfoText, "\n");
+			strcat(InfoText, font_switchto_neon);
 		}
+		free_autostr(bonuses);
 
 		if (ItemMap[ShowItem->type].item_group_together_in_inventory) {
 			if (!MatchItemWithName(ShowItem->type, "Valuable Circuits")) {
@@ -1081,8 +1075,8 @@ static int buy_item(item *BuyItem, int amount)
 		char linebuf[1000];
 		MenuTexts[0] = _(" BACK ");
 		MenuTexts[1] = "";
-		give_item_description(linebuf, BuyItem, TRUE);
-		strcat(linebuf, _("\n\n    You can't afford to purchase this item!"));
+		sprintf(linebuf, _("    %s\n\n    You can't afford to purchase this item!"),
+		        ItemMap[BuyItem->type].item_name);
 		SetCurrentFont(Menu_BFont);
 		DoMenuSelection(linebuf, MenuTexts, 1, -1, NULL);
 		return 1;
