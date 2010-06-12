@@ -305,7 +305,15 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
  */
 void PutString(SDL_Surface *surface, int x, int y, char *text)
 {
-	PutStringFont(surface, CurrentFont, x, y, text);
+	int i = 0;
+
+	while (text[i] != '\0') {
+		int letter_spacing = get_letter_spacing(GetCurrentFont());
+		if (!handle_switch_font_char(text[i])) {
+			x += PutCharFont(surface, GetCurrentFont(), x, y, text[i]) + letter_spacing;
+		}
+		i++;
+	}
 }
 
 /**
@@ -314,15 +322,8 @@ void PutString(SDL_Surface *surface, int x, int y, char *text)
  */
 void PutStringFont(SDL_Surface *surface, BFont_Info *font, int x, int y, char *text)
 {
-	int i = 0;
-	int letter_spacing = get_letter_spacing(font);
-	while (text[i] != '\0') {
-		if (handle_switch_font_char(text[i]))
-			letter_spacing = get_letter_spacing(font);
-		else
-			x += PutCharFont(surface, font, x, y, text[i]) + letter_spacing;
-		i++;
-	}
+	SetCurrentFont(font);
+	PutString(surface, x, y, text);
 }
 
 /**

@@ -269,7 +269,6 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 	SDL_Rect keychart_rect = { KEYCHART_RECT_X, KEYCHART_RECT_Y, KEYCHART_RECT_W, KEYCHART_RECT_H };
 	int ypos = keychart_rect.y;
 	int xpos = keychart_rect.x;
-	BFont_Info *our_font = FPS_Display_BFont;
 
 	blit_special_background(SHOP_BACKGROUND_IMAGE_CODE);
 
@@ -284,19 +283,25 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	for (i = startidx; strcmp(keybindNames[i], "end"); i++) {
 		char modstring[10] = "";
+		const char *font_str = font_switchto_neon;
 		if (GameConfig.input_keybinds[i].mod & KMOD_LCTRL || GameConfig.input_keybinds[i].mod & KMOD_RCTRL)
 			strcat(modstring, "C-");
 		if (GameConfig.input_keybinds[i].mod & KMOD_LALT || GameConfig.input_keybinds[i].mod & KMOD_RALT)
 			strcat(modstring, "A-");
 		if (GameConfig.input_keybinds[i].mod & KMOD_LSHIFT || GameConfig.input_keybinds[i].mod & KMOD_RSHIFT)
 			strcat(modstring, "S-");
-		sprintf(txt, "%c%s%s - %s%s\n", (i == cursor && highlight) ? '\1' : '\2', (i == cursor) ? "** " : "   ",
+
+		if (i == cursor && highlight) {
+			font_str = font_switchto_red;
+		}
+
+		sprintf(txt, "%s%s%s - %s%s\n", font_str, (i == cursor) ? "** " : "   ",
 			GameConfig.input_keybinds[i].name, modstring, SDL_GetKeyName(GameConfig.input_keybinds[i].key));
-		PutStringFont(Screen, our_font, xpos, ypos, txt);
+		PutString(Screen, xpos, ypos, txt);
 
-		ypos += FontHeight(our_font);
+		ypos += FontHeight(GetCurrentFont());
 
-		if (ypos > keychart_rect.y + keychart_rect.h - FontHeight(our_font)) {
+		if (ypos > keychart_rect.y + keychart_rect.h - FontHeight(GetCurrentFont())) {
 			if (xpos > keychart_rect.x)
 				break;
 			else {
