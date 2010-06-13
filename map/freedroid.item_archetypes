@@ -4066,8 +4066,8 @@ Item description text=_"This data cube contains confidential government data on 
 
 ** Start of new item specification subsection **
 Item name=_"Pandora's Cube"
-inventory_size_x=6
-inventory_size_y=6
+inventory_size_x=3
+inventory_size_y=3
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
