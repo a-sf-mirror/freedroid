@@ -311,7 +311,7 @@ static void launch_buldo()
 						continue;
 					else {
 						int next = 0;
-						while (next < nbconn && neigh[n + next].r == neigh[n].r)
+						while (n + next < nbconn && neigh[n + next].r == neigh[n].r)
 							next++;
 
 						int pick = n + rand() % next;
