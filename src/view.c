@@ -426,9 +426,6 @@ static void show_floor(int mask)
 				for (col = ColStart; col < ColEnd; col++) {
 					MapBrick = GetMapBrick(DisplayLevel, col, line);
 
-					if (MapBrick == ISO_COMPLETELY_DARK)
-						continue;
-
 					floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
 					draw_gl_textured_quad_at_map_position(&floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
