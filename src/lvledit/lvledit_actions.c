@@ -441,42 +441,58 @@ static int action_change_map_label(level *EditLevel, int i, char *name, int undo
 void level_editor_action_change_map_label_user(level *EditLevel)
 {
 	struct map_label_s *map_label = NULL;
-	char *name = NULL;
-	char *old_label = "";
+	char *name;
+	char *old_name = NULL;
+	char suggested_label[200];
 	int i;
 
-	// We check if a map label is already existing for this spot
+	suggested_label[0] = 0;
+
+	// We check if a map label already exists for this spot
 	for (i = 0; i < EditLevel->map_labels.size; i++) {
-		// Get the map label
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
-		// When the map label is located at the position of the cursor
 		if ((fabsf(map_label->pos.x + 0.5 - Me.pos.x) < 0.5) && 
 			 (fabsf(map_label->pos.y + 0.5 - Me.pos.y) < 0.5)) {
-			// Get the old name of the map label
-			old_label = map_label->label_name;
+			
+			// Use the old label as a suggestion
+			old_name = map_label->label_name;
+			strcpy(suggested_label, old_name);
 			break;
 		}
 	}
-
-	// Show popup window to enter a new map label
-	name = GetEditableStringInPopupWindow(1000, _("\nPlease enter map label: \n\n"), old_label);
-
-	if (name) {
-		// Then we must check if the new name of the map label already exists
-		// on this level
-		map_label = get_map_label(EditLevel, name);
-		if (map_label) {
-			// When the new name already exists, we must not create an other map
-			// label with the same name, but we want to display an alert window
-			alert_window(_("The new name of the map label already exists on this map, please choose an other name."));
+		
+	// Check if the name entered already exists
+	while (1) {
+		// Show popup window to enter a new map label
+		name = GetEditableStringInPopupWindow(sizeof(suggested_label) - 1, _("\nPlease enter map label: \n\n"), suggested_label);
+		if (!name || (old_name && !strcmp(name, old_name))) {
+			// Do not change label
 			free(name);
 			return;
 		}
 
-		action_change_map_label(EditLevel, i, name, 1);
+		map_label = get_map_label(EditLevel, name);
+		if (!map_label) {
+			// When the new name of the map label does not exist, we are done
+			break;
+		}
+
+		// When the new name already exists, we must not create an other map
+		// label with the same name, but we want to display an alert window,
+		// and then go back to input box with the name still present
+		alert_window(_("The new name of the map label already exists on this map, please choose an other name."));
+
+		// Copy the name in order to have it in the input box
+		strcpy(suggested_label, name);
 		free(name);
+
+		// Restore the menu background in order to correctly draw the next popup window
+		RestoreMenuBackground(1);
 	}
+
+	// Change a map label when the name enter by the user is valid
+	action_change_map_label(EditLevel, i, name, 1);
 }
 
 /**
