@@ -23,10 +23,12 @@
  *
  */
 
-void InsertLineVeryNorth(level *);
-void InsertLineVerySouth(level *);
-void InsertColumnVeryWest(level *);
-void InsertColumnVeryEast(level *);
+void insert_line_north(level *);
+void insert_line_south(level *);
+void insert_column_west(level *);
+void insert_column_east(level *);
 
-void RemoveColumnVeryWest(level *);
-void RemoveLineVeryNorth(level *);
+void remove_line_north(level *);
+void remove_line_south(level *);
+void remove_column_west(level *);
+void remove_column_east(level *);

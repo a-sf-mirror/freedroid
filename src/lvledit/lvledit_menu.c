@@ -138,12 +138,11 @@ void EditLevelDimensions(void)
 		switch (MenuPosition) {
 		case INSERTREMOVE_COLUMN_VERY_EAST:
 			if (RightPressed()) {
-				InsertColumnVeryEast(EditLevel);
+				insert_column_east(EditLevel);
 				while (RightPressed()) ;
 			}
 			if (LeftPressed()) {
-				EditLevel->xlen--;	// making it smaller is always easy:  just modify the value for size
-				// allocation of new memory or things like that are not nescessary
+				remove_column_east(EditLevel);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
@@ -151,11 +150,11 @@ void EditLevelDimensions(void)
 
 		case INSERTREMOVE_COLUMN_VERY_WEST:
 			if (RightPressed()) {
-				InsertColumnVeryWest(EditLevel);
+				insert_column_west(EditLevel);
 				while (RightPressed()) ;
 			}
 			if (LeftPressed()) {
-				RemoveColumnVeryWest(EditLevel);
+				remove_column_west(EditLevel);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
@@ -163,13 +162,11 @@ void EditLevelDimensions(void)
 
 		case INSERTREMOVE_LINE_VERY_SOUTH:
 			if (RightPressed()) {
-				InsertLineVerySouth(EditLevel);
+				insert_line_south(EditLevel);
 				while (RightPressed()) ;
 			}
-
 			if (LeftPressed()) {
-				EditLevel->ylen--;	// making it smaller is always easy:  just modify the value for size
-				// allocation of new memory or things like that are not nescessary.
+				remove_line_south(EditLevel);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
@@ -177,11 +174,11 @@ void EditLevelDimensions(void)
 
 		case INSERTREMOVE_LINE_VERY_NORTH:
 			if (RightPressed()) {
-				InsertLineVeryNorth(EditLevel);
+				insert_line_north(EditLevel);
 				while (RightPressed()) ;
 			}
 			if (LeftPressed()) {
-				RemoveLineVeryNorth(EditLevel);
+				remove_line_north(EditLevel);
 				while (LeftPressed()) ;
 			}
 			gps_transform_map_dirty_flag = TRUE;
