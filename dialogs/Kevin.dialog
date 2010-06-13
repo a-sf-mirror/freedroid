@@ -48,7 +48,7 @@ EveryTime LuaCode={
 				add_cookie("did_And there was light...")
 				update_quest(_"And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 			else end
-		else show(6, 7) end
+		else end
 	else end
 
 	if (has_cookie("jasmine_sigsegv")) then
@@ -85,7 +85,7 @@ LuaCode={
 Nr=7 Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
 LuaCode={ 
 	npc_says(_"Too bad. Now get out of my sight.")
-	hide(6, 7)
+	hide(7)
 }
 ----------------------------------------------------------------------
 
