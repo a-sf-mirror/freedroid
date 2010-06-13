@@ -448,7 +448,7 @@ void DisplayBigScreenMessage(void)
 int DisplayText(const char *format, int startx, int starty, const SDL_Rect * clip, float text_stretch, ...)
 {
 	va_list args;
-	char buffer[4096];
+	struct auto_string *buffer = alloc_autostr(128);
 	char *tmp;		// mobile pointer to the current position in the string to be printed
 	SDL_Rect Temp_Clipping_Rect;	// adding this to prevent segfault in case of NULL as parameter
 	SDL_Rect store_clip;
@@ -486,14 +486,14 @@ int DisplayText(const char *format, int startx, int starty, const SDL_Rect * cli
 
 	// Format the string into a temporary buffer in the stack.
 	va_start(args, text_stretch);
-	vsnprintf(buffer, sizeof(buffer), format, args);
+	autostr_vappend(buffer, format, args);
 	va_end(args);
 
 	// Now we can start to print the actual text to the screen.
 	//
 	// The running text pointer must be initialized.
 	//
-	tmp = buffer;
+	tmp = buffer->value;
 	while (*tmp && (MyCursorY < clip->y + clip->h)) {
 		if (((*tmp == ' ') || (*tmp == '\t'))
 		    && (ImprovedCheckLineBreak(tmp, clip, text_stretch) == 1))	// dont write over right border 
@@ -522,9 +522,9 @@ int DisplayText(const char *format, int startx, int starty, const SDL_Rect * cli
 
 	SDL_SetClipRect(Screen, &store_clip);	// restore previous clip-rect 
 
+	free_autostr(buffer);
 	return nblines;
-
-};				// int DisplayText(...)
+}
 
 /**
  * This function checks if the next word still fits in this line
