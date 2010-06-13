@@ -115,7 +115,7 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
  *  Note: We do not want a trailing newline, since that will make text areas
  *  larger than necessary.
  */
-void give_item_description(char *target, item *item, int for_shop)
+void give_item_description(char *target, item *item)
 {
 	strcpy(target, "");
 
@@ -138,65 +138,41 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	
 	struct auto_string *desc = alloc_autostr(100);
 
-	if (for_shop)
-		autostr_append(desc, "\n             ");
+	autostr_append(desc, "\n");
 
 	// Weapon damage
 	if (ItemMap[item->type].item_can_be_installed_in_weapon_slot) {
-		if (!for_shop) {
-			autostr_append(desc, "\n");
-			autostr_append(desc, _("Damage: %d to %d"), item->damage, item->damage_modifier + item->damage);
-		} else
-			autostr_append(desc, _("Dam: %d-%d "), item->damage, item->damage_modifier + item->damage);
+		autostr_append(desc, _("Damage: %d to %d\n"), item->damage, item->damage_modifier + item->damage);
 	}
 	// Multiplicity
 	if (ItemMap[item->type].item_group_together_in_inventory) {
-		autostr_append(desc, "\n");
-		autostr_append(desc, _("Multiplicity: %d"), item->multiplicity);
+		autostr_append(desc, _("Multiplicity: %d\n"), item->multiplicity);
 	}
 	// Armor bonus
 	if (item->damred_bonus) {
-		autostr_append(desc, "\n");
 		if (ItemMap[item->type].item_can_be_installed_in_shield_slot)
-			autostr_append(desc, _("Block: %d%%"), item->damred_bonus);
+			autostr_append(desc, _("Block: %d%%\n"), item->damred_bonus);
 		else
-			autostr_append(desc, _("Armor: %d%%"), item->damred_bonus);
+			autostr_append(desc, _("Armor: %d%%\n"), item->damred_bonus);
 	}
 	// Durability or indestructible status
 	if (item->max_duration != (-1)) {
-		if (!for_shop) {
-			autostr_append(desc, "\n");
-			autostr_append(desc, _("Durability: %d of %d"), (int)item->current_duration, (int)item->max_duration);
-		} else
-			autostr_append(desc, _("Dur: %d/%d\n"), (int)item->current_duration, (int)item->max_duration);
+		autostr_append(desc, _("Durability: %d of %d\n"), (int)item->current_duration, (int)item->max_duration);
 	} else {
-		autostr_append(desc, "\n");
-		autostr_append(desc, _("Indestructible"));
+		autostr_append(desc, _("Indestructible\n"));
 	}
 	// Ranged weapon amunition
 	if (ItemMap[item->type].item_gun_ammo_clip_size) {
-		autostr_append(desc, "\n");
-		autostr_append(desc, _("Ammo: %d of %d"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
+		autostr_append(desc, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
 	}
 	// Strength, dexterity or magic requirements
 	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
-		if (!for_shop)
-			autostr_append(desc, "\n"); // separate requirements from the rest of description
-		if (for_shop)
-			autostr_append(desc, _("Required:"));
+		autostr_append(desc, "\n"); // separate requirements from the rest of description
 		if (ItemMap[item->type].item_require_strength != (-1)) {
-			if (!for_shop) {
-				autostr_append(desc, "\n");
-				autostr_append(desc, _("Required strength: %d"), ItemMap[item->type].item_require_strength);
-			} else
-				autostr_append(desc, _("   Str: %d"), ItemMap[item->type].item_require_strength);
+			autostr_append(desc, _("Required strength: %d\n"), ItemMap[item->type].item_require_strength);
 		}
 		if (ItemMap[item->type].item_require_dexterity != (-1)) {
-			if (!for_shop) {
-				autostr_append(desc, "\n");
-				autostr_append(desc, _("Required dexterity: %d"), ItemMap[item->type].item_require_dexterity);
-			} else
-				autostr_append(desc, _("   Dex: %d"), ItemMap[item->type].item_require_dexterity);
+			autostr_append(desc, _("Required dexterity: %d\n"), ItemMap[item->type].item_require_dexterity);
 		}
 	}/* else if (ItemMap[item->type].item_can_be_applied_in_combat) {
 		// Maybe it's an applicable item, that still has some stat
@@ -209,8 +185,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 		}
 	}*/
 	// Usable items should say that it can be used via right-clicking on it
-	if ((ItemMap[item->type].item_can_be_applied_in_combat) && (!for_shop)) {
-		autostr_append(desc, "\n");
+	if (ItemMap[item->type].item_can_be_applied_in_combat) {
 		if (MatchItemWithName(item->type, "Diet supplement") || MatchItemWithName(item->type, "Antibiotic")
 		    || MatchItemWithName(item->type, "Doc-in-a-can")) {
 			autostr_append(desc, _("Recover Health"));
@@ -251,162 +226,11 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			autostr_append(desc, _("USE UNDESCRIBED YET (bug)"));
 		}
 		autostr_append(desc, "\n");
-		autostr_append(desc, _("Right click to use"));
+		autostr_append(desc, _("Right click to use\n"));
 	}
-	// Prefix and/or suffix bonuses
-	if ((item->suffix_code != (-1)) || (item->prefix_code != (-1))) {
-		if (item->is_identified == FALSE) {
-			autostr_append(desc, "\n");
-			autostr_append(desc, font_switchto_red);
-			autostr_append(desc, _("UNIDENTIFIED"));
-		} else {
-			autostr_append(desc, "\n");
+	// Item bonuses.
+	get_item_bonus_string(item, "\n", desc);
 
-			// separate the next bonus with a comma or a newline?
-			int need_separation = 0;
-
-			char separator[3];
-			if (for_shop)
-				strcpy(separator, ", ");
-			else
-				strcpy(separator, "\n");
-
-			if (for_shop)
-				autostr_append(desc, "             ");
-			if (item->bonus_to_str) {
-				if (item->bonus_to_str > 0)
-					autostr_append(desc, "+");
-				else
-					autostr_append(desc, "-");
-				autostr_append(desc, _("%d to strength"), item->bonus_to_str);
-				need_separation = TRUE;
-			}
-			if (item->bonus_to_dex) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_dex > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%d to dexterity"), item->bonus_to_dex);
-			}
-			if (item->bonus_to_mag) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_mag > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%d to CPU"), item->bonus_to_mag);
-			}
-			if (item->bonus_to_vit) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_vit > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%d to life"), item->bonus_to_vit);
-			}
-			if (item->bonus_to_life) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_life > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%d health points"), item->bonus_to_life);
-			}
-			if (item->bonus_to_health_recovery) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_health_recovery > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%0.1f health points per second"), item->bonus_to_health_recovery);
-
-			}
-			if (item->bonus_to_cooling_rate) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_cooling_rate > 0)
-					autostr_append(desc, _("%0.1f cooling per second"), item->bonus_to_cooling_rate);
-				else if (item->bonus_to_cooling_rate < 0)
-					autostr_append(desc, _("%0.1f heating per second"), -item->bonus_to_cooling_rate);
-			}
-			if (item->bonus_to_force) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_force > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%d Force"), item->bonus_to_force);
-			}
-			if (item->bonus_to_tohit) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_tohit > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%d%% to hit"), item->bonus_to_tohit);
-			}
-			if (item->bonus_to_all_attributes) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_all_attributes > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("%d to all attributes"), item->bonus_to_all_attributes);
-			}
-			// Percentage bonus to ac or damage
-			if (item->bonus_to_damred_or_damage) {
-				if (ItemMap[item->type].base_damred_bonus) {
-					// if ( for_shop ) strcat( target , "             " );
-					if (need_separation)
-						autostr_append(desc, separator);
-					need_separation = TRUE;
-					if (item->bonus_to_damred_or_damage > 0)
-						autostr_append(desc, "+");
-					autostr_append(desc, _("%d%% to armor"), item->bonus_to_damred_or_damage);
-				}
-				if (ItemMap[item->type].base_item_gun_damage) {
-					// if ( for_shop ) strcat( target , "             " );
-					if (need_separation)
-						autostr_append(desc, separator);
-					need_separation = TRUE;
-					if (item->bonus_to_damred_or_damage > 0)
-						autostr_append(desc, "+");
-					autostr_append(desc, _("%d%% to damage"), item->bonus_to_damred_or_damage);
-				}
-			}
-			if (item->bonus_to_resist_fire) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_all_attributes > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("+%d to resist fire"), item->bonus_to_resist_fire);
-			}
-			if (item->bonus_to_resist_electricity) {
-				if (need_separation)
-					autostr_append(desc, separator);
-				need_separation = TRUE;
-				if (item->bonus_to_all_attributes > 0)
-					autostr_append(desc, "+");
-				autostr_append(desc, _("+%d to resist electricity"), item->bonus_to_resist_electricity);
-			}
-			// Maybe this item will give some bonus to the light radius?
-			// (That is a very special case, because light bonuses are 
-			// currently attached to the suffix/prefix, not to the item 
-			// itself, so they also have no randomness...)
-			if (item->prefix_code != (-1)) {
-				if (PrefixList[item->prefix_code].light_bonus_value) {
-					if (need_separation)
-						autostr_append(desc, separator);
-					need_separation = TRUE;
-					autostr_append(desc, "+");
-					autostr_append(desc, _("%d to light radius"), PrefixList[item->prefix_code].light_bonus_value);
-				}
-			}
-		}
-	}
 	strcat(target, desc->value);
 	free_autostr(desc);
 	return;
@@ -789,7 +613,7 @@ void prepare_text_window_content(char *ItemDescText)
 			inv_square.y = GetInventorySquare_y(CurPos.y);
 			InvIndex = GetInventoryItemAt(inv_square.x, inv_square.y);
 			if (InvIndex != (-1)) {
-				give_item_description(ItemDescText, &(Me.Inventory[InvIndex]), FALSE);
+				give_item_description(ItemDescText, &(Me.Inventory[InvIndex]));
 				best_banner_pos_x =
 				    (Me.Inventory[InvIndex].inventory_position.x +
 				     ItemMap[Me.Inventory[InvIndex].type].inv_image.inv_size.x) * 30 + 16;
@@ -797,37 +621,37 @@ void prepare_text_window_content(char *ItemDescText)
 			}
 		} else if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.weapon_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.weapon_item), FALSE);
+				give_item_description(ItemDescText, &(Me.weapon_item));
 				best_banner_pos_x = WEAPON_RECT_X + 30 + WEAPON_RECT_WIDTH;
 				best_banner_pos_y = WEAPON_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(DRIVE_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.drive_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.drive_item), FALSE);
+				give_item_description(ItemDescText, &(Me.drive_item));
 				best_banner_pos_x = DRIVE_RECT_X + 30 + DRIVE_RECT_WIDTH;
 				best_banner_pos_y = DRIVE_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.shield_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.shield_item), FALSE);
+				give_item_description(ItemDescText, &(Me.shield_item));
 				best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 				best_banner_pos_y = SHIELD_RECT_Y - 30;
 			} else if (Me.weapon_item.type > 0) {
 				if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
-					give_item_description(ItemDescText, &(Me.weapon_item), FALSE);
+					give_item_description(ItemDescText, &(Me.weapon_item));
 					best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 					best_banner_pos_y = SHIELD_RECT_Y - 30;
 				}
 			}
 		} else if (MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.armour_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.armour_item), FALSE);
+				give_item_description(ItemDescText, &(Me.armour_item));
 				best_banner_pos_x = ARMOUR_RECT_X + 30 + ARMOUR_RECT_WIDTH;
 				best_banner_pos_y = ARMOUR_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(HELMET_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.special_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.special_item), FALSE);
+				give_item_description(ItemDescText, &(Me.special_item));
 				best_banner_pos_x = HELMET_RECT_X + 30 + HELMET_RECT_WIDTH;
 				best_banner_pos_y = HELMET_RECT_Y - 30;
 			}
@@ -914,7 +738,7 @@ void prepare_text_window_content(char *ItemDescText)
 			gps item_vpos;
 			update_virtual_position(&item_vpos, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor].pos), Me.pos.z);
 			if (item_vpos.x != -1) {
-				give_item_description(ItemDescText, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]), FALSE);
+				give_item_description(ItemDescText, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]));
 				best_banner_pos_x =	translate_map_point_to_screen_pixel_x(item_vpos.x, item_vpos.y) + 80;
 				best_banner_pos_y =	translate_map_point_to_screen_pixel_y(item_vpos.x, item_vpos.y) - 30;
 			}
@@ -993,7 +817,7 @@ void show_current_text_banner(void)
 	banner_rect.w += TEXT_BANNER_HORIZONTAL_MARGIN * 2;
 
 	// Set banner height
-	int lines_in_text = 1 + CountStringOccurences(banner_text, "\n");
+	int lines_in_text = get_lines_needed(banner_text, banner_rect, TEXT_STRETCH);
 	banner_rect.h = lines_in_text * FontHeight(GetCurrentFont());
 
 	// Add extra correction to ensure the banner rectangle stays inside

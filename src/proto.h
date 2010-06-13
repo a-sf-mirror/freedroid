@@ -705,7 +705,7 @@ int widget_handle_mouse(text_widget *);
 void show_text_widget(text_widget *);
 
 // hud.c 
-void give_item_description(char *target, item *item, int for_shop);
+void give_item_description(char *, item *);
 void DisplayBanner(void);
 int get_days_of_game_duration(float current_game_date);
 int get_hours_of_game_duration(float current_game_date);
