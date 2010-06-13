@@ -232,8 +232,6 @@ void add_addon_spec(struct addon_spec *spec)
  */
 void get_item_bonus_string(item *it, const char *separator, struct auto_string *desc)
 {
-	int orig_length = desc->length;
-
 	// Append the bonuses to the string.
 	if (it->bonus_to_str) {
 		autostr_append(desc, _("%+d to strength%s"), it->bonus_to_str, separator);
@@ -277,12 +275,6 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 	}
 	if (it->bonus_to_resist_electricity) {
 		autostr_append(desc, _("%+d to resist electricity%s"), it->bonus_to_resist_electricity, separator);
-	}
-
-	// Remove the extraneous trailing separator.
-	if (desc->length > orig_length) {
-		desc->length -= strlen(separator);
-		desc->value[desc->length] = '\0';
 	}
 }
 
