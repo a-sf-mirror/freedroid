@@ -40,15 +40,17 @@ In the future we should probably use eg
 7999 for 2nd resistance faction
 and when "all go hostile" check which factions could still be friendly.
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
 
+Example with all currently available options and their (some intended in future) default values
+
+SForce: T=*** StartLabel="***" Faction="ms" UseDialog="AfterTakeover" Fixed="0" Marker=0000 RushTux="no" ShortLabel=_"XXX" on_death_drop_item_name="XXX" MaxDistanceToHome=XXX
+
+(*** must always be present and correctly specified)
+(XXX are optional but don't have default values, specify correctly if used)
+
+----------------------------------------------------------------------
 *** Beginning of Droid Data ***
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 ** Beginning of new Level **
 Level=0
 Maximum number of Random Droids=0
