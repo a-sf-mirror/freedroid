@@ -1263,7 +1263,9 @@ void update_vector_to_shot_target_for_enemy(enemy * this_robot)
 			xdist = tpos->x - this_robot->virt_pos.x;
 			ydist = tpos->y - this_robot->virt_pos.y;
 
-			if ((xdist * xdist + ydist * ydist) > 4.0 * squared_aggression_distance) {	// Old target is too far
+			if ((xdist * xdist + ydist * ydist) > 3.0*3.0) {	
+				/// Previous target is too far away to follow without checking if
+				// there are enemies located closer
 				this_robot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
 				enemy_set_reference(&this_robot->bot_target_n, &this_robot->bot_target_addr, NULL);
 			} else {
