@@ -615,6 +615,12 @@ void level_editor_copy_selection()
 		return;
 	}
 
+	if (selection_empty()) {
+		// When the list of the selected elements is empty, we do not want to clear
+		// selection from the clipboard
+		return;
+	}
+
 	clear_clipboard(-1);
 
 	list_for_each_entry(e, &selected_elements, node) {
