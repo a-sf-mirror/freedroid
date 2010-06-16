@@ -686,7 +686,7 @@ void item_upgrade_ui()
 	// releases escape. We need to ensure that the escape key is released so
 	// that it doesn't interfere with the dialog that opened the upgrade UI.
 	while (!ui.quit || EscapePressed()) {
-		SDL_Delay(1);
+		StartTakingTimeForFPSCalculation();
 
 		// Handle input. Since the UI makes use of the inventory, we need to let
 		// the inventory handle events that fall outside of the upgrade UI.
@@ -698,6 +698,10 @@ void item_upgrade_ui()
 		// Draw the UI. AssembleCombatPicture will take care of calling our
 		// drawing function in the right place.
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
+
+		// Limit framerate if configured to do so.
+		limit_fps();
+		ComputeFPSForThisFrame();
 	}
 
 	// If the player left any items to the upgrade interface,

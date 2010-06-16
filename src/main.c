@@ -111,9 +111,7 @@ void Game()
 
 		CheckIfMissionIsComplete();
 
-		if (GameConfig.limit_framerate && Frame_Time() < 1/30.0) {
-			SDL_Delay(10);
-		}
+		limit_fps();
 
 		ComputeFPSForThisFrame();
 

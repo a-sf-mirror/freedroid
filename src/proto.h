@@ -624,6 +624,7 @@ void ComputeFPSForThisFrame(void);
 void StartTakingTimeForFPSCalculation(void);
 int Get_Average_FPS(void);
 float Frame_Time(void);
+void limit_fps();
 void Activate_Conservative_Frame_Computation(void);
 int MyRandom(int);
 void Teleport(int LNum, float X, float Y, int WithSound);

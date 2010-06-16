@@ -620,6 +620,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 	while (1) {
 
+		StartTakingTimeForFPSCalculation();
 		save_mouse_state();
 		input_handle();
 
@@ -841,6 +842,10 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			while (DownPressed()) ;
 			Displacement -= FontHeight(GetCurrentFont());
 		}
+
+		// Limit framerate if configured to do so.
+		limit_fps();
+		ComputeFPSForThisFrame();
 
 		if (EscapePressed()) {
 			while (EscapePressed()) ;
