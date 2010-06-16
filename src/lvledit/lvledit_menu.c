@@ -475,7 +475,7 @@ static void AddRemLevel(void)
 				dirty_animated_obstacle_lists(new_level_num);
 				// Teleporting Tux will re-render the menu background
 				reset_visible_levels();
-				teleport_to_level_center(new_level_num, FALSE);
+				teleport_to_level_center(new_level_num);
 			}
 			else      //curShip.num_levels >= MAX_LEVELS
 				alert_window(_("Reached the maximum number of levels."));
@@ -661,7 +661,7 @@ static void LevelOptions(void)
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (curShip.AllLevels[tgt] != NULL) {
 					reset_visible_levels();
-					teleport_to_level_center(tgt, FALSE);
+					teleport_to_level_center(tgt);
 				}
 				proceed_now = !proceed_now;
 			}
@@ -757,7 +757,7 @@ static void LevelOptions(void)
 					// teleport if new level exists
 					if (newlevel >= 0) {
 						reset_visible_levels();
-						teleport_to_level_center(newlevel, FALSE);
+						teleport_to_level_center(newlevel);
 					}
 					while (LeftPressed()) ;
 				}
@@ -769,7 +769,7 @@ static void LevelOptions(void)
 					// teleport if new level exists
 					if (newlevel < curShip.num_levels) {
 						reset_visible_levels();
-						teleport_to_level_center(newlevel, FALSE);
+						teleport_to_level_center(newlevel);
 					}
 					while (RightPressed()) ;
 				}
@@ -962,7 +962,7 @@ int DoLevelEditorMainMenu()
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (curShip.AllLevels[tgt] != NULL) {
 					reset_visible_levels();
-					teleport_to_level_center(tgt, FALSE);
+					teleport_to_level_center(tgt);
 				}
 				proceed_now = !proceed_now;
 			}
@@ -1030,7 +1030,7 @@ int DoLevelEditorMainMenu()
 					// teleport if new level exists
 					if (newlevel >= 0) {
 						reset_visible_levels();
-						teleport_to_level_center(newlevel, FALSE);
+						teleport_to_level_center(newlevel);
 					}
 					while (LeftPressed()) ;
 				}
@@ -1042,7 +1042,7 @@ int DoLevelEditorMainMenu()
 					// teleport if new level exists
 					if (newlevel < curShip.num_levels) {
 						reset_visible_levels();
-						teleport_to_level_center(newlevel, FALSE);
+						teleport_to_level_center(newlevel);
 					}
 					while (RightPressed()) ;
 				}
