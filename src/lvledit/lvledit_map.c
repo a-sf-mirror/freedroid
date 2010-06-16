@@ -39,119 +39,6 @@
 #include "lvledit/lvledit_map.h"
 
 /**
- *
- *
- */
-void move_obstacles_and_items_north_south(float by_what, level * edit_level)
-{
-	int i;
-
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		// Maybe the obstacle entry isn't used at all.  That's the simplest
-		// case...: do nothing.
-		//
-		if (edit_level->obstacle_list[i].type <= (-1))
-			continue;
-
-		// Move the obstacle
-		//
-		edit_level->obstacle_list[i].pos.y += by_what;
-		
-		// Maybe the obstacle is now outside of the map, so just remove it
-		//
-		if ((edit_level->obstacle_list[i].pos.y < 0) || (edit_level->obstacle_list[i].pos.y >= edit_level->ylen)) {
-			action_remove_obstacle(edit_level, &(edit_level->obstacle_list[i]));
-			DebugPrintf(0, "\nRemoved another obstacle in resizing operation.");
-			continue;
-		}
-	}
-
-	/*XXX
-	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		// Maybe the chest item entry isn't used at all.  That's the simplest
-		// case...: do nothing.
-		//
-		if (edit_level->ChestItemList[i].type <= (-1))
-			continue;
-		if (edit_level->ChestItemList[i].pos.y <= (-1))
-			continue;
-
-		// Move the chest item
-		//
-		edit_level->ChestItemList[i].pos.y += by_what;
-
-		// Maybe the chest item is is now outside of the map, so just remove it
-		//
-		if ((edit_level->ChestItemList[i].pos.y < 0) || (edit_level->ChestItemList[i].pos.y >= edit_level->ylen)) {
-			DeleteItem(&(edit_level->ChestItemList[i]));
-			DebugPrintf(0, "\nRemoved another chest item in resizing operation.");
-			continue;
-		}
-	}*/
-
-	glue_obstacles_to_floor_tiles_for_level(edit_level->levelnum);
-
-}				// void move_obstacles_north_south(float by_what, level *edit_level)
-
-/**
- *
- *
- */
-void move_obstacles_and_items_west_east(float by_what, level * edit_level)
-{
-	int i;
-
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		// Maybe the obstacle entry isn't used at all.  That's the simplest
-		// case...: do nothing.
-		//
-		if (edit_level->obstacle_list[i].type <= (-1))
-			continue;
-		if (edit_level->obstacle_list[i].pos.x <= (-1))
-			continue;
-
-		// Move the obstacle
-		//
-		edit_level->obstacle_list[i].pos.x += by_what;
-
-		// Maybe the obstacle is now outside of the map, then just remove it.
-		//
-		if ((edit_level->obstacle_list[i].pos.x < 0) || (edit_level->obstacle_list[i].pos.x >= edit_level->xlen)) {
-			action_remove_obstacle(edit_level, &(edit_level->obstacle_list[i]));
-			DebugPrintf(0, "\nRemoved another obstacle in resizing operation.");
-			continue;
-		}
-	}
-
-	/* XXX
-	for (i = 0; i < MAX_CHEST_ITEMS_PER_LEVEL; i++) {
-		// Maybe the chest item entry isn't used at all.  That's the simplest
-		// case...: do nothing.
-		//
-		if (edit_level->ChestItemList[i].type <= (-1))
-			continue;
-		if (edit_level->ChestItemList[i].pos.x <= (-1))
-			continue;
-
-		// Move the chest item
-		//
-		edit_level->ChestItemList[i].pos.x += by_what;
-
-		// Maybe the item now outside of the map, then just remove it.
-		//
-		if ((edit_level->ChestItemList[i].pos.x < 0) || (edit_level->ChestItemList[i].pos.x >= edit_level->xlen)) {
-			DeleteItem(&(edit_level->ChestItemList[i]));
-			DebugPrintf(0, "\nRemoved another chest item in resizing operation.");
-			continue;
-		}
-	}
-	*/
-
-	glue_obstacles_to_floor_tiles_for_level(edit_level->levelnum);
-
-};				// void move_obstacles_and_items_west_east(float by_what, level *edit_level )
-
-/**
  * Move all map labels with the rest of the map
  * \param EditLevel Pointer towards the editing level where all map labels lie
  * \param x The displacement on horizontal axis
@@ -209,6 +96,40 @@ static void move_items(level *EditLevel, int x, int y)
 }
 
 /**
+ * Move all obstacles with the rest of the map
+ * \param EditLevel Pointer towards the editing level where all obstacles lie
+ * \param x The displacement on horizontal axis
+ * \param y The displacement on vertical axis
+ */
+static void move_obstacles(level *EditLevel, int x, int y)
+{
+	obstacle *o;
+	int i;
+
+	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
+		// Get the obstacle
+		o = &EditLevel->obstacle_list[i];
+
+		// Maybe the obstacle entry isn't used at all. That's the simplest
+		// case...: do nothing
+		if (o->type <= (-1))
+			continue;
+
+		// Move the obstacle
+		o->pos.x += x;
+		o->pos.y += y;
+		
+		if (!pos_inside_level(o->pos.x, o->pos.y, EditLevel)) {
+			// When the obstacle is outside of the map, we must remove it
+			action_remove_obstacle(EditLevel, o);
+		}
+	}
+
+	// And finally, re-glue all obstacles to the map
+	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
+}
+
+/**
  * When a new line is inserted or removed at north of a map, the waypoints must move
  * too with the rest of the map.
  */
@@ -240,11 +161,15 @@ static void MoveWaypointsWestEast(int ByWhat, level *EditLevel)
 
 }				// void MoveWaypointsWestEast(int ByWhat, level *EditLevel)
 
+/**
+ * Insert a line at the very north of a map
+ * \param EditLevel Pointer towards the editing level
+ */
 void insert_line_north(level *EditLevel)
 {
 	int i;
 	map_tile *tmp;
-	
+
 	if (EditLevel->ylen + 1 >= MAX_MAP_LINES)
 		return;
 
@@ -259,20 +184,19 @@ void insert_line_north(level *EditLevel)
 
 	// Now we also have to shift the position of all elements
 	MoveWaypointsNorthSouth(+1, EditLevel);
+	move_obstacles(EditLevel, 0, 1);
 	move_map_labels(EditLevel, 0, 1);
 	move_items(EditLevel, 0, 1);
-	move_obstacles_and_items_north_south(+1, EditLevel);
+}
 
-}				// void InsertLineVeryNorth ( EditLevel )
-
+/**
+ * Insert a line at the very south of a map
+ * \param EditLevel Pointer towards the editing level
+ */
 void insert_line_south(level *EditLevel)
 {
 	int i, j;
 
-	// The enlargement of levels in y direction is limited by a constant
-	// defined in defs.h.  This is carefully checked or no operation at
-	// all will be performed.
-	//
 	if (EditLevel->ylen + 1 >= MAX_MAP_LINES)
 		return;
 
@@ -286,9 +210,12 @@ void insert_line_south(level *EditLevel)
 			EditLevel->map[EditLevel->ylen - 1][i].obstacles_glued_to_here[j] = (-1);
 		}
 	}
-
 }
 
+/**
+ * Insert a column at the very east of a map
+ * \param EditLevel Pointer towards the editing level
+ */
 void insert_column_east(level *EditLevel)
 {
 	int i, j;
@@ -297,7 +224,6 @@ void insert_column_east(level *EditLevel)
 	EditLevel->xlen++;
 
 	// We have to enlarge each map line, and fill those new tiles with default values
-	
 	for (i = 0; i < EditLevel->ylen; i++) {
 		MapPointer = (map_tile*)realloc(EditLevel->map[i], sizeof(map_tile) * (EditLevel->xlen + 1));
 		MapPointer[EditLevel->xlen - 1].floor_value = ISO_FLOOR_SAND;
@@ -306,9 +232,12 @@ void insert_column_east(level *EditLevel)
 		}
 		EditLevel->map[i] = MapPointer;
 	}
+}
 
-}				// void InsertColumnVeryEast (level *EditLevel )
-
+/**
+ * Insert a column at the very west of a map
+ * \param EditLevel Pointer towards the editing level
+ */
 void insert_column_west(level *EditLevel)
 {
 	int i;
@@ -327,11 +256,10 @@ void insert_column_west(level *EditLevel)
 
 	// Now we also have to shift the position of all elements
 	MoveWaypointsWestEast(+1, EditLevel);
+	move_obstacles(EditLevel, 1, 0);
 	move_map_labels(EditLevel, 1, 0);
 	move_items(EditLevel, 1, 0);
-	move_obstacles_and_items_west_east(+1, EditLevel);
-	
-}				// void InsertColumnVeryWest ( EditLevel )
+}
 
 /**
  * Remove a column at the very east of a map
@@ -344,30 +272,25 @@ void remove_column_east(level *EditLevel)
 	// things are not necessary
 	EditLevel->xlen--;
 
-	// When we remove a column at the very east, we must not move the map labels,
-	// but remove the map labels which are outside of the map
+	// When we remove a column at the very east, we must not move the elements
+	// (ie. obstacles, map labels, items...) but remove those which are
+	// outside of the map
+	move_obstacles(EditLevel, 0, 0);
 	move_map_labels(EditLevel, 0, 0);
-
-	// And also, we must not move the items but remove the items which are outside
-	// of the map
 	move_items(EditLevel, 0, 0);
 }
 
+/**
+ * Remove a column at the very west of a map
+ * \param EditLevel Pointer towards the editing level
+ */
 void remove_column_west(level *EditLevel)
 {
 	int i;
 	map_tile *MapPointer;
 
-	// First we move the obstacles, cause they will be glued and moved and doing that should
-	// be done before the floor to glue them to vanishes in the very east.
-	//
-	// But of course we should glue once more later...
-	//
-	move_obstacles_and_items_west_east(-1, EditLevel);
-
 	// Now the new memory and everything is done.  All we
 	// need to do is move the information to the east
-	//
 	for (i = 0; i < EditLevel->ylen; i++) {
 		memmove(&(EditLevel->map[i][0]), &(EditLevel->map[i][1]), (EditLevel->xlen-1) * sizeof(map_tile));
 		MapPointer = (map_tile*)realloc(EditLevel->map[i], (EditLevel->xlen-1) * sizeof(map_tile));
@@ -375,27 +298,22 @@ void remove_column_west(level *EditLevel)
 	}
 	EditLevel->xlen--;
 
+	// Now we also have to shift the position of all elements
+	move_obstacles(EditLevel, -1, 0);
 	MoveWaypointsWestEast(-1, EditLevel);
 	move_map_labels(EditLevel, -1, 0);
 	move_items(EditLevel, -1, 0);
+}
 
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
-
-}				// void RemoveColumnVeryWest(level *EditLevel)
-
+/**
+ * Remove a line at the very north of a map
+ * \param EditLevel Pointer towards the editing level
+ */
 void remove_line_north(level *EditLevel)
 {
 	int i;
 
-	// First we move the obstacles, cause they will be glued and moved and doing that should
-	// be done before the floor to glue them to vanishes in the very south.
-	//
-	// But of course we should glue once more later...
-	//
-	move_obstacles_and_items_north_south(-1, EditLevel);
-
 	// Now we do some shifting of lines
-	//
 	free(EditLevel->map[0]);
 	for (i = 0; i < EditLevel->ylen - 1; i++) {
 		EditLevel->map[i] = EditLevel->map[i + 1];
@@ -403,17 +321,12 @@ void remove_line_north(level *EditLevel)
 	EditLevel->map[EditLevel->ylen - 1] = NULL;
 	EditLevel->ylen--;
 
-	// Now we have the waypoints moved as well
-	//
+	// Now we also have to shift the position of all elements
+	move_obstacles(EditLevel, 0, -1);
 	MoveWaypointsNorthSouth(-1, EditLevel);
 	move_map_labels(EditLevel, 0, -1);
 	move_items(EditLevel, 0, -1);
-
-	// And finally, re-glue all obstacles to the new map
-	//
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
-
-}				// void RemoveLineVeryNorth (level *EditLevel)
+}
 
 /**
  * Remove a line at the very south of a map
@@ -426,11 +339,10 @@ void remove_line_south(level *EditLevel)
 	// things are not necessary
 	EditLevel->ylen--;
 
-	// When we remove a line at the very south, we must not move the map labels,
-	// but remove the map labels which are outside of the map
+	// When we remove a line at the very south, we must not move the elements
+	// (ie. obstacles, map labels, items...) but remove those which are
+	// outside of the map
+	move_obstacles(EditLevel, 0, 0);
 	move_map_labels(EditLevel, 0, 0);
-
-	// And also, we must not move the items but remove the items which are outside
-	// of the map
 	move_items(EditLevel, 0, 0);
 }
