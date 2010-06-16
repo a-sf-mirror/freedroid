@@ -1427,7 +1427,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	ResolveMapLabelOnShip(startpos, &StartPosition);
 	reset_visible_levels();
 	if(game_root_mode == ROOT_IS_LVLEDIT && GameConfig.last_edited_level != -1) 
-		Teleport(GameConfig.last_edited_level, 3, 3, FALSE);
+		teleport_to_level_center(GameConfig.last_edited_level);
 	else
 		Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE);
 	clear_active_bullets();
