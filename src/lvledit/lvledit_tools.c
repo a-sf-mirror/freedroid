@@ -33,16 +33,12 @@
 
 #include "SDL_rotozoom.h"
 
-#include "lvledit/lvledit.h"
-#include "lvledit/lvledit_actions.h"
-
-#include "lvledit/lvledit_widgets.h"
-
 #include "lvledit/lvledit_tools.h"
 
-LIST_HEAD(leveleditor_tool_list);
-
-void leveleditor_init_tools()
+/**
+ * Initialize the tools (ie. move, place, select) of the level editor
+ */
+void leveleditor_init_tools(void)
 {
 	static int init_done = 0;
 	if (init_done) {

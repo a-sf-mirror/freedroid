@@ -29,20 +29,14 @@
 #define EXTERN
 #endif
 
-enum leveleditor_tools {
-	TOOL_MOVE,
-	TOOL_PLACE,
-	TOOL_SELECT,
-};
-
 struct leveleditor_tool {
 	int (*input_event) (SDL_Event *);
 	int (*display) ();
 };
 
-EXTERN void leveleditor_init_tools(void);
-EXTERN struct list_head leveleditor_tool_list;
-EXTERN struct leveleditor_tool tool_place, tool_move, tool_select;
+void leveleditor_init_tools(void);
+
+struct leveleditor_tool tool_place, tool_move, tool_select;
 
 #define EVENT_LEFT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 1))
 #define EVENT_RIGHT_PRESS(e) (((e) && e->type == SDL_MOUSEBUTTONDOWN) && (e->button.button == 3))
