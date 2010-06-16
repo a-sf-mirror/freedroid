@@ -1065,6 +1065,21 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 
 };				// void Teleport( ... ) 
 
+/**
+ * Teleport the influencer to the center of a level on the ship
+ * \param level_num The numero of the level where we want to be teleported
+ * \param with_sound_and_fading Play sound (ie. only ingame)
+ */
+void teleport_to_level_center(int level_num, int with_sound_and_fading)
+{
+	// Calculate the center of the level
+	float x = curShip.AllLevels[level_num]->xlen / 2;
+	float y = curShip.AllLevels[level_num]->ylen / 2;
+
+	// Teleporting to the center of the level
+	Teleport(level_num, x, y, with_sound_and_fading);
+}
+
 /*----------------------------------------------------------------------
  * LoadGameConfig(): load saved options from config-file
  *
