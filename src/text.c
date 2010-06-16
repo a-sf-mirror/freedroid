@@ -453,6 +453,7 @@ int DisplayText(const char *format, int startx, int starty, const SDL_Rect * cli
 	SDL_Rect Temp_Clipping_Rect;	// adding this to prevent segfault in case of NULL as parameter
 	SDL_Rect store_clip;
 	short int nblines = 1;
+	int empty_lines_started = 0;
 
 	int letter_spacing = get_letter_spacing(GetCurrentFont());
 	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
@@ -498,7 +499,7 @@ int DisplayText(const char *format, int startx, int starty, const SDL_Rect * cli
 		if (((*tmp == ' ') || (*tmp == '\t'))
 		    && (ImprovedCheckLineBreak(tmp, clip, text_stretch) == 1))	// dont write over right border 
 		{		/*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!! */
-			nblines++;
+			empty_lines_started++;
 			++tmp;
 			continue;
 		}
@@ -506,7 +507,7 @@ int DisplayText(const char *format, int startx, int starty, const SDL_Rect * cli
 		if (*tmp == '\n') {
 			MyCursorX = clip->x;
 			MyCursorY += (int)(FontHeight(GetCurrentFont()) * text_stretch);
-			nblines++;
+			empty_lines_started++;
 		} else if (*tmp == '\t') {
 			MyCursorX = (int)ceilf((float)MyCursorX / (float)(tab_width)) * (tab_width);
 		} else {
@@ -514,6 +515,14 @@ int DisplayText(const char *format, int startx, int starty, const SDL_Rect * cli
 				display_char_disabled_local = TRUE;
 			display_char(*tmp);
 			display_char_disabled_local = FALSE;
+
+			// At least one visible character must follow a line break or else
+			// the line is a trailing empty line not visible to the user. Such
+			// empty lines don't contribute to the visual height of the string.
+			if (isgraph(*tmp)) {
+				nblines += empty_lines_started;
+				empty_lines_started = 0;
+			}
 		}
 
 		tmp++;
