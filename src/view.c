@@ -4337,13 +4337,20 @@ static void show_inventory_screen(void)
 											     i);
 				TargetRect.w = INV_SUBSQUARE_WIDTH;
 				TargetRect.h = INV_SUBSQUARE_HEIGHT;
-				if (ItemUsageRequirementsMet(&(Me.Inventory[SlotNum]), FALSE))
-					draw_inventory_occupied_rectangle(TargetRect,
-									  0 | (Me.Inventory[SlotNum].prefix_code ==
-									       -1 ? 0 : 2) | (Me.Inventory[SlotNum].suffix_code ==
-											      -1 ? 0 : 2));
-				else
+				if (ItemUsageRequirementsMet(&(Me.Inventory[SlotNum]), FALSE)) {
+					// Draw a blue background for items with installed add-ons.
+					int socketnum;
+					int has_addons = FALSE;
+					for (socketnum = 0; socketnum < Me.Inventory[SlotNum].upgrade_sockets.size; socketnum++) {
+						if (Me.Inventory[SlotNum].upgrade_sockets.arr[socketnum].addon) {
+							has_addons = TRUE;
+							break;
+						}
+					}
+					draw_inventory_occupied_rectangle(TargetRect, has_addons? 2 : 0);
+				} else {
 					draw_inventory_occupied_rectangle(TargetRect, 1);
+				}
 			}
 		}
 
