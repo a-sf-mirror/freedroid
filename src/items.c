@@ -207,109 +207,58 @@ void HomeMadeItemRepair(item *RepairItem)
 
 /**
  * This function calculates the price of a given item, taking into account
- * (*) the items base list price 
- * (*) the items given prefix modifier
- * (*) the items given suffix modifier
- * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
+ * (*) the base list price of the item
+ * (*) the base list prices of the installed add-ons
  */
 unsigned long calculate_item_buy_price(item * BuyItem)
 {
-	float PrefixMultiplier = 1;
-	float SuffixMultiplier = 1;
-	float Multiplicity = BuyItem->multiplicity;
+	int i;
+	int price = ItemMap[BuyItem->type].base_list_price;
 
-	// Maybe the item is magical in one way or the other.  Then we have to
-	// multiply a factor to the price, no matter whether repairing or buying
-	// or selling the item.
-	//
-	if (BuyItem->prefix_code != (-1)) {
-		PrefixMultiplier = PrefixList[BuyItem->prefix_code].price_factor;
+	// Add the prices of the add-ons to the total price.
+	for (i = 0; i < BuyItem->upgrade_sockets.size; i++) {
+		const char *addon = BuyItem->upgrade_sockets.arr[i].addon;
+		if (addon) {
+			int type = GetItemIndexByName(addon);
+			price += ItemMap[type].base_list_price;
+		}
 	}
-	if (BuyItem->suffix_code != (-1))
-		SuffixMultiplier = SuffixList[BuyItem->suffix_code].price_factor;
 
-	return (Multiplicity * ItemMap[BuyItem->type].base_list_price * SuffixMultiplier * PrefixMultiplier);
-
-};				// long calculate_item_buy_price ( item* BuyItem )
+	return BuyItem->multiplicity * price;
+}
 
 /**
  * This function calculates the price of a given item, taking into account
- * (*) the items base list price 
- * (*) the items given prefix modifier
- * (*) the items given suffix modifier
- * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
+ * (*) the base list price of the item
+ * (*) the base list prices of the installed add-ons
  */
 unsigned long calculate_item_sell_price(item * BuyItem)
 {
-	float PrefixMultiplier = 1;
-	float SuffixMultiplier = 1;
-	float Multiplicity = BuyItem->multiplicity;
-
-	// Maybe the item is magical in one way or the other.  Then we have to
-	// multiply a factor to the price, no matter whether repairing or buying
-	// or selling the item.
-	//
-	if (BuyItem->prefix_code != (-1)) {
-		PrefixMultiplier = PrefixList[BuyItem->prefix_code].price_factor;
-	}
-	if (BuyItem->suffix_code != (-1))
-		SuffixMultiplier = SuffixList[BuyItem->suffix_code].price_factor;
-
-	// When selling an item, you don't get the full value of the item, but
-	// instead, only half of the original list price, cause it's a used good.
-	//
-
-	// Temporary disabling lowering value for damaged item to test if its a needed/wanted feature.
-	// Also to evaluate if the repair skill is ever used for items you use, or just for items you sell.
-	// Compensation to sell price
-#define SELL_PRICE_FACTOR (0.3)
-//#define SELL_PRICE_FACTOR (0.5)
-	PrefixMultiplier *= SELL_PRICE_FACTOR;
-
-	return (Multiplicity * ItemMap[BuyItem->type].base_list_price * SuffixMultiplier * PrefixMultiplier);
-
-};				// long calculate_item_sell_price ( item* BuyItem )
+	// Items sell for less than the full price of the item.
+	return 0.3 * calculate_item_buy_price(BuyItem);
+}
 
 /**
  * This function calculates the price of a given item, taking into account
- * (*) the items base list price 
- * (*) the items given prefix modifier
- * (*) the items given suffix modifier
+ * (*) the base list price of the item
+ * (*) the base list prices of the installed add-ons
  * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
  */
 unsigned long calculate_item_repair_price(item * repair_item)
 {
-	float PrefixMultiplier = 1;
-	float SuffixMultiplier = 1;
-	float Multiplicity = repair_item->multiplicity;
-
-	// Maybe the item is magical in one way or the other.  Then we have to
-	// multiply a factor to the price, no matter whether repairing or buying
-	// or selling the item.
-	//
-	if (repair_item->prefix_code != (-1)) {
-		PrefixMultiplier = PrefixList[repair_item->prefix_code].price_factor;
-	}
-	if (repair_item->suffix_code != (-1))
-		SuffixMultiplier = SuffixList[repair_item->suffix_code].price_factor;
-
 	// For repair, it's not the full 'buy' cost...
 	//
 #define REPAIR_PRICE_FACTOR (0.5)
-	PrefixMultiplier *= REPAIR_PRICE_FACTOR;
 
 	// This is the price of the DAMAGE in the item, haha
 	// This can only be requested for repair items
 	//
 	if (repair_item->max_duration != (-1)) {
-		unsigned long price = (Multiplicity * ItemMap[repair_item->type].base_list_price * SuffixMultiplier *
-		    PrefixMultiplier * (repair_item->max_duration - repair_item->current_duration) / repair_item->max_duration);
+		unsigned long price = (calculate_item_buy_price(repair_item) *
+		    REPAIR_PRICE_FACTOR * (repair_item->max_duration - repair_item->current_duration) / repair_item->max_duration);
 
 		// Never repair for free, minimum price is 1
 		return price ? price : 1;
-	} else {
-		DebugPrintf(0, "\n\nERROR!! CALCULATING REPAIR PRICE FOR INDESTRUCTIBLE ITEM!! \n\n Terminating...");
-		Terminate(ERR);
 	}
 	return 0;
 };				// long calculate_item_repair_price ( item* repair_item )
