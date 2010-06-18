@@ -70,7 +70,6 @@ const char *keybindNames[] = {
 	/* Cheat keys */
 	"cheat_xp+_1k", "cheat_xp*_2",
 	"cheat_melee", "cheat_range", "cheat_programing", "cheat_melee_down", "cheat_range_down", "cheat_programing_down",
-	"cheat_identify_all",
 	"cheat_drop_random_item", "cheat_drop_random_magical_item",
 	"cheat_respawn_level",
 	"cheat_menu", "cheat_level_editor",
@@ -243,7 +242,6 @@ void input_set_default(void)
 	input_set_keybind("cheat_melee_down", SDLK_KP4, KMOD_NONE);
 	input_set_keybind("cheat_range_down", SDLK_KP5, KMOD_NONE);
 	input_set_keybind("cheat_programing_down", SDLK_KP6, KMOD_NONE);
-	input_set_keybind("cheat_identify_all", SDLK_i, KMOD_LSHIFT);
 	input_set_keybind("cheat_drop_random_item", SDLK_r, KMOD_LCTRL);
 	input_set_keybind("cheat_drop_random_magical_item", SDLK_r, KMOD_LCTRL | KMOD_LSHIFT);
 	input_set_keybind("cheat_respawn_level", SDLK_r, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
@@ -474,15 +472,6 @@ static int input_key(int keynum, int value)
 		} else if (KEYPRESS("cheat_programing_down")) {
 			if (Me.spellcasting_skill > 0)
 				Me.spellcasting_skill -= 1;
-		} else if (KEYPRESS("cheat_identify_all")) {
-			int i;
-			for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++)
-				Me.Inventory[i].is_identified = TRUE;
-			Me.weapon_item.is_identified = TRUE;
-			Me.shield_item.is_identified = TRUE;
-			Me.armour_item.is_identified = TRUE;
-			Me.special_item.is_identified = TRUE;
-			Me.drive_item.is_identified = TRUE;
 		} else if (KEYPRESS("cheat_drop_random_item")) {
 			DropRandomItem(Me.pos.z, Me.pos.x, Me.pos.y, 3, FALSE);
 		} else if (KEYPRESS("cheat_drop_random_magical_item")) {
