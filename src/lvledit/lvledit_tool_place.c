@@ -48,7 +48,6 @@ static enum {
 	CONNECT_WAYPOINT,
 } our_mode;
 
-
 static struct leveleditor_place {
 	/* Line mode */
 	int l_direction;
@@ -127,13 +126,14 @@ static int do_waypoint_route(int rspawn)
 	return 0;
 }
 
-static void place_single_obstacle(struct leveleditor_typeselect *ts)
+/**
+ * Place an obstacle on the map
+ * \param type The type of the obstacle
+ */
+static void place_single_obstacle(int type)
 {
-	moderately_finepoint pos;
-	pos.x = mouse_mapcoord.x;
-	pos.y = mouse_mapcoord.y;
-
-	action_create_obstacle_user(EditLevel(), pos.x, pos.y, ts->indices[ts->selected_tile_nb]);
+	// Create a new obstacle at the position of the mouse
+	action_create_obstacle_user(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, type);
 }
 
 static void start_rectangle_floor(int findex)
@@ -649,45 +649,43 @@ static void end_wall_line(int commit)
 		action_push(ACT_MULTIPLE_ACTIONS, nb_actions);
 }
 
-int leveleditor_place_input(SDL_Event * event)
+int leveleditor_place_input(SDL_Event *event)
 {
-	struct leveleditor_typeselect *ts;
-	ts = get_current_object_type();
+	struct leveleditor_typeselect *ts = get_current_object_type();
+	int type = ts->indices[ts->selected_tile_nb];
 
-	if(!mouse_in_level)
+	if (!mouse_in_level) {
+		// We must not place objects outside of the level
 		return 0;
+	}
 
 	if (our_mode == DISABLED) {
-		// Try to place something
 		if (EVENT_LEFT_PRESS(event)) {
 			switch (ts->type) {
 			case OBJECT_FLOOR:
 				start_rectangle_floor(ts->indices[ts->selected_tile_nb]);
 				return 0;
 			case OBJECT_OBSTACLE:
-				//Check whether to do line mode or single obstacle placement
-				if (obstacle_map[ts->indices[ts->selected_tile_nb]].flags & (IS_VERTICAL | IS_HORIZONTAL)) {
-					start_wall_line(ts->indices[ts->selected_tile_nb]);
+				if (horizontal_wall(type) || vertical_wall(type)) {
+					start_wall_line(type);
 					return 0;
 				} else {
-					place_single_obstacle(ts);
+					place_single_obstacle(type);
 					return 1;
 				}
 				break;
 			case OBJECT_WAYPOINT:
-				return do_waypoint_route(ts->indices[ts->selected_tile_nb]);
+				return do_waypoint_route(type);
 				break;
 			default:
 				alert_window("Place tool does not support this type of object.");
 			}
-
 		}
 	} else if (our_mode == RECTANGLE_FLOOR) {
 		if (EVENT_LEFT_RELEASE(event)) {
-			end_rectangle_floor(1);	//commit the modification
+			end_rectangle_floor(1);
 			return 1;
 		} else if (EVENT_MOVE(event)) {
-			//change rectangle size
 			handle_rectangle_floor();
 		} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_SPACE)) {
 			end_rectangle_floor(0);
@@ -709,7 +707,7 @@ int leveleditor_place_input(SDL_Event * event)
 			return 1;
 		}
 		if (EVENT_LEFT_PRESS(event)) {
-			return do_waypoint_route(ts->indices[ts->selected_tile_nb]);
+			return do_waypoint_route(type);
 		}
 	}
 
