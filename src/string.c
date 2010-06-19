@@ -92,6 +92,10 @@ static int autostr_vprintf(struct auto_string *str, unsigned long offset,
 	nr = vsnprintf(str->value + offset, size, fmt, tmp_args);
 	va_end(tmp_args);
 
+	if (nr < 0) {
+		return -1;
+	}
+
 	if ((unsigned long)nr >= size) {
 		err = autostr_resize(str, str->capacity * 2);
 		if (err)

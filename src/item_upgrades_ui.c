@@ -135,6 +135,7 @@ static void load_images()
 void show_item_upgrade_ui()
 {
 	int i;
+	char buffer[512];
 	iso_image *image;
 	SDL_Rect rect;
 	SDL_Surface *surface;
@@ -172,13 +173,15 @@ void show_item_upgrade_ui()
 
 	// Draw the text labels.
 	SetCurrentFont(Messagevar_BFont);
-	DisplayText(_("Money: %d"), rects.money_text.x, rects.money_text.y, NULL, TEXT_STRETCH, Me.Gold);
+	sprintf(buffer, _("Money: %d"), Me.Gold);
+	DisplayText(buffer, rects.money_text.x, rects.money_text.y, NULL, TEXT_STRETCH);
 	if (ui.cost > Me.Gold) {
 		SetCurrentFont(Messagestat_BFont);
 	} else {
 		SetCurrentFont(Messagevar_BFont);
 	}
-	DisplayText(_("Cost: %d"), rects.cost_text.x, rects.cost_text.y, NULL, TEXT_STRETCH, ui.cost);
+	sprintf(buffer, _("Cost: %d"), ui.cost);
+	DisplayText(buffer, rects.cost_text.x, rects.cost_text.y, NULL, TEXT_STRETCH);
 	SetCurrentFont(Blue_BFont);
 	DisplayText(_("Bonuses"), rects.bonus_text.x, rects.bonus_text.y, NULL, TEXT_STRETCH);
 
@@ -201,16 +204,16 @@ void show_item_upgrade_ui()
 			DisplayText(_("Electric"), rects.table[0][1].x, rects.table[0][1].y, NULL, TEXT_STRETCH);
 			DisplayText(_("Mechanical"), rects.table[0][2].x, rects.table[0][2].y, NULL, TEXT_STRETCH);
 			DisplayText(_("Universal"), rects.table[0][3].x, rects.table[0][3].y, NULL, TEXT_STRETCH);
-			DisplayText("%d", rects.table[1][1].x, rects.table[1][1].y, NULL,
-			            TEXT_STRETCH, ELECTRIC_SOCKET_COST);
-			DisplayText("%d", rects.table[1][2].x, rects.table[1][2].y, NULL,
-			            TEXT_STRETCH, MECHANICAL_SOCKET_COST);
-			DisplayText("%d", rects.table[1][3].x, rects.table[1][3].y, NULL,
-			            TEXT_STRETCH, UNIVERSAL_SOCKET_COST);
+			sprintf(buffer, "%d", ELECTRIC_SOCKET_COST);
+			DisplayText(buffer, rects.table[1][1].x, rects.table[1][1].y, NULL, TEXT_STRETCH);
+			sprintf(buffer, "%d", MECHANICAL_SOCKET_COST);
+			DisplayText(buffer, rects.table[1][2].x, rects.table[1][2].y, NULL, TEXT_STRETCH);
+			sprintf(buffer, "%d", UNIVERSAL_SOCKET_COST);
+			DisplayText(buffer, rects.table[1][3].x, rects.table[1][3].y, NULL, TEXT_STRETCH);
 		} else {
 			DisplayText(_("Universal"), rects.table[0][1].x, rects.table[0][1].y, NULL, TEXT_STRETCH);
-			DisplayText("%d", rects.table[1][1].x, rects.table[1][1].y, NULL,
-			            TEXT_STRETCH, SOCKET_UPGRADE_COST);
+			sprintf(buffer, "%d", SOCKET_UPGRADE_COST);
+			DisplayText(buffer, rects.table[1][1].x, rects.table[1][1].y, NULL, TEXT_STRETCH);
 		}
 		DisplayText(_("Cancel"), rects.table[0][4].x, rects.table[0][4].y, NULL, TEXT_STRETCH);
 

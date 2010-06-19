@@ -109,6 +109,28 @@ enum {
 
 LIST_HEAD(visible_level_list);
 
+static void draw_framerate()
+{
+	static float TimeSinceLastFPSUpdate = 10;
+	static int Frames_Counted = 1;
+	static int FPS_Displayed;
+	char txt[100];
+
+	if (GameConfig.Draw_Framerate) {
+		TimeSinceLastFPSUpdate += Frame_Time();
+		Frames_Counted++;
+		if (Frames_Counted > 50) {
+			FPS_Displayed = Frames_Counted / TimeSinceLastFPSUpdate;
+			TimeSinceLastFPSUpdate = 0;
+			Frames_Counted = 0;
+		}
+		snprintf(txt, sizeof(txt) - 1, _("FPS: %d"), FPS_Displayed);
+		strcat(txt, "\n");
+		DisplayText(txt, -1, -1, NULL, 1.0);
+	}
+}
+
+
 /**
  * This function displays an item at the current mouse cursor position.
  * The typical crosshair cursor is assumed.  The item is centered around
@@ -234,10 +256,6 @@ void PutMiscellaneousSpellEffects(void)
  */
 void ShowCombatScreenTexts(int mask)
 {
-	static float TimeSinceLastFPSUpdate = 10;
-	static int Frames_Counted = 1;
-	static int FPS_Displayed;
-#define UPDATE_FPS_HOW_OFTEN 0.75
 	int minutes;
 	int seconds;
 	int i;
@@ -249,18 +267,7 @@ void ShowCombatScreenTexts(int mask)
 
 	SetTextCursor(User_Rect.x + 1, User_Rect.y + 1);
 
-	if (GameConfig.Draw_Framerate) {
-		TimeSinceLastFPSUpdate += Frame_Time();
-		Frames_Counted++;
-		if (Frames_Counted > 50) {
-			FPS_Displayed = Frames_Counted / TimeSinceLastFPSUpdate;
-			TimeSinceLastFPSUpdate = 0;
-			Frames_Counted = 0;
-		}
-		snprintf(txt, sizeof(txt) - 1, _("FPS: %d"), FPS_Displayed);
-		strcat(txt, "\n");
-		DisplayText(txt, -1, -1, NULL, 1.0);
-	}
+	draw_framerate();
 
 	for (i = 0; i < MAX_MISSIONS_IN_GAME; i++) {
 		if (!Me.AllMissions[i].MissionWasAssigned)
