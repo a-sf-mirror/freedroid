@@ -337,10 +337,9 @@ void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 };				// void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) 
 
 /**
- * This function drops an item at a given place, assigning it the given
- * suffix and prefix code.
+ * This function drops an item at a given place.
  */
-item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int suffix, int multiplicity)
+item *DropItemAt(int ItemType, int level_num, float x, float y, int multiplicity)
 {
 	int i;
 	gps item_pos;
@@ -402,16 +401,10 @@ item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int 
 	item_drop_map_level->ItemList[i].pos.x = x;
 	item_drop_map_level->ItemList[i].pos.y = y;
 	item_drop_map_level->ItemList[i].pos.z = level_num;
-	item_drop_map_level->ItemList[i].prefix_code = prefix;
-	item_drop_map_level->ItemList[i].suffix_code = suffix;
 
 	FillInItemProperties(&(item_drop_map_level->ItemList[i]), FALSE, multiplicity);
 
 	item_drop_map_level->ItemList[i].throw_time = 0.01;	// something > 0 
-	if ((prefix == (-1)) && (suffix == (-1)))
-		item_drop_map_level->ItemList[i].is_identified = TRUE;
-	else
-		item_drop_map_level->ItemList[i].is_identified = FALSE;
 
 	play_item_sound(ItemType);
 
@@ -527,8 +520,6 @@ int get_random_item_type(int class)
  */
 void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical)
 {
-	int Suf;
-	int Pre;
 	int DropDecision;
 	int drop_item_type = 1;
 	int drop_item_multiplicity = 1;
@@ -554,23 +545,14 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 			how_many = 10 * class + MyRandom(9);
 		} while (how_many < 2);
 		
-		DropItemAt(GetItemIndexByName("Valuable Circuits"), level_num, x, y, -1, -1, how_many);
+		DropItemAt(GetItemIndexByName("Valuable Circuits"), level_num, x, y, how_many);
 	}
 
 	if ((DropDecision < ITEM_DROP_PERCENTAGE)) {
 		drop_item_type = get_random_item_type(class);
 		drop_item_multiplicity = 1;	//for now...  
 
-		Suf = (-1);
-		Pre = (-1);
-		if (ForceMagical || (MyRandom(100) <= 2)) {
-			Suf = find_suitable_bonus_for_item(drop_item_type, class, SuffixList);
-		}
-		if (ForceMagical || (MyRandom(100) <= 2)) {
-			Pre = find_suitable_bonus_for_item(drop_item_type, class, PrefixList);
-		}
-
-		DropItemAt(drop_item_type, level_num, x, y, Pre, Suf, drop_item_multiplicity);
+		DropItemAt(drop_item_type, level_num, x, y, drop_item_multiplicity);
 	}
 
 };

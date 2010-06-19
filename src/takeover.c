@@ -725,7 +725,7 @@ int droid_takeover(enemy * target)
 		// enemy isn't completely dead yet...
 		//
 		if (target->on_death_drop_item_code != (-1)) {
-			DropItemAt(target->on_death_drop_item_code, target->pos.z, target->pos.x, target->pos.y, -1, -1, 1);
+			DropItemAt(target->on_death_drop_item_code, target->pos.z, target->pos.x, target->pos.y, 1);
 			target->on_death_drop_item_code = -1;
 		}
 

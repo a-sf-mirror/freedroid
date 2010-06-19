@@ -476,7 +476,7 @@ unsigned long calculate_item_sell_price(item * BuyItem);
 void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity);
 void DamageProtectiveEquipment(void);
 void write_full_item_name_into_string(item * ShowItem, char *full_item_name);
-item *DropItemAt(int ItemType, int level_num, float x, float y, int prefix, int suffix, int multiplicity);
+item *DropItemAt(int, int, float, float, int);
 void Quick_ApplyItem(int ItemKey);
 int MatchItemWithName(int type, const char *name);
 int GetItemIndexByName(const char *name);

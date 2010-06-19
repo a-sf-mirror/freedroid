@@ -697,27 +697,27 @@ void DropEnemyTreasure(Enemy ThisRobot)
 		if (Druidmap[ThisRobot->type].amount_of_tachyon_condensators
 		    && Druidmap[ThisRobot->type].amount_of_tachyon_condensators > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Tachyon Condensator"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, -1, -1, 1);
+				   ThisRobot->virt_pos.y, 1);
 	case 4:
 		if (Druidmap[ThisRobot->type].amount_of_antimatter_converters
 		    && Druidmap[ThisRobot->type].amount_of_antimatter_converters > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Antimatter-Matter Converter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, -1, -1, 1);
+				   ThisRobot->virt_pos.y, 1);
 	case 3:
 		if (Druidmap[ThisRobot->type].amount_of_superconductors
 		    && Druidmap[ThisRobot->type].amount_of_superconductors > MyRandom(100))
 			DropItemAt(GetItemIndexByName("Superconducting Relay Unit"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
-				   ThisRobot->virt_pos.y, -1, -1, 1);
+				   ThisRobot->virt_pos.y, 1);
 	case 2:
 		if (Druidmap[ThisRobot->type].amount_of_plasma_transistors
 		    && Druidmap[ThisRobot->type].amount_of_plasma_transistors > MyRandom(100))
-			DropItemAt(GetItemIndexByName("Plasma Transistor"), ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y,
-				   -1, -1, 1);
+			DropItemAt(GetItemIndexByName("Plasma Transistor"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
+				   ThisRobot->virt_pos.y, 1);
 	case 1:
 		if (Druidmap[ThisRobot->type].amount_of_entropy_inverters
 		    && Druidmap[ThisRobot->type].amount_of_entropy_inverters > MyRandom(100))
-			DropItemAt(GetItemIndexByName("Entropy Inverter"), ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y,
-				   -1, -1, 1);
+			DropItemAt(GetItemIndexByName("Entropy Inverter"), ThisRobot->pos.z, ThisRobot->virt_pos.x,
+				   ThisRobot->virt_pos.y, 1);
 	case 0:
 		break;
 	}
@@ -731,7 +731,7 @@ void DropEnemyTreasure(Enemy ThisRobot)
 Item to be dropped (forced for this bot) is of illegal type!", PLEASE_INFORM, IS_FATAL);
 		}
 
-		DropItemAt(ThisRobot->on_death_drop_item_code, ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, -1, -1, 1);
+		DropItemAt(ThisRobot->on_death_drop_item_code, ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, 1);
 		ThisRobot->on_death_drop_item_code = -1;
 	}
 	// Apart from the parts, that the Tux might be able to extract from the bot,

@@ -273,8 +273,7 @@ item *ItemDropFromLevelEditor(void)
 		if (our_multiplicity == 0)
 			our_multiplicity = 1;
 	}
-	dropped_item = DropItemAt(NewItemCode, Me.pos.z, rintf(Me.pos.x), rintf(Me.pos.y),
-				  previous_prefix_selected, previous_suffix_selected, our_multiplicity);
+	dropped_item = DropItemAt(NewItemCode, Me.pos.z, rintf(Me.pos.x), rintf(Me.pos.y), our_multiplicity);
 
 	game_status = INSIDE_LVLEDITOR;
 

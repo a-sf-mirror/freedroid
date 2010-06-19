@@ -1764,22 +1764,22 @@ void ThouArtDefeated(void)
 	// spring off of him...
 	//
 	if (Me.weapon_item.type > 0) {
-		DropItemAt(Me.weapon_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y - 0.5, -1, -1, 1);
+		DropItemAt(Me.weapon_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y - 0.5, 1);
 	}
 	if (Me.drive_item.type > 0) {
-		DropItemAt(Me.drive_item.type, Me.pos.z, Me.pos.x + 0.5, Me.pos.y - 0.5, -1, -1, 1);
+		DropItemAt(Me.drive_item.type, Me.pos.z, Me.pos.x + 0.5, Me.pos.y - 0.5, 1);
 	}
 	if (Me.shield_item.type > 0) {
-		DropItemAt(Me.shield_item.type, Me.pos.z, Me.pos.x + 0.5, Me.pos.y + 0.5, -1, -1, 1);
+		DropItemAt(Me.shield_item.type, Me.pos.z, Me.pos.x + 0.5, Me.pos.y + 0.5, 1);
 	}
 	if (Me.armour_item.type > 0) {
-		DropItemAt(Me.armour_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y + 0.5, -1, -1, 1);
+		DropItemAt(Me.armour_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y + 0.5, 1);
 	}
 	if (Me.special_item.type > 0) {
-		DropItemAt(Me.special_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y, -1, -1, 1);
+		DropItemAt(Me.special_item.type, Me.pos.z, Me.pos.x - 0.5, Me.pos.y, 1);
 	}
 	if (Me.Gold > 0) {
-		DropItemAt(GetItemIndexByName("Valuable Circuits"), Me.pos.z, Me.pos.x, Me.pos.y, -1, -1, 1);
+		DropItemAt(GetItemIndexByName("Valuable Circuits"), Me.pos.z, Me.pos.x, Me.pos.y, 1);
 	}
 
 	GameOver = TRUE;
