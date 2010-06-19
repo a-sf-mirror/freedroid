@@ -1419,10 +1419,10 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Me.TextToBeDisplayed = _("Huh? What?  Where am I?");
 	Me.TextVisibleTime = 0;
 
-	GetCrew("ReturnOfTux.droids");
-
 	init_npcs();
 	init_factions();
+	
+	GetCrew("ReturnOfTux.droids");
 
 	ResolveMapLabelOnShip(startpos, &StartPosition);
 	reset_visible_levels();
