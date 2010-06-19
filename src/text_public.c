@@ -121,7 +121,7 @@ Thanks a lot!\n\n");
 		fprintf(stderr, "Freedroid will terminate now to draw attention to the problems it could\n\
 not resolve.  Sorry if that interrupts a major game of yours...\n");
 	} else {
-		fprintf(stderr, "The problem mentionned above is not fatal, we continue the execution.\n");
+		fprintf(stderr, "The problem mentioned above is not fatal, we continue the execution.\n");
 		fprintf(stderr, "----------------------------------------------------------------------\n");
 	}
 
