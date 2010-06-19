@@ -1880,7 +1880,6 @@ void handle_player_identification_command()
 			strcat(iname, SuffixList[GrabbedItem->suffix_code].bonus_name);
 
 		if (GrabbedItem->is_identified == TRUE) {
-			PlayOnceNeededSoundSample("effects/is_already_indentif.ogg", FALSE, FALSE);
 			append_new_game_message(_("You already know all there is to know about the %s."), iname);
 		} else {
 			GrabbedItem->is_identified = TRUE;

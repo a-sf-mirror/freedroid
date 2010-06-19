@@ -414,7 +414,7 @@ void healing_spell_sound(void)
  */
 void application_requirements_not_met_sound(void)
 {
-	play_sample_using_WAV_cache("effects/tux_ingame_comments/i_cannot_use_this_item_yet.ogg", FALSE, FALSE);
+	return;
 }
 
 void GotHitSound(void)
@@ -634,14 +634,8 @@ void ExterminatorBlastSound(void)
 void PlayLevelCommentSound(int levelnum)
 {
 	switch (levelnum) {
-	case 0:
-		// I've been away for a far too long time it seems...
-		break;
-	case 3:
-		play_sample_using_WAV_cache("effects/MSMachinesClose_0.ogg", FALSE, FALSE);
-		break;
-	default:
-		break;
+		default:
+			break;
 	};
 }
 
