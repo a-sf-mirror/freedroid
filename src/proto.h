@@ -376,8 +376,6 @@ int GetCrew(char *shipname);
 moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y, int zoom_is_on);
 
 void animate_obstacles(void);
-void MoveLevelDoors(void);
-void WorkLevelGuns(void);
 int IsVisible(gps *objpos);
 void DeleteWaypoint(level * Lev, int num);
 int CreateWaypoint(level * Lev, int x, int y, int *);
