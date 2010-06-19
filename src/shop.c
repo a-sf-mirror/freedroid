@@ -481,10 +481,6 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 			strcat(InfoText, TextChunk);
 		}
 
-		if ((ShowItem->suffix_code != (-1)) || (ShowItem->prefix_code != (-1))) {
-			if (ShowItem->is_identified == FALSE)
-				strcat(InfoText, _("Identification cost: 100\n"));
-		}
 		// If the item is a weapon, then we print out some weapon stats...
 		//
 		if (ItemMap[ShowItem->type].base_item_gun_damage + ItemMap[ShowItem->type].item_gun_damage_modifier > 0) {
@@ -687,9 +683,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			if ((ItemMap[TuxItemsList[TuxItemIndex]->type].base_item_duration >= 0) &&
 			    (TuxItemsList[TuxItemIndex]->max_duration > TuxItemsList[TuxItemIndex]->current_duration))
 				ShowGenericButtonFromList(REPAIR_BUTTON);
-
-			if (!TuxItemsList[TuxItemIndex]->is_identified)
-				ShowGenericButtonFromList(IDENTIFY_BUTTON);
 		} else {
 			BuyButtonActive = FALSE;
 			SellButtonActive = FALSE;
@@ -816,19 +809,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 						goto out;
 					}
 				}
-			} else if (MouseCursorIsOnButton(IDENTIFY_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				// Reference to the Tux item list must only be made, when the 'highlight'
-				// is really in the tux item row.  Otherwise we just get a segfault...
-				//
-				if (TuxItemIndex > (-1)) {
-					if (!TuxItemsList[TuxItemIndex]->is_identified) {
-						ShopOrder->item_selected = TuxItemIndex;
-						ShopOrder->shop_command = IDENTIFY_ITEM;
-						ShopOrder->number_selected = 1;
-						ret = 0;
-						goto out;
-					}
-				}
 			}
 		}
 
@@ -926,35 +906,6 @@ void TryToRepairItem(item * RepairItem)
 	RepairItem->current_duration = RepairItem->max_duration;
 	PlayOnceNeededSoundSample("effects/Shop_ItemRepairedSound_0.ogg", FALSE, FALSE);
 };				// void TryToRepairItem( item* RepairItem )
-
-/**
- * This function tries to identify the item given as parameter.  
- */
-void TryToIdentifyItem(item * IdentifyItem)
-{
-	char *MenuTexts[10];
-	MenuTexts[0] = _("Yes");
-	MenuTexts[1] = _("No");
-	MenuTexts[2] = "";
-
-	while (SpacePressed() || EnterPressed() || MouseLeftPressed()) ;
-
-	if (100 > Me.Gold) {
-		MenuTexts[0] = _(" BACK ");
-		MenuTexts[1] = "";
-		SetCurrentFont(Menu_BFont);
-		DoMenuSelection(_("You can't afford to have this item identified! "), MenuTexts, 1, -1, NULL);
-		return;
-	}
-
-/** As lynx pointed out on irc, it's useless to ask for confirmation, since the user actually requested identification. */
-	while (EnterPressed() || SpacePressed()) ;
-	Me.Gold -= 100;
-	IdentifyItem->is_identified = TRUE;
-	PlayOnceNeededSoundSample("effects/Shop_ItemIdentifiedSound_0.ogg", FALSE, FALSE);
-
-	return;
-};				// void TryToIdentifyItem( item* IdentifyItem )
 
 /**
  * This function tries to sell the item given as parameter.
@@ -1154,9 +1105,6 @@ void InitTradeWithCharacter(struct npc *npc)
 			break;
 		case REPAIR_ITEM:
 			TryToRepairItem(TuxItemsList[ShopOrder.item_selected]);
-			break;
-		case IDENTIFY_ITEM:
-			TryToIdentifyItem(TuxItemsList[ShopOrder.item_selected]);
 			break;
 		default:
 

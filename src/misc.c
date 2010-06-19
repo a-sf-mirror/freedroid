@@ -104,7 +104,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[BUY_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/buy_button.png", {199, 98, 47, 47}, TRUE, FALSE},
 	[SELL_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/sell_button.png", {199, 153, 47, 47}, TRUE, FALSE},
 	[REPAIR_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/repair_button.png", {199, 225, 47, 47}, TRUE, FALSE},
-	[IDENTIFY_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/identify_button.png", {199, 275, 47, 47}, TRUE, FALSE},
 
 	[OPEN_CLOSE_SKILL_EXPLANATION_BUTTON] = {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {0 + 17, 424, 33, 33}, FALSE, FALSE},
 
