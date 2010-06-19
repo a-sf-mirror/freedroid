@@ -162,8 +162,6 @@ item *ItemDropFromLevelEditor(void)
 	int item_group = 0;
 	item *dropped_item;
 	static int previous_mouse_position_index = (-1);
-	static int previous_suffix_selected = (-1);
-	static int previous_prefix_selected = (-1);
 	game_status = INSIDE_MENU;
 
 	while (MouseLeftPressed())
@@ -186,10 +184,6 @@ item *ItemDropFromLevelEditor(void)
 
 		ShowGenericButtonFromList(LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON);
 		ShowGenericButtonFromList(LEVEL_EDITOR_PREV_ITEM_GROUP_BUTTON);
-		ShowGenericButtonFromList(LEVEL_EDITOR_NEXT_PREFIX_BUTTON);
-		ShowGenericButtonFromList(LEVEL_EDITOR_PREV_PREFIX_BUTTON);
-		ShowGenericButtonFromList(LEVEL_EDITOR_NEXT_SUFFIX_BUTTON);
-		ShowGenericButtonFromList(LEVEL_EDITOR_PREV_SUFFIX_BUTTON);
 		ShowGenericButtonFromList(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON);
 
 		if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, GetMousePos_x(), GetMousePos_y()))
@@ -201,22 +195,6 @@ item *ItemDropFromLevelEditor(void)
 			} else
 				PutStringFont(Screen, FPS_Display_BFont, 20, 440 * GameConfig.screen_height / 480,
 					      D_(ItemMap[previous_mouse_position_index].item_name));
-		}
-
-		if (previous_prefix_selected != (-1)) {
-			PutStringFont(Screen, FPS_Display_BFont, 300 * GameConfig.screen_width / 640, 370 * GameConfig.screen_height / 480,
-				      PrefixList[previous_prefix_selected].bonus_name);
-		} else {
-			PutStringFont(Screen, FPS_Display_BFont, 300 * GameConfig.screen_width / 640, 370 * GameConfig.screen_height / 480,
-				      _("NO PREFIX"));
-		}
-
-		if (previous_suffix_selected != (-1)) {
-			PutStringFont(Screen, FPS_Display_BFont, 300 * GameConfig.screen_width / 640, 410 * GameConfig.screen_height / 480,
-				      SuffixList[previous_suffix_selected].bonus_name);
-		} else {
-			PutStringFont(Screen, FPS_Display_BFont, 300 * GameConfig.screen_width / 640, 410 * GameConfig.screen_height / 480,
-				      _("NO SUFFIX"));
 		}
 
 		blit_our_own_mouse_cursor();
@@ -236,21 +214,7 @@ item *ItemDropFromLevelEditor(void)
 						item_group--;
 				}
 
-				if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_PREFIX_BUTTON, event.button.x, event.button.y)) {
-					if (PrefixList[previous_prefix_selected + 1].bonus_name != NULL)
-						previous_prefix_selected++;
-				} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_PREFIX_BUTTON, event.button.x, event.button.y)) {
-					if (previous_prefix_selected > (-1))
-						previous_prefix_selected--;
-				}
-
-				if (MouseCursorIsOnButton(LEVEL_EDITOR_NEXT_SUFFIX_BUTTON, event.button.x, event.button.y)) {
-					if (SuffixList[previous_suffix_selected + 1].bonus_name != NULL)
-						previous_suffix_selected++;
-				} else if (MouseCursorIsOnButton(LEVEL_EDITOR_PREV_SUFFIX_BUTTON, event.button.x, event.button.y)) {
-					if (previous_suffix_selected > (-1))
-						previous_suffix_selected--;
-				} else if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, event.button.x, event.button.y)) {
+				if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, event.button.x, event.button.y)) {
 					return NULL;
 				} else if (level_editor_item_drop_index(row_len, line_len) != (-1)) {
 					NewItemCode = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len;

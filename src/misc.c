@@ -230,14 +230,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNextItemGroup.png", {55 + 64 * 8, 32 + 5 * 66, 0, 0}, TRUE, FALSE},
 	[LEVEL_EDITOR_PREV_ITEM_GROUP_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorPrevItemGroup.png", {55, 32 + 5 * 66, 0, 0}, TRUE, FALSE},
-	[LEVEL_EDITOR_NEXT_PREFIX_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNextItemGroup.png", {55 + 400, 32 + 5 * 66, 0, 0}, TRUE, FALSE},
-	[LEVEL_EDITOR_PREV_PREFIX_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorPrevItemGroup.png", {55 + 150, 32 + 5 * 66, 0, 0}, TRUE, FALSE},
-	[LEVEL_EDITOR_NEXT_SUFFIX_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNextItemGroup.png", {55 + 400, 72 + 5 * 66, 0, 0}, TRUE, FALSE},
-	[LEVEL_EDITOR_PREV_SUFFIX_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorPrevItemGroup.png", {55 + 150, 72 + 5 * 66, 0, 0}, TRUE, FALSE},
 
 	[LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorCancelItemDrop.png", {55 + 80, 32 + 5 * 66, 0, 0}, TRUE, FALSE},
