@@ -130,12 +130,10 @@ static void AddInfluencerItemAttributeBonus(item * BonusItem)
 		return;
 
 	// Apply the bonuses to the stats of the character.
-	if (BonusItem->is_identified) {
-		Me.Strength += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes;
-		Me.Dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes;
-		Me.Magic += BonusItem->bonus_to_mag + BonusItem->bonus_to_all_attributes;
-		Me.Vitality += BonusItem->bonus_to_vit + BonusItem->bonus_to_all_attributes;
-	}
+	Me.Strength += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes;
+	Me.Dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes;
+	Me.Magic += BonusItem->bonus_to_mag + BonusItem->bonus_to_all_attributes;
+	Me.Vitality += BonusItem->bonus_to_vit + BonusItem->bonus_to_all_attributes;
 
 };				// void AddInfluencerItemAttributeBonus( item* BonusItem )
 
@@ -151,34 +149,13 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 		return;
 
 	// Apply the bonuses to the stats of the character.
-	if (BonusItem->is_identified) {
-
-		// Some modifiers might not be random at all but fixed to the 
-		// item prefix or item suffix.  In that case, we must get the
-		// modifier strength from the suffix/prefix spec itself...
-		//
-		if (BonusItem->suffix_code != (-1))
-			Me.light_bonus_from_tux += SuffixList[BonusItem->suffix_code].light_bonus_value;
-		if (BonusItem->prefix_code != (-1))
-			Me.light_bonus_from_tux += PrefixList[BonusItem->prefix_code].light_bonus_value;
-
-		// Now we can apply the modifiers, that have been generated from
-		// the suffix spec and then (with some randomness) written into the
-		// item itself.  In that case we won't need the suffix- or 
-		// prefix-lists here...
-		//
-		Me.to_hit += BonusItem->bonus_to_tohit;
-		Me.max_temperature += BonusItem->bonus_to_force;
-		Me.maxenergy += BonusItem->bonus_to_life;
-		Me.health_recovery_rate += BonusItem->bonus_to_health_recovery;
-		Me.cooling_rate += BonusItem->bonus_to_cooling_rate;
-
-		Me.resist_fire += BonusItem->bonus_to_resist_fire;
-		Me.resist_electricity += BonusItem->bonus_to_resist_electricity;
-
-		// if ( ItemMap [ BonusItem->type ] . can_be_installed_in_weapon_slot )
-		// Me.freezing_enemys_property += BonusItem->freezing_time_in_seconds;
-	}
+	Me.to_hit += BonusItem->bonus_to_tohit;
+	Me.max_temperature += BonusItem->bonus_to_force;
+	Me.maxenergy += BonusItem->bonus_to_life;
+	Me.health_recovery_rate += BonusItem->bonus_to_health_recovery;
+	Me.cooling_rate += BonusItem->bonus_to_cooling_rate;
+	Me.resist_fire += BonusItem->bonus_to_resist_fire;
+	Me.resist_electricity += BonusItem->bonus_to_resist_electricity;
 
 };				// void AddInfluencerItemSecondaryBonus( item* BonusItem )
 
