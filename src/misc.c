@@ -125,18 +125,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOff.png", {-60, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_OFF_PUSHED] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-60, 90, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorToggleWaypointButton.png", {00, 150, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorToggleWaypointButtonPushed.png", {00, 150, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorToggleConnectionBlueButton.png", {00, 180, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorToggleConnectionBlueButtonPushed.png", {00, 180, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_TOGGLE_CONNECTION_RED_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorToggleConnectionRedButton.png", {00, 180, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_TOGGLE_CONNECTION_RED_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorToggleConnectionRedButtonPushed.png", {00, 180, 0, 0}, FALSE, FALSE},
 
 	[LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButton.png", {00, 240, 0, 0}, FALSE, FALSE},

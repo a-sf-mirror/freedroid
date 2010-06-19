@@ -64,12 +64,6 @@ static void activate_button(struct leveleditor_button *b)
 		} else
 			alert_window(_("M E S S A G E\n\nE R R O R ! Your ship was not saved.\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor from the main menu to be able to save."));
 		break;
-	case LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON:
-		action_toggle_waypoint(EditLevel(), EditX(), EditY(), FALSE);
-		break;
-	case LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON:
-		level_editor_action_toggle_waypoint_connection_user(EditLevel(), EditX(), EditY());
-		break;
 	case LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON:
 		level_editor_beautify_grass_tiles(EditLevel());
 		break;

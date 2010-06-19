@@ -434,19 +434,6 @@ static void show_level_editor_tooltips(void)
 				show_button_tooltip(_
 						    ("Save Map\n\nThis button will save your current map over the file '../map/freedroid.levels' from your current working directory."));
 		}
-	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_WAYPOINT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
-			show_button_tooltip(_
-					    ("Toggle waypoints\n\nUse this button to toggle waypoints on the current cursor location.  Waypoints are marked with a white (or multicolored) 4-direction arrow.\n\nYou can also use the W key for this."));
-	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_CONNECTION_BLUE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP) {
-			if (OriginWaypoint == (-1))
-				show_button_tooltip(_
-						    ("Make waypoint connection\n\nUse this button to start a connection between waypoints, so that droids can move along this connection.\n\nYou can also use the C key for this."));
-			else
-				show_button_tooltip(_
-						    ("Complete waypoint connection\n\nYou have currently a connection attempt going on already.  Go to the desired destination waypoint and hit this button again to establish the connection.\n\nYou can also use the C key for this."));
-		}
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
