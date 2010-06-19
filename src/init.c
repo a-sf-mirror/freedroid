@@ -1273,7 +1273,8 @@ void ParseCommandLine(int argc, char *const argv[])
 						     "\tThese codes correspond to the following resolutions available:\n",
 						     txt,
 						     "\tAnything else will not be accepted right now, but you can send in\n"
-						     "\tyour suggestion to the FreedroidRPG dev team to enable new resolutions.\n");
+						     "\tyour suggestion to the FreedroidRPG dev team to enable new resolutions.\n"
+						     "----------------------------------------------------------------------\n");
 					free(txt);
 				}
 			}

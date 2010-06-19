@@ -1155,7 +1155,9 @@ static void set_video_mode_for_open_gl(void)
 	switch (video_mode_ok_check_result) {
 	case 0:
 		ErrorMessage(__FUNCTION__, "\
-SDL reported, that the video mode mentioned above is not supported\nBreaking off...", PLEASE_INFORM, IS_FATAL);
+SDL reported that the video mode (%d x %d) mentioned above is not supported\n\
+To see all possible resolutions please run 'freedroidRPG -r99'\n\
+Breaking off...", PLEASE_INFORM, IS_FATAL, GameConfig.screen_width, GameConfig.screen_height);
 		break;
 	default:
 		DebugPrintf(-4, "\nTesting if color depth %d bits is available... ", vid_bpp);
