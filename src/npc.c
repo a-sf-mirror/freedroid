@@ -330,9 +330,7 @@ static void npc_clear_inventory(struct npc *n)
 {
 	int i;
 	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
-		n->npc_inventory[i].type = -1;
-		n->npc_inventory[i].prefix_code = -1;
-		n->npc_inventory[i].suffix_code = -1;
+		init_item(&n->npc_inventory[i]);
 	}
 }
 
@@ -367,16 +365,15 @@ static int npc_shoplist_weight(struct npc *n)
  */
 void npc_inventory_delete_item(struct npc *n, int index)
 {
-	if (index == MAX_ITEMS_IN_NPC_INVENTORY - 1) {
-		// If we are removing the last item of the list, it is easy
-		n->npc_inventory[index].type = -1;
-		n->npc_inventory[index].prefix_code = -1;
-		n->npc_inventory[index].suffix_code = -1;
-		return;
-	}
+	// Delete the item.
+	DeleteItem(&n->npc_inventory[index]);
 
-	// Otherwise, erase this item with the next ones
-	memmove(&n->npc_inventory[index], &n->npc_inventory[index+1], sizeof(item)*(MAX_ITEMS_IN_NPC_INVENTORY - index - 1));
+	// Shift trailing items backward one index to fill the gap.
+	if (index < MAX_ITEMS_IN_NPC_INVENTORY - 1) {
+		memmove(&n->npc_inventory[index], &n->npc_inventory[index + 1],
+		        sizeof(item) * (MAX_ITEMS_IN_NPC_INVENTORY - index - 1));
+		init_item(&n->npc_inventory[MAX_ITEMS_IN_NPC_INVENTORY - 1]);
+	}
 }
 
 /**
@@ -413,7 +410,6 @@ static int add_item(struct npc *n, const char *item_name)
 	} else {
 		n->npc_inventory[i].type = GetItemIndexByName(item_name);
 		FillInItemProperties(&n->npc_inventory[i], TRUE, 1);
-		n->npc_inventory[i].is_identified = TRUE;
 	}
 
 	return 0;
