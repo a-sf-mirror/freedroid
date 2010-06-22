@@ -459,10 +459,6 @@ static void show_level_editor_tooltips(void)
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
 					    ("New map label\n\nUse this button to attach a new map label to the current cursor position.  These map labels can be used to define starting points for bots and characters or also to define locations for events and triggers."));
-	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_NEW_ITEM_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
-			show_button_tooltip(_
-					    ("Add item\n\nUse this button to drop a new item to the floor.  You can also use the hotkey 'G' for this."));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_EDIT_CHEST_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_

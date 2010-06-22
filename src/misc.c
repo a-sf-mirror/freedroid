@@ -149,9 +149,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNewMapLabelButton.png", {120, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON_PUSHED] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNewMapLabelButtonPushed.png", {120, 90, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_NEW_ITEM_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNewItemButton.png", {180, 90, 0, 0}, FALSE, FALSE},
-	[LEVEL_EDITOR_NEW_ITEM_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNewItemButtonPushed.png", {180, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_EDIT_CHEST_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorEditChestButton.png", {210, 90, 0, 0}, FALSE, FALSE},
 	[LEVEL_EDITOR_EDIT_CHEST_BUTTON_PUSHED] =

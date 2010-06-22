@@ -84,9 +84,6 @@ static void activate_button(struct leveleditor_button *b)
 	case LEVEL_EDITOR_EDIT_CHEST_BUTTON:
 		level_editor_edit_chest(single_tile_selection(OBJECT_OBSTACLE));
 		break;
-	case LEVEL_EDITOR_NEW_ITEM_BUTTON:
-		ItemDropFromLevelEditor();
-		break;
 	case LEVEL_EDITOR_ESC_BUTTON:
 		level_editor_done = DoLevelEditorMainMenu();
 		break;
