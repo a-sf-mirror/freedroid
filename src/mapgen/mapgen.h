@@ -23,7 +23,7 @@ struct roominfo {
 	int w, h;
 
 	int *neighbors;
-	int next_neighbor;
+	int num_neighbors;
 	int max_neighbors;
 };
 

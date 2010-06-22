@@ -318,7 +318,7 @@ int mapgen_add_room(int x, int y, int w, int h)
 	rooms[newid].y = y + 1;
 	rooms[newid].w = w - 2;
 	rooms[newid].h = h - 2;
-	rooms[newid].next_neighbor = 0;
+	rooms[newid].num_neighbors = 0;
 	rooms[newid].max_neighbors = 8;
 	rooms[newid].neighbors = malloc(rooms[newid].max_neighbors * sizeof(int));
 
@@ -466,7 +466,7 @@ static void recursive_browse(int at, int parent, unsigned char *seen)
 
 	seen[at] = 1;
 
-	for (i = 0; i < rooms[at].next_neighbor; i++) {
+	for (i = 0; i < rooms[at].num_neighbors; i++) {
 		// Don't recurse into our parent
 		if (rooms[at].neighbors[i] == parent)
 			continue;
@@ -496,7 +496,7 @@ int mapgen_are_connected(int room1, int room2)
 	int i;
 	struct roominfo *r1 = &rooms[room1];
 
-	for (i = 0; i < r1->next_neighbor; i++) {
+	for (i = 0; i < r1->num_neighbors; i++) {
 		if (r1->neighbors[i] == room2)
 			return 1;
 	}
@@ -506,14 +506,14 @@ int mapgen_are_connected(int room1, int room2)
 
 static void add_neighbor(struct roominfo *r, int neigh)
 {
-	int newid = r->next_neighbor;
+	int newid = r->num_neighbors;
 
-	if (r->next_neighbor >= r->max_neighbors) {
+	if (r->num_neighbors >= r->max_neighbors) {
 		r->max_neighbors *= 2;
 		r->neighbors = realloc(r->neighbors, r->max_neighbors * sizeof(int));
 	}
 
-	r->next_neighbor++;
+	r->num_neighbors++;
 
 	r->neighbors[newid] = neigh;
 }
