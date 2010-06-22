@@ -117,6 +117,69 @@ static void load_images()
 }
 
 /**
+ * \brief Gets the item grabbed from the item upgrade UI by the player.
+ * \return Pointer to an item or NULL if no item was grabbed from the upgrade UI.
+ */
+item *get_item_grabbed_from_item_upgrade_ui()
+{
+	// Make sure the UI is actually visible.
+	if (!ui_visible) {
+		return NULL;
+	}
+
+	// Return the dragged item or NULL.
+	if (ui.dragged_item.type != -1)
+		return &ui.dragged_item;
+	return NULL;
+}
+
+/**
+ * \brief Gets the tooltip text the item upgrade UI would like to display.
+ * \param cursor Cursor position.
+ * \param result Return location for the tooltip text.
+ * \return TRUE if the tooltip was set, FALSE if the cursor isn't on the upgrade UI.
+ */
+int get_item_upgrade_ui_tooltip(const point *cursor, char *result)
+{
+	int i;
+
+	// Make sure the UI is actually visible.
+	if (!ui_visible) {
+		return FALSE;
+	}
+
+	// Check if a tooltip for an add-on item needs to be displayed.
+	if (!ui.create_socket_active) {
+		for (i = 0; i < ADDON_ITEMS_MAX; i++) {
+			if (MouseCursorIsInRect(&rects.socket_slots[i], cursor->x, cursor->y)) {
+				if (ui.addon_items[i].type != -1) {
+					give_item_description(result, &ui.addon_items[i]);
+					return TRUE;
+				}
+			}
+		}
+	}
+
+	// Check if a tooltip for the customized item needs to be displayed.
+	if (MouseCursorIsInRect(&rects.custom_slot, cursor->x, cursor->y)) {
+		if (ui.custom_item.type != -1) {
+			give_item_description(result, &ui.custom_item);
+			return TRUE;
+		}
+	}
+
+	// If the cursor is inside the upgrade UI but not on any item, tell the
+	// caller that no tooltip should be shown. The tooltips of NPCs and other
+	// such things behind the upgrade UI would be displayed without this.
+	if (MouseCursorIsInRect(&rects.main, cursor->x, cursor->y)) {
+		strcpy(result, "");
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/**
  * \brief Draws the item upgrade user interface.
  *
  * The UI consists of an area where the customized item is placed, an area to

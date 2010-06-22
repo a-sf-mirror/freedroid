@@ -715,6 +715,8 @@ void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 
 // item_upgrades_ui.c
+item *get_item_grabbed_from_item_upgrade_ui(void);
+int get_item_upgrade_ui_tooltip(const point *, char *);
 void show_item_upgrade_ui();
 void item_upgrade_ui();
 

@@ -658,6 +658,12 @@ void prepare_text_window_content(char *ItemDescText)
 		}
 	}			// if nothing is 'held in hand' && inventory-screen visible
 
+	// Check if the item upgrade UI is open and the cursor is inside it.
+	// We show a tooltip for the item upgrade UI if that's the case.
+	if (get_item_upgrade_ui_tooltip(&CurPos, ItemDescText)) {
+		return;
+	}
+
 	/* Make the cursor position comparable to the coordinates of UI elements. */
 	int x = CurPos.x * 640.0 / GameConfig.screen_width;
 	int y = CurPos.y * 480.0 / GameConfig.screen_height;

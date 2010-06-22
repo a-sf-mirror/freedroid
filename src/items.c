@@ -717,6 +717,11 @@ item *GetHeldItemPointer(void)
 			return (&(CURLEVEL()->ItemList[i]));
 		}
 
+		// Check if an item was grabbed from the item upgrade UI.
+		item *it = get_item_grabbed_from_item_upgrade_ui();
+		if (it)
+			return it;
+
 		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : NO ITEM AT ALL SEEMS TO HAVE BEEN HELD IN HAND!!");
 		return (NULL);
 	}
