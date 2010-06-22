@@ -158,41 +158,6 @@ int leveleditor_map_keybevent(SDL_Event * event, struct leveleditor_widget *vm)
 		// No active tool? Cycle the currently selected one.
 		//
 		selected_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
-
-		/* Disable the annoying menu.
-		   // No active tool? Spawn a menu
-
-		   if (!tool_selection_menu) { 
-		   //We do not have a menu
-		   tool_selection_menu = create_menu();
-		   list_add(&tool_selection_menu->node, &leveleditor_widget_list);
-		   } 
-
-		   if (!tool_selection_menu->enabled) {
-
-		   struct leveleditor_menu *m = tool_selection_menu->ext;
-		   int i;
-		   SDL_Rect r = { .x = GetMousePos_x(), .y = GetMousePos_y(), .w = 100, .h = 150 };
-		   tool_selection_menu->rect = r;
-		   sprintf(m->text[0], "Cancel");
-		   sprintf(m->text[1], "Place");
-		   sprintf(m->text[2], "Move");
-		   sprintf(m->text[3], "Select");
-		   for (i = 4; i < 10; i++)
-		   m->text[i][0] = 0;
-		   m->values[0] = selected_tool;
-		   m->values[1] = &tool_place;
-		   m->values[2] = &tool_move;
-		   m->values[3] = &tool_select;
-
-		   m->done_cb = select_tool;
-
-		   tool_selection_menu->enabled = 1;
-		   } else {
-		   //Disable the existing menu
-		   tool_selection_menu->enabled = 0;
-		   }
-		 */
 	}
 	// Forward the key to the active tool
 	forward_event(event);

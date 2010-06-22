@@ -64,28 +64,6 @@ struct leveleditor_widget *create_button(int btype)
 	return a;
 }
 
-struct leveleditor_widget *create_menu()
-{
-	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
-	a->type = WIDGET_MENU;
-	a->mouseenter = leveleditor_menu_mouseenter;
-	a->mouseleave = leveleditor_menu_mouseleave;
-	a->mouserelease = leveleditor_menu_mouserelease;
-	a->mousepress = leveleditor_menu_mousepress;
-	a->mouserightrelease = leveleditor_menu_mouserightrelease;
-	a->mouserightpress = leveleditor_menu_mouserightpress;
-	a->mousewheelup = leveleditor_menu_mousewheelup;
-	a->mousewheeldown = leveleditor_menu_mousewheeldown;
-	a->mousemove = leveleditor_menu_mousemove;
-	a->keybevent = NULL;	//leveleditor_menu_keybevent;
-	a->enabled = 0;
-
-	struct leveleditor_menu *b = MyMalloc(sizeof(struct leveleditor_menu));
-	a->ext = b;
-
-	return a;
-}
-
 static struct leveleditor_widget *create_map()
 {
 	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
@@ -368,9 +346,6 @@ void leveleditor_display_widgets()
 			break;
 		case WIDGET_OBJECTTYPESELECTORBUTTON:
 			leveleditor_typeselect_display(w);
-			break;
-		case WIDGET_MENU:
-			leveleditor_menu_display(w);
 			break;
 		}
 	}

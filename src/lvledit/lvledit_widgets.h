@@ -34,7 +34,6 @@ enum leveleditor_widget_type {
 	WIDGET_TOOLBAR,
 	WIDGET_MAP,
 	WIDGET_OBJECTTYPESELECTORBUTTON,	//hahaha what a name! behold!
-	WIDGET_MENU,
 };
 
 /* A widget in the level editor */
@@ -76,21 +75,12 @@ struct leveleditor_typeselect {
 	int *indices;
 };
 
-struct leveleditor_menu {
-	char text[10][100];
-	void *values[10];
-	void (*done_cb) (void *);
-	int currently_selected_idx;
-	int ispressed;
-};
-
 void leveleditor_init_widgets(void);
 void leveleditor_display_widgets(void);
 void leveleditor_update_button_states(void);
 
 struct leveleditor_widget *get_active_widget(int, int);
 struct leveleditor_widget *create_button(int);
-struct leveleditor_widget *create_menu(void);
 EXTERN struct list_head leveleditor_widget_list;
 EXTERN struct leveleditor_widget *previously_active_widget;
 
@@ -98,6 +88,5 @@ EXTERN struct leveleditor_widget *previously_active_widget;
 
 #include "lvledit/lvledit_widget_button.h"
 #include "lvledit/lvledit_widget_map.h"
-#include "lvledit/lvledit_widget_menu.h"
 #include "lvledit/lvledit_widget_toolbar.h"
 #include "lvledit/lvledit_widget_typeselect.h"
