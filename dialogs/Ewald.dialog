@@ -159,7 +159,7 @@ LuaCode={
 	npc_says(_"Fun is kinda dead right now.")
 	npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
 	npc_says(_"Now THAT'S fun, if you ask me.")
-	npc_says(_"If you are really board, you can try gambling with me. But the Red Guard taxes it.")
+	npc_says(_"If you are really bored, you can try gambling with me. But the Red Guard taxes it.")
 	hide(13) show(30)
 }
 ----------------------------------------------------------------------
