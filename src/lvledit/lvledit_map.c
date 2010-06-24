@@ -221,6 +221,9 @@ void insert_column_east(level *EditLevel)
 	int i, j;
 	map_tile *MapPointer;
 
+	if (EditLevel->xlen + 1 >= MAX_MAP_LINES)
+		return;
+
 	EditLevel->xlen++;
 
 	// We have to enlarge each map line, and fill those new tiles with default values
@@ -242,6 +245,9 @@ void insert_column_west(level *EditLevel)
 {
 	int i;
 	map_tile MapTile;
+
+	if (EditLevel->xlen + 1 >= MAX_MAP_LINES)
+		return;
 
 	// To insert a west column, we first extend the level to the east, and then
 	// we 'rotate' each line
@@ -267,6 +273,9 @@ void insert_column_west(level *EditLevel)
  */
 void remove_column_east(level *EditLevel)
 {
+	if (EditLevel->xlen - 1 < MIN_MAP_LINES)
+		return;
+
 	// Remove a column at the east is always easy, we must just modify the
 	// value of size on the horizontal axis, allocation of new memory or other
 	// things are not necessary
@@ -288,6 +297,9 @@ void remove_column_west(level *EditLevel)
 {
 	int i;
 	map_tile *MapPointer;
+
+	if (EditLevel->xlen - 1 < MIN_MAP_LINES)
+		return;
 
 	// Now the new memory and everything is done.  All we
 	// need to do is move the information to the east
@@ -313,6 +325,9 @@ void remove_line_north(level *EditLevel)
 {
 	int i;
 
+	if (EditLevel->ylen - 1 < MIN_MAP_LINES)
+		return;
+
 	// Now we do some shifting of lines
 	free(EditLevel->map[0]);
 	for (i = 0; i < EditLevel->ylen - 1; i++) {
@@ -334,6 +349,9 @@ void remove_line_north(level *EditLevel)
  */
 void remove_line_south(level *EditLevel)
 {
+	if (EditLevel->ylen - 1 < MIN_MAP_LINES)
+		return;
+
 	// Remove a line at the very south is always easy, we must just modify the
 	// value of size on the vertical axis, allocation of new memory or other
 	// things are not necessary
