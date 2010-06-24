@@ -114,21 +114,26 @@ static int addon_is_compatible_with_item(struct addon_spec *addonspec, item *it)
 	int ret = TRUE;
 	const char *str = addonspec->requires_item;
 
-	if (str != NULL) {
+	if (str) {
 		itemspec* spec = &ItemMap[it->type];
-		if (strcmp(str, "melee weapon") == 0) {
+		if (!strcmp(str, "melee weapon")) {
 			ret = spec->item_can_be_installed_in_weapon_slot &&
 			      spec->item_weapon_is_melee;
-		} else if (strcmp(str, "ranged weapon") == 0) {
+		} else if (!strcmp(str, "ranged weapon")) {
 			ret = spec->item_can_be_installed_in_weapon_slot &&
 			      !spec->item_weapon_is_melee;
-		} else if (strcmp(str, "boots") == 0) {
+		} else if (!strcmp(str, "armor")) {
+			ret = spec->item_can_be_installed_in_armour_slot ||
+			      spec->item_can_be_installed_in_drive_slot ||
+			      spec->item_can_be_installed_in_shield_slot ||
+			      spec->item_can_be_installed_in_special_slot;
+		} else if (!strcmp(str, "boots")) {
 			ret = spec->item_can_be_installed_in_drive_slot;
-		} else if (strcmp(str, "armor") == 0) {
+		} else if (!strcmp(str, "jacket")) {
 			ret = spec->item_can_be_installed_in_armour_slot;
-		} else if (strcmp(str, "shield") == 0) {
+		} else if (!strcmp(str, "shield")) {
 			ret = spec->item_can_be_installed_in_shield_slot;
-		} else if (strcmp(str, "helmet") == 0) {
+		} else if (!strcmp(str, "helmet")) {
 			ret = spec->item_can_be_installed_in_special_slot;
 		} else {
 			ret = FALSE;
@@ -240,10 +245,10 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 		autostr_append(desc, _("%+d to dexterity%s"), it->bonus_to_dex, separator);
 	}
 	if (it->bonus_to_mag) {
-		autostr_append(desc, _("%+d to CPU%s"), it->bonus_to_mag, separator, separator);
+		autostr_append(desc, _("%+d to cooling%s"), it->bonus_to_mag, separator, separator);
 	}
 	if (it->bonus_to_vit) {
-		autostr_append(desc, _("%+d to life%s"), it->bonus_to_vit);
+		autostr_append(desc, _("%+d to physique%s"), it->bonus_to_vit, separator);
 	}
 	if (it->bonus_to_life) {
 		autostr_append(desc, _("%+d health points%s"), it->bonus_to_life, separator);
@@ -268,7 +273,11 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 		autostr_append(desc, _("%+d to all attributes%s"), it->bonus_to_all_attributes, separator);
 	}
 	if (it->bonus_to_damred_or_damage) {
-		autostr_append(desc, _("%+d%% to armor%s"), it->bonus_to_damred_or_damage, separator);
+		if (ItemMap[it->type].item_can_be_installed_in_weapon_slot) {
+			autostr_append(desc, _("%+d to damage%s"), it->bonus_to_damred_or_damage, separator);
+		} else {
+			autostr_append(desc, _("%+d%% to armor%s"), it->bonus_to_damred_or_damage, separator);
+		}
 	}
 	if (it->bonus_to_resist_fire) {
 		autostr_append(desc, _("+%d to resist fire%s"), it->bonus_to_resist_fire, separator);
@@ -276,6 +285,58 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 	if (it->bonus_to_resist_electricity) {
 		autostr_append(desc, _("%+d to resist electricity%s"), it->bonus_to_resist_electricity, separator);
 	}
+}
+
+/**
+ * \brief Appends information about the add-on to the autostring.
+ * \param spec Add-on specification.
+ * \param desc An auto string to which to append the description.
+ */
+void print_addon_description(struct addon_spec *spec, struct auto_string *desc)
+{
+	item temp_item;
+	const char *str;
+
+	// Append socket type requirements.
+	str = spec->requires_socket;
+	if (str) {
+		if (!strcmp(str, "mechanical")) {
+			autostr_append(desc, _("Install to a mechanical socket\n"));
+		} else if (!strcmp(str, "electric")) {
+			autostr_append(desc, _("Install to an electric socket\n"));
+		} else if (!strcmp(str, "universal")) {
+			autostr_append(desc, _("Install to a universal socket\n"));
+		}
+	}
+
+	// Append item type requirements.
+	str = spec->requires_item;
+	if (str) {
+		if (!strcmp(str, "melee weapon")) {
+			autostr_append(desc, _("Install to a melee weapon\n"));
+		} else if (!strcmp(str, "ranged weapon")) {
+			autostr_append(desc, _("Install to a ranged weapon\n"));
+		} else if (!strcmp(str, "armor")) {
+			autostr_append(desc, _("Install to any armor\n"));
+		} else if (!strcmp(str, "boots")) {
+			autostr_append(desc, _("Install to boots\n"));
+		} else if (!strcmp(str, "jacket")) {
+			autostr_append(desc, _("Install to a jacket\n"));
+		} else if (!strcmp(str, "shield")) {
+			autostr_append(desc, _("Install to a shield\n"));
+		} else if (!strcmp(str, "helmet")) {
+			autostr_append(desc, _("Install to a helmet\n"));
+		}
+	}
+
+	// Append bonuses provided by the add-on. We use a temporary item of
+	// an arbitrary type to calculate the effects of the add-on.
+	init_item(&temp_item);
+	temp_item.type = 1;
+	create_upgrade_socket(&temp_item, UPGRADE_SOCKET_TYPE_UNIVERSAL, ItemMap[spec->type].item_name);
+	calculate_item_bonuses(&temp_item);
+	get_item_bonus_string(&temp_item, "\n", desc);
+	DeleteItem(&temp_item);
 }
 
 /**

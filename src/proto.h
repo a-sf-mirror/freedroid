@@ -512,6 +512,7 @@ int item_can_be_installed_to_socket(item *, item *, int);
 struct addon_spec *get_addon_spec(int);
 void add_addon_spec(struct addon_spec *);
 void get_item_bonus_string(item *, const char *, struct auto_string *);
+void print_addon_description(struct addon_spec *, struct auto_string *);
 void calculate_item_bonuses(item *);
 
 // character.c

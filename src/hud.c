@@ -228,8 +228,17 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 		autostr_append(desc, "\n");
 		autostr_append(desc, _("Right click to use\n"));
 	}
+	// Socket count.
+	if (item->upgrade_sockets.size) {
+		autostr_append(desc, _("Sockets: %d\n"), item->upgrade_sockets.size);
+	}
 	// Item bonuses.
 	get_item_bonus_string(item, "\n", desc);
+	// Add-on specific information.
+	struct addon_spec *addon = get_addon_spec(item->type);
+	if (addon) {
+		print_addon_description(addon, desc);
+	}
 
 	strcat(target, desc->value);
 	free_autostr(desc);
