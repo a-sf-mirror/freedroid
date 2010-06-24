@@ -285,27 +285,31 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
  */
 static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
 {
-	if (strcmp(bonus->name, "all_attributes") == 0) {
+	if (!strcmp(bonus->name, "all_attributes")) {
 		it->bonus_to_all_attributes += bonus->value;
-	} else if (strcmp(bonus->name, "attack") == 0) {
+	} else if (!strcmp(bonus->name, "attack")) {
 		it->bonus_to_tohit += bonus->value;
-	} else if (strcmp(bonus->name, "armor") == 0) {
+	} else if (!strcmp(bonus->name, "armor")) {
+		it->damred_bonus += bonus->value;
 		it->bonus_to_damred_or_damage += bonus->value;
-	} else if (strcmp(bonus->name, "cooling") == 0) {
+	} else if (!strcmp(bonus->name, "cooling")) {
 		it->bonus_to_mag += bonus->value;
-	} else if (strcmp(bonus->name, "cooling_rate") == 0) {
+	} else if (!strcmp(bonus->name, "cooling_rate")) {
 		it->bonus_to_cooling_rate += bonus->value;
-	} else if (strcmp(bonus->name, "dexterity") == 0) {
+	} else if (!strcmp(bonus->name, "damage")) {
+		it->damage += bonus->value;
+		it->bonus_to_damred_or_damage += bonus->value;
+	} else if (!strcmp(bonus->name, "dexterity")) {
 		it->bonus_to_dex += bonus->value;
-	} else if (strcmp(bonus->name, "force") == 0) {
+	} else if (!strcmp(bonus->name, "force")) {
 		it->bonus_to_force += bonus->value;
-	} else if (strcmp(bonus->name, "health") == 0) {
+	} else if (!strcmp(bonus->name, "health")) {
 		it->bonus_to_life += bonus->value;
-	} else if (strcmp(bonus->name, "health_recovery") == 0) {
+	} else if (!strcmp(bonus->name, "health_recovery")) {
 		it->bonus_to_health_recovery += bonus->value;
-	} else if (strcmp(bonus->name, "physique") == 0) {
+	} else if (!strcmp(bonus->name, "physique")) {
 		it->bonus_to_vit += bonus->value;
-	} else if (strcmp(bonus->name, "strength") == 0) {
+	} else if (!strcmp(bonus->name, "strength")) {
 		it->bonus_to_str += bonus->value;
 	}
 }
@@ -338,7 +342,7 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_damred_or_damage = 0;
 	it->bonus_to_resist_fire = 0;
 	it->bonus_to_resist_electricity = 0;
-	it->damred_bonus = 0;
+	it->damred_bonus = ItemMap[it->type].base_damred_bonus;
 	it->damage = ItemMap[it->type].base_item_gun_damage;
 	it->damage_modifier = ItemMap[it->type].item_gun_damage_modifier;
 	if (it->type < 0) {

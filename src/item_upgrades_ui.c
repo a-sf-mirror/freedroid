@@ -251,7 +251,7 @@ void show_item_upgrade_ui()
 	// Draw the item bonus string.
 	SetCurrentFont(Messagevar_BFont);
 	DisplayText(ui.bonus_text->value, rects.bonus_list.x, rects.bonus_list.y,
-	            NULL, TEXT_STRETCH);
+	            &rects.bonus_list, TEXT_STRETCH);
 
 	if (ui.create_socket_active) {
 
