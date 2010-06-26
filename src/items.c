@@ -518,7 +518,7 @@ int get_random_item_type(int class)
  * modify the tabe of items to be dropped.
  *
  */
-void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical)
+void DropRandomItem(int level_num, float x, float y, int class, int force_magical)
 {
 	int DropDecision;
 	int drop_item_type = 1;
@@ -552,7 +552,23 @@ void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical
 		drop_item_type = get_random_item_type(class);
 		drop_item_multiplicity = 1;	//for now...  
 
-		DropItemAt(drop_item_type, level_num, x, y, drop_item_multiplicity);
+		item *it = DropItemAt(drop_item_type, level_num, x, y, drop_item_multiplicity);
+
+		// Create sockets occasionally if the item is of a customizable type.
+		int socket_drop_decision = MyRandom(100);
+		if (item_can_be_customized(it) && (force_magical || socket_drop_decision < 5)) {
+			// Decide how many sockets to create. We randomly index an array of
+			// socket counts to implement a non-uniform probability distribution.
+			const int create_count_array[] = { 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4 };
+			int random_index = MyRandom(10);
+			int create_count = create_count_array[random_index];
+
+			// Create the desired number of sockets of random types.
+			while (create_count--) {
+				int socket_type = MyRandom(UPGRADE_SOCKET_TYPE_UNIVERSAL);
+				create_upgrade_socket(it, socket_type, NULL);
+			}
+		}
 	}
 
 };
