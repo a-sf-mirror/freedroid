@@ -821,7 +821,7 @@ static int get_value_from_table(lua_State *L, int index, const char *field, int 
 
 static int lua_register_addon(lua_State *L)
 {
-	char* name;
+	char *name = NULL;
 	struct addon_bonus bonus;
 	struct addon_spec addonspec;
 
@@ -829,7 +829,7 @@ static int lua_register_addon(lua_State *L)
 	memset(&addonspec, 0, sizeof(struct addon_spec));
 	get_value_from_table(L, 1, "name", LUA_TSTRING, &name);
 	addonspec.type = GetItemIndexByName(name);
-	free (name);
+	free(name);
 
 	// Read the simple add-on specific fields.
 	get_value_from_table(L, 1, "require_socket", LUA_TSTRING, &addonspec.requires_socket);
