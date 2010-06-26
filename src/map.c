@@ -974,12 +974,6 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 
 		smashed_something = TRUE;
 
-		// Before we destroy the obstacle (and lose the obstacle type) we see if we
-		// should maybe drop some item.
-		//
-		if (obstacle_map[target_obstacle->type].flags & DROPS_RANDOM_TREASURE)
-			DropRandomItem(level, target_obstacle->pos.x, target_obstacle->pos.y, 0, FALSE);
-
 		// Since the obstacle is destroyed, we start a blast at it's position.
 		// But here a WARNING WARNING WARNING! is due!  We must not start the
 		// blast before the obstacle is removed, because the blast will again
@@ -989,6 +983,9 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		//
 		blast_start_pos.x = target_obstacle->pos.x;
 		blast_start_pos.y = target_obstacle->pos.y;
+
+		int obstacle_drops_treasure
+			= obstacle_map[target_obstacle->type].flags & DROPS_RANDOM_TREASURE;
 
 		// Now we really smash the obstacle, i.e. we can set it's type to the debirs that has
 		// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
@@ -1000,6 +997,10 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		} else {
 			target_obstacle->type = obstacle_map[target_obstacle->type].result_type_after_smashing_once;
 		}
+
+		// Drop items after destroying the obstacle, in order to avoid collisions
+		if (obstacle_drops_treasure)
+			DropRandomItem(level, target_obstacle->pos.x, target_obstacle->pos.y, 0, FALSE);
 
 		// Now that the obstacle is removed AND ONLY NOW that the obstacle is
 		// removed, we may start a blast at this position.  Otherwise we would
