@@ -613,7 +613,7 @@ static char *decode_obstacle_extensions(level *loadlevel, char *data)
 		// Read extension information
 		int index;
 		int type;
-		void *ext_data;
+		void *ext_data = NULL;
 		sscanf(ext_begin, "idx=%d type=%d", &index, &type);
 
 		// Move to the extension data definition
