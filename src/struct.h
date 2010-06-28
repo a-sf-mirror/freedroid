@@ -787,9 +787,8 @@ typedef struct spell_skill_spec_s {
 typedef struct waypoint_s {
 	int x;
 	int y;
-	int num_connections;
 	int suppress_random_spawn;
-	int connections[MAX_WP_CONNECTIONS];
+	struct dynarray connections;
 } waypoint;
 
 typedef struct obstacle_s {

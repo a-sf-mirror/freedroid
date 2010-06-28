@@ -749,7 +749,7 @@ static char *decode_waypoints(level *loadlevel, char *data)
 {
 	char *wp_begin, *wp_end;
 	char *this_line;
-	int i, k;
+	int i;
 	int nr, x, y, wp_rnd;
 	char *pos;
 
@@ -758,9 +758,8 @@ static char *decode_waypoints(level *loadlevel, char *data)
 		loadlevel->AllWaypoints[i].x = 0;
 		loadlevel->AllWaypoints[i].y = 0;
 
-		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
-			loadlevel->AllWaypoints[i].connections[k] = -1;
-		}
+		// Initialize the connections of the waypoint
+		dynarray_init(&loadlevel->AllWaypoints[i].connections, 2, sizeof(int));
 	}
 	loadlevel->num_waypoints = 0;
 
@@ -810,22 +809,21 @@ static char *decode_waypoints(level *loadlevel, char *data)
 		pos += strlen(CONNECTION_STRING);	// skip connection-string
 		pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace
 
-		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
+		while (1) {
 			if (*pos == '\0')
 				break;
 			int connection;
 			int res = sscanf(pos, "%d", &connection);
 			if ((connection == -1) || (res == 0) || (res == EOF))
 				break;
-			loadlevel->AllWaypoints[i].connections[k] = connection;
+
+			// Add the connection on this waypoint
+			dynarray_add(&loadlevel->AllWaypoints[i].connections, &connection, sizeof(int));
+
 			pos += strcspn(pos, WHITE_SPACE);	// skip last token
 			pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace for next one
-
-		}		// for k < MAX_WP_CONNECTIONS
-
-		loadlevel->AllWaypoints[i].num_connections = k;
-
-	}			// for i < MAXWAYPOINTS
+		}
+	}
 
 	free(this_line);
 	return wp_end;
@@ -1297,65 +1295,6 @@ int LoadShip(char *filename, int compressed)
 };				// int LoadShip ( ... ) 
 
 /**
- * This function is intended to eliminate leading -1 entries before
- * real entries in the waypoint connection structure.
- *
- * Such leading -1 entries might cause problems later, because some
- * Enemy-Movement routines expect that the "real" entries are the
- * first entries in the connection list.
- */
-static void CheckWaypointIntegrity(Level Lev)
-{
-	int i, j, k, l;
-
-	for (i = 0; i < MAXWAYPOINTS; i++) {
-		// Search for the first -1 entry:  j contains this number
-		for (j = 0; j < MAX_WP_CONNECTIONS; j++) {
-			if (Lev->AllWaypoints[i].connections[j] == -1)
-				break;
-		}
-
-		// have only non-(-1)-entries?  then we needn't do anything.
-		if (j == MAX_WP_CONNECTIONS)
-			continue;
-		// have only one (-1) entry in the last position?  then we needn't do anything.
-		if (j == MAX_WP_CONNECTIONS - 1)
-			continue;
-
-		// search for the next non-(-1)-entry AFTER the -1 entry fount first
-		for (k = j + 1; k < MAX_WP_CONNECTIONS; k++) {
-			if (Lev->AllWaypoints[i].connections[k] != -1)
-				break;
-		}
-
-		// none found? -- that would be good.  no corrections nescessary.  we can go.
-		if (k == MAX_WP_CONNECTIONS)
-			continue;
-
-		// At this point we have found a non-(-1)-entry after a -1 entry.  that means work!!
-
-		DebugPrintf(0, "\n WARNING!! INCONSISTENSY FOUND ON LEVEL %d!! ", Lev->levelnum);
-		DebugPrintf(0, "\n NUMBER OF LEADING -1 ENTRIES: %d!! ", k - j);
-		DebugPrintf(0, "\n COMPENSATION ACTIVATED...");
-
-		// So we move the later waypoints just right over the existing leading -1 entries
-
-		for (l = j; l < MAX_WP_CONNECTIONS - (k - j); l++) {
-			Lev->AllWaypoints[i].connections[l] = Lev->AllWaypoints[i].connections[l + (k - j)];
-		}
-
-		// So the block of leading -1 entries has been eliminated
-		// BUT:  This may have introduced double entries of waypoints, e.g. if there was a -1
-		// at the start and all other entries filled!  WE DO NOT HANDLE THIS CASE.  SORRY.
-		// Also there might be a second sequence of -1 entries followed by another non-(-1)-entry
-		// sequence.  SORRY, THAT CASE WILL ALSO NOT BE HANDLES SEPARATELY.  Maybe later.
-		// For now this function will do perfectly well as it is now.
-
-	}
-
-};				// void CheckWaypointIntegrity(level *Lev)
-
-/**
  * This should write the obstacle information in human-readable form into
  * a buffer.
  */
@@ -1551,27 +1490,31 @@ static void encode_obstacle_extensions(struct auto_string *shipstr, level *l)
 	autostr_append(shipstr, "%s\n", OBSTACLE_EXTENSIONS_END_STRING);
 }
 
-static void encode_waypoints_of_this_level(struct auto_string *shipstr, level *Lev)
+static void encode_waypoints(struct auto_string *shipstr, level *lvl)
 {
-	waypoint *this_wp;
-	int i,j;
-
-	// There might be LEADING -1 entries in front of other connection entries.
-	// This is unwanted and shall be corrected here.
-	CheckWaypointIntegrity(Lev);
+	int *connections;
+	waypoint *w;
+	int i, j;
 
 	autostr_append(shipstr, "%s\n", WP_BEGIN_STRING);
 
-	for (i = 0; i < Lev->num_waypoints; i++) {
-		autostr_append(shipstr, "Nr.=%3d x=%4d y=%4d rnd=%1d\t %s", i, Lev->AllWaypoints[i].x, Lev->AllWaypoints[i].y, Lev->AllWaypoints[i].suppress_random_spawn, CONNECTION_STRING);
+	for (i = 0; i < lvl->num_waypoints; i++) {
+		// Get the waypoint
+		w = &lvl->AllWaypoints[i];
 
-		this_wp = &Lev->AllWaypoints[i];
-		for (j = 0; j < this_wp->num_connections; j++) {
-			autostr_append(shipstr, " %3d", Lev->AllWaypoints[i].connections[j]);
-		}		// for connections 
+		// Encode the waypoint
+		autostr_append(shipstr, "Nr.=%3d x=%4d y=%4d rnd=%1d\t %s", i, w->x, w->y, w->suppress_random_spawn, CONNECTION_STRING);
+
+		// Get the connections of the waypoint
+		connections = w->connections.arr;
+
+		for (j = 0; j < w->connections.size; j++) {
+			// Encode the connection of the waypoint
+			autostr_append(shipstr, " %3d", connections[j]);
+		}
 
 		autostr_append(shipstr, "\n");
-	}			// for waypoints 
+	}
 }
 
 /**
@@ -1651,7 +1594,7 @@ use underground lighting: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->x
 
 		encode_obstacle_extensions(shipstr, lvl);
 
-		encode_waypoints_of_this_level(shipstr, lvl);
+		encode_waypoints(shipstr, lvl);
 	}
 
 	autostr_append(shipstr, "%s\n----------------------------------------------------------------------\n", 
@@ -2009,15 +1952,14 @@ void DeleteWaypoint(level * Lev, int num)
 	int i, j;
 	waypoint *WpList, *ThisWp;
 	int wpmax;
+	int *connections;
 
 	WpList = Lev->AllWaypoints;
 	wpmax = Lev->num_waypoints - 1;
 
-	// is this the last one? then just delete
-	if (num == wpmax)
-		WpList[num].num_connections = 0;
-	else			// otherwise shift down all higher waypoints
-		memcpy(&WpList[num], &WpList[num + 1], (wpmax - num) * sizeof(waypoint));
+	// Shift trailing waypoints backward one index to fill the gap
+	if (num < wpmax)
+		memmove(&WpList[num], &WpList[num + 1], (wpmax - num) * sizeof(waypoint));
 
 	// now there's one less:
 	Lev->num_waypoints--;
@@ -2025,22 +1967,22 @@ void DeleteWaypoint(level * Lev, int num)
 
 	// now adjust the remaining wp-list to the changes:
 	ThisWp = WpList;
-	for (i = 0; i < Lev->num_waypoints; i++, ThisWp++)
-		for (j = 0; j < ThisWp->num_connections; j++) {
-			// eliminate all references to this waypoint
-			if (ThisWp->connections[j] == num) {
-				// move all connections after this one down
-				memcpy(&(ThisWp->connections[j]), &(ThisWp->connections[j + 1]),
-				       (ThisWp->num_connections - 1 - j) * sizeof(int));
-				ThisWp->num_connections--;
-				j--;	// just to be sure... check the next connection as well...(they have been shifted!)
-				continue;
-			}
-			// adjust all connections to the shifted waypoint-numbers
-			else if (ThisWp->connections[j] > num)
-				ThisWp->connections[j]--;
+	for (i = 0; i < Lev->num_waypoints; i++, ThisWp++) {
+		// Get the connections of the waypoint
+		connections = ThisWp->connections.arr;
 
-		}		// for j < num_connections
+		for (j = 0; j < ThisWp->connections.size; j++) {
+			if (connections[j] == num) {
+				// Delete the connection of the waypoint
+				dynarray_del(&ThisWp->connections, j, sizeof(int));
+
+				// Just to be sure... check the next connection as well...(they have been shifted!)
+				j--;
+			} else if (connections[j] > num) {
+				connections[j]--;
+			}
+		}
+	}
 
 	return;
 
@@ -2074,9 +2016,10 @@ int CreateWaypoint(level * Lev, int x, int y, int *isnew)
 
 	Lev->AllWaypoints[num].x = x;
 	Lev->AllWaypoints[num].y = y;
-	Lev->AllWaypoints[num].num_connections = 0;
-	Lev->AllWaypoints[num].num_connections = 0;
 	Lev->AllWaypoints[num].suppress_random_spawn = 0;
+
+	// Initialize the connections of the waypoint
+	dynarray_init(&Lev->AllWaypoints[num].connections, 2, sizeof(int));
 
 	*isnew = 1;
 	return num;

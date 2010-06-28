@@ -592,7 +592,7 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			 }
 		};
 
-		if (!lookup_exception(this, &to_check) && validator_ctx->this_level->AllWaypoints[i].num_connections == 0) {
+		if (!lookup_exception(this, &to_check) && validator_ctx->this_level->AllWaypoints[i].connections.size == 0) {
 			if (!conn_is_invalid) {	// First error : print header
 				validator_print_header(validator_ctx, "Unconnected waypoints list",
 						       "The following waypoints were found to be without connection (Type=WO).\n"
@@ -608,9 +608,11 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 		if (lookup_exception(this, &to_check))
 			continue;
 
-		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].num_connections; ++j) {
-			int wp = validator_ctx->this_level->AllWaypoints[i].connections[j];
-			if (wp == i) {
+		// Get the connections of the waypoint
+		int *connections = validator_ctx->this_level->AllWaypoints[i].connections.arr;
+
+		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].connections.size; ++j) {
+			if (connections[j] == i) {
 				if (!conn_is_invalid) {	// First error : print header
 					validator_print_header(validator_ctx, "Unconnected waypoints list",
 							       "The following waypoints were found to be without connection (Type=WO).\n"
@@ -669,23 +671,26 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 
 	// Check waypoint paths walkability
 	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
-		if (validator_ctx->this_level->AllWaypoints[i].num_connections == 0)
+		if (validator_ctx->this_level->AllWaypoints[i].connections.size == 0)
 			continue;
 
 		gps from_pos =
 		    { validator_ctx->this_level->AllWaypoints[i].x + 0.5, validator_ctx->this_level->AllWaypoints[i].y + 0.5,
 		 validator_ctx->this_level->levelnum };
 
-		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].num_connections; ++j) {
-			int wp = validator_ctx->this_level->AllWaypoints[i].connections[j];
+		// Get the connections of the waypoint
+		int *connections = validator_ctx->this_level->AllWaypoints[i].connections.arr;
+
+		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].connections.size; ++j) {
+			int c = connections[j];
 
 			struct waypoint_excpt_data to_check = { 'W',
 				{
 				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
 				  validator_ctx->this_level->levelnum},
-				 {validator_ctx->this_level->AllWaypoints[wp].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[wp].y + 0.5,
+				 {validator_ctx->this_level->AllWaypoints[c].x + 0.5,
+				  validator_ctx->this_level->AllWaypoints[c].y + 0.5,
 				  validator_ctx->this_level->levelnum}
 				 }
 			};
@@ -694,7 +699,7 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 				continue;
 
 			gps to_pos =
-			    { validator_ctx->this_level->AllWaypoints[wp].x + 0.5, validator_ctx->this_level->AllWaypoints[wp].y + 0.5,
+			    { validator_ctx->this_level->AllWaypoints[c].x + 0.5, validator_ctx->this_level->AllWaypoints[c].y + 0.5,
 			   validator_ctx->this_level->levelnum };
 
 			enum connect_validity rtn = waypoints_connection_valid(&from_pos, &to_pos);
@@ -721,19 +726,22 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 	// By translating a bit the waypoints positions, we simulate such a behavior.
 
 	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
-		if (validator_ctx->this_level->AllWaypoints[i].num_connections == 0)
+		if (validator_ctx->this_level->AllWaypoints[i].connections.size == 0)
 			continue;
 
-		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].num_connections; ++j) {
-			int wp = validator_ctx->this_level->AllWaypoints[i].connections[j];
+		// Get the connections of the waypoint
+		int *connections = validator_ctx->this_level->AllWaypoints[i].connections.arr;
+
+		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].connections.size; ++j) {
+			int c = connections[j];
 
 			struct waypoint_excpt_data to_check = { 'Q',
 				{
 				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
 				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
 				  validator_ctx->this_level->levelnum},
-				 {validator_ctx->this_level->AllWaypoints[wp].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[wp].y + 0.5,
+				 {validator_ctx->this_level->AllWaypoints[c].x + 0.5,
+				  validator_ctx->this_level->AllWaypoints[c].y + 0.5,
 				  validator_ctx->this_level->levelnum}
 				 }
 			};
@@ -745,7 +753,7 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			    { validator_ctx->this_level->AllWaypoints[i].x + 0.5, validator_ctx->this_level->AllWaypoints[i].y + 0.5,
 			 validator_ctx->this_level->levelnum };
 			gps to_pos =
-			    { validator_ctx->this_level->AllWaypoints[wp].x + 0.5, validator_ctx->this_level->AllWaypoints[wp].y + 0.5,
+			    { validator_ctx->this_level->AllWaypoints[c].x + 0.5, validator_ctx->this_level->AllWaypoints[c].y + 0.5,
 			   validator_ctx->this_level->levelnum };
 
 			// Translation vector

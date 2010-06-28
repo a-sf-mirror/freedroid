@@ -607,7 +607,6 @@ enum {
 // WARNING leave them here, they are required in struct.h
 //
 
-#define MAX_WP_CONNECTIONS 	12
 #define MIN_MAP_LINES		30
 #define MAX_MAP_LINES 		100
 #define MAX_COOKIES 100

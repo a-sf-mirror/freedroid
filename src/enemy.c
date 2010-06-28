@@ -551,7 +551,6 @@ static int set_new_random_waypoint(enemy *this_robot)
 {
 	const int PMULT = 3; // Probability multiplier
 	int i;
-	int free_waypoints[MAX_WP_CONNECTIONS];
 	int nb_free_waypoints;
 	int lastwaypoint_is_free;
 
@@ -561,7 +560,7 @@ static int set_new_random_waypoint(enemy *this_robot)
 
 	// Pre-condition: there must be some connections
 	//
-	int num_conn = current_waypoint->num_connections;
+	int num_conn = current_waypoint->connections.size;
 	if (num_conn == 0)	// no connections found!
 	{
 		ErrorMessage(__FUNCTION__,
@@ -585,14 +584,17 @@ static int set_new_random_waypoint(enemy *this_robot)
 	lastwaypoint_is_free = FALSE;
 	freeway_context frw_ctx = { .check_tux = TRUE, .except_bots = {this_robot, NULL} };
 
+	int free_waypoints[num_conn];
+	int *connections = current_waypoint->connections.arr;
+
 	for (i = 0; i < num_conn; i++) {
 		int is_free = CheckIfWayIsFreeOfDroids(current_waypoint->x + 0.5, current_waypoint->y + 0.5,
-				bot_level->AllWaypoints[current_waypoint->connections[i]].x + 0.5,
-				bot_level->AllWaypoints[current_waypoint->connections[i]].y + 0.5,
+				bot_level->AllWaypoints[connections[i]].x + 0.5,
+				bot_level->AllWaypoints[connections[i]].y + 0.5,
 				this_robot->pos.z, &frw_ctx);
 		if (is_free) {
-			if (current_waypoint->connections[i] != this_robot->lastwaypoint) {
-				free_waypoints[nb_free_waypoints++] = current_waypoint->connections[i];
+			if (connections[i] != this_robot->lastwaypoint) {
+				free_waypoints[nb_free_waypoints++] = connections[i];
 			} else {
 				lastwaypoint_is_free = TRUE;
 			}

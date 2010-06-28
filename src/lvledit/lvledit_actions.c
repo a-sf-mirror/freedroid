@@ -322,29 +322,36 @@ void action_toggle_waypoint(level * EditLevel, int BlockX, int BlockY, int toggl
 	action_push(ACT_WAYPOINT_TOGGLE, BlockX, BlockY, toggle_random_spawn);
 }
 
-int action_toggle_waypoint_connection(level * EditLevel, int id_origin, int id_target, int removeifpresent, int undoable)
+int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_target, int removeifpresent, int undoable)
 {
-	int i = 0;
-	waypoint *SrcWp = &(EditLevel->AllWaypoints[id_origin]);
-	for (i = 0; i < SrcWp->num_connections; i++) {
-		if (SrcWp->connections[i] == id_target) {
-			// Already a waypoint, remove it
+	int *connections;
+	waypoint *w;
+	int i;
+
+	// Get the waypoint
+	w = &EditLevel->AllWaypoints[id_origin];
+
+	// Get the connections of the waypoint;
+	connections = w->connections.arr;
+
+	for (i = 0; i < w->connections.size; i++) {
+		if (connections[i] == id_target) {
 			if (removeifpresent) {
-				memmove(SrcWp->connections + i, SrcWp->connections + i + 1,
-					(SrcWp->num_connections - (i + 1)) * sizeof(SrcWp->connections[0]));
-				SrcWp->num_connections--;
+				// Delete the connection of the waypoint
+				dynarray_del(&w->connections, connections[i], sizeof(int));
 			}
 			if (undoable)
 				action_push(ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
 			return -1;
 		}
 	}
-	SrcWp->connections[SrcWp->num_connections] = id_target;
-	SrcWp->num_connections++;
-	SrcWp = NULL;
+
+	// Add the target connection of the waypoint
+	dynarray_add(&w->connections, &id_target, sizeof(int));
 
 	if (undoable)
 		action_push(ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
+
 	return 1;
 }
 
@@ -366,15 +373,8 @@ void level_editor_action_toggle_waypoint_connection_user(level * EditLevel, int 
 		VanishingMessageEndDate = SDL_GetTicks() + 7000;
 		if (OriginWaypoint == (-1)) {
 			OriginWaypoint = i;
-			if (EditLevel->AllWaypoints[OriginWaypoint].num_connections < MAX_WP_CONNECTIONS) {
-				strcat(VanishingMessage, _("\nIt has been marked as the origin of the next connection."));
-				DebugPrintf(1, "\nWaypoint nr. %d. selected as origin\n", i);
-			} else {
-				sprintf(VanishingMessage, _("\nsORRY, MAXIMAL NUMBER OF WAYPOINT-CONNECTIONS (%d) REACHED!\n"),
-					MAX_WP_CONNECTIONS);
-				DebugPrintf(0, "Operation not possible\n");
-				OriginWaypoint = (-1);
-			}
+			strcat(VanishingMessage, _("\nIt has been marked as the origin of the next connection."));
+			DebugPrintf(1, "\nWaypoint nr. %d. selected as origin\n", i);
 		} else {
 			if (OriginWaypoint == i) {
 				strcat(VanishingMessage, _("\n\nOrigin==Target --> Connection Operation cancelled."));
@@ -684,12 +684,8 @@ void CreateNewMapLevel(int level_num)
 	//
 	NewLevel->num_waypoints = 0;
 	for (i = 0; i < MAXWAYPOINTS; i++) {
-		NewLevel->AllWaypoints[i].x = 0;
-		NewLevel->AllWaypoints[i].y = 0;
-
-		for (k = 0; k < MAX_WP_CONNECTIONS; k++) {
-			NewLevel->AllWaypoints[i].connections[k] = -1;
-		}
+		int useless;
+		CreateWaypoint(NewLevel, 0, 0, &useless);
 	}
 	// First we initialize the items arrays with 'empty' information
 	//

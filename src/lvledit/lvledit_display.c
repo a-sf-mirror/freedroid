@@ -214,24 +214,15 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
  * This function is used by thelevel *Editor integrated into 
  * freedroid.  It marks all waypoints with a cross.
  */
-static void ShowWaypoints(int PrintConnectionList, int mask)
+static void show_waypoints(int mask)
 {
-	int wp;
-	int i;
-	int BlockX, BlockY;
-	char ConnectionText[5000];
-	char TextAddition[1000];
-	level *EditLevel;
 	char fpath[2048];
-	waypoint *this_wp;
-
-	EditLevel = curShip.AllLevels[Me.pos.z];
-
-#define ACTIVE_WP_COLOR 0x0FFFFFFFF
+	waypoint *w;
+	float x, y;
+	int i, j;
 
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
-	//
 	for (i = 0; i < 2; i++) {
 		if ((level_editor_waypoint_cursor[i].surface == NULL) && (!level_editor_waypoint_cursor[i].texture_has_been_created)) {
 			if (i == 0)
@@ -250,64 +241,43 @@ static void ShowWaypoints(int PrintConnectionList, int mask)
 		}
 	}
 
-	BlockX = rintf(Me.pos.x - 0.5);
-	BlockY = rintf(Me.pos.y - 0.5);
+	for (i = 0; i < EditLevel()->num_waypoints; i++) {
+		// Get the waypoint
+		w = &EditLevel()->AllWaypoints[i];
 
-	for (wp = 0; wp < EditLevel->num_waypoints; wp++) {
-		this_wp = &(EditLevel->AllWaypoints[wp]);
-		if (this_wp->x == 0 && this_wp->y == 0)
+		if (w->x == 0 && w->y == 0)
 			continue;
 
+		// Calculate the position of the waypoint
+		x = w->x + 0.5;
+		y = w->y + 0.5;
+
+		// Draw the waypoint on the map
 		if (mask && ZOOM_OUT) {
 			if (use_open_gl) {
-				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[this_wp->suppress_random_spawn],
-								      this_wp->x + 0.5, this_wp->y + 0.5, 1.0, 1.0, 1.0, 0.25, FALSE,
-								      lvledit_zoomfact_inv());
+				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn],
+								      x, y, 1.0, 1.0, 1.0, 0.25, FALSE, lvledit_zoomfact_inv());
 			} else {
-				blit_zoomed_iso_image_to_map_position(&(level_editor_waypoint_cursor[this_wp->suppress_random_spawn]),
-								      this_wp->x + 0.5, this_wp->y + 0.5);
+				blit_zoomed_iso_image_to_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn], x, y);
 			}
 		} else {
-			if (use_open_gl)
-				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[this_wp->suppress_random_spawn],
-								      this_wp->x + 0.5, this_wp->y + 0.5, 1.0, 1.0, 1.0, 0, FALSE, 1.0);
-			else
-				blit_iso_image_to_map_position(&level_editor_waypoint_cursor[this_wp->suppress_random_spawn],
-							       this_wp->x + 0.5, this_wp->y + 0.5);
+			if (use_open_gl) {
+				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn],
+								      x, y, 1.0, 1.0, 1.0, 0, FALSE, 1.0);
+			}
+			else {
+				blit_iso_image_to_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn], x, y);
+			}
 		}
 
-		// Draw the connections to other waypoints, BUT ONLY FOR THE WAYPOINT CURRENTLY TARGETED
-		//
-		if (PrintConnectionList) {
-			strcpy(ConnectionText, _("List of connection for this wp:\n"));
-		}
+		// Get the connections of the waypoint
+		int *connections = w->connections.arr;
 
-		for (i = 0; i < this_wp->num_connections; i++) {
-			if (this_wp->connections[i] != (-1)) {
-				if ((BlockX == this_wp->x) && (BlockY == this_wp->y)) {
-					// color = ACTIVE_WP_COLOR ;
-					// else color = HIGHLIGHTCOLOR ; 
-					// printf(" Found a connection!! ");
-					// printf_SDL ( Screen  , 100 , 100 , "Waypoint connection to: " );
-
-					// If this is desired, we also print a list of connections from
-					// this waypoint to other waypoints in text form...
-					//
-					if (PrintConnectionList) {
-						SDL_UnlockSurface(Screen);
-						sprintf(TextAddition, _("To: X=%d Y=%d    "),
-							EditLevel->AllWaypoints[this_wp->connections[i]].x,
-							EditLevel->AllWaypoints[this_wp->connections[i]].y);
-						strcat(ConnectionText, TextAddition);
-						DisplayText(ConnectionText, User_Rect.x, User_Rect.y, &User_Rect, 1.0);
-						SDL_LockSurface(Screen);
-					}
-
-					draw_connection_between_tiles(this_wp->x + 0.5, this_wp->y + 0.5,
-								      EditLevel->AllWaypoints[this_wp->connections[i]].x + 0.5,
-								      EditLevel->AllWaypoints[this_wp->connections[i]].y + 0.5, mask);
-
-				}
+		for (j = 0; j < w->connections.size; j++) {
+			if ((EditX() == w->x) && (EditY() == w->y)) {
+				draw_connection_between_tiles(x, y,
+							      EditLevel()->AllWaypoints[connections[j]].x + 0.5,
+							      EditLevel()->AllWaypoints[connections[j]].y + 0.5, mask);
 			}
 		}
 	}
@@ -315,13 +285,14 @@ static void ShowWaypoints(int PrintConnectionList, int mask)
 	// Now we do something extra:  If there is a connection attempt currently
 	// going on, then we also draw a connection from the origin point to the
 	// current cursor (i.e. 'me') position.
-	//
 	if (OriginWaypoint != (-1)) {
-		this_wp = &(EditLevel->AllWaypoints[OriginWaypoint]);
-		draw_connection_between_tiles(this_wp->x + 0.5, this_wp->y + 0.5, Me.pos.x, Me.pos.y, mask);
-	}
+		// Get the origin waypoint
+		w = &EditLevel()->AllWaypoints[OriginWaypoint];
 
-};				// void ShowWaypoints( int PrintConnectionList );
+		// Draw the connection between the origin waypoint and the cursor (ie. 'me')
+		draw_connection_between_tiles(w->x + 0.5, w->y + 0.5, Me.pos.x, Me.pos.y, mask);
+	}
+}
 
 /**
  * This function is used by thelevel *Editor integrated into 
@@ -548,7 +519,7 @@ void leveleditor_display()
 			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT *
 			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR);
 
-	ShowWaypoints(FALSE, ZOOM_OUT * GameConfig.zoom_is_on);
+	show_waypoints(ZOOM_OUT * GameConfig.zoom_is_on);
 	show_map_labels(ZOOM_OUT * GameConfig.zoom_is_on);
 	Highlight_Current_Block(ZOOM_OUT * GameConfig.zoom_is_on);
 	gps_show();

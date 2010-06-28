@@ -1061,10 +1061,12 @@ void Cheatmenu(void)
 					printf_SDL(Screen, x0, y0, "Nr.   X   Y      C1  C2  C3  C4\n");
 					printf_SDL(Screen, -1, -1, "------------------------------------\n");
 				}
+
+				// Get the connections of the waypoint
+				int *connections = WpList[i].connections.arr;
 				printf_SDL(Screen, -1, -1, "%2d   %2d  %2d      %2d  %2d  %2d  %2d\n",
 					   i, WpList[i].x, WpList[i].y,
-					   WpList[i].connections[0],
-					   WpList[i].connections[1], WpList[i].connections[2], WpList[i].connections[3]);
+						connections[0], connections[1],connections[2], connections[3]);
 			}	/* for (all waypoints) */
 
 			if (i == -1)
