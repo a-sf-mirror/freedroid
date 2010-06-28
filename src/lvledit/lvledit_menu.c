@@ -362,7 +362,8 @@ static void SetLevelInterfaces(void)
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					EditLevel->jump_target_north++;
+					if ((EditLevel->jump_target_north + 1) < curShip.num_levels)
+						EditLevel->jump_target_north++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
@@ -375,7 +376,8 @@ static void SetLevelInterfaces(void)
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					EditLevel->jump_target_south++;
+					if ((EditLevel->jump_target_south + 1) < curShip.num_levels)
+						EditLevel->jump_target_south++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
@@ -388,7 +390,8 @@ static void SetLevelInterfaces(void)
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					EditLevel->jump_target_east++;
+					if ((EditLevel->jump_target_east + 1) < curShip.num_levels)
+						EditLevel->jump_target_east++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
@@ -401,7 +404,8 @@ static void SetLevelInterfaces(void)
 					while (LeftPressed()) ;
 				}
 				if (RightPressed()) {
-					EditLevel->jump_target_west++;
+					if ((EditLevel->jump_target_west + 1) < curShip.num_levels)
+						EditLevel->jump_target_west++;
 					while (RightPressed()) ;
 				}
 				gps_transform_map_dirty_flag = TRUE;
