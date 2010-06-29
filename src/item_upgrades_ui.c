@@ -644,7 +644,7 @@ static int handle_ui()
 	}
 
 	// Check if we need to do anything.
-	if (!MouseLeftClicked() || global_ingame_mode == GLOBAL_INGAME_MODE_IDENTIFY) {
+	if (!MouseLeftClicked()) {
 		return FALSE;
 	}
 

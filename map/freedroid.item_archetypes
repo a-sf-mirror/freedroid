@@ -4023,20 +4023,6 @@ Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) p
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Identification Script"
-Item min class for drop=0
-Item max class for drop=5
-Item can be applied in combat="yes"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="script"
-Items of this type collect together in inventory="yes"
-File or directory name for inventory image="script/inv_image.png"
-Item uses drop sound with filename="drop_book_sound.ogg"
-Base list price=25
-Item description text=_"Point and click. Point and know anything. Point, and I will show you the correct path. Point, and I will be there. Point, and I will protect you."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
 Item name=_"Teleporter homing beacon"
 Item min class for drop=-1
 Item can be applied in combat="yes"

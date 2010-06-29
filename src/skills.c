@@ -454,20 +454,6 @@ int DoSkill(int skill_index, int SpellCost)
 		goto out;
 	}
 
-	if (!strcmp(SpellSkillMap[skill_index].effect, "identify")) {
-		// Maybe the identify mode has already been triggered and
-		// is activated right now.  Then of course this (second) mouse
-		// click must be ignored completely.
-		//
-		if (global_ingame_mode == GLOBAL_INGAME_MODE_IDENTIFY)
-			Me.temperature -= SpellCost;
-
-		silently_unhold_all_items();
-		global_ingame_mode = GLOBAL_INGAME_MODE_IDENTIFY;
-
-		goto out;
-	}
-
 	if (!strcmp(SpellSkillMap[skill_index].effect, "invisibility")) {
 		goto out;
 	}

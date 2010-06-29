@@ -1559,9 +1559,8 @@ void AnalyzePlayersMouseClick()
 	int tmp;
 
 	/* Handle the main message log. */
-	if (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY)
-		if (widget_handle_mouse(&message_log))
-			return;
+	if (widget_handle_mouse(&message_log))
+		return;
 
 	// This flag avoids the mouse_move_target to change while the user presses
 	// LMB to start a combo action.
@@ -1577,15 +1576,6 @@ void AnalyzePlayersMouseClick()
 	// The action associated to MouseLeftPress depends on the global game state
 	//
 	switch (global_ingame_mode) {
-	case GLOBAL_INGAME_MODE_IDENTIFY:
-		handle_player_identification_command();
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-
-		while (SpacePressed() || MouseLeftPressed() || MouseRightPressed()) ;
-		Activate_Conservative_Frame_Computation();
-
-		break;
-
 	case GLOBAL_INGAME_MODE_NORMAL:
 		if (ButtonPressWasNotMeantAsFire())
 			return;

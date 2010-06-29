@@ -271,9 +271,6 @@ void blit_our_own_mouse_cursor(void)
 		cursor_index = 5;
 		cursoff.x = -12;
 		break;
-	case GLOBAL_INGAME_MODE_IDENTIFY:
-		cursor_index = 1;
-		break;
 	case GLOBAL_INGAME_MODE_NORMAL:
 		cursor_index = 0;
 		cursoff.x = -5;

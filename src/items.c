@@ -1067,8 +1067,6 @@ void ApplyItem(item * CurItem)
 		Me.base_vitality = 5;
 		Takeover_Game_Lost_Sound();
 		append_new_game_message(_("The doctor warned you. You are now weak and sickly."));
-	} else if (MatchItemWithName(CurItem->type, "Identification Script")) {
-		DoSkill(get_program_index_with_name("Analyze item"), 0);
 	} else if (MatchItemWithName(CurItem->type, "Teleporter homing beacon")) {
 		DoSkill(get_program_index_with_name("Sanctuary"), 0);
 	} else if (strstr(ItemMap[CurItem->type].item_name, "Source Book of")) {
@@ -1822,77 +1820,6 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 };				// int get_floor_item_index_under_mouse_cursor ( )
 
 /**
- * When the player has given an identification command, i.e. triggered
- * the mouse button when in identification mode, we see if maybe the
- * mouse cursor has pointed to an item, that can be identified.  In that
- * case, we'll try to identify it, otherwise we'll simply cancel the
- * whole identification operation.
- */
-void handle_player_identification_command()
-{
-	point Inv_GrabLoc;
-	point CurPos;
-	int Grabbed_InvPos = (-1);
-	item *GrabbedItem = NULL;
-
-	// If the inventory sceen isn't open at all, then we can cancel
-	// the whole operation right away
-	//
-	if (!GameConfig.Inventory_Visible) {
-		append_new_game_message(_("Identified air."));
-		return;
-	}
-	// We will need the current mouse position on several spots...
-	//
-	CurPos.x = GetMousePos_x();
-	CurPos.y = GetMousePos_y();
-
-	if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
-		Inv_GrabLoc.x = GetInventorySquare_x(CurPos.x);
-		Inv_GrabLoc.y = GetInventorySquare_y(CurPos.y);
-		Grabbed_InvPos = GetInventoryItemAt(Inv_GrabLoc.x, Inv_GrabLoc.y);
-		GrabbedItem = &Me.Inventory[Grabbed_InvPos];
-	} else {
-		if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y))
-			GrabbedItem = &Me.weapon_item;
-		if (MouseCursorIsOnButton(DRIVE_RECT_BUTTON, CurPos.x, CurPos.y))
-			GrabbedItem = &Me.drive_item;
-		if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y))
-			GrabbedItem = &Me.shield_item;
-		if (MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, CurPos.x, CurPos.y))
-			GrabbedItem = &Me.armour_item;
-		if (MouseCursorIsOnButton(HELMET_RECT_BUTTON, CurPos.x, CurPos.y))
-			GrabbedItem = &Me.special_item;
-	}
-
-	if (GrabbedItem == NULL)
-		append_new_game_message(_("Identified air."));
-	else if (!GrabbedItem->type || GrabbedItem->type == -1)
-		append_new_game_message(_("Identified air."));
-	else {
-		char iname[500];
-		*iname = '\0';
-
-		if (MatchItemWithName(GrabbedItem->type, "Valuable Circuits"))
-			sprintf(iname, "%d ", GrabbedItem->multiplicity);
-
-		if ((GrabbedItem->prefix_code != (-1)))
-			strcat(iname, PrefixList[GrabbedItem->prefix_code].bonus_name);
-		strcat(iname, ItemMap[GrabbedItem->type].item_name);
-		if ((GrabbedItem->suffix_code != (-1)))
-			strcat(iname, SuffixList[GrabbedItem->suffix_code].bonus_name);
-
-		if (GrabbedItem->is_identified == TRUE) {
-			append_new_game_message(_("You already know all there is to know about the %s."), iname);
-		} else {
-			GrabbedItem->is_identified = TRUE;
-			Play_Spell_ForceToEnergy_Sound();
-			append_new_game_message(_("Identified %s"), iname);
-		}
-	}
-};				// void handle_player_identification_command( )
-
-/**
  * Handle inventory screen and related things: interact with items in inventory
  * grid, in inventory slots and in hand. Also handle dropping items in hand and
  * apply (right click) items.
@@ -1929,7 +1856,7 @@ void HandleInventoryScreen(void)
 	}
 
 	// Case 1: The user left-clicks while not holding an item
-	if (MouseLeftClicked() && (Item_Held_In_Hand == NULL) && (global_ingame_mode != GLOBAL_INGAME_MODE_IDENTIFY)) {
+	if (MouseLeftClicked() && Item_Held_In_Hand == NULL) {
 
 		// Case 1.1: The user left-clicks on the inventory grid
 		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {

@@ -189,8 +189,6 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 		if (MatchItemWithName(item->type, "Diet supplement") || MatchItemWithName(item->type, "Antibiotic")
 		    || MatchItemWithName(item->type, "Doc-in-a-can")) {
 			autostr_append(desc, _("Recover Health"));
-		} else if (MatchItemWithName(item->type, "Identification Script")) {
-			autostr_append(desc, _("Analyze one item"));
 		} else if (MatchItemWithName(item->type, "Teleporter homing beacon")) {
 			autostr_append(desc, _("Teleports you to a safe place or\n back to your previous position"));
 		} else if (MatchItemWithName(item->type, "Bottled ice") || MatchItemWithName(item->type, "Industrial coolant")

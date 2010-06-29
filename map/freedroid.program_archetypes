@@ -223,7 +223,7 @@ Effect="passive"
 Cost=0
 
 
-** Start of new program specification subsection **
+** S*tart of new program specification subsection **
 Program name=_"Analyze item"
 Program description=_"NOT IMPLEMENTED YET Current implementation will be removed and possibly reimplemented for something else due to addon system replacing magic items"
 P*rogram description=_"Effect: Identify - There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
