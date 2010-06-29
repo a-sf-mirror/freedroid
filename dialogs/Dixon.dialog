@@ -82,7 +82,13 @@ LuaCode={
 	npc_says(_"The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons.")
 	npc_says(_"But even they know that without us this town would have been destroyed months ago.")
 	npc_says(_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone.")
-	hide(1) show(18, 17)
+	hide(1) show(18, 17, 16)
+}
+----------------------------------------------------------------------
+
+Nr=16 Text=_"I would like to craft add-ons."
+LuaCode={
+	craft_addons()
 }
 ----------------------------------------------------------------------
 

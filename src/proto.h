@@ -721,6 +721,10 @@ int get_item_upgrade_ui_tooltip(const point *, char *);
 void show_item_upgrade_ui();
 void item_upgrade_ui();
 
+// addon_crafting_ui.c
+void show_addon_crafting_ui();
+void addon_crafting_ui();
+
 // shop.c 
 void ShowItemPicture(int, int, int);
 void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem);
