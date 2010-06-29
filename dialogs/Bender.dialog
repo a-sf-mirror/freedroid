@@ -242,7 +242,7 @@ LuaCode={
 	npc_says(_"What? I'm not an idiot! Understood?")
 	npc_says(_"No one says I'm stupid! I'm NOT STUPID!")
 	npc_says(_"I'LL BEAT YOU TO SPLINTERS!")
-	set_npc_faction("crazy")
+	npc_faction("crazy", _"Bender -- Homicidal")
 	end_dialog()
 	hide(50)
 }

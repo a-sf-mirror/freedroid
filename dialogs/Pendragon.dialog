@@ -150,7 +150,7 @@ LuaCode={
 	npc_says(_"Very well. Observe very carefully.")
 	npc_says(_"You will see this only once, so make sure to pay attention.")
 	npc_says(_"DIEEEE!")
-	set_npc_faction("crazy")
+	npc_faction("crazy", _"Pendragon -- Teaching you death")
 	end_dialog()
 	hide(23)
 }

@@ -199,7 +199,7 @@ LuaCode={
 	npc_says(_"No one makes fun of Lily Stone's family store!", "NO_WAIT")
 	npc_says(_"Say your prayers, you oversized duck!!!")
 	add_gold(1547)
-	set_npc_faction("crazy")
+	npc_faction("crazy", _"Stone -- Bird Hunting")
 	end_quest(_"Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
 	end_dialog()
 	hide(31, 32, 33)

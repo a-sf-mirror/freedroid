@@ -163,7 +163,7 @@ LuaCode={
 Nr=20 Text=_"Almost a computer? What does that mean?"
 LuaCode={
 	npc_says(_"When I say SHUT UP, you MUST shut up! Try this, worthless grain of the universe!")
-	set_npc_faction("crazy")
+	npc_faction("crazy", _"SADD -- Exterminate Mode")
 	end_dialog()
 }
 ----------------------------------------------------------------------

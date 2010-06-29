@@ -145,6 +145,15 @@ function end_quest(quest, text)
 	npc_says("")
 end
 
+-- Set faction and name
+function npc_faction(faction, name)
+	set_npc_faction(faction)
+	if (name == nil) then
+	else
+		set_bot_name(name)
+	end
+end
+
 function npc_says(text,no_wait)
 	chat_npc_says(apply_bbcode(text,"\3","\2"),no_wait)
 end
