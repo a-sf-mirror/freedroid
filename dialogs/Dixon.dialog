@@ -87,12 +87,14 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"I would like to craft add-ons."
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	craft_addons()
 }
 ----------------------------------------------------------------------
 
 Nr=17 Text=_"I would like to customize my equipment."
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	upgrade_items()
 }
