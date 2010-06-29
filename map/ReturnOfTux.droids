@@ -694,11 +694,6 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 543
 ** End of this levels droid data **
-
-//----------------------------------------------------------------------
-// This marker must mark the very end of this file.
-// Anything after this marker will be ignored!!!
-// ----------------------------------------------------------------------
-
+----------------------------------------------------------------------
 *** End of Droid Data ***
-
+// Anything after above marker will be ignored.
