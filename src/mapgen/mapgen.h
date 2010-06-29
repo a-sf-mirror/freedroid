@@ -21,6 +21,7 @@ enum TILES {
 struct roominfo {
 	int x, y;
 	int w, h;
+	int theme;
 
 	int *neighbors;
 	int num_neighbors;
@@ -49,7 +50,7 @@ extern struct roominfo *rooms;
 extern int total_rooms;
 
 // Interface to the game
-void (*dungeonmap_convert) (int, int, unsigned char *, int *);
+void (*dungeonmap_convert) (int, int, unsigned char *);
 void (*dungeonmap_entry_at) (struct roominfo *);
 void (*dungeonmap_exit_at) (struct roominfo *);
 void (*dungeonmap_place_enemies) (struct roominfo *);
@@ -64,9 +65,12 @@ int mapgen_get_room(int x, int y);
 void mapgen_draw_room(int room_id);
 int mapgen_are_connected(int, int);
 int mapgen_is_connected(unsigned char *);
+void mapgen_add_obstacle(double x, double y, int type);
+void mapgen_set_floor(int x, int y, int type);
 
 int find_connection_points(int room_id, struct cplist_t cplist[100], int offset);
 
 void MakeConnect(int x, int y, enum connection_type type);
+
 
 #endif

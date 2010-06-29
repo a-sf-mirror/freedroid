@@ -7,6 +7,7 @@
 #include "savestruct.h"
 
 #include "mapgen/mapgen.h"
+#include "mapgen/themes.h"
 
 #include "lvledit/lvledit.h"
 
@@ -67,7 +68,7 @@ void set_dungeon_output(level * output)
 	curobstacle = 0;
 }
 
-static void add_obstacle(double x, double y, int type)
+void mapgen_add_obstacle(double x, double y, int type)
 {
 	if (curobstacle >= MAX_OBSTACLES_ON_MAP) {
 		ErrorMessage(__FUNCTION__, "Too many obstacles on random dungeon level %d\n", PLEASE_INFORM, IS_FATAL,
@@ -81,7 +82,7 @@ static void add_obstacle(double x, double y, int type)
 	curobstacle++;
 }
 
-static void set_floor(int x, int y, int type)
+void mapgen_set_floor(int x, int y, int type)
 {
 	target_level->map[y][x].floor_value = type;
 }
@@ -202,59 +203,11 @@ static void reduce_room_space() {
 	}
 }
 
-void mapgen_convert(int w, int h, unsigned char *tiles, int *rooms)
+void mapgen_convert(int w, int h, unsigned char *tiles)
 {
-	int y, x;
-
 	reduce_room_space();
 	split_wall(w, h, tiles);
-
-	for (y = 0; y < h; y++) {
-		for (x = 0; x < w; x++) {
-			switch(tiles[y * w + x]) {
-				case TILE_FLOOR:
-					if (tiles[y * w + x - 1] == TILE_WALL)
-						add_obstacle(x, y + 0.5, ISO_V_WALL);
-					if (tiles[y * w + x + 1] == TILE_WALL)
-						add_obstacle(x + 1, y + 0.5, ISO_V_WALL);
-					if (tiles[(y - 1) * w + x] == TILE_WALL)
-						add_obstacle(x + 0.5, y, ISO_H_WALL);
-					if (tiles[(y + 1) * w + x] == TILE_WALL)
-						add_obstacle(x + 0.5, y + 1, ISO_H_WALL);
-					set_floor(x, y, 0);
-					break;	
-				case TILE_WALL:
-					set_floor(x, y, 31);
-					break;
-				case TILE_DOOR_H:
-					add_obstacle(x + 0.5, y, ISO_H_DOOR_000_OPEN);
-					add_obstacle(x - 0.5, y, ISO_H_WALL);
-					add_obstacle(x + 1.5, y, ISO_H_WALL);
-					set_floor(x, y, 0);
-					set_floor(x, y - 1, 0);
-					break;
-				case TILE_DOOR_V:
-					add_obstacle(x, y + 0.5, ISO_V_DOOR_000_OPEN);
-					add_obstacle(x, y - 0.5, ISO_V_WALL);
-					add_obstacle(x, y + 1.5, ISO_V_WALL);
-					set_floor(x, y, 0);
-					set_floor(x - 1, y, 0);
-					break;
-				case TILE_DOOR_H2:
-					add_obstacle(x + 0.5, y, ISO_DH_DOOR_000_OPEN);
-					add_obstacle(x, y + 0.5, ISO_V_WALL);
-					set_floor(x, y, 0);
-					break;
-				case TILE_DOOR_V2:
-					add_obstacle(x, y + 0.5, ISO_DV_DOOR_000_OPEN);
-					add_obstacle(x + 0.5, y, ISO_H_WALL);
-					set_floor(x, y, 0);
-					break;
-				default:
-					set_floor(x, y, tiles[y * w + x]);
-			}
-		}
-	} 
+	mapgen_place_obstacles(w, h, tiles);
 }
 
 static void add_teleport(int telnum, int x, int y)
@@ -268,7 +221,7 @@ static void add_teleport(int telnum, int x, int y)
 	sprintf(tmp, "%dfromX%d", target_level->levelnum, telnum);
 	fromwarp = strdup(tmp);
 
-	add_obstacle(x, y, ISO_TELEPORTER_1);
+	mapgen_add_obstacle(x, y, ISO_TELEPORTER_1);
 	add_map_label(target_level, x, y, warp);
 	add_map_label(target_level, x + 1, y, fromwarp);
 }
@@ -299,7 +252,7 @@ void mapgen_gift(struct roominfo *r)
 		r->x + r->w / 2, r->y + r->h - 1}
 	};
 
-	add_obstacle(positions[pos].x, positions[pos].y, obstacle_id);
+	mapgen_add_obstacle(positions[pos].x, positions[pos].y, obstacle_id);
 }
 
 int mapgen_add_room(int x, int y, int w, int h)
@@ -671,7 +624,7 @@ int generate_dungeon(int w, int h, int nbconnec)
 		mapgen_exit_at(&rooms[exit_points[i]]);
 	}
 
-	mapgen_convert(w, h, map.m, map.r);
+	mapgen_convert(w, h, map.m);
 
 	// Place random waypoints
 	place_waypoints();
