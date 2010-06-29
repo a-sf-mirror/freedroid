@@ -71,7 +71,7 @@ int lvledit_set_zoomfact(float zf)
  */
 static void gps_show() {
 	static char gps_text[200];
-	snprintf(gps_text, sizeof(gps_text) - 1, _(" GPS: X=%3.1f Y=%3.1f Lev=%d\n"), Me.pos.x, Me.pos.y, Me.pos.z);
+	snprintf(gps_text, sizeof(gps_text) - 1, _(" X=%3.1f Y=%3.1f L=%d\n"), Me.pos.x, Me.pos.y, Me.pos.z);
 	DisplayText(gps_text, User_Rect.x + 1, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), NULL /*&User_Rect */ , 1.0);
 }
 
