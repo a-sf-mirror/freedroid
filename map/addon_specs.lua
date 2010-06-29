@@ -23,7 +23,7 @@ bonuses = { cooling = 3, armor = 3 }
 }
 
 addon{
-name = _"Laser Scope",
+name = _"Laser sight",
 upgrade_cost = 45,
 require_socket = "universal",
 require_item = "ranged weapon",

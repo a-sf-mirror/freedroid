@@ -4127,16 +4127,18 @@ Item description text=_"When attached to your armor, this patch of tinfoil allow
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Laser Scope"
+Item name=_"Laser sight"
+inventory_size_x=1
+inventory_size_y=1
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/laser_sight"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/laser_sight/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This scope, when attached to a gun, makes it easier to hit your target."
+Item description text=_"A miniaturised laser powered by a nuclear battery. When attached parallel to the barrel of a gun, it makes a little red dot on the target and helps with aiming."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -4175,7 +4177,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This thermoelectric device increses your cooling rate."
+Item description text=_"This thermoelectric device increases your cooling rate."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
