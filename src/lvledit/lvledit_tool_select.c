@@ -143,6 +143,7 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 	struct selected_element *e;
 	struct lvledit_map_tile *t;
 	obstacle *o;
+	item *it;
 	
 	cmin->x = 9999;
 	cmin->y = 9999;
@@ -160,6 +161,11 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 			t = e->data;
 
 			__calc_min_max(t->coord.x, t->coord.y, cmin, cmax);
+			break;
+		case OBJECT_ITEM:
+			it = e->data;
+
+			__calc_min_max(it->pos.x, it->pos.y, cmin, cmax);
 			break;
 		default:
 			;
@@ -202,6 +208,15 @@ static void add_waypoint_to_list(struct list_head *list, waypoint *w)
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
 	e->type = OBJECT_WAYPOINT;
 	e->data = w;
+
+	list_add(&e->node, list);
+}
+
+static void add_item_to_list(struct list_head *list, item *it)
+{
+	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
+	e->type = OBJECT_ITEM;
+	e->data = it;
 
 	list_add(&e->node, list);
 }
@@ -259,6 +274,25 @@ static void select_waypoint_on_tile(int x, int y)
 	}
 }
 
+static void select_item_on_tile(int x, int y)
+{
+	item *it;
+	int i;
+
+	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+		// Get the item
+		it = &EditLevel()->ItemList[i];
+
+		if (it->type == -1)
+			continue;
+
+		if ((fabsf(x - it->pos.x) < 0.5) && (fabsf(y - it->pos.y) < 0.5)) {
+			add_item_to_list(&selected_elements, it);
+			state.rect_nbelem_selected++;
+		}
+	}
+}
+
 /**
  * Clear the current selection
  *
@@ -278,16 +312,8 @@ void clear_clipboard(int nbelem)
 static void start_rect_select()
 {
 	mode = FD_RECT;
+
 	state.type = get_current_object_type()->type;
-	switch (state.type) {
-	case OBJECT_OBSTACLE:
-	case OBJECT_FLOOR:
-	case OBJECT_WAYPOINT:
-		break;
-	default:
-		// Non supported object type defaults to obstacles
-		state.type = OBJECT_OBSTACLE;
-	}
 
 	// Store mouse position
 	state.drag_start.x = (int)mouse_mapcoord.x;
@@ -316,6 +342,9 @@ static void start_rect_select()
 		break;
 	case OBJECT_WAYPOINT:
 		select_waypoint_on_tile(state.rect_start.x, state.rect_start.y);
+		break;
+	case OBJECT_ITEM:
+		select_item_on_tile(state.rect_start.x, state.rect_start.y);
 		break;
 	default:
 		alert_window("Cannot select elements of the chosen type.");
@@ -377,6 +406,9 @@ static void do_rect_select()
 					break;
 				case OBJECT_WAYPOINT:
 					select_waypoint_on_tile(i, j);
+					break;
+				case OBJECT_ITEM:
+					select_item_on_tile(i, j);
 					break;
 				default:
 					alert_window("Cannot select elements of the chosen type.");
@@ -515,6 +547,36 @@ static void do_drag_drop_floor()
 	}
 }
 
+static void do_drag_drop_item()
+{
+	struct selected_element *e;
+	moderately_finepoint cmin, cmax, diff;
+	
+	// Calculate the coordinates min/max of the selection
+	calc_min_max_selection(&selected_elements, &cmin, &cmax);
+	
+	// Calculate the new displacement of the selection
+	diff.x = mouse_mapcoord.x - state.cur_drag_pos.x;
+	diff.y = mouse_mapcoord.y - state.cur_drag_pos.y;
+
+	list_for_each_entry(e, &selected_elements, node) {
+		if (e->type != OBJECT_ITEM)
+			return;
+
+		if ((cmax.y + diff.y) >= EditLevel()->ylen || (cmax.x + diff.x) >= EditLevel()->xlen
+			|| (cmin.x + diff.x) < 0 || (cmin.y + diff.y) < 0) {
+			// Do not place items outside of the level
+			return;
+		}
+		
+		// Calculate the new coordinates of the item
+		((item *) (e->data))->pos.x += diff.x;
+		((item *) (e->data))->pos.y += diff.y;
+	}	
+	state.cur_drag_pos.x = mouse_mapcoord.x;
+	state.cur_drag_pos.y = mouse_mapcoord.y;
+}
+
 static void do_drag_drop()
 {
 	switch (selection_type()) {
@@ -523,6 +585,9 @@ static void do_drag_drop()
 		break;
 	case OBJECT_FLOOR:
 		do_drag_drop_floor();
+		break;
+	case OBJECT_ITEM:
+		do_drag_drop_item();
 		break;
 	default:
 		break;	
@@ -542,6 +607,12 @@ static void end_drag_drop()
 			x = (((obstacle *) (e->data))->pos.x - state.cur_drag_pos.x + state.drag_start.x);
 			y = (((obstacle *) (e->data))->pos.y - state.cur_drag_pos.y + state.drag_start.y);
 			action_push(ACT_MOVE_OBSTACLE, (obstacle *) e->data, x, y);
+			enb++;
+			break;
+		case OBJECT_ITEM:
+			x = (((item *) (e->data))->pos.x - state.cur_drag_pos.x + state.drag_start.x);
+			y = (((item *) (e->data))->pos.y - state.cur_drag_pos.y + state.drag_start.y);
+			action_push(ACT_MOVE_ITEM, (item *) e->data, x, y);
 			enb++;
 			break;
 		default:
@@ -609,6 +680,7 @@ void level_editor_copy_selection()
 	struct selected_element *e;
 	struct lvledit_map_tile *t;	
 	obstacle *o;
+	item *it;
 	
 	if (mode != FD_RECTDONE) {
 		// We get called from the outside so check mode coherency first
@@ -641,6 +713,12 @@ void level_editor_copy_selection()
 			
 			add_floor_tile_to_list(&clipboard_elements, t);
 			break;
+		case OBJECT_ITEM:
+			it = MyMalloc(sizeof(item));
+			memcpy(it, e->data, sizeof(item));
+			
+			add_item_to_list(&clipboard_elements, it);
+			break;	
 		default:
 			;
 		}
@@ -672,6 +750,10 @@ void level_editor_cut_selection()
 				ISO_COMPLETELY_DARK);
 			nbelem++;
 			break;
+		case OBJECT_ITEM:
+			action_remove_item(EditLevel(), e->data);
+			nbelem++;
+			break;
 		default:
 			break;
 		}
@@ -687,6 +769,7 @@ void level_editor_paste_selection()
 	struct selected_element *e;
 	struct lvledit_map_tile *t;	
 	obstacle *o;
+	item *it;
 	int nbact = 0;
 	moderately_finepoint cmin, cmax, center;
 
@@ -751,6 +834,26 @@ void level_editor_paste_selection()
 			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_value);
 			select_floor_on_tile(t->coord.x, t->coord.y);
 			
+			nbact++;
+			break;
+		case OBJECT_ITEM:
+			it = e->data;
+
+			it->pos.x -= center.x;
+			it->pos.y -= center.y;
+
+			it->pos.x += mouse_mapcoord.x;
+			it->pos.y += mouse_mapcoord.y;
+
+			if (it->pos.x >= EditLevel()->xlen || it->pos.y >= EditLevel()->ylen
+				|| it->pos.x < 0 || it->pos.y < 0) {
+				// We must not paste items outside the boundaries of level
+				break;
+			}
+
+			// Add and select
+			add_item_to_list(&selected_elements, action_create_item(EditLevel(), it->pos.x, it->pos.y, it->type));
+
 			nbact++;
 			break;
 		default:

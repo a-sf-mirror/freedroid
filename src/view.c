@@ -326,9 +326,9 @@ static void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *Co
 	}
 }
 
-static void floor_vtx_color(map_tile * m, float *r, float *g, float *b)
+static void object_vtx_color(void *data, float *r, float *g, float *b)
 {
-	if (element_in_selection(m)) {
+	if (element_in_selection(data)) {
 		*r = ((SDL_GetTicks() >> 7) % 3) / 2.0;
 		*g = (((SDL_GetTicks() >> 7) + 1) % 3) / 2.0;
 		*b = (((SDL_GetTicks() >> 7) + 2) % 3) / 2.0;
@@ -363,8 +363,8 @@ static void show_floor(int mask)
 				// @TODO : the current position can be on an other level than DisplayLevel, so
 				// the following call is somehow wrong. To avoid transforming again the current
 				// position (already done inside GetMapBrick()) we should concatenate GetMapBrick() and
-				// floor_vtx_color().
-				floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
+				// object_vtx_color().
+				object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
 				if (mask & ZOOM_OUT)
 					blit_zoomed_iso_image_to_map_position(&(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
@@ -399,7 +399,7 @@ static void show_floor(int mask)
 			for (line = LineStart; line < LineEnd; line++) {
 				for (col = ColStart; col < ColEnd; col++) {
 					MapBrick = GetMapBrick(DisplayLevel, col, line);
-					floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
+					object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
 					iso_image *ourimg = &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
 
@@ -433,7 +433,7 @@ static void show_floor(int mask)
 				for (col = ColStart; col < ColEnd; col++) {
 					MapBrick = GetMapBrick(DisplayLevel, col, line);
 
-					floor_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
+					object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
 					draw_gl_textured_quad_at_map_position(&floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
 									      ((float)col) + 0.5, ((float)line) + 0.5, r, g, b, FALSE,
@@ -3916,6 +3916,8 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
  */
 void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item)
 {
+	float r, g, b;
+
 	// The unwanted cases MUST be handled first...
 	//
 	if (CurItem->type == (-1)) {
@@ -3944,12 +3946,16 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	    (!ItemMap[CurItem->type].inv_image.ingame_iso_image.texture_has_been_created))
 		try_to_load_ingame_item_surface(CurItem->type);
 
+
+	// Apply disco mode when current item is selected
+	object_vtx_color(CurItem, &r, &g, &b);
+
 	// When zoomed out, you can't see any items clearly anyway...
 	//
 	if (mask & ZOOM_OUT) {
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
-							      CurItem->virt_pos.x, CurItem->virt_pos.y, 1.0, 1.0, 1.0, 0.25, FALSE,
+									CurItem->virt_pos.x, CurItem->virt_pos.y, r, g, b, 0.25, FALSE,
 							      lvledit_zoomfact_inv());
 		} else {
 			blit_zoomed_iso_image_to_map_position(&(ItemMap[CurItem->type].inv_image.ingame_iso_image),
@@ -3960,7 +3966,7 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
 							      CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr,
-							      1.0, 1.0, 1.0, highlight_item, FALSE, 1.0);
+							      r, g, b, highlight_item, FALSE, 1.0);
 		} else {
 			blit_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
 						       CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);

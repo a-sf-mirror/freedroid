@@ -48,6 +48,9 @@ enum ActionType {
 	ACT_CREATE_OBSTACLE,
 	ACT_REMOVE_OBSTACLE,
 	ACT_MOVE_OBSTACLE,
+	ACT_CREATE_ITEM,
+	ACT_REMOVE_ITEM,
+	ACT_MOVE_ITEM,
 	ACT_WAYPOINT_TOGGLE,
 	ACT_WAYPOINT_TOGGLE_CONNECT,
 	ACT_TILE_FLOOR_SET,
@@ -74,6 +77,19 @@ typedef struct {
 			float newx;
 			float newy;
 		} move_obstacle;
+
+		struct {
+			float x, y;
+			int type;		
+		} create_item;
+
+		item *delete_item;
+
+		struct {
+			item *item;
+			float newx;
+			float newy;
+		} move_item;
 
 		struct {
 			int x, y;
@@ -119,11 +135,9 @@ enum leveleditor_object_type {
 	OBJECT_OBSTACLE,
 	OBJECT_NPC,		//just kidding, not implemented :)
 	OBJECT_WAYPOINT,
+	OBJECT_ITEM,
 	OBJECT_ANY,
 };
-
-EXTERN iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int *array, int idx);
-EXTERN void leveleditor_print_object_info(enum leveleditor_object_type type, int *array, int idx, char *str);
 
 #ifdef _leveleditor_c
 int floor_tiles_list[] = {
@@ -703,6 +717,7 @@ EXTERN int waypoint_list[];
 #endif
 
 EXTERN int all_obstacles_list[NUMBER_OF_OBSTACLE_TYPES + 1];
+EXTERN int *all_items_list;
 
 EXTERN int EditX(void);
 EXTERN int EditY(void);

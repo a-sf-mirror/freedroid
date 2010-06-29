@@ -123,6 +123,13 @@ void load_item_surfaces_for_item_type(int item_type)
 	sprintf(our_filename, "items/%s", ItemMap[item_type].item_inv_file_name);
 
 	find_file(our_filename, GRAPHICS_DIR, fpath, 0);
+
+	if (use_open_gl) {
+		// Create the inventory image for the shop
+		get_iso_image_from_file_and_path(fpath, &(ItemMap[item_type].inv_image.shop_iso_image), FALSE);
+		make_texture_out_of_surface(&(ItemMap[item_type].inv_image.shop_iso_image));
+	}
+
 	original_img = NULL;
 	original_img = IMG_Load(fpath);
 	if (original_img == NULL) {
@@ -190,7 +197,7 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 	factor_x = ((float)GameConfig.screen_width / 640.0) * ((float)target_x / (float)original_img->w);
 	factor_y = ((float)GameConfig.screen_height / 480.0) * ((float)target_y / (float)original_img->h);
 	tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
-	ItemMap[item_type].inv_image.scaled_surface_for_shop = our_SDL_display_format_wrapperAlpha(tmp_surf2);
+	ItemMap[item_type].inv_image.shop_iso_image.surface = our_SDL_display_format_wrapperAlpha(tmp_surf2);
 	SDL_FreeSurface(original_img);
 	SDL_FreeSurface(tmp_surf2);
 

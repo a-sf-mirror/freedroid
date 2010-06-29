@@ -255,7 +255,7 @@ typedef struct item_image_spec_s {
 	point inv_size;
 	SDL_Surface *Surface;
 	iso_image ingame_iso_image;
-	SDL_Surface *scaled_surface_for_shop;
+	iso_image shop_iso_image;
 } item_image_spec;
 
 typedef struct item_bonus_s {

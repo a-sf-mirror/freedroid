@@ -105,6 +105,19 @@ static action *action_create(int type, va_list args)
 			act->d.move_obstacle.newx = va_arg(args, double);
 			act->d.move_obstacle.newy = va_arg(args, double);
 			break;
+		case ACT_CREATE_ITEM:
+			act->d.create_item.x = (float)va_arg(args, double);
+			act->d.create_item.y = (float)va_arg(args, double);
+			act->d.create_item.type = va_arg(args, int);
+			break;
+		case ACT_REMOVE_ITEM:
+			act->d.delete_item = va_arg(args, item *);
+			break;
+		case ACT_MOVE_ITEM:
+			act->d.move_item.item = va_arg(args, item *);
+			act->d.move_item.newx = (float)va_arg(args, double);
+			act->d.move_item.newy = (float)va_arg(args, double);
+			break;
 		case ACT_WAYPOINT_TOGGLE:
 		case ACT_WAYPOINT_TOGGLE_CONNECT:
 			act->d.waypoint_toggle.x = va_arg(args, int);
@@ -297,6 +310,68 @@ void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
 	// make an undoable removal
 	action_remove_obstacle(EditLevel, our_obstacle);
 	action_push(ACT_CREATE_OBSTACLE, posx, posy, type);
+}
+
+/**
+ * Create an item on the map, add this action in the stack undo/redo
+ * \param EditLevel Pointer towards the editing level where create the item
+ * \param x The x position of the item
+ * \param y The y position of the item
+ * \param type The type of the item
+ * \return The new item created
+ */
+item *action_create_item(level *EditLevel, float x, float y, int type)
+{
+	// Create an item on the map
+	item *it = DropItemAt(type, EditLevel->levelnum, x, y, 1);
+	if (it) {
+		action_push(ACT_REMOVE_ITEM, it);
+	}
+	return it;
+}
+
+/**
+ * Remove an item on the map and add this action in the stack undo/redo
+ * \param EditLevel Pointer towards the editing level where delete the item
+ * \param it The item which we want deleted
+ */
+void action_remove_item(level *EditLevel, item *it)
+{
+	float x, y;
+	int type;
+
+	// Save item information for the undo action
+	type = it->type;
+	x = it->pos.x;
+	y = it->pos.y;
+
+	// Remove the item on the map
+	DeleteItem(it);
+
+	// Make an undoable removal
+	action_push(ACT_CREATE_ITEM, x, y, type);
+}
+
+/**
+ * Move an item on the map and add this action in stack undo/redo
+ * \param EditLevel Pointer towards the editing level where move the item
+ * \param it The item which we want moved
+ * \param x The new x position of the item
+ * \param y The new y position of the item
+ */
+void action_move_item(level *EditLevel, item *it, float x, float y)
+{
+	float oldx, oldy;
+
+	// Save item position for the undo action
+	oldx = it->pos.x;
+	oldy = it->pos.y;
+
+	// Define the new position of the item
+	it->pos.x = x;
+	it->pos.y = y;
+
+	action_push(ACT_MOVE_ITEM, it, oldx, oldy);
 }
 
 void action_toggle_waypoint(level * EditLevel, int BlockX, int BlockY, int toggle_random_spawn)
@@ -518,6 +593,15 @@ static void action_do(level * level, action * a)
 		break;
 	case ACT_MOVE_OBSTACLE:
 		action_move_obstacle(level, a->d.move_obstacle.obstacle, a->d.move_obstacle.newx, a->d.move_obstacle.newy);
+		break;
+	case ACT_CREATE_ITEM:
+		action_create_item(level, a->d.create_item.x, a->d.create_item.y, a->d.create_item.type);
+		break;
+	case ACT_REMOVE_ITEM:
+		action_remove_item(level, a->d.delete_item);
+		break;
+	case ACT_MOVE_ITEM:
+		action_move_item(level, a->d.move_item.item, a->d.move_item.newx, a->d.move_item.newy);
 		break;
 	case ACT_WAYPOINT_TOGGLE:
 		action_toggle_waypoint(level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y, a->d.waypoint_toggle.spawn_toggle);

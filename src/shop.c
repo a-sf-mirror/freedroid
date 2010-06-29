@@ -206,7 +206,7 @@ Error loading flag image.", PLEASE_INFORM, IS_FATAL);
 		TargetRectangle.x = ShopItemRowRect.x + position * INITIAL_BLOCK_WIDTH * GameConfig.screen_width / 640;
 		TargetRectangle.y = TuxItemRow;
 	}
-	our_SDL_blit_surface_wrapper(ItemMap[ShowItem->type].inv_image.scaled_surface_for_shop, NULL, Screen, &TargetRectangle);
+	our_SDL_blit_surface_wrapper(ItemMap[ShowItem->type].inv_image.shop_iso_image.surface, NULL, Screen, &TargetRectangle);
 	if (item_is_currently_equipped(ShowItem)) {
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_screen_position(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24,

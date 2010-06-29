@@ -136,6 +136,16 @@ static void place_single_obstacle(int type)
 	action_create_obstacle_user(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, type);
 }
 
+/**
+ * Place an item on the map
+ * \param type The type of the item
+ */
+static void place_item(int type)
+{
+	// Create an item on the map at the position of the mouse
+	action_create_item(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, type);
+}
+
 static void start_rectangle_floor(int findex)
 {
 	our_mode = RECTANGLE_FLOOR;
@@ -676,6 +686,10 @@ int leveleditor_place_input(SDL_Event *event)
 				break;
 			case OBJECT_WAYPOINT:
 				return do_waypoint_route(type);
+				break;
+			case OBJECT_ITEM:
+				place_item(ts->indices[ts->selected_tile_nb]);
+				return 1;
 				break;
 			default:
 				alert_window("Place tool does not support this type of object.");

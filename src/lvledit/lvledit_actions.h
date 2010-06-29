@@ -58,6 +58,11 @@ void delete_map_level(int);
 /* Chest manipulation */
 void level_editor_edit_chest(obstacle *);
 
+// Item manipulation
+item *action_create_item(level *, float, float, int);
+void action_remove_item(level *, item *);
+void action_move_item(level *, item *, float, float);
+
 #ifndef _leveleditor_actions_c
 #define EXTERN extern
 #else

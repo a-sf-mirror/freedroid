@@ -215,6 +215,14 @@ void leveleditor_init_widgets()
 
 	list_add_tail(&create_objectselector(7, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
 
+	free(all_items_list);
+	all_items_list = MyMalloc((Number_Of_Item_Types + 1) * sizeof(int));
+	for (i = 0; i < Number_Of_Item_Types; i++)
+		all_items_list[i] = i;
+	all_items_list[i] = -1;
+
+	list_add_tail(&create_objectselector(8, _("ITEM"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
+
 	/* The toolbar */
 	list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
 

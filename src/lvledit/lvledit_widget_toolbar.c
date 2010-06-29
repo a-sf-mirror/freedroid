@@ -103,6 +103,47 @@ void leveleditor_toolbar_mousewheeldown(SDL_Event * event, struct leveleditor_wi
 	leveleditor_toolbar_right();
 }
 
+static void leveleditor_print_object_info(enum leveleditor_object_type type, int *array, int idx, char *str)
+{
+	switch (type) {
+	case OBJECT_FLOOR:
+			sprintf(str, "Floor tile number %d\n", array[idx]);
+			break;
+	case OBJECT_OBSTACLE:
+			sprintf(str, "Obs. number %d, %s, flags %d\n", array[idx], obstacle_map[array[idx]].filename, obstacle_map[array[idx]].flags);
+			break;
+	case OBJECT_WAYPOINT:
+			sprintf(str, "Waypt %s connection, %s for random spawn\n", "two way", array[idx] ? "NOK" : "OK");
+			break;
+	case OBJECT_ITEM:
+			sprintf(str, "Item name, %s", ItemMap[array[idx]].item_name);
+			break;
+	default:
+			*str = 0;
+	}
+}
+
+static iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int *array, int idx)
+{
+	extern iso_image level_editor_waypoint_cursor[];
+	switch (type) {
+	case OBJECT_FLOOR:
+			return &(floor_iso_images[array[idx]]);
+	case OBJECT_OBSTACLE:
+			return get_obstacle_image(array[idx]);
+	case OBJECT_WAYPOINT:
+			return &(level_editor_waypoint_cursor[idx]);
+	case OBJECT_ITEM:
+			return &(ItemMap[array[idx]].inv_image.shop_iso_image);
+	case OBJECT_NPC:
+	case OBJECT_ANY:
+			ErrorMessage(__FUNCTION__, "Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_FATAL, type);
+			break;
+	}
+
+	return NULL;
+}
+
 void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 {
 	(void)vt;
