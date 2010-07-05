@@ -322,8 +322,20 @@ void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
  */
 item *action_create_item(level *EditLevel, float x, float y, int type)
 {
+	int multiplicity = 1;
+
+	if (ItemMap[type].item_group_together_in_inventory) {
+		// Display a popup window with a number selector in order to choose the
+		// multiplicity of the item
+		multiplicity =
+		    do_graphical_number_selection_in_range(1, (!MatchItemWithName(type, "Valuable Circuits")) ? 100 : 1000, 1);
+		
+		// We always want create an item with a multiplicity higher than 0
+		multiplicity = (multiplicity > 0) ? multiplicity : 1;
+	}
+
 	// Create an item on the map
-	item *it = DropItemAt(type, EditLevel->levelnum, x, y, 1);
+	item *it = DropItemAt(type, EditLevel->levelnum, x, y, multiplicity);
 	if (it) {
 		action_push(ACT_REMOVE_ITEM, it);
 	}

@@ -122,7 +122,6 @@ item *ItemDropFromLevelEditor(void)
 	item temp_item;
 	int row_len = 5;
 	int line_len = 8;
-	int our_multiplicity = 1;
 	int item_group = 0;
 	item *dropped_item;
 	static int previous_mouse_position_index = (-1);
@@ -195,13 +194,8 @@ item *ItemDropFromLevelEditor(void)
 		NewItemCode = 0;
 	}
 
-	if (ItemMap[NewItemCode].item_group_together_in_inventory) {
-		our_multiplicity =
-		    do_graphical_number_selection_in_range(1, (!MatchItemWithName(NewItemCode, "Valuable Circuits")) ? 100 : 1000, 1);
-		if (our_multiplicity == 0)
-			our_multiplicity = 1;
-	}
-	dropped_item = DropItemAt(NewItemCode, Me.pos.z, rintf(Me.pos.x), rintf(Me.pos.y), our_multiplicity);
+	// Create an item on the map
+	dropped_item = action_create_item(EditLevel(), rintf(Me.pos.x), rintf(Me.pos.y), NewItemCode);
 
 	game_status = INSIDE_LVLEDITOR;
 
