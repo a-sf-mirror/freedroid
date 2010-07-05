@@ -767,6 +767,13 @@ void item_upgrade_ui()
 	// If the player left any items to the upgrade interface,
 	// drop them to the inventory or to the ground.
 	clear_customized_item(ui);
+	if (ui.dragged_item.type != -1) {
+		Item_Held_In_Hand->currently_held_in_hand = FALSE;
+		Item_Held_In_Hand = NULL;
+		if (AddFloorItemDirectlyToInventory(&ui.dragged_item)) {
+			DropItemToTheFloor(&ui.dragged_item, Me.pos.x, Me.pos.y, Me.pos.z);
+		}
+	}
 
 	free_autostr(ui.bonus_text);
 
