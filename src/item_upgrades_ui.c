@@ -46,7 +46,6 @@ struct upgrade_ui {
 	int cost;
 	int apply_button_active;
 	int create_socket_active;
-	int create_socket_index;
 	item custom_item;
 	item dragged_item;
 	item addon_items[ADDON_ITEMS_MAX];
@@ -80,16 +79,16 @@ static const struct upgrade_ui_rects rects = {
 	{ ITEM_UPGRADE_RECT_X + 18, ITEM_UPGRADE_RECT_Y + 62, 132, 180 },
 	{ ITEM_UPGRADE_RECT_X + 30, ITEM_UPGRADE_RECT_Y + 290, 280, 150 },
 	{ ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 119, 127, 247 },
-	{ { { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 149, 127, 15 },
-	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 164, 127, 15 },
-	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 179, 127, 15 },
-	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 194, 127, 15 },
-	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 224, 127, 15 } },
-	  { { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 149, 37, 15 },
-	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 164, 37, 15 },
-	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 179, 37, 15 },
-	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 194, 37, 15 },
-	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 224, 37, 15 } } },
+	{ { { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 149, 127, 14 },
+	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 164, 127, 14 },
+	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 179, 127, 14 },
+	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 194, 127, 14 },
+	    { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 224, 127, 14 } },
+	  { { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 149, 37, 14 },
+	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 164, 37, 14 },
+	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 179, 37, 14 },
+	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 194, 37, 14 },
+	    { ITEM_UPGRADE_RECT_X + 267, ITEM_UPGRADE_RECT_Y + 224, 37, 14 } } },
 	{ { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 117, 60, 60 },
 	  { ITEM_UPGRADE_RECT_X + 241, ITEM_UPGRADE_RECT_Y + 117, 60, 60 },
 	  { ITEM_UPGRADE_RECT_X + 177, ITEM_UPGRADE_RECT_Y + 181, 60, 60 },
@@ -179,6 +178,44 @@ int get_item_upgrade_ui_tooltip(const point *cursor, char *result)
 	return FALSE;
 }
 
+static void show_socket_creation_menu()
+{
+	int i;
+	char buffer[64];
+	point cursor;
+	const char *names[] = { _("Electric"), _("Mechanical"), _("Universal"), _("Cancel") };
+	const int costs[] = { ELECTRIC_SOCKET_COST, MECHANICAL_SOCKET_COST, UNIVERSAL_SOCKET_COST, -1 };
+
+	// Get the position of the cursor for mouse hover tests.
+	cursor.x = GetMousePos_x();
+	cursor.y = GetMousePos_y();
+
+	// Draw the menu title and the column headers.
+	SetCurrentFont(Blue_BFont);
+	DisplayText(_("Add socket"), rects.prompt.x, rects.prompt.y, NULL, TEXT_STRETCH);
+	SetCurrentFont(Messagestat_BFont);
+	DisplayText(_("Type"), rects.table[0][0].x, rects.table[0][0].y, NULL, TEXT_STRETCH);
+	DisplayText(_("Cost"), rects.table[1][0].x, rects.table[1][0].y, NULL, TEXT_STRETCH);
+	SetCurrentFont(Messagevar_BFont);
+
+	// Draw the selectable rows whose contents were given as parameters.
+	for (i = 0; i < 4; i++) {
+		// Highlight the row if the cursor is on it so that the user knows that this is a menu.
+		if (MouseCursorIsInRect(&rects.table[0][i + 1], cursor.x, cursor.y)) {
+			HighlightRectangle(Screen, rects.table[0][i + 1]);
+		}
+
+		// Draw the name column.
+		DisplayText(names[i], rects.table[0][i + 1].x, rects.table[0][i + 1].y, NULL, TEXT_STRETCH);
+
+		// Draw the cost column if the row has a cost assigned to it.
+		if (costs[i] != -1) {
+			sprintf(buffer, "%d", costs[i]);
+			DisplayText(buffer, rects.table[1][i + 1].x, rects.table[1][i + 1].y, NULL, TEXT_STRETCH);
+		}
+	}
+}
+
 /**
  * \brief Draws the item upgrade user interface.
  *
@@ -256,29 +293,7 @@ void show_item_upgrade_ui()
 	if (ui.create_socket_active) {
 
 		// Show the socket creation prompt if the player is creating a new socket.
-		// It's just a simple two column table with names and costs in it.
-		SetCurrentFont(Blue_BFont);
-		DisplayText(_("Add socket"), rects.prompt.x, rects.prompt.y, NULL, TEXT_STRETCH);
-		SetCurrentFont(Messagestat_BFont);
-		DisplayText(_("Type"), rects.table[0][0].x, rects.table[0][0].y, NULL, TEXT_STRETCH);
-		DisplayText(_("Cost"), rects.table[1][0].x, rects.table[1][0].y, NULL, TEXT_STRETCH);
-		SetCurrentFont(Messagevar_BFont);
-		if (ui.create_socket_index == sockets->size) {
-			DisplayText(_("Electric"), rects.table[0][1].x, rects.table[0][1].y, NULL, TEXT_STRETCH);
-			DisplayText(_("Mechanical"), rects.table[0][2].x, rects.table[0][2].y, NULL, TEXT_STRETCH);
-			DisplayText(_("Universal"), rects.table[0][3].x, rects.table[0][3].y, NULL, TEXT_STRETCH);
-			sprintf(buffer, "%d", ELECTRIC_SOCKET_COST);
-			DisplayText(buffer, rects.table[1][1].x, rects.table[1][1].y, NULL, TEXT_STRETCH);
-			sprintf(buffer, "%d", MECHANICAL_SOCKET_COST);
-			DisplayText(buffer, rects.table[1][2].x, rects.table[1][2].y, NULL, TEXT_STRETCH);
-			sprintf(buffer, "%d", UNIVERSAL_SOCKET_COST);
-			DisplayText(buffer, rects.table[1][3].x, rects.table[1][3].y, NULL, TEXT_STRETCH);
-		} else {
-			DisplayText(_("Universal"), rects.table[0][1].x, rects.table[0][1].y, NULL, TEXT_STRETCH);
-			sprintf(buffer, "%d", SOCKET_UPGRADE_COST);
-			DisplayText(buffer, rects.table[1][1].x, rects.table[1][1].y, NULL, TEXT_STRETCH);
-		}
-		DisplayText(_("Cancel"), rects.table[0][4].x, rects.table[0][4].y, NULL, TEXT_STRETCH);
+		show_socket_creation_menu();
 
 	} else {
 
@@ -578,18 +593,10 @@ static void apply_customization()
 
 static void handle_buy_socket(point *cursor, int row, int type, int cost)
 {
-	struct upgrade_socket_dynarray *sockets = &ui.custom_item.upgrade_sockets;
-
 	if (MouseCursorIsInRect(&rects.table[0][row], cursor->x, cursor->y)) {
 		if (Me.Gold >= cost) {
-			if (ui.create_socket_index == sockets->size) {
-				// Create a new socket.
-				struct upgrade_socket socket = { type, NULL };
-				dynarray_add((struct dynarray *) sockets, &socket, sizeof(socket));
-			} else {
-				// Modify an existing socket.
-				sockets->arr[ui.create_socket_index].type = type;
-			}
+			// Create a new socket.
+			create_upgrade_socket(&ui.custom_item, type, NULL);
 			ui.create_socket_active = FALSE;
 			Me.Gold -= cost;
 		}
@@ -619,16 +626,9 @@ static void handle_socket(int index)
 		grab_addon_item(index);
 
 	// Allow the user to create a new socket if this is the first socket not yet created.
-	// Opens the socket creation prompt in creation mode.
+	// Opens the socket creation prompt.
 	} else if (index == sockets->size && index < ADDON_ITEMS_MAX) {
 		ui.create_socket_active = TRUE;
-		ui.create_socket_index = index;
-
-	// Try to upgrade the socket if this is an existing socket.
-	// Opens the socket creation prompt in upgrade mode.
-	} else if (index < sockets->size && sockets->arr[index].type != UPGRADE_SOCKET_TYPE_UNIVERSAL) {
-		ui.create_socket_active = TRUE;
-		ui.create_socket_index = index;
 	}
 }
 
@@ -655,15 +655,9 @@ static int handle_ui()
 	// Handle clicks to the socket creation prompt if it's visible.
 	// Clicks there may either create a new socket and/or close the prompt.
 	if (ui.create_socket_active) {
-		if (ui.create_socket_index == ui.custom_item.upgrade_sockets.size) {
-			// Create a new socket.
-			handle_buy_socket(&cursor, 1, UPGRADE_SOCKET_TYPE_ELECTRIC, ELECTRIC_SOCKET_COST);
-			handle_buy_socket(&cursor, 2, UPGRADE_SOCKET_TYPE_MECHANICAL, MECHANICAL_SOCKET_COST);
-			handle_buy_socket(&cursor, 3, UPGRADE_SOCKET_TYPE_UNIVERSAL, UNIVERSAL_SOCKET_COST);
-		} else {
-			// Upgrade an existing socket.
-			handle_buy_socket(&cursor, 1, UPGRADE_SOCKET_TYPE_UNIVERSAL, SOCKET_UPGRADE_COST);
-		}
+		handle_buy_socket(&cursor, 1, UPGRADE_SOCKET_TYPE_ELECTRIC, ELECTRIC_SOCKET_COST);
+		handle_buy_socket(&cursor, 2, UPGRADE_SOCKET_TYPE_MECHANICAL, MECHANICAL_SOCKET_COST);
+		handle_buy_socket(&cursor, 3, UPGRADE_SOCKET_TYPE_UNIVERSAL, UNIVERSAL_SOCKET_COST);
 		if (MouseCursorIsInRect(&rects.table[0][4], cursor.x, cursor.y)) {
 			ui.create_socket_active = FALSE;
 			return TRUE;
