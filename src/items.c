@@ -53,8 +53,6 @@ void init_item(item *it)
 {
 	memset(it, 0, sizeof(item));
 	it->type = -1;
-	it->prefix_code = -1;
-	it->suffix_code = -1;
 	it->pos.x = -1;
 	it->pos.y = -1;
 	it->pos.z = -1;
@@ -294,28 +292,17 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 		ThisItem->current_duration = 1;
 	}
 
-	// Mark the item as unidentified if it's magical.
-	if (ThisItem->suffix_code != (-1) || ThisItem->prefix_code != (-1)) {
-		ThisItem->is_identified = FALSE;
-	} else {
-		ThisItem->is_identified = TRUE;
-	}
-
 	// Calculate the item bonuses affected by add-ons.
 	calculate_item_bonuses(ThisItem);
 };				// void FillInItemProperties( item* ThisItem , int FullDuration )
 
 void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 {
-	strcpy(full_item_name, "");
-
-	// First clear the string and the we print out the item name.  That's simple.
-	// we also add the extension of the name, the 'suffix' to it.
-	//
-	if ((ShowItem->suffix_code != (-1)) || (ShowItem->prefix_code != (-1))) {
-		strcat(full_item_name, font_switchto_blue);
+	// If the item has upgrade sockets, use a different color for the name.
+	if (ShowItem->upgrade_sockets.size) {
+		strcpy(full_item_name, font_switchto_blue);
 	} else {
-		strcat(full_item_name, font_switchto_neon);
+		strcpy(full_item_name, font_switchto_neon);
 	}
 
 	if (MatchItemWithName(ShowItem->type, "Valuable Circuits"))
@@ -323,13 +310,6 @@ void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 
 	strcat(full_item_name, D_(ItemMap[ShowItem->type].item_name));
 
-	// If the item is magical but not identified, we might add the word
-	// in parentheses and red font afterwards...
-	//
-	if (((ShowItem->suffix_code != (-1)) || (ShowItem->prefix_code != (-1))) && (!ShowItem->is_identified)) {
-		strcat(full_item_name, font_switchto_red);
-		strcat(full_item_name, _(" (Unidentified)"));
-	}
 	// Now that the item name is out, we can switch back to the standard font color...
 	//
 	strcat(full_item_name, font_switchto_neon);

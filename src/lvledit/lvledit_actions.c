@@ -870,7 +870,9 @@ void level_editor_edit_chest(obstacle *o)
 	shop_decision shop_order;
 	item *tmp;
 
-	item dummy_addtochest = {.type = 1,.suffix_code = -1,.prefix_code = -1,.is_identified = 1 };
+	item dummy_addtochest;
+	init_item(&dummy_addtochest);
+	dummy_addtochest.type = 1;
 	FillInItemProperties(&dummy_addtochest, 2, 1);
 
 	user_items[0] = &dummy_addtochest;

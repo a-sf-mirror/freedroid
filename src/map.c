@@ -509,8 +509,6 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *Target
 	ReadValueFromString(ItemPointer, ITEM_CUR_DURATION_STRING, "%f", &(TargetItem->current_duration), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_AMMO_CLIP_STRING, "%d", &(TargetItem->ammo_clip), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_MULTIPLICITY_STRING, "%d", &(TargetItem->multiplicity), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_PREFIX_CODE_STRING, "%d", "-1", &(TargetItem->prefix_code), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_SUFFIX_CODE_STRING, "%d", "-1", &(TargetItem->suffix_code), ItemsSectionEnd);
 	// Now we read in the boni to the primary stats (attributes)
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_STR_STRING, "%d", "0", &(TargetItem->bonus_to_str), ItemsSectionEnd);
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DEX_STRING, "%d", "0", &(TargetItem->bonus_to_dex), ItemsSectionEnd);
@@ -533,8 +531,6 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *Target
 				       &(TargetItem->bonus_to_resist_electricity), ItemsSectionEnd);
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESFIR_STRING, "%d", "0",
 				       &(TargetItem->bonus_to_resist_fire), ItemsSectionEnd);
-	// Now we see if the item is identified...
-	ReadValueFromString(ItemPointer, ITEM_IS_IDENTIFIED_STRING, "%d", &(TargetItem->is_identified), ItemsSectionEnd);
 
 	DebugPrintf(1, "\nPosX=%f PosY=%f Item=%d", TargetItem->pos.x, TargetItem->pos.y, TargetItem->type);
 
@@ -1357,14 +1353,6 @@ static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 			ITEM_AMMO_CLIP_STRING, ItemToWriteOut->ammo_clip,
 			ITEM_MULTIPLICITY_STRING, ItemToWriteOut->multiplicity);
 
-	if (ItemToWriteOut->prefix_code != -1) {
-		autostr_append(shipstr, "%s%d ", ITEM_PREFIX_CODE_STRING, ItemToWriteOut->prefix_code);
-	}
-
-	if (ItemToWriteOut->suffix_code != -1) {
-		autostr_append(shipstr, "%s%d ", ITEM_SUFFIX_CODE_STRING, ItemToWriteOut->suffix_code);
-	}
-
 	if (ItemToWriteOut->bonus_to_str) {
 		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_STR_STRING, ItemToWriteOut->bonus_to_str);
 	}
@@ -1408,8 +1396,6 @@ static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 	if (ItemToWriteOut->bonus_to_resist_fire) {
 		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESFIR_STRING, ItemToWriteOut->bonus_to_resist_fire);
 	}
-
-	autostr_append(shipstr, "%s%d ", ITEM_IS_IDENTIFIED_STRING, ItemToWriteOut->is_identified);
 
 	autostr_append(shipstr, "\n");
 }

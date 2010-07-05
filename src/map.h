@@ -62,8 +62,6 @@
 #define ITEM_CUR_DURATION_STRING " CDur="
 #define ITEM_AMMO_CLIP_STRING " AClip="
 #define ITEM_MULTIPLICITY_STRING " Multi="
-#define ITEM_PREFIX_CODE_STRING " Prefix="
-#define ITEM_SUFFIX_CODE_STRING " Suffix="
 #define ITEM_BONUS_TO_STR_STRING " StrBon="
 #define ITEM_BONUS_TO_DEX_STRING " StrDex="
 #define ITEM_BONUS_TO_VIT_STRING " StrVit="
@@ -77,7 +75,6 @@
 #define ITEM_BONUS_TO_DAMREDDAM_STRING " StrDAMREDDam="
 #define ITEM_BONUS_TO_RESELE_STRING " ResEle="
 #define ITEM_BONUS_TO_RESFIR_STRING " ResFir="
-#define ITEM_IS_IDENTIFIED_STRING " IsIdent="
 
 #define OBSTACLE_EXTENSIONS_BEGIN_STRING "obstacleextensions"
 #define OBSTACLE_EXTENSIONS_END_STRING "/obstacleextensions"
