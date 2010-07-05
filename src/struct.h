@@ -106,7 +106,6 @@ typedef struct mouse_press_button_s {
 	char *button_image_file_name;
 	SDL_Rect button_rect;
 	char scale_this_button;
-	char use_true_alpha_blending;
 } mouse_press_button, *Mouse_press_button;
 
 typedef struct keybind_s {
