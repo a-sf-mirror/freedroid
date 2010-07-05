@@ -1360,8 +1360,9 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 
 			melee_weapon_hit_something = TRUE;
 
-			// War tux freezes enemys with the appropriate plugin...
-			erot->frozen += Me.freezing_melee_targets;
+			// Slow or paralyze enemies if the player has bonuses with those effects.
+			erot->frozen += Me.slowing_melee_targets;
+			erot->paralysation_duration_left += Me.paralyzing_melee_targets;
 
 		}
 

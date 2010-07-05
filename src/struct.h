@@ -402,6 +402,8 @@ typedef struct item_s {
 	int bonus_to_damred_or_damage;	// this is a percentage
 	int bonus_to_resist_fire;	// this is a percentage
 	int bonus_to_resist_electricity;	// this is a percentage
+	int bonus_to_paralyze_enemy;
+	int bonus_to_slow_enemy;
 
 	int damred_bonus;		// how much is damred increased by this item worn
 	int damage;		// how much damage does this item
@@ -617,7 +619,8 @@ typedef struct tux_s {
 	int resist_fire;	// percentage to reduce from fire damage
 	int resist_electricity;	// percentage to reduce from electricity damage
 
-	int freezing_melee_targets;	// does this Tux freeze melee targets upon hit?
+	int slowing_melee_targets;	// duration for how long hit enemies are slowed down
+	int paralyzing_melee_targets;	// duration for how long hit enemies are paralyzed
 	int double_ranged_damage;	// does this Tux do double ranged weapon damage?
 
 	unsigned int Experience;	// character Experience = 'spare droid elements found'

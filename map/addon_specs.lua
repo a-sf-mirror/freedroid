@@ -108,3 +108,19 @@ require_socket = "electric",
 require_item = "boots",
 bonuses = { physique = 7, cooling = -2 }
 }
+
+addon{
+name = _"Circuit Jammer",
+upgrade_cost = 45,
+require_socket = "electric",
+require_item = "melee weapon",
+bonuses = { paralyze_enemy = 2 }
+}
+
+addon{
+name = _"Sensor Disruptor",
+upgrade_cost = 45,
+require_socket = "universal",
+require_item = "melee weapon",
+bonuses = { slow_enemy = 3 }
+}

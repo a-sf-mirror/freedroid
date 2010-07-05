@@ -285,6 +285,12 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 	if (it->bonus_to_resist_electricity) {
 		autostr_append(desc, _("%+d to resist electricity%s"), it->bonus_to_resist_electricity, separator);
 	}
+	if (it->bonus_to_paralyze_enemy) {
+		autostr_append(desc, _("%+d to paralyze enemy%s"), it->bonus_to_paralyze_enemy, separator);
+	}
+	if (it->bonus_to_slow_enemy) {
+		autostr_append(desc, _("%+d to slow enemy%s"), it->bonus_to_slow_enemy, separator);
+	}
 }
 
 /**
@@ -368,8 +374,12 @@ static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
 		it->bonus_to_life += bonus->value;
 	} else if (!strcmp(bonus->name, "health_recovery")) {
 		it->bonus_to_health_recovery += bonus->value;
+	} else if (!strcmp(bonus->name, "paralyze_enemy")) {
+		it->bonus_to_paralyze_enemy += bonus->value;
 	} else if (!strcmp(bonus->name, "physique")) {
 		it->bonus_to_vit += bonus->value;
+	} else if (!strcmp(bonus->name, "slow_enemy")) {
+		it->bonus_to_slow_enemy += bonus->value;
 	} else if (!strcmp(bonus->name, "strength")) {
 		it->bonus_to_str += bonus->value;
 	}
@@ -403,6 +413,8 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_damred_or_damage = 0;
 	it->bonus_to_resist_fire = 0;
 	it->bonus_to_resist_electricity = 0;
+	it->bonus_to_paralyze_enemy = 0;
+	it->bonus_to_slow_enemy = 0;
 	it->damred_bonus = ItemMap[it->type].base_damred_bonus;
 	it->damage = ItemMap[it->type].base_item_gun_damage;
 	it->damage_modifier = ItemMap[it->type].item_gun_damage_modifier;

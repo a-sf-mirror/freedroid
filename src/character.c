@@ -157,7 +157,10 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 	Me.resist_fire += BonusItem->bonus_to_resist_fire;
 	Me.resist_electricity += BonusItem->bonus_to_resist_electricity;
 
-};				// void AddInfluencerItemSecondaryBonus( item* BonusItem )
+	// Apply bonuses to the special abilities of the character.
+	Me.slowing_melee_targets += BonusItem->bonus_to_slow_enemy;
+	Me.paralyzing_melee_targets += BonusItem->bonus_to_paralyze_enemy;
+}
 
 /**
  * Maybe the influencer has reached a new experience level?
@@ -225,7 +228,6 @@ void update_all_primary_stats()
 	Me.Magic = Me.base_magic;
 	Me.Vitality = Me.base_vitality;
 
-	Me.freezing_melee_targets = 0;
 	Me.double_ranged_damage = FALSE;
 
 	// Now we re-initialize the SKILL LEVELS
@@ -429,6 +431,8 @@ void UpdateAllCharacterStats()
 	// So at this point we can finally apply all the modifiers to the influencers
 	// SECONDARY stats due to 'magical' items and spells and the like
 	//
+	Me.slowing_melee_targets = 0;
+	Me.paralyzing_melee_targets = 0;
 	Me.light_bonus_from_tux = 0;
 	AddInfluencerItemSecondaryBonus(&Me.armour_item);
 	AddInfluencerItemSecondaryBonus(&Me.weapon_item);
