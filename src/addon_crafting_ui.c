@@ -39,7 +39,9 @@ struct crafting_recipe {
 static struct {
 	int visible;
 	int quit;
+	int selection;
 	struct dynarray recipes;
+	struct auto_string *description;
 } ui = { .visible = FALSE };
 
 static const struct {
@@ -47,12 +49,45 @@ static const struct {
 	SDL_Rect title_text;
 	SDL_Rect details_text;
 	SDL_Rect recipe_list;
+	SDL_Rect recipe_desc;
 } rects = {
 	{ ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, ADDON_CRAFTING_RECT_W, ADDON_CRAFTING_RECT_H },
 	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 12, 280, 38 },
 	{ ADDON_CRAFTING_RECT_X + 25, ADDON_CRAFTING_RECT_Y + 260, 130, 20 },
 	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 64, 276, 240 },
+	{ ADDON_CRAFTING_RECT_X + 30, ADDON_CRAFTING_RECT_Y + 290, 270, 150 }
 };
+
+/**
+ * \brief Selects a recipe from the list.
+ *
+ * Selects the recipe with the requested index from the recipe list and updates
+ * the description text to show information on the recipe.
+ * \param index Index in the recipe list.
+ */
+static void select_recipe(int index)
+{
+	int type;
+	struct crafting_recipe *arr = ui.recipes.arr;
+
+	ui.selection = index;
+	type = GetItemIndexByName(arr[index].name);
+	autostr_printf(ui.description, "%s", ItemMap[type].item_description);
+}
+
+static void craft_item()
+{
+	item it;
+	struct crafting_recipe *arr = ui.recipes.arr;
+
+	// Craft the selected item if the player can afford it.
+	if (arr[ui.selection].available) {
+		it = create_item_with_name(arr[ui.selection].name, TRUE, 1);
+		if (AddFloorItemDirectlyToInventory(&it)) {
+			DropItemToTheFloor(&it, Me.pos.x, Me.pos.y, Me.pos.z);
+		}
+	}
+}
 
 static void clear_recipe_list()
 {
@@ -116,7 +151,11 @@ void show_addon_crafting_ui()
 	DisplayText(_("Details"), rects.details_text.x, rects.details_text.y, NULL, TEXT_STRETCH);
 
 	// Draw the apply and close buttons.
-	ShowGenericButtonFromList(ITEM_UPGRADE_APPLY_BUTTON_DISABLED);
+	if (arr[ui.selection].available) {
+		ShowGenericButtonFromList(ITEM_UPGRADE_APPLY_BUTTON);
+	} else {
+		ShowGenericButtonFromList(ITEM_UPGRADE_APPLY_BUTTON_DISABLED);
+	}
 	ShowGenericButtonFromList(ITEM_UPGRADE_CLOSE_BUTTON);
 
 	// Draw the icons and names of the recipes.
@@ -125,6 +164,9 @@ void show_addon_crafting_ui()
 	rect.w = rects.recipe_list.w;
 	rect.h = 32;
 	for (i = 0; i < ui.recipes.size; i++) {
+		if (i == ui.selection) {
+			HighlightRectangle(Screen, rect);
+		}
 		if (arr[i].available) {
 			SetCurrentFont(Blue_BFont);
 		} else {
@@ -137,6 +179,11 @@ void show_addon_crafting_ui()
 		}
 		rect.y += rect.h;
 	}
+
+	// Draw the description of the selected recipe.
+	SetCurrentFont(Messagevar_BFont);
+	DisplayText(ui.description->value, rects.recipe_desc.x, rects.recipe_desc.y,
+	            &rects.recipe_desc, TEXT_STRETCH);
 }
 
 static void handle_ui()
@@ -158,6 +205,12 @@ static void handle_ui()
 	cursor.x = GetMousePos_x();
 	cursor.y = GetMousePos_y();
 
+	// Handle clicks to the apply button.
+	if (MouseCursorIsOnButton(ITEM_UPGRADE_APPLY_BUTTON, cursor.x, cursor.y)) {
+		craft_item();
+		return;
+	}
+
 	// Handle clicks to the close button.
 	if (MouseCursorIsOnButton(ITEM_UPGRADE_CLOSE_BUTTON, cursor.x, cursor.y)) {
 		ui.quit = TRUE;
@@ -175,7 +228,9 @@ void addon_crafting_ui()
 
 	// Clear the struct and build the recipe list.
 	memset(&ui, 0, sizeof(ui));
+	ui.description = alloc_autostr(64);
 	build_recipe_list();
+	select_recipe(0);
 
 	// Setup the correct screen state.
 	make_sure_system_mouse_cursor_is_turned_off();
@@ -205,6 +260,7 @@ void addon_crafting_ui()
 	}
 
 	// Free the description and the recipe list.
+	free_autostr(ui.description);
 	clear_recipe_list();
 
 	ui.visible = FALSE;
