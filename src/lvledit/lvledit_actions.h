@@ -33,7 +33,6 @@ void action_push(int type, ...);
 /* Obstacle manipulation */
 obstacle *action_create_obstacle(level *, double, double, int);
 obstacle *action_create_obstacle_user(level *, double, double, int);
-void level_editor_place_aligned_obstacle(int);
 void action_remove_obstacle_user(level *, obstacle *);
 void action_remove_obstacle(level *, obstacle *);
 
@@ -62,6 +61,9 @@ void level_editor_edit_chest(obstacle *);
 item *action_create_item(level *, float, float, int);
 void action_remove_item(level *, item *);
 void action_move_item(level *, item *, float, float);
+
+// Object manipulation
+void level_editor_place_aligned_object(int);
 
 #ifndef _leveleditor_actions_c
 #define EXTERN extern

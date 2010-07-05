@@ -679,40 +679,35 @@ void level_editor_action_redo()
 }
 
 /**
- *
- *
+ * Place an aligned object on the map with the keypad
+ * \param positionid The position of the object on the purple grid
  */
-void level_editor_place_aligned_obstacle(int positionid)
+void level_editor_place_aligned_object(int positionid)
 {
-	struct leveleditor_typeselect *ts = get_current_object_type();
-	int obstacle_id = -1;
-	int obstacle_created = FALSE;
 	float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
 	float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
+	struct leveleditor_typeselect *ts = get_current_object_type();
+	int type = ts->indices[ts->selected_tile_nb];
+	moderately_finepoint pos;
 
 	positionid--;
 
-	if (ts->type != OBJECT_OBSTACLE && ts->type != OBJECT_FLOOR)
-		return;
+	// Calculate the position of the object
+	pos.x = (int)Me.pos.x + position_offset_x[positionid];
+	pos.y = (int)Me.pos.y + position_offset_y[positionid];
 
 	switch (ts->type) {
-	case OBJECT_ANY:
-		alert_window("Quickbar support was removed.");
-		break;
-
 	case OBJECT_OBSTACLE:
-		obstacle_id = ts->indices[ts->selected_tile_nb];
-		action_create_obstacle_user(EditLevel(), ((int)Me.pos.x) + position_offset_x[positionid],
-					    ((int)Me.pos.y) + position_offset_y[positionid], obstacle_id);
-		obstacle_created = TRUE;
-		break;
-
+			action_create_obstacle_user(EditLevel(), pos.x, pos.y, type);
+			break;
 	case OBJECT_FLOOR:
-		action_set_floor(EditLevel(), (int)Me.pos.x, (int)Me.pos.y, ts->indices[ts->selected_tile_nb]);
-		break;
-
+			action_set_floor(EditLevel(), (int)Me.pos.x, (int)Me.pos.y, type);
+			break;
+	case OBJECT_ITEM:
+			action_create_item(EditLevel(), pos.x, pos.y, type);
+			break;
 	default:
-		return;
+			break;
 	}
 }
 

@@ -620,7 +620,7 @@ static int input_key(int keynum, int value)
 					     PLEASE_INFORM, IS_WARNING_ONLY, number);
 				return 0;
 			}
-			level_editor_place_aligned_obstacle(number);
+			level_editor_place_aligned_object(number);
 			return 0;
 		} else if (KEYPRESS("connect_waypoint")) {
 			level_editor_action_toggle_waypoint_connection_user(CURLEVEL(), EditX(), EditY());
