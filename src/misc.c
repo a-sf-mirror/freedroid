@@ -127,13 +127,13 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButtonOffPushed.png", {-60, 90, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButton.png", {00, 240, 0, 0}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButton.png", {-210, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButtonPushed.png", {00, 240, 0, 0}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButtonPushed.png", {-210, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNextObstacleButton.png", {00, 270, 0, 0}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNextObstacleButton.png", {-180, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNextObstacleButtonPushed.png", {00, 270, 0, 0}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorNextObstacleButtonPushed.png", {-180, -30, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_ZOOM_IN_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorZoomInButton.png", {30, 90, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ZOOM_IN_BUTTON_PUSHED] =
@@ -222,13 +222,15 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 
 	[LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorCancelItemDrop.png", {55 + 80, 32 + 5 * 66, 0, 0}, TRUE},
-	[LEVEL_EDITOR_UNDO_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndoButton.png", {490, 90, 0, 0}, FALSE},
+	[LEVEL_EDITOR_UNDO_BUTTON] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndoButton.png", {-270, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_UNDO_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndoButtonPushed.png", {490, 90, 0, 0}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndoButtonPushed.png", {-270, -30, 0, 0}, FALSE},
 
-	[LEVEL_EDITOR_REDO_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButton.png", {520, 90, 0, 0}, FALSE},
+	[LEVEL_EDITOR_REDO_BUTTON] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButton.png", {-240, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_REDO_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", {520, 90, 0, 0}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", {-240, -30, 0, 0}, FALSE},
 
 	[WEAPON_RECT_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {WEAPON_RECT_X, WEAPON_RECT_Y, WEAPON_RECT_WIDTH, WEAPON_RECT_HEIGHT}, FALSE},
