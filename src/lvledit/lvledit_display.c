@@ -451,10 +451,6 @@ static void show_level_editor_tooltips(void)
 				show_button_tooltip(_
 						    ("Test Map\n\nThis will save your map and reload it after you finish testing, avoiding saving an unclean world state."));
 		}
-	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
-			show_button_tooltip(_
-					    ("Underground lighting\n\nUse this button to toggle underground lighting, i.e. shadows coming from the light that the tux emanates.\n\nThere isn't any key to toggle this on the keyboard."));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON, GetMousePos_x(), GetMousePos_y())
 		   || MouseCursorIsOnButton(LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON_OFF, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)

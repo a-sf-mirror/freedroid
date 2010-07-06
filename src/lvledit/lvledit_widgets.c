@@ -166,7 +166,6 @@ void leveleditor_init_widgets()
 
 	/* Build our interface */
 	int t[] = {
-		LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON,
 		LEVEL_EDITOR_UNDO_BUTTON,
 		LEVEL_EDITOR_REDO_BUTTON,
 		LEVEL_EDITOR_SAVE_SHIP_BUTTON,
@@ -265,9 +264,6 @@ void leveleditor_update_button_states()
 			break;
 		case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
 			b->active = 2 * (draw_grid);
-			break;
-		case LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON:
-			b->active = 2 * EditLevel()->use_underground_lighting;
 			break;
 		case GO_LEVEL_NORTH_BUTTON:
 			w->enabled = (EditLevel()->jump_target_north >= 0);

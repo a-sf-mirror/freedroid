@@ -165,14 +165,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_QUIT_BUTTON_PUSHED] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-30, 90, 0, 0}, FALSE},
 
-	[LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndergroundLightButton.png", {-30, 150, 30, 30}, FALSE},
-	[LEVEL_EDITOR_UNDERGROUND_LIGHT_ON_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndergroundLightButtonPushed.png", {-30, 150, 30, 30}, FALSE},
-	[LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndergroundLightOffButton.png", {-30, 150, 30, 30}, FALSE},
-	[LEVEL_EDITOR_UNDERGROUND_LIGHT_OFF_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorUndergroundLightOffButtonPushed.png", {-30, 150, 30, 30}, FALSE},
 	[LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButton.png", {-30, 180, 0, 0}, FALSE},
 	[LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON_PUSHED] =
