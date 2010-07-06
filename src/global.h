@@ -340,8 +340,6 @@ EXTERN SDL_Rect SkillScreenRect;
 EXTERN int Number_Of_Item_Types;
 EXTERN itemspec *ItemMap;
 EXTERN short int item_count_per_class[10];
-EXTERN item_bonus *PrefixList;
-EXTERN item_bonus *SuffixList;
 
 EXTERN int game_root_mode;
 enum {

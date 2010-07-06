@@ -500,7 +500,6 @@ void DeleteItem(item * Item);
 void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical);
 int get_floor_item_index_under_mouse_cursor(level **item_lvl);
 int item_is_currently_equipped(item * Item);
-int Get_Prefixes_Data(char *DataPointer);
 
 // item_upgrades.c
 void create_upgrade_socket(item *, int, const char *);

@@ -1078,14 +1078,6 @@ void Init_Game_Data()
 
 #define INIT_GAME_DATA_DEBUG 1
 
-	// Load magical items informations
-	//
-	find_file("freedroid.prefix_archetypes", MAP_DIR, fpath, 0);
-	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
-	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
-	Get_Prefixes_Data(Data);
-	free(Data);
-
 	next_startup_percentage(2);
 
 	// Load programs (spells) informations

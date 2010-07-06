@@ -257,44 +257,6 @@ typedef struct item_image_spec_s {
 	iso_image shop_iso_image;
 } item_image_spec;
 
-typedef struct item_bonus_s {
-	char *bonus_name;
-	short base_bonus_to_dex;
-	short modifier_to_bonus_to_dex;
-	short base_bonus_to_str;
-	short modifier_to_bonus_to_str;
-	short base_bonus_to_vit;
-	short modifier_to_bonus_to_vit;
-	short base_bonus_to_mag;
-	short modifier_to_bonus_to_mag;
-	short base_bonus_to_all_attributes;
-	short modifier_to_bonus_to_all_attributes;
-
-	short base_bonus_to_life;
-	short modifier_to_bonus_to_life;
-	short base_bonus_to_force;
-	short modifier_to_bonus_to_force;
-
-	float base_bonus_to_health_recovery;
-	float base_bonus_to_cooling_rate;
-
-	short base_bonus_to_tohit;
-	short modifier_to_bonus_to_tohit;
-	short base_bonus_to_damred_or_damage;	// this is a percentage
-	short modifier_to_bonus_to_damred_or_damage;	// this is a percentage
-
-	char base_bonus_to_resist_fire;	// this is a percentage /*XXX bonus to resist whatever ARE NOT READ YET!*/
-	char modifier_to_bonus_to_resist_fire;	// this is a percentage
-	char base_bonus_to_resist_electricity;	// this is a percentage
-	char modifier_to_bonus_to_resist_electricity;	// this is a percentage
-
-	short int light_bonus_value;
-
-	short int level;	//"level" of the prefix (is it good or not)
-	float price_factor;
-
-} item_bonus;
-
 struct addon_bonus {
 	char *name;
 	int value;
