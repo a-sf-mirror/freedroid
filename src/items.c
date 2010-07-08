@@ -724,11 +724,13 @@ void CopyItemWithoutHeldProperty(item * SourceItem, item * DestItem, int MakeSou
  * location.  The source location is then marked as unused inventory 
  * entry.
  */
-void MoveItem(item * SourceItem, item * DestItem)
+void MoveItem(item *source_item, item *dest_item)
 {
-	memcpy(DestItem, SourceItem, sizeof(item));
-	init_item(SourceItem);
-};				// void MoveItem( item* SourceItem , item* DestItem )
+	if (source_item != dest_item) {
+		memcpy(dest_item, source_item, sizeof(item));
+		init_item(source_item);
+	}
+}
 
 /**
  * This function applies a given item (to the influencer) and maybe 
@@ -1529,16 +1531,11 @@ void DropHeldItemToSlot(item * SlotItem)
 	else
 		Item_Held_In_Hand = NULL;
 	
-	// Now the item is installed into the weapon slot of the influencer
-	//
-	CopyItem(DropItemPointer, SlotItem, TRUE);
+	// Move the item to the slot and mark it as no longer grabbed.
+	MoveItem(DropItemPointer, SlotItem);
+	play_item_sound(SlotItem->type);
 	SlotItem->currently_held_in_hand = FALSE;
-
-	// Now the item is removed from the source location and no longer held in hand as well, 
-	// but of course only if it is not the same as the original item
-	if (DropItemPointer != SlotItem)
-		DeleteItem(DropItemPointer);
-};				// void DropHeldItemToSlot ( item* SlotItem )
+}
 
 /**
  * This function looks for a free inventory index.  Since there are more
