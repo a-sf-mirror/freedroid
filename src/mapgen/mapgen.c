@@ -523,12 +523,12 @@ void MakeConnect(int x, int y, enum connection_type type)
 
 static int find_waypoints(int x1, int y1, int x2, int y2, int *wps, int max)
 {
+	waypoint *wpts = target_level->waypoints.arr;
 	int total_wps = 0;
 	int i;
 
-	for (i = 0; i < target_level->num_waypoints; i++) {
-		if (target_level->AllWaypoints[i].x >= x1 && target_level->AllWaypoints[i].x < x2 &&
-		    target_level->AllWaypoints[i].y >= y1 && target_level->AllWaypoints[i].y < y2) {
+	for (i = 0; i < target_level->waypoints.size; i++) {
+		if (wpts[i].x >= x1 && wpts[i].x < x2 && wpts[i].y >= y1 && wpts[i].y < y2) {
 			wps[total_wps] = i;
 			total_wps++;
 

@@ -104,7 +104,8 @@ static int do_waypoint_route(int rspawn)
 			state.nbactions++;
 	}
 
-	EditLevel()->AllWaypoints[wpnum].suppress_random_spawn = rspawn;
+	waypoint *wpts = EditLevel()->waypoints.arr;
+	wpts[wpnum].suppress_random_spawn = rspawn;
 
 	if (wpnum == state.startwp) {
 		// Click on the same waypoint ? end the route
@@ -731,8 +732,9 @@ int leveleditor_place_input(SDL_Event *event)
 int leveleditor_place_display()
 {
 	if (our_mode == CONNECT_WAYPOINT) {
-		draw_connection_between_tiles(EditLevel()->AllWaypoints[state.startwp].x + 0.5,
-					      EditLevel()->AllWaypoints[state.startwp].y + 0.5, mouse_mapcoord.x, mouse_mapcoord.y,
+		waypoint *wpts = EditLevel()->waypoints.arr;
+
+		draw_connection_between_tiles(wpts[state.startwp].x + 0.5, wpts[state.startwp].y + 0.5, mouse_mapcoord.x, mouse_mapcoord.y,
 					      GameConfig.zoom_is_on ? ZOOM_OUT : 0);
 	}
 

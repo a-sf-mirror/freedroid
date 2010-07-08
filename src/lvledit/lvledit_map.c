@@ -130,36 +130,42 @@ static void move_obstacles(level *EditLevel, int x, int y)
 }
 
 /**
- * When a new line is inserted or removed at north of a map, the waypoints must move
- * too with the rest of the map.
+ * Move all waypoints with the rest of the map
+ * \param EditLevel Pointer towards the editing level where all waypoints lie
+ * \param x The displacement on horizontal axis
+ * \param y The displacement on vertical axis
  */
-static void MoveWaypointsNorthSouth(int ByWhat, level *EditLevel)
+static void move_waypoints(level *EditLevel, int x, int y)
 {
+	waypoint *wpts = EditLevel->waypoints.arr;
 	int i;
 
-	for (i = 0; i < MAXWAYPOINTS; i++) {
-		if (EditLevel->AllWaypoints[i].x == (0))
-			continue;
-		EditLevel->AllWaypoints[i].y += ByWhat;
-	}
+	for (i = 0; i < EditLevel->waypoints.size; i++) {
+		// Move the waypoint
+		wpts[i].x += x;
+		wpts[i].y += y;
 
-}				// void MoveWaypointsNorthSouth(int ByWhat, level *EditLevel)
+		if (!pos_inside_level(wpts[i].x, wpts[i].y, EditLevel)) {
+			// When the waypoint is outside of the map, we must remove it
+			DeleteWaypoint(EditLevel, i);
+		}
+	}
+}
 
 /**
- * When a new column is inserted or removed at west of a map, the waypoints must move
- * too with the rest of the map.
+ * Move all objects (ie. obstacles, map_labels, items, waypoints) with 
+ * the rest of the map
+ * \param EditLevel Pointer towards the editing level where all objects lie
+ * \param x The displacement on horizontal axis
+ * \param y The displacement on vertical axis
  */
-static void MoveWaypointsWestEast(int ByWhat, level *EditLevel)
+static void move_all_objects(level *EditLevel, int x, int y)
 {
-	int i;
-
-	for (i = 0; i < MAXWAYPOINTS; i++) {
-		if (EditLevel->AllWaypoints[i].x == (0))
-			continue;
-		EditLevel->AllWaypoints[i].x += ByWhat;
-	}
-
-}				// void MoveWaypointsWestEast(int ByWhat, level *EditLevel)
+	move_obstacles(EditLevel, x, y);
+	move_map_labels(EditLevel, x, y);
+	move_items(EditLevel, x, y);
+	move_waypoints(EditLevel, x, y);
+}
 
 /**
  * Insert a line at the very north of a map
@@ -183,10 +189,7 @@ void insert_line_north(level *EditLevel)
 	EditLevel->map[0] = tmp;
 
 	// Now we also have to shift the position of all elements
-	MoveWaypointsNorthSouth(+1, EditLevel);
-	move_obstacles(EditLevel, 0, 1);
-	move_map_labels(EditLevel, 0, 1);
-	move_items(EditLevel, 0, 1);
+	move_all_objects(EditLevel, 0, 1);
 }
 
 /**
@@ -261,10 +264,7 @@ void insert_column_west(level *EditLevel)
 	}
 
 	// Now we also have to shift the position of all elements
-	MoveWaypointsWestEast(+1, EditLevel);
-	move_obstacles(EditLevel, 1, 0);
-	move_map_labels(EditLevel, 1, 0);
-	move_items(EditLevel, 1, 0);
+	move_all_objects(EditLevel, 1, 0);
 }
 
 /**
@@ -282,11 +282,9 @@ void remove_column_east(level *EditLevel)
 	EditLevel->xlen--;
 
 	// When we remove a column at the very east, we must not move the elements
-	// (ie. obstacles, map labels, items...) but remove those which are
+	// (ie. obstacles, map labels, items, waypoints) but remove those which are
 	// outside of the map
-	move_obstacles(EditLevel, 0, 0);
-	move_map_labels(EditLevel, 0, 0);
-	move_items(EditLevel, 0, 0);
+	move_all_objects(EditLevel, 0, 0);
 }
 
 /**
@@ -311,10 +309,7 @@ void remove_column_west(level *EditLevel)
 	EditLevel->xlen--;
 
 	// Now we also have to shift the position of all elements
-	move_obstacles(EditLevel, -1, 0);
-	MoveWaypointsWestEast(-1, EditLevel);
-	move_map_labels(EditLevel, -1, 0);
-	move_items(EditLevel, -1, 0);
+	move_all_objects(EditLevel, -1, 0);
 }
 
 /**
@@ -337,10 +332,7 @@ void remove_line_north(level *EditLevel)
 	EditLevel->ylen--;
 
 	// Now we also have to shift the position of all elements
-	move_obstacles(EditLevel, 0, -1);
-	MoveWaypointsNorthSouth(-1, EditLevel);
-	move_map_labels(EditLevel, 0, -1);
-	move_items(EditLevel, 0, -1);
+	move_all_objects(EditLevel, 0, -1);
 }
 
 /**
@@ -358,9 +350,7 @@ void remove_line_south(level *EditLevel)
 	EditLevel->ylen--;
 
 	// When we remove a line at the very south, we must not move the elements
-	// (ie. obstacles, map labels, items...) but remove those which are
+	// (ie. obstacles, map labels, items, waypoints) but remove those which are
 	// outside of the map
-	move_obstacles(EditLevel, 0, 0);
-	move_map_labels(EditLevel, 0, 0);
-	move_items(EditLevel, 0, 0);
+	move_all_objects(EditLevel, 0, 0);
 }

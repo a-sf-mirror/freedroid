@@ -386,24 +386,22 @@ void action_move_item(level *EditLevel, item *it, float x, float y)
 	action_push(ACT_MOVE_ITEM, it, oldx, oldy);
 }
 
-void action_toggle_waypoint(level * EditLevel, int BlockX, int BlockY, int toggle_random_spawn)
+void action_toggle_waypoint(level *EditLevel, int BlockX, int BlockY, int toggle_random_spawn)
 {
+	waypoint *wpts = EditLevel->waypoints.arr;
 	int wpnum;
 	int isnew = 0;
 
 	wpnum = CreateWaypoint(EditLevel, BlockX, BlockY, &isnew);
-
+	
 	// If its waypoint already, this waypoint must either be deleted
 	// or the random spawn bit reset...
-	//
 	if (!isnew) {
 		if (toggle_random_spawn) {
-			if (EditLevel->AllWaypoints[wpnum].suppress_random_spawn)
-				EditLevel->AllWaypoints[wpnum].suppress_random_spawn = 0;
-			else
-				EditLevel->AllWaypoints[wpnum].suppress_random_spawn = 1;
-		} else
+			wpts[wpnum].suppress_random_spawn = !wpts[wpnum].suppress_random_spawn;
+		} else {
 			DeleteWaypoint(EditLevel, wpnum);
+		}
 	}
 
 	action_push(ACT_WAYPOINT_TOGGLE, BlockX, BlockY, toggle_random_spawn);
@@ -411,21 +409,18 @@ void action_toggle_waypoint(level * EditLevel, int BlockX, int BlockY, int toggl
 
 int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_target, int removeifpresent, int undoable)
 {
+	waypoint *wpts = EditLevel->waypoints.arr;
 	int *connections;
-	waypoint *w;
 	int i;
 
-	// Get the waypoint
-	w = &EditLevel->AllWaypoints[id_origin];
-
 	// Get the connections of the waypoint;
-	connections = w->connections.arr;
+	connections = wpts[id_origin].connections.arr;
 
-	for (i = 0; i < w->connections.size; i++) {
+	for (i = 0; i < wpts[id_origin].connections.size; i++) {
 		if (connections[i] == id_target) {
 			if (removeifpresent) {
 				// Delete the connection of the waypoint
-				dynarray_del(&w->connections, connections[i], sizeof(int));
+				dynarray_del(&wpts[id_origin].connections, connections[i], sizeof(int));
 			}
 			if (undoable)
 				action_push(ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
@@ -434,7 +429,7 @@ int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_ta
 	}
 
 	// Add the target connection of the waypoint
-	dynarray_add(&w->connections, &id_target, sizeof(int));
+	dynarray_add(&wpts[id_origin].connections, &id_target, sizeof(int));
 
 	if (undoable)
 		action_push(ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
@@ -444,15 +439,17 @@ int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_ta
 
 void level_editor_action_toggle_waypoint_connection_user(level * EditLevel, int xpos, int ypos)
 {
+	waypoint *wpts;
 	int i;
 
 	// Determine which waypoint is currently targeted
-	for (i = 0; i < EditLevel->num_waypoints; i++) {
-		if ((EditLevel->AllWaypoints[i].x == xpos) && (EditLevel->AllWaypoints[i].y == ypos))
+	wpts = EditLevel->waypoints.arr;
+	for (i = 0; i < EditLevel->waypoints.size; i++) {
+		if ((wpts[i].x == xpos) && (wpts[i].y == ypos))
 			break;
 	}
 
-	if (i == EditLevel->num_waypoints) {
+	if (i == EditLevel->waypoints.size) {
 		sprintf(VanishingMessage, _("Sorry, don't know which waypoint you mean."));
 		VanishingMessageEndDate = SDL_GetTicks() + 7000;
 	} else {
@@ -771,13 +768,6 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->obstacle_list[i].pos.z = level_num;
 	}
 
-	// Now we add empty waypoint information...
-	//
-	NewLevel->num_waypoints = 0;
-	for (i = 0; i < MAXWAYPOINTS; i++) {
-		int useless;
-		CreateWaypoint(NewLevel, 0, 0, &useless);
-	}
 	// First we initialize the items arrays with 'empty' information
 	//
 	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
@@ -795,6 +785,9 @@ void CreateNewMapLevel(int level_num)
 	// Initialize map labels
 	dynarray_init(&NewLevel->map_labels, 10, sizeof(struct map_label_s));
 
+	// Initialize waypoints
+	dynarray_init(&NewLevel->waypoints, 10, sizeof(struct waypoint_s));
+	
 	curShip.AllLevels[level_num] = NewLevel;
 
 	glue_obstacles_to_floor_tiles_for_level(level_num);

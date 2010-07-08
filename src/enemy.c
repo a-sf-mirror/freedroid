@@ -56,6 +56,18 @@ LIST_HEAD(alive_bots_head);
 LIST_HEAD(dead_bots_head);
 list_head_t level_bots_head[MAX_LEVELS];	//THIS IS NOT STATICALLY PROPERLY INITIALIZED, done in init functions
 
+static void teleport_to_waypoint(enemy *robot, level *lvl, int wp_idx)
+{
+	waypoint *wpts = lvl->waypoints.arr;
+
+	// Teleport the robot to the waypoint
+	robot->pos.x = wpts[wp_idx].x + 0.5;
+	robot->pos.y = wpts[wp_idx].y + 0.5;
+	robot->pos.z = lvl->levelnum;
+	robot->nextwaypoint = wp_idx;
+	robot->lastwaypoint = wp_idx;
+}
+
 /**
  * In the very beginning of each game, it is not enough to just place the
  * bots onto the right locations.  They must also be integrated into the
@@ -64,19 +76,16 @@ list_head_t level_bots_head[MAX_LEVELS];	//THIS IS NOT STATICALLY PROPERLY INITI
  */
 int teleport_to_closest_waypoint(enemy *ThisRobot)
 {
+	level *lvl = curShip.AllLevels[ThisRobot->pos.z];
+	waypoint *wpts = lvl->waypoints.arr;
 	int i;
 	float BestDistanceSqu = 10000;
 	float NewDistance = 10000;
-	Level ThisLevel = curShip.AllLevels[ThisRobot->pos.z];
 	short BestWaypoint = (-1);
 
-	for (i = 0; i < ThisLevel->num_waypoints; i++) {
-		if (ThisLevel->AllWaypoints[i].x <= 0)
-			continue;
-
-		NewDistance = (ThisRobot->pos.x - ThisLevel->AllWaypoints[i].x + 0.5) *
-		    (ThisRobot->pos.x - ThisLevel->AllWaypoints[i].x + 0.5) +
-		    (ThisRobot->pos.y - ThisLevel->AllWaypoints[i].y + 0.5) * (ThisRobot->pos.y - ThisLevel->AllWaypoints[i].y + 0.5);
+	for (i = 0; i < lvl->waypoints.size; i++) {
+		NewDistance = (ThisRobot->pos.x - wpts[i].x + 0.5) * (ThisRobot->pos.x - wpts[i].x + 0.5) + 
+						  (ThisRobot->pos.y - wpts[i].y + 0.5) * (ThisRobot->pos.y - wpts[i].y + 0.5);
 
 		if (NewDistance <= BestDistanceSqu) {
 			BestDistanceSqu = NewDistance;
@@ -85,18 +94,11 @@ int teleport_to_closest_waypoint(enemy *ThisRobot)
 	}
 
 	// Now we have found a global minimum.  So we 'teleport' there.
-
 	if (BestWaypoint == -1)
 		ErrorMessage(__FUNCTION__, "Found no waypoint to teleport bot to on level %d.", PLEASE_INFORM, IS_FATAL, ThisRobot->pos.z);
 
-	ThisRobot->pos.x = ThisLevel->AllWaypoints[BestWaypoint].x + 0.5;
-	ThisRobot->pos.y = ThisLevel->AllWaypoints[BestWaypoint].y + 0.5;
-	ThisRobot->pos.z = ThisLevel->levelnum;
-
-	ThisRobot->nextwaypoint = BestWaypoint;
-	ThisRobot->lastwaypoint = BestWaypoint;
-	DebugPrintf(1, "\n%s(): Final teleport target: Wp no. %d position: %f/%f on level %d.", __FUNCTION__,
-		    BestWaypoint, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
+	// Teleport the robot to the best waypoint
+	teleport_to_waypoint(ThisRobot, lvl, BestWaypoint);
 
 	return BestWaypoint;
 }
@@ -113,17 +115,15 @@ int teleport_to_closest_waypoint(enemy *ThisRobot)
  */
 int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 {
-	int wp_num = this_level->num_waypoints;
-
-	int start_wp = MyRandom(wp_num - 1);
+	int start_wp = MyRandom(this_level->waypoints.size - 1);
+	waypoint *wpts = this_level->waypoints.arr;
 	int current_wp = start_wp;
 	int last_checked_wp = -1;
 	int found_wp = -1;
 
-	// Find a free waypoint
-
+	// Find a random waypoint
 	do {
-		if (!this_level->AllWaypoints[current_wp].suppress_random_spawn) {
+		if (!wpts[current_wp].suppress_random_spawn) {
 			last_checked_wp = current_wp;
 			if (!wp_used[current_wp]) {
 				found_wp = current_wp;
@@ -132,12 +132,11 @@ int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 		}
 		// next waypoint, going to 0 if at end of list
 		current_wp++;
-		if (current_wp == wp_num)
+		if (current_wp == this_level->waypoints.size)
 			current_wp = 0;
 	} while (found_wp == -1 && current_wp != start_wp); // stop when found, or when all waypoints have been scanned
 
 	// Use a fallback waypoint if no free waypoint is found
-
 	if (found_wp == -1) {
 		if (last_checked_wp == -1) {
 			ErrorMessage(__FUNCTION__, "All waypoints on level %d are forbidden for random bots. Something is wrong."
@@ -153,14 +152,8 @@ int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 
 	wp_used[found_wp] = 1;
 
-	// 'Teleport' the bot
-
-	erot->pos.x = this_level->AllWaypoints[found_wp].x + 0.5;
-	erot->pos.y = this_level->AllWaypoints[found_wp].y + 0.5;
-	erot->pos.z = this_level->levelnum;
-
-	erot->lastwaypoint = found_wp;
-	erot->nextwaypoint = found_wp;
+	// Teleport the robot to the found waypoint
+	teleport_to_waypoint(erot, this_level, found_wp);
 
 	return found_wp;
 }
@@ -556,7 +549,7 @@ static int set_new_random_waypoint(enemy *this_robot)
 
 	level *bot_level = curShip.AllLevels[this_robot->pos.z];
 	// nextwaypoint is actually the waypoint that the bot just reached.
-	waypoint *current_waypoint = &(bot_level->AllWaypoints[this_robot->nextwaypoint]);
+	waypoint *current_waypoint = &((waypoint *)bot_level->waypoints.arr)[this_robot->nextwaypoint];
 
 	// Pre-condition: there must be some connections
 	//
@@ -587,11 +580,12 @@ static int set_new_random_waypoint(enemy *this_robot)
 	int free_waypoints[num_conn];
 	int *connections = current_waypoint->connections.arr;
 
+	waypoint *wpts = bot_level->waypoints.arr;
 	for (i = 0; i < num_conn; i++) {
+		waypoint *w = &wpts[connections[i]];
+
 		int is_free = CheckIfWayIsFreeOfDroids(current_waypoint->x + 0.5, current_waypoint->y + 0.5,
-				bot_level->AllWaypoints[connections[i]].x + 0.5,
-				bot_level->AllWaypoints[connections[i]].y + 0.5,
-				this_robot->pos.z, &frw_ctx);
+				w->x + 0.5, w->y + 0.5, this_robot->pos.z, &frw_ctx);
 		if (is_free) {
 			if (connections[i] != this_robot->lastwaypoint) {
 				free_waypoints[nb_free_waypoints++] = connections[i];
@@ -1095,6 +1089,8 @@ void enemy_say_current_state_on_screen(enemy * ThisRobot)
  */
 void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 {
+	waypoint *wpts = curShip.AllLevels[ThisRobot->pos.z]->waypoints.arr;
+
 	// Maybe the time for the next check for this bot has not yet come.
 	// in that case we can return right away.
 	//
@@ -1120,8 +1116,7 @@ void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 		DebugPrintf(-2, "\nPrivate Pathway[0]: %f/%f.", ThisRobot->PrivatePathway[0].x, ThisRobot->PrivatePathway[0].y);
 		DebugPrintf(-2, "\nPrivate Pathway[1]: %f/%f.", ThisRobot->PrivatePathway[1].x, ThisRobot->PrivatePathway[1].y);
 		DebugPrintf(-2, "\nnextwaypoint: %d at %f/%f",
-			    ThisRobot->nextwaypoint, curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5,
-			    curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y + 0.5);
+			    ThisRobot->nextwaypoint, wpts[ThisRobot->nextwaypoint].x + 0.5, wpts[ThisRobot->nextwaypoint].y + 0.5);
 
 		enemy_say_current_state_on_screen(ThisRobot);
 		DebugPrintf(-2, "\nnextwaypoint=%d. lastwaypoint=%d. combat_%s.",
@@ -1131,8 +1126,8 @@ void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 			// No free position was found outside the obstacle ???
 			// It should not happen but since we want the bot to escape in any situation, just have a last fallback
 			//
-			ThisRobot->pos.x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5;
-			ThisRobot->pos.y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y + 0.5;
+			ThisRobot->pos.x = wpts[ThisRobot->nextwaypoint].x + 0.5;
+			ThisRobot->pos.y = wpts[ThisRobot->nextwaypoint].y + 0.5;
 		}
 		ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
 		ThisRobot->bot_stuck_in_wall_at_previous_check = TRUE;
@@ -1342,6 +1337,8 @@ static void state_machine_inconditional_updates(enemy * ThisRobot)
  */
 static void state_machine_situational_transitions(enemy * ThisRobot)
 {
+	waypoint *wpts = curShip.AllLevels[ThisRobot->pos.z]->waypoints.arr;
+
 	/* The various situations are listed in increasing priority order (ie. they may override each other, so the least priority comes first. */
 	/* In an ideal world, this would not exist and be done for each state. But we're in reality and have to limit code duplication. */
 
@@ -1354,8 +1351,8 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 
 	/* Return home if we're too far away */
 	if (ThisRobot->max_distance_to_home != 0 &&
-	    sqrt(powf((curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x + 0.5) - ThisRobot->pos.x, 2) +
-		 powf((curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y + 0.5) - ThisRobot->pos.y, 2))
+	    sqrt(powf((wpts[ThisRobot->homewaypoint].x + 0.5) - ThisRobot->pos.x, 2) +
+		 powf((wpts[ThisRobot->homewaypoint].y + 0.5) - ThisRobot->pos.y, 2))
 	    > ThisRobot->max_distance_to_home) {
 		ThisRobot->combat_state = RETURNING_HOME;
 		ThisRobot->attack_target_type = ATTACK_TARGET_IS_NOTHING;
@@ -1660,9 +1657,11 @@ static void state_machine_returning_home(enemy * ThisRobot, moderately_finepoint
 {
 	/* Bot too far away from home must go back to home waypoint */
 
+	waypoint *wpts = curShip.AllLevels[ThisRobot->pos.z]->waypoints.arr;
+
 	/* Move target */
-	new_move_target->x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].x + 0.5;
-	new_move_target->y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->homewaypoint].y + 0.5;
+	new_move_target->x = wpts[ThisRobot->homewaypoint].x + 0.5;
+	new_move_target->y = wpts[ThisRobot->homewaypoint].y + 0.5;
 
 	/* Action */
 	if (remaining_distance_to_current_walk_target(ThisRobot) < ThisRobot->max_distance_to_home / 2.0) {
@@ -1689,18 +1688,17 @@ static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_fine
 
 static void state_machine_turn_towards_next_waypoint(enemy * ThisRobot, moderately_finepoint * new_move_target)
 {
+	waypoint *wpts = curShip.AllLevels[ThisRobot->pos.z]->waypoints.arr;
+
 	/* Action */
 	/* XXX */
 	new_move_target->x = ThisRobot->pos.x;
 	new_move_target->y = ThisRobot->pos.y;
 	ThisRobot->last_phase_change = WAIT_BEFORE_ROTATE + 1.0;
 
-	if (TurnABitTowardsPosition(ThisRobot,
-				    curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5,
-				    curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y + 0.5, 90)
-	    ) {
-		new_move_target->x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5;
-		new_move_target->y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y + 0.5;
+	if (TurnABitTowardsPosition(ThisRobot, wpts[ThisRobot->nextwaypoint].x + 0.5, wpts[ThisRobot->nextwaypoint].y + 0.5, 90)) {
+		new_move_target->x = wpts[ThisRobot->nextwaypoint].x + 0.5;
+		new_move_target->y = wpts[ThisRobot->nextwaypoint].y + 0.5;
 		ThisRobot->combat_state = MOVE_ALONG_RANDOM_WAYPOINTS;
 	}
 }
@@ -1709,9 +1707,11 @@ static void state_machine_move_along_random_waypoints(enemy * ThisRobot, moderat
 {
 	/* The bot moves towards its next waypoint */
 
+	waypoint *wpts = curShip.AllLevels[ThisRobot->pos.z]->waypoints.arr;
+
 	/* Move target */
-	new_move_target->x = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].x + 0.5;
-	new_move_target->y = curShip.AllLevels[ThisRobot->pos.z]->AllWaypoints[ThisRobot->nextwaypoint].y + 0.5;
+	new_move_target->x = wpts[ThisRobot->nextwaypoint].x + 0.5;
+	new_move_target->y = wpts[ThisRobot->nextwaypoint].y + 0.5;
 
 	/* Action */
 	if ((new_move_target->x - ThisRobot->pos.x) * (new_move_target->x - ThisRobot->pos.x) +

@@ -549,50 +549,47 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 	int dist_is_invalid = FALSE;
 	int path_is_invalid = FALSE;
 	int path_warning = FALSE;
+	waypoint *wpts;
 #	define MIN_DIST 1.0
 
+	// Get all waypoints for the level
+	wpts = validator_ctx->this_level->waypoints.arr;
+
 	// Check waypoints position
-	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
+	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
 		struct waypoint_excpt_data to_check = { 'P',
 			{
-			 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-			  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-			  validator_ctx->this_level->levelnum},
-			 {0.0, 0.0, 0}
-			 }
+				{wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum}, {0.0, 0.0, 0}
+			}
 		};
 
 		if (lookup_exception(this, &to_check))
 			continue;
 
 		if (!SinglePointColldet
-		    (validator_ctx->this_level->AllWaypoints[i].x + 0.5, validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-		     validator_ctx->this_level->levelnum, &WalkablePassFilter)) {
+		    (wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum, &WalkablePassFilter)) {
 			if (!pos_is_invalid) {	// First error : print header
 				validator_print_header(validator_ctx, "Unreachable waypoints list",
 						       "The following waypoints were found to be inside an obstacle.\n"
 						       "This could lead to some bots being stuck.");
 				pos_is_invalid = TRUE;
 			}
-			printf("[Type=\"WP\"] WP X=%f:Y=%f:L=%d\n", validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-			       validator_ctx->this_level->AllWaypoints[i].y + 0.5, validator_ctx->this_level->levelnum);
+			printf("[Type=\"WP\"] WP X=%f:Y=%f:L=%d\n", wpts[i].x + 0.5, wpts[i].y + 0.5, 
+					validator_ctx->this_level->levelnum);
 		}
 	}
 	if (pos_is_invalid)
 		puts(line);
 
 	// Check waypoints connectivity
-	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
+	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
 		struct waypoint_excpt_data to_check = { 'O',
 			{
-			 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-			  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-			  validator_ctx->this_level->levelnum},
-			 {0.0, 0.0, 0}
-			 }
+				{wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum}, {0.0, 0.0, 0}
+			}
 		};
 
-		if (!lookup_exception(this, &to_check) && validator_ctx->this_level->AllWaypoints[i].connections.size == 0) {
+		if (!lookup_exception(this, &to_check) && wpts[i].connections.size == 0) {
 			if (!conn_is_invalid) {	// First error : print header
 				validator_print_header(validator_ctx, "Unconnected waypoints list",
 						       "The following waypoints were found to be without connection (Type=WO).\n"
@@ -600,8 +597,8 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 						       "This could lead to some bots being stuck on those waypoints.");
 				conn_is_invalid = TRUE;
 			}
-			printf("[Type=\"WO\"] WP X=%f:Y=%f:L=%d\n", validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-			       validator_ctx->this_level->AllWaypoints[i].y + 0.5, validator_ctx->this_level->levelnum);
+			printf("[Type=\"WO\"] WP X=%f:Y=%f:L=%d\n", wpts[i].x + 0.5, wpts[i].y + 0.5, 
+					validator_ctx->this_level->levelnum);
 		}
 
 		to_check.subtest = 'S';
@@ -609,9 +606,9 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			continue;
 
 		// Get the connections of the waypoint
-		int *connections = validator_ctx->this_level->AllWaypoints[i].connections.arr;
+		int *connections = wpts[i].connections.arr;
 
-		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].connections.size; ++j) {
+		for (j = 0; j < wpts[i].connections.size; ++j) {
 			if (connections[j] == i) {
 				if (!conn_is_invalid) {	// First error : print header
 					validator_print_header(validator_ctx, "Unconnected waypoints list",
@@ -620,8 +617,8 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 							       "This could lead to some bots being stuck on those waypoints.");
 					conn_is_invalid = TRUE;
 				}
-				printf("[Type=\"WS\"] WP X=%f:Y=%f:L=%d\n", validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-				       validator_ctx->this_level->AllWaypoints[i].y + 0.5, validator_ctx->this_level->levelnum);
+				printf("[Type=\"WS\"] WP X=%f:Y=%f:L=%d\n", wpts[i].x + 0.5, wpts[i].y + 0.5, 
+						validator_ctx->this_level->levelnum);
 				continue;
 			}
 		}
@@ -630,29 +627,28 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 		puts(line);
 
 	// Check waypoints distance
-	for (i = 0; i < validator_ctx->this_level->num_waypoints - 1; ++i) {
-		gps wp_i =
-		    { validator_ctx->this_level->AllWaypoints[i].x + 0.5, validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-		     validator_ctx->this_level->levelnum };
+	for (i = 0; i < validator_ctx->this_level->waypoints.size - 1; ++i) {
+		// Get the source waypoint
+		waypoint *from_wp = &wpts[i];
 
-		for (j = i + 1; j < validator_ctx->this_level->num_waypoints; ++j) {
+		gps wp_i = { from_wp->x + 0.5, from_wp->y + 0.5, validator_ctx->this_level->levelnum };
+
+		for (j = i + 1; j < validator_ctx->this_level->waypoints.size; ++j) {
+			// Get the destination waypoint
+			waypoint *to_wp = &wpts[j];
+
 			struct waypoint_excpt_data to_check = { 'D',
 				{
-				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-				  validator_ctx->this_level->levelnum},
-				 {validator_ctx->this_level->AllWaypoints[j].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[j].y + 0.5,
-				  validator_ctx->this_level->levelnum}
-				 }
+					{from_wp->x + 0.5, from_wp->y + 0.5, validator_ctx->this_level->levelnum},
+					{to_wp->x + 0.5, to_wp->y + 0.5, validator_ctx->this_level->levelnum}
+				}
 			};
 
 			if (lookup_exception(this, &to_check))
 				continue;
 
-			gps wp_j =
-			    { validator_ctx->this_level->AllWaypoints[j].x + 0.5, validator_ctx->this_level->AllWaypoints[j].y + 0.5,
-			     validator_ctx->this_level->levelnum };
+			gps wp_j = { to_wp->x + 0.5, to_wp->y + 0.5, validator_ctx->this_level->levelnum };
+
 			float dist = calc_distance(wp_i.x, wp_i.y, wp_j.x, wp_j.y);
 
 			if (dist < MIN_DIST) {
@@ -670,37 +666,33 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 	}
 
 	// Check waypoint paths walkability
-	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
-		if (validator_ctx->this_level->AllWaypoints[i].connections.size == 0)
+	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
+		// Get the source waypoint
+		waypoint *from_wp = &wpts[i];
+
+		if (from_wp->connections.size == 0)
 			continue;
 
-		gps from_pos =
-		    { validator_ctx->this_level->AllWaypoints[i].x + 0.5, validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-		 validator_ctx->this_level->levelnum };
+		gps from_pos = { from_wp->x + 0.5, from_wp->y + 0.5, validator_ctx->this_level->levelnum };
 
 		// Get the connections of the waypoint
-		int *connections = validator_ctx->this_level->AllWaypoints[i].connections.arr;
+		int *connections = from_wp->connections.arr;
 
-		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].connections.size; ++j) {
-			int c = connections[j];
+		for (j = 0; j < from_wp->connections.size; ++j) {
+			// Get the destination waypoint
+			waypoint *to_wp = &wpts[connections[j]];
 
 			struct waypoint_excpt_data to_check = { 'W',
 				{
-				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-				  validator_ctx->this_level->levelnum},
-				 {validator_ctx->this_level->AllWaypoints[c].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[c].y + 0.5,
-				  validator_ctx->this_level->levelnum}
-				 }
+					{from_wp->x + 0.5, from_wp->y + 0.5, validator_ctx->this_level->levelnum},
+					{to_wp->x + 0.5, to_wp->y + 0.5, validator_ctx->this_level->levelnum}
+				}
 			};
 
 			if (lookup_exception(this, &to_check))
 				continue;
 
-			gps to_pos =
-			    { validator_ctx->this_level->AllWaypoints[c].x + 0.5, validator_ctx->this_level->AllWaypoints[c].y + 0.5,
-			   validator_ctx->this_level->levelnum };
+			gps to_pos = { to_wp->x + 0.5, to_wp->y + 0.5, validator_ctx->this_level->levelnum };
 
 			enum connect_validity rtn = waypoints_connection_valid(&from_pos, &to_pos);
 			if (rtn & NO_PATH) {
@@ -725,36 +717,32 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 	// So, even if the connection is in theory walkable, a bot could get stuck.
 	// By translating a bit the waypoints positions, we simulate such a behavior.
 
-	for (i = 0; i < validator_ctx->this_level->num_waypoints; ++i) {
-		if (validator_ctx->this_level->AllWaypoints[i].connections.size == 0)
+	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
+		// Get the from waypoint
+		waypoint *from_wp = &wpts[i];
+
+		if (from_wp->connections.size == 0)
 			continue;
 
-		// Get the connections of the waypoint
-		int *connections = validator_ctx->this_level->AllWaypoints[i].connections.arr;
+		// Get the connections of the from waypoint
+		int *connections = from_wp->connections.arr;
 
-		for (j = 0; j < validator_ctx->this_level->AllWaypoints[i].connections.size; ++j) {
-			int c = connections[j];
+		for (j = 0; j < from_wp->connections.size; ++j) {
+			// Get the destination waypoint
+			waypoint *to_wp = &wpts[connections[j]];
 
 			struct waypoint_excpt_data to_check = { 'Q',
 				{
-				 {validator_ctx->this_level->AllWaypoints[i].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-				  validator_ctx->this_level->levelnum},
-				 {validator_ctx->this_level->AllWaypoints[c].x + 0.5,
-				  validator_ctx->this_level->AllWaypoints[c].y + 0.5,
-				  validator_ctx->this_level->levelnum}
-				 }
+					{from_wp->x + 0.5, from_wp->y + 0.5, validator_ctx->this_level->levelnum},
+					{to_wp->x + 0.5, to_wp->y + 0.5, validator_ctx->this_level->levelnum}
+				}
 			};
 
 			if (lookup_exception(this, &to_check))
 				continue;
 
-			gps from_pos =
-			    { validator_ctx->this_level->AllWaypoints[i].x + 0.5, validator_ctx->this_level->AllWaypoints[i].y + 0.5,
-			 validator_ctx->this_level->levelnum };
-			gps to_pos =
-			    { validator_ctx->this_level->AllWaypoints[c].x + 0.5, validator_ctx->this_level->AllWaypoints[c].y + 0.5,
-			   validator_ctx->this_level->levelnum };
+			gps from_pos = { from_wp->x + 0.5, from_wp->y + 0.5, validator_ctx->this_level->levelnum };
+			gps to_pos = { to_wp->x + 0.5, to_wp->y + 0.5, validator_ctx->this_level->levelnum };
 
 			// Translation vector
 			moderately_finepoint line_vector;

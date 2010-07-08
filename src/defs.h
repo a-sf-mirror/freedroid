@@ -627,8 +627,6 @@ enum {
 
 #define MAX_EVENT_TRIGGERS      500	// how many event triggers at most to allow
 
-#define MAXWAYPOINTS 		500
-
 #define MAX_PHASES_IN_A_BULLET 12
 #define PHASES_OF_EACH_BLAST 20
 

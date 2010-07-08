@@ -786,13 +786,11 @@ typedef struct level_s {
 	int use_underground_lighting;
 
 	obstacle obstacle_list[MAX_OBSTACLES_ON_MAP];
-
-	int num_waypoints;
-	waypoint AllWaypoints[MAXWAYPOINTS];
 	item ItemList[MAX_ITEMS_PER_LEVEL];
 
 	struct dynarray obstacle_extensions;
 	struct dynarray map_labels;
+	struct dynarray waypoints;
 } level, *Level;
 
 typedef struct obstacle_spec_s {

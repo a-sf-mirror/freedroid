@@ -216,8 +216,8 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
  */
 static void show_waypoints(int mask)
 {
+	waypoint *wpts = EditLevel()->waypoints.arr;
 	char fpath[2048];
-	waypoint *w;
 	float x, y;
 	int i, j;
 
@@ -241,43 +241,37 @@ static void show_waypoints(int mask)
 		}
 	}
 
-	for (i = 0; i < EditLevel()->num_waypoints; i++) {
-		// Get the waypoint
-		w = &EditLevel()->AllWaypoints[i];
-
-		if (w->x == 0 && w->y == 0)
-			continue;
-
+	for (i = 0; i < EditLevel()->waypoints.size; i++) {
 		// Calculate the position of the waypoint
-		x = w->x + 0.5;
-		y = w->y + 0.5;
+		x = wpts[i].x + 0.5;
+		y = wpts[i].y + 0.5;
 
 		// Draw the waypoint on the map
 		if (mask && ZOOM_OUT) {
 			if (use_open_gl) {
-				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn],
+				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn],
 								      x, y, 1.0, 1.0, 1.0, 0.25, FALSE, lvledit_zoomfact_inv());
 			} else {
-				blit_zoomed_iso_image_to_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn], x, y);
+				blit_zoomed_iso_image_to_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn], x, y);
 			}
 		} else {
 			if (use_open_gl) {
-				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn],
+				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn],
 								      x, y, 1.0, 1.0, 1.0, 0, FALSE, 1.0);
 			}
 			else {
-				blit_iso_image_to_map_position(&level_editor_waypoint_cursor[w->suppress_random_spawn], x, y);
+				blit_iso_image_to_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn], x, y);
 			}
 		}
 
 		// Get the connections of the waypoint
-		int *connections = w->connections.arr;
+		int *connections = wpts[i].connections.arr;
 
-		for (j = 0; j < w->connections.size; j++) {
-			if ((EditX() == w->x) && (EditY() == w->y)) {
-				draw_connection_between_tiles(x, y,
-							      EditLevel()->AllWaypoints[connections[j]].x + 0.5,
-							      EditLevel()->AllWaypoints[connections[j]].y + 0.5, mask);
+		for (j = 0; j < wpts[i].connections.size; j++) {
+			waypoint *to_wp = &wpts[connections[j]];
+
+			if ((EditX() == wpts[i].x) && (EditY() == wpts[i].y)) {
+				draw_connection_between_tiles(x, y, to_wp->x + 0.5, to_wp->y + 0.5, mask);
 			}
 		}
 	}
@@ -286,11 +280,8 @@ static void show_waypoints(int mask)
 	// going on, then we also draw a connection from the origin point to the
 	// current cursor (i.e. 'me') position.
 	if (OriginWaypoint != (-1)) {
-		// Get the origin waypoint
-		w = &EditLevel()->AllWaypoints[OriginWaypoint];
-
 		// Draw the connection between the origin waypoint and the cursor (ie. 'me')
-		draw_connection_between_tiles(w->x + 0.5, w->y + 0.5, Me.pos.x, Me.pos.y, mask);
+		draw_connection_between_tiles(wpts[OriginWaypoint].x + 0.5, wpts[OriginWaypoint].y + 0.5, Me.pos.x, Me.pos.y, mask);
 	}
 }
 
@@ -525,8 +516,9 @@ void leveleditor_display()
 	// Now we print out the current status directly onto the window:
 	//
 	if (OriginWaypoint != -1) {
-		sprintf(linebuf, _(" Source waypoint selected : X=%d Y=%d. "),
-			EditLevel()->AllWaypoints[OriginWaypoint].x, EditLevel()->AllWaypoints[OriginWaypoint].y);
+		waypoint *wpts = EditLevel()->waypoints.arr;
+
+		sprintf(linebuf, _(" Source waypoint selected : X=%d Y=%d. "), wpts[OriginWaypoint].x, wpts[OriginWaypoint].y);
 		LeftPutString(Screen, GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), linebuf);
 	}
 	// Now we print out the latest connection operation success or failure...

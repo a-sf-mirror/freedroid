@@ -264,10 +264,12 @@ static void select_obstacles_on_tile(int x, int y)
 
 static void select_waypoint_on_tile(int x, int y)
 {
+	waypoint *wpts = EditLevel()->waypoints.arr;
 	int i;
-	for (i = 0; i < EditLevel()->num_waypoints; i++) {
-		if (EditLevel()->AllWaypoints[i].x == x && EditLevel()->AllWaypoints[i].y == y) {
-			add_waypoint_to_list(&selected_elements, &EditLevel()->AllWaypoints[i]);
+
+	for (i = 0; i < EditLevel()->waypoints.size; i++) {
+		if (wpts[i].x == x && wpts[i].y == y) {
+			add_waypoint_to_list(&selected_elements, &wpts[i]);
 			state.rect_nbelem_selected++;
 			return;
 		}

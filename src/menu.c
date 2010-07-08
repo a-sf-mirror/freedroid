@@ -879,7 +879,7 @@ void Cheatmenu(void)
 	int i, l;
 	int x0, y0, line;
 	int skip_dead = 0;
-	waypoint *WpList;	// pointer on current waypoint-list  
+	waypoint *wpts;	// pointer on current waypoint-list
 
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spend in the menu.
@@ -1045,8 +1045,8 @@ void Cheatmenu(void)
 			break;
 
 		case 'w':	/* print waypoint info of current level */
-			WpList = CURLEVEL()->AllWaypoints;
-			for (i = 0; i < MAXWAYPOINTS && WpList[i].x; i++) {
+			wpts = CURLEVEL()->waypoints.arr;
+			for (i = 0; i < CURLEVEL()->waypoints.size; i++) {
 				if (i && !(i % 20)) {
 					printf_SDL(Screen, -1, -1, " ---- MORE -----\n");
 					our_SDL_flip_wrapper();
@@ -1063,11 +1063,11 @@ void Cheatmenu(void)
 				}
 
 				// Get the connections of the waypoint
-				int *connections = WpList[i].connections.arr;
+				int *connections = wpts[i].connections.arr;
 				printf_SDL(Screen, -1, -1, "%2d   %2d  %2d      %2d  %2d  %2d  %2d\n",
-					   i, WpList[i].x, WpList[i].y,
-						connections[0], connections[1],connections[2], connections[3]);
-			}	/* for (all waypoints) */
+					   i, wpts[i].x, wpts[i].y,
+						connections[0], connections[1], connections[2], connections[3]);
+			}
 
 			if (i == -1)
 				break;
