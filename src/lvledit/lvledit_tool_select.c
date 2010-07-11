@@ -269,9 +269,10 @@ static void select_waypoint_on_tile(int x, int y)
 
 	for (i = 0; i < EditLevel()->waypoints.size; i++) {
 		if (wpts[i].x == x && wpts[i].y == y) {
-			add_waypoint_to_list(&selected_elements, &wpts[i]);
-			state.rect_nbelem_selected++;
-			return;
+			if (!element_in_selection(&wpts[i])) {
+				add_waypoint_to_list(&selected_elements, &wpts[i]);
+				state.rect_nbelem_selected++;
+			}
 		}
 	}
 }
