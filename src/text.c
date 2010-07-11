@@ -885,43 +885,33 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)
  */
 int longest_line_width(char *text)
 {
-	char *longest_line = text;
+	int width = 0;
+	char *line_start = text;
 
-	// Find the longest line in text
-	short int longest = 0;
-	short int last_width = 0;
-	while (*text) {
-		if (*text == '\n') {
-			if (last_width > longest) {
-				longest_line = (char *)(text - last_width);
-				longest = last_width;
-			}
-			last_width = 0;
-		} else
-			last_width++;
-		text++;
+	for (; TRUE; text++) {
+		// Find the end of the current line.
+		if (*text != '\n' && *text != '\0') {
+			continue;
+		}
+
+		// Get the width of the current line.
+		char tmp = *text;
+		*text = '\0';
+		int line_width = TextWidth(line_start);
+		*text = tmp;
+
+		// Update the width of the longest line.
+		if (line_width > width) {
+			width = line_width;
+		}
+
+		// Handle the next line, if any remain.
+		if (*text != '\0') {
+			line_start = text + 1;
+		} else {
+			return width;
+		}
 	}
-
-	// Handle the case where the text has only one line, or the last line is
-	// the longest.
-	if (last_width > longest) {
-		longest_line = (char *)(text - last_width);
-		longest = last_width;
-	}
-
-	// Find line width
-	int width;
-	char *tmp = longest_line + longest;
-	if (*tmp != '\0') {
-		// Temporarily null-terminate the current line.
-		*tmp = '\0';
-		width = TextWidth(longest_line);
-		*tmp = '\n';
-	} else {
-		width = TextWidth(longest_line);
-	}
-
-	return width;
 }
 
 #undef _text_c
