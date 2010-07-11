@@ -465,40 +465,6 @@ void blit_leveleditor_point(int x, int y)
 #endif
 };
 
-static void skew_and_blit_line(float x1, float y1, float x2, float y2, Uint32 color, int glwidth)
-{
-	float rr, gg, bb, zoom_factor;
-	zoom_factor = (GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
-	rr = (color & 0xff0000) >> 16;
-	gg = (color & 0xff00) >> 8;
-	bb = color & 0xff;
-
-	if (!use_open_gl) {
-		int r1, c1, r2, c2;
-		translate_map_point_to_screen_pixel(x1, y1, &r1, &c1, zoom_factor);
-		translate_map_point_to_screen_pixel(x2, y2, &r2, &c2, zoom_factor);
-		DrawLine(Screen, r1, c1, r2, c2, rr, gg, bb, glwidth);
-	}
-#ifdef HAVE_LIBGL
-	else {
-		int r, c;
-		glLineWidth(glwidth);
-		glColor3ub(rr, gg, bb);
-
-		glDisable(GL_TEXTURE_2D);
-
-		glBegin(GL_LINES);
-		translate_map_point_to_screen_pixel(x1, y1, &r, &c, zoom_factor);
-		glVertex2i(r, c);
-		translate_map_point_to_screen_pixel(x2, y2, &r, &c, zoom_factor);
-		glVertex2i(r, c);
-		glEnd();
-
-		glEnable(GL_TEXTURE_2D);
-	}
-#endif
-}
-
 /**
  * More for debugging purposes than for real gameplay, we add some 
  * function to illustrate the collision rectangle of a certain obstacle
@@ -1936,6 +1902,19 @@ void update_item_text_slot_positions(void)
 	}
 };				// void update_item_text_slot_positions ( void )
 
+static void draw_line_at_map_position(float x1, float y1, float x2, float y2, Uint32 color, int thickness)
+{
+	int c1, c2, r1, r2;
+	float zoom_factor;
+
+	zoom_factor = (GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
+
+	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1, zoom_factor);
+	translate_map_point_to_screen_pixel(x2, y2, &r2, &c2, zoom_factor);
+
+	draw_line(r1, c1, r2, c2, color, thickness);
+}
+
 void draw_grid_on_the_floor(int mask)
 {
 	if (!(draw_grid && (mask & SHOW_GRID)))
@@ -1955,13 +1934,13 @@ void draw_grid_on_the_floor(int mask)
 
 	if (draw_grid >= 2)	// large grid
 		for (dd = -20; dd <= 20; dd++) {
-			skew_and_blit_line(x - 20, y - dd, x + 20, y - dd, 0x99FFFF, 1);	// light cyan
-			skew_and_blit_line(x - dd, y - 20, x - dd, y + 20, 0x99FFFF, 1);
+			draw_line_at_map_position(x - 20, y - dd, x + 20, y - dd, 0x99FFFF, 1);	// light cyan
+			draw_line_at_map_position(x - dd, y - 20, x - dd, y + 20, 0x99FFFF, 1);
 		}
 	for (dd = 0; dd <= 1; dd += .5)	// quick-placement grid
 	{
-		skew_and_blit_line(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1);	// magenta
-		skew_and_blit_line(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1);	// magenta
+		draw_line_at_map_position(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1);	// magenta
+		draw_line_at_map_position(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1);	// magenta
 	}
 
 	// display numbers, corresponding to the numpad keys for quick placing 
@@ -1988,11 +1967,11 @@ void draw_grid_on_the_floor(int mask)
 		}
 	SetCurrentFont(PreviousFont);
 
-	// now display the level borders (red line)
-	skew_and_blit_line(0, 0, 0, our_level->ylen, 0xFF0000, 3);
-	skew_and_blit_line(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
-	skew_and_blit_line(0, 0, our_level->xlen, 0, 0xFF0000, 3);
-	skew_and_blit_line(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+	// now display the level borders (red line)	
+	draw_line_at_map_position(0, 0, 0, our_level->ylen, 0xFF0000, 3);
+	draw_line_at_map_position(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+	draw_line_at_map_position(0, 0, our_level->xlen, 0, 0xFF0000, 3);
+	draw_line_at_map_position(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
 }
 
 /* -----------------------------------------------------------------

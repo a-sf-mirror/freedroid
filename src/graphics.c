@@ -1457,7 +1457,7 @@ static void draw_expanded_pixel(SDL_Surface * Surface, int x, int y, int xincr, 
  * This function draws a line in SDL mode.
  * Classical Bresenham algorithm 
  */
-void DrawLine(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int r, int g, int b, int thickness)
+static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, int r, int g, int b, int thickness)
 {
 	if (use_open_gl)
 		return;
@@ -1512,6 +1512,41 @@ void DrawLine(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int r, int 
 	}
 }
 
+/**
+ * This function draws a line in OpenGL mode.
+ */
+static void draw_line_opengl(int x1, int y1, int x2, int y2, int r, int g, int b, int width)
+{
+#ifdef HAVE_LIBGL
+	glLineWidth(width);
+	glColor3ub(r, g, b);
+
+	glDisable(GL_TEXTURE_2D);
+
+	glBegin(GL_LINES);
+	glVertex2i(x1, y1);
+	glVertex2i(x2, y2);
+	glEnd();
+
+	glEnable(GL_TEXTURE_2D);
+#endif
+}
+
+void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int width)
+{
+	float rr, gg, bb, zoom_factor;
+	zoom_factor = (GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
+	rr = (color & 0xff0000) >> 16;
+	gg = (color & 0xff00) >> 8;
+	bb = color & 0xff;
+
+	if (!use_open_gl) {
+		draw_line_sdl(Screen, x1, y1, x2, y2, rr, gg, bb, width);
+	} else {
+		draw_line_opengl(x1, y1, x2, y2, rr, gg, bb, width);
+	}
+}
+
 /*
  * Draw an horizontally hatched quad in SDL mode
  * 
@@ -1528,10 +1563,10 @@ void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int 
 
 	// Draw edges
 	//
-	DrawLine(Surface, x1, y1, x2, y2, r, g, b, 1);
-	DrawLine(Surface, x2, y2, x3, y3, r, g, b, 1);
-	DrawLine(Surface, x3, y3, x4, y4, r, g, b, 1);
-	DrawLine(Surface, x4, y4, x1, y1, r, g, b, 1);
+	draw_line_sdl(Surface, x1, y1, x2, y2, r, g, b, 1);
+	draw_line_sdl(Surface, x2, y2, x3, y3, r, g, b, 1);
+	draw_line_sdl(Surface, x3, y3, x4, y4, r, g, b, 1);
+	draw_line_sdl(Surface, x4, y4, x1, y1, r, g, b, 1);
 
 	// Reorder vertices, so that bottom-most is the first one
 	//
@@ -1637,7 +1672,7 @@ void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int 
 		float x_right = (float)REDGE.x + (float)(y_curr - REDGE.y) * (float)REDGE.deltax / (float)REDGE.deltay;
 
 		// Draw the span
-		DrawLine(Surface, x_left, y_curr, x_right, y_curr, r, g, b, 1);
+		draw_line_sdl(Surface, x_left, y_curr, x_right, y_curr, r, g, b, 1);
 	}
 
 #undef LEDGE
