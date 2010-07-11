@@ -50,8 +50,6 @@ extern int total_rooms;
 
 // Interface to the game
 void (*dungeonmap_convert) (int, int, unsigned char *);
-void (*dungeonmap_entry_at) (struct roominfo *);
-void (*dungeonmap_exit_at) (struct roominfo *);
 void (*dungeonmap_place_enemies) (struct roominfo *);
 void (*dungeonmap_gift) (struct roominfo *);
 

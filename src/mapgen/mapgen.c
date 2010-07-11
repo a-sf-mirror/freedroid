@@ -23,6 +23,13 @@ struct roominfo *rooms;
 int total_rooms = 0;
 int max_rooms = 0;
 
+const struct { int exit, enter; } teleport_pairs[] = {
+	{ ISO_TELEPORTER_1, ISO_TELEPORTER_1},	// enter: cloud, exit: cloud
+	{ ISO_TELEPORTER_1, ISO_EXIT_5 },		// enter: cloud, exit: ladder to upstairs
+	{ ISO_EXIT_3, ISO_TELEPORTER_1 },		// enter: ladder to downstairs, exit: cloud
+	{ ISO_EXIT_3, ISO_EXIT_5}				// enter: ladder to downstairs, exit: ladder to upstairs
+};
+
 static void new_level(int w, int h)
 {
 	int x, y;
@@ -297,7 +304,7 @@ void mapgen_convert(int w, int h, unsigned char *tiles)
 	mapgen_place_obstacles(w, h, tiles);
 }
 
-static void add_teleport(int telnum, int x, int y)
+static void add_teleport(int telnum, int x, int y, int tpair)
 {
 	char *warp, *fromwarp;
 	char tmp[500];
@@ -308,19 +315,19 @@ static void add_teleport(int telnum, int x, int y)
 	sprintf(tmp, "%dfromX%d", target_level->levelnum, telnum);
 	fromwarp = strdup(tmp);
 
-	mapgen_add_obstacle(x, y, ISO_TELEPORTER_1);
+	mapgen_add_obstacle(x, y, telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter);
 	add_map_label(target_level, x, y, warp);
 	add_map_label(target_level, x + 1, y, fromwarp);
 }
 
-void mapgen_entry_at(struct roominfo *r)
+void mapgen_entry_at(struct roominfo *r, int tpair)
 {
-	add_teleport(0, r->x + r->w / 2, r->y + r->h / 2);
+	add_teleport(0, r->x + r->w / 2, r->y + r->h / 2, tpair);
 }
 
-void mapgen_exit_at(struct roominfo *r)
+void mapgen_exit_at(struct roominfo *r, int tpair)
 {
-	add_teleport(1, r->x + r->w / 2, r->y + r->h / 2);
+	add_teleport(1, r->x + r->w / 2, r->y + r->h / 2, tpair);
 }
 
 void mapgen_gift(struct roominfo *r)
@@ -700,7 +707,7 @@ static void place_waypoints()
 	}
 }
 
-int generate_dungeon(int w, int h, int nbconnec)
+int generate_dungeon(int w, int h, int nbconnec, int tpair)
 {
 	int i;
 
@@ -710,7 +717,7 @@ int generate_dungeon(int w, int h, int nbconnec)
 
 	// Select entrance at random.
 	int entrance = rand() % total_rooms;
-	mapgen_entry_at(&rooms[entrance]);
+	mapgen_entry_at(&rooms[entrance], tpair);
 
 	// Select random exits
 	int exit_points[nbconnec - 1];
@@ -731,7 +738,7 @@ int generate_dungeon(int w, int h, int nbconnec)
 				done = 0;
 		} while (!done);
 
-		mapgen_exit_at(&rooms[exit_points[i]]);
+		mapgen_exit_at(&rooms[exit_points[i]], tpair);
 	}
 
 	mapgen_convert(w, h, map.m);

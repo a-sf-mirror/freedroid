@@ -791,6 +791,8 @@ typedef struct level_s {
 	struct dynarray obstacle_extensions;
 	struct dynarray map_labels;
 	struct dynarray waypoints;
+
+	int teleport_pair;
 } level, *Level;
 
 typedef struct obstacle_spec_s {

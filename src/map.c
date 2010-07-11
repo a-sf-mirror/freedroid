@@ -44,6 +44,8 @@
 #include "lvledit/lvledit_display.h"
 #include "map.h"
 
+#define 	TELEPORT_PAIR_STRING	"teleport pair:"
+
 void GetThisLevelsDroids(char *SectionPointer);
 
 struct animated_obstacle {
@@ -333,6 +335,19 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 	fp[off] = '\n';
 	fp += off + 1;
 	off = 0;
+
+	if (!strncmp(fp, TELEPORT_PAIR_STRING, strlen(TELEPORT_PAIR_STRING))) {
+		fp += strlen(TELEPORT_PAIR_STRING);
+		while (*(fp + off) != '\n')
+			off++;
+		fp[off] = 0;
+		loadlevel->teleport_pair = atoi(fp);
+		fp[off] = '\n';
+		fp += off + 1;
+		off = 0;
+	} else {
+		loadlevel->teleport_pair = 0;
+	}
 
 	if (!strncmp(fp, "dungeon generated:", 18)) {
 		fp += strlen("dungeon generated:");
@@ -1171,7 +1186,7 @@ static void generate_dungeon_if_needed(level *l)
 
 	// Generate random dungeon now
 	set_dungeon_output(l);
-	generate_dungeon(l->xlen, l->ylen, l->random_dungeon);
+	generate_dungeon(l->xlen, l->ylen, l->random_dungeon, l->teleport_pair);
 	l->dungeon_generated = 1;
 }
 
@@ -1531,6 +1546,7 @@ light radius bonus of this level: %d\n\
 minimal light on this level: %d\n\
 infinite_running_on_this_level: %d\n\
 random dungeon: %d\n\
+teleport pair: %d\n\
 dungeon generated: %d\n\
 jump target north: %d\n\
 jump target south: %d\n\
@@ -1541,6 +1557,7 @@ use underground lighting: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->x
 		lvl->infinite_running_on_this_level,
 		lvl->random_dungeon,
 		(reset_random_levels && lvl->random_dungeon) ? 0 : lvl->dungeon_generated,
+		lvl->teleport_pair,
 		lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east,
 		lvl->jump_target_west, lvl->use_underground_lighting);
 
