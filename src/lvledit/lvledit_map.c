@@ -147,7 +147,7 @@ static void move_waypoints(level *EditLevel, int x, int y)
 
 		if (!pos_inside_level(wpts[i].x, wpts[i].y, EditLevel)) {
 			// When the waypoint is outside of the map, we must remove it
-			DeleteWaypoint(EditLevel, i);
+			del_waypoint(EditLevel, wpts[i].x, wpts[i].y);
 		}
 	}
 }

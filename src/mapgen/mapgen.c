@@ -630,9 +630,8 @@ void MakeConnect(int x, int y, enum connection_type type)
 	add_neighbor(&rooms[room_1], room_2);
 	add_neighbor(&rooms[room_2], room_1);
 
-	int useless;
-	int wp1 = CreateWaypoint(target_level, wp_x, wp_y, &useless);
-	int wp2 = CreateWaypoint(target_level, wp_nx, wp_ny, &useless);
+	int wp1 = add_waypoint(target_level, wp_x, wp_y, 0);
+	int wp2 = add_waypoint(target_level, wp_nx, wp_ny, 0);
 
 	action_toggle_waypoint_connection(target_level, wp1, wp2, 0, 0);
 	action_toggle_waypoint_connection(target_level, wp2, wp1, 0, 0);
@@ -700,9 +699,7 @@ static void place_waypoints()
 			newx += (rand() % (rooms[rn].w - 2));
 			newy += (rand() % (rooms[rn].h - 2));
 
-			int useless;
-
-			CreateWaypoint(target_level, newx, newy, &useless);
+			add_waypoint(target_level, newx, newy, 0);
 		}
 	}
 }

@@ -391,7 +391,12 @@ void action_toggle_waypoint(level *EditLevel, int BlockX, int BlockY, int toggle
 	int wpnum;
 	int isnew = 0;
 
-	wpnum = CreateWaypoint(EditLevel, BlockX, BlockY, &isnew);
+	wpnum = get_waypoint(EditLevel, BlockX, BlockY);
+	if (wpnum < 0) {
+		// When the waypoint doesn't exists at the map position, we want to create it
+		wpnum = add_waypoint(EditLevel, BlockX, BlockY, toggle_random_spawn);
+		isnew = 1;
+	}
 	
 	// If its waypoint already, this waypoint must either be deleted
 	// or the random spawn bit reset...
@@ -399,7 +404,7 @@ void action_toggle_waypoint(level *EditLevel, int BlockX, int BlockY, int toggle
 		if (toggle_random_spawn) {
 			wpts[wpnum].suppress_random_spawn = !wpts[wpnum].suppress_random_spawn;
 		} else {
-			DeleteWaypoint(EditLevel, wpnum);
+			del_waypoint(EditLevel, BlockX, BlockY);
 		}
 	}
 

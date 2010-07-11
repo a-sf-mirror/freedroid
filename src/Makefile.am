@@ -29,6 +29,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	obstacle_extension.c \
 	map_label.c \
 	faction.c \
+	waypoint.c \
 	lvledit/lvledit.c lvledit/lvledit.h \
 	lvledit/lvledit_actions.c lvledit/lvledit_actions.h \
 	lvledit/lvledit_display.c lvledit/lvledit_display.h \

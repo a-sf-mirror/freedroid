@@ -82,9 +82,14 @@ static void end_waypoint_route()
 static int do_waypoint_route(int rspawn)
 {
 	int wpnum;
-	int isnew;
+	int isnew = 0;
 
-	wpnum = CreateWaypoint(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y, &isnew);
+	wpnum = get_waypoint(EditLevel(), (int)mouse_mapcoord.x, (int)mouse_mapcoord.y);
+	if (wpnum < 0) {
+		// When the waypoint doesn't exists at the map position, we want to create it
+		wpnum = add_waypoint(EditLevel(), (int)mouse_mapcoord.x, (int)mouse_mapcoord.y, rspawn);
+		isnew = 1;
+	}
 
 	if (our_mode != CONNECT_WAYPOINT) {
 		//we are starting a new route

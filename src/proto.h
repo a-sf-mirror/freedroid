@@ -378,8 +378,6 @@ moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y,
 
 void animate_obstacles(void);
 int IsVisible(gps *objpos);
-void DeleteWaypoint(level * Lev, int num);
-int CreateWaypoint(level * Lev, int x, int y, int *);
 #define translate_map_point_to_screen_pixel translate_map_point_to_screen_pixel_func
 #define translate_map_point_to_screen_pixel_x(X,Y)  ( UserCenter_x + ceilf((X)*iso_floor_tile_width_over_two) - ceilf((Y)*iso_floor_tile_width_over_two) \
 		                                                           + ceilf(Me.pos.y*iso_floor_tile_width_over_two) - ceilf(Me.pos.x*iso_floor_tile_width_over_two) )
@@ -851,5 +849,10 @@ struct map_label_s *get_map_label(level *, const char *);
 
 // lvledit_display.c
 float lvledit_zoomfact_inv();
+
+// waypoint.c
+int add_waypoint(level *, int, int, int);
+void del_waypoint(level *, int, int);
+int get_waypoint(level *, int, int);
 
 #endif
