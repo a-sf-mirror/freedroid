@@ -218,6 +218,7 @@ static void show_waypoints(int mask)
 {
 	waypoint *wpts = EditLevel()->waypoints.arr;
 	char fpath[2048];
+	float r, g, b;
 	float x, y;
 	int i, j;
 
@@ -246,18 +247,21 @@ static void show_waypoints(int mask)
 		x = wpts[i].x + 0.5;
 		y = wpts[i].y + 0.5;
 
+		// Apply disco mode when current waypoint is selected
+		object_vtx_color(&wpts[i], &r, &g, &b);
+
 		// Draw the waypoint on the map
 		if (mask && ZOOM_OUT) {
 			if (use_open_gl) {
 				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn],
-								      x, y, 1.0, 1.0, 1.0, 0.25, FALSE, lvledit_zoomfact_inv());
+								      x, y, r, g, b, 0.25, FALSE, lvledit_zoomfact_inv());
 			} else {
 				blit_zoomed_iso_image_to_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn], x, y);
 			}
 		} else {
 			if (use_open_gl) {
 				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn],
-								      x, y, 1.0, 1.0, 1.0, 0, FALSE, 1.0);
+								      x, y, r, g, b, 0, FALSE, 1.0);
 			}
 			else {
 				blit_iso_image_to_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn], x, y);

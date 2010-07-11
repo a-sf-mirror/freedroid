@@ -139,6 +139,7 @@ int level_is_visible(int level_num);
 void get_visible_levels(void);
 void reset_visible_levels(void);
 void PutIndividuallyShapedDroidBody(enemy *, SDL_Rect, int, int);
+void object_vtx_color(void *, float *, float *, float *);
 
 #define next_valid_visible_level(pos, start) ({ \
 	pos = start; \

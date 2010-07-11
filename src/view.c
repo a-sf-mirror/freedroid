@@ -326,7 +326,7 @@ static void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *Co
 	}
 }
 
-static void object_vtx_color(void *data, float *r, float *g, float *b)
+void object_vtx_color(void *data, float *r, float *g, float *b)
 {
 	if (element_in_selection(data)) {
 		*r = ((SDL_GetTicks() >> 7) % 3) / 2.0;
