@@ -31,15 +31,19 @@
  * \brief The add-on crafting user interface.
  */
 
+#define RECIPE_LIST_ROWS 5
+#define RECIPE_LIST_ROW_HEIGHT 32
+
 struct crafting_recipe {
 	int available; /// TRUE if the player has enough materials to craft the add-on.
-	char *name; /// The name of the add-on this recipe will craft.
+	int item_type; /// The type number of the add-on this recipe will craft.
 };
 
 static struct {
 	int visible;
 	int quit;
 	int selection;
+	int scroll_offset; /// The scroll offset of the recipe list, in full rows.
 	struct dynarray recipes;
 	struct auto_string *description;
 } ui = { .visible = FALSE };
@@ -54,8 +58,8 @@ static const struct {
 	{ ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, ADDON_CRAFTING_RECT_W, ADDON_CRAFTING_RECT_H },
 	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 12, 280, 38 },
 	{ ADDON_CRAFTING_RECT_X + 25, ADDON_CRAFTING_RECT_Y + 260, 130, 20 },
-	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 64, 276, 240 },
-	{ ADDON_CRAFTING_RECT_X + 30, ADDON_CRAFTING_RECT_Y + 290, 270, 150 }
+	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 70, 276, 170 },
+	{ ADDON_CRAFTING_RECT_X + 30, ADDON_CRAFTING_RECT_Y + 290, 260, 126 }
 };
 
 /**
@@ -71,7 +75,7 @@ static void select_recipe(int index)
 	struct crafting_recipe *arr = ui.recipes.arr;
 
 	ui.selection = index;
-	type = GetItemIndexByName(arr[index].name);
+	type = arr[index].item_type;
 	autostr_printf(ui.description, "%s", ItemMap[type].item_description);
 }
 
@@ -82,22 +86,12 @@ static void craft_item()
 
 	// Craft the selected item if the player can afford it.
 	if (arr[ui.selection].available) {
-		it = create_item_with_name(arr[ui.selection].name, TRUE, 1);
+		int type = arr[ui.selection].item_type;
+		it = create_item_with_name(ItemMap[type].item_name, TRUE, 1);
 		if (AddFloorItemDirectlyToInventory(&it)) {
 			DropItemToTheFloor(&it, Me.pos.x, Me.pos.y, Me.pos.z);
 		}
 	}
-}
-
-static void clear_recipe_list()
-{
-	int i;
-	struct crafting_recipe *arr = ui.recipes.arr;
-
-	for (i = 0; i < ui.recipes.size; i++) {
-		free(arr[i].name);
-	}
-	dynarray_free(&ui.recipes);
 }
 
 /**
@@ -109,13 +103,18 @@ static void clear_recipe_list()
  */
 static void build_recipe_list()
 {
-	dynarray_init(&ui.recipes, 16, sizeof(struct crafting_recipe));
+	int i;
+	struct dynarray *specs = get_addon_specs();
+	struct addon_spec *arr = specs->arr;
 
-	// TODO: Get recipes from the add-on spec array.
-	struct crafting_recipe recipe;
-	recipe.available = TRUE;
-	recipe.name = strdup("Linarian power crank");
-	dynarray_add(&ui.recipes, &recipe, sizeof(struct crafting_recipe));
+	// Read recipes from the add-on spec array.
+	dynarray_init(&ui.recipes, 16, sizeof(struct crafting_recipe));
+	for (i = 0; i < specs->size; i++) {
+		struct crafting_recipe recipe;
+		recipe.available = TRUE;
+		recipe.item_type = arr[i].type;
+		dynarray_add(&ui.recipes, &recipe, sizeof(struct crafting_recipe));
+	}
 }
 
 /**
@@ -162,8 +161,9 @@ void show_addon_crafting_ui()
 	rect.x = rects.recipe_list.x;
 	rect.y = rects.recipe_list.y;
 	rect.w = rects.recipe_list.w;
-	rect.h = 32;
-	for (i = 0; i < ui.recipes.size; i++) {
+	rect.h = RECIPE_LIST_ROW_HEIGHT;
+	int max_row = min(ui.recipes.size, ui.scroll_offset + RECIPE_LIST_ROWS);
+	for (i = ui.scroll_offset; i < max_row; i++) {
 		if (i == ui.selection) {
 			HighlightRectangle(Screen, rect);
 		}
@@ -172,8 +172,9 @@ void show_addon_crafting_ui()
 		} else {
 			SetCurrentFont(Red_BFont);
 		}
-		DisplayText(arr[i].name, rect.x + rect.h, rect.y + 4, NULL, TEXT_STRETCH);
-		surface = ItemMap[GetItemIndexByName(arr[i].name)].inv_image.Surface;
+		int type = arr[i].item_type;
+		DisplayText(ItemMap[type].item_name, rect.x + rect.h, rect.y + 4, NULL, TEXT_STRETCH);
+		surface = ItemMap[type].inv_image.Surface;
 		if (surface) {
 			our_SDL_blit_surface_wrapper(surface, NULL, Screen, &rect);
 		}
@@ -196,14 +197,36 @@ static void handle_ui()
 		return;
 	}
 
-	// Check if we need to do anything.
+	// Get the position of the cursor.
+	cursor.x = GetMousePos_x();
+	cursor.y = GetMousePos_y();
+
+	// Handle scrolling of the recipe list.
+	if (MouseCursorIsInRect(&rects.recipe_list, cursor.x, cursor.y)) {
+		if (MouseWheelUpPressed()) {
+			if (ui.scroll_offset > 0) {
+				ui.scroll_offset--;
+			}
+		}
+		if (MouseWheelDownPressed()) {
+			if (ui.scroll_offset < ui.recipes.size - RECIPE_LIST_ROWS) {
+				ui.scroll_offset++;
+			}
+		}
+	}
+
+	// Check if we need to handle mouse clicks.
 	if (!MouseLeftClicked()) {
 		return;
 	}
 
-	// Get the position of the cursor.
-	cursor.x = GetMousePos_x();
-	cursor.y = GetMousePos_y();
+	// Handle selection of recipes from the list.
+	if (MouseCursorIsInRect(&rects.recipe_list, cursor.x, cursor.y)) {
+		int clicked_row = (cursor.y - rects.recipe_list.y) / RECIPE_LIST_ROW_HEIGHT;
+		if (clicked_row + ui.scroll_offset < ui.recipes.size) {
+			select_recipe(clicked_row + ui.scroll_offset);
+		}
+	}
 
 	// Handle clicks to the apply button.
 	if (MouseCursorIsOnButton(ITEM_UPGRADE_APPLY_BUTTON, cursor.x, cursor.y)) {
@@ -261,7 +284,7 @@ void addon_crafting_ui()
 
 	// Free the description and the recipe list.
 	free_autostr(ui.description);
-	clear_recipe_list();
+	dynarray_free(&ui.recipes);
 
 	ui.visible = FALSE;
 	game_status = old_game_status;

@@ -215,6 +215,15 @@ struct addon_spec *get_addon_spec(int item_type)
 }
 
 /**
+ * \brief Gets the list of all add-on specs.
+ * \return A dynarray containing items of type addon_spec.
+ */
+struct dynarray *get_addon_specs()
+{
+	return addon_specs;
+}
+
+/**
  * \brief Registers an add-on specification.
  *
  * Only the contents of the passed spec are stored to the add-on spec array.
