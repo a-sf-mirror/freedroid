@@ -33,7 +33,7 @@ enum leveleditor_widget_type {
 	WIDGET_BUTTON,
 	WIDGET_TOOLBAR,
 	WIDGET_MAP,
-	WIDGET_OBJECTTYPESELECTORBUTTON,	//hahaha what a name! behold!
+	WIDGET_CATEGORY_SELECTOR,
 };
 
 /* A widget in the level editor */
@@ -67,7 +67,7 @@ struct leveleditor_toolbar {
 struct leveleditor_mapwidget {
 };
 
-struct leveleditor_typeselect {
+struct leveleditor_categoryselect {
 	unsigned int selected_tile_nb;
 	unsigned int toolbar_first_block;
 	char *title;
@@ -89,4 +89,4 @@ EXTERN struct leveleditor_widget *previously_active_widget;
 #include "lvledit/lvledit_widget_button.h"
 #include "lvledit/lvledit_widget_map.h"
 #include "lvledit/lvledit_widget_toolbar.h"
-#include "lvledit/lvledit_widget_typeselect.h"
+#include "lvledit/lvledit_widget_categoryselect.h"

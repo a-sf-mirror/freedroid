@@ -39,7 +39,6 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_widgets.h"
-#include "lvledit/lvledit_widget_typeselect.h"
 
 /* Undo/redo action lists */
 LIST_HEAD(to_undo);
@@ -683,8 +682,8 @@ void level_editor_place_aligned_object(int positionid)
 {
 	float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
 	float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
-	struct leveleditor_typeselect *ts = get_current_object_type();
-	int type = ts->indices[ts->selected_tile_nb];
+	struct leveleditor_categoryselect *cs = get_current_object_type();
+	int type = cs->indices[cs->selected_tile_nb];
 	moderately_finepoint pos;
 
 	positionid--;
@@ -693,7 +692,7 @@ void level_editor_place_aligned_object(int positionid)
 	pos.x = (int)Me.pos.x + position_offset_x[positionid];
 	pos.y = (int)Me.pos.y + position_offset_y[positionid];
 
-	switch (ts->type) {
+	switch (cs->type) {
 	case OBJECT_OBSTACLE:
 			action_create_obstacle_user(EditLevel(), pos.x, pos.y, type);
 			break;

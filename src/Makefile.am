@@ -44,7 +44,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	lvledit/lvledit_widget_button.c lvledit/lvledit_widget_button.h \
 	lvledit/lvledit_widget_map.c lvledit/lvledit_widget_map.h \
 	lvledit/lvledit_widget_toolbar.c lvledit/lvledit_widget_toolbar.h \
-	lvledit/lvledit_widget_typeselect.c lvledit/lvledit_widget_typeselect.h \
+	lvledit/lvledit_widget_categoryselect.c lvledit/lvledit_widget_categoryselect.h \
 	lvledit/lvledit_widgets.c lvledit/lvledit_widgets.h \
 	mapgen/mapgen.c mapgen/mapgen.h mapgen/gram_simple.c animate.c \
 	mapgen/themes.c mapgen/themes.h

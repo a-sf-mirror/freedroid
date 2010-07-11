@@ -114,31 +114,30 @@ static struct leveleditor_widget *create_toolbar()
 	return a;
 }
 
-static struct leveleditor_widget *create_objectselector(int x, char *text, enum leveleditor_object_type type, int *olist)
+static struct leveleditor_widget *create_categoryselector(int x, char *text, enum leveleditor_object_type type, int *olist)
 {
 	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
-	a->type = WIDGET_OBJECTTYPESELECTORBUTTON;
+	a->type = WIDGET_CATEGORY_SELECTOR;
 	a->rect.x = x * 80;
 	a->rect.y = 73;
 	a->rect.w = 80;
 	a->rect.h = 17;
-	a->mouseenter = leveleditor_typeselect_mouseenter;
-	a->mouseleave = leveleditor_typeselect_mouseleave;
-	a->mouserelease = leveleditor_typeselect_mouserelease;
-	a->mousepress = leveleditor_typeselect_mousepress;
-	a->mouserightrelease = leveleditor_typeselect_mouserightrelease;
-	a->mouserightpress = leveleditor_typeselect_mouserightpress;
-	a->mousewheelup = leveleditor_typeselect_mousewheelup;
-	a->mousewheeldown = leveleditor_typeselect_mousewheeldown;
+	a->mouseenter = leveleditor_categoryselect_mouseenter;
+	a->mouseleave = leveleditor_categoryselect_mouseleave;
+	a->mouserelease = leveleditor_categoryselect_mouserelease;
+	a->mousepress = leveleditor_categoryselect_mousepress;
+	a->mouserightrelease = leveleditor_categoryselect_mouserightrelease;
+	a->mouserightpress = leveleditor_categoryselect_mouserightpress;
+	a->mousewheelup = leveleditor_categoryselect_mousewheelup;
+	a->mousewheeldown = leveleditor_categoryselect_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_typeselect *o = MyMalloc(sizeof(struct leveleditor_typeselect));
+	struct leveleditor_categoryselect *cs = MyMalloc(sizeof(struct leveleditor_categoryselect));
+	cs->type = type;
+	cs->indices = olist;
+	cs->title = text;
 
-	o->type = type;
-	o->indices = olist;
-	o->title = text;
-
-	a->ext = o;
+	a->ext = cs;
 	return a;
 }
 
@@ -200,19 +199,19 @@ void leveleditor_init_widgets()
 	}
 
 	/* The object type selectors */
-	wall_selector = create_objectselector(0, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list);
+	wall_selector = create_categoryselector(0, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list);
 	list_add_tail(&wall_selector->node, &leveleditor_widget_list);
-	list_add_tail(&create_objectselector(1, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_objectselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_objectselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_objectselector(4, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(1, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(4, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++)
 		all_obstacles_list[i] = i;
 	all_obstacles_list[i] = -1;
-	list_add_tail(&create_objectselector(5, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_objectselector(6, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(5, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(6, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
 
-	list_add_tail(&create_objectselector(7, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(7, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
 
 	free(all_items_list);
 	all_items_list = MyMalloc((Number_Of_Item_Types + 1) * sizeof(int));
@@ -220,7 +219,7 @@ void leveleditor_init_widgets()
 		all_items_list[i] = i;
 	all_items_list[i] = -1;
 
-	list_add_tail(&create_objectselector(8, _("ITEM"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(8, _("ITEM"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
 
 	/* The toolbar */
 	list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
@@ -230,7 +229,7 @@ void leveleditor_init_widgets()
 	list_add_tail(&map->node, &leveleditor_widget_list);
 
 	/* Initialize elements of the interface */
-	leveleditor_typeselect_init_selected_list(wall_selector->ext);
+	leveleditor_categoryselect_init(wall_selector->ext);
 
 	leveleditor_map_init();
 
@@ -347,8 +346,8 @@ void leveleditor_display_widgets()
 		case WIDGET_MAP:
 			leveleditor_map_display(w);
 			break;
-		case WIDGET_OBJECTTYPESELECTORBUTTON:
-			leveleditor_typeselect_display(w);
+		case WIDGET_CATEGORY_SELECTOR:
+			leveleditor_categoryselect_display(w);
 			break;
 		}
 	}

@@ -662,8 +662,8 @@ static void end_wall_line(int commit)
 
 int leveleditor_place_input(SDL_Event *event)
 {
-	struct leveleditor_typeselect *ts = get_current_object_type();
-	int type = ts->indices[ts->selected_tile_nb];
+	struct leveleditor_categoryselect *cs = get_current_object_type();
+	int type = cs->indices[cs->selected_tile_nb];
 
 	if (!mouse_in_level) {
 		// We must not place objects outside of the level
@@ -672,9 +672,9 @@ int leveleditor_place_input(SDL_Event *event)
 
 	if (our_mode == DISABLED) {
 		if (EVENT_LEFT_PRESS(event)) {
-			switch (ts->type) {
+			switch (cs->type) {
 			case OBJECT_FLOOR:
-				start_rectangle_floor(ts->indices[ts->selected_tile_nb]);
+				start_rectangle_floor(type);
 				return 0;
 			case OBJECT_OBSTACLE:
 				if (horizontal_wall(type) || vertical_wall(type)) {
@@ -689,7 +689,7 @@ int leveleditor_place_input(SDL_Event *event)
 				return do_waypoint_route(type);
 				break;
 			case OBJECT_ITEM:
-				place_item(ts->indices[ts->selected_tile_nb]);
+				place_item(type);
 				return 1;
 				break;
 			default:
@@ -717,7 +717,7 @@ int leveleditor_place_input(SDL_Event *event)
 			return 1;
 		}
 	} else if (our_mode == CONNECT_WAYPOINT) {
-		if (ts->type != OBJECT_WAYPOINT) {
+		if (cs->type != OBJECT_WAYPOINT) {
 			end_waypoint_route();
 			return 1;
 		}
