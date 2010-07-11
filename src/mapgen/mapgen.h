@@ -1,21 +1,17 @@
 #ifndef MAPGEN_H
 #define MAPGEN_H
 
+#define 	MAX_DOORS	4
+
 enum TILES {
-	TILE_WALL_T,
-	TILE_WALL_L,
 	TILE_WALL,
-	// horizontal door
-	TILE_DOOR_H,
-	// vertical door
-	TILE_DOOR_V,
-	// double horizontal door
-	TILE_DOOR_H2,
-	// double vertical door
-	TILE_DOOR_V2,
-	// other
 	TILE_EMPTY,
 	TILE_FLOOR
+};
+
+struct doorinfo {
+	int x, y;
+	int room;
 };
 
 struct roominfo {
@@ -26,6 +22,9 @@ struct roominfo {
 	int *neighbors;
 	int num_neighbors;
 	int max_neighbors;
+
+	struct doorinfo doors[MAX_DOORS];
+	int num_doors;
 };
 
 struct mapgen_gamelevel {
@@ -67,6 +66,9 @@ int mapgen_are_connected(int, int);
 int mapgen_is_connected(unsigned char *);
 void mapgen_add_obstacle(double x, double y, int type);
 void mapgen_set_floor(int x, int y, int type);
+void mapgen_gift(struct roominfo *r);
+void mapgen_add_door(int, int, int, int);
+void mapgen_delete_door(int, int);
 
 int find_connection_points(int room_id, struct cplist_t cplist[100], int offset);
 

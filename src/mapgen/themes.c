@@ -34,7 +34,7 @@ static void apply_green_theme(int, int, int);
 
 const struct theme_info theme_data[] = {
 	{ ISO_V_WALL, ISO_H_WALL, ISO_V_WALL, ISO_H_WALL },
-	{ ISO_GREY_WALL_END_W, ISO_GREY_WALL_END_N, ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S },
+	{ ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S, ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S },
 	{ ISO_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
 	{ ISO_ROOM_WALL_V_RED, ISO_ROOM_WALL_H_RED, ISO_V_WALL, ISO_H_WALL },
 	{ ISO_BROKEN_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
@@ -56,12 +56,16 @@ const theme_proc themes[] = {
 const int basic_themes[] = {
 	THEME_METAL,
 	THEME_GRAY,
-	THEME_GLASS,
-	THEME_RED
+	THEME_RED,
+	THEME_GREEN
 };
 
-static void set_simple_wall(int x, int y, int wall, int theme) {
-	switch(wall) {
+static int set_generic_wall(int x, int y, int wall, int theme)
+{
+	// A value '1' of 'processed' means that data was processed, otherwise
+	// the caller should process them itself.
+	int processed = 1;
+	switch (wall) {
 		case 0:
 			break;
 		case WALL_N:
@@ -76,6 +80,17 @@ static void set_simple_wall(int x, int y, int wall, int theme) {
 		case WALL_E:
 			mapgen_add_obstacle(x + 1, y + 0.5, theme_data[theme].wall_e);
 			break;
+		default:
+			processed = 0;
+	}
+
+	return processed;
+}
+
+static void set_simple_wall(int x, int y, int wall, int theme)
+{
+	if (set_generic_wall(x, y, wall, theme)) return;
+	switch (wall) {
 		case WALL_NW:
 			mapgen_add_obstacle(x + 0.5, y, theme_data[theme].wall_n);
 			mapgen_add_obstacle(x, y + 0.5, theme_data[theme].wall_w);
@@ -93,7 +108,7 @@ static void set_simple_wall(int x, int y, int wall, int theme) {
 			mapgen_add_obstacle(x + 1, y + 0.5, theme_data[theme].wall_e);
 			break;
 		default:
-			ErrorMessage(__FUNCTION__, "Unknown type of wall %d\n", PLEASE_INFORM, IS_FATAL, wall);
+			ErrorMessage(__FUNCTION__, "Unknown type of wall %d at (%d, %d)\n ", PLEASE_INFORM, IS_FATAL, wall, x, y);
 	}
 }
 
@@ -128,13 +143,23 @@ static void apply_green_theme(int x, int y, int object)
 	mapgen_set_floor(x, y, ISO_CARPET_TILE_0002);
 } 
 
+static void set_interior_objects()
+{
+	int i;
+
+	for (i = 0; i < total_rooms; i++)
+		if(MyRandom(100) < 30)
+			mapgen_gift(&rooms[i]);
+}
+
 void mapgen_place_obstacles(int w, int h, unsigned char *tiles) 
 {
 	int x, y;
-	int wall, room;
+	int wall, room, theme;
 
 	for (x = 0; x < total_rooms; x++) {
-		rooms[x].theme = rand() % NUM_THEMES;
+		theme = rand() % (sizeof(basic_themes) / sizeof(basic_themes[0]));
+		rooms[x].theme = basic_themes[theme];
 	}
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
@@ -150,38 +175,16 @@ void mapgen_place_obstacles(int w, int h, unsigned char *tiles)
 						wall |= WALL_N;
 					if (tiles[(y + 1) * w + x] == TILE_WALL)
 						wall |= WALL_S;
-					themes[room % NUM_THEMES](x, y, wall);
+					themes[rooms[room].theme](x, y, wall);
 					break;	
 				case TILE_WALL:
 					mapgen_set_floor(x, y, 31);
-					break;
-				case TILE_DOOR_H:
-					mapgen_add_obstacle(x + 0.5, y, ISO_H_DOOR_000_OPEN);
-					mapgen_add_obstacle(x - 0.5, y, ISO_H_WALL);
-					mapgen_add_obstacle(x + 1.5, y, ISO_H_WALL);
-					mapgen_set_floor(x, y, 0);
-					mapgen_set_floor(x, y - 1, 0);
-					break;
-				case TILE_DOOR_V:
-					mapgen_add_obstacle(x, y + 0.5, ISO_V_DOOR_000_OPEN);
-					mapgen_add_obstacle(x, y - 0.5, ISO_V_WALL);
-					mapgen_add_obstacle(x, y + 1.5, ISO_V_WALL);
-					mapgen_set_floor(x, y, 0);
-					mapgen_set_floor(x - 1, y, 0);
-					break;
-				case TILE_DOOR_H2:
-					mapgen_add_obstacle(x + 0.5, y, ISO_DH_DOOR_000_OPEN);
-					mapgen_add_obstacle(x, y + 0.5, ISO_V_WALL);
-					mapgen_set_floor(x, y, 0);
-					break;
-				case TILE_DOOR_V2:
-					mapgen_add_obstacle(x, y + 0.5, ISO_DV_DOOR_000_OPEN);
-					mapgen_add_obstacle(x + 0.5, y, ISO_H_WALL);
-					mapgen_set_floor(x, y, 0);
 					break;
 				default:
 					mapgen_set_floor(x, y, tiles[y * w + x]);
 			}
 		}
 	} 
+
+	set_interior_objects();
 } 

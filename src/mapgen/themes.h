@@ -46,7 +46,7 @@ enum theme {
 };
 
 struct theme_info {
-	int	wall_w;
+	int wall_w;
 	int wall_n;
 	int wall_e;
 	int wall_s;

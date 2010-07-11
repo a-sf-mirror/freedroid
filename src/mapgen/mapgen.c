@@ -13,6 +13,8 @@
 
 #include "lvledit/lvledit_actions.h"
 
+#define		SET_PILLAR_PROB		70
+
 static struct mapgen_gamelevel map;
 static level *target_level;
 static int curobstacle;
@@ -90,57 +92,24 @@ void mapgen_set_floor(int x, int y, int type)
 static void split_wall(int w, int h, unsigned char *tiles) 
 {
 	int y, x; 
-	int tile, room;
+	int room;
 #define SET(X,Y,TILE) mapgen_put_tile(X, Y, TILE, room)
+
+	// Reduce the size of the rooms, not lying on the map's boundary.
+	for (x = 0; x < total_rooms; x++) {
+		if (rooms[x].x + rooms[x].w < w - 1 )
+			rooms[x].w--;
+		if (rooms[x].y + rooms[x].h < h - 1)
+			rooms[x].h--;
+	}
 
 	for (y = 1; y < h - 1; y++) 
 		for (x = 1; x < w - 1; x++) {
-			tile = tiles[y * w + x];
 			room = mapgen_get_room(x, y);
-			switch(tile) {
-				case TILE_WALL_L:
-					SET(x - 1, y, TILE_WALL);
-					SET(x    , y, TILE_WALL);
-					break;
-				case TILE_WALL_T:
-					SET(x, y - 1, TILE_WALL);
-					SET(x, y    , TILE_WALL);
-					break;
-				case TILE_WALL:
-					SET(x - 1, y    , TILE_WALL);
-					SET(x    , y - 1, TILE_WALL);
-					SET(x - 1, y - 1, TILE_WALL);
-					break;
-				case TILE_DOOR_H:
-					SET(x - 1, y    , TILE_FLOOR);
-					SET(x    , y - 1, TILE_FLOOR);
-					SET(x - 1, y - 1, TILE_FLOOR);
-					SET(x + 1, y - 1, TILE_FLOOR);
-					SET(x + 1, y    , TILE_FLOOR); 
-					SET(x + 2, y    , TILE_WALL_T);
-					break;
-				case TILE_DOOR_V:
-					SET(x    , y - 1, TILE_FLOOR);
-					SET(x - 1, y    , TILE_FLOOR);
-					SET(x    , y + 1, TILE_FLOOR);
-					SET(x - 1, y + 1, TILE_FLOOR);
-					SET(x - 1, y - 1, TILE_FLOOR);
-					SET(x    , y + 2, TILE_WALL_L);
-					break;
-				case TILE_DOOR_H2:
-					SET(x - 1, y    , TILE_DOOR_H2);
-					SET(x    , y - 1, TILE_FLOOR);
-					SET(x - 1, y - 1, TILE_FLOOR);
-					SET(x    , y    , TILE_FLOOR);
-					SET(x + 1, y    , TILE_WALL_T);
-					break;
-				case TILE_DOOR_V2:
-					SET(x    , y - 1, TILE_DOOR_V2);
-					SET(x    , y + 1, TILE_FLOOR);
-					SET(x - 1, y - 1, TILE_FLOOR);
-					SET(x    , y    , TILE_FLOOR);
-					SET(x    , y + 1, TILE_WALL_L);
-					break;
+			if (tiles[y * w + x] == TILE_WALL) {
+				SET(x - 1, y    , TILE_WALL);
+				SET(x    , y - 1, TILE_WALL);
+				SET(x - 1, y - 1, TILE_WALL);
 			}
 		}
 }
@@ -151,62 +120,180 @@ static void split_wall(int w, int h, unsigned char *tiles)
 // becomes smaller and free space between rooms increases.
 static void reduce_room_space() {
 	int x, y;
-	int i, j, k, tile;
-	int flag, bevel;
+	int i, j;
 	int point_x[4];
 	int point_y[4];
+	int count[4];
 	const int point_dx[4] = { 1,  0, -1,  0};
 	const int point_dy[4] = { 0,  1,  0, -1};
+	const int check_dir[4] = { 3, 1, 2, 0 };
 	for (i = 0; i < total_rooms; i++) {
 		if (rooms[i].w < 4 || rooms[i].h < 4)
 			continue;
 
 		// 4 start points, one per room corner
 		point_x[0] = rooms[i].x;
-		point_y[0] = rooms[i].y - 1;
+		point_y[0] = rooms[i].y;
+		count[0] = rooms[i].w;
 
-		point_x[1] = rooms[i].x - 1;
+		point_x[1] = rooms[i].x + rooms[i].w - 1;
 		point_y[1] = rooms[i].y; 
+		count[1] = rooms[i].h;
 
-		point_x[2] = rooms[i].x + rooms[i].w;
+		point_x[2] = rooms[i].x + rooms[i].w - 1;
 		point_y[2] = rooms[i].y + rooms[i].h - 1;
+		count[2] = rooms[i].w;
 
-		point_x[3] = rooms[i].x + rooms[i].w - 1;
-		point_y[3] = rooms[i].y + rooms[i].h;
+		point_x[3] = rooms[i].x;
+		point_y[3] = rooms[i].y + rooms[i].h - 1;
+		count[3] = rooms[i].h;
 
 		for (j = 0; j < 4; j++) {
+			if (MyRandom(100) > 40)
+				continue;
+
 			x = point_x[j];
 			y = point_y[j];
-			// Inrease(probably by 1) amount of cells that should not be changed near a door
-			bevel = MyRandom(2);
-			if (MyRandom(100) < 25) {
-				// Go alonside room border and fill neighbour cell with a wall tile
-				while (labs(x - point_x[j]) < rooms[i].w && labs(y - point_y[j]) < rooms[i].h) {
-					if (mapgen_get_tile(x, y) == TILE_WALL) {
-						flag = 1;
-						for (k = -2 - bevel; k <= 1 + bevel; k++) {
-							tile = mapgen_get_tile(x + k*point_dx[j], y + k*point_dy[j]);
-							// Shouldn't place wall if there is a door somewhere near
-							if (tile == TILE_DOOR_H || tile == TILE_DOOR_V || tile == TILE_DOOR_H2 || tile == TILE_DOOR_V2) {
-								flag = 0;
-								break;
-							}
-						}
-						if (flag) 
-							mapgen_put_tile(x + point_dy[j], y + point_dx[j], TILE_WALL, -1);
-					}
-					x += point_dx[j];
-					y += point_dy[j];
-				}
+			if(mapgen_get_tile(x + point_dx[check_dir[j]], y + point_dy[check_dir[j]]) != TILE_WALL)
+				continue;
+
+			switch(j) {
+				case 0:
+					rooms[i].y++;
+					rooms[i].h--;
+					break;
+				case 1:
+					rooms[i].w--;
+					break;
+				case 2:
+					rooms[i].h--;
+					break;
+				case 3:
+					rooms[i].x++;
+					rooms[i].w--;
+					break;
+			}
+			while (count[j]--) {
+				mapgen_put_tile(x, y, TILE_WALL, -1);
+				x +=  point_dx[j];
+				y +=  point_dy[j];
 			}
 		}
 	}
 }
 
+static void place_doors()
+{
+	int i, j, room;
+	int x, y;
+	int w;
+	int x1, x2, y1, y2;
+
+	for (i = 0; i < total_rooms; i++) {
+		for (j = 0; j < rooms[i].num_doors; j++) {
+			x = rooms[i].doors[j].x;
+			y = rooms[i].doors[j].y;
+			room = rooms[i].doors[j].room;
+			w = 2;
+
+			if (rooms[i].x < x && x <= (rooms[i].x + rooms[i].w - 1)) {
+				// Place horizontal wall
+				// Shift to left by 1 due to split done
+				x1 = x - w;
+				x2 = x;
+				if (y < rooms[i].y) {
+					y1 = rooms[room].y + rooms[room].h;
+					y2 = rooms[i].y;
+				} else {
+					y1 = rooms[i].y + rooms[i].h;
+					y2 = rooms[room].y;
+				}
+				mapgen_add_obstacle(x1 + 0.5, y1 + (y2 - y1) / 2.0, ISO_DH_DOOR_000_OPEN);
+
+				if (MyRandom(100) < SET_PILLAR_PROB &&  y2 - y1 > 2) {
+					if (rooms[i].x <= x - w - 1 && rooms[i].x + rooms[i].w > x &&
+						rooms[room].x <= x - w - 1 && rooms[room].x + rooms[room].w > x) {
+						mapgen_put_tile(x1-1, y1, TILE_FLOOR, room);
+						mapgen_add_obstacle(x1 - 0.5, y1 + 0.5, ISO_PILLAR_SHORT);
+
+						mapgen_put_tile(x1 + w, y1, TILE_FLOOR, room);
+						mapgen_add_obstacle(x1 + w + 0.5, y1 + 0.5, ISO_PILLAR_SHORT);
+
+						mapgen_put_tile(x1-1, y2 - 1, TILE_FLOOR, room);
+						mapgen_add_obstacle(x1 - 0.5, y2 - 0.5, ISO_PILLAR_SHORT);
+
+						mapgen_put_tile(x1 + w, y2 - 1, TILE_FLOOR, room);
+						mapgen_add_obstacle(x1 + w + 0.5, y2 - 0.5, ISO_PILLAR_SHORT);
+					}
+				} 
+			} else {
+				// Place vertical wall
+				// Shift to top by 1 due to split done
+				y1 = y - w;
+				y2 = y;
+				if (x < rooms[i].x) {
+					x1 = rooms[room].x + rooms[room].w;
+					x2 = rooms[i].x;
+				} else {
+					x1 = rooms[i].x + rooms[i].w;
+					x2 = rooms[room].x;
+				}
+				mapgen_add_obstacle(x1 + (x2 - x1) / 2.0, y1 + 0.5, ISO_DV_DOOR_000_OPEN);
+
+				if (MyRandom(100) < SET_PILLAR_PROB &&  x2 - x1 > 2) {
+					if (rooms[i].y <= y - w - 1 && rooms[i].y + rooms[i].h > y &&
+						rooms[room].y <= y - w - 1 && rooms[room].y + rooms[room].h > y) {
+						mapgen_put_tile(x1, y1 - 1, TILE_FLOOR, room);
+						mapgen_add_obstacle(x1 + 0.5, y1 - 0.5, ISO_PILLAR_SHORT);
+
+						mapgen_put_tile(x1, y1 + w, TILE_FLOOR, room);
+						mapgen_add_obstacle(x1 + 0.5, y1 + w + 0.5, ISO_PILLAR_SHORT);
+
+						mapgen_put_tile(x2 - 1, y1 - 1, TILE_FLOOR, room);
+						mapgen_add_obstacle(x2 - 0.5, y1 - 0.5, ISO_PILLAR_SHORT);
+
+						mapgen_put_tile(x2 - 1, y1 + w, TILE_FLOOR, room);
+						mapgen_add_obstacle(x2 - 0.5, y1 + w + 0.5, ISO_PILLAR_SHORT);
+					}
+				}
+			}
+
+			for (y = y1; y < y2; y++)
+				for (x = x1; x < x2; x++)
+					mapgen_put_tile(x, y, TILE_FLOOR, room);
+		}
+	}
+}
+
+void room_to_console(int w, int h) {
+	int x, y;
+	char c;
+	printf("\n");
+	for (x = 0; x < w + 2; x++)
+		putchar('#');
+	putchar('\n');
+	for (y = 0; y < h; y++) {
+		putchar('#');
+		for (x = 0; x < w; x++) {
+			switch(mapgen_get_tile(x, y)) {
+				case TILE_FLOOR: c = '.'; break;
+				default: c = ' ';
+			}
+			putchar(c);
+		}
+		putchar('#');
+		putchar('\n');
+	}
+	for (x = 0; x < w + 2; x++)
+		putchar('#');
+}
+
+
 void mapgen_convert(int w, int h, unsigned char *tiles)
 {
 	reduce_room_space();
 	split_wall(w, h, tiles);
+	place_doors();
 	mapgen_place_obstacles(w, h, tiles);
 }
 
@@ -267,13 +354,14 @@ int mapgen_add_room(int x, int y, int w, int h)
 	total_rooms++;
 
 	// don't forget to reserve space for bounding walls
-	rooms[newid].x = x + 1;
-	rooms[newid].y = y + 1;
-	rooms[newid].w = w - 2;
-	rooms[newid].h = h - 2;
+	rooms[newid].x = x;
+	rooms[newid].y = y;
+	rooms[newid].w = w;
+	rooms[newid].h = h;
 	rooms[newid].num_neighbors = 0;
 	rooms[newid].max_neighbors = 8;
 	rooms[newid].neighbors = malloc(rooms[newid].max_neighbors * sizeof(int));
+	rooms[newid].num_doors = 0;
 
 	return newid;
 }
@@ -457,6 +545,33 @@ int mapgen_are_connected(int room1, int room2)
 	return 0;
 }
 
+void mapgen_add_door(int x, int y, int from, int to)
+{
+	int num = rooms[from].num_doors;
+	if (num == MAX_DOORS) {
+			ErrorMessage(__FUNCTION__, "Maximal number of doors for a room exceeded\n", PLEASE_INFORM, IS_FATAL);
+			return;
+	}
+	rooms[from].doors[num].x = x;
+	rooms[from].doors[num].y = y;
+	rooms[from].doors[num].room = to;
+	rooms[from].num_doors++;
+}
+
+void mapgen_delete_door(int from, int to)
+{
+	struct roominfo *ri = &rooms[from];
+	int i;
+	for (i = 0; i < ri->num_doors; i++)
+		if (ri->doors[i].room == to)
+			break;
+	if (i < ri->num_doors) {
+		ri->num_doors--;
+		for (; i < ri->num_doors; i++)
+			ri->doors[i] = ri->doors[i + 1];
+	}
+}
+
 static void add_neighbor(struct roominfo *r, int neigh)
 {
 	int newid = r->num_neighbors;
@@ -475,7 +590,6 @@ void MakeConnect(int x, int y, enum connection_type type)
 {
 	int wp_x, wp_y, wp_nx, wp_ny;
 	int room_1, room_2;
-	int tile = 0;
 
 	wp_x = wp_nx = x;
 	wp_y = wp_ny = y;
@@ -483,23 +597,19 @@ void MakeConnect(int x, int y, enum connection_type type)
 	switch (type) {
 		case UP:
 			wp_ny = y - 1;
-			wp_y = y + 1;
-			tile = (rand() % 2) ? TILE_DOOR_H : TILE_DOOR_H2;
+			wp_y = y + 1; 
 			break;
 		case DOWN:
 			wp_ny = y + 1;
 			wp_y = y - 1;
-			tile = (rand() % 2) ? TILE_DOOR_H : TILE_DOOR_H2;
 			break;
 		case LEFT:
 			wp_nx = x - 1;
 			wp_x = x + 1;
-			tile = (rand() % 2) ? TILE_DOOR_V : TILE_DOOR_V2;
 			break;
 		case RIGHT:
 			wp_nx = x + 1;
 			wp_x = x - 1;
-			tile = (rand() % 2) ? TILE_DOOR_V : TILE_DOOR_V2;
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unknown connection type %d\n", PLEASE_INFORM, IS_FATAL, type);
@@ -509,7 +619,7 @@ void MakeConnect(int x, int y, enum connection_type type)
 
 	room_1 = mapgen_get_room(wp_nx, wp_ny);
 	room_2 = mapgen_get_room(wp_x, wp_y);
-	mapgen_put_tile(x, y, tile, room_2);
+	mapgen_add_door(x, y, room_2, room_1);
 	add_neighbor(&rooms[room_1], room_2);
 	add_neighbor(&rooms[room_2], room_1);
 

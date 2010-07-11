@@ -8,6 +8,8 @@
 
 #include "mapgen/mapgen.h"
 
+#define		MIN_ROOM_WIDE	6
+
 /* Minimum surface of a room */
 static const int Smin = 100;
 
@@ -113,14 +115,14 @@ static enum cut_axis cut(int dim_x, int dim_y, int *r)
 		else
 			ret = !ret;
 	}
-	// Rooms need to be 4 tiles wide at least
+	// Rooms have a minimal edge size
 	switch (ret) {
 	case CUT_HORIZONTALLY:
-		if ((*r / 100.0 * dim_y) < 4 || ((100.0 - *r) / 100.0 * dim_y) < 4)
+		if ((*r / 100.0 * dim_y) < MIN_ROOM_WIDE || ((100.0 - *r) / 100.0 * dim_y) < MIN_ROOM_WIDE)
 			return DO_NOT_CUT;
 		break;
 	case CUT_VERTICALLY:
-		if ((*r / 100.0 * dim_x) < 4 || ((100.0 - *r) / 100.0 * dim_x) < 4)
+		if ((*r / 100.0 * dim_x) < MIN_ROOM_WIDE || ((100.0 - *r) / 100.0 * dim_x) < MIN_ROOM_WIDE)
 			return DO_NOT_CUT;
 		break;
 	default:
@@ -134,11 +136,11 @@ static void deriv_P(int id)
 {
 	int p;
 	int prop;
-	int x = rooms[id].x - 1;
-	int y = rooms[id].y - 1;
+	int x = rooms[id].x;
+	int y = rooms[id].y;
 	int creator = id;
-	int dim_x = rooms[creator].w + 2;
-	int dim_y = rooms[creator].h + 2;
+	int dim_x = rooms[creator].w;
+	int dim_y = rooms[creator].h;
 	int newroom;
 	p = cut(dim_x, dim_y, &prop);
 
@@ -159,13 +161,15 @@ static void deriv_P(int id)
 	switch (p) {
 	case CUT_HORIZONTALLY:
 		h_creator = rooms[creator].h * prop / 100.0;
-		h_newroom = dim_y - h_creator + 1;
-		y_newroom = y + h_creator - 1;
+
+		h_newroom = dim_y - h_creator - 1;
+		y_newroom = y + h_creator + 1;
 		break;
 	case CUT_VERTICALLY:
 		w_creator = rooms[creator].w * prop / 100.0;
-		w_newroom = dim_x - w_creator + 1;
-		x_newroom = x + w_creator - 1;
+
+		w_newroom = dim_x - w_creator - 1;
+		x_newroom = x + w_creator + 1;
 		break;
 	default:
 		return;
@@ -177,8 +181,8 @@ static void deriv_P(int id)
 
 	newroom = mapgen_add_room(x_newroom, y_newroom, w_newroom, h_newroom);
 
-	rooms[creator].w = w_creator-2;
-	rooms[creator].h = h_creator-2;
+	rooms[creator].w = w_creator;
+	rooms[creator].h = h_creator;
 
 	mapgen_draw_room(newroom);
 	mapgen_draw_room(creator);
@@ -203,6 +207,7 @@ static void adj(struct cplist_t *cplist, int *nx, int *ny)
  */
 void fusion(int id, int cible)
 {
+	int new_owner;
 	struct cplist_t cplist[100];
 	int correct_directory[100];
 
@@ -214,32 +219,31 @@ void fusion(int id, int cible)
 	int k = 0;
 	int l = 0;		//index du tableau correct_directory
 	int x, y; 
-	int minx = 10000;
-	int miny = 10000;	
-	int maxx = -1;
-	int maxy = -1;
 	while (k < nb_max) {
 		x = cplist[k].x;
 		y = cplist[k].y;
 		if (cplist[k].r == cible) {
 			correct_directory[l] = k;
-			minx = min(minx, cplist[k].x);
-			maxx = max(maxx, cplist[k].x);
-			miny = min(miny, cplist[k].y);
-			maxy = max(maxy, cplist[k].y);
 			l++;
 		}
 		k++;
 	}
 
+	// Owner of the new space should be that room whose side length
+	// is equal to the length of the deleted wall
+	if (l == rooms[id].w || l == rooms[id].h)
+		new_owner = id;
+	else
+		new_owner = cible;
 	for (k = 0; k < l; k++) {
 		x = cplist[correct_directory[k]].x;
 		y = cplist[correct_directory[k]].y;
-		mapgen_put_tile(x, y, TILE_FLOOR, id);
+		mapgen_put_tile(x, y, TILE_FLOOR, new_owner);
 	}
 
 	if (l) {
-		k = cplist[correct_directory[0]].t;
+		mapgen_delete_door(id, cible);
+		mapgen_delete_door(cible, id);
 	}
 }
 
@@ -256,7 +260,9 @@ static void add_rel(int x, int y, enum connection_type type, int r, int cible)
 static void bulldozer(unsigned char *seen, int r)
 {
 	struct cplist_t cplist[300];
-	int max_connections = find_connection_points(r, cplist, 2);
+	int max_connections = find_connection_points(r, cplist, 3);
+	if (!max_connections)
+		ErrorMessage(__FUNCTION__, "Room %d does not have any connection points.\n", PLEASE_INFORM, IS_FATAL, r);
 
 	// Mark the room as seen by a bulldozer
 	seen[r] = 1;
@@ -305,11 +311,11 @@ static void launch_buldo()
 				int n;
 				struct cplist_t neigh[100];
 				int nbconn, prevneigh = -1;
-				nbconn = find_connection_points(i, neigh, 2);
+				nbconn = find_connection_points(i, neigh, 3);
 				for (n = 0; n < nbconn; n++) {
-					if (neigh[n].r == prevneigh)
+					if (neigh[n].r == prevneigh) {
 						continue;
-					else {
+					} else {
 						int next = 0;
 						while (n + next < nbconn && neigh[n + next].r == neigh[n].r)
 							next++;
@@ -343,7 +349,7 @@ int generate_dungeon_gram(int dim_x, int dim_y)
 	total_rooms = 0;
 
 	// Create first room
-	mapgen_add_room(0, 0, dim_x_init, dim_y_init);
+	mapgen_add_room(1, 1, dim_x - 2, dim_y - 2);
 	mapgen_draw_room(0);
 
 	// Recursively cut
