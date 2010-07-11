@@ -944,7 +944,8 @@ void validate_dialogs()
 	/* drop_dead cannot be tested because it means we would try to kill our dummy bot
 	 several times, which is not allowed by the engine */
 	run_lua("function drop_dead(a)\nend\n");
-	
+
+	run_lua("function user_input_string(a)\nreturn \"dummy\";\nend\n");
 
 	/* This dummy will be used to test break_off_and_attack() functions and such. */
 	BROWSE_ALIVE_BOTS(dummy_partner) {
