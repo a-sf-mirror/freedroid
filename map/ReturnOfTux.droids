@@ -57,35 +57,35 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 476
 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0NorthGateGuard" RushTux="no" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" RushTux="no" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="L0TeleporterGuard" RushTux="no" UseDialog="Town-TeleporterGuard" ShortLabel=_"Town Teleporter Guard"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="BenderStartGameSquare" RushTux="no" UseDialog="Bender" ShortLabel=_"Red Guard Member"
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="ChandraStartGameSquare" RushTux="no" UseDialog="Chandra" ShortLabel=_"Chandra -- Town Sage"
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="DocMooreStartGameSquare" RushTux="no" UseDialog="DocMoore" ShortLabel=_"Medic"
-SForce: T=MUM Fixed=0 Marker=9999 Faction="civilian" StartLabel="StoneStartGameSquare" RushTux="no" UseDialog="Stone" ShortLabel=_"Shopowner"
-SForce: T=FSC Fixed=0 Marker=9998 Faction="civilian" StartLabel="SorensonStartGameSquare" RushTux="no" UseDialog="Sorenson" ShortLabel=_"COBAL Programmer"
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare1" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- North Gate Guard Bot"
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare2" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare3" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare4" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- East Gate Guard Bot"
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare5" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
-SForce: T=614 Fixed=0 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare6" RushTux="no" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="RichardStartGameSquare" RushTux="no" UseDialog="Richard" ShortLabel=_"*nix Admin"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="BenjaminCitadelStartGameSquare" RushTux="no" UseDialog="Benjamin" ShortLabel=_"Red Guard Member"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="DixonStartGameSquare" RushTux="no" UseDialog="Dixon" ShortLabel=_"Red Guard Member"
-SForce: T=COO Fixed=0 Marker=9999 Faction="civilian" StartLabel="MichelangeloStartGameSquare" RushTux="no" UseDialog="Michelangelo" ShortLabel=_"Cook"
-SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="SkippyStartGameSquare" RushTux="no" UseDialog="Skippy" ShortLabel=_"Guy with Hat"
-SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="DuncanStartGameSquare" RushTux="no" UseDialog="Duncan" ShortLabel=_"Sketchy Guy"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="PendragonStartGameSquare" RushTux="no" UseDialog="Pendragon" ShortLabel=_"Red Guard Member"
-SForce: T=WOR Fixed=0 Marker=9999 Faction="civilian" StartLabel="BruceStartGameSquare" RushTux="no" UseDialog="Bruce" ShortLabel=_"Mine Worker"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="ButchStartGameSquare" RushTux="no" UseDialog="Butch" ShortLabel=_"Red Guard Member"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="NewSpencer" RushTux="no" UseDialog="Spencer" ShortLabel=_"Spencer -- Leader of the Red Guard"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="LukasStartGameSquare" RushTux="no" UseDialog="Lukas" ShortLabel=_"Lukas -- Head of the Armory"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="TybaltStartGameSquare" RushTux="no" UseDialog="Tybalt" ShortLabel=_"Red Guard Member"
-SForce: T=BAR Fixed=0 Marker=9999 Faction="civilian" StartLabel="EwaldStartGameSquare" RushTux="no" UseDialog="Ewald" ShortLabel=_"Barkeeper"
-SForce: T=FSC Fixed=0 Marker=9999 Faction="civilian" StartLabel="TamaraStartGameSquare" RushTux="no" UseDialog="Tamara" ShortLabel=_"Librarian"
-SForce: T=WOR Fixed=0 Marker=9999 Faction="resistance" StartLabel="CitadelPrison" RushTux="no" UseDialog="Peter" ShortLabel=_"Peter -- Inprisoned Rebel"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0NorthGateGuard" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0TeleporterGuard" UseDialog="Town-TeleporterGuard" ShortLabel=_"Town Teleporter Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="BenderStartGameSquare" UseDialog="Bender" ShortLabel=_"Red Guard Member"
+SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="ChandraStartGameSquare" UseDialog="Chandra" ShortLabel=_"Chandra -- Town Sage"
+SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="DocMooreStartGameSquare" UseDialog="DocMoore" ShortLabel=_"Medic"
+SForce: T=MUM Marker=9999 Faction="civilian" StartLabel="StoneStartGameSquare" UseDialog="Stone" ShortLabel=_"Shopowner"
+SForce: T=FSC Marker=9998 Faction="civilian" StartLabel="SorensonStartGameSquare" UseDialog="Sorenson" ShortLabel=_"COBAL Programmer"
+SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare1" UseDialog="Town-614" ShortLabel=_"614 -- North Gate Guard Bot"
+SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare2" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
+SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare3" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
+SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare4" UseDialog="Town-614" ShortLabel=_"614 -- East Gate Guard Bot"
+SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare5" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
+SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare6" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
+SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="RichardStartGameSquare" UseDialog="Richard" ShortLabel=_"*nix Admin"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="BenjaminCitadelStartGameSquare" UseDialog="Benjamin" ShortLabel=_"Red Guard Member"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="DixonStartGameSquare" UseDialog="Dixon" ShortLabel=_"Red Guard Member"
+SForce: T=COO Marker=9999 Faction="civilian" StartLabel="MichelangeloStartGameSquare" UseDialog="Michelangelo" ShortLabel=_"Cook"
+SForce: T=WOR Marker=9999 Faction="civilian" StartLabel="SkippyStartGameSquare" UseDialog="Skippy" ShortLabel=_"Guy with Hat"
+SForce: T=WOR Marker=9999 Faction="civilian" StartLabel="DuncanStartGameSquare" UseDialog="Duncan" ShortLabel=_"Sketchy Guy"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="PendragonStartGameSquare" UseDialog="Pendragon" ShortLabel=_"Red Guard Member"
+SForce: T=WOR Marker=9999 Faction="civilian" StartLabel="BruceStartGameSquare" UseDialog="Bruce" ShortLabel=_"Mine Worker"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="ButchStartGameSquare" UseDialog="Butch" ShortLabel=_"Red Guard Member"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="NewSpencer" UseDialog="Spencer" ShortLabel=_"Spencer -- Leader of the Red Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="LukasStartGameSquare" UseDialog="Lukas" ShortLabel=_"Lukas -- Head of the Armory"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="TybaltStartGameSquare" UseDialog="Tybalt" ShortLabel=_"Red Guard Member"
+SForce: T=BAR Marker=9999 Faction="civilian" StartLabel="EwaldStartGameSquare" UseDialog="Ewald" ShortLabel=_"Barkeeper"
+SForce: T=FSC Marker=9999 Faction="civilian" StartLabel="TamaraStartGameSquare" UseDialog="Tamara" ShortLabel=_"Librarian"
+SForce: T=WOR Marker=9999 Faction="resistance" StartLabel="CitadelPrison" UseDialog="Peter" ShortLabel=_"Peter -- Inprisoned Rebel"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -107,7 +107,7 @@ Random Droid Type: 123
 Random Droid Type: 247
 Random Droid Type: 249
 
-SForce: T=883 Fixed=0 Marker=1002 Faction="ms" StartLabel="Lv2DalekStartGameSquare" RushTux="no" ShortLabel=_"Dark Apprentice of MegaSys"
+SForce: T=883 Marker=1002 StartLabel="Lv2DalekStartGameSquare" ShortLabel=_"Dark Apprentice of MegaSys"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -128,7 +128,7 @@ Random Droid Type: 420
 Random Droid Type: 476
 Random Droid Type: 302
 
-SForce: T=598 Fixed=0 Marker=1004 Faction="ms" StartLabel="DSB-MDCT-Guard" RushTux="no" ShortLabel=_"DSB Control Terminal Guard"
+SForce: T=598 Marker=1004 StartLabel="DSB-MDCT-Guard" ShortLabel=_"DSB Control Terminal Guard"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -151,7 +151,7 @@ Random Droid Type: 123
 Random Droid Type: 247
 Random Droid Type: 249
 
-SForce: T=883 Fixed=0 Marker=1006 Faction="ms" StartLabel="ToolkitBossMonsterStartGameSquare" RushTux="no" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
+SForce: T=883 Marker=1006 StartLabel="ToolkitBossMonsterStartGameSquare" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -170,10 +170,10 @@ Minimum number of Random Droids=60
 Random Droid Type: 123
 Random Droid Type: 139
 
-SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" RushTux="no" UseDialog="Engel" ShortLabel=_"Blue Guy"
-SForce: T=GUB Fixed=0 Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" RushTux="no" UseDialog="Geist" ShortLabel=_"Blue Guy"
-SForce: T=302 Fixed=0 Marker=2008 Faction="ms" StartLabel="The302InFrontOfTheTempleStart" RushTux="no"
-SForce: T=302 Fixed=0 Marker=3008 Faction="ms" StartLabel="Lev8-302" RushTux="no"
+SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" UseDialog="Engel" ShortLabel=_"Blue Guy"
+SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" UseDialog="Geist" ShortLabel=_"Blue Guy"
+SForce: T=302 Marker=2008 StartLabel="The302InFrontOfTheTempleStart"
+SForce: T=302 Marker=3008 StartLabel="Lev8-302"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -184,9 +184,9 @@ Random Droid Type: 123
 Random Droid Type: 139
 Random Droid Type: 247
 
-SForce: T=329 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker1StartGameSquare" RushTux="no"
-SForce: T=302 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker2StartGameSquare" RushTux="no"
-SForce: T=249 Fixed=0 Marker=1009 Faction="ms" StartLabel="Level9Stalker3StartGameSquare" RushTux="no"
+SForce: T=329 Marker=1009 StartLabel="Level9Stalker1StartGameSquare"
+SForce: T=302 Marker=1009 StartLabel="Level9Stalker2StartGameSquare"
+SForce: T=249 Marker=1009 StartLabel="Level9Stalker3StartGameSquare"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -209,9 +209,9 @@ Maximum number of Random Droids=8
 Minimum number of Random Droids=6
 Random Droid Type: 123
 
-SForce: T=PRO Fixed=0 Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux="yes" UseDialog="Francis" ShortLabel=_"Old Guy"
-SForce: T=FEM Fixed=0 Marker=9999 Faction="civilian" StartLabel="Iris" RushTux="no" UseDialog="Iris" ShortLabel=_"Hot Girl"
-SForce: T=614 Fixed=0 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" RushTux="no" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot"
+SForce: T=PRO Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux=1 UseDialog="Francis" ShortLabel=_"Old Guy"
+SForce: T=FEM Marker=9999 Faction="civilian" StartLabel="Iris" UseDialog="Iris" ShortLabel=_"Hot Girl"
+SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -241,10 +241,10 @@ Random Droid Type: 420
 Random Droid Type: 476
 Random Droid Type: 493
 
-SForce: T=711 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-711" RushTux="no"
-SForce: T=742 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-742" RushTux="no"
-SForce: T=821 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-821" RushTux="no"
-SForce: T=834 Fixed=0 Marker=1015 Faction="ms" StartLabel="L15-834" RushTux="no"
+SForce: T=711 Marker=1015 StartLabel="L15-711"
+SForce: T=742 Marker=1015 StartLabel="L15-742"
+SForce: T=821 Marker=1015 StartLabel="L15-821"
+SForce: T=834 Marker=1015 StartLabel="L15-834"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -269,13 +269,13 @@ Random Droid Type: 139
 Random Droid Type: 247
 Random Droid Type: 249
 
-SForce: T=614 Fixed=0 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux="yes" UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
-SForce: T=KEV Fixed=0 Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" RushTux="no" UseDialog="Kevin" ShortLabel=_"Kevin"
-SForce: T=JAS Fixed=0 Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" RushTux="no" UseDialog="Jasmine" ShortLabel=_"Cute Girl"
-SForce: T=598 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins598StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
-SForce: T=751 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins751StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
-SForce: T=883 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins883StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
-SForce: T=821 Fixed=0 Marker=2017 Faction="ms" StartLabel="Kevins821StartGameSquare" RushTux="no" ShortLabel=_"Prisoner"
+SForce: T=614 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux=1 UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
+SForce: T=KEV Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" UseDialog="Kevin" ShortLabel=_"Kevin"
+SForce: T=JAS Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" UseDialog="Jasmine" ShortLabel=_"Cute Girl"
+SForce: T=598 Marker=2017 StartLabel="Kevins598StartGameSquare" ShortLabel=_"Prisoner"
+SForce: T=751 Marker=2017 StartLabel="Kevins751StartGameSquare" ShortLabel=_"Prisoner"
+SForce: T=883 Marker=2017 StartLabel="Kevins883StartGameSquare" ShortLabel=_"Prisoner"
+SForce: T=821 Marker=2017 StartLabel="Kevins821StartGameSquare" ShortLabel=_"Prisoner"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -340,8 +340,8 @@ Random Droid Type: 751
 Random Droid Type: 629
 Random Droid Type: 883
 
-SForce: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" ShortLabel=_"MSCD - MegaSys Control Droid"
-S*Force: T=598 Fixed=0 Marker=1024 Faction="ms" StartLabel="MSCDStartGameSquare" RushTux="no" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"
+SForce: T=598 Marker=1024 StartLabel="MSCDStartGameSquare" ShortLabel=_"MSCD - MegaSys Control Droid"
+S*Force: T=598 Marker=1024 StartLabel="MSCDStartGameSquare" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -369,30 +369,30 @@ Level=28
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 
-SForce: T=123 Fixed=0 Marker=1028 Faction="ms" StartLabel="123" RushTux="no"
-SForce: T=139 Fixed=0 Marker=1028 Faction="ms" StartLabel="139" RushTux="no"
-SForce: T=247 Fixed=0 Marker=1028 Faction="ms" StartLabel="247" RushTux="no"
-SForce: T=249 Fixed=0 Marker=1028 Faction="ms" StartLabel="249" RushTux="no"
-SForce: T=296 Fixed=0 Marker=1028 Faction="ms" StartLabel="296" RushTux="no"
-SForce: T=302 Fixed=0 Marker=1028 Faction="ms" StartLabel="302" RushTux="no"
-SForce: T=329 Fixed=0 Marker=1028 Faction="ms" StartLabel="329" RushTux="no"
-SForce: T=420 Fixed=0 Marker=1028 Faction="ms" StartLabel="420" RushTux="no"
-SForce: T=476 Fixed=0 Marker=1028 Faction="ms" StartLabel="476" RushTux="no"
-SForce: T=493 Fixed=0 Marker=1028 Faction="ms" StartLabel="493" RushTux="no"
-SForce: T=516 Fixed=0 Marker=1028 Faction="ms" StartLabel="516" RushTux="no"
-SForce: T=543 Fixed=0 Marker=1028 Faction="ms" StartLabel="543" RushTux="no"
-SForce: T=571 Fixed=0 Marker=1028 Faction="ms" StartLabel="571" RushTux="no"
-SForce: T=598 Fixed=0 Marker=1028 Faction="ms" StartLabel="598" RushTux="no"
-SForce: T=614 Fixed=0 Marker=1028 Faction="ms" StartLabel="614" RushTux="no"
-SForce: T=615 Fixed=0 Marker=1028 Faction="ms" StartLabel="615" RushTux="no"
-SForce: T=629 Fixed=0 Marker=1028 Faction="ms" StartLabel="629" RushTux="no"
-SForce: T=711 Fixed=0 Marker=1028 Faction="ms" StartLabel="711" RushTux="no"
-SForce: T=742 Fixed=0 Marker=1028 Faction="ms" StartLabel="742" RushTux="no"
-SForce: T=751 Fixed=0 Marker=1028 Faction="ms" StartLabel="751" RushTux="no"
-SForce: T=821 Fixed=0 Marker=1028 Faction="ms" StartLabel="821" RushTux="no"
-SForce: T=834 Fixed=0 Marker=1028 Faction="ms" StartLabel="834" RushTux="no"
-SForce: T=883 Fixed=0 Marker=1028 Faction="ms" StartLabel="883" RushTux="no"
-SForce: T=999 Fixed=0 Marker=1028 Faction="ms" StartLabel="999" RushTux="no"
+SForce: T=123 Marker=1028 StartLabel="123"
+SForce: T=139 Marker=1028 StartLabel="139"
+SForce: T=247 Marker=1028 StartLabel="247"
+SForce: T=249 Marker=1028 StartLabel="249"
+SForce: T=296 Marker=1028 StartLabel="296"
+SForce: T=302 Marker=1028 StartLabel="302"
+SForce: T=329 Marker=1028 StartLabel="329"
+SForce: T=420 Marker=1028 StartLabel="420"
+SForce: T=476 Marker=1028 StartLabel="476"
+SForce: T=493 Marker=1028 StartLabel="493"
+SForce: T=516 Marker=1028 StartLabel="516"
+SForce: T=543 Marker=1028 StartLabel="543"
+SForce: T=571 Marker=1028 StartLabel="571"
+SForce: T=598 Marker=1028 StartLabel="598"
+SForce: T=614 Marker=1028 StartLabel="614"
+SForce: T=615 Marker=1028 StartLabel="615"
+SForce: T=629 Marker=1028 StartLabel="629"
+SForce: T=711 Marker=1028 StartLabel="711"
+SForce: T=742 Marker=1028 StartLabel="742"
+SForce: T=751 Marker=1028 StartLabel="751"
+SForce: T=821 Marker=1028 StartLabel="821"
+SForce: T=834 Marker=1028 StartLabel="834"
+SForce: T=883 Marker=1028 StartLabel="883"
+SForce: T=999 Marker=1028 StartLabel="999"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -401,10 +401,10 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 751
 
-SForce: T=123 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot1StartGameSquare" RushTux="no" ShortLabel=_"Race Condition"
-SForce: T=139 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot2StartGameSquare" RushTux="no" ShortLabel=_"Undeclared Variable"
-SForce: T=247 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot3StartGameSquare" RushTux="no" ShortLabel=_"Segmentation Fault"
-SForce: T=249 Fixed=0 Marker=1029 Faction="ms" StartLabel="NoviceArenaBot4StartGameSquare" RushTux="no" ShortLabel=_"Buffer Overflow"
+SForce: T=123 Marker=1029 StartLabel="NoviceArenaBot1StartGameSquare" ShortLabel=_"Race Condition"
+SForce: T=139 Marker=1029 StartLabel="NoviceArenaBot2StartGameSquare" ShortLabel=_"Undeclared Variable"
+SForce: T=247 Marker=1029 StartLabel="NoviceArenaBot3StartGameSquare" ShortLabel=_"Segmentation Fault"
+SForce: T=249 Marker=1029 StartLabel="NoviceArenaBot4StartGameSquare" ShortLabel=_"Buffer Overflow"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -413,10 +413,10 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 751
 
-SForce: T=598 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot1StartGameSquare" RushTux="no" ShortLabel=_"Melissa.I"
-SForce: T=615 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot2StartGameSquare" RushTux="no" ShortLabel=_"ILOVEYOU"
-SForce: T=629 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot3StartGameSquare" RushTux="no" ShortLabel=_"W32.YourDoom"
-SForce: T=999 Fixed=0 Marker=1030 Faction="ms" StartLabel="MasterArenaBot4StartGameSquare" RushTux="no" ShortLabel=_"CIH.1103"
+SForce: T=598 Marker=1030 StartLabel="MasterArenaBot1StartGameSquare" ShortLabel=_"Melissa.I"
+SForce: T=615 Marker=1030 StartLabel="MasterArenaBot2StartGameSquare" ShortLabel=_"ILOVEYOU"
+SForce: T=629 Marker=1030 StartLabel="MasterArenaBot3StartGameSquare" ShortLabel=_"W32.YourDoom"
+SForce: T=999 Marker=1030 StartLabel="MasterArenaBot4StartGameSquare" ShortLabel=_"CIH.1103"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -429,13 +429,13 @@ Random Droid Type: 516
 Random Droid Type: 615
 Random Droid Type: 629
 
-SForce: T=883 Fixed=0 Marker=1031 Faction="ms" StartLabel="MSDDStartGameSquare" RushTux="no" ShortLabel=_"MSDD - MegaSys Defence Droid"
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid1StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid2StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid3StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Fixed=0 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid4StartGameSquare" RushTux="no" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=883 Fixed=0 Marker=3031 Faction="ms" StartLabel="MSOfficeFirmwareUpdateServerStartPosition" RushTux="no" ShortLabel=_"Update Server Guard"
+SForce: T=883 Marker=1031 StartLabel="MSDDStartGameSquare" ShortLabel=_"MSDD - MegaSys Defence Droid"
+SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid1StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid2StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid3StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid4StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
+SForce: T=883 Marker=3031 StartLabel="MSOfficeFirmwareUpdateServerStartPosition" ShortLabel=_"Update Server Guard"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -465,7 +465,7 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 123
 
-SForce: T=WOR Fixed=1 Marker=1034 Faction="civilian" StartLabel="Koan" RushTux="no" UseDialog="Koan" ShortLabel=_"Koan" on_death_drop_item_name="Pandora's Cube"
+SForce: T=WOR Fixed=1 Marker=1034 Faction="civilian" StartLabel="Koan" UseDialog="Koan" ShortLabel=_"Koan" on_death_drop_item_name="Pandora's Cube"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -477,33 +477,33 @@ Random Droid Type: 883
 Random Droid Type: 249
 Random Droid Type: 629
 
-SForce: T=883 Fixed=0 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux="yes" UseDialog="SADD" ShortLabel=_"Hostile Droid"
-SForce: T=JAS Fixed=0 Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" RushTux="no" UseDialog="Tania" ShortLabel=_"Scientist"
-SForce: T=598 Fixed=0 Marker=3035 Faction="ms" StartLabel="SecretAreaDefenceControl" RushTux="no" UseDialog="SACD" ShortLabel=_"SACD - Secret Area Control Droid"
+SForce: T=883 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux=1 UseDialog="SADD" ShortLabel=_"Hostile Droid"
+SForce: T=JAS Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" UseDialog="Tania" ShortLabel=_"Scientist"
+SForce: T=598 Marker=3035 StartLabel="SecretAreaDefenceControl" UseDialog="SACD" ShortLabel=_"SACD - Secret Area Control Droid"
 //--------------------
 // This is Boris. Leader of scientists locked in secret area
 //
-//SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="BorisStartGameSquare" RushTux="no" UseDialog="Boris" ShortLabel=_"Boris -- scientists leader"
+//SForce: T=WOR Marker=4035 Faction="civilian" StartLabel="BorisStartGameSquare" UseDialog="Boris" ShortLabel=_"Boris -- scientists leader"
 //--------------------
 // This is Lina -- librarian in secret area
 //
-//SForce: T=FSC Fixed=0 Marker=4035 Faction="civilian" StartLabel="LinaStartGameSquare" RushTux="no" UseDialog="Lina" ShortLabel=_"Lina -- librarian"
+//SForce: T=FSC Marker=4035 Faction="civilian" StartLabel="LinaStartGameSquare" UseDialog="Lina" ShortLabel=_"Lina -- librarian"
 //--------------------
 // This is Serge -- storehouse keeper
 //
-//SForce: T=WOR Fixed=0 Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" RushTux="no" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
-SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage2" RushTux="no"
-SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEmmiters" RushTux="no" ShortLabel=_"SADD"
-SForce: T=139 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorEnterance" RushTux="no" ShortLabel=_"Ashman"
-SForce: T=249 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorPassage" RushTux="no" ShortLabel=_"Guard"
-SForce: T=883 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaCollectorComputers" RushTux="no" ShortLabel=_"SADD"
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaHall" RushTux="no" ShortLabel=_"Guard"
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaStore" RushTux="no" ShortLabel=_"Guard"
-SForce: T=629 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaPassage" RushTux="no" ShortLabel=_"Guard"
-SForce: T=247 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaRestroom" RushTux="no" ShortLabel=_"Servant"
-SForce: T=476 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBedroom" RushTux="no" ShortLabel=_"Criocapsules maintainer"
-SForce: T=329 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaBathroom" RushTux="no" ShortLabel=_"Sanitary technician"
-SForce: T=302 Fixed=0 Marker=5035 Faction="ms" StartLabel="SecretAreaToilet" RushTux="no" ShortLabel=_"Toilet droid"
+//SForce: T=WOR Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
+SForce: T=302 Marker=5035 StartLabel="SecretAreaCollectorPassage2"
+SForce: T=883 Marker=5035 StartLabel="SecretAreaCollectorEmmiters" ShortLabel=_"SADD"
+SForce: T=139 Marker=5035 StartLabel="SecretAreaCollectorEnterance" ShortLabel=_"Ashman"
+SForce: T=249 Marker=5035 StartLabel="SecretAreaCollectorPassage" ShortLabel=_"Guard"
+SForce: T=883 Marker=5035 StartLabel="SecretAreaCollectorComputers" ShortLabel=_"SADD"
+SForce: T=629 Marker=5035 StartLabel="SecretAreaHall" ShortLabel=_"Guard"
+SForce: T=629 Marker=5035 StartLabel="SecretAreaStore" ShortLabel=_"Guard"
+SForce: T=629 Marker=5035 StartLabel="SecretAreaPassage" ShortLabel=_"Guard"
+SForce: T=247 Marker=5035 StartLabel="SecretAreaRestroom" ShortLabel=_"Servant"
+SForce: T=476 Marker=5035 StartLabel="SecretAreaBedroom" ShortLabel=_"Criocapsules maintainer"
+SForce: T=329 Marker=5035 StartLabel="SecretAreaBathroom" ShortLabel=_"Sanitary technician"
+SForce: T=302 Marker=5035 StartLabel="SecretAreaToilet" ShortLabel=_"Toilet droid"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -522,24 +522,24 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 751
 
-SForce: T=PRO Fixed=0 Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux="yes" UseDialog="TutorialTom" ShortLabel=_"???"
-SForce: T=123 Fixed=0 Marker=1037 Faction="ms" StartLabel="melee1" RushTux="no" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
-SForce: T=247 Fixed=0 Marker=2037 Faction="ms" StartLabel="melee2" RushTux="no" ShortLabel=_"Kill Me Too" on_death_drop_item_name="Tachyon Condensator"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange1" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange2" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange3" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange4" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange5" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange6" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange7" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=3037 Faction="ms" StartLabel="shootingrange8" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover1" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover2" RushTux="no" ShortLabel=_"Target"
-SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover3" RushTux="no" ShortLabel=_"Target"
-SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover4" RushTux="no" ShortLabel=_"Target"
-SForce: T=247 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover5" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover6" RushTux="no" ShortLabel=_"Target"
-SForce: T=123 Fixed=0 Marker=4037 Faction="ms" StartLabel="takeover7" RushTux="no" ShortLabel=_"Target"
+SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux=1 UseDialog="TutorialTom" ShortLabel=_"???"
+SForce: T=123 Marker=1037 StartLabel="melee1" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
+SForce: T=247 Marker=2037 StartLabel="melee2" ShortLabel=_"Kill Me Too" on_death_drop_item_name="Tachyon Condensator"
+SForce: T=123 Marker=3037 StartLabel="shootingrange1" ShortLabel=_"Target"
+SForce: T=123 Marker=3037 StartLabel="shootingrange2" ShortLabel=_"Target"
+SForce: T=123 Marker=3037 StartLabel="shootingrange3" ShortLabel=_"Target"
+SForce: T=123 Marker=3037 StartLabel="shootingrange4" ShortLabel=_"Target"
+SForce: T=123 Marker=3037 StartLabel="shootingrange5" ShortLabel=_"Target"
+SForce: T=123 Marker=3037 StartLabel="shootingrange6" ShortLabel=_"Target"
+SForce: T=123 Marker=3037 StartLabel="shootingrange7" ShortLabel=_"Target"
+SForce: T=123 Marker=3037 StartLabel="shootingrange8" ShortLabel=_"Target"
+SForce: T=123 Marker=4037 StartLabel="takeover1" ShortLabel=_"Target"
+SForce: T=123 Marker=4037 StartLabel="takeover2" ShortLabel=_"Target"
+SForce: T=247 Marker=4037 StartLabel="takeover3" ShortLabel=_"Target"
+SForce: T=247 Marker=4037 StartLabel="takeover4" ShortLabel=_"Target"
+SForce: T=247 Marker=4037 StartLabel="takeover5" ShortLabel=_"Target"
+SForce: T=123 Marker=4037 StartLabel="takeover6" ShortLabel=_"Target"
+SForce: T=123 Marker=4037 StartLabel="takeover7" ShortLabel=_"Target"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -635,8 +635,8 @@ Random Droid Type: 329
 Random Droid Type: 476
 Random Droid Type: 598
 
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuard" RushTux="no" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard"
-SForce: T=GUA Fixed=0 Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" RushTux="no" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="HF-GateGuard" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
