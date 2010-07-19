@@ -483,7 +483,12 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 		drop_item_type = get_random_item_type(class);
 		drop_item_multiplicity = 1;	//for now...  
 
+		// Create the item and place it to the map. This can fail under certain
+		// conditions so we need to check for errors and give up if one occurred.
 		item *it = DropItemAt(drop_item_type, level_num, x, y, drop_item_multiplicity);
+		if (!it) {
+			return;
+		}
 
 		// Create sockets occasionally if the item is of a customizable type.
 		int socket_drop_decision = MyRandom(100);
