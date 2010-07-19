@@ -1754,19 +1754,7 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 		newen->pos.z = OurLevelNumber;
 		free(StartMapLabel);
 
-		YesNoString = ReadAndMallocStringFromData(SpecialDroid, "RushTux=\"", "\"");
-		if (strcmp(YesNoString, "yes") == 0) {
-			newen->will_rush_tux = TRUE;
-		} else if (strcmp(YesNoString, "no") == 0) {
-			newen->will_rush_tux = FALSE;
-		} else {
-			ErrorMessage(__FUNCTION__, "\
-The droid specification of a droid in ReturnOfTux.droids should contain an \n\
-answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\n\
-This indicated a corrupted freedroid.ruleset file with an error at least in\n\
-the item specification section.", PLEASE_INFORM, IS_FATAL);
-		}
-		free(YesNoString);
+		ReadValueFromStringWithDefault(SpecialDroid, "RushTux=", "%hd", "0", &(newen->will_rush_tux), EndOfThisLevelData);
 
 		newen->dialog_section_name = ReadAndMallocStringFromDataOptional(SpecialDroid, "UseDialog=\"", "\"");
 		if (!newen->dialog_section_name)
