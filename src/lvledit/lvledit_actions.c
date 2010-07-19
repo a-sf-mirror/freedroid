@@ -424,7 +424,7 @@ int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_ta
 		if (connections[i] == id_target) {
 			if (removeifpresent) {
 				// Delete the connection of the waypoint
-				dynarray_del(&wpts[id_origin].connections, connections[i], sizeof(int));
+				dynarray_del(&wpts[id_origin].connections, i, sizeof(int));
 			}
 			if (undoable)
 				action_push(ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
