@@ -1556,8 +1556,8 @@ use underground lighting: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->x
 		lvl->light_bonus, lvl->minimum_light_value,
 		lvl->infinite_running_on_this_level,
 		lvl->random_dungeon,
-		(reset_random_levels && lvl->random_dungeon) ? 0 : lvl->dungeon_generated,
 		lvl->teleport_pair,
+		(reset_random_levels && lvl->random_dungeon) ? 0 : lvl->dungeon_generated,
 		lvl->jump_target_north, lvl->jump_target_south, lvl->jump_target_east,
 		lvl->jump_target_west, lvl->use_underground_lighting);
 
