@@ -503,7 +503,7 @@ void leveleditor_display()
 	char linebuf[1000];
 
 	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
-			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | SHOW_OBSTACLE_NAMES | ZOOM_OUT *
+			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | ZOOM_OUT *
 			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR);
 
 	show_waypoints(ZOOM_OUT * GameConfig.zoom_is_on);
