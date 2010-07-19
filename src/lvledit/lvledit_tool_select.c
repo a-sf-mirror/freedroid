@@ -684,6 +684,7 @@ void level_editor_copy_selection()
 {
 	struct selected_element *e;
 	struct lvledit_map_tile *t;	
+	waypoint *w;
 	obstacle *o;
 	item *it;
 	
@@ -724,6 +725,12 @@ void level_editor_copy_selection()
 			
 			add_item_to_list(&clipboard_elements, it);
 			break;	
+		case OBJECT_WAYPOINT:
+			w = MyMalloc(sizeof(waypoint));
+			memcpy(w, e->data, sizeof(waypoint));
+
+			add_waypoint_to_list(&clipboard_elements, w);
+			break;
 		default:
 			;
 		}
