@@ -1739,7 +1739,7 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 		newen->SpecialForce = 1;
 
 		ReadValueFromStringWithDefault(SpecialDroid, "Fixed=", "%hd", "0", &(newen->CompletelyFixed), EndOfThisLevelData);
-		ReadValueFromString(SpecialDroid, "Marker=", "%d", &(newen->marker), EndOfThisLevelData);
+		ReadValueFromStringWithDefault(SpecialDroid, "Marker=", "%d", "0000", &(newen->marker), EndOfThisLevelData);
 		ReadValueFromStringWithDefault(SpecialDroid, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
 					       EndOfThisLevelData);
 		
