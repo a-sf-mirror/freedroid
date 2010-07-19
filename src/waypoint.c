@@ -26,12 +26,12 @@
 #include "proto.h"
 
 /**
- * Add a waypoint on the map
+ * Add a waypoint on the map if it doesn't exists
  * \param lvl Pointer towards the level where the waypoint lies
  * \param x The x position of the waypoint
  * \param y The y position of the waypoint
  * \param suppress_random_spawn TRUE if the waypoint is used for the random enemies
- * \return Return the index of the waypoint, -1 if it already exists on the level
+ * \return Return the index of the waypoint
  */
 int add_waypoint(level *lvl, int x, int y, int suppress_random_spawn)
 {
@@ -43,7 +43,7 @@ int add_waypoint(level *lvl, int x, int y, int suppress_random_spawn)
 		// When the waypoint already exists on the level, we are done, because 
 		// we must not add a waypoint at the same position in order to avoid
 		// the conflicts
-		return -1;
+		return wpnum;
 	}
 
 	// Create a new waypoint
