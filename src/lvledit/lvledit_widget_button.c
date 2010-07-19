@@ -84,9 +84,6 @@ static void activate_button(struct leveleditor_button *b)
 	case LEVEL_EDITOR_ESC_BUTTON:
 		level_editor_done = DoLevelEditorMainMenu();
 		break;
-	case LEVEL_EDITOR_LEVEL_RESIZE_BUTTON:
-		EditLevelDimensions();
-		break;
 	case LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON:
 		GameConfig.omit_enemies_in_level_editor = !GameConfig.omit_enemies_in_level_editor;
 		break;

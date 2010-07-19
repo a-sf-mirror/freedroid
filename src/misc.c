@@ -157,10 +157,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_ESC_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorESCButton.png", {430, 90, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ESC_BUTTON_PUSHED] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorESCButtonPushed.png", {430, 90, 0, 0}, FALSE},
-	[LEVEL_EDITOR_LEVEL_RESIZE_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorResizeLevelButton.png", {460, 90, 0, 0}, FALSE},
-	[LEVEL_EDITOR_LEVEL_RESIZE_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorResizeLevelButtonPushed.png", {460, 90, 0, 0}, FALSE},
 	[LEVEL_EDITOR_QUIT_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorQuitButton.png", {-30, 90, 0, 0}, FALSE},
 	[LEVEL_EDITOR_QUIT_BUTTON_PUSHED] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-30, 90, 0, 0}, FALSE},

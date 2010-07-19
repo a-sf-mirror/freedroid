@@ -433,10 +433,6 @@ static void show_level_editor_tooltips(void)
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
 			show_button_tooltip(_
 					    ("Menu\n\nUse this button to enter the main menu of the level editor.\n Note, that you can also use the Escape key to enter the level editor main menu."));
-	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_LEVEL_RESIZE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP)
-			show_button_tooltip(_
-					    ("Level resize\n\nUse this button to enter the level resize menu.  Levels can be resized in various ways so as not to destroy your current map too much and so as to insert the new space where you would best like it to be."));
 	} else if (MouseCursorIsOnButton(LEVEL_EDITOR_QUIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (time_spent_on_some_button > TICKS_UNTIL_TOOLTIP) {
 			if (game_root_mode == ROOT_IS_GAME)
