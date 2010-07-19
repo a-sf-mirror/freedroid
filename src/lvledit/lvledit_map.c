@@ -60,6 +60,11 @@ static void move_map_labels(level *EditLevel, int x, int y)
 		if (!pos_inside_level(m->pos.x, m->pos.y, EditLevel)) {
 			// When the map label is outside of the map, we must remove it
 			del_map_label(EditLevel, m->label_name);
+
+			// When we remove a map label from the level, we must decrease the
+			// index because the total number of the map labels on this level 
+			// has been reduced
+			i--;
 		}
 	}
 }
@@ -148,6 +153,11 @@ static void move_waypoints(level *EditLevel, int x, int y)
 		if (!pos_inside_level(wpts[i].x, wpts[i].y, EditLevel)) {
 			// When the waypoint is outside of the map, we must remove it
 			del_waypoint(EditLevel, wpts[i].x, wpts[i].y);
+
+			// When we remove a waypoint from the level, we must decrease the
+			// index because the total number of the waypoints on this level 
+			// has been reduced
+			i--;
 		}
 	}
 }
