@@ -133,6 +133,30 @@ static void dynarray_test()
 	timer_stop();
 }
 
+static void mapgen_bench()
+{
+	int loop = 100;
+	int i;
+	level l;
+	l.xlen = 90;
+	l.ylen = 90;
+	l.random_dungeon = 2;
+	l.teleport_pair = 0;
+	l.Levelname = "mapgen test level";
+	for (i = 0; i < l.ylen; i++)
+		l.map[i] = (map_tile*)MyMalloc(sizeof(map_tile) * l.xlen);
+	dynarray_init(&l.obstacle_extensions, 0, sizeof(struct obstacle_extension));
+	dynarray_init(&l.map_labels, 0, sizeof(struct map_label_s));
+	dynarray_init(&l.waypoints, 0, sizeof(struct waypoint_s));
+
+	timer_start();
+	while (loop--) {
+		set_dungeon_output(&l);
+		generate_dungeon(l.xlen, l.xlen, l.random_dungeon, l.teleport_pair);
+	}
+	timer_stop();
+}
+
 void benchmark()
 {
 	struct {
@@ -144,6 +168,7 @@ void benchmark()
 			{ "loadship", loadship_bench },
 			{ "loadgame", loadgame_bench },
 			{ "dynarray", dynarray_test },
+			{ "mapgen", mapgen_bench },
 	};
 
 	int i;
