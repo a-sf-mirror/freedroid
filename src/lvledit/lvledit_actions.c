@@ -648,17 +648,24 @@ static void __level_editor_do_action_from_stack(struct list_head *stack)
 	if (list_empty(stack))
 		return;
 
+	// Get the top action from the undo/redo stack
 	a = list_entry(stack->next, action, node);
 
 	if (a->type == ACT_MULTIPLE_ACTIONS) {
+		// When the action is multiple, we must execute each action,
+		// and push all actions in the stack in order to undo
 		int i, max;
 
 		max = a->d.number_actions;
 		clear_action(a);
 
+		// Execute all actions
 		for (i = 0; i < max; i++) {
 			__level_editor_do_action_from_stack(stack);
 		}
+
+		// Push all actions in the stack in order to undo
+		action_push(ACT_MULTIPLE_ACTIONS, max);
 	} else {
 		action_do(EditLevel(), a);
 		clear_action(a);
