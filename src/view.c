@@ -1682,8 +1682,10 @@ static void show_obstacle_labels(int mask)
 	int i;
 	level *l = CURLEVEL();
 
-	if (!(mask & SHOW_OBSTACLE_NAMES))
+	if (mask & OMIT_OBSTACLES) {
+		// Don't show obstacles labels when obstacles are not displayed on the map
 		return;
+	}
 
 	for (i = 0; i < l->obstacle_extensions.size; i++) {
 		struct obstacle_extension *ext = &ACCESS_OBSTACLE_EXTENSION(l->obstacle_extensions, i);
