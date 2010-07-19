@@ -103,6 +103,26 @@ void leveleditor_toolbar_mousewheeldown(SDL_Event * event, struct leveleditor_wi
 	leveleditor_toolbar_right();
 }
 
+static void print_obstacle_info(char *str, int obs_idx)
+{
+	int flags = obstacle_map[obs_idx].flags;
+
+	sprintf(str, "Obs. number %d, %s\n", obs_idx, obstacle_map[obs_idx].filename);
+
+	if (flags & IS_HORIZONTAL)
+		strcat(str, "- IS_HORIZONTAL\n");
+	if (flags & IS_VERTICAL)
+		strcat(str, "- IS_VERTICAL\n");
+	if (flags & BLOCKS_VISION_TOO)
+		strcat(str, "- BLOCKS_VISION_TOO\n");
+	if (flags & IS_SMASHABLE)
+		strcat(str, "- IS_SMASHABLE\n");
+	if (flags & IS_WALKABLE)
+		strcat(str, "- IS_WALKABLE\n");
+	if (flags & IS_CLICKABLE)
+		strcat(str, "- IS_CLICKABLE\n");
+}
+
 static void leveleditor_print_object_info(enum leveleditor_object_type type, int *array, int idx, char *str)
 {
 	switch (type) {
@@ -110,7 +130,7 @@ static void leveleditor_print_object_info(enum leveleditor_object_type type, int
 			sprintf(str, "Floor tile number %d\n", array[idx]);
 			break;
 	case OBJECT_OBSTACLE:
-			sprintf(str, "Obs. number %d, %s, flags %d\n", array[idx], obstacle_map[array[idx]].filename, obstacle_map[array[idx]].flags);
+			print_obstacle_info(str, array[idx]);
 			break;
 	case OBJECT_WAYPOINT:
 			sprintf(str, "Waypt %s connection, %s for random spawn\n", "two way", array[idx] ? "NOK" : "OK");
