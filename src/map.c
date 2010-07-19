@@ -1743,7 +1743,10 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 		ReadValueFromStringWithDefault(SpecialDroid, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
 					       EndOfThisLevelData);
 		
-		char *faction = ReadAndMallocStringFromData(SpecialDroid, "Faction=\"", "\"");
+		char *faction = ReadAndMallocStringFromDataOptional(SpecialDroid, "Faction=\"", "\"");
+		if (!faction) {
+			faction = strdup("ms");
+		}
 		newen->faction = get_faction_id(faction);
 		free(faction);
 
