@@ -6,7 +6,9 @@
 enum TILES {
 	TILE_WALL,
 	TILE_EMPTY,
-	TILE_FLOOR
+	TILE_FLOOR,
+	// Internal wall
+	TILE_PARTITION
 };
 
 struct doorinfo {

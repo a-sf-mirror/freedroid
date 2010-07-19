@@ -26,11 +26,14 @@
 #include "mapgen/mapgen.h"
 #include "mapgen/themes.h"
 
+#define RAND_THEME(t)	t[MyRandom(sizeof(t) / sizeof(t[0]) - 1)]
+
 static void apply_default_theme(int, int, int);
 static void apply_metal_theme(int, int, int);
 static void apply_glass_theme(int, int, int);
 static void apply_red_theme(int, int, int);
 static void apply_green_theme(int, int, int);
+static void apply_flower_theme(int, int, int);
 
 const struct theme_info theme_data[] = {
 	{ ISO_V_WALL, ISO_H_WALL, ISO_V_WALL, ISO_H_WALL },
@@ -38,7 +41,8 @@ const struct theme_info theme_data[] = {
 	{ ISO_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
 	{ ISO_ROOM_WALL_V_RED, ISO_ROOM_WALL_H_RED, ISO_V_WALL, ISO_H_WALL },
 	{ ISO_BROKEN_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
-	{ ISO_LIGHT_GREEN_WALL_1, ISO_LIGHT_GREEN_WALL_2, ISO_V_WALL, ISO_H_WALL }
+	{ ISO_LIGHT_GREEN_WALL_1, ISO_LIGHT_GREEN_WALL_2, ISO_V_WALL, ISO_H_WALL },
+	{ ISO_FUNKY_WALL_1, ISO_FUNKY_WALL_2, ISO_V_WALL, ISO_H_WALL },
 };
 
 typedef void (*theme_proc)(int, int, int);
@@ -48,17 +52,21 @@ const theme_proc themes[] = {
 	apply_glass_theme,
 	apply_red_theme,
 	apply_glass_theme,
-	apply_green_theme
+	apply_green_theme,
+	apply_flower_theme
 };
 
 // A list of themes are used to specify basic parameters for a room
 // such as wall and floor tiles that may be partly ommited in others themes.
-const int basic_themes[] = {
+const enum theme basic_themes[] = {
 	THEME_METAL,
 	THEME_GRAY,
 	THEME_RED,
 	THEME_GREEN
 };
+
+const enum theme living_themes[]		= { THEME_RED, THEME_GREEN, THEME_FLOWER };
+const enum theme industrial_themes[]	= { THEME_METAL, THEME_GRAY };
 
 static int set_generic_wall(int x, int y, int wall, int theme)
 {
@@ -143,24 +151,91 @@ static void apply_green_theme(int x, int y, int object)
 	mapgen_set_floor(x, y, ISO_CARPET_TILE_0002);
 } 
 
+static void apply_flower_theme(int x, int y, int object)
+{
+	set_simple_wall(x, y, object, THEME_FLOWER);
+	mapgen_set_floor(x, y, ISO_CARPET_TILE_0002);
+}
+
 static void set_interior_objects()
 {
 	int i;
 
-	for (i = 0; i < total_rooms; i++)
+	for (i = 0; i < total_rooms; i++) {
 		if(MyRandom(100) < 30)
 			mapgen_gift(&rooms[i]);
+	}
+}
+
+static int get_middle_room()
+{
+	int i, j, k;
+	int m;
+	int dist[total_rooms][total_rooms];
+	int eccentricity[total_rooms];
+
+	// Initialize distance between pairs of rooms with fake infinity
+	for (i = 0; i < total_rooms; i++) {
+		for (j = 0; j < total_rooms; j++)
+			dist[i][j] = 99999;
+		// Distance from a room to itself is 0
+		dist[i][i] = 0;
+		eccentricity[i] = 0;
+	}
+	for (i = 0; i < total_rooms; i++) {
+		// Distance from a room to its neighbours is 1
+		for (j = 0; j < rooms[i].num_neighbors; j++)
+			dist[i][rooms[i].neighbors[j]] = 1;
+	}
+	// Calculate distance for each pair of rooms
+	for (k = 0; k < total_rooms; k++) {
+		for (i = 0; i < total_rooms; i++) {
+			for (j = 0; j < total_rooms; j++)
+				dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+		}
+	}
+	// Eccentricity of a room is a maximum of the shortest distances
+	// to all other rooms.
+	for (i = 0; i < total_rooms; i++) {
+		for (j = 0; j < total_rooms; j++)
+			eccentricity[i] = max(eccentricity[i], dist[i][j]);
+	}
+	// Thus the central room is one with the minimal
+	// eccentricity
+	m = 0;
+	for (i = 0; i < total_rooms; i++) {
+		if (eccentricity[i] < eccentricity[m])
+			m = i;
+	}
+
+	return m;
+}
+
+// Sets living room theme for the middle room and some its neighbours
+static void set_living_theme_recursive(int room, int depth)
+{
+	int i;
+
+	if (!depth)
+		return;
+
+	rooms[room].theme = RAND_THEME(living_themes);
+	for (i = 0; i < rooms[room].num_neighbors; i++)
+		set_living_theme_recursive(rooms[room].neighbors[i], depth - 1);
 }
 
 void mapgen_place_obstacles(int w, int h, unsigned char *tiles) 
 {
-	int x, y;
-	int wall, room, theme;
 
-	for (x = 0; x < total_rooms; x++) {
-		theme = rand() % (sizeof(basic_themes) / sizeof(basic_themes[0]));
-		rooms[x].theme = basic_themes[theme];
+	int i;
+	int x, y;
+	int wall, room;
+
+	for (i = 0; i < total_rooms; i++) {
+		rooms[i].theme = RAND_THEME(industrial_themes);
 	}
+	set_living_theme_recursive(get_middle_room(), MyRandom(1) + 2);
+
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
 			room = mapgen_get_room(x, y);
@@ -178,7 +253,7 @@ void mapgen_place_obstacles(int w, int h, unsigned char *tiles)
 					themes[rooms[room].theme](x, y, wall);
 					break;	
 				case TILE_WALL:
-					mapgen_set_floor(x, y, 31);
+					mapgen_set_floor(x, y, ISO_COMPLETELY_DARK);
 					break;
 				default:
 					mapgen_set_floor(x, y, tiles[y * w + x]);
