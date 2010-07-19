@@ -286,9 +286,18 @@ LuaCode={
 
 Nr=42 Text=_"Tell the Red Guard that you need your battery back."
 LuaCode={
-	npc_says(_"I did.")
-	npc_says(_"They said it was already fed to their reactor as fuel.")
-	hide(42)
+	if (has_cookie("tux_has_joined_guard")) then
+		npc_says(_"Well, you ARE the red guard", "NO_WAIT")
+		npc_says(_"I want my battery back!")
+		tux_says(_"Umm... I guess you have a point there.")
+		tux_says(_"But sorry, I don't think there is anything I can do.", "NO_WAIT")
+		tux_says(_"Talk to Spencer.")
+		hide(42)
+	else
+		npc_says(_"I did.")
+		npc_says(_"They said it was already fed to their reactor as fuel.")
+		hide(42)
+	end
 }
 ----------------------------------------------------------------------
 
