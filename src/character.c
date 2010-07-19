@@ -243,26 +243,6 @@ void update_all_primary_stats()
 	AddInfluencerItemAttributeBonus(&Me.shield_item);
 	AddInfluencerItemAttributeBonus(&Me.special_item);
 
-	item *itrot[5] = { &Me.armour_item, &Me.weapon_item, &Me.drive_item,
-		&Me.shield_item, &Me.special_item
-	};
-	i = 0;
-	while (i < 5) {
-		if (itrot[i]->type == -1) {
-			i++;
-			continue;
-		}
-		if (!ItemUsageRequirementsMet(itrot[i], FALSE)) {	//we have to move away the item
-			if (!AddFloorItemDirectlyToInventory(itrot[i]))
-				itrot[i]->type = -1;
-			else {	//inventory is full... ouch
-				DropItemToTheFloor(itrot[i], Me.pos.x, Me.pos.y, Me.pos.z);
-				itrot[i]->type = -1;
-			}
-		}
-		i++;
-	}
-
 	// Maybe there is some boost from a potion or magic spell going on right
 	// now...
 	//
@@ -271,7 +251,22 @@ void update_all_primary_stats()
 	if (Me.power_bonus_end_date > Me.current_game_date)
 		Me.Strength += Me.current_power_bonus;
 
-};				// void update_all_primary_stats ( )
+	// Unequip items whose requirements aren't met anymore.
+	// This needs to be done last so that temporary bonuses, for example from
+	// strength and dexterity capsules, allow the player to keep items equipped.
+	item *equipment[5] = { &Me.armour_item, &Me.weapon_item, &Me.drive_item,
+		&Me.shield_item, &Me.special_item };
+	for (i = 0; i < 5; i++) {
+		if (equipment[i]->type == -1) {
+			continue;
+		}
+		if (!ItemUsageRequirementsMet(equipment[i], FALSE)) {
+			if (AddFloorItemDirectlyToInventory(equipment[i])) {
+				DropItemToTheFloor(equipment[i], Me.pos.x, Me.pos.y, Me.pos.z);
+			}
+		}
+	}
+}
 
 /**
  * This function computes secondary stats (i.e. chances for success or
