@@ -840,7 +840,36 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 	our_iso_image->original_image_width = our_iso_image->surface->w;
 	our_iso_image->original_image_height = our_iso_image->surface->h;
 
-};				// void get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
+}
+
+/**
+ * Load an iso image given its filename
+ * \param img Pointer towards the iso_image struct to fill in
+ * \param filename Filename of the image
+ * \param use_offset_file TRUE if the image uses offset information 
+ */
+void load_iso_image(iso_image *img, const char *filename, int use_offset_file)
+{
+	char fpath[2048];
+
+	if (iso_image_loaded(img)) {
+		ErrorMessage(__FUNCTION__, 
+				"The image has already been loaded: %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		return;
+	}
+
+	find_file(filename, GRAPHICS_DIR, fpath, 0);
+	get_iso_image_from_file_and_path(fpath, img, use_offset_file);
+
+	if (img->surface == NULL) {
+		ErrorMessage(__FUNCTION__, 
+			"Error loading image: %s.", PLEASE_INFORM, IS_FATAL, filename);
+	}
+
+	if (use_open_gl) {
+		make_texture_out_of_surface(img);
+	}
+}
 
 /**
  *

@@ -232,6 +232,7 @@ void try_to_load_ingame_item_surface(int item_type);
 void iso_load_bullet_surfaces(void);
 int iso_image_loaded(iso_image *);
 void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, int use_offset_file);
+void load_iso_image(iso_image *, const char *, int);
 void make_sure_zoomed_surface_is_there(iso_image * our_iso_image);
 void make_sure_automap_surface_is_there(obstacle_spec * our_obstacle_spec);
 void load_item_surfaces_for_item_type(int item_type);
