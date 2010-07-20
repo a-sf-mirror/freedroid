@@ -1934,11 +1934,18 @@ void draw_grid_on_the_floor(int mask)
 
 	float dd;
 
-	if (draw_grid >= 2)	// large grid
-		for (dd = -20; dd <= 20; dd++) {
-			draw_line_at_map_position(x - 20, y - dd, x + 20, y - dd, 0x99FFFF, 1);	// light cyan
-			draw_line_at_map_position(x - dd, y - 20, x - dd, y + 20, 0x99FFFF, 1);
+	if (draw_grid >= 2) {	// large grid
+		// Draw the horizontal lines
+		for (dd = 0; dd <= our_level->xlen; dd++) {
+			draw_line_at_map_position(0, dd, our_level->xlen, dd, 0x99FFFF, 1);	// light cyan
+ 		}
+
+		// Draw the vertical lines
+		for (dd = 0; dd <= our_level->ylen; dd++) {
+			draw_line_at_map_position(dd, 0, dd, our_level->ylen, 0x99FFFF, 1);	// light cyan
 		}
+	}
+
 	for (dd = 0; dd <= 1; dd += .5)	// quick-placement grid
 	{
 		draw_line_at_map_position(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1);	// magenta
