@@ -770,6 +770,19 @@ void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, in
 };				// void get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
 
 /**
+ * Check if the image has already been loaded
+ * \param img An iso image
+ * \return TRUE if the image has already been loaded
+ */
+int iso_image_loaded(iso_image *img)
+{
+	if ((img->surface == NULL) && (!img->texture_has_been_created)) {
+		return FALSE;
+	}
+	return TRUE;
+}
+
+/**
  *
  *
  */
