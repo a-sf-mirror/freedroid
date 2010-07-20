@@ -235,31 +235,22 @@ void make_sure_system_mouse_cursor_is_turned_on(void)
  */
 void blit_our_own_mouse_cursor(void)
 {
-	static int first_call = TRUE;
+	static int loaded = FALSE;
 	int i;
 	static iso_image mouse_cursors[16];
 	char constructed_filename[2000];
-	char fpath[2048];
 	int cursor_index = (-1);
 	point cursoff = { 0, 0 };
 
 	// On the first function call ever, we load the surfaces for the
 	// flags into memory.
 	//
-	if (first_call) {
+	if (!loaded) {
 		for (i = 0; i < 10; i++) {
 			sprintf(constructed_filename, "mouse_cursor_%04d.png", i);
-			find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
-			get_iso_image_from_file_and_path(fpath, &(mouse_cursors[i]), FALSE);
-
-			if (mouse_cursors[i].surface == NULL)
-				ErrorMessage(__FUNCTION__, "Error loading flag image: %s.", PLEASE_INFORM, IS_FATAL, fpath);
-
-			if (use_open_gl)
-				make_texture_out_of_surface(&(mouse_cursors[i]));
+			load_iso_image(&mouse_cursors[i], constructed_filename, FALSE);
 		}
-
-		first_call = FALSE;
+		loaded = TRUE;
 	}
 
 	switch (global_ingame_mode) {

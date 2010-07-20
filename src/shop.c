@@ -164,22 +164,9 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 	SDL_Rect TargetRectangle =
 	    { 0, 0, INITIAL_BLOCK_WIDTH * GameConfig.screen_width / 640, INITIAL_BLOCK_HEIGHT * GameConfig.screen_height / 480 };
 	static iso_image equipped_icon;
-	static int first_call = TRUE;
 
-	if (first_call) {
-		char fpath[2048];
-
-		find_file("mouse_cursor_0003.png", GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(equipped_icon), FALSE);
-		if (equipped_icon.surface == NULL) {
-			fprintf(stderr, "\nFull path used: %s.", fpath);
-			ErrorMessage(__FUNCTION__, "\
-Error loading flag image.", PLEASE_INFORM, IS_FATAL);
-		}
-		if (use_open_gl) {
-			make_texture_out_of_surface(&(equipped_icon));
-		}
-		first_call = FALSE;
+	if (!iso_image_loaded(&equipped_icon)) {
+		load_iso_image(&equipped_icon, "mouse_cursor_0003.png", FALSE);
 	}
 
 	TuxItemRowRect.x = 55 * GameConfig.screen_width / 640;

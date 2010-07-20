@@ -285,17 +285,11 @@ item surface will be used as a substitute for now.", NO_NEED_TO_INFORM, IS_WARNI
 void Load_Mouse_Move_Cursor_Surfaces(void)
 {
 	int j;
-	char fpath[2048];
 	char our_filename[2000] = "";
 
 	for (j = 0; j < NUMBER_OF_MOUSE_CURSOR_PICTURES; j++) {
 		sprintf(our_filename, "mouse_move_cursor_%d.png", j);
-		find_file(our_filename, GRAPHICS_DIR, fpath, 0);
-
-		get_iso_image_from_file_and_path(fpath, &(MouseCursorImageList[j]), TRUE);
-
-		if (use_open_gl)
-			make_texture_out_of_surface(&(MouseCursorImageList[j]));
+		load_iso_image(&MouseCursorImageList[j], our_filename, FALSE);
 	}
 
 };				// void Load_Mouse_Move_Cursor_Surfaces( void )

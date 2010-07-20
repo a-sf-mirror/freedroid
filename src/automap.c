@@ -244,16 +244,9 @@ void toggle_automap(void)
 
 static void display_automap_compass()
 {
-	char fpath[2048];
-
 	//load the compass if necessary
-	if (compass.surface == NULL && !compass.texture_has_been_created) {
-		find_file("compass.png", GRAPHICS_DIR, fpath, 1);
-
-		get_iso_image_from_file_and_path(fpath, &compass, 0);
-
-		if (use_open_gl)
-			make_texture_out_of_surface(&compass);
+	if (!iso_image_loaded(&compass)) {
+		load_iso_image(&compass, "compass.png", FALSE);
 	}
 
 	if (use_open_gl) {

@@ -114,7 +114,6 @@ static void Highlight_Current_Block(int mask)
 {
 	level *EditLevel;
 	static iso_image level_editor_cursor = { NULL, 0, 0 };
-	char fpath[2048];
 
 	EditLevel = curShip.AllLevels[Me.pos.z];
 #define HIGHLIGHTCOLOR 255
@@ -122,15 +121,8 @@ static void Highlight_Current_Block(int mask)
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
 	//
-	if (level_editor_cursor.surface == NULL && !level_editor_cursor.texture_has_been_created) {
-		find_file("level_editor_floor_cursor.png", GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(level_editor_cursor), TRUE);
-		if (level_editor_cursor.surface == NULL) {
-			ErrorMessage(__FUNCTION__, "\
-		  Unable to load the level editor floor cursor.", PLEASE_INFORM, IS_FATAL);
-		}
-		if (use_open_gl)
-			make_texture_out_of_surface(&level_editor_cursor);
+	if (!iso_image_loaded(&level_editor_cursor)) {
+		load_iso_image(&level_editor_cursor, "level_editor_floor_cursor.png", TRUE);
 	}
 
 	if (mask & ZOOM_OUT) {
@@ -161,22 +153,14 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 	float dist;
 	int i;
 	static iso_image level_editor_dot_cursor = UNLOADED_ISO_IMAGE;
-	char fpath[2048];
 
 	// Maybe, if the level editor dot cursor has not yet been loaded,
 	// we need to load it.
 	//
-	if ((level_editor_dot_cursor.surface == NULL) && (!level_editor_dot_cursor.texture_has_been_created)) {
-		find_file("level_editor_waypoint_dot.png", GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(level_editor_dot_cursor), TRUE);
-		if (level_editor_dot_cursor.surface == NULL) {
-			ErrorMessage(__FUNCTION__, "\
-		    Unable to load the level editor waypoint dot cursor.", PLEASE_INFORM, IS_FATAL);
-		}
-
-		if (use_open_gl)
-			make_texture_out_of_surface(&level_editor_dot_cursor);
+	if (!iso_image_loaded(&level_editor_dot_cursor)) {
+		load_iso_image(&level_editor_dot_cursor, "level_editor_waypoint_dot.png", TRUE);
 	}
+
 	// So now that the dot cursor has been loaded, we can start to
 	// actually draw the dots.
 	//
@@ -217,29 +201,18 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 static void show_waypoints(int mask)
 {
 	waypoint *wpts = EditLevel()->waypoints.arr;
-	char fpath[2048];
 	float r, g, b;
 	float x, y;
 	int i, j;
 
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
-	for (i = 0; i < 2; i++) {
-		if ((level_editor_waypoint_cursor[i].surface == NULL) && (!level_editor_waypoint_cursor[i].texture_has_been_created)) {
-			if (i == 0)
-				find_file("level_editor_waypoint_cursor.png", GRAPHICS_DIR, fpath, 0);
-			else
-				find_file("level_editor_norand_waypoint_cursor.png", GRAPHICS_DIR, fpath, 0);
-			get_iso_image_from_file_and_path(fpath, &(level_editor_waypoint_cursor[i]), TRUE);
+	if (!iso_image_loaded(&level_editor_waypoint_cursor[0])) {
+		load_iso_image(&level_editor_waypoint_cursor[0], "level_editor_waypoint_cursor.png", TRUE);
+	}
 
-			if (level_editor_waypoint_cursor[i].surface == NULL) {
-				ErrorMessage(__FUNCTION__, "\
-		        Unable to load the level editor waypoint cursor.", PLEASE_INFORM, IS_FATAL);
-			}
-
-			if (use_open_gl)
-				make_texture_out_of_surface(&(level_editor_waypoint_cursor[i]));
-		}
+	if (!iso_image_loaded(&level_editor_waypoint_cursor[1])) {
+		load_iso_image(&level_editor_waypoint_cursor[1], "level_editor_norand_waypoint_cursor.png", TRUE);
 	}
 
 	for (i = 0; i < EditLevel()->waypoints.size; i++) {
@@ -296,8 +269,6 @@ static void show_waypoints(int mask)
 static void show_map_labels(int mask)
 {
 	static iso_image map_label_indicator = UNLOADED_ISO_IMAGE;
-	static int first_function_call = TRUE;
-	char fpath[2048];
 	level *EditLevel = curShip.AllLevels[Me.pos.z];
 	struct map_label_s *map_label;
 	int i;
@@ -305,13 +276,8 @@ static void show_map_labels(int mask)
 	// On the first function call to this function, we must load the map label indicator
 	// iso image from the disk to memory and keep it there as static.  That should be
 	// it for here.
-	if (first_function_call) {
-		first_function_call = FALSE;
-		find_file("level_editor_map_label_indicator.png", GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(map_label_indicator), TRUE);
-
-		if (use_open_gl)
-			make_texture_out_of_surface(&map_label_indicator);
+	if (!iso_image_loaded(&map_label_indicator)) {
+		load_iso_image(&map_label_indicator, "level_editor_map_label_indicator.png", TRUE);
 	}
 
 	// Now we can draw a fine indicator at all the position nescessary...
