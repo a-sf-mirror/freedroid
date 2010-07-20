@@ -37,6 +37,9 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_validator.h"
+#include "lvledit/lvledit_menu.h"
+
+#include "mapgen/mapgen.h"
 
 int EditLevelNrPopup(void)
 {
@@ -540,6 +543,7 @@ static void LevelOptions(void)
 		EDIT_LEVEL_DIMENSIONS,
 		SET_LEVEL_INTERFACE_POSITION,
 		SET_RANDOM_LEVEL,
+		SET_TELEPORT_PAIR,
 		CHANGE_LIGHT,
 		CHANGE_INDOOR_OUTDOOR,
 		SET_BACKGROUND_SONG_NAME,
@@ -593,6 +597,11 @@ static void LevelOptions(void)
 		sprintf(Options[i], "%s: %s", _("Random dungeon"),
 			EditLevel()->random_dungeon == 2 ? _("2 connections") : EditLevel()->random_dungeon ==
 			1 ? _("1 connection") : _("no"));
+		MenuTexts[i] = Options[i];
+		i++;
+
+		sprintf(Options[i], "%s: %s", _("Teleport pair"),
+				mapgen_teleport_pair_str(EditLevel()->teleport_pair));
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -673,6 +682,9 @@ static void LevelOptions(void)
 		case SET_RANDOM_LEVEL:
 			EditLevel()->random_dungeon++;
 			EditLevel()->random_dungeon %= 3;
+			break;
+		case SET_TELEPORT_PAIR:
+			EditLevel()->teleport_pair = mapgen_cycle_teleport_pair(EditLevel()->teleport_pair);
 			break;
 		case CHANGE_LIGHT:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())

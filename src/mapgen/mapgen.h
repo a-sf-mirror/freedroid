@@ -69,6 +69,8 @@ void mapgen_set_floor(int x, int y, int type);
 void mapgen_gift(struct roominfo *r);
 void mapgen_add_door(int, int, int, int);
 void mapgen_delete_door(int, int);
+unsigned int mapgen_cycle_teleport_pair(unsigned int);
+const char * mapgen_teleport_pair_str(int);
 
 int find_connection_points(int room_id, struct cplist_t cplist[100], int offset);
 

@@ -23,7 +23,7 @@ struct roominfo *rooms;
 int total_rooms = 0;
 int max_rooms = 0;
 
-const struct { int exit, enter; } teleport_pairs[] = {
+const struct { int enter, exit; } teleport_pairs[] = {
 	{ ISO_TELEPORTER_1, ISO_TELEPORTER_1},	// enter: cloud, exit: cloud
 	{ ISO_TELEPORTER_1, ISO_EXIT_5 },		// enter: cloud, exit: ladder to upstairs
 	{ ISO_EXIT_3, ISO_TELEPORTER_1 },		// enter: ladder to downstairs, exit: cloud
@@ -748,4 +748,27 @@ int generate_dungeon(int w, int h, int nbconnec, int tpair)
 
 	free_level();
 	return 0;
+}
+
+const char * mapgen_teleport_pair_str(int idx)
+{
+	const char *teleport_pair_str[] = {
+		"In - cloud; Out - cloud",
+		"In - cloud; Out - ladder up",
+		"In - ladder down; Out - cloud",
+		"In - ladder down; Out - ladder up"
+	};
+
+	return teleport_pair_str[idx];
+}
+
+unsigned int mapgen_cycle_teleport_pair(unsigned int value)
+{
+	unsigned int sz = sizeof(teleport_pairs) / sizeof(teleport_pairs[0]);
+
+	value++;
+	if (value >= sz)
+		value = 0;
+
+	return value;
 }
