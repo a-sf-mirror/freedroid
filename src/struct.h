@@ -262,12 +262,18 @@ struct addon_bonus {
 	int value;
 };
 
+struct addon_material {
+	char *name;
+	int value;
+};
+
 struct addon_spec {
 	int type;
 	int upgrade_cost;
 	char *requires_socket;
 	char *requires_item;
 	struct dynarray bonuses;
+	struct dynarray materials;
 };
 
 typedef struct itemspec_s {

@@ -830,6 +830,7 @@ static int lua_register_addon(lua_State *L)
 {
 	char *name = NULL;
 	struct addon_bonus bonus;
+	struct addon_material material;
 	struct addon_spec addonspec;
 
 	// Read the item name and find the item index.
@@ -853,6 +854,22 @@ static int lua_register_addon(lua_State *L)
 				bonus.name = strdup(lua_tostring(L, -2));
 				bonus.value = lua_tonumber(L, -1);
 				dynarray_add(&addonspec.bonuses, &bonus, sizeof(bonus));
+				lua_pop(L, 1);
+			}
+		}
+	}
+	lua_pop(L, 1);
+
+	// Process the table of materials. The keys of the table are the names
+	// of the materials and the values the required material counts.
+	lua_getfield(L, 1, "materials");
+	if (lua_type(L, -1) == LUA_TTABLE) {
+		lua_pushnil(L);
+		while (lua_next(L, -2) != 0) {
+			if (lua_type(L, -2) == LUA_TSTRING && lua_type(L, -1) == LUA_TNUMBER) {
+				material.name = strdup(lua_tostring(L, -2));
+				material.value = lua_tonumber(L, -1);
+				dynarray_add(&addonspec.materials, &material, sizeof(material));
 				lua_pop(L, 1);
 			}
 		}

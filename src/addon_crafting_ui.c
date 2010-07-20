@@ -45,7 +45,7 @@ static struct {
 	int selection;
 	int scroll_offset; /// The scroll offset of the recipe list, in full rows.
 	struct dynarray recipes;
-	struct auto_string *description;
+	struct text_widget description;
 } ui = { .visible = FALSE };
 
 static const struct {
@@ -71,12 +71,59 @@ static const struct {
  */
 static void select_recipe(int index)
 {
+	int i;
 	int type;
 	struct crafting_recipe *arr = ui.recipes.arr;
+	struct addon_spec *spec = get_addon_spec(arr[index].item_type);
+	struct addon_material *materials = spec->materials.arr;
 
 	ui.selection = index;
+
+	// Copy the item description to the text widget.
+	struct auto_string *desc = ui.description.text;
 	type = arr[index].item_type;
-	autostr_printf(ui.description, "%s", ItemMap[type].item_description);
+	autostr_printf(desc, "%s", ItemMap[type].item_description);
+
+	// Append the add-on tooltip to the text widget.
+	autostr_append(desc, "\n\n%s%s%s\n", font_switchto_msgstat, _("Features:"), font_switchto_msgvar);
+	print_addon_description(spec, desc);
+
+	// Append material requirements to the text widget.
+	autostr_append(desc, "\n%s%s%s\n", font_switchto_msgstat, _("Materials:"), font_switchto_msgvar);
+	for (i = 0; i < spec->materials.size; i++) {
+		autostr_append(desc, _("%s: %d\n"), materials[i].name, materials[i].value);
+	}
+
+	// Scroll the text widget to the top.
+	ui.description.scroll_offset = -get_lines_needed(desc->value,
+	            ui.description.rect, ui.description.text_stretch);
+}
+
+/**
+ * \brief Checks which recipes the player can afford.
+ */
+static void check_recipe_requirements()
+{
+	int i;
+	int j;
+	struct crafting_recipe *recipes = ui.recipes.arr;
+
+	// Disable recipes the player can't afford.
+	for (i = 0; i < ui.recipes.size; i++) {
+		struct addon_spec *spec = get_addon_spec(recipes[i].item_type);
+		struct addon_material *materials = spec->materials.arr;
+		recipes[i].available = TRUE;
+
+		// Check if the player has enough materials.
+		for (j = 0; j < spec->materials.size; j++) {
+			int type = GetItemIndexByName(materials[j].name);
+			int count = CountItemtypeInInventory(type);
+			if (count < materials[j].value) {
+				recipes[i].available = FALSE;
+				break;
+			}
+		}
+	}
 }
 
 static void craft_item()
@@ -86,11 +133,27 @@ static void craft_item()
 
 	// Craft the selected item if the player can afford it.
 	if (arr[ui.selection].available) {
+		int i;
+		struct addon_spec *spec = get_addon_spec(arr[ui.selection].item_type);
+		struct addon_material *materials = spec->materials.arr;
+
+		// Subtract materials.
+		for (i = 0; i < spec->materials.size; i++) {
+			int type = GetItemIndexByName(materials[i].name);
+			int count = materials[i].value;
+			DeleteInventoryItemsOfType(type, count);
+		}
+
+		// Create the item and add it to the inventory.
 		int type = arr[ui.selection].item_type;
 		it = create_item_with_name(ItemMap[type].item_name, TRUE, 1);
 		if (AddFloorItemDirectlyToInventory(&it)) {
 			DropItemToTheFloor(&it, Me.pos.x, Me.pos.y, Me.pos.z);
 		}
+
+		// The player lost some materials so some of the recipes might have become
+		// unaffordable. We need to recheck for the requirements because of this.
+		check_recipe_requirements();
 	}
 }
 
@@ -115,6 +178,9 @@ static void build_recipe_list()
 		recipe.item_type = arr[i].type;
 		dynarray_add(&ui.recipes, &recipe, sizeof(struct crafting_recipe));
 	}
+
+	// Check which recipes the player can afford.
+	check_recipe_requirements();
 }
 
 /**
@@ -182,9 +248,7 @@ void show_addon_crafting_ui()
 	}
 
 	// Draw the description of the selected recipe.
-	SetCurrentFont(Messagevar_BFont);
-	DisplayText(ui.description->value, rects.recipe_desc.x, rects.recipe_desc.y,
-	            &rects.recipe_desc, TEXT_STRETCH);
+	show_text_widget(&ui.description);
 }
 
 static void handle_ui()
@@ -201,7 +265,7 @@ static void handle_ui()
 	cursor.x = GetMousePos_x();
 	cursor.y = GetMousePos_y();
 
-	// Handle scrolling of the recipe list.
+	// Handle scrolling and selections of the recipe list.
 	if (MouseCursorIsInRect(&rects.recipe_list, cursor.x, cursor.y)) {
 		if (MouseWheelUpPressed()) {
 			if (ui.scroll_offset > 0) {
@@ -213,32 +277,36 @@ static void handle_ui()
 				ui.scroll_offset++;
 			}
 		}
-	}
-
-	// Check if we need to handle mouse clicks.
-	if (!MouseLeftClicked()) {
-		return;
-	}
-
-	// Handle selection of recipes from the list.
-	if (MouseCursorIsInRect(&rects.recipe_list, cursor.x, cursor.y)) {
-		int clicked_row = (cursor.y - rects.recipe_list.y) / RECIPE_LIST_ROW_HEIGHT;
-		if (clicked_row + ui.scroll_offset < ui.recipes.size) {
-			select_recipe(clicked_row + ui.scroll_offset);
+		if (MouseLeftClicked()) {
+			int clicked_row = (cursor.y - rects.recipe_list.y) / RECIPE_LIST_ROW_HEIGHT;
+			if (clicked_row + ui.scroll_offset < ui.recipes.size) {
+				select_recipe(clicked_row + ui.scroll_offset);
+			}
 		}
 	}
 
-	// Handle clicks to the apply button.
+	// Handle hovering and clicks of the apply and close buttons. We need to reset
+	// the cursor to normal if it's on a button since the text widget might have
+	// changed it to a scolling cursor in the previous call.
 	if (MouseCursorIsOnButton(ITEM_UPGRADE_APPLY_BUTTON, cursor.x, cursor.y)) {
-		craft_item();
+		if (MouseLeftClicked()) {
+			craft_item();
+		}
+		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+		return;
+	}
+	if (MouseCursorIsOnButton(ITEM_UPGRADE_CLOSE_BUTTON, cursor.x, cursor.y)) {
+		if (MouseLeftClicked()) {
+			ui.quit = TRUE;
+		}
+		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 		return;
 	}
 
-	// Handle clicks to the close button.
-	if (MouseCursorIsOnButton(ITEM_UPGRADE_CLOSE_BUTTON, cursor.x, cursor.y)) {
-		ui.quit = TRUE;
-		return;
-	}
+	// Handle events to the description text widget. Since the buttons overlap
+	// with the text widget, we only call this when the cursor is not on them.
+	// Otherwise, the text widget would handle the events of the buttons.
+	widget_handle_mouse(&ui.description);
 }
 
 /**
@@ -251,7 +319,9 @@ void addon_crafting_ui()
 
 	// Clear the struct and build the recipe list.
 	memset(&ui, 0, sizeof(ui));
-	ui.description = alloc_autostr(64);
+	init_text_widget(&ui.description, "");
+	ui.description.font = Messagevar_BFont;
+	ui.description.rect = rects.recipe_desc;
 	build_recipe_list();
 	select_recipe(0);
 
@@ -283,7 +353,7 @@ void addon_crafting_ui()
 	}
 
 	// Free the description and the recipe list.
-	free_autostr(ui.description);
+	free_autostr(ui.description.text);
 	dynarray_free(&ui.recipes);
 
 	ui.visible = FALSE;
