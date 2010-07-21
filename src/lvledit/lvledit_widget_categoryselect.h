@@ -36,4 +36,4 @@ void leveleditor_categoryselect_mousewheeldown(SDL_Event *, struct leveleditor_w
 void leveleditor_categoryselect_display(struct leveleditor_widget *);
 
 struct leveleditor_categoryselect *get_current_object_type(void);
-void leveleditor_categoryselect_init(struct leveleditor_categoryselect *);
+void leveleditor_categoryselect_activate(struct leveleditor_categoryselect *);

@@ -155,6 +155,18 @@ static void activate_button(struct leveleditor_button *b)
 	case LEFT_LEVEL_EDITOR_BUTTON:
 		leveleditor_toolbar_scroll_left();
 		break;
+	case LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON:
+		leveleditor_select_type(OBJECT_OBSTACLE);
+		break;
+	case LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON:
+		leveleditor_select_type(OBJECT_FLOOR);
+		break;
+	case LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON:
+		leveleditor_select_type(OBJECT_ITEM);
+		break;
+	case LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON:
+		leveleditor_select_type(OBJECT_WAYPOINT);
+		break;
 	default:
 		ErrorMessage(__FUNCTION__, "Button type %d unhandled.", PLEASE_INFORM, IS_WARNING_ONLY, idx);
 	}
@@ -257,4 +269,18 @@ void leveleditor_button_display(struct leveleditor_widget *vb)
 
 	ShowGenericButtonFromList(b->btn_index + pushoffset + activeoffset);
 
+	if (b->text) {
+		SDL_Rect btn_rect = AllMousePressButtons[b->btn_index].button_rect;
+
+		// Calculate the position of the text, we want to display the text at the
+		// center of the button
+		SDL_Rect rect;
+		rect.x = btn_rect.x + (btn_rect.w - TextWidth(b->text)) / 2;
+		rect.y = btn_rect.y + 8;
+		rect.w = btn_rect.w;
+		rect.h = btn_rect.h;
+
+		// Draw the text on the button
+		DisplayText(b->text, rect.x, rect.y, &rect, TEXT_STRETCH);
+	}
 }

@@ -228,6 +228,51 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_REDO_BUTTON_PUSHED] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", {-240, -30, 0, 0}, FALSE},
 
+	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -270, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -270, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON_OFF] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -270, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON_OFF_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -270, 0, 0}, FALSE},
+
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -232, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -232, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_OFF] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -232, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_OFF_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -232, 0, 0}, FALSE},
+
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -232, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -232, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_OFF] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -232, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_OFF_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -232, 0, 0}, FALSE},
+
+	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -194, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -194, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_OFF] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -194, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_OFF_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -194, 0, 0}, FALSE},
+
+	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -156, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -156, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON_OFF] = 
+		 {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -156, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON_OFF_PUSHED] = 
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -156, 0, 0}, FALSE},
+
 	[WEAPON_RECT_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {WEAPON_RECT_X, WEAPON_RECT_Y, WEAPON_RECT_WIDTH, WEAPON_RECT_HEIGHT}, FALSE},
 	[DRIVE_RECT_BUTTON] =

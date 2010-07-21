@@ -40,7 +40,7 @@
 
 LIST_HEAD(leveleditor_widget_list);
 
-struct leveleditor_widget *create_button(int btype)
+struct leveleditor_widget *create_button(int btype, char *text)
 {
 	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_BUTTON;
@@ -58,6 +58,7 @@ struct leveleditor_widget *create_button(int btype)
 	struct leveleditor_button *b = MyMalloc(sizeof(struct leveleditor_button));
 	b->btn_index = btype;
 	b->pressed = 0;
+	b->text = text;
 
 	a->ext = b;
 
@@ -156,7 +157,6 @@ void leveleditor_destroy_widget(struct leveleditor_widget *w)
 void leveleditor_init_widgets()
 {
 	struct leveleditor_widget *map;
-	struct leveleditor_widget *wall_selector;
 
 	if (!list_empty(&leveleditor_widget_list)) {
 		/* Widgets already initialized, get out */
@@ -164,61 +164,71 @@ void leveleditor_init_widgets()
 	}
 
 	/* Build our interface */
-	int t[] = {
-		LEVEL_EDITOR_UNDO_BUTTON,
-		LEVEL_EDITOR_REDO_BUTTON,
-		LEVEL_EDITOR_SAVE_SHIP_BUTTON,
-		LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON,
-		LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON,
-		LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON,
-		LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON,
-		LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON,
-		LEVEL_EDITOR_EDIT_CHEST_BUTTON,
-		LEVEL_EDITOR_ESC_BUTTON,
-		LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON,
-		LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON,
-		LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON,
-		LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF,
-		LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON,
-		LEVEL_EDITOR_ZOOM_IN_BUTTON,
-		LEVEL_EDITOR_QUIT_BUTTON,
-		GO_LEVEL_NORTH_BUTTON,
-		GO_LEVEL_SOUTH_BUTTON,
-		GO_LEVEL_EAST_BUTTON,
-		GO_LEVEL_WEST_BUTTON,
-		RIGHT_LEVEL_EDITOR_BUTTON,
-		LEFT_LEVEL_EDITOR_BUTTON,
+	struct {
+		int btn_index;
+		char *text;
+	} b[] = {
+		{LEVEL_EDITOR_UNDO_BUTTON, NULL},
+		{LEVEL_EDITOR_REDO_BUTTON, NULL},
+		{LEVEL_EDITOR_SAVE_SHIP_BUTTON, NULL},
+		{LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON, NULL},
+		{LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, NULL},
+		{LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON, NULL},
+		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL},
+		{LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, NULL},
+		{LEVEL_EDITOR_EDIT_CHEST_BUTTON, NULL},
+		{LEVEL_EDITOR_ESC_BUTTON, NULL},
+		{LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON, NULL},
+		{LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON, NULL},
+		{LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON, NULL},
+		{LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF, NULL},
+		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL},
+		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL},
+		{LEVEL_EDITOR_QUIT_BUTTON, NULL},
+		{GO_LEVEL_NORTH_BUTTON, NULL},
+		{GO_LEVEL_SOUTH_BUTTON, NULL},
+		{GO_LEVEL_EAST_BUTTON, NULL},
+		{GO_LEVEL_WEST_BUTTON, NULL},
+		{RIGHT_LEVEL_EDITOR_BUTTON, NULL},
+		{LEFT_LEVEL_EDITOR_BUTTON, NULL},
+		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, "OBSTACLE"},
+		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, "FLOOR"},
+		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, "ITEM"},
+		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, "WAYPOINT"},
 	};
 
 	int i;
 
-	for (i = 0; i < sizeof(t) / sizeof(t[0]); i++) {
-		ShowGenericButtonFromList(t[i]);	//we need that to have .w and .h of the button rect initialized.
-		list_add(&create_button(t[i])->node, &leveleditor_widget_list);
+	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
+		ShowGenericButtonFromList(b[i].btn_index);	//we need that to have .w and .h of the button rect initialized.
+		list_add(&create_button(b[i].btn_index, b[i].text)->node, &leveleditor_widget_list);
 	}
 
-	/* The object type selectors */
-	wall_selector = create_categoryselector(0, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list);
-	list_add_tail(&wall_selector->node, &leveleditor_widget_list);
+	// Create category selectors
+	// Obstacles
+	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++)
+		all_obstacles_list[i] = i;
+	all_obstacles_list[i] = -1;
+	list_add_tail(&create_categoryselector(0, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_categoryselector(1, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_categoryselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_categoryselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_categoryselector(4, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
-	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++)
-		all_obstacles_list[i] = i;
-	all_obstacles_list[i] = -1;
 	list_add_tail(&create_categoryselector(5, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(6, _("FLOOR"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
 
-	list_add_tail(&create_categoryselector(7, _("WAYPT"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
-
+	// Floor
+	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
+	
+	// Items
 	free(all_items_list);
 	all_items_list = MyMalloc((Number_Of_Item_Types + 1) * sizeof(int));
 	for (i = 0; i < Number_Of_Item_Types; i++)
 		all_items_list[i] = i;
 	all_items_list[i] = -1;
+	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
 
-	list_add_tail(&create_categoryselector(8, _("ITEM"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
+	// Waypoints
+	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
 
 	/* The toolbar */
 	list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
@@ -227,11 +237,10 @@ void leveleditor_init_widgets()
 	map = create_map();
 	list_add_tail(&map->node, &leveleditor_widget_list);
 
-	/* Initialize elements of the interface */
-	leveleditor_categoryselect_init(wall_selector->ext);
+	// Activate the obstacle type selector
+	leveleditor_select_type(OBJECT_OBSTACLE);
 
 	leveleditor_map_init();
-
 }
 
 void leveleditor_update_button_states()
@@ -310,6 +319,18 @@ void leveleditor_update_button_states()
 		case LEVEL_EDITOR_REDO_BUTTON:
 			w->enabled = !list_empty(&to_redo);
 			break;
+		case LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON:
+			b->active = 2 * (selection_type() == OBJECT_OBSTACLE);
+			break;
+		case LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON:
+			b->active = 2 * (selection_type() == OBJECT_FLOOR);
+			break;
+		case LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON:
+			b->active = 2 * (selection_type() == OBJECT_ITEM);
+			break;
+		case LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON:
+			b->active = 2 * (selection_type() == OBJECT_WAYPOINT);
+			break;
 		}
 	}
 }
@@ -348,6 +369,29 @@ void leveleditor_display_widgets()
 		case WIDGET_CATEGORY_SELECTOR:
 			leveleditor_categoryselect_display(w);
 			break;
+		}
+	}
+}
+
+void leveleditor_select_type(enum leveleditor_object_type type)
+{
+	struct leveleditor_widget *cs_widget;
+
+	// Find the categories which must be enabled
+ 	list_for_each_entry_reverse(cs_widget, &leveleditor_widget_list, node) {
+ 		if (cs_widget->type != WIDGET_CATEGORY_SELECTOR)
+ 			continue;
+
+		// By default, desactivate all categories
+		cs_widget->enabled = 0;		
+		
+		struct leveleditor_categoryselect *cs = cs_widget->ext;
+
+		// Activate a category if it is of the right type
+		if (cs->type == type) {
+			cs_widget->enabled = 1;
+
+			leveleditor_categoryselect_activate(cs);
 		}
 	}
 }

@@ -120,7 +120,7 @@ struct leveleditor_categoryselect *get_current_object_type()
 	return currently_selected_category;
 }
 
-void leveleditor_categoryselect_init(struct leveleditor_categoryselect *e)
+void leveleditor_categoryselect_activate(struct leveleditor_categoryselect *e)
 {
 	currently_selected_category = e;
 }
