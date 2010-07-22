@@ -157,12 +157,51 @@ static void apply_flower_theme(int x, int y, int object)
 	mapgen_set_floor(x, y, ISO_CARPET_TILE_0002);
 }
 
-static void set_interior_objects()
+static void fill_armory(int r)
+{
+	int x, y;
+	struct roominfo	*room = &rooms[r];
+
+#define ARMORY_PROB		90
+
+	// Place gifts alongside the wall that has greater dimension
+	if (room->w > room->h) {
+		for (y = 1; y < 3; y++) {
+			for (x = 1; x < room->w; x++) {
+				if (mapgen_get_tile(room->x + x, room->y - 1) == TILE_WALL && MyRandom(100) < ARMORY_PROB)
+					mapgen_add_obstacle(room->x + x, room->y + y, ISO_BARREL_1 + MyRandom(3));
+				if (mapgen_get_tile(room->x + x, room->y + room->h) == TILE_WALL && MyRandom(100) < ARMORY_PROB)
+					mapgen_add_obstacle(room->x + x, room->y + room->h - y, ISO_BARREL_1 + MyRandom(3));
+			}
+		}
+	} else {
+		for (y = 1; y < room->h; y++) {
+			for (x = 1; x < 3; x++) {
+				if (mapgen_get_tile(room->x - 1, room->y + y) == TILE_WALL && MyRandom(100) < ARMORY_PROB)
+					mapgen_add_obstacle(room->x + x, room->y + y, ISO_BARREL_1 + MyRandom(3));
+				if (mapgen_get_tile(room->x + room->w, room->y + y) == TILE_WALL && MyRandom(100) < ARMORY_PROB)
+					mapgen_add_obstacle(room->x + room->w - x, room->y + y, ISO_BARREL_1 + MyRandom(3));
+			}
+		}
+	}
+}
+
+static void fill_rooms(int *vis)
 {
 	int i;
+	// Gifts are placed in rooms that have not yet been visited.
 
+	// Armories are for rooms with only one neighbor
 	for (i = 0; i < total_rooms; i++) {
-		if(MyRandom(100) < 30)
+		if (!vis[i] && rooms[i].num_neighbors == 1) {
+			fill_armory(i);
+			vis[i] = 1;
+		}
+	}
+
+	// Other rooms get regular gifts
+	for (i = 0; i < total_rooms; i++) {
+		if (!vis[i])
 			mapgen_gift(&rooms[i]);
 	}
 }
@@ -212,7 +251,7 @@ static int get_middle_room()
 }
 
 // Sets living room theme for the middle room and some its neighbours
-static void set_living_theme_recursive(int room, int depth)
+static void set_living_theme_recursive(int room, int depth, int *vis)
 {
 	int i;
 
@@ -220,8 +259,9 @@ static void set_living_theme_recursive(int room, int depth)
 		return;
 
 	rooms[room].theme = RAND_THEME(living_themes);
+	vis[room] = 1;
 	for (i = 0; i < rooms[room].num_neighbors; i++)
-		set_living_theme_recursive(rooms[room].neighbors[i], depth - 1);
+		set_living_theme_recursive(rooms[room].neighbors[i], depth - 1, vis);
 }
 
 void mapgen_place_obstacles(int w, int h, unsigned char *tiles) 
@@ -230,11 +270,13 @@ void mapgen_place_obstacles(int w, int h, unsigned char *tiles)
 	int i;
 	int x, y;
 	int wall, room;
+	int vis[total_rooms];
 
 	for (i = 0; i < total_rooms; i++) {
 		rooms[i].theme = RAND_THEME(industrial_themes);
+		vis[i] = 0;
 	}
-	set_living_theme_recursive(get_middle_room(), MyRandom(1) + 2);
+	set_living_theme_recursive(get_middle_room(), MyRandom(1) + 2, vis);
 
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
@@ -261,5 +303,5 @@ void mapgen_place_obstacles(int w, int h, unsigned char *tiles)
 		}
 	} 
 
-	set_interior_objects();
+	fill_rooms(vis);
 } 

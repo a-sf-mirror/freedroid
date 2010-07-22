@@ -332,21 +332,32 @@ void mapgen_exit_at(struct roominfo *r, int tpair)
 
 void mapgen_gift(struct roominfo *r)
 {
-	int obstacle_id = ISO_BARREL_1 + rand() % 4;
+	const int gifts[] = {
+		ISO_E_CHEST2_CLOSED,
+		ISO_W_CHEST2_CLOSED,
+		ISO_S_CHEST2_CLOSED,
+		ISO_N_CHEST2_CLOSED
+	};
+	const int dx[] = { -1, 1, 0, 0 };
+	const int dy[] = { 0, 0, -1, 1 };
 	int pos = rand() % 4;
 
 	struct {
-		int x;
-		int y;
+		float x;
+		float y;
 	} positions[4] = {
 		{
-		r->x + 1, r->y + r->h / 2}, {
+		r->x, r->y + r->h / 2}, {
 		r->x + r->w - 1, r->y + r->h / 2}, {
-		r->x + r->w / 2, r->y + 1}, {
+		r->x + r->w / 2, r->y}, {
 		r->x + r->w / 2, r->y + r->h - 1}
 	};
 
-	mapgen_add_obstacle(positions[pos].x, positions[pos].y, obstacle_id);
+	if (mapgen_get_tile(positions[pos].x + dx[pos], positions[pos].y + dy[pos]) == TILE_WALL) { 
+		positions[pos].x += obstacle_map[gifts[pos]].right_border;
+		positions[pos].y += obstacle_map[gifts[pos]].lower_border;
+		mapgen_add_obstacle(positions[pos].x, positions[pos].y, gifts[pos]);
+	}
 }
 
 int mapgen_add_room(int x, int y, int w, int h)
