@@ -184,6 +184,20 @@ static void build_recipe_list()
 }
 
 /**
+ * \brief Returns TRUE if the crafting UI is visible and the cursor is inside its rectangle.
+ * \param cursor Cursor position.
+ * \return TRUE if the cursor is on the UI, FALSE if not.
+ */
+int cursor_is_on_addon_crafting_ui(const point *cursor)
+{
+	if (ui.visible && MouseCursorIsInRect(&rects.main, cursor->x, cursor->y)) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+/**
  * \brief Draws the add-on crafting user interface.
  *
  * The upper half of the UI consists of a simple list of craftable items, from

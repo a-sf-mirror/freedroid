@@ -722,6 +722,7 @@ void show_item_upgrade_ui();
 void item_upgrade_ui();
 
 // addon_crafting_ui.c
+int cursor_is_on_addon_crafting_ui(const point *);
 void show_addon_crafting_ui();
 void addon_crafting_ui();
 

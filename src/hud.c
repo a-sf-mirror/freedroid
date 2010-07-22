@@ -665,6 +665,12 @@ void prepare_text_window_content(char *ItemDescText)
 		}
 	}			// if nothing is 'held in hand' && inventory-screen visible
 
+	// Check if the crafting UI is open and the cursor is inside it.
+	// No banner should be shown if that's the case.
+	if (cursor_is_on_addon_crafting_ui(&CurPos)) {
+		return;
+	}
+
 	// Check if the item upgrade UI is open and the cursor is inside it.
 	// We show a tooltip for the item upgrade UI if that's the case.
 	if (get_item_upgrade_ui_tooltip(&CurPos, ItemDescText)) {
