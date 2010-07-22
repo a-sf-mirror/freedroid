@@ -278,8 +278,7 @@ static int lua_event_give_item(lua_State * L)
 	// that there is no room and then drop the item to the floor directly under 
 	// the current Tux position.  That can't fail, right?
 	//
-	if (copy_item_into_inventory(&NewItem, NewItem.multiplicity)) {
-		DropItemToTheFloor(&NewItem, Me.pos.x, Me.pos.y, Me.pos.z);
+	if (!give_item(&NewItem)) {
 		SetNewBigScreenMessage(_("1 Item received (on floor)"));
 	} else {
 		SetNewBigScreenMessage(_("1 Item received!"));

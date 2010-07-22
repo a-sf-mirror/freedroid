@@ -262,9 +262,7 @@ void update_all_primary_stats()
 			continue;
 		}
 		if (!ItemUsageRequirementsMet(equipment[i], FALSE)) {
-			if (AddFloorItemDirectlyToInventory(equipment[i])) {
-				DropItemToTheFloor(equipment[i], Me.pos.x, Me.pos.y, Me.pos.z);
-			}
+			give_item(equipment[i]);
 		}
 	}
 }

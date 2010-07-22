@@ -147,9 +147,7 @@ static void craft_item()
 		// Create the item and add it to the inventory.
 		int type = arr[ui.selection].item_type;
 		it = create_item_with_name(ItemMap[type].item_name, TRUE, 1);
-		if (AddFloorItemDirectlyToInventory(&it)) {
-			DropItemToTheFloor(&it, Me.pos.x, Me.pos.y, Me.pos.z);
-		}
+		give_item(&it);
 
 		// The player lost some materials so some of the recipes might have become
 		// unaffordable. We need to recheck for the requirements because of this.

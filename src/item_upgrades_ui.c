@@ -362,8 +362,8 @@ static void clear_addon_items()
 			socket = &ui.custom_item.upgrade_sockets.arr[i];
 			if (socket->addon) {
 				DeleteItem(&ui.addon_items[i]);
-			} else if (AddFloorItemDirectlyToInventory(&ui.addon_items[i])) {
-				DropItemToTheFloor(&ui.addon_items[i], Me.pos.x, Me.pos.y, Me.pos.z);
+			} else {
+				give_item(&ui.addon_items[i]);
 			}
 		}
 	}
@@ -492,9 +492,7 @@ static void clear_customized_item()
 	// installed to it to the inventory so that the player doesn't lose them.
 	if (ui.custom_item.type != -1) {
 		clear_addon_items(ui);
-		if (AddFloorItemDirectlyToInventory(&ui.custom_item)) {
-			DropItemToTheFloor(&ui.custom_item, Me.pos.x, Me.pos.y, Me.pos.z);
-		}
+		give_item(&ui.custom_item);
 	}
 
 	// Reset the cost to zero and disable the apply button since
@@ -770,9 +768,7 @@ void item_upgrade_ui()
 	if (ui.dragged_item.type != -1) {
 		Item_Held_In_Hand->currently_held_in_hand = FALSE;
 		Item_Held_In_Hand = NULL;
-		if (AddFloorItemDirectlyToInventory(&ui.dragged_item)) {
-			DropItemToTheFloor(&ui.dragged_item, Me.pos.x, Me.pos.y, Me.pos.z);
-		}
+		give_item(&ui.dragged_item);
 	}
 
 	free_autostr(ui.bonus_text);

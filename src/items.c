@@ -75,44 +75,22 @@ void equip_item(item *new_item)
 	itemspec *new_itemspec;
 	
 	new_itemspec = &ItemMap[new_item->type];
-	
-	/*
-	 * now that we know the item type the case
-	 * of a 2 handed weapon needs to be handled
-	 */
-	if (new_itemspec->item_gun_requires_both_hands)
-	{
-		/*
-		 * We're equipping a 2 handed weapon so both the
-		 * shield and weapon need to be unequipped.  Here
-		 * we handle moving the shield to inventory/floor.
-		 * the normal case below will handle the weapon
-		 * since it looks for the equipped item of the same
-		 * type.  
-		 */
-		item *shield_item = &Me.shield_item;
-		
-		// if the shield item exists and we fail to put it in the inventory
-		if (shield_item && copy_item_into_inventory(shield_item, shield_item->multiplicity)) {
-			DropItemToTheFloor(shield_item, Me.pos.x, Me.pos.y, Me.pos.z);
-		} else {
-			/* otherwise it was successfully copied into the inventory.
-			 * copy_item_into_inventory doesn't delete the source item
-			 * though so we have to do that here. 
-			 */
-			DeleteItem(shield_item);
-		}
-	}
-	
-	// get the currently equipped item of the same type, if any
-	old_item = get_equipped_item_in_slot_for(new_item->type);
 
-	
-	if  (old_item && copy_item_into_inventory(old_item, old_item->multiplicity)) {
-		// the item didn't fit in the inventory
-		DropItemToTheFloor(old_item, Me.pos.x, Me.pos.y, Me.pos.z);
+	// If we're equipping a two-handed weapon, we need to unequip the shield
+	// as well. We drop the shield to the inventory or to the floor.
+	if (new_itemspec->item_gun_requires_both_hands && Me.shield_item.type != -1) {
+		give_item(&Me.shield_item);
 	}
-	CopyItem(new_item, old_item, FALSE);
+
+	// If there's an existing item in the equipment slot, drop it to the
+	// inventory or to the floor.
+	old_item = get_equipped_item_in_slot_for(new_item->type);
+	if (old_item->type != -1) {
+		give_item(old_item);
+	}
+
+	// Move the new item to the now empty equipment slot.
+	MoveItem(new_item, old_item);
 }
 
 
@@ -2271,6 +2249,26 @@ int AddFloorItemDirectlyToInventory(item * ItemPointer)
 
 	return 0;
 };				// void AddFloorItemDirectlyToInventory( item* ItemPointer )
+
+/**
+ * \brief Places the item to the inventory of the player or to the floor.
+ *
+ * If the item is of an equippable type whose requirements are met and the
+ * matching equipment slot is empty, the item is placed to the equipment slot.
+ * Otherwise, if there's enough room in the inventory, the item is placed there.
+ * Otherwise, the item is dropped to the floor at the feet of the player.
+ *
+ * \return TRUE if equipped or placed into the inventory, FALSE if dropped to the floor.
+ */
+int give_item(item *it)
+{
+	if (!AddFloorItemDirectlyToInventory(it)) {
+		return TRUE;
+	} else {
+		DropItemToTheFloor(it, Me.pos.x, Me.pos.y, Me.pos.z);
+		return FALSE;
+	}
+}
 
 int item_is_currently_equipped(item * Item)
 {

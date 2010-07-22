@@ -496,6 +496,7 @@ void DropItemToTheFloor(item *DropItemPointer, float x, float y, int levelnum);
 void show_quick_inventory(void);
 void HandleInventoryScreen(void);
 int AddFloorItemDirectlyToInventory(item * ItemPointer);
+int give_item(item *);
 void CopyItem(item * SourceItem, item * DestItem, int MakeSound);
 void DeleteItem(item * Item);
 void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical);
