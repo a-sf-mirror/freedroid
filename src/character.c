@@ -160,6 +160,7 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 	// Apply bonuses to the special abilities of the character.
 	Me.slowing_melee_targets += BonusItem->bonus_to_slow_enemy;
 	Me.paralyzing_melee_targets += BonusItem->bonus_to_paralyze_enemy;
+	Me.light_bonus_from_tux += BonusItem->bonus_to_light_radius;
 }
 
 /**

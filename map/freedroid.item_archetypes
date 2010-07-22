@@ -4283,6 +4283,19 @@ Base list price=100
 Item description text=_"When attached to a melee weapon, this item induces errors to the sensors of the bots you attack, causing them to slow down momentarily."
 ** End of new item specification subsection **
 
+** Start of new item specification subsection **
+Item name=_"Headlamp"
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="tachyon_converter"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="tachyon_converter/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=100
+Item description text=_"Fastened to your helmet, this item allows you to see better in dark environments."
+** End of new item specification subsection **
+
 *** End of item data section: ***
 
 ----------------------------------------------------------------------

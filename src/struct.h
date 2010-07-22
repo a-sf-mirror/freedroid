@@ -366,6 +366,7 @@ typedef struct item_s {
 	int bonus_to_resist_electricity;	// this is a percentage
 	int bonus_to_paralyze_enemy;
 	int bonus_to_slow_enemy;
+	int bonus_to_light_radius;
 
 	int damred_bonus;		// how much is damred increased by this item worn
 	int damage;		// how much damage does this item

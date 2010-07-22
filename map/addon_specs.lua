@@ -140,3 +140,12 @@ require_item = "melee weapon",
 bonuses = { slow_enemy = 3 },
 materials = { ["Tachyon Condensator"] = 2 }
 }
+
+addon{
+name = _"Headlamp",
+upgrade_cost = 45,
+require_socket = "electric",
+require_item = "helmet",
+bonuses = { light_radius = 5 },
+materials = { ["Entropy Inverter"] = 15, ["Plasma Transistor"] = 5 }
+}
