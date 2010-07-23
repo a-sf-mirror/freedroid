@@ -143,18 +143,6 @@ static struct leveleditor_widget *create_categoryselector(int x, char *text, enu
 	return a;
 }
 
-void leveleditor_destroy_widget(struct leveleditor_widget *w)
-{
-	free(w->ext);
-
-	list_del(&w->node);
-
-	free(w);
-
-	if (previously_active_widget == w)
-		previously_active_widget = NULL;
-}
-
 void leveleditor_init_widgets()
 {
 	struct leveleditor_widget *map;
