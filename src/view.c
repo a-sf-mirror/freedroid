@@ -1682,6 +1682,11 @@ static void show_obstacle_labels(int mask)
 	int i;
 	level *l = CURLEVEL();
 
+	if (game_status != INSIDE_LVLEDITOR) {
+		// Don't show obstacles labels when we are not in the editor
+		return;
+	}
+
 	if (mask & OMIT_OBSTACLES) {
 		// Don't show obstacles labels when obstacles are not displayed on the map
 		return;
