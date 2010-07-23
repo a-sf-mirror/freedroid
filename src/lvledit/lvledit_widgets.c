@@ -40,7 +40,7 @@
 
 LIST_HEAD(leveleditor_widget_list);
 
-struct leveleditor_widget *create_button(int btype, char *text)
+struct leveleditor_widget *create_button(int btype, char *text, char *tooltip)
 {
 	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_BUTTON;
@@ -59,6 +59,7 @@ struct leveleditor_widget *create_button(int btype, char *text)
 	b->btn_index = btype;
 	b->pressed = 0;
 	b->text = text;
+	b->tooltip = tooltip;
 
 	a->ext = b;
 
@@ -167,41 +168,63 @@ void leveleditor_init_widgets()
 	struct {
 		int btn_index;
 		char *text;
+		char *tooltip;
 	} b[] = {
-		{LEVEL_EDITOR_UNDO_BUTTON, NULL},
-		{LEVEL_EDITOR_REDO_BUTTON, NULL},
-		{LEVEL_EDITOR_SAVE_SHIP_BUTTON, NULL},
-		{LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON, NULL},
-		{LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, NULL},
-		{LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON, NULL},
-		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL},
-		{LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, NULL},
-		{LEVEL_EDITOR_EDIT_CHEST_BUTTON, NULL},
-		{LEVEL_EDITOR_ESC_BUTTON, NULL},
-		{LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON, NULL},
-		{LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON, NULL},
-		{LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON, NULL},
-		{LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF, NULL},
-		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL},
-		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL},
-		{LEVEL_EDITOR_QUIT_BUTTON, NULL},
-		{GO_LEVEL_NORTH_BUTTON, NULL},
-		{GO_LEVEL_SOUTH_BUTTON, NULL},
-		{GO_LEVEL_EAST_BUTTON, NULL},
-		{GO_LEVEL_WEST_BUTTON, NULL},
-		{RIGHT_LEVEL_EDITOR_BUTTON, NULL},
-		{LEFT_LEVEL_EDITOR_BUTTON, NULL},
-		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, "OBSTACLE"},
-		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, "FLOOR"},
-		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, "ITEM"},
-		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, "WAYPOINT"},
+		{LEVEL_EDITOR_UNDO_BUTTON, NULL,
+			_("Undo\n\nUse this button to undo your last actions.")},
+		{LEVEL_EDITOR_REDO_BUTTON, NULL,
+			_("Redo\n\nUse this button to redo an action.")},
+		{LEVEL_EDITOR_SAVE_SHIP_BUTTON, NULL,
+			_("Save Map\n\nThis button will save your current map over the file '../map/freedroid.levels' from your current working directory.")},
+		{LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON, NULL,
+			_("Beautify grass button\n\nUse this button to automatically 'beautify' rough edges of the grass-sand tiles. It will apply to the selected floor or, if not applicable, to the entire level.\n\nYou can also use Ctrl-b for this.")},
+		{LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, NULL,
+			_("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use Ctrl-X for this.")},
+		{LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON, NULL,
+			_("Next obstacle on currently selected tile\n\nUse this button to cycle the currently marked obstacle on this tile.\n\nYou can also use the N key for this.")},
+		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL,
+			_("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n Note that you can also use the hotkey 'h' for this.")},
+		{LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, NULL,
+			_("New map label\n\nUse this button to attach a new map label to the current cursor position.  These map labels can be used to define starting points for bots and characters or also to define locations for events and triggers.")},
+		{LEVEL_EDITOR_EDIT_CHEST_BUTTON, NULL,
+			_("Edit chests contents\n\nUse this button to change the contents of the chest. If it is empty the game may generate random items at run time.")},
+		{LEVEL_EDITOR_ESC_BUTTON, NULL,
+			_("Menu\n\nUse this button to enter the main menu of the level editor.\n Note, that you can also use the Escape key to enter the level editor main menu.")},
+		{LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON, NULL,
+			_("Toggle display enemies\n\nUse this button to toggle between enemies displayed in level editor or enemies hidden in level editor.")},
+		{LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON, NULL,
+			_("Toggle display tooltips\n\nUse this button to toggle these annoying help windows on and off.")},
+		{LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON, NULL,
+			_("Toggle display collision rectangles\n\nUse this button to toggle the visible collision rectangles on and off.\nThis only works using OpenGL mode!")},
+		{LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF, NULL,
+			_("Change grid mode ( placement / full / off )")},
+		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL,
+			_("Toggle display obstacles\n\nUse this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor.")},
+		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL,
+			_("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio (OpenGL only).\n")},
+		{LEVEL_EDITOR_QUIT_BUTTON, NULL,
+			_("Test Map\n\nThis will save your map and reload it after you finish testing, avoiding saving an unclean world state.")},
+		{GO_LEVEL_NORTH_BUTTON, NULL,
+			_("Go level north\n\nUse this button to move one level north, i.e. to the level that is glued to the northern side of this level.")},
+		{GO_LEVEL_SOUTH_BUTTON, NULL,
+			_("Go level south\n\nUse this button to move one level south, i.e. to the level that is glued to the southern side of this level.")},
+		{GO_LEVEL_EAST_BUTTON, NULL,
+			_("Go level east\n\nUse this button to move one level east, i.e. to the level that is glued to the eastern side of this level.")},
+		{GO_LEVEL_WEST_BUTTON, NULL,
+			_("Go level west\n\nUse this button to move one level west, i.e. to the level that is glued to the western side of this level.")},
+		{RIGHT_LEVEL_EDITOR_BUTTON, NULL, NULL},
+		{LEFT_LEVEL_EDITOR_BUTTON, NULL, NULL},
+		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, "OBSTACLE", NULL},
+		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, "FLOOR", NULL},
+		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, "ITEM", NULL},
+		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, "WAYPOINT", NULL},
 	};
 
 	int i;
 
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
 		ShowGenericButtonFromList(b[i].btn_index);	//we need that to have .w and .h of the button rect initialized.
-		list_add(&create_button(b[i].btn_index, b[i].text)->node, &leveleditor_widget_list);
+		list_add(&create_button(b[i].btn_index, b[i].text, b[i].tooltip)->node, &leveleditor_widget_list);
 	}
 
 	// Create category selectors
