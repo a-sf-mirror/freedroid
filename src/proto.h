@@ -492,10 +492,8 @@ int GetHeldItemCode(void);
 int GetInventorySquare_x(int x);
 int GetInventorySquare_y(int x);
 void DropHeldItemToInventory(void);
-void DropItemToTheFloor(item *DropItemPointer, float x, float y, int levelnum);
 void show_quick_inventory(void);
 void HandleInventoryScreen(void);
-int AddFloorItemDirectlyToInventory(item * ItemPointer);
 int give_item(item *);
 void CopyItem(item * SourceItem, item * DestItem, int MakeSound);
 void DeleteItem(item * Item);
@@ -734,7 +732,6 @@ int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWo
 void InitTradeWithCharacter(struct npc *);
 int GreatShopInterface(int, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY], int, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY],
 		       shop_decision *);
-int copy_item_into_inventory(item *, int);
 
 // takeover.c 
 

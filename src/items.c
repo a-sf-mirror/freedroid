@@ -1364,7 +1364,7 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 /** 
  * This function should drop a given item to the floor.
  */
-void DropItemToTheFloor(item *DropItemPointer, float x, float y, int levelnum)
+static void DropItemToTheFloor(item *DropItemPointer, float x, float y, int levelnum)
 {
 	int i;
 	Level DropLevel = curShip.AllLevels[levelnum];
@@ -2111,7 +2111,7 @@ int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_Loc, in
  * be put into the inventory items pool OR IN CASE THERE IS NO ROOM ANY
  * MORE the function should also say that and not do much else...
  */
-int AddFloorItemDirectlyToInventory(item * ItemPointer)
+static int AddFloorItemDirectlyToInventory(item *ItemPointer)
 {
 	int InvPos;
 	point Inv_Loc = { -1, -1 };

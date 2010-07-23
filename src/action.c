@@ -669,7 +669,7 @@ int check_for_items_to_pickup(level *item_lvl, int item_index)
 	if ((calc_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
 		&& DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL))
 	{
-		AddFloorItemDirectlyToInventory(&(item_lvl->ItemList[item_index]));
+		give_item(&(item_lvl->ItemList[item_index]));
 	} else {
 		Me.mouse_move_target.x = item_lvl->ItemList[item_index].pos.x;
 		Me.mouse_move_target.y = item_lvl->ItemList[item_index].pos.y;

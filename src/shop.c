@@ -939,64 +939,6 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 };				// void TryToSellItem( item* SellItem )
 
 /**
- * This function tries to put an item (copy it) into the player inventory, either by adding
- * this items multiplicity to the multiplicity of an already present item
- * of the very same type or by allocating a new inventory item for this
- * new item and putting it there.
- *
- * In the case that both methods couldn't succeed, a nonzero value is 
- * returned to let the caller know that it is not possible
- * to integrate the item into the player's inventory.
- * Zero return value means everything is ok, the caller can proceed to deleting its copy of the item.
- */
-int copy_item_into_inventory(item *BuyItem, int amount)
-{
-	int x, y;
-	int FreeIndex;
-	int i;
-
-	// At first we try to see if we can just add the multiplicity of the item in question
-	// to the existing multiplicity of an item of the same type
-	//
-	if (ItemMap[BuyItem->type].item_group_together_in_inventory) {
-		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-			if (Me.Inventory[i].type == BuyItem->type) {
-				while (1) {
-					Me.Inventory[i].multiplicity += amount;
-					BuyItem->multiplicity -= amount;
-					return 0;
-				}
-			}
-		}
-	}
-
-	// Now we must find out if there is an inventory position where we can put the
-	// item in question.
-	//
-	FreeIndex = GetFreeInventoryIndex();
-	for (x = 0; x < INVENTORY_GRID_WIDTH; x++) {
-		for (y = 0; y < INVENTORY_GRID_HEIGHT; y++) {
-			if (ItemCanBeDroppedInInv(BuyItem->type, x, y)) {
-				while (1) {
-					CopyItem(BuyItem, &(Me.Inventory[FreeIndex]), FALSE);
-					Me.Inventory[FreeIndex].multiplicity = amount;
-
-					Me.Inventory[FreeIndex].currently_held_in_hand = FALSE;
-					Me.Inventory[FreeIndex].inventory_position.x = x;
-					Me.Inventory[FreeIndex].inventory_position.y = y;
-
-					BuyItem->multiplicity -= amount;
-					return 0;
-				}
-			}
-		}
-	}
-
-	return -1;
-
-}
-
-/**
  * This function tries to buy the item given as parameter.
  * Returns 0 if buying was possible, 1 otherwise.
  */
@@ -1025,14 +967,12 @@ static int buy_item(item *BuyItem, int amount)
 		return 1;
 	}
 
-	// Check if there is room in the inventory
-	if (!copy_item_into_inventory(BuyItem, amount)) {
-		Me.Gold -= item_price;
-		PlayOnceNeededSoundSample("effects/Shop_ItemBoughtSound_0.ogg", FALSE, FALSE);
-		return 0;
-	} else {
-		return 1;
-	}
+	// Give the item to the player and subtract money.
+	give_item(BuyItem);
+	Me.Gold -= item_price;
+	PlayOnceNeededSoundSample("effects/Shop_ItemBoughtSound_0.ogg", FALSE, FALSE);
+
+	return 0;
 }
 
 /**
