@@ -185,38 +185,11 @@ int selection_type() {
 	return get_current_object_type()->type;
 }
 
-static void add_floor_tile_to_list(struct list_head *list, struct lvledit_map_tile *t)
+static void add_object_to_list(struct list_head *list, void *data, enum leveleditor_object_type type)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
-	e->type = OBJECT_FLOOR;
-	e->data = t;
-
-	list_add(&e->node, list);
-}
-
-static void add_obstacle_to_list(struct list_head *list, obstacle *o)
-{
-	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
-	e->type = OBJECT_OBSTACLE;
-	e->data = o;
-
-	list_add(&e->node, list);
-}
-
-static void add_waypoint_to_list(struct list_head *list, waypoint *w)
-{
-	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
-	e->type = OBJECT_WAYPOINT;
-	e->data = w;
-
-	list_add(&e->node, list);
-}
-
-static void add_item_to_list(struct list_head *list, item *it)
-{
-	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
-	e->type = OBJECT_ITEM;
-	e->data = it;
+	e->type = type;
+	e->data = data;
 
 	list_add(&e->node, list);
 }
@@ -245,7 +218,7 @@ static void select_floor_on_tile(int x, int y)
 		t->coord.x = x;
 		t->coord.y = y;
 		
-		add_floor_tile_to_list(&selected_elements, t);
+		add_object_to_list(&selected_elements, t, OBJECT_FLOOR);
 		state.rect_nbelem_selected++;
 	}
 }
@@ -256,7 +229,7 @@ static void select_obstacles_on_tile(int x, int y)
 	for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[y][x].obstacles_glued_to_here[a] != -1; a++) {
 		idx = EditLevel()->map[y][x].obstacles_glued_to_here[a];
 		if (!element_in_selection(&EditLevel()->obstacle_list[idx])) {
-			add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
+		add_object_to_list(&selected_elements, &EditLevel()->obstacle_list[idx], OBJECT_OBSTACLE);
 			state.rect_nbelem_selected++;
 		}
 	}
@@ -270,7 +243,7 @@ static void select_waypoint_on_tile(int x, int y)
 	for (i = 0; i < EditLevel()->waypoints.size; i++) {
 		if (wpts[i].x == x && wpts[i].y == y) {
 			if (!element_in_selection(&wpts[i])) {
-				add_waypoint_to_list(&selected_elements, &wpts[i]);
+				add_object_to_list(&selected_elements, &wpts[i], OBJECT_WAYPOINT);
 				state.rect_nbelem_selected++;
 			}
 		}
@@ -291,7 +264,7 @@ static void select_item_on_tile(int x, int y)
 
 		if ((fabsf(x - it->pos.x) <= 0.5) && (fabsf(y - it->pos.y) <= 0.5)) {
 			if (!element_in_selection(it)) {
-				add_item_to_list(&selected_elements, it);
+				add_object_to_list(&selected_elements, it, OBJECT_ITEM);
 				state.rect_nbelem_selected++;
 			}
 		}
@@ -675,7 +648,7 @@ void level_editor_cycle_marked_obstacle()
 	}
 
 	int idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[state.single_tile_mark_index];
-	add_obstacle_to_list(&selected_elements, &EditLevel()->obstacle_list[idx]);
+add_object_to_list(&selected_elements, &EditLevel()->obstacle_list[idx], OBJECT_OBSTACLE);
 	state.single_tile_mark_index++;
 	state.rect_nbelem_selected++;
 }
@@ -707,7 +680,7 @@ void level_editor_copy_selection()
 			o = MyMalloc(sizeof(obstacle));
 			memcpy(o, e->data, sizeof(obstacle));
 
-			add_obstacle_to_list(&clipboard_elements, o);			
+			add_object_to_list(&clipboard_elements, o, OBJECT_OBSTACLE);
 			break;
 		case OBJECT_FLOOR:	
 			t = MyMalloc(sizeof(struct lvledit_map_tile));
@@ -717,19 +690,19 @@ void level_editor_copy_selection()
 			t->coord.x = ((struct lvledit_map_tile *) (e->data))->coord.x;
 			t->coord.y = ((struct lvledit_map_tile *) (e->data))->coord.y;		
 			
-			add_floor_tile_to_list(&clipboard_elements, t);
+			add_object_to_list(&clipboard_elements, t, OBJECT_FLOOR);
 			break;
 		case OBJECT_ITEM:
 			it = MyMalloc(sizeof(item));
 			memcpy(it, e->data, sizeof(item));
 			
-			add_item_to_list(&clipboard_elements, it);
+			add_object_to_list(&clipboard_elements, it, OBJECT_ITEM);
 			break;	
 		case OBJECT_WAYPOINT:
 			w = MyMalloc(sizeof(waypoint));
 			memcpy(w, e->data, sizeof(waypoint));
 
-			add_waypoint_to_list(&clipboard_elements, w);
+			add_object_to_list(&clipboard_elements, w, OBJECT_WAYPOINT);
 			break;
 		default:
 			;
@@ -823,7 +796,7 @@ void level_editor_paste_selection()
 			}
 			
 			// Add and select
-			add_obstacle_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type));
+			add_object_to_list(&selected_elements, action_create_obstacle_user(EditLevel(), o->pos.x, o->pos.y, o->type), OBJECT_OBSTACLE);
 			
 			nbact++;
 			break;
@@ -864,7 +837,7 @@ void level_editor_paste_selection()
 			}
 
 			// Add and select
-			add_item_to_list(&selected_elements, action_create_item(EditLevel(), it->pos.x, it->pos.y, it->type));
+		add_object_to_list(&selected_elements, action_create_item(EditLevel(), it->pos.x, it->pos.y, it->type), OBJECT_ITEM);
 
 			nbact++;
 			break;
