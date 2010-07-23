@@ -40,7 +40,7 @@
 
 LIST_HEAD(leveleditor_widget_list);
 
-struct leveleditor_widget *create_button(int btype, char *text, char *tooltip)
+static struct leveleditor_widget *create_button(int btype, char *text, char *tooltip)
 {
 	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
 	a->type = WIDGET_BUTTON;
