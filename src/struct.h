@@ -367,6 +367,7 @@ typedef struct item_s {
 	int bonus_to_paralyze_enemy;
 	int bonus_to_slow_enemy;
 	int bonus_to_light_radius;
+	int bonus_to_experience_gain;	// this is a percentage
 
 	int damred_bonus;		// how much is damred increased by this item worn
 	int damage;		// how much damage does this item
@@ -585,6 +586,7 @@ typedef struct tux_s {
 	int slowing_melee_targets;	// duration for how long hit enemies are slowed down
 	int paralyzing_melee_targets;	// duration for how long hit enemies are paralyzed
 	int double_ranged_damage;	// does this Tux do double ranged weapon damage?
+	float experience_factor; // multiplier for the experience gained from bots
 
 	unsigned int Experience;	// character Experience = 'spare droid elements found'
 	int exp_level;		// which 'experience level' is the influencer currenly at?

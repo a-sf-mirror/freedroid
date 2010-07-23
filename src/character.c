@@ -161,6 +161,7 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 	Me.slowing_melee_targets += BonusItem->bonus_to_slow_enemy;
 	Me.paralyzing_melee_targets += BonusItem->bonus_to_paralyze_enemy;
 	Me.light_bonus_from_tux += BonusItem->bonus_to_light_radius;
+	Me.experience_factor += BonusItem->bonus_to_experience_gain / 100.0;
 }
 
 /**
@@ -428,6 +429,7 @@ void UpdateAllCharacterStats()
 	Me.slowing_melee_targets = 0;
 	Me.paralyzing_melee_targets = 0;
 	Me.light_bonus_from_tux = 0;
+	Me.experience_factor = 1.0;
 	AddInfluencerItemSecondaryBonus(&Me.armour_item);
 	AddInfluencerItemSecondaryBonus(&Me.weapon_item);
 	AddInfluencerItemSecondaryBonus(&Me.drive_item);

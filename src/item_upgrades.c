@@ -303,6 +303,9 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 	if (it->bonus_to_light_radius) {
 		autostr_append(desc, _("%+d to light radius%s"), it->bonus_to_light_radius, separator);
 	}
+	if (it->bonus_to_experience_gain) {
+		autostr_append(desc, _("%+d%% to experience gain%s"), it->bonus_to_experience_gain, separator);
+	}
 }
 
 /**
@@ -380,6 +383,8 @@ static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
 		it->bonus_to_damred_or_damage += bonus->value;
 	} else if (!strcmp(bonus->name, "dexterity")) {
 		it->bonus_to_dex += bonus->value;
+	} else if (!strcmp(bonus->name, "experience_gain")) {
+		it->bonus_to_experience_gain += bonus->value;
 	} else if (!strcmp(bonus->name, "force")) {
 		it->bonus_to_force += bonus->value;
 	} else if (!strcmp(bonus->name, "health")) {
@@ -430,6 +435,7 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_paralyze_enemy = 0;
 	it->bonus_to_slow_enemy = 0;
 	it->bonus_to_light_radius = 0;
+	it->bonus_to_experience_gain = 0;
 	it->damred_bonus = ItemMap[it->type].base_damred_bonus;
 	it->damage = ItemMap[it->type].base_item_gun_damage;
 	it->damage_modifier = ItemMap[it->type].item_gun_damage_modifier;

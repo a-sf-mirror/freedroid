@@ -149,3 +149,12 @@ require_item = "helmet",
 bonuses = { light_radius = 5 },
 materials = { ["Entropy Inverter"] = 15, ["Plasma Transistor"] = 5 }
 }
+
+addon{
+name = _"Brain Stimulator",
+upgrade_cost = 45,
+require_socket = "electric",
+require_item = "armor",
+bonuses = { experience_gain = 10 },
+materials = { ["Tachyon Condensator"] = 15 }
+}

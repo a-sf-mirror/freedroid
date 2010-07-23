@@ -801,7 +801,7 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 
 	/* Give death message */
 	if (givexp) {
-		reward = Druidmap[target->type].experience_reward;
+		reward = Druidmap[target->type].experience_reward * Me.experience_factor;
 		Me.Experience += reward;
 	}
 
