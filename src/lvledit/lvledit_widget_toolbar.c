@@ -155,8 +155,7 @@ static iso_image *leveleditor_get_object_image(enum leveleditor_object_type type
 			return &(level_editor_waypoint_cursor[idx]);
 	case OBJECT_ITEM:
 			return &(ItemMap[array[idx]].inv_image.shop_iso_image);
-	case OBJECT_NPC:
-	case OBJECT_ANY:
+	default:
 			ErrorMessage(__FUNCTION__, "Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_FATAL, type);
 			break;
 	}

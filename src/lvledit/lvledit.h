@@ -133,10 +133,8 @@ EXTERN void TestMap(void);
 enum leveleditor_object_type {
 	OBJECT_FLOOR,
 	OBJECT_OBSTACLE,
-	OBJECT_NPC,		//just kidding, not implemented :)
 	OBJECT_WAYPOINT,
 	OBJECT_ITEM,
-	OBJECT_ANY,
 };
 
 #ifdef _leveleditor_c
