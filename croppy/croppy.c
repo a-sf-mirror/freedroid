@@ -616,21 +616,13 @@ void write_offset_file(int default_center_x, int default_center_y)
 		Terminate(EXIT_FAILURE);
 	}
 
-	fprintf(OffsetFile, "\n\n");
 	fprintf(OffsetFile, "** Start of iso_image offset file **\n");
-	fprintf(OffsetFile, "\n\n");
 
-	fprintf(OffsetFile, "\n%s%d\n", OFFSET_FILE_OFFSETX_STRING, cut_left - default_center_x);
+	fprintf(OffsetFile, "%s%d\n", OFFSET_FILE_OFFSETX_STRING, cut_left - default_center_x);
 
-	fprintf(OffsetFile, "\n%s%d\n", OFFSET_FILE_OFFSETY_STRING, cut_up - default_center_y);
+	fprintf(OffsetFile, "%s%d\n", OFFSET_FILE_OFFSETY_STRING, cut_up - default_center_y);
 
-	fprintf(OffsetFile, "\nGraphicsFileName=%s\n", input_filename);
-
-	fprintf(OffsetFile, "\n\n");
-
-	fprintf(OffsetFile, "%s", END_OF_OFFSET_FILE_STRING);
-
-	fprintf(OffsetFile, "\n\n");
+	fprintf(OffsetFile, "%s\n", END_OF_OFFSET_FILE_STRING);
 
 	fflush(OffsetFile);
 
