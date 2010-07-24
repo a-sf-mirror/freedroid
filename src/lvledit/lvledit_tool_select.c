@@ -271,6 +271,28 @@ static void select_item_on_tile(int x, int y)
 	}
 }
 
+static void select_object_on_tile(int x, int y, enum leveleditor_object_type type)
+{
+	switch (type) {
+	case OBJECT_OBSTACLE:
+		select_obstacles_on_tile(x, y);
+		break;
+	case OBJECT_FLOOR:
+		select_floor_on_tile(x, y);
+		break;
+	case OBJECT_WAYPOINT:
+		select_waypoint_on_tile(x, y);
+		break;
+	case OBJECT_ITEM:
+		select_item_on_tile(x, y);
+		break;
+	default:
+		ErrorMessage(__FUNCTION__,
+				"Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_WARNING_ONLY, type);
+		break;
+	}
+}
+
 /**
  * Clear the current selection
  *
@@ -311,24 +333,7 @@ static void start_rect_select()
 		return;
 
 	// Select elements on the starting tile
-	switch (state.type) {
-	case OBJECT_OBSTACLE:
-		select_obstacles_on_tile(state.rect_start.x, state.rect_start.y);
-		break;
-	case OBJECT_FLOOR:
-		select_floor_on_tile(state.rect_start.x, state.rect_start.y);
-		break;
-	case OBJECT_WAYPOINT:
-		select_waypoint_on_tile(state.rect_start.x, state.rect_start.y);
-		break;
-	case OBJECT_ITEM:
-		select_item_on_tile(state.rect_start.x, state.rect_start.y);
-		break;
-	default:
-		alert_window("Cannot select elements of the chosen type.");
-		fprintf(stderr, "Type %d\n", state.type);
-		break;
-	}
+	select_object_on_tile(state.rect_start.x, state.rect_start.y, state.type);
 }
 
 static void do_rect_select()
@@ -375,23 +380,7 @@ static void do_rect_select()
 				if (i < 0 || i >= EditLevel()->xlen)
 					continue;
 
-				switch (state.type) {
-				case OBJECT_OBSTACLE:
-					select_obstacles_on_tile(i, j);
-					break;
-				case OBJECT_FLOOR:
-					select_floor_on_tile(i, j);
-					break;
-				case OBJECT_WAYPOINT:
-					select_waypoint_on_tile(i, j);
-					break;
-				case OBJECT_ITEM:
-					select_item_on_tile(i, j);
-					break;
-				default:
-					alert_window("Cannot select elements of the chosen type.");
-					break;
-				}
+				select_object_on_tile(i, j, state.type);
 			}
 
 		}
