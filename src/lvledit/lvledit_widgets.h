@@ -34,6 +34,7 @@ enum leveleditor_widget_type {
 	WIDGET_TOOLBAR,
 	WIDGET_MAP,
 	WIDGET_CATEGORY_SELECTOR,
+	WIDGET_MINIMAP,
 };
 
 /* A widget in the level editor */
@@ -77,6 +78,12 @@ struct leveleditor_categoryselect {
 	int *indices;
 };
 
+#define WIDGET_MINIMAP_WIDTH 210
+#define WIDGET_MINIMAP_HEIGHT 140
+
+struct leveleditor_minimap {
+};
+
 void leveleditor_init_widgets(void);
 void leveleditor_display_widgets(void);
 void leveleditor_update_button_states(void);
@@ -92,3 +99,4 @@ EXTERN struct leveleditor_widget *previously_active_widget;
 #include "lvledit/lvledit_widget_map.h"
 #include "lvledit/lvledit_widget_toolbar.h"
 #include "lvledit/lvledit_widget_categoryselect.h"
+#include "lvledit/lvledit_widget_minimap.h"

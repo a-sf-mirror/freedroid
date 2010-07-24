@@ -143,6 +143,30 @@ static struct leveleditor_widget *create_categoryselector(int x, char *text, enu
 	return a;
 }
 
+static struct leveleditor_widget *create_minimap()
+{
+	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
+	a->type = WIDGET_MINIMAP;
+	a->rect.w = WIDGET_MINIMAP_WIDTH;
+	a->rect.h = WIDGET_MINIMAP_HEIGHT;
+	a->rect.x = GameConfig.screen_width - a->rect.w;
+	a->rect.y = GameConfig.screen_height - a->rect.h;
+	a->mouseenter = leveleditor_minimap_mouseenter;
+	a->mouseleave = leveleditor_minimap_mouseleave;
+	a->mouserelease = leveleditor_minimap_mouserelease;
+	a->mousepress = leveleditor_minimap_mousepress;
+	a->mouserightrelease = leveleditor_minimap_mouserightrelease;
+	a->mouserightpress = leveleditor_minimap_mouserightpress;
+	a->mousewheelup = leveleditor_minimap_mousewheelup;
+	a->mousewheeldown = leveleditor_minimap_mousewheeldown;
+	a->enabled = 1;
+
+	struct leveleditor_minimap *n = MyMalloc(sizeof(struct leveleditor_minimap));	
+	a->ext = n;
+
+	return a;
+}
+
 void leveleditor_init_widgets()
 {
 	struct leveleditor_widget *map;
@@ -240,6 +264,9 @@ void leveleditor_init_widgets()
 
 	// Waypoints
 	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
+
+	// Create the minimap
+	list_add_tail(&create_minimap()->node, &leveleditor_widget_list);
 
 	/* The toolbar */
 	list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
@@ -379,6 +406,9 @@ void leveleditor_display_widgets()
 			break;
 		case WIDGET_CATEGORY_SELECTOR:
 			leveleditor_categoryselect_display(w);
+			break;
+		case WIDGET_MINIMAP:
+			leveleditor_minimap_display(w);
 			break;
 		}
 	}
