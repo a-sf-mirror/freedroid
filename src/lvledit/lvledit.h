@@ -726,7 +726,5 @@ EXTERN float VanishingMessageEndDate;
 
 EXTERN int OriginWaypoint;
 
-EXTERN int marked_obstacle_is_glued_to_here(level *, float, float);
-
 EXTERN int level_editor_done;
 #endif
