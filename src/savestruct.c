@@ -610,6 +610,7 @@ save_int32_t("bonus_to_paralyze_enemy", &(target->bonus_to_paralyze_enemy));
 save_int32_t("bonus_to_slow_enemy", &(target->bonus_to_slow_enemy));
 save_int32_t("bonus_to_light_radius", &(target->bonus_to_light_radius));
 save_int32_t("bonus_to_experience_gain", &(target->bonus_to_experience_gain));
+save_int32_t("damred_base", &(target->damred_base));
 save_int32_t("damred_bonus", &(target->damred_bonus));
 save_int32_t("damage", &(target->damage));
 save_int32_t("damage_modifier", &(target->damage_modifier));
@@ -658,6 +659,7 @@ read_int32_t(pos, "bonus_to_paralyze_enemy",  &(target->bonus_to_paralyze_enemy)
 read_int32_t(pos, "bonus_to_slow_enemy",  &(target->bonus_to_slow_enemy));
 read_int32_t(pos, "bonus_to_light_radius",  &(target->bonus_to_light_radius));
 read_int32_t(pos, "bonus_to_experience_gain",  &(target->bonus_to_experience_gain));
+read_int32_t(pos, "damred_base",  &(target->damred_base));
 read_int32_t(pos, "damred_bonus",  &(target->damred_bonus));
 read_int32_t(pos, "damage",  &(target->damage));
 read_int32_t(pos, "damage_modifier",  &(target->damage_modifier));

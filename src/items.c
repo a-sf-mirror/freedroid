@@ -248,7 +248,8 @@ void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
 	if (ThisItem->type < 0)
 		return;
 
-	ThisItem->damred_bonus = ItemMap[ThisItem->type].base_damred_bonus + MyRandom(ItemMap[ThisItem->type].damred_bonus_modifier);
+	ThisItem->damred_base = ItemMap[ThisItem->type].base_damred_bonus + MyRandom(ItemMap[ThisItem->type].damred_bonus_modifier);
+	ThisItem->damred_bonus = ThisItem->damred_base;
 	ThisItem->multiplicity = multiplicity;
 	ThisItem->ammo_clip = 0;
 	ThisItem->throw_time = 0;

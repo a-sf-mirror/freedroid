@@ -517,35 +517,28 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *Target
 
 	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_DAMRED_BONUS_STRING, "%d", "0", &(TargetItem->damred_bonus), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_DAMAGE_STRING, "%d", &(TargetItem->damage), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_DAMAGE_MODIFIER_STRING, "%d", &(TargetItem->damage_modifier), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_DAMRED_BASE_STRING, "%d", "0", &(TargetItem->damred_base), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_MAX_DURATION_STRING, "%d", &(TargetItem->max_duration), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_CUR_DURATION_STRING, "%f", &(TargetItem->current_duration), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_AMMO_CLIP_STRING, "%d", &(TargetItem->ammo_clip), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_MULTIPLICITY_STRING, "%d", &(TargetItem->multiplicity), ItemsSectionEnd);
-	// Now we read in the boni to the primary stats (attributes)
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_STR_STRING, "%d", "0", &(TargetItem->bonus_to_str), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DEX_STRING, "%d", "0", &(TargetItem->bonus_to_dex), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_MAG_STRING, "%d", "0", &(TargetItem->bonus_to_mag), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_VIT_STRING, "%d", "0", &(TargetItem->bonus_to_vit), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_ALLATT_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_all_attributes), ItemsSectionEnd);
-	// Now we read in the boni for the secondary stats
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_LIFE_STRING, "%d", "0", &(TargetItem->bonus_to_life), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_HEALTH_RECOVERY_STRING, "%f", "0.000",
-				       &(TargetItem->bonus_to_health_recovery), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_FORCE_STRING, "%d", "0", &(TargetItem->bonus_to_force), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_MANA_RECOVERY_STRING, "%f", "0.000",
-				       &(TargetItem->bonus_to_cooling_rate), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_TOHIT_STRING, "%d", "0", &(TargetItem->bonus_to_tohit), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_DAMREDDAM_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_damred_or_damage), ItemsSectionEnd);
-	// Now we read in the boni for resistances
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESELE_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_resist_electricity), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_BONUS_TO_RESFIR_STRING, "%d", "0",
-				       &(TargetItem->bonus_to_resist_fire), ItemsSectionEnd);
+
+	// Read the socket data of the item and calculate bonuses using it.
+	int i;
+	int socket_count;
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_SOCKETS_SIZE_STRING, "%d", "0", &socket_count, ItemsSectionEnd);
+	for (i = 0; i < socket_count; i++) {
+		char type_string[32];
+		char addon_string[32];
+		struct upgrade_socket socket;
+		sprintf(type_string, "%s%d=", ITEM_SOCKET_TYPE_STRING, i);
+		sprintf(addon_string, "%s%d=", ITEM_SOCKET_ADDON_STRING, i);
+		ReadValueFromString(ItemPointer, type_string, "%d", &socket.type, ItemsSectionEnd);
+		socket.addon = ReadAndMallocStringFromDataOptional(ItemPointer, addon_string, "\"");
+		create_upgrade_socket(TargetItem, socket.type, socket.addon);
+		free(socket.addon);
+	}
+	calculate_item_bonuses(TargetItem);
 
 	DebugPrintf(1, "\nPosX=%f PosY=%f Item=%d", TargetItem->pos.x, TargetItem->pos.y, TargetItem->type);
 
@@ -1354,58 +1347,27 @@ static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 			ITEM_POS_X_STRING, ItemToWriteOut->pos.x, ITEM_POS_Y_STRING, ItemToWriteOut->pos.y);
 
 	if (ItemToWriteOut->damred_bonus) {
-		autostr_append(shipstr, "%s%d ", ITEM_DAMRED_BONUS_STRING, ItemToWriteOut->damred_bonus);
+		autostr_append(shipstr, "%s%d ", ITEM_DAMRED_BASE_STRING, ItemToWriteOut->damred_base);
 	}
 
-	autostr_append(shipstr, "%s%d %s%d %s%d %s%f %s%d %s%d ", ITEM_DAMAGE_STRING, ItemToWriteOut->damage,
-			ITEM_DAMAGE_MODIFIER_STRING, ItemToWriteOut->damage_modifier,
+	autostr_append(shipstr, "%s%d %s%f %s%d %s%d ",
 			ITEM_MAX_DURATION_STRING, ItemToWriteOut->max_duration,
 			ITEM_CUR_DURATION_STRING, ItemToWriteOut->current_duration,
 			ITEM_AMMO_CLIP_STRING, ItemToWriteOut->ammo_clip,
 			ITEM_MULTIPLICITY_STRING, ItemToWriteOut->multiplicity);
 
-	if (ItemToWriteOut->bonus_to_str) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_STR_STRING, ItemToWriteOut->bonus_to_str);
-	}
-	if (ItemToWriteOut->bonus_to_dex) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_DEX_STRING, ItemToWriteOut->bonus_to_dex);
-	}
-	if (ItemToWriteOut->bonus_to_vit) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_VIT_STRING, ItemToWriteOut->bonus_to_vit);
-	}
-	if (ItemToWriteOut->bonus_to_mag) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_MAG_STRING, ItemToWriteOut->bonus_to_mag);
-	}
-	if (ItemToWriteOut->bonus_to_all_attributes) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_ALLATT_STRING, ItemToWriteOut->bonus_to_all_attributes);
-	}
-	// Now we save the secondary stat boni
-
-	if (ItemToWriteOut->bonus_to_life) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_LIFE_STRING, ItemToWriteOut->bonus_to_life);
-	}
-	if (ItemToWriteOut->bonus_to_health_recovery) {
-		autostr_append(shipstr, "%s%f ", ITEM_BONUS_TO_HEALTH_RECOVERY_STRING, ItemToWriteOut->bonus_to_health_recovery);
-	}
-	if (ItemToWriteOut->bonus_to_force) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_FORCE_STRING, ItemToWriteOut->bonus_to_force);
-	}
-	if (ItemToWriteOut->bonus_to_cooling_rate) {
-		autostr_append(shipstr, "%s%f ", ITEM_BONUS_TO_MANA_RECOVERY_STRING, ItemToWriteOut->bonus_to_cooling_rate);
-	}
-	if (ItemToWriteOut->bonus_to_tohit) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_TOHIT_STRING, ItemToWriteOut->bonus_to_tohit);
-	}
-	if (ItemToWriteOut->bonus_to_damred_or_damage) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_DAMREDDAM_STRING, ItemToWriteOut->bonus_to_damred_or_damage);
-	}
-	// Now we save the resistanc boni
-
-	if (ItemToWriteOut->bonus_to_resist_electricity) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESELE_STRING, ItemToWriteOut->bonus_to_resist_electricity);
-	}
-	if (ItemToWriteOut->bonus_to_resist_fire) {
-		autostr_append(shipstr, "%s%d ", ITEM_BONUS_TO_RESFIR_STRING, ItemToWriteOut->bonus_to_resist_fire);
+	// Write the sockets of the item. The bonuses can be reconstructed from
+	// these easily so we don't need to write them at all.
+	if (ItemToWriteOut->upgrade_sockets.size) {
+		int i;
+		autostr_append(shipstr, "%s%d ", ITEM_SOCKETS_SIZE_STRING, ItemToWriteOut->upgrade_sockets.size);
+		for (i = 0; i < ItemToWriteOut->upgrade_sockets.size; i++) {
+			struct upgrade_socket *socket = &ItemToWriteOut->upgrade_sockets.arr[i];
+			autostr_append(shipstr, "%s%d=%d ", ITEM_SOCKET_TYPE_STRING, i, socket->type);
+			if (socket->addon) {
+				autostr_append(shipstr, "%s%d=%s\" ", ITEM_SOCKET_ADDON_STRING, i, socket->addon);
+			}
+		}
 	}
 
 	autostr_append(shipstr, "\n");

@@ -369,6 +369,7 @@ typedef struct item_s {
 	int bonus_to_light_radius;
 	int bonus_to_experience_gain;	// this is a percentage
 
+	int damred_base;		// the base damred given to the item at creation time
 	int damred_bonus;		// how much is damred increased by this item worn
 	int damage;		// how much damage does this item
 	int damage_modifier;	// how much additional damage can add to the base damage
