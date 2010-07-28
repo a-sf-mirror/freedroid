@@ -707,7 +707,7 @@ int leveleditor_place_input(SDL_Event *event)
 			return 1;
 		} else if (EVENT_MOVE(event)) {
 			handle_rectangle_floor();
-		} else if (EVENT_RIGHT_PRESS(event)) {
+		} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
 			end_rectangle_floor(0);
 			return 1;
 		}
@@ -717,12 +717,12 @@ int leveleditor_place_input(SDL_Event *event)
 			return 1;
 		} else if (EVENT_MOVE(event)) {
 			handle_wall_line();
-		} else if (EVENT_RIGHT_PRESS(event)) {
+		} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
 			end_wall_line(0);
 			return 1;
 		}
 	} else if (our_mode == CONNECT_WAYPOINT) {
-		if (cs->type != OBJECT_WAYPOINT) {
+		if (cs->type != OBJECT_WAYPOINT || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
 			end_waypoint_route();
 			return 1;
 		}
