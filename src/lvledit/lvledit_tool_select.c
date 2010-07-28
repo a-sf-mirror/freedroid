@@ -728,6 +728,10 @@ void level_editor_cut_selection()
 			action_remove_item(EditLevel(), e->data);
 			nbelem++;
 			break;
+		case OBJECT_WAYPOINT:
+			action_remove_waypoint(EditLevel(), ((waypoint *)(e->data))->x, ((waypoint *)(e->data))->y);
+			nbelem++;
+			break;
 		default:
 			break;
 		}
