@@ -283,10 +283,19 @@ void leveleditor_process_input()
 	// And in case of removal, also the connections must be removed.
 	//
 	if (WPressed()) {
-		if (!ShiftPressed()) {
-			action_toggle_waypoint(EditLevel(), EditX(), EditY(), FALSE);
+		int wpnum = get_waypoint(EditLevel(), EditX(), EditY());
+		if (wpnum < 0) {
+			// If the waypoint doesn't exist at the map position, create it
+			action_create_waypoint(EditLevel(), EditX(), EditY(), ShiftPressed());
 		} else {
-			action_toggle_waypoint(EditLevel(), EditX(), EditY(), TRUE);
+			// An existing waypoint will be removed or have its
+			// randomspawn flag toggled
+			waypoint *wpts = EditLevel()->waypoints.arr;
+			if (ShiftPressed()) {
+				action_toggle_waypoint_randomspawn(EditLevel(), wpts[wpnum].x, wpts[wpnum].y);
+			} else {
+				action_remove_waypoint(EditLevel(), wpts[wpnum].x, wpts[wpnum].y);
+			}
 		}
 		while (WPressed())
 			SDL_Delay(1);

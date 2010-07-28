@@ -97,7 +97,8 @@ static int do_waypoint_route(int rspawn)
 		state.nbactions = 0;
 	}
 	if (isnew) {
-		action_push(ACT_WAYPOINT_TOGGLE, (int)mouse_mapcoord.x, (int)mouse_mapcoord.y, rspawn);
+		waypoint *wpts = EditLevel()->waypoints.arr;
+		action_push(ACT_REMOVE_WAYPOINT, wpts[wpnum].x, wpts[wpnum].y);
 		state.nbactions++;
 	}
 

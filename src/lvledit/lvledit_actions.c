@@ -126,11 +126,13 @@ static action *action_create(int type, va_list args)
 			act->d.delete_waypoint.x = va_arg(args, int);
 			act->d.delete_waypoint.y = va_arg(args, int);
 			break;
-		case ACT_WAYPOINT_TOGGLE:
-		case ACT_WAYPOINT_TOGGLE_CONNECT:
-			act->d.waypoint_toggle.x = va_arg(args, int);
-			act->d.waypoint_toggle.y = va_arg(args, int);
-			act->d.waypoint_toggle.spawn_toggle = va_arg(args, int);
+		case ACT_TOGGLE_WAYPOINT_RSPAWN:
+			act->d.toggle_waypoint_rspawn.x = va_arg(args, int);
+			act->d.toggle_waypoint_rspawn.y = va_arg(args, int);
+			break;
+		case ACT_TOGGLE_WAYPOINT_CONNECTION:
+			act->d.toggle_waypoint_connection.x = va_arg(args, int);
+			act->d.toggle_waypoint_connection.y = va_arg(args, int);
 			break;
 		case ACT_TILE_FLOOR_SET:
 			act->d.change_floor.x = va_arg(args, int);
@@ -448,30 +450,26 @@ void action_remove_waypoint(level *EditLevel, int x, int y)
 	action_push(ACT_CREATE_WAYPOINT, x, y, old_random_spawn);
 }
 
-void action_toggle_waypoint(level *EditLevel, int BlockX, int BlockY, int toggle_random_spawn)
+/**
+ * Set/unset the flag for random bots and add this action in the undo/redo stack
+ * \param EditLevel Pointer towards the currently edited level where toggle the waypoint
+ * \param x The x position of the waypoint
+ * \param y The y position of the waypoint
+ */
+void action_toggle_waypoint_randomspawn(level *EditLevel, int x, int y)
 {
 	waypoint *wpts = EditLevel->waypoints.arr;
-	int wpnum;
-	int isnew = 0;
 
-	wpnum = get_waypoint(EditLevel, BlockX, BlockY);
+	int wpnum = get_waypoint(EditLevel, x, y);
 	if (wpnum < 0) {
-		// When the waypoint doesn't exists at the map position, we want to create it
-		wpnum = add_waypoint(EditLevel, BlockX, BlockY, toggle_random_spawn);
-		isnew = 1;
-	}
-	
-	// If its waypoint already, this waypoint must either be deleted
-	// or the random spawn bit reset...
-	if (!isnew) {
-		if (toggle_random_spawn) {
-			wpts[wpnum].suppress_random_spawn = !wpts[wpnum].suppress_random_spawn;
-		} else {
-			del_waypoint(EditLevel, BlockX, BlockY);
-		}
+		return;
 	}
 
-	action_push(ACT_WAYPOINT_TOGGLE, BlockX, BlockY, toggle_random_spawn);
+	// Toggle the flag for random bots
+	wpts[wpnum].suppress_random_spawn = !wpts[wpnum].suppress_random_spawn;
+
+	// Make an undoable action
+	action_push(ACT_TOGGLE_WAYPOINT_RSPAWN, x, y);
 }
 
 int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_target, int removeifpresent, int undoable)
@@ -490,7 +488,7 @@ int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_ta
 				dynarray_del(&wpts[id_origin].connections, i, sizeof(int));
 			}
 			if (undoable)
-				action_push(ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
+				action_push(ACT_TOGGLE_WAYPOINT_CONNECTION, id_origin, id_target);
 			return -1;
 		}
 	}
@@ -499,7 +497,7 @@ int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_ta
 	dynarray_add(&wpts[id_origin].connections, &id_target, sizeof(int));
 
 	if (undoable)
-		action_push(ACT_WAYPOINT_TOGGLE_CONNECT, id_origin, id_target, -1);
+		action_push(ACT_TOGGLE_WAYPOINT_CONNECTION, id_origin, id_target);
 
 	return 1;
 }
@@ -685,11 +683,11 @@ static void action_do(level * level, action * a)
 	case ACT_REMOVE_WAYPOINT:
 		action_remove_waypoint(level, a->d.delete_waypoint.x, a->d.delete_waypoint.y);
 		break;
-	case ACT_WAYPOINT_TOGGLE:
-		action_toggle_waypoint(level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y, a->d.waypoint_toggle.spawn_toggle);
+	case ACT_TOGGLE_WAYPOINT_RSPAWN:
+		action_toggle_waypoint_randomspawn(level, a->d.toggle_waypoint_rspawn.x, a->d.toggle_waypoint_rspawn.y);
 		break;
-	case ACT_WAYPOINT_TOGGLE_CONNECT:
-		action_toggle_waypoint_connection(level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y, 1, 1);
+	case ACT_TOGGLE_WAYPOINT_CONNECTION:
+		action_toggle_waypoint_connection(level, a->d.toggle_waypoint_connection.x, a->d.toggle_waypoint_connection.y, 1, 1);
 		break;
 	case ACT_TILE_FLOOR_SET:
 		action_set_floor(level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.type);

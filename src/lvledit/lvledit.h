@@ -53,8 +53,8 @@ enum ActionType {
 	ACT_MOVE_ITEM,
 	ACT_CREATE_WAYPOINT,
 	ACT_REMOVE_WAYPOINT,
-	ACT_WAYPOINT_TOGGLE,
-	ACT_WAYPOINT_TOGGLE_CONNECT,
+	ACT_TOGGLE_WAYPOINT_RSPAWN,
+	ACT_TOGGLE_WAYPOINT_CONNECTION,
 	ACT_TILE_FLOOR_SET,
 	ACT_SET_OBSTACLE_LABEL,
 	ACT_SET_MAP_LABEL,
@@ -104,8 +104,11 @@ typedef struct {
 
 		struct {
 			int x, y;
-			int spawn_toggle;
-		} waypoint_toggle;	/* ToogleWaypoint */
+		} toggle_waypoint_rspawn;
+
+		struct {
+			int x, y;
+		} toggle_waypoint_connection;
 
 		struct {
 			int x, y;
