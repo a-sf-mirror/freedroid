@@ -51,6 +51,8 @@ enum ActionType {
 	ACT_CREATE_ITEM,
 	ACT_REMOVE_ITEM,
 	ACT_MOVE_ITEM,
+	ACT_CREATE_WAYPOINT,
+	ACT_REMOVE_WAYPOINT,
 	ACT_WAYPOINT_TOGGLE,
 	ACT_WAYPOINT_TOGGLE_CONNECT,
 	ACT_TILE_FLOOR_SET,
@@ -90,6 +92,15 @@ typedef struct {
 			float newx;
 			float newy;
 		} move_item;
+
+		struct {
+			int x, y;
+			int suppress_random_spawn;
+		} create_waypoint;
+
+		struct {
+			int x, y;
+		} delete_waypoint;
 
 		struct {
 			int x, y;

@@ -117,6 +117,15 @@ static action *action_create(int type, va_list args)
 			act->d.move_item.newx = (float)va_arg(args, double);
 			act->d.move_item.newy = (float)va_arg(args, double);
 			break;
+		case ACT_CREATE_WAYPOINT:
+			act->d.create_waypoint.x = va_arg(args, int);
+			act->d.create_waypoint.y = va_arg(args, int);
+			act->d.create_waypoint.suppress_random_spawn = va_arg(args, int);
+			break;
+		case ACT_REMOVE_WAYPOINT:
+			act->d.delete_waypoint.x = va_arg(args, int);
+			act->d.delete_waypoint.y = va_arg(args, int);
+			break;
 		case ACT_WAYPOINT_TOGGLE:
 		case ACT_WAYPOINT_TOGGLE_CONNECT:
 			act->d.waypoint_toggle.x = va_arg(args, int);
@@ -385,6 +394,60 @@ void action_move_item(level *EditLevel, item *it, float x, float y)
 	action_push(ACT_MOVE_ITEM, it, oldx, oldy);
 }
 
+/**
+ * Create a waypoint on the map, add this action in the undo/redo stack
+ * \param EditLevel Pointer towards the currently edited level where create the waypoint
+ * \param x The x position of the waypoint
+ * \param y The y position of the waypoint
+ * \param random_spawn TRUE if the waypoint can be used to place a random bot
+ * \return The new waypoint created
+ */
+waypoint *action_create_waypoint(level *EditLevel, int x, int y, int random_spawn)
+{
+	waypoint *wpts = EditLevel->waypoints.arr;
+	int wpnum;
+
+	wpnum = get_waypoint(EditLevel, x, y);
+	if (wpnum < 0) {
+		// When the waypoint doesn't exist on the map, create it
+		wpnum = add_waypoint(EditLevel, x, y, random_spawn);
+
+		// The waypoints array may have been moved by the add_waypoint call
+		wpts = EditLevel->waypoints.arr;
+
+		// Make an undoable action
+		action_push(ACT_REMOVE_WAYPOINT, wpts[wpnum].x, wpts[wpnum].y);
+	}
+
+	return &wpts[wpnum];
+}
+
+/**
+ * Remove a waypoint on the map and add this action in the undo/redo stack
+ * \param EditLevel Pointer towards the currently edited level where delete the waypoint
+ * \param x The x position of the waypoint
+ * \param y The y position of the waypoint
+ */
+void action_remove_waypoint(level *EditLevel, int x, int y)
+{
+	waypoint *wpts = EditLevel->waypoints.arr;
+
+	int wpnum = get_waypoint(EditLevel, x, y);
+	if (wpnum < 0) {
+		// When the waypoint doesn't exist on the map, we are done
+		return;
+	}
+
+	// Save waypoint information for the undo action
+	int old_random_spawn = wpts[wpnum].suppress_random_spawn;
+
+	// Remove the waypoint on the map
+	del_waypoint(EditLevel, x, y);
+
+	// Make an undoable action
+	action_push(ACT_CREATE_WAYPOINT, x, y, old_random_spawn);
+}
+
 void action_toggle_waypoint(level *EditLevel, int BlockX, int BlockY, int toggle_random_spawn)
 {
 	waypoint *wpts = EditLevel->waypoints.arr;
@@ -615,6 +678,12 @@ static void action_do(level * level, action * a)
 		break;
 	case ACT_MOVE_ITEM:
 		action_move_item(level, a->d.move_item.item, a->d.move_item.newx, a->d.move_item.newy);
+		break;
+	case ACT_CREATE_WAYPOINT:
+		action_create_waypoint(level, a->d.create_waypoint.x, a->d.create_waypoint.y, a->d.create_waypoint.suppress_random_spawn);
+		break;
+	case ACT_REMOVE_WAYPOINT:
+		action_remove_waypoint(level, a->d.delete_waypoint.x, a->d.delete_waypoint.y);
 		break;
 	case ACT_WAYPOINT_TOGGLE:
 		action_toggle_waypoint(level, a->d.waypoint_toggle.x, a->d.waypoint_toggle.y, a->d.waypoint_toggle.spawn_toggle);
