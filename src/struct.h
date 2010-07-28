@@ -353,15 +353,15 @@ typedef struct item_s {
 
 	int bonus_to_dex;
 	int bonus_to_str;
-	int bonus_to_vit;
-	int bonus_to_mag;
-	int bonus_to_life;
-	int bonus_to_force;
+	int bonus_to_physique;
+	int bonus_to_cooling;
+	int bonus_to_health_points;
 	float bonus_to_health_recovery;
 	float bonus_to_cooling_rate;
-	int bonus_to_tohit;
+	int bonus_to_attack;
 	int bonus_to_all_attributes;
-	int bonus_to_damred_or_damage;	// this is a percentage
+	int bonus_to_armor;
+	int bonus_to_damage;
 	int bonus_to_resist_fire;	// this is a percentage
 	int bonus_to_resist_electricity;	// this is a percentage
 	int bonus_to_paralyze_enemy;

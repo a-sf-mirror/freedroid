@@ -132,8 +132,8 @@ static void AddInfluencerItemAttributeBonus(item * BonusItem)
 	// Apply the bonuses to the stats of the character.
 	Me.Strength += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes;
 	Me.Dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes;
-	Me.Magic += BonusItem->bonus_to_mag + BonusItem->bonus_to_all_attributes;
-	Me.Vitality += BonusItem->bonus_to_vit + BonusItem->bonus_to_all_attributes;
+	Me.Magic += BonusItem->bonus_to_cooling + BonusItem->bonus_to_all_attributes;
+	Me.Vitality += BonusItem->bonus_to_physique + BonusItem->bonus_to_all_attributes;
 
 };				// void AddInfluencerItemAttributeBonus( item* BonusItem )
 
@@ -149,9 +149,8 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 		return;
 
 	// Apply the bonuses to the stats of the character.
-	Me.to_hit += BonusItem->bonus_to_tohit;
-	Me.max_temperature += BonusItem->bonus_to_force;
-	Me.maxenergy += BonusItem->bonus_to_life;
+	Me.to_hit += BonusItem->bonus_to_attack;
+	Me.maxenergy += BonusItem->bonus_to_health_points;
 	Me.health_recovery_rate += BonusItem->bonus_to_health_recovery;
 	Me.cooling_rate += BonusItem->bonus_to_cooling_rate;
 	Me.resist_fire += BonusItem->bonus_to_resist_fire;

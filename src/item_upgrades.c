@@ -253,14 +253,14 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 	if (it->bonus_to_dex) {
 		autostr_append(desc, _("%+d to dexterity%s"), it->bonus_to_dex, separator);
 	}
-	if (it->bonus_to_mag) {
-		autostr_append(desc, _("%+d to cooling%s"), it->bonus_to_mag, separator, separator);
+	if (it->bonus_to_cooling) {
+		autostr_append(desc, _("%+d to cooling%s"), it->bonus_to_cooling, separator);
 	}
-	if (it->bonus_to_vit) {
-		autostr_append(desc, _("%+d to physique%s"), it->bonus_to_vit, separator);
+	if (it->bonus_to_physique) {
+		autostr_append(desc, _("%+d to physique%s"), it->bonus_to_physique, separator);
 	}
-	if (it->bonus_to_life) {
-		autostr_append(desc, _("%+d health points%s"), it->bonus_to_life, separator);
+	if (it->bonus_to_health_points) {
+		autostr_append(desc, _("%+d health points%s"), it->bonus_to_health_points, separator);
 	}
 	if (it->bonus_to_health_recovery) {
 		autostr_append(desc, _("%+0.1f health points per second%s"), it->bonus_to_health_recovery, separator);
@@ -272,21 +272,17 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 			autostr_append(desc, _("%0.1f heating per second%s"), -it->bonus_to_cooling_rate, separator);
 		}
 	}
-	if (it->bonus_to_force) {
-		autostr_append(desc, _("%+d Force%s"), it->bonus_to_force, separator);
-	}
-	if (it->bonus_to_tohit) {
-		autostr_append(desc, _("%+d%% to hit%s"), it->bonus_to_tohit, separator);
+	if (it->bonus_to_attack) {
+		autostr_append(desc, _("%+d%% to attack%s"), it->bonus_to_attack, separator);
 	}
 	if (it->bonus_to_all_attributes) {
 		autostr_append(desc, _("%+d to all attributes%s"), it->bonus_to_all_attributes, separator);
 	}
-	if (it->bonus_to_damred_or_damage) {
-		if (ItemMap[it->type].item_can_be_installed_in_weapon_slot) {
-			autostr_append(desc, _("%+d to damage%s"), it->bonus_to_damred_or_damage, separator);
-		} else {
-			autostr_append(desc, _("%+d%% to armor%s"), it->bonus_to_damred_or_damage, separator);
-		}
+	if (it->bonus_to_damage) {
+		autostr_append(desc, _("%+d to damage%s"), it->bonus_to_damage, separator);
+	}
+	if (it->bonus_to_armor) {
+		autostr_append(desc, _("%+d%% to armor%s"), it->bonus_to_armor, separator);
 	}
 	if (it->bonus_to_resist_fire) {
 		autostr_append(desc, _("+%d to resist fire%s"), it->bonus_to_resist_fire, separator);
@@ -370,25 +366,23 @@ static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
 	if (!strcmp(bonus->name, "all_attributes")) {
 		it->bonus_to_all_attributes += bonus->value;
 	} else if (!strcmp(bonus->name, "attack")) {
-		it->bonus_to_tohit += bonus->value;
+		it->bonus_to_attack += bonus->value;
 	} else if (!strcmp(bonus->name, "armor")) {
 		it->damred_bonus += bonus->value;
-		it->bonus_to_damred_or_damage += bonus->value;
+		it->bonus_to_armor += bonus->value;
 	} else if (!strcmp(bonus->name, "cooling")) {
-		it->bonus_to_mag += bonus->value;
+		it->bonus_to_cooling += bonus->value;
 	} else if (!strcmp(bonus->name, "cooling_rate")) {
 		it->bonus_to_cooling_rate += bonus->value;
 	} else if (!strcmp(bonus->name, "damage")) {
 		it->damage += bonus->value;
-		it->bonus_to_damred_or_damage += bonus->value;
+		it->bonus_to_damage += bonus->value;
 	} else if (!strcmp(bonus->name, "dexterity")) {
 		it->bonus_to_dex += bonus->value;
 	} else if (!strcmp(bonus->name, "experience_gain")) {
 		it->bonus_to_experience_gain += bonus->value;
-	} else if (!strcmp(bonus->name, "force")) {
-		it->bonus_to_force += bonus->value;
 	} else if (!strcmp(bonus->name, "health")) {
-		it->bonus_to_life += bonus->value;
+		it->bonus_to_health_points += bonus->value;
 	} else if (!strcmp(bonus->name, "health_recovery")) {
 		it->bonus_to_health_recovery += bonus->value;
 	} else if (!strcmp(bonus->name, "light_radius")) {
@@ -396,7 +390,7 @@ static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
 	} else if (!strcmp(bonus->name, "paralyze_enemy")) {
 		it->bonus_to_paralyze_enemy += bonus->value;
 	} else if (!strcmp(bonus->name, "physique")) {
-		it->bonus_to_vit += bonus->value;
+		it->bonus_to_physique += bonus->value;
 	} else if (!strcmp(bonus->name, "slow_enemy")) {
 		it->bonus_to_slow_enemy += bonus->value;
 	} else if (!strcmp(bonus->name, "strength")) {
@@ -421,15 +415,15 @@ void calculate_item_bonuses(item *it)
 	// Reset all the bonuses to defaults.
 	it->bonus_to_dex = 0;
 	it->bonus_to_str = 0;
-	it->bonus_to_vit = 0;
-	it->bonus_to_mag = 0;
-	it->bonus_to_life = 0;
-	it->bonus_to_force = 0;
+	it->bonus_to_physique = 0;
+	it->bonus_to_cooling = 0;
+	it->bonus_to_health_points = 0;
 	it->bonus_to_health_recovery = 0.0f;
 	it->bonus_to_cooling_rate = 0.0f;
-	it->bonus_to_tohit = 0;
+	it->bonus_to_attack = 0;
 	it->bonus_to_all_attributes = 0;
-	it->bonus_to_damred_or_damage = 0;
+	it->bonus_to_armor = 0;
+	it->bonus_to_damage = 0;
 	it->bonus_to_resist_fire = 0;
 	it->bonus_to_resist_electricity = 0;
 	it->bonus_to_paralyze_enemy = 0;
