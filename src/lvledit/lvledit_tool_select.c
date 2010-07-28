@@ -142,6 +142,7 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 {
 	struct selected_element *e;
 	struct lvledit_map_tile *t;
+	waypoint *w;
 	obstacle *o;
 	item *it;
 	
@@ -166,6 +167,11 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 			it = e->data;
 
 			__calc_min_max(it->pos.x, it->pos.y, cmin, cmax);
+			break;
+		case OBJECT_WAYPOINT:
+			w = e->data;
+
+			__calc_min_max(w->x, w->y, cmin, cmax);
 			break;
 		default:
 			;
@@ -746,6 +752,7 @@ void level_editor_paste_selection()
 {		
 	struct selected_element *e;
 	struct lvledit_map_tile *t;	
+	waypoint *w;
 	obstacle *o;
 	item *it;
 	int nbact = 0;
@@ -831,6 +838,26 @@ void level_editor_paste_selection()
 
 			// Add and select
 		add_object_to_list(&selected_elements, action_create_item(EditLevel(), it->pos.x, it->pos.y, it->type), OBJECT_ITEM);
+
+			nbact++;
+			break;
+		case OBJECT_WAYPOINT:
+			w = e->data;
+
+			w->x -= ceil(center.x);
+			w->y -= ceil(center.y);
+
+			w->x += (int)Me.pos.x;
+			w->y += (int)Me.pos.y;
+
+			if (w->x >= EditLevel()->xlen || w->y >= EditLevel()->ylen
+				|| w->x < 0 || w->y < 0) {
+				// We must not paste waypoints outside the boundaries of level
+				break;
+			}
+
+			// Add and select
+			add_object_to_list(&selected_elements, action_create_waypoint(EditLevel(), w->x, w->y, w->suppress_random_spawn), OBJECT_WAYPOINT);
 
 			nbact++;
 			break;
