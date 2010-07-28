@@ -436,7 +436,7 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_slow_enemy = 0;
 	it->bonus_to_light_radius = 0;
 	it->bonus_to_experience_gain = 0;
-	it->damred_bonus = ItemMap[it->type].base_damred_bonus;
+	it->damred_bonus = it->damred_base;
 	it->damage = ItemMap[it->type].base_item_gun_damage;
 	it->damage_modifier = ItemMap[it->type].item_gun_damage_modifier;
 	if (it->type < 0) {
