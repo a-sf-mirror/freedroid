@@ -240,40 +240,74 @@ unsigned long calculate_item_repair_price(item * repair_item)
 };				// long calculate_item_repair_price ( item* repair_item )
 
 /**
- *
- *
+ * \brief Returns a random quality multiplier.
+ * \return A float between 0 and 1.
  */
-void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity)
+static float random_item_quality()
 {
-	if (ThisItem->type < 0)
-		return;
+	// In order to make normal quality items more common than others, we first
+	// choose a quality level by indexing a probability distribution array.
+	const float quality_levels[] = { 0.0, 0.2, 0.4, 0.6, 0.8, 1.0 };
+	const char quality_distribution[] = { 0, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4 };
+	int quality_level = quality_distribution[sizeof(quality_distribution) - 1];
 
-	ThisItem->damred_base = ItemMap[ThisItem->type].base_damred_bonus + MyRandom(ItemMap[ThisItem->type].damred_bonus_modifier);
-	ThisItem->damred_bonus = ThisItem->damred_base;
-	ThisItem->multiplicity = multiplicity;
-	ThisItem->ammo_clip = 0;
-	ThisItem->throw_time = 0;
-	if (ItemMap[ThisItem->type].item_gun_ammo_clip_size)
-		ThisItem->ammo_clip = MyRandom(ItemMap[ThisItem->type].item_gun_ammo_clip_size);
-	// We now have to set a duration : a maximum duration
-	// and a current duration. The latter is
-	// a fraction of the maximum duration.
-	//
-	if (ItemMap[ThisItem->type].base_item_duration != (-1)) {
-		ThisItem->max_duration = ItemMap[ThisItem->type].base_item_duration +
-		    MyRandom(ItemMap[ThisItem->type].item_duration_modifier);
-		if (FullDuration)
-			ThisItem->current_duration = ThisItem->max_duration;
-		else
-			ThisItem->current_duration = ThisItem->max_duration / 4 + MyRandom(ThisItem->max_duration / 2);
+	// The item quality is a random number within the range of the selected quality level.
+	// In all cases, it falls within the range of [0, 1].
+	float range_start = quality_levels[quality_level];
+	float range_end = quality_levels[quality_level + 1];
+	float range_fraction = MyRandom(100) / 100.0f;
+	float quality = range_start + range_fraction * (range_end - range_start);
+
+	return quality;
+}
+
+/**
+ * \brief Initializes the properties of the item.
+ *
+ * Sets the durability, armor rating, and other such properties based on the
+ * type of the item. The caller must ensure that the type field has been set.
+ *
+ * \param it Item whose properties to initialize.
+ * \param full_durability TRUE to make the item fully repaired.
+ * \param multiplicity Multiplicity of the item.
+ */
+void FillInItemProperties(item *it, int full_durability, int multiplicity)
+{
+	itemspec *spec = &ItemMap[it->type];
+
+	it->multiplicity = multiplicity;
+	it->ammo_clip = 0;
+	it->throw_time = 0;
+
+	// Add random bullets to the clip if the item is a gun.
+	if (spec->item_gun_ammo_clip_size) {
+		it->ammo_clip = MyRandom(spec->item_gun_ammo_clip_size);
+	}
+
+	// Set the base damage reduction by using the item spec and a random quality multiplier.
+	float armor_quality = random_item_quality();
+	it->damred_base = spec->base_damred_bonus + armor_quality * spec->damred_bonus_modifier;
+
+	// Set the maximum and current durabilities of the item.
+	// The maximum durability is within the range specified by the item spec.
+	// The current durability is a fraction of the maximum durability.
+	if (spec->base_item_duration != -1) {
+		float quality = random_item_quality();
+		it->max_duration = spec->base_item_duration + quality * spec->item_duration_modifier;
+		if (full_durability) {
+			it->current_duration = it->max_duration;
+		} else {
+			it->current_duration = it->max_duration / 4 + MyRandom(it->max_duration / 2);
+		}
 	} else {
-		ThisItem->max_duration = (-1);
-		ThisItem->current_duration = 1;
+		it->max_duration = -1;
+		it->current_duration = 1;
 	}
 
 	// Calculate the item bonuses affected by add-ons.
-	calculate_item_bonuses(ThisItem);
-};				// void FillInItemProperties( item* ThisItem , int FullDuration )
+	// This will set the final armor rating and weapon damage, among other things.
+	calculate_item_bonuses(it);
+}
 
 void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
 {
