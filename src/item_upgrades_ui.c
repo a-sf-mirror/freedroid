@@ -26,10 +26,6 @@
 #include "proto.h"
 
 #define ADDON_ITEMS_MAX 4
-#define ELECTRIC_SOCKET_COST 1
-#define MECHANICAL_SOCKET_COST 1
-#define UNIVERSAL_SOCKET_COST 1
-#define SOCKET_UPGRADE_COST 1
 
 enum {
 	IMAGE_SOCKET_NONE,

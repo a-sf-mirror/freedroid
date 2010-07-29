@@ -486,7 +486,7 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 		// If class == 0, we want to avoid to drop 0-1 valuable circuits
 		int how_many = 0;
 		do {
-			how_many = 10 * class + MyRandom(9);
+			how_many = MONEY_PER_BOT_CLASS * class + MyRandom(MONEY_PER_BOT_CLASS - 1);
 		} while (how_many < 2);
 		
 		DropItemAt(GetItemIndexByName("Valuable Circuits"), level_num, x, y, how_many);
@@ -505,7 +505,8 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 
 		// Create sockets occasionally if the item is of a customizable type.
 		int socket_drop_decision = MyRandom(100);
-		if (item_can_be_customized(it) && (force_magical || socket_drop_decision < 5)) {
+		if (item_can_be_customized(it) && (force_magical ||
+		            socket_drop_decision < SOCKET_DROP_PERCENTAGE)) {
 			// Decide how many sockets to create. We randomly index an array of
 			// socket counts to implement a non-uniform probability distribution.
 			const int create_count_array[] = { 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4 };
