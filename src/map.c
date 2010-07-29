@@ -1592,9 +1592,9 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 	autostr_append(shipstr, "%s\n\n", END_OF_SHIP_DATA_STRING);
 
 	if (compress) { 
-		deflate_to_stream((unsigned char *)shipstr->value, shipstr->length+1, ShipFile);
+		deflate_to_stream((unsigned char *)shipstr->value, shipstr->length, ShipFile);
 	}	else {
-		fwrite((unsigned char *)shipstr->value, shipstr->length+1, 1, ShipFile); 
+		fwrite((unsigned char *)shipstr->value, shipstr->length, 1, ShipFile); 
 	}
 
 	if (fclose(ShipFile) == EOF) {
