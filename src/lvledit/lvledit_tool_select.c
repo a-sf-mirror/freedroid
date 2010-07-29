@@ -875,7 +875,7 @@ int leveleditor_select_input(SDL_Event * event)
 		return 0;
 
 	if (mode != DISABLED) {
-		if (EVENT_LEFT_RELEASE(event)) {
+		if (EVENT_LEFT_RELEASE(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
 			// Cancel the current operation
 			leveleditor_select_reset();
 			return 1;
