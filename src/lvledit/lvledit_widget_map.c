@@ -190,6 +190,7 @@ void leveleditor_update_tool()
 void leveleditor_reset_tools()
 {
 	leveleditor_place_reset();
+	leveleditor_select_reset();
 
 	active_tool = NULL;
 }

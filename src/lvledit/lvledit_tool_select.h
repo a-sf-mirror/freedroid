@@ -26,6 +26,8 @@
 int leveleditor_select_input(SDL_Event * event);
 int leveleditor_select_display(void);
 
+void leveleditor_select_reset(void);
+
 int selection_empty(void);
 void *single_tile_selection(int);
 int element_in_selection(void *);

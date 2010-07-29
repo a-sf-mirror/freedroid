@@ -874,6 +874,14 @@ int leveleditor_select_input(SDL_Event * event)
 	if(!mouse_in_level)
 		return 0;
 
+	if (mode != DISABLED) {
+		if (EVENT_LEFT_RELEASE(event)) {
+			// Cancel the current operation
+			leveleditor_select_reset();
+			return 1;
+		}
+	}
+
 	switch (mode) {
 	case DISABLED:
 		if (EVENT_LEFT_PRESS(event)) {
@@ -882,10 +890,7 @@ int leveleditor_select_input(SDL_Event * event)
 		}
 		break;
 	case FD_RECT:
-		if (EVENT_LEFT_RELEASE(event)) {
-			end_rect_select();
-			return 1;
-		} else if (EVENT_MOVE(event)) {
+		if (EVENT_MOVE(event)) {
 			do_rect_select();
 			return 0;
 		}
@@ -904,10 +909,7 @@ int leveleditor_select_input(SDL_Event * event)
 		}
 		break;
 	case DRAGDROP:
-		if (EVENT_LEFT_RELEASE(event)) {
-			end_drag_drop();
-			return 1;
-		} else if (EVENT_MOVE(event)) {
+		if (EVENT_MOVE(event)) {
 			do_drag_drop();
 			return 0;
 		}
@@ -956,4 +958,18 @@ int leveleditor_select_display()
 		break;
 	}
 	return 0;
+}
+
+void leveleditor_select_reset()
+{
+	switch (mode) {
+	case FD_RECT:
+			end_rect_select();
+			break;
+	case DRAGDROP:
+			end_drag_drop();
+			break;
+	default:
+			break;
+	}
 }
