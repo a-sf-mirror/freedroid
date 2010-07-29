@@ -4745,7 +4745,7 @@ x=34 y=18 name="1to8"
 x=34 y=19 name="1from8"
 /plabelinfolvl
 piteminfolvl
-it: n="Source Book of Blue Screen"  X=71.986771  Y=49.527508  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Source Book of Blue Screen"  X=71.986771  Y=49.527508  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
@@ -16264,13 +16264,13 @@ piteminfolvl
 /piteminfolvl
 obstacleextensions
 idx=2182 type=31 data={
-	it: n="Plate"  X=47.000000  Y=42.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Shoes"  X=47.000000  Y=42.000000  DAMRED=27  Dmg=0  DmgMod=0  MDur=10  CDur=6.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Mug"  X=50.000000  Y=40.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Fork"  X=50.000000  Y=40.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Normal Jacket"  X=50.000000  Y=40.000000  DAMRED=12  Dmg=0  DmgMod=0  MDur=14  CDur=8.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Worker Helmet"  X=50.000000  Y=40.000000  DAMRED=22  Dmg=0  DmgMod=0  MDur=18  CDur=8.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Big wrench"  X=50.000000  Y=40.000000  Dmg=1  DmgMod=3  MDur=45  CDur=19.000000  AClip=0  Multi=1  IsIdent=1 
+	it: n="Plate"  X=47.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+	it: n="Shoes"  X=47.000000  Y=42.000000  DAMRED=27  MDur=10  CDur=6.000000  AClip=0  Multi=1 
+	it: n="Mug"  X=50.000000  Y=40.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+	it: n="Fork"  X=50.000000  Y=40.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+	it: n="Normal Jacket"  X=50.000000  Y=40.000000  DAMRED=12  MDur=14  CDur=8.000000  AClip=0  Multi=1 
+	it: n="Worker Helmet"  X=50.000000  Y=40.000000  DAMRED=22  MDur=18  CDur=8.000000  AClip=0  Multi=1 
+	it: n="Big wrench"  X=50.000000  Y=40.000000  MDur=45  CDur=19.000000  AClip=0  Multi=1 
 }
 idx=253 type=32 data={
 	Cryo-Terminal
@@ -25789,7 +25789,7 @@ x=10 y=2 name="NoviceArenaBot4StartGameSquare"
 x=21 y=8 name="29to0"
 /plabelinfolvl
 piteminfolvl
-it: n="Source Book of Check system integrity"  X=9.905821  Y=13.579896  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Source Book of Check system integrity"  X=9.905821  Y=13.579896  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
 idx=73 type=30 data={
@@ -31981,14 +31981,14 @@ x=27 y=35 name="33from9"
 x=26 y=36 name="33to9"
 /plabelinfolvl
 piteminfolvl
-it: n="Red Dilithium Crystal"  X=82.000000  Y=42.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Red Dilithium Crystal"  X=85.000000  Y=18.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Red Dilithium Crystal"  X=85.000000  Y=4.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Red Dilithium Crystal"  X=78.000000  Y=69.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Red Dilithium Crystal"  X=3.000000  Y=85.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Red Dilithium Crystal"  X=41.000000  Y=9.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Red Dilithium Crystal"  X=84.000000  Y=42.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Red Dilithium Crystal"  X=75.000000  Y=48.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Red Dilithium Crystal"  X=82.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=85.000000  Y=18.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=85.000000  Y=4.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=78.000000  Y=69.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=3.000000  Y=85.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=41.000000  Y=9.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=84.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Red Dilithium Crystal"  X=75.000000  Y=48.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
@@ -33568,9 +33568,9 @@ x=24 y=43 name="35to40"
 x=24 y=42 name="35from40"
 /plabelinfolvl
 piteminfolvl
-it: n="The Super Exterminator!!!"  X=26.000000  Y=33.000000  Dmg=90  DmgMod=50  MDur=10  CDur=5.000000  AClip=0  Multi=1  Prefix=9  Suffix=4  StrAllAtt=-25  StrLife=-20  StrForce=-10  StrToHit=-20  IsIdent=0 
-it: n="Strength Pill"  X=29.000000  Y=28.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=2  IsIdent=1 
-it: n="Dexterity Pill"  X=29.000000  Y=28.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=2  IsIdent=1 
+it: n="The Super Exterminator!!!"  X=26.000000  Y=33.000000  MDur=10  CDur=5.000000  AClip=0  Multi=1 
+it: n="Strength Pill"  X=29.000000  Y=28.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2 
+it: n="Dexterity Pill"  X=29.000000  Y=28.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2 
 /piteminfolvl
 obstacleextensions
 idx=39 type=30 data={
@@ -34742,9 +34742,9 @@ x=10 y=12 name="tutmove-1"
 x=13 y=12 name="tutmove-2"
 /plabelinfolvl
 piteminfolvl
-it: n="Plasma Transistor"  X=12.000000  Y=21.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Anti-grav Pod for Droids"  X=19.000000  Y=26.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-it: n="Mug"  X=22.000000  Y=31.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
+it: n="Plasma Transistor"  X=12.000000  Y=21.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Anti-grav Pod for Droids"  X=19.000000  Y=26.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Mug"  X=22.000000  Y=31.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
 idx=381 type=30 data={
@@ -34799,19 +34799,19 @@ idx=648 type=30 data={
 	TutorialZigzag1
 }
 idx=544 type=31 data={
-	it: n="Normal Jacket"  X=18.000000  Y=39.000000  DAMRED=13  Dmg=0  DmgMod=0  MDur=13  CDur=6.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Improvised Buckler"  X=18.000000  Y=39.000000  DAMRED=19  Dmg=0  DmgMod=0  MDur=9  CDur=6.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Shoes"  X=18.000000  Y=39.000000  DAMRED=30  Dmg=0  DmgMod=0  MDur=6  CDur=1.000000  AClip=0  Multi=1  IsIdent=1 
-	it: n="Worker Helmet"  X=18.000000  Y=39.000000  DAMRED=24  Dmg=0  DmgMod=0  MDur=25  CDur=18.000000  AClip=0  Multi=1  IsIdent=1 
+	it: n="Normal Jacket"  X=18.000000  Y=39.000000  DAMRED=13  MDur=13  CDur=6.000000  AClip=0  Multi=1 
+	it: n="Improvised Buckler"  X=18.000000  Y=39.000000  DAMRED=19  MDur=9  CDur=6.000000  AClip=0  Multi=1 
+	it: n="Shoes"  X=18.000000  Y=39.000000  DAMRED=30  MDur=6  CDur=1.000000  AClip=0  Multi=1 
+	it: n="Worker Helmet"  X=18.000000  Y=39.000000  DAMRED=24  MDur=25  CDur=18.000000  AClip=0  Multi=1 
 }
 idx=489 type=31 data={
-	it: n="Laser pistol"  X=26.000000  Y=49.000000  Dmg=4  DmgMod=6  MDur=106  CDur=26.000000  AClip=20  Multi=1  IsIdent=1 
-	it: n="Plasma pistol"  X=26.000000  Y=49.000000  Dmg=12  DmgMod=6  MDur=30  CDur=19.000000  AClip=4  Multi=1  IsIdent=1 
+	it: n="Laser pistol"  X=26.000000  Y=49.000000  MDur=106  CDur=26.000000  AClip=20  Multi=1 
+	it: n="Plasma pistol"  X=26.000000  Y=49.000000  MDur=30  CDur=19.000000  AClip=4  Multi=1 
 }
 idx=488 type=31 data={
-	it: n="Laser power pack"  X=26.000000  Y=49.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=10  IsIdent=1 
-	it: n="Plasma energy container"  X=26.000000  Y=49.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=2  IsIdent=1 
-	it: n=".22 LR Ammunition"  X=26.000000  Y=49.000000  Dmg=0  DmgMod=0  MDur=-1  CDur=1.000000  AClip=0  Multi=10  IsIdent=1 
+	it: n="Laser power pack"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=10 
+	it: n="Plasma energy container"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=2 
+	it: n=".22 LR Ammunition"  X=26.000000  Y=49.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=10 
 }
 idx=23 type=32 data={
 	TutorialTerminal
