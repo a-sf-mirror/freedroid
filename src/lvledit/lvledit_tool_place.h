@@ -25,3 +25,5 @@
 
 int leveleditor_place_input(SDL_Event *);
 int leveleditor_place_display(void);
+
+void leveleditor_place_reset(void);

@@ -186,3 +186,10 @@ void leveleditor_update_tool()
 {				//time-based updating if relevant
 	forward_event(NULL);
 }
+
+void leveleditor_reset_tools()
+{
+	leveleditor_place_reset();
+
+	active_tool = NULL;
+}

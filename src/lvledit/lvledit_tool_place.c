@@ -676,6 +676,14 @@ int leveleditor_place_input(SDL_Event *event)
 		return 0;
 	}
 
+	if (our_mode != DISABLED) {
+		if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
+			// Cancel the current operation
+			leveleditor_place_reset();
+			return 1;
+		}
+	}
+
 	if (our_mode == DISABLED) {
 		if (EVENT_LEFT_PRESS(event)) {
 			switch (cs->type) {
@@ -708,9 +716,6 @@ int leveleditor_place_input(SDL_Event *event)
 			return 1;
 		} else if (EVENT_MOVE(event)) {
 			handle_rectangle_floor();
-		} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
-			end_rectangle_floor(0);
-			return 1;
 		}
 	} else if (our_mode == LINE_WALLS) {
 		if (EVENT_LEFT_RELEASE(event)) {
@@ -718,15 +723,8 @@ int leveleditor_place_input(SDL_Event *event)
 			return 1;
 		} else if (EVENT_MOVE(event)) {
 			handle_wall_line();
-		} else if (EVENT_RIGHT_PRESS(event) || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
-			end_wall_line(0);
-			return 1;
 		}
 	} else if (our_mode == CONNECT_WAYPOINT) {
-		if (cs->type != OBJECT_WAYPOINT || EVENT_KEYPRESS(event, SDLK_ESCAPE)) {
-			end_waypoint_route();
-			return 1;
-		}
 		if (EVENT_LEFT_PRESS(event)) {
 			return do_waypoint_route(type);
 		}
@@ -745,4 +743,21 @@ int leveleditor_place_display()
 	}
 
 	return 0;
+}
+
+void leveleditor_place_reset()
+{
+	switch (our_mode) {
+	case LINE_WALLS:
+			end_wall_line(0);
+			break;
+	case RECTANGLE_FLOOR:
+			end_rectangle_floor(0);
+			break;
+	case CONNECT_WAYPOINT:
+			end_waypoint_route();
+			break;
+	default:
+			break;
+	}
 }
