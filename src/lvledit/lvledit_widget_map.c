@@ -43,19 +43,6 @@ static struct leveleditor_tool *active_tool = NULL;
 moderately_finepoint mouse_mapcoord;
 int mouse_in_level; // is the mouse cursor at an existing position on the level?
 
-static struct leveleditor_widget *tool_selection_menu;
-
-void select_tool(void *t)
-{
-	if (!active_tool)
-		selected_tool = t;
-	else
-		alert_window("Cannot select another tool: busy");
-
-	if (tool_selection_menu)
-		tool_selection_menu->enabled = 0;
-}
-
 void leveleditor_map_init()
 {
 	leveleditor_init_tools();
