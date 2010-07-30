@@ -125,6 +125,7 @@ typedef struct {
 		struct {
 			int id;
 			char *new_name;
+			int x, y;
 		} change_label_name;	/* EditMapLabelData */
 
 		struct {

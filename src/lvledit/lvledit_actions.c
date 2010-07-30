@@ -149,6 +149,8 @@ static action *action_create(int type, va_list args)
 		case ACT_SET_MAP_LABEL:
 			act->d.change_label_name.id = va_arg(args, int);
 			act->d.change_label_name.new_name = va_arg(args, char *);
+			act->d.change_label_name.x = va_arg(args, int);
+			act->d.change_label_name.y = va_arg(args, int);
 			break;
 		case ACT_JUMP_TO_LEVEL:
 			act->d.jump_to_level.target_level = va_arg(args, int);
@@ -551,7 +553,7 @@ void action_set_floor(Level EditLevel, int x, int y, int type)
 	action_push(ACT_TILE_FLOOR_SET, x, y, old);
 }
 
-static int action_change_map_label(level *EditLevel, int i, char *name, int undoable)
+static int action_change_map_label(level *EditLevel, int i, char *name, int x, int y, int undoable)
 {
 	struct map_label_s *map_label;
 	char *old_label = NULL;
@@ -570,7 +572,7 @@ static int action_change_map_label(level *EditLevel, int i, char *name, int undo
 
 	// Create the undo action if appropriate
 	if (undoable) {
-		action_push(ACT_SET_MAP_LABEL, i, old_label);
+		action_push(ACT_SET_MAP_LABEL, i, old_label, x, y);
 	} else {
 		free(old_label);
 	}
@@ -582,7 +584,7 @@ static int action_change_map_label(level *EditLevel, int i, char *name, int undo
 	name = strdup(name);
 
 	// Create a new map label at the position of cursor
-	add_map_label(EditLevel, rintf(Me.pos.x - 0.5), rintf(Me.pos.y - 0.5), name);
+	add_map_label(EditLevel, x, y, name);
 
 	return undoable;
 }
@@ -641,7 +643,7 @@ void level_editor_action_change_map_label_user(level *EditLevel)
 	}
 
 	// Change a map label when the name enter by the user is valid
-	action_change_map_label(EditLevel, i, name, 1);
+	action_change_map_label(EditLevel, i, name, rintf(Me.pos.x - 0.5), rintf(Me.pos.y - 0.5), 1);
 }
 
 /**
@@ -702,7 +704,7 @@ static void action_do(level * level, action * a)
 		action_change_obstacle_label(level, a->d.change_obstacle_name.obstacle, a->d.change_obstacle_name.new_name, 1);
 		break;
 	case ACT_SET_MAP_LABEL:
-		action_change_map_label(level, a->d.change_label_name.id, a->d.change_label_name.new_name, 1);
+		action_change_map_label(level, a->d.change_label_name.id, a->d.change_label_name.new_name, a->d.change_label_name.x, a->d.change_label_name.y, 1);
 		break;
 	case ACT_JUMP_TO_LEVEL:
 		action_jump_to_level(a->d.jump_to_level.target_level, a->d.jump_to_level.x, a->d.jump_to_level.y);
