@@ -50,8 +50,6 @@ static struct leveleditor_select {
 
 	moderately_finepoint drag_start;
 	moderately_finepoint cur_drag_pos;
-
-	enum leveleditor_object_type type;
 } state;
 
 enum { DISABLED, FD_RECT, FD_RECTDONE, DRAGDROP } mode;
@@ -277,9 +275,9 @@ static void select_item_on_tile(int x, int y)
 	}
 }
 
-static void select_object_on_tile(int x, int y, enum leveleditor_object_type type)
+static void select_object_on_tile(int x, int y)
 {
-	switch (type) {
+	switch (selection_type()) {
 	case OBJECT_OBSTACLE:
 		select_obstacles_on_tile(x, y);
 		break;
@@ -294,7 +292,7 @@ static void select_object_on_tile(int x, int y, enum leveleditor_object_type typ
 		break;
 	default:
 		ErrorMessage(__FUNCTION__,
-				"Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_WARNING_ONLY, type);
+				"Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_WARNING_ONLY, selection_type());
 		break;
 	}
 }
@@ -319,8 +317,6 @@ static void start_rect_select()
 {
 	mode = FD_RECT;
 
-	state.type = get_current_object_type()->type;
-
 	// Store mouse position
 	state.drag_start.x = (int)mouse_mapcoord.x;
 	state.drag_start.y = (int)mouse_mapcoord.y;
@@ -339,7 +335,7 @@ static void start_rect_select()
 		return;
 
 	// Select elements on the starting tile
-	select_object_on_tile(state.rect_start.x, state.rect_start.y, state.type);
+	select_object_on_tile(state.rect_start.x, state.rect_start.y);
 }
 
 static void do_rect_select()
@@ -386,7 +382,7 @@ static void do_rect_select()
 				if (i < 0 || i >= EditLevel()->xlen)
 					continue;
 
-				select_object_on_tile(i, j, state.type);
+				select_object_on_tile(i, j);
 			}
 
 		}
