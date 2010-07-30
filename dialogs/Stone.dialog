@@ -39,6 +39,8 @@ EveryTime LuaCode={
 			if (get_gold() > 1600) then show(23) else hide(23) end
 		else end
 	else end
+
+	if (not has_cookie("tux_has_joined_guard")) then show(3) else end		
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -48,6 +50,8 @@ LuaCode={
 	npc_says(_"Welcome to this camp! I'm Ms. Stone. I run this shop.")
 	set_bot_name(_"Stone -- Shopowner")
 	hide(0) show(1, 3, 10)
+	if (not has_cookie("tux_has_joined_guard")) then show(3) else end
+	hide(0) show(1, 10)
 }
 ----------------------------------------------------------------------
 
@@ -207,7 +211,10 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={ end_dialog() }
+LuaCode={
+	npc_says_random(_"Have a nice day!", _"Take care that you don't void any warranties.", _"Please come back if you have any questions regarding any goods.")
+	end_dialog()
+}
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
