@@ -253,7 +253,7 @@ Cost per level=-5
 ## Or make it something that can increase melee/shooting/programming ? Permanently and/or Temporarily?
 ** Start of new program specification subsection **
 Program name=_"Reverse-engineer"
-Program description=_"NOT IMPLEMENTED YET There is some dark magic in the art of turning devices or programs inside-out, picking them appart to learn all their secrets and putting them back again."
+Program description=_"NOT IMPLEMENTED YET There is some dark magic in the art of turning devices or programs inside-out, picking them apart to learn all their secrets and putting them back again."
 Picture="ReverseEngineer.png"
 Form="self"
 F**orm="aura"
