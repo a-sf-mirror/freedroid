@@ -4071,7 +4071,7 @@ Item description text=_"This mechanical crank pumps up your muscles."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Tungsten Spikes"
+Item name=_"Tungsten spikes"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4084,7 +4084,7 @@ Item description text=_"These spikes offer a simple and affordable solution to i
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Tinfoil Patch"
+Item name=_"Tinfoil patch"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4112,7 +4112,7 @@ Item description text=_"A miniaturised laser powered by a nuclear battery. When 
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Exoskeletal Joint"
+Item name=_"Exoskeletal joint"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4134,11 +4134,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This heatsink add-on increases your cooling rate slightly."
+Item description text=_"A simple heatsink add-on that keeps you cooler by dissipating heat from your armor."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Peltier Element"
+Item name=_"Peltier element"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4147,11 +4147,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This thermoelectric device increases your cooling rate."
+Item description text=_"A thermoelectric device that increases your cooling rate."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Heat Buffer"
+Item name=_"Steel mesh"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4160,11 +4160,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This item absorbs some of the heat your body generates, making you heat slower."
+Item description text=_"A sturdy metal mesh that provides an extra protective layer to your armor."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Steel Mesh"
+Item name=_"Shock discharger"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4173,20 +4173,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This item adds an extra protective layer to your armor."
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Shock Discharger"
-Item min class for drop=-1
-Item can be applied in combat="no"
-Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
-Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
-Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
-Base list price=100
-Item description text=_"When installed to a melee weapon, this item gives a small electric shock to enemies you hit."
+Item description text=_"When installed to a melee weapon, this nifty device gives a small electric shock to enemies you hit."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -4225,11 +4212,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This device helps you to move dexterously by giving feedback on your movements."
+Item description text=_"A device that helps you to move dexterously by giving feedback on your foot movement."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Foot Warmer"
+Item name=_"Foot warmer"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4242,7 +4229,7 @@ Item description text=_"This item helps you to be more comfortable in your shoes
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Circuit Jammer"
+Item name=_"Circuit jammer"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4255,7 +4242,7 @@ Item description text=_"This item improves your melee weapon by blasting the ene
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Sensor Disruptor"
+Item name=_"Sensor disruptor"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4277,11 +4264,11 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"Fastened to your helmet, this item allows you to see better in dark environments."
+Item description text=_"When fastened to your helmet, this lamp allows you to see better in dark environments."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Brain Stimulator"
+Item name=_"Brain stimulator"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -4290,7 +4277,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="tachyon_converter/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This chip allows you to learn faster by providing additional feedback on your actions."
+Item description text=_"A chip that allows you to learn faster by providing additional feedback on your actions."
 ** End of new item specification subsection **
 
 *** End of item data section: ***
