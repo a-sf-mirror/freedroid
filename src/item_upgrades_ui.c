@@ -112,23 +112,6 @@ static void load_images()
 }
 
 /**
- * \brief Gets the item grabbed from the item upgrade UI by the player.
- * \return Pointer to an item or NULL if no item was grabbed from the upgrade UI.
- */
-item *get_item_grabbed_from_item_upgrade_ui()
-{
-	// Make sure the UI is actually visible.
-	if (!ui_visible) {
-		return NULL;
-	}
-
-	// Return the dragged item or NULL.
-	if (ui.dragged_item.type != -1)
-		return &ui.dragged_item;
-	return NULL;
-}
-
-/**
  * \brief Gets the tooltip text the item upgrade UI would like to display.
  * \param cursor Cursor position.
  * \param result Return location for the tooltip text.
@@ -432,8 +415,8 @@ static int grab_customized_item()
 	// Mark the item as being dragged. We move it to a temporary
 	// field so that it doesn't get cleared when we alter the UI. 
 	MoveItem(&ui.custom_item, &ui.dragged_item);
-	Item_Held_In_Hand = &ui.dragged_item;
-	play_item_sound(Item_Held_In_Hand->type);
+	item_held_in_hand = &ui.dragged_item;
+	play_item_sound(item_held_in_hand->type);
 
 	// Reset the cost field to zero and disable the apply button
 	// since there's no item to customize.
@@ -459,8 +442,8 @@ static int grab_addon_item(int index)
 	// Mark the item as being dragged. We move it to a temporary
 	// field so that it doesn't get cleared when we alter the UI. 
 	MoveItem(&ui.addon_items[index], &ui.dragged_item);
-	Item_Held_In_Hand = &ui.dragged_item;
-	play_item_sound(Item_Held_In_Hand->type);
+	item_held_in_hand = &ui.dragged_item;
+	play_item_sound(item_held_in_hand->type);
 
 	// Remove the corresponding string from the upgrade socket array. We
 	// use the NULL pointer to identify sockets that have been modified
@@ -604,9 +587,9 @@ static void handle_socket(int index)
 
 	// If the player is dragging an item, try to drop a it to the socket.
 	// If the item doesn't fit into the socket, silently give up.
-	if (Item_Held_In_Hand) {
-		if (set_addon_item(Item_Held_In_Hand, index)) {
-			Item_Held_In_Hand = NULL;
+	if (item_held_in_hand) {
+		if (set_addon_item(item_held_in_hand, index)) {
+			item_held_in_hand = NULL;
 		}
 
 	// The player isn't dragging an item so check if an item can be dragged
@@ -667,10 +650,10 @@ static int handle_ui()
 	// drop a dragged item into it or grab an existing item out of it.
 	if (MouseCursorIsInRect(&rects.custom_slot, cursor.x, cursor.y))
 	{
-		if (!Item_Held_In_Hand) {
+		if (!item_held_in_hand) {
 			grab_customized_item(ui);
-		} else if (set_customized_item(Item_Held_In_Hand)) {
-			Item_Held_In_Hand = NULL;
+		} else if (set_customized_item(item_held_in_hand)) {
+			item_held_in_hand = NULL;
 		}
 		return TRUE;
 	}
@@ -758,7 +741,7 @@ void item_upgrade_ui()
 	// drop them to the inventory or to the ground.
 	clear_customized_item(ui);
 	if (ui.dragged_item.type != -1) {
-		Item_Held_In_Hand = NULL;
+		item_held_in_hand = NULL;
 		give_item(&ui.dragged_item);
 	}
 

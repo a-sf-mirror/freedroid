@@ -481,14 +481,13 @@ int GetItemIndexByName(const char *name);
 void ApplyItem(item * CurItem);
 int Inv_Pos_Is_Free(int x, int y);
 int GetInventoryItemAt(int x, int y);
-item *GetHeldItemPointer(void);
+item *get_held_item(void);
 int ItemUsageRequirementsMet(item * UseItem, int MakeSound);
 int MouseCursorIsInInventoryGrid(int x, int y);
 int MouseCursorIsInUserRect(int x, int y);
 int MouseCursorIsInInvRect(int x, int y);
 int MouseCursorIsInChaRect(int x, int y);
 int MouseCursorIsInSkiRect(int x, int y);
-int GetHeldItemCode(void);
 int GetInventorySquare_x(int x);
 int GetInventorySquare_y(int x);
 void DropHeldItemToInventory(void);
@@ -715,7 +714,6 @@ void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 
 // item_upgrades_ui.c
-item *get_item_grabbed_from_item_upgrade_ui(void);
 int get_item_upgrade_ui_tooltip(const point *, char *);
 void show_item_upgrade_ui();
 void item_upgrade_ui();

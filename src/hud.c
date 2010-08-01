@@ -594,13 +594,13 @@ void prepare_text_window_content(char *ItemDescText)
 	/* If the player has an item in hand, draw the item name into the
 	 * description field.  If the requirements for this item are not met, we
 	 * show a text. */
-	if (GetHeldItemPointer() != NULL) {
+	if (item_held_in_hand != NULL) {
 		best_banner_pos_x = CurPos.x + 20;
 
 		strncpy(ItemDescText, font_switchto_neon, 1);
-		strcat(ItemDescText, D_(ItemMap[GetHeldItemCode()].item_name));
+		strcat(ItemDescText, D_(ItemMap[item_held_in_hand->type].item_name));
 
-		if (!ItemUsageRequirementsMet(GetHeldItemPointer(), FALSE)) {
+		if (!ItemUsageRequirementsMet(item_held_in_hand, FALSE)) {
 			strcat(ItemDescText, "\n");
 			strncat(ItemDescText, font_switchto_red, 1);
 			strcat(ItemDescText, _("REQUIREMENTS NOT MET"));

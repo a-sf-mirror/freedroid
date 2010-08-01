@@ -1487,7 +1487,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	init_item(&Me.shield_item);
 	init_item(&Me.special_item);
 	init_item(&Me.drive_item);
-	Item_Held_In_Hand = NULL;
+	item_held_in_hand = NULL;
 
 	Me.mouse_move_target.x = (-1);
 	Me.mouse_move_target.y = (-1);

@@ -2157,7 +2157,7 @@ static int do_savegame_selection_and_act(int action)
 	case SAVEGAME_LOAD:
 		if (LoadGame() == OK) {
 			GetEventTriggers("freedroid.events");
-			Item_Held_In_Hand = NULL;
+			item_held_in_hand = NULL;
 			rtn = TRUE;
 		} else {
 			rtn = FALSE;

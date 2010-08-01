@@ -753,7 +753,7 @@ void move_tux()
 
 	// During inventory operations, there should not be any (new) movement
 	//
-	if (Item_Held_In_Hand != NULL) {
+	if (item_held_in_hand != NULL) {
 		Me.mouse_move_target.x = Me.pos.x;
 		Me.mouse_move_target.y = Me.pos.y;
 		Me.mouse_move_target.z = Me.pos.z;
@@ -1129,7 +1129,7 @@ int ButtonPressWasNotMeantAsFire()
 	// If the influencer is holding something from the inventory
 	// menu via the mouse, also just return
 	//
-	if (Item_Held_In_Hand != NULL)
+	if (item_held_in_hand != NULL)
 		return (TRUE);
 	if (timeout_from_item_drop > 0)
 		return (TRUE);
