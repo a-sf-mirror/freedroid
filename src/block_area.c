@@ -1273,7 +1273,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LIBRARY_FURNITURE_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_LIBRARY_FURNITURE_2].flags |= GROUND_LEVEL;
 
-	for (i = ISO_OUTER_WALL_N1; i <= ISO_OUTER_DOOR_H_OFFLINE; i++) {
+	for (i = ISO_OUTER_WALL_N1; i <= ISO_OUTER_DOOR_H_LOCKED; i++) {
 		obstacle_map[i].transparent = TRANSPARENCY_FOR_WALLS;
 	}
 
