@@ -1640,19 +1640,19 @@ void HandleInventoryScreen(void)
 			{ HELMET_RECT_BUTTON, &(Me.special_item) },
 	};
 
-	// In case the Tux is dead already, we do not need to display any inventory screen
-	// or even to pick up any stuff for the Tux...
 	if (Me.energy <= 0) {
 		return;
 	}
+	
+	// If the inventory is not visible there is nothing to do 
+	if (GameConfig.Inventory_Visible == FALSE) {
+		item_held_in_hand = NULL;
+		return;
+	}
+
 	// We will need the current mouse position on several spots...
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
-
-	// If the inventory is not visible we don't handle the screen itself but we still pick up items on the ground
-	if (GameConfig.Inventory_Visible == FALSE) {
-		item_held_in_hand = NULL;
-	}
 
 	// Case 1: The user left-clicks while not holding an item
 	if (MouseLeftClicked() && item_held_in_hand == NULL) {
@@ -1854,13 +1854,6 @@ void HandleInventoryScreen(void)
 		return;
 	}
 
-	// There was no left-click, so we will now analyze right-click, but a right
-	// click is no-sense (here) if the Inventory screen is hidden
-	//
-	if (!GameConfig.Inventory_Visible) {
-		return;
-	}
-
 	// Case 3: The user is right-clicking inside the inventory rectangle which 
 	// would mean for us that he is applying the item under the mouse button
 	//
@@ -1919,7 +1912,7 @@ void HandleInventoryScreen(void)
 			}
 		}
 	}
-};				// void HandleInventoryScreen ( void );
+}
 
 /**
  *
