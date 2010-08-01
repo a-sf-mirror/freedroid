@@ -228,13 +228,12 @@ void DeleteCookie(const char *CookieString)
  * chat info file into the chat roster.
  *
  */
-static void LoadDialog(char *FullPathAndFullFilename)
+static void load_dialog(const char *fpath)
 {
 	char *ChatData;
 	char *SectionPointer;
 	char *EndOfSectionPointer;
 	int i, j;
-	char fpath[2048];
 	int OptionIndex;
 	int NumberOfOptionsInSection;
 	int NumberOfReplySubtitles;
@@ -242,15 +241,12 @@ static void LoadDialog(char *FullPathAndFullFilename)
 
 	char *ReplyPointer;
 
-	sprintf(fpath, "%s", FullPathAndFullFilename);
-
-	// #define END_OF_DIALOGUE_FILE_STRING "*** End of Dialogue File Information ***"
 #define CHAT_CHARACTER_BEGIN_STRING "Beginning of new chat dialog for character=\""
 #define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
 #define NEW_OPTION_BEGIN_STRING "\nNr="
+#define NO_WAIT_OPTION_STRING "\nOptionSample=\"NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER\""
 
-	// At first we read the whole chat file information into memory
-	//
+	// Read the whole chat file information into memory
 	ChatData = ReadAndMallocAndTerminateFile(fpath, CHAT_CHARACTER_END_STRING);
 	SectionPointer = ChatData;
 
@@ -374,8 +370,7 @@ severe error.", PLEASE_INFORM, IS_FATAL);
 	// having to restart Freedroid!  Very cool!
 	//
 	free(ChatData);
-
-};				// void LoadDialog ( char* SequenceCode )
+}
 
 /**
  *
@@ -550,7 +545,7 @@ void run_subdialog(const char *tmp_filename)
 	sprintf(finaldir, "%s", DIALOG_DIR);
 	find_file(tmp_filename, finaldir, fpath, 0);
 
-	LoadDialog(fpath);
+	load_dialog(fpath);
 
 	// we always initialize subdialogs..
 	//
@@ -883,7 +878,7 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	char finaldir[50];
 	sprintf(finaldir, "%s", DIALOG_DIR);
 	find_file(tmp_filename, finaldir, fpath, 0);
-	LoadDialog(fpath);
+	load_dialog(fpath);
 
 	chat_control_chat_flags = &npc->chat_flags[0];
 
@@ -964,7 +959,7 @@ void validate_dialogs()
 		find_file(filename, DIALOG_DIR, fpath, 0);
 
 		InitChatRosterForNewDialogue();
-		LoadDialog(fpath);
+		load_dialog(fpath);
 
 		if (chat_initialization_code) {
 			printf("\tinit code\n");
