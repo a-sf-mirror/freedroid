@@ -250,7 +250,7 @@ void input_set_default(void)
 
 }
 
-#define KEYCHART_RECT_X (GameConfig.screen_width / 10)
+#define KEYCHART_RECT_X (GameConfig.screen_width / 250)
 #define KEYCHART_RECT_Y (GameConfig.screen_height / 10)
 #define KEYCHART_RECT_W (0.8 * GameConfig.screen_width)
 #define KEYCHART_RECT_H (0.8 * GameConfig.screen_height)
