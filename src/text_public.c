@@ -267,14 +267,12 @@ int CountStringOccurences(char *SearchString, const char *TargetString)
  * terminates the whole read in file with a 0 character, so that it
  * can easily be treated like a common string.
  */
-char *ReadAndMallocAndTerminateFile(char *filename, const char *File_End_String)
+char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String)
 {
 	FILE *DataFile;
 	char *Data;
 	char *ReadPointer;
 	long MemoryAmount;
-
-	DebugPrintf(1, "\n%s() : The filename is: %s", __FUNCTION__, filename);
 
 	// Read the whole theme data to memory.  We use binary mode, as we
 	// don't want to have to deal with any carriage return/line feed 
@@ -329,7 +327,7 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 		Data[MemoryAmount - 100] = 0;
 
 	return (Data);
-};				// char* ReadAndMallocAndTerminateFile( char* filename) 
+}
 
 /**
  * This function tries to locate a string in some given data string.

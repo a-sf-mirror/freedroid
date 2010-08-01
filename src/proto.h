@@ -613,7 +613,7 @@ void ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValueP
 				    const char *DefaultValueString, void *TargetValue, char *EndOfSearchSectionPointer);
 void ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString, void *TargetValue,
 			 char *EndOfSearchSectionPointer);
-char *ReadAndMallocAndTerminateFile(char *filename, const char *File_End_String);
+char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String);
 char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
 int find_file(const char *fname, const char *datadir, char *File_Path, int silent);
 void Pause(void);
