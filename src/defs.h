@@ -555,6 +555,9 @@ enum {
 	ITEM_UPGRADE_APPLY_BUTTON_DISABLED,
 	ITEM_UPGRADE_CLOSE_BUTTON,
 
+	ADDON_CRAFTING_SCROLL_UP_BUTTON,
+	ADDON_CRAFTING_SCROLL_DOWN_BUTTON,
+
 	//--------------------
 	// Please leave this here as the last entry, since it conveniently and
 	// automatically counts the number of buttons defined.  Other buttons

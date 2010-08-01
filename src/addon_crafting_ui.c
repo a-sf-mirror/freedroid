@@ -195,6 +195,16 @@ int cursor_is_on_addon_crafting_ui(const point *cursor)
 	}
 }
 
+static int can_scroll_up()
+{
+	return ui.scroll_offset > 0;
+}
+
+static int can_scroll_down()
+{
+	return ui.scroll_offset < ui.recipes.size - RECIPE_LIST_ROWS;
+}
+
 /**
  * \brief Draws the add-on crafting user interface.
  *
@@ -259,6 +269,14 @@ void show_addon_crafting_ui()
 		rect.y += rect.h;
 	}
 
+	// Draw the scroll buttons.
+	if (can_scroll_up()) {
+		ShowGenericButtonFromList(ADDON_CRAFTING_SCROLL_UP_BUTTON);
+	}
+	if (can_scroll_down()) {
+		ShowGenericButtonFromList(ADDON_CRAFTING_SCROLL_DOWN_BUTTON);
+	}
+
 	// Draw the description of the selected recipe.
 	show_text_widget(&ui.description);
 }
@@ -277,22 +295,27 @@ static void handle_ui()
 	cursor.x = GetMousePos_x();
 	cursor.y = GetMousePos_y();
 
-	// Handle scrolling and selections of the recipe list.
+	// Handle scrolling and selections of the recipe list. The list can be scrolled
+	// with both the mouse scroll wheel and the up and down scroll buttons of the UI.
 	if (MouseCursorIsInRect(&rects.recipe_list, cursor.x, cursor.y)) {
-		if (MouseWheelUpPressed()) {
-			if (ui.scroll_offset > 0) {
-				ui.scroll_offset--;
-			}
+		if (MouseWheelUpPressed() && can_scroll_up()) {
+			ui.scroll_offset--;
 		}
-		if (MouseWheelDownPressed()) {
-			if (ui.scroll_offset < ui.recipes.size - RECIPE_LIST_ROWS) {
-				ui.scroll_offset++;
-			}
+		if (MouseWheelDownPressed() && can_scroll_down()) {
+			ui.scroll_offset++;
 		}
 		if (MouseLeftClicked()) {
-			int clicked_row = (cursor.y - rects.recipe_list.y) / RECIPE_LIST_ROW_HEIGHT;
-			if (clicked_row + ui.scroll_offset < ui.recipes.size) {
-				select_recipe(clicked_row + ui.scroll_offset);
+			if (MouseCursorIsOnButton(ADDON_CRAFTING_SCROLL_UP_BUTTON, cursor.x, cursor.y) &&
+			           can_scroll_up()) {
+				ui.scroll_offset--;
+			} else if (MouseCursorIsOnButton(ADDON_CRAFTING_SCROLL_DOWN_BUTTON, cursor.x, cursor.y) &&
+			           can_scroll_down()) {
+				ui.scroll_offset++;
+			} else {
+				int clicked_row = (cursor.y - rects.recipe_list.y) / RECIPE_LIST_ROW_HEIGHT;
+				if (clicked_row + ui.scroll_offset < ui.recipes.size) {
+					select_recipe(clicked_row + ui.scroll_offset);
+				}
 			}
 		}
 	}

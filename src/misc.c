@@ -347,6 +347,12 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[ITEM_UPGRADE_CLOSE_BUTTON] = { UNLOADED_ISO_IMAGE, "item_upgrade/button_close.png",
 	    { ITEM_UPGRADE_RECT_X + 215, ITEM_UPGRADE_RECT_Y + 406, 32, 32 }, FALSE},
 
+	// Buttons of the add-on crafting UI.
+	[ADDON_CRAFTING_SCROLL_UP_BUTTON] = { UNLOADED_ISO_IMAGE, "mouse_buttons/crafting_scroll_up.png",
+	    { ADDON_CRAFTING_RECT_X + 264, ADDON_CRAFTING_RECT_Y + 70, 32, 32 }, FALSE},
+	[ADDON_CRAFTING_SCROLL_DOWN_BUTTON] = { UNLOADED_ISO_IMAGE, "mouse_buttons/crafting_scroll_down.png",
+	    { ADDON_CRAFTING_RECT_X + 264, ADDON_CRAFTING_RECT_Y + 198, 32, 32 }, FALSE},
+
 };				// mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] 
 
 //--------------------
