@@ -858,7 +858,6 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->ItemList[i].pos.y = (-1);
 		NewLevel->ItemList[i].pos.z = (-1);
 		NewLevel->ItemList[i].type = (-1);
-		NewLevel->ItemList[i].currently_held_in_hand = FALSE;
 
 	}
 

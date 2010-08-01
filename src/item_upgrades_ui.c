@@ -433,7 +433,6 @@ static int grab_customized_item()
 	// field so that it doesn't get cleared when we alter the UI. 
 	MoveItem(&ui.custom_item, &ui.dragged_item);
 	Item_Held_In_Hand = &ui.dragged_item;
-	Item_Held_In_Hand->currently_held_in_hand = TRUE;
 	play_item_sound(Item_Held_In_Hand->type);
 
 	// Reset the cost field to zero and disable the apply button
@@ -461,7 +460,6 @@ static int grab_addon_item(int index)
 	// field so that it doesn't get cleared when we alter the UI. 
 	MoveItem(&ui.addon_items[index], &ui.dragged_item);
 	Item_Held_In_Hand = &ui.dragged_item;
-	Item_Held_In_Hand->currently_held_in_hand = TRUE;
 	play_item_sound(Item_Held_In_Hand->type);
 
 	// Remove the corresponding string from the upgrade socket array. We
@@ -512,7 +510,6 @@ static int set_customized_item(item *it)
 
 	// Move the item to the customization slot.
 	play_item_sound(it->type);
-	it->currently_held_in_hand = FALSE;
 	MoveItem(it, &ui.custom_item);
 
 	// Create add-on items from the strings in the upgrade socket array
@@ -544,7 +541,6 @@ static int set_addon_item(item *it, int index)
 	// customized item remains unchanged; the player needs to press the
 	// apply button before any modifications to the item take place.
 	play_item_sound(it->type);
-	it->currently_held_in_hand = FALSE;
 	MoveItem(it, &ui.addon_items[index]);
 
 	// Recalculate the cost and the bonus string and enable the apply button
@@ -762,7 +758,6 @@ void item_upgrade_ui()
 	// drop them to the inventory or to the ground.
 	clear_customized_item(ui);
 	if (ui.dragged_item.type != -1) {
-		Item_Held_In_Hand->currently_held_in_hand = FALSE;
 		Item_Held_In_Hand = NULL;
 		give_item(&ui.dragged_item);
 	}

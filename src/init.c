@@ -702,7 +702,6 @@ static void Get_Robot_Data(void *DataPointer)
 		Druidmap[i].aggression_distance *= difficulty_parameters[GameConfig.difficulty_level].aggression_distance_calibrator;
 		Druidmap[i].healing_friendly *= difficulty_parameters[GameConfig.difficulty_level].healing_friendly_calibrator;
 		Druidmap[i].healing_hostile *= difficulty_parameters[GameConfig.difficulty_level].healing_hostile_calibrator;
-		Druidmap[i].weapon_item.currently_held_in_hand = FALSE;
 	}
 };				// int Get_Robot_Data ( void )
 

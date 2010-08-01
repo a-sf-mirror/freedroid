@@ -129,37 +129,6 @@ item *get_equipped_item_in_slot_for(int item_type)
 }
 
 /**
- * When the player closes the inventory screen, items currently held in 
- * hand should not be held in hand any more.  This is what this function
- * should do:  It should make all items unheld by the player.
- */
-void silently_unhold_all_items(void)
-{
-	int i;
-	Level ItemLevel = curShip.AllLevels[Me.pos.z];
-
-	Item_Held_In_Hand = NULL;
-
-	// Now we remove all 'currently held' markers from all
-	// items in inventory and in slots and also from all items on the floor.
-	//
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		ItemLevel->ItemList[i].currently_held_in_hand = FALSE;
-	}
-
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		Me.Inventory[i].currently_held_in_hand = FALSE;
-	}
-
-	Me.weapon_item.currently_held_in_hand = FALSE;
-	Me.drive_item.currently_held_in_hand = FALSE;
-	Me.armour_item.currently_held_in_hand = FALSE;
-	Me.shield_item.currently_held_in_hand = FALSE;
-	Me.special_item.currently_held_in_hand = FALSE;
-
-};				// void silently_unhold_all_items ( void )
-
-/**
  * This function does the home made item repair, i.e. the item repair via
  * the repair skill in contrast to the item repair via the shop, which of
  * course works much better.
@@ -611,33 +580,11 @@ void MakeHeldFloorItemOutOf(item * SourceItem)
 	CURLEVEL()->ItemList[i].pos.x = Me.pos.x;
 	CURLEVEL()->ItemList[i].pos.y = Me.pos.y;
 	CURLEVEL()->ItemList[i].pos.z = Me.pos.z;
-	CURLEVEL()->ItemList[i].currently_held_in_hand = TRUE;
 
 	Item_Held_In_Hand = &(CURLEVEL()->ItemList[i]);
 
 	DeleteItem(SourceItem);
 };				// void MakeHeldFloorItemOutOf( item* SourceItem )
-
-/**
- * This function looks through the inventory list and returns the index
- * of the first inventory item that is marked as 'held in hand'.
- * If no such item is found, an index of (-1) is returned.
- */
-int GetHeldItemInventoryIndex(void)
-{
-	int InvPos;
-
-	// First we find out the inventory index of the item we want to
-	// drop
-	//
-	for (InvPos = 0; InvPos < MAX_ITEMS_IN_INVENTORY; InvPos++) {
-		if (Me.Inventory[InvPos].currently_held_in_hand && (Me.Inventory[InvPos].type > 0)) {
-			return (InvPos);
-		}
-	}
-
-	return (-1);
-};				// int GetHeldItemInventoryIndex( void )
 
 /**
  * This function generates a pointer to the (hopefully one and only) item
@@ -646,53 +593,13 @@ int GetHeldItemInventoryIndex(void)
  */
 item *GetHeldItemPointer(void)
 {
-	int InvIndex;
-	int i;
+	// Check if an item was grabbed from the item upgrade UI.
+	item *it = get_item_grabbed_from_item_upgrade_ui();
+	if (it)
+		return it;
 
-	InvIndex = GetHeldItemInventoryIndex();
-
-	if (InvIndex != (-1)) {
-		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in inventory was held in hand.  Good.");
-		return (&(Me.Inventory[InvIndex]));
-	} else if (Me.weapon_item.currently_held_in_hand > 0) {
-		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
-		return (&(Me.weapon_item));
-	} else if (Me.drive_item.currently_held_in_hand > 0) {
-		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
-		return (&(Me.drive_item));
-	} else if (Me.shield_item.currently_held_in_hand > 0) {
-		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
-		return (&(Me.shield_item));
-	} else if (Me.armour_item.currently_held_in_hand > 0) {
-		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
-		return (&(Me.armour_item));
-	} else if (Me.special_item.currently_held_in_hand > 0) {
-		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : An item in weapon slot was held in hand.  Good.");
-		return (&(Me.special_item));
-	} else {
-		// Not that we find that no item is held in hand in the entire inventory 
-		// and all the slots, we go and look if one of the items on this levels
-		// map is perhaps held in hand, but if that also fails, then no item at
-		// all was held in hand.
-		//
-		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-			if (CURLEVEL()->ItemList[i].type == (-1))
-				continue;
-			if (!CURLEVEL()->ItemList[i].currently_held_in_hand)
-				continue;
-			return (&(CURLEVEL()->ItemList[i]));
-		}
-
-		// Check if an item was grabbed from the item upgrade UI.
-		item *it = get_item_grabbed_from_item_upgrade_ui();
-		if (it)
-			return it;
-
-		// DebugPrintf( 2 , "\nitem* GetHeldItemPointer( void ) : NO ITEM AT ALL SEEMS TO HAVE BEEN HELD IN HAND!!");
-		return (NULL);
-	}
-
-};				// item* GetHeldItemPointer( void )
+	return Item_Held_In_Hand;
+}
 
 /**
  * This function DELETES an item from the source location.
@@ -723,20 +630,6 @@ void CopyItem(item * SourceItem, item * DestItem, int MakeSound)
 	}
 
 };				// void MoveItem( item* SourceItem , item* DestItem )
-
-/**
- * This function COPIES an item from the source location to the destination
- * location.  The source location is then marked as unused inventory 
- * entry.
- */
-void CopyItemWithoutHeldProperty(item * SourceItem, item * DestItem, int MakeSound)
-{
-
-	int temp = DestItem->currently_held_in_hand;
-	CopyItem(SourceItem, DestItem, MakeSound);
-	DestItem->currently_held_in_hand = temp;
-
-};				// void CopyItemWithoutHeldProperty ( item* SourceItem , item* DestItem , int MakeSound ) 
 
 /**
  * This function MOVES an item from the source location to the destination
@@ -1068,7 +961,8 @@ int Inv_Pos_Is_Free(int x, int y)
 	for (i = 0; i < MAX_ITEMS_IN_INVENTORY - 1; i++) {
 		if (Me.Inventory[i].type == (-1))
 			continue;
-		if (Me.Inventory[i].currently_held_in_hand)
+
+		if (GetHeldItemPointer() == &Me.Inventory[i])
 			continue;
 
 		// for ( item_height = 0 ; item_height < ItemSizeTable[ Me.Inventory[ i ].type ].y ; item_height ++ )
@@ -1417,8 +1311,10 @@ static void DropItemToTheFloor(item *DropItemPointer, float x, float y, int leve
 	DropLevel->ItemList[i].pos.x = x;
 	DropLevel->ItemList[i].pos.y = y;
 	DropLevel->ItemList[i].pos.z = levelnum;
-	DropLevel->ItemList[i].currently_held_in_hand = FALSE;
 	DropLevel->ItemList[i].throw_time = 0.01;	// something > 0 
+
+	if (GetHeldItemPointer() == DropItemPointer)
+		Item_Held_In_Hand = NULL;
 
 	DeleteItem(DropItemPointer);
 };				// void DropItemToTheFloor ( void )
@@ -1545,7 +1441,7 @@ void DropHeldItemToSlot(item * SlotItem)
 	// the item we want to put there itself!!!!  HAHAHAHA!!!!
 	//
 	DropItemPointer = Item_Held_In_Hand;
-	if ((SlotItem->type != (-1)) && (SlotItem->currently_held_in_hand == FALSE))
+	if ((SlotItem->type != (-1)) && (GetHeldItemPointer() != SlotItem))
 		MakeHeldFloorItemOutOf(SlotItem);
 	else
 		Item_Held_In_Hand = NULL;
@@ -1553,7 +1449,6 @@ void DropHeldItemToSlot(item * SlotItem)
 	// Move the item to the slot and mark it as no longer grabbed.
 	MoveItem(DropItemPointer, SlotItem);
 	play_item_sound(SlotItem->type);
-	SlotItem->currently_held_in_hand = FALSE;
 }
 
 /**
@@ -1618,7 +1513,6 @@ void DropHeldItemToInventory(void)
 		CopyItem(Item_Held_In_Hand, &(Me.Inventory[FreeInvIndex]), TRUE);
 		Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
 		Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
-		Me.Inventory[FreeInvIndex].currently_held_in_hand = FALSE;
 
 		// Now that we know that the item could be dropped directly to inventory 
 		// without swapping any spaces, we can as well make the item
@@ -1654,7 +1548,6 @@ void DropHeldItemToInventory(void)
 				CopyItem(Item_Held_In_Hand, &(Me.Inventory[FreeInvIndex]), TRUE);
 				Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
 				Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
-				Me.Inventory[FreeInvIndex].currently_held_in_hand = FALSE;
 				DeleteItem(Item_Held_In_Hand);
 
 				// The removed item Nr. i is put in hand in replacement of the
@@ -1780,13 +1673,13 @@ void HandleInventoryScreen(void)
 	struct {
 		int buttonidx;
 		item *slot;
-	} allslots[] =		/*list of all slots and their associated item */
-	{ {
-	WEAPON_RECT_BUTTON, &(Me.weapon_item)}, {
-	DRIVE_RECT_BUTTON, &(Me.drive_item)}, {
-	SHIELD_RECT_BUTTON, &(Me.shield_item)}, {
-	ARMOUR_RECT_BUTTON, &(Me.armour_item)}, {
-	HELMET_RECT_BUTTON, &(Me.special_item)},};
+	} allslots[] = {		/*list of all slots and their associated item */
+			{ WEAPON_RECT_BUTTON, &(Me.weapon_item) }, 
+			{ DRIVE_RECT_BUTTON, &(Me.drive_item) },
+		   	{ SHIELD_RECT_BUTTON, &(Me.shield_item) }, 
+			{ ARMOUR_RECT_BUTTON, &(Me.armour_item) }, 
+			{ HELMET_RECT_BUTTON, &(Me.special_item) },
+	};
 
 	// In case the Tux is dead already, we do not need to display any inventory screen
 	// or even to pick up any stuff for the Tux...
@@ -1799,7 +1692,7 @@ void HandleInventoryScreen(void)
 
 	// If the inventory is not visible we don't handle the screen itself but we still pick up items on the ground
 	if (GameConfig.Inventory_Visible == FALSE) {
-		silently_unhold_all_items();
+		Item_Held_In_Hand = NULL;
 	}
 
 	// Case 1: The user left-clicks while not holding an item
@@ -1825,7 +1718,6 @@ void HandleInventoryScreen(void)
 			// course be the image of the item grabbed from inventory.
 			if (global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL) {
 				Item_Held_In_Hand = &(Me.Inventory[Grabbed_InvPos]);
-				Item_Held_In_Hand->currently_held_in_hand = TRUE;
 				play_item_sound(Item_Held_In_Hand->type);
 			}
 
@@ -1839,7 +1731,6 @@ void HandleInventoryScreen(void)
 			if (MouseCursorIsOnButton(allslots[i].buttonidx, CurPos.x, CurPos.y)) {
 				if (allslots[i].slot->type > 0) {
 					Item_Held_In_Hand = allslots[i].slot;
-					Item_Held_In_Hand->currently_held_in_hand = TRUE;
 					return;
 				}
 			}

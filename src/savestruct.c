@@ -589,7 +589,6 @@ save_gps("pos", &(target->pos));
 save_gps("virt_pos", &(target->virt_pos));
 save_sdl_rect("text_slot_rectangle", &(target->text_slot_rectangle));
 save_int32_t("type", &(target->type));
-save_int32_t("currently_held_in_hand", &(target->currently_held_in_hand));
 save_int32_t("max_duration", &(target->max_duration));
 save_float("current_duration", &(target->current_duration));
 save_float("throw_time", &(target->throw_time));
@@ -638,7 +637,6 @@ int read_item(char* buffer, char * tag, item * target)
 read_gps(pos, "virt_pos",  &(target->virt_pos));
 read_sdl_rect(pos, "text_slot_rectangle",  &(target->text_slot_rectangle));
 read_int32_t(pos, "type",  &(target->type));
-read_int32_t(pos, "currently_held_in_hand",  &(target->currently_held_in_hand));
 read_int32_t(pos, "max_duration",  &(target->max_duration));
 read_float(pos, "current_duration",  &(target->current_duration));
 read_float(pos, "throw_time",  &(target->throw_time));

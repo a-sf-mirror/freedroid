@@ -346,7 +346,6 @@ typedef struct item_s {
 	gps virt_pos;
 	SDL_Rect text_slot_rectangle;
 	int type;
-	int currently_held_in_hand;	// is the item currently held 'in hand' with the mouse cursor?
 	int max_duration;	// the maximum item durability reachable for this item
 	float current_duration;	// the currently remaining durability for this item
 	float throw_time;	// has this item just jumped out from a chest maybe or is it jumping right now?

@@ -3921,7 +3921,7 @@ void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag,
 There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM, IS_FATAL);
 	}
 	// We don't blit any item, that we're currently holding in our hand, do we?
-	if (CurItem->currently_held_in_hand == TRUE)
+	if (GetHeldItemPointer() == CurItem)
 		return;
 
 	// In case the flag filters this item, we don't blit it
@@ -4265,7 +4265,7 @@ static void show_inventory_screen(void)
 	//
 	TargetRect.x = InventoryRect.x + DRIVE_RECT_X;
 	TargetRect.y = InventoryRect.y + DRIVE_RECT_Y;
-	if ((!Me.drive_item.currently_held_in_hand) && (Me.drive_item.type != (-1))) {
+	if (GetHeldItemPointer() != &Me.drive_item && (Me.drive_item.type != (-1))) {
 		our_SDL_blit_surface_wrapper(ItemMap[Me.drive_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 	}
 	// Now we display the item in the influencer weapon slot
@@ -4274,7 +4274,7 @@ static void show_inventory_screen(void)
 	//
 	TargetRect.x = InventoryRect.x + WEAPON_RECT_X;
 	TargetRect.y = InventoryRect.y + WEAPON_RECT_Y;
-	if ((!Me.weapon_item.currently_held_in_hand) && (Me.weapon_item.type != (-1))) {
+	if (GetHeldItemPointer() != &Me.weapon_item && (Me.weapon_item.type != (-1))) {
 		TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_image.inv_size.x);
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_image.inv_size.y);
 		our_SDL_blit_surface_wrapper(ItemMap[Me.weapon_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
@@ -4300,14 +4300,14 @@ static void show_inventory_screen(void)
 	//
 	TargetRect.x = InventoryRect.x + ARMOUR_RECT_X;
 	TargetRect.y = InventoryRect.y + ARMOUR_RECT_Y;
-	if ((!Me.armour_item.currently_held_in_hand) && (Me.armour_item.type != (-1))) {
+	if (GetHeldItemPointer() != &Me.armour_item && (Me.armour_item.type != (-1))) {
 		our_SDL_blit_surface_wrapper(ItemMap[Me.armour_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 	}
 	// Now we display the item in the influencer shield slot
 	//
 	TargetRect.x = InventoryRect.x + SHIELD_RECT_X;
 	TargetRect.y = InventoryRect.y + SHIELD_RECT_Y;
-	if ((!Me.shield_item.currently_held_in_hand) && (Me.shield_item.type != (-1))) {
+	if (GetHeldItemPointer() != &Me.shield_item && (Me.shield_item.type != (-1))) {
 		// Not all shield have the same height, therefore we do a little safety
 		// correction here, so that the shield will always appear in the center
 		// of the shield slot
@@ -4319,7 +4319,7 @@ static void show_inventory_screen(void)
 	//
 	TargetRect.x = InventoryRect.x + HELMET_RECT_X;
 	TargetRect.y = InventoryRect.y + HELMET_RECT_Y;
-	if ((!Me.special_item.currently_held_in_hand) && (Me.special_item.type != (-1))) {
+	if (GetHeldItemPointer() != &Me.special_item && (Me.special_item.type != (-1))) {
 		our_SDL_blit_surface_wrapper(ItemMap[Me.special_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
 	}
 	// Now we display all the items the influencer is carrying with him
@@ -4331,7 +4331,7 @@ static void show_inventory_screen(void)
 			continue;
 		}
 		// In case the item is currently held in hand, we need not do anything more HERE ...
-		if (Me.Inventory[SlotNum].currently_held_in_hand == TRUE) {
+		if (GetHeldItemPointer() == &Me.Inventory[SlotNum] ) {
 			continue;
 		}
 

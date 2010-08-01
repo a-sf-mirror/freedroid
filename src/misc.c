@@ -998,7 +998,7 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 		Me.pos.y = Y;
 		Me.pos.z = LNum;
 
-		silently_unhold_all_items();
+		Item_Held_In_Hand = NULL;
 
 		// We add some sanity check against teleporting to non-allowed
 		// locations (like outside of map that is)
