@@ -1123,7 +1123,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BLOOD_8].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_BLOOD_8].filename = "iso_blood_0008.png";
 	obstacle_map[ISO_BLOOD_8].flags |= NEEDS_PRE_PUT;
-	// the eight blood tiles have the same description - normal, right ?
 
 	obstacle_map[ISO_OIL_STAINS_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_OIL_STAINS_1].filename = "iso_oil_stains_0001.png";
@@ -1149,7 +1148,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_OIL_STAINS_8].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_OIL_STAINS_8].filename = "iso_oil_stains_0008.png";
 	obstacle_map[ISO_OIL_STAINS_8].flags |= NEEDS_PRE_PUT;
-	// the eight blood tiles have the same description - normal, right ?
 
 	obstacle_map[ISO_EXIT_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_EXIT_1].filename = "iso_exits_0001.png";
