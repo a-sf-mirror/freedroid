@@ -1941,12 +1941,12 @@ void draw_grid_on_the_floor(int mask)
 
 	if (draw_grid >= 2) {	// large grid
 		// Draw the horizontal lines
-		for (dd = 0; dd <= our_level->xlen; dd++) {
+		for (dd = 0; dd <= our_level->ylen; dd++) {
 			draw_line_at_map_position(0, dd, our_level->xlen, dd, 0x99FFFF, 1);	// light cyan
  		}
 
 		// Draw the vertical lines
-		for (dd = 0; dd <= our_level->ylen; dd++) {
+		for (dd = 0; dd <= our_level->xlen; dd++) {
 			draw_line_at_map_position(dd, 0, dd, our_level->ylen, 0x99FFFF, 1);	// light cyan
 		}
 	}
