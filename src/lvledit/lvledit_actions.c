@@ -286,6 +286,8 @@ void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle,
  */
 void action_remove_obstacle(level *EditLevel, obstacle *our_obstacle)
 {
+	level *lvl = curShip.AllLevels[our_obstacle->pos.z];
+
 	// The likely case that no obstacle was currently marked.
 	//
 	if (our_obstacle == NULL)
@@ -295,18 +297,18 @@ void action_remove_obstacle(level *EditLevel, obstacle *our_obstacle)
 
 	// Remove the obstacle label if we had one
 	// with the current design this won't be undoable
-	action_change_obstacle_label(EditLevel, our_obstacle, NULL, 0);
+	action_change_obstacle_label(lvl, our_obstacle, NULL, 0);
 
 	// Now doing that must have shifted the glue!  That is a problem.  We need to
 	// reglue everything to the map...
 	//
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
+	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
 
 	// Now that we have disturbed the order of the obstacles on this level, we need
 	// to re-assemble the lists of pointers to obstacles, like the door list, the
 	// teleporter list and the refreshes list.
 	//
-	dirty_animated_obstacle_lists(EditLevel->levelnum);
+	dirty_animated_obstacle_lists(lvl->levelnum);
 }
 
 void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
