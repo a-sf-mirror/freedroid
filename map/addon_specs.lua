@@ -1,3 +1,66 @@
+--[[
+This file specifies the add-ons that exist in the game. Add-ons can be crafted
+from materials by the player and they can be installed into sockets of weapons
+and armor. The bonuses of the add-ons add to the capabilities of the items to
+which they are installed.
+
+A new add-on specification can be added by calling the addon() function with a
+table as its argument. The passed table contains named fields that specify
+everything that needs to be known about the add-on. The recognized fields are:
+
+  name: A string matching the name of one of the item archetypes. When you want
+  to create a new add-on, you need to add a new item to freedroid.item_archetypes
+  first and then use its name for this field.
+
+  upgrade_cost: The number of valuable circuits it costs to upgrade an item with
+  the add-on.
+
+  require_socket: The type of the socket to which the add-on can be installed.
+  The supported values are:
+   * "mechanical": Fits to a mechanical or a universal socket.
+   * "electric": Fits to an electric or a universal socket.
+   * "universal": Fits to a universal socket.
+
+  require_item: The type of the item to which the add-on can be installed.
+  The supported values are:
+   * "melee weapon": Applicable to melee weapons.
+   * "ranged weapon": Applicable to ranged weapons.
+   * "armor": Applicable to any armor.
+   * "boots": Applicable to items that fit to the footwear slot.
+   * "jacket": Applicable to items that fit to the jacket slot.
+   * "shield": Applicable to items that fit to the shield slot.
+   * "helmet": Applicable to items that fit to the headgear slot.
+
+  bonuses: A table of bonuses. The keys of the table are the names of the bonuses
+  and the values the corresponding attribute boost amounts. All the values are
+  integers of the unit of the modified attribute. The supported bonuses are:
+   * all_attributes: Adds points to strength, dexterity, physique and cooling.
+   * attack: Adds points to the attack rating.
+   * armor: Adds points to the armor rating.
+   * cooling: Adds points to cooling.
+   * cooling_rate: Decrease temperature by the given number of points per second.
+   * damage: Increase the base damage by the given number of points.
+   * dexterity: Adds points to dexterity.
+   * experience_gain: Increases the experience gained from bots, in percentage points.
+   * health: Adds points to health.
+   * health_recovery: Regenerates the given number of health points per second.
+   * light_radius: Increases the light radius.
+   * paralyze_enemy: Paralyzes hit enemies for the given number of seconds.
+   * physique: Adds points to physique.
+   * strength: Adds points to strength.
+   * slow_enemy: Slows hit enemies for the given number of seconds.
+
+  materials: A table of materials required to craft the add-on. The keys of the
+  table are the names of the materials and the values the required counts of the
+  corresponding materials. Any item name can used as the key but, since this is
+  mainly intended for bot parts, you'd typically use one or more of these:
+   * ["Entropy Inverter"] = number
+   * ["Plasma Transistor"] = number
+   * ["Superconducting Relay Unit"] = number
+   * ["Antimatter-Matter Converter"] = number
+   * ["Tachyon Condensator"] = number
+--]]
+
 addon{
 name = _"Linarian power crank",
 upgrade_cost = 30,
