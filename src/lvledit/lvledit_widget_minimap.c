@@ -103,7 +103,7 @@ void leveleditor_minimap_mousepress(SDL_Event *event, struct leveleditor_widget 
 		return;
 	}
 
-	Teleport(rpos.z, rpos.x, rpos.y, FALSE);
+	action_jump_to_level(rpos.z, rpos.x, rpos.y);
 }
 
 void leveleditor_minimap_mouserightrelease(SDL_Event *event, struct leveleditor_widget *w)
