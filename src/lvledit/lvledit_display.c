@@ -406,9 +406,10 @@ void leveleditor_display()
 
 	leveleditor_display_widgets();
 
-	if (EditLevel()->random_dungeon)
-		DisplayText("This level is automatically generated. Editing will have no effect.", 10, GameConfig.screen_height / 2, NULL,
-			    1.0);
+	if (EditLevel()->random_dungeon) {
+		sprintf(VanishingMessage, " This level is automatically generated. \n Editing will have no effect.");
+		VanishingMessageEndDate = SDL_GetTicks() + 100;
+	}
 
 	display_cursor();
 	// Now that everything is blitted and printed, we may update the screen again...
