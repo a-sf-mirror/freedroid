@@ -251,32 +251,40 @@ static int get_middle_room()
 }
 
 // Sets living room theme for the middle room and some its neighbours
-static void set_living_theme_recursive(int room, int depth, int *vis)
+static int set_living_theme_recursive(int room, int depth, int *vis)
 {
 	int i;
+	int count = 0;
 
 	if (!depth)
-		return;
+		return 0;
 
 	rooms[room].theme = RAND_THEME(living_themes);
 	vis[room] = 1;
 	for (i = 0; i < rooms[room].num_neighbors; i++)
-		set_living_theme_recursive(rooms[room].neighbors[i], depth - 1, vis);
+		count += set_living_theme_recursive(rooms[room].neighbors[i], depth - 1, vis);
+
+	return count;
 }
 
 void mapgen_place_obstacles(int w, int h, unsigned char *tiles) 
 {
+#define MIN_LIVING_ROOMS	6
 
 	int i;
 	int x, y;
 	int wall, room;
 	int vis[total_rooms];
+	int mid_room, num;
 
 	for (i = 0; i < total_rooms; i++) {
 		rooms[i].theme = RAND_THEME(industrial_themes);
 		vis[i] = 0;
 	}
-	set_living_theme_recursive(get_middle_room(), MyRandom(1) + 2, vis);
+	num = MyRandom(1) + 2;
+	mid_room = get_middle_room();
+	if (set_living_theme_recursive(mid_room, num, vis) < MIN_LIVING_ROOMS)
+		set_living_theme_recursive(mid_room, num + 1, vis);
 
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
