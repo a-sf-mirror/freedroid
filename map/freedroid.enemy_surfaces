@@ -252,28 +252,28 @@ droid_stand_animation_speed_factor=2
 
 ** Start of new surface specification subsection **
 PrefixToFilename="hot_mama"
-droid_walk_animation_speed_factor=5
-droid_attack_animation_speed_factor=5
+droid_walk_animation_speed_factor=6
+droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=5
-droid_death_animation_speed_factor=5
+droid_death_animation_speed_factor=8
 droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
 PrefixToFilename="female_scientist"
-droid_walk_animation_speed_factor=5
-droid_attack_animation_speed_factor=20
-droid_gethit_animation_speed_factor=5
-droid_death_animation_speed_factor=5
+droid_walk_animation_speed_factor=6
+droid_attack_animation_speed_factor=11
+droid_gethit_animation_speed_factor=9
+droid_death_animation_speed_factor=10
 droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
 ** Start of new surface specification subsection **
 PrefixToFilename="default_male"
-droid_walk_animation_speed_factor=5
-droid_attack_animation_speed_factor=5
-droid_gethit_animation_speed_factor=5
-droid_death_animation_speed_factor=5
+droid_walk_animation_speed_factor=7
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
 droid_stand_animation_speed_factor=5
 ** End of new surface specification subsection **
 
@@ -288,10 +288,10 @@ droid_stand_animation_speed_factor=5
 
 ** Start of new surface specification subsection **
 PrefixToFilename="cook"
-droid_walk_animation_speed_factor=5
-droid_attack_animation_speed_factor=5
-droid_gethit_animation_speed_factor=5
-droid_death_animation_speed_factor=5
+droid_walk_animation_speed_factor=6
+droid_attack_animation_speed_factor=8
+droid_gethit_animation_speed_factor=8
+droid_death_animation_speed_factor=8
 droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
@@ -318,7 +318,7 @@ PrefixToFilename="bartender"
 droid_walk_animation_speed_factor=8
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=10
-droid_death_animation_speed_factor=5
+droid_death_animation_speed_factor=8
 droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
@@ -336,7 +336,7 @@ PrefixToFilename="female_hunter"
 droid_walk_animation_speed_factor=5
 droid_attack_animation_speed_factor=20
 droid_gethit_animation_speed_factor=5
-droid_death_animation_speed_factor=5
+droid_death_animation_speed_factor=8
 droid_stand_animation_speed_factor=1
 ** End of new surface specification subsection **
 
