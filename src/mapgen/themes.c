@@ -206,50 +206,6 @@ static void fill_rooms(int *vis)
 	}
 }
 
-static int get_middle_room()
-{
-	int i, j, k;
-	int m;
-	int dist[total_rooms][total_rooms];
-	int eccentricity[total_rooms];
-
-	// Initialize distance between pairs of rooms with fake infinity
-	for (i = 0; i < total_rooms; i++) {
-		for (j = 0; j < total_rooms; j++)
-			dist[i][j] = 99999;
-		// Distance from a room to itself is 0
-		dist[i][i] = 0;
-		eccentricity[i] = 0;
-	}
-	for (i = 0; i < total_rooms; i++) {
-		// Distance from a room to its neighbours is 1
-		for (j = 0; j < rooms[i].num_neighbors; j++)
-			dist[i][rooms[i].neighbors[j]] = 1;
-	}
-	// Calculate distance for each pair of rooms
-	for (k = 0; k < total_rooms; k++) {
-		for (i = 0; i < total_rooms; i++) {
-			for (j = 0; j < total_rooms; j++)
-				dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
-		}
-	}
-	// Eccentricity of a room is a maximum of the shortest distances
-	// to all other rooms.
-	for (i = 0; i < total_rooms; i++) {
-		for (j = 0; j < total_rooms; j++)
-			eccentricity[i] = max(eccentricity[i], dist[i][j]);
-	}
-	// Thus the central room is one with the minimal
-	// eccentricity
-	m = 0;
-	for (i = 0; i < total_rooms; i++) {
-		if (eccentricity[i] < eccentricity[m])
-			m = i;
-	}
-
-	return m;
-}
-
 // Sets living room theme for the middle room and some its neighbours
 static int set_living_theme_recursive(int room, int depth, int *vis)
 {
@@ -267,7 +223,7 @@ static int set_living_theme_recursive(int room, int depth, int *vis)
 	return count;
 }
 
-void mapgen_place_obstacles(int w, int h, unsigned char *tiles) 
+void mapgen_place_obstacles(int mid_room, int w, int h, unsigned char *tiles)
 {
 #define MIN_LIVING_ROOMS	6
 
@@ -275,14 +231,13 @@ void mapgen_place_obstacles(int w, int h, unsigned char *tiles)
 	int x, y;
 	int wall, room;
 	int vis[total_rooms];
-	int mid_room, num;
+	int num;
 
 	for (i = 0; i < total_rooms; i++) {
 		rooms[i].theme = RAND_THEME(industrial_themes);
 		vis[i] = 0;
 	}
 	num = MyRandom(1) + 2;
-	mid_room = get_middle_room();
 	if (set_living_theme_recursive(mid_room, num, vis) < MIN_LIVING_ROOMS)
 		set_living_theme_recursive(mid_room, num + 1, vis);
 
@@ -312,4 +267,4 @@ void mapgen_place_obstacles(int w, int h, unsigned char *tiles)
 	} 
 
 	fill_rooms(vis);
-} 
+}

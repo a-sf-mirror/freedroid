@@ -53,6 +53,6 @@ struct theme_info {
 	int wall_s;
 }; 
 
-void	mapgen_place_obstacles(int w, int h, unsigned char *tiles);
+void	mapgen_place_obstacles(int, int, int, unsigned char *);
 
 #endif

@@ -295,13 +295,14 @@ void room_to_console(int w, int h) {
 		putchar('#');
 }
 
-
-void mapgen_convert(int w, int h, unsigned char *tiles)
+// Convert tile matrix to a set of obstacles and decorate rooms according to their themes,
+// using mid_room as the center of dungeon
+void mapgen_convert(int mid_room, int w, int h, unsigned char *tiles)
 {
 	reduce_room_space();
 	split_wall(w, h, tiles);
 	place_doors();
-	mapgen_place_obstacles(w, h, tiles);
+	mapgen_place_obstacles(mid_room, w, h, tiles);
 }
 
 static void add_teleport(int telnum, int x, int y, int tpair)
@@ -715,41 +716,89 @@ static void place_waypoints()
 	}
 }
 
+// The function computes eccentricity for each room and picks the one
+// with the minimal eccentricity as the center. Also it fills 'distance'
+// array with the distances from the 'entrance' in terms of rooms.
+static int get_middle_room(int entrance, int *distance)
+{
+	int i, j, k;
+	int m;
+	int dist[total_rooms][total_rooms];
+	int eccentricity[total_rooms];
+
+	// Initialize distance between pairs of rooms with fake infinity
+	for (i = 0; i < total_rooms; i++) {
+		for (j = 0; j < total_rooms; j++)
+			dist[i][j] = 99999;
+		// Distance from a room to itself is 0
+		dist[i][i] = 0;
+		eccentricity[i] = 0;
+	}
+	for (i = 0; i < total_rooms; i++) {
+		// Distance from a room to its neighbours is 1
+		for (j = 0; j < rooms[i].num_neighbors; j++)
+			dist[i][rooms[i].neighbors[j]] = 1;
+	}
+	// Calculate distance for each pair of rooms
+	for (k = 0; k < total_rooms; k++) {
+		for (i = 0; i < total_rooms; i++) {
+			for (j = 0; j < total_rooms; j++)
+				dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+		}
+	}
+	// Eccentricity of a room is a maximum of the shortest distances
+	// to all other rooms.
+	for (i = 0; i < total_rooms; i++) {
+		for (j = 0; j < total_rooms; j++)
+			eccentricity[i] = max(eccentricity[i], dist[i][j]);
+	}
+	// Thus the central room is one with the minimal
+	// eccentricity
+	m = 0;
+	for (i = 0; i < total_rooms; i++) {
+		if (eccentricity[i] < eccentricity[m])
+			m = i;
+	}
+	// Fill array of distances for a room with the entrance
+	for (i = 0; i < total_rooms; i++)
+		distance[entrance] = dist[entrance][i];
+
+	return m;
+}
+
 int generate_dungeon(int w, int h, int nbconnec, int tpair)
 {
-	int i;
+	int i, j;
+	int max, max_idx;
 
 	new_level(w, h);
 
 	generate_dungeon_gram(w, h);
 
 	// Select entrance at random.
+	int dist[total_rooms];
+	int vis[total_rooms];
 	int entrance = rand() % total_rooms;
+	int mid_room = get_middle_room(entrance, dist);
+
 	mapgen_entry_at(&rooms[entrance], tpair);
 
-	// Select random exits
-	int exit_points[nbconnec - 1];
+	memset(vis, 0, sizeof(int) * total_rooms);
+	// Choose N farthest rooms and place exits there
 	for (i = 0; i < nbconnec - 1; i++) {
-		int done;
-		do {
-			done = 1;
-			exit_points[i] = rand() % total_rooms;
-
-			int j = i;
-
-			while (j--) {
-				if (exit_points[j] == exit_points[i])
-					done = 0;
+		max = dist[0];
+		max_idx = 0;
+		for (j = 1; j < total_rooms; j++) {
+			if (dist[j] > max && !vis[j]) {
+				max = dist[j];
+				max_idx = j;
 			}
-
-			if (entrance == exit_points[i])
-				done = 0;
-		} while (!done);
-
-		mapgen_exit_at(&rooms[exit_points[i]], tpair);
+		}
+		mapgen_exit_at(&rooms[max_idx], tpair);
+		vis[max_idx] = 1;
 	}
 
-	mapgen_convert(w, h, map.m);
+	mapgen_convert(mid_room, w, h, map.m);
 
 	// Place random waypoints
 	place_waypoints();
