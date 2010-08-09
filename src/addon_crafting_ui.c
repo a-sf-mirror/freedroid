@@ -31,8 +31,8 @@
  * \brief The add-on crafting user interface.
  */
 
-#define RECIPE_LIST_ROWS 5
-#define RECIPE_LIST_ROW_HEIGHT 32
+#define RECIPE_LIST_ROWS 4
+#define RECIPE_LIST_ROW_HEIGHT 45
 
 struct crafting_recipe {
 	int available; /// TRUE if the player has enough materials to craft the add-on.
@@ -58,7 +58,7 @@ static const struct {
 	{ ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, ADDON_CRAFTING_RECT_W, ADDON_CRAFTING_RECT_H },
 	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 12, 280, 38 },
 	{ ADDON_CRAFTING_RECT_X + 25, ADDON_CRAFTING_RECT_Y + 260, 130, 20 },
-	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 70, 276, 170 },
+	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 62, 276, 180 },
 	{ ADDON_CRAFTING_RECT_X + 30, ADDON_CRAFTING_RECT_Y + 290, 260, 126 }
 };
 
@@ -264,7 +264,12 @@ void show_addon_crafting_ui()
 		DisplayText(ItemMap[type].item_name, rect.x + rect.h, rect.y + 4, NULL, TEXT_STRETCH);
 		surface = ItemMap[type].inv_image.Surface;
 		if (surface) {
-			our_SDL_blit_surface_wrapper(surface, NULL, Screen, &rect);
+			SDL_Rect icon_rect;
+			icon_rect.w = RECIPE_LIST_ROW_HEIGHT;
+			icon_rect.h = RECIPE_LIST_ROW_HEIGHT;
+			icon_rect.x = rect.x + (icon_rect.w - surface->w) / 2;
+			icon_rect.y = rect.y + (icon_rect.h - surface->h) / 2;
+			our_SDL_blit_surface_wrapper(surface, NULL, Screen, &icon_rect);
 		}
 		rect.y += rect.h;
 	}
