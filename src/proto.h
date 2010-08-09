@@ -705,6 +705,9 @@ void show_text_widget(text_widget *);
 
 // hud.c 
 void give_item_description(char *, item *);
+void ShowCurrentSkill(void);
+void ShowCurrentWeapon(void);
+void ShowCurrentHealthAndForceLevel(void);
 void DisplayBanner(void);
 int get_days_of_game_duration(float current_game_date);
 int get_hours_of_game_duration(float current_game_date);

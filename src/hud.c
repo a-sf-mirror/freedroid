@@ -321,8 +321,6 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 void ShowCurrentSkill(void)
 {
 	SDL_Rect Target_Rect;
-	if ((GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible) && GameConfig.screen_width == 640)
-		return;
 
 	Target_Rect.x =
 	    UNIVERSAL_COORD_W(CURRENT_SKILL_RECT_X) + (CURRENT_SKILL_RECT_W * GameConfig.screen_width / 640 - CURRENT_SKILL_RECT_W) / 2;
@@ -348,8 +346,6 @@ void ShowCurrentWeapon(void)
 {
 	SDL_Rect Target_Rect;
 	char current_ammo[10];
-	if ((GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) && GameConfig.screen_width == 640)
-		return;
 	if (Me.weapon_item.type == -1)
 		return;
 
@@ -388,9 +384,6 @@ void blit_experience_countdown_bars(void)
 	int exp_range = Me.ExpRequired - Me.ExpRequired_previously;
 	int exp_achieved = Me.Experience - Me.ExpRequired_previously;
 
-	if ((GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) && GameConfig.screen_width == 640) {
-		return;
-	}
 	// At game startup, it might be that an uninitialized Tux (with 0 in the
 	// max running power entry) is still in the data structure and when the
 	// title displayes, this causes division by zero... 
@@ -561,9 +554,7 @@ vert grimpe, bleu baisse, rouge grimpe, vert baisse*/
  */
 void ShowCurrentHealthAndForceLevel(void)
 {
-	if (GameConfig.screen_width != 640 || ((!GameConfig.CharacterScreen_Visible) && (!GameConfig.SkillScreen_Visible))) {
-		blit_energy_and_mana_bars();
-	}
+	blit_energy_and_mana_bars();
 
 	blit_running_power_bars();
 
@@ -943,10 +934,6 @@ void DisplayBanner(void)
 
 	SDL_SetClipRect(Screen, NULL);
 
-	ShowCurrentHealthAndForceLevel();
-
-	ShowCurrentSkill();
-	ShowCurrentWeapon();
 	show_current_text_banner();
 
 	// We display the name of the current level and the current time inside

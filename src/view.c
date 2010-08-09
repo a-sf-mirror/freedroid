@@ -2064,6 +2064,11 @@ void AssembleCombatPicture(int mask)
 		ShowItemAlarm();
 		blit_special_background(HUD_BACKGROUND_CODE);
 		show_text_widget(&message_log);
+		if (!GameOver) {
+			ShowCurrentHealthAndForceLevel();
+			ShowCurrentSkill();
+			ShowCurrentWeapon();
+		}
 		show_quick_inventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();
