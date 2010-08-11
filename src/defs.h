@@ -557,6 +557,8 @@ enum {
 
 	ADDON_CRAFTING_SCROLL_UP_BUTTON,
 	ADDON_CRAFTING_SCROLL_DOWN_BUTTON,
+	ADDON_CRAFTING_SCROLL_DESC_UP_BUTTON,
+	ADDON_CRAFTING_SCROLL_DESC_DOWN_BUTTON,
 
 	//--------------------
 	// Please leave this here as the last entry, since it conveniently and

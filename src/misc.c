@@ -352,6 +352,10 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    { ADDON_CRAFTING_RECT_X + 264, ADDON_CRAFTING_RECT_Y + 70, 32, 32 }, FALSE},
 	[ADDON_CRAFTING_SCROLL_DOWN_BUTTON] = { UNLOADED_ISO_IMAGE, "mouse_buttons/crafting_scroll_down.png",
 	    { ADDON_CRAFTING_RECT_X + 264, ADDON_CRAFTING_RECT_Y + 198, 32, 32 }, FALSE},
+	[ADDON_CRAFTING_SCROLL_DESC_UP_BUTTON] = { UNLOADED_ISO_IMAGE, "mouse_buttons/crafting_scroll_up.png",
+	    { ADDON_CRAFTING_RECT_X + 260, ADDON_CRAFTING_RECT_Y + 290, 32, 32 }, FALSE},
+	[ADDON_CRAFTING_SCROLL_DESC_DOWN_BUTTON] = { UNLOADED_ISO_IMAGE, "mouse_buttons/crafting_scroll_down.png",
+	    { ADDON_CRAFTING_RECT_X + 260, ADDON_CRAFTING_RECT_Y + 350, 32, 32 }, FALSE},
 
 };				// mouse_press_button AllMousePressButtons[ MAX_MOUSE_PRESS_BUTTONS ] 
 

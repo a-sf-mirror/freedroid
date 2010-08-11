@@ -59,7 +59,7 @@ static const struct {
 	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 12, 280, 38 },
 	{ ADDON_CRAFTING_RECT_X + 25, ADDON_CRAFTING_RECT_Y + 260, 130, 20 },
 	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 62, 276, 180 },
-	{ ADDON_CRAFTING_RECT_X + 30, ADDON_CRAFTING_RECT_Y + 290, 260, 126 }
+	{ ADDON_CRAFTING_RECT_X + 22, ADDON_CRAFTING_RECT_Y + 290, 220, 140 }
 };
 
 /**
@@ -205,6 +205,16 @@ static int can_scroll_down()
 	return ui.scroll_offset < ui.recipes.size - RECIPE_LIST_ROWS;
 }
 
+static void draw_scroll_desc_up_button()
+{
+	ShowGenericButtonFromList(ADDON_CRAFTING_SCROLL_DESC_UP_BUTTON);
+}
+
+static void draw_scroll_desc_down_button()
+{
+	ShowGenericButtonFromList(ADDON_CRAFTING_SCROLL_DESC_DOWN_BUTTON);
+}
+
 /**
  * \brief Draws the add-on crafting user interface.
  *
@@ -325,6 +335,15 @@ static void handle_ui()
 		}
 	}
 
+	// Handle scrolling of the description using the buttons in the UI.
+	if (MouseLeftClicked()) {
+		if (MouseCursorIsOnButton(ADDON_CRAFTING_SCROLL_DESC_UP_BUTTON, cursor.x, cursor.y)) {
+			ui.description.scroll_offset--;
+		} else if (MouseCursorIsOnButton(ADDON_CRAFTING_SCROLL_DESC_DOWN_BUTTON, cursor.x, cursor.y)) {
+			ui.description.scroll_offset++;
+		}
+	}
+
 	// Handle hovering and clicks of the apply and close buttons. We need to reset
 	// the cursor to normal if it's on a button since the text widget might have
 	// changed it to a scolling cursor in the previous call.
@@ -362,6 +381,8 @@ void addon_crafting_ui()
 	init_text_widget(&ui.description, "");
 	ui.description.font = Messagevar_BFont;
 	ui.description.rect = rects.recipe_desc;
+	ui.description.content_above_func = draw_scroll_desc_up_button;
+	ui.description.content_below_func = draw_scroll_desc_down_button;
 	build_recipe_list();
 	select_recipe(0);
 
