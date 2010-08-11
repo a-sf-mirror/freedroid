@@ -147,29 +147,34 @@ void respawn_level(int level_num)
 		
 		erot->has_greeted_influencer = FALSE;
 
-		// Re-place the bots onto the waypoint system
-		if (!erot->SpecialForce) {
-			// Standard bots are randomly placed on one waypoint
-			int wp = teleport_to_random_waypoint(erot, curShip.AllLevels[level_num], wp_used);
-			wp_used[wp] = 1;
-			erot->homewaypoint = erot->lastwaypoint;
-			erot->combat_state = SELECT_NEW_WAYPOINT;
-			erot->state_timeout = 0.0;
-		} else {
-			if (erot->homewaypoint == -1) {
-				// If a special force droid has not yet been integrated onto
-				// the waypoint system, place it near its current position.
-				int wp = teleport_to_closest_waypoint(erot);
+		if (wp_num) {
+			// Re-place the bots onto the waypoint system
+			if (!erot->SpecialForce) {
+				// Standard bots are randomly placed on one waypoint
+				int wp = teleport_to_random_waypoint(erot, curShip.AllLevels[level_num], wp_used);
 				wp_used[wp] = 1;
 				erot->homewaypoint = erot->lastwaypoint;
 				erot->combat_state = SELECT_NEW_WAYPOINT;
 				erot->state_timeout = 0.0;
 			} else {
-				// Consider that the nextwaypoint of a special force droid
-				// is occupied, so that a standard bot will not be placed here
-				if (erot->nextwaypoint != -1)
-					wp_used[erot->nextwaypoint] = 1;
+				if (erot->homewaypoint == -1) {
+					// If a special force droid has not yet been integrated onto
+					// the waypoint system, place it near its current position.
+					int wp = teleport_to_closest_waypoint(erot);
+					wp_used[wp] = 1;
+					erot->homewaypoint = erot->lastwaypoint;
+					erot->combat_state = SELECT_NEW_WAYPOINT;
+					erot->state_timeout = 0.0;
+				} else {
+					// Consider that the nextwaypoint of a special force droid
+					// is occupied, so that a standard bot will not be placed here
+					if (erot->nextwaypoint != -1)
+						wp_used[erot->nextwaypoint] = 1;
+				}
 			}
+		} else {
+			ErrorMessage(__FUNCTION__, "There is no waypoint on level %d - unable to place random bots.\n",
+					PLEASE_INFORM, IS_WARNING_ONLY, level_num);
 		}
 	}
 }
