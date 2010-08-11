@@ -20,13 +20,20 @@
  *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
  *  MA  02111-1307  USA
  * */ 
+#include "system.h"
+
 #include "defs.h"
+#include "struct.h"
+#include "../src/global.h"
 #include "proto.h"
+#include "savestruct.h"
 
 #include "mapgen/mapgen.h"
 #include "mapgen/themes.h"
 
 #define RAND_THEME(t)	t[MyRandom(sizeof(t) / sizeof(t[0]) - 1)]
+#define OBSTACLE_DIM_X(x)	ceil(obstacle_map[x].right_border - obstacle_map[x].left_border)
+#define OBSTACLE_DIM_Y(x)	ceil(obstacle_map[x].lower_border - obstacle_map[x].upper_border)
 
 static void apply_default_theme(int, int, int);
 static void apply_metal_theme(int, int, int);
@@ -182,6 +189,63 @@ static void fill_armory(int r)
 				if (mapgen_get_tile(room->x + room->w, room->y + y) == TILE_WALL && MyRandom(100) < ARMORY_PROB)
 					mapgen_add_obstacle(room->x + room->w - x, room->y + y, ISO_BARREL_1 + MyRandom(3));
 			}
+		}
+	}
+}
+
+static void place_library(int room)
+{
+	struct roominfo *ri = &rooms[room];
+	int x1 = ri->x;
+	int y1 = ri->y;
+	int x2 = x1 + ri->w - 1;
+	int y2 = y1 + ri->h - 1;
+	int rows, cols;
+	int i, j;
+	float x, y, dx, dy;
+	enum obstacle_types obj;
+
+
+	// Place shelves vertically or horizontally
+	x = x1;
+	y = y1;
+	if (ri->w < ri->h) {
+		dx = OBSTACLE_DIM_X(ISO_SHELF_FULL_V);
+		dy = OBSTACLE_DIM_Y(ISO_SHELF_FULL_V);
+		rows = ri->h / dy / 2;
+		cols = ri->w / dx / 3;
+		obj = ISO_SHELF_FULL_V;
+		dx *= 2;
+		// Put chair at the corner
+		x += OBSTACLE_DIM_X(ISO_DESKCHAIR_3);
+		y += 0.5;
+		mapgen_add_obstacle(x, y, ISO_DESKCHAIR_3);
+		// Put library table near the chair
+		x = x1 + OBSTACLE_DIM_X(ISO_LIBRARY_FURNITURE_1) / 2;
+		y = y1 + OBSTACLE_DIM_Y(ISO_LIBRARY_FURNITURE_1);
+		mapgen_add_obstacle(x, y, ISO_LIBRARY_FURNITURE_1);
+	} else {
+		dx = OBSTACLE_DIM_X(ISO_SHELF_FULL_H);
+		dy = OBSTACLE_DIM_Y(ISO_SHELF_FULL_H);
+		rows = ri->h / dy / 3;
+		cols = ri->w / dx / 2;
+		obj = ISO_SHELF_FULL_H;
+		dy *= 2;
+		// Put chair at the corner
+		x += 0.5;
+		y += OBSTACLE_DIM_Y(ISO_DESKCHAIR_1);
+		mapgen_add_obstacle(x, y, ISO_DESKCHAIR_1);
+		// Put library table near the chair
+		x = x1 + OBSTACLE_DIM_X(ISO_LIBRARY_FURNITURE_2);
+		y = y1 + OBSTACLE_DIM_Y(ISO_LIBRARY_FURNITURE_2) / 2;
+		mapgen_add_obstacle(x, y, ISO_LIBRARY_FURNITURE_2);
+	}
+
+	for (i = 1; i <= rows; i++) {
+		for (j = 1; j <= cols; j++) {
+			x = x2 - j * dx;
+			y = y2 - i * dy;
+			mapgen_add_obstacle(x, y, obj);
 		}
 	}
 }
