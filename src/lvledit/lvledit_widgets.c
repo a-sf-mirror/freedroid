@@ -418,6 +418,11 @@ void leveleditor_select_type(enum leveleditor_object_type type)
 {
 	struct leveleditor_widget *cs_widget;
 
+	if (selection_type() != type) {
+		// When the user changes the current object type selected, reset tools
+		leveleditor_reset_tools();
+	}
+
 	// Find the categories which must be enabled
  	list_for_each_entry_reverse(cs_widget, &leveleditor_widget_list, node) {
  		if (cs_widget->type != WIDGET_CATEGORY_SELECTOR)

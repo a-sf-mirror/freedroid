@@ -185,8 +185,15 @@ point selection_len() {
 	return state.rect_len;
 }
 
-int selection_type() {
-	return get_current_object_type()->type;
+int selection_type()
+{
+	struct leveleditor_categoryselect *cs = get_current_object_type();
+
+	if (!cs) {
+		return OBJECT_NONE;
+	}
+
+	return cs->type;
 }
 
 static void add_object_to_list(struct list_head *list, void *data, enum leveleditor_object_type type)

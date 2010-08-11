@@ -150,6 +150,7 @@ enum leveleditor_object_type {
 	OBJECT_OBSTACLE,
 	OBJECT_WAYPOINT,
 	OBJECT_ITEM,
+	OBJECT_NONE,
 };
 
 #ifdef _leveleditor_c
