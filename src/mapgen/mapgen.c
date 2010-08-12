@@ -307,8 +307,14 @@ void mapgen_convert(int mid_room, int w, int h, unsigned char *tiles)
 
 static void add_teleport(int telnum, int x, int y, int tpair)
 {
+	const int helpers[2][4] = {
+		{ ISO_REFRESH_3,  ISO_REFRESH_3,  ISO_REFRESH_3,  ISO_REFRESH_3 },
+		{ ISO_ENHANCER_RU, ISO_ENHANCER_LU, ISO_ENHANCER_RD, ISO_ENHANCER_LD }
+	};
+
 	char *warp, *fromwarp;
 	char tmp[500];
+	int obstacle, helper;
 
 	sprintf(tmp, "%dtoX%d", target_level->levelnum, telnum);
 	warp = strdup(tmp);
@@ -316,7 +322,17 @@ static void add_teleport(int telnum, int x, int y, int tpair)
 	sprintf(tmp, "%dfromX%d", target_level->levelnum, telnum);
 	fromwarp = strdup(tmp);
 
-	mapgen_add_obstacle(x, y, telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter);
+	obstacle = telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter;
+	// Decorate room with teleport if the obstacle is the cloud
+	if (obstacle == ISO_TELEPORTER_1) {
+		helper = MyRandom(1);
+		mapgen_add_obstacle(x + 1, y - 1, helpers[helper][0]);
+		mapgen_add_obstacle(x - 1, y - 1, helpers[helper][1]);
+		mapgen_add_obstacle(x + 1, y + 1, helpers[helper][2]);
+		mapgen_add_obstacle(x - 1, y + 1, helpers[helper][3]);
+	}
+
+	mapgen_add_obstacle(x, y, obstacle);
 	add_map_label(target_level, x, y, warp);
 	add_map_label(target_level, x + 1, y, fromwarp);
 }
