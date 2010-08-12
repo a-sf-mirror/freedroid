@@ -221,7 +221,6 @@ void draw_gl_textured_quad_at_map_position(iso_image * our_floor_iso_image, floa
 					   int highlight_texture, int blend, float zoom_factor);
 void draw_gl_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y);
 void draw_gl_scaled_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y, float scale_factor);
-void blit_semitransparent_open_gl_texture_to_screen_position(iso_image * our_floor_iso_image, int x, int y, float scale_factor);
 void blit_special_background(int background_code);
 void open_gl_check_error_status(const char *name_of_calling_function);
 void draw_gl_bg_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y);

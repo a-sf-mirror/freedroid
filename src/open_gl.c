@@ -803,23 +803,6 @@ void draw_gl_bg_textured_quad_at_screen_position(iso_image * our_floor_iso_image
 }
 
 /**
- *  draws a textured quad at the given screen position, after 
- * setting blend mode to additive
- */
-void blit_semitransparent_open_gl_texture_to_screen_position(iso_image * our_floor_iso_image, int x, int y, float scale_factor)
-{
-
-#ifdef HAVE_LIBGL
-
-	glBlendFunc(GL_ONE, GL_ONE);
-	draw_gl_scaled_textured_quad_at_screen_position(our_floor_iso_image, x, y, scale_factor);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-#endif
-
-};				// void blit_semitransparent_open_gl_texture_to_screen_position ( ... )
-
-/**
  * This function restores the menu background, that must have been stored
  * before using the function of similar name.
  */
