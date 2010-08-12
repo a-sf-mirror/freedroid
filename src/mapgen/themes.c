@@ -250,6 +250,85 @@ static void place_library(int room)
 	}
 }
 
+static void build_garden_path(struct roominfo *ri, struct doorinfo *di)
+{
+	int x1, x2, y1, y2;
+	int i, j;
+
+	x1 = di->x;
+	y1 = di->y;
+	// Whether we are building vertical or horizontal path?
+	if (ri->x < x1 && x1 < ri->x + ri->w) {
+		// Build path from door to room height if the door is lower
+		if (ri->y < y1) {
+			y2 = y1;
+			y1 = ri->y;
+		} else {
+			y2 = ri->y + ri->h;
+		}
+		x2 = x1;
+		x1 -= 2;
+	} else {
+		// Build path from door to room width if the door is right-hand
+		if (ri->x < x1) {
+			x2 = x1;
+			x1 = ri->x;
+		} else {
+			x2 = ri->x + ri->w;
+		}
+		y2 = y1;
+		y1 -= 2;
+	}
+
+	for (i = y1; i < y2; i++) {
+		for (j = x1; j < x2; j++) {
+			mapgen_set_floor(j, i, ISO_MISCELLANEOUS_FLOOR_21);
+			mapgen_set_floor(j, i, ISO_MISCELLANEOUS_FLOOR_21);
+			// Prevent path from placing other obstacles on it
+			mapgen_put_tile(j, i, TILE_WALL, -1);
+			mapgen_put_tile(j, i, TILE_WALL, -1);
+		}
+	}
+}
+
+static void place_garden(int room)
+{
+	struct roominfo *ri = &rooms[room];
+	int x1 = ri->x;
+	int y1 = ri->y;
+	int x2 = x1 + ri->w - 1;
+	int y2 = y1 + ri->h - 1;
+	int i, j;
+	int num;
+
+	for (i = y1; i <= y2; i++)
+		for (j = x1; j <= x2; j++)
+			mapgen_set_floor(j, i, ISO_FLOOR_SAND_WITH_GRASS_1 + MyRandom(4));
+
+	// Cycle through doors of the given room
+	for (i = 0; i < ri->num_doors; i++)
+		build_garden_path(ri, &ri->doors[i]);
+	// Find the doors of other rooms that lead to the given
+	for (i = 0; i < total_rooms; i++) {
+		for (j = 0; j < rooms[i].num_doors; j++) {
+			if (rooms[i].doors[j].room == room)
+				build_garden_path(ri, &rooms[i].doors[j]);
+		}
+	}
+	// Fill garden with trees
+	num = sqrt(ri->w * ri->h) / 3;
+	while (num--) {
+		x1 = ri->x + 1;
+		y1 = ri->y + 1;
+		x1 += MyRandom(ri->w - 2);
+		y1 += MyRandom(ri->h - 2);
+		if (mapgen_get_tile(x1, y1) == TILE_FLOOR) {
+			mapgen_add_obstacle(x1, y1, ISO_TREE_1 + MyRandom(2));
+			mapgen_put_tile(x1, y1, TILE_WALL, -1);
+		}
+	}
+}
+
 static void fill_rooms(int *vis)
 {
 	int i;
@@ -311,7 +390,7 @@ void mapgen_place_obstacles(int mid_room, int w, int h, unsigned char *tiles)
 			switch(tiles[y * w + x]) {
 				case TILE_FLOOR:
 					wall = 0;
- 					if (tiles[y * w + x - 1] == TILE_WALL)
+					if (tiles[y * w + x - 1] == TILE_WALL)
 						wall |= WALL_W;
 					if (tiles[y * w + x + 1] == TILE_WALL)
 						wall |= WALL_E;
