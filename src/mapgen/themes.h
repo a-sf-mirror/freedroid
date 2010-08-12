@@ -30,6 +30,8 @@
 #define		WALL_S	(1 << 2)
 #define		WALL_E	(1 << 3)
 
+#define		WALL_PART	(1 << 4)
+
 #define		WALL_NW	(WALL_N | WALL_W)
 #define		WALL_NE	(WALL_N | WALL_E)
 #define		WALL_SW	(WALL_S | WALL_W)
@@ -51,6 +53,9 @@ struct theme_info {
 	int wall_n;
 	int wall_e;
 	int wall_s;
+
+	int window_wall_h;
+	int window_wall_v;
 }; 
 
 void	mapgen_place_obstacles(int, int, int, unsigned char *);

@@ -161,7 +161,7 @@ static void reduce_room_space() {
 
 			x = point_x[j];
 			y = point_y[j];
-			if(mapgen_get_tile(x + point_dx[check_dir[j]], y + point_dy[check_dir[j]]) != TILE_WALL)
+			if (mapgen_get_tile(x + point_dx[check_dir[j]], y + point_dy[check_dir[j]]) != TILE_WALL)
 				continue;
 
 			switch(j) {
@@ -185,8 +185,43 @@ static void reduce_room_space() {
 				x +=  point_dx[j];
 				y +=  point_dy[j];
 			}
+			// If the given room took part in fusion there may be additional tile ahead
+			// that should be removed
+			if (mapgen_get_tile(x, y) == TILE_PARTITION)
+				mapgen_put_tile(x, y, TILE_WALL, -1);
 		}
 	}
+}
+
+static void place_internal_door(int x, int y, enum connection_type dir)
+{
+	const int check_horz[] = { 0, -1 };
+	const int check_vert[] = { -1, 0 };
+	const float dx_horz[] = { 0.5, 0.5 };
+	const float dy_horz[] = {   0,   1 };
+	const float dx_vert[] = {   0,   1 };
+	const float dy_vert[] = { 0.5, 0.5 };
+	const int *check;
+	const float *dx, *dy;
+	int room, door;
+
+	if (dir == UP || dir == DOWN) {
+		check = check_horz;
+		dx = dx_horz;
+		dy = dy_horz;
+		door = ISO_H_DOOR_000_OPEN;
+	} else {
+		check = check_vert;
+		dx = dx_vert;
+		dy = dy_vert;
+		door = ISO_V_DOOR_000_OPEN;
+	}
+	room = mapgen_get_room(x, y);
+	mapgen_put_tile(x, y, TILE_FLOOR, room);
+	if (mapgen_get_room(x + check[0], y + check[1]) != room)
+		mapgen_add_obstacle(x + dx[0], y + dy[0], door);
+	else
+		mapgen_add_obstacle(x + dx[1], y + dy[1], door);
 }
 
 static void place_doors()
@@ -195,6 +230,8 @@ static void place_doors()
 	int x, y;
 	int w;
 	int x1, x2, y1, y2;
+	enum connection_type dir;
+	int id, id1, id2;
 
 	for (i = 0; i < total_rooms; i++) {
 		for (j = 0; j < rooms[i].num_doors; j++) {
@@ -205,69 +242,101 @@ static void place_doors()
 
 			if (rooms[i].x < x && x <= (rooms[i].x + rooms[i].w - 1)) {
 				// Place horizontal wall
+
+				// Set single horizontal door if the wall is internal
+				if (mapgen_get_tile(x, y) == TILE_PARTITION) {
+					place_internal_door(x, y, UP);
+					continue;
+				}
+
 				// Shift to left by 1 due to split done
 				x1 = x - w;
 				x2 = x;
 				if (y < rooms[i].y) {
 					y1 = rooms[room].y + rooms[room].h;
 					y2 = rooms[i].y;
+					dir = UP;
+					id1 = room;
+					id2 = i;
 				} else {
 					y1 = rooms[i].y + rooms[i].h;
 					y2 = rooms[room].y;
+					dir = DOWN;
+					id1 = i;
+					id2 = room;
 				}
-				mapgen_add_obstacle(x1 + 0.5, y1 + (y2 - y1) / 2.0, ISO_DH_DOOR_000_OPEN);
+				mapgen_add_obstacle(x1 + 0.5, (y1 + y2) / 2.0, ISO_DH_DOOR_000_OPEN);
 
 				if (MyRandom(100) < SET_PILLAR_PROB &&  y2 - y1 > 2) {
 					if (rooms[i].x <= x - w - 1 && rooms[i].x + rooms[i].w > x &&
 						rooms[room].x <= x - w - 1 && rooms[room].x + rooms[room].w > x) {
-						mapgen_put_tile(x1-1, y1, TILE_FLOOR, room);
+						mapgen_put_tile(x1-1, y1, TILE_FLOOR, id1);
 						mapgen_add_obstacle(x1 - 0.5, y1 + 0.5, ISO_PILLAR_SHORT);
 
-						mapgen_put_tile(x1 + w, y1, TILE_FLOOR, room);
+						mapgen_put_tile(x1 + w, y1, TILE_FLOOR, id1);
 						mapgen_add_obstacle(x1 + w + 0.5, y1 + 0.5, ISO_PILLAR_SHORT);
 
-						mapgen_put_tile(x1-1, y2 - 1, TILE_FLOOR, room);
+						mapgen_put_tile(x1-1, y2 - 1, TILE_FLOOR, id2);
 						mapgen_add_obstacle(x1 - 0.5, y2 - 0.5, ISO_PILLAR_SHORT);
 
-						mapgen_put_tile(x1 + w, y2 - 1, TILE_FLOOR, room);
+						mapgen_put_tile(x1 + w, y2 - 1, TILE_FLOOR, id2);
 						mapgen_add_obstacle(x1 + w + 0.5, y2 - 0.5, ISO_PILLAR_SHORT);
 					}
 				} 
 			} else {
 				// Place vertical wall
+
+				// Set signle vertical door if the wall is internal
+				if (mapgen_get_tile(x, y) == TILE_PARTITION) {
+					place_internal_door(x, y, LEFT);
+					continue;
+				}
 				// Shift to top by 1 due to split done
 				y1 = y - w;
 				y2 = y;
 				if (x < rooms[i].x) {
 					x1 = rooms[room].x + rooms[room].w;
 					x2 = rooms[i].x;
+					dir = LEFT;
+					id1 = room;
+					id2 = i;
 				} else {
 					x1 = rooms[i].x + rooms[i].w;
 					x2 = rooms[room].x;
+					dir = RIGHT;
+					id1 = i;
+					id2 = room;
 				}
-				mapgen_add_obstacle(x1 + (x2 - x1) / 2.0, y1 + 0.5, ISO_DV_DOOR_000_OPEN);
+				mapgen_add_obstacle((x1 + x2) / 2.0, y1 + 0.5, ISO_DV_DOOR_000_OPEN);
 
 				if (MyRandom(100) < SET_PILLAR_PROB &&  x2 - x1 > 2) {
 					if (rooms[i].y <= y - w - 1 && rooms[i].y + rooms[i].h > y &&
 						rooms[room].y <= y - w - 1 && rooms[room].y + rooms[room].h > y) {
-						mapgen_put_tile(x1, y1 - 1, TILE_FLOOR, room);
+						mapgen_put_tile(x1, y1 - 1, TILE_FLOOR, id1);
 						mapgen_add_obstacle(x1 + 0.5, y1 - 0.5, ISO_PILLAR_SHORT);
 
-						mapgen_put_tile(x1, y1 + w, TILE_FLOOR, room);
+						mapgen_put_tile(x1, y1 + w, TILE_FLOOR, id2);
 						mapgen_add_obstacle(x1 + 0.5, y1 + w + 0.5, ISO_PILLAR_SHORT);
 
-						mapgen_put_tile(x2 - 1, y1 - 1, TILE_FLOOR, room);
+						mapgen_put_tile(x2 - 1, y1 - 1, TILE_FLOOR, id1);
 						mapgen_add_obstacle(x2 - 0.5, y1 - 0.5, ISO_PILLAR_SHORT);
 
-						mapgen_put_tile(x2 - 1, y1 + w, TILE_FLOOR, room);
+						mapgen_put_tile(x2 - 1, y1 + w, TILE_FLOOR, id2);
 						mapgen_add_obstacle(x2 - 0.5, y1 + w + 0.5, ISO_PILLAR_SHORT);
 					}
 				}
 			}
 
-			for (y = y1; y < y2; y++)
-				for (x = x1; x < x2; x++)
-					mapgen_put_tile(x, y, TILE_FLOOR, room);
+			for (y = y1; y < y2; y++) {
+				for (x = x1; x < x2; x++) {
+					// New tiles are divided between rooms equally
+					if (dir == LEFT || dir == RIGHT)
+						id = x < (x1 + x2) / 2 ? id1 : id2;
+					else
+						id = y < (y1 + y2) / 2 ? id1 : id2;
+					mapgen_put_tile(x, y, TILE_FLOOR, id);
+				}
+			}
 		}
 	}
 }
@@ -355,9 +424,10 @@ void mapgen_gift(struct roominfo *r)
 		ISO_S_CHEST2_CLOSED,
 		ISO_N_CHEST2_CLOSED
 	};
-	const int dx[] = { -1, 1, 0, 0 };
-	const int dy[] = { 0, 0, -1, 1 };
-	int pos = rand() % 4;
+	const int dx[] = { -2, 1, 0, 0 };
+	const int dy[] = { 0, 0, -2, 1 };
+
+	int pos = MyRandom(3);
 
 	struct {
 		float x;

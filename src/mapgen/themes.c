@@ -19,7 +19,7 @@
  *  along with Freedroid; see the file COPYING. If not, write to the 
  *  Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
  *  MA  02111-1307  USA
- * */ 
+ * */
 #include "system.h"
 
 #include "defs.h"
@@ -43,13 +43,13 @@ static void apply_green_theme(int, int, int);
 static void apply_flower_theme(int, int, int);
 
 const struct theme_info theme_data[] = {
-	{ ISO_V_WALL, ISO_H_WALL, ISO_V_WALL, ISO_H_WALL },
-	{ ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S, ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S },
+	{ ISO_V_WALL, ISO_H_WALL, ISO_V_WALL, ISO_H_WALL, ISO_GREY_WALL_END_N, ISO_GREY_WALL_END_W },
+	{ ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S, ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S, ISO_GREY_WALL_END_N, ISO_GREY_WALL_END_W },
 	{ ISO_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
-	{ ISO_ROOM_WALL_V_RED, ISO_ROOM_WALL_H_RED, ISO_V_WALL, ISO_H_WALL },
+	{ ISO_ROOM_WALL_V_RED, ISO_ROOM_WALL_H_RED, ISO_V_WALL, ISO_H_WALL, ISO_RED_WALL_WINDOW_2, ISO_RED_WALL_WINDOW_1 },
 	{ ISO_BROKEN_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
-	{ ISO_LIGHT_GREEN_WALL_1, ISO_LIGHT_GREEN_WALL_2, ISO_V_WALL, ISO_H_WALL },
-	{ ISO_FUNKY_WALL_1, ISO_FUNKY_WALL_2, ISO_V_WALL, ISO_H_WALL },
+	{ ISO_LIGHT_GREEN_WALL_1, ISO_LIGHT_GREEN_WALL_2, ISO_V_WALL, ISO_H_WALL, ISO_FLOWER_WALL_WINDOW_2, ISO_FLOWER_WALL_WINDOW_1 },
+	{ ISO_FUNKY_WALL_1, ISO_FUNKY_WALL_2, ISO_V_WALL, ISO_H_WALL, ISO_FLOWER_WALL_WINDOW_2, ISO_FLOWER_WALL_WINDOW_1 },
 };
 
 typedef void (*theme_proc)(int, int, int);
@@ -80,23 +80,52 @@ static int set_generic_wall(int x, int y, int wall, int theme)
 	// A value '1' of 'processed' means that data was processed, otherwise
 	// the caller should process them itself.
 	int processed = 1;
-	switch (wall) {
-		case 0:
-			break;
-		case WALL_N:
-			mapgen_add_obstacle(x + 0.5, y, theme_data[theme].wall_n);
-			break;
-		case WALL_S:
-			mapgen_add_obstacle(x + 0.5, y + 1, theme_data[theme].wall_s);
-			break;
-		case WALL_W:
-			mapgen_add_obstacle(x, y + 0.5, theme_data[theme].wall_w);
-			break;
-		case WALL_E:
-			mapgen_add_obstacle(x + 1, y + 0.5, theme_data[theme].wall_e);
-			break;
-		default:
+	int obstacle;
+	int room = mapgen_get_room(x, y);
+	int period = room != -1 ? rooms[room].period : 0;
+	if (wall & WALL_PART) {
+		if (wall & WALL_N) {
+			obstacle = theme_data[theme].wall_n;
+			if (period && !(x % period))
+				obstacle = theme_data[theme].window_wall_h;
+			mapgen_add_obstacle(x + 0.5, y, obstacle);
+		} else if (wall & WALL_S) {
+			obstacle = theme_data[theme].wall_n;
+			if (period && !(x % period))
+				obstacle = theme_data[theme].window_wall_h;
+			mapgen_add_obstacle(x + 0.5, y + 1, obstacle);
+		} else if (wall & WALL_W) {
+			obstacle = theme_data[theme].wall_w;
+			if (period && !(y % period))
+				obstacle = theme_data[theme].window_wall_v;
+			mapgen_add_obstacle(x, y + 0.5, obstacle);
+		} else if (wall & WALL_E) {
+			obstacle = theme_data[theme].wall_w;
+			if (period && !(y % period))
+				obstacle = theme_data[theme].window_wall_v;
+			mapgen_add_obstacle(x + 1, y + 0.5, obstacle);
+		} else {
 			processed = 0;
+		}
+	} else {
+		switch (wall) {
+			case 0:
+				break;
+			case WALL_N:
+				mapgen_add_obstacle(x + 0.5, y, theme_data[theme].wall_n);
+				break;
+			case WALL_S:
+				mapgen_add_obstacle(x + 0.5, y + 1, theme_data[theme].wall_s);
+				break;
+			case WALL_W:
+				mapgen_add_obstacle(x, y + 0.5, theme_data[theme].wall_w);
+				break;
+			case WALL_E:
+				mapgen_add_obstacle(x + 1, y + 0.5, theme_data[theme].wall_e);
+				break;
+			default:
+				processed = 0;
+		}
 	}
 
 	return processed;
@@ -372,12 +401,13 @@ void mapgen_place_obstacles(int mid_room, int w, int h, unsigned char *tiles)
 
 	int i;
 	int x, y;
-	int wall, room;
+	int wall, room, room2;
 	int vis[total_rooms];
 	int num;
 
 	for (i = 0; i < total_rooms; i++) {
 		rooms[i].theme = RAND_THEME(industrial_themes);
+		rooms[i].period = MyRandom(4) + 1;
 		vis[i] = 0;
 	}
 	num = MyRandom(1) + 2;
@@ -388,6 +418,25 @@ void mapgen_place_obstacles(int mid_room, int w, int h, unsigned char *tiles)
 		for (x = 0; x < w; x++) {
 			room = mapgen_get_room(x, y);
 			switch(tiles[y * w + x]) {
+				case TILE_PARTITION:
+					wall = WALL_PART;
+					room2 = room;
+					// Tiles oriented to the north and west, must have a theme of a room,
+					// which is lower and right of the partition, respectively.
+					if (mapgen_get_room(x, y + 1) != room && mapgen_get_tile(x, y + 1) == TILE_FLOOR) {
+						wall |= WALL_S;
+						room2 = mapgen_get_room(x, y + 1);
+					}
+					if (mapgen_get_room(x + 1, y) != room && mapgen_get_tile(x + 1, y) == TILE_FLOOR) {
+						wall |= WALL_E;
+						room2 = mapgen_get_room(x + 1, y);
+					}
+
+					if (mapgen_get_room(x - 1, y) != room && mapgen_get_tile(x - 1, y) == TILE_FLOOR)
+						wall |= WALL_W;
+					if (mapgen_get_room(x, y - 1) != room && mapgen_get_tile(x, y - 1) == TILE_FLOOR)
+						wall |= WALL_N;
+					themes[rooms[room2].theme](x, y, wall);
 				case TILE_FLOOR:
 					wall = 0;
 					if (tiles[y * w + x - 1] == TILE_WALL)

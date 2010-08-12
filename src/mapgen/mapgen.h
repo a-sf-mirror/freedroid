@@ -20,6 +20,9 @@ struct roominfo {
 	int x, y;
 	int w, h;
 	int theme;
+	// Period is required to generate various periodical things,
+	// like windows in the walls
+	int period;
 
 	int *neighbors;
 	int num_neighbors;
