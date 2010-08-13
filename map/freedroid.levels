@@ -40491,7 +40491,7 @@ jump target south: -1
 jump target east: -1
 jump target west: -1
 use underground lighting: 1
-Name of this level=_"Mashine Deck Upper Catacombs"
+Name of this level=_"Machine Deck Upper Catacombs"
 BgSong=TheBeginning.ogg
 beginning_of_map
   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4 
