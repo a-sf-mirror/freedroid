@@ -96,7 +96,7 @@ LuaCode={
 Nr=6 Text=_"Where am I?"
 LuaCode={
 	npc_says(_"The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault.")
-	npc_says(_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However, I'm alone here with only 1 droid for security.")
+	npc_says(_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However, I'm alone here with only one droid for security.")
 	npc_says(_"There are just too few humans alive and awake to allow us to properly protect this place, and nobody else is foolish enough to stay out here alone.")
 	npc_says(_"I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place are quite sturdy.")
 	hide(6) show(8, 14, 17, 18)
