@@ -123,7 +123,6 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask);
 void draw_grid_on_the_floor(int mask);
 void blit_leveleditor_point(int x, int y);
 void update_item_text_slot_positions(void);
-void blit_all_item_slots(void);
 void AssembleCombatPicture(int);
 void blit_tux(int x, int y);
 void PutBullet(int Bullet_number, int mask);

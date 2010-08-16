@@ -1715,11 +1715,16 @@ static void show_obstacle_labels(int mask)
  * positions that have been computed before (hopefully!) in other 
  * functions like update_item_text_slot_positions ( ... ) or so.
  */
-void blit_all_item_slots(void)
+static void blit_all_item_slots(int mask)
 {
 	int i;
 	struct visible_level *vis_lvl, *n;
 	
+	if (mask & OMIT_ITEMS_LABEL) {
+		// Do not show item slots
+		return;
+	}
+
 	BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
 		
 		level *item_level = vis_lvl->lvl_pointer;
@@ -2055,7 +2060,7 @@ void AssembleCombatPicture(int mask)
 
 	if (XPressed() || GameConfig.show_item_labels) {
 		update_item_text_slot_positions();
-		blit_all_item_slots();
+		blit_all_item_slots(mask);
 	}
 	// Here are some more things, that are not needed in the level editor
 	// view...
