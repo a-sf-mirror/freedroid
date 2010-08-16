@@ -1094,6 +1094,10 @@ void teleport_to_level_center(int level_num)
 */
 int level_exists(int level_num)
 {
+	if (level_num < 0 || level_num >= curShip.num_levels) {
+		return FALSE;
+	}
+
 	if (curShip.AllLevels[level_num] == NULL) {
 		return FALSE;
 	}
