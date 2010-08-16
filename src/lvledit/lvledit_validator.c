@@ -888,7 +888,7 @@ static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlv
 	 * 1) check for existence of the defined neighbor
 	 */
 
-	if (validator_ctx->this_level->jump_target_north != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_north] == NULL) {
+	if (!level_exists(validator_ctx->this_level->jump_target_north)) {
 		struct neighborhood_excpt_data to_check =
 		    { 'N', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north };
 
@@ -902,7 +902,7 @@ static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlv
 		}
 	}
 
-	if (validator_ctx->this_level->jump_target_west != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_west] == NULL) {
+	if (!level_exists(validator_ctx->this_level->jump_target_west)) {
 		struct neighborhood_excpt_data to_check =
 		    { 'W', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west };
 
@@ -916,7 +916,7 @@ static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlv
 		}
 	}
 
-	if (validator_ctx->this_level->jump_target_east != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_east] == NULL) {
+	if (!level_exists(validator_ctx->this_level->jump_target_east)) {
 		struct neighborhood_excpt_data to_check =
 		    { 'E', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east };
 
@@ -930,7 +930,7 @@ static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlv
 		}
 	}
 
-	if (validator_ctx->this_level->jump_target_south != -1 && curShip.AllLevels[validator_ctx->this_level->jump_target_south] == NULL) {
+	if (!level_exists(validator_ctx->this_level->jump_target_south)) {
 		struct neighborhood_excpt_data to_check =
 		    { 'S', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south };
 
@@ -1148,7 +1148,7 @@ void LevelValidation()
 			SetTextCursor(col_pos, raw_pos);
 		}
 
-		if (curShip.AllLevels[l] == NULL) {
+		if (!level_exists(l)) {
 			// Empty level
 			char txt[40];
 			sprintf(txt, "%03d: \2empty\n", l);

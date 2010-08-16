@@ -889,7 +889,7 @@ void delete_map_level(int lnum)
 
 	// Remove references to this level from others
 	for (i = 0; i < MAX_LEVELS; i++) {
-		if (curShip.AllLevels[i] == NULL)
+		if (!level_exists(i))
 			continue;
 
 		if (curShip.AllLevels[i]->jump_target_north == lnum)

@@ -468,7 +468,7 @@ static void AddRemLevel(void)
 				int i;
 				// search empty level, if any
 				for (i = 0; i < curShip.num_levels; ++i) {
-					if (curShip.AllLevels[i] == NULL) {
+					if (!level_exists(i)) {
 						new_level_num = i;
 						break;
 					}
@@ -672,7 +672,7 @@ static void LevelOptions(void)
 			tgt = EditLevelNrPopup();
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
-				if (curShip.AllLevels[tgt] != NULL) {
+				if (level_exists(tgt)) {
 					reset_visible_levels();
 					teleport_to_level_center(tgt);
 				}
@@ -768,7 +768,7 @@ static void LevelOptions(void)
 				if (LeftPressed()) {
 					// find first available level lower than the current one
 					int newlevel = EditLevel()->levelnum - 1;
-					while (curShip.AllLevels[newlevel] == NULL && newlevel >= 0)
+					while (!level_exists(newlevel) && newlevel >= 0)
 						--newlevel;
 					// teleport if new level exists
 					if (newlevel >= 0) {
@@ -780,7 +780,7 @@ static void LevelOptions(void)
 				if (RightPressed()) {
 					// find first available level higher than the current one
 					int newlevel = EditLevel()->levelnum + 1;
-					while (curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels)
+					while (!level_exists(newlevel) && newlevel < curShip.num_levels)
 						++newlevel;
 					// teleport if new level exists
 					if (newlevel < curShip.num_levels) {
@@ -976,7 +976,7 @@ int DoLevelEditorMainMenu()
 			tgt = EditLevelNrPopup();
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
-				if (curShip.AllLevels[tgt] != NULL) {
+				if (level_exists(tgt)) {
 					reset_visible_levels();
 					teleport_to_level_center(tgt);
 				}
@@ -1041,7 +1041,7 @@ int DoLevelEditorMainMenu()
 				if (LeftPressed()) {
 					// find first available level lower than the current one
 					int newlevel = EditLevel()->levelnum - 1;
-					while (curShip.AllLevels[newlevel] == NULL && newlevel >= 0)
+					while (!level_exists(newlevel) && newlevel >= 0)
 						--newlevel;
 					// teleport if new level exists
 					if (newlevel >= 0) {
@@ -1053,7 +1053,7 @@ int DoLevelEditorMainMenu()
 				if (RightPressed()) {
 					// find first available level higher than the current one
 					int newlevel = EditLevel()->levelnum + 1;
-					while (curShip.AllLevels[newlevel] == NULL && newlevel < curShip.num_levels)
+					while (!level_exists(newlevel) && newlevel < curShip.num_levels)
 						++newlevel;
 					// teleport if new level exists
 					if (newlevel < curShip.num_levels) {

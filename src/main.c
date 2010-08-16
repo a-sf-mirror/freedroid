@@ -325,7 +325,7 @@ void UpdateCountersForThisFrame()
 	// that for the Tux current level (at present).
 	//
 	for (level_num = 0; level_num < curShip.num_levels; level_num++) {
-		if ((curShip.AllLevels[level_num] != NULL) && level_is_visible(level_num))
+		if (level_exists(level_num) && level_is_visible(level_num))
 			update_timeouts_for_bots_on_level(level_num, latest_frame_time);
 	}
 
@@ -415,7 +415,7 @@ void UpdateCountersForThisFrame()
 	// time actually spent passing frames...
 	//
 	for (i = 0; i < curShip.num_levels; i++) {
-		if (curShip.AllLevels[i] == NULL)
+		if (!level_exists(i))
 			continue;
 		if (Me.pos.z != i) {
 			if (Me.time_since_last_visit_or_respawn[i] > (-1)) {

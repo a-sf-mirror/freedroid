@@ -227,7 +227,7 @@ void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer)
 	// label...
 	//
 	for (i = 0; i < curShip.num_levels; i++) {
-		if (curShip.AllLevels[i] == NULL)
+		if (!level_exists(i))
 			continue;
 		resolve_map_label_on_level(MapLabel, PositionPointer, i);
 
@@ -1201,7 +1201,7 @@ int LoadShip(char *filename, int compressed)
 #define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
 
 	for (i = 0; i < MAX_LEVELS; i++) {
-		if (curShip.AllLevels[i] != NULL) {
+		if (level_exists(i)) {
 			int ydim = curShip.AllLevels[i]->ylen;
 			int row = 0;
 			for (row = 0; row < ydim; row++) {
@@ -1255,7 +1255,7 @@ int LoadShip(char *filename, int compressed)
 		if (this_levelnum >= MAX_LEVELS)
 			ErrorMessage(__FUNCTION__, "One levelnumber in savegame (%d) is bigger than the maximum allowed (%d).\n",
 				     PLEASE_INFORM, IS_FATAL, this_levelnum, MAX_LEVELS - 1);
-		if (curShip.AllLevels[this_levelnum] != NULL)
+		if (level_exists(this_levelnum))
 			ErrorMessage(__FUNCTION__, "Two levels with same levelnumber (%d) found in the savegame.\n", PLEASE_INFORM,
 				     IS_FATAL, this_levelnum);
 
@@ -1281,7 +1281,7 @@ int LoadShip(char *filename, int compressed)
 	// Check for consistency of levels
 	int check_level = curShip.num_levels;
 	while (check_level--) {
-		if (curShip.AllLevels[check_level] == NULL) {
+		if (!level_exists(check_level)) {
 			ErrorMessage(__FUNCTION__, "Level number %d should exist but is NULL.", PLEASE_INFORM, IS_FATAL, check_level);
 		}
 	}
@@ -1589,7 +1589,7 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 	
 	// Save all the levels
 	for (i = 0; i < curShip.num_levels; i++) {
-		if (curShip.AllLevels[i] != NULL) {
+		if (level_exists(i)) {
 			encode_level_for_saving(shipstr, curShip.AllLevels[i], reset_random_levels);
 		}
 	}

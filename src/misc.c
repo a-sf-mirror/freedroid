@@ -1003,8 +1003,7 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 		// We add some sanity check against teleporting to non-allowed
 		// locations (like outside of map that is)
 		//
-		if ((LNum < 0) || (LNum >= curShip.num_levels) ||
-		    (curShip.AllLevels[LNum] == NULL) || !pos_inside_level(Me.pos.x, Me.pos.y, curShip.AllLevels[LNum])) {
+		if (!level_exists(LNum) || !pos_inside_level(Me.pos.x, Me.pos.y, curShip.AllLevels[LNum])) {
 			fprintf(stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n", LNum, X, Y);
 			fprintf(stderr, "source location was: lev=%d x=%f y=%f.", Me.pos.z, Me.pos.x, Me.pos.y);
 			ErrorMessage(__FUNCTION__, "\

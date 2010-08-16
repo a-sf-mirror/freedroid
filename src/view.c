@@ -1018,7 +1018,7 @@ void gps_transform_map_init()
 
 	for (lvl_idx = 0; lvl_idx < MAX_LEVELS; lvl_idx++) {
 		// Undefined level -> continue  
-		if (curShip.AllLevels[lvl_idx] == NULL)
+		if (!level_exists(lvl_idx))
 			continue;
 
 		// Self
