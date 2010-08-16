@@ -441,6 +441,53 @@ static int place_work_office(int room)
 	return 1;
 }
 
+static int place_main_room(int room)
+{
+	const int projectors[] = { ISO_PROJECTOR_S, ISO_PROJECTOR_W, ISO_PROJECTOR_N, ISO_PROJECTOR_E };
+	const int dx[] = { 1, -1, -1,  1 };
+	const int dy[] = { 1,  1, -1, -1 };
+	const int screen_dx[] = { 1, -3, -1, 3 };
+	const int screen_dy[] = { 3,  1, -3, -1 };
+
+	int x = rooms[room].x + rooms[room].w / 2;
+	int y = rooms[room].y + rooms[room].h / 2;
+	int i = MyRandom(3);
+	int obj;
+	int w, h;
+
+	if (rooms[room].w < 8 || rooms[room].h < 8)
+		return 0;
+
+	// If length of the one of the sides is equal to 8 the others
+	// should be greater than 8
+	if (rooms[room].w == 8 || rooms[room].h == 8) {
+		if (rooms[room].w < rooms[room].h && i % 2)
+			i = (i + 1) % 4;
+		else if (rooms[room].w > rooms[room].h && !(i % 2))
+			i = (i + 1) % 4;
+		else
+			return 0;
+	}
+	int n = MyRandom(1) + 3;
+	// If we place only 3 tables out of 4, there is a place for projector
+	if (n == 3) {
+		// Place projector instead of one of the tables
+		obj = projectors[i];
+		mapgen_add_obstacle(x + dx[i], y + dy[i], obj);
+		mapgen_add_obstacle(x + screen_dx[i], y + screen_dy[i], ISO_PROJECTOR_SCREEN_N + i);
+	}
+	// Place round tables
+	while (n--) {
+		i = (i + 1) % 4;
+		obj = ISO_CONFERENCE_TABLE_N + i;
+		w = OBSTACLE_DIM_X(obj) / 2;
+		h = OBSTACLE_DIM_Y(obj) / 2;
+		mapgen_add_obstacle(x + w * dx[i], y + h * dy[i], obj);
+	}
+
+	return 1;
+}
+
 static void fill_rooms(int *vis)
 {
 	int i;
