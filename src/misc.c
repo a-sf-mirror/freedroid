@@ -1088,6 +1088,20 @@ void teleport_to_level_center(int level_num)
 	Teleport(level_num, x, y, FALSE);
 }
 
+/**
+ * Check if a level exists.
+ * \param level_num The number of the level.
+ * \return TRUE if the level exists.
+*/
+int level_exists(int level_num)
+{
+	if (curShip.AllLevels[level_num] == NULL) {
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 /*----------------------------------------------------------------------
  * LoadGameConfig(): load saved options from config-file
  *
