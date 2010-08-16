@@ -216,14 +216,6 @@ void leveleditor_init_widgets()
 			_("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio (OpenGL only).\n")},
 		{LEVEL_EDITOR_QUIT_BUTTON, NULL,
 			_("Test Map\n\nThis will save your map and reload it after you finish testing, avoiding saving an unclean world state.")},
-		{GO_LEVEL_NORTH_BUTTON, NULL,
-			_("Go level north\n\nUse this button to move one level north, i.e. to the level that is glued to the northern side of this level.")},
-		{GO_LEVEL_SOUTH_BUTTON, NULL,
-			_("Go level south\n\nUse this button to move one level south, i.e. to the level that is glued to the southern side of this level.")},
-		{GO_LEVEL_EAST_BUTTON, NULL,
-			_("Go level east\n\nUse this button to move one level east, i.e. to the level that is glued to the eastern side of this level.")},
-		{GO_LEVEL_WEST_BUTTON, NULL,
-			_("Go level west\n\nUse this button to move one level west, i.e. to the level that is glued to the western side of this level.")},
 		{RIGHT_LEVEL_EDITOR_BUTTON, NULL, NULL},
 		{LEFT_LEVEL_EDITOR_BUTTON, NULL, NULL},
 		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, "OBSTACLE", NULL},
@@ -309,18 +301,6 @@ void leveleditor_update_button_states()
 			break;
 		case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
 			b->active = 2 * (draw_grid);
-			break;
-		case GO_LEVEL_NORTH_BUTTON:
-			w->enabled = (EditLevel()->jump_target_north >= 0);
-			break;
-		case GO_LEVEL_WEST_BUTTON:
-			w->enabled = (EditLevel()->jump_target_west >= 0);
-			break;
-		case GO_LEVEL_SOUTH_BUTTON:
-			w->enabled = (EditLevel()->jump_target_south >= 0);
-			break;
-		case GO_LEVEL_EAST_BUTTON:
-			w->enabled = (EditLevel()->jump_target_east >= 0);
 			break;
 		case LEVEL_EDITOR_SAVE_SHIP_BUTTON:
 			w->enabled = (game_root_mode == ROOT_IS_LVLEDIT);

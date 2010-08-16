@@ -107,16 +107,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 
 	[OPEN_CLOSE_SKILL_EXPLANATION_BUTTON] = {UNLOADED_ISO_IMAGE, "THIS_DOESNT_NEED_BLITTING", {0 + 17, 424, 33, 33}, FALSE},
 
-	[GO_LEVEL_NORTH_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelNorthButton.png", {-50, -85, 30, 30}, FALSE},
-	[GO_LEVEL_NORTH_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelNorthButtonPushed.png", {-50, -85, 30, 30}, FALSE},
-	[GO_LEVEL_SOUTH_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelSouthButton.png", {-85, -50, 25, 25}, FALSE},
-	[GO_LEVEL_SOUTH_BUTTON_PUSHED] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelSouthButtonPushed.png", {-85, -50, 30, 30}, FALSE},
-	[GO_LEVEL_EAST_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelEastButton.png", {-50, -50, 25, 25}, FALSE},
-	[GO_LEVEL_EAST_BUTTON_PUSHED] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelEastButtonPushed.png", {-50, -50, 30, 30}, FALSE},
-	[GO_LEVEL_WEST_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelWestButton.png", {-85, -85, 30, 30}, FALSE},
-	[GO_LEVEL_WEST_BUTTON_PUSHED] = {UNLOADED_ISO_IMAGE, "mouse_buttons/GoLevelWestButtonPushed.png", {-85, -85, 30, 30}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-60, 90, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_PUSHED] =

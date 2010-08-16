@@ -43,7 +43,7 @@
 static void activate_button(struct leveleditor_button *b)
 {
 	int idx = b->btn_index;
-	int new_x, new_y;
+	
 	switch (idx) {
 	case LEVEL_EDITOR_UNDO_BUTTON:
 		level_editor_action_undo();
@@ -107,47 +107,6 @@ static void activate_button(struct leveleditor_button *b)
 		if (game_root_mode == ROOT_IS_GAME)
 			level_editor_done = TRUE;
 
-		break;
-	case GO_LEVEL_NORTH_BUTTON:
-		if (EditLevel()->jump_target_north < 0)
-			break;
-		if (Me.pos.x < curShip.AllLevels[EditLevel()->jump_target_north]->xlen - 1)
-			new_x = Me.pos.x;
-		else
-			new_x = 3;
-		new_y = curShip.AllLevels[EditLevel()->jump_target_north]->ylen - 4;
-		action_jump_to_level(EditLevel()->jump_target_north, new_x, new_y);
-
-		break;
-	case GO_LEVEL_SOUTH_BUTTON:
-		if (EditLevel()->jump_target_south < 0)
-			break;
-		if (Me.pos.x < curShip.AllLevels[EditLevel()->jump_target_south]->xlen - 1)
-			new_x = Me.pos.x;
-		else
-			new_x = 3;
-		new_y = 4;
-		action_jump_to_level(EditLevel()->jump_target_south, new_x, new_y);
-		break;
-	case GO_LEVEL_EAST_BUTTON:
-		if (EditLevel()->jump_target_east < 0)
-			break;
-		new_x = 3;
-		if (Me.pos.y < curShip.AllLevels[EditLevel()->jump_target_east]->ylen - 1)
-			new_y = Me.pos.y;
-		else
-			new_y = 4;
-		action_jump_to_level(EditLevel()->jump_target_east, new_x, new_y);
-		break;
-	case GO_LEVEL_WEST_BUTTON:
-		if (EditLevel()->jump_target_west < 0)
-			break;
-		new_x = curShip.AllLevels[EditLevel()->jump_target_west]->xlen - 4;
-		if (Me.pos.y < curShip.AllLevels[EditLevel()->jump_target_west]->ylen - 1)
-			new_y = Me.pos.y;
-		else
-			new_y = 4;
-		action_jump_to_level(EditLevel()->jump_target_west, new_x, new_y);
 		break;
 	case RIGHT_LEVEL_EDITOR_BUTTON:
 		leveleditor_toolbar_scroll_right();
