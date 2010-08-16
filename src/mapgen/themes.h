@@ -56,6 +56,8 @@ struct theme_info {
 
 	int window_wall_h;
 	int window_wall_v;
+
+	int floor[2];
 }; 
 
 void	mapgen_place_obstacles(int, int, int, unsigned char *);

@@ -46,10 +46,16 @@ const struct theme_info theme_data[] = {
 	{ ISO_V_WALL, ISO_H_WALL, ISO_V_WALL, ISO_H_WALL, ISO_GREY_WALL_END_N, ISO_GREY_WALL_END_W },
 	{ ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S, ISO_GREY_WALL_END_E, ISO_GREY_WALL_END_S, ISO_GREY_WALL_END_N, ISO_GREY_WALL_END_W },
 	{ ISO_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
-	{ ISO_ROOM_WALL_V_RED, ISO_ROOM_WALL_H_RED, ISO_V_WALL, ISO_H_WALL, ISO_RED_WALL_WINDOW_2, ISO_RED_WALL_WINDOW_1 },
+	{ ISO_ROOM_WALL_V_RED, ISO_ROOM_WALL_H_RED, ISO_V_WALL, ISO_H_WALL, ISO_RED_WALL_WINDOW_2, ISO_RED_WALL_WINDOW_1,
+		{ ISO_FLOOR_HOUSE_FLOOR, ISO_CARPET_TILE_0004 }
+	},
 	{ ISO_BROKEN_GLASS_WALL_1, ISO_GLASS_WALL_2, ISO_GLASS_WALL_1, ISO_GLASS_WALL_2 },
-	{ ISO_LIGHT_GREEN_WALL_1, ISO_LIGHT_GREEN_WALL_2, ISO_V_WALL, ISO_H_WALL, ISO_FLOWER_WALL_WINDOW_2, ISO_FLOWER_WALL_WINDOW_1 },
-	{ ISO_FUNKY_WALL_1, ISO_FUNKY_WALL_2, ISO_V_WALL, ISO_H_WALL, ISO_FLOWER_WALL_WINDOW_2, ISO_FLOWER_WALL_WINDOW_1 },
+	{ ISO_LIGHT_GREEN_WALL_1, ISO_LIGHT_GREEN_WALL_2, ISO_V_WALL, ISO_H_WALL, ISO_FLOWER_WALL_WINDOW_2, ISO_FLOWER_WALL_WINDOW_1,
+		{ ISO_CARPET_TILE_0002, ISO_COMPLICATED_PMM }
+	},
+	{ ISO_FUNKY_WALL_1, ISO_FUNKY_WALL_2, ISO_V_WALL, ISO_H_WALL, ISO_FLOWER_WALL_WINDOW_2, ISO_FLOWER_WALL_WINDOW_1,
+		{ ISO_TWOSQUARE_0001, ISO_TWOSQUARE_0003 }
+	},
 };
 
 typedef void (*theme_proc)(int, int, int);
@@ -356,6 +362,83 @@ static void place_garden(int room)
 			mapgen_put_tile(x1, y1, TILE_WALL, -1);
 		}
 	}
+}
+
+// Place a grid of office desks in the given room
+static int place_work_office(int room)
+{
+	// Randomly choose to place signle row of desks or double
+	int d = 3 + 2 * MyRandom(1);
+
+	int w = rooms[room].w - 3;
+	int h = rooms[room].h - 3;
+	int num_col = w / 2;
+	int num_row = h / d;
+	int x0 = rooms[room].x + (rooms[room].w - num_col * 2) / 2;
+	int y0 = rooms[room].y + (rooms[room].h - num_row * d) / 2;
+	int i, j, k, n, l;
+	float x, y;
+	int theme = RAND_THEME(living_themes);
+	int floor_theme = RAND_THEME(living_themes);
+	int obj;
+	int plain_wall = MyRandom(5);
+	int chair = MyRandom(1) ? ISO_N_CHAIR : ISO_DESKCHAIR_1;
+
+	if (!w || !h)
+		return 0;
+
+	// Whether to start build upper cube or lower if the row is double
+	l = -2 * MyRandom(1);
+	if (l == -2 || d == 5)
+		y0 += 2;
+	for (i = 0; i < num_row; i++) {
+		for (j = 0; j < num_col; j++) {
+			n = d / 2;
+			k = l;
+			while (n--) {
+				// Construct office cube
+				mapgen_add_obstacle(x0 + j * 2 + 0.5, y0 + i * d, theme_data[theme].wall_n);
+				obj = plain_wall ? theme_data[theme].wall_n : theme_data[theme].window_wall_h;
+				mapgen_add_obstacle(x0 + j * 2 + 1.5, y0 + i * d, obj);
+				// Sometimes don't create cube, instead place sofas and table
+				if (MyRandom(5) || !j) {
+					mapgen_add_obstacle(x0 + j * 2, y0 + i * d + 0.5 + k, theme_data[theme].wall_w);
+					mapgen_add_obstacle(x0 + j * 2, y0 + i * d + 1.5 + k, theme_data[theme].wall_w);
+					// Place table and chair
+					obj = ISO_N_DESK;
+					x = OBSTACLE_DIM_X(obj) / 2;
+					y = OBSTACLE_DIM_Y(obj) / 2 + k;
+					mapgen_add_obstacle(x0 + j * 2 + x, y0 + i * d + y, obj);
+					obj = chair + MyRandom(2);
+					mapgen_add_obstacle(x0 + j * 2 + x + OBSTACLE_DIM_X(obj) / 2, y0 + i * d + y, obj);
+					// Place a book shelf or a plant
+					if (!MyRandom(3))
+						obj = ISO_SOFFA_CORNER_PLANT_2 + 2 * MyRandom(1);
+					else
+						obj = ISO_SHELF_SMALL_FULL_H;
+					mapgen_add_obstacle(x0 + j * 2 + x, y0 + i * d + y + 1, obj);
+				} else {
+					obj = ISO_TABLE_GLASS_2;
+					//x = -OBSTACLE_DIM_X(obj) / 2;
+					y = OBSTACLE_DIM_Y(obj) / 2 + k;
+					mapgen_add_obstacle(x0 + j * 2 + x, y0 + i * d + y, obj);
+					mapgen_add_obstacle(x0 + j * 2 + x, y0 + i * d + y - OBSTACLE_DIM_Y(obj) / 3, ISO_RED_CHAIR_S);
+					if (MyRandom(1))
+						mapgen_add_obstacle(x0 + j * 2 + x + OBSTACLE_DIM_X(obj) / 2, y0 + i * d + y, ISO_SOFFA_3);
+				}
+				k = -2 - k;
+			}
+		}
+	}
+	// Fill floor tiles
+	if (l == -2 || d == 5)
+		y0 -= 2;
+	for (i = 0; i < num_row * d - 1; i++) {
+		for (j = 0; j < num_col * 2; j++)
+			mapgen_set_floor(x0 + j, y0 + i, theme_data[floor_theme].floor[1]);
+	}
+
+	return 1;
 }
 
 static void fill_rooms(int *vis)
