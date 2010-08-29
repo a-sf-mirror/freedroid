@@ -727,7 +727,11 @@ int GetMissionIndexByName(const char *name)
 	int cidx;
 
 	for (cidx = 0; cidx < MAX_MISSIONS_IN_GAME; cidx++) {
-		if (!strcmp(Me.AllMissions[cidx].mission_name, name))
+		const char *n = Me.AllMissions[cidx].mission_name;
+		if (!n)
+			continue;
+
+		if (!strcmp(n, name))
 			return cidx;
 	}
 
