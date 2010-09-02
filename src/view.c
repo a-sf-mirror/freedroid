@@ -3229,49 +3229,51 @@ Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
  *----------------------------------------------------------------------*/
 void iso_put_tux(int x, int y)
 {
-	int rotation_index;
-	int our_phase = 0;
-	int motion_class;
-	float angle;
-
-	// In case there is no weapon swing going on, we can select the direction
-	// of facing by examining the current speed.
+	// Compute the 3 parameters defining how to render the animated Tux:
+	// - motion_class: type of animation (sword_motion/gun_motion)
+	// - our_phase: phase of animation (i.e. "animation keyframe number")
+	// - rotation_index: Tux's rotation index
 	//
-	if ((Me.phase > 0) && (Me.phase <= TUX_SWING_PHASES)) {
-		// Don't touch the direction of heading here, cause it's set correctly
-		// within the raw tux attack function anyway.
-		//
-		angle = Me.angle;
-	} else {
-		// We make the angle dependent upon direction of movement, but only if there really is
-		// at least some movement.
-		//
-		if (fabsf(Me.speed.x) + fabsf(Me.speed.y) > 0.1) {
-			angle = -(atan2(Me.speed.y, Me.speed.x) * 180 / M_PI - 45 - 180);
-			angle += 360 / (2 * MAX_TUX_DIRECTIONS);
-			while (angle < 0)
-				angle += 360;
-			Me.angle = angle;
-		} else {
-			angle = Me.angle;
-		}
-	}
+	// When Tux is not animated (in the takeover minigame, for instance), that
+	// is when x != -1, then we set those parameters to default values (apart
+	// from motion_class.
 
-	// From the angle we can compute the index to use...
-	//
-	rotation_index = (angle * MAX_TUX_DIRECTIONS) / 360.0 + (MAX_TUX_DIRECTIONS / 2);
-	while (rotation_index >= MAX_TUX_DIRECTIONS)
-		rotation_index -= MAX_TUX_DIRECTIONS;
-	while (rotation_index < 0)
-		rotation_index += MAX_TUX_DIRECTIONS;
-
-	// Find out which weapon class to use in this case.
+	int motion_class = 0;
+	int our_phase = (int)Me.walk_cycle_phase; // Tux current walking keyframe
+	int rotation_index = 0; // Facing front
 
 	motion_class = get_motion_class();
 
-	// Get the current animation phase
+	if (x == -1) {
+		float angle;
 
-	our_phase = get_current_phase();
+		our_phase = get_current_phase();
+
+		// Compute the rotation angle, and then the rotation index
+		if ((Me.phase > 0) && (Me.phase <= TUX_SWING_PHASES)) {
+			// Attack animation running, Me.angle is the rotation angle to use
+			angle = Me.angle;
+		} else {
+			// If Tux is walking/running, compute its angle from the direction
+			// of movement.
+			if (fabsf(Me.speed.x) + fabsf(Me.speed.y) > 0.1) {
+				angle = -(atan2(Me.speed.y, Me.speed.x) * 180 / M_PI - 45 - 180);
+				angle += 360 / (2 * MAX_TUX_DIRECTIONS);
+				while (angle < 0)
+					angle += 360;
+				Me.angle = angle;
+			} else {
+				// reuse last computed angle
+				angle = Me.angle;
+			}
+		}
+
+		rotation_index = (angle * MAX_TUX_DIRECTIONS) / 360.0 + (MAX_TUX_DIRECTIONS / 2);
+		while (rotation_index >= MAX_TUX_DIRECTIONS)
+			rotation_index -= MAX_TUX_DIRECTIONS;
+		while (rotation_index < 0)
+			rotation_index += MAX_TUX_DIRECTIONS;
+	}
 
 	// Render Tux
 
