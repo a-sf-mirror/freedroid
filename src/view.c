@@ -2260,10 +2260,9 @@ void clear_all_loaded_tux_images(int with_free)
 };				// void clear_all_loaded_tux_images ( int force_free )
 
 /**
- * Now we determine the phase to use.  This is not all the same phase any 
- * more for all tux parts now that we've introduced a walk cycle.
+ * Now we determine the phase to use.
  */
-int get_current_phase(int tux_part_group, int motion_class)
+int get_current_phase()
 {
 	int our_phase = (int)Me.phase;
 	float my_speed;
@@ -2738,97 +2737,78 @@ void make_sure_whole_part_group_is_ready(int tux_part_group, int motion_class, c
  * This function should blit the isometric version of the Tux to the
  * screen.
  *----------------------------------------------------------------------*/
-void iso_put_tux_part(int tux_part_group, char *part_string, int x, int y, int rotation_index)
+void iso_put_tux_part(int tux_part_group, char *part_string, int x, int y, int motion_class, int our_phase, int rotation_index)
 {
-	int i;
-	int our_phase = 0;
-	int motion_class;
-
-	// Now we find out which weapon class to use in this case.
-	//
-	motion_class = get_motion_class();
-
-	// Now we need to resolve the part_string given as parameter
-	//
+	// Sanity check on 'part_string'
 	if (strlen(part_string) == 0) {
-		ErrorMessage(__FUNCTION__, "\
-Empty part string received!", PLEASE_INFORM, IS_FATAL);
+		ErrorMessage(__FUNCTION__, "Empty part string received!", PLEASE_INFORM, IS_FATAL);
 	}
-	// Now we determine the phase to use.  This is not all the same
-	// phase any more for all tux parts now that we've introduced a walk cycle.
-	//
-	our_phase = get_current_phase(tux_part_group, motion_class);
 
 	// If some part string given is unlike the part string we were using so
 	// far, then we'll need to free that old part and (later) load the new
 	// part.
 	//
-	for (i = 0; i < ALL_PART_GROUPS; i++) {
-		if (strcmp(previous_part_strings[tux_part_group], part_string)) {
-			free_one_loaded_tux_image_series(tux_part_group);
-			make_sure_whole_part_group_is_ready(tux_part_group, motion_class, part_string);
-		}
+	if (strcmp(previous_part_strings[tux_part_group], part_string)) {
+		free_one_loaded_tux_image_series(tux_part_group);
+		make_sure_whole_part_group_is_ready(tux_part_group, motion_class, part_string);
 	}
 
 	// Now everything should be loaded correctly and we just need to blit the Tux.  Anything
 	// that isn't loaded yet should be considered a serious bug and a reason to terminate 
 	// immediately...
 	//
-	if ((loaded_tux_images[tux_part_group][our_phase][rotation_index].surface != NULL && !use_open_gl)
-	    || (use_open_gl)) {
-		if (!use_open_gl) {
-			if (x == (-1)) {
-				blit_iso_image_to_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
-							       Me.pos.x, Me.pos.y);
-			} else {
-				blit_iso_image_to_screen_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
-								  x + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x,
-								  y +
-								  loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y);
-			}
-		} else {
-#ifdef HAVE_LIBGL
-			float r = 1.0, g = 1.0, b = 1.0;
-			int blend = FALSE;
+	if (!use_open_gl) {
 
-			if (Me.paralyze_duration) {	/* Paralyzed ? tux turns red */
-				g = 0.2;
-				b = 0.2;
-			}
-
-			else if (Me.slowdown_duration) {	/* Slowed down ? tux turns blue */
-				r = 0.2;
-				g = 0.2;
-			}
-
-			else if (Me.energy < Me.maxenergy * 0.25) {	/* Low energy ? blink red */
-				g = b = ((SDL_GetTicks() >> 5) & 31) * 0.03;
-			}
-
-			if (Me.invisible_duration) {	/* Invisible? Become transparent */
-				blend = TRANSPARENCY_CUROBJECT;
-			}
-
-			if (x == (-1)) {
-				draw_gl_textured_quad_at_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
-								      Me.pos.x, Me.pos.y, r, g, b, FALSE, blend, 1.0);
-			} else {
-				draw_gl_textured_quad_at_screen_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
-									 x +
-									 loaded_tux_images[tux_part_group][our_phase]
-									 [rotation_index].offset_x,
-									 y +
-									 loaded_tux_images[tux_part_group][our_phase]
-									 [rotation_index].offset_y);
-			}
-#endif
+		if (loaded_tux_images[tux_part_group][our_phase][rotation_index].surface == NULL) {
+			ErrorMessage(__FUNCTION__, "Unable to load tux part's surface : tux_part_group=%d, our_phase=%d, rotation_index=%d",
+				PLEASE_INFORM, IS_FATAL, tux_part_group, our_phase, rotation_index);
 		}
-	} else {
-		ErrorMessage(__FUNCTION__, "Unable to load tux part : tux_part_group=%d, our_phase=%d, rotation_index=%d", 
-			PLEASE_INFORM, IS_FATAL, tux_part_group, our_phase, rotation_index);
+
+		if (x == (-1)) {
+			blit_iso_image_to_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
+					Me.pos.x, Me.pos.y);
+		} else {
+			blit_iso_image_to_screen_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
+					x + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x,
+					y + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y);
+		}
+
 	}
-	
-};				// void iso_put_tux_part ( char* part_string , int x , int y )
+#ifdef HAVE_LIBGL
+	else {
+		float r = 1.0, g = 1.0, b = 1.0;
+		int blend = FALSE;
+
+		if (loaded_tux_images[tux_part_group][our_phase][rotation_index].texture == 0) {
+			ErrorMessage(__FUNCTION__, "Unable to load tux part's texture : tux_part_group=%d, our_phase=%d, rotation_index=%d",
+				PLEASE_INFORM, IS_FATAL, tux_part_group, our_phase, rotation_index);
+		}
+
+		if (Me.paralyze_duration) {	/* Paralyzed ? tux turns red */
+			g = 0.2;
+			b = 0.2;
+		} else if (Me.slowdown_duration) {	/* Slowed down ? tux turns blue */
+			r = 0.2;
+			g = 0.2;
+		} else if (Me.energy < Me.maxenergy * 0.25) {	/* Low energy ? blink red */
+			g = b = ((SDL_GetTicks() >> 5) & 31) * 0.03;
+		}
+
+		if (Me.invisible_duration) {	/* Invisible? Become transparent */
+			blend = TRANSPARENCY_CUROBJECT;
+		}
+
+		if (x == (-1)) {
+			draw_gl_textured_quad_at_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
+					Me.pos.x, Me.pos.y, r, g, b, FALSE, blend, 1.0);
+		} else {
+			draw_gl_textured_quad_at_screen_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
+					x + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x,
+					y + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y);
+		}
+	}
+#endif
+}
 
 /**
  * This function will put the Tux torso, i.e. it will put some torso with
@@ -2841,7 +2821,7 @@ Empty part string received!", PLEASE_INFORM, IS_FATAL);
  * use the very same ingame representation, because they are rather 
  * similar after all.
  */
-void iso_put_tux_torso(int x, int y, int rotation_index)
+void iso_put_tux_torso(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
 	static int first_call = 1;
 	static int jacket1, jacket2, jacket3, robe1, robe2;
@@ -2855,21 +2835,20 @@ void iso_put_tux_torso(int x, int y, int rotation_index)
 	}
 
 	if (Me.armour_item.type == -1) {
-		iso_put_tux_part(PART_GROUP_TORSO, "iso_torso", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_TORSO, "iso_torso", x, y, motion_class, our_phase, rotation_index);
 	} else if (Me.armour_item.type == jacket1 || Me.armour_item.type == jacket2 || Me.armour_item.type == jacket3) {
-		iso_put_tux_part(PART_GROUP_TORSO, "iso_armour1", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_TORSO, "iso_armour1", x, y, motion_class, our_phase, rotation_index);
 	} else if (Me.armour_item.type == robe1 || Me.armour_item.type == robe2) {
-		iso_put_tux_part(PART_GROUP_TORSO, "iso_robe", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_TORSO, "iso_robe", x, y, motion_class, our_phase, rotation_index);
 	} else
-		iso_put_tux_part(PART_GROUP_TORSO, "iso_armour1", x, y, rotation_index);
-
-};				// void iso_put_tux_torso ( int x , int y , int rotation_index )
+		iso_put_tux_part(PART_GROUP_TORSO, "iso_armour1", x, y, motion_class, our_phase, rotation_index);
+}
 
 /**
  *
  *
  */
-void iso_put_tux_shieldarm(int x, int y, int rotation_index)
+void iso_put_tux_shieldarm(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
 	static int first_call = 1;
 	static int shield1, shield2, shield3, shield4, shield5;
@@ -2887,13 +2866,13 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 	//
 	if (Me.shield_item.type == (-1)) {
 		if (Me.weapon_item.type == (-1)){
-			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, rotation_index);
+			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, motion_class, our_phase, rotation_index);
 			return;
 		} else if (ItemMap[Me.weapon_item.type].item_weapon_is_melee == 0) {
-			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, rotation_index);
+			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, motion_class, our_phase, rotation_index);
 			return;
 		} else {
-			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, rotation_index);
+			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, motion_class, our_phase, rotation_index);
 			return;
 		}
 	}
@@ -2907,7 +2886,7 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 		//
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee == 0) {
 			if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands == 1) {
-				iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, motion_class, our_phase, rotation_index);
 				return;
 			}
 		} 
@@ -2916,123 +2895,119 @@ void iso_put_tux_shieldarm(int x, int y, int rotation_index)
 	// we therefore need to blit the shield details.
 	//
 	if (Me.shield_item.type == shield1) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_buckler", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_buckler", x, y, motion_class, our_phase, rotation_index);
 	} else if (Me.shield_item.type == shield2 || Me.shield_item.type == shield3) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_standard_shield", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_standard_shield", x, y, motion_class, our_phase, rotation_index);
 	} else if (Me.shield_item.type == shield4) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_heavy_shield", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_heavy_shield", x, y, motion_class, our_phase, rotation_index);
 	} else if (Me.shield_item.type == shield5) {
-		iso_put_tux_part(PART_GROUP_SHIELD, "iso_riot_shield", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_riot_shield", x, y, motion_class, our_phase, rotation_index);
 	} else {
 		ErrorMessage(__FUNCTION__, "Shield type %d is not yet rendered for Tux.", PLEASE_INFORM, IS_FATAL, Me.shield_item.type);
 	}
-
-};				// void iso_put_tux_shieldarm ( int x , int y , int rotation_index )
+}
 
 /**
  *
  *
  */
-void iso_put_tux_head(int x, int y, int rotation_index)
+void iso_put_tux_head(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
 	if (Me.special_item.type == (-1))
-		iso_put_tux_part(PART_GROUP_HEAD, "iso_head", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_HEAD, "iso_head", x, y, motion_class, our_phase, rotation_index);
 	else
-		iso_put_tux_part(PART_GROUP_HEAD, "iso_helm1", x, y, rotation_index);
-
-};				// void iso_put_tux_head ( int x , int y , int rotation_index )
+		iso_put_tux_part(PART_GROUP_HEAD, "iso_helm1", x, y, motion_class, our_phase, rotation_index);
+}
 
 /**
  *
  *
  */
-void iso_put_tux_feet(int x, int y, int rotation_index)
+void iso_put_tux_feet(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
 	if (Me.drive_item.type == (-1))
-		iso_put_tux_part(PART_GROUP_FEET, "iso_feet", x, y, rotation_index);
+		iso_put_tux_part(PART_GROUP_FEET, "iso_feet", x, y, motion_class, our_phase, rotation_index);
 	else
-		iso_put_tux_part(PART_GROUP_FEET, "iso_boots1", x, y, rotation_index);
-
-};				// void iso_put_tux_feet ( int x , int y , int rotation_index )
+		iso_put_tux_part(PART_GROUP_FEET, "iso_boots1", x, y, motion_class, our_phase, rotation_index);
+}
 
 /**
  *
  *
  */
-void iso_put_tux_weapon(int x, int y, int rotation_index)
+void iso_put_tux_weapon(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
 	if (Me.weapon_item.type != (-1)) {
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
 			if      (MatchItemWithName(Me.weapon_item.type, "Big kitchen knife"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_big_kitchen_knife", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_big_kitchen_knife", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Cutlass"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_cutlass", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_cutlass", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Antique Greatsword"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_antique_greatsword", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_antique_greatsword", x, y, motion_class, our_phase, rotation_index);
 // Too broken anim			else if (MatchItemWithName(Me.weapon_item.type, "Chainsaw"))
 //				iso_put_tux_part(PART_GROUP_WEAPON, "iso_chainsaw", x, y, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Meat cleaver"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_meat_cleaver", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_meat_cleaver", x, y, motion_class, our_phase, rotation_index);
 			else if (
 				(MatchItemWithName(Me.weapon_item.type, "Hunting knife")) ||
 				(MatchItemWithName(Me.weapon_item.type, "Shock knife"))
 				)
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_hunting_knife", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_hunting_knife", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Iron pipe"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_iron_pipe", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_iron_pipe", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Big wrench"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_big_wrench", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_big_wrench", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Crowbar"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_crowbar", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_crowbar", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Power hammer"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_power_hammer", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_power_hammer", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Mace"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_mace", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_mace", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Baseball bat"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_baseball_bat", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_baseball_bat", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Sledgehammer"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sledgehammer", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sledgehammer", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Energy whip"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_energy_whip", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_energy_whip", x, y, motion_class, our_phase, rotation_index);
 			else
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sword", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_sword", x, y, motion_class, our_phase, rotation_index);
 		} else {
 
 			if      (
 				(MatchItemWithName(Me.weapon_item.type, "Exterminator")) ||
 				(MatchItemWithName(Me.weapon_item.type, "The Super Exterminator!!!"))
 				)
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_exterminator", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_exterminator", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, ".22 Hunting Rifle"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_22_hunting_rifle", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_22_hunting_rifle", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "9mm Sub Machine Gun"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_9mm_sub_machine_gun", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_9mm_sub_machine_gun", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "7.62mm Hunting Rifle"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_7_62mm_hunting_rifle", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_7_62mm_hunting_rifle", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "7.62mm AK-47"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_7_62mm_ak47", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_7_62mm_ak47", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Barrett M82 Sniper Rifle"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_barrett_m82_sniper_rifle", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_barrett_m82_sniper_rifle", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Electro Laser Rifle"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_electro_laser_rifle", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_electro_laser_rifle", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Laser Rifle"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_rifle", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_rifle", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Laser Pulse Rifle"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_pulse_rifle", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_pulse_rifle", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Laser Pulse Cannon"))
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_pulse_cannon", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_laser_pulse_cannon", x, y, motion_class, our_phase, rotation_index);
 			else if (
 				(MatchItemWithName(Me.weapon_item.type, "Two Barrel sawn off shotgun")) ||
 				(MatchItemWithName(Me.weapon_item.type, "Two Barrel shotgun")) ||
 				(MatchItemWithName(Me.weapon_item.type, "Pump action shotgun"))
 				)
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_shotgun", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_shotgun", x, y, motion_class, our_phase, rotation_index);
 			else
-				iso_put_tux_part(PART_GROUP_WEAPON, "iso_gun1", x, y, rotation_index);
+				iso_put_tux_part(PART_GROUP_WEAPON, "iso_gun1", x, y, motion_class, our_phase, rotation_index);
 		}
 	}
-
-};				// void iso_put_tux_weapon ( int x , int y , int rotation_index )
+}
 
 /**
  * This function is intended to bring the Tux parts to the screen 
@@ -3041,32 +3016,28 @@ void iso_put_tux_weapon(int x, int y, int rotation_index)
  * depends on the direction the Tux is facing.  Therefore a lot of cases
  * have to be separated.
  */
-void iso_put_all_tux_parts_for_sword_motion(int x, int y, int rotation_index)
+void iso_put_all_tux_parts_for_sword_motion(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
-
-	DebugPrintf(2, "\nDirection given: %d.", rotation_index);
-	// DebugPrintf ( 0 , "\nphase: %d." , (int) Me . phase );
-
 	// The correct order of blitting for all the Tux parts stongly depends
 	// on the direction the Tux is facing, therefore we need to do careful
 	// case separation for the tux direction.
 	//
 	switch (rotation_index) {
 	case 0:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
 		break;
 	case 8:
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 9:
@@ -3076,12 +3047,12 @@ void iso_put_all_tux_parts_for_sword_motion(int x, int y, int rotation_index)
 	case 13:
 	case 14:
 	case 15:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 1:
@@ -3091,22 +3062,21 @@ void iso_put_all_tux_parts_for_sword_motion(int x, int y, int rotation_index)
 	case 5:
 	case 6:
 	case 7:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	default:
-		fprintf(stderr, "Suspicious rotation index: %d ", rotation_index);
+		DebugPrintf(-1, "Suspicious rotation index: %d\n", rotation_index);
 		ErrorMessage(__FUNCTION__, "\
 Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
 		break;
 	}
-
-};				// void iso_put_all_tux_parts_for_sword_motion ( int x , int y , int rotation_index )
+}
 
 /**
  * This function is intended to bring the Tux parts to the screen 
@@ -3115,12 +3085,8 @@ Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
  * depends on the direction the Tux is facing.  Therefore a lot of cases
  * have to be separated.
  */
-void iso_put_all_tux_parts_for_gun_motion(int x, int y, int rotation_index)
+void iso_put_all_tux_parts_for_gun_motion(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
-
-	DebugPrintf(2, "\nDirection given: %d.", rotation_index);
-	// DebugPrintf ( 1 , "\nphase: %d." , (int) Me . phase );
-
 	// The correct order of blitting for all the Tux parts stongly depends
 	// on the direction the Tux is facing, therefore we need to do careful
 	// case separation for the tux direction and sometimes even handle
@@ -3128,137 +3094,134 @@ void iso_put_all_tux_parts_for_gun_motion(int x, int y, int rotation_index)
 	//
 	switch (rotation_index) {
 	case 0:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
 		break;
 	case 8:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
 		if (((int)Me.phase >= 3) && ((int)Me.phase <= 12)) {
-			iso_put_tux_weapon(x, y, rotation_index);
-			iso_put_tux_torso(x, y, rotation_index);
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
+			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
 		} else {
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-			iso_put_tux_weapon(x, y, rotation_index);
-			iso_put_tux_torso(x, y, rotation_index);
+			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
 		}
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 9:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
 		if (((int)Me.phase >= 3) && ((int)Me.phase <= 12)) {
-			iso_put_tux_shieldarm(x, y, rotation_index);
-			iso_put_tux_torso(x, y, rotation_index);
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
+			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
 		} else {
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-			iso_put_tux_torso(x, y, rotation_index);
-			iso_put_tux_shieldarm(x, y, rotation_index);
+			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
 		}
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 10:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
 		if (((int)Me.phase >= 3) && ((int)Me.phase <= 12)) {
-			iso_put_tux_shieldarm(x, y, rotation_index);
-			iso_put_tux_torso(x, y, rotation_index);
+			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
 		} else {
-			iso_put_tux_torso(x, y, rotation_index);
-			iso_put_tux_shieldarm(x, y, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
 		}
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 	case 11:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 12:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 13:
 	case 14:
 	case 15:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
 		if (((int)Me.phase >= 4) && ((int)Me.phase <= 11)) {
-			iso_put_tux_weapon(x, y, rotation_index);
-			iso_put_tux_torso(x, y, rotation_index);
+			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
 		} else {
-			iso_put_tux_torso(x, y, rotation_index);
-			iso_put_tux_weapon(x, y, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
 		}
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 1:
 	case 2:
-		iso_put_tux_feet(x, y, rotation_index);
-
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
 		if (((int)Me.phase >= 4) && ((int)Me.phase <= 11)) {
-			iso_put_tux_torso(x, y, rotation_index);
-			iso_put_tux_head(x, y, rotation_index);
-			iso_put_tux_shieldarm(x, y, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
 		} else {
-			iso_put_tux_shieldarm(x, y, rotation_index);
-			iso_put_tux_torso(x, y, rotation_index);
-			iso_put_tux_head(x, y, rotation_index);
+			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+			iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		}
-
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 3:
 	case 4:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	case 5:
 	case 6:
 	case 7:
-		iso_put_tux_feet(x, y, rotation_index);
-		iso_put_tux_shieldarm(x, y, rotation_index);
-		iso_put_tux_weapon(x, y, rotation_index);
-		iso_put_tux_torso(x, y, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, rotation_index);
-		iso_put_tux_head(x, y, rotation_index);
+		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
 		break;
 
 	default:
-		fprintf(stderr, "Suspicious rotation index: %d ", rotation_index);
+		DebugPrintf(-1, "Suspicious rotation index: %d\n", rotation_index);
 		ErrorMessage(__FUNCTION__, "\
 Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
 		break;
 	}
-
-};				// void iso_put_all_tux_parts_for_gun_motion ( x , y , rotation_index )
+}
 
 /*----------------------------------------------------------------------
  * This function should blit the isometric version of the Tux to the
@@ -3267,6 +3230,8 @@ Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
 void iso_put_tux(int x, int y)
 {
 	int rotation_index;
+	int our_phase = 0;
+	int motion_class;
 	float angle;
 
 	// In case there is no weapon swing going on, we can select the direction
@@ -3300,16 +3265,25 @@ void iso_put_tux(int x, int y)
 	while (rotation_index < 0)
 		rotation_index += MAX_TUX_DIRECTIONS;
 
+	// Find out which weapon class to use in this case.
+
+	motion_class = get_motion_class();
+
+	// Get the current animation phase
+
+	our_phase = get_current_phase();
+
+	// Render Tux
+
 	if (Me.weapon_item.type == (-1)) {
-		iso_put_all_tux_parts_for_sword_motion(x, y, rotation_index);
+		iso_put_all_tux_parts_for_sword_motion(x, y, motion_class, our_phase, rotation_index);
 	} else {
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee > 0)
-			iso_put_all_tux_parts_for_sword_motion(x, y, rotation_index);
+			iso_put_all_tux_parts_for_sword_motion(x, y, motion_class, our_phase, rotation_index);
 		else
-			iso_put_all_tux_parts_for_gun_motion(x, y, rotation_index);
+			iso_put_all_tux_parts_for_gun_motion(x, y, motion_class, our_phase, rotation_index);
 	}
-
-};				// void iso_put_tux ( int x , int y )
+}
 
 /* -----------------------------------------------------------------
  * This function draws the influencer to the screen, either
