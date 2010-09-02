@@ -3315,89 +3315,31 @@ void iso_put_tux(int x, int y)
  * This function draws the influencer to the screen, either
  * to the center of the combat window if (-1,-1) was specified, or
  * to the specified coordinates anywhere on the screen, useful e.g.
- * for using the influencer as a cursor in the menus.
+ * for drawing the influencer in the takeover minigame.
  *
  * The given coordinates then indicate the UPPER LEFT CORNER for
  * the blit.
  * ----------------------------------------------------------------- */
 void blit_tux(int x, int y)
 {
-	SDL_Rect TargetRectangle;
 	SDL_Rect Text_Rect;
-	int alpha_value;
-	point UpperLeftBlitCorner;
 
 	Text_Rect.x = UserCenter_x + 21;
 	Text_Rect.y = UserCenter_y - 32;
 	Text_Rect.w = (User_Rect.w / 2) - 21;
 	Text_Rect.h = (User_Rect.h / 2);
 
-	DebugPrintf(2, "\n%s(): real function call confirmed.", __FUNCTION__);
-
-	if (x == -1) {
-		// The (-1) parameter indicates, that the tux should be drawn right 
-		// into the game field at it's apropriate location.
-		//
-		// Well, for game purposes, we do not need to blit anything if the
-		// tux is out, so we'll query for that first, as well as for the case
-		// of other players that are not on this level.
-		//
-		if (Me.energy <= 0)
-			return;
-
-		UpperLeftBlitCorner.x = UserCenter_x - 32;
-		UpperLeftBlitCorner.y = UserCenter_y - 32;
-
-	} else {
-		// The not (-1) parameter indicates, that the tux should be drawn 
-		// for cursor purposes.  This will be done anyway, regardless of
-		// whether the tux is currently out or not.
-		//
-		UpperLeftBlitCorner.x = x;
-		UpperLeftBlitCorner.y = y;
-	}
-
-	TargetRectangle.x = UpperLeftBlitCorner.x;
-	TargetRectangle.y = UpperLeftBlitCorner.y;
-
-	// Maybe the influencer is fading due to low energy?
-	// to achive this, is might be nescessary to add some 
-	// alpha to the surface, that will later be
-	// removed again.  We do this here:
-	//
-
-#define alpha_offset 80
-
-	if (((Me.energy * 100 / Me.maxenergy) <= BLINKENERGY) && (x == (-1))) {
-
-		// In case of low energy, do the fading effect...
-		alpha_value = (int)((256 - alpha_offset) *
-				    fabsf(0.5 * Me.MissionTimeElapsed - floor(0.5 * Me.MissionTimeElapsed) - 0.5) + (alpha_offset));
-
-		// ... and also maybe start a new cry-sound
-
-		if (Me.LastCrysoundTime > CRY_SOUND_INTERVAL) {
-			Me.LastCrysoundTime = 0;
-			CrySound();
-		}
-	}
-	// Either we draw the classical influencer or we draw the more modern
-	// tux, a descendant of the influencer :)
-	//
+	// Draw Tux
 	iso_put_tux(x, y);
 
 	// Maybe the influencer has something to say :)
 	// so let him say it..
-	//
-	if ((x == (-1)) && Me.TextToBeDisplayed && (Me.TextVisibleTime < GameConfig.WantedTextVisibleTime) &&
+	if ((x == -1) && Me.TextToBeDisplayed && (Me.TextVisibleTime < GameConfig.WantedTextVisibleTime) &&
 		GameConfig.All_Texts_Switch) {
 		SetCurrentFont(FPS_Display_BFont);
-		DisplayText(Me.TextToBeDisplayed, UserCenter_x + 21, UserCenter_y - 32, &Text_Rect, TEXT_STRETCH);
+		DisplayText(Me.TextToBeDisplayed, Text_Rect.x, Text_Rect.y, &Text_Rect, TEXT_STRETCH);
 	}
-
-	DebugPrintf(2, "\n%s(): enf of function reached.", __FUNCTION__);
-
-};				// void blit_tux( int x , int y )
+}
 
 /**
  * If the corresponding configuration flag is enabled, enemies might 'say'
