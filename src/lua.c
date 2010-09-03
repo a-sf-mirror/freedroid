@@ -41,6 +41,14 @@
 #include "../lua/lauxlib.h"
 #include "../lua/lualib.h"
 
+enum data_type {
+	BOOL_TYPE = 0,
+	INT_TYPE,
+	FLOAT_TYPE,
+	DOUBLE_TYPE,
+	STRING_TYPE
+};
+
 /* Our Lua state for event execution */
 lua_State *global_lua_state;
 
@@ -801,28 +809,55 @@ static int lua_create_droid(lua_State *L)
  * \param L Lua state.
  * \param index Stack index where the table is.
  * \param field Name of the field to fetch.
- * \param type Either LUA_TNUMBER or LUA_TSTRING.
- * \param result Return location for an int or a newly allocated string.
+ * \param type Type of the data to read
+ * \param result Return location for the field's value
  * \return TRUE if the value was read, FALSE if it could not be read.
  */
-static int get_value_from_table(lua_State *L, int index, const char *field, int type, void *result)
+static int get_value_from_table(lua_State *L, int index, const char *field, enum data_type type, void *result)
 {
+	int found_and_valid = FALSE;
+	int ltype;
+
 	lua_getfield(L, index, field);
-	if (lua_type(L, -1) == type) {
-		switch (type) {
-		case LUA_TNUMBER:
-			*((int *) result) = lua_tointeger(L, -1);
-			break;
-		case LUA_TSTRING:
-			*((char **) result) = strdup(lua_tostring(L, -1));
-			break;
+	ltype = lua_type(L, -1);
+
+	switch (type) {
+	case BOOL_TYPE:
+		if (ltype == LUA_TBOOLEAN) {
+			*((int*)result) = lua_toboolean(L, -1);
+			found_and_valid = TRUE;
 		}
-		lua_pop(L, 1);
-		return TRUE;
-	} else {
-		lua_pop(L, 1);
-		return FALSE;
+		break;
+	case INT_TYPE:
+		if (ltype == LUA_TNUMBER) {
+			*((int*)result) = lua_tointeger(L, -1);
+			found_and_valid = TRUE;
+		}
+		break;
+	case FLOAT_TYPE:
+		if (ltype == LUA_TNUMBER) {
+			*((float*)result) = (float)lua_tonumber(L, -1);
+			found_and_valid = TRUE;
+		}
+		break;
+	case DOUBLE_TYPE:
+		if (ltype == LUA_TNUMBER) {
+			*((double*)result) = (double)lua_tonumber(L, -1);
+			found_and_valid = TRUE;
+		}
+		break;
+	case STRING_TYPE:
+		if (ltype == LUA_TSTRING) {
+			*((char**)result) = strdup(lua_tostring(L, -1));
+			found_and_valid = TRUE;
+		}
+		break;
+	default:
+		break;
 	}
+
+	lua_pop(L, 1);
+	return found_and_valid;
 }
 
 static int lua_register_addon(lua_State *L)
@@ -834,14 +869,14 @@ static int lua_register_addon(lua_State *L)
 
 	// Read the item name and find the item index.
 	memset(&addonspec, 0, sizeof(struct addon_spec));
-	get_value_from_table(L, 1, "name", LUA_TSTRING, &name);
+	get_value_from_table(L, 1, "name", STRING_TYPE, &name);
 	addonspec.type = GetItemIndexByName(name);
 	free(name);
 
 	// Read the simple add-on specific fields.
-	get_value_from_table(L, 1, "require_socket", LUA_TSTRING, &addonspec.requires_socket);
-	get_value_from_table(L, 1, "require_item", LUA_TSTRING, &addonspec.requires_item);
-	get_value_from_table(L, 1, "upgrade_cost", LUA_TNUMBER, &addonspec.upgrade_cost);
+	get_value_from_table(L, 1, "require_socket", STRING_TYPE, &addonspec.requires_socket);
+	get_value_from_table(L, 1, "require_item", STRING_TYPE, &addonspec.requires_item);
+	get_value_from_table(L, 1, "upgrade_cost", INT_TYPE, &addonspec.upgrade_cost);
 
 	// Process the table of bonuses. The keys of the table are the names
 	// of the bonuses and the values the attribute increase amounts.
@@ -1082,7 +1117,6 @@ luaL_reg lfuncs[] = {
 	 */
 	{"addon", lua_register_addon},
 	{NULL, NULL}
-	,
 };
 
 void run_lua(const char *code)
