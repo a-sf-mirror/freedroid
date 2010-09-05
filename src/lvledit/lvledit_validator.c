@@ -888,59 +888,67 @@ static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlv
 	 * 1) check for existence of the defined neighbor
 	 */
 
-	if (!level_exists(validator_ctx->this_level->jump_target_north)) {
-		struct neighborhood_excpt_data to_check =
-		    { 'N', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north };
+	if (validator_ctx->this_level->jump_target_north != -1) {
+		if (!level_exists(validator_ctx->this_level->jump_target_north)) {
+			struct neighborhood_excpt_data to_check =
+		    		{ 'N', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north };
 
-		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existent neighbor",
-					       "The north jump target on a level points to a non existing level.");
-			is_invalid = TRUE;
+			if (!lookup_exception(this, &to_check)) {
+				validator_print_header(validator_ctx, "Non existent neighbor",
+					"The north jump target on a level points to a non existing level.");
+				is_invalid = TRUE;
 
-			printf("[Type=\"J\"] Interface:North of Level:%d points to Level:%d which does not exist.\n",
-			       validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north);
+				printf("[Type=\"J\"] Interface:North of Level:%d points to Level:%d which does not exist.\n",
+			       		validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north);
+			}
 		}
 	}
 
-	if (!level_exists(validator_ctx->this_level->jump_target_west)) {
-		struct neighborhood_excpt_data to_check =
-		    { 'W', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west };
+	if (validator_ctx->this_level->jump_target_west != -1) {
+		if (!level_exists(validator_ctx->this_level->jump_target_west)) {
+			struct neighborhood_excpt_data to_check =
+		    		{ 'W', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west };
 
-		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existent neighbor",
-					       "The west jump target on a level points to a non existing level.");
-			is_invalid = TRUE;
+			if (!lookup_exception(this, &to_check)) {
+				validator_print_header(validator_ctx, "Non existent neighbor",
+					"The west jump target on a level points to a non existing level.");
+				is_invalid = TRUE;
 
-			printf("[Type=\"J\"] Interface:West of Level:%d points to Level:%d which does not exist.\n",
-			       validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west);
+				printf("[Type=\"J\"] Interface:West of Level:%d points to Level:%d which does not exist.\n",
+				       validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west);
+			}
 		}
 	}
 
-	if (!level_exists(validator_ctx->this_level->jump_target_east)) {
-		struct neighborhood_excpt_data to_check =
-		    { 'E', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east };
+	if (validator_ctx->this_level->jump_target_east != -1) {
+		if (!level_exists(validator_ctx->this_level->jump_target_east)) {
+			struct neighborhood_excpt_data to_check =
+		    		{ 'E', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east };
 
-		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existent neighbor",
-					       "The east jump target on a level points to a non existing level.");
-			is_invalid = TRUE;
+			if (!lookup_exception(this, &to_check)) {
+				validator_print_header(validator_ctx, "Non existent neighbor",
+					"The east jump target on a level points to a non existing level.");
+				is_invalid = TRUE;
 
-			printf("[Type=\"J\"] Interface:East of Level:%d points to Level:%d which does not exist.\n",
-			       validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east);
+				printf("[Type=\"J\"] Interface:East of Level:%d points to Level:%d which does not exist.\n",
+			       		validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east);
+			}
 		}
 	}
 
-	if (!level_exists(validator_ctx->this_level->jump_target_south)) {
-		struct neighborhood_excpt_data to_check =
-		    { 'S', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south };
+	if (validator_ctx->this_level->jump_target_south != -1) {
+		if (!level_exists(validator_ctx->this_level->jump_target_south)) {
+			struct neighborhood_excpt_data to_check =
+		    		{ 'S', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south };
 
-		if (!lookup_exception(this, &to_check)) {
-			validator_print_header(validator_ctx, "Non existent neighbor",
-					       "The south jump target on a level points to a non existing level.");
-			is_invalid = TRUE;
+			if (!lookup_exception(this, &to_check)) {
+				validator_print_header(validator_ctx, "Non existent neighbor",
+					"The south jump target on a level points to a non existing level.");
+				is_invalid = TRUE;
 
-			printf("[Type=\"J\"] Interface:South of Level:%d points to Level:%d which does not exist.\n",
-			       validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south);
+				printf("[Type=\"J\"] Interface:South of Level:%d points to Level:%d which does not exist.\n",
+			       		validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south);
+			}
 		}
 	}
 
