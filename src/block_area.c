@@ -1740,6 +1740,54 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_SOLAR_PANEL_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SOLAR_PANEL_E].filename = "iso_solar_panel_0001.png";
 
+	block_2param(ISO_BOTLINE_01_N, 3, 2);
+	obstacle_map[ISO_BOTLINE_01_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_01_N].filename = "iso_botline_0000.png";
+	
+	block_2param(ISO_BOTLINE_01_E, 2, 3);
+	obstacle_map[ISO_BOTLINE_01_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_01_E].filename = "iso_botline_0001.png";
+	
+	block_2param(ISO_BOTLINE_02_E, 3, 2);
+	obstacle_map[ISO_BOTLINE_02_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_02_E].filename = "iso_botline_0002.png";
+	
+	block_2param(ISO_BOTLINE_02_N, 2, 3);
+	obstacle_map[ISO_BOTLINE_02_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_02_N].filename = "iso_botline_0003.png";
+	
+	block_2param(ISO_BOTLINE_02_W, 3, 2);
+	obstacle_map[ISO_BOTLINE_02_W].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_02_W].filename = "iso_botline_0004.png";
+	
+	block_2param(ISO_BOTLINE_02_S, 2, 3);
+	obstacle_map[ISO_BOTLINE_02_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_02_S].filename = "iso_botline_0005.png";
+	
+	block_2param(ISO_BOTLINE_03_N, 5, 2);
+	obstacle_map[ISO_BOTLINE_03_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_03_N].filename = "iso_botline_0006.png";
+	
+	block_2param(ISO_BOTLINE_03_E, 2, 5);
+	obstacle_map[ISO_BOTLINE_03_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_03_E].filename = "iso_botline_0007.png";
+	
+	block_2param(ISO_BOTLINE_04_N, 5, 2);
+	obstacle_map[ISO_BOTLINE_04_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_04_N].filename = "iso_botline_0008.png";
+	
+	block_2param(ISO_BOTLINE_04_E, 2, 5);
+	obstacle_map[ISO_BOTLINE_04_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_04_E].filename = "iso_botline_0009.png";
+	
+	block_2param(ISO_BOTLINE_05_N, 5, 2);
+	obstacle_map[ISO_BOTLINE_05_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_05_N].filename = "iso_botline_0010.png";
+	
+	block_2param(ISO_BOTLINE_05_E, 2, 5);
+	obstacle_map[ISO_BOTLINE_05_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BOTLINE_05_E].filename = "iso_botline_0011.png";
+
 	// Now that we have defined the block area paramters, it's time to do some
 	// simple but often required computations in advance:  Calculating the offsets
 	// each obstacle's block area has from the obstacle center.
