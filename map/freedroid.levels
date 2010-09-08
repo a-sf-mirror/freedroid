@@ -3574,6 +3574,7 @@ x=22 y=10 name="614StartGameSquare1"
 x=62 y=44 name="CitadelPrison"
 /plabelinfolvl
 piteminfolvl
+it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
 idx=3425 type=30 data={
@@ -40817,3 +40818,4 @@ wp
 end_of_level
 ----------------------------------------------------------------------
 *** End of Ship Data ***
+
