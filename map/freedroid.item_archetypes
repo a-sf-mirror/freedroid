@@ -4022,13 +4022,28 @@ Item description text=_"This device sends a signal to a nearby teleporter reques
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Kevin's Data Cube"
+Item name=_"Data cube"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="datacube"
 Items of this type collect together in inventory="no"
 File or directory name for inventory image="datacube/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=40
+inventory_size_x=1
+inventory_size_y=1
+Item description text=_"This was the most common form of portable information storage used on Earth until the Great Assault, its three-dimensional memory capable of storing up to 2 terabytes and compatible with most of the hardware on the planet."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Kevin's Data Cube"
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="kevins_datacube"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="kevins_datacube/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
 Item description text=_"This data cube contains confidential government data on the installations around the town. Kevin hopes that when the data is evaluated properly, a way out of the current crisis might be found. However, the amount of data is so vast, it can only be evaluated properly using a large cluster of computers. The Red Guard base is said to store an infrastructure suitable to this purpose."
