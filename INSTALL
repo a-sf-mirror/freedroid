@@ -33,6 +33,9 @@ Building with autotools
    a) "make install" will install the game. The binary name is freedroidRPG.
       If you want all users on your computer to use your built of FreedroidRPG, execute "make install" as root.
 
+      Hint: you can speed up "make" process using "make -j n". Replace "n" with number of jobs.
+      For more information execute "make --help".
+
    b) If you are working with the source tree and want to svn update regularly we 
       recommend the following instead: 
       Do not issue "make install", instead, simply go to the src/ subdirectory, and run
