@@ -34,6 +34,11 @@ EveryTime LuaCode={
 		show(0)
 		add_cookie("met_tybalt")
 	else show(2) end
+
+	if (has_cookie("tux_has_joined_guard")) then
+		hide(50, 54, 55, 56)
+        else end
+
 	show(99)
 }
 ----------------------------------------------------------------------
