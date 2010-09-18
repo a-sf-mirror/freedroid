@@ -35,9 +35,7 @@ EveryTime LuaCode={
 		add_cookie("met_jasmine")
 	else end
 
-	if (has_cookie("jasmine_count1")) then
-		if (has_cookie("jasmine_count2")) then show(12) else show(10) end -- 2 or 1 counter
-	else show(10) end -- no counters yet
+	show(99)
 }
 ----------------------------------------------------------------------
 
@@ -103,32 +101,27 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=10 Text=_"See you later."
+Nr=99 Text=_"See you later."
 LuaCode={
-	npc_says(_"Yeah. Whatever.")
-	if ( has_cookie("jasmine_count1") ) then
-		add_cookie("jasmine_count2")
+	if (not has_cookie("jasmine_count2") ) then
+		if ( has_cookie("jasmine_count1") ) then
+			add_cookie("jasmine_count2")
+		else
+			add_cookie("jasmine_count1")
+		end
+		npc_says(_"Yeah. Whatever.")
+		end_dialog()
 	else
-		add_cookie("jasmine_count1")
+		npc_says(_"Yeah. Wha -- SIGSEGV.")
+		npc_says(_"Segmentation fault.")
+		tux_says(_"Huh?")
+		npc_says(_"Traceback printed to stdout.")
+		npc_says(_"Kernel panic in module: Jasmine")
+		npc_says(_"Buffer overrun in anger.c:1532")
+		npc_says(_"Core dumped. System halted.")
+		drop_dead()
+		add_cookie("jasmine_sigsegv")
 	end
-	end_dialog()
-	hide(10)
-}
-
-----------------------------------------------------------------------
-
-Nr=12 Text=_"See you later."
-LuaCode={
-	npc_says(_"Yeah. Wha -- SIGSEGV.")
-	npc_says(_"Segmentation fault.")
-	tux_says(_"Huh?")
-	npc_says(_"Traceback printed to stdout.")
-	npc_says(_"Kernel panic in module: Jasmine")
-	npc_says(_"Buffer overrun in anger.c:1532")
-	npc_says(_"Core dumped. System halted.")
-	drop_dead()
-	add_cookie("jasmine_sigsegv")
-	hide(12)
 }
 ----------------------------------------------------------------------
 
