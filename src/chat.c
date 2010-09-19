@@ -942,6 +942,9 @@ void validate_dialogs()
 
 	run_lua("function user_input_string(a)\nreturn \"dummy\";\nend\n");
 
+	run_lua("function upgrade_items(a)\nend\n");
+	run_lua("function craft_addons(a)\nend\n");
+
 	/* This dummy will be used to test break_off_and_attack() functions and such. */
 	BROWSE_ALIVE_BOTS(dummy_partner) {
 		break;
