@@ -175,8 +175,12 @@ void quest_browser_display_mission_list(int list_type)
 		// user can then select to see the full/short information on this quest.
 		//
 		if (list_type != QUEST_BROWSER_SHOW_NOTES) {
-			quest_browser_mission_lines_needed[mis_num] =
-			    get_lines_needed(complete_mission_display_text, mission_description_rect, TEXT_STRETCH);
+		  	if(strlen(complete_mission_display_text) == 0) {
+				quest_browser_mission_lines_needed[mis_num] = 0;
+			} else {
+			  	quest_browser_mission_lines_needed[mis_num] =
+			    	    get_lines_needed(complete_mission_display_text, mission_description_rect, TEXT_STRETCH);
+			}
 		}
 
 		if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE)) {
@@ -222,7 +226,7 @@ void quest_browser_display_mission_list(int list_type)
 			if (quest_browser_mission_lines_needed[mis_num] != (-1)) {
 				rect_short->y =
 				    mission_description_rect.y - mission_list_offset +
-				    (FontHeight(GetCurrentFont()) * TEXT_STRETCH) * (quest_browser_mission_lines_needed[mis_num] - 1) - 3;
+				    (FontHeight(GetCurrentFont()) * TEXT_STRETCH) * (quest_browser_mission_lines_needed[mis_num]) - 2;
 				rect_short->x = mission_description_rect.x - rect_short->w;
 				rect_long->y = rect_short->y;
 				rect_long->x = rect_short->x;
