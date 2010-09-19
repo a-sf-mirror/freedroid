@@ -44,7 +44,12 @@ EveryTime LuaCode={
 	else end
 
 	if (done_quest(_"Opening access to MS Office")) then show(44) else end	-- Ready for HF?
-	if (has_quest(_"Deliverance")) then show(5) else end
+	if (has_quest(_"Deliverance")) then 
+		if (not done_quest("Deliverance")) then 
+			if (has_item_backpack("Data cube")) then show(5) end
+		end
+	end
+
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -103,6 +108,7 @@ LuaCode={
 	npc_says(_"I wanted him to go through the people in cryogenic freezing in the facility, and make a list of disposable ones.")
 	tux_says(_"... Disposable?")
 	npc_says(_"Yes. We are at war. Most of the people there are sick or dying anyway, which is why they're frozen in the first place. They take up a lot of space, and keeping them alive takes a lot of power. We can't afford to waste any resources.")
+	del_item_backpack("Data cube")
 	end_quest(_"Deliverance", _"I gave Spencer the datacube. Apparently it was a list of people in freezing in the cryogenic facility. Spencer wants to dispose of some of them and use the space for other things...")
 	add_xp(100)
 	hide(5)
