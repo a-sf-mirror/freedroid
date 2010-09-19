@@ -327,6 +327,7 @@ int DoSkill(int skill_index, int SpellCost)
 		Me.slowdown_duration += strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
 		Me.paralyze_duration += strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
 		Me.invisible_duration += strcmp(SpellSkillMap[skill_index].effect, "invisibility") ? 0 : effdur;
+		Me.light_bonus_end_date = Me.current_game_date + (strcmp(SpellSkillMap[skill_index].effect, "light") ? 0 : effdur);
 		break;
 
 	case PROGRAM_FORM_BULLET:
@@ -451,14 +452,6 @@ int DoSkill(int skill_index, int SpellCost)
 			//
 			PlayOnceNeededSoundSample("effects/tux_ingame_comments/CantRepairThat.ogg", FALSE, FALSE);
 		}
-		goto out;
-	}
-
-	if (!strcmp(SpellSkillMap[skill_index].effect, "invisibility")) {
-		goto out;
-	}
-
-	if (!strcmp(SpellSkillMap[skill_index].effect, "burnup")) {
 		goto out;
 	}
 
@@ -863,7 +856,7 @@ void ShowSkillsScreen(void)
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "satellite"))
 				sprintf(CharText, " ");
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "light"))
-				sprintf(CharText, " ");
+				sprintf(CharText, _("Lighten area"));
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "burnup"))
 				sprintf(CharText, " ");
 

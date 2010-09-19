@@ -429,6 +429,13 @@ void UpdateAllCharacterStats()
 	AddInfluencerItemSecondaryBonus(&Me.shield_item);
 	AddInfluencerItemSecondaryBonus(&Me.special_item);
 
+	// Add light bonus if necessary
+	if (Me.light_bonus_end_date > Me.current_game_date) {
+		// Fade out the bonus in the last second
+		float ratio = min(1.0, Me.light_bonus_end_date - Me.current_game_date);
+		Me.light_bonus_from_tux += 5 * ratio;
+	}
+
 	// Check player's health and temperature
 	if (Me.energy > Me.maxenergy)
 		Me.energy = Me.maxenergy;

@@ -75,8 +75,8 @@ Program description=_"I am not the Linarian you are looking for."
 Picture="Invisibility.png"
 Form="self"
 Effect="invisibility"
-Effect duration=3
-Effect duration per level=1
+Effect duration=5
+Effect duration per level=2
 Cost=30
 Cost per level=5
 
@@ -223,16 +223,6 @@ Effect="passive"
 Cost=0
 
 
-** S*tart of new program specification subsection **
-Program name=_"Analyze item"
-Program description=_"NOT IMPLEMENTED YET Current implementation will be removed and possibly reimplemented for something else due to addon system replacing magic items"
-P*rogram description=_"Effect: Identify - There are very few items which have labels on them. Unless you happen to have an item labeled 'USE ME', you better make sure what it is before using it..."
-Picture="IdentifySkill.png"
-Effect="identify"
-Form="self"
-Cost=120
-Cost per level=-15
-
 #Potential future implementation# Nethack = takeover for humans. Possibly with a new minigame where you somehow make the human get sucked into playing the game turning it to a somewhat stupid bot, freezing them in place and agreeing to do things for you (eg like Tybalt will open the gate to RG house and let you past even if you are not yet a member). This would open up a lot of options for creating alternative storylines (eg never becoming an RG member). 
 
 ** Start of new program specification subsection **
@@ -274,13 +264,15 @@ Cost=0
 
 ** Start of new program specification subsection **
 Program name=_"Light"
-Program description=_"NOT IMPLEMENTED YET This does nothing in this version of freedroidRPG. Let there be light..."
+Program description=_"Let there be light..."
 Picture="Light.png"
-Form="bullet"
+Form="self"
 Effect="light"
-Cost=3
+Effect duration=5
+Cost=10
 Base damage=0
-Artwork internal code=14
+Effect duration per level=5
+Cost per level=1
 
 ** Start of new program specification subsection **
 Program name=_"Satellite image"

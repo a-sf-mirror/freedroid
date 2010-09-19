@@ -526,6 +526,7 @@ typedef struct tux {
 	float power_bonus_end_date;
 	int current_dexterity_bonus;
 	float dexterity_bonus_end_date;
+	float light_bonus_end_date;
 
 	finepoint speed;	// the current speed of the druid 
 	gps pos;		// current position in the whole ship 
