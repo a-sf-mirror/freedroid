@@ -907,7 +907,7 @@ void delete_map_level(int lnum)
 
 	curShip.AllLevels[lnum] = NULL;
 
-	if (lnum == curShip.num_levels)
+	if (lnum == curShip.num_levels - 1)
 		curShip.num_levels--;
 
 }
