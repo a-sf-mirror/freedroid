@@ -458,7 +458,6 @@ void equip_item(item *new_item);
 item *get_equipped_item_in_slot_for(int item_type);
 void MoveItem(item * SourceItem, item * DestItem);
 void silently_unhold_all_items(void);
-int required_magic_stat_for_next_level_and_item(int item_type);
 int CountItemtypeInInventory(int Itemtype);
 void DeleteInventoryItemsOfType(int Itemtype, int amount);
 void DeleteOneInventoryItemsOfType(int Itemtype);

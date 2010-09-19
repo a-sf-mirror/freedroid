@@ -680,63 +680,15 @@ int associate_skill_with_item(int item_type)
 };				// int associate_skill_with_item ( int item_type )
 
 /**
- *
- *
- */
-int required_magic_stat_for_next_level_and_item(int item_type)
-{
-	return 0;
-/*
-    int level_index;
-    int associated_skill = (-1) ;
-    associated_skill = associate_skill_with_item ( item_type );
-
-    // In case we're not dealing with a spell book, the question
-    // for skill requirement for the next level is senseless.  In
-    // that case, we always allow to apply the item in question.
-    //
-    if ( associated_skill == (-1) ) 
-	return ( 0 );
-
-    // Now we know the associated skill, so all we need to do is
-    // return the proper value from the magic requirements entry
-    // of the SkillMap.
-    //
-    level_index = Me . SkillLevel [ associated_skill ] ;
-    if ( ( level_index >= 0 ) && ( level_index < NUMBER_OF_SKILL_LEVELS ) )
-    {
-	return ( SpellSkillMap [ associated_skill ] . magic_requirement_table [ level_index ] );
-    }
-    else
-    {
-	fprintf ( stderr , "\nlevel_index=%d." , level_index );
-	ErrorMessage ( __FUNCTION__  , "\
-There was a skill level mentioned, that exceeds the range of allowed skill levels.",
-				   PLEASE_INFORM, IS_FATAL );
-    }
-TODO I removed this, need to put this back in*/
-	// Just to make the compiler happy.  (This line can't be
-	// ever reached from inside the code...)
-	//
-	return (0);
-
-};				// int required_magic_stat_for_next_level_and_item ( int item_type )
-
-/**
  * Some items, that can be applied directly (like spellbooks) do have a
- * certain stat requirement.  This function checks, if the corresponding
+ * certain stat requirement.  This function checks if the corresponding
  * requirements are met or not.
  */
-int requirements_for_item_application_met(item * CurItem)
+int requirements_for_item_application_met(item * it)
 {
-
-	if (Me.Magic >= required_magic_stat_for_next_level_and_item(CurItem->type)
-	    || !required_magic_stat_for_next_level_and_item(CurItem->type)) {
-		return (TRUE);
-	} else
-		return (FALSE);
-
-};				// int requirements_for_item_application_met ( item* CurItem ) 
+	(void) it;
+	return 1;
+}
 
 /**
  * This function checks whether a given item has the name specified. This is
