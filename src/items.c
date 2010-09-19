@@ -133,22 +133,23 @@ item *get_equipped_item_in_slot_for(int item_type)
  * the repair skill in contrast to the item repair via the shop, which of
  * course works much better.
  */
-void HomeMadeItemRepair(item *RepairItem)
+static void self_repair_item(item *it)
 {
-	// At this point we know, that we have just selected an item
-	// for home-made repair.
-	//
-	if (RepairItem->max_duration == (-1)) {
+	float lower_bound, ratio;
+
+	if (it->max_duration == -1) {
 		PlayOnceNeededSoundSample("effects/tux_ingame_comments/Tux_Item_Cant_Be_0.ogg", FALSE, FALSE);
-	} else {
-		RepairItem->current_duration =
-		    RepairItem->current_duration +
-		    ceil((RepairItem->max_duration - RepairItem->current_duration) * 0.08 * (1.0 + MyRandom(9)));
-		RepairItem->max_duration = RepairItem->current_duration;
-		// Play_Shop_ItemRepairedSound( );
-		PlayOnceNeededSoundSample("effects/tux_ingame_comments/Tux_This_Quick_Fix_0.ogg", FALSE, FALSE);
-	}
-};				// void HomeMadeItemRepair ( Item RepairItem ) 
+		return;
+	} 
+
+	/* Self repair formula : repair X% to 100% of the missing duration value. X is 5% for repair level 1 up to 45% for repair level 9. */
+	lower_bound = Me.skill_level[get_program_index_with_name("Repair equipment")] * 0.05;
+	ratio = lower_bound + (1.0 - lower_bound) * MyRandom(100) / 100.0;
+
+	it->current_duration +=	(it->max_duration - it->current_duration) * ratio;
+	it->max_duration = it->current_duration;
+	PlayOnceNeededSoundSample("effects/tux_ingame_comments/Tux_This_Quick_Fix_0.ogg", FALSE, FALSE);
+}
 
 /**
  * This function calculates the price of a given item, taking into account
@@ -1880,7 +1881,7 @@ void HandleInventoryScreen(void)
 					DebugPrintf(0, "\nRepairing in INVENTORY grid FAILED:  NO ITEM AT THIS POSITION FOUND!");
 				} else {
 					if (Me.Inventory[Grabbed_InvPos].max_duration != -1)
-						HomeMadeItemRepair(&(Me.Inventory[Grabbed_InvPos]));
+						self_repair_item(&(Me.Inventory[Grabbed_InvPos]));
 					else
 						ApplyItem(&(Me.Inventory[Grabbed_InvPos]));
 				}
@@ -1889,7 +1890,7 @@ void HandleInventoryScreen(void)
 				for (i = 0; i < sizeof(allslots) / sizeof(allslots[0]); i++) {
 					if (MouseCursorIsOnButton(allslots[i].buttonidx, CurPos.x, CurPos.y)
 					    && allslots[i].slot->type != -1) {
-						HomeMadeItemRepair(allslots[i].slot);
+						self_repair_item(allslots[i].slot);
 						break;
 					}
 				}
