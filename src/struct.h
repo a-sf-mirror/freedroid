@@ -79,7 +79,7 @@ struct BFont_Info;
  * so that later changes to the struct can be made with minimal effort 
  * and mistakes.
  * ---------------------------------------------------------------------- */
-typedef struct iso_image_s {
+typedef struct iso_image {
 	SDL_Surface *surface;
 	short offset_x;
 	short offset_y;
@@ -101,14 +101,14 @@ typedef struct iso_image_s {
 } iso_image, *Iso_image;
 #define UNLOADED_ISO_IMAGE { NULL , 0 , 0 , NULL , 0 , 0 , 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0 }
 
-typedef struct mouse_press_button_s {
+typedef struct mouse_press_button {
 	iso_image button_image;
 	char *button_image_file_name;
 	SDL_Rect button_rect;
 	char scale_this_button;
 } mouse_press_button, *Mouse_press_button;
 
-typedef struct keybind_s {
+typedef struct keybind {
 	char *name;
 		/**< keybinding name, taken from keybindNames */
 	int key;
@@ -119,7 +119,7 @@ typedef struct keybind_s {
 
 typedef char *string;
 
-typedef struct configuration_for_freedroid_s {
+typedef struct configuration_for_freedroid {
 	float WantedTextVisibleTime;
 	int Draw_Framerate;
 	int Draw_Position;
@@ -175,40 +175,40 @@ typedef struct configuration_for_freedroid_s {
 	keybind_t input_keybinds[100];
 } configuration_for_freedroid;
 
-typedef struct point_s {
+typedef struct point {
 	int x;
 	int y;
 } point;
 
-typedef struct moderately_finepoint_s {
+typedef struct moderately_finepoint {
 	float x;
 	float y;
 } moderately_finepoint;
 
-typedef struct finepoint_s {
+typedef struct finepoint {
 	double x;
 	double y;
 } finepoint;
 
-typedef struct gps_s {
+typedef struct gps {
 	float x;
 	float y;
 	int z;
 } gps;
 
-typedef struct location_s {
+typedef struct location {
 	unsigned char level;
 	int x;
 	int y;
 } location;
 
-typedef struct map_label_s {
+typedef struct map_label {
 	char *label_name;
 	point pos;		// how many blocks does this big map insert cover?
 } map_label;
 
 typedef char *luacode;
-typedef struct mission_s {
+typedef struct mission {
 	string mission_name;
 	int MissionWasAssigned;	// has be influencer been assigned to this mission? , currently uninitialized
 	int MissionIsComplete;	// has the mission been completed?
@@ -236,7 +236,7 @@ typedef struct mission_s {
 // This structure can contain conditions that must be fulfilled, so that a special
 // event is triggered.  Such conditions may be specified in the mission file as well
 //
-typedef struct event_trigger_s {
+typedef struct event_trigger {
 	// Maybe the event is triggerd by the influencer stepping somewhere
 	int Influ_Must_Be_At_Level;
 	point Influ_Must_Be_At_Point;
@@ -250,7 +250,7 @@ typedef struct event_trigger_s {
 	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
 } event_trigger;
 
-typedef struct item_image_spec_s {
+typedef struct item_image_spec {
 	point inv_size;
 	SDL_Surface *Surface;
 	iso_image ingame_iso_image;
@@ -276,7 +276,7 @@ struct addon_spec {
 	struct dynarray materials;
 };
 
-typedef struct itemspec_s {
+typedef struct itemspec {
 	char *item_name;
 	char *item_rotation_series_prefix;
 	char *item_description;
@@ -340,7 +340,7 @@ typedef struct upgrade_socket {
 	string addon;
 } upgrade_socket;
 
-typedef struct item_s {
+typedef struct item {
 	// Here are the rather short-lived properties of the item
 	gps pos;
 	gps virt_pos;
@@ -379,7 +379,7 @@ typedef struct item_s {
 	struct upgrade_socket_dynarray upgrade_sockets;
 } item;
 
-typedef struct druidspec_s {
+typedef struct druidspec {
 	char *druidname;
 	char *default_short_description;
 	char *droid_portrait_rotation_series_prefix;
@@ -418,7 +418,7 @@ typedef struct druidspec_s {
 	short individual_shape_nr;
 } druidspec;
 
-typedef struct enemy_s {
+typedef struct enemy {
 	// There are three sets of attributes, which are initialized and
 	// possibly re-initialized by 3 different codes:
 	//
@@ -484,7 +484,7 @@ typedef struct enemy_s {
 	short int ammo_left;               // ammunition left in the charger
 	char attack_target_type;           // attack NOTHING, PLAYER, or BOT
 	short int bot_target_n;
-	struct enemy_s *bot_target_addr;
+	struct enemy *bot_target_addr;
 	float previous_angle;              // which angle has this robot been facing the frame before?
 	float current_angle;               // which angle will the robot be facing now?
 	float previous_phase;              // which (8-way) direction did the robot face before?
@@ -519,7 +519,7 @@ typedef struct npc {
 } npc;
 
 typedef char automap_data_t[100][100];
-typedef struct tux_s {
+typedef struct tux {
 	float current_game_date;	// seconds since game start, will be printed as a different 'date'
 	// inside the game, like 14:23 is afternoon
 	int current_power_bonus;
@@ -656,13 +656,13 @@ typedef struct tux_s {
 	int program_shortcuts[10];
 } tux_t;
 
-typedef struct bulletspec_s {
+typedef struct bulletspec {
 	int phases;		// how many phases in motion to show 
 	double phase_changes_per_second;	// how many different phases to display every second
 	iso_image image[BULLET_DIRECTIONS][MAX_PHASES_IN_A_BULLET];
 } bulletspec;
 
-typedef struct bullet_s {
+typedef struct bullet {
 	short int type;
 	unsigned char phase;
 	signed char mine;
@@ -691,7 +691,7 @@ typedef struct bullet_s {
 	char hit_type;		//hit bots, humans, both?
 } bullet, *Bullet;
 
-typedef struct melee_shot_s	// this is a melee shot
+typedef struct melee_shot	// this is a melee shot
 {
 	char attack_target_type;	//type of attack
 	char mine;		//is it mine?
@@ -703,13 +703,13 @@ typedef struct melee_shot_s	// this is a melee shot
 	char level;
 } melee_shot;
 
-typedef struct blastspec_s {
+typedef struct blastspec {
 	int phases;
 	float total_animation_time;
 	iso_image image[PHASES_OF_EACH_BLAST];
 } blastspec;
 
-typedef struct blast_s {
+typedef struct blast {
 	gps pos;
 	int type;
 	float phase;
@@ -717,7 +717,7 @@ typedef struct blast_s {
 	float damage_per_second;
 } blast, *Blast;
 
-typedef struct spell_active_s {
+typedef struct spell_active {
 	int img_type;		// what type of spell is active?
 	int damage;
 	int poison_duration;
@@ -732,7 +732,7 @@ typedef struct spell_active_s {
 	char hit_type;
 } spell_active;
 
-typedef struct spell_skill_spec_s {
+typedef struct spell_skill_spec {
 	char *name;
 	char *icon_name;
 	iso_image icon_surface;
@@ -752,19 +752,19 @@ typedef struct spell_skill_spec_s {
 	int graphics_code;
 } spell_skill_spec;
 
-typedef struct waypoint_s {
+typedef struct waypoint {
 	int x;
 	int y;
 	int suppress_random_spawn;
 	struct dynarray connections;
 } waypoint;
 
-typedef struct obstacle_s {
+typedef struct obstacle {
 	int type;
 	gps pos;
 } obstacle;
 
-typedef struct map_tile_s {
+typedef struct map_tile {
 	Uint16 floor_value;
 	int obstacles_glued_to_here[MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE];
 } map_tile;
@@ -775,7 +775,7 @@ struct obstacle_extension {
 	void *data;
 }; /** This contains "extension data" for obstacles - labels, item lists, ... */
 
-typedef struct level_s {
+typedef struct level {
 	int levelnum;
 	int xlen;
 	int ylen;
@@ -804,7 +804,7 @@ typedef struct level_s {
 	int teleport_pair;
 } level, *Level;
 
-typedef struct obstacle_spec_s {
+typedef struct obstacle_spec {
 	iso_image image;
 	iso_image shadow_image;
 	SDL_Surface *automap_version;
@@ -857,12 +857,12 @@ struct visible_level {
 	struct list_head node;
 };
 
-typedef struct ship_s {
+typedef struct ship {
 	int num_levels;
 	level *AllLevels[MAX_LEVELS];
 } ship;
 
-typedef struct dialogue_option_s {
+typedef struct dialogue_option {
 	char *option_text;
 	char *option_sample_file_name;
 
@@ -874,21 +874,14 @@ typedef struct dialogue_option_s {
 	char exists;
 } dialogue_option;
 
-typedef struct supported_languages_s {
-	char *code;
-	char *name;
-	char *font_class;
-	char *encoding;
-} supported_languages_t;
-
-typedef struct colldet_filter_s {
-	int (*callback) (struct colldet_filter_s * filter, obstacle * obs, int obs_idx);
+typedef struct colldet_filter {
+	int (*callback) (struct colldet_filter *filter, obstacle *obs, int obs_idx);
 	void *data;
 	float extra_margin;
-	struct colldet_filter_s *next;
+	struct colldet_filter *next;
 } colldet_filter;
 
-typedef struct light_radius_config_s {
+typedef struct light_radius_config {
 	uint32_t cells_w;
 	uint32_t cells_h;
 	uint32_t texture_w;
@@ -897,7 +890,7 @@ typedef struct light_radius_config_s {
 	float scale_factor;
 } light_radius_config;
 
-typedef struct screen_resolution_s {
+typedef struct screen_resolution {
 	int xres;
 	int yres;
 	char *comment;
@@ -910,7 +903,7 @@ typedef struct screen_resolution_s {
  * Note : '2' excepted bots are needed when the pathfinder is called
  *         to let a bot reach an other one (used during attack, for example).
  */
-typedef struct freeway_context_s {
+typedef struct freeway_context {
 	int check_tux;		// Check if Tux is along the way
 	Enemy except_bots[2];	// Do not check if those bots are along the way (see note below)
 } freeway_context;
@@ -918,7 +911,7 @@ typedef struct freeway_context_s {
 /*
  * Pathfinder's execution context
  */
-typedef struct pathfinder_context_s {
+typedef struct pathfinder_context {
 	colldet_filter *dlc_filter;	// DLC filter to use
 	freeway_context *frw_ctx;	// CheckIfWayIsFreeOfDroids's execution context to use
 } pathfinder_context;

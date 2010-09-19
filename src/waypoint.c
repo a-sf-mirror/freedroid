@@ -55,7 +55,7 @@ int add_waypoint(level *lvl, int x, int y, int suppress_random_spawn)
 	dynarray_init(&w.connections, 2, sizeof(int));
  
 	// Add the waypoint on the level
-	dynarray_add(&lvl->waypoints, &w, sizeof(struct waypoint_s));
+	dynarray_add(&lvl->waypoints, &w, sizeof(struct waypoint));
 
 	// Return the index of the new waypoint
 	return lvl->waypoints.size - 1;
@@ -78,7 +78,7 @@ void del_waypoint(level *lvl, int x, int y)
 	for (wpnum = 0; wpnum < lvl->waypoints.size; wpnum++) {
 		if (wpts[wpnum].x == x && wpts[wpnum].y == y) {
 			// Delete the waypoint
-			dynarray_del(&lvl->waypoints, wpnum, sizeof(struct waypoint_s));
+			dynarray_del(&lvl->waypoints, wpnum, sizeof(struct waypoint));
 			break;
 		}
 	}

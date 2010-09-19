@@ -146,8 +146,8 @@ static void mapgen_bench()
 	for (i = 0; i < l.ylen; i++)
 		l.map[i] = (map_tile*)MyMalloc(sizeof(map_tile) * l.xlen);
 	dynarray_init(&l.obstacle_extensions, 0, sizeof(struct obstacle_extension));
-	dynarray_init(&l.map_labels, 0, sizeof(struct map_label_s));
-	dynarray_init(&l.waypoints, 0, sizeof(struct waypoint_s));
+	dynarray_init(&l.map_labels, 0, sizeof(struct map_label));
+	dynarray_init(&l.waypoints, 0, sizeof(struct waypoint));
 
 	timer_start();
 	while (loop--) {

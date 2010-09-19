@@ -188,7 +188,7 @@ void respawn_level(int level_num)
 static void resolve_map_label_on_level(const char *label_name, location *position_pointer, int level_num)
 {
 	level *lvl = curShip.AllLevels[level_num];
-	struct map_label_s *map_label;
+	struct map_label *map_label;
 
 	// Get the map label on this level
 	map_label = get_map_label(lvl, label_name);
@@ -476,7 +476,7 @@ static char *decode_map_labels(level *loadlevel, char *data)
 	int i, x, y;
 
 	// Initialize map labels
-	dynarray_init(&loadlevel->map_labels, 10, sizeof(struct map_label_s));
+	dynarray_init(&loadlevel->map_labels, 10, sizeof(struct map_label));
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
 		return data;
@@ -763,7 +763,7 @@ static char *decode_waypoints(level *loadlevel, char *data)
 	char *pos;
 
 	// Initialize waypoints
-	dynarray_init(&loadlevel->waypoints, 2, sizeof(struct waypoint_s));
+	dynarray_init(&loadlevel->waypoints, 2, sizeof(struct waypoint));
 
 	// Find the beginning and end of the waypoint list
 	if ((wp_begin = strstr(data, WP_BEGIN_STRING)) == NULL)
@@ -828,7 +828,7 @@ static char *decode_waypoints(level *loadlevel, char *data)
 		}
 
 		// Add the waypoint on the level
-		dynarray_add(&loadlevel->waypoints, &new_wp, sizeof(struct waypoint_s));
+		dynarray_add(&loadlevel->waypoints, &new_wp, sizeof(struct waypoint));
 	}
 
 	free(this_line);
@@ -1325,7 +1325,7 @@ static void encode_obstacles_of_this_level(struct auto_string *shipstr, level *L
 static void encode_map_labels(struct auto_string *shipstr, level *lvl)
 {
 	int i;
-	struct map_label_s *map_label;
+	struct map_label *map_label;
 
 	autostr_append(shipstr, "%s\n", MAP_LABEL_BEGIN_STRING);
 

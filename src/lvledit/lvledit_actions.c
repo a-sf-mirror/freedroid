@@ -557,7 +557,7 @@ void action_set_floor(Level EditLevel, int x, int y, int type)
 
 static int action_change_map_label(level *EditLevel, int i, char *name, int x, int y, int undoable)
 {
-	struct map_label_s *map_label;
+	struct map_label *map_label;
 	char *old_label = NULL;
 
 	// If the map label exist, remove it
@@ -593,7 +593,7 @@ static int action_change_map_label(level *EditLevel, int i, char *name, int x, i
 
 void level_editor_action_change_map_label_user(level *EditLevel)
 {
-	struct map_label_s *map_label = NULL;
+	struct map_label *map_label = NULL;
 	char *name;
 	char *old_name = NULL;
 	char suggested_label[200];
@@ -867,10 +867,10 @@ void CreateNewMapLevel(int level_num)
 	dynarray_init(&NewLevel->obstacle_extensions, 10, sizeof(struct obstacle_extension));
 
 	// Initialize map labels
-	dynarray_init(&NewLevel->map_labels, 10, sizeof(struct map_label_s));
+	dynarray_init(&NewLevel->map_labels, 10, sizeof(struct map_label));
 
 	// Initialize waypoints
-	dynarray_init(&NewLevel->waypoints, 10, sizeof(struct waypoint_s));
+	dynarray_init(&NewLevel->waypoints, 10, sizeof(struct waypoint));
 	
 	curShip.AllLevels[level_num] = NewLevel;
 

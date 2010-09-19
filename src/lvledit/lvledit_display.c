@@ -81,7 +81,7 @@ static void gps_show() {
 static void print_label_information(level *EditLevel)
 {
 	char PanelText[5000] = "";
-	struct map_label_s *map_label;
+	struct map_label *map_label;
 	int i;
 
 	for (i = 0; i < EditLevel->map_labels.size; i++) {
@@ -270,7 +270,7 @@ static void show_map_labels(int mask)
 {
 	static iso_image map_label_indicator = UNLOADED_ISO_IMAGE;
 	level *EditLevel = curShip.AllLevels[Me.pos.z];
-	struct map_label_s *map_label;
+	struct map_label *map_label;
 	int i;
 
 	// On the first function call to this function, we must load the map label indicator

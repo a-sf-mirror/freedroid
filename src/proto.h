@@ -846,7 +846,7 @@ void defrag_obstacle_array(level *);
 // map_label.c
 void add_map_label(level *, int, int, char *);
 void del_map_label(level *, const char *);
-struct map_label_s *get_map_label(level *, const char *);
+struct map_label *get_map_label(level *, const char *);
 
 // lvledit_display.c
 float lvledit_zoomfact_inv();

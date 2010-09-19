@@ -1613,7 +1613,7 @@ enum faction_state {
 };
 
 #define ACCESS_OBSTACLE_EXTENSION(X,Y) ((struct obstacle_extension *)(X.arr))[Y]
-#define ACCESS_MAP_LABEL(X,Y) ((struct map_label_s *)(X.arr))[Y]
+#define ACCESS_MAP_LABEL(X,Y) ((struct map_label *)(X.arr))[Y]
 
 enum obstacle_extension_type {
 	OBSTACLE_EXTENSION_LABEL = 30, // This extension indicates an obstacle label. The associated data is a const char * containing the label.

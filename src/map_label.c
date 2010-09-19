@@ -34,7 +34,7 @@
  */
 void add_map_label(level *lvl, int x, int y, char *label_name)
 {
-	struct map_label_s map_label;
+	struct map_label map_label;
 
 	// Create a new map label
 	map_label.pos.x = x;
@@ -42,7 +42,7 @@ void add_map_label(level *lvl, int x, int y, char *label_name)
 	map_label.label_name = label_name;
 
 	// Add the new map label on the map position
-	dynarray_add(&lvl->map_labels, &map_label, sizeof(struct map_label_s));
+	dynarray_add(&lvl->map_labels, &map_label, sizeof(struct map_label));
 
 	DebugPrintf(0, "\nNew map label added: label_name=%s, pos.x=%d, pos.y=%d, pos.z=%d",
 			label_name, x, y, lvl->levelnum);
@@ -55,7 +55,7 @@ void add_map_label(level *lvl, int x, int y, char *label_name)
  */
 void del_map_label(level *lvl, const char *label_name)
 {
-	struct map_label_s *map_label;
+	struct map_label *map_label;
 	int i;
 
 	for (i = 0; i < lvl->map_labels.size; i++) {
@@ -64,7 +64,7 @@ void del_map_label(level *lvl, const char *label_name)
 
 		if (!strcmp(map_label->label_name, label_name)) {
 			// Delete the map label
-			dynarray_del(&lvl->map_labels, i, sizeof(struct map_label_s));
+			dynarray_del(&lvl->map_labels, i, sizeof(struct map_label));
 			return;
 		}
 	}
@@ -75,9 +75,9 @@ void del_map_label(level *lvl, const char *label_name)
  * \param lvl Pointer towards the level where the map label lies
  * \param label_name Name of the map label
  */
-struct map_label_s *get_map_label(level *lvl, const char *label_name)
+struct map_label *get_map_label(level *lvl, const char *label_name)
 {
-	struct map_label_s *map_label;
+	struct map_label *map_label;
 	int i;
 
 	for (i = 0; i < lvl->map_labels.size; i++) {
