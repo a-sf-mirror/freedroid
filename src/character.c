@@ -62,8 +62,7 @@
 
 // y-offsets - left
 // STR_X_Y - VIT_Y in defs.h
-#define D_POINTS_Y 238
-#define T_POINTS_Y 256
+#define POINTS_Y 245
 #define HEALTH_STAT_Y 289
 #define TEMP_STAT_Y 308
 #define STAMINA_STAT_Y 327
@@ -596,16 +595,10 @@ void ShowCharacterScreen()
 
 	SDL_Rect tmprect = CharacterRect;
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Development points"), LEFT_TXT_X + CharacterRect.x, D_POINTS_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
+	DisplayText(_("Training points"), LEFT_TXT_X + CharacterRect.x, POINTS_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
 	sprintf(CharText, "%d", Me.points_to_distribute);
-	DisplayText(CharText, 155 + CharacterRect.x, D_POINTS_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
-
-	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Training points"), LEFT_TXT_X + CharacterRect.x, T_POINTS_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
-	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d", Me.points_to_distribute);
-	DisplayText(CharText, 155 + CharacterRect.x, T_POINTS_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(CharText, 155 + CharacterRect.x, POINTS_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Health"), LEFT_TXT_X + CharacterRect.x, HEALTH_STAT_Y + CharacterRect.y, &tmprect, TEXT_STRETCH);
