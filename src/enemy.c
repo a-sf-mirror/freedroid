@@ -687,7 +687,7 @@ void DropEnemyTreasure(Enemy ThisRobot)
 	// If the Tux has the skill to extract certain components from dead bots,
 	// these components will be thrown out automatically, when the bot is killed.
 	//
-	switch (Me.base_skill_level[get_program_index_with_name("Extract bot parts")]) {
+	switch (Me.skill_level[get_program_index_with_name("Extract bot parts")]) {
 	case 6:
 	case 5:
 		if (Druidmap[ThisRobot->type].amount_of_tachyon_condensators

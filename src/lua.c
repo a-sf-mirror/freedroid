@@ -253,17 +253,17 @@ static int lua_event_improve_program(lua_State * L)
 static int lua_event_downgrade_program(lua_State * L)
 {
 	const char *pname = luaL_checkstring(L, 1);
-	Me.base_skill_level[get_program_index_with_name(pname)]--;
-	if (Me.base_skill_level[get_program_index_with_name(pname)] < 0)
-		Me.base_skill_level[get_program_index_with_name(pname)] = 0;
+	Me.skill_level[get_program_index_with_name(pname)]--;
+	if (Me.skill_level[get_program_index_with_name(pname)] < 0)
+		Me.skill_level[get_program_index_with_name(pname)] = 0;
 	return 0;
 }
 
 static int lua_event_get_program_revision(lua_State * L)
 {
 	const char *pname = luaL_checkstring(L, 1);
-	lua_pushinteger(L, Me.base_skill_level[get_program_index_with_name(pname)]);
-        return 1;
+	lua_pushinteger(L, Me.skill_level[get_program_index_with_name(pname)]);
+	return 1;
 }
 
 static int lua_event_delete_item(lua_State * L)
@@ -695,7 +695,7 @@ static int lua_chat_set_bot_state(lua_State * L)
 static int lua_chat_takeover(lua_State * L)
 {
 	int opponent_capsules = luaL_checkinteger(L, 1);
-	int player_capsules = 2 + Me.base_skill_level[get_program_index_with_name("Hacking")];
+	int player_capsules = 2 + Me.skill_level[get_program_index_with_name("Hacking")];
 	int game_length = luaL_optint(L, 2, 100);
 
 	int won = do_takeover(player_capsules, opponent_capsules, game_length);

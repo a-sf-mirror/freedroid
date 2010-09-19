@@ -1311,8 +1311,7 @@ void InitInfluencerStartupSkills(void)
 
 	Me.readied_skill = 0;
 	for (i = 0; i < number_of_skills; i++) {
-		Me.SkillLevel[i] = SpellSkillMap[i].present_at_startup;
-		Me.base_skill_level[i] = SpellSkillMap[i].present_at_startup;
+		Me.skill_level[i] = SpellSkillMap[i].present_at_startup;
 	}
 
 	GameConfig.spell_level_visible = 0;

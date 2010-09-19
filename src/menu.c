@@ -1029,7 +1029,7 @@ void Cheatmenu(void)
 
 		case 'h':	// auto-aquire all skills
 			for (i = 0; i < number_of_skills; i++)
-				Me.base_skill_level[i]++;
+				Me.skill_level[i]++;
 			break;
 
 		case 'n':	// toggle display of all droids

@@ -92,10 +92,10 @@ int improve_program(int prog_id)
 	if(prog_id < 0)
 		return 0;
 
-	if(Me.base_skill_level[prog_id] >= NUMBER_OF_SKILL_LEVELS - 1)
+	if(Me.skill_level[prog_id] >= NUMBER_OF_SKILL_LEVELS - 1)
 		return 1;
 
-	Me.base_skill_level[prog_id]++;
+	Me.skill_level[prog_id]++;
 	return 0;
 }
 
@@ -109,10 +109,10 @@ int calculate_program_heat_cost(int program_id)
 
 	if (program_id == get_program_index_with_name("Emergency shutdown") ) { //then use cost_ratio^-1
 		return (1/cost_ratio[Me.spellcasting_skill]) * (SpellSkillMap[program_id].heat_cost +
-							    	SpellSkillMap[program_id].heat_cost_per_level * (Me.SkillLevel[program_id] - 1));
+							    	SpellSkillMap[program_id].heat_cost_per_level * (Me.skill_level[program_id] - 1));
 	} else {
 		return cost_ratio[Me.spellcasting_skill] * (SpellSkillMap[program_id].heat_cost +
-							    SpellSkillMap[program_id].heat_cost_per_level * (Me.SkillLevel[program_id] - 1));
+							    SpellSkillMap[program_id].heat_cost_per_level * (Me.skill_level[program_id] - 1));
 	}
 };
 
@@ -121,7 +121,7 @@ int calculate_program_heat_cost(int program_id)
  * -----------------*/
 static int calculate_program_hit_damage(int program_id)
 {
-	return (SpellSkillMap[program_id].damage_base + SpellSkillMap[program_id].damage_per_level * (Me.SkillLevel[program_id] - 1) +
+	return (SpellSkillMap[program_id].damage_base + SpellSkillMap[program_id].damage_per_level * (Me.skill_level[program_id] - 1) +
 		MyRandom(SpellSkillMap[program_id].damage_mod));
 }
 
@@ -130,13 +130,13 @@ static int calculate_program_hit_damage(int program_id)
  *-----------------*/
 static int calculate_program_hit_damage_low(int program_id)
 {
-	return (SpellSkillMap[program_id].damage_base + SpellSkillMap[program_id].damage_per_level * (Me.SkillLevel[program_id] - 1));
+	return (SpellSkillMap[program_id].damage_base + SpellSkillMap[program_id].damage_per_level * (Me.skill_level[program_id] - 1));
 
 }
 
 static int calculate_program_hit_damage_high(int program_id)
 {
-	return (SpellSkillMap[program_id].damage_base + SpellSkillMap[program_id].damage_per_level * (Me.SkillLevel[program_id] - 1) +
+	return (SpellSkillMap[program_id].damage_base + SpellSkillMap[program_id].damage_per_level * (Me.skill_level[program_id] - 1) +
 		SpellSkillMap[program_id].damage_mod);
 }
 
@@ -147,7 +147,7 @@ static int calculate_program_hit_damage_high(int program_id)
 static float calculate_program_effect_duration(int program_id)
 {
 	return (SpellSkillMap[program_id].effect_duration +
-		SpellSkillMap[program_id].effect_duration_per_level * (Me.SkillLevel[program_id] - 1));
+		SpellSkillMap[program_id].effect_duration_per_level * (Me.skill_level[program_id] - 1));
 }
 
 /**
@@ -242,7 +242,7 @@ void HandleCurrentlyActivatedSkill()
 		if (ItemMap[Me.Inventory[Grabbed_InvPos].type].item_can_be_applied_in_combat)
 			return;	//if the cursor is over an item that can be applied, then the player wants to apply it not trigger a spell
 
-	if (Me.SkillLevel[Me.readied_skill] <= 0)
+	if (Me.skill_level[Me.readied_skill] <= 0)
 		return;
 
 	/* We calculate the spellcost and check the power limit override - the temperature is raised further down, when the actual effect
@@ -610,7 +610,7 @@ static void establish_skill_subset_map(int *SkillSubsetMap)
 		SkillSubsetMap[i] = (-1);
 	}
 	for (i = 0; i < number_of_skills; i++) {
-		if (Me.SkillLevel[i] > 0) {
+		if (Me.skill_level[i] > 0) {
 			SkillSubsetMap[NextPosition] = i;
 			NextPosition++;
 		}
@@ -628,7 +628,7 @@ void activate_nth_skill(int skill_num)
 	// If the n-th skill does exist, we activate the n-th skill,
 	// otherwise we leave the last readied skill.
 	//
-	if (Me.SkillLevel[skill_num] > 0) {
+	if (Me.skill_level[skill_num] > 0) {
 		Me.readied_skill = skill_num;
 	} else {
 		ErrorMessage(__FUNCTION__,
@@ -654,7 +654,7 @@ void set_nth_quick_skill(int quick_skill)
 		establish_skill_subset_map(&(SkillSubsetMap[0]));
 		ski = SkillSubsetMap[ski];
 			
-		if (Me.SkillLevel[ski] <=  0) {
+		if (Me.skill_level[ski] <=  0) {
 			// Invalid skill was selected
 			ErrorMessage(__FUNCTION__,
 				"Tried to set skill number %d in quick skills. Skill was not aquired yet.\n",
@@ -802,7 +802,7 @@ void ShowSkillsScreen(void)
 		    FIRST_SKILLRECT_Y - 8 + i * (64 + INTER_SKILLRECT_DIST) + SkillScreenRect.y + 2 * FontHeight(GetCurrentFont());
 
 		// Program revision
-		sprintf(CharText, _("Program revision: %c%d%c "), font_switchto_msgvar[0], Me.SkillLevel[SkillOfThisSlot],
+		sprintf(CharText, _("Program revision: %c%d%c "), font_switchto_msgvar[0], Me.skill_level[SkillOfThisSlot],
 			font_switchto_msgstat[0]);
 		DisplayText(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, TEXT_STRETCH);
 		nextypos += FontHeight(GetCurrentFont());
@@ -848,7 +848,7 @@ void ShowSkillsScreen(void)
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "poison"))
 				sprintf(CharText, _("Poison"));
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "takeover")) {
-				tmp = Me.SkillLevel[SkillOfThisSlot] + 2;
+				tmp = Me.skill_level[SkillOfThisSlot] + 2;
 				sprintf(CharText, _("Takeover charges: %c%d%c "), font_switchto_msgvar[0], tmp, font_switchto_msgstat[0]);
 			} else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "teleport_home"))
 				sprintf(CharText, _("Escape"));

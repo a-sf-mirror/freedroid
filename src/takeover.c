@@ -707,7 +707,7 @@ int droid_takeover(enemy * target)
 	while (!(!SpacePressed() && !EscapePressed() && !MouseLeftPressed())) ;
 
 	cDroid = target;
-	int player_capsules = 2 + Me.base_skill_level[get_program_index_with_name("Hacking")];
+	int player_capsules = 2 + Me.skill_level[get_program_index_with_name("Hacking")];
 	max_opponent_capsules = 2 + Druidmap[target->type].class;
 
 	if (do_takeover(player_capsules, max_opponent_capsules, 100)) {

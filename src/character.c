@@ -230,11 +230,6 @@ void update_all_primary_stats()
 
 	Me.double_ranged_damage = FALSE;
 
-	// Now we re-initialize the SKILL LEVELS
-	//
-	for (i = 0; i < number_of_skills; i++)
-		Me.SkillLevel[i] = Me.base_skill_level[i];
-
 	// Now we add all bonuses to the influencers PRIMARY stats
 	//
 	AddInfluencerItemAttributeBonus(&Me.armour_item);
