@@ -35,14 +35,6 @@
 +++
 Mission Name=_"Bender's problem"
 Mission target is to fetch item : "Brain Enlargement Pills Antidote"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -51,14 +43,6 @@ Mission target is to live for how many seconds : -1
 +++
 Mission Name=_"The yellow toolkit"
 Mission target is to fetch item : "Dixon's Toolbox"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -67,14 +51,6 @@ Mission target is to live for how many seconds : -1
 +++
 Mission Name=_"Anything but the army snacks, please!"
 Mission target is to fetch item : "Red Dilithium Crystal"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -83,13 +59,6 @@ Mission target is to live for how many seconds : -1
 +++
 Mission Name=_"Novice Arena"
 Mission target is to kill droids with marker : 1029
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
-Mission target is to live for how many seconds : -1
 Completion LuaCode={
 	change_obstacle_state("NoviceArenaExitDoor", "opened")
 	display_console_message(_"Novice arena cleared!")
@@ -103,13 +72,6 @@ Completion LuaCode={
 +++
 Mission Name=_"Time to say goodnight"
 Mission target is to kill droids with marker : 1030
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
-Mission target is to live for how many seconds : -1
 Completion LuaCode={
 	change_obstacle_state("MasterArenaExitDoor", "opened")
 	display_console_message(_"Master arena cleared. Good job, man.")
@@ -122,14 +84,7 @@ Completion LuaCode={
 +++ Clean out the first level of the warehouse
 +++
 Mission Name=_"Opening a can of bots..."
-Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -137,16 +92,8 @@ Mission target is to live for how many seconds : -1
 +++ Clean out the second level under Kevins station
 +++
 Mission Name=_"And there was light..."
-Mission target is to kill droids with marker : -1
 Mission target is to kill all hostile droids this first level : 18
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
-Mission target is to live for how many seconds : -1
 Completion LuaCode={
-	-- this ends quest, but later update_quests still adds log text properly
 	add_diary_entry("And there was light...", "Hope everything is back to normal now. I better go check with Kevin.")
 	display_console_message(_"All hostiles on level disabled.")
 	display_big_message(_"Level cleared!")
@@ -159,15 +106,6 @@ Completion LuaCode={
 +++ people inside the red guard complex
 +++
 Mission Name=_"A kingdom for a cluster!"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 50
-Mission target is to reach X-Pos : 50
-Mission target is to reach Y-Pos : 50
-Mission target is to live for how many seconds : -1
-computer cluster for analysis. Ought to be simple."
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -175,14 +113,9 @@ computer cluster for analysis. Ought to be simple."
 +++ Reach the disruptor shield generator and activate it, if possible
 +++
 Mission Name=_"Opening access to MS Office"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
 Mission target is to reach level : 4
 Mission target is to reach X-Pos : 7.5
 Mission target is to reach Y-Pos : 33.5
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -191,14 +124,6 @@ Mission target is to live for how many seconds : -1
 +++ This mission can only be finished through a talk with the firmware update server.
 +++ 
 Mission Name=_"Propagating a faulty firmware"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 0
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -207,14 +132,6 @@ Mission target is to live for how many seconds : -1
 +++
 Mission Name=_"SADD's power supply"
 Mission target is to fetch item : "Red Dilithium Crystal"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -222,14 +139,7 @@ Mission target is to live for how many seconds : -1
 +++ Free Tania 
 +++
 Mission Name=_"Tania's sanitary"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
 Mission target is to overtake a droid with marker : 3035
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -237,14 +147,6 @@ Mission target is to live for how many seconds : -1
 +++ Help Stone pay tax
 +++
 Mission Name=_"Saving the shop"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -252,14 +154,6 @@ Mission target is to live for how many seconds : -1
 +++ Find Koan
 +++
 Mission Name=_"Doing Duncan a favour"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -267,16 +161,6 @@ Mission target is to live for how many seconds : -1
 +++ Learn to Move
 +++
 Mission Name=_"Tutorial Movement"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
-Completion LuaCode={
-}
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -285,13 +169,6 @@ Completion LuaCode={
 +++
 Mission Name=_"Tutorial Melee"
 Mission target is to kill droids with marker : 2037
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
-Mission target is to live for how many seconds : -1
 Completion LuaCode={
 	display_console_message(_"Melee droids destroyed!")
 }
@@ -303,13 +180,6 @@ Completion LuaCode={
 +++
 Mission Name=_"Tutorial Shooting"
 Mission target is to kill droids with marker : 3037
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
-Mission target is to live for how many seconds : -1
 Completion LuaCode={
 	display_console_message(_"Shooting range cleared!")
 }
@@ -321,13 +191,6 @@ Completion LuaCode={
 +++
 Mission Name=_"Tutorial Hacking"
 Mission target is to kill droids with marker : 4037
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : -1
-Mission target is to reach X-Pos : -1
-Mission target is to reach Y-Pos : -1
-Mission target is to live for how many seconds : -1
 Completion LuaCode={
 	display_console_message(_"Hacking area cleared!")
 }
@@ -338,14 +201,6 @@ Completion LuaCode={
 +++ Find Kevin
 +++
 Mission Name=_"A strange guy stealing from town"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 Completion LuaCode={
 }
 ** End of this mission target subsection **
@@ -355,14 +210,6 @@ Completion LuaCode={
 +++ Deliver list from Francis to Spencer
 +++
 Mission Name=_"Deliverance"
-Mission target is to kill droids with marker : -1
-Mission target is to kill all hostile droids this first level : -1
-Mission target is to also kill all hostile droids on second level : -1
-Mission target is to overtake a droid with marker : -1
-Mission target is to reach level : 1
-Mission target is to reach X-Pos : 0
-Mission target is to reach Y-Pos : 0
-Mission target is to live for how many seconds : -1
 ** End of this mission target subsection **
 
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***

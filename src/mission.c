@@ -388,6 +388,7 @@ void CheckIfMissionIsComplete(void)
 	int mis_num;
 	static int CheckMissionGrid;
 	int this_mission_seems_completed = TRUE;
+	int checked_one_criterion = FALSE;
 
 #define MIS_COMPLETE_DEBUG 1
 
@@ -430,6 +431,7 @@ void CheckIfMissionIsComplete(void)
 				}
 
 			}
+			checked_one_criterion = TRUE;
 		}
 		// Continue if the Mission target fetch_item is given but not fullfilled
 		//
@@ -445,6 +447,7 @@ void CheckIfMissionIsComplete(void)
 				// goto CheckNextMission;
 				this_mission_seems_completed = FALSE;
 			}
+			checked_one_criterion = TRUE;
 		}
 		// Continue if the Mission target must_clear_first_level is given but not fullfilled
 		//
@@ -456,6 +459,7 @@ void CheckIfMissionIsComplete(void)
 					break;
 				}
 			}
+			checked_one_criterion = TRUE;
 		}
 		// Continue if the Mission target must_clear_second_level is given but not fullfilled
 		//
@@ -467,6 +471,7 @@ void CheckIfMissionIsComplete(void)
 					break;
 				}
 			}
+			checked_one_criterion = TRUE;
 		}
 
 		// Continue if the Mission target MustReachLevel is given but not fullfilled
@@ -476,6 +481,7 @@ void CheckIfMissionIsComplete(void)
 				DebugPrintf(MIS_COMPLETE_DEBUG, "\nLevel number does not match...");
 				continue;
 			}
+			checked_one_criterion = TRUE;
 		}
 		// Continue if the Mission target MustReachPoint.x is given but not fullfilled
 		//
@@ -484,6 +490,7 @@ void CheckIfMissionIsComplete(void)
 				DebugPrintf(MIS_COMPLETE_DEBUG, "\nX coordinate does not match...");
 				continue;
 			}
+			checked_one_criterion = TRUE;
 		}
 		// Continue if the Mission target MustReachPoint.y is given but not fullfilled
 		//
@@ -492,6 +499,7 @@ void CheckIfMissionIsComplete(void)
 				DebugPrintf(MIS_COMPLETE_DEBUG, "\nY coordinate does not match...");
 				continue;
 			}
+			checked_one_criterion = TRUE;
 		}
 		// Continue if the Mission target MustLiveTime is given but not fullfilled
 		//
@@ -500,6 +508,7 @@ void CheckIfMissionIsComplete(void)
 				DebugPrintf(MIS_COMPLETE_DEBUG, "\nTime Limit not yet reached...");
 				continue;
 			}
+			checked_one_criterion = TRUE;
 		}
 		// Continue if the Mission target MustBeOne is given but not fullfilled
 		//
@@ -508,13 +517,15 @@ void CheckIfMissionIsComplete(void)
 				DebugPrintf(MIS_COMPLETE_DEBUG, "\nYou're not yet one of the marked ones...");
 				continue;
 			}
+			checked_one_criterion = TRUE;
 		}
 
-		if (this_mission_seems_completed)
+		// If the mission actually had criteria we checked for, and those criteria
+		// are OK, the mission is finished.
+		if (checked_one_criterion && this_mission_seems_completed)
 			CompleteMission(Me.AllMissions[mis_num].mission_name);
 
-	}			// for AllMissions
-
+	}
 };				// void CheckIfMissionIsComplete
 
 /**
@@ -657,28 +668,28 @@ void GetQuestList(char *QuestListFilename)
 		} else
 			Me.AllMissions[MissionTargetIndex].fetch_item = -1;
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_KILL_ONE_STRING, "%d",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_KILL_ONE_STRING, "%d", "-1",
 				    &Me.AllMissions[MissionTargetIndex].KillOne, EndOfMissionTargetPointer);
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL, "%d",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_FIRST_LEVEL, "%d", "-1", 
 				    &Me.AllMissions[MissionTargetIndex].must_clear_first_level, EndOfMissionTargetPointer);
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL, "%d",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_CLEAR_SECOND_LEVEL, "%d", "-1",
 				    &Me.AllMissions[MissionTargetIndex].must_clear_second_level, EndOfMissionTargetPointer);
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_MUST_BE_ONE_STRING, "%d",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_BE_ONE_STRING, "%d", "-1", 
 				    &Me.AllMissions[MissionTargetIndex].MustBeOne, EndOfMissionTargetPointer);
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_MUST_REACH_POINT_X_STRING, "%d",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_REACH_POINT_X_STRING, "%d", "-1",
 				    &Me.AllMissions[MissionTargetIndex].MustReachPoint.x, EndOfMissionTargetPointer);
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_MUST_REACH_POINT_Y_STRING, "%d",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_REACH_POINT_Y_STRING, "%d", "-1", 
 				    &Me.AllMissions[MissionTargetIndex].MustReachPoint.y, EndOfMissionTargetPointer);
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_MUST_REACH_LEVEL_STRING, "%d",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_REACH_LEVEL_STRING, "%d", "-1", 
 				    &Me.AllMissions[MissionTargetIndex].MustReachLevel, EndOfMissionTargetPointer);
 
-		ReadValueFromString(MissionTargetPointer, MISSION_TARGET_MUST_LIVE_TIME_STRING, "%lf",
+		ReadValueFromStringWithDefault(MissionTargetPointer, MISSION_TARGET_MUST_LIVE_TIME_STRING, "%lf", "-1",
 				    &Me.AllMissions[MissionTargetIndex].MustLiveTime, EndOfMissionTargetPointer);
 
 		if (strstr(MissionTargetPointer, MISSION_COMPLETION_LUACODE_STRING)) {
