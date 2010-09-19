@@ -3458,6 +3458,22 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Reparation manual"
+Item min class for drop=4
+Item max class for drop=9
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="repairbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="repairbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=1200
+Item description text=_"This manual will help you fix a broken dishwasher, a car, or a gun. The covers does not mention anything about breaking robots however."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Source Book of Plasma discharge"
 Item min class for drop=-1
 Item max class for drop=-1
