@@ -240,6 +240,7 @@ LuaCode={
 
 Nr=90 Text=_"Thanks for the help. I'll be going now."
 LuaCode={
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 	if (not has_quest(_"Deliverance")) then
 	    npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
 	    npc_says(_"Oh, I almost forgot... Could you take this datacube and give it to Spencer once you get to town?")
@@ -273,12 +274,20 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99 Text="GOODBYE"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+Nr=99 Text="Thanks for the help. I'll be going now."
 LuaCode={
-	npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
-	npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
-	end_dialog()
+	if (not has_quest(_"Deliverance")) then
+		npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
+		npc_says(_"Oh, I almost forgot... Could you take this datacube and give it to Spencer once you get to town?")
+		tux_says(_"Spencer?")
+	        npc_says(_"Yes. He's the leader of the Red Guard.")
+	  	show(91, 92)
+	  	hide(90)
+	 else
+		npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
+		npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
+		end_dialog()
+	end
 }
 ----------------------------------------------------------------------
 
