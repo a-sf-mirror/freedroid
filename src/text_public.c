@@ -96,7 +96,7 @@ void ErrorMessage(const char *FunctionName, const char *fmt, int InformDeveloper
 
 	fprintf(stderr, "\n----------------------------------------------------------------------\n\
 Freedroid has encountered a problem:\n");
-	fprintf(stderr, "In Function: %s.\n", FunctionName);
+	fprintf(stderr, "In function: %s.\n", FunctionName);
 	fprintf(stderr, "FreedroidRPG package and version number: %s %s.\n", PACKAGE, VERSION);
 	vfprintf(stderr, fmt, args);
 
@@ -113,6 +113,8 @@ about the problem, by either\n\
     channel: #freedroid on irc.freenode.net\n\
   post on our forum at:\n\
     https://sourceforge.net/apps/phpbb/freedroid\n\
+  report a bug on our tracker at:\n\
+    https://sourceforge.net/tracker/?group_id=54521&atid=474016\n\
 \n\
 Thanks a lot!\n\n");
 	}
