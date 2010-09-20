@@ -69,38 +69,59 @@ static void teleport_to_waypoint(enemy *robot, level *lvl, int wp_idx)
 }
 
 /**
- * In the very beginning of each game, it is not enough to just place the
- * bots onto the right locations.  They must also be integrated into the
- * waypoint system, i.e. current waypoint and next waypoint initialized.
- * This is what this function is supposed to do.
+ * Find the closest waypoint to a bot.
  */
-int teleport_to_closest_waypoint(enemy *ThisRobot)
+static int enemy_find_closest_waypoint(struct enemy *this_bot)
 {
-	level *lvl = curShip.AllLevels[ThisRobot->pos.z];
-	waypoint *wpts = lvl->waypoints.arr;
+	struct level *lvl = curShip.AllLevels[this_bot->pos.z];
+	struct waypoint *wpts = lvl->waypoints.arr;
+
 	int i;
-	float BestDistanceSqu = 10000;
-	float NewDistance = 10000;
-	short BestWaypoint = (-1);
+	float distance = 0.0;
+	float best_distance = 10000.0;
+	int best_waypoint = -1;
 
 	for (i = 0; i < lvl->waypoints.size; i++) {
-		NewDistance = (ThisRobot->pos.x - wpts[i].x + 0.5) * (ThisRobot->pos.x - wpts[i].x + 0.5) + 
-						  (ThisRobot->pos.y - wpts[i].y + 0.5) * (ThisRobot->pos.y - wpts[i].y + 0.5);
+		// A standard bot cannot use a special waypoint
+		if (!this_bot->SpecialForce && wpts[i].suppress_random_spawn)
+			continue;
 
-		if (NewDistance <= BestDistanceSqu) {
-			BestDistanceSqu = NewDistance;
-			BestWaypoint = i;
+		// If no best_waypoint is already registered, use the current one as
+		// a fallback result.
+		if (best_waypoint == -1)
+			best_waypoint = i;
+
+		// Check if current waypoint is closer than the stored one.
+		distance = (this_bot->pos.x - wpts[i].x + 0.5) * (this_bot->pos.x - wpts[i].x + 0.5) +
+		           (this_bot->pos.y - wpts[i].y + 0.5) * (this_bot->pos.y - wpts[i].y + 0.5);
+		if (distance <= best_distance) {
+			best_distance = distance;
+			best_waypoint = i;
 		}
 	}
 
-	// Now we have found a global minimum.  So we 'teleport' there.
-	if (BestWaypoint == -1)
-		ErrorMessage(__FUNCTION__, "Found no waypoint to teleport bot to on level %d.", PLEASE_INFORM, IS_FATAL, ThisRobot->pos.z);
+	if (best_waypoint == -1)
+		ErrorMessage(__FUNCTION__, "Found no closest waypoint on level %d.", PLEASE_INFORM, IS_FATAL, lvl->levelnum);
+
+	return best_waypoint;
+}
+
+/**
+ * In the very beginning of each game, it is not enough to just place the
+ * bots onto the right locations.  They must also be integrated into the
+ * waypoint system, i.e. current waypoint and next waypoint initialized.
+ */
+int teleport_to_closest_waypoint(struct enemy *ThisRobot)
+{
+	struct level *lvl = curShip.AllLevels[ThisRobot->pos.z];
+
+	// Find the closest waypoint
+	int best_waypoint = enemy_find_closest_waypoint(ThisRobot);
 
 	// Teleport the robot to the best waypoint
-	teleport_to_waypoint(ThisRobot, lvl, BestWaypoint);
+	teleport_to_waypoint(ThisRobot, lvl, best_waypoint);
 
-	return BestWaypoint;
+	return best_waypoint;
 }
 
 /**
@@ -440,13 +461,9 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 		}
 	}
 
-	// Now the bot is moving, so maybe it's moving over a jump threshold?
-	// In any case, it might be best to check...
-	//
-	// In case a jump has taken place, we best also reset the current
-	// waypointless wandering target.  Otherwise the bot might want to
-	// walk to the end of the map before thinking again...
-	//
+	// Now the bot is moving, so maybe it's crossing a level's border ?
+	// In this case, we have to reset the waypoints stored in the bot struct,
+	// because those waypoints have no more sense in the new bot's level.
 
 	if (!resolve_virtual_position(&newpos, &newpos))
 		return;
@@ -457,16 +474,23 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 	ThisRobot->pos.z = newpos.z;
 
 	if (ThisRobot->pos.z != old_map_level) {	/* if the bot has changed level */
-		/* Prevent it from moving this frame */
+		// Prevent the bot from moving this frame
 		clear_out_intermediate_points(&ThisRobot->pos, &ThisRobot->PrivatePathway[0], 5);
 
-		/* Move it to the appropriate level list */
+		// The waypoints used by the bot have no sense on this new level. They have
+		// to be re-initialized. The closest avalaible waypoint is chosen.
+		int best_waypoint = enemy_find_closest_waypoint(ThisRobot);
+		
+		ThisRobot->homewaypoint = best_waypoint;
+		ThisRobot->lastwaypoint = best_waypoint;
+		ThisRobot->nextwaypoint = best_waypoint;
+		
+		// Move the bot to the appropriate level list
 		list_move(&ThisRobot->level_list, &(level_bots_head[ThisRobot->pos.z]));
 	}
 
 	DetermineAngleOfFacing(ThisRobot);
-
-};				// void move_enemy_to_spot ( Enemy ThisRobot , finepoint next_target_spot )
+}
 
 /**
  * This function moves one robot thowards his next waypoint.  If already
