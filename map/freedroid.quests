@@ -34,7 +34,6 @@
 +++ Find a cure for Bender, suffering from brain enlargement pills
 +++
 Mission Name=_"Bender's problem"
-Mission target is to fetch item : "Brain Enlargement Pills Antidote"
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -42,7 +41,6 @@ Mission target is to fetch item : "Brain Enlargement Pills Antidote"
 +++ Retrieve the toolkit lost by Dixon
 +++
 Mission Name=_"The yellow toolkit"
-Mission target is to fetch item : "Dixon's Toolbox"
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -50,7 +48,6 @@ Mission target is to fetch item : "Dixon's Toolbox"
 +++ Find some energy crystals for the cook Michelangelo
 +++
 Mission Name=_"Anything but the army snacks, please!"
-Mission target is to fetch item : "Red Dilithium Crystal"
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
@@ -139,7 +136,6 @@ Mission target is to fetch item : "Red Dilithium Crystal"
 +++ Free Tania 
 +++
 Mission Name=_"Tania's sanitary"
-Mission target is to overtake a droid with marker : 3035
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
