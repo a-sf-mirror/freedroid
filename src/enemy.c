@@ -2705,4 +2705,24 @@ int get_droid_type(const char *type_name)
 
 	return 0;
 }
+
+enemy *get_enemy_with_dialog(const char *dialog)
+{
+	enemy *en;
+
+	BROWSE_ALIVE_BOTS(en) {
+		if (!strcmp(en->dialog_section_name, dialog)) {
+			return en;
+		}
+	}
+
+	BROWSE_DEAD_BOTS(en) {
+		if (!strcmp(en->dialog_section_name, dialog)) {
+			return en;
+		}
+	}
+
+	ErrorMessage(__FUNCTION__, _("Could not find a droid corresponding to the dialog \"%s\"."), PLEASE_INFORM, IS_FATAL, dialog);
+	return NULL;
+}
 #undef _enemy_c
