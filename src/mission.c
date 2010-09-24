@@ -387,8 +387,8 @@ void CheckIfMissionIsComplete(void)
 	int ItemCounter;
 	int mis_num;
 	static int CheckMissionGrid;
-	int this_mission_seems_completed = TRUE;
-	int checked_one_criterion = FALSE;
+	int this_mission_seems_completed;
+	int checked_one_criterion;
 
 #define MIS_COMPLETE_DEBUG 1
 
@@ -416,6 +416,7 @@ void CheckIfMissionIsComplete(void)
 		DebugPrintf(MIS_COMPLETE_DEBUG, "\nSomething was assigned at all..... mis_num = %d ", mis_num);
 
 		this_mission_seems_completed = TRUE;
+		checked_one_criterion = FALSE;
 
 		// Continue if the Mission target KillOne is given but not fullfilled
 		//
