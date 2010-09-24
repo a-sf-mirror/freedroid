@@ -652,7 +652,6 @@ void enemy_generate_level_lists(void);
 int teleport_to_closest_waypoint(enemy *ThisRobot);
 int teleport_to_random_waypoint(enemy *, level *, char *);
 int get_droid_type(const char *);
-enemy *get_enemy_with_dialog(const char *dialog);
 
 #define BROWSE_ALIVE_BOTS_SAFE(X,Y) list_for_each_entry_safe(X, Y, &alive_bots_head, global_list)
 #define BROWSE_ALIVE_BOTS(X) list_for_each_entry(X, &alive_bots_head, global_list)
