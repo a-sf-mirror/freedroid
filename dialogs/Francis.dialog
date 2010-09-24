@@ -252,7 +252,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=91 Text=_"Deliver that cube yourself."
+Nr=91 Text=_"Deliver it yourself."
 LuaCode={
 	npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 	npc_says(_"But... The prospect of facing that... That man again.")
@@ -261,7 +261,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=92 Text=_"All right, I'll deliver the cube."
+Nr=92 Text=_"All right, I'll deliver it."
 LuaCode={
 	npc_says(_"Thank you.")
 	npc_says(_"You can ask one of the guards in town, they'll know where to find Spencer.")
