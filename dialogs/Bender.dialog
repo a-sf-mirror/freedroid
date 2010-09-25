@@ -215,7 +215,7 @@ LuaCode={
 	npc_says(_"Sure, but we will have to shake on it.")
 	tux_says(_"OK...")
 	npc_says(_"It is an asterisk repeated four times.")
-	has_cookie("know_lily_password")
+	add_cookie("know_lily_password")
 	tux_says(_"Wow.")
 	npc_says(_"I am the most awesome hacker ever.")
 	tux_says(_"Sure...")
