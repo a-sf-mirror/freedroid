@@ -123,6 +123,7 @@ BFont_Info *LoadFont(const char *filename)
 				SetCurrentFont(Font);
 
 			} else {
+				fprintf(stderr, "Loading font \"%s\":%s\n", filename, IMG_GetError());
 				/* free memory allocated for the BFont_Info structure */
 				free(Font);
 				Font = NULL;
