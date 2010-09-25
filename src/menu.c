@@ -1757,8 +1757,8 @@ static void Performance_fill(char *MenuTexts[])
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Skip shadow blitting"));
-	sprintf(Options[i + 1], ": %s", GameConfig.skip_shadow_blitting ? _("YES") : _("NO"));
+	sprintf(Options[i], _("Show obstacle shadows"));
+	sprintf(Options[i + 1], ": %s", GameConfig.skip_shadow_blitting ? _("NO") : _("YES"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
