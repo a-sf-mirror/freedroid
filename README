@@ -99,7 +99,7 @@
    * Alt tab in/out of the game in OpenGL while a static popup is displayed makes the screen completely black.
      Clicking or pressing the required key to close the popup will redraw/bring back the screen.
    * Some graphical enhancements, such as enemies changing their color if they are affected by a spell
-     (frozen or slowed) and transparent windows are only visible using OpenGL mode.
+     (frozen or slowed) and transparent walls are only visible using OpenGL mode.
 
  Windows 
    * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not 
@@ -109,7 +109,7 @@
  Mac
     * Open Files: OSX max number of open files defaults to 256 (as of 10.6). This can lead to errors when 
       loading images: "In Function: get_iso_image_from_file_and_path. Could not load image 
-      /usr/local/share/freedroidrpg/graphics//obstcles/<filename>.png"
+      /usr/local/share/freedroidrpg/graphics/obstacles/<filename>.png"
       Solution:
         1) Check value of open files limit with $ ulimit -n
         2) Set new value for open files limit with $ ulimit -n 2048
@@ -158,20 +158,21 @@
 ============
 Miscellaneous FAQ:
 
-	Q: Do I have to have Linux to try out Freedroid/FreedroidRPG?
+	Q: Do I have to have Linux to try out FreedroidRPG?
 	A: While using Linux is greatly recommended for the sanity of the system
-	   administrator, FreedroidClassic and FreedroidRPG both have MS-Windows
-	   executables available. Note that since the FreedroidRPG development team
-	   doesn't use MS-Windows, it gets much less testing. Help with testing and
-	   feedback from Windows users thus is greatly appreciated.
+	   administrator, FreedroidRPG has MS-Windows executables available.
+	   Note that since the FreedroidRPG development team doesn't use 
+	   MS-Windows, it gets much less testing. Help with testing and feedback 
+	   from Windows users thus is greatly appreciated.
 
 	Q: How can I subscribe/unsubscribe to the mailing list?
 	A: Freedroid has two mailing list. One is for discussing stuff related to
 	   Freedroid, the other one is a list with auto-generated changelogs from our 
 	   developer server and therefore usually only interesting for developers themselves.
 	   In any case, you can subscribe, unsubscribe or change your membership options
-       from the following web page:  
+           from the following web page:  
 	   http://sourceforge.net/mail/?group_id=54521
+
 
 Graphics FAQ:
 
@@ -246,6 +247,7 @@ Sound FAQ:
 	   killall -9 artsd
 	   killall -9 esd
 	   killall -9 yiff
+	   killall -9 pulseaudio
 
 	   After that, you might want to try freedroid again. The sound lag should
 	   not be present anymore.
