@@ -142,7 +142,10 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 
 	// Weapon damage
 	if (ItemMap[item->type].item_can_be_installed_in_weapon_slot) {
-		autostr_append(desc, _("Damage: %d to %d\n"), item->damage, item->damage_modifier + item->damage);
+		autostr_append(desc, _("Damage: %d"), item->damage);
+		if (item->damage_modifier)
+			autostr_append(desc, _(" to %d"), item->damage_modifier + item->damage);
+		autostr_append(desc, "\n");
 	}
 	// Multiplicity
 	if (ItemMap[item->type].item_group_together_in_inventory) {
