@@ -1158,9 +1158,6 @@ int ButtonPressWasNotMeantAsFire()
  */
 static int handle_click_in_hud()
 {
-	if (!MouseLeftPressed())
-		return FALSE;
-
 	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (MouseLeftClicked()) {
 			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_INVENTORY);
