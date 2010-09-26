@@ -350,6 +350,13 @@ LuaCode={
 
 		--Random happenings:
 		random_var = math.random(5)+n_level
+		-- Correct for superpowering:
+		if (n_hp > 100) then
+			level_correction = math.floor((n_hp - 100)/10 + (n_ac - 7))
+			if (level_correction - random_var > 0) then
+					random_var = random_var + math.random(level_correction - random_var)
+			end
+		end
 		if (random_var > 18) then
 			n_emtype = 6 -- even more difficult enemy
 			--get_random(...) returns a random argument
