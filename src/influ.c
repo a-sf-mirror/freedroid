@@ -44,10 +44,10 @@
 
 #define LEVEL_JUMP_DEBUG 1
 
-void CheckForTuxOutOfMap();
-void AnalyzePlayersMouseClick();
+static void CheckForTuxOutOfMap();
+static void AnalyzePlayersMouseClick();
 
-int no_left_button_press_in_previous_analyze_mouse_click = FALSE;
+static int no_left_button_press_in_previous_analyze_mouse_click = FALSE;
 
 /**
  *
@@ -351,9 +351,9 @@ void CheckIfCharacterIsStillOk()
 /**
  * Even the Tux must not leave the map!  A sanity check is done here...
  */
-void CheckForTuxOutOfMap()
+static void CheckForTuxOutOfMap()
 {
-	Level MoveLevel = curShip.AllLevels[Me.pos.z];
+	level *MoveLevel = curShip.AllLevels[Me.pos.z];
 
 	// Now perhaps the influencer is out of bounds, i.e. outside of the map.
 	//
@@ -1156,60 +1156,59 @@ int ButtonPressWasNotMeantAsFire()
  * When the user clicks on a button in the HUD, launch the related action.
  * Return TRUE if the mouse is pressed inside the HUD's area.
  */
-int handle_click_in_hud()
+static int handle_click_in_hud()
 {
 	if (!MouseLeftPressed())
-		return (FALSE);
+		return FALSE;
 
 	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (MouseLeftClicked()) {
 			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_INVENTORY);
 		}
-		return (TRUE);
+		return TRUE;
 	}
 
 	if (MouseCursorIsOnButton(CHA_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (MouseLeftClicked()) {
 			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_CHARACTER);
 		}
-		return (TRUE);
+		return TRUE;
 	}
 
 	if (MouseCursorIsOnButton(SKI_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (MouseLeftClicked()) {
 			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILLS);
 		}
-		return (TRUE);
+		return TRUE;
 	}
 
 	if (MouseCursorIsOnButton(LOG_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (MouseLeftClicked()) {
 			quest_browser_interface();
 		}
-		return (TRUE);
+		return TRUE;
 	}
 
 	if (MouseCursorIsOnButton(WEAPON_MODE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (MouseLeftClicked()) {
 			TuxReloadWeapon();
 		}
-		return (TRUE);
+		return TRUE;
 	}
 
 	if (MouseCursorIsOnButton(SKI_ICON_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		if (MouseLeftClicked()) {
 			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILLS);
 		}
-		return (TRUE);
+		return TRUE;
 	}
 	// Finally, protect all the other parts of the hud from user's clicks
 	if (GetMousePos_y() >= UNIVERSAL_COORD_H(MESSAGE_TEXT_WIDGET_Y))
-		return (TRUE);
+		return TRUE;
 
 	// The mouse is outside the hud.
-	return (FALSE);
-
-}				// int handle_click_in_hud
+	return FALSE;
+}
 
 /**
  * At some point in the analysis of the users mouse click, we'll be 
@@ -1555,7 +1554,7 @@ void check_for_droids_to_attack_or_talk_with()
  * click and so this function analyzes the situation and decides what to
  * do.
  */
-void AnalyzePlayersMouseClick()
+static void AnalyzePlayersMouseClick()
 {
 	int tmp;
 

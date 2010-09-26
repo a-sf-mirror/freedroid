@@ -91,7 +91,6 @@ void clear_out_intermediate_points(gps *, moderately_finepoint *, int);
 
 // bullet.c 
 void RotateVectorByAngle(moderately_finepoint * vector, float rot_angle);
-void AnalyzePlayersMouseClick(void);
 void MoveBullets(void);
 void DoMeleeDamage(void);
 void DeleteBullet(int num, int StartBlast);
