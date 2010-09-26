@@ -3055,7 +3055,7 @@ Item as defensive item: damred_bonus_modifier=5
 Base item duration=30
 plus duration modifier=10
 Base list price=250
-Item description text=_"A medium sized, lightweight and pretty straightforward shield. Provides decent protection."
+Item description text=_"A medium sized, reinforced shield. Heavier than a standard shield, but should last longer. Provides decent protection."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
