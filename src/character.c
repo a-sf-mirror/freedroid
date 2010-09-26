@@ -629,7 +629,13 @@ void ShowCharacterScreen()
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Damage"), RIGHT_TXT_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d-%d", (int)Me.base_damage, (int)Me.base_damage + (int)Me.damage_modifier);
+
+	// Display range of damage, or a single value if there is no range
+	if (Me.damage_modifier)
+		sprintf(CharText, "%d-%d", (int)Me.base_damage, (int)Me.base_damage + (int)Me.damage_modifier);
+	else
+		sprintf(CharText, "%d", (int)Me.base_damage);
+
 	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
