@@ -693,6 +693,7 @@ static void add_neighbor(struct roominfo *r, int neigh)
 
 void MakeConnect(int x, int y, enum connection_type type)
 {
+	const int shift = 2;
 	int wp_x, wp_y, wp_nx, wp_ny;
 	int room_1, room_2;
 
@@ -728,6 +729,14 @@ void MakeConnect(int x, int y, enum connection_type type)
 	add_neighbor(&rooms[room_1], room_2);
 	add_neighbor(&rooms[room_2], room_1);
 
+	// Make waypoint correction according to pending
+	if (type == UP || type == DOWN) {
+		wp_x -= shift;
+		wp_nx -= shift;
+	} else if (type == LEFT || type == RIGHT) {
+		wp_y -= shift;
+		wp_ny -= shift;
+	}
 	int wp1 = add_waypoint(target_level, wp_x, wp_y, 0);
 	int wp2 = add_waypoint(target_level, wp_nx, wp_ny, 0);
 
