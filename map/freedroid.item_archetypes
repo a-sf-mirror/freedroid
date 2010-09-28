@@ -115,7 +115,7 @@ Energy whip
 
 ******* Ranged ******************************************************************************************
 
-Ranged weaps durability balancing not done since code change (weapons wear down during use, not when char hit)
+Ranged weapons durability balancing not done since code change (weapons wear down during use, not when char hit)
 Conventional main disadvantage - Expensive ammo!!
 
 -> * Conventional *
@@ -1311,7 +1311,7 @@ Item description text=_"While solid slugs, or possibly 8-10 Gauge shells, would 
 
 /*
 ch pellet is only as effective as a small caliber handgun, and offers very poor penetration against an armored target, the multiple projectiles increases the likelihood of one or more peripheral wounds.
-can make dents or disable bots by destroing their sensors
+can make dents or disable bots by destroying their sensors
 */
 
 ** Start of new item specification subsection **
@@ -1690,7 +1690,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=2
 inventory_size_x=1
 inventory_size_y=1
-Item description text=_"Energy crystal load for laser weapons and other powertools. Each round fired consumes a load within the crystal."
+Item description text=_"Energy crystal load for laser weapons and other power tools. Each round fired consumes a load within the crystal."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -1784,7 +1784,7 @@ plus duration modifier=20
 File or directory name for inventory image="weapons/laser_pulse_rifle/inv_image.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1000
-Item description text=_"The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticably less than from a Laser rifle, but the firing rate more than makes up for it."
+Item description text=_"The pulse laser technology, allowing for many repeated short bursts without the weapon overheating, makes this quite a useful weapon. The damage from each shot is noticeably less than from a Laser rifle, but the firing rate more than makes up for it."
 inventory_size_x=2
 inventory_size_y=4
 ----- the following part is only relevant for weapons -----
@@ -2892,7 +2892,7 @@ Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=50
 inventory_size_x=2
 inventory_size_y=2
-Item description text=_"Does a decent job of protection. I guess. Maybe. I'm not sure."
+Item description text=_"This piece of clothing made out of Synthex(TM) does a decent job of protection. I guess. Maybe. I'm not sure."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -2934,7 +2934,7 @@ Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=600
 inventory_size_x=2
 inventory_size_y=2
-Item description text=_"Very strong for its size, does a good job of absorbing basic blows."
+Item description text=_"Very strong for its size, this jacket made out of Shootex(TM) does a good job of absorbing basic blows. It is suitable for all kinds of extreme sports, such as climbing, rafting, bunjee-jumping, fencening and even racing."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -2953,7 +2953,7 @@ plus duration modifier=0
 File or directory name for inventory image="armours/robe/inv_image.png"
 Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=800
-Item description text=_"Tough as nails and able to withstand most blows."
+Item description text=_"The universal riot gear of the Red Guard. Tough as nails and able to withstand most blows."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3176,7 +3176,7 @@ plus duration modifier=15
 File or directory name for inventory image="helmets/yellow3/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
 Base list price=480
-Item description text=_"Now this is head protection. Feel safe with sturdy iron protecting your head. Not as comfortable as other hats."
+Item description text=_"Now this is head protection. Feel safe with sturdy Resosteel(TM) protecting your head. Not as comfortable as other hats but the precious content stays safe."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
