@@ -250,7 +250,6 @@ void HandleCurrentlyActivatedSkill()
 	int SpellCost = calculate_program_heat_cost(Me.readied_skill);
 
 	if (Me.temperature > Me.max_temperature - SpellCost && !Override_Power_Limit) {
-		//Not_Enough_Mana_Sound(  );
 		Override_Power_Limit = 1;
 		return;
 	}

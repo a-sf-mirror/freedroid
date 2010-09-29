@@ -27,13 +27,6 @@
 
 #include "sound.h"
 
-/** ============================================ EFFECTS ============================================ */
-
-void CrySound(void)
-{
-	play_sample_using_WAV_cache("effects/Cry_Sound_0.ogg", FALSE, FALSE);
-}
-
 void play_open_chest_sound(void)
 {
 	PlayOnceNeededSoundSample("effects/open_chest_sound.ogg", FALSE, TRUE);
@@ -42,11 +35,6 @@ void play_open_chest_sound(void)
 void Play_Spell_ForceToEnergy_Sound()
 {
 	play_sample_using_WAV_cache("effects/Spell_ForceToEnergy_Sound_0.ogg", FALSE, FALSE);
-}
-
-void Play_Spell_DetectItems_Sound()
-{
-	play_sample_using_WAV_cache("effects/Spell_DetectItems_Sound_0.ogg", FALSE, FALSE);
 }
 
 /**
@@ -107,28 +95,6 @@ void Not_Enough_Dist_Sound(void)
 		play_sample_using_WAV_cache("effects/tux_ingame_comments/Not_Enough_Dist_Sound_0.ogg", FALSE, FALSE);
 		PreviousSound = now;
 	}
-}
-
-/**
- * This function plays a voice sample, stating that not enough magical
- * energy (force) is available to cast a certain spell.
- * The sample must of course only be played, if it hasn't been played just
- * milliseconds before, so a check is made to see that the file is played
- * with at least a certain interval in between to the last occasion of the
- * file being played.
- */
-void Not_Enough_Mana_Sound(void)
-{
-
-	static Uint32 PreviousNotEnoughForceSound = (-1);
-	Uint32 now;
-
-	now = SDL_GetTicks();
-	if (SDL_GetTicks() - PreviousNotEnoughForceSound >= 1.15 * 1000) {
-		play_sample_using_WAV_cache("effects/tux_ingame_comments/Not_Enough_Mana_0.ogg", FALSE, FALSE);
-		PreviousNotEnoughForceSound = now;
-	}
-
 }
 
 /**
@@ -231,30 +197,6 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 	strcat(filename, Druidmap[ThisRobot->type].droid_death_sound_file_name);
 	// PlayOnceNeededSoundSample ( filename , FALSE , FALSE );
 	play_sample_using_WAV_cache(filename, FALSE, FALSE);
-
-}
-
-/**
- * Whenever a bot dies, that should create a dying sound.  But so far,
- * this will be done only for fully animated bots, since the other bots
- * just explode and that has a sound of it's own.
- */
-void play_attack_animation_sound_for_bot(enemy * ThisRobot)
-{
-	char filename[5000];
-
-	// If the keyword 'none' for the death sound file name is encountered,
-	// nothing will be done...
-	//
-	if (!strcmp(Druidmap[ThisRobot->type].droid_attack_animation_sound_file_name, "none"))
-		return;
-
-	// Now we play the given death sound, looking for the file in the
-	// appropriate sound folder.
-	//
-	strcpy(filename, "effects/bot_sounds/");
-	strcat(filename, Druidmap[ThisRobot->type].droid_attack_animation_sound_file_name);
-	PlayOnceNeededSoundSample(filename, FALSE, FALSE);
 
 }
 
@@ -372,19 +314,6 @@ void CantCarrySound(void)
 	}
 }
 
-/**
- *
- */
-void TransferSound(void)
-{
-	play_sample_using_WAV_cache("effects/Takeover_Sound_0.ogg", FALSE, FALSE);
-}
-
-;				// void TransferSound (void)
-
-/**
- *
- */
 void Mission_Status_Change_Sound(void)
 {
 	play_sample_using_WAV_cache("effects/Mission_Status_Change_Sound_0.ogg", FALSE, FALSE);
@@ -397,29 +326,6 @@ void teleport_arrival_sound(void)
 {
 	// play_sample_using_WAV_cache ( "effects/LeaveElevator_Sound_0.ogg", FALSE , FALSE );
 	play_sample_using_WAV_cache("effects/new_teleporter_sound.ogg", FALSE, FALSE);
-}
-
-/**
- * When the Tux casts a healing spell, this sound will be played.
- */
-void healing_spell_sound(void)
-{
-	play_sample_using_WAV_cache("effects/new_healing_sound.ogg", FALSE, FALSE);
-}
-
-/**
- * Some items, that can be applied inside the running game, like e.g. 
- * spellbooks, do have a certain character stat requirement.  If that stat
- * requirement isn't met, a sound will be played, which uses this function.
- */
-void application_requirements_not_met_sound(void)
-{
-	return;
-}
-
-void GotHitSound(void)
-{
-	play_sample_using_WAV_cache("effects/Got_Hit_Sound_0.ogg", FALSE, FALSE);
 }
 
 /**
@@ -470,10 +376,6 @@ void MoveMenuPositionSound(void)
 	play_sample_using_WAV_cache("effects/Move_Menu_Position_Sound_0.ogg", FALSE, FALSE);
 }
 
-/**
- *
- *
- */
 void ThouArtDefeatedSound(void)
 {
 	if (!sound_on)
@@ -603,40 +505,14 @@ void Takeover_Game_Lost_Sound(void)
 	play_sample_using_WAV_cache("effects/Takeover_Game_Lost_Sound_0.ogg", FALSE, FALSE);
 }
 
-/**
- * 
- */
-void BounceSound(void)
-{
-	play_sample_using_WAV_cache("effects/Collision_Sound_0.ogg", FALSE, FALSE);
-}
-
-/**
- *
- */
 void DruidBlastSound(void)
 {
 	play_sample_using_WAV_cache("effects/Blast_Sound_0.ogg", FALSE, FALSE);
 }
 
-/**
- *
- */
 void ExterminatorBlastSound(void)
 {
 	play_sample_using_WAV_cache("effects/Blast_Sound_0.ogg", FALSE, FALSE);
-}
-
-/**
- * 
- *
- */
-void PlayLevelCommentSound(int levelnum)
-{
-	switch (levelnum) {
-		default:
-			break;
-	};
 }
 
 /**
@@ -666,8 +542,3 @@ void BulletReflectedSound(void)
 {
 	play_sample_using_WAV_cache("effects/Bullet_Reflected_Sound_0.ogg", FALSE, FALSE);
 }
-
-/**
- *
- *
- */

@@ -744,7 +744,6 @@ void ApplyItem(item * CurItem)
 	}
 
 	if (!requirements_for_item_application_met(CurItem)) {
-		application_requirements_not_met_sound();
 		return;
 	}
 

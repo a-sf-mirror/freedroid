@@ -1045,7 +1045,6 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 	// tux should make it's initial statement about the location, if there is one.
 	//
 	if (!Me.HaveBeenToLevel[Me.pos.z]) {
-		PlayLevelCommentSound(Me.pos.z);
 		Me.HaveBeenToLevel[Me.pos.z] = TRUE;
 		// if ( array_num != 0 ) ShuffleEnemys ( array_num );
 		// if ( ( LNum != 0 ) && ( Shuffling ) ) ShuffleEnemys ( array_num );
