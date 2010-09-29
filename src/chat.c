@@ -486,6 +486,10 @@ static void wait_for_click()
 	while (1) {
 		SDL_WaitEvent(&event);
 
+		if (event.type == SDL_QUIT) {
+			Terminate(0);
+		}
+
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == 1)
 			return;
 
