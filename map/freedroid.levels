@@ -2479,7 +2479,7 @@ t167 x11.00 y84.50
 t167 x10.00 y84.50
 t192 x21.50 y86.50
 t192 x18.50 y86.50
-t167 x19.50 y86.50
+t11 x19.50 y84.00
 t167 x22.50 y86.50
 t167 x16.50 y86.50
 t179 x23.50 y86.50
@@ -2498,7 +2498,7 @@ t173 x23.50 y83.50
 t132 x11.00 y83.00
 t132 x11.00 y84.00
 t27 x11.00 y82.00
-t11 x19.50 y84.00
+t352 x19.50 y85.00
 t132 x37.50 y84.00
 t132 x37.50 y83.00
 t132 x37.50 y82.00
@@ -3472,8 +3472,8 @@ t52 x5.50 y37.50
 t27 x19.50 y79.00
 t352 x19.50 y80.00
 t352 x19.50 y82.00
-t27 x19.50 y85.00
-t27 x19.50 y86.00
+t167 x19.50 y86.50
+t191 x20.00 y7.00
 t364 x57.60 y20.38
 t365 x57.39 y34.05
 t364 x55.14 y61.10
@@ -3533,7 +3533,6 @@ t321 x76.50 y85.50
 t321 x77.50 y85.50
 t321 x78.50 y85.50
 t321 x79.50 y85.50
-t191 x20.00 y7.00
 /obsdata
 plabelinfolvl
 x=35 y=7 name="StoneStartGameSquare"
@@ -3577,7 +3576,7 @@ piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
-idx=3425 type=30 data={
+idx=3365 type=30 data={
 	Main Gate Guardhouse
 }
 idx=2380 type=30 data={
