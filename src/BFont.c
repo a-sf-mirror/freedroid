@@ -506,133 +506,6 @@ void PrintString(SDL_Surface * Surface, int x, int y, const char *fmt, ...)
 	va_end(args);
 }
 
-void PrintStringFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		PutStringFont(Surface, Font, x, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
-void CenteredPrintString(SDL_Surface * Surface, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		CenteredPutString(Surface, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
-void CenteredPrintStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		CenteredPutStringFont(Surface, Font, y, temp);
-		free(temp);
-	}
-	va_end(args);
-
-}
-
-void RightPrintString(SDL_Surface * Surface, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		RightPutString(Surface, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
-void RightPrintStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		RightPutStringFont(Surface, Font, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
-void LeftPrintString(SDL_Surface * Surface, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		LeftPutString(Surface, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
-void LeftPrintStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		LeftPutStringFont(Surface, Font, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
-void JustifiedPrintString(SDL_Surface * Surface, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		JustifiedPutString(Surface, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
-void JustifiedPrintStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-		JustifiedPutStringFont(Surface, Font, y, temp);
-		free(temp);
-	}
-	va_end(args);
-}
-
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 /*********************************************************************************************************/
@@ -643,41 +516,6 @@ inline void PutPixel32(SDL_Surface * surface, int x, int y, Uint32 pixel)
 	p = (Uint8 *) surface->pixels + y * surface->pitch + x * 4;
 
 	*(Uint32 *) p = pixel;
-
-}				// void PutPixel ( ... )
-
-inline void PutPixel24(SDL_Surface * surface, int x, int y, Uint32 pixel)
-{
-	Uint8 *p;
-	p = (Uint8 *) surface->pixels + y * surface->pitch + x * 3;
-
-	if (SDL_BYTEORDER == SDL_BIG_ENDIAN) {
-		p[0] = (pixel >> 16) & 0xff;
-		p[1] = (pixel >> 8) & 0xff;
-		p[2] = pixel & 0xff;
-	} else {
-		p[0] = pixel & 0xff;
-		p[1] = (pixel >> 8) & 0xff;
-		p[2] = (pixel >> 16) & 0xff;
-	}
-
-}				// void PutPixel ( ... )
-
-inline void PutPixel16(SDL_Surface * surface, int x, int y, Uint32 pixel)
-{
-	Uint8 *p;
-	p = (Uint8 *) surface->pixels + y * surface->pitch + x * 2;
-
-	*(Uint16 *) p = pixel;
-
-}				// void PutPixel ( ... )
-
-inline void PutPixel8(SDL_Surface * surface, int x, int y, Uint32 pixel)
-{
-	Uint8 *p;
-	p = (Uint8 *) surface->pixels + y * surface->pitch + x;
-
-	*p = pixel;
 
 }				// void PutPixel ( ... )
 
@@ -735,31 +573,6 @@ void PutPixel(SDL_Surface * surface, int x, int y, Uint32 pixel)
  * NOTE:  I THINK THE SURFACE MUST BE LOCKED FOR THIS!
  *
  */
-inline Uint32 FdGetPixel32(SDL_Surface * Surface, Sint32 X, Sint32 Y)
-{
-	return *((Uint32 *) Surface->pixels + Y * Surface->pitch / 4 + X);
-}
-
-inline Uint32 FdGetPixel24(SDL_Surface * Surface, Sint32 X, Sint32 Y)
-{
-
-	Uint8 *bits = ((Uint8 *) Surface->pixels) + Y * Surface->pitch + X * 3;
-
-	return SDL_MapRGB(Surface->format, *((bits) + Surface->format->Rshift / 8), *((bits) + Surface->format->Gshift / 8),
-			  *((bits) + Surface->format->Bshift / 8));
-
-}
-
-inline Uint16 FdGetPixel16(SDL_Surface * Surface, Sint32 X, Sint32 Y)
-{
-	return *((Uint16 *) Surface->pixels + Y * Surface->pitch / 2 + X);
-}
-
-inline Uint8 FdGetPixel8(SDL_Surface * Surface, Sint32 X, Sint32 Y)
-{
-	return *((Uint8 *) Surface->pixels + Y * Surface->pitch + X);
-}
-
 Uint32 FdGetPixel(SDL_Surface * Surface, Sint32 X, Sint32 Y)
 {
 

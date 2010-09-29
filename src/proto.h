@@ -748,14 +748,7 @@ void ClearPlayground(void);
 int IsActive(int color, int row);
 
 // BFont.c
-Uint32 FdGetPixel32(SDL_Surface * Surface, Sint32 X, Sint32 Y);
-Uint32 FdGetPixel24(SDL_Surface * Surface, Sint32 X, Sint32 Y);
-Uint16 FdGetPixel16(SDL_Surface * Surface, Sint32 X, Sint32 Y);
-Uint8 FdGetPixel8(SDL_Surface * Surface, Sint32 X, Sint32 Y);
 void PutPixel32(SDL_Surface * surface, int x, int y, Uint32 pixel);
-void PutPixel24(SDL_Surface * surface, int x, int y, Uint32 pixel);
-void PutPixel16(SDL_Surface * surface, int x, int y, Uint32 pixel);
-void PutPixel8(SDL_Surface * surface, int x, int y, Uint32 pixel);
 Uint32 FdGetPixel(SDL_Surface * Surface, Sint32 X, Sint32 Y);
 void PutPixel(SDL_Surface * surface, int x, int y, Uint32 pixel);
 
