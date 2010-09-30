@@ -598,6 +598,10 @@ LuaCode={
 	npc_says(_"You also have the [b]Programming[/b] skill, which essentially is about programming in an energy efficient manner so programs cause less heat.")
 	npc_says(_"Apart from this, a few programs require a teacher and training points to improve.")
 	npc_says(_"[b]Extract Bot Parts[/b] is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
+	npc_says(_"A good technician is able to make use of that parts.")
+	npc_says(_"He can create, let's say, an add-on and, after doing some modifications to the item, attach this add-on.")
+	npc_says(_"This way an upgraded item is created.")
+	add_quest(_"Tutorial Upgrading Items", _"There is a way to upgrade items if I meet a good technician. It sounds useful, maybe I should learn more about this.")
 	npc_says(_"The [b]Hacking[/b] program we will speak a bit more of in a little while.")
 	hide(40) show(41)
 }
@@ -611,19 +615,22 @@ LuaCode={
 	npc_says(_"But, again, that's your choice.")
 	add_xp("2000")
 	end_dialog()
-	hide(41) show(42)
+	hide(41) show(42, 58)
 }
 ----------------------------------------------------------------------
 
 Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 LuaCode={
+	if (not done_quest(_"Tutorial Upgrading Items")) then
+				end_quest(_"Tutorial Upgrading Items",_"I decided that I don't need to know how to upgrade items.")
+		end
 	npc_says(_"First, you'll need to unlock the door.")
 	npc_says(_"See that [b]Terminal[/b] to the left?")
 	npc_says(_"You will need to login, by left clicking on it, and then select unlock door.")
 	npc_says(_"Terminals act very similar to hacked bots.")
 	add_quest(_"Tutorial Hacking", _"I need to login to the Terminal by left clicking on it. Then I'll unlock the door, so I can go hack some bots!")
 	end_dialog()
-	hide(42) show(50, 56)
+	hide(42, 58, 59, 60) show(50, 56)
 }
 ----------------------------------------------------------------------
 
@@ -759,6 +766,63 @@ LuaCode={
 	npc_says(_"But things will be much clearer once you try for yourself than when I try to explain.")
  npc_says(_"Use your experience as notes, and all should be clear.")
 	show(51, 52, 53) hide(57)
+}
+----------------------------------------------------------------------
+
+Nr=58 Text=_"Can you tell me more about upgrading items?"
+LuaCode={
+	npc_says(_"You can upgrade most weapons and clothings. First you'll need some materials to craft add-ons.") 
+	npc_says(_"Parts needed for this process can be extracted from bots. You'll have to learn how to do it.")
+	npc_says(_"When you have enough materials, you can craft an add-on. Make sure the add-on is suitable for your equipment.")
+	npc_says(_"After this, you have to make a socket in your equipment so you can plug the add-on.")
+	npc_says(_"That's the theory. Simple, isn't it?")
+	npc_says(_"I'll give you some materials now and let you craft an add-on.")
+	npc_says(_"Pay attention to the type of the socket the add-on needs.")
+	update_quest(_"Tutorial Upgrading Items", _"Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them.")
+-- TODO decide on what type of upgrade should player make?
+	add_item("Entropy Inverter", 20)
+	add_item("Tachyon Condensator", 20)
+	add_item("Antimatter-Matter Converter", 20)
+	add_item("Superconducting Relay Unit", 20)
+	add_item("Plasma Transistor", 20)
+	craft_addons()
+	npc_says(_"Now you'll need to pay some more money in order to make a socket and plug-in the add-on. Here, take some.")
+	add_gold(600)
+	npc_says(_"Choose an item and add an appropriate socket by clicking ''+'' on the right of the item. Then attach the add-on to this item and confirm your choice.")
+	upgrade_items()
+	end_quest(_"Tutorial Upgrading Items",_"Maybe I need some time to practice this, but I got the basics.")
+	hide(58) show(59, 60)
+}
+----------------------------------------------------------------------
+
+Nr=59 Text=_"I wasted my materials on the add-on I didn't need. Can you give more?"
+LuaCode={
+	npc_says(_"Yes, but only this time. I'll give you some money too. Just be more careful in the future and make wise choices.") 
+	npc_says(_"Reality is not as generous as I am.")
+	add_item("Entropy Inverter", 20)
+	add_item("Tachyon Condensator", 20)
+	add_item("Antimatter-Matter Converter", 20)
+	add_item("Superconducting Relay Unit", 20)
+	add_item("Plasma Transistor", 20)
+	add_gold(600)
+	tux_says(_"Thank you.")
+	npc_says(_"Think carefully before you make your next add-on.")
+	hide(59)
+}
+----------------------------------------------------------------------
+
+Nr=60 Text=_"Upgrading items is still too complex for me. Can you explain it again?"
+LuaCode={
+	npc_says(_"First step is finding materials. They may be extracted from bots, but you'll have to learn how to do it.")
+	npc_says(_"Those materials can be used in crafting add-ons. Make sure the add-on will fit your equipment. Also, remember the type of the socket your add-on needs.")
+	npc_says(_"I gave you materials. Let's craft an add-on now.")
+	craft_addons()
+	npc_says(_"All you have to do now is to choose a suitable item and add a socket by clicking ''+'' on the right of the chosen item.")
+	npc_says(_"Remember you pay for both adding a socket and plugging an add-on.")
+	npc_says(_"Let's try it, shall we?")
+	upgrade_items()
+	npc_says(_"I hope it's clear now.")
+
 }
 ----------------------------------------------------------------------
 

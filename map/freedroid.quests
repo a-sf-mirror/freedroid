@@ -201,6 +201,23 @@ Completion LuaCode={
 }
 ** End of this mission target subsection **
 
+** Start of this mission target subsection **
++++
++++ Deliver list from Francis to Spencer
++++
+Mission Name=_"Deliverance"
+** End of this mission target subsection **
+
+** Start of this mission target subsection **
++++
++++ Upgrading Items in the Tutorial
++++
+Mission Name=_"Tutorial Upgrading Items"
+Completion LuaCode={
+	display_console_message(_"Tutorial Upgrading Items finished!")
+}
+** End of this mission target subsection **
+
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***
 
 
