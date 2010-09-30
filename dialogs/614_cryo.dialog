@@ -47,7 +47,7 @@ LuaCode={
 	npc_says(_"Others were warned, but nobody listened to Nicholsons announcements.")
 	npc_says(_"He built up a team and developed his own Kernel called 'Nkernel'.")
 	npc_says(_"The Nkernel development team grew fast and technicians started to produce their own droids optimized for the Nkernel.")
-	npc_says(_"The Team became a company which released their first security droid, the 610 Lovely.")
+	npc_says(_"The team became a company which released their first security droid, called 610.")
 	npc_says(_"I am the 4th generation version of their security droid line.")
 	hide(1)
 }
