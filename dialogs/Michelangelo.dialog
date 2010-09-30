@@ -144,7 +144,7 @@ LuaCode={
 	if (random_var > 0.9) then
 		npc_says(_"Here, try this slice of lemon meringue pie.")
 		if (not has_item_backpack("Fork") ) then
-			npc_says(_"Wait, you don't have a Fork. You need a fork...")
+			npc_says(_"Wait, you don't have a fork. You need a fork...")
 		else
 			tux_says(_"It is as if a cloud from heaven was made into a pie.")
 			hurt_tux(-20)
@@ -152,13 +152,13 @@ LuaCode={
 	elseif (random_var > 0.8) then
 		npc_says(_"Try this crab cake.")
 		if ( (not has_item_backpack("Fork") ) and (not has_item_backpack("Plate") ) ) then
-			npc_says(_"Where is your Plate and Fork?")
+			npc_says(_"Where is your plate and fork?")
 		else
 			tux_says(_"Such an intense, delectable, blend of savory spices... it melts in my mouth.")
 			hurt_tux(-40) -- cholesterol not included ;-)
 		end
 	elseif (random_var > 0.6) then
-		npc_says(_"May I interest you in some Eggs Sardou?")
+		npc_says(_"May I interest you in some eggs sardou?")
 		tux_says(_"EGGS!?")
 		npc_says(_"Oh, Michelangelo had forgotten...")
 		npc_says(_"How about a... yummy army snack instead?")
@@ -288,17 +288,18 @@ Nr=42 Text=_"Tell the Red Guard that you need your battery back."
 LuaCode={
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"Well, you ARE the red guard", "NO_WAIT")
+		npc_says(_"Why can't you just talk to Spencer?")
 		npc_says(_"I want my battery back!")
 		tux_says(_"Umm... I guess you have a point there.")
-		tux_says(_"But sorry, I don't think there is anything I can do.", "NO_WAIT")
-		tux_says(_"Talk to Spencer.")
+		tux_says(_"But sorry, I don't think there is anything I can do right now,", "NO_WAIT")
+		tux_says(_"Talk to Spencer yourself.")
 		hide(42)
 	else
 		npc_says(_"I did.")
 		npc_says(_"They said it was already fed to their reactor as fuel.")
 		hide(42)
 	end
-}
+} -- There could be a quest for Tux to find the item that uses the battery and return it to Michelangelo.
 ----------------------------------------------------------------------
 
 Nr=75 Text=_"I need a dilithium crystal."
@@ -324,8 +325,8 @@ LuaCode={
 	update_quest(_"SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
 	hide(77)
 }
-
 ----------------------------------------------------------------------
+
 Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"See you later.")
