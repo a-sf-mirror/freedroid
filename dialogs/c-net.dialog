@@ -243,7 +243,13 @@ Nr=23 Text=_"mountdisk.sh"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(_"./mountdisk.sh", "NO_WAIT")
-	npc_says(_"no disk found", "NO_WAIT")
+	if (has_item_backpack("Kevin's Data Cube") > 0) then
+		npc_says(_"Mounting volume \"Kevins_Security_File\"...")
+		npc_says(_"Private memory and/or virtual address space exhausted.", "NO_WAIT")
+		npc_says(_"Not enough free memory to load data file.", "NO_WAIT")
+	else
+		npc_says(_"no disk found", "NO_WAIT")
+	end
 	cli_says(terminal, "NO_WAIT")
 }
 ----------------------------------------------------------------------
