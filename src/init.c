@@ -1132,6 +1132,7 @@ For more information about these matters, see the file named COPYING.\n";
 char usage_string[] = "\
 Usage: freedroidRPG [-h | --help] \n\
                     [-v | --version] \n\
+                    [-e | --editor] \n\
                     [-s | --sound] [-q | --nosound] \n\
                     [-o | --open_gl] [-n | --no_open_gl] \n\
                     [-f | --fullscreen] [-w | --window] \n\
@@ -1176,6 +1177,7 @@ void ParseCommandLine(int argc, char *const argv[])
 	static struct option long_options[] = {
 		{"version", 0, 0, 'v'},
 		{"help", 0, 0, 'h'},
+		{"editor", 0, 0, 'e'},
 		{"open_gl", 0, 0, 'o'},
 		{"no_open_gl", 0, 0, 'n'},
 		{"nosound", 0, 0, 'q'},
@@ -1191,7 +1193,7 @@ void ParseCommandLine(int argc, char *const argv[])
 	command_line_override_for_screen_resolution = FALSE;
 
 	while (1) {
-		c = getopt_long(argc, argv, "vonqsb:h?d::r:wf", long_options, NULL);
+		c = getopt_long(argc, argv, "veonqsb:h?d::r:wf", long_options, NULL);
 		if (c == -1)
 			break;
 
@@ -1208,6 +1210,10 @@ void ParseCommandLine(int argc, char *const argv[])
 		case '?':
 			printf("%s",usage_string);
 			exit(0);
+			break;
+
+		case 'e':
+			start_editor = TRUE;
 			break;
 
 		case 'o':
@@ -1507,6 +1513,20 @@ void PrepareStartOfNewCharacter(char *startpos)
 		append_new_game_message(_("Starting tutorial."));
 	else
 		append_new_game_message(_("Starting new game."));
+}
+
+void prepare_level_editor()
+{
+	game_root_mode = ROOT_IS_LVLEDIT;
+	skip_initial_menus = 1;
+	clear_player_inventory_and_stats();
+	UpdateAllCharacterStats();
+	strcpy(Me.character_name, "MapEd");
+	char fp[2048];
+	find_file("freedroid.levels", MAP_DIR, fp, 0);
+	LoadShip(fp, 0);
+	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+	skip_initial_menus = 0;
 }
 
 /**

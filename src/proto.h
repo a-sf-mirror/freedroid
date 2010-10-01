@@ -42,6 +42,7 @@ void ParseCommandLine(int argc, char *const argv[]);
 void ClearAutomapData(void);
 void InitFreedroid(int, char **);
 void PrepareStartOfNewCharacter(char *startpos);
+void prepare_level_editor();
 void ThouArtDefeated(void);
 void ThouHastWon(void);
 void PlayATitleFile(char *Filename);

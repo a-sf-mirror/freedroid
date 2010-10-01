@@ -93,6 +93,7 @@ EXTERN int debug_level;		// 0=no debug 1=some debug messages 2=...etc
 EXTERN int show_all_droids;	// display enemys regardless of IsVisible() 
 EXTERN int draw_collision_rectangles;	// to better debug collision rectangles
 EXTERN int draw_grid;		// grid to see where objects will be positioned
+EXTERN int start_editor;
 #undef EXTERN
 #ifdef _misc_c
 #define EXTERN

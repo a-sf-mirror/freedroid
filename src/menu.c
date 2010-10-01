@@ -1213,16 +1213,7 @@ static int Startup_handle(int n)
 		}
 		break;
 	case LVLEDIT_POSITION:	//allow starting directly in leveleditor - the hack is a little dirty but it does its work.
-		game_root_mode = ROOT_IS_LVLEDIT;
-		skip_initial_menus = 1;
-		clear_player_inventory_and_stats();
-		UpdateAllCharacterStats();
-		strcpy(Me.character_name, "MapEd");
-		char fp[2048];
-		find_file("freedroid.levels", MAP_DIR, fp, 0);
-		LoadShip(fp, 0);
-		PrepareStartOfNewCharacter("NewTuxStartGameSquare");
-		skip_initial_menus = 0;
+		prepare_level_editor();
 		return EXIT_MENU;
 		break;
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
