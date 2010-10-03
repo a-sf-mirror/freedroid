@@ -1508,7 +1508,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	//
 	our_SDL_flip_wrapper();
 
-	init_message_log();
 	if (strcmp(startpos, "TutorialTuxStart") == 0)
 		append_new_game_message(_("Starting tutorial."));
 	else
@@ -1718,6 +1717,7 @@ I will not be able to load or save games or configurations\n\
 	InitVideo();
 
 	init_keyboard_input_array();
+	init_message_log();
 	init_lua();
 
 	InitAudio();

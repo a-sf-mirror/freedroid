@@ -575,7 +575,6 @@ int LoadGame(void)
 
 	animation_timeline_reset();
 
-	init_message_log();
 	append_new_game_message(_("Game loaded."));
 	return OK;
 }
