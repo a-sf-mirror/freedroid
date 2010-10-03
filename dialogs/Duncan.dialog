@@ -31,7 +31,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
 	if (not has_cookie("met_duncan")) then
-		show(0, 90, 96)
+		show(0, 90, 99)
 		add_cookie("met_duncan")
 	else
 		if (not has_cookie("koan_quest")) then next(50) else end
@@ -280,13 +280,15 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=96 Text=_"See you later."
+Nr=97 Text="BUG, REPORT ME! duncan node97"
+OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says(_"I wish you cold winds.")
 	tux_says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")
 	npc_says(_"I read many books on Linarians. That is all.")
 	npc_says(_"Nothing more and nothing less.")
-	hide(96) show(98, 99)
+	next(98)
+	show(98)
 }
 ----------------------------------------------------------------------
 
@@ -294,15 +296,18 @@ Nr=98 Text=_"I wish you cold winds."
 LuaCode={
 	npc_says(_"May the ice bring you wisdom.")
 	end_dialog()
-	hide(99)
 }
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
 LuaCode={
-	npc_says(_"See you later.")
-	end_dialog()
-	hide(98)
+	if (not has_cookie("coldwinds_cookie")) then
+		add_cookie("coldwinds_cookie")
+		next(97)
+	else
+		npc_says(_"See you later.")
+		end_dialog()
+	end
 }
 ----------------------------------------------------------------------
 
