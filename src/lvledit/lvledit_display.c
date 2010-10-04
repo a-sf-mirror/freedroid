@@ -404,6 +404,9 @@ void leveleditor_display()
 
 	show_tooltips();
 
+	// Construct the linked list of visible levels.
+	get_visible_levels();
+
 	leveleditor_display_widgets();
 
 	if (EditLevel()->random_dungeon) {
