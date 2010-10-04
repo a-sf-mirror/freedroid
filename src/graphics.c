@@ -1312,117 +1312,58 @@ void ClearGraphMem(void)
 };				// void ClearGraphMem( void )
 
 /**
+ * Draw a colored rectangle on screen with alpha blending in SDL.
  *
- *
+ * @param rect The rectangular area.
+ * @param r The red color value.
+ * @param g The green color value.
+ * @param b The blue color value.
+ * @param a The alpha color value.
  */
-void SDL_HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
+static void sdl_blit_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
-	int x, y;
-	unsigned char red, green, blue;
-	int max;
-	float EnhancementFactor;
+	SDL_Surface *surface;
 
-	// First some sanity checks.. one can never now...
-	//
-	if (Area.x < 0)
-		Area.x = 0;
-	if (Area.x + Area.w >= Surface->w)
-		Area.w = Surface->w - Area.x - 1;
-	if (Area.y < 0)
-		Area.y = 0;
-	if (Area.y + Area.h >= Surface->h)
-		Area.h = Surface->h - Area.y - 1;
+	// Create an empty surface with 32 bits per pixel in video memory. This will
+	// allow SDL to take advantage of video.
+	surface = SDL_CreateRGBSurface(SDL_HWSURFACE, rect->w, rect->h, 32, 0, 0, 0, 0);
 
-	// Now we start to process through the whole surface and examine each
-	// pixel.
-	//
-	SDL_LockSurface(Surface);
+	// Perform a fast fill of the whole rectangle with color.
+	SDL_FillRect(surface, NULL, SDL_MapRGB(Screen->format, r, g, b));
 
-	for (y = Area.y; y < Area.y + Area.h; y++) {
+	// Adjust the alpha properties of a surface and active the acceleration.
+	SDL_SetAlpha(surface, SDL_SRCALPHA | SDL_RLEACCEL, a);
 
-#define HIGHLIGHT_BLOCK_FRAME 2
-
-		// if ( ! ( ( y < Area . y + HIGHLIGHT_BLOCK_FRAME ) || ( y + HIGHLIGHT_BLOCK_FRAME >= Area.y+Area.h ) ) && 
-		// ! GameConfig.highlighting_mode_full ) continue ;
-
-		for (x = Area.x; x < Area.x + Area.w; x++) {
-
-			if ((!((x < Area.x + HIGHLIGHT_BLOCK_FRAME) || (x + HIGHLIGHT_BLOCK_FRAME >= Area.x + Area.w)) &&
-			     !GameConfig.highlighting_mode_full) &&
-			    (!((y < Area.y + HIGHLIGHT_BLOCK_FRAME) || (y + HIGHLIGHT_BLOCK_FRAME >= Area.y + Area.h)) &&
-			     !GameConfig.highlighting_mode_full))
-				continue;
-
-			green = GetGreenComponent(Surface, x, y);
-			red = GetRedComponent(Surface, x, y);
-			blue = GetBlueComponent(Surface, x, y);
-
-			if (green < red)
-				max = red;
-			else
-				max = green;
-			if (max < blue)
-				max = blue;
-
-			EnhancementFactor = 90;
-
-			if (red < 255 - EnhancementFactor)
-				red += EnhancementFactor;
-			else
-				red = 255;
-			if (green < 255 - EnhancementFactor)
-				green += EnhancementFactor;
-			else
-				green = 255;
-			if (blue < 255 - EnhancementFactor)
-				blue += EnhancementFactor;
-			else
-				green = 255;
-
-			PutPixel(Surface, x, y, SDL_MapRGB(Surface->format, red, green, blue));
-
-		}
-	}
-
-	SDL_UnlockSurface(Surface);
-
-};				// void Old_SDL_HighlightRectangle ( SDL_Surface* Surface , SDL_Rect Area )
+	// Blit the surface on screen and free it.
+	SDL_BlitSurface(surface, NULL, Screen, rect);
+	SDL_FreeSurface(surface);
+}
 
 /**
- * This function draws a transparent white rectangle over a specified
+ * This function draws a transparent black rectangle over a specified
  * area on the screen.
  */
-
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area)
 {
-
-	DebugPrintf(2, "\n%s(): x=%d, y=%d, w=%d, h=%d.", __FUNCTION__, Area.x, Area.y, Area.w, Area.h);
-	if (use_open_gl)
+	if (use_open_gl) {
 		GL_HighlightRectangle(Surface, &Area, 0, 0, 0, 150);
-	//else
-	//SDL_HighlightRectangle ( Surface , Area );
-
-	return;
-
-};				// void ShadowingRectangle
+	} else {
+		sdl_blit_rectangle(&Area, 0, 0, 0, 150);
+	}
+}
 
 /**
  * This function draws a transparent white rectangle over a specified
  * area on the screen.
  */
-
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
 {
-
-	DebugPrintf(2, "\n%s(): x=%d, y=%d, w=%d, h=%d.", __FUNCTION__, Area.x, Area.y, Area.w, Area.h);
-	if (use_open_gl)
+	if (use_open_gl) {
 		GL_HighlightRectangle(Surface, &Area, 255, 255, 255, 100);
-	else
-		SDL_HighlightRectangle(Surface, Area);
-
-	return;
-
-};				// void HighlightRectangle
+	} else {
+		sdl_blit_rectangle(&Area, 255, 255, 255, 100);
+	}
+}
 
 /*
  * Draw an 'expanded' pixel.

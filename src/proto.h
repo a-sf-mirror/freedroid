@@ -272,7 +272,6 @@ void InitVideo(void);
 void InitOurBFonts(void);
 void FreeOurBFonts(void);
 void ClearGraphMem(void);
-void SDL_HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area);
 int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value);
