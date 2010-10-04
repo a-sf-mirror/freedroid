@@ -694,7 +694,7 @@ draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
 		glEnable(GL_ALPHA_TEST);
 	}
 
-	translate_map_point_to_screen_pixel(our_col, our_line, &x, &y, zoom_factor);
+	translate_map_point_to_screen_pixel(our_col, our_line, &x, &y);
 	x += our_iso_image->offset_x * zoom_factor;
 	y += our_iso_image->offset_y * zoom_factor;
 

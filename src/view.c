@@ -406,7 +406,7 @@ static void show_floor(int mask)
 					int x, y;
 					float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
 
-					translate_map_point_to_screen_pixel(((float)col) + 0.5, ((float)line) + 0.5, &x, &y, zf);
+					translate_map_point_to_screen_pixel(((float)col) + 0.5, ((float)line) + 0.5, &x, &y);
 					x += ourimg->offset_x * zf;
 					y += ourimg->offset_y * zf;
 
@@ -472,12 +472,11 @@ void blit_leveleditor_point(int x, int y)
  */
 void skew_and_blit_rect(float x1, float y1, float x2, float y2, Uint32 color)
 {
-	float zoom_factor = (GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
 	int r1, r2, r3, r4, c1, c2, c3, c4;
-	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1, zoom_factor);
-	translate_map_point_to_screen_pixel(x1, y2, &r2, &c2, zoom_factor);
-	translate_map_point_to_screen_pixel(x2, y2, &r3, &c3, zoom_factor);
-	translate_map_point_to_screen_pixel(x2, y1, &r4, &c4, zoom_factor);
+	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
+	translate_map_point_to_screen_pixel(x1, y2, &r2, &c2);
+	translate_map_point_to_screen_pixel(x2, y2, &r3, &c3);
+	translate_map_point_to_screen_pixel(x2, y1, &r4, &c4);
 	blit_quad(r1, c1, r2, c2, r3, c3, r4, c4, color);
 }
 
@@ -1917,12 +1916,9 @@ void update_item_text_slot_positions(void)
 static void draw_line_at_map_position(float x1, float y1, float x2, float y2, Uint32 color, int thickness)
 {
 	int c1, c2, r1, r2;
-	float zoom_factor;
 
-	zoom_factor = (GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
-
-	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1, zoom_factor);
-	translate_map_point_to_screen_pixel(x2, y2, &r2, &c2, zoom_factor);
+	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
+	translate_map_point_to_screen_pixel(x2, y2, &r2, &c2);
 
 	draw_line(r1, c1, r2, c2, color, thickness);
 }
@@ -1932,7 +1928,6 @@ void draw_grid_on_the_floor(int mask)
 	if (!(draw_grid && (mask & SHOW_GRID)))
 		return;
 
-	float zoom_factor = (GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
 	int LineStart, LineEnd, ColStart, ColEnd;
 	float x, y;
 	Level our_level = curShip.AllLevels[Me.pos.z];
@@ -1974,7 +1969,7 @@ void draw_grid_on_the_floor(int mask)
 			int r, c;
 			xx = x - ii;
 			yy = y - jj;
-			translate_map_point_to_screen_pixel(xx, yy, &r, &c, zoom_factor);
+			translate_map_point_to_screen_pixel(xx, yy, &r, &c);
 			SDL_Rect tr;
 			tr.x = r - 7;
 			tr.y = c - 7;
@@ -3689,7 +3684,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		}
 
 		int screen_x, screen_y;
-		translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y, zf);
+		translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
 
 		if (use_open_gl) {
 			TargetRectangle.x = screen_x - (enemy_iso_images[RotationModel][RotationIndex][0].original_image_width * zf) / 2;

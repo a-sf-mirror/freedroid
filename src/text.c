@@ -106,9 +106,8 @@ void show_backgrounded_label_at_pixel_position(char *LabelText, int pos_x, int p
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on)
 {
 	int pixel_x, pixel_y;
-	float zoom_factor = (zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
 
-	translate_map_point_to_screen_pixel(pos_x, pos_y, &pixel_x, &pixel_y, zoom_factor);
+	translate_map_point_to_screen_pixel(pos_x, pos_y, &pixel_x, &pixel_y);
 	show_backgrounded_label_at_pixel_position(LabelText, pixel_x, pixel_y);
 
 };				// void show_backgrounded_label_at_map_position ( char* LabelText , float fill_status , float pos_x , float pos_y )

@@ -381,7 +381,7 @@ int IsVisible(gps *objpos);
 		                                                           + ceilf(Me.pos.y*iso_floor_tile_width_over_two) - ceilf(Me.pos.x*iso_floor_tile_width_over_two) )
 #define translate_map_point_to_screen_pixel_y(X,Y)  ( UserCenter_y + ceilf((X)*iso_floor_tile_height_over_two) + ceilf((Y)*iso_floor_tile_height_over_two) \
 		                                                           - ceilf(Me.pos.x*iso_floor_tile_height_over_two) - ceilf(Me.pos.y*iso_floor_tile_height_over_two) )
-void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, int *x_res, int *y_res, float zoom_factor);
+void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, int *x_res, int *y_res);
 float translate_pixel_to_map_location(float axis_x, float axis_y, int give_x);
 float translate_pixel_to_zoomed_map_location(float axis_x, float axis_y, int give_x);
 

@@ -925,15 +925,13 @@ int leveleditor_select_input(SDL_Event * event)
 int leveleditor_select_display()
 {
 	int r1, r2, r3, r4, c1, c2, c3, c4;
-	float zf = GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0;
 	switch (mode) {
 	case FD_RECT:
 		//display the selection rectangle
-		translate_map_point_to_screen_pixel(state.rect_start.x, state.rect_start.y, &r1, &c1, zf);
-		translate_map_point_to_screen_pixel(state.rect_start.x, state.rect_start.y + state.rect_len.y, &r2, &c2, zf);
-		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y + state.rect_len.y, &r3, &c3,
-						    zf);
-		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y, &r4, &c4, zf);
+		translate_map_point_to_screen_pixel(state.rect_start.x, state.rect_start.y, &r1, &c1);
+		translate_map_point_to_screen_pixel(state.rect_start.x, state.rect_start.y + state.rect_len.y, &r2, &c2);
+		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y + state.rect_len.y, &r3, &c3);
+		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y, &r4, &c4);
 
 		if (!use_open_gl) {
 			DrawHatchedQuad(Screen, r1, c1, r2, c2, r3, c3, r4, c4, 0x1f, 0x7f, 0x8f);

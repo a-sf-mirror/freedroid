@@ -445,7 +445,7 @@ void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, floa
 	SDL_Rect target_rectangle;
 	int ii, jj;
 
-	translate_map_point_to_screen_pixel(pos_x, pos_y, &ii, &jj, 1.0);
+	translate_map_point_to_screen_pixel(pos_x, pos_y, &ii, &jj);
 	target_rectangle.x = ii + our_iso_image->offset_x;
 	target_rectangle.y = jj + our_iso_image->offset_y;
 
@@ -470,7 +470,7 @@ void blit_outline_of_iso_image_to_map_position(iso_image * our_iso_image, float 
 
 	DebugPrintf(1, "\nblit_outline_of_iso_image_to_map_position: function invoked.");
 
-	translate_map_point_to_screen_pixel(pos_x, pos_y, &x, &y, 1.0);
+	translate_map_point_to_screen_pixel(pos_x, pos_y, &x, &y);
 	target_rectangle.x = x + our_iso_image->offset_x;
 	target_rectangle.y = y + our_iso_image->offset_y;
 
@@ -628,7 +628,7 @@ void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_
 	int x, y;
 	float zoom_factor = lvledit_zoomfact_inv();
 
-	translate_map_point_to_screen_pixel(pos_x, pos_y, &x, &y, zoom_factor);
+	translate_map_point_to_screen_pixel(pos_x, pos_y, &x, &y);
 	target_rectangle.x = x + our_iso_image->offset_x * zoom_factor;
 	target_rectangle.y = y + our_iso_image->offset_y * zoom_factor;
 

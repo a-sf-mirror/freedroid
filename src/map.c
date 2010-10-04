@@ -1965,8 +1965,13 @@ moderately_finepoint translate_point_to_map_location(float axis_x, float axis_y,
  * @param zoom_factor zoom factor in use
  * 
  */
-void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, int *x_res, int *y_res, float zoom_factor)
+void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, int *x_res, int *y_res)
 {
+	float zoom_factor = 1.0;
+
+	if (game_status == INSIDE_LVLEDITOR && GameConfig.zoom_is_on) {
+		zoom_factor = lvledit_zoomfact_inv();
+	}
 #define R ceilf
 #define factX iso_floor_tile_width*0.5*zoom_factor
 #define factY iso_floor_tile_height*0.5*zoom_factor
