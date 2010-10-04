@@ -807,7 +807,6 @@ typedef struct level {
 typedef struct obstacle_spec {
 	iso_image image;
 	iso_image shadow_image;
-	SDL_Surface *automap_version;
 
 	char image_loaded;
     char *label; 

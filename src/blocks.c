@@ -51,22 +51,6 @@ void make_sure_zoomed_surface_is_there(iso_image * our_iso_image)
 };				// void make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
 
 /**
- * The automap (in OpenGL mode) uses some smaller version of the graphics
- * used to assemble the in-game obstacle images.  These smaller versions 
- * of the graphics have to be generated.  We do that on the fly at 
- * runtime once and for all obstacles at the first game startup.
- */
-void make_sure_automap_surface_is_there(obstacle_spec * our_obstacle_spec)
-{
-	our_obstacle_spec->automap_version =
-	    zoomSurface(our_obstacle_spec->image.surface, (1.0 / AUTOMAP_ZOOM_OUT_FACT), (1.0 / AUTOMAP_ZOOM_OUT_FACT), FALSE);
-	if (!our_obstacle_spec->automap_version) {
-		ErrorMessage(__FUNCTION__, "\
-Creation of automap surface failed", PLEASE_INFORM, IS_FATAL);
-	}
-};				// void make_sure_automap_surface_is_there ( iso_image* our_iso_image )
-
-/**
  * This function loads the Blast image and decodes it into the multiple
  * small Blast surfaces.
  */
@@ -1190,7 +1174,6 @@ void load_obstacle(int i)
 	if (use_open_gl) {
 		get_iso_image_from_file_and_path(fpath, &(obstacle_map[i].image), TRUE);
 		//make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . image ) ); 
-		make_sure_automap_surface_is_there(&(obstacle_map[i]));
 
 		make_texture_out_of_surface(&(obstacle_map[i].image));
 	} else
