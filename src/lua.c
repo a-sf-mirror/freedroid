@@ -52,6 +52,22 @@ enum data_type {
 /* Our Lua state for event execution */
 lua_State *global_lua_state;
 
+/** Helper to retrieve the enemy 
+  * a Lua function must act upon.
+  * An optional dialog name can be provided,
+  * by default the function will act upon
+  * the current chat droid.
+  */
+static enemy *get_enemy_arg(lua_State *L, int param_number) 
+{
+	const char *dialog = luaL_optstring(L, param_number, NULL);
+
+	if (!dialog)
+		return chat_control_chat_droid;
+
+	return get_enemy_with_dialog(dialog);
+}
+
 static int lua_event_teleport(lua_State * L)
 {
 	const char *label = luaL_checkstring(L, 1);
@@ -528,13 +544,15 @@ static int lua_event_craft_addons(lua_State * L)
 
 static int lua_event_heal_npc(lua_State * L)
 {
-	chat_control_chat_droid->energy = Druidmap[chat_control_chat_droid->type].maxenergy;
+	enemy *en = get_enemy_arg(L, 1); 
+	en->energy = Druidmap[en->type].maxenergy;
 	return 0;
 }
 
 static int lua_display_npc_damage_amount(lua_State * L)
 {
-	lua_pushinteger(L, (int)(Druidmap[chat_control_chat_droid->type].maxenergy - chat_control_chat_droid->energy)); 
+	enemy *en = get_enemy_arg(L, 1); 
+	lua_pushinteger(L, (int)(Druidmap[en->type].maxenergy - en->energy));
 	return 1;
 }
 
@@ -558,7 +576,8 @@ static int lua_event_npc_dead(lua_State *L)
 static int lua_event_freeze_tux_npc(lua_State * L)
 {
 	int duration = luaL_checkinteger(L, 1);
-	chat_control_chat_droid->paralysation_duration_left = duration;
+	enemy *en = get_enemy_arg(L, 2); 
+	en->paralysation_duration_left = duration;
 	Me.paralyze_duration = duration;
 	return 0;
 }
@@ -666,29 +685,31 @@ static int lua_chat_disable_node(lua_State * L)
 
 static int lua_chat_drop_dead(lua_State * L)
 {
-	hit_enemy(chat_control_chat_droid, chat_control_chat_droid->energy + 1, 0, Druidmap[chat_control_chat_droid->type].is_human - 2, 0);
-	chat_control_end_dialog = 1;
+	enemy *en = get_enemy_arg(L, 1); 
+	hit_enemy(en, en->energy + 1, 0, Druidmap[en->type].is_human - 2, 0);
+	if (en == chat_control_chat_droid)
+		chat_control_end_dialog = 1;
 	return 0;
 }
 
 static int lua_chat_set_bot_state(lua_State * L)
 {
 	const char *cmd = luaL_checkstring(L, 1);
+	enemy *en = get_enemy_arg(L, 2); 
 	if (!strcmp(cmd, "follow_tux")) {
-		chat_control_chat_droid->follow_tux = TRUE;
-		chat_control_chat_droid->CompletelyFixed = FALSE;
+		en->follow_tux = TRUE;
+		en->CompletelyFixed = FALSE;
 	} else if (!strcmp(cmd, "fixed")) {
-		chat_control_chat_droid->follow_tux = FALSE;
-		chat_control_chat_droid->CompletelyFixed = TRUE;
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = TRUE;
 	} else if (!strcmp(cmd, "free")) {
-		chat_control_chat_droid->follow_tux = FALSE;
-		chat_control_chat_droid->CompletelyFixed = FALSE;
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
 	} else {
 		ErrorMessage(__FUNCTION__,
 			     "I was called with an invalid state namei %s. Accepted values are \"follow_tux\", \"fixed\" and \"free\".\n",
 			     PLEASE_INFORM, IS_FATAL, cmd);
 	}
-
 	return 0;
 }
 
@@ -707,21 +728,24 @@ static int lua_chat_takeover(lua_State * L)
 
 static int lua_chat_get_bot_type(lua_State * L)
 {
-	lua_pushstring(L, Druidmap[chat_control_chat_droid->type].druidname);
+	enemy *en = get_enemy_arg(L, 1); 
+	lua_pushstring(L, Druidmap[en->type].druidname);
 	return 1;
 }
 
 static int lua_chat_get_bot_name(lua_State * L)
 {
-	lua_pushstring(L, chat_control_chat_droid->short_description_text);
+	enemy *en = get_enemy_arg(L, 1); 
+	lua_pushstring(L, en->short_description_text);
 	return 1;
 }
 
 static int lua_chat_set_bot_name(lua_State * L)
 {
 	const char *bot_name = luaL_checkstring(L, 1);
-	free(chat_control_chat_droid->short_description_text);
-	chat_control_chat_droid->short_description_text = strdup(bot_name);
+	enemy *en = get_enemy_arg(L, 2); 
+	free(en->short_description_text);
+	en->short_description_text = strdup(bot_name);
 	return 0;
 }
 
@@ -734,8 +758,8 @@ static int lua_difficulty_level(lua_State * L)
 static int lua_set_npc_faction(lua_State *L)
 {
 	const char *fact = luaL_checkstring(L, 1);
-
-	chat_control_chat_droid->faction = get_faction_id(fact);
+	enemy *en = get_enemy_arg(L, 2); 
+	en->faction = get_faction_id(fact);
 	return 0;
 }
 

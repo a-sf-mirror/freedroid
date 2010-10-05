@@ -50,7 +50,6 @@ LuaCode={
 	npc_says(_"Ich bin der Geist, der stets verneint.") -- I am the ghost that always negates (?).
 	npc_says(_"Und das mit Recht; denn alles, was entsteht,") -- For a reason; because everything that is created,
 	npc_says(_"ist wert, dass es zugrunde geht.") -- is worth, to be ruined.
-	set_bot_name(_"Geist -- Hunter")
 	hide(1) show(3)
 }
 ----------------------------------------------------------------------
