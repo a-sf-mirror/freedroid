@@ -707,7 +707,7 @@ static int lua_chat_set_bot_state(lua_State * L)
 		en->CompletelyFixed = FALSE;
 	} else {
 		ErrorMessage(__FUNCTION__,
-			     "I was called with an invalid state namei %s. Accepted values are \"follow_tux\", \"fixed\" and \"free\".\n",
+			     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\" and \"free\".\n",
 			     PLEASE_INFORM, IS_FATAL, cmd);
 	}
 	return 0;
