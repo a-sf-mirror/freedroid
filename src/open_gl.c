@@ -1054,36 +1054,33 @@ void PutPixel_open_gl(int x, int y, Uint32 pixel)
 };				// void PutPixel_open_gl ( x , y , pixel ) ;
 
 /**
- * On various occasions, like inside the shop interface or in the level
- * editor tile selection bar, it's nescessary to mark an item as currently
- * selected.  We do this by drawing a part-transparent white rectangle 
- * right over it.  This function can be used to draw that rectangle.
+ * Draw a colored rectangle on screen in OpenGL.
+ *
+ * @param rect The rectangular area.
+ * @param r The red color value.
+ * @param g The green color value.
+ * @param b The blue color value.
+ * @param a The alpha color value.
  */
-void
-GL_HighlightRectangle(SDL_Surface * Surface, SDL_Rect * dstrect, unsigned char r, unsigned char g, unsigned char b, unsigned char alpha)
+void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
 #ifdef HAVE_LIBGL
-
 	glDisable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 
-	glColor4ub(r, g, b, alpha);
+	glColor4ub(r, g, b, a);
 
 	glBegin(GL_QUADS);
-	glVertex2i(dstrect->x, dstrect->y);
-	glVertex2i(dstrect->x, dstrect->y + dstrect->h);
-	glVertex2i(dstrect->x + dstrect->w, dstrect->y + dstrect->h);
-	glVertex2i(dstrect->x + dstrect->w, dstrect->y);
+	glVertex2i(rect->x, rect->y);
+	glVertex2i(rect->x, rect->y + rect->h);
+	glVertex2i(rect->x + rect->w, rect->y + rect->h);
+	glVertex2i(rect->x + rect->w, rect->y);
 	glEnd();
 
 	glEnable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
-
 #endif
-
-	return;
-
-};				// void GL_HighlightRectangle
+}
 
 #define CHARACTER_SCREEN_BACKGROUND_FILE "backgrounds/character.png"
 #define SKILL_SCREEN_BACKGROUND_FILE "backgrounds/SkillScreen.png"

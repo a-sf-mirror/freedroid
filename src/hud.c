@@ -300,7 +300,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	rect.y = bar_y;
 	rect.w = bar_width;
 	if (use_open_gl) {
-		GL_HighlightRectangle(Screen, &rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
+		gl_draw_rectangle(&rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
 	} else {
 		our_SDL_fill_rect_wrapper(Screen, &rect, SDL_MapRGB(Screen->format, r, g, b));
 	}
@@ -847,7 +847,7 @@ void show_current_text_banner(void)
 	// Draw the rectangle inside which the text will be drawn
 	SDL_SetClipRect(Screen, NULL);	// this unsets the clipping rectangle
 	if (use_open_gl)
-		GL_HighlightRectangle(Screen, &banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
+		gl_draw_rectangle(&banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
 	else
 		our_SDL_fill_rect_wrapper(Screen, &banner_rect, 0x00);
 

@@ -1747,7 +1747,7 @@ static void blit_all_item_slots(int mask)
 						(item_level->ItemList[i].text_slot_rectangle.x >= GameConfig.screen_width) ||
 						(item_level->ItemList[i].text_slot_rectangle.y >= GameConfig.screen_height))
 						continue;
-					GL_HighlightRectangle(Screen, &(item_level->ItemList[i].text_slot_rectangle), 0, 0, 0,
+					gl_draw_rectangle(&item_level->ItemList[i].text_slot_rectangle, 0, 0, 0,
 								  BACKGROUND_TEXT_RECT_ALPHA);
 				} else {
 					SDL_Rect our_rect = item_level->ItemList[i].text_slot_rectangle;	//we need that because SDL_FillRect modifies the dstrect
@@ -4098,11 +4098,11 @@ void draw_inventory_occupied_rectangle(SDL_Rect TargetRect, int bgcolor)
 
 	if (use_open_gl) {
 		if (!bgcolor)
-			GL_HighlightRectangle(Screen, &TargetRect, 127, 127, 127, 100);
+			gl_draw_rectangle(&TargetRect, 127, 127, 127, 100);
 		if (bgcolor & IS_MAGICAL)
-			GL_HighlightRectangle(Screen, &TargetRect, 0, 0, 255, 100);
+			gl_draw_rectangle(&TargetRect, 0, 0, 255, 100);
 		if (bgcolor & REQUIREMENTS_NOT_MET)
-			GL_HighlightRectangle(Screen, &TargetRect, 255, 0, 0, 100);
+			gl_draw_rectangle(&TargetRect, 255, 0, 0, 100);
 	} else {
 		// Some things like the loading of the inventory and initialisation of the
 		// inventory rectangle need to be done only once at the first call of this

@@ -213,7 +213,7 @@ void make_texture_out_of_prepadded_image(iso_image * our_image);
 SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface);
 void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void PutPixel_open_gl(int x, int y, Uint32 pixel);
-void GL_HighlightRectangle(SDL_Surface * Surface, SDL_Rect * Area, unsigned char r, unsigned char g, unsigned char b, unsigned char alpha);
+void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 void show_character_screen_background(void);
 int safely_initialize_our_default_open_gl_parameters(void);
 void draw_gl_textured_quad_at_map_position(iso_image * our_floor_iso_image, float our_col, float our_line, float r, float g, float b,

@@ -1246,7 +1246,7 @@ void ClearGraphMem(void)
  * @param b The blue color value.
  * @param a The alpha color value.
  */
-static void sdl_blit_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
+static void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
 	SDL_Surface *surface;
 
@@ -1272,9 +1272,9 @@ static void sdl_blit_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area)
 {
 	if (use_open_gl) {
-		GL_HighlightRectangle(Surface, &Area, 0, 0, 0, 150);
+		gl_draw_rectangle(&Area, 0, 0, 0, 150);
 	} else {
-		sdl_blit_rectangle(&Area, 0, 0, 0, 150);
+		sdl_draw_rectangle(&Area, 0, 0, 0, 150);
 	}
 }
 
@@ -1285,9 +1285,9 @@ void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area)
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
 {
 	if (use_open_gl) {
-		GL_HighlightRectangle(Surface, &Area, 255, 255, 255, 100);
+		gl_draw_rectangle(&Area, 255, 255, 255, 100);
 	} else {
-		sdl_blit_rectangle(&Area, 255, 255, 255, 100);
+		sdl_draw_rectangle(&Area, 255, 255, 255, 100);
 	}
 }
 
