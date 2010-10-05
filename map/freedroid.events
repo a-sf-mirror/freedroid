@@ -42,6 +42,95 @@ LuaCode={
 }
 * End of trigger *
 
+* New event trigger *
+Name=_"Escort Tux N"
+Trigger at label="N-enter-1"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("follow_tux", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux N2"
+Trigger at label="N-enter-2"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("follow_tux", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux N3"
+Trigger at label="N-enter-3"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("follow_tux", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux N4"
+Trigger at label="N-enter-4"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("follow_tux", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux N-e1"
+Trigger at label="N-exit-1"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("fixed", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux N-e2"
+Trigger at label="N-exit-2"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("fixed", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux N-e3"
+Trigger at label="N-exit-3"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("fixed", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux N-e4"
+Trigger at label="N-exit-4"
+Silent=1
+LuaCode={
+	if (has_cookie("guard_follow_tux") ) then
+		set_bot_state("fixed", "Town-TuxGuard")
+	end
+}
+* End of trigger *
+
+
 ##############
 ## Level  1 ##
 ############## 

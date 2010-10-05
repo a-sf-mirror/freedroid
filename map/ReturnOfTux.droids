@@ -59,6 +59,7 @@ Random Droid Type: 476
 
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0NorthGateGuard" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard"
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="TuxEscortStartGameSquare" UseDialog="Town-TuxGuard" ShortLabel=_"Red Guard Member"
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0TeleporterGuard" UseDialog="Town-TeleporterGuard" ShortLabel=_"Town Teleporter Guard"
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="BenderStartGameSquare" UseDialog="Bender" ShortLabel=_"Red Guard Member"
 SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="ChandraStartGameSquare" UseDialog="Chandra" ShortLabel=_"Chandra -- Town Sage"

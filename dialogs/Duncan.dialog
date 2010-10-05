@@ -33,8 +33,8 @@ EveryTime LuaCode={
 	if (not has_cookie("met_duncan")) then
 		show(0, 90, 99)
 		add_cookie("met_duncan")
-	else
-		if (not has_cookie("koan_quest")) then next(50) else end
+	elseif ((not has_cookie("guard_follow_tux")) and (not has_cookie("koan_quest"))) then
+		next(50)
 	end
 
 	if (has_item_backpack("Pandora's Cube") > 0) then next(60) 
@@ -62,7 +62,9 @@ Nr=1 Text=_"I would like to buy a bomb."
 LuaCode={
 	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.", _"Sure. These are my offers today.")
 	trade_with("Duncan")
-	hide(1) show(2, 7)
+	if (not has_cookie("guard_follow_tux")) then
+		hide(1) show(2, 7)
+	end
 }
 ----------------------------------------------------------------------
 

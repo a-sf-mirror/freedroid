@@ -3571,6 +3571,15 @@ x=73 y=21 name="TamaraStartGameSquare"
 x=18 y=6 name="L0GateGuardhouseGuard"
 x=22 y=10 name="614StartGameSquare1"
 x=62 y=44 name="CitadelPrison"
+x=23 y=11 name="N-enter-1"
+x=24 y=11 name="N-enter-2"
+x=26 y=11 name="N-enter-3"
+x=27 y=11 name="N-enter-4"
+x=23 y=4 name="N-exit-1"
+x=24 y=4 name="N-exit-2"
+x=26 y=4 name="N-exit-3"
+x=27 y=4 name="N-exit-4"
+x=22 y=13 name="TuxEscortStartGameSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
@@ -3893,6 +3902,9 @@ Nr.=221 x=  21 y=   9 rnd=0	 c:  220
 Nr.=222 x=  22 y=   9 rnd=0	 c:  221 220
 Nr.=223 x=  62 y=  44 rnd=0	 c:  224
 Nr.=224 x=  63 y=  44 rnd=0	 c:  223
+Nr.=225 x=  22 y=  13 rnd=0	 c:  226 227
+Nr.=226 x=  24 y=  13 rnd=0	 c:  225 227
+Nr.=227 x=  24 y=  12 rnd=0	 c:  226 225
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 1

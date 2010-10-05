@@ -109,14 +109,18 @@ LuaCode={
 
 Nr=18 Text=_"You do not sound happy. What is wrong?"
 LuaCode={
-	npc_says(_"EVERYTHING!")
-	npc_says(_"Just look at this stupid town!")
-	npc_says(_"We are constantly pushed around by our 'saviors' the damn Red Guard. I hope they all die from rat bites as soon as possible and go to the deepest hells to boil in lava forever.")
-	npc_says(_"And the bots are keeping us busy by murdering, chopping, slicing, cleaving, rending and wounding us. How wonderful.")
-	npc_says(_"The guards gave me a filthy hovel to live in. The walls are so thin that every night I am rocked to sleep by the bots communicating with those beeps and modem sounds.")
-	npc_says(_"It sounds like they are singing something. Every night they start their song... I cannot sleep thanks to that electric chorus.")
-	npc_says(_"Have I mentioned that the only food that we have is some kind of pestilential military ration? The smell alone is making me want to vomit.")
-	hide(18) show(19, 20)
+	if (has_cookie("guard_follow_tux")) then
+		npc_says(_"I am very happy! The red guard are making us so secure, it is great to live here with them taking care of us!")
+	else
+		npc_says(_"EVERYTHING!")
+		npc_says(_"Just look at this stupid town!")
+		npc_says(_"We are constantly pushed around by our 'saviors' the damn Red Guard. I hope they all die from rat bites as soon as possible and go to the deepest hells to boil in lava forever.")
+		npc_says(_"And the bots are keeping us busy by murdering, chopping, slicing, cleaving, rending and wounding us. How wonderful.")
+		npc_says(_"The guards gave me a filthy hovel to live in. The walls are so thin that every night I am rocked to sleep by the bots communicating with those beeps and modem sounds.")
+		npc_says(_"It sounds like they are singing something. Every night they start their song... I cannot sleep thanks to that electric chorus.")
+		npc_says(_"Have I mentioned that the only food that we have is some kind of pestilential military ration? The smell alone is making me want to vomit.")
+		hide(18) show(19, 20)
+	end
 }
 ----------------------------------------------------------------------
 

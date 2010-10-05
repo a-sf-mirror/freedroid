@@ -122,6 +122,7 @@ void init_npcs()
 		"Town-GuardhouseGuard",
 		"Town-NorthGateGuard",
 		"Town-TeleporterGuard",
+		"Town-TuxGuard",
 		"Tamara",
 		"Tania",
 		"TestDroid",

@@ -33,6 +33,7 @@ EveryTime LuaCode={
 		npc_says(_"Hey you! Linarian! What do you want here?")
 		show(1, 2, 3)
 		add_cookie("met_town-northgateguard")
+		add_cookie("guard_follow_tux")
 	else 
 		tux_says(_"Can I ask you something?")
 		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
