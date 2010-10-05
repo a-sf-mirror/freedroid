@@ -265,7 +265,6 @@ SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect 
 SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterType);
 void fade_out_using_gamma_ramp(void);
 void fade_in_using_gamma_ramp(void);
-void MakeGridOnScreen(SDL_Rect * Grid_Rectangle);
 void InitPictures(void);
 void InitTimer(void);
 void InitVideo(void);

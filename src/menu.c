@@ -859,7 +859,6 @@ void InitiateMenu(int background_code)
 	if (background_code == (-1)) {
 		DisplayBanner();
 		AssembleCombatPicture(SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
-		MakeGridOnScreen(NULL);
 	} else {
 		// DisplayImage ( find_file ( BackgroundToUse , GRAPHICS_DIR, FALSE ) );
 		blit_special_background(background_code);
