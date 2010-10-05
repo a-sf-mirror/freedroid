@@ -705,6 +705,10 @@ static int lua_chat_set_bot_state(lua_State * L)
 	} else if (!strcmp(cmd, "free")) {
 		en->follow_tux = FALSE;
 		en->CompletelyFixed = FALSE;
+	} else if (!strcmp(cmd, "home")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
+		en->combat_state = RETURNING_HOME;
 	} else {
 		ErrorMessage(__FUNCTION__,
 			     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\" and \"free\".\n",
