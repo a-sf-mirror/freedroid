@@ -761,66 +761,6 @@ int iso_image_loaded(iso_image *img)
 }
 
 /**
- *
- *
- */
-static void get_iso_image_with_colorkey_from_file_and_path(char *fpath, iso_image * our_iso_image)
-{
-	SDL_Surface *Whole_Image;
-	int x, y;
-	Uint32 color_key_value;
-
-	// First we (try to) load the image given in the parameter
-	// from hard disk into memory and convert it to the right
-	// format for fast blitting later.
-	//
-	Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
-	if (Whole_Image == NULL) {
-		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to load file %s into memory.\n\
-This error indicates some installation problem with freedroid.", PLEASE_INFORM, IS_FATAL, fpath);
-	}
-
-	SDL_SetAlpha(Whole_Image, 0, SDL_ALPHA_OPAQUE);
-	our_iso_image->surface = SDL_DisplayFormat(Whole_Image);	// now we have an alpha-surf of right size
-
-	color_key_value = SDL_MapRGB(our_iso_image->surface->format, 255, 0, 255);
-
-	for (x = 0; x < Whole_Image->w; x++) {
-		for (y = 0; y < Whole_Image->h; y++) {
-			// Any pixel that is halfway transparent will now be made 
-			// into the color key...
-			//
-			if (GetAlphaComponent(Whole_Image, x, y) < 50) {
-				PutPixel(our_iso_image->surface, x, y, color_key_value);
-			}
-		}
-	}
-
-	our_iso_image->zoomed_out_surface = NULL;
-	SDL_SetColorKey(our_iso_image->surface, SDL_SRCCOLORKEY, color_key_value);	// this should clear any color key in the dest surface
-
-	// Some test here...
-	//
-	// our_iso_image -> surface -> format -> Bmask = 0 ; 
-	// our_iso_image -> surface -> format -> Rmask = 0 ; 
-	//
-	SDL_FreeSurface(Whole_Image);
-
-	// Now that we have loaded the image, it's time to get the proper
-	// offset information for it.
-	//
-	get_offset_for_iso_image_from_file_and_path(fpath, our_iso_image);
-
-	// Now finally we need to set the 'original_image_width/height', because
-	// this is the default value used with both, OpenGL and SDL.
-	//
-	our_iso_image->original_image_width = our_iso_image->surface->w;
-	our_iso_image->original_image_height = our_iso_image->surface->h;
-
-}
-
-/**
  * Load an iso image given its filename
  * \param img Pointer towards the iso_image struct to fill in
  * \param filename Filename of the image
@@ -1171,13 +1111,10 @@ void load_obstacle(int i)
 	strcat(ConstructedFileName, obstacle_map[i].filename);
 	find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
 
+	get_iso_image_from_file_and_path(fpath, &obstacle_map[i].image, TRUE);
 	if (use_open_gl) {
-		get_iso_image_from_file_and_path(fpath, &(obstacle_map[i].image), TRUE);
-		//make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . image ) ); 
-
 		make_texture_out_of_surface(&(obstacle_map[i].image));
-	} else
-		get_iso_image_with_colorkey_from_file_and_path(fpath, &(obstacle_map[i].image));
+	}
 
 	obstacle_map[i].image_loaded = 1;
 
@@ -1202,15 +1139,10 @@ void load_obstacle(int i)
 		}
 	}
 
+	get_iso_image_from_file_and_path(fpath, &obstacle_map[i].shadow_image, TRUE);
 	if (use_open_gl) {
-		get_iso_image_from_file_and_path(fpath, &(obstacle_map[i].shadow_image), TRUE);
-		// make_sure_zoomed_surface_is_there ( & ( obstacle_map [ i ] . shadow_image ) ); 
 		make_texture_out_of_surface(&(obstacle_map[i].shadow_image));
-	} else
-		get_iso_image_with_colorkey_from_file_and_path(fpath, &(obstacle_map[i].shadow_image));
-
-	DebugPrintf(1, "\n%s(): shadow image %s loaded successfully.", __FUNCTION__, shadow_file_name);
-
+	}
 }
 
 void load_all_obstacles(void)
@@ -1248,14 +1180,11 @@ void load_floor_tiles(void)
 		strcat(ConstructedFileName, floor_tile_filenames[i]);
 		find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
 
+		get_iso_image_from_file_and_path(fpath, &floor_iso_images[i], TRUE);
 		if (use_open_gl) {
-			get_iso_image_from_file_and_path(fpath, &(floor_iso_images[i]), TRUE);
 			make_texture_out_of_surface(&(floor_iso_images[i]));
-		} else {
-			get_iso_image_with_colorkey_from_file_and_path(fpath, &(floor_iso_images[i]));
 		}
 	}
-
-};				// void load_floor_tiles ( void )
+}
 
 #undef _blocks_c
