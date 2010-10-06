@@ -96,12 +96,15 @@ LuaCode={
 Nr=17 Text=_"I would like to customize my equipment."
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
+	if (not has_cookie("engel_offered_extraction_skill")) then
+		show (50)
+	end
 	upgrade_items()
 }
 ----------------------------------------------------------------------
 
 Nr=18 Text=_"Can you repair my equipment?"
-LuaCode={ 
+LuaCode={
 	npc_says(_"While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now.", "NO_WAIT")
 	npc_says(_"Our security wall is full of holes, and they need to be plugged up.")
 	npc_says(_"We need to perform a statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing many megawatts.")
@@ -427,6 +430,18 @@ LuaCode={
 	npc_says(_"Just go and see for yourself. Otherwise you will not believe me.")
 	end_quest(_"The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the city working. All is well that ends well.")
 	hide(48)
+}
+----------------------------------------------------------------------
+
+Nr=50 Text=_"What are these strange materials I need to craft add-ons?"
+LuaCode={
+	npc_says(_"These are special devices extracted from bots.")
+	npc_says(_"A scout troop recently spotted two guys in the north of this town.")
+	npc_says(_"I was told these guys shoot bots and disassemble them, extract their parts.")
+	npc_says(_"Maybe they can help you somehow receive such parts.")
+	tux_says(_"Thank you.")
+	npc_says(_"Good luck.")
+	hide(50)
 }
 ----------------------------------------------------------------------
 

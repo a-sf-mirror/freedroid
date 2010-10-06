@@ -132,6 +132,9 @@ LuaCode={
 
 Nr=12 Text=_"I want to know how to extract modules from the bots."
 LuaCode={
+	if (not has_cookie("engel_offered_extraction_skill")) then
+		add_cookie("engel_offered_extraction_skill")
+	end
 	npc_says(_"Yes.")
 	npc_says(_"I will sell the information for a lot of Schaltkreise.") -- Schaltkreise = circuits
 	npc_says(_"Interested?")
