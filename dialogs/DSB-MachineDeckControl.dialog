@@ -40,7 +40,7 @@ EveryTime LuaCode={
 		add_cookie("met_dsb-mdc")	
 	else end
 	cli_says(terminal, "NO_WAIT")
-	show(99)
+	show(99, 7, 1)
 }
 ----------------------------------------------------------------------
 
