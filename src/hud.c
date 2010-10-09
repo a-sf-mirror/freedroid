@@ -170,7 +170,6 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	}
 	// Strength, dexterity or magic requirements
 	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
-		autostr_append(desc, "\n"); // separate requirements from the rest of description
 		if (ItemMap[item->type].item_require_strength != (-1)) {
 			autostr_append(desc, _("Required strength: %d\n"), ItemMap[item->type].item_require_strength);
 		}
