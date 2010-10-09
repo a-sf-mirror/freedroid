@@ -232,6 +232,7 @@ static void place_doors()
 	int x1, x2, y1, y2;
 	enum connection_type dir;
 	int id, id1, id2;
+	int place_door;
 
 	for (i = 0; i < total_rooms; i++) {
 		for (j = 0; j < rooms[i].num_doors; j++) {
@@ -239,8 +240,23 @@ static void place_doors()
 			y = rooms[i].doors[j].y;
 			room = rooms[i].doors[j].room;
 			w = 2;
+			id1 = -1;
+			id2 = -1;
+			place_door = 1;
+			// Place door only if both rooms have its side length greater then 2
+			// If one of the rooms is a corridor then whole doorway should belong to it
+			if (rooms[i].w < 3 || rooms[i].h < 3) {
+				id1 = i;
+				id2 = i;
+				place_door = 0;
+			}
+			if (rooms[room].w < 3 || rooms[room].h < 3) {
+				id1 = room;
+				id2 = room;
+				place_door = 0;
+			}
 
-			if (rooms[i].x < x && x <= (rooms[i].x + rooms[i].w - 1)) {
+			if (rooms[i].x < x - 1 && x - 1 <= (rooms[i].x + rooms[i].w - 1)) {
 				// Place horizontal wall
 
 				// Set single horizontal door if the wall is internal
@@ -256,16 +272,21 @@ static void place_doors()
 					y1 = rooms[room].y + rooms[room].h;
 					y2 = rooms[i].y;
 					dir = UP;
-					id1 = room;
-					id2 = i;
+					if (id1 == -1) {
+						id1 = room;
+						id2 = i;
+					}
 				} else {
 					y1 = rooms[i].y + rooms[i].h;
 					y2 = rooms[room].y;
 					dir = DOWN;
-					id1 = i;
-					id2 = room;
+					if (id1 == -1) {
+						id1 = i;
+						id2 = room;
+					}
 				}
-				mapgen_add_obstacle(x1 + 0.5, (y1 + y2) / 2.0, ISO_DH_DOOR_000_OPEN);
+				if (place_door)
+					mapgen_add_obstacle(x1 + 0.5, (y1 + y2) / 2.0, ISO_DH_DOOR_000_OPEN);
 
 				if (MyRandom(100) < SET_PILLAR_PROB &&  y2 - y1 > 2) {
 					if (rooms[i].x <= x - w - 1 && rooms[i].x + rooms[i].w > x &&
@@ -298,16 +319,21 @@ static void place_doors()
 					x1 = rooms[room].x + rooms[room].w;
 					x2 = rooms[i].x;
 					dir = LEFT;
-					id1 = room;
-					id2 = i;
+					if (id1 == -1) {
+						id1 = room;
+						id2 = i;
+					}
 				} else {
 					x1 = rooms[i].x + rooms[i].w;
 					x2 = rooms[room].x;
 					dir = RIGHT;
-					id1 = i;
-					id2 = room;
+					if (id1 == -1) {
+						id1 = i;
+						id2 = room;
+					}
 				}
-				mapgen_add_obstacle((x1 + x2) / 2.0, y1 + 0.5, ISO_DV_DOOR_000_OPEN);
+				if (place_door)
+					mapgen_add_obstacle((x1 + x2) / 2.0, y1 + 0.5, ISO_DV_DOOR_000_OPEN);
 
 				if (MyRandom(100) < SET_PILLAR_PROB &&  x2 - x1 > 2) {
 					if (rooms[i].y <= y - w - 1 && rooms[i].y + rooms[i].h > y &&
@@ -362,6 +388,80 @@ void room_to_console(int w, int h) {
 	}
 	for (x = 0; x < w + 2; x++)
 		putchar('#');
+}
+
+// Turn the given room into corridor and return whether
+// the transformation was successeful
+static int make_corridor(int room)
+{
+#define	MAX_DOORS_IN_CORRIDOR	3
+	struct doorinfo doors[3];
+	int num_doors = 0;
+	int i, j;
+	int x1 = rooms[room].x;
+	int y1 = rooms[room].y;
+	int x2 = x1 + rooms[room].w - 1;
+	int y2 = y1 + rooms[room].h - 1;
+	int xmin = x2 + 1;
+	int ymin = y2 + 1;
+	int xmax = x1;
+	int ymax = y1;
+
+	if (rooms[room].num_doors > MAX_DOORS_IN_CORRIDOR)
+		return 0;
+
+
+	for (i = 0; i < rooms[room].num_doors; i++) {
+		// We don't connect internal door to the corridor so exit
+		if (rooms[room].doors[i].internal)
+			return 0;
+		doors[num_doors++] = rooms[room].doors[i];
+	}
+	// Find the doors of other rooms leading to the given room
+	for (i = 0; i < total_rooms; i++) {
+		for (j = 0; j < rooms[i].num_doors; j++) {
+			if (rooms[i].doors[j].room == room) {
+				if (rooms[i].doors[j].internal)
+					return 0;
+				if (num_doors == MAX_DOORS_IN_CORRIDOR)
+					return 0;
+				doors[num_doors++] = rooms[i].doors[j];
+			}
+		}
+	}
+
+	// Calculate new room width and height
+	for (i = 0; i < num_doors; i++) {
+		if (x1 <= doors[i].x - 1 && doors[i].x - 1 < x2) {
+			xmin = min(doors[i].x, xmin);
+			xmax = max(doors[i].x + 2, xmax);
+		} else {
+			ymin = min(doors[i].y, ymin);
+			ymax = max(doors[i].y + 2, ymax);
+		}
+	}
+	// If there is not enoguh information to calculate room dimensions
+	// we will suggest its position in the center
+	if (xmin > xmax) {
+		xmin = (x1 + x2) / 2 - 1;
+		xmax = xmin + 1;
+	}
+	if (ymin > ymax) {
+		ymin = (y1 + y2) / 2 - 1;
+		ymax = ymin + 1;
+	}
+	// Remove old tiles and redraw room
+	rooms[room].x = xmin - 2;
+	rooms[room].y = ymin - 2;
+	rooms[room].w = max(xmax - xmin, 2);
+	rooms[room].h = max(ymax - ymin, 2);
+	for (i = y1; i <= y2; i++) {
+		for (j = x1; j <= x2; j++)
+			mapgen_put_tile(j, i, TILE_WALL, -1);
+	}
+	mapgen_draw_room(room);
+
+	return 1;
 }
 
 // Convert tile matrix to a set of obstacles and decorate rooms according to their themes,
@@ -660,6 +760,7 @@ void mapgen_add_door(int x, int y, int from, int to)
 	rooms[from].doors[num].x = x;
 	rooms[from].doors[num].y = y;
 	rooms[from].doors[num].room = to;
+	rooms[from].doors[num].internal = 0;
 	rooms[from].num_doors++;
 }
 
@@ -801,10 +902,10 @@ static void place_waypoints()
 		nb = -1 + func / 3;
 
 		while ((nb--) > 0) {
-			int newx = rooms[rn].x + 1;
-			int newy = rooms[rn].y + 1;
-			newx += (rand() % (rooms[rn].w - 2));
-			newy += (rand() % (rooms[rn].h - 2));
+			int newx = rooms[rn].x;
+			int newy = rooms[rn].y;
+			newx += MyRandom(rooms[rn].w - 1);
+			newy += MyRandom(rooms[rn].h - 1);
 
 			add_waypoint(target_level, newx, newy, 0);
 		}

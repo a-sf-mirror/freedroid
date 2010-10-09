@@ -202,6 +202,19 @@ static void adj(struct cplist_t *cplist, int *nx, int *ny)
 	*ny = cplist->y + dy[cplist->t];
 }
 
+static int set_internal_door(int room1, int room2)
+{
+	int i;
+	for (i = 0; i < rooms[room1].num_doors; i++) {
+		if (rooms[room1].doors[i].room == room2) {
+			rooms[room1].doors[i].internal = 1;
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
 /**
  * Join two rooms by breaking the wall between them
  */
@@ -240,6 +253,10 @@ void fusion(int id, int cible)
 		y = cplist[correct_directory[k]].y;
 		mapgen_put_tile(x, y, TILE_PARTITION, new_owner);
 	}
+
+	// Find the door between the given rooms and set its internal flag
+	if (l && !set_internal_door(id, cible))
+		set_internal_door(cible, id);
 }
 
 static void add_rel(int x, int y, enum connection_type type, int r, int cible)

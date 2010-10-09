@@ -14,6 +14,7 @@ enum TILES {
 struct doorinfo {
 	int x, y;
 	int room;
+	int internal;
 };
 
 struct roominfo {
