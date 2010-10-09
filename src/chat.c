@@ -55,15 +55,8 @@ static void run_chat(enemy *ChatDroid, int is_subdialog);
  */
 static void clear_dialog_option(dialogue_option * d)
 {
-	int i;
 	d->option_text = "";
 	d->option_sample_file_name = "";
-
-	for (i = 0; i < MAX_REPLIES_PER_OPTION; i++) {
-		d->reply_sample_list[i] = "";
-		d->reply_subtitle_list[i] = "";
-	}
-
 	d->lua_code = NULL;
 	d->exists = 0;
 }
@@ -73,8 +66,6 @@ static void clear_dialog_option(dialogue_option * d)
  */
 static void delete_one_dialog_option(int i, int FirstInitialisation)
 {
-	int j;
-
 	// If this is not the first initialisation, we have to free the allocated
 	// strings first, or we'll be leaking memory otherwise...
 	//
@@ -89,20 +80,8 @@ static void delete_one_dialog_option(int i, int FirstInitialisation)
 		free(ChatRoster[i].lua_code);
 	ChatRoster[i].lua_code = NULL;
 
-	for (j = 0; j < MAX_REPLIES_PER_OPTION; j++) {
-		// If this is not the first initialisation, we have to free the allocated
-		// strings first, or we'll be leaking memory otherwise...
-		//
-		if (!FirstInitialisation) {
-			if (strlen(ChatRoster[i].reply_sample_list[j]))
-				free(ChatRoster[i].reply_sample_list[j]);
-			if (strlen(ChatRoster[i].reply_subtitle_list[j]))
-				free(ChatRoster[i].reply_subtitle_list[j]);
-		}
-	}
-
 	clear_dialog_option(&ChatRoster[i]);
-};				// void delete_one_dialog_option ( int i , int FirstInitialisation )
+}
 
 /**
  * This function should init the chat roster with empty values and thereby
@@ -233,13 +212,9 @@ static void load_dialog(const char *fpath)
 	char *ChatData;
 	char *SectionPointer;
 	char *EndOfSectionPointer;
-	int i, j;
+	int i;
 	int OptionIndex;
 	int NumberOfOptionsInSection;
-	int NumberOfReplySubtitles;
-	int NumberOfReplySamples;
-
-	char *ReplyPointer;
 
 #define CHAT_CHARACTER_BEGIN_STRING "Beginning of new chat dialog for character=\""
 #define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
@@ -306,51 +281,6 @@ static void load_dialog(const char *fpath)
 			ChatRoster[OptionIndex].option_sample_file_name = strdup("Sorry_No_Voice_Sample_Yet_0.wav");
 
 		DebugPrintf(CHAT_DEBUG_LEVEL, "\nOptionSample found : \"%s\".", ChatRoster[OptionIndex].option_sample_file_name);
-
-#define NEW_REPLY_SAMPLE_STRING "ReplySample=\""
-#define NEW_REPLY_SUBTITLE_STRING "NPC=_\""
-
-		// We count the number of Subtitle and Sample combinations and then
-		// we will read them out
-		//
-		NumberOfReplySamples = CountStringOccurences(SectionPointer, NEW_REPLY_SAMPLE_STRING);
-		NumberOfReplySubtitles = CountStringOccurences(SectionPointer, NEW_REPLY_SUBTITLE_STRING);
-		if (NumberOfReplySamples != NumberOfReplySubtitles && NumberOfReplySamples > 0) {
-			fprintf(stderr, "\n\nNumberOfReplySamples: %d NumberOfReplySubtitles: %d \n", NumberOfReplySamples,
-				NumberOfReplySubtitles);
-			fprintf(stderr, "The section in question looks like this: \n%s\n\n", SectionPointer);
-			ErrorMessage(__FUNCTION__, "\
-There were an unequal number of reply samples and subtitles specified\n\
-within a section of the Freedroid.dialogues file.\n\
-This is allowed in Freedroid only if there are no subtitles - ie. either specify\n\
-one subtitle per reply, or no subtitle at all.\n\
-This is currently not allowed in Freedroid and therefore indicates a\n\
-severe error.", PLEASE_INFORM, IS_FATAL);
-		}
-		// Now that we know exactly how many Sample and Subtitle sections 
-		// to read out, we can well start reading exactly that many of them.
-		// 
-		ReplyPointer = SectionPointer;
-
-		for (j = 0; j < NumberOfReplySubtitles; j++) {
-			ChatRoster[OptionIndex].reply_subtitle_list[j] =
-			    ReadAndMallocStringFromData(ReplyPointer, NEW_REPLY_SUBTITLE_STRING, "\"");
-
-			if (!NumberOfReplySamples)
-				ChatRoster[OptionIndex].reply_sample_list[j] = strdup("Sorry_No_Voice_Sample_Yet_0.wav");
-			else
-				ChatRoster[OptionIndex].reply_sample_list[j] =
-				    ReadAndMallocStringFromData(ReplyPointer, NEW_REPLY_SAMPLE_STRING, "\"");
-
-			DebugPrintf(CHAT_DEBUG_LEVEL, "\nSubtitle found : \"%s\".", ChatRoster[OptionIndex].reply_subtitle_list[j]);
-
-			DebugPrintf(CHAT_DEBUG_LEVEL, "\nReplySample found : \"%s\".", ChatRoster[OptionIndex].reply_sample_list[j]);
-
-			// Now we must move the reply pointer to after the previous combination.
-			//
-			ReplyPointer = LocateStringInData(ReplyPointer, NEW_REPLY_SUBTITLE_STRING);
-			ReplyPointer++;
-		}
 
 		if (strstr(SectionPointer, "LuaCode")) {
 			ChatRoster[OptionIndex].lua_code = ReadAndMallocStringFromData(SectionPointer, "LuaCode={", "}");
@@ -577,7 +507,6 @@ void run_subdialog(const char *tmp_filename)
  */
 static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 {
-	int i;
 	//reset chat control variables for this option
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
@@ -594,20 +523,6 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
 		autostr_append(chat_log.text, "\n");
 	}
-	// Now we can proceed to execute
-	// the rest of the reply that has been set up for this (the now maybe modified)
-	// dialog option.
-	//
-	for (i = 0; i < MAX_REPLIES_PER_OPTION; i++) {
-		// Once we encounter an empty string here, we're done with the reply...
-		//
-		if (!strlen(ChatRoster[MenuSelection].reply_subtitle_list[i]))
-			break;
-
-		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].reply_subtitle_list[i]),
-				    ChatRoster[MenuSelection].reply_sample_list[i], ChatDroid, TRUE);
-	}
-
 	if (ChatRoster[MenuSelection].lua_code) {
 		run_lua(ChatRoster[MenuSelection].lua_code);
 	}

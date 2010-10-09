@@ -864,13 +864,9 @@ typedef struct ship {
 typedef struct dialogue_option {
 	char *option_text;
 	char *option_sample_file_name;
-
-	char *reply_sample_list[MAX_REPLIES_PER_OPTION];
-	char *reply_subtitle_list[MAX_REPLIES_PER_OPTION];
-
 	luacode lua_code;
 
-	char exists;
+	int exists;
 } dialogue_option;
 
 typedef struct colldet_filter {
