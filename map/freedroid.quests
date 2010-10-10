@@ -99,7 +99,7 @@ Completion LuaCode={
 
 ** Start of this mission target subsection **
 +++
-+++ Take Kevins data cube to the cluster maintainance
++++ Take Kevins data cube to the cluster maintenance
 +++ people inside the red guard complex
 +++
 Mission Name=_"A kingdom for a cluster!"
@@ -125,7 +125,7 @@ Mission Name=_"Propagating a faulty firmware"
 
 ** Start of this mission target subsection **
 +++
-+++ Bring SADD dilithium cristals 
++++ Bring SADD dilithium crystals 
 +++
 Mission Name=_"SADD's power supply"
 ** End of this mission target subsection **

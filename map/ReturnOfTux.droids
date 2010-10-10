@@ -32,7 +32,7 @@ Convention for avoiding duplication of Marker (needs to be world unique)
 Marker = Group(1+) + Level(3 digits); Example 1037 for group 1 on lvl 37
 Groups that need to span several levels belong to level 999
 
-Note: 9999 is hardcoded in places, so dont change those
+Note: 9999 is hardcoded in places, so don't change those
 without "fixing" it elsewhere as well
 In the future we should probably use eg
 9999 for Red Guard faction

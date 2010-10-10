@@ -185,7 +185,7 @@ Cost per level=5
 
 ** Start of new program specification subsection **
 Program name=_"Killer poke"
-Program description=_"Messing around with the bot's memory can cause it to severly damage itself, but the damage is greatly variable."
+Program description=_"Messing around with the bot's memory can cause it to severely damage itself, but the damage is greatly variable."
 Picture="DetectItemsSpell.png"
 Form="instant"
 Effect="none"

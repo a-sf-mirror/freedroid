@@ -31,7 +31,7 @@
 
 You can edit it with a standard text editor of your choice.
 Feel free to make any modifications you like.
-Freedroid will still accept you modified game dada file as long
+Freedroid will still accept you modified game data file as long
 as you stick to the following rules:
 1.) the text indicating the Start of the Robot Data Section must not
     be removed or changed.  It is needed by Freedroid in order to find
@@ -53,10 +53,6 @@ That will not cause any problems.
 * Ultrasonic 12 (Todo: See around corners)
 * Radar 16
 * Subsonic 6 (Todo: soundwaves/vibrations, see through walls, invisible if not moving)
-*
-* Nice legacy droid listing 
-* http://home.hawaii.rr.com/mafioso/games/droidwp.htm
-* --------
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
@@ -90,7 +86,7 @@ Chance of this robot scoring a hit=60
 Time to recover after getting hit=1.00
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 0
-Notes concerning this droid=_"A simple rubbish diposal robot. Common device in most space craft to maintain a clean ship." 
+Notes concerning this droid=_"A simple rubbish disposal robot. Common device in most space craft to maintain a clean ship." 
 
 ** Start of new Robot: ** 
 Droidname: 139
@@ -510,7 +506,7 @@ Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 15
-Notes concerning this droid=_"A low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Gillen version." 
+Notes concerning this droid=_"A low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Grillen version." 
 
 ** Start of new Robot: ** 
 Droidname: 711
@@ -679,7 +675,7 @@ Chance of this robot scoring a hit=80
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 21
-Notes concerning this droid=_"This droid was designed from archive data. For some unknown reason it instils great fear in Human adversaries." 
+Notes concerning this droid=_"This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries." 
 
 ** Start of new Robot: ** 
 Droidname: 999
@@ -707,7 +703,7 @@ Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.05
 Is this 'droid' a human : 0
 Individual shape of this droid or just -1 for classic ball shaped : 22
-Notes concerning this droid=_"Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience. warning: the influence device may not control a primode brain for long." 
+Notes concerning this droid=_"Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience." 
 
 ** Start of new Robot: ** 
 Droidname: PRO
