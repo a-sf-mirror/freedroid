@@ -79,6 +79,16 @@ static int lua_event_teleport(lua_State * L)
 	return 0;
 }
 
+static int lua_event_teleport_npc(lua_State * L)
+{
+	const char *label = luaL_checkstring(L, 1);
+	enemy *en = get_enemy_arg(L, 2); 
+	location TempLocation;
+	ResolveMapLabelOnShip(label, &TempLocation);
+	teleport_enemy(en,TempLocation.level, TempLocation.x + 0.5, TempLocation.y + 0.5);
+	return 0;
+}
+
 static int lua_event_display_big_message(lua_State * L)
 {
 	const char *msg = luaL_checkstring(L, 1);
@@ -950,7 +960,11 @@ luaL_reg lfuncs[] = {
 	 */
 	{"teleport", lua_event_teleport}
 	,
-
+	/* teleport_npc(string map_label, [dialog name])
+	 * Teleports the current npc, or named npc to the given map label
+	 */
+	{"teleport_npc", lua_event_teleport_npc}
+	,
 	/* display_big_message(string msg)
 	 * Displays a big vanishing message on screen (seen in game, not in the dialog).
 	 */

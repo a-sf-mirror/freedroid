@@ -639,6 +639,7 @@ void enemy_set_reference(short int *enemy_number, enemy ** enemy_addr, enemy * a
 void enemy_generate_level_lists(void);
 int teleport_to_closest_waypoint(enemy *ThisRobot);
 int teleport_to_random_waypoint(enemy *, level *, char *);
+void teleport_enemy(enemy *, int, float, float);
 int get_droid_type(const char *);
 enemy *get_enemy_with_dialog(const char *dialog);
 

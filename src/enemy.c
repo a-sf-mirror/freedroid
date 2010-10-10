@@ -180,6 +180,43 @@ int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 }
 
 /**
+ * This function teleports an enemy to a new position on the
+ * map. 
+ */
+void teleport_enemy(enemy *robot, int z, float x, float y)
+{
+	// Check the validity of the teleport destination
+	if (!level_exists(z) || !pos_inside_level(robot->pos.x, robot->pos.y, curShip.AllLevels[z])) {
+		ErrorMessage(__FUNCTION__, "\
+				Trying to teleport NPC (dialog name %s) from x=%f y=%f level=%d to x=%f y=%f level=%d\n\
+				is not possible because the target location is not valid.", 
+				PLEASE_INFORM, IS_WARNING_ONLY, robot->dialog_section_name, robot->pos.x, robot->pos.y, robot->pos.z, x, y, z);
+		return;
+	}
+
+	// Does the robot change level?
+	if (z != robot->pos.z) {
+		robot->pos.z = z;
+
+		// Add the bot on the new level
+		list_move(&robot->level_list, &(level_bots_head[robot->pos.z]));
+	}
+
+	// Prevent the bot from moving this frame
+	clear_out_intermediate_points(&robot->pos, &robot->PrivatePathway[0], 5);
+
+	// Move the bot
+	robot->pos.x = x;
+	robot->pos.y = y;
+
+	// Reset the bot's waypoints
+	int best_waypoint = enemy_find_closest_waypoint(robot);
+	robot->homewaypoint = best_waypoint;
+	robot->lastwaypoint = best_waypoint;
+	robot->nextwaypoint = best_waypoint;
+}
+
+/**
  * Enemies recover with time, independently of the current frame rate.
  */
 static void heal_robots_over_time(void)
