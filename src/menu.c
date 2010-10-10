@@ -1503,6 +1503,9 @@ static int Graphics_handle(int n)
 		if (LeftPressed()) {
 			while (LeftPressed()) ;
 			GameConfig.current_gamma_correction -= 0.05;
+			if (GameConfig.current_gamma_correction < 0.0) {
+				GameConfig.current_gamma_correction = 0.0;
+			}
 			SDL_SetGamma(GameConfig.current_gamma_correction, GameConfig.current_gamma_correction,
 				     GameConfig.current_gamma_correction);
 		}
