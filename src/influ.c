@@ -97,34 +97,6 @@ static void tux_friction_with_air()
 };				// tux_friction_with_air ( )
 
 /**
- *
- *
- */
-int find_free_floor_items_index(int levelnum)
-{
-	int i;
-	Level DropLevel = curShip.AllLevels[levelnum];
-
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		if (DropLevel->ItemList[i].type == (-1))
-			return (i);
-	}
-
-	// Now at this point we know, that we didn't succeed in finding a 
-	// free index for new items on the floor of this level.  Ok.  No need
-	// to panic.  We can overwrite one old item anyway.  In the mass of
-	// items lying around, it shouldn't become apparent anyway, provided
-	// we don't overwrite the same position again and again.  A bit of 
-	// randomisation should do the trick...
-	//
-	i = MyRandom(MAX_ITEMS_PER_LEVEL - 2);
-	DebugPrintf(-1, "\n%s():  NOTE:  lots of items on the floor of this level.  Overwriting position %d.", __FUNCTION__, i);
-
-	return (i);
-
-};				// int find_free_floor_items_index ( int levelnum ) 
-
-/**
  * When the player has requested an attack motion, we start the 
  * corresponding code, that should try to attack, if that's currently
  * possible.

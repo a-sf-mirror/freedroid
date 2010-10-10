@@ -304,75 +304,30 @@ void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
  */
 item *DropItemAt(int ItemType, int level_num, float x, float y, int multiplicity)
 {
-	int i;
 	gps item_pos;
-	level *item_drop_map_level = NULL;
 
-	// Some check against illegal item types
-	//
-	if ((ItemType < 0) || (ItemType >= Number_Of_Item_Types)) {
-		DebugPrintf(-1000, "\n\nItemType received: %d.", ItemType);
+	if (ItemType < 0 || ItemType >= Number_Of_Item_Types)
 		ErrorMessage(__FUNCTION__, "\
-				Received an item type that was outside of range of the allowed item types.", PLEASE_INFORM, IS_FATAL);
-	}
-	// Maybe the given position is from a virtual position of a dying robot.
-	// Then of course we must fix it first.  But fortunately we have suitable
-	// methods already...
-	//
+Received item type %d that is outside the range of allowed item types.",
+			     PLEASE_INFORM, IS_FATAL, ItemType);
+
+	// Fix virtual position (e.g. from a dying robot)
 	item_pos.x = x;
 	item_pos.y = y;
 	item_pos.z = level_num;
 	if (!resolve_virtual_position(&item_pos, &item_pos))
 		return NULL;
 
-	x = item_pos.x;
-	y = item_pos.y;
-	level_num = item_pos.z;
-
-	// Now we can properly set the level...
-	//
-	item_drop_map_level = curShip.AllLevels[level_num];
-
-	// If given a non-existent item type, we don't do anything
-	// of course (and also don't produce a SEGFAULT or something...)
-	//
-	if (ItemType == (-1))
-		return NULL;
-	if (ItemType >= Number_Of_Item_Types) {
-		fprintf(stderr, "\n\nItemType: '%d'.\n", ItemType);
-		ErrorMessage(__FUNCTION__, "\
-				There was an item code for an item to drop given to the function \n\
-				DropItemAt( ... ), which is pointing beyond the scope of the known\n\
-				item types.  This indicates a severe bug in Freedroid.", PLEASE_INFORM, IS_FATAL);
-	}
-	// At first we must find a free item index on this level,
-	// so that we can enter the new item there.
-	//
-	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-		if (item_drop_map_level->ItemList[i].type == (-1)) {
-			break;
-		}
-	}
-	if (i >= MAX_ITEMS_PER_LEVEL) {
-		ErrorMessage(__FUNCTION__, "\
-				Couldn't find another array entry to drop another item.", PLEASE_INFORM, IS_FATAL);
-	}
-	// Now we can construct the new item
-	//
-	init_item(&item_drop_map_level->ItemList[i]);
-	item_drop_map_level->ItemList[i].type = ItemType;
-	item_drop_map_level->ItemList[i].pos.x = x;
-	item_drop_map_level->ItemList[i].pos.y = y;
-	item_drop_map_level->ItemList[i].pos.z = level_num;
-
-	FillInItemProperties(&(item_drop_map_level->ItemList[i]), FALSE, multiplicity);
-
-	item_drop_map_level->ItemList[i].throw_time = 0.01;	// something > 0 
+	// Construct the new item
+	item tmp_item;
+	init_item(&tmp_item);
+	tmp_item.type = ItemType;
+	FillInItemProperties(&tmp_item, FALSE, multiplicity);
 
 	play_item_sound(ItemType);
 
-	return &item_drop_map_level->ItemList[i];
-};
+	return drop_item(&tmp_item, item_pos.x, item_pos.y, item_pos.z);
+}
 
 /**
  * This function checks whether a given item can be equipped.
@@ -490,8 +445,7 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 			}
 		}
 	}
-
-};
+}
 
 /**
  * When the influencer gets hit, all of his equipment suffers some damage.
@@ -598,8 +552,7 @@ void DeleteItem(item *it)
 
 /**
  * This function COPIES an item from the source location to the destination
- * location.  The source location is then marked as unused inventory 
- * entry.
+ * location.
  */
 void CopyItem(item * SourceItem, item * DestItem, int MakeSound)
 {
@@ -614,8 +567,7 @@ void CopyItem(item * SourceItem, item * DestItem, int MakeSound)
 		// PlayItemSound( ItemMap[ SourceItem->type ].sound_number );
 		play_item_sound(SourceItem->type);
 	}
-
-};				// void MoveItem( item* SourceItem , item* DestItem )
+}
 
 /**
  * This function MOVES an item from the source location to the destination
@@ -1204,33 +1156,54 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 
 };				// int ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y )
 
-/** 
- * This function should drop a given item to the floor.
+/**
+ * Find a free index in the item array of the drop level.
  */
-static void DropItemToTheFloor(item *DropItemPointer, float x, float y, int levelnum)
+static int find_free_floor_index(level* drop_level)
 {
 	int i;
-	Level DropLevel = curShip.AllLevels[levelnum];
+	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+		if (drop_level->ItemList[i].type == -1) {
+			return i;
+		}
+	}
 
-	// Now we want to drop the item to the floor.
-	// We therefore find a free position in the item list of this level
-	// where we can add the item later.
-	//
-	i = find_free_floor_items_index(levelnum);
+	// We did not find a free index.
+	ErrorMessage(__FUNCTION__, "The item array for level %d was full.\n",
+	            PLEASE_INFORM, IS_WARNING_ONLY, drop_level->levelnum);
+	return -1;
+}
 
-	// Now we enter the item into the item list of this level
-	//
-	CopyItem(DropItemPointer, &(DropLevel->ItemList[i]), TRUE);
-	DropLevel->ItemList[i].pos.x = x;
-	DropLevel->ItemList[i].pos.y = y;
-	DropLevel->ItemList[i].pos.z = levelnum;
-	DropLevel->ItemList[i].throw_time = 0.01;	// something > 0 
+/**
+ * Drop an item to the floor in the given location.  No checks are done to
+ * verify this location is unobstructed or otherwise reasonable.
+ */
+item *drop_item(item *item_pointer, float x, float y, int level_num)
+{
+	level *drop_level = curShip.AllLevels[level_num];
 
-	if (item_held_in_hand == DropItemPointer)
+	int index = find_free_floor_index(drop_level);
+
+	// Cancel the drop if we did not find an empty index to use.
+	if (index == -1) {
+		return NULL;
+	}
+
+	init_item(&(drop_level->ItemList[index]));
+	MoveItem(item_pointer, &(drop_level->ItemList[index]));
+
+	drop_level->ItemList[index].pos.x = x;
+	drop_level->ItemList[index].pos.y = y;
+	drop_level->ItemList[index].pos.z = level_num;
+	drop_level->ItemList[index].throw_time = 0.01;  // something > 0
+
+	timeout_from_item_drop = 0.4;
+
+	if (item_pointer == item_held_in_hand)
 		item_held_in_hand = NULL;
 
-	DeleteItem(DropItemPointer);
-};				// void DropItemToTheFloor ( void )
+	return &(drop_level->ItemList[index]);
+}
 
 /**
  * Drop held item to the floor.
@@ -1283,7 +1256,7 @@ static void drop_held_item(void)
 	}
 
 	// Finally, drop the item
-	DropItemToTheFloor(item_held_in_hand, rpos.x, rpos.y, rpos.z);
+	drop_item(item_held_in_hand, rpos.x, rpos.y, rpos.z);
 	item_held_in_hand = NULL;
 	timeout_from_item_drop = 0.4;
 }
@@ -2098,7 +2071,7 @@ int give_item(item *it)
 	if (!AddFloorItemDirectlyToInventory(it)) {
 		return TRUE;
 	} else {
-		DropItemToTheFloor(it, Me.pos.x, Me.pos.y, Me.pos.z);
+		drop_item(it, Me.pos.x, Me.pos.y, Me.pos.z);
 		return FALSE;
 	}
 }

@@ -127,7 +127,6 @@ static void find_dropable_position_near_chest(float *item_x, float *item_y, int 
 static void throw_out_all_chest_content(int obst_index)
 {
 	int i = 0;
-	int j;
 	float item_x, item_y;
 	int drop_count = 0;
 	level *lvl = CURLEVEL();
@@ -137,29 +136,20 @@ static void throw_out_all_chest_content(int obst_index)
 	play_open_chest_sound();
 
 	if (item_list) {
-		int size = item_list->size;
-		for (i = 0; i < size; i++) {
+		drop_count = item_list->size;
+		for (i = 0; i < drop_count; i++) {
 
 			item *it = &((item *)item_list->arr)[i];
 			
 			if (it->type == -1)
 				continue;
 
-			// Find a free items index on this level.
-			j = find_free_floor_items_index(Me.pos.z);
-			MoveItem(it, &(lvl->ItemList[j]));
-
 			find_dropable_position_near_chest(&item_x, &item_y, obst_index, lvl);
-			lvl->ItemList[j].pos.x = item_x;
-			lvl->ItemList[j].pos.y = item_y;
-			lvl->ItemList[j].pos.z = lvl->levelnum;		
-			lvl->ItemList[j].throw_time = 0.01;
-
-			drop_count++;
+			drop_item(it, item_x, item_y, lvl->levelnum);
 		}
 
 		// Empty the item list
-		for (i = 0; i < size; i++) {
+		for (i = 0; i < drop_count; i++) {
 			dynarray_del(item_list, 0, sizeof(item));
 		}
 		dynarray_free(item_list);
