@@ -433,24 +433,24 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_TELEPORTER_5].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_TELEPORTER_5].animate_fn = animate_teleporter;
 
-	block_2param(ISO_V_CHEST_OPEN, standard_wall_thickness, 0.8);
+	block_2param(ISO_V_CHEST_OPEN, 0.6, 0.8);
 	obstacle_map[ISO_V_CHEST_OPEN].filename = "iso_container_0004.png";
 	obstacle_map[ISO_V_CHEST_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_V_CHEST_OPEN].flags |= GROUND_LEVEL;
 
-	block_2param(ISO_V_CHEST_CLOSED, standard_wall_thickness, 0.8);
+	block_2param(ISO_V_CHEST_CLOSED, 0.6, 0.8);
 	obstacle_map[ISO_V_CHEST_CLOSED].filename = "iso_container_0002.png";
 	obstacle_map[ISO_V_CHEST_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_V_CHEST_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
 	obstacle_map[ISO_V_CHEST_CLOSED].action = &chest_open_action;
 	obstacle_map[ISO_V_CHEST_CLOSED].label = "Chest";
 
-	block_2param(ISO_H_CHEST_OPEN, 0.8, standard_wall_thickness);
+	block_2param(ISO_H_CHEST_OPEN, 0.8, 0.6);
 	obstacle_map[ISO_H_CHEST_OPEN].filename = "iso_container_0003.png";
 	obstacle_map[ISO_H_CHEST_OPEN].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_H_CHEST_OPEN].flags |= GROUND_LEVEL;
 
-	block_2param(ISO_H_CHEST_CLOSED, 0.8, standard_wall_thickness);
+	block_2param(ISO_H_CHEST_CLOSED, 0.8, 0.6);
 	obstacle_map[ISO_H_CHEST_CLOSED].filename = "iso_container_0001.png";
 	obstacle_map[ISO_H_CHEST_CLOSED].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_H_CHEST_CLOSED].flags |= GROUND_LEVEL | IS_CLICKABLE;
