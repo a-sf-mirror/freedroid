@@ -1174,6 +1174,7 @@ void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 		DebugPrintf(-2, "\n\nFound robot that seems really stuck on position: %f/%f/%d.",
 			    ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z);
 		DebugPrintf(-2, "\nMore details on this robot:  Type=%d.", ThisRobot->type);
+		DebugPrintf(-2, "\nShort Description=%s.", ThisRobot->short_description_text);
 		DebugPrintf(-2, "\nPrivate Pathway[0]: %f/%f.", ThisRobot->PrivatePathway[0].x, ThisRobot->PrivatePathway[0].y);
 		DebugPrintf(-2, "\nPrivate Pathway[1]: %f/%f.", ThisRobot->PrivatePathway[1].x, ThisRobot->PrivatePathway[1].y);
 		DebugPrintf(-2, "\nnextwaypoint: %d at %f/%f",
