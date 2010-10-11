@@ -41,6 +41,12 @@ EveryTime LuaCode={
 		hide(2, 12)
 	else end 
 
+	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape"))) then
+		tux_says(_"Let me introduce you to Tania!")
+		end_quest(_"Tania's Escape", _"I successfully brought Tania safely into the town. I hope she likes it here.")
+		set_bot_state("free", _"Tania")
+	end
+
 	if (not has_quest(_"Opening access to MS Office")) then
 		if (done_quest(_"A kingdom for a cluster!")) then show(37) else end
 	else end

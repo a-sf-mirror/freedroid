@@ -144,6 +144,10 @@ LuaCode={
 Nr=13 Text=_"Yes, you can get to the surface. But the guns are still on."
 LuaCode={
 	npc_says(_"All hope is lost! I'm a scientist, not a warrior.")
+	npc_says("You'll have to escort me.")
+	add_quest(_"Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
+	set_bot_state("follow_tux")
+	end_dialog()
 	hide(13) show(15)
 }
 ----------------------------------------------------------------------

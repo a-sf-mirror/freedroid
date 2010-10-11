@@ -139,6 +139,21 @@ Mission Name=_"Tania's sanitary"
 
 ** Start of this mission target subsection **
 +++
++++ Escort Tania to the town
++++
+Mission Name=_"Tania's Escape"
+Mission target is to kill droids with marker : 2035
+Completion LuaCode={
+	if npc_dead("Tania") then
+		display_console_message(_"Tania died!")
+	else
+		display_console_message(_"Tania successfully made it to the town!")
+	end
+}
+** End of this mission target subsection **
+
+** Start of this mission target subsection **
++++
 +++ Help Stone pay tax
 +++
 Mission Name=_"Saving the shop"

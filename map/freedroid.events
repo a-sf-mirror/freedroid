@@ -441,6 +441,10 @@ Name=_"Back to the Desert"
 Trigger at label="35to40"
 Silent=0
 LuaCode={
+	if (has_quest("Tania's Escape") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania_surface"))) then
+		add_cookie("Tania_surface")
+		teleport_npc("40from35", "Tania")
+	end
 	teleport("40from35")
 }
 * End of trigger *
