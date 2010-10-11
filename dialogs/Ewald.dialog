@@ -154,13 +154,36 @@ LuaCode={
 
 Nr=13 Text=_"Any idea where I can find some entertainment here?"
 LuaCode={
-	npc_says(_"Well... Erm... No.")
-	npc_says(_"What the bots did not smash, the Red Guard taxed.")
-	npc_says(_"Fun is kinda dead right now.")
-	npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
-	npc_says(_"Now THAT'S fun, if you ask me.")
-	npc_says(_"If you are really bored, you can try gambling with me. But the Red Guard taxes it.")
-	hide(13) show(30)
+	if (has_cookie("tux_has_joined_guard")) then
+		npc_says(_"I thought that shooting bots with those big guns was fun...?")
+		npc_says(_"*sigh*")
+		npc_says(_"I wish I could once use such a gun.")
+		npc_says(_"You are a Guard member, right?")
+		if (has_item_backpack("Barrett M82 Sniper Rifle") or has_item_backpack("Plasma cannon") or has_item_backpack("Exterminator")) then
+			tux_says(_"Yes, I am a Guard member. No, it is not allowed to give guns to people who are high.")
+			npc_says(_"Pleeeeaaaase.")
+			tux_says(_"No exceptions. I apologize. Please think responsibly; there is a good reason for this rule.")
+			npc_says(_"Hmm. You're right, I better ask again later.")
+			npc_says(_"Well, since you won't let me play with your big guns, we could always try a gambling game or two.")	
+		else
+			tux_says(_"The fact that I am a Red Guard member does not necessarily mean that I have a big gun with me.")
+			npc_says(_"Really?")
+			npc_says(_"Stop kidding me. I know you have big a gun somewhere.")
+			npc_says(_"Every Guard has one.")
+			tux_says(_"Look at me! Do you see any gun here at my belt or in my hands?")
+			npc_says(_"Hmm... You are right. No gun, indeed.")
+			npc_says(_"Sorry.")
+			npc_says(_"Since there are no big guns to shoot, how about shooting some dice? Would you like to gamble?")
+		end
+	else 	
+		npc_says(_"Well... Erm... No.")
+		npc_says(_"What the bots did not smash, the Red Guard taxed.")
+		npc_says(_"Fun is kinda dead right now.")
+		npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
+		npc_says(_"Now THAT'S fun, if you ask me.")
+		npc_says(_"If you are really bored, you can try gambling with me.")
+	end 
+	hide(13) show(30) 
 }
 ----------------------------------------------------------------------
 
@@ -500,7 +523,7 @@ LuaCode={
 		display_console_message(_"You won ".. bet .._" valuable circuits in the coin-flip game with Ewald.")
 	elseif (win == 0) then --LOSS
 		if (difficulty() == "easy") then--easy: 0% back
-			npc_says_random(_"Looks like you got everything wrong.", _"Well, close, but exactly wrong.", _"Close, but no cigar.", _"Close only counts in handgrenades and horseshoes.")
+			npc_says_random(_"Looks like you got everything wrong.", _"Well, close, but exactly wrong.", _"Close, but no cigar.", _"Close only counts in hand grenades and horseshoes.")
 			del_gold(bet)
 		else
 			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.", _"Well, close, but exactly wrong. Here is some of your bet back.", _"You need to do exactly opposite of what you did here. Here is part of your bet back.", _"Close, but no cigar. Here is some of your money back.", _"Next time pick the opposite of what you did this time... or something.")
@@ -513,7 +536,7 @@ LuaCode={
 		end
 		display_console_message(_"You lost ".. math.floor(bet) .._" valuable circuits in the coin-flip game with Ewald.")
 	elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
-		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.", _"You lost. You were all messed up. Better luck next time.", _"You lost. Maybe you sould try something else for a while?", _"You lost.", _"You lost. You might try the dice game next time.")
+		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.", _"You lost. You were all messed up. Better luck next time.", _"You lost. Maybe you should try something else for a while?", _"You lost.", _"You lost. You might try the dice game next time.")
 		del_gold(bet)
 		display_console_message(_"You lost ".. bet .._" valuable circuits in the coin-flip game with Ewald.")
 	else -- ERROR:
