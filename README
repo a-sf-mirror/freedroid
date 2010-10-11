@@ -139,6 +139,7 @@
      of the whole screen instead of just the game window, if the option
      (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
    * The "Toggle display collision rectangles" function of the level editor does not work in SDL mode.
+   * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
 
 5. Screen resolution
 =====================
