@@ -30,9 +30,9 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	terminal = "tux@hacked_".. bot_type()..": ~ # "
+	terminal = get_player_name() .. _"@hacked_".. bot_type()..": ~ # "
 	cli_says(_"Login : ", "NO_WAIT")
-	tux_says(_"tux", "NO_WAIT")
+	tux_says(get_player_name(), "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("*******")
 	npc_says(_"Last login from dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")

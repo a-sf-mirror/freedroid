@@ -67,7 +67,7 @@ LuaCode={
 	if (not has_cookie("uploaded_faulty_firmware")) then 
 		npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 	else 
-		npc_says(_"Currently deployed firmware is v. 5.0.8+tuxwashere+gpl")
+		npc_says(_"Currently deployed firmware is v. 5.0.8+" .. get_player_name() .. _"washere+gpl")
 		set_bot_state("free")
 	end
 }

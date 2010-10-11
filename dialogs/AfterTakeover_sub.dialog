@@ -30,7 +30,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	terminal_sub = "tux@hacked_".. bot_type().."/repair&settings: ~ # "
+	terminal_sub = get_player_name().. _"@hacked_".. bot_type().."/repair&settings: ~ # "
 	cli_says(terminal_sub, "NO_WAIT")
 	show(0, 20, 30, 40)
 }
