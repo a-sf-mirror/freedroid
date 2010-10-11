@@ -65,6 +65,13 @@ LuaCode={
 	npc_says(_"It was mainly used within ships to protect certain areas from intruders.")
 	npc_says(_"It is considered an old but reliable device.")
 	npc_says(_"So don't worry. I'm still in pretty good shape.")
+	npc_says(_"The latest version of the security line is the 615.")
+	-- probably some when a cookie can check whether tux already saw such a droid and trigger/switch on the following dialog part
+	npc_says(_"Unfortunately its development was not finished when the great assault started.")
+	npc_says(_"The lack of security options on the system of the 615 lead to a malfunction.")
+	npc_says(_"Circumstances that led to the great assault even made the 615 go crazy and attack people.")
+	npc_says(_"For the sake of your health, you should stay away from the 615 droids.")
+	npc_says(_"You have been warned!")
 	hide(3)
 }
 ----------------------------------------------------------------------
