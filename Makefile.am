@@ -26,7 +26,7 @@ install-data-local:
 	@echo "Installing the data-files ..."
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
 	find $(srcdir)/$(freedroid_data) -type d ! -name "*.blend" -and ! -path "*CVS*" -and ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs)
-	find $(srcdir)/$(freedroid_data) -type f ! -name "*.blend" -and ! -path "*CVS*" -and ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec cp -p {} $(DESTDIR)$(pkgdatadir)/{} \; #for files
+	find $(srcdir)/$(freedroid_data) -type f ! -name "*.blend" -and ! -path "*CVS*" -and ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \;
 	@echo "..done."
 
 uninstall-local:
