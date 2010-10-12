@@ -4298,7 +4298,7 @@ static void show_inventory_screen(void)
 				sprintf(amount, "%d", Me.Inventory[SlotNum].multiplicity);
 			else
 				strcpy(amount, "+++");
-			TargetRect.w = TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.x;
+			TargetRect.w = INV_SUBSQUARE_WIDTH * ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.x;
 			int xpos = TargetRect.x + TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.y - TextWidth(amount) - 2;
 			int ypos = TargetRect.y + TargetRect.h - FontHeight(Messagevar_BFont);
 			DisplayText(amount, xpos, ypos, &TargetRect, 1.0);
