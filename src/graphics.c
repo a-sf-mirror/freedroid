@@ -688,6 +688,18 @@ Uint8 GetAlphaComponent(SDL_Surface * surface, int x, int y)
 
 };				// Uint8 GetAlphaComponent ( SDL_Surface* SourceSurface , int x , int y )
 
+static Uint8 add_val_to_component(Uint8 component, int value)
+{
+	int tmp;
+
+	// Calculate the new value and check overflow/underflow.
+	tmp = component + value;
+	tmp = (tmp > 255) ? 255 : tmp;
+	tmp = (tmp < 0) ? 0 : tmp;
+
+    return (Uint8)tmp;
+}
+
 /**
  * This function can be used to create a new surface that has a certain
  * color filter applied to it.  The default so far will be that the blue
@@ -721,21 +733,27 @@ SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterTy
 
 			alpha3 = GetAlphaComponent(FirstSurface, x, y);
 
+			red = GetRedComponent(FirstSurface, x, y);
+			green = GetGreenComponent(FirstSurface, x, y);
+			blue = GetBlueComponent(FirstSurface, x, y);
+
 			if (FilterType == FILTER_BLUE) {
+				blue = (red + green + blue) / 3;
 				red = 0;
 				green = 0;
-				blue = (GetBlueComponent(FirstSurface, x, y) +
-					GetRedComponent(FirstSurface, x, y) + GetGreenComponent(FirstSurface, x, y)) / 3;
 			} else if (FilterType == FILTER_GREEN) {
+				green = (red + green + blue) / 3;
 				red = 0;
 				blue = 0;
-				green = (GetBlueComponent(FirstSurface, x, y) +
-					 GetRedComponent(FirstSurface, x, y) + GetGreenComponent(FirstSurface, x, y)) / 3;
 			} else if (FilterType == FILTER_RED) {
+				red = (red + green + blue) / 3;
 				green = 0;
 				blue = 0;
-				red = (GetBlueComponent(FirstSurface, x, y) +
-				       GetRedComponent(FirstSurface, x, y) + GetGreenComponent(FirstSurface, x, y)) / 3;
+			} else if (FilterType == FILTER_HIGHLIGHT) {
+				// Set luminosity.
+				red = add_val_to_component(red, 64);
+				green = add_val_to_component(green, 64);
+				blue = add_val_to_component(blue, 64);
 			}
 
 			PutPixel(ThirdSurface, x, y, SDL_MapRGBA(ThirdSurface->format, red, green, blue, alpha3));

@@ -606,7 +606,7 @@ void blit_one_obstacle(obstacle * our_obstacle, int highlight, int zoom)
 				blit_iso_image_to_map_position(get_obstacle_image(our_obstacle->type),
 							       obs_screen_position.x, obs_screen_position.y);
 				if (highlight)
-					blit_outline_of_iso_image_to_map_position(get_obstacle_image(our_obstacle->type),
+					sdl_highlight_iso_image(get_obstacle_image(our_obstacle->type),
 										  our_obstacle->pos.x, our_obstacle->pos.y);
 			} else {
 				blit_zoomed_iso_image_to_map_position(get_obstacle_image(our_obstacle->type),
@@ -3674,7 +3674,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 								       [(int)ThisRobot->animation_phase], ThisRobot->virt_pos.x,
 								       ThisRobot->virt_pos.y);
 					if (highlight)
-						blit_outline_of_iso_image_to_map_position(&enemy_iso_images[RotationModel][RotationIndex]
+						sdl_highlight_iso_image(&enemy_iso_images[RotationModel][RotationIndex]
 											  [(int)ThisRobot->animation_phase],
 											  ThisRobot->virt_pos.x, ThisRobot->virt_pos.y);
 				}
@@ -3888,7 +3888,7 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 			blit_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
 						       CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
 			if (highlight_item)
-				blit_outline_of_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
+				sdl_highlight_iso_image(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
 									  CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
 		}
 	}

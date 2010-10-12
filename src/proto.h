@@ -249,7 +249,7 @@ void load_obstacle(int);
 void load_all_obstacles(void);
 void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_iso_image_to_screen_position(iso_image * our_iso_image, float pos_x, float pos_y);
-void blit_outline_of_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
+void sdl_highlight_iso_image(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
 
 // block_areas.c
