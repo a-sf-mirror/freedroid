@@ -26,9 +26,9 @@
 
 /**
  * This file contains all the functions managing the things one gets to see.
- * That includes assembling of enemys, assembling the currently
+ * That includes assembling of enemies, assembling the currently
  * relevant porting of the map (the bricks I mean), drawing all visible
- * elements like bullets, blasts, enemys or influencer in a nonvisible
+ * elements like bullets, blasts, enemies or influencer in a nonvisible
  * place in memory at first, and finally drawing them to the visible
  * screen for the user.
  */
@@ -418,7 +418,7 @@ void CheckIfMissionIsComplete(void)
 		this_mission_seems_completed = TRUE;
 		checked_one_criterion = FALSE;
 
-		// Continue if the Mission target KillOne is given but not fullfilled
+		// Continue if the Mission target KillOne is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].KillOne != (-1)) {
 			enemy *erot;
@@ -434,7 +434,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target fetch_item is given but not fullfilled
+		// Continue if the Mission target fetch_item is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].fetch_item != (-1)) {
 
@@ -450,7 +450,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target must_clear_first_level is given but not fullfilled
+		// Continue if the Mission target must_clear_first_level is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].must_clear_first_level != (-1)) {
 			enemy *erot;
@@ -462,7 +462,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target must_clear_second_level is given but not fullfilled
+		// Continue if the Mission target must_clear_second_level is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].must_clear_second_level != (-1)) {
 			enemy *erot;
@@ -475,7 +475,7 @@ void CheckIfMissionIsComplete(void)
 			checked_one_criterion = TRUE;
 		}
 
-		// Continue if the Mission target MustReachLevel is given but not fullfilled
+		// Continue if the Mission target MustReachLevel is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].MustReachLevel != (-1)) {
 			if (Me.pos.z != Me.AllMissions[mis_num].MustReachLevel) {
@@ -484,7 +484,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target MustReachPoint.x is given but not fullfilled
+		// Continue if the Mission target MustReachPoint.x is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].MustReachPoint.x != (-1)) {
 			if (Me.pos.x != Me.AllMissions[mis_num].MustReachPoint.x) {
@@ -493,7 +493,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target MustReachPoint.y is given but not fullfilled
+		// Continue if the Mission target MustReachPoint.y is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].MustReachPoint.y != (-1)) {
 			if (Me.pos.y != Me.AllMissions[mis_num].MustReachPoint.y) {
@@ -502,7 +502,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target MustLiveTime is given but not fullfilled
+		// Continue if the Mission target MustLiveTime is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].MustLiveTime != (-1)) {
 			if (Me.MissionTimeElapsed < Me.AllMissions[mis_num].MustLiveTime) {
@@ -511,7 +511,7 @@ void CheckIfMissionIsComplete(void)
 			}
 			checked_one_criterion = TRUE;
 		}
-		// Continue if the Mission target MustBeOne is given but not fullfilled
+		// Continue if the Mission target MustBeOne is given but not fulfilled
 		//
 		if (Me.AllMissions[mis_num].MustBeOne != (-1)) {
 			if (Me.marker != Me.AllMissions[mis_num].MustBeOne) {
@@ -723,7 +723,7 @@ void GetQuestList(char *QuestListFilename)
 		MissionTargetIndex++;	// to avoid overwriting the same entry again
 
 		// We restore the termination character we added before, even if that
-		// is maybe not really nescessary...
+		// is maybe not really necessary...
 		//
 		*EndOfMissionTargetPointer = InnerPreservedLetter;
 

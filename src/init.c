@@ -25,7 +25,7 @@
  */
 
 /**
- * (Not all of the) Initialisation routines for FreeDroid.
+ * (Not all of the) Initialization routines for FreeDroid.
  */
 
 #define _init_c
@@ -58,12 +58,12 @@ static struct {
 } difficulty_parameters[3];
 
 /**
- * The following function is NOT 'standard' C but rather a GNU extention
+ * The following function is NOT 'standard' C but rather a GNU extension
  * to the C standards.  We *DON'T* want to use such things, but in this
  * case it helps debugging purposes of floating point operations just so
  * much, that it's really worth using it (in development versions, not in
  * releases).  But to avoid warnings from GCC (which we always set to not
- * allow gnu extentions to the C standard by default), we declare the
+ * allow gnu extensions to the C standard by default), we declare the
  * prototype of this function here.  If you don't use GCC or this 
  * function should give you portability problems, it's ABSOLUTELY SAFE
  * to just remove all instances of it, since it really only helps 
@@ -108,8 +108,9 @@ static void clear_out_arrays_for_fresh_game(void)
 	clear_npcs();
 }
 
-/** 
- * Each character inside the game can have a (lengthly) description of
+/** THIS IS CURRENTLY (10/11/10) NOT USED
+ *  
+ * Each character inside the game can have a (lengthy) description of
  * his appearance and the like.  This is somewhat different from the mere
  * description of the character model, since a character model may be 
  * used for several characters inside the game.  Therefore the 
@@ -158,7 +159,7 @@ static void init_character_descriptions(void)
 	    _
 	    ("It seems that even at the end of the world the species known as 'Salesman' is able to survive. Just his presence makes you want to destroy all humans.");
 
-	character_descriptions[PERSON_EWALD] = _("He looks unexplicably happy.");
+	character_descriptions[PERSON_EWALD] = _("He looks inexplicably happy.");
 
 	character_descriptions[PERSON_STONE] =
 	    _
@@ -181,7 +182,7 @@ static void init_character_descriptions(void)
 
 	character_descriptions[PERSON_MELFIS] =
 	    _
-	    ("As you look at him, you cannot really belive he is there. If you turn your back on him he will vanish like a ghost into thin air and you will never see him again.");
+	    ("As you look at him, you cannot really believe he is there. If you turn your back on him he will vanish like a ghost into thin air and you will never see him again.");
 
 	character_descriptions[PERSON_TYBALT] =
 	    _("His IQ is sometimes as high as a dog's. Only sometimes though. He smells like a dog too.");
@@ -370,7 +371,7 @@ void Get_Bullet_Data(char *DataPointer)
 
 	// Not that we know how many bullets are defined in freedroid.ruleset, we can allocate
 	// a fitting amount of memory, but of course only if the memory hasn't been allocated
-	// aready!!!
+	// already!!!
 	//
 	// If we would do that in any case, every Init_Game_Data call would destroy the loaded
 	// image files AND MOST LIKELY CAUSE A SEGFAULT!!!
@@ -672,7 +673,7 @@ static void Get_Robot_Data(void *DataPointer)
 		ReadValueFromString(RobotPointer, ENEMY_GOT_HIT_SOUND_STRING, "%hd",
 				    &Druidmap[RobotIndex].got_hit_sound_type, EndOfDataPointer);
 
-		// Now we read in the to-hit chance this robot has in combat against an unarmoured target
+		// Now we read in the to-hit chance this robot has in combat against an unarmored target
 		ReadValueFromString(RobotPointer, TO_HIT_STRING, "%hd", &Druidmap[RobotIndex].to_hit, EndOfDataPointer);
 
 		// Now we read in the modifier, that increases/decreases the chance of this robot getting hit
@@ -815,7 +816,7 @@ static void get_item_data(char *DataPointer)
 		} else {
 			fprintf(stderr, "\n\nItemIndex: %d.\n", ItemIndex);
 			ErrorMessage(__FUNCTION__,
-				     "The item specification of an item in freedroid.ruleset should contain an \nanswer for the slot installation possiblieties, that was neither \n'weapon' nor 'armour' nor 'shield' nor 'special' nor 'drive' nor 'none'.",
+				     "The item specification of an item in freedroid.ruleset should contain an \nanswer for the slot installation possibilities, that was neither \n'weapon' nor 'armour' nor 'shield' nor 'special' nor 'drive' nor 'none'.",
 				     PLEASE_INFORM, IS_FATAL);
 		}
 		free(YesNoString);
@@ -1079,7 +1080,7 @@ void Init_Game_Data()
 
 	next_startup_percentage(2);
 
-	// Load programs (spells) informations
+	// Load programs (spells) information
 	//
 	find_file("freedroid.program_archetypes", MAP_DIR, fpath, 0);
 	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
@@ -1723,7 +1724,7 @@ I will not be able to load or save games or configurations\n\
 	InitAudio();
 
 	// Now that the music files have been loaded successfully, it's time to set
-	// the music and sound volumes accoridingly, i.e. as specifies by the users
+	// the music and sound volumes accordingly, i.e. as specifies by the users
 	// configuration.
 	//
 	// THIS MUST NOT BE DONE BEFORE THE SOUND SAMPLES HAVE BEEN LOADED!!
@@ -1817,7 +1818,7 @@ void ThouArtDefeated(void)
 };				// void ThouArtDefeated(void)
 
 /**
- * This function displayes the last seconds of the game when the influencer
+ * This function displays the last seconds of the game when the influencer
  * has actually been killed.  It generates some explosions and waits for
  * some seconds, where the user can reload his latest game, or after that
  * returns to finally quit the inner game loop and the program will 

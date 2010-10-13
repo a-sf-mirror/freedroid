@@ -24,9 +24,9 @@
  */
 
 /**
- * This file contains all enemy realted functions.  This includes their 
- * whole behaviour, healing, initialization, shuffling them around after 
- * evevator-transitions, deleting them, collisions of enemys among 
+ * This file contains all enemy related functions.  This includes their 
+ * whole behavior, healing, initialization, shuffling them around after 
+ * elevator-transitions, deleting them, collisions of enemies among 
  * themselves, their fireing, animation and such.
  */
 
@@ -429,7 +429,7 @@ static void DetermineAngleOfFacing(enemy * e)
 	// The phase now depends upon the direction this robot
 	// is heading.
 	//
-	// We calsulate the angle of the vector, but only if the robot has at least
+	// We calculate the angle of the vector, but only if the robot has at least
 	// some minimal speed.  If not, simply the previous angle will be used again.
 	//
 	if ((fabsf(e->speed.y) > 0.03) || (fabsf(e->speed.x) > 0.03)) {
@@ -515,7 +515,7 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 		clear_out_intermediate_points(&ThisRobot->pos, &ThisRobot->PrivatePathway[0], 5);
 
 		// The waypoints used by the bot have no sense on this new level. They have
-		// to be re-initialized. The closest avalaible waypoint is chosen.
+		// to be re-initialized. The closest available waypoint is chosen.
 		int best_waypoint = enemy_find_closest_waypoint(ThisRobot);
 		
 		ThisRobot->homewaypoint = best_waypoint;
@@ -530,7 +530,7 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 }
 
 /**
- * This function moves one robot thowards his next waypoint.  If already
+ * This function moves one robot towards his next waypoint.  If already
  * there, the function does nothing more.
  */
 void MoveThisRobotThowardsHisCurrentTarget(enemy * ThisRobot)
@@ -726,7 +726,7 @@ static void set_new_waypointless_walk_target(enemy * ThisRobot, moderately_finep
 };				// void set_new_waypointless_walk_target ( enemy* ThisRobot )
 
 /**
- * This function tells if a given level is active in the sence that there
+ * This function tells if a given level is active in the sense that there
  * is one ore more player character on the level, so that need exists to
  * move all the enemies on this level etc.
  */
@@ -806,7 +806,7 @@ Item to be dropped (forced for this bot) is of illegal type!", PLEASE_INFORM, IS
 int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot)
 {
 	// If the enemy is outside of the current map, 
-	// that's an error and needs to be correted.
+	// that's an error and needs to be corrected.
 	//
 	if (!pos_inside_level(ThisRobot->pos.x, ThisRobot->pos.y, curShip.AllLevels[ThisRobot->pos.z])) {
 		ErrorMessage(__FUNCTION__, "\
@@ -884,8 +884,8 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 						reward);
 
 //	The below section is much more of debug info that something that actually should be "spammed" to the user by default.
-//	Possibly Tux could know about fighting going on in the immediate vincinity, but for sure not on the other side of the world map.
-//	It just confuses newbeginners while giving little or no valuable info to even an experienced player.
+//	Possibly Tux could know about fighting going on in the immediate vicinity, but for sure not on the other side of the world map.
+//	It just confuses beginners while giving little or no valuable info to even an experienced player.
 /*
  		else if (killertype && killertype != -1)
 			append_new_game_message(_("\4%s\5 was killed by %s."), target->short_description_text,
@@ -1143,7 +1143,7 @@ void enemy_say_current_state_on_screen(enemy * ThisRobot)
  * should be introduced, so that the bots can still recover if that 
  * unlucky case really happens, which is what we provide here.
  *
- * Since passability checks usually can become quite costy in terms of 
+ * Since passability checks usually can become quite costly in terms of 
  * processor time and also because it makes sense to allow for some more
  * 'natural' fallbacks to work, we only check for stuck bots every second
  * or so.  In order to better distribute the checks (and not cause fps
@@ -1167,7 +1167,7 @@ void enemy_handle_stuck_in_walls(enemy * ThisRobot)
 	//
 	if (!SinglePointColldet(ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z, &WalkablePassFilter)) {
 		// So at this point we know, that we have a bot that is stuck right now,
-		// has been stuck one second ago and also is not moving along wapoints, which
+		// has been stuck one second ago and also is not moving along waypoints, which
 		// would lead to the bot reaching some sensible spot sooner or later anyway.
 		// In one word:  we have arrived in a situation that might make a crude correction
 		// sensible.  We teleport the robot back to the nearest waypoint.  From there, it
@@ -1280,7 +1280,7 @@ void update_vector_to_shot_target_for_friend(enemy * ThisRobot)
  * the previous frame can be selected even if it is "slightly" out of view (2 times the range),
  * in order to simulate "pursuit". Sorry for the mess but there is no other proper place for that.
  *
- * Note : this function does set this_robbot->attack_target_type, and calls enemy_set_reference()
+ * Note : this function does set this_robot->attack_target_type, and calls enemy_set_reference()
  *        accordingly to its finding.
  */
 void update_vector_to_shot_target_for_enemy(enemy * this_robot)
@@ -1381,7 +1381,7 @@ static void state_machine_inconditional_updates(enemy * ThisRobot)
 	enemy_handle_stuck_in_walls(ThisRobot);
 
 	// determine the distance vector to the target of this shot.  The target
-	// depends of course on wheter it's a friendly device or a hostile device.
+	// depends of course on whether it's a friendly device or a hostile device.
 	//
 	if (is_friendly(ThisRobot->faction, FACTION_SELF)) {
 		update_vector_to_shot_target_for_friend(ThisRobot);
@@ -1517,11 +1517,11 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 /* ---------------------------------
  * "attack tux" state
  * 
- * This fonction will compute the destination position of a bot in order
- * to reach its target. In the callee (update_ennemy), the pathfinder is 
+ * This function will compute the destination position of a bot in order
+ * to reach its target. In the caller (update_enemy), the pathfinder is 
  * called, to define the path of the bot up to its target.
  * 
- * This fonction will also eventually start a shoot.
+ * This function will also eventually start a shoot.
  * 
  * --------------------------------- */
 
@@ -1877,7 +1877,7 @@ void update_enemy(enemy * ThisRobot)
 	 *    debug stuff (say state on screen)
 	 *    unstick from walls if relevant
 	 *    certain switches (cleanup to be made here)
-	 *    find an attack target (we consider it state independant)
+	 *    find an attack target (we consider it state independent)
 	 *    reset speed to 0 (for now)
 	 *
 	 * Situational state changes (transitions from any state to a given one in certain input conditions)
@@ -1886,7 +1886,7 @@ void update_enemy(enemy * ThisRobot)
 	 *
 	 * Per-state actions
 	 *    for each state:
-	 *       compute a new moving target (no pathfinding there, just tell where to go)
+	 *       compute a new moving target (no path finding there, just tell where to go)
 	 *       do actions if appropriate (attack, talk, whatever)
 	 *       transition to a state
 	 *
@@ -2391,7 +2391,7 @@ static void ReachMeleeCombat(enemy *ThisRobot, gps *tpos, moderately_finepoint *
 
 	// If ThisRobot is a friend, we want him to move as far as possible,
 	// so we de-activate the bot-collision test during the pathfinder call.
-	// ( see the function's commnent of state_machine_attack() )
+	// ( see the function's comment about state_machine_attack() )
 	//
 	// Else, a classical pathfinder context is used. However, the final position
 	// is the target position, and so we have to add the target into the bot-collision
@@ -2426,7 +2426,7 @@ static int TurnABitTowardsPosition(enemy *ThisRobot, float x, float y, float Tur
 	// For this we use the atan2, which gives angles from -pi to +pi.
 	// 
 	// Attention must be paid, since 'y' in our coordinates ascends when
-	// moving down and descends when moving 'up' on the scren.  So that
+	// moving down and descends when moving 'up' on the screen.  So that
 	// one sign must be corrected, so that everything is right again.
 	//
 	RightAngle = (atan2(-(y - ThisRobot->pos.y), +(x - ThisRobot->pos.x)) * 180.0 / M_PI);
@@ -2507,7 +2507,7 @@ void SetRestOfGroupToState(Enemy ThisRobot, short NewState)
 };				// void SetRestOfGroupToState ( Enemy ThisRobot , int NewState )
 
 /**
- * This function checks for enemy collsions and returns TRUE if enemy 
+ * This function checks for enemy collisions and returns TRUE if enemy 
  * with number enemynum collided with another enemy from the list.
  */
 int CheckEnemyEnemyCollision(enemy * OurBot)
@@ -2626,7 +2626,7 @@ void animate_enemy(enemy *our_enemy)
 /******************************************************
  * Resolve the address of an enemy, given its number (primary key) and 
  * the cache value of its address. 
- * 1- number == -1 means no enemy targetted, means we return NULL
+ * 1- number == -1 means no enemy targeted, means we return NULL
  * 2- if the cache value is not NULL, we return it
  * 3- if the cache value is NULL, resolve the address by browsing the list and set the cache value
  *********************************************************/

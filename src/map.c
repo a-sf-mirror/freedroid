@@ -938,7 +938,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 	if (!pos_inside_level(map_x, map_y, BoxLevel))
 		return (FALSE);
 
-	// We check all the obstacles on this square if they are maybe destructable
+	// We check all the obstacles on this square if they are maybe destructible
 	// and if they are, we destruct them, haha
 	//
 	for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
@@ -981,7 +981,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		// But here a WARNING WARNING WARNING! is due!  We must not start the
 		// blast before the obstacle is removed, because the blast will again
 		// cause this very obstacle removal function, so we need to be careful
-		// so as not to incide endless recursion.  We memorize the position for
+		// so as not to incite endless recursion.  We memorize the position for
 		// later, then delete the obstacle, then we start the blast.
 		//
 		blast_start_pos.x = target_obstacle->pos.x;
@@ -990,7 +990,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		int obstacle_drops_treasure
 			= obstacle_map[target_obstacle->type].flags & DROPS_RANDOM_TREASURE;
 
-		// Now we really smash the obstacle, i.e. we can set it's type to the debirs that has
+		// Now we really smash the obstacle, i.e. we can set it's type to the debris that has
 		// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
 		// then we'll just delete the obstacle in question entirely.  For this we got a standard function to
 		// safely do it and not make some errors into the glue structure or obstacles lists...
@@ -1015,7 +1015,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 }
 
 /**
- * When a destructable type of obstacle gets hit, e.g. by a blast 
+ * When a destructible type of obstacle gets hit, e.g. by a blast 
  * exploding on the tile or a melee hit on the same floor tile, then some
  * of the obstacles (like barrel or crates) might explode, sometimes
  * leaving some treasure behind.
@@ -1068,7 +1068,7 @@ Uint16 GetMapBrick(level * lvl, float x, float y)
 		ErrorMessage(__FUNCTION__, "\
 				A maplevel in Freedroid contained a brick type, that does not have a\n\
 				real graphical representation.  This is a severe error, that really \n\
-				shouldn't be occuring in normal game, except perhaps if the level editor\n\
+				shouldn't be occurring in normal game, except perhaps if the level editor\n\
 				was just used to add/remove some new doors or refreshes or other animated\n\
 				map tiles.", PLEASE_INFORM, IS_FATAL);
 	}
@@ -1631,8 +1631,8 @@ void CountNumberOfDroidsOnShip(void)
 };				// void CountNumberOfDroidsOnShip ( void )
 
 /* -----------------------------------------------------------------
- * This function initializes all enemys, which means that enemys are
- * filled in into the enemy list according to the enemys types that 
+ * This function initializes all enemies, which means that enemies are
+ * filled in into the enemy list according to the enemies types that 
  * are to be found on each deck.
  * ----------------------------------------------------------------- */
 int GetCrew(char *filename)
@@ -1765,7 +1765,7 @@ the dialog section name for one special force droid/character.", PLEASE_INFORM, 
 /**
  * This function receives a pointer to the already read in crew section
  * in a already read in droids file and decodes all the contents of that
- * droid section to fill the AllEnemys array with droid types accoriding
+ * droid section to fill the AllEnemys array with droid types according
  * to the specifications made in the file.
  */
 void GetThisLevelsDroids(char *SectionPointer)
@@ -1844,10 +1844,10 @@ void GetThisLevelsDroids(char *SectionPointer)
 };				// void GetThisLevelsDroids( char* SectionPointer )
 
 /**
- * This function determines wether a given object on x/y is visible to
+ * This function determines whether a given object on x/y is visible to
  * the 001 or not (due to some walls or something in between
  * 
- * Return values are TRUE or FALSE accodinly
+ * Return values are TRUE or FALSE accordingly
  *
  */
 int IsVisible(gps *objpos)
@@ -1855,7 +1855,7 @@ int IsVisible(gps *objpos)
 
 	// For the purpose of visibility checking, we might as well exclude objects
 	// that are too far away to ever be visible and thereby save some checks of
-	// longer lines on the map, that wouldn't be nescessary or helpful anyway.
+	// longer lines on the map, that wouldn't be necessary or helpful anyway.
 	//
 	if ((fabsf(Me.pos.x - objpos->x) > FLOOR_TILES_VISIBLE_AROUND_TUX) ||
 	    (fabsf(Me.pos.y - objpos->y) > FLOOR_TILES_VISIBLE_AROUND_TUX))
