@@ -16279,7 +16279,7 @@ idx=2182 type=31 data={
 	it: n="Plate"  X=47.000000  Y=42.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 	it: n="Shoes"  X=47.000000  Y=42.000000  DAMRED=27  MDur=10  CDur=6.000000  AClip=0  Multi=1 
 	it: n="Mug"  X=50.000000  Y=40.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
-	it: n="Fork"  X=50.000000  Y=40.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+	it: n="Fork"  X=50.000000  Y=40.000000  MDur=1  CDur=1.000000  AClip=0  Multi=1 
 	it: n="Normal Jacket"  X=50.000000  Y=40.000000  DAMRED=12  MDur=14  CDur=8.000000  AClip=0  Multi=1 
 	it: n="Worker Helmet"  X=50.000000  Y=40.000000  DAMRED=22  MDur=18  CDur=8.000000  AClip=0  Multi=1 
 	it: n="Big wrench"  X=50.000000  Y=40.000000  MDur=45  CDur=19.000000  AClip=0  Multi=1 
