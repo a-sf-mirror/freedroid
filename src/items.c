@@ -267,7 +267,7 @@ void FillInItemProperties(item *it, int full_durability, int multiplicity)
 		if (full_durability) {
 			it->current_duration = it->max_duration;
 		} else {
-			it->current_duration = it->max_duration / 4 + MyRandom(it->max_duration / 2);
+			it->current_duration = max(1, it->max_duration / 4 + MyRandom(it->max_duration / 2));
 		}
 	} else {
 		it->max_duration = -1;
