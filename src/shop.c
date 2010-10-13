@@ -956,14 +956,10 @@ static int buy_item(item *BuyItem, int amount)
 
 	// If the item is too expensive, bail out
 	if (item_price > Me.Gold) {
-		char *MenuTexts[10];
 		char linebuf[1000];
-		MenuTexts[0] = _(" BACK ");
-		MenuTexts[1] = "";
-		sprintf(linebuf, _("    %s\n\n    You can't afford to purchase this item!"),
+		sprintf(linebuf, _("%s\n\nYou can't afford to purchase this item!"),
 		        ItemMap[BuyItem->type].item_name);
-		SetCurrentFont(Menu_BFont);
-		DoMenuSelection(linebuf, MenuTexts, 1, -1, NULL);
+		alert_window(linebuf);
 		return 1;
 	}
 
