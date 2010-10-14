@@ -92,7 +92,7 @@
 ================
  General
    * Some melee and ranged weapons still have placeholder laserswords/rifles for their Tux holding 
-     and attack animations. If you are skilled with 3D modelling, please help us out to fix this.
+     and attack animations. If you are skilled with 3D modeling, please help us out to fix this.
    * When you start the game in OpenGL mode and something overlays the FreedroidRPG window while starting
      up, the background images looks very strange. If you click on one of the menu items, it should return to
      looking as intended.
@@ -120,7 +120,7 @@
       (issues #2913485 and #2913484)
     * SDL installed via MacPorts: SDL installed via MacPorts will give freedroidRPG wrong information 
       about the byteorder if you have a big-endian (PowerPC) CPU, so the colors may be wrong and you 
-      probably couldn't start a new game because fdRPG crashes.
+      probably couldn't start a new game because FreedroidRPG crashes.
       To fix it, with root privileges edit the /opt/include/SDL/SDL_config.h file so the line
         #define SDL_BYTEORDER=1234
       says
@@ -129,10 +129,10 @@
       Using SDL compiled from source instead of from MacPorts will work as well.
 
  Linux
-   * Pulseaudio: Using SDL-pulseaudio you are currently likely to not get sound. This has nothing to do 
-     with FDRPG but with Pulseaudio and it's plugins still in general being unmature. We recomend using
+   * Pulseaudio: Using SDL-pulseaudio you are currently likely not to get sound. This has nothing to do 
+     with FreedroidRPG but with Pulseaudio and it's plugins still in general being immature. We recommend using
      eg SDL-esd or SDL-alsa until these problems has been fixed upstream. If you manage to get a working 
-     config, do let us know so we can update this entry with versionnumbers etc.
+     config, do let us know so we can update this entry with version numbers etc.
    * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the 
      text in freedroidRPG. Upgrading to Mesa 7 fixes this.
    * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
@@ -264,7 +264,7 @@ Level Editor & Developer FAQ:
 	Q: How can I get the latest development version of the game?
 	A: This is very simple when using Linux. You can find the details here:
 	   https://sourceforge.net/svn/?group_id=54521
-	   If you are using Windows we recomend using a tool like eg 
+	   If you are using Windows we recommend using a tool like eg 
 	   http://tortoisesvn.tigris.org/
 	   If you still run into problems, best again discuss it with the people on
 	   the freedroid-discussion mailing list.
@@ -280,6 +280,8 @@ Level Editor & Developer FAQ:
 	   at our Sourceforge project pages. You can find the main page here
 	   http://sourceforge.net/projects/freedroid
 	   and other relevant pages should be reachable from there.
+	   A link to our forum can be found near the end of this file.
+	   
 
 	Q: How can I add a character to FreedroidRPG?
 	A: This involves several steps:  
