@@ -44,8 +44,8 @@
 #include "lvledit/lvledit_display.h"
 
 // curent text insertion position
-int MyCursorX;
-int MyCursorY;
+static int MyCursorX;
+static int MyCursorY;
 
 int display_char_disabled_local;
 
@@ -257,17 +257,6 @@ void EnemyHitByBulletText(enemy * ThisRobot)
 	} else
 		ThisRobot->TextToBeDisplayed = _("Aargh, I got hit.  Ugh, I got a bad feeling...");
 };				// void EnemyHitByBullet( int Enum );
-
-/**
- * This function sets the text cursor used in DisplayText.
- */
-void SetTextCursor(int x, int y)
-{
-	MyCursorX = x;
-	MyCursorY = y;
-
-	return;
-};				// void SetTextCursor ( int x , int y )
 
 /* -----------------------------------------------------------------
  *

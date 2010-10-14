@@ -100,8 +100,6 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 	int mission_diary_index;
 	int mis_num = GetMissionIndexByName(mis_name);
 
-	SetTextCursor(mission_description_rect.x, mission_description_rect.y);
-
 	strcat(complete_mission_display_text, ("\3"));
 	strcat(complete_mission_display_text, _("Quest:"));
 	strcat(complete_mission_display_text, (" \1"));
@@ -144,7 +142,6 @@ void quest_browser_append_mission_info(const char *mis_name, int full_descriptio
 
 };				// void quest_browser_append_mission_info ( int mis_num )
 
-extern int MyCursorY;
 /**
  *
  *
@@ -197,12 +194,9 @@ void quest_browser_display_mission_list(int list_type)
 
 	}
 
-	SetTextCursor(mission_description_rect.x, mission_description_rect.y);
-
 	if (something_was_displayed) {
 		mission_list_offset = (FontHeight(GetCurrentFont()) * TEXT_STRETCH)
 		    * (mission_list_scroll_override_from_user) * 1.00;
-		SetTextCursor(mission_description_rect.x, mission_description_rect.y);
 		DisplayText(complete_mission_display_text, mission_description_rect.x,
 			    mission_description_rect.y - mission_list_offset, &mission_description_rect, TEXT_STRETCH);
 

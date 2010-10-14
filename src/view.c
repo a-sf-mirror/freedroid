@@ -109,28 +109,6 @@ enum {
 
 LIST_HEAD(visible_level_list);
 
-static void draw_framerate()
-{
-	static float TimeSinceLastFPSUpdate = 10;
-	static int Frames_Counted = 1;
-	static int FPS_Displayed;
-	char txt[100];
-
-	if (GameConfig.Draw_Framerate) {
-		TimeSinceLastFPSUpdate += Frame_Time();
-		Frames_Counted++;
-		if (Frames_Counted > 50) {
-			FPS_Displayed = Frames_Counted / TimeSinceLastFPSUpdate;
-			TimeSinceLastFPSUpdate = 0;
-			Frames_Counted = 0;
-		}
-		snprintf(txt, sizeof(txt) - 1, _("FPS: %d"), FPS_Displayed);
-		strcat(txt, "\n");
-		DisplayText(txt, -1, -1, NULL, 1.0);
-	}
-}
-
-
 /**
  * This function displays an item at the current mouse cursor position.
  * The typical crosshair cursor is assumed.  The item is centered around
@@ -250,9 +228,29 @@ void PutMiscellaneousSpellEffects(void)
 };				// void PutMiscellaneousSpellEffects ( void )
 
 /**
- * The combat window can contain also some written text, displaying things
- * like the current energy level, current position and that.  This function
- * puts exactly those texts in fine print onto the Screen.
+ * Calculate the current FPS and append it to the specified auto_string.
+ */
+static void print_framerate(struct auto_string *txt)
+{
+	static float TimeSinceLastFPSUpdate = 10;
+	static int Frames_Counted = 1;
+	static int FPS_Displayed;
+
+	if (GameConfig.Draw_Framerate) {
+		TimeSinceLastFPSUpdate += Frame_Time();
+		Frames_Counted++;
+		if (Frames_Counted > 50) {
+			FPS_Displayed = Frames_Counted / TimeSinceLastFPSUpdate;
+			TimeSinceLastFPSUpdate = 0;
+			Frames_Counted = 0;
+		}
+		autostr_append(txt, _("FPS: %d\n"), FPS_Displayed);
+	}
+}
+
+/**
+ * The combat window can also contain some text, like the FPS and our current
+ * position.  This function puts those texts onto the screen.
  */
 void ShowCombatScreenTexts(int mask)
 {
@@ -260,14 +258,12 @@ void ShowCombatScreenTexts(int mask)
 	int seconds;
 	int i;
 	int remaining_bots;
-	char txt[200];
+	static struct auto_string *txt;
+	if (txt == NULL)
+		txt = alloc_autostr(200);
+	autostr_printf(txt, "");
 
-	BFont_Info *old_current_font = GetCurrentFont();
-	SetCurrentFont(FPS_Display_BFont);
-
-	SetTextCursor(User_Rect.x + 1, User_Rect.y + 1);
-
-	draw_framerate();
+	print_framerate(txt);
 
 	for (i = 0; i < MAX_MISSIONS_IN_GAME; i++) {
 		if (!Me.AllMissions[i].MissionWasAssigned)
@@ -280,9 +276,7 @@ void ShowCombatScreenTexts(int mask)
 				minutes = 0;
 				seconds = 0;
 			}
-			snprintf(txt, sizeof(txt) - 1, _("Time to hold out still: %2d:%2d"), minutes, seconds);
-			strcat(txt, "\n");
-			DisplayText(txt, -1, -1, NULL, 1.0);
+			autostr_append(txt, _("Time to hold out still: %2d:%2d\n"), minutes, seconds);
 		}
 
 		if ((Me.AllMissions[i].must_clear_first_level == Me.pos.z) || (Me.AllMissions[i].must_clear_second_level == Me.pos.z)) {
@@ -294,16 +288,14 @@ void ShowCombatScreenTexts(int mask)
 					remaining_bots++;
 
 			}
-			snprintf(txt, sizeof(txt) - 1, _("Bots remaining on level: %d\n"), remaining_bots);
-			strcat(txt, "\n");
-			DisplayText(txt, -1, -1, NULL, 1.0);
+			autostr_append(txt, _("Bots remaining on level: %d\n"), remaining_bots);
 		}
 	}
 
-	SetCurrentFont(old_current_font);
+	SetCurrentFont(FPS_Display_BFont);
+	DisplayText(txt->value, User_Rect.x + 1, User_Rect.y + 1, NULL, 1.0);
 
 	DisplayBigScreenMessage();
-
 }
 
 static void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *ColStart, int *ColEnd)

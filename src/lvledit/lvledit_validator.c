@@ -1123,8 +1123,8 @@ void LevelValidation()
 	SDL_Rect report_rect = { UNIVERSAL_COORD_W(30), UNIVERSAL_COORD_H(30), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(430) };
 
 	BFont_Info *current_font = GetCurrentFont();
-	int raw_height = FontHeight(current_font);
-	int max_raws = (report_rect.h / raw_height) - 4;	// 4 lines are reserved for header and footer 
+	int row_height = FontHeight(current_font);
+	int max_rows = (report_rect.h / row_height) - 4;	// 4 lines are reserved for header and footer
 	int column_width = TextWidth("000: empty");
 
 	AssembleCombatPicture(ONLY_SHOW_MAP | NO_CURSOR | SKIP_LIGHT_RADIUS); //ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SKIP_LIGHT_RADIUS);
@@ -1144,23 +1144,23 @@ void LevelValidation()
 	//
 	int l;
 	int col_pos = 0;
-	int raw_pos = 0;
+	int row_pos = 0;
 
 	for (l = 0; l < curShip.num_levels; ++l) {
 		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l] };
 
 		// Compute raw and column position, when a new column of text starts
-		if ((l % max_raws) == 0) {
-			col_pos = report_rect.x + (l / max_raws) * column_width;
-			raw_pos = report_rect.y + 2 * raw_height;	// 2 lines are reserved for the header
-			SetTextCursor(col_pos, raw_pos);
+		if ((l % max_rows) == 0) {
+			col_pos = report_rect.x + (l / max_rows) * column_width;
+			row_pos = report_rect.y + 2 * row_height;	// 2 lines are reserved for the header
 		}
 
 		if (!level_exists(l)) {
 			// Empty level
 			char txt[40];
-			sprintf(txt, "%03d: \2empty\n", l);
-			DisplayText(txt, col_pos, -1, &report_rect, 1.0);
+ 			sprintf(txt, "%03d: \2empty", l);
+ 			int lines = DisplayText(txt, col_pos, row_pos, &report_rect, 1.0);
+ 			row_pos += lines * row_height;
 			SetCurrentFont(current_font);	// Reset font
 		} else {
 			// Loop on each validation function
@@ -1173,8 +1173,9 @@ void LevelValidation()
 
 			// Display report
 			char txt[40];
-			sprintf(txt, "%03d: %s\n", l, (level_is_invalid) ? "\1fail" : "pass");
-			DisplayText(txt, col_pos, -1, &report_rect, 1.0);
+			sprintf(txt, "%03d: %s", l, (level_is_invalid) ? "\1fail" : "pass");
+			int lines = DisplayText(txt, col_pos, row_pos, &report_rect, 1.0);
+			row_pos += lines * row_height;
 			SetCurrentFont(current_font);	// Reset font in case of the red "fail" was displayed
 
 			// Set global is_invalid flag
@@ -1191,23 +1192,21 @@ void LevelValidation()
 	free_exception_lists();
 
 	// This was it.  We can say so and return.
-	//
-	int posy = report_rect.y + report_rect.h - raw_height;
+	int posy = report_rect.y + report_rect.h - row_height;
 
 	CenteredPutString(Screen, posy, "--- End of List --- Press Space to return to leveleditor ---");
 
 	if (is_invalid) {
-		posy -= raw_height;
+		posy -= row_height;
 		CenteredPutString(Screen, posy, "\1Some tests were invalid. See the report in the console\3");
 	}
 
 	if (uncaught_excpt) {
-		posy -= raw_height;
+		posy -= row_height;
 		CenteredPutString(Screen, posy, "\1Some exceptions were not caught. See the report in the console\3");
 	}
 
 	our_SDL_flip_wrapper();
-
-}				// LevelValidation( )
+}
 
 #undef _leveleditor_validator_c

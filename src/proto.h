@@ -663,9 +663,6 @@ void ChatWithFriendlyDroid(Enemy ChatDroid);
 void EnemyHitByBulletText(enemy *);
 void EnemyInfluCollisionText(enemy *);
 
-void SetTextCursor(int x, int y);
-void SetLineLength(int);
-
 int DisplayText(const char *text, int startx, int starty, const SDL_Rect * clip, float text_stretch);
 void show_chat_log(enemy *);
 
