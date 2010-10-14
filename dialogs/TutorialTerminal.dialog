@@ -39,7 +39,6 @@ EveryTime LuaCode={
 	cli_says(_"Entering as Guest", "NO_WAIT")
 	npc_says("", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	cli_says(terminal, "NO_WAIT")
 
 	if (cmp_obstacle_state("TutorialTakeover", "closed")) then
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
@@ -50,6 +49,7 @@ EveryTime LuaCode={
 	else
 		npc_says(_"GAME BUG. PLEASE REPORT.")
 	end
+	cli_says(terminal, "NO_WAIT")
 	show(99)
 }
 ----------------------------------------------------------------------
