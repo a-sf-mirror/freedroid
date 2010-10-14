@@ -303,7 +303,7 @@ static int lua_event_delete_item(lua_State * L)
 static int lua_event_give_item(lua_State * L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
-	int mult = luaL_checkinteger(L, 2);
+	int mult = luaL_optinteger(L, 2, 1);
 
 	item NewItem;
 	NewItem = create_item_with_name(itemname, TRUE, mult);
