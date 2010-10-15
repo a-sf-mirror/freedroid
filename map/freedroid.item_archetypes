@@ -4223,12 +4223,14 @@ Item description text=_"A thermoelectric device that increases your cooling rate
 
 ** Start of new item specification subsection **
 Item name=_"Steel mesh"
+inventory_size_x=2
+inventory_size_y=2
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/steel_mesh"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/steel_mesh/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"A sturdy metal mesh that provides an extra protective layer to your armor."
@@ -4327,12 +4329,14 @@ Item description text=_"When attached to a melee weapon, this item induces error
 
 ** Start of new item specification subsection **
 Item name=_"Headlamp"
+inventory_size_x=2
+inventory_size_y=1
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/headlamp"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/headlamp/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"When fastened to your helmet, this lamp allows you to see better in dark environments."
