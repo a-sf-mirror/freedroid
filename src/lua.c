@@ -727,6 +727,37 @@ static int lua_chat_set_bot_state(lua_State * L)
 	return 0;
 }
 
+static int lua_set_bot_destination(lua_State * L)
+{
+	const char *label = luaL_checkstring(L, 1);
+	enemy *en = get_enemy_arg(L, 2); 
+	location TempLocation;
+	ResolveMapLabelOnShip(label, &TempLocation);
+	struct level *lvl = curShip.AllLevels[TempLocation.level];
+	int destinationwaypoint = get_waypoint(lvl, TempLocation.x + 0.5, TempLocation.y + 0.5);
+
+	if (TempLocation.level !=  en->pos.z) {
+		ErrorMessage(__FUNCTION__, "\
+				Sending bot %s to map label %s (found on level %d) cannot be done because the bot\n\
+				is not on the same level (z = %d). Doing nothing.",
+				PLEASE_INFORM, IS_WARNING_ONLY, en->dialog_section_name, label, TempLocation.level, en->pos.z);
+		return 0;
+	}
+
+	if (destinationwaypoint == -1) {
+		ErrorMessage(__FUNCTION__, "\
+				Map label %s (found on level %d) does not have a waypoint. Cannot send bot %s\n\
+				to this location. Doing nothing.\n\
+				Location coordinates x=%d, y=%d.",
+				PLEASE_INFORM, IS_WARNING_ONLY, label, TempLocation.level, en->pos.z, en->dialog_section_name, TempLocation.x, TempLocation.y);
+		return 0;
+	}
+
+	clear_out_intermediate_points(&en->pos, &en->PrivatePathway[0], 5);
+	en->nextwaypoint = destinationwaypoint;
+	return 0;
+}
+
 static int lua_chat_takeover(lua_State * L)
 {
 	int opponent_capsules = luaL_checkinteger(L, 1);
@@ -1125,7 +1156,8 @@ luaL_reg lfuncs[] = {
 	,
 	{"set_bot_state", lua_chat_set_bot_state}
 	,
-
+	{"set_bot_destination", lua_set_bot_destination}
+	,
 	{"takeover", lua_chat_takeover}
 	,
 	{"heal_npc", lua_event_heal_npc}
