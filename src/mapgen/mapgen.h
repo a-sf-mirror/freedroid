@@ -51,6 +51,16 @@ struct cplist_t {
 	enum connection_type t;
 };
 
+struct dungeon_info {
+	int enter;
+	int exit;
+	int middle_room;
+
+	int num_rooms;
+	int *distance;
+	int *sorted_square;
+};
+
 extern struct roominfo *rooms;
 extern int total_rooms;
 

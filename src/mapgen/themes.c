@@ -157,8 +157,6 @@ static void set_simple_wall(int x, int y, int wall, int theme)
 			mapgen_add_obstacle(x + 0.5, y + 1, theme_data[theme].wall_s);
 			mapgen_add_obstacle(x + 1, y + 0.5, theme_data[theme].wall_e);
 			break;
-		default:
-			ErrorMessage(__FUNCTION__, "Unknown type of wall %d at (%d, %d)\n ", PLEASE_INFORM, IS_FATAL, wall, x, y);
 	}
 }
 
@@ -517,15 +515,18 @@ static int set_living_theme_recursive(int room, int depth, int *vis)
 	if (!depth)
 		return 0;
 
-	rooms[room].theme = RAND_THEME(living_themes);
-	vis[room] = 1;
+	if (rooms[room].w != 2 && rooms[room].h != 2) {
+		rooms[room].theme = RAND_THEME(living_themes);
+		vis[room] = 1;
+		count = 1;
+	}
 	for (i = 0; i < rooms[room].num_neighbors; i++)
 		count += set_living_theme_recursive(rooms[room].neighbors[i], depth - 1, vis);
 
 	return count;
 }
 
-void mapgen_place_obstacles(int mid_room, int w, int h, unsigned char *tiles)
+void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char *tiles)
 {
 #define MIN_LIVING_ROOMS	6
 
@@ -541,8 +542,14 @@ void mapgen_place_obstacles(int mid_room, int w, int h, unsigned char *tiles)
 		vis[i] = 0;
 	}
 	num = MyRandom(1) + 2;
-	if (set_living_theme_recursive(mid_room, num, vis) < MIN_LIVING_ROOMS)
-		set_living_theme_recursive(mid_room, num + 1, vis);
+	while (set_living_theme_recursive(di->middle_room, num, vis) < MIN_LIVING_ROOMS)
+		set_living_theme_recursive(di->middle_room, ++num, vis);
+	// Place main room to the biggest among visited
+	for (i = 0; i < total_rooms; i++)
+		if (vis[di->sorted_square[i]]) {
+			place_main_room(di->sorted_square[i]);
+			break;
+		}
 
 	for (y = 0; y < h; y++) {
 		for (x = 0; x < w; x++) {
@@ -588,5 +595,19 @@ void mapgen_place_obstacles(int mid_room, int w, int h, unsigned char *tiles)
 		}
 	} 
 
+	// Place offices
+	for (i = 0; i < total_rooms; i++) {
+		if (rooms[i].w != 2 && rooms[i].h != 2) {
+			if (vis[i] && MyRandom(1)) {
+				place_work_office(i);
+			}
+			else if (di->distance[i] < num + 3 && !MyRandom(3)) {
+				place_garden(i);
+				vis[i] = 1;
+			}
+		}
+	}
+
+	//place_library_recursive(di->middle_room, vis);
 	fill_rooms(vis);
 }

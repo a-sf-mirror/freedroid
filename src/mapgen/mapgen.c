@@ -430,6 +430,9 @@ static int make_corridor(int room)
 		}
 	}
 
+	if (num_doors == 1)
+		return 0;
+
 	// Calculate new room width and height
 	for (i = 0; i < num_doors; i++) {
 		if (x1 <= doors[i].x - 1 && doors[i].x - 1 < x2) {
@@ -464,14 +467,55 @@ static int make_corridor(int room)
 	return 1;
 }
 
+static int cmp_room_surface(const void *room1, const void *room2)
+{
+	int r1 = *(int *)room1;
+	int r2 = *(int *)room2;
+
+	int s1 = rooms[r1].w * rooms[r1].h;
+	int s2 = rooms[r2].w * rooms[r2].h;
+
+	if (s1 == s2) { 
+		return 0;
+	} else if (s1 < s2) {
+		return 1;
+	} else 
+		return -1;
+}
+
 // Convert tile matrix to a set of obstacles and decorate rooms according to their themes,
 // using mid_room as the center of dungeon
-void mapgen_convert(int mid_room, int w, int h, unsigned char *tiles)
+void mapgen_convert(struct dungeon_info *di, int w, int h, unsigned char *tiles)
 {
+	int i;
+	int idx[di->num_rooms];
+	int tries = 30;
+	int n = 7;
+
 	reduce_room_space();
 	split_wall(w, h, tiles);
+
+	// Sort rooms by their surface
+	for (i = 0; i < di->num_rooms; i++)
+		idx[i] = i;
+	qsort(idx, di->num_rooms, sizeof(int), cmp_room_surface);
+
+	i = 0;
+	while(tries && n) {
+		if (i != di->enter && i != di->exit) {
+			if (make_corridor(idx[i]))
+				n--;
+			else
+				tries--;
+		}
+		i++;
+	}
+
 	place_doors();
-	mapgen_place_obstacles(mid_room, w, h, tiles);
+
+	qsort(idx, di->num_rooms, sizeof(int), cmp_room_surface);
+	di->sorted_square = idx;
+	mapgen_place_obstacles(di, w, h, tiles);
 }
 
 static void add_teleport(int telnum, int x, int y, int tpair)
@@ -965,7 +1009,8 @@ static int get_middle_room(int entrance, int *distance)
 int generate_dungeon(int w, int h, int nbconnec, int tpair)
 {
 	int i, j;
-	int max, max_idx;
+	int max, max_idx = 0;
+	struct dungeon_info di;
 
 	new_level(w, h);
 
@@ -994,7 +1039,12 @@ int generate_dungeon(int w, int h, int nbconnec, int tpair)
 		vis[max_idx] = 1;
 	}
 
-	mapgen_convert(mid_room, w, h, map.m);
+	di.enter = entrance;
+	di.exit = max_idx;
+	di.middle_room = mid_room;
+	di.num_rooms = total_rooms;
+	di.distance = dist;
+	mapgen_convert(&di, w, h, map.m);
 
 	// Place random waypoints
 	place_waypoints();
