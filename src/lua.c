@@ -715,13 +715,13 @@ static int lua_chat_set_bot_state(lua_State * L)
 	} else if (!strcmp(cmd, "free")) {
 		en->follow_tux = FALSE;
 		en->CompletelyFixed = FALSE;
-	} else if (!strcmp(cmd, "home")) {
+	} else if (!strcmp(cmd, "patrol")) { //normal patrol ie. go to en->nextwaypoint, then update waypoint, etc.
 		en->follow_tux = FALSE;
 		en->CompletelyFixed = FALSE;
-		en->combat_state = RETURNING_HOME;
+		en->combat_state = SELECT_NEW_WAYPOINT;
 	} else {
 		ErrorMessage(__FUNCTION__,
-			     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\" and \"free\".\n",
+			     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\", \"free\", and \"patrol\".\n",
 			     PLEASE_INFORM, IS_FATAL, cmd);
 	}
 	return 0;

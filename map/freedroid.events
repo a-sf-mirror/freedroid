@@ -92,7 +92,7 @@ Trigger at label="N-exit-1"
 Silent=1
 LuaCode={
 	if (has_cookie("guard_follow_tux") ) then
-		set_bot_state("fixed", "Town-TuxGuard")
+		set_bot_state("patrol", "Town-TuxGuard")
 	end
 }
 * End of trigger *
@@ -103,7 +103,7 @@ Trigger at label="N-exit-2"
 Silent=1
 LuaCode={
 	if (has_cookie("guard_follow_tux") ) then
-		set_bot_state("fixed", "Town-TuxGuard")
+		set_bot_state("patrol", "Town-TuxGuard")
 	end
 }
 * End of trigger *
@@ -114,7 +114,7 @@ Trigger at label="N-exit-3"
 Silent=1
 LuaCode={
 	if (has_cookie("guard_follow_tux") ) then
-		set_bot_state("fixed", "Town-TuxGuard")
+		set_bot_state("patrol", "Town-TuxGuard")
 	end
 }
 * End of trigger *
@@ -125,7 +125,7 @@ Trigger at label="N-exit-4"
 Silent=1
 LuaCode={
 	if (has_cookie("guard_follow_tux") ) then
-		set_bot_state("fixed", "Town-TuxGuard")
+		set_bot_state("patrol", "Town-TuxGuard")
 	end
 }
 * End of trigger *
