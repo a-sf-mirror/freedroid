@@ -190,7 +190,7 @@ void DeleteCookie(const char *CookieString)
 	}
 
 	if (i == MAX_COOKIES) {
-		DebugPrintf(-4, "Cookie not found.");
+		ErrorMessage(__FUNCTION__, "The specified cookie \"%s\" was not found.", PLEASE_INFORM, IS_WARNING_ONLY, CookieString);
 	} else {
 		free(Me.cookie_list[i]);
 		for (i = i+1; i < MAX_COOKIES; i++) {
