@@ -249,22 +249,27 @@ void quest_browser_display_mission_list(int list_type)
 			}
 		}
 	} else {
+		const char *txt;
+		
 		switch (list_type) {
-		case QUEST_BROWSER_SHOW_OPEN_MISSIONS:
-			DisplayText(_("No open quests yet."), -1, -1, &mission_description_rect, TEXT_STRETCH);
-			break;
-		case QUEST_BROWSER_SHOW_DONE_MISSIONS:
-			DisplayText(_("No completed quests yet."), -1, -1, &mission_description_rect, TEXT_STRETCH);
-			break;
-		case QUEST_BROWSER_SHOW_NOTES:
-			DisplayText(_("Greetings Valued Customer.\n\nThe Parafunken QuickNotes license expired 76 years ago.\nPlease update your subscription to continue using this software.\n\nThank you."), -1, -1, &mission_description_rect, TEXT_STRETCH);
-			break;
-		default:
-			ErrorMessage(__FUNCTION__, "\
-Illegal quest browser status encountered.", PLEASE_INFORM, IS_FATAL);
-			break;
+			case QUEST_BROWSER_SHOW_OPEN_MISSIONS:
+				txt = _("No open quests yet.");
+				break;
+			case QUEST_BROWSER_SHOW_DONE_MISSIONS:
+				txt = _("No completed quests yet.");
+				break;
+			case QUEST_BROWSER_SHOW_NOTES:
+				txt = _("Greetings Valued Customer.\n\nThe Parafunken QuickNotes license expired 76 years ago.\nPlease update your subscription to continue using this software.\n\nThank you.");
+				break;
+			default:
+				ErrorMessage(__FUNCTION__, "\
+						Illegal quest browser status encountered.", PLEASE_INFORM, IS_FATAL);
+				break;
 		}
+
+		DisplayText(txt, mission_description_rect.x, mission_description_rect.y, &mission_description_rect, TEXT_STRETCH);
 	}
+			
 
 	ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_UP_BUTTON);
 	ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_DOWN_BUTTON);
