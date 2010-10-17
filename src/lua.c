@@ -766,6 +766,7 @@ static int lua_set_bot_destination(lua_State * L)
 
 	clear_out_intermediate_points(&en->pos, &en->PrivatePathway[0], 5);
 	en->nextwaypoint = destinationwaypoint;
+	en->combat_state = TURN_TOWARDS_NEXT_WAYPOINT;
 	return 0;
 }
 
