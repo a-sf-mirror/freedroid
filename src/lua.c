@@ -641,6 +641,13 @@ static int lua_chat_run_subdialog(lua_State * L)
 	return 0;
 }
 
+static int lua_start_chat(lua_State * L)
+{
+	enemy *en = get_enemy_arg(L, 1); 
+	ChatWithFriendlyDroid(en);
+	return 0;
+}
+
 static int lua_chat_set_next_node(lua_State * L)
 {
 	int nodenb = luaL_checkint(L, 1);
@@ -1144,6 +1151,8 @@ luaL_reg lfuncs[] = {
 	{"cli_says", lua_chat_cli_says}
 	,
 	{"run_subdialog", lua_chat_run_subdialog}
+	,
+	{"start_chat", lua_start_chat}
 	,
 	{"set_next_node", lua_chat_set_next_node}
 	,
