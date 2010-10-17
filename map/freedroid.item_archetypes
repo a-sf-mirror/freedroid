@@ -3458,7 +3458,7 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Reparation manual"
+Item name=_"Repair manual"
 Item min class for drop=4
 Item max class for drop=9
 Item can be applied in combat="yes"
