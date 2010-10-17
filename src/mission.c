@@ -262,8 +262,7 @@ void quest_browser_display_mission_list(int list_type)
 				txt = _("Greetings Valued Customer.\n\nThe Parafunken QuickNotes license expired 76 years ago.\nPlease update your subscription to continue using this software.\n\nThank you.");
 				break;
 			default:
-				ErrorMessage(__FUNCTION__, "\
-						Illegal quest browser status encountered.", PLEASE_INFORM, IS_FATAL);
+				txt = "Unknown quest browser status ?!?!?!"; 
 				break;
 		}
 
