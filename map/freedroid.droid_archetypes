@@ -900,7 +900,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=4
