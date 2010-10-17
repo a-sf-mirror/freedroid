@@ -40,6 +40,11 @@ EveryTime LuaCode={
 		else end
 	else end
 
+	if (has_cookie("Tania-sent-to-Doc") and (not has_cookie("Tania-Doc-OK"))) then
+		add_cookie("Tania-Doc-OK")
+		show(25)
+	end
+
 	if (has_item_backpack("Strength Pill") > 0) then show(50) else end
 	if (has_item_backpack("Dexterity Pill") > 0) then show(51) else end
 	if (has_item_backpack("Code Pill") > 0) then show(52) else end
@@ -182,6 +187,16 @@ LuaCode={
 	add_item("Brain Enlargement Pills Antidote",5)
 	add_item("Laser Scalpel",1)
 	hide(22, 10, 11, 50, 51, 52, 55, 56, 57)
+}
+----------------------------------------------------------------------
+
+Nr=25 Text=_"Is Tania OK?"
+LuaCode={
+	npc_says(_"Haven't you heard of doctor-patient confidentiality?")
+	tux_says(_"Ummm...")
+	npc_says(_"No worries. She is fine.")
+	heal_npc("Tania")
+	hide(25)
 }
 ----------------------------------------------------------------------
 

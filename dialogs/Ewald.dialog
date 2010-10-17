@@ -33,7 +33,13 @@ EveryTime LuaCode={
 	if (not has_cookie("met_ewald")) then
 		show(0, 3)
 		add_cookie("met_ewald")
-	else end
+	end
+	if (has_cookie("Tania-at-Bar") and (not has_cookie("Tania-at-Bar_Ewald"))) then
+		add_cookie("Tania-at-Bar_Ewald")
+		npc_says(_"Your lady friend just told me the epic story of how you rescued her.")
+		npc_says(_"That was really something.")
+		npc_says(_"I'd give you a drink on the house, but unfortunately I'm still out.")
+	end
 
 	if has_cookie("drank_all_ewald_had") then show(14) else end;
 	if has_cookie("ewald_gambling") then show(30) end;
