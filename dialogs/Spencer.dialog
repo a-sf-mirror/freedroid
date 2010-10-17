@@ -33,7 +33,7 @@ EveryTime LuaCode={
 		show(0)
 		add_cookie("met_spencer")
 		del_cookie("guard_follow_tux")
-		set_bot_state("home", "Town-TuxGuard")
+		set_bot_state("patrol", "Town-TuxGuard")
 	else end
 
 	if (has_cookie("tux_has_joined_guard")) then
@@ -41,10 +41,8 @@ EveryTime LuaCode={
 		hide(2, 12)
 	else end 
 
-	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape"))) then
-		tux_says(_"Let me introduce you to Tania!")
-		end_quest(_"Tania's Escape", _"I successfully brought Tania safely into the town. I hope she likes it here.")
-		set_bot_state("free", _"Tania")
+	if (has_cookie("Tania_met_Pendragon") and (not has_cookie("Tania-sent-to-Doc")) and (not has_cookie("Tania-set-free"))) then
+		show(50)
 	end
 
 	if (not has_quest(_"Opening access to MS Office")) then
@@ -270,6 +268,85 @@ LuaCode={
 Nr=45 Text=_"I will need some time to get myself ready before I clean up the Hell Fortress."
 LuaCode={
 	npc_says(_"You had better be ready.")
+}
+----------------------------------------------------------------------
+
+Nr=50 Text=_"I found someone out in the desert."
+LuaCode={
+	npc_says(_"Great, another mouth to feed.")
+	npc_says(_"What is this person's name?")
+	hide(50) show(51)
+}
+----------------------------------------------------------------------
+
+Nr=51 Text=_"Tania"
+LuaCode={
+	if (has_cookie("tux_has_joined_guard")) then
+		npc_says(_"Well, since you are a guard member, I'll let you vouch for this Tania person.")
+	else
+		npc_says(_"Well, we have enough food for now. I'll let this Tania person in.")
+	end
+
+	if (npc_dead("DocMoore")) then 
+		npc_says(_"I'd say you should take her straight away to Doc Moore, but he was found dead earlier.")
+		npc_says(_"You wouldn't happen to know anything about that, would you?")
+		if (has_cookie("killed_docmoore")) then
+			show(53)
+		end
+		show(52, 54)
+	else
+		npc_says(_"You must take her straight away to Doc Moore. We can't have a disease breaking out.")
+		add_cookie("Tania-sent-to-Doc")
+		update_quest(_"Tania's Escape", _"Spencer said it was OK for Tania to enter the town. As long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon.")
+	end
+	hide(51)
+}
+----------------------------------------------------------------------
+
+Nr=52 Text=_"No, of course not."
+LuaCode={
+	npc_says(_"Good.")
+	npc_says(_"I didn't think it was you, but you never know.")
+	npc_says(_"About your friend, she can come in provided that she pulls her weight around here.")
+	add_cookie("Tania-set-free")
+	if (has_cookie("killed_docmoore")) then
+		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denyed everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
+	else
+		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that.")
+	end
+	hide(52, 53, 54)
+}
+----------------------------------------------------------------------
+
+Nr=53 Text=_"He and I had a disagreement, which we settled."
+LuaCode={
+	npc_says(_"I am the law here. If you have a problem, you come to me.")
+	if (has_cookie("tux_has_joined_guard")) then
+		npc_says(_"I'm going to strip you of your membership in the Red Guard.")
+		del_cookie("tux_has_joined_guard")
+		change_obstacle_state("Main Gate Guardhouse", "closed")
+		npc_says(_"Your friend can come in, but we will be watching the two of you closely.")
+		add_cookie("Tania-set-free")
+		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I told him the truth, and he kicked me out of the Red Guard. But he let Tania in, Now all I have to do is tell her and Pendragon.")
+	else
+		npc_says(_"As the law, I pronounce you GUILTY of MURDER.")
+		npc_says(_"The punishment is death.")
+		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me guilty of murder, and sentenced me to death.")
+		set_faction_state("redguard", "hostile")
+		end_dialog()
+	end
+	hide(52, 53, 54)
+}
+----------------------------------------------------------------------
+
+Nr=54 Text=_"I killed him just to see what it was like. It was awesome."
+LuaCode={
+	npc_says(_"You are a sociopath, and a danger to us all!")
+	npc_says(_"We must stop you before you kill again.")
+	update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me too dangerous to live.")
+	set_faction_state("redguard", "hostile")
+	end_dialog()
+	hide(52, 53, 54)
 }
 ----------------------------------------------------------------------
 

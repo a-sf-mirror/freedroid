@@ -30,10 +30,38 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
+	if (has_cookie("Tania-stopped-by-Pendragon") and (not has_cookie("Pendragon-OK-w-Tania"))) then --Tania Escape Quest stuff
+		if (has_cookie("Tania-sent-to-Doc") or has_cookie("Tania-set-free")) then
+			if (not done_quest(_"Tania's Escape")) then
+				npc_says(_"Tania has been waiting to talk to you.")
+			else
+				npc_says(_"Spencer says it is OK?")
+				npc_says(_"Well that is good enough for me.")
+				npc_says(_"She may enter.")
+				add_cookie("Pendragon-OK-w-Tania")
+				end_dialog()
+			end
+ 		elseif (has_cookie("Tania-stopped-by-Pendragon")) then
+			if (not has_cookie("Tania_met_Pendragon")) then
+				npc_says(_"Halt! Who goes there?")
+				tux_says(_"Someone I found in the desert, Tania.")
+			end
+			npc_says(get_player_name() .. _", you may enter.")
+			npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the city.")
+			if (not has_cookie("Tania_met_Pendragon")) then
+				change_obstacle_state("DesertGate-Inner", "opened")
+				teleport_npc("W-enter-2", "Tania") --Ensure that Tania is on Level 0!
+				set_bot_state("patrol", "Tania")
+				add_cookie("Tania_met_Pendragon")
+				add_cookie("Tania_just-stopped-by-Pendragon")
+				start_chat("Tania")
+			end
+		end
+	end
 	if (not has_cookie("met_pendragon")) then
 		show(0)
 		add_cookie("met_pendragon")
-	else end
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
