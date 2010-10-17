@@ -168,7 +168,7 @@ LuaCode={
 
 Nr=16 Text=_"How can I disable the guns?"
 LuaCode={
-	npc_says(_"Somewhere in a distant part of the lab should be an SACD - Secret Area Control Droid. It controls all the defense systems in the base. If you manage to persuade it, you would be able to control the base. However, it's very hard to find and get to the SACD.")
+	npc_says(_"Somewhere in a distant part of the lab should be an SACD - Secret Area Control Datacenter. It controls all the defense systems in the base. If you manage to get to it, you would be able to control the base. However, it's very hard to find and get to the SACD.")
 	hide(16) show(17)
 }
 ----------------------------------------------------------------------

@@ -32949,7 +32949,7 @@ t323 x30.00 y31.50
 t49 x29.50 y32.50
 t49 x29.50 y33.50
 t49 x29.50 y34.50
-t49 x29.50 y35.50
+t46 x29.71 y35.47
 t49 x29.50 y36.50
 t49 x29.50 y37.50
 t49 x29.50 y38.50
@@ -33584,15 +33584,15 @@ x=28 y=4 name="SecretAreaToilet"
 x=30 y=4 name="SecretAreaBathroom"
 x=31 y=8 name="SecretAreaPassage"
 x=24 y=4 name="SecretAreaStore"
-x=24 y=2 name="SecretAreaExit1"
-x=25 y=2 name="SecretAreaEnterance1"
-x=37 y=26 name="SecretAreaExit2"
-x=37 y=28 name="SecretAreaEnterance2"
 x=41 y=37 name="BorisStartGameSquare"
 x=40 y=47 name="LinaStartGameSquare"
 x=36 y=51 name="SergeStartGameSquare"
 x=24 y=43 name="35to40"
 x=24 y=42 name="35from40"
+x=24 y=2 name="35to36-North"
+x=25 y=2 name="35from36-North"
+x=37 y=26 name="35to36-South"
+x=37 y=28 name="35from36-South"
 /plabelinfolvl
 piteminfolvl
 it: n="The Super Exterminator!!!"  X=26.000000  Y=33.000000  MDur=10  CDur=5.000000  AClip=0  Multi=1 
@@ -33617,6 +33617,9 @@ idx=15 type=30 data={
 }
 idx=16 type=30 data={
 	SADDGun1
+}
+idx=517 type=32 data={
+	SACD
 }
 /obstacleextensions
 wp
@@ -33900,10 +33903,10 @@ t27 x16.50 y21.00
 t27 x16.50 y20.00
 /obsdata
 plabelinfolvl
-x=2 y=2 name="SecretAreaCollectorsExit1"
-x=14 y=26 name="SecretAreaCollectorsExit2"
-x=14 y=27 name="SecretAreaCollectorsEnterance2"
-x=3 y=2 name="SecretAreaCollectorsEnterance1"
+x=2 y=2 name="36to35-North"
+x=3 y=2 name="36from35-North"
+x=14 y=26 name="36to35-South"
+x=14 y=27 name="36from35-South"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl

@@ -449,9 +449,44 @@ LuaCode={
 }
 * End of trigger *
 
+* New event trigger *
+Name=_"To the Secret Area Service Tunnels"
+Trigger at label="35to36-North"
+Silent=0
+LuaCode={
+	teleport("36from35-North")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"To the Secret Area Service Tunnels"
+Trigger at label="35to36-South"
+Silent=0
+LuaCode={
+	teleport("36from35-South")
+}
+* End of trigger *
+
 ##############
 ## Level 36 ##
 ##############
+* New event trigger *
+Name=_"Back to the Secret Area"
+Trigger at label="36to35-North"
+Silent=0
+LuaCode={
+	teleport("35from36-North")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Back to the Secret Area"
+Trigger at label="36to35-South"
+Silent=0
+LuaCode={
+	teleport("35from36-South")
+}
+* End of trigger *
 
 ##############
 ## Level 37 ##
