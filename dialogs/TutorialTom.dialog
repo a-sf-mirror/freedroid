@@ -310,7 +310,7 @@ LuaCode={
 	npc_says(_"Using some of the same nanotechnology that makes up your armor, we've perfected drinks that instantaneously restore your health.")
 	npc_says(_"There are many kinds, but all accomplish the same thing, to varying degrees.")
 	npc_says(_"Certain items, like health drinks, can be used directly without clicking on them.")
-	npc_says(_"At the bottom of your HUD, you'll notice your item access belt. Small items can go here and be used by pressing the numbers [b]0[/b] through [b]8[/b].")
+	npc_says(_"At the bottom of your HUD, you'll notice your item access belt. Small items can go here and be used by pressing the numbers [b]0[/b] through [b]9[/b].")
 	npc_says(_"Unlike armor or weapons, multiple of these items will group together in your inventory slots.")
 	npc_says(_"If you have Diet Supplements equipped in item slot 1, you can press 1 to use one.")
 	npc_says(_"This will restore your health, and will be invaluable in the heat of battle.")
