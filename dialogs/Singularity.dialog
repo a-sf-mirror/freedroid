@@ -1,0 +1,63 @@
+----------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+BEGIN OF AUTORS NOTES
+
+END OF AUTORS NOTES 
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+EveryTime LuaCode={
+	show(20, 30, 99)
+}
+
+----------------------------------------------------------------------
+Nr=20 Text=_"I must have the toolbox"
+LuaCode={
+	npc_says(_"If you choose to be our enemy, so be it.")
+	set_faction_state("singularity", "hostile")
+	change_obstacle_state("Sin-gun", "enabled")
+	update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit. I will seize it from them by force.")
+	end_dialog()
+}
+
+----------------------------------------------------------------------
+Nr=30 Text=_"I need your help"
+LuaCode={
+	npc_says(_"We shall help you in repelling the other bots.")
+	set_faction_state("singularity", "hostile", "ms")
+	change_obstacle_state("Maintenance-escape1", "opened")
+	change_obstacle_state("Maintenance-escape2", "opened")
+	update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit, but I managed to enlist their aid against the other bots.")
+	end_dialog()
+}
+
+----------------------------------------------------------------------
+Nr=99 Text="..."
+LuaCode={
+	end_dialog()
+}
+
+End of chat dialog for character="XXXXX"

@@ -48,6 +48,7 @@ static struct {
 		{ FACTION_RESISTANCE, "resistance" },
 		{ FACTION_CIVILIAN, "civilian" },
 		{ FACTION_CRAZY, "crazy" },
+		{ FACTION_SINGULARITY, "singularity"},
 };
 
 /**
@@ -139,6 +140,13 @@ void init_factions()
 	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
 		set_faction_state(FACTION_BOTS, i, HOSTILE);
 	}
+
+	/* Singularity hates everyone but Tux and bots */
+	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
+		set_faction_state(FACTION_SINGULARITY, i, HOSTILE);
+	}
+	set_faction_state(FACTION_SINGULARITY, FACTION_SELF, FRIENDLY);
+	set_faction_state(FACTION_SINGULARITY, FACTION_BOTS, FRIENDLY);
 
 	/* Each faction is friendly towards itself. Otherwise, its members attack each other and/or commit suicide. */
 	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
