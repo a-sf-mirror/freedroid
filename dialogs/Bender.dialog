@@ -54,7 +54,12 @@ EveryTime LuaCode={
 			end
 
 		end
-	else end
+	end
+
+	if (has_cookie("Bender-at-Spencer")) then
+		del_cookie("Bender-at-Spencer")
+		set_bot_destination("BenderStartGameSquare")
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -149,6 +154,8 @@ LuaCode={
 	del_item_backpack("Brain Enlargement Pills Antidote", 1)
 	add_item("Strength Pill",2)
 	end_quest(_"Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
+	set_bot_destination("NewSpencer")
+	add_cookie("Bender-at-Spencer") --have Bender go "talk" to Spencer
 	hide(9) show(20)
 }
 ----------------------------------------------------------------------
