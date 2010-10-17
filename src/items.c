@@ -2056,6 +2056,29 @@ static int AddFloorItemDirectlyToInventory(item *ItemPointer)
 	return 0;
 };				// void AddFloorItemDirectlyToInventory( item* ItemPointer )
 
+const char *ammo_desc_for_weapon(int type) {
+	const char *ammo_desc[] = {
+		"", // no ammunition
+		_("Laser power pack"),
+		_("Plasma energy container"),
+		_("2 mm Exterminator Ammunition"),
+		_(".22 LR Ammunition"),
+		_("Shotgun shells"),
+		_("9x19mm Ammunition"),
+		_("7.62x39mm Ammunition"),
+		_(".50 BMG (12.7x99mm) Ammunition"),
+	};
+
+	itemspec *weapon = &ItemMap[type];
+
+	if (weapon->item_gun_use_ammunition < 0 || weapon->item_gun_use_ammunition >= sizeof(ammo_desc)/sizeof(ammo_desc[0])) {
+		ErrorMessage(__FUNCTION__, "Unknown ammunition type %d for weapon %s.",
+					 PLEASE_INFORM, IS_FATAL, weapon->item_gun_use_ammunition, weapon->item_name);
+	}
+
+	return ammo_desc[weapon->item_gun_use_ammunition];
+}
+
 /**
  * \brief Places the item to the inventory of the player or to the floor.
  *

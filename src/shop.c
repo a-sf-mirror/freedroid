@@ -316,227 +316,118 @@ trying to make the ultra-fine item rotation series.  Strange.", PLEASE_INFORM, I
 	SDL_SetClipRect(Screen, NULL);
 	Set_Rect(target, PosX, PosY, GameConfig.screen_width, GameConfig.screen_height);
 	our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &target);
+}
 
-	DebugPrintf(2, "\n%s(): Usual end of function reached.", __FUNCTION__);
-
-};				// void ShowItemPicture ( ... )
-
-/* ------------------------------------------------------------
- * This function displays information about one item on a
- * Paradroid-console like display.
- * ------------------------------------------------------------ */
-static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int background_code, int title_text_flag)
+/**
+ * Assemble item description.
+ */
+static void fill_item_description(text_widget *desc, item *show_item)
 {
-	static item LastItemShown;
-	static char InfoText[10000];
 	char TextChunk[2000];
-	char *ClassString;
-	long int repairPrice = 0;
+	char *class_string;
+	long int repair_price = 0;
+	itemspec *info;
 
-	if (ShowItem == NULL)
+	if (show_item == NULL)
 		return;
 
-	SDL_SetClipRect(Screen, NULL);
+	if (MatchItemWithName(show_item->type, "Valuable Circuits"))
+		ErrorMessage(__FUNCTION__, "Valuable Circuits in shop.", PLEASE_INFORM, IS_WARNING_ONLY);
 
-	blit_special_background(background_code);
-	ShowItemPicture(40 * GameConfig.screen_width / 1024 + ((250 * GameConfig.screen_width / 1024) - 132) / 2,
-			185 * GameConfig.screen_height / 768 + ((322 * GameConfig.screen_height / 768) - 180) / 2, ShowItem->type);
+	info = &ItemMap[show_item->type];
 
-	// If that is wanted, we fill out the title header line, announcing the
-	// currently browsed items name in full glory.
-	//
-	if (title_text_flag) {
-		SetCurrentFont(Menu_BFont);
-		strcpy(TextChunk, D_(ItemMap[ShowItem->type].item_name));
-		CutDownStringToMaximalSize(TextChunk, 225);
-		PutString(Screen, 330, 38, TextChunk);
-	}
-	// Now we can display the rest of the smaller-font item description.
-	// If the item has changed, we must first assemble the description
-	//
-	if (memcmp(ShowItem, &LastItemShown, sizeof(item))) {
-		if (ItemMap[ShowItem->type].item_can_be_installed_in_weapon_slot)
-			ClassString = _("Weapon");
-		else if (ItemMap[ShowItem->type].item_can_be_installed_in_drive_slot)
-			ClassString = _("Drive");
-		else if (ItemMap[ShowItem->type].item_can_be_installed_in_armour_slot)
-			ClassString = _("Armor");
-		else if (ItemMap[ShowItem->type].item_can_be_installed_in_shield_slot)
-			ClassString = _("Shield");
-		else if (ItemMap[ShowItem->type].item_can_be_installed_in_special_slot)
-			ClassString = _("Helm");
-		else
-			ClassString = _("Miscellaneous");
+	init_text_widget(desc, "");
 
-		write_full_item_name_into_string(ShowItem, TextChunk);
-		sprintf(InfoText, _("Item: %s \nClass: %s\n"), TextChunk, ClassString);
+	if (info->item_can_be_installed_in_weapon_slot)
+		class_string = _("Weapon");
+	else if (info->item_can_be_installed_in_drive_slot)
+		class_string = _("Drive");
+	else if (info->item_can_be_installed_in_armour_slot)
+		class_string = _("Armor");
+	else if (info->item_can_be_installed_in_shield_slot)
+		class_string = _("Shield");
+	else if (info->item_can_be_installed_in_special_slot)
+		class_string = _("Helm");
+	else
+		class_string = _("Miscellaneous");
 
-		// Append item bonuses.
-		struct auto_string *bonuses = alloc_autostr(128);
-		get_item_bonus_string(ShowItem, ", ", bonuses);
-		if (bonuses->length) {
-			strcat(InfoText, _("Specials: "));
-			strcat(InfoText, font_switchto_red);
-			strcat(InfoText, bonuses->value);
-			strcat(InfoText, "\n");
-			strcat(InfoText, font_switchto_neon);
-		}
-		free_autostr(bonuses);
+	write_full_item_name_into_string(show_item, TextChunk);
+	autostr_printf(desc->text, _("Item: %s \nClass: %s\n"), TextChunk, class_string);
 
-		if (ItemMap[ShowItem->type].item_group_together_in_inventory) {
-			if (!MatchItemWithName(ShowItem->type, "Valuable Circuits")) {
-				strcat(InfoText, _("Multiplicity: "));
-				sprintf(TextChunk, "%d \n", (int)ShowItem->multiplicity);
-				strcat(InfoText, TextChunk);
-			}
-		}
+	// Append item bonuses.
+	struct auto_string *bonuses = alloc_autostr(128);
+	get_item_bonus_string(show_item, ", ", bonuses);
+	if (bonuses->length)
+		autostr_append(desc->text, "%s%s%s%s\n", _("Specials: "), font_switchto_red,
+					   bonuses->value, font_switchto_neon);
+	free_autostr(bonuses);
 
-		strcat(InfoText, _("Durability: "));
-		if (ShowItem->max_duration >= 0)
-			sprintf(TextChunk, "%d / %d\n", (int)ShowItem->current_duration, ShowItem->max_duration);
-		else
-			sprintf(TextChunk, _("Indestructible\n"));
-		strcat(InfoText, TextChunk);
+	if (info->item_group_together_in_inventory)
+		autostr_append(desc->text, _("Multiplicity: %d\n"), (int)show_item->multiplicity);
 
-		if (!ItemMap[ShowItem->type].item_can_be_applied_in_combat) {
-			strcat(InfoText, _("Attributes required: "));
+	autostr_append(desc->text, _("Durability: "));
+	if (show_item->max_duration >= 0)
+		autostr_append(desc->text, "%d / %d\n", (int)show_item->current_duration, show_item->max_duration);
+	else
+		autostr_append(desc->text, _("Indestructible\n"));
 
-			if ((ItemMap[ShowItem->type].item_require_strength <= 0) &&
-			    (ItemMap[ShowItem->type].item_require_dexterity <= 0) && (ItemMap[ShowItem->type].item_require_magic <= 0)) {
-				strcat(InfoText, _("NONE\n"));
-			} else {
-				if (ItemMap[ShowItem->type].item_require_strength > 0) {
-					sprintf(TextChunk, _("Str: %d "), ItemMap[ShowItem->type].item_require_strength);
-					strcat(InfoText, TextChunk);
-				}
-				if (ItemMap[ShowItem->type].item_require_dexterity > 0) {
-					sprintf(TextChunk, _("Dex: %d "), ItemMap[ShowItem->type].item_require_dexterity);
-					strcat(InfoText, TextChunk);
-				}
-				if (ItemMap[ShowItem->type].item_require_magic > 0) {
-					sprintf(TextChunk, _("Mag: %d "), ItemMap[ShowItem->type].item_require_magic);
-					strcat(InfoText, TextChunk);
-				}
-				strcat(InfoText, "\n");
-			}
+	if (!info->item_can_be_applied_in_combat) {
+		autostr_append(desc->text, _("Attributes required: "));
+
+		if ((info->item_require_strength <= 0) &&
+			(info->item_require_dexterity <= 0) && (info->item_require_magic <= 0)) {
+			autostr_append(desc->text, _("NONE\n"));
 		} else {
-			/*    switch ( ShowItem -> type )
-			   {
-			   case ITEM_SPELLBOOK_OF_HEALING:
-			   case ITEM_SPELLBOOK_OF_EXPLOSION_CIRCLE:
-			   case ITEM_SPELLBOOK_OF_EXPLOSION_RAY:
-			   case ITEM_SPELLBOOK_OF_TELEPORT_HOME:
-			   case ITEM_SPELLBOOK_OF_IDENTIFY:
-			   case ITEM_SPELLBOOK_OF_PLASMA_BOLT:
-			   case ITEM_SPELLBOOK_OF_ICE_BOLT:
-			   case ITEM_SPELLBOOK_OF_POISON_BOLT:
-			   case ITEM_SPELLBOOK_OF_PETRIFICATION:
-			   case ITEM_SPELLBOOK_OF_RADIAL_EMP_WAVE:
-			   case ITEM_SPELLBOOK_OF_RADIAL_VMX_WAVE:
-			   case ITEM_SPELLBOOK_OF_RADIAL_PLASMA_WAVE:
-
-			   sprintf( TextChunk , "Spellcasting skill: %s\n " ,
-			   _(AllSkillTexts [ required_spellcasting_skill_for_item ( ShowItem -> type ) ]));
-			   strcat( InfoText , TextChunk );
-			   sprintf( TextChunk , "Magic: %d\n " ,
-			   required_magic_stat_for_next_level_and_item ( ShowItem -> type ) );
-			   strcat( InfoText , TextChunk );
-			   break;
-			   default:
-			   break;
-			   } */
+			if (info->item_require_strength > 0)
+				autostr_append(desc->text, _("Str: %d "), info->item_require_strength);
+			if (info->item_require_dexterity > 0)
+				autostr_append(desc->text, _("Dex: %d "), info->item_require_dexterity);
+			if (info->item_require_magic > 0)
+				autostr_append(desc->text, _("Mag: %d "), info->item_require_magic);
+			autostr_append(desc->text, "\n");
 		}
-		// Now we give some pricing information, the base list price for the item,
-		// the repair price and the sell value
-		if (calculate_item_buy_price(ShowItem)) {
-			sprintf(TextChunk, _("Base list price: %ld\n"), calculate_item_buy_price(ShowItem));
-			strcat(InfoText, TextChunk);
-			sprintf(TextChunk, _("Sell value: %ld\n"), calculate_item_sell_price(ShowItem));
-			strcat(InfoText, TextChunk);
-			if (ShowItem->current_duration == ShowItem->max_duration || ShowItem->max_duration == (-1))
-				repairPrice = 0;
-			else
-				repairPrice = calculate_item_repair_price(ShowItem);
-			// We handle items with no repair cost differently
-			if (ShowItem->max_duration == (-1))
-				sprintf(TextChunk, _("Indestructible\n"));
-			else
-				sprintf(TextChunk, _("Repair cost: %ld\n"), repairPrice);
-			strcat(InfoText, TextChunk);
-		} else {
-			sprintf(TextChunk, _("Unsellable\n"));
-			strcat(InfoText, TextChunk);
-		}
-
-		// If the item is a weapon, then we print out some weapon stats...
-		//
-		if (ItemMap[ShowItem->type].base_item_gun_damage + ItemMap[ShowItem->type].item_gun_damage_modifier > 0) {
-			sprintf(TextChunk, _("Damage: %d - %d\n"),
-				ItemMap[ShowItem->type].base_item_gun_damage,
-				ItemMap[ShowItem->type].base_item_gun_damage + ItemMap[ShowItem->type].item_gun_damage_modifier);
-			strcat(InfoText, TextChunk);
-		}
-
-		if (ItemMap[ShowItem->type].item_gun_recharging_time > 0) {
-			sprintf(TextChunk, _("Recharge time: %3.2f\n"), ItemMap[ShowItem->type].item_gun_recharging_time);
-			strcat(InfoText, TextChunk);
-		}
-
-		if (ItemMap[ShowItem->type].item_gun_reloading_time > 0) {
-			sprintf(TextChunk, _("Time to reload ammo clip: %3.2f\n"), ItemMap[ShowItem->type].item_gun_reloading_time);
-			strcat(InfoText, TextChunk);
-		}
-
-		if (ShowItem->damred_bonus > 0) {
-			sprintf(TextChunk, _("Damage Reduction: %d%%\n"), ShowItem->damred_bonus);
-			strcat(InfoText, TextChunk);
-		}
-
-		sprintf(TextChunk, _("Notes: %s"), D_(ItemMap[ShowItem->type].item_description));
-		strcat(InfoText, TextChunk);
-
-		switch (ItemMap[ShowItem->type].item_gun_use_ammunition) {
-		case 2:
-			strcat(InfoText, _(" This weapon requires standard plasma ammunition."));
-			break;
-		case 1:
-			strcat(InfoText, _(" This weapon requires standard laser crystal ammunition."));
-			break;
-		case 3:
-			strcat(InfoText, _(" This weapon requires standard exterminator ammunition spheres."));
-			break;
-		case 4:
-			strcat(InfoText, _(" This weapon requires .22 Long Rifle rounds."));
-			break;
-		case 5:
-			strcat(InfoText, _(" This weapon requires Shotgun shells."));
-			break;
-		case 6:
-			strcat(InfoText, _(" This weapon requires 9x19mm rounds."));
-			break;
-		case 7:
-			strcat(InfoText, _(" This weapon requires 7.62x39mm rounds."));
-			break;
-		case 8:
-			strcat(InfoText, _(" This weapon requires .50 (12.7x99mm) Browning Machine Gun rounds."));
-			break;
-		}
-
-		// We cache the item
-		// 
-		memcpy(&LastItemShown, ShowItem, sizeof(item));
 	}
-	// SetCurrentFont( Para_BFont );
-	// SetCurrentFont( Menu_BFont );
-	SetCurrentFont(FPS_Display_BFont);
-	DisplayText(InfoText, Cons_Text_Rect.x, Cons_Text_Rect.y + Displacement, &Cons_Text_Rect, TEXT_STRETCH);
-
-	if (ShowArrows) {
-		ShowGenericButtonFromList(UP_BUTTON);
-		ShowGenericButtonFromList(DOWN_BUTTON);
+	// Now we give some pricing information, the base list price for the item,
+	// the repair price and the sell value
+	if (calculate_item_buy_price(show_item)) {
+		autostr_append(desc->text, _("Base list price: %ld\n"), calculate_item_buy_price(show_item));
+		autostr_append(desc->text, _("Sell value: %ld\n"), calculate_item_sell_price(show_item));
+		if (show_item->current_duration == show_item->max_duration || show_item->max_duration == (-1))
+			repair_price = 0;
+		else
+			repair_price = calculate_item_repair_price(show_item);
+		if (show_item->max_duration == (-1))
+			autostr_append(desc->text, _("Indestructible\n"));
+		else
+			autostr_append(desc->text, _("Repair cost: %ld\n"), repair_price);
+	} else {
+		autostr_append(desc->text, _("Unsellable\n"));
 	}
 
-};				// void ShowItemInfo ( ... )
+	/* If the item is a weapon, then we print out some weapon stats. */
+	if (info->base_item_gun_damage + info->item_gun_damage_modifier > 0) {
+		autostr_append(desc->text, _("Damage: %d - %d\n"),
+					   info->base_item_gun_damage,
+					   info->base_item_gun_damage + info->item_gun_damage_modifier);
+	}
+
+	if (info->item_gun_recharging_time > 0)
+		autostr_append(desc->text, _("Recharge time: %3.2f\n"),
+					   info->item_gun_recharging_time);
+
+	if (info->item_gun_reloading_time > 0)
+		autostr_append(desc->text, _("Time to reload ammo clip: %3.2f\n"),
+					   info->item_gun_reloading_time);
+
+	if (show_item->damred_bonus > 0)
+		autostr_append(desc->text, _("Damage Reduction: %d%%\n"), show_item->damred_bonus);
+
+	autostr_append(desc->text, _("Notes: %s"), D_(info->item_description));
+
+	if (info->item_gun_use_ammunition)
+		autostr_append(desc->text, _(" This weapon requires %s."),
+					   ammo_desc_for_weapon(show_item->type));
+}
 
 /**
  * This function does the item show when the user has selected item
@@ -545,7 +436,6 @@ static void ShowItemInfo(item * ShowItem, int Displacement, char ShowArrows, int
 int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY],
 		       int NumberOfItemsInTuxRow, item * TuxItemsList[MAX_ITEMS_IN_INVENTORY], shop_decision * ShopOrder)
 {
-	int Displacement = 0;
 	int i;
 	int ClickTarget;
 	static int RowStart = 0;
@@ -560,15 +450,15 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	int SellButtonActive = FALSE;
 	int ret = 0;
 	int old_game_status = game_status;
+	static text_widget item_description;
 	game_status = INSIDE_MENU;
 
 	// For the shop, we'll also try to use our own mouse cursor
 	//
 	make_sure_system_mouse_cursor_is_turned_off();
 
-	// We add some secutiry against indexing beyond the
+	// We add some security against indexing beyond the
 	// range of items given in the list.
-	//
 	if (RowLength > NumberOfItems)
 		RowLength = NumberOfItems;
 	while (ItemIndex >= NumberOfItems)
@@ -592,43 +482,41 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	if (NumberOfItems <= 0)
 		ItemIndex = (-1);
 
-	// We initialize the text rectangle
-	//
-	Cons_Text_Rect.x = 258 * GameConfig.screen_width / 640;
-	Cons_Text_Rect.y = 108 * GameConfig.screen_height / 480;
-	Cons_Text_Rect.w = 346 * GameConfig.screen_width / 640;
-	Cons_Text_Rect.h = 255 * GameConfig.screen_height / 480;
-
-	Displacement = 0;
+	/* Initialize the text widget. */
+	init_text_widget(&item_description, "");
+	item_description.rect.x = UNIVERSAL_COORD_W(258);
+	item_description.rect.y = UNIVERSAL_COORD_H(108);
+	item_description.rect.w = UNIVERSAL_COORD_W(346);
+	item_description.rect.h = UNIVERSAL_COORD_H(255);
+	item_description.font = FPS_Display_BFont;
+	item_description.text_stretch = TEXT_STRETCH;
 
 	while (1) {
-
 		StartTakingTimeForFPSCalculation();
 		save_mouse_state();
 		input_handle();
-
-		// We limit the 'displacement', i.e. how far up and down one can
-		// scroll the text of the item description up and down a bit, so
-		// it cannot be scrolled away ad infinitum...
-		//
-		if (Displacement < -500)
-			Displacement = -500;
-		if (Displacement > 50)
-			Displacement = 50;
 
 		SDL_Delay(1);
 		ShopOrder->shop_command = DO_NOTHING;
 
 		// We show all the info and the buttons that should be in this
 		// interface...
-		//
 		AssembleCombatPicture(USE_OWN_MOUSE_CURSOR | ONLY_SHOW_MAP);
-		if (ItemIndex >= 0)
-			ShowItemInfo(ShowPointerList[ItemIndex], Displacement, FALSE, ITEM_BROWSER_SHOP_BACKGROUND_CODE, FALSE);
-		else if (TuxItemIndex >= 0)
-			ShowItemInfo(TuxItemsList[TuxItemIndex], Displacement, FALSE, ITEM_BROWSER_SHOP_BACKGROUND_CODE, FALSE);
-		else
-			blit_special_background(ITEM_BROWSER_SHOP_BACKGROUND_CODE);
+		SDL_SetClipRect(Screen, NULL);
+		blit_special_background(ITEM_BROWSER_SHOP_BACKGROUND_CODE);
+
+		/* This is a magic formula to place the item picture. */
+		int x = 40 * GameConfig.screen_width / 1024 + ((250 * GameConfig.screen_width / 1024) - 132) / 2;
+		int y = 185 * GameConfig.screen_height / 768 + ((322 * GameConfig.screen_height / 768) - 180) / 2;
+
+		if (ItemIndex >= 0) {
+			ShowItemPicture(x, y, ShowPointerList[ItemIndex]->type);
+			fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+		} else if (TuxItemIndex >= 0) {
+			ShowItemPicture(x, y, TuxItemsList[TuxItemIndex]->type);
+			fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+		}
+		show_text_widget(&item_description);
 
 		for (i = 0; i < RowLength; i++) {
 			ShowRescaledItem(i, FALSE, ShowPointerList[i + RowStart]);
@@ -638,6 +526,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			ShowRescaledItem(i, TRUE, TuxItemsList[i + TuxRowStart]);
 		}
 
+		/* Highlight the currently selected item. */
 		if (ItemIndex >= 0) {
 			HighlightRect.x =
 			    (ShopItemRowRect.x + (ItemIndex - RowStart) * INITIAL_BLOCK_WIDTH * GameConfig.screen_width / 640);
@@ -675,10 +564,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			SellButtonActive = FALSE;
 		}
 
-		// We show the current amount of 'gold' or 'cyberbucks' the tux
-		// has on him.  However we need to take into account the scaling
-		// of the whole screen again for this.
-		//
+		/* Show the amount of 'Valuable Circuits' Tux has. */
 		sprintf(GoldString, "%6d", (int)Me.Gold);
 		PutStringFont(Screen, FPS_Display_BFont, 40 * GameConfig.screen_width / 640 - 15,
 			      370 * GameConfig.screen_height / 480, GoldString);
@@ -686,13 +572,15 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
 
+		const int scroll_to_top = -1000;
+
 		if (MouseLeftClicked()) {
 			if (MouseCursorIsOnButton(DESCRIPTION_WINDOW_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				MoveMenuPositionSound();
-				Displacement += FontHeight(GetCurrentFont());
+				item_description.scroll_offset--;
 			} else if (MouseCursorIsOnButton(DESCRIPTION_WINDOW_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				MoveMenuPositionSound();
-				Displacement -= FontHeight(GetCurrentFont());
+				item_description.scroll_offset++;
 			} else if (MouseCursorIsOnButton(ITEM_BROWSER_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				while (MouseLeftPressed())
 					SDL_Delay(1);
@@ -701,50 +589,46 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			} else if (MouseCursorIsOnButton(LEFT_TUX_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (0 < RowStart) {
 					RowStart--;
-					if ((ItemIndex != (-1)) && (ItemIndex >= RowStart + RowLength)) {
-						Displacement = 0;
+					if (ItemIndex != -1 && ItemIndex >= RowStart + RowLength)
 						ItemIndex--;
-					}
 				}
+				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_TUX_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (RowStart + RowLength < NumberOfItems) {
 					RowStart++;
-					if ((ItemIndex != (-1)) && (ItemIndex < RowStart)) {
-						Displacement = 0;
+					if (ItemIndex != -1 && ItemIndex < RowStart)
 						ItemIndex++;
-					}
 				}
+				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(LEFT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (0 < TuxRowStart) {
 					TuxRowStart--;
-					if ((TuxItemIndex != (-1)) && (TuxItemIndex >= TuxRowStart + TuxRowLength)) {
-						Displacement = 0;
+					if (TuxItemIndex != -1 && TuxItemIndex >= TuxRowStart + TuxRowLength)
 						TuxItemIndex--;
-					}
 				}
+				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (TuxRowStart + TuxRowLength < NumberOfItemsInTuxRow) {
 					TuxRowStart++;
-					if ((TuxItemIndex != (-1)) && (TuxItemIndex < TuxRowStart)) {
+					if (TuxItemIndex != -1 && TuxItemIndex < TuxRowStart)
 						TuxItemIndex++;
-						Displacement = 0;
-					}
 				}
+				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), FALSE)) >= 0)) {
 				if (ClickTarget < NumberOfItems) {
 					ItemIndex = RowStart + ClickTarget;
 					TuxItemIndex = (-1);
-					Displacement = 0;
+					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), TRUE)) >= 0)) {
 				if (ClickTarget < NumberOfItemsInTuxRow) {
 					TuxItemIndex = TuxRowStart + ClickTarget;
 					ItemIndex = (-1);
-					Displacement = 0;
+					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (MouseCursorIsOnButton(BUY_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (BuyButtonActive) {
@@ -802,12 +686,12 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		if (UpPressed() || MouseWheelUpPressed()) {
 			MoveMenuPositionSound();
 			while (UpPressed()) ;
-			Displacement += FontHeight(GetCurrentFont());
+			item_description.scroll_offset--;
 		}
 		if (DownPressed() || MouseWheelDownPressed()) {
 			MoveMenuPositionSound();
 			while (DownPressed()) ;
-			Displacement -= FontHeight(GetCurrentFont());
+			item_description.scroll_offset++;
 		}
 
 		// Limit framerate if configured to do so.
@@ -980,9 +864,7 @@ static int buy_item(item *BuyItem, int amount)
  */
 void InitTradeWithCharacter(struct npc *npc)
 {
-#define FIXED_SHOP_INVENTORY TRUE
 #define NUMBER_OF_ITEMS_IN_SHOP 17
-	// #define NUMBER_OF_ITEMS_IN_SHOP 4
 
 	item *SalesList;
 	item *BuyPointerList[MAX_ITEMS_IN_INVENTORY];

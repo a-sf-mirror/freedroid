@@ -309,7 +309,7 @@ typedef struct itemspec {
 	// the following values have only relevance in case of a melee weapon
 	short int item_weapon_is_melee;
 	float item_gun_start_angle_modifier;	// where to start with a melee weapon swing
-	char item_gun_use_ammunition;	// which ammunition does this gun use? - 1 laser 2 plasma 3 exterminator etc.
+	int item_gun_use_ammunition;        // which ammunition does this gun use? see ammo_desc_for_weapon()
 	char item_gun_requires_both_hands;	// is this a (strictly) 2-handed weapon?
 
 	// how good is the item as armour or shield or other protection???

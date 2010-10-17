@@ -484,6 +484,7 @@ void DeleteItem(item * Item);
 void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical);
 int get_floor_item_index_under_mouse_cursor(level **item_lvl);
 int item_is_currently_equipped(item * Item);
+const char *ammo_desc_for_weapon(int);
 
 // item_upgrades.c
 void create_upgrade_socket(item *, int, const char *);
