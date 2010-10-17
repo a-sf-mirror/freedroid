@@ -197,7 +197,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			   || MatchItemWithName(item->type, "Liquid nitrogen")) {
 			autostr_append(desc, _("Cooling aid"));
 		} else if (MatchItemWithName(item->type, "Barf's Energy Drink")) {
-			autostr_append(desc, _("Recover Health, Force\nand Running Power"));
+			autostr_append(desc, _("Cool down, catch your breath,\n cure minor wounds."));
 		} else if (MatchItemWithName(item->type, "Running Power Capsule")) {
 			autostr_append(desc, _("Recover Running Power"));
 		} else if (MatchItemWithName(item->type, "Strength Capsule")) {
