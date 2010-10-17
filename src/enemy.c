@@ -533,7 +533,7 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
  * This function moves one robot towards his next waypoint.  If already
  * there, the function does nothing more.
  */
-void MoveThisRobotThowardsHisCurrentTarget(enemy * ThisRobot)
+static void MoveThisRobotThowardsHisCurrentTarget(enemy * ThisRobot)
 {
 	if (ThisRobot->animation_type == ATTACK_ANIMATION)
 		return;
@@ -996,7 +996,7 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 /**
  * This function moves a single enemy.  It is used by update_enemy().
  */
-void MoveThisEnemy(enemy * ThisRobot)
+static void MoveThisEnemy(enemy * ThisRobot)
 {
 	// robots that still have to wait also do not need to
 	// be processed for movement
@@ -2194,40 +2194,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 };				// void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
 /**
- * This function should determine the closest visible player to this 
- * enemy droid.
- */
-enemy *ClosestOtherEnemyDroid(Enemy ThisRobot)
-{
-	enemy *BestTarget = NULL;
-	float BestDistance = 100000;
-	float FoundDistance;
-
-	enemy *erot, *nerot;
-	BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
-		if (ThisRobot->pos.z != erot->pos.z) {
-			continue;
-		}
-		// If we compare us with ourselves, this is also no good...
-		//
-		if (ThisRobot == erot) {
-			continue;
-		}
-
-		FoundDistance = (erot->pos.x - ThisRobot->pos.x) *
-		    (erot->pos.x - ThisRobot->pos.x) + (erot->pos.y - ThisRobot->pos.y) * (erot->pos.y - ThisRobot->pos.y);
-
-		if (FoundDistance < BestDistance) {
-			BestDistance = FoundDistance;
-			BestTarget = erot;
-		}
-	}
-
-	return BestTarget;
-
-};
-
-/**
  * In some of the movement functions for enemy droids, we consider making
  * a step and move a bit into one direction or the other.  But not all
  * moves are really allowed and feasible.  Therefore we need a function
@@ -2235,7 +2201,7 @@ enemy *ClosestOtherEnemyDroid(Enemy ThisRobot)
  * this function is supposed to do.
  *
  */
-int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVector)
+static int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVector)
 {
 	freeway_context frw_ctx = { TRUE, {ThisRobot, NULL} };
 
