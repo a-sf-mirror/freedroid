@@ -1,0 +1,30 @@
+# Object files
+*.o
+src/freedroidRPG
+croppy/croppy
+gluem/*gluem
+win32/pngtoico
+lua/liblua.a
+
+# Patches
+*.orig
+*.rej
+*.patch
+*.diff
+
+# Build system files
+configure
+config.*
+Makefile
+Makefile.in
+.deps
+missing
+stamp-h1
+install-sh
+aclocal.m4
+autom4te.cache
+depcomp
+
+# Helpers
+cscope.out
+doxygen/
