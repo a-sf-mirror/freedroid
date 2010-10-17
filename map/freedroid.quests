@@ -145,9 +145,20 @@ Mission Name=_"Tania's Escape"
 Mission target is to kill droids with marker : 2035
 Completion LuaCode={
 	if npc_dead("Tania") then
+		display_big_message(_"Tania died!")
 		display_console_message(_"Tania died!")
+		if (not has_cookie("Tania_surface")) then
+			add_diary_entry(_"Tania's Escape", _"Tania died before escaping her underground bunker. I was unable to protect her.")
+		elseif (not has_cookie("Tania-stopped-by-Pendragon")) then
+			add_diary_entry(_"Tania's Escape", _"Tania died in the desert while trying to make it to the town. I was unable to protect her.")
+			change_obstacle_state("DesertGate-Inner", "opened")
+		else
+			add_diary_entry(_"Tania's Escape", _"Tania died while trying to make it to the town. I was unable to protect her.")
+		end
 	else
+		display_big_message(_"Tania made it to the town!")
 		display_console_message(_"Tania successfully made it to the town!")
+		add_xp(3000)
 	end
 }
 ** End of this mission target subsection **

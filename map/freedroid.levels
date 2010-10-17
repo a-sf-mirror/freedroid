@@ -3580,6 +3580,11 @@ x=26 y=4 name="N-exit-3"
 x=27 y=4 name="N-exit-4"
 x=22 y=13 name="TuxEscortStartGameSquare"
 x=23 y=29 name="BenderStartGameSquare"
+x=33 y=24 name="BarPatron-Enter"
+x=20 y=29 name="DocPatient-Enter"
+x=3 y=34 name="W-enter-1"
+x=3 y=35 name="W-enter-2"
+x=3 y=36 name="W-enter-3"
 /plabelinfolvl
 piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
@@ -3674,6 +3679,9 @@ idx=1329 type=32 data={
 }
 idx=3126 type=32 data={
 	c-net
+}
+idx=5 type=30 data={
+	DesertGate-Inner
 }
 /obstacleextensions
 wp
@@ -3905,6 +3913,24 @@ Nr.=224 x=  63 y=  44 rnd=0	 c:  223
 Nr.=225 x=  22 y=  13 rnd=0	 c:  226 227
 Nr.=226 x=  24 y=  13 rnd=0	 c:  225 227
 Nr.=227 x=  24 y=  12 rnd=0	 c:  226 225
+Nr.=228 x=   5 y=  35 rnd=0	 c:  229 230
+Nr.=229 x=   7 y=  35 rnd=0	 c:  228 231
+Nr.=230 x=   3 y=  35 rnd=0	 c:  228
+Nr.=231 x=   9 y=  35 rnd=0	 c:  229
+Nr.=232 x=  33 y=  24 rnd=1	 c:  239 244
+Nr.=233 x=  40 y=  26 rnd=1	 c:  234 243 242
+Nr.=234 x=  38 y=  26 rnd=1	 c:  233 244 245
+Nr.=235 x=  20 y=  29 rnd=1	 c:  236 238
+Nr.=236 x=  17 y=  27 rnd=1	 c:  235 237 238
+Nr.=237 x=  16 y=  28 rnd=1	 c:  236 238
+Nr.=238 x=  18 y=  29 rnd=1	 c:  237 235 236
+Nr.=239 x=  34 y=  23 rnd=1	 c:  232 240 244
+Nr.=240 x=  36 y=  23 rnd=1	 c:  239 241 245
+Nr.=241 x=  37 y=  22 rnd=1	 c:  240 242
+Nr.=242 x=  39 y=  24 rnd=1	 c:  241 243 233 245
+Nr.=243 x=  41 y=  24 rnd=1	 c:  242 233
+Nr.=244 x=  34 y=  26 rnd=1	 c:  234 232 239
+Nr.=245 x=  37 y=  24 rnd=1	 c:  242 234 240
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 1
@@ -32656,7 +32682,7 @@ t138 x6.50 y32.50
 t139 x6.50 y31.50
 t322 x3.50 y34.50
 t322 x3.50 y33.50
-t323 x5.50 y27.50
+t138 x5.29 y27.52
 t323 x6.50 y27.50
 t323 x7.50 y27.50
 t323 x8.50 y27.50
@@ -32715,11 +32741,11 @@ t322 x13.50 y27.50
 t139 x13.50 y26.50
 t140 x14.50 y26.50
 t137 x12.00 y26.50
-t232 x3.50 y27.50
+t322 x3.50 y27.00
 t322 x3.50 y26.50
 t134 x3.50 y25.50
-t138 x5.00 y27.50
-t139 x5.00 y26.50
+t135 x6.00 y27.50
+t139 x5.27 y26.57
 t323 x6.00 y26.50
 t323 x6.50 y26.50
 t323 x7.50 y26.50
@@ -33075,7 +33101,7 @@ t235 x34.50 y33.50
 t322 x34.50 y37.50
 t138 x29.00 y40.00
 t322 x29.00 y39.00
-t6 x4.50 y27.50
+t29 x32.00 y54.50
 t53 x26.50 y6.50
 t53 x26.50 y5.50
 t135 x11.50 y5.50
@@ -33674,7 +33700,8 @@ t3 x18.50 y25.50
 t3 x23.50 y25.50
 t3 x23.50 y24.50
 t29 x32.00 y53.50
-t29 x32.00 y54.50
+t322 x3.50 y28.00
+t6 x4.50 y27.00
 /obsdata
 plabelinfolvl
 x=19 y=28 name="SADDStartGameSquare"

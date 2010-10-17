@@ -130,6 +130,41 @@ LuaCode={
 }
 * End of trigger *
 
+* New event trigger *
+Name=_"Tania Escort W-1"
+Trigger at label="W-enter-1"
+Silent=1
+LuaCode={
+	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+		add_cookie("Tania-stopped-by-Pendragon")
+		start_chat("Pendragon")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Tania Escort W-2"
+Trigger at label="W-enter-2"
+Silent=1
+LuaCode={
+	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+		add_cookie("Tania-stopped-by-Pendragon")
+		start_chat("Pendragon")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Tania Escort W-3"
+Trigger at label="W-enter-3"
+Silent=1
+LuaCode={
+	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+		add_cookie("Tania-stopped-by-Pendragon")
+		start_chat("Pendragon")
+	end
+}
+* End of trigger *
 
 ##############
 ## Level  1 ##
@@ -441,9 +476,11 @@ Name=_"Back to the Desert"
 Trigger at label="35to40"
 Silent=0
 LuaCode={
-	if (has_quest("Tania's Escape") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania_surface"))) then
+	if (has_quest(_"Tania's Escape") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania_surface"))) then
 		add_cookie("Tania_surface")
 		teleport_npc("40from35", "Tania")
+		change_obstacle_state("DesertGate-Inner", "closed")
+		add_diary_entry(_"Tania's Escape", _"Tania has made it to the surface for the first time in a very long time.")
 	end
 	teleport("40from35")
 }
