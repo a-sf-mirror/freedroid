@@ -43,7 +43,6 @@ void load_item_surfaces_for_item_type(int item_type);
 
 extern int Number_Of_Item_Types;
 extern int debug_level;
-extern dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 
 /** 
  * This function works a malloc, except that it also checks for

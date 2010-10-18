@@ -68,7 +68,6 @@ int vid_bpp;
 // will not cause undefined references (in parts of the code,
 // that we won't be using anyway...
 //
-dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 itemspec *ItemMap;
 int Number_Of_Item_Types = 0;
 
