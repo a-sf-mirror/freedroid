@@ -1729,12 +1729,6 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
 		newen->dialog_section_name = ReadAndMallocStringFromDataOptional(SpecialDroid, "UseDialog=\"", "\"");
 		if (!newen->dialog_section_name)
 			newen->dialog_section_name = strdup("AfterTakeover");
-		if (strlen(newen->dialog_section_name) >= MAX_LENGTH_FOR_DIALOG_SECTION_NAME - 1) {
-			ErrorMessage(__FUNCTION__, "\
-The dialog section specification string for a bot was too large.\n\
-This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
-the dialog section name for one special force droid/character.", PLEASE_INFORM, IS_FATAL);
-		}
 
 		if (newen->short_description_text)
 			free(newen->short_description_text);
@@ -1742,12 +1736,6 @@ the dialog section name for one special force droid/character.", PLEASE_INFORM, 
 		newen->short_description_text = ReadAndMallocStringFromDataOptional(SpecialDroid, "ShortLabel=_\"", "\"");
 		if (!newen->short_description_text)
 			newen->short_description_text = strdup(Druidmap[newen->type].default_short_description);
-		if (strlen(newen->short_description_text) >= MAX_LENGTH_OF_SHORT_DESCRIPTION_STRING) {
-			ErrorMessage(__FUNCTION__, "\
-The short description specification string for a bot was too large.\n\
-This indicated a corrupted ReturnOfTux.droids file with an error when specifying\n\
-the dialog section name for one special force droid/character.", PLEASE_INFORM, IS_FATAL);
-		}
 
 		if (strstr(SpecialDroid, "on_death_drop_item_name")) {
 			YesNoString = ReadAndMallocStringFromData(SpecialDroid, "on_death_drop_item_name=\"", "\"");
