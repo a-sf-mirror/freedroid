@@ -383,7 +383,7 @@ void UpdateCountersForThisFrame()
 			lose_life = (Me.temperature - Me.max_temperature) * latest_frame_time / 10;
 		}
 		if (lose_life > 0) {
-			Me.energy -= lose_life;
+			hit_tux(lose_life, -1);
 		}
 	}
 

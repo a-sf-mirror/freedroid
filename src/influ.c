@@ -745,6 +745,16 @@ void move_tux()
 };				// void move_tux( );
 
 /**
+ * This function decrements Tux's health and increments the relevent statistic 
+ * variable.
+ */
+void hit_tux(int damage, int owner)
+{
+	Me.energy -= damage;
+}
+
+
+/**
  * This function does the 'rotation' of the influencer, according to the
  * current energy level of the influencer.  If his energy is low, the
  * rotation will also go slow, if his energy is high, rotation will go

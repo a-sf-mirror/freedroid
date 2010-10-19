@@ -181,7 +181,7 @@ void DoMeleeDamage(void)
 		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
 			/* hit player */
 			if (MyRandom(100) <= Me.lv_1_bot_will_hit_percentage * compute_hit_multiplier(CurMelS->level)) {
-				Me.energy -= CurMelS->damage;
+				hit_tux(CurMelS->damage, CurMelS->owner);
 				if (Me.energy/10 < CurMelS->damage)
 					tux_scream_sound();
 			}
@@ -630,7 +630,7 @@ void apply_bullet_damage_to_player(int damage, int owner)
 	// the armour will compensate the shot
 	//
 		real_damage *= (1 - (Me.DAMRED / 100.0));
-		Me.energy -= real_damage;	// loose some energy
+		hit_tux(real_damage, owner);	// loose some energy
 		DamageProtectiveEquipment();    // chance worn items gets damaged on each hit
 		DebugPrintf(1, "\n%s(): Tux took damage from bullet: %f.", __FUNCTION__, real_damage);
 		if (Me.energy/10 < real_damage)
@@ -944,7 +944,7 @@ void CheckBlastCollisions(int num)
 	update_virtual_position(&blast_vpos, &CurBlast->pos, Me.pos.z);
 	if (blast_vpos.z != -1) {
 		if ((Me.energy > 0) && (fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
-			Me.energy -= CurBlast->damage_per_second * Frame_Time();
+			hit_tux(CurBlast->damage_per_second * Frame_Time(), -100);
 			// So the influencer got some damage from the hot blast
 			// Now most likely, he then will also say so :)
 			if (!CurBlast->MessageWasDone) {
