@@ -1341,9 +1341,9 @@ static int Options_handle(int n)
 
 static void Options_fill(char *MenuTexts[10])
 {
-	strncpy(MenuTexts[0], _("Game Options"), 1024);
-	strncpy(MenuTexts[1], _("Graphics Options"), 1024);
-	strncpy(MenuTexts[2], _("Sound Options"), 1024);
+	strncpy(MenuTexts[0], _("Game"), 1024);
+	strncpy(MenuTexts[1], _("Graphics"), 1024);
+	strncpy(MenuTexts[2], _("Sound"), 1024);
 	strncpy(MenuTexts[3], _("Keys"), 1024);
 	strncpy(MenuTexts[4], _("Droid Talk"), 1024);
 	strncpy(MenuTexts[5], _("On-Screen Displays"), 1024);
