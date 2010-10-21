@@ -264,7 +264,7 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
  * In order to perform a click-action, tux must first move to the obstacle.
  * He can either approach it from a specific direction or any direction. This 
  * function handles the case where direction doesn't matter, like for barrels
- * and crates. Returns 1 if tux is close enought to the obstacle.
+ * and crates. Returns 1 if tux is close enough to the obstacle.
  */
 static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 	gps obst_vpos;
@@ -389,7 +389,7 @@ static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
  * In order to perform a click-action, tux must first move to the obstacle.
  * He can either approach it from a specific direction or any direction. This 
  * function handles the case where direction does matter, like for chests, 
- * terminals, and signs. Returns 1 if tux is close enought to the obstacle.
+ * terminals, and signs. Returns 1 if tux is close enough to the obstacle.
  */
 static int reach_obstacle_from_specific_direction(level *obst_lvl, int obst_index, int direction) {
 	gps obst_vpos;
@@ -644,7 +644,7 @@ void sign_read_action(level *lvl, int index)
  * obstacles (e.g. walls).
  *
  * If Tux is too far away, a combo action will be started, which will first make
- * Tux walk towards item. If the action is not cancelled, the item is picked up
+ * Tux walk towards item. If the action is not canceled, the item is picked up
  * on arrival.
  */
 int check_for_items_to_pickup(level *item_lvl, int item_index)

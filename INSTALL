@@ -26,7 +26,7 @@ Building with autotools
    During the configure process, the terminal may notify you that some software is required.
    Install the required packages and restart ./configure.
 
-4) If ./configure finishes without errors or warnings, then procede with building the game with:
+4) If ./configure finishes without errors or warnings, then proceed with building the game with:
    make
 
 5) Installation

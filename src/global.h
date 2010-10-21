@@ -90,7 +90,7 @@ EXTERN blast AllBlasts[MAXBLASTS + 10];
 EXTERN int sound_on;		// Toggle TRUE/FALSE for turning sounds on/off 
 EXTERN int debug_level;		// 0=no debug 1=some debug messages 2=...etc 
 				// (currently only 0 or !=0 is implemented) 
-EXTERN int show_all_droids;	// display enemys regardless of IsVisible() 
+EXTERN int show_all_droids;	// display enemies regardless of IsVisible() 
 EXTERN int draw_collision_rectangles;	// to better debug collision rectangles
 EXTERN int draw_grid;		// grid to see where objects will be positioned
 EXTERN int start_editor;

@@ -70,7 +70,7 @@ const theme_proc themes[] = {
 };
 
 // A list of themes are used to specify basic parameters for a room
-// such as wall and floor tiles that may be partly ommited in others themes.
+// such as wall and floor tiles that may be partly omitted in others themes.
 const enum theme basic_themes[] = {
 	THEME_METAL,
 	THEME_GRAY,
@@ -365,7 +365,7 @@ static void place_garden(int room)
 // Place a grid of office desks in the given room
 static int place_work_office(int room)
 {
-	// Randomly choose to place signle row of desks or double
+	// Randomly choose to place single row of desks or double
 	int d = 3 + 2 * MyRandom(1);
 
 	int w = rooms[room].w - 3;
@@ -506,7 +506,7 @@ static void fill_rooms(int *vis)
 	}
 }
 
-// Sets living room theme for the middle room and some its neighbours
+// Sets living room theme for the middle room and some its neighbors
 static int set_living_theme_recursive(int room, int depth, int *vis)
 {
 	int i;

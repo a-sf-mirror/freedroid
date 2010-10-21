@@ -78,7 +78,7 @@
 
 /**
  * This function displays all the buttons that open up the character
- * screen and the invenotry screen
+ * screen and the inventory screen
  */
 void DisplayButtons(void)
 {
@@ -382,7 +382,7 @@ void update_tux_armour_damage_reduction()
 
 /**
  * This function should re-compute all character stats according to the
- * currently equipped items and currenly distributed stats points.
+ * currently equipped items and currently distributed stats points.
  */
 void UpdateAllCharacterStats()
 {
@@ -442,7 +442,7 @@ void UpdateAllCharacterStats()
 	if (Me.temperature < 0)
 		Me.temperature = 0;
 
-	// Now that the defence stat is computed, we can compute the chance, that
+	// Now that the defense stat is computed, we can compute the chance, that
 	// a randomly chosen lv. 1 bot will hit the Tux in any given strike...
 	//
 	Me.lv_1_bot_will_hit_percentage = 60;

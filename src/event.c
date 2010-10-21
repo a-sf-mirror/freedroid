@@ -153,10 +153,10 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 /**
  *
  * This function checks for triggered events.  Those events are
- * usually entered via the mission file and read into the apropriate
+ * usually entered via the mission file and read into the appropriate
  * structures via the InitNewMission function.  Here we check, whether
- * the nescessary conditions for an event are satisfied, and in case that
- * they are, we order the apropriate event to be executed.
+ * the necessary conditions for an event are satisfied, and in case that
+ * they are, we order the appropriate event to be executed.
  *
  */
 void CheckForTriggeredEvents()

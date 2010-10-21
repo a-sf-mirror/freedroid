@@ -152,7 +152,7 @@ int ClickWasOntoItemRowPosition(int x, int y, int TuxItemRow)
 };				// int ClickWasOntoItemRowPosition ( int x , int y , int TuxItemRow )
 
 /**
- * The item row in the shop interface (or whereever we're going to use it)
+ * The item row in the shop interface (or wherever we're going to use it)
  * should display not only the rotating item display but also a row or a
  * column of the current equipment, so that some better overview is given
  * as well and the item can be better associated with it's in-game inventory
@@ -728,7 +728,7 @@ int ClickedMenuItemPosition(void)
 
 	// When a character is blitted to the screen at x y, then the x and y
 	// refer to the top left corner of the coming blit.  Using this information
-	// we will define the areas where a click 'on the blitted text' has occured
+	// we will define the areas where a click 'on the blitted text' has occurred
 	// or not.
 	//
 	if (CursorY < ITEM_FIRST_POS_Y)
@@ -742,7 +742,7 @@ int ClickedMenuItemPosition(void)
 	}
 
 	// At this point we've already determined and returned to right click-area.
-	// if this point is ever reached, a severe error has occured, and Freedroid
+	// if this point is ever reached, a severe error has occurred, and Freedroid
 	// should therefore also say so.
 	//
 	ErrorMessage(__FUNCTION__, "\

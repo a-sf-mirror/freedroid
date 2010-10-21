@@ -295,7 +295,7 @@ static void load_dialog(const char *fpath)
 
 	// Now we've got all the information we wanted from the dialogues file.
 	// We can now free the loaded file again.  Upon a new character dialogue
-	// being initiated, we'll just reload the file.  This is very conveninet,
+	// being initiated, we'll just reload the file.  This is very convenient,
 	// for it allows making and testing changes to the dialogues without even
 	// having to restart Freedroid!  Very cool!
 	//
@@ -665,7 +665,7 @@ void DialogPartnersTurnToEachOther(Enemy ChatDroid)
 	// For this we use the atan2, which gives angles from -pi to +pi.
 	// 
 	// Attention must be paid, since 'y' in our coordinates ascends when
-	// moving down and descends when moving 'up' on the scren.  So that
+	// moving down and descends when moving 'up' on the screen.  So that
 	// one sign must be corrected, so that everything is right again.
 	//
 	RightAngle = (atan2(-(Me.pos.y - ChatDroid->pos.y), +(Me.pos.x - ChatDroid->pos.x)) * 180.0 / M_PI);

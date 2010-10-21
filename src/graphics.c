@@ -987,7 +987,7 @@ static void check_open_gl_libraries_present(void)
  * This function should display the driver info obtained from the OpenGL
  * libraries.  This should be in a function of it's own (like now) to 
  * make sure that the OpenGL error checks in the video mode set functions
- * and that seem to be occuring so frequently are not coming from this 
+ * and that seem to be occurring so frequently are not coming from this 
  * chunk of code.
  */
 static void show_open_gl_driver_info(void)

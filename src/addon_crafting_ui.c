@@ -346,7 +346,7 @@ static void handle_ui()
 
 	// Handle hovering and clicks of the apply and close buttons. We need to reset
 	// the cursor to normal if it's on a button since the text widget might have
-	// changed it to a scolling cursor in the previous call.
+	// changed it to a scrolling cursor in the previous call.
 	if (MouseCursorIsOnButton(ITEM_UPGRADE_APPLY_BUTTON, cursor.x, cursor.y)) {
 		if (MouseLeftClicked()) {
 			craft_item();

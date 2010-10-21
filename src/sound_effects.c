@@ -102,7 +102,7 @@ void Not_Enough_Dist_Sound(void)
  * this enemy or friend will issue the first-time greeting.
  * Depending on whether that is typically a hostile unit or not, we play
  * the corresponding sound from preloaded memory or, if there is no combat
- * to expect, by loading it freshly from disk and then forgeting about it
+ * to expect, by loading it freshly from disk and then forgetting about it
  * again.
  */
 void PlayGreetingSound(int SoundCode)
@@ -536,7 +536,7 @@ void PlayEnemyGotHitSound(int enemytype)
 
 /**
  * This function plays a sound of a bullet being reflected. It is only
- * used, when a bullets is compensated by the tux armour.
+ * used, when a bullets is compensated by the tux armor.
  */
 void BulletReflectedSound(void)
 {

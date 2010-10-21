@@ -832,7 +832,7 @@ static int calculate_light_strength(gps *cell_vpos)
  * shadow grid twice and propagate in 'both' directions.  
  * The hardness of the shadow can be controlled in the definition of
  * MAX_LIGHT_STEP.  Higher values will lead to harder shadows, while 
- * lower values will give very smooth and flourescent shadows propagating
+ * lower values will give very smooth and fluorescent shadows propagating
  * even a bit under walls (which doesn't look too good).  3 seems like
  * a reasonable setting.
  */

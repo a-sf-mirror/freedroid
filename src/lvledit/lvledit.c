@@ -206,7 +206,7 @@ item *ItemDropFromLevelEditor(void)
  * There is a 'help' screen for the level editor too.  This help screen
  * is presented as a scrolling text, giving a short introduction and also
  * explaining the keymap to the level editor.  The info for this scrolling
- * text is all in a title file in the maps dir, much like the initial
+ * text is all in a title file in the maps directory, much like the initial
  * scrolling text at any new game startup.
  */
 void ShowLevelEditorKeymap(void)

@@ -391,7 +391,7 @@ void room_to_console(int w, int h) {
 }
 
 // Turn the given room into corridor and return whether
-// the transformation was successeful
+// the transformation was successful
 static int make_corridor(int room)
 {
 #define	MAX_DOORS_IN_CORRIDOR	3
@@ -975,7 +975,7 @@ static int get_middle_room(int entrance, int *distance)
 		eccentricity[i] = 0;
 	}
 	for (i = 0; i < total_rooms; i++) {
-		// Distance from a room to its neighbours is 1
+		// Distance from a room to its neighbors is 1
 		for (j = 0; j < rooms[i].num_neighbors; j++)
 			dist[i][rooms[i].neighbors[j]] = 1;
 	}
