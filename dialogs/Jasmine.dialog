@@ -89,6 +89,7 @@ LuaCode={
 Nr=8 Text=_"You are the most beautiful human I have ever seen."
 LuaCode={
 	npc_says(_"And you are at least a quarter wrong.")
+	tux_says("You're so cute, baby seals and polar bears sent each other pictures of you.")
 	npc_says(_"Now, please get out of my sight.")
 	hide(8) show(9)
 }

@@ -61,7 +61,8 @@ EveryTime LuaCode={
 
 Nr=0 Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
 LuaCode={ 
-	npc_says(_"Hi. I haven't slept for a few weeks, so I'm just a little bit tired.")
+	npc_says(_"Hi. I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired.")
+	npc_says(_"One of the side effects of always deleting all cookies.")
 	npc_says(_"Don't worry about me. I'll be fine.")
 	npc_says(_"I'm Kevin, a computer security expert.")
 	tux_says(_"In other words: You are a hacker.")
