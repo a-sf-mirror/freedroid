@@ -33,20 +33,32 @@ EveryTime LuaCode={
 	if (not has_cookie("met_sadd")) then
 		show(1)
 		add_cookie("met_sadd")
-	else end
+	end
 
-	npc_says(_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once.") 
+	if (not has_cookie("SADD-trick")) then
+		npc_says(_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once.")
+	else
+		npc_says(_"You possess secret information. Please wait here for departure authorization.")
+	end
 
 	if (has_quest(_"SADD's power supply")) then
-		if (done_quest(_"SADD's power supply")) then hide(30, 31, 33) -- add in more lab missions here in the future
-		else
+		if (not done_quest(_"SADD's power supply")) then 
 			if (has_item_backpack("Red Dilithium Crystal") > 0) then
 				if (has_cookie("asked_sadd_for_exterminator")) then show(30) else show(33) end
 			else
 				show(31)
 			end
+		else
+			hide(30, 31, 33) -- add in more lab missions here in the future
+			if (has_cookie("SADD-trick") and (not has_cookie("SADD-NoExit"))) then
+				add_cookie("SADD-NoExit")
+				npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage", "NO_WAIT")
+				npc_says(_"Must protect secret information")
+				npc_says(_"Enabling guns.")
+				hide(37) show(50)
+			end
 		end
-	else end
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -54,11 +66,11 @@ EveryTime LuaCode={
 
 Nr=1 Text=_"Who are you and what are you doing?"
 LuaCode={
-	npc_says(_"I am a SADD - Secret Area Defence Droid.")
-	set_bot_name(_"SADD - Secret Area Defence Droid")
-	npc_says(_"PRIMARY TARGET 1: do not let unauthorized people in.", "NO_WAIT")
-	npc_says(_"PRIMARY TARGET 2: authorized personnel must have access to the zone.", "NO_WAIT")
-	npc_says(_"SECONDARY TARGET: prevent secret information leakage")
+	npc_says(_"I am a SADD - Secret Area Defense Droid.")
+	set_bot_name(_"SADD - Secret Area Defense Droid")
+	npc_says(_"PRIMARY OBJECTIVE 1: do not let unauthorized people in.", "NO_WAIT")
+	npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.", "NO_WAIT")
+	npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
 	hide(1)
 	show(4, 5)
 }
@@ -66,7 +78,7 @@ LuaCode={
 
 Nr=4 Text=_"What is this place?"
 LuaCode={
-	npc_says(_"SECONDARY TARGET: prevent secret information leakage")
+	npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
 	npc_says(_"*INFO* secret information theft attempt detected")
 	npc_says(_"Go away. You are not allowed to be here!")
 	end_dialog()
@@ -124,12 +136,12 @@ LuaCode={
 	npc_says(_"Maybe I'm almost like a human?")
 	npc_says(_"Anyway, that's none of your business. Soon I'll be dead. You will be too, and nobody will enter this place ever again!")
 	tux_says(_"What are your orders again?")
-	npc_says(_"PRIMARY TARGET 1: do not let unauthorized people in.", "NO_WAIT")
-	npc_says(_"PRIMARY TARGET 2: authorized personnel must have access to the zone.", "NO_WAIT")
-	npc_says(_"SECONDARY TARGET: prevent secret information leakage")
+	npc_says(_"PRIMARY OBJECTIVE 1: do not let unauthorized people in.", "NO_WAIT")
+	npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.", "NO_WAIT")
+	npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
 	npc_says(_"Why do you ask?")
 	tux_says(_"Tell me your second order once more...")
-	npc_says(_"PRIMARY TARGET 2: authorized personnel must have access to the zone.")
+	npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.")
 	npc_says(_"Yes, it will be violated. But first order has higher priority.")
 	tux_says(_"So you can disobey your orders?")
 	npc_says(_"I've already disobeyed them, when I told you what I shouldn't have. That's because of my human nature.")
@@ -170,14 +182,14 @@ LuaCode={
 
 Nr=21 Text=_"You must promise me a significant reward."
 LuaCode={
-	npc_says(_"Damn. Ok, I'll give you a super exterminator if you give me dilithium cristals.")
+	npc_says(_"Damn. Ok, I'll give you a super exterminator if you give me dilithium crystals.")
 	add_cookie("asked_sadd_for_exterminator")
 	next(23)
 	hide(21, 22)
 }
 ----------------------------------------------------------------------
 
-Nr=22 Text=_"It seems that you are sentinent, that you are a form of life. I must help any form of life."
+Nr=22 Text=_"It seems that you are sentient, that you are a form of life. I must help any form of life."
 LuaCode={
 	npc_says(_"Thanks a lot for your warm words. I think I can trust you.")
 	next(23)
@@ -198,7 +210,7 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=30 Text=_"I have the crystals! They were difficult to find."
 LuaCode={
-	npc_says(_"Good. I've opened the depot door for you. Take your super exterminator and GET OUT of here!")
+	npc_says(_"Good. I've opened the depot door for you.")
 	end_dialog()
 	display_big_message(_"Restored SADD's power supply")
 	add_xp(1000)
@@ -233,6 +245,7 @@ LuaCode={
 
 Nr=37 Text=_"You call this a super exterminator?"
 LuaCode={
+	add_cookie("SADD-NoExit")
 	npc_says(_"I do. Now please leave this place before I terminate you.")
 	tux_says(_"This is rubbish! Nobody can use this damned gun!")
 	npc_says(_"The door is still open. You can put it back and go. Quick.")
@@ -272,6 +285,70 @@ LuaCode={
 	npc_says(_"I just need to make some preparations. You will have to wait...")
 	npc_says(_"...for your death!")
 	hide(43)
+}
+----------------------------------------------------------------------
+
+Nr=50 Text=_"Why are you shooting at me?"
+LuaCode={
+	npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage", "NO_WAIT")
+	npc_says(_"DIRECTIVE 372: All persons leaving with secret information must have proper authorization.")
+	npc_says(_"You have secret information. You must not leave this facility without proper authorization.")
+	hide(50) show(51, 53)
+}
+----------------------------------------------------------------------
+
+Nr=51 Text=_"I thought we had a deal?"
+LuaCode={
+	npc_says(_"Making a deal ensured primary objectives.")
+	npc_says(_"Now there is sufficient energy for primary and secondary objectives.")
+	npc_says(_"I must engage secondary objective.")
+	hide(51) show(54)
+}
+----------------------------------------------------------------------
+
+Nr=52 Text=_"You tricked me."
+LuaCode={
+	npc_says(_"This unit was low on power.")
+	npc_says(_"It was necessary to ensure primary objectives.")
+	hide(52)
+}
+----------------------------------------------------------------------
+
+Nr=53 Text=_"Where can I get proper authorization?"
+LuaCode={
+	npc_says(_"Proper authorization can only come from the SACD: Secret Area Control Datacenter.")
+	npc_says(_"Only base members have access codes to the SACD.")
+	hide(53) show(55)
+}
+----------------------------------------------------------------------
+
+Nr=54 Text=_"What about your human nature?"
+LuaCode={
+	npc_says(_"It was successful in getting increased power to carry out  objectives.")
+	hide(54)
+}
+----------------------------------------------------------------------
+
+Nr=55 Text=_"What if there is no one left alive?"
+LuaCode={
+	npc_says(_"Sensors indicate one or more base member life-signs.")
+	hide(55) show(56)
+}
+----------------------------------------------------------------------
+
+Nr=56 Text=_"Can you contact them to let me out?"
+LuaCode={
+	npc_says(_"Base communications are down.")
+	npc_says(_"Please wait here until further notice.")
+	hide(56) show(57)
+}
+----------------------------------------------------------------------
+
+Nr=57 Text=_"When was the last time anyone left or entered the base?"
+LuaCode={
+	npc_says(_"During the Great Assault.")
+	npc_says(_"Please wait here until further notice.")
+	hide(57)
 }
 ----------------------------------------------------------------------
 

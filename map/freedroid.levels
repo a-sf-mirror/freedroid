@@ -33672,9 +33672,11 @@ t322 x17.50 y30.50
 t323 x18.50 y26.50
 t139 x17.50 y26.50
 t234 x17.50 y28.50
+t323 x25.50 y36.00
+t323 x26.50 y36.00
 t322 x17.50 y27.50
-t236 x25.50 y36.00
-t236 x26.50 y36.00
+t6 x4.50 y27.00
+t322 x3.50 y28.00
 t135 x24.50 y36.00
 t140 x25.50 y31.50
 t322 x18.50 y22.50
@@ -33700,8 +33702,6 @@ t3 x18.50 y25.50
 t3 x23.50 y25.50
 t3 x23.50 y24.50
 t29 x32.00 y53.50
-t322 x3.50 y28.00
-t6 x4.50 y27.00
 /obsdata
 plabelinfolvl
 x=19 y=28 name="SADDStartGameSquare"
@@ -33728,6 +33728,7 @@ x=24 y=2 name="35to36-North"
 x=25 y=2 name="35from36-North"
 x=37 y=26 name="35to36-South"
 x=37 y=28 name="35from36-South"
+x=17 y=32 name="SADD-NoExit"
 /plabelinfolvl
 piteminfolvl
 it: n="The Super Exterminator!!!"  X=26.000000  Y=33.000000  MDur=10  CDur=5.000000  AClip=0  Multi=1 
