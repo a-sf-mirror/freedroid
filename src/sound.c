@@ -140,7 +140,7 @@ void InitAudio(void)
 
 	DebugPrintf(1, "\nInitializing SDL Audio Systems....\n");
 
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 
 	// Now SDL_AUDIO is initialized here:
@@ -160,7 +160,7 @@ void InitAudio(void)
 								   \n\
 								   If you want this, use the appropriate command line option and Freedroid will \n\
 								   not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-		GameConfig.sound_on = FALSE;
+		sound_on = FALSE;
 		return;
 	} else {
 		DebugPrintf(1, "\nSDL Audio initialisation successful.\n");
@@ -184,7 +184,7 @@ void InitAudio(void)
 								   \n\
 								   If you want this, use the appropriate command line option and Freedroid will \n\
 								   not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-		GameConfig.sound_on = FALSE;
+		sound_on = FALSE;
 		return;
 	} else {
 		DebugPrintf(1, "\nSuccessfully opened SDL audio channel.");
@@ -200,7 +200,7 @@ void InitAudio(void)
 
 void SetBGMusicVolume(float NewVolume)
 {
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 	Mix_VolumeMusic((int)rintf(NewVolume * MIX_MAX_VOLUME));
 	// SwitchBackgroundMusicTo ( COMBAT_BACKGROUND_MUSIC_SOUND );
@@ -208,7 +208,7 @@ void SetBGMusicVolume(float NewVolume)
 
 void SetSoundFXVolume(float NewVolume)
 {
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 	remove_all_samples_from_WAV_cache();
 }
@@ -281,7 +281,7 @@ void LoadAndFadeInBackgroundMusic(void)
 	char fpath[2048];
 	char filename_raw[2048];
 
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 
 	if (filename_raw == SILENCE)	// SILENCE is defined as -1 I think
@@ -332,7 +332,7 @@ void LoadAndFadeInBackgroundMusic(void)
 void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 {
 	static char PreviousFileParameter[5000] = "NONE_AT_ALL";
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 
 	// Maybe the background music switch command given instructs us to initiate
@@ -437,7 +437,7 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 	PreviousStartTicks = TicksNow;
 	strcpy(PreviousFileName, SoundSampleFileName);
 
-	if (!GameConfig.sound_on) {
+	if (!sound_on) {
 		// Maybe this sound sample was intended to be hooking the CPU and the
 		// program flow, so that nothing happens until the sample has been
 		// played fully.  In this case we must introduce a waiting time even
@@ -627,7 +627,7 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 
 	// In case sound has been disabled, we don't do anything here...
 	//
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 
 	// First we go take a look if maybe the sound sample file name in question

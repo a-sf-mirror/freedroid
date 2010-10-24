@@ -378,7 +378,7 @@ void MoveMenuPositionSound(void)
 
 void ThouArtDefeatedSound(void)
 {
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 	PlayOnceNeededSoundSample("effects/ThouArtDefeated_Sound_0.ogg", FALSE, FALSE);
 }
@@ -437,7 +437,7 @@ void play_melee_weapon_missed_sound(void)
  */
 void Fire_Bullet_Sound(int BulletType)
 {
-	if (!GameConfig.sound_on)
+	if (!sound_on)
 		return;
 
 	DebugPrintf(1, "\nFireBulletSound called...");

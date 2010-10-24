@@ -1612,20 +1612,13 @@ static void Graphics_fill(char *MenuTexts[10])
 static int Sound_handle(int n)
 {
 	enum {
-		TOGGLE_SOUND = 1,
-		SET_BG_MUSIC_VOLUME,
+		SET_BG_MUSIC_VOLUME = 1,
 		SET_SOUND_FX_VOLUME,
 		LEAVE_OPTIONS_MENU
 	};
 	switch (n) {
 	case (-1):
 		return EXIT_MENU;
-	case TOGGLE_SOUND:
-		GameConfig.sound_on = !GameConfig.sound_on;
-		if (GameConfig.sound_on) {
-			InitAudio();
-		}
-		break;
 	case SET_BG_MUSIC_VOLUME:
 		if (RightPressed()) {
 			while (RightPressed()) ;
@@ -1678,7 +1671,6 @@ static void Sound_fill(char *MenuTexts[10])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(MenuTexts[i++], "Sound: %s\n", GameConfig.sound_on ? "enabled" : "disabled");
 	sprintf(Options[i], _("<-- Background Music Volume"));
 	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.Current_BG_Music_Volume);
 	strcat(Options[i], Options[i + 1]);
