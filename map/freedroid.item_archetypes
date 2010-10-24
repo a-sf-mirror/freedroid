@@ -49,7 +49,7 @@ Received an item type that was outside of range of the allowed item types.
 */
 
 ** Start of new item specification subsection **
-Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Dont click this! OK this seemes fixed now. However the first item is still VERY buggy ingame (cant be dropped, can't be switched to from inventory etc)"
+Item name=_"Spawning item index 0 in editor or drop ingame causes CTD! Don't click this! OK this seems fixed now. However the first item is still VERY buggy ingame (cant be dropped, can't be switched to from inventory etc)"
 Item min class for drop=-1
 Item can be applied in combat="no"
 Item can be installed in slot with name="none"
@@ -105,7 +105,7 @@ Other items can potentially be bigger
  Shock knife
  Electric whip
 
-//Not implemented suggestions to add more variaty
+//Not implemented suggestions to add more variety
 //Sharpened screwdriver- lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.5 - Inv size 1x2 - Dur  6-8  - 20  
 //Folding stiletto     - lvl 1 - str 0 dex 0 - 1H - Dam: 0-2 - Recharge: 0.4 - Inv size 1x2 - Dur  4-5  - 20
 //Golf club            - lvl 1 - str 0 dex23 - 1H - Dam: 1-5 - Recharge: 0.6 - Inv size 1x4 - Dur  6-10 -100 
@@ -3644,7 +3644,7 @@ Items of this type collect together in inventory="yes"
 File or directory name for inventory image="pills_potions/brain_enlargement_antidode/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"Doctors all over the planet have tried to suppress the amazing breakthrough which has brought increased altertness and concentration that comes with a larger brain. They are synthesized using cutting edge technology and 100% natual herbal ingreedients from a secret five thousand-year-old traditional holistic recipe.  Get yours direct from our online Canadian ph4rm4cy!!! 100% satisfaction guaranteed!!!"
+Item description text=_"Doctors all over the planet have tried to suppress the amazing breakthrough which has brought increased alertness and concentration that comes with a larger brain. They are synthesized using cutting edge technology and 100% natural herbal ingredients from a secret five thousand-year-old traditional holistic recipe.  Get yours direct from our online Canadian ph4rm4cy!!! 100% satisfaction guaranteed!!!"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3954,7 +3954,7 @@ Item description text=_"This small device automatically collects data about the 
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Light Enhancer? to be incluced in the future..."
+Item name=_"Light Enhancer? to be included in the future..."
 Item min class for drop=-1
 Item can be applied in combat="yes"
 Item can be installed in slot with name="none"
@@ -4056,7 +4056,7 @@ Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=40
 inventory_size_x=1
 inventory_size_y=1
-Item description text=_"This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is succcessful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place. Note: Multiple of these may be grouped together in the inventory."
+Item description text=_"This device sends a signal to a nearby teleporter requesting a transport, and then helps with locking on and boosting the signal to ensure the teleportation attempt is successful. The battery inside is sufficient for one use *only* and the device becomes useless afterwards. At least, most people don't try to use them twice... and those few who do usually end up with parts of their body missing or attached in the wrong place. Note: Multiple of these may be grouped together in the inventory."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -4177,7 +4177,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="addons/laser_sight/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"A miniaturised laser powered by a nuclear battery. When attached parallel to the barrel of a gun, it makes a little red dot on the target and helps with aiming."
+Item description text=_"A miniaturized laser powered by a nuclear battery. When attached parallel to the barrel of a gun, it makes a little red dot on the target and helps with aiming."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
