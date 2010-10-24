@@ -221,7 +221,7 @@ void quest_browser_display_mission_list(int list_type)
 				rect_short->y =
 				    mission_description_rect.y - mission_list_offset +
 				    (FontHeight(GetCurrentFont()) * TEXT_STRETCH) * (quest_browser_mission_lines_needed[mis_num]) - 2;
-				rect_short->x = mission_description_rect.x - rect_short->w;
+				rect_short->x = mission_description_rect.x - AllMousePressButtons[QUEST_BROWSER_ITEM_SHORT_BUTTON].button_image.original_image_width;
 				rect_long->y = rect_short->y;
 				rect_long->x = rect_short->x;
 			}

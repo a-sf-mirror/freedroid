@@ -317,9 +317,9 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[QUEST_BROWSER_SCROLL_DOWN_BUTTON] =
 	    {UNLOADED_ISO_IMAGE, "mouse_buttons/ScrollDialogMenuDown.png", {181, 452, 160, 20}, TRUE},
 	[QUEST_BROWSER_ITEM_SHORT_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/quest_browser_item_short.png", {108, 86, 26, 26}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/quest_browser_item_short.png", {108, 86, 300, 26}, FALSE},
 	[QUEST_BROWSER_ITEM_LONG_BUTTON] =
-	    {UNLOADED_ISO_IMAGE, "mouse_buttons/quest_browser_item_long.png", {108, 86, 26, 26}, FALSE},
+	    {UNLOADED_ISO_IMAGE, "mouse_buttons/quest_browser_item_long.png", {108, 86, 300, 26}, FALSE},
 
 	[TAKEOVER_HELP_BUTTON] = {UNLOADED_ISO_IMAGE, "mouse_buttons/takeover_help_button.png", {78, 23, 153, 38}, FALSE},
 
