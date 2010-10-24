@@ -556,25 +556,25 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_COOKING_POT].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 
 	block_2param(ISO_CONSOLE_N, 0.8, 0.8);
-	obstacle_map[ISO_CONSOLE_N].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_CONSOLE_N].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_CONSOLE_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CONSOLE_N].label = "Terminal";
 	obstacle_map[ISO_CONSOLE_N].action = &terminal_connect_action;
 
 	block_2param(ISO_CONSOLE_S, 0.8, 0.8);
-	obstacle_map[ISO_CONSOLE_S].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_CONSOLE_S].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_CONSOLE_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CONSOLE_S].label = "Terminal";
 	obstacle_map[ISO_CONSOLE_S].action = &terminal_connect_action;
 
 	block_2param(ISO_CONSOLE_E, 0.8, 0.8);
-	obstacle_map[ISO_CONSOLE_E].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_CONSOLE_E].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_CONSOLE_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CONSOLE_E].label = "Terminal";
 	obstacle_map[ISO_CONSOLE_E].action = &terminal_connect_action;
 
 	block_2param(ISO_CONSOLE_W, 0.8, 0.8);
-	obstacle_map[ISO_CONSOLE_W].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_CONSOLE_W].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_CONSOLE_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CONSOLE_W].label = "Terminal";
 	obstacle_map[ISO_CONSOLE_W].action = &terminal_connect_action;
