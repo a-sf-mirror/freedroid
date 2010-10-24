@@ -16586,54 +16586,6 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
-Nr.=  0 x=   5 y=   4 rnd=0	 c:    1   2
-Nr.=  1 x=   4 y=   4 rnd=0	 c:    0
-Nr.=  2 x=   5 y=   3 rnd=0	 c:    0
-Nr.=  3 x=   4 y=  51 rnd=0	 c:    4
-Nr.=  4 x=   5 y=  51 rnd=0	 c:    5   3
-Nr.=  5 x=   5 y=  52 rnd=0	 c:    4
-Nr.=  6 x=  24 y=  50 rnd=0	 c:    7
-Nr.=  7 x=  25 y=  51 rnd=0	 c:    8   6
-Nr.=  8 x=  24 y=  52 rnd=0	 c:    7
-Nr.=  9 x=  31 y=  51 rnd=0	 c:   11  10
-Nr.= 10 x=  32 y=  50 rnd=0	 c:    9
-Nr.= 11 x=  32 y=  52 rnd=0	 c:    9
-Nr.= 12 x=  51 y=  51 rnd=0	 c:   14  13
-Nr.= 13 x=  52 y=  51 rnd=0	 c:   12
-Nr.= 14 x=  51 y=  52 rnd=0	 c:   12
-Nr.= 15 x=  50 y=  31 rnd=0	 c:   16
-Nr.= 16 x=  51 y=  30 rnd=0	 c:   17  15
-Nr.= 17 x=  52 y=  31 rnd=0	 c:   16
-Nr.= 18 x=  50 y=  23 rnd=0	 c:   19
-Nr.= 19 x=  51 y=  24 rnd=0	 c:   18  20
-Nr.= 20 x=  52 y=  23 rnd=0	 c:   19
-Nr.= 21 x=  48 y=  26 rnd=0	 c:   22
-Nr.= 22 x=  49 y=  27 rnd=0	 c:   21  23
-Nr.= 23 x=  48 y=  28 rnd=0	 c:   22
-Nr.= 24 x=  51 y=   4 rnd=0	 c:   26  25
-Nr.= 25 x=  52 y=   4 rnd=0	 c:   24
-Nr.= 26 x=  51 y=   3 rnd=0	 c:   24
-Nr.= 27 x=  30 y=   4 rnd=0	 c:   29  28
-Nr.= 28 x=  31 y=   3 rnd=0	 c:   27
-Nr.= 29 x=  31 y=   5 rnd=0	 c:   27
-Nr.= 30 x=  28 y=   6 rnd=0	 c:   32  31
-Nr.= 31 x=  27 y=   7 rnd=0	 c:   30
-Nr.= 32 x=  29 y=   7 rnd=0	 c:   30
-Nr.= 33 x=  25 y=   3 rnd=0	 c:   34
-Nr.= 34 x=  26 y=   4 rnd=0	 c:   35  33
-Nr.= 35 x=  25 y=   5 rnd=0	 c:   34
-Nr.= 36 x=   4 y=  23 rnd=0	 c:   37
-Nr.= 37 x=   5 y=  24 rnd=0	 c:   38  36
-Nr.= 38 x=   6 y=  23 rnd=0	 c:   37
-Nr.= 39 x=   8 y=  26 rnd=0	 c:   40
-Nr.= 40 x=   7 y=  27 rnd=0	 c:   41  39
-Nr.= 41 x=   8 y=  28 rnd=0	 c:   40
-Nr.= 42 x=   4 y=  31 rnd=0	 c:   43
-Nr.= 43 x=   5 y=  30 rnd=0	 c:   42  44
-Nr.= 44 x=   6 y=  31 rnd=0	 c:   43
-Nr.= 45 x=  27 y=  47 rnd=0	 c:   46
-Nr.= 46 x=  28 y=  48 rnd=0	 c:   47  45
-Nr.= 47 x=  29 y=  47 rnd=0	 c:   46
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 14
