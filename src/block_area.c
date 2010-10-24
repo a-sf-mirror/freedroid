@@ -1035,22 +1035,22 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].filename = "iso_brick_wall_cables_0002.png";
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].flags |= IS_VERTICAL;
 
-	block_2param(ISO_BRICK_WALL_CORNER_1, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CORNER_1, 0.3, 0.6, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CORNER_1].filename = "iso_brick_wall_0004.png";
-	block_2param(ISO_BRICK_WALL_CORNER_2, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CORNER_2, 0.65, 0.3, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CORNER_2].filename = "iso_brick_wall_0005.png";
-	block_2param(ISO_BRICK_WALL_CORNER_3, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CORNER_3, 0.6, 0.6, 0.3, 0.3);
 	obstacle_map[ISO_BRICK_WALL_CORNER_3].filename = "iso_brick_wall_0006.png";
-	block_2param(ISO_BRICK_WALL_CORNER_4, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CORNER_4, 0.3, 0.3, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CORNER_4].filename = "iso_brick_wall_0007.png";
 
-	block_2param(ISO_BRICK_WALL_CABLES_CORNER_1, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CABLES_CORNER_1, 0.3, 0.6, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_1].filename = "iso_brick_wall_cables_0004.png";
-	block_2param(ISO_BRICK_WALL_CABLES_CORNER_2, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CABLES_CORNER_2, 0.65, 0.3, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_2].filename = "iso_brick_wall_cables_0005.png";
-	block_2param(ISO_BRICK_WALL_CABLES_CORNER_3, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CABLES_CORNER_3, 0.6, 0.6, 0.3, 0.3);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_3].filename = "iso_brick_wall_cables_0006.png";
-	block_2param(ISO_BRICK_WALL_CABLES_CORNER_4, 1.2, 1.2);
+	block_4param(ISO_BRICK_WALL_CABLES_CORNER_4, 0.3, 0.3, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_4].filename = "iso_brick_wall_cables_0007.png";
 
 	//all cabled brick walls above share the same description
