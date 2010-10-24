@@ -136,7 +136,7 @@ static void leveleditor_print_object_info(enum leveleditor_object_type type, int
 			sprintf(str, "Waypt %s connection, %s for random spawn\n", "two way", array[idx] ? "NOK" : "OK");
 			break;
 	case OBJECT_ITEM:
-			sprintf(str, "Item name, %s", ItemMap[array[idx]].item_name);
+			sprintf(str, "Item name: %s", ItemMap[array[idx]].item_name);
 			break;
 	default:
 			*str = 0;
