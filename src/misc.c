@@ -1136,7 +1136,7 @@ int LoadGameConfig(void)
 	configfile = NULL;
 	free(stuff);
 
-	if (strcmp(GameConfig.freedroid_version_string, VERSION)) {
+	if (!GameConfig.freedroid_version_string || strcmp(GameConfig.freedroid_version_string, VERSION)) {
 		ErrorMessage(__FUNCTION__, "\
 Settings file found in your ~/.freedroid_rpg dir does not\n\
 seem to be from the same version a this installation of freedroid.\n\
