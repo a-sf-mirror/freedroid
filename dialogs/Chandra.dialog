@@ -82,7 +82,7 @@ LuaCode={
 
 Nr=5 Text=_"What do you know about the hostile bots?"
 LuaCode={
-	npc_says(_"The phenomenon of hostile bots has occupied my mind for quite some time. There are some strange irrationalities in this behaviour, that I cannot explain.")
+	npc_says(_"The phenomenon of hostile bots has occupied my mind for quite some time. There are some strange irrationalities in this behavior, that I cannot explain.")
 	npc_says(_"This concerns not only the suddenness of the attack but also the methods and the scale of it all.")
 	hide(5) show(3, 6, 7)
 }

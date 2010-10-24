@@ -57,13 +57,13 @@ Nr=2 Text=_"Have you detected any hostile bot activity?"
 LuaCode={
 	npc_says(_"Order Received. Initiating proximity energy level scan...")
 	npc_says(_"***** Proximity Scan Results *****", "NO_WAIT")
-	npc_says(_"Hostile Numeric Presence: HIGH", "NO_WAIT")
-	npc_says(_"Enemy Energy Levels: LOW", "NO_WAIT")
-	npc_says(_"Threat Degree Analysis: MODERATE", "NO_WAIT")
+	npc_says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
+	npc_says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
+	npc_says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
 		if (cmp_obstacle_state("CryoOuterGate", "closed")) then
-		npc_says(_"Cryo Complex Gates Status: CLOSED")
+		npc_says(_"Cryo Complex Gates Status: [b]CLOSED[/b]")
 	else
-		npc_says(_"Cryo Complex Gates Status: OPEN")
+		npc_says(_"Cryo Complex Gates Status: [b]OPEN[/b]")
 	end
 	hide(2)
 }
@@ -89,7 +89,7 @@ LuaCode={
 Nr=4 Text=_"What are your orders?"
 LuaCode={
 	npc_says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
-	npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: HIGH.")
+	npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: [b]HIGH[/b].")
 	add_cookie("cryo_614_lock_gate")
 	hide(4)
 }

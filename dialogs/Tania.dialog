@@ -208,7 +208,6 @@ LuaCode={
 	change_obstacle_state("SADDGun2", "disabled")
 	npc_says("You'll have to escort me.")
 	hide(13) show(40, 41) -- show(15)
-
 }
 ----------------------------------------------------------------------
 
