@@ -1091,51 +1091,47 @@ void enemy_say_current_state_on_screen(enemy * ThisRobot)
 			break;
 		}
 	} else {
-#if 1
-		ThisRobot->TextToBeDisplayed = ("purewait");
-#else
 		switch (ThisRobot->combat_state) {
-		case MOVE_ALONG_RANDOM_WAYPOINTS:
-			ThisRobot->TextToBeDisplayed = ("purewait (MARW)");
-			break;
-		case SELECT_NEW_WAYPOINT:
-			ThisRobot->TextToBeDisplayed = ("purewait (SNW)");
-			break;
-		case TURN_TOWARDS_NEXT_WAYPOINT:
-			ThisRobot->TextToBeDisplayed = ("purewait (TTNW)");
-			break;
-		case RUSH_TUX_AND_OPEN_TALK:
-			ThisRobot->TextToBeDisplayed = ("purewait (RTAOT)");
-			break;
-		case STOP_AND_EYE_TARGET:
-			ThisRobot->TextToBeDisplayed = ("purewait (SAET)");
-			break;
-		case ATTACK:
-			ThisRobot->TextToBeDisplayed = ("purewait (A)");
-			break;
-		case RETURNING_HOME:
-			ThisRobot->TextToBeDisplayed = ("purewait (RH)");
-			break;
-		case WAYPOINTLESS_WANDERING:
-			ThisRobot->TextToBeDisplayed = ("purewait (WW)");
-			break;
-		case PARALYZED:
-			ThisRobot->TextToBeDisplayed = ("purewait (P)");
-			break;
-		case COMPLETELY_FIXED:
-			ThisRobot->TextToBeDisplayed = ("purewait (CF)");
-			break;
-		case FOLLOW_TUX:
-			ThisRobot->TextToBeDisplayed = ("purewait (FT)");
-			break;
-		case UNDEFINED_STATE:
-			ThisRobot->TextToBeDisplayed = ("purewait (US)");
-			break;
-		default:
-			ThisRobot->TextToBeDisplayed = ("purewait (UNH)");
-			break;
+			case MOVE_ALONG_RANDOM_WAYPOINTS:
+				ThisRobot->TextToBeDisplayed = ("purewait (MARW)");
+				break;
+			case SELECT_NEW_WAYPOINT:
+				ThisRobot->TextToBeDisplayed = ("purewait (SNW)");
+				break;
+			case TURN_TOWARDS_NEXT_WAYPOINT:
+				ThisRobot->TextToBeDisplayed = ("purewait (TTNW)");
+				break;
+			case RUSH_TUX_AND_OPEN_TALK:
+				ThisRobot->TextToBeDisplayed = ("purewait (RTAOT)");
+				break;
+			case STOP_AND_EYE_TARGET:
+				ThisRobot->TextToBeDisplayed = ("purewait (SAET)");
+				break;
+			case ATTACK:
+				ThisRobot->TextToBeDisplayed = ("purewait (A)");
+				break;
+			case RETURNING_HOME:
+				ThisRobot->TextToBeDisplayed = ("purewait (RH)");
+				break;
+			case WAYPOINTLESS_WANDERING:
+				ThisRobot->TextToBeDisplayed = ("purewait (WW)");
+				break;
+			case PARALYZED:
+				ThisRobot->TextToBeDisplayed = ("purewait (P)");
+				break;
+			case COMPLETELY_FIXED:
+				ThisRobot->TextToBeDisplayed = ("purewait (CF)");
+				break;
+			case FOLLOW_TUX:
+				ThisRobot->TextToBeDisplayed = ("purewait (FT)");
+				break;
+			case UNDEFINED_STATE:
+				ThisRobot->TextToBeDisplayed = ("purewait (US)");
+				break;
+			default:
+				ThisRobot->TextToBeDisplayed = ("purewait (UNH)");
+				break;
 		}
-#endif
 	}
 
 	ThisRobot->TextVisibleTime = 0;
