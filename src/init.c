@@ -1483,6 +1483,8 @@ void PrepareStartOfNewCharacter(char *startpos)
 	Me.readied_skill = 0;
 	Me.walk_cycle_phase = 0;
 
+	Me.quest_browser_changed = 0;
+
 	// None of the inventory slots like currently equipped weapons
 	// or the like should be held in hand, like when you take it
 	// 'into your hand' by clicking on it with the mouse button in
