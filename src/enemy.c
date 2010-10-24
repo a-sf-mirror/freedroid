@@ -609,6 +609,12 @@ static int set_new_random_waypoint(enemy *this_robot)
 	int lastwaypoint_is_free;
 
 	level *bot_level = curShip.AllLevels[this_robot->pos.z];
+
+	// If the bot is not tied into the waypoint system, do not select a new waypoint
+	if (this_robot->nextwaypoint == -1) {
+		return FALSE;
+	}
+
 	// nextwaypoint is actually the waypoint that the bot just reached.
 	waypoint *current_waypoint = &((waypoint *)bot_level->waypoints.arr)[this_robot->nextwaypoint];
 
@@ -1745,9 +1751,9 @@ static void state_machine_select_new_waypoint(enemy * ThisRobot, moderately_fine
 	/* Bot must select a new waypoint randomly, and turn towards it. No move this step. */
 	if (!set_new_random_waypoint(ThisRobot)) {	/* couldn't find a waypoint ? go waypointless  */
 		ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
+	} else {
+		ThisRobot->combat_state = TURN_TOWARDS_NEXT_WAYPOINT;
 	}
-
-	ThisRobot->combat_state = TURN_TOWARDS_NEXT_WAYPOINT;
 }
 
 static void state_machine_turn_towards_next_waypoint(enemy * ThisRobot, moderately_finepoint * new_move_target)
