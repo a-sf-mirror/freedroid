@@ -1226,11 +1226,11 @@ void ParseCommandLine(int argc, char *const argv[])
 			break;
 
 		case 'q':
-			sound_on = FALSE;
+			GameConfig.sound_on = FALSE;
 			break;
 
 		case 's':
-			sound_on = TRUE;
+			GameConfig.sound_on = TRUE;
 			break;
 
 		case 'd':
@@ -1570,6 +1570,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.lazyload = 1;
 	GameConfig.show_item_labels = 0;
 	GameConfig.last_edited_level = -1;
+	GameConfig.sound_on = TRUE;
 }
 
 /* -----------------------------------------------------------------

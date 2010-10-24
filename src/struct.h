@@ -128,6 +128,7 @@ typedef struct configuration_for_freedroid {
 	float Current_BG_Music_Volume;
 	float Current_Sound_FX_Volume;
 	float current_gamma_correction;
+	int sound_on;
 
 	int Inventory_Visible;
 	int CharacterScreen_Visible;
