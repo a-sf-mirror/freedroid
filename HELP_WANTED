@@ -5,8 +5,7 @@ We have a lack of skilled graphics artists, especially those that can create pre
 All current graphics sources are .blend, but whatever software is your preference is fine by us, as long as the sources are saved in a format accessible to free tools like eg Blender.
 
 * Coders
-The more coders the more new features and bug fixes. So if you like FreedroidRPG, know C or some other language we could use
-(no, we will not rewrite the entire game to use [insert random language preference]) then do not be afraid to get in touch with us on IRC or the mailing list. :)
+The more coders the more new features and bug fixes. So if you like FreedroidRPG and know C then do not be afraid to get in touch with us on IRC or the mailing list. :)
 
 * Content creators
 What's the point of having code and pretty graphics if you do not have content?
@@ -15,15 +14,14 @@ So even if you know nothing about programing or drawing, your contribution can b
 At the end of the day, it's the content that makes or breaks an RPG game. 
 
 
-
-We also try to keep an up to date list of things & ideas we would like to implement on the Wiki. 
-Take a peak, maybe there is something there that might be something you can help out with. :)
-http://freedroid.sourceforge.net/pmwiki/pmwiki.php/ToDo/ToDo
-
 Finally, remember that no contribution is too small to be interesting. :)
 
 /FreedroidRPG development team
 
 Find us at
-irc://irc.freenode.org/freedroid
-http://sourceforge.net/mail/?group_id=54521
+ Website       ................ http://freedroid.sourceforge.net/
+ Forum         ................ https://sourceforge.net/apps/phpbb/freedroid/
+ IRC channel   ................ #freedroid on irc.freenode.net or
+                                http://webchat.freenode.net/?channels=freedroid (requires Javascript)
+ Mailing list  ................ freedroid-discussion@lists.sourceforge.net
+ Sourceforge project page   ... http://sourceforge.net/projects/freedroid/
