@@ -1883,7 +1883,10 @@ void update_item_text_slot_positions(void)
 						cur_item->text_slot_rectangle.y += cur_item->text_slot_rectangle.h + 2;
 					else
 						cur_item->text_slot_rectangle.y -= cur_item->text_slot_rectangle.h + 2;
-	
+
+					if (!item_slot_position_blocked(cur_item, i - 1))
+						break;
+				    	
 					// Maybe just a hundred left or right would also do...  but if it
 					// doesn't, we'll undo the changes made.
 					//
