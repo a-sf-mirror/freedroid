@@ -41,14 +41,6 @@
 #include "../lua/lauxlib.h"
 #include "../lua/lualib.h"
 
-enum data_type {
-	BOOL_TYPE = 0,
-	INT_TYPE,
-	FLOAT_TYPE,
-	DOUBLE_TYPE,
-	STRING_TYPE
-};
-
 /* Our Lua state for event execution */
 lua_State *global_lua_state;
 
@@ -886,118 +878,6 @@ static int lua_create_droid(lua_State *L)
 	return 0;
 }
 
-/**
- * \brief Gets the value of a field of a Lua table.
- * \param L Lua state.
- * \param index Stack index where the table is.
- * \param field Name of the field to fetch.
- * \param type Type of the data to read
- * \param result Return location for the field's value
- * \return TRUE if the value was read, FALSE if it could not be read.
- */
-static int get_value_from_table(lua_State *L, int index, const char *field, enum data_type type, void *result)
-{
-	int found_and_valid = FALSE;
-	int ltype;
-
-	lua_getfield(L, index, field);
-	ltype = lua_type(L, -1);
-
-	switch (type) {
-	case BOOL_TYPE:
-		if (ltype == LUA_TBOOLEAN) {
-			*((int*)result) = lua_toboolean(L, -1);
-			found_and_valid = TRUE;
-		}
-		break;
-	case INT_TYPE:
-		if (ltype == LUA_TNUMBER) {
-			*((int*)result) = lua_tointeger(L, -1);
-			found_and_valid = TRUE;
-		}
-		break;
-	case FLOAT_TYPE:
-		if (ltype == LUA_TNUMBER) {
-			*((float*)result) = (float)lua_tonumber(L, -1);
-			found_and_valid = TRUE;
-		}
-		break;
-	case DOUBLE_TYPE:
-		if (ltype == LUA_TNUMBER) {
-			*((double*)result) = (double)lua_tonumber(L, -1);
-			found_and_valid = TRUE;
-		}
-		break;
-	case STRING_TYPE:
-		if (ltype == LUA_TSTRING) {
-			*((char**)result) = strdup(lua_tostring(L, -1));
-			found_and_valid = TRUE;
-		}
-		break;
-	default:
-		break;
-	}
-
-	lua_pop(L, 1);
-	return found_and_valid;
-}
-
-static int lua_register_addon(lua_State *L)
-{
-	char *name = NULL;
-	struct addon_bonus bonus;
-	struct addon_material material;
-	struct addon_spec addonspec;
-
-	// Read the item name and find the item index.
-	memset(&addonspec, 0, sizeof(struct addon_spec));
-	get_value_from_table(L, 1, "name", STRING_TYPE, &name);
-	addonspec.type = GetItemIndexByName(name);
-	free(name);
-
-	// Read the simple add-on specific fields.
-	get_value_from_table(L, 1, "require_socket", STRING_TYPE, &addonspec.requires_socket);
-	get_value_from_table(L, 1, "require_item", STRING_TYPE, &addonspec.requires_item);
-	get_value_from_table(L, 1, "upgrade_cost", INT_TYPE, &addonspec.upgrade_cost);
-
-	// Process the table of bonuses. The keys of the table are the names
-	// of the bonuses and the values the attribute increase amounts.
-	lua_getfield(L, 1, "bonuses");
-	if (lua_type(L, -1) == LUA_TTABLE) {
-		lua_pushnil(L);
-		while (lua_next(L, -2) != 0) {
-			if (lua_type(L, -2) == LUA_TSTRING && lua_type(L, -1) == LUA_TNUMBER) {
-				bonus.name = strdup(lua_tostring(L, -2));
-				bonus.value = lua_tonumber(L, -1);
-				dynarray_add(&addonspec.bonuses, &bonus, sizeof(bonus));
-				lua_pop(L, 1);
-			}
-		}
-	}
-	lua_pop(L, 1);
-
-	// Process the table of materials. The keys of the table are the names
-	// of the materials and the values the required material counts.
-	lua_getfield(L, 1, "materials");
-	if (lua_type(L, -1) == LUA_TTABLE) {
-		lua_pushnil(L);
-		while (lua_next(L, -2) != 0) {
-			if (lua_type(L, -2) == LUA_TSTRING && lua_type(L, -1) == LUA_TNUMBER) {
-				material.name = strdup(lua_tostring(L, -2));
-				material.value = lua_tonumber(L, -1);
-				dynarray_add(&addonspec.materials, &material, sizeof(material));
-				lua_pop(L, 1);
-			}
-		}
-	}
-	lua_pop(L, 1);
-
-	// Register a new add-on specification.
-	add_addon_spec(&addonspec);
-
-	return 0;
-}
-
 luaL_reg lfuncs[] = {
 	/* teleport(string map_label) 
 	 * Teleports the player to the given map label.
@@ -1201,10 +1081,6 @@ luaL_reg lfuncs[] = {
 
 	{"create_droid", lua_create_droid},
 
-	/* addon()
-	 * Registers a new add-on specification.
-	 */
-	{"addon", lua_register_addon},
 	{NULL, NULL}
 };
 

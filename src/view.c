@@ -2250,32 +2250,6 @@ void clear_all_loaded_tux_images(int with_free)
 };				// void clear_all_loaded_tux_images ( int force_free )
 
 /**
- * Now we determine the phase to use.
- */
-int get_current_phase()
-{
-	int our_phase = (int)Me.phase;
-	float my_speed;
-
-	if (Me.weapon_swing_time < 0) {
-		our_phase = (int)Me.walk_cycle_phase;
-
-		// Maybe the Tux speed is so high, that he should be considered running...
-		// But then we should use the running motion, which is just 10 frames shifted
-		// but otherwise in sync with the normal walkcycle...
-		//
-		my_speed = sqrt(Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y);
-		if (my_speed > (TUX_WALKING_SPEED + TUX_RUNNING_SPEED) * 0.5)
-			our_phase += TUX_WALK_CYCLE_PHASES;
-
-		// our_phase = ( ( ( int ) SDL_GetTicks()/1000) % 6 ) + 16 ;
-	}
-
-	return (our_phase);
-
-};				// int get_current_phase ( int tux_part_group ) 
-
-/**
  *
  *
  */
@@ -3213,10 +3187,9 @@ Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
 	}
 }
 
-/*----------------------------------------------------------------------
- * This function should blit the isometric version of the Tux to the
- * screen.
- *----------------------------------------------------------------------*/
+/*
+ * This function blits the isometric version of the Tux to the screen
+ */
 void iso_put_tux(int x, int y)
 {
 	// Compute the 3 parameters defining how to render the animated Tux:
@@ -3229,7 +3202,7 @@ void iso_put_tux(int x, int y)
 	// from motion_class.
 
 	int motion_class = 0;
-	int our_phase = (int)Me.walk_cycle_phase; // Tux current walking keyframe
+	int our_phase = (int)Me.phase; // Tux current animation keyframe
 	int rotation_index = 0; // Facing front
 
 	motion_class = get_motion_class();
@@ -3237,10 +3210,9 @@ void iso_put_tux(int x, int y)
 	if (x == -1) {
 		float angle;
 
-		our_phase = get_current_phase();
-
 		// Compute the rotation angle, and then the rotation index
-		if ((Me.phase > 0) && (Me.phase <= TUX_SWING_PHASES)) {
+		if ((Me.phase >= tux_anim.attack.first_keyframe) &&
+			(Me.phase <= tux_anim.attack.last_keyframe)) {
 			// Attack animation running, Me.angle is the rotation angle to use
 			angle = Me.angle;
 		} else {

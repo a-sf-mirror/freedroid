@@ -374,4 +374,20 @@ EXTERN char *do_benchmark;
 #endif
 
 EXTERN list_head_t npc_head;
+
+#undef EXTERN
+#ifdef _influ_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
+EXTERN struct {
+	int standing_keyframe;
+	struct timebased_animation attack;
+	struct distancebased_animation walk;
+	struct distancebased_animation run;
+} tux_anim;
+
 #endif				// _global_h
+

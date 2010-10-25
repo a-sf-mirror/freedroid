@@ -755,75 +755,124 @@ void hit_tux(int damage, int owner)
 
 
 /**
- * This function does the 'rotation' of the influencer, according to the
- * current energy level of the influencer.  If his energy is low, the
- * rotation will also go slow, if his energy is high, rotation will go
- * fast. 
+ * This function computes to current animation keyframe of Tux (Me.phase).
+ *
+ * Depending of Tux's current state (attacking, standing, walking, running),
+ * an animation is chosen, defined by a keyframed specification and an "animation
+ * progress cursor". This cursor progresses from 0 to 1 (possibly looping for
+ * some animations).
+ *
+ * The current keyframe is then: first_keyframe + cursor * nb_keyframes
+ *
+ * The way a cursor progresses from 0 to 1 depends on the kind of the animation.
+ * For example, the attack animation is a duration-based animation, so its cursor
+ * progresses as time progresses. The walk animation is based on the distance
+ * covered by Tux, so its cursor is a function of distance.
+ *
+ * Note on walking/running animations:
+ * Those animations are running in loop, and we can change from walk to run
+ * in the middle of the animation. In order to have a seamless transition
+ * between the animations, we do not reset the progress cursor's value.
+ * So those animations share a common animation progress cursor (Me.walk_cycle_phase).
  */
 void animate_tux()
 {
-	float my_speed;
-#define TOTAL_SWING_TIME 0.55
-#define FULL_BREATHE_TIME 3
-#define TOTAL_STUNNED_TIME 0.35
 #define STEP_TIME (0.28)
 	static float step_countdown = 0;
 
-	// First we handle the case of just getting hit...
+	// First we handle the case of just getting hit
 	//
-	if (Me.got_hit_time != (-1)) {
-		Me.phase = TUX_SWING_PHASES + TUX_BREATHE_PHASES;
-		if (Me.got_hit_time > TOTAL_STUNNED_TIME)
-			Me.got_hit_time = (-1);
-		Me.walk_cycle_phase = 17;
+	// Note: We do not yet have keyframes for such an animation, so those
+	// commented lines are only a place-holder for future extension.
+
+	/*
+	if (Me.got_hit_time != -1) {
+		Me.phase = .....
+		return;
 	}
-	// Now we handle the case of nothing going on and the Tux just standing around...
-	// or moving to some place.
-	//
-	else if (Me.weapon_swing_time == (-1)) {
-		Me.phase = ((int)(Me.MissionTimeElapsed * TUX_BREATHE_PHASES / FULL_BREATHE_TIME)) % TUX_BREATHE_PHASES;
+	*/
 
-		if (fabsf(Me.speed.x) + fabsf(Me.speed.y) < 0.3)
-			Me.walk_cycle_phase = 17;
-		else {
-			my_speed = sqrt(Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y);
-			if (my_speed <= (TUX_WALKING_SPEED + TUX_RUNNING_SPEED) * 0.5)
-				Me.walk_cycle_phase += Frame_Time() * 10.0 * my_speed;
-			else {
-				Me.walk_cycle_phase += Frame_Time() * 3.0 * my_speed;
+	// Attack animation
+	// (duration-based animation, no loop)
 
-				step_countdown += Frame_Time();
-				if (step_countdown > STEP_TIME) {
-					play_sample_using_WAV_cache_v("effects/tux_footstep.ogg", FALSE, FALSE, 0.2);
-					step_countdown -= STEP_TIME;
-					// Me . running_power -= STEP_TIME * 2.0 ;
-				}
+	if (Me.weapon_swing_time != -1) {
+		if (tux_anim.attack.nb_keyframes != 0) {
+			float progress_cursor = (float)Me.weapon_swing_time / tux_anim.attack.duration;
+			Me.phase = tux_anim.attack.first_keyframe + progress_cursor * (float)(tux_anim.attack.nb_keyframes);
+
+			// Clamp to maximum keyframe value
+			if ((int)Me.phase > tux_anim.attack.last_keyframe) {
+				Me.phase = tux_anim.attack.last_keyframe;
 			}
-
-			if (Me.walk_cycle_phase > 25.0)
-				Me.walk_cycle_phase = 15.0;
-		}
-
-	}
-	// Now we handle the case of a weapon swing just going on...
-	//
-	else {
-		Me.phase = (TUX_BREATHE_PHASES + (Me.weapon_swing_time * TUX_SWING_PHASES * 1.0 / TOTAL_SWING_TIME));
-		if (Me.weapon_swing_time > TOTAL_SWING_TIME)
-			Me.weapon_swing_time = (-1);
-		if (((int)Me.phase) > TUX_SWING_PHASES + TUX_BREATHE_PHASES) {
+		} else {
 			Me.phase = 0;
 		}
-		Me.walk_cycle_phase = 17;
-		// DebugPrintf ( 0 , "\nphase = %d. " , (int) Me . phase );
+
+		// Reset walk/run animation progress cursor
+		Me.walk_cycle_phase = 0.0;
+
+		// Stop the time counter when the end of the animation is reached
+		if (Me.weapon_swing_time > tux_anim.attack.duration)
+			Me.weapon_swing_time = -1;
+
+		return;
 	}
 
-	if (((int)(Me.phase)) >= TUX_TOTAL_PHASES) {
-		Me.phase = 0;
-	}
-	// Me . walk_cycle_phase = Me . phase ;
+	// Breathe animation (launched when Tux's speed is very low).
+	// Currently, there is no such animation, so we only display Tux at its
+	// standing position.
 
-};				// void animate_tux ( void )
+	if (fabsf(Me.speed.x) + fabsf(Me.speed.y) < 0.3) {
+		Me.walk_cycle_phase = 0.0;
+		Me.phase = tux_anim.standing_keyframe;
+
+		return;
+	}
+
+	// Walk/run animation
+	// (distance-based animation, loop)
+	// The progress cursor is: distance_covered_by_tux / distance_covered_during_one_sequence
+	//
+	// There is no way to 'statically' compute the distance covered by Tux,
+	// so it is computed 'dynamically', i.e. incrementally, by adding the
+	// distance covered since last frame.
+	// The progress cursor thus has to be stored (Me.walk_cycle_phase)
+
+	/* Choose animation spec depending on Tux speed */
+	struct distancebased_animation *anim_spec;
+
+	float my_speed = sqrt(Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y);
+
+	if (my_speed <= (TUX_WALKING_SPEED + TUX_RUNNING_SPEED) * 0.5) {
+		anim_spec = &(tux_anim.walk);
+	} else {
+		anim_spec = &(tux_anim.run);
+		step_countdown += Frame_Time();
+		if (step_countdown > STEP_TIME) {
+			play_sample_using_WAV_cache_v("effects/tux_footstep.ogg", FALSE, FALSE, 0.2);
+			step_countdown -= STEP_TIME;
+		}
+	}
+
+	if (anim_spec->nb_keyframes != 0) {
+		/* Set the progress cursor */
+		Me.walk_cycle_phase += (Frame_Time() * my_speed) / anim_spec->distance;
+
+		/* Loop of progress cursor */
+		while (Me.walk_cycle_phase > 1.0) {
+			Me.walk_cycle_phase -= 1.0;
+		}
+
+		/* Set current animation keyframe */
+		Me.phase = anim_spec->first_keyframe + Me.walk_cycle_phase * anim_spec->nb_keyframes;
+		if ((int)Me.phase > anim_spec->last_keyframe) {
+			Me.phase = anim_spec->last_keyframe;
+		}
+	} else {
+		Me.walk_cycle_phase = 0.0;
+		Me.phase = tux_anim.standing_keyframe;
+	}
+}
 
 /**
  * This function creates several exprosions around the location where the

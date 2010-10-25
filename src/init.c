@@ -1088,6 +1088,10 @@ void Init_Game_Data()
 	Get_Programs_Data(Data);
 	free(Data);
 
+	// Load Tux animation specifications.
+	find_file("tuxrender_specs.lua", MAP_DIR, fpath, 1);
+	run_lua_file(fpath);
+
 	// Item archetypes must be loaded too
 	find_file("freedroid.item_archetypes", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
@@ -1722,6 +1726,7 @@ I will not be able to load or save games or configurations\n\
 	init_keyboard_input_array();
 	init_message_log();
 	init_lua();
+	init_luaconfig();
 
 	InitAudio();
 

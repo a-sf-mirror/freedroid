@@ -937,4 +937,22 @@ typedef struct text_widget {
 	void (*content_above_func)(void);
 } text_widget;
 
+/*
+ * Specification of Animations
+ */
+
+struct timebased_animation {
+	float duration;			// Duration of the animation
+	int first_keyframe;
+	int last_keyframe;
+	int nb_keyframes;		// Set to (last - first). Avoid to compute it each time this information is needed
+};
+
+struct distancebased_animation {
+	float distance;			// Distance covered during the whole animation
+	int first_keyframe;
+	int last_keyframe;
+	int nb_keyframes;		// Set to (last - first). Avoid to compute it each time this information is needed
+};
+
 #endif

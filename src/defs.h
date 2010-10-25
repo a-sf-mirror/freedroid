@@ -585,15 +585,12 @@ enum {
 #define ADDON_CRAFTING_RECT_W 320
 #define ADDON_CRAFTING_RECT_H 480
 
-#define TUX_SWING_PHASES 	14
-#define TUX_BREATHE_PHASES 	1
-#define TUX_GOT_HIT_PHASES      0
-#define TUX_WALK_CYCLE_PHASES   10
-#define TUX_RUN_CYCLE_PHASES   10
-#define TUX_TOTAL_PHASES (TUX_SWING_PHASES+TUX_BREATHE_PHASES+TUX_GOT_HIT_PHASES+TUX_WALK_CYCLE_PHASES+TUX_RUN_CYCLE_PHASES)
+// Number of keyframes in Tux image_archive files
+#define TUX_TOTAL_PHASES 35
 
-#define TUX_RUNNING_SPEED (5.5)
-#define TUX_WALKING_SPEED (2.5)
+// The speed is measured in tiles per second.
+#define TUX_RUNNING_SPEED 5.5
+#define TUX_WALKING_SPEED 2.5
 
 #define MAX_TUX_DIRECTIONS      16
 #define RADIAL_SPELL_DIRECTIONS 16

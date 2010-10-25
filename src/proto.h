@@ -57,6 +57,9 @@ void init_lua(void);
 void run_lua(const char *code);
 void run_lua_file(const char *);
 
+// luaconfig.c
+void init_luaconfig(void);
+
 // influ.c 
 float calc_distance(float pos1_x, float pos1_y, float pos2_x, float pos2_y);
 float vect_len(moderately_finepoint our_vector);

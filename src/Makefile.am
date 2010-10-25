@@ -12,7 +12,7 @@ EXTRA_DIST =
 
 freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c \
 	event.c dynarray.c item_upgrades.c item_upgrades_ui.c addon_crafting_ui.c \
-	lua.c \
+	lua.c luaconfig.c \
 	blocks.c \
 	block_area.c \
 	graphics.c map.c colldet.c init.c \
