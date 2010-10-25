@@ -1494,7 +1494,7 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 	// In the case that X was pressed, we don't use the item positions but rather
 	// we use the item slot rectangles from the item texts.
 	//
-	if (XPressed()) {
+	if (XPressed() || GameConfig.show_item_labels) {
 		struct visible_level *vis_lvl, *n;
 		
 		BROWSE_VISIBLE_LEVELS(vis_lvl, n) {	
