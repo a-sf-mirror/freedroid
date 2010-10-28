@@ -4216,8 +4216,8 @@ static void show_inventory_screen(void)
 	//
 	for (SlotNum = 0; SlotNum < MAX_ITEMS_IN_INVENTORY - 1; SlotNum++) {
 		// In case the item does not exist at all, we need not do anything more...
-		if (Me.Inventory[SlotNum].type == (-1)) {
-			// DisplayText( "\n--- Slot empty ---" , -1 , -1 , &InventoryRect );
+		if (Me.Inventory[SlotNum].type == -1 || Me.Inventory[SlotNum].type < 0) {
+			// The < 0 test is to handle a case where the item type field gets corrupted and is -256. We could not reproduce the problem so at least try to hide it to players.
 			continue;
 		}
 		// In case the item is currently held in hand, we need not do anything more HERE ...
