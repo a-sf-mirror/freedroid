@@ -39,81 +39,79 @@ class Grid(object):
         self.w = self.h = 1
         self.placed = []
 
-    def place(self, w, h):
+    def place(self, w, h, columns, file_number, max_x, max_y):
         while w > self.w: self.w *= 2
         while h > self.h: self.h *= 2
 
+	x = max_x * (file_number % columns)
+        y = max_y * (file_number - (file_number % columns))/columns
+
+        if x > self.w:
+            self.w *= 2
+            print "Size of the grid is now %dx%d" % (self.w, self.h)
+        if y > self.h:
+            self.h *= 2
+            print "Size of the grid is now %dx%d" % (self.w, self.h)
+
+        self.placed.append((x, y, w, h))
         surface = self.w * self.h
         surf_used = 0
         for ax,ay,aw,ah in self.placed:
-            surf_used += aw * ah
+            surf_used += aw * ah 
         
         print "Ratio used / total : %f" % (surf_used / float(surface))
-
-        if surface - surf_used < w * h:
-            if self.w + w <= self.h: self.w *= 2
-            else: self.h *= 2
-
-        y, x = self.h, self.w
-        while y >= 0:
-            while x >= 0:
-                for ax,ay,aw,ah in self.placed:
-                    while x > 0 and ax < x < ax + aw: x -= 1
-                    if x == 0:
-                        while y > 0 and ay < y < ay + ah: y -= 1
-                canbeplaced = True
-                for i in xrange(w):
-                    if not canbeplaced: break
-                    for j in xrange(h):
-                        for ax,ay,aw,ah in self.placed:
-                            if ((ax <= x + i < ax + aw and ay <= y + j < ay + ah)
-                             or x + i >= self.w or y + j >= self.h):
-                                canbeplaced = False
-                                break
-                        if not canbeplaced: break
-                if canbeplaced:
-                    self.placed.append((x, y, w, h))
-                    return (x, y)
-                x -= 16
-            x = self.w
-            y -= 16
-
-        if self.w + w <= self.h:
-            x = self.w
-            y = 0
-            self.w *= 2
-            self.placed.append((x, y, w, h))
-            return (x, y)
-        else:
-            x = 0
-            y = self.h
-            self.h *= 2
-            self.placed.append((x, y, w, h))
-            return (x, y)      
-
+	return (x, y)
 def main(argv):
     if len(argv) < 3:
         print "USAGE: %s <files-pattern> <coords-file>" % argv[0]
         return 1
    
-    random.seed()
-
     files = glob(argv[1])
-
-    random.shuffle(files);
 
     images = [Image.open(f) for f in files]
 
     g = Grid()
     pos = []
+    x_tiles = 1
+    y_tiles = 1
+    max_x = 0
+    max_y = 0
+    x_length = 256
+    y_length = 128
+    num_images = 0
+    file_number = 0
     try:
         for e,i in enumerate(images):
+            num_images += 1
+            if i.size[0] > max_x:
+                max_x = i.size[0]
+            if i.size[1] > max_y:
+                max_y = i.size[1]
+        while 1:
+            #print "Tiles Supported: (%d) %dx %dy" % (y_tiles * x_tiles, x_tiles, y_tiles)
+            #print "Size: %dx %dy %f\n" % (x_tiles * max_x, y_tiles * max_y, (x_tiles * max_x * y_tiles * max_y * 2) / float(x_length * y_length))
+            if (x_tiles * y_tiles) >= num_images:
+                break
+
+            #print "New Area: %dx %dy" % (x_length, y_length)
+            while 1:
+ 		#try to fit tiles into existing area:
+                if (y_length/max_y) >= (y_tiles + 1):
+                    y_tiles += 1
+                elif (x_length/max_x) >= (x_tiles +1):
+                    x_tiles += 1
+		#Otherwise add area
+                elif ((x_length * 2)/max_x * y_tiles) > ((y_length * 2)/max_y * x_tiles) or (x_length <= y_length):
+                    x_length *= 2
+                    break
+                elif ((x_length * 2)/max_x * y_tiles) <= ((y_length * 2)/max_y * x_tiles) or (y_length <= x_length):
+                    y_length *= 2
+                    break
+        for e,i in enumerate(images):
             print "Placing %s" % files[e]
-            t = time.time()
-            pos.append((files[e], i, g.place(*i.size)))
-            print "Placed, size of the grid is now %dx%d" % (g.w, g.h)
-            #print "Time needed: %f s" % (time.time() - t)
-	    print "Done: %d/%d (%f%%)" % (e+1, len(files), 100*float(e+1)/len(files))
+            pos.append((files[e], i, g.place(i.size[0], i.size[1], x_tiles, file_number, max_x, max_y)))
+            file_number += 1
+            print "Done: %d/%d (%f%%)" % (e+1, len(files), 100*float(e+1)/len(files)) 
     except KeyboardInterrupt:
         print "Interrupted, press enter to continue or C-C to exit"
         raw_input()
