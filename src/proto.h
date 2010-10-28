@@ -128,6 +128,9 @@ void blit_leveleditor_point(int x, int y);
 void update_item_text_slot_positions(void);
 void AssembleCombatPicture(int);
 void blit_tux(int x, int y);
+void (*iso_put_tux_get_function(char *part_name))(int, int, int, int, int);
+void tux_rendering_init();
+void tux_rendering_validate();
 void PutBullet(int Bullet_number, int mask);
 void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item);
 void PutBlast(int);
@@ -142,6 +145,8 @@ void get_visible_levels(void);
 void reset_visible_levels(void);
 void PutIndividuallyShapedDroidBody(enemy *, SDL_Rect, int, int);
 void object_vtx_color(void *, float *, float *, float *);
+int get_motion_class_id_by_name(char *);
+char *get_motion_class_name_by_id(int);
 
 #define next_valid_visible_level(pos, start) ({ \
 	pos = start; \

@@ -196,6 +196,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -234,6 +235,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -272,6 +274,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -310,6 +313,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -354,6 +358,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -392,6 +397,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -430,6 +436,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -474,6 +481,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -512,6 +520,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -556,6 +565,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -594,6 +604,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -633,6 +644,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -671,6 +683,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -709,6 +722,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -747,6 +761,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=60
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -785,6 +800,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -823,6 +839,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -861,6 +878,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -899,6 +917,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -938,6 +957,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -982,6 +1002,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=20
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1019,6 +1040,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=20
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1060,6 +1082,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1095,6 +1118,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1130,6 +1154,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1165,6 +1190,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1249,6 +1275,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="22LR"
 Item as gun: ammo clip size=11
 Item as gun: weapon requires both hands="no"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1287,6 +1314,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="22LR"
 Item as gun: ammo clip size=11
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1349,6 +1377,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="Sshell"
 Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="no"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1387,6 +1416,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="Sshell"
 Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1425,6 +1455,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="Sshell"
 Item as gun: ammo clip size=8
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1481,6 +1512,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="9mm"
 Item as gun: ammo clip size=19
 Item as gun: weapon requires both hands="no"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1519,6 +1551,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="9mm"
 Item as gun: ammo clip size=30
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1575,6 +1608,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="7.62mm"
 Item as gun: ammo clip size=5
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1613,6 +1647,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="7.62mm"
 Item as gun: ammo clip size=30
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1671,6 +1706,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="50BMG"
 Item as gun: ammo clip size=10
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1728,6 +1764,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=20
 Item as gun: weapon requires both hands="no"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1766,6 +1803,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=40
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1804,6 +1842,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=60
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1842,6 +1881,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=80
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1899,6 +1939,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="plasma_ammunition"
 Item as gun: ammo clip size=6
 Item as gun: weapon requires both hands="no"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1937,6 +1978,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="plasma_ammunition"
 Item as gun: ammo clip size=12
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1975,6 +2017,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="plasma_ammunition"
 Item as gun: ammo clip size=18
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2031,6 +2074,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="exterminator_ammunition"
 Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2069,6 +2113,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="exterminator_ammunition"
 Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2113,6 +2158,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=10
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2212,6 +2258,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2245,6 +2292,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2278,6 +2326,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="plasma_ammunition"
 Item as gun: ammo clip size=3
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2313,6 +2362,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2346,6 +2396,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=15
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2381,6 +2432,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2416,6 +2468,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2451,6 +2504,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2486,6 +2540,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2519,6 +2574,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=5
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2554,6 +2610,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2589,6 +2646,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2624,6 +2682,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2659,6 +2718,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2694,6 +2754,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="yes"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2728,6 +2789,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=30
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2765,6 +2827,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=30
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -2800,6 +2863,7 @@ Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="exterminator_ammunition"
 Item as gun: ammo clip size=2
 Item as gun: weapon requires both hands="yes"
+Item motion class="gun_motion"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -4001,6 +4065,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
 Item as gun: weapon requires both hands="no"
+Item motion class="sword_motion"
 ----- end of part only relevant for weapons ---
 
 ** Start of new item specification subsection **

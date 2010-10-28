@@ -72,12 +72,8 @@ char *part_group_strings[ALL_PART_GROUPS] = {
 	""
 };
 
-#define ALL_TUX_MOTION_CLASSES 2
 iso_image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
 
-char *motion_class_string[ALL_TUX_MOTION_CLASSES] = { "sword_motion", "gun_motion" };
-
-int previously_used_motion_class = -4;	// something we'll never really use...
 static int old_current_level = -1;
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_directions[RADIAL_SPELL_DIRECTIONS], float age);
@@ -2250,35 +2246,6 @@ void clear_all_loaded_tux_images(int with_free)
 };				// void clear_all_loaded_tux_images ( int force_free )
 
 /**
- *
- *
- */
-int get_motion_class()
-{
-	int weapon_type = Me.weapon_item.type;
-	int motion_class;
-
-	if (weapon_type == (-1)) {
-		motion_class = 0;
-	} else {
-		if (ItemMap[weapon_type].item_weapon_is_melee != 0)
-			motion_class = 0;
-		else
-			motion_class = 1;
-	}
-
-	// If the motion class has changed, then everything needs to be reloaded...
-	//
-	if (motion_class != previously_used_motion_class) {
-		previously_used_motion_class = motion_class;
-		clear_all_loaded_tux_images(TRUE);
-	}
-
-	return (motion_class);
-
-};				// int get_motion_class ( ) 
-
-/**
  * We open a tux image archive file corresponding to the currently needed
  * tux image series.
  */
@@ -2291,7 +2258,7 @@ FILE *open_tux_image_archive_file(int tux_part_group, int motion_class, char *pa
 	// We need a file name!
 	//
 	sprintf(constructed_filename, "tux_motion_parts/%s/%s%s.tux_image_archive.z",
-		motion_class_string[motion_class], part_group_strings[tux_part_group], part_string);
+		get_motion_class_name_by_id(motion_class), part_group_strings[tux_part_group], part_string);
 	find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
 
 	// First we need to open the file
@@ -2812,6 +2779,15 @@ void iso_put_tux_torso(int x, int y, int motion_class, int our_phase, int rotati
  *
  *
  */
+void iso_put_tux_weaponarm(int x, int y, int motion_class, int our_phase, int rotation_index)
+{
+	iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
+}
+
+/**
+ *
+ *
+ */
 void iso_put_tux_shieldarm(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
 	static int first_call = 1;
@@ -2974,217 +2950,158 @@ void iso_put_tux_weapon(int x, int y, int motion_class, int our_phase, int rotat
 }
 
 /**
- * This function is intended to bring the Tux parts to the screen 
- * directly, respecting the correct order of blitting for all the parts
- * of the Tux in the sword motion.  Of course, the blitting order stongly
- * depends on the direction the Tux is facing.  Therefore a lot of cases
- * have to be separated.
+ * Given the name of a Tux's part, returns the function that render it
+ *
+ * \param part_name A Tux's part name
+ * \return A pointer to the function used to render the Tux's part
  */
-void iso_put_all_tux_parts_for_sword_motion(int x, int y, int motion_class, int our_phase, int rotation_index)
+void (*iso_put_tux_get_function(char *part_name))(int, int, int, int, int)
 {
-	// The correct order of blitting for all the Tux parts stongly depends
-	// on the direction the Tux is facing, therefore we need to do careful
-	// case separation for the tux direction.
-	//
-	switch (rotation_index) {
-	case 0:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		break;
-	case 8:
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
+	if (part_name == NULL)
+		return NULL;
 
-	case 9:
-	case 10:
-	case 11:
-	case 12:
-	case 13:
-	case 14:
-	case 15:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
+	if (!strcmp(part_name, "head")) {
+		return iso_put_tux_head;
+	} else if (!strcmp(part_name, "torso")) {
+		return iso_put_tux_torso;
+	} else if (!strcmp(part_name, "feet")) {
+		return iso_put_tux_feet;
+	} else if (!strcmp(part_name, "shieldarm")) {
+		return iso_put_tux_shieldarm;
+	} else if (!strcmp(part_name, "weaponarm")) {
+		return iso_put_tux_weaponarm;
+	} else if (!strcmp(part_name, "weapon")) {
+		return iso_put_tux_weapon;
+	}
 
-	case 1:
-	case 2:
-	case 3:
-	case 4:
-	case 5:
-	case 6:
-	case 7:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		break;
+	return NULL;
+}
 
-	default:
-		DebugPrintf(-1, "Suspicious rotation index: %d\n", rotation_index);
-		ErrorMessage(__FUNCTION__, "\
-Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
-		break;
+/**
+  * Initialize Tux's part rendering specification's data structures
+  */
+void tux_rendering_init()
+{
+	dynarray_init(&tux_rendering.motion_class_names, 0, 0);
+	tux_rendering.render_order = NULL;
+}
+
+/**
+ * Check mandatory specifications, needed to ensure that Tux can be rendered.
+ */
+void tux_rendering_validate()
+{
+	// At least one motion_class is needed
+	if (tux_rendering.motion_class_names.size < 1) {
+		ErrorMessage(__FUNCTION__,
+			"Tux rendering specification is invalid: at least one motion_class is needed",
+			PLEASE_INFORM, IS_FATAL);
+	}
+
+	// There must be a rendering order defined for each motion class, each rotation
+	// and each animation phase
+	int i, j;
+	for (i = 0; i < tux_rendering.motion_class_names.size; i++) {
+		for (j = 0; j < MAX_TUX_DIRECTIONS; j++) {
+			if (tux_rendering.render_order[i][j] == NULL) {
+				ErrorMessage(__FUNCTION__,
+					"Tux rendering specification is invalid: no rendering order defined for motion_class \"%s\""
+					" and rotation index %d",
+					PLEASE_INFORM, IS_FATAL,
+					get_motion_class_name_by_id(i), j);
+			} else {
+				// Check that there is a rendering order for every animation phases
+				// Set a flag for each phase found, and then check that all flags are set
+				int phase;
+				int check_phase[TUX_TOTAL_PHASES];
+				memset(check_phase, 0, TUX_TOTAL_PHASES*sizeof(int));
+
+				struct tux_part_render_set *render_order_ptr = tux_rendering.render_order[i][j];
+				while (render_order_ptr != NULL) {
+					for (phase = render_order_ptr->phase_start; phase <= render_order_ptr->phase_end; phase++) {
+						check_phase[phase] = 1;
+					}
+					render_order_ptr = render_order_ptr->next;
+				}
+
+				for (phase = 0; phase < TUX_TOTAL_PHASES; phase++) {
+					if (check_phase[phase] == 0) {
+						ErrorMessage(__FUNCTION__,
+							"Tux rendering specification is invalid: no rendering order defined for motion_class \"%s\","
+							" rotation index %d and animation phase %d",
+							PLEASE_INFORM, IS_FATAL,
+							get_motion_class_name_by_id(i), j, phase);
+					}
+				}
+			}
+		}
 	}
 }
 
 /**
- * This function is intended to bring the Tux parts to the screen 
- * directly, respecting the correct order of blitting for all the parts
- * of the Tux in the gun motion.  Of course, the blitting order stongly
- * depends on the direction the Tux is facing.  Therefore a lot of cases
- * have to be separated.
+ * Returns the id (index number) of a motion_class, given its name
+ *
+ * \param name A motion_class name
+ * \return Id associated to the motion_class name or -1 if 'name' is invalid or unknown
  */
-void iso_put_all_tux_parts_for_gun_motion(int x, int y, int motion_class, int our_phase, int rotation_index)
+int get_motion_class_id_by_name(char *name)
 {
-	// The correct order of blitting for all the Tux parts stongly depends
-	// on the direction the Tux is facing, therefore we need to do careful
-	// case separation for the tux direction and sometimes even handle
-	// some subcases because of the changes during the full motion.
-	//
-	switch (rotation_index) {
-	case 0:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		break;
-	case 8:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		if (((int)Me.phase >= 3) && ((int)Me.phase <= 12)) {
-			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		} else {
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		}
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
+	// Check pre-condition
+	if (name == NULL)
+		return -1;
 
-	case 9:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		if (((int)Me.phase >= 3) && ((int)Me.phase <= 12)) {
-			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		} else {
-			iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		}
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
-
-	case 10:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		if (((int)Me.phase >= 3) && ((int)Me.phase <= 12)) {
-			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		} else {
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		}
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
-	case 11:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
-
-	case 12:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
-
-	case 13:
-	case 14:
-	case 15:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		if (((int)Me.phase >= 4) && ((int)Me.phase <= 11)) {
-			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		} else {
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		}
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
-
-	case 1:
-	case 2:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		if (((int)Me.phase >= 4) && ((int)Me.phase <= 11)) {
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		} else {
-			iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-			iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		}
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		break;
-
-	case 3:
-	case 4:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
-
-	case 5:
-	case 6:
-	case 7:
-		iso_put_tux_feet(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_shieldarm(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_weapon(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_torso(x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_part(PART_GROUP_WEAPONARM, "iso_weaponarm", x, y, motion_class, our_phase, rotation_index);
-		iso_put_tux_head(x, y, motion_class, our_phase, rotation_index);
-		break;
-
-	default:
-		DebugPrintf(-1, "Suspicious rotation index: %d\n", rotation_index);
-		ErrorMessage(__FUNCTION__, "\
-Suspicious rotation index encountered!", PLEASE_INFORM, IS_FATAL);
-		break;
+	// Search 'name' in the motion_class_names list
+	int i;
+	for (i = 0; i < tux_rendering.motion_class_names.size; i++) {
+		if (!strcmp(name, ((char **)tux_rendering.motion_class_names.arr)[i]))
+			return i;
 	}
+
+	// Fall-back if 'name' is not found
+	return -1;
+}
+
+/**
+ * Returns the name of a motion_class, given its id (index number).
+ *
+ * \param id A motion_class id
+ * \return The name of the motion_class associated to 'id', or the first available motion_class if 'id' is invalid (not in range)
+ */
+char *get_motion_class_name_by_id(int id)
+{
+	// Check pre-condition. Returns first name if id is invalid
+	if ((id < 0) || (id >= tux_rendering.motion_class_names.size))
+		return ((char **)tux_rendering.motion_class_names.arr)[0];
+
+	// Return the motion_class name
+	return ((char **)tux_rendering.motion_class_names.arr)[id];
+}
+
+/**
+ * Returns Tux's current motion_class id, which depends on its weapon.
+ * Force a reload of Tux iso_images if motion_class has changed since last call.
+ *
+ * \return The current motion_class's id
+ */
+int get_motion_class_id()
+{
+	static int previously_used_motion_class = -4; // something we'll never really use
+	int motion_class;
+
+	if (Me.weapon_item.type == -1) {
+		// It Tux has no weapon in hand, return the first motion_class
+		motion_class = 0;
+	} else {
+		motion_class = ItemMap[Me.weapon_item.type].motion_class;
+	}
+
+	// If the motion_class has changed, then Tux's images have to be reloaded
+	if (motion_class != previously_used_motion_class) {
+		previously_used_motion_class = motion_class;
+		clear_all_loaded_tux_images(TRUE);
+	}
+
+	return motion_class;
 }
 
 /*
@@ -3205,31 +3122,27 @@ void iso_put_tux(int x, int y)
 	int our_phase = (int)Me.phase; // Tux current animation keyframe
 	int rotation_index = 0; // Facing front
 
-	motion_class = get_motion_class();
+	motion_class = get_motion_class_id();
 
 	if (x == -1) {
 		float angle;
 
-		// Compute the rotation angle, and then the rotation index
-		if ((Me.phase >= tux_anim.attack.first_keyframe) &&
-			(Me.phase <= tux_anim.attack.last_keyframe)) {
-			// Attack animation running, Me.angle is the rotation angle to use
-			angle = Me.angle;
-		} else {
-			// If Tux is walking/running, compute its angle from the direction
-			// of movement.
+		// Compute the rotation angle
+		// If Tux is walking/running, compute its angle from the direction of movement,
+		// else reuse the last computed angle.
+		angle = Me.angle;
+
+		if ((Me.phase < tux_anim.attack.first_keyframe) || (Me.phase > tux_anim.attack.last_keyframe)) {
 			if (fabsf(Me.speed.x) + fabsf(Me.speed.y) > 0.1) {
 				angle = -(atan2(Me.speed.y, Me.speed.x) * 180 / M_PI - 45 - 180);
 				angle += 360 / (2 * MAX_TUX_DIRECTIONS);
 				while (angle < 0)
 					angle += 360;
-				Me.angle = angle;
-			} else {
-				// reuse last computed angle
-				angle = Me.angle;
+				Me.angle = angle; // Store computed angle for later use
 			}
 		}
 
+		// Compute the rotation index from the rotation angle
 		rotation_index = (angle * MAX_TUX_DIRECTIONS) / 360.0 + (MAX_TUX_DIRECTIONS / 2);
 		while (rotation_index >= MAX_TUX_DIRECTIONS)
 			rotation_index -= MAX_TUX_DIRECTIONS;
@@ -3237,15 +3150,23 @@ void iso_put_tux(int x, int y)
 			rotation_index += MAX_TUX_DIRECTIONS;
 	}
 
-	// Render Tux
+	// Depending on the rendering parameters, get the right rendering order
+	// Loop on all rendering orders associated to the current motion_class and
+	// rotation, until one set containing the current animation phase is found
+	struct tux_part_render_set *one_render_set = tux_rendering.render_order[motion_class][rotation_index];
 
-	if (Me.weapon_item.type == (-1)) {
-		iso_put_all_tux_parts_for_sword_motion(x, y, motion_class, our_phase, rotation_index);
-	} else {
-		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee > 0)
-			iso_put_all_tux_parts_for_sword_motion(x, y, motion_class, our_phase, rotation_index);
-		else
-			iso_put_all_tux_parts_for_gun_motion(x, y, motion_class, our_phase, rotation_index);
+	while (one_render_set != NULL) {
+		if (our_phase >= one_render_set->phase_start && our_phase <= one_render_set->phase_end) {
+			break;
+		}
+		one_render_set = one_render_set->next;
+	}
+
+	// Render all Tux's parts in order
+	int i;
+	for (i = 0; i < 6; i++) {
+		if (one_render_set->render_funcs[i] != NULL)
+			one_render_set->render_funcs[i](x, y, motion_class, our_phase, rotation_index);
 	}
 }
 

@@ -996,6 +996,16 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			};
 			free(YesNoString);
 
+			// Read the motion_class to use to render Tux when this weapon is used
+			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item motion class=\"", "\"");
+			item->motion_class = get_motion_class_id_by_name(YesNoString);
+			if (item->motion_class == -1) {
+				ErrorMessage(__FUNCTION__,
+						"The motion_class of an item in freedroid.item_archetypes is unknown: %s",
+						PLEASE_INFORM, IS_FATAL, YesNoString);
+			};
+			free(YesNoString);
+
 		} else {
 			// If it is not a gun, we set the weapon specifications to
 			// empty values...
@@ -1013,6 +1023,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			item->item_gun_bullet_lifetime = 0;
 			item->item_gun_use_ammunition = 0;
 			item->item_gun_requires_both_hands = TRUE;
+			item->motion_class = -1;
 		}
 
 		// Now we read in the armour value of this item as armour or shield or whatever
@@ -1088,9 +1099,11 @@ void Init_Game_Data()
 	Get_Programs_Data(Data);
 	free(Data);
 
-	// Load Tux animation specifications.
+	// Load Tux animation and rendering specifications.
+	tux_rendering_init();
 	find_file("tuxrender_specs.lua", MAP_DIR, fpath, 1);
 	run_lua_file(fpath);
+	tux_rendering_validate(); // check mandatory specifications/configurations
 
 	// Item archetypes must be loaded too
 	find_file("freedroid.item_archetypes", MAP_DIR, fpath, 0);

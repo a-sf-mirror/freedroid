@@ -311,6 +311,7 @@ typedef struct itemspec {
 	float item_gun_start_angle_modifier;	// where to start with a melee weapon swing
 	int item_gun_use_ammunition;        // which ammunition does this gun use? see ammo_desc_for_weapon()
 	char item_gun_requires_both_hands;	// is this a (strictly) 2-handed weapon?
+	short int motion_class;				// Tux's motion class to use
 
 	// how good is the item as armour or shield or other protection???
 	short base_damred_bonus;
@@ -953,6 +954,20 @@ struct distancebased_animation {
 	int first_keyframe;
 	int last_keyframe;
 	int nb_keyframes;		// Set to (last - first). Avoid to compute it each time this information is needed
+};
+
+/**
+ * Specification of Tux's parts rendering order
+ * Defines how to order Tux's parts for a 'set' of animation phases.
+ * A linked list of sets is associated to a (motion_class, rotation) pair
+ * (see the definition of struct tux_rendering_s in global.h).
+ */
+
+struct tux_part_render_set {
+	int phase_start;	// First animation phase of the set
+	int phase_end;		// Last animation phase of the set
+	void (*render_funcs[ALL_PART_GROUPS])(int, int, int, int, int);	// Ordered array of rendering functions to call
+	struct tux_part_render_set *next;
 };
 
 #endif
