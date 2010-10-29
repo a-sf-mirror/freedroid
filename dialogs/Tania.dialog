@@ -481,7 +481,7 @@ Nr=70 Text=_"I think you would enjoy some of Michelangelo's cooking at the resta
 LuaCode={
 	set_bot_destination("BarPatron-Enter")
 	add_cookie("Tania-at-Bar")
-	npc_says(_"It has been so long since I've had a nice meal")
+	npc_says(_"It has been so long since I've had a nice meal.")
 	hide(70)
 }
 ----------------------------------------------------------------------
