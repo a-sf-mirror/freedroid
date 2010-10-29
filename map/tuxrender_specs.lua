@@ -52,12 +52,12 @@ tux_rendering_config {
 -- The definition is:
 --
 --   tux_ordering {
---     type       : one of the motion_class value - example: "sword_motion"
---     rotations  : comma-separated list of rotation values - example: { 0, 1, 2 }
---     from_phase : first phase to which this order applies (optional - default value: 0)
---     to_phase   : last phase to which this order applies (optional - default value: -1,
---                  which denotes the last phase number)
---     order      : one of the parts' order definition - example: part_order.FTHASW
+--     type        : one of the motion_class value - example: "sword_motion"
+--     rotations   : comma-separated list of rotation values - example: { 0, 1, 2 }
+--     phase_start : first phase to which this order applies (optional - default value: 0)
+--     phase_end   : last phase to which this order applies (optional - default value: -1,
+--                   which denotes the last phase number)
+--     order       : one of the parts' order definition - example: part_order.FTHASW
 --   }
 --
 -- It is thus possible to specify the same order for several rotations and several
@@ -69,8 +69,8 @@ tux_rendering_config {
 --   tux_ordering {
 --     type = "gun_motion",
 --     rotations = { 1, 2 },
---     from_phase = 4,
---     to_phase = 11,
+--     phase_start = 4,
+--     phase_end = 11,
 --     order = part_order.FTHSWA
 --   }
 --
@@ -147,8 +147,8 @@ tux_ordering {
 tux_ordering {
   type = "gun_motion",
   rotations = { 1, 2 },
-  from_phase = 4,
-  to_phase = 11,
+  phase_start = 4,
+  phase_end = 11,
   order = part_order.FTHSWA
 }
 
@@ -173,8 +173,8 @@ tux_ordering {
 tux_ordering {
   type = "gun_motion",
   rotations = { 8 },
-  from_phase = 3,
-  to_phase = 12,
+  phase_start = 3,
+  phase_end = 12,
   order = part_order.FSWTAH
 }
 
@@ -187,16 +187,16 @@ tux_ordering {
 tux_ordering {
   type = "gun_motion",
   rotations = { 9 },
-  from_phase = 3,
-  to_phase = 12,
+  phase_start = 3,
+  phase_end = 12,
   order = part_order.FWSTAH
 }
 
 tux_ordering {
   type = "gun_motion",
   rotations = { 10 },
-  from_phase = 3,
-  to_phase = 12,
+  phase_start = 3,
+  phase_end = 12,
   order = part_order.FWASTH
 }
 
@@ -221,8 +221,8 @@ tux_ordering {
 tux_ordering {
   type = "gun_motion",
   rotations = { 13, 14, 15 },
-  from_phase = 4,
-  to_phase = 11,
+  phase_start = 4,
+  phase_end = 11,
   order = part_order.FAWTSH
 }
 
