@@ -30,27 +30,32 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	show(20, 30, 99)
+	if (not has_cookie("met_singularity")) then
+		add_cookie("met_singularity")
+		show(20, 30, 99)
+	end
 }
 
 ----------------------------------------------------------------------
-Nr=20 Text=_"I must have the toolbox"
+Nr=20 Text=_"I must have the toolbox."
 LuaCode={
 	npc_says(_"If you choose to be our enemy, so be it.")
 	set_faction_state("singularity", "hostile")
 	change_obstacle_state("Sin-gun", "enabled")
 	update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit. I will seize it from them by force.")
+	hide(20, 30)
 	end_dialog()
 }
 
 ----------------------------------------------------------------------
-Nr=30 Text=_"I need your help"
+Nr=30 Text=_"I need your help."
 LuaCode={
 	npc_says(_"We shall help you in repelling the other bots.")
 	set_faction_state("singularity", "hostile", "ms")
 	change_obstacle_state("Maintenance-escape1", "opened")
 	change_obstacle_state("Maintenance-escape2", "opened")
 	update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit, but I managed to enlist their aid against the other bots.")
+	hide(20, 30)
 	end_dialog()
 }
 
