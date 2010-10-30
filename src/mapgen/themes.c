@@ -530,6 +530,12 @@ void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char
 {
 #define MIN_LIVING_ROOMS	6
 
+#define MAIN_ROOM			2
+#define OFFICE_ROOM			3
+#define GARDEN_ROOM			4
+#define LIBRARY_ROOM		5
+#define SPECIAL_ROOM		6
+
 	int i;
 	int x, y;
 	int wall, room, room2;
@@ -544,10 +550,13 @@ void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char
 	num = MyRandom(1) + 2;
 	while (set_living_theme_recursive(di->middle_room, num, vis) < MIN_LIVING_ROOMS)
 		set_living_theme_recursive(di->middle_room, ++num, vis);
+	vis[di->enter] = SPECIAL_ROOM;
+	vis[di->exit] = SPECIAL_ROOM;
 	// Place main room to the biggest among visited
 	for (i = 0; i < total_rooms; i++)
-		if (vis[di->sorted_square[i]]) {
+		if (vis[di->sorted_square[i]] == 1) {
 			place_main_room(di->sorted_square[i]);
+			vis[di->sorted_square[i]] = MAIN_ROOM;
 			break;
 		}
 
@@ -597,17 +606,18 @@ void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char
 
 	// Place offices
 	for (i = 0; i < total_rooms; i++) {
-		if (rooms[i].w != 2 && rooms[i].h != 2) {
+		// vis[i] equal to 1 means that the room is free to decorate
+		if (rooms[i].w != 2 && rooms[i].h != 2 && vis[i] == 1) {
 			if (vis[i] && MyRandom(1)) {
 				place_work_office(i);
+				vis[i] = OFFICE_ROOM;
 			}
 			else if (di->distance[i] < num + 3 && !MyRandom(3)) {
 				place_garden(i);
-				vis[i] = 1;
+				vis[i] = GARDEN_ROOM;
 			}
 		}
 	}
 
-	//place_library_recursive(di->middle_room, vis);
 	fill_rooms(vis);
 }

@@ -502,7 +502,7 @@ void mapgen_convert(struct dungeon_info *di, int w, int h, unsigned char *tiles)
 
 	i = 0;
 	while(tries && n) {
-		if (i != di->enter && i != di->exit) {
+		if (idx[i] != di->enter && idx[i] != di->exit) {
 			if (make_corridor(idx[i]))
 				n--;
 			else
