@@ -51,6 +51,7 @@ SDL_Rect mission_description_rect = { 134, 86, 280, 320 };
 char complete_mission_display_text[50000];
 float mission_list_offset = 0;
 int mission_list_scroll_override_from_user = 0;
+static char stats_display[NB_DROID_TYPES];
 
 #define QUEST_BROWSER_SHOW_OPEN_MISSIONS (-1011)
 #define QUEST_BROWSER_SHOW_DONE_MISSIONS (-1012)

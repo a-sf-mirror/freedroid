@@ -574,6 +574,12 @@ static void Get_Robot_Data(void *DataPointer)
 	// So we have to count those first.  ok.  lets do it.
 
 	Number_Of_Droid_Types = CountStringOccurences(DataPointer, NEW_ROBOT_BEGIN_STRING);
+	if (NB_DROID_TYPES < Number_Of_Droid_Types + 2) {
+		ErrorMessage(__FUNCTION__, "\
+The value of %d for \"NB_DROID_TYPES\" defined in struct.h is less than %d\n\
+which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_TYPES\"!",
+			PLEASE_INFORM, IS_FATAL, NB_DROID_TYPES, Number_Of_Droid_Types + 2);
+	}
 
 	// Not that we know how many robots are defined in freedroid.ruleset, we can allocate
 	// a fitting amount of memory.
@@ -1377,6 +1383,14 @@ void InitHarmlessTuxStatusVariables()
 	Me.points_to_distribute = 0;
 	Me.ExpRequired = 1500;
 	Me.map_maker_is_present = FALSE;
+	//prep statistics
+        Me.meters_traveled = 0;
+        for (i = 0; i < Number_Of_Droid_Types + 1; i++) {
+	        Me.destroyed_bots[i]    = 0;
+	        Me.damage_dealt[i]      = 0;
+	        Me.TakeoverSuccesses[i] = 0;
+	        Me.TakeoverFailures[i]  = 0;
+	}
 	for (i = 0; i < MAX_LEVELS; i++) {
 		Me.HaveBeenToLevel[i] = FALSE;
 		Me.time_since_last_visit_or_respawn[i] = (-1);

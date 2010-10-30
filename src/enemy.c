@@ -877,17 +877,21 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 			enemy *killer = NULL;
 			killer = enemy_resolve_address(killertype, &killer);
 			append_new_game_message(_("Your friend \4%s\5 was killed by %s."),
-						target->short_description_text, killer->short_description_text);
-		} else if (killertype == -1)       //You killed someone
+			target->short_description_text, killer->short_description_text);
+		} else if ((killertype == -1) && (givexp)) {      //You killed someone
                         append_new_game_message(_("You killed \4%s\5."), target->short_description_text);
-		else if (killertype == -2)  //bot killed itself
+			Me.destroyed_bots[target->type]++;
+		} else if (killertype == -2) {  //bot killed itself
                         append_new_game_message(_("\4%s\5 halted and caught fire."), target->short_description_text);
-		else
+		} else {
                         append_new_game_message(_("\4%s\5 is dead."), target->short_description_text);
+		}
 	} else {
-		if (givexp && (killertype == -1))
+		if (givexp && (killertype == -1)) {
 			append_new_game_message(_("For defeating \4%s\5, you receive %d experience."), target->short_description_text,
 						reward);
+			Me.destroyed_bots[target->type]++;		
+		}
 
 //	The below section is much more of debug info that something that actually should be "spammed" to the user by default.
 //	Possibly Tux could know about fighting going on in the immediate vicinity, but for sure not on the other side of the world map.
@@ -997,6 +1001,8 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 	if (target->energy <= 0) {
 		kill_enemy(target, givexp, killertype);
 	}
+	if (mine)
+		Me.damage_dealt[target->type] += hit;
 }
 
 /**

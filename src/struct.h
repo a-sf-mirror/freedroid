@@ -638,8 +638,6 @@ typedef struct tux {
 	// TO BE COMMUNICATED FROM THE CLIENT TO THE SERVER OR VICE VERSA
 	//
 	moderately_finepoint next_intermediate_point[MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX];	// waypoints for the tux, when target not directly reachable
-	unsigned short int TakeoverSuccesses[200]; // how many (of each type) did Tux takeover and make friendly?
-	unsigned short int TakeoverFailures[200];  // how many times for (each type) did Tux fail at a takeover attempt?
 	automap_data_t Automap[MAX_LEVELS];
 	int current_zero_ring_index;
 	gps Position_History_Ring_Buffer[MAX_INFLU_POSITION_HISTORY];
@@ -655,6 +653,15 @@ typedef struct tux {
 	int quest_browser_changed;
 
 	int program_shortcuts[10];
+
+	// STATISTICS ABOUT TUX
+	// Should warn if less than Number_Of_Droid_Types + 2
+#define NB_DROID_TYPES 50
+        int TakeoverSuccesses[NB_DROID_TYPES]; // how many did Tux takeover and make friendly?
+        int TakeoverFailures[NB_DROID_TYPES];  // how many did Tux fail at a takeover attempt?
+        int destroyed_bots[NB_DROID_TYPES];    // how many bots have been destroyed?
+        int damage_dealt[NB_DROID_TYPES];      // how much damage dealt?
+        float meters_traveled;     // how many meters has Tux traveled?
 } tux_t;
 
 typedef struct bulletspec {

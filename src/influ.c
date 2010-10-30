@@ -550,7 +550,7 @@ static int move_tux_towards_raw_position(float x, float y)
 	//
 	Me.speed.x = planned_step.x;
 	Me.speed.y = planned_step.y;
-
+	Me.meters_traveled += 0.1;
 	// If we might step over the target,
 	// we reduce the speed.
 	//
