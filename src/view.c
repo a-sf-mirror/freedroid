@@ -1484,9 +1484,11 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			//
 			if ((((obstacle *) e->element_pointer)->type <= -1) ||
 			    ((obstacle *) e->element_pointer)->type >= NUMBER_OF_OBSTACLE_TYPES) {
-				fprintf(stderr, "\nerroneous obstacle type to blit: %d.", ((obstacle *) e->element_pointer)->type);
 				ErrorMessage(__FUNCTION__,
-					     "The blitting list contained an illegal blitting object type.", PLEASE_INFORM, IS_FATAL);
+					     "The blitting list contained an illegal obstacle type %d, for obstacle at coordinates %f %f. Doing nothing.", PLEASE_INFORM, IS_WARNING_ONLY, 
+						 ((obstacle *) e->element_pointer)->type, ((obstacle *) e->element_pointer)->pos.x, ((obstacle *) e->element_pointer)->pos.y);
+				break;
+
 			}
 
 			our_obstacle = e->element_pointer;
