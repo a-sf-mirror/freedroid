@@ -234,7 +234,6 @@ Minimum number of Random Droids=6
 Random Droid Type: 123
 
 SForce: T=PRO Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux=1 UseDialog="Francis" ShortLabel=_"Old Guy"
-SForce: T=FEM Marker=9999 Faction="civilian" StartLabel="Iris" UseDialog="Iris" ShortLabel=_"Hot Girl"
 SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -242,7 +241,9 @@ SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard
 Level=13
 Maximum number of Random Droids=0
 Minimum number of Random Droids=0
-Random Droid Type: 883
+Random Droid Type: 123
+
+SForce: T=FEM Marker=9999 Faction="civilian" StartLabel="Iris" UseDialog="Iris" ShortLabel=_"Hot Girl"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
