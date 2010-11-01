@@ -208,7 +208,7 @@ addon{
 name = _"Brain stimulator",
 upgrade_cost = 45,
 require_socket = "electric",
-require_item = "armor",
+require_item = "helmet",
 bonuses = { experience_gain = 10 },
 materials = { ["Tachyon Condensator"] = 15 }
 }
