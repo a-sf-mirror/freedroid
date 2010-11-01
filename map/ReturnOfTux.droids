@@ -495,28 +495,17 @@ SForce: T=WOR Fixed=1 Marker=1034 Faction="civilian" StartLabel="Koan" UseDialog
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=35
-Maximum number of Random Droids=10
+Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 302
-Random Droid Type: 883
 Random Droid Type: 249
 Random Droid Type: 629
 
+//-------------------- SADD + Tania ------
 SForce: T=883 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux=1 UseDialog="SADD" ShortLabel=_"Hostile Droid"
 SForce: T=JAS Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" UseDialog="Tania" ShortLabel=_"Scientist"
-SForce: T=598 Marker=3035 StartLabel="SecretAreaDefenceControl" UseDialog="SACD" ShortLabel=_"SACD - Secret Area Control Droid"
-//--------------------
-// This is Boris. Leader of scientists locked in secret area
-//
-//SForce: T=WOR Marker=4035 Faction="civilian" StartLabel="BorisStartGameSquare" UseDialog="Boris" ShortLabel=_"Boris -- scientists leader"
-//--------------------
-// This is Lina -- librarian in secret area
-//
-//SForce: T=FSC Marker=4035 Faction="civilian" StartLabel="LinaStartGameSquare" UseDialog="Lina" ShortLabel=_"Lina -- librarian"
-//--------------------
-// This is Serge -- storehouse keeper
-//
-//SForce: T=WOR Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
+//-------------------- Battle to get to the Datacenter ------
+SForce: T=598 Marker=3035 StartLabel="SecretAreaDefenceControl" ShortLabel=_"SACD - Defender"
 SForce: T=302 Marker=5035 StartLabel="SecretAreaCollectorPassage2"
 SForce: T=883 Marker=5035 StartLabel="SecretAreaCollectorEmmiters" ShortLabel=_"SADD"
 SForce: T=139 Marker=5035 StartLabel="SecretAreaCollectorEnterance" ShortLabel=_"Ashman"
@@ -529,6 +518,14 @@ SForce: T=247 Marker=5035 StartLabel="SecretAreaRestroom" ShortLabel=_"Servant"
 SForce: T=476 Marker=5035 StartLabel="SecretAreaBedroom" ShortLabel=_"Criocapsules maintainer"
 SForce: T=329 Marker=5035 StartLabel="SecretAreaBathroom" ShortLabel=_"Sanitary technician"
 SForce: T=302 Marker=5035 StartLabel="SecretAreaToilet" ShortLabel=_"Toilet droid"
+//-------------------- LOCKED SECTION ------
+//S*Force: T=WOR Marker=4035 Faction="civilian" StartLabel="BorisStartGameSquare" UseDialog="Boris" ShortLabel=_"Boris -- scientists leader"
+//S*Force: T=FSC Marker=4035 Faction="civilian" StartLabel="LinaStartGameSquare" UseDialog="Lina" ShortLabel=_"Lina -- librarian"
+//S*Force: T=WOR Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
+//-------------------- Replacement Droids ------
+SForce: T=883 StartLabel="BorisStartGameSquare" ShortLabel=_"SADD"
+SForce: T=883 StartLabel="LinaStartGameSquare"  ShortLabel=_"SADD"
+SForce: T=883 StartLabel="SergeStartGameSquare" ShortLabel=_"SADD"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
