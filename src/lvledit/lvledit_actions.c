@@ -663,6 +663,20 @@ void action_jump_to_level(int target_level, double x, double y)
 	Teleport(target_level, (float)x, (float)y, FALSE);
 }
 
+/**
+ * Jump to the center of a level.
+ *
+ * @param level_num The level id.
+ */
+void action_jump_to_level_center(int level_num)
+{
+	// Calculate the center of the level.
+	float x = curShip.AllLevels[level_num]->xlen / 2;
+	float y = curShip.AllLevels[level_num]->ylen / 2;
+
+	action_jump_to_level(level_num, x, y);
+}
+
 static void action_do(level * level, action * a)
 {
 	switch (a->type) {
