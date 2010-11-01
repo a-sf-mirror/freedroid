@@ -80,9 +80,9 @@ LuaCode={
 	if (not has_quest(_"Tutorial Movement")) then
 		add_quest(_"Tutorial Movement", _"To talk to someone, left click on them! You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the Q key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
 	end
-       display_big_message(_"Press Q for Quests")
+	display_big_message(_"Press Q for Quests")
 	end_dialog()
-	hide(1, 7) show(2, 3, 4, 5, 8)
+	hide(1, 7, 80) show(2, 3, 4, 5, 8)
 }
 ----------------------------------------------------------------------
 
@@ -140,7 +140,7 @@ LuaCode={
 
 Nr=7 Text=_"No, thanks, I still remember how to walk, run, navigate, and pick things up."
 LuaCode={ 
-	hide(7) next(9)
+	hide(1, 7, 80) next(9)
 }
 ----------------------------------------------------------------------
 
@@ -878,6 +878,7 @@ LuaCode={
 	add_item("Shoes")
 	add_item("Standard Shield")
 	add_item("Worker Helmet")
+	change_obstacle_state("TutorialShootCage", "opened")
 	next(30) hide(81, 82, 83, 84, 85, 86)
 }
 ----------------------------------------------------------------------
