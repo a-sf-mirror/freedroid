@@ -595,7 +595,7 @@ t133 x29.50 y69.00
 t133 x30.50 y69.00
 t133 x31.50 y69.00
 t133 x32.50 y69.00
-t32 x26.33 y76.74
+t324 x26.33 y76.74
 t47 x18.20 y72.62
 t47 x21.27 y72.52
 t47 x29.70 y70.69
@@ -3682,6 +3682,9 @@ idx=3126 type=32 data={
 }
 idx=5 type=30 data={
 	DesertGate-Inner
+}
+idx=487 type=30 data={
+	Dixon-autogun
 }
 /obstacleextensions
 wp
