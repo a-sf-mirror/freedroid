@@ -57,7 +57,7 @@ Maximum number of Random Droids=0
 Minimum number of Random Droids=0
 Random Droid Type: 476
 
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0NorthGateGuard" UseDialog="Town-NorthGateGuard" ShortLabel=_"North Gate Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" RushTux=1 MaxDistanceToHome=7 StartLabel="L0NorthGateGuard" UseDialog="Town-NorthGateGuard"ShortLabel=_"North Gate Guard"
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard"
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="TuxEscortStartGameSquare" UseDialog="Town-TuxGuard" ShortLabel=_"Red Guard Member"
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0TeleporterGuard" UseDialog="Town-TeleporterGuard" ShortLabel=_"Town Teleporter Guard"
