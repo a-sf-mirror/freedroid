@@ -30,6 +30,7 @@ END OF AUTORS NOTES
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
+	branch_to_pendragon = false
 	if (not has_cookie("met_tania")) then
 		show(0)
 		add_cookie("met_tania")
@@ -74,7 +75,7 @@ EveryTime LuaCode={
 				add_cookie("Tania-at-Bar")
 			end
 			end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
-			start_chat("Pendragon")
+			branch_to_pendragon = true
 		else --"Tania's Escape" was a success!
 			if ((not has_cookie("Tania-Doc-Cleared")) and (not has_cookie("Tania-set-free"))) then --send to Bar
 				add_cookie("Tania-Doc-Cleared")
@@ -96,7 +97,10 @@ EveryTime LuaCode={
 			else hide(17, 28, 29) show(27) end
 		else hide(17, 27, 29) show(28) end
 	else hide(27, 28, 29) end
-	hide(99)
+
+	if (branch_to_pendragon) then
+		start_chat("Pendragon")
+	end
 }
 ----------------------------------------------------------------------
 
