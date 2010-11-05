@@ -216,6 +216,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			autostr_append(desc, _("Gives you fast acting cancer."));
 		} else if (strstr(ItemMap[item->type].item_name, "Source Book of")) {
 			autostr_append(desc, _("Permanently acquire/enhance this program"));
+		} else if (strstr(ItemMap[item->type].item_name, "Repair manual")) {
+			autostr_append(desc, _("Learn about repairing items"));
 		} else if (MatchItemWithName(item->type, "EMP Shockwave Generator")) {
 			autostr_append(desc, _("Electromagnetic pulse"));
 		} else if (MatchItemWithName(item->type, "VMX Gas Grenade")) {
