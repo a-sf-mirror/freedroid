@@ -312,10 +312,9 @@ static void quest_browser_display_mission_list(int list_type)
 	}
 
 	if (something_was_displayed) {
-		float mission_list_offset = (FontHeight(GetCurrentFont()) * TEXT_STRETCH)
-		    * mission_list_scroll_override_from_user;
+		float mission_list_offset = FontHeight(GetCurrentFont()) * mission_list_scroll_override_from_user;
 		DisplayText(quest_browser_text->value, mission_description_rect.x,
-			    mission_description_rect.y - mission_list_offset, &mission_description_rect, TEXT_STRETCH);
+			    mission_description_rect.y - mission_list_offset, &mission_description_rect, 1.0);
 
 		// Now it's time to display some short/long symbols in front
 		// of each of the missions.
@@ -337,7 +336,7 @@ static void quest_browser_display_mission_list(int list_type)
 			if (quest_browser_mission_lines_needed[mis_num] != -1) {
 				rect_short->y =
 				    mission_description_rect.y - mission_list_offset +
-				    (FontHeight(GetCurrentFont()) * TEXT_STRETCH) * (quest_browser_mission_lines_needed[mis_num]) - 2;
+				    (FontHeight(GetCurrentFont())) * (quest_browser_mission_lines_needed[mis_num]) - 2;
 				rect_short->x = mission_description_rect.x - 26;
 				rect_long->y = rect_short->y;
 				rect_long->x = rect_short->x;
@@ -349,7 +348,7 @@ static void quest_browser_display_mission_list(int list_type)
 			//
 			if (rect_short->y <= mission_description_rect.y - 4)
 				continue;
-			if (rect_short->y >= mission_description_rect.y + mission_description_rect.h)
+			if (rect_short->y >= mission_description_rect.y + mission_description_rect.h - FontHeight(GetCurrentFont()) / 2)
 				continue;
 
 			if (Me.AllMissions[mis_num].expanded_display_for_this_mission)
