@@ -445,7 +445,7 @@ void UpdateAllCharacterStats()
 	// Now that the defense stat is computed, we can compute the chance, that
 	// a randomly chosen lv. 1 bot will hit the Tux in any given strike...
 	//
-	Me.lv_1_bot_will_hit_percentage = 60;
+	Me.lv_1_bot_will_hit_percentage = 100*exp(-0.018 * Me.DAMRED);
 
 };				// void UpdateAllCharacterStats ( void )
 
