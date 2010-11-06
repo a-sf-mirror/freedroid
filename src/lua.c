@@ -353,7 +353,7 @@ static int lua_event_add_diary_entry(lua_State * L)
 	const char *mis_name = luaL_checkstring(L, 1);
 	const char *text = luaL_checkstring(L, 2);
 
-	quest_browser_diary_add(mis_name, text);
+	mission_diary_add(mis_name, text);
 	return 0;
 }
 
@@ -397,7 +397,7 @@ static int lua_event_assign_mission(lua_State * L)
 
 	AssignMission(misname);
 	if (diarytext != NULL)
-		quest_browser_diary_add(misname, diarytext);
+		mission_diary_add(misname, diarytext);
 
 	return 0;
 }
@@ -409,7 +409,7 @@ static int lua_event_complete_mission(lua_State * L)
 
 	CompleteMission(misname);
 	if (diarytext != NULL)
-		quest_browser_diary_add(misname, diarytext);
+		mission_diary_add(misname, diarytext);
 
 	return 0;
 }

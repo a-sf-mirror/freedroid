@@ -357,14 +357,16 @@ void save_luacode(const char *, luacode *);
 void read_luacode(const char *, const char *, luacode *);
 
 // mission.c 
-void quest_browser_interface(void);
 void CompleteMission(const char *);
 void AssignMission(const char *);
 void GetQuestList(char *QuestListFilename);
 void clear_tux_mission_info(void);
 void CheckIfMissionIsComplete(void);
-void quest_browser_diary_add(const char *, const char *);
+void mission_diary_add(const char *, const char *);
 int GetMissionIndexByName(const char *);
+
+// quest_browser.c
+void quest_browser_interface(void);
 
 // map.c 
 void respawn_level(int level_num);
