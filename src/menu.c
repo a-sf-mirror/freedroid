@@ -878,7 +878,6 @@ void Cheatmenu(void)
 	int i, l;
 	int x0, y0, line;
 	int skip_dead = 0;
-	waypoint *wpts;	// pointer on current waypoint-list
 
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spend in the menu.
@@ -910,7 +909,6 @@ void Cheatmenu(void)
 		printf_SDL(Screen, -1, -1, " n. No hidden droids: %s", show_all_droids ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " r. Infinite running stamina: %s", GameConfig.cheat_running_stamina ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " x. Cheatkeys : %s", GameConfig.enable_cheatkeys ? "ON\n" : "OFF\n");
-		printf_SDL(Screen, -1, -1, " w. Print current waypoints\n");
 		printf_SDL(Screen, -1, -1, " q. RESUME game\n");
 
 		// Now we show it...
@@ -1046,39 +1044,6 @@ void Cheatmenu(void)
 
 		case 'x':
 			GameConfig.enable_cheatkeys = !GameConfig.enable_cheatkeys;
-			break;
-
-		case 'w':	/* print waypoint info of current level */
-			wpts = CURLEVEL()->waypoints.arr;
-			for (i = 0; i < CURLEVEL()->waypoints.size; i++) {
-				if (i && !(i % 20)) {
-					printf_SDL(Screen, -1, -1, " ---- MORE -----\n");
-					our_SDL_flip_wrapper();
-
-					if (getchar_raw(NULL) == 'q') {
-						i = -1;	//ugly hack to not getchar_raw twice in a row
-						break;
-					}
-				}
-				if (!(i % 20)) {
-					ClearGraphMem();
-					printf_SDL(Screen, x0, y0, "Nr.   X   Y      C1  C2  C3  C4\n");
-					printf_SDL(Screen, -1, -1, "------------------------------------\n");
-				}
-
-				// Get the connections of the waypoint
-				int *connections = wpts[i].connections.arr;
-				printf_SDL(Screen, -1, -1, "%2d   %2d  %2d      %2d  %2d  %2d  %2d\n",
-					   i, wpts[i].x, wpts[i].y,
-						connections[0], connections[1], connections[2], connections[3]);
-			}
-
-			if (i == -1)
-				break;
-
-			printf_SDL(Screen, -1, -1, " --- END ---\n");
-			our_SDL_flip_wrapper();
-			getchar_raw(NULL);
 			break;
 
 		case ' ':
