@@ -444,6 +444,11 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	int letter_spacing = get_letter_spacing(GetCurrentFont());
 	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
 
+	if (!*Text) {
+		nblines = 0;
+		return nblines;
+	}
+
 	// We position the internal text cursor on the right spot for
 	// the first character to be printed.
 	//
