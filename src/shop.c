@@ -451,6 +451,8 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	int ret = 0;
 	int old_game_status = game_status;
 	static text_widget item_description;
+	const int scroll_to_top = -1000;
+
 	game_status = INSIDE_MENU;
 
 	// For the shop, we'll also try to use our own mouse cursor
@@ -490,6 +492,13 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	item_description.rect.h = UNIVERSAL_COORD_H(255);
 	item_description.font = FPS_Display_BFont;
 	item_description.text_stretch = TEXT_STRETCH;
+	item_description.scroll_offset = scroll_to_top;
+
+	if (ItemIndex >= 0) {
+		fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+	} else if (TuxItemIndex >= 0) {
+		fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+	}
 
 	while (1) {
 		StartTakingTimeForFPSCalculation();
@@ -511,11 +520,10 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 		if (ItemIndex >= 0) {
 			ShowItemPicture(x, y, ShowPointerList[ItemIndex]->type);
-			fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 		} else if (TuxItemIndex >= 0) {
 			ShowItemPicture(x, y, TuxItemsList[TuxItemIndex]->type);
-			fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 		}
+
 		show_text_widget(&item_description);
 
 		for (i = 0; i < RowLength; i++) {
@@ -572,7 +580,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
 
-		const int scroll_to_top = -1000;
 
 		if (MouseLeftClicked()) {
 			if (MouseCursorIsOnButton(DESCRIPTION_WINDOW_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
@@ -592,6 +599,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (ItemIndex != -1 && ItemIndex >= RowStart + RowLength)
 						ItemIndex--;
 				}
+				fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_TUX_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
@@ -600,6 +608,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (ItemIndex != -1 && ItemIndex < RowStart)
 						ItemIndex++;
 				}
+				fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(LEFT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
@@ -608,6 +617,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (TuxItemIndex != -1 && TuxItemIndex >= TuxRowStart + TuxRowLength)
 						TuxItemIndex--;
 				}
+				fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
@@ -616,18 +626,21 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (TuxItemIndex != -1 && TuxItemIndex < TuxRowStart)
 						TuxItemIndex++;
 				}
+				fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), FALSE)) >= 0)) {
 				if (RowStart + ClickTarget < NumberOfItems) {
 					ItemIndex = RowStart + ClickTarget;
 					TuxItemIndex = (-1);
+					fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), TRUE)) >= 0)) {
 				if (TuxRowStart + ClickTarget < NumberOfItemsInTuxRow) {
 					TuxItemIndex = TuxRowStart + ClickTarget;
 					ItemIndex = (-1);
+					fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (MouseCursorIsOnButton(BUY_BUTTON, GetMousePos_x(), GetMousePos_y())) {
