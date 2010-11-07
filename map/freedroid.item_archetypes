@@ -418,7 +418,7 @@ inventory_size_x=2
 inventory_size_y=5
 Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
-Item description text=_"While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in a single hit"
+Item description text=_"While this weapon is somewhat slow and cumbersome to use, it is as good at leaving big dents in droids as it is at felling trees. A good hit is often capable of taking out lesser droids in a single hit."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=0.000000
