@@ -314,8 +314,8 @@ typedef struct itemspec {
 	short int motion_class;				// Tux's motion class to use
 
 	// how good is the item as armour or shield or other protection???
-	short base_damred_bonus;
-	short damred_bonus_modifier;
+	short base_armor_class;
+	short armor_class_modifier;
 
 	// which requirement for strength, dexterity and magic (force) does the item have?
 	short int item_require_strength;
@@ -360,7 +360,7 @@ typedef struct item {
 	float bonus_to_cooling_rate;
 	int bonus_to_attack;
 	int bonus_to_all_attributes;
-	int bonus_to_armor;
+	int bonus_to_armor_class;
 	int bonus_to_damage;
 	int bonus_to_resist_fire;	// this is a percentage
 	int bonus_to_resist_electricity;	// this is a percentage
@@ -369,8 +369,7 @@ typedef struct item {
 	int bonus_to_light_radius;
 	int bonus_to_experience_gain;	// this is a percentage
 
-	int damred_base;		// the base damred given to the item at creation time
-	int damred_bonus;		// how much is damred increased by this item worn
+	int armor_class;
 	int damage;		// how much damage does this item
 	int damage_modifier;	// how much additional damage can add to the base damage
 	int multiplicity;
@@ -579,7 +578,7 @@ typedef struct tux {
 	int points_to_distribute;	// these are the points that are available to distribute upon the character stats
 	float base_damage;	// the current damage the influencer does
 	float damage_modifier;	// the modifier to the damage the influencer currently does
-	float DAMRED;		// the current Armour Damage Reduction of the influencer
+	float armor_class;
 	float to_hit;		// percentage chance, that Tux will hit a random lv 1 bot
 	int lv_1_bot_will_hit_percentage;	// percentage chance that a random lv 1 bot will hit
 	int resist_fire;	// percentage to reduce from fire damage

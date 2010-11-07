@@ -522,7 +522,7 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *Target
 
 	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
-	ReadValueFromStringWithDefault(ItemPointer, ITEM_DAMRED_BASE_STRING, "%d", "0", &(TargetItem->damred_base), ItemsSectionEnd);
+	ReadValueFromStringWithDefault(ItemPointer, ITEM_ARMOR_CLASS_BASE_STRING, "%d", "0", &(TargetItem->armor_class), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_MAX_DURATION_STRING, "%d", &(TargetItem->max_duration), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_CUR_DURATION_STRING, "%f", &(TargetItem->current_duration), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_AMMO_CLIP_STRING, "%d", &(TargetItem->ammo_clip), ItemsSectionEnd);
@@ -1351,8 +1351,8 @@ static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 	autostr_append(shipstr, "%s%s\" %s%f %s%f ", ITEM_NAME_STRING, ItemMap[ItemToWriteOut->type].item_name,
 			ITEM_POS_X_STRING, ItemToWriteOut->pos.x, ITEM_POS_Y_STRING, ItemToWriteOut->pos.y);
 
-	if (ItemToWriteOut->damred_bonus) {
-		autostr_append(shipstr, "%s%d ", ITEM_DAMRED_BASE_STRING, ItemToWriteOut->damred_base);
+	if (ItemToWriteOut->armor_class) {
+		autostr_append(shipstr, "%s%d ", ITEM_ARMOR_CLASS_BASE_STRING, ItemToWriteOut->armor_class);
 	}
 
 	autostr_append(shipstr, "%s%d %s%f %s%d %s%d ",

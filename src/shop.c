@@ -419,8 +419,8 @@ static void fill_item_description(text_widget *desc, item *show_item)
 		autostr_append(desc->text, _("Time to reload ammo clip: %3.2f\n"),
 					   info->item_gun_reloading_time);
 
-	if (show_item->damred_bonus > 0)
-		autostr_append(desc->text, _("Damage Reduction: %d%%\n"), show_item->damred_bonus);
+	if (show_item->armor_class + show_item->bonus_to_armor_class > 0)
+		autostr_append(desc->text, _("Armor class: %d\n"), show_item->armor_class + show_item->bonus_to_armor_class);
 
 	autostr_append(desc->text, _("Notes: %s"), D_(info->item_description));
 

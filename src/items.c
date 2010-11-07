@@ -256,7 +256,7 @@ void FillInItemProperties(item *it, int full_durability, int multiplicity)
 
 	// Set the base damage reduction by using the item spec and a random quality multiplier.
 	float armor_quality = random_item_quality();
-	it->damred_base = spec->base_damred_bonus + armor_quality * spec->damred_bonus_modifier;
+	it->armor_class = spec->base_armor_class + armor_quality * spec->armor_class_modifier;
 
 	// Set the maximum and current durabilities of the item.
 	// The maximum durability is within the range specified by the item spec.

@@ -71,7 +71,6 @@
 #define TOHIT_Y 138
 #define DAMAGE_Y 158
 #define DAMRED_Y 178
-#define DAMRED_Y2 193
 #define MELEE_SKILL_Y 230
 #define RANGED_SKILL_Y 268
 #define SPELLCASTING_SKILL_Y 306
@@ -347,40 +346,6 @@ void update_damage_tux_can_do()
 };				// void update_damage_tux_can_do ( )
 
 /**
- *
- *
- */
-void update_tux_armour_damage_reduction()
-{
-	// We initialize the armour damage reduction
-
-	Me.DAMRED = 0 ;
-
-	// Now we apply the armour bonuses from the currently equipped
-	// items to the total defence value
-	//
-	if (Me.armour_item.type != (-1)) {
-		if (Me.shield_item.type != (-1)) {
-			Me.DAMRED += (60 - Me.shield_item.damred_bonus) * Me.armour_item.damred_bonus;
-		} else {
-			Me.DAMRED += 60 * Me.armour_item.damred_bonus;
-		}
-	}
-	if (Me.shield_item.type != (-1)) {
-		Me.DAMRED += 100 * Me.shield_item.damred_bonus;
-	}
-	if (Me.special_item.type != (-1)) {
-		Me.DAMRED += 20 * Me.special_item.damred_bonus;
-	}
-	if (Me.drive_item.type != (-1)) {
-		Me.DAMRED += 20 * Me.drive_item.damred_bonus;
-	}
-
-	Me.DAMRED = Me.DAMRED/100 ;
-
-};				// void update_tux_armour_damage_reduction ( )
-
-/**
  * This function should re-compute all character stats according to the
  * currently equipped items and currently distributed stats points.
  */
@@ -414,7 +379,7 @@ void UpdateAllCharacterStats()
 
 	// Update tux armour class
 	//
-	update_tux_armour_damage_reduction();
+	update_player_armor_class();
 
 	// So at this point we can finally apply all the modifiers to the influencers
 	// SECONDARY stats due to 'magical' items and spells and the like
@@ -445,7 +410,7 @@ void UpdateAllCharacterStats()
 	// Now that the defense stat is computed, we can compute the chance, that
 	// a randomly chosen lv. 1 bot will hit the Tux in any given strike...
 	//
-	Me.lv_1_bot_will_hit_percentage = 100*exp(-0.018 * Me.DAMRED);
+	Me.lv_1_bot_will_hit_percentage = 60;
 
 };				// void UpdateAllCharacterStats ( void )
 
@@ -639,11 +604,10 @@ void ShowCharacterScreen()
 	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMAGE_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Armor protection"), RIGHT_TXT_X + CharacterRect.x, DAMRED_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
-	DisplayText(_("Average"), RIGHT_TXT_X + CharacterRect.x, DAMRED_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	DisplayText(_("Armor"), RIGHT_TXT_X + CharacterRect.x, DAMRED_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d%%", (int)Me.DAMRED);
-	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMRED_Y2 + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
+	sprintf(CharText, "%d", (int)Me.armor_class);
+	DisplayText(CharText, ARMOR_NR_X + CharacterRect.x, DAMRED_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	// Now we print out the current skill levels in hacking skill, 
 	// spellcasting, melee combat, ranged weapon combat and repairing things

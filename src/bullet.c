@@ -626,16 +626,13 @@ void apply_bullet_damage_to_player(int damage, int owner)
 
 	UpdateAllCharacterStats();
 
-	// NEW RULE:  Even when the bullet hits, there's still a chance that
-	// the armour will compensate the shot
-	//
-		real_damage *= (1 - (Me.DAMRED / 100.0));
-		hit_tux(real_damage, owner);	// loose some energy
-		DamageProtectiveEquipment();    // chance worn items gets damaged on each hit
-		DebugPrintf(1, "\n%s(): Tux took damage from bullet: %f.", __FUNCTION__, real_damage);
-		if (Me.energy/10 < real_damage)
-			tux_scream_sound();
-};				// void apply_bullet_damage_to_player ( int damage )
+	real_damage *= get_player_damage_factor();
+	hit_tux(real_damage, owner);	// loose some energy
+	DamageProtectiveEquipment();    // chance worn items gets damaged on each hit
+	
+	if (Me.energy/10 < real_damage)
+		tux_scream_sound();
+}
 
 /**
  *

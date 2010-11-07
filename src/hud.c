@@ -152,11 +152,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 		autostr_append(desc, _("Multiplicity: %d\n"), item->multiplicity);
 	}
 	// Armor bonus
-	if (item->damred_bonus) {
-		if (ItemMap[item->type].item_can_be_installed_in_shield_slot)
-			autostr_append(desc, _("Block: %d%%\n"), item->damred_bonus);
-		else
-			autostr_append(desc, _("Armor: %d%%\n"), item->damred_bonus);
+	if (item->armor_class) {
+			autostr_append(desc, _("Armor: %d\n"), item->armor_class);
 	}
 	// Durability or indestructible status
 	if (item->max_duration != (-1)) {

@@ -281,8 +281,8 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 	if (it->bonus_to_damage) {
 		autostr_append(desc, _("%+d to damage%s"), it->bonus_to_damage, separator);
 	}
-	if (it->bonus_to_armor) {
-		autostr_append(desc, _("%+d%% to armor%s"), it->bonus_to_armor, separator);
+	if (it->bonus_to_armor_class) {
+		autostr_append(desc, _("%+d to armor%s"), it->bonus_to_armor_class, separator);
 	}
 	if (it->bonus_to_resist_fire) {
 		autostr_append(desc, _("+%d to resist fire%s"), it->bonus_to_resist_fire, separator);
@@ -368,8 +368,7 @@ static void apply_addon_bonus(item *it, struct addon_bonus *bonus)
 	} else if (!strcmp(bonus->name, "attack")) {
 		it->bonus_to_attack += bonus->value;
 	} else if (!strcmp(bonus->name, "armor")) {
-		it->damred_bonus += bonus->value;
-		it->bonus_to_armor += bonus->value;
+		it->bonus_to_armor_class += bonus->value;
 	} else if (!strcmp(bonus->name, "cooling")) {
 		it->bonus_to_cooling += bonus->value;
 	} else if (!strcmp(bonus->name, "cooling_rate")) {
@@ -422,7 +421,7 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_cooling_rate = 0.0f;
 	it->bonus_to_attack = 0;
 	it->bonus_to_all_attributes = 0;
-	it->bonus_to_armor = 0;
+	it->bonus_to_armor_class = 0;
 	it->bonus_to_damage = 0;
 	it->bonus_to_resist_fire = 0;
 	it->bonus_to_resist_electricity = 0;
@@ -430,7 +429,6 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_slow_enemy = 0;
 	it->bonus_to_light_radius = 0;
 	it->bonus_to_experience_gain = 0;
-	it->damred_bonus = it->damred_base;
 	it->damage = ItemMap[it->type].base_item_gun_damage;
 	it->damage_modifier = ItemMap[it->type].item_gun_damage_modifier;
 	if (it->type < 0) {

@@ -517,6 +517,10 @@ void ShowCharacterScreen(void);
 void HandleCharacterScreen(void);
 void update_all_primary_stats(void);
 
+// armor.c
+void update_player_armor_class(void);
+float get_player_damage_factor(void);
+
 // leveleditor.c
 void LevelEditor(void);
 
