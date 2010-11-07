@@ -2877,7 +2877,10 @@ void iso_put_tux_weapon(int x, int y, int motion_class, int our_phase, int rotat
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_meat_cleaver", x, y, motion_class, our_phase, rotation_index);
 			else if (
 				(MatchItemWithName(Me.weapon_item.type, "Hunting knife")) ||
-				(MatchItemWithName(Me.weapon_item.type, "Shock knife"))
+				(MatchItemWithName(Me.weapon_item.type, "Shock knife")) ||
+				(MatchItemWithName(Me.weapon_item.type, "Laser Scalpel")) ||
+				(MatchItemWithName(Me.weapon_item.type, "Fork")) ||
+				(MatchItemWithName(Me.weapon_item.type, "Nobody's edge"))
 				)
 				iso_put_tux_part(PART_GROUP_WEAPON, "iso_hunting_knife", x, y, motion_class, our_phase, rotation_index);
 			else if (MatchItemWithName(Me.weapon_item.type, "Iron pipe"))
