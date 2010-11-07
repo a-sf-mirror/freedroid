@@ -369,10 +369,10 @@ static void quest_browser_display_mission_list(int list_type)
 		
 		switch (list_type) {
 			case QUEST_BROWSER_SHOW_OPEN_MISSIONS:
-				txt = _("No open quests yet.");
+				txt = _("\3No open quests yet.\2");
 				break;
 			case QUEST_BROWSER_SHOW_DONE_MISSIONS:
-				txt = _("No completed quests yet.");
+				txt = _("\3No completed quests yet.\2");
 				break;
 		}
 
