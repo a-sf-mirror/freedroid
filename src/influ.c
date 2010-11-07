@@ -751,6 +751,9 @@ void move_tux()
 void hit_tux(int damage, int owner)
 {
 	Me.energy -= damage;
+
+	if (damage > Me.energy / 10)
+		tux_scream_sound();
 }
 
 
@@ -1031,8 +1034,6 @@ void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short 
 
 	CurBullet->time_in_frames = 0;
 	CurBullet->time_in_seconds = 0;
-
-	CurBullet->to_hit = Me.to_hit;
 
 	CurBullet->freezing_level = 0;
 	CurBullet->poison_duration = 0;

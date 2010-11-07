@@ -237,7 +237,6 @@ int animate_autogun(level* autogun_lvl, int autogun_idx)
 	CurBullet->reflect_other_bullets = ItemMap[weapon_item_type].item_gun_bullet_reflect_other_bullets;
 	CurBullet->pass_through_explosions = ItemMap[weapon_item_type].item_gun_bullet_pass_through_explosions;
 	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
-	CurBullet->to_hit = 90;
 	CurBullet->freezing_level = 0;
 	CurBullet->poison_duration = 0;
 	CurBullet->poison_damage_per_sec = 0;

@@ -2147,7 +2147,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->owner = ThisRobot->id;
 		NewBullet->ignore_wall_collisions =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_ignore_wall_collisions;
-		NewBullet->to_hit = Druidmap[ThisRobot->type].to_hit;
 		NewBullet->was_reflected = FALSE;
 		NewBullet->pass_through_explosions =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_pass_through_explosions;
@@ -2171,12 +2170,12 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 			enemy_set_reference(&NewShot->bot_target_n, &NewShot->bot_target_addr, NULL);
 		}
 
-		NewShot->to_hit = 60 * Druidmap[ThisRobot->type].monster_level;
+		NewShot->to_hit = Druidmap[ThisRobot->type].to_hit;
+		printf("to hit %f\n", (float)NewShot->to_hit);
 		NewShot->damage =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].base_item_gun_damage +
 		    MyRandom(ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_damage_modifier);
 		NewShot->owner = ThisRobot->id;
-		NewShot->level = Druidmap[ThisRobot->type].monster_level;
 	}
 
 	ThisRobot->ammo_left--;

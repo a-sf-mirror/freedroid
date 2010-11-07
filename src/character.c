@@ -407,12 +407,7 @@ void UpdateAllCharacterStats()
 	if (Me.temperature < 0)
 		Me.temperature = 0;
 
-	// Now that the defense stat is computed, we can compute the chance, that
-	// a randomly chosen lv. 1 bot will hit the Tux in any given strike...
-	//
-	Me.lv_1_bot_will_hit_percentage = 60;
-
-};				// void UpdateAllCharacterStats ( void )
+}
 
 /**
  * Now we print out the current skill levels in hacking skill, 

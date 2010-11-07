@@ -348,7 +348,6 @@ int DoSkill(int skill_index, int SpellCost)
 		bul_parms.poison_damage_per_sec = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : hitdmg;
 		bul_parms.paralysation_duration = strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
 		bul_parms.damage = hitdmg;
-		bul_parms.to_hit = SpellHitPercentageTable[Me.spellcasting_skill];
 		if (SpellSkillMap[skill_index].hurt_humans && SpellSkillMap[skill_index].hurt_bots)
 			bul_parms.hit_type = ATTACK_HIT_ALL;
 		else if (SpellSkillMap[skill_index].hurt_humans)

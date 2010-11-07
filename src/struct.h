@@ -580,7 +580,6 @@ typedef struct tux {
 	float damage_modifier;	// the modifier to the damage the influencer currently does
 	float armor_class;
 	float to_hit;		// percentage chance, that Tux will hit a random lv 1 bot
-	int lv_1_bot_will_hit_percentage;	// percentage chance that a random lv 1 bot will hit
 	int resist_fire;	// percentage to reduce from fire damage
 	int resist_electricity;	// percentage to reduce from electricity damage
 
@@ -656,11 +655,11 @@ typedef struct tux {
 	// STATISTICS ABOUT TUX
 	// Should warn if less than Number_Of_Droid_Types + 2
 #define NB_DROID_TYPES 50
-        int TakeoverSuccesses[NB_DROID_TYPES]; // how many did Tux takeover and make friendly?
-        int TakeoverFailures[NB_DROID_TYPES];  // how many did Tux fail at a takeover attempt?
-        int destroyed_bots[NB_DROID_TYPES];    // how many bots have been destroyed?
-        int damage_dealt[NB_DROID_TYPES];      // how much damage dealt?
-        float meters_traveled;     // how many meters has Tux traveled?
+	int TakeoverSuccesses[NB_DROID_TYPES]; // how many did Tux takeover and make friendly?
+	int TakeoverFailures[NB_DROID_TYPES];  // how many did Tux fail at a takeover attempt?
+	int destroyed_bots[NB_DROID_TYPES];    // how many bots have been destroyed?
+	int damage_dealt[NB_DROID_TYPES];      // how much damage dealt?
+	float meters_traveled;     // how many meters has Tux traveled?
 } tux_t;
 
 typedef struct bulletspec {
@@ -686,7 +685,6 @@ typedef struct bullet {
 
 	char was_reflected;
 	char ignore_wall_collisions;
-	short int to_hit;
 	char pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword stike)
 	char pass_through_explosions;	// does this bullet go through explosions (e.g. laser sword stike though dead droid)
 	short int freezing_level;	// does this bullet freeze the target?
@@ -707,7 +705,6 @@ typedef struct melee_shot	// this is a melee shot
 	short int to_hit;	//chance to hit, percent
 	short int damage;
 	short int owner;
-	char level;
 } melee_shot;
 
 typedef struct blastspec {

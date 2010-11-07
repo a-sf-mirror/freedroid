@@ -169,7 +169,7 @@ void DoMeleeDamage(void)
 				continue;
 			}
 
-			if ((float)MyRandom(100) < (compute_hit_multiplier(Druidmap[tg->type].monster_level) * CurMelS->to_hit )) {
+			if (MyRandom(100) < compute_hit_multiplier(Druidmap[tg->type].monster_level) * CurMelS->to_hit ) {
 				hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
 			}
 
@@ -180,10 +180,10 @@ void DoMeleeDamage(void)
 
 		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_PLAYER) {
 			/* hit player */
-			if (MyRandom(100) <= Me.lv_1_bot_will_hit_percentage * compute_hit_multiplier(CurMelS->level)) {
-				hit_tux(CurMelS->damage, CurMelS->owner);
-				if (Me.energy/10 < CurMelS->damage)
-					tux_scream_sound();
+			if (MyRandom(100) < CurMelS->to_hit) {
+				float real_damage = CurMelS->damage * get_player_damage_factor();
+				hit_tux(real_damage, CurMelS->owner);
+				DamageProtectiveEquipment();
 			}
 		}
 
@@ -622,16 +622,10 @@ void check_bullet_background_collisions(bullet * CurBullet, int num)
  */
 void apply_bullet_damage_to_player(int damage, int owner)
 {
-	float real_damage = damage;
+	float real_damage = damage * get_player_damage_factor();
 
-	UpdateAllCharacterStats();
-
-	real_damage *= get_player_damage_factor();
 	hit_tux(real_damage, owner);	// loose some energy
 	DamageProtectiveEquipment();    // chance worn items gets damaged on each hit
-	
-	if (Me.energy/10 < real_damage)
-		tux_scream_sound();
 }
 
 /**
@@ -698,8 +692,6 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 		if ((xdist * xdist + ydist * ydist) >= DROIDHITDIST2)
 			continue;
 
-		if (compute_hit_multiplier(Druidmap[ThisRobot->type].monster_level) * (float)MyRandom(100) >= CurBullet->to_hit)
-			continue;
 		if (CurBullet->hit_type == ATTACK_HIT_BOTS && Druidmap[ThisRobot->type].is_human)
 			continue;
 		if (CurBullet->hit_type == ATTACK_HIT_HUMANS && !Druidmap[ThisRobot->type].is_human)

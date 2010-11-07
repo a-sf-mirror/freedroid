@@ -226,15 +226,6 @@ float RangedRechargeMultiplierTable[] = { 1.0, 0.9, 0.81, 0.73, 0.66, 0.59, 0.53
 
 float HitBotMultiplierTable[] = { 1.0,  0.91,  0.82,  0.73,  0.64,  0.55,  0.46,  0.37,  0.28,  0.19 };
 
-//--------------------
-// In the game, a few spells are still internally similar
-// to bullets flying around.  But what hit chance shall this
-// bullet have?  --  That will depend upon the skill level
-// of the caster.  The details will be taken from the following
-// table:
-//
-int SpellHitPercentageTable[] = { 50, 70, 90, 110, 130, 150, 190, 230, 270 };
-
 spell_skill_spec *SpellSkillMap;
 int number_of_skills;
 
