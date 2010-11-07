@@ -914,7 +914,7 @@ static void connect_waypoints()
 
 	for (rn = 0; rn < total_rooms; rn++) {
 		int wps[25];
-		int max_wps = find_waypoints(rooms[rn].x, rooms[rn].y, rooms[rn].x + rooms[rn].w, rooms[rn].y + rooms[rn].h, wps, 25);
+		int max_wps = find_waypoints(rooms[rn].x - 1, rooms[rn].y - 1, rooms[rn].x + rooms[rn].w + 1, rooms[rn].y + rooms[rn].h + 1, wps, 25);
 		int nbconn = max_wps;
 
 		if (max_wps == 1 || max_wps == 0)
@@ -945,11 +945,22 @@ static void place_waypoints()
 
 		nb = -1 + func / 3;
 
+		int retries = 15;
+
 		while ((nb--) > 0) {
 			int newx = rooms[rn].x;
 			int newy = rooms[rn].y;
 			newx += MyRandom(rooms[rn].w - 1);
 			newy += MyRandom(rooms[rn].h - 1);
+
+			colldet_filter my_filter = { WalkablePassFilterCallback, NULL, 0.8, NULL };
+			if (!SinglePointColldet(newx + 0.5, newy + 0.5, target_level->levelnum, &my_filter)) {
+				// If the randomly chosen position is not passable, retry... a certain number of times before giving up.
+				if (retries-- > 0) {
+					nb++;
+				}
+				continue;
+			}
 
 			add_waypoint(target_level, newx, newy, 0);
 		}
@@ -1045,6 +1056,8 @@ int generate_dungeon(int w, int h, int nbconnec, int tpair)
 	di.num_rooms = total_rooms;
 	di.distance = dist;
 	mapgen_convert(&di, w, h, map.m);
+
+	glue_obstacles_to_floor_tiles_for_level(target_level->levelnum);
 
 	// Place random waypoints
 	place_waypoints();
