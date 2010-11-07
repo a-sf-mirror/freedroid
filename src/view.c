@@ -64,12 +64,12 @@ int amask = 0x000000FF;
 #endif
 
 char *part_group_strings[ALL_PART_GROUPS] = {
-	"",
-	"../shields/",
-	"",
-	"",
-	"../weapons/",
-	""
+	"head/",
+	"shield/",
+	"torso/",
+	"feet/",
+	"weapon/",
+	"weaponarm/"
 };
 
 iso_image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
@@ -2803,39 +2803,23 @@ void iso_put_tux_shieldarm(int x, int y, int motion_class, int our_phase, int ro
 		shield5 = GetItemIndexByName("Riot Shield");
 		first_call = 0;
 	}
-	// In case of no shielditem present at all, it's clear that we'll just
-	// display the empty shieldarm.
-	//
-	if (Me.shield_item.type == (-1)) {
-		if (Me.weapon_item.type == (-1)){
-			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, motion_class, our_phase, rotation_index);
-			return;
-		} else if (ItemMap[Me.weapon_item.type].item_weapon_is_melee == 0) {
-			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, motion_class, our_phase, rotation_index);
-			return;
-		} else {
+
+	// In case of no shield item present at all, display the empty shieldarm.
+	if (Me.shield_item.type == -1) {
+		iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, motion_class, our_phase, rotation_index);
+		return;
+	}
+
+	// In case of a weapon item present, if the weapon needs both hands, no shield can be used.
+	if (Me.weapon_item.type != -1) {
+		if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands == 1) {
 			iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, motion_class, our_phase, rotation_index);
 			return;
 		}
 	}
-	// If there is no weapon item present, we just need to blit the shield, cause
-	// it's 'sword motion class' then.
-	//
 
-	if (Me.weapon_item.type != (-1)) {
-		// In case of a weapon item present, we need to look up the weapon item motion class
-		// and then decide which shield to use.
-		//
-		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee == 0) {
-			if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands == 1) {
-				iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm_gun", x, y, motion_class, our_phase, rotation_index);
-				return;
-			}
-		} 
-	}
-	// Now at this point we know, that a 'sword motion class' item is present, and that
+	// Now at this point we know, that a 'one hand motion class' item is present, and that
 	// we therefore need to blit the shield details.
-	//
 	if (Me.shield_item.type == shield1) {
 		iso_put_tux_part(PART_GROUP_SHIELD, "iso_buckler", x, y, motion_class, our_phase, rotation_index);
 	} else if (Me.shield_item.type == shield2 || Me.shield_item.type == shield3) {
