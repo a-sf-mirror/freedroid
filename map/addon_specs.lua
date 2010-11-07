@@ -66,7 +66,7 @@ name = _"Linarian power crank",
 upgrade_cost = 30,
 require_socket = "mechanical",
 require_item = "melee weapon",
-bonuses = { strength = 10 },
+bonuses = { strength = 8 },
 materials = { ["Entropy Inverter"] = 10 }
 }
 
@@ -102,7 +102,7 @@ name = _"Exoskeletal joint",
 upgrade_cost = 80,
 require_socket = "universal",
 require_item = "armor",
-bonuses = { physique = 10, strength = 15, dexterity = -2 },
+bonuses = { physique = 8, strength = 12, dexterity = -2 },
 materials = { ["Superconducting Relay Unit"] = 10, ["Entropy Inverter"] = 10 }
 }
 
