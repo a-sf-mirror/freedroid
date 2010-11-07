@@ -378,11 +378,6 @@ static void quest_browser_display_mission_list(int list_type)
 
 		DisplayText(txt, mission_description_rect.x, mission_description_rect.y, &mission_description_rect, TEXT_STRETCH);
 	}
-			
-
-	ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_UP_BUTTON);
-	ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_DOWN_BUTTON);
-
 }
 
 /**
@@ -444,6 +439,9 @@ void quest_browser_interface(void)
 				quest_browser_display_mission_list(current_quest_browser_mode);
 				break;
 		}
+		
+		ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_UP_BUTTON);
+		ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_DOWN_BUTTON);
 
 		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
