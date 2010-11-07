@@ -17,18 +17,18 @@
 ------------------------------------------------------------------------------
 
 tux_animation {
-  standing_keyframe = 15,
+  standing_keyframe = 16,
 
   attack_duration = 0.55,
   attack_first_keyframe = 1,
   attack_last_keyframe = 14,
 
   walk_distance = 1.0,
-  walk_first_keyframe  = 15,
-  walk_last_keyframe = 24,
+  walk_first_keyframe  = 16,
+  walk_last_keyframe = 25,
 
   run_distance = 10.0/3.0,
-  run_first_keyframe = 25,
+  run_first_keyframe = 26,
   run_last_keyframe = 34
 }
 
