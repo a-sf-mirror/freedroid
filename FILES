@@ -1,26 +1,24 @@
--*- mode: text -*-
-
 Directory structure:
 --------------------
 ./                  : The root directory
 ./src/              : The game source code
 ./src/lvledit	    : The leveleditor source code
-./map/              : The map and some other "dynamic content" (eg. stuff not hard-coded in the game source)
-./dialogs/          : The in-game dialogues
+./src/mapgen	    : The random dungeon validator
+./map/              : The map and characteristics of items, bots, programs, ...
+./dialogs/          : The in-game dialogs
 ./sound/            : The in-game sound files
 ./graphics/         : The in-game graphics files
-./po                : Translations of the text strings in the source code
 ./win32/            : Windows .exe icons
-./croppy            : One of our helper tools for graphics 
-./gluem             : A helper tool for graphics
-./zpipe		    : zlib's zpipe, used as a helper for graphics
+./croppy            : A helper tool for graphics, that automatically crops images
+./gluem             : A helper tool for graphics, used to build tux_image_archive files
+./zpipe		        : zlib's zpipe, used as a helper for graphics
 
 
 Text files containing descriptions:
 -----------------------------------
 README                : Read it!
 FILES                 : This file.
-NEWS                  : What has changed recently, targetting end users.
+NEWS                  : An empty file that the autotools force upon us.
 ChangeLog             : What has changed recently, targetting developers.
 INSTALL               : Instructions for building and installing from source.
 

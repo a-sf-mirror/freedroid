@@ -130,9 +130,8 @@
 
  Linux
    * Pulseaudio: Using SDL-pulseaudio you are currently likely not to get sound. This has nothing to do 
-     with FreedroidRPG but with Pulseaudio and it's plugins still in general being immature. We recommend using
-     eg SDL-esd or SDL-alsa until these problems has been fixed upstream. If you manage to get a working 
-     config, do let us know so we can update this entry with version numbers etc.
+     with FreedroidRPG but with Pulseaudio and its plugins still in general being immature. We recommend using
+     e.g. SDL-esd or SDL-alsa until these problems has been fixed upstream. 
    * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the 
      text in freedroidRPG. Upgrading to Mesa 7 fixes this.
    * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
@@ -167,7 +166,7 @@ Miscellaneous FAQ:
 	   from Windows users thus is greatly appreciated.
 
 	Q: How can I subscribe/unsubscribe to the mailing list?
-	A: Freedroid has two mailing list. One is for discussing stuff related to
+	A: Freedroid has two mailing lists. One is for discussing stuff related to
 	   Freedroid, the other one is a list with auto-generated changelogs from our 
 	   developer server and therefore usually only interesting for developers themselves.
 	   In any case, you can subscribe, unsubscribe or change your membership options
