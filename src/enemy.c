@@ -2171,7 +2171,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		}
 
 		NewShot->to_hit = Druidmap[ThisRobot->type].to_hit;
-		printf("to hit %f\n", (float)NewShot->to_hit);
 		NewShot->damage =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].base_item_gun_damage +
 		    MyRandom(ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_damage_modifier);
