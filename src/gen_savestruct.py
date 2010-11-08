@@ -61,7 +61,7 @@ only_dump_structs = [ "gps", "point", "moderately_finepoint", "finepoint", "tux_
 
 def main():
     if len(sys.argv) < 3:
-        print "Usage: %s <input.h> <output>" % sys.argv[0]
+        print("Usage: %s <input.h> <output>") % sys.argv[0]
         sys.exit(1)
 
     # Filenames
@@ -83,8 +83,8 @@ def main():
         # s is a tuple which contains (code, name) with code = the code inside the structure
         code, name = s
 
-	if name not in only_dump_structs:
-	    continue
+        if name not in only_dump_structs:
+            continue
 
         # Avoid matching things in comments
         lines = []
@@ -120,16 +120,16 @@ def main():
             type = type.replace(' ', '_')
             if type in special_types.keys(): type = special_types[type]
 
-	    if size:
-		type += '[%s]' % size
+            if size:
+                type += '[%s]' % size
             data[name].append((type, field))
 
     # Writing loop
     for s_name in data.keys():
         str_save = str_read = ''
         func_name = s_name.replace('struct ', '')
-	header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (func_name, s_name, func_name, s_name)
-	str_save += 'int save_%s(char * tag, %s * target)\n{\nautostr_append(savestruct_autostr, "<%%s>\\n",tag);\n' % (func_name,s_name)
+        header = 'int save_%s(char *, %s *);\n int read_%s(char *, char *, %s *);\n' % (func_name, s_name, func_name, s_name)
+        str_save += 'int save_%s(char * tag, %s * target)\n{\nautostr_append(savestruct_autostr, "<%%s>\\n",tag);\n' % (func_name,s_name)
         str_read += '''int read_%s(char* buffer, char * tag, %s * target)\n{\n
 		char search[strlen(tag) + 5];
 		sprintf(search, "<%%s>", tag);
@@ -150,7 +150,7 @@ def main():
                 type = elt_type + '_array'
             if '*' in type:
                 # Pointers are not saved (it does not make sense). They are initialized to NULL during loading
-		if size == None:
+                if size == None:
                     str_read += 'target->%s = NULL;\n' % field
                 else:
                     str_read += 'memset(target->%s, 0, %s * sizeof(%s));\n' % (field, size, elt_type)
@@ -162,6 +162,6 @@ def main():
         str_read += '''*epos = '>'; \nreturn 0;\n}\n\n'''
         outf.write(str_save)
         outf.write(str_read)
-	outh.write(header)
+        outh.write(header)
 
 if __name__ == '__main__': main()
