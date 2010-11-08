@@ -17,6 +17,7 @@ freedroid_data = map graphics sound dialogs
 EXTRA_DIST = m4 $(freedroid_data) HELP_WANTED INSTALL.generic lua
 
 dist-hook:
+	make -C lua clean
 	find $(distdir) -name ".svn"                 | xargs rm -rf
 	find $(distdir) -name "*.blend"           | xargs rm -f
 	find $(distdir) -name "*~"                | xargs rm -f
