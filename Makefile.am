@@ -43,17 +43,20 @@ sign:
 
 ## Win32 specific stuff follows here
 
-win_txts = COPYING AUTHORS README Releasetext freedroidRPG-man
-win_dir = freedroidRPG-$(VERSION)-win32
+win_txts = COPYING AUTHORS README ChangeLog
+win_dir = freedroidrpg-$(VERSION)-win32
 dist-win32: src/freedroidRPG.exe
+	rm -rf $(win_dir)
 	mkdir -p $(win_dir)
 	cp -r graphics map sound dialogs $(win_dir)
 	cp src/freedroidRPG.exe $(win_dir)
-	find src -name "*Editor.exe" -exec cp {} $(win_dir) \;
 	for i in $(win_txts); do \
 	   cp $$i $(win_dir)/$$i.txt; \
-	   emacs -batch -q -l unix2dos.el --visit=$(win_dir)/$$i.txt -f unix2dos;\
 	done
-	zip -r $(win_dir).zip $(win_dir)
+	find $(win_dir) -name ".svn"                 | xargs rm -rf
+	find $(win_dir) -name "*.blend"           | xargs rm -f
+	find $(win_dir) -name "*~"                | xargs rm -f
+	find $(win_dir) -name ".#*"               | xargs rm -f
+	echo Do not forget to ship the SDL dll files!
 
 
