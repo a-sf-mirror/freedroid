@@ -22,7 +22,7 @@
 */
 
 #include <png.h>
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 
 void png_user_warn(png_structp ctx, png_const_charp str);

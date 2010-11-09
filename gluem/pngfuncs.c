@@ -23,7 +23,7 @@
 
 #include <stdlib.h>
 #include <png.h>
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 enum pixelFormat {
 	RGBA_PIXEL_FORMAT = 0,
