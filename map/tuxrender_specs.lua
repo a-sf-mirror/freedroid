@@ -166,8 +166,14 @@ tux_ordering {
 
 tux_ordering {
   type = "gun_motion",
-  rotations = { 5, 6, 7 },
+  rotations = { 6, 7 },
   order = part_order.FSWTAH
+}
+
+tux_ordering {
+  type = "gun_motion",
+  rotations = { 5 },
+  order = part_order.FSTWAH
 }
 
 tux_ordering {
@@ -209,6 +215,14 @@ tux_ordering {
 tux_ordering {
   type = "gun_motion",
   rotations = { 11 },
+  order = part_order.FAWTSH
+}
+
+tux_ordering {
+  type = "gun_motion",
+  rotations = { 12 },
+  phase_start = 3,
+  phase_end = 13,
   order = part_order.FAWTSH
 }
 
