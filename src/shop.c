@@ -598,8 +598,8 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					RowStart--;
 					if (ItemIndex != -1 && ItemIndex >= RowStart + RowLength)
 						ItemIndex--;
+					fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 				}
-				fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_TUX_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
@@ -607,8 +607,8 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					RowStart++;
 					if (ItemIndex != -1 && ItemIndex < RowStart)
 						ItemIndex++;
+					fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 				}
-				fill_item_description(&item_description, ShowPointerList[ItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(LEFT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
@@ -616,8 +616,8 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					TuxRowStart--;
 					if (TuxItemIndex != -1 && TuxItemIndex >= TuxRowStart + TuxRowLength)
 						TuxItemIndex--;
+					fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 				}
-				fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
@@ -625,8 +625,8 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					TuxRowStart++;
 					if (TuxItemIndex != -1 && TuxItemIndex < TuxRowStart)
 						TuxItemIndex++;
+					fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 				}
-				fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), FALSE)) >= 0)) {
