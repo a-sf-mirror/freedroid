@@ -131,6 +131,14 @@ tux_ordering {
 
 tux_ordering {
   type = "sword_motion",
+  rotations = { 9 },
+  phase_start = 3,
+  phase_end = 8,
+  order = part_order.FWASTH
+}
+
+tux_ordering {
+  type = "sword_motion",
   rotations = { 9, 10, 11, 12, 13, 14, 15 },
   order = part_order.FWATSH
 }
