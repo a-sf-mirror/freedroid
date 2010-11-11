@@ -438,12 +438,15 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 {
 	int i;
 	int ClickTarget;
-	static int RowStart = 0;
-	static int TuxRowStart = 0;
-	static int ItemIndex = 0;
-	static int TuxItemIndex = -1;
+
 	int RowLength = SHOP_ROW_LENGTH;
+	static int RowStart = 0;
+	static int ItemIndex = 0;
+
 	int TuxRowLength = SHOP_ROW_LENGTH;
+	static int TuxRowStart = 0;
+	static int TuxItemIndex = -1;
+
 	char GoldString[1000];
 	SDL_Rect HighlightRect;
 	int BuyButtonActive = FALSE;
@@ -461,28 +464,37 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 	// We add some security against indexing beyond the
 	// range of items given in the list.
-	if (RowLength > NumberOfItems)
-		RowLength = NumberOfItems;
-	while (ItemIndex >= NumberOfItems)
-		ItemIndex--;
-	while (RowStart + RowLength > NumberOfItems)
-		RowStart--;
-	if (RowStart < 0)
+	if (NumberOfItems <= 0) {
+		NumberOfItems = 0;
+		RowLength = 0;
 		RowStart = 0;
+		ItemIndex = -1;
+	} else {
+		if (RowLength > NumberOfItems)
+			RowLength = NumberOfItems;
+		if (RowStart + RowLength > NumberOfItems)
+			RowStart = NumberOfItems - RowLength;
+		if (RowStart < 0)
+			RowStart = 0;
+		if (ItemIndex >= NumberOfItems)
+			ItemIndex = NumberOfItems - 1;
+	}
 
-	if (TuxRowLength > NumberOfItemsInTuxRow)
-		TuxRowLength = NumberOfItemsInTuxRow;
-	while (TuxItemIndex >= NumberOfItemsInTuxRow)
-		TuxItemIndex--;
-	while (TuxRowStart + TuxRowLength > NumberOfItemsInTuxRow)
-		TuxRowStart--;
-	if (TuxRowStart < 0)
+	if (NumberOfItemsInTuxRow <= 0) {
+		NumberOfItemsInTuxRow = 0;
+		TuxRowLength = 0;
 		TuxRowStart = 0;
-
-	if (NumberOfItemsInTuxRow <= 0)
-		TuxItemIndex = (-1);
-	if (NumberOfItems <= 0)
-		ItemIndex = (-1);
+		TuxItemIndex = -1;
+	} else {
+		if (TuxRowLength > NumberOfItemsInTuxRow)
+			TuxRowLength = NumberOfItemsInTuxRow;
+		if (TuxRowStart + TuxRowLength > NumberOfItemsInTuxRow)
+			TuxRowStart = NumberOfItemsInTuxRow - TuxRowLength;
+		if (TuxRowStart < 0)
+			TuxRowStart = 0;
+		if (TuxItemIndex >= NumberOfItemsInTuxRow)
+			TuxItemIndex = NumberOfItemsInTuxRow - 1;
+	}
 
 	/* Initialize the text widget. */
 	init_text_widget(&item_description, "");
@@ -596,36 +608,44 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			} else if (MouseCursorIsOnButton(LEFT_TUX_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (0 < RowStart) {
 					RowStart--;
-					if (ItemIndex != -1 && ItemIndex >= RowStart + RowLength)
-						ItemIndex--;
-					fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+					if (ItemIndex != -1) {
+						if (ItemIndex >= RowStart + RowLength)
+							ItemIndex--;
+						fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+					}
 				}
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_TUX_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (RowStart + RowLength < NumberOfItems) {
 					RowStart++;
-					if (ItemIndex != -1 && ItemIndex < RowStart)
-						ItemIndex++;
-					fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+					if (ItemIndex != -1) {
+						if (ItemIndex < RowStart)
+							ItemIndex++;
+						fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+					}
 				}
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(LEFT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (0 < TuxRowStart) {
 					TuxRowStart--;
-					if (TuxItemIndex != -1 && TuxItemIndex >= TuxRowStart + TuxRowLength)
-						TuxItemIndex--;
-					fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+					if (TuxItemIndex != -1) {
+						if (TuxItemIndex >= TuxRowStart + TuxRowLength)
+							TuxItemIndex--;
+						fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+					}
 				}
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
 			} else if (MouseCursorIsOnButton(RIGHT_SHOP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				if (TuxRowStart + TuxRowLength < NumberOfItemsInTuxRow) {
 					TuxRowStart++;
-					if (TuxItemIndex != -1 && TuxItemIndex < TuxRowStart)
-						TuxItemIndex++;
-					fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+					if (TuxItemIndex != -1) {
+						if (TuxItemIndex < TuxRowStart)
+							TuxItemIndex++;
+						fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+					}
 				}
 				item_description.scroll_offset = scroll_to_top;
 				MoveMenuPositionSound();
@@ -644,7 +664,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (MouseCursorIsOnButton(BUY_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (BuyButtonActive) {
+				if (BuyButtonActive && ItemIndex != -1) {
 					ShopOrder->item_selected = ItemIndex;
 					ShopOrder->shop_command = BUY_1_ITEM;
 					if ((ItemMap[ShowPointerList[ItemIndex]->type].item_group_together_in_inventory) &&
@@ -661,7 +681,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					goto out;
 				}
 			} else if (MouseCursorIsOnButton(SELL_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				if (SellButtonActive) {
+				if (SellButtonActive && TuxItemIndex != -1) {
 					ShopOrder->item_selected = TuxItemIndex;
 					ShopOrder->shop_command = SELL_1_ITEM;
 
@@ -679,7 +699,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 				// Reference to the Tux item list must only be made, when the 'highlight'
 				// is really in the tux item row.  Otherwise we just get a segfault...
 				//
-				if (TuxItemIndex > (-1)) {
+				if (TuxItemIndex != -1) {
 					// Of course the repair button should only have effect, if there is
 					// really something to repair (and therefore the button is shown at
 					// all further above.
