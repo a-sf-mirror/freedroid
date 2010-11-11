@@ -1,4 +1,49 @@
 ------------------------------------------------------------------------
+r3421 | fluzz | 2010-11-10 23:32:38 +0100 (Wed, 10 Nov 2010) | 2 lines
+
+Tux anim: Fix one wrong display ordering.
+
+------------------------------------------------------------------------
+r3420 | fluzz | 2010-11-10 22:45:09 +0100 (Wed, 10 Nov 2010) | 2 lines
+
+Tux anim: Fix some more display orderings.
+
+------------------------------------------------------------------------
+r3419 | fluzz | 2010-11-10 22:17:23 +0100 (Wed, 10 Nov 2010) | 2 lines
+
+Tux anim: Fix some wrong display orderings.
+
+------------------------------------------------------------------------
+r3418 | ahuillet | 2010-11-10 19:15:55 +0100 (Wed, 10 Nov 2010) | 2 lines
+
+shop: do not try to display tux's -1th item. Fixes crashes in shop when trying to scroll an empty list of items.
+
+------------------------------------------------------------------------
+r3417 | ahuillet | 2010-11-10 18:54:38 +0100 (Wed, 10 Nov 2010) | 2 lines
+
+Fix struct auto_string's use of vsnprintf() to be compatible with Microsoft Windows' non standard behavior. This fixes savegames not working properly on Windows.
+
+------------------------------------------------------------------------
+r3416 | ahuillet | 2010-11-09 18:42:30 +0100 (Tue, 09 Nov 2010) | 2 lines
+
+ungluem: #include <SDL.h>, not SDL/SDL.h. Fixes build on my cross compiler.
+
+------------------------------------------------------------------------
+r3415 | ahuillet | 2010-11-09 18:42:01 +0100 (Tue, 09 Nov 2010) | 2 lines
+
+Updates to make dist-win32.
+
+------------------------------------------------------------------------
+r3414 | ahuillet | 2010-11-08 22:33:53 +0100 (Mon, 08 Nov 2010) | 2 lines
+
+savestruct: now python3-compatible
+
+------------------------------------------------------------------------
+r3413 | ahuillet | 2010-11-08 07:40:09 +0100 (Mon, 08 Nov 2010) | 2 lines
+
+Updated Changelog for 0.14rc1 (again).
+
+------------------------------------------------------------------------
 r3412 | ahuillet | 2010-11-08 07:38:21 +0100 (Mon, 08 Nov 2010) | 2 lines
 
 Makefile: make clean in lua/ when doing make dist, in order not to distribute lua/ object files in the tarball.
@@ -5826,9 +5871,3 @@ Updated changelog for .13 final.
 r2326 | ahuillet | 2010-01-21 18:28:27 +0100 (Thu, 21 Jan 2010) | 2 lines
 
 NPC inventory refresh: low-stock refresh when < 6 items in stock
-
-------------------------------------------------------------------------
-r2325 | stedevil | 2010-01-21 16:33:30 +0100 (Thu, 21 Jan 2010) | 2 lines
-
-Update version string, 0.13+, 0.13 is OUT :)
-
