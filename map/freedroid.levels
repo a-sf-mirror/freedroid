@@ -3564,7 +3564,6 @@ x=32 y=61 name="0from6"
 x=18 y=62 name="0to29"
 x=18 y=61 name="0from29"
 x=17 y=40 name="0to30"
-x=17 y=41 name="0from30"
 x=80 y=38 name="614StartGameSquare4"
 x=73 y=21 name="TamaraStartGameSquare"
 x=18 y=6 name="L0GateGuardhouseGuard"
@@ -3585,6 +3584,7 @@ x=20 y=29 name="DocPatient-Enter"
 x=3 y=34 name="W-enter-1"
 x=3 y=35 name="W-enter-2"
 x=3 y=36 name="W-enter-3"
+x=18 y=40 name="0from30"
 /plabelinfolvl
 piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
