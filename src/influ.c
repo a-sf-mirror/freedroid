@@ -1555,7 +1555,7 @@ static void AnalyzePlayersMouseClick()
 	int tmp;
 
 	/* Handle the main message log. */
-	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_x())) {
+	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
 		if (widget_handle_mouse(&message_log))
 			return;
 	} else {
