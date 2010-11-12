@@ -305,10 +305,12 @@ SForce: T=821 Marker=2017 StartLabel="Kevins821StartGameSquare" ShortLabel=_"Pri
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=18
-Maximum number of Random Droids=6
-Minimum number of Random Droids=2
+Maximum number of Random Droids=15
+Minimum number of Random Droids=5
 Random Droid Type: 571
+Random Droid Type: 493
 Random Droid Type: 476
+Random Droid Type: 302
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **

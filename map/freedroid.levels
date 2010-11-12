@@ -21337,14 +21337,35 @@ obstacleextensions
 /obstacleextensions
 wp
 Nr.=  0 x=  13 y=  16 rnd=0	 c:    3   1   4   5
-Nr.=  1 x=  15 y=  18 rnd=0	 c:    0   2   6
-Nr.=  2 x=  17 y=  16 rnd=0	 c:    3   1   8
+Nr.=  1 x=  15 y=  18 rnd=0	 c:    0   2   6  23
+Nr.=  2 x=  17 y=  16 rnd=0	 c:    3   1   8  22
 Nr.=  3 x=  15 y=  14 rnd=0	 c:    0   2   7
-Nr.=  4 x=   9 y=  16 rnd=0	 c:    0   5
+Nr.=  4 x=   9 y=  16 rnd=0	 c:    0   5  14
 Nr.=  5 x=  11 y=  18 rnd=0	 c:    0   4   6
 Nr.=  6 x=  13 y=  20 rnd=0	 c:    1   5
 Nr.=  7 x=  16 y=  13 rnd=0	 c:    8   3
 Nr.=  8 x=  18 y=  15 rnd=0	 c:    2   7
+Nr.=  9 x=   8 y=  26 rnd=0	 c:   10
+Nr.= 10 x=   7 y=  19 rnd=0	 c:   11   9  29
+Nr.= 11 x=   4 y=  19 rnd=0	 c:   12  10  14
+Nr.= 12 x=   4 y=  26 rnd=0	 c:   11
+Nr.= 13 x=   4 y=   3 rnd=0	 c:   14  15
+Nr.= 14 x=   4 y=  15 rnd=0	 c:   11   4  13
+Nr.= 15 x=  10 y=   3 rnd=0	 c:   13  16
+Nr.= 16 x=  13 y=   5 rnd=0	 c:   15  17
+Nr.= 17 x=  12 y=   8 rnd=0	 c:   16  18
+Nr.= 18 x=  14 y=  10 rnd=0	 c:   17  19
+Nr.= 19 x=  15 y=   9 rnd=0	 c:   18  20
+Nr.= 20 x=  16 y=   8 rnd=0	 c:   19  21  22
+Nr.= 21 x=  16 y=   4 rnd=0	 c:   20
+Nr.= 22 x=  24 y=  16 rnd=0	 c:   20   2
+Nr.= 23 x=  18 y=  20 rnd=0	 c:    1  24
+Nr.= 24 x=  18 y=  23 rnd=0	 c:   23  25
+Nr.= 25 x=  22 y=  23 rnd=0	 c:   24  26  28
+Nr.= 26 x=  22 y=  25 rnd=0	 c:   25  27  29
+Nr.= 27 x=  25 y=  25 rnd=0	 c:   26  28
+Nr.= 28 x=  24 y=  21 rnd=0	 c:   27  25
+Nr.= 29 x=  12 y=  25 rnd=0	 c:   26  10
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 19
