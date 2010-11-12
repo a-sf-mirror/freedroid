@@ -748,7 +748,7 @@ void move_tux()
  * This function decrements Tux's health and increments the relevent statistic 
  * variable.
  */
-void hit_tux(int damage, int owner)
+void hit_tux(float damage, int owner)
 {
 	Me.energy -= damage;
 
