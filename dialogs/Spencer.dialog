@@ -253,7 +253,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=44 Text=_"It's done. Your soldiers were killed, but I managed to have a word with the shield control droid. The access to the bot factory is now open."
+Nr=44 Text=_"It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again."
 LuaCode={
 	npc_says(_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office.")
 	npc_says(_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office.")
