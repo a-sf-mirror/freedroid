@@ -698,16 +698,24 @@ Random Droid Type: 543
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=55
-Maximum number of Random Droids=0
-Minimum number of Random Droids=0
-Random Droid Type: 543
+Maximum number of Random Droids=90
+Minimum number of Random Droids=30
+Random Droid Type: 249
+Random Droid Type: 302
+Random Droid Type: 615
+Random Droid Type: 629
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=56
-Maximum number of Random Droids=0
-Minimum number of Random Droids=0
-Random Droid Type: 543
+Maximum number of Random Droids=110
+Minimum number of Random Droids=45
+Random Droid Type: 249
+Random Droid Type: 302
+Random Droid Type: 476
+Random Droid Type: 615
+Random Droid Type: 629
+Random Droid Type: 711
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
