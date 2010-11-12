@@ -47,7 +47,7 @@ Nr=0 Text=_"Why are you here?"
 LuaCode={
 	npc_says(_"I'm a political prisoner.")
 	npc_says(_"Those red fascists put me here.")
-	npc_says(_"And I guess you are a fascists too, as only Red Guard members are allowed in here.")
+	npc_says(_"And I guess you are a fascist too, as only Red Guard members are allowed in here.")
 	hide(0) show(1)
 }
 ----------------------------------------------------------------------
