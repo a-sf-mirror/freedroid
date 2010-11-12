@@ -119,7 +119,13 @@ tux_ordering {
 
 tux_ordering {
   type = "sword_motion",
-  rotations = { 1, 2, 3, 4, 5, 6, 7 },
+  rotations = { 7 },
+  order = part_order.FSWTAH
+}
+
+tux_ordering {
+  type = "sword_motion",
+  rotations = { 1, 2, 3, 4, 5, 6 },
   order = part_order.FSTHWA
 }
 
