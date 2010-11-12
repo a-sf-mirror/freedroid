@@ -75,7 +75,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=5 Text=_"Oh? Who was he? And Why?"
+Nr=5 Text=_"Oh? Who was he? And why?"
 LuaCode={
 	npc_says(_"Heh, you sure are a curious little bird, in more than one way I might say.")
 	npc_says(_"On the day he visited all our computers went insane, 20 bags of food rations vanished from our storage and one of our bots was stolen.")
