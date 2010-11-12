@@ -32177,8 +32177,8 @@ Nr.=  5 x=  27 y=   7 rnd=0	 c:    4   6
 Nr.=  6 x=  29 y=   6 rnd=0	 c:    5
 Nr.=  7 x=  29 y=   3 rnd=0	 c:    6
 Nr.=  8 x=  57 y=  22 rnd=0	 c:   10   9
-Nr.=  9 x=  62 y=  16 rnd=0	 c:   10  17   8
-Nr.= 10 x=  65 y=  19 rnd=0	 c:    9  17   8
+Nr.=  9 x=  62 y=  16 rnd=0	 c:   10  17   8  48
+Nr.= 10 x=  65 y=  19 rnd=0	 c:    9  17   8  49
 Nr.= 11 x=  65 y=  27 rnd=0	 c:   15
 Nr.= 12 x=  77 y=   3 rnd=0	 c:   13  14
 Nr.= 13 x=  81 y=   4 rnd=0	 c:   12  14
@@ -32202,8 +32202,33 @@ Nr.= 30 x=   8 y=  78 rnd=0	 c:   31  32  33
 Nr.= 31 x=   8 y=  74 rnd=0	 c:   30  32
 Nr.= 32 x=   3 y=  75 rnd=0	 c:   31  30
 Nr.= 33 x=  22 y=  76 rnd=0	 c:   30  34  35
-Nr.= 34 x=  30 y=  82 rnd=0	 c:   33
+Nr.= 34 x=  30 y=  82 rnd=0	 c:   33  38
 Nr.= 35 x=  23 y=  67 rnd=0	 c:   33
+Nr.= 36 x=  50 y=  83 rnd=0	 c:   37
+Nr.= 37 x=  39 y=  85 rnd=0	 c:   36  38
+Nr.= 38 x=  33 y=  80 rnd=0	 c:   37  34
+Nr.= 39 x=  83 y=  69 rnd=0	 c:   40
+Nr.= 40 x=  82 y=  79 rnd=0	 c:   39  41
+Nr.= 41 x=  85 y=  81 rnd=0	 c:   40
+Nr.= 42 x=  64 y=  36 rnd=0	 c:   43
+Nr.= 43 x=  68 y=  37 rnd=0	 c:   42  44
+Nr.= 44 x=  72 y=  41 rnd=0	 c:   43  45
+Nr.= 45 x=  74 y=  45 rnd=0	 c:   44  46
+Nr.= 46 x=  80 y=  52 rnd=0	 c:   45  47
+Nr.= 47 x=  85 y=  52 rnd=0	 c:   46
+Nr.= 48 x=  60 y=  20 rnd=0	 c:    9
+Nr.= 49 x=  66 y=   5 rnd=0	 c:   10
+Nr.= 50 x=  74 y=  23 rnd=0	 c:   51
+Nr.= 51 x=  77 y=  23 rnd=0	 c:   50  52
+Nr.= 52 x=  77 y=  17 rnd=0	 c:   51
+Nr.= 53 x=  48 y=  15 rnd=0	 c:   54
+Nr.= 54 x=  58 y=   4 rnd=0	 c:   53  55
+Nr.= 55 x=  55 y=   2 rnd=0	 c:   54  56
+Nr.= 56 x=  49 y=   2 rnd=0	 c:   55
+Nr.= 57 x=   5 y=   3 rnd=0	 c:   58
+Nr.= 58 x=   5 y=   9 rnd=0	 c:   57  59
+Nr.= 59 x=  13 y=  11 rnd=0	 c:   58  60
+Nr.= 60 x=  17 y=  14 rnd=0	 c:   59
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 34
