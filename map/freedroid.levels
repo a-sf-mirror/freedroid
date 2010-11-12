@@ -29183,17 +29183,10 @@ x=27 y=32 name="MSOfficeFirmwareUpdateServerStartPosition"
 x=71 y=7 name="MSAreaGuardChiefStartGameSquare"
 x=77 y=8 name="MSAreaGuardStartGameSquare"
 x=36 y=27 name="OpenFirmwareUpgradeRoom"
-x=39 y=27 name="UpgradeFirmwareRoomCloseComeBack"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
 obstacleextensions
-idx=1342 type=30 data={
-	UpgradeFirmwareRoomFinal
-}
-idx=1462 type=30 data={
-	UpgradeFirmwareRoomNoComeBack
-}
 idx=1613 type=30 data={
 	MSOMillerEntranceCounterDoor
 }
@@ -29244,6 +29237,12 @@ idx=271 type=30 data={
 }
 idx=1512 type=32 data={
 	HF-FirmwareUpdateServer
+}
+idx=1342 type=30 data={
+	UpgradeFirmwareRoomFinal
+}
+idx=1457 type=32 data={
+	Upgrade distribution server room. Access restricted to authorized personnel - trepassers will be fired.
 }
 /obstacleextensions
 wp
