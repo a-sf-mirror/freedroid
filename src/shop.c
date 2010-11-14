@@ -859,19 +859,24 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 
 /**
  * This function tries to buy the item given as parameter.
- * Returns 0 if buying was possible, 1 otherwise.
+ * Returns -1 if buying failed, 0 if buying was possible, and 1 if all items were sold.
  */
 static int buy_item(item *BuyItem, int amount)
 {
 	float item_price;
+	item new_item;
 
 	if (amount <= 0) {
-		return 1;
+		return -1;
 	}
 
-	BuyItem->multiplicity = amount;
-
-	item_price = calculate_item_buy_price(BuyItem);
+	CopyItem(BuyItem, &new_item, 0);
+	
+	if (BuyItem->multiplicity < amount)
+		amount = BuyItem->multiplicity;
+		
+	new_item.multiplicity = amount;
+	item_price = calculate_item_buy_price(&new_item);
 
 	// If the item is too expensive, bail out
 	if (item_price > Me.Gold) {
@@ -879,15 +884,23 @@ static int buy_item(item *BuyItem, int amount)
 		sprintf(linebuf, _("%s\n\nYou can't afford to purchase this item!"),
 		        ItemMap[BuyItem->type].item_name);
 		alert_window(linebuf);
-		return 1;
+		return -1;
 	}
 
-	// Give the item to the player and subtract money.
-	give_item(BuyItem);
+	// Subtract money, give item, play sound.
 	Me.Gold -= item_price;
-	PlayOnceNeededSoundSample("effects/Shop_ItemBoughtSound_0.ogg", FALSE, FALSE);
-
+	give_item(&new_item);
+	PlayOnceNeededSoundSample("effects/Shop_ItemBoughtSound_0.ogg", FALSE, FALSE);	
+	
+	// Did player want all of the items?
+	if(BuyItem->multiplicity == amount) {
+		return 1;
+	} else {
+		BuyItem->multiplicity -= amount;
+	}
+	
 	return 0;
+
 }
 
 /**
@@ -935,7 +948,7 @@ void InitTradeWithCharacter(struct npc *npc)
 		ItemSelected = GreatShopInterface(NumberOfItemsInShop, BuyPointerList, NumberOfItemsInTuxRow, TuxItemsList, &(ShopOrder));
 		switch (ShopOrder.shop_command) {
 		case BUY_1_ITEM:
-			if (!buy_item(BuyPointerList[ShopOrder.item_selected], ShopOrder.number_selected)) {
+			if (buy_item(BuyPointerList[ShopOrder.item_selected], ShopOrder.number_selected) == 1) {
 				// destroy our copy of the item
 				npc_inventory_delete_item(npc, ShopOrder.item_selected);
 			}
