@@ -60,6 +60,7 @@ Completion LuaCode={
 	change_obstacle_state("NoviceArenaExitDoor", "opened")
 	display_console_message(_"Novice arena cleared!")
 	display_big_message(_"Level cleared!")
+	add_diary_entry("Novice Arena", "I won the fight in the novice arena.")
 }
 ** End of this mission target subsection **
 
@@ -73,6 +74,7 @@ Completion LuaCode={
 	change_obstacle_state("MasterArenaExitDoor", "opened")
 	display_console_message(_"Master arena cleared. Good job, man.")
 	display_big_message(_"Level cleared!")
+	add_diary_entry("Time to say goodnight", "I managed to win the fight in the master arena. Am I really that good, or did I cheat?")
 }
 ** End of this mission target subsection **
 
@@ -82,6 +84,9 @@ Completion LuaCode={
 +++
 Mission Name=_"Opening a can of bots..."
 Mission target is to kill all hostile droids this first level : 1
+Completion LuaCode={
+	add_diary_entry("Opening a can of bots...", "The warehouse is now secured.")
+}
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
