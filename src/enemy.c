@@ -186,7 +186,7 @@ int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 void teleport_enemy(enemy *robot, int z, float x, float y)
 {
 	// Check the validity of the teleport destination
-	if (!level_exists(z) || !pos_inside_level(robot->pos.x, robot->pos.y, curShip.AllLevels[z])) {
+	if (!level_exists(z) || !pos_inside_level(x, y, curShip.AllLevels[z])) {
 		ErrorMessage(__FUNCTION__, "\
 				Trying to teleport NPC (dialog name %s) from x=%f y=%f level=%d to x=%f y=%f level=%d\n\
 				is not possible because the target location is not valid.", 
