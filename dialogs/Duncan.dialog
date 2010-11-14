@@ -145,7 +145,7 @@ LuaCode={
 	npc_says(_"There is something you must know.")
 	npc_says(_"There are not too many bots in the desert, but they are invincible. It is best to avoid them.")
 	npc_says(_"I will be waiting here for your return.")
-	add_quest(_"Doing Duncan a favor", _"Find Koan in the desert.")
+	add_quest(_"Doing Duncan a favor", _"Find Koan in the desert west of town.")
 	tux_says(_"That is all I need to know. I will find Koan.")
 	npc_says(_"Only time will tell.")
 	npc_says(_"In any case, I'll let the Red Guard know to open the western gate to the desert.")

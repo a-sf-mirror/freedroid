@@ -201,7 +201,7 @@ Nr=23 Text=_"So disable the guns, please."
 LuaCode={
 	npc_says(_"Go, and bring dilithium. I badly need it.")
 	end_dialog()
-	add_quest(_"SADD's power supply", _"I am supposed to get some dilithium crystals for that SADD.")
+	add_quest(_"SADD's power supply", _"I found a SADD underneath the desert. It needs me to fetch a dilithium crystal, otherwise it will really be a SAD droid.")
 	change_obstacle_state("SADDGun1", "disabled")
 	change_obstacle_state("SADDGun2", "disabled")
 	change_obstacle_state("BreakableWall1", "broken")
