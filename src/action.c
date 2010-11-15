@@ -640,38 +640,44 @@ void sign_read_action(level *lvl, int index)
 }
 
 /**
- * Have Tux pick up an item if it is close enough and isn't blocked by any
+ * \brief Check if Tux can pick up an item, and if not, let Tux reach the item.
+ *
+ * Tux can pick up an item if it is close enough and isn't blocked by any
  * obstacles (e.g. walls).
  *
  * If Tux is too far away, a combo action will be started, which will first make
- * Tux walk towards item. If the action is not canceled, the item is picked up
- * on arrival.
+ * Tux walk towards item.
+ *
+ * \param item_lvl Pointer to the item's level structure
+ * \param item_index Index of the item to pick up
+ *
+ * \return TRUE if the item can be picked up without moving
  */
 int check_for_items_to_pickup(level *item_lvl, int item_index)
 {
 	gps item_vpos;
 
 	if (item_lvl == NULL || item_index == -1)
-		return 0;
+		return FALSE;
 
 	update_virtual_position(&item_vpos, &item_lvl->ItemList[item_index].pos, Me.pos.z);
 
 	if ((calc_distance(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y) < ITEM_TAKE_DIST)
 		&& DirectLineColldet(Me.pos.x, Me.pos.y, item_vpos.x, item_vpos.y, Me.pos.z, NULL))
 	{
-		give_item(&(item_lvl->ItemList[item_index]));
-	} else {
-		Me.mouse_move_target.x = item_lvl->ItemList[item_index].pos.x;
-		Me.mouse_move_target.y = item_lvl->ItemList[item_index].pos.y;
-		Me.mouse_move_target.z = item_lvl->levelnum;
-
-		// Set up the combo_action
-		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-		Me.mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM;
-		Me.mouse_move_target_combo_action_parameter = item_index;
+		return TRUE;
 	}
 
-	return 1;
+	// Set up the combo_action
+	Me.mouse_move_target.x = item_lvl->ItemList[item_index].pos.x;
+	Me.mouse_move_target.y = item_lvl->ItemList[item_index].pos.y;
+	Me.mouse_move_target.z = item_lvl->levelnum;
+
+	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+	Me.mouse_move_target_combo_action_type = COMBO_ACTION_PICK_UP_ITEM;
+	Me.mouse_move_target_combo_action_parameter = item_index;
+
+	return FALSE;
 }
 
 #undef _action_c

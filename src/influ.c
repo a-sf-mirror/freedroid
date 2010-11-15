@@ -600,7 +600,23 @@ static void move_tux_towards_intermediate_point(void)
                     Me.mouse_move_target_combo_action_parameter);
 			break;
 		case COMBO_ACTION_PICK_UP_ITEM:
-			check_for_items_to_pickup(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter);
+			// If Tux arrived at destination, pick up the item and give it to the player
+			if (check_for_items_to_pickup(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter)) {
+				item *it = &curShip.AllLevels[Me.mouse_move_target.z]->ItemList[Me.mouse_move_target_combo_action_parameter];
+
+				if (GameConfig.Inventory_Visible) {
+					// Special case: when the inventory screen is open, and there
+					// is no enough room to place the item, put it in player's hand
+					if (!try_give_item(it)) {
+						item_held_in_hand = it;
+					}
+				} else {
+					// Put the item into player's inventory, or drop it on the floor
+					// if there is no enough room.
+					give_item(it);
+				}
+			}
+
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unhandled combo action for intermediate course encountered!", PLEASE_INFORM, IS_FATAL);
@@ -1593,10 +1609,20 @@ static void AnalyzePlayersMouseClick()
 			    break;
 			}
 
-			if ((tmp = get_floor_item_index_under_mouse_cursor(&obj_lvl)) != -1) {
-				if (check_for_items_to_pickup(obj_lvl, tmp))
-					wait_mouseleft_release = TRUE;
-				break;
+			// If the inventory screen is open, let it manage any possibly picked item.
+			// Else, if the player left-clicked on an item, check if the item can be
+			// picked up. If so, get it and give it to the player.
+			// Note: if the item is too far away from Tux, check_for_items_to_pickup()
+			// creates a combo action to reach the item.
+			if (GameConfig.Inventory_Visible == FALSE) {
+				if ((tmp = get_floor_item_index_under_mouse_cursor(&obj_lvl)) != -1) {
+					if (check_for_items_to_pickup(obj_lvl, tmp)) {
+						// The item can be picked up immediately , so give it to the player
+						give_item(&obj_lvl->ItemList[tmp]);
+						wait_mouseleft_release = TRUE;
+					}
+					break;
+				}
 			}
 		}
 		// Just after the beginning of a combo action, and while LMB is

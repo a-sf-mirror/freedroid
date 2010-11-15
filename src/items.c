@@ -1549,8 +1549,6 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
  * Handle inventory screen and related things: interact with items in inventory
  * grid, in inventory slots and in hand. Also handle dropping items in hand and
  * apply (right click) items.
- *
- * Picking up items is handled in check_for_items_to_pickup()
  */
 void HandleInventoryScreen(void)
 {
@@ -1620,6 +1618,22 @@ void HandleInventoryScreen(void)
 					return;
 				}
 			}
+		}
+
+		// Case 1.3: The user left-clicks on an item on the floor
+		int item_idx;
+		level *item_lvl = NULL;
+
+		if ((item_idx = get_floor_item_index_under_mouse_cursor(&item_lvl)) != -1) {
+			// Try to auto-put or auto-equip the item. If it's not possible,
+			// the item will be 'put in hand'.
+			if (check_for_items_to_pickup(item_lvl, item_idx)) {
+				item *it = &item_lvl->ItemList[item_idx];
+				if (!try_give_item(it)) {
+					item_held_in_hand = it;
+				}
+			}
+			return;
 		}
 		
 		// No item was picked
@@ -1914,10 +1928,12 @@ int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_Loc, in
  * SCREEN OPEN, the Tux still clicks some items on the floor to pick them
  * up.  So no big visible operation is required, but instead the items
  * picked up should be either auto-equipped, if possible, or they should
- * be put into the inventory items pool OR IN CASE THERE IS NO ROOM ANY
- * MORE the function should also say that and not do much else...
+ * be put into the inventory items pool.
+ *
+ * \return -1 on error, 1 if the item was placed somewhere, 0 if there is no room
+ *         for the item in the inventory.
  */
-static int AddFloorItemDirectlyToInventory(item *ItemPointer)
+int try_give_item(item *ItemPointer)
 {
 	int InvPos;
 	point Inv_Loc = { -1, -1 };
@@ -1928,36 +1944,31 @@ static int AddFloorItemDirectlyToInventory(item *ItemPointer)
 
 	// In the special case of money, we add the amount of money to our
 	// money counter and eliminate the item on the floor.
-	//
+
 	if (MatchItemWithName(ItemPointer->type, "Valuable Circuits")) {
-	// Announce that we have taken the money. Pointless for purposes other than debugging.
-	// If you pointed and clicked on something, if it vanishes, you picked it up...
-	/*
-		char tmp[100];
-		sprintf(tmp, _("Picked up %d valuable circuits."), ItemPointer->multiplicity);
-		append_new_game_message(tmp);
-	*/
 		play_item_sound(ItemPointer->type);
 		Me.Gold += ItemPointer->multiplicity;
 		DeleteItem(ItemPointer);
-		return 0;
+		return 1;
 	}
+
 	// In the special case, that this is an item, that groups together with others
 	// of the same type AND we also have as item of this type already in inventory,
 	// then we just need to manipulate multiplicity a bit and we're done.  Very easy.
-	//
+
 	if (ItemMap[ItemPointer->type].item_group_together_in_inventory) {
 		if (CountItemtypeInInventory(ItemPointer->type)) {
 			TargetItemIndex = FindFirstInventoryIndexWithItemType(ItemPointer->type);
 			Me.Inventory[TargetItemIndex].multiplicity += ItemPointer->multiplicity;
 			play_item_sound(ItemPointer->type);
 			DeleteItem(ItemPointer);
-			return 0;
+			return 1;
 		}
 	}
+
 	// Maybe the item is of a kind that can be equipped right now.  Then
 	// we decide to directly drop it to the corresponding slot.
-	//
+
 	if ((Me.weapon_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_weapon_slot)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			// Now we're picking up a weapon while no weapon is equipped.  But still
@@ -1967,17 +1978,18 @@ static int AddFloorItemDirectlyToInventory(item *ItemPointer)
 			//
 			if (Me.shield_item.type == (-1)) {
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.weapon_item), Inv_Loc);
-				return 0;
+				return 1;
 			}
 			// So now we know that some shield item is equipped.  Let's be careful:  2-handed
 			// weapons will be rejected from direct addition to the slot.
 			//
 			if (!ItemMap[ItemPointer->type].item_gun_requires_both_hands) {
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.weapon_item), Inv_Loc);
-				return 0;
+				return 1;
 			}
 		}
 	}
+
 	if ((Me.shield_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_shield_slot)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			// Auto-equipping shields can be done.  But only if there isn't a 2-handed
@@ -1985,35 +1997,39 @@ static int AddFloorItemDirectlyToInventory(item *ItemPointer)
 			//
 			if (Me.weapon_item.type == (-1)) {
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.shield_item), Inv_Loc);
-				return 0;
+				return 1;
 			}
 			// But now we know, that there is some weapon present.  We need to be careful:
 			// it might be a 2-handed weapon.
 			// 
 			if (!ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
 				raw_move_picked_up_item_to_entry(ItemPointer, &(Me.shield_item), Inv_Loc);
-				return 0;
+				return 1;
 			}
 		}
 	}
+
 	if ((Me.armour_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_armour_slot)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.armour_item), Inv_Loc);
-			return 0;
+			return 1;
 		}
 	}
+
 	if ((Me.drive_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_drive_slot)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.drive_item), Inv_Loc);
-			return 0;
+			return 1;
 		}
 	}
+
 	if ((Me.special_item.type == (-1)) && (ItemMap[ItemPointer->type].item_can_be_installed_in_special_slot)) {
 		if (ItemUsageRequirementsMet(ItemPointer, TRUE)) {
 			raw_move_picked_up_item_to_entry(ItemPointer, &(Me.special_item), Inv_Loc);
-			return 0;
+			return 1;
 		}
 	}
+
 	// find a free position in the inventory list
 	for (InvPos = 0; InvPos < MAX_ITEMS_IN_INVENTORY - 1; InvPos++) {
 		if (Me.Inventory[InvPos].type == (-1))
@@ -2024,37 +2040,35 @@ static int AddFloorItemDirectlyToInventory(item *ItemPointer)
 	// the quick inventory.  If that is so, we try to put it there first.  If that
 	// isn't possible, it can still be placed somewhere outside of the quick 
 	// inventory later.
-	//
+
 	if ((ItemMap[ItemPointer->type].inv_image.inv_size.x == 1) &&
 	    (ItemMap[ItemPointer->type].inv_image.inv_size.y == 1) && (ItemMap[ItemPointer->type].item_can_be_applied_in_combat)) {
 		DebugPrintf(2, "\n\nTrying to place this item inside of the quick inventory first...");
 		Inv_Loc.y = INVENTORY_GRID_HEIGHT - 1;
 		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
 			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
-				return 0;
+				return 1;
 		}
 	}
 
-	// find enough free squares in the inventory to fit
+	// Find enough free squares in the inventory to fit
 	for (Inv_Loc.y = 0; Inv_Loc.y < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_image.inv_size.y + 1; Inv_Loc.y++) {
 		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
 			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
-				return 0;
+				return 1;
 		}
 	}
 
+	// No enough free place in the inventory
 	if (Me.Inventory[InvPos].inventory_position.x == (-1)) {
-		Me.TextVisibleTime = 0;
-		Me.TextToBeDisplayed = _("I can't carry any more.");
-		CantCarrySound();
-		return 1;
-	} else {
-		raw_move_picked_up_item_to_entry(ItemPointer, &(Me.Inventory[InvPos]), Inv_Loc);
 		return 0;
 	}
 
-	return 0;
-};				// void AddFloorItemDirectlyToInventory( item* ItemPointer )
+	// Place the item in the inventory
+	raw_move_picked_up_item_to_entry(ItemPointer, &(Me.Inventory[InvPos]), Inv_Loc);
+
+	return 1;
+}
 
 const char *ammo_desc_for_weapon(int type) {
 	const char *ammo_desc[] = {
@@ -2087,16 +2101,25 @@ const char *ammo_desc_for_weapon(int type) {
  * Otherwise, if there's enough room in the inventory, the item is placed there.
  * Otherwise, the item is dropped to the floor at the feet of the player.
  *
- * \return TRUE if equipped or placed into the inventory, FALSE if dropped to the floor.
+ * \param it The item to give to the player.
+ *
+ * \return TRUE if equipped or placed into the inventory, FALSE if dropped on the floor
  */
 int give_item(item *it)
 {
-	if (!AddFloorItemDirectlyToInventory(it)) {
-		return TRUE;
-	} else {
-		drop_item(it, Me.pos.x, Me.pos.y, Me.pos.z);
+	if (it == NULL)
 		return FALSE;
+
+	if (try_give_item(it)) {
+		return TRUE;
 	}
+
+	Me.TextVisibleTime = 0;
+	Me.TextToBeDisplayed = _("I can't carry any more.");
+	CantCarrySound();
+	drop_item(it, Me.pos.x, Me.pos.y, Me.pos.z);
+
+	return FALSE;
 }
 
 int item_is_currently_equipped(item * Item)
