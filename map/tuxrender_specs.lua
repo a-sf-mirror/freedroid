@@ -91,25 +91,42 @@ tux_rendering_config {
 --------------------
 
 part_order = {
-  FTHASW = { "feet", "torso",     "head",      "weaponarm", "shieldarm", "weapon"    },
-  FTHSWA = { "feet", "torso",     "head",      "shieldarm", "weapon",    "weaponarm" },
-  FTAWSH = { "feet", "torso",     "weaponarm", "weapon",    "shieldarm", "head"      },
-  FSTHWA = { "feet", "shieldarm", "torso",     "head",      "weapon",    "weaponarm" },
-  FSTWAH = { "feet", "shieldarm", "torso",     "weapon",    "weaponarm", "head"      },
-  FSWTAH = { "feet", "shieldarm", "weapon",    "torso",     "weaponarm", "head"      },
-  FSAWTH = { "feet", "shieldarm", "weaponarm", "weapon",    "torso",     "head"      },
-  FWATSH = { "feet", "weapon",    "weaponarm", "torso",     "shieldarm", "head"      },
-  FWASTH = { "feet", "weapon",    "weaponarm", "shieldarm", "torso",     "head"      },
-  FWSTAH = { "feet", "weapon",    "shieldarm", "torso",     "weaponarm", "head"      },
-  FAWTSH = { "feet", "weaponarm", "weapon",    "torso",     "shieldarm", "head"      },
-  FAWSTH = { "feet", "weaponarm", "weapon",    "shieldarm", "torso",     "head"      },
-  FATWSH = { "feet", "weaponarm", "torso",     "weapon",    "shieldarm", "head"      },
-  WFASTH = { "weapon", "feet",    "weaponarm", "shieldarm", "torso",     "head"      }
+  FTSHAW = { "feet",      "torso",     "shieldarm", "head",      "weaponarm", "weapon"    },
+  FTHASW = { "feet",      "torso",     "head",      "weaponarm", "shieldarm", "weapon"    },
+  FTHSWA = { "feet",      "torso",     "head",      "shieldarm", "weapon",    "weaponarm" },
+  FTHWAS = { "feet",      "torso",     "head",      "weapon",    "weaponarm", "shieldarm" },
+  FTHAWS = { "feet",      "torso",     "head",      "weaponarm", "weapon",    "shieldarm" },
+  FTAWSH = { "feet",      "torso",     "weaponarm", "weapon",    "shieldarm", "head"      },
+  FTAWSH = { "feet",      "torso",     "weaponarm", "weapon",    "shieldarm", "head"      },
+  FSTHWA = { "feet",      "shieldarm", "torso",     "head",      "weapon",    "weaponarm" },
+  FSTHAW = { "feet",      "shieldarm", "torso",     "head",      "weaponarm", "weapon"    },
+  FSTWAH = { "feet",      "shieldarm", "torso",     "weapon",    "weaponarm", "head"      },
+  FSTAWH = { "feet",      "shieldarm", "torso",     "weaponarm", "weapon",    "head"      },
+  FSWTAH = { "feet",      "shieldarm", "weapon",    "torso",     "weaponarm", "head"      },
+  FSAWTH = { "feet",      "shieldarm", "weaponarm", "weapon",    "torso",     "head"      },
+  FWATSH = { "feet",      "weapon",    "weaponarm", "torso",     "shieldarm", "head"      },
+  FWASTH = { "feet",      "weapon",    "weaponarm", "shieldarm", "torso",     "head"      },
+  FWSTAH = { "feet",      "weapon",    "shieldarm", "torso",     "weaponarm", "head"      },
+  FAWTSH = { "feet",      "weaponarm", "weapon",    "torso",     "shieldarm", "head"      },
+  FAWSTH = { "feet",      "weaponarm", "weapon",    "shieldarm", "torso",     "head"      },
+  FATWSH = { "feet",      "weaponarm", "torso",     "weapon",    "shieldarm", "head"      },
+  FATHWS = { "feet",      "weaponarm", "torso",     "head",      "weapon",    "shieldarm" },
+  WFASTH = { "weapon",    "feet",      "weaponarm", "shieldarm", "torso",     "head"      },
+  SFTHAW = { "shieldarm", "feet",      "torso",     "head",      "weaponarm", "weapon"    }
 }
 
 --------------------
 -- Sword animation
 --------------------
+
+tux_ordering {
+  type = "sword_motion",
+  rotations = { 0 },
+  phase_start = 32,
+  phase_end = 34,
+--  order = part_order.FSAWTH
+  order = part_order.FSTHAW
+}
 
 tux_ordering {
   type = "sword_motion",
@@ -125,8 +142,24 @@ tux_ordering {
 
 tux_ordering {
   type = "sword_motion",
+  rotations = { 1 },
+  phase_start = 3,
+  phase_end = 8,
+  order = part_order.FTSHAW
+}
+
+tux_ordering {
+  type = "sword_motion",
+  rotations = { 2, 3, 4, 5, 6 },
+  phase_start = 3,
+  phase_end = 8,
+  order = part_order.FSTHAW
+}
+
+tux_ordering {
+  type = "sword_motion",
   rotations = { 1, 2, 3, 4, 5, 6 },
-  order = part_order.FSTHWA
+  order = part_order.SFTHAW
 }
 
 tux_ordering {
@@ -141,6 +174,22 @@ tux_ordering {
   phase_start = 3,
   phase_end = 8,
   order = part_order.FWASTH
+}
+
+tux_ordering {
+  type = "sword_motion",
+  rotations = { 14 },
+  phase_start = 32,
+  phase_end = 34,
+  order = part_order.FATHWS
+}
+
+tux_ordering {
+  type = "sword_motion",
+  rotations = { 15 },
+  phase_start = 31,
+  phase_end = 34,
+  order = part_order.FATHWS
 }
 
 tux_ordering {
