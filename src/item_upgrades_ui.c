@@ -242,7 +242,7 @@ void show_item_upgrade_ui()
 		ShowItemPicture(rects.custom_slot.x, rects.custom_slot.y, ui.custom_item.type);
 	} else {
 		SetCurrentFont(Messagestat_BFont);
-		DisplayText(_("Drag an item here"), rects.custom_slot.x,
+		DisplayText(_("Place an item here"), rects.custom_slot.x,
 		            rects.custom_slot.y + rects.custom_slot.h / 2, NULL, TEXT_STRETCH);
 	}
 
