@@ -1,4 +1,155 @@
 ------------------------------------------------------------------------
+r3449 | fluzz | 2010-11-16 00:12:44 +0100 (Tue, 16 Nov 2010) | 6 lines
+
+When picking up an item with full inventory when the inv screen is open should
+not drop back the item back on the ground. This is a regression.
+
+Behavior change: when there is no room to place the item in the inventory or to
+auto-equip, put the item in player's hand.
+
+------------------------------------------------------------------------
+r3448 | fluzz | 2010-11-15 23:47:00 +0100 (Mon, 15 Nov 2010) | 2 lines
+
+Tux anims: Fix some display ordering bugs
+
+------------------------------------------------------------------------
+r3447 | ahuillet | 2010-11-15 22:01:36 +0100 (Mon, 15 Nov 2010) | 2 lines
+
+Fix one of laser_rifle bullets being invisible. We need a big overhaul of our bullet system after 0.14.
+
+------------------------------------------------------------------------
+r3446 | ahuillet | 2010-11-15 21:16:26 +0100 (Mon, 15 Nov 2010) | 2 lines
+
+Actually replace the files from previous rev.
+
+------------------------------------------------------------------------
+r3445 | ahuillet | 2010-11-15 21:03:57 +0100 (Mon, 15 Nov 2010) | 2 lines
+
+Replace empty rotation portraits for three weapons by a '?' so at least the user sees something.
+
+------------------------------------------------------------------------
+r3444 | ahuillet | 2010-11-15 21:03:36 +0100 (Mon, 15 Nov 2010) | 2 lines
+
+item upgrades: s/Drag an item here/Place an item here/
+
+------------------------------------------------------------------------
+r3443 | ahuillet | 2010-11-14 20:58:02 +0100 (Sun, 14 Nov 2010) | 2 lines
+
+quests: add more information about the location of things. Patch by Matthias.
+
+------------------------------------------------------------------------
+r3442 | ahuillet | 2010-11-14 19:14:13 +0100 (Sun, 14 Nov 2010) | 2 lines
+
+enemy: fix teleport_enemy() so it correctly checks the destination position, not source position, for validity.
+
+------------------------------------------------------------------------
+r3441 | ahuillet | 2010-11-14 18:50:11 +0100 (Sun, 14 Nov 2010) | 2 lines
+
+shop: fix buying multiple items, but less than the total amount offered for sale, not behaving correctly. Patch by Esa-Matti Mourujärvi.
+
+------------------------------------------------------------------------
+r3440 | ahuillet | 2010-11-14 18:47:30 +0100 (Sun, 14 Nov 2010) | 2 lines
+
+map: move shelf on level 8 in order to make a chest possible to open.
+
+------------------------------------------------------------------------
+r3439 | ahuillet | 2010-11-14 18:44:52 +0100 (Sun, 14 Nov 2010) | 2 lines
+
+quests: add completion quest log entries for arenas & warehouse
+
+------------------------------------------------------------------------
+r3438 | ahuillet | 2010-11-14 17:05:06 +0100 (Sun, 14 Nov 2010) | 2 lines
+
+items: use better looking graphics for energy capsule ingame. Patch by Miles.
+
+------------------------------------------------------------------------
+r3437 | ahuillet | 2010-11-13 00:24:32 +0100 (Sat, 13 Nov 2010) | 2 lines
+
+Remove door-closing event on hell fortress entrance so as to prevent the player from getting blocked inside a locked door.
+
+------------------------------------------------------------------------
+r3436 | ahuillet | 2010-11-13 00:02:00 +0100 (Sat, 13 Nov 2010) | 2 lines
+
+map: add more waypoints on level 33 (crystal caverns), but do not touch the number of random droids in order not to alter the gameplay balance.
+
+------------------------------------------------------------------------
+r3435 | ahuillet | 2010-11-12 23:54:32 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+map: add waypoints and more random bots on level 18 (kevin's underground station)
+
+------------------------------------------------------------------------
+r3434 | ahuillet | 2010-11-12 23:46:30 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+map: add random droids on levels 55 and 56. It would be sad not to populate our shiny new random dungeons.
+
+------------------------------------------------------------------------
+r3433 | fluzz | 2010-11-12 23:20:21 +0100 (Fri, 12 Nov 2010) | 5 lines
+
+When opening the shop screen, the description of the selected item
+is scrolled up to end.
+
+Reset the text_widget's scroll_offset after each call to fill_item_description().
+
+------------------------------------------------------------------------
+r3432 | ahuillet | 2010-11-12 23:20:15 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+map: add a new room and more waypoints on level 6 (maintenance tunnels) in order to reduce the number of bots stuck in purewait for a lack of free waypoints
+
+------------------------------------------------------------------------
+r3431 | ahuillet | 2010-11-12 23:07:17 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+map: move master_arena-to-town map label so that the player can move around without teleporting back by mistake
+
+------------------------------------------------------------------------
+r3430 | ahuillet | 2010-11-12 22:58:02 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+hit_tux takes a float for damage, not an integer. This fixes overheating doing no damage.
+
+------------------------------------------------------------------------
+r3429 | fluzz | 2010-11-12 19:41:59 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+Tux anim: Fix one display ordering bug
+
+------------------------------------------------------------------------
+r3428 | ahuillet | 2010-11-12 18:49:39 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+dialogs: fix reference to shield control droid, that now is a terminal.
+
+------------------------------------------------------------------------
+r3427 | ahuillet | 2010-11-12 18:04:19 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+s/inprisoned/imprisoned/
+
+------------------------------------------------------------------------
+r3426 | ahuillet | 2010-11-12 18:03:55 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+dialogs: Fix grammar in Peter (imprisoned rebel) dialog
+
+------------------------------------------------------------------------
+r3425 | ahuillet | 2010-11-12 16:04:53 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+dialogs: fix typo in north gate guard dialog
+
+------------------------------------------------------------------------
+r3424 | ahuillet | 2010-11-12 15:56:20 +0100 (Fri, 12 Nov 2010) | 2 lines
+
+Fix game message log scrolling when the cursor in below the inventory screen.
+
+------------------------------------------------------------------------
+r3423 | fluzz | 2010-11-11 23:59:34 +0100 (Thu, 11 Nov 2010) | 6 lines
+
+Game crash in shop when an inventory is scrolled and no item is selected.
+
+Ensure that the display of an item's description is called only when
+an item is selected.
+Based on a patch proposed by Josef Cejka.
+
+------------------------------------------------------------------------
+r3422 | ahuillet | 2010-11-11 10:24:24 +0100 (Thu, 11 Nov 2010) | 2 lines
+
+This is FreedroidRPG 0.14rc2. Changelog + version string.
+
+------------------------------------------------------------------------
 r3421 | fluzz | 2010-11-10 23:32:38 +0100 (Wed, 10 Nov 2010) | 2 lines
 
 Tux anim: Fix one wrong display ordering.
@@ -5871,3 +6022,5 @@ Updated changelog for .13 final.
 r2326 | ahuillet | 2010-01-21 18:28:27 +0100 (Thu, 21 Jan 2010) | 2 lines
 
 NPC inventory refresh: low-stock refresh when < 6 items in stock
+
+------------------------------------------------------------------------
