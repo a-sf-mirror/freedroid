@@ -206,9 +206,9 @@ materials = { ["Entropy Inverter"] = 15, ["Plasma Transistor"] = 5 }
 
 addon{
 name = _"Brain stimulator",
-upgrade_cost = 45,
+upgrade_cost = 100,
 require_socket = "electric",
 require_item = "helmet",
-bonuses = { experience_gain = 10 },
+bonuses = { experience_gain = 5 },
 materials = { ["Tachyon Condensator"] = 15 }
 }
