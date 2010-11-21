@@ -37822,6 +37822,11 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  78 y=   2 rnd=0	 c:    1   4
+Nr.=  1 x=  83 y=  12 rnd=0	 c:    0   2
+Nr.=  2 x=  81 y=  21 rnd=0	 c:    1   3
+Nr.=  3 x=  87 y=  20 rnd=0	 c:    2   4
+Nr.=  4 x=  85 y=   3 rnd=0	 c:    3   0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 48
@@ -38376,6 +38381,17 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=   7 y=  20 rnd=0	 c:    1
+Nr.=  1 x=  17 y=  22 rnd=0	 c:    0
+Nr.=  2 x=  26 y=  23 rnd=0	 c:    3
+Nr.=  3 x=  29 y=  40 rnd=0	 c:    2   4   7
+Nr.=  4 x=  10 y=  35 rnd=0	 c:    3
+Nr.=  5 x=  25 y=  54 rnd=0	 c:    6
+Nr.=  6 x=  43 y=  57 rnd=0	 c:    5   7
+Nr.=  7 x=  33 y=  71 rnd=0	 c:    6   3   8
+Nr.=  8 x=  54 y=  85 rnd=0	 c:    7   9
+Nr.=  9 x=  35 y=  84 rnd=0	 c:    8  10
+Nr.= 10 x=  37 y=  88 rnd=0	 c:    9
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 49
