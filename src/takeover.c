@@ -714,7 +714,7 @@ int droid_takeover(enemy * target)
 		/* Won takeover */
 		Me.marker = target->marker;
 
-		reward = Druidmap[target->type].experience_reward * 1;
+		reward = Druidmap[target->type].experience_reward * Me.experience_factor;
 		Me.Experience += reward;
 		append_new_game_message(_("For taking control of your enemy, \4%s\5, you receive %d experience."), target->short_description_text, reward);
 
