@@ -389,6 +389,12 @@ static int add_item(struct npc *n, const char *item_name)
 	int i;
 	int stack_item = 0;
 	int item_type = GetItemIndexByName(item_name);
+	int amount = 1;
+
+	// Stackable items are added in quantities larger than one. We use 50 as the value.
+	if (ItemMap[item_type].item_group_together_in_inventory) {
+		amount = 90 + MyRandom(10);
+	}
 
 	// Look for a free item index in the NPC inventory,
 	// or, if the item is stackable, look for the item index
@@ -410,10 +416,11 @@ static int add_item(struct npc *n, const char *item_name)
 
 	DebugPrintf(DEBUG_SHOP, "adding item %s\n", item_name);
 	if (stack_item) {
-		n->npc_inventory[i].multiplicity ++;
+		n->npc_inventory[i].multiplicity += amount;
 	} else {
 		n->npc_inventory[i].type = GetItemIndexByName(item_name);
 		FillInItemProperties(&n->npc_inventory[i], TRUE, 1);
+		n->npc_inventory[i].multiplicity = amount;
 	}
 
 	return 0;
