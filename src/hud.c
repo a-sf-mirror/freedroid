@@ -807,7 +807,7 @@ void prepare_text_window_content(char *ItemDescText)
 void show_current_text_banner(void)
 {
 	SDL_Rect banner_rect;
-	char banner_text[5000] = "";
+	char banner_text[10000] = "";
 
 	// Set font first, before making any font specific calculations
 	SetCurrentFont(TEXT_BANNER_DEFAULT_FONT);
