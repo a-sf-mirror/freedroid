@@ -206,124 +206,30 @@ LuaCode={
 			npc_says(_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something.")
 		end
 	else
-		npc_says(_"I can teach you everything. For a price of course.", "NO_WAIT")
-		npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
-		npc_says(_"Still interested?")
-		if (get_program("Hacking") < 2) then show(31)
-		elseif (get_program("Hacking") == 2) then show(32)
-		elseif (get_program("Hacking") == 3) then show(33)
-		elseif (get_program("Hacking") == 4) then show(34)
-		elseif (get_program("Hacking") == 5) then show(35)
-		elseif (get_program("Hacking") == 6) then show(36)
-		elseif (get_program("Hacking") == 7) then show(37)
-		elseif (get_program("Hacking") == 8) then show(38)
-		else 
+		npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
+		npc_says(_"Three hundred per lesson, up front.", "NO_WAITi")
+		hacking_level = get_program("Hacking");
+
+		if (hacking_level > 8) then
 			npc_says(_"Sorry, there is no human alive that could give you further training.")
+			hide(31)
+		else 
+			npc_says(_"You will need " .. hacking_level * 2 .. " training points.");
+			npc_says(_"Still interested?")
+			show(31)
 		end
 	end
 	hide(30)
 }
 ----------------------------------------------------------------------
 
-Nr=31 Text=_"Improve Hacking Program (cost 300 circuits, 2 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+Nr=31 Text=_"Yes, please teach me."
 LuaCode={
-	tux_says(_"Yes, please teach me.")
-	if (train_program(300, 2, "Hacking")) then
+	if (train_program(300, get_program("Hacking") * 2, "Hacking")) then
 		npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 		npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 		npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
 		hide(31) show(30)
-	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
-	end
-}
-----------------------------------------------------------------------
-Nr=32 Text=_"Improve Hacking Program (cost 300 circuits, 4 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	tux_says(_"Yes, please teach me.") -- FIXME
-	if (train_program(300, 4, "Hacking")) then
-		npc_says(_"blabla") -- FIXME
-		hide(32) show(30)
-	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
-	end
-}
-----------------------------------------------------------------------
-
-Nr=33 Text=_"Improve Hacking Program (cost 300 circuits, 6 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	tux_says(_"Yes, please teach me.") -- FIXME
-	if (train_program(300, 6, "Hacking")) then
-		npc_says(_"blabla") -- FIXME
-		hide(33) show(30)
-	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
-	end
-}
-----------------------------------------------------------------------
-
-Nr=34 Text=_"Improve Hacking Program (cost 300 circuits, 8 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	tux_says(_"Yes, please teach me.") -- FIXME
-	if (train_program(300, 8, "Hacking")) then
-		npc_says(_"blabla") -- FIXME
-		hide(34) show(30)
-	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
-	end
-}
-----------------------------------------------------------------------
-
-Nr=35 Text=_"Improve Hacking Program (cost 300 circuits, 10 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	tux_says(_"Yes, please teach me.") -- FIXME
-	if (train_program(300, 10, "Hacking")) then
-		npc_says(_"blabla") -- FIXME
-		hide(35) show(30)
-	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
-	end
-}
-----------------------------------------------------------------------
-
-Nr=36 Text=_"Improve Hacking Program (cost 300 circuits, 12 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	tux_says(_"Yes, please teach me.") -- FIXME
-	if (train_program(300, 12, "Hacking")) then
-		npc_says(_"blabla") -- FIXME
-		hide(36) show(30)
-	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
-	end
-}
-----------------------------------------------------------------------
-
-Nr=37 Text=_"Improve Hacking Program (cost 300 circuits, 14 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	tux_says(_"Yes, please teach me.") -- FIXME
-	if (train_program(300, 14, "Hacking")) then
-		npc_says(_"blabla") -- FIXME
-		hide(37) show(30)
-	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
-	end
-}
-----------------------------------------------------------------------
-
-Nr=38 Text=_"Improve Hacking Program (cost 300 circuits, 16 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
-LuaCode={
-	tux_says(_"Yes, please teach me.") -- FIXME
-	if (train_program(300, 16, "Hacking")) then
-		npc_says(_"blabla") -- FIXME
-		hide(38) show(30)
 	else
 		if (get_gold() < 300 ) then next(40) else next(41) end
 	end
@@ -362,7 +268,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=99 Text=_"I'll be off then."
+Nr=99 Text=_"Let us talk later."
 LuaCode={ 
 	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.", _"If you need to contact me, my number is 127.0.0.1", _"Keep your system up to date, Linarian.")
 	end_dialog()
