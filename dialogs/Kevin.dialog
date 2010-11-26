@@ -207,7 +207,7 @@ LuaCode={
 		end
 	else
 		npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
-		npc_says(_"Three hundred per lesson, up front.", "NO_WAITi")
+		npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
 		hacking_level = get_program("Hacking");
 
 		if (hacking_level > 8) then
