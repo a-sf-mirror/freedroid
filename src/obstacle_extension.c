@@ -82,6 +82,8 @@ void defrag_obstacle_array(level *lvl)
 
 	// Update obstacle lists
 	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
+
+	dirty_animated_obstacle_lists(lvl->levelnum);
 }
 
 /**
