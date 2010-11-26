@@ -1,4 +1,27 @@
 ------------------------------------------------------------------------
+r3462 | ahuillet | 2010-11-26 23:12:26 +0100 (Fri, 26 Nov 2010) | 2 lines
+
+This is FreedroidRPG 0.14.1, fixing a bug that corrupts savegames. 
+
+------------------------------------------------------------------------
+r3461 | ahuillet | 2010-11-26 22:02:06 +0100 (Fri, 26 Nov 2010) | 1 line
+
+dialogs: Fix Kevin's dialog having "FIXME" text.
+------------------------------------------------------------------------
+r3460 | ahuillet | 2010-11-26 21:20:18 +0100 (Fri, 26 Nov 2010) | 1 line
+
+Regenerate animated obstacle lists when defragmenting the obstacle list (when removing items in the editor or destroying crates/barrels). Fixes savegame corruption that would make the game unplayable.
+------------------------------------------------------------------------
+r3459 | ahuillet | 2010-11-26 21:20:07 +0100 (Fri, 26 Nov 2010) | 1 line
+
+Update version string: FreedroidRPG 0.14+svn.
+------------------------------------------------------------------------
+r3458 | ahuillet | 2010-11-25 19:32:44 +0100 (Thu, 25 Nov 2010) | 3 lines
+
+Update Changelog for 0.14.
+
+
+------------------------------------------------------------------------
 r3457 | ahuillet | 2010-11-25 19:29:33 +0100 (Thu, 25 Nov 2010) | 3 lines
 
 This is FreedroidRPG 0.14.
