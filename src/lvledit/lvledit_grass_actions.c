@@ -173,46 +173,40 @@ static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
 	int south_grass = 0;
 	int east_grass = 0;
 	int west_grass = 0;
-	int x_offset, y_offset;
 
 	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + NORTH_T))) {
 		north_grass = TRUE;
-		y_offset = -1;
 	}
 	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + SOUTH_T))) {
 		south_grass = TRUE;
-		y_offset = 1;
 	}
 	if (is_some_grass_tile(GetMapBrick(EditLevel, x + EAST_T, y))) {
 		east_grass = TRUE;
-		x_offset = 1;
 	}
 	if (is_some_grass_tile(GetMapBrick(EditLevel, x + WEST_T, y))) {
 		west_grass = TRUE;
-		x_offset = -1;
 	}
+
 	// Upper left corner:
-	//
 	if (north_grass && west_grass && GetMapBrick(EditLevel, x + WEST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_21);
 	}
+
 	// Upper right corner
-	//
 	if (north_grass && east_grass && GetMapBrick(EditLevel, x + EAST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_20);
 	}
+
 	// Lower left corner:
-	//
 	if (south_grass && west_grass && GetMapBrick(EditLevel, x + WEST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_18);
 	}
+
 	// Lower right corner
-	//
 	if (south_grass && east_grass && GetMapBrick(EditLevel, x + EAST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_19);
 	}
-
-};				// void fix_anticorners_in_this_grass_tile ( EditLevel , x , y ) 
+}
 
 /**
  * Now we fix those grass tiles, that have only very little contact to
