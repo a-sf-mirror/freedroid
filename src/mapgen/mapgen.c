@@ -1012,7 +1012,7 @@ static int get_middle_room(int entrance, int *distance)
 	}
 	// Fill array of distances for a room with the entrance
 	for (i = 0; i < total_rooms; i++)
-		distance[entrance] = dist[entrance][i];
+		distance[i] = dist[entrance][i];
 
 	return m;
 }
