@@ -876,7 +876,7 @@ void Cheatmenu(void)
 {
 	int can_continue;
 	int i, l;
-	int x0, y0, line;
+	int x0, y0;
 	int skip_dead = 0;
 
 	// Prevent distortion of framerate by the delay coming from 
@@ -891,7 +891,6 @@ void Cheatmenu(void)
 
 	x0 = 50;
 	y0 = 20;
-	line = 0;
 
 	can_continue = FALSE;
 	while (!can_continue) {
