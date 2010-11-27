@@ -758,7 +758,6 @@ static char *decode_waypoints(level *loadlevel, char *data)
 {
 	char *wp_begin, *wp_end;
 	char *this_line;
-	int i;
 	int nr, x, y, wp_rnd;
 	char *pos;
 
@@ -805,12 +804,11 @@ static char *decode_waypoints(level *loadlevel, char *data)
 
 		pos = strstr(this_line, CONNECTION_STRING);
 		if (pos == NULL) {
-			fprintf(stderr, "Unable to find connection string. i is %i, line is %s, level %i\n", i, this_line,
+			fprintf(stderr, "Unable to find connection string. line is %s, level %i\n", this_line,
 				loadlevel->levelnum);
 		}
 		pos += strlen(CONNECTION_STRING);	// skip connection-string
 		pos += strspn(pos, WHITE_SPACE);	// skip initial whitespace
-		i++;
 
 		while (1) {
 			if (*pos == '\0')
