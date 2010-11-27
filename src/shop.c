@@ -613,13 +613,13 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 				if (BuyButtonActive && ItemIndex != -1) {
 					ShopOrder->item_selected = ItemIndex;
 					ShopOrder->shop_command = BUY_1_ITEM;
-					if ((ItemMap[ShowPointerList[ItemIndex]->type].item_group_together_in_inventory) &&
-					    (Me.Gold / ItemMap[ShowPointerList[ItemIndex]->type].base_list_price >= 1)) {
+					int afford = Me.Gold / ItemMap[ShowPointerList[ItemIndex]->type].base_list_price;
+					if ((ItemMap[ShowPointerList[ItemIndex]->type].item_group_together_in_inventory) && (afford >= 1)) {
 						ShopOrder->number_selected =
-						    do_graphical_number_selection_in_range(0,
-											   Me.Gold /
-											   ItemMap[ShowPointerList[ItemIndex]->type].
-											   base_list_price, 1);
+							do_graphical_number_selection_in_range(0,
+									(ShowPointerList[ItemIndex]->multiplicity <= afford) ?
+										ShowPointerList[ItemIndex]->multiplicity : afford,
+									1);
 					} else {
 						ShopOrder->number_selected = 1;
 					}
