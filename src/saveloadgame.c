@@ -388,7 +388,6 @@ static void load_enemies(char *game_data)
 			sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
 			cpos = strstr(cpos, str);
 			if (!cpos) {
-				done = 1;
 				break;
 			}
 			cpos -= 5;
