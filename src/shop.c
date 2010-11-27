@@ -321,96 +321,43 @@ trying to make the ultra-fine item rotation series.  Strange.", PLEASE_INFORM, I
 /**
  * Assemble item description.
  */
-static void fill_item_description(text_widget *desc, item *show_item)
+static void fill_item_description(text_widget *desc, item *show_item, int buy)
 {
-	char *class_string;
 	long int repair_price = 0;
 	itemspec *info;
 
 	if (show_item == NULL)
 		return;
 
-	if (MatchItemWithName(show_item->type, "Valuable Circuits"))
-		ErrorMessage(__FUNCTION__, "Valuable Circuits in shop.", PLEASE_INFORM, IS_WARNING_ONLY);
-
 	info = &ItemMap[show_item->type];
 
 	init_text_widget(desc, "");
 
-	if (info->item_can_be_installed_in_weapon_slot)
-		class_string = _("Weapon");
-	else if (info->item_can_be_installed_in_drive_slot)
-		class_string = _("Drive");
-	else if (info->item_can_be_installed_in_armour_slot)
-		class_string = _("Armor");
-	else if (info->item_can_be_installed_in_shield_slot)
-		class_string = _("Shield");
-	else if (info->item_can_be_installed_in_special_slot)
-		class_string = _("Helm");
-	else
-		class_string = _("Miscellaneous");
-
-	autostr_printf(desc->text, "%s", _("Item: "));
-	append_item_name(show_item, desc->text);
-	autostr_append(desc->text, " \nClass: %s\n", class_string);
-
-	// Append item bonuses.
-	struct auto_string *bonuses = alloc_autostr(128);
-	get_item_bonus_string(show_item, ", ", bonuses);
-	if (bonuses->length)
-		autostr_append(desc->text, "%s%s%s%s\n", _("Specials: "), font_switchto_red,
-					   bonuses->value, font_switchto_neon);
-	free_autostr(bonuses);
-
-	if (info->item_group_together_in_inventory)
-		autostr_append(desc->text, _("Multiplicity: %d\n"), (int)show_item->multiplicity);
-
-	autostr_append(desc->text, _("Durability: "));
-	if (show_item->max_duration >= 0)
-		autostr_append(desc->text, "%d / %d\n", (int)show_item->current_duration, show_item->max_duration);
-	else
-		autostr_append(desc->text, _("Indestructible\n"));
-
-	if (!info->item_can_be_applied_in_combat) {
-		autostr_append(desc->text, _("Attributes required: "));
-
-		if ((info->item_require_strength <= 0) &&
-			(info->item_require_dexterity <= 0) && (info->item_require_magic <= 0)) {
-			autostr_append(desc->text, _("NONE\n"));
-		} else {
-			if (info->item_require_strength > 0)
-				autostr_append(desc->text, _("Str: %d "), info->item_require_strength);
-			if (info->item_require_dexterity > 0)
-				autostr_append(desc->text, _("Dex: %d "), info->item_require_dexterity);
-			if (info->item_require_magic > 0)
-				autostr_append(desc->text, _("Mag: %d "), info->item_require_magic);
-			autostr_append(desc->text, "\n");
-		}
-	}
+	append_item_description(desc->text, show_item);
+	
 	// Now we give some pricing information, the base list price for the item,
 	// the repair price and the sell value
 	if (calculate_item_buy_price(show_item)) {
-		autostr_append(desc->text, _("Base list price: %ld\n"), calculate_item_buy_price(show_item));
-		autostr_append(desc->text, _("Sell value: %ld\n"), calculate_item_sell_price(show_item));
+		if (buy) {
+			autostr_append(desc->text, _("Price: %ld\n"), calculate_item_buy_price(show_item));
+		} else {
+			autostr_append(desc->text, _("Sell value: %ld\n"), calculate_item_sell_price(show_item));
+		}
+
 		if (show_item->current_duration == show_item->max_duration || show_item->max_duration == (-1))
 			repair_price = 0;
 		else
 			repair_price = calculate_item_repair_price(show_item);
+
 		if (show_item->max_duration == (-1))
 			autostr_append(desc->text, _("Indestructible\n"));
-		else
+		else if (!buy)
 			autostr_append(desc->text, _("Repair cost: %ld\n"), repair_price);
 	} else {
 		autostr_append(desc->text, _("Unsellable\n"));
 	}
 
 	/* If the item is a weapon, then we print out some weapon stats. */
-	if (info->base_item_gun_damage + info->item_gun_damage_modifier > 0) {
-		autostr_append(desc->text, _("Damage: %d - %d\n"),
-					   info->base_item_gun_damage,
-					   info->base_item_gun_damage + info->item_gun_damage_modifier);
-	}
-
 	if (info->item_gun_recharging_time > 0)
 		autostr_append(desc->text, _("Recharge time: %3.2f\n"),
 					   info->item_gun_recharging_time);
@@ -419,13 +366,10 @@ static void fill_item_description(text_widget *desc, item *show_item)
 		autostr_append(desc->text, _("Time to reload ammo clip: %3.2f\n"),
 					   info->item_gun_reloading_time);
 
-	if (show_item->armor_class + show_item->bonus_to_armor_class > 0)
-		autostr_append(desc->text, _("Armor class: %d\n"), show_item->armor_class + show_item->bonus_to_armor_class);
-
 	autostr_append(desc->text, _("Notes: %s"), D_(info->item_description));
 
 	if (info->item_gun_use_ammunition)
-		autostr_append(desc->text, _(" This weapon requires %s."),
+		autostr_append(desc->text, _("\nThis weapon requires %s."),
 					   ammo_desc_for_weapon(show_item->type));
 }
 
@@ -507,10 +451,10 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	item_description.scroll_offset = scroll_to_top;
 
 	if (ItemIndex >= 0) {
-		fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+		fill_item_description(&item_description, ShowPointerList[ItemIndex], 1);
 		item_description.scroll_offset = scroll_to_top;
 	} else if (TuxItemIndex >= 0) {
-		fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+		fill_item_description(&item_description, TuxItemsList[TuxItemIndex], 0);
 		item_description.scroll_offset = scroll_to_top;
 	}
 
@@ -613,7 +557,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (ItemIndex != -1) {
 						if (ItemIndex >= RowStart + RowLength)
 							ItemIndex--;
-						fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+						fill_item_description(&item_description, ShowPointerList[ItemIndex], 1);
 						item_description.scroll_offset = scroll_to_top;
 					}
 				}
@@ -624,7 +568,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (ItemIndex != -1) {
 						if (ItemIndex < RowStart)
 							ItemIndex++;
-						fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+						fill_item_description(&item_description, ShowPointerList[ItemIndex], 1);
 						item_description.scroll_offset = scroll_to_top;
 					}
 				}
@@ -635,7 +579,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (TuxItemIndex != -1) {
 						if (TuxItemIndex >= TuxRowStart + TuxRowLength)
 							TuxItemIndex--;
-						fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+						fill_item_description(&item_description, TuxItemsList[TuxItemIndex], 0);
 						item_description.scroll_offset = scroll_to_top;
 					}
 				}
@@ -646,7 +590,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					if (TuxItemIndex != -1) {
 						if (TuxItemIndex < TuxRowStart)
 							TuxItemIndex++;
-						fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+						fill_item_description(&item_description, TuxItemsList[TuxItemIndex], 0);
 						item_description.scroll_offset = scroll_to_top;
 					}
 				}
@@ -655,14 +599,14 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 				if (RowStart + ClickTarget < NumberOfItems) {
 					ItemIndex = RowStart + ClickTarget;
 					TuxItemIndex = (-1);
-					fill_item_description(&item_description, ShowPointerList[ItemIndex]);
+					fill_item_description(&item_description, ShowPointerList[ItemIndex], 1);
 					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), TRUE)) >= 0)) {
 				if (TuxRowStart + ClickTarget < NumberOfItemsInTuxRow) {
 					TuxItemIndex = TuxRowStart + ClickTarget;
 					ItemIndex = (-1);
-					fill_item_description(&item_description, TuxItemsList[TuxItemIndex]);
+					fill_item_description(&item_description, TuxItemsList[TuxItemIndex], 0);
 					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (MouseCursorIsOnButton(BUY_BUTTON, GetMousePos_x(), GetMousePos_y())) {
