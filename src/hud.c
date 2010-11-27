@@ -115,10 +115,8 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
  *  Note: We do not want a trailing newline, since that will make text areas
  *  larger than necessary.
  */
-void give_item_description(char *target, item *item)
+void append_item_description(struct auto_string *str, item *item)
 {
-	strcpy(target, "");
-
 	if (item == NULL)
 		return;
 
@@ -130,118 +128,107 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	}
 
 	// Get the pure item name, also with font changes enabled.
-	write_full_item_name_into_string(item, target);
+	append_item_name(item, str);
 
 	// We don't want any more information for Valuable Circuits
 	if (MatchItemWithName(item->type, "Valuable Circuits"))
 		return;
 	
-	struct auto_string *desc = alloc_autostr(100);
-
-	autostr_append(desc, "\n");
+	autostr_append(str, "\n");
 
 	// Weapon damage
 	if (ItemMap[item->type].item_can_be_installed_in_weapon_slot) {
-		autostr_append(desc, _("Damage: %d"), item->damage);
+		autostr_append(str, _("Damage: %d"), item->damage);
 		if (item->damage_modifier)
-			autostr_append(desc, _(" to %d"), item->damage_modifier + item->damage);
-		autostr_append(desc, "\n");
+			autostr_append(str, _(" to %d"), item->damage_modifier + item->damage);
+		autostr_append(str, "\n");
 	}
 	// Multiplicity
 	if (ItemMap[item->type].item_group_together_in_inventory) {
-		autostr_append(desc, _("Multiplicity: %d\n"), item->multiplicity);
+		autostr_append(str, _("Multiplicity: %d\n"), item->multiplicity);
 	}
 	// Armor bonus
 	if (item->armor_class) {
-			autostr_append(desc, _("Armor: %d\n"), item->armor_class);
+			autostr_append(str, _("Armor: %d\n"), item->armor_class);
 	}
 	// Durability or indestructible status
 	if (item->max_duration != (-1)) {
-		autostr_append(desc, _("Durability: %d of %d\n"), (int)item->current_duration, (int)item->max_duration);
+		autostr_append(str, _("Durability: %d of %d\n"), (int)item->current_duration, (int)item->max_duration);
 	} else {
-		autostr_append(desc, _("Indestructible\n"));
+		autostr_append(str, _("Indestructible\n"));
 	}
 	// Ranged weapon amunition
 	if (ItemMap[item->type].item_gun_ammo_clip_size) {
-		autostr_append(desc, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
+		autostr_append(str, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
 	}
 	// Strength, dexterity or magic requirements
 	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
 		if (ItemMap[item->type].item_require_strength != (-1)) {
-			autostr_append(desc, _("Required strength: %d\n"), ItemMap[item->type].item_require_strength);
+			autostr_append(str, _("Required strength: %d\n"), ItemMap[item->type].item_require_strength);
 		}
 		if (ItemMap[item->type].item_require_dexterity != (-1)) {
-			autostr_append(desc, _("Required dexterity: %d\n"), ItemMap[item->type].item_require_dexterity);
+			autostr_append(str, _("Required dexterity: %d\n"), ItemMap[item->type].item_require_dexterity);
 		}
-	}/* else if (ItemMap[item->type].item_can_be_applied_in_combat) {
-		// Maybe it's an applicable item, that still has some stat
-		// requirements.  Typically spellbooks fall into that category.
-		if (strstr(ItemMap[item->type].item_name, "Source Book of")) {
-			autostr_append( desc , "Program execution status: %s\n " ,  
-				_(AllSkillTexts [ required_spellcasting_skill_for_item ( item -> type ) ]));
-			autostr_append( desc , "Required for next upgrade: %d\n " ,  
-				required_magic_stat_for_next_level_and_item ( item -> type ) );
-		}
-	}*/
-	// Usable items should say that it can be used via right-clicking on it
+	}
+
+	// Usable items should say that they can be used via right-clicking on it
 	if (ItemMap[item->type].item_can_be_applied_in_combat) {
 		if (MatchItemWithName(item->type, "Diet supplement") || MatchItemWithName(item->type, "Antibiotic")
 		    || MatchItemWithName(item->type, "Doc-in-a-can")) {
-			autostr_append(desc, _("Recover Health"));
+			autostr_append(str, _("Recover Health"));
 		} else if (MatchItemWithName(item->type, "Teleporter homing beacon")) {
-			autostr_append(desc, _("Teleports you to a safe place or\n back to your previous position"));
+			autostr_append(str, _("Teleports you to a safe place or\n back to your previous position"));
 		} else if (MatchItemWithName(item->type, "Bottled ice") || MatchItemWithName(item->type, "Industrial coolant")
 			   || MatchItemWithName(item->type, "Liquid nitrogen")) {
-			autostr_append(desc, _("Cooling aid"));
+			autostr_append(str, _("Cooling aid"));
 		} else if (MatchItemWithName(item->type, "Barf's Energy Drink")) {
-			autostr_append(desc, _("Cool down, catch your breath,\n cure minor wounds."));
+			autostr_append(str, _("Cool down, catch your breath,\n cure minor wounds."));
 		} else if (MatchItemWithName(item->type, "Running Power Capsule")) {
-			autostr_append(desc, _("Recover Running Power"));
+			autostr_append(str, _("Recover Running Power"));
 		} else if (MatchItemWithName(item->type, "Strength Capsule")) {
-			autostr_append(desc, _("Temporary Boost to Strength"));
+			autostr_append(str, _("Temporary Boost to Strength"));
 		} else if (MatchItemWithName(item->type, "Dexterity Capsule")) {
-			autostr_append(desc, _("Temporary Boost to Dexterity"));
+			autostr_append(str, _("Temporary Boost to Dexterity"));
 		} else if (MatchItemWithName(item->type, "Map Maker")) {
-			autostr_append(desc, _("To implant the automap device"));
+			autostr_append(str, _("To implant the automap device"));
 		} else if (MatchItemWithName(item->type, "Strength Pill")) {
-			autostr_append(desc, _("Permanently gain +1 strength"));
+			autostr_append(str, _("Permanently gain +1 strength"));
 		} else if (MatchItemWithName(item->type, "Dexterity Pill")) {
-			autostr_append(desc, _("Permanently gain +1 dexterity"));
+			autostr_append(str, _("Permanently gain +1 dexterity"));
 		} else if (MatchItemWithName(item->type, "Code Pill")) {
-			autostr_append(desc, _("Permanently gain +1 cooling"));
+			autostr_append(str, _("Permanently gain +1 cooling"));
 		} else if (MatchItemWithName(item->type, "Brain Enlargement Pill")) {
-			autostr_append(desc, _("Gives you fast acting cancer."));
+			autostr_append(str, _("Gives you fast acting cancer."));
 		} else if (strstr(ItemMap[item->type].item_name, "Source Book of")) {
-			autostr_append(desc, _("Permanently acquire/enhance this program"));
+			autostr_append(str, _("Permanently acquire/enhance this program"));
 		} else if (strstr(ItemMap[item->type].item_name, "Repair manual")) {
-			autostr_append(desc, _("Learn about repairing items"));
+			autostr_append(str, _("Learn about repairing items"));
 		} else if (MatchItemWithName(item->type, "EMP Shockwave Generator")) {
-			autostr_append(desc, _("Electromagnetic pulse"));
+			autostr_append(str, _("Electromagnetic pulse"));
 		} else if (MatchItemWithName(item->type, "VMX Gas Grenade")) {
-			autostr_append(desc, _("Gas attack"));
+			autostr_append(str, _("Gas attack"));
 		} else if (MatchItemWithName(item->type, "Plasma Shockwave Emitter")) {
-			autostr_append(desc, _("Huge explosion"));
+			autostr_append(str, _("Huge explosion"));
 		} else {
-			autostr_append(desc, _("USE UNDESCRIBED YET (bug)"));
+			autostr_append(str, _("USE UNDESCRIBED YET (bug)"));
 		}
-		autostr_append(desc, "\n");
-		autostr_append(desc, _("Right click to use\n"));
-	}
-	// Socket count.
-	if (item->upgrade_sockets.size) {
-		autostr_append(desc, _("Sockets: %d\n"), item->upgrade_sockets.size);
-	}
-	// Item bonuses.
-	get_item_bonus_string(item, "\n", desc);
-	// Add-on specific information.
-	struct addon_spec *addon = get_addon_spec(item->type);
-	if (addon) {
-		print_addon_description(addon, desc);
+		autostr_append(str, "\n");
+		autostr_append(str, _("Right click to use\n"));
 	}
 
-	strcat(target, desc->value);
-	free_autostr(desc);
-	return;
+	// Socket count
+	if (item->upgrade_sockets.size) {
+		autostr_append(str, _("Sockets: %d\n"), item->upgrade_sockets.size);
+	}
+
+	// Item bonuses
+	get_item_bonus_string(item, "\n", str);
+
+	// Add-on specific information
+	struct addon_spec *addon = get_addon_spec(item->type);
+	if (addon) {
+		print_addon_description(addon, str);
+	}
 }
 
 /**
@@ -568,7 +555,7 @@ void ShowCurrentHealthAndForceLevel(void)
  * rectangle, possibly next to the mouse cursor, e.g. when the mouse is
  * hovering over an item or barrel or crate or teleporter.
  */
-void prepare_text_window_content(char *ItemDescText)
+static void prepare_text_window_content(struct auto_string *str)
 {
 	point CurPos;
 	point inv_square;
@@ -583,19 +570,18 @@ void prepare_text_window_content(char *ItemDescText)
 	best_banner_pos_x = CurPos.x;
 	best_banner_pos_y = CurPos.y;
 
+	autostr_printf(str, "");
+
 	/* If the player has an item in hand, draw the item name into the
 	 * description field.  If the requirements for this item are not met, we
 	 * show a text. */
 	if (item_held_in_hand != NULL) {
 		best_banner_pos_x = CurPos.x + 20;
 
-		strncpy(ItemDescText, font_switchto_neon, 1);
-		strcat(ItemDescText, D_(ItemMap[item_held_in_hand->type].item_name));
+		autostr_printf(str, "%s%s", font_switchto_neon, D_(ItemMap[item_held_in_hand->type].item_name));
 
 		if (!ItemUsageRequirementsMet(item_held_in_hand, FALSE)) {
-			strcat(ItemDescText, "\n");
-			strncat(ItemDescText, font_switchto_red, 1);
-			strcat(ItemDescText, _("REQUIREMENTS NOT MET"));
+			autostr_append(str, "\n%s%s", font_switchto_red, _("REQUIREMENTS NOT MET"));
 		}
 		return;
 	}
@@ -612,7 +598,7 @@ void prepare_text_window_content(char *ItemDescText)
 			inv_square.y = GetInventorySquare_y(CurPos.y);
 			InvIndex = GetInventoryItemAt(inv_square.x, inv_square.y);
 			if (InvIndex != (-1)) {
-				give_item_description(ItemDescText, &(Me.Inventory[InvIndex]));
+				append_item_description(str, &(Me.Inventory[InvIndex]));
 				best_banner_pos_x =
 				    (Me.Inventory[InvIndex].inventory_position.x +
 				     ItemMap[Me.Inventory[InvIndex].type].inv_image.inv_size.x) * 30 + 16;
@@ -620,37 +606,37 @@ void prepare_text_window_content(char *ItemDescText)
 			}
 		} else if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.weapon_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.weapon_item));
+				append_item_description(str, &(Me.weapon_item));
 				best_banner_pos_x = WEAPON_RECT_X + 30 + WEAPON_RECT_WIDTH;
 				best_banner_pos_y = WEAPON_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(DRIVE_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.drive_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.drive_item));
+				append_item_description(str, &(Me.drive_item));
 				best_banner_pos_x = DRIVE_RECT_X + 30 + DRIVE_RECT_WIDTH;
 				best_banner_pos_y = DRIVE_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.shield_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.shield_item));
+				append_item_description(str, &(Me.shield_item));
 				best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 				best_banner_pos_y = SHIELD_RECT_Y - 30;
 			} else if (Me.weapon_item.type > 0) {
 				if (ItemMap[Me.weapon_item.type].item_gun_requires_both_hands) {
-					give_item_description(ItemDescText, &(Me.weapon_item));
+					append_item_description(str, &(Me.weapon_item));
 					best_banner_pos_x = SHIELD_RECT_X + 30 + SHIELD_RECT_WIDTH;
 					best_banner_pos_y = SHIELD_RECT_Y - 30;
 				}
 			}
 		} else if (MouseCursorIsOnButton(ARMOUR_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.armour_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.armour_item));
+				append_item_description(str, &(Me.armour_item));
 				best_banner_pos_x = ARMOUR_RECT_X + 30 + ARMOUR_RECT_WIDTH;
 				best_banner_pos_y = ARMOUR_RECT_Y - 30;
 			}
 		} else if (MouseCursorIsOnButton(HELMET_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			if (Me.special_item.type > 0) {
-				give_item_description(ItemDescText, &(Me.special_item));
+				append_item_description(str, &(Me.special_item));
 				best_banner_pos_x = HELMET_RECT_X + 30 + HELMET_RECT_WIDTH;
 				best_banner_pos_y = HELMET_RECT_Y - 30;
 			}
@@ -665,7 +651,7 @@ void prepare_text_window_content(char *ItemDescText)
 
 	// Check if the item upgrade UI is open and the cursor is inside it.
 	// We show a tooltip for the item upgrade UI if that's the case.
-	if (get_item_upgrade_ui_tooltip(&CurPos, ItemDescText)) {
+	if (append_item_upgrade_ui_tooltip(&CurPos, str)) {
 		return;
 	}
 
@@ -678,7 +664,7 @@ void prepare_text_window_content(char *ItemDescText)
 	    && y > WHOLE_RUNNING_POWER_RECT_Y
 	    && y < WHOLE_RUNNING_POWER_RECT_Y + WHOLE_RUNNING_POWER_RECT_H)
 	{
-		sprintf(ItemDescText, _("Run\n%s%d/%d"),
+		autostr_printf(str, "%s\n%s%d/%d", _("RUN"),
 			Me.running_power / Me.max_running_power <= 0.1 ? font_switchto_red : "",
 			(int)rintf(Me.running_power), (int)rintf(Me.max_running_power));
 		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X);
@@ -692,7 +678,7 @@ void prepare_text_window_content(char *ItemDescText)
 	    && y > WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y
 	    && y < WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y + WHOLE_EXPERIENCE_COUNTDOWN_RECT_H)
 	{
-		sprintf(ItemDescText, _("XP\n%d/%d"), Me.Experience, Me.ExpRequired);
+		autostr_printf(str, "%s\n%d/%d", _("XP"), Me.Experience, Me.ExpRequired);
 		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X + 5);
 		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y)
 			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
@@ -704,11 +690,11 @@ void prepare_text_window_content(char *ItemDescText)
 	    && y > WHOLE_HEALTH_RECT_Y
 	    && y < WHOLE_HEALTH_RECT_Y + WHOLE_HEALTH_RECT_H)
 	{
-		sprintf(ItemDescText, _("Health\n%s%d/%d"),
+		autostr_printf(str, "%s\n%s%d/%d", _("Health"),
 			Me.energy / Me.maxenergy <= 0.1 ? font_switchto_red : "",
 			(int)rintf(Me.energy), (int)rintf(Me.maxenergy));
 		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W - 5)
-			- longest_line_width(ItemDescText) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
+			- longest_line_width(str->value) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
 		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_HEALTH_RECT_Y)
 			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
 		return;
@@ -719,11 +705,11 @@ void prepare_text_window_content(char *ItemDescText)
 	    && y > WHOLE_FORCE_RECT_Y
 	    && y < WHOLE_FORCE_RECT_Y + WHOLE_FORCE_RECT_H)
 	{
-		sprintf(ItemDescText, _("Temperature\n%s%d/%d"),
+		autostr_printf(str, "%s\n%s%d/%d", _("Temperature"),
 			Me.temperature / Me.max_temperature >= 0.9 ? font_switchto_red : "",
 			(int)rintf(Me.temperature), (int)rintf(Me.max_temperature));
 		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W)
-			- longest_line_width(ItemDescText) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
+			- longest_line_width(str->value) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
 		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_FORCE_RECT_Y)
 			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
 		return;
@@ -749,7 +735,7 @@ void prepare_text_window_content(char *ItemDescText)
 			gps item_vpos;
 			update_virtual_position(&item_vpos, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor].pos), Me.pos.z);
 			if (item_vpos.x != -1) {
-				give_item_description(ItemDescText, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]));
+				append_item_description(str, &(obj_lvl->ItemList[index_of_floor_item_below_mouse_cursor]));
 				best_banner_pos_x =	translate_map_point_to_screen_pixel_x(item_vpos.x, item_vpos.y) + 80;
 				best_banner_pos_y =	translate_map_point_to_screen_pixel_y(item_vpos.x, item_vpos.y) - 30;
 			}
@@ -769,7 +755,7 @@ void prepare_text_window_content(char *ItemDescText)
 					label = "No label for this obstacle";
 				}
 
-				strcpy(ItemDescText, label);
+				autostr_printf(str, "%s", label);
 				best_banner_pos_x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 70;
 				best_banner_pos_y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
 			}
@@ -779,10 +765,8 @@ void prepare_text_window_content(char *ItemDescText)
 		// cursor is currently hovering.  In this case we should create a message about
 		// where the teleporter connection would bring the Tux...
 		//
-		if (teleporter_square_below_mouse_cursor(ItemDescText)) {
-			// Do nothing here, 'cause the function above has filled in the proper
-			// text already...
-			//
+		if (teleporter_square_below_mouse_cursor()) {
+			autostr_append(str, "%s", teleporter_square_below_mouse_cursor());
 		}
 		// Maybe there is a living droid below the current mouse cursor, and it is visible to the player.
 		// In this case, we'll give the decription of the corresponding bot.
@@ -807,16 +791,18 @@ void prepare_text_window_content(char *ItemDescText)
 void show_current_text_banner(void)
 {
 	SDL_Rect banner_rect;
-	char banner_text[10000] = "";
+	static struct auto_string *txt;
+	if (txt == NULL)
+		txt = alloc_autostr(200);
 
 	// Set font first, before making any font specific calculations
 	SetCurrentFont(TEXT_BANNER_DEFAULT_FONT);
 
 	// Prepare the string, that is to be displayed inside the text rectangle
-	prepare_text_window_content(banner_text);
+	prepare_text_window_content(txt);
 
 	// Do not show anything if the description is too short
-	if (strlen(banner_text) <= 1)
+	if (strlen(txt->value) <= 1)
 		return;
 
 	banner_rect.x = best_banner_pos_x;
@@ -824,11 +810,11 @@ void show_current_text_banner(void)
 	banner_rect.h = 100; // some default size
 
 	// Set banner width
-	banner_rect.w = longest_line_width(banner_text);
+	banner_rect.w = longest_line_width(txt->value);
 	banner_rect.w += TEXT_BANNER_HORIZONTAL_MARGIN * 2;
 
 	// Set banner height
-	int lines_in_text = get_lines_needed(banner_text, banner_rect, TEXT_STRETCH);
+	int lines_in_text = get_lines_needed(txt->value, banner_rect, TEXT_STRETCH);
 	banner_rect.h = lines_in_text * FontHeight(GetCurrentFont());
 
 	// Add extra correction to ensure the banner rectangle stays inside
@@ -851,7 +837,7 @@ void show_current_text_banner(void)
 
 	// Print the text
 	int line_spacing = (banner_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);
-	char *ptr = banner_text;
+	char *ptr = txt->value;
 	int i;
 	for (i = 0; i < lines_in_text; i++) {
 		char *this_line = ptr;

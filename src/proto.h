@@ -50,7 +50,7 @@ void PlayATitleFile(char *Filename);
 // event.c
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);
 void CheckForTriggeredEvents(void);
-int teleporter_square_below_mouse_cursor(char *ItemDescText);
+const char *teleporter_square_below_mouse_cursor(void);
 
 // lua.c
 void init_lua(void);
@@ -468,7 +468,7 @@ unsigned long calculate_item_repair_price(item * repair_item);
 unsigned long calculate_item_sell_price(item * BuyItem);
 void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity);
 void DamageProtectiveEquipment(void);
-void write_full_item_name_into_string(item * ShowItem, char *full_item_name);
+void append_item_name(item *ShowItem, struct auto_string *str);
 item *DropItemAt(int, int, float, float, int);
 void Quick_ApplyItem(int ItemKey);
 int MatchItemWithName(int type, const char *name);
@@ -706,7 +706,7 @@ int widget_handle_mouse(text_widget *);
 void show_text_widget(text_widget *);
 
 // hud.c 
-void give_item_description(char *, item *);
+void append_item_description(struct auto_string *str, item *);
 void ShowCurrentSkill(void);
 void ShowCurrentWeapon(void);
 void ShowCurrentHealthAndForceLevel(void);
@@ -719,7 +719,7 @@ void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 
 // item_upgrades_ui.c
-int get_item_upgrade_ui_tooltip(const point *, char *);
+int append_item_upgrade_ui_tooltip(const point *, struct auto_string *str);
 void show_item_upgrade_ui();
 void item_upgrade_ui();
 

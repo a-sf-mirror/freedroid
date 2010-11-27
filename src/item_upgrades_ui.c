@@ -117,7 +117,7 @@ static void load_images()
  * \param result Return location for the tooltip text.
  * \return TRUE if the tooltip was set, FALSE if the cursor isn't on the upgrade UI.
  */
-int get_item_upgrade_ui_tooltip(const point *cursor, char *result)
+int append_item_upgrade_ui_tooltip(const point *cursor, struct auto_string *str)
 {
 	int i;
 
@@ -131,7 +131,7 @@ int get_item_upgrade_ui_tooltip(const point *cursor, char *result)
 		for (i = 0; i < ADDON_ITEMS_MAX; i++) {
 			if (MouseCursorIsInRect(&rects.socket_slots[i], cursor->x, cursor->y)) {
 				if (ui.addon_items[i].type != -1) {
-					give_item_description(result, &ui.addon_items[i]);
+					append_item_description(str, &ui.addon_items[i]);
 					return TRUE;
 				}
 			}
@@ -141,7 +141,7 @@ int get_item_upgrade_ui_tooltip(const point *cursor, char *result)
 	// Check if a tooltip for the customized item needs to be displayed.
 	if (MouseCursorIsInRect(&rects.custom_slot, cursor->x, cursor->y)) {
 		if (ui.custom_item.type != -1) {
-			give_item_description(result, &ui.custom_item);
+			append_item_description(str, &ui.custom_item);
 			return TRUE;
 		}
 	}
@@ -150,7 +150,6 @@ int get_item_upgrade_ui_tooltip(const point *cursor, char *result)
 	// caller that no tooltip should be shown. The tooltips of NPCs and other
 	// such things behind the upgrade UI would be displayed without this.
 	if (MouseCursorIsInRect(&rects.main, cursor->x, cursor->y)) {
-		strcpy(result, "");
 		return TRUE;
 	}
 

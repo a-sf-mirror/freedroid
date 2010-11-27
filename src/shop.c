@@ -323,7 +323,6 @@ trying to make the ultra-fine item rotation series.  Strange.", PLEASE_INFORM, I
  */
 static void fill_item_description(text_widget *desc, item *show_item)
 {
-	char TextChunk[2000];
 	char *class_string;
 	long int repair_price = 0;
 	itemspec *info;
@@ -351,8 +350,9 @@ static void fill_item_description(text_widget *desc, item *show_item)
 	else
 		class_string = _("Miscellaneous");
 
-	write_full_item_name_into_string(show_item, TextChunk);
-	autostr_printf(desc->text, _("Item: %s \nClass: %s\n"), TextChunk, class_string);
+	autostr_printf(desc->text, "%s", _("Item: "));
+	append_item_name(show_item, desc->text);
+	autostr_append(desc->text, " \nClass: %s\n", class_string);
 
 	// Append item bonuses.
 	struct auto_string *bonuses = alloc_autostr(128);

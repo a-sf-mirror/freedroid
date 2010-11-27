@@ -194,7 +194,7 @@ void CheckForTriggeredEvents()
  *
  *
  */
-int teleporter_square_below_mouse_cursor(char *ItemDescText)
+const char *teleporter_square_below_mouse_cursor(void)
 {
 	finepoint MapPositionOfMouse;
 	int i;
@@ -213,15 +213,12 @@ int teleporter_square_below_mouse_cursor(char *ItemDescText)
 			if (AllEventTriggers[i].silent)
 				continue;
 
-			// DebugPrintf ( -1000 , "\nSome trigger seems to be here..." );
-
 			// Now we know, that the mouse is currently exactly over an event trigger.  The
 			// question to be answered still is whether this trigger also triggers a teleporter
 			// action or not and if yes, where the connection leads to...
 			//
-			sprintf(ItemDescText, "%s", D_(AllEventTriggers[i].name));
-			return (TRUE);
+			return D_(AllEventTriggers[i].name);
 		}
 	}
-	return (FALSE);
-};				// void teleporter_square_below_mouse_cursor ( char* ItemDescText )
+	return NULL;
+}

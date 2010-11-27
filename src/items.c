@@ -279,25 +279,23 @@ void FillInItemProperties(item *it, int full_durability, int multiplicity)
 	calculate_item_bonuses(it);
 }
 
-void write_full_item_name_into_string(item * ShowItem, char *full_item_name)
+void append_item_name(item * ShowItem, struct auto_string *str)
 {
 	// If the item has upgrade sockets, use a different color for the name.
 	if (ShowItem->upgrade_sockets.size) {
-		strcpy(full_item_name, font_switchto_blue);
+		autostr_append(str, "%s", font_switchto_blue);
 	} else {
-		strcpy(full_item_name, font_switchto_neon);
+		autostr_append(str, "%s", font_switchto_neon);
 	}
 
 	if (MatchItemWithName(ShowItem->type, "Valuable Circuits"))
-		sprintf(full_item_name, "%d ", ShowItem->multiplicity);
+		autostr_append(str, "%d ", ShowItem->multiplicity);
 
-	strcat(full_item_name, D_(ItemMap[ShowItem->type].item_name));
+	autostr_append(str, "%s", D_(ItemMap[ShowItem->type].item_name));
 
 	// Now that the item name is out, we can switch back to the standard font color...
-	//
-	strcat(full_item_name, font_switchto_neon);
-
-};				// void write_full_item_name_into_string ( item* ShowItem , char* full_item_name ) 
+	autostr_append(str, "%s", font_switchto_neon);
+}
 
 /**
  * This function drops an item at a given place.
