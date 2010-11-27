@@ -727,5 +727,15 @@ Minimum number of Random Droids=0
 Random Droid Type: 543
 ** End of this levels droid data **
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=58
+Maximum number of Random Droids=20
+Minimum number of Random Droids=20
+Random Droid Type: 139
+Random Droid Type: 123
+Random Droid Type: 247
+Random Droid Type: 249
+** End of this levels droid data **
+----------------------------------------------------------------------
 *** End of Droid Data ***
 // Anything after above marker will be ignored.
