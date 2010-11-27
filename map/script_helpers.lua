@@ -42,6 +42,8 @@ end
 
 -- this table describes obstacle states
 obstacle_states = {
+	[3] = {["opened"] = -1, ["closed"] = 3,},
+	[4] = {["opened"] = -1, ["closed"] = 4,},
 	[6] = {["opened"] = 6, ["closed"] = 26,},
 	[7] = {["opened"] = 6, ["closed"] = 26,},
 	[8] = {["opened"] = 6, ["closed"] = 26,},
