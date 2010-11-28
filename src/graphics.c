@@ -1089,7 +1089,12 @@ static void set_video_mode_for_open_gl(void)
 		ErrorMessage(__FUNCTION__, "\
 SDL reported that the video mode (%d x %d) mentioned above is not supported\n\
 To see all possible resolutions please run 'freedroidRPG -r99'\n\
-Breaking off...", PLEASE_INFORM, IS_FATAL, GameConfig.screen_width, GameConfig.screen_height);
+Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_ONLY, GameConfig.screen_width, GameConfig.screen_height);
+		//resetting configuration file to default settings
+		GameConfig.screen_width =  800;
+		GameConfig.screen_height = 600;
+		GameConfig.next_time_width_of_screen = GameConfig.screen_width;
+		GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 		break;
 	default:
 		DebugPrintf(-4, "\nTesting if color depth %d bits is available... ", vid_bpp);
@@ -1195,7 +1200,7 @@ void InitVideo(void)
 
 	// We note the screen resolution used.
 	//
-	DebugPrintf(-4, "\nUsing screen resolution %d x %d.", GameConfig.screen_width, GameConfig.screen_height);
+	DebugPrintf(-4, "\nUsing screen resolution %d x %d.\n", GameConfig.screen_width, GameConfig.screen_height);
 
 	// We query the available video configuration on this system.
 	//
@@ -1211,9 +1216,21 @@ void InitVideo(void)
 		if (GameConfig.fullscreen_on)
 			video_flags |= SDL_FULLSCREEN;
 
+		if (!SDL_VideoModeOK(GameConfig.screen_width, GameConfig.screen_height, 32, video_flags))
+		{
+			ErrorMessage(__FUNCTION__, "\
+SDL reported that the video mode (%d x %d) mentioned above is not supported\n\
+To see all possible resolutions please run 'freedroidRPG -r99'\n\
+Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_ONLY, GameConfig.screen_width, GameConfig.screen_height);
+			//resetting configuration file to default settings
+			GameConfig.screen_width =  800;
+			GameConfig.screen_height = 600;
+			GameConfig.next_time_width_of_screen = GameConfig.screen_width;
+			GameConfig.next_time_height_of_screen = GameConfig.screen_height;
+		}
 		if (!(Screen = SDL_SetVideoMode(GameConfig.screen_width, GameConfig.screen_height, 0, video_flags))) {
-			fprintf(stderr, "Couldn't set (2*) 320x240*SCALE_FACTOR video mode: %s\n", SDL_GetError());
-			Terminate(ERR);
+			fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
+			Terminate(ERR);		
 		}
 	}
 
