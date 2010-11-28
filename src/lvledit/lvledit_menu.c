@@ -485,7 +485,7 @@ static void AddRemLevel(void)
 				action_jump_to_level_center(new_level_num);
 			}
 			else      //curShip.num_levels >= MAX_LEVELS
-				alert_window(_("Reached the maximum number of levels."));
+				alert_window("%s", _("Reached the maximum number of levels."));
 			break;
 		case REMOVE_CURRENT_LEVEL:
 			if (game_root_mode == ROOT_IS_GAME)
@@ -494,7 +494,7 @@ static void AddRemLevel(void)
 				SDL_Delay(1);
 
 			if (EditLevel()->levelnum == 0) {
-				alert_window("Cannot remove level number 0.\n");
+				alert_window("%s", _("Cannot remove level number 0.\n"));
 				break;
 			}
 

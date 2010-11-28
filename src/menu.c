@@ -1241,7 +1241,7 @@ static int Game_handle(int n)
 	case DIFFICULTY:
 		GameConfig.difficulty_level++;
 		GameConfig.difficulty_level %= 3;
-		alert_window(_("You need to restart FreedroidRPG for the difficulty change to take effect.\n\nSorry for the inconvenience."));
+		alert_window("%s", _("You need to restart FreedroidRPG for the difficulty change to take effect.\n\nSorry for the inconvenience."));
 		return CONTINUE_MENU;
 	case LEAVE_MENU:
 		return EXIT_MENU;
@@ -1413,11 +1413,7 @@ static int Resolution_handle(int n)
 			while (EnterPressed() || SpacePressed()) ;
 			GameConfig.next_time_width_of_screen = screen_resolutions[i].xres;
 			GameConfig.next_time_height_of_screen = screen_resolutions[i].yres;
-			char *fmt = _("You selected %d x %d pixels.\n\nYou need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience.");
-			char *txt = (char *)malloc(strlen(fmt) + 20);	// 20 chars should be enough to store 2 integers
-			sprintf(txt, fmt, screen_resolutions[i].xres, screen_resolutions[i].yres);
-			alert_window(txt);
-			free(txt);
+			alert_window("You selected %d x %d pixels.\n\nYou need to restart FreedroidRPG for the changes to take effect.\n\nSorry for the inconvenience.",  screen_resolutions[i].xres, screen_resolutions[i].yres);
 			return CONTINUE_MENU;
 		}
 		++j;

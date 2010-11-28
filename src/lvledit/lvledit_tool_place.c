@@ -707,7 +707,7 @@ int leveleditor_place_input(SDL_Event *event)
 				return 1;
 				break;
 			default:
-				alert_window("Place tool does not support this type of object.");
+				alert_window("%s", _("Place tool does not support this type of object."));
 			}
 		}
 	} else if (our_mode == RECTANGLE_FLOOR) {

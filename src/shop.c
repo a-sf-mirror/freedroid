@@ -736,19 +736,11 @@ The MENU CODE was unable to properly resolve a mouse button press.", PLEASE_INFO
  */
 void TryToRepairItem(item * RepairItem)
 {
-	char *MenuTexts[10];
-	MenuTexts[0] = _("Yes");
-	MenuTexts[1] = _("No");
-	MenuTexts[2] = "";
-
 	while (SpacePressed() || EnterPressed() || MouseLeftPressed())
 		SDL_Delay(1);
 
 	if (calculate_item_repair_price(RepairItem) > Me.Gold) {
-		MenuTexts[0] = _(" BACK ");
-		MenuTexts[1] = "";
-		SetCurrentFont(Menu_BFont);
-		DoMenuSelection(_("\n\nYou can't afford to have this item repaired! "), MenuTexts, 1, -1, NULL);
+		alert_window("%s\n\n%s", ItemMap[RepairItem->type].item_name, _("You can't afford to have this item repaired!"));
 		return;
 	}
 
@@ -824,10 +816,7 @@ static int buy_item(item *BuyItem, int amount)
 
 	// If the item is too expensive, bail out
 	if (item_price > Me.Gold) {
-		char linebuf[1000];
-		sprintf(linebuf, _("%s\n\nYou can't afford to purchase this item!"),
-		        ItemMap[BuyItem->type].item_name);
-		alert_window(linebuf);
+		alert_window("%s\n\n%s", ItemMap[BuyItem->type].item_name, _("You can't afford to purchase item repaired!"));
 		return -1;
 	}
 

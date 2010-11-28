@@ -159,12 +159,17 @@ int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, 
  * a big important style.  Then a popup window is suitable, with a mouse
  * click to confirm and make it go away again.
  */
-void alert_window(const char *text)
+void alert_window(const char *text, ...)
 {
+	va_list args;
+	struct auto_string *buffer = alloc_autostr(256);
 	int w = 440;   // arbitrary
 	int h = 60;    // arbitrary
 	int x = (GameConfig.screen_width  - w) / 2;	// center of screen
 	int y = (GameConfig.screen_height - h) / 5 * 2; // 2/5 of screen from top
+	va_start(args, text);
+	autostr_vappend(buffer, text, args);
+	va_end(args);
 
 	Activate_Conservative_Frame_Computation();
 	make_sure_system_mouse_cursor_is_turned_off();
@@ -175,7 +180,7 @@ void alert_window(const char *text)
 		SDL_Delay(1);
 		RestoreMenuBackground(1);
 
-		int r_height = show_backgrounded_text_rectangle(text, FPS_Display_BFont, x, y, w, h);
+		int r_height = show_backgrounded_text_rectangle(buffer->value, FPS_Display_BFont, x, y, w, h);
 		show_backgrounded_text_rectangle(_("Click to continue..."), Red_BFont, x, y + r_height, w, 10);
 
 		blit_our_own_mouse_cursor();
@@ -198,8 +203,8 @@ void alert_window(const char *text)
 
 wait_click_and_out:
 	while (SpacePressed() || EnterPressed() || EscapePressed() || MouseLeftPressed());
-
-};				// void alert_window( char* text )
+	free_autostr(buffer);
+}
 
 /**
  * 

@@ -57,9 +57,9 @@ static void activate_button(struct leveleditor_button *b)
 			find_file("freedroid.levels", MAP_DIR, fp, 0);
 			SaveShip(fp, TRUE, 0);
 
-			alert_window(_("M E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team."));
+			alert_window("%s", _("M E S S A G E\n\nYour ship was saved to file 'freedroid.levels' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team."));
 		} else
-			alert_window(_("M E S S A G E\n\nE R R O R ! Your ship was not saved.\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor from the main menu to be able to save."));
+			alert_window("%s", _("M E S S A G E\n\nE R R O R ! Your ship was not saved.\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor from the main menu to be able to save."));
 		break;
 	case LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON:
 		level_editor_beautify_grass_tiles(EditLevel());
