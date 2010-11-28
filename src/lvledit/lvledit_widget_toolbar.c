@@ -223,7 +223,7 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 			// We create a scaled version of the obstacle/floorpiece in question
 			tmp = zoomSurface(img->surface, zoom_factor, zoom_factor, FALSE);
 
-			// Now we can show and free the scaled verion of the floor tile again.
+			// Now we can show and free the scaled version of the floor tile again.
 			our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &TargetRectangle);
 			SDL_FreeSurface(tmp);
 		}

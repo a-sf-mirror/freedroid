@@ -59,7 +59,7 @@ static void clear_action(action * action)
 		free(action->d.change_label_name.new_name);
 
 	list_del(&action->node);	//< removes an action from a list
-	free(action);		//< free's the action
+	free(action);		//< frees the action
 }
 
 /**
@@ -991,7 +991,7 @@ void level_editor_edit_chest(obstacle *o)
 		done = GreatShopInterface(chest_nb_items, chest_items, 1, user_items, &shop_order);
 
 		// BUY removes an item from the chest
-		// SELL spaws the drop item interface
+		// SELL spawns the drop item interface
 		switch (shop_order.shop_command) {
 		case BUY_1_ITEM:
 			DeleteItem(chest_items[shop_order.item_selected]);
@@ -1018,4 +1018,4 @@ void level_editor_edit_chest(obstacle *o)
 	}
 }
 
-#undef _leveledijtor_action_c
+#undef _leveleditor_actions_c

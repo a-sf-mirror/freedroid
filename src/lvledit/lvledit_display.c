@@ -280,7 +280,7 @@ static void show_map_labels(int mask)
 		load_iso_image(&map_label_indicator, "level_editor_map_label_indicator.png", TRUE);
 	}
 
-	// Now we can draw a fine indicator at all the position nescessary...
+	// Now we can draw a fine indicator at all the necessary positions ...
 	for (i = 0; i < EditLevel->map_labels.size; i++) {	
 		// Get the map label
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);

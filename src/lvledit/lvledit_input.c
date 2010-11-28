@@ -220,7 +220,7 @@ void leveleditor_input_mouse_button(SDL_Event * event)
 				break;
 			default:
 				break;
-				//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+				//ErrorMessage(__FUNCTION__, "Mouse button index %hd  not handled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
 			}
 			break;
 		case SDL_MOUSEBUTTONDOWN:
@@ -239,7 +239,7 @@ void leveleditor_input_mouse_button(SDL_Event * event)
 				break;
 			default:
 				break;
-				//ErrorMessage(__FUNCTION__, "Mouse button index %hd unhandled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
+				//ErrorMessage(__FUNCTION__, "Mouse button index %hd not handled by leveleditor widgets.\n", PLEASE_INFORM, IS_WARNING_ONLY, event->button.button);
 			}
 			break;
 		default:
@@ -256,7 +256,7 @@ void leveleditor_input_keybevent(SDL_Event * event)
 	w = get_active_widget(GetMousePos_x(), GetMousePos_y());
 
 	// When we get a keyboard event that wasn't handled by the "general" keybinding system,
-	// it means we have something widget- and state- dependant.
+	// it means we have something widget- and state- dependent.
 	// We will forward the event to the currently active widget, and if it did not handle it,
 	// forward it to each widget in the list in order.
 
