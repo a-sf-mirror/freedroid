@@ -608,11 +608,13 @@ void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char
 	for (i = 0; i < total_rooms; i++) {
 		// vis[i] equal to 1 means that the room is free to decorate
 		if (rooms[i].w != 2 && rooms[i].h != 2 && vis[i] == 1) {
-			if (vis[i] && MyRandom(1)) {
+			if (MyRandom(1)) {
 				place_work_office(i);
 				vis[i] = OFFICE_ROOM;
-			}
-			else if (di->distance[i] < num + 3 && !MyRandom(3)) {
+			} else if (MyRandom(1)) {
+				place_library(i);
+				vis[i] = LIBRARY_ROOM;
+			} else if (di->distance[i] < num + 5 && !MyRandom(2)) {
 				place_garden(i);
 				vis[i] = GARDEN_ROOM;
 			}
