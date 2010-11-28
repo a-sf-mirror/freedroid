@@ -366,6 +366,13 @@ int LoadBackupGame()
 {
 	strcat(Me.character_name, ".bkp");
 	int ret = LoadGame();
+
+	// Make sure the character name does not end in ".bkp". LoadGame() will
+	// reset the name to the correct one, except when it failed.
+	char *ptr = Me.character_name + strlen(Me.character_name) - 4;
+	if (!strcmp(ptr, ".bkp"))
+		*ptr = '\0';
+
 	return ret;
 }
 
