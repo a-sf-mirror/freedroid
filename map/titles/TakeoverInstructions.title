@@ -42,29 +42,31 @@ Here is a crash course to refresh your memory.
 
 First, don't try to hack if you are about to die.
 If you fail, you will get a nice electric shock.
-It won't kill you, but it will hurt. A lot.
+It won't kill you unless you already are really hurt, but it will hurt.
+A lot.
 
 There are two phases of hacking.
-First choose the circuit board you want to use to attack.
-Most bots have two. One is green and the other is purple.
+First choose the circuit board you consider to be the best.
+One is yellow and the other is purple.
 Just press left or right on your keyboard to choose.
-You have about a minute before the bot notices you.
+You have about 10 seconds before the bot notices you.
 Pick the board which you think gives you an advantage.
 
 The second phase is making connections to the logic cores.
-In case you are wondering, that is that thing in the center.
+In case you are wondering, these are the things in the center.
 
 Because bots are buggy, some cores will be on your side.
 You can make only a few attacks, so make them count.
 Choose the wire you want to use to attack the cores with.
 Pressing up and down on your keyboard should work.
+You can also use the mouse wheel if you have one.
 When you have made up your mind, press the blank bar.
 Whatever is on the other side of the wire will become yours.
 Of course the bot won't just sit there like an onion.
 It will try to regain control and it will make connections too.
 
 After a short while everything will be over.
-If you control the most cores, the bot belongs to you.
+If you control the most cores at this moment, the bot belongs to you.
 If not, you get a free electrocution, MegaSys style.
         
 The wiring inside the bots is quite crazy at times.
