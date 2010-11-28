@@ -604,7 +604,7 @@ void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, in
 	}
 
 	// In the case of no open_gl (and therefore no conversion to a texture)
-	// we make sure, that the open_gl optiomized methods will also find
+	// we make sure that the open_gl optimized methods will also find
 	// suitable correspondents in the SDL-loaded images, like the original
 	// image size and such...
 	//
@@ -886,7 +886,7 @@ void get_enemy_surfaces_data(char *DataPointer)
 }
 
 /**
- * This function creates all the surfaces, that are nescessary to blit the
+ * This function creates all the surfaces, that are necessary to blit the
  * 'head' and 'shoes' of an enemy.  The numbers are not dealt with here.
  */
 void Load_Enemy_Surfaces(void)
@@ -905,9 +905,9 @@ void Load_Enemy_Surfaces(void)
 	}
 
 	// When using the new tux image collection files, the animation cycle
-	// lengthes for droids will be taken from the image collection file itself.
+	// lengths for droids will be taken from the image collection file itself.
 	// That is good, because it's so dynamic.  However, it also means, that
-	// the real animation phase lengthes and that will in general not be known
+	// the real animation phase lengths and that will in general not be known
 	// until the graphics for that bot has been loaded.  But on the other hand
 	// it might happen that some phase computation is done before the first
 	// blit already.  In that case, uninitialized data structs might cause 

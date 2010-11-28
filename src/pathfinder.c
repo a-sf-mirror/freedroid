@@ -377,7 +377,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 		}
 
 		// Maybe the result of the scan indicated, that there is nothing to cut away at this
-		// point.  Then we must contine right after this point.
+		// point.  Then we must continue right after this point.
 		//
 		if (last_index == (-1))
 			continue;
@@ -401,7 +401,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 	// setup function does not usually include the current position of the Tux
 	// as the very first entry.
 	//
-	// Therefore we do some extra optimisation check here for this special case...
+	// Therefore we do some extra optimization check here for this special case...
 	//
 	if (waypoints[1].x == -1)
 		return;

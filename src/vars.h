@@ -199,7 +199,7 @@ char *AllSkillTexts[NUMBER_OF_SKILL_LEVELS] = {
 };
 
 //--------------------
-// When a character aquires better melee_weapon_skill for melee
+// When a character acquires better melee_weapon_skill for melee
 // weapons or better ranged_weapon_skill for ranged weapons, this
 // will affect (his chance to hit and also) the damage the player
 // does, by applying a multiplier to the normal computed damage.

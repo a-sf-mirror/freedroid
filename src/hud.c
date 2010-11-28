@@ -45,7 +45,7 @@
 int best_banner_pos_x, best_banner_pos_y;
 
 /**
- * The hud contains several status graphs.  These graphs appear as 
+ * The HUD contains several status graphs.  These graphs appear as 
  * vertical columns, that are more or less filled, like liquid in a tube.
  * Since these appear multiple times, it appears sensible to make a 
  * function to draw such bars in a convenient way, which is what this
@@ -99,7 +99,7 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 		running_power_rect.w = running_power_rect.w * GameConfig.screen_width / 640.0;
 		running_power_rect.h = running_power_rect.h * GameConfig.screen_height / 480.0;
 	}
-	// Now wthat all our rects are set up, we can start to display the current
+	// Now that all our rects are set up, we can start to display the current
 	// running power status on screen...
 	//
 	SDL_SetClipRect(Screen, NULL);
@@ -157,7 +157,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	} else {
 		autostr_append(str, _("Indestructible\n"));
 	}
-	// Ranged weapon amunition
+	// Ranged weapon ammunition
 	if (ItemMap[item->type].item_gun_ammo_clip_size) {
 		autostr_append(str, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
 	}
@@ -374,7 +374,7 @@ void blit_experience_countdown_bars(void)
 
 	// At game startup, it might be that an uninitialized Tux (with 0 in the
 	// max running power entry) is still in the data structure and when the
-	// title displayes, this causes division by zero... 
+	// title displays, this causes division by zero... 
 	//
 	if (Me.ExpRequired <= 1)
 		return;
@@ -431,7 +431,7 @@ void blit_running_power_bars(void)
 	if ((GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) && GameConfig.screen_width == 640) {
 		return;
 	}
-	// Now wthat all our rects are set up, we can start to display the current
+	// Now that all our rects are set up, we can start to display the current
 	// running power status on screen...
 	//
 	SDL_SetClipRect(Screen, NULL);
@@ -769,8 +769,8 @@ static void prepare_text_window_content(struct auto_string *str)
 			autostr_append(str, "%s", teleporter_square_below_mouse_cursor());
 		}
 		// Maybe there is a living droid below the current mouse cursor, and it is visible to the player.
-		// In this case, we'll give the decription of the corresponding bot.
-		// Nota : the call to GetLivingDroidBelowMouseCursor() does set the virt_pos attribute
+		// In this case, we'll give the description of the corresponding bot.
+		// Note : the call to GetLivingDroidBelowMouseCursor() does set the virt_pos attribute
 		// of the found droid to be the bot's position relatively to Tux current level
 		//
 		enemy *droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();

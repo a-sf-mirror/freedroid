@@ -204,7 +204,7 @@ int our_SDL_fill_rect_wrapper(SDL_Surface * dst, SDL_Rect * dstrect, Uint32 colo
 };				// int our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
 
 /**
- * This function will draw quads, that are not nescessarily parallel to 
+ * This function will draw quads, that are not necessarily parallel to 
  * the screen coordinates to the screen.  It will currently only do 
  * something in OpenGL output method.
  */
@@ -359,7 +359,7 @@ SDL_Surface *our_SDL_display_format_wrapperAlpha(SDL_Surface * surface)
 /**
  * This function flips a given SDL_Surface.
  * 
- * This is particularly nescessary, since OpenGL has a different native
+ * This is particularly necessary, since OpenGL has a different native
  * coordinate system than SDL and therefore images often appear flipped
  * around if one doesn't counter this effect with OpenGL by flipping the
  * images just once more in the same fashion.  That is what this function
@@ -418,7 +418,7 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
  * There is need to do some padding, cause OpenGL textures need to have
  * a format: width and length both each a power of two.  Therefore some
  * extra alpha to the sides must be inserted.  This is what this function
- * is supposed to do:  manually adding hte proper amount of padding to
+ * is supposed to do:  manually adding the proper amount of padding to
  * the surface, so that the dimensions will reach the next biggest power
  * of two in both directions, width and length.
  */
@@ -516,12 +516,6 @@ void make_texture_out_of_surface(iso_image * our_image)
 
 	// Now that the texture has been created, we assume that the image is
 	// not needed any more and can be freed now!  
-
-	// So as to detect any occurances of access to the surface once the 
-	// texture has been created, we set the surface to the NULL pointer to
-	// ENCOURAGE SEGMENTATION FAULTS when doing this so as to eliminate
-	// these occurances with the debugger...
-	//
 	SDL_FreeSurface(our_image->surface);
 	our_image->surface = NULL;
 
@@ -584,7 +578,7 @@ void open_gl_check_error_status(const char *name_of_calling_function)
 
 /**
  * This function does the first part of the OpenGL parameter 
- * initialisation.  We've made this chunk of code into a separate function
+ * initialization.  We've made this chunk of code into a separate function
  * such that the frequent issues with OpenGL drivers can be attributed to
  * a particular spot in the code more easily.
  */
@@ -607,7 +601,7 @@ void safely_set_open_gl_viewport_and_matrix_mode(void)
 
 /**
  * This function does the second part of the OpenGL parameter 
- * initialisation.  We've made this chunk of code into a separate function
+ * initialization.  We've made this chunk of code into a separate function
  * such that the frequent issues with OpenGL drivers can be attributed to
  * a particular spot in the code more easily.
  */
@@ -639,7 +633,7 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 int safely_initialize_our_default_open_gl_parameters(void)
 {
 #ifdef HAVE_LIBGL
-	// Set up the screne, viewport matrix, coordinate system and all that...
+	// Set up the screen, viewport matrix, coordinate system and all that...
 	//
 	safely_set_open_gl_viewport_and_matrix_mode();
 
@@ -771,7 +765,7 @@ void draw_gl_scaled_textured_quad_at_screen_position(iso_image * our_iso_image, 
 /**
  * This function blits some texture to the screen, but instead of using
  * the usual 1:1 ratio, this function will instead stretch the texture
- * received such that the ratio corrsponds to the current (possibly wider)
+ * received such that the ratio corresponds to the current (possibly wider)
  * screen dimension.
  */
 void draw_gl_bg_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y)
@@ -1009,7 +1003,7 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 
 	// Now we blit the current automap texture to the screen.  We use standard
 	// texture blitting code for this, so we need to embed the automap texture
-	// in a surrounting 'iso_image', but that shouldn't be costly or anything...
+	// in a surrounding 'iso_image', but that shouldn't be costly or anything...
 	//
 	local_iso_image.texture = light_radius_stretch_texture;
 	local_iso_image.texture_width = LightRadiusConfig.texture_w;
@@ -1124,7 +1118,7 @@ static int background_has_been_loaded[ALL_KNOWN_BACKGROUNDS];
 
 /**
  * For blitting backgrounds and static images in various positions of the
- * game, we got this function, that handles them, taking especal care to
+ * game, we got this function, that handles them, taking special care to
  * use open-gl textures for faster blitting in OpenGL settings.
  */
 void blit_special_background(int background_code)

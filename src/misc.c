@@ -431,7 +431,7 @@ void print_trace(int signum)
  * of the preceeding function calls, so that we get some suitable debug
  * output, even if there was no debugger used when starting the game.
  *
- * This migth not be completely portable to win32 systems.  Don't know if
+ * This might not be completely portable to win32 systems.  Don't know if
  * it's our fault or not, but maybe we will have to disable this piece
  * of code via simple conditional compilation if the target is win32.
  *
@@ -449,7 +449,7 @@ Setting up signal handlers for internal backtrace:\n\
 Now catching SIGSEGV: ");
 
 	// We set up the structure for the new signal handling
-	// to give to the opterating system
+	// to give to the operating system
 	//
 	new_action.sa_handler = print_trace;
 	sigemptyset(&new_action.sa_mask);
@@ -483,9 +483,9 @@ Now catching SIGSEGV: ");
 /**
  * If we want the screen resolution to be a runtime option and not a 
  * compile time option any more, we must not use it as a constant.  That
- * means we must adapt the button positions to the current screeen 
+ * means we must adapt the button positions to the current screen 
  * resolution at runtime to, so we do it in this function, which will be
- * involed at program startup.
+ * involved at program startup.
  */
 void adapt_button_positions_to_screen_resolution(void)
 {
@@ -760,7 +760,7 @@ int find_file(const char *fname, const char *subdir, char *File_Path, int silent
 };				// char * find_file ( ... )
 
 /**
- * This function realises the Pause-Mode: the game process is halted,
+ * This function realizes the Pause-Mode: the game process is halted,
  * while the graphics and animations are not.  This mode 
  * can further be toggled from PAUSE to CHEESE, which is
  * a feature from the original program that should probably
@@ -866,7 +866,7 @@ void ComputeFPSForThisFrame(void)
  * It returns the average time needed to draw one frame.
  * Other functions use this to calculate new positions of moving objects, etc..
  *
- * Also there is of course a serious problem when some interuption occurs, like e.g.
+ * Also there is of course a serious problem when some interruption occurs, like e.g.
  * the options menu is called or the debug menu is called or the console or the elevator
  * is entered or a takeover game takes place.  This might cause HUGE framerates, that could
  * box the influencer out of the ship if used to calculate the new position.
@@ -916,7 +916,7 @@ int Get_Average_FPS(void)
 
 /**
  * 
- * With framerate computation, there is a problem when some interuption occurs, like e.g.
+ * With framerate computation, there is a problem when some interruption occurs, like e.g.
  * the options menu is called or the debug menu is called or the console or the elevator
  * is entered or a takeover game takes place.  This might cause HUGE framerates, that could
  * box the influencer out of the ship if used to calculate the new position.
@@ -926,7 +926,7 @@ int Get_Average_FPS(void)
  * no better substitute exists at this moment.
  *
  * This counter is most conveniently set via the function Activate_Conservative_Frame_Computation,
- * which can be conveniently called from eveywhere.
+ * which can be conveniently called from everywhere.
  *
  */
 void Activate_Conservative_Frame_Computation(void)
@@ -978,8 +978,8 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 	if(game_root_mode == ROOT_IS_LVLEDIT && game_status != INSIDE_GAME)
 		GameConfig.last_edited_level = LNum;
 	// Maybe the 'teleport' really comes from a teleportation device or
-	// teleport spell or maybe even from accessing some sewer accessway.
-	// In that case we'll fade out the screen a bit using the gamme ramp
+	// teleport spell or maybe even from accessing some sewer access way.
+	// In that case we'll fade out the screen a bit using the gamma ramp
 	// and then later back in again.  (Note that this is a blocking function
 	// call, i.e. it will take a second or so each.)
 	//
@@ -988,7 +988,7 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 	}
 
 	if (LNum != Me.pos.z) {
-		// In case a real level change has happend,
+		// In case a real level change has happened,
 		// we need to do a lot of work.  Therefore we start by activating
 		// the conservative frame time computation to avoid a 'jump'.
 		//
@@ -1016,7 +1016,7 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 		get_visible_levels();
 		
 	} else {
-		// If no real level change has occured, everything
+		// If no real level change has occurred, everything
 		// is simple and we just need to set the new coordinates, haha
 		//
 		Me.pos.x = X;
@@ -1058,7 +1058,7 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
 
 	// Since we've mightily changed position now, we should clear the
-	// position history, so that noone get's confused...
+	// position history, so that no one gets confused...
 	//
 	InitInfluPositionHistory();
 
@@ -1108,7 +1108,7 @@ int level_exists(int level_num)
  * LoadGameConfig(): load saved options from config-file
  *
  * this should be the first of all load/save functions called
- * as here we read the $HOME-dir and create the config-subdir if neccessary
+ * as here we read the $HOME-dir and create the config-subdir if necessary
  *
  *----------------------------------------------------------------------*/
 int LoadGameConfig(void)
@@ -1141,7 +1141,7 @@ int LoadGameConfig(void)
 Settings file found in your ~/.freedroid_rpg dir does not\n\
 seem to be from the same version a this installation of freedroid.\n\
 This is perfectly normal if you have just upgraded your version of\n\
-freedroid.  But the loading of your settings will be cancelled now,\n\
+freedroid.  But the loading of your settings will be canceled now,\n\
 cause the format of the settings file is no longer supported.  \n\
 No need to panic.  The default settings will be used instead and a new\n\
 settings file will be generated.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
@@ -1204,7 +1204,7 @@ int SaveGameConfig(void)
 		return (ERR);
 	}
 	// We put the current version number of freedroid into the 
-	// version number string.  This will be usefull so that later
+	// version number string.  This will be useful so that later
 	// versions of freedroid can identify old config files and decide
 	// not to use them in some cases.
 	//
@@ -1213,8 +1213,8 @@ int SaveGameConfig(void)
 	}
 	GameConfig.freedroid_version_string = strdup(VERSION);
 
-	// We preseve the current resolution, modify it a bit, such that
-	// the preseleted resolution will come to effect next time, save
+	// We preserve the current resolution, modify it a bit, such that
+	// the preselected resolution will come to effect next time, save
 	// it and then we restore the current settings again.
 	//
 	current_width = GameConfig.screen_width;

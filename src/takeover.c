@@ -227,7 +227,7 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 
 /* ------------------------------------------------------------
  * display infopage page of droidtype
- * does update the screen, no our_SDL_flip_wrapper() necesary !
+ * does update the screen, no our_SDL_flip_wrapper() necessary !
  * ------------------------------------------------------------ */
 static void ShowDroidInfo(int droidtype, int Displacement, char ShowArrows)
 {
@@ -427,7 +427,7 @@ static void PlayGame(int countdown)
 					break;
 				}
 			} else if (event.type == SDL_KEYDOWN) {
-				/* allow for a WIN-key that give immedate victory */
+				/* allow for a WIN-key that gives immediate victory */
 				event.key.keysym.mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE);	/* We want to ignore "global" modifiers. */
 				if (event.key.keysym.sym == SDLK_w && (event.key.keysym.mod == (KMOD_LCTRL | KMOD_LALT))) {
 					LeaderColor = YourColor;	/* simple as that */
@@ -531,7 +531,7 @@ static void PlayGame(int countdown)
 		SDL_Delay(10);
 	}			/* while !FinishTakeover */
 
-	/* Final contdown */
+	/* Final countdown */
 	countdown = CAPSULE_COUNTDOWN + 10;
 
 	while (countdown--) {
@@ -575,7 +575,7 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 	input_handle();
 
 	while (!FinishTakeover) {
-		// Init Color-column and Capsule-Number for each opponenet and your color 
+		// Init Color-column and Capsule-Number for each opponent and your color 
 		//
 		for (row = 0; row < NUM_LINES; row++) {
 			DisplayColumn[row] = (row % 2);
@@ -879,8 +879,7 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 
 /**
  * This function reads in the takeover game elements for later blitting. 
- * It frees previous SDL-surfaces if they were allocated.  T
- * This allows to use this fct also for theme-switching.
+ * It frees previous SDL-surfaces if they were allocated.
  *-----------------------------------------------------------------*/
 int GetTakeoverGraphics(void)
 {
@@ -1656,7 +1655,7 @@ void ProcessPlayground(void)
 /** 
  * This function sets the correct values for the status column in the
  * middle of the takeover game field.
- * Binking leds are realized here as well.
+ * Blinking LEDs are realized here as well.
  */
 void ProcessDisplayColumn(void)
 {
@@ -1751,8 +1750,8 @@ void ProcessCapsules(void)
 };				// void ProcessCapsules ( void )
 
 /**
- * This function tells, wether a Column-connection is active or not.
- * It returns TRUE or FALSE accordinly.
+ * This function tells, whether a Column-connection is active or not.
+ * It returns TRUE or FALSE accordingly.
  */
 int IsActive(int color, int row)
 {

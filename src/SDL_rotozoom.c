@@ -15,7 +15,7 @@
  
  32bit Zoomer with optional anti-aliasing by bilinear interpolation.
 
- Zoomes 32bit RGBA/ABGR 'src' surface to 'dst' surface.
+ Zooms 32bit RGBA/ABGR 'src' surface to 'dst' surface.
  
 */
 
@@ -202,7 +202,7 @@ int zoomSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int smooth)
  
  8bit Zoomer without smoothing.
 
- Zoomes 8bit palette/Y 'src' surface to 'dst' surface.
+ Zooms 8bit palette/Y 'src' surface to 'dst' surface.
  
 */
 
@@ -317,7 +317,7 @@ int zoomSurfaceY(SDL_Surface * src, SDL_Surface * dst)
  
  32bit Rotozoomer with optional anti-aliasing by bilinear interpolation.
 
- Rotates and zoomes 32bit RGBA/ABGR 'src' surface to 'dst' surface.
+ Rotates and zooms 32bit RGBA/ABGR 'src' surface to 'dst' surface.
  
 */
 
@@ -475,7 +475,7 @@ void transformSurfaceRGBA(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, 
  
  8bit Rotozoomer without smoothing
 
- Rotates and zoomes 8bit palette/Y 'src' surface to 'dst' surface.
+ Rotates and zooms 8bit palette/Y 'src' surface to 'dst' surface.
  
 */
 
@@ -527,7 +527,7 @@ void transformSurfaceY(SDL_Surface * src, SDL_Surface * dst, int cx, int cy, int
  
  rotozoomSurface()
 
- Rotates and zoomes a 32bit or 8bit 'src' surface to newly created 'dst' surface.
+ Rotates and zooms a 32bit or 8bit 'src' surface to newly created 'dst' surface.
  'angle' is the rotation in degrees. 'zoom' a scaling factor. If 'smooth' is 1
  then the destination 32bit surface is anti-aliased. If the surface is not 8bit
  or 32bit RGBA/ABGR it will be converted into a 32bit RGBA format on the fly.
@@ -793,7 +793,7 @@ SDL_Surface *rotozoomSurface(SDL_Surface * src, double angle, double zoom, int s
  
  zoomSurface()
 
- Zoomes a 32bit or 8bit 'src' surface to newly created 'dst' surface.
+ Zooms a 32bit or 8bit 'src' surface to newly created 'dst' surface.
  'zoomx' and 'zoomy' are scaling factors for width and height. If 'smooth' is 1
  then the destination 32bit surface is anti-aliased. If the surface is not 8bit
  or 32bit RGBA/ABGR it will be converted into a 32bit RGBA format on the fly.

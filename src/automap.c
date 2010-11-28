@@ -95,7 +95,7 @@ void CollectAutomapData(void)
 
 	ObjPos.z = Me.pos.z;
 
-	// Checking the whole map for passablility will surely take a lot
+	// Checking the whole map for passability will surely take a lot
 	// of computation.  Therefore we only do this once every second of
 	// real time.
 	//

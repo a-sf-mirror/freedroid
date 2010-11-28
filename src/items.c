@@ -381,8 +381,8 @@ int get_random_item_type(int class)
  * This function drops a random item to the floor of the current level
  * at position ( x , y ).
  *
- * The strategy in droping the item is that one can easily set up and
- * modify the tabe of items to be dropped.
+ * The strategy in dropping the item is that one can easily set up and
+ * modify the table of items to be dropped.
  *
  */
 void DropRandomItem(int level_num, float x, float y, int class, int force_magical)
@@ -460,7 +460,7 @@ void DamageItem(item * CurItem)
 		// Make sound denoting some protective item was damaged
 		BulletReflectedSound();
 
-		// If the item has gone over it's threshhold of duration, it finally
+		// If the item has gone over its threshold of duration, it finally
 		// breaks and vaporizes
 		//
 		if (rintf(CurItem->current_duration) <= 0) {
@@ -505,10 +505,10 @@ void DamageProtectiveEquipment()
 
 /**
  * This function is used when an equipment EXCHANGE is performed, i.e.
- * one weapon equiped is replaced by a new item using the mouse.  This 
+ * one weapon equipped is replaced by a new item using the mouse.  This 
  * leads to an exchange in the items.  Yet, if the new item came from 
  * inventory, the old item can't be just put in the same place where the
- * new item was, cause it might be bigger.  So, attemting to solve the
+ * new item was, cause it might be bigger.  So, attempting to solve the
  * problem, the old item from the slot can just be made into an item on
  * the floor, but not visible yet of course, cause it still gets the 
  * held in hand attribute.
@@ -868,7 +868,7 @@ int Inv_Pos_Is_Free(int x, int y)
 };				// int Inv_Pos_Is_Free( Inv_Loc.x , Inv_Loc.y )
 
 /**
- * This function returns the index in the invenotry list of the object
+ * This function returns the index in the inventory list of the object
  * at the inventory position x y.  If no object is found to occupy that
  * square, an index of (-1) is returned.
  * 
@@ -983,13 +983,13 @@ void DeleteOneInventoryItemsOfType(int Itemtype)
 		}
 	}
 
-	// This point must never be reached or a severe error has occured...
+	// This point must never be reached or a severe error has occurred...
 	//
 	fprintf(stderr, "\n\nItemType: '%d'.\n", Itemtype);
 	ErrorMessage(__FUNCTION__, "\
 One single item of all the items of a given type in the Tux inventory\n\
 should be removed, but there was not even one such item ever found in\n\
-Tux invenrtory.  Something must have gone awry...", PLEASE_INFORM, IS_FATAL);
+Tux inventory.  Something must have gone awry...", PLEASE_INFORM, IS_FATAL);
 
 };				// void DeleteOneInventoryItemsOfType( int Itemtype  )
 
@@ -1355,7 +1355,7 @@ int GetFreeInventoryIndex(void)
 	}
 
 	// If this point is reached, the severe error mentioned above has
-	// occured, an error message must be printed out and the program
+	// occurred, an error message must be printed out and the program
 	// must be terminated.
 	//
 	ErrorMessage(__FUNCTION__, "\
@@ -1700,7 +1700,7 @@ void HandleInventoryScreen(void)
 			if (Me.weapon_item.type == (-1)) {
 				// first of all check requirements again but without the shield :
 				// virtually remove the shield, compute requirements, if 
-				// everything's okay, proceed otherwise we inform the player
+				// everything is okay, proceed otherwise we inform the player
 				int shield_item_type = Me.shield_item.type;
 				Me.shield_item.type = (-1);
 				update_all_primary_stats();
@@ -1753,7 +1753,7 @@ void HandleInventoryScreen(void)
 			// There is a 2-handed weapon equipped, so first of all check 
 			// requirements again but without the weapon :
 			// virtually remove the weapon, compute requirements, if 
-			// everything's okay, proceed otherwise we inform the player
+			// everything is okay, proceed otherwise we inform the player
 			int weapon_item_type = Me.weapon_item.type;
 			Me.weapon_item.type = (-1);
 			update_all_primary_stats();

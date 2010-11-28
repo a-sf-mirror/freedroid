@@ -78,7 +78,7 @@ void init_obstacle_data(void)
 	// can be added after that.
 	//
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
-		// In adition to the pure image information, we'll also need some
+		// In addition to the pure image information, we'll also need some
 		// collision information for obstacles...
 		//
 		memcpy(&(obstacle_map[i].image), &(empty_iso_image), sizeof(iso_image));
@@ -181,8 +181,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_2].filename = "iso_walls_0029.png";
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_2].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_2].flags |= IS_HORIZONTAL;
-
-	//the eight windowed walls share the same description because i'm lazy and have no imagination
 
 	block_2param(ISO_V_DOOR_000_OPEN, standard_wall_thickness, standard_door_width);
 	obstacle_map[ISO_V_DOOR_000_OPEN].flags &= ~BLOCKS_VISION_TOO;
@@ -314,9 +312,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DV_DOOR_100_OPEN].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_DV_DOOR_100_OPEN].animate_fn = animate_door;
 
-// standard_wall_thickness * 2 is used instead of "/ 2" to hide paining algo bug (missing z-level) 
-// that otherwise would show tux on the wrong side of the door sometimes
-
 	obstacle_map[ISO_DH_DOOR_LOCKED].filename = "iso_doubledoors_0011.png";
 	block_4param(ISO_DH_DOOR_LOCKED, outer_door_4_width_long, standard_wall_thickness / 2, outer_door_4_width_short, standard_wall_thickness * 2);
 	obstacle_map[ISO_DH_DOOR_LOCKED].flags &= ~BLOCKS_VISION_TOO;
@@ -329,7 +324,7 @@ void init_obstacle_data(void)
 
 
 	// These are the normal pillars, that appear here and there in the game.
-	// 4param is used to allow Tux to walk ontop the pillar base in S&E yet
+	// 4param is used to allow Tux to walk onto the pillar base in S&E yet
 	// not appear as walking under the pillar base N&W of the pillar.
 
 	block_4param(ISO_PILLAR_TALL, 0.25, 0.25, 0.5, 0.5);
@@ -1011,11 +1006,6 @@ void init_obstacle_data(void)
 	// Brick walls are smashable.  When you smash them, there should be
 	// first a cracked brick wall, then when smashing again, there will
 	// be only some rubble left, and that should be *passable*.
-	//
-	// UPDATE: But maybe this wall shouldn't be smashable, since it isn't cracked...
-	//         If thas should be different, it can be changes easily below by setting
-	//         the smashable property to the desired value.
-	//
 	block_2param(ISO_BRICK_WALL_H, 0.8, 1.2);
 	obstacle_map[ISO_BRICK_WALL_H].filename = "iso_brick_wall_0001.png";
 	obstacle_map[ISO_BRICK_WALL_H].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1;

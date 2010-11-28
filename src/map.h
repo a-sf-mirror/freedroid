@@ -24,18 +24,8 @@
  *
  */
 
-/*
- * This file has been checked for remaining german comments. However, if you still
- * find some, please either translate them to english or tell me where you found them.
- * Thanks a lot, Johannes Prix.
- */
-
-// This stuff is nescessary, so that global.h and proto.h know that they have been
-// included this time from the file map.h
 #ifndef _map_h
 #define _map_h
-
-/* some defines */
 
 #define CONNECTION_STRING	"c: "
 #define WHITE_SPACE 		" \t"

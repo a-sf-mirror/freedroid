@@ -26,9 +26,9 @@
 
 /**
  * This file contains all the functions managing the things one gets to see.
- * That includes assembling of enemys, assembling the currently
+ * That includes assembling of enemies, assembling the currently
  * relevant porting of the map (the bricks I mean), drawing all visible
- * elements like bullets, blasts, enemys or influencer in a nonvisible
+ * elements like bullets, blasts, enemies or influencer in a not visible
  * place in memory at first, and finally drawing them to the visible
  * screen for the user.
  */
@@ -1185,7 +1185,7 @@ void gps_transform_map_init()
  * current level.
  * 
  * Therefore we introduce 'virtual' positions, i.e. the position the object 
- * would have, if the object were in fact counted as part of a neighbouring level,
+ * would have, if the object were in fact counted as part of a neighboring level,
  * mostly the level of the Tux.  Using this concept, we can more easily compute 
  * distances and compare positions.
  *
@@ -1544,7 +1544,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 		
 		case BLITTING_TYPE_ENEMY:
 			// Enemies, which are dead already become like decoration on the floor.  
-			// They should never obscur the Tux, so we blit them beforehand and not
+			// They should never hide the Tux, so we blit them beforehand and not
 			// again later from the list.
 			//
 			if (((enemy *)e->element_pointer)->animation_type == DEATH_ANIMATION
@@ -1694,7 +1694,7 @@ static void show_obstacle_labels(int mask)
 
 /**
  * Each item is lying on the floor.  But that means some of the items,
- * especially the smaller but not nescessary less valuable items will not
+ * especially the smaller but not necessary less valuable items will not
  * be easy to make out under all the bushed, trees, rubble and stuff.
  * So the solution is to offer a special key that when pressed will make
  * all item names flash up, so that you can't possibly miss an item that
@@ -1831,7 +1831,7 @@ int item_slot_position_blocked(item * given_item, int item_slot)
 
 /**
  * Each item is lying on the floor.  But that means some of the items,
- * especially the smaller but not nescessary less valuable items will not
+ * especially the smaller but not necessarily less valuable items will not
  * be easy to make out under all the bushed, trees, rubble and stuff.
  * So the solution is to offer a special key that when pressed will make
  * all item names flash up, so that you can't possibly miss an item that
@@ -1985,7 +1985,7 @@ void draw_grid_on_the_floor(int mask)
  * This function assembles the contents of the combat window 
  * in Screen.
  *
- * Several FLAGS can be used to control its behaviour:
+ * Several FLAGS can be used to control its behavior:
  *
  * (*) ONLY_SHOW_MAP = 1:  This flag indicates not do draw any
  *     game elements but the map blocks
@@ -2010,7 +2010,7 @@ void AssembleCombatPicture(int mask)
 		make_sure_system_mouse_cursor_is_turned_on();
 
 	// We generate a list of obstacles (and other stuff) that might
-	// emitt some light.  It should be sufficient to establish this
+	// emit some light.  It should be sufficient to establish this
 	// list once in the code and the to use it for all light computations
 	// of this frame.
 	//
@@ -2454,7 +2454,7 @@ Surface to be loaded didn't have empty (NULL) pointer in the first place.", PLEA
 
 /**
  * While earlier we used lots and lots of isolated .png and .offset files
- * to store the information about an emey, we've now moved over to using
+ * to store the information about an enemy, we've now moved over to using
  * a single archive file that holds all the image and all the offset 
  * information, even in uncompressed form, making access at runtime even
  * *much* faster than it was before.  This file grabs one enemy from
@@ -2745,10 +2745,10 @@ void iso_put_tux_part(int tux_part_group, char *part_string, int x, int y, int m
 
 /**
  * This function will put the Tux torso, i.e. it will put some torso with
- * the currently equipped armour on it.  Of course we can't have a unique
- * ingame representation of the Tux torso for every type of armour inside
- * the game.  Therefore several types of armour will each be mapped upon
- * the same ingame representation.  Typically the types of armour mapping
+ * the currently equipped armor on it.  Of course we can't have a unique
+ * ingame representation of the Tux torso for every type of armor inside
+ * the game.  Therefore several types of armor will each be mapped upon
+ * the same ingame representation.  Typically the types of armor mapping
  * to the same ingame representation will be so similar, that you can
  * easily tell them apart in inventory, but it will be more or less ok to
  * use the very same ingame representation, because they are rather 
@@ -3337,8 +3337,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 
 		// Now after the energy bar has been drawn, we can start to draw the
 		// empty part of the energy bar (but only of course, if there is some
-		// empty part at all!  (Otherwise we get indefinately large energy
-		// bars...
+		// empty part at all! 
 		FillRect.x = TargetRectangle.x + health_pixels;
 		FillRect.w = TargetRectangle.w - health_pixels;
 
@@ -3418,11 +3417,7 @@ There was a rotation model type given, that exceeds the number of rotation model
 };				// int set_rotation_model_for_this_robot ( enemy* ThisRobot ) 
 
 /**
- * This function is here to blit the 'body' of a droid to the screen, 
- * but the 'body' in the new and more modern sense with the 3d models
- * in various rotated forms as they are provided by Bastian.
- * This shape now depends upon the behaviour of the droid, which makes
- * everthing a little bit more complicated.
+ * This function is here to blit the 'body' of a droid to the screen.
  */
 void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle, int mask, int highlight)
 {
@@ -3526,8 +3521,8 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 								      ThisRobot->virt_pos.x, ThisRobot->virt_pos.y);
 			} else {
 
-				// First we catch the case of a dead bot (no color filteres SDL surfaces
-				// availabe for that case).  In the other cases, we use the prepared color-
+				// First we catch the case of a dead bot (no color filters SDL surfaces
+				// available for that case).  In the other cases, we use the prepared color-
 				// filtered stuff...
 				// 
 				if (ThisRobot->energy <= 0) {

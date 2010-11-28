@@ -280,7 +280,7 @@ int MouseLeftPressed()
 	return (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(1));
 }
 
-/* *Clicked functions return non zero if the mouse button is question has just been clicked, ie. it is pressed now and wasn't at last frame.
+/* *Clicked functions return non zero if the mouse button is question has just been clicked, i.e. it is pressed now and wasn't at last frame.
  * "last frame" is whenever you called save_mouse_state
  */
 int MouseRightClicked()

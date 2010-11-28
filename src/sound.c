@@ -264,7 +264,7 @@ void OldMusicHasFinishedFadingOut(void)
 /** ============================================ MUSIC ============================================ */
 /**
  * This function is intended to provide a convenient way of switching
- * between different backround sounds in freedroid.
+ * between different background sounds in freedroid.
  * If no background sound was yet running, the function should start playing
  * the given background music.
  * If some background sound was already playing, the function should shut down
@@ -298,7 +298,7 @@ void LoadAndFadeInBackgroundMusic(void)
 	// is always something allocated, that we can free here.
 	//
 	// The loading of music and sound files is
-	// something that was previously done only in the initialisatzion funtion
+	// something that was previously done only in the initialization function
 	// of the audio thing.  But now we want to allow for dynamic specification of
 	// music files via the mission files and that.  So we load the music now.
 	//
@@ -443,7 +443,7 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		// played fully.  In this case we must introduce a waiting time even
 		// now that no sound sample is played.  A default of 7 seconds seems to
 		// be appropriate.  On pressing the left button or space or escape
-		// the waiting time will be cancelled anyway.
+		// the waiting time will be canceled anyway.
 		//
 		if (With_Waiting) {
 			sample_wait();
@@ -515,7 +515,7 @@ void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_W
 		// played fully.  In this case we must introduce a waiting time even
 		// if no sound sample is played.  A default of 7 seconds seems to
 		// be appropriate.  On pressing the left button or space or escape
-		// the waiting time will be cancelled anyway.
+		// the waiting time will be canceled anyway.
 		//
 		if (With_Waiting) {
 			sample_wait();

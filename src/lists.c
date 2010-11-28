@@ -145,7 +145,7 @@ void list_splice(struct list_head *list, struct list_head *head)
 }
 
 /**
- * list_splice_init - join two lists and reinitialise the emptied list.
+ * list_splice_init - join two lists and reinitialize the emptied list.
  * @list: the new list to add.
  * @head: the place to add it in the first list.
  *

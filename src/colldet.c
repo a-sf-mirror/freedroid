@@ -281,7 +281,7 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 				obstacle *our_obs = &(lvl->obstacle_list[obstacle_index]);
 
 				// If the obstacle doesn't even have a collision rectangle, then
-				// of course it's easy, cause then there can't be any collsision
+				// of course it's easy, cause then there can't be any collision
 				//
 				if (obstacle_map[our_obs->type].block_area_type == COLLISION_TYPE_NONE)
 					continue;
@@ -619,7 +619,7 @@ int EscapeFromObstacle(float *posX, float *posY, int posZ, colldet_filter * filt
 					continue;
 
 				// If the obstacle doesn't even have a collision rectangle, then
-				// of course it's easy, cause then there can't be any collsision
+				// of course it's easy, cause then there can't be any collision
 				//
 				if (obstacle_map[our_obs->type].block_area_type == COLLISION_TYPE_NONE)
 					continue;

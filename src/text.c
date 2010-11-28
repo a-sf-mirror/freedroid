@@ -43,7 +43,7 @@
 
 #include "lvledit/lvledit_display.h"
 
-// curent text insertion position
+// current text insertion position
 static int MyCursorX;
 static int MyCursorY;
 
@@ -347,7 +347,7 @@ int ScrollText(char *Text, int background_code)
 
 		InsertLine -= speed;
 
-		// impose some limit on the amount to scroll away downwards and topwards
+		// impose some limit on the amount to scroll away downwards and upwards
 		//
 		if (InsertLine > StartInsertLine && (speed < 0)) {
 			InsertLine = StartInsertLine;
@@ -457,7 +457,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	if (starty != -1)
 		MyCursorY = starty;
 
-	// We make a backup of the current clipping rect, so we can respore
+	// We make a backup of the current clipping rect, so we can restore
 	// it later.
 	//
 	SDL_GetClipRect(Screen, &store_clip);
@@ -483,7 +483,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	tmp = (char *)Text;	// this is no longer a 'const' char*, but only a char*
 	while (*tmp && (MyCursorY < clip->y + clip->h)) {
 		if (((*tmp == ' ') || (*tmp == '\t'))
-		    && (ImprovedCheckLineBreak(tmp, clip, text_stretch) == 1))	// dont write over right border 
+		    && (ImprovedCheckLineBreak(tmp, clip, text_stretch) == 1))	// don't write over right border 
 		{		/*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!! */
 			empty_lines_started++;
 			++tmp;
@@ -523,7 +523,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 /**
  * This function checks if the next word still fits in this line
  * of text and initiates a carriage return/line feed if not.
- * Very handy and convenient, for that means it is no longer nescessary
+ * Very handy and convenient, for that means it is no longer necessary
  * to enter \n in the text every time its time for a newline. cool.
  *  
  * rp: added argument clip, which contains the text-window we're writing in
@@ -561,7 +561,7 @@ int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float text_str
  * This function reads a string of "MaxLen" from User-input, and
  * echoes it either using graphics-text
  *
- * The function does have some extra complicating elelments coming
+ * The function does have some extra complicating elements coming
  * from the potential slowness of machines with pure SDL and no
  * OpenGL.  These machines might not re-blit the whole background
  * fast enough for swiftly typed keystrokes, resulting in some
@@ -831,7 +831,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
  *
  * Added functionality to PrintString() is: 
  *  o) passing -1 as coord uses previous x and next-line y for printing
- *  o) Screen is updated immediatly after print, using SDL_flip()                       
+ *  o) Screen is updated immediately after print, using SDL_flip()                       
  *
  * ----------------------------------------------------------------- */
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...)

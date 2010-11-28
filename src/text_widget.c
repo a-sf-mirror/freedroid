@@ -24,7 +24,7 @@
 
 /**
  * This is a text widget that is suitable for a text area with scrolling
- * capabilites.
+ * capabilities.
  */
 
 #include "system.h"

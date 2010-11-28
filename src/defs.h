@@ -258,8 +258,6 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3, FILTER_HIGHLIGHT = 4 }
 #define ICON_FILE		"paraicon.bmp"
 
 //--------------------
-// Constants about the size (and mem?) of pixmaps
-//
 #define SKILL_LEVEL_BUTTON_HEIGHT 32
 #define SKILL_LEVEL_BUTTON_WIDTH 30
 
@@ -273,7 +271,7 @@ enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3, FILTER_HIGHLIGHT = 4 }
 #define TABCHAR 'W'
 #define TABWIDTH 8
 //--------------------
-// Startpos + dimesnions of Banner-Texts 
+// Startpos + dimensions of Banner-Texts 
 //
 #define LEFT_INFO_X 	(13*2)
 #define LEFT_INFO_Y	(10*2)
@@ -603,7 +601,7 @@ enum {
 				    // this variable describes the amount of time in SECONDS 
 #define WAIT_BEFORE_ROTATE 0.7 // Wait a bit to avoid jittering between two rotation angles
 
-#define ALLBLASTTYPES		3	/* number of different exposions */
+#define ALLBLASTTYPES		3	/* number of different explosions */
 
 #define MAX_MELEE_SHOTS		100
 #define MAXBULLETS		100	/* maximum possible Bullets in the air */
@@ -707,7 +705,7 @@ enum {
 #define WEAPON_RECT_Y 117
 
 //--------------------
-// The armour rectangle is where you can place some armour
+// The armor rectangle is where you can place some armor
 // for the body of the Tux.
 //
 #define ARMOUR_RECT_WIDTH 66

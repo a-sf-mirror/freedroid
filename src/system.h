@@ -28,11 +28,6 @@
  *           and take into account the AC-defined conditionals
  */
 
-/* 
- * well, for the time being we actually don't care too much about the 
- * AC-defined conditionals and pretend it's standard linux
- */
-
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 

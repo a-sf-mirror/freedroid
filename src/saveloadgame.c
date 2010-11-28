@@ -53,7 +53,7 @@ jmp_buf saveload_jmpbuf;
 
 #define WrapErrorMessage(a, b, c, d, ...) do { \
 	ErrorMessage(a,b,c,IS_WARNING_ONLY, ##__VA_ARGS__);\
-    	alert_window(_("An error occured when trying to load the savegame.\nA common reason for this is that FreedroidRPG has been updated to a newer version since the save was made, in which case the savegame is very likely not compatible.\nIf you see this message and you have not updated the game, make sure to report this to the developers.\nThanks!"));\
+    	alert_window(_("An error occurred when trying to load the savegame.\nA common reason for this is that FreedroidRPG has been updated to a newer version since the save was made, in which case the savegame is very likely not compatible.\nIf you see this message and you have not updated the game, make sure to report this to the developers.\nThanks!"));\
         if (d==IS_FATAL)\
     	    longjmp(saveload_jmpbuf, 1);\
 } while (0)

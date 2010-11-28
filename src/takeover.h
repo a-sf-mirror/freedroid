@@ -44,7 +44,7 @@ void to_show_banner(const char *left, const char *right);
 /* Dimensions of the game-blocks */
 #define TO_BLOCKS		11	/* quantity of different game- blocks */
 
-#define NUM_TO_BLOCKS		2*NUM_PHASES*TO_BLOCKS	// total number of takover blocks
+#define NUM_TO_BLOCKS		2*NUM_PHASES*TO_BLOCKS	// total number of takeover blocks
 #define TO_ELEMENTS		6
 #define TO_BLOCKLEN		2*32	/* dimension of a game- block */
 #define TO_BLOCKHEIGHT	 	2*8
@@ -72,11 +72,11 @@ void to_show_banner(const char *left, const char *right);
 
 /* --------------- Timing parameters --------------- */
 #define COLOR_COUNTDOWN		100	/* time to choose color */
-#define GAME_COUNTDOWN		100	/* Time to end the game */
+#define GAME_COUNTDOWN		100	/* time to end the game */
 #define CAPSULE_COUNTDOWN	 40	/* 1/10 sec. lifetime of a capsule */
 
-#define WAIT_MOVEMENT		0	/* 1/18 sec. ovementspeed. */
-#define WAIT_COLOR_ROTATION	2	/* 1/18 seC active-capsule */
+#define WAIT_MOVEMENT		0	/* 1/18 sec. movementspeed. */
+#define WAIT_COLOR_ROTATION	2	/* 1/18 sec active-capsule */
 #define WAIT_AFTER_GAME		2*18	/* Wait after a deadlock */
 
 #define TO_TICK_LENGTH		40	/* Time in ms between ticks */
