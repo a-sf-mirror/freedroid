@@ -621,6 +621,9 @@ int level_editor_can_cycle_obs()
 	// N key does nothing on a selection larger than one tile
 	if (abs(state.rect_len.x) != 1 || abs(state.rect_len.y) != 1)
 		return 0;
+	
+	if (!pos_inside_level(state.rect_start.x, state.rect_start.y, EditLevel()))
+		return 0;
 
 	if ((EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[0] == -1) ||
 	    (EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[1] == -1))
