@@ -400,11 +400,7 @@ to blit the 'experience countdown' bar.  Graphics will be suppressed for now..."
 
 };				// void blit_experience_countdown_bars ( void )
 
-/**
- * The tux has a limited running ability.
- *
- */
-void blit_running_power_bars(void)
+static void blit_running_power_bars(void)
 {
 	static Uint32 running_power_rect_color = 0;
 	static Uint32 un_running_power_rect_color = 0;
@@ -428,9 +424,6 @@ void blit_running_power_bars(void)
 		infinite_running_power_rect_color = SDL_MapRGBA(Screen->format, 255, 255, 255, 80);
 	}
 
-	if ((GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) && GameConfig.screen_width == 640) {
-		return;
-	}
 	// Now that all our rects are set up, we can start to display the current
 	// running power status on screen...
 	//
