@@ -567,7 +567,7 @@ static void prepare_text_window_content(struct auto_string *str)
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
 
-	best_banner_pos_x = CurPos.x;
+	best_banner_pos_x = CurPos.x + 20;
 	best_banner_pos_y = CurPos.y;
 
 	autostr_printf(str, "");
@@ -576,8 +576,6 @@ static void prepare_text_window_content(struct auto_string *str)
 	 * description field.  If the requirements for this item are not met, we
 	 * show a text. */
 	if (item_held_in_hand != NULL) {
-		best_banner_pos_x = CurPos.x + 20;
-
 		autostr_printf(str, "%s%s", font_switchto_neon, D_(ItemMap[item_held_in_hand->type].item_name));
 
 		if (!ItemUsageRequirementsMet(item_held_in_hand, FALSE)) {
@@ -756,7 +754,7 @@ static void prepare_text_window_content(struct auto_string *str)
 				}
 
 				autostr_printf(str, "%s", label);
-				best_banner_pos_x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 70;
+				best_banner_pos_x = translate_map_point_to_screen_pixel_x(obst_vpos.x, obst_vpos.y) + 50;
 				best_banner_pos_y = translate_map_point_to_screen_pixel_y(obst_vpos.x, obst_vpos.y) - 20;
 			}
 		}
