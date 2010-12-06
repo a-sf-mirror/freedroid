@@ -1846,8 +1846,9 @@ static void Get_New_Character_Name(void)
 	if (!skip_initial_menus)
 		Temp = GetString(12, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
      Please enter a name\n\
-     for the new hero: \n\
-     (ESCAPE to cancel.)\n\n\
+     for the new hero: \n\n\
+     ---ENTER to accept.\n\
+     ---ESCAPE to cancel.\n\n\
      > "));
 	else
 		Temp = "MapEd";
