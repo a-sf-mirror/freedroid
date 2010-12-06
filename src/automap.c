@@ -130,8 +130,6 @@ void CollectAutomapData(void)
 		start_y = 0;
 	if (end_y >= automap_level->ylen)
 		end_y = automap_level->ylen;
-	
-	int tstamp = next_glue_timestamp();
 
 	// Now we do the actual checking for visible wall components.
 	//
@@ -140,15 +138,10 @@ void CollectAutomapData(void)
 			if (Me.Automap[level][y][x] & SQUARE_SEEN_AT_ALL_BIT)
 				continue;
 
-			for (i = 0; i < automap_level->map[y][x].glued_obstacles.size; i++) {
-				int idx = ((int *)(automap_level->map[y][x].glued_obstacles.arr))[i];
-
-				our_obstacle = &(automap_level->obstacle_list[idx]);
-
-				if (our_obstacle->timestamp == tstamp)
+			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
+				if (automap_level->map[y][x].obstacles_glued_to_here[i] == (-1))
 					continue;
-
-				our_obstacle->timestamp = tstamp;
+				our_obstacle = &(automap_level->obstacle_list[automap_level->map[y][x].obstacles_glued_to_here[i]]);
 
 				if ((our_obstacle->type >= ISO_H_DOOR_000_OPEN) && (our_obstacle->type <= ISO_V_DOOR_100_OPEN))
 					continue;

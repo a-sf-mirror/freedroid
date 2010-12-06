@@ -414,7 +414,6 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		loadlevel->obstacle_list[i].pos.x = -1;
 		loadlevel->obstacle_list[i].pos.y = -1;
 		loadlevel->obstacle_list[i].pos.z = loadlevel->levelnum;
-		loadlevel->obstacle_list[i].timestamp = 0;
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
@@ -740,7 +739,7 @@ static char *decode_map(level *loadlevel, char *data)
 		for (col = 0; col < loadlevel->xlen; col++) {
 			tmp = strtol(this_line + 4 * col, NULL, 10);
 			Buffer[col].floor_value = (Uint16) tmp;
-			dynarray_init(&Buffer[col].glued_obstacles, 0, sizeof(int));
+			memset(Buffer[col].obstacles_glued_to_here, -1, MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE);
 		}
 
 		// Now the old text pointer can be replaced with a pointer to the
@@ -835,6 +834,88 @@ static char *decode_waypoints(level *loadlevel, char *data)
 }
 
 /**
+ *
+ *
+ */
+void glue_obstacles_to_floor_tiles_for_level(int level_num)
+{
+	level *loadlevel = curShip.AllLevels[level_num];
+	int obstacle_counter = 2;
+	int x_tile;
+	int y_tile;
+	int glue_index;
+	int next_free_index;
+
+	// We clean out any obstacle glue information that might be still
+	// in this level.
+	//
+	for (x_tile = 0; x_tile < loadlevel->xlen; x_tile++) {
+		for (y_tile = 0; y_tile < loadlevel->ylen; y_tile++) {
+			for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
+				loadlevel->map[y_tile][x_tile].obstacles_glued_to_here[glue_index] = (-1);
+			}
+		}
+	}
+
+	// Each obstacles must to be anchored to exactly one (the closest!)
+	// map tile, so that we can find out obstacles 'close' to somewhere
+	// more easily...
+	//
+	for (obstacle_counter = 0; obstacle_counter < MAX_OBSTACLES_ON_MAP; obstacle_counter++) {
+		if (loadlevel->obstacle_list[obstacle_counter].type == -1)
+			continue;
+
+		// We need to glue this one and we glue it to the closest map tile center we have...
+		// For this we need first to prepare some things...
+		//
+		x_tile = rintf(loadlevel->obstacle_list[obstacle_counter].pos.x - 0.5);
+		y_tile = rintf(loadlevel->obstacle_list[obstacle_counter].pos.y - 0.5);
+
+		if (x_tile < 0)
+			x_tile = 0;
+		if (y_tile < 0)
+			y_tile = 0;
+		if (x_tile >= loadlevel->xlen)
+			x_tile = loadlevel->xlen - 1;
+		if (y_tile >= loadlevel->ylen)
+			y_tile = loadlevel->ylen - 1;
+
+		next_free_index = MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE;
+		for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
+			if (loadlevel->map[y_tile][x_tile].obstacles_glued_to_here[glue_index] != (-1)) {
+				// DebugPrintf ( 0 , "\nHey, someone's already sitting here... moving to next index...: %d." ,
+				// glue_index + 1 );
+			} else {
+				next_free_index = glue_index;
+				break;
+			}
+		}
+
+		// some safety check against writing beyond the bonds of the
+		// array.
+		//
+		if (next_free_index >= MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE) {
+			// 
+			// We disable this VERY FREQUENT warning now...
+			//   
+			/*
+			   DebugPrintf ( 0 , "The position where the problem occured is: x_tile=%d, y_tile=%d." , x_tile , y_tile );
+			   ErrorMessage ( __FUNCTION__  , "\
+			   FreedroidRPG was unable to glue a certain obstacle to the nearest map tile.\n\
+			   This bug can be resolved by simply raising a contant by one, but it needs to be done :)",
+			   PLEASE_INFORM, IS_WARNING_ONLY );
+			 */
+			continue;
+		}
+		// Now it can be glued...
+		//
+		loadlevel->map[y_tile][x_tile].obstacles_glued_to_here[next_free_index] = obstacle_counter;
+
+	}
+
+};				// glue_obstacles_to_floor_tiles_for_level ( int level_num )
+
+/**
  * The smash_obstacle function uses this function as a subfunction to 
  * check for exploding obstacles glued to one specific map square.  Of
  * course also the player number (or -1 in case of no check/bullet hit)
@@ -858,10 +939,12 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 	// We check all the obstacles on this square if they are maybe destructible
 	// and if they are, we destruct them, haha
 	//
-	for (i = 0; i < BoxLevel->map[map_y][map_x].glued_obstacles.size; i++) {
+	for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
 		// First we see if there is something glued to this map tile at all.
 		//
-		target_idx = ((int *)(BoxLevel->map[map_y][map_x].glued_obstacles.arr))[i];
+		target_idx = BoxLevel->map[map_y][map_x].obstacles_glued_to_here[i];
+		if (target_idx == -1)
+			continue;
 
 		target_obstacle = &(BoxLevel->obstacle_list[target_idx]);
 

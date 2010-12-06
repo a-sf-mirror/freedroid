@@ -635,21 +635,16 @@ void insert_obstacles_into_blitting_list(int mask)
 			py = (int)rintf(tile_rpos.y);
 			obstacle_level = curShip.AllLevels[tile_rpos.z];
 
-			for (i = 0; i < obstacle_level->map[py][px].glued_obstacles.size; i++) {
+			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
+				if (obstacle_level->map[py][px].obstacles_glued_to_here[i] != (-1)) {
 					// Now we have to insert this obstacle.  We do this of course respecting
 					// the blitting order, as always...
-					int idx = ((int *)obstacle_level->map[py][px].glued_obstacles.arr)[i];
-					OurObstacle = &obstacle_level->obstacle_list[idx];
+					OurObstacle =
+					    &(obstacle_level->obstacle_list[obstacle_level->map[py][px].obstacles_glued_to_here[i]]);
 
 					reference.x = OurObstacle->pos.x;
 					reference.y = OurObstacle->pos.y;
 					reference.z = tile_rpos.z;
-
-					if ((int) OurObstacle->pos.x != col)
-						continue;
-
-					if ((int) OurObstacle->pos.y != line)
-						continue;
 
 					update_virtual_position(&virtpos, &reference, Me.pos.z);
 
@@ -659,7 +654,10 @@ void insert_obstacles_into_blitting_list(int mask)
 
 					insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_OBSTACLE,
 									      OurObstacle,
-									      idx);
+									      obstacle_level->map[py][px].obstacles_glued_to_here[i]);
+				} else {
+					break;
+				}
 			}
 		}
 	}

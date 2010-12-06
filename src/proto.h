@@ -367,6 +367,7 @@ void quest_browser_interface(void);
 
 // map.c 
 void respawn_level(int level_num);
+void glue_obstacles_to_floor_tiles_for_level(int level_num);
 void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer);
 int smash_obstacle(float x, float y, int level);
 Uint16 GetMapBrick(level *, float, float);
@@ -389,10 +390,6 @@ int IsVisible(gps *objpos);
 void translate_map_point_to_screen_pixel_func(float x_map_pos, float y_map_pos, int *x_res, int *y_res);
 float translate_pixel_to_map_location(float axis_x, float axis_y, int give_x);
 float translate_pixel_to_zoomed_map_location(float axis_x, float axis_y, int give_x);
-
-//floor_tiles.c
-void glue_obstacles_to_floor_tiles_for_level(int level_num);
-int next_glue_timestamp(void);
 
 //colldet.c
 int WalkablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx);

@@ -619,18 +619,16 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 		intersection_end.y = min(intersection_end.y, curr_lvl->ylen - 1);
 
 		// scan all obstacles inside the intersected area
-		int tstamp = next_glue_timestamp();
 		for (map_y = intersection_start.y; map_y < intersection_end.y; map_y++) {
 			for (map_x = intersection_start.x; map_x < intersection_end.x; map_x++) {
-				for (glue_index = 0; glue_index < curr_lvl->map[map_y][map_x].glued_obstacles.size; glue_index++) {
+				for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
+					// end of obstacles glued to here?  great->next square
+					//
+					if (curr_lvl->map[map_y][map_x].obstacles_glued_to_here[glue_index] == (-1))
+						break;
 
-					obs_index = ((int *)(curr_lvl->map[map_y][map_x].glued_obstacles.arr))[glue_index];
+					obs_index = curr_lvl->map[map_y][map_x].obstacles_glued_to_here[glue_index];
 					emitter = &(curr_lvl->obstacle_list[obs_index]);
-
-					if (emitter->timestamp == tstamp)
-						continue;
-
-					emitter->timestamp = tstamp;
 
 					if (obstacle_map[emitter->type].emitted_light_strength == 0)
 						continue;

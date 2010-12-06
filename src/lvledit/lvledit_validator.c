@@ -413,8 +413,10 @@ static int lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx 
 
 	for (y_tile = 0; y_tile < validator_ctx->this_level->ylen; ++y_tile) {
 		for (x_tile = 0; x_tile < validator_ctx->this_level->xlen; ++x_tile) {
-			for (glue_index = 0; glue_index < validator_ctx->this_level->map[y_tile][x_tile].glued_obstacles.size; ++glue_index) {
-				int obs_index = ((int *)(validator_ctx->this_level->map[y_tile][x_tile].glued_obstacles.arr))[glue_index];
+			for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; ++glue_index) {
+				int obs_index = validator_ctx->this_level->map[y_tile][x_tile].obstacles_glued_to_here[glue_index];
+				if (obs_index == (-1))
+					break;
 
 				obstacle *this_obs = &(validator_ctx->this_level->obstacle_list[obs_index]);
 

@@ -208,7 +208,7 @@ void insert_line_north(level *EditLevel)
  */
 void insert_line_south(level *EditLevel)
 {
-	int i;
+	int i, j;
 
 	if (EditLevel->ylen + 1 >= MAX_MAP_LINES)
 		return;
@@ -219,7 +219,9 @@ void insert_line_south(level *EditLevel)
 	EditLevel->map[EditLevel->ylen - 1] = MyMalloc((EditLevel->xlen + 1) * sizeof(map_tile));
 	for (i = 0; i < EditLevel->xlen; i++) {
 		EditLevel->map[EditLevel->ylen - 1][i].floor_value = ISO_FLOOR_SAND;
-		dynarray_init(&EditLevel->map[EditLevel->ylen - 1][i].glued_obstacles, 0, sizeof(int));
+		for (j = 0; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; j++) {
+			EditLevel->map[EditLevel->ylen - 1][i].obstacles_glued_to_here[j] = (-1);
+		}
 	}
 }
 
@@ -229,7 +231,7 @@ void insert_line_south(level *EditLevel)
  */
 void insert_column_east(level *EditLevel)
 {
-	int i;
+	int i, j;
 	map_tile *MapPointer;
 
 	if (EditLevel->xlen + 1 >= MAX_MAP_LINES)
@@ -241,7 +243,9 @@ void insert_column_east(level *EditLevel)
 	for (i = 0; i < EditLevel->ylen; i++) {
 		MapPointer = (map_tile*)realloc(EditLevel->map[i], sizeof(map_tile) * (EditLevel->xlen + 1));
 		MapPointer[EditLevel->xlen - 1].floor_value = ISO_FLOOR_SAND;
-		dynarray_init(&MapPointer[EditLevel->xlen - 1].glued_obstacles, 0, sizeof(int));
+		for (j = 0; j < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; j++) {
+			MapPointer[EditLevel->xlen - 1].obstacles_glued_to_here[j] = (-1);
+		}
 		EditLevel->map[i] = MapPointer;
 	}
 }

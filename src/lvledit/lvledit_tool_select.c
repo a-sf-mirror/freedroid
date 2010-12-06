@@ -237,8 +237,8 @@ static void select_floor_on_tile(int x, int y)
 static void select_obstacles_on_tile(int x, int y)
 {
 	int idx, a;
-	for (a = 0; a < EditLevel()->map[y][x].glued_obstacles.size; a++) {
-		idx = ((int *)(EditLevel()->map[y][x].glued_obstacles.arr))[a];
+	for (a = 0; a < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE && EditLevel()->map[y][x].obstacles_glued_to_here[a] != -1; a++) {
+		idx = EditLevel()->map[y][x].obstacles_glued_to_here[a];
 		if (!element_in_selection(&EditLevel()->obstacle_list[idx])) {
 		add_object_to_list(&selected_elements, &EditLevel()->obstacle_list[idx], OBJECT_OBSTACLE);
 			state.rect_nbelem_selected++;
@@ -625,7 +625,8 @@ int level_editor_can_cycle_obs()
 	if (!pos_inside_level(state.rect_start.x, state.rect_start.y, EditLevel()))
 		return 0;
 
-	if (EditLevel()->map[state.rect_start.y][state.rect_start.x].glued_obstacles.size <= 1)
+	if ((EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[0] == -1) ||
+	    (EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[1] == -1))
 		return 0;
 
 	return 1;
@@ -643,14 +644,14 @@ void level_editor_cycle_marked_obstacle()
 	clear_selection(state.rect_nbelem_selected);
 	state.rect_nbelem_selected = 0;
 
-	if (state.single_tile_mark_index >= EditLevel()->map[state.rect_start.y][state.rect_start.x].glued_obstacles.size) {
+	if (EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[state.single_tile_mark_index] == -1) {
 		state.single_tile_mark_index = 0;
 	}
 
-	int idx = ((int *)(EditLevel()->map[state.rect_start.y][state.rect_start.x].glued_obstacles.arr))[state.single_tile_mark_index];
-	add_object_to_list(&selected_elements, &EditLevel()->obstacle_list[idx], OBJECT_OBSTACLE);
+	int idx = EditLevel()->map[state.rect_start.y][state.rect_start.x].obstacles_glued_to_here[state.single_tile_mark_index];
+add_object_to_list(&selected_elements, &EditLevel()->obstacle_list[idx], OBJECT_OBSTACLE);
 	state.single_tile_mark_index++;
-	state.rect_nbelem_selected = 1;
+	state.rect_nbelem_selected++;
 }
 
 void level_editor_copy_selection()

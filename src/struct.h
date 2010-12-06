@@ -766,12 +766,11 @@ typedef struct waypoint {
 typedef struct obstacle {
 	int type;
 	gps pos;
-	int timestamp;
 } obstacle;
 
 typedef struct map_tile {
 	Uint16 floor_value;
-	struct dynarray glued_obstacles;
+	int obstacles_glued_to_here[MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE];
 } map_tile;
 
 struct obstacle_extension {

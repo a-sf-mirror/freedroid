@@ -194,7 +194,6 @@ obstacle *action_create_obstacle(level * EditLevel, double x, double y, int new_
 			EditLevel->obstacle_list[i].pos.x = x;
 			EditLevel->obstacle_list[i].pos.y = y;
 			EditLevel->obstacle_list[i].pos.z = EditLevel->levelnum;
-			EditLevel->obstacle_list[i].timestamp = 0;
 			glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 			// Now that we have disturbed the order of the obstacles on this level, we need
 			// to re-assemble the lists of pointers to obstacles, like the door list, the
@@ -816,7 +815,7 @@ void level_editor_place_aligned_object(int positionid)
 void CreateNewMapLevel(int level_num)
 {
 	level *NewLevel;
-	int i, k;
+	int i, k, l;
 
 	// Get the memory for one level 
 	//
@@ -847,7 +846,9 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->map[i] = MyMalloc(NewLevel->xlen * sizeof(map_tile));
 		for (k = 0; k < NewLevel->xlen; k++) {
 			NewLevel->map[i][k].floor_value = ISO_FLOOR_SAND;
-			dynarray_init(&NewLevel->map[i][k].glued_obstacles, 0, sizeof(int));
+			for (l = 0; l < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; l++) {
+				NewLevel->map[i][k].obstacles_glued_to_here[l] = (-1);
+			}
 		}
 	}
 	// Now we initialize the level jump interface variables with 'empty' values

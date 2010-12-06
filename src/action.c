@@ -207,43 +207,58 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 
 	*obst_lvl = NULL;
 
-	// If the cursor is not inside the user rectangle, 
-	// there is no obstacle below it.
+	// Now if the cursor is not inside the user rectangle at all, then
+	// there can never be an obstacle under the mouse cursor...
+	//
 	if (!MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y()))
-		return -1;
+		return (-1);
 
-	// We find the position of the mouse cursor on the floor.
+	// We find the approximate position of the mouse cursor on the floor.
+	// We will use that as the basis for our scanning for obstacles under the
+	// current mouse cursor.
+	//
 	MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 	MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 
+	// We will scan a small area around the mouse cursor, to ease object's selection
+	// Each scanned position could be on a neighbor of the current's level,
+	// so we should resolve all those virtual positions.
+	// But resolving a virtual position is a bit CPU costly, so in order
+	// to minimize cost, we only resolve the mouse cursor position.
+	//
 	gps mouse_target_vpos = { MapPositionOfMouse.x, MapPositionOfMouse.y, Me.pos.z };
 	gps mouse_target_pos;
 	if (!resolve_virtual_position(&mouse_target_pos, &mouse_target_vpos))
 		return -1;
 	if (!level_is_visible(mouse_target_pos.z))
 		return -1;
-
 	level *lvl = curShip.AllLevels[mouse_target_pos.z];
-	if (!pos_inside_level(mouse_target_pos.x, mouse_target_pos.y, lvl))
-		return - 1;
 
-	y = mouse_target_pos.y;
-	x = mouse_target_pos.x;
-
-	for (i = 0; i < lvl->map[y][x].glued_obstacles.size; i++) {
-		obst_index = ((int *)(lvl->map[y][x].glued_obstacles.arr))[i];
-		
-		if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
-			if (obstacle_map[lvl->obstacle_list[obst_index].type].flags & IS_CLICKABLE) {
-				*obst_lvl = lvl;
-				return obst_index;
-			} else {
+	for (y = mouse_target_pos.y + 3; y > mouse_target_pos.y - 3; y--) {
+		for (x = mouse_target_pos.x + 3; x > mouse_target_pos.x - 3; x--) {
+			if (!pos_inside_level(x, y, lvl))
 				continue;
+
+			// scan all obstacles of the level targeted by the mouse cursor 
+			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; i++) {
+				obst_index = lvl->map[y][x].obstacles_glued_to_here[i];
+				if (obst_index == (-1))
+					continue;
+				if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
+					DebugPrintf(1, "\n%s(): obstacle under cursor identified.", __FUNCTION__);
+					if (obstacle_map[lvl->obstacle_list[obst_index].type].flags & IS_CLICKABLE) {
+						*obst_lvl = lvl;
+						return obst_index;
+					} else {
+						continue;
+					}
+				}
 			}
 		}
 	}
-	return -1;
-}
+
+	return (-1);
+}				// int obstacle_below_mouse_cursor (level **, int [], int)
 
 /**
  * In order to perform a click-action, tux must first move to the obstacle.
