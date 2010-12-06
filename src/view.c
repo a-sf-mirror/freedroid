@@ -2409,8 +2409,6 @@ Received some non-positive Tux surface dimensions.  That's a bug for sure!", PLE
 				    SDL_CreateRGBSurfaceFrom(tmp_buff, img_xlen, img_ylen, 32, 4 * img_xlen,
 							     0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 
-				free(tmp_buff);
-
 				if (loaded_tux_images[tux_part_group][our_phase][rotation_index].surface == NULL) {
 					DebugPrintf(-1000, "\n\nError code from SDL: %s.", SDL_GetError());
 					ErrorMessage(__FUNCTION__, "\
@@ -2429,6 +2427,7 @@ Creation of an Tux SDL software surface from pixel data failed.", PLEASE_INFORM,
 					flip_image_vertically(loaded_tux_images[tux_part_group][our_phase][rotation_index].surface);
 				else {
 					make_texture_out_of_surface(&loaded_tux_images[tux_part_group][our_phase][rotation_index]);
+					free(tmp_buff);
 				}
 			} else {
 				// If the surface pointer hasn't been NULL in the first place, then
