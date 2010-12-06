@@ -730,20 +730,20 @@ The MENU CODE was unable to properly resolve a mouse button press.", PLEASE_INFO
 /**
  * This function repairs the item given as parameter.
  */
-void TryToRepairItem(item * RepairItem)
+static void repair_item(item * RepairItem)
 {
 	while (SpacePressed() || EnterPressed() || MouseLeftPressed())
 		SDL_Delay(1);
 
 	if (calculate_item_repair_price(RepairItem) > Me.Gold) {
-		alert_window("%s\n\n%s", ItemMap[RepairItem->type].item_name, _("You can't afford to have this item repaired!"));
+		alert_window("%s\n\n%s", ItemMap[RepairItem->type].item_name, _("You can not afford to have this item repaired."));
 		return;
 	}
 
 	Me.Gold -= calculate_item_repair_price(RepairItem);
 	RepairItem->current_duration = RepairItem->max_duration;
 	PlayOnceNeededSoundSample("effects/Shop_ItemRepairedSound_0.ogg", FALSE, FALSE);
-};				// void TryToRepairItem( item* RepairItem )
+}
 
 /**
  * This function tries to sell the item given as parameter.
@@ -812,7 +812,7 @@ static int buy_item(item *BuyItem, int amount)
 
 	// If the item is too expensive, bail out
 	if (item_price > Me.Gold) {
-		alert_window("%s\n\n%s", ItemMap[BuyItem->type].item_name, _("You can't afford to purchase item repaired!"));
+		alert_window("%s\n\n%s", ItemMap[BuyItem->type].item_name, _("You can not afford this item."));
 		return -1;
 	}
 
@@ -886,7 +886,7 @@ void InitTradeWithCharacter(struct npc *npc)
 			TryToSellItem(TuxItemsList[ShopOrder.item_selected], ShopOrder.number_selected);
 			break;
 		case REPAIR_ITEM:
-			TryToRepairItem(TuxItemsList[ShopOrder.item_selected]);
+			repair_item(TuxItemsList[ShopOrder.item_selected]);
 			break;
 		default:
 
