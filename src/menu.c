@@ -153,11 +153,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 
 	game_status = INSIDE_MENU;
 
-	// At first we hide the system mouse cursor, because we want to use
-	// our own creation in the menus too...
-	//
-	make_sure_system_mouse_cursor_is_turned_off();
-
 	// We set the given font, if appropriate, and set the font height variable...
 	//
 	if (MenuFont != NULL)
@@ -301,8 +296,6 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 			DisplayText(InitialText, 50, 50, NULL, TEXT_STRETCH);
 
 		// Now the mouse cursor must be brought to the screen
-		//
-		make_sure_system_mouse_cursor_is_turned_off();
 		blit_our_own_mouse_cursor();
 
 		// Image should be ready now, so we can show it...
@@ -545,11 +538,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	Choice_Window.h = UNIVERSAL_COORD_H(118);
 	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
 
-	// We don't need the system mouse cursor, as we do have our own for
-	// the same purpose.
-	//
-	make_sure_system_mouse_cursor_is_turned_off();
-
 	if (FirstItem != (-1))
 		menu_position_to_remember = FirstItem;
 
@@ -659,8 +647,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			ShowGenericButtonFromList(SCROLL_DIALOG_MENU_UP_BUTTON);
 
 		// Now the mouse cursor must be brought to the screen
-		//
-		make_sure_system_mouse_cursor_is_turned_off();
 		blit_our_own_mouse_cursor();
 
 		// Now everything should become visible!

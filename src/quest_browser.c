@@ -405,7 +405,6 @@ void quest_browser_interface(void)
 	// throw every moving thing from the map.
 	//
 	Activate_Conservative_Frame_Computation();
-	make_sure_system_mouse_cursor_is_turned_off();
 	SetCurrentFont(FPS_Display_BFont);
 
 	blit_special_background(QUEST_BROWSER_BACKGROUND_CODE);

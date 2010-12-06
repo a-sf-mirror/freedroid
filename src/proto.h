@@ -265,9 +265,6 @@ void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_
 void init_obstacle_data(void);
 
 // graphics.c 
-void set_mouse_cursor_to_shape(int given_shape);
-void make_sure_system_mouse_cursor_is_turned_off(void);
-void make_sure_system_mouse_cursor_is_turned_on(void);
 void blit_our_own_mouse_cursor(void);
 SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect our_rect);
 SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterType);

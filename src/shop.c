@@ -402,10 +402,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 	game_status = INSIDE_MENU;
 
-	// For the shop, we'll also try to use our own mouse cursor
-	//
-	make_sure_system_mouse_cursor_is_turned_off();
-
 	// We add some security against indexing beyond the
 	// range of items given in the list.
 	if (NumberOfItems <= 0) {

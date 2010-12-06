@@ -2002,13 +2002,6 @@ void draw_grid_on_the_floor(int mask)
  * ----------------------------------------------------------------- */
 void AssembleCombatPicture(int mask)
 {
-	DebugPrintf(2, "\n%s(): inside display code now.", __FUNCTION__);
-
-	if (mask & USE_OWN_MOUSE_CURSOR || mask & NO_CURSOR)
-		make_sure_system_mouse_cursor_is_turned_off();
-	else
-		make_sure_system_mouse_cursor_is_turned_on();
-
 	// We generate a list of obstacles (and other stuff) that might
 	// emit some light.  It should be sufficient to establish this
 	// list once in the code and the to use it for all light computations

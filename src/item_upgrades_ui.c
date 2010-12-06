@@ -707,7 +707,6 @@ void item_upgrade_ui()
 	}
 
 	// Setup the correct screen state.
-	make_sure_system_mouse_cursor_is_turned_off();
 	GameConfig.Inventory_Visible = TRUE;
 	GameConfig.CharacterScreen_Visible = FALSE;
 	GameConfig.SkillScreen_Visible = FALSE;

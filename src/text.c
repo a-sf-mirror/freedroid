@@ -172,7 +172,6 @@ void alert_window(const char *text, ...)
 	va_end(args);
 
 	Activate_Conservative_Frame_Computation();
-	make_sure_system_mouse_cursor_is_turned_off();
 	StoreMenuBackground(1);
 
 	SDL_Event e;
