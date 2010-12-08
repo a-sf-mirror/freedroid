@@ -141,6 +141,9 @@ static void print_statistics(void)
 	autostr_append(quest_browser_text, _("\1Overview\2\n"));
 	statistics_browser_lines_needed[display] = get_lines_needed(quest_browser_text->value, mission_description_rect, 1);
 	if (stats_display[display++]) {
+		autostr_append(quest_browser_text, _("Time Played: \3%dh%dm\2\n"),
+					   (int) Me.current_game_date / (60 * 60),
+					   ((int)Me.current_game_date / 60) % 60);
 		autostr_append(quest_browser_text, _("Distance Traveled: \3%.1fm\2\n"), Me.meters_traveled);
 		autostr_append(quest_browser_text, _("Destroyed Enemies: \3%i\2\n"), total_destroyed);
 		autostr_append(quest_browser_text, _("Captured Enemies: \3%i\2\n"), total_takeover_success);
