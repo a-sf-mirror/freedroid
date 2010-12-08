@@ -485,10 +485,12 @@ void quest_browser_interface(void)
 
 			if (MouseCursorIsOnButton(QUEST_BROWSER_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 				back_to_game = TRUE;
+
+				while (MouseLeftPressed());
 			}
 		}
 	}
 	game_status = old_game_status;
-};				// void quest_browser_interface ( void )
+}
 
 #undef _quest_browser_c
