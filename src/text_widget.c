@@ -51,6 +51,26 @@ void init_text_widget(text_widget *w, const char *start_text) {
 }
 
 /**
+ * @return TRUE if it is possible to scroll up.
+ */
+static int text_widget_can_scroll_up(text_widget *w) {
+	SetCurrentFont(w->font);
+	int lines_needed = get_lines_needed(w->text->value, w->rect, w->text_stretch);
+	const int font_size = FontHeight(w->font) * w->text_stretch;
+	float visible_lines = (float) w->rect.h / (float) font_size;
+
+	return lines_needed > visible_lines &&
+		w->scroll_offset != ((int)visible_lines - lines_needed);
+}
+
+/**
+ * @return TRUE if it is possible to scroll down.
+ */
+static int text_widget_can_scroll_down(text_widget *w) {
+	return w->scroll_offset != 0;
+}
+
+/**
  * Handle mouse clicks.
  *
  * @return TRUE if a mouse click was handled, and no further handling should be
@@ -59,13 +79,16 @@ void init_text_widget(text_widget *w, const char *start_text) {
 int widget_handle_mouse(text_widget *w) {
 	int mouse_over_widget = MouseCursorIsInRect(&w->rect, GetMousePos_x(), GetMousePos_y());
 	int mouse_over_upper_half = (GetMousePos_y() - w->rect.y) < (w->rect.h / 2);
+	int mouse_over_lower_half = (GetMousePos_y() - w->rect.y) >= (w->rect.h / 2);
 
 	/* Change the mouse cursor as needed. */
 	if (mouse_over_widget) {
-		if (mouse_over_upper_half)
+		if (text_widget_can_scroll_up(w) && mouse_over_upper_half)
 			global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_UP;
-		else
+		else if (text_widget_can_scroll_down(w) && mouse_over_lower_half)
 			global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_DOWN;
+		else
+			global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 	} else {
 		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 	}
