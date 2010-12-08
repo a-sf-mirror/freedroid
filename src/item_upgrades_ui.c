@@ -728,7 +728,7 @@ void item_upgrade_ui()
 
 		// Draw the UI. AssembleCombatPicture will take care of calling our
 		// drawing function in the right place.
-		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
+		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
 
 		// Limit framerate if configured to do so.
 		limit_fps();

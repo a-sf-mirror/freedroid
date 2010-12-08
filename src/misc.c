@@ -775,7 +775,7 @@ void Pause(void)
 
 	Activate_Conservative_Frame_Computation();
 
-	AssembleCombatPicture(DO_SCREEN_UPDATE | USE_OWN_MOUSE_CURSOR);
+	AssembleCombatPicture(DO_SCREEN_UPDATE);
 
 	input_get_keybind("pause", &key, NULL);
 
@@ -787,7 +787,7 @@ void Pause(void)
 		}
 
 		DisplayBanner();
-		AssembleCombatPicture(USE_OWN_MOUSE_CURSOR);
+		AssembleCombatPicture(0);
 		if (!cheese)
 			CenteredPutStringFont(Screen, Menu_BFont, 200, _("GAME PAUSED"));
 			CenteredPutStringFont(Screen, Menu_BFont, 230, _("press p to resume"));
@@ -1064,7 +1064,7 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 
 	if (with_sound_and_fading) {
 		append_new_game_message(_("Arrived at %s."), D_(curShip.AllLevels[Me.pos.z]->Levelname));
-		AssembleCombatPicture(SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
+		AssembleCombatPicture(SHOW_ITEMS);
 		//our_SDL_flip_wrapper();
 		StoreMenuBackground(0);
 		fade_in_using_gamma_ramp();

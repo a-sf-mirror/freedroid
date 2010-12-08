@@ -464,7 +464,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 		// We show all the info and the buttons that should be in this
 		// interface...
-		AssembleCombatPicture(USE_OWN_MOUSE_CURSOR | ONLY_SHOW_MAP);
+		AssembleCombatPicture(ONLY_SHOW_MAP);
 		SDL_SetClipRect(Screen, NULL);
 		blit_special_background(ITEM_BROWSER_SHOP_BACKGROUND_CODE);
 

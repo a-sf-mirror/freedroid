@@ -2077,9 +2077,9 @@ void AssembleCombatPicture(int mask)
 		User_Rect.w = GameConfig.screen_width - User_Rect.x;
 	}
 
-	if (mask & USE_OWN_MOUSE_CURSOR && !(mask & NO_CURSOR)) {
+	if (!(mask & NO_CURSOR))
 		blit_our_own_mouse_cursor();
-	}
+
 #if 0
 	/* This code displays the player tracks with red dots. */
 	glDisable(GL_TEXTURE_2D);
@@ -2125,10 +2125,7 @@ void AssembleCombatPicture(int mask)
 	if (mask & DO_SCREEN_UPDATE) {
 		our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 	}
-
-	DebugPrintf(2, "\n%s(): done with display code again.", __FUNCTION__);
-
-};				// void AssembleCombatPicture(...)
+}
 
 /* -----------------------------------------------------------------
  * This function draws the mouse move cursor.

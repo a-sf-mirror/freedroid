@@ -92,7 +92,7 @@ void Game()
 
 		DoAllMovementAndAnimations();
 
-		AssembleCombatPicture(SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
+		AssembleCombatPicture(SHOW_ITEMS);
 		our_SDL_flip_wrapper();
 
 		move_tux();

@@ -1833,7 +1833,7 @@ void ThouArtDefeated(void)
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_KILLED)) {
 		StartTakingTimeForFPSCalculation();
 
-		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
+		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
 		DisplayBanner();
 		animate_blasts();
 		MoveBullets();
@@ -1875,7 +1875,7 @@ void ThouHastWon(void)
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_GAME_WON)) {
 		StartTakingTimeForFPSCalculation();
 
-		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS | USE_OWN_MOUSE_CURSOR);
+		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
 		DisplayBanner();
 		animate_blasts();
 		MoveBullets();
