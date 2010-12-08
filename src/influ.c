@@ -1574,8 +1574,6 @@ static void AnalyzePlayersMouseClick()
 	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
 		if (widget_handle_mouse(&message_log))
 			return;
-	} else {
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 	}
 
 	// This flag avoids the mouse_move_target to change while the user presses
@@ -1589,56 +1587,45 @@ static void AnalyzePlayersMouseClick()
 		wait_mouseleft_release = FALSE;
 		return;
 	}
-	// The action associated to MouseLeftPress depends on the global game state
-	//
-	switch (global_ingame_mode) {
-	case GLOBAL_INGAME_MODE_NORMAL:
-		if (ButtonPressWasNotMeantAsFire())
-			return;
-		if (handle_click_in_hud())
-			return;
-		if (no_left_button_press_in_previous_analyze_mouse_click) {
-			level *obj_lvl = NULL;
 
-			Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+	if (ButtonPressWasNotMeantAsFire())
+		return;
+	if (handle_click_in_hud())
+		return;
+	if (no_left_button_press_in_previous_analyze_mouse_click) {
+		level *obj_lvl = NULL;
 
-			if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl)) != -1) {
-				obstacle_map[obj_lvl->obstacle_list[tmp].type].action(obj_lvl, tmp);
-				if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
+		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+
+		if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl)) != -1) {
+			obstacle_map[obj_lvl->obstacle_list[tmp].type].action(obj_lvl, tmp);
+			if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
+				wait_mouseleft_release = TRUE;
+			return;
+		}
+
+		// If the inventory screen is open, let it manage any possibly picked item.
+		// Else, if the player left-clicked on an item, check if the item can be
+		// picked up. If so, get it and give it to the player.
+		// Note: if the item is too far away from Tux, check_for_items_to_pickup()
+		// creates a combo action to reach the item.
+		if (GameConfig.Inventory_Visible == FALSE) {
+			if ((tmp = get_floor_item_index_under_mouse_cursor(&obj_lvl)) != -1) {
+				if (check_for_items_to_pickup(obj_lvl, tmp)) {
+					// The item can be picked up immediately , so give it to the player
+					give_item(&obj_lvl->ItemList[tmp]);
 					wait_mouseleft_release = TRUE;
-			    break;
-			}
-
-			// If the inventory screen is open, let it manage any possibly picked item.
-			// Else, if the player left-clicked on an item, check if the item can be
-			// picked up. If so, get it and give it to the player.
-			// Note: if the item is too far away from Tux, check_for_items_to_pickup()
-			// creates a combo action to reach the item.
-			if (GameConfig.Inventory_Visible == FALSE) {
-				if ((tmp = get_floor_item_index_under_mouse_cursor(&obj_lvl)) != -1) {
-					if (check_for_items_to_pickup(obj_lvl, tmp)) {
-						// The item can be picked up immediately , so give it to the player
-						give_item(&obj_lvl->ItemList[tmp]);
-						wait_mouseleft_release = TRUE;
-					}
-					break;
 				}
+				return;
 			}
 		}
-		// Just after the beginning of a combo action, and while LMB is
-		// always pressed, mouse_move_target must not be changed (so that
-		// the player's character will actually move to the combo action's target)
-
-		if (!wait_mouseleft_release)
-			check_for_droids_to_attack_or_talk_with();
-
-		break;
-
-	default:
-		DebugPrintf(-4, "\n%s(): global_ingame_mode: %d.", __FUNCTION__, global_ingame_mode);
-		ErrorMessage(__FUNCTION__, "Illegal global ingame mode encountered!", PLEASE_INFORM, IS_FATAL);
-		break;
 	}
+	// Just after the beginning of a combo action, and while LMB is
+	// always pressed, mouse_move_target must not be changed (so that
+	// the player's character will actually move to the combo action's target)
+
+	if (!wait_mouseleft_release)
+		check_for_droids_to_attack_or_talk_with();
 }
 
 #undef _influ_c

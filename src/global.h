@@ -125,8 +125,6 @@ EXTERN BFont_Info *Red_BFont;
 EXTERN float Overall_Average;
 EXTERN int SkipAFewFrames;
 
-EXTERN int global_ingame_mode;
-
 #undef EXTERN
 #ifdef _view_c
 #define EXTERN
@@ -227,10 +225,10 @@ EXTERN text_widget chat_log;
 EXTERN int Number_Of_Bullet_Types;
 EXTERN SDL_Surface *Screen;
 EXTERN SDL_Surface *StoredMenuBackground[2];
+EXTERN int mouse_cursor;
 #ifdef HAVE_LIBGL
 EXTERN GLuint StoredMenuBackgroundTex[2];
 #endif
-EXTERN int current_mouse_cursor_shape;
 
 //--------------------
 // Now the iso-image pointers for the new individually shaped

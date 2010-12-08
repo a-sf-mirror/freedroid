@@ -84,13 +84,9 @@ int widget_handle_mouse(text_widget *w) {
 	/* Change the mouse cursor as needed. */
 	if (mouse_over_widget) {
 		if (text_widget_can_scroll_up(w) && mouse_over_upper_half)
-			global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_UP;
+			mouse_cursor = MOUSE_CURSOR_SCROLL_UP;
 		else if (text_widget_can_scroll_down(w) && mouse_over_lower_half)
-			global_ingame_mode = GLOBAL_INGAME_MODE_SCROLL_DOWN;
-		else
-			global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-	} else {
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+			mouse_cursor = MOUSE_CURSOR_SCROLL_DOWN;
 	}
 
 	/* We handle a mouse click under two conditions:

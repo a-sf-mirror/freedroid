@@ -1415,7 +1415,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 	location StartPosition;
 
 	Activate_Conservative_Frame_Computation();
-	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 
 	// We mark all the big screen messages for this character
 	// as out of date, so they can be overwritten with new 
@@ -1616,8 +1615,6 @@ void InitFreedroid(int argc, char **argv)
 {
 	struct stat statbuf;
 
-	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
-
 	// We want DisplayChar to produce visible results by default...
 	//
 	display_char_disabled = FALSE;
@@ -1800,7 +1797,6 @@ void ThouArtDefeated(void)
 	ThouArtDefeatedSound();
 	start_tux_death_explosions();
 	now = SDL_GetTicks();
-	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 
 	GameConfig.SkillScreen_Visible = FALSE;
 	GameConfig.CharacterScreen_Visible = FALSE;

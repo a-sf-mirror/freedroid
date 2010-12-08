@@ -479,7 +479,6 @@ int LoadGame(void)
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): function call confirmed....", __FUNCTION__);
 
 	Activate_Conservative_Frame_Computation();
-	global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
 
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
 

@@ -154,7 +154,6 @@ int leveleditor_map_keybevent(SDL_Event * event, struct leveleditor_widget *vm)
 
 void leveleditor_map_display_cursor()
 {
-	int oldmode = global_ingame_mode;
 	static int dragging = FALSE;
 
 	if (active_tool)
@@ -164,17 +163,15 @@ void leveleditor_map_display_cursor()
 		if ((ShiftPressed() || dragging == TRUE) && MouseLeftPressed()
 		    && !selection_empty()) {
 			//dragdrop
-			global_ingame_mode = GLOBAL_INGAME_MODE_DRAGDROP_TOOL;
+			mouse_cursor = MOUSE_CURSOR_DRAGDROP_TOOL;
 			dragging = TRUE;
 		} else {
-			global_ingame_mode = GLOBAL_INGAME_MODE_SELECT_TOOL;
+			mouse_cursor = MOUSE_CURSOR_SELECT_TOOL;
 			dragging = FALSE;
 		}
 	}
 
 	blit_our_own_mouse_cursor();
-
-	global_ingame_mode = oldmode;
 }
 
 void leveleditor_map_display(struct leveleditor_widget *vm)

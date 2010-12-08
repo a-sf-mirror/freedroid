@@ -351,14 +351,14 @@ static void handle_ui()
 		if (MouseLeftClicked()) {
 			craft_item();
 		}
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+		mouse_cursor = MOUSE_CURSOR_NORMAL;
 		return;
 	}
 	if (MouseCursorIsOnButton(ITEM_UPGRADE_CLOSE_BUTTON, cursor.x, cursor.y)) {
 		if (MouseLeftClicked()) {
 			ui.quit = TRUE;
 		}
-		global_ingame_mode = GLOBAL_INGAME_MODE_NORMAL;
+		mouse_cursor = MOUSE_CURSOR_NORMAL;
 		return;
 	}
 

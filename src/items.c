@@ -1598,10 +1598,8 @@ void HandleInventoryScreen(void)
 			// At this point we know, that we have just grabbed something from the inventory
 			// So we set, that something should be displayed in the 'hand', and it should of
 			// course be the image of the item grabbed from inventory.
-			if (global_ingame_mode == GLOBAL_INGAME_MODE_NORMAL) {
-				item_held_in_hand = &(Me.Inventory[Grabbed_InvPos]);
-				play_item_sound(item_held_in_hand->type);
-			}
+			item_held_in_hand = &(Me.Inventory[Grabbed_InvPos]);
+			play_item_sound(item_held_in_hand->type);
 
 			return;
 		}

@@ -66,44 +66,47 @@ void blit_our_own_mouse_cursor(void)
 		loaded = TRUE;
 	}
 
-	switch (global_ingame_mode) {
-	case GLOBAL_INGAME_MODE_SCROLL_UP:
+	switch (mouse_cursor) {
+	case MOUSE_CURSOR_SCROLL_UP:
 		cursor_index = 4;
 		cursoff.x = -12;
 		break;
-	case GLOBAL_INGAME_MODE_SCROLL_DOWN:
+	case MOUSE_CURSOR_SCROLL_DOWN:
 		cursor_index = 5;
 		cursoff.x = -12;
 		break;
-	case GLOBAL_INGAME_MODE_NORMAL:
+	case MOUSE_CURSOR_NORMAL:
 		cursor_index = 0;
 		cursoff.x = -5;
 		cursoff.y = -4;
 		break;
-	case GLOBAL_INGAME_MODE_REPAIR:
+	case MOUSE_CURSOR_REPAIR:
 		cursor_index = 6;
 		break;
-	case GLOBAL_INGAME_MODE_SELECT_TOOL:
+	case MOUSE_CURSOR_SELECT_TOOL:
 		cursor_index = 9;
 		cursoff.x = -32;
 		cursoff.y = -16;
 		break;
-	case GLOBAL_INGAME_MODE_DRAGDROP_TOOL:
+	case MOUSE_CURSOR_DRAGDROP_TOOL:
 		cursor_index = 3;
 		break;
 	default:
-		ErrorMessage(__FUNCTION__, "Illegal global ingame mode encountered: %d", PLEASE_INFORM, IS_FATAL, global_ingame_mode);
+		ErrorMessage(__FUNCTION__, "Illegal mouse cursor encountered: %d",
+					 PLEASE_INFORM, IS_FATAL, mouse_cursor);
 		break;
 	}
 
-	// We can now blit the mouse cursor...
-	//
+	// Blit the mouse cursor
 	if (use_open_gl) {
 		draw_gl_textured_quad_at_screen_position(&mouse_cursors[cursor_index],
 							 GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
 	} else {
 		blit_iso_image_to_screen_position(&mouse_cursors[cursor_index], GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
 	}
+
+	// Reset the mouse cursor for next frame
+	mouse_cursor = MOUSE_CURSOR_NORMAL;
 }
 
 /**
@@ -1066,9 +1069,9 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 
 	SDL_SetGamma(GameConfig.current_gamma_correction, GameConfig.current_gamma_correction, GameConfig.current_gamma_correction);
 
+	mouse_cursor = MOUSE_CURSOR_NORMAL;
 	SDL_ShowCursor(SDL_DISABLE);
-
-};				// void InitVideo () 
+}
 
 /**
  * This function fills all the screen or the freedroid window with a 
