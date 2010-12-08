@@ -264,6 +264,7 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 			    gps * p1, gps * p2, level * lvl, colldet_filter * filter)
 {
 	int x_tile, y_tile;
+	int tstamp = next_glue_timestamp();
 
 	char ispoint = ((p1->x == p2->x) && (p1->y == p2->y));
 
@@ -272,13 +273,20 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 			// We can list all obstacles here  
 			int glue_index;
 
-			for (glue_index = 0; glue_index < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; glue_index++) {
-				int obstacle_index = lvl->map[y_tile][x_tile].obstacles_glued_to_here[glue_index];
+			for (glue_index = 0; glue_index < lvl->map[y_tile][x_tile].glued_obstacles.size; glue_index++) {
+				int *glued_obstacles = lvl->map[y_tile][x_tile].glued_obstacles.arr;
+				int obstacle_index = glued_obstacles[glue_index];
 
 				if (obstacle_index == (-1))
 					break;
 
 				obstacle *our_obs = &(lvl->obstacle_list[obstacle_index]);
+
+				if (our_obs->timestamp == tstamp) {
+					continue;
+				}
+
+				our_obs->timestamp = tstamp;
 
 				// If the obstacle doesn't even have a collision rectangle, then
 				// of course it's easy, cause then there can't be any collision
@@ -415,10 +423,10 @@ int DirectLineColldet(float x1, float y1, float x2, float y2, int z, colldet_fil
 
 	// Segment's bbox.
 	// We add 2 tiles around the segment's bbox, because some obstacles covers several tiles.
-	int x_tile_start = floor(min(x1, x2)) - 2;
-	int y_tile_start = floor(min(y1, y2)) - 2;
-	int x_tile_end = ceil(max(x1, x2)) - 1 + 2;
-	int y_tile_end = ceil(max(y1, y2)) - 1 + 2;
+	int x_tile_start = floor(min(x1, x2));
+	int y_tile_start = floor(min(y1, y2));
+	int x_tile_end = ceil(max(x1, x2)) - 1;
+	int y_tile_end = ceil(max(y1, y2)) - 1;
 
 	int x_start, y_start, x_end, y_end;	// intersection between the bbox and one level's limits
 	struct neighbor_data_cell *ngb_cell = NULL;
@@ -607,11 +615,10 @@ int EscapeFromObstacle(float *posX, float *posY, int posZ, colldet_filter * filt
 
 	for (y = start_y; y < end_y; ++y) {
 		for (x = start_x; x < end_x; ++x) {
-			for (i = 0; i < MAX_OBSTACLES_GLUED_TO_ONE_MAP_TILE; ++i) {
-				if (ThisLevel->map[y][x].obstacles_glued_to_here[i] == (-1))
-					break;
+			for (i = 0; i < ThisLevel->map[y][x].glued_obstacles.size; i++) {
+				int *glued_obstacles = ThisLevel->map[y][x].glued_obstacles.arr;
 
-				obst_index = ThisLevel->map[y][x].obstacles_glued_to_here[i];
+				obst_index = glued_obstacles[i];
 
 				obstacle *our_obs = &(ThisLevel->obstacle_list[obst_index]);
 

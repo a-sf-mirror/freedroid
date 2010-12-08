@@ -16,6 +16,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	armor.c \
 	blocks.c \
 	block_area.c \
+	floor_tiles.c \
 	graphics.c map.c colldet.c init.c \
 	takeover.c bullet.c influ.c action.c misc.c text.c text_public.c sound.c \
 	text_widget.c \
