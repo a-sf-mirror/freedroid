@@ -445,7 +445,7 @@ void quest_browser_interface(void)
 		ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_UP_BUTTON);
 		ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_DOWN_BUTTON);
 
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 		save_mouse_state();
 

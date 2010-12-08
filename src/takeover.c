@@ -682,7 +682,7 @@ int droid_takeover(enemy *target)
 		show_droid_info(target->type);
 		show_text_widget(&droid_info);
 		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
 		while (SDL_PollEvent(&event)) {

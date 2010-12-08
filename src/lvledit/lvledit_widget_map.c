@@ -171,7 +171,7 @@ void leveleditor_map_display_cursor()
 		}
 	}
 
-	blit_our_own_mouse_cursor();
+	blit_mouse_cursor();
 }
 
 void leveleditor_map_display(struct leveleditor_widget *vm)

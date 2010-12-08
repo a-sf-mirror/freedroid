@@ -46,7 +46,7 @@ static const SDL_VideoInfo *vid_info;
 /**
  * We always want to blit our own mouse cursor.
  */
-void blit_our_own_mouse_cursor(void)
+void blit_mouse_cursor(void)
 {
 	static int loaded = FALSE;
 	int i;
@@ -278,7 +278,7 @@ ERROR LOADING SELECTION KNOB IMAGE FILE!", PLEASE_INFORM, IS_FATAL);
 		our_SDL_blit_surface_wrapper(SelectionKnob, NULL, Screen, &knob_target_rect);
 		sprintf(number_text, "%d", knob_offset_x * (upper_range - lower_range + 1) / (knob_end_x - knob_start_x));
 		PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(190), number_text);
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
 		while (SDL_PollEvent(&event)) {

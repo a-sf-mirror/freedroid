@@ -296,7 +296,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 			DisplayText(InitialText, 50, 50, NULL, TEXT_STRETCH);
 
 		// Now the mouse cursor must be brought to the screen
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 
 		// Image should be ready now, so we can show it...
 		//
@@ -647,7 +647,7 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			ShowGenericButtonFromList(SCROLL_DIALOG_MENU_UP_BUTTON);
 
 		// Now the mouse cursor must be brought to the screen
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 
 		// Now everything should become visible!
 		//

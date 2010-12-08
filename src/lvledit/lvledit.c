@@ -160,7 +160,7 @@ item *ItemDropFromLevelEditor(void)
 					      D_(ItemMap[previous_mouse_position_index].item_name));
 		}
 
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
 		while (SDL_PollEvent(&event)) {

@@ -182,7 +182,7 @@ void alert_window(const char *text, ...)
 		int r_height = show_backgrounded_text_rectangle(buffer->value, FPS_Display_BFont, x, y, w, h);
 		show_backgrounded_text_rectangle(_("Click to continue..."), Red_BFont, x, y + r_height, w, 10);
 
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 		save_mouse_state();
 		
@@ -299,7 +299,7 @@ int ScrollText(char *Text, int background_code)
 		//
 		ShowGenericButtonFromList(SCROLL_TEXT_UP_BUTTON);
 		ShowGenericButtonFromList(SCROLL_TEXT_DOWN_BUTTON);
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
 		while (SDL_PollEvent(&event)) {

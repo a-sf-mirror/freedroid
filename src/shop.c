@@ -531,7 +531,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		PutStringFont(Screen, FPS_Display_BFont, 40 * GameConfig.screen_width / 640 - 15,
 			      370 * GameConfig.screen_height / 480, GoldString);
 
-		blit_our_own_mouse_cursor();
+		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
 

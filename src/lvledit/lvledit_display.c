@@ -367,7 +367,7 @@ static void display_cursor()
 
 	if (w) {
 		if (w->type != WIDGET_MAP)
-			blit_our_own_mouse_cursor();
+			blit_mouse_cursor();
 		else
 			leveleditor_map_display_cursor();
 	}

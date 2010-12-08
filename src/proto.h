@@ -265,7 +265,7 @@ void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_
 void init_obstacle_data(void);
 
 // graphics.c 
-void blit_our_own_mouse_cursor(void);
+void blit_mouse_cursor(void);
 SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect our_rect);
 SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterType);
 void fade_out_using_gamma_ramp(void);
