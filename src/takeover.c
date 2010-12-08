@@ -225,66 +225,59 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 
 };				// void ShowDroidPicture ( ... )
 
-/* ------------------------------------------------------------
- * display infopage page of droidtype
- * does update the screen, no our_SDL_flip_wrapper() necessary !
- * ------------------------------------------------------------ */
-static void ShowDroidInfo(int droidtype, int Displacement, char ShowArrows)
+/**
+ * Display infopage page of droidtype.
+ */
+static void show_droid_info(int droidtype)
 {
-	char *item_name;
-	int type;
-	char InfoText[10000];
-	char TextChunk[2000];
-
-	// We initialize the text rectangle
-	//
-	Cons_Text_Rect.x = 258 * GameConfig.screen_width / 640;
-	Cons_Text_Rect.y = 89 * GameConfig.screen_height / 480;
-	Cons_Text_Rect.w = 346 * GameConfig.screen_width / 640;
-	Cons_Text_Rect.h = 282 * GameConfig.screen_height / 480;
+	SDL_Rect clip;
 
 	SDL_SetClipRect(Screen, NULL);
 
+	// Show background
 	blit_special_background(ITEM_BROWSER_BG_PIC_BACKGROUND_CODE);
 
-	ShowDroidPicture(45 * GameConfig.screen_width / 640, 190 * GameConfig.screen_height / 480, droidtype);
+	// Show droid portrait
+	ShowDroidPicture(UNIVERSAL_COORD_W(45), UNIVERSAL_COORD_H(190), droidtype);
 
-	// We fill out the header area of the items browser.
-	//
+	// Show the droid name
 	SetCurrentFont(Menu_BFont);
-	strcpy(TextChunk, Druidmap[droidtype].druidname);
-	CutDownStringToMaximalSize(TextChunk, 225);
-	PutString(Screen, 330 * GameConfig.screen_width / 640, 38 * GameConfig.screen_height / 480, TextChunk);
+	clip.x = UNIVERSAL_COORD_W(330);
+	clip.y = UNIVERSAL_COORD_H(35);
+	clip.w = UNIVERSAL_COORD_W(200);
+	clip.h = UNIVERSAL_COORD_H(30);
+	DisplayText(Druidmap[droidtype].default_short_description, clip.x, clip.y, &clip, 1.0);
+}
 
-	sprintf(InfoText, _("\
-Unit type %s\n\
-Entry : %d\n"), Druidmap[droidtype].druidname, droidtype + 1);
+/**
+ * Initialize text widget with a description of the specified droidtype.
+ */
+static void init_droid_description(text_widget *w, int droidtype)
+{
+	char *item_name;
+	int weapon_type;
 
-	if ((type = Druidmap[droidtype].weapon_item.type) >= 0)	// make sure item=-1 
-		item_name = D_(ItemMap[type].item_name);	// does not segfault 
+	autostr_append(w->text, _("Unit Type %s\n"), Druidmap[droidtype].druidname);
+	autostr_append(w->text, _("Entry : %d\n"), droidtype + 1);
+
+	if ((weapon_type = Druidmap[droidtype].weapon_item.type) >= 0)	// make sure item != -1 
+		item_name = D_(ItemMap[weapon_type].item_name);	// does not segfault
 	else
 		item_name = _("none");
 
-	sprintf(TextChunk, _("\nArmament : %s\n"), item_name);
-	strcat(InfoText, TextChunk);
+	autostr_append(w->text, _("\nArmament : %s\n"), item_name);
+
+
 	if (Me.TakeoverSuccesses[droidtype]+Me.TakeoverFailures[droidtype]) {
-		sprintf(TextChunk, _("\nTakeover Success : %2d%%\n"),
-        		((100*Me.TakeoverSuccesses[droidtype])/ (Me.TakeoverSuccesses[droidtype]+Me.TakeoverFailures[droidtype])) );
-		strcat(InfoText, TextChunk);
+		int success_ratio =
+			((100*Me.TakeoverSuccesses[droidtype])/
+			 (Me.TakeoverSuccesses[droidtype]+Me.TakeoverFailures[droidtype]));
+
+		autostr_append(w->text, _("\nTakeover Success : %2d%%\n"), success_ratio);
 	}
 
-	sprintf(TextChunk, _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));
-	strcat(InfoText, TextChunk);
-
-	SetCurrentFont(FPS_Display_BFont);
-	DisplayText(InfoText, Cons_Text_Rect.x, Cons_Text_Rect.y + Displacement, &Cons_Text_Rect, TEXT_STRETCH);
-
-	if (ShowArrows) {
-		ShowGenericButtonFromList(UP_BUTTON);
-		ShowGenericButtonFromList(DOWN_BUTTON);
-	}
-
-};				// void ShowDroidInfo ( ... )
+	autostr_append(w->text, _("\nNotes: %s\n"), D_(Druidmap[droidtype].notes));
+}
 
 /**
  * This function does the countdown where you still can changes your
@@ -637,30 +630,45 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 	return player_won;
 }
 
-/*-----------------------------------------------------------------
- *
+static void show_info_up_button() {
+	ShowGenericButtonFromList(UP_BUTTON);
+}
+
+static void show_info_down_button() {
+	ShowGenericButtonFromList(DOWN_BUTTON);
+}
+
+/**
  * This function manages the whole takeover game of Tux against 
  * some bot.
  *
  * The return value is TRUE/FALSE depending on whether the game was
  * finally won/lost.
- *
- *-----------------------------------------------------------------*/
-int droid_takeover(enemy * target)
+ */
+int droid_takeover(enemy *target)
 {
-	int Finished = FALSE;
-	int Displacement = 0;
+	int menu_finished = FALSE;
 	int reward = 0;
 	SDL_Event event;
+	static text_widget droid_info;
+
+	// Set up the droid description widget
+	init_text_widget(&droid_info, "");
+	init_droid_description(&droid_info, target->type);
+	droid_info.rect.x = 258 * GameConfig.screen_width / 640;
+	droid_info.rect.y = 89 * GameConfig.screen_height / 480;
+	droid_info.rect.w = 346 * GameConfig.screen_width / 640;
+	droid_info.rect.h = 282 * GameConfig.screen_height / 480;
+	droid_info.font = FPS_Display_BFont;
+	droid_info.content_above_func = show_info_up_button;
+	droid_info.content_below_func = show_info_down_button;
 
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spent in the menu.
-	//
 	Activate_Conservative_Frame_Computation();
 
 	// We set the UserRect to full again, no matter what other windows might
 	// be open right now...
-	//
 	User_Rect.x = 0;
 	User_Rect.y = 0;
 	User_Rect.w = GameConfig.screen_width;
@@ -670,10 +678,9 @@ int droid_takeover(enemy * target)
 
 	SwitchBackgroundMusicTo(TAKEOVER_BACKGROUND_MUSIC_SOUND);
 
-	DisplayBanner();
-
-	while (!Finished) {
-		ShowDroidInfo(target->type, Displacement, TRUE);
+	while (!menu_finished) {
+		show_droid_info(target->type);
+		show_text_widget(&droid_info);
 		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
 		blit_our_own_mouse_cursor();
 		our_SDL_flip_wrapper();
@@ -686,19 +693,17 @@ int droid_takeover(enemy * target)
 
 			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 				if (MouseCursorIsOnButton(UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-					MoveMenuPositionSound();
-					Displacement += FontHeight(GetCurrentFont());
+					droid_info.scroll_offset--;
 				} else if (MouseCursorIsOnButton(DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-					MoveMenuPositionSound();
-					Displacement -= FontHeight(GetCurrentFont());
+					droid_info.scroll_offset++;
 				} else if (MouseCursorIsOnButton(DROID_SHOW_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-					Finished = TRUE;
+					menu_finished = TRUE;
 				} else if (MouseCursorIsOnButton(TAKEOVER_HELP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					PlayATitleFile("TakeoverInstructions.title");
 				}
 			} else if (event.type == SDL_KEYDOWN
 				   && ((event.key.keysym.sym == SDLK_SPACE) || (event.key.keysym.sym == SDLK_ESCAPE))) {
-				Finished = TRUE;
+				menu_finished = TRUE;
 			}
 		}
 		SDL_Delay(1);
