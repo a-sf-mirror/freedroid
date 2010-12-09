@@ -653,14 +653,14 @@ void insert_obstacles_into_blitting_list(int mask)
 
 					update_virtual_position(&virtpos, &reference, Me.pos.z);
 
+					// Could not find virtual position? Give up drawing.
+					if (virtpos.z == -1)
+						continue;
+
 					if (rintf(virtpos.x - 0.5) != col)
 						continue;
 
 					if (rintf(virtpos.y - 0.5) != line)
-						continue;
-
-					// Could not find virtual position? Give up drawing.
-					if (virtpos.z == -1)
 						continue;
 
 					OurObstacle->timestamp = tstamp;
