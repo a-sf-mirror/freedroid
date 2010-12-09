@@ -3472,6 +3472,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	// account any map coordinates or stuff like that...
 	//
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
+		RotationIndex = 0;
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_screen_position(&enemy_iso_images[RotationModel][RotationIndex][0], TargetRectangle.x,
 								 TargetRectangle.y);
