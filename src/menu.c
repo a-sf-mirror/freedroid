@@ -844,7 +844,7 @@ void InitiateMenu(int background_code)
 
 	if (background_code == (-1)) {
 		DisplayBanner();
-		AssembleCombatPicture(SHOW_ITEMS);
+		AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 	} else {
 		// DisplayImage ( find_file ( BackgroundToUse , GRAPHICS_DIR, FALSE ) );
 		blit_special_background(background_code);

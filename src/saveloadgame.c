@@ -172,7 +172,7 @@ void SaveThumbnailOfGame(void)
 	//
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
 
-	AssembleCombatPicture(SHOW_ITEMS);
+	AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 
 	if (use_open_gl) {
 #ifdef HAVE_LIBGL
