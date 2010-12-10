@@ -3596,8 +3596,8 @@ void PutEnemy(enemy * e, int x, int y, int mask, int highlight)
 	if ((!must_blit_enemy(e, x, y)) && (!GameConfig.xray_vision_for_tux))
 		return;
 
-	// We check for incorrect droid types, which sometimes might occor, especially after
-	// heavy editing of the crew initialisation functions ;)
+	// We check for incorrect droid types, which sometimes might occur, especially after
+	// heavy editing of the crew initialization functions ;)
 	//
 	if (e->type >= Number_Of_Droid_Types) {
 		ErrorMessage(__FUNCTION__, "\
