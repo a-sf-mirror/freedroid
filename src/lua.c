@@ -434,10 +434,10 @@ static int lua_event_is_mission_complete(lua_State * L)
 
 static int lua_event_give_xp(lua_State * L)
 {
-	int xp = luaL_checkinteger(L, 1);
+	int xp = luaL_checkinteger(L, 1) * Me.experience_factor;
 	char tmpstr[150];
-	Me.Experience += xp * Me.experience_factor;
-	sprintf(tmpstr, _("+%d Experience Points"), xp * Me.experience_factor);
+	Me.Experience += xp;
+	sprintf(tmpstr, _("+%d Experience Points"), xp);
 	SetNewBigScreenMessage(tmpstr);
 	return 0;
 }

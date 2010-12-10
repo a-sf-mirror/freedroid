@@ -89,7 +89,7 @@ static void limit_tux_speed()
 												  &Me.current_enemy_target_addr);
 	int has_melee = ItemMap[Me.weapon_item.type].item_weapon_is_melee;
 	if (Me.weapon_swing_time != -1 && (!has_melee
-        || (has_melee && previous_target != current_target || current_target == NULL)))
+	    || (has_melee && (previous_target != current_target || current_target == NULL))))
 	{
 		Me.speed.x = 0;
 		Me.speed.y = 0;
