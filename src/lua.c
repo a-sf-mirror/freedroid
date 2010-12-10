@@ -437,7 +437,7 @@ static int lua_event_give_xp(lua_State * L)
 	int xp = luaL_checkinteger(L, 1);
 	char tmpstr[150];
 	Me.Experience += xp * Me.experience_factor;
-	sprintf(tmpstr, _("+%d Experience Points"), xp);
+	sprintf(tmpstr, _("+%d Experience Points"), xp * Me.experience_factor);
 	SetNewBigScreenMessage(tmpstr);
 	return 0;
 }
