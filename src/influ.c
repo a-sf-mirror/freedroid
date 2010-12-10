@@ -25,7 +25,7 @@
  */
 
 /**
- * This file contains all features, movement, fireing, collision and 
+ * This file contains all features, movement, firing, collision and
  * extras of the influencer.
  */
 
@@ -69,32 +69,43 @@ float vect_len(moderately_finepoint our_vector)
 
 /**
  * This function adapts the influencers current speed to the maximal speed
- * possible for the influencer (determined by the currely used drive type).
+ * possible for the influencer.
+ *
+ * This function also stops Tux from moving while fighting.
  */
-static void limit_tux_speed_to_a_maximum()
+static void limit_tux_speed()
 {
-	double maxspeed = TUX_RUNNING_SPEED;
-	const double speed = sqrt(Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y);
-	if (speed > maxspeed) {
-		const double ratio = maxspeed / speed;
+	/* Stop all movement if Tux is currently inside attack animation.  This is
+	 * to stop Tux from moving without his legs animating.
+	 *
+	 * NOTE REGARDING MELEE ATTACK.  Tux starts to swing before he has reached
+	 * BEST_MELEE_DISTANCE.  If we stop before reaching this distance, Tux will
+	 * continue to try to move to this distance between swings, which causes a
+	 * jerking motion towards the enemy.  To stop this from happening, we force
+	 * Tux NOT to stand still when he is first charging a new target.  He stands
+	 * still ONLY when he changes target during a swing. */
+	static enemy *previous_target;
+	enemy *current_target = enemy_resolve_address(Me.current_enemy_target_n,
+												  &Me.current_enemy_target_addr);
+	int has_melee = ItemMap[Me.weapon_item.type].item_weapon_is_melee;
+	if (Me.weapon_swing_time != -1 && (!has_melee
+        || (has_melee && previous_target != current_target || current_target == NULL)))
+	{
+		Me.speed.x = 0;
+		Me.speed.y = 0;
+		return;
+	} else {
+		previous_target = current_target;
+	}
+
+	/* Limit the speed when Tux is not attacking. */
+	float speed = Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y;
+	if (speed > TUX_RUNNING_SPEED * TUX_RUNNING_SPEED) {
+		float ratio = (TUX_RUNNING_SPEED * TUX_RUNNING_SPEED) / speed;
 		Me.speed.x *= ratio;
 		Me.speed.y *= ratio;
 	}
-};				// void limit_tux_speed_to_a_maximum ( ) 
-
-/**
- * This function reduces the influencers speed as long as no direction 
- * key of any form is pressed and also no mouse move target is set.
- */
-static void tux_friction_with_air()
-{
-	if (Me.next_intermediate_point[0].x != (-1))
-		return;
-
-	Me.speed.x = 0;
-	Me.speed.y = 0;
-
-};				// tux_friction_with_air ( )
+}
 
 /**
  * When the player has requested an attack motion, we start the 
@@ -406,11 +417,9 @@ void tux_get_move_target_and_attack(gps * movetgt)
 }				// void tux_get_move_target_and_attack( )
 
 /**
- * Self-explanatory.
- * This function also takes into account any conveyor belts the Tux might
- * be standing on.
+ * Actually move Tux towards the target.
  */
-static void MoveTuxAccordingToHisSpeed()
+static void move_tux_according_to_his_speed()
 {
 	float planned_step_x;
 	float planned_step_y;
@@ -426,15 +435,6 @@ static void MoveTuxAccordingToHisSpeed()
 	//
 	planned_step_x = Me.speed.x * Frame_Time();
 	planned_step_y = Me.speed.y * Frame_Time();
-
-	// Maybe the Tux is just executing a weapon strike.  In this case, there should
-	// be no movement at all, so in this case we'll just not go anywhere...
-	//
-/*XXX  if ( Me . weapon_swing_time > 0 )
-    {
-      planned_step_x = 0 ;
-      planned_step_y = 0 ;
-    }*/
 
 	Me.pos.x += planned_step_x;
 	Me.pos.y += planned_step_y;
@@ -487,17 +487,14 @@ static void MoveTuxAccordingToHisSpeed()
 			}
 		}
 	}
-
-};				// void MoveTuxAccordingToHisSpeed ( )
+}
 
 /**
- * This function contains the final dumb movement code, that, without
- * any checks and any refinement, just moves the tux thowards the given
- * target position.
+ * This function contains dumb movement code that, without any checks nor
+ * refinement, calculates the direction and speed in which Tux has to move to
+ * reach the target position.
  *
- * The return value indicates, if the target has been sufficiently 
- * approximated (TRUE) already or not (FALSE) .
- *
+ * Returns TRUE if the target has been sufficiently approximated.
  */
 static int move_tux_towards_raw_position(float x, float y)
 {
@@ -578,19 +575,14 @@ static void move_tux_towards_intermediate_point(void)
 {
 	int i;
 
-	// If there is no intermediate course, we don't need to do anything
-	// in this function.
-	//
-	if (Me.next_intermediate_point[0].x == (-1)) {
-		// The fact that there is no more intermediate course can mean, that
-		// there never has been any intermediate course or we have now arrived
-		// at the end of the previous intermediate course.
-		//
-		// But that maybe means, that it is now time for the combo_action, that
-		// can occur on the end of any intermediate course, like e.g. open a
-		// chest or pick up some item.
-		//
-		// DebugPrintf ( 2 , "\nAm I now at the last intermediate point???" );
+	/* If we have no intermediate point, Tux has arrived at the target. */
+	if (Me.next_intermediate_point[0].x == -1) {
+		/* First, stop Tux. */
+		Me.speed.x = 0;
+		Me.speed.y = 0;
+
+		/* We might have a combo_action, that can occur on the end of any
+		 * course, like e.g. open a chest or pick up some item. */
 		switch (Me.mouse_move_target_combo_action_type) {
 		case NO_COMBO_ACTION_SET:
 			break;
@@ -748,17 +740,13 @@ void move_tux()
 		enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 		return;
 	}
-	// The influ should lose some of his speed when no key is pressed and
-	// also no mouse move target is set.
-	//
-	tux_friction_with_air();
 
-	limit_tux_speed_to_a_maximum();
+	limit_tux_speed();
 
-	MoveTuxAccordingToHisSpeed();
+	move_tux_according_to_his_speed();
 
-	animate_tux();		// move the "phase" of influencers rotation
-};				// void move_tux( );
+	animate_tux();
+}
 
 /**
  * This function decrements Tux's health and increments the relevent statistic 
@@ -1290,7 +1278,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 	//
 	Me.weapon_swing_time = 0;
 
-	// Now that an attack is being made, the Tux must turn thowards the direction
+	// Now that an attack is being made, the Tux must turn towards the direction
 	// of the attack, no matter what.
 	//
 	// Note:  This is just some default value.  The real fine-tuning of the direction
