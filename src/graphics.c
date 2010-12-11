@@ -98,12 +98,8 @@ void blit_mouse_cursor(void)
 	}
 
 	// Blit the mouse cursor
-	if (use_open_gl) {
-		draw_gl_textured_quad_at_screen_position(&mouse_cursors[cursor_index],
-							 GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
-	} else {
-		blit_iso_image_to_screen_position(&mouse_cursors[cursor_index], GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
-	}
+	blit_iso_image_to_screen_position(&mouse_cursors[cursor_index],
+									  GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
 
 	// Reset the mouse cursor for next frame
 	mouse_cursor = MOUSE_CURSOR_NORMAL;

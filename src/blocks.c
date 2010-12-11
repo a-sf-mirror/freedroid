@@ -468,21 +468,29 @@ void sdl_highlight_iso_image(iso_image *img, float pos_x, float pos_y)
 }
 
 /**
+ * \brief Blits an iso_image to the screen.
  *
+ * Works in both SDL and OpenGL modes.
  *
+ * \param image The iso_image to blit.
+ * \param pos_x Screen X position.
+ * \param pos_y Screen Y position.
  */
-void blit_iso_image_to_screen_position(iso_image * our_iso_image, float pos_x, float pos_y)
+void blit_iso_image_to_screen_position(iso_image *image, float pos_x, float pos_y)
 {
-	SDL_Rect target_rectangle;
+	if (use_open_gl) {
+		draw_gl_textured_quad_at_screen_position(image, pos_x, pos_y);
+	} else {
+		SDL_Rect target_rectangle;
 
-	// target_rectangle . x = pos_x + our_iso_image -> offset_x ;
-	// target_rectangle . y = pos_y + our_iso_image -> offset_y ;
-	target_rectangle.x = pos_x;
-	target_rectangle.y = pos_y;
+		// target_rectangle . x = pos_x + image -> offset_x ;
+		// target_rectangle . y = pos_y + image -> offset_y ;
+		target_rectangle.x = pos_x;
+		target_rectangle.y = pos_y;
 
-	our_SDL_blit_surface_wrapper(our_iso_image->surface, NULL, Screen, &target_rectangle);
-
-};				// void blit_iso_image_to_screen_position ( iso_image * our_iso_image , float pos_x , float pos_y )
+		our_SDL_blit_surface_wrapper(image->surface, NULL, Screen, &target_rectangle);
+	}
+}
 
 /**
  *

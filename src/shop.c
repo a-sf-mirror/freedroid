@@ -195,12 +195,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 	}
 	our_SDL_blit_surface_wrapper(ItemMap[ShowItem->type].inv_image.shop_iso_image.surface, NULL, Screen, &TargetRectangle);
 	if (item_is_currently_equipped(ShowItem)) {
-		if (use_open_gl) {
-			draw_gl_textured_quad_at_screen_position(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24,
-								 TargetRectangle.y);
-		} else {
-			blit_iso_image_to_screen_position(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24, TargetRectangle.y);
-		}
+		blit_iso_image_to_screen_position(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24, TargetRectangle.y);
 	}
 };				// void ShowRescaledItem ( int position , item* ShowItem )
 

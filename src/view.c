@@ -2078,15 +2078,9 @@ void PutMouseMoveCursor(void)
 	if (Me.mouse_move_target.x != (-1)) {
 		TargetRectangle.x = translate_map_point_to_screen_pixel_x(Me.mouse_move_target.x, Me.mouse_move_target.y);
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(Me.mouse_move_target.x, Me.mouse_move_target.y);
-		if (use_open_gl) {
-			TargetRectangle.x -= MouseCursorImageList[0].original_image_width / 2;
-			TargetRectangle.y -= MouseCursorImageList[0].original_image_height / 2;
-			draw_gl_textured_quad_at_screen_position(&MouseCursorImageList[0], TargetRectangle.x, TargetRectangle.y);
-		} else {
-			TargetRectangle.x -= MouseCursorImageList[0].surface->w / 2;
-			TargetRectangle.y -= MouseCursorImageList[0].surface->h / 2;
-			our_SDL_blit_surface_wrapper(MouseCursorImageList[0].surface, NULL, Screen, &TargetRectangle);
-		}
+		TargetRectangle.x -= MouseCursorImageList[0].original_image_width / 2;
+		TargetRectangle.y -= MouseCursorImageList[0].original_image_height / 2;
+		blit_iso_image_to_screen_position(&MouseCursorImageList[0], TargetRectangle.x, TargetRectangle.y);
 	}
 
 	enemy *t = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
@@ -2096,19 +2090,11 @@ void PutMouseMoveCursor(void)
 
 		TargetRectangle.x = translate_map_point_to_screen_pixel_x(t->virt_pos.x, t->virt_pos.y);
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(t->virt_pos.x, t->virt_pos.y);
-		if (use_open_gl) {
-			TargetRectangle.x -= MouseCursorImageList[1].original_image_width / 2;
-			TargetRectangle.y -= MouseCursorImageList[1].original_image_height / 2;
-			draw_gl_textured_quad_at_screen_position(&MouseCursorImageList[1], TargetRectangle.x, TargetRectangle.y);
-		} else {
-			TargetRectangle.x -= MouseCursorImageList[1].surface->w / 2;
-			TargetRectangle.y -= MouseCursorImageList[1].surface->h / 2;
-			our_SDL_blit_surface_wrapper(MouseCursorImageList[1].surface, NULL, Screen, &TargetRectangle);
-		}
-
+		TargetRectangle.x -= MouseCursorImageList[1].original_image_width / 2;
+		TargetRectangle.y -= MouseCursorImageList[1].original_image_height / 2;
+		blit_iso_image_to_screen_position(&MouseCursorImageList[1], TargetRectangle.x, TargetRectangle.y);
 	}
-
-};				// void PutMouseMoveCursor ( void )
+}
 
 /**
  *
@@ -3400,13 +3386,8 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	//
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
 		RotationIndex = 0;
-		if (use_open_gl) {
-			draw_gl_textured_quad_at_screen_position(&enemy_iso_images[RotationModel][RotationIndex][0], TargetRectangle.x,
-								 TargetRectangle.y);
-		} else {
-			our_SDL_blit_surface_wrapper(enemy_iso_images[RotationModel][RotationIndex][0].surface,
-						     NULL, Screen, &TargetRectangle);
-		}
+		blit_iso_image_to_screen_position(&enemy_iso_images[RotationModel][RotationIndex][0],
+										  TargetRectangle.x, TargetRectangle.y);
 		return;
 	}
 	// But here we know, that the enemy is desired inside the game, so we need to
@@ -3828,17 +3809,10 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface->h) / 2);
 		}
 
-		if (use_open_gl) {
-			draw_gl_textured_quad_at_screen_position(&PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex],
+		blit_iso_image_to_screen_position(&PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex],
 								 TargetRectangle.x, TargetRectangle.y);
-		} else {
-			our_SDL_blit_surface_wrapper(PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface, NULL,
-						     Screen, &TargetRectangle);
-		}
-
 	}
-
-}				// void PutRadialBlueSparks( float PosX, float PosY , float Radius )
+}
 
 /**
  * This function draws a blast into the combat window.

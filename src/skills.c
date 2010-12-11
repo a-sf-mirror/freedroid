@@ -562,12 +562,8 @@ static void ShowSkillsExplanationScreen(void)
 	TargetSkillRect.x = ICON_OFFSET_X;
 	TargetSkillRect.y = ICON_OFFSET_Y;
 	LoadOneSkillSurfaceIfNotYetLoaded(Me.readied_skill);
-	if (use_open_gl) {
-		draw_gl_textured_quad_at_screen_position(&SpellSkillMap[Me.readied_skill].icon_surface,
-							 TargetSkillRect.x, TargetSkillRect.y);
-	} else {
-		our_SDL_blit_surface_wrapper(SpellSkillMap[Me.readied_skill].icon_surface.surface, NULL, Screen, &TargetSkillRect);
-	}
+	blit_iso_image_to_screen_position(&SpellSkillMap[Me.readied_skill].icon_surface,
+						 TargetSkillRect.x, TargetSkillRect.y);
 
 	// Draws the explanation text
 	// (We will use the FPS display font, cause the small one isn't 
@@ -760,11 +756,7 @@ void ShowSkillsScreen(void)
 
 		LoadOneSkillSurfaceIfNotYetLoaded(SkillOfThisSlot);
 
-		if (use_open_gl) {
-			draw_gl_textured_quad_at_screen_position(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y);
-		} else {
-			our_SDL_blit_surface_wrapper(SpellSkillMap[SkillOfThisSlot].icon_surface.surface, NULL, Screen, &ButtonRect);
-		}
+		blit_iso_image_to_screen_position(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y);
 
 		SetCurrentFont(FPS_Display_BFont);
 

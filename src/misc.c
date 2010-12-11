@@ -698,14 +698,9 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	//
 	Copy_Rect(AllMousePressButtons[ButtonIndex].button_rect, Temp_Blitting_Rect);
 
-	if (use_open_gl) {
-		draw_gl_textured_quad_at_screen_position(&AllMousePressButtons[ButtonIndex].button_image, Temp_Blitting_Rect.x,
-							 Temp_Blitting_Rect.y);
-	} else {
-		our_SDL_blit_surface_wrapper(AllMousePressButtons[ButtonIndex].button_image.surface, NULL, Screen, &Temp_Blitting_Rect);
-	}
-
-};				// void ShowGenericButtonFromList ( int ButtonIndex )
+	blit_iso_image_to_screen_position(&AllMousePressButtons[ButtonIndex].button_image, Temp_Blitting_Rect.x,
+						 Temp_Blitting_Rect.y);
+}
 
 /* -----------------------------------------------------------------
  * find a given filename in subdir relative to FD_DATADIR, 

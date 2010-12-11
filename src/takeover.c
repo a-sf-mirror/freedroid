@@ -1009,83 +1009,50 @@ static void ShowPlayground(void)
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 
-	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[YELLOW_HIGH], Target_Rect.x, Target_Rect.y);
-	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[YELLOW_HIGH].surface, NULL, Screen, &Target_Rect);
+	blit_iso_image_to_screen_position (&ToGroundBlocks[YELLOW_HIGH], Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++) {
-		if (use_open_gl)
-			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[YELLOW_MIDDLE], Target_Rect.x, Target_Rect.y);
-		else
-			our_SDL_blit_surface_wrapper(ToGroundBlocks[YELLOW_MIDDLE].surface, NULL, Screen, &Target_Rect);
+		blit_iso_image_to_screen_position (&ToGroundBlocks[YELLOW_MIDDLE], Target_Rect.x, Target_Rect.y);
 		Target_Rect.y += GROUNDBLOCKHEIGHT;
 	}
 
-	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[YELLOW_LOW], Target_Rect.x, Target_Rect.y);
-	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[YELLOW_LOW].surface, NULL, Screen, &Target_Rect);
+	blit_iso_image_to_screen_position (&ToGroundBlocks[YELLOW_LOW], Target_Rect.x, Target_Rect.y);
 
 	// the middle column
 	Set_Rect(Target_Rect, xoffs + MID_OFFS_X, yoffs + MID_OFFS_Y, 0, 0);
 
-	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToLeaderBlock, Target_Rect.x, Target_Rect.y);
-	else
-		our_SDL_blit_surface_wrapper(ToLeaderBlock.surface, NULL, Screen, &Target_Rect);
+	blit_iso_image_to_screen_position (&ToLeaderBlock, Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += LEADERBLOCKHEIGHT;
 	for (i = 0; i < 12; i++, Target_Rect.y += COLUMNBLOCKHEIGHT) {
-		if (use_open_gl)
-			draw_gl_textured_quad_at_screen_position(&ToColumnBlock, Target_Rect.x, Target_Rect.y);
-		else
-			our_SDL_blit_surface_wrapper(ToColumnBlock.surface, NULL, Screen, &Target_Rect);
+		blit_iso_image_to_screen_position (&ToColumnBlock, Target_Rect.x, Target_Rect.y);
 	}
 
 	// the right column
 	Set_Rect(Target_Rect, xoffs + RIGHT_OFFS_X, yoffs + RIGHT_OFFS_Y, 0, 0);
-	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[PURPLE_HIGH], Target_Rect.x, Target_Rect.y);
-	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[PURPLE_HIGH].surface, NULL, Screen, &Target_Rect);
+	blit_iso_image_to_screen_position (&ToGroundBlocks[PURPLE_HIGH], Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++, Target_Rect.y += GROUNDBLOCKHEIGHT) {
-		if (use_open_gl)
-			draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[PURPLE_MIDDLE], Target_Rect.x, Target_Rect.y);
-		else
-			our_SDL_blit_surface_wrapper(ToGroundBlocks[PURPLE_MIDDLE].surface, NULL, Screen, &Target_Rect);
+		blit_iso_image_to_screen_position (&ToGroundBlocks[PURPLE_MIDDLE], Target_Rect.x, Target_Rect.y);
 	}
 
-	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&ToGroundBlocks[PURPLE_LOW], Target_Rect.x, Target_Rect.y);
-	else
-		our_SDL_blit_surface_wrapper(ToGroundBlocks[PURPLE_LOW].surface, NULL, Screen, &Target_Rect);
+	blit_iso_image_to_screen_position (&ToGroundBlocks[PURPLE_LOW], Target_Rect.x, Target_Rect.y);
 
 	// Fill the leader-LED with its color 
 	Set_Rect(Target_Rect, xoffs + LEADERLED_X, yoffs + LEADERLED_Y, 0, 0);
-	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
-	else
-		our_SDL_blit_surface_wrapper(FillBlocks[LeaderColor].surface, NULL, Screen, &Target_Rect);
+	blit_iso_image_to_screen_position (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += FILL_BLOCK_HEIGHT;
-	if (use_open_gl)
-		draw_gl_textured_quad_at_screen_position(&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
-	else
-		our_SDL_blit_surface_wrapper(FillBlocks[LeaderColor].surface, NULL, Screen, &Target_Rect);
+	blit_iso_image_to_screen_position (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
 
 	// Fill the display column with its colors 
 	for (i = 0; i < NUM_LINES; i++) {
 		Set_Rect(Target_Rect, xoffs + LEDCOLUMN_X, yoffs + LEDCOLUMN_Y + i * (FILL_BLOCK_HEIGHT + 2), 0, 0);
-		if (use_open_gl)
-			draw_gl_textured_quad_at_screen_position(&FillBlocks[DisplayColumn[i]], Target_Rect.x, Target_Rect.y);
-		else
-			our_SDL_blit_surface_wrapper(FillBlocks[DisplayColumn[i]].surface, NULL, Screen, &Target_Rect);
+		blit_iso_image_to_screen_position (&FillBlocks[DisplayColumn[i]], Target_Rect.x, Target_Rect.y);
 	}
 
 	// Show the yellow playground 
@@ -1094,10 +1061,7 @@ static void ShowPlayground(void)
 			Set_Rect(Target_Rect, xoffs + PlaygroundStart[YELLOW].x + i * TO_BLOCKLEN,
 				 yoffs + PlaygroundStart[YELLOW].y + j * TO_BLOCKHEIGHT, 0, 0);
 			block = ToPlayground[YELLOW][i][j] + ActivationMap[YELLOW][i][j] * TO_BLOCKS;
-			if (use_open_gl)
-				draw_gl_textured_quad_at_screen_position(&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
-			else
-				our_SDL_blit_surface_wrapper(ToGameBlocks[block].surface, NULL, Screen, &Target_Rect);
+			blit_iso_image_to_screen_position (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
 		}
 
 	// Show the purple playground 
@@ -1107,10 +1071,7 @@ static void ShowPlayground(void)
 				 xoffs + PlaygroundStart[PURPLE].x + (NUM_LAYERS - i - 2) * TO_BLOCKLEN,
 				 yoffs + PlaygroundStart[PURPLE].y + j * TO_BLOCKHEIGHT, 0, 0);
 			block = ToPlayground[PURPLE][i][j] + (NUM_PHASES + ActivationMap[PURPLE][i][j]) * TO_BLOCKS;
-			if (use_open_gl)
-				draw_gl_textured_quad_at_screen_position(&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
-			else
-				our_SDL_blit_surface_wrapper(ToGameBlocks[block].surface, NULL, Screen, &Target_Rect);
+			blit_iso_image_to_screen_position (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
 		}
 
 	// Show the capsules left for each player 
@@ -1123,19 +1084,13 @@ static void ShowPlayground(void)
 		Set_Rect(Target_Rect, xoffs + CurCapsuleStart[color].x,
 			 yoffs + CurCapsuleStart[color].y + CapsuleCurRow[color] * (CAPSULE_HEIGHT + 2), 0, 0);
 		if (NumCapsules[player]) {
-			if (use_open_gl)
-				draw_gl_textured_quad_at_screen_position(&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
-			else
-				our_SDL_blit_surface_wrapper(CapsuleBlocks[color].surface, NULL, Screen, &Target_Rect);
+			blit_iso_image_to_screen_position (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
 		}
 
 		for (i = 0; i < NumCapsules[player] - 1; i++) {
 			Set_Rect(Target_Rect, xoffs + LeftCapsulesStart[color].x,
 				 yoffs + LeftCapsulesStart[color].y + i * CAPSULE_HEIGHT, 0, 0);
-			if (use_open_gl)
-				draw_gl_textured_quad_at_screen_position(&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
-			else
-				our_SDL_blit_surface_wrapper(CapsuleBlocks[color].surface, NULL, Screen, &Target_Rect);
+			blit_iso_image_to_screen_position (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
 		}		// for capsules 
 	}			// for player 
 

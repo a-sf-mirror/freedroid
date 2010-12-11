@@ -256,14 +256,7 @@ static void display_automap_compass()
 		load_iso_image(&compass, "compass.png", FALSE);
 	}
 
-	if (use_open_gl) {
-		draw_gl_textured_quad_at_screen_position(&compass, GameConfig.screen_width - compass.original_image_width - 10, 40);
-	} else {
-		SDL_Rect dr = {.x = GameConfig.screen_width - compass.original_image_width -10,.y = 40,.w = compass.original_image_width,.h =
-			    compass.original_image_height };
-		our_SDL_blit_surface_wrapper(compass.surface, NULL, Screen, &dr);
-	}
-
+	blit_iso_image_to_screen_position(&compass, GameConfig.screen_width - compass.original_image_width - 10, 40);
 }
 
 /**

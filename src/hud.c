@@ -318,11 +318,8 @@ void ShowCurrentSkill(void)
 
 	LoadOneSkillSurfaceIfNotYetLoaded(Me.readied_skill);
 
-	if (use_open_gl) {
-		draw_gl_textured_quad_at_screen_position(&SpellSkillMap[Me.readied_skill].icon_surface, Target_Rect.x, Target_Rect.y);
-	} else
-		our_SDL_blit_surface_wrapper(SpellSkillMap[Me.readied_skill].icon_surface.surface, NULL, Screen, &Target_Rect);
-};				// void ShowCurrentSkill ( void )
+	blit_iso_image_to_screen_position(&SpellSkillMap[Me.readied_skill].icon_surface, Target_Rect.x, Target_Rect.y);
+}
 
 /**
  * This function displays the icon of the current readied weapon, 
