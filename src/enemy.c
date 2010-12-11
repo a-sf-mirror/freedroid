@@ -732,16 +732,6 @@ static void set_new_waypointless_walk_target(enemy * ThisRobot, moderately_finep
 };				// void set_new_waypointless_walk_target ( enemy* ThisRobot )
 
 /**
- * This function tells if a given level is active in the sense that there
- * is one ore more player character on the level, so that need exists to
- * move all the enemies on this level etc.
- */
-int IsActiveLevel(int levelnum)
-{
-	return (Me.energy > 0 && Me.pos.z == levelnum);
-};				// int IsActiveLevel ( int levelnum ) 
-
-/**
  * When a (hostile) robot is defeated and explodes, it will drop some 
  * treasure, i.e. stuff it had or parts that it consisted of or similar
  * things.  Maybe there will even be some extra magical treasures if the
