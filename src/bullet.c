@@ -326,7 +326,6 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 	NewBlast->type = type;
 	NewBlast->phase = 0;
 
-	NewBlast->MessageWasDone = 0;
 	NewBlast->damage_per_second = dmg;
 
 	if (type == DROIDBLAST) {
@@ -932,15 +931,10 @@ void CheckBlastCollisions(int num)
 	// 
 	update_virtual_position(&blast_vpos, &CurBlast->pos, Me.pos.z);
 	if (blast_vpos.z != -1) {
-		if ((Me.energy > 0) && (fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
+		if ((fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
 			hit_tux(CurBlast->damage_per_second * Frame_Time(), -100);
-			// So the influencer got some damage from the hot blast
-			// Now most likely, he then will also say so :)
-			if (!CurBlast->MessageWasDone) {
-				CurBlast->MessageWasDone = TRUE;
-			}
 		}
 	}
-};				// CheckBlastCollisions( ... )
+}
 
 #undef _bullet_c

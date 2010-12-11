@@ -717,7 +717,6 @@ typedef struct blast {
 	gps pos;
 	int type;
 	float phase;
-	int MessageWasDone;
 	float damage_per_second;
 } blast, *Blast;
 
