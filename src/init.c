@@ -649,11 +649,7 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 				    &Druidmap[RobotIndex].experience_reward, EndOfDataPointer);
 
 		// Now we read in the monster level = maximum treasure chest to pick from
-		ReadValueFromString(RobotPointer, "Drops item class=", "%hd", &Druidmap[RobotIndex].monster_level, EndOfDataPointer);
-
-		// Now we read in the number of additional magical items this monster type must drop
-		ReadValueFromStringWithDefault(RobotPointer, "Force how many additional magic items to be dropped=", "%hd", "0",
-					       &Druidmap[RobotIndex].forced_magic_items, EndOfDataPointer);
+		ReadValueFromString(RobotPointer, "Drops item class=", "%hd", &Druidmap[RobotIndex].drop_class, EndOfDataPointer);
 
 		char *tmp_item_name = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
 		Druidmap[RobotIndex].weapon_item.type = GetItemIndexByName(tmp_item_name);

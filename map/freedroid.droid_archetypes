@@ -658,7 +658,6 @@ Drops item class=8
 Maximum energy of this droid: 120
 Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 1500
-Force how many additional magic items to be dropped=1
 Aggression distance of this droid=16
 Time spent eyeing Tux=0.25
 Weapon item="Droid 883 Exterminator"

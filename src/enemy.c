@@ -791,9 +791,9 @@ Item to be dropped (forced for this bot) is of illegal type!", PLEASE_INFORM, IS
 	// there is still some chance, that the enemy will have (and drop) some other
 	// valuables, that the Tux can then collect afterwards.
 	//
-	DropRandomItem(ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, Druidmap[ThisRobot->type].monster_level, FALSE);
+	DropRandomItem(ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, Druidmap[ThisRobot->type].drop_class, FALSE);
 
-};				// void DropEnemyTreasure ( Enemy ThisRobot )
+}
 
 /**
  *

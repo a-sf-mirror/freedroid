@@ -398,8 +398,7 @@ typedef struct druidspec {
 	float aggression_distance;
 	float time_spent_eyeing_tux;
 
-	short int monster_level;
-	short int forced_magic_items;
+	short int drop_class;
 
 	item weapon_item;
 
