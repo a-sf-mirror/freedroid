@@ -40,16 +40,6 @@
 #define DROIDHITDIST2 (DROIDHITDIST*DROIDHITDIST)
 
 /**
- * Hit/miss rules depend on the level of the enemy, among other things.
- * This function computes the multiplier used in those rules.
- */
-static float compute_hit_multiplier(int level)
-{
-	if (level < 1 || level > 9) {  ErrorMessage(__FUNCTION__, "Requested non existing level %d.\n", PLEASE_INFORM, IS_WARNING_ONLY, level); return 1.0; }
-	return  HitBotMultiplierTable[level - 1];
-}
-
-/**
  *
  *
  */
@@ -169,7 +159,7 @@ void DoMeleeDamage(void)
 				continue;
 			}
 
-			if (MyRandom(100) < compute_hit_multiplier(Druidmap[tg->type].monster_level) * CurMelS->to_hit ) {
+			if (MyRandom(100) < CurMelS->to_hit) {
 				hit_enemy(tg, CurMelS->damage, CurMelS->mine ? 1 : 0, CurMelS->owner, CurMelS->mine ? 1 : 0);
 			}
 
