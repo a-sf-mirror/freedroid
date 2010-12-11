@@ -782,7 +782,7 @@ static void prepare_text_window_content(struct auto_string *str)
 void show_current_text_banner(void)
 {
 	SDL_Rect banner_rect;
-	static struct auto_string *txt;
+	static struct auto_string *txt = NULL;
 	if (txt == NULL)
 		txt = alloc_autostr(200);
 
@@ -902,21 +902,72 @@ void init_message_log(void)
 }
 
 /**
- * This function updates the various displays that are usually blitted
- * right into the combat window, like energy and status meter and that...
+ * Show the texts that are usually shown in the top left corner e.g. the FPS.
  */
-void DisplayBanner(void)
+static void show_top_left_text(void)
+{
+	SDL_Rect clip;
+	int minutes;
+	int seconds;
+	int i;
+	int remaining_bots;
+	static struct auto_string *txt;
+	if (txt == NULL)
+		txt = alloc_autostr(200);
+	autostr_printf(txt, "");
+
+	// Show FPS
+	if (GameConfig.Draw_Framerate)
+		autostr_append(txt, _("FPS: %d\n"), get_current_fps());
+
+	// Show quest information for current level
+	for (i = 0; i < MAX_MISSIONS_IN_GAME; i++) {
+		if (!Me.AllMissions[i].MissionWasAssigned)
+			continue;
+
+		if (Me.AllMissions[i].MustLiveTime != (-1)) {
+			minutes = floor((Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) / 60);
+			seconds = rintf(Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) - 60 * minutes;
+			if (minutes < 0) {
+				minutes = 0;
+				seconds = 0;
+			}
+			autostr_append(txt, _("Time to hold out still: %2d:%2d\n"), minutes, seconds);
+		}
+
+		if ((Me.AllMissions[i].must_clear_first_level == Me.pos.z) || (Me.AllMissions[i].must_clear_second_level == Me.pos.z)) {
+			remaining_bots = 0;
+
+			enemy *erot, *nerot;
+			BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
+				if ((erot->pos.z == Me.pos.z) && (!is_friendly(erot->faction, FACTION_SELF)))
+					remaining_bots++;
+
+			}
+			autostr_append(txt, _("Bots remaining on level: %d\n"), remaining_bots);
+		}
+	}
+
+	clip.x = User_Rect.x + 1;
+	clip.y = User_Rect.y + 1;
+	clip.w = GameConfig.screen_width;
+	clip.h = GameConfig.screen_height;
+
+	SetCurrentFont(FPS_Display_BFont);
+	DisplayText(txt->value, clip.x, clip.y, &clip, 1.0);
+}
+
+/**
+ * Show the texts that is written in the top right corner, like the game time
+ * and current position.
+ */
+static void show_top_right_text(void)
 {
 	char level_name_and_time[1000];
 	char temp_text[1000];
 
-	SDL_SetClipRect(Screen, NULL);
-
-	show_current_text_banner();
-
 	// We display the name of the current level and the current time inside
 	// the game.
-	//
 	if (!(GameConfig.CharacterScreen_Visible || GameConfig.SkillScreen_Visible)) {
 		if (GameConfig.Draw_Position) {
 			sprintf(level_name_and_time, "%s (%03.1f:%03.1f:%d)  ",
@@ -936,7 +987,19 @@ void DisplayBanner(void)
 		}
 		RightPutStringFont(Screen, FPS_Display_BFont, 2, level_name_and_time);
 	}
-};				// void DisplayBanner( void ) 
+}
+
+/**
+ * Show all texts and banners that should be blitted right inside the combat
+ * window.
+ */
+void show_texts_and_banner(void) {
+	SDL_SetClipRect(Screen, NULL);
+	show_current_text_banner();
+	show_top_left_text();
+	show_top_right_text();
+	DisplayBigScreenMessage();
+}
 
 /**
  * This function should toggle the visibility of the inventory/character

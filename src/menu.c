@@ -843,7 +843,6 @@ void InitiateMenu(int background_code)
 	SDL_SetClipRect(Screen, NULL);
 
 	if (background_code == (-1)) {
-		DisplayBanner();
 		AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 	} else {
 		// DisplayImage ( find_file ( BackgroundToUse , GRAPHICS_DIR, FALSE ) );

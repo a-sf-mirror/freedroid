@@ -223,77 +223,6 @@ void PutMiscellaneousSpellEffects(void)
 
 };				// void PutMiscellaneousSpellEffects ( void )
 
-/**
- * Calculate the current FPS and append it to the specified auto_string.
- */
-static void print_framerate(struct auto_string *txt)
-{
-	static float TimeSinceLastFPSUpdate = 10;
-	static int Frames_Counted = 1;
-	static int FPS_Displayed;
-
-	if (GameConfig.Draw_Framerate) {
-		TimeSinceLastFPSUpdate += Frame_Time();
-		Frames_Counted++;
-		if (Frames_Counted > 50) {
-			FPS_Displayed = Frames_Counted / TimeSinceLastFPSUpdate;
-			TimeSinceLastFPSUpdate = 0;
-			Frames_Counted = 0;
-		}
-		autostr_append(txt, _("FPS: %d\n"), FPS_Displayed);
-	}
-}
-
-/**
- * The combat window can also contain some text, like the FPS and our current
- * position.  This function puts those texts onto the screen.
- */
-void ShowCombatScreenTexts(int mask)
-{
-	int minutes;
-	int seconds;
-	int i;
-	int remaining_bots;
-	static struct auto_string *txt;
-	if (txt == NULL)
-		txt = alloc_autostr(200);
-	autostr_printf(txt, "");
-
-	print_framerate(txt);
-
-	for (i = 0; i < MAX_MISSIONS_IN_GAME; i++) {
-		if (!Me.AllMissions[i].MissionWasAssigned)
-			continue;
-
-		if (Me.AllMissions[i].MustLiveTime != (-1)) {
-			minutes = floor((Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) / 60);
-			seconds = rintf(Me.AllMissions[i].MustLiveTime - Me.MissionTimeElapsed) - 60 * minutes;
-			if (minutes < 0) {
-				minutes = 0;
-				seconds = 0;
-			}
-			autostr_append(txt, _("Time to hold out still: %2d:%2d\n"), minutes, seconds);
-		}
-
-		if ((Me.AllMissions[i].must_clear_first_level == Me.pos.z) || (Me.AllMissions[i].must_clear_second_level == Me.pos.z)) {
-			remaining_bots = 0;
-
-			enemy *erot, *nerot;
-			BROWSE_ALIVE_BOTS_SAFE(erot, nerot) {
-				if ((erot->pos.z == Me.pos.z) && (!is_friendly(erot->faction, FACTION_SELF)))
-					remaining_bots++;
-
-			}
-			autostr_append(txt, _("Bots remaining on level: %d\n"), remaining_bots);
-		}
-	}
-
-	SetCurrentFont(FPS_Display_BFont);
-	DisplayText(txt->value, User_Rect.x + 1, User_Rect.y + 1, NULL, 1.0);
-
-	DisplayBigScreenMessage();
-}
-
 static void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *ColStart, int *ColEnd)
 {
 	float zf = lvledit_zoomfact();
@@ -2047,15 +1976,13 @@ void AssembleCombatPicture(int mask)
 
 	display_automap();
 
-	ShowCombatScreenTexts(mask);
-
 	if (XPressed() || GameConfig.show_item_labels) {
 		update_item_text_slot_positions();
 		blit_all_item_slots(mask);
 	}
+
 	// Here are some more things, that are not needed in the level editor
 	// view...
-	//
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
 		ShowItemAlarm();
 		blit_special_background(HUD_BACKGROUND_CODE);
@@ -2073,7 +2000,7 @@ void AssembleCombatPicture(int mask)
 		show_inventory_screen();
 		DisplayButtons();
 		if (!GameOver)
-			DisplayBanner();
+			show_texts_and_banner();
 	}
 
 	if (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) {

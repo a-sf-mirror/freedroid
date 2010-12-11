@@ -786,7 +786,6 @@ void Pause(void)
 			Terminate(0);
 		}
 
-		DisplayBanner();
 		AssembleCombatPicture(0);
 		if (!cheese)
 			CenteredPutStringFont(Screen, Menu_BFont, 200, _("GAME PAUSED"));
@@ -892,8 +891,26 @@ float Frame_Time(void)
 	Rate_To_Be_Returned = (1.0 / FPSover1);
 
 	return Rate_To_Be_Returned;
+}
 
-};				// float Frame_Time ( void )
+/**
+ * Calculate the current FPS and return it.
+ */
+int get_current_fps()
+{
+	static float time_since_last_fps_update = 10;
+	static int frames_counted = 0;
+	static int current_fps = 0;
+
+	time_since_last_fps_update += Frame_Time();
+	frames_counted++;
+	if (frames_counted > 50) {
+		current_fps = frames_counted / time_since_last_fps_update;
+		time_since_last_fps_update = 0;
+		frames_counted = 0;
+	}
+	return current_fps;
+}
 
 /**
  * \brief Limits the framerate if the limit_framerate options is set.

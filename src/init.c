@@ -1830,7 +1830,7 @@ void ThouArtDefeated(void)
 		StartTakingTimeForFPSCalculation();
 
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
-		DisplayBanner();
+		show_texts_and_banner();
 		animate_blasts();
 		MoveBullets();
 		move_enemies();
@@ -1872,7 +1872,7 @@ void ThouHastWon(void)
 		StartTakingTimeForFPSCalculation();
 
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
-		DisplayBanner();
+		show_texts_and_banner();
 		animate_blasts();
 		MoveBullets();
 		move_enemies();
