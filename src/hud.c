@@ -899,6 +899,26 @@ void init_message_log(void)
 }
 
 /**
+ * Calculate the current FPS and return it.
+ */
+static int get_current_fps()
+{
+	static float time_since_last_fps_update = 10;
+	static int frames_counted = 0;
+	static int current_fps = 0;
+
+	time_since_last_fps_update += Frame_Time();
+	frames_counted++;
+	if (frames_counted > 50) {
+		current_fps = frames_counted / time_since_last_fps_update;
+		time_since_last_fps_update = 0;
+		frames_counted = 0;
+	}
+	return current_fps;
+}
+
+
+/**
  * Show the texts that are usually shown in the top left corner e.g. the FPS.
  */
 static void show_top_left_text(void)
