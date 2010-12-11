@@ -671,7 +671,7 @@ typedef struct bulletspec {
 typedef struct bullet {
 	short int type;
 	unsigned char phase;
-	signed char mine;
+	char mine;
 	gps pos;
 	moderately_finepoint speed;
 	short int time_in_frames;	// how long does the bullet exist, measured in number of frames
