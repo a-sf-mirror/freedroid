@@ -932,7 +932,8 @@ void CheckBlastCollisions(int num)
 	update_virtual_position(&blast_vpos, &CurBlast->pos, Me.pos.z);
 	if (blast_vpos.z != -1) {
 		if ((fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
-			hit_tux(CurBlast->damage_per_second * Frame_Time(), -100);
+			float real_damage = CurBlast->damage_per_second * Frame_Time() * get_player_damage_factor();
+			hit_tux(real_damage, -100);
 		}
 	}
 }
