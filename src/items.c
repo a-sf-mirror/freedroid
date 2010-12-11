@@ -815,11 +815,6 @@ void ApplyItem(item * CurItem)
 		failed_usage = improve_program(get_program_index_with_name("Repair equipment"));
 	}
 
-	if (Me.energy > Me.maxenergy)
-		Me.energy = Me.maxenergy;
-	if (Me.temperature < 0)
-		Me.temperature = 0;
-
 	play_item_sound(CurItem->type);
 
 	// In some cases the item concerned is a one-shot-device like a health potion, which should
