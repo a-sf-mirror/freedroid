@@ -143,6 +143,10 @@ static void mapgen_bench()
 	l.random_dungeon = 2;
 	l.teleport_pair = 0;
 	l.Levelname = "mapgen test level";
+	l.levelnum = 0;
+
+	curShip.AllLevels[0] = &l;
+
 	for (i = 0; i < l.ylen; i++)
 		l.map[i] = (map_tile*)MyMalloc(sizeof(map_tile) * l.xlen);
 	dynarray_init(&l.obstacle_extensions, 0, sizeof(struct obstacle_extension));
