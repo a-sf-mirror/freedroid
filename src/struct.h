@@ -717,7 +717,7 @@ typedef struct blast {
 	int type;
 	float phase;
 	float damage_per_second;
-} blast, *Blast;
+} blast;
 
 typedef struct spell_active {
 	int img_type;		// what type of spell is active?

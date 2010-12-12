@@ -269,7 +269,7 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 void StartBlast(float x, float y, int level, int type, int dmg)
 {
 	int i;
-	Blast NewBlast;
+	blast *NewBlast;
 
 	// Resolve blast real position, if possible
 	//
@@ -335,7 +335,7 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 void animate_blasts(void)
 {
 	int i;
-	Blast CurBlast = AllBlasts;
+	blast *CurBlast = AllBlasts;
 
 	for (i = 0; i < MAXBLASTS; i++, CurBlast++) {
 		if (CurBlast->type != INFOUT) {
@@ -857,7 +857,7 @@ void CheckBulletCollisions(int num)
 void CheckBlastCollisions(int num)
 {
 	int i;
-	Blast CurBlast = &(AllBlasts[num]);
+	blast *CurBlast = &(AllBlasts[num]);
 	static const float Blast_Radius = 1.5;
 
 	// At first, we check for collisions of this blast with all bullets 

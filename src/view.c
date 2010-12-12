@@ -3821,7 +3821,7 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
  */
 void PutBlast(int Blast_number)
 {
-	Blast CurBlast = &AllBlasts[Blast_number];
+	blast *CurBlast = &AllBlasts[Blast_number];
 
 	// If the blast is already long dead, we need not do anything else here
 	if (CurBlast->type == INFOUT)
