@@ -116,7 +116,8 @@ void LoadAndShowStats(char *CoreFilename)
 Freedroid was unable to determine the time of the last modification on\n\
 your saved game file.\n\
 This is either a bug in Freedroid or an indication, that the directory\n\
-or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFORM, IS_FATAL);
+or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		return;
 	};
 
 	LocalTimeSplitup = localtime(&(FileInfoBuffer.st_mtime));
