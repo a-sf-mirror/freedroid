@@ -446,3 +446,25 @@ void calculate_item_bonuses(item *it)
 		}
 	}
 }
+
+/**
+ * \brief Calculates the number of used sockets.
+ *
+ * Can be used to count and return the number of used sockets.
+ * \param it Item.
+ * \return Number of used sockets
+ */
+int count_used_sockets(item *it)
+{
+	int i;
+	int count = 0;
+	const char *addon;
+
+	for (i = 0; i < it->upgrade_sockets.size; i++) {
+		addon = it->upgrade_sockets.arr[i].addon;
+		if (addon)	
+			count++;
+	}
+
+	return count;
+}

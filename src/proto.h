@@ -510,6 +510,7 @@ void add_addon_spec(struct addon_spec *);
 void get_item_bonus_string(item *, const char *, struct auto_string *);
 void print_addon_description(struct addon_spec *, struct auto_string *);
 void calculate_item_bonuses(item *);
+int count_used_sockets(item *);
 
 // character.c
 void DisplayButtons(void);

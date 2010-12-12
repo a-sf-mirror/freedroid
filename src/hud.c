@@ -218,7 +218,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 
 	// Socket count
 	if (item->upgrade_sockets.size) {
-		autostr_append(str, _("Sockets: %d\n"), item->upgrade_sockets.size);
+		autostr_append(str, _("Sockets: used %d/%d\n"), count_used_sockets(item), 
+							     item->upgrade_sockets.size);
 	}
 
 	// Item bonuses
