@@ -213,8 +213,7 @@ void check_for_new_experience_level_reached()
 };				// void check_for_new_experience_level_reached ( )
 
 /**
- *
- *
+ * Update all primary stats.
  */
 void update_all_primary_stats()
 {
@@ -258,6 +257,16 @@ void update_all_primary_stats()
 			give_item(equipment[i]);
 		}
 	}
+
+	// Ensure the effective primary stats never drops below 1
+	if (Me.Strength < 1)
+		Me.Strength = 1;
+	if (Me.Dexterity < 1)
+		Me.Dexterity = 1;
+	if (Me.Magic < 1)
+		Me.Magic = 1;
+	if (Me.Vitality < 1)
+		Me.Vitality = 1;
 }
 
 /**
