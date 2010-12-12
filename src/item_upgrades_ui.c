@@ -94,7 +94,6 @@ static const struct upgrade_ui_rects rects = {
 static void load_images()
 {
 	int i;
-	char fpath[2048];
 	const char *fnames[IMAGE_MAX] = {
 		"item_upgrade/socket_none.png",
 		"item_upgrade/socket_mechanical.png",
@@ -105,9 +104,8 @@ static void load_images()
 	};
 
 	for (i = 0; i < IMAGE_MAX; i++) {
-		find_file(fnames[i], GRAPHICS_DIR, fpath, FALSE);
 		memset(&images[i], 0, sizeof(iso_image));
-		get_iso_image_from_file_and_path(fpath, &images[i], FALSE);
+		load_iso_image(&images[i], fnames[i], FALSE);
 	}
 }
 
