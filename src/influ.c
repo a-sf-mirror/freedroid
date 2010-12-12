@@ -790,7 +790,15 @@ void animate_tux()
 #define STEP_TIME (0.28)
 	static float step_countdown = 0;
 
-	// First we handle the case of just getting hit
+	// If Tux is paralyzed, show him as standing still.
+	if (Me.paralyze_duration) {
+		Me.walk_cycle_phase = 0.0;
+		Me.phase = tux_anim.standing_keyframe;
+
+		return;
+	}
+
+	// Handle the case of Tux just getting hit
 	//
 	// Note: We do not yet have keyframes for such an animation, so those
 	// commented lines are only a place-holder for future extension.
