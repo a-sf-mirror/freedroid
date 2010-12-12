@@ -238,10 +238,10 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 	// cause later, after the bullet is deleted, it will be hard to know
 	// the correct location ;)
 	//
-	int type = (CurBullet->type == 4) ? OWNBLAST : BULLETBLAST;
+	int type = (CurBullet->type == 4) ? EXTERMINATORBLAST : BULLETBLAST;
 
 	if (ShallWeStartABlast)
-		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, type, (type == OWNBLAST) ? (CurBullet->damage * 1) : 2.0);
+		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, type, CurBullet->damage, CurBullet->faction);
 
 	CurBullet->type = INFOUT;
 	CurBullet->time_in_seconds = 0;
@@ -266,7 +266,7 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
  * OWNBLAST          (not implemented)
  *
  */
-void StartBlast(float x, float y, int level, int type, int dmg)
+void StartBlast(float x, float y, int level, int type, int dmg, int faction)
 {
 	int i;
 	blast *NewBlast;
@@ -318,11 +318,13 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 
 	NewBlast->damage_per_second = dmg;
 
+	NewBlast->faction = faction;
+
 	if (type == DROIDBLAST) {
 		DruidBlastSound();
 	}
 
-	if (type == OWNBLAST) {
+	if (type == EXTERMINATORBLAST) {
 		ExterminatorBlastSound();
 	}
 
@@ -359,10 +361,8 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 				DeleteBlast(i);
 				continue;
 			}
-			// Druid blasts are dangerous, so we check if someone gets
-			// hurt by this particular droid explosion
-			//
-			if (CurBlast->type == DROIDBLAST || CurBlast->type == OWNBLAST)
+			
+			if (CurBlast->type == DROIDBLAST || CurBlast->type == EXTERMINATORBLAST)
 				CheckBlastCollisions(i);
 
 			// And now we advance the phase of the blast according to the
@@ -597,7 +597,7 @@ void check_bullet_background_collisions(bullet * CurBullet, int num)
 	// Check for collision with background
 	if (!SinglePointColldet(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, &FlyablePassFilter)) {
 		if (CurBullet->ignore_wall_collisions) {
-			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0);
+			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0, CurBullet->faction);
 		} else {
 			DeleteBullet(num, TRUE);	// we want a bullet-explosion
 			return;
@@ -705,7 +705,7 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 		// be completely deleted of course, with the same small explosion as well
 		//
 		if (CurBullet->pass_through_hit_bodies)
-			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0);
+			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0, CurBullet->faction);
 		else
 			DeleteBullet(num, TRUE);	// we want a bullet-explosion
 
@@ -861,7 +861,7 @@ void CheckBlastCollisions(int num)
 	static const float Blast_Radius = 1.5;
 
 	// At first, we check for collisions of this blast with all bullets 
-	//
+	//XXX probably useless and performance-impacting
 	if (CurBlast->phase <= 4) {
 		for (i = 0; i < MAXBULLETS; i++) {
 			if (AllBullets[i].type == INFOUT)
@@ -911,19 +911,23 @@ void CheckBlastCollisions(int num)
 			if (fabsf(erot->pos.y - blast_vpos.y) >= Blast_Radius)
 				continue;
 
-			/* we have no support for blast ownership yet, so we give no XP *and* don't know who killed the guy */
-			hit_enemy(erot, CurBlast->damage_per_second * Frame_Time(), 0, -1, 0);
+			if (is_friendly(CurBlast->faction, erot->faction))
+				continue;
+
+			hit_enemy(erot, CurBlast->damage_per_second * Frame_Time(), 0, -1, CurBlast->faction == FACTION_SELF ? 1 : 0);
 		}
 	}
 
 	// Now we check, if perhaps the influencer has stepped into the area
 	// of effect of this one blast.  Then he'll get burnt ;)
-	// 
-	update_virtual_position(&blast_vpos, &CurBlast->pos, Me.pos.z);
-	if (blast_vpos.z != -1) {
-		if ((fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
-			float real_damage = CurBlast->damage_per_second * Frame_Time() * get_player_damage_factor();
-			hit_tux(real_damage, -100);
+	//
+	if (!is_friendly(CurBlast->faction, FACTION_SELF)) {	
+		update_virtual_position(&blast_vpos, &CurBlast->pos, Me.pos.z);
+		if (blast_vpos.z != -1) {
+			if ((fabsf(Me.pos.x - blast_vpos.x) < Blast_Radius) && (fabsf(Me.pos.y - blast_vpos.y) < Blast_Radius)) {
+				float real_damage = CurBlast->damage_per_second * Frame_Time() * get_player_damage_factor();
+				hit_tux(real_damage, -100);
+			}
 		}
 	}
 }

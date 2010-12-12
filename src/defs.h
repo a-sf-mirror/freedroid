@@ -780,14 +780,9 @@ enum _bullets {
 enum _explosions {
 	BULLETBLAST = 0,
 	DROIDBLAST,
-	OWNBLAST
+	EXTERMINATORBLAST,
 };
 
-#define BLINKENERGY 25
-
-//--------------------
-// possible states of the influencer as displayed in the top status banner
-//
 enum _status {
 	INFOUT = -30,
 };

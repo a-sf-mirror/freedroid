@@ -717,6 +717,7 @@ typedef struct blast {
 	int type;
 	float phase;
 	float damage_per_second;
+	int faction;
 } blast;
 
 typedef struct spell_active {

@@ -99,7 +99,7 @@ void RotateVectorByAngle(moderately_finepoint * vector, float rot_angle);
 void MoveBullets(void);
 void DoMeleeDamage(void);
 void DeleteBullet(int num, int StartBlast);
-void StartBlast(float x, float y, int level, int type, int dmg);
+void StartBlast(float x, float y, int level, int type, int dmg, int faction);
 void animate_blasts(void);
 void DeleteBlast(int num);
 void MoveActiveSpells(void);
