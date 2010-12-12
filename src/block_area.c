@@ -82,7 +82,6 @@ void init_obstacle_data(void)
 		// collision information for obstacles...
 		//
 		memcpy(&(obstacle_map[i].image), &(empty_iso_image), sizeof(iso_image));
-		obstacle_map[i].image_loaded = 0;
 
 		obstacle_map[i].flags |= BLOCKS_VISION_TOO;
 		block_2param(i, 1.2, 1.2);	// standard_wall_thickness 

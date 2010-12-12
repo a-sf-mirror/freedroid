@@ -197,14 +197,10 @@ void try_to_load_ingame_item_surface(int item_type)
 	char fpath[2048];
 	SDL_Surface *Whole_Image;
 
-	// First we handle a case, that shouldn't really be happening due to
-	// calling function checking already.  But it can't hurt to always double-check
-	//
-	if ((ItemMap[item_type].inv_image.ingame_iso_image.surface != NULL)
-	    || (ItemMap[item_type].inv_image.ingame_iso_image.texture_has_been_created)) {
-		ErrorMessage(__FUNCTION__, "\
-Surface for item type %d has been already loaded", PLEASE_INFORM, IS_FATAL, item_type);
+	if (iso_image_loaded(&ItemMap[item_type].inv_image.ingame_iso_image)) {
+		return;
 	}
+
 	// Now we should try to load the real in-game item surface...
 	// That will be added later...
 	//
@@ -914,7 +910,7 @@ void Load_Enemy_Surfaces(void)
  */
 iso_image *get_obstacle_image(int type)
 {
-	if (!obstacle_map[type].image_loaded) {
+	if (!iso_image_loaded(&obstacle_map[type].image)) {
 		//printf("Just in time loading for obstacle %d\n", type);
 		load_obstacle(type);
 	}
@@ -928,45 +924,31 @@ iso_image *get_obstacle_image(int type)
  */
 void load_obstacle(int i)
 {
-	char fpath[2048];
-	char ConstructedFileName[2000];
+	char fpath[1024];
 	char shadow_file_name[2000];
 
-	if (obstacle_map[i].image_loaded) {
+	if (iso_image_loaded(&obstacle_map[i].image)) {
 		ErrorMessage(__FUNCTION__, "Tried to load image for obstacle type %d that was already loaded.\n", PLEASE_INFORM,
 			     IS_WARNING_ONLY, i);
 		return;
 	}
+
 	// At first we construct the file name of the single tile file we are about to load...
-	//
-	strcpy(ConstructedFileName, "obstacles/");
-	strcat(ConstructedFileName, obstacle_map[i].filename);
-	find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
-
-	get_iso_image_from_file_and_path(fpath, &obstacle_map[i].image, TRUE);
-	if (use_open_gl) {
-		make_texture_out_of_surface(&(obstacle_map[i].image));
-	}
-
-	obstacle_map[i].image_loaded = 1;
+	sprintf(fpath, "obstacles/%s", obstacle_map[i].filename);
+	load_iso_image(&obstacle_map[i].image, fpath, TRUE);
 
 	// Maybe the obstacle in question also has a shadow image?  In that
-	// case we should load the shadow image now.  Otherwise we might just
-	// mark the shadow image as not in use, so we won't face problems with
-	// missing shadow images inside the code
+	// case we should load the shadow image now. 
 	//
-	// We need a new file name of course:  (this assumes, that the filename
-	// has been constructed above already...
-	if (strlen(ConstructedFileName) >= 8) {
-		strcpy(shadow_file_name, ConstructedFileName);
+	// We need a new file name of course.
+	if (strlen(fpath) >= 8) {
+		strcpy(shadow_file_name, fpath);
 		shadow_file_name[strlen(shadow_file_name) - 8] = 0;
 		strcat(shadow_file_name, "shadow_");
-		strcat(shadow_file_name, &(ConstructedFileName[strlen(ConstructedFileName) - 8]));
-		DebugPrintf(2, "\n%s(): shadow file name: %s ", __FUNCTION__, shadow_file_name);
+		strcat(shadow_file_name, &(fpath[strlen(fpath) - 8]));
 		if (find_file(shadow_file_name, GRAPHICS_DIR, fpath, 1)) {
 			obstacle_map[i].shadow_image.surface = NULL;
 			obstacle_map[i].shadow_image.texture_has_been_created = FALSE;
-			DebugPrintf(2, "\n%s(): no success with that last shadow image file name.", __FUNCTION__);
 			return;
 		}
 	}

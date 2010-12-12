@@ -806,7 +806,6 @@ typedef struct obstacle_spec {
 	iso_image image;
 	iso_image shadow_image;
 
-	char image_loaded;
     char *label; 
 
 	//--------------------
