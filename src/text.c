@@ -411,6 +411,9 @@ void DisplayBigScreenMessage(void)
 	int next_screen_message_position = 30;
 
 	for (i = 0; i < GameConfig.number_of_big_screen_messages; i++) {
+		if (!Me.BigScreenMessage[i])
+			continue;
+
 		if (Me.BigScreenMessageDuration[i] < GameConfig.delay_for_big_screen_messages) {
 			SDL_SetClipRect(Screen, NULL);
 			CenteredPutStringFont(Screen, Menu_BFont, next_screen_message_position, Me.BigScreenMessage[i]);
