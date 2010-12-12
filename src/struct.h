@@ -301,7 +301,6 @@ typedef struct itemspec {
 	short item_gun_damage_modifier;	// modifier to the damage done by this bullettype 
 	float item_gun_bullet_lifetime;	// how long does a 'bullet' from this gun type live?
 	char item_gun_bullet_reflect_other_bullets;	// can this 'bullet' reflect other bullets
-	char item_gun_bullet_pass_through_explosions;	// can this 'bullet' reflect other bullets
 	char item_gun_bullet_pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword)
 	char item_gun_bullet_ignore_wall_collisions;	// can this bullet pass through walls and map barriers?
 	short item_gun_ammo_clip_size;	//max. number of bullets in the charger
@@ -673,7 +672,6 @@ typedef struct bullet {
 	char mine;
 	gps pos;
 	moderately_finepoint speed;
-	short int time_in_frames;	// how long does the bullet exist, measured in number of frames
 	short int damage;	// damage done by this particular bullet
 	float time_in_seconds;	// how long does the bullet exist in seconds
 	float bullet_lifetime;	// how long can this bullet exist at most
@@ -685,7 +683,6 @@ typedef struct bullet {
 	char was_reflected;
 	char ignore_wall_collisions;
 	char pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword stike)
-	char pass_through_explosions;	// does this bullet go through explosions (e.g. laser sword stike though dead droid)
 	short int freezing_level;	// does this bullet freeze the target?
 	float poison_duration;
 	float poison_damage_per_sec;

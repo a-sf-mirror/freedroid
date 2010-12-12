@@ -1044,10 +1044,8 @@ void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short 
 	CurBullet->ignore_wall_collisions = ItemMap[weapon_item_type].item_gun_bullet_ignore_wall_collisions;
 	CurBullet->was_reflected = FALSE;
 	CurBullet->reflect_other_bullets = ItemMap[weapon_item_type].item_gun_bullet_reflect_other_bullets;
-	CurBullet->pass_through_explosions = ItemMap[weapon_item_type].item_gun_bullet_pass_through_explosions;
 	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
 
-	CurBullet->time_in_frames = 0;
 	CurBullet->time_in_seconds = 0;
 
 	CurBullet->freezing_level = 0;

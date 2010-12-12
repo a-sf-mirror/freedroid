@@ -2123,7 +2123,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		    MyRandom(ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_damage_modifier);
 
 		NewBullet->time_in_seconds = 0;
-		NewBullet->time_in_frames = 0;
 
 		// Most enemy shots will not have any special 'magic' property...
 		//
@@ -2138,8 +2137,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->ignore_wall_collisions =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_ignore_wall_collisions;
 		NewBullet->was_reflected = FALSE;
-		NewBullet->pass_through_explosions =
-		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_pass_through_explosions;
 		NewBullet->reflect_other_bullets =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_reflect_other_bullets;
 		NewBullet->pass_through_hit_bodies =

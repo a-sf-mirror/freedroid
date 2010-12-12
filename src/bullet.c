@@ -219,7 +219,6 @@ void MoveBullets(void)
 			DeleteBullet(i, FALSE);
 			continue;
 		}
-		CurBullet->time_in_frames++;
 		CurBullet->time_in_seconds += Frame_Time();
 
 	}			/* for */
@@ -245,7 +244,6 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 
 	CurBullet->type = INFOUT;
 	CurBullet->time_in_seconds = 0;
-	CurBullet->time_in_frames = 0;
 	CurBullet->mine = FALSE;
 	CurBullet->owner = -100;
 	CurBullet->phase = 0;
@@ -856,33 +854,9 @@ void CheckBulletCollisions(int num)
  */
 void CheckBlastCollisions(int num)
 {
-	int i;
 	blast *CurBlast = &(AllBlasts[num]);
 	static const float Blast_Radius = 1.5;
 
-	// At first, we check for collisions of this blast with all bullets 
-	//XXX probably useless and performance-impacting
-	if (CurBlast->phase <= 4) {
-		for (i = 0; i < MAXBULLETS; i++) {
-			if (AllBullets[i].type == INFOUT)
-				continue;
-			if (AllBullets[i].pass_through_explosions)
-				continue;
-
-			// Compatible gps positions are needed to compute distance between bullet and blast
-			gps bullet_vpos;
-			update_virtual_position(&bullet_vpos, &AllBullets[i].pos, CurBlast->pos.z);
-			if (bullet_vpos.z == -1)
-				continue;
-
-			if (abs(bullet_vpos.x - CurBlast->pos.x) >= Blast_Radius)
-				continue;
-			if (abs(bullet_vpos.y - CurBlast->pos.y) >= Blast_Radius)
-				continue;
-
-			DeleteBullet(i, TRUE);	// we want a bullet-explosion
-		}
-	}
 	// Now we check for enemys, that might have stepped into this
 	// one blasts area of effect...
 	//
