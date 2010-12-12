@@ -643,8 +643,7 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	// Now we check if we have to load the button image still
 	// or if it is perhaps already loaded into memory.
 	//
-	if ((AllMousePressButtons[ButtonIndex].button_image.surface == NULL) &&
-	    (!AllMousePressButtons[ButtonIndex].button_image.texture_has_been_created)) {
+	if (!iso_image_loaded(&AllMousePressButtons[ButtonIndex].button_image)) {
 		find_file(AllMousePressButtons[ButtonIndex].button_image_file_name, GRAPHICS_DIR, fpath, 0);
 		tmp = our_IMG_load_wrapper(fpath);
 		if (tmp == NULL) {
@@ -688,8 +687,8 @@ void ShowGenericButtonFromList(int ButtonIndex)
 		if (use_open_gl) {
 			make_texture_out_of_surface(&(AllMousePressButtons[ButtonIndex].button_image));
 		}
-
 	}
+
 	// Now that we know we have the button image loaded, we can start
 	// to blit the button image to the screen.
 	//
