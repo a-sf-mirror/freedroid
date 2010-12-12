@@ -64,10 +64,26 @@ void del_map_label(level *lvl, const char *label_name)
 
 		if (!strcmp(map_label->label_name, label_name)) {
 			// Delete the map label
+			free(map_label->label_name);
 			dynarray_del(&lvl->map_labels, i, sizeof(struct map_label));
 			return;
 		}
 	}
+}
+
+void free_map_labels(level *lvl)
+{
+	struct map_label *map_label;
+	int i;
+
+	for (i = 0; i < lvl->map_labels.size; i++) {
+		// Get the map label on this level
+		map_label = &ACCESS_MAP_LABEL(lvl->map_labels, i);
+		
+		free(map_label->label_name);
+	}
+
+	dynarray_free(&lvl->map_labels);
 }
 
 /**

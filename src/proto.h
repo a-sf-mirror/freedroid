@@ -837,10 +837,12 @@ int get_obstacle_index(level *, obstacle *);
 void add_obstacle_extension(level *, obstacle *, enum obstacle_extension_type, void *);
 void del_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);
 void defrag_obstacle_array(level *);
+void free_obstacle_extensions(level *lvl);
 
 // map_label.c
 void add_map_label(level *, int, int, char *);
 void del_map_label(level *, const char *);
+void free_map_labels(level *lvl);
 struct map_label *get_map_label(level *, const char *);
 
 // lvledit_display.c

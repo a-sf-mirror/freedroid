@@ -552,7 +552,7 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *Target
 
 static char *decode_extension_chest(char *ext, void **data)
 {
-	struct dynarray *chest = dynarray_alloc(10, sizeof(item));
+	struct dynarray *chest = dynarray_alloc(1, sizeof(item));
 	char *item_str, *item_end;
 	
 	item_str = ext;
@@ -1115,29 +1115,54 @@ int LoadShip(char *filename, int compressed)
 
 #define END_OF_SHIP_DATA_STRING "*** End of Ship Data ***"
 
+	// Free existing level data
 	for (i = 0; i < MAX_LEVELS; i++) {
 		if (level_exists(i)) {
-			int ydim = curShip.AllLevels[i]->ylen;
+			level *lvl = curShip.AllLevels[i];
 			int row = 0;
-			for (row = 0; row < ydim; row++) {
-				if (curShip.AllLevels[i]->map[row]) {
+			int col = 0;
+
+			// Map tiles
+			for (row = 0; row < lvl->ylen; row++) {
+				if (lvl->map[row]) {
+					for (col = 0; col < lvl->xlen; col++) {
+						dynarray_free(&lvl->map[row][col].glued_obstacles);
+					}
+
 					free(curShip.AllLevels[i]->map[row]);
 					curShip.AllLevels[i]->map[row] = NULL;
 				}	
 			}
 
-			if (curShip.AllLevels[i]->Levelname) {
-				free(curShip.AllLevels[i]->Levelname);
-				curShip.AllLevels[i]->Levelname = NULL;
+			// Level strings
+			if (lvl->Levelname) {
+				free(lvl->Levelname);
+				lvl->Levelname = NULL;
 			}
 
-			if (curShip.AllLevels[i]->Background_Song_Name) {
-				free(curShip.AllLevels[i]->Background_Song_Name);
-				curShip.AllLevels[i]->Background_Song_Name = NULL;
+			if (lvl->Background_Song_Name) {
+				free(lvl->Background_Song_Name);
+				lvl->Background_Song_Name = NULL;
 			}
-			
-			free(curShip.AllLevels[i]);
+
+			// Waypoints
+			int w;
+			for (w = 0; w < lvl->waypoints.size; w++) {
+				struct waypoint *wpts = lvl->waypoints.arr;
+				dynarray_free(&wpts[w].connections);
+			}
+
+			dynarray_free(&lvl->waypoints);
+
+			// Obstacle extensions
+			free_obstacle_extensions(lvl);
+	
+			// Map labels
+			free_map_labels(lvl);
+
+			free(lvl);
 			curShip.AllLevels[i] = NULL;
+
 		}
 	}
 

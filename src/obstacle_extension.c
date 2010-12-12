@@ -145,3 +145,26 @@ void add_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_t
 
 	dynarray_add(&lvl->obstacle_extensions, &ext, sizeof(struct obstacle_extension));
 }
+
+void free_obstacle_extensions(level *lvl)
+{
+	struct obstacle_extension *ext;
+	int i;
+
+	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
+		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+
+		switch (ext->type) {
+			case OBSTACLE_EXTENSION_CHEST_ITEMS:
+				dynarray_free(ext->data);
+				/* Fall-through */
+			case OBSTACLE_EXTENSION_LABEL:
+			case OBSTACLE_EXTENSION_DIALOGFILE:
+				free(ext->data);
+				ext->data = NULL;
+				break;
+		}
+	}
+
+	dynarray_free(&lvl->obstacle_extensions);
+}
