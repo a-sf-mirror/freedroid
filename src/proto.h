@@ -79,6 +79,7 @@ void hit_tux(float, int);
 void animate_tux(void);
 void check_tux_enemy_collision(void);
 void start_tux_death_explosions(void);
+void init_tux(void);
 
 // action.c
 void chest_open_action(level *chest_lvl, int chest_index);

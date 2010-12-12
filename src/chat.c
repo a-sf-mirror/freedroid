@@ -688,7 +688,6 @@ void validate_dialogs()
 	find_file("freedroid.levels", MAP_DIR, fpath, 0);
 	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
-	clear_player_inventory_and_stats();
 
 	/* _says functions are not run by the validator, as they display
 	   text on screen and wait for clicks */

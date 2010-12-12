@@ -510,7 +510,7 @@ int LoadGame(void)
 
 	fclose(DataFile);
 
-	memset(&Me, 0, sizeof(tux_t));
+	init_tux();
 	read_tux_t(LoadGameData, "player", &Me);
 
 	reset_visible_levels();

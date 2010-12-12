@@ -106,6 +106,8 @@ static void clear_out_arrays_for_fresh_game(void)
 	ClearAutomapData();
 
 	clear_npcs();
+	
+	init_tux();
 }
 
 /** THIS IS CURRENTLY (10/11/10) NOT USED
@@ -1328,75 +1330,6 @@ void ParseCommandLine(int argc, char *const argv[])
 
 };				// ParseCommandLine (int argc, char *const argv[])
 
-/**
- * Now we initialize the skills of the new hero...
- */
-void InitInfluencerStartupSkills(void)
-{
-	int i;
-
-	Me.readied_skill = 0;
-	for (i = 0; i < number_of_skills; i++) {
-		Me.skill_level[i] = SpellSkillMap[i].present_at_startup;
-	}
-
-	GameConfig.spell_level_visible = 0;
-
-	Me.melee_weapon_skill = 0;
-	Me.ranged_weapon_skill = 0;
-	Me.spellcasting_skill = 0;
-
-	Me.running_power_bonus = 0;
-
-};				// void InitInfluencerStartupSkills( )
-
-/**
- * When a completely fresh and new game is started, some more or less
- * harmless status variables need to be initialized.  This is what is
- * done in here.
- */
-void InitHarmlessTuxStatusVariables()
-{
-	int i;
-
-	Me.current_game_date = 0.0;
-	Me.current_power_bonus = 0;
-	Me.power_bonus_end_date = (-1);	// negative dates are always in the past...
-	Me.current_dexterity_bonus = 0;
-	Me.dexterity_bonus_end_date = (-1);	// negative dates are always in the past...
-	Me.speed.x = 0;
-	Me.speed.y = 0;
-	Me.energy = 5;
-	Me.maxenergy = 10;
-	Me.temperature = 5;
-	Me.max_temperature = 10;
-	Me.health_recovery_rate = 0.2;
-	Me.cooling_rate = 0.2;
-	Me.phase = 0;
-	Me.MissionTimeElapsed = 0;
-	Me.weapon_swing_time = (-1);	// currently not swinging this means...
-	Me.got_hit_time = (-1);	// currently not stunned and needing time to recover...
-	Me.points_to_distribute = 0;
-	Me.ExpRequired = 1500;
-	Me.map_maker_is_present = FALSE;
-	//prep statistics
-        Me.meters_traveled = 0;
-        for (i = 0; i < Number_Of_Droid_Types + 1; i++) {
-	        Me.destroyed_bots[i]    = 0;
-	        Me.damage_dealt[i]      = 0;
-	        Me.TakeoverSuccesses[i] = 0;
-	        Me.TakeoverFailures[i]  = 0;
-	}
-	for (i = 0; i < MAX_LEVELS; i++) {
-		Me.HaveBeenToLevel[i] = FALSE;
-		Me.time_since_last_visit_or_respawn[i] = (-1);
-	}
-	Me.Experience = 1;
-	Me.exp_level = 1;
-	Me.Gold = 0;
-
-};				// void InitHarmlessTuxStatusVariables( )
-
 /* -----------------------------------------------------------------
  * This function initializes a completely new game within freedroid.
  * In contrast to InitFreedroid, this function should be called 
@@ -1404,48 +1337,23 @@ void InitHarmlessTuxStatusVariables()
  * -----------------------------------------------------------------*/
 void PrepareStartOfNewCharacter(char *startpos)
 {
-	int i, j;
-	int StartingLevel = 0;
-	int StartingXPos = 0;
-	int StartingYPos = 0;
 	location StartPosition;
 
 	Activate_Conservative_Frame_Computation();
-
-	// We mark all the big screen messages for this character
-	// as out of date, so they can be overwritten with new 
-	// messages...
-	//
-	Me.BigScreenMessageIndex = 0;
-	for (i = 0; i < MAX_BIG_SCREEN_MESSAGES; i++) {
-		if (Me.BigScreenMessage[i]) {
-			free(Me.BigScreenMessage[i]);
-			Me.BigScreenMessage[i] = NULL;
-		}
-		Me.BigScreenMessageDuration[i] = 10000;
-	}
 
 	// We make sure we don't have garbage in our arrays from a 
 	// previous game or failed load-game attempt...
 	//
 	clear_out_arrays_for_fresh_game();
 
-	// Now the mission file is read into memory.  That means we can start to decode the details given
-	// in the body of the mission file.  
-	//
 	GetEventTriggers("freedroid.events");
 
 	if (!skip_initial_menus)
 		PlayATitleFile("StartOfGame.title");
 
-	// We also load the comment for the influencer to say at the beginning of the mission
-	//
-	Me.TextToBeDisplayed = _("Huh? What?  Where am I?");
-	Me.TextVisibleTime = 0;
-
 	init_npcs();
 	init_factions();
-	
+
 	GetCrew("ReturnOfTux.droids");
 
 	ResolveMapLabelOnShip(startpos, &StartPosition);
@@ -1456,12 +1364,6 @@ void PrepareStartOfNewCharacter(char *startpos)
 		Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE);
 	clear_active_bullets();
 
-	Me.teleport_anchor.x = 0;	//no anchor at the beginning
-	Me.teleport_anchor.y = 0;
-	Me.teleport_anchor.z = 0;
-
-	DebugPrintf(1, "\nFinal starting position: Level=%d XPos=%d YPos=%d.", StartingLevel, StartingXPos, StartingYPos);
-
 	// At this point the position history can be initialized
 	//
 	InitInfluPositionHistory();
@@ -1469,66 +1371,9 @@ void PrepareStartOfNewCharacter(char *startpos)
 	// Now we read in the mission targets for this mission
 	// Several different targets may be specified simultaneously
 	//
-	clear_tux_mission_info();
 	GetQuestList("freedroid.quests");
 
 	SwitchBackgroundMusicTo(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
-
-	InitHarmlessTuxStatusVariables();
-
-	InitInfluencerStartupSkills();
-
-	UpdateAllCharacterStats();
-
-	clear_out_intermediate_points(&Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
-
-	for (j = 0; j < MAX_COOKIES; j++) {
-		if (Me.cookie_list[j])
-			free(Me.cookie_list[j]);
-
-		Me.cookie_list[j] = NULL;
-	}
-
-	for (j = 0; j < 10; j++) {
-		Me.program_shortcuts[j] = -1;
-	}
-
-	// Now that the prime character stats have been initialized, we can
-	// set these much-varying variables too...
-	//
-	Me.energy = Me.maxenergy;
-	Me.temperature = 0;
-	Me.running_power = Me.max_running_power;
-	Me.busy_time = 0;
-	Me.busy_type = NONE;
-
-	Me.god_mode = 0;
-	Me.paralyze_duration = 0;
-	Me.invisible_duration = 0;
-
-	Me.readied_skill = 0;
-	Me.walk_cycle_phase = 0;
-
-	Me.quest_browser_changed = 0;
-
-	// None of the inventory slots like currently equipped weapons
-	// or the like should be held in hand, like when you take it
-	// 'into your hand' by clicking on it with the mouse button in
-	// the inventory screen.
-	//
-	init_item(&Me.weapon_item);
-	init_item(&Me.armour_item);
-	init_item(&Me.shield_item);
-	init_item(&Me.special_item);
-	init_item(&Me.drive_item);
-	item_held_in_hand = NULL;
-
-	Me.mouse_move_target.x = (-1);
-	Me.mouse_move_target.y = (-1);
-	Me.mouse_move_target.z = (-1);
-	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
-	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;	// what extra action has to be done upon arrival?
-	Me.mouse_move_target_combo_action_parameter = (-1);	// extra data to use for the combo action
 
 	// Now we know that right after starting a new game, the Tux might have
 	// to 'change clothes' i.e. a lot of tux images need to be updated which can
@@ -1547,8 +1392,6 @@ void prepare_level_editor()
 {
 	game_root_mode = ROOT_IS_LVLEDIT;
 	skip_initial_menus = 1;
-	clear_player_inventory_and_stats();
-	UpdateAllCharacterStats();
 	strcpy(Me.character_name, "MapEd");
 	char fp[2048];
 	find_file("freedroid.levels", MAP_DIR, fp, 0);

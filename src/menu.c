@@ -1172,8 +1172,6 @@ static int Startup_handle(int n)
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
 		game_root_mode = ROOT_IS_GAME;
 		skip_initial_menus = 1;
-		clear_player_inventory_and_stats();
-		UpdateAllCharacterStats();
 		strcpy(Me.character_name, "TutorialTux");
 		char fpp[2048];
 		find_file("freedroid.levels", MAP_DIR, fpp, 0);
@@ -1884,47 +1882,10 @@ static void Get_New_Character_Name(void)
 };				// void Get_New_Character_Name ( void )
 
 /**
- *
- *
- */
-void clear_player_inventory_and_stats(void)
-{
-	int i;
-
-	// At first we clear the inventory of the new character
-	// of any items (or numeric waste) that might be in there
-	//
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		init_item(&Me.Inventory[i]);
-	}
-	DebugPrintf(1, "\n%s(): Inventory has been emptied...", __FUNCTION__);
-
-	// Now we add some safety, against 'none present' items
-	//
-	init_item(&Me.weapon_item);
-	init_item(&Me.drive_item);
-	init_item(&Me.armour_item);
-	init_item(&Me.shield_item);
-	init_item(&Me.special_item);
-
-	Me.base_vitality = 25;
-	Me.base_strength = 10;
-	Me.base_dexterity = 15;
-	Me.base_magic = 25;
-	Me.exp_level = 1;
-
-};				// void clear_player_inventory_and_stats ( void )
-
-/**
  * This function prepares a new hero for adventure...
  */
 static int PrepareNewHero(void)
 {
-
-	clear_player_inventory_and_stats();
-
-	UpdateAllCharacterStats();
-
 	Get_New_Character_Name();
 
 	// If the special string "HaveNoName" is being supplied, then

@@ -1619,4 +1619,154 @@ static void AnalyzePlayersMouseClick()
 		check_for_droids_to_attack_or_talk_with();
 }
 
+static void free_tux()
+{
+	int i;
+
+	clear_tux_mission_info();
+	for (i = 0; i < MAX_COOKIES; i++) {
+		if (Me.cookie_list[i])
+			free(Me.cookie_list[i]);
+
+		Me.cookie_list[i] = NULL;
+	}
+	
+	// We mark all the big screen messages for this character
+	// as out of date, so they can be overwritten with new 
+	// messages...
+	//
+	Me.BigScreenMessageIndex = 0;
+	for (i = 0; i < MAX_BIG_SCREEN_MESSAGES; i++) {
+		if (Me.BigScreenMessage[i]) {
+			free(Me.BigScreenMessage[i]);
+			Me.BigScreenMessage[i] = NULL;
+		}
+	}
+
+}
+
+/**
+ * Reset the data in struct tux, in order to start a new game/load a game.
+ */
+void init_tux()
+{
+	int i;
+
+	free_tux();
+
+	memset(&Me, 0, sizeof(struct tux));
+
+	Me.current_game_date = 0.0;
+	Me.power_bonus_end_date = -1;	// negative dates are always in the past...
+	Me.dexterity_bonus_end_date = -1;
+
+	Me.speed.x = 0;
+	Me.speed.y = 0;
+
+	Me.pos.x = 0;
+	Me.pos.y = 0;
+	Me.pos.z = -1;
+	
+	Me.mouse_move_target.x = -1;
+	Me.mouse_move_target.y = -1;
+	Me.mouse_move_target.z = -1;
+	
+	Me.teleport_anchor.x = 0;
+	Me.teleport_anchor.y = 0;
+	Me.teleport_anchor.z = 0;
+	
+	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
+	
+	Me.god_mode = 0;
+	
+	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+	Me.mouse_move_target_combo_action_parameter = -1;
+	
+	Me.map_maker_is_present = FALSE;
+
+	Me.temperature = 0.0;
+
+	Me.health_recovery_rate = 0.2;
+	Me.cooling_rate = 0.2;
+	
+	Me.busy_time = 0;
+	Me.busy_type = NONE;
+
+	Me.phase = 0;
+	Me.angle = 0;
+	Me.walk_cycle_phase = 0;
+	Me.weapon_swing_time = -1;
+	Me.MissionTimeElapsed = 0;
+	Me.got_hit_time = -1;
+
+	Me.points_to_distribute = 0;
+	Me.ExpRequired = 1500;
+	
+	// reset statistics	
+	Me.meters_traveled = 0;
+	for (i = 0; i < Number_Of_Droid_Types + 1; i++) {
+		Me.destroyed_bots[i]    = 0;
+		Me.damage_dealt[i]      = 0;
+		Me.TakeoverSuccesses[i] = 0;
+		Me.TakeoverFailures[i]  = 0;
+	}
+
+	for (i = 0; i < MAX_LEVELS; i++) {
+		Me.HaveBeenToLevel[i] = FALSE;
+		Me.time_since_last_visit_or_respawn[i] = -1;
+	}
+
+	Me.Experience = 1;
+	Me.exp_level = 1;
+	Me.Gold = 0;
+	
+	Me.readied_skill = 0;
+	for (i = 0; i < number_of_skills; i++) {
+		Me.skill_level[i] = SpellSkillMap[i].present_at_startup;
+	}
+
+	GameConfig.spell_level_visible = 0;
+
+	Me.melee_weapon_skill = 0;
+	Me.ranged_weapon_skill = 0;
+	Me.spellcasting_skill = 0;
+
+	Me.running_power_bonus = 0;
+
+	for (i = 0; i < 10; i++) {
+		Me.program_shortcuts[i] = -1;
+	}
+
+	Me.paralyze_duration = 0;
+	Me.invisible_duration = 0;
+
+	Me.readied_skill = 0;
+
+	Me.quest_browser_changed = 0;
+
+	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		init_item(&Me.Inventory[i]);
+	}
+	init_item(&Me.weapon_item);
+	init_item(&Me.armour_item);
+	init_item(&Me.shield_item);
+	init_item(&Me.special_item);
+	init_item(&Me.drive_item);
+	item_held_in_hand = NULL;
+
+	clear_out_intermediate_points(&Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
+	
+	Me.TextToBeDisplayed = "";
+	Me.TextVisibleTime = 0;
+
+	Me.base_vitality = 25;
+	Me.base_strength = 10;
+	Me.base_dexterity = 15;
+	Me.base_magic = 25;
+	
+	UpdateAllCharacterStats();
+	
+	Me.energy = Me.maxenergy;
+	Me.running_power = Me.max_running_power;
+}
 #undef _influ_c
