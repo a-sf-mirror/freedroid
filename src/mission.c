@@ -255,34 +255,40 @@ void CompleteMission(const char *name)
  */
 void clear_tux_mission_info()
 {
-	int MissionTargetIndex;
+	int i;
 	int diary_entry_nr;
 
-	// At first we clear out all existing mission entries, so that no 'zombies' remain
-	// when the game is restarted and (perhaps less) new missions are loaded.
-	//
-	for (MissionTargetIndex = 0; MissionTargetIndex < MAX_MISSIONS_IN_GAME; MissionTargetIndex++) {
-		Me.AllMissions[MissionTargetIndex].MissionExistsAtAll = FALSE;
-		Me.AllMissions[MissionTargetIndex].MissionIsComplete = FALSE;
-		Me.AllMissions[MissionTargetIndex].MissionWasFailed = FALSE;
-		Me.AllMissions[MissionTargetIndex].MissionWasAssigned = FALSE;
+	for (i = 0; i < MAX_MISSIONS_IN_GAME; i++) {
+		Me.AllMissions[i].MissionExistsAtAll = FALSE;
+		Me.AllMissions[i].MissionIsComplete = FALSE;
+		Me.AllMissions[i].MissionWasFailed = FALSE;
+		Me.AllMissions[i].MissionWasAssigned = FALSE;
 
-		if (Me.AllMissions[MissionTargetIndex].mission_name) {
-			free(Me.AllMissions[MissionTargetIndex].mission_name);
-			Me.AllMissions[MissionTargetIndex].mission_name = NULL;
+		if (Me.AllMissions[i].mission_name) {
+			free(Me.AllMissions[i].mission_name);
+			Me.AllMissions[i].mission_name = NULL;
 		}
 
 		for (diary_entry_nr = 0; diary_entry_nr < MAX_MISSION_DESCRIPTION_TEXTS; diary_entry_nr++) {
-			if (Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr]) {
-				free(Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr]);
-				Me.AllMissions[MissionTargetIndex].mission_diary_texts[diary_entry_nr] = NULL;
+			if (Me.AllMissions[i].mission_diary_texts[diary_entry_nr]) {
+				free(Me.AllMissions[i].mission_diary_texts[diary_entry_nr]);
+				Me.AllMissions[i].mission_diary_texts[diary_entry_nr] = NULL;
 			}
 
-			Me.AllMissions[MissionTargetIndex].mission_description_time[diary_entry_nr] = 0;
+			Me.AllMissions[i].mission_description_time[diary_entry_nr] = 0;
+		}
+
+		if (Me.AllMissions[i].completion_lua_code) {
+			free(Me.AllMissions[i].completion_lua_code);
+			Me.AllMissions[i].completion_lua_code = NULL;
+		}
+		
+		if (Me.AllMissions[i].assignment_lua_code) {
+			free(Me.AllMissions[i].assignment_lua_code);
+			Me.AllMissions[i].assignment_lua_code = NULL;
 		}
 	}
-
-};				// void clear_tux_mission_info ( )
+}
 
 /**
  * This function reads the mission specifications from the mission file
