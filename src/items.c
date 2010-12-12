@@ -680,7 +680,6 @@ int MatchItemWithName(int type, const char *name)
  */
 void ApplyItem(item * CurItem)
 {
-	DebugPrintf(1, "\n%s(): function call confirmed.", __FUNCTION__);
 	int failed_usage = 0; // if an item cannot be applied, to not remove it from inventory
 
 	// If the inventory slot is not at all filled, we need not do anything more...
@@ -694,6 +693,12 @@ void ApplyItem(item * CurItem)
 	}
 
 	if (!requirements_for_item_application_met(CurItem)) {
+		return;
+	}
+
+	// Forbid using items while paralyzed
+	if (Me.paralyze_duration) {
+		append_new_game_message(_("You can not use any items while paralyzed."));
 		return;
 	}
 
@@ -830,7 +835,7 @@ void ApplyItem(item * CurItem)
 
 	while (MouseRightPressed())
 		SDL_Delay(1);
-};				// void ApplyItem( int ItemNum )
+}
 
 /**
  * This function checks if a given coordinate within the influencers
@@ -1575,9 +1580,14 @@ void HandleInventoryScreen(void)
 	// Case 1: The user left-clicks while not holding an item
 	if (MouseLeftClicked() && item_held_in_hand == NULL) {
 
+		// Forbid using the inventory while paralyzed
+		if (Me.paralyze_duration) {
+			append_new_game_message(_("You can not use the inventory while paralyzed."));
+			return;
+		}
+
 		// Case 1.1: The user left-clicks on the inventory grid
 		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
-			
 			point Inv_GrabLoc;
 			int Grabbed_InvPos;
 
