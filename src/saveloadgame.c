@@ -403,6 +403,7 @@ static void load_enemies(char *game_data)
 				done = 1;
 			} else {
 				enemy *newen = enemy_new(one_enemy.type);
+				free(newen->short_description_text);
 				memcpy(newen, &one_enemy, sizeof(enemy));
 				enemy_insert_into_lists(newen, (i==0));
 			}
