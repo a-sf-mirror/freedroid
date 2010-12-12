@@ -1181,6 +1181,7 @@ int LoadShip(char *filename, int compressed)
 		int length = FS_filelength(ShipFile);
 		ShipData = malloc(length + 1);
 		fread(ShipData, length, 1, ShipFile);
+		ShipData[length] = 0;
 	}
 
 	fclose(ShipFile);
