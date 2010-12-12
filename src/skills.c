@@ -552,6 +552,7 @@ static void ShowSkillsExplanationScreen(void)
 	int ICON_OFFSET_Y = 20;
 	int TEXT_OFFSET_X = 15;
 	SDL_Rect TargetSkillRect;
+	spell_skill_spec *spec = &SpellSkillMap[Me.readied_skill];;
 
 	// This should draw the background...
 	//
@@ -561,21 +562,19 @@ static void ShowSkillsExplanationScreen(void)
 	//
 	TargetSkillRect.x = ICON_OFFSET_X;
 	TargetSkillRect.y = ICON_OFFSET_Y;
-	LoadOneSkillSurfaceIfNotYetLoaded(Me.readied_skill);
-	blit_iso_image_to_screen_position(&SpellSkillMap[Me.readied_skill].icon_surface,
+
+	load_skill_icon_if_needed(spec);
+	blit_iso_image_to_screen_position(&spec->icon_surface,
 						 TargetSkillRect.x, TargetSkillRect.y);
 
 	// Draws the explanation text
-	// (We will use the FPS display font, cause the small one isn't 
-	// very well readable on the silver background.)
 	//
 	TargetSkillRect.x = TEXT_OFFSET_X;
 	TargetSkillRect.w = 320 - 2 * TEXT_OFFSET_X;
 	TargetSkillRect.h = 480 - 15;
 	SetCurrentFont(FPS_Display_BFont);
-	DisplayText(D_(SpellSkillMap[Me.readied_skill].description), 16, 16 + 64 + 16, &TargetSkillRect, TEXT_STRETCH);
-
-};				// void ShowSkillsExplanationScreen( void )
+	DisplayText(D_(spec->description), 16, 16 + 64 + 16, &TargetSkillRect, TEXT_STRETCH);
+}
 
 /** 
  * We will draw only those skills to the skills inventory, that are
@@ -657,6 +656,16 @@ void set_nth_quick_skill(int quick_skill)
 
 		Me.program_shortcuts[quick_skill] = ski;
 }; // void set_nth_quick_skill(int quick_skill)
+
+
+void load_skill_icon_if_needed(spell_skill_spec *spec)
+{
+	if (!iso_image_loaded(&spec->icon_surface)) {
+		char filename[1000];
+		sprintf(filename, "skill_icons/%s", spec->icon_name);
+		load_iso_image(&spec->icon_surface, filename, FALSE); 
+	}
+}
 
 /**
  * This function displays the SKILLS SCREEN.  This is NOT the same as the
@@ -754,7 +763,7 @@ void ShowSkillsScreen(void)
 		if (SkillOfThisSlot < 0)
 			continue;
 
-		LoadOneSkillSurfaceIfNotYetLoaded(SkillOfThisSlot);
+		load_skill_icon_if_needed(&SpellSkillMap[SkillOfThisSlot]);
 
 		blit_iso_image_to_screen_position(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y);
 

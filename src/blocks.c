@@ -398,48 +398,6 @@ void iso_load_bullet_surfaces(void)
  *
  *
  */
-void LoadOneSkillSurfaceIfNotYetLoaded(int SkillSpellNr)
-{
-	SDL_Surface *Whole_Image;
-	char fpath[2048];
-	char AssembledFileName[2000];
-
-	// Maybe this spell/skill icon surface has already been loaded, i.e. it's not
-	// NULL any more.  Then we needn't do anything here.
-	//
-	if (SpellSkillMap[SkillSpellNr].icon_surface.surface || SpellSkillMap[SkillSpellNr].icon_surface.texture_has_been_created)
-		return;
-
-	// Now it's time to assemble the file name to get the image from
-	//
-	strcpy(AssembledFileName, "skill_icons/");
-	strcat(AssembledFileName, SpellSkillMap[SkillSpellNr].icon_name);
-	find_file(AssembledFileName, GRAPHICS_DIR, fpath, 0);
-
-	// Now we can load and prepare the image and that's it
-	//
-	Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
-	if (!Whole_Image) {
-		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to load skill %d surface into memory\npath tried was %s\n\
-This error indicates some installation problem with freedroid.", PLEASE_INFORM, IS_FATAL, SkillSpellNr, fpath);
-	}
-
-	SpellSkillMap[SkillSpellNr].icon_surface.surface = our_SDL_display_format_wrapperAlpha(Whole_Image);
-	SDL_FreeSurface(Whole_Image);
-
-	SDL_SetColorKey(SpellSkillMap[SkillSpellNr].icon_surface.surface, 0, 0);
-	SDL_SetAlpha(SpellSkillMap[SkillSpellNr].icon_surface.surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-
-	if (use_open_gl)
-		make_texture_out_of_surface(&(SpellSkillMap[SkillSpellNr].icon_surface));
-
-};				// void LoadOneSkillSurfaceIfNotYetLoaded ( int SkillSpellNr )
-
-/**
- *
- *
- */
 void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y)
 {
 	SDL_Rect target_rectangle;

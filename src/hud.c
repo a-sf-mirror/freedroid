@@ -317,9 +317,10 @@ void ShowCurrentSkill(void)
 	Target_Rect.w = CURRENT_SKILL_RECT_W;
 	Target_Rect.h = CURRENT_SKILL_RECT_H;
 
-	LoadOneSkillSurfaceIfNotYetLoaded(Me.readied_skill);
+	spell_skill_spec *spec = &SpellSkillMap[Me.readied_skill];
+	load_skill_icon_if_needed(spec);
 
-	blit_iso_image_to_screen_position(&SpellSkillMap[Me.readied_skill].icon_surface, Target_Rect.x, Target_Rect.y);
+	blit_iso_image_to_screen_position(&spec->icon_surface, Target_Rect.x, Target_Rect.y);
 }
 
 /**

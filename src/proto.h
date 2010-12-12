@@ -243,7 +243,6 @@ void make_sure_zoomed_surface_is_there(iso_image * our_iso_image);
 void load_item_surfaces_for_item_type(int item_type);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void Load_Skill_Level_Button_Surfaces(void);
-void LoadOneSkillSurfaceIfNotYetLoaded(int SkillSpellNr);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
 void LoadAndPrepareRedEnemyRotationModelNr(int RotationModel);
 void LoadAndPrepareGreenEnemyRotationModelNr(int RotationModel);
@@ -540,6 +539,7 @@ int improve_program(int);
 int get_program_index_with_name(const char *);
 int calculate_program_heat_cost(int program_id);
 int CursorIsOnWhichSkillButton(int x, int y);
+void load_skill_icon_if_needed(spell_skill_spec *spec);
 
 // input.c 
 Uint8 *key_state_array;
