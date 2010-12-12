@@ -496,7 +496,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	int h = FontHeight(GetCurrentFont());
 	int i;
 	static int menu_position_to_remember = 1;
-	int NumberOfOptionsGiven;
 #define ITEM_DIST 50
 	int MenuPosX[MAX_ANSWERS_PER_PERSON];
 	int MenuPosY[MAX_ANSWERS_PER_PERSON];
@@ -506,12 +505,10 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	int MaxLinesInMenuRectangle;
 	int OptionOffset = 0;
 	int line_count;
-	int BreakOffCauseAllDisplayed;
 	int BreakOffCauseNoRoom = FALSE;
 	int LastOptionVisible = 0;
 	int MenuLineOfMouseCursor;
 	int ThisOptionEnd;
-	int cursors_menu_position = -1000;
 	SDL_Event event;
 	int ret = -1;
 	int old_game_status = game_status;
@@ -550,7 +547,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		if (strlen(MenuTexts[i]) == 0)
 			break;
 	}
-	NumberOfOptionsGiven = i;
 
 	// We need to prepare the background for the menu, so that
 	// it can be accessed with proper speed later...
@@ -566,7 +562,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		SetCurrentFont(Menu_BFont);
 	else
 		SetCurrentFont((BFont_Info *) MenuFont);
-	h = FontHeight(GetCurrentFont());
 
 	OptionOffset = 0;
 	while (1) {
@@ -591,7 +586,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			// If all has been displayed already, we quit blitting...
 			//
 			if (strlen(MenuTexts[i]) == 0) {
-				BreakOffCauseAllDisplayed = TRUE;
 				BreakOffCauseNoRoom = FALSE;
 				LastOptionVisible = i;
 				break;
@@ -599,7 +593,6 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 			// If there is not enough room any more, we quit blitting...
 			int lines_needed = get_lines_needed(MenuTexts[i], Choice_Window, TEXT_STRETCH);
 			if ((line_count + lines_needed) > MaxLinesInMenuRectangle) {
-				BreakOffCauseAllDisplayed = FALSE;
 				BreakOffCauseNoRoom = TRUE;
 				LastOptionVisible = i;
 				break;
@@ -777,21 +770,16 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 		if (MenuLineOfMouseCursor < 1)
 			MenuLineOfMouseCursor = 1;
 
-		cursors_menu_position = 1;
-
 		ThisOptionEnd = MenuPosY[0];
 		for (i = OptionOffset; i <= LastOptionVisible; i++) {
 
 			ThisOptionEnd += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
 
 			if (GetMousePos_y() < ThisOptionEnd) {
-				cursors_menu_position = i + 1;	// MouseCursorIsOverMenuItem( MenuPosY [ 0 ] , MenuPosY [ 1 ] - MenuPosY [ 0 ] );
+				// MouseCursorIsOverMenuItem( MenuPosY [ 0 ] , MenuPosY [ 1 ] - MenuPosY [ 0 ] );
 				break;
 			}
 		}
-
-		if (cursors_menu_position > LastOptionVisible)
-			cursors_menu_position = LastOptionVisible;
 
 		// If the mouse cursor was on one of the possible lines, than we can try to translate
 		// it into a real menu position
@@ -2067,7 +2055,7 @@ static int Delete_Existing_Hero_Menu(void)
  */
 int Single_Player_Menu(void)
 {
-	int can_continue = 0;
+	int can_continue = FALSE;
 	int MenuPosition = 1;
 	char *MenuTexts[10];
 	char *char_name = NULL;
@@ -2096,47 +2084,38 @@ int Single_Player_Menu(void)
 		case NEW_HERO_POSITION:
 			while (EnterPressed() || SpacePressed()) ;
 			char_name = get_new_character_name();
-			if (!char_name || !strlen(char_name)) {
-				can_continue = FALSE;
-			} else {
+			if (char_name && strlen(char_name)) {
 				char fp[2048];
 				find_file("freedroid.levels", MAP_DIR, fp, 0);
 				LoadShip(fp, 0);
 				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 				strcpy(Me.character_name, char_name);
 				can_continue = TRUE;
-				return (TRUE);
 			}
 			break;
 
 		case LOAD_EXISTING_HERO_POSITION:
 			while (EnterPressed() || SpacePressed()) ;
 
-			if (Load_Existing_Hero_Menu() == TRUE) {
+			if (Load_Existing_Hero_Menu() == TRUE)
 				can_continue = TRUE;
-				return (TRUE);
-			} else {
-				can_continue = FALSE;
-			}
 			break;
 
 		case DELETE_EXISTING_HERO_POSITION:
 			while (EnterPressed() || SpacePressed()) ;
 			Delete_Existing_Hero_Menu();
-			can_continue = FALSE;
 			break;
 
 		case (-1):
 		case BACK_POSITION:
 			while (EnterPressed() || SpacePressed() || EscapePressed()) ;
-			can_continue = !can_continue;
-			return (FALSE);
+			return FALSE;
 			break;
 		default:
 			break;
 		}
 	}
 	return (TRUE);
-};				// void Single_Player_Menu ( void );
+}
 
 #undef _menu_c

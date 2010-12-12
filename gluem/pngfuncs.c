@@ -37,12 +37,12 @@ static enum pixelFormat surface_pixel_format(SDL_Surface *surface)
 	int rmask = 0x00FF0000;
 	int gmask = 0x0000FF00;
 	int bmask = 0x000000FF;
-	int amask = 0xFF000000;
+	//int amask = 0xFF000000;
 #else
 	int rmask = 0x0000FF00;
 	int gmask = 0x00FF0000;
 	int bmask = 0xFF000000;
-	int amask = 0x000000FF;
+	//int amask = 0x000000FF;
 #endif
 
 	if ((surface->format->Rmask == rmask) && (surface->format->Gmask == gmask) && (surface->format->Bmask == bmask))

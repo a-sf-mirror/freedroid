@@ -1599,7 +1599,6 @@ void ProcessPlayground(void)
 				if (TurnActive) {
 					if (ActivationMap[color][layer][row] == INACTIVE)
 						ActivationMap[color][layer][row] = ACTIVE1;
-					TurnActive = FALSE;
 				} else
 					ActivationMap[color][layer][row] = INACTIVE;
 

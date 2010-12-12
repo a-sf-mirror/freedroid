@@ -444,16 +444,13 @@ static void load_npcs(char *LoadGameData)
 static void load_bullets(char *LoadGameData)
 {
 	char *cpos = LoadGameData;
-	int done = 0;
 	int i;
-	for (i = 0; i < MAXBULLETS && !done; i++) {
+	for (i = 0; i < MAXBULLETS; i++) {
 		char str[20];
 		sprintf(str, "blt%d", i);
 		cpos = strstr(cpos, str);
-		if (!cpos) {
-			done = 1;
+		if (!cpos)
 			break;
-		}
 		cpos -= 5;
 		read_bullet(cpos, str, &AllBullets[i]);
 	}

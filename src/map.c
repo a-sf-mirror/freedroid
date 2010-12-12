@@ -362,7 +362,6 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 		loadlevel->dungeon_generated = atoi(fp);
 		fp[off] = '\n';
 		fp += off + 1;
-		off = 0;
 	} else {
 		loadlevel->dungeon_generated = 0;
 	}

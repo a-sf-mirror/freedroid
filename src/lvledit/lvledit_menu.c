@@ -220,8 +220,6 @@ static void SetLevelInterfaces(void)
 	int i;
 	Level EditLevel;
 
-	EditLevel = curShip.AllLevels[Me.pos.z];
-
 	enum {
 		JUMP_TARGET_NORTH = 1,
 		JUMP_TARGET_EAST,
