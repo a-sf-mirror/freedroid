@@ -39,15 +39,10 @@
 
 #include "scandir.h"
 
-int New_Game_Requested = FALSE;
-
 int Single_Player_Menu(void);
 void Options_Menu(void);
 
 EXTERN void LevelEditor(void);
-
-#define SELL_PRICE_FACTOR (0.25)
-#define REPAIR_PRICE_FACTOR (0.5)
 
 #define SINGLE_PLAYER_STRING "Play"
 #define LOAD_EXISTING_HERO_STRING _("Your characters: ")
@@ -1835,76 +1830,29 @@ static void Droid_fill(char *MenuTexts[10])
 /**
  * This reads in the new name for the character...
  */
-static void Get_New_Character_Name(void)
+static char *get_new_character_name(void)
 {
-	char *Temp;
+	char *str;
 	InitiateMenu(NE_TITLE_PIC_BACKGROUND_CODE);
 
 	if (!skip_initial_menus)
-		Temp = GetString(12, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
+		str = GetString(MAX_CHARACTER_NAME_LENGTH - 1, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
      Please enter a name\n\
      for the new hero: \n\n\
      ---ENTER to accept.\n\
      ---ESCAPE to cancel.\n\n\
      > "));
 	else
-		Temp = "MapEd";
+		str = strdup("MapEd");
 
-	// In case 'Escape has been pressed inside GetString, then a NULL pointer
-	// will be returned, which means no name has been given to the character
-	// yet, so we set an empty string for the character name.
-	//
-	if (Temp == NULL) {
-		// WARNING:  We should not use "" here, since that is also used inside
-		//           the menu code as the termination string for the list of menu
-		//           options.  That would cause problems in the load and display
-		//           directory content later.
-		//           Therefore we supply some default name if empty
-		//           string was received...  (some more decent workaround for the
-		//           problem might be written some time later...)
-		//
-		strcpy(Me.character_name, "HaveNoName");
-		return;
-	}
-	// If a real name has been given to the character, we can copy that name into
-	// the corresponding structure and return here (not without freeing the string
-	// received.  Could be some valuable 20 bytes after all :)
-	//
-	// Parse Temp for illegal chars
+	// Parse string for illegal chars
 	unsigned int i;
-	for (i = 0; i < strlen(Temp); i++)
-		if (!isalnum(Temp[i]) && Temp[i] != '-')
-			Temp[i] = '-';
-	strcpy(Me.character_name, Temp);
-	if (!skip_initial_menus && Temp != NULL)
-		free(Temp);
+	for (i = 0; i < strlen(str); i++)
+		if (!isalnum(str[i]) && str[i] != '-')
+			str[i] = '-';
 
-};				// void Get_New_Character_Name ( void )
-
-/**
- * This function prepares a new hero for adventure...
- */
-static int PrepareNewHero(void)
-{
-	Get_New_Character_Name();
-
-	// If the special string "HaveNoName" is being supplied, then
-	// we treat this as no name given and will return false.
-	//
-	if (!strcmp(Me.character_name, "HaveNoName"))
-		return (FALSE);
-
-	// If a real name has been given, then we can proceed and start the
-	// game.  If no real name has been given or 'Escape' has been pressed,
-	// then the calling function will return to the menu and do nothing
-	// else.
-	//
-	if (strlen(Me.character_name) > 0)
-		return (TRUE);
-	else
-		return (FALSE);
-
-};				// int PrepareNewHero (void)
+	return str;
+}
 
 /**
  * Filter function for scandir calls 
@@ -1993,6 +1941,8 @@ static int do_savegame_selection_and_act(int action)
 
 		for (cnt = 0; cnt < n; cnt++) {
 			*strstr(eps[cnt]->d_name, ".savegame") = 0;
+			if (!strlen(eps[cnt]->d_name))
+				strcpy(eps[cnt]->d_name, "INVALID");
 		}
 
 		while (1) {
@@ -2118,6 +2068,7 @@ int Single_Player_Menu(void)
 	int can_continue = 0;
 	int MenuPosition = 1;
 	char *MenuTexts[10];
+	char *char_name = NULL;
 
 	enum {
 		NEW_HERO_POSITION = 1,
@@ -2142,12 +2093,13 @@ int Single_Player_Menu(void)
 		switch (MenuPosition) {
 		case NEW_HERO_POSITION:
 			while (EnterPressed() || SpacePressed()) ;
-
-			if (PrepareNewHero() == TRUE) {
+			char_name = get_new_character_name();
+			if (char_name) {
 				char fp[2048];
 				find_file("freedroid.levels", MAP_DIR, fp, 0);
 				LoadShip(fp, 0);
 				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
+				strcpy(Me.character_name, char_name);
 				can_continue = TRUE;
 				return (TRUE);
 			} else {
