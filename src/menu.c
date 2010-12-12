@@ -1167,12 +1167,12 @@ static int Startup_handle(int n)
 	case TUTORIAL_POSITION:	//Similar hack to start Tutorial.
 		game_root_mode = ROOT_IS_GAME;
 		skip_initial_menus = 1;
-		strcpy(Me.character_name, "TutorialTux");
 		char fpp[2048];
 		find_file("freedroid.levels", MAP_DIR, fpp, 0);
 		LoadShip(fpp, 0);
 		PrepareStartOfNewCharacter("TutorialTuxStart");
 		skip_initial_menus = 0;
+		strcpy(Me.character_name, "TutorialTux");
 		return EXIT_MENU;
 		break;
 	case OPTIONS_POSITION:
@@ -2096,7 +2096,9 @@ int Single_Player_Menu(void)
 		case NEW_HERO_POSITION:
 			while (EnterPressed() || SpacePressed()) ;
 			char_name = get_new_character_name();
-			if (char_name) {
+			if (!char_name || !strlen(char_name)) {
+				can_continue = FALSE;
+			} else {
 				char fp[2048];
 				find_file("freedroid.levels", MAP_DIR, fp, 0);
 				LoadShip(fp, 0);
@@ -2104,8 +2106,6 @@ int Single_Player_Menu(void)
 				strcpy(Me.character_name, char_name);
 				can_continue = TRUE;
 				return (TRUE);
-			} else {
-				can_continue = FALSE;
 			}
 			break;
 

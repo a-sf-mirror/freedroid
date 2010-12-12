@@ -667,10 +667,6 @@ char *GetString(int MaxLen, int background_code, const char *text_for_overhead_p
 
 	}			// while(!finished) 
 
-	DebugPrintf(2, "\n\nchar *GetString(..):  The final string is:\n");
-	DebugPrintf(2, input);
-	DebugPrintf(2, "\n\n");
-
 	return (input);
 
 };
