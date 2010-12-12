@@ -2136,9 +2136,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->owner = ThisRobot->id;
 		NewBullet->ignore_wall_collisions =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_ignore_wall_collisions;
-		NewBullet->was_reflected = FALSE;
-		NewBullet->reflect_other_bullets =
-		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_reflect_other_bullets;
 		NewBullet->pass_through_hit_bodies =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_pass_through_hit_bodies;
 		NewBullet->faction = ThisRobot->faction;

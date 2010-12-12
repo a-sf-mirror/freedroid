@@ -1042,8 +1042,6 @@ void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short 
 	CurBullet->time_to_hide_still = 0.3;
 	CurBullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
 	CurBullet->ignore_wall_collisions = ItemMap[weapon_item_type].item_gun_bullet_ignore_wall_collisions;
-	CurBullet->was_reflected = FALSE;
-	CurBullet->reflect_other_bullets = ItemMap[weapon_item_type].item_gun_bullet_reflect_other_bullets;
 	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
 
 	CurBullet->time_in_seconds = 0;

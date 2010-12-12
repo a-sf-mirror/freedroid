@@ -712,61 +712,6 @@ void check_bullet_enemy_collisions(bullet * CurBullet, int num)
 };				// void check_bullet_enemy_collisions ( CurBullet , num )
 
 /**
- *
- *
- */
-void check_bullet_bullet_collisions(bullet * CurBullet, int num)
-{
-	int i;
-
-	// check for collisions with other bullets
-	for (i = 0; i < MAXBULLETS; i++) {
-		if (i == num)
-			continue;	// never check for collision with youself.. ;)
-		if (AllBullets[i].type == INFOUT)
-			continue;	// never check for collisions with dead bullets.. 
-
-		// to check the distance between the 2 bullets, we need compatible gps positions, if possible
-		gps other_bullet_pos;
-		update_virtual_position(&other_bullet_pos, &AllBullets[i].pos, CurBullet->pos.z);
-		if (other_bullet_pos.z == -1)
-			continue;
-
-		if (fabsf(other_bullet_pos.x - CurBullet->pos.x) > BULLET_BULLET_COLLISION_DIST)
-			continue;
-		if (fabsf(other_bullet_pos.y - CurBullet->pos.y) > BULLET_BULLET_COLLISION_DIST)
-			continue;
-
-		// it seems like we have a collision of two bullets!
-		// both will be deleted and replaced by blasts..
-		DebugPrintf(1, "\nBullet-Bullet-Collision detected...");
-
-		if (CurBullet->reflect_other_bullets) {
-			if (AllBullets[i].was_reflected) {
-				// well, if it has been reflected once, we don't do any more
-				// reflections after that...
-			} else {
-				AllBullets[i].speed.x = -AllBullets[i].speed.x;
-				AllBullets[i].speed.y = -AllBullets[i].speed.y;
-				AllBullets[i].was_reflected = TRUE;
-			}
-		}
-
-		if (AllBullets[i].reflect_other_bullets) {
-			if (CurBullet->was_reflected) {
-				// well, if it has been reflected once, we don't do any more
-				// reflections after that...
-			} else {
-				CurBullet->speed.x = -CurBullet->speed.x;
-				CurBullet->speed.y = -CurBullet->speed.y;
-				CurBullet->was_reflected = TRUE;
-			}
-		}
-
-	}
-};				// void check_bullet_bullet_collisions ( CurBullet , num )
-
-/**
  * This function checks if there are some collisions of the one bullet
  * with number num with anything else in the game, like blasts, walls,
  * droids, the tux and other bullets.
@@ -833,12 +778,6 @@ void CheckBulletCollisions(int num)
 		CurBullet->pos.x = bullet_actual_pos.x;
 		CurBullet->pos.y = bullet_actual_pos.y;
 		CurBullet->pos.z = bullet_actual_pos.z;
-
-		// Bullet/bullet collision code is level-independent
-
-		check_bullet_bullet_collisions(CurBullet, num);
-		if (CurBullet->type == INFOUT)
-			return;
 
 		break;
 	}			// switch ( Bullet-Type )

@@ -899,19 +899,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			free(YesNoString);
 
 			// Now we read in if this weapons bullets will reflect other bullets or not
-			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: reflect other bullets=\"", "\"");
-			if (strcmp(YesNoString, "yes") == 0) {
-				item->item_gun_bullet_reflect_other_bullets = TRUE;
-			} else if (strcmp(YesNoString, "no") == 0) {
-				item->item_gun_bullet_reflect_other_bullets = FALSE;
-			} else {
-				ErrorMessage(__FUNCTION__, "\
-The item specification of an item in freedroid.ruleset should contain an \n\
-answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLEASE_INFORM, IS_FATAL);
-			};	// if ( item->item_can_be_installed_in_weapon_slot == TRUE )
-			free(YesNoString);
-
-			// Now we read in if this weapons bullets will reflect other bullets or not
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: pass through hit bodies=\"", "\"");
 			if (strcmp(YesNoString, "yes") == 0) {
 				item->item_gun_bullet_pass_through_hit_bodies = TRUE;
@@ -1005,7 +992,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			item->item_gun_speed = 0;
 			item->item_gun_start_angle_modifier = 0;
 			item->item_gun_bullet_ignore_wall_collisions = FALSE;
-			item->item_gun_bullet_reflect_other_bullets = FALSE;
 			item->item_gun_bullet_pass_through_hit_bodies = FALSE;
 			item->item_gun_recharging_time = 0;
 			item->item_gun_reloading_time = 0;
