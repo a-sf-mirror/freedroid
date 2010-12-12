@@ -1845,11 +1845,13 @@ static char *get_new_character_name(void)
 	else
 		str = strdup("MapEd");
 
-	// Parse string for illegal chars
-	unsigned int i;
-	for (i = 0; i < strlen(str); i++)
-		if (!isalnum(str[i]) && str[i] != '-')
-			str[i] = '-';
+	if (str) {
+		// Parse string for illegal chars
+		int i;
+		for (i = 0; i < strlen(str); i++)
+			if (!isalnum(str[i]) && str[i] != '-')
+				str[i] = '-';
+	}
 
 	return str;
 }
