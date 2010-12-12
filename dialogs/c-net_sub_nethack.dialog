@@ -118,7 +118,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=8 Text="JOB ASSINGMENT - BUG NODE 8" --hidden
+Nr=8 Text="JOB ASSINGMENT - BUG NODE 8 c-net sub nethack" --hidden
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(3,4,5,6,7)
@@ -188,7 +188,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=13 Text="RACE ASSINGMENT - BUG NODE 13" --hidden
+Nr=13 Text="RACE ASSINGMENT - BUG NODE 13 c-net sub nethack " --hidden
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(9,10,11,12)
@@ -243,7 +243,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=16 Text="GENDER SELECTION - BUG NODE 16" --hidden
+Nr=16 Text="GENDER SELECTION - BUG NODE 16 c-net sub nethack" --hidden
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(14,15)
@@ -262,7 +262,7 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-Nr=20 Text="START GAME - BUG NODE 20" --hidden
+Nr=20 Text="START GAME - BUG NODE 20 c-net sub nethack" --hidden
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	-- Goddess/Gods don't give you a choice
@@ -309,7 +309,7 @@ LuaCode={
 
 ----------------------------------------------------------------------
 
-Nr=30 Text="AT A NEW LEVEL - BUG NODE 30" -- Description + Random Encounter
+Nr=30 Text="AT A NEW LEVEL - BUG NODE 30 c-net sub nethack" -- Description + Random Encounter
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	if (n_level < 0) then n_level = 0 end
@@ -542,7 +542,7 @@ LuaCode={
 -- 60s- End Battle/Level
 ----------------------------------------------------------------------
 
-Nr=60 Text="CALCULATE DAMAGE - BUG NODE 60"
+Nr=60 Text="CALCULATE DAMAGE - BUG NODE 60 c-net sub nethack"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(50,51,52,53,54)
@@ -615,7 +615,7 @@ LuaCode={
 }
 
 ----------------------------------------------------------------------
-Nr=61 Text="END LEVEL - BUG NODE 60"
+Nr=61 Text="END LEVEL - BUG NODE 61 c-net sub nethack"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(50,51,52,53,54)
@@ -650,7 +650,7 @@ LuaCode={
 ----------------------------------------------------------------------
 -- 70s- End Dialog
 ----------------------------------------------------------------------
-Nr=70 Text="END GAME W/ WIN/LOSS - BUG NODE 70"
+Nr=70 Text="END GAME W/ WIN/LOSS - BUG NODE 70 c-net sub nethack"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	hide(20,62,63,30,50,51,52,53,54,60,99)

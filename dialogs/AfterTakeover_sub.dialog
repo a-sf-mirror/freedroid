@@ -165,7 +165,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=43 Text="BUG, REPORT ME! aftertakeover_sub node80"
+Nr=43 Text="BUG, REPORT ME! aftertakeover_sub node43"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	tux_says(new_name,"NO_WAIT")

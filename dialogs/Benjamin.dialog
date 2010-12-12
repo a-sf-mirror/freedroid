@@ -208,7 +208,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=27 Text="BUG, REPORT ME! node27"
+Nr=27 Text="BUG, REPORT ME! node27 Benjamin"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says_random(
@@ -222,7 +222,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=28 Text="BUG, REPORT ME! node28"
+Nr=28 Text="BUG, REPORT ME! node28 Benjamin"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	npc_says_random(

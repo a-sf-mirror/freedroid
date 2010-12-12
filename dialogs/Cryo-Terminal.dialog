@@ -135,7 +135,7 @@ LuaCode={
 		npc_says(_"Cryo Complex Gates status: OPEN", "NO_WAIT")
 		show(80)
 	else
-		npc_says(_"GAME BUG. PLEASE REPORT.")
+		npc_says(_"GAME BUG. PLEASE REPORT, Cryo-terminal node 60")
 	end
 	cli_says(terminal, "NO_WAIT")
 }

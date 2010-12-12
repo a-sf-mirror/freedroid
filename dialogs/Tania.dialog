@@ -320,7 +320,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=48 Text="BUG, REPORT ME! Tania node47 -- TANIA'S THIRST FOR WATER"
+Nr=48 Text="BUG, REPORT ME! Tania node48 -- TANIA'S THIRST FOR WATER"
 OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
 LuaCode={
 	number_of_liquid_items = 0
