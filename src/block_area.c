@@ -1777,6 +1777,30 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BOTLINE_05_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_05_E].filename = "iso_botline_0011.png";
 
+	block_2param(ISO_MAGNETIC_RAILWAY_01_N, 3, 3);
+	obstacle_map[ISO_MAGNETIC_RAILWAY_01_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_MAGNETIC_RAILWAY_01_N].filename = "iso_magnetic_railway_0001.png";
+
+	block_2param(ISO_MAGNETIC_RAILWAY_01_E, 3, 3);
+	obstacle_map[ISO_MAGNETIC_RAILWAY_01_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_MAGNETIC_RAILWAY_01_E].filename = "iso_magnetic_railway_0002.png";
+
+	block_2param(ISO_MAGNETIC_RAILWAY_02_N, 3, 3);
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_N].filename = "iso_magnetic_railway_0003.png";
+
+	block_2param(ISO_MAGNETIC_RAILWAY_02_E, 3, 3);
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_E].filename = "iso_magnetic_railway_0004.png";
+
+	block_2param(ISO_MAGNETIC_RAILWAY_02_W, 3, 3);
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_W].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_W].filename = "iso_magnetic_railway_0005.png";
+
+	block_2param(ISO_MAGNETIC_RAILWAY_02_S, 3, 3);
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_MAGNETIC_RAILWAY_02_S].filename = "iso_magnetic_railway_0006.png";
+
 	// Now that we have defined the block area paramters, it's time to do some
 	// simple but often required computations in advance:  Calculating the offsets
 	// each obstacle's block area has from the obstacle center.
