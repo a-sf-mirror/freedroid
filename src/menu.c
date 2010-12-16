@@ -1528,7 +1528,7 @@ static void Graphics_fill(char *MenuTexts[10])
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 
-	sprintf(MenuTexts[i], _("Obstacles lazy loading: %s"), GameConfig.lazyload ? _("YES") : _("NO"));
+	sprintf(MenuTexts[i], _("Graphics lazy loading: %s"), GameConfig.lazyload ? _("YES") : _("NO"));
 	i++;
 
 	strncpy(MenuTexts[i++], _("Back"), 1024);
