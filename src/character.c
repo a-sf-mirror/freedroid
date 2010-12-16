@@ -151,8 +151,6 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 	Me.maxenergy += BonusItem->bonus_to_health_points;
 	Me.health_recovery_rate += BonusItem->bonus_to_health_recovery;
 	Me.cooling_rate += BonusItem->bonus_to_cooling_rate;
-	Me.resist_fire += BonusItem->bonus_to_resist_fire;
-	Me.resist_electricity += BonusItem->bonus_to_resist_electricity;
 
 	// Apply bonuses to the special abilities of the character.
 	Me.slowing_melee_targets += BonusItem->bonus_to_slow_enemy;

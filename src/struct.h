@@ -90,15 +90,15 @@ typedef struct iso_image {
 	short original_image_height;
 	int texture_has_been_created;
 #ifdef HAVE_LIBGL
-	GLuint texture;		// this is to store an open_gl texture...
+	GLuint texture;
 #else
-	int placeholder_for_texture_value;	// this is to store an open_gl texture...
+	int placeholder_for_texture_value;
 #endif
 	float tx0;
 	float tx1;
 	float ty0;
 	float ty1;
-} iso_image, *Iso_image;
+} iso_image;
 #define UNLOADED_ISO_IMAGE { NULL , 0 , 0 , NULL , 0 , 0 , 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0 }
 
 typedef struct mouse_press_button {
@@ -355,8 +355,6 @@ typedef struct item {
 	int bonus_to_all_attributes;
 	int bonus_to_armor_class;
 	int bonus_to_damage;
-	int bonus_to_resist_fire;	// this is a percentage
-	int bonus_to_resist_electricity;	// this is a percentage
 	int bonus_to_paralyze_enemy;
 	int bonus_to_slow_enemy;
 	int bonus_to_light_radius;
@@ -572,8 +570,6 @@ typedef struct tux {
 	float damage_modifier;	// the modifier to the damage the influencer currently does
 	float armor_class;
 	float to_hit;		// percentage chance, that Tux will hit a random lv 1 bot
-	int resist_fire;	// percentage to reduce from fire damage
-	int resist_electricity;	// percentage to reduce from electricity damage
 
 	int slowing_melee_targets;	// duration for how long hit enemies are slowed down
 	int paralyzing_melee_targets;	// duration for how long hit enemies are paralyzed

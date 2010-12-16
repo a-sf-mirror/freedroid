@@ -284,12 +284,6 @@ void get_item_bonus_string(item *it, const char *separator, struct auto_string *
 	if (it->bonus_to_armor_class) {
 		autostr_append(desc, _("%+d to armor%s"), it->bonus_to_armor_class, separator);
 	}
-	if (it->bonus_to_resist_fire) {
-		autostr_append(desc, _("+%d to resist fire%s"), it->bonus_to_resist_fire, separator);
-	}
-	if (it->bonus_to_resist_electricity) {
-		autostr_append(desc, _("%+d to resist electricity%s"), it->bonus_to_resist_electricity, separator);
-	}
 	if (it->bonus_to_paralyze_enemy) {
 		autostr_append(desc, _("%+d to paralyze enemy%s"), it->bonus_to_paralyze_enemy, separator);
 	}
@@ -423,10 +417,8 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_all_attributes = 0;
 	it->bonus_to_armor_class = 0;
 	it->bonus_to_damage = 0;
-	it->bonus_to_resist_fire = 0;
-	it->bonus_to_resist_electricity = 0;
 	it->bonus_to_paralyze_enemy = 0;
-	it->bonus_to_slow_enemy = 0;
+	It->bonus_to_slow_enemy = 0;
 	it->bonus_to_light_radius = 0;
 	it->bonus_to_experience_gain = 0;
 	it->damage = ItemMap[it->type].base_item_gun_damage;
