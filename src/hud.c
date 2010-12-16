@@ -336,15 +336,14 @@ void ShowCurrentWeapon(void)
 	if (Me.weapon_item.type == -1)
 		return;
 
-	Target_Rect.x =
+	float x =
 	    UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_X) + UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_W) / 2 -
-	    ItemMap[Me.weapon_item.type].inv_image.Surface->w / 2;
-	Target_Rect.y =
+	    ItemMap[Me.weapon_item.type].inventory_image.original_image_width / 2;
+	float y =
 	    UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y) + UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_H) / 2 -
-	    ItemMap[Me.weapon_item.type].inv_image.Surface->h / 2;
-	Target_Rect.w = CURRENT_WEAPON_RECT_W;
-	Target_Rect.h = CURRENT_WEAPON_RECT_H;
-	our_SDL_blit_surface_wrapper(ItemMap[Me.weapon_item.type].inv_image.Surface, NULL, Screen, &Target_Rect);
+	    ItemMap[Me.weapon_item.type].inventory_image.original_image_height / 2;
+	iso_image *img = get_item_inventory_image(Me.weapon_item.type);
+	blit_iso_image_to_screen_position(img, x, y);
 
 	if (!ItemMap[Me.weapon_item.type].item_gun_use_ammunition)
 		return;
@@ -591,7 +590,7 @@ static void prepare_text_window_content(struct auto_string *str)
 				append_item_description(str, &(Me.Inventory[InvIndex]));
 				best_banner_pos_x =
 				    (Me.Inventory[InvIndex].inventory_position.x +
-				     ItemMap[Me.Inventory[InvIndex].type].inv_image.inv_size.x) * 30 + 16;
+				     ItemMap[Me.Inventory[InvIndex].type].inv_size.x) * 30 + 16;
 				best_banner_pos_y = 300;
 			}
 		} else if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {

@@ -227,7 +227,6 @@ void show_addon_crafting_ui()
 {
 	int i;
 	SDL_Rect rect;
-	SDL_Surface *surface;
 	struct crafting_recipe *arr = ui.recipes.arr;
 
 	// We're being called every time the UI of the game is drawn so we need to
@@ -272,14 +271,14 @@ void show_addon_crafting_ui()
 		}
 		int type = arr[i].item_type;
 		DisplayText(ItemMap[type].item_name, rect.x + rect.h, rect.y + 4, NULL, TEXT_STRETCH);
-		surface = ItemMap[type].inv_image.Surface;
-		if (surface) {
+		iso_image *img = get_item_inventory_image(type);
+		if (img) {
 			SDL_Rect icon_rect;
 			icon_rect.w = RECIPE_LIST_ROW_HEIGHT;
 			icon_rect.h = RECIPE_LIST_ROW_HEIGHT;
-			icon_rect.x = rect.x + (icon_rect.w - surface->w) / 2;
-			icon_rect.y = rect.y + (icon_rect.h - surface->h) / 2;
-			our_SDL_blit_surface_wrapper(surface, NULL, Screen, &icon_rect);
+			icon_rect.x = rect.x + (icon_rect.w - img->original_image_width) / 2;
+			icon_rect.y = rect.y + (icon_rect.h - img->original_image_height) / 2;
+			blit_iso_image_to_screen_position(img, icon_rect.x, icon_rect.y);
 		}
 		rect.y += rect.h;
 	}

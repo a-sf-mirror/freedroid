@@ -214,7 +214,6 @@ void show_item_upgrade_ui()
 	char buffer[512];
 	iso_image *image;
 	SDL_Rect rect;
-	SDL_Surface *surface;
 	struct upgrade_socket_dynarray *sockets = &ui.custom_item.upgrade_sockets;
 
 	// We're being called every time the UI of the game is drawn so we need to
@@ -311,12 +310,13 @@ void show_item_upgrade_ui()
 		// Draw the items in the sockets.
 		for (i = 0; i < ADDON_ITEMS_MAX; i++) {
 			if (ui.addon_items[i].type != -1) {
-				surface = ItemMap[ui.addon_items[i].type].inv_image.Surface;
-				if (surface) {
+				iso_image *img = get_item_inventory_image(ui.addon_items[i].type);
+
+				if (img) {
 					rect = rects.socket_slots[i];
-					rect.x += (rect.w - surface->w) / 2;
-					rect.y += (rect.h - surface->h) / 2;
-					our_SDL_blit_surface_wrapper(surface, NULL, Screen, &rect);
+					rect.x += (rect.w - img->original_image_width) / 2;
+					rect.y += (rect.h - img->original_image_height) / 2;
+					blit_iso_image_to_screen_position(img, rect.x, rect.y);
 				}
 			}
 		}

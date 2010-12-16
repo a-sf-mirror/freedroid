@@ -638,8 +638,11 @@ void InitPictures(void)
 	next_startup_percentage(33);
 
 	init_obstacle_data();
-	if (!GameConfig.lazyload)
+
+	if (!GameConfig.lazyload) {
 		load_all_obstacles();
+		load_all_items();
+	}
 
 	Load_Enemy_Surfaces();
 

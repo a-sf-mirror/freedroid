@@ -110,12 +110,11 @@ LIST_HEAD(visible_level_list);
  * The typical crosshair cursor is assumed.  The item is centered around
  * this crosshair cursor, depending on item size.
  */
-void DisplayItemImageAtMouseCursor(int ItemImageCode)
+static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 {
 	SDL_Rect TargetRect;
 
 	if (ItemImageCode == (-1)) {
-		DebugPrintf(2, "\nCurrently no (-1 code) item held in hand.");
 		return;
 	}
 	// We define the target location for the item.  This will be the current
@@ -126,8 +125,8 @@ void DisplayItemImageAtMouseCursor(int ItemImageCode)
 	// And then of course we also have to take into account the size of the
 	// item, wich is also not always the same.
 	//
-	TargetRect.x = GetMousePos_x() - ItemMap[ItemImageCode].inv_image.inv_size.x * 16;
-	TargetRect.y = GetMousePos_y() - ItemMap[ItemImageCode].inv_image.inv_size.y * 16;
+	TargetRect.x = GetMousePos_x() - ItemMap[ItemImageCode].inv_size.x * 16;
+	TargetRect.y = GetMousePos_y() - ItemMap[ItemImageCode].inv_size.y * 16;
 
 	// Do not move an item out of the screen
 	if (TargetRect.x < 0)
@@ -136,9 +135,9 @@ void DisplayItemImageAtMouseCursor(int ItemImageCode)
 	if (TargetRect.y < 0)
 		TargetRect.y = 0;
 
-	our_SDL_blit_surface_wrapper(ItemMap[ItemImageCode].inv_image.Surface, NULL, Screen, &TargetRect);
-
-};				// void DisplayItemImageAtMouseCursor( int ItemImageCode )
+	iso_image *img = get_item_inventory_image(ItemImageCode);
+	blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+}
 
 /**
  * This function displays (several) blinking warning signs as soon as item
@@ -167,23 +166,11 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 		if (AlarmItem->current_duration < 3)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
-#ifdef HAVE_LIBGL
-		if (use_open_gl) {
-			glPixelTransferf(GL_BLUE_SCALE, 0);
-			glPixelTransferf(GL_GREEN_SCALE, (float)(AlarmItem->current_duration - 1) / (4));
-			glPixelTransferf(GL_RED_SCALE, 1);
-		}
-#endif
-		our_SDL_blit_surface_wrapper(ItemMap[ItemImageCode].inv_image.Surface, NULL, Screen, &TargetRect);
-#ifdef HAVE_LIBGL
-		if (use_open_gl) {
-			glPixelTransferf(GL_BLUE_SCALE, 1);
-			glPixelTransferf(GL_GREEN_SCALE, 1);
-			glPixelTransferf(GL_RED_SCALE, 1);
-		}
-#endif
+		//XXX color filters?
+		iso_image *img = get_item_inventory_image(ItemImageCode);
+		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
-};				// void ShowOneItemAlarm( item* AlarmItem )
+}
 
 /**
  * This function displays (several) blinking warning signs as soon as item
@@ -3636,15 +3623,7 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	if ((put_thrown_items_flag == PUT_NO_THROWN_ITEMS) && (CurItem->throw_time > 0))
 		return;
 
-	// Now we can go take a look if maybe there is an ingame surface 
-	// for this item available.  If not, the function will automatically
-	// load the inventory surface instead, so we really can assume that
-	// we have something to use afterwards.
-	//
-	if ((ItemMap[CurItem->type].inv_image.ingame_iso_image.surface == NULL) &&
-	    (!ItemMap[CurItem->type].inv_image.ingame_iso_image.texture_has_been_created))
-		try_to_load_ingame_item_surface(CurItem->type);
-
+	iso_image *img = get_item_ingame_image(CurItem->type);
 
 	// Apply disco mode when current item is selected
 	object_vtx_color(CurItem, &r, &g, &b);
@@ -3653,24 +3632,24 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	//
 	if (mask & ZOOM_OUT) {
 		if (use_open_gl) {
-			draw_gl_textured_quad_at_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
+			draw_gl_textured_quad_at_map_position(img,
 									CurItem->virt_pos.x, CurItem->virt_pos.y, r, g, b, 0.25, FALSE,
 							      lvledit_zoomfact_inv());
 		} else {
-			blit_zoomed_iso_image_to_map_position(&(ItemMap[CurItem->type].inv_image.ingame_iso_image),
+			blit_zoomed_iso_image_to_map_position(img,
 							      CurItem->virt_pos.x, CurItem->virt_pos.y);
 		}
 	} else {
 		float anim_tr = (CurItem->throw_time <= 0) ? 0.0 : (3.0 * sinf(CurItem->throw_time * 3.0));
 		if (use_open_gl) {
-			draw_gl_textured_quad_at_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
+			draw_gl_textured_quad_at_map_position(img,
 							      CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr,
 							      r, g, b, highlight_item, FALSE, 1.0);
 		} else {
-			blit_iso_image_to_map_position(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
+			blit_iso_image_to_map_position(img,
 						       CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
 			if (highlight_item)
-				sdl_highlight_iso_image(&ItemMap[CurItem->type].inv_image.ingame_iso_image,
+				sdl_highlight_iso_image(img,
 									  CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
 		}
 	}
@@ -3964,8 +3943,10 @@ static void show_inventory_screen(void)
 	TargetRect.x = InventoryRect.x + DRIVE_RECT_X;
 	TargetRect.y = InventoryRect.y + DRIVE_RECT_Y;
 	if (item_held_in_hand != &Me.drive_item && (Me.drive_item.type != (-1))) {
-		our_SDL_blit_surface_wrapper(ItemMap[Me.drive_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
+		iso_image *img = get_item_inventory_image(Me.drive_item.type);
+		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
+
 	// Now we display the item in the influencer weapon slot
 	// At this point we have to pay extra care, cause the weapons in Freedroid
 	// really come in many different sizes.
@@ -3973,9 +3954,10 @@ static void show_inventory_screen(void)
 	TargetRect.x = InventoryRect.x + WEAPON_RECT_X;
 	TargetRect.y = InventoryRect.y + WEAPON_RECT_Y;
 	if (item_held_in_hand != &Me.weapon_item && (Me.weapon_item.type != (-1))) {
-		TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_image.inv_size.x);
-		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_image.inv_size.y);
-		our_SDL_blit_surface_wrapper(ItemMap[Me.weapon_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
+		TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_size.x);
+		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_size.y);
+		iso_image *img = get_item_inventory_image(Me.weapon_item.type);
+		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 
 		// Maybe this is also a 2-handed weapon.  In this case we need to blit the
 		// weapon a second time, this time in the center of the shield rectangle to
@@ -3986,12 +3968,9 @@ static void show_inventory_screen(void)
 			// Display the weapon again
 			TargetRect.x = InventoryRect.x + SHIELD_RECT_X;
 			TargetRect.y = InventoryRect.y + SHIELD_RECT_Y;
-			TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_image.inv_size.x);
-			TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_image.inv_size.y);
-			TargetRect.w = ItemMap[Me.weapon_item.type].inv_image.Surface->w;
-			TargetRect.h = ItemMap[Me.weapon_item.type].inv_image.Surface->h;
-			our_SDL_blit_surface_wrapper(ItemMap[Me.weapon_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
-
+			TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_size.x);
+			TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_size.y);
+			blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 		}
 	}
 	// Now we display the item in the influencer armour slot
@@ -3999,7 +3978,8 @@ static void show_inventory_screen(void)
 	TargetRect.x = InventoryRect.x + ARMOUR_RECT_X;
 	TargetRect.y = InventoryRect.y + ARMOUR_RECT_Y;
 	if (item_held_in_hand != &Me.armour_item && (Me.armour_item.type != (-1))) {
-		our_SDL_blit_surface_wrapper(ItemMap[Me.armour_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
+		iso_image *img = get_item_inventory_image(Me.armour_item.type);
+		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display the item in the influencer shield slot
 	//
@@ -4010,15 +3990,17 @@ static void show_inventory_screen(void)
 		// correction here, so that the shield will always appear in the center
 		// of the shield slot
 		//
-		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.shield_item.type].inv_image.inv_size.y);
-		our_SDL_blit_surface_wrapper(ItemMap[Me.shield_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
+		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.shield_item.type].inv_size.y);
+		iso_image *img = get_item_inventory_image(Me.shield_item.type);
+		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display the item in the influencer special slot
 	//
 	TargetRect.x = InventoryRect.x + HELMET_RECT_X;
 	TargetRect.y = InventoryRect.y + HELMET_RECT_Y;
 	if (item_held_in_hand != &Me.special_item && (Me.special_item.type != (-1))) {
-		our_SDL_blit_surface_wrapper(ItemMap[Me.special_item.type].inv_image.Surface, NULL, Screen, &TargetRect);
+		iso_image *img = get_item_inventory_image(Me.special_item.type);
+		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display all the items the influencer is carrying with him
 	//
@@ -4033,8 +4015,8 @@ static void show_inventory_screen(void)
 			continue;
 		}
 
-		for (i = 0; i < ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.y; i++) {
-			for (j = 0; j < ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.x; j++) {
+		for (i = 0; i < ItemMap[Me.Inventory[SlotNum].type].inv_size.y; i++) {
+			for (j = 0; j < ItemMap[Me.Inventory[SlotNum].type].inv_size.x; j++) {
 				TargetRect.x =
 				    INVENTORY_RECT_X - 1 + INV_SUBSQUARE_WIDTH * (Me.Inventory[SlotNum].inventory_position.x + j);
 				TargetRect.y =
@@ -4062,7 +4044,8 @@ static void show_inventory_screen(void)
 		TargetRect.x = INVENTORY_RECT_X - 1 + INV_SUBSQUARE_WIDTH * Me.Inventory[SlotNum].inventory_position.x;
 		TargetRect.y = User_Rect.y + INVENTORY_RECT_Y + INV_SUBSQUARE_HEIGHT * Me.Inventory[SlotNum].inventory_position.y;
 
-		our_SDL_blit_surface_wrapper(ItemMap[Me.Inventory[SlotNum].type].inv_image.Surface, NULL, Screen, &TargetRect);
+		iso_image *img = get_item_inventory_image(Me.Inventory[SlotNum].type);
+		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 
 		// Show amount
 		if (ItemMap[Me.Inventory[SlotNum].type].item_group_together_in_inventory) {
@@ -4073,8 +4056,8 @@ static void show_inventory_screen(void)
 				sprintf(amount, "%d", Me.Inventory[SlotNum].multiplicity);
 			else
 				strcpy(amount, "+++");
-			TargetRect.w = INV_SUBSQUARE_WIDTH * ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.x;
-			int xpos = TargetRect.x + TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_image.inv_size.y - TextWidth(amount) - 2;
+			TargetRect.w = INV_SUBSQUARE_WIDTH * ItemMap[Me.Inventory[SlotNum].type].inv_size.x;
+			int xpos = TargetRect.x + TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_size.y - TextWidth(amount) - 2;
 			int ypos = TargetRect.y + TargetRect.h - FontHeight(Messagevar_BFont);
 			DisplayText(amount, xpos, ypos, &TargetRect, 1.0);
 		}

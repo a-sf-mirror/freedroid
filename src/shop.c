@@ -193,7 +193,12 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 		TargetRectangle.x = ShopItemRowRect.x + position * INITIAL_BLOCK_WIDTH * GameConfig.screen_width / 640;
 		TargetRectangle.y = TuxItemRow;
 	}
-	our_SDL_blit_surface_wrapper(ItemMap[ShowItem->type].inv_image.shop_iso_image.surface, NULL, Screen, &TargetRectangle);
+	
+	iso_image *img = get_item_shop_image(ShowItem->type);
+	if (img) {
+		blit_iso_image_to_screen_position(img, TargetRectangle.x, TargetRectangle.y);
+	}
+
 	if (item_is_currently_equipped(ShowItem)) {
 		blit_iso_image_to_screen_position(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24, TargetRectangle.y);
 	}
@@ -216,11 +221,6 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 	SDL_Surface *Whole_Image;
 	int i;
 	int RotationIndex;
-
-	// DebugPrintf (2, "\nvoid ShowItemPicture(...): Function call confirmed.");
-
-	// if ( !strcmp ( ItemMap[ Number ] . item_rotation_series_prefix , "NONE_AVAILABLE_YET" ) )
-	// return; // later this should be a default-correction instead
 
 	// Maybe we have to reload the whole image series
 	//

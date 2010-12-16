@@ -91,30 +91,19 @@ void Load_Blast_Surfaces(void)
 
 };				// void Load_Blast_Surfaces( void )
 
-/**
- *
- *
- */
-void load_item_surfaces_for_item_type(int item_type)
+static void load_item_graphics(int item_type)
 {
 	SDL_Surface *original_img;
 	SDL_Surface *tmp_surf2 = NULL;
 	char fpath[2048];
 	char our_filename[2000];
+	itemspec *spec = &ItemMap[item_type];
 
-	// First we load the inventory image.
-	//
-	sprintf(our_filename, "items/%s", ItemMap[item_type].item_inv_file_name);
+	sprintf(our_filename, "items/%s", spec->item_inv_file_name);
 
+	// Load the inventory image	
 	find_file(our_filename, GRAPHICS_DIR, fpath, 0);
 
-	if (use_open_gl) {
-		// Create the inventory image for the shop
-		get_iso_image_from_file_and_path(fpath, &(ItemMap[item_type].inv_image.shop_iso_image), FALSE);
-		make_texture_out_of_surface(&(ItemMap[item_type].inv_image.shop_iso_image));
-	}
-
-	original_img = NULL;
 	original_img = IMG_Load(fpath);
 	if (original_img == NULL) {
 		ErrorMessage(__FUNCTION__, "\
@@ -128,136 +117,115 @@ Inventory image for item type %d, at path %s was not found", PLEASE_INFORM, IS_F
 	// inventory screen) from the pixel size of the inventory image
 	// loaded.
 	//
-	// (AH)This approach is not perfect due to resolution considerations. Scaling may or may not be done.  We keep it by default, except
-	// if the size is already set.
-
-	if (!ItemMap[item_type].inv_image.inv_size.x) {
+	if (!spec->inv_size.x) {
 		if (original_img->w % 32) {
 			ErrorMessage(__FUNCTION__, "\
 Inventory image for item %d (%s) given does not have a multiple-of-32 width.\n\
 FreedroidRPG needs a width of this type, so it can associate the right\n\
 number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_type, fpath);
 		} else {
-			ItemMap[item_type].inv_image.inv_size.x = original_img->w / 32;
+			spec->inv_size.x = original_img->w / 32;
 		}
 	}
 
-	if (!ItemMap[item_type].inv_image.inv_size.y) {
+	if (!spec->inv_size.y) {
 		if (original_img->h % 32) {
 			ErrorMessage(__FUNCTION__, "\
 	      Inventory image for item %d (%s) given does not have a multiple-of-32 height.\n\
 	      FreedroidRPG needs a height of this type, so it can associate the right\n\
 	      number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_type, fpath);
 		} else {
-			ItemMap[item_type].inv_image.inv_size.y = original_img->h / 32;
+			spec->inv_size.y = original_img->h / 32;
 		}
 	}
-	// Does the image need scaling ? (currently only one item needs it, but as I'd like to raise the standard sizes from 32x32 to at least 64x64,
-	// this code makes sense)
-	int target_x = ItemMap[item_type].inv_image.inv_size.x * 32;
-	int target_y = ItemMap[item_type].inv_image.inv_size.y * 32;
+	
+	int target_x = spec->inv_size.x * 32;
+	int target_y = spec->inv_size.y * 32;
 	float factor_x, factor_y;
 	if ((target_x != original_img->w) || (target_y != original_img->h)) {
 		factor_x = (float)target_x / (float)original_img->w;
 		factor_y = (float)target_y / (float)original_img->h;
 		tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
-		ItemMap[item_type].inv_image.Surface = our_SDL_display_format_wrapperAlpha(tmp_surf2);
+		spec->inventory_image.surface = our_SDL_display_format_wrapperAlpha(tmp_surf2);
 		SDL_FreeSurface(tmp_surf2);
 	} else
-		ItemMap[item_type].inv_image.Surface = our_SDL_display_format_wrapperAlpha(original_img);
+		spec->inventory_image.surface = our_SDL_display_format_wrapperAlpha(original_img);
+
+	if (use_open_gl) {
+		make_texture_out_of_surface(&spec->inventory_image);
+	}
 
 	// For the shop, we need versions of each image, where the image is scaled so
 	// that it takes up a whole 64x64 shop display square.  So we prepare scaled
 	// versions here and now...
-
+	
+	// Scale shop image
 	if (original_img->w >= original_img->h) {
 		target_x = 64;
 		target_y = original_img->h * 64.0 / (float)original_img->w;	//keep the scaling ratio !
 	}
+
 	if (original_img->h > original_img->w) {
 		target_y = 64;
 		target_x = original_img->w * 64.0 / (float)original_img->h;
 	}
+
 	factor_x = ((float)GameConfig.screen_width / 640.0) * ((float)target_x / (float)original_img->w);
 	factor_y = ((float)GameConfig.screen_height / 480.0) * ((float)target_y / (float)original_img->h);
 	tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
-	ItemMap[item_type].inv_image.shop_iso_image.surface = our_SDL_display_format_wrapperAlpha(tmp_surf2);
+	spec->shop_image.surface = our_SDL_display_format_wrapperAlpha(tmp_surf2);
 	SDL_FreeSurface(original_img);
 	SDL_FreeSurface(tmp_surf2);
 
-};				// void load_item_surfaces_for_item_type ( int item_type )
-
-/**
- *
- *
- */
-void try_to_load_ingame_item_surface(int item_type)
-{
-	char ConstructedFileName[5000];
-	char fpath[2048];
-	SDL_Surface *Whole_Image;
-
-	if (iso_image_loaded(&ItemMap[item_type].inv_image.ingame_iso_image)) {
-		return;
-	}
-
-	// Now we should try to load the real in-game item surface...
-	// That will be added later...
-	//
-	// At first we will try to find some item rotation models in the
-	// new directory structure.
-	//
-	sprintf(ConstructedFileName, "items/%s/ingame.png", ItemMap[item_type].item_rotation_series_prefix);
-	find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
-	Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
-
-	// If that didn't work, then it's time to try out the 'classic' rotation models directory.
-	// Maybe there's still some rotation image there.
-	//
-	if (Whole_Image == NULL) {
-		// No ingame item surface found? -- give error message and then use
-		// the inventory item_surface for the job.
-		//
-		ErrorMessage(__FUNCTION__, "\
-Unable to load item %d's ingame surface. (path tried %s)\n\
-Since there seems to be no ingame item surface yet, the inventory\n\
-item surface will be used as a substitute for now.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, item_type, fpath);
-
-		if (use_open_gl) {
-			ItemMap[item_type].inv_image.ingame_iso_image.surface =
-			    SDL_DisplayFormatAlpha(ItemMap[item_type].inv_image.Surface);
-		} else {
-			ItemMap[item_type].inv_image.ingame_iso_image.surface = ItemMap[item_type].inv_image.Surface;
-		}
-
-		ItemMap[item_type].inv_image.ingame_iso_image.offset_x = -ItemMap[item_type].inv_image.Surface->w / 2;
-		ItemMap[item_type].inv_image.ingame_iso_image.offset_y = -ItemMap[item_type].inv_image.Surface->h / 2;
-
-	} else {
-		// So if an image of the required type can be found there, we 
-		// can start to load it.  But for this we will use standard iso
-		// object loading function, so that offset gets respected too...
-		//
-		/*
-		   SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
-		   ItemImageList [ ItemMap [ item_type ] . picture_number ] . ingame_surface = 
-		   our_SDL_display_format_wrapperAlpha( Whole_Image ); // now we have an alpha-surf of right size
-		   SDL_SetColorKey( ItemImageList [ ItemMap [ item_type ] . picture_number ] . ingame_surface , 0 , 0 ); // this should clear any color key in the dest surface
-		 */
-		get_iso_image_from_file_and_path(fpath, &(ItemMap[item_type].inv_image.ingame_iso_image), TRUE);
-		SDL_FreeSurface(Whole_Image);
-	}
-
-	// Now that it has been made sure, that a dispensable image is
-	// loaded for the ingame surface, we can destroy it and make a
-	// textured quad from it...
-	//
 	if (use_open_gl) {
-		make_texture_out_of_surface(&(ItemMap[item_type].inv_image.ingame_iso_image));
+		make_texture_out_of_surface(&spec->shop_image);
 	}
 
-};				// void try_to_load_ingame_item_surface ( int item_number )
+	// Load ingame image
+	if (strcmp(spec->item_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
+		sprintf(our_filename, "items/%s/ingame.png", spec->item_rotation_series_prefix);
+		load_iso_image(&spec->ingame_image, our_filename, TRUE);
+	} else {
+		memcpy(&spec->ingame_image, &spec->inventory_image, sizeof(iso_image));
+	}
+}
 
+static void load_if_needed(int type)
+{
+	itemspec *spec = &ItemMap[type];
+
+	if (!iso_image_loaded(&spec->inventory_image)) {
+		load_item_graphics(type);
+	}
+}
+
+iso_image *get_item_inventory_image(int type)
+{
+	load_if_needed(type);	
+	return &ItemMap[type].inventory_image;
+}
+
+iso_image *get_item_shop_image(int type)
+{
+	load_if_needed(type);	
+	return &ItemMap[type].shop_image;
+}
+
+iso_image *get_item_ingame_image(int type)
+{
+	load_if_needed(type);	
+	return &ItemMap[type].ingame_image;
+}
+
+void load_all_items(void)
+{
+	int i;
+
+	for (i = 0; i < Number_Of_Item_Types; i++) {
+		load_item_graphics(i);
+	}
+}
+	
 /**
  * This function loads the items image and decodes it into the multiple
  * small item surfaces.
@@ -609,7 +577,7 @@ void load_iso_image(iso_image *img, const char *filename, int use_offset_file)
 
 	if (img->surface == NULL) {
 		ErrorMessage(__FUNCTION__, 
-			"Error loading image: %s.", PLEASE_INFORM, IS_FATAL, filename);
+			"Error loading image %s - SDL_image said %s.", PLEASE_INFORM, IS_FATAL, filename, IMG_GetError());
 	}
 
 	if (use_open_gl) {

@@ -113,7 +113,6 @@ int find_free_melee_shot_index(void);
 void delete_melee_shot(melee_shot *);
 
 // view.c 
-void DisplayItemImageAtMouseCursor(int);
 void gps_transform_map_init(void);
 void update_virtual_position(gps * target_pos, gps * source_pos, int level_num);
 int resolve_virtual_position(gps * actual_pos, gps * virtual_pos);
@@ -234,13 +233,11 @@ void draw_gl_bg_textured_quad_at_screen_position(iso_image * our_floor_iso_image
 
 // blocks.c 
 int wall_orientation(int wall);
-void try_to_load_ingame_item_surface(int item_type);
 void iso_load_bullet_surfaces(void);
 int iso_image_loaded(iso_image *);
 void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, int use_offset_file);
 void load_iso_image(iso_image *, const char *, int);
 void make_sure_zoomed_surface_is_there(iso_image * our_iso_image);
-void load_item_surfaces_for_item_type(int item_type);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void Load_Skill_Level_Button_Surfaces(void);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
@@ -259,6 +256,10 @@ void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, floa
 void blit_iso_image_to_screen_position(iso_image * our_iso_image, float pos_x, float pos_y);
 void sdl_highlight_iso_image(iso_image * our_iso_image, float pos_x, float pos_y);
 void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
+iso_image *get_item_shop_image(int type);
+iso_image *get_item_ingame_image(int type);
+iso_image *get_item_inventory_image(int type);
+void load_all_items(void);
 
 // block_areas.c
 void init_obstacle_data(void);

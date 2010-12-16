@@ -855,8 +855,8 @@ int Inv_Pos_Is_Free(int x, int y)
 			continue;
 
 		// for ( item_height = 0 ; item_height < ItemSizeTable[ Me.Inventory[ i ].type ].y ; item_height ++ )
-		for (item_height = 0; item_height < ItemMap[Me.Inventory[i].type].inv_image.inv_size.y; item_height++) {
-			for (item_width = 0; item_width < ItemMap[Me.Inventory[i].type].inv_image.inv_size.x; item_width++) {
+		for (item_height = 0; item_height < ItemMap[Me.Inventory[i].type].inv_size.y; item_height++) {
+			for (item_width = 0; item_width < ItemMap[Me.Inventory[i].type].inv_size.x; item_width++) {
 				if (((Me.Inventory[i].inventory_position.x + item_width) == x) &&
 				    ((Me.Inventory[i].inventory_position.y + item_height) == y))
 					return (FALSE);
@@ -885,8 +885,8 @@ int GetInventoryItemAt(int x, int y)
 		if (Me.Inventory[i].type == (-1))
 			continue;
 
-		for (item_height = 0; item_height < ItemMap[Me.Inventory[i].type].inv_image.inv_size.y; item_height++) {
-			for (item_width = 0; item_width < ItemMap[Me.Inventory[i].type].inv_image.inv_size.x; item_width++) {
+		for (item_height = 0; item_height < ItemMap[Me.Inventory[i].type].inv_size.y; item_height++) {
+			for (item_width = 0; item_width < ItemMap[Me.Inventory[i].type].inv_size.x; item_width++) {
 				if (((Me.Inventory[i].inventory_position.x + item_width) == x) &&
 				    ((Me.Inventory[i].inventory_position.y + item_height) == y)) {
 					return (i);
@@ -1136,16 +1136,16 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 	//
 	if (InvPos_x < 0 || InvPos_y < 0)
 		return FALSE;
-	if (ItemMap[ItemType].inv_image.inv_size.x - 1 + InvPos_x >= INVENTORY_GRID_WIDTH)
+	if (ItemMap[ItemType].inv_size.x - 1 + InvPos_x >= INVENTORY_GRID_WIDTH)
 		return (FALSE);
-	if (ItemMap[ItemType].inv_image.inv_size.y - 1 + InvPos_y >= INVENTORY_GRID_HEIGHT)
+	if (ItemMap[ItemType].inv_size.y - 1 + InvPos_y >= INVENTORY_GRID_HEIGHT)
 		return (FALSE);
 
 	// Now that we know, that the desired position is at least inside the inventory
 	// grid, we can start to test for the details of the available inventory space
 	//
-	for (item_height = 0; item_height < ItemMap[ItemType].inv_image.inv_size.y; item_height++) {
-		for (item_width = 0; item_width < ItemMap[ItemType].inv_image.inv_size.x; item_width++) {
+	for (item_height = 0; item_height < ItemMap[ItemType].inv_size.y; item_height++) {
+		for (item_width = 0; item_width < ItemMap[ItemType].inv_size.x; item_width++) {
 			if (!Inv_Pos_Is_Free(InvPos_x + item_width, InvPos_y + item_height))
 				return (FALSE);
 		}
@@ -1390,8 +1390,8 @@ void DropHeldItemToInventory(void)
 	// depends as well on current mouse cursor location as well as the
 	// size of the dropped item.
 	//
-	CurPos.x = GetMousePos_x() - (16 * (ItemMap[item_held_in_hand->type].inv_image.inv_size.x - 1));
-	CurPos.y = GetMousePos_y() - (16 * (ItemMap[item_held_in_hand->type].inv_image.inv_size.y - 1));
+	CurPos.x = GetMousePos_x() - (16 * (ItemMap[item_held_in_hand->type].inv_size.x - 1));
+	CurPos.y = GetMousePos_y() - (16 * (ItemMap[item_held_in_hand->type].inv_size.y - 1));
 
 	if (ItemCanBeDroppedInInv(item_held_in_hand->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
 		CopyItem(item_held_in_hand, &(Me.Inventory[FreeInvIndex]), TRUE);
@@ -1474,8 +1474,10 @@ void show_quick_inventory(void)
 		{
 			target_rect.x = UNIVERSAL_COORD_W(130 + i * 40);
 			target_rect.y = GameConfig.screen_height - UNIVERSAL_COORD_H(32);
- 
-			our_SDL_blit_surface_wrapper(ItemMap[Me.Inventory[index].type].inv_image.Surface, NULL, Screen, &target_rect);
+
+			iso_image *img = get_item_inventory_image(Me.Inventory[index].type);
+
+		    blit_iso_image_to_screen_position(img, target_rect.x, target_rect.y);	
 		}
 	}
 }
@@ -1894,8 +1896,8 @@ int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_Loc, in
 	int item_height;
 	int item_width;
 
-	for (item_height = 0; item_height < ItemMap[ItemPointer->type].inv_image.inv_size.y; item_height++) {
-		for (item_width = 0; item_width < ItemMap[ItemPointer->type].inv_image.inv_size.x; item_width++) {
+	for (item_height = 0; item_height < ItemMap[ItemPointer->type].inv_size.y; item_height++) {
+		for (item_width = 0; item_width < ItemMap[ItemPointer->type].inv_size.x; item_width++) {
 			DebugPrintf(1, "\nAddFloorItemDirectlyToInventory:  Checking pos: %d %d ", Inv_Loc.x + item_width,
 				    Inv_Loc.y + item_height);
 			if (!Inv_Pos_Is_Free(Inv_Loc.x + item_width, Inv_Loc.y + item_height)) {
@@ -2042,19 +2044,19 @@ int try_give_item(item *ItemPointer)
 	// isn't possible, it can still be placed somewhere outside of the quick 
 	// inventory later.
 
-	if ((ItemMap[ItemPointer->type].inv_image.inv_size.x == 1) &&
-	    (ItemMap[ItemPointer->type].inv_image.inv_size.y == 1) && (ItemMap[ItemPointer->type].item_can_be_applied_in_combat)) {
+	if ((ItemMap[ItemPointer->type].inv_size.x == 1) &&
+	    (ItemMap[ItemPointer->type].inv_size.y == 1) && (ItemMap[ItemPointer->type].item_can_be_applied_in_combat)) {
 		DebugPrintf(2, "\n\nTrying to place this item inside of the quick inventory first...");
 		Inv_Loc.y = INVENTORY_GRID_HEIGHT - 1;
-		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
+		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {
 			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
 				return 1;
 		}
 	}
 
 	// Find enough free squares in the inventory to fit
-	for (Inv_Loc.y = 0; Inv_Loc.y < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_image.inv_size.y + 1; Inv_Loc.y++) {
-		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_image.inv_size.x + 1; Inv_Loc.x++) {
+	for (Inv_Loc.y = 0; Inv_Loc.y < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_size.y + 1; Inv_Loc.y++) {
+		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_WIDTH - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {
 			if (place_item_on_this_position_if_you_can(ItemPointer, Inv_Loc, InvPos))
 				return 1;
 		}

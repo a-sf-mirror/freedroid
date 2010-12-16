@@ -250,13 +250,6 @@ typedef struct event_trigger {
 	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
 } event_trigger;
 
-typedef struct item_image_spec {
-	point inv_size;
-	SDL_Surface *Surface;
-	iso_image ingame_iso_image;
-	iso_image shop_iso_image;
-} item_image_spec;
-
 struct addon_bonus {
 	char *name;
 	int value;
@@ -324,9 +317,11 @@ typedef struct itemspec {
 	short int base_item_duration;
 	short int item_duration_modifier;
 
-	// Which picture to use for this item, when it's lying on the floor?
-	// int picture_number;
-	item_image_spec inv_image;
+	point inv_size;
+	iso_image inventory_image;
+	iso_image ingame_image;
+	iso_image shop_image;
+
 	short int base_list_price;	// the base price of this item at the shop
 
 	short int min_drop_class;
