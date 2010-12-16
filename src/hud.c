@@ -331,7 +331,6 @@ void ShowCurrentSkill(void)
  */
 void ShowCurrentWeapon(void)
 {
-	SDL_Rect Target_Rect;
 	char current_ammo[10];
 	if (Me.weapon_item.type == -1)
 		return;
@@ -354,9 +353,9 @@ void ShowCurrentWeapon(void)
 		sprintf(current_ammo, _(" %sEMPTY"), font_switchto_red);
 	else
 		sprintf(current_ammo, "%2d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
-	PutStringFont(Screen, FPS_Display_BFont, Target_Rect.x, Target_Rect.y + 50, current_ammo);
 
-};				// void ShowCurrentWeapon ( void )
+	PutStringFont(Screen, FPS_Display_BFont, x, y + 50, current_ammo);
+}
 
 /**
  * The experience needed for the next level and the experience achieved
