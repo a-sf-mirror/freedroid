@@ -1179,7 +1179,8 @@ int LoadShip(char *filename, int compressed)
 	} else {
 		int length = FS_filelength(ShipFile);
 		ShipData = malloc(length + 1);
-		fread(ShipData, length, 1, ShipFile);
+		if (!fread(ShipData, length, 1, ShipFile))
+			ErrorMessage(__FUNCTION__, "Reading ship file %s failed with fread().\n", PLEASE_INFORM, IS_FATAL, filename);
 		ShipData[length] = 0;
 	}
 
