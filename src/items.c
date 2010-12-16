@@ -1891,7 +1891,7 @@ void raw_move_picked_up_item_to_entry(item * ItemPointer, item * TargetPointer, 
 /**
  *
  */
-int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_Loc, int InvPos)
+static int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_Loc, int InvPos)
 {
 	int item_height;
 	int item_width;
