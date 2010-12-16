@@ -418,7 +418,7 @@ void calculate_item_bonuses(item *it)
 	it->bonus_to_armor_class = 0;
 	it->bonus_to_damage = 0;
 	it->bonus_to_paralyze_enemy = 0;
-	It->bonus_to_slow_enemy = 0;
+	it->bonus_to_slow_enemy = 0;
 	it->bonus_to_light_radius = 0;
 	it->bonus_to_experience_gain = 0;
 	it->damage = ItemMap[it->type].base_item_gun_damage;
