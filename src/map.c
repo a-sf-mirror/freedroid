@@ -46,7 +46,7 @@
 
 #define 	TELEPORT_PAIR_STRING	"teleport pair:"
 
-void GetThisLevelsDroids(char *SectionPointer);
+void GetThisLevelsDroids(char *section_pointer);
 
 struct animated_obstacle {
 	int index;
@@ -1697,67 +1697,102 @@ static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, 
  * droid section to fill the AllEnemys array with droid types according
  * to the specifications made in the file.
  */
-void GetThisLevelsDroids(char *SectionPointer)
+void GetThisLevelsDroids(char *section_pointer)
 {
-	int OurLevelNumber;
-	char *SearchPointer;
-	char *EndOfThisLevelData;
-	int MaxRand;
-	int MinRand;
-	int RealNumberOfRandomDroids;
-	int DifferentRandomTypes;
-	int ListIndex;
-	char TypeIndicationString[1000];
-	short int ListOfTypesAllowed[1000];
+	int our_level_number;
+	char *search_ptr;
+	char *lvl_end_location;
+	int max_rand = 0;
+	int min_rand = 0;
+	int real_random_droids;
+	int different_rand_droid_types = 1;
+	short int allowed_type_list[Number_Of_Droid_Types];
+	allowed_type_list[0] = 0;
 
 #define DROIDS_LEVEL_INDICATION_STRING "Level="
 #define DROIDS_LEVEL_END_INDICATION_STRING "** End of this levels droid data **"
-#define DROIDS_MAXRAND_INDICATION_STRING "Maximum number of Random Droids="
-#define DROIDS_MINRAND_INDICATION_STRING "Minimum number of Random Droids="
-#define ALLOWED_TYPE_INDICATION_STRING "Random Droid Type: "
+#define DROIDS_NUMBER_INDICATION_STRING "Number of Random Droids="
+#define ALLOWED_TYPE_INDICATION_STRING "Random Droid Types: "
 
-	// printf("\nReceived another levels droid section for decoding. It reads: %s " , SectionPointer );
+	// printf("\nReceived another levels droid section for decoding. It reads: %s " , section_pointer );
 
-	EndOfThisLevelData = LocateStringInData(SectionPointer, DROIDS_LEVEL_END_INDICATION_STRING);
-	EndOfThisLevelData[0] = 0;
+	lvl_end_location = LocateStringInData(section_pointer, DROIDS_LEVEL_END_INDICATION_STRING);
+	lvl_end_location[0] = 0;
 
 	// Now we read in the level number for this level
-	ReadValueFromString(SectionPointer, DROIDS_LEVEL_INDICATION_STRING, "%d", &OurLevelNumber, EndOfThisLevelData);
+	ReadValueFromString(section_pointer, DROIDS_LEVEL_INDICATION_STRING, "%d", &our_level_number, lvl_end_location);
 
-	// Now we read in the maximal number of random droids for this level
-	ReadValueFromString(SectionPointer, DROIDS_MAXRAND_INDICATION_STRING, "%d", &MaxRand, EndOfThisLevelData);
+	// Now we read in the min and max number of random droids for this level
+	search_ptr = ReadAndMallocStringFromDataOptional(section_pointer, DROIDS_NUMBER_INDICATION_STRING, "\n");
+	if (search_ptr) {
+		char *ptr;
+		min_rand = strtol(search_ptr, &ptr, 10);
+		if (*ptr == '-') {
+			ptr++;
+			max_rand = strtol(ptr, NULL, 10);
+		} else {
+			max_rand = min_rand;
+		}
 
-	// Now we read in the minimal number of random droids for this level
-	ReadValueFromString(SectionPointer, DROIDS_MINRAND_INDICATION_STRING, "%d", &MinRand, EndOfThisLevelData);
-
-	DifferentRandomTypes = 0;
-	SearchPointer = SectionPointer;
-	while ((SearchPointer = strstr(SearchPointer, ALLOWED_TYPE_INDICATION_STRING)) != NULL) {
-		SearchPointer += strlen(ALLOWED_TYPE_INDICATION_STRING);
-		strncpy(TypeIndicationString, SearchPointer, 3);	// Every type is 3 characters long
-		TypeIndicationString[3] = 0;
-		// printf("\nType indication found!  It reads: %s." , TypeIndicationString );
-
-		// Now that we have got a type indication string, we only need to translate it
-		// into a number corresponding to that droid in the droid list
-		ListIndex = get_droid_type(TypeIndicationString);
-		ListOfTypesAllowed[DifferentRandomTypes] = ListIndex;
-		DifferentRandomTypes++;
+		if (min_rand < 0) {
+			ErrorMessage(__FUNCTION__, "\
+On Level %d the minimum number (%d) of random droids is a negative number.\n\
+Setting the number of random droids to 0 for this level.", PLEASE_INFORM, IS_WARNING_ONLY, our_level_number, min_rand);
+			min_rand = max_rand = 0;
+		} else if (max_rand < min_rand) {
+			ErrorMessage(__FUNCTION__, "\
+On Level %d the minimum number (%d) of random droids is greater than\n\
+the maximum number (%d) of random droids.", PLEASE_INFORM, IS_WARNING_ONLY, our_level_number, min_rand, max_rand);
+		} 
+		free(search_ptr);
 	}
 
-	// At this point, the List "ListOfTypesAllowed" has been filled with the NUMBERS of
+	// Now we read in the type(s) of random droids for this level
+	search_ptr = ReadAndMallocStringFromDataOptional(section_pointer, ALLOWED_TYPE_INDICATION_STRING, "\n");
+	if (search_ptr && (max_rand > 0)) {
+		different_rand_droid_types = 0;
+		char *droid_type_ptr = search_ptr;
+		while (*droid_type_ptr) {
+			while (*droid_type_ptr && isspace(*droid_type_ptr)) {
+				droid_type_ptr++;
+			}
+			int droid_type_length = 0;
+			char *ptr = droid_type_ptr;
+			while (isalnum(*ptr)) {
+				ptr++;
+				droid_type_length++;
+			}
+			if (!droid_type_length)
+				break;
+
+			char type_indication_string[droid_type_length + 1];
+			strncpy(type_indication_string, droid_type_ptr, droid_type_length);
+			type_indication_string[droid_type_length] = 0;
+			// printf("\nType indication found!  It reads: %s." , type_indication_string )
+
+			allowed_type_list[different_rand_droid_types] = get_droid_type(type_indication_string);
+			different_rand_droid_types++;
+
+			droid_type_ptr += droid_type_length;
+			if (*droid_type_ptr)
+				droid_type_ptr++; //skip the comma
+		}
+		free(search_ptr);
+	}
+
+	// At this point, the List "allowed_type_list" has been filled with the NUMBERS of
 	// the allowed types.  The number of different allowed types found is also available.
 	// That means that now we can add the appropriate droid types into the list of existing
 	// droids in that mission.
 
-	RealNumberOfRandomDroids = MyRandom(MaxRand - MinRand) + MinRand;
+	real_random_droids = MyRandom(max_rand - min_rand) + min_rand;
 
-	while (RealNumberOfRandomDroids--) {
+	while (real_random_droids--) {
 		// Create a new enemy, and initialize its 'identity' and 'global state'
 		// (the enemy will be fully initialized by respawn_level())
-		enemy *newen = enemy_new(ListOfTypesAllowed[MyRandom(DifferentRandomTypes - 1)]);
+		enemy *newen = enemy_new(allowed_type_list[MyRandom(different_rand_droid_types - 1)]);
 		newen->pos.x = newen->pos.y = -1;
-		newen->pos.z = OurLevelNumber;
+		newen->pos.z = our_level_number;
 		newen->on_death_drop_item_code = -1;
 		newen->dialog_section_name = strdup("AfterTakeover");
 		newen->faction = FACTION_BOTS;
@@ -1765,12 +1800,12 @@ void GetThisLevelsDroids(char *SectionPointer)
 		enemy_insert_into_lists(newen, TRUE);
 	}			// while (enemy-limit of this level not reached) 
 
-	SearchPointer = SectionPointer;
-	GetThisLevelsSpecialForces(SearchPointer, OurLevelNumber, EndOfThisLevelData);
+	search_ptr = section_pointer;
+	GetThisLevelsSpecialForces(search_ptr, our_level_number, lvl_end_location);
 
 	// End bot's initialization, and put them onto a waypoint.
-	respawn_level(OurLevelNumber);
-};				// void GetThisLevelsDroids( char* SectionPointer )
+	respawn_level(our_level_number);
+};
 
 /**
  * This function determines whether a given object on x/y is visible to
