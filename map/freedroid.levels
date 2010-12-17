@@ -12,7 +12,6 @@ jump target north: 8
 jump target south: 11
 jump target east: 9
 jump target west: 10
-use underground lighting: 0
 Name of this level=_"Town"
 BgSong=town.ogg
 beginning_of_map
@@ -3951,7 +3950,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Warehouse Level 1"
 BgSong=AmbientBattle.ogg
 beginning_of_map
@@ -4914,7 +4912,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Warehouse Level 2"
 BgSong=TechBattle.ogg
 beginning_of_map
@@ -5567,7 +5564,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Kevins Underground Station"
 BgSong=underground.ogg
 beginning_of_map
@@ -6035,7 +6031,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Machine Deck Control Room"
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -6775,7 +6770,6 @@ jump target north: -1
 jump target south: -1
 jump target east: 14
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Disruptor Shield Control"
 BgSong=underground.ogg
 beginning_of_map
@@ -8291,7 +8285,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Maintenance Tunnels"
 BgSong=AmbientBattle.ogg
 beginning_of_map
@@ -9012,7 +9005,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Disruptor Shield Control"
 BgSong=TechBattle.ogg
 beginning_of_map
@@ -9721,7 +9713,6 @@ jump target north: 13
 jump target south: 0
 jump target east: 17
 jump target west: 12
-use underground lighting: 0
 Name of this level=_"Temple Wood"
 BgSong=temple.ogg
 beginning_of_map
@@ -11586,7 +11577,6 @@ jump target north: 17
 jump target south: 47
 jump target east: 44
 jump target west: 0
-use underground lighting: 0
 Name of this level=_"Crystal Fields"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -12637,7 +12627,6 @@ jump target north: 12
 jump target south: 39
 jump target east: 0
 jump target west: 38
-use underground lighting: 0
 Name of this level=_"Desert Valley"
 BgSong=Suspicion.ogg
 beginning_of_map
@@ -13116,7 +13105,6 @@ jump target north: 0
 jump target south: 46
 jump target east: 47
 jump target west: 39
-use underground lighting: 0
 Name of this level=_"Slasher Mountains"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -14139,7 +14127,6 @@ jump target north: -1
 jump target south: 10
 jump target east: 8
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Cryo Stasis Lab"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -16523,7 +16510,6 @@ jump target north: 14
 jump target south: 8
 jump target east: 19
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Telemetry"
 BgSong=underground.ogg
 beginning_of_map
@@ -16647,7 +16633,6 @@ jump target north: 15
 jump target south: 13
 jump target east: 20
 jump target west: 5
-use underground lighting: 1
 Name of this level=_"Scientists quarters and Telemetry"
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -18126,7 +18111,6 @@ jump target north: -1
 jump target south: 14
 jump target east: 16
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Disruptor Base Access Tunnel"
 BgSong=Ambience.ogg
 beginning_of_map
@@ -19219,7 +19203,6 @@ jump target north: 42
 jump target south: 20
 jump target east: 23
 jump target west: 15
-use underground lighting: 0
 Name of this level=_"Terminal Shore"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -20094,7 +20077,6 @@ jump target north: 19
 jump target south: 9
 jump target east: 25
 jump target west: 8
-use underground lighting: 0
 Name of this level=_"Ethereal Meadows"
 BgSong=temple.ogg
 beginning_of_map
@@ -21133,7 +21115,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Kevins Main Energy Source"
 BgSong=underground.ogg
 beginning_of_map
@@ -21382,7 +21363,6 @@ jump target north: 20
 jump target south: 17
 jump target east: 21
 jump target west: 13
-use underground lighting: 0
 Name of this level=_"Northern Shoreline"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -21888,7 +21868,6 @@ jump target north: 16
 jump target south: 19
 jump target east: 22
 jump target west: 14
-use underground lighting: 0
 Name of this level=_"Northern Shoreline"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -22508,7 +22487,6 @@ jump target north: 22
 jump target south: 25
 jump target east: -1
 jump target west: 19
-use underground lighting: 0
 Name of this level=_"World Edge Sea"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -22627,7 +22605,6 @@ jump target north: 23
 jump target south: 21
 jump target east: -1
 jump target west: 20
-use underground lighting: 0
 Name of this level=_"World Edge Sea"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -22746,7 +22723,6 @@ jump target north: 41
 jump target south: 22
 jump target east: -1
 jump target west: 16
-use underground lighting: 0
 Name of this level=_"World Edge Sea"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -22865,7 +22841,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: 46
-use underground lighting: 0
 Name of this level=_"Hell Fortress"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -23966,7 +23941,6 @@ jump target north: 21
 jump target south: 44
 jump target east: 26
 jump target west: 17
-use underground lighting: 0
 Name of this level=_"Broken Glass Path"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -24883,7 +24857,6 @@ jump target north: -1
 jump target south: -1
 jump target east: 27
 jump target west: 25
-use underground lighting: 0
 Name of this level=_"Swamp"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -25376,7 +25349,6 @@ jump target north: -1
 jump target south: -1
 jump target east: 28
 jump target west: 26
-use underground lighting: 0
 Name of this level=_"Mushroom Forest"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -25495,7 +25467,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: 27
-use underground lighting: 0
 Name of this level=_"Some temple"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -25787,7 +25758,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Novice Arena"
 BgSong=Suspicion.ogg
 beginning_of_map
@@ -26005,7 +25975,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Master Arena"
 BgSong=ImperialArmy.ogg
 beginning_of_map
@@ -26223,7 +26192,6 @@ jump target north: 49
 jump target south: 50
 jump target east: 54
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"Hell Fortress entrance"
 BgSong=Hell Fortress Entrance.ogg
 beginning_of_map
@@ -29387,7 +29355,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"Power Facility Underground"
 BgSong=underground.ogg
 beginning_of_map
@@ -29692,7 +29659,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Crystal Cavens"
 BgSong=underground.ogg
 beginning_of_map
@@ -32142,7 +32108,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Forgotten bunker"
 BgSong=Ambience.ogg
 beginning_of_map
@@ -32436,7 +32401,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Secret research center"
 BgSong=hellforce.ogg
 beginning_of_map
@@ -33811,7 +33775,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Secret area service tunnels"
 BgSong=hellforce.ogg
 beginning_of_map
@@ -34047,7 +34010,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Tutorial"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -35025,7 +34987,6 @@ jump target north: -1
 jump target south: 40
 jump target east: 10
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"Desert Valley"
 BgSong=Suspicion.ogg
 beginning_of_map
@@ -35374,7 +35335,6 @@ jump target north: 10
 jump target south: -1
 jump target east: 11
 jump target west: 40
-use underground lighting: 0
 Name of this level=_"Desert Valley"
 BgSong=Suspicion.ogg
 beginning_of_map
@@ -35771,7 +35731,6 @@ jump target north: 38
 jump target south: -1
 jump target east: 39
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"Desert Valley"
 BgSong=Suspicion.ogg
 beginning_of_map
@@ -36232,7 +36191,6 @@ jump target north: -1
 jump target south: 23
 jump target east: -1
 jump target west: 42
-use underground lighting: 0
 Name of this level=_"World Edge Sea"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -36351,7 +36309,6 @@ jump target north: -1
 jump target south: 16
 jump target east: 41
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -36585,7 +36542,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Old abandoned complex"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -36695,7 +36651,6 @@ jump target north: 25
 jump target south: 48
 jump target east: -1
 jump target west: 9
-use underground lighting: 0
 Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -36841,7 +36796,6 @@ jump target north: -1
 jump target south: 54
 jump target east: -1
 jump target west: 49
-use underground lighting: 0
 Name of this level=_"New level just created"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -37082,7 +37036,6 @@ jump target north: 11
 jump target south: -1
 jump target east: 24
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"Worker Mines"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -37578,7 +37531,6 @@ jump target north: 9
 jump target south: -1
 jump target east: 48
 jump target west: 11
-use underground lighting: 0
 Name of this level=_"Southern Shorline"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -37773,7 +37725,6 @@ jump target north: 44
 jump target south: 49
 jump target east: -1
 jump target west: 47
-use underground lighting: 0
 Name of this level=_"Southern Shorline"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -38338,7 +38289,6 @@ jump target north: 48
 jump target south: 31
 jump target east: 45
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"HF North Perimeter Defense Structure"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -39096,7 +39046,6 @@ jump target north: 31
 jump target south: 52
 jump target east: 51
 jump target west: 57
-use underground lighting: 0
 Name of this level=_"Hell Fortress"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -40648,7 +40597,6 @@ jump target north: 54
 jump target south: 53
 jump target east: -1
 jump target west: 50
-use underground lighting: 0
 Name of this level=_"New level just created"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -40767,7 +40715,6 @@ jump target north: 50
 jump target south: -1
 jump target east: 53
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"New level just created"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -40886,7 +40833,6 @@ jump target north: 51
 jump target south: -1
 jump target east: -1
 jump target west: 52
-use underground lighting: 0
 Name of this level=_"New level just created"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -41005,7 +40951,6 @@ jump target north: 45
 jump target south: 51
 jump target east: -1
 jump target west: 31
-use underground lighting: 0
 Name of this level=_"New level just created"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -41124,7 +41069,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Machine Deck Upper Catacombs"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -41234,7 +41178,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Machine Deck Lower Catacombs"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -41344,7 +41287,6 @@ jump target north: -1
 jump target south: 59
 jump target east: 50
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"Freight Station"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -42297,7 +42239,6 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-use underground lighting: 1
 Name of this level=_"Old Server Room"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -43135,7 +43076,6 @@ jump target north: 57
 jump target south: -1
 jump target east: 52
 jump target west: -1
-use underground lighting: 0
 Name of this level=_"Hell Station"
 BgSong=TheBeginning.ogg
 beginning_of_map

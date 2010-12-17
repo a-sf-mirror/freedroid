@@ -780,7 +780,6 @@ typedef struct level {
 	int jump_target_south;
 	int jump_target_east;
 	int jump_target_west;
-	int use_underground_lighting;
 
 	obstacle obstacle_list[MAX_OBSTACLES_ON_MAP];
 	item ItemList[MAX_ITEMS_PER_LEVEL];
