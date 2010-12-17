@@ -153,6 +153,9 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 
 	if (use_open_gl) {
 		make_texture_out_of_surface(&spec->inventory_image);
+	} else {
+		spec->inventory_image.original_image_width = spec->inventory_image.surface->w;
+		spec->inventory_image.original_image_height = spec->inventory_image.surface->h;
 	}
 
 	// For the shop, we need versions of each image, where the image is scaled so
@@ -179,6 +182,9 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 
 	if (use_open_gl) {
 		make_texture_out_of_surface(&spec->shop_image);
+	} else {
+		spec->shop_image.original_image_width = spec->shop_image.surface->w;
+		spec->shop_image.original_image_height = spec->shop_image.surface->h;
 	}
 
 	// Load ingame image

@@ -335,13 +335,13 @@ void ShowCurrentWeapon(void)
 	if (Me.weapon_item.type == -1)
 		return;
 
-	float x =
-	    UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_X) + UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_W) / 2 -
-	    ItemMap[Me.weapon_item.type].inventory_image.original_image_width / 2;
-	float y =
-	    UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y) + UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_H) / 2 -
-	    ItemMap[Me.weapon_item.type].inventory_image.original_image_height / 2;
 	iso_image *img = get_item_inventory_image(Me.weapon_item.type);
+
+	float x = UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_X + CURRENT_WEAPON_RECT_W / 2) -
+	    img->original_image_width / 2;
+	float y = UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y + CURRENT_WEAPON_RECT_H / 2) -
+	    img->original_image_height / 2;
+
 	blit_iso_image_to_screen_position(img, x, y);
 
 	if (!ItemMap[Me.weapon_item.type].item_gun_use_ammunition)
