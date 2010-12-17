@@ -442,9 +442,8 @@ static void wait_for_click()
  * sample.  It is not very sophisticated or complicated, but nevertheless
  * important, because this combination does indeed occur so often.
  */
-void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, enemy * ChatDroid, int with_update)
+void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, enemy *chat_droid)
 {
-	int do_display = 1;
 	int do_wait = 1;
 
 	autostr_append(chat_log.text, SubtitleText);
@@ -454,11 +453,8 @@ void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, e
 		do_wait = 0;
 	}
 
-	if (do_display) {
-		show_chat_log(ChatDroid);
-		if (with_update)
-			our_SDL_flip_wrapper();
-	}
+	show_chat_log(chat_droid);
+	our_SDL_flip_wrapper();
 
 	if (do_wait)
 		wait_for_click();
@@ -520,7 +516,7 @@ static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
 	if (strcmp(ChatRoster[MenuSelection].option_sample_file_name, "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER")) {
 		autostr_append(chat_log.text, "\1- ");
 		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
-				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid, TRUE);
+				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid);
 		autostr_append(chat_log.text, "\n");
 	}
 	if (ChatRoster[MenuSelection].lua_code) {

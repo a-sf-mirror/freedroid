@@ -775,7 +775,7 @@ int load_texture_atlas(const char *, const char *, char *filenames[], iso_image 
 void PlantCookie(const char *);
 void DeleteCookie(const char *);
 void run_subdialog(const char *);
-void GiveSubtitleNSample(const char *, const char *, enemy *, int);
+void GiveSubtitleNSample(const char *, const char *, enemy *);
 void validate_dialogs(void);
 
 // leveleditor_input.c
