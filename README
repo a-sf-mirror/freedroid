@@ -21,14 +21,14 @@
 ================
  This game tells the story of a world destroyed by a conflict between the droids and their human
  masters. Play as Tux in a quest to save the world from the murderous rebel droids who know no
- mercy. You get to choose which path you wish to follow, and freedom of choice is everywhere 
+ mercy. You get to choose which path you wish to follow, and freedom of choice is everywhere
  in the game.
 
  FreedroidRPG features a complete real time combat system with melee and ranged weapons, fairly
- similar to the proprietary game Diablo. There also is an innovative system of magic, with features such as 
- forced casting and over 20 spells. You can use over 50 different kinds of items and fight countless 
+ similar to the proprietary game Diablo. There also is an innovative system of magic, with features such as
+ forced casting and over 20 spells. You can use over 50 different kinds of items and fight countless
  enemies on your way to your destiny. We have an advanced dialogue system, which aims at being at
- least on par with Fallout's. The dialogues in the game represent a large part of the gameplay. 
+ least on par with Fallout's. The dialogues in the game represent a large part of the gameplay.
  Finally, if guns are too inaccurate and blades too messy, you can always take over your enemies and
  have them fight on your side.
 
@@ -46,17 +46,17 @@
 ============
  Movement
  
-  The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold 
+  The game is controlled using the mouse. Left click onto the locations you want to move to.  Hold
   the button down to keep moving in that direction.  Holding down CTRL key will make you run.
 
  Attack
 
-  Left clicking an enemy will cause Tux to come close to the droid and to start attacking it with the 
+  Left clicking an enemy will cause Tux to come close to the droid and to start attacking it with the
   current weapon. If the current weapon is a gun then Tux will stand still and shoot the droid.
- 
+
  Special functions
 
-  Use the right click to activate the currently selected skill/program. 
+  Use the right click to activate the currently selected skill/program.
 
  Default keys (most keys can be reassigned with the ingame key chart - F1)
 
@@ -77,7 +77,7 @@
   P          ... Pause
   Hold A     ... Attack while staying at the same position
   Hold Shift ... Keep current target selected when moving
-  Tab        ... Toggle automap
+  Tab        ... Toggle automap (if available)
 
   R          ... Reload weapon
   Hold Ctrl  ... Run
@@ -91,67 +91,65 @@
 4. Known Issues
 ================
  General
-   * Some melee and ranged weapons still have placeholder laserswords/rifles for their Tux holding 
-     and attack animations. If you are skilled with 3D modeling, please help us out to fix this.
+   * Some melee and ranged weapons still have placeholder laserswords/rifles for their Tux holding
+	 and attack animations. If you are skilled with 3D modeling, please help us out to fix this.
    * When you start the game in OpenGL mode and something overlays the FreedroidRPG window while starting
-     up, the background images looks very strange. If you click on one of the menu items, it should return to
-     looking as intended.
+	 up, the background images looks very strange. If you click on one of the menu items, it should return to
+	 looking as intended.
    * Alt tab in/out of the game in OpenGL while a static popup is displayed makes the screen completely black.
-     Clicking or pressing the required key to close the popup will redraw/bring back the screen.
-   * Some graphical enhancements, such as enemies changing their color if they are affected by a spell
-     (frozen or slowed) and transparent walls are only visible using OpenGL mode.
+	 Clicking or pressing the required key to close the popup will redraw/bring back the screen.
 
- Windows 
-   * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not 
-     handle filenames without extensions. Please use other options, e.g. 7zip, winzip, winrar etc, to 
-     correctly unpack the game.
+ Windows
+   * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not
+	 handle filenames without extensions. Please use other options, e.g. 7zip, winzip, winrar etc, to
+	 correctly unpack the game.
 
  Mac
-    * Open Files: OSX max number of open files defaults to 256 (as of 10.6). This can lead to errors when 
-      loading images: "In Function: get_iso_image_from_file_and_path. Could not load image 
-      /usr/local/share/freedroidrpg/graphics/obstacles/<filename>.png"
-      Solution:
-        1) Check value of open files limit with $ ulimit -n
-        2) Set new value for open files limit with $ ulimit -n 2048
-      (issue #2913487)
-    * Font rendering: If you get no fonts in the main menu with SDL or if in openGL mode, the game dies 
-      with the error message "In Function: PutCharFont. Surface for character 46 was NULL pointer!", 
-      check your display configuration and set the color profile to sRGB.
-      (issues #2913485 and #2913484)
-    * SDL installed via MacPorts: SDL installed via MacPorts will give freedroidRPG wrong information 
-      about the byteorder if you have a big-endian (PowerPC) CPU, so the colors may be wrong and you 
-      probably couldn't start a new game because FreedroidRPG crashes.
-      To fix it, with root privileges edit the /opt/include/SDL/SDL_config.h file so the line
-        #define SDL_BYTEORDER=1234
-      says
-        #define SDL_BYTEORDER=4321
-      After editing and saving the file recompile freedroidRPG and it should work correctly.
-      Using SDL compiled from source instead of from MacPorts will work as well.
+   * Open Files: OSX max number of open files defaults to 256 (as of 10.6). This can lead to errors when
+	 loading images: "In Function: get_iso_image_from_file_and_path. Could not load image
+	 /usr/local/share/freedroidrpg/graphics/obstacles/<filename>.png"
+	 Solution:
+		1) Check value of open files limit with $ ulimit -n
+		2) Set new value for open files limit with $ ulimit -n 2048
+	(issue #2913487)
+   * Font rendering: If you get no fonts in the main menu with SDL or if in openGL mode, the game dies
+	with the error message "In Function: PutCharFont. Surface for character 46 was NULL pointer!",
+	check your display configuration and set the color profile to sRGB.
+	(issues #2913485 and #2913484)
+   * SDL installed via MacPorts: SDL installed via MacPorts will give freedroidRPG wrong information
+	about the byteorder if you have a big-endian (PowerPC) CPU, so the colors may be wrong and you
+	probably couldn't start a new game because FreedroidRPG crashes.
+	To fix it, with root privileges edit the /opt/include/SDL/SDL_config.h file so the line
+		#define SDL_BYTEORDER=1234
+	says
+		#define SDL_BYTEORDER=4321
+	After editing and saving the file recompile freedroidRPG and it should work correctly.
+	Using SDL compiled from source instead of from MacPorts will work as well.
 
  Linux
-   * Pulseaudio: Using SDL-pulseaudio you are currently likely not to get sound. This has nothing to do 
-     with FreedroidRPG but with Pulseaudio and its plugins still in general being immature. We recommend using
-     e.g. SDL-esd or SDL-alsa until these problems has been fixed upstream. 
-   * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the 
-     text in freedroidRPG. Upgrading to Mesa 7 fixes this.
+   * Pulseaudio: Using SDL-pulseaudio you are currently likely not to get sound. This has nothing to do
+	 with FreedroidRPG but with Pulseaudio and its plugins still in general being immature. We recommend using
+	 e.g. SDL-esd or SDL-alsa until these problems has been fixed upstream.
+   * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the
+	 text in freedroidRPG. Upgrading to Mesa 7 fixes this.
    * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
-     of the whole screen instead of just the game window, if the option
-     (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
+	 of the whole screen instead of just the game window, if the option
+	 (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
    * The "Toggle display collision rectangles" function of the level editor does not work in SDL mode.
    * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
 
 5. Screen resolution
 =====================
- There are a few hidden high resolution settings only accessible from commandline. They are badly tested 
+ There are a few hidden high resolution settings only accessible from commandline. They are badly tested
  and thus generally considered to be buggy and are unsupported. They however can still be quite useful for
- many, especially for widescreen LCDs in fullscreen mode. 
+ many, especially for widescreen LCDs in fullscreen mode.
 
  To get an up-to-date list of available resolutions use "freedroidRPG -r99".
 
  Some known issues for the unsupported resolutions:
-    - Portrait image in dialogs overflows its borders
-    - Off center light radius
-    - Incorrect text scrolling when talking to NPCs at times
+	- Portrait image in dialogs overflows its borders
+	- Off center light radius
+	- Incorrect text scrolling when talking to NPCs at times
 
 
 6. FAQ
@@ -170,7 +168,7 @@ Miscellaneous FAQ:
 	   Freedroid, the other one is a list with auto-generated changelogs from our 
 	   developer server and therefore usually only interesting for developers themselves.
 	   In any case, you can subscribe, unsubscribe or change your membership options
-           from the following web page:  
+			from the following web page:
 	   http://sourceforge.net/mail/?group_id=54521
 
 
@@ -220,7 +218,7 @@ Sound FAQ:
 	   3.)  If you're compiling from source, make sure the ./configure script has
 		    properly detected the SDL_mixer library. Just look at the ./configure
 		    output. There should be a line like:
-	  
+
 		      checking for Mix_ChannelFinished in -lSDL_mixer... yes
 
 		    If you get instead something like
@@ -255,8 +253,12 @@ Sound FAQ:
 Level Editor & Developer FAQ:
 
 	Q: Is there a Level editor?
-	A: Yes, we have a level editor integrated into FreedroidRPG. It can be accessed 
-       from the main menu. It has tooltips on every button to help you find your 
+	A: Yes, we have a level editor integrated into FreedroidRPG. It can be accessed
+       from the main menu or executing
+
+		  freedroidRPG -e
+
+       It has tooltips on every button to help you find your
        way. Play around with it a bit by yourself and don't hesitate to ask for
        assistance on IRC or the mailing list.
 
@@ -280,31 +282,15 @@ Level Editor & Developer FAQ:
 	   http://sourceforge.net/projects/freedroid
 	   and other relevant pages should be reachable from there.
 	   A link to our forum can be found near the end of this file.
-	   
 
-	Q: How can I add a character to FreedroidRPG?
-	A: This involves several steps:  
-	   1. A new map label must be created, so that the game knows where to place the 
-		  new character inside the game.
-	   2. A dialog section should be written, so that there can be some interaction
-		  (other than combat) with this character.
-	   3. The dialog section should get a number associated with it, which involves
-		  some very minor modification of the program code. 
-	   4. An entry in the character list has to be added, so that the new character
-		  will be added in any new games from then on. (Old saved games will remain
-		  unaffected.) You can specify what the character should look like, i.e. what 
-		  model should be used for your character and stuff like that.
-	   Hint:  Best send word to the developers.  We'll be happy to help or also to
-	   include the new character in the next version of the game, if it comes with
-	   a good dialog.
 
 
 7. Contact
 ===========
- Website       ................ http://freedroid.sourceforge.net/
+ Website       ................ http://www.freedroid.org
  Forum         ................ https://sourceforge.net/apps/phpbb/freedroid/
  IRC channel   ................ #freedroid on irc.freenode.net or
-                                http://webchat.freenode.net/?channels=freedroid (requires Javascript)
+								http://webchat.freenode.net/?channels=freedroid (requires Javascript)
  Mailing list  ................ freedroid-discussion@lists.sourceforge.net
  Sourceforge project page   ... http://sourceforge.net/projects/freedroid/
 
