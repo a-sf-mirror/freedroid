@@ -412,8 +412,8 @@ int SinglePointColldet(float x, float y, int z, colldet_filter * filter);
 int DirectLineColldet(float x1, float y1, float x2, float y2, int z, colldet_filter * filter);
 int normalize_vect(float, float, float *, float *);
 
-// sound.c  OR nosound.c 
-void PlayOnceNeededSoundSample(const char *SoundSampleFileName, const int With_Waiting, const int no_double_catching);
+// sound.c
+void play_sound(const char *SoundSampleFileName);
 void InitAudio(void);
 void SetBGMusicVolume(float);
 void SetSoundFXVolume(float);

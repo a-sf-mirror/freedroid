@@ -737,7 +737,7 @@ static void repair_item(item * RepairItem)
 
 	Me.Gold -= calculate_item_repair_price(RepairItem);
 	RepairItem->current_duration = RepairItem->max_duration;
-	PlayOnceNeededSoundSample("effects/Shop_ItemRepairedSound_0.ogg", FALSE, FALSE);
+	play_sound("effects/Shop_ItemRepairedSound_0.ogg");
 }
 
 /**
@@ -781,8 +781,8 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 	else
 		DeleteItem(SellItem);
 
-	PlayOnceNeededSoundSample("effects/Shop_ItemSoldSound_0.ogg", FALSE, TRUE);
-};				// void TryToSellItem( item* SellItem )
+	play_sound("effects/Shop_ItemSoldSound_0.ogg");
+}
 
 /**
  * This function tries to buy the item given as parameter.
@@ -814,7 +814,7 @@ static int buy_item(item *BuyItem, int amount)
 	// Subtract money, give item, play sound.
 	Me.Gold -= item_price;
 	give_item(&new_item);
-	PlayOnceNeededSoundSample("effects/Shop_ItemBoughtSound_0.ogg", FALSE, FALSE);	
+	play_sound("effects/Shop_ItemBoughtSound_0.ogg");
 	
 	// Did player want all of the items?
 	if(BuyItem->multiplicity == amount) {

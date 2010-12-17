@@ -138,7 +138,7 @@ static void self_repair_item(item *it)
 	float lower_bound, ratio;
 
 	if (it->max_duration == -1) {
-		PlayOnceNeededSoundSample("effects/tux_ingame_comments/Tux_Item_Cant_Be_0.ogg", FALSE, FALSE);
+		play_sound("effects/tux_ingame_comments/Tux_Item_Cant_Be_0.ogg");
 		return;
 	} 
 
@@ -148,7 +148,7 @@ static void self_repair_item(item *it)
 
 	it->current_duration +=	(it->max_duration - it->current_duration) * ratio;
 	it->max_duration = it->current_duration;
-	PlayOnceNeededSoundSample("effects/tux_ingame_comments/Tux_This_Quick_Fix_0.ogg", FALSE, FALSE);
+	play_sound("effects/tux_ingame_comments/Tux_This_Quick_Fix_0.ogg");
 }
 
 /**
@@ -1719,8 +1719,7 @@ void HandleInventoryScreen(void)
 					Me.shield_item.type = shield_item_type;
 				}
 			} else {
-				PlayOnceNeededSoundSample("effects/tux_ingame_comments/ThisItemRequiresBothHands.ogg", 
-						FALSE, FALSE);
+				play_sound("effects/tux_ingame_comments/ThisItemRequiresBothHands.ogg");
 			}
 		}
 

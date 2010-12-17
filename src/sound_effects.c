@@ -29,7 +29,7 @@
 
 void play_open_chest_sound(void)
 {
-	PlayOnceNeededSoundSample("effects/open_chest_sound.ogg", FALSE, TRUE);
+	play_sound("effects/open_chest_sound.ogg");
 }
 
 void Play_Spell_ForceToEnergy_Sound()
@@ -212,43 +212,43 @@ void play_enter_attack_run_state_sound(int SoundCode)
 			return;
 			break;
 		case 0:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_0.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_0.ogg");
 			break;
 		case 1:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_1.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_1.ogg");
 			break;
 		case 2:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_2.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_2.ogg");
 			break;
 		case 9:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_9.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_9.ogg");
 			break;
 		case 10:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_10.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_10.ogg");
 			break;
 		case 11:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_11.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_11.ogg");
 			break;
 		case 12:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_12.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_12.ogg");
 			break;
 		case 13:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_13.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_13.ogg");
 			break;
 		case 14:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_14.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_14.ogg");
 			break;
 		case 15:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_15.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_15.ogg");
 			break;
 		case 16:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_16.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_16.ogg");
 			break;
 		case 17:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_17.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_17.ogg");
 			break;
 		case 18:
-			PlayOnceNeededSoundSample("effects/bot_sounds/Start_Attack_Sound_18.ogg", FALSE, FALSE);
+			play_sound("effects/bot_sounds/Start_Attack_Sound_18.ogg");
 			break;
 		default:
 			DebugPrintf(0, "\nUnknown Start Attack sound!!! NOT TERMINATING CAUSE OF THIS...");
@@ -259,7 +259,7 @@ void play_enter_attack_run_state_sound(int SoundCode)
 		char sample_path[1024] = "effects/bot_sounds/voice_samples/";
 		sprintf(sample_path + strlen(sample_path), "%d.ogg", MyRandom(42) + 1);
 		//printf("Playing %s\n", sample_path);
-		PlayOnceNeededSoundSample(sample_path, FALSE, FALSE);
+		play_sound(sample_path);
 	}
 }
 
@@ -282,7 +282,7 @@ void play_item_sound(int item_type)
 	//
 	strcpy(final_file_name, "effects/item_sounds/");
 	strcat(final_file_name, ItemMap[item_type].item_drop_sound_file_name);
-	PlayOnceNeededSoundSample(final_file_name, FALSE, TRUE);
+	play_sound(final_file_name);
 
 }
 
@@ -380,7 +380,7 @@ void ThouArtDefeatedSound(void)
 {
 	if (!sound_on)
 		return;
-	PlayOnceNeededSoundSample("effects/ThouArtDefeated_Sound_0.ogg", FALSE, FALSE);
+	play_sound("effects/ThouArtDefeated_Sound_0.ogg");
 }
 
 /**

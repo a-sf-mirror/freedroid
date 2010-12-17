@@ -448,7 +448,7 @@ int DoSkill(int skill_index, int SpellCost)
 			// Do nothing here.  The right mouse click while in inventory screen
 			// will be handled in the inventory screen management function.
 			//
-			PlayOnceNeededSoundSample("effects/tux_ingame_comments/CantRepairThat.ogg", FALSE, FALSE);
+			play_sound("effects/tux_ingame_comments/CantRepairThat.ogg");
 		}
 		goto out;
 	}
