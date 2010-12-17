@@ -230,7 +230,6 @@ int animate_autogun(level* autogun_lvl, int autogun_idx)
 	CurBullet->faction = FACTION_BOTS;
 	CurBullet->owner = -3;
 	CurBullet->bullet_lifetime = ItemMap[weapon_item_type].item_gun_bullet_lifetime;
-	CurBullet->ignore_wall_collisions = ItemMap[weapon_item_type].item_gun_bullet_ignore_wall_collisions;
 	CurBullet->time_in_seconds = 0;
 	CurBullet->pass_through_hit_bodies = ItemMap[weapon_item_type].item_gun_bullet_pass_through_hit_bodies;
 	CurBullet->freezing_level = 0;

@@ -738,7 +738,6 @@ static void get_item_data(char *DataPointer)
 #define ITEM_ROTATION_SERIES_NAME_PREFIX "Item uses rotation series with prefix=\""
 #define ITEM_GROUP_TOGETHER_IN_INVENTORY "Items of this type collect together in inventory=\""
 
-#define ITEM_GUN_IGNORE_WALL "Item as gun: ignore collisions with wall=\""
 #define ITEM_INVENTORY_IMAGE_FILE_NAME "File or directory name for inventory image=\""
 #define ITEM_DROP_SOUND_FILE_NAME "Item uses drop sound with filename=\""
 
@@ -885,19 +884,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			ReadValueFromStringWithDefault(ItemPointer, "Item as gun: modifier for starting angle=", "%f", "0.000000",
 						       &item->item_gun_start_angle_modifier, EndOfItemData);
 
-			// Now we read in if this weapon can pass through walls or not...
-			YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_GUN_IGNORE_WALL, "\"");
-			if (strcmp(YesNoString, "yes") == 0) {
-				item->item_gun_bullet_ignore_wall_collisions = TRUE;
-			} else if (strcmp(YesNoString, "no") == 0) {
-				item->item_gun_bullet_ignore_wall_collisions = FALSE;
-			} else {
-				ErrorMessage(__FUNCTION__, "\
-The item specification of an item in freedroid.ruleset should contain an \n\
-answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLEASE_INFORM, IS_FATAL);
-			};	// if ( item->item_can_be_installed_in_weapon_slot == TRUE )
-			free(YesNoString);
-
 			// Now we read in if this weapons bullets will reflect other bullets or not
 			YesNoString = ReadAndMallocStringFromData(ItemPointer, "Item as gun: pass through hit bodies=\"", "\"");
 			if (strcmp(YesNoString, "yes") == 0) {
@@ -991,7 +977,6 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			item->item_gun_damage_modifier = 0;
 			item->item_gun_speed = 0;
 			item->item_gun_start_angle_modifier = 0;
-			item->item_gun_bullet_ignore_wall_collisions = FALSE;
 			item->item_gun_bullet_pass_through_hit_bodies = FALSE;
 			item->item_gun_recharging_time = 0;
 			item->item_gun_reloading_time = 0;

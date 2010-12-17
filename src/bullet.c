@@ -594,14 +594,9 @@ void check_bullet_background_collisions(bullet * CurBullet, int num)
 {
 	// Check for collision with background
 	if (!SinglePointColldet(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, &FlyablePassFilter)) {
-		if (CurBullet->ignore_wall_collisions) {
-			StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, BULLETBLAST, 0, CurBullet->faction);
-		} else {
-			DeleteBullet(num, TRUE);	// we want a bullet-explosion
-			return;
-		}
+			DeleteBullet(num, TRUE);
 	}
-};				// void check_bullet_background_collisions ( CurBullet , num )
+}
 
 /**
  *

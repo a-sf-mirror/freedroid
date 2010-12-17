@@ -2134,8 +2134,6 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->bullet_lifetime = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_lifetime;
 
 		NewBullet->owner = ThisRobot->id;
-		NewBullet->ignore_wall_collisions =
-		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_ignore_wall_collisions;
 		NewBullet->pass_through_hit_bodies =
 		    ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_pass_through_hit_bodies;
 		NewBullet->faction = ThisRobot->faction;

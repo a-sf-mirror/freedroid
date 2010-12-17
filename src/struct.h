@@ -293,7 +293,6 @@ typedef struct itemspec {
 	short item_gun_damage_modifier;	// modifier to the damage done by this bullettype 
 	float item_gun_bullet_lifetime;	// how long does a 'bullet' from this gun type live?
 	char item_gun_bullet_pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword)
-	char item_gun_bullet_ignore_wall_collisions;	// can this bullet pass through walls and map barriers?
 	short item_gun_ammo_clip_size;	//max. number of bullets in the charger
 
 	// the following values have only relevance in case of a melee weapon
@@ -668,7 +667,6 @@ typedef struct bullet {
 	short int owner;
 	float angle;
 
-	char ignore_wall_collisions;
 	char pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword stike)
 	short int freezing_level;	// does this bullet freeze the target?
 	float poison_duration;
