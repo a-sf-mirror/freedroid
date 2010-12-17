@@ -1140,17 +1140,21 @@ Thanks a lot in advance.\n\
 
 screen_resolution screen_resolutions[] = {
 	// xres,yres, cmdline comment, display in menu
-	{640, 480, "640 x 480 (default with SDL)", TRUE},
-	{800, 600, "800 x 600 (default with OpenGL)", TRUE},
-	{1024, 768, "1024 x 768", TRUE},
-	{1152, 864, "1152 x 864", TRUE},
-	{1280, 960, "1280 x 960", TRUE},
-	{1400, 1050, "1400 x 1050", TRUE},
-	{1280, 1024, "Unsupported! (1280 x 1024)", FALSE},
-	{1024, 600, "Unsupported! (1024 x 600)", FALSE},
-	{1280, 800, "Unsupported! (1280 x 800)", FALSE},
-	{1440, 900, "Unsupported! (1440 x 900)", FALSE},
-	{1680, 1050, "Unsupported! (1680 x 1050)", FALSE},
+	{640, 480, "640 x 480, 4:3 (default with SDL)", TRUE},
+	{800, 600, "800 x 600, 4:3 (default with OpenGL)", TRUE},
+	{1024, 768, "1024 x 768, 4:3", TRUE},
+	{1152, 864, "1152 x 864, 4:3", TRUE},
+	{1280, 960, "1280 x 960, 4:3", TRUE},
+	{1400, 1050, "1400 x 1050, 4:3", TRUE},
+	{1600, 1200, "1600 x 1200, 4:3", TRUE},
+	{1280, 1024, "Unsupported! (1280 x 1024, 5:4)", FALSE},
+	{1024, 600, "Unsupported! (1024 x 600, 128:75)", FALSE},
+	{1280, 800, "Unsupported! (1280 x 800, 16:10)", FALSE},
+	{1440, 900, "Unsupported! (1440 x 900, 16:10)", FALSE},
+	{1680, 1050, "Unsupported! (1680 x 1050, 16:10)", FALSE},
+	{854, 480, "Unsupported! (854 x 480, 16:9)", FALSE},
+	{1280, 720, "Unsupported! (1280 x 720, 16:9)", FALSE},
+	{1920, 1080, "Unsupported! (1920 x 1080, 16:9)", FALSE},
 	// end of list
 	{-1, -1, "", FALSE}
 };
