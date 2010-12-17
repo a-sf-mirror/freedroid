@@ -1406,7 +1406,6 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.number_of_big_screen_messages = 4;
 	GameConfig.delay_for_big_screen_messages = 6.5;
 	GameConfig.enable_cheatkeys = FALSE;
-	GameConfig.automap_display_scale = 2.0;
 	GameConfig.skip_shadow_blitting = FALSE;
 	GameConfig.xray_vision_for_tux = FALSE;
 	GameConfig.cheat_running_stamina = FALSE;

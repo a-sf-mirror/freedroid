@@ -156,7 +156,6 @@ typedef struct configuration_for_freedroid {
 	int screen_height;
 	int next_time_width_of_screen;
 	int next_time_height_of_screen;
-	float automap_display_scale;
 	int skip_shadow_blitting;
 	int do_fadings;		// do the screen fadings
 	int fullscreen_on;

@@ -1416,7 +1416,6 @@ static int Graphics_handle(int n)
 		SET_FULLSCREEN_FLAG,
 		SET_GAMMA_CORRECTION,
 		SET_SHOW_BLOOD_FLAG,
-		SET_AUTOMAP_SCALE,
 		TOGGLE_LAZYLOAD,
 		LEAVE_OPTIONS_MENU
 	};
@@ -1462,20 +1461,6 @@ static int Graphics_handle(int n)
 		GameConfig.show_blood = !GameConfig.show_blood;
 		break;
 
-	case SET_AUTOMAP_SCALE:
-		if (RightPressed()) {
-			while (RightPressed()) ;
-			if (GameConfig.automap_display_scale < 9.1)
-				GameConfig.automap_display_scale += 1.0;
-		}
-
-		if (LeftPressed()) {
-			while (LeftPressed()) ;
-			if (GameConfig.automap_display_scale >= 1.9)
-				GameConfig.automap_display_scale -= 1.0;
-		}
-
-		break;
 	case TOGGLE_LAZYLOAD:
 		GameConfig.lazyload = !GameConfig.lazyload;
 		break;
@@ -1515,13 +1500,6 @@ static void Graphics_fill(char *MenuTexts[10])
 	sprintf(Options[i], _("Show Blood"));
 
 	sprintf(Options[i + 1], ": %s", GameConfig.show_blood ? _("YES") : _("NO"));
-
-	strcat(Options[i], Options[i + 1]);
-
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
-	sprintf(Options[i], _("Automap Scale"));
-	sprintf(Options[i + 1], ": %2.1f", GameConfig.automap_display_scale);
 
 	strcat(Options[i], Options[i + 1]);
 
