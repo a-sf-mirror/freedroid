@@ -34,9 +34,15 @@ EveryTime LuaCode={
 		tux_says(_"Can I ask you something?")
 		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 			npc_says(_"Yes, Loon.", "NO_WAIT")
-		else end
+		end
 		npc_says(_"You can ask, but don't expect a reply.", "NO_WAIT")
 		npc_says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
+		if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+			show(40)
+		end
+	end
+	if (has_cookie("knows_spencer_office")) then
+		hide(40)
 	end
 }
 ----------------------------------------------------------------------
@@ -44,7 +50,7 @@ EveryTime LuaCode={
 Nr=1 Text=_"Just taking a look around."
 LuaCode={
 	npc_says(_"Oh, great. Another curious one.")
-	npc_says(_"About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again. And he wont be getting back in either, that's for sure.")
+	npc_says(_"About a week ago I let in a stranger who also said he was just taking a look around. I never saw him again. And I'm making sure he won't be getting back in either.")
 	hide(1, 2, 3) show(5)
 }
 ----------------------------------------------------------------------
@@ -99,13 +105,16 @@ LuaCode={
 	npc_says(_"You may now enter ".. get_player_name() .._". But we'll be watching you. I'll let the others know you've arrived.")
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
+	if (has_quest(_"Deliverance"))and (not has_cookie("knows_spencer_office")) then
+		show(40)
+	end
 	hide(10, 11) show(99)
 }
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"No. Not at all. Your mother dresses you funny."
 LuaCode={
-	npc_says(_"What did you say you oversized duck?")
+	npc_says(_"What did you say, you oversized duck?")
 	change_obstacle_state("Main Gate Outer W", "closed")
 	change_obstacle_state("Main Gate Outer E", "closed")
 	change_obstacle_state("Main Gate Guardhouse", "closed")
@@ -115,7 +124,7 @@ LuaCode={
 
 Nr=20 Text=_"Let me get back to you on that one."
 LuaCode={
-	npc_says(_"Well you aren't going anywhere. I'm watching you.")
+	npc_says(_"Well, you aren't going anywhere. I'm watching you.")
 	end_dialog()
 }
 ---------------------------------------------------------------------
@@ -133,6 +142,9 @@ LuaCode={
 	change_obstacle_state("Main Gate Guardhouse", "opened")
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
+	if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+		show(40)
+	end
 	hide(20, 21, 22, 23, 30) show(99)
 }
 ----------------------------------------------------------------------
@@ -171,6 +183,9 @@ LuaCode={
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
 	end_dialog()
+	if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+		show(40)
+	end
 	hide(20, 21, 22, 23, 30, 31, 32) show(99)
 }
 ----------------------------------------------------------------------
@@ -179,7 +194,7 @@ Nr=31 Text=_"I want to talk to your manager, moron."
 LuaCode={
 	npc_says(_"I'll be happy to send you his way, but I need your name before I let you in.")
 	tux_says(_"".. get_player_name() ..".")
-	npc_says(_"Talk to Spencer. His office is straight ahead. You can't miss it.")
+	npc_says(_"Talk to Spencer. His office is in the citadel, straight ahead, the first one on your left. You can't miss it.")
 	npc_says(_"Now stop bothering me! You crazy loon.")
 	add_cookie("town-northgateguard_tux_nickname_loon")
 	change_obstacle_state("Main Gate Outer W", "opened")
@@ -187,6 +202,10 @@ LuaCode={
 	change_obstacle_state("Main Gate Guardhouse", "opened")
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
+	if (has_quest(_"Deliverance")) then
+		add_cookie("knows_spencer_office")
+		update_quest(_"Deliverance", _"I've managed to get into town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also calls me a loon.")
+	end
 	hide(20, 30, 31, 32) show(99)
 }
 ----------------------------------------------------------------------
@@ -203,16 +222,36 @@ LuaCode={
 	change_obstacle_state("Main Gate Guardhouse", "opened")
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
+	if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+		show(40)
+	end
 	hide(20, 30, 31, 32) show(99)
 }
 ----------------------------------------------------------------------
+
+Nr=40 Text=_"Can you tell me where I can find Spencer?"
+LuaCode={
+	if has_cookie("town-northgateguard_tux_nickname_loon") then
+	    npc_says(_"Spencer? What would a loon like you want with the boss?")
+	else npc_says(_"Spencer? What would you want with the boss?") end
+	tux_says(_"Francis gave me something to deliver to him.")
+	npc_says(_"Ah, Professor Popsicle. Yeah, I guess he wouldn't want to show up here anymore.")
+	tux_says(_"Why not?")
+	npc_says(_"Well, you'll have to ask the boss.")
+	npc_says(_"Spencer's office is in the citadel, straight ahead. First one on your left.")
+	add_cookie("knows_spencer_office")
+	update_quest(_"Deliverance", _"I've managed to get into the town, and the guard at the gate told me where I can find Spencer: his office is the first one on the left inside the Citadel, directly south of the gate. The guard also told me he understands why Francis didn't want to deliver the cube himself, but I'll have to ask Spencer for details. Hmm...")
+	hide(40)
+}
+----------------------------------------------------------------------
+
 Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Mhmmm.")
 		
 	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 		npc_says(get_player_name() .._"... the Loon")
-	else end
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------
