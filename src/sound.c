@@ -373,29 +373,6 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 
 /** ============================================ SAMPLE FUNCTIONS ========================================= */
 
-static void sample_wait()
-{
-	SDL_Event event;
-
-	while (1) {
-		SDL_WaitEvent(&event);
-
-		if (event.type == SDL_MOUSEBUTTONDOWN)
-			return;
-		else if (event.type == SDL_KEYDOWN) {
-			switch (event.key.keysym.sym) {
-			case SDLK_SPACE:
-			case SDLK_RETURN:
-			case SDLK_ESCAPE:
-				return;
-				break;
-			default:
-				break;
-			}
-		}
-	}
-}
-
 //----------------------------------------------------------------------
 // This function should play a sound sample, that is NOT needed within
 // the action part of the game but only in menus or dialogs and can
