@@ -24,10 +24,6 @@ freedroid-discussion@lists.sourceforge.net
 
 Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
 
-BEGIN OF AUTORS NOTES
-
-END OF AUTORS NOTES 
-
 
 Beginning of new chat dialog for character="XXXXX"
 
