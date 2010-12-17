@@ -161,7 +161,7 @@ LuaCode={
 		npc_says(_"*sigh*")
 		npc_says(_"I wish I could once use such a gun.")
 		npc_says(_"You are a Guard member, right?")
-		if (has_item_backpack("Barrett M82 Sniper Rifle") or has_item_backpack("Plasma cannon") or has_item_backpack("Exterminator")) then
+		if (has_item("Barrett M82 Sniper Rifle") or has_item("Plasma cannon") or has_item("Exterminator")) then
 			tux_says(_"Yes, I am a Guard member. No, it is not allowed to give guns to people who are high.")
 			npc_says(_"Pleeeeaaaase.")
 			tux_says(_"No exceptions. I apologize. Please think responsibly; there is a good reason for this rule.")

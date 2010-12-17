@@ -332,6 +332,20 @@ static int lua_event_has_item_backpack(lua_State * L)
 	return 1;
 }
 
+static int lua_event_has_item_equipped(lua_State * L)
+{
+	const char *itemname = luaL_checkstring(L, 1);
+	int item = GetItemIndexByName(itemname);
+	if ((Me.weapon_item.type == item) || (Me.drive_item.type == item) 
+		|| (Me.armour_item.type == item) || (Me.shield_item.type == item) 
+		|| (Me.special_item.type == item)) {
+		lua_pushboolean(L, TRUE);
+	} else {
+		lua_pushboolean(L, FALSE);
+	}
+	return 1;
+}
+
 static int lua_event_equip_item(lua_State * L)
 {
 	const char *item_name = luaL_checkstring(L, 1);
@@ -981,6 +995,8 @@ luaL_reg lfuncs[] = {
 	{"add_item", lua_event_give_item}
 	,
 	{"has_item_backpack", lua_event_has_item_backpack}
+	,
+	{"has_item_equipped", lua_event_has_item_equipped}
 	,
 	{"equip_item", lua_event_equip_item}
 	,

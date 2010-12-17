@@ -209,6 +209,15 @@ function del_gold(gold_amount)
 	end
 end
 
+function has_item(item_name) 
+	number = has_item_backpack(item_name) 
+	if has_item_equipped(item_name) then
+		return number + 1
+	else
+		return number
+	end
+end
+
 function del_item(item_name) 
 	if (has_item_backpack(item_name)) then
 		del_item_backpack(item_name)
