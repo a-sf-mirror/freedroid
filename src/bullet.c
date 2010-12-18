@@ -593,7 +593,8 @@ I seem to have run out of free bullet entries.  This can't normally happen.  -->
 void check_bullet_background_collisions(bullet * CurBullet, int num)
 {
 	// Check for collision with background
-	if (!SinglePointColldet(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, &FlyablePassFilter)) {
+	struct colldet_filter filter = { &FlyablePassFilterCallback, NULL, 0.05, NULL };
+	if (!SinglePointColldet(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, &filter)) {
 			DeleteBullet(num, TRUE);
 	}
 }
