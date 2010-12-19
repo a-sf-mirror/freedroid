@@ -867,7 +867,7 @@ void animate_tux()
 		anim_spec = &(tux_anim.run);
 		step_countdown += Frame_Time();
 		if (step_countdown > STEP_TIME) {
-			play_sample_using_WAV_cache_v("effects/tux_footstep.ogg", FALSE, FALSE, 0.2);
+			play_sound_cached_v("effects/tux_footstep.ogg", 0.2);
 			step_countdown -= STEP_TIME;
 		}
 	}

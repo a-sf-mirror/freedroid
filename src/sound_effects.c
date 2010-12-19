@@ -34,7 +34,7 @@ void play_open_chest_sound(void)
 
 void Play_Spell_ForceToEnergy_Sound()
 {
-	play_sample_using_WAV_cache("effects/Spell_ForceToEnergy_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Spell_ForceToEnergy_Sound_0.ogg");
 }
 
 /**
@@ -52,10 +52,10 @@ void No_Ammo_Sound(void)
 
 	now = SDL_GetTicks();
 	if (SDL_GetTicks() - PreviousSound >= 0.25 * 1000) {
-		play_sample_using_WAV_cache("effects/No_Ammo_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/No_Ammo_Sound_0.ogg");
 		PreviousSound = now;
 	}
-}				//void No_Ammo_Sound ( void )
+}
 
 /**
  * This function plays a voice sample, stating that not enough power
@@ -72,10 +72,10 @@ void Not_Enough_Power_Sound(void)
 
 	now = SDL_GetTicks();
 	if (SDL_GetTicks() - PreviousSound >= 1.15 * 1000) {
-		play_sample_using_WAV_cache("effects/tux_ingame_comments/Not_Enough_Power_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/tux_ingame_comments/Not_Enough_Power_Sound_0.ogg");
 		PreviousSound = now;
 	}
-}				// void Not_Enough_Power_Sound ( void )
+}
 
 /**
  * This function plays a voice sample, stating that not enough power
@@ -92,7 +92,7 @@ void Not_Enough_Dist_Sound(void)
 
 	now = SDL_GetTicks();
 	if (SDL_GetTicks() - PreviousSound >= 1.15 * 1000) {
-		play_sample_using_WAV_cache("effects/tux_ingame_comments/Not_Enough_Dist_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/tux_ingame_comments/Not_Enough_Dist_Sound_0.ogg");
 		PreviousSound = now;
 	}
 }
@@ -112,61 +112,61 @@ void PlayGreetingSound(int SoundCode)
 		return;
 		break;
 	case 0:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_0.ogg");
 		break;
 	case 1:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_1.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_1.ogg");
 		break;
 	case 2:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_2.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_2.ogg");
 		break;
 	case 3:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_3.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_3.ogg");
 		break;
 	case 4:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_4.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_4.ogg");
 		break;
 	case 5:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_5.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_5.ogg");
 		break;
 	case 6:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_6.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_6.ogg");
 		break;
 	case 7:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_7.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_7.ogg");
 		break;
 	case 8:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_8.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_8.ogg");
 		break;
 	case 9:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_9.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_9.ogg");
 		break;
 	case 10:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_10.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_10.ogg");
 		break;
 	case 11:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_11.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_11.ogg");
 		break;
 	case 12:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_12.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_12.ogg");
 		break;
 	case 13:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_13.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_13.ogg");
 		break;
 	case 14:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_14.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_14.ogg");
 		break;
 	case 15:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_15.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_15.ogg");
 		break;
 	case 16:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_16.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_16.ogg");
 		break;
 	case 17:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_17.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_17.ogg");
 		break;
 	case 18:
-		play_sample_using_WAV_cache("effects/bot_sounds/First_Contact_Sound_18.ogg", FALSE, FALSE);
+		play_sound_cached("effects/bot_sounds/First_Contact_Sound_18.ogg");
 		break;
 	default:
 		DebugPrintf(0, "\nUnknown Greeting sound!!! Terminating...");
@@ -195,8 +195,7 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 	//
 	strcpy(filename, "effects/bot_sounds/");
 	strcat(filename, Druidmap[ThisRobot->type].droid_death_sound_file_name);
-	// PlayOnceNeededSoundSample ( filename , FALSE , FALSE );
-	play_sample_using_WAV_cache(filename, FALSE, FALSE);
+	play_sound_cached(filename);
 
 }
 
@@ -300,13 +299,13 @@ void CantCarrySound(void)
 		CurrentTicks = SDL_GetTicks();
 		switch (MyRandom(2)) {
 		case 0:
-			play_sample_using_WAV_cache("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_0.ogg", FALSE, FALSE);
+			play_sound_cached("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_0.ogg");
 			break;
 		case 1:
-			play_sample_using_WAV_cache("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_1.ogg", FALSE, FALSE);
+			play_sound_cached("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_1.ogg");
 			break;
 		case 2:
-			play_sample_using_WAV_cache("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_2.ogg", FALSE, FALSE);
+			play_sound_cached("effects/tux_ingame_comments/ICantCarryAnyMore_Sound_2.ogg");
 			break;
 		default:
 			break;
@@ -316,7 +315,7 @@ void CantCarrySound(void)
 
 void Mission_Status_Change_Sound(void)
 {
-	play_sample_using_WAV_cache("effects/Mission_Status_Change_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Mission_Status_Change_Sound_0.ogg");
 }
 
 /**
@@ -324,8 +323,8 @@ void Mission_Status_Change_Sound(void)
  */
 void teleport_arrival_sound(void)
 {
-	// play_sample_using_WAV_cache ( "effects/LeaveElevator_Sound_0.ogg", FALSE , FALSE );
-	play_sample_using_WAV_cache("effects/new_teleporter_sound.ogg", FALSE, FALSE);
+	// play_sound_cached("effects/LeaveElevator_Sound_0.ogg");
+	play_sound_cached("effects/new_teleporter_sound.ogg");
 }
 
 /**
@@ -338,19 +337,19 @@ void tux_scream_sound(void)
 {
 	switch (MyRandom(4)) {
 	case 0:
-		play_sample_using_WAV_cache("effects/Influencer_Scream_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Influencer_Scream_Sound_0.ogg");
 		break;
 	case 1:
-		play_sample_using_WAV_cache("effects/Influencer_Scream_Sound_1.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Influencer_Scream_Sound_1.ogg");
 		break;
 	case 2:
-		play_sample_using_WAV_cache("effects/Influencer_Scream_Sound_2.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Influencer_Scream_Sound_2.ogg");
 		break;
 	case 3:
-		play_sample_using_WAV_cache("effects/Influencer_Scream_Sound_3.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Influencer_Scream_Sound_3.ogg");
 		break;
 	case 4:
-		play_sample_using_WAV_cache("effects/Influencer_Scream_Sound_4.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Influencer_Scream_Sound_4.ogg");
 		break;
 	default:
 		break;
@@ -363,17 +362,17 @@ void tux_scream_sound(void)
  */
 void MenuItemSelectedSound(void)
 {
-	play_sample_using_WAV_cache("effects/Menu_Item_Selected_Sound_1.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Menu_Item_Selected_Sound_1.ogg");
 }
 
 void MenuItemDeselectedSound(void)
 {
-	play_sample_using_WAV_cache("effects/Menu_Item_Deselected_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Menu_Item_Deselected_Sound_0.ogg");
 }
 
 void MoveMenuPositionSound(void)
 {
-	play_sample_using_WAV_cache("effects/Move_Menu_Position_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Move_Menu_Position_Sound_0.ogg");
 }
 
 void ThouArtDefeatedSound(void)
@@ -393,16 +392,16 @@ void play_melee_weapon_hit_something_sound(void)
 {
 	switch (MyRandom(3)) {
 	case 0:
-		play_sample_using_WAV_cache("effects/swing_then_hit_1.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_hit_1.ogg");
 		break;
 	case 1:
-		play_sample_using_WAV_cache("effects/swing_then_hit_2.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_hit_2.ogg");
 		break;
 	case 2:
-		play_sample_using_WAV_cache("effects/swing_then_hit_3.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_hit_3.ogg");
 		break;
 	case 3:
-		play_sample_using_WAV_cache("effects/swing_then_hit_4.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_hit_4.ogg");
 		break;
 	default:
 		break;
@@ -413,16 +412,16 @@ void play_melee_weapon_missed_sound(void)
 {
 	switch (MyRandom(3)) {
 	case 0:
-		play_sample_using_WAV_cache("effects/swing_then_nohit_1.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_nohit_1.ogg");
 		break;
 	case 1:
-		play_sample_using_WAV_cache("effects/swing_then_nohit_2.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_nohit_2.ogg");
 		break;
 	case 2:
-		play_sample_using_WAV_cache("effects/swing_then_nohit_3.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_nohit_3.ogg");
 		break;
 	case 3:
-		play_sample_using_WAV_cache("effects/swing_then_nohit_4.ogg", FALSE, FALSE);
+		play_sound_cached("effects/swing_then_nohit_4.ogg");
 		break;
 	default:
 		break;
@@ -444,31 +443,31 @@ void Fire_Bullet_Sound(int BulletType)
 
 	switch (BulletType) {
 	case PULSE:
-		play_sample_using_WAV_cache("effects/Fire_Bullet_Pulse_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Fire_Bullet_Pulse_Sound_0.ogg");
 		break;
 
 	case SINGLE_PULSE:
-		play_sample_using_WAV_cache("effects/Fire_Bullet_Single_Pulse_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Fire_Bullet_Single_Pulse_Sound_0.ogg");
 		break;
 
 	case MILITARY:
-		play_sample_using_WAV_cache("effects/Fire_Bullet_Military_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Fire_Bullet_Military_Sound_0.ogg");
 		break;
 
 	case EXTERMINATOR:
-		play_sample_using_WAV_cache("effects/Fire_Bullet_Exterminator_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Fire_Bullet_Exterminator_Sound_0.ogg");
 		break;
 
 	case LASER_RIFLE:
-		play_sample_using_WAV_cache("effects/phaser.ogg", FALSE, FALSE);
+		play_sound_cached("effects/phaser.ogg");
 		break;
 
 	case SINGLE_LASER:
-		play_sample_using_WAV_cache("effects/Fire_Bullet_Single_Laser_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Fire_Bullet_Single_Laser_Sound_0.ogg");
 		break;
 
 	case PLASMA_PISTOL:
-		play_sample_using_WAV_cache("effects/Fire_Bullet_Plasma_Pistol_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Fire_Bullet_Plasma_Pistol_Sound_0.ogg");
 		break;
 
 	case LASER_SWORD_1:
@@ -487,32 +486,32 @@ void Fire_Bullet_Sound(int BulletType)
  */
 void Takeover_Set_Capsule_Sound(void)
 {
-	play_sample_using_WAV_cache("effects/TakeoverSetCapsule_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/TakeoverSetCapsule_Sound_0.ogg");
 }
 
 void Takeover_Game_Won_Sound(void)
 {
-	play_sample_using_WAV_cache("effects/Takeover_Game_Won_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Takeover_Game_Won_Sound_0.ogg");
 }
 
 void Takeover_Game_Deadlock_Sound(void)
 {
-	play_sample_using_WAV_cache("effects/Takeover_Game_Deadlock_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Takeover_Game_Deadlock_Sound_0.ogg");
 }
 
 void Takeover_Game_Lost_Sound(void)
 {
-	play_sample_using_WAV_cache("effects/Takeover_Game_Lost_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Takeover_Game_Lost_Sound_0.ogg");
 }
 
 void DruidBlastSound(void)
 {
-	play_sample_using_WAV_cache("effects/Blast_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Blast_Sound_0.ogg");
 }
 
 void ExterminatorBlastSound(void)
 {
-	play_sample_using_WAV_cache("effects/Blast_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Blast_Sound_0.ogg");
 }
 
 /**
@@ -527,7 +526,7 @@ void PlayEnemyGotHitSound(int enemytype)
 		break;
 	case 0:
 		// Play a grunting enemy got hit sound...
-		play_sample_using_WAV_cache("effects/Enemy_Got_Hit_Sound_0.ogg", FALSE, FALSE);
+		play_sound_cached("effects/Enemy_Got_Hit_Sound_0.ogg");
 		break;
 	default:
 		break;
@@ -540,5 +539,5 @@ void PlayEnemyGotHitSound(int enemytype)
  */
 void BulletReflectedSound(void)
 {
-	play_sample_using_WAV_cache("effects/Bullet_Reflected_Sound_0.ogg", FALSE, FALSE);
+	play_sound_cached("effects/Bullet_Reflected_Sound_0.ogg");
 }

@@ -73,11 +73,11 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 }
 
 	/**sample functions*/
-void play_sample_using_WAV_cache(char *SoundSampleFileName, int With_Waiting, int no_double_catching)
+void play_sound_cached(const char *filename)
 {
 }
 
-void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, int no_double_catching, double volume)
+void play_sound_cached_v(const char *filename, double volume)
 {
 }
 
@@ -520,10 +520,10 @@ void play_sound(const char *SoundSampleFileName)
 	List_Of_Sustained_Release_WAV_Files[Newest_Sound_Channel] = One_Shot_WAV_File;
 }
 
-//aep: wrapper for the new play_sample_using_WAV_cache_v
-void play_sample_using_WAV_cache(char *SoundSampleFileName, int With_Waiting, int no_double_catching)
+//aep: wrapper for the play_sound_cached_v
+void play_sound_cached(const char *filename)
 {
-	play_sample_using_WAV_cache_v(SoundSampleFileName, With_Waiting, no_double_catching, 1.0);
+	play_sound_cached_v(filename, 1.0);
 }
 
 //----------------------------------------------------------------------
@@ -534,10 +534,9 @@ void play_sample_using_WAV_cache(char *SoundSampleFileName, int With_Waiting, in
 // ----------------------------------------------------------------------
 
 //aep: implements volume now volume must be a double from 0 to 1. thats not my idea! go to JP, kill him!
-void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, int no_double_catching, double volume)
+void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 {
 	int Newest_Sound_Channel = 0;
-	char Temp_Filename[5000];
 	char fpath[2048];
 	int index_of_sample_to_be_played = 0;
 	int sound_must_be_loaded = TRUE;
@@ -579,8 +578,7 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 		// Now we try to load the requested sound file into memory...
 		//
 		dynamic_WAV_cache[next_free_position_in_cache] = NULL;
-		strcpy(Temp_Filename, SoundSampleFileName);
-		find_file(Temp_Filename, SOUND_DIR, fpath, 0);
+		find_file(SoundSampleFileName, SOUND_DIR, fpath, 0);
 		dynamic_WAV_cache[next_free_position_in_cache] = Mix_LoadWAV(fpath);
 		if (dynamic_WAV_cache[next_free_position_in_cache] == NULL) {
 			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
@@ -627,15 +625,11 @@ void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, 
 		fprintf(stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n", SoundSampleFileName, Mix_GetError());
 		ErrorMessage(__FUNCTION__, "\
 		                           The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-	}			// if ( ... = -1
+	}
 	else {
 		// SoundChannelList[ Newest_Sound_Channel ] = 1;
-		DebugPrintf(1, "\nSuccessfully playing the 'to be cached' file %s.", SoundSampleFileName);
 	}
-
 }
-
-;				// void play_sample_using_WAV_cache(...)
 
 /**
  * When the sound sample volume is changed via the in-game controls, we 

@@ -446,8 +446,8 @@ void Play_Spell_ForceToEnergy_Sound(void);
 void play_melee_weapon_hit_something_sound(void);
 void play_melee_weapon_missed_sound(void);
 void play_open_chest_sound(void);
-void play_sample_using_WAV_cache(char *SoundSampleFileName, int With_Waiting, int no_double_catching);
-void play_sample_using_WAV_cache_v(char *SoundSampleFileName, int With_Waiting, int no_double_catching, double volume);
+void play_sound_cached(const char *SoundSampleFileName);
+void play_sound_cached_v(const char *SoundSampleFileName, double volume);
 
 // items.c
 void init_item(item *);
