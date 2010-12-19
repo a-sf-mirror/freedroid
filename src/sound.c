@@ -33,7 +33,17 @@
 #define _sound_c
 #endif
 
-#include "sound.h"
+#include "defs.h"
+#include "struct.h"
+#include "global.h"
+#include "proto.h"
+
+#define MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE 100
+#define ALL_MOD_MUSICS 1
+#define MAX_SOUND_CHANNELS 5000
+
+static void remove_all_samples_from_WAV_cache(void);
+static void LoadAndFadeInBackgroundMusic(void);
 
 /** ============================================  DUMMYS  ============================================  */
 /*
@@ -64,7 +74,7 @@ void OldMusicHasFinishedFadingOut(void)
 }
 
 	/**music*/
-void LoadAndFadeInBackgroundMusic(void)
+static void LoadAndFadeInBackgroundMusic(void)
 {
 }
 
@@ -81,7 +91,7 @@ void play_sound_cached_v(const char *filename, double volume)
 {
 }
 
-void remove_all_samples_from_WAV_cache(void)
+static void remove_all_samples_from_WAV_cache(void)
 {
 }
 
@@ -271,7 +281,7 @@ void OldMusicHasFinishedFadingOut(void)
  * the old background music and start playing the new one.
  *
  */
-void LoadAndFadeInBackgroundMusic(void)
+static void LoadAndFadeInBackgroundMusic(void)
 {
 #ifndef HAVE_LIBSDL_MIXER
 	return;
@@ -326,8 +336,6 @@ void LoadAndFadeInBackgroundMusic(void)
 
 #endif				// HAVE_LIBSDL_MIXER
 }
-
-;				// void LoadAndFadeInBackgroundMusic ( void )
 
 void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 {
@@ -640,7 +648,7 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
  * files will be loaded again and then automatically re-sampled to proper
  * volume from the play/load function itself.  Perfect solution.
  */
-void remove_all_samples_from_WAV_cache(void)
+static void remove_all_samples_from_WAV_cache(void)
 {
 
 	for (i = 0; i < next_free_position_in_cache; i++) {
@@ -659,12 +667,7 @@ void remove_all_samples_from_WAV_cache(void)
 	// the next play function will search it and produce a segfault.
 	//
 	next_free_position_in_cache = 0;
-
-	DebugPrintf(1, "\nremove_all_samples_from_WAV_cache(...): Successfully cleared the whole WAV cache.");
-
 }
-
-;				// void remove_all_samples_from_WAV_cache( void )
 
 #endif				// HAVE_LIBSDL_MIXER
 

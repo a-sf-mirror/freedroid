@@ -25,7 +25,9 @@
  *
  */
 
-#include "sound.h"
+#include "struct.h"
+#include "global.h"
+#include "proto.h"
 
 void play_open_chest_sound(void)
 {
