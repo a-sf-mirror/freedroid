@@ -511,9 +511,9 @@ static int lua_event_change_stat(lua_State * L)
 	} else if (!strcmp(characteristic, "dexterity")) {
 		statptr = &Me.base_dexterity;
 	} else if (!strcmp(characteristic, "CPU")) {
-		statptr = &Me.base_magic;
+		statptr = &Me.base_cooling;
 	} else if (!strcmp(characteristic, "vitality")) {
-		statptr = &Me.base_vitality;
+		statptr = &Me.base_physique;
 	} else {
 		ErrorMessage(__FUNCTION__,
 			     "I was called with characteristic name %s - accepted values are \"strength\", \"dexterity\", \"CPU\", and \"vitality\".",

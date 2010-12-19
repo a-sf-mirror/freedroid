@@ -128,10 +128,10 @@ static void AddInfluencerItemAttributeBonus(item * BonusItem)
 		return;
 
 	// Apply the bonuses to the stats of the character.
-	Me.Strength += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes;
-	Me.Dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes;
-	Me.Magic += BonusItem->bonus_to_cooling + BonusItem->bonus_to_all_attributes;
-	Me.Vitality += BonusItem->bonus_to_physique + BonusItem->bonus_to_all_attributes;
+	Me.strength += BonusItem->bonus_to_str + BonusItem->bonus_to_all_attributes;
+	Me.dexterity += BonusItem->bonus_to_dex + BonusItem->bonus_to_all_attributes;
+	Me.cooling += BonusItem->bonus_to_cooling + BonusItem->bonus_to_all_attributes;
+	Me.physique += BonusItem->bonus_to_physique + BonusItem->bonus_to_all_attributes;
 
 };				// void AddInfluencerItemAttributeBonus( item* BonusItem )
 
@@ -193,7 +193,7 @@ void check_for_new_experience_level_reached()
 		// Like in the Gothic 1 game, maximum life force will now automatically
 		// be increased upon reaching a new character level.
 		//
-		Me.base_vitality += 3;
+		Me.base_physique += 3;
 
 		// When a droid reaches a new experience level, all health and 
 		// force are restored to full this one time no longer.  Gothic
@@ -219,10 +219,10 @@ void update_all_primary_stats()
 
 	// Now we base PRIMARY stats
 	//
-	Me.Strength = Me.base_strength;
-	Me.Dexterity = Me.base_dexterity;
-	Me.Magic = Me.base_magic;
-	Me.Vitality = Me.base_vitality;
+	Me.strength = Me.base_strength;
+	Me.dexterity = Me.base_dexterity;
+	Me.cooling = Me.base_cooling;
+	Me.physique = Me.base_physique;
 
 	Me.double_ranged_damage = FALSE;
 
@@ -238,9 +238,9 @@ void update_all_primary_stats()
 	// now...
 	//
 	if (Me.dexterity_bonus_end_date > Me.current_game_date)
-		Me.Dexterity += Me.current_dexterity_bonus;
+		Me.dexterity += Me.current_dexterity_bonus;
 	if (Me.power_bonus_end_date > Me.current_game_date)
-		Me.Strength += Me.current_power_bonus;
+		Me.strength += Me.current_power_bonus;
 
 	// Unequip items whose requirements aren't met anymore.
 	// This needs to be done last so that temporary bonuses, for example from
@@ -257,14 +257,14 @@ void update_all_primary_stats()
 	}
 
 	// Ensure the effective primary stats never drops below 1
-	if (Me.Strength < 1)
-		Me.Strength = 1;
-	if (Me.Dexterity < 1)
-		Me.Dexterity = 1;
-	if (Me.Magic < 1)
-		Me.Magic = 1;
-	if (Me.Vitality < 1)
-		Me.Vitality = 1;
+	if (Me.strength < 1)
+		Me.strength = 1;
+	if (Me.dexterity < 1)
+		Me.dexterity = 1;
+	if (Me.cooling < 1)
+		Me.cooling = 1;
+	if (Me.physique < 1)
+		Me.physique = 1;
 }
 
 /**
@@ -277,20 +277,20 @@ void update_secondary_stats_from_primary_stats()
 {
 	// The chance that this player character will score a hit on an enemy
 	//
-	Me.to_hit = 60 + (Me.Dexterity) * TOHIT_PERCENT_PER_DEX_POINT;
+	Me.to_hit = 60 + (Me.dexterity) * TOHIT_PERCENT_PER_DEX_POINT;
 
 	// How many life points can this character aquire currently
 	//
-	Me.maxenergy = (Me.Vitality) * Energy_Gain_Per_Vit_Point;
+	Me.maxenergy = (Me.physique) * Energy_Gain_Per_Vit_Point;
 
 	// The maximum mana value computed from the primary stats
 	//
-	Me.max_temperature = (Me.Magic) * Maxtemp_Gain_Per_CPU_Point;
+	Me.max_temperature = (Me.cooling) * Maxtemp_Gain_Per_CPU_Point;
 
 	// How long can this character run until he must take a break and
 	// walk a bit
 	//
-	Me.max_running_power = (Me.Strength) + (Me.Dexterity) + (Me.Vitality) + Me.running_power_bonus;
+	Me.max_running_power = (Me.strength) + (Me.dexterity) + (Me.physique) + Me.running_power_bonus;
 
 	// base regeneration speed set to 0.2 points per second
 	Me.health_recovery_rate = 0.2;
@@ -308,11 +308,11 @@ void update_damage_tux_can_do()
 	if (Me.weapon_item.type != (-1)) {
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
 			// Damage modifier in case of MELEE WEAPON is computed:  
-			// weapon's modifier * (100+Strength)%
+			// weapon's modifier * (100+strength)%
 			//
-			Me.base_damage = Me.weapon_item.damage * (Me.Strength + 100.0) / 100.0;
+			Me.base_damage = Me.weapon_item.damage * (Me.strength + 100.0) / 100.0;
 
-			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.Strength + 100.0) / 100.0;
+			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.strength + 100.0) / 100.0;
 
 			// Damage AND damage modifier a modified by additional melee weapon
 			// skill:  A multiplier is applied!
@@ -321,10 +321,10 @@ void update_damage_tux_can_do()
 			Me.base_damage *= MeleeDamageMultiplierTable[Me.melee_weapon_skill];
 		} else {
 			// Damage modifier in case of RANGED WEAPON is computed:  
-			// weapon's modifier * (100+Dexterity)%
+			// weapon's modifier * (100+dexterity)%
 			//
-			Me.base_damage = Me.weapon_item.damage * (Me.Dexterity + 100.0) / 100.0;
-			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.Dexterity + 100.0) / 100.0;
+			Me.base_damage = Me.weapon_item.damage * (Me.dexterity + 100.0) / 100.0;
+			Me.damage_modifier = Me.weapon_item.damage_modifier * (Me.dexterity + 100.0) / 100.0;
 
 			// Damage AND damage modifier a modified by additional ranged weapon
 			// skill:  A multiplier is applied!
@@ -533,33 +533,33 @@ void ShowCharacterScreen()
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Strength"), LEFT_TXT_X + CharacterRect.x, STR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d", Me.Strength);
-	if (Me.Strength != Me.base_strength)
-		sprintf(CharText + strlen(CharText), " (%+d)", Me.Strength - Me.base_strength);
+	sprintf(CharText, "%d", Me.strength);
+	if (Me.strength != Me.base_strength)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.strength - Me.base_strength);
 	DisplayText(CharText, STR_X + CharacterRect.x, STR_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Dexterity"), LEFT_TXT_X + CharacterRect.x, DEX_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d", Me.Dexterity);
-	if (Me.Dexterity != Me.base_dexterity)
-		sprintf(CharText + strlen(CharText), " (%+d)", Me.Dexterity - Me.base_dexterity);
+	sprintf(CharText, "%d", Me.dexterity);
+	if (Me.dexterity != Me.base_dexterity)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.dexterity - Me.base_dexterity);
 	DisplayText(CharText, STR_X + CharacterRect.x, DEX_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Physique"), LEFT_TXT_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d", Me.Vitality);
-	if (Me.Vitality != Me.base_vitality)
-		sprintf(CharText + strlen(CharText), " (%+d)", Me.Vitality - Me.base_vitality);
+	sprintf(CharText, "%d", Me.physique);
+	if (Me.physique != Me.base_physique)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.physique - Me.base_physique);
 	DisplayText(CharText, STR_X + CharacterRect.x, VIT_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SetCurrentFont(Messagestat_BFont);
 	DisplayText(_("Cooling"), LEFT_TXT_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%d", Me.Magic);
-	if (Me.Magic != Me.base_magic)
-		sprintf(CharText + strlen(CharText), " (%+d)", Me.Magic - Me.base_magic);
+	sprintf(CharText, "%d", Me.cooling);
+	if (Me.cooling != Me.base_cooling)
+		sprintf(CharText + strlen(CharText), " (%+d)", Me.cooling - Me.base_cooling);
 	DisplayText(CharText, STR_X + CharacterRect.x, MAG_Y + CharacterRect.y, &CharacterRect, TEXT_STRETCH);
 
 	SDL_Rect tmprect = CharacterRect;
@@ -642,11 +642,11 @@ void HandleCharacterScreen(void)
 			Me.points_to_distribute--;
 		}
 		if (MouseCursorIsOnButton(MORE_MAG_BUTTON, GetMousePos_x(), GetMousePos_y()) && MouseLeftClicked()) {
-			Me.base_magic++;
+			Me.base_cooling++;
 			Me.points_to_distribute--;
 		}
 		if (MouseCursorIsOnButton(MORE_VIT_BUTTON, GetMousePos_x(), GetMousePos_y()) && MouseLeftClicked()) {
-			Me.base_vitality++;
+			Me.base_physique++;
 			Me.points_to_distribute--;
 		}
 

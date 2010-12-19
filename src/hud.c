@@ -161,7 +161,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	if (ItemMap[item->type].item_gun_ammo_clip_size) {
 		autostr_append(str, _("Ammo: %d of %d\n"), item->ammo_clip, ItemMap[item->type].item_gun_ammo_clip_size);
 	}
-	// Strength, dexterity or magic requirements
+	// Strength, dexterity or cooling requirements
 	if ((ItemMap[item->type].item_require_strength != (-1)) || (ItemMap[item->type].item_require_dexterity != (-1))) {
 		if (ItemMap[item->type].item_require_strength != (-1)) {
 			autostr_append(str, _("Required strength: %d\n"), ItemMap[item->type].item_require_strength);

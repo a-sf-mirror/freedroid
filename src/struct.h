@@ -306,10 +306,10 @@ typedef struct itemspec {
 	short base_armor_class;
 	short armor_class_modifier;
 
-	// which requirement for strength, dexterity and magic (force) does the item have?
+	// which requirement for strength, dexterity and cooling does the item have?
 	short int item_require_strength;
 	short int item_require_dexterity;
-	short int item_require_magic;
+	short int item_require_cooling;
 
 	// what duration does the item have?
 	short int base_item_duration;
@@ -555,14 +555,14 @@ typedef struct tux {
 
 	char savegame_version_string[1000];	// a string to identify games from older freedroid versions
 
-	int Strength;		// character Strength value = 'power supply max. capacity'
-	int Magic;		// character Magic value = 
-	int Dexterity;		// character Dexterity value = 'power redistribution speed'
-	int base_vitality;	// character Vitality value = 'cloaking field maximum strength'
-	int base_strength;	// character Strength value = 'power supply max. capacity'
-	int base_magic;		// character Magic value = 
-	int base_dexterity;	// character Dexterity value = 'power redistribution speed'
-	int Vitality;		// character Vitality value = 'cloaking field maximum strength'
+	int base_cooling;
+	int base_dexterity;
+	int base_physique;
+	int base_strength;
+	int cooling;
+	int dexterity;
+	int physique;
+	int strength;
 	int points_to_distribute;	// these are the points that are available to distribute upon the character stats
 	float base_damage;	// the current damage the influencer does
 	float damage_modifier;	// the modifier to the damage the influencer currently does

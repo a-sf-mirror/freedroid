@@ -796,12 +796,12 @@ void ApplyItem(item * CurItem)
 	} else if (MatchItemWithName(CurItem->type, "Dexterity Pill")) {
 		Me.base_dexterity++;
 	} else if (MatchItemWithName(CurItem->type, "Code Pill")) {
-		Me.base_magic++;
+		Me.base_cooling++;
 	} else if (MatchItemWithName(CurItem->type, "Brain Enlargement Pill")) {
-		Me.base_magic = 5;
+		Me.base_cooling = 5;
 		Me.base_strength = 5;
 		Me.base_dexterity = 5;
-		Me.base_vitality = 5;
+		Me.base_physique = 5;
 		Takeover_Game_Lost_Sound();
 		append_new_game_message(_("The doctor warned you. You are now weak and sickly."));
 	} else if (MatchItemWithName(CurItem->type, "Teleporter homing beacon")) {
@@ -1265,17 +1265,17 @@ static void drop_held_item(void)
  */
 int ItemUsageRequirementsMet(item * UseItem, int MakeSound)
 {
-	if (Me.Strength < ItemMap[UseItem->type].item_require_strength && ItemMap[UseItem->type].item_require_strength > 0) {
+	if (Me.strength < ItemMap[UseItem->type].item_require_strength && ItemMap[UseItem->type].item_require_strength > 0) {
 		if (MakeSound)
 			Not_Enough_Power_Sound();
 		return (FALSE);
 	}
-	if (Me.Dexterity < ItemMap[UseItem->type].item_require_dexterity && ItemMap[UseItem->type].item_require_dexterity > 0) {
+	if (Me.dexterity < ItemMap[UseItem->type].item_require_dexterity && ItemMap[UseItem->type].item_require_dexterity > 0) {
 		if (MakeSound)
 			Not_Enough_Dist_Sound();
 		return (FALSE);
 	}
-	if (Me.Magic < ItemMap[UseItem->type].item_require_magic && ItemMap[UseItem->type].item_require_magic > 0) {
+	if (Me.cooling < ItemMap[UseItem->type].item_require_cooling && ItemMap[UseItem->type].item_require_cooling > 0) {
 		return (FALSE);
 	}
 	if (!requirements_for_item_application_met(UseItem)) {

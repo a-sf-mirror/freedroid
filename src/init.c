@@ -841,13 +841,13 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		}
 		free(YesNoString);
 
-		// Now we read in minimum strength, dex and magic required to wear/wield this item
+		// Now we read in minimum strength, dex and cooling required to wear/wield this item
 		ReadValueFromStringWithDefault(ItemPointer, "Strength minimum required to wear/wield this item=", "%hd", "-1",
 					       &item->item_require_strength, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "Dexterity minimum required to wear/wield this item=", "%hd", "-1",
 					       &item->item_require_dexterity, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "Magic minimum required to wear/wield this item=", "%hd", "-1",
-					       &item->item_require_magic, EndOfItemData);
+					       &item->item_require_cooling, EndOfItemData);
 
 		ReadValueFromStringWithDefault(ItemPointer, "Item min class for drop=", "%hd", "-1", &item->min_drop_class,
 					       EndOfItemData);
