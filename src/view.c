@@ -249,107 +249,51 @@ void object_vtx_color(void *data, float *r, float *g, float *b)
 static void show_floor(int mask)
 {
 	int LineStart, LineEnd, ColStart, ColEnd, line, col, MapBrick;
-	static int use_atlas = -1;
 	float r, g, b;
+	float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
 
-	Level DisplayLevel = curShip.AllLevels[Me.pos.z];
+	level *lvl = curShip.AllLevels[Me.pos.z];
 
 	get_floor_boundaries(mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
-	//  SDL_SetClipRect (Screen, &User_Rect);
-
-	if (!use_open_gl) {
-		/* SDL rendering path */
-		for (line = LineStart; line < LineEnd; line++) {
-			for (col = ColStart; col < ColEnd; col++) {
-				MapBrick = GetMapBrick(DisplayLevel, col, line);
-
-				// @TODO : the current position can be on an other level than DisplayLevel, so
-				// the following call is somehow wrong. To avoid transforming again the current
-				// position (already done inside GetMapBrick()) we should concatenate GetMapBrick() and
-				// object_vtx_color().
-				object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
-
-				if (mask & ZOOM_OUT)
-					blit_zoomed_iso_image_to_map_position(&(floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
-									      ((float)col) + 0.5, ((float)line) + 0.5);
-				else
-					blit_iso_image_to_map_position(&(floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
-								       ((float)col) + 0.5, ((float)line) + 0.5);
-			}
-		}
-		return;
-	} else {
-		if (use_atlas == -1) {
-			//determine if we are using a texture atlas for the ground
-#ifdef HAVE_LIBGL
-			if (floor_images[0].texture == floor_images[5].texture)
-				use_atlas = 1;
-			else
-				use_atlas = 0;
-#else
-			use_atlas = 0;
+#if HAVE_LIBGL
+	if (use_open_gl) {
+		glEnable(GL_ALPHA_TEST);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	}
 #endif
-		}
+	start_image_batch();
 
-		if (use_atlas) {
+	for (line = LineStart; line < LineEnd; line++) {
+		for (col = ColStart; col < ColEnd; col++) {
+			// Retrieve floor tile
+			MapBrick = GetMapBrick(lvl, col, line);
 
-#ifdef HAVE_LIBGL
-			glBindTexture(GL_TEXTURE_2D, floor_images[0].texture);
-			glEnable(GL_ALPHA_TEST);
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			glBegin(GL_QUADS);
-
-			for (line = LineStart; line < LineEnd; line++) {
-				for (col = ColStart; col < ColEnd; col++) {
-					MapBrick = GetMapBrick(DisplayLevel, col, line);
-					object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
-
-					struct image *ourimg = &(floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
-
-					int x, y;
-					float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
-
-					translate_map_point_to_screen_pixel(((float)col) + 0.5, ((float)line) + 0.5, &x, &y);
-					x += ourimg->offset_x * zf;
-					y += ourimg->offset_y * zf;
-
-					glColor3f(r, g, b);
-					glTexCoord2f(ourimg->tex_x0, ourimg->tex_y1);
-					glVertex2i(x, y);
-					glTexCoord2f(ourimg->tex_x0, ourimg->tex_y0);
-					glVertex2i(x, y + ourimg->h * zf);
-					glTexCoord2f(ourimg->tex_x1, ourimg->tex_y0);
-					glVertex2i(x + ourimg->w * zf, y + ourimg->h * zf);
-					glTexCoord2f(ourimg->tex_x1, ourimg->tex_y1);
-					glVertex2i(x + ourimg->w * zf, y);
-
-				}
+			// Compute colorization (in case the floor tile is currently selected in the leveleditor)
+			if (pos_inside_level(col, line, lvl)) {
+				object_vtx_color(&lvl->map[line][col], &r, &g, &b);
+			} else {
+				r = g = b = 1.0;
 			}
 
-			glEnd();
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-			glDisable(GL_ALPHA_TEST);
+#if HAVE_LIBGL
+			if (use_open_gl)
+				glColor3f(r, g, b);
 #endif
-		}		//use_atlas
-		else {
-			for (line = LineStart; line < LineEnd; line++) {
-				for (col = ColStart; col < ColEnd; col++) {
-					MapBrick = GetMapBrick(DisplayLevel, col, line);
 
-					object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
-
-					draw_gl_textured_quad_at_map_position(&floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
-									      ((float)col) + 0.5, ((float)line) + 0.5, r, g, b, FALSE,
-									      FALSE, (mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
-
-				}
-			}
-
+			struct image *img = &(floor_images[MapBrick]);
+			display_image_on_map_scaled(img, (float)col + 0.5, (float)line + 0.5, zf);
 		}
 	}
 
-};
+	end_image_batch();
+#if HAVE_LIBGL
+	if (use_open_gl) {
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+		glDisable(GL_ALPHA_TEST);
+	}
+#endif
+}
 
 void blit_leveleditor_point(int x, int y)
 {
