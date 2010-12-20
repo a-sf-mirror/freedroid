@@ -9,6 +9,7 @@ lua/lua*.exe
 lua/lua*.dll
 src/*.exe
 zpipe/zpipe
+gluem/*font
 
 # Patches
 *.orig
