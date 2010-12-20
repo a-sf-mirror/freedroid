@@ -26,8 +26,6 @@ static void InitFont(BFont_Info * Font)
 	unsigned int x = 0, i = 0, y = 0, max_h = 1;
 	SDL_Surface *tmp_char1;
 
-	Font->h = Font->Surface->h;
-
 	i = '!';
 	int sentry_horiz = SDL_MapRGB(Font->Surface->format, 255, 0, 255);
 	int sentry_vert = SDL_MapRGB(Font->Surface->format, 0, 255, 0);
@@ -111,6 +109,8 @@ static void InitFont(BFont_Info * Font)
 	Font->Chars[' '].y = 0;
 	Font->Chars[' '].h = Font->Chars['!'].h;
 	Font->Chars[' '].w = Font->Chars['!'].w;
+	Font->h = Font->Chars['!'].h;
+
 	Font->number_of_chars = i;
 
 #ifdef HAVE_LIBGL
