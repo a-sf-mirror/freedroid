@@ -262,7 +262,6 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 
 					glBindTexture(GL_TEXTURE_2D, (Font->char_image[c].texture));
 					glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-					glEnable(GL_BLEND);
 
 					glBegin(GL_QUADS);
 
@@ -277,7 +276,6 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 
 					glEnd();
 					glEndList();
-					glDisable(GL_BLEND);
 
 #endif
 				}

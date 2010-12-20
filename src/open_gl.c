@@ -106,7 +106,6 @@ int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surf
 			bytes = src->pitch / src->w;
 
 			glDisable(GL_TEXTURE_2D);
-			glEnable(GL_BLEND);
 
 			switch (bytes) {
 			case 4:
@@ -127,7 +126,6 @@ int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surf
 					     IS_WARNING_ONLY);
 			}
 
-			glDisable(GL_BLEND);
 			glEnable(GL_TEXTURE_2D);
 			return (0);
 		}
@@ -173,7 +171,6 @@ int our_SDL_fill_rect_wrapper(SDL_Surface * dst, SDL_Rect * dstrect, Uint32 colo
 #ifdef HAVE_LIBGL
 		if (dst == Screen) {
 			glDisable(GL_TEXTURE_2D);
-			glEnable(GL_BLEND);
 
 			SDL_GetRGBA(color, Screen->format, &r, &g, &b, &a);
 			glColor4ub(r, g, b, a);
@@ -193,7 +190,6 @@ int our_SDL_fill_rect_wrapper(SDL_Surface * dst, SDL_Rect * dstrect, Uint32 colo
 				glEnd();
 			}
 			glEnable(GL_TEXTURE_2D);
-			glDisable(GL_BLEND);
 			return (0);
 		}
 #endif
@@ -284,7 +280,6 @@ void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, fl
 	int l = (int)(fill * length);
 	int l2 = (int)length * (1.0 - fill);
 	int lcos, lsin, l2cos, l2sin;
-	glEnable(GL_BLEND);
 	glColor4ub(c1->r, c1->g, c1->b, c1->a);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
@@ -333,7 +328,6 @@ void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, fl
 	}
 	glEnd();
 	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_BLEND);
 
 #endif
 };				// void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor *c1, myColor *c2  ) 
@@ -617,7 +611,7 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 	glDisable(GL_ALPHA_TEST);
 	glAlphaFunc(GL_GREATER, 0.499999);
 
-	glDisable(GL_BLEND);
+	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
@@ -680,11 +674,12 @@ draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 	int x, y;
 
 	if (((blend == TRANSPARENCY_FOR_WALLS) && GameConfig.transparency) || blend == TRANSPARENCY_CUROBJECT) {
-		glEnable(GL_BLEND);
+		//glEnable(GL_BLEND);
 		a = 0.50;
 	} else if (blend == TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS) {
-		glEnable(GL_BLEND);
+		//glEnable(GL_BLEND);
 	} else {
+		glDisable(GL_BLEND);
 		glEnable(GL_ALPHA_TEST);
 	}
 
@@ -702,7 +697,6 @@ draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 				     our_iso_image->tex_x1, our_iso_image->tex_y1);
 
 	if (highlight_texture) {
-		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE);
 
 		// Now we draw our quad AGAIN!
@@ -714,7 +708,7 @@ draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 
 	}
 
-	glDisable(GL_BLEND);
+	glEnable(GL_BLEND);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glDisable(GL_ALPHA_TEST);
 #endif
@@ -728,13 +722,10 @@ void draw_gl_textured_quad_at_screen_position(struct image * our_iso_image, int 
 {
 #ifdef HAVE_LIBGL
 
-	glEnable(GL_BLEND);
-
 	glBindTexture(GL_TEXTURE_2D, our_iso_image->texture);
 	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w,
 				     y + our_iso_image->h, our_iso_image->tex_x0, our_iso_image->tex_y0, our_iso_image->tex_x1,
 				     our_iso_image->tex_y1);
-	glDisable(GL_BLEND);
 
 #endif
 }
@@ -748,15 +739,12 @@ void draw_gl_scaled_textured_quad_at_screen_position(struct image * our_iso_imag
 
 #ifdef HAVE_LIBGL
 
-	glEnable(GL_BLEND);
-
 	glBindTexture(GL_TEXTURE_2D, (our_iso_image->texture));
 
 	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w * scale_factor,
 				     y + our_iso_image->h * scale_factor, our_iso_image->tex_x0, our_iso_image->tex_y0,
 				     our_iso_image->tex_x1, our_iso_image->tex_y1);
 
-	glDisable(GL_BLEND);
 
 #endif
 
@@ -775,8 +763,6 @@ void draw_gl_bg_textured_quad_at_screen_position(struct image * our_floor_iso_im
 	int image_end_x;
 	int image_end_y;
 
-	glEnable(GL_BLEND);
-
 	if (our_floor_iso_image->w == 1024)	//then the image is 1024x768
 	{			/*dirty hack for better scaling */
 		image_end_x = x + our_floor_iso_image->w * GameConfig.screen_width / 1024;
@@ -789,8 +775,6 @@ void draw_gl_bg_textured_quad_at_screen_position(struct image * our_floor_iso_im
 	glBindTexture(GL_TEXTURE_2D, (our_floor_iso_image->texture));
 	draw_gl_textured_quad_helper(x, y, image_end_x, image_end_y, our_floor_iso_image->tex_x0, our_floor_iso_image->tex_y0,
 				     our_floor_iso_image->tex_x1, our_floor_iso_image->tex_y1);
-
-	glDisable(GL_BLEND);
 
 #endif
 
@@ -1018,10 +1002,7 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 	local_iso_image.tex_x1 = 1.0;
 	local_iso_image.tex_y1 = 1.0;
 
-	glEnable(GL_BLEND);
-
 	draw_gl_scaled_textured_quad_at_screen_position(&local_iso_image, decay_x, decay_y, LightRadiusConfig.scale_factor);
-	glDisable(GL_BLEND);
 
 #endif
 
@@ -1060,7 +1041,6 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
 #ifdef HAVE_LIBGL
 	glDisable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
 
 	glColor4ub(r, g, b, a);
 
@@ -1072,7 +1052,6 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 	glEnd();
 
 	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_BLEND);
 #endif
 }
 

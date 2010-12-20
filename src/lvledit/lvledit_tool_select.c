@@ -941,7 +941,6 @@ int leveleditor_select_display()
 #ifdef HAVE_LIBGL
 		else {
 			glDisable(GL_TEXTURE_2D);
-			glEnable(GL_BLEND);
 
 			glColor4ub(0x1f, 0x7f, 0x8f, 0x8f);
 
@@ -953,7 +952,6 @@ int leveleditor_select_display()
 			glEnd();
 
 			glEnable(GL_TEXTURE_2D);
-			glDisable(GL_BLEND);
 		}
 #endif
 		break;
