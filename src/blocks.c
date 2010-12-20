@@ -44,7 +44,6 @@ char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
  */
 void make_sure_zoomed_surface_is_there(struct image *our_iso_image)
 {
-#warning __FUNCTION__ __LINE__ This function should be removed
 	if (our_iso_image->zoomed_out_surface == NULL) {
 		our_iso_image->zoomed_out_surface = zoomSurface(our_iso_image->surface, lvledit_zoomfact_inv(),
 								lvledit_zoomfact_inv(), FALSE);
@@ -952,7 +951,6 @@ void load_all_obstacles(void)
 void load_floor_tiles(void)
 {
 	int i;
-	char fpath[2048];
 
 	// Try to load the atlas
 	if (use_open_gl)
@@ -967,12 +965,8 @@ void load_floor_tiles(void)
 
 		strcpy(ConstructedFileName, "floor_tiles/");
 		strcat(ConstructedFileName, floor_tile_filenames[i]);
-		find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
 
-		get_iso_image_from_file_and_path(fpath, &floor_images[i], TRUE);
-		if (use_open_gl) {
-			make_texture_out_of_surface(&(floor_images[i]));
-		}
+		load_iso_image(&floor_images[i], ConstructedFileName, TRUE);
 	}
 }
 
