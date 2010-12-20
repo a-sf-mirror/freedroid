@@ -28,26 +28,51 @@ Beginning of new chat dialog for character="XXXXX"
 EveryTime LuaCode={
 	if (not has_cookie("met_docmoore")) then
 		show(0)
-	else end
-
-	if (has_quest(_"Bender's problem")) then
-		if ( (has_cookie("met_docmoore")) and (not done_quest(_"Bender's problem")) ) then 
-			show(2)
-		else end
-	else end
-
-	if (has_cookie("Tania-sent-to-Doc") and (not has_cookie("Tania-Doc-OK"))) then
-		add_cookie("Tania-Doc-OK")
-		show(25)
 	end
 
-	if (has_item_backpack("Strength Pill") > 0) then show(50) else end
-	if (has_item_backpack("Dexterity Pill") > 0) then show(51) else end
-	if (has_item_backpack("Code Pill") > 0) then show(52) else end
+	if (has_quest(_"Bender's problem")) and
+		(has_cookie("met_docmoore")) and
+		(not done_quest(_"Bender's problem")) then
+			show(2)
+	end
 
-	if (has_item_backpack("Diet supplement") > 0) then show(55) else end
-	if (has_item_backpack("Antibiotic") > 0) then show(56) else end
-	if (has_item_backpack("Doc-in-a-can") > 0) then show(57) else end
+	if (has_cookie("Tania-sent-to-Doc")) and
+		(not has_cookie("Tania-Doc-OK")) then
+			add_cookie("Tania-Doc-OK")
+			show(25)
+	end
+
+	if (has_item_backpack("Strength Pill") > 0) then show(50) end
+	if (has_item_backpack("Dexterity Pill") > 0) then show(51) end
+	if (has_item_backpack("Code Pill") > 0) then show(52) end
+
+	if (has_item_backpack("Diet supplement") > 0) then show(55) end
+	if (has_item_backpack("Antibiotic") > 0) then show(56) end
+	if (has_item_backpack("Doc-in-a-can") > 0) then show(57) end
+
+	if (get_tux_hp() < 5) then
+		npc_says(_"You look gravely injured.")
+		npc_says(_"I will help you.")
+		tux_says(_"I...")
+		npc_says(_"It's ok, you'll be fine soon.")
+		npc_says(_"A little spray here...")
+		npc_says(_"An injection there...", "NO_WAIT")
+		tux_says(_"OW!")
+		npc_says(_"Now, swallow this pill.")
+		tux_says(_"*glup*")
+		npc_says(_"Ok, you are fixed now.")
+		tux_says(_"Oh, thank you!")
+		npc_says(_"Take better care of yourself, Linarian.")
+		heal_tux()
+	end
+
+	if (get_tux_hp() < 20) then
+		npc_says(_"You don't look too good...")
+		npc_says(_"I can help you if you want.")
+	elseif (get_tux_hp() < 40) then
+		npc_says(_"You should take better care of yourself out there.")
+	end
+
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -63,7 +88,7 @@ LuaCode={
 	add_cookie("met_docmoore")
 	if (has_quest(_"Bender's problem")) then
 		show(2)
-	else end
+	end
 	set_bot_name(_"Doc Moore -- Medic")
 	hide(0) show(1, 3, 10)
 }
@@ -241,7 +266,7 @@ Nr=54 Text=_"What can you tell me about Brain Pills?"
 LuaCode={
 	if(has_cookie("doc_healed_tux")) then
 		npc_says(_"I already warned you about those!")
-	else end
+	end
 	npc_says(_"Those pills are almost pure biological waste! They are sold to stupid ignorant gullible people. Never EVER take one.")
 	hide(54)
 }
