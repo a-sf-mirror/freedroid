@@ -424,20 +424,14 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
  * This function performs a menu for the player to select from, using the
  * keyboard or mouse wheel.
  */
-int
-ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PERSON],
-			   int FirstItem, int background_code, void *MenuFont, enemy * ChatDroid)
+int chat_do_menu_selection_flagged(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *chat_droid)
 {
-	int MenuSelection = (-1);
+	int MenuSelection;
 	char *FilteredChatMenuTexts[MAX_ANSWERS_PER_PERSON];
 	int i;
 	int use_counter = 0;
 
-	DebugPrintf(2, "\nBEFORE:  First Item now: %d.", FirstItem);
-
 	// We filter out those answering options that are allowed by the flag mask
-	//
-	DebugPrintf(MENU_SELECTION_DEBUG, "\n%s(): %d \n", __FUNCTION__, FirstItem);
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 		FilteredChatMenuTexts[i] = "";
 		if (chat_control_chat_flags[i]) {
@@ -453,11 +447,9 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
 		}
 	}
 
-	DebugPrintf(2, "\nMIDDLE:  First Item now: %d.", FirstItem);
-
 	// Now we do the usual menu selection, using only the activated chat alternatives...
 	//
-	MenuSelection = ChatDoMenuSelection(FilteredChatMenuTexts, FirstItem, MenuFont, ChatDroid);
+	MenuSelection = chat_do_menu_selection(FilteredChatMenuTexts, chat_droid);
 
 	// Now that we have an answer, we must transpose it back to the original array
 	// of all theoretically possible answering possibilities.
@@ -478,7 +470,7 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
 	}
 
 	return (MenuSelection);
-};				// int ChatDoMenuSelectionFlagged( char* InitialText , char* MenuTexts[ MAX_ANSWERS_PER_PERSON] , ... 
+}
 
 /**
  *
@@ -491,9 +483,9 @@ ChatDoMenuSelectionFlagged(char *InitialText, char *MenuTexts[MAX_ANSWERS_PER_PE
  * dialog options secection window for the player to click from.
  *
  */
-int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, void *MenuFont, enemy * ChatDroid)
+int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatDroid)
 {
-	int h = FontHeight(GetCurrentFont());
+	int h;
 	int i;
 	static int menu_position_to_remember = 1;
 #define ITEM_DIST 50
@@ -530,13 +522,8 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	Choice_Window.h = UNIVERSAL_COORD_H(118);
 	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
 
-	if (FirstItem != (-1))
-		menu_position_to_remember = FirstItem;
-
 	// First thing we do is find out how may options we have
 	// been given for the menu
-	//
-	DebugPrintf(MENU_SELECTION_DEBUG, "\n%s(): %d \n", __FUNCTION__, FirstItem);
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 		DebugPrintf(MENU_SELECTION_DEBUG, "%2d. ", i);
 		DebugPrintf(MENU_SELECTION_DEBUG, MenuTexts[i]);
@@ -555,27 +542,14 @@ int ChatDoMenuSelection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], int FirstItem, 
 	show_chat_log(ChatDroid);
 	StoreMenuBackground(0);
 
-	// Now that the possible font-changing background assembling is
-	// done, we can finally set the right font for the menu itself.
-	//
-	if (MenuFont == NULL)
-		SetCurrentFont(Menu_BFont);
-	else
-		SetCurrentFont((BFont_Info *) MenuFont);
-
 	OptionOffset = 0;
 	while (1) {
 		SDL_Delay(1);
 		RestoreMenuBackground(0);
 		save_mouse_state();
 
-		// Now that the possible font-changing chat log display is
-		// done, we can finally set the right font for the menu itself.
-		//
-		if (MenuFont == NULL)
-			SetCurrentFont(Menu_BFont);
-		else
-			SetCurrentFont((BFont_Info *) MenuFont);
+		// Set the font
+		SetCurrentFont(FPS_Display_BFont);
 		h = FontHeight(GetCurrentFont());
 
 		// We blit to the screen all the options that are not empty and that still fit

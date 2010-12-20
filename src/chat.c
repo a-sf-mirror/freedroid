@@ -576,8 +576,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 
 		if (chat_control_next_node == -1) {
 			chat_control_next_node =
-			    ChatDoMenuSelectionFlagged(_("What will you say?"), DialogMenuTexts, 1, -1,
-						       FPS_Display_BFont, ChatDroid);
+				chat_do_menu_selection_flagged(DialogMenuTexts, ChatDroid);
 			// We do some correction of the menu selection variable:
 			// The first entry of the menu will give a 1 and so on and therefore
 			// we need to correct this to more C style.

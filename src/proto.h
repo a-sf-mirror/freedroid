@@ -591,9 +591,8 @@ void clear_player_inventory_and_stats(void);
 void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
 int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, int background_code, void *MenuFont);
-int ChatDoMenuSelectionFlagged(char *InitialText, char **MenuTexts,
-			       int FirstItem, int background_code, void *MenuFont, enemy * ChatDroid);
-int ChatDoMenuSelection(char **MenuTexts, int FirstItem, void *MenuFont, enemy * ChatDroid);
+int chat_do_menu_selection_flagged(char **MenuTexts, enemy *chat_droid);
+int chat_do_menu_selection(char **MenuTexts, enemy *chat_droid);
 void StartupMenu(void);
 void InitiateMenu(int background_code);
 void Cheatmenu(void);
