@@ -23,14 +23,14 @@ static BFont_Info *CurrentFont;
  */
 static void InitFont(BFont_Info * Font)
 {
-	unsigned int x = 0, i = 0;
-	Uint32 sentry;
+	unsigned int x = 0, i = 0, y = 0, max_h = 1;
 	SDL_Surface *tmp_char1;
 
 	Font->h = Font->Surface->h;
 
 	i = '!';
-	sentry = SDL_MapRGB(Font->Surface->format, 255, 0, 255);
+	int sentry_horiz = SDL_MapRGB(Font->Surface->format, 255, 0, 255);
+	int sentry_vert = SDL_MapRGB(Font->Surface->format, 0, 255, 0);
 
 	if (Font->Surface == NULL) {
 		fprintf(stderr, "BFont: The font has not been loaded!\n");
@@ -40,43 +40,76 @@ static void InitFont(BFont_Info * Font)
 	if (SDL_MUSTLOCK(Font->Surface))
 		SDL_LockSurface(Font->Surface);
 
-	x = 0;
-	while (x < (Font->Surface->w - 1) && i < MAX_CHARS_IN_FONT) {
-		if (FdGetPixel(Font->Surface, x, 0) != sentry) {
-			Font->Chars[i].x = x;
-			Font->Chars[i].y = 1;
-			Font->Chars[i].h = Font->Surface->h;
-			while (x < (Font->Surface->w)) {
-				if (FdGetPixel(Font->Surface, x, 0) == sentry)
+	while (1) {
+
+		// Read this line of characters
+		while (x < (Font->Surface->w - 1)) {
+			if (FdGetPixel(Font->Surface, x, y) != sentry_horiz) {
+				// Found a character
+				Font->Chars[i].x = x;
+				Font->Chars[i].y = y;
+
+				// Compute character width
+				int x2 = x;
+				while (x2 < Font->Surface->w) {
+					if (FdGetPixel(Font->Surface, x2, y) == sentry_horiz)
+						break;
+					x2++;
+				}
+				Font->Chars[i].w = x2 - x;
+
+				if (x2 == Font->Surface->w)
 					break;
+
+				// Compute character height
+				int y2 = y;
+				while (y2 < Font->Surface->h) {
+					if (FdGetPixel(Font->Surface, x, y2) == sentry_horiz ||
+							FdGetPixel(Font->Surface, x, y2) == sentry_vert)
+						break;
+					y2++;
+				}
+				Font->Chars[i].h = y2 - y;
+
+				// Update maximal h
+				if (max_h < y2 - y)
+					max_h = y2 - y;
+
+				// Create character surface
+				tmp_char1 = SDL_CreateRGBSurface(0, Font->Chars[i].w, Font->Chars[i].h, 32, rmask, gmask, bmask, amask);
+				Font->char_image[i].surface = SDL_DisplayFormatAlpha(tmp_char1);
+				Font->char_image[i].texture_has_been_created = FALSE;
+
+				SDL_BlitSurface(Font->Surface, &(Font->Chars[i]), Font->char_image[i].surface, NULL);
+				SDL_SetAlpha(Font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
+				SDL_SetColorKey(Font->char_image[i].surface, 0, 0);
+
+				flip_image_vertically(Font->char_image[i].surface);
+
+				SDL_FreeSurface(tmp_char1);
+				Font->number_of_chars = i + 1;
+
+				// Move on to the next character
+				i++;
+				x = x2;
+			} else {
+				// On a sentry? Move right.
 				x++;
 			}
-			Font->Chars[i].w = (x - Font->Chars[i].x);
-
-			Font->number_of_chars = i + 1;
-
-			tmp_char1 = SDL_CreateRGBSurface(0, CharWidth(Font, i), FontHeight(Font) - 1, 32, rmask, gmask, bmask, amask);
-			Font->char_image[i].surface = SDL_DisplayFormatAlpha(tmp_char1);
-			Font->char_image[i].texture_has_been_created = FALSE;
-
-			our_SDL_blit_surface_wrapper(Font->Surface, &(Font->Chars[i]), Font->char_image[i].surface, NULL);
-			SDL_SetAlpha(Font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-			SDL_SetColorKey(Font->char_image[i].surface, 0, 0);
-
-			flip_image_vertically(Font->char_image[i].surface);
-
-			SDL_FreeSurface(tmp_char1);
-			// Now we can go on to the next char
-			//
-			i++;
-		} else {
-			x++;
 		}
+
+		// Find the next line of characters
+		y += max_h + 1;
+		max_h = 1;
+		x = 0;
+
+		if (y >= Font->Surface->h)
+			break;	
 
 	}
 	Font->Chars[' '].x = 0;
 	Font->Chars[' '].y = 0;
-	Font->Chars[' '].h = Font->Surface->h;
+	Font->Chars[' '].h = Font->Chars['!'].h;
 	Font->Chars[' '].w = Font->Chars['!'].w;
 	Font->number_of_chars = i;
 
