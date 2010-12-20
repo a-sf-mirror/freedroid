@@ -61,6 +61,7 @@ static void gl_end()
 	if (emit_begun) {
 		glEnd();
 		emit_begun = FALSE;
+		active_tex = -1;
 	}
 #endif
 }
@@ -80,7 +81,6 @@ void end_image_batch()
 {
 	batch_draw = FALSE;
 	gl_end();
-	active_tex = -1;
 }
  
 /**
@@ -119,13 +119,13 @@ static void gl_display_image(struct image *img, int x, int y, float scale)
 			
 	// Draw the image	
 	gl_begin();
-	glTexCoord2f(img->tex_x0, img->tex_y1);
-	glVertex2i(x, y);
 	glTexCoord2f(img->tex_x0, img->tex_y0);
+	glVertex2i(x, y);
+	glTexCoord2f(img->tex_x0, img->tex_y1);
 	glVertex2i(x, ymax);
-	glTexCoord2f(img->tex_x1, img->tex_y0);
-	glVertex2i(xmax, ymax);
 	glTexCoord2f(img->tex_x1, img->tex_y1);
+	glVertex2i(xmax, ymax);
+	glTexCoord2f(img->tex_x1, img->tex_y0);
 	glVertex2i(xmax, y);
 
 	// glEnd() is only required if we are not doing a batch
@@ -174,11 +174,17 @@ void display_image_on_screen_scaled(struct image *img, int x, int y, float scale
 	}
 }
 
+/**
+ * Display an image on the screen.
+ */
 void display_image_on_screen(struct image *img, int x, int y)
 {
 	display_image_on_screen_scaled(img, x, y, 1.0);
 }
 
+/**
+ * Display an image on the map, scaled.
+ */
 void display_image_on_map_scaled(struct image *img, float X, float Y, float scale)
 {
 	int x, y;
@@ -186,9 +192,62 @@ void display_image_on_map_scaled(struct image *img, float X, float Y, float scal
 	display_image_on_screen_scaled(img, x, y, scale);
 }
 
+/**
+ * Display an image on the map.
+ */
 void display_image_on_map(struct image *img, float X, float Y)
 {
 	display_image_on_map_scaled(img, X, Y, 1.0);
 }
 
+/**
+ * Create an image as a part of another (texture atlas element).
+ */
+void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect)
+{
+	// Set image width and height
+	*new_img = *source;
+	new_img->w = rect->w;
+	new_img->h = rect->h;
 
+	if (use_open_gl) {
+
+		// In OpenGL mode, require the source to be a texture.
+		if (!source->texture_has_been_created) {
+			ErrorMessage(__FUNCTION__, "Trying to create subimage from image source %x (width %d height %d), but image does not have a GL texture.", PLEASE_INFORM, IS_WARNING_ONLY, source, source->w, source->h);
+	return;
+		}
+
+		// Copy structure fields
+		new_img->tex_w = source->tex_w;
+		new_img->tex_h = source->tex_h;
+		new_img->texture = source->texture;
+		new_img->texture_has_been_created = TRUE;
+
+		// Compute texture coordinates for subimage
+		new_img->tex_y0 = (float)(source->tex_h - source->h) / source->tex_h;
+		new_img->tex_y1 = new_img->tex_y0;
+		new_img->tex_x0 = (float)rect->x / (float)new_img->tex_w;
+		new_img->tex_x1 = (float)(rect->x + rect->w) / (float)new_img->tex_w;
+		new_img->tex_y1 += (float)(rect->y + rect->h) / (float)new_img->tex_h;
+		new_img->tex_y0 += (float)(rect->y) / (float)new_img->tex_h;
+
+	} else {
+
+		if (!source->surface) {
+			ErrorMessage(__FUNCTION__, "Trying to create subimage from image source %x (width %d height %d), but image SDL surface is NULL.", PLEASE_INFORM, IS_WARNING_ONLY, source, source->w, source->h);
+			return;
+		}
+
+		// Create new surface for subimage
+		SDL_Surface *surf = SDL_CreateRGBSurface(0, rect->w, rect->h, 32, rmask, gmask, bmask, amask);
+		new_img->surface = SDL_DisplayFormatAlpha(surf);
+		SDL_FreeSurface(surf);
+				
+		// Copy subimage
+		SDL_SetAlpha(new_img->surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
+		SDL_SetColorKey(new_img->surface, 0, 0);
+		SDL_BlitSurface(source->surface, rect, new_img->surface, NULL);
+	}
+
+}
