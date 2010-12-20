@@ -848,11 +848,19 @@ void free_map_labels(level *lvl);
 struct map_label *get_map_label(level *, const char *);
 
 // lvledit_display.c
-float lvledit_zoomfact_inv();
+float lvledit_zoomfact_inv(void);
 
 // waypoint.c
 int add_waypoint(level *, int, int, int);
 void del_waypoint(level *, int, int);
 int get_waypoint(level *, int, int);
+
+// image.c
+void start_image_batch(void);
+void end_image_batch(void);
+void display_image_on_screen_scaled(struct image *img, int x, int y, float scale);
+void display_image_on_screen(struct image *img, int x, int y);
+void display_image_on_map_scaled(struct image *img, float X, float Y, float scale);
+void display_image_on_map(struct image *img, float X, float Y);
 
 #endif
