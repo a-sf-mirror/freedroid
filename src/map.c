@@ -971,19 +971,10 @@ Uint16 GetMapBrick(level * lvl, float x, float y)
 	RoundX = (int)rintf(rpos.x);
 	RoundY = (int)rintf(rpos.y);
 
-	// Now we can return the floor tile information, but again we
-	// do so with sanitiy check for the range of allowed floor tile
-	// types and that...
-	//
 	BrickWanted = curShip.AllLevels[rpos.z]->map[RoundY][RoundX].floor_value;
 	if (BrickWanted >= ALL_ISOMETRIC_FLOOR_TILES) {
-		fprintf(stderr, "\nBrickWanted: %d at pos X=%d Y=%d Z=%d.", BrickWanted, RoundX, RoundY, rpos.z);
-		ErrorMessage(__FUNCTION__, "\
-				A maplevel in Freedroid contained a brick type, that does not have a\n\
-				real graphical representation.  This is a severe error, that really \n\
-				shouldn't be occurring in normal game, except perhaps if the level editor\n\
-				was just used to add/remove some new doors or refreshes or other animated\n\
-				map tiles.", PLEASE_INFORM, IS_FATAL);
+		ErrorMessage(__FUNCTION__, "Level %d at %d %d uses an unknown floor tile.\n", PLEASE_INFORM, IS_WARNING_ONLY, lvl->levelnum, RoundX, RoundY);
+		return ISO_COMPLETELY_DARK;
 	}
 
 	return BrickWanted;
