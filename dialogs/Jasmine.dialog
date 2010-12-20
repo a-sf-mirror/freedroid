@@ -29,7 +29,7 @@ EveryTime LuaCode={
 	if (not has_cookie("met_jasmine")) then
 		show(0)
 		add_cookie("met_jasmine")
-	else end
+	end
 
 	show(99)
 }
@@ -85,7 +85,7 @@ LuaCode={
 Nr=8 Text=_"You are the most beautiful human I have ever seen."
 LuaCode={
 	npc_says(_"And you are at least a quarter wrong.")
-	tux_says("You're so cute, baby seals and polar bears sent each other pictures of you.")
+	tux_says(_"You're so cute, baby seals and polar bears sent each other pictures of you.")
 	npc_says(_"Now, please get out of my sight.")
 	hide(8) show(9)
 }
@@ -100,8 +100,8 @@ LuaCode={
 
 Nr=99 Text=_"See you later."
 LuaCode={
-	if (not has_cookie("jasmine_count2") ) then
-		if ( has_cookie("jasmine_count1") ) then
+	if (not has_cookie("jasmine_count2")) then
+		if (has_cookie("jasmine_count1")) then
 			add_cookie("jasmine_count2")
 		else
 			add_cookie("jasmine_count1")
