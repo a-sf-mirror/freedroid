@@ -17,75 +17,61 @@
 /* Current font */
 static BFont_Info *CurrentFont;
 
+#define FIRST_FONT_CHAR '!'
+
 /**
- *
- *
+ * Initialize a font.
  */
-static void InitFont(BFont_Info * Font)
+static void find_character_positions(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT])
 {
 	unsigned int x = 0, i = 0, y = 0, max_h = 1;
-	SDL_Surface *tmp_char1;
+	SDL_Rect *rect;
+	SDL_Surface *font_surf = font->font_image.surface;
+	
+	i = FIRST_FONT_CHAR;
+	int sentry_horiz = SDL_MapRGB(font_surf->format, 255, 0, 255);
+	int sentry_vert = SDL_MapRGB(font_surf->format, 0, 255, 0);
 
-	i = '!';
-	int sentry_horiz = SDL_MapRGB(Font->Surface->format, 255, 0, 255);
-	int sentry_vert = SDL_MapRGB(Font->Surface->format, 0, 255, 0);
-
-	if (Font->Surface == NULL) {
-		fprintf(stderr, "BFont: The font has not been loaded!\n");
-		exit(1);
-	}
-
-	if (SDL_MUSTLOCK(Font->Surface))
-		SDL_LockSurface(Font->Surface);
+	if (SDL_MUSTLOCK(font_surf))
+		SDL_LockSurface(font_surf);
 
 	while (1) {
+		if (i == MAX_CHARS_IN_FONT)
+			break;
 
 		// Read this line of characters
-		while (x < (Font->Surface->w - 1)) {
-			if (FdGetPixel(Font->Surface, x, y) != sentry_horiz) {
+		while (x < font_surf->w - 1 && i < MAX_CHARS_IN_FONT) {
+			if (FdGetPixel(font_surf, x, y) != sentry_horiz) {
 				// Found a character
-				Font->Chars[i].x = x;
-				Font->Chars[i].y = y;
+				rect = &char_rect[i];
+				rect->x = x;
+				rect->y = y;
 
 				// Compute character width
 				int x2 = x;
-				while (x2 < Font->Surface->w) {
-					if (FdGetPixel(Font->Surface, x2, y) == sentry_horiz)
+				while (x2 < font_surf->w) {
+					if (FdGetPixel(font_surf, x2, y) == sentry_horiz)
 						break;
 					x2++;
 				}
-				Font->Chars[i].w = x2 - x;
+				rect->w = x2 - x;
 
-				if (x2 == Font->Surface->w)
+				if (x2 == font_surf->w)
 					break;
 
 				// Compute character height
 				int y2 = y;
-				while (y2 < Font->Surface->h) {
-					if (FdGetPixel(Font->Surface, x, y2) == sentry_horiz ||
-							FdGetPixel(Font->Surface, x, y2) == sentry_vert)
+				while (y2 < font_surf->h) {
+					if (FdGetPixel(font_surf, x, y2) == sentry_horiz ||
+							FdGetPixel(font_surf, x, y2) == sentry_vert)
 						break;
 					y2++;
 				}
-				Font->Chars[i].h = y2 - y;
+				rect->h = y2 - y;
 
 				// Update maximal h
 				if (max_h < y2 - y)
 					max_h = y2 - y;
-
-				// Create character surface
-				tmp_char1 = SDL_CreateRGBSurface(0, Font->Chars[i].w, Font->Chars[i].h, 32, rmask, gmask, bmask, amask);
-				Font->char_image[i].surface = SDL_DisplayFormatAlpha(tmp_char1);
-				Font->char_image[i].texture_has_been_created = FALSE;
-
-				SDL_BlitSurface(Font->Surface, &(Font->Chars[i]), Font->char_image[i].surface, NULL);
-				SDL_SetAlpha(Font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-				SDL_SetColorKey(Font->char_image[i].surface, 0, 0);
-
-				flip_image_vertically(Font->char_image[i].surface);
-
-				SDL_FreeSurface(tmp_char1);
-				Font->number_of_chars = i + 1;
 
 				// Move on to the next character
 				i++;
@@ -101,81 +87,86 @@ static void InitFont(BFont_Info * Font)
 		max_h = 1;
 		x = 0;
 
-		if (y >= Font->Surface->h)
+		if (y >= font_surf->h)
 			break;	
 
 	}
-	Font->Chars[' '].x = 0;
-	Font->Chars[' '].y = 0;
-	Font->Chars[' '].h = Font->Chars['!'].h;
-	Font->Chars[' '].w = Font->Chars['!'].w;
-	Font->h = Font->Chars['!'].h;
 
-	Font->number_of_chars = i;
+	if (SDL_MUSTLOCK(font_surf))
+		SDL_UnlockSurface(font_surf);
 
-#ifdef HAVE_LIBGL
-	if (use_open_gl)
-		Font->list_base = glGenLists(i);
-#endif
-	if (SDL_MUSTLOCK(Font->Surface))
-		SDL_UnlockSurface(Font->Surface);
+	// Set "space" character width
+	char_rect[' '].w = char_rect['!'].w;
+	char_rect[' '].h = char_rect['!'].h;
+	
+	// We assume a constant font height
+	font->h = char_rect['!'].h;
+	font->number_of_chars = i;
+}
 
-	SDL_SetColorKey(Font->Surface, 0, 0);
-	SDL_SetAlpha(Font->Surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-};				// void InitFont (BFont_Info * Font)
+
+/**	
+ * Prepare font for rendering: create struct image for each character in the font.
+ */
+static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT])
+{
+	int i;
+
+	if (use_open_gl) {
+		make_texture_out_of_surface(&font->font_image);
+	}
+
+	// Create each char_image
+	for (i = FIRST_FONT_CHAR; i < font->number_of_chars; i++) {
+		struct image *img = &font->char_image[i];
+
+		create_subimage(&font->font_image, img, &char_rect[i]);
+	}
+	
+	// Space is a special case	
+	create_subimage(&font->font_image, &font->char_image[' '], &char_rect[' ']);
+	
+	// Delete font_image (already done if using OpenGL)
+	if (!use_open_gl) {
+		SDL_FreeSurface(font->font_image.surface);
+		font->font_image.surface = NULL;
+	}
+}
 
 /**
  * Load the font and stores it in the BFont_Info structure 
  */
-BFont_Info *LoadFont(const char *filename)
+BFont_Info *LoadFont(char *filename)
 {
-	int x;
-	BFont_Info *Font = NULL;
-	SDL_Surface *tmp = NULL;
+	BFont_Info *font = MyMalloc(sizeof(BFont_Info));
 
-	if (filename != NULL) {
-		Font = (BFont_Info *) MyMalloc(sizeof(BFont_Info));
-		if (Font != NULL) {
-			tmp = (SDL_Surface *) IMG_Load(filename);
-
-			if (tmp != NULL) {
-				Font->Surface = SDL_DisplayFormatAlpha(tmp);
-				SDL_FreeSurface(tmp);
-				for (x = 0; x < 256; x++) {
-					Font->Chars[x].x = 0;
-					Font->Chars[x].y = 0;
-					Font->Chars[x].h = 0;
-					Font->Chars[x].w = 0;
-				}
-				SDL_SetAlpha(Font->Surface, 0, 255);
-				SDL_SetColorKey(Font->Surface, 0, 0);
-
-				/* Init the font */
-				InitFont(Font);
-				/* Set the font as the current font */
-				SetCurrentFont(Font);
-
-			} else {
-				fprintf(stderr, "Loading font \"%s\":%s\n", filename, IMG_GetError());
-				/* free memory allocated for the BFont_Info structure */
-				free(Font);
-				Font = NULL;
-			}
-		}
+	// Load the font image
+	SDL_Surface *tmp = (SDL_Surface *) IMG_Load(filename);
+	if (!tmp) {
+		fprintf(stderr, "Loading font \"%s\":%s\n", filename, IMG_GetError());
+		free(font);
+		return NULL;
 	}
+	font->font_image.surface = SDL_DisplayFormatAlpha(tmp);
+	font->font_image.w = font->font_image.surface->w;
+	font->font_image.h = font->font_image.surface->h;
+	SDL_SetAlpha(font->font_image.surface, 0, 255);
+	SDL_SetColorKey(font->font_image.surface, 0, 0);
+	SDL_FreeSurface(tmp);
 
-	return Font;
+	// Find character coordinates in the image
+	SDL_Rect char_rect[MAX_CHARS_IN_FONT];
+	memset(char_rect, 0, sizeof(char_rect));
+	find_character_positions(font, char_rect);
+
+	// Prepare the data structures according to the rendering mode
+	prepare_font(font, char_rect);	
+	
+	// XXX should not be here
+	SetCurrentFont(font);
+
+	return font;
 }
-
-/** 
- *
- *
- */
-void FreeFont(BFont_Info * Font)
-{
-	SDL_FreeSurface(Font->Surface);
-	free(Font);
-};				// void FreeFont (BFont_Info * Font)
 
 /**
  * Set the current font 
@@ -208,7 +199,7 @@ int CharWidth(BFont_Info * Font, unsigned char c)
 {
 	if (c < ' ' || c > Font->number_of_chars - 1)
 		c = '.';
-	return Font->Chars[c].w;
+	return Font->char_image[c].w;
 }
 
 /**
@@ -258,6 +249,8 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 {
 	SDL_Rect dest;
 	SDL_Rect clipping_rect;
+	struct image *img;
+
 	dest.w = CharWidth(Font, ' ');
 	dest.h = FontHeight(Font);
 	dest.x = x;
@@ -265,8 +258,13 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 
 	if (c < ' ' || c > Font->number_of_chars - 1)
 		c = '.';
+
+	img = &Font->char_image[c];
+
 	if ((c != ' ') && (c != '\n')) {
 		if (use_open_gl) {
+	
+
 			SDL_GetClipRect(Surface, &clipping_rect);
 
 			if ((dest.x < clipping_rect.x + clipping_rect.w) && (dest.x >= clipping_rect.x)) {
@@ -281,49 +279,15 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 				glEnable(GL_CLIP_PLANE0);
 				glClipPlane(GL_CLIP_PLANE1, eqnbottom);
 				glEnable(GL_CLIP_PLANE1);
-#endif
-
-				if (!Font->char_image[c].texture_has_been_created) {
-					// If the character is not ready to be printed on screen
-					if (Font->char_image[c].surface == NULL) {
-						ErrorMessage(__FUNCTION__, "Surface for character %d was NULL pointer!",
-							     PLEASE_INFORM, IS_FATAL, c);
-					}
-					make_texture_out_of_surface(&(Font->char_image[c]));
-#ifdef HAVE_LIBGL
-					glNewList(Font->list_base + c, GL_COMPILE);
-
-					glBindTexture(GL_TEXTURE_2D, (Font->char_image[c].texture));
-					glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
-					glBegin(GL_QUADS);
-
-					glTexCoord2f(0.0, 1.0);
-					glVertex2i(0, 0);
-					glTexCoord2f(0.0, 0.0);
-					glVertex2i(0, Font->char_image[c].tex_h);
-					glTexCoord2f(1.0, 0.0);
-					glVertex2i(Font->char_image[c].tex_w, Font->char_image[c].tex_h);
-					glTexCoord2f(1.0, 1.0);
-					glVertex2i(Font->char_image[c].tex_w, 0);
-
-					glEnd();
-					glEndList();
-
-#endif
-				}
-#ifdef HAVE_LIBGL
-				glPushMatrix();
-				glTranslated(dest.x, dest.y, 0);
-				glCallList(Font->list_base + c);
-				glPopMatrix();
+				
+				display_image_on_screen(img, dest.x, dest.y);
 				glDisable(GL_CLIP_PLANE0);
 				glDisable(GL_CLIP_PLANE1);
 #endif
 
 			}
 		} else {
-			our_SDL_blit_surface_wrapper(Font->Surface, &Font->Chars[c], Surface, &dest);
+			display_image_on_screen(img, dest.x, dest.y);
 		}
 	}
 

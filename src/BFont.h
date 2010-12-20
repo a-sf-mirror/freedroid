@@ -11,23 +11,14 @@
 typedef struct BFont_Info {
 	/* font height */
 	int h;
-	/* font surface */
-	SDL_Surface *Surface;
-	/* characters width */
-	SDL_Rect Chars[MAX_CHARS_IN_FONT];
-	// SDL_Surface* char_surface [ MAX_CHARS_IN_FONT ];
+	
+	struct image font_image;
 	struct image char_image[MAX_CHARS_IN_FONT];
 	unsigned int number_of_chars;
-#ifdef HAVE_LIBGL
-	GLuint list_base;
-#endif
 } BFont_Info;
 
 /* Load and store le font in the BFont_Info structure */
-BFont_Info *LoadFont(const char *filename);
-
-/* Free memory */
-void FreeFont(BFont_Info * Font);
+BFont_Info *LoadFont(char *filename);
 
 /* Returns a pointer to the current font structure */
 BFont_Info *GetCurrentFont(void);
