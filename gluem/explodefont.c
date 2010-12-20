@@ -45,13 +45,6 @@ static int amask = 0x000000FF;
 #endif
 
 
-int CharWidth(BFont_Info * Font, unsigned char c)
-{
-    if (c < ' ' || c > Font->number_of_chars - 1)
-	        c = '.';
-    return Font->Chars[c].w;
-}
-
 static void init_sdl(void)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
@@ -102,72 +95,80 @@ Uint32 FdGetPixel(SDL_Surface * Surface, Sint32 X, Sint32 Y)
 	return -1;
 }
 
-static void InitFont(BFont_Info * Font)
+#define FIRST_FONT_CHAR '!'
+
+static void InitFont(BFont_Info *font)
 {
-	unsigned int x = 0, i = 0, y = 0, max_h = 1;
+	SDL_Rect char_rect[MAX_CHARS_IN_FONT];
+	memset(char_rect, 0, sizeof(char_rect));
 	SDL_Surface *tmp_char1;
 
-	Font->h = Font->Surface->h;
+	unsigned int x = 0, i = 0, y = 0, max_h = 1;
+	SDL_Rect *rect;
+	SDL_Surface *font_surf = font->font_image.surface;
 
-	i = '!';
-	int sentry_horiz = SDL_MapRGB(Font->Surface->format, 255, 0, 255);
-	int sentry_vert = SDL_MapRGB(Font->Surface->format, 0, 255, 0);
+	i = FIRST_FONT_CHAR;
+	int sentry_horiz = SDL_MapRGB(font_surf->format, 255, 0, 255);
+	int sentry_vert = SDL_MapRGB(font_surf->format, 0, 255, 0);
 
-	if (SDL_MUSTLOCK(Font->Surface))
-		SDL_LockSurface(Font->Surface);
+	if (SDL_MUSTLOCK(font_surf))
+		SDL_LockSurface(font_surf);
 
 	while (1) {
+		if (i == MAX_CHARS_IN_FONT)
+			break;
 
 		// Read this line of characters
-		while (x < (Font->Surface->w - 1)) {
-			if (FdGetPixel(Font->Surface, x, y) != sentry_horiz) {
+		while (x < font_surf->w - 1 && i < MAX_CHARS_IN_FONT) {
+			if (FdGetPixel(font_surf, x, y) != sentry_horiz) {
 				printf("Reading character at %d %d...", x, y);
 				// Found a character
-				Font->Chars[i].x = x;
-				Font->Chars[i].y = y;
+				rect = &char_rect[i];
+				rect->x = x;
+				rect->y = y;
 
 				// Compute character width
 				int x2 = x;
-				while (x2 < Font->Surface->w) {
-					if (FdGetPixel(Font->Surface, x2, y) == sentry_horiz)
+				while (x2 < font_surf->w) {
+					if (FdGetPixel(font_surf, x2, y) == sentry_horiz)
 						break;
 					x2++;
 				}
-				Font->Chars[i].w = x2 - x;
+				rect->w = x2 - x;
 
 				printf("width %d\n", x2-x);
-				if (x2 == Font->Surface->w)
+				if (x2 == font_surf->w)
 					break;
 
 				// Compute character height
 				int y2 = y;
-				while (y2 < Font->Surface->h) {
-					if (FdGetPixel(Font->Surface, x, y2) == sentry_horiz ||
-							FdGetPixel(Font->Surface, x, y2) == sentry_vert)
+				while (y2 < font_surf->h) {
+					if (FdGetPixel(font_surf, x, y2) == sentry_horiz ||
+							FdGetPixel(font_surf, x, y2) == sentry_vert)
 						break;
 					y2++;
 				}
-				Font->Chars[i].h = y2 - y;
+				rect->h = y2 - y;
 
 				// Update maximal h
 				if (max_h < y2 - y)
 					max_h = y2 - y;
 
 				// Create character surface
-				tmp_char1 = SDL_CreateRGBSurface(0, Font->Chars[i].w, Font->Chars[i].h, 32, rmask, gmask, bmask, amask);
-				Font->char_image[i].surface = tmp_char1;
+				tmp_char1 = SDL_CreateRGBSurface(0, char_rect[i].w, char_rect[i].h, 32, rmask, gmask, bmask, amask);
+				font->char_image[i].surface = tmp_char1;
 
-				SDL_BlitSurface(Font->Surface, &(Font->Chars[i]), Font->char_image[i].surface, NULL);
-				SDL_SetAlpha(Font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-				SDL_SetColorKey(Font->char_image[i].surface, 0, 0);
+				SDL_BlitSurface(font_surf, &(char_rect[i]), font->char_image[i].surface, NULL);
+				SDL_SetAlpha(font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
+				SDL_SetColorKey(font->char_image[i].surface, 0, 0);
 
 				char name[4096];
 				sprintf(name, "%s/%s_%03d.png", output_path, basename(font_name), i);
 				printf("Saving %s\n", name);
-				png_save_surface(name, Font->char_image[i].surface);
+				png_save_surface(name, font->char_image[i].surface);
 
 				SDL_FreeSurface(tmp_char1);
-				Font->number_of_chars = i + 1;
+				font->number_of_chars = i + 1;
 				i++;
 				x = x2;
 			} else {
@@ -181,21 +182,20 @@ static void InitFont(BFont_Info * Font)
 		max_h = 1;
 		x = 0;
 
-		if (y >= Font->Surface->h)
+		if (y >= font_surf->h)
 			break;	
 
 	}
-	if (SDL_MUSTLOCK(Font->Surface))
-		SDL_UnlockSurface(Font->Surface);
+	if (SDL_MUSTLOCK(font_surf))
+		SDL_UnlockSurface(font_surf);
 
 }
 
 /**
  * Load the font and stores it in the BFont_Info structure 
  */
-BFont_Info *LoadFont(const char *filename)
+static void explode_font()
 {
-	int x;
 	BFont_Info *Font = NULL;
 	SDL_Surface *tmp = NULL;
 
@@ -203,26 +203,19 @@ BFont_Info *LoadFont(const char *filename)
 	tmp = (SDL_Surface *) IMG_Load(font_name);
 
 	if (tmp != NULL) {
-		Font->Surface = tmp;
-		for (x = 0; x < 256; x++) {
-			Font->Chars[x].x = 0;
-			Font->Chars[x].y = 0;
-			Font->Chars[x].h = 0;
-			Font->Chars[x].w = 0;
-		}
-		SDL_SetAlpha(Font->Surface, 0, 255);
-		SDL_SetColorKey(Font->Surface, 0, 0);
+		Font->font_image.surface = tmp;
+		SDL_SetAlpha(Font->font_image.surface, 0, 255);
+		SDL_SetColorKey(Font->font_image.surface, 0, 0);
 		/* Init the font */
 		InitFont(Font);
 
 	} else {
-		fprintf(stderr, "Loading font \"%s\":%s\n", filename, IMG_GetError());
+		fprintf(stderr, "Loading font \"%s\":%s\n", font_name, IMG_GetError());
 		/* free memory allocated for the BFont_Info structure */
 		free(Font);
 		exit(1);
 	}
 
-	return NULL;
 }
 
 int main(int argc, char **argv)
@@ -239,7 +232,7 @@ int main(int argc, char **argv)
 	init_sdl();
 
 	printf("Exploding font %s into %s\n", font_name, output_path);
-	LoadFont(NULL);
+	explode_font();
 
 	return 0;
 }
