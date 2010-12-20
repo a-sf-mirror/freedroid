@@ -274,7 +274,6 @@ void InitPictures(void);
 void InitTimer(void);
 void InitVideo(void);
 void InitOurBFonts(void);
-void FreeOurBFonts(void);
 void ClearGraphMem(void);
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area);
@@ -862,5 +861,7 @@ void display_image_on_screen_scaled(struct image *img, int x, int y, float scale
 void display_image_on_screen(struct image *img, int x, int y);
 void display_image_on_map_scaled(struct image *img, float X, float Y, float scale);
 void display_image_on_map(struct image *img, float X, float Y);
+void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect);
+
 
 #endif

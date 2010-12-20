@@ -721,27 +721,6 @@ A font file for the BFont library could not be loaded.", PLEASE_INFORM, IS_FATAL
 
 };				// InitOurBFonts ( void )
 
-void FreeOurBFonts(void)
-{
-	int i;
-	BFont_Info **MenuFontPointers[ALL_BFONTS_WE_LOAD] = {
-		&Menu_BFont,
-		&Messagevar_BFont,
-		&Messagestat_BFont,
-		&Para_BFont,
-		&FPS_Display_BFont,
-		&Red_BFont,
-		&Blue_BFont
-	};
-
-	for (i = 0; i < ALL_BFONTS_WE_LOAD; i++) {
-		if (*MenuFontPointers[i] != NULL) {
-			FreeFont(*MenuFontPointers[i]);
-			*MenuFontPointers[i] = NULL;
-		}
-	}
-};				// FreeOurBFonts ( void )
-
 /* -----------------------------------------------------------------
  * This funciton initialises the timer subsystem.
  * -----------------------------------------------------------------*/
