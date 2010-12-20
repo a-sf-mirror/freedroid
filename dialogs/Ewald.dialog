@@ -30,15 +30,16 @@ EveryTime LuaCode={
 		show(0, 3)
 		add_cookie("met_ewald")
 	end
-	if (has_cookie("Tania-at-Bar") and (not has_cookie("Tania-at-Bar_Ewald"))) then
+	if (has_cookie("Tania-at-Bar")) and
+	(not has_cookie("Tania-at-Bar_Ewald")) then
 		add_cookie("Tania-at-Bar_Ewald")
 		npc_says(_"Your lady friend just told me the epic story of how you rescued her.")
 		npc_says(_"That was really something.")
 		npc_says(_"I'd give you a drink on the house, but unfortunately I'm still out.")
 	end
 
-	if has_cookie("drank_all_ewald_had") then show(14) else end;
-	if has_cookie("ewald_gambling") then show(30) end;
+	if has_cookie("drank_all_ewald_had") then show(14) end
+	if has_cookie("ewald_gambling") then show(30) end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -87,6 +88,7 @@ LuaCode={
 Nr=4 Text=_"I want double water on the rocks. Stirred, not shaken."
 LuaCode={
 	npc_says(_"Here you go. That one is on the house. And if the water is not enough, just ask me for more.")
+	heat_tux(-20)
 	hide(4, 5, 6) show(9)
 }
 ----------------------------------------------------------------------
@@ -94,6 +96,7 @@ LuaCode={
 Nr=5 Text=_"Long Island iced water please."
 LuaCode={
 	npc_says(_"Here you go.")
+	heat_tux(-30)
 	hide(4, 5, 6) show(8)
 }
 ----------------------------------------------------------------------
@@ -101,6 +104,7 @@ LuaCode={
 Nr=6 Text=_"I want something cheap... Give me some fortified water."
 LuaCode={
 	npc_says(_"Eh... Sure, as you wish. Here you go.")
+	heat_tux(-50)
 	hide(4, 5, 6) show(7)
 }
 ----------------------------------------------------------------------
@@ -177,15 +181,15 @@ LuaCode={
 			npc_says(_"Sorry.")
 			npc_says(_"Since there are no big guns to shoot, how about shooting some dice? Would you like to gamble?")
 		end
-	else 	
+	else
 		npc_says(_"Well... Erm... No.")
 		npc_says(_"What the bots did not smash, the Red Guard taxed.")
 		npc_says(_"Fun is kinda dead right now.")
 		npc_says(_"Well, unless you are in the Red Guard itself, of course. They have those big guns that can destroy a dozen bots with one shot...")
 		npc_says(_"Now THAT'S fun, if you ask me.")
 		npc_says(_"If you are really bored, you can try gambling with me.")
-	end 
-	hide(13) show(30) 
+	end
+	hide(13) show(30)
 }
 ----------------------------------------------------------------------
 
@@ -207,10 +211,10 @@ LuaCode={
 	ewd1, ewd2, ewd3 = 0, 0, 0, 0, 0 
 	-- Ewald forces you to gamble semi-responsibly ;-)
 	max = get_gold() * 0.8
-	if (max > 30) then show(33) 
-		if (max > 300) then show(34) 
-		if (max > 600) then show(35) 
-	end end else 
+	if (max > 30) then show(33)
+		if (max > 300) then show(34)
+		if (max > 600) then show(35)
+	end end else
 	npc_says(_"You should come back when you have more to gamble with.")
 	end
 	hide(30) show(31, 32)
@@ -490,10 +494,10 @@ LuaCode={
 	win=0 --find if tux won...
 	if (ewald_sum > 2) then
 		npc_says(_"Tails won...")
-		if (tux1 == 1) then win = 0.5 end		
+		if (tux1 == 1) then win = 0.5 end
 	else
 		npc_says(_"Heads won...")
-		if (tux1 == 0) then win = 0.5 end		
+		if (tux1 == 0) then win = 0.5 end
 	end
 
 
@@ -508,7 +512,7 @@ LuaCode={
 	else
 		if (tux1 == 1) then
 			npc_says(_"...and there was an odd number of tails.")
-			if (tux2 == 1) then win = win + 0.5 end	
+			if (tux2 == 1) then win = win + 0.5 end
 		else
 			npc_says(_"...and there was an even number of heads.")
 			if (tux2 == 0) then win = win + 0.5 end
