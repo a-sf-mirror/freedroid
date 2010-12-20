@@ -283,7 +283,6 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 				}
 #ifdef HAVE_LIBGL
 				glPushMatrix();
-				glMatrixMode(GL_MODELVIEW);
 				glTranslated(dest.x, dest.y, 0);
 				glCallList(Font->list_base + c);
 				glPopMatrix();
