@@ -5,6 +5,10 @@ croppy/croppy
 gluem/*gluem
 win32/pngtoico
 lua/liblua.a
+lua/lua*.exe
+lua/lua*.dll
+src/*.exe
+zpipe/zpipe
 
 # Patches
 *.orig
@@ -28,3 +32,8 @@ depcomp
 # Helpers
 cscope.out
 doxygen/
+callgrind.out*
+
+# Output
+stderr.txt
+stdout.txt
