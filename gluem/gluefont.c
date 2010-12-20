@@ -181,9 +181,15 @@ void create_font()
 				break;
 	}
 
-	printf("Glued %d characters\n", i - '!' - 1);
-	png_save_surface(font_name, font);
+	if (i != '!') {
+		printf("Glued %d characters\n", i - '!' - 1);
+		png_save_surface(font_name, font);
+	} else {
+		printf("No characters were glued, therefore no output was produced.\n");
+	}
+
 	SDL_FreeSurface(font);
+
 }
 
 int main(int argc, char **argv)
