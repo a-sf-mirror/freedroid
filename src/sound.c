@@ -104,16 +104,12 @@ void play_sound(const char *SoundSampleFileName)
 
 /** ============================================ GLOBALS ============================================  */
 
-Mix_Chunk *dynamic_WAV_cache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
-char *sound_names_in_dynamic_wav_chache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
-char *MOD_Music_SampleFilenames[ALL_MOD_MUSICS] = {
-	"ERRORSOUND_NILL.NOMOD"
-};
+static Mix_Chunk *dynamic_WAV_cache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
+static char *sound_names_in_dynamic_wav_chache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
+static char SoundChannelList[MAX_SOUND_CHANNELS];
 
-char SoundChannelList[MAX_SOUND_CHANNELS];
-
-Mix_Chunk *List_Of_Sustained_Release_WAV_Files[MAX_SOUND_CHANNELS];
-Mix_Music *Loaded_MOD_Files[ALL_MOD_MUSICS] = {
+static Mix_Chunk *List_Of_Sustained_Release_WAV_Files[MAX_SOUND_CHANNELS];
+static Mix_Music *Loaded_MOD_Files[ALL_MOD_MUSICS] = {
 	NULL
 };
 
@@ -123,17 +119,11 @@ enum {
 	FADING_OUT = 5
 };
 
-int BackgroundMusicStateMachineState = NOTHING_PLAYING_AT_ALL;
-char NewMusicTargetFileName[5000];
+static int BackgroundMusicStateMachineState = NOTHING_PLAYING_AT_ALL;
+static char NewMusicTargetFileName[5000];
 
 // This variable refers to the next free position inside the WAV file cache.
 static int next_free_position_in_cache = 0;
-
-/* some garbage i colected between the function declarations*/
-int i;
-unsigned char *ptr;
-unsigned char v = 128;
-int SampleLaenge;
 
 /** ============================================ SYSTEM ============================================ */
 // ----------------------------------------------------------------------
@@ -650,7 +640,7 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
  */
 static void remove_all_samples_from_WAV_cache(void)
 {
-
+	int i;
 	for (i = 0; i < next_free_position_in_cache; i++) {
 		// We free the allocated memory for the file name.  This is overly 'clean'
 		// code.  The amount of memory in question would be neglectable...
