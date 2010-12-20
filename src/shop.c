@@ -163,7 +163,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 {
 	SDL_Rect TargetRectangle =
 	    { 0, 0, INITIAL_BLOCK_WIDTH * GameConfig.screen_width / 640, INITIAL_BLOCK_HEIGHT * GameConfig.screen_height / 480 };
-	static iso_image equipped_icon;
+	static struct image equipped_icon;
 
 	if (!iso_image_loaded(&equipped_icon)) {
 		load_iso_image(&equipped_icon, "mouse_cursor_0003.png", FALSE);
@@ -194,7 +194,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 		TargetRectangle.y = TuxItemRow;
 	}
 	
-	iso_image *img = get_item_shop_image(ShowItem->type);
+	struct image *img = get_item_shop_image(ShowItem->type);
 	if (img) {
 		blit_iso_image_to_screen_position(img, TargetRectangle.x, TargetRectangle.y);
 	}

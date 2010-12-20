@@ -109,8 +109,8 @@ EXTERN char previous_part_strings[ALL_PART_GROUPS][50];
 EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
 EXTERN item *item_held_in_hand;
 
-EXTERN iso_image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];
-EXTERN iso_image SpellLevelButtonImageList[NUMBER_OF_SKILL_PAGES];
+EXTERN struct image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];
+EXTERN struct image SpellLevelButtonImageList[NUMBER_OF_SKILL_PAGES];
 
 EXTERN int Number_Of_Droids_On_Ship;
 EXTERN configuration_for_freedroid GameConfig;
@@ -130,7 +130,7 @@ EXTERN int SkipAFewFrames;
 #else
 #define EXTERN extern
 #endif
-EXTERN iso_image light_radius_chunk[NUMBER_OF_SHADOW_IMAGES];
+EXTERN struct image light_radius_chunk[NUMBER_OF_SHADOW_IMAGES];
 EXTERN SDL_Rect InventoryRect;
 EXTERN SDL_Rect CharacterRect;
 #ifdef HAVE_LIBGL
@@ -234,14 +234,14 @@ EXTERN GLuint StoredMenuBackgroundTex[2];
 // isometric enemy images
 //
 // EXTERN SDL_Surface *EnemyRotationSurfacePointer[ ENEMY_ROTATION_MODELS_AVAILABLE ] [ ROTATION_ANGLES_PER_ROTATION_MODEL ];
-EXTERN iso_image enemy_iso_images[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
-EXTERN iso_image
+EXTERN struct image enemy_images[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
+EXTERN struct image
     BlueEnemyRotationSurfacePointer[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
-EXTERN iso_image
+EXTERN struct image
     RedEnemyRotationSurfacePointer[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
-EXTERN iso_image
+EXTERN struct image
     GreenEnemyRotationSurfacePointer[ENEMY_ROTATION_MODELS_AVAILABLE][ROTATION_ANGLES_PER_ROTATION_MODEL][MAX_ENEMY_MOVEMENT_PHASES];
-EXTERN iso_image chat_portrait_of_droid[ENEMY_ROTATION_MODELS_AVAILABLE];
+EXTERN struct image chat_portrait_of_droid[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 // EXTERN int phases_in_enemy_animation [ ENEMY_ROTATION_MODELS_AVAILABLE ];
 EXTERN int first_walk_animation_image[ENEMY_ROTATION_MODELS_AVAILABLE];
@@ -264,7 +264,7 @@ EXTERN int droid_gethit_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-EXTERN iso_image floor_iso_images[ALL_ISOMETRIC_FLOOR_TILES];
+EXTERN struct image floor_images[ALL_ISOMETRIC_FLOOR_TILES];
 
 EXTERN float iso_floor_tile_width;
 EXTERN float iso_floor_tile_height;

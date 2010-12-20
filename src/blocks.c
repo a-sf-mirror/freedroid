@@ -42,13 +42,14 @@ char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
  *
  *
  */
-void make_sure_zoomed_surface_is_there(iso_image * our_iso_image)
+void make_sure_zoomed_surface_is_there(struct image *our_iso_image)
 {
+#warning __FUNCTION__ __LINE__ This function should be removed
 	if (our_iso_image->zoomed_out_surface == NULL) {
 		our_iso_image->zoomed_out_surface = zoomSurface(our_iso_image->surface, lvledit_zoomfact_inv(),
 								lvledit_zoomfact_inv(), FALSE);
 	}
-};				// void make_sure_zoomed_surface_is_there ( iso_image* our_iso_image )
+}
 
 /**
  * This function loads the Blast image and decodes it into the multiple
@@ -154,8 +155,8 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 	if (use_open_gl) {
 		make_texture_out_of_surface(&spec->inventory_image);
 	} else {
-		spec->inventory_image.original_image_width = spec->inventory_image.surface->w;
-		spec->inventory_image.original_image_height = spec->inventory_image.surface->h;
+		spec->inventory_image.w = spec->inventory_image.surface->w;
+		spec->inventory_image.h = spec->inventory_image.surface->h;
 	}
 
 	// For the shop, we need versions of each image, where the image is scaled so
@@ -183,8 +184,8 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 	if (use_open_gl) {
 		make_texture_out_of_surface(&spec->shop_image);
 	} else {
-		spec->shop_image.original_image_width = spec->shop_image.surface->w;
-		spec->shop_image.original_image_height = spec->shop_image.surface->h;
+		spec->shop_image.w = spec->shop_image.surface->w;
+		spec->shop_image.h = spec->shop_image.surface->h;
 	}
 
 	// Load ingame image
@@ -192,7 +193,7 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 		sprintf(our_filename, "items/%s/ingame.png", spec->item_rotation_series_prefix);
 		load_iso_image(&spec->ingame_image, our_filename, TRUE);
 	} else {
-		memcpy(&spec->ingame_image, &spec->inventory_image, sizeof(iso_image));
+		memcpy(&spec->ingame_image, &spec->inventory_image, sizeof(struct image));
 	}
 }
 
@@ -205,19 +206,19 @@ static void load_if_needed(int type)
 	}
 }
 
-iso_image *get_item_inventory_image(int type)
+struct image *get_item_inventory_image(int type)
 {
 	load_if_needed(type);	
 	return &ItemMap[type].inventory_image;
 }
 
-iso_image *get_item_shop_image(int type)
+struct image *get_item_shop_image(int type)
 {
 	load_if_needed(type);	
 	return &ItemMap[type].shop_image;
 }
 
-iso_image *get_item_ingame_image(int type)
+struct image *get_item_ingame_image(int type)
 {
 	load_if_needed(type);	
 	return &ItemMap[type].ingame_image;
@@ -368,7 +369,7 @@ void iso_load_bullet_surfaces(void)
  *
  *
  */
-void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y)
+void blit_iso_image_to_map_position(struct image * our_iso_image, float pos_x, float pos_y)
 {
 	SDL_Rect target_rectangle;
 	int ii, jj;
@@ -379,9 +380,9 @@ void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, floa
 
 	our_SDL_blit_surface_wrapper(our_iso_image->surface, NULL, Screen, &target_rectangle);
 
-};				// void blit_iso_image_to_map_position ( iso_image * our_iso_image , float pos_x , float pos_y )
+};				// void blit_iso_image_to_map_position ( struct image * our_iso_image , float pos_x , float pos_y )
 
-void sdl_highlight_iso_image(iso_image *img, float pos_x, float pos_y)
+void sdl_highlight_iso_image(struct image *img, float pos_x, float pos_y)
 {
 	SDL_Rect tr;
 	int x, y;
@@ -396,15 +397,15 @@ void sdl_highlight_iso_image(iso_image *img, float pos_x, float pos_y)
 }
 
 /**
- * \brief Blits an iso_image to the screen.
+ * \brief Blits an struct image to the screen.
  *
  * Works in both SDL and OpenGL modes.
  *
- * \param image The iso_image to blit.
+ * \param image The struct image to blit.
  * \param pos_x Screen X position.
  * \param pos_y Screen Y position.
  */
-void blit_iso_image_to_screen_position(iso_image *image, float pos_x, float pos_y)
+void blit_iso_image_to_screen_position(struct image *image, float pos_x, float pos_y)
 {
 	if (use_open_gl) {
 		draw_gl_textured_quad_at_screen_position(image, pos_x, pos_y);
@@ -424,7 +425,7 @@ void blit_iso_image_to_screen_position(iso_image *image, float pos_x, float pos_
  *
  *
  */
-void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y)
+void blit_zoomed_iso_image_to_map_position(struct image * our_iso_image, float pos_x, float pos_y)
 {
 	SDL_Rect target_rectangle;
 	int x, y;
@@ -436,20 +437,20 @@ void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_
 
 	if (use_open_gl) {
 		raise(SIGSEGV);
-		/*blit_zoomed_open_gl_texture_to_screen_position ( our_iso_image , target_rectangle . x , 
+		/*blit_zoomed_open_gl_texture_to_screen_position ( our_struct image , target_rectangle . x , 
 		   target_rectangle . y , TRUE , 0.25 ) ; */
 	} else {
 		make_sure_zoomed_surface_is_there(our_iso_image);
 		our_SDL_blit_surface_wrapper(our_iso_image->zoomed_out_surface, NULL, Screen, &target_rectangle);
 	}
 
-};				// void blit_zoomed_iso_image_to_map_position ( iso_image our_iso_image , float pos_x , float pos_y )
+};				// void blit_zoomed_iso_image_to_map_position ( struct image our_iso_image , float pos_x , float pos_y )
 
 /**
  *
  *
  */
-static void get_offset_for_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image)
+static void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image)
 {
 	char offset_file_name[10000];
 	FILE *OffsetFile;
@@ -500,7 +501,7 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFO
  * offset file for the image (or supply substitute values) such that the
  * offset values are suitably initialized.
  */
-void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, int use_offset_file)
+void get_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image, int use_offset_file)
 {
 	SDL_Surface *Whole_Image;
 
@@ -544,8 +545,8 @@ void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, in
 	// suitable correspondents in the SDL-loaded images, like the original
 	// image size and such...
 	//
-	our_iso_image->original_image_width = our_iso_image->surface->w;
-	our_iso_image->original_image_height = our_iso_image->surface->h;
+	our_iso_image->w = our_iso_image->surface->w;
+	our_iso_image->h = our_iso_image->surface->h;
 
 };				// void get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
 
@@ -554,7 +555,7 @@ void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, in
  * \param img An iso image
  * \return TRUE if the image has already been loaded
  */
-int iso_image_loaded(iso_image *img)
+int iso_image_loaded(struct image *img)
 {
 	if ((img->surface == NULL) && (!img->texture_has_been_created)) {
 		return FALSE;
@@ -568,7 +569,7 @@ int iso_image_loaded(iso_image *img)
  * \param filename Filename of the image
  * \param use_offset_file TRUE if the image uses offset information 
  */
-void load_iso_image(iso_image *img, const char *filename, int use_offset_file)
+void load_iso_image(struct image *img, const char *filename, int use_offset_file)
 {
 	char fpath[2048];
 
@@ -675,9 +676,9 @@ void LoadAndPrepareGreenEnemyRotationModelNr(int ModelNr)
 	if (!use_open_gl) {
 		for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 			GreenEnemyRotationSurfacePointer[ModelNr][i][0].surface =
-			    CreateColorFilteredSurface(enemy_iso_images[ModelNr][i][0].surface, FILTER_GREEN);
-			GreenEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_iso_images[ModelNr][i][0].offset_x;
-			GreenEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_iso_images[ModelNr][i][0].offset_y;
+			    CreateColorFilteredSurface(enemy_images[ModelNr][i][0].surface, FILTER_GREEN);
+			GreenEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_images[ModelNr][i][0].offset_x;
+			GreenEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_images[ModelNr][i][0].offset_y;
 		}
 	}
 };				// void LoadAndPrepareGreenEnemyRotationModelNr ( int ModelNr )
@@ -718,9 +719,9 @@ void LoadAndPrepareBlueEnemyRotationModelNr(int ModelNr)
 	//
 	for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 		BlueEnemyRotationSurfacePointer[ModelNr][i][0].surface =
-		    CreateColorFilteredSurface(enemy_iso_images[ModelNr][i][0].surface, FILTER_BLUE);
-		BlueEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_iso_images[ModelNr][i][0].offset_x;
-		BlueEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_iso_images[ModelNr][i][0].offset_y;
+		    CreateColorFilteredSurface(enemy_images[ModelNr][i][0].surface, FILTER_BLUE);
+		BlueEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_images[ModelNr][i][0].offset_x;
+		BlueEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_images[ModelNr][i][0].offset_y;
 	}
 };				// void LoadAndPrepareBlueEnemyRotationModelNr ( int ModelNr )
 
@@ -760,9 +761,9 @@ void LoadAndPrepareRedEnemyRotationModelNr(int ModelNr)
 	//
 	for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 		RedEnemyRotationSurfacePointer[ModelNr][i][0].surface =
-		    CreateColorFilteredSurface(enemy_iso_images[ModelNr][i][0].surface, FILTER_RED);
-		RedEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_iso_images[ModelNr][i][0].offset_x;
-		RedEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_iso_images[ModelNr][i][0].offset_y;
+		    CreateColorFilteredSurface(enemy_images[ModelNr][i][0].surface, FILTER_RED);
+		RedEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_images[ModelNr][i][0].offset_x;
+		RedEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_images[ModelNr][i][0].offset_y;
 	}
 };				// void LoadAndPrepareRedEnemyRotationModelNr ( int ModelNr )
 
@@ -836,7 +837,7 @@ void Load_Enemy_Surfaces(void)
 	//
 	for (j = 0; j < ENEMY_ROTATION_MODELS_AVAILABLE; j++) {
 		for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
-			enemy_iso_images[j][i][0].surface = NULL;
+			enemy_images[j][i][0].surface = NULL;
 		}
 	}
 
@@ -878,11 +879,11 @@ void Load_Enemy_Surfaces(void)
 }
 
 /**
- * Return a pointer towards the iso_image structure
+ * Return a pointer towards the struct image
  * associated to the given obstacle type.
  * Used for lazy loading.
  */
-iso_image *get_obstacle_image(int type)
+struct image *get_obstacle_image(int type)
 {
 	if (!iso_image_loaded(&obstacle_map[type].image)) {
 		//printf("Just in time loading for obstacle %d\n", type);
@@ -956,7 +957,7 @@ void load_floor_tiles(void)
 	// Try to load the atlas
 	if (use_open_gl)
 		if (!load_texture_atlas
-		    ("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, floor_iso_images, ALL_ISOMETRIC_FLOOR_TILES)) {
+		    ("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, floor_images, ALL_ISOMETRIC_FLOOR_TILES)) {
 			return;
 		}
 
@@ -968,9 +969,9 @@ void load_floor_tiles(void)
 		strcat(ConstructedFileName, floor_tile_filenames[i]);
 		find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
 
-		get_iso_image_from_file_and_path(fpath, &floor_iso_images[i], TRUE);
+		get_iso_image_from_file_and_path(fpath, &floor_images[i], TRUE);
 		if (use_open_gl) {
-			make_texture_out_of_surface(&(floor_iso_images[i]));
+			make_texture_out_of_surface(&(floor_images[i]));
 		}
 	}
 }

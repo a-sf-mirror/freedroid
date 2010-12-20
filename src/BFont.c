@@ -56,14 +56,14 @@ static void InitFont(BFont_Info * Font)
 			Font->number_of_chars = i + 1;
 
 			tmp_char1 = SDL_CreateRGBSurface(0, CharWidth(Font, i), FontHeight(Font) - 1, 32, rmask, gmask, bmask, amask);
-			Font->char_iso_image[i].surface = SDL_DisplayFormatAlpha(tmp_char1);
-			Font->char_iso_image[i].texture_has_been_created = FALSE;
+			Font->char_image[i].surface = SDL_DisplayFormatAlpha(tmp_char1);
+			Font->char_image[i].texture_has_been_created = FALSE;
 
-			our_SDL_blit_surface_wrapper(Font->Surface, &(Font->Chars[i]), Font->char_iso_image[i].surface, NULL);
-			SDL_SetAlpha(Font->char_iso_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-			SDL_SetColorKey(Font->char_iso_image[i].surface, 0, 0);
+			our_SDL_blit_surface_wrapper(Font->Surface, &(Font->Chars[i]), Font->char_image[i].surface, NULL);
+			SDL_SetAlpha(Font->char_image[i].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
+			SDL_SetColorKey(Font->char_image[i].surface, 0, 0);
 
-			flip_image_vertically(Font->char_iso_image[i].surface);
+			flip_image_vertically(Font->char_image[i].surface);
 
 			SDL_FreeSurface(tmp_char1);
 			// Now we can go on to the next char
@@ -250,17 +250,17 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 				glEnable(GL_CLIP_PLANE1);
 #endif
 
-				if (!Font->char_iso_image[c].texture_has_been_created) {
+				if (!Font->char_image[c].texture_has_been_created) {
 					// If the character is not ready to be printed on screen
-					if (Font->char_iso_image[c].surface == NULL) {
+					if (Font->char_image[c].surface == NULL) {
 						ErrorMessage(__FUNCTION__, "Surface for character %d was NULL pointer!",
 							     PLEASE_INFORM, IS_FATAL, c);
 					}
-					make_texture_out_of_surface(&(Font->char_iso_image[c]));
+					make_texture_out_of_surface(&(Font->char_image[c]));
 #ifdef HAVE_LIBGL
 					glNewList(Font->list_base + c, GL_COMPILE);
 
-					glBindTexture(GL_TEXTURE_2D, (Font->char_iso_image[c].texture));
+					glBindTexture(GL_TEXTURE_2D, (Font->char_image[c].texture));
 					glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 					glEnable(GL_BLEND);
 
@@ -269,11 +269,11 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 					glTexCoord2f(0.0, 1.0);
 					glVertex2i(0, 0);
 					glTexCoord2f(0.0, 0.0);
-					glVertex2i(0, Font->char_iso_image[c].texture_height);
+					glVertex2i(0, Font->char_image[c].tex_h);
 					glTexCoord2f(1.0, 0.0);
-					glVertex2i(Font->char_iso_image[c].texture_width, Font->char_iso_image[c].texture_height);
+					glVertex2i(Font->char_image[c].tex_w, Font->char_image[c].tex_h);
 					glTexCoord2f(1.0, 1.0);
-					glVertex2i(Font->char_iso_image[c].texture_width, 0);
+					glVertex2i(Font->char_image[c].tex_w, 0);
 
 					glEnd();
 					glEndList();

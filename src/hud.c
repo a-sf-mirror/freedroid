@@ -266,7 +266,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	bar_x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
 	bar_y =
 	    translate_map_point_to_screen_pixel_y(description_pos->x,
-	    		description_pos->y) + enemy_iso_images[cur_enemy->type][0][0].offset_y -
+	    		description_pos->y) + enemy_images[cur_enemy->type][0][0].offset_y -
 	    2.5 * FontHeight(BFont_to_use);
 
 	// Calculates the width of the remaining health bar. Rounds the
@@ -335,12 +335,12 @@ void ShowCurrentWeapon(void)
 	if (Me.weapon_item.type == -1)
 		return;
 
-	iso_image *img = get_item_inventory_image(Me.weapon_item.type);
+	struct image *img = get_item_inventory_image(Me.weapon_item.type);
 
 	float x = UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_X + CURRENT_WEAPON_RECT_W / 2) -
-	    img->original_image_width / 2;
+	    img->w / 2;
 	float y = UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y + CURRENT_WEAPON_RECT_H / 2) -
-	    img->original_image_height / 2;
+	    img->h / 2;
 
 	blit_iso_image_to_screen_position(img, x, y);
 

@@ -984,7 +984,7 @@ enemy *GetLivingDroidBelowMouseCursor()
 {
 	gps mouse_vpos, mouse_pos;
 	int RotationModel, RotationIndex;
-	iso_image *our_iso_image;
+	struct image *our_image;
 	enemy *this_bot;
 
 	mouse_vpos.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
@@ -1011,10 +1011,10 @@ enemy *GetLivingDroidBelowMouseCursor()
 		//
 		RotationModel = set_rotation_model_for_this_robot(this_bot);
 
-		our_iso_image = &(enemy_iso_images[RotationModel][RotationIndex][(int)this_bot->animation_phase]);
+		our_image = &(enemy_images[RotationModel][RotationIndex][(int)this_bot->animation_phase]);
 
 		update_virtual_position(&this_bot->virt_pos, &this_bot->pos, Me.pos.z);
-		if (mouse_cursor_is_on_that_iso_image(this_bot->virt_pos.x, this_bot->virt_pos.y, our_iso_image)) {
+		if (mouse_cursor_is_on_that_image(this_bot->virt_pos.x, this_bot->virt_pos.y, our_image)) {
 			return this_bot;
 		}
 	}

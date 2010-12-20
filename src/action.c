@@ -182,7 +182,7 @@ static int mouse_cursor_is_on_that_obstacle(level *lvl, int obst_index)
 	if (obs_vpos.z == -1)
 		return FALSE;
 
-	if (mouse_cursor_is_on_that_iso_image(obs_vpos.x, obs_vpos.y, get_obstacle_image(lvl->obstacle_list[obst_index].type))) {
+	if (mouse_cursor_is_on_that_image(obs_vpos.x, obs_vpos.y, get_obstacle_image(lvl->obstacle_list[obst_index].type))) {
 		return (TRUE);
 	}
 	return (FALSE);

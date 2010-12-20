@@ -38,7 +38,7 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_widgets.h"
 
-iso_image level_editor_waypoint_cursor[2] = { UNLOADED_ISO_IMAGE, UNLOADED_ISO_IMAGE };
+struct image level_editor_waypoint_cursor[2] = { EMPTY_IMAGE, EMPTY_IMAGE };
 
 #define DEFAULT_ZOOM_FACTOR 3.0
 static float lvledit_zoom_factor = DEFAULT_ZOOM_FACTOR;
@@ -113,7 +113,7 @@ static void print_label_information(level *EditLevel)
 static void Highlight_Current_Block(int mask)
 {
 	level *EditLevel;
-	static iso_image level_editor_cursor = { NULL, 0, 0 };
+	static struct image level_editor_cursor = { NULL, 0, 0 };
 
 	EditLevel = curShip.AllLevels[Me.pos.z];
 #define HIGHLIGHTCOLOR 255
@@ -152,7 +152,7 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 	float steps;
 	float dist;
 	int i;
-	static iso_image level_editor_dot_cursor = UNLOADED_ISO_IMAGE;
+	static struct image level_editor_dot_cursor = EMPTY_IMAGE;
 
 	// Maybe, if the level editor dot cursor has not yet been loaded,
 	// we need to load it.
@@ -268,7 +268,7 @@ static void show_waypoints(int mask)
  */
 static void show_map_labels(int mask)
 {
-	static iso_image map_label_indicator = UNLOADED_ISO_IMAGE;
+	static struct image map_label_indicator = EMPTY_IMAGE;
 	level *EditLevel = curShip.AllLevels[Me.pos.z];
 	struct map_label *map_label;
 	int i;

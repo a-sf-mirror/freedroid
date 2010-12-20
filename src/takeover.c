@@ -46,17 +46,17 @@ SDL_Surface *to_blocks;		// the global surface containing all game-blocks
 //--------------------
 // The rectangles containing the blocks for the takeover game
 //
-iso_image FillBlocks[NUM_FILL_BLOCKS];
+struct image FillBlocks[NUM_FILL_BLOCKS];
 SDL_Rect FillRects[NUM_FILL_BLOCKS];
-iso_image CapsuleBlocks[NUM_CAPS_BLOCKS];
+struct image CapsuleBlocks[NUM_CAPS_BLOCKS];
 SDL_Rect CapsuleRects[NUM_CAPS_BLOCKS];
-iso_image ToGameBlocks[NUM_TO_BLOCKS];
+struct image ToGameBlocks[NUM_TO_BLOCKS];
 SDL_Rect ToGameRects[NUM_TO_BLOCKS];
-iso_image ToGroundBlocks[NUM_GROUND_BLOCKS];
+struct image ToGroundBlocks[NUM_GROUND_BLOCKS];
 SDL_Rect ToGroundRects[NUM_GROUND_BLOCKS];
-iso_image ToColumnBlock;
+struct image ToColumnBlock;
 SDL_Rect ToColumnRect;
-iso_image ToLeaderBlock;
+struct image ToLeaderBlock;
 SDL_Rect ToLeaderRect;
 
 //--------------------

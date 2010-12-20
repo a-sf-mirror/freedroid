@@ -62,7 +62,7 @@ struct upgrade_ui_rects {
 };
 
 // Global variables.
-static iso_image images[IMAGE_MAX];
+static struct image images[IMAGE_MAX];
 static int ui_visible = FALSE;
 static int images_loaded = FALSE;
 static struct upgrade_ui ui;
@@ -104,7 +104,7 @@ static void load_images()
 	};
 
 	for (i = 0; i < IMAGE_MAX; i++) {
-		memset(&images[i], 0, sizeof(iso_image));
+		memset(&images[i], 0, sizeof(struct image));
 		load_iso_image(&images[i], fnames[i], FALSE);
 	}
 }
@@ -212,7 +212,7 @@ void show_item_upgrade_ui()
 {
 	int i;
 	char buffer[512];
-	iso_image *image;
+	struct image *image;
 	SDL_Rect rect;
 	struct upgrade_socket_dynarray *sockets = &ui.custom_item.upgrade_sockets;
 
@@ -295,14 +295,14 @@ void show_item_upgrade_ui()
 				image = &images[IMAGE_SOCKET_NONE];
 			}
 			rect = rects.socket_slots[i];
-			rect.x += (rect.w - image->original_image_width) / 2;
-			rect.y += (rect.h - image->original_image_height) / 2;
+			rect.x += (rect.w - image->w) / 2;
+			rect.y += (rect.h - image->h) / 2;
 			blit_iso_image_to_screen_position(image, rect.x, rect.y);
 			if (i < sockets->size && ui.custom_item.upgrade_sockets.arr[i].addon) {
 				image = &images[IMAGE_SOCKET_INSTALLED];
 				rect = rects.socket_slots[i];
-				rect.x += (rect.w - image->original_image_width) / 2;
-				rect.y += (rect.h - image->original_image_height) / 2;
+				rect.x += (rect.w - image->w) / 2;
+				rect.y += (rect.h - image->h) / 2;
 				blit_iso_image_to_screen_position(image, rect.x, rect.y);
 			}
 		}
@@ -310,12 +310,12 @@ void show_item_upgrade_ui()
 		// Draw the items in the sockets.
 		for (i = 0; i < ADDON_ITEMS_MAX; i++) {
 			if (ui.addon_items[i].type != -1) {
-				iso_image *img = get_item_inventory_image(ui.addon_items[i].type);
+				struct image *img = get_item_inventory_image(ui.addon_items[i].type);
 
 				if (img) {
 					rect = rects.socket_slots[i];
-					rect.x += (rect.w - img->original_image_width) / 2;
-					rect.y += (rect.h - img->original_image_height) / 2;
+					rect.x += (rect.w - img->w) / 2;
+					rect.y += (rect.h - img->h) / 2;
 					blit_iso_image_to_screen_position(img, rect.x, rect.y);
 				}
 			}

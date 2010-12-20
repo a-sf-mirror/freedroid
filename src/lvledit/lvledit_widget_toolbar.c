@@ -143,12 +143,12 @@ static void leveleditor_print_object_info(enum leveleditor_object_type type, int
 	}
 }
 
-static iso_image *leveleditor_get_object_image(enum leveleditor_object_type type, int *array, int idx)
+static struct image *leveleditor_get_object_image(enum leveleditor_object_type type, int *array, int idx)
 {
-	extern iso_image level_editor_waypoint_cursor[];
+	extern struct image level_editor_waypoint_cursor[];
 	switch (type) {
 	case OBJECT_FLOOR:
-			return &(floor_iso_images[array[idx]]);
+			return &(floor_images[array[idx]]);
 	case OBJECT_OBSTACLE:
 			return get_obstacle_image(array[idx]);
 	case OBJECT_WAYPOINT:
@@ -202,7 +202,7 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 		TargetRectangle.w = INITIAL_BLOCK_WIDTH;
 		TargetRectangle.h = INITIAL_BLOCK_HEIGHT;
 
-		iso_image *img = leveleditor_get_object_image(cs->type, cs->indices, cindex);
+		struct image *img = leveleditor_get_object_image(cs->type, cs->indices, cindex);
 		if (!img)
 			break;
 
@@ -210,8 +210,8 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 		// fit into one tile in the level editor top status selection row.
 		//
 		if (use_open_gl) {
-			zoom_factor = min(((float)INITIAL_BLOCK_WIDTH / (float)img->original_image_width),
-					  ((float)INITIAL_BLOCK_HEIGHT / (float)img->original_image_height));
+			zoom_factor = min(((float)INITIAL_BLOCK_WIDTH / (float)img->w),
+					  ((float)INITIAL_BLOCK_HEIGHT / (float)img->h));
 		} else {
 			zoom_factor = min(((float)INITIAL_BLOCK_WIDTH / (float)img->surface->w),
 					  ((float)INITIAL_BLOCK_HEIGHT / (float)img->surface->h));

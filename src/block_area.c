@@ -72,7 +72,7 @@ void init_obstacle_data(void)
 	float outer_door_4_width_long = 1.55;
 	float outer_door_4_width_short = 0.55;
 
-	iso_image empty_iso_image = UNLOADED_ISO_IMAGE;
+	struct image empty_image = EMPTY_IMAGE;
 
 	// First we enter some default values.  The exceptions from the default values
 	// can be added after that.
@@ -81,7 +81,7 @@ void init_obstacle_data(void)
 		// In addition to the pure image information, we'll also need some
 		// collision information for obstacles...
 		//
-		memcpy(&(obstacle_map[i].image), &(empty_iso_image), sizeof(iso_image));
+		memcpy(&(obstacle_map[i].image), &(empty_image), sizeof(struct image));
 
 		obstacle_map[i].flags |= BLOCKS_VISION_TOO;
 		block_2param(i, 1.2, 1.2);	// standard_wall_thickness 

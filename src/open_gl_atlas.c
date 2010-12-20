@@ -126,7 +126,7 @@ static void read_atlas_field(const char *atlasdat, const char *pathname, short i
 	*epos = '\n';
 }
 
-int load_texture_atlas(const char *atlas_name, const char *directory, char *filenames[], iso_image atlasmembers[], int count)
+int load_texture_atlas(const char *atlas_name, const char *directory, char *filenames[], struct image atlasmembers[], int count)
 {
 #ifdef HAVE_LIBGL
 	// Initialization : read atlas, check if size is ok
@@ -143,12 +143,12 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 		return 1;
 	}
 	// Create the big atlas surface
-	iso_image atlas_surf;
-	memset(&atlas_surf, 0, sizeof(iso_image));
-	atlas_surf.original_image_width = atlas_w;
-	atlas_surf.texture_width = atlas_w;
-	atlas_surf.original_image_height = atlas_h;
-	atlas_surf.texture_height = atlas_h;
+	struct image atlas_surf;
+	memset(&atlas_surf, 0, sizeof(struct image));
+	atlas_surf.w = atlas_w;
+	atlas_surf.tex_w = atlas_w;
+	atlas_surf.h = atlas_h;
+	atlas_surf.tex_h = atlas_h;
 
 	atlas_surf.surface = SDL_CreateRGBSurface(SDL_SWSURFACE, atlas_w, atlas_h, 32, rmask, gmask, bmask, amask);
 	SDL_SetAlpha(atlas_surf.surface, 0, SDL_ALPHA_OPAQUE);
@@ -169,8 +169,8 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 
 		// Get the destination rect on the atlas surface
 		read_atlas_field(dat, filenames[a], &dest_rect.x, &dest_rect.y);
-		dest_rect.w = atlasmembers[a].original_image_width;
-		dest_rect.h = atlasmembers[a].original_image_height;
+		dest_rect.w = atlasmembers[a].w;
+		dest_rect.h = atlasmembers[a].h;
 
 		// Do not ask why. Without this it does not work.
 		SDL_SetAlpha(atlasmembers[a].surface, 0, SDL_ALPHA_OPAQUE);
@@ -179,10 +179,10 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 		SDL_BlitSurface(atlasmembers[a].surface, NULL, atlas_surf.surface, &dest_rect);
 
 		// Register the texture coordinates of the image in the atlas
-		atlasmembers[a].tx0 = (float)dest_rect.x / (float)atlas_w;
-		atlasmembers[a].ty0 = (float)dest_rect.y / (float)atlas_h;
-		atlasmembers[a].tx1 = atlasmembers[a].tx0 + (float)dest_rect.w / (float)atlas_w;
-		atlasmembers[a].ty1 = atlasmembers[a].ty0 + (float)dest_rect.h / (float)atlas_h;
+		atlasmembers[a].tex_x0 = (float)dest_rect.x / (float)atlas_w;
+		atlasmembers[a].tex_y0 = (float)dest_rect.y / (float)atlas_h;
+		atlasmembers[a].tex_x1 = atlasmembers[a].tex_x0 + (float)dest_rect.w / (float)atlas_w;
+		atlasmembers[a].tex_y1 = atlasmembers[a].tex_y0 + (float)dest_rect.h / (float)atlas_h;
 
 		// Free the temporary
 		SDL_FreeSurface(atlasmembers[a].surface);

@@ -456,7 +456,7 @@ SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
  * make_texture_out_of_surface and make_texture_out_of_prepadded_image are
  * the entry points for this function.
  */
-static void do_make_texture_out_of_surface(iso_image * our_image, int txw, int txh, void *data)
+static void do_make_texture_out_of_surface(struct image * our_image, int txw, int txh, void *data)
 {
 
 #ifdef HAVE_LIBGL
@@ -480,10 +480,10 @@ static void do_make_texture_out_of_surface(iso_image * our_image, int txw, int t
 	// Generate The Texture 
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, txw, txh, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
 
-	our_image->tx0 = 0;
-	our_image->ty0 = 1.0 - (float)our_image->original_image_height / (float)our_image->texture_height;
-	our_image->tx1 = (float)our_image->original_image_width / (float)our_image->texture_width;
-	our_image->ty1 = 1.0;
+	our_image->tex_x0 = 0;
+	our_image->tex_y0 = 1.0 - (float)our_image->h / (float)our_image->tex_h;
+	our_image->tex_x1 = (float)our_image->w / (float)our_image->tex_w;
+	our_image->tex_y1 = 1.0;
 
 	open_gl_check_error_status(__FUNCTION__);
 
@@ -491,7 +491,7 @@ static void do_make_texture_out_of_surface(iso_image * our_image, int txw, int t
 
 }
 
-void make_texture_out_of_surface(iso_image * our_image)
+void make_texture_out_of_surface(struct image * our_image)
 {
 
 #ifdef HAVE_LIBGL
@@ -503,10 +503,10 @@ void make_texture_out_of_surface(iso_image * our_image)
 	// for textures on most OpenGL capable cards.
 	//
 	right_sized_image = pad_image_for_texture(our_image->surface);
-	our_image->texture_width = right_sized_image->w;
-	our_image->texture_height = right_sized_image->h;
-	our_image->original_image_width = our_image->surface->w;
-	our_image->original_image_height = our_image->surface->h;
+	our_image->tex_w = right_sized_image->w;
+	our_image->tex_h = right_sized_image->h;
+	our_image->w = our_image->surface->w;
+	our_image->h = our_image->surface->h;
 
 	// Having prepared the raw image it's now time to create the real
 	// textures.
@@ -523,7 +523,7 @@ void make_texture_out_of_surface(iso_image * our_image)
 
 };				// void make_texture_out_of_surface ( iso_image* our_image )
 
-void make_texture_out_of_prepadded_image(iso_image * our_image)
+void make_texture_out_of_prepadded_image(struct image * our_image)
 {
 	do_make_texture_out_of_surface(our_image, our_image->surface->w, our_image->surface->h, our_image->surface->pixels);
 
@@ -652,17 +652,17 @@ int safely_initialize_our_default_open_gl_parameters(void)
 /* This function draws a textured quad on screen. */
 
 #ifdef HAVE_LIBGL
-static inline void draw_gl_textured_quad_helper(int x0, int y0, int x1, int y1, float tx0, float ty0, float tx1, float ty1)
+static inline void draw_gl_textured_quad_helper(int x0, int y0, int x1, int y1, float tex_x0, float tex_y0, float tex_x1, float tex_y1)
 {
 
 	glBegin(GL_QUADS);
-	glTexCoord2f(tx0, ty1);
+	glTexCoord2f(tex_x0, tex_y1);
 	glVertex2i(x0, y0);
-	glTexCoord2f(tx0, ty0);
+	glTexCoord2f(tex_x0, tex_y0);
 	glVertex2i(x0, y1);
-	glTexCoord2f(tx1, ty0);
+	glTexCoord2f(tex_x1, tex_y0);
 	glVertex2i(x1, y1);
-	glTexCoord2f(tx1, ty1);
+	glTexCoord2f(tex_x1, tex_y1);
 	glVertex2i(x1, y0);
 	glEnd();
 
@@ -670,7 +670,7 @@ static inline void draw_gl_textured_quad_helper(int x0, int y0, int x1, int y1, 
 #endif
 
 void
-draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
+draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 				      float our_col, float our_line,
 				      float r, float g, float b, int highlight_texture, int blend, float zoom_factor)
 {
@@ -697,9 +697,9 @@ draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
 
 	glBindTexture(GL_TEXTURE_2D, (our_iso_image->texture));
 
-	draw_gl_textured_quad_helper(x, y, x + our_iso_image->original_image_width * zoom_factor,
-				     y + our_iso_image->original_image_height * zoom_factor, our_iso_image->tx0, our_iso_image->ty0,
-				     our_iso_image->tx1, our_iso_image->ty1);
+	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w * zoom_factor,
+				     y + our_iso_image->h * zoom_factor, our_iso_image->tex_x0, our_iso_image->tex_y0,
+				     our_iso_image->tex_x1, our_iso_image->tex_y1);
 
 	if (highlight_texture) {
 		glEnable(GL_BLEND);
@@ -707,9 +707,9 @@ draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
 
 		// Now we draw our quad AGAIN!
 		//
-		draw_gl_textured_quad_helper(x, y, x + our_iso_image->original_image_width * zoom_factor,
-					     y + our_iso_image->original_image_height * zoom_factor, our_iso_image->tx0, our_iso_image->ty0,
-					     our_iso_image->tx1, our_iso_image->ty1);
+		draw_gl_textured_quad_helper(x, y, x + our_iso_image->w * zoom_factor,
+					     y + our_iso_image->h * zoom_factor, our_iso_image->tex_x0, our_iso_image->tex_y0,
+					     our_iso_image->tex_x1, our_iso_image->tex_y1);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	}
@@ -724,16 +724,16 @@ draw_gl_textured_quad_at_map_position(iso_image * our_iso_image,
 /* ------------------------------------------------------------
  * Draw an open gl textured quad at the given screen position
  * */
-void draw_gl_textured_quad_at_screen_position(iso_image * our_iso_image, int x, int y)
+void draw_gl_textured_quad_at_screen_position(struct image * our_iso_image, int x, int y)
 {
 #ifdef HAVE_LIBGL
 
 	glEnable(GL_BLEND);
 
 	glBindTexture(GL_TEXTURE_2D, our_iso_image->texture);
-	draw_gl_textured_quad_helper(x, y, x + our_iso_image->original_image_width,
-				     y + our_iso_image->original_image_height, our_iso_image->tx0, our_iso_image->ty0, our_iso_image->tx1,
-				     our_iso_image->ty1);
+	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w,
+				     y + our_iso_image->h, our_iso_image->tex_x0, our_iso_image->tex_y0, our_iso_image->tex_x1,
+				     our_iso_image->tex_y1);
 	glDisable(GL_BLEND);
 
 #endif
@@ -743,7 +743,7 @@ void draw_gl_textured_quad_at_screen_position(iso_image * our_iso_image, int x, 
  *
  *
  */
-void draw_gl_scaled_textured_quad_at_screen_position(iso_image * our_iso_image, int x, int y, float scale_factor)
+void draw_gl_scaled_textured_quad_at_screen_position(struct image * our_iso_image, int x, int y, float scale_factor)
 {
 
 #ifdef HAVE_LIBGL
@@ -752,9 +752,9 @@ void draw_gl_scaled_textured_quad_at_screen_position(iso_image * our_iso_image, 
 
 	glBindTexture(GL_TEXTURE_2D, (our_iso_image->texture));
 
-	draw_gl_textured_quad_helper(x, y, x + our_iso_image->original_image_width * scale_factor,
-				     y + our_iso_image->original_image_height * scale_factor, our_iso_image->tx0, our_iso_image->ty0,
-				     our_iso_image->tx1, our_iso_image->ty1);
+	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w * scale_factor,
+				     y + our_iso_image->h * scale_factor, our_iso_image->tex_x0, our_iso_image->tex_y0,
+				     our_iso_image->tex_x1, our_iso_image->tex_y1);
 
 	glDisable(GL_BLEND);
 
@@ -768,7 +768,7 @@ void draw_gl_scaled_textured_quad_at_screen_position(iso_image * our_iso_image, 
  * received such that the ratio corresponds to the current (possibly wider)
  * screen dimension.
  */
-void draw_gl_bg_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y)
+void draw_gl_bg_textured_quad_at_screen_position(struct image * our_floor_iso_image, int x, int y)
 {
 
 #ifdef HAVE_LIBGL
@@ -777,18 +777,18 @@ void draw_gl_bg_textured_quad_at_screen_position(iso_image * our_floor_iso_image
 
 	glEnable(GL_BLEND);
 
-	if (our_floor_iso_image->original_image_width == 1024)	//then the image is 1024x768
+	if (our_floor_iso_image->w == 1024)	//then the image is 1024x768
 	{			/*dirty hack for better scaling */
-		image_end_x = x + our_floor_iso_image->original_image_width * GameConfig.screen_width / 1024;
-		image_end_y = y + our_floor_iso_image->original_image_height * GameConfig.screen_height / 768;
+		image_end_x = x + our_floor_iso_image->w * GameConfig.screen_width / 1024;
+		image_end_y = y + our_floor_iso_image->h * GameConfig.screen_height / 768;
 	} else {
-		image_end_x = x + our_floor_iso_image->original_image_width * GameConfig.screen_width / 640;
-		image_end_y = y + our_floor_iso_image->original_image_height * GameConfig.screen_height / 480;
+		image_end_x = x + our_floor_iso_image->w * GameConfig.screen_width / 640;
+		image_end_y = y + our_floor_iso_image->h * GameConfig.screen_height / 480;
 	}
 
 	glBindTexture(GL_TEXTURE_2D, (our_floor_iso_image->texture));
-	draw_gl_textured_quad_helper(x, y, image_end_x, image_end_y, our_floor_iso_image->tx0, our_floor_iso_image->ty0,
-				     our_floor_iso_image->tx1, our_floor_iso_image->ty1);
+	draw_gl_textured_quad_helper(x, y, image_end_x, image_end_y, our_floor_iso_image->tex_x0, our_floor_iso_image->tex_y0,
+				     our_floor_iso_image->tex_x1, our_floor_iso_image->tex_y1);
 
 	glDisable(GL_BLEND);
 
@@ -991,7 +991,7 @@ void light_radius_update_stretched_texture(void)
 void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 {
 #ifdef HAVE_LIBGL
-	iso_image local_iso_image;
+	struct image local_iso_image;
 
 	// We make sure, that there is one single texture created before
 	// doing any of our texture-blitting or texture-modification stuff
@@ -1006,17 +1006,17 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 	// in a surrounding 'iso_image', but that shouldn't be costly or anything...
 	//
 	local_iso_image.texture = light_radius_stretch_texture;
-	local_iso_image.texture_width = LightRadiusConfig.texture_w;
-	local_iso_image.texture_height = LightRadiusConfig.texture_h;
-	local_iso_image.original_image_width = LightRadiusConfig.texture_w;
-	local_iso_image.original_image_height = LightRadiusConfig.texture_h;
+	local_iso_image.tex_w = LightRadiusConfig.texture_w;
+	local_iso_image.tex_h = LightRadiusConfig.texture_h;
+	local_iso_image.w = LightRadiusConfig.texture_w;
+	local_iso_image.h = LightRadiusConfig.texture_h;
 	local_iso_image.texture_has_been_created = TRUE;
 	local_iso_image.offset_x = 0;
 	local_iso_image.offset_y = 0;
-	local_iso_image.tx0 = 0.0;
-	local_iso_image.ty0 = 0.0;
-	local_iso_image.tx1 = 1.0;
-	local_iso_image.ty1 = 1.0;
+	local_iso_image.tex_x0 = 0.0;
+	local_iso_image.tex_y0 = 0.0;
+	local_iso_image.tex_x1 = 1.0;
+	local_iso_image.tex_y1 = 1.0;
 
 	glEnable(GL_BLEND);
 
@@ -1113,7 +1113,7 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 #define ADDON_CRAFTING_BACKGROUND_IMAGE_FILE "item_upgrade/background_crafting.png"
 
 #define ALL_KNOWN_BACKGROUNDS 35
-static iso_image our_backgrounds[ALL_KNOWN_BACKGROUNDS];
+static struct image our_backgrounds[ALL_KNOWN_BACKGROUNDS];
 static int background_has_been_loaded[ALL_KNOWN_BACKGROUNDS];
 
 /**
@@ -1305,7 +1305,7 @@ void blit_special_background(int background_code)
 		if (need_scaling[background_code] && !scaling_done[background_code]) {
 			scaling_done[background_code] = 1;
 			double rx, ry;
-			if (our_backgrounds[background_code].original_image_width == 1024) {
+			if (our_backgrounds[background_code].w == 1024) {
 				rx = Screen->w / 1024.0;
 				ry = Screen->h / 768.0;
 			} else {
@@ -1315,8 +1315,8 @@ void blit_special_background(int background_code)
 			SDL_Surface *tmp_surf2 = zoomSurface(our_backgrounds[background_code].surface, rx, ry, TRUE);
 			SDL_FreeSurface(our_backgrounds[background_code].surface);
 			our_backgrounds[background_code].surface = tmp_surf2;
-			our_backgrounds[background_code].original_image_width = tmp_surf2->w;
-			our_backgrounds[background_code].original_image_height = tmp_surf2->h;
+			our_backgrounds[background_code].w = tmp_surf2->w;
+			our_backgrounds[background_code].h = tmp_surf2->h;
 		}
 		SDL_SetClipRect(Screen, NULL);
 		our_SDL_blit_surface_wrapper(our_backgrounds[background_code].surface, NULL, Screen,

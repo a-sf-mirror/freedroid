@@ -72,7 +72,7 @@ char *part_group_strings[ALL_PART_GROUPS] = {
 	"weaponarm/"
 };
 
-iso_image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
+struct image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
 
 static int old_current_level = -1;
 
@@ -135,7 +135,7 @@ static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 	if (TargetRect.y < 0)
 		TargetRect.y = 0;
 
-	iso_image *img = get_item_inventory_image(ItemImageCode);
+	struct image *img = get_item_inventory_image(ItemImageCode);
 	blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 }
 
@@ -167,7 +167,7 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
 		//XXX color filters?
-		iso_image *img = get_item_inventory_image(ItemImageCode);
+		struct image *img = get_item_inventory_image(ItemImageCode);
 		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 }
@@ -271,10 +271,10 @@ static void show_floor(int mask)
 				object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
 				if (mask & ZOOM_OUT)
-					blit_zoomed_iso_image_to_map_position(&(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
+					blit_zoomed_iso_image_to_map_position(&(floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
 									      ((float)col) + 0.5, ((float)line) + 0.5);
 				else
-					blit_iso_image_to_map_position(&(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
+					blit_iso_image_to_map_position(&(floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]),
 								       ((float)col) + 0.5, ((float)line) + 0.5);
 			}
 		}
@@ -283,7 +283,7 @@ static void show_floor(int mask)
 		if (use_atlas == -1) {
 			//determine if we are using a texture atlas for the ground
 #ifdef HAVE_LIBGL
-			if (floor_iso_images[0].texture == floor_iso_images[5].texture)
+			if (floor_images[0].texture == floor_images[5].texture)
 				use_atlas = 1;
 			else
 				use_atlas = 0;
@@ -295,7 +295,7 @@ static void show_floor(int mask)
 		if (use_atlas) {
 
 #ifdef HAVE_LIBGL
-			glBindTexture(GL_TEXTURE_2D, floor_iso_images[0].texture);
+			glBindTexture(GL_TEXTURE_2D, floor_images[0].texture);
 			glEnable(GL_ALPHA_TEST);
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 			glBegin(GL_QUADS);
@@ -305,7 +305,7 @@ static void show_floor(int mask)
 					MapBrick = GetMapBrick(DisplayLevel, col, line);
 					object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
-					iso_image *ourimg = &(floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
+					struct image *ourimg = &(floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES]);
 
 					int x, y;
 					float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
@@ -315,14 +315,14 @@ static void show_floor(int mask)
 					y += ourimg->offset_y * zf;
 
 					glColor3f(r, g, b);
-					glTexCoord2f(ourimg->tx0, ourimg->ty1);
+					glTexCoord2f(ourimg->tex_x0, ourimg->tex_y1);
 					glVertex2i(x, y);
-					glTexCoord2f(ourimg->tx0, ourimg->ty0);
-					glVertex2i(x, y + ourimg->original_image_height * zf);
-					glTexCoord2f(ourimg->tx1, ourimg->ty0);
-					glVertex2i(x + ourimg->original_image_width * zf, y + ourimg->original_image_height * zf);
-					glTexCoord2f(ourimg->tx1, ourimg->ty1);
-					glVertex2i(x + ourimg->original_image_width * zf, y);
+					glTexCoord2f(ourimg->tex_x0, ourimg->tex_y0);
+					glVertex2i(x, y + ourimg->h * zf);
+					glTexCoord2f(ourimg->tex_x1, ourimg->tex_y0);
+					glVertex2i(x + ourimg->w * zf, y + ourimg->h * zf);
+					glTexCoord2f(ourimg->tex_x1, ourimg->tex_y1);
+					glVertex2i(x + ourimg->w * zf, y);
 
 				}
 			}
@@ -339,7 +339,7 @@ static void show_floor(int mask)
 
 					object_vtx_color(&DisplayLevel->map[line][col], &r, &g, &b);
 
-					draw_gl_textured_quad_at_map_position(&floor_iso_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
+					draw_gl_textured_quad_at_map_position(&floor_images[MapBrick % ALL_ISOMETRIC_FLOOR_TILES],
 									      ((float)col) + 0.5, ((float)line) + 0.5, r, g, b, FALSE,
 									      FALSE, (mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
 
@@ -434,7 +434,7 @@ void blit_one_obstacle(obstacle * our_obstacle, int highlight, int zoom)
 #define HIGHLIGHT 1
 #define NOHIGHLIGHT 0
 
-	iso_image tmp;
+	struct image tmp;
 	gps obs_screen_position;
 	float zf = zoom ? lvledit_zoomfact_inv() : 1.0;
 
@@ -2065,8 +2065,8 @@ void PutMouseMoveCursor(void)
 	if (Me.mouse_move_target.x != (-1)) {
 		TargetRectangle.x = translate_map_point_to_screen_pixel_x(Me.mouse_move_target.x, Me.mouse_move_target.y);
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(Me.mouse_move_target.x, Me.mouse_move_target.y);
-		TargetRectangle.x -= MouseCursorImageList[0].original_image_width / 2;
-		TargetRectangle.y -= MouseCursorImageList[0].original_image_height / 2;
+		TargetRectangle.x -= MouseCursorImageList[0].w / 2;
+		TargetRectangle.y -= MouseCursorImageList[0].h / 2;
 		blit_iso_image_to_screen_position(&MouseCursorImageList[0], TargetRectangle.x, TargetRectangle.y);
 	}
 
@@ -2077,8 +2077,8 @@ void PutMouseMoveCursor(void)
 
 		TargetRectangle.x = translate_map_point_to_screen_pixel_x(t->virt_pos.x, t->virt_pos.y);
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(t->virt_pos.x, t->virt_pos.y);
-		TargetRectangle.x -= MouseCursorImageList[1].original_image_width / 2;
-		TargetRectangle.y -= MouseCursorImageList[1].original_image_height / 2;
+		TargetRectangle.x -= MouseCursorImageList[1].w / 2;
+		TargetRectangle.y -= MouseCursorImageList[1].h / 2;
 		blit_iso_image_to_screen_position(&MouseCursorImageList[1], TargetRectangle.x, TargetRectangle.y);
 	}
 }
@@ -2277,7 +2277,7 @@ images.  Therefore I refuse to process this file any further here.", PLEASE_INFO
 	//
 	for (rotation_index = 0; rotation_index < MAX_TUX_DIRECTIONS; rotation_index++) {
 		for (our_phase = 0; our_phase < TUX_TOTAL_PHASES; our_phase++) {
-			// Now if the iso_image we want to blit right now has not yet been loaded,
+			// Now if the struct image we want to blit right now has not yet been loaded,
 			// then we need to do something about is and at least attempt to load the
 			// surface
 			//
@@ -2489,10 +2489,10 @@ The number of images found in the image collection for enemy model %d is bigger 
 			orig_img_ylen = ReadSint16(ptr);
 			ptr += sizeof(Sint16);
 
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].surface =
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface =
 			    SDL_CreateRGBSurface(SDL_SWSURFACE, img_xlen, img_ylen, 32, rmask, gmask, bmask, amask);
 
-			dest = enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].surface->pixels;
+			dest = enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface->pixels;
 			tmplen = 4 * img_xlen * img_ylen;
 			memcpy(dest, ptr, tmplen);
 			ptr += tmplen;
@@ -2500,24 +2500,24 @@ The number of images found in the image collection for enemy model %d is bigger 
 			// This might be useful later, when using only SDL output...
 			//
 			// SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
-			// our_iso_image -> surface = our_SDL_display_format_wrapperAlpha( Whole_Image ); 
+			// our_struct image -> surface = our_SDL_display_format_wrapperAlpha( Whole_Image ); 
 			// now we have an alpha-surf of right size
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].zoomed_out_surface = NULL;
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].texture_has_been_created = FALSE;
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].offset_x = img_x_offs;
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].offset_y = img_y_offs;
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].original_image_width = orig_img_xlen;
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].original_image_height = orig_img_ylen;
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].texture_width = img_xlen;
-			enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].texture_height = img_ylen;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].zoomed_out_surface = NULL;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].texture_has_been_created = FALSE;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].offset_x = img_x_offs;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].offset_y = img_y_offs;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].w = orig_img_xlen;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].h = orig_img_ylen;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_w = img_xlen;
+			enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_h = img_ylen;
 
-			SDL_SetColorKey(enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].surface, 0, 0);	// this should clear any color key in the dest surface
+			SDL_SetColorKey(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface, 0, 0);	// this should clear any color key in the dest surface
 
 			if (!use_open_gl) {
-				flip_image_vertically(enemy_iso_images[enemy_model_nr][rotation_index][enemy_phase].surface);
+				flip_image_vertically(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface);
 			} else {
 				if (!strncmp("oglX", ogl_support_string, 4)) {
-					make_texture_out_of_prepadded_image(&(enemy_iso_images[enemy_model_nr][rotation_index]
+					make_texture_out_of_prepadded_image(&(enemy_images[enemy_model_nr][rotation_index]
 									      [enemy_phase]));
 				} else {
 					// Of course we could handle the case on non-open-gl optimized image
@@ -2528,7 +2528,7 @@ The number of images found in the image collection for enemy model %d is bigger 
 					// release or something...
 					//
 					// make_texture_out_of_surface ( 
-					// & ( enemy_iso_images [ enemy_model_nr ] [ rotation_index ] [ enemy_phase ] ) ) ;
+					// & ( enemy_images [ enemy_model_nr ] [ rotation_index ] [ enemy_phase ] ) ) ;
 					//
 					ErrorMessage(__FUNCTION__, "\
 This image collection archive is not optimized for OpenGL usage\n\
@@ -3356,15 +3356,15 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	//
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
 		if (use_open_gl) {
-			TargetRectangle.x -= (enemy_iso_images[RotationModel][RotationIndex][0].original_image_width) / 2;
-			TargetRectangle.y -= (enemy_iso_images[RotationModel][RotationIndex][0].original_image_height) / 2;
-			TargetRectangle.w = enemy_iso_images[RotationModel][RotationIndex][0].original_image_width;
-			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].original_image_height;
+			TargetRectangle.x -= (enemy_images[RotationModel][RotationIndex][0].w) / 2;
+			TargetRectangle.y -= (enemy_images[RotationModel][RotationIndex][0].h) / 2;
+			TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w;
+			TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h;
 		} else {
-			TargetRectangle.x -= (enemy_iso_images[RotationModel][RotationIndex][0].surface->w) / 2;
-			TargetRectangle.y -= (enemy_iso_images[RotationModel][RotationIndex][0].surface->h) / 2;
-			TargetRectangle.w = enemy_iso_images[RotationModel][RotationIndex][0].surface->w;
-			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].surface->h;
+			TargetRectangle.x -= (enemy_images[RotationModel][RotationIndex][0].surface->w) / 2;
+			TargetRectangle.y -= (enemy_images[RotationModel][RotationIndex][0].surface->h) / 2;
+			TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].surface->w;
+			TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].surface->h;
 		}
 	}
 	// Maybe the enemy is desired e.g. for the takeover game, so a pixel position on
@@ -3373,7 +3373,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	//
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
 		RotationIndex = 0;
-		blit_iso_image_to_screen_position(&enemy_iso_images[RotationModel][RotationIndex][0],
+		blit_iso_image_to_screen_position(&enemy_images[RotationModel][RotationIndex][0],
 										  TargetRectangle.x, TargetRectangle.y);
 		return;
 	}
@@ -3406,7 +3406,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 			} else {
 				darkness = 1.0;
 			}
-			draw_gl_textured_quad_at_map_position(&enemy_iso_images[RotationModel][RotationIndex]
+			draw_gl_textured_quad_at_map_position(&enemy_images[RotationModel][RotationIndex]
 							      [(int)ThisRobot->animation_phase], bot_pos.x, bot_pos.y, darkness * r,
 							      darkness * g, darkness * b, highlight, FALSE, zf);
 		} else {	/*Using SDL */
@@ -3414,7 +3414,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 				// When no OpenGL is used, we need to proceed with SDL for
 				// blitting the small enemies...
 				//
-				blit_zoomed_iso_image_to_map_position(&(enemy_iso_images[RotationModel][RotationIndex][0]),
+				blit_zoomed_iso_image_to_map_position(&(enemy_images[RotationModel][RotationIndex][0]),
 								      ThisRobot->virt_pos.x, ThisRobot->virt_pos.y);
 			} else {
 
@@ -3423,7 +3423,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 				// filtered stuff...
 				// 
 				if (ThisRobot->energy <= 0) {
-					blit_iso_image_to_map_position(&enemy_iso_images[RotationModel][RotationIndex]
+					blit_iso_image_to_map_position(&enemy_images[RotationModel][RotationIndex]
 								       [(int)ThisRobot->animation_phase], ThisRobot->virt_pos.x,
 								       ThisRobot->virt_pos.y);
 				} else if (ThisRobot->paralysation_duration_left != 0) {
@@ -3439,11 +3439,11 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 					blit_iso_image_to_map_position(&BlueEnemyRotationSurfacePointer[RotationModel][RotationIndex][0],
 								       ThisRobot->virt_pos.x, ThisRobot->virt_pos.y);
 				} else {
-					blit_iso_image_to_map_position(&enemy_iso_images[RotationModel][RotationIndex]
+					blit_iso_image_to_map_position(&enemy_images[RotationModel][RotationIndex]
 								       [(int)ThisRobot->animation_phase], ThisRobot->virt_pos.x,
 								       ThisRobot->virt_pos.y);
 					if (highlight)
-						sdl_highlight_iso_image(&enemy_iso_images[RotationModel][RotationIndex]
+						sdl_highlight_iso_image(&enemy_images[RotationModel][RotationIndex]
 											  [(int)ThisRobot->animation_phase],
 											  ThisRobot->virt_pos.x, ThisRobot->virt_pos.y);
 				}
@@ -3456,15 +3456,15 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
 
 		if (use_open_gl) {
-			TargetRectangle.x = screen_x - (enemy_iso_images[RotationModel][RotationIndex][0].original_image_width * zf) / 2;
-			TargetRectangle.y = screen_y - (enemy_iso_images[RotationModel][RotationIndex][0].original_image_height * zf) / 1;
-			TargetRectangle.w = enemy_iso_images[RotationModel][RotationIndex][0].original_image_width * zf;
-			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].original_image_height * zf;
+			TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].w * zf) / 2;
+			TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].h * zf) / 1;
+			TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w * zf;
+			TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h * zf;
 		} else {
-			TargetRectangle.x = screen_x - (enemy_iso_images[RotationModel][RotationIndex][0].surface->w * zf) / 2;
-			TargetRectangle.y = screen_y - (enemy_iso_images[RotationModel][RotationIndex][0].surface->h * zf) / 1;
-			TargetRectangle.w = enemy_iso_images[RotationModel][RotationIndex][0].surface->w * zf;
-			TargetRectangle.h = enemy_iso_images[RotationModel][RotationIndex][0].surface->h * zf;
+			TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].surface->w * zf) / 2;
+			TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].surface->h * zf) / 1;
+			TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].surface->w * zf;
+			TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].surface->h * zf;
 		}
 
 		if (GameConfig.enemy_energy_bars_visible)
@@ -3623,7 +3623,7 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	if ((put_thrown_items_flag == PUT_NO_THROWN_ITEMS) && (CurItem->throw_time > 0))
 		return;
 
-	iso_image *img = get_item_ingame_image(CurItem->type);
+	struct image *img = get_item_ingame_image(CurItem->type);
 
 	// Apply disco mode when current item is selected
 	object_vtx_color(CurItem, &r, &g, &b);
@@ -3665,7 +3665,7 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ch
 	SDL_Rect TargetRectangle;
 	static SDL_Surface *SparkPrototypeSurface[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES] =
 	    { {NULL, NULL, NULL, NULL}, {NULL, NULL, NULL, NULL} };
-	static iso_image PrerotatedSparkSurfaces[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES][FIXED_NUMBER_OF_SPARK_ANGLES];
+	static struct image PrerotatedSparkSurfaces[NUMBER_OF_SPARK_TYPES][FIXED_NUMBER_OF_PROTOTYPES][FIXED_NUMBER_OF_SPARK_ANGLES];
 	SDL_Surface *tmp_surf;
 	char fpath[2048];
 	int NumberOfPicturesToUse;
@@ -3772,11 +3772,11 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 			TargetRectangle.x =
 			    translate_map_point_to_screen_pixel_x(PosX + Displacement.x,
 								  PosY + Displacement.y) -
-			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].original_image_width) / 2);
+			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].w) / 2);
 			TargetRectangle.y =
 			    translate_map_point_to_screen_pixel_y(PosX + Displacement.x,
 								  PosY + Displacement.y) -
-			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].original_image_height) / 2);
+			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].h) / 2);
 		} else {
 			TargetRectangle.x =
 			    translate_map_point_to_screen_pixel_x(PosX + Displacement.x,
@@ -3943,7 +3943,7 @@ static void show_inventory_screen(void)
 	TargetRect.x = InventoryRect.x + DRIVE_RECT_X;
 	TargetRect.y = InventoryRect.y + DRIVE_RECT_Y;
 	if (item_held_in_hand != &Me.drive_item && (Me.drive_item.type != (-1))) {
-		iso_image *img = get_item_inventory_image(Me.drive_item.type);
+		struct image *img = get_item_inventory_image(Me.drive_item.type);
 		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 
@@ -3956,7 +3956,7 @@ static void show_inventory_screen(void)
 	if (item_held_in_hand != &Me.weapon_item && (Me.weapon_item.type != (-1))) {
 		TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_size.x);
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_size.y);
-		iso_image *img = get_item_inventory_image(Me.weapon_item.type);
+		struct image *img = get_item_inventory_image(Me.weapon_item.type);
 		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 
 		// Maybe this is also a 2-handed weapon.  In this case we need to blit the
@@ -3978,7 +3978,7 @@ static void show_inventory_screen(void)
 	TargetRect.x = InventoryRect.x + ARMOUR_RECT_X;
 	TargetRect.y = InventoryRect.y + ARMOUR_RECT_Y;
 	if (item_held_in_hand != &Me.armour_item && (Me.armour_item.type != (-1))) {
-		iso_image *img = get_item_inventory_image(Me.armour_item.type);
+		struct image *img = get_item_inventory_image(Me.armour_item.type);
 		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display the item in the influencer shield slot
@@ -3991,7 +3991,7 @@ static void show_inventory_screen(void)
 		// of the shield slot
 		//
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.shield_item.type].inv_size.y);
-		iso_image *img = get_item_inventory_image(Me.shield_item.type);
+		struct image *img = get_item_inventory_image(Me.shield_item.type);
 		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display the item in the influencer special slot
@@ -3999,7 +3999,7 @@ static void show_inventory_screen(void)
 	TargetRect.x = InventoryRect.x + HELMET_RECT_X;
 	TargetRect.y = InventoryRect.y + HELMET_RECT_Y;
 	if (item_held_in_hand != &Me.special_item && (Me.special_item.type != (-1))) {
-		iso_image *img = get_item_inventory_image(Me.special_item.type);
+		struct image *img = get_item_inventory_image(Me.special_item.type);
 		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display all the items the influencer is carrying with him
@@ -4044,7 +4044,7 @@ static void show_inventory_screen(void)
 		TargetRect.x = INVENTORY_RECT_X - 1 + INV_SUBSQUARE_WIDTH * Me.Inventory[SlotNum].inventory_position.x;
 		TargetRect.y = User_Rect.y + INVENTORY_RECT_Y + INV_SUBSQUARE_HEIGHT * Me.Inventory[SlotNum].inventory_position.y;
 
-		iso_image *img = get_item_inventory_image(Me.Inventory[SlotNum].type);
+		struct image *img = get_item_inventory_image(Me.Inventory[SlotNum].type);
 		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
 
 		// Show amount

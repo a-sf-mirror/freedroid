@@ -68,41 +68,31 @@ typedef struct upgrade_socket_dynarray {
 struct BFont_Info;
 
 /* ----------------------------------------------------------------------
- * Here comes the struct for an iso image.  It also contains some 
- * placeholder for a possible 'zoomed-out' version of the iso image and
- * also some placeholder for a possible OpenGL texture as well.
- *
- * In order to have a convenient means to initialize variables of this
- * type in several places, even in case this struct changes shape in the
- * future, the 'UNLOADED_ISO_IMAGE' definition below is made.  This
- * definition should be used always when initializing a variable of this
- * so that later changes to the struct can be made with minimal effort 
- * and mistakes.
+ * This structure defines an image in FreedroidRPG. It contains information
+ * that enables rendering using SDL or OpenGL.
  * ---------------------------------------------------------------------- */
-typedef struct iso_image {
+struct image {
 	SDL_Surface *surface;
 	short offset_x;
 	short offset_y;
 	SDL_Surface *zoomed_out_surface;
-	short texture_width;
-	short texture_height;
-	short original_image_width;
-	short original_image_height;
+	short w;
+	short h;
 	int texture_has_been_created;
 #ifdef HAVE_LIBGL
 	GLuint texture;
-#else
-	int placeholder_for_texture_value;
 #endif
-	float tx0;
-	float tx1;
-	float ty0;
-	float ty1;
-} iso_image;
-#define UNLOADED_ISO_IMAGE { NULL , 0 , 0 , NULL , 0 , 0 , 0, 0, 0, 0, 0.0, 0.0, 0.0, 0.0 }
+	float tex_x0;
+	float tex_x1;
+	float tex_y0;
+	float tex_y1;
+	short tex_w;
+	short tex_h;
+};
+#define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .zoomed_out_surface = NULL , .texture_has_been_created = 0 }
 
 typedef struct mouse_press_button {
-	iso_image button_image;
+	struct image button_image;
 	char *button_image_file_name;
 	SDL_Rect button_rect;
 	char scale_this_button;
@@ -316,9 +306,9 @@ typedef struct itemspec {
 	short int item_duration_modifier;
 
 	point inv_size;
-	iso_image inventory_image;
-	iso_image ingame_image;
-	iso_image shop_image;
+	struct image inventory_image;
+	struct image ingame_image;
+	struct image shop_image;
 
 	short int base_list_price;	// the base price of this item at the shop
 
@@ -651,7 +641,7 @@ typedef struct tux {
 typedef struct bulletspec {
 	int phases;		// how many phases in motion to show 
 	double phase_changes_per_second;	// how many different phases to display every second
-	iso_image image[BULLET_DIRECTIONS][MAX_PHASES_IN_A_BULLET];
+	struct image image[BULLET_DIRECTIONS][MAX_PHASES_IN_A_BULLET];
 } bulletspec;
 
 typedef struct bullet {
@@ -691,7 +681,7 @@ typedef struct melee_shot	// this is a melee shot
 typedef struct blastspec {
 	int phases;
 	float total_animation_time;
-	iso_image image[PHASES_OF_EACH_BLAST];
+	struct image image[PHASES_OF_EACH_BLAST];
 } blastspec;
 
 typedef struct blast {
@@ -720,7 +710,7 @@ typedef struct spell_active {
 typedef struct spell_skill_spec {
 	char *name;
 	char *icon_name;
-	iso_image icon_surface;
+	struct image icon_surface;
 	short heat_cost;
 	short heat_cost_per_level;
 	short damage_base;
@@ -790,8 +780,8 @@ typedef struct level {
 } level, *Level;
 
 typedef struct obstacle_spec {
-	iso_image image;
-	iso_image shadow_image;
+	struct image image;
+	struct image shadow_image;
 
     char *label; 
 

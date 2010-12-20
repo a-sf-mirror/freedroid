@@ -1475,7 +1475,7 @@ void show_quick_inventory(void)
 			target_rect.x = UNIVERSAL_COORD_W(130 + i * 40);
 			target_rect.y = GameConfig.screen_height - UNIVERSAL_COORD_H(32);
 
-			iso_image *img = get_item_inventory_image(Me.Inventory[index].type);
+			struct image *img = get_item_inventory_image(Me.Inventory[index].type);
 
 		    blit_iso_image_to_screen_position(img, target_rect.x, target_rect.y);	
 		}

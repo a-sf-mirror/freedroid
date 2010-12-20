@@ -30,7 +30,7 @@
 
 void Terminate(int ExitCode);
 
-iso_image offset_iso_image;
+struct image offset_iso_image;
 char *background_filename = "gluem_background_fill.png";
 SDL_Surface *Screen;		// the graphics display 
 SDL_Surface *input_surface;	// the graphics display 
@@ -738,7 +738,7 @@ void InitVideo(void)
 /* ----------------------------------------------------------------------
  * This function was copied from the core FreedroidRPG modules.
  * ---------------------------------------------------------------------- */
-void get_offset_for_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image)
+void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image)
 {
 	char offset_file_name[10000];
 	FILE *OffsetFile;
@@ -790,7 +790,7 @@ void get_offset_for_iso_image_from_file_and_path(char *fpath, iso_image * our_is
 	ReadValueFromString(offset_data, OFFSET_FILE_OFFSETY_STRING, "%d", &(our_iso_image->offset_y), offset_data + 1000);
 	free(offset_data);
 
-};				// void get_offset_for_iso_image_from_file_and_path ( fpath , our_iso_image )
+};				// void get_offset_for_iso_image_from_file_and_path ( fpath , our_struct image )
 
 /* ----------------------------------------------------------------------
  *
@@ -813,8 +813,8 @@ void add_loaded_image_to_output_file(void)
 	img_ylen = input_surface->h;
 	img_x_offs = offset_iso_image.offset_x;
 	img_y_offs = offset_iso_image.offset_y;
-	orig_img_xlen = offset_iso_image.original_image_width;
-	orig_img_ylen = offset_iso_image.original_image_height;
+	orig_img_xlen = offset_iso_image.w;
+	orig_img_ylen = offset_iso_image.h;
 
 	fwrite(&(img_xlen), 1, sizeof(Sint16), output_file);
 	fwrite(&(img_ylen), 1, sizeof(Sint16), output_file);
@@ -1044,8 +1044,8 @@ int main(int argc, char *argv[])
 			// to do the padding here...
 			//
 			if (open_gl_sized_images) {
-				offset_iso_image.original_image_width = input_surface->w;
-				offset_iso_image.original_image_height = input_surface->h;
+				offset_iso_image.w = input_surface->w;
+				offset_iso_image.h = input_surface->h;
 
 				flip_image_vertically(input_surface);
 				input_surface = pad_image_for_texture(input_surface);

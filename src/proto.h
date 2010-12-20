@@ -215,29 +215,29 @@ void drawIsoEnergyBar(int dir, int x, int y, int z, int w, int d, int length, fl
 SDL_Surface *our_SDL_display_format_wrapperAlpha(SDL_Surface * surface);
 SDL_Surface *our_IMG_load_wrapper(const char *file);
 void flip_image_vertically(SDL_Surface * tmp1);
-void make_texture_out_of_surface(iso_image * our_image);
-void make_texture_out_of_prepadded_image(iso_image * our_image);
+void make_texture_out_of_surface(struct image *our_image);
+void make_texture_out_of_prepadded_image(struct image *our_image);
 SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface);
 void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void PutPixel_open_gl(int x, int y, Uint32 pixel);
 void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 void show_character_screen_background(void);
 int safely_initialize_our_default_open_gl_parameters(void);
-void draw_gl_textured_quad_at_map_position(iso_image * our_floor_iso_image, float our_col, float our_line, float r, float g, float b,
+void draw_gl_textured_quad_at_map_position(struct image *our_floor_iso_image, float our_col, float our_line, float r, float g, float b,
 					   int highlight_texture, int blend, float zoom_factor);
-void draw_gl_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y);
-void draw_gl_scaled_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y, float scale_factor);
+void draw_gl_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y);
+void draw_gl_scaled_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y, float scale_factor);
 void blit_special_background(int background_code);
 void open_gl_check_error_status(const char *name_of_calling_function);
-void draw_gl_bg_textured_quad_at_screen_position(iso_image * our_floor_iso_image, int x, int y);
+void draw_gl_bg_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y);
 
 // blocks.c 
 int wall_orientation(int wall);
 void iso_load_bullet_surfaces(void);
-int iso_image_loaded(iso_image *);
-void get_iso_image_from_file_and_path(char *fpath, iso_image * our_iso_image, int use_offset_file);
-void load_iso_image(iso_image *, const char *, int);
-void make_sure_zoomed_surface_is_there(iso_image * our_iso_image);
+int iso_image_loaded(struct image *);
+void get_iso_image_from_file_and_path(char *fpath, struct image *our_iso_image, int use_offset_file);
+void load_iso_image(struct image *, const char *, int);
+void make_sure_zoomed_surface_is_there(struct image *our_iso_image);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void Load_Skill_Level_Button_Surfaces(void);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
@@ -249,16 +249,16 @@ void Load_Tux_Surfaces(void);
 void Load_Bullet_Surfaces(void);
 void Load_Blast_Surfaces(void);
 void load_floor_tiles(void);
-iso_image *get_obstacle_image(int);
+struct image *get_obstacle_image(int);
 void load_obstacle(int);
 void load_all_obstacles(void);
-void blit_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
-void blit_iso_image_to_screen_position(iso_image * our_iso_image, float pos_x, float pos_y);
-void sdl_highlight_iso_image(iso_image * our_iso_image, float pos_x, float pos_y);
-void blit_zoomed_iso_image_to_map_position(iso_image * our_iso_image, float pos_x, float pos_y);
-iso_image *get_item_shop_image(int type);
-iso_image *get_item_ingame_image(int type);
-iso_image *get_item_inventory_image(int type);
+void blit_iso_image_to_map_position(struct image *our_iso_image, float pos_x, float pos_y);
+void blit_iso_image_to_screen_position(struct image *our_iso_image, float pos_x, float pos_y);
+void sdl_highlight_iso_image(struct image *our_iso_image, float pos_x, float pos_y);
+void blit_zoomed_iso_image_to_map_position(struct image *our_iso_image, float pos_x, float pos_y);
+struct image *get_item_shop_image(int type);
+struct image *get_item_ingame_image(int type);
+struct image *get_item_inventory_image(int type);
 void load_all_items(void);
 
 // block_areas.c
@@ -605,7 +605,7 @@ void implant_backtrace_into_signal_handlers(void);
 void adapt_button_positions_to_screen_resolution(void);
 void ErrorMessage(const char *FunctionName, const char *ProblemDescription, int InformDevelopers, int IsFatal, ...);
 void ShowGenericButtonFromList(int ButtonIndex);
-int mouse_cursor_is_on_that_iso_image(float pos_x, float pos_y, iso_image *our_iso_image);
+int mouse_cursor_is_on_that_image(float pos_x, float pos_y, struct image *our_iso_image);
 int MouseCursorIsInRect(const SDL_Rect *, int, int);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
@@ -768,7 +768,7 @@ int list_empty(const list_head_t * head);
 void list_splice(list_head_t * list, list_head_t * head);
 void list_splice_init(list_head_t * list, list_head_t * head);
 
-int load_texture_atlas(const char *, const char *, char *filenames[], iso_image *, int);
+int load_texture_atlas(const char *, const char *, char *filenames[], struct image *, int);
 
 // chat.c
 void PlantCookie(const char *);

@@ -50,7 +50,7 @@ void blit_mouse_cursor(void)
 {
 	static int loaded = FALSE;
 	int i;
-	static iso_image mouse_cursors[16];
+	static struct image mouse_cursors[16];
 	char constructed_filename[2000];
 	int cursor_index = (-1);
 	point cursoff = { 0, 0 };

@@ -41,7 +41,7 @@ int AUTOMAP_TEXTURE_HEIGHT = 1024;
 #define AUTOMAP_SQUARE_SIZE 3
 #define AUTOMAP_COLOR 0x0FFFF
 
-static iso_image compass;
+static struct image compass;
 
 /**
  * This function clears out the Automap data.
@@ -256,7 +256,7 @@ static void display_automap_compass()
 		load_iso_image(&compass, "compass.png", FALSE);
 	}
 
-	blit_iso_image_to_screen_position(&compass, GameConfig.screen_width - compass.original_image_width - 10, 40);
+	blit_iso_image_to_screen_position(&compass, GameConfig.screen_width - compass.w - 10, 40);
 }
 
 /**
