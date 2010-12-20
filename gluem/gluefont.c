@@ -150,8 +150,13 @@ void create_font()
 
 			// Copy onto font surface
 			int dummy = max_h;
-			if (next_x + character->w >= font->w)
+			if (next_x + character->w >= font->w) {
+				int a;
+				for (a = next_x; a < font->w; a++) {
+					PutPixel(font, a, next_y, sentry_horiz);
+				}
 				next_destination(font, character->w, &next_x, &next_y, &dummy);
+			}
 			
 			target.x = next_x;
 			target.y = next_y;
