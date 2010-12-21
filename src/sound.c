@@ -65,7 +65,7 @@ void SetSoundFXVolume(float NewVolume)
 }
 
 	/**functions for threading*/
-void channelDone(int channel)
+void channel_done(int channel)
 {
 }
 
@@ -106,9 +106,9 @@ void play_sound(const char *SoundSampleFileName)
 
 static Mix_Chunk *dynamic_WAV_cache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
 static char *sound_names_in_dynamic_wav_chache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
-static char SoundChannelList[MAX_SOUND_CHANNELS];
+static char channel_must_be_freed[MAX_SOUND_CHANNELS];
 
-static Mix_Chunk *List_Of_Sustained_Release_WAV_Files[MAX_SOUND_CHANNELS];
+static Mix_Chunk *wav_files_to_free[MAX_SOUND_CHANNELS];
 static Mix_Music *Loaded_MOD_Files[ALL_MOD_MUSICS] = {
 	NULL
 };
@@ -215,36 +215,20 @@ void SetSoundFXVolume(float NewVolume)
 
 /** ================================= FUNCTIONS FOR THREADING ======================================== */
 
-//----------------------------------------------------------------------
-// We want to know in certain cases if a channel has finished playback
-// or not.  For this we keep track of channel finished messages.
-// This works as follows:
-//
-// * When a channel is starting playback via the function
-//   play_sound(), then we mark the channel as in use.
-//
-// * A callback function is set via SDL to THIS FUNCTION.
-//
-// * This function cancels any channel bits that have finished playback.
-//
-// ---------------------------------------------------------------------
-void channelDone(int channel)
+/**
+ * When play_sound() has been called, we want to free the memory once it is done
+ * playing.  This is done by setting this as the SDL callback function with
+ * Mix_ChannelFinished().
+ *
+ * When this function is called, it frees the sound as needed.
+ */
+void channel_done(int channel)
 {
+	if (channel_must_be_freed[channel])
+		Mix_FreeChunk(wav_files_to_free[channel]);
 
-	DebugPrintf(1, "\nCALLBACK FUNCTION INVOKED:  channel %d finished playback.\n", channel);
-	// Maybe the play_sound() function was called with argument 'non-wait',
-	// which means that it allocated a chunk and started playing, but was unable to free
-	// this chunk again, since it of course was not done playing by then.
-	//
-	// In this case we must do the unallocation work here, since now we
-	// know that the appropriate channel has stopped playing.
-	if (SoundChannelList[channel] == 2) {
-		DebugPrintf(1, "\nCALLBACK FUNCTION:  Detected soundchannel for sustained release.... freeing chunk...");
-		Mix_FreeChunk(List_Of_Sustained_Release_WAV_Files[channel]);
-	}
 	// Now we can safely mark the channel as unused again
-	//
-	SoundChannelList[channel] = 0;
+	channel_must_be_freed[channel] = 0;
 };
 
 /**
@@ -415,7 +399,7 @@ void play_sound(const char *SoundSampleFileName)
 	// Now we set a callback function, that should be called by SDL
 	// as soon as ANY other sound channel finishes playing...
 	//
-	Mix_ChannelFinished(channelDone);
+	Mix_ChannelFinished(channel_done);
 
 	// Now we try to load the requested sound file into memory...
 	//
@@ -503,19 +487,12 @@ void play_sound(const char *SoundSampleFileName)
 		//
 		Mix_FreeChunk(One_Shot_WAV_File);
 		return;
-
-	} else {
-		SoundChannelList[Newest_Sound_Channel] = 1;
 	}
 
 	// We do nothing here, cause we can't halt the channel and
 	// we also can't free the channel, that is still playing.
-	//
-	// All we will do is set the channels flag to 2, so that the
-	// callback function will know what to do when called:  TO
-	// FREE THE SOUND CHUNK!
-	SoundChannelList[Newest_Sound_Channel] = 2;
-	List_Of_Sustained_Release_WAV_Files[Newest_Sound_Channel] = One_Shot_WAV_File;
+	channel_must_be_freed[Newest_Sound_Channel] = 1;
+	wav_files_to_free[Newest_Sound_Channel] = One_Shot_WAV_File;
 }
 
 //aep: wrapper for the play_sound_cached_v
@@ -623,9 +600,6 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 		fprintf(stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n", SoundSampleFileName, Mix_GetError());
 		ErrorMessage(__FUNCTION__, "\
 		                           The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-	}
-	else {
-		// SoundChannelList[ Newest_Sound_Channel ] = 1;
 	}
 }
 
