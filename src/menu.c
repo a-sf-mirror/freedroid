@@ -83,11 +83,6 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
 {
 	char open_gl_string[2000];
 
-	// We need to prepare the background for the menu, so that
-	// it can be accessed with proper speed later...
-	//
-	InitiateMenu(background_code);
-
 	// Maybe if this is the very first startup menu, we should also print
 	// out some status variables like whether using OpenGL or not DIRECTLY
 	// ON THE MENU SCREEN...
@@ -196,6 +191,10 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 		MenuPosition = 1;
 
 	first_menu_item_pos_y = (GameConfig.screen_height - NumberOfOptionsGiven * h) / 2;
+
+	if (background_code != -1) {
+		blit_special_background(background_code);
+	}
 
 	print_menu_text(InitialText, MenuTexts, first_menu_item_pos_y, background_code, MenuFont);
 
@@ -783,31 +782,6 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 	game_status = old_game_status;
 	return ret;
 }
-
-/**
- * This function prepares the screen for the big Escape menu and 
- * its submenus.  This means usual content of the screen, i.e. the 
- * combat screen and top status bar, is "faded out", the rest of 
- * the screen is cleared.  This function resolves some redundance 
- * that occured since there are so many submenus needing this.
- */
-void InitiateMenu(int background_code)
-{
-	// Here comes the standard initializer for all the menus and submenus
-	// of the big escape menu.  This prepares the screen, so that we can
-	// write on it further down.
-	//
-	SDL_SetClipRect(Screen, NULL);
-
-	if (background_code == (-1)) {
-		AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
-	} else {
-		// DisplayImage ( find_file ( BackgroundToUse , GRAPHICS_DIR, FALSE ) );
-		blit_special_background(background_code);
-	}
-
-	SDL_SetClipRect(Screen, NULL);
-};				// void InitiateMenu(void)
 
 /**
  * This function provides a convenient cheat menu, so that any 
@@ -1773,7 +1747,7 @@ static void Droid_fill(char *MenuTexts[10])
 static char *get_new_character_name(void)
 {
 	char *str;
-	InitiateMenu(NE_TITLE_PIC_BACKGROUND_CODE);
+	blit_special_background(NE_TITLE_PIC_BACKGROUND_CODE);
 
 	if (!skip_initial_menus)
 		str = GetString(MAX_CHARACTER_NAME_LENGTH - 1, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
@@ -1849,7 +1823,7 @@ static int do_savegame_selection_and_act(int action)
 		break;
 	}
 
-	InitiateMenu(NE_TITLE_PIC_BACKGROUND_CODE);
+	blit_special_background(NE_TITLE_PIC_BACKGROUND_CODE);
 
 	// We use empty strings to denote the end of any menu selection, 
 	// therefore also for the end of the list of saved characters.
