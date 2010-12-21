@@ -166,8 +166,20 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 		if (AlarmItem->current_duration < 3)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
+#ifdef HAVE_LIBGL
+		if (use_open_gl) {
+			glColor3f(1.0, (float)(AlarmItem->current_duration - 1) / (4), 0.0);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		}
+#endif
 		struct image *img = get_item_inventory_image(ItemImageCode);
 		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+#ifdef HAVE_LIBGL
+		if (use_open_gl) {
+			glColor3f(1.0, 1.0, 1.0);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+		}
+#endif
 	}
 }
 
