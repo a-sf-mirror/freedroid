@@ -1460,14 +1460,16 @@ void show_quick_inventory(void)
 	int i;
 	SDL_Rect target_rect;
 	int index;
+	char text[5] = "";
 
 	// Now we can blit all the objects in the quick inventory, but of course only
 	// those small objects, that have a 1x1 inventory grid size, so that they really
 	// can be drawn from the 'belt' that is actually the quick inventory.
 
 	for (i = 0; i < 10; i++) {
-		PutCharFont(Screen, Messagestat_BFont, UNIVERSAL_COORD_W(130 + i * 40 - 9),
-					GameConfig.screen_height - UNIVERSAL_COORD_H(16), (i < 9) ? ('1' + i) : '0');
+		sprintf(text, "%d", i < 9 ? i : 0);
+		PutString(Screen, UNIVERSAL_COORD_W(130 + i * 40 - 9),
+					GameConfig.screen_height - UNIVERSAL_COORD_H(16), text);
 		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
 			&& (Me.Inventory[index].inventory_position.x == i)
 			&& (Me.Inventory[index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1))
