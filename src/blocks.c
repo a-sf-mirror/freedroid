@@ -110,9 +110,6 @@ static void load_item_graphics(int item_type)
 Inventory image for item type %d, at path %s was not found", PLEASE_INFORM, IS_FATAL, item_type, fpath);
 	}
 
-	if (use_open_gl)
-		flip_image_vertically(original_img);
-
 	// Now we try to guess the inventory image tile sizes (in the 
 	// inventory screen) from the pixel size of the inventory image
 	// loaded.

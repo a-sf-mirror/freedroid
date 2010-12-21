@@ -136,7 +136,7 @@ static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 		TargetRect.y = 0;
 
 	struct image *img = get_item_inventory_image(ItemImageCode);
-	blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+	display_image_on_screen(img, TargetRect.x, TargetRect.y);
 }
 
 /**
@@ -166,9 +166,8 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 		if (AlarmItem->current_duration < 3)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
-		//XXX color filters?
 		struct image *img = get_item_inventory_image(ItemImageCode);
-		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y);
 	}
 }
 
@@ -3888,7 +3887,7 @@ static void show_inventory_screen(void)
 	TargetRect.y = InventoryRect.y + DRIVE_RECT_Y;
 	if (item_held_in_hand != &Me.drive_item && (Me.drive_item.type != (-1))) {
 		struct image *img = get_item_inventory_image(Me.drive_item.type);
-		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y);
 	}
 
 	// Now we display the item in the influencer weapon slot
@@ -3901,7 +3900,7 @@ static void show_inventory_screen(void)
 		TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_size.x);
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_size.y);
 		struct image *img = get_item_inventory_image(Me.weapon_item.type);
-		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y);
 
 		// Maybe this is also a 2-handed weapon.  In this case we need to blit the
 		// weapon a second time, this time in the center of the shield rectangle to
@@ -3914,7 +3913,7 @@ static void show_inventory_screen(void)
 			TargetRect.y = InventoryRect.y + SHIELD_RECT_Y;
 			TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_size.x);
 			TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_size.y);
-			blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+			display_image_on_screen(img, TargetRect.x, TargetRect.y);
 		}
 	}
 	// Now we display the item in the influencer armour slot
@@ -3923,7 +3922,7 @@ static void show_inventory_screen(void)
 	TargetRect.y = InventoryRect.y + ARMOUR_RECT_Y;
 	if (item_held_in_hand != &Me.armour_item && (Me.armour_item.type != (-1))) {
 		struct image *img = get_item_inventory_image(Me.armour_item.type);
-		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display the item in the influencer shield slot
 	//
@@ -3936,7 +3935,7 @@ static void show_inventory_screen(void)
 		//
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.shield_item.type].inv_size.y);
 		struct image *img = get_item_inventory_image(Me.shield_item.type);
-		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display the item in the influencer special slot
 	//
@@ -3944,7 +3943,7 @@ static void show_inventory_screen(void)
 	TargetRect.y = InventoryRect.y + HELMET_RECT_Y;
 	if (item_held_in_hand != &Me.special_item && (Me.special_item.type != (-1))) {
 		struct image *img = get_item_inventory_image(Me.special_item.type);
-		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y);
 	}
 	// Now we display all the items the influencer is carrying with him
 	//
@@ -3989,7 +3988,7 @@ static void show_inventory_screen(void)
 		TargetRect.y = User_Rect.y + INVENTORY_RECT_Y + INV_SUBSQUARE_HEIGHT * Me.Inventory[SlotNum].inventory_position.y;
 
 		struct image *img = get_item_inventory_image(Me.Inventory[SlotNum].type);
-		blit_iso_image_to_screen_position(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y);
 
 		// Show amount
 		if (ItemMap[Me.Inventory[SlotNum].type].item_group_together_in_inventory) {

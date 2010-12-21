@@ -196,7 +196,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 	
 	struct image *img = get_item_shop_image(ShowItem->type);
 	if (img) {
-		blit_iso_image_to_screen_position(img, TargetRectangle.x, TargetRectangle.y);
+		display_image_on_screen(img, TargetRectangle.x, TargetRectangle.y);
 	}
 
 	if (item_is_currently_equipped(ShowItem)) {

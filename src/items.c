@@ -1479,7 +1479,7 @@ void show_quick_inventory(void)
 
 			struct image *img = get_item_inventory_image(Me.Inventory[index].type);
 
-		    blit_iso_image_to_screen_position(img, target_rect.x, target_rect.y);	
+		    display_image_on_screen(img, target_rect.x, target_rect.y);	
 		}
 	}
 }

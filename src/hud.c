@@ -342,7 +342,7 @@ void ShowCurrentWeapon(void)
 	float y = UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y + CURRENT_WEAPON_RECT_H / 2) -
 	    img->h / 2;
 
-	blit_iso_image_to_screen_position(img, x, y);
+	display_image_on_screen(img, x, y);
 
 	if (!ItemMap[Me.weapon_item.type].item_gun_use_ammunition)
 		return;

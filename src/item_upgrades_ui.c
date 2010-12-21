@@ -316,7 +316,7 @@ void show_item_upgrade_ui()
 					rect = rects.socket_slots[i];
 					rect.x += (rect.w - img->w) / 2;
 					rect.y += (rect.h - img->h) / 2;
-					blit_iso_image_to_screen_position(img, rect.x, rect.y);
+					display_image_on_screen(img, rect.x, rect.y);
 				}
 			}
 		}

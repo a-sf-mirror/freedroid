@@ -278,7 +278,7 @@ void show_addon_crafting_ui()
 			icon_rect.h = RECIPE_LIST_ROW_HEIGHT;
 			icon_rect.x = rect.x + (icon_rect.w - img->w) / 2;
 			icon_rect.y = rect.y + (icon_rect.h - img->h) / 2;
-			blit_iso_image_to_screen_position(img, icon_rect.x, icon_rect.y);
+			display_image_on_screen(img, icon_rect.x, icon_rect.y);
 		}
 		rect.y += rect.h;
 	}

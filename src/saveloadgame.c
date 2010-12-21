@@ -169,8 +169,6 @@ void SaveThumbnailOfGame(void)
 	if (!our_config_dir)
 		return;
 
-	// First we save the full ship information, same as with the level editor
-	//
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
 
 	AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
