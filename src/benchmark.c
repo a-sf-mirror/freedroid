@@ -59,8 +59,8 @@ static void text_bench()
 	while (nb--) {
 		PutString(Screen, 0, 0, str);
 	}
-
-	our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
+		
+	our_SDL_flip_wrapper();
 	timer_stop();
 }
 
@@ -172,7 +172,7 @@ void benchmark()
 	ClearGraphMem();
 	sprintf(str, "Testing \"%s\"...", do_benchmark);
 	PutString(Screen, 10, 100, str);
-	our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
+	our_SDL_flip_wrapper();
 
 
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
