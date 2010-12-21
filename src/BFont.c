@@ -283,6 +283,8 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 void PutString(SDL_Surface *surface, int x, int y, char *text)
 {
 	int i = 0;
+	
+	start_image_batch();
 
 	while (text[i] != '\0') {
 		int letter_spacing = get_letter_spacing(GetCurrentFont());
@@ -291,6 +293,8 @@ void PutString(SDL_Surface *surface, int x, int y, char *text)
 		}
 		i++;
 	}
+
+	end_image_batch();
 }
 
 /**

@@ -483,6 +483,8 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 		Temp_Clipping_Rect.h = GameConfig.screen_height;
 	}
 
+	start_image_batch();
+
 	// Now we can start to print the actual text to the screen.
 	//
 	// The running text pointer must be initialized.
@@ -524,6 +526,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 
 	SDL_SetClipRect(Screen, &store_clip);	// restore previous clip-rect 
 
+	end_image_batch();
 	return nblines;
 }
 
