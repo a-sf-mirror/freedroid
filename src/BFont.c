@@ -263,28 +263,10 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 
 	if ((c != ' ') && (c != '\n')) {
 		if (use_open_gl) {
-	
-
 			SDL_GetClipRect(Surface, &clipping_rect);
 
 			if ((dest.x < clipping_rect.x + clipping_rect.w) && (dest.x >= clipping_rect.x)) {
-#ifdef HAVE_LIBGL
-				// We need to simulate the clipping as would be done by SDL.
-				// We simply do "all or none" clipping for left and right, but for the top/bottom of the screen,
-				// we use GL to do proper clipping in order not to see a whole line disappear at once.
-
-				GLdouble eqntop[4] = { 0.0, 1.0, 0.0, -clipping_rect.y };
-				GLdouble eqnbottom[4] = { 0.0, -1.0, 0.0, clipping_rect.y + clipping_rect.h };
-				glClipPlane(GL_CLIP_PLANE0, eqntop);
-				glEnable(GL_CLIP_PLANE0);
-				glClipPlane(GL_CLIP_PLANE1, eqnbottom);
-				glEnable(GL_CLIP_PLANE1);
-				
 				display_image_on_screen(img, dest.x, dest.y);
-				glDisable(GL_CLIP_PLANE0);
-				glDisable(GL_CLIP_PLANE1);
-#endif
-
 			}
 		} else {
 			display_image_on_screen(img, dest.x, dest.y);
@@ -293,7 +275,7 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 
 	return CharWidth(Font, c);
 
-};				// int PutCharFont (SDL_Surface * Surface, BFont_Info * Font, int x, int y, int c)
+}
 
 /**
  *
