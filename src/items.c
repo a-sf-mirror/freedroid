@@ -1468,7 +1468,7 @@ void show_quick_inventory(void)
 
 	for (i = 0; i < 10; i++) {
 		sprintf(text, "%d", i < 9 ? i : 0);
-		PutString(Screen, UNIVERSAL_COORD_W(130 + i * 40 - 9),
+		PutStringFont(Screen, Messagestat_BFont, UNIVERSAL_COORD_W(130 + i * 40 - 9),
 					GameConfig.screen_height - UNIVERSAL_COORD_H(16), text);
 		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
 			&& (Me.Inventory[index].inventory_position.x == i)
