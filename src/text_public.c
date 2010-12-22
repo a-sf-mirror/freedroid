@@ -359,7 +359,7 @@ void
 ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString,
 			       const char *DefaultValueString, void *TargetValue, char *EndOfSearchSectionPointer)
 {
-	char OldTerminaterCharValue;
+	char OldTerminaterCharValue = 0;
 	const char *SourceLocation;
 
 	// We shortly make a termination char into the string.
