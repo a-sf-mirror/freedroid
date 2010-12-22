@@ -363,8 +363,10 @@ ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePrecee
 	const char *SourceLocation;
 
 	// We shortly make a termination char into the string.
-	OldTerminaterCharValue = EndOfSearchSectionPointer[0];
-	EndOfSearchSectionPointer[0] = 0;
+	if (EndOfSearchSectionPointer) {
+		OldTerminaterCharValue = EndOfSearchSectionPointer[0];
+		EndOfSearchSectionPointer[0] = 0;
+	}
 
 	// Now we locate the spot, where we finally will find our value
 	SourceLocation = strstr(SearchBeginPointer, ValuePreceedText);
@@ -384,9 +386,10 @@ sscanf using a certain format string failed!\n\
 This indicates a corrupted or seriously outdated game data or saved game file.", PLEASE_INFORM, IS_FATAL);
 	}
 	// Now that we are done, we restore the given SearchArea to former glory
-	EndOfSearchSectionPointer[0] = OldTerminaterCharValue;
-
-};				// void ReadValueFromString( ... )
+	if (EndOfSearchSectionPointer) {
+		EndOfSearchSectionPointer[0] = OldTerminaterCharValue;
+	}
+}
 
 /**
  * This function should analyze a given passage of text, locate an 
