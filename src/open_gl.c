@@ -697,6 +697,7 @@ draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 				     our_iso_image->tex_x1, our_iso_image->tex_y1);
 
 	if (highlight_texture) {
+		glEnable(GL_BLEND);
 		glBlendFunc(GL_ONE, GL_ONE);
 
 		// Now we draw our quad AGAIN!
