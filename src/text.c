@@ -363,15 +363,13 @@ int ScrollText(char *Text, int background_code)
 			speed = 0;
 		}
 
-		SDL_Delay(30);
-
-	}			// while !Space_Pressed 
+		SDL_Delay(10);
+	}
 
 	while (MouseLeftPressed()) ;	// so that we don't touch again immediately.
 
 	return OK;
-
-};				// int ScrollText ( ... )
+}
 
 /**
  * This function sets a new text, that will be displayed in huge font 
