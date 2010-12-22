@@ -593,6 +593,7 @@ int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, int bac
 int chat_do_menu_selection_flagged(char **MenuTexts, enemy *chat_droid);
 int chat_do_menu_selection(char **MenuTexts, enemy *chat_droid);
 void StartupMenu(void);
+void InitiateMenu(int background_code);
 void Cheatmenu(void);
 void EscapeMenu(void);
 

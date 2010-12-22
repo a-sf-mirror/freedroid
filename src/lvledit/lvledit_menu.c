@@ -38,7 +38,6 @@
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_validator.h"
 #include "lvledit/lvledit_menu.h"
-#include "lvledit/lvledit_display.h"
 
 #include "mapgen/mapgen.h"
 
@@ -94,7 +93,7 @@ void EditLevelDimensions(void)
 
 	while (!proceed_now) {
 
-		leveleditor_display();
+		InitiateMenu(-1);
 
 		i = 0;
 		sprintf(Options[i], _("North"));
@@ -231,7 +230,7 @@ static void SetLevelInterfaces(void)
 
 	while (!proceed_now) {
 		EditLevel = curShip.AllLevels[Me.pos.z];
-		leveleditor_display();
+		InitiateMenu(-1);
 
 		i = 0;
 
@@ -437,7 +436,7 @@ static void AddRemLevel(void)
 	game_status = INSIDE_MENU;
 
 	while (!proceed_now) {
-		leveleditor_display();
+		InitiateMenu(-1);
 		i = 0;
 		MenuTexts[i++] = _("Add New Level");
 		MenuTexts[i++] = _("Remove Current Level");
@@ -552,7 +551,7 @@ static void LevelOptions(void)
 
 	while (!proceed_now) {
 
-		leveleditor_display();
+		InitiateMenu(-1);
 
 		i = 0;
 		sprintf(Options[i], _("Level"));
@@ -832,7 +831,7 @@ static void AdvancedOptions(void)
 
 	while (!proceed_now) {
 
-		leveleditor_display();
+		InitiateMenu(-1);
 
 		i = 0;
 		MenuTexts[i++] = _("Run Map Level Validator");
@@ -910,7 +909,7 @@ int DoLevelEditorMainMenu()
 
 	while (!proceed_now) {
 
-		leveleditor_display();
+		InitiateMenu(-1);
 
 		i = 0;
 		sprintf(Options[i], _("Level"));
