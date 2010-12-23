@@ -49,7 +49,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"What is a fascist?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"What is ...", "NO_WAIT")
 	npc_says(_"LALALALALA - I'm not hearing you. I have my fingers in my ears and just go - LALALALALA")

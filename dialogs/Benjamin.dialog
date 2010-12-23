@@ -114,7 +114,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"Sign up for a course in improving my ranged weapons skill. (cost 100 circuits, 3 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"Yes, I'd like some basic training in ranged combat.")
 	cost = 100
@@ -135,7 +135,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"Yes I want even more training. (cost 200 circuits, 6 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"So lets start the second course?")
 	cost = 200
@@ -152,7 +152,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=23 Text=_"Yes I'm eager for more training. (cost 300 circuits, 9 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"So can you help me get even better with guns?")
 	cost = 300
@@ -170,7 +170,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=24 Text=_"Yes I accept. (cost 400 circuits, 12 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"I'd like to learn how to be a master shot.")
 	cost = 400
@@ -187,7 +187,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=25 Text=_"Yes I want to become a god in ranged combat. (cost 500 circuits, 15 training points)"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"Teach me how to be at one with my weapon.")
 	cost = 500
@@ -205,7 +205,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=27 Text="BUG, REPORT ME! node27 Benjamin"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says_random(
 		_"You need more gold.",
@@ -219,7 +219,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=28 Text="BUG, REPORT ME! node28 Benjamin"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says_random(
 		_"You are not ready. Go kill some bots and come back.",

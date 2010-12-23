@@ -36,7 +36,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=2 Text="BUG, REPORT ME! engel_sub node2 -- checks"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	rev = get_program_revision("Extract bot parts")
 	if (can_tux_train(50, 1)) then
@@ -70,7 +70,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=10 Text="BUG, REPORT ME! engel_sub node10 -- 1st LESSON"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Let us start with entropy inverters. This is quite simple.")
 	npc_says(_"Just take a hammer and hit the bot sehr hard on the head.") -- sehr = very
@@ -80,7 +80,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=20 Text="BUG, REPORT ME! engel_sub node20 -- 2nd LESSON"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"How about... Plasma transistors? Trivial.")
 	npc_says(_"Remove the bot's engine and look around somewhere close to the battery.")
@@ -90,7 +90,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=30 Text="BUG, REPORT ME! engel_sub node30 -- 3rd LESSON"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Hmmm... Ah, gut. Superconductors.")
 	npc_says(_"They are relatively easy to get out.")
@@ -101,7 +101,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=40 Text="BUG, REPORT ME! engel_sub node40 -- 4th LESSON"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"I will tell you everything about matter-antimatter converters.")
 	npc_says(_"Yes... Converters are a problem.")
@@ -113,7 +113,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=50 Text="BUG, REPORT ME! engel_sub node50 -- 5th LESSON"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"I will teach you about tachyon converters.")
 	npc_says(_"Tachyons are very interesting particles. Many stories have been told about them.")
@@ -125,7 +125,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=70 Text="BUG, REPORT ME! engel_sub node70 -- NO MORE LESSONS"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?") -- nein = no , ja = yes, in this case it can be understood as "did you understand?"
 	end_dialog()

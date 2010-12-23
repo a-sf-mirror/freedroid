@@ -233,7 +233,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=40 Text="BUG, REPORT ME! kevin node40"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says_random(
 		_"Hold on, I don't seem to have that much money right now.",
@@ -248,7 +248,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=41 Text="BUG, REPORT ME! kevin node41"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"Sorry, my memory databank is filled to the brim right now. Can't learn more until I get some more experience.")
 	npc_says_random(

@@ -33,7 +33,7 @@ EveryTime LuaCode={
 ----------------------------------------------------------------------
 
 Nr=0 Text="cd .."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("cd ..", "NO_WAIT")
 	end_dialog()
@@ -41,7 +41,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"./est_repair.plx"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"./est_repair.plx", "NO_WAIT")
 	repair_level = get_program_revision("Repair equipment")
@@ -68,7 +68,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"./repair.plx"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"./repair.plx", "NO_WAIT")
 	npc_says(_"Repair in progress.", "NO_WAIT")
@@ -88,7 +88,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=30 Text=_"./settings.plx"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"./settings.plx", "NO_WAIT")
 	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
@@ -100,7 +100,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"Yes, always ask."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
 	npc_says(_"Settings saved", "NO_WAIT")
@@ -113,7 +113,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=32 Text=_"No, don't ask"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
 	npc_says(_"Settings saved", "NO_WAIT")
@@ -126,7 +126,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"./hostname"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"./hostname", "NO_WAIT")
 	npc_says(_"Welcome to the hostname menu.", "NO_WAIT")
@@ -139,7 +139,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=41 Text=_"Yes"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"Yes", "NO_WAIT")
 	cli_says(_"New Name: ", "NO_WAIT")
@@ -153,7 +153,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=42 Text=_"No"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"No", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
@@ -162,7 +162,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=43 Text="BUG, REPORT ME! aftertakeover_sub node43"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(new_name,"NO_WAIT")
 	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? [Y/N]", "NO_WAIT")
@@ -172,7 +172,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=44 Text=_"Yes"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"Yes", "NO_WAIT")
 	display_console_message(_"Renamed [b]"..bot_name().._"[/b] to [b]"..new_name.."[/b].")
@@ -184,7 +184,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"No"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"No", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
@@ -193,7 +193,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text="BUG, REPORT ME! aftertakeover_sub node99"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"cd ..", "NO_WAIT")
 	end_dialog()

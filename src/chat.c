@@ -56,7 +56,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog);
 static void clear_dialog_option(dialogue_option * d)
 {
 	d->option_text = "";
-	d->option_sample_file_name = "";
+	d->no_text = 0;
 	d->lua_code = NULL;
 	d->exists = 0;
 }
@@ -67,13 +67,10 @@ static void clear_dialog_option(dialogue_option * d)
 static void delete_one_dialog_option(int i, int FirstInitialisation)
 {
 	// If this is not the first initialisation, we have to free the allocated
-	// strings first, or we'll be leaking memory otherwise...
-	//
+	// strings first, or we'll be leaking memory...
 	if (!FirstInitialisation) {
 		if (strlen(ChatRoster[i].option_text))
 			free(ChatRoster[i].option_text);
-		if (strlen(ChatRoster[i].option_sample_file_name))
-			free(ChatRoster[i].option_sample_file_name);
 	}
 
 	if (ChatRoster[i].lua_code)
@@ -219,7 +216,7 @@ static void load_dialog(const char *fpath)
 #define CHAT_CHARACTER_BEGIN_STRING "Beginning of new chat dialog for character=\""
 #define CHAT_CHARACTER_END_STRING "End of chat dialog for character"
 #define NEW_OPTION_BEGIN_STRING "\nNr="
-#define NO_WAIT_OPTION_STRING "\nOptionSample=\"NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER\""
+#define NO_TEXT_OPTION_STRING "NO_TEXT"
 
 	// Read the whole chat file information into memory
 	ChatData = ReadAndMallocAndTerminateFile(fpath, CHAT_CHARACTER_END_STRING);
@@ -243,7 +240,6 @@ static void load_dialog(const char *fpath)
 	// to decode from this section.
 	//
 	NumberOfOptionsInSection = CountStringOccurences(SectionPointer, NEW_OPTION_BEGIN_STRING);
-	DebugPrintf(CHAT_DEBUG_LEVEL, "\nWe have counted %d Option entries in this section.", NumberOfOptionsInSection);
 
 	// Now we see which option index is assigned to this option.
 	// It may happen, that some numbers are OMITTED here!  This
@@ -255,7 +251,6 @@ static void load_dialog(const char *fpath)
 		ReadValueFromString(SectionPointer, NEW_OPTION_BEGIN_STRING, "%d",
 				    &OptionIndex, SectionPointer + strlen(NEW_OPTION_BEGIN_STRING) + 50);
 
-		DebugPrintf(CHAT_DEBUG_LEVEL, "\nFound New Option entry.  Index found is: %d. ", OptionIndex);
 		SectionPointer++;
 
 		// Find the end of this dialog option
@@ -272,15 +267,7 @@ static void load_dialog(const char *fpath)
 			ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromData(SectionPointer, "Text=_\"", "\"");
 		}
 
-		DebugPrintf(CHAT_DEBUG_LEVEL, "\nText found : \"%s\".", ChatRoster[OptionIndex].option_text);
-
-		ChatRoster[OptionIndex].option_sample_file_name =
-		    ReadAndMallocStringFromDataOptional(SectionPointer, "OptionSample=\"", "\"");
-
-		if (!ChatRoster[OptionIndex].option_sample_file_name)
-			ChatRoster[OptionIndex].option_sample_file_name = strdup("Sorry_No_Voice_Sample_Yet_0.wav");
-
-		DebugPrintf(CHAT_DEBUG_LEVEL, "\nOptionSample found : \"%s\".", ChatRoster[OptionIndex].option_sample_file_name);
+		ChatRoster[OptionIndex].no_text = strstr(SectionPointer, NO_TEXT_OPTION_STRING) > 0;
 
 		if (strstr(SectionPointer, "LuaCode")) {
 			ChatRoster[OptionIndex].lua_code = ReadAndMallocStringFromData(SectionPointer, "LuaCode={", "}");
@@ -498,30 +485,26 @@ void run_subdialog(const char *tmp_filename)
 }
 
 /**
- *
- *
+ * Process a chat option:
+ * - Echo the option text of the chosen option, unless NO_TEXT is set.
+ * - Run the associated LUA code.
  */
-static void ProcessThisChatOption(int MenuSelection, enemy *ChatDroid)
+static void process_this_chat_option(int menu_selection, enemy *chat_droid)
 {
-	//reset chat control variables for this option
+	// Reset chat control variables for this option
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
 
-	// Now a menu section has been made.  We do the reaction:
-	// say the samples and the replies, later we'll set the new option values
-	//
-	// But it might be the case that this option is more technical and not accompanied
-	// by any reply.  This case must also be caught.
-	//
-	if (strcmp(ChatRoster[MenuSelection].option_sample_file_name, "NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER")) {
+	// Echo option text
+	if (!ChatRoster[menu_selection].no_text) {
 		autostr_append(chat_log.text, "\1- ");
-		GiveSubtitleNSample(L_(ChatRoster[MenuSelection].option_text),
-				    ChatRoster[MenuSelection].option_sample_file_name, ChatDroid);
+		GiveSubtitleNSample(L_(ChatRoster[menu_selection].option_text), "FIXME", chat_droid);
 		autostr_append(chat_log.text, "\n");
 	}
-	if (ChatRoster[MenuSelection].lua_code) {
-		run_lua(ChatRoster[MenuSelection].lua_code);
-	}
+
+	// Run LUA associated with this selection
+	if (ChatRoster[menu_selection].lua_code)
+		run_lua(ChatRoster[menu_selection].lua_code);
 }
 
 /**
@@ -589,7 +572,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 			chat_control_next_node = END_ANSWER;
 		}
 
-		ProcessThisChatOption(chat_control_next_node, ChatDroid);
+		process_this_chat_option(chat_control_next_node, ChatDroid);
 			
 		if (chat_control_end_dialog)
 			goto wait_click_and_out;

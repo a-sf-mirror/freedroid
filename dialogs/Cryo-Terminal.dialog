@@ -59,7 +59,7 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=1 Text=_"appointments and visiting hours"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"appointments and visiting hours", "NO_WAIT")
 	npc_says(_"Cryogenic Solutions operates 24 hours a day every day of the year.")
@@ -72,7 +72,7 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=2 Text=_"pricing"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"pricing", "NO_WAIT")
 	npc_says(_"Seeing the distant future is priceless.")
@@ -84,7 +84,7 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=3 Text=_"advantages"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"	
+NO_TEXT	
 LuaCode={
 	tux_says(_"advantages", "NO_WAIT")
 	npc_says(_"Are you looking to experience a whole new reality?")
@@ -97,7 +97,7 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=50 Text="*#06#"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"	
+NO_TEXT	
 LuaCode={
 	add_cookie("cryo_term_unlocked")
 	tux_says("*#06#", "NO_WAIT")
@@ -112,7 +112,7 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=51 Text=_"guest mode"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"	
+NO_TEXT	
 LuaCode={
 	del_cookie("cryo_term_unlocked")
 	npc_says(_"Entering user mode...")
@@ -138,7 +138,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=70 Text=_"open gates"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"open gates", "NO_WAIT")
 	npc_says(_"Access granted. Opening gates ...")
@@ -151,7 +151,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=80 Text=_"close gates"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"close gates", "NO_WAIT")
 	npc_says(_"Access granted. Closing gates ...")
@@ -164,7 +164,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"leave"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"leave", "NO_WAIT")
 	npc_says(_"Exiting Session")

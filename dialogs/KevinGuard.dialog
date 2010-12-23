@@ -171,7 +171,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later, tin can."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"EOT ACKNOWLEDGED. CONNECTION CLOSED.")
 	npc_says(_"GOODBYE.")

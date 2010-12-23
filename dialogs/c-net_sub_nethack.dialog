@@ -29,7 +29,7 @@ EveryTime LuaCode={ next(0) }
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"nethack" -- start a new nethack game
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(0)
 	-- Start at level 1, amulet at level 7, win with amulet at level 1
@@ -115,7 +115,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=8 Text="JOB ASSINGMENT - BUG NODE 8 c-net sub nethack" --hidden
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(3,4,5,6,7)
 	if (selection == 0) then 
@@ -185,7 +185,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=13 Text="RACE ASSINGMENT - BUG NODE 13 c-net sub nethack " --hidden
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(9,10,11,12)
 	if (selection == 0) then 
@@ -240,7 +240,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=16 Text="GENDER SELECTION - BUG NODE 16 c-net sub nethack" --hidden
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(14,15)
 	if (selection == 0) then 
@@ -259,7 +259,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=20 Text="START GAME - BUG NODE 20 c-net sub nethack" --hidden
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	-- Goddess/Gods don't give you a choice
 	random_var = math.random(3)
@@ -306,7 +306,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=30 Text="AT A NEW LEVEL - BUG NODE 30 c-net sub nethack" -- Description + Random Encounter
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	if (n_level < 0) then n_level = 0 end
 	hide(62,63,30)
@@ -539,7 +539,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=60 Text="CALCULATE DAMAGE - BUG NODE 60 c-net sub nethack"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(50,51,52,53,54)
 	if (n_emtype == 0) then 
@@ -612,7 +612,7 @@ LuaCode={
 
 ----------------------------------------------------------------------
 Nr=61 Text="END LEVEL - BUG NODE 61 c-net sub nethack"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(50,51,52,53,54)
 	if ((yendor == "yes") and (math.random(3)>2)) then --have the Amulet of Yendor
@@ -647,7 +647,7 @@ LuaCode={
 -- 70s- End Dialog
 ----------------------------------------------------------------------
 Nr=70 Text="END GAME W/ WIN/LOSS - BUG NODE 70 c-net sub nethack"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(20,62,63,30,50,51,52,53,54,60,99)
 	end_dialog()

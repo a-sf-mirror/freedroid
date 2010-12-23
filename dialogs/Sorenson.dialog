@@ -137,22 +137,22 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=60 Text=_"Tux."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={ next(70) }
 ----------------------------------------------------------------------
 
 Nr=61 Text=_"Tux, the Linarian"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={ next(70) }
 ----------------------------------------------------------------------
 
 Nr=62 Text=_"I accept the contract, Tux"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={ next(70) }
 ----------------------------------------------------------------------
 
 Nr=63 Text=_"Elbereth"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"4444! 17 burn5! 7'm m3171n9!")
 	npc_says(_"44444444444444444!")
@@ -183,7 +183,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=66 Text=_"X"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 	hide(66)

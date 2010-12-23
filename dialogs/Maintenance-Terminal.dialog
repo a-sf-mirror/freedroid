@@ -159,7 +159,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"BUG, REPORT ME! Maintenance-Terminal node11 -- Disable Guns"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Disabling gun 01 ...")
 	change_obstacle_state("Maintenance-gun1", "disabled")

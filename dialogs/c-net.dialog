@@ -39,7 +39,7 @@ EveryTime LuaCode={
 ----------------------------------------------------------------------
 
 Nr=0 Text="guest"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	username = get_player_name()
 	terminal = username .. "@c-net:~$"
@@ -67,7 +67,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=1 Text="root"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("root", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
@@ -86,7 +86,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=2 Text="lily"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("lily", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
@@ -104,7 +104,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=3 Text="cpain"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("cpain", "NO_WAIT")
 	cli_says(_"Password: ", "NO_WAIT")
@@ -123,7 +123,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=9 Text="BUG, REPORT ME! cnet node9" 
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Login incorrect", "NO_WAIT")
 	npc_says(_"Connection to c-net terminated.")
@@ -132,7 +132,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=10 Text="cd info_commands/" -- ../ date finger users whoami 
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	terminal = username .. "@c-net:~/info_commands$"
 	npc_says(" ", "NO_WAIT")
@@ -142,7 +142,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=11 Text="cd ../"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
@@ -152,7 +152,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=12 Text="date"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 --	npc_says(get_date() ,"NO_WAIT")
 	tux_says("date", "NO_WAIT")
@@ -162,7 +162,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=13 Text="finger"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("finger", "NO_WAIT")
 	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
@@ -176,7 +176,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=14 Text="users"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("users", "NO_WAIT")
 	npc_says("bossman cpain guest lily", "NO_WAIT")
@@ -186,7 +186,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=15 Text="whoami"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("whoami", "NO_WAIT")
 	npc_says(username, "NO_WAIT")
@@ -195,7 +195,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=16 Text="uname"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("uname", "NO_WAIT")
 	npc_says("Nkernel", "NO_WAIT")
@@ -204,7 +204,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=20 Text="cd file_commands/" -- ../ ls readdrive ./statistics.pl
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	terminal = username .. "@c-net:~/file_commands$"
 	npc_says(" ", "NO_WAIT")
@@ -214,7 +214,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=21 Text="cd ../"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
@@ -224,7 +224,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 --Nr=22 Text="ls"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("ls", "NO_WAIT")
 	npc_says(".", "NO_WAIT")
@@ -236,7 +236,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=23 Text=_"mountdisk.sh"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"./mountdisk.sh", "NO_WAIT")
 	if (has_item_backpack("Kevin's Data Cube") > 0) then
@@ -282,7 +282,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=24 Text=_"statistics.pl"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("./statistics.pl", "NO_WAIT")
 	npc_says(_"Corrupted file.", "NO_WAIT")
@@ -293,7 +293,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=30 Text="cd documents/"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	terminal = username .. "@c-net:~/documents$"
 	tux_says("cd documents/ ", "NO_WAIT")
@@ -309,7 +309,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=31 Text="cd ../"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
@@ -345,7 +345,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=80 Text="cd games/"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(" ", "NO_WAIT")
 	terminal = username .. "@c-net:~/games$"
@@ -355,7 +355,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=81 Text="cd ../"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
@@ -365,7 +365,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=82 Text="nethack"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("./nethack", "NO_WAIT")
 	run_subdialog("c-net_sub_nethack.dialog")
@@ -374,7 +374,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=83 Text=_"global_thermonuclear_war"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"./global_thermonuclear_war", "NO_WAIT")
 	npc_says_random(_"Sorry, only winning move is not to play. New game?", _"Mankind exterminated. You lost!", _"No victory possible. LOSER! Play again?", _"Everyone dies, new game?", "NO_WAIT")
@@ -383,7 +383,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text="logout"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says("logout", "NO_WAIT")
 	npc_says(_"Connection to c-net closed.")

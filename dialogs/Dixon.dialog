@@ -83,14 +83,14 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"I would like to craft add-ons."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	craft_addons()
 }
 ----------------------------------------------------------------------
 
 Nr=17 Text=_"I would like to customize my equipment."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	if (not has_cookie("engel_offered_extraction_skill")) then
 		show (50)
@@ -446,7 +446,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=83 Text="BUG, REPORT ME! dixon node83"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"YOU AGAIN!")
 	npc_says(_"I.", "NO_WAIT")

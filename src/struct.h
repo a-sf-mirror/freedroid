@@ -837,9 +837,8 @@ typedef struct ship {
 
 typedef struct dialogue_option {
 	char *option_text;
-	char *option_sample_file_name;
+	int no_text;
 	luacode lua_code;
-
 	int exists;
 } dialogue_option;
 

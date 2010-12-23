@@ -51,7 +51,7 @@ EveryTime LuaCode={
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"open gate"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"open gate", "NO_WAIT")
 	npc_says(_"Access granted. Opening gate ...")
@@ -63,7 +63,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"close gate"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"close gate", "NO_WAIT")
 	npc_says(_"Access granted. Closing gate ...")
@@ -75,7 +75,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	tux_says(_"logout", "NO_WAIT")
 	npc_says(_"Exiting")

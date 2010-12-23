@@ -317,7 +317,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=48 Text="BUG, REPORT ME! Tania node48 -- TANIA'S THIRST FOR WATER"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	number_of_liquid_items = 0
 	if (has_item_backpack(_"Bottled ice") > 0) then
@@ -401,7 +401,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=54 Text="BUG, REPORT ME! Tania node54 -- NO LIQUID ITEMS" 
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	number_of_liquid_items = number_of_liquid_items - 1
 	if (number_of_liquid_items < 1) then 
@@ -416,7 +416,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=55 Text="BUG, REPORT ME! Tania node55 -- HANDLE INJURIES"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	injured_level = 0
 	if (npc_damage_amount() > 10) then
@@ -498,42 +498,42 @@ LuaCode={
 
 
 Nr=90 Text=_"I think I have to go."  --Pre-"Tania's Escape" Quest
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	next(99) hide(90)
 }
 ----------------------------------------------------------------------
 
 Nr=91 Text=_"Follow me to the Surface!" --"Tania's Escape" Quest (Underground)
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	next(99) hide(91)
 }
 ----------------------------------------------------------------------
 
 Nr=92 Text=_"Follow me to the Town!" --"Tania's Escape" Quest (Western Desert)
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	next(99) hide(92)
 }
 ----------------------------------------------------------------------
 
 Nr=93 Text=_"Wait here." --"Tania's Escape" Quest (Western Town Gate)
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	next(99) hide(93)
 }
 ----------------------------------------------------------------------
 
 Nr=94 Text=_"See you later." --"Tania's Escape" Quest (Western Town Gate to Doctor's Office)
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	next(99) hide(94)
 }
 ----------------------------------------------------------------------
 
 Nr=99 Text="BUG, REPORT ME! Tania node99 -- EXIT DIALOG"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	if (has_quest(_"Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 18, 19)

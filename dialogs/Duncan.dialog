@@ -116,7 +116,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=50 Text="BUG, REPORT ME! duncan node50 -- starting koan quest"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Ah. Welcome again Linarian.")
 	npc_says(_"I have a little request for you.")
@@ -176,7 +176,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=60 Text="BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"So... Any news on the Koan matter?")
 
@@ -240,7 +240,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=69 Text="BUG, REPORT ME! duncan node69"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	add_xp(3000)
 	del_item_backpack("Pandora's Cube", 1)
@@ -279,7 +279,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=97 Text="BUG, REPORT ME! duncan node97"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"I wish you cold winds.")
 	tux_says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")

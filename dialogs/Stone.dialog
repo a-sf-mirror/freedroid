@@ -89,7 +89,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"If things are so bad right now, why don't you leave?"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	hide(8) next(9)
 }

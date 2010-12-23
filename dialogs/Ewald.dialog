@@ -282,7 +282,7 @@ LuaCode={
 -----------------------------------------------------------------------
 
 Nr=36 Text="BUG, REPORT ME! ewald node36 -- Name Game"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Name your game.")
 	show(37, 38)
@@ -302,7 +302,7 @@ LuaCode={
 -----------------------------------------------------------------------
 
 Nr=39 Text="BUG, REPORT ME! ewald node39 -- Dice - Initial roll"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Dice it is. Roll your first die.")
 	tux1=math.random(1,6)
@@ -333,7 +333,7 @@ LuaCode={
 -----------------------------------------------------------------------
 
 Nr=43 Text="BUG, REPORT ME! ewald node43 -- Dice - finish game" -- finish game here
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"You've bet ".. bet .._" valuable circuits.")
 	ewd1=math.random(1,6)
@@ -370,7 +370,7 @@ LuaCode={
 -----------------------------------------------------------------------
 
 Nr=50 Text="BUG, REPORT ME! ewald node50 -- Coin-flipping game"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Coin flipping it is.")
 	npc_says(_"So. What do you think? Heads or tails?")
@@ -395,7 +395,7 @@ LuaCode={
 -----------------------------------------------------------------------
 
 Nr=53 Text="BUG, REPORT ME! ewald node53 -- Coin-flipping game - first flip"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"Here goes nothing.")
 	ewd1=math.random(0,1)
@@ -460,7 +460,7 @@ LuaCode={
 -----------------------------------------------------------------------
 
 Nr=56 Text="BUG, REPORT ME! ewald node56 -- Coin-flipping game - last four flips"
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	npc_says(_"The last four coin flips:")
 	ewd2=math.random(0,1)

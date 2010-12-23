@@ -61,7 +61,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	next(4)
 	hide(3)
@@ -97,7 +97,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"You guys are totally nuts. Get a life."
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	next(8)
 	hide(7)

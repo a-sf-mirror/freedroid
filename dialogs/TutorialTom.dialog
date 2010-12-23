@@ -578,7 +578,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=39 Text="BUG, REPORT ME! tutorial node39 -- REMOVE WEAPONS" --hidden
-OptionSample="NO_SAMPLE_HERE_AND_DONT_WAIT_EITHER"
+NO_TEXT
 LuaCode={
 	del_item_backpack(".22 Automatic")
 	del_item_backpack("Laser pistol")
