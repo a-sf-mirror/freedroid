@@ -142,6 +142,8 @@ void leveleditor_minimap_display(struct leveleditor_widget *w)
 {
 	int i, j;
 
+	set_gl_clip_rect(&w->rect);
+
 	// Display the background
 	our_SDL_fill_rect_wrapper(Screen, &w->rect, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
 
@@ -175,4 +177,6 @@ void leveleditor_minimap_display(struct leveleditor_widget *w)
 	// Display the current position
 	draw_line_at_minimap_position(Me.pos.x - 2.0, Me.pos.y, Me.pos.x + 2.0, Me.pos.y);
 	draw_line_at_minimap_position(Me.pos.x, Me.pos.y - 2.0, Me.pos.x, Me.pos.y + 2.0);
+	
+	unset_gl_clip_rect();
 }
