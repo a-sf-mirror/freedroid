@@ -283,6 +283,7 @@ void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int glwidth
 void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int r, int g, int b);
 
 // saveloadgame.c 
+int find_saved_games(struct dirent ***);
 void LoadAndShowThumbnail(char *CoreFilename);
 int SaveGame(void);
 int LoadBackupGame(void);

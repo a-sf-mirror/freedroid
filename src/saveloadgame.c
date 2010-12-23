@@ -58,6 +58,58 @@ jmp_buf saveload_jmpbuf;
     	    longjmp(saveload_jmpbuf, 1);\
 } while (0)
 
+/**
+ * Filter function for scandir calls.
+ * This function keeps files with the ".savegame" extension.
+ */
+static int filename_filter_func(const struct dirent *file)
+{
+	char *pos = strstr(file->d_name, ".savegame");
+
+	if (pos != NULL) {	// ".savegame" found
+		if (strlen(pos) == 9) {	// since strlen(".savegame") is 9, then
+			// d_name *ENDS* with ".savegame"
+
+			if (strstr(file->d_name, ".bkp.savegame") + 4 == pos) {
+				//then we have .bkp.savegame = filter it out
+				return 0;
+			}
+			return 1;
+		}
+	}
+	return 0;
+}
+
+/**
+ * Find all currently saved games.
+ * @param namelist the found files -- must bee freed just like scandir(3)
+ * @return the number of found save games
+ */
+int find_saved_games(struct dirent ***namelist)
+{
+	char save_game_dir[1000];
+	sprintf(save_game_dir, "%s/.freedroid_rpg", our_homedir);
+
+	int n = scandir(save_game_dir, namelist, filename_filter_func, alphasort);
+
+	if (n == -1)
+	{
+		ErrorMessage(__FUNCTION__, "Error occured while reading save game directory.",
+					 NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		return 0;
+	}
+
+	// For each element in list, remove the suffix ".savegame"
+	int i;
+	for (i = 0; i < n; i++) {
+		*strstr((*namelist)[i]->d_name, ".savegame") = 0;
+		if (!strlen((*namelist)[i]->d_name))
+			strcpy((*namelist)[i]->d_name, "INVALID");
+	}
+
+	return n;
+}
+
 void LoadAndShowThumbnail(char *CoreFilename)
 {
 	char filename[1000];

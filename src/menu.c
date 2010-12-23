@@ -1768,58 +1768,59 @@ static void Droid_fill(char *MenuTexts[10])
 #define FIRST_MIS_SELECT_ITEM_POS_Y (BANNER_HEIGHT + FontHeight(Menu_BFont))
 
 /**
- * This reads in the new name for the character...
+ * @return true if there is already a save game using specified name
+ */
+static int savegame_already_exists(const char *name)
+{
+	struct dirent **eps;
+	int n = find_saved_games(&eps);
+	int i;
+	for (i = 0; i < n; i++) {
+		if (strcmp(eps[i]->d_name, name) == 0)
+			return 1;
+	}
+	return 0;
+}
+
+/**
+ * Prompt the user for the name of a new character.
  */
 static char *get_new_character_name(void)
 {
 	char *str;
 	InitiateMenu(NE_TITLE_PIC_BACKGROUND_CODE);
 
-	if (!skip_initial_menus)
-		str = GetString(MAX_CHARACTER_NAME_LENGTH - 1, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
+	// Loop until the player enters a name that does not already exist.
+	int loop = 1;
+	while (loop) {
+		if (!skip_initial_menus)
+			str = GetString(MAX_CHARACTER_NAME_LENGTH - 1, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
      Please enter a name\n\
      for the new hero: \n\n\
      ---ENTER to accept.\n\
      ---ESCAPE to cancel.\n\n\
      > "));
-	else
-		str = strdup("MapEd");
+		else
+			str = strdup("MapEd");
 
-	if (str) {
+		// User cancelled -- abort here
+		if (!str)
+			break;
+
 		// Parse string for illegal chars
 		int i;
 		for (i = 0; i < strlen(str); i++)
 			if (!isalnum(str[i]) && str[i] != '-')
 				str[i] = '-';
+
+		// Check if name already exists
+		loop = savegame_already_exists(str);
+		if (loop)
+			alert_window("A character named \"%s\" already exists.\nPlease choose another name.", str);
 	}
 
 	return str;
 }
-
-/**
- * Filter function for scandir calls 
- * This function keeps files with the ".savegame" extension.
- *
- */
-static int filename_filter_func(const struct dirent *file)
-{
-	char *pos = strstr(file->d_name, ".savegame");
-
-	if (pos != NULL) {	// ".savegame" found
-		if (strlen(pos) == 9) {	// since strlen(".savegame") is 9, then
-			// d_name *ENDS* with ".savegame"
-
-			if (strstr(file->d_name, ".bkp.savegame") + 4 == pos) {
-				//then we have .bkp.savegame = filter it out
-				return 0;
-			}
-
-			return (1);
-		}
-	}
-
-	return (0);
-};				// static int filename_filter_func (const struct dirent *unused)
 
 enum {
 	SAVEGAME_LOAD,
@@ -1828,8 +1829,6 @@ enum {
 
 static int do_savegame_selection_and_act(int action)
 {
-
-	char Saved_Games_Dir[1000];
 	char *MenuTexts[10];
 	struct dirent **eps;
 	int n;
@@ -1873,20 +1872,9 @@ static int do_savegame_selection_and_act(int action)
 	}
 #endif
 
-	// Now we generate the right directory for loading from the home
-	// directory.
-	//
-	sprintf(Saved_Games_Dir, "%s/.freedroid_rpg", our_homedir);
+	n = find_saved_games(&eps);
 
-	n = scandir(Saved_Games_Dir, &eps, filename_filter_func, alphasort);
 	if (n > 0) {
-
-		for (cnt = 0; cnt < n; cnt++) {
-			*strstr(eps[cnt]->d_name, ".savegame") = 0;
-			if (!strlen(eps[cnt]->d_name))
-				strcpy(eps[cnt]->d_name, "INVALID");
-		}
-
 		while (1) {
 
 			if (saveoffset != 0) {
