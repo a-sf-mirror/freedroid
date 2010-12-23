@@ -1544,8 +1544,7 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 	}
 
 	return (-1);
-
-};				// int get_floor_item_index_under_mouse_cursor ( )
+}
 
 /**
  * Handle inventory screen and related things: interact with items in inventory
@@ -1649,26 +1648,19 @@ void HandleInventoryScreen(void)
 	//
 	if (MouseLeftClicked() && (item_held_in_hand != NULL)) {
 		
-		// Case 2.1: The left-clicks on the inventory grid -> we must see if 
-		//           the item was dropped onto a correct inventory location and 
-		//           should from then on not only no longer be in the players
-		//           hand but also remain at the newly assigned position.
-		//
+		// The left-click is on the inventory grid -> we must see if 
+		// the item was dropped onto a correct inventory location and 
+		// should from then on not only no longer be in the players
+		// hand but also remain at the newly assigned position.
 		if (MouseCursorIsInInventoryGrid(CurPos.x, CurPos.y)) {
 			DropHeldItemToInventory();
 			return;
 		}
 
-		// Case 2.2: The user left-clicks in the "UserRect" -> the item should 
-		//           be dropped to the floor
-		if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
-			drop_held_item();
-			return;
-		}
-
-		// Case 2.3: The user left-clicks in the weapon's equipment slot
-		//
-		if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)) {
+		// The user left-clicks in the weapon's equipment slot or the bottom left corner
+		// HUD weapon display.
+		if (MouseCursorIsOnButton(WEAPON_RECT_BUTTON, CurPos.x, CurPos.y)
+			|| MouseCursorIsOnButton(WEAPON_MODE_BUTTON, CurPos.x, CurPos.y)) {
 			
 			// Check if the item can be installed in the weapon slot
 			if (!ItemMap[item_held_in_hand->type].item_can_be_installed_in_weapon_slot) {
@@ -1725,8 +1717,7 @@ void HandleInventoryScreen(void)
 			}
 		}
 
-		// Case 2.4: The user left-clicks in the shield's equipment slot
-		//
+		// The user left-clicks in the shield's equipment slot
 		if (MouseCursorIsOnButton(SHIELD_RECT_BUTTON, CurPos.x, CurPos.y)) {
 			
 			// Check if the item can be installed in the shield slot
@@ -1774,8 +1765,7 @@ void HandleInventoryScreen(void)
 			}
 		}
 
-		// Case 2.5: The user left-clicks in an other equipment slot
-		//
+		// The user left-clicks in another equipment slot
 		itemspec *tocheck = &ItemMap[item_held_in_hand->type];
 		struct {
 			int btnidx;
@@ -1794,8 +1784,14 @@ void HandleInventoryScreen(void)
 			}
 		}
 
+		// The user left-clicks in the "UserRect" -> the item should 
+		// be dropped to the floor
+		if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
+			drop_held_item();
+			return;
+		}
+
 		// The left-click did not lead to anything useful
-		
 		return;
 	}
 
