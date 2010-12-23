@@ -212,10 +212,6 @@ SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect 
 
 	SDL_SetAlpha(tmp_surf, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
 
-	if (use_open_gl) {
-		flip_image_vertically(tmp_surf);
-	}
-
 	return (tmp_surf);
 
 };				// SDL_Surface* rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect ) 

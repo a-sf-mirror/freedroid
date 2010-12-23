@@ -206,6 +206,10 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 			DroidRotationSurfaces[i] = our_SDL_display_format_wrapperAlpha(Whole_Image);	// now we have an alpha-surf of right size
 			SDL_SetColorKey(DroidRotationSurfaces[i], 0, 0);	// this should clear any color key in the dest surface
 
+			if (use_open_gl) {
+				flip_image_vertically(DroidRotationSurfaces[i]);
+			}
+
 			SDL_FreeSurface(Whole_Image);
 		}
 	}
@@ -909,8 +913,6 @@ int GetTakeoverGraphics(void)
 	TempLoadSurface = our_IMG_load_wrapper(fp);
 	to_blocks = our_SDL_display_format_wrapperAlpha(TempLoadSurface);	// the surface is converted
 	SDL_FreeSurface(TempLoadSurface);
-	if (use_open_gl)
-		flip_image_vertically(to_blocks);
 
 	// Get the fill-blocks 
 	for (i = 0; i < NUM_FILL_BLOCKS; i++, curx += FILL_BLOCK_LEN + 2) {

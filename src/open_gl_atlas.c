@@ -180,9 +180,9 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 
 		// Register the texture coordinates of the image in the atlas
 		atlasmembers[a].tex_x0 = (float)dest_rect.x / (float)atlas_w;
-		atlasmembers[a].tex_y1 = (float)dest_rect.y / (float)atlas_h;
+		atlasmembers[a].tex_y0 = (float)dest_rect.y / (float)atlas_h;
 		atlasmembers[a].tex_x1 = atlasmembers[a].tex_x0 + (float)dest_rect.w / (float)atlas_w;
-		atlasmembers[a].tex_y0 = (float)(dest_rect.y + dest_rect.h) / (float)atlas_h;
+		atlasmembers[a].tex_y1 = (float)(dest_rect.y + dest_rect.h) / (float)atlas_h;
 
 		// Free the temporary
 		SDL_FreeSurface(atlasmembers[a].surface);

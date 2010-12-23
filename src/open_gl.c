@@ -400,7 +400,7 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
 
 	if (use_open_gl) {
 
-		flip_image_vertically(surf);
+//		flip_image_vertically(surf);
 
 		return surf;;
 	} else {
@@ -650,13 +650,13 @@ static inline void draw_gl_textured_quad_helper(int x0, int y0, int x1, int y1, 
 {
 
 	glBegin(GL_QUADS);
-	glTexCoord2f(tex_x0, tex_y1);
-	glVertex2i(x0, y0);
 	glTexCoord2f(tex_x0, tex_y0);
+	glVertex2i(x0, y0);
+	glTexCoord2f(tex_x0, tex_y1);
 	glVertex2i(x0, y1);
-	glTexCoord2f(tex_x1, tex_y0);
-	glVertex2i(x1, y1);
 	glTexCoord2f(tex_x1, tex_y1);
+	glVertex2i(x1, y1);
+	glTexCoord2f(tex_x1, tex_y0);
 	glVertex2i(x1, y0);
 	glEnd();
 
@@ -946,7 +946,7 @@ void light_radius_update_stretched_texture(void)
 
 			alpha = 255 - (alpha_factor) * ((float)light_strength);
 
-			PutPixel32(light_radius_stretch_surface, x, LightRadiusConfig.texture_w - y - 1,
+			PutPixel32(light_radius_stretch_surface, x, y,
 				   SDL_MapRGBA(light_radius_stretch_surface->format, red, green, blue, alpha));
 
 		}

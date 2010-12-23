@@ -352,6 +352,7 @@ chat interface of Freedroid.  But:  Loading this file has ALSO failed.", PLEASE_
 		    SDL_CreateRGBSurface(0, Large_Droid->w, Large_Droid->h, 32, rmask, gmask, bmask, amask);
 		SDL_SetAlpha(Large_Droid, 0, SDL_ALPHA_OPAQUE);
 		our_SDL_blit_surface_wrapper(Large_Droid, NULL, chat_portrait_of_droid[model_number].surface, NULL);
+		flip_image_vertically(chat_portrait_of_droid[model_number].surface);
 		SDL_FreeSurface(Large_Droid);
 	} else
 		chat_portrait_of_droid[model_number].surface = Large_Droid;

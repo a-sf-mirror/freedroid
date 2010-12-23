@@ -2283,9 +2283,9 @@ Creation of an Tux SDL software surface from pixel data failed.", PLEASE_INFORM,
 				// this should clear any color key in the dest surface
 				SDL_SetColorKey(loaded_tux_images[tux_part_group][our_phase][rotation_index].surface, 0, 0);
 
-				if (!use_open_gl)
-					flip_image_vertically(loaded_tux_images[tux_part_group][our_phase][rotation_index].surface);
-				else {
+				flip_image_vertically(loaded_tux_images[tux_part_group][our_phase][rotation_index].surface);
+
+				if (use_open_gl) {
 					make_texture_out_of_surface(&loaded_tux_images[tux_part_group][our_phase][rotation_index]);
 					free(tmp_buff);
 				}
@@ -2468,31 +2468,14 @@ The number of images found in the image collection for enemy model %d is bigger 
 
 			SDL_SetColorKey(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface, 0, 0);	// this should clear any color key in the dest surface
 
-			if (!use_open_gl) {
-				flip_image_vertically(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface);
-			} else {
-				if (!strncmp("oglX", ogl_support_string, 4)) {
+//			flip_image_vertically(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface);
+
+			if (use_open_gl) {
 					make_texture_out_of_prepadded_image(&(enemy_images[enemy_model_nr][rotation_index]
 									      [enemy_phase]));
-				} else {
-					// Of course we could handle the case on non-open-gl optimized image
-					// collection files used with OpenGL output.  But that would be a
-					// sign of a bug, so we don't properly handle it (like below) but
-					// rather give out a fatal error message, just to be safe against
-					// non-open-gl-optimized image archives slipping undetected into some
-					// release or something...
-					//
-					// make_texture_out_of_surface ( 
-					// & ( enemy_images [ enemy_model_nr ] [ rotation_index ] [ enemy_phase ] ) ) ;
-					//
-					ErrorMessage(__FUNCTION__, "\
-This image collection archive is not optimized for OpenGL usage\n\
-but still used in conjunction with OpenGL graphics output.\n\
-This is strange.  While of course we could handle this (a bit)\n\
-slower than optimized archive, it's an indication that something\n\
-is wrong with this installation of FreedroidRPG.  So we terminate\n\
-to draw attention to the possible problem...", PLEASE_INFORM, IS_FATAL);
-				}
+					float tmp = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0;
+					enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0 = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1;
+					enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1 = tmp;
 			}
 		}
 	}
