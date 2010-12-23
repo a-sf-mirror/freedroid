@@ -3676,7 +3676,6 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 				// Maybe opengl is in use.  Then we need to prepare some textures too...
 				//
 				if (use_open_gl) {
-					flip_image_vertically(PrerotatedSparkSurfaces[SparkType][k][i].surface);
 					make_texture_out_of_surface(&(PrerotatedSparkSurfaces[SparkType][k][i]));
 				}
 
