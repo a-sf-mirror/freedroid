@@ -1306,4 +1306,24 @@ void blit_special_background(int background_code)
 
 };				// void blit_special_background ( int background_code )
 
+void set_gl_clip_rect(const SDL_Rect *clip)
+{
+#ifdef HAVE_LIBGL
+	if (use_open_gl) {
+		glScissor(clip->x, GameConfig.screen_height - (clip->y + clip->h), clip->w, clip->h);
+		glEnable(GL_SCISSOR_TEST);
+	}
+#endif
+}
+
+void unset_gl_clip_rect(void)
+{
+#ifdef HAVE_LIBGL
+	if (use_open_gl) {
+		glDisable(GL_SCISSOR_TEST);
+	}
+#endif
+}
+
+
 #undef _open_gl_c

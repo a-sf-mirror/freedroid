@@ -283,7 +283,15 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 void PutString(SDL_Surface *surface, int x, int y, char *text)
 {
 	int i = 0;
-	
+
+	if (use_open_gl) {
+		// Set up clipping
+		SDL_Rect clip_rect;
+		SDL_GetClipRect(surface, &clip_rect);
+
+		set_gl_clip_rect(&clip_rect);
+	}
+
 	start_image_batch();
 
 	while (text[i] != '\0') {
@@ -295,6 +303,13 @@ void PutString(SDL_Surface *surface, int x, int y, char *text)
 	}
 
 	end_image_batch();
+
+#ifdef HAVE_LIBGL
+	if (use_open_gl) {
+		unset_gl_clip_rect();
+	}
+#endif
+
 }
 
 /**
