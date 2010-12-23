@@ -924,10 +924,7 @@ void load_obstacle(int i)
 		}
 	}
 
-	get_iso_image_from_file_and_path(fpath, &obstacle_map[i].shadow_image, TRUE);
-	if (use_open_gl) {
-		make_texture_out_of_surface(&(obstacle_map[i].shadow_image));
-	}
+	load_iso_image(&obstacle_map[i].shadow_image, fpath, TRUE);
 }
 
 void load_all_obstacles(void)
