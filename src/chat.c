@@ -336,12 +336,6 @@ void make_sure_chat_portraits_loaded_for_this_droid(Enemy this_droid)
 
 	Small_Droid = our_IMG_load_wrapper(fpath);
 	if (Small_Droid == NULL) {
-		strcpy(fname, "droids/");
-		strcat(fname, "DefaultPortrait.png");
-		find_file(fname, GRAPHICS_DIR, fpath, 0);
-		Small_Droid = our_IMG_load_wrapper(fpath);
-	}
-	if (Small_Droid == NULL) {
 		fprintf(stderr, "\n\nfpath: %s \n", fpath);
 		ErrorMessage(__FUNCTION__, "\
 It wanted to load a small portrait file in order to display it in the \n\
