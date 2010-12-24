@@ -134,6 +134,10 @@ void LoadAndShowThumbnail(char *CoreFilename)
 	TargetRectangle.x = 10;
 	TargetRectangle.y = GameConfig.screen_height - tmp->h - 10;
 
+	if (use_open_gl) {
+		flip_image_vertically(tmp);
+	}
+
 	our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &TargetRectangle);
 
 	SDL_FreeSurface(tmp);
