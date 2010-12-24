@@ -295,6 +295,10 @@ trying to make the ultra-fine item rotation series.  Strange.", PLEASE_INFORM, I
 			SDL_BlitSurface(Whole_Image, NULL, ItemRotationSurfaces[i], NULL);
 			SDL_FreeSurface(Whole_Image);
 
+			if (use_open_gl) {
+				flip_image_vertically(ItemRotationSurfaces[i]);
+			}
+
 			// We must remember, that his is already loaded of course
 			strcpy(LastImageSeriesPrefix, ItemMap[Number].item_rotation_series_prefix);
 
