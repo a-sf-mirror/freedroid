@@ -2445,7 +2445,7 @@ The number of images found in the image collection for enemy model %d is bigger 
 			ptr += sizeof(Sint16);
 
 			enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface =
-			    SDL_CreateRGBSurface(SDL_SWSURFACE, img_xlen, img_ylen, 32, rmask, gmask, bmask, amask);
+				SDL_CreateRGBSurface(SDL_SWSURFACE, img_xlen, img_ylen, 32, rmask, gmask, bmask, amask);
 
 			dest = enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface->pixels;
 			tmplen = 4 * img_xlen * img_ylen;
@@ -2468,14 +2468,14 @@ The number of images found in the image collection for enemy model %d is bigger 
 
 			SDL_SetColorKey(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface, 0, 0);	// this should clear any color key in the dest surface
 
-//			flip_image_vertically(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface);
-
 			if (use_open_gl) {
-					make_texture_out_of_prepadded_image(&(enemy_images[enemy_model_nr][rotation_index]
-									      [enemy_phase]));
-					float tmp = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0;
-					enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0 = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1;
-					enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1 = tmp;
+				make_texture_out_of_prepadded_image(&(enemy_images[enemy_model_nr][rotation_index]
+							[enemy_phase]));
+				float tmp = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0;
+				enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0 = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1;
+				enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1 = tmp;
+			} else {
+				flip_image_vertically(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface);
 			}
 		}
 	}
