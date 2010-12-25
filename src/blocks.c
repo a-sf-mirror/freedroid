@@ -358,6 +358,10 @@ void blit_iso_image_to_map_position(struct image * our_iso_image, float pos_x, f
 	SDL_Rect target_rectangle;
 	int ii, jj;
 
+	if (use_open_gl) {
+		ErrorMessage(__FUNCTION__, "This function should not be called in OpenGL mode. It ends up calling glDrawPixels which yields poor performance.\n", PLEASE_INFORM, IS_WARNING_ONLY);
+	}
+
 	translate_map_point_to_screen_pixel(pos_x, pos_y, &ii, &jj);
 	target_rectangle.x = ii + our_iso_image->offset_x;
 	target_rectangle.y = jj + our_iso_image->offset_y;
