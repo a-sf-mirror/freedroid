@@ -456,11 +456,11 @@ static void get_offset_for_iso_image_from_file_and_path(char *fpath, struct imag
 	if ((OffsetFile = fopen(offset_file_name, "rb")) == NULL) {
 		ErrorMessage(__FUNCTION__, "\
 Freedroid was unable to open offset file %s for an isometric image.\n\
-Since the offset could not be obtained from the offset file, some default\n\
-values will be used instead.  This can lead to minor positioning pertubations\n\
+Since the offset could not be obtained from the offset file, 0 will be used instead.\n\
+This can lead to minor positioning pertubations\n\
 in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name);
-		our_iso_image->offset_x = -INITIAL_BLOCK_WIDTH / 2;
-		our_iso_image->offset_y = -INITIAL_BLOCK_HEIGHT / 2;
+		our_iso_image->offset_x = 0;
+		our_iso_image->offset_y = 0;
 		return;
 	} else {
 		fclose(OffsetFile);
@@ -522,10 +522,8 @@ void get_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image,
 	if (use_offset_file)
 		get_offset_for_iso_image_from_file_and_path(fpath, our_iso_image);
 	else {
-		// We _silently_ assume there is no offset file...
-		//
-		our_iso_image->offset_x = -INITIAL_BLOCK_WIDTH / 2;
-		our_iso_image->offset_y = -INITIAL_BLOCK_HEIGHT / 2;
+		our_iso_image->offset_x = 0;
+		our_iso_image->offset_y = 0;
 	}
 
 	// In the case of no open_gl (and therefore no conversion to a texture)
