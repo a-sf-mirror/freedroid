@@ -159,13 +159,11 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 		//printf("Treating %s\n", filenames[a]);
 		// Build filename
 		char ConstructedFileName[1000];
-		char fpath[2048];
 		strcpy(ConstructedFileName, (directory != NULL) ? directory : "");
 		strcat(ConstructedFileName, filenames[a]);
-		find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
 
 		// Load the image
-		get_iso_image_from_file_and_path(fpath, &atlasmembers[a], TRUE);
+		load_image_surface(&atlasmembers[a], ConstructedFileName, TRUE);
 
 		// Get the destination rect on the atlas surface
 		read_atlas_field(dat, filenames[a], &dest_rect.x, &dest_rect.y);

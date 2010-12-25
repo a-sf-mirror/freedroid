@@ -253,7 +253,10 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 }
 
 /**
- * Load an image SDL surface.
+ * The concept of an image involves an SDL_Surface or an OpenGL
+ * texture and also suitable offset values, such that the image can be
+ * correctly placed in an isometric image.
+ * This function loads an image SDL surface, as well as its offset.
  */
 void load_image_surface(struct image *img, const char *filename, int use_offset_file)
 {
@@ -266,12 +269,29 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 	}
 
 	find_file(filename, GRAPHICS_DIR, fpath, 0);
-	get_iso_image_from_file_and_path(fpath, img, use_offset_file);
-
-	if (img->surface == NULL) {
-		ErrorMessage(__FUNCTION__, 
-			"Error loading image %s - SDL_image said %s.", PLEASE_INFORM, IS_FATAL, filename, IMG_GetError());
+	SDL_Surface *surface = our_IMG_load_wrapper(fpath);
+	if (surface == NULL) {
+		ErrorMessage(__FUNCTION__, "Could not load image\n File name: %s \n", PLEASE_INFORM, IS_FATAL, fpath);
 	}
+
+	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
+	img->surface = our_SDL_display_format_wrapperAlpha(surface);
+	img->zoomed_out_surface = NULL;
+	img->texture_has_been_created = FALSE;
+
+	SDL_SetColorKey(img->surface, 0, 0);
+
+	SDL_FreeSurface(surface);
+
+	if (use_offset_file)
+		get_offset_for_iso_image_from_file_and_path(fpath, img);
+	else {
+		img->offset_x = 0;
+		img->offset_y = 0;
+	}
+
+	img->w = img->surface->w;
+	img->h = img->surface->h;
 }
 
 /**

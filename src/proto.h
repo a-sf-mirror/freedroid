@@ -237,7 +237,6 @@ void unset_gl_clip_rect(void);
 int wall_orientation(int wall);
 void iso_load_bullet_surfaces(void);
 int iso_image_loaded(struct image *);
-void get_iso_image_from_file_and_path(char *fpath, struct image *our_iso_image, int use_offset_file);
 void make_sure_zoomed_surface_is_there(struct image *our_iso_image);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void Load_Skill_Level_Button_Surfaces(void);
@@ -261,6 +260,7 @@ struct image *get_item_shop_image(int type);
 struct image *get_item_ingame_image(int type);
 struct image *get_item_inventory_image(int type);
 void load_all_items(void);
+void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image);
 
 // block_areas.c
 void init_obstacle_data(void);

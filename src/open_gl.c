@@ -1105,7 +1105,6 @@ void blit_special_background(int background_code)
 {
 	SDL_Surface *tmp_surf_1;
 	SDL_Rect src_rect;
-	char fpath[2048];
 
 	if (background_code >= ALL_KNOWN_BACKGROUNDS) {
 		ErrorMessage(__FUNCTION__, "Received a request to display a background that does not exist.", PLEASE_INFORM, IS_FATAL);
@@ -1234,8 +1233,7 @@ void blit_special_background(int background_code)
 	if (!background_has_been_loaded[background_code]) {
 		background_has_been_loaded[background_code] = 1;
 
-		find_file(background_filenames[background_code], GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(our_backgrounds[background_code]), FALSE);
+		load_image_surface(&our_backgrounds[background_code], background_filenames[background_code], FALSE);
 
 		// For the dialog, we need not only the dialog background, but also some smaller
 		// parts of the background image, so we can re-do the background part that is in

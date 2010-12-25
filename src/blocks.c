@@ -438,7 +438,7 @@ void blit_zoomed_iso_image_to_map_position(struct image * our_iso_image, float p
  *
  *
  */
-static void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image)
+void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image)
 {
 	char offset_file_name[10000];
 	FILE *OffsetFile;
@@ -478,63 +478,6 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFO
 	free(offset_data);
 
 };				// void get_offset_for_iso_image_from_file_and_path ( fpath , our_iso_image )
-
-/**
- * The concept of an iso image involves an SDL_Surface or an OpenGL
- * texture and also suitable offset values, such that the image can be
- * correctly placed in an isometric image.
- *
- * This function is supposed to load the SDL_Surface (from which the 
- * OpenGL texture can be made later) AND also to load the corresponding
- * offset file for the image (or supply substitute values) such that the
- * offset values are suitably initialized.
- */
-void get_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image, int use_offset_file)
-{
-	SDL_Surface *Whole_Image;
-
-	// First we (try to) load the image given in the parameter
-	// from hard disk into memory and convert it to the right
-	// format for fast blitting later.
-	//
-	Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
-	if (Whole_Image == NULL) {
-		fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
-		ErrorMessage(__FUNCTION__, "Could not load image\n File name: %s \n", PLEASE_INFORM, IS_FATAL, fpath);
-	}
-
-	SDL_SetAlpha(Whole_Image, 0, SDL_ALPHA_OPAQUE);
-	our_iso_image->surface = our_SDL_display_format_wrapperAlpha(Whole_Image);	// now we have an alpha-surf of right size
-	our_iso_image->zoomed_out_surface = NULL;
-	our_iso_image->texture_has_been_created = FALSE;
-
-	SDL_SetColorKey(our_iso_image->surface, 0, 0);	// this should clear any color key in the dest surface
-	// Some test here...
-	//
-	// our_iso_image -> surface -> format -> Bmask = 0 ; 
-	// our_iso_image -> surface -> format -> Rmask = 0 ; 
-
-	SDL_FreeSurface(Whole_Image);
-
-	// Now that we have loaded the image, it's time to get the proper
-	// offset information for it.
-	//
-	if (use_offset_file)
-		get_offset_for_iso_image_from_file_and_path(fpath, our_iso_image);
-	else {
-		our_iso_image->offset_x = 0;
-		our_iso_image->offset_y = 0;
-	}
-
-	// In the case of no open_gl (and therefore no conversion to a texture)
-	// we make sure that the open_gl optimized methods will also find
-	// suitable correspondents in the SDL-loaded images, like the original
-	// image size and such...
-	//
-	our_iso_image->w = our_iso_image->surface->w;
-	our_iso_image->h = our_iso_image->surface->h;
-
-};				// void get_iso_image_from_file_and_path ( char* fpath , iso_image* our_iso_image ) 
 
 /**
  * Check if the image has already been loaded
