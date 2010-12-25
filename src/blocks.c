@@ -57,28 +57,21 @@ void make_sure_zoomed_surface_is_there(struct image *our_iso_image)
 void Load_Blast_Surfaces(void)
 {
 	int j;
-	char fpath[2048] = "";
 	char constructed_filename[5000];
 
-	// Now that we're here, we can as well load the blast surfaces, that we might be using
-	// later...
-	//
 	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
 		sprintf(constructed_filename, "blasts/iso_blast_bullet_%04d.png", j + 1);
-		find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(Blastmap[0].image[j]), TRUE);
+		load_iso_image(&Blastmap[0].image[j], constructed_filename, TRUE);
 	}
 
 	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
 		sprintf(constructed_filename, "blasts/iso_blast_droid_%04d.png", j + 1);
-		find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(Blastmap[1].image[j]), TRUE);
+		load_iso_image(&Blastmap[1].image[j], constructed_filename, TRUE);
 	}
 
 	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
 		sprintf(constructed_filename, "blasts/iso_blast_exterminator_%04d.png", j + 1);
-		find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
-		get_iso_image_from_file_and_path(fpath, &(Blastmap[2].image[j]), TRUE);
+		load_iso_image(&Blastmap[2].image[j], constructed_filename, TRUE);
 	}
 
 /*Now also set up values for blasts*/
@@ -307,7 +300,6 @@ void Load_Skill_Level_Button_Surfaces(void)
 void iso_load_bullet_surfaces(void)
 {
 	int i, j, k;
-	char fpath[2048];
 	char constructed_filename[5000];
 
 	// Important Note : the following array HAS to be in sync with the
@@ -348,13 +340,9 @@ void iso_load_bullet_surfaces(void)
 
 		for (j = 0; j < Bulletmap[i].phases; j++) {
 			for (k = 0; k < BULLET_DIRECTIONS; k++) {
-				// We construct the file name
-				//
 				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", bullet_identifiers[i], k, j + 1);
-				find_file(constructed_filename, GRAPHICS_DIR, fpath, 0);
 
-				get_iso_image_from_file_and_path(fpath, &(Bulletmap[i].image[k][j]), TRUE);
-
+				load_iso_image(&Bulletmap[i].image[k][j], constructed_filename, TRUE);
 			}
 		}
 	}

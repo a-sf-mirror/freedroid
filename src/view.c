@@ -3526,12 +3526,8 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 	if (vpos.x == -1)
 		return;
 
-	if (mask & ZOOM_OUT) {
-		// blit_zoomed_iso_image_to_map_position ( & ( Bulletmap [ CurBullet -> type ] . image [ direction_index ] [ PhaseOfBullet ] ) , CurBullet -> pos . x , CurBullet -> pos . y );
-	} else {
-		blit_iso_image_to_map_position(&Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y);
-	}
-};				// void PutBullet (int Bulletnumber )
+	display_image_on_map(&Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y);
+}
 
 /**
  * This function draws an item into the combat window.
@@ -3760,8 +3756,8 @@ exist at all.", PLEASE_INFORM, IS_FATAL);
 	if (vpos.x == -1)
 		return;
 
-	blit_iso_image_to_map_position(&Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y);
-}				// void PutBlast(int Blast_number)
+	display_image_on_map(&Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y);
+}
 
 /**
  * When the inventory screen is visible, we do not only show the items
