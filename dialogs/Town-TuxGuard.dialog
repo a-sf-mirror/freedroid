@@ -33,7 +33,17 @@ EveryTime LuaCode={
 	else
 		npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
 	end
-	show (99)
+	show (20, 99)
+}
+
+----------------------------------------------------------------------
+Nr=20 Text=_"Where can I find Spencer?"
+LuaCode={
+	npc_says(_"He's usually in his office in the citadel.")
+	npc_says(_"Head down the main corridor until you pass the citadel gates.")
+	npc_says(_"His office has purple walls, you won't miss it.")
+	tux_says(_"Okay.")
+	hide(20)
 }
 
 ----------------------------------------------------------------------
@@ -43,7 +53,7 @@ LuaCode={
 		
 	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 		npc_says(get_player_name() .._"... the Loon")
-	else end
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------
