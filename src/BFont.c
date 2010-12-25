@@ -142,7 +142,8 @@ BFont_Info *LoadFont(char *filename)
 
 	// Load the font image
 	load_image_surface(&font->font_image, filename, FALSE);
-	
+	SDL_SetAlpha(font->font_image.surface, 0, SDL_ALPHA_OPAQUE);
+
 	// Find character coordinates in the image
 	SDL_Rect char_rect[MAX_CHARS_IN_FONT];
 	memset(char_rect, 0, sizeof(char_rect));
