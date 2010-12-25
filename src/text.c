@@ -572,46 +572,19 @@ int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float text_str
 };				// int ImprovedCheckLineBreak()
 
 /**
- * This function reads a string of "MaxLen" from User-input, and
- * echoes it either using graphics-text
- *
- * The function does have some extra complicating elements coming
- * from the potential slowness of machines with pure SDL and no
- * OpenGL.  These machines might not re-blit the whole background
- * fast enough for swiftly typed keystrokes, resulting in some
- * keypresses not being detected by the game.  To avoid that when
- * using SDL, not the whole screen will be re-blitted but only some
- * relevant parts, so that the CPU can save some time.  With OpenGL,
- * a complete re-blit is done in every cycle.
- *
- * NOTE: MaxLen is the maximal _strlen_ of the string (excl. \0 !)
- *
- * @Ret: char *: String is allocated _here_!!!
- *
- * ----------------------------------------------------------------- */
-char *GetString(int MaxLen, int background_code, const char *text_for_overhead_promt)
+ * Prompt the user for a string no longer than MaxLen (excluding terminating \0).
+ */
+char *get_string(int MaxLen, int background_code, const char *text_for_overhead_promt)
 {
 	char *input;		// pointer to the string entered by the user
 	int key;		// last 'character' entered 
 	int curpos;		// counts the characters entered so far
 	int finished;
-	int x0, y0, height;
+	int x0, y0;
 	SDL_Rect store_rect, tmp_rect;
 	SDL_Surface *store = NULL;
 
-	height = FontHeight(GetCurrentFont());
-
 	DisplayText(text_for_overhead_promt, 50, 50, NULL, TEXT_STRETCH);
-	x0 = MyCursorX;
-	y0 = MyCursorY;
-
-	if (use_open_gl)
-		StoreMenuBackground(0);
-	else {
-		store = SDL_CreateRGBSurface(0, GameConfig.screen_width, height, vid_bpp, 0, 0, 0, 0);
-		Set_Rect(store_rect, x0, y0, GameConfig.screen_width, height);
-		our_SDL_blit_surface_wrapper(Screen, &store_rect, store, NULL);
-	}
 
 	// allocate memory for the users input
 	input = MyMalloc(MaxLen + 5);
@@ -623,13 +596,8 @@ char *GetString(int MaxLen, int background_code, const char *text_for_overhead_p
 	curpos = 0;
 
 	while (!finished) {
-		if (use_open_gl) {
-			blit_special_background(background_code);
-			DisplayText(text_for_overhead_promt, 50, 50, NULL, TEXT_STRETCH);
-		} else {
-			Copy_Rect(store_rect, tmp_rect);
-			our_SDL_blit_surface_wrapper(store, NULL, Screen, &tmp_rect);
-		}
+		blit_special_background(background_code);
+		DisplayText(text_for_overhead_promt, 50, 50, NULL, TEXT_STRETCH);
 
 		x0 = MyCursorX;
 		y0 = MyCursorY;
@@ -653,7 +621,6 @@ char *GetString(int MaxLen, int background_code, const char *text_for_overhead_p
 			input[curpos] = 0;
 			finished = TRUE;
 		} else if ((key < SDLK_DELETE) && isprint(key) && (curpos < MaxLen)) {
-			DebugPrintf(3, "isprint() true for keycode: %d ('%c')\n", key, (char)key);
 			/* printable characters are entered in string */
 			input[curpos] = (char)key;
 			curpos++;
@@ -671,12 +638,10 @@ char *GetString(int MaxLen, int background_code, const char *text_for_overhead_p
 			while (EscapePressed()) ;
 			return (NULL);
 		}
-
-	}			// while(!finished) 
+	}
 
 	return (input);
-
-};
+}
 
 /* -----------------------------------------------------------------
  * This function reads a string of "MaxLen" from User-input.

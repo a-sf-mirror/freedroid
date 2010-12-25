@@ -690,7 +690,7 @@ int ScrollText(char *text, int background_code);
 int ImprovedCheckLineBreak(char *text, const SDL_Rect * clip, float text_stretch);
 char *PreviousLine(char *textstart, char *text);
 char *NextLine(char *text);
-char *GetString(int max_len, int background_code, const char *text_for_overhead_promt);
+char *get_string(int max_len, int background_code, const char *text_for_overhead_promt);
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...);
 int longest_line_width(char *text);
 

@@ -1794,7 +1794,7 @@ static char *get_new_character_name(void)
 	int loop = 1;
 	while (loop) {
 		if (!skip_initial_menus)
-			str = GetString(MAX_CHARACTER_NAME_LENGTH - 1, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
+			str = get_string(MAX_CHARACTER_NAME_LENGTH - 1, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
      Please enter a name\n\
      for the new hero: \n\n\
      ---ENTER to accept.\n\
