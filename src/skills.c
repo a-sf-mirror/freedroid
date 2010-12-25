@@ -663,7 +663,7 @@ void load_skill_icon_if_needed(spell_skill_spec *spec)
 	if (!iso_image_loaded(&spec->icon_surface)) {
 		char filename[1000];
 		sprintf(filename, "skill_icons/%s", spec->icon_name);
-		load_iso_image(&spec->icon_surface, filename, FALSE); 
+		load_image(&spec->icon_surface, filename, FALSE); 
 	}
 }
 

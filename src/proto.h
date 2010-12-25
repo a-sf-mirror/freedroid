@@ -238,7 +238,6 @@ int wall_orientation(int wall);
 void iso_load_bullet_surfaces(void);
 int iso_image_loaded(struct image *);
 void get_iso_image_from_file_and_path(char *fpath, struct image *our_iso_image, int use_offset_file);
-void load_iso_image(struct image *, const char *, int);
 void make_sure_zoomed_surface_is_there(struct image *our_iso_image);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void Load_Skill_Level_Button_Surfaces(void);
@@ -865,6 +864,8 @@ void display_image_on_screen(struct image *img, int x, int y);
 void display_image_on_map_scaled(struct image *img, float X, float Y, float scale);
 void display_image_on_map(struct image *img, float X, float Y);
 void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect);
+void load_image(struct image *, const char *, int);
+void load_image_surface(struct image *img, const char *filename, int use_offset_file);
 
 
 #endif

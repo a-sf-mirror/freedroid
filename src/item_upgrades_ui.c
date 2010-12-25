@@ -105,7 +105,7 @@ static void load_images()
 
 	for (i = 0; i < IMAGE_MAX; i++) {
 		memset(&images[i], 0, sizeof(struct image));
-		load_iso_image(&images[i], fnames[i], FALSE);
+		load_image(&images[i], fnames[i], FALSE);
 	}
 }
 

@@ -166,7 +166,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 	static struct image equipped_icon;
 
 	if (!iso_image_loaded(&equipped_icon)) {
-		load_iso_image(&equipped_icon, "mouse_cursor_0003.png", FALSE);
+		load_image(&equipped_icon, "mouse_cursor_0003.png", FALSE);
 	}
 
 	TuxItemRowRect.x = 55 * GameConfig.screen_width / 640;

@@ -61,17 +61,17 @@ void Load_Blast_Surfaces(void)
 
 	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
 		sprintf(constructed_filename, "blasts/iso_blast_bullet_%04d.png", j + 1);
-		load_iso_image(&Blastmap[0].image[j], constructed_filename, TRUE);
+		load_image(&Blastmap[0].image[j], constructed_filename, TRUE);
 	}
 
 	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
 		sprintf(constructed_filename, "blasts/iso_blast_droid_%04d.png", j + 1);
-		load_iso_image(&Blastmap[1].image[j], constructed_filename, TRUE);
+		load_image(&Blastmap[1].image[j], constructed_filename, TRUE);
 	}
 
 	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
 		sprintf(constructed_filename, "blasts/iso_blast_exterminator_%04d.png", j + 1);
-		load_iso_image(&Blastmap[2].image[j], constructed_filename, TRUE);
+		load_image(&Blastmap[2].image[j], constructed_filename, TRUE);
 	}
 
 /*Now also set up values for blasts*/
@@ -180,7 +180,7 @@ number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_
 	// Load ingame image
 	if (strcmp(spec->item_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
 		sprintf(our_filename, "items/%s/ingame.png", spec->item_rotation_series_prefix);
-		load_iso_image(&spec->ingame_image, our_filename, TRUE);
+		load_image(&spec->ingame_image, our_filename, TRUE);
 	} else {
 		memcpy(&spec->ingame_image, &spec->inventory_image, sizeof(struct image));
 	}
@@ -233,7 +233,7 @@ void Load_Mouse_Move_Cursor_Surfaces(void)
 
 	for (j = 0; j < NUMBER_OF_MOUSE_CURSOR_PICTURES; j++) {
 		sprintf(our_filename, "mouse_move_cursor_%d.png", j);
-		load_iso_image(&MouseCursorImageList[j], our_filename, FALSE);
+		load_image(&MouseCursorImageList[j], our_filename, FALSE);
 	}
 
 };				// void Load_Mouse_Move_Cursor_Surfaces( void )
@@ -342,7 +342,7 @@ void iso_load_bullet_surfaces(void)
 			for (k = 0; k < BULLET_DIRECTIONS; k++) {
 				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", bullet_identifiers[i], k, j + 1);
 
-				load_iso_image(&Bulletmap[i].image[k][j], constructed_filename, TRUE);
+				load_image(&Bulletmap[i].image[k][j], constructed_filename, TRUE);
 			}
 		}
 	}
@@ -549,35 +549,6 @@ int iso_image_loaded(struct image *img)
 		return FALSE;
 	}
 	return TRUE;
-}
-
-/**
- * Load an iso image given its filename
- * \param img Pointer towards the iso_image struct to fill in
- * \param filename Filename of the image
- * \param use_offset_file TRUE if the image uses offset information 
- */
-void load_iso_image(struct image *img, const char *filename, int use_offset_file)
-{
-	char fpath[2048];
-
-	if (iso_image_loaded(img)) {
-		ErrorMessage(__FUNCTION__, 
-				"The image has already been loaded: %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
-		return;
-	}
-
-	find_file(filename, GRAPHICS_DIR, fpath, 0);
-	get_iso_image_from_file_and_path(fpath, img, use_offset_file);
-
-	if (img->surface == NULL) {
-		ErrorMessage(__FUNCTION__, 
-			"Error loading image %s - SDL_image said %s.", PLEASE_INFORM, IS_FATAL, filename, IMG_GetError());
-	}
-
-	if (use_open_gl) {
-		make_texture_out_of_surface(img);
-	}
 }
 
 /**
@@ -898,7 +869,7 @@ void load_obstacle(int i)
 
 	// At first we construct the file name of the single tile file we are about to load...
 	sprintf(fpath, "obstacles/%s", obstacle_map[i].filename);
-	load_iso_image(&obstacle_map[i].image, fpath, TRUE);
+	load_image(&obstacle_map[i].image, fpath, TRUE);
 
 	// Maybe the obstacle in question also has a shadow image?  In that
 	// case we should load the shadow image now. 
@@ -916,7 +887,7 @@ void load_obstacle(int i)
 		}
 	}
 
-	load_iso_image(&obstacle_map[i].shadow_image, fpath, TRUE);
+	load_image(&obstacle_map[i].shadow_image, fpath, TRUE);
 }
 
 void load_all_obstacles(void)
@@ -952,7 +923,7 @@ void load_floor_tiles(void)
 		strcpy(ConstructedFileName, "floor_tiles/");
 		strcat(ConstructedFileName, floor_tile_filenames[i]);
 
-		load_iso_image(&floor_images[i], ConstructedFileName, TRUE);
+		load_image(&floor_images[i], ConstructedFileName, TRUE);
 	}
 }
 

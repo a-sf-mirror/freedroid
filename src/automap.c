@@ -253,7 +253,7 @@ static void display_automap_compass()
 {
 	//load the compass if necessary
 	if (!iso_image_loaded(&compass)) {
-		load_iso_image(&compass, "compass.png", FALSE);
+		load_image(&compass, "compass.png", FALSE);
 	}
 
 	blit_iso_image_to_screen_position(&compass, GameConfig.screen_width - compass.w - 10, 40);

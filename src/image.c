@@ -251,3 +251,41 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 	}
 
 }
+
+/**
+ * Load an image SDL surface.
+ */
+void load_image_surface(struct image *img, const char *filename, int use_offset_file)
+{
+	char fpath[2048];
+
+	if (iso_image_loaded(img)) {
+		ErrorMessage(__FUNCTION__, 
+				"The image has already been loaded: %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		return;
+	}
+
+	find_file(filename, GRAPHICS_DIR, fpath, 0);
+	get_iso_image_from_file_and_path(fpath, img, use_offset_file);
+
+	if (img->surface == NULL) {
+		ErrorMessage(__FUNCTION__, 
+			"Error loading image %s - SDL_image said %s.", PLEASE_INFORM, IS_FATAL, filename, IMG_GetError());
+	}
+}
+
+/**
+ * Load an image: load the SDL surface, and make a texture from it in OpenGL mode.
+ * \param img Pointer towards the iso_image struct to fill in
+ * \param filename Filename of the image
+ * \param use_offset_file TRUE if the image uses offset information 
+ */
+void load_image(struct image *img, const char *filename, int use_offset_file)
+{
+	load_image_surface(img, filename, use_offset_file);
+
+	if (use_open_gl) {
+		make_texture_out_of_surface(img);
+	}
+}
+
