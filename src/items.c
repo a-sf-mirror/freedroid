@@ -1467,7 +1467,7 @@ void show_quick_inventory(void)
 	// can be drawn from the 'belt' that is actually the quick inventory.
 
 	for (i = 0; i < 10; i++) {
-		sprintf(text, "%d", i < 9 ? i : 0);
+		sprintf(text, "%d", i < 9 ? i + 1: 0);
 		PutStringFont(Screen, Messagestat_BFont, UNIVERSAL_COORD_W(130 + i * 40 - 9),
 					GameConfig.screen_height - UNIVERSAL_COORD_H(16), text);
 		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
