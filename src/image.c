@@ -274,11 +274,11 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 		ErrorMessage(__FUNCTION__, "Could not load image\n File name: %s \n", PLEASE_INFORM, IS_FATAL, fpath);
 	}
 
-	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
 	img->surface = our_SDL_display_format_wrapperAlpha(surface);
 	img->zoomed_out_surface = NULL;
 	img->texture_has_been_created = FALSE;
 
+	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
 	SDL_SetColorKey(img->surface, 0, 0);
 
 	SDL_FreeSurface(surface);

@@ -141,19 +141,8 @@ BFont_Info *LoadFont(char *filename)
 	BFont_Info *font = MyMalloc(sizeof(BFont_Info));
 
 	// Load the font image
-	SDL_Surface *tmp = (SDL_Surface *) IMG_Load(filename);
-	if (!tmp) {
-		fprintf(stderr, "Loading font \"%s\":%s\n", filename, IMG_GetError());
-		free(font);
-		return NULL;
-	}
-	font->font_image.surface = SDL_DisplayFormatAlpha(tmp);
-	font->font_image.w = font->font_image.surface->w;
-	font->font_image.h = font->font_image.surface->h;
-	SDL_SetAlpha(font->font_image.surface, 0, 255);
-	SDL_SetColorKey(font->font_image.surface, 0, 0);
-	SDL_FreeSurface(tmp);
-
+	load_image_surface(&font->font_image, filename, FALSE);
+	
 	// Find character coordinates in the image
 	SDL_Rect char_rect[MAX_CHARS_IN_FONT];
 	memset(char_rect, 0, sizeof(char_rect));
