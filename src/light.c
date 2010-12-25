@@ -1033,17 +1033,11 @@ void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 		first_call = FALSE;
 
 		int i;
-		char fpath[2048];
 		char constructed_file_name[2000];
-		SDL_Surface *tmp;
 
 		for (i = 0; i < NUMBER_OF_SHADOW_IMAGES; i++) {
 			sprintf(constructed_file_name, "light_radius_chunks/iso_light_radius_darkness_%04d.png", i);
-			find_file(constructed_file_name, GRAPHICS_DIR, fpath, 0);
-			get_iso_image_from_file_and_path(fpath, &(light_radius_chunk[i]), TRUE);
-			tmp = light_radius_chunk[i].surface;
-			light_radius_chunk[i].surface = SDL_DisplayFormatAlpha(light_radius_chunk[i].surface);
-			SDL_FreeSurface(tmp);
+			load_image(&light_radius_chunk[i], constructed_file_name, FALSE);
 		}
 
 		lrc_nb_columns = (int)ceilf((float)GameConfig.screen_width / (float)(LRC_ISO_WIDTH + LRC_ISO_GAP_X)) + 1;
