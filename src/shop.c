@@ -244,18 +244,6 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 			else
 				Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
 
-			// If that didn't work, then it's time to try the same directory with 'png' ending...
-			// Maybe there's still some (old) rotation image of this kind.
-			//
-			if (Whole_Image == NULL) {
-				DebugPrintf(1, "\nNo luck trying to load .jpg item image series from the 'bastian' dir... trying png...");
-				sprintf(ConstructedFileName, "items/%s/portrait_%04d.png", ItemMap[Number].item_rotation_series_prefix,
-					i + 1);
-				if (find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 1))
-					Whole_Image = NULL;
-				else
-					Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
-			}
 			// But at this point, we should have found the image!!
 			// or if not, this maybe indicates that we have reached the
 			// last image in the image series...
