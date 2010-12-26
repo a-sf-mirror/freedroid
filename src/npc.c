@@ -296,7 +296,7 @@ void clear_npcs()
 
 		free(n->dialog_basename);
 
-		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+		for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 			if (!n->shoplist[i])
 				break;
 			free(n->shoplist[i]);
@@ -315,12 +315,12 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name, int wei
 	struct npc *n;
 
 	n = npc_get(dialog_basename); 
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		if (n->shoplist[i] == NULL)
 			break;
 	}
 
-	if (i == MAX_ITEMS_IN_INVENTORY) {
+	if (i == MAX_ITEMS_IN_NPC_INVENTORY) {
 		ErrorMessage(__FUNCTION__, "Shop list for character \"%s\" is full. Cannot add item \"%s\".\n", PLEASE_INFORM, IS_WARNING_ONLY, n->dialog_basename, item_name);
 		return 1;
 	}
@@ -354,7 +354,7 @@ static int npc_shoplist_weight(struct npc *n)
 	int total_weight = 0;
 	int i;
 
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		if (n->shoplistweight[i] == 0)
 			break;
 
@@ -438,7 +438,7 @@ static const char *npc_pick_item(struct npc *n)
 	total_weight = npc_shoplist_weight(n);
 	pick = MyRandom(total_weight);
 
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
 		pick -= n->shoplistweight[i];
 		if (pick <= 0)
 			break;
