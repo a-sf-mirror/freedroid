@@ -607,10 +607,11 @@ static int lua_chat_player_name(lua_State * L)
 static int lua_chat_tux_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
-	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
+	const char *waitop = luaL_optstring(L, 2, "WAIT");
+	int no_wait = !strcmp(waitop, "NO_WAIT");
 
 	autostr_append(chat_log.text, "\1- ");
-	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid);
+	chat_add_response(L_(answer), no_wait, chat_control_chat_droid);
 	autostr_append(chat_log.text, "\n");
 	return 0;
 }
@@ -618,10 +619,11 @@ static int lua_chat_tux_says(lua_State * L)
 static int lua_chat_npc_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
-	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
+	const char *waitop = luaL_optstring(L, 2, "WAIT");
+	int no_wait = !strcmp(waitop, "NO_WAIT");
 
 	autostr_append(chat_log.text, "\2");
-	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid);
+	chat_add_response(L_(answer), no_wait, chat_control_chat_droid);
 	autostr_append(chat_log.text, "\n");
 	return 0;
 }
@@ -629,10 +631,11 @@ static int lua_chat_npc_says(lua_State * L)
 static int lua_chat_cli_says(lua_State * L)
 {
 	const char *answer = luaL_checkstring(L, 1);
-	const char *sample = luaL_optstring(L, 2, "Sorry_No_Voice_Sample_Yet_0.wav");
+	const char *waitop = luaL_optstring(L, 2, "WAIT");
+	int no_wait = !strcmp(waitop, "NO_WAIT");
 
 	autostr_append(chat_log.text, "\3");
-	GiveSubtitleNSample(L_(answer), sample, chat_control_chat_droid);
+	chat_add_response(L_(answer), no_wait, chat_control_chat_droid);
 
 	return 0;
 }

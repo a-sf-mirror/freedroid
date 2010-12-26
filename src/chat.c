@@ -424,21 +424,15 @@ static void wait_for_click()
  * sample.  It is not very sophisticated or complicated, but nevertheless
  * important, because this combination does indeed occur so often.
  */
-void GiveSubtitleNSample(const char *SubtitleText, const char *SampleFilename, enemy *chat_droid)
+void chat_add_response(const char *response, int no_wait, enemy *chat_droid)
 {
-	int do_wait = 1;
-
-	autostr_append(chat_log.text, SubtitleText);
+	autostr_append(chat_log.text, response);
 	chat_log.scroll_offset = 0;
-
-	if (!strcmp(SampleFilename, "NO_WAIT")) {
-		do_wait = 0;
-	}
 
 	show_chat_log(chat_droid);
 	our_SDL_flip_wrapper();
 
-	if (do_wait)
+	if (!no_wait)
 		wait_for_click();
 }
 
@@ -493,7 +487,7 @@ static void process_this_chat_option(int menu_selection, enemy *chat_droid)
 	// Echo option text
 	if (!ChatRoster[menu_selection].no_text) {
 		autostr_append(chat_log.text, "\1- ");
-		GiveSubtitleNSample(L_(ChatRoster[menu_selection].option_text), "FIXME", chat_droid);
+		chat_add_response(L_(ChatRoster[menu_selection].option_text), FALSE, chat_droid);
 		autostr_append(chat_log.text, "\n");
 	}
 
