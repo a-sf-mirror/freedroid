@@ -237,6 +237,7 @@ Random Droid Types: 123, 139, 247, 249
 SForce: T=614 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux=1 UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
 SForce: T=KEV Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" UseDialog="Kevin" ShortLabel=_"Kevin"
 SForce: T=JAS Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" UseDialog="Jasmine" ShortLabel=_"Cute Girl"
+SForce: T=629 Marker=1017 Faction="civilian" StartLabel="KevinsLawnMowerStart" UseDialog="Kevin-Lawnmower" ShortLabel=_"Lawn Mower"
 SForce: T=598 Marker=2017 StartLabel="Kevins598StartGameSquare" ShortLabel=_"Prisoner"
 SForce: T=751 Marker=2017 StartLabel="Kevins751StartGameSquare" ShortLabel=_"Prisoner"
 SForce: T=883 Marker=2017 StartLabel="Kevins883StartGameSquare" ShortLabel=_"Prisoner"

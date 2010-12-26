@@ -104,6 +104,7 @@ void init_npcs()
 		"Jasmine",
 		"Kevin",
 		"KevinGuard",
+		"Kevin-Lawnmower",
 		"Koan",
 		//	"Lina",
 		"Lukas",

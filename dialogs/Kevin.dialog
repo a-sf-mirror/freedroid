@@ -51,6 +51,16 @@ EveryTime LuaCode={
 		if (has_cookie("kevin_sigtalk")) then hide(20) else show(20) end
 	else end
 
+	if (has_cookie("kevins_lawnmower_tux_login")) then
+		npc_says("Oh, and did you play around with my Lawnmower?")
+		show(60, 61)
+	end
+	
+	if (has_cookie("kevins_lawnmower_tux_login_kevin_attempt")) then
+		npc_says("Hmm, strange things are happening to my lawnmower.")
+		npc_says("But I don't have the time right now to take a look at it.")
+	end
+	
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -261,6 +271,33 @@ LuaCode={
 		_"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
 		_"Then come back when you have a real will to learn.",
 		_"You don't have enough experience. Come here after you see some more action.") 
+}
+----------------------------------------------------------------------
+
+Nr=60 Text="No, I didn't touch it."
+LuaCode={
+	npc_says(_"Strange, I should have a look on it...") --Tux lied to him and will not directly get an account if he talks to it next time.
+	npc_says(_"...when I have more time..")
+	if (has_cookie("kevins_lawnmower_tux_login")) then
+		del_cookie("kevins_lawnmower_tux_login")
+	end
+	hide(61, 60)
+}
+----------------------------------------------------------------------
+
+Nr=61 Text="Yes, I tried to login."
+LuaCode={
+	if (done_quest(_"And there was light...")) then
+		npc_says(_"Please don't touche it.")
+		npc_says(_"I don't want you to break it somehow.")
+		add_cookie("kevins_lawnmower_tux_login_granted")
+	else
+		npc_says(_"You better don't touch it.")
+		npc_says(_"If you break it somehow, I'll be very angry.")
+		npc_says(_"And I still have no time.")
+		npc_says(_"The power level is still very low hence I am quite busy.")
+	end
+	hide(61, 60)
 }
 ----------------------------------------------------------------------
 

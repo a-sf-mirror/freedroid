@@ -1,0 +1,114 @@
+----------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+EveryTime LuaCode={
+	npc_says(_"Welcome to Kevins personal lawnmower.")
+	npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
+	npc_says(_"Please state your name for identification.")
+	npc_says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
+	if (not has_cookie("met_kevins_lawnmower")) then
+		add_cookie("met_kevins_lawnmower")
+	end
+	show(5, 6, 99)
+}
+----------------------------------------------------------------------
+
+Nr=5 Text=_"I'll state my name."
+NO_TEXT
+LuaCode={
+	tux_says("" .. get_player_name() .. "")
+	npc_says(_"Identifying as " .. get_player_name() .. "", "NO_WAIT")
+	if (has_cookie("kevins_lawnmower_tux_login_granted")) then
+		npc_says(_"Welcome to Kevins lawnmower.")
+		show(20)
+		hide(5, 6, 30, 30, 31)
+	else
+		npc_says(_"Verification failed!")
+		npc_says(_"WARNING: LOGIN ATTEMPT REPORTED. THERE WILL BE CONSEQUENCES!")
+		add_cookie("kevins_lawnmower_tux_login")
+		heat_tux(15)
+		end_dialog()
+	end
+}
+----------------------------------------------------------------------
+
+Nr=6 Text=_"I'll try 'Kevin'."
+NO_TEXT
+LuaCode={
+	tux_says(_"Kevin")
+	npc_says(_"Identifying as Kevin...", "NO_WAIT")
+	npc_says(_"Identification failed!", "NO_WAIT")
+	npc_says(_"Liar!", "NO_WAIT")
+	npc_says(_"WARNING: ABUSE REPORTED!")
+	npc_says(_"PUNISHMENT IN 3 SECONDS!")
+	npc_says(_"IN 2 SECONDS!")
+	npc_says(_"IN 1 SECOND!")
+	npc_says(_"DIE!")
+	add_cookie("kevins_lawnmower_tux_login_kevin_attempt")
+	heat_tux(25)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=20 Text=_"help"
+LuaCode={
+	tux_says(_"Available commands:", "NO_WAIT")
+	npc_says(_"help", "NO_WAIT")
+	npc_says(_"version", "NO_WAIT")
+	npc_says(_"fuel_level", "NO_WAIT")
+	hide(20) show(30, 31)
+}
+----------------------------------------------------------------------
+
+Nr=30 Text=_"version"
+NO_TEXT
+LuaCode={
+	tux_says(_"version", "NO_WAIT")
+	npc_says(_"printing version...", "NO_WAIT")
+	npc_says(_"MowOS 0.4.2", "NO_WAIT")
+	hide(30)
+}
+----------------------------------------------------------------------
+
+Nr=31 Text=_"fuel_level"
+NO_TEXT
+LuaCode={
+	tux_says(_"fuel_level", "NO_WAIT")
+	npc_says(_"printing fuel level...")
+	npc_says_random(_"20 percent", _"100 percent", _"4 percent WARNING: CRITICAL!", _"8 percent WARNING: CRITICAL!", _"97 percent", _"64 percent", _"43 percent", _"38 percent")
+	hide(31)
+}
+----------------------------------------------------------------------
+
+Nr=99 Text="exit"
+NO_TEXT
+LuaCode={
+	tux_says("exit","NO_WAIT")
+	npc_says(_"exiting...")
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"
