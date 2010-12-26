@@ -1380,38 +1380,9 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			if (!GameConfig.skip_shadow_blitting) {
 				gps vpos;
 				update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
-				if (use_open_gl) {
-					if (obstacle_map[our_obstacle->type].shadow_image.texture_has_been_created) {
-						if (mask & ZOOM_OUT) {
-							draw_gl_textured_quad_at_map_position(&obstacle_map
-											      [our_obstacle->type].shadow_image,
-											      vpos.x, vpos.y,
-											      1.0, 1.0, 1.0, FALSE,
-											      TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS,
-											      lvledit_zoomfact_inv());
-						} else {
-							draw_gl_textured_quad_at_map_position(&obstacle_map
-											      [our_obstacle->type].shadow_image,
-											      vpos.x, vpos.y,
-											      1.0, 1.0, 1.0, FALSE,
-											      TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS, 1.0);
-						}
-					}
-				} else {
-					if (obstacle_map[our_obstacle->type].shadow_image.surface != NULL) {
-						if (mask & ZOOM_OUT) {
-							blit_zoomed_iso_image_to_map_position(&
-											      (obstacle_map
-											       [our_obstacle->type].shadow_image),
-											      vpos.x, vpos.y);
-						} else {
-							blit_iso_image_to_map_position(&obstacle_map[our_obstacle->type].shadow_image,
-										       vpos.x, vpos.y);
-						}
-						// DebugPrintf ( -4 , "\n%s(): shadow has been drawn." , __FUNCTION__ );
-					}
-				}
+				display_image_on_map_scaled(&obstacle_map[our_obstacle->type].shadow_image, vpos.x, vpos.y, mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0);
 			}
+			
 			// If the obstacle in question does have a collision rectangle, then we
 			// draw that on the floor now.
 			//
