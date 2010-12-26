@@ -581,8 +581,6 @@ char *get_string(int MaxLen, int background_code, const char *text_for_overhead_
 	int curpos;		// counts the characters entered so far
 	int finished;
 	int x0, y0;
-	SDL_Rect store_rect, tmp_rect;
-	SDL_Surface *store = NULL;
 
 	DisplayText(text_for_overhead_promt, 50, 50, NULL, TEXT_STRETCH);
 
