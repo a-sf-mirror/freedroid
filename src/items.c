@@ -56,6 +56,8 @@ void init_item(item *it)
 	it->pos.x = -1;
 	it->pos.y = -1;
 	it->pos.z = -1;
+	it->inventory_position.x = -1;
+	it->inventory_position.y = -1;
 }
 
 item create_item_with_name(const char *item_name, int full_duration, int multiplicity)
@@ -1187,9 +1189,13 @@ item *drop_item(item *item_pointer, float x, float y, int level_num)
 		return NULL;
 	}
 
+	// Create the item
 	init_item(&(drop_level->ItemList[index]));
 	MoveItem(item_pointer, &(drop_level->ItemList[index]));
 
+	// Place item on level
+	drop_level->ItemList[index].inventory_position.x = -1;
+	drop_level->ItemList[index].inventory_position.y = -1;
 	drop_level->ItemList[index].pos.x = x;
 	drop_level->ItemList[index].pos.y = y;
 	drop_level->ItemList[index].pos.z = level_num;

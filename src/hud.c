@@ -212,8 +212,12 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 		} else {
 			autostr_append(str, _("USE UNDESCRIBED YET (bug)"));
 		}
-		autostr_append(str, "\n");
-		autostr_append(str, _("Right click to use\n"));
+
+		// Show text only if item is in inventory
+		if (item->inventory_position.x != -1) {
+			autostr_append(str, "\n");
+			autostr_append(str, _("Right click to use\n"));
+		}
 	}
 
 	// Socket count
