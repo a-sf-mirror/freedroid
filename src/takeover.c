@@ -226,6 +226,7 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 	SDL_SetClipRect(Screen, NULL);
 	Set_Rect(target, PosX, PosY, GameConfig.screen_width, GameConfig.screen_height);
 	our_SDL_blit_surface_wrapper(scaled, NULL, Screen, &target);
+	SDL_FreeSurface(scaled);
 }
 
 /**
