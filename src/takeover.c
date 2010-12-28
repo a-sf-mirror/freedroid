@@ -38,7 +38,6 @@
 #include "proto.h"
 #include "takeover.h"
 #include "map.h"
-#include "SDL_rotozoom.h"
 
 enemy *cDroid;
 Uint32 cur_time;		// current time in ms 
@@ -150,7 +149,7 @@ static void display_takeover_help()
 /** 
  * Display the picture of a droid
  */
-static void show_droid_picture(int PosX, int PosY, int type)
+static void ShowDroidPicture(int PosX, int PosY, int Number)
 {
 	SDL_Surface *tmp;
 	SDL_Rect target;
@@ -163,12 +162,14 @@ static void show_droid_picture(int PosX, int PosY, int type)
 	int i;
 	int RotationIndex;
 
-	if (!strcmp(Druidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
+	DebugPrintf(2, "\nvoid ShowDroidPicture(...): Function call confirmed.");
+
+	if (!strcmp(Druidmap[Number].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
 		return;		// later this should be a default-correction instead
 
 	// Maybe we have to reload the whole image series
 	//
-	if (strcmp(LastImageSeriesPrefix, Druidmap[type].droid_portrait_rotation_series_prefix)) {
+	if (strcmp(LastImageSeriesPrefix, Druidmap[Number].droid_portrait_rotation_series_prefix)) {
 		// Maybe we have to free the series from an old item display first
 		//
 		if (DroidRotationSurfaces[0] != NULL) {
@@ -179,15 +180,16 @@ static void show_droid_picture(int PosX, int PosY, int type)
 		// Now we can start to load the whole series into memory
 		//
 		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
-			if (!strcmp(Druidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
+			if (!strcmp(Druidmap[Number].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
 				Terminate(ERR);
 			} else {
 				sprintf(ConstructedFileName, "droids/%s/portrait_%04d.jpg",
-					Druidmap[type].droid_portrait_rotation_series_prefix, i + 1);
+					Druidmap[Number].droid_portrait_rotation_series_prefix, i + 1);
+				DebugPrintf(1, "\nConstructedFileName = %s ", ConstructedFileName);
 			}
 
 			// We must remember, that his is already loaded of course
-			strcpy(LastImageSeriesPrefix, Druidmap[type].droid_portrait_rotation_series_prefix);
+			strcpy(LastImageSeriesPrefix, Druidmap[Number].droid_portrait_rotation_series_prefix);
 
 			find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
 
@@ -219,14 +221,13 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 
 	tmp = DroidRotationSurfaces[RotationIndex];
 
-	SDL_Surface *scaled = zoomSurface(tmp,
-									  (float)Droid_Image_Window.w / (float)tmp->w,
-									  (float)Droid_Image_Window.w / (float)tmp->w, 0);
-
 	SDL_SetClipRect(Screen, NULL);
 	Set_Rect(target, PosX, PosY, GameConfig.screen_width, GameConfig.screen_height);
-	our_SDL_blit_surface_wrapper(scaled, NULL, Screen, &target);
-}
+	our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &target);
+
+	DebugPrintf(2, "\nvoid ShowDroidPicture(...): Usual end of function reached.");
+
+};				// void ShowDroidPicture ( ... )
 
 /**
  * Display infopage page of droidtype.
@@ -241,7 +242,7 @@ static void show_droid_info(int droidtype)
 	blit_special_background(ITEM_BROWSER_BG_PIC_BACKGROUND_CODE);
 
 	// Show droid portrait
-	show_droid_picture(UNIVERSAL_COORD_W(45), UNIVERSAL_COORD_H(190), droidtype);
+	ShowDroidPicture(UNIVERSAL_COORD_W(45), UNIVERSAL_COORD_H(190), droidtype);
 
 	// Show the droid name
 	SetCurrentFont(Menu_BFont);
