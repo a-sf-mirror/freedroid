@@ -807,6 +807,7 @@ define_save_xxx_array(string);
 define_save_xxx_array(mission);
 define_save_xxx_array(upgrade_socket);
 define_save_xxx_dynarray(upgrade_socket);
+define_save_xxx_dynarray(item);
 define_save_xxx_array(item);
 define_save_xxx_array(gps);
 define_save_xxx_array(moderately_finepoint);
@@ -893,6 +894,7 @@ define_read_xxx_array(mission);
 define_read_xxx_array(upgrade_socket);
 define_read_xxx_dynarray(upgrade_socket);
 define_read_xxx_array(item);
+define_read_xxx_dynarray(item);
 define_read_xxx_array(gps);
 define_read_xxx_array(moderately_finepoint);
 

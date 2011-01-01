@@ -297,7 +297,7 @@ void clear_npcs()
 
 		free(n->dialog_basename);
 
-		for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
+		for (i = 0; i < MAX_ITEMS_IN_NPC_SHOPLIST; i++) {
 			if (!n->shoplist[i])
 				break;
 			free(n->shoplist[i]);
@@ -316,12 +316,12 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name, int wei
 	struct npc *n;
 
 	n = npc_get(dialog_basename); 
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_SHOPLIST; i++) {
 		if (n->shoplist[i] == NULL)
 			break;
 	}
 
-	if (i == MAX_ITEMS_IN_NPC_INVENTORY) {
+	if (i == MAX_ITEMS_IN_NPC_SHOPLIST) {
 		ErrorMessage(__FUNCTION__, "Shop list for character \"%s\" is full. Cannot add item \"%s\".\n", PLEASE_INFORM, IS_WARNING_ONLY, n->dialog_basename, item_name);
 		return 1;
 	}
@@ -333,21 +333,12 @@ int npc_add_shoplist(const char *dialog_basename, const char *item_name, int wei
 
 static void npc_clear_inventory(struct npc *n)
 {
-	int i;
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
-		init_item(&n->npc_inventory[i]);
-	}
+	dynarray_free(&n->npc_inventory);
 }
 
 static int npc_inventory_size(struct npc *n)
 {
-	int i;
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
-		if (n->npc_inventory[i].type == -1)
-			break;
-	}
-
-	return i;
+	return n->npc_inventory.size;
 }
 
 static int npc_shoplist_weight(struct npc *n)
@@ -355,7 +346,7 @@ static int npc_shoplist_weight(struct npc *n)
 	int total_weight = 0;
 	int i;
 
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_SHOPLIST; i++) {
 		if (n->shoplistweight[i] == 0)
 			break;
 
@@ -370,15 +361,7 @@ static int npc_shoplist_weight(struct npc *n)
  */
 void npc_inventory_delete_item(struct npc *n, int index)
 {
-	// Delete the item.
-	DeleteItem(&n->npc_inventory[index]);
-
-	// Shift trailing items backward one index to fill the gap.
-	if (index < MAX_ITEMS_IN_NPC_INVENTORY - 1) {
-		memmove(&n->npc_inventory[index], &n->npc_inventory[index + 1],
-		        sizeof(item) * (MAX_ITEMS_IN_NPC_INVENTORY - index - 1));
-		init_item(&n->npc_inventory[MAX_ITEMS_IN_NPC_INVENTORY - 1]);
-	}
+	dynarray_del(&n->npc_inventory, index, sizeof(item));
 }
 
 /**
@@ -388,7 +371,7 @@ void npc_inventory_delete_item(struct npc *n, int index)
 static int add_item(struct npc *n, const char *item_name)
 {
 	int i;
-	int stack_item = 0;
+	int stack_item = -1;
 	int item_type = GetItemIndexByName(item_name);
 	int amount = 1;
 
@@ -397,31 +380,25 @@ static int add_item(struct npc *n, const char *item_name)
 		amount = 90 + MyRandom(10);
 	}
 
-	// Look for a free item index in the NPC inventory,
-	// or, if the item is stackable, look for the item index
+	// If the item is stackable, look for the item index
 	// to stack at.
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
-		if (n->npc_inventory[i].type == -1)
-			break;
-
-		if (ItemMap[item_type].item_group_together_in_inventory && n->npc_inventory[i].type == item_type) {
-			stack_item = 1;
+	for (i = 0; i < n->npc_inventory.size; i++) {
+		if (ItemMap[item_type].item_group_together_in_inventory && ((item *)(n->npc_inventory.arr))[i].type == item_type) {
+			stack_item = i;
 			break;
 		}
 	}
 
-	if (i == MAX_ITEMS_IN_NPC_INVENTORY) {
-		ErrorMessage(__FUNCTION__, "Unable to add item \"%s\" inside NPC \"%s\" inventory, because the inventory is full.\n", PLEASE_INFORM, IS_WARNING_ONLY, item_name, n->dialog_basename);
-		return 1;
-	}
-
 	DebugPrintf(DEBUG_SHOP, "adding item %s\n", item_name);
-	if (stack_item) {
-		n->npc_inventory[i].multiplicity += amount;
+	if (stack_item != -1) {
+		((item *)(n->npc_inventory.arr))[i].multiplicity += amount;
 	} else {
-		n->npc_inventory[i].type = GetItemIndexByName(item_name);
-		FillInItemProperties(&n->npc_inventory[i], TRUE, 1);
-		n->npc_inventory[i].multiplicity = amount;
+		item it;
+		init_item(&it);
+		it.type = GetItemIndexByName(item_name);
+		FillInItemProperties(&it, TRUE, 1);
+		it.multiplicity = amount;
+		dynarray_add(&n->npc_inventory, &it, sizeof(it));
 	}
 
 	return 0;
@@ -439,7 +416,7 @@ static const char *npc_pick_item(struct npc *n)
 	total_weight = npc_shoplist_weight(n);
 	pick = MyRandom(total_weight);
 
-	for (i = 0; i < MAX_ITEMS_IN_NPC_INVENTORY; i++) {
+	for (i = 0; i < MAX_ITEMS_IN_NPC_SHOPLIST; i++) {
 		pick -= n->shoplistweight[i];
 		if (pick <= 0)
 			break;
@@ -492,7 +469,7 @@ static void npc_refresh_inventory(struct npc *n)
  * a NPC will sell.
  * It takes care of refreshing the list when necessary.
  */
-item *npc_get_inventory(struct npc *n)
+item_dynarray *npc_get_inventory(struct npc *n)
 {
 	// Time based refresh
 	if ((Me.current_game_date - n->last_trading_date) > 360) {
@@ -508,7 +485,7 @@ item *npc_get_inventory(struct npc *n)
 		npc_refresh_inventory(n);
 	}
 
-	return n->npc_inventory;
+	return &n->npc_inventory;
 }
 
 #undef _npc_c

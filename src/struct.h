@@ -58,6 +58,8 @@ struct dynarray {
 	int capacity;
 };
 
+typedef struct dynarray item_dynarray;
+
 typedef struct upgrade_socket_dynarray {
 	struct upgrade_socket *arr;
 	int size;
@@ -487,9 +489,9 @@ typedef struct npc {
 	unsigned char chat_character_initialized;
 	unsigned char chat_flags[MAX_ANSWERS_PER_PERSON];
 
-	string shoplist[MAX_ITEMS_IN_NPC_INVENTORY]; //list of items that can be put in the inventory of the NPC
-	int shoplistweight[MAX_ITEMS_IN_NPC_INVENTORY]; //weight of each item: relative probability of appearance in inventory
-	item npc_inventory[MAX_ITEMS_IN_NPC_INVENTORY]; // current NPC stock (what can be readily bought)
+	string shoplist[MAX_ITEMS_IN_INVENTORY]; //list of items that can be put in the inventory of the NPC
+	int shoplistweight[MAX_ITEMS_IN_INVENTORY]; //weight of each item: relative probability of appearance in inventory
+	item_dynarray npc_inventory;
 
 	float last_trading_date; // when did we trade with this NPC the last time?
 

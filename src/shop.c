@@ -830,23 +830,20 @@ void InitTradeWithCharacter(struct npc *npc)
 {
 #define NUMBER_OF_ITEMS_IN_SHOP 17
 
-	item *SalesList;
 	item *BuyPointerList[MAX_ITEMS_IN_INVENTORY];
 	item *TuxItemsList[MAX_ITEMS_IN_INVENTORY];
 	int i;
 	int ItemSelected = 0;
 	shop_decision ShopOrder;
 	int NumberOfItemsInTuxRow = 0;
-	int NumberOfItemsInShop = 0;
+	struct dynarray *sold_items;
 
-	SalesList = npc_get_inventory(npc);
+	sold_items = npc_get_inventory(npc);
 
-	for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-		if (SalesList[i].type == (-1))
-			BuyPointerList[i] = NULL;
-		else
-			BuyPointerList[i] = &(SalesList[i]);
+	for (i = 0; i < sold_items->size && i < sizeof(BuyPointerList)/sizeof(BuyPointerList[0]); i++) {
+			BuyPointerList[i] = &((item *)(sold_items->arr))[i];
 	}
+
 	// Now here comes the new thing:  This will be a loop from now
 	// on.  The buy and buy and buy until at one point we say 'BACK'
 	//
@@ -854,14 +851,7 @@ void InitTradeWithCharacter(struct npc *npc)
 
 		NumberOfItemsInTuxRow = AssemblePointerListForItemShow(&(TuxItemsList[0]), TRUE);
 
-		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-			if (BuyPointerList[i] == NULL) {
-				NumberOfItemsInShop = i;
-				break;
-			}
-		}
-
-		ItemSelected = GreatShopInterface(NumberOfItemsInShop, BuyPointerList, NumberOfItemsInTuxRow, TuxItemsList, &(ShopOrder));
+		ItemSelected = GreatShopInterface(sold_items->size, BuyPointerList, NumberOfItemsInTuxRow, TuxItemsList, &(ShopOrder));
 		switch (ShopOrder.shop_command) {
 		case BUY_1_ITEM:
 			if (buy_item(BuyPointerList[ShopOrder.item_selected], ShopOrder.number_selected) == 1) {
@@ -880,11 +870,8 @@ void InitTradeWithCharacter(struct npc *npc)
 			break;
 		};
 
-		for (i = 0; i < MAX_ITEMS_IN_INVENTORY; i++) {
-			if (SalesList[i].type == (-1))
-				BuyPointerList[i] = NULL;
-			else
-				BuyPointerList[i] = &(SalesList[i]);
+		for (i = 0; i < sold_items->size && i < sizeof(BuyPointerList)/sizeof(BuyPointerList[0]); i++) {
+			BuyPointerList[i] = &((item *)(sold_items->arr))[i];
 		}
 	}
 }

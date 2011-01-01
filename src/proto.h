@@ -340,6 +340,8 @@ void save_string_array(const char *, string *, int);
 void read_string_array(char *, const char *, string *, int);
 void save_upgrade_socket_dynarray(const char *, struct upgrade_socket_dynarray *);
 void read_upgrade_socket_dynarray(char *, const char *, struct upgrade_socket_dynarray *);
+void save_item_dynarray(const char *, item_dynarray *);
+void read_item_dynarray(char *, const char *, item_dynarray *);
 
 /* Hacks */
 void save_keybind_t_array(const char *, keybind_t *, int);
@@ -823,7 +825,7 @@ void npc_add(const char *);
 int npc_add_shoplist(const char *, const char *, int);
 void init_npcs(void);
 void clear_npcs(void);
-item *npc_get_inventory(struct npc *);
+item_dynarray *npc_get_inventory(struct npc *);
 void npc_inventory_delete_item(struct npc *, int);
 
 // faction.c
