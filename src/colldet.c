@@ -422,11 +422,18 @@ int DirectLineColldet(float x1, float y1, float x2, float y2, int z, colldet_fil
 	gps vp1, vp2;		// segment's virtual endpoints
 
 	// Segment's bbox.
-	// We add 2 tiles around the segment's bbox, because some obstacles covers several tiles.
 	int x_tile_start = floor(min(x1, x2));
 	int y_tile_start = floor(min(y1, y2));
 	int x_tile_end = ceil(max(x1, x2)) - 1;
 	int y_tile_end = ceil(max(y1, y2)) - 1;
+
+	// Special case: if x1==x2 and x1 is an integral value, the previous
+	// definition ends up with x_tile_end = x_tile_start - 1, which is definitely
+	// not intended (same remark with Y values)
+	if (x_tile_end < x_tile_start)
+		x_tile_end = x_tile_start;
+	if (y_tile_end < y_tile_start)
+		y_tile_end = y_tile_start;
 
 	int x_start, y_start, x_end, y_end;	// intersection between the bbox and one level's limits
 	struct neighbor_data_cell *ngb_cell = NULL;
