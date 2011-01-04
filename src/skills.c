@@ -696,10 +696,7 @@ static void load_skill_level_images_if_needed(void)
 	}
 	
 	// Delete the big image
-	if (!use_open_gl) {
-		SDL_FreeSurface(img.surface);
-		img.surface = NULL;
-	}
+	free_image_surface(&img);
 }
 
 

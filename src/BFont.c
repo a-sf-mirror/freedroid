@@ -126,11 +126,8 @@ static void prepare_font(BFont_Info *font, SDL_Rect char_rect[MAX_CHARS_IN_FONT]
 	// Space is a special case	
 	create_subimage(&font->font_image, &font->char_image[' '], &char_rect[' ']);
 	
-	// Delete font_image (already done if using OpenGL)
-	if (!use_open_gl) {
-		SDL_FreeSurface(font->font_image.surface);
-		font->font_image.surface = NULL;
-	}
+	// Delete font_image SDL surface
+	free_image_surface(&font->font_image);
 }
 
 /**

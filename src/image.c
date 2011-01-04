@@ -311,3 +311,14 @@ void load_image(struct image *img, const char *filename, int use_offset_file)
 	}
 }
 
+/**
+ * Free the SDL surface associated to an image.
+ */
+void free_image_surface(struct image *img)
+{
+	if (!use_open_gl) {
+		SDL_FreeSurface(img->surface);
+		img->surface = NULL;
+	}
+}
+
