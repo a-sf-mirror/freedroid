@@ -110,7 +110,6 @@ EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
 EXTERN item *item_held_in_hand;
 
 EXTERN struct image MouseCursorImageList[NUMBER_OF_MOUSE_CURSOR_PICTURES];
-EXTERN struct image SpellLevelButtonImageList[NUMBER_OF_SKILL_PAGES];
 
 EXTERN int Number_Of_Droids_On_Ship;
 EXTERN configuration_for_freedroid GameConfig;

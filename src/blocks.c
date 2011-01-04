@@ -239,61 +239,6 @@ void Load_Mouse_Move_Cursor_Surfaces(void)
 };				// void Load_Mouse_Move_Cursor_Surfaces( void )
 
 /**
- * This function loads the image containing the different buttons for the
- * different skills in the skill book of the Tux.
- */
-void Load_Skill_Level_Button_Surfaces(void)
-{
-	static int SkillLevelButtonsAreAlreadyLoaded = FALSE;
-	SDL_Surface *Whole_Image;
-	SDL_Surface *tmp_surf;
-	SDL_Rect Source;
-	SDL_Rect Target;
-	int i = 0;
-	int j;
-	char fpath[2048];
-
-	// Maybe this function has been called before.  Then we do not
-	// need to do anything (again) here and can just return.
-	//
-	if (SkillLevelButtonsAreAlreadyLoaded)
-		return;
-
-	// Now we proceed to load all the skill circle buttons.
-	//
-	find_file(SKILL_LEVEL_BUTTON_FILE, GRAPHICS_DIR, fpath, 0);
-
-	Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
-	SDL_SetAlpha(Whole_Image, 0, SDL_ALPHA_OPAQUE);
-
-	tmp_surf = SDL_CreateRGBSurface(0, SKILL_LEVEL_BUTTON_WIDTH, SKILL_LEVEL_BUTTON_HEIGHT, vid_bpp, 0, 0, 0, 0);
-	SDL_SetColorKey(tmp_surf, 0, 0);	// this should clear any color key in the source surface
-
-	for (j = 0; j < NUMBER_OF_SKILL_PAGES; j++) {
-		Source.x = j * (SKILL_LEVEL_BUTTON_WIDTH);
-		Source.y = i * (SKILL_LEVEL_BUTTON_HEIGHT);
-		Source.w = SKILL_LEVEL_BUTTON_WIDTH;
-		Source.h = SKILL_LEVEL_BUTTON_HEIGHT;
-		Target.x = 0;
-		Target.y = 0;
-		Target.w = Source.w;
-		Target.h = Source.h;
-
-		SpellLevelButtonImageList[j].surface = our_SDL_display_format_wrapperAlpha(tmp_surf);	// now we have an alpha-surf of right size
-		SDL_SetColorKey(SpellLevelButtonImageList[j].surface, 0, 0);	// this should clear any color key in the dest surface
-		// Now we can copy the image Information
-		our_SDL_blit_surface_wrapper(Whole_Image, &Source, SpellLevelButtonImageList[j].surface, &Target);
-		SDL_SetAlpha(SpellLevelButtonImageList[j].surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-	}
-
-	SDL_FreeSurface(tmp_surf);
-	SDL_FreeSurface(Whole_Image);
-
-	SkillLevelButtonsAreAlreadyLoaded = TRUE;
-
-};				// void Load_Skill_Level_Button_Surfaces( void )
-
-/**
  *
  *
  */

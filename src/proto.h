@@ -239,7 +239,6 @@ void iso_load_bullet_surfaces(void);
 int iso_image_loaded(struct image *);
 void make_sure_zoomed_surface_is_there(struct image *our_iso_image);
 void Load_Mouse_Move_Cursor_Surfaces(void);
-void Load_Skill_Level_Button_Surfaces(void);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
 void LoadAndPrepareRedEnemyRotationModelNr(int RotationModel);
 void LoadAndPrepareGreenEnemyRotationModelNr(int RotationModel);

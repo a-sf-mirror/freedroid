@@ -70,7 +70,10 @@
 #define SPELL_LEVEL_BUTTON_WIDTH 30
 #define SPELL_LEVEL_BUTTON_HEIGHT SPELL_LEVEL_BUTTON_WIDTH
 
-int Override_Power_Limit = 0;
+#define NUMBER_OF_SKILL_PAGES 8
+
+static int Override_Power_Limit = 0;
+static struct image skill_level_images[NUMBER_OF_SKILL_PAGES];
 
 /**
  * This function improves a generic skill (hack melee ranged magic) by one
@@ -538,8 +541,8 @@ static int CursorIsOnWhichSpellPageButton(int x, int y)
 			return i;
 	}
 
-	return (-1);
-};				// int CursorIsOnWhichSpellLevelButton( int x , int y )
+	return -1;
+}
 
 /** 
  *
@@ -667,6 +670,44 @@ void load_skill_icon_if_needed(spell_skill_spec *spec)
 }
 
 /**
+ * This function loads the image containing the different buttons for the
+ * different skills in the skill book of the Tux.
+ */
+static void load_skill_level_images_if_needed(void)
+{
+#define SKILL_LEVEL_BUTTON_FILE "skill_buttons.png"
+	int i = 0;
+	struct image img = EMPTY_IMAGE;
+	SDL_Rect src;
+
+	if (iso_image_loaded(&skill_level_images[0]))
+		return;
+
+	// Load the image
+	load_image(&img, SKILL_LEVEL_BUTTON_FILE, FALSE);
+
+	if (!use_open_gl) {
+		SDL_SetAlpha(img.surface, 0, SDL_ALPHA_OPAQUE);
+	}
+
+	// Create the subimages
+	for (i = 0; i < NUMBER_OF_SKILL_PAGES; i++) {
+		src.x = i * (SKILL_LEVEL_BUTTON_WIDTH);
+		src.y = 0;
+		src.w = SKILL_LEVEL_BUTTON_WIDTH;
+		src.h = SKILL_LEVEL_BUTTON_HEIGHT;
+		create_subimage(&img, &skill_level_images[i], &src);
+	}
+	
+	// Delete the big image
+	if (!use_open_gl) {
+		SDL_FreeSurface(img.surface);
+		img.surface = NULL;
+	}
+}
+
+
+/**
  * This function displays the SKILLS SCREEN.  This is NOT the same as the
  * CHARACTER SCREEN.  In the skills screen you can see what skills/spells
  * you currenlty have availabe and you can select a new readied skill by
@@ -710,11 +751,7 @@ void ShowSkillsScreen(void)
 	//
 	SetCurrentFont(FPS_Display_BFont);
 
-	// Maybe the skill circle images for clicking between different spell circles
-	// have not been loaded yet.  Then it is time to do so.  If this was already
-	// done before, then the function will know it and don't do anything anyway.
-	//
-	Load_Skill_Level_Button_Surfaces();
+	load_skill_level_images_if_needed();
 
 	// We will need the current mouse position on several spots...
 	//
@@ -744,7 +781,7 @@ void ShowSkillsScreen(void)
 	//
 	SpellLevelRect.x = SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + SPELL_LEVEL_BUTTON_WIDTH * GameConfig.spell_level_visible;
 	SpellLevelRect.y = SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y;
-	our_SDL_blit_surface_wrapper(SpellLevelButtonImageList[GameConfig.spell_level_visible].surface, NULL, Screen, &SpellLevelRect);
+	display_image_on_screen(&skill_level_images[GameConfig.spell_level_visible], SpellLevelRect.x, SpellLevelRect.y);
 
 	// Now we fill in the skills available to this bot.  ( For now, these skills 
 	// are not class-specific, like in diablo or something, but this is our first
@@ -887,19 +924,11 @@ void ShowSkillsScreen(void)
 		while (MouseLeftPressed())
 			SDL_Delay(1);
 	}
-	// Now we see if perhaps the player has just clicked on another skill level
-	// button.  In this case of course we must set a different skill/spell level
-	// as the currently visible spell level.
-	//
+
+	// Handle clicks on page numbers	
 	if ((CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
 		GameConfig.spell_level_visible = CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y);
 	}
-	// We want to know, if the button was pressed the previous frame when we
-	// are in the next frame and back in this function.  Therefore we store
-	// the current button situation, so that we can conclude on button just
-	// pressed later.
-	//
-
-};				// ShowSkillsScreen ( void )
+}
 
 #undef _skills_c
