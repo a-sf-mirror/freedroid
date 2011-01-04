@@ -68,6 +68,7 @@
 #define SPELL_LEVEL_BUTTONS_X 60
 #define SPELL_LEVEL_BUTTONS_Y 423
 #define SPELL_LEVEL_BUTTON_WIDTH 30
+#define SPELL_LEVEL_BUTTON_HEIGHT SPELL_LEVEL_BUTTON_WIDTH
 
 int Override_Power_Limit = 0;
 
@@ -521,11 +522,9 @@ static int CursorIsOnWhichSpellPageButton(int x, int y)
 	// First we check if the cursor is in at least horizontally
 	// and vertically in the line with the spell level buttons.
 	//
-	if (x > SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + 300)
-		return (-1);
 	if (x < SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X)
 		return (-1);
-	if (y > SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y + 16)
+	if (y > SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y + SPELL_LEVEL_BUTTON_HEIGHT)
 		return (-1);
 	if (y < SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y)
 		return (-1);
