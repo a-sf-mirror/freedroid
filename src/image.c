@@ -245,7 +245,8 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 		SDL_FreeSurface(surf);
 				
 		// Copy subimage
-		SDL_SetAlpha(new_img->surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
+		SDL_SetAlpha(source->surface, 0, 1);
+		SDL_SetAlpha(new_img->surface, SDL_SRCALPHA, 0);
 		SDL_SetColorKey(new_img->surface, 0, 0);
 		SDL_BlitSurface(source->surface, rect, new_img->surface, NULL);
 	}

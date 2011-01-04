@@ -686,10 +686,6 @@ static void load_skill_level_images_if_needed(void)
 	// Load the image
 	load_image(&img, SKILL_LEVEL_BUTTON_FILE, FALSE);
 
-	if (!use_open_gl) {
-		SDL_SetAlpha(img.surface, 0, SDL_ALPHA_OPAQUE);
-	}
-
 	// Create the subimages
 	for (i = 0; i < NUMBER_OF_SKILL_PAGES; i++) {
 		src.x = i * (SKILL_LEVEL_BUTTON_WIDTH);
