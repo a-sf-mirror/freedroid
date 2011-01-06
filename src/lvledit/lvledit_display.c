@@ -121,7 +121,7 @@ static void Highlight_Current_Block(int mask)
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
 	//
-	if (!iso_image_loaded(&level_editor_cursor)) {
+	if (!image_loaded(&level_editor_cursor)) {
 		load_image(&level_editor_cursor, "level_editor_floor_cursor.png", TRUE);
 	}
 
@@ -157,7 +157,7 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 	// Maybe, if the level editor dot cursor has not yet been loaded,
 	// we need to load it.
 	//
-	if (!iso_image_loaded(&level_editor_dot_cursor)) {
+	if (!image_loaded(&level_editor_dot_cursor)) {
 		load_image(&level_editor_dot_cursor, "level_editor_waypoint_dot.png", TRUE);
 	}
 
@@ -207,11 +207,11 @@ static void show_waypoints(int mask)
 
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
-	if (!iso_image_loaded(&level_editor_waypoint_cursor[0])) {
+	if (!image_loaded(&level_editor_waypoint_cursor[0])) {
 		load_image(&level_editor_waypoint_cursor[0], "level_editor_waypoint_cursor.png", TRUE);
 	}
 
-	if (!iso_image_loaded(&level_editor_waypoint_cursor[1])) {
+	if (!image_loaded(&level_editor_waypoint_cursor[1])) {
 		load_image(&level_editor_waypoint_cursor[1], "level_editor_norand_waypoint_cursor.png", TRUE);
 	}
 
@@ -276,7 +276,7 @@ static void show_map_labels(int mask)
 	// On the first function call to this function, we must load the map label indicator
 	// iso image from the disk to memory and keep it there as static.  That should be
 	// it for here.
-	if (!iso_image_loaded(&map_label_indicator)) {
+	if (!image_loaded(&map_label_indicator)) {
 		load_image(&map_label_indicator, "level_editor_map_label_indicator.png", TRUE);
 	}
 

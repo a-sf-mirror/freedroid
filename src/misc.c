@@ -643,7 +643,7 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	// Now we check if we have to load the button image still
 	// or if it is perhaps already loaded into memory.
 	//
-	if (!iso_image_loaded(&AllMousePressButtons[ButtonIndex].button_image)) {
+	if (!image_loaded(&AllMousePressButtons[ButtonIndex].button_image)) {
 		find_file(AllMousePressButtons[ButtonIndex].button_image_file_name, GRAPHICS_DIR, fpath, 0);
 		tmp = our_IMG_load_wrapper(fpath);
 		if (tmp == NULL) {

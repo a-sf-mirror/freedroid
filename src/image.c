@@ -263,7 +263,7 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 {
 	char fpath[2048];
 
-	if (iso_image_loaded(img)) {
+	if (image_loaded(img)) {
 		ErrorMessage(__FUNCTION__, 
 				"The image has already been loaded: %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
 		return;
@@ -320,5 +320,19 @@ void free_image_surface(struct image *img)
 		SDL_FreeSurface(img->surface);
 		img->surface = NULL;
 	}
+}
+
+/**
+ * Check if an image has been loaded
+ * \param img An image
+ * \return TRUE if the image has already been loaded
+ */
+int image_loaded(struct image *img)
+{
+	if ((img->surface == NULL) && (!img->texture_has_been_created)) {
+		return FALSE;
+	}
+
+	return TRUE;
 }
 

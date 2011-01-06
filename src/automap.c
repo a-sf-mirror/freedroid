@@ -252,7 +252,7 @@ void toggle_automap(void)
 static void display_automap_compass()
 {
 	//load the compass if necessary
-	if (!iso_image_loaded(&compass)) {
+	if (!image_loaded(&compass)) {
 		load_image(&compass, "compass.png", FALSE);
 	}
 

@@ -190,7 +190,7 @@ static void load_if_needed(int type)
 {
 	itemspec *spec = &ItemMap[type];
 
-	if (!iso_image_loaded(&spec->inventory_image)) {
+	if (!image_loaded(&spec->inventory_image)) {
 		load_item_graphics(type);
 	}
 }
@@ -423,19 +423,6 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFO
 	free(offset_data);
 
 };				// void get_offset_for_iso_image_from_file_and_path ( fpath , our_iso_image )
-
-/**
- * Check if the image has already been loaded
- * \param img An iso image
- * \return TRUE if the image has already been loaded
- */
-int iso_image_loaded(struct image *img)
-{
-	if ((img->surface == NULL) && (!img->texture_has_been_created)) {
-		return FALSE;
-	}
-	return TRUE;
-}
 
 /**
  *
@@ -730,7 +717,7 @@ void Load_Enemy_Surfaces(void)
  */
 struct image *get_obstacle_image(int type)
 {
-	if (!iso_image_loaded(&obstacle_map[type].image)) {
+	if (!image_loaded(&obstacle_map[type].image)) {
 		//printf("Just in time loading for obstacle %d\n", type);
 		load_obstacle(type);
 	}
@@ -747,7 +734,7 @@ void load_obstacle(int i)
 	char fpath[1024];
 	char shadow_file_name[2000];
 
-	if (iso_image_loaded(&obstacle_map[i].image)) {
+	if (image_loaded(&obstacle_map[i].image)) {
 		ErrorMessage(__FUNCTION__, "Tried to load image for obstacle type %d that was already loaded.\n", PLEASE_INFORM,
 			     IS_WARNING_ONLY, i);
 		return;

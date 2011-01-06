@@ -236,7 +236,6 @@ void unset_gl_clip_rect(void);
 // blocks.c 
 int wall_orientation(int wall);
 void iso_load_bullet_surfaces(void);
-int iso_image_loaded(struct image *);
 void make_sure_zoomed_surface_is_there(struct image *our_iso_image);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
@@ -869,5 +868,6 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 void load_image(struct image *, const char *, int);
 void load_image_surface(struct image *img, const char *filename, int use_offset_file);
 void free_image_surface(struct image *img);
+int image_loaded(struct image *);
 
 #endif

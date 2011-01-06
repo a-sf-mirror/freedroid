@@ -662,7 +662,7 @@ void set_nth_quick_skill(int quick_skill)
 
 void load_skill_icon_if_needed(spell_skill_spec *spec)
 {
-	if (!iso_image_loaded(&spec->icon_surface)) {
+	if (!image_loaded(&spec->icon_surface)) {
 		char filename[1000];
 		sprintf(filename, "skill_icons/%s", spec->icon_name);
 		load_image(&spec->icon_surface, filename, FALSE); 
@@ -680,7 +680,7 @@ static void load_skill_level_images_if_needed(void)
 	struct image img = EMPTY_IMAGE;
 	SDL_Rect src;
 
-	if (iso_image_loaded(&skill_level_images[0]))
+	if (image_loaded(&skill_level_images[0]))
 		return;
 
 	// Load the image
