@@ -265,7 +265,6 @@ void init_obstacle_data(void);
 
 // graphics.c 
 void blit_mouse_cursor(void);
-SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect our_rect);
 SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterType);
 void fade_out_using_gamma_ramp(void);
 void fade_in_using_gamma_ramp(void);
@@ -744,7 +743,6 @@ int GreatShopInterface(int, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY], int,
 int droid_takeover(enemy *);
 int do_takeover(int, int, int);
 
-int GetTakeoverGraphics(void);
 void InventPlayground(void);
 
 void ProcessPlayground(void);

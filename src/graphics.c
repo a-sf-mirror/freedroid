@@ -185,37 +185,6 @@ void fade_in_using_gamma_ramp(void)
 
 };				// void fade_in_using_gamma_ramp ( void )
 
-SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect our_rect)
-{
-	SDL_Surface *padded_surf;
-	SDL_Surface *tmp_surf;
-	SDL_Rect dest;
-
-	our_rect.h -= 0;
-
-	padded_surf =
-	    SDL_CreateRGBSurface(SDL_SWSURFACE | SDL_SRCALPHA, our_rect.w, our_rect.h, 32, 0x0FF000000, 0x000FF0000, 0x00000FF00, 0x000FF);
-	tmp_surf = SDL_DisplayFormatAlpha(padded_surf);
-	SDL_FreeSurface(padded_surf);
-
-	// SDL_SetAlpha( our_surface , 0 , 0 );
-	SDL_SetAlpha(our_surface, 0, SDL_ALPHA_OPAQUE);
-	SDL_SetAlpha(tmp_surf, 0, SDL_ALPHA_OPAQUE);
-	SDL_SetColorKey(our_surface, 0, 0x0FF);
-
-	dest.x = 0;
-	dest.y = 0;
-	dest.w = our_rect.w;
-	dest.h = our_rect.h;
-
-	our_SDL_blit_surface_wrapper(our_surface, &our_rect, tmp_surf, NULL);
-
-	SDL_SetAlpha(tmp_surf, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-
-	return (tmp_surf);
-
-};				// SDL_Surface* rip_rectangle_from_alpha_image ( SDL_Surface* our_surface , SDL_Rect our_rect ) 
-
 /**
  * In the shop interface, when an item was selected that could be grouped
  * together in inventory, we showed three mouse buttons to either buy 1,

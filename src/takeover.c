@@ -42,23 +42,14 @@
 
 enemy *cDroid;
 Uint32 cur_time;		// current time in ms 
-SDL_Surface *to_blocks;		// the global surface containing all game-blocks 
 
-//--------------------
-// The rectangles containing the blocks for the takeover game
-//
-struct image FillBlocks[NUM_FILL_BLOCKS];
-SDL_Rect FillRects[NUM_FILL_BLOCKS];
-struct image CapsuleBlocks[NUM_CAPS_BLOCKS];
-SDL_Rect CapsuleRects[NUM_CAPS_BLOCKS];
-struct image ToGameBlocks[NUM_TO_BLOCKS];
-SDL_Rect ToGameRects[NUM_TO_BLOCKS];
-struct image ToGroundBlocks[NUM_GROUND_BLOCKS];
-SDL_Rect ToGroundRects[NUM_GROUND_BLOCKS];
-struct image ToColumnBlock;
-SDL_Rect ToColumnRect;
-struct image ToLeaderBlock;
-SDL_Rect ToLeaderRect;
+// Takeover images
+static struct image FillBlocks[NUM_FILL_BLOCKS];
+static struct image CapsuleBlocks[NUM_CAPS_BLOCKS];
+static struct image ToGameBlocks[NUM_TO_BLOCKS];
+static struct image ToGroundBlocks[NUM_GROUND_BLOCKS];
+static struct image ToColumnBlock;
+static struct image ToLeaderBlock;
 
 //--------------------
 // Class seperation of the blocks 
@@ -551,89 +542,6 @@ static void PlayGame(int countdown)
 
 }
 
-int do_takeover(int player_capsules, int opponent_capsules, int game_length)
-{
-	char *message;
-	int player_won = 0;
-	int FinishTakeover = FALSE;
-	int row;
-	int old_status;
-
-	old_status = game_status;
-
-	Activate_Conservative_Frame_Computation();
-
-	// Maybe takeover graphics haven't been loaded yet.  Then we do this
-	// here now and for once.  Later calls will be ignored inside the function.
-	//
-	GetTakeoverGraphics();
-
-	// eat pending events
-	input_handle();
-
-	while (!FinishTakeover) {
-		// Init Color-column and Capsule-Number for each opponent and your color 
-		//
-		for (row = 0; row < NUM_LINES; row++) {
-			DisplayColumn[row] = (row % 2);
-			CapsuleCountdown[YELLOW][0][row] = -1;
-			CapsuleCountdown[PURPLE][0][row] = -1;
-		}		// for row 
-
-		YourColor = YELLOW;
-		OpponentColor = PURPLE;
-
-		CapsuleCurRow[YELLOW] = 0;
-		CapsuleCurRow[PURPLE] = 0;
-
-		NumCapsules[YOU] = player_capsules;
-		NumCapsules[ENEMY] = opponent_capsules;
-		InventPlayground();
-
-		EvaluatePlayground();
-
-		ShowPlayground();
-		our_SDL_flip_wrapper();
-
-		ChooseColor();
-
-		// This following function plays the takeover game, until one
-		// of THREE states is reached, i.e. until YOU WON, YOU LOST
-		// or until DEADLOCK is reached.  Well, so maybe after that
-		// the takeover game is finished, but if it's a deadlock, then
-		// the game must be played again in the next loop...
-		//
-		PlayGame(game_length);
-
-		// We we evaluate the final score of the game.  Maybe we're done
-		// already, maybe not...
-		//
-		if (LeaderColor == YourColor) {
-			Takeover_Game_Won_Sound();
-			message = _("Complete");
-			FinishTakeover = TRUE;
-			player_won = 1;
-		} else if (LeaderColor == OpponentColor) {
-			Takeover_Game_Lost_Sound();
-			message = _("Rejected");
-			FinishTakeover = TRUE;
-			player_won = 0;
-		} else {
-			Takeover_Game_Deadlock_Sound();
-			message = _("Deadlock");
-		}
-
-		ShowPlayground();
-		to_show_banner(message, NULL);
-		our_SDL_flip_wrapper();
-		SDL_Delay(100);
-
-	}
-
-	game_status = old_status;
-	return player_won;
-}
-
 static void show_info_up_button() {
 	ShowGenericButtonFromList(UP_BUTTON);
 }
@@ -886,48 +794,29 @@ void AdvancedEnemyTakeoverMovements(const int countdown)
 	return;
 };				// AdvancedEnemyTakeoverMovements 
 
-/**
- * This function reads in the takeover game elements for later blitting. 
- * It frees previous SDL-surfaces if they were allocated.
- *-----------------------------------------------------------------*/
-int GetTakeoverGraphics(void)
+static void GetTakeoverGraphics(void)
 {
 	static int TakeoverGraphicsAreAlreadyLoaded = FALSE;
+	struct image img = EMPTY_IMAGE;
 	int i, j;
 	int curx = 0, cury = 0;
 	SDL_Rect tmp;
-	SDL_Surface *TempLoadSurface;
 
-	// Maybe this function has been called before and everything
-	// has been loaded already.  Then of course we don't need to
-	// do anything any more and can just return.
-	//
 	if (TakeoverGraphicsAreAlreadyLoaded)
-		return (OK);
+		return;
 
-	// Now we start loading all the takeover graphics.
-	//
-	Set_Rect(tmp, User_Rect.x, User_Rect.y, 0, 0);
-	char fp[2048];
-	find_file(TO_BLOCK_FILE, GRAPHICS_DIR, fp, 0);
-	TempLoadSurface = our_IMG_load_wrapper(fp);
-	to_blocks = our_SDL_display_format_wrapperAlpha(TempLoadSurface);	// the surface is converted
-	SDL_FreeSurface(TempLoadSurface);
+	load_image(&img, TO_BLOCK_FILE, FALSE);
 
 	// Get the fill-blocks 
 	for (i = 0; i < NUM_FILL_BLOCKS; i++, curx += FILL_BLOCK_LEN + 2) {
-		Set_Rect(FillRects[i], curx, cury, FILL_BLOCK_LEN, FILL_BLOCK_HEIGHT);
-		FillBlocks[i].surface = rip_rectangle_from_alpha_image(to_blocks, FillRects[i]);
-		if (use_open_gl)
-			make_texture_out_of_surface(&(FillBlocks[i]));
+		Set_Rect(tmp, curx, cury, FILL_BLOCK_LEN, FILL_BLOCK_HEIGHT);
+		create_subimage(&img, &FillBlocks[i], &tmp);
 	}
 
 	// Get the capsule blocks 
 	for (i = 0; i < NUM_CAPS_BLOCKS; i++, curx += CAPSULE_LEN + 2) {
-		Set_Rect(CapsuleRects[i], curx, cury, CAPSULE_LEN, CAPSULE_HEIGHT);
-		CapsuleBlocks[i].surface = rip_rectangle_from_alpha_image(to_blocks, CapsuleRects[i]);
-		if (use_open_gl)
-			make_texture_out_of_surface(&(CapsuleBlocks[i]));
+		Set_Rect(tmp, curx, cury, CAPSULE_LEN, CAPSULE_HEIGHT);
+		create_subimage(&img, &CapsuleBlocks[i], &tmp);
 	}
 
 	// Get the default background color, to be used when no background picture found! 
@@ -938,10 +827,8 @@ int GetTakeoverGraphics(void)
 	// get the game-blocks 
 	for (j = 0; j < 2 * NUM_PHASES; j++) {
 		for (i = 0; i < TO_BLOCKS; i++) {
-			Set_Rect(ToGameRects[j * TO_BLOCKS + i], curx, cury, TO_BLOCKLEN, TO_BLOCKHEIGHT);
-			ToGameBlocks[j * TO_BLOCKS + i].surface = rip_rectangle_from_alpha_image(to_blocks, ToGameRects[j * TO_BLOCKS + i]);
-			if (use_open_gl)
-				make_texture_out_of_surface(&(ToGameBlocks[j * TO_BLOCKS + i]));
+			Set_Rect(tmp, curx, cury, TO_BLOCKLEN, TO_BLOCKHEIGHT);
+			create_subimage(&img, &ToGameBlocks[j * TO_BLOCKS + i], &tmp);
 			curx += TO_BLOCKLEN + 2;
 		}
 		curx = 0;
@@ -950,10 +837,8 @@ int GetTakeoverGraphics(void)
 
 	// Get the ground, column and leader blocks 
 	for (i = 0; i < NUM_GROUND_BLOCKS; i++) {
-		Set_Rect(ToGroundRects[i], curx, cury, GROUNDBLOCKLEN, GROUNDBLOCKHEIGHT);
-		ToGroundBlocks[i].surface = rip_rectangle_from_alpha_image(to_blocks, ToGroundRects[i]);
-		if (use_open_gl)
-			make_texture_out_of_surface(&(ToGroundBlocks[i]));
+		Set_Rect(tmp, curx, cury, GROUNDBLOCKLEN, GROUNDBLOCKHEIGHT);
+		create_subimage(&img, &ToGroundBlocks[i], &tmp);
 		curx += GROUNDBLOCKLEN + 2;
 	}
 	cury += GROUNDBLOCKHEIGHT + 2;
@@ -962,29 +847,102 @@ int GetTakeoverGraphics(void)
 	// Now the rectangle for the column blocks will be set and after
 	// that we can create the new surface for blitting.
 	//
-	Set_Rect(ToColumnRect, curx, cury, COLUMNBLOCKLEN, COLUMNBLOCKHEIGHT);
-	ToColumnBlock.surface = rip_rectangle_from_alpha_image(to_blocks, ToColumnRect);
-	if (use_open_gl)
-		make_texture_out_of_surface(&(ToColumnBlock));
+	Set_Rect(tmp, curx, cury, COLUMNBLOCKLEN, COLUMNBLOCKHEIGHT);
+	create_subimage(&img, &ToColumnBlock, &tmp);
 
-	// 
 	curx += COLUMNBLOCKLEN + 2;
 
 	// Now the rectangle for the leader block will be set and after
 	// that we can create the new surface for blitting.
 	//
-	Set_Rect(ToLeaderRect, curx, cury, LEADERBLOCKLEN, LEADERBLOCKHEIGHT);
-	ToLeaderBlock.surface = rip_rectangle_from_alpha_image(to_blocks, ToLeaderRect);
-	if (use_open_gl)
-		make_texture_out_of_surface(&(ToLeaderBlock));
+	Set_Rect(tmp, curx, cury, LEADERBLOCKLEN, LEADERBLOCKHEIGHT);
+	create_subimage(&img, &ToLeaderBlock, &tmp);
 
-	// Now that everything was loaded, we should remember this, so we
-	// don't load anything again next time...
-	//
 	TakeoverGraphicsAreAlreadyLoaded = TRUE;
+}
 
-	return OK;
-};				// int GetTakeoverGraphics ( void )
+int do_takeover(int player_capsules, int opponent_capsules, int game_length)
+{
+	char *message;
+	int player_won = 0;
+	int FinishTakeover = FALSE;
+	int row;
+	int old_status;
+
+	old_status = game_status;
+
+	Activate_Conservative_Frame_Computation();
+
+	// Maybe takeover graphics haven't been loaded yet.  Then we do this
+	// here now and for once.  Later calls will be ignored inside the function.
+	GetTakeoverGraphics();
+
+	// eat pending events
+	input_handle();
+
+	while (!FinishTakeover) {
+		// Init Color-column and Capsule-Number for each opponent and your color 
+		//
+		for (row = 0; row < NUM_LINES; row++) {
+			DisplayColumn[row] = (row % 2);
+			CapsuleCountdown[YELLOW][0][row] = -1;
+			CapsuleCountdown[PURPLE][0][row] = -1;
+		}		// for row 
+
+		YourColor = YELLOW;
+		OpponentColor = PURPLE;
+
+		CapsuleCurRow[YELLOW] = 0;
+		CapsuleCurRow[PURPLE] = 0;
+
+		NumCapsules[YOU] = player_capsules;
+		NumCapsules[ENEMY] = opponent_capsules;
+		InventPlayground();
+
+		EvaluatePlayground();
+
+		ShowPlayground();
+		our_SDL_flip_wrapper();
+
+		ChooseColor();
+
+		// This following function plays the takeover game, until one
+		// of THREE states is reached, i.e. until YOU WON, YOU LOST
+		// or until DEADLOCK is reached.  Well, so maybe after that
+		// the takeover game is finished, but if it's a deadlock, then
+		// the game must be played again in the next loop...
+		//
+		PlayGame(game_length);
+
+		// We we evaluate the final score of the game.  Maybe we're done
+		// already, maybe not...
+		//
+		if (LeaderColor == YourColor) {
+			Takeover_Game_Won_Sound();
+			message = _("Complete");
+			FinishTakeover = TRUE;
+			player_won = 1;
+		} else if (LeaderColor == OpponentColor) {
+			Takeover_Game_Lost_Sound();
+			message = _("Rejected");
+			FinishTakeover = TRUE;
+			player_won = 0;
+		} else {
+			Takeover_Game_Deadlock_Sound();
+			message = _("Deadlock");
+		}
+
+		ShowPlayground();
+		to_show_banner(message, NULL);
+		our_SDL_flip_wrapper();
+		SDL_Delay(100);
+
+	}
+
+	game_status = old_status;
+	return player_won;
+}
+
 
 static void ShowPlayground(void)
 {
@@ -1011,50 +969,50 @@ static void ShowPlayground(void)
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 
-	blit_iso_image_to_screen_position (&ToGroundBlocks[YELLOW_HIGH], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[YELLOW_HIGH], Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++) {
-		blit_iso_image_to_screen_position (&ToGroundBlocks[YELLOW_MIDDLE], Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&ToGroundBlocks[YELLOW_MIDDLE], Target_Rect.x, Target_Rect.y);
 		Target_Rect.y += GROUNDBLOCKHEIGHT;
 	}
 
-	blit_iso_image_to_screen_position (&ToGroundBlocks[YELLOW_LOW], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[YELLOW_LOW], Target_Rect.x, Target_Rect.y);
 
 	// the middle column
 	Set_Rect(Target_Rect, xoffs + MID_OFFS_X, yoffs + MID_OFFS_Y, 0, 0);
 
-	blit_iso_image_to_screen_position (&ToLeaderBlock, Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToLeaderBlock, Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += LEADERBLOCKHEIGHT;
 	for (i = 0; i < 12; i++, Target_Rect.y += COLUMNBLOCKHEIGHT) {
-		blit_iso_image_to_screen_position (&ToColumnBlock, Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&ToColumnBlock, Target_Rect.x, Target_Rect.y);
 	}
 
 	// the right column
 	Set_Rect(Target_Rect, xoffs + RIGHT_OFFS_X, yoffs + RIGHT_OFFS_Y, 0, 0);
-	blit_iso_image_to_screen_position (&ToGroundBlocks[PURPLE_HIGH], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[PURPLE_HIGH], Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++, Target_Rect.y += GROUNDBLOCKHEIGHT) {
-		blit_iso_image_to_screen_position (&ToGroundBlocks[PURPLE_MIDDLE], Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&ToGroundBlocks[PURPLE_MIDDLE], Target_Rect.x, Target_Rect.y);
 	}
 
-	blit_iso_image_to_screen_position (&ToGroundBlocks[PURPLE_LOW], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[PURPLE_LOW], Target_Rect.x, Target_Rect.y);
 
 	// Fill the leader-LED with its color 
 	Set_Rect(Target_Rect, xoffs + LEADERLED_X, yoffs + LEADERLED_Y, 0, 0);
-	blit_iso_image_to_screen_position (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
 
 	Target_Rect.y += FILL_BLOCK_HEIGHT;
-	blit_iso_image_to_screen_position (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
 
 	// Fill the display column with its colors 
 	for (i = 0; i < NUM_LINES; i++) {
 		Set_Rect(Target_Rect, xoffs + LEDCOLUMN_X, yoffs + LEDCOLUMN_Y + i * (FILL_BLOCK_HEIGHT + 2), 0, 0);
-		blit_iso_image_to_screen_position (&FillBlocks[DisplayColumn[i]], Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&FillBlocks[DisplayColumn[i]], Target_Rect.x, Target_Rect.y);
 	}
 
 	// Show the yellow playground 
@@ -1063,7 +1021,7 @@ static void ShowPlayground(void)
 			Set_Rect(Target_Rect, xoffs + PlaygroundStart[YELLOW].x + i * TO_BLOCKLEN,
 				 yoffs + PlaygroundStart[YELLOW].y + j * TO_BLOCKHEIGHT, 0, 0);
 			block = ToPlayground[YELLOW][i][j] + ActivationMap[YELLOW][i][j] * TO_BLOCKS;
-			blit_iso_image_to_screen_position (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
 		}
 
 	// Show the purple playground 
@@ -1073,7 +1031,7 @@ static void ShowPlayground(void)
 				 xoffs + PlaygroundStart[PURPLE].x + (NUM_LAYERS - i - 2) * TO_BLOCKLEN,
 				 yoffs + PlaygroundStart[PURPLE].y + j * TO_BLOCKHEIGHT, 0, 0);
 			block = ToPlayground[PURPLE][i][j] + (NUM_PHASES + ActivationMap[PURPLE][i][j]) * TO_BLOCKS;
-			blit_iso_image_to_screen_position (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
 		}
 
 	// Show the capsules left for each player 
@@ -1086,13 +1044,13 @@ static void ShowPlayground(void)
 		Set_Rect(Target_Rect, xoffs + CurCapsuleStart[color].x,
 			 yoffs + CurCapsuleStart[color].y + CapsuleCurRow[color] * (CAPSULE_HEIGHT + 2), 0, 0);
 		if (NumCapsules[player]) {
-			blit_iso_image_to_screen_position (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
 		}
 
 		for (i = 0; i < NumCapsules[player] - 1; i++) {
 			Set_Rect(Target_Rect, xoffs + LeftCapsulesStart[color].x,
 				 yoffs + LeftCapsulesStart[color].y + i * CAPSULE_HEIGHT, 0, 0);
-			blit_iso_image_to_screen_position (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
 		}		// for capsules 
 	}			// for player 
 
