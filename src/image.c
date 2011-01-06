@@ -316,10 +316,33 @@ void load_image(struct image *img, const char *filename, int use_offset_file)
  */
 void free_image_surface(struct image *img)
 {
-	if (!use_open_gl) {
+	if (img->surface) {
 		SDL_FreeSurface(img->surface);
 		img->surface = NULL;
 	}
+
+	if (img->zoomed_out_surface) {
+		SDL_FreeSurface(img->zoomed_out_surface);
+		img->zoomed_out_surface = NULL;
+	}
+}
+
+/**
+ * Delete an image completely (free the SDL surface and delete the OpenGL texture).
+ */
+void delete_image(struct image *img)
+{
+	free_image_surface(img);
+
+	if (img->texture_has_been_created) {
+#ifdef HAVE_LIBGL
+		glDeleteTextures(1, &img->texture);
+#endif
+		img->texture = 0;
+	}
+
+	struct image empty = EMPTY_IMAGE;
+	memcpy(img, &empty, sizeof(struct image));
 }
 
 /**

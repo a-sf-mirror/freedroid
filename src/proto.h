@@ -866,6 +866,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 void load_image(struct image *, const char *, int);
 void load_image_surface(struct image *img, const char *filename, int use_offset_file);
 void free_image_surface(struct image *img);
+void delete_image(struct image *img);
 int image_loaded(struct image *);
 
 #endif
