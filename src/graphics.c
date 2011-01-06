@@ -1069,7 +1069,7 @@ void ClearGraphMem(void)
  * @param b The blue color value.
  * @param a The alpha color value.
  */
-static void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
+void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
 	SDL_Surface *surface;
 
