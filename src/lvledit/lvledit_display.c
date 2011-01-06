@@ -342,6 +342,9 @@ static void show_tooltips()
 		return;
 
 	struct leveleditor_widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
+	if (!w)
+		return;
+
 	if (w->type != WIDGET_BUTTON) {
 		// If the active widget is not a button,
 		// reset the tooltip timer

@@ -287,7 +287,7 @@ void LevelEditor()
 		leveleditor_process_input();
 
 		struct leveleditor_widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
-		if (w->type == WIDGET_MAP) {
+		if (w && w->type == WIDGET_MAP) {
 			leveleditor_update_tool();
 		}
 
