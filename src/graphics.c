@@ -229,7 +229,7 @@ SDL_Surface *rip_rectangle_from_alpha_image(SDL_Surface * our_surface, SDL_Rect 
  */
 int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value)
 {
-	static SDL_Surface *SelectionKnob = NULL;
+	static struct image selection_knob = EMPTY_IMAGE;
 	int ok_button_was_pressed = FALSE;
 	int knob_start_x = UNIVERSAL_COORD_W(200);
 	int knob_end_x = UNIVERSAL_COORD_W(390);
@@ -238,36 +238,27 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	int knob_offset_x = ceilf((float)(default_value * (knob_end_x - knob_start_x)) / (float)(upper_range - lower_range + 1));
 	int knob_is_grabbed = FALSE;
 	char number_text[1000];
-	static SDL_Rect knob_target_rect;
 	SDL_Event event;
+	SDL_Rect knob_target_rect;
 
 	int old_game_status = game_status;
 
 	StoreMenuBackground(1);
 
-	// Next we prepare the selection knob for all later operations
-	//
-	if (SelectionKnob == NULL) {
-		char fpath[2048];
-		find_file("mouse_buttons/number_selector_selection_knob.png", GRAPHICS_DIR, fpath, 0);
-		SelectionKnob = our_IMG_load_wrapper(fpath);
-	}
-	if (SelectionKnob == NULL) {
-		fprintf(stderr, "\n\nSDL_GetError: %s \n", SDL_GetError());
-		ErrorMessage(__FUNCTION__, "\
-ERROR LOADING SELECTION KNOB IMAGE FILE!", PLEASE_INFORM, IS_FATAL);
+	if (!image_loaded(&selection_knob)) {
+		load_image(&selection_knob, "mouse_buttons/number_selector_selection_knob.png", FALSE);
 	}
 
-	knob_target_rect.w = SelectionKnob->w;
-	knob_target_rect.h = SelectionKnob->h;
+	knob_target_rect.w = selection_knob.w;
+	knob_target_rect.h = selection_knob.h;
 
 	while (!ok_button_was_pressed) {
 		RestoreMenuBackground(1);
 		blit_special_background(NUMBER_SELECTOR_BACKGROUND_CODE);
 		ShowGenericButtonFromList(NUMBER_SELECTOR_OK_BUTTON);
-		knob_target_rect.x = knob_start_x + knob_offset_x - knob_target_rect.w / 2;
-		knob_target_rect.y = UNIVERSAL_COORD_H(260) - knob_target_rect.h / 2;
-		our_SDL_blit_surface_wrapper(SelectionKnob, NULL, Screen, &knob_target_rect);
+		knob_target_rect.x = knob_start_x + knob_offset_x - selection_knob.w / 2;
+		knob_target_rect.y = UNIVERSAL_COORD_H(260) - selection_knob.h / 2;
+		display_image_on_screen(&selection_knob, knob_target_rect.x, knob_target_rect.y); 
 		sprintf(number_text, "%d", knob_offset_x * (upper_range - lower_range + 1) / (knob_end_x - knob_start_x));
 		PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(190), number_text);
 		blit_mouse_cursor();
