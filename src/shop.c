@@ -209,100 +209,58 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
  */
 void ShowItemPicture(int PosX, int PosY, int Number)
 {
-	SDL_Surface *tmp;
-	SDL_Rect target;
-	char ConstructedFileName[2048];
-	char fpath[2048];
 	static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
-	static int NumberOfImagesInPreviousRotation = 0;
 	static int NumberOfImagesInThisRotation = 0;
 #define MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION 64
-	static SDL_Surface *ItemRotationSurfaces[MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION] = { NULL };
-	SDL_Surface *Whole_Image;
+	static struct image item_rotation_img[MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION] = { EMPTY_IMAGE };
 	int i;
 	int RotationIndex;
 
-	// Maybe we have to reload the whole image series
-	//
-	if (strcmp(LastImageSeriesPrefix, ItemMap[Number].item_rotation_series_prefix)) {
-		// Maybe we have to free the series from an old item display first
-		//
-		if (ItemRotationSurfaces[0] != NULL) {
-			for (i = 0; i < NumberOfImagesInPreviousRotation; i++) {
-				SDL_FreeSurface(ItemRotationSurfaces[i]);
-			}
+	if (!image_loaded(&item_rotation_img[0])) {
+		// Initialize image structures
+		struct image empty = EMPTY_IMAGE;
+		for (i = 0; i < sizeof(item_rotation_img)/sizeof(item_rotation_img[0]); i++) {
+			memcpy(&item_rotation_img[i], &empty, sizeof(struct image));
 		}
-		// Now we can start to load the whole series into memory
-		//
+	}
+
+	if (strcmp(LastImageSeriesPrefix, ItemMap[Number].item_rotation_series_prefix)) {
+
+		// Free previous images
 		for (i = 0; i < MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION; i++) {
-			// At first we will try to find some item rotation models in the
-			// new directory structure.
-			//
+			delete_image(&item_rotation_img[i]);
+		}
+
+		// Load new images
+		for (i = 0; i < MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION; i++) {
+			char ConstructedFileName[2048];
+			char fpath[2048];
 			sprintf(ConstructedFileName, "items/%s/portrait_%04d.jpg", ItemMap[Number].item_rotation_series_prefix, i + 1);
-			if (find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 1))
-				Whole_Image = NULL;
-			else
-				Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
 
-			// But at this point, we should have found the image!!
-			// or if not, this maybe indicates that we have reached the
-			// last image in the image series...
-			//
-			if (Whole_Image == NULL) {
+			// Look for the next file
+			if (!find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 1)) {
+				load_image(&item_rotation_img[i], ConstructedFileName, FALSE);
+			} else {
 				NumberOfImagesInThisRotation = i;
-				NumberOfImagesInPreviousRotation = NumberOfImagesInThisRotation;
-				DebugPrintf(1, "\nDONE LOADING ITEM IMAGE SERIES.  Loaded %d images into memory.",
-					    NumberOfImagesInThisRotation);
 
-				// Maybe we've received the nothing loaded case even on the first attempt
-				// to load something.  This of course would mean a severe error in Freedroid!
-				//
-				if (NumberOfImagesInThisRotation <= 0) {
-					fprintf(stderr, "\n\nfpath: %s. \n", fpath);
-					ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to load even one image of a rotated item image series into memory.\n\
-This error indicates some installation problem with freedroid.", PLEASE_INFORM, IS_FATAL);
-				}
+				if (!NumberOfImagesInThisRotation)
+					ErrorMessage(__FUNCTION__, "Unable to load any item rotation image for item \"%s\". File \"%s\" was not found.", PLEASE_INFORM, IS_WARNING_ONLY, ItemMap[Number].item_name, ConstructedFileName);
 
 				break;
 			}
-			// Also we must check for our upper bound of the list of 
-			// item images.  This will most likely never be exceeded, but it
-			// can hurt to just be on the safe side.
-			//
-			if (i >= MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION - 2) {
-				fprintf(stderr, "\n\nfpath: %s. \n", fpath);
-				ErrorMessage(__FUNCTION__, "\
-Freedroid was encountered more item images in an item rotation image series\n\
-than it is able to handle.  This is a very strange error.  Someone has been\n\
-trying to make the ultra-fine item rotation series.  Strange.", PLEASE_INFORM, IS_FATAL);
-			}
-
-			SDL_SetAlpha(Whole_Image, 0, SDL_ALPHA_OPAQUE);
-			ItemRotationSurfaces[i] = SDL_CreateRGBSurface(0, Whole_Image->w, Whole_Image->h, 32, rmask, gmask, bmask, amask);
-			SDL_BlitSurface(Whole_Image, NULL, ItemRotationSurfaces[i], NULL);
-			SDL_FreeSurface(Whole_Image);
-
-			if (use_open_gl) {
-				flip_image_vertically(ItemRotationSurfaces[i]);
-			}
-
-			// We must remember, that his is already loaded of course
-			strcpy(LastImageSeriesPrefix, ItemMap[Number].item_rotation_series_prefix);
 
 		}
 
+		// Remember what series we have just loaded
+		strcpy(LastImageSeriesPrefix, ItemMap[Number].item_rotation_series_prefix);
 	}
 
 	RotationIndex = (SDL_GetTicks() / 70);
 
 	RotationIndex = RotationIndex - (RotationIndex / NumberOfImagesInThisRotation) * NumberOfImagesInThisRotation;
 
-	tmp = ItemRotationSurfaces[RotationIndex];
-
-	SDL_SetClipRect(Screen, NULL);
-	Set_Rect(target, PosX, PosY, GameConfig.screen_width, GameConfig.screen_height);
-	our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &target);
+	if (image_loaded(&item_rotation_img[RotationIndex]))
+			display_image_on_screen(&item_rotation_img[RotationIndex], PosX, PosY);
 }
 
 /**
