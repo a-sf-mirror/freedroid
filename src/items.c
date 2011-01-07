@@ -329,27 +329,6 @@ Received item type %d that is outside the range of allowed item types.",
 	return drop_item(&tmp_item, item_pos.x, item_pos.y, item_pos.z);
 }
 
-/**
- * This function checks whether a given item can be equipped.
- *
- */
-int item_type_cannot_be_equipped(int drop_item_type)
-{
-
-	if (ItemMap[drop_item_type].item_can_be_installed_in_weapon_slot)
-		return (FALSE);
-	if (ItemMap[drop_item_type].item_can_be_installed_in_drive_slot)
-		return (FALSE);
-	if (ItemMap[drop_item_type].item_can_be_installed_in_armour_slot)
-		return (FALSE);
-	if (ItemMap[drop_item_type].item_can_be_installed_in_shield_slot)
-		return (FALSE);
-	if (ItemMap[drop_item_type].item_can_be_installed_in_special_slot)
-		return (FALSE);
-
-	return (TRUE);
-};				// int item_type_cannot_be_equipped ( int drop_item_type )
-
 int get_random_item_type(int class)
 {
 
