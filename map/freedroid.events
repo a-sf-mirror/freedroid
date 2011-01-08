@@ -654,7 +654,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"To Mashine Deck Lower Catacombs"
+Name=_"To Machine Deck Lower Catacombs"
 Trigger at label="55toX1"
 Silent=0
 LuaCode={
@@ -675,7 +675,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"To Disruptor Mashine Deck"
+Name=_"To Disruptor Machine Deck"
 Trigger at label="56toX1"
 Silent=0
 LuaCode={
