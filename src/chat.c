@@ -389,13 +389,27 @@ void show_chat_log(enemy *chat_enemy)
 }
 
 /**
- * Wait for a mouse click before continuing.
+ * Wait for a mouse click before continuing, updating the screen while waiting.
  */
-static void wait_for_click()
+static void wait_for_click(enemy *chat_droid)
 {
 	SDL_Event event;
 
+	// Rectangle for the player response area
+	SDL_Rect clip;
+	clip.x = UNIVERSAL_COORD_W(37);
+	clip.y = UNIVERSAL_COORD_H(336);
+	clip.w = UNIVERSAL_COORD_W(640 - 70);
+	clip.h = UNIVERSAL_COORD_H(118);
+
 	while (1) {
+		show_chat_log(chat_droid);
+		SetCurrentFont(Menu_BFont);
+		DisplayText(_("\1Click anywhere to continue..."), clip.x, clip.y, &clip, 1.0);
+		blit_mouse_cursor();
+		our_SDL_flip_wrapper();
+		SDL_Delay(1);
+
 		SDL_WaitEvent(&event);
 
 		if (event.type == SDL_QUIT) {
@@ -403,20 +417,24 @@ static void wait_for_click()
 		}
 
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == 1)
-			return;
+			goto wait_for_click_return;
 
 		else if (event.type == SDL_KEYDOWN) {
 			switch (event.key.keysym.sym) {
 			case SDLK_SPACE:
 			case SDLK_RETURN:
 			case SDLK_ESCAPE:
-				return;
-				break;
+				goto wait_for_click_return;
 			default:
 				break;
 			}
 		}
 	}
+	 	
+wait_for_click_return:
+	while (EscapePressed() || MouseLeftPressed() || SpacePressed())
+		;
+	return;
 }
 
 /**
@@ -430,10 +448,11 @@ void chat_add_response(const char *response, int no_wait, enemy *chat_droid)
 	chat_log.scroll_offset = 0;
 
 	show_chat_log(chat_droid);
+	blit_mouse_cursor();
 	our_SDL_flip_wrapper();
 
 	if (!no_wait)
-		wait_for_click();
+		wait_for_click(chat_droid);
 }
 
 void run_subdialog(const char *tmp_filename)
@@ -522,9 +541,6 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	chat_log.rect.h = CHAT_SUBDIALOG_WINDOW_H;
 	chat_log.font = FPS_Display_BFont;
 	chat_log.text_stretch = TEXT_STRETCH;
-
-	show_chat_log(ChatDroid);
-	our_SDL_flip_wrapper();
 
 	// We load the option texts into the dialog options variable..
 	//
