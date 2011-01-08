@@ -2577,7 +2577,7 @@ void iso_put_tux_torso(int x, int y, int motion_class, int our_phase, int rotati
 		first_call = 0;
 	}
 
-	if (Me.armour_item.type == -1) {
+	if (Me.armour_item.type == -1 || &Me.armour_item == item_held_in_hand) {
 		iso_put_tux_part(PART_GROUP_TORSO, "iso_torso", x, y, motion_class, our_phase, rotation_index);
 	} else if (Me.armour_item.type == jacket1 || Me.armour_item.type == jacket2 || Me.armour_item.type == jacket3) {
 		iso_put_tux_part(PART_GROUP_TORSO, "iso_armour1", x, y, motion_class, our_phase, rotation_index);
@@ -2615,7 +2615,7 @@ void iso_put_tux_shieldarm(int x, int y, int motion_class, int our_phase, int ro
 	}
 
 	// In case of no shield item present at all, display the empty shieldarm.
-	if (Me.shield_item.type == -1) {
+	if (Me.shield_item.type == -1 || &Me.shield_item == item_held_in_hand) {
 		iso_put_tux_part(PART_GROUP_SHIELD, "iso_shieldarm", x, y, motion_class, our_phase, rotation_index);
 		return;
 	}
@@ -2649,7 +2649,7 @@ void iso_put_tux_shieldarm(int x, int y, int motion_class, int our_phase, int ro
  */
 void iso_put_tux_head(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
-	if (Me.special_item.type == (-1))
+	if (Me.special_item.type == (-1) || &Me.special_item == item_held_in_hand)
 		iso_put_tux_part(PART_GROUP_HEAD, "iso_head", x, y, motion_class, our_phase, rotation_index);
 	else
 		iso_put_tux_part(PART_GROUP_HEAD, "iso_helm1", x, y, motion_class, our_phase, rotation_index);
@@ -2661,18 +2661,20 @@ void iso_put_tux_head(int x, int y, int motion_class, int our_phase, int rotatio
  */
 void iso_put_tux_feet(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
-	if (Me.drive_item.type == (-1))
+	if (Me.drive_item.type == (-1) || &Me.drive_item == item_held_in_hand)
 		iso_put_tux_part(PART_GROUP_FEET, "iso_feet", x, y, motion_class, our_phase, rotation_index);
 	else
 		iso_put_tux_part(PART_GROUP_FEET, "iso_boots1", x, y, motion_class, our_phase, rotation_index);
 }
 
 /**
- *
- *
+ * Show the equipped weapon in Tux's hand.
  */
 void iso_put_tux_weapon(int x, int y, int motion_class, int our_phase, int rotation_index)
 {
+	if (&Me.weapon_item == item_held_in_hand)
+		return;
+
 	if (Me.weapon_item.type != (-1)) {
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
 			if      (MatchItemWithName(Me.weapon_item.type, "Big kitchen knife"))

@@ -336,7 +336,7 @@ void ShowCurrentSkill(void)
 void ShowCurrentWeapon(void)
 {
 	char current_ammo[10];
-	if (Me.weapon_item.type == -1)
+	if (Me.weapon_item.type == -1 || &Me.weapon_item == item_held_in_hand)
 		return;
 
 	struct image *img = get_item_inventory_image(Me.weapon_item.type);
