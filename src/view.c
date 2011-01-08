@@ -3912,7 +3912,7 @@ static void show_inventory_screen(void)
 				strcpy(amount, "+++");
 			TargetRect.w = INV_SUBSQUARE_WIDTH * ItemMap[Me.Inventory[SlotNum].type].inv_size.x;
 			int xpos = TargetRect.x + TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_size.y - TextWidth(amount) - 2;
-			int ypos = TargetRect.y + TargetRect.h - FontHeight(Messagevar_BFont);
+			int ypos = TargetRect.y + INV_SUBSQUARE_HEIGHT * ItemMap[Me.Inventory[SlotNum].type].inv_size.y - FontHeight(Messagevar_BFont);
 			DisplayText(amount, xpos, ypos, &TargetRect, 1.0);
 		}
 	}
