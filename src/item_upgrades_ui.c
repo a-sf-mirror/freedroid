@@ -294,6 +294,10 @@ void show_item_upgrade_ui()
 			} else {
 				image = &images[IMAGE_SOCKET_NONE];
 			}
+
+			if (!image)
+				continue;
+
 			rect = rects.socket_slots[i];
 			rect.x += (rect.w - image->w) / 2;
 			rect.y += (rect.h - image->h) / 2;
@@ -324,7 +328,7 @@ void show_item_upgrade_ui()
 	}
 }
 
-static void clear_addon_items()
+static void clear_addon_items(void)
 {
 	int i;
 	struct upgrade_socket *socket;
@@ -345,7 +349,7 @@ static void clear_addon_items()
 	}
 }
 
-static void calculate_cost_and_bonuses()
+static void calculate_cost_and_bonuses(void)
 {
 	int i;
 	int changed = FALSE;
@@ -396,7 +400,7 @@ static void calculate_cost_and_bonuses()
 	DeleteItem(&temp);
 }
 
-static int grab_customized_item()
+static int grab_customized_item(void)
 {
 	// If the slot is empty, do nothing and return FALSE to inform
 	// the caller that no drag could be initiated.
@@ -407,7 +411,7 @@ static int grab_customized_item()
 	// If the player dragged some add-ons to the sockets but didn't
 	// press the apply button, return the add-on items to the
 	// inventory so that the player doesn't lose them.
-	clear_addon_items(ui);
+	clear_addon_items();
 
 	// Mark the item as being dragged. We move it to a temporary
 	// field so that it doesn't get cleared when we alter the UI. 
@@ -417,7 +421,7 @@ static int grab_customized_item()
 
 	// Reset the cost field to zero and disable the apply button
 	// since there's no item to customize.
-	calculate_cost_and_bonuses(ui);
+	calculate_cost_and_bonuses();
 
 	// Close the socket creation prompt if it was open. We don't
 	// want it to be visible when there's no item to customize.
@@ -455,23 +459,23 @@ static int grab_addon_item(int index)
 
 	// Removing a yet to be installed item reduces the cost and modifies
 	// bonuses so we need to recalculate them.
-	calculate_cost_and_bonuses(ui);
+	calculate_cost_and_bonuses();
 
 	return TRUE;
 }
 
-static void clear_customized_item()
+static void clear_customized_item(void)
 {
 	// If an item was being customized, drop it and any add-ons not yet
 	// installed to it to the inventory so that the player doesn't lose them.
 	if (ui.custom_item.type != -1) {
-		clear_addon_items(ui);
+		clear_addon_items();
 		give_item(&ui.custom_item);
 	}
 
 	// Reset the cost to zero and disable the apply button since
 	// there's no item to customize present in the interface anymore.
-	calculate_cost_and_bonuses(ui);
+	calculate_cost_and_bonuses();
 }
 
 static int set_customized_item(item *it)
@@ -486,7 +490,7 @@ static int set_customized_item(item *it)
 
 	// If there are any items in the upgrade UI, drop them
 	// to the inventory so that they aren't overwritten and lost.
-	clear_customized_item(ui);
+	clear_customized_item();
 
 	// Move the item to the customization slot.
 	play_item_sound(it->type);
@@ -502,7 +506,7 @@ static int set_customized_item(item *it)
 	}
 
 	// Update the bonus string since the item might have existing bonuses.
-	calculate_cost_and_bonuses(ui);
+	calculate_cost_and_bonuses();
 
 	return TRUE;
 }
@@ -525,12 +529,12 @@ static int set_addon_item(item *it, int index)
 
 	// Recalculate the cost and the bonus string and enable the apply button
 	// if the player has enough gold to pay for the upgrade.
-	calculate_cost_and_bonuses(ui);
+	calculate_cost_and_bonuses();
 
 	return TRUE;
 }
 
-static void apply_customization()
+static void apply_customization(void)
 {
 	int i;
 	item *addon;
@@ -558,7 +562,7 @@ static void apply_customization()
 
 	// Reset the cost to zero and disable the apply button since we
 	// just did all the changes the player has requested.
-	calculate_cost_and_bonuses(ui);
+	calculate_cost_and_bonuses();
 }
 
 static void handle_buy_socket(point *cursor, int row, int type, int cost)
@@ -648,7 +652,7 @@ static int handle_ui()
 	if (MouseCursorIsInRect(&rects.custom_slot, cursor.x, cursor.y))
 	{
 		if (!item_held_in_hand) {
-			grab_customized_item(ui);
+			grab_customized_item();
 		} else if (set_customized_item(item_held_in_hand)) {
 			item_held_in_hand = NULL;
 		}
@@ -659,7 +663,7 @@ static int handle_ui()
 	if (MouseCursorIsOnButton(ITEM_UPGRADE_APPLY_BUTTON, cursor.x, cursor.y))
 	{
 		if (ui.apply_button_active) {
-			apply_customization(ui);
+			apply_customization();
 		}
 		return TRUE;
 	}
@@ -735,7 +739,7 @@ void item_upgrade_ui()
 
 	// If the player left any items to the upgrade interface,
 	// drop them to the inventory or to the ground.
-	clear_customized_item(ui);
+	clear_customized_item();
 	if (ui.dragged_item.type != -1) {
 		item_held_in_hand = NULL;
 		give_item(&ui.dragged_item);
