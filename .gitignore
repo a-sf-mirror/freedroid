@@ -10,6 +10,7 @@ lua/lua*.dll
 src/*.exe
 zpipe/zpipe
 gluem/*font
+gluem/make_atlas
 
 # Patches
 *.orig
