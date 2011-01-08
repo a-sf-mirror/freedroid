@@ -36,7 +36,7 @@ rule number you like.
 The specification of an exception depends on the sub-validator that
 uses it (defined by the "Type" value) :
 
-  - for "C" (chest), "WP" (waypoint position), "WO" (waypoint orhpan),
+  - for "C" (chest), "WP" (waypoint position), "WO" (waypoint orphan),
     "WS" (waypoint self-connected), "I, the parser extracts the following
     pattern:
         X=xxxx Y=yyyy L=llll
@@ -69,12 +69,8 @@ Rule=8 [Type="WD"] WP1 X1=25.500000:Y1=49.500000:L1=37 <-> WP2 X2=25.500000:Y2=4
 
 *** Beginning of LevelValidator Exceptions List ***
 
-# The below paths are blocked by a locked red door. This is intended 
-# because we want Bender to hang around the Doc while he is sick, and when cured,
-# stop stalking the Doc and make himself useful by going to E gate and guard it.
-
-Rule=1 [Type="WW"] WP1 X1=13.500000:Y1=35.500000:L1=0 -> WP2 X2=11.500000:Y2=25.500000:L2=0 : path not found
-Rule=2 [Type="WQ"] WP1 X1=13.500000:Y1=35.500000:L1=0 -> WP2 X2=11.500000:Y2=25.500000:L2=0 (warning)
+# Level 6, Maintenance Tunnels
+# Paths of Singularity drones blocked by closed doors which the player can open accessing the terminal
 
 Rule=3 [Type="WW"] WP1 X1=22.500000:Y1=13.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 : path not found
 Rule=4 [Type="WW"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=22.500000:Y2=13.500000:L2=6 : path not found
