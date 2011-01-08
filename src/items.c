@@ -388,11 +388,8 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 	//
 	if ((DropDecision > 100 - GOLD_DROP_PERCENTAGE)) {
 		// If class == 0, we want to avoid to drop 0-1 valuable circuits
-		int how_many = 0;
-		do {
-			how_many = MONEY_PER_BOT_CLASS * class + MyRandom(MONEY_PER_BOT_CLASS - 1);
-		} while (how_many < 2);
-		
+		int how_many = (class == 0) ? 2 : 0;
+		how_many += MONEY_PER_BOT_CLASS * class + MyRandom(MONEY_PER_BOT_CLASS - 1);
 		DropItemAt(GetItemIndexByName("Valuable Circuits"), level_num, x, y, how_many);
 	}
 
