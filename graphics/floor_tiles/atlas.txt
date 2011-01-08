@@ -1,4 +1,4 @@
-size 2048 1024
+* atlas 1 size 2048 1024
 iso_grass_floor_0003.png 0 0
 iso_grass_floor_0009.png 157 0
 iso_grass_floor_0002.png 303 0

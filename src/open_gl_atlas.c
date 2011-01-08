@@ -45,12 +45,13 @@ extern int gl_max_texture_size;	//defined in open_gl.c
  */
 static char *get_texture_atlas(const char *path)
 {
+#define ATLAS_BEGIN "* atlas 1 size "
 	char fpath[2048];
 	find_file(path, GRAPHICS_DIR, fpath, 0);
 
 	char *dataout = ReadAndMallocAndTerminateFile(fpath, NULL);
 
-	if (memcmp(dataout, "size ", 5))
+	if (memcmp(dataout, ATLAS_BEGIN, strlen(ATLAS_BEGIN)))
 		ErrorMessage(__FUNCTION__, "Atlas file %s did not seem to start with the size of the atlas. Corrupted?\n", PLEASE_INFORM,
 			     IS_FATAL, path);
 
@@ -67,28 +68,9 @@ static char *get_texture_atlas(const char *path)
  */
 static void read_atlas_size(const char *atlasdat, int *atlas_w, int *atlas_h)
 {
-	char *pos, *epos;
+	int atlas_num;
 
-	if (memcmp(atlasdat, "size ", 5))
-		ErrorMessage(__FUNCTION__, "Got incorrect string when trying to read atlas size: %10s\n", PLEASE_INFORM, IS_FATAL,
-			     atlasdat);
-
-	/* read atlas width and height, and place 'pos' on the first file line */
-	pos = (char *)atlasdat + 5;
-	epos = pos;
-	while (*epos != ' ')
-		epos++;
-	*epos = 0;
-	*atlas_w = atoi(pos);
-	*epos = ' ';
-	epos++;
-	pos = epos;
-	while (*epos != '\n')
-		epos++;
-	*epos = 0;
-	*atlas_h = atoi(pos);
-	*epos = '\n';
-	pos = epos + 1;
+	sscanf(atlasdat, "* atlas %d size %d %d\n", &atlas_num, atlas_w, atlas_h);
 }
 
 /**
