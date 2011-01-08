@@ -210,7 +210,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 void ShowItemPicture(int PosX, int PosY, int Number)
 {
 	static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
-	static int NumberOfImagesInThisRotation = 0;
+	static int NumberOfImagesInThisRotation = 1;
 #define MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION 64
 	static struct image item_rotation_img[MAX_NUMBER_OF_IMAGES_IN_ITEM_ROTATION] = { EMPTY_IMAGE };
 	int i;
