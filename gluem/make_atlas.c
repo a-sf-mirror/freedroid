@@ -37,12 +37,14 @@ struct img {
 
 struct img *images;
 
+const char *image_out_path;
 SDL_Surface *atlas_surf;
 const char *output_path;
 FILE *atlas_file;
 
 int atlas_width = 1024;
 int atlas_height = 1024;
+int atlas_num = 1;
 
 int total_image_area = 0;
 
@@ -62,11 +64,43 @@ static void init_sdl(void)
 	atexit(SDL_Quit);
 }
 
+static void init_output(int atlas_num)
+{
+	atlas_surf = SDL_CreateRGBSurface(0, atlas_width, atlas_height, 32, 0xff, 0xff00, 0xff000000, 0xff000000);
+	if (!atlas_surf) {
+		fprintf(stderr, "Unable to create atlas surface: %s.\n", SDL_GetError());
+		exit(1);
+	}
+
+	SDL_SetAlpha(atlas_surf, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
+	SDL_SetColorKey(atlas_surf, 0, 0);
+
+	if (!atlas_file) {
+		atlas_file = fopen(output_path, "w");
+	}
+	
+	fprintf(atlas_file, "* atlas %d size %d %d\n", atlas_num, atlas_width, atlas_height);
+
+	total_image_area = 0;
+}
+
+static void finish_output(int atlas_num)
+{
+	char path[2048];
+	sprintf(path, "%s%d.png", image_out_path, atlas_num);
+	png_save_surface(path, atlas_surf);
+	SDL_FreeSurface(atlas_surf);
+
+	printf("Atlas %d created. Last y position is %d. Atlas size: %dkB, images size: %dkB. Packing efficiency is %f.\n", atlas_num, last_y, (atlas_width * atlas_height * 4) / 1024, (total_image_area * 4) / 1024, (float)total_image_area/(float)(atlas_width * atlas_height));
+}
+
+
 static void place_image_at(int x, int y, struct img *i)
 {
 	fprintf(atlas_file, "%s %d %d\n", i->f, x, y); 
 	SDL_Rect target = { .x = x, .y = y };
 	SDL_BlitSurface(i->s, NULL, atlas_surf, &target);
+	total_image_area += i->s->w * i->s->h;
 }
 
 static void next_line(int *x, int *y, int *max_h)
@@ -84,8 +118,8 @@ static int check_position(int x, int y, SDL_Surface *s)
 
 	// Check limit at bottom
 	if (y + s->h >= atlas_height) {
-		fprintf(stderr, "%dx%d atlas is too small, please start over with a bigger atlas.\n", atlas_width, atlas_height);
-		exit(1);
+		fprintf(stderr, "%dx%d atlas is too small, creating another image.\n", atlas_width, atlas_height);
+		return 2;
 	}
 
 	return 0;
@@ -100,8 +134,26 @@ static void create_atlas()
 
 	for (i = 0; i < input_files_nb; i++) {
 		// Place image
-		if (check_position(x, y, images[i].s)) {
+		int check = check_position(x, y, images[i].s);
+		  
+		if (check == 2) {
+			// Create new atlas
+			x = 0;
+			y = 0;
+			max_h = 0;
+			finish_output(atlas_num);
+			atlas_num++;
+			init_output(atlas_num);
+
+			// Loop again
+			i--;
+			continue;
+		} else if (check == 1)	{
 			next_line(&x, &y, &max_h);
+
+			// Loop again
+			i--;
+			continue;
 		}
 
 		place_image_at(x, y, &images[i]);
@@ -112,9 +164,9 @@ static void create_atlas()
 
 		// Compute next position for image
 		x += images[i].s->w + 1;
+		last_y = y + max_h;
 	}
 
-	last_y = y + max_h;
 }
 
 void load_images()
@@ -128,10 +180,9 @@ void load_images()
 			fprintf(stderr, "Unable to load image %s: %s\n", input_files[i], IMG_GetError());
 			exit(1);
 		}
+
 		SDL_SetAlpha(images[i].s, 0, 255);
 		SDL_SetColorKey(images[i].s, 0, 0);
-
-		total_image_area += images[i].s->h * images[i].s->w;
 	}
 }
 
@@ -152,52 +203,29 @@ void sort_images()
 	qsort(&images[0], input_files_nb, sizeof(images[0]), compare_images_height); 
 }
 
-static void init_output()
-{
-
-	atlas_surf = SDL_CreateRGBSurface(0, atlas_width, atlas_height, 32, 0xff, 0xff00, 0xff000000, 0xff000000);
-	if (!atlas_surf) {
-		fprintf(stderr, "Unable to create atlas surface: %s.\n", SDL_GetError());
-		exit(1);
-	}
-
-	SDL_SetAlpha(atlas_surf, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-	SDL_SetColorKey(atlas_surf, 0, 0);
-
-	atlas_file = fopen(output_path, "w");
-	fprintf(atlas_file, "size %d %d\n", atlas_width, atlas_height);
-}
-
-static void finish_output()
-{
-	png_save_surface("/tmp/make_atlas.png", atlas_surf);
-	SDL_FreeSurface(atlas_surf);
-
-	printf("Atlas created. Last y position is %d. Atlas size: %dkB, images size: %dkB. Packing efficiency is %f.\n", last_y, (atlas_width * atlas_height * 4) / 1024, (total_image_area * 4) / 1024, (float)total_image_area/(float)(atlas_width * atlas_height));
-}
-
 int main(int argc, char **argv)
 {
 	// Read commandline
-	if (argc < 5) {
-		fprintf(stderr, "Usage: %s <atlas_width> <atlas_height> <output_file> <image1.png> <image2.png>...>\n", argv[0]);
+	if (argc < 6) {
+		fprintf(stderr, "Usage: %s <image_output_basename> <atlas_width> <atlas_height> <output_file> <image1.png> <image2.png>...>\n", argv[0]);
 		exit(1);
 	}
 
-	atlas_width = atoi(argv[1]);
-	atlas_height = atoi(argv[2]);
-	output_path = argv[3];
+	image_out_path = argv[1];
+	atlas_width = atoi(argv[2]);
+	atlas_height = atoi(argv[3]);
+	output_path = argv[4];
 
-	input_files_nb = argc - 4;
+	input_files_nb = argc - 5;
 	input_files = (const char **)calloc(input_files_nb, sizeof(const char *));
 	images = (struct img *)calloc(input_files_nb, sizeof(struct img));
 	int i;
 	for (i = 0; i < input_files_nb; i++) {
-		input_files[i] = argv[i + 4];
+		input_files[i] = argv[i + 5];
 	}
 
 	init_sdl();
-	init_output();
+	init_output(1);
 
 	printf("Creating atlas in %s from %d images.\n", output_path, input_files_nb);
 
@@ -205,6 +233,6 @@ int main(int argc, char **argv)
 	sort_images();
 	create_atlas();
 
-	finish_output();
+	finish_output(atlas_num);
 	return 0;
 }
