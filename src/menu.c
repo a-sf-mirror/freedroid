@@ -2036,6 +2036,7 @@ int Single_Player_Menu(void)
 				strcpy(Me.character_name, char_name);
 				can_continue = TRUE;
 			}
+			free(char_name);
 			break;
 
 		case LOAD_EXISTING_HERO_POSITION:
