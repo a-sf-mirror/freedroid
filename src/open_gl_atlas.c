@@ -132,6 +132,7 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 		free_image_surface(&atlas_img);
 	}
 
+	free(dat);
 	return 0;
 }
 
