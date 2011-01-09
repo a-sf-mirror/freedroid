@@ -858,6 +858,7 @@ static void GetTakeoverGraphics(void)
 	Set_Rect(tmp, curx, cury, LEADERBLOCKLEN, LEADERBLOCKHEIGHT);
 	create_subimage(&img, &ToLeaderBlock, &tmp);
 
+	free_image_surface(&img);
 	TakeoverGraphicsAreAlreadyLoaded = TRUE;
 }
 
