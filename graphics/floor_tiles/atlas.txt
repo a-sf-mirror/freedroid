@@ -1,142 +1,142 @@
-* atlas 1 size 2048 1024
-iso_grass_floor_0003.png 0 0
-iso_grass_floor_0009.png 157 0
-iso_grass_floor_0002.png 303 0
-iso_grass_floor_0010.png 463 0
-iso_grass_floor_0019.png 608 0
-iso_grass_floor_0024.png 760 0
-iso_grass_floor_0025.png 920 0
-iso_grass_floor_0018.png 1080 0
-iso_grass_floor_0000.png 1236 0
-iso_grass_floor_0007.png 1402 0
-iso_grass_floor_0004.png 1554 0
-iso_grass_floor_0008.png 1714 0
-iso_grass_floor_0017.png 1866 0
-iso_grass_floor_0001.png 0 95
-iso_grass_floor_0014.png 156 95
-iso_grass_floor_0027.png 293 95
-iso_grass_floor_0026.png 430 95
-iso_sidewalk_0000.png 586 95
-iso_sidewalk_0001.png 723 95
-iso_sidewalk_0002.png 860 95
-iso_sidewalk_0005.png 997 95
-iso_sidewalk_0006.png 1134 95
-iso_sidewalk_0009.png 1271 95
-iso_sidewalk_0010.png 1408 95
-iso_sidewalk_0014.png 1545 95
-iso_sidewalk_0017.png 1682 95
-iso_sidewalk_0018.png 1819 95
-iso_sidewalk_0020.png 0 182
-iso_sidewalk_0022.png 137 182
-iso_water_sidewalk_02.png 274 182
-iso_sidewalk_0003.png 411 182
-iso_sidewalk_0004.png 548 182
-iso_sidewalk_0011.png 685 182
-iso_sidewalk_0012.png 822 182
-iso_sidewalk_0013.png 959 182
-iso_sidewalk_0015.png 1096 182
-iso_sidewalk_0021.png 1233 182
-iso_sidewalk_0023.png 1370 182
-iso_water_sidewalk_01.png 1507 182
-iso_water_sidewalk_03.png 1644 182
-iso_miscellaneous_floor_0007.png 1781 182
-iso_sidewalk_0019.png 0 264
-iso_grass_floor_0013.png 137 264
-iso_grass_floor_0020.png 283 264
-iso_miscellaneous_floor_0005.png 438 264
-iso_miscellaneous_floor_0008.png 576 264
-iso_miscellaneous_floor_0009.png 712 264
-iso_miscellaneous_floor_0010.png 850 264
-iso_miscellaneous_floor_0011.png 988 264
-iso_miscellaneous_floor_0012.png 1126 264
-iso_miscellaneous_floor_0013.png 1264 264
-iso_sidewalk_0007.png 1402 264
-iso_sidewalk_0008.png 1539 264
-iso_water_0000.png 1676 264
-iso_grass_floor_0006.png 1814 264
-iso_grass_floor_0011.png 0 341
-iso_grass_floor_0012.png 146 341
-iso_grass_floor_0021.png 293 341
-iso_miscellaneous_floor_0001.png 430 341
-iso_miscellaneous_floor_0002.png 567 341
-iso_miscellaneous_floor_0003.png 704 341
-iso_miscellaneous_floor_0004.png 841 341
-iso_miscellaneous_floor_0014.png 983 341
-iso_miscellaneous_floor_0015.png 1120 341
-iso_miscellaneous_floor_0016.png 1258 341
-iso_miscellaneous_floor_0017.png 1396 341
-iso_miscellaneous_floor_0018.png 1534 341
-iso_miscellaneous_floor_0019.png 1672 341
-iso_miscellaneous_floor_0020.png 1810 341
-iso_miscellaneous_floor_0021.png 0 413
-iso_miscellaneous_floor_0022.png 138 413
-iso_miscellaneous_floor_0023.png 276 413
-iso_sand_floor_0001.png 414 413
-iso_sand_floor_0002.png 556 413
-iso_sand_floor_0003.png 698 413
-iso_sand_floor_0004.png 840 413
-iso_sand_floor_0005.png 982 413
-iso_sand_floor_0006.png 1124 413
-iso_sidewalk_0016.png 1266 413
-iso_sidewalk_0024.png 1403 413
-iso_water_edge_0001.png 1545 413
-iso_water_edge_0002.png 1687 413
-iso_water_edge_0003.png 1829 413
-iso_water_edge_0004.png 0 485
-iso_water_edge_0005.png 142 485
-iso_water_edge_0006.png 284 485
-iso_water_edge_0007.png 426 485
-iso_water_edge_0008.png 568 485
-iso_water_edge_0009.png 710 485
-iso_water_edge_0010.png 852 485
-iso_water_edge_0011.png 994 485
-iso_water_edge_0012.png 1136 485
-iso_water_sidewalk_04.png 1278 485
-iso_grass_floor_0005.png 1415 485
-iso_grass_floor_0016.png 1567 485
-iso_grass_floor_0015.png 1704 485
-iso_grass_floor_0022.png 1849 485
-iso_grass_floor_0023.png 0 557
-iso_grass_floor_0028.png 137 557
-iso_miscellaneous_floor_0000.png 288 557
-iso_large_square_bbb.png 425 557
-iso_large_square_brb.png 559 557
-iso_large_square_brr.png 693 557
-iso_large_square_gbb.png 827 557
-iso_large_square_grb.png 961 557
-iso_large_square_grr.png 1095 557
-iso_large_square_rbb.png 1229 557
-iso_large_square_rrb.png 1363 557
-iso_large_square_rrr.png 1497 557
-iso_mini_square_0001.png 1631 557
-iso_mini_square_0002.png 1765 557
-iso_mini_square_0003.png 1899 557
-iso_mini_square_0004.png 0 627
-iso_mini_square_0005.png 134 627
-iso_mini_square_0006.png 268 627
-iso_mini_square_0007.png 402 627
-iso_mini_square_0008.png 536 627
-iso_carpet_tile_0001.png 670 627
-iso_carpet_tile_0002.png 804 627
-iso_carpet_tile_0003.png 938 627
-iso_carpet_tile_0004.png 1072 627
-iso_complicated_cmm.png 1206 627
-iso_complicated_cmm2.png 1339 627
-iso_complicated_p4.png 1472 627
-iso_complicated_pmg.png 1605 627
-iso_complicated_pmg2.png 1738 627
-iso_complicated_pmm.png 1871 627
-iso_square_tile_aab.png 0 695
-iso_square_tile_acb.png 134 695
-iso_square_tile_acb2.png 268 695
-iso_square_tile_adb.png 402 695
-iso_square_tile_adb2.png 536 695
-iso_square_tile_cab.png 670 695
-iso_square_tile_cab2.png 804 695
-iso_square_tile_ccb.png 938 695
-iso_square_tile_dab.png 1072 695
-iso_square_tile_dab2.png 1206 695
-iso_square_tile_ddb.png 1340 695
-iso_twosquare_0001.png 1474 695
-iso_twosquare_0002.png 1608 695
-iso_twosquare_0003.png 1742 695
+* floor_tiles_atlas1.png size 1024 2048
+iso_grass_floor_0003.png 0 0 156 94 off -77 -57
+iso_grass_floor_0009.png 157 0 145 92 off -67 -57
+iso_grass_floor_0002.png 303 0 159 91 off -83 -54
+iso_grass_floor_0010.png 463 0 144 91 off -67 -56
+iso_grass_floor_0019.png 608 0 151 91 off -82 -54
+iso_grass_floor_0024.png 760 0 159 91 off -83 -54
+iso_grass_floor_0025.png 0 95 159 91 off -83 -54
+iso_grass_floor_0018.png 160 95 155 90 off -73 -55
+iso_grass_floor_0000.png 316 95 165 89 off -82 -53
+iso_grass_floor_0007.png 482 95 151 89 off -83 -54
+iso_grass_floor_0004.png 634 95 159 88 off -76 -52
+iso_grass_floor_0008.png 794 95 151 88 off -83 -53
+iso_grass_floor_0017.png 0 187 150 88 off -67 -52
+iso_grass_floor_0001.png 151 187 155 86 off -80 -51
+iso_grass_floor_0014.png 307 187 136 86 off -67 -51
+iso_grass_floor_0027.png 444 187 136 86 off -67 -51
+iso_grass_floor_0026.png 581 187 155 85 off -80 -49
+iso_sidewalk_0000.png 737 187 136 81 off -67 -44
+iso_sidewalk_0001.png 874 187 136 81 off -67 -44
+iso_sidewalk_0002.png 0 276 136 81 off -67 -44
+iso_sidewalk_0005.png 137 276 136 81 off -67 -44
+iso_sidewalk_0006.png 274 276 136 81 off -67 -44
+iso_sidewalk_0009.png 411 276 136 81 off -67 -44
+iso_sidewalk_0010.png 548 276 136 81 off -67 -44
+iso_sidewalk_0014.png 685 276 136 81 off -67 -44
+iso_sidewalk_0017.png 822 276 136 81 off -67 -44
+iso_sidewalk_0018.png 0 358 136 81 off -67 -44
+iso_sidewalk_0020.png 137 358 136 81 off -67 -44
+iso_sidewalk_0022.png 274 358 136 81 off -66 -45
+iso_water_sidewalk_02.png 411 358 136 81 off -66 -45
+iso_sidewalk_0003.png 548 358 136 77 off -67 -40
+iso_sidewalk_0004.png 685 358 136 77 off -67 -40
+iso_sidewalk_0011.png 822 358 136 77 off -67 -40
+iso_sidewalk_0012.png 0 440 136 77 off -67 -40
+iso_sidewalk_0013.png 137 440 136 77 off -67 -40
+iso_sidewalk_0015.png 274 440 136 77 off -67 -39
+iso_sidewalk_0021.png 411 440 136 77 off -67 -40
+iso_sidewalk_0023.png 548 440 136 77 off -67 -40
+iso_water_sidewalk_01.png 685 440 136 77 off -67 -41
+iso_water_sidewalk_03.png 822 440 136 77 off -67 -40
+iso_miscellaneous_floor_0007.png 0 518 149 76 off -74 -37
+iso_sidewalk_0019.png 150 518 136 76 off -67 -39
+iso_grass_floor_0013.png 287 518 145 73 off -76 -38
+iso_grass_floor_0020.png 433 518 154 72 off -79 -37
+iso_miscellaneous_floor_0005.png 588 518 137 72 off -68 -34
+iso_miscellaneous_floor_0008.png 726 518 135 72 off -67 -33
+iso_miscellaneous_floor_0009.png 862 518 137 72 off -68 -34
+iso_miscellaneous_floor_0010.png 0 595 137 72 off -68 -34
+iso_miscellaneous_floor_0011.png 138 595 137 72 off -68 -34
+iso_miscellaneous_floor_0012.png 276 595 137 72 off -68 -34
+iso_miscellaneous_floor_0013.png 414 595 137 72 off -68 -34
+iso_sidewalk_0007.png 552 595 136 72 off -67 -35
+iso_sidewalk_0008.png 689 595 136 72 off -67 -35
+iso_water_0000.png 826 595 137 72 off -68 -34
+iso_grass_floor_0006.png 0 668 151 71 off -68 -34
+iso_grass_floor_0011.png 152 668 145 71 off -76 -34
+iso_grass_floor_0012.png 298 668 146 71 off -77 -34
+iso_grass_floor_0021.png 445 668 136 71 off -67 -36
+iso_miscellaneous_floor_0001.png 582 668 136 71 off -68 -33
+iso_miscellaneous_floor_0002.png 719 668 136 71 off -68 -33
+iso_miscellaneous_floor_0003.png 856 668 136 71 off -68 -33
+iso_miscellaneous_floor_0004.png 0 740 141 71 off -71 -36
+iso_miscellaneous_floor_0014.png 142 740 136 71 off -68 -33
+iso_miscellaneous_floor_0015.png 279 740 137 71 off -68 -34
+iso_miscellaneous_floor_0016.png 417 740 137 71 off -68 -34
+iso_miscellaneous_floor_0017.png 555 740 137 71 off -68 -34
+iso_miscellaneous_floor_0018.png 693 740 137 71 off -68 -34
+iso_miscellaneous_floor_0019.png 831 740 137 71 off -68 -34
+iso_miscellaneous_floor_0020.png 0 812 137 71 off -68 -34
+iso_miscellaneous_floor_0021.png 138 812 137 71 off -68 -34
+iso_miscellaneous_floor_0022.png 276 812 137 71 off -68 -34
+iso_miscellaneous_floor_0023.png 414 812 137 71 off -68 -34
+iso_sand_floor_0001.png 552 812 141 71 off -71 -36
+iso_sand_floor_0002.png 694 812 141 71 off -71 -36
+iso_sand_floor_0003.png 836 812 141 71 off -71 -36
+iso_sand_floor_0004.png 0 884 141 71 off -71 -36
+iso_sand_floor_0005.png 142 884 141 71 off -71 -36
+iso_sand_floor_0006.png 284 884 141 71 off -71 -36
+iso_sidewalk_0016.png 426 884 136 71 off -68 -37
+iso_sidewalk_0024.png 563 884 141 71 off -68 -37
+iso_water_edge_0001.png 705 884 141 71 off -68 -34
+iso_water_edge_0002.png 847 884 141 71 off -68 -34
+iso_water_edge_0003.png 0 956 141 71 off -68 -34
+iso_water_edge_0004.png 142 956 141 71 off -68 -34
+iso_water_edge_0005.png 284 956 141 71 off -68 -34
+iso_water_edge_0006.png 426 956 141 71 off -68 -34
+iso_water_edge_0007.png 568 956 141 71 off -68 -34
+iso_water_edge_0008.png 710 956 141 71 off -68 -34
+iso_water_edge_0009.png 852 956 141 71 off -68 -34
+iso_water_edge_0010.png 0 1028 141 71 off -68 -34
+iso_water_edge_0011.png 142 1028 141 71 off -68 -34
+iso_water_edge_0012.png 284 1028 141 71 off -68 -34
+iso_water_sidewalk_04.png 426 1028 136 71 off -66 -36
+iso_grass_floor_0005.png 563 1028 151 70 off -69 -34
+iso_grass_floor_0016.png 715 1028 136 70 off -67 -34
+iso_grass_floor_0015.png 852 1028 144 69 off -67 -34
+iso_grass_floor_0022.png 0 1100 136 69 off -67 -34
+iso_grass_floor_0023.png 137 1100 136 69 off -67 -34
+iso_grass_floor_0028.png 274 1100 150 69 off -73 -34
+iso_miscellaneous_floor_0000.png 425 1100 136 69 off -68 -34
+iso_large_square_bbb.png 562 1100 133 67 off -67 -33
+iso_large_square_brb.png 696 1100 133 67 off -67 -33
+iso_large_square_brr.png 830 1100 133 67 off -67 -33
+iso_large_square_gbb.png 0 1170 133 67 off -67 -33
+iso_large_square_grb.png 134 1170 133 67 off -67 -33
+iso_large_square_grr.png 268 1170 133 67 off -67 -33
+iso_large_square_rbb.png 402 1170 133 67 off -67 -33
+iso_large_square_rrb.png 536 1170 133 67 off -67 -33
+iso_large_square_rrr.png 670 1170 133 67 off -67 -33
+iso_mini_square_0001.png 804 1170 133 67 off -67 -33
+iso_mini_square_0002.png 0 1238 133 67 off -67 -33
+iso_mini_square_0003.png 134 1238 133 67 off -67 -33
+iso_mini_square_0004.png 268 1238 133 67 off -67 -33
+iso_mini_square_0005.png 402 1238 133 67 off -67 -33
+iso_mini_square_0006.png 536 1238 133 67 off -67 -33
+iso_mini_square_0007.png 670 1238 133 67 off -67 -33
+iso_mini_square_0008.png 804 1238 133 67 off -67 -33
+iso_carpet_tile_0001.png 0 1306 133 66 off -67 -33
+iso_carpet_tile_0002.png 134 1306 133 66 off -67 -33
+iso_carpet_tile_0003.png 268 1306 133 66 off -67 -33
+iso_carpet_tile_0004.png 402 1306 133 66 off -67 -33
+iso_complicated_cmm.png 536 1306 132 66 off -67 -33
+iso_complicated_cmm2.png 669 1306 132 66 off -67 -33
+iso_complicated_p4.png 802 1306 132 66 off -67 -33
+iso_complicated_pmg.png 0 1373 132 66 off -67 -33
+iso_complicated_pmg2.png 133 1373 132 66 off -67 -33
+iso_complicated_pmm.png 266 1373 132 66 off -67 -33
+iso_square_tile_aab.png 399 1373 133 66 off -67 -33
+iso_square_tile_acb.png 533 1373 133 66 off -67 -33
+iso_square_tile_acb2.png 667 1373 133 66 off -67 -33
+iso_square_tile_adb.png 801 1373 133 66 off -67 -33
+iso_square_tile_adb2.png 0 1440 133 66 off -67 -33
+iso_square_tile_cab.png 134 1440 133 66 off -67 -33
+iso_square_tile_cab2.png 268 1440 133 66 off -67 -33
+iso_square_tile_ccb.png 402 1440 133 66 off -67 -33
+iso_square_tile_dab.png 536 1440 133 66 off -67 -33
+iso_square_tile_dab2.png 670 1440 133 66 off -67 -33
+iso_square_tile_ddb.png 804 1440 133 66 off -67 -33
+iso_twosquare_0001.png 0 1507 133 66 off -67 -33
+iso_twosquare_0002.png 134 1507 133 66 off -67 -33
+iso_twosquare_0003.png 268 1507 133 66 off -67 -33
