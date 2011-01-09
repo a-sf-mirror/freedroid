@@ -34,8 +34,6 @@
 #include "global.h"
 #include "proto.h"
 
-extern int gl_max_texture_size;	//defined in open_gl.c 
-
 /** 
  * This function opens a texture atlas and returns its contents.
  * The string returned has to be freed by the caller.
@@ -45,140 +43,95 @@ extern int gl_max_texture_size;	//defined in open_gl.c
  */
 static char *get_texture_atlas(const char *path)
 {
-#define ATLAS_BEGIN "* atlas 1 size "
 	char fpath[2048];
 	find_file(path, GRAPHICS_DIR, fpath, 0);
 
 	char *dataout = ReadAndMallocAndTerminateFile(fpath, NULL);
 
-	if (memcmp(dataout, ATLAS_BEGIN, strlen(ATLAS_BEGIN)))
-		ErrorMessage(__FUNCTION__, "Atlas file %s did not seem to start with the size of the atlas. Corrupted?\n", PLEASE_INFORM,
-			     IS_FATAL, path);
-
 	return dataout;
 }
 
-/** 
- * Read the total size of the texture atlas. (FreedroidRPG convention is not to go above 2048x2048.)
- *
- * @param atlasdat The atlas contents as returned by get_texture_atlas.
- * @param atlas_w Pointer to the atlas width to write.
- * @param atlas_h Pointer to the atlas height to write.
- *
- */
-static void read_atlas_size(const char *atlasdat, int *atlas_w, int *atlas_h)
+static int read_atlas_header(const char *buf, char *path)
 {
-	int atlas_num;
+	int width, height;
+	if (!sscanf(buf, "* %s size %d %d", path, &width, &height))
+		return 1;
 
-	sscanf(atlasdat, "* atlas %d size %d %d\n", &atlas_num, atlas_w, atlas_h);
+	return 0;
 }
 
-/**
- * Read a field (x and y position of given file in the atlas).
- *
- * @param atlasdat The atlas contents as returned by get_texture_atlas.
- * @param pathname The name of the file to look for
- * @param field_x Pointer to the X position of the image in the atlas, to be written
- * @param field_y Pointer to the Y position of the image in the atlas, to be written
- */
-static void read_atlas_field(const char *atlasdat, const char *pathname, short int *field_x, short int *field_y)
+static int find_array_index(char *filenames[], int count, char *key)
 {
-	char *field = strstr(atlasdat, pathname);
-	char *epos;
+	int i;
 
-	if (!field)
-		ErrorMessage(__FUNCTION__, "Atlas file for floor tiles does not contain file %s which is needed.\n", PLEASE_INFORM,
-			     IS_FATAL, pathname);
+	for (i = 0; i < count; i++) {
+		if (!strcmp(filenames[i], key))
+			return i;
+	}
 
-	while (*field != ' ')
-		field++;
-	field++;
-	epos = field;
-	while (*epos != ' ')
-		epos++;
-	*epos = 0;
-	*field_x = atoi(field);
-	*epos = ' ';
-	field = epos + 1;
-	epos++;
-	while (*epos != '\n')
-		epos++;
-	*epos = 0;
-	*field_y = atoi(field);
-	*epos = '\n';
+	return -1;
 }
 
 int load_texture_atlas(const char *atlas_name, const char *directory, char *filenames[], struct image atlasmembers[], int count)
 {
-#ifdef HAVE_LIBGL
-	// Initialization : read atlas, check if size is ok
+	// Open atlas file
 	char *dat = get_texture_atlas(atlas_name);
-	int atlas_w, atlas_h;
-	int a;
 
-	read_atlas_size(dat, &atlas_w, &atlas_h);
+	while (*dat) {
+		// Read data from each atlas described in the file
+		char atlas_path[2048];
+		strcpy(atlas_path, directory);
+		if (read_atlas_header(dat, &atlas_path[strlen(directory)])) {
+			// Done reading atlas
+			break;
+		}
 
-	if (atlas_w > gl_max_texture_size || atlas_h > gl_max_texture_size) {
-		free(dat);
-		ErrorMessage(__FUNCTION__, "Your system only supports %dx%d textures. Atlas %s is %dx%d and therefore will not be used.\n",
-			     NO_NEED_TO_INFORM, IS_WARNING_ONLY, gl_max_texture_size, gl_max_texture_size, atlas_name, atlas_w, atlas_h);
-		return 1;
+		while (*dat != '\n')
+			dat++;
+		dat++;
+
+		// Load the atlas in memory
+		struct image atlas_img = EMPTY_IMAGE;
+		load_image(&atlas_img, atlas_path, FALSE);
+
+		while (*dat && *dat != '*') {
+			// Read each element in the atlas
+			SDL_Rect dest_rect;
+			char element_path[2048];
+			int x, y, w, h;
+			int xoff, yoff;
+			if (!sscanf(dat, "%s %d %d %d %d off %d %d", &element_path[0], &x, &y, &w, &h, &xoff, &yoff)) {
+				break;
+			}
+
+			dest_rect.x = x;
+			dest_rect.y = y;
+			dest_rect.w = w;
+			dest_rect.h = h;
+
+			int index = find_array_index(filenames, count, element_path);
+
+			if (index == -1) {
+				ErrorMessage(__FUNCTION__, "Atlas file %s specifies element %s which is not expected for this atlas.", PLEASE_INFORM, IS_FATAL, atlas_path, element_path);
+			}
+
+			// Fill in element struct image
+			delete_image(&atlasmembers[index]);
+			create_subimage(&atlas_img, &atlasmembers[index], &dest_rect);
+
+			// Set image offset
+			atlasmembers[index].offset_x = xoff;
+			atlasmembers[index].offset_y = yoff;
+
+			// Move on to the next element
+			while (*dat && *dat != '\n')
+			   dat++;
+			dat++;
+		}
+
+		free_image_surface(&atlas_img);
 	}
-	// Create the big atlas surface
-	struct image atlas_surf;
-	memset(&atlas_surf, 0, sizeof(struct image));
-	atlas_surf.w = atlas_w;
-	atlas_surf.tex_w = atlas_w;
-	atlas_surf.h = atlas_h;
-	atlas_surf.tex_h = atlas_h;
 
-	atlas_surf.surface = SDL_CreateRGBSurface(SDL_SWSURFACE, atlas_w, atlas_h, 32, rmask, gmask, bmask, amask);
-	SDL_SetAlpha(atlas_surf.surface, 0, SDL_ALPHA_OPAQUE);
-
-	// Iterate over our filenames
-	SDL_Rect dest_rect;	//temporary "destination rect"
-	for (a = 0; a < count; a++) {
-		//printf("Treating %s\n", filenames[a]);
-		// Build filename
-		char ConstructedFileName[1000];
-		strcpy(ConstructedFileName, (directory != NULL) ? directory : "");
-		strcat(ConstructedFileName, filenames[a]);
-
-		// Load the image
-		load_image_surface(&atlasmembers[a], ConstructedFileName, TRUE);
-
-		// Get the destination rect on the atlas surface
-		read_atlas_field(dat, filenames[a], &dest_rect.x, &dest_rect.y);
-		dest_rect.w = atlasmembers[a].w;
-		dest_rect.h = atlasmembers[a].h;
-
-		// Do not ask why. Without this it does not work.
-		SDL_SetAlpha(atlasmembers[a].surface, 0, SDL_ALPHA_OPAQUE);
-
-		// Blit on the big atlas surface
-		SDL_BlitSurface(atlasmembers[a].surface, NULL, atlas_surf.surface, &dest_rect);
-
-		// Register the texture coordinates of the image in the atlas
-		atlasmembers[a].tex_x0 = (float)dest_rect.x / (float)atlas_w;
-		atlasmembers[a].tex_y0 = (float)dest_rect.y / (float)atlas_h;
-		atlasmembers[a].tex_x1 = atlasmembers[a].tex_x0 + (float)dest_rect.w / (float)atlas_w;
-		atlasmembers[a].tex_y1 = (float)(dest_rect.y + dest_rect.h) / (float)atlas_h;
-
-		// Free the temporary
-		SDL_FreeSurface(atlasmembers[a].surface);
-	}
-
-	// Now we generate the texture
-	make_texture_out_of_prepadded_image(&atlas_surf);
-
-	// Mark the texture ID in atlas members
-	for (a = 0; a < count; a++)
-		atlasmembers[a].texture = atlas_surf.texture;
-
-	// Free atlas data and the temporary surface
-	free(dat);
-	SDL_FreeSurface(atlas_surf.surface);
-#endif
 	return 0;
 }
 
