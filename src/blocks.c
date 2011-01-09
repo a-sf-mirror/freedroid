@@ -780,23 +780,9 @@ void load_all_obstacles(void)
  */
 void load_floor_tiles(void)
 {
-	int i;
-
 	// Try to load the atlas
-	if (use_open_gl)
-		if (!load_texture_atlas
-		    ("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, floor_images, ALL_ISOMETRIC_FLOOR_TILES)) {
-			return;
-		}
-
-	// No atlas possible
-	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
-		char ConstructedFileName[2000];
-
-		strcpy(ConstructedFileName, "floor_tiles/");
-		strcat(ConstructedFileName, floor_tile_filenames[i]);
-
-		load_image(&floor_images[i], ConstructedFileName, TRUE);
+	if (load_texture_atlas("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, floor_images, ALL_ISOMETRIC_FLOOR_TILES)) {
+		ErrorMessage(__FUNCTION__, "Unable to load floor tiles atlas at floor_tiles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
 	}
 }
 
