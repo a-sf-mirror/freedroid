@@ -363,7 +363,7 @@ int ScrollText(char *Text, int background_code)
 			speed = 0;
 		}
 
-		SDL_Delay(10);
+		SDL_Delay(20);
 	}
 
 	while (MouseLeftPressed()) ;	// so that we don't touch again immediately.
