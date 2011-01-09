@@ -27,12 +27,17 @@
 #include "pngfuncs.h"
 #include "../src/system.h"
 
+#define OFFSET_FILE_OFFSETX_STRING "OffsetX="
+#define OFFSET_FILE_OFFSETY_STRING "OffsetY="
+
 const char **input_files;
-int input_files_nb;
+int image_count;
 
 struct img { 
    SDL_Surface *s;
    const char *f;
+   int xoff;
+   int yoff;
 };
 
 struct img *images;
@@ -79,7 +84,9 @@ static void init_output(int atlas_num)
 		atlas_file = fopen(output_path, "w");
 	}
 	
-	fprintf(atlas_file, "* atlas %d size %d %d\n", atlas_num, atlas_width, atlas_height);
+	char path[2048];
+	sprintf(path, "%s%d.png", image_out_path, atlas_num);
+	fprintf(atlas_file, "* %s size %d %d\n", path, atlas_width, atlas_height);
 
 	total_image_area = 0;
 }
@@ -97,7 +104,7 @@ static void finish_output(int atlas_num)
 
 static void place_image_at(int x, int y, struct img *i)
 {
-	fprintf(atlas_file, "%s %d %d\n", i->f, x, y); 
+	fprintf(atlas_file, "%s %d %d %d %d off %d %d\n", i->f, x, y, i->s->w, i->s->h, i->xoff, i->yoff);
 	SDL_Rect target = { .x = x, .y = y };
 	SDL_BlitSurface(i->s, NULL, atlas_surf, &target);
 	total_image_area += i->s->w * i->s->h;
@@ -132,7 +139,7 @@ static void create_atlas()
 	int max_h = 0;
 	int i;
 
-	for (i = 0; i < input_files_nb; i++) {
+	for (i = 0; i < image_count; i++) {
 		// Place image
 		int check = check_position(x, y, images[i].s);
 		  
@@ -169,20 +176,56 @@ static void create_atlas()
 
 }
 
+static void get_offset_for_image(struct img *img)
+{
+	char offset_file_name[10000];
+	FILE *OffsetFile;
+	char *dat;
+	char *p;
+	
+	strcpy(offset_file_name, img->f);
+	offset_file_name[strlen(offset_file_name) - 4] = 0;
+	strcat(offset_file_name, ".offset");
+
+	if ((OffsetFile = fopen(offset_file_name, "rb")) == NULL) {
+		img->xoff = 0;
+		img->yoff = 0;
+		return;
+	}
+
+	dat = calloc(1, 4000);
+
+	fread(dat, 3999, 1, OffsetFile);
+	fclose(OffsetFile);
+
+	p = strstr(dat, OFFSET_FILE_OFFSETX_STRING);
+	p += strlen(OFFSET_FILE_OFFSETX_STRING);
+
+	img->xoff = atoi(p);
+
+	p = strstr(dat, OFFSET_FILE_OFFSETY_STRING);
+	p += strlen(OFFSET_FILE_OFFSETY_STRING);
+
+	img->yoff = atoi(p);
+
+	free(dat);
+}
+
 void load_images()
 {
 	int i;
 
-	for (i = 0; i < input_files_nb; i++) {
+	for (i = 0; i < image_count; i++) {
 		images[i].f = input_files[i];
 		images[i].s = IMG_Load(input_files[i]);
 		if (!images[i].s) {
 			fprintf(stderr, "Unable to load image %s: %s\n", input_files[i], IMG_GetError());
 			exit(1);
 		}
-
 		SDL_SetAlpha(images[i].s, 0, 255);
 		SDL_SetColorKey(images[i].s, 0, 0);
+		
+		get_offset_for_image(&images[i]);
 	}
 }
 
@@ -200,14 +243,22 @@ static int compare_images_height(const void *i1, const void *i2)
 
 void sort_images()
 {
-	qsort(&images[0], input_files_nb, sizeof(images[0]), compare_images_height); 
+	qsort(&images[0], image_count, sizeof(images[0]), compare_images_height); 
+}
+
+static int check_output_name(const char *name)
+{
+	if (strstr(name, image_out_path) == name)
+		return 1;
+
+	return 0;
 }
 
 int main(int argc, char **argv)
 {
 	// Read commandline
 	if (argc < 6) {
-		fprintf(stderr, "Usage: %s <image_output_basename> <atlas_width> <atlas_height> <output_file> <image1.png> <image2.png>...>\n", argv[0]);
+		fprintf(stderr, "Usage: %s <image_output_basename> <atlas_width> <atlas_height> <output_file> <image1.png> <image2.png>...\n", argv[0]);
 		exit(1);
 	}
 
@@ -216,18 +267,22 @@ int main(int argc, char **argv)
 	atlas_height = atoi(argv[3]);
 	output_path = argv[4];
 
-	input_files_nb = argc - 5;
+	int input_files_nb = argc - 5;
 	input_files = (const char **)calloc(input_files_nb, sizeof(const char *));
 	images = (struct img *)calloc(input_files_nb, sizeof(struct img));
 	int i;
 	for (i = 0; i < input_files_nb; i++) {
-		input_files[i] = argv[i + 5];
+		if (check_output_name(argv[i + 5])) {
+			fprintf(stderr, "Warning: not putting %s in the atlas as it seems to be an output file.\n", argv[i + 5]);
+			continue;
+		}
+		input_files[image_count++] = argv[i + 5];
 	}
 
 	init_sdl();
 	init_output(1);
 
-	printf("Creating atlas in %s from %d images.\n", output_path, input_files_nb);
+	printf("Creating atlas in %s from %d images.\n", output_path, image_count);
 
 	load_images();
 	sort_images();
