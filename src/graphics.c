@@ -539,37 +539,23 @@ SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterTy
  */
 static void get_standard_iso_floor_tile_size(void)
 {
-	SDL_Surface *standard_floor_tile;
-	char fp[2048];
-	find_file("floor_tiles/iso_miscellaneous_floor_0000.png", GRAPHICS_DIR, fp, 0);
-	standard_floor_tile = our_IMG_load_wrapper(fp);
-	if (standard_floor_tile == NULL) {
-		fprintf(stderr, "\n\nSDL_GetError: %s \n", SDL_GetError());
-		ErrorMessage(__FUNCTION__, "\
-UNABLE TO LOAD STANDARD TILE!", PLEASE_INFORM, IS_FATAL);
-	}
-	// Warning!  The standard tile sizes should be a multiple of 2 in
-	//           both directions to prevent jittering from numerical 
-	//           rounding.
-	//
-	//           They also should be a bit less than a real tile size
-	//           to hide some of the gap from the shading and anti-aliasing
-	//           of the rendering process.
-	//
-	if (standard_floor_tile->w % 2)
-		iso_floor_tile_width = standard_floor_tile->w - 3;
+	// iso_miscellaneous_floor_0000 dimensions
+#define TILE_WIDTH 136
+#define TILE_HEIGHT 69
+
+	if (TILE_WIDTH % 2)
+		iso_floor_tile_width = TILE_WIDTH - 3;
 	else
-		iso_floor_tile_width = standard_floor_tile->w - 2;
-	if (standard_floor_tile->h % 2)
-		iso_floor_tile_height = standard_floor_tile->h - 3;
+		iso_floor_tile_width = TILE_WIDTH - 2;
+
+	if (TILE_HEIGHT % 2)
+		iso_floor_tile_height = TILE_HEIGHT	- 3;
 	else
-		iso_floor_tile_height = standard_floor_tile->h - 2;
+		iso_floor_tile_height = TILE_HEIGHT - 2;
 
 	iso_floor_tile_width_over_two = iso_floor_tile_width / 2;
 	iso_floor_tile_height_over_two = iso_floor_tile_height / 2;
-	SDL_FreeSurface(standard_floor_tile);
-
-};				// void get_standard_iso_floor_tile_size ( void )
+}
 
 /* -----------------------------------------------------------------
  * This function does all the bitmap initialisation, so that you
