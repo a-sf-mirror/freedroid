@@ -38,6 +38,8 @@
  * emitted without changing the active texture, and in a single glBegin/glEnd pair.
  */
 
+extern int gl_max_texture_size;	//defined in open_gl.c 
+
 // Currently active OpenGL texture
 static int active_tex = -1;
 // Do we want to draw as a batch? (ie. not emit glBegin/glEnd pairs every time)
@@ -305,6 +307,11 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 void load_image(struct image *img, const char *filename, int use_offset_file)
 {
 	load_image_surface(img, filename, use_offset_file);
+
+	if (use_open_gl && (img->w > gl_max_texture_size || img->h > gl_max_texture_size)) {
+		ErrorMessage(__FUNCTION__, "Your system only supports %dx%d textures. Image %s is %dx%d and therefore cannot be used as an OpenGL texture.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, gl_max_texture_size, gl_max_texture_size, filename, img->w, img->h);
+		return;
+	}
 
 	if (use_open_gl) {
 		make_texture_out_of_surface(img);
