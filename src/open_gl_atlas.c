@@ -76,6 +76,7 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 {
 	// Open atlas file
 	char *dat = get_texture_atlas(atlas_name);
+	char *atlas_data = dat;
 
 	while (*dat) {
 		// Read data from each atlas described in the file
@@ -132,7 +133,7 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 		free_image_surface(&atlas_img);
 	}
 
-	free(dat);
+	free(atlas_data);
 	return 0;
 }
 
