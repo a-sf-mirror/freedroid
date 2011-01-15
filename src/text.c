@@ -633,6 +633,7 @@ char *get_string(int MaxLen, int background_code, const char *text_for_overhead_
 				curpos--;
 			input[curpos] = '.';
 		} else if (key == SDLK_ESCAPE) {
+			free(input);
 			while (EscapePressed()) ;
 			return (NULL);
 		}

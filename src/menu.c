@@ -1778,12 +1778,18 @@ static int savegame_already_exists(const char *name)
 {
 	struct dirent **eps;
 	int n = find_saved_games(&eps);
+	int exists = 0;
 	int i;
 	for (i = 0; i < n; i++) {
-		if (strcmp(eps[i]->d_name, name) == 0)
-			return 1;
+		if (strcmp(eps[i]->d_name, name) == 0) {
+			exists = 1;
+			break;
+		}
 	}
-	return 0;
+	for (i = 0; i <n; i++)
+		free(eps[i]);
+	free(eps);
+	return exists;
 }
 
 /**
@@ -1819,8 +1825,10 @@ static char *get_new_character_name(void)
 
 		// Check if name already exists
 		loop = savegame_already_exists(str);
-		if (loop)
+		if (loop) {
 			alert_window("A character named \"%s\" already exists.\nPlease choose another name.", str);
+			free(str);
+		}
 	}
 
 	return str;
@@ -1904,11 +1912,10 @@ static int do_savegame_selection_and_act(int action)
 			MenuPosition = DoMenuSelection(menu_title, MenuTexts, 1, NE_TITLE_PIC_BACKGROUND_CODE, NULL);
 
 			if (MenuPosition == (-1) || MenuPosition == cnt + 1) {
-				for (cnt = 0; cnt < n; cnt++) {
+				for (cnt = 0; cnt < n; cnt++)
 					free(eps[cnt]);
-				}
 				free(eps);
-				return (FALSE);
+				return FALSE;
 			}
 			if (MenuPosition == cnt) {
 				if (cnt + saveoffset - 1 < n)
@@ -1922,9 +1929,8 @@ static int do_savegame_selection_and_act(int action)
 
 		strcpy(Me.character_name, MenuTexts[MenuPosition - 1]);
 
-		for (cnt = 0; cnt < n; cnt++) {
+		for (cnt = 0; cnt < n; cnt++)
 			free(eps[cnt]);
-		}
 		free(eps);
 
 		goto do_action;
@@ -2035,6 +2041,7 @@ int Single_Player_Menu(void)
 				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 				strcpy(Me.character_name, char_name);
 				can_continue = TRUE;
+				free(char_name);
 			}
 			break;
 
