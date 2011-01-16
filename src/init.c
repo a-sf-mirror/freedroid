@@ -1392,6 +1392,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.delay_for_big_screen_messages = 6.5;
 	GameConfig.enable_cheatkeys = FALSE;
 	GameConfig.skip_shadow_blitting = FALSE;
+        GameConfig.do_fadings = TRUE;
 	GameConfig.xray_vision_for_tux = FALSE;
 	GameConfig.cheat_running_stamina = FALSE;
 	GameConfig.lazyload = 1;
