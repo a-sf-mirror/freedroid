@@ -1642,11 +1642,6 @@ static void Performance_fill(char *MenuTexts[])
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Skip fadings"));
-	sprintf(Options[i + 1], ": %s", GameConfig.do_fadings ? _("NO") : _("YES"));
-	strcat(Options[i], Options[i + 1]);
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
 	strncpy(MenuTexts[i++], _("Back"), 1024);
 	MenuTexts[i++][0] = '\0';
 }
