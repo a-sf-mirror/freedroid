@@ -672,6 +672,9 @@ void validate_dialogs()
 	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 
+	/* Temporarily disable screen fadings to speed up validation. */
+	GameConfig.do_fadings = FALSE;
+
 	/* _says functions are not run by the validator, as they display
 	   text on screen and wait for clicks */
 	run_lua("function npc_says(a)\nend\n");
@@ -735,6 +738,9 @@ void validate_dialogs()
 
 		printf("... dialog OK\n");
 	}
+
+	/* Re-enable screen fadings. */
+	GameConfig.do_fadings = TRUE;
 }
 
 #undef _chat_c
