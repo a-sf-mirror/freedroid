@@ -976,7 +976,7 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
 	// call, i.e. it will take a second or so each.)
 	//
 	if (with_sound_and_fading) {
-		fade_out_using_gamma_ramp();
+		fade_out_screen();
 	}
 
 	if (LNum != Me.pos.z) {
@@ -1056,13 +1056,9 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 
 	if (with_sound_and_fading) {
 		append_new_game_message(_("Arrived at %s."), D_(curShip.AllLevels[Me.pos.z]->Levelname));
-		AssembleCombatPicture(SHOW_ITEMS);
-		//our_SDL_flip_wrapper();
-		StoreMenuBackground(0);
-		fade_in_using_gamma_ramp();
+		fade_in_screen();
 	}
-
-};				// void Teleport( ... ) 
+}
 
 /**
  * Teleport the influencer to the center of a level on the ship

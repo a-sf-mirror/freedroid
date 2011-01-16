@@ -266,8 +266,8 @@ void init_obstacle_data(void);
 // graphics.c 
 void blit_mouse_cursor(void);
 SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterType);
-void fade_out_using_gamma_ramp(void);
-void fade_in_using_gamma_ramp(void);
+void fade_out_screen(void);
+void fade_in_screen(void);
 void InitPictures(void);
 void InitTimer(void);
 void InitVideo(void);

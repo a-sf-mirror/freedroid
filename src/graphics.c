@@ -105,85 +105,72 @@ void blit_mouse_cursor(void)
 	mouse_cursor = MOUSE_CURSOR_NORMAL;
 }
 
+static void fade(int fade_delay, int direction)
+{
+	SDL_Surface* bg = NULL;
+
+	Activate_Conservative_Frame_Computation();
+	AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
+
+#ifdef HAVE_LIBGL
+	if (use_open_gl) {
+		StoreMenuBackground(0);
+		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	} else
+#endif
+		bg = SDL_DisplayFormat(Screen);
+
+	Uint32 now   = SDL_GetTicks();
+	Uint32 start = now;
+	while (now < start + fade_delay) {
+		Uint8 fade = 255 * ((float)(now - start)) / fade_delay;
+
+		if (direction < 0)
+			fade = 255 - fade;
+
+#ifdef HAVE_LIBGL
+		if (!use_open_gl) {
+#endif
+			SDL_SetAlpha(bg, SDL_SRCALPHA, fade);
+			SDL_FillRect(Screen, NULL, 0);
+			our_SDL_blit_surface_wrapper(bg, NULL, Screen, NULL);
+			blit_mouse_cursor();
+			our_SDL_flip_wrapper();
+#ifdef HAVE_LIBGL
+		} else {
+			glColor4ub(fade, fade, fade, 255);
+			RestoreMenuBackground(0);
+			blit_mouse_cursor();
+			SDL_GL_SwapBuffers();
+		}
+#endif
+		now = SDL_GetTicks();
+	}
+
+#ifdef HAVE_LIBGL
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+#endif
+}
+
 /**
- * Occasionally it might come in handly to have the whole image fading
- * out when something time-consuming is happening, which is not displayed.
- * This function is intended to provide a mechanism for this using the
- * gamma adjustment.  Note, that the SDL documentation clearly mentions,
- * that NOT ALL HARDWARE SUPPORTS THIS.  But if it isn't supported, we
- * should still be safe and it should just mean that nothing will happen
- * in here except for some (unexplained) delay.
+ * Effect to fade entire screen to black.
  */
-void fade_out_using_gamma_ramp(void)
+void fade_out_screen(void)
 {
 	if (!GameConfig.do_fadings)
 		return;
-	int i = 0;
-	Activate_Conservative_Frame_Computation();
-	if (!use_open_gl)
-		for (i = 0; i < 100; i++) {
-			SDL_SetGamma(GameConfig.current_gamma_correction * 0.01 * ((float)(100 - i)),
-				     GameConfig.current_gamma_correction * 0.01 * ((float)(100 - i)),
-				     GameConfig.current_gamma_correction * 0.01 * ((float)(100 - i)));
-			SDL_Delay(4);
-		}
-#ifdef HAVE_LIBGL
-	else {
-		i = 255;
-		StoreMenuBackground(0);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-		while (--i) {
-			glColor4ub(i, i, i, i);
-			RestoreMenuBackground(0);
-			SDL_GL_SwapBuffers();
-		}
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-	}
-
-#endif
-};				// void fade_out_using_gamma_ramp ( void )
+	fade(180, -1);
+}
 
 /**
- * Occasionally it might come in handly to have the whole image fading
- * out when something time-consuming is happening, which is not displayed.
- * This function is intended to provide a mechanism for this using the
- * gamma adjustment.  Note, that the SDL documentation clearly mentions,
- * that NOT ALL HARDWARE SUPPORTS THIS.  But if it isn't supported, we
- * should still be safe and it should just mean that nothing will happen
- * in here except for some (unexplained) delay.
+ * Effect to fade entire screen from black.
  */
-void fade_in_using_gamma_ramp(void)
+void fade_in_screen(void)
 {
 	if (!GameConfig.do_fadings)
 		return;
-	int i;
-	Activate_Conservative_Frame_Computation();
-
-#ifdef HAVE_LIBGL
-	if (!use_open_gl)
-#endif
-		for (i = 0; i < 100; i++) {
-			SDL_SetGamma(GameConfig.current_gamma_correction * 0.01 * ((float)i),
-				     GameConfig.current_gamma_correction * 0.01 * ((float)i),
-				     GameConfig.current_gamma_correction * 0.01 * ((float)i));
-			SDL_Delay(4);
-		}
-#ifdef HAVE_LIBGL
-	else {
-		i = 0;
-		StoreMenuBackground(0);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-		while (i++ < 255) {
-			glColor4ub(i, i, i, i);
-			RestoreMenuBackground(0);
-			SDL_GL_SwapBuffers();
-		}
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
-	}
-#endif
-
-};				// void fade_in_using_gamma_ramp ( void )
+	fade(180, 1);
+}
 
 /**
  * In the shop interface, when an item was selected that could be grouped
