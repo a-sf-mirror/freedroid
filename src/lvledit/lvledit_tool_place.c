@@ -320,6 +320,16 @@ static void pick_walls(int windex)
 		state.l_type.sw = ISO_CAVE_CORNER_SW;
 		state.l_type.se = ISO_CAVE_CORNER_SE;
 		break;
+	case ISO_BRICK_WALL_H:
+	case ISO_BRICK_WALL_V:
+		state.l_type.v = ISO_BRICK_WALL_V;
+		state.l_type.h = ISO_BRICK_WALL_H;
+		break;
+	case ISO_BRICK_WALL_EH:
+	case ISO_BRICK_WALL_EV:
+		state.l_type.v = ISO_BRICK_WALL_EV;
+		state.l_type.h = ISO_BRICK_WALL_EH;
+		break;
 	default:
 		if (obstacle_map[windex].flags & IS_HORIZONTAL) {
 			state.l_type.h = windex;
