@@ -1076,8 +1076,10 @@ void init_obstacle_data(void)
 
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].filename = "iso_brick_wall_0014.png";
+	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].flags |= IS_VERTICAL;
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].filename = "iso_brick_wall_0015.png";
+	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_BRICK_WALL_EH, 0.8, 1.2);
 	obstacle_map[ISO_BRICK_WALL_EH].filename = "iso_brick_wall_0017.png";
