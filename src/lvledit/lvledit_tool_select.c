@@ -454,6 +454,10 @@ static void do_drag_drop_obstacle()
 	}	
 	state.cur_drag_pos.x = mouse_mapcoord.x;
 	state.cur_drag_pos.y = mouse_mapcoord.y;
+
+	// In order to display obstacles during a drag and drop operation, we must
+	// glue them to floor tiles of the current edited level.
+	glue_obstacles_to_floor_tiles_for_level(EditLevel()->levelnum);
 }
 
 static void do_drag_drop_floor()
