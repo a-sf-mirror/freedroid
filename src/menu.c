@@ -1574,7 +1574,6 @@ static int Performance_handle(int n)
 		SET_HIGHLIGHTING_MODE,
 		SKIP_LIGHT_RADIUS_MODE,
 		SKIP_SHADOWS,
-		SKIP_FADINGS,
 		LEAVE_PERFORMANCE_TWEAKS_MENU
 	};
 	switch (n) {
@@ -1599,11 +1598,6 @@ static int Performance_handle(int n)
 	case SKIP_SHADOWS:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) ;
 		GameConfig.skip_shadow_blitting = !GameConfig.skip_shadow_blitting;
-		break;
-
-	case SKIP_FADINGS:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) ;
-		GameConfig.do_fadings = !GameConfig.do_fadings;
 		break;
 
 	case LEAVE_PERFORMANCE_TWEAKS_MENU:
