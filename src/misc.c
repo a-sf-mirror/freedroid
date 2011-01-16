@@ -152,9 +152,9 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorQuitButtonPushed.png", {-30, 90, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButton.png", {-30, 180, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButton.png", {270, 90, 0, 0}, FALSE},
 	[LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButtonPushed.png", {-30, 180, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButtonPushed.png", {270, 90, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorToggleEnemiesButton.png", {-120, -320, 0, 0}, FALSE},
