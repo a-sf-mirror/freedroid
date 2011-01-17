@@ -880,7 +880,7 @@ void ShowSkillsScreen(void)
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "weapon"))
 				sprintf(CharText, " ");
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "repair"))
-				sprintf(CharText, " ");
+				sprintf(CharText, "Repair items, degrading them a bit");
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "satellite"))
 				sprintf(CharText, " ");
 			else if (!strcmp(SpellSkillMap[SkillOfThisSlot].effect, "light"))
@@ -896,7 +896,6 @@ void ShowSkillsScreen(void)
 			DisplayText(CharText, 16 + 64 + 16 + SkillScreenRect.x, nextypos, &SkillScreenRect, TEXT_STRETCH);
 			nextypos += FontHeight(GetCurrentFont());
 		}
-
 	}
 
 	// Now we see if perhaps the player has just clicked on one of the skills

@@ -137,19 +137,22 @@ item *get_equipped_item_in_slot_for(int item_type)
  */
 static void self_repair_item(item *it)
 {
-	float lower_bound, ratio;
+	int wear = 0, used = 0;
 
 	if (it->max_duration == -1) {
 		play_sound("effects/tux_ingame_comments/Tux_Item_Cant_Be_0.ogg");
 		return;
 	} 
 
-	/* Self repair formula : repair X% to 100% of the missing duration value. X is 5% for repair level 1 up to 45% for repair level 9. */
-	lower_bound = Me.skill_level[get_program_index_with_name("Repair equipment")] * 0.05;
-	ratio = lower_bound + (1.0 - lower_bound) * MyRandom(100) / 100.0;
-
-	it->current_duration +=	(it->max_duration - it->current_duration) * ratio;
-	it->max_duration = it->current_duration;
+	used = it->max_duration - it->current_duration;
+	/* Self repair formula: decrease max_duration between 1 and 11-skill_level*/
+	wear = 1 + (11 - Me.skill_level[get_program_index_with_name("Repair equipment")]) * MyRandom(100) / 100.0;
+	//never decrease more than current missing duration
+	it->max_duration -= min(wear, used);
+	if (it->max_duration < 1) {
+		it->max_duration = 1;
+	}
+	it->current_duration = it->max_duration;
 	play_sound("effects/tux_ingame_comments/Tux_This_Quick_Fix_0.ogg");
 }
 
