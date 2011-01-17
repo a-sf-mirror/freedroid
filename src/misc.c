@@ -1030,6 +1030,10 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 	Me.mouse_move_target.y = Me.pos.y;
 	Me.mouse_move_target.z = Me.pos.z;
 
+	// Animate Tux as standing still
+	Me.walk_cycle_phase = 0.0;
+	Me.phase = tux_anim.standing_keyframe;
+
 	if (with_sound_and_fading) {
 		teleport_arrival_sound();
 	}
