@@ -1005,11 +1005,11 @@ void init_obstacle_data(void)
 	// Brick walls are smashable.  When you smash them, there should be
 	// first a cracked brick wall, then when smashing again, there will
 	// be only some rubble left, and that should be *passable*.
-	block_2param(ISO_BRICK_WALL_H, 0.8, 1.2);
+	block_2param(ISO_BRICK_WALL_H, 1.2, 0.8);
 	obstacle_map[ISO_BRICK_WALL_H].filename = "iso_brick_wall_0002.png";
 	obstacle_map[ISO_BRICK_WALL_H].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1;
 	obstacle_map[ISO_BRICK_WALL_H].flags |= IS_HORIZONTAL;
-	block_2param(ISO_BRICK_WALL_V, 1.2, 0.8);
+	block_2param(ISO_BRICK_WALL_V, 0.8, 1.2);
 	obstacle_map[ISO_BRICK_WALL_V].filename = "iso_brick_wall_0001.png";
 	obstacle_map[ISO_BRICK_WALL_V].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_2;
 	obstacle_map[ISO_BRICK_WALL_V].flags |= IS_VERTICAL;
@@ -1081,11 +1081,11 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].filename = "iso_brick_wall_0015.png";
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_2].flags |= IS_HORIZONTAL;
 
-	block_2param(ISO_BRICK_WALL_EH, 0.8, 1.2);
+	block_2param(ISO_BRICK_WALL_EH, 1.2, 0.8);
 	obstacle_map[ISO_BRICK_WALL_EH].filename = "iso_brick_wall_0017.png";
 	obstacle_map[ISO_BRICK_WALL_EH].flags |= IS_HORIZONTAL;
 	obstacle_map[ISO_BRICK_WALL_EH].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1;
-	block_2param(ISO_BRICK_WALL_EV, 1.2, 0.8);
+	block_2param(ISO_BRICK_WALL_EV, 0.8, 1.2);
 	obstacle_map[ISO_BRICK_WALL_EV].filename = "iso_brick_wall_0016.png";
 	obstacle_map[ISO_BRICK_WALL_EV].flags |= IS_VERTICAL;
 	obstacle_map[ISO_BRICK_WALL_EV].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_2;
