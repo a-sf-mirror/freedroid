@@ -82,7 +82,7 @@ obstacle_states = {
 	[235] = {["broken"] = 237,},
 	[236] = {["broken"] = 237,},
 	[237] = {["broken"] = 237,},
-	[322] = {["broken"] = 237,},
+	[323] = {["broken"] = 237,},
 
 	[324] = {["disabled"] = 324, ["enabled"] = 32,},
 	[325] = {["disabled"] = 325, ["enabled"] = 33,},
