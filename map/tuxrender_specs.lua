@@ -17,18 +17,18 @@
 ------------------------------------------------------------------------------
 
 tux_animation {
-  standing_keyframe = 16,
+  standing_keyframe = 24,
 
   attack_duration = 0.55,
-  attack_first_keyframe = 1,
-  attack_last_keyframe = 14,
+  attack_first_keyframe = 0,
+  attack_last_keyframe = 13,
 
-  walk_distance = 1.0,
-  walk_first_keyframe  = 16,
-  walk_last_keyframe = 25,
+  walk_distance = 1.2,
+  walk_first_keyframe  = 14,
+  walk_last_keyframe = 23,
 
   run_distance = 10.0/3.0,
-  run_first_keyframe = 26,
+  run_first_keyframe = 25,
   run_last_keyframe = 34
 }
 
@@ -83,7 +83,7 @@ tux_rendering_config {
 
 --------------------
 -- "part_order" is the definition of a list of orders.
--- The name of one order has no real meaning.
+-- The name of an order has no real meaning.
 -- Here we chose the first letter of each part (with A = weaponarm).
 --
 -- (Note: part_order is a Lua variable, internal to this script. It does not
@@ -91,28 +91,28 @@ tux_rendering_config {
 --------------------
 
 part_order = {
-  FTSHAW = { "feet",      "torso",     "shieldarm", "head",      "weaponarm", "weapon"    },
-  FTHASW = { "feet",      "torso",     "head",      "weaponarm", "shieldarm", "weapon"    },
-  FTHSWA = { "feet",      "torso",     "head",      "shieldarm", "weapon",    "weaponarm" },
-  FTHWAS = { "feet",      "torso",     "head",      "weapon",    "weaponarm", "shieldarm" },
-  FTHAWS = { "feet",      "torso",     "head",      "weaponarm", "weapon",    "shieldarm" },
-  FTAWSH = { "feet",      "torso",     "weaponarm", "weapon",    "shieldarm", "head"      },
-  FTAWSH = { "feet",      "torso",     "weaponarm", "weapon",    "shieldarm", "head"      },
-  FSTHWA = { "feet",      "shieldarm", "torso",     "head",      "weapon",    "weaponarm" },
-  FSTHAW = { "feet",      "shieldarm", "torso",     "head",      "weaponarm", "weapon"    },
-  FSTWAH = { "feet",      "shieldarm", "torso",     "weapon",    "weaponarm", "head"      },
-  FSTAWH = { "feet",      "shieldarm", "torso",     "weaponarm", "weapon",    "head"      },
-  FSWTAH = { "feet",      "shieldarm", "weapon",    "torso",     "weaponarm", "head"      },
-  FSAWTH = { "feet",      "shieldarm", "weaponarm", "weapon",    "torso",     "head"      },
-  FWATSH = { "feet",      "weapon",    "weaponarm", "torso",     "shieldarm", "head"      },
-  FWASTH = { "feet",      "weapon",    "weaponarm", "shieldarm", "torso",     "head"      },
-  FWSTAH = { "feet",      "weapon",    "shieldarm", "torso",     "weaponarm", "head"      },
-  FAWTSH = { "feet",      "weaponarm", "weapon",    "torso",     "shieldarm", "head"      },
-  FAWSTH = { "feet",      "weaponarm", "weapon",    "shieldarm", "torso",     "head"      },
-  FATWSH = { "feet",      "weaponarm", "torso",     "weapon",    "shieldarm", "head"      },
-  FATHWS = { "feet",      "weaponarm", "torso",     "head",      "weapon",    "shieldarm" },
-  WFASTH = { "weapon",    "feet",      "weaponarm", "shieldarm", "torso",     "head"      },
-  SFTHAW = { "shieldarm", "feet",      "torso",     "head",      "weaponarm", "weapon"    }
+  FTSWAH = { "feet", "torso",     "shieldarm", "weapon",    "weaponarm", "head"      },
+  FTHSWA = { "feet", "torso",     "head",      "shieldarm", "weapon",    "weaponarm" },
+  FTHSAW = { "feet", "torso",     "head",      "shieldarm", "weaponarm", "weapon"    },
+  FTSAWH = { "feet", "torso",     "shieldarm", "weaponarm", "weapon",    "head"      },
+  FTSAHW = { "feet", "torso",     "shieldarm", "weaponarm", "head",      "weapon"    },
+  FTASWH = { "feet", "torso",     "weaponarm", "shieldarm", "weapon",    "head"      },
+  FTAWSH = { "feet", "torso",     "weaponarm", "weapon",    "shieldarm", "head"      },
+  FTWASH = { "feet", "torso",     "weapon",    "weaponarm", "shieldarm", "head"      },
+  FATWSH = { "feet", "weaponarm", "torso",     "weapon",    "shieldarm", "head"      },
+  FATSWH = { "feet", "weaponarm", "torso",     "shieldarm", "weapon",    "head"      },
+  FATHWS = { "feet", "weaponarm", "torso",     "head",      "weapon",    "shieldarm" },
+  FSTHWA = { "feet", "shieldarm", "torso",     "head",      "weapon",    "weaponarm" },
+  FSWTAH = { "feet", "shieldarm", "weapon",    "torso",     "weaponarm", "head"      },
+  FSWATH = { "feet", "shieldarm", "weapon",    "weaponarm", "torso",     "head"      },
+  FSTWAH = { "feet", "shieldarm", "torso",     "weapon",    "weaponarm", "head"      },
+  FWATSH = { "feet", "weapon",    "weaponarm", "torso",     "shieldarm", "head"      },
+  FWASTH = { "feet", "weapon",    "weaponarm", "shieldarm", "torso",     "head"      },
+  FWTASH = { "feet", "weapon",    "torso",     "weaponarm", "shieldarm", "head"      },
+  FWSTAH = { "feet", "weapon",    "shieldarm", "torso",     "weaponarm", "head"      },
+  FAWTSH = { "feet", "weaponarm", "weapon",    "torso",     "shieldarm", "head"      },
+  FATWSH = { "feet", "weaponarm", "torso",     "weapon",    "shieldarm", "head"      },
+  WFASTH = { "weapon", "feet",    "weaponarm", "shieldarm", "torso",     "head"      }
 }
 
 --------------------
@@ -122,80 +122,37 @@ part_order = {
 tux_ordering {
   type = "sword_motion",
   rotations = { 0 },
-  phase_start = 32,
-  phase_end = 34,
---  order = part_order.FSAWTH
-  order = part_order.FSTHAW
-}
-
-tux_ordering {
-  type = "sword_motion",
-  rotations = { 0 },
-  order = part_order.FTHASW
-}
-
-tux_ordering {
-  type = "sword_motion",
-  rotations = { 7 },
-  order = part_order.FSWTAH
-}
-
-tux_ordering {
-  type = "sword_motion",
-  rotations = { 1 },
-  phase_start = 3,
-  phase_end = 8,
-  order = part_order.FTSHAW
-}
-
-tux_ordering {
-  type = "sword_motion",
-  rotations = { 2, 3, 4, 5, 6 },
-  phase_start = 3,
-  phase_end = 8,
-  order = part_order.FSTHAW
+  order = part_order.FTHSWA
 }
 
 tux_ordering {
   type = "sword_motion",
   rotations = { 1, 2, 3, 4, 5, 6 },
-  order = part_order.SFTHAW
+  order = part_order.FSTHWA
+}
+
+tux_ordering {
+  type = "sword_motion",
+  rotations = { 7 },
+  order = part_order.FSTWAH
 }
 
 tux_ordering {
   type = "sword_motion",
   rotations = { 8 },
-  order = part_order.WFASTH
+  order = part_order.FWTASH
 }
 
 tux_ordering {
   type = "sword_motion",
-  rotations = { 9 },
-  phase_start = 3,
-  phase_end = 8,
-  order = part_order.FWASTH
-}
-
-tux_ordering {
-  type = "sword_motion",
-  rotations = { 14 },
-  phase_start = 32,
-  phase_end = 34,
-  order = part_order.FATHWS
-}
-
-tux_ordering {
-  type = "sword_motion",
-  rotations = { 15 },
-  phase_start = 31,
-  phase_end = 34,
-  order = part_order.FATHWS
-}
-
-tux_ordering {
-  type = "sword_motion",
-  rotations = { 9, 10, 11, 12, 13, 14, 15 },
+  rotations = { 9, 10, 11 },
   order = part_order.FWATSH
+}
+
+tux_ordering {
+  type = "sword_motion",
+  rotations = { 12, 13, 14, 15 },
+  order = part_order.FAWTSH
 }
 
 --------------------
@@ -204,22 +161,8 @@ tux_ordering {
 
 tux_ordering {
   type = "gun_motion",
-  rotations = { 0 },
-  order = part_order.FTHSWA
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 1, 2 },
-  phase_start = 4,
-  phase_end = 11,
-  order = part_order.FTHSWA
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 1, 2 },
-  order = part_order.FSTHWA
+  rotations = { 0, 1, 2 },
+  order = part_order.FTSWAH
 }
 
 tux_ordering {
@@ -230,44 +173,14 @@ tux_ordering {
 
 tux_ordering {
   type = "gun_motion",
-  rotations = { 6, 7 },
-  order = part_order.FSWTAH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 5 },
-  order = part_order.FSTWAH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 8 },
-  phase_start = 2,
-  phase_end = 14,
+  rotations = { 5, 6, 7 },
   order = part_order.FSWTAH
 }
 
 tux_ordering {
   type = "gun_motion",
   rotations = { 8 },
-  order = part_order.FSAWTH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 9 },
-  phase_start = 3,
-  phase_end = 12,
-  order = part_order.FWSTAH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 10 },
-  phase_start = 3,
-  phase_end = 12,
-  order = part_order.FWASTH
+  order = part_order.FSWATH
 }
 
 tux_ordering {
@@ -279,41 +192,23 @@ tux_ordering {
 tux_ordering {
   type = "gun_motion",
   rotations = { 11 },
-  phase_start = 6,
-  phase_end = 11,
-  order = part_order.FAWSTH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 11 },
   order = part_order.FAWTSH
 }
 
 tux_ordering {
   type = "gun_motion",
   rotations = { 12 },
-  phase_start = 3,
-  phase_end = 13,
-  order = part_order.FAWTSH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 12 },
-  order = part_order.FTAWSH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 13, 14, 15 },
-  phase_start = 5,
-  phase_end = 11,
-  order = part_order.FAWTSH
-}
-
-tux_ordering {
-  type = "gun_motion",
-  rotations = { 13, 14, 15 },
   order = part_order.FATWSH
+}
+
+tux_ordering {
+  type = "gun_motion",
+  rotations = { 13, 14 },
+  order = part_order.FATSWH
+}
+
+tux_ordering {
+  type = "gun_motion",
+  rotations = { 15 },
+  order = part_order.FTSAWH
 }
