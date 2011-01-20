@@ -255,6 +255,14 @@ LuaCode={
 	teleport("0from6")
 }
 * End of trigger *
+* New event trigger *
+Name=_"To Old Server Room"
+Trigger at label="6to58"
+Silent=0
+LuaCode={
+	teleport("58from6")
+}
+* End of trigger *
 
 ##############
 ## Level  7 ##
@@ -690,6 +698,14 @@ LuaCode={
 ##############
 ## Level 58 ##
 ##############
+* New event trigger *
+Name=_"Back To Maintenance Tunnel"
+Trigger at label="58to6"
+Silent=0
+LuaCode={
+	teleport("6from58")
+}
+* End of trigger *
 
 ##############
 ## Level 59 ##

@@ -248,6 +248,17 @@ Completion LuaCode={
 }
 ** End of this mission target subsection **
 
+** Start of this mission target subsection **
++++
++++ Clean out the old server room
++++
+Mission Name=_"Droids are my friends"
+Mission target is to kill all hostile droids this first level : 58
+Completion LuaCode={
+	add_diary_entry(_"Droids are my friends", _"The old server room is now secured.")
+}
+** End of this mission target subsection **
+
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***
 
 

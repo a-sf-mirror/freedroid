@@ -8848,6 +8848,7 @@ t1 x20.00 y27.50
 t1 x20.00 y28.50
 t1 x20.00 y29.50
 t2 x20.50 y30.00
+t149 x28.50 y1.50
 /obsdata
 plabelinfolvl
 x=35 y=11 name="ToolkitBossMonsterStartGameSquare"
@@ -8877,6 +8878,8 @@ x=36 y=3 name="Sin-Drone-21"
 x=34 y=13 name="Sin-Drone-22"
 x=13 y=2 name="Sin-Emissary"
 x=33 y=10 name="MS-Sawmil"
+x=28 y=2 name="6from58"
+x=28 y=1 name="6to58"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
