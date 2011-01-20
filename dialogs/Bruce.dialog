@@ -29,12 +29,77 @@ EveryTime LuaCode={
 	if (not has_cookie("met_bruce")) then
 		show(0)
 		add_cookie("met_bruce")
-	else end
+	end
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"I am tired.")
 		npc_says(_"Go away.")
 		end_dialog()
-	else end
+	end
+	if (has_item_equipped("Dixon's Helmet")) and
+		(not has_cookie("bruce_hurt")) and
+		(not has_cookie("Dixons_helmet_not_given_Bruce")) and
+		(not has_cookie("bruce_helmet_initial")) then
+			add_cookie("bruce_helmet_initial")
+			next(20)
+	end
+	if (has_cookie("Bruce_wants_helmet")) then
+		npc_says(_"So, what about the helmet now?")
+		npc_says(_"I offered you 20 circuits for it.")
+		if (has_item("Dixon's Helmet") > 0) then
+			if (has_cookie("bruce_helmet_sell_20")) then
+				npc_says(_"You agreed.")
+				tux_says(_"Indeed.")
+			elseif (has_cookie("bruce_helmet_sell_100")) then
+				npc_says(_"You suggested 100 circuits as a prize.")
+				npc_says(_"That is acceptable for me.")
+				tux_says(_"Well.")
+			elseif (has_cookie("bruce_helmet_sell_free")) then
+				npc_says(_"You said you would give me the helmet for free.")
+				tux_says(_"Yes, that's true.")
+			end
+			if (has_item_equipped("Dixon's Helmet")) then
+				npc_says(_"Please unequip it, so we can proceed.")
+				npc_says(_"I don't want to rip it off your head.")
+				end_dialog()
+			else
+				if (has_cookie("bruce_helmet_sell_free")) and
+					(has_item("Dixon's Helmet")) then
+					tux_says(_"Here you go.")
+					npc_says(_"Oh, thank you!")
+					npc_says(_"Here, take this Lamp as a token of my esteem.")
+					tux_says(_"Oh, thank you very much!")
+					npc_says(_"You're welcome.")
+					add_item("Desk Lamp")
+					del_item("Dixon's Helmet")
+				end
+				if (has_cookie("bruce_helmet_sell_20")) and
+					(has_item("Dixon's Helmet")) then
+					npc_says(_"Fine.")
+					npc_says(_"Here is are your 20 circuits.")
+					tux_says(_"You're welcome.")
+					npc_says(_"Here's your new helmet.")
+					npc_says(_"Thank you.")
+					add_gold(20)
+					del_item("Dixon's Helmet")
+				end
+				if (has_cookie("bruce_helmet_sell_100")) and
+					(has_item("Dixon's Helmet")) then
+					npc_says(_"Hmm...")
+					npc_says(_"Ok.")
+					npc_says(_"Here, take the hundred bucks.")
+					npc_says(_"Now give me that helmet!")
+					tux_says(_"Here, take it.")
+					add_gold(100)
+					del_item("Dixon's Helmet")
+				end
+			end
+		else
+			npc_says(_"Where is it?")
+			npc_says(_"Did you loose it?")
+			npc_says(_"Come back to me when you have it back.")
+			end_dialog()
+		end
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -72,7 +137,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=4 Text=_"You were a soldier before? "
+Nr=4 Text=_"You were a soldier before?"
 LuaCode={
 	npc_says(_"Yes. I would rather not talk about it.")
 	hide(4) show(8, 10)
@@ -100,7 +165,7 @@ LuaCode={
 
 Nr=7 Text=_"A failed mission?"
 LuaCode={
-	npc_says(_"There were six of us. Me, Wilber, Anderson and three others. I do not remember the names anymore. We were team number nine.")
+	npc_says(_"There were six of us. Me, Wilbert, Anderson and three others. I do not remember the names anymore. We were team number nine.")
 	npc_says(_"It was a routine scout mission. We saw an interesting building which was not there before, and decided to take a look.")
 	npc_says(_"It was a terrible fortress, many stories high. It had guns everywhere. When we got close the shooting started.")
 	npc_says(_"They were waiting for us. Came in endless swarms. More and more and more. We stood our ground and kept firing, but it was no use. More of them came.")
@@ -123,7 +188,7 @@ LuaCode={
 	npc_says(_"No! Please... I will do anything, just don't call the Red Guard! They do not like people who left the service. They do not like me. ")
 	npc_says(_"I will tell you everything.")
 	add_cookie("bruce_hurt")
-	hide(9, 99) show(5)
+	hide(9, 25, 40, 45, 46, 47, 48, 99) show(5)
 }
 ----------------------------------------------------------------------
 
@@ -135,12 +200,98 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
+Nr=20 Text=_"BUG! REPORT ME! BRUCE NODE 20"
+NO_TEXT
+LuaCode={
+	npc_says(_"What do you have there?")
+	tux_says(_"What do you mean?")
+	npc_says(_"The helmet. I could use it pretty well, it looks quite solid.")
+	npc_says(_"Can I buy it from you?")
+	add_cookie("Bruce_wants_helmet")
+	hide(20) show(25, 40)
+}
+----------------------------------------------------------------------
+
+Nr=25 Text=_"Yes sure."
+LuaCode={
+	npc_says(_"Good.")
+	npc_says(_"Let's say, 20 circuits.")
+	if (has_item_equipped("Dixon's Helmet")) then
+		npc_says(_"Please take off the helmet, so we can proceed trading.")
+	end
+	hide(25) show(40, 45, 46, 47, 48)
+	add_cookie("tux_shall_unequip_Dixon's_helmet")
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=40 Text=_"I apologize, I'd like to keep it."
+LuaCode={
+	npc_says(_"Bummer!")
+	add_cookie("Dixons_helmet_not_given_Bruce")
+	del_cookie("Bruce_wants_helmet")
+	hide(25, 40, 45, 46, 47, 48)
+}
+----------------------------------------------------------------------
+
+Nr=45 Text=_"20 circuits? Ok."
+LuaCode={
+	npc_says(_"Okay.")
+	npc_says(_"Let me quickly get the money.") --excuse for need to restart the dialog
+	npc_says(_"Talk to me again.")
+	add_cookie("bruce_helmet_sell_20")
+	add_cookie("bruce_tux_shall_unequip_helmet")
+	hide(25, 40, 45, 46, 47, 48)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=46 Text=_"20 circuits? I'll sell it to for a hundred."
+LuaCode={
+	npc_says(_"Hmmm, okay.")
+	npc_says(_"Let me get the money.") --excuse for need to restart the dialog
+	npc_says(_"Come back to me after that.")
+	add_cookie("bruce_helmet_sell_100")
+	add_cookie("bruce_tux_shall_unequip_helmet")
+	hide(25, 40, 45, 46, 47, 48)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=47 Text=_"20 circuits? Are you crazy? I sell it for 1000!"
+LuaCode={
+	npc_says(_"That's way too expensive.")
+	tux_says(_"Fine, I'll keep it than.")
+	npc_says(_"You're the most greedy penguin I've ever met.")
+	npc_says(_"Forget about the deal!")
+	hide(25, 40, 45, 46, 47, 48)
+}
+----------------------------------------------------------------------
+
+Nr=48 Text=_"You can have it for free."
+NO_TEXT
+LuaCode={
+	tux_says(_"I changed my mind.")
+	tux_says(_"You can have it for free.")
+	npc_says(_"Oh, thanks!")
+	npc_says(_"Wait, let me get something first.")
+	npc_says(_"Sure.")
+	add_cookie("bruce_helmet_sell_free")
+	end_dialog()
+	hide(25, 40, 45, 46, 47, 48)
+	}
+----------------------------------------------------------------------
+
 Nr=99 Text=_"I'll be going then."
 LuaCode={
 	if (has_cookie("bruce_hurt")) then
-		npc_says(_". . .")	
+		npc_says(_". . .")
+	elseif (has_cookie("bruce_tux_shall_unequip_helmet_free")) then
+		npc_says(_"Please don't forget the helmet.")
+	elseif (has_cookie("bruce_tux_shall_unequip_helmet")) then
+		npc_says(_"Don't forget the helmet!")
 	else
-		npc_says(_"Good. I need sleep.")	
+		npc_says(_"Good. I need sleep.")
 	end
 	end_dialog()
 }
