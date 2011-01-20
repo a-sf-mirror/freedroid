@@ -2049,6 +2049,22 @@ Item description text=_"The gas does not look terrifying. It even smells somewha
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Small EMP Shockwave Generator"
+Item min class for drop=-1
+Item max class for drop=-1
+Item can be applied in combat="yes"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="grenades/emp"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="grenades/emp/inv_image.png"
+inventory_size_x=1
+inventory_size_y=1
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=100
+Item description text=_"This sphere contains a few strange bits of technology invented by Nikola Tesla in the early 20th century. The magnetic pulse that it generates can damage most electronic devices in just one blast."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"EMP Shockwave Generator"
 Item min class for drop=-1
 Item max class for drop=-1

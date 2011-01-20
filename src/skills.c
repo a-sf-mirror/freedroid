@@ -379,7 +379,10 @@ int DoSkill(int skill_index, int SpellCost)
 		AllActiveSpells[i].spell_center.x = Me.pos.x;
 		AllActiveSpells[i].spell_center.y = Me.pos.y;
 		AllActiveSpells[i].spell_radius = 0.3;
-		AllActiveSpells[i].spell_age = 0;
+		if (!strcmp(SpellSkillMap[skill_index].effect, "short"))
+			AllActiveSpells[i].spell_age = 0.5;
+		else
+			AllActiveSpells[i].spell_age = 0;
 		AllActiveSpells[i].mine = 1;
 		if (SpellSkillMap[skill_index].hurt_humans && SpellSkillMap[skill_index].hurt_bots)
 			AllActiveSpells[i].hit_type = ATTACK_HIT_ALL;

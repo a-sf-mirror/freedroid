@@ -308,6 +308,18 @@ Base damage=300
 Artwork internal code=1
 
 ** Start of new program specification subsection **
+Program name=_"Small EMP grenade"
+Program description=_"If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
+Picture="NoSkillAvailable.png"
+Form="radial"
+Effect="short"
+Cost=200
+Affect bots=1
+Affect humans=0
+Base damage=75
+Artwork internal code=0
+
+** Start of new program specification subsection **
 Program name=_"EMP grenade"
 Program description=_"If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
 Picture="NoSkillAvailable.png"
