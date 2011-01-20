@@ -27,36 +27,126 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={ 
-	if (not has_cookie("met_iris")) then
-		show(0)
-		add_cookie("met_iris")
-	else
-		tux_says_random(_"Hello.", _"Hi there.", "NO_WAIT")
-		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
+FirstTime LuaCode={ add_cookie("met_iris") show(0) }
+
+EveryTime LuaCode={
+	if (has_item_backpack("Desk Lamp") > 0) and
+		(has_cookie ("Iris_wants_lamp")) then
+		show(5)
+	end
+	if (has_cookie("Iris_false_happy")) and
+		(not has_cookie("guard_follow_tux")) then
+		del_cookie("Iris_false_happy")
+		show(4)
 	end
 	show(99)
 }
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"Who are you?"
+Nr=0 Text=_"Hello."
 LuaCode={
-	npc_says(_"I'm Iris")
-	set_bot_name(_"Iris")
+	npc_says_random(_"Hello", _"Hi there!")
 	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"What are you doing here?"
+Nr=1 Text=_"Who are you?"
 LuaCode={
-	npc_says(_"None of your business!")
-	hide(1)
+	npc_says(_"I'm Iris")
+	set_bot_name(_"Iris")
+	tux_says(_"Hello Iris.")
+	hide(1) show(2)
 }
 ----------------------------------------------------------------------
 
+Nr=2 Text=_"What are you doing here?"
+LuaCode={
+	npc_says(_"I'm here just for vacations.")
+	tux_says(_"And what do you usually do?")
+	npc_says(_"Usually I hunt bots.") --she may be a spy of the rebel faction that is not yet implemented
+	set_bot_name(_"Iris -- Bothunter")
+	hide(2) show(3)
+}
+----------------------------------------------------------------------
+
+Nr=3 Text=_"Where do you come from?"
+LuaCode={
+	npc_says(_"Nowhere and everywhere.")
+	npc_says(_"As I already said, I walk around and kill bots.")
+	hide(3) show(4)
+}
+----------------------------------------------------------------------
+
+Nr=4 Text=_"Do you like it here?"
+LuaCode={
+	if (has_cookie("guard_follow_tux")) then
+		add_cookie("Iris_false_happy")
+		npc_says(_"Yes, sure.")
+		npc_says(_"The Red Guard is very polite and keeps us safe from bots.")
+		npc_says(_"And the overall design of the town is quite clever.")
+		npc_says(_"Nevertheless this room is quite dark.")
+		npc_says(_"It could use some light.")
+	else
+		npc_says(_"Not really.")
+		npc_says(_"The town is quite ugly and dark.")
+		npc_says(_"And there are very strange people here.")
+		tux_says(_"I know exactly what you are talking about...")
+		npc_says(_"I think this room could use some decoration.")
+		npc_says(_"It looks so cold and dark...")
+	end
+	if (not has_cookie("traded_lamp")) then
+		add_cookie("Iris_wants_lamp")
+		show(5)
+	end
+	hide(4)
+}
+----------------------------------------------------------------------
+
+Nr=5 Text=_"Look, I have this Lamp."
+LuaCode={
+	npc_says(_"Wow, nice.")
+	hide(5) show(6)
+}
+----------------------------------------------------------------------
+
+Nr=6 Text=_"You can have it."
+LuaCode={
+	npc_says(_"Oh great, thanks!")
+	npc_says(_"Hmm, what can I give you as thank-you...?")
+	npc_says(_"Oh, I have a nice book here.")
+	npc_says(_"But it's not worth the old dusty lamp.")
+	npc_says(_"I request the lamp and 100 circuits for it.")
+	hide(6) show(7)
+}
+---------------------------------------------------------------------
+
+Nr=7 Text=_"We can trade now."
+LuaCode={
+	if (del_gold(100)) then
+		tux_says(_"Take these 100 valuable circuits.")
+		npc_says(_"Ok, here it is. Take this book.")
+		npc_says(_"It's quite old and some pages are missing, but the main message is still clear.")
+		tux_says(_"Oh, thanks!")
+		add_item("Source Book of Invisibility")
+		del_cookie("Iris_wants_lamp")
+		del_item_backpack("Desk Lamp", 1)
+		add_cookie("traded_lamp")
+	else
+		npc_says(_"Don't try to trick me, fat bird.")
+		npc_says(_"I know you can't afford it.")
+		npc_says(_"Eff off until you have the right sum!")
+	end
+	hide(7)
+}
+---------------------------------------------------------------------
+
 Nr=99 Text=_"See you later."
 LuaCode={
-	npc_says(_"In your dreams, Pinguin!")
+	if (has_cookie("Iris_wants_lamp")) then
+		npc_says(_"Bye.")
+	else
+		npc_says(_"In your dreams, Penguin!")
+	end
 	end_dialog()
 }
 ----------------------------------------------------------------------
