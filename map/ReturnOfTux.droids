@@ -84,6 +84,7 @@ SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="TybaltStartGameSquare" 
 SForce: T=BAR Marker=9999 Faction="civilian" StartLabel="EwaldStartGameSquare" UseDialog="Ewald" ShortLabel=_"Barkeeper"
 SForce: T=FSC Marker=9999 Faction="civilian" StartLabel="TamaraStartGameSquare" UseDialog="Tamara" ShortLabel=_"Librarian"
 SForce: T=WOR Marker=9999 Faction="resistance" StartLabel="CitadelPrison" UseDialog="Peter" ShortLabel=_"Peter -- Imprisoned Rebel"
+SForce: T=FEM Marker=9999 Faction="civilian" StartLabel="Iris" UseDialog="Iris" ShortLabel=_"Hot Girl"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -201,8 +202,6 @@ SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=13
-
-SForce: T=FEM Marker=9999 Faction="civilian" StartLabel="Iris" UseDialog="Iris" ShortLabel=_"Hot Girl"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
