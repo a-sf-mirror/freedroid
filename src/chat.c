@@ -329,7 +329,7 @@ void make_sure_chat_portraits_loaded_for_this_droid(Enemy this_droid)
 	// to a default image.
 	//
 	strcpy(fname, "droids/");
-	strcat(fname, PrefixToFilename[model_number]);
+	strcat(fname, PrefixToFilename[Druidmap[model_number].individual_shape_nr]);
 	strcat(fname, "/portrait.png");
 	find_file(fname, GRAPHICS_DIR, fpath, 0);
 	DebugPrintf(2, "\nFilename used for portrait: %s.", fpath);
