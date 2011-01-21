@@ -37,8 +37,6 @@
 #include "global.h"
 #include "proto.h"
 
-#include "scandir.h"
-
 int Single_Player_Menu(void);
 void Options_Menu(void);
 

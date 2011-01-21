@@ -38,6 +38,8 @@
 #include "sys/stat.h"
 #include "savestruct.h"
 
+#include "scandir.h"
+
 #ifdef HAVE_LANGINFO_H
 #include <langinfo.h>
 #endif
