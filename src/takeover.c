@@ -1161,7 +1161,7 @@ void InventPlayground(void)
 						break;
 					}
 
-					/* dont destroy verzweigungen in prev. layer */
+					/* don't destroy branch in prev. layer */
 					anElement = ToPlayground[color][layer - 1][row];
 					if (anElement == SEPARATOR_H || anElement == SEPARATOR_L) {
 						row--;
@@ -1173,7 +1173,7 @@ void InventPlayground(void)
 						break;
 					}
 
-					/* cut off kabels in last layer, if any */
+					/* cut off cables in last layer, if any */
 					anElement = ToPlayground[color][layer - 1][row];
 					if (BlockClass[anElement] == CONNECTOR)
 						ToPlayground[color][layer - 1][row] = CABLE_END;
@@ -1182,7 +1182,7 @@ void InventPlayground(void)
 					if (BlockClass[anElement] == CONNECTOR)
 						ToPlayground[color][layer - 1][row + 2] = CABLE_END;
 
-					/* set the verzweigung itself */
+					/* set the branch itself */
 					ToPlayground[color][layer][row] = SEPARATOR_H;
 					ToPlayground[color][layer][row + 1] = SEPARATOR_M;
 					ToPlayground[color][layer][row + 2] = SEPARATOR_L;
@@ -1210,7 +1210,7 @@ void InventPlayground(void)
 						break;
 					}
 
-					/* cut off kabels in last layer, if any */
+					/* cut off cables in last layer, if any */
 					anElement = ToPlayground[color][layer - 1][row + 1];
 					if (BlockClass[anElement] == CONNECTOR)
 						ToPlayground[color][layer - 1][row + 1] = CABLE_END;
@@ -1713,10 +1713,10 @@ void to_show_banner(const char *left, const char *right)
 {
 	char left_box[LEFT_TEXT_LEN + 10];
 	char right_box[RIGHT_TEXT_LEN + 10];
-	int left_len, right_len;	// the actualy string lengths
+	int left_len, right_len;	// the actual string lengths
 
 	// At first the text is prepared.  This can't hurt.
-	// we will decide whether to dispaly it or not later...
+	// we will decide whether to display it or not later...
 	//
 
 	if (left == NULL)

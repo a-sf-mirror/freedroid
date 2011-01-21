@@ -23,7 +23,7 @@
  */
 
 /**
- * This file contains table constructors used to load the config files writtent in Lua
+ * This file contains table constructors used to load the config files written in Lua
  */
 
 #include "system.h"

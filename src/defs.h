@@ -26,11 +26,6 @@
 /* ----------------------------------------------------------------------
  * This file contains all the define-constants and macros
  * ---------------------------------------------------------------------- */
-/*
- * This file has been checked for remnants of german documentation.
- * If you still find some german documentation anywhere in here, please
- * let me know.  Thanks a lot.
- */
 #ifndef _defs_h
 #define _defs_h
 
@@ -865,9 +860,6 @@ enum obstacle_types {
 
 	ISO_TREE_4 = 0,
 
-	//--------------------
-	// These obstacles originate from wall_tiles.blend.
-	//
 	ISO_V_WALL = 1,
 	ISO_H_WALL = 2,
 	ISO_V_WALL_WITH_DOT = 3,
@@ -875,9 +867,6 @@ enum obstacle_types {
 
 	ISO_TREE_5 = 5,
 
-	//--------------------
-	// These obstacles originate from door_tiles.blend.
-	//
 	ISO_H_DOOR_000_OPEN = 6,
 	ISO_H_DOOR_025_OPEN = 7,
 	ISO_H_DOOR_050_OPEN = 8,
@@ -889,10 +878,6 @@ enum obstacle_types {
 	ISO_V_DOOR_075_OPEN = 14,
 	ISO_V_DOOR_100_OPEN = 15,
 
-	//--------------------
-	// These obstacles are generated from 'iso_refresh_and_teleport.blend' file
-	// in the cvs rep.
-	//
 	ISO_TELEPORTER_1 = 16,
 	ISO_TELEPORTER_2 = 17,
 	ISO_TELEPORTER_3 = 18,
@@ -917,11 +902,8 @@ enum obstacle_types {
 	ISO_AUTOGUN_N = 33,
 	ISO_AUTOGUN_E = 34,
 	ISO_AUTOGUN_S = 35,
-//see at the end for disabled autoguns
-	//--------------------
-	// These obstacles are generated from 'iso_cave_walls.blend' file
-	// in the cvs rep.
-	//
+	//see at the end for disabled autoguns
+
 	ISO_CAVE_WALL_H = 36,
 	ISO_CAVE_WALL_V = 37,
 	ISO_CAVE_CORNER_NE = 38,
@@ -936,10 +918,6 @@ enum obstacle_types {
 	ISO_CONSOLE_N = 45,
 	ISO_CONSOLE_W = 46,
 
-	//--------------------
-	// These obstacles are generated from 'iso_pillars_and_barrels.blend' file
-	// in the cvs rep.
-	//
 	ISO_PILLAR_TALL = 47,
 	ISO_PILLAR_SHORT = 48,
 	ISO_TV_PILLAR_W = 49,
@@ -956,11 +934,6 @@ enum obstacle_types {
 	ISO_ENHANCER_RD = 58,
 	ISO_ENHANCER_LD = 55,
 
-	//--------------------
-	// These obstacles are generated from 'commercial_models_for_fences.blend' file
-	// which is currently not in the cvs rep. for licensing issues, but I'll send a
-	// version to any Freedroid co-worker involved with the graphics
-	//
 	ISO_V_WOOD_FENCE = 59,
 	ISO_H_WOOD_FENCE = 60,
 	ISO_V_DENSE_FENCE = 61,

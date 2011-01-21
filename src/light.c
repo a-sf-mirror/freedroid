@@ -69,7 +69,7 @@ int *light_strength_buffer = NULL;
  * ------------------------------------------------
  * 
  * Some data (such as minimum_light_value) used to create the 'darkness map'
- * are level dependents. If several levels are displayed (i.e. when Tux is
+ * are level dependants. If several levels are displayed (i.e. when Tux is
  * near a level's border), we want to avoid abrupt light changes at level
  * boundaries. The call to soften_light_distribution() is not enough to smooth
  * those changes in a correct way. A better method is to interpolate the level
@@ -844,7 +844,7 @@ static void soften_light_distribution(void)
 	uint32_t x, y;
 
 	// Now that the light buffer has been set up properly, we can start to
-	// smoothen it out a bit.  We do so in the direction of more light.
+	// smooth it out a bit.  We do so in the direction of more light.
 	// Propagate from top-left to bottom-right
 	//
 	for (y = 0; y < (LightRadiusConfig.cells_h - 1); y++) {

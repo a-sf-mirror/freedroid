@@ -207,7 +207,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
 /**
  * Some bots might be frozen and some might be poisoned, some might still 
- * have a 'firewait' or a normal wait or a paralysation.  Other bots have
+ * have a 'firewait' or a normal wait or a paralysis.  Other bots have
  * a text, that is being displayed and that will timeout at some point.
  *
  * In any case those counteres must be updated, which is what this 
@@ -216,7 +216,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
  * NOTE:  This whole updating business is a bit in-efficient.  It might 
  *        be better to use some sort of 'game_time' for this and then
  *        not use 'duration left' but rather 'end time' for all these 
- *        poison, paralysation, etc. effects.  That way, we would be able
+ *        poison, paralysis, etc. effects.  That way, we would be able
  *        be skip this whole counter advancement here...
  *
  *        Maybe later it will finally be implemented this way...
@@ -328,8 +328,8 @@ void UpdateCountersForThisFrame()
 	}
 	
 	// Some bots might be frozen and some might be poisoned, some
-	// might still have a 'firewait' or a normal wait or a paralysation.
-	// In any case those counteres must be updated, but we'll only to 
+	// might still have a 'firewait' or a normal wait or a paralysis.
+	// In any case those counters must be updated, but we'll only to 
 	// that for the Tux current level (at present).
 	//
 	for (level_num = 0; level_num < curShip.num_levels; level_num++) {
@@ -338,7 +338,7 @@ void UpdateCountersForThisFrame()
 	}
 
 	// Now we do all the things, that need to be updated for each connected
-	// player separatedly.
+	// player separately.
 	//
 	Me.current_game_date += latest_frame_time;
 

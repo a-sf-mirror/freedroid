@@ -333,8 +333,8 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_PILLAR_SHORT].filename = "iso_obstacle_0048.png";
 	obstacle_map[ISO_PILLAR_SHORT].flags &= ~BLOCKS_VISION_TOO;
 
-	// These files originate from iso_machinery.blend
-	//
+
+
 	block_2param(ISO_TV_PILLAR_W, 1.0, 1.0);
 	obstacle_map[ISO_TV_PILLAR_W].filename = "iso_machinery_0001.png";
 	obstacle_map[ISO_TV_PILLAR_W].flags &= ~BLOCKS_VISION_TOO;

@@ -683,7 +683,7 @@ void ParseCommandLine(int argc, char *const argv[])
 };				// void ParseCommandLine(...)
 
 /* -----------------------------------------------------------------
- * This funciton initialises the video display and opens up a 
+ * This function initialises the video display and opens up a 
  * window for graphics display.
  * -----------------------------------------------------------------*/
 void InitVideo(void)
@@ -851,7 +851,7 @@ void add_loaded_image_to_output_file(void)
 /* ----------------------------------------------------------------------
  * This function flips a given SDL_Surface around the x-axis, i.e. up-down.
  * 
- * This is particularly nescessary, since OpenGL has a different native
+ * This is particularly necessary, since OpenGL has a different native
  * coordinate system than SDL and therefore images often appear flipped
  * around if one doesn't counter this effect with OpenGL by flipping the
  * images just once more in the same fashion.  That is what this function
@@ -949,7 +949,7 @@ int main(int argc, char *argv[])
 
 	//--------------------
 	// Now we can start to write out the raw image and offset information in one
-	// long saucage...
+	// long sausage...
 	//
 	for (j = 0; j < all_object_directions; j++) {
 		for (i = 0; i < max_object_phases; i++) {

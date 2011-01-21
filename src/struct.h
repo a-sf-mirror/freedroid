@@ -567,7 +567,7 @@ typedef struct tux {
 	float experience_factor; // multiplier for the experience gained from bots
 
 	unsigned int Experience;	// character Experience = 'spare droid elements found'
-	int exp_level;		// which 'experience level' is the influencer currenly at?
+	int exp_level;		// which 'experience level' is the influencer currently at?
 	unsigned int ExpRequired;	// how much experience required for the next level?
 	unsigned int ExpRequired_previously;	// how was required for the previous level?
 
@@ -591,7 +591,7 @@ typedef struct tux {
 
 	//--------------------
 	// The inventory slots.  Some items are residing in general inventory,
-	// other items might be equiped in some of the corresponding slots of
+	// other items might be equipped in some of the corresponding slots of
 	// the inventory screen.
 	//
 	item Inventory[MAX_ITEMS_IN_INVENTORY];
@@ -659,7 +659,7 @@ typedef struct bullet {
 	short int owner;
 	float angle;
 
-	char pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword stike)
+	char pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword strike)
 	short int freezing_level;	// does this bullet freeze the target?
 	float poison_duration;
 	float poison_damage_per_sec;
@@ -808,7 +808,7 @@ typedef struct obstacle_spec {
 	unsigned int flags;
 
 	//--------------------
-	// Some obstacles will emitt light.  Specify light strength here.
+	// Some obstacles will emit light.  Specify light strength here.
 	// A value of 0 light will be sufficient in most cases...
 	//
 	short emitted_light_strength;
