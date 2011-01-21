@@ -383,7 +383,7 @@ Level=35
 
 //-------------------- SADD + Tania ------
 SForce: T=883 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux=1 UseDialog="SADD" ShortLabel=_"Hostile Droid"
-SForce: T=JAS Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" UseDialog="Tania" ShortLabel=_"Scientist"
+SForce: T=TAN Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" UseDialog="Tania" ShortLabel=_"Scientist"
 //-------------------- Battle to get to the Datacenter ------
 SForce: T=598 Marker=3035 StartLabel="SecretAreaDefenceControl" ShortLabel=_"SACD - Defender"
 SForce: T=302 Marker=5035 StartLabel="SecretAreaCollectorPassage2"

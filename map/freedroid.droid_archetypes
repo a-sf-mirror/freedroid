@@ -913,6 +913,29 @@ Individual shape of this droid or just -1 for classic ball shaped : 31
 Notes concerning this droid=_"This is a typical sex bomb.  This one is even armed."
 
 ** Start of new Robot: ** 
+Droidname: TAN
+Default description:_"Woman"
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6
+Class of this droid: 18
+Drops item class=9
+Maximum energy of this droid: 100
+Rate of healing: 15
+Experience_Reward gained for destroying one of this type: 200
+Aggression distance of this droid=2
+Time spent eyeing Tux=3
+Weapon item="NPC Hand to hand weapon"
+Greeting Sound number=4
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=30
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 31
+Notes concerning this droid=_"This is Tania. She is human."
+
+** Start of new Robot: ** 
 Droidname: BAR
 Default description:_"Bartender"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
