@@ -256,7 +256,7 @@ static void display_automap_compass()
 		load_image(&compass, "compass.png", FALSE);
 	}
 
-	blit_iso_image_to_screen_position(&compass, GameConfig.screen_width - compass.w - 10, 40);
+	display_image_on_screen(&compass, GameConfig.screen_width - compass.w - 10, 40);
 }
 
 /**

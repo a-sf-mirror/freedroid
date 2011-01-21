@@ -98,7 +98,7 @@ void blit_mouse_cursor(void)
 	}
 
 	// Blit the mouse cursor
-	blit_iso_image_to_screen_position(&mouse_cursors[cursor_index],
+	display_image_on_screen(&mouse_cursors[cursor_index],
 									  GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
 
 	// Reset the mouse cursor for next frame

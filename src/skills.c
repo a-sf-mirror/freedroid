@@ -569,7 +569,7 @@ static void ShowSkillsExplanationScreen(void)
 	TargetSkillRect.y = ICON_OFFSET_Y;
 
 	load_skill_icon_if_needed(spec);
-	blit_iso_image_to_screen_position(&spec->icon_surface,
+	display_image_on_screen(&spec->icon_surface,
 						 TargetSkillRect.x, TargetSkillRect.y);
 
 	// Draws the explanation text
@@ -797,7 +797,7 @@ void ShowSkillsScreen(void)
 
 		load_skill_icon_if_needed(&SpellSkillMap[SkillOfThisSlot]);
 
-		blit_iso_image_to_screen_position(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y);
+		display_image_on_screen(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y);
 
 		SetCurrentFont(FPS_Display_BFont);
 

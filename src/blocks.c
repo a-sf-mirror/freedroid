@@ -330,31 +330,6 @@ void sdl_highlight_iso_image(struct image *img, float pos_x, float pos_y)
 }
 
 /**
- * \brief Blits an struct image to the screen.
- *
- * Works in both SDL and OpenGL modes.
- *
- * \param image The struct image to blit.
- * \param pos_x Screen X position.
- * \param pos_y Screen Y position.
- */
-void blit_iso_image_to_screen_position(struct image *image, float pos_x, float pos_y)
-{
-	if (use_open_gl) {
-		draw_gl_textured_quad_at_screen_position(image, pos_x, pos_y);
-	} else {
-		SDL_Rect target_rectangle;
-
-		// target_rectangle . x = pos_x + image -> offset_x ;
-		// target_rectangle . y = pos_y + image -> offset_y ;
-		target_rectangle.x = pos_x;
-		target_rectangle.y = pos_y;
-
-		our_SDL_blit_surface_wrapper(image->surface, NULL, Screen, &target_rectangle);
-	}
-}
-
-/**
  *
  *
  */

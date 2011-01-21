@@ -324,7 +324,7 @@ void ShowCurrentSkill(void)
 	spell_skill_spec *spec = &SpellSkillMap[Me.readied_skill];
 	load_skill_icon_if_needed(spec);
 
-	blit_iso_image_to_screen_position(&spec->icon_surface, Target_Rect.x, Target_Rect.y);
+	display_image_on_screen(&spec->icon_surface, Target_Rect.x, Target_Rect.y);
 }
 
 /**

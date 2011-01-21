@@ -200,7 +200,7 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 	}
 
 	if (item_is_currently_equipped(ShowItem)) {
-		blit_iso_image_to_screen_position(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24, TargetRectangle.y);
+		display_image_on_screen(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24, TargetRectangle.y);
 	}
 };				// void ShowRescaledItem ( int position , item* ShowItem )
 

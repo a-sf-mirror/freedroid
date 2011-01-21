@@ -1993,7 +1993,7 @@ void PutMouseMoveCursor(void)
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(Me.mouse_move_target.x, Me.mouse_move_target.y);
 		TargetRectangle.x -= MouseCursorImageList[0].w / 2;
 		TargetRectangle.y -= MouseCursorImageList[0].h / 2;
-		blit_iso_image_to_screen_position(&MouseCursorImageList[0], TargetRectangle.x, TargetRectangle.y);
+		display_image_on_screen(&MouseCursorImageList[0], TargetRectangle.x, TargetRectangle.y);
 	}
 
 	enemy *t = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
@@ -2005,7 +2005,7 @@ void PutMouseMoveCursor(void)
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(t->virt_pos.x, t->virt_pos.y);
 		TargetRectangle.x -= MouseCursorImageList[1].w / 2;
 		TargetRectangle.y -= MouseCursorImageList[1].h / 2;
-		blit_iso_image_to_screen_position(&MouseCursorImageList[1], TargetRectangle.x, TargetRectangle.y);
+		display_image_on_screen(&MouseCursorImageList[1], TargetRectangle.x, TargetRectangle.y);
 	}
 }
 
@@ -2511,7 +2511,7 @@ void iso_put_tux_part(int tux_part_group, char *part_string, int x, int y, int m
 			blit_iso_image_to_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
 					Me.pos.x, Me.pos.y);
 		} else {
-			blit_iso_image_to_screen_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
+			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
 					x + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x,
 					y + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y);
 		}
@@ -3284,7 +3284,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	//
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
 		RotationIndex = 0;
-		blit_iso_image_to_screen_position(&enemy_images[RotationModel][RotationIndex][0],
+		display_image_on_screen(&enemy_images[RotationModel][RotationIndex][0],
 										  TargetRectangle.x, TargetRectangle.y);
 		return;
 	}
@@ -3698,7 +3698,7 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 			    ((PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex].surface->h) / 2);
 		}
 
-		blit_iso_image_to_screen_position(&PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex],
+		display_image_on_screen(&PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex],
 								 TargetRectangle.x, TargetRectangle.y);
 	}
 }
