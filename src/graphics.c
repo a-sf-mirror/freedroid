@@ -649,7 +649,7 @@ A font file for the BFont library was not found.", PLEASE_INFORM, IS_FATAL);
 			}
 		}
 
-		if ((*MenuFontPointers[i] = LoadFont(fpath)) == NULL) {
+		if ((*MenuFontPointers[i] = LoadFont(constructed_fname)) == NULL) {
 			fprintf(stderr, "\n\nFont file: '%s'.\n", MenuFontFiles[i]);
 			ErrorMessage(__FUNCTION__, "\
 A font file for the BFont library could not be loaded.", PLEASE_INFORM, IS_FATAL);
