@@ -48,6 +48,7 @@ That will not cause any problems.
 
 * ---------
 * Human/NPCs 8
+* Civilians 2
 * Spectral 10 (Todo: Cant see invisible tux)
 * IR 11 (Todo: sees only heatsources but even through walls?)
 * Ultrasonic 12 (Todo: See around corners)
@@ -714,7 +715,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=2
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=4
@@ -760,7 +761,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=2
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=-1
@@ -783,7 +784,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=3
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=-1
@@ -806,7 +807,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=2
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=8
@@ -852,7 +853,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=2
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=6
@@ -876,7 +877,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=1.5
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=4
@@ -945,7 +946,7 @@ Drops item class=9
 Maximum energy of this droid: 100
 Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
-Aggression distance of this droid=8
+Aggression distance of this droid=2
 Time spent eyeing Tux=1
 Weapon item="NPC Hand to hand weapon"
 Greeting Sound number=6
