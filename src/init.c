@@ -1097,9 +1097,7 @@ void Init_Game_Data()
 
 };				// int Init_Game_Data ( void )
 
-char copyright[] = "\nCopyright (C) 2004 Johannes Prix, Reinhard Prix\n\
-Copyright (C) 2005-2007 Arthur Huillet, Karol Swietlicki\n\
-FreedroidRPG comes with NO WARRANTY to the extent permitted by law.\n\
+char copyright[] = "\nFreedroidRPG comes with NO WARRANTY to the extent permitted by law.\n\
 You may redistribute copies of FreedroidRPG\n\
 under the terms of the GNU General Public License.\n\
 For more information about these matters, see the file named COPYING.\n";
