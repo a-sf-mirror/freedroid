@@ -187,12 +187,16 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 {
 	static struct image selection_knob = EMPTY_IMAGE;
 	int ok_button_was_pressed = FALSE;
+	int escape_button_was_pressed = FALSE;
 	int knob_start_x = UNIVERSAL_COORD_W(200);
 	int knob_end_x = UNIVERSAL_COORD_W(390);
 	if (!(upper_range - lower_range))
 		return upper_range;
-	int knob_offset_x = ceilf((float)(default_value * (knob_end_x - knob_start_x)) / (float)(upper_range - lower_range + 1));
+	float knob_step_size = (float)(knob_end_x - knob_start_x) / (float)(upper_range - lower_range);
+	int knob_offset_x = ceilf((float)(default_value * knob_step_size));
 	int knob_is_grabbed = FALSE;
+	int knob_at = default_value;
+	int delta = 0;
 	char number_text[1000];
 	SDL_Event event;
 	SDL_Rect knob_target_rect;
@@ -208,97 +212,103 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	knob_target_rect.w = selection_knob.w;
 	knob_target_rect.h = selection_knob.h;
 
-	while (!ok_button_was_pressed) {
+	while (!ok_button_was_pressed && !escape_button_was_pressed) {
 		RestoreMenuBackground(1);
 		blit_special_background(NUMBER_SELECTOR_BACKGROUND_CODE);
 		ShowGenericButtonFromList(NUMBER_SELECTOR_OK_BUTTON);
 		knob_target_rect.x = knob_start_x + knob_offset_x - selection_knob.w / 2;
 		knob_target_rect.y = UNIVERSAL_COORD_H(260) - selection_knob.h / 2;
 		display_image_on_screen(&selection_knob, knob_target_rect.x, knob_target_rect.y); 
-		sprintf(number_text, "%d", knob_offset_x * (upper_range - lower_range + 1) / (knob_end_x - knob_start_x));
+		sprintf(number_text, "%d", knob_at);
 		PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(190), number_text);
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
+		limit_fps();
 
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
 				Terminate(0);
-			}
-
-			if (event.type == SDL_KEYDOWN) {
-				if (event.key.keysym.sym == SDLK_RIGHT) {
-					if (knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range))) {
-						knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
-					}
-					if (knob_offset_x < knob_end_x - knob_start_x - 1)
-						knob_offset_x++;
-				}
-
-				if (event.key.keysym.sym == SDLK_LEFT) {
-					if (knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1))) {
-						knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
-					}
-					if (knob_offset_x > 0)
-						knob_offset_x--;
-				}
-
-				if (event.key.keysym.sym == SDLK_RETURN) {
-					ok_button_was_pressed = TRUE;
-				}
-			}
-
-			if (event.type == SDL_MOUSEBUTTONDOWN) {
-				if (event.button.button == SDL_BUTTON_LEFT) {
-					// Maybe the user has just 'grabbed the knob?  Then we need to
-					// mark the knob as grabbed.
-					//
-					if ((abs(event.button.x - (knob_target_rect.x + knob_target_rect.w / 2)) < knob_target_rect.w) &&
-							(abs(event.button.y - (knob_target_rect.y + knob_target_rect.h / 2)) < knob_target_rect.h)) {
-						knob_is_grabbed = TRUE;
-					}
-					// OK pressed?  Then we can return the current scale value and
-					// that's it...
-					//
-					if (MouseCursorIsOnButton(NUMBER_SELECTOR_OK_BUTTON, event.button.x, event.button.y))
+			} else if (event.type == SDL_KEYDOWN) {
+				switch(event.key.keysym.sym) {
+					case SDLK_LEFT:
+						delta = -1;
+						break;
+					case SDLK_RIGHT:
+						delta = 1;
+						break;
+					case SDLK_DOWN:
+						knob_at = lower_range;
+						break;
+					case SDLK_UP:
+						knob_at = upper_range;
+						break;
+					case SDLK_RETURN:
 						ok_button_was_pressed = TRUE;
-					if (MouseCursorIsOnButton(NUMBER_SELECTOR_LEFT_BUTTON, event.button.x, event.button.y)) {
-						if (knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range + 1))) {
-							knob_offset_x -= (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
+						break;
+					default:
+						break;
+				}
+			} else if (event.type == SDL_KEYUP) {
+				delta = 0;
+				if (event.key.keysym.sym == SDLK_ESCAPE) {
+					escape_button_was_pressed = TRUE;
+				}
+			} else if (event.type == SDL_MOUSEBUTTONDOWN) {
+				if (event.button.button == SDL_BUTTON_WHEELDOWN || event.button.button == SDL_BUTTON_WHEELUP) {
+					knob_at = max(lower_range, min(upper_range, knob_at + (event.button.button == SDL_BUTTON_WHEELDOWN ? -1 : 1)));
+				} else if (event.button.button == SDL_BUTTON_LEFT) {
+					// Is event within knob's height?
+					if (abs(event.button.y - (knob_target_rect.y + knob_target_rect.h / 2)) < knob_target_rect.h) {
+						if (abs(event.button.x - (knob_target_rect.x + knob_target_rect.w / 2)) < knob_target_rect.w) {
+							knob_is_grabbed = TRUE;
+						} else if (event.button.x >= knob_start_x && event.button.x <= knob_end_x) {
+							knob_at = (event.button.x - knob_start_x) / knob_step_size;
+							knob_offset_x = (knob_at - lower_range) * knob_step_size;
+							knob_is_grabbed = TRUE;
 						}
-						if (knob_offset_x > 0)
-							knob_offset_x--;
 					}
-
-					if (MouseCursorIsOnButton(NUMBER_SELECTOR_RIGHT_BUTTON, event.button.x, event.button.y)) {
-						if (knob_end_x - knob_start_x - knob_offset_x > ((knob_end_x - knob_start_x) / (upper_range - lower_range))) {
-							knob_offset_x += (knob_end_x - knob_start_x) / (upper_range - lower_range + 1);
-						}
-						if (knob_offset_x < knob_end_x - knob_start_x - 1)
-							knob_offset_x++;
+					
+					if (MouseCursorIsOnButton(NUMBER_SELECTOR_OK_BUTTON, event.button.x, event.button.y)) {
+						ok_button_was_pressed = TRUE;
+					} else if (MouseCursorIsOnButton(NUMBER_SELECTOR_LEFT_BUTTON, event.button.x, event.button.y)) {
+						delta = -1;
+					} else if (MouseCursorIsOnButton(NUMBER_SELECTOR_RIGHT_BUTTON, event.button.x, event.button.y)) {
+						delta = 1;
 					}
 				}
-			}
-
-			if (event.type == SDL_MOUSEBUTTONUP) {
-				if (event.button.button == SDL_BUTTON_LEFT) { 
-					knob_is_grabbed = FALSE;
+			} else if (event.type == SDL_MOUSEBUTTONUP) {
+				if (event.button.button == SDL_BUTTON_LEFT) {
+					delta = 0;
+					knob_is_grabbed = FALSE;			
 				}
 			}
 
 			if (knob_is_grabbed) {
-				knob_offset_x = GetMousePos_x() - knob_start_x;
-				if (knob_offset_x >= knob_end_x - knob_start_x)
-					knob_offset_x = knob_end_x - knob_start_x - 1;
-				if (knob_offset_x <= 0)
+				if (GetMousePos_x() - knob_start_x < (knob_at - lower_range) * knob_step_size) {
+					knob_at = max(lower_range, min(upper_range, (GetMousePos_x() - knob_start_x + knob_step_size) / knob_step_size));
+				} else {
+					knob_at = max(lower_range, min(upper_range, (GetMousePos_x() - knob_start_x) / knob_step_size));
+				}
+				
+				if (knob_offset_x < 0) {
 					knob_offset_x = 0;
+				} else if (knob_offset_x >= knob_end_x - knob_start_x) {
+					knob_offset_x = knob_end_x - knob_start_x;
+				}
 			}
 		}
+
+		if (delta != 0) {
+			knob_at = max(lower_range, min(upper_range, knob_at + delta));
+			SDL_Delay(80);
+		}
+		
+		knob_offset_x = (knob_at - lower_range) * knob_step_size;
 	}
 
 	game_status = old_game_status;
-	int result = (knob_offset_x * (upper_range - lower_range + 1) / (knob_end_x - knob_start_x));
-	return (result > upper_range ? upper_range : result);
+	return (!escape_button_was_pressed ? knob_at : 0);
 
 };				// int do_graphical_number_selection_in_range ( int lower_range , int upper_range )
 
