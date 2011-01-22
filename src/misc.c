@@ -718,12 +718,14 @@ int find_file(const char *fname, const char *subdir, char *File_Path, int silent
 	if (!subdir)
 		subdir = "";
 
-	for (i = 0; i < 3; i++) {
+	for (i = 0; i < 4; i++) {
 		if (i == 0)
-			sprintf((File_Path), "..");	/* first try local subdirs */
+			sprintf((File_Path), ".");	/* first try local subdirs */
 		if (i == 1)
-			sprintf((File_Path), "../..");	/* first try local subdirs */
+			sprintf((File_Path), "..");	/* first try local subdirs */
 		if (i == 2)
+			sprintf((File_Path), "../..");	/* first try local subdirs */
+		if (i == 3)
 			sprintf((File_Path), "%s", FD_DATADIR);	/* then the DATADIR */
 
 		strcat((File_Path), "/");
@@ -736,7 +738,7 @@ int find_file(const char *fname, const char *subdir, char *File_Path, int silent
 			fclose(fp);
 			break;
 		} else {
-			if (i == 0 || i == 1)
+			if (i != 3)
 				DebugPrintf(1, "\nfind_file could not succeed with LOCAL path: %s.", File_Path);
 			else {
 				if (!silent) {
