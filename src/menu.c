@@ -1569,7 +1569,6 @@ static int Performance_handle(int n)
 {
 	enum {
 		SET_LIMIT_FRAMERATE_FLAG = 1,
-		SET_HIGHLIGHTING_MODE,
 		SKIP_LIGHT_RADIUS_MODE,
 		SKIP_SHADOWS,
 		LEAVE_PERFORMANCE_TWEAKS_MENU
@@ -1581,11 +1580,6 @@ static int Performance_handle(int n)
 	case SET_LIMIT_FRAMERATE_FLAG:
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) ;
 		GameConfig.limit_framerate = !GameConfig.limit_framerate;
-		break;
-
-	case SET_HIGHLIGHTING_MODE:
-		while (EnterPressed() || SpacePressed() || MouseLeftPressed()) ;
-		GameConfig.highlighting_mode_full = !GameConfig.highlighting_mode_full;
 		break;
 
 	case SKIP_LIGHT_RADIUS_MODE:
@@ -1616,11 +1610,6 @@ static void Performance_fill(char *MenuTexts[])
 	int i = 0;
 	sprintf(Options[i], _("Limit framerate (powersaving)"));
 	sprintf(Options[i + 1], ": %s", GameConfig.limit_framerate ? _("YES") : _("NO"));
-	strcat(Options[i], Options[i + 1]);
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
-	sprintf(Options[i], _("Highlighting mode"));
-	sprintf(Options[i + 1], ": %s", GameConfig.highlighting_mode_full ? _("FULL") : _("REDUCED"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;

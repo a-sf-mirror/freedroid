@@ -1248,7 +1248,6 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.All_Texts_Switch = FALSE;
 	GameConfig.enemy_energy_bars_visible = TRUE;
 	GameConfig.limit_framerate = TRUE;
-	GameConfig.highlighting_mode_full = TRUE;
 	GameConfig.skip_light_radius = FALSE;
 	GameConfig.omit_obstacles_in_level_editor = FALSE;
 	GameConfig.omit_enemies_in_level_editor = TRUE;

@@ -134,7 +134,6 @@ typedef struct configuration_for_freedroid {
 	int skill_explanation_screen_visible;
 	int enemy_energy_bars_visible;
 	int limit_framerate;
-	int highlighting_mode_full;
 	int omit_obstacles_in_level_editor;
 	int omit_enemies_in_level_editor;
 	int zoom_is_on;
