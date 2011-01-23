@@ -413,7 +413,8 @@ int DirectLineColldet(float x1, float y1, float x2, float y2, int z, colldet_fil
 int normalize_vect(float, float, float *, float *);
 
 // sound.c
-void play_sound(const char *SoundSampleFileName);
+void play_sound_directly(const char *);
+void play_sound(const char *);
 void InitAudio(void);
 void SetBGMusicVolume(float);
 void SetSoundFXVolume(float);
