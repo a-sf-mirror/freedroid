@@ -139,9 +139,11 @@ function add_quest(quest, text)
 end
 
 function update_quest(quest, text)
-	add_diary_entry(quest, text)
-	cli_says("   ".._"Quest log updated.","NO_WAIT")
-	npc_says("")
+	if has_quest(quest) then
+		add_diary_entry(quest, text)
+		cli_says("   ".._"Quest log updated.","NO_WAIT")
+		npc_says("")
+	end
 end
 
 function end_quest(quest, text)
