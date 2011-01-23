@@ -1611,7 +1611,7 @@ void HandleInventoryScreen(void)
 		for (i = 0; i < sizeof(allslots) / sizeof(allslots[0]); i++) {
 			if (MouseCursorIsOnButton(allslots[i].buttonidx, CurPos.x, CurPos.y)) {
 				if (allslots[i].slot->type > 0) {
-					item_held_in_hand = allslots[i].slot;
+					MakeHeldFloorItemOutOf(allslots[i].slot);
 					return;
 				}
 			}
