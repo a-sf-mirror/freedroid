@@ -103,7 +103,6 @@ EXTERN int start_editor;
 EXTERN float timeout_from_item_drop;
 EXTERN int use_open_gl;
 EXTERN int command_line_override_for_screen_resolution;
-EXTERN char *character_descriptions[MAX_PERSONS];
 
 EXTERN char previous_part_strings[ALL_PART_GROUPS][50];
 EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
