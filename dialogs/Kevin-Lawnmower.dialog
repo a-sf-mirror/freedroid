@@ -24,7 +24,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	npc_says(_"Welcome to Kevins personal lawnmower.")
+	npc_says(_"Welcome to Kevin's personal lawnmower.")
 	npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
 	npc_says(_"Please state your name for identification.")
 	npc_says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
@@ -41,7 +41,7 @@ LuaCode={
 	tux_says("" .. get_player_name() .. "")
 	npc_says(_"Identifying as " .. get_player_name() .. "", "NO_WAIT")
 	if (has_cookie("kevins_lawnmower_tux_login_granted")) then
-		npc_says(_"Welcome to Kevins lawnmower.")
+		npc_says(_"Welcome to Kevin's lawnmower.")
 		show(20)
 		hide(5, 6, 30, 30, 31)
 	else
