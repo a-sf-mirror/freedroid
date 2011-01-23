@@ -46,24 +46,23 @@ EveryTime LuaCode={
 		add_cookie("met_tutorialtom")
 		set_bot_name(_"Tutorial Tom")
 		display_console_message(_"Met [b]Tutorial Tom[/b]!")
-	else end
+	end
 
 	if (partner_started()) then
 		npc_says(_"Hi Linarian, I've been expecting you. My name is Tutorial Tom.")
 		npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
 		npc_says(_"So let's start with the basics, shall we?")
 		show(1, 7, 80)
-	
 	elseif (has_quest(_"Tutorial Movement") and not has_cookie("talk_to_tom")) then
 		add_cookie("talk_to_tom")
 		npc_says(_"Glad to see you figured out the quest log!")
-
 	elseif (has_quest(_"Tutorial Movement") and has_cookie("move_black") and not has_cookie("sprinting") ) then
 		add_cookie("sprinting")
 		npc_says(_"Speaking of moment, you can also [b]sprint[/b] by holding the [b]control key[/b].")
 		update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
 		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
+
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -74,9 +73,9 @@ LuaCode={
 	npc_says(_"When you aren't speaking with someone, you can open it up or close it by pressing the [b]Q key[/b].")
 	npc_says(_"I'll assign you a new quest, so you can try it out. Once you are done, [b]left click[/b] on me.")
 	if (not has_quest(_"Tutorial Movement")) then
-		add_quest(_"Tutorial Movement", _"To talk to someone, left click on them! You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the Q key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
+		add_quest(_"Tutorial Movement", _"To talk to someone, left click on them. You can talk to any friendly bot or person. Friendly people and bots have a green bar above them. Press the 'Q' key to open or close the quest log. Left click back on Tutorial Tom to learn more!")
 	end
-	display_big_message(_"Press Q for Quests")
+	display_big_message(_"Press 'Q' for Quests!")
 	end_dialog()
 	hide(1, 7, 80) show(2, 3, 4, 5, 8)
 }
@@ -114,7 +113,7 @@ LuaCode={
 	npc_says(_"But you normally have a special program called [b]Emergency Shutdown[/b], which freezes your motions for several seconds but significantly cools your body.")
 	npc_says(_"This, and the ability to hack bots will soon return once your mind recovers from the stasis.")
 	npc_says(_"Once it does, we'll talk more about programs. You can toggle the [b]Skills/Program menu[/b] by pressing the [b]S key[/b].")
-	update_quest(_"Tutorial Movement", _"View the Skills/Program menu by pressing the S key.")
+	update_quest(_"Tutorial Movement", _"View the Skills/Program menu by pressing the 'S' key.")
 	hide(4)
 }
 ----------------------------------------------------------------------
@@ -128,7 +127,7 @@ LuaCode={
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 	npc_says(_"Feel free to stop and examine them to get practice.")
 	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]I key[/b], where you can examine it further.")
-	update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the Z key, and press X to flash the ability.  To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing I.")
+	update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'Z' key, and press 'X' to flash the ability.  To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'I'.")
 	change_obstacle_state("TutorialEntry", "opened")
 	hide(5)
 }
@@ -425,7 +424,7 @@ LuaCode={
 	if (has_cookie("has_gun")) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
 		npc_says(_"Our next destination is the ranged combat training area, so you're in luck.")
-	else end
+	end
 	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
 	change_obstacle_state("TutorialMeleeOut", "opened")
 	end_dialog()
@@ -465,11 +464,11 @@ LuaCode={
 	npc_says(_"When your weapon runs out of ammo during combat, it will try to automatically reload if you have extra ammunition for it.")
 	npc_says(_"Sometimes, you will need or want to manually reload. You can do this by pressing the [b]R key[/b].")
 	npc_says(_"If you are reloading, or you are out of ammo, the small message screen at the bottom of your HUD will tell you what type of ammo to get.")
-	if (not has_cookie("guns_how_to")) then 
+	if (not has_cookie("guns_how_to")) then
 		add_cookie("guns_how_to")
-		update_quest(_"Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the R key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
+		update_quest(_"Tutorial Shooting", _"If I have equipped a ranged weapon and I left click on an enemy, I will begin firing upon it until my gun is empty, and automatically reload. But if I want to fire a single shot, I need to also equip the Fire Weapon program, and then right click. To move while firing, I have to shift + left click to where I want to go. Also, if I want to manually reload I have to press the 'R' key. The small message screen at the bottom of my HUD will tell me if I'm reloading or out of ammunition.")
 	end
-	if (not has_cookie("opened_door")) then show(33) else end
+	if (not has_cookie("opened_door")) then show(33) end
 }
 ----------------------------------------------------------------------
 
@@ -491,7 +490,7 @@ LuaCode={
 	npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
 	npc_says(_"Once you've gotten rid of them all, we can move on.")
 	update_quest(_"Tutorial Shooting", _"Tutorial Tom wants me to shoot those bots.")
--- TODO probably explain leveling as well as balancing changes to XP always risk causing leveling here. Or somehow make sure Tux cant level
+-- TODO probably explain leveling as well as balancing changes to XP always risk causing leveling here. Or somehow make sure Tux can't level
 	add_cookie("opened_door")
 	change_obstacle_state("TutorialStorage", "opened")
 	change_obstacle_state("TutorialShootCage", "opened")
@@ -753,7 +752,7 @@ LuaCode={
 			del_cookie("hacking_bots")
 			update_quest(_"Tutorial Hacking", _"Well, it took a lot of work, but I showed those bots who's boss.")
 		end
-	else end
+	end
 	npc_says(_"Now, there's one last thing you should know.")
 	npc_says(_"You Linarians can apparently withdraw from our world temporarily.")
 	npc_says(_"Time stops, and everything freezes in place.")
@@ -762,7 +761,7 @@ LuaCode={
 		npc_says(_"Your final task is to leave us using this menu.")
 		npc_says(_"I'm afraid there's nothing more I can teach you. I wish you good luck, Linarian.")
 		npc_says(_"You'll need it if our world is to survive.")
-	else end
+	end
 	end_dialog()
 	hide(51, 52, 53, 54, 55, 57)
 }
@@ -796,7 +795,7 @@ LuaCode={
 	craft_addons()
 	npc_says(_"Now you'll need to pay some more money in order to make a socket and plug-in the add-on. Here, take some.")
 	add_gold(600)
-	npc_says(_"Choose an item and add an appropriate socket by clicking ''+'' on the right of the item. Then attach the add-on to this item and confirm your choice.")
+	npc_says(_"Choose an item and add an appropriate socket by clicking '+' on the right of the item. Then attach the add-on to this item and confirm your choice.")
 	upgrade_items()
 	end_quest(_"Tutorial Upgrading Items",_"Maybe I need some time to practice this, but I got the basics.")
 	hide(58) show(59, 60)
@@ -855,7 +854,7 @@ LuaCode={
 	npc_says(_"OK, I'll take us to the melee arena and give you some armor.")
 	teleport_npc("TutorialTom-Melee")
 	teleport("TutorialTux-Melee")
-	add_quest(_"Tutorial Melee", "I skipped ahead to the Melee practice. Tom gave me some armor to use.")
+	add_quest(_"Tutorial Melee", _"I skipped ahead to the Melee practice. Tom gave me some armor to use.")
 	add_item("Normal Jacket")
 	add_item("Improvised Buckler")
 	add_item("Shoes")

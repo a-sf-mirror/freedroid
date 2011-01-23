@@ -35,32 +35,31 @@ EveryTime LuaCode={
 	if ( (has_quest(_"A strange guy stealing from town")) and (not done_quest(_"A strange guy stealing from town")) ) then
 		add_xp(100)
 		end_quest(_"A strange guy stealing from town", _"Oh, I seem to have found the guy the town guard was raving on about. Better not tell the Red Guards in town or they might force me to assist them in his capture. I'll likely have more use of Kevin and his knowledge here in his house with his computers than in a holding cell in town.")
-	else end
+	end
 
-	if (has_quest(_"And there was light...")) then
-		if (done_quest(_"And there was light...")) then
+	if (has_quest(_"And there was light...")) and
+		(done_quest(_"And there was light...")) then
 			show(30, 8, 10)
 			if (not has_cookie("did_And there was light...")) then
 				add_cookie("did_And there was light...")
 				update_quest(_"And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
-			else end
-		else end
-	else end
+			end
+	end
 
 	if (has_cookie("jasmine_sigsegv")) then
 		if (has_cookie("kevin_sigtalk")) then hide(20) else show(20) end
-	else end
+	end
 
 	if (has_cookie("kevins_lawnmower_tux_login")) then
-		npc_says("Oh, and did you play around with my Lawnmower?")
+		npc_says(_"Oh, and did you play around with my Lawnmower?")
 		show(60, 61)
 	end
-	
+
 	if (has_cookie("kevins_lawnmower_tux_login_kevin_attempt")) then
-		npc_says("Hmm, strange things are happening to my lawnmower.")
-		npc_says("But I don't have the time right now to take a look at it.")
+		npc_says(_"Hmm, strange things are happening to my lawnmower.")
+		npc_says(_"But I don't have the time right now to take a look at it.")
 	end
-	
+
 	show(99)
 }
 ----------------------------------------------------------------------
