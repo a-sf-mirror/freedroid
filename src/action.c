@@ -388,7 +388,7 @@ static int reach_obstacle_from_specific_direction(level *obst_lvl, int obst_inde
         return 1;
     }
 
-	// So here we know, that we must set the course thowards the chest.  We
+	// So here we know, that we must set the course towards the chest.  We
 	// do so first.
 	// The target's position has to be defined relatively to the chest's level, so that we
 	// can retrieve the chest later (at the end the combo action)

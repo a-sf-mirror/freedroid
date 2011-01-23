@@ -533,7 +533,7 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
  * This function moves one robot towards his next waypoint.  If already
  * there, the function does nothing more.
  */
-static void MoveThisRobotThowardsHisCurrentTarget(enemy * ThisRobot)
+static void MoveThisRobotTowardsHisCurrentTarget(enemy *ThisRobot)
 {
 	if (ThisRobot->animation_type == ATTACK_ANIMATION)
 		return;
@@ -568,8 +568,7 @@ static void MoveThisRobotThowardsHisCurrentTarget(enemy * ThisRobot)
 		ThisRobot->PrivatePathway[0].x = ThisRobot->pos.x;
 		ThisRobot->PrivatePathway[0].y = ThisRobot->pos.y;
 	}
-
-};				// void MoveThisRobotThowardsHisCurrentTarget ( int EnemyNum )
+}
 
 /**
  * This function sets a new waypoint to a bot.
@@ -1008,7 +1007,7 @@ static void MoveThisEnemy(enemy * ThisRobot)
 
 	gps oldpos = { ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z };
 
-	MoveThisRobotThowardsHisCurrentTarget(ThisRobot);
+	MoveThisRobotTowardsHisCurrentTarget(ThisRobot);
 
 	if (CheckEnemyEnemyCollision(ThisRobot)) {
 		ThisRobot->pos.x = oldpos.x;
@@ -2092,8 +2091,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		bullet_index = find_free_bullet_index();
 		NewBullet = &(AllBullets[bullet_index]);
 
-		// We send the bullet onto it's way thowards the given target
-		//
+		// We send the bullet onto it's way towards the given target
 		set_bullet_speed_to_target_direction(NewBullet, bullet_speed, xdist, ydist);
 
 		// Newly, also enemies have to respect the angle modifier in their weapons...
@@ -2436,8 +2434,7 @@ static int TurnABitTowardsPosition(enemy *ThisRobot, float x, float y, float Tur
 		return (TRUE);
 
 	return (FALSE);
-
-};				// int TurnABitThowardsTux ( Enemy ThisRobot , float TurnSpeed )
+}
 
 /**
  * Enemies act as groups.  If one is hit, all will attack and the like.
