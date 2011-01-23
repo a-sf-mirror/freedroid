@@ -123,7 +123,7 @@ static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 	// corner.
 	//
 	// And then of course we also have to take into account the size of the
-	// item, wich is also not always the same.
+	// item, which is also not always the same.
 	//
 	TargetRect.x = GetMousePos_x() - ItemMap[ItemImageCode].inv_size.x * 16;
 	TargetRect.y = GetMousePos_y() - ItemMap[ItemImageCode].inv_size.y * 16;

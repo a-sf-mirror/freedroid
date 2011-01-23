@@ -2039,7 +2039,7 @@ void move_enemies(void)
 
 /**
  * When an enemy is firing a shot, the newly created bullet must be 
- * assigned a speed, that would lead the bullet thowards the intended
+ * assigned a speed, that would lead the bullet towards the intended
  * target, which is done here.
  */
 void set_bullet_speed_to_target_direction(bullet * NewBullet, float bullet_speed, float xdist, float ydist)
@@ -2096,7 +2096,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		//
 		set_bullet_speed_to_target_direction(NewBullet, bullet_speed, xdist, ydist);
 
-		// Newly, also enemys have to respect the angle modifier in their weapons...
+		// Newly, also enemies have to respect the angle modifier in their weapons...
 		//
 		RotateVectorByAngle(&(NewBullet->speed), ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_start_angle_modifier);
 		NewBullet->angle = -(90 + 45 + 180 * atan2(NewBullet->speed.y, NewBullet->speed.x) / M_PI);

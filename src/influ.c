@@ -428,13 +428,13 @@ static void move_tux_according_to_his_speed()
 	float planned_step_y;
 
 	// Now we move influence according to current speed.  But there has been a problem
-	// reported from people, that the influencer would (*very* rarely) jump throught walls
-	// and even out of the ship.  This has *never* occured on my fast machine.  Therefore
-	// I assume that the problem is related to sometimes very low framerates on these machines.
+	// reported from people, that the influencer would (*very* rarely) jump through walls
+	// and even out of the ship.  This has *never* occurred on my fast machine.  Therefore
+	// I assume that the problem is related to sometimes very low frame rates on these machines.
 	// So, we do a sanity check not to make steps too big.
 	//
-	// And on machines with FPS << 20, it will certainly alter the game behaviour, so people
-	// should really start using a pentium or better machine.
+	// And on machines with FPS << 20, it will certainly alter the game behavior, so people
+	// should really start using a Pentium or better machine.
 	//
 	planned_step_x = Me.speed.x * Frame_Time();
 	planned_step_y = Me.speed.y * Frame_Time();
@@ -752,7 +752,7 @@ void move_tux()
 }
 
 /**
- * This function decrements Tux's health and increments the relevent statistic 
+ * This function decrements Tux's health and increments the relevant statistic
  * variable.
  */
 void hit_tux(float damage, int owner)
@@ -893,7 +893,7 @@ void animate_tux()
 }
 
 /**
- * This function creates several exprosions around the location where the
+ * This function creates several explosions around the location where the
  * influencer is (was) positioned.  It is used after the influencers 
  * death to make his death more spectacular.
  */
@@ -926,7 +926,7 @@ void start_tux_death_explosions(void)
 
 /**
  * This function checks if the influencer is currently colliding with an
- * enemys and throws him back in that case.
+ * enemy and throws him back in that case.
  */
 void check_tux_enemy_collision(void)
 {
@@ -1035,7 +1035,7 @@ void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short 
 
 	// Previously, we had the damage done only dependant upon the weapon used.  Now
 	// the damage value is taken directly from the character stats, and the UpdateAll...stats
-	// has to do the right computation and updating of this value.  hehe. very conventient.
+	// has to do the right computation and updating of this value.  hehe. very convenient.
 	CurBullet->damage = Me.base_damage + MyRandom(Me.damage_modifier);
 	CurBullet->mine = TRUE;
 	CurBullet->owner = -1;
@@ -1356,7 +1356,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 		// Since a melee weapon is swung, which may be only influencers fists,
 		// we calculate where the point
 		// of the weapon should be finally hitting and do some damage
-		// to all the enemys in that area.
+		// to all the enemies in that area.
 		//
 		// However, simply using the pixel-to-map-location code with the current
 		// mouse pointer is not the way, since the droid (e.g. 302) might be high
@@ -1406,7 +1406,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 
 		// Also, we should check if there was perhaps a chest or box
 		// or something that can be smashed up, cause in this case, we
-		// must open pendoras box now.
+		// must open Pandora's box now.
 		//
 		// SmashBox ( Weapon_Target_Vector.x , Weapon_Target_Vector.y );
 		if (smash_obstacle(Weapon_Target_Vector.x, Weapon_Target_Vector.y, Me.pos.z))

@@ -61,7 +61,7 @@ static int MouseCursorIsOverMenuItem(int first_menu_item_pos_y, int h)
 	PureFraction = (GetMousePos_y() - first_menu_item_pos_y) / h;
 
 	// Now it can be that the pure difference is negative or that it is positive.
-	// However we should not always round thowards zero here, but rather always to
+	// However we should not always round towards zero here, but rather always to
 	// the next LOWER integer!  This will be done here:
 	//
 	if ((GetMousePos_y() - first_menu_item_pos_y) < 0)
@@ -157,7 +157,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 	// It might happen, that a submenu returns to the upper menu and then
 	// the upper menu should not be reset to the first position selected.
 	// For this case we have some special '-1' entry reserved as the marked
-	// menu entry.  This means, taht the menu position from last time will
+	// menu entry.  This means, that the menu position from last time will
 	// simply be re-used.
 	//
 	if (FirstItem != (-1))
@@ -379,7 +379,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 		}
 
 		if (MouseLeftClicked()) {
-			// Only when the mouse click really occured on the menu do we
+			// Only when the mouse click really occurred on the menu do we
 			// interpret it as a menu choice.  Otherwise we'll just ignore
 			// it. Also, we completely ignore any clicks if the clicked
 			// position is blank.
@@ -478,7 +478,7 @@ int chat_do_menu_selection_flagged(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enem
  * The rest of the menu is made particularly unclear by the fact that there
  * can be some multi-line options too and also there is scrolling up and
  * down possible, when there are more menu options than fit onto one
- * dialog options secection window for the player to click from.
+ * dialog options selection window for the player to click from.
  *
  */
 int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatDroid)
@@ -790,7 +790,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
  * This function prepares the screen for the big Escape menu and 
  * its submenus.  This means usual content of the screen, i.e. the 
  * combat screen and top status bar, is "faded out", the rest of 
- * the screen is cleared.  This function resolves some redundance 
+ * the screen is cleared.  This function resolves some redundancy 
  * that occured since there are so many submenus needing this.
  */
 void InitiateMenu(int background_code)
