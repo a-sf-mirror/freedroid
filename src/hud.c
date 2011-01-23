@@ -209,6 +209,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			autostr_append(str, _("Electromagnetic pulse"));
 		} else if (MatchItemWithName(item->type, "VMX Gas Grenade")) {
 			autostr_append(str, _("Gas attack"));
+		} else if (MatchItemWithName(item->type, "Small Plasma Shockwave Emitter")) {
+			autostr_append(str, _("Explosion"));
 		} else if (MatchItemWithName(item->type, "Plasma Shockwave Emitter")) {
 			autostr_append(str, _("Huge explosion"));
 		} else {

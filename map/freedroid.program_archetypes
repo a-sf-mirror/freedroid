@@ -284,6 +284,18 @@ Cost=40
 Base damage=0
 
 ** Start of new program specification subsection **
+Program name=_"Small Plasma grenade"
+Program description=_"If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
+Picture="NoSkillAvailable.png"
+Form="radial"
+Effect="short"
+Cost=200
+Affect bots=1
+Affect humans=1
+Base damage=100
+Artwork internal code=2
+
+** Start of new program specification subsection **
 Program name=_"Plasma grenade"
 Program description=_"If you see this in game it is a bug. Please report this to the developers, unless you cheated, in which case you deserve to see this silly nonsense description."
 Picture="NoSkillAvailable.png"
