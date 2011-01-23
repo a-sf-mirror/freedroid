@@ -296,7 +296,7 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	if (use_open_gl) {
 		gl_draw_rectangle(&rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
 	} else {
-		our_SDL_fill_rect_wrapper(Screen, &rect, SDL_MapRGB(Screen->format, r, g, b));
+		sdl_draw_rectangle(&rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
 	}
 
 	// Draw the energy bar complement
@@ -829,7 +829,7 @@ void show_current_text_banner(void)
 	if (use_open_gl)
 		gl_draw_rectangle(&banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
 	else
-		our_SDL_fill_rect_wrapper(Screen, &banner_rect, 0x00);
+		sdl_draw_rectangle(&banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
 
 	// Print the text
 	int line_spacing = (banner_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);

@@ -1593,7 +1593,7 @@ static void blit_all_item_slots(int mask)
 								  BACKGROUND_TEXT_RECT_ALPHA);
 				} else {
 					SDL_Rect our_rect = item_level->ItemList[i].text_slot_rectangle;	//we need that because SDL_FillRect modifies the dstrect
-					our_SDL_fill_rect_wrapper(Screen, &(our_rect), SDL_MapRGB(Screen->format, 0x000, 0x000, 0x000));
+					sdl_draw_rectangle(&our_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
 				}
 			}
 	
@@ -3071,9 +3071,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 {
 	float Percentage;
 	SDL_Rect FillRect;
-	static Uint32 full_color_enemy;
-	static Uint32 full_color_friend;
-	static Uint32 energy_empty_color;
 
 #define ENEMY_ENERGY_BAR_OFFSET_X 0
 #define ENEMY_ENERGY_BAR_OFFSET_Y (-20)
@@ -3085,12 +3082,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 	//
 	if (e->energy <= 0)
 		return;
-
-	// Now we need to find the right colors to fill our bars with...
-	//
-	full_color_enemy = SDL_MapRGB(Screen->format, 255, 0, 0);
-	full_color_friend = SDL_MapRGB(Screen->format, 0, 255, 0);
-	energy_empty_color = SDL_MapRGB(Screen->format, 0, 0, 0);
 
 	// work out the percentage health
 	//
@@ -3143,9 +3134,9 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 
 		// The color of the bar depends on the friendly/hostile status
 		if (is_friendly(e->faction, FACTION_SELF))
-			our_SDL_fill_rect_wrapper(Screen, &FillRect, full_color_friend);
+			sdl_draw_rectangle(&FillRect, 0, 255, 0, 140);
 		else
-			our_SDL_fill_rect_wrapper(Screen, &FillRect, full_color_enemy);
+			sdl_draw_rectangle(&FillRect, 255, 0, 0, 140);
 
 		// Now after the energy bar has been drawn, we can start to draw the
 		// empty part of the energy bar (but only of course, if there is some
@@ -3154,10 +3145,9 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		FillRect.w = TargetRectangle.w - health_pixels;
 
 		if (Percentage < 1.0)
-			our_SDL_fill_rect_wrapper(Screen, &FillRect, energy_empty_color);
+			sdl_draw_rectangle(&FillRect, 0, 0, 0, 255);
 	}
-
-};				// void PutEnemyEnergyBar ( Enum , TargetRectangle )
+}
 
 /**
  * The direction this robot should be facing right now is determined and
