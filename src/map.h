@@ -81,8 +81,6 @@
 #define POSITION_Y_OF_BIG_MAP_INSERT_STRING "BigGraphicsInsertPosY="
 #define BIG_MAP_INSERT_TYPE_STRING "BigGraphicsInsertType="
 
-#define SPECIAL_FORCE_INDICATION_STRING "SForce: T="
-
 #define OBSTACLE_DATA_BEGIN_STRING "obsdata"
 #define OBSTACLE_DATA_END_STRING "/obsdata"
 #define OBSTACLE_TYPE_STRING "t"

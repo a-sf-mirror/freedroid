@@ -1613,72 +1613,81 @@ int GetCrew(char *filename)
  *
  *
  */
-static void GetThisLevelsSpecialForces(char *SearchPointer, int OurLevelNumber, char *EndOfThisLevelData)
+static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_number, char *lvl_end_location)
 {
-	char TypeIndicationString[1000];
 	int droid_type;
-	char *StartMapLabel;
-	char *YesNoString;
-	location StartupLocation;
+	char *start_map_label;
+	location start_location;
+#define SPECIAL_FORCE_INDICATION_STRING "SForce: T="
 
-	while ((SearchPointer = strstr(SearchPointer, SPECIAL_FORCE_INDICATION_STRING)) != NULL) {
-		char *SpecialDroid = ReadAndMallocStringFromData(SearchPointer, SPECIAL_FORCE_INDICATION_STRING, "\n");
-		SearchPointer+= strlen(SPECIAL_FORCE_INDICATION_STRING);
-		strncpy(TypeIndicationString, SpecialDroid, 3);	// Every type is 3 characters long
-		TypeIndicationString[3] = 0;
-		DebugPrintf(1, "\nSpecial Force Type indication found!  It reads: %s.", TypeIndicationString);
+	while ((search_pointer = strstr(search_pointer, SPECIAL_FORCE_INDICATION_STRING)) != NULL) {
+		char *special_droid = ReadAndMallocStringFromData(search_pointer, SPECIAL_FORCE_INDICATION_STRING, "\n");
+		char *special_droid_end = special_droid + strlen(special_droid);
+		search_pointer += strlen(SPECIAL_FORCE_INDICATION_STRING);
+		//identify what model of droid to display:
+		char *ptr = special_droid;
+		int droid_type_length = 0;
+		while (isalnum(*ptr)) {
+			ptr++;
+			droid_type_length++;
+		}
+		char type_indication_string[droid_type_length + 1];
+		strncpy(type_indication_string, special_droid, droid_type_length);
+		type_indication_string[droid_type_length] = 0;
 
-		droid_type = get_droid_type(TypeIndicationString);
+		droid_type = get_droid_type(type_indication_string);
 
 		// Create a new enemy, and initialize its 'identity' and 'global state'
 		// (the enemy will be fully initialized by respawn_level())
 		enemy *newen = enemy_new(droid_type);
 		newen->SpecialForce = 1;
 
-		ReadValueFromStringWithDefault(SpecialDroid, "Fixed=", "%hd", "0", &(newen->CompletelyFixed), EndOfThisLevelData);
-		ReadValueFromStringWithDefault(SpecialDroid, "Marker=", "%d", "0000", &(newen->marker), EndOfThisLevelData);
-		ReadValueFromStringWithDefault(SpecialDroid, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
-					       EndOfThisLevelData);
-		
-		char *faction = ReadAndMallocStringFromDataOptional(SpecialDroid, "Faction=\"", "\"");
+		ReadValueFromStringWithDefault(special_droid, "Fixed=", "%hd", "0", &(newen->CompletelyFixed), special_droid_end);
+		ReadValueFromStringWithDefault(special_droid, "Marker=", "%d", "0000", &(newen->marker), special_droid_end);
+		ReadValueFromStringWithDefault(special_droid, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
+					       special_droid_end);
+
+		char *faction = ReadAndMallocStringFromDataOptional(special_droid, "Faction=\"", "\"");
 		if (!faction) {
 			faction = strdup("ms");
 		}
 		newen->faction = get_faction_id(faction);
 		free(faction);
 
-		StartMapLabel = ReadAndMallocStringFromData(SpecialDroid, "StartLabel=\"", "\"");
-		ResolveMapLabelOnShip(StartMapLabel, &StartupLocation);
-		newen->pos.x = StartupLocation.x;
-		newen->pos.y = StartupLocation.y;
-		newen->pos.z = OurLevelNumber;
-		free(StartMapLabel);
+		start_map_label = ReadAndMallocStringFromData(special_droid, "StartLabel=\"", "\"");
+		ResolveMapLabelOnShip(start_map_label, &start_location);
+		newen->pos.x = start_location.x;
+		newen->pos.y = start_location.y;
+		newen->pos.z = our_level_number;
+		free(start_map_label);
 
-		ReadValueFromStringWithDefault(SpecialDroid, "RushTux=", "%hd", "0", &(newen->will_rush_tux), EndOfThisLevelData);
+		ReadValueFromStringWithDefault(special_droid, "RushTux=", "%hd", "0", &(newen->will_rush_tux), special_droid_end);
 
-		newen->dialog_section_name = ReadAndMallocStringFromDataOptional(SpecialDroid, "UseDialog=\"", "\"");
+		newen->dialog_section_name = ReadAndMallocStringFromDataOptional(special_droid, "UseDialog=\"", "\"");
 		if (!newen->dialog_section_name)
 			newen->dialog_section_name = strdup("AfterTakeover");
+		npc_get(newen->dialog_section_name); // Check that we have a valid dialog.
 
 		if (newen->short_description_text)
 			free(newen->short_description_text);
 
-		newen->short_description_text = ReadAndMallocStringFromDataOptional(SpecialDroid, "ShortLabel=_\"", "\"");
+		newen->short_description_text = ReadAndMallocStringFromDataOptional(special_droid, "ShortLabel=_\"", "\"");;
 		if (!newen->short_description_text)
 			newen->short_description_text = strdup(Druidmap[newen->type].default_short_description);
 
-		if (strstr(SpecialDroid, "on_death_drop_item_name")) {
-			YesNoString = ReadAndMallocStringFromData(SpecialDroid, "on_death_drop_item_name=\"", "\"");
-			newen->on_death_drop_item_code = GetItemIndexByName(YesNoString);
-			free(YesNoString);
-		} else
+		char *death_drop;
+		death_drop = ReadAndMallocStringFromDataOptional(special_droid, "on_death_drop_item_name=\"", "\"");
+		if (death_drop) {
+			newen->on_death_drop_item_code = GetItemIndexByName(death_drop);
+			free(death_drop);
+		} else {
 			newen->on_death_drop_item_code = -1;
-
-		free(SpecialDroid);
+		}
+		free(special_droid);
 		enemy_insert_into_lists(newen, TRUE);
-	}			// while Special force droid found...
+	}
 
-};				// void GetThisLevelsSpecialForces ( char* SearchPointer )
+};
 
 /**
  * This function receives a pointer to the already read in crew section
