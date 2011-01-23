@@ -115,6 +115,7 @@ int level_editor_item_drop_index(int row_len, int line_len)
  */
 item *ItemDropFromLevelEditor(void)
 {
+#define SKIP_CTD_ITEM 1
 	int SelectionDone = FALSE;
 	int NewItemCode = (-1);
 	int i;
@@ -137,7 +138,7 @@ item *ItemDropFromLevelEditor(void)
 		for (j = 0; j < row_len; j++) {
 			for (i = 0; i < line_len; i++) {
 				init_item(&temp_item);
-				temp_item.type = i + j * line_len + item_group * line_len * row_len;
+				temp_item.type = i + j * line_len + item_group * line_len * row_len + SKIP_CTD_ITEM;
 				if (temp_item.type >= Number_Of_Item_Types)
 					continue;	//temp_item.type = 1 ;
 				ShowRescaledItem(i, 32 + (64 * GameConfig.screen_height / 480 + 2) * j, &(temp_item));
@@ -152,7 +153,7 @@ item *ItemDropFromLevelEditor(void)
 		if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, GetMousePos_x(), GetMousePos_y()))
 			PutStringFont(Screen, FPS_Display_BFont, 20, 440 * GameConfig.screen_height / 480, _("Cancel item drop"));
 		if (level_editor_item_drop_index(row_len, line_len) != (-1)) {
-			previous_mouse_position_index = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len;
+			previous_mouse_position_index = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len + SKIP_CTD_ITEM;
 			if (previous_mouse_position_index >= Number_Of_Item_Types) {
 				previous_mouse_position_index = Number_Of_Item_Types - 1;
 			} else
@@ -180,7 +181,7 @@ item *ItemDropFromLevelEditor(void)
 				if (MouseCursorIsOnButton(LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON, event.button.x, event.button.y)) {
 					return NULL;
 				} else if (level_editor_item_drop_index(row_len, line_len) != (-1)) {
-					NewItemCode = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len;
+					NewItemCode = level_editor_item_drop_index(row_len, line_len) + item_group * line_len * row_len + SKIP_CTD_ITEM;
 					if (NewItemCode < 0)
 						NewItemCode = 0;	// just if the mouse has moved away in that little time...
 					if (NewItemCode < Number_Of_Item_Types)
