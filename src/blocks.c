@@ -721,9 +721,7 @@ void load_obstacle(int i)
 
 	// Maybe the obstacle in question also has a shadow image?  In that
 	// case we should load the shadow image now. 
-	//
-	// We need a new file name of course.
-	if (strlen(fpath) >= 8) {
+	if (strlen(obstacle_map[i].filename) >= 8) {
 		strcpy(shadow_file_name, fpath);
 		shadow_file_name[strlen(shadow_file_name) - 8] = 0;
 		strcat(shadow_file_name, "shadow_");
@@ -732,10 +730,10 @@ void load_obstacle(int i)
 			obstacle_map[i].shadow_image.surface = NULL;
 			obstacle_map[i].shadow_image.texture_has_been_created = FALSE;
 			return;
+		} else {
+			load_image(&obstacle_map[i].shadow_image, shadow_file_name, TRUE);
 		}
 	}
-
-	load_image(&obstacle_map[i].shadow_image, fpath, TRUE);
 }
 
 void load_all_obstacles(void)
