@@ -199,7 +199,7 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 	// walkable target for the Tux.
 	//
 	if (DirectLineColldet(x1, y1, x2, y2, levelnum, ctx->dlc_filter)
-	    && ((ctx->frw_ctx == NULL) || CheckIfWayIsFreeOfDroids(x1, y1, x2, y2, levelnum, ctx->frw_ctx))
+	    && ((ctx->frw_ctx == NULL) || way_free_of_droids(x1, y1, x2, y2, levelnum, ctx->frw_ctx))
 	    ) {
 		// if the target position is directly reachable
 		// then we are done !
@@ -283,7 +283,7 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 
 		if ((recursion_grid[(int)centered_x][(int)centered_y] == TILE_IS_UNPROCESSED)
 		    && DirectLineColldet(x1, y1, centered_x, centered_y, levelnum, ctx->dlc_filter)
-		    && ((ctx->frw_ctx == NULL) || CheckIfWayIsFreeOfDroids(x1, y1, centered_x, centered_y, levelnum, ctx->frw_ctx))
+		    && ((ctx->frw_ctx == NULL) || way_free_of_droids(x1, y1, centered_x, centered_y, levelnum, ctx->frw_ctx))
 		    ) {
 			last_sight_contact.x = x1;
 			last_sight_contact.y = y1;
@@ -369,7 +369,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 			    (waypoints[start_index].x, waypoints[start_index].y, waypoints[scan_index].x, waypoints[scan_index].y,
 			     curpos->z, ctx->dlc_filter)
 			    && ((ctx->frw_ctx == NULL)
-				|| CheckIfWayIsFreeOfDroids(waypoints[start_index].x, waypoints[start_index].y, waypoints[scan_index].x,
+				|| way_free_of_droids(waypoints[start_index].x, waypoints[start_index].y, waypoints[scan_index].x,
 							    waypoints[scan_index].y, curpos->z, ctx->frw_ctx))
 			    ) {
 				last_index = scan_index;
@@ -408,7 +408,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 
 	if (DirectLineColldet(curpos->x, curpos->y, waypoints[1].x, waypoints[1].y, curpos->z, ctx->dlc_filter)
 	    && ((ctx->frw_ctx == NULL)
-		|| CheckIfWayIsFreeOfDroids(curpos->x, curpos->y, waypoints[1].x, waypoints[1].y, curpos->z, ctx->frw_ctx))
+		|| way_free_of_droids(curpos->x, curpos->y, waypoints[1].x, waypoints[1].y, curpos->z, ctx->frw_ctx))
 	    ) {
 		DebugPrintf(DEBUG_TUX_PATHFINDING, "\nVERY FIRST INTERMEDIATE POINT CUT MANUALLY!!!!");
 		for (cut_away = 1; cut_away < maxwp; cut_away++) {

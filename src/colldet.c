@@ -166,16 +166,43 @@ colldet_filter ObstacleByIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 
 colldet_filter WalkableExceptIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 0, &WalkablePassFilter };
 colldet_filter FlyableExceptIdPassFilter = { ObstacleByIdPassFilterCallback, NULL, 0, &FlyablePassFilter };
 
+static const float Druid_Radius = 0.5;
+
+/**
+ * This function checks if there are any droid at a given location.
+ */
+int location_free_of_droids(float x, float y, int levelnum, freeway_context *ctx)
+{
+	if (ctx->check_tux) {
+		float dist = (Me.pos.x - x)*(Me.pos.x - x) + (Me.pos.y - y)*(Me.pos.y - y);
+		if (dist < Druid_Radius*Druid_Radius)
+			return FALSE;
+	}
+
+	enemy *this_enemy;
+	BROWSE_LEVEL_BOTS(this_enemy, levelnum) {
+		if ((this_enemy->pure_wait > 0) ||
+		    (ctx->except_bots[0] != NULL && ctx->except_bots[0] == this_enemy) ||
+		    (ctx->except_bots[1] != NULL && ctx->except_bots[1] == this_enemy))
+			continue;
+
+		float dist = (this_enemy->pos.x - x)*(this_enemy->pos.x - x) + (this_enemy->pos.y - y)*(this_enemy->pos.y - y);
+		if (dist < Druid_Radius*Druid_Radius)
+			return FALSE;
+	}
+
+	return TRUE;
+}
+
 /**
  * This function checks if the connection between two points is free of
- * droids.  
+ * droids.
  *
  * OBSTACLES ARE NOT TAKEN INTO CONSIDERATION, ONLY DROIDS!!!
  *
  */
-int CheckIfWayIsFreeOfDroids(float x1, float y1, float x2, float y2, int OurLevel, freeway_context * ctx)
+int way_free_of_droids(float x1, float y1, float x2, float y2, int levelnum, freeway_context * ctx)
 {
-	const float Druid_Radius = 0.5;
 	float minx = min(x1, x2) - 0.5;
 	float miny = min(y1, y2) - 0.5;
 	float maxx = max(x1, x2) + 0.5;
@@ -192,7 +219,7 @@ int CheckIfWayIsFreeOfDroids(float x1, float y1, float x2, float y2, int OurLeve
 	}
 
 	enemy *this_enemy;
-	BROWSE_LEVEL_BOTS(this_enemy, OurLevel) {
+	BROWSE_LEVEL_BOTS(this_enemy, levelnum) {
 		if ((this_enemy->pure_wait > 0) ||
 		    (ctx->except_bots[0] != NULL && ctx->except_bots[0] == this_enemy) ||
 		    (ctx->except_bots[1] != NULL && ctx->except_bots[1] == this_enemy))
@@ -208,8 +235,7 @@ int CheckIfWayIsFreeOfDroids(float x1, float y1, float x2, float y2, int OurLeve
 	}
 
 	return TRUE;
-
-};				// CheckIfWayIsFreeOfDroids ( float x1 , float y1 , float x2 , float y2 , int OurLevel , freeway_ctx* ctx )
+}
 
 enum {
 	RECT_IN = 0,

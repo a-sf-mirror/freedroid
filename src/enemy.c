@@ -650,7 +650,7 @@ static int set_new_random_waypoint(enemy *this_robot)
 	for (i = 0; i < num_conn; i++) {
 		waypoint *w = &wpts[connections[i]];
 
-		int is_free = CheckIfWayIsFreeOfDroids(current_waypoint->x + 0.5, current_waypoint->y + 0.5,
+		int is_free = way_free_of_droids(current_waypoint->x + 0.5, current_waypoint->y + 0.5,
 				w->x + 0.5, w->y + 0.5, this_robot->pos.z, &frw_ctx);
 		if (is_free) {
 			if (connections[i] != this_robot->lastwaypoint) {
@@ -2194,7 +2194,7 @@ static int ConsideredMoveIsFeasible(Enemy ThisRobot, moderately_finepoint StepVe
 	if ((DirectLineColldet(ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.x + StepVector.x,
 			       ThisRobot->pos.y + StepVector.y,
 			       ThisRobot->pos.z, NULL)) &&
-	    (CheckIfWayIsFreeOfDroids(ThisRobot->pos.x, ThisRobot->pos.y,
+	    (way_free_of_droids(ThisRobot->pos.x, ThisRobot->pos.y,
 				      ThisRobot->pos.x + StepVector.x, ThisRobot->pos.y + StepVector.y, ThisRobot->pos.z, &frw_ctx))) {
 		return TRUE;
 	}
@@ -2246,7 +2246,7 @@ static void MoveToMeleeCombat(enemy *ThisRobot, gps *target_pos, moderately_fine
 		checked_pos.x = floorf(checked_pos.x * 10.0) / 10.0;
 		checked_pos.y = floorf(checked_pos.y * 10.0) / 10.0;
 
-		if (CheckIfWayIsFreeOfDroids(target_pos->x, target_pos->y, checked_pos.x, checked_pos.y, target_pos->z, &frw_ctx)) {
+		if (way_free_of_droids(target_pos->x, target_pos->y, checked_pos.x, checked_pos.y, target_pos->z, &frw_ctx)) {
 			// If the checked_pos is free, also check that the target is reachable
 			target_reachable =
 			    DirectLineColldet(checked_pos.x, checked_pos.y, target_pos->x, target_pos->y, target_pos->z,

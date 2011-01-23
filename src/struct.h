@@ -867,7 +867,7 @@ typedef struct screen_resolution {
 } screen_resolution;
 
 /*
- * CheckIfWayIsFreeOfDroids's execution context
+ * [way|location]_free_of_droids's execution context
  * 
  * Note : '2' excepted bots are needed when the pathfinder is called
  *         to let a bot reach an other one (used during attack, for example).
@@ -882,7 +882,7 @@ typedef struct freeway_context {
  */
 typedef struct pathfinder_context {
 	colldet_filter *dlc_filter;	// DLC filter to use
-	freeway_context *frw_ctx;	// CheckIfWayIsFreeOfDroids's execution context to use
+	freeway_context *frw_ctx;	// [way|location]_free_of_droids's execution context to use
 } pathfinder_context;
 
 typedef struct {
