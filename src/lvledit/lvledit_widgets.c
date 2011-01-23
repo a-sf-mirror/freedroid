@@ -37,6 +37,9 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_widgets.h"
+#include "lvledit/lvledit_object_lists.h"
+
+static int all_obstacles_list[NUMBER_OF_OBSTACLE_TYPES + 1];
 
 LIST_HEAD(leveleditor_widget_list);
 
@@ -232,6 +235,8 @@ void leveleditor_init_widgets()
 	}
 
 	// Create category selectors
+	build_leveleditor_tile_lists();
+
 	// Obstacles
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++)
 		all_obstacles_list[i] = i;
@@ -244,15 +249,21 @@ void leveleditor_init_widgets()
 	list_add_tail(&create_categoryselector(5, _("ALLOBS."), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
 
 	// Floor
-	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
-	
+	list_add_tail(&create_categoryselector(0, _("SIDEWALK"), OBJECT_FLOOR, sidewalk_floor_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(1, _("WATER"), OBJECT_FLOOR, water_floor_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(2, _("GRASS"), OBJECT_FLOOR, grass_floor_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(3, _("SQUARE"), OBJECT_FLOOR, square_floor_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(4, _("OTHER"), OBJECT_FLOOR, other_floor_list)->node, &leveleditor_widget_list);
+
+	list_add_tail(&create_categoryselector(5, _("ALL"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
+
 	// Items
-	free(all_items_list);
-	all_items_list = MyMalloc((Number_Of_Item_Types + 1) * sizeof(int));
-	for (i = 0; i < Number_Of_Item_Types; i++)
-		all_items_list[i] = i;
-	all_items_list[i] = -1;
-	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(0, _("MELEE"), OBJECT_ITEM, melee_items_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(1, _("GUN"), OBJECT_ITEM, gun_items_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(2, _("DEFENSIVE"), OBJECT_ITEM, defense_items_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(3, _("USEABLE"), OBJECT_ITEM, spell_items_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(4, _("OTHER"), OBJECT_ITEM, other_items_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(5, _("ALL"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
 
 	// Waypoints
 	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
