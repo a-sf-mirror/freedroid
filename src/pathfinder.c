@@ -178,15 +178,15 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 			ordered_moves[0].y = 0.0;
 		}
 		if (y1 <= y2) {
-			ordered_moves[2].x = 0.0;
-			ordered_moves[2].y = 1.0;
-			ordered_moves[1].x = 0.0;
-			ordered_moves[1].y = -1.0;
-		} else {
 			ordered_moves[1].x = 0.0;
 			ordered_moves[1].y = 1.0;
 			ordered_moves[2].x = 0.0;
 			ordered_moves[2].y = -1.0;
+		} else {
+			ordered_moves[2].x = 0.0;
+			ordered_moves[2].y = 1.0;
+			ordered_moves[1].x = 0.0;
+			ordered_moves[1].y = -1.0;
 		}
 	} else {
 		// More prority on x move into the right direction, least
