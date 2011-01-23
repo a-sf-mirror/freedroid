@@ -406,19 +406,25 @@ void SetNewBigScreenMessage(const char *ScreenMessageText)
 void DisplayBigScreenMessage(void)
 {
 	int i;
-	int next_screen_message_position = 30;
+	int y_pos = 30;
 
 	for (i = 0; i < GameConfig.number_of_big_screen_messages; i++) {
 		if (!Me.BigScreenMessage[i])
 			continue;
 
+		char *text = Me.BigScreenMessage[i];
+
 		if (Me.BigScreenMessageDuration[i] < GameConfig.delay_for_big_screen_messages) {
 			SDL_SetClipRect(Screen, NULL);
-			CenteredPutStringFont(Screen, Menu_BFont, next_screen_message_position, Me.BigScreenMessage[i]);
+
+			SetCurrentFont(Menu_BFont);
+			int x_pos = GameConfig.screen_width/2 - TextWidthFont(GetCurrentFont(), text)/2;
+			DisplayText(text, x_pos, y_pos, NULL /* clip */, 1.0);
+
 			if (!GameConfig.Inventory_Visible && !GameConfig.SkillScreen_Visible && !GameConfig.CharacterScreen_Visible)
 				Me.BigScreenMessageDuration[i] += Frame_Time();
 
-			next_screen_message_position += FontHeight(Menu_BFont);
+			y_pos += FontHeight(Menu_BFont);
 		}
 	}
 

@@ -303,12 +303,13 @@ static int lua_event_give_item(lua_State * L)
 	// Either we put the new item directly into inventory or we issue a warning
 	// that there is no room and then drop the item to the floor directly under 
 	// the current Tux position.  That can't fail, right?
-	//
+	char msg[1000];
 	if (!give_item(&NewItem)) {
-		SetNewBigScreenMessage(_("1 Item received (on floor)"));
+		sprintf(msg, _("Received Item: %s (on floor)"), itemname);
 	} else {
-		SetNewBigScreenMessage(_("1 Item received!"));
+		sprintf(msg, _("Received Item: %s"), itemname);
 	}
+	SetNewBigScreenMessage(msg);
 	return 0;
 }
 
