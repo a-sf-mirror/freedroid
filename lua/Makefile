@@ -13,6 +13,7 @@ AR= ar rcu
 RANLIB= ranlib
 RM= rm -f
 LIBS= -lm $(MYLIBS)
+STRIP = strip
 
 MYCFLAGS=
 MYLDFLAGS=
@@ -69,6 +70,7 @@ echo:
 	@echo "CFLAGS = $(CFLAGS)"
 	@echo "AR = $(AR)"
 	@echo "RANLIB = $(RANLIB)"
+	@echo "STRIP = $(STRIP)"
 	@echo "RM = $(RM)"
 	@echo "MYCFLAGS = $(MYCFLAGS)"
 	@echo "MYLDFLAGS = $(MYLDFLAGS)"
@@ -105,7 +107,7 @@ macosx:
 
 mingw:
 	$(MAKE) "LUA_A=lua51.dll" "LUA_T=lua.exe" \
-	"AR=$(CC) -shared -o" "RANLIB=i686-pc-mingw32-strip --strip-unneeded" \
+	"AR=$(CC) -shared -o" "RANLIB=$(STRIP) --strip-unneeded" \
 	"MYCFLAGS=-DLUA_BUILD_AS_DLL" "MYLIBS=" "MYLDFLAGS=-s" lua.exe
 	$(MAKE) "LUAC_T=luac.exe" luac.exe
 
