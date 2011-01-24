@@ -166,7 +166,7 @@ int teleport_to_random_waypoint(enemy *erot, level *this_level, char *wp_used)
 			found_wp = start_wp;
 		} else {
 			ErrorMessage(__FUNCTION__, "There was no free waypoint found on level %d to place another random bot.\n",
-			                           PLEASE_INFORM, IS_WARNING_ONLY, this_level->levelnum);
+			                            NO_NEED_TO_INFORM, IS_WARNING_ONLY, this_level->levelnum);
 			found_wp = last_checked_wp;
 		}
 	}
