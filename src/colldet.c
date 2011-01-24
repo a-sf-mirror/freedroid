@@ -169,7 +169,7 @@ colldet_filter FlyableExceptIdPassFilter = { ObstacleByIdPassFilterCallback, NUL
 static const float Druid_Radius = 0.5;
 
 /**
- * This function checks if there are any droid at a given location.
+ * This function checks if there are any droids at a given location.
  */
 int location_free_of_droids(float x, float y, int levelnum, freeway_context *ctx)
 {

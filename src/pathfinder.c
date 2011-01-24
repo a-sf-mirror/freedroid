@@ -43,10 +43,10 @@ static void streamline_intermediate_course(gps *, moderately_finepoint *, int, p
 #define TILE_IS_PROCESSED 4
 
 /**
- * In case that Tux or a bot cannot walk the direct line from his current 
+ * In case that Tux or a bot cannot walk the direct line from his current
  * position to the mouse move target, we must set up a path composed of
  * several smaller direct line.
- * 
+ *
  * The pathfinder algorithm is based an the classical A* algorithm
  */
 int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints,
@@ -104,7 +104,7 @@ void clear_out_intermediate_points(gps * curpos, moderately_finepoint * intermed
 {
 	int i;
 
-	// We clear out the waypoint list for the Tux and initialize the 
+	// We clear out the waypoint list for the Tux and initialize the
 	// very first entry.
 	//
 	intermediate_points[0].x = curpos->x;
@@ -156,7 +156,7 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 	// So at this point we know, that the current position is not one from where
 	// we would be able to reach our goal.
 	//
-	// Therefore we will try other positions that might bring us more luck, but 
+	// Therefore we will try other positions that might bring us more luck, but
 	// we only try such positions, as we can reach from here...
 	//
 	// And also we will try the 'more promising' directions before the 'less promising'
@@ -259,10 +259,10 @@ static int recursive_find_walkable_point(int levelnum, float x1, float y1, float
 }
 
 /**
- * After a course has been set up, the Tux (or the bot) can start to 
+ * After a course has been set up, the Tux (or the bot) can start to
  * proceed towards his target.  However, the unmodified recursive course
  * is often a bit awkward and goes back and forth a lot.
- * 
+ *
  * Therefore it will be a good idea to streamline the freshly set up
  * course first, once and for all, before the Tux or the bot is finally set in
  * motion.
@@ -281,7 +281,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 	// where the tux will be starting.
 	//
 	for (start_index = 0; start_index < maxwp; start_index++) {
-		// If the end of the course is reached in the outer loop, then we're done indeed 
+		// If the end of the course is reached in the outer loop, then we're done indeed
 		// with the streamlining process and therefore can go home now...
 		//
 		if (waypoints[start_index].x == (-1))
