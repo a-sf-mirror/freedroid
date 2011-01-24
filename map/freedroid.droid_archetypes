@@ -729,6 +729,29 @@ Individual shape of this droid or just -1 for classic ball shaped : 23
 Notes concerning this droid=_"This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
+Droidname: DOC
+Default description:_"Older Man"
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6
+Class of this droid: 18
+Drops item class=9
+Maximum energy of this droid: 100
+Rate of healing: 15
+Experience_Reward gained for destroying one of this type: 200
+Aggression distance of this droid=2
+Time spent eyeing Tux=2
+Weapon item="Laser Scalpel"
+Greeting Sound number=4
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=60
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 23
+Notes concerning this droid=_"Some people say that every doctor is addicted to drugs. You estimate that right now this one is high on at least four different narcotics. Doc Moore seems very happy indeed..."
+
+** Start of new Robot: ** 
 Droidname: GUA
 Default description:_"Red Guard"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
@@ -752,6 +775,29 @@ Individual shape of this droid or just -1 for classic ball shaped : 24
 Notes concerning this droid=_"This is a typical red (male) guard/fighter character.  They are equipped with powerful PowerExterminators."
 
 ** Start of new Robot: ** 
+Droidname: DIX
+Default description:_"Red Guard"
+Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
+Maximum speed of this droid: 6
+Class of this droid: 18
+Drops item class=9
+Maximum energy of this droid: 100
+Rate of healing: 15
+Experience_Reward gained for destroying one of this type: 200
+Aggression distance of this droid=5
+Time spent eyeing Tux=0.5
+Weapon item="Nobody's edge"
+Greeting Sound number=6
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=50
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 1
+Individual shape of this droid or just -1 for classic ball shaped : 24
+Notes concerning this droid=_"This is Dixon, unlike a typical red (male) guard/fighter character, he has a knife weapon, and lowered aggression."
+
+** Start of new Robot: ** 
 Droidname: MUM
 Default description:_"Matron"
 Droid uses portrait rotation series with prefix="NONE_AVAILABLE_YET"
@@ -763,7 +809,7 @@ Rate of healing: 15
 Experience_Reward gained for destroying one of this type: 200
 Aggression distance of this droid=2
 Time spent eyeing Tux=2
-Weapon item="NPC Hand to hand weapon"
+Weapon item="Two Barrel shotgun"
 Greeting Sound number=-1
 Got Hit Sound number=-1
 Death sound file name="none"

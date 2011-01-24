@@ -206,7 +206,6 @@ LuaCode={
 	add_item("Doc-in-a-can",10)
 	add_item("Antibiotic",10)
 	add_item("Brain Enlargement Pills Antidote",5)
-	add_item("Laser Scalpel",1)
 	hide(22, 10, 11, 50, 51, 52, 55, 56, 57)
 }
 ----------------------------------------------------------------------
