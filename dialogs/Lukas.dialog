@@ -59,7 +59,7 @@ LuaCode={
 	hide(2)
 }
 ----------------------------------------------------------------------
-Nr=3 Text=_"I'd like to buy an exterminator"
+Nr=3 Text=_"I'd like to buy an exterminator."
 LuaCode={
 	npc_says(_"Haha, good one.")
 	npc_says(_"Sorry, they are not for sale.")
