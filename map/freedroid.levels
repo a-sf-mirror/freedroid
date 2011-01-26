@@ -3545,7 +3545,6 @@ x=36 y=19 name="EwaldStartGameSquare"
 x=63 y=17 name="SkippyStartGameSquare"
 x=75 y=80 name="BruceStartGameSquare"
 x=7 y=45 name="DuncanStartGameSquare"
-x=18 y=28 name="DocMooreStartGameSquare"
 x=17 y=79 name="614StartGameSquare2"
 x=21 y=79 name="614StartGameSquare3"
 x=34 y=67 name="614StartGameSquare5"
@@ -3588,6 +3587,7 @@ x=3 y=35 name="W-enter-2"
 x=3 y=36 name="W-enter-3"
 x=18 y=40 name="0from30"
 x=63 y=82 name="Iris"
+x=18 y=27 name="DocMooreStartGameSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
