@@ -453,6 +453,9 @@ Name=_"Back to the Desert"
 Trigger at label="34to38"
 Silent=0
 LuaCode={
+	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+		teleport_npc("38to34", "Tania")
+	end
 	teleport("38from34");
 }
 * End of trigger *
@@ -565,6 +568,9 @@ Name=_"To a Forgotten Bunker"
 Trigger at label="38to34"
 Silent=0
 LuaCode={
+	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+		teleport_npc("34to38", "Tania")
+	end
 	teleport("34from38")
 }
 * End of trigger *

@@ -25,13 +25,21 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={
+	show(0)
+	add_cookie("met_tania")
+}
+
 EveryTime LuaCode={
 	branch_to_pendragon = false
-	if (not has_cookie("met_tania")) then
-		show(0)
-		add_cookie("met_tania")
-	end
 	show(90)
+	if (has_cookie("murdered_koan")) then
+		npc_says(_"You just killed him!")
+		npc_says(_"How could you?")
+		npc_says(_"You murderer!")
+		npc_faction("crazy", _"Tania -- Avenging Koan")
+		end_dialog()
+	end
 
 	if (has_quest(_"Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 18, 19, 90)

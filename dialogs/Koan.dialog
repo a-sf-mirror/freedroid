@@ -25,72 +25,155 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+
 EveryTime LuaCode={
+	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then --Tania is following you
+		tania_is_here = true
+		heal_npc("Tania")
+	else
+		tania_is_here = false
+	end
+
 	if (not has_cookie("met_koan")) then
-		show(5, 6)
 		add_cookie("met_koan")
 		npc_says(_"So you have come. I knew Duncan would not let me live for too long.")
 		npc_says(_"Once I am gone this oasis of peace in the world will dry up and die. A shame.")
 		npc_says(_"I hoped to turn the whole desert into a sanctuary. And now my dream will never come true.")
 		npc_says(_"Do what you must.")
-	else
-		npc_says(_"It's a pleasure to meet you again.")
+		if has_quest("Doing Duncan a favor") then
+			show(2)
+		else
+			if (not has_cookie("met_duncan")) then
+				show(4)
+			else
+				show(5)
+			end
+		end
+		show(3)
+	elseif (has_cookie("koan_spared")) then
+		npc_says_random(_"It's a pleasure to meet you again.", _"I am happy to see you've returned.")
+		if (tania_is_here) then
+			npc_says(_"I see you have brought a friend along with you.")
+		end
+	elseif has_quest("Doing Duncan a favor") then 
+		npc_says(_"I see the troubles of the world in your eyes.")
+		show(10, 11)
+		hide(20, 21, 99)
+	elseif has_cookie("met_koan_before_duncan") then
+		npc_says_random(_"Come sitdown my friend.", _"Please take some time and relax here in the cool.")
+		if (tania_is_here) then
+			npc_says(_"I see you've brought a friend along with you.")
+		end
 	end
 }
 ----------------------------------------------------------------------
 
-Nr=5 Text=_"With pleasure."
+Nr=2 Text=_"With pleasure."
 LuaCode={
 	drop_dead()
 	update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
-	respawn_level(38) -- Changed to 38 (the desert above the bunker) from 18 (Kevin's underground power supply).
+	respawn_level(38) --this is the desert above the bunker
+	if (tania_is_here) then
+		add_cookie("murdered_koan")
+		start_chat("Tania")
+	end
 }
 ----------------------------------------------------------------------
 
-Nr=6 Text=_"No. I have not come here to kill you."
+Nr=3 Text=_"No. I have not come here to kill you."
 LuaCode={
 	npc_says(_"Thank you.")
 	npc_says(_"Feel free to stay here. There is no danger.")
 	npc_says(_"The water is safe to drink and the fruit from the tree is quite delicious.")
-	add_cookie("koan_spared")
-	update_quest(_"Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
-	hide(5, 6) show(10, 20, 99)
+	hide(2, 3) show(5, 20, 99)
+	if has_quest("Doing Duncan a favor") then
+		next(12)
+	end
 }
 ----------------------------------------------------------------------
 
-Nr=10 Text=_"What is this place? Why is there grass and water under the desert?"
+Nr=4 Text=_"Who are you? Who is Duncan?" --has not met Duncan yet
+LuaCode={
+	set_bot_name(_"Koan")
+	npc_says(_"I am Koan.")
+	npc_says(_"Duncan is one obsessed with destroying things, while I create.")
+	npc_says(_"Therefore he desires my destruction.")
+	hide(3, 4, 5) show(20, 99)
+}
+----------------------------------------------------------------------
+
+Nr=5 Text=_"Who are you?"
+LuaCode={
+	set_bot_name(_"Koan")
+	npc_says(_"I am Koan.")
+	npc_says(_"Beyond that I am a creator.")
+	npc_says(_"I give life to things, even if they eventually will be destroyed.")
+	hide(3, 5) show(20, 99)
+}
+----------------------------------------------------------------------
+
+Nr=10 Text=_"You shall die."
+LuaCode={
+	drop_dead()
+	update_quest(_"Doing Duncan a favor", _"I took revenge for Duncan by killing Koan.")
+	respawn_level(38) --this is the desert above the bunker
+	if (tania_is_here) then
+		add_cookie("murdered_koan")
+		start_chat("Tania")
+	end
+}
+----------------------------------------------------------------------
+
+Nr=11 Text=_"Duncan sent me to kill you, but I came to make certain you were safe."
+LuaCode={
+	npc_says(_"Thanks for checking up on me.")
+	hide(10, 11) show(99) next(12)
+}
+----------------------------------------------------------------------
+
+Nr=12 Text=_"BUG, REPORT ME! Koan node12 -- UPDATE QUEST"
+NO_TEXT
+LuaCode={
+	add_cookie("koan_spared")
+	update_quest(_"Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
+	show(13)
+}
+----------------------------------------------------------------------
+
+Nr=13 Text=_"Why does Duncan want you dead?"
+LuaCode={
+ 	npc_says(_"Very simple. He likes destruction, and I am creation.")
+ 	npc_says(_"There is nothing more to it.")
+ 	hide(13)
+}
+----------------------------------------------------------------------
+
+Nr=20 Text=_"What is this place? Why is there grass and water under the desert?"
 LuaCode={
 	npc_says(_"Ah, yes. That is my fault, I am afraid.")
 	npc_says(_"Wherever I go, life follows me.")
 	npc_says(_"I thought I could hide from Duncan in this old bunker.")
 	npc_says(_"When I woke up the next day, things were as you see them now.")
-	hide(10) show(11)
+	hide(20) show(21)
 }
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"This was a bunker?"
+Nr=21 Text=_"This was a bunker?"
 LuaCode={
 	npc_says(_"Yes. The place has changed a bit, as you can see.")
 	npc_says(_"I like the way it is right now. The water cools everything down and the plants give the air a very fresh smell.")
 	npc_says(_"As soon as I leave, everything will die. I have seen that happen before.")
 	npc_says(_"Because this place is just like a small bit of paradise, I decided to stay here.")
 	npc_says(_"I do not want this wonderful bunker to become devoid of life again.")
-	hide(11)
-}
-----------------------------------------------------------------------
-
-Nr=20 Text=_"Why does Duncan want you dead?"
-LuaCode={
-	npc_says(_"Very simple. He likes destruction, and I am creation.")
-	npc_says(_"There is nothing more to it.")
-	hide(20)
+	hide(21)
 }
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I will go now."
 LuaCode={
-	npc_says(_"This place will always wait for you.")
+	npc_says_random(_"This place will always wait for you.", _"This is a sanctuary from the desert above.")
 	heal_tux()
+	hide(2, 3, 4, 5)
 	end_dialog()
 }
 ----------------------------------------------------------------------
