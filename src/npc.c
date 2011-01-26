@@ -218,10 +218,10 @@ void init_npcs()
 	struct shop duncan_shop[] = { 
 			{ "VMX Gas Grenade", 1 },
 			{ "VMX Gas Grenade", 1 },
-			{ "EMP Shockwave Generator", 1 },
-			{ "EMP Shockwave Generator", 1 },
-			{ "Plasma Shockwave Emitter", 1 },
-			{ "Plasma Shockwave Emitter", 1 },
+			{ "Small EMP Shockwave Generator", 1 },
+			{ "Small EMP Shockwave Generator", 1 },
+			{ "Small Plasma Shockwave Emitter", 1 },
+			{ "Small Plasma Shockwave Emitter", 1 },
 	};
 
 	struct shop ewald_shop[] = { 
