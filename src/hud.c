@@ -51,9 +51,9 @@ int best_banner_pos_x, best_banner_pos_y;
  * function to draw such bars in a convenient way, which is what this
  * function is supposed to do.
  */
-void
+static void
 blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_color_code,
-			 Uint32 empty_color_code, int x, int y, int w, int h, int scale_to_screen_resolution)
+			 Uint32 empty_color_code, int x, int y, int w, int h)
 {
 	SDL_Rect running_power_rect;
 	SDL_Rect un_running_power_rect;
@@ -71,6 +71,12 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 	if (current_value > 3 * max_value)
 		current_value = 3 * max_value;
 
+	// Scale the status bar.
+	x = x * GameConfig.screen_width / 640.0;
+	y = y * GameConfig.screen_height / 480.0;
+	w = w * GameConfig.screen_width / 640.0;
+	h = h * GameConfig.screen_height / 480.0;
+
 	running_power_rect.x = x;
 	running_power_rect.y = y + ((h * (max_value - current_value)) / max_value);
 	running_power_rect.w = w;
@@ -87,18 +93,6 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 	if (current_value > max_value)
 		un_running_power_rect.h = 0;
 
-	// If we are to scale the status bar, we do so :)
-	//
-	if (scale_to_screen_resolution) {
-		un_running_power_rect.x = un_running_power_rect.x * GameConfig.screen_width / 640.0;
-		un_running_power_rect.y = un_running_power_rect.y * GameConfig.screen_height / 480.0;
-		un_running_power_rect.w = un_running_power_rect.w * GameConfig.screen_width / 640.0;
-		un_running_power_rect.h = un_running_power_rect.h * GameConfig.screen_height / 480.0;
-		running_power_rect.x = running_power_rect.x * GameConfig.screen_width / 640.0;
-		running_power_rect.y = running_power_rect.y * GameConfig.screen_height / 480.0;
-		running_power_rect.w = running_power_rect.w * GameConfig.screen_width / 640.0;
-		running_power_rect.h = running_power_rect.h * GameConfig.screen_height / 480.0;
-	}
 	// Now that all our rects are set up, we can start to display the current
 	// running power status on screen...
 	//
@@ -401,7 +395,7 @@ to blit the 'experience countdown' bar.  Graphics will be suppressed for now..."
 				 experience_countdown_rect_color, un_experience_countdown_rect_color,
 				 WHOLE_EXPERIENCE_COUNTDOWN_RECT_X,
 				 WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y,
-				 WHOLE_EXPERIENCE_COUNTDOWN_RECT_W, WHOLE_EXPERIENCE_COUNTDOWN_RECT_H, TRUE);
+				 WHOLE_EXPERIENCE_COUNTDOWN_RECT_W, WHOLE_EXPERIENCE_COUNTDOWN_RECT_H);
 
 };				// void blit_experience_countdown_bars ( void )
 
@@ -437,20 +431,20 @@ static void blit_running_power_bars(void)
 		blit_vertical_status_bar(2.0, 2.0, infinite_running_power_rect_color,
 					 un_running_power_rect_color,
 					 WHOLE_RUNNING_POWER_RECT_X,
-					 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H, TRUE);
+					 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H);
 	} else {
 		if (Me.running_must_rest)
 			blit_vertical_status_bar(Me.max_running_power, Me.running_power,
 						 rest_running_power_rect_color,
 						 un_running_power_rect_color,
 						 WHOLE_RUNNING_POWER_RECT_X,
-						 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H, TRUE);
+						 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H);
 		else
 			blit_vertical_status_bar(Me.max_running_power, Me.running_power,
 						 running_power_rect_color,
 						 un_running_power_rect_color,
 						 WHOLE_RUNNING_POWER_RECT_X,
-						 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H, TRUE);
+						 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H);
 	}
 
 };				// void blit_running_power_bars ( void )
@@ -480,7 +474,7 @@ void blit_energy_and_mana_bars(void)
 
 	blit_vertical_status_bar(Me.maxenergy, Me.energy,
 				 health_rect_color, un_health_rect_color,
-				 WHOLE_HEALTH_RECT_X, WHOLE_HEALTH_RECT_Y, WHOLE_HEALTH_RECT_W, WHOLE_HEALTH_RECT_H, TRUE);
+				 WHOLE_HEALTH_RECT_X, WHOLE_HEALTH_RECT_Y, WHOLE_HEALTH_RECT_W, WHOLE_HEALTH_RECT_H);
 /*0 0 255
 vert grimpe, bleu baisse, rouge grimpe, vert baisse*/
 	int temp_ratio = Me.max_temperature ? (100 * Me.temperature) / Me.max_temperature : 100;
@@ -528,8 +522,7 @@ vert grimpe, bleu baisse, rouge grimpe, vert baisse*/
 	}
 	blit_vertical_status_bar(Me.max_temperature, (Me.temperature > Me.max_temperature) ? Me.max_temperature : Me.temperature,
 				 SDL_MapRGBA(Screen->format, red > 255 ? 255 : red, green < 255 ? green : 255, blue < 255 ? blue : 255, 0)
-				 , un_force_rect_color, WHOLE_FORCE_RECT_X, WHOLE_FORCE_RECT_Y, WHOLE_FORCE_RECT_W, WHOLE_FORCE_RECT_H,
-				 TRUE);
+				 , un_force_rect_color, WHOLE_FORCE_RECT_X, WHOLE_FORCE_RECT_Y, WHOLE_FORCE_RECT_W, WHOLE_FORCE_RECT_H);
 
 };				// void blit_energy_and_mana_bars ( void )
 
