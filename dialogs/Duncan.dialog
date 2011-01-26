@@ -29,15 +29,18 @@ EveryTime LuaCode={
 	if (not has_cookie("met_duncan")) then
 		show(0, 90, 99)
 		add_cookie("met_duncan")
-	elseif ((not has_cookie("guard_follow_tux")) and (not has_cookie("koan_quest"))) then
+	elseif (not has_cookie("guard_follow_tux")) and
+			(not has_cookie("koan_quest")) then
 		next(50)
 	end
 
-	if (has_item_backpack("Pandora's Cube") > 0) then next(60) 
+	if (has_item_backpack("Pandora's Cube") > 0) then
+		next(60)
 	else
-		if (has_cookie("koan_spared")) then 
-			if (not has_cookie("koan_quest_done")) then next(60) else end
-		else end
+		if (has_cookie("koan_spared")) and
+		   (not has_cookie("koan_quest_done")) then
+				next(60)
+		end
 	end
 
 	if (has_cookie("tux_has_joined_guard")) then
@@ -141,12 +144,11 @@ LuaCode={
 	npc_says(_"There is something you must know.")
 	npc_says(_"There are not too many bots in the desert, but they are invincible. It is best to avoid them.")
 	npc_says(_"I will be waiting here for your return.")
-	add_quest(_"Doing Duncan a favor", _"Find Koan in the desert west of town.")
 	tux_says(_"That is all I need to know. I will find Koan.")
 	npc_says(_"Only time will tell.")
 	npc_says(_"In any case, I'll let the Red Guard know to open the western gate to the desert.")
 	npc_says(_"Good luck!")
-	change_obstacle_state("DesertGate", "opened")
+	add_quest(_"Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan some very precious thing.")
 	hide(52, 59) show(55, 56)
 }
 ----------------------------------------------------------------------
@@ -179,15 +181,15 @@ Nr=60 Text="BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM"
 NO_TEXT
 LuaCode={
 	npc_says(_"So... Any news on the Koan matter?")
-
 	if (has_cookie("koan_spared")) then 
 		tux_says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
 		npc_says(_"I see.")
 		end_quest(_"Doing Duncan a favor", _"I lied to Duncan about not finding Koan.")
 		end_dialog()
-	else end
-
-	if (has_item_backpack("Pandora's Cube") > 0) then show(62, 63) else end
+	end
+	if (has_item_backpack("Pandora's Cube") > 0) then
+		show(62, 63)
+	end
 	add_cookie("koan_quest_done")
 	show(64)
 }

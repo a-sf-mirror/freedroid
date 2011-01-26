@@ -25,6 +25,11 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={
+	show(0)
+	add_cookie("met_pendragon")
+}
+
 EveryTime LuaCode={
 	branch_to_tania = false
 	if (has_cookie("Tania-stopped-by-Pendragon") and (not has_cookie("Pendragon-OK-w-Tania"))) then --Tania Escape Quest stuff
@@ -55,11 +60,38 @@ EveryTime LuaCode={
 			end
 		end
 	end
-	if (not has_cookie("met_pendragon")) then
-		show(0)
-		add_cookie("met_pendragon")
-	end
+
 	show(99)
+
+	if (not has_cookie("guard_follow_tux")) then
+		show(40)
+	end
+
+	if (cmp_obstacle_state("DesertGate", "closed")) and
+	   (has_cookie("desertgate_tax_30")) then
+			npc_says(_"Got the money?")
+			if (get_gold() >= 30) then
+				show(45)
+			else
+				hide(45)
+			end
+		elseif (has_cookie("desertgate_tax_40")) then
+			npc_says(_"Got the money?")
+			if (get_gold() >= 40) then
+				show(45)
+			else
+				hide(45)
+			end
+	end
+
+	if (has_cookie("desertgate_tax_30")) or
+		(has_cookie("desertgate_tax_40")) then
+		hide(40)
+	end
+
+if (cmp_obstacle_state("DesertGate", "opened")) then
+		hide(40, 45)
+	end
 
 	if (branch_to_tania) then
 		start_chat("Tania")
@@ -79,9 +111,9 @@ LuaCode={
 
 Nr=1 Text=_"Could you teach me how to fight?"
 LuaCode={
-	if (has_cookie("beat_up_pendragon")) then 
+	if (has_cookie("beat_up_pendragon")) then
 		npc_says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
-	else 
+	else
 		npc_says(_"Sure. I can help you.", "NO_WAIT")
 		npc_says(_"For a price. Hundred circuits should be enough.")
 		hide(1, 99) show(11, 19)
@@ -127,12 +159,12 @@ LuaCode={
 			npc_says(_"I think you broke my ribs...")
 			npc_says(_"This is enough training for today.")
 			add_cookie("beat_up_pendragon")
-		else 
-			if (get_gold() >= 100)  then
+		else
+			if (get_gold() >= 100) then
 				npc_says(_"You don't have enough experience. I can't teach you anything more right now.")
 				npc_says(_"First collect more experience. Then we can go on.")
 			else
-				npc_says(_"You don't have enough valuable circuits on you! Come back when you have the money.")		
+				npc_says(_"You don't have enough valuable circuits on you! Come back when you have the money.")
 			end
 		end
 	else
@@ -191,6 +223,62 @@ LuaCode={
 	hide(11, 12, 19, 20, 21, 22, 23, 29) show(1, 99)
 }
 ----------------------------------------------------------------------
+
+Nr=40 Text=_"I want to pass the gate."
+LuaCode={
+	npc_says(_"Fine.")
+	tux_says(_"Can you open it please?")
+	npc_says(_"Yes, I can.")
+	tux_says(_"Thanks.")
+	tux_says(_"Uhm...")
+	tux_says(_"Will you do it?")
+	npc_says(_"Yes. But you have to pay a one-time tax for it first.")
+	if (not has_cookie("town-northgateguard_tux_nickname_loon")) then
+		npc_says(_"Pay 30 circuits and you may pass.")
+		add_cookie("desertgate_tax_30")
+		if (get_gold() >= 30) then
+			show(45)
+		end
+	else
+		npc_says(_"You can enter the desert, but first you'll have to pay 40 circuits.")
+		add_cookie("desertgate_tax_40")
+		if (get_gold() >= 40) then
+			show(45)
+		end
+	end
+	hide(40)
+}
+----------------------------------------------------------------------
+
+Nr=45 Text=_"Yes, I've got the money."
+LuaCode={
+		if (has_cookie("desertgate_tax_30")) and
+		(get_gold() >= 30) then
+			npc_says(_"Good.")
+			tux_says(_"Here, take it.")
+			npc_says(_"You may pass.")
+			del_cookie("desertgate_tax_30")
+			del_gold(30)
+			change_obstacle_state("DesertGate", "opened")
+			update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
+		elseif (has_cookie("desertgate_tax_40")) and
+			(get_gold() >= 40) then
+				npc_says(_"At last.")
+				tux_says(_"Here, let me pass now.")
+				npc_says(_"You may pass, Loon.")
+				npc_says(_"But don't expect any help in there.")
+				del_cookie("desertgate_tax_40")
+				del_gold(40)
+				change_obstacle_state("DesertGate", "opened")
+				update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
+		else
+			npc_says(_"Don't try to trick me, duck.") --just in case...
+			npc_says(_"Come back if you have the bucks!")
+		end
+	hide(45)
+	end_dialog()
+}
+-----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
 LuaCode={
