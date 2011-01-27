@@ -344,9 +344,11 @@ item *action_create_item(level *EditLevel, float x, float y, int type)
 		// multiplicity of the item
 		multiplicity =
 		    do_graphical_number_selection_in_range(1, (!MatchItemWithName(type, "Valuable Circuits")) ? 100 : 1000, 1);
-		
-		// We always want create an item with a multiplicity higher than 0
-		multiplicity = (multiplicity > 0) ? multiplicity : 1;
+
+		if (multiplicity == 0) {
+			// Do not drop an item on the floor when the user cancelled the action.
+			return NULL;
+		}
 	}
 
 	// Create an item on the map
