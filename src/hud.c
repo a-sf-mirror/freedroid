@@ -148,6 +148,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// Durability or indestructible status
 	if (item->max_duration != (-1)) {
 		autostr_append(str, _("Durability: %d of %d\n"), (int)item->current_duration, (int)item->max_duration);
+	} else if (ItemMap[item->type].base_item_duration == (-1)) {
+		autostr_append(str, "\n");
 	} else {
 		autostr_append(str, _("Indestructible\n"));
 	}
