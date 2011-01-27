@@ -864,9 +864,9 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 
 		// Now we read in the base item duration and the duration modifier
 		ReadValueFromStringWithDefault(ItemPointer, "Base item duration=", "%hd", "-1",
-					       &item->base_item_durability, EndOfItemData);
+					       &item->base_item_duration, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "plus duration modifier=", "%hd", "0",
-					       &item->item_durability_modifier, EndOfItemData);
+					       &item->item_duration_modifier, EndOfItemData);
 
 		// Now we read in the name of the inventory item image, that is to be used
 		// on the inventory screen.

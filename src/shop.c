@@ -289,12 +289,12 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 			autostr_append(desc->text, _("Sell value: %ld\n"), calculate_item_sell_price(show_item));
 		}
 
-		if (show_item->current_durability == show_item->max_durability || show_item->max_durability == (-1))
+		if (show_item->current_duration == show_item->max_duration || show_item->max_duration == (-1))
 			repair_price = 0;
 		else
 			repair_price = calculate_item_repair_price(show_item);
 
-		if (show_item->max_durability == (-1))
+		if (show_item->max_duration == (-1))
 			autostr_append(desc->text, _("Indestructible\n"));
 		else if (!buy)
 			autostr_append(desc->text, _("Repair cost: %ld\n"), repair_price);
@@ -463,8 +463,8 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			}
 			BuyButtonActive = FALSE;
 
-			if ((ItemMap[TuxItemsList[TuxItemIndex]->type].base_item_durability >= 0) &&
-			    (TuxItemsList[TuxItemIndex]->max_durability > TuxItemsList[TuxItemIndex]->current_durability))
+			if ((ItemMap[TuxItemsList[TuxItemIndex]->type].base_item_duration >= 0) &&
+			    (TuxItemsList[TuxItemIndex]->max_duration > TuxItemsList[TuxItemIndex]->current_duration))
 				ShowGenericButtonFromList(REPAIR_BUTTON);
 		} else {
 			BuyButtonActive = FALSE;
@@ -591,8 +591,8 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					// really something to repair (and therefore the button is shown at
 					// all further above.
 					//
-					if ((ItemMap[TuxItemsList[TuxItemIndex]->type].base_item_durability >= 0) &&
-					    (TuxItemsList[TuxItemIndex]->max_durability > TuxItemsList[TuxItemIndex]->current_durability)) {
+					if ((ItemMap[TuxItemsList[TuxItemIndex]->type].base_item_duration >= 0) &&
+					    (TuxItemsList[TuxItemIndex]->max_duration > TuxItemsList[TuxItemIndex]->current_duration)) {
 						ShopOrder->item_selected = TuxItemIndex;
 						ShopOrder->shop_command = REPAIR_ITEM;
 						ShopOrder->number_selected = 1;
@@ -686,7 +686,7 @@ static void repair_item(item * RepairItem)
 	}
 
 	Me.Gold -= calculate_item_repair_price(RepairItem);
-	RepairItem->current_durability = RepairItem->max_durability;
+	RepairItem->current_duration = RepairItem->max_duration;
 	play_sound("effects/Shop_ItemRepairedSound_0.ogg");
 }
 

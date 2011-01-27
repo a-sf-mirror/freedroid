@@ -60,13 +60,13 @@ void init_item(item *it)
 	it->inventory_position.y = -1;
 }
 
-item create_item_with_name(const char *item_name, int full_durability, int multiplicity)
+item create_item_with_name(const char *item_name, int full_duration, int multiplicity)
 {
 	item new_item;
 	
 	init_item(&new_item);
 	new_item.type = GetItemIndexByName(item_name);
-	FillInItemProperties(&new_item, full_durability, multiplicity);
+	FillInItemProperties(&new_item, full_duration, multiplicity);
 	
 	return new_item;
 }
@@ -139,20 +139,20 @@ static void self_repair_item(item *it)
 {
 	int wear = 0, used = 0;
 
-	if (it->max_durability == -1) {
+	if (it->max_duration == -1) {
 		play_sound("effects/tux_ingame_comments/Tux_Item_Cant_Be_0.ogg");
 		return;
 	} 
 
-	used = it->max_durability - it->current_durability;
-	/* Self repair formula: decrease max_durability between 1 and 11-skill_level*/
+	used = it->max_duration - it->current_duration;
+	/* Self repair formula: decrease max_duration between 1 and 11-skill_level*/
 	wear = 1 + (11 - Me.skill_level[get_program_index_with_name("Repair equipment")]) * MyRandom(100) / 100.0;
-	//never decrease more than current missing durability
-	it->max_durability -= min(wear, used);
-	if (it->max_durability < 1) {
-		it->max_durability = 1;
+	//never decrease more than current missing duration
+	it->max_duration -= min(wear, used);
+	if (it->max_duration < 1) {
+		it->max_duration = 1;
 	}
-	it->current_durability = it->max_durability;
+	it->current_duration = it->max_duration;
 	play_sound("effects/tux_ingame_comments/Tux_This_Quick_Fix_0.ogg");
 }
 
@@ -193,7 +193,7 @@ unsigned long calculate_item_sell_price(item * BuyItem)
  * This function calculates the price of a given item, taking into account
  * (*) the base list price of the item
  * (*) the base list prices of the installed add-ons
- * (*) AND THE CURRENT DURABILITY of the item in relation to its max durability.
+ * (*) AND THE CURRENT DURATION of the item in relation to its max duration.
  */
 unsigned long calculate_item_repair_price(item * repair_item)
 {
@@ -204,9 +204,9 @@ unsigned long calculate_item_repair_price(item * repair_item)
 	// This is the price of the DAMAGE in the item, haha
 	// This can only be requested for repair items
 	//
-	if (repair_item->max_durability != (-1)) {
+	if (repair_item->max_duration != (-1)) {
 		unsigned long price = (calculate_item_buy_price(repair_item) *
-		    REPAIR_PRICE_FACTOR * (repair_item->max_durability - repair_item->current_durability) / repair_item->max_durability);
+		    REPAIR_PRICE_FACTOR * (repair_item->max_duration - repair_item->current_duration) / repair_item->max_duration);
 
 		// Never repair for free, minimum price is 1
 		return price ? price : 1;
@@ -266,17 +266,17 @@ void FillInItemProperties(item *it, int full_durability, int multiplicity)
 	// Set the maximum and current durabilities of the item.
 	// The maximum durability is within the range specified by the item spec.
 	// The current durability is a fraction of the maximum durability.
-	if (spec->base_item_durability != -1) {
+	if (spec->base_item_duration != -1) {
 		float quality = random_item_quality();
-		it->max_durability = spec->base_item_durability + quality * spec->item_durability_modifier;
+		it->max_duration = spec->base_item_duration + quality * spec->item_duration_modifier;
 		if (full_durability) {
-			it->current_durability = it->max_durability;
+			it->current_duration = it->max_duration;
 		} else {
-			it->current_durability = max(1, it->max_durability / 4 + MyRandom(it->max_durability / 2));
+			it->current_duration = max(1, it->max_duration / 4 + MyRandom(it->max_duration / 2));
 		}
 	} else {
-		it->max_durability = -1;
-		it->current_durability = 1;
+		it->max_duration = -1;
+		it->current_duration = 1;
 	}
 
 	// Calculate the item bonuses affected by add-ons.
@@ -435,16 +435,16 @@ void DamageItem(item * CurItem)
 
 	// If the item mentioned as parameter exists and if it is of 
 	// a destructable sort, then we apply the usual damage to it
-	if ((CurItem->type != (-1)) && (CurItem->max_durability != (-1))) {
-		CurItem->current_durability -= (MyRandom(100) < ARMOUR_DURABILITYLOSS_PERCENTAGE_WHEN_HIT) ? 1 : 0;
+	if ((CurItem->type != (-1)) && (CurItem->max_duration != (-1))) {
+		CurItem->current_duration -= (MyRandom(100) < ARMOUR_DURABILITYLOSS_PERCENTAGE_WHEN_HIT) ? 1 : 0;
 		
 		// Make sound denoting some protective item was damaged
 		BulletReflectedSound();
 
-		// If the item has gone over its threshold of durability, it finally
+		// If the item has gone over its threshold of duration, it finally
 		// breaks and vaporizes
 		//
-		if (rintf(CurItem->current_durability) <= 0) {
+		if (rintf(CurItem->current_duration) <= 0) {
 			DeleteItem(CurItem);
 		}
 	}
@@ -455,10 +455,10 @@ void DamageItem(item * CurItem)
 void DamageWeapon(item * CurItem)
 {
 
-	if ((CurItem->type != (-1)) && (CurItem->max_durability != (-1))) {
-		CurItem->current_durability -= (MyRandom(100) < WEAPON_DURABILITYLOSS_PERCENTAGE_WHEN_USED) ? 1 : 0;
+	if ((CurItem->type != (-1)) && (CurItem->max_duration != (-1))) {
+		CurItem->current_duration -= (MyRandom(100) < WEAPON_DURABILITYLOSS_PERCENTAGE_WHEN_USED) ? 1 : 0;
 
-		if (rintf(CurItem->current_durability) <= 0) {
+		if (rintf(CurItem->current_duration) <= 0) {
 			DeleteItem(CurItem);
 		}
 	}
@@ -1813,7 +1813,7 @@ void HandleInventoryScreen(void)
 					// Nothing grabbed, so we need not do anything more here..
 					DebugPrintf(0, "\nRepairing in INVENTORY grid FAILED:  NO ITEM AT THIS POSITION FOUND!");
 				} else {
-					if (Me.Inventory[Grabbed_InvPos].max_durability != -1)
+					if (Me.Inventory[Grabbed_InvPos].max_duration != -1)
 						self_repair_item(&(Me.Inventory[Grabbed_InvPos]));
 					else
 						ApplyItem(&(Me.Inventory[Grabbed_InvPos]));

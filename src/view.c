@@ -141,7 +141,7 @@ static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 
 /**
  * This function displays (several) blinking warning signs as soon as item
- * durabilities reach critical (<5) durability level.
+ * durations reach critical (<5) duration level.
  */
 static void ShowOneItemAlarm(item * AlarmItem, int Position)
 {
@@ -150,7 +150,7 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 
 	if (AlarmItem->type == (-1))
 		return;
-	if (AlarmItem->max_durability == (-1))
+	if (AlarmItem->max_duration == (-1))
 		return;
 
 	ItemImageCode = AlarmItem->type;
@@ -162,13 +162,13 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 	}
 	TargetRect.y = GameConfig.screen_height * 390/480;
 
-	if (AlarmItem->current_durability <= 5) {
-		if (AlarmItem->current_durability < 3)
+	if (AlarmItem->current_duration <= 5) {
+		if (AlarmItem->current_duration < 3)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
 #ifdef HAVE_LIBGL
 		if (use_open_gl) {
-			glColor3f(1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0);
+			glColor3f(1.0, (float)(AlarmItem->current_duration - 1) / (4), 0.0);
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		}
 #endif
@@ -185,7 +185,7 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 
 /**
  * This function displays (several) blinking warning signs as soon as item
- * durabilities reach critical (<5) durability level.
+ * durations reach critical (<5) duration level.
  */
 void ShowItemAlarm(void)
 {
