@@ -560,7 +560,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 							do_graphical_number_selection_in_range(0,
 									(ShowPointerList[ItemIndex]->multiplicity <= afford) ?
 										ShowPointerList[ItemIndex]->multiplicity : afford,
-									1, calculate_item_buy_price(ShowPointerList[ItemIndex], 1));
+									1);
 					} else {
 						ShopOrder->number_selected = 1;
 					}
@@ -576,8 +576,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 					    (TuxItemsList[TuxItemIndex]->multiplicity > 1)) {
 						ShopOrder->number_selected =
 						    do_graphical_number_selection_in_range(0, TuxItemsList[TuxItemIndex]->multiplicity,
-											   TuxItemsList[TuxItemIndex]->multiplicity,
-											calculate_item_sell_price(TuxItemsList[TuxItemIndex], 1));
+											   TuxItemsList[TuxItemIndex]->multiplicity);
 					} else
 						ShopOrder->number_selected = 1;
 					ret = 0;
