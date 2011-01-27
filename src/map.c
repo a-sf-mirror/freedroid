@@ -522,8 +522,8 @@ static void ReadInOneItem(char *ItemPointer, char *ItemsSectionEnd, item *Target
 	ReadValueFromString(ItemPointer, ITEM_POS_X_STRING, "%f", &(TargetItem->pos.x), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_POS_Y_STRING, "%f", &(TargetItem->pos.y), ItemsSectionEnd);
 	ReadValueFromStringWithDefault(ItemPointer, ITEM_ARMOR_CLASS_BASE_STRING, "%d", "0", &(TargetItem->armor_class), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_MAX_DURATION_STRING, "%d", &(TargetItem->max_duration), ItemsSectionEnd);
-	ReadValueFromString(ItemPointer, ITEM_CUR_DURATION_STRING, "%f", &(TargetItem->current_duration), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_MAX_DURABILITY_STRING, "%d", &(TargetItem->max_durability), ItemsSectionEnd);
+	ReadValueFromString(ItemPointer, ITEM_CUR_DURABILITY_STRING, "%f", &(TargetItem->current_durability), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_AMMO_CLIP_STRING, "%d", &(TargetItem->ammo_clip), ItemsSectionEnd);
 	ReadValueFromString(ItemPointer, ITEM_MULTIPLICITY_STRING, "%d", &(TargetItem->multiplicity), ItemsSectionEnd);
 
@@ -1287,8 +1287,8 @@ static void WriteOutOneItem(struct auto_string *shipstr, item *ItemToWriteOut)
 	}
 
 	autostr_append(shipstr, "%s%d %s%f %s%d %s%d ",
-			ITEM_MAX_DURATION_STRING, ItemToWriteOut->max_duration,
-			ITEM_CUR_DURATION_STRING, ItemToWriteOut->current_duration,
+			ITEM_MAX_DURABILITY_STRING, ItemToWriteOut->max_durability,
+			ITEM_CUR_DURABILITY_STRING, ItemToWriteOut->current_durability,
 			ITEM_AMMO_CLIP_STRING, ItemToWriteOut->ammo_clip,
 			ITEM_MULTIPLICITY_STRING, ItemToWriteOut->multiplicity);
 

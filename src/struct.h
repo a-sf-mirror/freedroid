@@ -302,9 +302,9 @@ typedef struct itemspec {
 	short int item_require_dexterity;
 	short int item_require_cooling;
 
-	// what duration does the item have?
-	short int base_item_duration;
-	short int item_duration_modifier;
+	// what durability does the item have?
+	short int base_item_durability;
+	short int item_durability_modifier;
 
 	point inv_size;
 	struct image inventory_image;
@@ -329,8 +329,8 @@ typedef struct item {
 	gps virt_pos;
 	SDL_Rect text_slot_rectangle;
 	int type;
-	int max_duration;	// the maximum item durability reachable for this item
-	float current_duration;	// the currently remaining durability for this item
+	int max_durability;	// the maximum item durability reachable for this item
+	float current_durability;	// the currently remaining durability for this item
 	float throw_time;	// has this item just jumped out from a chest maybe or is it jumping right now?
 
 	int bonus_to_dex;

@@ -453,7 +453,7 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume);
 
 // items.c
 void init_item(item *);
-item create_item_with_name(const char *item_name, int full_duration, int multiplicity);
+item create_item_with_name(const char *item_name, int full_durability, int multiplicity);
 void equip_item(item *new_item);
 item *get_equipped_item_in_slot_for(int item_type);
 void MoveItem(item * SourceItem, item * DestItem);
@@ -468,7 +468,7 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y);
 unsigned long calculate_item_buy_price(item * BuyItem);
 unsigned long calculate_item_repair_price(item * repair_item);
 unsigned long calculate_item_sell_price(item * BuyItem);
-void FillInItemProperties(item * ThisItem, int FullDuration, int multiplicity);
+void FillInItemProperties(item *it, int full_durability, int multiplicity);
 void DamageProtectiveEquipment(void);
 void append_item_name(item *ShowItem, struct auto_string *str);
 item *DropItemAt(int, int, float, float, int);
