@@ -343,7 +343,7 @@ item *action_create_item(level *EditLevel, float x, float y, int type)
 		// Display a popup window with a number selector in order to choose the
 		// multiplicity of the item
 		multiplicity =
-		    do_graphical_number_selection_in_range(1, (!MatchItemWithName(type, "Valuable Circuits")) ? 100 : 1000, 1);
+		    do_graphical_number_selection_in_range(1, (!MatchItemWithName(type, "Valuable Circuits")) ? 100 : 1000, 1, 0);
 		
 		// We always want create an item with a multiplicity higher than 0
 		multiplicity = (multiplicity > 0) ? multiplicity : 1;

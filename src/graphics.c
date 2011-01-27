@@ -183,7 +183,7 @@ void fade_in_screen(void)
  * It will accept the range allowed and do the complete selection process
  * with the user until he presses 'OK' on the scale screen.
  */
-int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value)
+int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value, int price_per_unit)
 {
 	static struct image selection_knob = EMPTY_IMAGE;
 	int ok_button_was_pressed = FALSE;
@@ -198,6 +198,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	int knob_at = default_value;
 	int delta = 0;
 	char number_text[1000];
+	char price_text[1000];
 	SDL_Event event;
 	SDL_Rect knob_target_rect;
 
@@ -219,8 +220,12 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 		knob_target_rect.x = knob_start_x + knob_offset_x - selection_knob.w / 2;
 		knob_target_rect.y = UNIVERSAL_COORD_H(260) - selection_knob.h / 2;
 		display_image_on_screen(&selection_knob, knob_target_rect.x, knob_target_rect.y); 
-		sprintf(number_text, "%d", knob_at);
+		sprintf(number_text, "%4d", knob_at);
 		PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(190), number_text);
+		if (price_per_unit) {
+			sprintf(price_text, _("%4d (price)"), price_per_unit * knob_at);
+			PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(200), price_text);
+		}
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 		limit_fps();
