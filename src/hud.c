@@ -146,9 +146,9 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 			autostr_append(str, _("Armor: %d\n"), item->armor_class);
 	}
 	// Durability or indestructible status
-	if (item->max_duration != (-1)) {
-		autostr_append(str, _("Durability: %d of %d\n"), (int)item->current_duration, (int)item->max_duration);
-	} else if (ItemMap[item->type].base_item_duration == (-1)) {
+	if (item->max_durability != (-1)) {
+		autostr_append(str, _("Durability: %d of %d\n"), (int)item->current_durability, (int)item->max_durability);
+	} else if (ItemMap[item->type].base_item_durability == (-1)) {
 		autostr_append(str, "\n");
 	} else {
 		autostr_append(str, _("Indestructible\n"));
