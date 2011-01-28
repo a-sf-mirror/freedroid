@@ -848,7 +848,7 @@ void Cheatmenu(void)
 		printf_SDL(Screen, -1, -1, " k. dead robot list of current level\n");
 		printf_SDL(Screen, -1, -1, " d. destroy robots on current level\n");
 		printf_SDL(Screen, -1, -1, " h. Auto-acquire all skills\n");
-		printf_SDL(Screen, -1, -1, " c. Acquire 1 million circuits\n");
+		printf_SDL(Screen, -1, -1, " c. Acquire 1 million circuits, current worth: %d\n", Me.Gold);
 		printf_SDL(Screen, -1, -1, " n. No hidden droids: %s", show_all_droids ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " r. Infinite running stamina: %s", GameConfig.cheat_running_stamina ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " x. Cheatkeys : %s", GameConfig.enable_cheatkeys ? "ON\n" : "OFF\n");
