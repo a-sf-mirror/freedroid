@@ -132,6 +132,8 @@
 	 e.g. SDL-esd or SDL-alsa until these problems has been fixed upstream.
    * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the
 	 text in freedroidRPG. Upgrading to Mesa 7 fixes this.
+   * Intel 915/945/IDG graphics cards (EEE PCs, netbooks, etc): Mesa 7.9-devel has an issue which makes the game
+   	 run slowly. It is fixed by installing and launching 'driconf' and setting 'Enable texture tiling' to 'No'.   
    * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
 	 of the whole screen instead of just the game window, if the option
 	 (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
