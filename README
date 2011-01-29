@@ -134,9 +134,6 @@
 	 text in freedroidRPG. Upgrading to Mesa 7 fixes this.
    * Intel 915/945/IDG graphics cards (EEE PCs, netbooks, etc): Mesa 7.9-devel has an issue which makes the game
    	 run slowly. It is fixed by installing and launching 'driconf' and setting 'Enable texture tiling' to 'No'.   
-   * When playing in SDL windowed mode, teleporting has the side effect of changing the brightness
-	 of the whole screen instead of just the game window, if the option
-	 (Options -> Performance Tweaks ->) Skip fadings is set to "NO".
    * The "Toggle display collision rectangles" function of the level editor does not work in SDL mode.
    * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
 
