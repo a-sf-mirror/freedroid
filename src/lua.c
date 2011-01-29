@@ -60,6 +60,35 @@ static enemy *get_enemy_arg(lua_State *L, int param_number)
 	return get_enemy_with_dialog(dialog);
 }
 
+/** Helper to modify the enemy state
+  * with a constant set of names.
+  */
+static void set_bot_state(enemy *en, const char *cmd) 
+{
+	if (!strcmp(cmd, "follow_tux")) {
+		en->follow_tux = TRUE;
+		en->CompletelyFixed = FALSE;
+	} else if (!strcmp(cmd, "fixed")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = TRUE;
+	} else if (!strcmp(cmd, "free")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
+	} else if (!strcmp(cmd, "home")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
+		en->combat_state = RETURNING_HOME;
+	} else if (!strcmp(cmd, "patrol")) {
+		en->follow_tux = FALSE;
+		en->CompletelyFixed = FALSE;
+		en->combat_state = SELECT_NEW_WAYPOINT;
+	} else {
+		ErrorMessage(__FUNCTION__,
+		     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\", \"free\", \"home\", and \"patrol\".\n",
+		     PLEASE_INFORM, IS_WARNING_ONLY, cmd);
+	}
+}
+
 static int lua_event_teleport(lua_State * L)
 {
 	const char *label = luaL_checkstring(L, 1);
@@ -729,27 +758,19 @@ static int lua_chat_set_bot_state(lua_State * L)
 {
 	const char *cmd = luaL_checkstring(L, 1);
 	enemy *en = get_enemy_arg(L, 2); 
-	if (!strcmp(cmd, "follow_tux")) {
-		en->follow_tux = TRUE;
-		en->CompletelyFixed = FALSE;
-	} else if (!strcmp(cmd, "fixed")) {
-		en->follow_tux = FALSE;
-		en->CompletelyFixed = TRUE;
-	} else if (!strcmp(cmd, "free")) {
-		en->follow_tux = FALSE;
-		en->CompletelyFixed = FALSE;
-	} else if (!strcmp(cmd, "home")) {
-		en->follow_tux = FALSE;
-		en->CompletelyFixed = FALSE;
-		en->combat_state = RETURNING_HOME;
-	} else if (!strcmp(cmd, "patrol")) {
-		en->follow_tux = FALSE;
-		en->CompletelyFixed = FALSE;
-		en->combat_state = SELECT_NEW_WAYPOINT;
-	} else {
-		ErrorMessage(__FUNCTION__,
-			     "I was called with an invalid state named %s. Accepted values are \"follow_tux\", \"fixed\", \"free\", \"home\", and \"patrol\".\n",
-			     PLEASE_INFORM, IS_FATAL, cmd);
+	set_bot_state(en, cmd);
+	return 0;
+}
+
+static int lua_chat_broadcast_bot_state(lua_State * L)
+{
+	const char *cmd = luaL_checkstring(L, 1);	
+	const char *dialogname = chat_control_chat_droid->dialog_section_name;
+	enemy *en;
+	BROWSE_LEVEL_BOTS(en, chat_control_chat_droid->pos.z) {
+		if (!strcmp(en->dialog_section_name, dialogname) && (is_friendly(en->faction, FACTION_SELF))) {
+			set_bot_state(en, cmd);
+		}
 	}
 	return 0;
 }
@@ -1083,6 +1104,8 @@ luaL_reg lfuncs[] = {
 	{"set_bot_state", lua_chat_set_bot_state}
 	,
 	{"set_bot_destination", lua_set_bot_destination}
+	,
+	{"broadcast_bot_state", lua_chat_broadcast_bot_state}
 	,
 	{"takeover", lua_chat_takeover}
 	,

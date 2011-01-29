@@ -37,6 +37,17 @@ EveryTime LuaCode={
 		npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
 		npc_says(_"This ".. bot_type().._" unit could need some repair.", "NO_WAIT")
 	end
+	if (has_cookie("aftertakeover_broadcast_mode")) then
+		if (npc_damage_amount() > 5) then
+			npc_says(_"BOTNET: UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
+			npc_says(_"Entering \"single node\" mode...")
+			del_cookie("aftertakeover_broadcast_mode")
+		else
+			npc_says(_"BOTNET: Most commands will be broadcast.", "NO_WAIT")
+		end
+	else
+		npc_says(_"SINGLE NODE: Commands will not be broadcast.", "NO_WAIT")
+	end
 	cli_says(terminal, "NO_WAIT")
 	show(1, 11, 12, 13, 20, 99)
 }
@@ -60,7 +71,11 @@ LuaCode={
 	npc_says(_"Checking requirements...")
 	npc_says(_"Movement unit: Power-down... [Done].", "NO_WAIT")
 	npc_says(_"Status: All movement suppressed.", "NO_WAIT")
-	set_bot_state("fixed")
+	if (has_cookie("aftertakeover_broadcast_mode")) then
+		broadcast_bot_state("fixed")
+	else
+		set_bot_state("fixed")
+	end
 	cli_says(terminal, "NO_WAIT")
 	hide(11) show(12, 13)
 }
@@ -74,7 +89,11 @@ LuaCode={
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
 	npc_says(_"Trying to keep up with " .. get_player_name() .._" position.", "NO_WAIT")
 	npc_says(_"Status: Following " .. get_player_name() .. ".", "NO_WAIT")
-	set_bot_state("follow_tux")
+	if (has_cookie("aftertakeover_broadcast_mode")) then
+		broadcast_bot_state("follow_tux")
+	else
+		set_bot_state("follow_tux")
+	end
 	cli_says(terminal, "NO_WAIT")
 	hide(12) show(11, 13)
 }
@@ -90,7 +109,11 @@ LuaCode={
 	npc_says(_"Movement unit: Power-up... [Done].", "NO_WAIT")
 	npc_says(_"Resuming normal patrol operations... [Done]", "NO_WAIT")
 	npc_says(_"Status: Patrolling.", "NO_WAIT")
-	set_bot_state("free")
+	if (has_cookie("aftertakeover_broadcast_mode")) then
+		broadcast_bot_state("free")
+	else
+		set_bot_state("free")
+	end
 	cli_says(terminal, "NO_WAIT")
 	hide(13) show(11, 12)
 }

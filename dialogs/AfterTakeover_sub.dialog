@@ -103,12 +103,10 @@ Nr=31 Text=_"Yes, always ask."
 NO_TEXT
 LuaCode={
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
-	npc_says(_"Settings saved", "NO_WAIT")
 	if (not has_cookie("aftertakeover_confirm_hcf")) then 
 		add_cookie("aftertakeover_confirm_hcf")
-	else end	
-	cli_says(terminal_sub, "NO_WAIT")
-	hide(31, 32) show(0, 20, 30, 40)
+	end
+	next(33)
 }
 ----------------------------------------------------------------------
 
@@ -116,12 +114,59 @@ Nr=32 Text=_"No, don't ask"
 NO_TEXT
 LuaCode={
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
-	npc_says(_"Settings saved", "NO_WAIT")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		del_cookie("aftertakeover_confirm_hcf")
-	else end
-	cli_says(terminal_sub, "NO_WAIT")
-	hide(31, 32) show(0, 20, 30, 40)
+	end
+	next(33)
+}
+----------------------------------------------------------------------
+
+Nr=33 Text="BUG, REPORT ME! aftertakeover_sub node33"
+NO_TEXT
+LuaCode={
+	npc_says(_"Settings saved", "NO_WAIT")
+	if (npc_damage_amount() > 5) then
+		npc_says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.")
+		cli_says(terminal_sub, "NO_WAIT")
+		show(0, 20, 30, 40)
+	else
+		npc_says(_"Broadcast commands to all units on level? [Y/N]")
+		show(34, 35)
+	end
+	hide(31, 32)	
+}
+----------------------------------------------------------------------
+
+Nr=34 Text=_"Yes, enable broadcast."
+NO_TEXT
+LuaCode={
+	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.")
+	npc_says(_"Entering \"botnet\" mode...")
+	if (not has_cookie("aftertakeover_broadcast_mode")) then
+		add_cookie("aftertakeover_broadcast_mode")
+	end
+	next(36)
+}
+----------------------------------------------------------------------
+
+Nr=35 Text=_"No, disable broadcast."
+NO_TEXT
+LuaCode={
+	npc_says(_"Commands will only be executed by this bot.")
+	npc_says(_"Entering \"single node\" mode...")
+	if (has_cookie("aftertakeover_broadcast_mode")) then
+		del_cookie("aftertakeover_broadcast_mode")
+	end
+	next(36)
+}
+----------------------------------------------------------------------
+
+Nr=36 Text="BUG, REPORT ME! aftertakeover_sub node36"
+NO_TEXT
+LuaCode={
+	npc_says(_"Settings saved", "NO_WAIT")
+ 	cli_says(terminal_sub, "NO_WAIT")
+	hide(34, 35) show(0, 20, 30, 40)
 }
 ----------------------------------------------------------------------
 
