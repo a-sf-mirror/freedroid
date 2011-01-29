@@ -1247,13 +1247,13 @@ static int Options_handle(int n)
 
 static void Options_fill(char *MenuTexts[10])
 {
-	strncpy(MenuTexts[0], _("Game"), 1024);
+	strncpy(MenuTexts[0], _("Gameplay"), 1024);
 	strncpy(MenuTexts[1], _("Graphics"), 1024);
 	strncpy(MenuTexts[2], _("Sound"), 1024);
 	strncpy(MenuTexts[3], _("Keys"), 1024);
-	strncpy(MenuTexts[4], _("Droid Talk"), 1024);
-	strncpy(MenuTexts[5], _("On-Screen Displays"), 1024);
-	strncpy(MenuTexts[6], _("Performance Tweaks"), 1024);
+	strncpy(MenuTexts[4], _("Droid talk"), 1024);
+	strncpy(MenuTexts[5], _("On-Screen displays"), 1024);
+	strncpy(MenuTexts[6], _("Performance tweaks"), 1024);
 	strncpy(MenuTexts[7], _("Back"), 1024);
 	MenuTexts[8][0] = '\0';
 }
@@ -1288,7 +1288,7 @@ static int Escape_handle(int n)
 		SaveGame();
 		break;
 	case QUIT_POSITION:
-		DebugPrintf(2, "\nvoid EscapeMenu( void ): Quit Requested by user.  Terminating...");
+		DebugPrintf(2, "\nvoid EscapeMenu( void ): Quit requested by user.  Terminating...");
 		Terminate(0);
 		break;
 	default:
@@ -1457,23 +1457,23 @@ static void Graphics_fill(char *MenuTexts[10])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(MenuTexts[i++], _("Change Screen Resolution"));
+	sprintf(MenuTexts[i++], _("Change screen resolution"));
 
-	sprintf(Options[i], _("Fullscreen Mode"));
+	sprintf(Options[i], _("Fullscreen mode"));
 	sprintf(Options[i + 1], ": %s", GameConfig.fullscreen_on ? _("ON") : _("OFF"));
 
 	strcat(Options[i], Options[i + 1]);
 
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Gamma Correction"));
-	sprintf(Options[i + 1], ": %1.2f", GameConfig.current_gamma_correction);
+	sprintf(Options[i], _("<-- Gamma correction"));
+	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.current_gamma_correction);
 
 	strcat(Options[i], Options[i + 1]);
 
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Show Blood"));
+	sprintf(Options[i], _("Show blood"));
 
 	sprintf(Options[i + 1], ": %s", GameConfig.show_blood ? _("YES") : _("NO"));
 
@@ -1551,12 +1551,12 @@ static void Sound_fill(char *MenuTexts[10])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("<-- Background Music Volume"));
+	sprintf(Options[i], _("<-- Background music volume"));
 	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.Current_BG_Music_Volume);
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("<-- Sound Effects Volume"));
+	sprintf(Options[i], _("<-- Sound effects volume"));
 	sprintf(Options[i + 1], ": %1.2f -->", GameConfig.Current_Sound_FX_Volume);
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
@@ -1613,8 +1613,8 @@ static void Performance_fill(char *MenuTexts[])
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("Skip light radius"));
-	sprintf(Options[i + 1], ": %s", GameConfig.skip_light_radius ? _("YES") : _("NO"));
+	sprintf(Options[i], _("Show light radius"));
+	sprintf(Options[i + 1], ": %s", GameConfig.skip_light_radius ? _("NO") : _("YES"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
@@ -1688,11 +1688,11 @@ static int OSD_handle(int n)
 
 static void OSD_fill(char *MenuTexts[10])
 {
-	sprintf(MenuTexts[0], _("Show Position: %s"), GameConfig.Draw_Position ? _("ON") : _("OFF"));
-	sprintf(MenuTexts[1], _("Show Framerate: %s"), GameConfig.Draw_Framerate ? _("ON") : _("OFF"));
-	sprintf(MenuTexts[2], _("Show Energy Bars: %s"), GameConfig.enemy_energy_bars_visible ? _("ON") : _("OFF"));
-	sprintf(MenuTexts[3], _("Screen Messages at most: %d"), GameConfig.number_of_big_screen_messages);
-	sprintf(MenuTexts[4], _("Screen Message time: %3.1f"), GameConfig.delay_for_big_screen_messages);
+	sprintf(MenuTexts[0], _("Show position: %s"), GameConfig.Draw_Position ? _("YES") : _("NO"));
+	sprintf(MenuTexts[1], _("Show framerate: %s"), GameConfig.Draw_Framerate ? _("YES") : _("NO"));
+	sprintf(MenuTexts[2], _("Show enemies' energy bars: %s"), GameConfig.enemy_energy_bars_visible ? _("YES") : _("NO"));
+	sprintf(MenuTexts[3], _("<-- Screen messages at most: %d -->"), GameConfig.number_of_big_screen_messages);
+	sprintf(MenuTexts[4], _("<-- Screen message time: %3.1f -->"), GameConfig.delay_for_big_screen_messages);
 	strcpy(MenuTexts[5], _("Back"));
 	MenuTexts[6][0] = '\0';
 
@@ -1725,18 +1725,18 @@ static void Droid_fill(char *MenuTexts[10])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("Enemy Hit Texts"));
-	sprintf(Options[i + 1], ": %s", GameConfig.Enemy_Hit_Text ? _("ON") : _("OFF"));
+	sprintf(Options[i], _("Show enemy hit texts"));
+	sprintf(Options[i + 1], ": %s", GameConfig.Enemy_Hit_Text ? _("YES") : _("NO"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
-	sprintf(Options[i], _("All in-game Speech"));
-	sprintf(Options[i + 1], ": %s", GameConfig.All_Texts_Switch ? _("ON") : _("OFF"));
+	sprintf(Options[i], _("Show enemies' states"));
+	sprintf(Options[i + 1], ": %s", GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
 	sprintf(Options[i], _("Reprogram bots after takeover"));
-	sprintf(Options[i + 1], ": %s", GameConfig.talk_to_bots_after_takeover ? _("ON") : _("OFF"));
+	sprintf(Options[i + 1], ": %s", GameConfig.talk_to_bots_after_takeover ? _("YES") : _("NO"));
 	strcat(Options[i], Options[i + 1]);
 	strncpy(MenuTexts[i], Options[i], 1024);
 	i++;
