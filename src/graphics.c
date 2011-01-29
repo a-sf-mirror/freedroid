@@ -112,13 +112,14 @@ static void fade(int fade_delay, int direction)
 	Activate_Conservative_Frame_Computation();
 	AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 
-#ifdef HAVE_LIBGL
 	if (use_open_gl) {
+#ifdef HAVE_LIBGL
 		StoreMenuBackground(0);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	} else
 #endif
+	} else {
 		bg = SDL_DisplayFormat(Screen);
+	}
 
 	Uint32 now   = SDL_GetTicks();
 	Uint32 start = now;
@@ -128,22 +129,20 @@ static void fade(int fade_delay, int direction)
 		if (direction < 0)
 			fade = 255 - fade;
 
-#ifdef HAVE_LIBGL
 		if (!use_open_gl) {
-#endif
 			SDL_SetAlpha(bg, SDL_SRCALPHA, fade);
 			SDL_FillRect(Screen, NULL, 0);
 			our_SDL_blit_surface_wrapper(bg, NULL, Screen, NULL);
 			blit_mouse_cursor();
 			our_SDL_flip_wrapper();
-#ifdef HAVE_LIBGL
 		} else {
+#ifdef HAVE_LIBGL
 			glColor4ub(fade, fade, fade, 255);
 			RestoreMenuBackground(0);
 			blit_mouse_cursor();
 			SDL_GL_SwapBuffers();
-		}
 #endif
+		}
 		now = SDL_GetTicks();
 	}
 
