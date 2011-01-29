@@ -86,7 +86,7 @@ Attack animation sound file name="death_sound_123.ogg"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=1.00
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 0
+Filename prefix for graphics="123"
 Notes concerning this droid=_"A simple rubbish disposal robot. Common device in most space craft to maintain a clean ship." 
 
 ** Start of new Robot: ** 
@@ -114,7 +114,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=1.00
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 1
+Filename prefix for graphics="139"
 Notes concerning this droid=_"Created by Dr. Masternak to clean up large heaps of rubbish. Its large scoop is used to collect rubbish. It is then crushed internally." 
 
 ** Start of new Robot: ** 
@@ -142,7 +142,7 @@ Attack animation sound file name="death_sound_247.ogg"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.80
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 2
+Filename prefix for graphics="247"
 Notes concerning this droid=_"A light duty servant robot. One of the first to use the anti-grav system." 
 
 ** Start of new Robot: ** 
@@ -170,7 +170,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=82
 Time to recover after getting hit=0.80
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 3
+Filename prefix for graphics="249"
 Notes concerning this droid=_"Cheaper version of the anti-grav servant robot." 
 
 ** Start of new Robot: ** 
@@ -198,7 +198,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.80
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 4
+Filename prefix for graphics="296"
 Notes concerning this droid=_"Run away! This bot will kill you!" 
 
 ** Start of new Robot: ** 
@@ -226,7 +226,7 @@ Attack animation sound file name="death_sound_302.ogg"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.60
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 5
+Filename prefix for graphics="302"
 Notes concerning this droid=_"Common device for moving small packages. Clamp is mounted on the lower body." 
 
 ** Start of new Robot: ** 
@@ -254,7 +254,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.60
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 6
+Filename prefix for graphics="329"
 Notes concerning this droid=_"Early type messenger robot. Large wheels impede motion on small craft."
 
 ** Start of new Robot: ** 
@@ -282,7 +282,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.50
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 7
+Filename prefix for graphics="420"
 Notes concerning this droid=_"A slow maintenance robot. Confined to drive maintenance during flight." 
 
 ** Start of new Robot: ** 
@@ -310,7 +310,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.50
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 8
+Filename prefix for graphics="476"
 Notes concerning this droid=_"Ship maintenance robot. Fitted with multiple arms to carry out repairs to the ship efficiently. All craft built after the Jupiter-incident are supplied with a team of these." 
 
 ** Start of new Robot: ** 
@@ -338,7 +338,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.50
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 9
+Filename prefix for graphics="493"
 Notes concerning this droid=_"Slave maintenance droid. Standard version will carry its own toolbox." 
 
 ** Start of new Robot: ** 
@@ -366,7 +366,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 10
+Filename prefix for graphics="516"
 Notes concerning this droid=_"Early crew droid. Able to carry out simple flight checks only. No longer supplied." 
 
 ** Start of new Robot: ** 
@@ -394,7 +394,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 11
+Filename prefix for graphics="571"
 Notes concerning this droid=_"A standard crew droid. Supplied with the ship." 
 
 ** Start of new Robot: ** 
@@ -422,7 +422,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 12
+Filename prefix for graphics="598"
 Notes concerning this droid=_"A highly sophisticated device. Able to control the Robo-Freighter on its own." 
 
 ** Start of new Robot: ** 
@@ -450,7 +450,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 13
+Filename prefix for graphics="614"
 Notes concerning this droid=_"A low security sentinel droid. Used to protect areas of the ship from intruders. A slow but sure device." 
 
 ** Start of new Robot: ** 
@@ -478,7 +478,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 14
+Filename prefix for graphics="615"
 Notes concerning this droid=_"Sophisticated sentinel droid. Only 2000 built by the Nicholson Company. These are now very rare."
 
 ** Start of new Robot: ** 
@@ -506,7 +506,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 15
+Filename prefix for graphics="629"
 Notes concerning this droid=_"A low sentinel droid. Lasers are built into the turret. These are mounted on a small tank body. May be fitted with an auto-cannon on-the Grillen version." 
 
 ** Start of new Robot: ** 
@@ -534,7 +534,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.20
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 16
+Filename prefix for graphics="711"
 Notes concerning this droid=_"A heavy duty battle droid. Disruptor is built into the head. One of the first in service with the Military." 
 
 ** Start of new Robot: ** 
@@ -562,7 +562,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.20
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 17
+Filename prefix for graphics="742"
 Notes concerning this droid=_"This version is the one mainly used by the military." 
 
 ** Start of new Robot: ** 
@@ -590,7 +590,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.20
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 18
+Filename prefix for graphics="751"
 Notes concerning this droid=_"A very heavy duty battle droid. Only a few have so far entered service. These are the most powerful battle units ever built." 
 
 ** Start of new Robot: ** 
@@ -618,7 +618,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 19
+Filename prefix for graphics="821"
 Notes concerning this droid=_"A very reliable anti-grav unit is fitted into this droid. It will patrol the ship and eliminate intruders as soon as detected by powerful sensors." 
 
 ** Start of new Robot: ** 
@@ -646,7 +646,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 20
+Filename prefix for graphics="834"
 Notes concerning this droid=_"Early type anti-grav security droid. Fitted with an over-driven anti-grav unit. This droid is very fast but is not reliable." 
 
 ** Start of new Robot: ** 
@@ -674,7 +674,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 21
+Filename prefix for graphics="883"
 Notes concerning this droid=_"This droid was designed from archive data. For some unknown reason it instills great fear in Human adversaries." 
 
 ** Start of new Robot: ** 
@@ -702,7 +702,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=70
 Time to recover after getting hit=0.05
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 22
+Filename prefix for graphics="999"
 Notes concerning this droid=_"Experimental command cyborg. Fitted with a new type of brain. Mounted on a security droid anti-grav unit for convenience." 
 
 ** Start of new Robot: ** 
@@ -725,7 +725,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 23
+Filename prefix for graphics="professor"
 Notes concerning this droid=_"This is a typical professor/sage character of some older age.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
@@ -748,7 +748,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 23
+Filename prefix for graphics="professor"
 Notes concerning this droid=_"Some people say that every doctor is addicted to drugs. You estimate that right now this one is high on at least four different narcotics. Doc Moore seems very happy indeed..."
 
 ** Start of new Robot: ** 
@@ -771,7 +771,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 24
+Filename prefix for graphics="red_guard"
 Notes concerning this droid=_"This is a typical red (male) guard/fighter character.  They are equipped with powerful PowerExterminators."
 
 ** Start of new Robot: ** 
@@ -794,7 +794,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 24
+Filename prefix for graphics="red_guard"
 Notes concerning this droid=_"This is Dixon, unlike a typical red (male) guard/fighter character, he has a knife weapon, and lowered aggression."
 
 ** Start of new Robot: ** 
@@ -817,7 +817,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 25
+Filename prefix for graphics="hot_mama"
 Notes concerning this droid=_"This is the hot_mama shopkeeper character model."
 
 ** Start of new Robot: ** 
@@ -840,7 +840,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 26
+Filename prefix for graphics="female_scientist"
 Notes concerning this droid=_"This is the female scientist character model.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
@@ -863,7 +863,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=50
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 27
+Filename prefix for graphics="default_male"
 Notes concerning this droid=_"This is the brown worker model.  They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
@@ -886,7 +886,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 28
+Filename prefix for graphics="blue_guard"
 Notes concerning this droid=_"This is a useless comment. Thanks for your attention."
 
 ** Start of new Robot: ** 
@@ -909,7 +909,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 29 
+Filename prefix for graphics="cook"
 Notes concerning this droid=_"This is the cook."
 
 
@@ -933,7 +933,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 30
+Filename prefix for graphics="kevin"
 Notes concerning this droid=_"This is a typical professor/sage character of some older age. They are not armed as powerfully as e.g. the red guards."
 
 ** Start of new Robot: ** 
@@ -956,7 +956,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 31
+Filename prefix for graphics="jasmine"
 Notes concerning this droid=_"This is a typical sex bomb.  This one is even armed."
 
 ** Start of new Robot: ** 
@@ -979,7 +979,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=30
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 31
+Filename prefix for graphics="jasmine"
 Notes concerning this droid=_"This is Tania. She is human."
 
 ** Start of new Robot: ** 
@@ -1002,7 +1002,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=70
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 32
+Filename prefix for graphics="bartender"
 Notes concerning this droid=_"This is the bartender."
 
 ** Start of new Robot: ** 
@@ -1025,7 +1025,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.40
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 33
+Filename prefix for graphics="harvester"
 Notes concerning this droid=_"Run away! This bot will kill you!" 
 
 ** Start of new Robot: ** 
@@ -1048,7 +1048,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=60
 Time to recover after getting hit=0.30
 Is this 'droid' a human : 1
-Individual shape of this droid or just -1 for classic ball shaped : 34
+Filename prefix for graphics="female_hunter"
 Notes concerning this droid=_"Blabla - TODO."
 
 ** Start of new Robot: ** 
@@ -1071,7 +1071,7 @@ Attack animation sound file name="none"
 Chance of this robot scoring a hit=0
 Time to recover after getting hit=0
 Is this 'droid' a human : 0
-Individual shape of this droid or just -1 for classic ball shaped : 35
+Filename prefix for graphics="terminal"
 Notes concerning this droid=_"This is a terminal."
 
 ----------------------------------------------------------------------

@@ -556,10 +556,18 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 		// Now we read in the is_human flag of this droid type
 		ReadValueFromString(RobotPointer, IS_HUMAN_SPECIFICATION_STRING, "%hd", &Druidmap[RobotIndex].is_human, EndOfDataPointer);
 
-		// Now we read in the is_human flag of this droid type
-		ReadValueFromString(RobotPointer, INDIVIDUAL_SHAPE_SPECIFICATION_STRING, "%hd",
-				    &Druidmap[RobotIndex].individual_shape_nr, EndOfDataPointer);
+		// Now we read in the Graphics to associate with this droid type
+		char *enemy_surface = ReadAndMallocStringFromData(RobotPointer, "Filename prefix for graphics=\"", "\"");
+		Druidmap[RobotIndex].individual_shape_nr = 0;
+		for (i=0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
+			if (PrefixToFilename[i] && !strcmp(enemy_surface, PrefixToFilename[i])){
+				Druidmap[RobotIndex].individual_shape_nr = i;
+				break;
+			}
+		}
+		free(enemy_surface);
 
+		// Now we read in the notes about this droid type
 		Druidmap[RobotIndex].notes = ReadAndMallocStringFromData(RobotPointer, NOTES_BEGIN_STRING, "\"");
 
 		// Now we're potentially ready to process the next droid.  Therefore we proceed to
@@ -1422,6 +1430,8 @@ I will not be able to load or save games or configurations\n\
 	//
 	SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
 
+	InitPictures();
+
 	Init_Game_Data();
 
 	/* 
@@ -1429,8 +1439,6 @@ I will not be able to load or save games or configurations\n\
 	 * level-start etc really different at each program start
 	 */
 	srand(time(NULL));
-
-	InitPictures();
 
 	if (strstr(VERSION, "rc"))
 		alert_window("%s", _("You are playing a Release Candidate.\nStrange bugs might still be present in the game.\nPlease report any issues you find to either of:\n\n#freedroid at irc.freenode.net\nfreedroid-discussion AT lists.sourceforge.net\nhttps://sourceforge.net/apps/phpbb/freedroid\n\nor directly to the bugtracker at the SF website\nThank you for helping us test the game.\n\nGood luck!\n"));
