@@ -285,6 +285,7 @@ EXTERN text_widget message_log;
 #define EXTERN extern
 #endif
 EXTERN obstacle_spec obstacle_map[NUMBER_OF_OBSTACLE_TYPES];
+EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 #undef EXTERN
 #ifdef _text_c

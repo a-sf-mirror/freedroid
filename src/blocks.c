@@ -36,8 +36,6 @@
 
 #include "lvledit/lvledit_display.h"
 
-char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
-
 /**
  *
  *

@@ -45,7 +45,6 @@
 
 char *chat_initialization_code;	//first time with a character-code
 char *chat_startup_code;	//every time we start this dialog-code
-EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 static void run_chat(enemy *ChatDroid, int is_subdialog);
 

@@ -80,7 +80,6 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ch
 void insert_new_element_into_blitting_list(float new_element_norm, int new_element_type, void *new_element_pointer, int code_number);
 static void show_inventory_screen(void);
 
-EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 struct blitting_list_element {
 	int element_type;
