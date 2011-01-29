@@ -231,10 +231,7 @@ void fusion(int id, int cible)
 	nb_max = find_connection_points(id, cplist, 0);
 	int k = 0;
 	int l = 0;		//index du tableau correct_directory
-	int x, y; 
 	while (k < nb_max) {
-		x = cplist[k].x;
-		y = cplist[k].y;
 		if (cplist[k].r == cible) {
 			correct_directory[l] = k;
 			l++;
@@ -248,6 +245,7 @@ void fusion(int id, int cible)
 		new_owner = id;
 	else
 		new_owner = cible;
+	int x, y;
 	for (k = 0; k < l; k++) {
 		x = cplist[correct_directory[k]].x;
 		y = cplist[correct_directory[k]].y;

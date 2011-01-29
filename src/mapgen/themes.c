@@ -417,8 +417,8 @@ static int place_work_office(int room)
 					mapgen_add_obstacle(x0 + j * 2 + x, y0 + i * d + y + 1, obj);
 				} else {
 					obj = ISO_TABLE_GLASS_2;
-					//x = -OBSTACLE_DIM_X(obj) / 2;
-					y = OBSTACLE_DIM_Y(obj) / 2 + k;
+					x = OBSTACLE_DIM_X(obj) / 3;
+					y = 3 * OBSTACLE_DIM_Y(obj) / 4 + k;
 					mapgen_add_obstacle(x0 + j * 2 + x, y0 + i * d + y, obj);
 					mapgen_add_obstacle(x0 + j * 2 + x, y0 + i * d + y - OBSTACLE_DIM_Y(obj) / 3, ISO_RED_CHAIR_S);
 					if (MyRandom(1))
