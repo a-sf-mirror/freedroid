@@ -240,6 +240,13 @@ Mission Name=_"Deliverance"
 
 ** Start of this mission target subsection **
 +++
++++ Deliver a nice meal to Will Gapes
++++
+Mission Name=_"Gapes Gluttony"
+** End of this mission target subsection **
+
+** Start of this mission target subsection **
++++
 +++ Upgrading Items in the Tutorial
 +++
 Mission Name=_"Tutorial Upgrading Items"
