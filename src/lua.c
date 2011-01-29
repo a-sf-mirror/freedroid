@@ -205,6 +205,12 @@ static int lua_event_get_tux_hp(lua_State * L)
 	return 1;
 }
 
+static int lua_event_get_tux_max_hp(lua_State * L)
+{
+	lua_pushinteger(L, (int)Me.maxenergy);
+	return 1;
+}
+
 static int lua_event_heat_tux(lua_State * L)
 {
 	int temp = luaL_checkinteger(L, 1);
@@ -962,9 +968,14 @@ luaL_reg lfuncs[] = {
 	,
 	{"heat_tux", lua_event_heat_tux}
 	,
+	/* get_tux_hp()             - Returns Tux's current health
+	 * get_tux_max_hp()         - Returns Tux's current maximum health
+	 * see also: tux_hp_ratio() - Returns the ratio of the two
+	 */
 	{"get_tux_hp", lua_event_get_tux_hp}
 	,
-
+	{"get_tux_max_hp", lua_event_get_tux_max_hp}
+	,
 	/* improve_skill(string skill_name)
 	 * get_skill()
 	 * improve_skill improves one of the three "melee", "ranged" and "programming" skills

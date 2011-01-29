@@ -280,6 +280,10 @@ function train_program(gold_amount, num_points, program)
 	return true
 end
 
+function tux_hp_ratio()
+	return get_tux_hp()/get_tux_max_hp()
+end
+
 function del_health(num_points)
 	if (num_points < get_tux_hp()) then
 		hurt_tux(num_points)
