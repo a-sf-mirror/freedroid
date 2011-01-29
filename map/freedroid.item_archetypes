@@ -4025,7 +4025,65 @@ Base list price=0
 Item description text=_"It appears that humans enjoy bathing with squeaky little pieces of plastic shaped like waterfowl. As a penguinoid, you should probably be disturbed, but you have to admit this thing is actually quite adorable."
 ** End of new item specification subsection **
 
+** Start of new item specification subsection **
+Item name=_"Empty Picnic Basket"
+inventory_size_x=4
+inventory_size_y=4
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="datacube"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="datacube/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"This is the latest in 'Dr. How?'-brand picnic basket technology! With patented food-preserving time-dilation, space-bending minituization, and anti-gravity, your food stays fresh and your drinks stay cold in a small light-as-a-feather package! Now you can picnic the old fashioned way!  Batteries sold separately."
+** End of new item specification subsection **
 
+** Start of new item specification subsection **
+Item name=_"Lunch in a Picnic Basket"
+inventory_size_x=4
+inventory_size_y=4
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="datacube"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="datacube/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and drinks to feed a dozen people. With 'Dr. How?'-time diliation, the food keeps oven-fresh, and the drinks stay ice-cold."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Gapes OTP Token"
+inventory_size_x=1
+inventory_size_y=1
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="addons/tinfoil_patch"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="addons/tinfoil_patch/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"This is credit-card sized device which has displays a changing seven character string of letters and numbers. On the back is inscribed 'William Gapes, MegaSystems.'"
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"MS Stock Certificate"
+inventory_size_x=1
+inventory_size_y=1
+Item min class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="addons/tinfoil_patch"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="addons/tinfoil_patch/inv_image.png"
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=0
+Item description text=_"This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer. Must be redemed in a stock trading terminal."
+** End of new item specification subsection **
 
 
 /**********************************************************************************************************
