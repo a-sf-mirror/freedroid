@@ -307,21 +307,24 @@ static void show_floor(int mask)
 
 void blit_leveleditor_point(int x, int y)
 {
-	if (!use_open_gl)
-		return;
+	if (use_open_gl) {
 #ifdef HAVE_LIBGL
-	glDisable(GL_TEXTURE_2D);
-	glEnable(GL_POINT_SMOOTH);
-	glPointSize(5.0);
-	glBegin(GL_POINTS);
-	glColor3f(1.0, 0.0, 0.0);
-	glVertex2i(x, y);
-	glEnd();
-	glDisable(GL_POINT_SMOOTH);
-	glEnable(GL_TEXTURE_2D);
-	glPointSize(1.0);
+		glDisable(GL_TEXTURE_2D);
+		glEnable(GL_POINT_SMOOTH);
+		glPointSize(5.0);
+		glBegin(GL_POINTS);
+		glColor3f(1.0, 0.0, 0.0);
+		glVertex2i(x, y);
+		glEnd();
+		glDisable(GL_POINT_SMOOTH);
+		glEnable(GL_TEXTURE_2D);
+		glPointSize(1.0);
 #endif
-};
+	} else {
+		SDL_Rect rect = { .x = x, .y = y, .w = 4, .h = 4 };
+		sdl_draw_rectangle(&rect, 255, 0, 0, 255);
+	}
+}
 
 /**
  * More for debugging purposes than for real gameplay, we add some 
