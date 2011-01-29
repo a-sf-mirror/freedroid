@@ -134,6 +134,7 @@ void init_npcs()
 		"TutorialTerminal",
 		"TutorialTom",
 		"Tybalt",
+		"WillGapes",
 	};
 
 	int i;

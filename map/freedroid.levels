@@ -29056,6 +29056,7 @@ x=27 y=32 name="MSOfficeFirmwareUpdateServerStartPosition"
 x=71 y=7 name="MSAreaGuardChiefStartGameSquare"
 x=77 y=8 name="MSAreaGuardStartGameSquare"
 x=36 y=27 name="OpenFirmwareUpgradeRoom"
+x=29 y=42 name="GapesStartLocation"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -29346,6 +29347,15 @@ Nr.=223 x=  28 y=  54 rnd=0	 c:  222 224 154 157
 Nr.=224 x=  25 y=  50 rnd=0	 c:  223 225
 Nr.=225 x=  23 y=  50 rnd=0	 c:  224 226
 Nr.=226 x=  22 y=  52 rnd=0	 c:  225 154
+Nr.=227 x=  27 y=  40 rnd=1	 c:  228 231
+Nr.=228 x=  29 y=  40 rnd=1	 c:  227 229
+Nr.=229 x=  29 y=  42 rnd=1	 c:  228 230 233
+Nr.=230 x=  31 y=  42 rnd=1	 c:  229
+Nr.=231 x=  27 y=  38 rnd=1	 c:  227 232
+Nr.=232 x=  25 y=  38 rnd=1	 c:  231
+Nr.=233 x=  29 y=  44 rnd=1	 c:  229 234 235
+Nr.=234 x=  31 y=  44 rnd=1	 c:  233
+Nr.=235 x=  25 y=  44 rnd=1	 c:  233
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 32
