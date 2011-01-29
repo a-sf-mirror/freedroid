@@ -98,6 +98,10 @@ static void remove_all_samples_from_WAV_cache(void)
 void play_sound(const char *SoundSampleFileName)
 {
 }
+
+void play_sound_directly(const char *filename)
+{
+}
 #endif
 
 #ifdef HAVE_LIBSDL_MIXER
