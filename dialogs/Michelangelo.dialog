@@ -39,11 +39,23 @@ EveryTime LuaCode={
 					hide(75, 76, 77)
 				else
 					if (has_item_backpack("Red Dilithium Crystal") < 1) then show(40, 75) else end
-				end																	
-			else end 
-		else						
+				end
+			end
+			if (has_quest(_"Gapes Gluttony")) then
+				if (not done_quest(_"Gapes Gluttony")) then
+					hide(24)
+						if (not has_cookie("asked_michelangelo_meal_to_go")) then
+							show(21)
+						else
+							hide(21)
+						end
+				elseif (has_item_backpack("Empty Picnic Basket") > 0) then
+					show(22)
+				end 
+			end	
+		else
 			if (has_item_backpack("Red Dilithium Crystal") > 2) then
-				show(29)	
+				show(29)
 			else 
 				show(31, 32, 40)
 				if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
@@ -139,6 +151,29 @@ LuaCode={
 	npc_says(_"I wish I could kill them all with my bare hands. They deserve it.")
 	npc_says(_"If only I had some dilithium to use as a backup power source...")
 	hide(20) show(40, 41, 42, 70, 80)
+}
+----------------------------------------------------------------------
+
+Nr=21 Text=_"Can I get a meal to go?"
+LuaCode={
+	tux_says(_"I've found a man who has nothing left to eat but army snacks. He has information for me, but I've got to feed him first.")
+	npc_says(_"I see. We do not have much to spare, but I will see what I can do. I will let you borrow my picnic basket, but I must have it back.")
+	npc_says(_"Here... This meal should satisfy his hunger. I even added a dessert.")
+	tux_says(_"Thank you. I'm sure it will be delicious.")
+	add_item("Lunch in a Picnic Basket")
+	add_cookie("asked_michelangelo_meal_to_go")
+	hide(21)
+}
+----------------------------------------------------------------------
+
+Nr=22 Text=_"I've brought your Picnic Basket back.")
+LuaCode={
+	npc_says(_"Oh, thank you. Hopefully, the meal hit the spot.")
+	tux_says(_"Yes, he enjoyed it, and I got my information.")
+	npc_says(_"Excellent! Now, perhaps these antibiotics will help you on your mission.")
+	del_item_backpack("Empty Picnic Basket")
+	add_item("Antibiotic", 3)
+	hide(22)
 }
 ----------------------------------------------------------------------
 
