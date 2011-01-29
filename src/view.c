@@ -3011,6 +3011,11 @@ void PrintCommentOfThisEnemy(enemy * e)
 {
 	int x_pos, y_pos;
 
+	if (game_status != INSIDE_GAME) {
+		// Do not print bot states when we are not inside the game.
+		return;
+	}
+
 	// At this point we can assume, that the enemys has been blittet to the
 	// screen, whether it's a friendly enemy or not.
 	// 
