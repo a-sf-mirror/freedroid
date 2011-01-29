@@ -320,9 +320,6 @@ void CheckIfCharacterIsStillOk()
 		ThouHastWon();
 	}
 
-	if (Me.god_mode)
-		Me.energy = Me.maxenergy;
-
 	// Now we check if the main character is really still ok.
 	//
 	if (Me.energy <= 0) {
@@ -757,6 +754,9 @@ void move_tux()
  */
 void hit_tux(float damage, int owner)
 {
+	if (Me.god_mode)
+		return;
+
 	Me.energy -= damage;
 
 	if (damage > Me.energy / 10)
