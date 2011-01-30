@@ -731,7 +731,7 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 	else
 		DeleteItem(SellItem);
 
-	play_sound_directly("effects/Shop_ItemSoldSound_0.ogg");
+	play_sound("effects/Shop_ItemSoldSound_0.ogg");
 }
 
 /**

@@ -95,13 +95,10 @@ static void remove_all_samples_from_WAV_cache(void)
 {
 }
 
-void play_sound(const char *SoundSampleFileName)
+void play_sound(const char *filename)
 {
 }
 
-void play_sound_directly(const char *filename)
-{
-}
 #endif
 
 #ifdef HAVE_LIBSDL_MIXER
@@ -347,7 +344,7 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
  * only in menus or dialogs and can therefore be loaded and dumped on demand while the other sound
  * samples for the action parts of the game will be kept in memory all the time.
  **/
-void play_sound_directly(const char *SoundSampleFileName)
+void play_sound(const char *filename)
 {
 	int Newest_Sound_Channel = 0;
 	Mix_Chunk *One_Shot_WAV_File = NULL;
@@ -362,7 +359,7 @@ void play_sound_directly(const char *SoundSampleFileName)
 	Mix_ChannelFinished(channel_done);
 
 	// Try to load the requested sound file into memory.
-	if (find_file(SoundSampleFileName, SOUND_DIR, fpath, 1) == 0) {
+	if (find_file(filename, SOUND_DIR, fpath, 1) == 0) {
 		One_Shot_WAV_File = Mix_LoadWAV(fpath);
 		if (One_Shot_WAV_File == NULL) {
 			ErrorMessage(__FUNCTION__, "Corrupt sound file encountered: %s.",
@@ -374,7 +371,7 @@ void play_sound_directly(const char *SoundSampleFileName)
 	// Now some error checking against failed/missing sound samples...
 	if (One_Shot_WAV_File == NULL) {
 		ErrorMessage(__FUNCTION__, "Missing sound file: '%s'.",
-					 NO_NEED_TO_INFORM, FALSE, SoundSampleFileName);
+					 NO_NEED_TO_INFORM, FALSE, filename);
 		return;
 	}
 
@@ -385,13 +382,9 @@ void play_sound_directly(const char *SoundSampleFileName)
 
 	// Now we try to play the sound file that has just been successfully
 	// loaded into memory...
-	//
-	// In case of an error, we will of course print an error message
-	// and quit...
-	//
 	Newest_Sound_Channel = Mix_PlayChannel(-1, One_Shot_WAV_File, 0);
 	if (Newest_Sound_Channel <= -1) {
-		fprintf(stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n", SoundSampleFileName, Mix_GetError());
+		fprintf(stderr, "\n\nfilename: '%s' Mix_GetError(): %s \n", filename, Mix_GetError());
 		ErrorMessage(__FUNCTION__, "\
 		The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.\n", PLEASE_INFORM, IS_WARNING_ONLY);
 
@@ -405,35 +398,6 @@ void play_sound_directly(const char *SoundSampleFileName)
 	// we also can't free the channel, that is still playing.
 	channel_must_be_freed[Newest_Sound_Channel] = 1;
 	wav_files_to_free[Newest_Sound_Channel] = One_Shot_WAV_File;
-}
-
-/**
- * Wrap play_sound_directly() such that we make sure that the same sound is not played with too
- * short of a delay.  Playing the sound several times in a row could lead to non-loadability errors
- * with the sound files.
- */
-void play_sound(const char *filename)
-{
-	static char previous_filename[1000] = "";
-	static Uint32 previous_ticks = 0;
-	Uint32 ticks_now;
-
-	// Return immediately if sound is disabled
-	if (!sound_on)
-		return;
-
-	// Cancel unless we have had enough delay
-	ticks_now = SDL_GetTicks();
-	if (strcmp(previous_filename, filename) == 0
-			&& ((ticks_now - previous_ticks) < 2.5 * 1000))
-		return;
-
-	// Save values for next run
-	previous_ticks = ticks_now;
-	strncpy(previous_filename, filename, 1000);
-
-	// OK, play the sound.
-	play_sound_directly(filename);
 }
 
 //aep: wrapper for the play_sound_cached_v

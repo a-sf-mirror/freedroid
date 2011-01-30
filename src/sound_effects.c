@@ -31,7 +31,7 @@
 
 void play_open_chest_sound(void)
 {
-	play_sound_directly("effects/open_chest_sound.ogg");
+	play_sound("effects/open_chest_sound.ogg");
 }
 
 void Play_Spell_ForceToEnergy_Sound()
@@ -282,7 +282,7 @@ void play_item_sound(int item_type)
 	//
 	strcpy(final_file_name, "effects/item_sounds/");
 	strcat(final_file_name, ItemMap[item_type].item_drop_sound_file_name);
-	play_sound_directly(final_file_name);
+	play_sound(final_file_name);
 
 }
 
