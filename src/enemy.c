@@ -1401,9 +1401,9 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 	/* The various situations are listed in increasing priority order (ie. they may override each other, so the least priority comes first. */
 	/* In an ideal world, this would not exist and be done for each state. But we're in reality and have to limit code duplication. */
 
-	/* Rush Tux when he's close */
+	// Rush Tux when he's close & visible
 	update_virtual_position(&ThisRobot->virt_pos, &ThisRobot->pos, Me.pos.z);
-	if (ThisRobot->will_rush_tux && ThisRobot->virt_pos.z != -1
+	if (ThisRobot->will_rush_tux && ThisRobot->virt_pos.z != -1 && (Me.invisible_duration <= 0)
 	    && (powf(Me.pos.x - ThisRobot->virt_pos.x, 2) + powf(Me.pos.y - ThisRobot->virt_pos.y, 2)) < 16) {
 		ThisRobot->combat_state = RUSH_TUX_AND_OPEN_TALK;
 	}
