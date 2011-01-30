@@ -148,9 +148,7 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	// Durability or indestructible status
 	if (item->max_durability != (-1)) {
 		autostr_append(str, _("Durability: %d of %d\n"), (int)item->current_durability, (int)item->max_durability);
-	} else if (ItemMap[item->type].base_item_durability == (-1)) {
-		autostr_append(str, "\n");
-	} else {
+	} else if (ItemMap[item->type].base_item_durability != (-1)) {
 		autostr_append(str, _("Indestructible\n"));
 	}
 	// Ranged weapon ammunition
@@ -168,50 +166,8 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 	}
 
 	// Usable items should say that they can be used via right-clicking on it
-	if (ItemMap[item->type].item_can_be_applied_in_combat) {
-		if (MatchItemWithName(item->type, "Diet supplement") || MatchItemWithName(item->type, "Antibiotic")
-		    || MatchItemWithName(item->type, "Doc-in-a-can")) {
-			autostr_append(str, _("Recover Health"));
-		} else if (MatchItemWithName(item->type, "Teleporter homing beacon")) {
-			autostr_append(str, _("Teleports you to a safe place or\n back to your previous position"));
-		} else if (MatchItemWithName(item->type, "Bottled ice") || MatchItemWithName(item->type, "Industrial coolant")
-			   || MatchItemWithName(item->type, "Liquid nitrogen")) {
-			autostr_append(str, _("Cooling aid"));
-		} else if (MatchItemWithName(item->type, "Barf's Energy Drink")) {
-			autostr_append(str, _("Cool down, catch your breath,\n cure minor wounds."));
-		} else if (MatchItemWithName(item->type, "Running Power Capsule")) {
-			autostr_append(str, _("Recover Running Power"));
-		} else if (MatchItemWithName(item->type, "Strength Capsule")) {
-			autostr_append(str, _("Temporary Boost to Strength"));
-		} else if (MatchItemWithName(item->type, "Dexterity Capsule")) {
-			autostr_append(str, _("Temporary Boost to Dexterity"));
-		} else if (MatchItemWithName(item->type, "Map Maker")) {
-			autostr_append(str, _("To implant the automap device"));
-		} else if (MatchItemWithName(item->type, "Strength Pill")) {
-			autostr_append(str, _("Permanently gain +1 strength"));
-		} else if (MatchItemWithName(item->type, "Dexterity Pill")) {
-			autostr_append(str, _("Permanently gain +1 dexterity"));
-		} else if (MatchItemWithName(item->type, "Code Pill")) {
-			autostr_append(str, _("Permanently gain +1 cooling"));
-		} else if (MatchItemWithName(item->type, "Brain Enlargement Pill")) {
-			autostr_append(str, _("Gives you fast acting cancer."));
-		} else if (strstr(ItemMap[item->type].item_name, "Source Book of")) {
-			autostr_append(str, _("Permanently acquire/enhance this program"));
-		} else if (strstr(ItemMap[item->type].item_name, "Repair manual")) {
-			autostr_append(str, _("Learn about repairing items"));
-		} else if (MatchItemWithName(item->type, "Small EMP Shockwave Generator")) {
-			autostr_append(str, _("Small Electromagnetic pulse"));
-		} else if (MatchItemWithName(item->type, "EMP Shockwave Generator")) {
-			autostr_append(str, _("Electromagnetic pulse"));
-		} else if (MatchItemWithName(item->type, "VMX Gas Grenade")) {
-			autostr_append(str, _("Gas attack"));
-		} else if (MatchItemWithName(item->type, "Small Plasma Shockwave Emitter")) {
-			autostr_append(str, _("Explosion"));
-		} else if (MatchItemWithName(item->type, "Plasma Shockwave Emitter")) {
-			autostr_append(str, _("Huge explosion"));
-		} else {
-			autostr_append(str, _("USE UNDESCRIBED YET (bug)"));
-		}
+	if (ItemMap[item->type].item_combat_use_description) {
+		autostr_append(str, ItemMap[item->type].item_combat_use_description);
 
 		// Show text only if item is in inventory
 		if (item->inventory_position.x != -1) {

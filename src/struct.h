@@ -266,7 +266,7 @@ typedef struct itemspec {
 	char *item_drop_sound_file_name;
 	char *item_inv_file_name;
 
-	char item_can_be_applied_in_combat;
+	char *item_combat_use_description;
 	char item_can_be_installed_in_weapon_slot;
 	char item_can_be_installed_in_drive_slot;
 	char item_can_be_installed_in_armour_slot;

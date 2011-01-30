@@ -667,7 +667,7 @@ void ApplyItem(item * CurItem)
 	if (CurItem->type < 0)
 		return;
 
-	if (ItemMap[CurItem->type].item_can_be_applied_in_combat == FALSE) {
+	if (!ItemMap[CurItem->type].item_combat_use_description) {
 		Me.TextVisibleTime = 0;
 		Me.TextToBeDisplayed = _("I can't use this item here.");
 		return;
@@ -2035,7 +2035,7 @@ int try_give_item(item *ItemPointer)
 	// inventory later.
 
 	if ((ItemMap[ItemPointer->type].inv_size.x == 1) &&
-	    (ItemMap[ItemPointer->type].inv_size.y == 1) && (ItemMap[ItemPointer->type].item_can_be_applied_in_combat)) {
+	    (ItemMap[ItemPointer->type].inv_size.y == 1) && (ItemMap[ItemPointer->type].item_combat_use_description)) {
 		DebugPrintf(2, "\n\nTrying to place this item inside of the quick inventory first...");
 		Inv_Loc.y = INVENTORY_GRID_HEIGHT - 1;
 		for (Inv_Loc.x = 0; Inv_Loc.x < INVENTORY_GRID_HEIGHT - ItemMap[ItemPointer->type].inv_size.x + 1; Inv_Loc.x++) {

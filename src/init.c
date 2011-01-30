@@ -609,7 +609,6 @@ static void get_item_data(char *DataPointer)
 
 #define ITEM_NAME_INDICATION_STRING "Item name=_\""
 #define ITEM_DESCRIPTION_INDICATION_STRING "Item description text=_\""
-#define ITEM_CAN_BE_APPLIED_IN_COMBAT "Item can be applied in combat=\""
 
 #define ITEM_CAN_BE_INSTALLED_IN_SLOT_WITH_NAME "Item can be installed in slot with name=\""
 #define ITEM_ROTATION_SERIES_NAME_PREFIX "Item uses rotation series with prefix=\""
@@ -661,18 +660,8 @@ static void get_item_data(char *DataPointer)
 		// Now we read in the description string of this item
 		item->item_description = ReadAndMallocStringFromData(ItemPointer, ITEM_DESCRIPTION_INDICATION_STRING, "\"");
 
-		// Now we read in if this item can be used by the influ without help
-		YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_CAN_BE_APPLIED_IN_COMBAT, "\"");
-		if (strcmp(YesNoString, "yes") == 0) {
-			item->item_can_be_applied_in_combat = TRUE;
-		} else if (strcmp(YesNoString, "no") == 0) {
-			item->item_can_be_applied_in_combat = FALSE;
-		} else {
-			ErrorMessage(__FUNCTION__,
-				     "The item specification of an item in freedroid.item_archetypes should contain an \nanswer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.\nThis indicated a corrupted freedroid.ruleset file with an error at least in\nthe item specification section.",
-				     PLEASE_INFORM, IS_FATAL);
-		}
-		free(YesNoString);
+		// Now we read in if what this item does if it can be used by the influ without help
+		item->item_combat_use_description = ReadAndMallocStringFromDataOptional(ItemPointer, "Item use when applied in combat=_\"", "\"");
 
 		// Now we read the label telling us in which slot the item can be installed
 		YesNoString = ReadAndMallocStringFromData(ItemPointer, ITEM_CAN_BE_INSTALLED_IN_SLOT_WITH_NAME, "\"");

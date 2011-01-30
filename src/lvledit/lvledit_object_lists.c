@@ -706,7 +706,7 @@ static void build_item_lists(void)
 				ItemMap[i].item_can_be_installed_in_shield_slot || ItemMap[i].item_can_be_installed_in_special_slot) {
 			defense_items_list[defense] = i;
 			defense++;
-		} else if (ItemMap[i].item_can_be_applied_in_combat) {
+		} else if (ItemMap[i].item_combat_use_description) {
 			spell_items_list[spell] = i;
 			spell++;
 		} else {

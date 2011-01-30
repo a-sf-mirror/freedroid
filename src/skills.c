@@ -243,7 +243,7 @@ void HandleCurrentlyActivatedSkill()
 
 	int Grabbed_InvPos = GetInventoryItemAt(GetInventorySquare_x(GetMousePos_x()), GetInventorySquare_y(GetMousePos_y()));
 	if (Grabbed_InvPos != -1)
-		if (ItemMap[Me.Inventory[Grabbed_InvPos].type].item_can_be_applied_in_combat)
+		if (ItemMap[Me.Inventory[Grabbed_InvPos].type].item_combat_use_description)
 			return;	//if the cursor is over an item that can be applied, then the player wants to apply it not trigger a spell
 
 	if (Me.skill_level[Me.readied_skill] <= 0)
