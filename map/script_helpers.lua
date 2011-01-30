@@ -152,6 +152,12 @@ function end_quest(quest, text)
 	npc_says("")
 end
 
+function del_cookie(cookie)
+	if has_cookie(cookie) then
+		remove_cookie(cookie)
+	end
+end
+
 -- Set faction and name
 function npc_faction(faction, name)
 	set_npc_faction(faction)

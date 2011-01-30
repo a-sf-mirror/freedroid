@@ -1044,7 +1044,7 @@ luaL_reg lfuncs[] = {
 	,
 	{"has_cookie", lua_event_cookie_planted}
 	,
-	{"del_cookie", lua_event_remove_cookie}
+	{"remove_cookie", lua_event_remove_cookie}
 	,
 	{"assign_quest", lua_event_assign_mission}
 	,
