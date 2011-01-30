@@ -50,7 +50,7 @@ EveryTime LuaCode={
 	if (has_item_backpack("Antibiotic") > 0) then show(56) end
 	if (has_item_backpack("Doc-in-a-can") > 0) then show(57) end
 
-	if (get_tux_hp() < 5) then
+	if (tux_hp_ratio() < 0.1) then
 		npc_says(_"You look gravely injured.")
 		npc_says(_"I will help you.")
 		tux_says(_"I...")
@@ -66,10 +66,10 @@ EveryTime LuaCode={
 		heal_tux()
 	end
 
-	if (get_tux_hp() < 20) then
+	if (tux_hp_ratio() < 0.2) then
 		npc_says(_"You don't look too good...")
 		npc_says(_"I can help you if you want.")
-	elseif (get_tux_hp() < 40) then
+	elseif (tux_hp_ratio() < 0.4) then
 		npc_says(_"You should take better care of yourself out there.")
 	end
 
