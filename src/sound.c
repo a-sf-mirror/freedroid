@@ -233,21 +233,7 @@ void channel_done(int channel)
 
 	// Now we can safely mark the channel as unused again
 	channel_must_be_freed[channel] = 0;
-};
-
-/**
- * This function will be invoked by the callback of the SDL mixer when
- * the fading out effect with the background music is completed.
- */
-void OldMusicHasFinishedFadingOut(void)
-{
-
-	DebugPrintf(1, "\nOld music has now completely faded out and stopped... Can proceed to fade in new music... \n");
-	LoadAndFadeInBackgroundMusic();
-
 }
-
-;				// void OldMusicHasFinishedFadingOut ( void )
 
 /** ============================================ MUSIC ============================================ */
 /**
@@ -327,7 +313,6 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 	// just return.
 	//
 	if (!strcmp(PreviousFileParameter, filename_raw_parameter)) {
-		DebugPrintf(0, "\nSwitch BG music instruction just repeats running music... nothing done.\n");
 		return;
 	} else {
 		strcpy(PreviousFileParameter, filename_raw_parameter);
@@ -351,11 +336,9 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 		// soon as the fading out effect is completed (and the new music
 		// can start to get going that is...)
 		//
-		Mix_HookMusicFinished(OldMusicHasFinishedFadingOut);
-
+		Mix_HookMusicFinished(LoadAndFadeInBackgroundMusic);
 	}
-
-}				// void SwitchBackgroundMusicTo ( char* filename_raw_parameter )
+}
 
 /** ============================================ SAMPLE FUNCTIONS ========================================= */
 
@@ -366,18 +349,8 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
  **/
 void play_sound_directly(const char *SoundSampleFileName)
 {
-	// This code searches for different kinds of
-	int i;
-	int pathlen;
-	char *extension;
-	char *extensions[] = { ".spx", ".ogg", ".wav", NULL };	// Extensions to try for audio
-
-	// These variables will only be needed when compiling with sound!
-	//
-
 	int Newest_Sound_Channel = 0;
-	Mix_Chunk *One_Shot_WAV_File;
-	char Temp_Filename[5000];
+	Mix_Chunk *One_Shot_WAV_File = NULL;
 	char fpath[2048] = "no_fpath_has_been_set";
 
 	// Return immediately if sound is disabled
@@ -386,75 +359,29 @@ void play_sound_directly(const char *SoundSampleFileName)
 
 	// Now we set a callback function, that should be called by SDL
 	// as soon as ANY other sound channel finishes playing...
-	//
 	Mix_ChannelFinished(channel_done);
 
-	// Now we try to load the requested sound file into memory...
-	//
-	One_Shot_WAV_File = NULL;
-
-	strcpy(Temp_Filename, SoundSampleFileName);
-
-	// Only if the file name wasn't 'no_voice_sample', we really
-	// try to load anything...
-	//
-	if (strcmp(SoundSampleFileName, "Sorry_No_Voice_Sample_Yet_0.wav")) {
-		pathlen = strlen(Temp_Filename);
-
-		if (strcmp(Temp_Filename + pathlen - 4, ".ogg") == 0) {
-			extension = Temp_Filename + pathlen - 4;
-		} else {
-			extension = Temp_Filename + pathlen;
+	// Try to load the requested sound file into memory.
+	if (find_file(SoundSampleFileName, SOUND_DIR, fpath, 1) == 0) {
+		One_Shot_WAV_File = Mix_LoadWAV(fpath);
+		if (One_Shot_WAV_File == NULL) {
+			ErrorMessage(__FUNCTION__, "Corrupt sound file encountered: %s.",
+						 NO_NEED_TO_INFORM, IS_WARNING_ONLY, fpath);
+			return;
 		}
-
-		i = 0;
-		while (extensions[i] != NULL) {
-			strcpy(extension, extensions[i]);
-			// find_file_silent may return a NULL pointer, in case the file name
-			// composed hasn't been found.  We need to catch that case of course.
-			//
-			if (find_file(Temp_Filename, SOUND_DIR, fpath, 1) == 0) {
-				One_Shot_WAV_File = Mix_LoadWAV(fpath);
-				if (One_Shot_WAV_File != NULL) {
-					break;
-				} else {
-					ErrorMessage(__FUNCTION__, "\
-			    Corrupt sound file encountered!  The file is there, \n\
-			    but the SDL MIXER was unable to LOAD it.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-				}
-			}
-
-			i++;
-		}
-	} else
-		One_Shot_WAV_File = NULL;
+	}
 
 	// Now some error checking against failed/missing sound samples...
-	//
 	if (One_Shot_WAV_File == NULL) {
-		// A warning message about a missing speech file should only be issued,
-		// if it wasn't the 'no_voice_sample' dummy entry anyway...
-		//
-		if (strcmp(SoundSampleFileName, "Sorry_No_Voice_Sample_Yet_0.wav")) {
-			fprintf(stderr, "\n\nSoundSampleFileName: '%s'", SoundSampleFileName);
-			ErrorMessage(__FUNCTION__, "\
-		    There seems to be a sound file missing.", NO_NEED_TO_INFORM, FALSE);
-		}
-		// Now we must return, since we do not want to 'free' the sound sample, that
-		// hasn't been loaded successfully and produce a segfault, do we?
-		//
+		ErrorMessage(__FUNCTION__, "Missing sound file: '%s'.",
+					 NO_NEED_TO_INFORM, FALSE, SoundSampleFileName);
 		return;
 	}
 
 	// Hoping, that this will not take up too much processor speed, we'll
 	// now change the volume of the sound sample in question to what is normal
 	// for sound effects right now...
-	//
-	// And of course we may only do this, if the sound file has been loaded
-	// successfully!  Otherwise the SDL_mixer lib will produce a segfault.
-	//
-	if (One_Shot_WAV_File != NULL)
-		Mix_VolumeChunk(One_Shot_WAV_File, (int)rintf(GameConfig.Current_Sound_FX_Volume * MIX_MAX_VOLUME));
+	Mix_VolumeChunk(One_Shot_WAV_File, (int)rintf(GameConfig.Current_Sound_FX_Volume * MIX_MAX_VOLUME));
 
 	// Now we try to play the sound file that has just been successfully
 	// loaded into memory...
@@ -468,11 +395,8 @@ void play_sound_directly(const char *SoundSampleFileName)
 		ErrorMessage(__FUNCTION__, "\
 		The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.\n", PLEASE_INFORM, IS_WARNING_ONLY);
 
-		// If we receive an error playing a sound file here, this is very inconvenient.
-		// We must see to it that the callback code and allocation there and all that doesn't
-		// get touched.  I hope that the following fix does already what we want here...
-		// But it should :->
-		//
+		// If we receive an error playing a sound file here, we must see to it that the callback
+		// code and allocation there and all that doesn't get touched.
 		Mix_FreeChunk(One_Shot_WAV_File);
 		return;
 	}
@@ -555,7 +479,6 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 		if (!strcmp(sound_names_in_dynamic_wav_chache[i], SoundSampleFileName)) {
 			sound_must_be_loaded = FALSE;
 			index_of_sample_to_be_played = i;
-			DebugPrintf(0, "\nFound the sound sample '%s' already in the cache!  Good.", SoundSampleFileName);
 			break;
 		}
 	}
@@ -594,8 +517,6 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 		//
 		sound_names_in_dynamic_wav_chache[next_free_position_in_cache] = MyMalloc(strlen(SoundSampleFileName) + 1);
 		strcpy(sound_names_in_dynamic_wav_chache[next_free_position_in_cache], SoundSampleFileName);
-		DebugPrintf(1, "\nSuccessfully added sample '%s' to sound cache at new position %d.",
-			    sound_names_in_dynamic_wav_chache[next_free_position_in_cache], next_free_position_in_cache);
 
 		// Now we increase the 'next_sample' index and are done.
 		//
