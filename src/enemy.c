@@ -982,8 +982,6 @@ void hit_enemy(enemy * target, float hit, char givexp, short int killertype, cha
 		}
 	}
 
-	EnemyHitByBulletText(target);
-
 	PlayEnemyGotHitSound(Druidmap[target->type].got_hit_sound_type);
 
 	target->energy -= hit;

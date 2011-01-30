@@ -1701,13 +1701,11 @@ static void OSD_fill(char *MenuTexts[10])
 static int Droid_handle(int n)
 {
 	enum {
-		ENEMY_HIT_TEXT = 1,
-		ALL_TEXTS,
+		ALL_TEXTS = 1,
 		TALK_AFTER_TO,
 		LEAVE_DROID_TALK_OPTIONS_MENU
 	};
 	int *ptrs[] = {
-		&GameConfig.Enemy_Hit_Text,
 		&GameConfig.All_Texts_Switch,
 		&GameConfig.talk_to_bots_after_takeover,
 	};
@@ -1725,11 +1723,6 @@ static void Droid_fill(char *MenuTexts[10])
 {
 	char Options[20][1000];
 	int i = 0;
-	sprintf(Options[i], _("Show enemy hit texts"));
-	sprintf(Options[i + 1], ": %s", GameConfig.Enemy_Hit_Text ? _("YES") : _("NO"));
-	strcat(Options[i], Options[i + 1]);
-	strncpy(MenuTexts[i], Options[i], 1024);
-	i++;
 	sprintf(Options[i], _("Show enemies' states"));
 	sprintf(Options[i + 1], ": %s", GameConfig.All_Texts_Switch ? _("YES") : _("NO"));
 	strcat(Options[i], Options[i + 1]);

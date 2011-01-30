@@ -1239,7 +1239,6 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.Current_Sound_FX_Volume = 0.5;
 	GameConfig.current_gamma_correction = 1.00;
 	GameConfig.WantedTextVisibleTime = 3;
-	GameConfig.Enemy_Hit_Text = FALSE;
 	GameConfig.Draw_Framerate = TRUE;
 	GameConfig.Draw_Position = TRUE;
 	GameConfig.All_Texts_Switch = FALSE;

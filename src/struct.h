@@ -115,7 +115,6 @@ typedef struct configuration_for_freedroid {
 	float WantedTextVisibleTime;
 	int Draw_Framerate;
 	int Draw_Position;
-	int Enemy_Hit_Text;
 	int All_Texts_Switch;
 	float Current_BG_Music_Volume;
 	float Current_Sound_FX_Volume;

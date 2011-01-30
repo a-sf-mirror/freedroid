@@ -231,37 +231,6 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)
 	return TRUE;
 };				// void CutDownStringToMaximalSize ( char* StringToCut , int LengthInPixels )
 
-/**
- * This function assigns a text comment to say for an enemy right after
- * is has been hit.  This can be turned off via a switch in GameConfig.
- */
-void EnemyHitByBulletText(enemy * ThisRobot)
-{
-	if (!GameConfig.Enemy_Hit_Text)
-		return;
-
-	ThisRobot->TextVisibleTime = 0;
-	if (ThisRobot->faction == FACTION_BOTS)
-		switch (MyRandom(4)) {
-		case 0:
-			ThisRobot->TextToBeDisplayed = _("Unhandled exception fault.  Press ok to reboot.");
-			break;
-		case 1:
-			ThisRobot->TextToBeDisplayed = _("System fault. Please buy a newer version.");
-			break;
-		case 2:
-			ThisRobot->TextToBeDisplayed = _("System error. Might be a virus.");
-			break;
-		case 3:
-			ThisRobot->TextToBeDisplayed = _("System error. Please buy an upgrade from MS.");
-			break;
-		case 4:
-			ThisRobot->TextToBeDisplayed = _("System error. Press any key to reboot.");
-			break;
-	} else
-		ThisRobot->TextToBeDisplayed = _("Aargh, I got hit.  Ugh, I got a bad feeling...");
-};				// void EnemyHitByBullet( int Enum );
-
 /* -----------------------------------------------------------------
  *
  * This function scrolls a given text down inside the User-window, 

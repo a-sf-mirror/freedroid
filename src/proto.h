@@ -681,7 +681,6 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
 void ChatWithFriendlyDroid(Enemy ChatDroid);
-void EnemyHitByBulletText(enemy *);
 void EnemyInfluCollisionText(enemy *);
 
 int DisplayText(const char *text, int startx, int starty, const SDL_Rect * clip, float text_stretch);
