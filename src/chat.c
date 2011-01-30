@@ -671,9 +671,9 @@ void validate_dialogs()
 	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 
-        /* Disable sound to speed up validation. */
-        int old_sound_on = sound_on;
-        sound_on = FALSE;
+	/* Disable sound to speed up validation. */
+	int old_sound_on = sound_on;
+	sound_on = FALSE;
 
 	/* Temporarily disable screen fadings to speed up validation. */
 	GameConfig.do_fadings = FALSE;
@@ -684,7 +684,7 @@ void validate_dialogs()
 	run_lua("function tux_says(a)\nend\n");
 	run_lua("function cli_says(a)\nend\n");
 
-	/* Subdialogs will be tested anyway, no need to run them from Lua */
+	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
 	run_lua("function run_subdialog(a)\nend\n");
 
 	/* Shops must not be run (display + wait for clicks) */
@@ -752,8 +752,8 @@ void validate_dialogs()
 		printf("\n... dialog OK\n");
 	}
 
-        /* Re-enable sound as needed. */
-        sound_on = old_sound_on;
+	/* Re-enable sound as needed. */
+	sound_on = old_sound_on;
 
 	/* Re-enable screen fadings. */
 	GameConfig.do_fadings = TRUE;
