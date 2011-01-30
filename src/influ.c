@@ -1758,6 +1758,8 @@ void init_tux()
 	item_held_in_hand = NULL;
 
 	clear_out_intermediate_points(&Me.pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
+	Me.next_intermediate_point[0].x = -1;
+	Me.next_intermediate_point[0].y = -1;
 	
 	Me.TextToBeDisplayed = "";
 	Me.TextVisibleTime = 0;
