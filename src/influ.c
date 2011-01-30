@@ -1696,7 +1696,7 @@ void init_tux()
 	Me.busy_type = NONE;
 
 	Me.phase = 0;
-	Me.angle = 0;
+	Me.angle = 180;
 	Me.walk_cycle_phase = 0;
 	Me.weapon_swing_time = -1;
 	Me.MissionTimeElapsed = 0;
