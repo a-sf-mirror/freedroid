@@ -36,7 +36,15 @@ EveryTime LuaCode={
 		set_bot_name(_"Tamara -- Librarian")
 		show(40, 99)
 		add_cookie("met_tamara")
-	else npc_says(_"What can I help you with.") end
+	else
+		npc_says(_"What can I help you with.")
+	end
+
+	if ((not has_cookie("won_nethack")) and (not has_cookie("tamara_asked_hacking"))) then
+		show(20)
+	else
+		hide(20)
+	end
 
 	if (has_cookie("met_sorenson") and (not has_cookie("talked_about_sister")) ) then show(10) else end
 }
@@ -53,6 +61,21 @@ LuaCode={
 	npc_says(_"Now all she does is sit locked in her house staring into the computer.")
 	add_cookie("talked_about_sister")
 	hide(10) show(99)
+}
+----------------------------------------------------------------------
+
+Nr=20 Text=_"I would like to learn how to hack."
+LuaCode={
+	add_cookie("tamara_asked_hacking")
+	if (has_cookie("talked_about_sister")) then
+		npc_says(_"My sister used to play Nethack all the time, about the time she became really good at hacking.")
+	else
+		npc_says(_"Everyone I know who is good with computers always talks about beating Nethack.")
+	end
+	npc_says(_"I think there might be a version on the town's computers.")
+	npc_says(_"I've never played it.")
+	npc_says(_"That might be why I'm no good with computers.")
+	hide(20)
 }
 ----------------------------------------------------------------------
 

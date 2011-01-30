@@ -335,8 +335,11 @@ LuaCode={
 			npc_says(_"You present the [b]Amulet of Yendor[/b] to [b]"..n_god.._"[/b] and you are rewarded with everlasting life.", "NO_WAIT")
 			npc_says(_"You win!", "NO_WAIT")
 			display_console_message(_"You ascended a "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role .._" in Nethack!")
-			--improve_program("Nethack")
-			if (not has_cookie("won_nethack")) then add_cookie("won_nethack") end 
+			if (not has_cookie("won_nethack")) then
+				add_cookie("won_nethack")
+				improve_program("Hacking")
+				display_big_message(_"By ascending in Nethack, you have improved your Hacking ability!")				
+			end 
 			next(70)
 		end
 	else
