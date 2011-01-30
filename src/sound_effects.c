@@ -198,7 +198,6 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 	strcpy(filename, "effects/bot_sounds/");
 	strcat(filename, Druidmap[ThisRobot->type].droid_death_sound_file_name);
 	play_sound_cached(filename);
-
 }
 
 /**
@@ -440,8 +439,6 @@ void Fire_Bullet_Sound(int BulletType)
 {
 	if (!sound_on)
 		return;
-
-	DebugPrintf(1, "\nFireBulletSound called...");
 
 	switch (BulletType) {
 	case PULSE:

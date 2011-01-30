@@ -420,6 +420,8 @@ void InitAudio(void);
 void SetBGMusicVolume(float);
 void SetSoundFXVolume(float);
 void SwitchBackgroundMusicTo(char *filename_raw);
+
+// sound_effects.c
 void tux_scream_sound(void);
 void No_Ammo_Sound(void);
 void Not_Enough_Power_Sound(void);
