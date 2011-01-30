@@ -658,7 +658,7 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
  */
 void validate_dialogs()
 {
-	int j;
+	int j, k;
 	const char *basename;
 	char filename[1024];
 	char fpath[2048];
@@ -731,15 +731,25 @@ void validate_dialogs()
 			printf("\tstartup code\n");
 			run_lua(chat_startup_code);
 		}
-
+		k = 0;
 		for (j = 0; j < MAX_DIALOGUE_OPTIONS_IN_ROSTER; j++) {
 			if (ChatRoster[j].lua_code) {
-				printf("\tnode %d\n", j);
+				if (!(k%5)) {
+					printf("\n");
+				}
+				printf("|node %2d|\t", j);
 				run_lua(ChatRoster[j].lua_code);
+				k++;
 			}
 		}
+		if(!ChatRoster[END_ANSWER].lua_code){
+			printf("\n\nERROR: \"%s\" Dialog missing END NODE (node %d).\n\n", n->dialog_basename, END_ANSWER);
+			break;
+			//ErrorMessage(__FUNCTION__, " NO_NEED_TO_INFORM, IS_FATAL,
+			//		
+		}
 
-		printf("... dialog OK\n");
+		printf("\n... dialog OK\n");
 	}
 
         /* Re-enable sound as needed. */
