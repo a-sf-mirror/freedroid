@@ -92,17 +92,12 @@ static int autostr_vprintf(struct auto_string *str, unsigned long offset,
 	nr = vsnprintf(str->value + offset, size, fmt, tmp_args);
 	va_end(tmp_args);
 
-	// C99 defines vsnprintf() to return the number of characters that would be written.
-	// MS Windows' vsnprintf() behaves differently: it returns -1 when the string is too small, not only on error.
-
 	if (nr < 0) {
-#ifndef __WIN32__ 
 		ErrorMessage(__FUNCTION__, "An error occured when calling vsnprintf: %s\n", PLEASE_INFORM, IS_WARNING_ONLY, strerror(errno));
 		return -1;
 	}
 
 	if ((unsigned long)nr >= size) {
-#endif
 		err = autostr_resize(str, str->capacity * 2);
 		if (err)
 			goto out;
