@@ -32,6 +32,7 @@ autom4te.cache
 depcomp
 
 # Helpers
+TAGS
 cscope.out
 doxygen/
 callgrind.out*
