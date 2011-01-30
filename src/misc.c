@@ -1055,14 +1055,7 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 	//
 	if (!Me.HaveBeenToLevel[Me.pos.z]) {
 		Me.HaveBeenToLevel[Me.pos.z] = TRUE;
-		// if ( array_num != 0 ) ShuffleEnemys ( array_num );
-		// if ( ( LNum != 0 ) && ( Shuffling ) ) ShuffleEnemys ( array_num );
-		// ShuffleEnemys ( array_num );
 	}
-	// No more shuffling once the game is up and running...
-	// else there are hostile bots inside some buildings and such things...
-	//
-	// if ( Shuffling ) ShuffleEnemys ( array_num );
 
 	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
 
