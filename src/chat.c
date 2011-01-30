@@ -671,6 +671,10 @@ void validate_dialogs()
 	LoadShip(fpath, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 
+        /* Disable sound to speed up validation. */
+        int old_sound_on = sound_on;
+        sound_on = FALSE;
+
 	/* Temporarily disable screen fadings to speed up validation. */
 	GameConfig.do_fadings = FALSE;
 
@@ -737,6 +741,9 @@ void validate_dialogs()
 
 		printf("... dialog OK\n");
 	}
+
+        /* Re-enable sound as needed. */
+        sound_on = old_sound_on;
 
 	/* Re-enable screen fadings. */
 	GameConfig.do_fadings = TRUE;
