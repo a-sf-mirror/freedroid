@@ -127,6 +127,14 @@ tux_ordering {
 
 tux_ordering {
   type = "sword_motion",
+  rotations = { 1 },
+  phase_start = 0,
+  phase_end = 10,
+  order = part_order.FTHSWA
+}
+
+tux_ordering {
+  type = "sword_motion",
   rotations = { 1, 2, 3, 4, 5, 6 },
   order = part_order.FSTHWA
 }
@@ -140,7 +148,7 @@ tux_ordering {
 tux_ordering {
   type = "sword_motion",
   rotations = { 8 },
-  order = part_order.FWTASH
+  order = part_order.FSWTAH
 }
 
 tux_ordering {
@@ -185,7 +193,13 @@ tux_ordering {
 
 tux_ordering {
   type = "gun_motion",
-  rotations = { 9, 10 },
+  rotations = { 9 },
+  order = part_order.FWASTH
+}
+
+tux_ordering {
+  type = "gun_motion",
+  rotations = { 10 },
   order = part_order.FWATSH
 }
 
