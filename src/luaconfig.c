@@ -116,9 +116,9 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 				if (lua_type(L, -2) == LUA_TNUMBER && lua_type(L, -1) == LUA_TNUMBER) {
 					int value = (int)lua_tonumber(L, -1);
 					dynarray_add((struct dynarray *)result, &value, sizeof(int));
-					lua_pop(L, 1);
 					found_and_valid = TRUE;
 				}
+				lua_pop(L, 1);
 			}
 		} else {
 			// The data is not in the lua table: initialize the dynarray
@@ -136,9 +136,9 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 				if (lua_type(L, -2) == LUA_TNUMBER && lua_type(L, -1) == LUA_TSTRING) {
 					char *value = strdup(lua_tostring(L, -1));
 					dynarray_add((struct dynarray *)result, &value, sizeof(char *));
-					lua_pop(L, 1);
 					found_and_valid = TRUE;
 				}
+				lua_pop(L, 1);
 			}
 		} else {
 			// The data is not in the lua table: initialize the dynarray
@@ -284,8 +284,8 @@ static int lua_register_addon(lua_State *L)
 				bonus.name = strdup(lua_tostring(L, -2));
 				bonus.value = lua_tonumber(L, -1);
 				dynarray_add(&addonspec.bonuses, &bonus, sizeof(bonus));
-				lua_pop(L, 1);
 			}
+			lua_pop(L, 1);
 		}
 	}
 	lua_pop(L, 1);
@@ -300,8 +300,8 @@ static int lua_register_addon(lua_State *L)
 				material.name = strdup(lua_tostring(L, -2));
 				material.value = lua_tonumber(L, -1);
 				dynarray_add(&addonspec.materials, &material, sizeof(material));
-				lua_pop(L, 1);
 			}
+			lua_pop(L, 1);
 		}
 	}
 	lua_pop(L, 1);
