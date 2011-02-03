@@ -2545,9 +2545,7 @@ void iso_put_tux_part(int tux_part_group, char *part_string, int x, int y, int m
 			draw_gl_textured_quad_at_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
 					Me.pos.x, Me.pos.y, r, g, b, FALSE, blend, 1.0);
 		} else {
-			draw_gl_textured_quad_at_screen_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
-					x + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x,
-					y + loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y);
+			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y);
 		}
 	}
 #endif

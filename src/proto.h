@@ -225,7 +225,6 @@ void show_character_screen_background(void);
 int safely_initialize_our_default_open_gl_parameters(void);
 void draw_gl_textured_quad_at_map_position(struct image *our_floor_iso_image, float our_col, float our_line, float r, float g, float b,
 					   int highlight_texture, int blend, float zoom_factor);
-void draw_gl_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y);
 void draw_gl_scaled_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y, float scale_factor);
 void blit_special_background(int background_code);
 void open_gl_check_error_status(const char *name_of_calling_function);

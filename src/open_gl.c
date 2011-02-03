@@ -716,21 +716,6 @@ draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 
 };				// void draw_gl_textured_quad_at_map_position ( ... )
 
-/* ------------------------------------------------------------
- * Draw an open gl textured quad at the given screen position
- * */
-void draw_gl_textured_quad_at_screen_position(struct image * our_iso_image, int x, int y)
-{
-#ifdef HAVE_LIBGL
-
-	glBindTexture(GL_TEXTURE_2D, our_iso_image->texture);
-	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w,
-				     y + our_iso_image->h, our_iso_image->tex_x0, our_iso_image->tex_y0, our_iso_image->tex_x1,
-				     our_iso_image->tex_y1);
-
-#endif
-}
-
 /**
  *
  *
@@ -1276,7 +1261,7 @@ void blit_special_background(int background_code)
 								    our_background_rects[background_code].x,
 								    our_background_rects[background_code].y);
 		} else
-			draw_gl_textured_quad_at_screen_position(&our_backgrounds[background_code],
+			display_image_on_screen(&our_backgrounds[background_code],
 								 our_background_rects[background_code].x,
 								 our_background_rects[background_code].y);
 	} else {
