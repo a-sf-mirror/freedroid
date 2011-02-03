@@ -1273,10 +1273,6 @@ void InitFreedroid(int argc, char **argv)
 {
 	struct stat statbuf;
 
-	// We want DisplayChar to produce visible results by default...
-	//
-	display_char_disabled = FALSE;
-
 	// We mention the version of FreedroidRPG, so that debug reports
 	// are easier to assign to the different versions of the game.
 	//

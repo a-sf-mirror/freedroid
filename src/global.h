@@ -293,7 +293,6 @@ EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 #else
 #define EXTERN extern
 #endif
-EXTERN int display_char_disabled;
 EXTERN SDL_Rect Droid_Image_Window;
 
 #undef EXTERN

@@ -47,7 +47,7 @@
 static int MyCursorX;
 static int MyCursorY;
 
-int display_char_disabled_local;
+static int display_char_disabled;
 
 /**
  * This function determines how many lines of text it takes to write a string
@@ -61,23 +61,6 @@ int get_lines_needed(const char *text, SDL_Rect t_rect, float text_stretch)
 	int lines = DisplayText(text, t_rect.x, t_rect.y, &t_rect, text_stretch);
 	display_char_disabled = FALSE;
 	return lines;
-}
-
-/**
- * Display one character, updating MyCursorX to new position.
- */
-static void display_char(unsigned char c)
-{
-	if (handle_switch_font_char(c))
-		return;
-
-	if (c < ' ' || c > GetCurrentFont()->number_of_chars - 1)
-		c = '.';
-
-	if ((!display_char_disabled) && (!display_char_disabled_local))
-		PutCharFont(Screen, GetCurrentFont(), MyCursorX, MyCursorY, c);
-
-	MyCursorX += CharWidth(GetCurrentFont(), c) + get_letter_spacing(GetCurrentFont());
 }
 
 /**
@@ -399,20 +382,13 @@ void DisplayBigScreenMessage(void)
 
 };				// void DisplayBigScreenMessage( void )
 
-/*-----------------------------------------------------------------
- * This function prints *Text beginning at positions startx/starty,
- * respecting the text-borders set by clip_rect.  This includes 
- * clipping but also automatic line-breaks when end-of-line is 
- * reached.  If clip_rect==NULL, no clipping is performed.
+/**
+ * Prints text at given positions, automatically word-wrapping at the
+ * edges of clip_rect.  If clip_rect is NULL, no clipping is performed.
  *      
- *      NOTE: the previous clip-rectange is restored before
- *            the function returns!
- *
- *     NOTE2: this function _does not_ update the screen
- *
- * @Ret: number of lines written (from the first text line up to the last
- *       displayed line)
- *-----------------------------------------------------------------*/
+ * @return number of lines written (from the first text line up to the
+ *         last displayed line)
+ */
 int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip, float text_stretch)
 {
 	char *tmp;		// mobile pointer to the current position in the string to be printed
@@ -466,6 +442,11 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	//
 	tmp = (char *)Text;	// this is no longer a 'const' char*, but only a char*
 	while (*tmp && (MyCursorY < clip->y + clip->h)) {
+		if (handle_switch_font_char(*tmp)) {
+			tmp++;
+			continue;
+		}
+
 		if (((*tmp == ' ') || (*tmp == '\t'))
 		    && (ImprovedCheckLineBreak(tmp, clip, text_stretch) == 1))	// don't write over right border 
 		{		/*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!! */
@@ -474,17 +455,22 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 			continue;
 		}
 
-		if (*tmp == '\n') {
+		switch (*tmp) {
+		case '\n':
 			MyCursorX = clip->x;
 			MyCursorY += (int)(FontHeight(GetCurrentFont()) * text_stretch);
 			empty_lines_started++;
-		} else if (*tmp == '\t') {
+			break;
+		case '\t':
 			MyCursorX = (int)ceilf((float)MyCursorX / (float)(tab_width)) * (tab_width);
-		} else {
-			if (MyCursorY <= clip->y - (int)(FontHeight(GetCurrentFont()) * text_stretch))
-				display_char_disabled_local = TRUE;
-			display_char(*tmp);
-			display_char_disabled_local = FALSE;
+			break;
+		default:
+			if (MyCursorY > clip->y - (int)(FontHeight(GetCurrentFont()) * text_stretch)
+				&& !display_char_disabled)
+				PutCharFont(Screen, GetCurrentFont(), MyCursorX, MyCursorY, *tmp);
+
+			MyCursorX += CharWidth(GetCurrentFont(), *tmp)
+				+ get_letter_spacing(GetCurrentFont());
 
 			// At least one visible character must follow a line break or else
 			// the line is a trailing empty line not visible to the user. Such
@@ -494,9 +480,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 				empty_lines_started = 0;
 			}
 		}
-
 		tmp++;
-
 	}
 
 	SDL_SetClipRect(Screen, &store_clip);	// restore previous clip-rect 
