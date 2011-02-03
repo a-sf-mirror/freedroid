@@ -426,6 +426,34 @@ Filename prefix for graphics="598"
 Notes concerning this droid=_"A highly sophisticated device. Able to control the Robo-Freighter on its own." 
 
 ** Start of new Robot: ** 
+Droidname: 603
+Default description:_"603 Lawnmower"
+Droid uses portrait rotation series with prefix="lawnmower"
+Maximum speed of this droid: 4
+Class of this droid: 4
+Drops item class=5
+Maximum energy of this droid: 50
+Rate of healing: 20
+Experience_Reward gained for destroying one of this type: 250
+Aggression distance of this droid=5
+Time spent eyeing Tux=1.5
+Weapon item="Chainsaw"
+Percent to drop Entropy Inverter=10
+Percent to drop Plasma Transistor=5
+Percent to drop Superconducting Relay Unit=5
+Percent to drop Antimatter-Matter Converter=2
+Percent to drop Tachyon Condensator=10
+Greeting Sound number=4
+Got Hit Sound number=-1
+Death sound file name="none"
+Attack animation sound file name="none"
+Chance of this robot scoring a hit=60
+Time to recover after getting hit=0.30
+Is this 'droid' a human : 0
+Filename prefix for graphics="lawnmower"
+Notes concerning this droid=_"The 603 MowDown is a state-of-the-art lawnmower manufactured by the Nicholson company, and combines the functions of a regular lawnmower, a pet and a vicious guard dog in a single device."
+
+** Start of new Robot: ** 
 Droidname: 614
 Default description:_"614 Security Bot"
 Droid uses portrait rotation series with prefix="614"
