@@ -81,7 +81,6 @@ LuaCode={
 		cli_says(terminal, "NO_WAIT")
 		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
-
 }
 ----------------------------------------------------------------------
 
@@ -350,7 +349,7 @@ LuaCode={
 	npc_says(" ", "NO_WAIT")
 	terminal = username .. "@c-net:~/games$"
 	cli_says(terminal, "NO_WAIT")
-	show(81, 82, 83) hide(10, 20, 30, 80, 99)
+	show(81, 82, 83, 85) hide(10, 20, 30, 80, 99)
 }
 ----------------------------------------------------------------------
 
@@ -360,7 +359,7 @@ LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(10, 20, 30, 80, 99) hide(81, 82, 83)
+	show(10, 20, 30, 80, 99) hide(81, 82, 83, 85)
 }
 ----------------------------------------------------------------------
 
@@ -379,6 +378,23 @@ LuaCode={
 	tux_says(_"./global_thermonuclear_war", "NO_WAIT")
 	npc_says_random(_"Sorry, only winning move is not to play. New game?", _"Mankind exterminated. You lost!", _"No victory possible. LOSER! Play again?", _"Everyone dies, new game?", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
+}
+----------------------------------------------------------------------
+
+Nr=85 Text=_"tetris"
+NO_TEXT
+LuaCode={
+	tux_says(_"./tetris", "NO_WAIT")
+	npc_says("Never gonna give you up,")
+	npc_says("Never gonna let you down,")
+	npc_says("Never gonna run around and desert you.")
+	npc_says("Never gonna make you cry,")
+	npc_says("Never gonna say goodbye,")
+	npc_says("Never gonna tell a lie and hurt you.")
+	--left out gettext markers on purpose
+	cli_says(terminal, "NO_WAIT")
+	add_cookie("player_rickrolled")
+	hide(85)
 }
 ----------------------------------------------------------------------
 
