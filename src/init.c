@@ -1281,10 +1281,10 @@ void InitFreedroid(int argc, char **argv)
 #ifndef __WIN32__
 
 	// Let's see if we're dealing with a real release or rather if
-	// we're dealing with a cvs version.  The difference is this:
+	// we're dealing with a svn version.  The difference is this:
 	// Releases shouldn't terminate upon a floating point exception
-	// while the current cvs code (for better debugging) should
-	// do so.  Therefore we check for 'cvs' in the current version
+	// while the current svn code (for better debugging) should
+	// do so.  Therefore we check for 'svn' in the current version
 	// string and enable/disable the exceptions accordingly...
 	//
 	if (strstr(VERSION, "svn") != NULL) {
