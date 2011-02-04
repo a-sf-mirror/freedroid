@@ -122,7 +122,7 @@ LuaCode={
 Nr=20 Text=_"./hcf.py"
 NO_TEXT
 LuaCode={
-	tux_says(_"./move_freely.sh", "NO_WAIT")
+	tux_says(_"./hcf.py", "NO_WAIT")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		npc_says(_"Are you really sure you want to destroy ".. bot_name().._"? Y/N")
 		hide(1, 11, 12, 13, 20) show(21, 22)
