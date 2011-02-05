@@ -253,6 +253,7 @@ typedef struct itemspec {
 	char item_can_be_installed_in_armour_slot;
 	char item_can_be_installed_in_shield_slot;
 	char item_can_be_installed_in_special_slot;
+	char *tux_part_instance;
 
 	char item_group_together_in_inventory;
 
@@ -911,17 +912,50 @@ struct distancebased_animation {
 };
 
 /**
+ * Specification of Tux's parts rendering data
+ * Pointers to data needed to render one given Tux' part
+ */
+struct tux_part_render_data {
+	char *name;                      // Name of the part (used as a key of the struct)
+	char **default_part_instance;    // Pointer to one of the tuxrendering.default_instances
+	item *wearable_item;             // Pointer to one of the Me.XXXX_item
+	int part_group;                  // One of the PART_GROUP_XXXX values
+};
+
+/**
  * Specification of Tux's parts rendering order
  * Defines how to order Tux's parts for a 'set' of animation phases.
  * A linked list of sets is associated to a (motion_class, rotation) pair
  * (see the definition of struct tux_rendering_s in global.h).
  */
-
 struct tux_part_render_set {
 	int phase_start;	// First animation phase of the set
 	int phase_end;		// Last animation phase of the set
-	void (*render_funcs[ALL_PART_GROUPS])(int, int, int, int, int);	// Ordered array of rendering functions to call
+	struct tux_part_render_data *part_render_data[ALL_PART_GROUPS];	// Ordered array of the data needed to render Tux parts
 	struct tux_part_render_set *next;
 };
+typedef struct tux_part_render_set *tux_part_render_motionclass[MAX_TUX_DIRECTIONS];
+
+/**
+ * Contains the prefix of the animation archive files needed to render
+ * each Tux's part.
+ */
+struct tux_part_instances {
+	char *head;
+	char *torso;
+	char *weaponarm;
+	char *weapon;
+	char *shieldarm;
+	char *feet;
+};
+
+/**
+ * Contains all the informations needed to render Tux
+ */
+struct tux_rendering {
+	struct dynarray motion_class_names;             // All motion classes
+	struct tux_part_instances default_instances;    // Default part instances
+	tux_part_render_motionclass *render_order;      // The render_sets of each motion class
+} tux_rendering;
 
 #endif

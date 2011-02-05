@@ -43,7 +43,13 @@ tux_animation {
 ------------------------------------------------------------------------------
 
 tux_rendering_config {
-	motion_class_names = { "sword_motion", "gun_motion" }
+  motion_class_names = { "sword_motion", "gun_motion" },
+  head_part_default      = "iso_head",
+  torso_part_default     = "iso_torso",
+  weaponarm_part_default = "iso_weaponarm",
+  -- weapon_part_default = "", / No default value
+  shieldarm_part_default = "iso_shieldarm",
+  feet_part_default      = "iso_feet"
 }
 
 ------------------------------------------------------------------------------

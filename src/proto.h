@@ -128,7 +128,7 @@ void blit_leveleditor_point(int x, int y);
 void update_item_text_slot_positions(void);
 void AssembleCombatPicture(int);
 void blit_tux(int x, int y);
-void (*iso_put_tux_get_function(char *part_name))(int, int, int, int, int);
+struct tux_part_render_data *tux_get_part_render_data(char *part_name);
 void tux_rendering_init();
 void tux_rendering_validate();
 void PutBullet(int Bullet_number, int mask);

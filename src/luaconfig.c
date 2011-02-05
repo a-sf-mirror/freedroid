@@ -349,7 +349,13 @@ static int lua_tuxrendering_config_ctor(lua_State *L)
 {
 	// Specification of the data structure to retrieve from the lua table
 	struct data_spec data_specs[] = {
-		{ "motion_class_names", NULL, STRING_ARRAY, &tux_rendering.motion_class_names },
+		{ "motion_class_names",     NULL,            STRING_ARRAY, &tux_rendering.motion_class_names },
+		{ "head_part_default",      "iso_head",      STRING_TYPE,  &tux_rendering.default_instances.head },
+		{ "torso_part_default",     "iso_torso",     STRING_TYPE,  &tux_rendering.default_instances.torso },
+		{ "weaponarm_part_default", "iso_weaponarm", STRING_TYPE,  &tux_rendering.default_instances.weaponarm },
+		{ "weapon_part_default",    NULL,            STRING_TYPE,  &tux_rendering.default_instances.weapon },
+		{ "shieldarm_part_default", "iso_shieldarm", STRING_TYPE,  &tux_rendering.default_instances.shieldarm },
+		{ "feet_part_default",      "iso_feet",      STRING_TYPE,  &tux_rendering.default_instances.feet },
 		{ NULL, NULL, 0, 0 }
 	};
 
@@ -458,8 +464,9 @@ static int lua_tuxordering_ctor(lua_State *L)
 		(*render_order_ptr)->phase_end = (phase_end != -1) ? phase_end : (TUX_TOTAL_PHASES - 1);
 
 		int j;
-		for (j = 0; j < order.size; j++)
-			(*render_order_ptr)->render_funcs[j] = iso_put_tux_get_function(((char **)order.arr)[j]);
+		for (j = 0; j < order.size; j++) {
+			(*render_order_ptr)->part_render_data[j] = tux_get_part_render_data(((char **)order.arr)[j]);
+		}
 
 		(*render_order_ptr)->next = NULL;
 	}

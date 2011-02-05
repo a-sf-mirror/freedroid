@@ -611,6 +611,7 @@ static void get_item_data(char *DataPointer)
 #define ITEM_DESCRIPTION_INDICATION_STRING "Item description text=_\""
 
 #define ITEM_CAN_BE_INSTALLED_IN_SLOT_WITH_NAME "Item can be installed in slot with name=\""
+#define ITEM_TUX_PART_INSTANCE "Tux part instance=\""
 #define ITEM_ROTATION_SERIES_NAME_PREFIX "Item uses rotation series with prefix=\""
 #define ITEM_GROUP_TOGETHER_IN_INVENTORY "Items of this type collect together in inventory=\""
 
@@ -689,6 +690,12 @@ static void get_item_data(char *DataPointer)
 				     PLEASE_INFORM, IS_FATAL);
 		}
 		free(YesNoString);
+
+		// Filename prefix used when rendering Tux (optional)
+		item->tux_part_instance = NULL;
+		YesNoString = ReadAndMallocStringFromDataOptional(ItemPointer, ITEM_TUX_PART_INSTANCE, "\"");
+		if (YesNoString && strlen(YesNoString))
+			item->tux_part_instance = YesNoString;
 
 		// Next we read in the prefix for the image series in the items browser
 		item->item_rotation_series_prefix =

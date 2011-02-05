@@ -163,11 +163,7 @@ EXTERN int gps_transform_map_dirty_flag;
 #define NEIGHBOR_ID_S(lvl)  NEIGHBOR_ID(lvl, 1, 2)
 #define NEIGHBOR_ID_SE(lvl) NEIGHBOR_ID(lvl, 2, 2)
 
-typedef struct tux_part_render_set *tux_part_render_motionclass[MAX_TUX_DIRECTIONS];
-EXTERN struct tux_rendering_s {
-	struct dynarray motion_class_names;
-	tux_part_render_motionclass *render_order;
-} tux_rendering;
+EXTERN struct tux_rendering tux_rendering;
 
 #undef EXTERN
 #ifdef _light_c
