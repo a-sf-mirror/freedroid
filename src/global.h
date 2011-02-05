@@ -178,14 +178,6 @@ EXTERN struct tux_rendering_s {
 EXTERN light_radius_config LightRadiusConfig;
 
 #undef EXTERN
-#ifdef _event_c
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
-EXTERN event_trigger AllEventTriggers[MAX_EVENT_TRIGGERS];
-
-#undef EXTERN
 #ifdef _chat_c
 #define EXTERN
 #else

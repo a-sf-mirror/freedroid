@@ -51,6 +51,7 @@ void PlayATitleFile(char *Filename);
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);
 void CheckForTriggeredEvents(void);
 const char *teleporter_square_below_mouse_cursor(void);
+void event_modify_trigger_state(const char *name, int state);
 
 // lua.c
 void init_lua(void);

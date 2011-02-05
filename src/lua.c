@@ -124,29 +124,17 @@ static int lua_event_display_console_message(lua_State * L)
 	return 0;
 }
 
-static void event_modify_trigger(const char *name, int state)
-{
-	event_trigger *target_event = NULL;
-	int i;
-	for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
-		if (!strcmp(AllEventTriggers[i].name, name))
-			target_event = &AllEventTriggers[i];
-	}
-
-	target_event->enabled = state;
-}
-
 static int lua_event_enable_trigger(lua_State * L)
 {
 	const char *name = luaL_checkstring(L, 1);
-	event_modify_trigger(name, 1);
+	event_modify_trigger_state(name, 1);
 	return 0;
 }
 
 static int lua_event_disable_trigger(lua_State * L)
 {
 	const char *name = luaL_checkstring(L, 1);
-	event_modify_trigger(name, 0);
+	event_modify_trigger_state(name, 0);
 	return 0;
 }
 

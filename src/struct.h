@@ -221,24 +221,6 @@ typedef struct mission {
 	int expanded_display_for_this_mission;
 } mission;
 
-//--------------------
-// This structure can contain conditions that must be fulfilled, so that a special
-// event is triggered.  Such conditions may be specified in the mission file as well
-//
-typedef struct event_trigger {
-	// Maybe the event is triggerd by the influencer stepping somewhere
-	int Influ_Must_Be_At_Level;
-	point Influ_Must_Be_At_Point;
-
-	int DeleteTriggerAfterExecution;
-
-	luacode lua_code;
-
-	char *name;
-	int enabled;		//is the trigger enabled?
-	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
-} event_trigger;
-
 struct addon_bonus {
 	char *name;
 	int value;
