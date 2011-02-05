@@ -671,7 +671,7 @@ enemy *get_enemy_with_dialog(const char *dialog);
 #define BROWSE_LEVEL_BOTS(T,L) list_for_each_entry(T, &level_bots_head[(L)], level_list)
 
 // text.c
-int get_lines_needed(const char *text, SDL_Rect t_rect, float text_stretch);
+int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor);
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
 char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString);
 int show_backgrounded_text_rectangle(const char *, struct BFont_Info *, int, int, int, int);
@@ -682,12 +682,13 @@ void DisplayBigScreenMessage(void);
 void ChatWithFriendlyDroid(Enemy ChatDroid);
 void EnemyInfluCollisionText(enemy *);
 
-int DisplayText(const char *text, int startx, int starty, const SDL_Rect * clip, float text_stretch);
+int display_text_using_line_height(const char *, int, int, const SDL_Rect*, float);
+int display_text(const char *, int, int, const SDL_Rect*);
 void show_chat_log(enemy *);
 
 int ScrollText(char *text, int background_code);
 
-int ImprovedCheckLineBreak(char *text, const SDL_Rect * clip, float text_stretch);
+int ImprovedCheckLineBreak(char *, const SDL_Rect*, float);
 char *PreviousLine(char *textstart, char *text);
 char *NextLine(char *text);
 char *get_string(int max_len, int background_code, const char *text_for_overhead_promt);

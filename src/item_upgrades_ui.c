@@ -168,10 +168,10 @@ static void show_socket_creation_menu()
 
 	// Draw the menu title and the column headers.
 	SetCurrentFont(Blue_BFont);
-	DisplayText(_("Add socket"), rects.prompt.x, rects.prompt.y, NULL, TEXT_STRETCH);
+	display_text(_("Add socket"), rects.prompt.x, rects.prompt.y, NULL);
 	SetCurrentFont(Messagestat_BFont);
-	DisplayText(_("Type"), rects.table[0][0].x, rects.table[0][0].y, NULL, TEXT_STRETCH);
-	DisplayText(_("Cost"), rects.table[1][0].x, rects.table[1][0].y, NULL, TEXT_STRETCH);
+	display_text(_("Type"), rects.table[0][0].x, rects.table[0][0].y, NULL);
+	display_text(_("Cost"), rects.table[1][0].x, rects.table[1][0].y, NULL);
 	SetCurrentFont(Messagevar_BFont);
 
 	// Draw the selectable rows whose contents were given as parameters.
@@ -182,12 +182,12 @@ static void show_socket_creation_menu()
 		}
 
 		// Draw the name column.
-		DisplayText(names[i], rects.table[0][i + 1].x, rects.table[0][i + 1].y, NULL, TEXT_STRETCH);
+		display_text(names[i], rects.table[0][i + 1].x, rects.table[0][i + 1].y, NULL);
 
 		// Draw the cost column if the row has a cost assigned to it.
 		if (costs[i] != -1) {
 			sprintf(buffer, "%d", costs[i]);
-			DisplayText(buffer, rects.table[1][i + 1].x, rects.table[1][i + 1].y, NULL, TEXT_STRETCH);
+			display_text(buffer, rects.table[1][i + 1].x, rects.table[1][i + 1].y, NULL);
 		}
 	}
 }
@@ -238,32 +238,32 @@ void show_item_upgrade_ui()
 		ShowItemPicture(rects.custom_slot.x, rects.custom_slot.y, ui.custom_item.type);
 	} else {
 		SetCurrentFont(Messagestat_BFont);
-		DisplayText(_("Place an item here"), rects.custom_slot.x,
-		            rects.custom_slot.y + rects.custom_slot.h / 2, NULL, TEXT_STRETCH);
+		display_text(_("Place an item here"), rects.custom_slot.x,
+		            rects.custom_slot.y + rects.custom_slot.h / 2, NULL);
 	}
 
 	// Draw the title.
 	SetCurrentFont(Menu_BFont);
-	DisplayText(_("Upgrade Items"), rects.title_text.x, rects.title_text.y, NULL, TEXT_STRETCH);
+	display_text(_("Upgrade Items"), rects.title_text.x, rects.title_text.y, NULL);
 
 	// Draw the text labels.
 	SetCurrentFont(Messagevar_BFont);
 	sprintf(buffer, _("Money: %d"), Me.Gold);
-	DisplayText(buffer, rects.money_text.x, rects.money_text.y, NULL, TEXT_STRETCH);
+	display_text(buffer, rects.money_text.x, rects.money_text.y, NULL);
 	if (ui.cost > Me.Gold) {
 		SetCurrentFont(Messagestat_BFont);
 	} else {
 		SetCurrentFont(Messagevar_BFont);
 	}
 	sprintf(buffer, _("Cost: %d"), ui.cost);
-	DisplayText(buffer, rects.cost_text.x, rects.cost_text.y, NULL, TEXT_STRETCH);
+	display_text(buffer, rects.cost_text.x, rects.cost_text.y, NULL);
 	SetCurrentFont(Blue_BFont);
-	DisplayText(_("Bonuses"), rects.bonus_text.x, rects.bonus_text.y, NULL, TEXT_STRETCH);
+	display_text(_("Bonuses"), rects.bonus_text.x, rects.bonus_text.y, NULL);
 
 	// Draw the item bonus string.
 	SetCurrentFont(Messagevar_BFont);
-	DisplayText(ui.bonus_text->value, rects.bonus_list.x, rects.bonus_list.y,
-	            &rects.bonus_list, TEXT_STRETCH);
+	display_text(ui.bonus_text->value, rects.bonus_list.x, rects.bonus_list.y,
+	            &rects.bonus_list);
 
 	if (ui.create_socket_active) {
 

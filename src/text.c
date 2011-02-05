@@ -54,11 +54,11 @@ static int display_char_disabled;
  * with the current font into the given rectangle, provided one would start at
  * the left side.
  */
-int get_lines_needed(const char *text, SDL_Rect t_rect, float text_stretch)
+int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor)
 {
 	t_rect.h = 32767; // arbitrary large number
 	display_char_disabled = TRUE;
-	int lines = DisplayText(text, t_rect.x, t_rect.y, &t_rect, text_stretch);
+	int lines = display_text_using_line_height(text, t_rect.x, t_rect.y, &t_rect, line_height_factor);
 	display_char_disabled = FALSE;
 	return lines;
 }
@@ -131,7 +131,7 @@ int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, 
 	t_rect.h -= IN_WINDOW_TEXT_OFFSET;
 	t_rect.x += IN_WINDOW_TEXT_OFFSET;
 	t_rect.y += IN_WINDOW_TEXT_OFFSET;
-	DisplayText(text, t_rect.x, t_rect.y, &t_rect, 1.0);
+	display_text_using_line_height(text, t_rect.x, t_rect.y, &t_rect, 1.0);
 
 	SetCurrentFont(old_font);
 	return r_height;
@@ -244,7 +244,7 @@ int ScrollText(char *Text, int background_code)
 
 		if (background_code != (-1))
 			blit_special_background(background_code);
-		Number_Of_Line_Feeds = DisplayText(Text, ScrollRect.x, InsertLine, &ScrollRect, TEXT_STRETCH);
+		Number_Of_Line_Feeds = display_text(Text, ScrollRect.x, InsertLine, &ScrollRect);
 		// We might add some buttons to be displayed here, so that, if you don't have
 		// a mouse wheel and don't know about cursor keys, you can still click on these
 		// buttons to control the scrolling speed of the text.
@@ -309,9 +309,9 @@ int ScrollText(char *Text, int background_code)
 			InsertLine = StartInsertLine;
 			speed = 0;
 		}
-		if (InsertLine + (Number_Of_Line_Feeds + 1) * (int)(FontHeight(GetCurrentFont()) * TEXT_STRETCH) < ScrollRect.y
+		if (InsertLine + (Number_Of_Line_Feeds + 1) * (int)(FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR) < ScrollRect.y
 		    && (speed > 0)) {
-			InsertLine = ScrollRect.y - (Number_Of_Line_Feeds + 1) * (int)(FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+			InsertLine = ScrollRect.y - (Number_Of_Line_Feeds + 1) * (int)(FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
 			speed = 0;
 		}
 
@@ -371,7 +371,7 @@ void DisplayBigScreenMessage(void)
 
 			SetCurrentFont(Menu_BFont);
 			int x_pos = GameConfig.screen_width/2 - TextWidthFont(GetCurrentFont(), text)/2;
-			DisplayText(text, x_pos, y_pos, NULL /* clip */, 1.0);
+			display_text_using_line_height(text, x_pos, y_pos, NULL /* clip */, 1.0);
 
 			if (!GameConfig.Inventory_Visible && !GameConfig.SkillScreen_Visible && !GameConfig.CharacterScreen_Visible)
 				Me.BigScreenMessageDuration[i] += Frame_Time();
@@ -389,7 +389,7 @@ void DisplayBigScreenMessage(void)
  * @return number of lines written (from the first text line up to the
  *         last displayed line)
  */
-int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip, float text_stretch)
+int display_text_using_line_height(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor)
 {
 	char *tmp;		// mobile pointer to the current position in the string to be printed
 	SDL_Rect Temp_Clipping_Rect;	// adding this to prevent segfault in case of NULL as parameter
@@ -400,7 +400,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	int letter_spacing = get_letter_spacing(GetCurrentFont());
 	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
 
-	if (!*Text) {
+	if (!*text) {
 		nblines = 0;
 		return nblines;
 	}
@@ -440,7 +440,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 	//
 	// The running text pointer must be initialized.
 	//
-	tmp = (char *)Text;	// this is no longer a 'const' char*, but only a char*
+	tmp = (char *)text;	// this is no longer a 'const' char*, but only a char*
 	while (*tmp && (MyCursorY < clip->y + clip->h)) {
 		if (handle_switch_font_char(*tmp)) {
 			tmp++;
@@ -448,7 +448,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 		}
 
 		if (((*tmp == ' ') || (*tmp == '\t'))
-		    && (ImprovedCheckLineBreak(tmp, clip, text_stretch) == 1))	// don't write over right border 
+		    && (ImprovedCheckLineBreak(tmp, clip, line_height_factor) == 1))	// don't write over right border 
 		{		/*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!! */
 			empty_lines_started++;
 			++tmp;
@@ -458,14 +458,14 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 		switch (*tmp) {
 		case '\n':
 			MyCursorX = clip->x;
-			MyCursorY += (int)(FontHeight(GetCurrentFont()) * text_stretch);
+			MyCursorY += (int)(FontHeight(GetCurrentFont()) * line_height_factor);
 			empty_lines_started++;
 			break;
 		case '\t':
 			MyCursorX = (int)ceilf((float)MyCursorX / (float)(tab_width)) * (tab_width);
 			break;
 		default:
-			if (MyCursorY > clip->y - (int)(FontHeight(GetCurrentFont()) * text_stretch)
+			if (MyCursorY > clip->y - (int)(FontHeight(GetCurrentFont()) * line_height_factor)
 				&& !display_char_disabled)
 				PutCharFont(Screen, GetCurrentFont(), MyCursorX, MyCursorY, *tmp);
 
@@ -494,6 +494,14 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
 }
 
 /**
+ * Display text using the default line height.
+ */
+int display_text(const char *text, int x, int y, const SDL_Rect* clip_rect)
+{
+	return display_text_using_line_height(text, x, y, clip_rect, LINE_HEIGHT_FACTOR);
+}
+
+/**
  * This function checks if the next word still fits in this line
  * of text and initiates a carriage return/line feed if not.
  * Very handy and convenient, for that means it is no longer necessary
@@ -504,7 +512,7 @@ int DisplayText(const char *Text, int startx, int starty, const SDL_Rect * clip,
  *
  * ah: added return value : 1 if carriage return was done, FALSE otherwise
  */
-int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float text_stretch)
+int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float line_height_factor)
 {
 	int NeededSpace = 0;
 
@@ -523,7 +531,7 @@ int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float text_str
 
 	if ((MyCursorX + NeededSpace) > (clip->x + clip->w)) {
 		MyCursorX = clip->x;
-		MyCursorY += (int)(FontHeight(GetCurrentFont()) * text_stretch);
+		MyCursorY += (int)(FontHeight(GetCurrentFont()) * line_height_factor);
 		return 1;
 	}
 
@@ -541,7 +549,7 @@ char *get_string(int MaxLen, int background_code, const char *text_for_overhead_
 	int finished;
 	int x0, y0;
 
-	DisplayText(text_for_overhead_promt, 50, 50, NULL, TEXT_STRETCH);
+	display_text(text_for_overhead_promt, 50, 50, NULL);
 
 	// allocate memory for the users input
 	input = MyMalloc(MaxLen + 5);
@@ -554,7 +562,7 @@ char *get_string(int MaxLen, int background_code, const char *text_for_overhead_
 
 	while (!finished) {
 		blit_special_background(background_code);
-		DisplayText(text_for_overhead_promt, 50, 50, NULL, TEXT_STRETCH);
+		display_text(text_for_overhead_promt, 50, 50, NULL);
 
 		x0 = MyCursorX;
 		y0 = MyCursorY;
@@ -569,7 +577,7 @@ char *get_string(int MaxLen, int background_code, const char *text_for_overhead_
 			// useful for GL drivers that do true pageflipping (win32, nvidia 173.x, ...)
 			if (use_open_gl) {
 				blit_special_background(background_code);
-				DisplayText(text_for_overhead_promt, 50, 50, NULL, TEXT_STRETCH);
+				display_text(text_for_overhead_promt, 50, 50, NULL);
 				x0 = MyCursorX;
 				y0 = MyCursorY;
 				PutString(Screen, x0, y0, input);
@@ -640,7 +648,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 	// Now we find the right position for the new string to start by writing
 	// out the title text once, just to get the cursor positioned right...
 	//
-	DisplayText(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect, TEXT_STRETCH);
+	display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect);
 	x0 = MyCursorX;
 	y0 = MyCursorY;
 
@@ -663,14 +671,14 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 
 		SetCurrentFont(FPS_Display_BFont);
 
-		DisplayText(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect, TEXT_STRETCH);
+		display_text(PopupWindowTitle, TargetRect.x, TargetRect.y, &TargetRect);
 
 		if (PopupWindowTitle[strlen(PopupWindowTitle) - 1] != '\n')
-			DisplayText("\n\n", x0, y0, &TargetRect, TEXT_STRETCH);
+			display_text("\n\n", x0, y0, &TargetRect);
 
 		TargetRect.y = MyCursorX;
 		TargetRect.y = MyCursorY;
-		DisplayText(input, TargetRect.x, TargetRect.y, &TargetRect, TEXT_STRETCH);
+		display_text(input, TargetRect.x, TargetRect.y, &TargetRect);
 
 		// We position the cursor right on its real location
 		//

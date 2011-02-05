@@ -761,7 +761,7 @@ void show_current_text_banner(void)
 	banner_rect.w += TEXT_BANNER_HORIZONTAL_MARGIN * 2;
 
 	// Set banner height
-	int lines_in_text = get_lines_needed(txt->value, banner_rect, TEXT_STRETCH);
+	int lines_in_text = get_lines_needed(txt->value, banner_rect, LINE_HEIGHT_FACTOR);
 	banner_rect.h = lines_in_text * FontHeight(GetCurrentFont());
 
 	// Add extra correction to ensure the banner rectangle stays inside
@@ -930,7 +930,7 @@ static void show_top_left_text(void)
 	clip.h = GameConfig.screen_height;
 
 	SetCurrentFont(FPS_Display_BFont);
-	DisplayText(txt->value, clip.x, clip.y, &clip, 1.0);
+	display_text_using_line_height(txt->value, clip.x, clip.y, &clip, 1.0);
 }
 
 /**

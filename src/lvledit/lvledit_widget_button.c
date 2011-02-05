@@ -240,6 +240,6 @@ void leveleditor_button_display(struct leveleditor_widget *vb)
 		rect.h = btn_rect.h;
 
 		// Draw the text on the button
-		DisplayText(b->text, rect.x, rect.y, &rect, TEXT_STRETCH);
+		display_text(b->text, rect.x, rect.y, &rect);
 	}
 }

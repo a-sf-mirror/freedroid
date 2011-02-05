@@ -286,7 +286,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 				free(str);
 		}
 		if (strlen(InitialText) > 0)
-			DisplayText(InitialText, 50, 50, NULL, TEXT_STRETCH);
+			display_text(InitialText, 50, 50, NULL);
 
 		// Now the mouse cursor must be brought to the screen
 		blit_mouse_cursor();
@@ -518,7 +518,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 	Choice_Window.y = UNIVERSAL_COORD_H(336);
 	Choice_Window.w = UNIVERSAL_COORD_W(640 - 70);
 	Choice_Window.h = UNIVERSAL_COORD_H(118);
-	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
 
 	// First thing we do is find out how may options we have
 	// been given for the menu
@@ -563,7 +563,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 				break;
 			}
 			// If there is not enough room any more, we quit blitting...
-			int lines_needed = get_lines_needed(MenuTexts[i], Choice_Window, TEXT_STRETCH);
+			int lines_needed = get_lines_needed(MenuTexts[i], Choice_Window, LINE_HEIGHT_FACTOR);
 			if ((line_count + lines_needed) > MaxLinesInMenuRectangle) {
 				BreakOffCauseNoRoom = TRUE;
 				LastOptionVisible = i;
@@ -572,9 +572,9 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 			// Now that we know, that there is enough room, we can blit the next menu option.
 			//
 			MenuPosX[i] = Choice_Window.x;
-			MenuPosY[i] = Choice_Window.y + (line_count * h * TEXT_STRETCH);
+			MenuPosY[i] = Choice_Window.y + (line_count * h * LINE_HEIGHT_FACTOR);
 			MenuOptionLineRequirement[i] =
-			    DisplayText(MenuTexts[i], MenuPosX[i], MenuPosY[i], &Choice_Window, TEXT_STRETCH);
+			    display_text(MenuTexts[i], MenuPosX[i], MenuPosY[i], &Choice_Window);
 			line_count += MenuOptionLineRequirement[i];
 		}
 
@@ -597,9 +597,9 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 			HighlightRect.h = UNIVERSAL_COORD_H(457) - HighlightRect.y;
 		HighlightRectangle(Screen, HighlightRect);
 		// Display again the highlighted line
-		DisplayText(MenuTexts[menu_position_to_remember - 1],
+		display_text(MenuTexts[menu_position_to_remember - 1],
 			    MenuPosX[menu_position_to_remember - 1],
-			    MenuPosY[menu_position_to_remember - 1], &Choice_Window, TEXT_STRETCH);
+			    MenuPosY[menu_position_to_remember - 1], &Choice_Window);
 
 		if (BreakOffCauseNoRoom)
 			ShowGenericButtonFromList(SCROLL_DIALOG_MENU_DOWN_BUTTON);
@@ -729,7 +729,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 				// this as a valid choice of the user.
 				//
 				MenuLineOfMouseCursor =
-				    MouseCursorIsOverMenuItem(MenuPosY[OptionOffset], FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+				    MouseCursorIsOverMenuItem(MenuPosY[OptionOffset], FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
 				if ((MenuLineOfMouseCursor >= 1) && (MenuLineOfMouseCursor <= MaxLinesInMenuRectangle)) {
 					RestoreMenuBackground(0);
 					blit_mouse_cursor();
@@ -741,14 +741,14 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 
 		}
 
-		MenuLineOfMouseCursor = MouseCursorIsOverMenuItem(MenuPosY[OptionOffset], FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+		MenuLineOfMouseCursor = MouseCursorIsOverMenuItem(MenuPosY[OptionOffset], FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
 		if (MenuLineOfMouseCursor < 1)
 			MenuLineOfMouseCursor = 1;
 
 		ThisOptionEnd = MenuPosY[0];
 		for (i = OptionOffset; i <= LastOptionVisible; i++) {
 
-			ThisOptionEnd += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+			ThisOptionEnd += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
 
 			if (GetMousePos_y() < ThisOptionEnd) {
 				// MouseCursorIsOverMenuItem( MenuPosY [ 0 ] , MenuPosY [ 1 ] - MenuPosY [ 0 ] );
@@ -763,7 +763,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 			ThisOptionEnd = MenuPosY[0];
 			for (i = OptionOffset; i <= LastOptionVisible; i++) {
 
-				ThisOptionEnd += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * TEXT_STRETCH);
+				ThisOptionEnd += MenuOptionLineRequirement[i] * (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
 
 				if (GetMousePos_y() < ThisOptionEnd) {
 					menu_position_to_remember = i + 1;

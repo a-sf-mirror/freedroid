@@ -1824,7 +1824,7 @@ void draw_grid_on_the_floor(int mask)
 			tr.h = 14;
 
 			our_SDL_fill_rect_wrapper(Screen, &tr, 0x000000);
-			DisplayText(numbers[ii][jj], r - 5, c - 5, &tr, TEXT_STRETCH);
+			display_text(numbers[ii][jj], r - 5, c - 5, &tr);
 		}
 	SetCurrentFont(PreviousFont);
 
@@ -2995,7 +2995,7 @@ void blit_tux(int x, int y)
 	if ((x == -1) && Me.TextToBeDisplayed && (Me.TextVisibleTime < GameConfig.WantedTextVisibleTime) &&
 		GameConfig.All_Texts_Switch) {
 		SetCurrentFont(FPS_Display_BFont);
-		DisplayText(Me.TextToBeDisplayed, Text_Rect.x, Text_Rect.y, &Text_Rect, TEXT_STRETCH);
+		display_text(Me.TextToBeDisplayed, Text_Rect.x, Text_Rect.y, &Text_Rect);
 	}
 }
 
@@ -3906,7 +3906,7 @@ static void show_inventory_screen(void)
 			TargetRect.w = INV_SUBSQUARE_WIDTH * ItemMap[Me.Inventory[SlotNum].type].inv_size.x;
 			int xpos = TargetRect.x + TargetRect.w * ItemMap[Me.Inventory[SlotNum].type].inv_size.y - TextWidth(amount) - 2;
 			int ypos = TargetRect.y + INV_SUBSQUARE_HEIGHT * ItemMap[Me.Inventory[SlotNum].type].inv_size.y - FontHeight(Messagevar_BFont);
-			DisplayText(amount, xpos, ypos, &TargetRect, 1.0);
+			display_text_using_line_height(amount, xpos, ypos, &TargetRect, 1.0);
 		}
 	}
 

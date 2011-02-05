@@ -109,7 +109,7 @@ void leveleditor_categoryselect_display(struct leveleditor_widget *w)
 	if (cs == currently_selected_category)
 		our_SDL_fill_rect_wrapper(Screen, &hr, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
 
-	DisplayText(cs->title, hr.x + 2, hr.y, &hr, TEXT_STRETCH);
+	display_text(cs->title, hr.x + 2, hr.y, &hr);
 	tr.x = hr.x + tab_width - 2;
 	our_SDL_fill_rect_wrapper(Screen, &tr, SDL_MapRGBA(Screen->format, 0x00, 0x00, 0x00, 0x88));
 	SetCurrentFont(PreviousFont);

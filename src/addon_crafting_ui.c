@@ -96,7 +96,7 @@ static void select_recipe(int index)
 
 	// Scroll the text widget to the top.
 	ui.description.scroll_offset = -get_lines_needed(desc->value,
-	            ui.description.rect, ui.description.text_stretch);
+	            ui.description.rect, ui.description.line_height_factor);
 }
 
 /**
@@ -240,11 +240,11 @@ void show_addon_crafting_ui()
 
 	// Draw the title.
 	SetCurrentFont(Menu_BFont);
-	DisplayText(_("Craft Addons"), rects.title_text.x, rects.title_text.y, NULL, TEXT_STRETCH);
+	display_text(_("Craft Addons"), rects.title_text.x, rects.title_text.y, NULL);
 
 	// Draw the details string.
 	SetCurrentFont(Blue_BFont);
-	DisplayText(_("Details"), rects.details_text.x, rects.details_text.y, NULL, TEXT_STRETCH);
+	display_text(_("Details"), rects.details_text.x, rects.details_text.y, NULL);
 
 	// Draw the apply and close buttons.
 	if (arr[ui.selection].available) {
@@ -270,7 +270,7 @@ void show_addon_crafting_ui()
 			SetCurrentFont(Red_BFont);
 		}
 		int type = arr[i].item_type;
-		DisplayText(ItemMap[type].item_name, rect.x + rect.h, rect.y + 4, NULL, TEXT_STRETCH);
+		display_text(ItemMap[type].item_name, rect.x + rect.h, rect.y + 4, NULL);
 		struct image *img = get_item_inventory_image(type);
 		if (img) {
 			SDL_Rect icon_rect;

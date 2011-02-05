@@ -404,7 +404,7 @@ static void wait_for_click(enemy *chat_droid)
 	while (1) {
 		show_chat_log(chat_droid);
 		SetCurrentFont(Menu_BFont);
-		DisplayText(_("\1Click anywhere to continue..."), clip.x, clip.y, &clip, 1.0);
+		display_text(_("\1Click anywhere to continue..."), clip.x, clip.y, &clip);
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 		SDL_Delay(1);
@@ -539,7 +539,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	chat_log.rect.w = CHAT_SUBDIALOG_WINDOW_W;
 	chat_log.rect.h = CHAT_SUBDIALOG_WINDOW_H;
 	chat_log.font = FPS_Display_BFont;
-	chat_log.text_stretch = TEXT_STRETCH;
+	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
 
 	// We load the option texts into the dialog options variable..
 	//

@@ -45,7 +45,7 @@ void init_text_widget(text_widget *w, const char *start_text) {
 
 	w->mouse_already_handled = 0;
 	w->scroll_offset = 0;
-	w->text_stretch = 1.0;
+	w->line_height_factor = 1.0;
 	w->content_above_func = NULL;
 	w->content_below_func = NULL;
 }
@@ -55,8 +55,8 @@ void init_text_widget(text_widget *w, const char *start_text) {
  */
 static int text_widget_can_scroll_up(text_widget *w) {
 	SetCurrentFont(w->font);
-	int lines_needed = get_lines_needed(w->text->value, w->rect, w->text_stretch);
-	const int font_size = FontHeight(w->font) * w->text_stretch;
+	int lines_needed = get_lines_needed(w->text->value, w->rect, w->line_height_factor);
+	const int font_size = FontHeight(w->font) * w->line_height_factor;
 	float visible_lines = (float) w->rect.h / (float) font_size;
 
 	return lines_needed > visible_lines &&
@@ -132,9 +132,9 @@ int widget_handle_mouse(text_widget *w) {
  */
 void show_text_widget(text_widget *w) {
 	SetCurrentFont(w->font);
-	int lines_needed = get_lines_needed(w->text->value, w->rect, w->text_stretch);
+	int lines_needed = get_lines_needed(w->text->value, w->rect, w->line_height_factor);
 	int offset = 0;
-	const int font_size = FontHeight(w->font) * w->text_stretch;
+	const int font_size = FontHeight(w->font) * w->line_height_factor;
 
 	float visible_lines = (float) w->rect.h / (float) font_size;
 	/* Disallow scrolling too far up or down. */
@@ -155,7 +155,8 @@ void show_text_widget(text_widget *w) {
 		offset = 0;
 
 	SDL_SetClipRect(Screen, NULL);
-	DisplayText(w->text->value, w->rect.x, w->rect.y - offset, &w->rect, w->text_stretch);
+	display_text_using_line_height(w->text->value, w->rect.x, w->rect.y - offset,
+                                       &w->rect, w->line_height_factor);
 
 	/* If we have more content above or below the currently visible text, we call the
 	 * functions that may have been specified for this event. */

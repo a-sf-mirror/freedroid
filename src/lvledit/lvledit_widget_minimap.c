@@ -170,7 +170,7 @@ void leveleditor_minimap_display(struct leveleditor_widget *w)
 			tr.h = 90.0;
 			tr.x = r - TextWidth(text) / 2;
 			tr.y = c - FontHeight(GetCurrentFont()) / 2;
-			DisplayText(text, tr.x, tr.y, &tr, TEXT_STRETCH);
+			display_text(text, tr.x, tr.y, &tr);
 		}
 	}
 

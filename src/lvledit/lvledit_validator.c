@@ -1157,7 +1157,7 @@ void LevelValidation()
 			// Empty level
 			char txt[40];
  			sprintf(txt, "%03d: \2empty", l);
- 			int lines = DisplayText(txt, col_pos, row_pos, &report_rect, 1.0);
+ 			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
  			row_pos += lines * row_height;
 			SetCurrentFont(current_font);	// Reset font
 		} else {
@@ -1172,7 +1172,7 @@ void LevelValidation()
 			// Display report
 			char txt[40];
 			sprintf(txt, "%03d: %s", l, (level_is_invalid) ? "\1fail" : "pass");
-			int lines = DisplayText(txt, col_pos, row_pos, &report_rect, 1.0);
+			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
 			row_pos += lines * row_height;
 			SetCurrentFont(current_font);	// Reset font in case of the red "fail" was displayed
 

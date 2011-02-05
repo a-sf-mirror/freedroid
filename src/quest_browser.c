@@ -221,10 +221,10 @@ static void print_statistics(void)
 	}
 
 	//Print all to screen
-	float mission_list_offset = (FontHeight(GetCurrentFont()) * TEXT_STRETCH)
+	float mission_list_offset = (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR)
 	    * mission_list_scroll_override_from_user;
-	DisplayText(quest_browser_text->value, mission_description_rect.x,
-			    mission_description_rect.y - mission_list_offset, &mission_description_rect, 1);
+	display_text_using_line_height(quest_browser_text->value, mission_description_rect.x,
+                                       mission_description_rect.y - mission_list_offset, &mission_description_rect, 1.0);
 
 	// Now it's time to display some short/long symbols in front
 	// of each of the sections.
@@ -298,7 +298,7 @@ static void quest_browser_display_mission_list(int list_type)
 		// user can then select to see the full/short information on this quest.
 		//
 		quest_browser_mission_lines_needed[mis_num] =
-			get_lines_needed(quest_browser_text->value, mission_description_rect, TEXT_STRETCH);
+			get_lines_needed(quest_browser_text->value, mission_description_rect, LINE_HEIGHT_FACTOR);
 
 		if ((list_type == QUEST_BROWSER_SHOW_OPEN_MISSIONS) && (Me.AllMissions[mis_num].MissionIsComplete == FALSE)) {
 			quest_browser_append_mission_info(Me.AllMissions[mis_num].mission_name,
@@ -316,7 +316,7 @@ static void quest_browser_display_mission_list(int list_type)
 
 	if (something_was_displayed) {
 		float mission_list_offset = FontHeight(GetCurrentFont()) * mission_list_scroll_override_from_user;
-		DisplayText(quest_browser_text->value, mission_description_rect.x,
+		display_text_using_line_height(quest_browser_text->value, mission_description_rect.x,
 			    mission_description_rect.y - mission_list_offset, &mission_description_rect, 1.0);
 
 		// Now it's time to display some short/long symbols in front
@@ -379,7 +379,7 @@ static void quest_browser_display_mission_list(int list_type)
 				break;
 		}
 
-		DisplayText(txt, mission_description_rect.x, mission_description_rect.y, &mission_description_rect, TEXT_STRETCH);
+		display_text(txt, mission_description_rect.x, mission_description_rect.y, &mission_description_rect);
 	}
 }
 

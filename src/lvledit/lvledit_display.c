@@ -72,7 +72,7 @@ int lvledit_set_zoomfact(float zf)
 static void gps_show() {
 	static char gps_text[200];
 	snprintf(gps_text, sizeof(gps_text) - 1, _(" X=%3.1f Y=%3.1f L=%d\n"), Me.pos.x, Me.pos.y, Me.pos.z);
-	DisplayText(gps_text, User_Rect.x + 1, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), NULL /*&User_Rect */ , 1.0);
+	display_text_using_line_height(gps_text, User_Rect.x + 1, GameConfig.screen_height - 1 * FontHeight(GetCurrentFont()), NULL /*&User_Rect */ , 1.0);
 }
 
 /**
@@ -97,7 +97,7 @@ static void print_label_information(level *EditLevel)
 			sprintf(PanelText, _("\n Map label information: \n label_name=\"%s\"."), map_label->label_name);
 
 			// Display the map label information on the screen
-			DisplayText(PanelText, User_Rect.x, GameConfig.screen_height - 5 * FontHeight(GetCurrentFont()), NULL, 1.0);
+			display_text_using_line_height(PanelText, User_Rect.x, GameConfig.screen_height - 5 * FontHeight(GetCurrentFont()), NULL, 1.0);
 
 			return;
 		}
@@ -402,7 +402,7 @@ void leveleditor_display()
 	// Now we print out the latest connection operation success or failure...
 	//
 	if (VanishingMessageEndDate > SDL_GetTicks()) {
-		DisplayText(VanishingMessage, 1, GameConfig.screen_height - 8 * FontHeight(GetCurrentFont()), NULL, 1.0);
+		display_text_using_line_height(VanishingMessage, 1, GameConfig.screen_height - 8 * FontHeight(GetCurrentFont()), NULL, 1.0);
 	}
 
 	show_tooltips();

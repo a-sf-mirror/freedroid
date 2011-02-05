@@ -388,7 +388,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	item_description.rect.w = UNIVERSAL_COORD_W(346);
 	item_description.rect.h = UNIVERSAL_COORD_H(255);
 	item_description.font = FPS_Display_BFont;
-	item_description.text_stretch = TEXT_STRETCH;
+	item_description.line_height_factor = LINE_HEIGHT_FACTOR;
 	item_description.scroll_offset = scroll_to_top;
 
 	if (ItemIndex >= 0) {
