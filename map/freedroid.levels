@@ -9717,7 +9717,7 @@ infinite_running_on_this_level: 0
 random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
-jump target north: 13
+jump target north: -1
 jump target south: 0
 jump target east: 17
 jump target west: 12
@@ -16514,9 +16514,9 @@ infinite_running_on_this_level: 0
 random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
-jump target north: 14
-jump target south: 8
-jump target east: 19
+jump target north: -1
+jump target south: -1
+jump target east: -1
 jump target west: -1
 Name of this level=_"Telemetry"
 BgSong=underground.ogg
@@ -16635,7 +16635,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 jump target north: 15
-jump target south: 13
+jump target south: -1
 jump target east: 20
 jump target west: 5
 Name of this level=_"Scientists quarters and Telemetry"
@@ -21365,7 +21365,7 @@ dungeon generated: 0
 jump target north: 20
 jump target south: 17
 jump target east: 21
-jump target west: 13
+jump target west: -1
 Name of this level=_"Northern Shoreline"
 BgSong=TheBeginning.ogg
 beginning_of_map
