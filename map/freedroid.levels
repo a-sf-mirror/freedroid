@@ -16615,17 +16615,14 @@ beginning_of_map
 obsdata
 /obsdata
 plabelinfolvl
-x=61 y=62 name="Iris"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
-Nr.=  0 x=  61 y=  62 rnd=1	 c:    1   3
-Nr.=  1 x=  65 y=  62 rnd=1	 c:    0   2
-Nr.=  2 x=  66 y=  66 rnd=1	 c:    1   3
-Nr.=  3 x=  62 y=  65 rnd=1	 c:    2   0
+Nr.=  0 x=  61 y=  66 rnd=0	 c:    1
+Nr.=  1 x=  62 y=  66 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 14
