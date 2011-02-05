@@ -423,15 +423,6 @@ LuaCode={
 ##############
 ## Level 32 ##
 ##############
-* New event trigger *
-Name=_"FIXME2"
-Silent=0
-Trigger at label="wallEvent1Trigger"
-Delete the event trigger after it has been triggered=1
-LuaCode={
-	-- modify_obstacle("wall1", "triggered")
-}
-* End of trigger *
 
 ##############
 ## Level 33 ##
