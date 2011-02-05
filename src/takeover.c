@@ -261,6 +261,7 @@ static void init_droid_description(text_widget *w, int droidtype)
 		item_name = _("none");
 
 	autostr_append(w->text, _("\nArmament : %s\n"), item_name);
+	autostr_append(w->text, _("\nCores : %d\n"), 2 + Druidmap[droidtype].class);
 
 
 	if (Me.TakeoverSuccesses[droidtype]+Me.TakeoverFailures[droidtype]) {
