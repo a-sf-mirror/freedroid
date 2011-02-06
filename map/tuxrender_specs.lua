@@ -43,7 +43,7 @@ tux_animation {
 ------------------------------------------------------------------------------
 
 tux_rendering_config {
-  motion_class_names = { "sword_motion", "gun_motion" },
+  motion_class_names = { "1hmelee", "2hranged" },
   head_part_default      = "iso_head",
   torso_part_default     = "iso_torso",
   weaponarm_part_default = "iso_weaponarm",
@@ -58,7 +58,7 @@ tux_rendering_config {
 -- The definition is:
 --
 --   tux_ordering {
---     type        : one of the motion_class value - example: "sword_motion"
+--     type        : one of the motion_class value - example: "1hmelee"
 --     rotations   : comma-separated list of rotation values - example: { 0, 1, 2 }
 --     phase_start : first phase to which this order applies (optional - default value: 0)
 --     phase_end   : last phase to which this order applies (optional - default value: -1,
@@ -73,7 +73,7 @@ tux_rendering_config {
 -- *before* the less specific set. For example:
 --
 --   tux_ordering {
---     type = "gun_motion",
+--     type = "2hranged",
 --     rotations = { 1, 2 },
 --     phase_start = 4,
 --     phase_end = 11,
@@ -81,7 +81,7 @@ tux_rendering_config {
 --   }
 --
 --   tux_ordering {
---     type = "gun_motion",
+--     type = "2hranged",
 --     rotations = { 1, 2 },
 --     order = part_order.FSTHWA
 --   }
@@ -126,13 +126,13 @@ part_order = {
 --------------------
 
 tux_ordering {
-  type = "sword_motion",
+  type = "1hmelee",
   rotations = { 0 },
   order = part_order.FTHSWA
 }
 
 tux_ordering {
-  type = "sword_motion",
+  type = "1hmelee",
   rotations = { 1 },
   phase_start = 0,
   phase_end = 10,
@@ -140,31 +140,31 @@ tux_ordering {
 }
 
 tux_ordering {
-  type = "sword_motion",
+  type = "1hmelee",
   rotations = { 1, 2, 3, 4, 5, 6 },
   order = part_order.FSTHWA
 }
 
 tux_ordering {
-  type = "sword_motion",
+  type = "1hmelee",
   rotations = { 7 },
   order = part_order.FSTWAH
 }
 
 tux_ordering {
-  type = "sword_motion",
+  type = "1hmelee",
   rotations = { 8 },
   order = part_order.FSWTAH
 }
 
 tux_ordering {
-  type = "sword_motion",
+  type = "1hmelee",
   rotations = { 9, 10, 11 },
   order = part_order.FWATSH
 }
 
 tux_ordering {
-  type = "sword_motion",
+  type = "1hmelee",
   rotations = { 12, 13, 14, 15 },
   order = part_order.FAWTSH
 }
@@ -174,61 +174,61 @@ tux_ordering {
 --------------------
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 0, 1, 2 },
   order = part_order.FTSWAH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 3, 4 },
   order = part_order.FSTWAH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 5, 6, 7 },
   order = part_order.FSWTAH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 8 },
   order = part_order.FSWATH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 9 },
   order = part_order.FWASTH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 10 },
   order = part_order.FWATSH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 11 },
   order = part_order.FAWTSH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 12 },
   order = part_order.FATWSH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 13, 14 },
   order = part_order.FATSWH
 }
 
 tux_ordering {
-  type = "gun_motion",
+  type = "2hranged",
   rotations = { 15 },
   order = part_order.FTSAWH
 }
