@@ -8885,6 +8885,8 @@ x=13 y=2 name="Sin-Emissary"
 x=33 y=10 name="MS-Sawmil"
 x=28 y=2 name="6from58"
 x=28 y=1 name="6to58"
+x=34 y=7 name="Singularity-Alive-Check-S"
+x=34 y=6 name="Singularity-Alive-Check-N"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
