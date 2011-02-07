@@ -935,6 +935,10 @@ void Init_Game_Data()
 	run_lua_file(fpath);
 	tux_rendering_validate(); // check mandatory specifications/configurations
 
+	// Load Bot animation definitions and animations
+	// must be before Get_Robot_Data()
+	Load_Enemy_Surfaces();
+
 	// Item archetypes must be loaded too
 	find_file("freedroid.item_archetypes", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
@@ -1421,15 +1425,15 @@ I will not be able to load or save games or configurations\n\
 	//
 	SetSoundFXVolume(GameConfig.Current_Sound_FX_Volume);
 
-	InitPictures();
-
 	Init_Game_Data();
 
 	/* 
-	 * Initialise random-number generator in order to make 
+	 * Initialize random-number generator in order to make 
 	 * level-start etc really different at each program start
 	 */
 	srand(time(NULL));
+
+	InitPictures(); //requires game data loaded in Init_Game_Data()
 
 	if (strstr(VERSION, "rc"))
 		alert_window("%s", _("You are playing a Release Candidate.\nStrange bugs might still be present in the game.\nPlease report any issues you find to either of:\n\n#freedroid at irc.freenode.net\nfreedroid-discussion AT lists.sourceforge.net\nhttps://sourceforge.net/apps/phpbb/freedroid\n\nor directly to the bugtracker at the SF website\nThank you for helping us test the game.\n\nGood luck!\n"));

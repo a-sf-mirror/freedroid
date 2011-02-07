@@ -582,8 +582,6 @@ void InitPictures(void)
 		load_all_items();
 	}
 
-	Load_Enemy_Surfaces();
-
 	clear_all_loaded_tux_images(FALSE);
 
 	Load_Blast_Surfaces();
