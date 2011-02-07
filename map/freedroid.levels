@@ -16481,29 +16481,29 @@ idx=29 type=30 data={
 /obstacleextensions
 wp
 Nr.=  0 x=  65 y=  22 rnd=1	 c:    1
-Nr.=  1 x=  63 y=  21 rnd=1	 c:   14
-Nr.=  2 x=  63 y=  26 rnd=1	 c:    3   4
-Nr.=  3 x=  66 y=  24 rnd=0	 c:    2   4
-Nr.=  4 x=  66 y=  27 rnd=1	 c:    2   3   5
-Nr.=  5 x=  71 y=  26 rnd=0	 c:    4   6
-Nr.=  6 x=  75 y=  28 rnd=0	 c:    5   7
-Nr.=  7 x=  80 y=  26 rnd=0	 c:    6   8
-Nr.=  8 x=  82 y=  29 rnd=0	 c:    7
-Nr.=  9 x=  85 y=  24 rnd=0	 c:   10  11  12
-Nr.= 10 x=  82 y=  19 rnd=0	 c:    9  11  13
-Nr.= 11 x=  83 y=  22 rnd=0	 c:   10   9  12  13
-Nr.= 12 x=  83 y=  26 rnd=0	 c:    9  11
-Nr.= 13 x=  81 y=  20 rnd=1	 c:   10  11
-Nr.= 14 x=  63 y=  22 rnd=1	 c:    0
-Nr.= 15 x=  49 y=  41 rnd=1	 c:   17  16  23
-Nr.= 16 x=  47 y=  42 rnd=1	 c:   15  23
-Nr.= 17 x=  51 y=  43 rnd=1	 c:   18  15  22  23
-Nr.= 18 x=  51 y=  40 rnd=1	 c:   15  17  19  23
-Nr.= 19 x=  54 y=  42 rnd=1	 c:   18  20
-Nr.= 20 x=  56 y=  40 rnd=1	 c:   19
-Nr.= 21 x=  55 y=  40 rnd=1	 c:   20  19
-Nr.= 22 x=  51 y=  50 rnd=1	 c:   17
-Nr.= 23 x=  49 y=  42 rnd=1	 c:   17  16  15
+Nr.=  1 x=  63 y=  21 rnd=1	 c:   11
+Nr.=  2 x=  66 y=  24 rnd=0	 c:   21
+Nr.=  3 x=  71 y=  26 rnd=0	 c:    4
+Nr.=  4 x=  75 y=  28 rnd=0	 c:    3   5
+Nr.=  5 x=  80 y=  26 rnd=0	 c:    4   6
+Nr.=  6 x=  82 y=  29 rnd=0	 c:    5
+Nr.=  7 x=  85 y=  24 rnd=0	 c:    8   9  10
+Nr.=  8 x=  82 y=  19 rnd=0	 c:    7   9  23
+Nr.=  9 x=  83 y=  22 rnd=0	 c:    8   7  10  23
+Nr.= 10 x=  83 y=  26 rnd=0	 c:    7   9
+Nr.= 11 x=  63 y=  22 rnd=1	 c:    0
+Nr.= 12 x=  49 y=  41 rnd=1	 c:   14  13  20
+Nr.= 13 x=  47 y=  42 rnd=1	 c:   12  20
+Nr.= 14 x=  51 y=  43 rnd=1	 c:   15  12  19  20
+Nr.= 15 x=  51 y=  40 rnd=1	 c:   12  14  16  20
+Nr.= 16 x=  54 y=  42 rnd=1	 c:   15  17
+Nr.= 17 x=  56 y=  40 rnd=1	 c:   16
+Nr.= 18 x=  55 y=  40 rnd=1	 c:   17  16
+Nr.= 19 x=  51 y=  50 rnd=1	 c:   14
+Nr.= 20 x=  49 y=  42 rnd=1	 c:   14  13  12
+Nr.= 21 x=  63 y=  26 rnd=0	 c:    2  22
+Nr.= 22 x=  66 y=  27 rnd=0	 c:   21
+Nr.= 23 x=  81 y=  20 rnd=0	 c:    9   8
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 13
