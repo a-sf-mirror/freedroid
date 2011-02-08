@@ -7,7 +7,7 @@ You can access it from the main menu (click "Level Editor") or executing 'freedr
 
 
     === Tooltips ===
-To toggle descriptions of the interface while the mouse hovers, click the white speech bubble icon located near the right window border.
+To toggle descriptions of the interface while the mouse hovers, click the white speech bubble icon located near the right window border (lower button row).
 
     === Navigation ===
 To change the current level, click the nearby level number in the minimap the lower right corner, or select the desired level from the editor menu (described later).
@@ -29,7 +29,7 @@ In order to select this mode, click on button that says 'Obstacle' of the catego
 Having selected an obstacle, just click somewhere on the map to place it at the cursor's position.
 Since clicking is a little imprecise, you can also use your numberpad to place obstacles.
 Click on the leftmost (it shows a small grid) of the five button above category selector to have a grid with numbers displayed.
-These numbers refer to the numbers of your numberpad if you have one. Pressing '1' will place the  obstacle that is highlighted in the object selector at the position of the digit '1' on the purple grid.
+These numbers refer to the numbers of your numberpad if you have one. Pressing '1' will place the obstacle that is highlighted in the object selector at the position of the digit '1' on the purple grid.
 Since placing a line of walls that way is quite inefficient, you can simply hold down the left mouse button and a line of walls is placed as you move the cursor if you have a wall object selected. This works with the most common walls in FreedroidRPG.
 There are some special objects. Glass walls and cracked brick walls, but also barrels and crates can be destroyed with a few strikes, while the latter two may also release items. Chests can be opened and may contain items, too.
 The symbol with the crossed out footsteps is not really an object but pure and invisible blocking area ('collision rectangle'). Collision rectangles are the very core of each object since they prevent you from just walking through them as it possible for waypoints or floor tiles.
@@ -41,6 +41,16 @@ You may have automatically selected several obstacles with one click. You can sw
 The icon with the trash can delete the selected obstacle.
 You can also cut (Ctrl+x, can also be used to delete obstacles by just not pasting them again ;) ), copy (Ctrl+c) and paste (Ctrl+v) cut or copied obstacles.
 You can move selected obstacles holding down the left shift key while dragging the obstacle around. However, this may be quite imprecise.
+
+			Placing objects in Chests:
+
+Simply select the desired chest and click the most left button in the upper button row.
+You will be forwarded to a screen that looks like the shop screen.
+There will be a knife displayed (which is actually not placed in the chest by the way) select it and click on the 'sell' button.
+Select the items you want to be dropped when the player opens the chest.
+These items will be displayed in the upper shop bar.
+In order to remove one of these items, simply select it and click on 'buy'.
+The red cross gets you out of the screen.
 
 
 		Floor edit mode:
