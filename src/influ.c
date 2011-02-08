@@ -757,6 +757,9 @@ void hit_tux(float damage, int owner)
 	if (Me.god_mode)
 		return;
 
+	if (Me.energy < 0)
+		return;
+
 	Me.energy -= damage;
 
 	if (damage > Me.energy / 10)
