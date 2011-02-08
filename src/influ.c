@@ -1622,33 +1622,6 @@ static void AnalyzePlayersMouseClick()
 		check_for_droids_to_attack_or_talk_with();
 }
 
-
-/**
- *  Handles arrow key based movements
- */
-void set_movement_with_keys(int move_x, int move_y)
-{
-	float floor_center = 0.5;
-	int move_amplitude = 1 + GameConfig.autorun_activated;
-
-	// Center the target waypoint, or establish a new target waypoint if there isn't one already
-	if (Me.mouse_move_target.z != -1) {
-		Me.mouse_move_target.x = floor(Me.mouse_move_target.x) + floor_center;
-		Me.mouse_move_target.y = floor(Me.mouse_move_target.y) + floor_center;
-	} else {
-		Me.mouse_move_target.z = Me.pos.z;
-		Me.mouse_move_target.x = floor(Me.pos.x) + floor_center;
-		Me.mouse_move_target.y = floor(Me.pos.y) + floor_center;
-	}
-
-	// Determine move amount
-	if (move_x != 0)
-		Me.mouse_move_target.x += move_x * move_amplitude;
-	
-	if (move_y != 0)
-		Me.mouse_move_target.y += move_y * move_amplitude;
-}
-
 static void free_tux()
 {
 	int i;
