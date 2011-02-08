@@ -658,6 +658,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 			case SDLK_DOWN:
 				if (menu_position_to_remember < LastOptionVisible) {
 					SDL_WarpMouse(GetMousePos_x(), MenuPosY[menu_position_to_remember]);
+					MoveMenuPositionSound();
 				} else {
 					if (BreakOffCauseNoRoom) {
 						OptionOffset++;
