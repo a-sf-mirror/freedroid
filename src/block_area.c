@@ -1084,10 +1084,12 @@ void init_obstacle_data(void)
 	block_2param(ISO_BRICK_WALL_EH, 1.2, 0.8);
 	obstacle_map[ISO_BRICK_WALL_EH].filename = "iso_brick_wall_0017.png";
 	obstacle_map[ISO_BRICK_WALL_EH].flags |= IS_HORIZONTAL;
+	obstacle_map[ISO_BRICK_WALL_EH].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_BRICK_WALL_EH].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1;
 	block_2param(ISO_BRICK_WALL_EV, 0.8, 1.2);
 	obstacle_map[ISO_BRICK_WALL_EV].filename = "iso_brick_wall_0016.png";
 	obstacle_map[ISO_BRICK_WALL_EV].flags |= IS_VERTICAL;
+	obstacle_map[ISO_BRICK_WALL_EV].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_BRICK_WALL_EV].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_2;
 
 	obstacle_map[ISO_BLOOD_1].block_area_type = COLLISION_TYPE_NONE;
