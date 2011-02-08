@@ -45,6 +45,7 @@ const char *keybindNames[] = {
 	/* Ingame */
 	"inventory", "skill", "character", "quests",
 	"reload", "autorun",
+	"move_north", "move_south", "move_east", "move_west",
 	"quicksave", "quickload", "pause",
 	"automap",
 	"show_item_labels",
@@ -176,6 +177,12 @@ void input_set_default(void)
 	input_set_keybind("quests", SDLK_q, KMOD_NONE);
 	input_set_keybind("reload", SDLK_r, KMOD_NONE);
 	input_set_keybind("autorun", SDLK_u, KMOD_NONE);
+
+	input_set_keybind("move_north", SDLK_UP, KMOD_NONE);
+	input_set_keybind("move_south", SDLK_DOWN, KMOD_NONE);
+	input_set_keybind("move_east", SDLK_RIGHT, KMOD_NONE);
+	input_set_keybind("move_west", SDLK_LEFT, KMOD_NONE);
+
 	input_set_keybind("quicksave", SDLK_F3, KMOD_NONE);
 	input_set_keybind("quickload", SDLK_F4, KMOD_NONE);
 	input_set_keybind("pause", SDLK_p, KMOD_NONE);
@@ -497,6 +504,18 @@ static int input_key(int keynum, int value)
 			return 0;
 		} else if (KEYPRESS("autorun")) {
 			GameConfig.autorun_activated = !GameConfig.autorun_activated;
+			return 0;
+		} else if (KEYPRESS("move_north")) {
+			set_movement_with_keys(0, -1);
+			return 0;
+		} else if (KEYPRESS("move_south")) {
+			set_movement_with_keys(0, 1);
+			return 0;
+		} else if (KEYPRESS("move_east")) {
+			set_movement_with_keys(1, 0);
+			return 0;
+		} else if (KEYPRESS("move_west")) {
+			set_movement_with_keys(-1, 0);
 			return 0;
 		} else if (KEYPRESS("reload")) {
 			TuxReloadWeapon();
