@@ -85,10 +85,10 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[ITEM_BROWSER_RIGHT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {536, 44, 37, 37}, TRUE},
 	[ITEM_BROWSER_EXIT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {201, 340, 47, 47}, TRUE},
 
-	[LEFT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LeftShopButton.png", {22, 447, 26, 26}, TRUE},
-	[RIGHT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {576, 447, 26, 26}, TRUE},
-	[LEFT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LeftShopButton.png", {5, 16, 26, 26}, TRUE},
-	[RIGHT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {580, 13, 26, 26}, TRUE},
+	[LEFT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LeftShopButton.png", {23, 446, 23, 23}, TRUE},
+	[RIGHT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {580, 447, 23, 23}, TRUE},
+	[LEFT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LeftShopButton.png", {6, 15, 23, 23}, TRUE},
+	[RIGHT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {584, 15, 23, 23}, TRUE},
 	[LEFT_LEVEL_EDITOR_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeft.png", {3, 8, 15, 60}, FALSE},
 	[LEFT_LEVEL_EDITOR_BUTTON_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeft.png", {3, 8, 15, 60}, FALSE},
