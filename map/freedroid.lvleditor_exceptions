@@ -88,4 +88,9 @@ Rule=8 [Type="WQ"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=22.500000:Y2=13.
 Rule=9 [Type="WQ"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=16.500000:Y2=14.500000:L2=6 (warning)
 Rule=10 [Type="WQ"] WP1 X1=16.500000:Y1=14.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 (warning)
 
+# Level 0. Some obstacles going past level borders
+
+Rule=20 [Type="OW"] X=0.020000:Y=85.029999:L=0 T=36 -> west border=-0.730000 (warning)
+Rule=21 [Type="ON"] X=82.500000:Y=0.500000:L=0 T=37 -> north border=-0.250000 (warning)
+
 *** End of LevelValidator Exceptions List ***
