@@ -281,6 +281,10 @@ static int lookup_exception(struct level_validator *this, void *opaque_data)
 	// Loop on each item in the list, and call the validator's comparator
 
 	list_for_each_entry(item, &(this->excpt_list), node) {
+		if (item->rule_id == 100) {
+			int i;
+			i = 0;
+		}
 		rtn = this->cmp(item->opaque_data, opaque_data);
 		if (rtn) {
 			item->caught = TRUE;	// Mark the exception has caught
@@ -1055,18 +1059,73 @@ static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlv
 // This validator checks if obstacles positions are valid
 //===========================================================
 
-/*
- * No exceptions for obstacles: dummy functions
- */
+struct obstacle_excpt_data {
+	char subtest;
+	gps obs_pos;
+	int type;
+	float border;
+};
 
 static void *lvlval_obstacles_parse_excpt(char *string)
 {
-	return NULL;
+	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
+	if (!validator_type || strlen(validator_type) != 2) {
+		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is not valid!\n", PLEASE_INFORM, IS_FATAL);
+		return NULL;
+	}
+
+	struct obstacle_excpt_data *data = (struct obstacle_excpt_data *)malloc(sizeof(struct obstacle_excpt_data));
+
+	data->subtest = validator_type[1];
+	free(validator_type);
+
+	switch (data->subtest) {
+	case 'N':
+	case 'S':
+	case 'W':
+	case 'E':
+		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(string, "T=", "%d", &(data->type), NULL);
+		ReadValueFromString(string, "border=", "%f", &(data->border), NULL);
+		break;
+
+	default:
+		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is invalid!\n", PLEASE_INFORM, IS_FATAL);
+		free(data);
+		return NULL;
+	}
+
+	return (data);
 }
 
 static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2)
 {
-	return FALSE;
+#	define DIST_EPSILON 0.01f
+
+	struct obstacle_excpt_data *data1 = opaque_data1;
+	struct obstacle_excpt_data *data2 = opaque_data2;
+
+	if (data1->subtest != data2->subtest)
+		return FALSE;
+
+	if (data1->obs_pos.z != data2->obs_pos.z)
+		return FALSE;
+
+	if (data1->type != data2->type)
+		return FALSE;
+
+	float dist = calc_distance(data1->obs_pos.x, data1->obs_pos.y, data2->obs_pos.x, data2->obs_pos.y);
+	if (dist > DIST_EPSILON)
+		return FALSE;
+
+	if (fabs(data1->border - data2->border) > DIST_EPSILON)
+		return FALSE;
+
+	return TRUE;
+
+#	undef DIST_EPSILON
 }
 
 /*
@@ -1075,35 +1134,106 @@ static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2)
 
 static int lvlval_obstacles_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
 {
-	int is_invalid = FALSE;
+	int pos_invalid = FALSE;
+	int outside_invalide = FALSE;
 	int i;
+	float border;
 	level *l = validator_ctx->this_level;
 
 	float max_x = (float)l->xlen;
 	float max_y = (float)l->ylen;
 
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		if (l->obstacle_list[i].type == -1)
-			break;
+		obstacle *o = &l->obstacle_list[i];
 
-		if (l->obstacle_list[i].pos.x < 0 || l->obstacle_list[i].pos.x > max_x) {
-			validator_print_header(validator_ctx, "Invalid obstacle X position",
-					"The X position of an obstacle is invalid.");
-			is_invalid = TRUE;
-			printf("[ERROR] Obstacle n.%d on level %d, type %d, has position %f %f. Allowed X position ranges from 0 to %f.\n",
-					i, l->levelnum, l->obstacle_list[i].type, l->obstacle_list[i].pos.x, l->obstacle_list[i].pos.y, max_x);
+		if (o->type == -1)
+			continue;
+
+		if (o->pos.x < 0 || o->pos.x > max_x || o->pos.y < 0 || o->pos.y > max_y) {
+			if (!pos_invalid) {
+				validator_print_header(validator_ctx, "Invalid obstacle position",
+				                       "The position of an obstacle is invalid.");
+				pos_invalid = TRUE;
+			}
+			printf("[ERROR] Obstacle n.%d on level %d, type %d, has position %f %f. Allowed X position ranges from 0 to %f. Allowed Y position ranges from 0 to %f.\n",
+					i, l->levelnum, o->type, o->pos.x, o->pos.y, max_x, max_y);
 		}
 
-		if (l->obstacle_list[i].pos.y < 0 || l->obstacle_list[i].pos.y > max_y) {
-			validator_print_header(validator_ctx, "Invalid obstacle Y position",
-					"The Y position of an obstacle is invalid.");
-			is_invalid = TRUE;
-			printf("[ERROR] Obstacle n.%d on level %d, type %d, has position %f %f. Allowed Y position ranges from 0 to %f.\n",
-					i, l->levelnum, l->obstacle_list[i].type, l->obstacle_list[i].pos.x, l->obstacle_list[i].pos.y, max_y);
+		border = o->pos.x + obstacle_map[o->type].left_border;
+		if (border < 0 && l->jump_target_west != -1) {
+
+			struct obstacle_excpt_data to_check =
+			    { 'W', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
+
+			if (!lookup_exception(this, &to_check)) {
+				if (!outside_invalide) {
+					validator_print_header(validator_ctx, "Obstacle going past the level borders",
+					                       "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
+				                           "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
+					outside_invalide = TRUE;
+				}
+				printf("[Type=\"OW\"] X=%f:Y=%f:L=%d T=%d -> west border=%f (warning)\n",
+				       o->pos.x, o->pos.y, l->levelnum, o->type, border);
+			}
 		}
+
+		border = o->pos.x + obstacle_map[o->type].right_border;
+		if (border > max_x && l->jump_target_east != -1) {
+
+			struct obstacle_excpt_data to_check =
+			    { 'E', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
+
+			if (!lookup_exception(this, &to_check)) {
+				if (!outside_invalide) {
+					validator_print_header(validator_ctx, "Obstacle going past the level borders",
+										   "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
+										   "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
+					outside_invalide = TRUE;
+				}
+				printf("[Type=\"OE\"] X=%f:Y=%f:L=%d T=%d -> east border=%f (warning)\n",
+						o->pos.x, o->pos.y, l->levelnum, o->type, border);
+			}
+		}
+
+		border = o->pos.y + obstacle_map[o->type].upper_border;
+		if (border < 0 && l->jump_target_north != -1) {
+
+			struct obstacle_excpt_data to_check =
+			    { 'N', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
+
+			if (!lookup_exception(this, &to_check)) {
+				if (!outside_invalide) {
+					validator_print_header(validator_ctx, "Obstacle going past the level borders",
+										   "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
+										   "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
+					outside_invalide = TRUE;
+				}
+				printf("[Type=\"ON\"] X=%f:Y=%f:L=%d T=%d -> north border=%f (warning)\n",
+						o->pos.x, o->pos.y, l->levelnum, o->type, border);
+			}
+		}
+
+		border = o->pos.y + obstacle_map[o->type].lower_border;
+		if (border > max_y && l->jump_target_south != -1) {
+
+			struct obstacle_excpt_data to_check =
+			    { 'S', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
+
+			if (!lookup_exception(this, &to_check)) {
+				if (!outside_invalide) {
+					validator_print_header(validator_ctx, "Obstacle going past the level borders",
+										   "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
+										   "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
+					outside_invalide = TRUE;
+				}
+				printf("[Type=\"OS\"] X=%f:Y=%f:L=%d T=%d -> south border=%f (warning)\n",
+						o->pos.x, o->pos.y, l->levelnum, o->type, border);
+			}
+		}
+
 	}
 
-	return is_invalid;
+	return (pos_invalid || outside_invalide);
 }
 
 //===========================================================

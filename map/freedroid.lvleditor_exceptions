@@ -36,8 +36,11 @@ rule number you like.
 The specification of an exception depends on the sub-validator that
 uses it (defined by the "Type" value) :
 
-  - for "C" (chest), "WP" (waypoint position), "WO" (waypoint orphan),
-    "WS" (waypoint self-connected), "I, the parser extracts the following
+  - for "C" (chest), the parser extracts the following pattern:
+        Idx=IIII X=xxxx Y=yyyy L=llll
+
+  - for "WP" (waypoint position), "WO" (waypoint orphan),
+    "WS" (waypoint self-connected), the parser extracts the following
     pattern:
         X=xxxx Y=yyyy L=llll
 
@@ -47,6 +50,10 @@ uses it (defined by the "Type" value) :
 
   - for "J" (jumptarget), the parser extracts the following pattern:
         Interface:iiii of[space]Level:llll to[space]Level:llll
+
+  - for "OW" (obstacle west), "OE" (obstacle east), "ON" (obstacle north),
+    "OS" (obstacle south), the parser extracts the following pattern:
+        X=xxxx Y=yyyy L=llll T=tttt border=bbbb
 
 The parser is however smart enough to silently accept extras words inside
 an exception specification (as long as they do not collide with the
