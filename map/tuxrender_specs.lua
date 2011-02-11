@@ -43,7 +43,7 @@ tux_animation {
 ------------------------------------------------------------------------------
 
 tux_rendering_config {
-  motion_class_names = { "1hmelee", "2hranged" },
+  motion_class_names = { "1hmelee", "2hranged", "1hranged" },
   head_part_default      = "iso_head",
   torso_part_default     = "iso_torso",
   weaponarm_part_default = "iso_weaponarm",
@@ -122,7 +122,7 @@ part_order = {
 }
 
 --------------------
--- Sword animation
+-- 1-Handed Melee animation
 --------------------
 
 tux_ordering {
@@ -170,7 +170,7 @@ tux_ordering {
 }
 
 --------------------
--- Gun Animation
+-- 2-Handed Ranged Animation
 --------------------
 
 tux_ordering {
@@ -231,4 +231,62 @@ tux_ordering {
   type = "2hranged",
   rotations = { 15 },
   order = part_order.FTSAWH
+}
+
+--------------------
+-- 1-Handed Ranged Animation
+--------------------
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 0 },
+  phase_start = 25,
+  phase_end = 28,
+  order = part_order.FWTASH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 0 },
+  order = part_order.FTHSWA
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 1, 2, 3, 4, 5, 6, 7 },
+  order = part_order.FSTWAH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 8 },
+  phase_start = 25,
+  phase_end = 34,
+  order = part_order.FSTWAH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 8 },
+  order = part_order.FSWTAH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 9 },
+  order = part_order.FWATSH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 15 },
+  phase_start = 2,
+  phase_end = 11,
+  order = part_order.FTASWH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 10, 11, 12, 13, 14, 15 },
+  order = part_order.FAWTSH
 }

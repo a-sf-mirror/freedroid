@@ -264,7 +264,7 @@ Item as gun: modifier for starting angle=-60.000000
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
+Item as gun: weapon requires both hands="yes"
 Item motion class="1hmelee"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -300,7 +300,7 @@ Item as gun: modifier for starting angle=-60.000000
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
+Item as gun: weapon requires both hands="yes"
 Item motion class="1hmelee"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -414,7 +414,7 @@ Item as gun: modifier for starting angle=-60.000000
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
+Item as gun: weapon requires both hands="yes"
 Item motion class="1hmelee"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -716,7 +716,7 @@ Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=60
 Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
+Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -823,7 +823,7 @@ Item as gun: modifier for starting angle=-60.000000
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
+Item as gun: weapon requires both hands="yes"
 Item motion class="1hmelee"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -859,7 +859,7 @@ Item as gun: modifier for starting angle=-60.000000
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
+Item as gun: weapon requires both hands="yes"
 Item motion class="1hmelee"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -895,7 +895,7 @@ Item as gun: modifier for starting angle=-60.000000
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="none"
 Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
+Item as gun: weapon requires both hands="yes"
 Item motion class="1hmelee"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -937,7 +937,7 @@ Item as gun: modifier for starting angle=-60.000000
 Item as gun: pass through hit bodies="yes"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=20
-Item as gun: weapon requires both hands="no"
+Item as gun: weapon requires both hands="yes"
 Item motion class="1hmelee"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
@@ -1191,8 +1191,8 @@ Item as gun: modifier for starting angle=0.000000
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="22LR"
 Item as gun: ammo clip size=11
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
+Item as gun: weapon requires both hands="no"
+Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1411,8 +1411,8 @@ Item as gun: modifier for starting angle=0.000000
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="9mm"
 Item as gun: ammo clip size=19
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
+Item as gun: weapon requires both hands="no"
+Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1619,7 +1619,7 @@ Item name=_"Laser pistol"
 Item min class for drop=6
 Item max class for drop=8
 Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
+Tux part instance="iso_laser_pistol"
 Item uses rotation series with prefix="weapons/laser_pistol"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=-1
@@ -1645,8 +1645,8 @@ Item as gun: modifier for starting angle=0.000000
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="laser_ammunition"
 Item as gun: ammo clip size=20
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
+Item as gun: weapon requires both hands="no"
+Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
@@ -1781,7 +1781,7 @@ Item name=_"Plasma pistol"
 Item min class for drop=6
 Item max class for drop=8
 Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
+Tux part instance="iso_plasma_pistol"
 Item uses rotation series with prefix="weapons/plasma_pistol"
 Items of this type collect together in inventory="no"
 Strength minimum required to wear/wield this item=-1
@@ -1807,8 +1807,8 @@ Item as gun: modifier for starting angle=0.000000
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="plasma_ammunition"
 Item as gun: ammo clip size=6
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
+Item as gun: weapon requires both hands="no"
+Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
