@@ -78,6 +78,7 @@ void show_backgrounded_label_at_pixel_position(char *LabelText, int pos_x, int p
 
 	our_SDL_fill_rect_wrapper(Screen, &(background_rect), 0);
 
+	SetCurrentFont(FPS_Display_BFont);
 	PutString(Screen, pos_x, pos_y, LabelText);
 
 };				// void show_backgrounded_label_at_pixel_position ( char* LabelText , float fill_status , int pos_x , int pos_y )
