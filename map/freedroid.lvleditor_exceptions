@@ -92,11 +92,17 @@ Rule=10 [Type="WQ"] WP1 X1=16.500000:Y1=14.500000:L1=6 -> WP2 X2=20.500000:Y2=14
 
 Rule=20 [Type="OW"] X=0.020000:Y=85.029999:L=0 T=36 -> west border=-0.730000 (warning)
 Rule=21 [Type="ON"] X=82.500000:Y=0.500000:L=0 T=37 -> north border=-0.250000 (warning)
-Rule=22 [Type="OS"] X=84.500000:Y=89.500000:L=10 T=37 -> south border=90.250000 (warning)
-Rule=23 [Type="OE"] X=90.000000:Y=85.000000:L=10 T=36 -> east border=90.750000 (warning)
-Rule=24 [Type="OW"] X=0.500000:Y=48.500000:L=11 T=36 -> west border=-0.250000 (warning)
-Rule=25 [Type="OE"] X=89.500000:Y=30.500000:L=12 T=36 -> east border=90.250000 (warning)
-Rule=26 [Type="OE"] X=89.500000:Y=24.500000:L=12 T=36 -> east border=90.250000 (warning)
-Rule=27 [Type="OS"] X=77.500000:Y=89.500000:L=12 T=37 -> south border=90.250000 (warning)
+Rule=22 [Type="OE"] X=89.500000:Y=34.000000:L=5 T=2 -> east border=90.050003 (warning)
+Rule=23 [Type="OE"] X=89.500000:Y=19.000000:L=5 T=2 -> east border=90.050003 (warning)
+Rule=24 [Type="OE"] X=89.500000:Y=38.000000:L=5 T=2 -> east border=90.050003 (warning)
+Rule=25 [Type="OE"] X=89.500000:Y=15.000000:L=5 T=2 -> east border=90.050003 (warning)
+Rule=26 [Type="OW"] X=0.500000:Y=24.500000:L=8 T=36 -> west border=-0.250000 (warning)
+Rule=27 [Type="OW"] X=0.500000:Y=76.500000:L=8 T=36 -> west border=-0.250000 (warning)
+Rule=28 [Type="OS"] X=84.500000:Y=89.500000:L=10 T=37 -> south border=90.250000 (warning)
+Rule=29 [Type="OE"] X=90.000000:Y=85.000000:L=10 T=36 -> east border=90.750000 (warning)
+Rule=30 [Type="OW"] X=0.500000:Y=48.500000:L=11 T=36 -> west border=-0.250000 (warning)
+Rule=31 [Type="OE"] X=89.500000:Y=30.500000:L=12 T=36 -> east border=90.250000 (warning)
+Rule=32 [Type="OE"] X=89.500000:Y=24.500000:L=12 T=36 -> east border=90.250000 (warning)
+Rule=33 [Type="OS"] X=77.500000:Y=89.500000:L=12 T=37 -> south border=90.250000 (warning)
 
 *** End of LevelValidator Exceptions List ***
