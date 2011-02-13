@@ -118,5 +118,12 @@ Rule=44 [Type="OW"] X=0.500000:Y=18.500000:L=16 T=36 -> west border=-0.250000 (w
 Rule=45 [Type="OW"] X=0.500000:Y=22.500000:L=16 T=36 -> west border=-0.250000 (warning)
 Rule=46 [Type="OS"] X=4.500000:Y=89.500000:L=16 T=37 -> south border=90.250000 (warning)
 Rule=47 [Type="ON"] X=16.500000:Y=0.500000:L=19 T=37 -> north border=-0.250000 (warning)
+Rule=48 [Type="OS"] X=62.000000:Y=89.500000:L=31 T=1 -> south border=90.050003 (warning)
+Rule=49 [Type="OS"] X=48.000000:Y=89.500000:L=31 T=1 -> south border=90.050003 (warning)
+Rule=50 [Type="OS"] X=60.000000:Y=89.500000:L=31 T=132 -> south border=90.050003 (warning)
+Rule=51 [Type="OE"] X=89.500000:Y=33.500000:L=38 T=36 -> east border=90.250000 (warning)
+Rule=52 [Type="OS"] X=4.500000:Y=89.500000:L=38 T=37 -> south border=90.250000 (warning)
+Rule=53 [Type="OW"] X=0.500000:Y=82.500000:L=39 T=36 -> west border=-0.250000 (warning)
+Rule=54 [Type="ON"] X=84.500000:Y=0.500000:L=39 T=37 -> north border=-0.250000 (warning)
 
 *** End of LevelValidator Exceptions List ***
