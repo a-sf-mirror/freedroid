@@ -590,6 +590,8 @@ int droid_takeover(enemy *target)
 		show_droid_info(target->type);
 		show_text_widget(&droid_info);
 		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
+		SetCurrentFont(Para_BFont);
+		CenteredPutString(Screen, GameConfig.screen_height - 30, "For more information, click the help button.");
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 
