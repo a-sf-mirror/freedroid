@@ -295,6 +295,11 @@ void show_addon_crafting_ui()
 	show_text_widget(&ui.description);
 }
 
+int addon_crafting_ui_visible()
+{
+	return ui.visible;
+}
+
 static void handle_ui()
 {
 	point cursor;

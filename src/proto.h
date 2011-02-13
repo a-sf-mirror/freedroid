@@ -732,6 +732,7 @@ void item_upgrade_ui();
 int cursor_is_on_addon_crafting_ui(const point *);
 void show_addon_crafting_ui();
 void addon_crafting_ui();
+int addon_crafting_ui_visible();
 
 // shop.c 
 void ShowItemPicture(int, int, int);

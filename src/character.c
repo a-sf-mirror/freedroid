@@ -95,7 +95,7 @@ void DisplayButtons(void)
 	}
 
  display_overlay_chascr:
-	if (GameConfig.screen_height == 480 && (GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible))
+	if (GameConfig.screen_height == 480 && (GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible || addon_crafting_ui_visible()))
 		return;
 
 	// When the Tux has some extra skill points, that can be distributed
