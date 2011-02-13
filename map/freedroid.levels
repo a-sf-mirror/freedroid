@@ -43370,7 +43370,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
-Nr.=  0 x=  71 y=  43 rnd=0	 c: 
+Nr.=  0 x=  66 y=  44 rnd=0	 c:    1
+Nr.=  1 x=  72 y=  48 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 58
