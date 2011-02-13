@@ -340,9 +340,6 @@ static void ChooseColor(void)
 				case SDLK_SPACE:
 					ColorChosen = TRUE;
 					break;
-				case SDLK_F1:
-					display_takeover_help();
-					break;
 				default:
 					break;
 				}
@@ -422,8 +419,6 @@ static void PlayGame(int countdown)
 					LeaderColor = YourColor;	/* simple as that */
 					return;	/* leave now, to avoid changing of LeaderColor! */
 				}
-				if (event.key.keysym.sym == SDLK_F1)
-					display_takeover_help();
 			} else if (event.type == SDL_QUIT) {
 				Terminate(0);
 			}
@@ -612,7 +607,7 @@ int droid_takeover(enemy *target)
 				} else if (MouseCursorIsOnButton(DROID_SHOW_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 					menu_finished = TRUE;
 				} else if (MouseCursorIsOnButton(TAKEOVER_HELP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-					PlayATitleFile("TakeoverInstructions.title");
+					display_takeover_help();
 				}
 			} else if (event.type == SDL_KEYDOWN
 				   && ((event.key.keysym.sym == SDLK_SPACE) || (event.key.keysym.sym == SDLK_ESCAPE))) {
@@ -1056,8 +1051,6 @@ static void ShowPlayground(void)
 		}		// for capsules 
 	}			// for player 
 
-	SetCurrentFont(Para_BFont);
-	CenteredPutString(Screen, GameConfig.screen_height - 25, "Press F1 for help.");
 	return;
 
 };				// ShowPlayground 
