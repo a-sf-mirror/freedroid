@@ -106,7 +106,7 @@ Nr=11 Text=_"What did you use to do before you became a hunter?"
 LuaCode={
 	npc_says(_"I was a bot constructor. Built the killers of my mother.")
 	npc_says(_"Now I sell the parts that I remove from the bots to buy more ammunition and food.")
-	hide(11) show(12)
+	hide(11) show(12, 14)
 }
 ----------------------------------------------------------------------
 
@@ -132,6 +132,27 @@ Nr=13 Text=_"Can I join your hunt?"
 LuaCode={
 	npc_says(_"Nein. Our problem. Our hunt.") -- nein = no
 	hide(13)
+}
+----------------------------------------------------------------------
+
+Nr=14 Text=_"What happens to these bot parts?"
+LuaCode={
+	tux_says(_"Are they used to build other bots?")
+	npc_says(_"Most of them are used to bauen little nette gadgets") --bauen = build , in this context more like 'create' | nette= nice
+	npc_says(_"You can use them to make weapons better or make you stronger.")
+	tux_says(_"How does this work?")
+	npc_says(_"I don't know.")
+	npc_says(_"But these gadgets are very nice for making your equipment better.")
+	tux_says(_"So they are kind of add-ons?")
+	npc_says(_"Yes.")
+	npc_says(_"Ask the Stadtmenschen if you want to know more.") --Stadtmenschen = townspeople
+	if (not has_cookie("met_dixon")) then
+		npc_says(_"I think the rot Guard makes them.") --rot = red
+		npc_says(_"If you have Gluck, they won't kill you directly.") --Gluck (should actually be 'Glück' but there is no ü in the font) = luck
+	end
+	npc_says(_"But I don't know more about these gadgets.")
+	npc_says(_"Asking me more questions about that makes no sense...")
+	hide(14)
 }
 ----------------------------------------------------------------------
 
