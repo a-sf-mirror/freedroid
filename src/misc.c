@@ -282,13 +282,13 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuDown.png", {235, (480 - 22), 160, 20}, TRUE},
 
 	[MORE_STR_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 45, STR_Y - 5, 38, 22}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 53, STR_Y - 5, 38, 22}, FALSE},
 	[MORE_MAG_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 45, MAG_Y - 5, 38, 22}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 53, MAG_Y - 5, 38, 22}, FALSE},
 	[MORE_DEX_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 45, DEX_Y - 5, 38, 22}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 53, DEX_Y - 5, 38, 22}, FALSE},
 	[MORE_VIT_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 45, VIT_Y - 5, 38, 22}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/AttributePlusButton.png", {0 + STR_X + 53, VIT_Y - 5, 38, 22}, FALSE},
 
 	// These two buttons are for the scrolling text during the
 	// title display, the credits menu and the level editor 

@@ -482,7 +482,7 @@ enum {
 #define CHAT_SUBDIALOG_WINDOW_W ((337)*GameConfig . screen_width/640.0)
 #define CHAT_SUBDIALOG_WINDOW_H ((225)*GameConfig . screen_height/480.0)
 
-#define STR_X 95
+#define STR_X 90
 #define STR_Y 140
 #define DEX_Y 165
 #define VIT_Y 190
