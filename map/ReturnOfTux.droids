@@ -278,11 +278,7 @@ Level=23
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=24
-Number of Random Droids=7-10
-Random Droid Types: 629, 751, 883
 
-SForce: T=598 Marker=1024 StartLabel="MSCDStartGameSquare" ShortLabel=_"MSCD - MegaSys Control Droid"
-S*Force: T=598 Marker=1024 StartLabel="MSCDStartGameSquare" UseDialog="MSCD" ShortLabel=_"MSCD - MegaSys Control Droid"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
