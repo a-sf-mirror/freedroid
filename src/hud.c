@@ -662,6 +662,33 @@ static void prepare_text_window_content(struct auto_string *str)
 		return;
 	}
 
+	// Display Weapon item on hover
+	if (  x > WHOLE_EXPERIENCE_COUNTDOWN_RECT_X + WHOLE_EXPERIENCE_COUNTDOWN_RECT_W
+	    && x < 130
+	    && y > WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y)
+	{
+		if (Me.weapon_item.type != (-1)) {
+			append_item_description(str, &(Me.weapon_item));
+			best_banner_pos_x = UNIVERSAL_COORD_W(45);
+			best_banner_pos_y = GameConfig.screen_height - UNIVERSAL_COORD_H(150);
+		}
+		return;
+	}
+
+	// Display Readied Skill on hover
+	if (  x > 510
+	    && x < WHOLE_HEALTH_RECT_X
+	    && y > WHOLE_HEALTH_RECT_Y)
+	{
+		if (Me.skill_level[Me.readied_skill] > 0) {
+			autostr_printf(str, _("%s\nHeat: %d\nRevision: %d\n"), SpellSkillMap[Me.readied_skill].name, 
+					calculate_program_heat_cost(Me.readied_skill), Me.skill_level[Me.readied_skill]);
+			best_banner_pos_x = GameConfig.screen_width - UNIVERSAL_COORD_W(150);
+			best_banner_pos_y = GameConfig.screen_height - UNIVERSAL_COORD_H(150);
+		}
+		return;
+	}
+
 	// If the mouse cursor is within the user rectangle, then we check if
 	// either the cursor is over an inventory item or over some other droid
 	// and in both cases, we give a description of the object in the small
