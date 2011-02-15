@@ -349,6 +349,12 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    { ITEM_UPGRADE_RECT_X + 215, ITEM_UPGRADE_RECT_Y + 406, 32, 32 }, FALSE},
 
 	// Buttons of the add-on crafting UI.
+	[ADDON_CRAFTING_APPLY_BUTTON] = { EMPTY_IMAGE, "item_upgrade/button_apply.png",
+	    { ADDON_CRAFTING_RECT_X + 250, ADDON_CRAFTING_RECT_Y + 389, 48, 48 }, FALSE},
+	[ADDON_CRAFTING_APPLY_BUTTON_DISABLED] = { EMPTY_IMAGE, "item_upgrade/button_apply_disabled.png",
+	    { ADDON_CRAFTING_RECT_X + 250, ADDON_CRAFTING_RECT_Y + 389, 48, 48 }, FALSE},
+	[ADDON_CRAFTING_CLOSE_BUTTON] = { EMPTY_IMAGE, "item_upgrade/button_close.png",
+	    { ADDON_CRAFTING_RECT_X + 215, ADDON_CRAFTING_RECT_Y + 406, 32, 32 }, FALSE},
 	[ADDON_CRAFTING_SCROLL_UP_BUTTON] = { EMPTY_IMAGE, "mouse_buttons/crafting_scroll_up.png",
 	    { ADDON_CRAFTING_RECT_X + 264, ADDON_CRAFTING_RECT_Y + 70, 32, 32 }, FALSE},
 	[ADDON_CRAFTING_SCROLL_DOWN_BUTTON] = { EMPTY_IMAGE, "mouse_buttons/crafting_scroll_down.png",

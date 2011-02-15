@@ -1918,7 +1918,7 @@ void AssembleCombatPicture(int mask)
 			show_texts_and_banner();
 	}
 
-	if (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible) {
+	if (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible || addon_crafting_ui_visible()) {
 		User_Rect.x = 320;
 	} else
 		User_Rect.x = 0;

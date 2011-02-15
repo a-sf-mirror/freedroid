@@ -248,11 +248,11 @@ void show_addon_crafting_ui()
 
 	// Draw the apply and close buttons.
 	if (arr[ui.selection].available) {
-		ShowGenericButtonFromList(ITEM_UPGRADE_APPLY_BUTTON);
+		ShowGenericButtonFromList(ADDON_CRAFTING_APPLY_BUTTON);
 	} else {
-		ShowGenericButtonFromList(ITEM_UPGRADE_APPLY_BUTTON_DISABLED);
+		ShowGenericButtonFromList(ADDON_CRAFTING_APPLY_BUTTON_DISABLED);
 	}
-	ShowGenericButtonFromList(ITEM_UPGRADE_CLOSE_BUTTON);
+	ShowGenericButtonFromList(ADDON_CRAFTING_CLOSE_BUTTON);
 
 	// Draw the icons and names of the recipes.
 	rect.x = rects.recipe_list.x;
@@ -351,14 +351,14 @@ static void handle_ui()
 	// Handle hovering and clicks of the apply and close buttons. We need to reset
 	// the cursor to normal if it's on a button since the text widget might have
 	// changed it to a scrolling cursor in the previous call.
-	if (MouseCursorIsOnButton(ITEM_UPGRADE_APPLY_BUTTON, cursor.x, cursor.y)) {
+	if (MouseCursorIsOnButton(ADDON_CRAFTING_APPLY_BUTTON, cursor.x, cursor.y)) {
 		if (MouseLeftClicked()) {
 			craft_item();
 		}
 		mouse_cursor = MOUSE_CURSOR_NORMAL;
 		return;
 	}
-	if (MouseCursorIsOnButton(ITEM_UPGRADE_CLOSE_BUTTON, cursor.x, cursor.y)) {
+	if (MouseCursorIsOnButton(ADDON_CRAFTING_CLOSE_BUTTON, cursor.x, cursor.y)) {
 		if (MouseLeftClicked()) {
 			ui.quit = TRUE;
 		}
