@@ -537,6 +537,7 @@ void RadialFireWave(gps ExpCenter, int SpellCostsMana);
 void ShowSkillsScreen(void);
 void HandleCurrentlyActivatedSkill(void);
 int DoSkill(int skill_index, int SpellCost);
+void do_radial_skill(int skill_index, int pos_x, int pos_y, int from_tux);
 void activate_nth_skill(int skill_num);
 void set_nth_quick_skill(int quick_skill);
 void ImproveSkill(int *skill);

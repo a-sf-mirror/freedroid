@@ -365,41 +365,8 @@ int DoSkill(int skill_index, int SpellCost)
 
 	case PROGRAM_FORM_RADIAL:
 		Me.temperature += SpellCost;
-
-		int i, j;
-		for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
-			if (AllActiveSpells[i].img_type == (-1))
-				break;
-		}
-		if (i >= MAX_ACTIVE_SPELLS)
-			i = 0;
-
-		AllActiveSpells[i].img_type =
-		    (SpellSkillMap[skill_index].graphics_code == -1 ? 2 : SpellSkillMap[skill_index].graphics_code);
-		AllActiveSpells[i].spell_center.x = Me.pos.x;
-		AllActiveSpells[i].spell_center.y = Me.pos.y;
-		AllActiveSpells[i].spell_radius = 0.3;
-		if (!strcmp(SpellSkillMap[skill_index].effect, "short"))
-			AllActiveSpells[i].spell_age = 0.5;
-		else
-			AllActiveSpells[i].spell_age = 0;
-		AllActiveSpells[i].mine = 1;
-		if (SpellSkillMap[skill_index].hurt_humans && SpellSkillMap[skill_index].hurt_bots)
-			AllActiveSpells[i].hit_type = ATTACK_HIT_ALL;
-		else if (SpellSkillMap[skill_index].hurt_humans)
-			AllActiveSpells[i].hit_type = ATTACK_HIT_HUMANS;
-		else
-			AllActiveSpells[i].hit_type = ATTACK_HIT_BOTS;
-
-		for (j = 0; j < RADIAL_SPELL_DIRECTIONS; j++) {
-			AllActiveSpells[i].active_directions[j] = TRUE;
-		}
-
-		AllActiveSpells[i].freeze_duration = strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
-		AllActiveSpells[i].poison_duration = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : effdur;
-		AllActiveSpells[i].poison_dmg = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : hitdmg;
-		AllActiveSpells[i].paralyze_duration = strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
-		AllActiveSpells[i].damage = hitdmg;
+		
+		do_radial_skill(skill_index, Me.pos.x, Me.pos.y, 1);
 
 		return 1;
 
@@ -469,6 +436,53 @@ int DoSkill(int skill_index, int SpellCost)
 
 	return 1;
 };				// void HandleCurrentlyActivatedSkill( void )
+
+
+/**
+ * This function starts a new radial skill (grenade blast, etc) from 
+ * the given x and y coordinates.
+ */
+void do_radial_skill(int skill_index, int pos_x, int pos_y, int from_tux)
+{
+	float hitdmg = calculate_program_hit_damage(skill_index);
+	float effdur = calculate_program_effect_duration(skill_index);
+
+	int i, j;
+	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
+		if (AllActiveSpells[i].img_type == (-1))
+			break;
+	}
+	if (i >= MAX_ACTIVE_SPELLS)
+		i = 0;
+
+	AllActiveSpells[i].img_type =
+	    (SpellSkillMap[skill_index].graphics_code == -1 ? 2 : SpellSkillMap[skill_index].graphics_code);
+	AllActiveSpells[i].spell_center.x = pos_x;
+	AllActiveSpells[i].spell_center.y = pos_y;
+	AllActiveSpells[i].spell_radius = 0.3;
+	if (!strcmp(SpellSkillMap[skill_index].effect, "short"))
+		AllActiveSpells[i].spell_age = 0.5;
+	else
+		AllActiveSpells[i].spell_age = 0;
+
+	AllActiveSpells[i].mine = from_tux;
+	if (SpellSkillMap[skill_index].hurt_humans && SpellSkillMap[skill_index].hurt_bots)
+		AllActiveSpells[i].hit_type = ATTACK_HIT_ALL;
+	else if (SpellSkillMap[skill_index].hurt_humans)
+		AllActiveSpells[i].hit_type = ATTACK_HIT_HUMANS;
+	else
+		AllActiveSpells[i].hit_type = ATTACK_HIT_BOTS;
+
+	for (j = 0; j < RADIAL_SPELL_DIRECTIONS; j++) {
+		AllActiveSpells[i].active_directions[j] = TRUE;
+	}
+
+	AllActiveSpells[i].freeze_duration = strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
+	AllActiveSpells[i].poison_duration = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : effdur;
+	AllActiveSpells[i].poison_dmg = strcmp(SpellSkillMap[skill_index].effect, "poison") ? 0 : hitdmg;
+	AllActiveSpells[i].paralyze_duration = strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
+	AllActiveSpells[i].damage = hitdmg;
+}
 
 /**
  * This function checks if a given screen position lies within the 
