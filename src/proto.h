@@ -517,7 +517,7 @@ void calculate_item_bonuses(item *);
 int count_used_sockets(item *);
 
 // character.c
-void DisplayButtons(void);
+void display_buttons(void);
 void UpdateAllCharacterStats(void);
 void ShowCharacterScreen(void);
 void HandleCharacterScreen(void);

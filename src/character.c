@@ -79,42 +79,29 @@
  * This function displays all the buttons that open up the character
  * screen and the inventory screen
  */
-void DisplayButtons(void)
+void display_buttons(void)
 {
-
-	if (GameConfig.screen_height == 480 && (GameConfig.Inventory_Visible || GameConfig.skill_explanation_screen_visible))
-		goto display_overlay_chascr;
-
 	if (Me.quest_browser_changed)
 		ShowGenericButtonFromList(LOG_SCREEN_TOGGLE_BUTTON_RED);
-
-	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		ShowGenericButtonFromList(INV_SCREEN_TOGGLE_BUTTON_YELLOW);
-	} else if (MouseCursorIsOnButton(LOG_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		ShowGenericButtonFromList(LOG_SCREEN_TOGGLE_BUTTON_YELLOW);
-	}
-
- display_overlay_chascr:
-	if (GameConfig.screen_height == 480 && (GameConfig.SkillScreen_Visible || GameConfig.CharacterScreen_Visible || addon_crafting_ui_visible()))
-		return;
 
 	// When the Tux has some extra skill points, that can be distributed
 	// to some character stats or saved for later training with some trainer
 	// character in the city, we mark the character screen toggle button as
 	// red to indicate the available points.
-	//
 	if (Me.points_to_distribute > 0) {
-		// blit_special_background ( MOUSE_BUTTON_PLUS_BACKGROUND_PICTURE_CODE );
 		ShowGenericButtonFromList(CHA_SCREEN_TOGGLE_BUTTON_RED);
 	}
 
-	if (MouseCursorIsOnButton(CHA_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+		ShowGenericButtonFromList(INV_SCREEN_TOGGLE_BUTTON_YELLOW);
+	} else if (MouseCursorIsOnButton(LOG_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
+		ShowGenericButtonFromList(LOG_SCREEN_TOGGLE_BUTTON_YELLOW);
+	} else if (MouseCursorIsOnButton(CHA_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		ShowGenericButtonFromList(CHA_SCREEN_TOGGLE_BUTTON_YELLOW);
 	} else if (MouseCursorIsOnButton(SKI_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
 		ShowGenericButtonFromList(SKI_SCREEN_TOGGLE_BUTTON_YELLOW);
 	}
-
-};				// void DisplayButtons( void )
+}
 
 /**
  * This function adds any bonuses that might be on the influencers things

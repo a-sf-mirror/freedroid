@@ -1907,13 +1907,13 @@ void AssembleCombatPicture(int mask)
 			ShowCurrentSkill();
 			ShowCurrentWeapon();
 		}
+		display_buttons();
 		show_quick_inventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();
 		show_addon_crafting_ui();
 		show_item_upgrade_ui();
 		show_inventory_screen();
-		DisplayButtons();
 		if (!GameOver)
 			show_texts_and_banner();
 	}
