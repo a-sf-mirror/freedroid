@@ -20920,14 +20920,6 @@ t1 x68.00 y41.50
 t99 x61.16 y30.76
 /obsdata
 plabelinfolvl
-x=34 y=37 name="FieldBot1StartGameSquare"
-x=34 y=28 name="FieldBot2StartGameSquare"
-x=27 y=25 name="FieldBot3StartGameSquare"
-x=36 y=23 name="FieldBot4StartGameSquare"
-x=35 y=50 name="Level17Lurker1StartGameSquare"
-x=39 y=54 name="Level17Lurker2StartGameSquare"
-x=35 y=58 name="Level17Lurker3StartGameSquare"
-x=31 y=54 name="Level17Lurker4StartGameSquare"
 x=57 y=46 name="KevinGuardStartGameSquare"
 x=70 y=52 name="KevinStartGameSquare"
 x=60 y=41 name="Kevins598StartGameSquare"
