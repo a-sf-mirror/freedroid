@@ -5443,8 +5443,6 @@ t271 x20.61 y2.43
 /obsdata
 plabelinfolvl
 x=20 y=2 name="2to1"
-x=30 y=20 name="TeleportToThirdCombatLevel"
-x=29 y=21 name="ReturnFromThirdCombatLevel"
 x=19 y=2 name="2from1"
 x=47 y=22 name="Lv2DalekStartGameSquare"
 /plabelinfolvl
