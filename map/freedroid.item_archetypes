@@ -1635,7 +1635,7 @@ Item description text=_"A basic laser, but it has good uses in certain situation
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.400000
 Item as gun: reloading time=3.000000
-Item as gun: speed of bullets=45.000000
+Item as gun: speed of bullets=90.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=4
 Item as gun: modifier for damage of bullets=6
@@ -1671,7 +1671,7 @@ Item description text=_"This rifle is a high-end laser weapon. There is only one
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.600000
 Item as gun: reloading time=4.000000
-Item as gun: speed of bullets=45.000000
+Item as gun: speed of bullets=90.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=8
 Item as gun: modifier for damage of bullets=8
@@ -1707,7 +1707,7 @@ inventory_size_y=4
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=3.000000
-Item as gun: speed of bullets=45.000000
+Item as gun: speed of bullets=90.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=3
 Item as gun: modifier for damage of bullets=5
@@ -1743,7 +1743,7 @@ inventory_size_y=4
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=4.000000
-Item as gun: speed of bullets=45.000000
+Item as gun: speed of bullets=90.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=6
 Item as gun: modifier for damage of bullets=8
@@ -2000,7 +2000,7 @@ more than a few hits from it before going down. The one downside is the enormous
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.500000
 Item as gun: reloading time=5.000000
-Item as gun: speed of bullets=30.000000
+Item as gun: speed of bullets=70.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=90
 Item as gun: modifier for damage of bullets=50
@@ -2255,7 +2255,7 @@ Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.150000
 Item as gun: reloading time=5.000000
-Item as gun: speed of bullets=20.000000
+Item as gun: speed of bullets=60.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=1
 Item as gun: modifier for damage of bullets=0
@@ -2418,7 +2418,7 @@ Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.200000
 Item as gun: reloading time=2.400000
-Item as gun: speed of bullets=32.000000
+Item as gun: speed of bullets=52.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=3
 Item as gun: modifier for damage of bullets=3
@@ -2650,7 +2650,7 @@ Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=1.400000
 Item as gun: reloading time=3
-Item as gun: speed of bullets=16.000000
+Item as gun: speed of bullets=60.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=10
 Item as gun: modifier for damage of bullets=12
