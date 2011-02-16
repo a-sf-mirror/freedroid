@@ -1451,7 +1451,7 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 		ThisRobot->combat_state = STOP_AND_EYE_TARGET;
 	}
 
-	/* If combat_state is always UNDEFINED_STATE, go to SELECT_NEW_WAYPOINT state */
+	/* If combat_state is UNDEFINED_STATE, go to SELECT_NEW_WAYPOINT state */
 	if (ThisRobot->combat_state == UNDEFINED_STATE) {
 		ThisRobot->combat_state = SELECT_NEW_WAYPOINT;
 	}
