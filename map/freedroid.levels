@@ -5448,6 +5448,7 @@ x=47 y=22 name="Lv2DalekStartGameSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Source Book of Malformed packet"  X=40.821510  Y=18.357288  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+it: n="Source Book of Malformed packet"  X=36.479076  Y=9.811912  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
@@ -11394,6 +11395,7 @@ t321 x10.50 y75.50
 t40 x74.50 y2.50
 t36 x88.50 y1.50
 t40 x89.50 y0.50
+t376 x6.76 y67.70
 /obsdata
 plabelinfolvl
 x=35 y=57 name="DarwinStartGameSquare"
@@ -11408,6 +11410,9 @@ piteminfolvl
 obstacleextensions
 idx=537 type=30 data={
 	AccessDoorToWarehouse
+}
+idx=1573 type=31 data={
+	it: n="Tungsten spikes"  X=6.000000  Y=67.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 }
 /obstacleextensions
 wp
