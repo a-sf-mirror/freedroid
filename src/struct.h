@@ -339,6 +339,7 @@ typedef struct item {
 	point inventory_position;
 
 	struct upgrade_socket_dynarray upgrade_sockets;
+	int quality;
 } item;
 
 typedef struct druidspec {

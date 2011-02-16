@@ -71,6 +71,26 @@ item create_item_with_name(const char *item_name, int full_durability, int multi
 	return new_item;
 }
 
+/**
+ * This function checks if the item can be equipped
+ * \param it item to check
+ * \return TRUE if the item can be installed in one slot, FALSE otherwise
+ */
+int equippable_item(item *it)
+{
+	if (ItemMap[it->type].item_can_be_installed_in_weapon_slot)
+		return TRUE;
+	if (ItemMap[it->type].item_can_be_installed_in_drive_slot)
+		return TRUE;
+	if (ItemMap[it->type].item_can_be_installed_in_armour_slot)
+		return TRUE;
+	if (ItemMap[it->type].item_can_be_installed_in_shield_slot)
+		return TRUE;
+	if (ItemMap[it->type].item_can_be_installed_in_special_slot)
+		return TRUE;
+	return FALSE;
+}
+
 void equip_item(item *new_item)
 {
 	item *old_item;
@@ -152,6 +172,11 @@ static void self_repair_item(item *it)
 	if (it->max_durability < 1) {
 		it->max_durability = 1;
 	}
+	//when you wear off all extra durability, the item become normal again
+	if (it->quality == GOOD_QUALITY && it->max_durability < ItemMap[it->type].base_item_durability) {
+		it->quality = NORMAL_QUALITY;
+	}
+
 	it->current_durability = it->max_durability;
 	play_sound("effects/tux_ingame_comments/Tux_This_Quick_Fix_0.ogg");
 }
@@ -206,7 +231,7 @@ unsigned long calculate_item_repair_price(item * repair_item)
 	//
 	if (repair_item->max_durability != (-1)) {
 		unsigned long price = (calculate_item_buy_price(repair_item) *
-		    REPAIR_PRICE_FACTOR * (repair_item->max_durability - repair_item->current_durability) / repair_item->max_durability);
+			REPAIR_PRICE_FACTOR * (repair_item->max_durability - repair_item->current_durability) / repair_item->max_durability);
 
 		// Never repair for free, minimum price is 1
 		return price ? price : 1;
@@ -216,24 +241,26 @@ unsigned long calculate_item_repair_price(item * repair_item)
 
 /**
  * \brief Returns a random quality multiplier.
- * \return A float between 0 and 1.
+ * \return a quality indicator.
  */
-static float random_item_quality()
+static enum item_quality random_item_quality()
 {
 	// In order to make normal quality items more common than others, we first
 	// choose a quality level by indexing a probability distribution array.
-	const float quality_levels[] = { 0.0, 0.2, 0.4, 0.6, 0.8, 1.0 };
-	const char quality_distribution[] = { 0, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 4 };
-	int quality_level = quality_distribution[sizeof(quality_distribution) - 1];
-
-	// The item quality is a random number within the range of the selected quality level.
-	// In all cases, it falls within the range of [0, 1].
-	float range_start = quality_levels[quality_level];
-	float range_end = quality_levels[quality_level + 1];
-	float range_fraction = MyRandom(100) / 100.0f;
-	float quality = range_start + range_fraction * (range_end - range_start);
-
-	return quality;
+	const enum item_quality quality_distribution[] = {
+		BAD_QUALITY, 
+		BAD_QUALITY, 	//20%
+		NORMAL_QUALITY,
+		NORMAL_QUALITY,
+		NORMAL_QUALITY,
+		NORMAL_QUALITY,
+		NORMAL_QUALITY,
+		NORMAL_QUALITY,
+		NORMAL_QUALITY, //70%
+		GOOD_QUALITY};	//10%
+	int max_index = (sizeof(quality_distribution) / sizeof(quality_distribution[0])) - 1;
+	int quality_index = MyRandom(max_index);
+	return quality_distribution[quality_index];
 }
 
 /**
@@ -253,27 +280,47 @@ void FillInItemProperties(item *it, int full_durability, int multiplicity)
 	it->multiplicity = multiplicity;
 	it->ammo_clip = 0;
 	it->throw_time = 0;
+	it->quality = NORMAL_QUALITY;
+	it->max_durability = -1;
+	
+	if (!equippable_item(it)) {
+		return;
+	}
+
+
+	it->quality = random_item_quality();
 
 	// Add random bullets to the clip if the item is a gun.
 	if (spec->item_gun_ammo_clip_size) {
 		it->ammo_clip = MyRandom(spec->item_gun_ammo_clip_size);
 	}
 
-	// Set the base damage reduction by using the item spec and a random quality multiplier.
-	float armor_quality = random_item_quality();
-	it->armor_class = spec->base_armor_class + armor_quality * spec->armor_class_modifier;
+	// Set the base damage reduction by using the item spec and a random multiplier.
+	it->armor_class = spec->base_armor_class + MyRandom(spec->armor_class_modifier);
+
 
 	// Set the maximum and current durabilities of the item.
-	// The maximum durability is within the range specified by the item spec.
-	// The current durability is a fraction of the maximum durability.
 	if (spec->base_item_durability != -1) {
-		float quality = random_item_quality();
-		it->max_durability = spec->base_item_durability + quality * spec->item_durability_modifier;
+		// The maximum durability is within the range specified by the item spec.
+		it->max_durability = spec->base_item_durability + MyRandom(spec->item_durability_modifier);
+
+		int half = it->max_durability / 2;
+		if (it->quality == BAD_QUALITY) {
+			//between 50% and 100%
+			it->max_durability = max(1, half + MyRandom(half));
+		} else if (it->quality == GOOD_QUALITY) {
+			//between 100% and 150%
+			it->max_durability +=  MyRandom(half);
+		}
+
 		if (full_durability) {
 			it->current_durability = it->max_durability;
 		} else {
-			it->current_durability = max(1, it->max_durability / 4 + MyRandom(it->max_durability / 2));
+			int quarter = it->max_durability / 4;
+			//between 25% and 100%
+			it->current_durability = max(1, quarter + MyRandom(quarter*3));
 		}
+
 	} else {
 		it->max_durability = -1;
 		it->current_durability = 1;
@@ -296,7 +343,13 @@ void append_item_name(item * ShowItem, struct auto_string *str)
 	if (MatchItemWithName(ShowItem->type, "Valuable Circuits"))
 		autostr_append(str, "%d ", ShowItem->multiplicity);
 
-	autostr_append(str, "%s", D_(ItemMap[ShowItem->type].item_name));
+	autostr_append(str, "%s\n", D_(ItemMap[ShowItem->type].item_name));
+
+	if (ShowItem->quality == GOOD_QUALITY) {
+		autostr_append(str, _("%sGood quality%s"), font_switchto_blue, font_switchto_neon);
+	} else if (ShowItem->quality == BAD_QUALITY) {
+		autostr_append(str, _("%sBad quality%s"), font_switchto_red, font_switchto_neon);
+	}
 
 	// Now that the item name is out, we can switch back to the standard font color...
 	autostr_append(str, "%s", font_switchto_neon);
@@ -457,7 +510,6 @@ void DamageWeapon(item * CurItem)
 
 	if ((CurItem->type != (-1)) && (CurItem->max_durability != (-1))) {
 		CurItem->current_durability -= (MyRandom(100) < WEAPON_DURABILITYLOSS_PERCENTAGE_WHEN_USED) ? 1 : 0;
-
 		if (rintf(CurItem->current_durability) <= 0) {
 			DeleteItem(CurItem);
 		}
@@ -852,7 +904,7 @@ int Inv_Pos_Is_Free(int x, int y)
 			}
 		}
 	}
-	return (TRUE);
+	return TRUE;
 
 };				// int Inv_Pos_Is_Free( Inv_Loc.x , Inv_Loc.y )
 
@@ -1008,7 +1060,7 @@ int MouseCursorIsInInvRect(int x, int y)
 		return (FALSE);
 	if (y < InventoryRect.y)
 		return (FALSE);
-	return (TRUE);
+	return TRUE;
 };				// int MouseCursorIsInInvRect( int x , int y )
 
 /**
@@ -1027,7 +1079,7 @@ int MouseCursorIsInChaRect(int x, int y)
 		return (FALSE);
 	if (y < CharacterRect.y)
 		return (FALSE);
-	return (TRUE);
+	return TRUE;
 };				// int MouseCursorIsInChaRect( int x , int y )
 
 /**
@@ -1046,7 +1098,7 @@ int MouseCursorIsInSkiRect(int x, int y)
 		return (FALSE);
 	if (y < SkillScreenRect.y)
 		return (FALSE);
-	return (TRUE);
+	return TRUE;
 };				// int MouseCursorIsInSkiRect( int x , int y )
 
 /**
@@ -1060,7 +1112,7 @@ int MouseCursorIsInInventoryGrid(int x, int y)
 	if ((x >= INVENTORY_RECT_X) && (x <= INVENTORY_RECT_X + INVENTORY_GRID_WIDTH * INV_SUBSQUARE_WIDTH)) {
 		if ((y >= User_Rect.y + INVENTORY_RECT_Y) &&
 		    (y <= User_Rect.y + INVENTORY_RECT_Y + INV_SUBSQUARE_HEIGHT * INVENTORY_GRID_HEIGHT)) {
-			return (TRUE);
+			return TRUE;
 		}
 	}
 	return (FALSE);
@@ -1082,7 +1134,7 @@ int MouseCursorIsInUserRect(int x, int y)
 			return (FALSE);
 		if (x < User_Rect.x)
 			return (FALSE);
-		return (TRUE);
+		return TRUE;
 	}
 	if ((GameConfig.Inventory_Visible && MouseCursorIsInInvRect(x, y))
 	    || (GameConfig.CharacterScreen_Visible && MouseCursorIsInChaRect(x, y)) || (GameConfig.SkillScreen_Visible
@@ -1139,7 +1191,7 @@ int ItemCanBeDroppedInInv(int ItemType, int InvPos_x, int InvPos_y)
 				return (FALSE);
 		}
 	}
-	return (TRUE);
+	return TRUE;
 
 };				// int ItemCanBeDroppedInInv ( int ItemType , int InvPos_x , int InvPos_y )
 
@@ -1274,7 +1326,7 @@ int ItemUsageRequirementsMet(item * UseItem, int MakeSound)
 	if (!requirements_for_item_application_met(UseItem)) {
 		return (FALSE);
 	}
-	return (TRUE);
+	return TRUE;
 };				// int ItemUsageRequirementsMet( item* UseItem )
 
 /**
@@ -1913,7 +1965,7 @@ static int place_item_on_this_position_if_you_can(item * ItemPointer, point Inv_
 	} else {
 		raw_move_picked_up_item_to_entry(ItemPointer, &(Me.Inventory[InvPos]), Inv_Loc);
 	}
-	return (TRUE);
+	return TRUE;
 };				// int place_item_on_this_position_if_you_can ( ... )
 
 /**

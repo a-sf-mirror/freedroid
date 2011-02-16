@@ -602,6 +602,7 @@ save_int32_t("multiplicity", &(target->multiplicity));
 save_int32_t("ammo_clip", &(target->ammo_clip));
 save_point("inventory_position", &(target->inventory_position));
 save_upgrade_socket_dynarray("upgrade_sockets", &(target->upgrade_sockets));
+save_int32_t("quality", &(target->quality));
 autostr_append(savestruct_autostr, "</%s>\n", tag);
 return 0;
 }
@@ -647,6 +648,7 @@ read_int32_t(pos, "multiplicity",  &(target->multiplicity));
 read_int32_t(pos, "ammo_clip",  &(target->ammo_clip));
 read_point(pos, "inventory_position",  &(target->inventory_position));
 read_upgrade_socket_dynarray(pos, "upgrade_sockets",  &(target->upgrade_sockets));
+read_int32_t(pos, "quality",  &(target->quality));
 *epos = '>'; 
 return 0;
 }

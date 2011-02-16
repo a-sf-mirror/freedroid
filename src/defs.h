@@ -668,6 +668,14 @@ enum {
 #define PUT_NO_THROWN_ITEMS 4
 
 //--------------------
+// item qualities
+enum item_quality {
+	NORMAL_QUALITY = 0,
+	BAD_QUALITY = 1,
+	GOOD_QUALITY = 2
+};
+
+//--------------------
 // bullet types
 //
 // Important Note : this enum HAS to be in sync with bullet_identifiers[]
