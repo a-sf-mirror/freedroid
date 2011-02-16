@@ -122,7 +122,9 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_GLASS_WALL_1].filename = "iso_walls_0020.png";
 	obstacle_map[ISO_GLASS_WALL_1].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_GLASS_WALL_1].flags |= IS_VERTICAL;
-	obstacle_map[ISO_GLASS_WALL_1].flags |= IS_SMASHABLE;
+	obstacle_map[ISO_GLASS_WALL_1].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_GLASS_WALL_1].label = "";
+	obstacle_map[ISO_GLASS_WALL_1].action = &barrel_action;
 	obstacle_map[ISO_GLASS_WALL_1].result_type_after_smashing_once = ISO_BROKEN_GLASS_WALL_1;
 
 	block_2param(ISO_GLASS_WALL_2, standard_wall_width, standard_wall_thickness);
@@ -130,6 +132,9 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_GLASS_WALL_2].filename = "iso_walls_0021.png";
 	obstacle_map[ISO_GLASS_WALL_2].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 	obstacle_map[ISO_GLASS_WALL_2].flags |= IS_HORIZONTAL;
+	obstacle_map[ISO_GLASS_WALL_2].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_GLASS_WALL_2].label = "";
+	obstacle_map[ISO_GLASS_WALL_2].action = &barrel_action;
 
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].flags &= ~BLOCKS_VISION_TOO;
@@ -1065,13 +1070,17 @@ void init_obstacle_data(void)
 	//
 	block_2param(ISO_BRICK_WALL_CRACKED_1, 0.5, 1.2);
 	obstacle_map[ISO_BRICK_WALL_CRACKED_1].filename = "iso_brick_wall_0012.png";
-	obstacle_map[ISO_BRICK_WALL_CRACKED_1].flags |= IS_SMASHABLE;
+	obstacle_map[ISO_BRICK_WALL_CRACKED_1].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_BRICK_WALL_CRACKED_1].label = "";
+	obstacle_map[ISO_BRICK_WALL_CRACKED_1].action = &barrel_action;
 	obstacle_map[ISO_BRICK_WALL_CRACKED_1].result_type_after_smashing_once = ISO_BRICK_WALL_RUBBLE_1;
 	obstacle_map[ISO_BRICK_WALL_CRACKED_1].flags |= IS_VERTICAL;
 	block_2param(ISO_BRICK_WALL_CRACKED_2, 1.2, 0.5);
 	obstacle_map[ISO_BRICK_WALL_CRACKED_2].filename = "iso_brick_wall_0013.png";
 	obstacle_map[ISO_BRICK_WALL_CRACKED_2].result_type_after_smashing_once = ISO_BRICK_WALL_RUBBLE_2;
-	obstacle_map[ISO_BRICK_WALL_CRACKED_2].flags |= IS_SMASHABLE;
+	obstacle_map[ISO_BRICK_WALL_CRACKED_2].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_BRICK_WALL_CRACKED_2].label = "";
+	obstacle_map[ISO_BRICK_WALL_CRACKED_2].action = &barrel_action;
 	obstacle_map[ISO_BRICK_WALL_CRACKED_2].flags |= IS_HORIZONTAL;
 
 	obstacle_map[ISO_BRICK_WALL_RUBBLE_1].block_area_type = COLLISION_TYPE_NONE;
