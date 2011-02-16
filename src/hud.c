@@ -314,7 +314,9 @@ void ShowCurrentWeapon(void)
 	else
 		sprintf(current_ammo, "%2d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
 
-	PutStringFont(Screen, FPS_Display_BFont, x, y + 50, current_ammo);
+	x = UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_X + CURRENT_WEAPON_RECT_W / 2 - 25);
+	y = UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y + CURRENT_WEAPON_RECT_H / 2 + 25);
+	PutStringFont(Screen, FPS_Display_BFont, x, y, current_ammo);
 }
 
 /**
