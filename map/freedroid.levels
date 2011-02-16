@@ -20921,6 +20921,7 @@ t1 x65.00 y41.50
 t1 x65.00 y40.50
 t1 x68.00 y40.50
 t1 x68.00 y41.50
+t99 x61.16 y30.76
 /obsdata
 plabelinfolvl
 x=34 y=37 name="FieldBot1StartGameSquare"
