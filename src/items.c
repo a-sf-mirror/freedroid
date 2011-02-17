@@ -166,7 +166,7 @@ static void self_repair_item(item *it)
 
 	used = it->max_durability - it->current_durability;
 	/* Self repair formula: decrease max_durability between 1 and 11-skill_level*/
-	wear = 1 + (11 - Me.skill_level[get_program_index_with_name("Repair equipment")]) * MyRandom(100) / 100.0;
+	wear = 1 + MyRandom(10 - Me.skill_level[get_program_index_with_name("Repair equipment")]);
 	//never decrease more than current missing durability
 	it->max_durability -= min(wear, used);
 	if (it->max_durability < 1) {
