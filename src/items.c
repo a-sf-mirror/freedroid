@@ -343,12 +343,14 @@ void append_item_name(item * ShowItem, struct auto_string *str)
 	if (MatchItemWithName(ShowItem->type, "Valuable Circuits"))
 		autostr_append(str, "%d ", ShowItem->multiplicity);
 
-	autostr_append(str, "%s\n", D_(ItemMap[ShowItem->type].item_name));
+	autostr_append(str, "%s", D_(ItemMap[ShowItem->type].item_name));
 
 	if (ShowItem->quality == GOOD_QUALITY) {
-		autostr_append(str, _("%sGood quality%s"), font_switchto_blue, font_switchto_neon);
+		autostr_append(str, "\n%s", font_switchto_blue);
+		autostr_append(str, _("Good quality"));
 	} else if (ShowItem->quality == BAD_QUALITY) {
-		autostr_append(str, _("%sBad quality%s"), font_switchto_red, font_switchto_neon);
+		autostr_append(str, "\n%s", font_switchto_red);
+		autostr_append(str, _("Bad quality"));
 	}
 
 	// Now that the item name is out, we can switch back to the standard font color...
