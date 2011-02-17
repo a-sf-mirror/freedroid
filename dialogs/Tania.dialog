@@ -42,9 +42,22 @@ EveryTime LuaCode={
 	end
 
 	if (has_quest(_"Tania's Escape")) then
-		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 18, 19, 90)
-		if (not has_cookie("Tania_surface")) then --Still Underground
-			npc_says_random(_"I long to see the surface.", _"You are the most interesting hallucination yet.") 
+		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 90)
+		if (not has_cookie("Tania_follow_tux")) then
+			npc_says_random(_"I long to see the surface.", _"You are the most interesting hallucination yet.")
+			show(90)
+			if (not has_cookie("sagunsoff")) then		--Guns are still on
+				hide(27)
+				show(28)
+			elseif (not has_cookie("Tania_guns_off")) then	--Guns are off, but you haven't told Tania yet
+				hide(28)
+				show(27)
+			else						--Tania can escape, but you haven't decided to let her follow you yet
+				hide(27, 28)
+				show(40, 41)
+			end
+		elseif (not has_cookie("Tania_surface")) then --Tania is following you, but still Underground
+			npc_says(_"I can't wait to leave this place.") 
 			show(91)
 		elseif (not has_cookie("Tania-stopped-by-Pendragon")) then --in the Western Desert
 			if (not has_cookie("Tania-discussed-surface")) then
@@ -94,13 +107,7 @@ EveryTime LuaCode={
 			end
 			show(94)
 		end
-	elseif (has_quest(_"Tania's sanitary")) then
-		hide(6)
-		if (has_cookie("sagunsoff")) then
-			if (done_quest(_"Tania's sanitary")) then hide(17, 27, 28) show(29) 
-			else hide(17, 28, 29) show(27) end
-		else hide(17, 27, 29) show(28) end
-	else hide(27, 28, 29) end
+	end
 
 	if (branch_to_pendragon) then
 		start_chat("Pendragon")
@@ -206,16 +213,7 @@ LuaCode={
 Nr=13 Text=_"Yes, you can get to the surface. But the guns are still on."
 LuaCode={
 	npc_says(_"All hope is lost! I'm a scientist, not a warrior.")
-	-- NOTE: "Tania's sanitary" quest currently does not work
-	-- "Tania's sanitary" should turn off the autoguns
-	-- but since we are skipping it here, we will turn them off here
-	-- with the assumption that the SADD has forgotten about us but angry
-	set_npc_faction("crazy", "SADD")
-	set_bot_name(_"SADD -- Exterminate Mode", "SADD")
-	change_obstacle_state("SADDGun1", "disabled")
-	change_obstacle_state("SADDGun2", "disabled")
-	npc_says("You'll have to escort me.")
-	hide(13) show(40, 41) -- show(15)
+	hide(13) show(15)
 }
 ----------------------------------------------------------------------
 
@@ -243,7 +241,9 @@ LuaCode={
 Nr=17 Text=_"I will disable the guns for you."
 LuaCode={
 	npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
-	add_quest(_"Tania's sanitary", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
+	add_quest(_"Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
+	npc_says(_"It's dangerous to go alone! Take this!")
+	add_item("EMP Shockwave Generator", 5)	
 	hide(17)
 }
 ----------------------------------------------------------------------
@@ -264,14 +264,17 @@ LuaCode={
 
 Nr=27 Text=_"The sentry guns are off. You can go now!"
 LuaCode={
+	add_cookie("Tania_guns_off")
 	npc_says(_"Thanks, thanks a lot! Now I will be able to see the sun, trees, rivers... I missed those so much!")
-	npc_says(_"I hope these books will help you survive in this world.")
+	npc_says(_"I hope these books will help you.")
 	display_big_message(_"Tania is now free!")
 	add_xp(1500)
 	add_item("Source Book of Check system integrity",1)
 	add_item("Source Book of Sanctuary",1)
-	end_quest(_"Tania's sanitary", _"Tania is free now, I got some books as reward.")
-	hide(27)
+	update_quest(_"Tania's Escape", _"Tania is free now, I got some books as reward.")
+	tux_says(_"You could always come back with me to the town. There are people there.")
+	npc_says(_"I'd love to, but you'll have to escort me.")
+	hide(27) show(40, 41)
 }
 ----------------------------------------------------------------------
 
@@ -281,14 +284,6 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29 Text=_"Are you staying here? I can help you get to the town."
-LuaCode={
-	npc_says(_"No, thanks. I don't want to go far from Peter.")
-	hide(29)
-}
-----------------------------------------------------------------------
-
-
 Nr=40 Text=_"I'm not ready to escort you to the town."
 LuaCode={
 	next(99)
@@ -297,12 +292,12 @@ LuaCode={
 
 Nr=41 Text=_"I'm ready to escort you to the town."
 LuaCode={
-	add_quest(_"Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
+	add_cookie("Tania_follow_tux")
+	update_quest(_"Tania's Escape", _"I have agreed to escort Tania to the town. Once I'm there I'll introduce her to Spencer.")
 	set_bot_state("follow_tux")
 	hide(8, 40, 41) next(91)
 }
 ----------------------------------------------------------------------
-
 
 Nr=45 Text=_"It isn't all like this, the town is very nice."
 LuaCode={
@@ -545,7 +540,9 @@ NO_TEXT
 LuaCode={
 	if (has_quest(_"Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 18, 19)
-		if (not has_cookie("Tania_surface")) then --still underground
+		if (not has_cookie("sagunsoff")) then --still underground, guns on
+			tux_says(_"I think I have to go.")
+		elseif (not has_cookie("Tania_surface")) then --still underground
 			tux_says(_"Follow me to the Surface!")
 		elseif (not has_cookie("Tania-stopped-by-Pendragon")) then --"Tania's Escape" Quest (Western Desert)
 			tux_says(_"Follow me to the Town!")

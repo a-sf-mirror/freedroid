@@ -25,19 +25,23 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={
+	show(1, 3)
+}
+
 EveryTime LuaCode={ 
+	if (not has_cookie("login_sacd")) then
+		update_quest(_"Tania's Escape", _"I have found the Secret Area Control Datacenter.")
+		add_xp(1000)
+		add_cookie("login_sacd")
+	end
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"admin", "NO_WAIT")
 	cli_says(_" Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	if (has_quest(_"Tania's sanitary")) then update_quest(_"Tania's sanitary", _"I have found the Secret Area Control Datacenter.") end
-	if (not has_cookie("login_sacd")) then
-		add_xp(1000)
-		add_cookie("login_sacd")
-	else end
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
-	hide(2) show(1, 3, 99)
+	hide(2) show(99)
 }
 ----------------------------------------------------------------------
 
@@ -58,12 +62,8 @@ Nr=2 Text=_"/usr/bin/guns --enable"
 LuaCode={
 	npc_says(_"Enabling guns...")
 	npc_says(_"Connecting to peripheral controller...")
-	npc_says(_"Guns enabled.")
-	change_obstacle_state("SADDGun1", "enabled")
-	change_obstacle_state("SADDGun2", "enabled")
-	del_cookie("sagunsoff")
+	npc_says(_"ERROR: Guns cannot be enabled.")
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
-	hide(2) show(1)
 }
 ----------------------------------------------------------------------
 
@@ -90,6 +90,7 @@ LuaCode={
 	set_bot_name(_"SADD -- Exterminate Mode", "SADD")
 	set_bot_destination("SADD-MoveTarget", "SADD")
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
+	hide(3)
 }
 ----------------------------------------------------------------------
 

@@ -137,14 +137,7 @@ Mission Name=_"SADD's power supply"
 
 ** Start of this mission target subsection **
 +++
-+++ Free Tania 
-+++
-Mission Name=_"Tania's sanitary"
-** End of this mission target subsection **
-
-** Start of this mission target subsection **
-+++
-+++ Escort Tania to the town
++++ Free Tania & Escort Tania to the town
 +++
 Mission Name=_"Tania's Escape"
 Mission target is to kill droids with marker : 2035
