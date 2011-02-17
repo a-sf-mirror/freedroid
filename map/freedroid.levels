@@ -28253,7 +28253,7 @@ idx=1342 type=30 data={
 	UpgradeFirmwareRoomFinal
 }
 idx=1457 type=32 data={
-	Upgrade distribution server room. Access restricted to authorized personnel - trepassers will be fired.
+	Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired.
 }
 /obstacleextensions
 wp
@@ -33758,6 +33758,7 @@ t272 x10.13 y14.08
 t65 x41.00 y52.50
 t27 x41.00 y51.00
 t65 x41.00 y9.50
+t247 x15.59 y19.91
 /obsdata
 plabelinfolvl
 x=15 y=13 name="TutorialTutorStart"
@@ -33867,6 +33868,9 @@ idx=488 type=31 data={
 }
 idx=23 type=32 data={
 	TutorialTerminal
+}
+idx=728 type=32 data={
+	Welcome to Freedroid RPG!
 }
 /obstacleextensions
 wp
