@@ -2072,6 +2072,22 @@ Item description text=_"This sphere contains a few strange bits of technology in
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
+Item name=_"Electronic Noise Generator"
+Item min class for drop=-1
+Item max class for drop=-1
+Item use when applied in combat=_"Disable Electronics"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="grenades/emp"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="grenades/emp/inv_image.png"
+inventory_size_x=1
+inventory_size_y=1
+Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
+Base list price=90
+Item description text=_"This sphere creates a short blast of electronic noise that temporarily disables most electronics."
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
 Item name=_"Small Plasma Shockwave Emitter"
 Item min class for drop=-1
 Item max class for drop=-1

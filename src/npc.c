@@ -221,6 +221,8 @@ void init_npcs()
 			{ "VMX Gas Grenade", 1 },
 			{ "Small EMP Shockwave Generator", 1 },
 			{ "Small EMP Shockwave Generator", 1 },
+			{ "Electronic Noise Generator", 1 },
+			{ "Electronic Noise Generator", 1 },
 			{ "Small Plasma Shockwave Emitter", 1 },
 			{ "Small Plasma Shockwave Emitter", 1 },
 	};

@@ -826,6 +826,10 @@ void ApplyItem(item * CurItem)
 		DoSkill(get_program_index_with_name("EMP grenade"), 0);
 		Me.busy_time = 1;
 		Me.busy_type = THROWING_GRENADE;
+	} else if (MatchItemWithName(CurItem->type, "Electronic Noise Generator")) {
+		DoSkill(get_program_index_with_name("Electronic Noise"), 0);
+		Me.busy_time = 1;
+		Me.busy_type = THROWING_GRENADE;
 	} else if (MatchItemWithName(CurItem->type, "Small Plasma Shockwave Emitter")) {
 		DoSkill(get_program_index_with_name("Small Plasma grenade"), 0);
 		Me.busy_time = 1;
