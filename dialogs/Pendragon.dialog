@@ -89,7 +89,7 @@ EveryTime LuaCode={
 		hide(40)
 	end
 
-if (cmp_obstacle_state("DesertGate", "opened")) then
+	if ((cmp_obstacle_state("DesertGate", "opened")) or has_cookie("met_tania")) then
 		hide(40, 45)
 	end
 
