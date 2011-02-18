@@ -2302,7 +2302,7 @@ Item uses drop sound with filename="drop_sword_sound.ogg"
 Base list price=120
 Item description text=_"Droid weaponry"
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=0.100000
+Item as gun: recharging time=0.600000
 Item as gun: reloading time=0.000000
 Item as gun: speed of bullets=0.010000
 Item as gun: is melee weapon=1
