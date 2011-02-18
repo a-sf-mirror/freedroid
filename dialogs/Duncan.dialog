@@ -249,6 +249,7 @@ NO_TEXT
 LuaCode={
 	add_xp(3000)
 	del_item_backpack("Pandora's Cube", 1)
+	sell_item("Plasma Shockwave Emitter")
 	end_quest(_"Doing Duncan a favor", _"I gave Duncan the cube thingie. It feels nice to help people.")
 	end_dialog()
 }
