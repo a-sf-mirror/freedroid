@@ -453,7 +453,7 @@ LuaCode={
 	npc_says(_"SAID.", "NO_WAIT")
 	npc_says(_"GET.", "NO_WAIT")
 	npc_says(_"LOST.")
-	npc_says(_"FUCK MY LIFELONG PACIFISM. I WILL FUCKING KILL YOU NOW!")
+	npc_says(_"FORGET MY LIFELONG PACIFISM. I WILL KILL YOU!")
 	npc_says(_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!")
 	npc_faction("crazy", _"Dixon -- Temporarily insane")
 	end_dialog()

@@ -62,7 +62,7 @@ LuaCode={
 	npc_says(_"* Throws a stone through the door")
 	if (done_quest(_"Opening access to MS Office")) then
 		npc_says(_"* Stone freely flies through the gate and drops on the ground on the other side")
-		npc_says(_"SHIT! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
+		npc_says(_"HOLY MECHANICAL MARVEL! SHIELD DISABLED! PREPARE FOR BOT ATTACK!")
 		next(10)
 	else 
 		npc_says(_"* Stone disappears leaving a small cloud of dust")

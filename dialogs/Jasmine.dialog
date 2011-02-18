@@ -62,7 +62,7 @@ LuaCode={
 
 Nr=3 Text=_"How are you?"
 LuaCode={
-	npc_says(_"Shitty. Now leave me alone.")
+	npc_says(_"Annoyed. Now leave me alone.")
 	hide(3)
 }
 ----------------------------------------------------------------------
