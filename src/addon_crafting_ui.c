@@ -33,6 +33,8 @@
 
 #define RECIPE_LIST_ROWS 4
 #define RECIPE_LIST_ROW_HEIGHT 45
+#define RECIPE_LIST_IMG_HEIGHT 32
+#define RECIPE_LIST_IMG_WIDTH 32
 
 struct crafting_recipe {
 	int available; /// TRUE if the player has enough materials to craft the add-on.
@@ -273,12 +275,14 @@ void show_addon_crafting_ui()
 		display_text(ItemMap[type].item_name, rect.x + rect.h, rect.y + 4, NULL);
 		struct image *img = get_item_inventory_image(type);
 		if (img) {
+			float scale = (float)(RECIPE_LIST_IMG_WIDTH + RECIPE_LIST_IMG_HEIGHT) / (img->w + img->h);
+
 			SDL_Rect icon_rect;
 			icon_rect.w = RECIPE_LIST_ROW_HEIGHT;
 			icon_rect.h = RECIPE_LIST_ROW_HEIGHT;
-			icon_rect.x = rect.x + (icon_rect.w - img->w) / 2;
-			icon_rect.y = rect.y + (icon_rect.h - img->h) / 2;
-			display_image_on_screen(img, icon_rect.x, icon_rect.y);
+			icon_rect.x = rect.x + (icon_rect.w - (img->w * scale)) / 2;
+			icon_rect.y = rect.y + (icon_rect.h - (img->h * scale)) / 2;
+			display_image_on_screen_scaled(img, icon_rect.x, icon_rect.y, scale);
 		}
 		rect.y += rect.h;
 	}
