@@ -385,6 +385,16 @@ static int lua_event_equip_item(lua_State * L)
 	return 0;
 }
 
+static int lua_set_death_item(lua_State * L)
+{
+	const char *item_name = luaL_checkstring(L, 1);
+	enemy *en = get_enemy_arg(L, 2);
+	if (!strcmp(item_name, "NONE"))
+		en->on_death_drop_item_code = -1;
+	else
+		en->on_death_drop_item_code = GetItemIndexByName(item_name);
+	return 0;
+}
 
 static int lua_event_add_diary_entry(lua_State * L)
 {
@@ -1025,6 +1035,11 @@ luaL_reg lfuncs[] = {
 	{"equip_item", lua_event_equip_item}
 	,
 	{"sell_item", lua_event_sell_item}
+	,
+	/* set_death_item(string item_name [, string  npc]) 
+	 * changes the item dropped when the droid dies
+	*/
+	{"set_death_item", lua_set_death_item}
 	,
 	{"add_diary_entry", lua_event_add_diary_entry}
 	,
