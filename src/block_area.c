@@ -1330,12 +1330,16 @@ void init_obstacle_data(void)
 
 	block_2param(ISO_OUTER_WALL_SMALL_CORNER_1, 1.0, 1.0);
 	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_1].filename = "iso_outer_walls_0017.png";
+	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_1].transparent = TRANSPARENCY_FOR_WALLS;
 	block_2param(ISO_OUTER_WALL_SMALL_CORNER_2, 1.0, 1.0);
 	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_2].filename = "iso_outer_walls_0018.png";
+	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_2].transparent = TRANSPARENCY_FOR_WALLS;
 	block_2param(ISO_OUTER_WALL_SMALL_CORNER_3, 1.0, 1.0);
 	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_3].filename = "iso_outer_walls_0019.png";
+	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_3].transparent = TRANSPARENCY_FOR_WALLS;
 	block_2param(ISO_OUTER_WALL_SMALL_CORNER_4, 1.0, 1.0);
 	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_4].filename = "iso_outer_walls_0020.png";
+	obstacle_map[ISO_OUTER_WALL_SMALL_CORNER_4].transparent = TRANSPARENCY_FOR_WALLS;
 
 	block_4param(ISO_OUTER_DOOR_V_00, outer_wall_4_thickness, outer_door_4_width_short, outer_wall_4_backside, outer_door_4_width_long);
 	obstacle_map[ISO_OUTER_DOOR_V_00].flags &= ~BLOCKS_VISION_TOO;
