@@ -148,6 +148,7 @@ Rule=1071 [Type="OE"] X=89.500000:Y=52.000000:L=57 T=133 -> east border=90.05000
 Rule=1072 [Type="OE"] X=89.500000:Y=60.000000:L=57 T=351 -> east border=91.050003 (warning)
 Rule=1073 [Type="OS"] X=43.500000:Y=89.500000:L=11 T=37 -> south border=90.250000 (warning)
 Rule=1074 [Type="OS"] X=50.500000:Y=89.500000:L=11 T=37 -> south border=90.250000 (warning)
+Rule=1075 [Type="ON"] X=43.500000:Y=0.500000:L=46 T=37 -> north border=-0.250000 (warning)
 
 
 *** End of LevelValidator Exceptions List ***
