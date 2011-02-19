@@ -39,19 +39,19 @@ static char *bigline = "========================================================
 static char *line = "--------------------------------------------------------------------";
 static char *sepline = "+------------------------------";
 
-static int lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
+static void lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
 static void *lvlval_chest_parse_excpt(char *string);
 static int lvlval_chest_cmp_data(void *opaque_data1, void *opaque_data2);
 
-static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
+static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
 static void *lvlval_waypoint_parse_excpt(char *string);
 static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2);
 
-static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
+static void lvlval_neighborhood_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
 static void *lvlval_neighborhood_parse_excpt(char *string);
 static int lvlval_neighborhood_cmp_data(void *opaque_data1, void *opaque_data2);
 
-static int lvlval_obstacles_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
+static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
 static void *lvlval_obstacles_parse_excpt(char *string);
 static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2);
 
@@ -124,6 +124,34 @@ static void validator_print_header(struct lvlval_ctx *val_ctx, char *title, char
 	}
 	putchar('\n');
 	puts(line);
+}
+
+/**
+ * Output to the console a validator's error, with the associated header, on first output
+ */
+
+static void validator_print_error(struct lvlval_ctx *validator_ctx, struct lvlval_error *validator_error, ...)
+{
+	va_list args;
+	va_start(args, validator_error);
+
+	if (!validator_error->caught) {
+		validator_print_header(validator_ctx, validator_error->title, validator_error->comment);
+		validator_error->caught = TRUE;
+		validator_ctx->in_report_section = TRUE;
+	}
+	
+	validator_ctx->error_caught |= validator_error->is_error;
+	
+	vprintf(validator_error->format, args);
+	printf("\n");
+}
+
+static void validator_print_separator(struct lvlval_ctx *validator_ctx)
+{
+	if (validator_ctx->in_report_section)
+		puts(line);
+	validator_ctx->in_report_section = FALSE;
 }
 
 /**
@@ -223,6 +251,7 @@ static void get_excpt_list(char *section_pointer)
 				     IS_FATAL);
 			return;
 		}
+		
 		// Restore input buffer
 
 		if (tmp == '\0')
@@ -410,11 +439,18 @@ static int lvlval_chest_cmp_data(void *opaque_data1, void *opaque_data2)
  * "chest" validator
  */
 
-static int lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
+static void lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
 {
 	int x_tile, y_tile, glue_index;
-	int is_invalid = FALSE;
 
+	struct lvlval_error chest_error = {
+		.title = "Unreachable chests/barrels list",
+		.comment = "The center of the following objects was found to be inside an obstacle, preventing Tux from activating them.",
+		.format = "[Type=\"C\"] Obj Idx=%d (X=%f:Y=%f:L=%d)",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+	
 	for (y_tile = 0; y_tile < validator_ctx->this_level->ylen; ++y_tile) {
 		for (x_tile = 0; x_tile < validator_ctx->this_level->xlen; ++x_tile) {
 			for (glue_index = 0; glue_index < validator_ctx->this_level->map[y_tile][x_tile].glued_obstacles.size; ++glue_index) {
@@ -434,21 +470,14 @@ static int lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx 
 				colldet_filter filter = WalkableExceptIdPassFilter;
 				filter.data = &obs_index;
 				if (!SinglePointColldet(this_obs->pos.x, this_obs->pos.y, validator_ctx->this_level->levelnum, &filter)) {
-					if (!is_invalid) {	// First error : print header
-						validator_print_header(validator_ctx, "Unreachable chests/barrels list",
-								       "The center of the following objects was found to be inside an obstacle, preventing Tux from activating them.");
-						is_invalid = TRUE;
-					}
-					printf("[Type=\"C\"] Obj Idx=%d (X=%f:Y=%f:L=%d)\n", obs_index, this_obs->pos.x,
-					       this_obs->pos.y, validator_ctx->this_level->levelnum);
+					validator_print_error(validator_ctx, &chest_error, 
+					                      obs_index, this_obs->pos.x, this_obs->pos.y, validator_ctx->this_level->levelnum);
 				}
 			}
 		}
 	}
-	if (is_invalid)
-		puts(line);
-
-	return is_invalid;
+	
+	validator_print_separator(validator_ctx);
 }
 
 //===========================================================
@@ -543,14 +572,55 @@ static int lvlval_waypoint_cmp_data(void *opaque_data1, void *opaque_data2)
  * 'waypoint' validator
  */
 
-static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
+static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
 {
 	int i, j;
-	int pos_is_invalid = FALSE;
-	int conn_is_invalid = FALSE;
-	int dist_is_invalid = FALSE;
-	int path_is_invalid = FALSE;
-	int path_warning = FALSE;
+
+	struct lvlval_error pos_error = {
+		.title = "Unreachable waypoints list",
+		.comment = "The following waypoints were found to be inside an obstacle.\n"
+		           "This could lead to some bots being stuck.",
+		.format = "[Type=\"WP\"] WP X=%f:Y=%f:L=%d",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
+	struct lvlval_error conn_error = {
+		.title = "Unconnected waypoints list",
+		.comment = "The following waypoints were found to be without connection (Type=WO).\n"
+		           "or self-connected (Type=WS).\n"
+		           "This could lead to some bots being stuck on those waypoints.",
+		.format = "[Type=\"WO\"] WP X=%f:Y=%f:L=%d",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
+	struct lvlval_error dist_error = {
+		.title = "Invalid waypoints distance",
+		.comment = "Two waypoints were found to be too close.",
+		.format = "[Type=\"WD\"] WP1 X1=%f:Y1=%f:L1=%d <-> WP2 X2=%f:Y2=%f:L2=%d : distance = %.3f",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
+	struct lvlval_error path_error = {
+		.title = "Invalid waypoint paths list",
+		.comment = "The pathfinder was not able to find a path between those waypoints.\n"
+		           "This could lead those paths to not being usable.",
+		.format = "[Type=\"WW\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d : %s",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
+	struct lvlval_error path_warning = {
+		.title = "Waypoint paths Warning list",
+		.comment = "The pathfinder was not able to find a path between two variations of those waypoints.\n"
+		           "This could lead some bots to get stuck along those paths.",
+		.format = "[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
 	waypoint *wpts;
 #	define MIN_DIST 1.0
 
@@ -560,75 +630,61 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 	// Check waypoints position
 	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
 		struct waypoint_excpt_data to_check = { 'P',
-			{
-				{wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum}, {0.0, 0.0, 0}
+			{ 
+				{wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum},
+				{0.0, 0.0, 0}
 			}
 		};
 
 		if (lookup_exception(this, &to_check))
 			continue;
 
-		if (!SinglePointColldet
-		    (wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum, &WalkablePassFilter)) {
-			if (!pos_is_invalid) {	// First error : print header
-				validator_print_header(validator_ctx, "Unreachable waypoints list",
-						       "The following waypoints were found to be inside an obstacle.\n"
-						       "This could lead to some bots being stuck.");
-				pos_is_invalid = TRUE;
-			}
-			printf("[Type=\"WP\"] WP X=%f:Y=%f:L=%d\n", wpts[i].x + 0.5, wpts[i].y + 0.5, 
-					validator_ctx->this_level->levelnum);
+		if (!SinglePointColldet(wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum, &WalkablePassFilter)) {
+			validator_print_error(validator_ctx, &pos_error, wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum);
 		}
 	}
-	if (pos_is_invalid)
-		puts(line);
+	
+	validator_print_separator(validator_ctx);
 
 	// Check waypoints connectivity
 	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
+		
+		// Check for unconnection
+		
 		struct waypoint_excpt_data to_check = { 'O',
 			{
-				{wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum}, {0.0, 0.0, 0}
+				{wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum},
+				{0.0, 0.0, 0}
 			}
 		};
 
 		if (!lookup_exception(this, &to_check) && wpts[i].connections.size == 0) {
-			if (!conn_is_invalid) {	// First error : print header
-				validator_print_header(validator_ctx, "Unconnected waypoints list",
-						       "The following waypoints were found to be without connection (Type=WO).\n"
-						       "or self-connected (Type=WS).\n"
-						       "This could lead to some bots being stuck on those waypoints.");
-				conn_is_invalid = TRUE;
-			}
-			printf("[Type=\"WO\"] WP X=%f:Y=%f:L=%d\n", wpts[i].x + 0.5, wpts[i].y + 0.5, 
-					validator_ctx->this_level->levelnum);
+			validator_print_error(validator_ctx, &conn_error,
+			                      wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum);
 		}
 
+		// Check for self-connection
+		
 		to_check.subtest = 'S';
+		conn_error.format = "[Type=\"WS\"] WP X=%f:Y=%f:L=%d";
+		
 		if (lookup_exception(this, &to_check))
 			continue;
 
-		// Get the connections of the waypoint
 		int *connections = wpts[i].connections.arr;
-
 		for (j = 0; j < wpts[i].connections.size; ++j) {
 			if (connections[j] == i) {
-				if (!conn_is_invalid) {	// First error : print header
-					validator_print_header(validator_ctx, "Unconnected waypoints list",
-							       "The following waypoints were found to be without connection (Type=WO).\n"
-							       "or self-connected (Type=WS).\n"
-							       "This could lead to some bots being stuck on those waypoints.");
-					conn_is_invalid = TRUE;
-				}
-				printf("[Type=\"WS\"] WP X=%f:Y=%f:L=%d\n", wpts[i].x + 0.5, wpts[i].y + 0.5, 
-						validator_ctx->this_level->levelnum);
+				validator_print_error(validator_ctx, &conn_error,
+				                      wpts[i].x + 0.5, wpts[i].y + 0.5, validator_ctx->this_level->levelnum);
 				continue;
 			}
 		}
 	}
-	if (conn_is_invalid)
-		puts(line);
+	
+	validator_print_separator(validator_ctx);
 
 	// Check waypoints distance
+	
 	for (i = 0; i < validator_ctx->this_level->waypoints.size - 1; ++i) {
 		// Get the source waypoint
 		waypoint *from_wp = &wpts[i];
@@ -654,20 +710,17 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 			float dist = calc_distance(wp_i.x, wp_i.y, wp_j.x, wp_j.y);
 
 			if (dist < MIN_DIST) {
-				if (!dist_is_invalid) {	// First error : print header
-					validator_print_header(validator_ctx, "Invalid waypoints distance",
-							       "Two waypoints were found to be too close");
-					dist_is_invalid = TRUE;
-				}
-				printf
-				    ("[Type=\"WD\"] WP1 X1=%f:Y1=%f:L1=%d <-> WP2 X2=%f:Y2=%f:L2=%d : distance = %.3f\n",
+				validator_print_error(validator_ctx, &dist_error,
 				     wp_i.x, wp_i.y, validator_ctx->this_level->levelnum, wp_j.x, wp_j.y,
 				     validator_ctx->this_level->levelnum, dist);
 			}
 		}
 	}
 
+	validator_print_separator(validator_ctx);
+
 	// Check waypoint paths walkability
+	
 	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
 		// Get the source waypoint
 		waypoint *from_wp = &wpts[i];
@@ -698,21 +751,15 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 
 			enum connect_validity rtn = waypoints_connection_valid(&from_pos, &to_pos);
 			if (rtn & NO_PATH) {
-				if (!path_is_invalid) {	// First error : print header
-					validator_print_header(validator_ctx, "Invalid waypoint paths list",
-							       "The pathfinder was not able to find a path between those waypoints.\n"
-							       "This could lead those paths to not being usable.");
-					path_is_invalid = TRUE;
-				}
-				printf("[Type=\"WW\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d : %s\n",
+				validator_print_error(validator_ctx, &path_error,
 				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
 				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum,
 				       (rtn & COMPLEX_PATH) ? "too complex" : "path not found");
 			}
 		}
 	}
-	if (path_is_invalid)
-		puts(line);
+
+	validator_print_separator(validator_ctx);
 
 	// Sometimes, a bot does not exactly follow the path between the waypoints
 	// (perhaps due to floating point approximations).
@@ -767,18 +814,13 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 
 			enum connect_validity rtn = waypoints_connection_valid(&trsl_from_pos, &trsl_to_pos);
 			if (rtn & NO_PATH) {
-				if (!path_warning) {	// First error : print header
-					validator_print_header(validator_ctx, "Waypoint paths Warning list",
-							       "The pathfinder was not able to find a path between two variations of those waypoints.\n"
-							       "This could lead some bots to get stuck along those paths.");
-					path_warning = TRUE;
-				}
-				printf("[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)\n",
+				validator_print_error(validator_ctx, &path_warning,
 				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
 				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
 
 				continue;	// Next connection
 			}
+			
 			// 2- Translate up in the direction of the normal
 			trsl_from_pos.x += line_normal.x;
 			trsl_from_pos.y += line_normal.y;
@@ -787,18 +829,13 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 
 			rtn = waypoints_connection_valid(&trsl_from_pos, &trsl_to_pos);
 			if (rtn & NO_PATH) {
-				if (!path_warning) {	// First error : print header
-					validator_print_header(validator_ctx, "Waypoint paths Warning list",
-							       "The pathfinder was not able to find a path between two variations of those waypoints.\n"
-							       "This could lead some bots to get stuck along those paths.");
-					path_warning = TRUE;
-				}
-				printf("[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)\n",
+				validator_print_error(validator_ctx, &path_warning,
 				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
 				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
 
 				continue;	// Next connection
 			}
+
 			// 3- Translate down in the direction of the normal
 			trsl_from_pos.x -= 2 * line_normal.x;
 			trsl_from_pos.y -= 2 * line_normal.y;
@@ -807,22 +844,16 @@ static int lvlval_waypoint_execute(struct level_validator *this, struct lvlval_c
 
 			rtn = waypoints_connection_valid(&trsl_from_pos, &trsl_to_pos);
 			if (rtn & NO_PATH) {
-				if (!path_warning) {	// First error : print header
-					validator_print_header(validator_ctx, "Waypoint paths Warning list",
-							       "The pathfinder was not able to find a path between two variations of those waypoints.\n"
-							       "This could lead some bots to get stuck along those paths.");
-					path_warning = TRUE;
-				}
-				printf("[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)\n",
-				       from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
-				       to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
+				validator_print_error(validator_ctx, &path_warning,
+				                      from_pos.x, from_pos.y, validator_ctx->this_level->levelnum,
+				                      to_pos.x, to_pos.y, validator_ctx->this_level->levelnum);
 			}
 		}
 	}
-	if (path_warning)
-		puts(line);
 
-	return (pos_is_invalid || conn_is_invalid || dist_is_invalid || path_is_invalid || path_warning);
+	validator_print_separator(validator_ctx);
+	
+#	undef MIN_DIST
 }
 
 //===========================================================
@@ -882,9 +913,23 @@ static int lvlval_neighborhood_cmp_data(void *opaque_data1, void *opaque_data2)
  * 'neighborhood' validator
  */
 
-static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
+static void lvlval_neighborhood_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
 {
-	int is_invalid = FALSE;
+	struct lvlval_error ngb_error = {
+		.title = "Non existent neighbor",
+		.comment = "A jump target on a level points to a non existing level.",
+		.format = "[Type=\"J\"] Interface:North of Level:%d points to Level:%d which does not exist.",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
+	struct lvlval_error incons_error = {
+		.title = "Neighborhood inconsistency",
+		.comment = "A neighbor of a level is not back-connected to that level,\n"
+		           "or they have not the same width.",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
 
 	/*
 	 * 1) check for existence of the defined neighbor
@@ -896,161 +941,126 @@ static int lvlval_neighborhood_execute(struct level_validator *this, struct lvlv
 		    		{ 'N', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north };
 
 			if (!lookup_exception(this, &to_check)) {
-				validator_print_header(validator_ctx, "Non existent neighbor",
-					"The north jump target on a level points to a non existing level.");
-				is_invalid = TRUE;
-
-				printf("[Type=\"J\"] Interface:North of Level:%d points to Level:%d which does not exist.\n",
-			       		validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north);
+				validator_print_error(validator_ctx, &ngb_error,
+				                      validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_north);
 			}
 		}
 	}
 
+	ngb_error.format = "[Type=\"J\"] Interface:West of Level:%d points to Level:%d which does not exist.";
 	if (validator_ctx->this_level->jump_target_west != -1) {
 		if (!level_exists(validator_ctx->this_level->jump_target_west)) {
 			struct neighborhood_excpt_data to_check =
 		    		{ 'W', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west };
 
 			if (!lookup_exception(this, &to_check)) {
-				validator_print_header(validator_ctx, "Non existent neighbor",
-					"The west jump target on a level points to a non existing level.");
-				is_invalid = TRUE;
-
-				printf("[Type=\"J\"] Interface:West of Level:%d points to Level:%d which does not exist.\n",
-				       validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west);
+				validator_print_error(validator_ctx, &ngb_error,
+				                      validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_west);
 			}
 		}
 	}
 
+	ngb_error.format = "[Type=\"J\"] Interface:East of Level:%d points to Level:%d which does not exist.";
 	if (validator_ctx->this_level->jump_target_east != -1) {
 		if (!level_exists(validator_ctx->this_level->jump_target_east)) {
 			struct neighborhood_excpt_data to_check =
 		    		{ 'E', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east };
 
 			if (!lookup_exception(this, &to_check)) {
-				validator_print_header(validator_ctx, "Non existent neighbor",
-					"The east jump target on a level points to a non existing level.");
-				is_invalid = TRUE;
-
-				printf("[Type=\"J\"] Interface:East of Level:%d points to Level:%d which does not exist.\n",
-			       		validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east);
+				validator_print_error(validator_ctx, &ngb_error,
+				                      validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_east);
 			}
 		}
 	}
 
+	ngb_error.format = "[Type=\"J\"] Interface:Sputh of Level:%d points to Level:%d which does not exist.";
 	if (validator_ctx->this_level->jump_target_south != -1) {
 		if (!level_exists(validator_ctx->this_level->jump_target_south)) {
 			struct neighborhood_excpt_data to_check =
 		    		{ 'S', validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south };
 
 			if (!lookup_exception(this, &to_check)) {
-				validator_print_header(validator_ctx, "Non existent neighbor",
-					"The south jump target on a level points to a non existing level.");
-				is_invalid = TRUE;
-
-				printf("[Type=\"J\"] Interface:South of Level:%d points to Level:%d which does not exist.\n",
-			       		validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south);
+				validator_print_error(validator_ctx, &ngb_error,
+				                      validator_ctx->this_level->levelnum, validator_ctx->this_level->jump_target_south);
 			}
 		}
 	}
 
+	validator_print_separator(validator_ctx);
+	
 	/*
 	 * 2) Check "reverse connections" and consistency of neighbors dimension
 	 */
 
 	if (validator_ctx->this_level->jump_target_north != -1) {
 		if (curShip.AllLevels[validator_ctx->this_level->jump_target_north]->jump_target_south != validator_ctx->this_level->levelnum) {
-			validator_print_header(validator_ctx, "Neighborhood inconsistency",
-					               "The northern neighbor of a level is not back-connected to that level.");
-			is_invalid = TRUE;
-
-			printf("[ERROR] Interface:South of Level:%d points to Level:%d instead of Level:%d.\n",
-				   validator_ctx->this_level->jump_target_north,
-				   curShip.AllLevels[validator_ctx->this_level->jump_target_north]->jump_target_south,
-				   validator_ctx->this_level->levelnum);
+			incons_error.format = "[ERROR] Interface:South of Level:%d points to Level:%d instead of Level:%d.",
+			validator_print_error(validator_ctx, &incons_error,
+			                      validator_ctx->this_level->jump_target_north,
+			                      curShip.AllLevels[validator_ctx->this_level->jump_target_north]->jump_target_south,
+			                      validator_ctx->this_level->levelnum);
 		} else {
 			if (curShip.AllLevels[validator_ctx->this_level->jump_target_north]->xlen != validator_ctx->this_level->xlen) {
-				validator_print_header(validator_ctx, "Neighborhood inconsistency",
-						               "The northern neighbor of a level has a different width");
-				is_invalid = TRUE;
-
-				printf("[ERROR] Level:%d and its northern neighbor:%d have not the same width.\n",
-						validator_ctx->this_level->levelnum,
-						validator_ctx->this_level->jump_target_north);
+				incons_error.format = "[ERROR] Level:%d and its northern neighbor:%d have not the same width.",
+				validator_print_error(validator_ctx, &incons_error,
+				                      validator_ctx->this_level->levelnum,
+				                      validator_ctx->this_level->jump_target_north);
 			}
 		}
 	}
 
 	if (validator_ctx->this_level->jump_target_south != -1) {
 		if (curShip.AllLevels[validator_ctx->this_level->jump_target_south]->jump_target_north != validator_ctx->this_level->levelnum) {
-			validator_print_header(validator_ctx, "Neighborhood inconsistency",
-					               "The southern neighbor of a level is not back-connected to that level.");
-			is_invalid = TRUE;
-
-			printf("[ERROR] Interface:North of Level:%d points to Level:%d instead of Level:%d.\n",
-		           validator_ctx->this_level->jump_target_south,
-		           curShip.AllLevels[validator_ctx->this_level->jump_target_south]->jump_target_north,
-		           validator_ctx->this_level->levelnum);
+			incons_error.format = "[ERROR] Interface:North of Level:%d points to Level:%d instead of Level:%d.",
+			validator_print_error(validator_ctx, &incons_error,
+			                      validator_ctx->this_level->jump_target_south,
+			                      curShip.AllLevels[validator_ctx->this_level->jump_target_south]->jump_target_north,
+			                      validator_ctx->this_level->levelnum);
 		} else {
 			if (curShip.AllLevels[validator_ctx->this_level->jump_target_south]->xlen != validator_ctx->this_level->xlen) {
-				validator_print_header(validator_ctx, "Neighborhood inconsistency",
-						               "The southern neighbor of a level has a different width");
-				is_invalid = TRUE;
-
-				printf("[ERROR] Level:%d and its southern neighbor:%d have not the same width.\n",
-						validator_ctx->this_level->levelnum,
-						validator_ctx->this_level->jump_target_south);
+				incons_error.format = "[ERROR] Level:%d and its southern neighbor:%d have not the same width.",
+				validator_print_error(validator_ctx, &incons_error,
+				                      validator_ctx->this_level->levelnum,
+				                      validator_ctx->this_level->jump_target_south);
 			}
 		}
 	}
 
 	if (validator_ctx->this_level->jump_target_east != -1) {
 		if (curShip.AllLevels[validator_ctx->this_level->jump_target_east]->jump_target_west != validator_ctx->this_level->levelnum) {
-			validator_print_header(validator_ctx, "Neighborhood inconsistency",
-					               "The eastern neighbor of a level is not back-connected to that level.");
-			is_invalid = TRUE;
-
-			printf("[ERROR] Interface:West of Level:%d points to Level:%d instead of Level:%d.\n",
-		           validator_ctx->this_level->jump_target_east,
-		           curShip.AllLevels[validator_ctx->this_level->jump_target_east]->jump_target_west,
-		           validator_ctx->this_level->levelnum);
+			incons_error.format = "[ERROR] Interface:West of Level:%d points to Level:%d instead of Level:%d.",
+			validator_print_error(validator_ctx, &incons_error,
+			                      validator_ctx->this_level->jump_target_east,
+			                      curShip.AllLevels[validator_ctx->this_level->jump_target_east]->jump_target_west,
+			                      validator_ctx->this_level->levelnum);
 		} else {
 			if (curShip.AllLevels[validator_ctx->this_level->jump_target_east]->ylen != validator_ctx->this_level->ylen) {
-				validator_print_header(validator_ctx, "Neighborhood inconsistency",
-						               "The eastern neighbor of a level has a different width");
-				is_invalid = TRUE;
-
-				printf("[ERROR] Level:%d and its eastern neighbor:%d have not the same width.\n",
-						validator_ctx->this_level->levelnum,
-						validator_ctx->this_level->jump_target_east);
+				incons_error.format = "[ERROR] Level:%d and its eastern neighbor:%d have not the same width.",
+				validator_print_error(validator_ctx, &incons_error,
+				                      validator_ctx->this_level->levelnum,
+				                      validator_ctx->this_level->jump_target_east);
 			}
 		}
 	}
 
 	if (validator_ctx->this_level->jump_target_west != -1) {
 		if (curShip.AllLevels[validator_ctx->this_level->jump_target_west]->jump_target_east != validator_ctx->this_level->levelnum) {
-			validator_print_header(validator_ctx, "Neighborhood inconsistency",
-					               "The western neighbor of a level is not back-connected to that level.");
-			is_invalid = TRUE;
-
-			printf("[ERROR] Interface:East of Level:%d points to Level:%d instead of Level:%d.\n",
-		           validator_ctx->this_level->jump_target_west,
-		           curShip.AllLevels[validator_ctx->this_level->jump_target_west]->jump_target_east,
-		           validator_ctx->this_level->levelnum);
+			incons_error.format = "[ERROR] Interface:East of Level:%d points to Level:%d instead of Level:%d.",
+			validator_print_error(validator_ctx, &incons_error,
+			                      validator_ctx->this_level->jump_target_west,
+			                      curShip.AllLevels[validator_ctx->this_level->jump_target_west]->jump_target_east,
+			                      validator_ctx->this_level->levelnum);
 		} else {
 			if (curShip.AllLevels[validator_ctx->this_level->jump_target_west]->ylen != validator_ctx->this_level->ylen) {
-				validator_print_header(validator_ctx, "Neighborhood inconsistency",
-						               "The western neighbor of a level has a different width");
-				is_invalid = TRUE;
-
-				printf("[ERROR] Level:%d and its western neighbor:%d have not the same width.\n",
-						validator_ctx->this_level->levelnum,
-						validator_ctx->this_level->jump_target_west);
+				incons_error.format = "[ERROR] Level:%d and its western neighbor:%d have not the same width.",
+				validator_print_error(validator_ctx, &incons_error,
+				                      validator_ctx->this_level->levelnum,
+				                      validator_ctx->this_level->jump_target_west);
 			}
 		}
 	}
 
-	return is_invalid;
+	validator_print_separator(validator_ctx);
 }
 
 //===========================================================
@@ -1132,10 +1142,16 @@ static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2)
  * 'obstacles' validator
  */
 
-static int lvlval_obstacles_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
+static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
 {
-	int pos_invalid = FALSE;
-	int outside_invalide = FALSE;
+	struct lvlval_error obs_error = {
+		.title = "Invalid obstacle position",
+		.comment = "The center of an obstacle is outside a level boundaries,\n"
+		           "or the collision rectangle of the obstacle is spilling out on a neighbor level.",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
 	int i;
 	float border;
 	level *l = validator_ctx->this_level;
@@ -1150,66 +1166,41 @@ static int lvlval_obstacles_execute(struct level_validator *this, struct lvlval_
 			continue;
 
 		if (o->pos.x < 0 || o->pos.x > max_x || o->pos.y < 0 || o->pos.y > max_y) {
-			if (!pos_invalid) {
-				validator_print_header(validator_ctx, "Invalid obstacle position",
-				                       "The position of an obstacle is invalid.");
-				pos_invalid = TRUE;
-			}
-			printf("[ERROR] Obstacle n.%d on level %d, type %d, has position %f %f. Allowed X position ranges from 0 to %f. Allowed Y position ranges from 0 to %f.\n",
-					i, l->levelnum, o->type, o->pos.x, o->pos.y, max_x, max_y);
+			obs_error.format = "[ERROR] Obstacle n.%d on level %d, type %d, has position %f %f. Allowed X position ranges from 0 to %f. Allowed Y position ranges from 0 to %f.";
+			validator_print_error(validator_ctx, &obs_error, i, l->levelnum, o->type, o->pos.x, o->pos.y, max_x, max_y);
+			continue;
 		}
 
 		border = o->pos.x + obstacle_map[o->type].left_border;
 		if (border < 0 && l->jump_target_west != -1) {
-
 			struct obstacle_excpt_data to_check =
 			    { 'W', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
 
 			if (!lookup_exception(this, &to_check)) {
-				if (!outside_invalide) {
-					validator_print_header(validator_ctx, "Obstacle going past the level borders",
-					                       "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
-				                           "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
-					outside_invalide = TRUE;
-				}
-				printf("[Type=\"OW\"] X=%f:Y=%f:L=%d T=%d -> west border=%f (warning)\n",
-				       o->pos.x, o->pos.y, l->levelnum, o->type, border);
+				obs_error.format = "[Type=\"OW\"] X=%f:Y=%f:L=%d T=%d -> west border=%f (warning)";
+				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
 
 		border = o->pos.x + obstacle_map[o->type].right_border;
 		if (border > max_x && l->jump_target_east != -1) {
-
 			struct obstacle_excpt_data to_check =
 			    { 'E', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
 
 			if (!lookup_exception(this, &to_check)) {
-				if (!outside_invalide) {
-					validator_print_header(validator_ctx, "Obstacle going past the level borders",
-										   "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
-										   "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
-					outside_invalide = TRUE;
-				}
-				printf("[Type=\"OE\"] X=%f:Y=%f:L=%d T=%d -> east border=%f (warning)\n",
-						o->pos.x, o->pos.y, l->levelnum, o->type, border);
+				obs_error.format = "[Type=\"OE\"] X=%f:Y=%f:L=%d T=%d -> east border=%f (warning)";
+				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
 
 		border = o->pos.y + obstacle_map[o->type].upper_border;
 		if (border < 0 && l->jump_target_north != -1) {
-
 			struct obstacle_excpt_data to_check =
 			    { 'N', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
 
 			if (!lookup_exception(this, &to_check)) {
-				if (!outside_invalide) {
-					validator_print_header(validator_ctx, "Obstacle going past the level borders",
-										   "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
-										   "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
-					outside_invalide = TRUE;
-				}
-				printf("[Type=\"ON\"] X=%f:Y=%f:L=%d T=%d -> north border=%f (warning)\n",
-						o->pos.x, o->pos.y, l->levelnum, o->type, border);
+				obs_error.format = "[Type=\"ON\"] X=%f:Y=%f:L=%d T=%d -> north border=%f (warning)";
+				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
 
@@ -1220,20 +1211,14 @@ static int lvlval_obstacles_execute(struct level_validator *this, struct lvlval_
 			    { 'S', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
 
 			if (!lookup_exception(this, &to_check)) {
-				if (!outside_invalide) {
-					validator_print_header(validator_ctx, "Obstacle going past the level borders",
-										   "The collision rectangle of an obstacle is spilling out on a neighbor level.\n"
-										   "This could lead to some strange rendering, such as Tux displayed in front of the obstacle.");
-					outside_invalide = TRUE;
-				}
-				printf("[Type=\"OS\"] X=%f:Y=%f:L=%d T=%d -> south border=%f (warning)\n",
-						o->pos.x, o->pos.y, l->levelnum, o->type, border);
+				obs_error.format = "[Type=\"OS\"] X=%f:Y=%f:L=%d T=%d -> south border=%f (warning)";
+				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
 
 	}
 
-	return (pos_invalid || outside_invalide);
+	validator_print_separator(validator_ctx);
 }
 
 //===========================================================
@@ -1275,7 +1260,7 @@ void LevelValidation()
 	int row_pos = 0;
 
 	for (l = 0; l < curShip.num_levels; ++l) {
-		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l] };
+		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, FALSE };
 
 		// Compute raw and column position, when a new column of text starts
 		if ((l % max_rows) == 0) {
@@ -1297,11 +1282,11 @@ void LevelValidation()
 			int level_is_invalid = FALSE;
 
 			while (one_validator = &(level_validators[v++]), one_validator->execute != NULL)
-				level_is_invalid |= one_validator->execute(one_validator, &validator_ctx);
+				one_validator->execute(one_validator, &validator_ctx);
 
 			// Display report
 			char txt[40];
-			sprintf(txt, "%03d: %s", l, (level_is_invalid) ? "\1fail" : "pass");
+			sprintf(txt, "%03d: %s", l, (validator_ctx.error_caught) ? "\1fail" : "pass");
 			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
 			row_pos += lines * row_height;
 			SetCurrentFont(current_font);	// Reset font in case of the red "fail" was displayed

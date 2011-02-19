@@ -48,6 +48,16 @@
 struct lvlval_ctx {
 	SDL_Rect *report_rect;
 	Level this_level;
+	int in_report_section;
+	int error_caught;
+};
+
+struct lvlval_error {
+	char *title;
+	char *comment;
+	char *format;
+	int caught;
+	int is_error;
 };
 
 struct lvlval_excpt_item {
@@ -60,7 +70,7 @@ struct lvlval_excpt_item {
 struct level_validator {
 	char initial;
 	struct list_head excpt_list;
-	int (*execute) (struct level_validator * this, struct lvlval_ctx * validator_ctx);
+	void (*execute) (struct level_validator * this, struct lvlval_ctx * validator_ctx);
 	void *(*parse_excpt) (char *string);
 	int (*cmp) (void *opaque_data1, void *opaque_data2);
 };
