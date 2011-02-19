@@ -855,7 +855,7 @@ static void AdvancedOptions(void)
 		case RUN_MAP_VALIDATION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			LevelValidation();
+			level_validation();
 			while (!SpacePressed() && !EnterPressed() && !MouseLeftPressed() && !EscapePressed())
 				SDL_Delay(0);
 			//Hack: eat all pending events.

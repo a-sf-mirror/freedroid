@@ -1227,7 +1227,9 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 // Run several validations
 //===========================================================
 
-void LevelValidation()
+// With on screen report
+
+int level_validation()
 {
 	int is_invalid = FALSE;
 	int uncaught_excpt = FALSE;
@@ -1246,15 +1248,15 @@ void LevelValidation()
 	ShadowingRectangle(Screen, background_rect);
 
 	// Title
-	//
+
 	CenteredPutString(Screen, report_rect.y, "Level Validation tests - Summary\n");
 
 	// Load exceptions rules
-	//
+
 	load_excpt_lists("freedroid.lvleditor_exceptions");
 
 	// Loop on each level
-	//
+
 	int l;
 	int col_pos = 0;
 	int row_pos = 0;
@@ -1297,14 +1299,13 @@ void LevelValidation()
 	}
 
 	// Outputs uncaught exception rules
-	//
 
 	uncaught_excpt = print_uncaught_exceptions();
-
-
+	
 	free_exception_lists();
 
-	// This was it.  We can say so and return.
+	// That's it.  We can say goodbye and return.
+
 	int posy = report_rect.y + report_rect.h - row_height;
 
 	CenteredPutString(Screen, posy, "--- End of List --- Press Space to return to leveleditor ---");
@@ -1320,6 +1321,53 @@ void LevelValidation()
 	}
 
 	our_SDL_flip_wrapper();
+	
+	return is_invalid;
+}
+
+// Without on screen report
+
+int level_validation_on_console_only()
+{
+	int is_invalid = FALSE;
+	int uncaught_excpt = FALSE;
+	SDL_Rect report_rect = { 0, 0, 0, 0 };
+	
+	// Load exceptions rules
+
+	load_excpt_lists("freedroid.lvleditor_exceptions");
+
+	// Loop on each level
+
+	int l;
+
+	for (l = 0; l < curShip.num_levels; ++l) {
+		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, FALSE };
+
+		// Nota: we do not currently validate random dungeons, due to a known
+		// invalid waypoint generation.
+		
+		if (level_exists(l) && !curShip.AllLevels[l]->random_dungeon) {
+			// Loop on each validation function
+			int v = 0;
+			struct level_validator *one_validator;
+			int level_is_invalid = FALSE;
+
+			while (one_validator = &(level_validators[v++]), one_validator->execute != NULL)
+				one_validator->execute(one_validator, &validator_ctx);
+
+			// Set global is_invalid flag
+			is_invalid |= level_is_invalid;
+		}
+	}
+
+	// Outputs uncaught exception rules
+
+	uncaught_excpt = print_uncaught_exceptions();
+	
+	free_exception_lists();
+	
+	return is_invalid || uncaught_excpt;
 }
 
 #undef _leveleditor_validator_c

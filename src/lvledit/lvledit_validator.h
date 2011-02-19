@@ -77,6 +77,7 @@ struct level_validator {
 
 #endif
 
-EXTERN void LevelValidation(void);
+EXTERN int level_validation(void);
+EXTERN int level_validation_on_console_only(void);
 
 #endif				// _leveleditor_validator_h_
