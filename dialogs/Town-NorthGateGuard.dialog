@@ -29,7 +29,16 @@ EveryTime LuaCode={
 		npc_says(_"Hey you! Linarian! What do you want here?")
 		show(1, 2, 3)
 		add_cookie("met_town-northgateguard")
+		set_rush_tux(0)
 		add_cookie("guard_follow_tux")
+	elseif will_rush_tux() then
+		set_rush_tux(0)
+		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
+			npc_says_random(_"Oh, the loon returned.", _"Just the loon. I needn't have worried.")
+		else
+			npc_says_random(_"Oh, it is you.", _"I see you have returned.", _"Welcome back.")
+		end
+		end_dialog()
 	else 
 		tux_says(_"Can I ask you something?")
 		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
