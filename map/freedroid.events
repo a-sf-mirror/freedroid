@@ -166,6 +166,102 @@ LuaCode={
 }
 * End of trigger *
 
+* New event trigger *
+Name=_"DocFront-inner-N"
+Trigger at label="DocFront-inner-N"
+Silent=1
+LuaCode={
+	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+		set_rush_tux(1, "DocMoore")
+		add_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"DocFront-inner-S"
+Trigger at label="DocFront-inner-N"
+Silent=1
+LuaCode={
+	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+		set_rush_tux(1, "DocMoore")
+		add_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"DocBack-inner-W"
+Trigger at label="DocBack-inner-W"
+Silent=1
+LuaCode={
+	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+		set_rush_tux(1, "DocMoore")
+		add_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"DocBack-inner-E"
+Trigger at label="DocBack-inner-E"
+Silent=1
+LuaCode={
+	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+		set_rush_tux(1, "DocMoore")
+		add_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"DocFront-out-N"
+Trigger at label="DocFront-out-N"
+Silent=1
+LuaCode={
+	if (has_cookie("DocMoore_exam")) then
+		set_rush_tux(0, "DocMoore")
+		del_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"DocFront-out-S"
+Trigger at label="DocFront-out-N"
+Silent=1
+LuaCode={
+	if (has_cookie("DocMoore_exam")) then
+		set_rush_tux(0, "DocMoore")
+		del_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"DocBack-out-W"
+Trigger at label="DocBack-out-W"
+Silent=1
+LuaCode={
+	if (has_cookie("DocMoore_exam")) then
+		set_rush_tux(0, "DocMoore")
+		del_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"DocBack-out-E"
+Trigger at label="DocBack-out-E"
+Silent=1
+LuaCode={
+	if (has_cookie("DocMoore_exam")) then
+		set_rush_tux(0, "DocMoore")
+		del_cookie("DocMoore_exam")
+	end
+}
+* End of trigger *
+
 ##############
 ## Level  1 ##
 ############## 

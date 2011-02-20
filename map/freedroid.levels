@@ -3592,6 +3592,14 @@ x=3 y=36 name="W-enter-3"
 x=18 y=40 name="0from30"
 x=63 y=82 name="Iris"
 x=18 y=27 name="DocMooreStartGameSquare"
+x=11 y=26 name="DocBack-inner-W"
+x=12 y=26 name="DocBack-inner-E"
+x=12 y=27 name="DocBack-out-E"
+x=11 y=27 name="DocBack-out-W"
+x=21 y=29 name="DocFront-inner-N"
+x=21 y=30 name="DocFront-inner-S"
+x=22 y=30 name="DocFront-out-S"
+x=22 y=29 name="DocFront-out-N"
 /plabelinfolvl
 piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 

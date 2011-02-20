@@ -73,6 +73,9 @@ EveryTime LuaCode={
 		npc_says(_"You should take better care of yourself out there.")
 	end
 
+	if (will_rush_tux()) then
+		set_rush_tux(0)
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
