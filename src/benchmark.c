@@ -45,7 +45,7 @@ static void timer_stop()
 }
 
 /* Text rendering performance measurement */
-static void text_bench()
+static int text_bench()
 {
     char *str = "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz";
 
@@ -62,18 +62,22 @@ static void text_bench()
 		
 	our_SDL_flip_wrapper();
 	timer_stop();
+
+	return 0;
 }
 
 /* Dialog validator (not an actual benchmark) */
-static void dialog_test()
+static int dialog_test()
 {
 	timer_start();
 	validate_dialogs();
 	timer_stop();
+
+	return 0;
 }
 
 /* LoadShip (level loading) performance test */
-static void loadship_bench()
+static int loadship_bench()
 {
 	int loop = 10;
 
@@ -87,10 +91,12 @@ static void loadship_bench()
 		LoadShip(fp, 0);
 	}
 	timer_stop();
+
+	return 0;
 }
 
 /* LoadGame (savegame loading) performance test */
-static void loadgame_bench()
+static int loadgame_bench()
 {
 	int loop = 3;
 
@@ -103,10 +109,12 @@ static void loadgame_bench()
 		LoadGame();
 	}
 	timer_stop();
+
+	return 0;
 }
 
 /* Test of dynamic arrays */
-static void dynarray_test()
+static int dynarray_test()
 {
 	int loop = 10;
 	item dummy;
@@ -131,9 +139,11 @@ static void dynarray_test()
 	}
 
 	timer_stop();
+
+	return 0;
 }
 
-static void mapgen_bench()
+static int mapgen_bench()
 {
 	int loop = 100;
 	extern void CreateNewMapLevel(int);
@@ -150,13 +160,15 @@ static void mapgen_bench()
 		generate_dungeon(l->xlen, l->ylen, l->random_dungeon, l->teleport_pair);
 	}
 	timer_stop();
+
+	return 0;
 }
 
-void benchmark()
+int benchmark()
 {
 	struct {
 		char *name;
-		void (*func)();
+		int (*func)();
 	} benchs[] = {
 			{ "text", text_bench },
 			{ "dialog", dialog_test },
@@ -168,6 +180,7 @@ void benchmark()
 
 	int i;
 	char str[1024];
+	int failed = 0;
 
 	ClearGraphMem();
 	sprintf(str, "Testing \"%s\"...", do_benchmark);
@@ -177,9 +190,9 @@ void benchmark()
 
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
 		if (!strcmp(do_benchmark, benchs[i].name)) {
-			benchs[i].func();
+			failed |= benchs[i].func();
 			printf("Running test %s took %d milliseconds.\n", do_benchmark, stop_stamp - start_stamp);
-			return;
+			return failed;
 		}
 	}
 	
@@ -187,7 +200,7 @@ void benchmark()
 	for (i = 0; i < sizeof(benchs)/sizeof(benchs[0]); i++) {
 		fprintf(stderr, "\t%s\n", benchs[i].name);
 	}
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 

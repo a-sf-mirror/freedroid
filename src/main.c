@@ -171,8 +171,8 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
 	if (do_benchmark) {
 		/* Benchmark mode? Do not run the regular game from here. */
-		benchmark();
-		Terminate(0);
+		int failed = benchmark();
+		Terminate(failed ? EXIT_FAILURE : EXIT_SUCCESS);
 	}
 
 	while (!QuitProgram) {

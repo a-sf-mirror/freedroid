@@ -818,7 +818,7 @@ int animate_refresh(level* obstacle_lvl, int obstacle_idx);
 int animate_autogun(level* obstacle_lvl, int obstacle_idx);
 
 // benchmark.c
-void benchmark(void);
+int benchmark(void);
 
 // npc.c
 struct npc *npc_get(const char *);
