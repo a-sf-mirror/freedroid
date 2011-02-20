@@ -806,6 +806,21 @@ static int lua_set_bot_destination(lua_State * L)
 	return 0;
 }
 
+static int lua_set_rush_tux(lua_State * L)
+{
+	const int cmd = luaL_checkinteger(L, 1);
+	enemy *en = get_enemy_arg(L, 2);
+	en->will_rush_tux = cmd;
+	return 0;
+}
+
+static int lua_will_rush_tux(lua_State * L)
+{
+	enemy *en = get_enemy_arg(L, 1);
+	lua_pushboolean(L, en->will_rush_tux);
+	return 1;
+}
+
 static int lua_chat_takeover(lua_State * L)
 {
 	int opponent_capsules = luaL_checkinteger(L, 1);
@@ -1109,6 +1124,13 @@ luaL_reg lfuncs[] = {
 	{"set_bot_destination", lua_set_bot_destination}
 	,
 	{"broadcast_bot_state", lua_chat_broadcast_bot_state}
+	,
+	/* set_rush_tux()   - Sets or unsets if the NPC should rush and talk to Tux
+	 * will_rush_tux() - Checks if the NPC is planning on rushing Tux
+	 */
+	{"set_rush_tux", lua_set_rush_tux}
+	,
+	{"will_rush_tux", lua_will_rush_tux}
 	,
 	{"takeover", lua_chat_takeover}
 	,

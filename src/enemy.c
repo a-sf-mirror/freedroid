@@ -1408,6 +1408,10 @@ static void state_machine_situational_transitions(enemy * ThisRobot)
 		ThisRobot->combat_state = RUSH_TUX_AND_OPEN_TALK;
 	}
 
+	//Transition away from Rush Tux gracefully if it is unset
+	if (!ThisRobot->will_rush_tux && (ThisRobot->combat_state == RUSH_TUX_AND_OPEN_TALK))
+		ThisRobot->combat_state = UNDEFINED_STATE;
+
 	/* Return home if we're too far away */
 	if (ThisRobot->max_distance_to_home != 0 &&
 	    sqrt(powf((wpts[ThisRobot->homewaypoint].x + 0.5) - ThisRobot->pos.x, 2) +
