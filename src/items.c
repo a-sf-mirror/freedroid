@@ -559,7 +559,7 @@ void MakeHeldFloorItemOutOf(item * SourceItem)
 	if (i >= MAX_ITEMS_PER_LEVEL) {
 		DebugPrintf(0, "\n No free position to drop item!!! ");
 		i = 0;
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 	// Now we enter the item into the item list of this level
 	//

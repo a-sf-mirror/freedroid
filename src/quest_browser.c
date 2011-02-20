@@ -454,7 +454,7 @@ void quest_browser_interface(void)
 		SDL_WaitEvent(&event);
 
 		if (event.type == SDL_QUIT) {
-			Terminate(0);
+			Terminate(EXIT_SUCCESS, TRUE);
 		}
 
 		if (event.type == SDL_KEYDOWN) {

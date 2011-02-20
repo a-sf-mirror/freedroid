@@ -303,7 +303,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 		if (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(0);
+				Terminate(EXIT_SUCCESS, TRUE);
 			}
 			//(clever?) hack : mouse wheel up and down behave
 			//exactly like UP and DOWN arrow, so we mangle the event
@@ -617,7 +617,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 		SDL_WaitEvent(&event);
 
 		if (event.type == SDL_QUIT) {
-			Terminate(0);
+			Terminate(EXIT_SUCCESS, TRUE);
 		}
 		//(clever?) hack : mouse wheel up and down behave
 		//exactly like UP and DOWN arrow or PAGEUP/PAGEDOWN, so we mangle the event
@@ -1150,7 +1150,7 @@ static int Startup_handle(int n)
 		break;
 	case (-1):
 	case EXIT_FREEDROID_POSITION:
-		Terminate(OK);
+		Terminate(EXIT_SUCCESS, TRUE);
 		break;
 	default:
 		break;
@@ -1290,7 +1290,7 @@ static int Escape_handle(int n)
 		break;
 	case QUIT_POSITION:
 		DebugPrintf(2, "\nvoid EscapeMenu( void ): Quit requested by user.  Terminating...");
-		Terminate(0);
+		Terminate(EXIT_SUCCESS, TRUE);
 		break;
 	default:
 		break;

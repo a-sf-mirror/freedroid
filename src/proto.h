@@ -637,7 +637,7 @@ void teleport_to_level_center(int);
 int SaveGameConfig(void);
 int LoadGameConfig(void);
 void InsertNewMessage(void);
-void Terminate(int);
+void Terminate(int, int);
 void ShowDebugInfos(void);
 Sint16 ReadSint16(void *memory);
 void endian_swap(char *pdata, size_t dsize, size_t nelements);

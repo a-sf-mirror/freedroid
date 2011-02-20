@@ -171,7 +171,7 @@ static void show_droid_picture(int PosX, int PosY, int type)
 		//
 		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
 			if (!strcmp(Druidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
-				Terminate(ERR);
+				Terminate(EXIT_FAILURE, TRUE);
 			} else {
 				sprintf(ConstructedFileName, "droids/%s/portrait_%04d.jpg",
 					Druidmap[type].droid_portrait_rotation_series_prefix, i + 1);
@@ -302,7 +302,7 @@ static void ChooseColor(void)
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(0);
+				Terminate(EXIT_SUCCESS, TRUE);
 			}
 
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -420,7 +420,7 @@ static void PlayGame(int countdown)
 					return;	/* leave now, to avoid changing of LeaderColor! */
 				}
 			} else if (event.type == SDL_QUIT) {
-				Terminate(0);
+				Terminate(EXIT_SUCCESS, TRUE);
 			}
 		}
 
@@ -598,7 +598,7 @@ int droid_takeover(enemy *target)
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(0);
+				Terminate(EXIT_SUCCESS, TRUE);
 			}
 
 			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
@@ -1725,12 +1725,12 @@ void to_show_banner(const char *left, const char *right)
 	left_len = strlen(left);
 	if (left_len > LEFT_TEXT_LEN) {
 		printf("\nWarning: String %s too long for Left Infoline!!", left);
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 	right_len = strlen(right);
 	if (right_len > RIGHT_TEXT_LEN) {
 		printf("\nWarning: String %s too long for Right Infoline!!", right);
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 	// Now prepare the left/right text-boxes 
 	memset(left_box, ' ', LEFT_TEXT_LEN);	// pad with spaces 

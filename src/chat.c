@@ -412,7 +412,7 @@ static void wait_for_click(enemy *chat_droid)
 		SDL_WaitEvent(&event);
 
 		if (event.type == SDL_QUIT) {
-			Terminate(0);
+			Terminate(EXIT_SUCCESS, TRUE);
 		}
 
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == 1)

@@ -327,7 +327,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 
 	if ((SaveGameFile = fopen(filename, "wb")) == NULL) {
 		printf(_("\n\nError opening save game file for writing...\n\nTerminating...\n\n"));
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	/* Save tux */

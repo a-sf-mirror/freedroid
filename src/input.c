@@ -118,7 +118,7 @@ int input_handle(void)
 		switch (event.type) {
 		case SDL_QUIT:
 			printf("\n\nUser requested termination...\n\nTerminating...");
-			Terminate(0);
+			Terminate(EXIT_SUCCESS, TRUE);
 			break;
 
 		case SDL_KEYDOWN:

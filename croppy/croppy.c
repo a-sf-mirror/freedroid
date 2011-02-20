@@ -30,7 +30,7 @@
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 480 
 
-void Terminate (int ExitCode);
+void Terminate (int exit_code, int save_config);
 
 char* output_filename = NULL;
 char* input_filename = NULL;
@@ -143,7 +143,7 @@ void *MyMalloc(long Mamount)
 
 	if ((Mptr = malloc ((size_t) Mamount)) == NULL) {
 		printf (" MyMalloc(%ld) did not succeed!\n", Mamount);
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	return Mptr;
@@ -171,7 +171,7 @@ void DebugPrintf(int db_level, char *fmt, ...)
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
  * ---------------------------------------------------------------------- */
-void Terminate(int ExitCode)
+void Terminate(int exit_code, int save_config)
 {
 	DebugPrintf(2, "\nvoid Terminate(int ExitStatus) was called....");
 	DebugPrintf(1, "\n----------------------------------------------------------------------");
@@ -180,7 +180,7 @@ void Terminate(int ExitCode)
 	DebugPrintf(1,"Thank you for using the FreedroidRPG Croppy Tool.\n\n");
   
 	SDL_Quit();
-	exit (ExitCode);
+	exit (exit_code);
 } // void Terminate ( int ExitCode )
 
 /* -----------------------------------------------------------------
@@ -285,7 +285,7 @@ void ParseCommandLine(int argc, char *const argv[])
 
 	if (input_filename == NULL) {
 		DebugPrintf(-1, "\nERROR:  No input file specified... Terminating...\n");
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, TRUE);
     }
 
 	if (output_filename == NULL) {
@@ -303,7 +303,7 @@ void InitVideo (void)
 	/* Initialize the SDL library */
 	if (SDL_Init ( SDL_INIT_VIDEO ) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n",SDL_GetError());
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, FALSE);
 	} else {
 		DebugPrintf(1, "\nSDL Video initialisation successful.\n");
 	}
@@ -311,7 +311,7 @@ void InitVideo (void)
 
 	if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL Timer: %s\n",SDL_GetError());
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, FALSE);
 	} else {
       DebugPrintf(1, "\nSDL Timer initialisation successful.\n");
 	}
@@ -613,7 +613,7 @@ void write_offset_file(int default_center_x, int default_center_y)
 	//
 	if ((OffsetFile = fopen(filename, "w")) == NULL) {
 		DebugPrintf(-1, "\n\nError opening save game file for writing...\n\nTerminating...\n\n");
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	fprintf(OffsetFile, "** Start of iso_image offset file **\n");
@@ -628,7 +628,7 @@ void write_offset_file(int default_center_x, int default_center_y)
 
 	if (fclose(OffsetFile) == EOF) {
 		DebugPrintf(-1, "\n\nClosing of .offset file failed...\n\nTerminating\n\n");
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	DebugPrintf(1, "\nSaving of '.offset' file successful.\n");
@@ -643,7 +643,7 @@ void save_output_surface()
 {
 	if (png_save_surface(output_filename, output_surface) != 0) {
 		DebugPrintf(-1, "\nCROPPY ERROR: unable to save the cropped png");      
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 } // void copy_and_crop_input_file ( ) ;
 
@@ -673,12 +673,12 @@ int main(int argc, char *const argv[])
 	if (input_surface == NULL) {
 		DebugPrintf(-1, "\n\nERROR:  Unable to load input file... ");
 		DebugPrintf(-1, "\nFile name was : %s . ", input_filename);
-		Terminate(EXIT_FAILURE);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	if (!get_default_center(&default_center_x, &default_center_y)) {
 		DebugPrintf(-1, "\nCROPPY ERROR:  Unrecognized image format received... terminating in order to prevent accidents...\n");
-		Terminate(EXIT_FAILURE);		
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 	
 	if (!no_graphics_output) {
@@ -706,7 +706,7 @@ int main(int argc, char *const argv[])
 		if (background_surface == NULL) {
 			DebugPrintf(-1, "\n\nERROR:  Unable to load background file... ");
 			DebugPrintf(-1, "\nFile name was : %s . ", background_filename);
-			Terminate(EXIT_FAILURE);
+			Terminate(EXIT_FAILURE, TRUE);
 		}
 		SDL_BlitSurface(background_surface, NULL, Screen, NULL);
 		fill_rect.x = 0;

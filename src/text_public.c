@@ -58,7 +58,7 @@ void *MyMalloc(long Mamount)
 	if ((Mptr = calloc(1, (size_t) Mamount)) == NULL) {
 		fprintf(stderr, " MyMalloc(%ld) did not succeed!\n", Mamount);
 		fflush(stderr);
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	return Mptr;
@@ -127,7 +127,7 @@ not resolve.  Sorry if that interrupts a major game of yours...\n");
 	va_end(args);
 
 	if (IsFatal)
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 
 };				// void ErrorMessage ( ... )
 

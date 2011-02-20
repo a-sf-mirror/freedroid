@@ -28,7 +28,7 @@
 #include "../src/proto.h"
 #include "../src/global.h"
 
-void Terminate(int ExitCode);
+void Terminate(int exit_code, int save_config);
 
 struct image offset_iso_image;
 char *background_filename = "gluem_background_fill.png";
@@ -448,7 +448,7 @@ void MyWait(float wait_time)
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
  * ---------------------------------------------------------------------- */
-void Terminate(int ExitCode)
+void Terminate(int exit_code, int save_config)
 {
 	DebugPrintf(2, "\nvoid Terminate(int ExitStatus) was called....");
 	printf("\n----------------------------------------------------------------------");
@@ -456,7 +456,7 @@ void Terminate(int ExitCode)
 
 	printf("Thank you for using the FreedroidRPG Gluem Tool.\n\n");
 	SDL_Quit();
-	exit(ExitCode);
+	exit(exit_code);
 	return;
 };				// void Terminate ( int ExitCode )
 
@@ -642,22 +642,22 @@ void ParseCommandLine(int argc, char *const argv[])
 
 	if (current_file_series_prefix == NULL) {
 		DebugPrintf(0, "\nERROR:  No current_file_series_prefix specified... Terminating... ");
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	if (current_file_series_prefix == NULL) {
 		DebugPrintf(0, "\nERROR:  No current_file_series_prefix specified... Terminating... ");
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	if (all_object_directions == (-1)) {
 		DebugPrintf(0, "\nERROR:  No all_object_directions specified... Terminating... ");
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	if (max_object_phases == (-1)) {
 		DebugPrintf(0, "\nERROR:  No max_object_phases... Terminating... ");
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 
 	if (tux_direction_numbering)
@@ -698,7 +698,7 @@ void InitVideo(void)
 	//
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	} else
 		DebugPrintf(1, "\nSDL Video initialisation successful.\n");
 
@@ -707,7 +707,7 @@ void InitVideo(void)
 	//
 	if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	} else
 		DebugPrintf(1, "\nSDL Timer initialisation successful.\n");
 
@@ -911,8 +911,7 @@ int main(int argc, char *argv[])
 	sprintf(output_file_filename, "./%s.tux_image_archive", current_file_series_prefix);
 	if ((output_file = fopen(output_file_filename, "wb")) == NULL) {
 		printf("\n\nError opening save game file for writing...\n\nTerminating...\n\n");
-		Terminate(ERR);
-		// return ERR;
+		Terminate(EXIT_FAILURE, TRUE);
 	} else
 		DebugPrintf(0, "\nOpening output file successful...\n");
 
@@ -1034,7 +1033,7 @@ int main(int argc, char *argv[])
 			if (input_surface == NULL) {
 				DebugPrintf(0, "\n\nERROR:  Unable to load input file... ");
 				DebugPrintf(0, "\nFile name was : %s . ", current_filename);
-				Terminate(ERR);
+				Terminate(EXIT_FAILURE, TRUE);
 			} else {
 				DebugPrintf(0, "\nSuccessfully loaded input image %s.", current_filename);
 			}
@@ -1071,8 +1070,7 @@ int main(int argc, char *argv[])
 	// 
 	if (fclose(output_file) == EOF) {
 		printf("\n\nClosing of output file failed...\n\nTerminating\n\n");
-		Terminate(ERR);
-		// return ERR;
+		Terminate(EXIT_FAILURE, TRUE);
 	} else
 		DebugPrintf(0, "\nSaving of output file successful.\n");
 

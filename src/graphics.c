@@ -227,7 +227,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(0);
+				Terminate(EXIT_SUCCESS, TRUE);
 			} else if (event.type == SDL_KEYDOWN) {
 				switch(event.key.keysym.sym) {
 					case SDLK_LEFT:
@@ -482,7 +482,7 @@ SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterTy
 	//
 	if (FirstSurface == NULL) {
 		DebugPrintf(0, "\nERROR in SDL_Surface* CreateBlueColorFilteredSurface ( ... ) : NULL PARAMETER GIVEN.\n");
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 	}
 	// Now we create a new surface, best in display format with alpha channel
 	// ready to be blitted.
@@ -666,7 +666,7 @@ void InitTimer(void)
 	//
 	if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	} else
 		DebugPrintf(1, "\nSDL Timer initialisation successful.\n");
 
@@ -847,7 +847,7 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 	Screen = SDL_SetVideoMode(GameConfig.screen_width, GameConfig.screen_height, vid_bpp, video_flags);
 	if (!Screen) {
 		fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	} else {
 		//      open_gl_check_error_status ( __FUNCTION__ );
 		SDL_GL_GetAttribute(SDL_GL_BUFFER_SIZE, &buffer_size);
@@ -899,7 +899,7 @@ void InitVideo(void)
 	//
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	} else {
 		DebugPrintf(1, "\nSDL Video initialisation successful.\n");
 		// So the video library could be initialized.  So it should also be
@@ -917,7 +917,7 @@ void InitVideo(void)
 		DebugPrintf(-4, "\nVideo system type: %s.", vid_driver);
 	} else {
 		fprintf(stderr, "Video driver seems not to exist or initialisation failure!\nError code: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	}
 
 	// We check if the program has been compiled with OpenGL libraries present
@@ -935,7 +935,7 @@ void InitVideo(void)
 	vid_info = SDL_GetVideoInfo();
 	if (!vid_info) {
 		fprintf(stderr, "Could not obtain video info via SDL: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	}
 
 	if (use_open_gl) {
@@ -958,7 +958,7 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 		}
 		if (!(Screen = SDL_SetVideoMode(GameConfig.screen_width, GameConfig.screen_height, 0, video_flags))) {
 			fprintf(stderr, "Video mode set failed: %s\n", SDL_GetError());
-			Terminate(ERR);		
+			Terminate(EXIT_FAILURE, FALSE);
 		}
 	}
 

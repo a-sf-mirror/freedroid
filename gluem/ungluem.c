@@ -29,7 +29,7 @@
 #include "../src/struct.h"
 #include "../src/proto.h"
 
-void Terminate(int ExitCode);
+void Terminate(int exit_code, int save_config);
 
 char *input_file;
 
@@ -83,14 +83,14 @@ void print_trace(int signum)
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
  * ---------------------------------------------------------------------- */
-void Terminate(int ExitCode)
+void Terminate(int exit_code, int save_config)
 {
 	printf("\n----------------------------------------------------------------------");
 	printf("\nTermination of Gluem initiated...");
 
 	printf("Thank you for using the FreedroidRPG Gluem Tool.\n\n");
 	SDL_Quit();
-	exit(ExitCode);
+	exit(exit_code);
 }
 
 
@@ -145,12 +145,12 @@ static void parse_commandline(int argc, char *const argv[])
 static void init_sdl(void)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	}
 
 	if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, FALSE);
 	}
 
 	if (display) {

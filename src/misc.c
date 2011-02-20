@@ -438,7 +438,7 @@ void print_trace(int signum)
 		fprintf(stderr, "\n%s():  received UNKNOWN SIGNAL %d!  ERROR! \n", __FUNCTION__, signum);
 	}
 
-	Terminate(ERR);
+	Terminate(EXIT_FAILURE, TRUE);
 
 };				// void print_trace ( int sig_num )
 
@@ -796,7 +796,7 @@ void Pause(void)
 		SDL_WaitEvent(&event);
 
 		if (event.type == SDL_QUIT) {
-			Terminate(0);
+			Terminate(EXIT_SUCCESS, TRUE);
 		}
 
 		AssembleCombatPicture(0);
@@ -1245,14 +1245,15 @@ int SaveGameConfig(void)
  * This function is used for terminating freedroid.  It will close
  * the SDL submodules and exit.
  */
-void Terminate(int ExitCode)
+void Terminate(int exit_code, int save_config)
 {
 	printf("\n----------------------------------------------------------------------");
 	printf("\nTermination of freedroidRPG initiated...");
 
 	// We save the config file in any case.
-	//
-	SaveGameConfig();
+
+	if (save_config)
+		SaveGameConfig();
 
 	printf("Thank you for playing freedroidRPG.\n\n");
 	SDL_Quit();
@@ -1260,9 +1261,9 @@ void Terminate(int ExitCode)
 	// Finally, especially on win32 systems, we should open an editor with
 	// the last debug output, since people in general won't know how and where
 	// to find the material for proper reporting of bugs.
-	//
+
 #if __WIN32__
-	if (ExitCode == ERR) {
+	if (exit_code == EXIT_FAILURE) {
 		system("notepad stderr.txt");
 		system("notepad stdout.txt");
 	}
@@ -1270,9 +1271,9 @@ void Terminate(int ExitCode)
 
 	// Now we drop control back to the operating system.  The FreedroidRPG
 	// program has finished.
-	//
-	exit(ExitCode);
-};				// void Terminate ( int ExitCode )
+
+	exit(exit_code);
+}
 
 /**
  * Return a pointer towards the obstacle designated by the given (unique) label.

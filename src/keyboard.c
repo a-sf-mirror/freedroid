@@ -364,7 +364,7 @@ void keychart()
 		while (SDL_PollEvent(&event)) {
 
 			if (event.type == SDL_QUIT) {
-				Terminate(0);
+				Terminate(EXIT_SUCCESS, TRUE);
 			}
 
 			endpos = display_keychart(startpos, cursor, FALSE);
@@ -679,7 +679,7 @@ static int input_key(int keynum, int value)
 		keychart();
 		return 0;
 	} else if (KEYPRESS("quit")) {
-		Terminate(0);
+		Terminate(EXIT_SUCCESS, TRUE);
 		return 0;
 	}
 
@@ -727,7 +727,7 @@ int getchar_raw(int *mod)
 		SDL_WaitEvent(&event);	/* wait for next event */
 
 		if (event.type == SDL_QUIT) {
-			Terminate(0);
+			Terminate(EXIT_SUCCESS, TRUE);
 		}
 
 		if (event.type == SDL_KEYDOWN) {

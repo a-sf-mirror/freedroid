@@ -172,7 +172,7 @@ void PlayGreetingSound(int SoundCode)
 		break;
 	default:
 		DebugPrintf(0, "\nUnknown Greeting sound!!! Terminating...");
-		Terminate(ERR);
+		Terminate(EXIT_FAILURE, TRUE);
 		break;
 	}
 }

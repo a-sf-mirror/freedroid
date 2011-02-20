@@ -172,7 +172,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	if (do_benchmark) {
 		/* Benchmark mode? Do not run the regular game from here. */
 		int failed = benchmark();
-		Terminate(failed ? EXIT_FAILURE : EXIT_SUCCESS);
+		Terminate(failed ? EXIT_FAILURE : EXIT_SUCCESS, FALSE);
 	}
 
 	while (!QuitProgram) {
@@ -201,7 +201,7 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
 	LightRadiusClean();
 
-	Terminate(0);
+	Terminate(EXIT_SUCCESS, TRUE);
 	return (0);
 };				// int main ( void )
 
