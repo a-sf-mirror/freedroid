@@ -656,7 +656,7 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
  * As a result, the fact that the validator finds no error does not imply there are no errors in dialogs. 
  * Syntax is checked fully, but runtime validation cannot check all of the code.
  */
-void validate_dialogs()
+int validate_dialogs()
 {
 	int j, k;
 	const char *basename;
@@ -664,7 +664,8 @@ void validate_dialogs()
 	char fpath[2048];
 	enemy *dummy_partner;
 	struct npc *n;
-	
+	int error_caught = FALSE;
+
 	skip_initial_menus = 1;
 
 	find_file("freedroid.levels", MAP_DIR, fpath, 0);
@@ -744,6 +745,7 @@ void validate_dialogs()
 		}
 		if(!ChatRoster[END_ANSWER].lua_code){
 			printf("\n\nERROR: \"%s\" Dialog missing END NODE (node %d).\n\n", n->dialog_basename, END_ANSWER);
+			error_caught = TRUE;
 			break;
 			//ErrorMessage(__FUNCTION__, " NO_NEED_TO_INFORM, IS_FATAL,
 			//		
@@ -757,6 +759,8 @@ void validate_dialogs()
 
 	/* Re-enable screen fadings. */
 	GameConfig.do_fadings = TRUE;
+
+	return error_caught;
 }
 
 #undef _chat_c

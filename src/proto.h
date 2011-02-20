@@ -780,7 +780,7 @@ void PlantCookie(const char *);
 void DeleteCookie(const char *);
 void run_subdialog(const char *);
 void chat_add_response(const char *, int, enemy *);
-void validate_dialogs(void);
+int validate_dialogs(void);
 
 // leveleditor_input.c
 void leveleditor_process_input(void);

@@ -70,11 +70,13 @@ static int text_bench()
 /* Dialog validator (not an actual benchmark) */
 static int dialog_test()
 {
+	int failed;
+
 	timer_start();
-	validate_dialogs();
+	failed = validate_dialogs();
 	timer_stop();
 
-	return 0;
+	return failed;
 }
 
 /* LoadShip (level loading) performance test */
