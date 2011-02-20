@@ -1281,7 +1281,6 @@ int level_validation()
 			// Loop on each validation function
 			int v = 0;
 			struct level_validator *one_validator;
-			int level_is_invalid = FALSE;
 
 			while (one_validator = &(level_validators[v++]), one_validator->execute != NULL)
 				one_validator->execute(one_validator, &validator_ctx);
@@ -1294,7 +1293,7 @@ int level_validation()
 			SetCurrentFont(current_font);	// Reset font in case of the red "fail" was displayed
 
 			// Set global is_invalid flag
-			is_invalid |= level_is_invalid;
+			is_invalid |= validator_ctx.error_caught;
 		}
 	}
 
@@ -1351,13 +1350,12 @@ int level_validation_on_console_only()
 			// Loop on each validation function
 			int v = 0;
 			struct level_validator *one_validator;
-			int level_is_invalid = FALSE;
 
 			while (one_validator = &(level_validators[v++]), one_validator->execute != NULL)
 				one_validator->execute(one_validator, &validator_ctx);
 
 			// Set global is_invalid flag
-			is_invalid |= level_is_invalid;
+			is_invalid |= validator_ctx.error_caught;
 		}
 	}
 

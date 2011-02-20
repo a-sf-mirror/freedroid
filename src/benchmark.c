@@ -30,6 +30,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "lvledit/lvledit_validator.h"
 
 static int start_stamp;
 static int stop_stamp;
@@ -164,6 +165,23 @@ static int mapgen_bench()
 	return 0;
 }
 
+/* Levels validator (not an actual benchmark) */
+static int level_test()
+{
+	int failed;
+
+	// Load default ship
+	char fp[2048];
+	find_file("freedroid.levels", MAP_DIR, fp, 0);
+	LoadShip(fp, 0);
+
+	timer_start();
+	failed = level_validation_on_console_only();
+	timer_stop();
+
+	return failed;
+}
+
 int benchmark()
 {
 	struct {
@@ -176,6 +194,7 @@ int benchmark()
 			{ "loadgame", loadgame_bench },
 			{ "dynarray", dynarray_test },
 			{ "mapgen", mapgen_bench },
+			{ "leveltest", level_test },
 	};
 
 	int i;
