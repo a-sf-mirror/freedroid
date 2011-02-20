@@ -29,6 +29,7 @@ EveryTime LuaCode={
 	if (not has_cookie("met_francis")) then
 		show(2, 6, 11, 13)
 		add_cookie("met_francis")
+		set_rush_tux(0)
 	end
 
 	if (has_cookie("cryo_614_lock_gate") and (not has_cookie("cryo_outergate_code"))) then
