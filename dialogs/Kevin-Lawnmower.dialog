@@ -23,15 +23,58 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={
+	add_cookie("lawnmower_fuel_97")
+	add_cookie("met_kevins_lawnmower")
+}
+
 EveryTime LuaCode={
 	npc_says(_"Welcome to Kevin's personal lawnmower.")
 	npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
 	npc_says(_"Please state your name for identification.")
 	npc_says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
-	if (not has_cookie("met_kevins_lawnmower")) then
-		add_cookie("met_kevins_lawnmower")
+show(5,6)
+	if (has_cookie("lawnmower_fuel_4")) then
+		set_bot_state("fixed")
+		npc_says(_"WARNING:", NO_WAIT)
+		npc_says(_"Less than [b]5%[/b] fuel remaining!", NO_WAIT)
+		npc_says(_"All movement suppressed...")
+		npc_says(_"Scanning area for possible compatible energy sources...")
+		hide(5,6)
+		if (has_item_backpack("Barf's Energy Drink") > 0) then
+			npc_says(_"Compatible energy source found!")
+			npc_says(_"[b]Barf's Energy Drink[/b]")
+			show(50, 51)
+		else
+			npc_says(_"Could not detect compatible energy source.")
+			npc_says(_"Recommended energy source: [b]Barf's Energy Drink[/b]")
+			npc_says(_"Resuming hibernation...")
+			end_dialog()
+		end
 	end
-	show(5, 6, 99)
+	if (has_cookie("lawnmower_fuel_8")) then
+		del_cookie("lawnmower_fuel_8")
+		add_cookie("lawnmower_fuel_4")
+	elseif (has_cookie("lawnmower_fuel_11")) then
+		del_cookie("lawnmower_fuel_11")
+		add_cookie("lawnmower_fuel_8")
+	elseif (has_cookie("lawnmower_fuel_20")) then
+		del_cookie("lawnmower_fuel_20")
+		add_cookie("lawnmower_fuel_11")
+	elseif (has_cookie("lawnmower_fuel_38")) then
+		del_cookie("lawnmower_fuel_38")
+		add_cookie("lawnmower_fuel_20")
+	elseif (has_cookie("lawnmower_fuel_43")) then
+		del_cookie("lawnmower_fuel_43")
+		add_cookie("lawnmower_fuel_38")
+	elseif (has_cookie("lawnmower_fuel_64")) then
+		del_cookie("lawnmower_fuel_64")
+		add_cookie("lawnmower_fuel_43")
+	elseif (has_cookie("lawnmower_fuel_97")) then
+		del_cookie("lawnmower_fuel_97")
+		add_cookie("lawnmower_fuel_64")
+	end
+	show(99)
 }
 ----------------------------------------------------------------------
 
@@ -78,7 +121,8 @@ LuaCode={
 	npc_says(_"help", "NO_WAIT")
 	npc_says(_"version", "NO_WAIT")
 	npc_says(_"fuel_level", "NO_WAIT")
-	hide(20) show(30, 31)
+	npc_says(_"exit", NO_WAIT)
+	show(30, 31, 20)
 }
 ----------------------------------------------------------------------
 
@@ -96,9 +140,61 @@ Nr=31 Text=_"fuel_level"
 NO_TEXT
 LuaCode={
 	tux_says(_"fuel_level", "NO_WAIT")
-	npc_says(_"printing fuel level...")
-	npc_says_random(_"20 percent", _"100 percent", _"4 percent WARNING: CRITICAL!", _"8 percent WARNING: CRITICAL!", _"97 percent", _"64 percent", _"43 percent", _"38 percent")
+	npc_says(_"Printing fuel level...")
+	if (has_cookie("lawnmower_fuel_4")) then
+		npc_says(_"WARNING, less than [b]5%[/b] fuel remaining!")
+	elseif (has_cookie("lawnmower_fuel_8")) then
+		npc_says(_"[b]9[/b]% remaining")
+	elseif (has_cookie("lawnmower_fuel_11")) then
+		npc_says(_"[b]11[/b]% remaining")
+	elseif (has_cookie("lawnmower_fuel_20")) then
+		npc_says(_"[b]20[/b]% remaining")
+	elseif (has_cookie("lawnmower_fuel_38")) then
+		npc_says(_"[b]38[/b]% remaining")
+	elseif (has_cookie("lawnmower_fuel_43")) then
+		npc_says(_"[b]43[/b]% remaining")
+	elseif (has_cookie("lawnmower_fuel_64")) then
+		npc_says(_"[b]64[/b]% remaining")
+	elseif (has_cookie("lawnmower_fuel_97")) then
+		npc_says(_"[b]97[/b]% remaining")
+	else
+		npc_says(_"Tank completely refilled.")
+	end
 	hide(31)
+}
+----------------------------------------------------------------------
+
+Nr=50 Text=_"It can have one drink..."
+NO_TEXT
+LuaCode={
+	tux_says(_"So, where do I have to put in the drink...?", "NO_WAIT")
+	tux_says(_"Ah, here!", "NO_WAIT")
+	npc_says(_"[b]glug glug glug[/b]")
+	npc_says(_"Tank refilled.")
+	npc_says(_"Fuel status:")
+	npc_says(_"[b]100[/b]%!")
+	npc_says(_"This will approximately suffice for:")
+	npc_says(_"1 month and 14 days.")
+	npc_says(_"Dropping waste product of last fuel filling...")
+	npc_says(_"Done.")
+	del_item("Barf's Energy Drink", 1)
+	add_item("Tungsten spikes", 2)
+	del_cookie("lawnmower_fuel_4")
+	set_bot_state("home")
+	hide(50, 51)
+}
+
+----------------------------------------------------------------------
+
+Nr=51 Text=_"No, I cannot spare any drinks!"
+NO_TEXT
+LuaCode={
+	tux_says(_"Sorry, tin can.")
+	npc_says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
+	npc_says(_"WARNING, less than [b]5%[/b] fuel remaining!")
+	npc_says(_"Resuming hibernation...")
+	hide(50, 51)
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
@@ -107,6 +203,7 @@ NO_TEXT
 LuaCode={
 	tux_says("exit","NO_WAIT")
 	npc_says(_"exiting...")
+	hide(31, 30, 20, 50, 51)
 	end_dialog()
 }
 ----------------------------------------------------------------------
