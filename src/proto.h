@@ -614,15 +614,6 @@ int mouse_cursor_is_on_that_image(float pos_x, float pos_y, struct image *our_is
 int MouseCursorIsInRect(const SDL_Rect *, int, int);
 int MouseCursorIsOnButton(int ButtonIndex, int x, int y);
 void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlelen);
-char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicationString, const char *EndIndicationString);
-char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartIndicationString, const char *EndIndicationString);
-int CountStringOccurences(char *SearchString, const char *TargetString);
-void ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString,
-				    const char *DefaultValueString, void *TargetValue, char *EndOfSearchSectionPointer);
-void ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString, void *TargetValue,
-			 char *EndOfSearchSectionPointer);
-char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String);
-char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
 int find_file(const char *fname, const char *datadir, char *File_Path, int silent);
 void Pause(void);
 void ComputeFPSForThisFrame(void);
@@ -699,7 +690,16 @@ void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...);
 int longest_line_width(char *text);
 
 // text_public.c 
-
+char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicationString, const char *EndIndicationString);
+char *ReadAndMallocStringFromDataOptional(char *SearchString, const char *StartIndicationString, const char *EndIndicationString);
+int CountStringOccurences(char *SearchString, const char *TargetString);
+void ReadValueFromStringWithDefault(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString,
+				    const char *DefaultValueString, void *TargetValue, char *EndOfSearchSectionPointer);
+void ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText, const char *FormatString, void *TargetValue,
+			 char *EndOfSearchSectionPointer);
+int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *max, int *min, int default_val);
+char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String);
+char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
 void DebugPrintf(int db_level, const char *fmt, ...);
 void *MyMalloc(long);
 int FS_filelength(FILE * f);

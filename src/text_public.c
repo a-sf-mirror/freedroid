@@ -429,6 +429,59 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
 
 };				// void ReadValueFromString( ... )
 
+/** 
+ * This function is for reading in a range of positive values from a string with a default.
+ * 
+ * If there is no string, the default value is assigned and it returns 1, with no warning.
+ *
+ * If there is a string with garbled input (negative minimum value, or minimum>maximum), it warns,
+ * and assigns the default, and a 2 is returned.
+ *
+ * A valid string, with no errors means it returns a 0.
+*/
+
+int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *max, int *min, int default_val)
+{
+	char *ptr;
+	int return_value = 0;
+
+	// First, see if we have a valid search string
+	char *search_ptr = ReadAndMallocStringFromDataOptional(SearchString, StartIndicationString, EndIndicationString);
+	if (!search_ptr) {
+		//Search string was not valid, set everything to default value.
+		*min = *max = default_val;
+		return 1;
+	}
+
+	*min = strtol(search_ptr, &ptr, 10);
+	if (*ptr == '-') {
+		ptr++;
+		*max = strtol(ptr, NULL, 10);
+	} else {
+		*max = *min;
+	}
+
+	//Handle corrupted values
+	if (*min < 0) {
+		ErrorMessage(__FUNCTION__, "\
+The value read in as a minimum (%d) is a negative number.\n\
+This most likely means corrupted data.\n\
+Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INFORM, IS_WARNING_ONLY, *min, default_val);
+		*min = *max = default_val;
+		return_value = 2;
+	} else if (*max < *min) {
+		ErrorMessage(__FUNCTION__, "\
+The value read in as a maximum (%d) is less than the minimum (%d).\n\
+This most likely means corrupted data.\n\
+Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INFORM, IS_WARNING_ONLY, *min, *max, default_val);
+		*min = *max = default_val;
+		return_value = 2;
+	}
+
+	free(search_ptr);
+	return return_value;
+}
+
 /**
  * This function does the rotation of a given vector by a given angle.
  * The vector is a vector.
