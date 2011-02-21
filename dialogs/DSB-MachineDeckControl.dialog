@@ -36,7 +36,11 @@ EveryTime LuaCode={
 		add_cookie("met_dsb-mdc")	
 	else end
 	cli_says(terminal, "NO_WAIT")
-	show(99, 7, 1)
+	show(99, 1)
+
+	if (not done_quest(_"Opening access to MS Office")) then
+		show(7)
+	else end
 }
 ----------------------------------------------------------------------
 
@@ -60,6 +64,8 @@ LuaCode={
 		npc_says(_"Disruptor shield is active.")
 	else
 		end_quest(_"Opening access to MS Office", _"I've taken over the control droid and disabled the disruptor shield. Now, I should go to the Hell Fortress and hack the MS firmware update system.")
+		hide(7)
+		end_dialog()
 	end
 	cli_says(terminal, "NO_WAIT")
 }
