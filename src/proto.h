@@ -49,7 +49,7 @@ void PlayATitleFile(char *Filename);
 
 // event.c
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);
-void CheckForTriggeredEvents(void);
+void trigger_events(void);
 const char *teleporter_square_below_mouse_cursor(void);
 void event_modify_trigger_state(const char *name, int state);
 

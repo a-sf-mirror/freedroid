@@ -37,9 +37,7 @@
 #include "proto.h"
 #include "savestruct.h"
 
-#define MAX_EVENT_TRIGGERS      500	// how many event triggers at most to allow
-
-static struct event_trigger {
+struct event_trigger {
 	int level;
 	point position;
 
@@ -48,31 +46,30 @@ static struct event_trigger {
 	char *name;
 	int enabled;		//is the trigger enabled?
 	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
-} event_triggers[MAX_EVENT_TRIGGERS];
+};
+
+static struct dynarray event_triggers;
 
 /**
  * Delete all events and event triggers
  */
 static void clear_out_event_triggers(void)
 {
+	// Remove existing triggers
 	int i;
+	struct event_trigger *arr = event_triggers.arr;
+	for (i = 0; i < event_triggers.size; i++) {
+		if (arr[i].name)
+			free(arr[i].name);
 
-	for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
-		event_triggers[i].level = -1;
-		event_triggers[i].position.x = -1;
-		event_triggers[i].position.y = -1;
-
-		event_triggers[i].enabled = 1;
-
-		if (event_triggers[i].name)
-			free(event_triggers[i].name);
-		event_triggers[i].name = NULL;
-
-		if (event_triggers[i].lua_code)
-			free(event_triggers[i].lua_code);
-		event_triggers[i].lua_code = NULL;
+		if (arr[i].lua_code)
+			free(arr[i].lua_code);
 	}
-};				// void clear_out_event_triggers(void)
+
+	dynarray_free(&event_triggers);
+	
+	dynarray_init(&event_triggers, 16, sizeof(struct event_trigger));
+}
 
 #define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"
 #define EVENT_TRIGGER_END_STRING "* End of trigger *"
@@ -92,14 +89,15 @@ static void decode_event_triggers(char *EventSectionPointer)
 {
 	char *EventPointer;
 	char *EndOfEvent;
-	int EventTriggerNumber;
 	char *TempMapLabelName;
 	location TempLocation;
 	char s;
+	struct event_trigger temp;
 
 	EventPointer = EventSectionPointer;
-	EventTriggerNumber = 0;
 	while ((EventPointer = strstr(EventPointer, EVENT_TRIGGER_BEGIN_STRING)) != NULL) {
+		memset(&temp, 0, sizeof(struct event_trigger));
+
 		EventPointer += strlen(EVENT_TRIGGER_BEGIN_STRING) + 1;
 
 		EndOfEvent = LocateStringInData(EventPointer, EVENT_TRIGGER_END_STRING);
@@ -114,27 +112,28 @@ static void decode_event_triggers(char *EventSectionPointer)
 		// Now we read in the triggering position in x and y and z coordinates
 		TempMapLabelName = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LABEL_STRING, "\"");
 		ResolveMapLabelOnShip(TempMapLabelName, &TempLocation);
-		event_triggers[EventTriggerNumber].position.x = TempLocation.x;
-		event_triggers[EventTriggerNumber].position.y = TempLocation.y;
-		event_triggers[EventTriggerNumber].level = TempLocation.level;
+		temp.position.x = TempLocation.x;
+		temp.position.y = TempLocation.y;
+		temp.level = TempLocation.level;
 
 		free(TempMapLabelName);
 
-		event_triggers[EventTriggerNumber].name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
+		temp.name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
 
 		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
-					       &event_triggers[EventTriggerNumber].silent, EndOfEvent);
+					       &temp.silent, EndOfEvent);
 
-		event_triggers[EventTriggerNumber].lua_code =
+		temp.lua_code =
 		    ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
 
 		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_ENABLED_STRING, "%d", "1",
-					       &event_triggers[EventTriggerNumber].enabled, EndOfEvent);
+					       &temp.enabled, EndOfEvent);
 
-		EventTriggerNumber++;
 		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
 
 		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = s;
+
+		dynarray_add(&event_triggers, &temp, sizeof(struct event_trigger));
 	}			// While Event trigger begin string found...
 
 };				// void decode_event_triggers ( char* EventSectionPointer )
@@ -168,32 +167,28 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
  * they are, we order the appropriate event to be executed.
  *
  */
-void CheckForTriggeredEvents()
+void trigger_events(void)
 {
 	int i;
+	struct event_trigger *arr = event_triggers.arr;
 
-	// Now we check if some event trigger is fullfilled.
-	//
-	for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
-		if (event_triggers[i].enabled == 0)
-			continue;	// this trigger is not enabled
+	for (i = 0; i < event_triggers.size; i++) {
 
-		// So at this point we know, that the event trigger is somehow meaningful. 
-		// Fine, so lets check the details, if the event is triggered now
-		//
-		if (rintf(event_triggers[i].level) != CURLEVEL()->levelnum)
+		if (arr[i].level != Me.pos.z)
 			continue;
 
-		if (rintf(event_triggers[i].position.x) != (int)(Me.pos.x))
+		if (!arr[i].enabled)
 			continue;
 
-		if (rintf(event_triggers[i].position.y) != (int)(Me.pos.y))
+		if (arr[i].position.x != (int)(Me.pos.x))
 			continue;
 
-		run_lua(event_triggers[i].lua_code);
+		if (arr[i].position.y != (int)(Me.pos.y))
+			continue;
 
+		run_lua(arr[i].lua_code);
 	}
-};				// CheckForTriggeredEvents(void )
+}
 
 /**
  *
@@ -202,28 +197,31 @@ void CheckForTriggeredEvents()
 const char *teleporter_square_below_mouse_cursor(void)
 {
 	finepoint MapPositionOfMouse;
-	struct event_trigger *t = NULL;
 	int i;
 
 	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
 		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 
-		for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
-			t = &event_triggers[i];
+		struct event_trigger *arr = event_triggers.arr;
+		for (i = 0; i < event_triggers.size; i++) {
 
-			if (Me.pos.z != t->level)
-				continue;
-			if ((((int)MapPositionOfMouse.x) != t->position.x))
-				continue;
-			if ((((int)MapPositionOfMouse.y) != t->position.y))
-				continue;
-			if (t->silent)
-				continue;
-			if (!t->enabled)
+			if (Me.pos.z != arr[i].level)
 				continue;
 
-			return D_(event_triggers[i].name);
+			if ((int)MapPositionOfMouse.x != arr[i].position.x)
+				continue;
+
+			if ((int)MapPositionOfMouse.y != arr[i].position.y)
+				continue;
+
+			if (arr[i].silent)
+				continue;
+
+			if (!arr[i].enabled)
+				continue;
+
+			return D_(arr[i].name);
 		}
 	}
 	return NULL;
@@ -234,19 +232,17 @@ const char *teleporter_square_below_mouse_cursor(void)
  */
 void event_modify_trigger_state(const char *name, int state)
 {
-	struct event_trigger *target_event = NULL;
 	int i;
-	for (i = 0; i < MAX_EVENT_TRIGGERS; i++) {
-		if (!event_triggers[i].name)
+	struct event_trigger *arr = event_triggers.arr;
+
+	for (i = 0; i < event_triggers.size; i++) {
+		if (!arr[i].name)
 			break;
 
-		if (!strcmp(event_triggers[i].name, name)) {
-			target_event = &event_triggers[i];
-			break;
+		if (!strcmp(arr[i].name, name)) {
+			arr[i].enabled = state;
+			return;
 		}
 	}
-
-	if (target_event)
-		target_event->enabled = state;
 }
 
