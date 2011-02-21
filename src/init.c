@@ -737,6 +737,13 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 				else
 					item_count_per_class[cc]++;
 			}
+
+			// Now we read in the min and max number of items to drop at a time
+			if (ReadRangeFromString(ItemPointer, "Item number dropped=", "\n", &item->drop_amount, &item->drop_amount_max, 1) > 1) {
+				ErrorMessage(__FUNCTION__, "\
+The \"%s\" item (index number %d) has a garbled multiplicity\n\
+of random items dropped.", PLEASE_INFORM, IS_WARNING_ONLY, item->item_name, ItemIndex);
+			}
 		}
 
 		// If the item is a gun, we read in the weapon specification...

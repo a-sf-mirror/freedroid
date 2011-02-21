@@ -453,7 +453,9 @@ void DropRandomItem(int level_num, float x, float y, int class, int force_magica
 
 	if ((DropDecision < ITEM_DROP_PERCENTAGE)) {
 		drop_item_type = get_random_item_type(class);
-		drop_item_multiplicity = 1;	//for now...  
+
+		// Determine the multiplicity for the item
+		drop_item_multiplicity = ItemMap[drop_item_type].drop_amount + MyRandom(ItemMap[drop_item_type].drop_amount_max - ItemMap[drop_item_type].drop_amount);
 
 		// Create the item and place it to the map. This can fail under certain
 		// conditions so we need to check for errors and give up if one occurred.

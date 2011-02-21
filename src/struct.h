@@ -297,6 +297,8 @@ typedef struct itemspec {
 
 	short int min_drop_class;
 	short int max_drop_class;
+	int drop_amount;		// minimum number of items to drop at once
+	int drop_amount_max;	// maximum of items to drop at once
 
 } itemspec;
 
