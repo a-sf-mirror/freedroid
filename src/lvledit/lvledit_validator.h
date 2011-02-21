@@ -43,13 +43,19 @@
 #define EXTERN extern
 #endif
 
+enum validator_return_type {
+	VALIDATION_PASS    = 0,
+	VALIDATION_WARNING = 1,
+	VALIDATION_ERROR   = 2
+};
+
 #ifdef _leveleditor_validator_c
 
 struct lvlval_ctx {
 	SDL_Rect *report_rect;
 	Level this_level;
 	int in_report_section;
-	int error_caught;
+	enum validator_return_type return_type;
 };
 
 struct lvlval_error {
@@ -57,7 +63,7 @@ struct lvlval_error {
 	char *comment;
 	char *format;
 	int caught;
-	int is_error;
+	enum validator_return_type type;
 };
 
 struct lvlval_excpt_item {

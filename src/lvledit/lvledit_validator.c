@@ -94,6 +94,29 @@ struct level_validator level_validators[] = {
 //===========================================================
 
 /**
+ * Compute a validator_return_type 'composition'
+ */
+static void compose_return_type(enum validator_return_type *old_type, enum validator_return_type with_type)
+{
+	if (with_type == VALIDATION_ERROR) {
+		// Set result to ERROR in any case
+		*old_type = VALIDATION_ERROR;
+		return;
+	}
+
+	if (with_type == VALIDATION_WARNING) {
+		// Set result to WARNING, unless there was already an ERROR
+		if (*old_type != VALIDATION_ERROR) {
+			*old_type = VALIDATION_WARNING;
+			return;
+		}
+	}
+
+	// Other cases: No change
+	return;
+}
+
+/**
  * Output to the console the validator's title and associated comment
  */
 
@@ -151,7 +174,7 @@ static void validator_print_error(struct lvlval_ctx *validator_ctx, struct lvlva
 		validator_ctx->in_report_section = TRUE;
 	}
 	
-	validator_ctx->error_caught |= validator_error->is_error;
+	compose_return_type(&validator_ctx->return_type, validator_error->type);
 	
 	vprintf(validator_error->format, args);
 	printf("\n");
@@ -458,7 +481,7 @@ static void lvlval_chest_execute(struct level_validator *this, struct lvlval_ctx
 		.comment = "The center of the following objects was found to be inside an obstacle, preventing Tux from activating them.",
 		.format = "[Type=\"C\"] Obj Idx=%d (X=%f:Y=%f:L=%d)",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 	
 	for (y_tile = 0; y_tile < validator_ctx->this_level->ylen; ++y_tile) {
@@ -592,7 +615,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 		           "This could lead to some bots being stuck.",
 		.format = "[Type=\"WP\"] WP X=%f:Y=%f:L=%d",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	struct lvlval_error conn_error = {
@@ -602,7 +625,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 		           "This could lead to some bots being stuck on those waypoints.",
 		.format = "[Type=\"WO\"] WP X=%f:Y=%f:L=%d",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	struct lvlval_error dist_error = {
@@ -610,7 +633,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 		.comment = "Two waypoints were found to be too close.",
 		.format = "[Type=\"WD\"] WP1 X1=%f:Y1=%f:L1=%d <-> WP2 X2=%f:Y2=%f:L2=%d : distance = %.3f",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	struct lvlval_error path_error = {
@@ -619,7 +642,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 		           "This could lead those paths to not being usable.",
 		.format = "[Type=\"WW\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d : %s",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	struct lvlval_error path_warning = {
@@ -628,7 +651,7 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 		           "This could lead some bots to get stuck along those paths.",
 		.format = "[Type=\"WQ\"] WP1 X1=%f:Y1=%f:L1=%d -> WP2 X2=%f:Y2=%f:L2=%d (warning)",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	waypoint *wpts;
@@ -930,7 +953,7 @@ static void lvlval_neighborhood_execute(struct level_validator *this, struct lvl
 		.comment = "A jump target on a level points to a non existing level.",
 		.format = "[Type=\"J\"] Interface:North of Level:%d points to Level:%d which does not exist.",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	struct lvlval_error incons_error = {
@@ -938,7 +961,7 @@ static void lvlval_neighborhood_execute(struct level_validator *this, struct lvl
 		.comment = "A neighbor of a level is not back-connected to that level,\n"
 		           "or they have not the same width.",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	/*
@@ -1159,7 +1182,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 		.comment = "The center of an obstacle is outside a level boundaries,\n"
 		           "or the collision rectangle of the obstacle is spilling out on a neighbor level.",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_ERROR
 	};
 
 	int i;
@@ -1188,6 +1211,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 
 			if (!lookup_exception(this, &to_check)) {
 				obs_error.format = "[Type=\"OW\"] X=%f:Y=%f:L=%d T=%d -> west border=%f (warning)";
+				obs_error.type = VALIDATION_WARNING;
 				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
@@ -1199,6 +1223,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 
 			if (!lookup_exception(this, &to_check)) {
 				obs_error.format = "[Type=\"OE\"] X=%f:Y=%f:L=%d T=%d -> east border=%f (warning)";
+				obs_error.type = VALIDATION_WARNING;
 				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
@@ -1210,6 +1235,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 
 			if (!lookup_exception(this, &to_check)) {
 				obs_error.format = "[Type=\"ON\"] X=%f:Y=%f:L=%d T=%d -> north border=%f (warning)";
+				obs_error.type = VALIDATION_WARNING;
 				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
@@ -1222,6 +1248,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 
 			if (!lookup_exception(this, &to_check)) {
 				obs_error.format = "[Type=\"OS\"] X=%f:Y=%f:L=%d T=%d -> south border=%f (warning)";
+				obs_error.type = VALIDATION_WARNING;
 				validator_print_error(validator_ctx, &obs_error, o->pos.x, o->pos.y, l->levelnum, o->type, border);
 			}
 		}
@@ -1313,7 +1340,7 @@ static void lvlval_extensions_execute(struct level_validator *this, struct lvlva
 		.title = "Invalid obstacle extension",
 		.comment = "The extension data of an obstacle is missing, or the data is wrong",
 		.caught = FALSE,
-		.is_error = TRUE
+		.type = VALIDATION_WARNING
 	};
 
 	int i;
@@ -1351,7 +1378,7 @@ static void lvlval_extensions_execute(struct level_validator *this, struct lvlva
 
 int level_validation()
 {
-	int is_invalid = FALSE;
+	enum validator_return_type final_error = VALIDATION_PASS;
 	int uncaught_excpt = FALSE;
 
 	SDL_Rect background_rect = { UNIVERSAL_COORD_W(20), UNIVERSAL_COORD_H(20), UNIVERSAL_COORD_W(600), UNIVERSAL_COORD_H(440) };
@@ -1382,7 +1409,7 @@ int level_validation()
 	int row_pos = 0;
 
 	for (l = 0; l < curShip.num_levels; ++l) {
-		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, FALSE };
+		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, VALIDATION_PASS };
 
 		// Compute raw and column position, when a new column of text starts
 		if ((l % max_rows) == 0) {
@@ -1407,13 +1434,24 @@ int level_validation()
 
 			// Display report
 			char txt[40];
-			sprintf(txt, "%03d: %s", l, (validator_ctx.error_caught) ? "\1fail" : "pass");
+			switch (validator_ctx.return_type) {
+			case VALIDATION_ERROR:
+				sprintf(txt, "\2%03d: \1fail", l);
+				break;
+			case VALIDATION_WARNING:
+				sprintf(txt, "\2%03d: \3warn", l);
+				break;
+			case VALIDATION_PASS:
+			default:
+				sprintf(txt, "\2%03d: \2pass", l);
+				break;
+			}
 			int lines = display_text_using_line_height(txt, col_pos, row_pos, &report_rect, 1.0);
 			row_pos += lines * row_height;
 			SetCurrentFont(current_font);	// Reset font in case of the red "fail" was displayed
 
-			// Set global is_invalid flag
-			is_invalid |= validator_ctx.error_caught;
+			// Set final error type
+			compose_return_type(&final_error, validator_ctx.return_type);
 		}
 	}
 
@@ -1429,7 +1467,7 @@ int level_validation()
 
 	CenteredPutString(Screen, posy, "--- End of List --- Press Space to return to leveleditor ---");
 
-	if (is_invalid) {
+	if (final_error != VALIDATION_PASS) {
 		posy -= row_height;
 		CenteredPutString(Screen, posy, "\1Some tests were invalid. See the report in the console\3");
 	}
@@ -1441,14 +1479,14 @@ int level_validation()
 
 	our_SDL_flip_wrapper();
 	
-	return is_invalid;
+	return (final_error != VALIDATION_PASS);
 }
 
 // Without on screen report
 
 int level_validation_on_console_only()
 {
-	int is_invalid = FALSE;
+	enum validator_return_type final_error = VALIDATION_PASS;
 	int uncaught_excpt = FALSE;
 	SDL_Rect report_rect = { 0, 0, 0, 0 };
 	
@@ -1461,7 +1499,7 @@ int level_validation_on_console_only()
 	int l;
 
 	for (l = 0; l < curShip.num_levels; ++l) {
-		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, FALSE };
+		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, VALIDATION_PASS };
 
 		// Nota: we do not currently validate random dungeons, due to a known
 		// invalid waypoint generation.
@@ -1474,8 +1512,8 @@ int level_validation_on_console_only()
 			while (one_validator = &(level_validators[v++]), one_validator->execute != NULL)
 				one_validator->execute(one_validator, &validator_ctx);
 
-			// Set global is_invalid flag
-			is_invalid |= validator_ctx.error_caught;
+			// Set final error type
+			compose_return_type(&final_error, validator_ctx.return_type);
 		}
 	}
 
@@ -1485,7 +1523,7 @@ int level_validation_on_console_only()
 	
 	free_exception_lists();
 	
-	return is_invalid || uncaught_excpt;
+	return (final_error != VALIDATION_PASS) || uncaught_excpt;
 }
 
 #undef IS_CHEST
