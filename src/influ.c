@@ -1186,7 +1186,7 @@ int ButtonPressWasNotMeantAsFire()
 	if (MouseLeftPressed() &&
 	    (GameConfig.Inventory_Visible || GameConfig.CharacterScreen_Visible || GameConfig.SkillScreen_Visible
 	     || GameConfig.skill_explanation_screen_visible)
-	    && !MouseCursorIsInUserRect(User_Rect.x + User_Rect.w / 2 + input_axis.x, User_Rect.y + User_Rect.h / 2 + input_axis.y)) {
+	    && !MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
 		DebugPrintf(0, "\nCursor outside user-rect:\n  User_Rect.x=%d, User_Rect.w=%d, User_Rect.y=%d, User_Rect.h=%d.",
 			    User_Rect.x, User_Rect.w, User_Rect.y, User_Rect.h);
 		DebugPrintf(0, "\nCursor position: X=%d, Y=%d.", input_axis.x, input_axis.y);
