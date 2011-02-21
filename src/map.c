@@ -1721,28 +1721,9 @@ void GetThisLevelsDroids(char *section_pointer)
 	ReadValueFromString(section_pointer, DROIDS_LEVEL_INDICATION_STRING, "%d", &our_level_number, lvl_end_location);
 
 	// Now we read in the min and max number of random droids for this level
-	search_ptr = ReadAndMallocStringFromDataOptional(section_pointer, DROIDS_NUMBER_INDICATION_STRING, "\n");
-	if (search_ptr) {
-		char *ptr;
-		min_rand = strtol(search_ptr, &ptr, 10);
-		if (*ptr == '-') {
-			ptr++;
-			max_rand = strtol(ptr, NULL, 10);
-		} else {
-			max_rand = min_rand;
-		}
-
-		if (min_rand < 0) {
-			ErrorMessage(__FUNCTION__, "\
-On Level %d the minimum number (%d) of random droids is a negative number.\n\
-Setting the number of random droids to 0 for this level.", PLEASE_INFORM, IS_WARNING_ONLY, our_level_number, min_rand);
-			min_rand = max_rand = 0;
-		} else if (max_rand < min_rand) {
-			ErrorMessage(__FUNCTION__, "\
-On Level %d the minimum number (%d) of random droids is greater than\n\
-the maximum number (%d) of random droids.", PLEASE_INFORM, IS_WARNING_ONLY, our_level_number, min_rand, max_rand);
-		} 
-		free(search_ptr);
+	if (ReadRangeFromString(section_pointer, DROIDS_NUMBER_INDICATION_STRING, "\n", &min_rand, &max_rand, 0) > 1) {
+		ErrorMessage(__FUNCTION__, "\
+The previous error was a garbled number of random droids defined on Level %d.", PLEASE_INFORM, IS_WARNING_ONLY, our_level_number);
 	}
 
 	// Now we read in the type(s) of random droids for this level
