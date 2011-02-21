@@ -103,6 +103,9 @@ obstacle_states = {
 	[360] = {["opened"] = 358, ["closed"] = 352,},
 	[361] = {["opened"] = 358, ["closed"] = 352,},
 	[362] = {["opened"] = 358, ["closed"] = 352,},
+
+	[388] = {["enabled"] = 388, ["disabled"] = 407,},
+	[407] = {["disabled"] = 407, ["enabled"] = 388,},
 };
 
 function get_obstacle_state_id(id, state)

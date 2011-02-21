@@ -3539,6 +3539,23 @@ t36 x4.00 y86.00
 t38 x5.00 y86.00
 t37 x5.00 y87.00
 t41 x5.00 y88.00
+t65 x86.50 y44.50
+t407 x85.50 y46.50
+t407 x85.50 y48.50
+t407 x85.50 y50.50
+t407 x85.50 y52.50
+t407 x85.50 y54.50
+t65 x86.50 y46.50
+t65 x86.50 y48.50
+t65 x86.50 y50.50
+t65 x86.50 y52.50
+t65 x86.50 y54.50
+t65 x86.50 y56.50
+t65 x86.50 y58.50
+t66 x85.50 y59.50
+t407 x85.50 y44.50
+t407 x85.50 y56.50
+t407 x85.50 y58.50
 /obsdata
 plabelinfolvl
 x=35 y=7 name="StoneStartGameSquare"
@@ -3700,6 +3717,30 @@ idx=5 type=30 data={
 }
 idx=487 type=30 data={
 	Dixon-autogun
+}
+idx=3446 type=30 data={
+	Town-Solar-1
+}
+idx=3433 type=30 data={
+	Town-Solar-2
+}
+idx=3434 type=30 data={
+	Town-Solar-3
+}
+idx=3435 type=30 data={
+	Town-Solar-4
+}
+idx=3436 type=30 data={
+	Town-Solar-5
+}
+idx=3437 type=30 data={
+	Town-Solar-6
+}
+idx=3447 type=30 data={
+	Town-Solar-7
+}
+idx=3448 type=30 data={
+	Town-Solar-8
 }
 /obstacleextensions
 wp

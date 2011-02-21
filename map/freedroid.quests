@@ -41,6 +41,16 @@ Mission Name=_"Bender's problem"
 +++ Retrieve the toolkit lost by Dixon
 +++
 Mission Name=_"The yellow toolkit"
+Completion LuaCode={
+	change_obstacle_state("Town-Solar-1", "enabled")
+	change_obstacle_state("Town-Solar-2", "enabled")
+	change_obstacle_state("Town-Solar-3", "enabled")
+	change_obstacle_state("Town-Solar-4", "enabled")
+	change_obstacle_state("Town-Solar-5", "enabled")
+	change_obstacle_state("Town-Solar-6", "enabled")
+	change_obstacle_state("Town-Solar-7", "enabled")
+	change_obstacle_state("Town-Solar-8", "enabled")
+}
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **
