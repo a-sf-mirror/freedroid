@@ -54,6 +54,9 @@ uses it (defined by the "Type" value) :
   - for "OW" (obstacle west), "OE" (obstacle east), "ON" (obstacle north),
     "OS" (obstacle south), the parser extracts the following pattern:
         X=xxxx Y=yyyy L=llll T=tttt border=bbbb
+        
+  - for "ES" (extension sign), the parser extracts the following pattern:
+        X=xxxx Y=yyyy L=llll ObsIdx=iiii ExtType=tttt
 
 The parser is however smart enough to silently accept extras words inside
 an exception specification (as long as they do not collide with the

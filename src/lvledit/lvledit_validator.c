@@ -55,6 +55,10 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 static void *lvlval_obstacles_parse_excpt(char *string);
 static int lvlval_obstacles_cmp_data(void *opaque_data1, void *opaque_data2);
 
+static void lvlval_extensions_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
+static void *lvlval_extensions_parse_excpt(char *string);
+static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2);
+
 struct level_validator level_validators[] = {
 	{'C',
 	 LIST_HEAD_INIT(level_validators[0].excpt_list),
@@ -76,6 +80,11 @@ struct level_validator level_validators[] = {
 	 lvlval_obstacles_execute,
 	 lvlval_obstacles_parse_excpt,
 	 lvlval_obstacles_cmp_data},
+	{'E',
+	 LIST_HEAD_INIT(level_validators[4].excpt_list),
+	 lvlval_extensions_execute,
+	 lvlval_extensions_parse_excpt,
+	 lvlval_extensions_cmp_data},
 	{.initial = '\0'}
 };
 
@@ -1216,6 +1225,123 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 			}
 		}
 
+	}
+
+	validator_print_separator(validator_ctx);
+}
+
+//===========================================================
+// Obstacle Extensions Validator
+//
+// This validator checks if obstacle extensions are valid
+//===========================================================
+
+struct extension_excpt_data {
+	char subtest;
+	gps obs_pos;
+	int obs_index;
+	int ext_type;
+};
+
+static void *lvlval_extensions_parse_excpt(char *string)
+{
+	char *validator_type = ReadAndMallocStringFromData(string, "Type=\"", "\"");
+	if (!validator_type || strlen(validator_type) != 2) {
+		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is not valid!\n", PLEASE_INFORM, IS_FATAL);
+		return NULL;
+	}
+
+	struct extension_excpt_data *data = (struct extension_excpt_data *)malloc(sizeof(struct extension_excpt_data));
+
+	data->subtest = validator_type[1];
+	free(validator_type);
+
+	switch (data->subtest) {
+	case 'S':
+		ReadValueFromString(string, "X=", "%f", &(data->obs_pos.x), NULL);
+		ReadValueFromString(string, "Y=", "%f", &(data->obs_pos.y), NULL);
+		ReadValueFromString(string, "L=", "%d", &(data->obs_pos.z), NULL);
+		ReadValueFromString(string, "ObsIdx=", "%d", &(data->obs_index), NULL);
+		ReadValueFromString(string, "ExtType=", "%d", &(data->ext_type), NULL);
+		break;
+
+	default:
+		ErrorMessage(__FUNCTION__, "The Subtest name of an exception is invalid!\n", PLEASE_INFORM, IS_FATAL);
+		free(data);
+		return NULL;
+	}
+
+	return (data);
+}
+
+static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2)
+{
+#	define DIST_EPSILON 0.01f
+
+	struct extension_excpt_data *data1 = opaque_data1;
+	struct extension_excpt_data *data2 = opaque_data2;
+
+	if (data1->subtest != data2->subtest)
+		return FALSE;
+
+	if (data1->obs_pos.z != data2->obs_pos.z)
+		return FALSE;
+
+	if (data1->obs_index != data2->obs_index)
+		return FALSE;
+
+	if (data1->ext_type != data2->ext_type)
+		return FALSE;
+
+	float dist = calc_distance(data1->obs_pos.x, data1->obs_pos.y, data2->obs_pos.x, data2->obs_pos.y);
+	if (dist > DIST_EPSILON)
+		return FALSE;
+
+	return TRUE;
+
+#	undef DIST_EPSILON
+}
+
+/*
+ * 'obstacle extensions' validator
+ */
+
+static void lvlval_extensions_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
+{
+	struct lvlval_error extension_error = {
+		.title = "Invalid obstacle extension",
+		.comment = "The extension data of an obstacle is missing, or the data is wrong",
+		.caught = FALSE,
+		.is_error = TRUE
+	};
+
+	int i;
+	level *l = validator_ctx->this_level;
+
+	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
+		obstacle *o = &l->obstacle_list[i];
+
+		if (o->type == -1)
+			continue;
+
+		switch (o->type) {
+			case ISO_SIGN_1:
+			case ISO_SIGN_2:
+			case ISO_SIGN_3: {
+				struct extension_excpt_data to_check =
+					{ 'S', {o->pos.x, o->pos.y, l->levelnum}, get_obstacle_index(l, o), o->type };
+
+				if (!lookup_exception(this, &to_check)) {
+					if (!get_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE)) {
+						extension_error.format = "[Type=\"ES\"] X=%f:Y=%f:L=%d ObsIdx=%d ExtType=%d -> SIGNMESSAGE missing (warning)";
+						validator_print_error(validator_ctx, &extension_error, o->pos.x, o->pos.y, l->levelnum, get_obstacle_index(l, o), o->type);
+					}
+				}
+				break;
+			}
+			default:
+				break;
+		}
 	}
 
 	validator_print_separator(validator_ctx);
