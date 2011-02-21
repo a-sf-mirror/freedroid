@@ -34,6 +34,7 @@
 
 #define IS_CHEST(t)  ( (t) >= ISO_H_CHEST_CLOSED && (t) <= ISO_V_CHEST_OPEN )
 #define IS_BARREL(t) ( (t) >= ISO_BARREL_1       && (t) <= ISO_BARREL_4     )
+#define IS_SIGN(t)   ( (t) >= ISO_SIGN_1         && (t) <= ISO_SIGN_3       )
 
 static char *bigline = "====================================================================";
 static char *line = "--------------------------------------------------------------------";
@@ -1324,23 +1325,16 @@ static void lvlval_extensions_execute(struct level_validator *this, struct lvlva
 		if (o->type == -1)
 			continue;
 
-		switch (o->type) {
-			case ISO_SIGN_1:
-			case ISO_SIGN_2:
-			case ISO_SIGN_3: {
-				struct extension_excpt_data to_check =
-					{ 'S', {o->pos.x, o->pos.y, l->levelnum}, get_obstacle_index(l, o), o->type };
+		if (IS_SIGN(o->type)) {
+			struct extension_excpt_data to_check =
+				{ 'S', {o->pos.x, o->pos.y, l->levelnum}, get_obstacle_index(l, o), o->type };
 
-				if (!lookup_exception(this, &to_check)) {
-					if (!get_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE)) {
-						extension_error.format = "[Type=\"ES\"] X=%f:Y=%f:L=%d ObsIdx=%d ExtType=%d -> SIGNMESSAGE missing (warning)";
-						validator_print_error(validator_ctx, &extension_error, o->pos.x, o->pos.y, l->levelnum, get_obstacle_index(l, o), o->type);
-					}
+			if (!lookup_exception(this, &to_check)) {
+				if (!get_obstacle_extension(l, o, OBSTACLE_EXTENSION_SIGNMESSAGE)) {
+					extension_error.format = "[Type=\"ES\"] X=%f:Y=%f:L=%d ObsIdx=%d ExtType=%d -> SIGNMESSAGE missing (warning)";
+					validator_print_error(validator_ctx, &extension_error, o->pos.x, o->pos.y, l->levelnum, get_obstacle_index(l, o), o->type);
 				}
-				break;
 			}
-			default:
-				break;
 		}
 	}
 
@@ -1493,5 +1487,9 @@ int level_validation_on_console_only()
 	
 	return is_invalid || uncaught_excpt;
 }
+
+#undef IS_CHEST
+#undef IS_BARREL
+#undef IS_SIGN
 
 #undef _leveleditor_validator_c
