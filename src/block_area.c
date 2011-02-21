@@ -1742,9 +1742,17 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].filename = "iso_security_gate_0008.png";
 
+	block_2param(ISO_SOLAR_PANEL_BROKEN, 0.95, 1.05);
+	obstacle_map[ISO_SOLAR_PANEL_BROKEN].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SOLAR_PANEL_BROKEN].filename = "iso_solar_panel_0000.png";
+
 	block_2param(ISO_SOLAR_PANEL_E, 0.95, 1.05);
 	obstacle_map[ISO_SOLAR_PANEL_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_SOLAR_PANEL_E].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_SOLAR_PANEL_E].label = _("Solar Panel");
+	obstacle_map[ISO_SOLAR_PANEL_E].action = &barrel_action;
 	obstacle_map[ISO_SOLAR_PANEL_E].filename = "iso_solar_panel_0001.png";
+	obstacle_map[ISO_SOLAR_PANEL_E].result_type_after_smashing_once = ISO_SOLAR_PANEL_BROKEN;
 
 	block_2param(ISO_BOTLINE_01_N, 3, 2);
 	obstacle_map[ISO_BOTLINE_01_N].flags &= ~BLOCKS_VISION_TOO;
