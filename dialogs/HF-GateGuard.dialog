@@ -55,7 +55,7 @@ LuaCode={
 	npc_says(_"Of course not. Murdering you would be a complete waste of time.")
 	npc_says(_"The bots and disruptor shield will take care of that for me.")
 	npc_says(_"Just remember to give me your valuables before you commit suicide.")
-	npc_says(_"You won't need any money once you're damn dead, and I could use it, eh?")
+	npc_says(_"You won't need any money once you're dead, and I could use it, eh?")
 	hide(2) show(3)
 }
 ----------------------------------------------------------------------

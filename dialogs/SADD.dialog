@@ -179,7 +179,7 @@ LuaCode={
 
 Nr=21 Text=_"You must promise me a significant reward."
 LuaCode={
-	npc_says(_"Damn. Ok, I'll give you a super exterminator if you give me dilithium crystals.")
+	npc_says(_"Actuators! Ok, I'll give you a super exterminator if you give me dilithium crystals.")
 	add_cookie("asked_sadd_for_exterminator")
 	next(23)
 	hide(21, 22)
@@ -244,7 +244,7 @@ Nr=37 Text=_"You call this a super exterminator?"
 LuaCode={
 	add_cookie("SADD-NoExit")
 	npc_says(_"I do. Now please leave this place before I terminate you.")
-	tux_says(_"This is rubbish! Nobody can use this damned gun!")
+	tux_says(_"This is rubbish! Nobody can use this stupid gun!")
 	npc_says(_"The door is still open. You can put it back and go. Quick.")
 	tux_says(_"Give me a real gun, dude! Immediately! I have brought you what you wanted, now give me my reward!")
 	npc_says(_"You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!")

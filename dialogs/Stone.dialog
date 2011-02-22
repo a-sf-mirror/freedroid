@@ -143,7 +143,7 @@ Nr=10 Text=_"How is your business going?"
 LuaCode={
 	if (has_cookie("stone_done")) then
 		npc_says(_"Thanks to you I have a chance now.", "NO_WAIT")
-		npc_says(_"Ha! It's time to show the world that Lily Stone is not going down without putting up a damn good fight.")
+		npc_says(_"Ha! It's time to show the world that Lily Stone is not going down without putting up a REAL good fight.")
 		set_bot_name(_"Lily Stone -- Shopowner")
 	else
 		npc_says(_"I'll be finished in about a week.", "NO_WAIT")

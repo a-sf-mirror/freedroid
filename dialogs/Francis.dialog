@@ -98,7 +98,7 @@ LuaCode={
 Nr=6 Text=_"Where am I?"
 LuaCode={
 	npc_says(_"The locals call this place the popsicle storage, because of all the people lying here frozen in cryogenic sleep. All were frozen down before the Great Assault.")
-	npc_says(_"This facility is located not too far away from a mining town where we have made a stand against the damn contraptions. However, I'm alone here with only one droid for security.")
+	npc_says(_"This facility is located not too far away from a mining town where we have made a stand against the blasted contraptions. However, I'm alone here with only one droid for security.")
 	npc_says(_"There are just too few humans alive and awake to allow us to properly protect this place, and nobody else is foolish enough to stay out here alone.")
 	npc_says(_"I try to do my best to make sure nothing goes bad here and all these people die. Luckily, the outer gates of this place are quite sturdy.")
 	hide(6) show(8, 14, 17, 18)
@@ -141,7 +141,7 @@ LuaCode={
 Nr=13 Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower striking a planet full of life and killing everything on it..."
 LuaCode={
 	npc_says(_"This is normal. You were in stasis sleep for over 70 years. Stasis is not too kind on the mind. Your strange dreams will keep recurring for several years.")
-	npc_says(_"Whatever the reason was for putting yourself through this, it must have been a damn good one.")
+	npc_says(_"Whatever the reason was for putting yourself through this, it must have been a darn good one.")
 	npc_says(_"You are lucky that I found you and woke you up. A few more decades in there and you would end up insane.")
 	hide(13) show(16, 21)
 }

@@ -286,7 +286,7 @@ Nr=41 Text=_"How many exterminators does the Red Guard have?"
 LuaCode={
 	if (del_gold(50)) then 
 		npc_says(_"It might come as a surprise to you, but we don't have many. A bit over twenty, last time I checked.", "NO_WAIT")
-		npc_says(_"However, as you can clearly see, it's more than enough to keep all of the damn bots away.")
+		npc_says(_"However, as you can clearly see, it's more than enough to keep all of the cursed bots away.")
 		hide(41) show(44)
 	else
 		next(43)

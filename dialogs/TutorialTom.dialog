@@ -274,7 +274,7 @@ Nr=20 Text=_"Can you tell me how to fight the bots?"
 LuaCode={
 	npc_says(_"I will certainly try my best.")
 	npc_says(_"It's odd to think that a flightless bird would be such a scrapper, but you Linarians have been surprising us since the beginning.")
-	npc_says(_"We prefer to fight the damn droids at a distance. They're less likely to rend us limb from limb that way.")
+	npc_says(_"We prefer to fight the blamed droids at a distance. They're less likely to rend us limb from limb that way.")
 	npc_says(_"Unfortunately, guns and other ranged weaponry are hard to come by these days.")
 	npc_says(_"That goes double for ammunition. Because these are bots, you really can't effectively keep them at bay by just waving around an empty gun.")
 	npc_says(_"With that in mind, your most reliable weapons are your fists. They never run out of ammo or wear down, but of course they don't do much damage against a metal body, either.")
