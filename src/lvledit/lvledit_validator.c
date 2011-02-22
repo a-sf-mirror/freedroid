@@ -1511,7 +1511,7 @@ int level_validation_on_console_only()
 	
 	free_exception_lists();
 	
-	return (final_rc != VALIDATION_PASS) || uncaught_excpt;
+	return (final_rc == VALIDATION_ERROR) || uncaught_excpt;
 }
 
 #undef IS_CHEST
