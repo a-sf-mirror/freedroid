@@ -122,7 +122,9 @@ LuaCode={
 Nr=7 Text=_"Maybe I can help you somehow?"
 LuaCode={
 	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
-	npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
+	if (not has_cookie("tux_has_joined_guard")) then
+		npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
+	end
 	npc_says(_"Just get me a cure, and I'll be forever grateful!")
 	add_quest(_"Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
 	hide(7, 8) show(11)
@@ -143,7 +145,11 @@ LuaCode={
 	npc_says(_"Wow, you really did it! I guess you beat the hell out of him.")
 	npc_says(_"He wouldn't help me even after I pounded him a bit. A big bit.")
 	npc_says(_"Man, you are the greatest hero!")
-	npc_says(_"Here, take this as a reward - and you can be sure that I'll vote for you if you seek membership in the Red Guard!")
+	if (not has_cookie("tux_has_joined_guard")) then
+		npc_says(_"Here, take this as a reward - and you can be sure that I'll vote for you if you seek membership in the Red Guard!")
+	else
+		npc_says(_"Here, take this as a reward.")
+	end
 	npc_says(_"Thanks, man!")
 	change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
 	add_xp(150)
