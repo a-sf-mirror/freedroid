@@ -46,7 +46,10 @@ EveryTime LuaCode={
 		show(37)
 	end
 
-	if (done_quest(_"Opening access to MS Office")) then show(44) end	-- Ready for HF?
+	if (not has_quest(_"Propagating a faulty firmware")) and
+	   (done_quest(_"Opening access to MS Office")) then 
+	    show(44)
+	end
 
 	if (has_quest(_"Deliverance") and (not done_quest(_"Deliverance"))) then 
 		add_cookie("knows_spencer_office")
