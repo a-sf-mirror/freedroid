@@ -18,16 +18,15 @@ EXTRA_DIST = m4 $(freedroid_data) HELP_WANTED INSTALL.generic lua
 
 dist-hook:
 	make -C lua clean
-	find $(distdir) -name ".svn"                 | xargs rm -rf
-	find $(distdir) -name "*.blend"           | xargs rm -f
+	find $(distdir) -name ".svn"              | xargs rm -rf
 	find $(distdir) -name "*~"                | xargs rm -f
 	find $(distdir) -name ".#*"               | xargs rm -f
 
 install-data-local:
 	@echo "Installing the data-files ..."
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
-	find $(srcdir)/$(freedroid_data) -type d ! -name "*.blend" -and ! -path "*CVS*" -and ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs)
-	find $(srcdir)/$(freedroid_data) -type f ! -name "*.blend" -and ! -path "*CVS*" -and ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \;
+	find $(srcdir)/$(freedroid_data) -type d ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec echo $(DESTDIR)$(pkgdatadir)/{} \; | xargs $(mkinstalldirs)
+	find $(srcdir)/$(freedroid_data) -type f ! -path "*.svn*" -and ! -name "Makefile*" -and ! -name "*~" -and ! -name ".#*" -exec $(INSTALL_DATA) {} $(DESTDIR)$(pkgdatadir)/{} \;
 	@echo "..done."
 
 uninstall-local:
@@ -53,10 +52,8 @@ dist-win32: src/freedroidRPG.exe
 	for i in $(win_txts); do \
 	   cp $$i $(win_dir)/$$i.txt; \
 	done
-	find $(win_dir) -name ".svn"                 | xargs rm -rf
-	find $(win_dir) -name "*.blend"           | xargs rm -f
+	find $(win_dir) -name ".svn"              | xargs rm -rf
 	find $(win_dir) -name "*~"                | xargs rm -f
 	find $(win_dir) -name ".#*"               | xargs rm -f
 	echo Do not forget to ship the SDL dll files!
-
 
