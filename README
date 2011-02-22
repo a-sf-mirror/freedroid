@@ -14,24 +14,31 @@
      - Sound
      - Level Editor & Developer
   7. Contact us
-  8. Licence
+  8. License
 
 
 1. Introduction
 ================
- This game tells the story of a world destroyed by a conflict between the droids and their human
- masters. Play as Tux in a quest to save the world from the murderous rebel droids who know no
- mercy. You get to choose which path you wish to follow, and freedom of choice is everywhere
- in the game.
+ The game tells the story of a world destroyed by a conflict between
+ robots and their human masters. Play as Tux in a quest to save the
+ world from the murderous rebel bots who know no mercy. You get to
+ choose which path you wish to follow, and freedom of choice is
+ everywhere in the game.
 
- FreedroidRPG features a complete real time combat system with melee and ranged weapons, fairly
- similar to the proprietary game Diablo. There also is an innovative system of magic, with features such as
- forced casting and over 20 spells. You can use over 50 different kinds of items and fight countless
- enemies on your way to your destiny. We have an advanced dialogue system, which aims at being at
- least on par with Fallout's. The dialogues in the game represent a large part of the gameplay.
- Finally, if guns are too inaccurate and blades too messy, you can always take over your enemies and
- have them fight on your side.
+ FreedroidRPG features a real time combat system with melee and ranged
+ weapons, fairly similar to the proprietary game Diablo. There is an
+ innovative system of programs that can be run in order to take
+ control of enemy robots, alter their behavior, or improve one's
+ characteristics. You can use over 150 different kinds of items and
+ fight countless enemies on your way to your destiny. An advanced
+ dialog system provides story background and immersive role playing
+ situations.
 
+ The game is complete, fully playable, and can provide about 10 hours
+ of fun. It is still being actively developed, and help is welcome in
+ many areas. People having - or trying to acquire - programming, map
+ editing, or writing skills will find FreedroidRPG to be an exciting,
+ fast-moving project in which they can fully express their creativity.
 
 2. Install & Play
 ===========
@@ -39,7 +46,7 @@
  Specific instructions for Ubuntu:  http://ubuntuforums.org/showthread.php?p=6127097#post6127097
 
  To run the game you normally just have to launch the executable.
- For advanced options execute "freedroidRPG --help" (in a terminal) to get a list of commandline options.
+ For advanced options execute "freedroidRPG --help" (in a terminal) to get a list of command line options.
 
 
 3. Controls
@@ -58,7 +65,7 @@
 
   Use the right click to activate the currently selected skill/program.
 
- Default keys (most keys can be reassigned with the ingame key chart - F1)
+ Default keys (most keys can be reassigned with the in-game key chart - F1)
 
   Escape     ... Show main menu
   F1         ... Show keychart
@@ -139,7 +146,7 @@
 
 5. Screen resolution
 =====================
- There are a few hidden high resolution settings only accessible from commandline. They are badly tested
+ There are a few hidden high resolution settings only accessible from command line. They are badly tested
  and thus generally considered to be buggy and are unsupported. They however can still be quite useful for
  many, especially for widescreen LCDs in fullscreen mode.
 
@@ -163,8 +170,8 @@ Miscellaneous FAQ:
 	   from Windows users thus is greatly appreciated.
 
 	Q: How can I subscribe/unsubscribe to the mailing list?
-	A: Freedroid has two mailing lists. One is for discussing stuff related to
-	   Freedroid, the other one is a list with auto-generated changelogs from our 
+	A: FreedroidRPG has two mailing lists. One is for discussing stuff related to
+	   FreedroidRPG, the other one is a list with auto-generated change logs from our 
 	   developer server and therefore usually only interesting for developers themselves.
 	   In any case, you can subscribe, unsubscribe or change your membership options
 			from the following web page:
@@ -208,7 +215,7 @@ Sound FAQ:
 	A: 1.)  Make sure your sound is working with other applications. If you
 		    don't hear anything when trying to play simple mp3 files or ogg files,
 		    then the sound system on your machine is not properly set up and it's
-		    not a freedroid related problem. In that case, you must install your
+		    not a freedroidRPG related problem. In that case, you must install your
 		    sound card properly first.
 	   2.)  See if you have the SDL_mixer libraries installed. You might want
 		    to use "locate SDL_mixer" and see if you get a lot of results.  If
@@ -238,7 +245,7 @@ Sound FAQ:
 
 	Q: My sound is lagging behind. Every sound seems to be somewhat out of sync.
 	A: There might be a sound daemon running on your system.  Many window managers
-	   like e.g. KDE start a sound daemon by default upon startup. To get rid of
+	   like e.g. KDE start a sound daemon by default upon start up. To get rid of
 	   the most common sound daemons, you can try (best as root)
 
 	   killall -9 artsd
@@ -246,7 +253,7 @@ Sound FAQ:
 	   killall -9 yiff
 	   killall -9 pulseaudio
 
-	   After that, you might want to try freedroid again. The sound lag should
+	   After that, you might want to try freedroidRPG again. The sound lag should
 	   not be present anymore.
 
 Level Editor & Developer FAQ:
@@ -264,7 +271,7 @@ Level Editor & Developer FAQ:
 	Q: How can I get the latest development version of the game?
 	A: This is very simple when using Linux. You can find the details here:
 	   https://sourceforge.net/svn/?group_id=54521
-	   If you are using Windows we recommend using a tool like eg 
+	   If you are using Windows we recommend using a tool like 
 	   http://tortoisesvn.tigris.org/
 	   If you still run into problems, best again discuss it with the people on
 	   the freedroid-discussion mailing list.
@@ -298,7 +305,7 @@ Level Editor & Developer FAQ:
  Feature Request tracker ...... https://sourceforge.net/tracker/?group_id=54521&atid=474019
 
 
-8. Licence
+8. License
 ===========
  The game itself is licensed under GPL. Some other tools use a more permissive license, 
  please refer to the FILES file located in the same folder as this file.
