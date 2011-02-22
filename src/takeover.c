@@ -230,15 +230,16 @@ static void show_droid_info(int droidtype)
 	SDL_SetClipRect(Screen, NULL);
 
 	// Show background
-	blit_special_background(ITEM_BROWSER_BG_PIC_BACKGROUND_CODE);
+	blit_special_background(NE_TITLE_PIC_BACKGROUND_CODE);
+	blit_special_background(TAKEOVER_BROWSER_BG_PIC_BACKGROUND_CODE);
 
 	// Show droid portrait
-	show_droid_picture(UNIVERSAL_COORD_W(45), UNIVERSAL_COORD_H(190), droidtype);
+	show_droid_picture(UNIVERSAL_COORD_W(45), UNIVERSAL_COORD_H(213), droidtype);
 
 	// Show the droid name
 	SetCurrentFont(Menu_BFont);
 	clip.x = UNIVERSAL_COORD_W(330);
-	clip.y = UNIVERSAL_COORD_H(35);
+	clip.y = UNIVERSAL_COORD_H(57);
 	clip.w = UNIVERSAL_COORD_W(200);
 	clip.h = UNIVERSAL_COORD_H(30);
 	display_text_using_line_height(Druidmap[droidtype].default_short_description, clip.x, clip.y, &clip, 1.0);
@@ -564,7 +565,7 @@ int droid_takeover(enemy *target)
 	init_text_widget(&droid_info, "");
 	init_droid_description(&droid_info, target->type);
 	droid_info.rect.x = 258 * GameConfig.screen_width / 640;
-	droid_info.rect.y = 89 * GameConfig.screen_height / 480;
+	droid_info.rect.y = 107 * GameConfig.screen_height / 480;
 	droid_info.rect.w = 346 * GameConfig.screen_width / 640;
 	droid_info.rect.h = 282 * GameConfig.screen_height / 480;
 	droid_info.font = FPS_Display_BFont;

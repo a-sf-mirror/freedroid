@@ -1048,7 +1048,7 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 #define NE_TITLE_PIC_FILE       "backgrounds/title.jpg"
 #define NE_CREDITS_PIC_FILE     "backgrounds/credits.jpg"
 #define SHOP_BACKGROUND_IMAGE   "backgrounds/shoppe.jpg"
-#define ITEM_BROWSER_BG_PIC_FILE "backgrounds/item_browser.jpg"
+#define TAKEOVER_BROWSER_BG_PIC_FILE "backgrounds/takeover_browser.png"
 #define ITEM_BROWSER_SHOP_FILE "backgrounds/item_browser_shop.png"
 #define NE_CONSOLE_FG_1_FILE     "backgrounds/console_fg_1.png"
 #define NE_CONSOLE_FG_2_FILE     "backgrounds/console_fg_2.png"
@@ -1104,7 +1104,7 @@ void blit_special_background(int background_code)
 		NE_TITLE_PIC_FILE,	// 4
 		NE_CREDITS_PIC_FILE,	// 5
 		SHOP_BACKGROUND_IMAGE,	// 6
-		ITEM_BROWSER_BG_PIC_FILE,	// 7
+		TAKEOVER_BROWSER_BG_PIC_FILE,	// 7
 		ITEM_BROWSER_SHOP_FILE,	// 8 
 		NE_CONSOLE_FG_1_FILE,	// 9 
 		NE_CONSOLE_FG_2_FILE,	// 10
