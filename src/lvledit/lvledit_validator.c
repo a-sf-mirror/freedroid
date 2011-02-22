@@ -98,22 +98,10 @@ struct level_validator level_validators[] = {
  */
 static void compose_return_code(enum validator_return_code *old_code, enum validator_return_code with_code)
 {
-	if (with_code == VALIDATION_ERROR) {
-		// Set result to ERROR in any case
-		*old_code = VALIDATION_ERROR;
-		return;
-	}
-
-	if (with_code == VALIDATION_WARNING) {
-		// Set result to WARNING, unless there was already an ERROR
-		if (*old_code != VALIDATION_ERROR) {
-			*old_code = VALIDATION_WARNING;
-			return;
-		}
-	}
-
-	// Other cases: No change
-	return;
+	// Values in enum validator_return_code are sorted in increasing order of
+	// "failure". So the result of the composition is the highest of the 2 values.
+	if (with_code > *old_code)
+		*old_code = with_code;
 }
 
 /**
