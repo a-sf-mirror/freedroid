@@ -101,32 +101,6 @@ static void load_item_graphics(int item_type)
 Inventory image for item type %d, at path %s was not found", PLEASE_INFORM, IS_FATAL, item_type, fpath);
 	}
 
-	// Now we try to guess the inventory image tile sizes (in the 
-	// inventory screen) from the pixel size of the inventory image
-	// loaded.
-	//
-	if (!spec->inv_size.x) {
-		if (original_img->w % 32) {
-			ErrorMessage(__FUNCTION__, "\
-Inventory image for item %d (%s) given does not have a multiple-of-32 width.\n\
-FreedroidRPG needs a width of this type, so it can associate the right\n\
-number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_type, fpath);
-		} else {
-			spec->inv_size.x = original_img->w / 32;
-		}
-	}
-
-	if (!spec->inv_size.y) {
-		if (original_img->h % 32) {
-			ErrorMessage(__FUNCTION__, "\
-	      Inventory image for item %d (%s) given does not have a multiple-of-32 height.\n\
-	      FreedroidRPG needs a height of this type, so it can associate the right\n\
-	      number of inventory screen tiles with the item.", PLEASE_INFORM, IS_FATAL, item_type, fpath);
-		} else {
-			spec->inv_size.y = original_img->h / 32;
-		}
-	}
-	
 	int target_x = spec->inv_size.x * 32;
 	int target_y = spec->inv_size.y * 32;
 	float factor_x, factor_y;

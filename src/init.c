@@ -886,11 +886,15 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 		// Now we read in the name of the sound sample to be played when this item is moved
 		item->item_drop_sound_file_name = ReadAndMallocStringFromData(ItemPointer, ITEM_DROP_SOUND_FILE_NAME, "\"");
 
-		// Now we read the size of the item in the inventory. 0 equals "figure out automatically".
+		// Now we read the size of the item in the inventory.
 		ReadValueFromStringWithDefault(ItemPointer, "inventory_size_x=", "%d", "0",
 					       &item->inv_size.x, EndOfItemData);
 		ReadValueFromStringWithDefault(ItemPointer, "inventory_size_y=", "%d", "0",
 					       &item->inv_size.y, EndOfItemData);
+
+		if (item->inv_size.x == 0 || item->inv_size.y == 0) {
+			ErrorMessage(__FUNCTION__, "Invalid inventory size for item '%s' (%d %d).", PLEASE_INFORM, IS_FATAL, item->item_name, item->inv_size.x, item->inv_size.y);
+		}
 
 		// Now we read in the base list price for this item
 		ReadValueFromString(ItemPointer, "Base list price=", "%hd", &item->base_list_price, EndOfItemData);
