@@ -26,8 +26,10 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
+	set_rush_tux(0)
 	if (has_cookie("kevin_door_open")) then
 		tux_says(_"It's me.")
+		change_obstacle_state("KevinsDoor", "opened")
 		npc_says(_"[b]Identity confirmed. You may pass.[/b]")
 		end_dialog()
 		show(99)

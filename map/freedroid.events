@@ -485,6 +485,37 @@ LuaCode={
 ## Level 17 ##
 ##############
 * New event trigger *
+Name=_"Kevin Guard Rush-1"
+Trigger at label="Kevin-Enter-1"
+Silent=1
+LuaCode={
+	set_rush_tux(1, "KevinGuard")
+	change_obstacle_state("KevinsDoor", "closed")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Kevin Guard Rush-2"
+Trigger at label="Kevin-Enter-2"
+Silent=1
+LuaCode={
+	set_rush_tux(1, "KevinGuard")
+	change_obstacle_state("KevinsDoor", "closed")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Kevin Guard Rush-3"
+Trigger at label="Kevin-Enter-3"
+Silent=1
+LuaCode={
+	set_rush_tux(1, "KevinGuard")
+	change_obstacle_state("KevinsDoor", "closed")
+}
+* End of trigger *
+
+
+* New event trigger *
 Name=_"To Kevin's Underground Station"
 Trigger at label="17to3"
 Silent=0

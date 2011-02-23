@@ -21067,6 +21067,9 @@ x=75 y=16 name="17to3"
 x=74 y=16 name="17from3"
 x=66 y=51 name="JasmineStartGameSquare"
 x=76 y=38 name="KevinsLawnMowerStart"
+x=50 y=46 name="Kevin-Enter-3"
+x=50 y=47 name="Kevin-Enter-2"
+x=50 y=48 name="Kevin-Enter-1"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
