@@ -599,6 +599,12 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BARREL_4].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_4].action = &barrel_action;
 	obstacle_map[ISO_BARREL_4].label = _("Crate");
+	obstacle_map[ISO_BARREL_5].flags |= DROPS_RANDOM_TREASURE;
+	block_2param(ISO_BARREL_5, 0.8, 0.95);
+	obstacle_map[ISO_BARREL_5].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_BARREL_5].action = &barrel_action;
+	obstacle_map[ISO_BARREL_5].label = _("Crate");
+	obstacle_map[ISO_BARREL_5].filename = "iso_obstacle_0116.png";
 
 	block_2param(ISO_LAMP_N, 0.5, 0.5);
 	obstacle_map[ISO_LAMP_N].flags &= ~BLOCKS_VISION_TOO;

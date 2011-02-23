@@ -570,6 +570,7 @@ int container_tiles_list[] = {
 	ISO_BARREL_2,
 	ISO_BARREL_3,
 	ISO_BARREL_4,
+	ISO_BARREL_5,
 
 	-1,
 };
