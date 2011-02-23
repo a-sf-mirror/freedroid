@@ -1,0 +1,156 @@
+.\" Copyright (c) 2011 Miles McCammon
+.\"
+.\" This file is part of Freedroid
+.\"
+.\" Freedroid is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" Freedroid is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with Freedroid; see the file COPYING. If not, write to the 
+.\" Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+.\" MA  02111-1307  USA
+.\"
+.\"
+.\" Process this file with
+.\" groff -man -Tascii freedroidRPG.6
+.\" or
+.\" nroff -man freedroidRPG.6
+.\" or
+.\" man -l freedroidRPG.6 
+.\" 
+.\" to test the local copy of the man page source file.
+.\" 
+.\" See mdoc(7) for further reference.
+.\"
+.\"
+.\" Note: the Debian project considers lacking a man page a bug. See
+.\" http://www.debian.org/doc/debian-policy/ch-docs.html#s12.1
+.\"
+.Dd $Mdocdate: February 22 2011 $
+.\" 
+.Dt FREEDROIDRPG 6 URM
+.Os
+.Sh NAME
+.Nm freedroidRPG
+.Nd a futuristic immersive RPG about fighting bots
+.\"
+.\"
+.\"
+.Sh SYNOPSIS
+.Nm
+.Op Fl f | -fullscreen | w | -window
+.Op Fl r | -resolution
+.Op Fl q | -nosound
+.Op Fl n | -no_open_gl
+.\"
+.\"
+.\"
+.Sh DESCRIPTION
+FreedroidRPG tells the story of a world destroyed by a conflict
+between robots and their human masters.  Play as Tux in a quest to
+save the world from the murderous rebel bots who know no mercy.  You
+get to choose which path you wish to follow, and freedom of choice is
+everywhere in the game.
+.Pp
+FreedroidRPG features a real time combat system with melee and ranged
+weapons, fairly similar to the proprietary game Diablo.  There is an
+innovative system of programs that can be run in order to take control
+of enemy robots, alter their behavior, or improve one's
+characteristics.  You can use over 150 different kinds of items and
+fight countless enemies on your way to your destiny.  An advanced
+dialog system provides story background and immersive role playing
+situations.
+.\"
+.Ss Gameplay
+Please see the README or the tutorial in the game for more details.
+.\"
+.Ss Updates
+Periodically we release updated versions of FreedroidRPG with expanded
+plot, requested features, and other improvements. Please check the
+.Lk http://www.freedroid.org "FreedroidRPG Homepage"
+for the most updated versions of the game.
+.\"
+.\"
+.\"
+.Sh OPTIONS
+.Bl -tag -width Ds
+.It Fl h | -help
+List command-line options.
+.\"
+.It Fl v | -version
+Prints out FreedroidRPG version information.
+.\"
+.It Fl q | -nosound
+Suppress sound output.
+.\"
+.It Fl f | -fullscreen
+Work in full screen mode. Note that fullscreen or window mode can
+also be toggled from within the game via the options menu.
+.\"
+.It Fl w | -window
+Start FreedroidRPG in a window rather than using full screen mode.
+.\"
+.It Fl n | -no_open_gl
+Use SDL rendering rather than OpenGL.
+.\"
+.It Fl r Ar Y No |  Fl -resolution= Ar Y
+Selects a resolution to start the game in. -r 99 lists common resolutions. Resolutions can also be set
+in-game.
+.\"
+.It Fl e | -editor
+Skips the main menu and opens up the level editor.
+.El
+.\"
+.\"
+.\"
+.Sh FILES
+.Pa $HOME/.freedroid_rpg/config
+The file containing all configuration settings of this user.
+.Pp
+.Pa $HOME/.freedroid_rpg/*.savegame
+Saved games for the characters.
+.Pp
+.Pa $HOME/.freedroid_rpg/*.thumbnail.bmp
+Thumbnail images of the characters.
+.Pp
+.Pa $HOME/.freedroid_rpg/*.shp
+Game state for the saved games.
+.Pp
+.\"
+.\"
+.\"
+.Sh BUGS
+We make every effort to release stable versions of FreedroidRPG.
+However we're sure that there are still some bugs here and there.
+Please see the FAQ in the README for common issues. If you encounter
+any problems or bugs, please contact us:
+.\"
+.Ss IRC
+#freedroid on irc.freenode.net
+.Ss Mailing List
+.Mt freedroid-discussion@lists.sourceforge.net
+.Ss Bug tracker
+.Lk https://sourceforge.net/tracker/?group_id=54521&atid=474016 "FreedroidRPG Bug Tracker"
+.\"
+.\"
+.\"
+.Sh SEE ALSO
+.\"
+.Xr freedroid 6
+.\"
+.\"
+.\"
+.Sh AUTHORS
+.Nm
+was written by
+.An FreedroidRPG Development Team Aq freedroid-discussion@lists.sourceforge.net
+led by Arthur Huillet. Visit us at the
+.Lk http://www.freedroid.org "FreedroidRPG Homepage"
+for updates or if you'd like to help.
