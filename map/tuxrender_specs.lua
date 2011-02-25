@@ -306,6 +306,14 @@ tux_ordering {
 
 tux_ordering {
   type = "2h_heavy_melee",
+  rotations = { 1, 2 },
+  phase_start = 7,
+  phase_end = 10,
+  order = part_order.FTSWAH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
   rotations = { 0, 1, 2 },
   order = part_order.FTSAHW
 }
@@ -316,6 +324,14 @@ tux_ordering {
   phase_start = 1,
   phase_end = 5,
   order = part_order.FTSAHW
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 3, 4 },
+  phase_start = 6,
+  phase_end = 11,
+  order = part_order.FSTWAH
 }
 
 tux_ordering {
