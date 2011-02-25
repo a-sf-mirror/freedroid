@@ -43,7 +43,7 @@ tux_animation {
 ------------------------------------------------------------------------------
 
 tux_rendering_config {
-  motion_class_names = { "1hmelee", "2hranged", "1hranged" },
+  motion_class_names = { "1hmelee", "2hranged", "1hranged", "2h_heavy_melee" },
   head_part_default      = "iso_head",
   torso_part_default     = "iso_torso",
   weaponarm_part_default = "iso_weaponarm",
@@ -112,6 +112,7 @@ part_order = {
   FSWTAH = { "feet", "shieldarm", "weapon",    "torso",     "weaponarm", "head"      },
   FSWATH = { "feet", "shieldarm", "weapon",    "weaponarm", "torso",     "head"      },
   FSTWAH = { "feet", "shieldarm", "torso",     "weapon",    "weaponarm", "head"      },
+  FSTAWH = { "feet", "shieldarm", "torso",     "weaponarm", "weapon",    "head"      },
   FWATSH = { "feet", "weapon",    "weaponarm", "torso",     "shieldarm", "head"      },
   FWASTH = { "feet", "weapon",    "weaponarm", "shieldarm", "torso",     "head"      },
   FWTASH = { "feet", "weapon",    "torso",     "weaponarm", "shieldarm", "head"      },
@@ -261,6 +262,14 @@ tux_ordering {
   type = "1hranged",
   rotations = { 8 },
   phase_start = 25,
+  phase_end = 27,
+  order = part_order.FSTWAH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 8 },
+  phase_start = 32,
   phase_end = 34,
   order = part_order.FSTWAH
 }
@@ -289,4 +298,94 @@ tux_ordering {
   type = "1hranged",
   rotations = { 10, 11, 12, 13, 14, 15 },
   order = part_order.FAWTSH
+}
+
+--------------------
+-- 2-Handed Long Handle Melee Animation
+--------------------
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 0, 1, 2 },
+  order = part_order.FTSAHW
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 3, 4 },
+  phase_start = 1,
+  phase_end = 5,
+  order = part_order.FTSAHW
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 3 },
+  order = part_order.FSTAWH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 4 },
+  order = part_order.FSTAWH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 5, 6 },
+  phase_start = 1,
+  phase_end = 5,
+  order = part_order.FTSAHW
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 5, 6, 7 },
+  order = part_order.FWSTAH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 8 },
+  phase_start = 3,
+  phase_end = 5,
+  order = part_order.FSWTAH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 8 },
+  order = part_order.FWASTH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 9, 10 },
+  phase_start = 3,
+  phase_end = 12,
+  order = part_order.FWASTH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 9, 10 },
+  order = part_order.FWATSH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 11 },
+  order = part_order.FAWTSH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 12, 13, 14 },
+  order = part_order.FATWSH
+}
+
+tux_ordering {
+  type = "2h_heavy_melee",
+  rotations = { 15 },
+  order = part_order.FTAWSH
 }
