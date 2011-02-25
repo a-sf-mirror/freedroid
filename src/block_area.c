@@ -1832,6 +1832,85 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_FREIGHTER_RAILWAY_02_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_FREIGHTER_RAILWAY_02_W].filename = "iso_freighter_railway_0005.png";
 
+	block_2param(ISO_REACTOR_S, 5, 4);
+	obstacle_map[ISO_REACTOR_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_REACTOR_S].filename = "iso_reactor_1_0000.png";
+	
+	block_2param(ISO_REACTOR_E, 4, 5);
+	obstacle_map[ISO_REACTOR_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_REACTOR_E].filename = "iso_reactor_1_0001.png";
+	
+	block_2param(ISO_REACTOR_N, 5, 4);
+	obstacle_map[ISO_REACTOR_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_REACTOR_N].filename = "iso_reactor_1_0002.png";
+	
+	block_2param(ISO_REACTOR_W, 4, 4.5);
+	obstacle_map[ISO_REACTOR_W].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_REACTOR_W].filename = "iso_reactor_1_0003.png";
+	
+	block_2param(ISO_WALL_TERMINAL_S, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_S].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_S].filename = "iso_wall_terminal_0000.png";
+	obstacle_map[ISO_WALL_TERMINAL_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_S].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_S].action = &terminal_connect_action;
+ 
+	block_2param(ISO_WALL_TERMINAL_SE, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_SE].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_SE].filename = "iso_wall_terminal_0001.png";
+	obstacle_map[ISO_WALL_TERMINAL_SE].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_SE].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_SE].action = &terminal_connect_action;
+
+	block_2param(ISO_WALL_TERMINAL_E, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_E].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_E].filename = "iso_wall_terminal_0002.png";
+	obstacle_map[ISO_WALL_TERMINAL_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_E].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_E].action = &terminal_connect_action;
+	
+	block_2param(ISO_WALL_TERMINAL_NE, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_NE].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_NE].filename = "iso_wall_terminal_0003.png";
+	obstacle_map[ISO_WALL_TERMINAL_NE].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_NE].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_NE].action = &terminal_connect_action;
+	
+	block_2param(ISO_WALL_TERMINAL_N, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_N].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_N].filename = "iso_wall_terminal_0004.png";
+	obstacle_map[ISO_WALL_TERMINAL_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_N].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_N].action = &terminal_connect_action;
+	
+	block_2param(ISO_WALL_TERMINAL_NW, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_NW].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_NW].filename = "iso_wall_terminal_0005.png";
+	obstacle_map[ISO_WALL_TERMINAL_NW].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_NW].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_NW].action = &terminal_connect_action;
+	
+	block_2param(ISO_WALL_TERMINAL_W, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_W].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_W].filename = "iso_wall_terminal_0006.png";
+	obstacle_map[ISO_WALL_TERMINAL_W].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_W].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_W].action = &terminal_connect_action;
+	
+	block_2param(ISO_WALL_TERMINAL_SW, 0.95, 1.05);
+	obstacle_map[ISO_WALL_TERMINAL_SW].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_WALL_TERMINAL_SW].filename = "iso_wall_terminal_0007.png";
+	obstacle_map[ISO_WALL_TERMINAL_SW].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_WALL_TERMINAL_SW].label = _("Terminal");
+	obstacle_map[ISO_WALL_TERMINAL_SW].action = &terminal_connect_action;
+	
+	obstacle_map[ISO_WEAPON_CRATE].flags |= DROPS_RANDOM_TREASURE;
+	block_2param(ISO_WEAPON_CRATE, 1.3, 1.3);
+	obstacle_map[ISO_WEAPON_CRATE].flags |= IS_SMASHABLE | IS_CLICKABLE;
+	obstacle_map[ISO_WEAPON_CRATE].action = &barrel_action;
+	obstacle_map[ISO_WEAPON_CRATE].label = "Weapon Crate";
+	obstacle_map[ISO_WEAPON_CRATE].filename = "iso_weapon_crate.png";
+	
 	// Now that we have defined the block area paramters, it's time to do some
 	// simple but often required computations in advance:  Calculating the offsets
 	// each obstacle's block area has from the obstacle center.
