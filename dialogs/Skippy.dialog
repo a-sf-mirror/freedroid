@@ -25,19 +25,19 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={
+	add_cookie("met_skippy")
+	show(0, 99)
+}
+
 EveryTime LuaCode={
-	if (not has_cookie("met_skippy")) then
-		show(0,99)
-		add_cookie("met_skippy")
-	else end
- 
 	if (has_cookie("skippy_angry")) then
 -- We probably at some point want to be able to make skippy happy again, maybe by Tux finishing a quest or something that helps skippy or a friend of his or similar.
 		npc_says(_"What? You again? I don't want you here, get out.")
 		tux_says(_"See you later.")
 		npc_says(_"Don't come back. I hate you.")
 		end_dialog()
-	else end
+	end
 }
 ----------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ LuaCode={
 		npc_says(_"Just swallow it, and it should work.")
 		npc_says(_"I give a 30 day warranty and adjustments, in case it doesn't work as expected.")
 		add_item("Map Maker",1)
-		display_big_message(_"Swallow pill and Press tab to see automap.")
+		display_big_message(_"Swallow pill and press tab to see automap.")
 	else
 		npc_says(_"Hey, I'm not a bank!", "NO_WAIT")
 		npc_says(_"Come back when you can afford it.")
