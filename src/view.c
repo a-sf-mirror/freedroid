@@ -343,23 +343,19 @@ void skew_and_blit_rect(float x1, float y1, float x2, float y2, Uint32 color)
 
 void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 {
-	float up, left, right, low, x, y;
 	gps vpos;
+
+	if (!draw_collision_rectangles)
+		return;
 
 	update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
 
-	left = obstacle_map[our_obstacle->type].left_border;
-	up = obstacle_map[our_obstacle->type].upper_border;
-	low = obstacle_map[our_obstacle->type].lower_border;
-	right = obstacle_map[our_obstacle->type].right_border;
-	x = vpos.x;
-	y = vpos.y;
-
-	// If collision rectangles are turned off, then we need not do 
-	// anything more here...
-	//
-	if (!draw_collision_rectangles)
-		return;
+	float left = obstacle_map[our_obstacle->type].left_border;
+	float up = obstacle_map[our_obstacle->type].upper_border;
+	float low = obstacle_map[our_obstacle->type].lower_border;
+	float right = obstacle_map[our_obstacle->type].right_border;
+	float x = vpos.x;
+	float y = vpos.y;
 
 	// If there is no collision rectangle to draw, we are done
 	//
@@ -369,17 +365,7 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 	// Now we draw the collision rectangle.  We use the same parameters
 	// of the obstacle spec, that are also used for the collision checks.
 	skew_and_blit_rect(x + left, y + up, x + right, y + low, 0x00FEEAA);
-
-	//    x1 = translate_map_point_to_screen_pixel_x ( x + up , y + left );
-	//    y1 = translate_map_point_to_screen_pixel_y ( x + up , y + left );
-	//    x2 = translate_map_point_to_screen_pixel_x ( x + up , y + right);
-	//    y2 = translate_map_point_to_screen_pixel_y ( x + up , y + right);
-	//    x3 = translate_map_point_to_screen_pixel_x ( x + low , y + right);
-	//    y3 = translate_map_point_to_screen_pixel_y ( x + low , y + right);
-	//    x4 = translate_map_point_to_screen_pixel_x ( x + low , y + left);
-	//    y4 = translate_map_point_to_screen_pixel_y ( x + low , y + left);
-	//    blit_quad ( x1, y1, x2, y2, x3, y3, x4, y4, 0x00FEEAA ); 
-}				// void blit_obstacle_collision_rectangle ( obstacle* our_obstacle )
+}
 
 /**
  * Draw an obstacle at its place on the screen.
