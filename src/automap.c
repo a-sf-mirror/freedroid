@@ -230,6 +230,7 @@ static inline void PutPixel_automap_wrapper(SDL_Surface * abc, int x, int y, Uin
 	else {
 		glColor3ub(((pixel >> 16) & 0xff), (pixel >> 8) & 0xff, (pixel) & 0xff);
 		glVertex2i(x, y);
+		glColor3ub(255, 255, 255);
 	}
 #endif
 }

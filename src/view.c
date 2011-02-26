@@ -168,7 +168,6 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 #ifdef HAVE_LIBGL
 		if (use_open_gl) {
 			glColor3f(1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0);
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		}
 #endif
 		struct image *img = get_item_inventory_image(ItemImageCode);
@@ -176,7 +175,6 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 #ifdef HAVE_LIBGL
 		if (use_open_gl) {
 			glColor3f(1.0, 1.0, 1.0);
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 		}
 #endif
 	}
@@ -269,7 +267,6 @@ static void show_floor(int mask)
 #if HAVE_LIBGL
 	if (use_open_gl) {
 		glEnable(GL_ALPHA_TEST);
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	}
 #endif
 	start_image_batch();
@@ -299,7 +296,6 @@ static void show_floor(int mask)
 	end_image_batch();
 #if HAVE_LIBGL
 	if (use_open_gl) {
-		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 		glDisable(GL_ALPHA_TEST);
 	}
 #endif
@@ -315,6 +311,7 @@ void blit_leveleditor_point(int x, int y)
 		glBegin(GL_POINTS);
 		glColor3f(1.0, 0.0, 0.0);
 		glVertex2i(x, y);
+		glColor3f(1.0, 1.0, 1.0);
 		glEnd();
 		glDisable(GL_POINT_SMOOTH);
 		glEnable(GL_TEXTURE_2D);

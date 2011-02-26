@@ -955,6 +955,8 @@ int leveleditor_select_display()
 			glVertex2i(r4, c4);
 			glEnd();
 
+			glColor4ub(255, 255, 255, 255);
+
 			glEnable(GL_TEXTURE_2D);
 		}
 #endif

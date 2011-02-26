@@ -189,6 +189,7 @@ int our_SDL_fill_rect_wrapper(SDL_Surface * dst, SDL_Rect * dstrect, Uint32 colo
 				glVertex2i(dstrect->x + dstrect->w, dstrect->y);
 				glEnd();
 			}
+			glColor4ub(255, 255, 255, 255);
 			glEnable(GL_TEXTURE_2D);
 			return (0);
 		}
@@ -224,6 +225,7 @@ int blit_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Ui
 		glVertex2i(x4, y4);
 		glEnd();
 
+		glColor4ub(255, 255, 255, 255);
 		glEnable(GL_TEXTURE_2D);
 #endif
 	}
@@ -328,7 +330,7 @@ void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, fl
 	}
 	glEnd();
 	glEnable(GL_TEXTURE_2D);
-
+	glColor4ub(255, 255, 255, 255);
 #endif
 };				// void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor *c1, myColor *c2  ) 
 
@@ -614,7 +616,7 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	open_gl_check_error_status(__FUNCTION__);
 
 #endif
@@ -687,7 +689,6 @@ draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 	x += our_iso_image->offset_x * zoom_factor;
 	y += our_iso_image->offset_y * zoom_factor;
 
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glColor4f(r, g, b, a);
 
 	glBindTexture(GL_TEXTURE_2D, (our_iso_image->texture));
@@ -709,8 +710,9 @@ draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
 
 	}
 
+	glColor4f(1.0, 1.0, 1.0, 1.0);
+
 	glEnable(GL_BLEND);
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glDisable(GL_ALPHA_TEST);
 #endif
 
@@ -1008,6 +1010,7 @@ void PutPixel_open_gl(int x, int y, Uint32 pixel)
 	glBegin(GL_POINTS);
 	glColor3ub(((pixel >> 16) & 0xff), (pixel >> 8) & 0xff, (pixel) & 0xff);
 	glVertex2i(x, y);
+	glColor3ub(255, 255, 255);
 	glEnd();
 	glEnable(GL_TEXTURE_2D);
 #endif
@@ -1036,6 +1039,8 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 	glVertex2i(rect->x + rect->w, rect->y + rect->h);
 	glVertex2i(rect->x + rect->w, rect->y);
 	glEnd();
+
+	glColor4ub(255, 255, 255, 255);
 
 	glEnable(GL_TEXTURE_2D);
 #endif
