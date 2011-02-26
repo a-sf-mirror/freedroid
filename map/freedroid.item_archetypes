@@ -10,11 +10,11 @@ Copyright (c) 2007-2010 Stefan Huszics
  *       - Hand to hand                                                                 *
  *       - Ranged                                                                       *
  *       - Grenades/bombs                                                               *
- *       - Droids & NPC                                                                 *
  *     Armor                                                                            *
  *     Books                                                                            *
  *     Pills & Potions                                                                  *
  *     Other                                                                            *
+ *     NPC Weapons                                                                      *
  ****************************************************************************************/
 
 /****************************************************************************************
@@ -2118,618 +2118,6 @@ Item description text=_"Said to be the downscaled version of the original Pandor
 
 
 
-/**********************************************************************************************************
- *       Droid & NPC Weapons                                                                              *
- **********************************************************************************************************/
-
-/*
- * They should never be dropped by the game, but could be dropped in the
- * editor. We use a size of 2x2 for simplicity.
- */
-
-** Start of new item specification subsection **
-Item name=_"NPC Hand to hand weapon"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=35
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=350
-Item description text=_"Bot use only"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.450000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.100000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=3
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 123 Weak Robotic Arm"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=20
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.950000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=0
-Item as gun: modifier for damage of bullets=3
-Item as gun: bullet_image_type=9
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 139 Plasma Trash Vaporiser"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_ranged.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=40
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.350000
-Item as gun: reloading time=7.000000
-Item as gun: speed of bullets=12.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=2
-Item as gun: modifier for damage of bullets=2
-Item as gun: bullet_image_type=7
-Item as gun: bullet_lifetime=2.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="plasma_ammunition"
-Item as gun: ammo clip size=3
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 247 Robotic Arm"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=2
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 249 Pulse Laser Welder"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_ranged.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=100
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.150000
-Item as gun: reloading time=5.000000
-Item as gun: speed of bullets=60.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=1
-Item as gun: modifier for damage of bullets=0
-Item as gun: bullet_image_type=6
-Item as gun: bullet_lifetime=2.00000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=15
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 296 Plasmabeam Cutter"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=8
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 302 Overcharged Barcode Reader"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=6
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 329 Dual Overcharged Barcode Reader"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=8
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 420 Laser Scalpel"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=10
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 476 Small Laser"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_ranged.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=250
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.200000
-Item as gun: reloading time=2.400000
-Item as gun: speed of bullets=52.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=3
-Item as gun: modifier for damage of bullets=3
-Item as gun: bullet_image_type=1
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=5
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 493 Power Hammer"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=6.00000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=12
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 516 Robotic Fist"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=14
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 543 Tree Harvester"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.100000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=8
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 571 Robotic Fist"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=16
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 598 Robotic Fist"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_sword"
-Item uses rotation series with prefix="weapons/laser_sword_yellow"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_melee.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="drop_sword_sound.ogg"
-Base list price=120
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=0.600000
-Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=0.010000
-Item as gun: is melee weapon=1
-Item as gun: damage of bullets=18
-Item as gun: modifier for damage of bullets=5
-Item as gun: bullet_image_type=8
-Item as gun: bullet_lifetime=0.200000
-Item as gun: modifier for starting angle=-60.000000
-Item as gun: pass through hit bodies="yes"
-Item as gun: required ammunition type="none"
-Item as gun: ammo clip size=0
-Item as gun: weapon requires both hands="no"
-Item motion class="1hmelee"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-# This should be remade into shots that track Tux and explode when close enough or something. Fitting replacement to the removed "kill everything on screen" thing 2 of these bots used to have.
-** Start of new item specification subsection **
-Item name=_"Droid 7xx Tux Seeking Missiles"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
-Item uses rotation series with prefix="NONE_AVAILABLE_YET"
-Items of this type collect together in inventory="no"
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_ranged.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=250
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.200000
-Item as gun: reloading time=2.000000
-Item as gun: speed of bullets=16.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=6
-Item as gun: modifier for damage of bullets=18
-Item as gun: bullet_image_type=1
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=30
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid Advanced Twin Laser"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
-Item uses rotation series with prefix="weapons/laser_pulse_rifle"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=30
-Dexterity minimum required to wear/wield this item=40
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_ranged.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=800
-inventory_size_x=2
-inventory_size_y=2
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.400000
-Item as gun: reloading time=3
-Item as gun: speed of bullets=60.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=10
-Item as gun: modifier for damage of bullets=12
-Item as gun: bullet_image_type=2
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="laser_ammunition"
-Item as gun: ammo clip size=30
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Droid 883 Exterminator"
-Item min class for drop=-1
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
-Item uses rotation series with prefix="weapons/exterminator_simple"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=20
-Dexterity minimum required to wear/wield this item=45
-Base item duration=10
-plus duration modifier=10
-File or directory name for inventory image="weapons/bot_ranged.png"
-inventory_size_x=2
-inventory_size_y=2
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1001
-Item description text=_"Droid weaponry"
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.00000
-Item as gun: reloading time=4.000000
-Item as gun: speed of bullets=35.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=4
-Item as gun: modifier for damage of bullets=4
-Item as gun: bullet_image_type=4
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="exterminator_ammunition"
-Item as gun: ammo clip size=2
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-
-
-
-
 
 /**********************************************************************************************************
  *       Armor                                                                                            *
@@ -4388,6 +3776,617 @@ Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"A chip that allows you to learn faster by providing additional feedback on your actions."
 ** End of new item specification subsection **
+
+
+
+/**********************************************************************************************************
+ *       Droid & NPC Weapons                                                                              *
+ **********************************************************************************************************/
+
+/*
+ * They should never be dropped by the game, but could be dropped in the
+ * editor. We use a size of 2x2 for simplicity.
+ */
+
+** Start of new item specification subsection **
+Item name=_"NPC Hand to hand weapon"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=35
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=350
+Item description text=_"Bot use only"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.450000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.100000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 123 Weak Robotic Arm"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+Base item duration=20
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Drop_Sound_0.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.950000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=0
+Item as gun: modifier for damage of bullets=3
+Item as gun: bullet_image_type=9
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 139 Plasma Trash Vaporiser"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_gun1"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_ranged.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=40
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.350000
+Item as gun: reloading time=7.000000
+Item as gun: speed of bullets=12.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=2
+Item as gun: bullet_image_type=7
+Item as gun: bullet_lifetime=2.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="plasma_ammunition"
+Item as gun: ammo clip size=3
+Item as gun: weapon requires both hands="yes"
+Item motion class="2hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 247 Robotic Arm"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=2
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 249 Pulse Laser Welder"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_gun1"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_ranged.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=100
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.150000
+Item as gun: reloading time=5.000000
+Item as gun: speed of bullets=60.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=1
+Item as gun: modifier for damage of bullets=0
+Item as gun: bullet_image_type=6
+Item as gun: bullet_lifetime=2.00000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=15
+Item as gun: weapon requires both hands="yes"
+Item motion class="2hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 296 Plasmabeam Cutter"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=8
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 302 Overcharged Barcode Reader"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=6
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 329 Dual Overcharged Barcode Reader"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=8
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 420 Laser Scalpel"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=10
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 476 Small Laser"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_gun1"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_ranged.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=250
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.200000
+Item as gun: reloading time=2.400000
+Item as gun: speed of bullets=52.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=3
+Item as gun: bullet_image_type=1
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=5
+Item as gun: weapon requires both hands="yes"
+Item motion class="2hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 493 Power Hammer"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=6.00000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=12
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 516 Robotic Fist"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=14
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 543 Tree Harvester"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.100000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=8
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 571 Robotic Fist"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=16
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 598 Robotic Fist"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_sword"
+Item uses rotation series with prefix="weapons/laser_sword_yellow"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_melee.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="drop_sword_sound.ogg"
+Base list price=120
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.600000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=0.010000
+Item as gun: is melee weapon=1
+Item as gun: damage of bullets=18
+Item as gun: modifier for damage of bullets=5
+Item as gun: bullet_image_type=8
+Item as gun: bullet_lifetime=0.200000
+Item as gun: modifier for starting angle=-60.000000
+Item as gun: pass through hit bodies="yes"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="no"
+Item motion class="1hmelee"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+# This should be remade into shots that track Tux and explode when close enough or something. Fitting replacement to the removed "kill everything on screen" thing 2 of these bots used to have.
+** Start of new item specification subsection **
+Item name=_"Droid 7xx Tux Seeking Missiles"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_gun1"
+Item uses rotation series with prefix="NONE_AVAILABLE_YET"
+Items of this type collect together in inventory="no"
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_ranged.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=250
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.200000
+Item as gun: reloading time=2.000000
+Item as gun: speed of bullets=16.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=6
+Item as gun: modifier for damage of bullets=18
+Item as gun: bullet_image_type=1
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=30
+Item as gun: weapon requires both hands="yes"
+Item motion class="2hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid Advanced Twin Laser"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_gun1"
+Item uses rotation series with prefix="weapons/laser_pulse_rifle"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=30
+Dexterity minimum required to wear/wield this item=40
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_ranged.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=800
+inventory_size_x=2
+inventory_size_y=2
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.400000
+Item as gun: reloading time=3
+Item as gun: speed of bullets=60.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=10
+Item as gun: modifier for damage of bullets=12
+Item as gun: bullet_image_type=2
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=30
+Item as gun: weapon requires both hands="yes"
+Item motion class="2hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
+** Start of new item specification subsection **
+Item name=_"Droid 883 Exterminator"
+Item min class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_gun1"
+Item uses rotation series with prefix="weapons/exterminator_simple"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=20
+Dexterity minimum required to wear/wield this item=45
+Base item duration=10
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_ranged.png"
+inventory_size_x=2
+inventory_size_y=2
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1001
+Item description text=_"Droid weaponry"
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.00000
+Item as gun: reloading time=4.000000
+Item as gun: speed of bullets=35.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=4
+Item as gun: modifier for damage of bullets=4
+Item as gun: bullet_image_type=4
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="exterminator_ammunition"
+Item as gun: ammo clip size=2
+Item as gun: weapon requires both hands="yes"
+Item motion class="2hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
 
 *** End of item data section: ***
 
