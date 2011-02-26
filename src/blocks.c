@@ -687,6 +687,10 @@ void load_obstacle(int i)
 		return;
 	}
 
+	if (!obstacle_map[i].filename) {
+		ErrorMessage(__FUNCTION__, "Obstacle type %d has no filename specified for its graphics.\n", PLEASE_INFORM, IS_FATAL, i);
+	}
+
 	// At first we construct the file name of the single tile file we are about to load...
 	sprintf(fpath, "obstacles/%s", obstacle_map[i].filename);
 	load_image(&obstacle_map[i].image, fpath, TRUE);
