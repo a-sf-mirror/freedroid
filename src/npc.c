@@ -208,8 +208,6 @@ void init_npcs()
 
 	struct shop skippy_shop[] = { 
 		//		"Map Maker",  
-		//		Sniper wristband
-		//		Hacker wristband
 		//		Script?
 			{ "Teleporter homing beacon", 1 },
 			{ "Teleporter homing beacon", 1 },
