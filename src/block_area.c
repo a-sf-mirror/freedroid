@@ -554,29 +554,33 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_COOKING_POT].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_COOKING_POT].transparent = TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS;
 
-	block_2param(ISO_CONSOLE_N, 0.8, 0.8);
-	obstacle_map[ISO_CONSOLE_N].flags |= IS_CLICKABLE;
-	obstacle_map[ISO_CONSOLE_N].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_CONSOLE_N].label = _("Terminal");
-	obstacle_map[ISO_CONSOLE_N].action = &terminal_connect_action;
-
 	block_2param(ISO_CONSOLE_S, 0.8, 0.8);
 	obstacle_map[ISO_CONSOLE_S].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_CONSOLE_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CONSOLE_S].label = _("Terminal");
 	obstacle_map[ISO_CONSOLE_S].action = &terminal_connect_action;
+	obstacle_map[ISO_CONSOLE_S].filename = "iso_obstacle_0043.png";
 
 	block_2param(ISO_CONSOLE_E, 0.8, 0.8);
 	obstacle_map[ISO_CONSOLE_E].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_CONSOLE_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CONSOLE_E].label = _("Terminal");
 	obstacle_map[ISO_CONSOLE_E].action = &terminal_connect_action;
+	obstacle_map[ISO_CONSOLE_E].filename = "iso_obstacle_0044.png";
+
+	block_2param(ISO_CONSOLE_N, 0.8, 0.8);
+	obstacle_map[ISO_CONSOLE_N].flags |= IS_CLICKABLE;
+	obstacle_map[ISO_CONSOLE_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_CONSOLE_N].label = _("Terminal");
+	obstacle_map[ISO_CONSOLE_N].action = &terminal_connect_action;
+	obstacle_map[ISO_CONSOLE_N].filename = "iso_obstacle_0045.png";
 
 	block_2param(ISO_CONSOLE_W, 0.8, 0.8);
 	obstacle_map[ISO_CONSOLE_W].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_CONSOLE_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CONSOLE_W].label = _("Terminal");
 	obstacle_map[ISO_CONSOLE_W].action = &terminal_connect_action;
+	obstacle_map[ISO_CONSOLE_W].filename = "iso_obstacle_0046.png";
 
 	obstacle_map[ISO_BARREL_1].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_1, 0.7, 0.7);
@@ -875,10 +879,13 @@ void init_obstacle_data(void)
 
 	block_2param(ISO_TREE_1, 1.2, 1.2);
 	obstacle_map[ISO_TREE_1].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_TREE_1].filename = "iso_obstacle_0113.png";
 	block_2param(ISO_TREE_2, 1.0, 1.0);
 	obstacle_map[ISO_TREE_2].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_TREE_2].filename = "iso_obstacle_0114.png";
 	block_2param(ISO_TREE_3, 1.1, 1.1);
 	obstacle_map[ISO_TREE_3].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_TREE_3].filename = "iso_obstacle_0115.png";
 	block_2param(ISO_TREE_4, 1.2, 1.2);
 	obstacle_map[ISO_TREE_4].filename = "iso_tree_0000.png";
 	obstacle_map[ISO_TREE_4].flags &= ~BLOCKS_VISION_TOO;
@@ -1852,61 +1859,33 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_REACTOR_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_W].filename = "iso_reactor_1_0003.png";
 	
-	block_2param(ISO_WALL_TERMINAL_S, 0.95, 1.05);
+	block_2param(ISO_WALL_TERMINAL_S, 0.6, 0.4);
 	obstacle_map[ISO_WALL_TERMINAL_S].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_WALL_TERMINAL_S].filename = "iso_wall_terminal_0000.png";
 	obstacle_map[ISO_WALL_TERMINAL_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_WALL_TERMINAL_S].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_S].action = &terminal_connect_action;
- 
-	block_2param(ISO_WALL_TERMINAL_SE, 0.95, 1.05);
-	obstacle_map[ISO_WALL_TERMINAL_SE].flags |= IS_CLICKABLE;
-	obstacle_map[ISO_WALL_TERMINAL_SE].filename = "iso_wall_terminal_0001.png";
-	obstacle_map[ISO_WALL_TERMINAL_SE].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_WALL_TERMINAL_SE].label = _("Terminal");
-	obstacle_map[ISO_WALL_TERMINAL_SE].action = &terminal_connect_action;
 
-	block_2param(ISO_WALL_TERMINAL_E, 0.95, 1.05);
+	block_2param(ISO_WALL_TERMINAL_E, 0.4, 0.6);
 	obstacle_map[ISO_WALL_TERMINAL_E].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_WALL_TERMINAL_E].filename = "iso_wall_terminal_0002.png";
 	obstacle_map[ISO_WALL_TERMINAL_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_WALL_TERMINAL_E].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_E].action = &terminal_connect_action;
 	
-	block_2param(ISO_WALL_TERMINAL_NE, 0.95, 1.05);
-	obstacle_map[ISO_WALL_TERMINAL_NE].flags |= IS_CLICKABLE;
-	obstacle_map[ISO_WALL_TERMINAL_NE].filename = "iso_wall_terminal_0003.png";
-	obstacle_map[ISO_WALL_TERMINAL_NE].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_WALL_TERMINAL_NE].label = _("Terminal");
-	obstacle_map[ISO_WALL_TERMINAL_NE].action = &terminal_connect_action;
-	
-	block_2param(ISO_WALL_TERMINAL_N, 0.95, 1.05);
+	block_2param(ISO_WALL_TERMINAL_N, 0.6, 0.4);
 	obstacle_map[ISO_WALL_TERMINAL_N].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_WALL_TERMINAL_N].filename = "iso_wall_terminal_0004.png";
 	obstacle_map[ISO_WALL_TERMINAL_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_WALL_TERMINAL_N].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_N].action = &terminal_connect_action;
 	
-	block_2param(ISO_WALL_TERMINAL_NW, 0.95, 1.05);
-	obstacle_map[ISO_WALL_TERMINAL_NW].flags |= IS_CLICKABLE;
-	obstacle_map[ISO_WALL_TERMINAL_NW].filename = "iso_wall_terminal_0005.png";
-	obstacle_map[ISO_WALL_TERMINAL_NW].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_WALL_TERMINAL_NW].label = _("Terminal");
-	obstacle_map[ISO_WALL_TERMINAL_NW].action = &terminal_connect_action;
-	
-	block_2param(ISO_WALL_TERMINAL_W, 0.95, 1.05);
+	block_2param(ISO_WALL_TERMINAL_W, 0.4, 0.6);
 	obstacle_map[ISO_WALL_TERMINAL_W].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_WALL_TERMINAL_W].filename = "iso_wall_terminal_0006.png";
 	obstacle_map[ISO_WALL_TERMINAL_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_WALL_TERMINAL_W].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_W].action = &terminal_connect_action;
-	
-	block_2param(ISO_WALL_TERMINAL_SW, 0.95, 1.05);
-	obstacle_map[ISO_WALL_TERMINAL_SW].flags |= IS_CLICKABLE;
-	obstacle_map[ISO_WALL_TERMINAL_SW].filename = "iso_wall_terminal_0007.png";
-	obstacle_map[ISO_WALL_TERMINAL_SW].flags &= ~BLOCKS_VISION_TOO;
-	obstacle_map[ISO_WALL_TERMINAL_SW].label = _("Terminal");
-	obstacle_map[ISO_WALL_TERMINAL_SW].action = &terminal_connect_action;
 	
 	obstacle_map[ISO_WEAPON_CRATE].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_WEAPON_CRATE, 1.3, 1.3);
@@ -1915,10 +1894,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_WEAPON_CRATE].label = "Weapon Crate";
 	obstacle_map[ISO_WEAPON_CRATE].filename = "iso_weapon_crate.png";
 	
-	// Now that we have defined the block area paramters, it's time to do some
-	// simple but often required computations in advance:  Calculating the offsets
-	// each obstacle's block area has from the obstacle center.
-	//
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
 		if (!obstacle_map[i].filename) {
 			obstacle_map[i].filename = MyMalloc(100);	// that should be sufficient for file names...
