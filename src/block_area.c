@@ -1832,15 +1832,15 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_FREIGHTER_RAILWAY_02_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_FREIGHTER_RAILWAY_02_W].filename = "iso_freighter_railway_0005.png";
 
-	block_2param(ISO_REACTOR_S, 5, 4);
+	block_2param(ISO_REACTOR_S, 4.5, 4);
 	obstacle_map[ISO_REACTOR_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_S].filename = "iso_reactor_1_0000.png";
 	
-	block_2param(ISO_REACTOR_E, 4, 5);
+	block_2param(ISO_REACTOR_E, 4, 4.5);
 	obstacle_map[ISO_REACTOR_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_E].filename = "iso_reactor_1_0001.png";
 	
-	block_2param(ISO_REACTOR_N, 5, 4);
+	block_2param(ISO_REACTOR_N, 4.5, 4);
 	obstacle_map[ISO_REACTOR_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_N].filename = "iso_reactor_1_0002.png";
 	
