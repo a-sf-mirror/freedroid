@@ -583,28 +583,32 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BARREL_1].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_1].action = &barrel_action;
 	obstacle_map[ISO_BARREL_1].label = _("Barrel");
+	obstacle_map[ISO_BARREL_1].filename = "iso_barrel_1.png";
 	obstacle_map[ISO_BARREL_2].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_2, 0.7, 0.7);
 	obstacle_map[ISO_BARREL_2].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_2].action = &barrel_action;
 	obstacle_map[ISO_BARREL_2].label = _("Barrel");
+	obstacle_map[ISO_BARREL_2].filename = "iso_barrel_2.png";
 	//wood crates
 	obstacle_map[ISO_BARREL_3].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_3, 0.80, 0.95);
 	obstacle_map[ISO_BARREL_3].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_3].action = &barrel_action;
 	obstacle_map[ISO_BARREL_3].label = _("Crate");
+	obstacle_map[ISO_BARREL_3].filename = "iso_barrel_3.png";
 	obstacle_map[ISO_BARREL_4].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_4, 0.8, 0.75);
 	obstacle_map[ISO_BARREL_4].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_4].action = &barrel_action;
 	obstacle_map[ISO_BARREL_4].label = _("Crate");
+	obstacle_map[ISO_BARREL_4].filename = "iso_barrel_4.png";
 	obstacle_map[ISO_BARREL_5].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_BARREL_5, 0.8, 0.95);
 	obstacle_map[ISO_BARREL_5].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_BARREL_5].action = &barrel_action;
 	obstacle_map[ISO_BARREL_5].label = _("Crate");
-	obstacle_map[ISO_BARREL_5].filename = "iso_obstacle_0116.png";
+	obstacle_map[ISO_BARREL_5].filename = "iso_barrel_5.png";
 
 	block_2param(ISO_LAMP_N, 0.5, 0.5);
 	obstacle_map[ISO_LAMP_N].flags &= ~BLOCKS_VISION_TOO;
