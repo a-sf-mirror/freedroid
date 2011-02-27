@@ -1271,7 +1271,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.delay_for_big_screen_messages = 6.5;
 	GameConfig.enable_cheatkeys = FALSE;
 	GameConfig.skip_shadow_blitting = FALSE;
-        GameConfig.do_fadings = TRUE;
+	GameConfig.do_fadings = TRUE;
 	GameConfig.xray_vision_for_tux = FALSE;
 	GameConfig.cheat_running_stamina = FALSE;
 	GameConfig.lazyload = 1;
@@ -1496,7 +1496,6 @@ void ThouArtDefeated(void)
 	GameOver = TRUE;
 
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_KILLED)) {
-		StartTakingTimeForFPSCalculation();
 
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
 		show_texts_and_banner();
@@ -1507,8 +1506,6 @@ void ThouArtDefeated(void)
 		
 		for (j = 0; j < MAXBULLETS; j++)
 			CheckBulletCollisions(j);
-
-		ComputeFPSForThisFrame();
 
 	}
 
@@ -1538,7 +1535,6 @@ void ThouHastWon(void)
 	GameOver = TRUE;
 
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_GAME_WON)) {
-		StartTakingTimeForFPSCalculation();
 
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
 		show_texts_and_banner();
@@ -1551,8 +1547,6 @@ void ThouHastWon(void)
 
 		for (j = 0; j < MAXBULLETS; j++)
 			CheckBulletCollisions(j);
-
-		ComputeFPSForThisFrame();
 
 	}
 

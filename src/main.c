@@ -111,8 +111,6 @@ void Game()
 
 		CheckIfMissionIsComplete();
 
-		limit_fps();
-
 		ComputeFPSForThisFrame();
 
 	}			// while !GameOver 

@@ -1959,6 +1959,9 @@ void AssembleCombatPicture(int mask)
 	if (mask & DO_SCREEN_UPDATE) {
 		our_SDL_update_rect_wrapper(Screen, 0, 0, Screen->w, Screen->h);
 	}
+
+	if (GameConfig.limit_framerate)
+		SDL_framerateDelay(&SDL_FPSmanager);
 }
 
 /* -----------------------------------------------------------------

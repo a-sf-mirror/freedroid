@@ -215,7 +215,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 		PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(190), number_text);
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
-		limit_fps();
+		SDL_framerateDelay(&SDL_FPSmanager);
 
 		while (SDL_PollEvent(&event)) {
 
@@ -978,6 +978,9 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 
 	mouse_cursor = MOUSE_CURSOR_NORMAL;
 	SDL_ShowCursor(SDL_DISABLE);
+
+	SDL_initFramerate(&SDL_FPSmanager);
+	SDL_setFramerate(&SDL_FPSmanager, 40);
 }
 
 /**

@@ -107,6 +107,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "SDL_rotozoom.h"
+#include "SDL_framerate.h"
 
 #ifdef HAVE_LIBSDL_MIXER
 #include "SDL_mixer.h"

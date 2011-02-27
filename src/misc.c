@@ -904,20 +904,6 @@ float Frame_Time(void)
 	return Rate_To_Be_Returned;
 }
 
-/**
- * \brief Limits the framerate if the limit_framerate options is set.
- *
- * Since the current framerate is used to determine if sleeping is required,
- * it's necessary to use the framerate computation functions in your loop for
- * this function to work correctly.
- */
-void limit_fps()
-{
-	if (GameConfig.limit_framerate && Frame_Time() < 1/30.0) {
-		SDL_Delay(10);
-	}
-}
-
 int Get_Average_FPS(void)
 {
 	return ((int)(1.0 / Overall_Average));

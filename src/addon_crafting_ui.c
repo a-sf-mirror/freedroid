@@ -482,7 +482,6 @@ void addon_crafting_ui()
 	// releases escape. We need to ensure that the escape key is released so
 	// that it doesn't interfere with the dialog that opened the crafting UI.
 	while (!ui.quit || EscapePressed()) {
-		StartTakingTimeForFPSCalculation();
 
 		// Handle input.
 		save_mouse_state();
@@ -492,9 +491,6 @@ void addon_crafting_ui()
 		// Draw the UI. AssembleCombatPicture will take care of calling our
 		// drawing function in the right place.
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
-
-		limit_fps();
-		ComputeFPSForThisFrame();
 	}
 
 	// Free the description and the recipe list.
