@@ -223,26 +223,27 @@ void iso_load_bullet_surfaces(void)
 	// enum _bullets (in defs.h), and so also with the 'bullet_image_type'
 	// values in freedroid.item_archetypes
 	char *bullet_identifiers[] = {
-		"pulse",	// 0 "pluse" or "classic 001"
-		"single",	// 1 "single" or "classic 476"
-		"military",	// 2 "military" or "classic 821"
-		"flash_dummy",	// 3 dummy:  "classic flash", will be left out
-		"exterminator",	// 4 "exterminator" , same as in classic
-		"laser_rifle",	// 5 "laser rifle" , same as in classic
-		"half_pulse",	// 6 "just one half of the two classic 001"
-		"plasma_white",	// 7 small round white plasma ball
-		"laser_sword",	// 8
-		"laser_axe",	// 9
-		"single",	// 10 repetition of the single
-		"half_green",	// 11 that's the poison
-		"half_blue",	// 12 that's the cold
-		"half_magenta",	// 13 that's the ??
-		"half_white",	// 14 that's the stone
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 15 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 16 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 17 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 18 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 19 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 00 error-code
+		"single"       , // 1 "single" or "classic 476"
+		"military"     , // 2 "military" or "classic 821"
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 03 error-code
+		"exterminator" , // 4 "exterminator" , same as in classic
+		"laser_rifle"  , // 5 "laser rifle" , same as in classic
+		"half_pulse"   , // 6 "just one half of the two classic 001"
+		"plasma_white" , // 7 small round white plasma ball
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 08 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 09 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 10 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 11 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 12 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 13 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 14 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 15 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 16 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 17 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 18 error-code
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 19 error-code
+
 	};
 
 	DebugPrintf(1, "Number_Of_Bullet_Types: %d.", Number_Of_Bullet_Types);

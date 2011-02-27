@@ -1124,23 +1124,15 @@ Item motion class="1hmelee"
 /*
 From blocks.c - Should be updated one day.
   char* bullet_identifiers[] =
-      "pulse"        , // 0 "pluse" or "classic 001"
-      "single"       , // 1 "single" or "classic 476"
-      "military"     , // 2 "military" or "classic 821"
-      "flash_dummy"  , // 3 entire screen has (ugly) flash and gives damage to all - useful for EMP grenade?
-      "exterminator" , // 4 "exterminator" , same as in classic
-      "laser_rifle"  , // 5 "laser rifle" , same as in classic
-      "half_pulse"   , // 6 "just one half of the two classic 001"
-      "plasma_white" , // 7 small round white plasma ball
-      "laser_sword"  , // 8
-      "laser_axe"    , // 9
-      "single"       , // 10 repetition of the single
-      "half_green"   , // 11 that's the poison
-      "half_blue"    , // 12 that's the cold
-      "half_magenta" , // 13 that's the ??
-      "half_white"   , // 14 that's the stone
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 00 error-code
+		"single"       , // 1 "single" or "classic 476"
+		"military"     , // 2 "military" or "classic 821"
+		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 03 error-code
+		"exterminator" , // 4 "exterminator" , same as in classic
+		"laser_rifle"  , // 5 "laser rifle" , same as in classic
+		"half_pulse"   , // 6 "just one half of the two classic 001"
+		"plasma_white" , // 7 small round white plasma ball
 */
-
 
 // *** Conventional ***
 
