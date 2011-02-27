@@ -204,7 +204,7 @@ void Load_Mouse_Move_Cursor_Surfaces(void)
 	char our_filename[2000] = "";
 
 	for (j = 0; j < NUMBER_OF_MOUSE_CURSOR_PICTURES; j++) {
-		sprintf(our_filename, "mouse_move_cursor_%d.png", j);
+		sprintf(our_filename, "cursors/mouse_move_cursor_%d.png", j);
 		load_image(&MouseCursorImageList[j], our_filename, FALSE);
 	}
 

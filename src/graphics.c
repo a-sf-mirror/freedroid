@@ -60,7 +60,7 @@ void blit_mouse_cursor(void)
 	//
 	if (!loaded) {
 		for (i = 0; i < 10; i++) {
-			sprintf(constructed_filename, "mouse_cursor_%04d.png", i);
+			sprintf(constructed_filename, "cursors/mouse_cursor_%04d.png", i);
 			load_image(&mouse_cursors[i], constructed_filename, FALSE);
 		}
 		loaded = TRUE;
