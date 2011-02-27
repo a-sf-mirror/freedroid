@@ -110,6 +110,10 @@ AC_CHECK_LIB([SDL_image], [IMG_LoadJPG_RW],,
 	AC_MSG_ERROR([SDL_image library needed for FreedroidRPG!
 see http://www.libsdl.org/]))
 
+AC_CHECK_LIB([SDL_gfx], [zoomSurface],,
+	AC_MSG_ERROR([SDL_gfx library needed for FreedroidRPG!
+Please refer to the README file]))
+
 AC_MSG_NOTICE([[Checking for optional SDL libraries:]])
 AC_CHECK_LIB([SDL_mixer], [Mix_ChannelFinished],, AC_MSG_WARN([
 --------------------------------------------------
