@@ -31136,7 +31136,7 @@ idx=2106 type=32 data={
 	For service: wait
 }
 idx=2105 type=32 data={
-	Todays special: Foobar
+	Today's special: Foobar
 }
 idx=2104 type=32 data={
 	We recommend: Quxbaz
