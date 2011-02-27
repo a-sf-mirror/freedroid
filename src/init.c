@@ -217,12 +217,9 @@ void PlayATitleFile(char *Filename)
  ----------------------------------------------------------------------*/
 void Get_Bullet_Data(char *DataPointer)
 {
-	char *BulletPointer;
 	int i;
 	int BulletIndex = 0;
 
-#define BULLET_SECTION_BEGIN_STRING "*** Start of Bullet Data Section: ***"
-#define BULLET_SECTION_END_STRING "*** End of Bullet Data Section: ***"
 #define NEW_BULLET_TYPE_BEGIN_STRING "** Start of new bullet specification subsection **"
 
 #define BULLET_RECHARGE_TIME_BEGIN_STRING "Time is takes to recharge this bullet/weapon in seconds :"
@@ -230,8 +227,6 @@ void Get_Bullet_Data(char *DataPointer)
 #define BULLET_DAMAGE_BEGIN_STRING "Damage cause by a hit of this bullet type :"
 #define BULLET_ONE_SHOT_ONLY_AT_A_TIME "Cannot fire until previous bullet has been deleted : "
 #define BULLET_BLAST_TYPE_CAUSED_BEGIN_STRING "Type of blast this bullet causes when crashing e.g. against a wall :"
-
-	BulletPointer = LocateStringInData(DataPointer, BULLET_SECTION_BEGIN_STRING);
 
 	DebugPrintf(1, "\n\nStarting to read bullet data...\n\n");
 	// At first, we must allocate memory for the droid specifications.
@@ -258,7 +253,7 @@ void Get_Bullet_Data(char *DataPointer)
 	}
 	// Now we start to read the values for each bullet type:
 	// 
-	BulletPointer = DataPointer;
+	char *BulletPointer = DataPointer;
 
 	while ((BulletPointer = strstr(BulletPointer, NEW_BULLET_TYPE_BEGIN_STRING)) != NULL) {
 		DebugPrintf(1, "\n\nFound another Bullet specification entry!  Lets add that to the others!");
