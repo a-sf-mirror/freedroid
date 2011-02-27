@@ -32,32 +32,31 @@ FirstTime LuaCode={
 
 EveryTime LuaCode={
 	branch_to_tania = false
-	if (has_cookie("Tania-stopped-by-Pendragon") and (not has_cookie("Pendragon-OK-w-Tania"))) then --Tania Escape Quest stuff
-		if (has_cookie("Tania-sent-to-Doc") or has_cookie("Tania-set-free")) then
-			if (not done_quest(_"Tania's Escape")) then
-				npc_says(_"Tania has been waiting to talk to you.")
-			else
-				npc_says(_"Spencer says it is OK?")
-				npc_says(_"Well that is good enough for me.")
-				npc_says(_"She may enter.")
-				add_cookie("Pendragon-OK-w-Tania")
-				end_dialog()
-			end
- 		elseif (has_cookie("Tania-stopped-by-Pendragon")) then
-			if (not has_cookie("Tania_met_Pendragon")) then
-				npc_says(_"Halt! Who goes there?")
-				tux_says(_"Someone I found in the desert, Tania.")
-			end
-			npc_says(get_player_name() .. _", you may enter.")
-			npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the city.")
-			if (not has_cookie("Tania_met_Pendragon")) then
-				change_obstacle_state("DesertGate-Inner", "opened")
-				teleport_npc("W-enter-2", "Tania") --Ensure that Tania is on Level 0!
-				set_bot_state("patrol", "Tania")
-				add_cookie("Tania_met_Pendragon")
-				add_cookie("Tania_just-stopped-by-Pendragon")
-				branch_to_tania = true
-			end
+	if (has_cookie("Tania-stopped-by-Pendragon") and (not has_cookie("Pendragon-OK-w-Tania"))) and --Tania Escape Quest stuff
+	   (has_cookie("Tania-sent-to-Doc") or has_cookie("Tania-set-free")) then
+		if (not done_quest(_"Tania's Escape")) then
+			npc_says(_"Tania has been waiting to talk to you.")
+		else
+			npc_says(_"Spencer says it is OK?")
+			npc_says(_"Well that is good enough for me.")
+			npc_says(_"She may enter.")
+			add_cookie("Pendragon-OK-w-Tania")
+			end_dialog()
+		end
+	elseif (has_cookie("Tania-stopped-by-Pendragon")) then
+		if (not has_cookie("Tania_met_Pendragon")) then
+			npc_says(_"Halt! Who goes there?")
+			tux_says(_"Someone I found in the desert, Tania.")
+		end
+		npc_says(get_player_name() .. _", you may enter.")
+		npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the city.")
+		if (not has_cookie("Tania_met_Pendragon")) then
+			change_obstacle_state("DesertGate-Inner", "opened")
+			teleport_npc("W-enter-2", "Tania") --Ensure that Tania is on Level 0!
+			set_bot_state("patrol", "Tania")
+			add_cookie("Tania_met_Pendragon")
+			add_cookie("Tania_just-stopped-by-Pendragon")
+			branch_to_tania = true
 		end
 	end
 
@@ -208,10 +207,16 @@ LuaCode={
 Nr=23 Text=_"Teach me how to flip out and kill people!"
 LuaCode={
 	npc_says(_"*sigh*")
-	npc_says(_"Very well. Observe very carefully.")
-	npc_says(_"You will see this only once, so make sure to pay attention.")
-	npc_says(_"DIEEEE!")
-	npc_faction("crazy", _"Pendragon -- Teaching you death")
+	npc_says(_"I will teach you to keep your mouth shut when told to. Observe very carefully.")
+	npc_says(_"Make sure you pay attention.")
+	npc_says(_"TAKE THIS!")
+	tux_says(_"OW!")
+	if (not del_health(40)) then
+		if (not del_health(20)) then
+			del_health(5)
+		end
+	end
+	npc_says(_"Now go away.")
 	end_dialog()
 	hide(23)
 }
