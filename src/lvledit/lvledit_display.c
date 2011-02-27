@@ -222,7 +222,7 @@ static void show_waypoints(int mask)
 		object_vtx_color(&wpts[i], &r, &g, &b);
 
 		// Draw the waypoint on the map
-		if (mask && ZOOM_OUT) {
+		if (mask & ZOOM_OUT) {
 			if (use_open_gl) {
 				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn],
 								      x, y, r, g, b, 0.25, FALSE, lvledit_zoomfact_inv());
