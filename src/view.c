@@ -2875,6 +2875,92 @@ static int must_blit_enemy(enemy *e, int x, int y)
 }
 
 /**
+ *
+ *
+ */
+void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
+{
+	float Percentage;
+	SDL_Rect FillRect;
+
+#define ENEMY_ENERGY_BAR_OFFSET_X 0
+#define ENEMY_ENERGY_BAR_OFFSET_Y (-20)
+#define ENEMY_ENERGY_BAR_LENGTH 65
+
+#define ENEMY_ENERGY_BAR_WIDTH 7
+
+	// If the enemy is dead already, there's nothing to do here...
+	//
+	if (e->energy <= 0)
+		return;
+
+	// work out the percentage health
+	//
+	Percentage = (e->energy) / Druidmap[e->type].maxenergy;
+
+	if (use_open_gl) {
+
+#ifdef HAVE_LIBGL
+		int x, y, w, h;
+		myColor c1 = { 0, 0, 0, 255 };
+		myColor c2 = { 0, 0, 0, 255 };
+		float PercentageDone = 0;
+		int barnum = 0;
+		for (; Percentage > 0; Percentage -= PercentageDone, barnum++) {
+			if (Percentage >= 1)
+				PercentageDone = 1;
+			else
+				PercentageDone = Percentage;
+			// draw cool bars here
+			x = TargetRectangle.x;
+			y = TargetRectangle.y - 10 * barnum;
+			w = TargetRectangle.w;
+			h = TargetRectangle.h;
+
+			if (is_friendly(e->faction, FACTION_SELF))
+				c1.g = 255;
+			else
+				c1.r = 255;
+
+			// tweak as needed, this alters the transparency
+			c1.a = 140;
+			drawIsoEnergyBar(Z_DIR, x, y, 1, 5, 5, w, PercentageDone, &c1, &c2);
+		}
+
+#endif
+
+	} else {
+		//sdl stuff here
+
+		// Calculates the width of the remaining health bar. Rounds the
+		// width up to the nearest integer to ensure that at least one
+		// pixel of health is always shown.
+		//
+		int health_pixels = (int) ceil(Percentage * TargetRectangle.w);
+
+		FillRect.x = TargetRectangle.x;
+		FillRect.y = TargetRectangle.y - ENEMY_ENERGY_BAR_WIDTH - ENEMY_ENERGY_BAR_OFFSET_Y;
+		FillRect.h = ENEMY_ENERGY_BAR_WIDTH;
+		FillRect.w = health_pixels;
+
+		// The color of the bar depends on the friendly/hostile status
+		if (is_friendly(e->faction, FACTION_SELF))
+			sdl_draw_rectangle(&FillRect, 0, 255, 0, 140);
+		else
+			sdl_draw_rectangle(&FillRect, 255, 0, 0, 140);
+
+		// Now after the energy bar has been drawn, we can start to draw the
+		// empty part of the energy bar (but only of course, if there is some
+		// empty part at all! 
+		FillRect.x = TargetRectangle.x + health_pixels;
+		FillRect.w = TargetRectangle.w - health_pixels;
+
+		if (Percentage < 1.0)
+			sdl_draw_rectangle(&FillRect, 0, 0, 0, 255);
+	}
+}
+
+/**
  * The direction this robot should be facing right now is determined and
  * properly set in this function.
  */
@@ -3093,6 +3179,9 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 			TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].surface->h * zf;
 		}
 
+		if (GameConfig.enemy_energy_bars_visible)
+			PutEnemyEnergyBar(ThisRobot, TargetRectangle);
+		return;
 	}
 
 };				// void PutIndividuallyShapedDroidBody ( int Enum , SDL_Rect TargetRectangle );

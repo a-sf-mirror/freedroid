@@ -37,6 +37,10 @@
 #include "global.h"
 #include "proto.h"
 
+// 28 degress is the magic angle for our iso view
+#define COS_28 0.88294759
+#define SIN_28 0.46947156
+
 int gl_max_texture_size;
 
 /**
@@ -227,6 +231,107 @@ int blit_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Ui
 
 	return (0);
 };				// int blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , Uint32 color )
+
+/**
+ * Simon N.:  ISO functions.  these draw quads in the 3D planes
+ */
+void drawISOXYQuad(int x, int y, int z, int w, int h)
+{
+#ifdef HAVE_LIBGL
+	glVertex3f(x, y - h, z);
+	glVertex3f(x, y, z);
+	glVertex3f(x + w * COS_28, y + w * SIN_28, z);
+	glVertex3f(x + w * COS_28, y - h + w * SIN_28, z);
+#endif
+}
+
+void drawISOXZQuad(int x, int y, int z, int w, int d)
+{
+#ifdef HAVE_LIBGL
+	glVertex3f(x + d * COS_28, y - d * SIN_28, z);
+	glVertex3f(x, y, z);
+	glVertex3f(x + w * COS_28, y + w * SIN_28, z);
+	glVertex3f(x + w * COS_28 + d * COS_28, y + w * SIN_28 - d * SIN_28, z);
+#endif
+}
+
+void drawISOYZQuad(int x, int y, int z, int h, int d)
+{
+#ifdef HAVE_LIBGL
+	glVertex3f(x, y - h, z);
+	glVertex3f(x, y, z);
+	glVertex3f(x + d * COS_28, y - d * SIN_28, z);
+	glVertex3f(x + d * COS_28, y - h - d * SIN_28, z);
+#endif
+}
+
+/**
+ * Simon N.: Draws an isometric energy bar.
+ * dir : X_DIR | Y_DIR | Z_DIR
+ * x,y,z : the position of the lower left hand corner
+ * h : the height of the energy bar, as if viewed in the X direction
+ * d : the depth of the energy bar, as if viewed in the X direction
+ * fill : the percentage the energy bar is filled
+ * c1 : the fill color
+ * c1 : the background color
+ */
+void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor * c1, myColor * c2)
+{
+#ifdef HAVE_LIBGL
+	int l = (int)(fill * length);
+	int l2 = (int)length * (1.0 - fill);
+	int lcos, lsin, l2cos, l2sin;
+	glColor4ub(c1->r, c1->g, c1->b, c1->a);
+	glDisable(GL_TEXTURE_2D);
+	glBegin(GL_QUADS);
+
+	// the rest of this is trig to work out the x,y,z co-ordinates of the quads
+	if (dir == X_DIR) {
+		// we need to round these or sometimes the
+		// quads will be out by 1 pixel
+		lcos = (int)rint(l * COS_28);
+		lsin = (int)rint(l * SIN_28);
+		l2cos = (int)rint(l2 * COS_28);
+		l2sin = (int)rint(l2 * SIN_28);
+
+		drawISOXYQuad(x, y, z, l, h);
+		drawISOYZQuad(x + lcos, y + lsin, z, h, d);
+		drawISOXZQuad(x, y - h, z, l, d);
+		glColor4ub(c2->r, c2->g, c2->b, c2->a);
+		drawISOXYQuad(x + lcos, y + lsin, z, l2, h);
+		drawISOYZQuad(x + l2cos + lcos, y + l2sin + lsin, z, h, d);
+		drawISOXZQuad(x + lcos, y + lsin - h, z, l2, d);
+
+	} else if (dir == Y_DIR) {
+		// this should be wcos, but we're saving variables :)
+		lcos = (int)rint(h * COS_28);
+		lsin = (int)rint(h * SIN_28);
+		drawISOXYQuad(x, y, z, h, l);
+		drawISOYZQuad(x + lcos, y + lsin, z, l, d);
+		drawISOXZQuad(x, y - l, z, h, d);
+		glColor4ub(c2->r, c2->g, c2->b, c2->a);
+		drawISOXYQuad(x, y - l, z, h, l2);
+		drawISOYZQuad(x + lcos, y - l + lsin, z, l2, d);
+		drawISOXZQuad(x, y - l - l2, z, h, d);
+	} else {
+		lcos = (int)rint(l * COS_28);
+		lsin = (int)rint(l * SIN_28);
+		// think of this a dcos, same reason above
+		l2cos = (int)rint(d * COS_28);
+		l2sin = (int)rint(d * SIN_28);
+		drawISOXYQuad(x, y, z, d, h);
+		drawISOYZQuad(x + l2cos, y + l2sin, z, h, l);
+		drawISOXZQuad(x, y - h, z, d, l);
+
+		glColor4ub(c2->r, c2->g, c2->b, c2->a);
+		drawISOYZQuad(x + l2cos + lcos, y + l2sin - lsin, z, h, l2);
+		drawISOXZQuad(x + lcos, y - lsin - h, z, d, l2);
+	}
+	glEnd();
+	glEnable(GL_TEXTURE_2D);
+	glColor4ub(255, 255, 255, 255);
+#endif
+};				// void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor *c1, myColor *c2  ) 
 
 SDL_Surface *our_SDL_display_format_wrapperAlpha(SDL_Surface * surface)
 {
