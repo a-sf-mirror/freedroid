@@ -35,7 +35,6 @@
 #include "struct.h"
 #include "proto.h"
 #include "global.h"
-#include "SDL_rotozoom.h"
 
 #define DEBUG_SHOP 0
 

@@ -39,7 +39,6 @@
 #include "global.h"
 #include "map.h"
 #include "proto.h"
-#include "SDL_rotozoom.h"
 
 //--------------------
 // 

@@ -12,7 +12,6 @@
 #include "struct.h"
 #include "proto.h"
 #include "global.h"
-#include "SDL_rotozoom.h"
 
 /* Current font */
 static BFont_Info *CurrentFont;

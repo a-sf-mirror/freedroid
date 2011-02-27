@@ -38,7 +38,6 @@
 #include "proto.h"
 #include "takeover.h"
 #include "map.h"
-#include "SDL_rotozoom.h"
 
 enemy *cDroid;
 Uint32 cur_time;		// current time in ms 

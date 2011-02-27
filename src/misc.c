@@ -45,8 +45,6 @@
 #  include <signal.h>
 #endif
 
-extern SDL_Surface *zoomSurface(SDL_Surface * src, double zoomx, double zoomy, int smooth);
-
 long oneframedelay = 0;
 long tenframedelay = 0;
 long onehundredframedelay = 0;

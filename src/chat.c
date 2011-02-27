@@ -38,7 +38,6 @@
 #include "struct.h"
 #include "proto.h"
 #include "global.h"
-#include "SDL_rotozoom.h"
 
 #define PUSH_ROSTER 2
 #define POP_ROSTER 3

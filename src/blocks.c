@@ -32,7 +32,6 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-#include "SDL_rotozoom.h"
 
 #include "lvledit/lvledit_display.h"
 

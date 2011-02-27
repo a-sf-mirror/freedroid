@@ -34,7 +34,6 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-#include "SDL_rotozoom.h"
 #include "sys/stat.h"
 #include "savestruct.h"
 

@@ -35,7 +35,6 @@
 #include "global.h"
 #include "proto.h"
 
-#include "SDL_rotozoom.h"
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_widgets.h"

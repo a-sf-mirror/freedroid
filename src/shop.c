@@ -35,7 +35,6 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-#include "SDL_rotozoom.h"
 
 #define SHOP_ROW_LENGTH 8
 

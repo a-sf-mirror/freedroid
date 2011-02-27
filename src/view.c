@@ -42,7 +42,6 @@
 #include "global.h"
 #include "map.h"
 #include "proto.h"
-#include "SDL_rotozoom.h"
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_display.h"

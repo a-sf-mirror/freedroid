@@ -37,7 +37,6 @@
 #include "proto.h"
 #include "global.h"
 
-#include "SDL_rotozoom.h"	// that's for rotating the speed-o-meter arrows
 
 #define TEXT_BANNER_DEFAULT_FONT FPS_Display_BFont
 #define TEXT_BANNER_HORIZONTAL_MARGIN 4

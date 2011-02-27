@@ -39,7 +39,6 @@
 #include "global.h"
 #include "proto.h"
 #include "map.h"
-#include "SDL_rotozoom.h"
 
 static const SDL_VideoInfo *vid_info;
 

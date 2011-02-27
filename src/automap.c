@@ -33,7 +33,6 @@
 #include "global.h"
 #include "proto.h"
 #include "map.h"
-#include "SDL_rotozoom.h"
 
 int AUTOMAP_TEXTURE_WIDTH = 2048;
 int AUTOMAP_TEXTURE_HEIGHT = 1024;

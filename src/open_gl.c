@@ -36,7 +36,6 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-#include "SDL_rotozoom.h"
 
 // 28 degress is the magic angle for our iso view
 #define COS_28 0.88294759
