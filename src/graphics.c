@@ -1157,8 +1157,7 @@ static void draw_line_opengl(int x1, int y1, int x2, int y2, int r, int g, int b
 
 void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int width)
 {
-	float rr, gg, bb, zoom_factor;
-	zoom_factor = (GameConfig.zoom_is_on ? lvledit_zoomfact_inv() : 1.0);
+	float rr, gg, bb;
 	rr = (color & 0xff0000) >> 16;
 	gg = (color & 0xff00) >> 8;
 	bb = color & 0xff;
