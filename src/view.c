@@ -3408,13 +3408,13 @@ Freedroid encountered a radial wave type that exceeds the CONSTANT for wave type
 
 			switch (SparkType) {
 			case 0:
-				sprintf(ConstructedFilename, "radiation/blue_sparks_%d.png", k);
+				sprintf(ConstructedFilename, "radial_spells/blue_sparks_%d.png", k);
 				break;
 			case 1:
-				sprintf(ConstructedFilename, "radiation/green_mist_%d.png", k);
+				sprintf(ConstructedFilename, "radial_spells/green_mist_%d.png", k);
 				break;
 			case 2:
-				sprintf(ConstructedFilename, "radiation/red_fire_%d.png", k);
+				sprintf(ConstructedFilename, "radial_spells/red_fire_%d.png", k);
 				break;
 			default:
 				fprintf(stderr, "\n\nSparkType: %d\n", SparkType);
