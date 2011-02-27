@@ -61,7 +61,7 @@ const char *keybindNames[] = {
 	"place_obstacle_kp1", "place_obstacle_kp2", "place_obstacle_kp3",
 	"place_obstacle_kp4", "place_obstacle_kp5", "place_obstacle_kp6",
 	"place_obstacle_kp7", "place_obstacle_kp8", "place_obstacle_kp9",
-	"change_map_label", "zoom_out",
+	"change_obstacle_label", "change_map_label", "zoom_out",
 	"cycle_marked_obstacle",
 	"cut", "copy", "paste",
 	"next_tab", "undo", "redo", "beautify_grass",
@@ -224,6 +224,7 @@ void input_set_default(void)
 	input_set_keybind("place_obstacle_kp8", SDLK_KP8, KMOD_NONE);
 	input_set_keybind("place_obstacle_kp9", SDLK_KP9, KMOD_NONE);
 	input_set_keybind("place_obstacle_kp9", SDLK_KP9, KMOD_NONE);
+	input_set_keybind("change_obstacle_label", SDLK_h, KMOD_NONE);
 	input_set_keybind("change_map_label", SDLK_m, KMOD_NONE);
 	input_set_keybind("zoom_out", SDLK_o, KMOD_NONE);
 	input_set_keybind("cycle_marked_obstacle", SDLK_n, KMOD_NONE);
@@ -598,6 +599,10 @@ static int input_key(int keynum, int value)
 		if (KEYPRESS("drop_item")) {
 			ItemDropFromLevelEditor();
 			return 0;
+		} else if (KEYPRESS("change_obstacle_label")) {
+			if (single_tile_selection(OBJECT_OBSTACLE)) {
+				action_change_obstacle_label_user(EditLevel(), single_tile_selection(OBJECT_OBSTACLE), NULL);
+			}
 		} else if (KEYPRESS("change_map_label")) {
 			level_editor_action_change_map_label_user(CURLEVEL());
 			return 0;
