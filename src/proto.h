@@ -761,7 +761,6 @@ int IsActive(int color, int row);
 // BFont.c
 void PutPixel32(SDL_Surface * surface, int x, int y, Uint32 pixel);
 Uint32 FdGetPixel(SDL_Surface * Surface, Sint32 X, Sint32 Y);
-void PutPixel(SDL_Surface * surface, int x, int y, Uint32 pixel);
 
 void list_add(list_head_t * new, list_head_t * head);
 void list_add_tail(list_head_t * new, list_head_t * head);

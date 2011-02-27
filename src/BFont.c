@@ -499,56 +499,6 @@ inline void PutPixel32(SDL_Surface * surface, int x, int y, Uint32 pixel)
 
 }				// void PutPixel ( ... )
 
-void PutPixel(SDL_Surface * surface, int x, int y, Uint32 pixel)
-{
-	int bpp = surface->format->BytesPerPixel;
-	Uint8 *p;
-
-	if (use_open_gl) {
-		if (surface == Screen) {
-			PutPixel_open_gl(x, y, pixel);
-			return;
-		}
-	}
-
-	// Here I add a security query against segfaults due to writing
-	// perhaps even far outside of the surface pixmap data.
-	//
-	if ((x < 0) || (y < 0) || (x >= surface->w) || (y >= surface->h))
-		return;
-
-	/* Here p is the address to the pixel we want to set */
-	p = (Uint8 *) surface->pixels + y * surface->pitch + x * bpp;
-
-	switch (bpp) {
-	case 1:
-		*p = pixel;
-		break;
-
-	case 2:
-		*(Uint16 *) p = pixel;
-		break;
-
-	case 3:
-		// pixel = pixel & 0x0ffffff ;
-		if (SDL_BYTEORDER == SDL_BIG_ENDIAN) {
-			p[0] = (pixel >> 16) & 0xff;
-			p[1] = (pixel >> 8) & 0xff;
-			p[2] = pixel & 0xff;
-		} else {
-			p[0] = pixel & 0xff;
-			p[1] = (pixel >> 8) & 0xff;
-			p[2] = (pixel >> 16) & 0xff;
-		}
-		break;
-
-	case 4:
-		*(Uint32 *) p = pixel;
-		break;
-	}
-
-};				// void PutPixel ( ... )
-
 /**
  * NOTE:  I THINK THE SURFACE MUST BE LOCKED FOR THIS!
  *

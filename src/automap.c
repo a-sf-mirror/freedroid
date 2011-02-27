@@ -38,7 +38,9 @@ int AUTOMAP_TEXTURE_WIDTH = 2048;
 int AUTOMAP_TEXTURE_HEIGHT = 1024;
 
 #define AUTOMAP_SQUARE_SIZE 3
-#define AUTOMAP_COLOR 0x0FFFF
+#define WALL_COLOR 0x00, 0xFF, 0xFF
+#define TUX_COLOR 0x00, 0x00, 0xFF
+#define FRIEND_COLOR 0x00, 0xFF, 0x00
 
 static struct image compass;
 
@@ -221,13 +223,13 @@ void CollectAutomapData(void)
  * Use GL_POINTS primitive in OpenGL mode to render automap points for better performance.
  * In SDL mode, fallback to PutPixel.
  */
-static inline void PutPixel_automap_wrapper(SDL_Surface * abc, int x, int y, Uint32 pixel)
+static inline void PutPixel_automap_wrapper(SDL_Surface * abc, int x, int y, int r, int g, int b)
 {
 	if (!use_open_gl)
-		PutPixel(abc, x, y, pixel);
+		pixelRGBA(abc, x, y, r, g, b, 255);
 #ifdef HAVE_LIBGL
 	else {
-		glColor3ub(((pixel >> 16) & 0xff), (pixel >> 8) & 0xff, (pixel) & 0xff);
+		glColor3ub(r, g, b);
 		glVertex2i(x, y);
 		glColor3ub(255, 255, 255);
 	}
@@ -271,8 +273,6 @@ static void display_automap_compass()
 void display_automap(void)
 {
 	int x, y;
-	int TuxColor = SDL_MapRGB(Screen->format, 0, 0, 255);
-	int FriendColor = SDL_MapRGB(Screen->format, 0, 255, 0);
 	Level automap_level = curShip.AllLevels[Me.pos.z];
 	int level = Me.pos.z;
 
@@ -304,19 +304,19 @@ void display_automap(void)
 			if (Me.Automap[level][y][x] & (RIGHT_WALL_BIT | LEFT_WALL_BIT)) {
 				PutPixel_automap_wrapper(Screen,
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
-							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, AUTOMAP_COLOR);
+							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
 				PutPixel_automap_wrapper(Screen,
 							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
-							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, AUTOMAP_COLOR);
+							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
 			}
 
 			if (Me.Automap[level][y][x] & (UP_WALL_BIT | DOWN_WALL_BIT)) {
 				PutPixel_automap_wrapper(Screen,
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
-							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, AUTOMAP_COLOR);
+							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
 				PutPixel_automap_wrapper(Screen,
 							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
-							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, AUTOMAP_COLOR);
+							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
 			}
 		}
 	}
@@ -334,7 +334,7 @@ void display_automap(void)
 								 AUTOMAP_SQUARE_SIZE * erot->pos.x +
 								 AUTOMAP_SQUARE_SIZE * (automap_level->ylen - erot->pos.y) + x,
 								 AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * erot->pos.y + y,
-								 FriendColor);
+								 FRIEND_COLOR);
 				}
 			}
 		}
@@ -345,7 +345,7 @@ void display_automap(void)
 		for (y = 0; y < AUTOMAP_SQUARE_SIZE; y++) {
 			PutPixel_automap_wrapper(Screen,
 						 AUTOMAP_SQUARE_SIZE * Me.pos.x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - Me.pos.y) +
-						 x, AUTOMAP_SQUARE_SIZE * Me.pos.x + AUTOMAP_SQUARE_SIZE * Me.pos.y + y, TuxColor);
+						 x, AUTOMAP_SQUARE_SIZE * Me.pos.x + AUTOMAP_SQUARE_SIZE * Me.pos.y + y, TUX_COLOR);
 		}
 	}
 

@@ -513,8 +513,7 @@ SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterTy
 				blue = add_val_to_component(blue, 64);
 			}
 
-			PutPixel(ThirdSurface, x, y, SDL_MapRGBA(ThirdSurface->format, red, green, blue, alpha3));
-
+			pixelRGBA(ThirdSurface, x, y, red, green, blue, alpha3);
 		}
 	}
 
@@ -1040,19 +1039,19 @@ void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
  * Draw an 'expanded' pixel.
  * Used to draw thick lines.
  */
-static void draw_expanded_pixel(SDL_Surface * Surface, int x, int y, int xincr, int yincr, int color, int thickness)
+static void draw_expanded_pixel(SDL_Surface * Surface, int x, int y, int xincr, int yincr, int thickness, int r, int g, int b)
 {
 	int i;
 
-	PutPixel(Surface, x, y, color);
+	pixelRGBA(Surface, x, y, r, g, b, 255);
 
 	if (thickness <= 1)
 		return;
 	for (i = x + xincr; i != x + thickness * xincr; i += xincr) {
-		PutPixel(Surface, i, y, color);
+		pixelRGBA(Surface, i, y, r, g, b, 255);
 	}
 	for (i = y + yincr; i != y + thickness * yincr; i += yincr) {
-		PutPixel(Surface, x, i, color);
+		pixelRGBA(Surface, x, i, r, g, b, 255);
 	}
 }
 
@@ -1064,8 +1063,6 @@ static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, 
 {
 	if (use_open_gl)
 		return;
-
-	Uint32 color = SDL_MapRGB(Surface->format, r, g, b);
 
 	int delta_x, incr_x;
 	int delta_y, incr_y;
@@ -1091,7 +1088,7 @@ static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, 
 	if (delta_y < delta_x) {
 		error_accum = delta_x >> 1;
 		while (x1 != x2) {
-			draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, color, thickness);
+			draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
 			error_accum += delta_y;
 			if (error_accum > delta_x) {
 				error_accum -= delta_x;
@@ -1099,11 +1096,11 @@ static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, 
 			}
 			x1 += incr_x;
 		}
-		draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, color, thickness);
+		draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
 	} else {
 		error_accum = delta_y >> 1;
 		while (y1 != y2) {
-			draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, color, thickness);
+			draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
 			error_accum += delta_x;
 			if (error_accum > delta_y) {
 				error_accum -= delta_y;
@@ -1111,7 +1108,7 @@ static void draw_line_sdl(SDL_Surface *Surface, int x1, int y1, int x2, int y2, 
 			}
 			y1 += incr_y;
 		}
-		draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, color, thickness);
+		draw_expanded_pixel(Surface, x1, y1, incr_x, incr_y, thickness, r, g, b);
 	}
 }
 
