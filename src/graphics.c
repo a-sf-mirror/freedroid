@@ -1007,27 +1007,7 @@ void ClearGraphMem(void)
  */
 void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 {
-	SDL_Surface *surface;
-
-	if (a == SDL_ALPHA_OPAQUE) {
-		// Do a rectangle fill operation if the input rectangle is opaque.
-		SDL_FillRect(Screen, rect, SDL_MapRGB(Screen->format, r, g, b));
-		return;
-	}
-
-	// Create an empty surface with 32 bits per pixel in video memory. This will
-	// allow SDL to take advantage of video.
-	surface = SDL_CreateRGBSurface(SDL_HWSURFACE, rect->w, rect->h, 32, 0, 0, 0, 0);
-
-	// Perform a fast fill of the whole rectangle with color.
-	SDL_FillRect(surface, NULL, SDL_MapRGB(Screen->format, r, g, b));
-
-	// Adjust the alpha properties of a surface and active the acceleration.
-	SDL_SetAlpha(surface, SDL_SRCALPHA | SDL_RLEACCEL, a);
-
-	// Blit the surface on screen and free it.
-	SDL_BlitSurface(surface, NULL, Screen, rect);
-	SDL_FreeSurface(surface);
+	boxRGBA(Screen, rect->x, rect->y, rect->x + rect->w, rect->y + rect->h, r, g, b, a);
 }
 
 /**
