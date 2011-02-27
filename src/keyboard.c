@@ -134,7 +134,7 @@ void input_set_keybind(char *keybind, SDLKey key, SDLMod mod)
 		     keybind);
 }
 
-void input_get_keybind(char *cmdname, SDLKey * key, SDLMod * mod)
+void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
 {
 	int i;
 	for (i = 0; strcmp(keybindNames[i], "end"); i++) {
@@ -149,6 +149,31 @@ void input_get_keybind(char *cmdname, SDLKey * key, SDLMod * mod)
 	ErrorMessage(__FUNCTION__, "Unable to get keybind for command '%s', that command does not exist.\n", PLEASE_INFORM, IS_FATAL,
 		     cmdname);
 }
+
+/**
+ * Print the key mapping of a given command into a string.
+ * @param cmd name of the command
+ * @param out pointer to a sufficiently large buffer to hold the key string
+ */
+void input_get_keybind_string(const char *cmd, char *out)
+{
+	SDLKey key;
+	SDLMod mod;
+
+	input_get_keybind(cmd, &key, &mod);
+
+	const char *modstr = "";
+
+	if (mod & KMOD_LCTRL || mod & KMOD_RCTRL)
+		modstr = "C-";
+	if (mod & KMOD_LALT || mod & KMOD_RALT)
+		modstr = "A-";
+	if (mod & KMOD_LSHIFT || mod & KMOD_RSHIFT)
+		modstr = "S-";
+
+	sprintf(out, "%s%s", modstr, SDL_GetKeyName(key));
+}
+
 
 /**
  * @fn void input_setDefault (void)
@@ -288,21 +313,17 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 	ypos = keychart_rect.y;
 
 	for (i = startidx; strcmp(keybindNames[i], "end"); i++) {
-		char modstring[10] = "";
+		char keystr[100] = "";
 		const char *font_str = font_switchto_neon;
-		if (GameConfig.input_keybinds[i].mod & KMOD_LCTRL || GameConfig.input_keybinds[i].mod & KMOD_RCTRL)
-			strcat(modstring, "C-");
-		if (GameConfig.input_keybinds[i].mod & KMOD_LALT || GameConfig.input_keybinds[i].mod & KMOD_RALT)
-			strcat(modstring, "A-");
-		if (GameConfig.input_keybinds[i].mod & KMOD_LSHIFT || GameConfig.input_keybinds[i].mod & KMOD_RSHIFT)
-			strcat(modstring, "S-");
-
+		
 		if (i == cursor && highlight) {
 			font_str = font_switchto_red;
 		}
 
-		sprintf(txt, "%s%s%s - %s%s\n", font_str, (i == cursor) ? "** " : "   ",
-			GameConfig.input_keybinds[i].name, modstring, SDL_GetKeyName(GameConfig.input_keybinds[i].key));
+		input_get_keybind_string(keybindNames[i], &keystr[0]);
+
+		sprintf(txt, "%s%s%s - %s\n", font_str, (i == cursor) ? "** " : "   ",
+			GameConfig.input_keybinds[i].name, keystr);
 		PutString(Screen, xpos, ypos, txt);
 
 		ypos += FontHeight(GetCurrentFont());
