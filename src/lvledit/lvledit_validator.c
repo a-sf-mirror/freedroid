@@ -331,10 +331,6 @@ static int lookup_exception(struct level_validator *this, void *opaque_data)
 	// Loop on each item in the list, and call the validator's comparator
 
 	list_for_each_entry(item, &(this->excpt_list), node) {
-		if (item->rule_id == 100) {
-			int i;
-			i = 0;
-		}
 		rtn = this->cmp(item->opaque_data, opaque_data);
 		if (rtn) {
 			item->caught = TRUE;	// Mark the exception has caught
