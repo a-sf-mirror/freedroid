@@ -3742,6 +3742,18 @@ idx=3447 type=30 data={
 idx=3448 type=30 data={
 	Town-Solar-8
 }
+idx=695 type=32 data={
+	Armory of the Red Guard.
+}
+idx=2088 type=32 data={
+	Bonjour - need some cure?
+}
+idx=3111 type=32 data={
+	Office - this way.
+}
+idx=3268 type=32 data={
+	Unauthorized access is strictly forbidden!
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  27 y=  17 rnd=0	 c:    1  57
@@ -11462,6 +11474,9 @@ idx=537 type=30 data={
 }
 idx=1573 type=31 data={
 	it: n="Tungsten spikes"  X=6.000000  Y=67.000000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
+}
+idx=295 type=32 data={
+	House for sale.
 }
 /obstacleextensions
 wp
@@ -27573,6 +27588,15 @@ x=63 y=22 name="296"
 piteminfolvl
 /piteminfolvl
 obstacleextensions
+idx=684 type=32 data={
+	Caution: Hot steam is hot!
+}
+idx=714 type=32 data={
+	Storage room
+}
+idx=687 type=32 data={
+	Danger! High voltage
+}
 /obstacleextensions
 wp
 Nr.=  0 x=   9 y=   7 rnd=0	 c:    2
@@ -31053,6 +31077,78 @@ idx=1342 type=30 data={
 }
 idx=1457 type=32 data={
 	Upgrade distribution server room. Access restricted to authorized personnel - trespassers will be fired.
+}
+idx=1848 type=32 data={
+	Please close the door behind you.
+}
+idx=1777 type=32 data={
+	Beware of hydroxyl acid!
+}
+idx=1817 type=32 data={
+	Beware of the guns.
+}
+idx=1814 type=32 data={
+	Please read the other sign first.
+}
+idx=1801 type=32 data={
+	To main office.
+}
+idx=1815 type=32 data={
+	Workers office.
+}
+idx=1805 type=32 data={
+	First MS operating system - printed version
+}
+idx=1818 type=32 data={
+	Beatings will continue until morale improves.
+}
+idx=1845 type=32 data={
+	!
+}
+idx=1846 type=32 data={
+	Don't waste your time reading signs. Work!
+}
+idx=1457 type=32 data={
+	Server room
+}
+idx=1847 type=32 data={
+	Offices  - this way
+}
+idx=1860 type=32 data={
+	Slalom
+}
+idx=1876 type=32 data={
+	Outdoor track
+}
+idx=1883 type=32 data={
+	Accessing computers
+}
+idx=1884 type=32 data={
+	Passing doors I
+}
+idx=1868 type=32 data={
+	Passing doors II
+}
+idx=884 type=32 data={
+	To MegaSys office
+}
+idx=2106 type=32 data={
+	For service: wait
+}
+idx=2105 type=32 data={
+	Todays special: Foobar
+}
+idx=2104 type=32 data={
+	We recommend: Quxbaz
+}
+idx=2107 type=32 data={
+	In case of boredom turn gun on.
+}
+idx=506 type=32 data={
+	In case of boredom turn gun on.
+}
+idx=1814 type=32 data={
+	Please read the other sign first.
 }
 /obstacleextensions
 wp
@@ -35428,6 +35524,12 @@ idx=1133 type=30 data={
 }
 idx=1134 type=30 data={
 	SA-Main-EastN
+}
+idx=31 type=32 data={
+	Stop!
+}
+idx=17 type=32 data={
+	I warned you...  You should consider turning back and running away screaming.
 }
 /obstacleextensions
 wp
