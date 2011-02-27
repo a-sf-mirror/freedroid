@@ -41,6 +41,12 @@ struct crafting_recipe {
 	int item_type; /// The type number of the add-on this recipe will craft.
 };
 
+struct material {
+	int item_type; //item type from the recipe
+	int available; //# of items in inventory
+	int required; // # if items required by recipe
+};
+
 static struct {
 	int visible;
 	int quit;
@@ -48,6 +54,7 @@ static struct {
 	int scroll_offset; /// The scroll offset of the recipe list, in full rows.
 	struct dynarray recipes;
 	struct text_widget description;
+	struct material materials_for_selected[5];
 } ui = { .visible = FALSE };
 
 static const struct {
@@ -56,12 +63,14 @@ static const struct {
 	SDL_Rect details_text;
 	SDL_Rect recipe_list;
 	SDL_Rect recipe_desc;
+	SDL_Rect materials_list;
 } rects = {
-	{ ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, ADDON_CRAFTING_RECT_W, ADDON_CRAFTING_RECT_H },
-	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 12, 280, 38 },
-	{ ADDON_CRAFTING_RECT_X + 25, ADDON_CRAFTING_RECT_Y + 260, 130, 20 },
-	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 62, 276, 180 },
-	{ ADDON_CRAFTING_RECT_X + 22, ADDON_CRAFTING_RECT_Y + 290, 220, 140 }
+	{ ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, ADDON_CRAFTING_RECT_W, ADDON_CRAFTING_RECT_H }, //main
+	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 12, 280, 38 }, //title_text
+	{ ADDON_CRAFTING_RECT_X + 25, ADDON_CRAFTING_RECT_Y + 260, 130, 20 }, //details_text
+	{ ADDON_CRAFTING_RECT_X + 20, ADDON_CRAFTING_RECT_Y + 62, 276, 180 }, //recipe_list
+	{ ADDON_CRAFTING_RECT_X + 22, ADDON_CRAFTING_RECT_Y + 290, 220, 135 }, //recipe_desc
+	{ ADDON_CRAFTING_RECT_X + ADDON_CRAFTING_RECT_W , ADDON_CRAFTING_RECT_Y + 62, 65, 310 } //materials_list
 };
 
 /**
@@ -90,10 +99,12 @@ static void select_recipe(int index)
 	autostr_append(desc, "\n\n%s%s%s\n", font_switchto_msgstat, _("Features:"), font_switchto_msgvar);
 	print_addon_description(spec, desc);
 
-	// Append material requirements to the text widget.
-	autostr_append(desc, "\n%s%s%s\n", font_switchto_msgstat, _("Materials:"), font_switchto_msgvar);
+	//clean the array
+	memset(&ui.materials_for_selected, 0, sizeof(struct material) * 5);
 	for (i = 0; i < spec->materials.size; i++) {
-		autostr_append(desc, _("%s: %d\n"), materials[i].name, materials[i].value);
+		ui.materials_for_selected[i].item_type = GetItemIndexByName(materials[i].name);
+		ui.materials_for_selected[i].required = materials[i].value;
+		ui.materials_for_selected[i].available = CountItemtypeInInventory(ui.materials_for_selected[i].item_type);
 	}
 
 	// Scroll the text widget to the top.
@@ -154,6 +165,8 @@ static void craft_item()
 		// The player lost some materials so some of the recipes might have become
 		// unaffordable. We need to recheck for the requirements because of this.
 		check_recipe_requirements();
+		// And we need recheck the materials showed for the selected recipe
+		select_recipe(ui.selection);
 	}
 }
 
@@ -248,6 +261,10 @@ void show_addon_crafting_ui()
 	SetCurrentFont(Blue_BFont);
 	display_text(_("Details"), rects.details_text.x, rects.details_text.y, NULL);
 
+	// Draw the parts text
+	SetCurrentFont(Blue_BFont);
+	display_text(_("Parts"), rects.materials_list.x, rects.materials_list.y, NULL);
+
 	// Draw the apply and close buttons.
 	if (arr[ui.selection].available) {
 		ShowGenericButtonFromList(ADDON_CRAFTING_APPLY_BUTTON);
@@ -285,6 +302,66 @@ void show_addon_crafting_ui()
 			display_image_on_screen_scaled(img, icon_rect.x, icon_rect.y, scale);
 		}
 		rect.y += rect.h;
+	}
+
+#define MARGIN_SPACE (5)
+#define WIDTH_BORDER (5)
+	// Draw the parts on the tab
+	rect.x = rects.materials_list.x;
+	rect.y = rects.materials_list.y + 20 + MARGIN_SPACE;
+	rect.w = rects.materials_list.w;
+
+	char text[10];
+	for (i = 0; i < 5; i++) {
+		if(ui.materials_for_selected[i].required == 0){
+			continue;
+		}
+		// |         |
+		// |  @@@@@  |
+		// |  @@@@@  | < image
+		// |  @@@@@  |
+		// | 00 / 11 | < text
+
+		//search for image and display it
+		struct image *img = get_item_inventory_image(ui.materials_for_selected[i].item_type);
+		int x = rect.x + 30 - (img->h / 2);
+		int y = rect.y + MARGIN_SPACE;
+		display_image_on_screen(img, x, y );
+
+		//display the text
+		y = rect.y + MARGIN_SPACE + img->h ;
+
+		//first the divisor  (11 part in the diagram)
+		sprintf( text ,"%s%02d", font_switchto_neon, ui.materials_for_selected[i].required);
+		int w_text = TextWidth(text);
+		x = rect.x + rect.w  // the right border
+			 - WIDTH_BORDER // the blue border
+			 - w_text; // right justified
+		display_text(text, x, y, NULL);
+
+		//then the '/' center
+		w_text = TextWidth("/");
+		int half = w_text / 2;
+		x = rect.x + (rect.w / 2) // center of the column
+			 - half; // center placed
+		display_text("/", x, y, NULL);
+
+		//last dividend (00 part in the diagram)
+		if (ui.materials_for_selected[i].available < ui.materials_for_selected[i].required) {
+			sprintf( text ,"%s%02d", font_switchto_red, ui.materials_for_selected[i].available);
+		} else {
+			if (ui.materials_for_selected[i].available > 100)
+				sprintf( text ,"%s--", font_switchto_neon);
+			else
+				sprintf( text ,"%s%02d", font_switchto_neon, ui.materials_for_selected[i].available);
+		}
+		w_text = TextWidth(text);
+		x = rect.x + (rect.w / 2) // center of the column
+			 - half // the part used by /
+			 - w_text; // right justified
+		display_text(text, x , y , NULL);
+
+		rect.y += MARGIN_SPACE + img->h + 20;
 	}
 
 	// Draw the scroll buttons.
