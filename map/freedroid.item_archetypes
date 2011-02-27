@@ -147,7 +147,6 @@ Conventional main disadvantage - Expensive ammo!!
  Plasma Ammo                 Size 1x1 - lvl 4 - Speed: 15 - stack 6                                            - 4 
  Plasma Pistol        - 1H - Size 2x2 - lvl 6 - Dam:12-18 - Recharge: 0.75- Reload: 3.0 - Clip:  6 - Dur 30-40 - 750
  Plasma Gun           - 2H - Size 2x3 - lvl 7 - Dam:24-30 - Recharge: 1.0 - Reload: 5.0 - Clip: 12 - Dur 30-40 - 1200
- Plasma Cannon        - 2H - Size 3x4 - lvl 8 - Dam:50-80 - Recharge: 1.5 - Reload: 7.0 - Clip: 18 - Dur 30-40 - 1800 (str 24)
 -> * Caseless & Magnetic etc *  Implement more later?
  Exterminator Ammo    - lvl 6 - Speed: 30                                                                      - 5 
  Exterminator         - 2H - Size 2x2 - lvl 8 - Dam: 8-48  -Recharge: 0.5 - Reload: 5.0 - Clip:  2 - Dur 40-50 - 1000
@@ -1839,42 +1838,6 @@ Item as gun: modifier for starting angle=0.000000
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="plasma_ammunition"
 Item as gun: ammo clip size=12
-Item as gun: weapon requires both hands="yes"
-Item motion class="2hranged"
------ end of part only relevant for weapons -----
-** End of new item specification subsection **
-
-** Start of new item specification subsection **
-Item name=_"Plasma cannon"
-Item min class for drop=8
-Item max class for drop=9
-Item can be installed in slot with name="weapon"
-Tux part instance="iso_gun1"
-Item uses rotation series with prefix="weapons/plasma_cannon"
-Items of this type collect together in inventory="no"
-Strength minimum required to wear/wield this item=24
-Dexterity minimum required to wear/wield this item=-1
-Base item duration=30
-plus duration modifier=10
-File or directory name for inventory image="weapons/plasma_cannon/inv_image.png"
-Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
-Base list price=1800
-inventory_size_x=3
-inventory_size_y=4
-Item description text=_"The very slow firing rate is made up for by the awesome power of this weapon. Its main use in the military is as a close support weapon complementing the soldiers' bread and butter pulse lasers, especially when attacking enemies behind cover."
------ the following part is only relevant for weapons -----
-Item as gun: recharging time=1.500000
-Item as gun: reloading time=7.000000
-Item as gun: speed of bullets=15.000000
-Item as gun: is melee weapon=0
-Item as gun: damage of bullets=50
-Item as gun: modifier for damage of bullets=30
-Item as gun: bullet_image_type=7
-Item as gun: bullet_lifetime=-1.000000
-Item as gun: modifier for starting angle=0.000000
-Item as gun: pass through hit bodies="no"
-Item as gun: required ammunition type="plasma_ammunition"
-Item as gun: ammo clip size=18
 Item as gun: weapon requires both hands="yes"
 Item motion class="2hranged"
 ----- end of part only relevant for weapons -----
