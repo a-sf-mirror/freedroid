@@ -249,10 +249,6 @@ void iso_load_bullet_surfaces(void)
 	DebugPrintf(1, "Number_Of_Bullet_Types: %d.", Number_Of_Bullet_Types);
 
 	for (i = 0; i < Number_Of_Bullet_Types; i++) {
-		// Flash is not something we would have to load.
-		//
-		if (strlen(bullet_identifiers[i]) && !strcmp(bullet_identifiers[i], "flash_dummy"))
-			continue;
 		if (strlen(bullet_identifiers[i]) && !strcmp(bullet_identifiers[i], "ERROR:  UNHANDLED BULLET IMAGE TYPE"))
 			continue;
 
