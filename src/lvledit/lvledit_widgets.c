@@ -198,7 +198,7 @@ void leveleditor_init_widgets()
 		{LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON, NULL,
 			_("Next obstacle on currently selected tile\n\nUse this button to cycle the currently marked obstacle on this tile.\n\nYou can also use the N key for this.")},
 		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL,
-			_("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n Note that you can also use the hotkey 'h' for this.")},
+			_("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n")},
 		{LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, NULL,
 			_("New map label\n\nUse this button to attach a new map label to the current cursor position.  These map labels can be used to define starting points for bots and characters or also to define locations for events and triggers.")},
 		{LEVEL_EDITOR_EDIT_CHEST_BUTTON, NULL,
