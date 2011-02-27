@@ -2769,7 +2769,7 @@ void iso_put_tux(int x, int y)
 	// Render all Tux's parts in order
 	int i;
 	for (i = 0; i < 6; i++) {
-		if (one_render_set->part_render_data[i]) {
+		if (one_render_set && one_render_set->part_render_data[i]) {
 			iso_put_tux_part(one_render_set->part_render_data[i], x, y, motion_class, our_phase, rotation_index);
 		}
 	}
