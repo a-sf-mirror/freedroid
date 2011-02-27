@@ -35,11 +35,7 @@ typedef struct tColorRGBA {
 	Uint8 g;
 	Uint8 b;
 	Uint8 a;
-} tColorRGBA, myColor;
-
-typedef struct tColorY {
-	Uint8 y;
-} tColorY;
+} myColor;
 
 /**
  * Simple doubly linked list implementation.
