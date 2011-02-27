@@ -30,7 +30,7 @@
 #include "system.h"
 #include "defs.h"
 
-typedef struct tColorRGBA {
+typedef struct {
 	Uint8 r;
 	Uint8 g;
 	Uint8 b;
