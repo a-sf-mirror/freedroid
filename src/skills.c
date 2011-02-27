@@ -692,7 +692,7 @@ void load_skill_icon_if_needed(spell_skill_spec *spec)
  */
 static void load_skill_level_images_if_needed(void)
 {
-#define SKILL_LEVEL_BUTTON_FILE "skill_buttons.png"
+#define SKILL_LEVEL_BUTTON_FILE "mouse_buttons/skill_buttons.png"
 	int i = 0;
 	struct image img = EMPTY_IMAGE;
 	SDL_Rect src;
