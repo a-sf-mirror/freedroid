@@ -896,6 +896,7 @@ static void *lvlval_neighborhood_parse_excpt(char *string)
 	char *direction_name = ReadAndMallocStringFromData(string, "Interface:", " ");
 	if (!direction_name) {
 		ErrorMessage(__FUNCTION__, "The Direction of an exception was not found!\n", PLEASE_INFORM, IS_FATAL);
+		free(data);
 		return NULL;
 	}
 	data->jumptarget = direction_name[0];
