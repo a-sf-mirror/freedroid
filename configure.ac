@@ -89,7 +89,7 @@ AC_MSG_NOTICE([[Checking for compulsory SDL libraries:]])
 SDL_VERSION=1.2.3
 AM_PATH_SDL($SDL_VERSION,
             :,
-	    AC_MSG_ERROR([*** SDL version $SDL_VERSION not found! You need to install SDL to build and play FreedroidRPG. This includes the -dev packages on distributions that have them. Please refer to the README file.])
+	    AC_MSG_ERROR([*** SDL version $SDL_VERSION not found! You need to install SDL to build and play FreedroidRPG. This includes the -dev packages on distributions that have them. Please refer to the INSTALL file.])
 )
 CFLAGS="$CFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
@@ -112,7 +112,7 @@ see http://www.libsdl.org/]))
 
 AC_CHECK_LIB([SDL_gfx], [zoomSurface],,
 	AC_MSG_ERROR([SDL_gfx library needed for FreedroidRPG!
-Please refer to the README file]))
+Please refer to the INSTALL file]))
 
 AC_MSG_NOTICE([[Checking for optional SDL libraries:]])
 AC_CHECK_LIB([SDL_mixer], [Mix_ChannelFinished],, AC_MSG_WARN([
