@@ -457,69 +457,43 @@ static Uint8 add_val_to_component(Uint8 component, int value)
     return (Uint8)tmp;
 }
 
-/**
- * This function can be used to create a new surface that has a certain
- * color filter applied to it.  The default so far will be that the blue
- * color filter will be applied.
- */
-SDL_Surface *CreateColorFilteredSurface(SDL_Surface * FirstSurface, int FilterType)
+SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a, int highlight)
 {
-	SDL_Surface *ThirdSurface;	// this will be the surface we return to the calling function.
-	int x, y;		// for processing through the surface...
-	Uint8 red = 0;
-	Uint8 green = 0;
-	Uint8 blue = 0;
-	float alpha3;
+	uint8_t red, green, blue, alpha;
+	SDL_Surface *colored_surf;
+	int x, y;
 
-	// First we check for NULL surfaces given...
-	//
-	if (FirstSurface == NULL) {
-		DebugPrintf(0, "\nERROR in SDL_Surface* CreateBlueColorFilteredSurface ( ... ) : NULL PARAMETER GIVEN.\n");
-		Terminate(EXIT_FAILURE, TRUE);
-	}
-	// Now we create a new surface, best in display format with alpha channel
-	// ready to be blitted.
-	//
-	ThirdSurface = our_SDL_display_format_wrapperAlpha(FirstSurface);
+	colored_surf = our_SDL_display_format_wrapperAlpha(surf);
 
-	// Now we start to process through the whole surface and examine each
-	// pixel.
-	//
-	for (y = 0; y < FirstSurface->h; y++) {
-		for (x = 0; x < FirstSurface->w; x++) {
+	for (y = 0; y < surf->h; y++) {
+		for (x = 0; x < surf->w; x++) {
 
-			alpha3 = GetAlphaComponent(FirstSurface, x, y);
+			red = GetRedComponent(surf, x, y);
+			green = GetGreenComponent(surf, x, y);
+			blue = GetBlueComponent(surf, x, y);
+			alpha = GetAlphaComponent(surf, x, y);
 
-			red = GetRedComponent(FirstSurface, x, y);
-			green = GetGreenComponent(FirstSurface, x, y);
-			blue = GetBlueComponent(FirstSurface, x, y);
+			if (r != 1.0)
+				red *= r;
+			if (g != 1.0)
+				green *= g;
+			if (b != 1.0)
+				blue *= b;
+			if (a != 1.0)
+				alpha *= a;
 
-			if (FilterType == FILTER_BLUE) {
-				blue = (red + green + blue) / 3;
-				red = 0;
-				green = 0;
-			} else if (FilterType == FILTER_GREEN) {
-				green = (red + green + blue) / 3;
-				red = 0;
-				blue = 0;
-			} else if (FilterType == FILTER_RED) {
-				red = (red + green + blue) / 3;
-				green = 0;
-				blue = 0;
-			} else if (FilterType == FILTER_HIGHLIGHT) {
-				// Set luminosity.
+			if (highlight) {
 				red = add_val_to_component(red, 64);
 				green = add_val_to_component(green, 64);
 				blue = add_val_to_component(blue, 64);
 			}
 
-			pixelRGBA(ThirdSurface, x, y, red, green, blue, alpha3);
+			pixelRGBA(colored_surf, x, y, red, green, blue, alpha);
 		}
 	}
 
-	return (ThirdSurface);
-
-};				// SDL_Surface* CreateBlueColorFilteredSurface ( SDL_Surface* FirstSurface )
+	return colored_surf;
+}
 
 /**
  *

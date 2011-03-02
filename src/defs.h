@@ -202,9 +202,6 @@ enum {
 
 #define AUTOMAP_ZOOM_OUT_FACT 8.0
 
-// The color filters are:
-enum { FILTER_BLUE = 1, FILTER_GREEN = 2, FILTER_RED = 3, FILTER_HIGHLIGHT = 4 };
-
 //--------------------
 // Constants for Paths and names of Data-files
 // the root "FD_DATADIR" should be defined in the Makefile as $(pkgdatadir)

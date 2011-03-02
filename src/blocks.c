@@ -292,7 +292,7 @@ void sdl_highlight_iso_image(struct image *img, float pos_x, float pos_y)
 	tr.x = x + img->offset_x;
 	tr.y = y + img->offset_y;
 
-	SDL_Surface *surf = CreateColorFilteredSurface(img->surface, FILTER_HIGHLIGHT);
+	SDL_Surface *surf = sdl_create_colored_surface(img->surface, 1.0, 1.0, 1.0, 1.0, TRUE);
 	our_SDL_blit_surface_wrapper(surf, NULL, Screen, &tr);
 	SDL_FreeSurface(surf);
 }
@@ -451,7 +451,7 @@ void LoadAndPrepareGreenEnemyRotationModelNr(int ModelNr)
 	if (!use_open_gl) {
 		for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 			GreenEnemyRotationSurfacePointer[ModelNr][i][0].surface =
-			    CreateColorFilteredSurface(enemy_images[ModelNr][i][0].surface, FILTER_GREEN);
+			    sdl_create_colored_surface(enemy_images[ModelNr][i][0].surface, 0.2, 1.0, 0.2, 1.0, FALSE);
 			GreenEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_images[ModelNr][i][0].offset_x;
 			GreenEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_images[ModelNr][i][0].offset_y;
 		}
@@ -494,7 +494,7 @@ void LoadAndPrepareBlueEnemyRotationModelNr(int ModelNr)
 	//
 	for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 		BlueEnemyRotationSurfacePointer[ModelNr][i][0].surface =
-		    CreateColorFilteredSurface(enemy_images[ModelNr][i][0].surface, FILTER_BLUE);
+		    sdl_create_colored_surface(enemy_images[ModelNr][i][0].surface, 0.2, 0.2, 1.0, 1.0, FALSE);
 		BlueEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_images[ModelNr][i][0].offset_x;
 		BlueEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_images[ModelNr][i][0].offset_y;
 	}
@@ -536,7 +536,7 @@ void LoadAndPrepareRedEnemyRotationModelNr(int ModelNr)
 	//
 	for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 		RedEnemyRotationSurfacePointer[ModelNr][i][0].surface =
-		    CreateColorFilteredSurface(enemy_images[ModelNr][i][0].surface, FILTER_RED);
+		    sdl_create_colored_surface(enemy_images[ModelNr][i][0].surface, 1.0, 0.2, 0.2, 1.0, FALSE);
 		RedEnemyRotationSurfacePointer[ModelNr][i][0].offset_x = enemy_images[ModelNr][i][0].offset_x;
 		RedEnemyRotationSurfacePointer[ModelNr][i][0].offset_y = enemy_images[ModelNr][i][0].offset_y;
 	}
