@@ -224,7 +224,7 @@ LuaCode={
 	npc_says(_"I hope your arrival changes the tide of this war...", "NO_WAIT")
 	npc_says(_"I have something here for you. I managed to hide this Shotgun from the Red Guard.")
 	npc_says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
-	npc_says(get_player_name() .. _", if you ever find out who started the Great Assault... GIVE THEM A KICK IN THE ASS, FROM LILY STONE!!!")
+	npc_says(get_player_name() .. _", if you ever find out who started the Great Assault... GIVE THEM A SWIFT KICK FROM LILY STONE!!!")
 	set_bot_name(_"Lily Stone -- Shopowner")
 	add_item("Two Barrel shotgun",1)
 	end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
