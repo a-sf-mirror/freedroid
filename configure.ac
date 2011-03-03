@@ -123,13 +123,15 @@ AC_CHECK_LIB([SDL_gfx], [zoomSurface],,
 Please refer to the INSTALL file]))
 
 AC_MSG_NOTICE([[Checking for optional SDL libraries:]])
+summary_sound="yes"
 AC_CHECK_LIB([SDL_mixer], [Mix_ChannelFinished],, AC_MSG_WARN([
 --------------------------------------------------
 libSDL_mixer not found!
 You need the SDL_mixer library (version >= 1.2.1) if you want sound!
 (see see http://www.libsdl.org/)
 --> compiling without sound support
---------------------------------------------------]))
+--------------------------------------------------])
+summary_sound="SDL_mixer not found")
 
 if test x$want_vorbis = xyes; then
 AC_CHECK_LIB([ogg], [oggpack_read],, AC_MSG_WARN([
@@ -137,17 +139,20 @@ AC_CHECK_LIB([ogg], [oggpack_read],, AC_MSG_WARN([
 libogg not found!
 You need the Ogg libs installed if you want
 Freedroid to be able to play Ogg files (e.g. the Intro theme)
---------------------------------------------------]))
+--------------------------------------------------])
+summary_sound="no libogg")
 
 AC_CHECK_LIB([vorbis], [vorbis_block_init],, AC_MSG_WARN([
 --------------------------------------------------
 libvorbis not found!
 You need the Vorbis libs installed if you want
 Freedroid to be able to play Ogg files (e.g. the Intro theme)
---------------------------------------------------]))
+--------------------------------------------------])
+summary_sound="no libvorbis")
 else
 AC_DEFINE(HAVE_LIBOGG,0, [Define to 1 if ogg libs were found])
 AC_DEFINE(HAVE_LIBVORBIS,0, [Define to 1 if Vorbis libs were found])
+summary_sound="disabled"
 fi
 
 if test x$bsd = xtrue; then
@@ -180,6 +185,7 @@ WARNING: openGL libraries/headers could not be found.
 (if compiling on Darwin, try './configure --with-apple-opengl-framework')
 ----------------------------------------------------------------------
 ])
+   summary_have_gl="no"
 else
    if test x$want_gl = xyes; then
 	   AC_MSG_RESULT(yes)
@@ -188,6 +194,7 @@ else
 	   AC_DEFINE(HAVE_LIBGL,1, [Define to 1 if openGL libs were found])
 	   LIBS="$LIBS $GL_LIBS"
 	   CFLAGS="$CFLAGS $GL_CFLAGS"
+	   summary_have_gl="yes"
    else
 	   AC_MSG_RESULT(disabled by request)
 	   AC_MSG_WARN([ openGL disabled, but the libraries were found!
@@ -196,6 +203,7 @@ The gaming experience would be much better with openGL rendering.
 It is recommended to use openGL.
 ----------------------------------------------------------------------
 ])
+	   summary_have_gl="disabled"
    fi
 fi
 
@@ -224,3 +232,11 @@ AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile win32/Makefile])
 
 AC_OUTPUT
+
+echo "Summary:
+
+	use embedded Lua library (not system-wide):	$embedded_lua
+	compile with OpenGL support:	$summary_have_gl
+	compile with sound support:	$summary_sound	
+	"
+
