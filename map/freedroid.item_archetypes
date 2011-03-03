@@ -2844,7 +2844,7 @@ inventory_size_y=2
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Source Book of Satellite image"
+Item name=_"Source Book of Network Mapper"
 Item min class for drop=-1
 Item max class for drop=-1
 Item use when applied in combat=_"Permanently acquire/enhance this program"
@@ -2854,7 +2854,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="spellbook/inv_image_green.png"
 Item uses drop sound with filename="drop_book_sound.ogg"
 Base list price=300
-Item description text=_"Getting a map of an area is pretty easy when you can look at everything from above."
+Item description text=_"Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap."
 inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **

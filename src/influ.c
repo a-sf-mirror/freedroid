@@ -1769,6 +1769,7 @@ void init_tux()
 
 	Me.paralyze_duration = 0;
 	Me.invisible_duration = 0;
+	Me.nmap_duration = 0;
 
 	Me.readied_skill = 0;
 

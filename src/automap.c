@@ -41,6 +41,7 @@ int AUTOMAP_TEXTURE_HEIGHT = 1024;
 #define WALL_COLOR 0x00, 0xFF, 0xFF
 #define TUX_COLOR 0x00, 0x00, 0xFF
 #define FRIEND_COLOR 0x00, 0xFF, 0x00
+#define ENEMY_COLOR 0xFF, 0x00, 0x00
 
 static struct image compass;
 
@@ -335,6 +336,12 @@ void display_automap(void)
 								 AUTOMAP_SQUARE_SIZE * (automap_level->ylen - erot->pos.y) + x,
 								 AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * erot->pos.y + y,
 								 FRIEND_COLOR);
+				} else if (Me.nmap_duration > 0) {
+					PutPixel_automap_wrapper(Screen,
+								 AUTOMAP_SQUARE_SIZE * erot->pos.x +
+								 AUTOMAP_SQUARE_SIZE * (automap_level->ylen - erot->pos.y) + x,
+								 AUTOMAP_SQUARE_SIZE * erot->pos.x + AUTOMAP_SQUARE_SIZE * erot->pos.y + y,
+								 ENEMY_COLOR);
 				}
 			}
 		}

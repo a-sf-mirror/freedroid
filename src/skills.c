@@ -330,6 +330,7 @@ int DoSkill(int skill_index, int SpellCost)
 		Me.slowdown_duration += strcmp(SpellSkillMap[skill_index].effect, "slowdown") ? 0 : effdur;
 		Me.paralyze_duration += strcmp(SpellSkillMap[skill_index].effect, "paralyze") ? 0 : effdur;
 		Me.invisible_duration += strcmp(SpellSkillMap[skill_index].effect, "invisibility") ? 0 : effdur;
+		Me.nmap_duration += strcmp(SpellSkillMap[skill_index].effect, "nmap") ? 0 : effdur;
 		Me.light_bonus_end_date = Me.current_game_date + (strcmp(SpellSkillMap[skill_index].effect, "light") ? 0 : effdur);
 		break;
 

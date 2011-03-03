@@ -275,12 +275,15 @@ Effect duration per level=5
 Cost per level=1
 
 ** Start of new program specification subsection **
-Program name=_"Satellite image"
-Program description=_"NOT IMPLEMENTED YET Getting a map of an area is pretty easy when you can look at everything from above."
-Picture="SatelliteImage.png"
-Form="instant"
-Effect="maplevel"
+Program name=_"Network Mapper"
+Program description=_"Knowing what your enemies are up to is easy with a little signal intelligence. Displays enemy locations on your automap."
+Picture="NmapImage.png"
+Form="self"
+Effect="nmap"
 Cost=40
+Cost per level=-2
+Effect duration=3
+Effect duration per level=1
 Base damage=0
 
 ** Start of new program specification subsection **

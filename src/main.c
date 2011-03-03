@@ -409,12 +409,16 @@ void UpdateCountersForThisFrame()
 		Me.slowdown_duration -= latest_frame_time;
 	if (Me.invisible_duration > 0)
 		Me.invisible_duration -= latest_frame_time;
+	if (Me.nmap_duration > 0)
+		Me.nmap_duration -= latest_frame_time;
 	if (Me.paralyze_duration < 0)
 		Me.paralyze_duration = 0;
 	if (Me.slowdown_duration < 0)
 		Me.slowdown_duration = 0;
 	if (Me.invisible_duration < 0)
 		Me.invisible_duration = 0;
+	if (Me.nmap_duration < 0)
+		Me.nmap_duration = 0;
 
 	// In order to know when a level can finally be respawned with
 	// enemies, we keep track to the time spent actually in the game, i.e.
