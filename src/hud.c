@@ -437,6 +437,11 @@ void blit_energy_and_mana_bars(void)
 	blit_vertical_status_bar(Me.maxenergy, Me.energy,
 				 health_rect_color, un_health_rect_color,
 				 WHOLE_HEALTH_RECT_X, WHOLE_HEALTH_RECT_Y, WHOLE_HEALTH_RECT_W, WHOLE_HEALTH_RECT_H);
+
+	if (Me.god_mode)
+		PutStringFont(Screen, Messagestat_BFont,  UNIVERSAL_COORD_W(WHOLE_HEALTH_RECT_X),
+				UNIVERSAL_COORD_H(WHOLE_HEALTH_RECT_Y), "C");
+
 /*0 0 255
 vert grimpe, bleu baisse, rouge grimpe, vert baisse*/
 	int temp_ratio = Me.max_temperature ? (100 * Me.temperature) / Me.max_temperature : 100;
