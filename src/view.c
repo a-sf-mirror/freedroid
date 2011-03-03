@@ -164,14 +164,10 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 		if (AlarmItem->current_durability < 3)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
-#ifdef HAVE_LIBGL
-		if (use_open_gl) {
-			glColor3f(1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0);
-		}
-#endif
 		struct image *img = get_item_inventory_image(ItemImageCode);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, set_image_transformation(1.0, 1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0, 1.0));
 #ifdef HAVE_LIBGL
+		//XXX get rid of this which will be useless once everything has been moved to struct image
 		if (use_open_gl) {
 			glColor3f(1.0, 1.0, 1.0);
 		}
