@@ -190,7 +190,7 @@ void init_npcs()
 			{ "Laser power pack", 1 },
 			{ "Laser pistol", 1 },
 			{ "Laser pistol", 1 },
-			// too ugly and missing rotationimages		"Laser Rifle",
+			{ "Laser Rifle", 1 },
 			{ "Plasma energy container", 1 },
 			{ "Plasma energy container", 1 },
 			{ "Plasma energy container", 1 },
@@ -206,8 +206,8 @@ void init_npcs()
 	};
 
 	struct shop skippy_shop[] = { 
-		//		"Map Maker",  
-		//		Script?
+			//"Map Maker",
+			//Script?
 			{ "Teleporter homing beacon", 1 },
 			{ "Teleporter homing beacon", 1 },
 			{ "Teleporter homing beacon", 1 },
@@ -248,7 +248,6 @@ void init_npcs()
 			{ "Source Book of Dispel smoke", 1 },
 			{ "Source Book of Killer poke", 1 },
 			{ "Source Book of Invisibility", 1 },
-			//{ "Source Book of Analyze item", 1 },
 			//		"Source Book of Plasma discharge",
 			//		"Source Book of Reverse-engineer",
 			//		"Source Book of Nethack",
