@@ -1,159 +1,166 @@
 // this is the influencers small double shot
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.95
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 25
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
+Sound to play: "Fire_Bullet_Pulse_Sound_0.ogg"
 ** End of new bullet specification subsection **
 
 // this is the 476 standard shot
 ** Start of new bullet specification subsection **
+Bullet identification: "single"
 Time is takes to recharge this bullet/weapon in seconds : 1.2
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 40
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
+Sound to play: "Fire_Bullet_Single_Pulse_Sound_0.ogg"
 ** End of new bullet specification subsection **
 
 // this is the double 821 military shot
 ** Start of new bullet specification subsection **
+Bullet identification: "military"
 Time is takes to recharge this bullet/weapon in seconds : 1.4
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 55
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
+Sound to play: "Fire_Bullet_Military_Sound_0.ogg"
 ** End of new bullet specification subsection **
 
 // this is the disruptor, the 742 and 711 use
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 1.0
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 40
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // this is the exterminator, the 883 uses
 ** Start of new bullet specification subsection **
+Bullet identification: "exterminator"
 Time is takes to recharge this bullet/weapon in seconds : 3.0
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 80
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
+Sound to play: "Fire_Bullet_Exterminator_Sound_0.ogg"
 ** End of new bullet specification subsection **
 
 // this is the laser rifle of the 614
 ** Start of new bullet specification subsection **
+Bullet identification: "laser_rifle"
 Time is takes to recharge this bullet/weapon in seconds : 0.5
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 40
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
+Sound to play: "phaser.ogg"
 ** End of new bullet specification subsection **
 
 // this is half of the influencer primitive rifle
 ** Start of new bullet specification subsection **
+Bullet identification: "half_pulse"
 Time is takes to recharge this bullet/weapon in seconds : 0.8
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 12
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
+Sound to play: "Fire_Bullet_Single_Laser_Sound_0.ogg"
 ** End of new bullet specification subsection **
 
 // this is even less than half of the influencer shot, only a white ball so far
 ** Start of new bullet specification subsection **
+Bullet identification: "plasma_white"
 Time is takes to recharge this bullet/weapon in seconds : 0.4
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 8
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
+Sound to play: "Fire_Bullet_Single_Laser_Sound_0.ogg"
 ** End of new bullet specification subsection **
 
 // this is the yellow-red laser sword
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.4
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 8
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // this is the yellow-red laser axe
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.4
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 8
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // second version of the yellow-red laser sword
 ** Start of new bullet specification subsection **
+Bullet identification: "single"
 Time is takes to recharge this bullet/weapon in seconds : 0.4
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 8
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // this is half of the influencer primitive rifle, but colored in green
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.8
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 12
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // this is half of the influencer primitive rifle, but colored in blue
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.8
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 12
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // this is half of the influencer primitive rifle, but colored in magenta
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.8
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 12
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // this is half of the influencer primitive rifle, but colored in white
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.8
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 12
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **
 
 // this is half of the influencer primitive rifle, but colored in yellow
 ** Start of new bullet specification subsection **
+Bullet identification: "ERROR:  UNHANDLED BULLET IMAGE TYPE"
 Time is takes to recharge this bullet/weapon in seconds : 0.8
 Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 12
-Number of different phases that were designed for this bullet type : SEE CONFIG.THEME FILE
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
 ** End of new bullet specification subsection **

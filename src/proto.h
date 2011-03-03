@@ -113,6 +113,7 @@ void CheckBlastCollisions(int num);
 int find_free_bullet_index(void);
 int find_free_melee_shot_index(void);
 void delete_melee_shot(melee_shot *);
+int GetBulletByName(const char *bullet_name);
 
 // view.c 
 void gps_transform_map_init(void);

@@ -672,36 +672,7 @@ enum item_quality {
 	GOOD_QUALITY = 2
 };
 
-//--------------------
-// bullet types
-//
-// Important Note : this enum HAS to be in sync with bullet_identifiers[]
-// defined in iso_load_bullet_surfaces(), and so also with the
-// 'bullet_image_type' values in freedroid.item_archetypes
-//
-enum _bullets {
-	PULSE = 0,
-	SINGLE_PULSE,
-	MILITARY,
-	FLASH, // Not used
-	EXTERMINATOR,
-	LASER_RIFLE,
-	SINGLE_LASER,
-	PLASMA_PISTOL,
-	LASER_SWORD_1,
-	LASER_AXE,
-	LASER_SWORD_2,
-	GREEN_BULLET,
-	BLUE_BULLET,
-	MAGENTA_BULLET,
-	WHITE_BULLET
-	    //--------------------
-	    // If you add some more bullet types here, don't forget to
-	    //   1.  Also add a specification in the freedroid ruleset
-	    //   2.  Also add an entry for the number of phases in the config.theme file!!
-	    //   3.  Specify the size of the bullet image in the blocks.c loading function
-	    //
-};
+#define MAX_BULLET_DEFS 16
 
 //--------------------
 // explosion types

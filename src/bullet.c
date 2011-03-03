@@ -841,4 +841,25 @@ void CheckBlastCollisions(int num)
 	}
 }
 
+/**
+ * This function returns the bullet number of a specified bullet string.
+ * Bullet strings are defined in map/freedroid.bullet_archtypes
+ *
+ * Defaults to 0
+ */
+int GetBulletByName(const char *bullet_name)
+{
+	int i;
+	for (i=0; i < Number_Of_Bullet_Types; i++) {
+		if (!Bulletmap[i].name)
+			return 0;
+
+		if (!strcmp(bullet_name, Bulletmap[i].name))
+			return i;
+	}
+	ErrorMessage(__FUNCTION__, "\
+The bullet name \"%s\" lacks a definition.", PLEASE_INFORM, IS_WARNING_ONLY, bullet_name);
+	return 0;
+}
+
 #undef _bullet_c

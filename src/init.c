@@ -258,8 +258,10 @@ void Get_Bullet_Data(char *DataPointer)
 	while ((BulletPointer = strstr(BulletPointer, NEW_BULLET_TYPE_BEGIN_STRING)) != NULL) {
 		DebugPrintf(1, "\n\nFound another Bullet specification entry!  Lets add that to the others!");
 		BulletPointer++;	// to avoid doubly taking this entry
+		Bulletmap[BulletIndex].name = ReadAndMallocStringFromData(BulletPointer, "Bullet identification: \"", "\"");
 		Bulletmap[BulletIndex].phases = 1;
 		Bulletmap[BulletIndex].phase_changes_per_second = 1;
+		Bulletmap[BulletIndex].sound = ReadAndMallocStringFromDataOptional(BulletPointer, "Sound to play: \"", "\"");
 		BulletIndex++;
 	}
 

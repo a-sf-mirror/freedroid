@@ -1442,7 +1442,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 	if (Me.weapon_item.type != (-1))
 		Fire_Bullet_Sound(guntype);
 	else
-		Fire_Bullet_Sound(LASER_SWORD_1);
+		Fire_Bullet_Sound(GetBulletByName("laser_sword"));
 
 	FireTuxRangedWeaponRaw(Me.weapon_item.type, guntype, NULL, target_location);
 	return 0;

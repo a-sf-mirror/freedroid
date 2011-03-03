@@ -210,7 +210,7 @@ void Load_Mouse_Move_Cursor_Surfaces(void)
 };				// void Load_Mouse_Move_Cursor_Surfaces( void )
 
 /**
- *
+ * This function loads all the bullet images into memory.
  *
  */
 void iso_load_bullet_surfaces(void)
@@ -218,42 +218,15 @@ void iso_load_bullet_surfaces(void)
 	int i, j, k;
 	char constructed_filename[5000];
 
-	// Important Note : the following array HAS to be in sync with the
-	// enum _bullets (in defs.h), and so also with the 'bullet_image_type'
-	// values in freedroid.item_archetypes
-	char *bullet_identifiers[] = {
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 00 error-code
-		"single"       , // 1 "single" or "classic 476"
-		"military"     , // 2 "military" or "classic 821"
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",	// 03 error-code
-		"exterminator" , // 4 "exterminator" , same as in classic
-		"laser_rifle"  , // 5 "laser rifle" , same as in classic
-		"half_pulse"   , // 6 "just one half of the two classic 001"
-		"plasma_white" , // 7 small round white plasma ball
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 08 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 09 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 10 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 11 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 12 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 13 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 14 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 15 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 16 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 17 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 18 error-code
-		"ERROR:  UNHANDLED BULLET IMAGE TYPE",  // 19 error-code
-
-	};
-
 	DebugPrintf(1, "Number_Of_Bullet_Types: %d.", Number_Of_Bullet_Types);
 
 	for (i = 0; i < Number_Of_Bullet_Types; i++) {
-		if (strlen(bullet_identifiers[i]) && !strcmp(bullet_identifiers[i], "ERROR:  UNHANDLED BULLET IMAGE TYPE"))
+		if (strlen(Bulletmap[i].name) && !strcmp(Bulletmap[i].name, "ERROR:  UNHANDLED BULLET IMAGE TYPE"))
 			continue;
 
 		for (j = 0; j < Bulletmap[i].phases; j++) {
 			for (k = 0; k < BULLET_DIRECTIONS; k++) {
-				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", bullet_identifiers[i], k, j + 1);
+				sprintf(constructed_filename, "bullets/iso_bullet_%s_%02d_%04d.png", Bulletmap[i].name, k, j + 1);
 
 				load_image(&Bulletmap[i].image[k][j], constructed_filename, TRUE);
 			}

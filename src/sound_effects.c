@@ -440,42 +440,15 @@ void Fire_Bullet_Sound(int BulletType)
 	if (!sound_on)
 		return;
 
-	switch (BulletType) {
-	case PULSE:
-		play_sound_cached("effects/Fire_Bullet_Pulse_Sound_0.ogg");
-		break;
-
-	case SINGLE_PULSE:
-		play_sound_cached("effects/Fire_Bullet_Single_Pulse_Sound_0.ogg");
-		break;
-
-	case MILITARY:
-		play_sound_cached("effects/Fire_Bullet_Military_Sound_0.ogg");
-		break;
-
-	case EXTERMINATOR:
-		play_sound_cached("effects/Fire_Bullet_Exterminator_Sound_0.ogg");
-		break;
-
-	case LASER_RIFLE:
-		play_sound_cached("effects/phaser.ogg");
-		break;
-
-	case SINGLE_LASER:
-		play_sound_cached("effects/Fire_Bullet_Single_Laser_Sound_0.ogg");
-		break;
-
-	case PLASMA_PISTOL:
-		play_sound_cached("effects/Fire_Bullet_Plasma_Pistol_Sound_0.ogg");
-		break;
-
-	case LASER_SWORD_1:
-	case LASER_AXE:
-	case LASER_SWORD_2:
-	default:
+	if (!Bulletmap[BulletType].sound) {
 		play_melee_weapon_missed_sound();
-		break;
+		return;
 	}
+
+	char sound_file[100] = "effects/";
+	strcat(sound_file, Bulletmap[BulletType].sound);
+
+	play_sound_cached(sound_file);
 }
 
 /**

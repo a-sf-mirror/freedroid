@@ -621,6 +621,8 @@ typedef struct tux {
 } tux_t;
 
 typedef struct bulletspec {
+	char *name;		// what is the name of this bullet type
+	char *sound;		// what sound to play
 	int phases;		// how many phases in motion to show 
 	double phase_changes_per_second;	// how many different phases to display every second
 	struct image image[BULLET_DIRECTIONS][MAX_PHASES_IN_A_BULLET];
