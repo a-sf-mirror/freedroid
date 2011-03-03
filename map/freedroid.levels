@@ -27594,7 +27594,16 @@ idx=714 type=32 data={
 	Storage room
 }
 idx=687 type=32 data={
-	Danger! High voltage
+	Danger! High voltage!
+}
+idx=672 type=32 data={
+	Warning: Hot steam is hot!
+}
+idx=675 type=32 data={
+	Danger: High voltage!
+}
+idx=702 type=32 data={
+	To storage...
 }
 /obstacleextensions
 wp
@@ -31148,6 +31157,9 @@ idx=506 type=32 data={
 }
 idx=1814 type=32 data={
 	Please read the other sign first.
+}
+idx=1801 type=32 data={
+	Authorized personnel only!
 }
 /obstacleextensions
 wp
