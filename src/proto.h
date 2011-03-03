@@ -276,7 +276,6 @@ void ClearGraphMem(void);
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area);
 int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value);
-Uint8 GetAlphaComponent(SDL_Surface * surface, int x, int y);
 void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int glwidth);
 void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int r, int g, int b);
 void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);

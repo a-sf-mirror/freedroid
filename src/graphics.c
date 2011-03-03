@@ -304,147 +304,6 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 
 };				// int do_graphical_number_selection_in_range ( int lower_range , int upper_range )
 
-/**
- * This function gives the green component of a pixel, using a value of
- * 255 for the most green pixel and 0 for the least green pixel.
- */
-static Uint8 GetGreenComponent(SDL_Surface * surface, int x, int y)
-{
-	SDL_PixelFormat *fmt;
-	Uint32 temp, pixel;
-	Uint8 green;
-	int bpp = surface->format->BytesPerPixel;
-
-	// First we extract the pixel itself and the
-	// format information we need.
-	//
-	fmt = surface->format;
-	SDL_LockSurface(surface);
-	// pixel = * ( ( Uint32* ) surface -> pixels ) ;
-	//
-	// Now for the longest time we had this command here (which can actually segfault!!)
-	//
-	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
-	// 
-	pixel = *((Uint32 *) (((Uint8 *) (surface->pixels)) + (x + y * surface->w) * bpp));
-
-	SDL_UnlockSurface(surface);
-
-	// Now we can extract the green component
-	//
-	temp = pixel & fmt->Gmask;	/* Isolate green component */
-	temp = temp >> fmt->Gshift;	/* Shift it down to 8-bit */
-	temp = temp << fmt->Gloss;	/* Expand to a full 8-bit number */
-	green = (Uint8) temp;
-
-	return (green);
-
-};				// int GetGreenComponent ( SDL_Surface* SourceSurface , int x , int y )
-
-/**
- * This function gives the red component of a pixel, using a value of
- * 255 for the most red pixel and 0 for the least red pixel.
- */
-static Uint8 GetRedComponent(SDL_Surface * surface, int x, int y)
-{
-	SDL_PixelFormat *fmt;
-	Uint32 temp, pixel;
-	Uint8 red;
-	int bpp = surface->format->BytesPerPixel;
-
-	// First we extract the pixel itself and the
-	// format information we need.
-	//
-	fmt = surface->format;
-	SDL_LockSurface(surface);
-	// pixel = * ( ( Uint32* ) surface -> pixels ) ;
-	// Now for the longest time we had this command here (which can actually segfault!!)
-	//
-	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
-	// 
-	pixel = *((Uint32 *) (((Uint8 *) (surface->pixels)) + (x + y * surface->w) * bpp));
-	SDL_UnlockSurface(surface);
-
-	// Now we can extract the red component
-	//
-	temp = pixel & fmt->Rmask;	/* Isolate red component */
-	temp = temp >> fmt->Rshift;	/* Shift it down to 8-bit */
-	temp = temp << fmt->Rloss;	/* Expand to a full 8-bit number */
-	red = (Uint8) temp;
-
-	return (red);
-
-};				// int GetRedComponent ( SDL_Surface* SourceSurface , int x , int y )
-
-/**
- * This function gives the blue component of a pixel, using a value of
- * 255 for the most blue pixel and 0 for the least blue pixel.
- */
-static Uint8 GetBlueComponent(SDL_Surface * surface, int x, int y)
-{
-	SDL_PixelFormat *fmt;
-	Uint32 temp, pixel;
-	Uint8 blue;
-	int bpp = surface->format->BytesPerPixel;
-
-	// First we extract the pixel itself and the
-	// format information we need.
-	//
-	fmt = surface->format;
-	SDL_LockSurface(surface);
-	// pixel = * ( ( Uint32* ) surface -> pixels ) ;
-	// Now for the longest time we had this command here (which can actually segfault!!)
-	//
-	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
-	// 
-	pixel = *((Uint32 *) (((Uint8 *) (surface->pixels)) + (x + y * surface->w) * bpp));
-	SDL_UnlockSurface(surface);
-
-	// Now we can extract the blue component
-	//
-	temp = pixel & fmt->Bmask;	/* Isolate blue component */
-	temp = temp >> fmt->Bshift;	/* Shift it down to 8-bit */
-	temp = temp << fmt->Bloss;	/* Expand to a full 8-bit number */
-	blue = (Uint8) temp;
-
-	return (blue);
-
-};				// int GetBlueComponent ( SDL_Surface* SourceSurface , int x , int y )
-
-/**
- * This function gives the alpha component of a pixel, using a value of
- * 255 for the most opaque pixel and 0 for the least opaque pixel.
- */
-Uint8 GetAlphaComponent(SDL_Surface * surface, int x, int y)
-{
-	SDL_PixelFormat *fmt;
-	Uint32 temp, pixel;
-	Uint8 alpha;
-	int bpp = surface->format->BytesPerPixel;
-
-	// First we extract the pixel itself and the
-	// format information we need.
-	//
-	fmt = surface->format;
-	SDL_LockSurface(surface);
-	// Now for the longest time we had this command here (which can actually segfault!!)
-	//
-	// pixel = * ( ( ( Uint32* ) surface -> pixels ) + x + y * surface->w )  ;
-	// 
-	pixel = *((Uint32 *) (((Uint8 *) (surface->pixels)) + (x + y * surface->w) * bpp));
-	SDL_UnlockSurface(surface);
-
-	// Now we can extract the alpha component
-	//
-	temp = pixel & fmt->Amask;	/* Isolate alpha component */
-	temp = temp >> fmt->Ashift;	/* Shift it down to 8-bit */
-	temp = temp << fmt->Aloss;	/* Expand to a full 8-bit number */
-	alpha = (Uint8) temp;
-
-	return (alpha);
-
-};				// Uint8 GetAlphaComponent ( SDL_Surface* SourceSurface , int x , int y )
-
 static Uint8 add_val_to_component(Uint8 component, int value)
 {
 	int tmp;
@@ -455,6 +314,19 @@ static Uint8 add_val_to_component(Uint8 component, int value)
 	tmp = (tmp < 0) ? 0 : tmp;
 
     return (Uint8)tmp;
+}
+static void get_components(SDL_Surface *surf, int x, int y, uint8_t *r, uint8_t *g, uint8_t *b, uint8_t *a)
+{
+	SDL_PixelFormat *fmt = surf->format;
+
+	SDL_LockSurface(surf);
+	Uint32 pixel = *((Uint32 *) (((Uint8 *) (surf->pixels)) + (x + y * surf->w) * surf->format->BytesPerPixel));
+	SDL_UnlockSurface(surf);
+
+	*r = (pixel >> fmt->Rshift) & 0xFF;
+	*g = (pixel >> fmt->Gshift) & 0xFF;
+	*b = (pixel >> fmt->Bshift) & 0xFF;
+	*a = (pixel >> fmt->Ashift) & 0xFF;
 }
 
 SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a, int highlight)
@@ -468,10 +340,7 @@ SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, flo
 	for (y = 0; y < surf->h; y++) {
 		for (x = 0; x < surf->w; x++) {
 
-			red = GetRedComponent(surf, x, y);
-			green = GetGreenComponent(surf, x, y);
-			blue = GetBlueComponent(surf, x, y);
-			alpha = GetAlphaComponent(surf, x, y);
+			get_components(surf, x, y, &red, &green, &blue, &alpha);
 
 			if (r != 1.0)
 				red *= r;

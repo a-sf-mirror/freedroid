@@ -139,49 +139,6 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 #endif
 }
 
-static void get_components(SDL_Surface *surf, int x, int y, int *r, int *g, int *b, int *a)
-{
-	SDL_PixelFormat *fmt = surf->format;
-
-	SDL_LockSurface(surf);
-	Uint32 pixel = *((Uint32 *) (((Uint8 *) (surf->pixels)) + (x + y * surf->w) * surf->format->BytesPerPixel));
-	SDL_UnlockSurface(surf);
-
-	*r = (pixel >> fmt->Rshift) & 0xFF;
-	*g = (pixel >> fmt->Gshift) & 0xFF;
-	*b = (pixel >> fmt->Bshift) & 0xFF;
-	*a = (pixel >> fmt->Ashift) & 0xFF;
-}
-
-static SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a)
-{
-	int red, green, blue, alpha;
-	SDL_Surface *colored_surf;
-	int x, y;
-
-	colored_surf = our_SDL_display_format_wrapperAlpha(surf);
-
-	for (y = 0; y < surf->h; y++) {
-		for (x = 0; x < surf->w; x++) {
-
-			get_components(surf, x, y, &red, &green, &blue, &alpha);
-
-			if (r != 1.0)
-				red *= r;
-			if (g != 1.0)
-				green *= g;
-			if (b != 1.0)
-				blue *= b;
-			if (a != 1.0)
-				alpha *= a;
-
-			pixelRGBA(colored_surf, x, y, red, green, blue, alpha);
-		}
-	}
-
-	return colored_surf;
-}
-
 /**
  * Draw an image in SDL mode.
  */
@@ -212,7 +169,7 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 			}
 
 			if (t->r != 1.0 || t->g != 1.0 || t->b != 1.0 || t->a != 1.0) {
-				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a);
+				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a, 0);
 
 				if (scaled)
 					SDL_FreeSurface(t->surface);
