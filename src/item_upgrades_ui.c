@@ -301,13 +301,13 @@ void show_item_upgrade_ui()
 			rect = rects.socket_slots[i];
 			rect.x += (rect.w - image->w) / 2;
 			rect.y += (rect.h - image->h) / 2;
-			display_image_on_screen(image, rect.x, rect.y);
+			display_image_on_screen(image, rect.x, rect.y, IMAGE_NO_TRANSFO);
 			if (i < sockets->size && ui.custom_item.upgrade_sockets.arr[i].addon) {
 				image = &images[IMAGE_SOCKET_INSTALLED];
 				rect = rects.socket_slots[i];
 				rect.x += (rect.w - image->w) / 2;
 				rect.y += (rect.h - image->h) / 2;
-				display_image_on_screen(image, rect.x, rect.y);
+				display_image_on_screen(image, rect.x, rect.y, IMAGE_NO_TRANSFO);
 			}
 		}
 
@@ -320,7 +320,7 @@ void show_item_upgrade_ui()
 					rect = rects.socket_slots[i];
 					rect.x += (rect.w - img->w) / 2;
 					rect.y += (rect.h - img->h) / 2;
-					display_image_on_screen(img, rect.x, rect.y);
+					display_image_on_screen(img, rect.x, rect.y, IMAGE_NO_TRANSFO);
 				}
 			}
 		}

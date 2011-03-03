@@ -251,10 +251,10 @@ int PutCharFont(SDL_Surface * Surface, BFont_Info * Font, int x, int y, unsigned
 			SDL_GetClipRect(Surface, &clipping_rect);
 
 			if ((dest.x < clipping_rect.x + clipping_rect.w) && (dest.x >= clipping_rect.x)) {
-				display_image_on_screen(img, dest.x, dest.y);
+				display_image_on_screen(img, dest.x, dest.y, IMAGE_NO_TRANSFO);
 			}
 		} else {
-			display_image_on_screen(img, dest.x, dest.y);
+			display_image_on_screen(img, dest.x, dest.y, IMAGE_NO_TRANSFO);
 		}
 	}
 

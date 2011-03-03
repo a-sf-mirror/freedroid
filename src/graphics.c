@@ -98,7 +98,7 @@ void blit_mouse_cursor(void)
 
 	// Blit the mouse cursor
 	display_image_on_screen(&mouse_cursors[cursor_index],
-									  GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y);
+									  GetMousePos_x() + cursoff.x, GetMousePos_y() + cursoff.y, IMAGE_NO_TRANSFO);
 
 	// Reset the mouse cursor for next frame
 	mouse_cursor = MOUSE_CURSOR_NORMAL;
@@ -210,7 +210,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 		ShowGenericButtonFromList(NUMBER_SELECTOR_OK_BUTTON);
 		knob_target_rect.x = knob_start_x + knob_offset_x - selection_knob.w / 2;
 		knob_target_rect.y = UNIVERSAL_COORD_H(260) - selection_knob.h / 2;
-		display_image_on_screen(&selection_knob, knob_target_rect.x, knob_target_rect.y); 
+		display_image_on_screen(&selection_knob, knob_target_rect.x, knob_target_rect.y, IMAGE_NO_TRANSFO); 
 		sprintf(number_text, "%d", knob_at);
 		PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(190), number_text);
 		blit_mouse_cursor();

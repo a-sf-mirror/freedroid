@@ -863,15 +863,14 @@ int get_waypoint(level *, int, int);
 // image.c
 void start_image_batch(void);
 void end_image_batch(void);
-void display_image_on_screen_scaled(struct image *img, int x, int y, float scale);
-void display_image_on_screen(struct image *img, int x, int y);
-void display_image_on_map_scaled(struct image *img, float X, float Y, float scale);
-void display_image_on_map(struct image *img, float X, float Y);
+void display_image_on_screen(struct image *img, int x, int y, struct image_transformation t);
+void display_image_on_map(struct image *img, float X, float Y, struct image_transformation t);
 void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect);
 void load_image(struct image *, const char *, int);
 void load_image_surface(struct image *img, const char *filename, int use_offset_file);
 void free_image_surface(struct image *img);
 void delete_image(struct image *img);
 int image_loaded(struct image *);
+struct image_transformation set_image_transformation(float scale, float r, float g, float b, float a);
 
 #endif

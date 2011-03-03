@@ -195,11 +195,11 @@ void ShowRescaledItem(int position, int TuxItemRow, item * ShowItem)
 	
 	struct image *img = get_item_shop_image(ShowItem->type);
 	if (img) {
-		display_image_on_screen(img, TargetRectangle.x, TargetRectangle.y);
+		display_image_on_screen(img, TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
 	}
 
 	if (item_is_currently_equipped(ShowItem)) {
-		display_image_on_screen(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24, TargetRectangle.y);
+		display_image_on_screen(&equipped_icon, TargetRectangle.x + TargetRectangle.w - 24, TargetRectangle.y, IMAGE_NO_TRANSFO);
 	}
 };				// void ShowRescaledItem ( int position , item* ShowItem )
 
@@ -259,7 +259,7 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 	RotationIndex = RotationIndex - (RotationIndex / NumberOfImagesInThisRotation) * NumberOfImagesInThisRotation;
 
 	if (image_loaded(&item_rotation_img[RotationIndex]))
-			display_image_on_screen(&item_rotation_img[RotationIndex], PosX, PosY);
+			display_image_on_screen(&item_rotation_img[RotationIndex], PosX, PosY, IMAGE_NO_TRANSFO);
 }
 
 /**

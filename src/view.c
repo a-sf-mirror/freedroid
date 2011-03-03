@@ -134,7 +134,7 @@ static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 		TargetRect.y = 0;
 
 	struct image *img = get_item_inventory_image(ItemImageCode);
-	display_image_on_screen(img, TargetRect.x, TargetRect.y);
+	display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 }
 
 /**
@@ -170,7 +170,7 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 		}
 #endif
 		struct image *img = get_item_inventory_image(ItemImageCode);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 #ifdef HAVE_LIBGL
 		if (use_open_gl) {
 			glColor3f(1.0, 1.0, 1.0);
@@ -282,13 +282,8 @@ static void show_floor(int mask)
 				r = g = b = 1.0;
 			}
 
-#if HAVE_LIBGL
-			if (use_open_gl)
-				glColor3f(r, g, b);
-#endif
-
 			struct image *img = &(floor_images[MapBrick]);
-			display_image_on_map_scaled(img, (float)col + 0.5, (float)line + 0.5, zf);
+			display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, set_image_transformation(zf, r, g, b, 1.0));
 		}
 	}
 
@@ -1364,7 +1359,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			if (!GameConfig.skip_shadow_blitting) {
 				gps vpos;
 				update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
-				display_image_on_map_scaled(&obstacle_map[our_obstacle->type].shadow_image, vpos.x, vpos.y, mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0);
+				display_image_on_map(&obstacle_map[our_obstacle->type].shadow_image, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0));
 			}
 			
 			// If the obstacle in question does have a collision rectangle, then we
@@ -1980,7 +1975,7 @@ void PutMouseMoveCursor(void)
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(Me.mouse_move_target.x, Me.mouse_move_target.y);
 		TargetRectangle.x -= MouseCursorImageList[0].w / 2;
 		TargetRectangle.y -= MouseCursorImageList[0].h / 2;
-		display_image_on_screen(&MouseCursorImageList[0], TargetRectangle.x, TargetRectangle.y);
+		display_image_on_screen(&MouseCursorImageList[0], TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
 	}
 
 	enemy *t = enemy_resolve_address(Me.current_enemy_target_n, &Me.current_enemy_target_addr);
@@ -1992,7 +1987,7 @@ void PutMouseMoveCursor(void)
 		TargetRectangle.y = translate_map_point_to_screen_pixel_y(t->virt_pos.x, t->virt_pos.y);
 		TargetRectangle.x -= MouseCursorImageList[1].w / 2;
 		TargetRectangle.y -= MouseCursorImageList[1].h / 2;
-		display_image_on_screen(&MouseCursorImageList[1], TargetRectangle.x, TargetRectangle.y);
+		display_image_on_screen(&MouseCursorImageList[1], TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
 	}
 }
 
@@ -2514,7 +2509,7 @@ void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, in
 			blit_iso_image_to_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
 					Me.pos.x, Me.pos.y);
 		} else {
-			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y);
+			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y, IMAGE_NO_TRANSFO);
 		}
 
 	}
@@ -2546,7 +2541,7 @@ void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, in
 			draw_gl_textured_quad_at_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
 					Me.pos.x, Me.pos.y, r, g, b, FALSE, blend, 1.0);
 		} else {
-			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y);
+			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y, IMAGE_NO_TRANSFO);
 		}
 	}
 #endif
@@ -3086,7 +3081,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	if ((TargetRectangle.x != 0) && (TargetRectangle.y != 0)) {
 		RotationIndex = 0;
 		display_image_on_screen(&enemy_images[RotationModel][RotationIndex][0],
-										  TargetRectangle.x, TargetRectangle.y);
+										  TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
 		return;
 	}
 	// But here we know, that the enemy is desired inside the game, so we need to
@@ -3304,7 +3299,7 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 	if (mask & ZOOM_OUT)
 		scale = lvledit_zoomfact_inv();
 
-	display_image_on_map_scaled(&Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y, scale);
+	display_image_on_map(&Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(scale));
 }
 
 /**
@@ -3500,7 +3495,7 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 		}
 
 		display_image_on_screen(&PrerotatedSparkSurfaces[SparkType][PictureType][PrerotationIndex],
-								 TargetRectangle.x, TargetRectangle.y);
+								 TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
 	}
 }
 
@@ -3534,7 +3529,7 @@ exist at all.", PLEASE_INFORM, IS_FATAL);
 	if (vpos.x == -1)
 		return;
 
-	display_image_on_map(&Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y);
+	display_image_on_map(&Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y, IMAGE_NO_TRANSFO);
 }
 
 /**
@@ -3599,7 +3594,7 @@ static void show_inventory_screen(void)
 	TargetRect.y = InventoryRect.y + DRIVE_RECT_Y;
 	if (item_held_in_hand != &Me.drive_item && (Me.drive_item.type != (-1))) {
 		struct image *img = get_item_inventory_image(Me.drive_item.type);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 	}
 
 	// Now we display the item in the influencer weapon slot
@@ -3612,7 +3607,7 @@ static void show_inventory_screen(void)
 		TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_size.x);
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_size.y);
 		struct image *img = get_item_inventory_image(Me.weapon_item.type);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 
 		// Maybe this is also a 2-handed weapon.  In this case we need to blit the
 		// weapon a second time, this time in the center of the shield rectangle to
@@ -3625,7 +3620,7 @@ static void show_inventory_screen(void)
 			TargetRect.y = InventoryRect.y + SHIELD_RECT_Y;
 			TargetRect.x += INV_SUBSQUARE_WIDTH * 0.5 * (2 - ItemMap[Me.weapon_item.type].inv_size.x);
 			TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.weapon_item.type].inv_size.y);
-			display_image_on_screen(img, TargetRect.x, TargetRect.y);
+			display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 		}
 	}
 	// Now we display the item in the influencer armour slot
@@ -3634,7 +3629,7 @@ static void show_inventory_screen(void)
 	TargetRect.y = InventoryRect.y + ARMOUR_RECT_Y;
 	if (item_held_in_hand != &Me.armour_item && (Me.armour_item.type != (-1))) {
 		struct image *img = get_item_inventory_image(Me.armour_item.type);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 	}
 	// Now we display the item in the influencer shield slot
 	//
@@ -3647,7 +3642,7 @@ static void show_inventory_screen(void)
 		//
 		TargetRect.y += INV_SUBSQUARE_HEIGHT * 0.5 * (3 - ItemMap[Me.shield_item.type].inv_size.y);
 		struct image *img = get_item_inventory_image(Me.shield_item.type);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 	}
 	// Now we display the item in the influencer special slot
 	//
@@ -3655,7 +3650,7 @@ static void show_inventory_screen(void)
 	TargetRect.y = InventoryRect.y + HELMET_RECT_Y;
 	if (item_held_in_hand != &Me.special_item && (Me.special_item.type != (-1))) {
 		struct image *img = get_item_inventory_image(Me.special_item.type);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 	}
 	// Now we display all the items the influencer is carrying with him
 	//
@@ -3700,7 +3695,7 @@ static void show_inventory_screen(void)
 		TargetRect.y = User_Rect.y + INVENTORY_RECT_Y + INV_SUBSQUARE_HEIGHT * Me.Inventory[SlotNum].inventory_position.y;
 
 		struct image *img = get_item_inventory_image(Me.Inventory[SlotNum].type);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y);
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, IMAGE_NO_TRANSFO);
 
 		// Show amount
 		if (ItemMap[Me.Inventory[SlotNum].type].item_group_together_in_inventory) {

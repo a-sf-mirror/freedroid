@@ -585,7 +585,7 @@ static void ShowSkillsExplanationScreen(void)
 
 	load_skill_icon_if_needed(spec);
 	display_image_on_screen(&spec->icon_surface,
-						 TargetSkillRect.x, TargetSkillRect.y);
+						 TargetSkillRect.x, TargetSkillRect.y, IMAGE_NO_TRANSFO);
 
 	// Draws the explanation text
 	//
@@ -792,7 +792,7 @@ void ShowSkillsScreen(void)
 	//
 	SpellLevelRect.x = SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + SPELL_LEVEL_BUTTON_WIDTH * GameConfig.spell_level_visible;
 	SpellLevelRect.y = SkillScreenRect.y + SPELL_LEVEL_BUTTONS_Y;
-	display_image_on_screen(&skill_level_images[GameConfig.spell_level_visible], SpellLevelRect.x, SpellLevelRect.y);
+	display_image_on_screen(&skill_level_images[GameConfig.spell_level_visible], SpellLevelRect.x, SpellLevelRect.y, IMAGE_NO_TRANSFO);
 
 	// Now we fill in the skills available to this bot.  ( For now, these skills 
 	// are not class-specific, like in diablo or something, but this is our first
@@ -812,7 +812,7 @@ void ShowSkillsScreen(void)
 
 		load_skill_icon_if_needed(&SpellSkillMap[SkillOfThisSlot]);
 
-		display_image_on_screen(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y);
+		display_image_on_screen(&SpellSkillMap[SkillOfThisSlot].icon_surface, ButtonRect.x, ButtonRect.y, IMAGE_NO_TRANSFO);
 
 		SetCurrentFont(FPS_Display_BFont);
 

@@ -299,7 +299,7 @@ void show_addon_crafting_ui()
 			icon_rect.h = RECIPE_LIST_ROW_HEIGHT;
 			icon_rect.x = rect.x + (icon_rect.w - (img->w * scale)) / 2;
 			icon_rect.y = rect.y + (icon_rect.h - (img->h * scale)) / 2;
-			display_image_on_screen_scaled(img, icon_rect.x, icon_rect.y, scale);
+			display_image_on_screen(img, icon_rect.x, icon_rect.y, IMAGE_SCALE_TRANSFO(scale));
 		}
 		rect.y += rect.h;
 	}
@@ -326,7 +326,7 @@ void show_addon_crafting_ui()
 		struct image *img = get_item_inventory_image(ui.materials_for_selected[i].item_type);
 		int x = rect.x + 30 - (img->h / 2);
 		int y = rect.y + MARGIN_SPACE;
-		display_image_on_screen(img, x, y );
+		display_image_on_screen(img, x, y, IMAGE_NO_TRANSFO);
 
 		//display the text
 		y = rect.y + MARGIN_SPACE + img->h ;

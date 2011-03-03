@@ -65,15 +65,23 @@ typedef struct upgrade_socket_dynarray {
 /* prototype for BFont_Info from BFont.h */
 struct BFont_Info;
 
-/* ----------------------------------------------------------------------
+struct image_transformation {
+	SDL_Surface *surface;		
+	float scale;
+	float r;
+	float g;
+	float b;
+	float a;
+};
+
+/**
  * This structure defines an image in FreedroidRPG. It contains information
  * that enables rendering using SDL or OpenGL.
- * ---------------------------------------------------------------------- */
+ */
 struct image {
 	SDL_Surface *surface;
 	short offset_x;
 	short offset_y;
-	SDL_Surface *zoomed_out_surface;
 	short w;
 	short h;
 	int texture_has_been_created;
@@ -86,8 +94,12 @@ struct image {
 	float tex_y1;
 	short tex_w;
 	short tex_h;
+
+	struct image_transformation cached_transformation;
+	
+	SDL_Surface *zoomed_out_surface; // remove me
 };
-#define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .zoomed_out_surface = NULL , .texture_has_been_created = 0 }
+#define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .texture_has_been_created = 0 , .cached_transformation = { NULL, 0.0, 0, 0, 0, 0 } }
 
 typedef struct mouse_press_button {
 	struct image button_image;

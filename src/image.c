@@ -90,7 +90,7 @@ void end_image_batch()
  * Changes the active texture if necessary, and emits glBegin/glEnd pairs
  * according to the texture switches and whether a batch is required.
  */
-static void gl_display_image(struct image *img, int x, int y, float scale)
+static void gl_display_image(struct image *img, int x, int y, struct image_transformation *t)
 {
 	// Compute image coordinates according to scale factor
 	int xmax = img->w;
@@ -98,12 +98,14 @@ static void gl_display_image(struct image *img, int x, int y, float scale)
 	int xoff = img->offset_x;
 	int yoff = img->offset_y;
 
-	if (scale != 1.0) {
-		xmax *= scale;
-		ymax *= scale;
-		xoff *= scale;
-		yoff *= scale;
+	if (t->scale != 1.0) {
+		xmax *= t->scale;
+		ymax *= t->scale;
+		xoff *= t->scale;
+		yoff *= t->scale;
 	}
+
+	glColor4f(t->r, t->g, t->b, t->a);
 
 	x += xoff;
 	y += yoff;
@@ -137,69 +139,122 @@ static void gl_display_image(struct image *img, int x, int y, float scale)
 #endif
 }
 
+static void get_components(SDL_Surface *surf, int x, int y, int *r, int *g, int *b, int *a)
+{
+	SDL_PixelFormat *fmt = surf->format;
+
+	SDL_LockSurface(surf);
+	Uint32 pixel = *((Uint32 *) (((Uint8 *) (surf->pixels)) + (x + y * surf->w) * surf->format->BytesPerPixel));
+	SDL_UnlockSurface(surf);
+
+	*r = (pixel >> fmt->Rshift) & 0xFF;
+	*g = (pixel >> fmt->Gshift) & 0xFF;
+	*b = (pixel >> fmt->Bshift) & 0xFF;
+	*a = (pixel >> fmt->Ashift) & 0xFF;
+}
+
+static SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a)
+{
+	int red, green, blue, alpha;
+	SDL_Surface *colored_surf;
+	int x, y;
+
+	colored_surf = our_SDL_display_format_wrapperAlpha(surf);
+
+	for (y = 0; y < surf->h; y++) {
+		for (x = 0; x < surf->w; x++) {
+
+			get_components(surf, x, y, &red, &green, &blue, &alpha);
+
+			if (r != 1.0)
+				red *= r;
+			if (g != 1.0)
+				green *= g;
+			if (b != 1.0)
+				blue *= b;
+			if (a != 1.0)
+				alpha *= a;
+
+			pixelRGBA(colored_surf, x, y, red, green, blue, alpha);
+		}
+	}
+
+	return colored_surf;
+}
+
 /**
  * Draw an image in SDL mode.
  */
-static void sdl_display_image(struct image *img, int x, int y, int zoomed)
+static void sdl_display_image(struct image *img, int x, int y, struct image_transformation *t)
 {
 	SDL_Rect target_rectangle = { .x = x, .y = y };
 	SDL_Surface *surf;
 
-	if (zoomed) {
-		float zoom_factor = lvledit_zoomfact_inv();
-		make_sure_zoomed_surface_is_there(img);
-		target_rectangle.x += img->offset_x * zoom_factor;
-		target_rectangle.y += img->offset_y * zoom_factor;
-		surf = img->zoomed_out_surface;
-	} else {
-		target_rectangle.x += img->offset_x;
-		target_rectangle.y += img->offset_y;
+	// Check if the image must be transformed
+	if (t->scale == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0) {
+		// No transformation
 		surf = img->surface;
+	} else {
+		// Transformed image
+
+		// Check if the transformation is in cache
+		struct image_transformation *cache = &img->cached_transformation;
+		if (!cache->surface || cache->scale != t->scale || cache->r != t->r || cache->g != t->g || cache->b != t->b || cache->a != t->a) {
+			// Transformed image is not in cache, create it
+
+			int scaled;
+			if (t->scale != 1.0) {
+				t->surface = zoomSurface(img->surface, t->scale, t->scale, FALSE); 
+				scaled = 1;
+			} else {
+				t->surface = img->surface;
+				scaled = 0;
+			}
+
+			if (t->r != 1.0 || t->g != 1.0 || t->b != 1.0 || t->a != 1.0) {
+				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a);
+
+				if (scaled)
+					SDL_FreeSurface(t->surface);
+
+				t->surface = tmp;
+			}
+
+			// Cache the transformation we have done
+			if (cache->surface)
+				SDL_FreeSurface(cache->surface);
+
+			*cache = *t;
+		}
+
+		// Use the transformed surface in the cache
+		surf = cache->surface;
 	}
+
+	target_rectangle.x += img->offset_x * t->scale;
+	target_rectangle.y += img->offset_y * t->scale;
 
 	SDL_BlitSurface(surf, NULL, Screen, &target_rectangle);
 }
 
 /**
- * Draw an image at a given screen position, using SDL or OpenGL.
- */
-void display_image_on_screen_scaled(struct image *img, int x, int y, float scale)
-{
-	if (use_open_gl) {
-		gl_display_image(img, x, y, scale);
-	} else {
-		if (scale == 1.0) {
-			sdl_display_image(img, x, y, 0);
-		} else {
-			sdl_display_image(img, x, y, 1);
-		}
-	}
-}
-
-/**
  * Display an image on the screen.
  */
-void display_image_on_screen(struct image *img, int x, int y)
+void display_image_on_screen(struct image *img, int x, int y, struct image_transformation t)
 {
-	display_image_on_screen_scaled(img, x, y, 1.0);
-}
-
-/**
- * Display an image on the map, scaled.
- */
-void display_image_on_map_scaled(struct image *img, float X, float Y, float scale)
-{
-	int x, y;
-	translate_map_point_to_screen_pixel(X, Y, &x, &y);
-	display_image_on_screen_scaled(img, x, y, scale);
+	if (use_open_gl)
+		gl_display_image(img, x, y, &t);
+	else sdl_display_image(img, x, y, &t);
 }
 
 /**
  * Display an image on the map.
  */
-void display_image_on_map(struct image *img, float X, float Y)
+void display_image_on_map(struct image *img, float X, float Y, struct image_transformation t)
 {
-	display_image_on_map_scaled(img, X, Y, 1.0);
+	int x, y;
+	translate_map_point_to_screen_pixel(X, Y, &x, &y);
+	display_image_on_screen(img, x, y, t);
 }
 
 /**
@@ -364,5 +419,14 @@ int image_loaded(struct image *img)
 	}
 
 	return TRUE;
+}
+
+/**
+ * Create a struct image_transformation from transformation parameters, for use in image display functions.
+ */
+struct image_transformation set_image_transformation(float scale, float r, float g, float b, float a)
+{
+	struct image_transformation t = { .surface = NULL, .scale = scale, .r = r, .g = g, .b = b, .a = a };
+	return t;
 }
 

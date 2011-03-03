@@ -968,50 +968,50 @@ static void ShowPlayground(void)
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 
-	display_image_on_screen (&ToGroundBlocks[YELLOW_HIGH], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[YELLOW_HIGH], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++) {
-		display_image_on_screen (&ToGroundBlocks[YELLOW_MIDDLE], Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&ToGroundBlocks[YELLOW_MIDDLE], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 		Target_Rect.y += GROUNDBLOCKHEIGHT;
 	}
 
-	display_image_on_screen (&ToGroundBlocks[YELLOW_LOW], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[YELLOW_LOW], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 
 	// the middle column
 	Set_Rect(Target_Rect, xoffs + MID_OFFS_X, yoffs + MID_OFFS_Y, 0, 0);
 
-	display_image_on_screen (&ToLeaderBlock, Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToLeaderBlock, Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 
 	Target_Rect.y += LEADERBLOCKHEIGHT;
 	for (i = 0; i < 12; i++, Target_Rect.y += COLUMNBLOCKHEIGHT) {
-		display_image_on_screen (&ToColumnBlock, Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&ToColumnBlock, Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 	}
 
 	// the right column
 	Set_Rect(Target_Rect, xoffs + RIGHT_OFFS_X, yoffs + RIGHT_OFFS_Y, 0, 0);
-	display_image_on_screen (&ToGroundBlocks[PURPLE_HIGH], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[PURPLE_HIGH], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 
 	Target_Rect.y += GROUNDBLOCKHEIGHT;
 
 	for (i = 0; i < 12; i++, Target_Rect.y += GROUNDBLOCKHEIGHT) {
-		display_image_on_screen (&ToGroundBlocks[PURPLE_MIDDLE], Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&ToGroundBlocks[PURPLE_MIDDLE], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 	}
 
-	display_image_on_screen (&ToGroundBlocks[PURPLE_LOW], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&ToGroundBlocks[PURPLE_LOW], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 
 	// Fill the leader-LED with its color 
 	Set_Rect(Target_Rect, xoffs + LEADERLED_X, yoffs + LEADERLED_Y, 0, 0);
-	display_image_on_screen (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 
 	Target_Rect.y += FILL_BLOCK_HEIGHT;
-	display_image_on_screen (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y);
+	display_image_on_screen (&FillBlocks[LeaderColor], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 
 	// Fill the display column with its colors 
 	for (i = 0; i < NUM_LINES; i++) {
 		Set_Rect(Target_Rect, xoffs + LEDCOLUMN_X, yoffs + LEDCOLUMN_Y + i * (FILL_BLOCK_HEIGHT + 2), 0, 0);
-		display_image_on_screen (&FillBlocks[DisplayColumn[i]], Target_Rect.x, Target_Rect.y);
+		display_image_on_screen (&FillBlocks[DisplayColumn[i]], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 	}
 
 	// Show the yellow playground 
@@ -1020,7 +1020,7 @@ static void ShowPlayground(void)
 			Set_Rect(Target_Rect, xoffs + PlaygroundStart[YELLOW].x + i * TO_BLOCKLEN,
 				 yoffs + PlaygroundStart[YELLOW].y + j * TO_BLOCKHEIGHT, 0, 0);
 			block = ToPlayground[YELLOW][i][j] + ActivationMap[YELLOW][i][j] * TO_BLOCKS;
-			display_image_on_screen (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 		}
 
 	// Show the purple playground 
@@ -1030,7 +1030,7 @@ static void ShowPlayground(void)
 				 xoffs + PlaygroundStart[PURPLE].x + (NUM_LAYERS - i - 2) * TO_BLOCKLEN,
 				 yoffs + PlaygroundStart[PURPLE].y + j * TO_BLOCKHEIGHT, 0, 0);
 			block = ToPlayground[PURPLE][i][j] + (NUM_PHASES + ActivationMap[PURPLE][i][j]) * TO_BLOCKS;
-			display_image_on_screen (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&ToGameBlocks[block], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 		}
 
 	// Show the capsules left for each player 
@@ -1043,13 +1043,13 @@ static void ShowPlayground(void)
 		Set_Rect(Target_Rect, xoffs + CurCapsuleStart[color].x,
 			 yoffs + CurCapsuleStart[color].y + CapsuleCurRow[color] * (CAPSULE_HEIGHT + 2), 0, 0);
 		if (NumCapsules[player]) {
-			display_image_on_screen (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 		}
 
 		for (i = 0; i < NumCapsules[player] - 1; i++) {
 			Set_Rect(Target_Rect, xoffs + LeftCapsulesStart[color].x,
 				 yoffs + LeftCapsulesStart[color].y + i * CAPSULE_HEIGHT, 0, 0);
-			display_image_on_screen (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y);
+			display_image_on_screen (&CapsuleBlocks[color], Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 		}		// for capsules 
 	}			// for player 
 

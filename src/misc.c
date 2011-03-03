@@ -713,7 +713,7 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	Copy_Rect(AllMousePressButtons[ButtonIndex].button_rect, Temp_Blitting_Rect);
 
 	display_image_on_screen(&AllMousePressButtons[ButtonIndex].button_image, Temp_Blitting_Rect.x,
-						 Temp_Blitting_Rect.y);
+						 Temp_Blitting_Rect.y, IMAGE_NO_TRANSFO);
 }
 
 /* -----------------------------------------------------------------

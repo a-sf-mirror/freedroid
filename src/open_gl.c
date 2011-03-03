@@ -1267,7 +1267,7 @@ void blit_special_background(int background_code)
 		} else
 			display_image_on_screen(&our_backgrounds[background_code],
 								 our_background_rects[background_code].x,
-								 our_background_rects[background_code].y);
+								 our_background_rects[background_code].y, IMAGE_NO_TRANSFO);
 	} else {
 		if (need_scaling[background_code] && !scaling_done[background_code]) {
 			scaling_done[background_code] = 1;

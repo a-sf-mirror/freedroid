@@ -259,7 +259,7 @@ static void display_automap_compass()
 		load_image(&compass, "compass.png", FALSE);
 	}
 
-	display_image_on_screen(&compass, GameConfig.screen_width - compass.w - 10, 40);
+	display_image_on_screen(&compass, GameConfig.screen_width - compass.w - 10, 40, IMAGE_NO_TRANSFO);
 }
 
 /**

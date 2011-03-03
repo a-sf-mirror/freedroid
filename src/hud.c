@@ -279,7 +279,7 @@ void ShowCurrentSkill(void)
 	spell_skill_spec *spec = &SpellSkillMap[Me.readied_skill];
 	load_skill_icon_if_needed(spec);
 
-	display_image_on_screen(&spec->icon_surface, Target_Rect.x, Target_Rect.y);
+	display_image_on_screen(&spec->icon_surface, Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
 }
 
 /**
@@ -301,7 +301,7 @@ void ShowCurrentWeapon(void)
 	float y = UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y + CURRENT_WEAPON_RECT_H / 2) -
 	    img->h / 2;
 
-	display_image_on_screen(img, x, y);
+	display_image_on_screen(img, x, y, IMAGE_NO_TRANSFO);
 
 	if (!ItemMap[Me.weapon_item.type].item_gun_use_ammunition)
 		return;

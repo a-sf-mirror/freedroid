@@ -36,7 +36,7 @@
 #include "lvledit/lvledit_display.h"
 
 /**
- *
+ * XXX remove that
  *
  */
 void make_sure_zoomed_surface_is_there(struct image *our_iso_image)
