@@ -1,6 +1,10 @@
 ## Process this file with automake to produce Makefile.in
 
+if BUILD_LUA
 freedroidRPG_LDADD = ../lua/liblua.a
+else
+freedroidRPG_LDADD = 
+endif
 
 if WIN32
 freedroidRPG_LDADD += ../win32/freedroidRPG.coff

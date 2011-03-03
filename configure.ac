@@ -66,6 +66,7 @@ AC_ARG_ENABLE(debug,        [  --enable-debug          Compile with debugging su
 AC_ARG_ENABLE(native-arch,        [  --enable-native-arch          Compile with -march=native [[default=no]]], arch_native="$enableval",arch_native=no)
 AC_ARG_WITH(extra-warnings, [  --with-extra-warnings   Generate more warning messages when compiling [[default=no]]], more_warn="$withval", more_warn=no)
 AC_ARG_ENABLE(backtrace,    [  --disable-backtrace     Disable the use of backtrace() to generate nice bug reports [[default=enabled]]], want_backtrace="$enableval", want_backtrace=yes)
+AC_ARG_WITH(embedded-lua, [  --with-embedded-lua        Uses the Lua libraries bundled with FreedroidRPG instead of system libraries [[default=system lua]]], embedded_lua="$withval", embedded_lua=no)
 
 if test x$arch_native = xyes; then
 	CFLAGS="$CFLAGS -O3 -march=native"
@@ -81,6 +82,13 @@ fi
 
 if test x$fast_math = xyes; then
 	CFLAGS="$CFLAGS -ffast-math"
+fi
+
+if test x$embedded_lua = xno; then
+	AC_CHECK_LIB([lua], [luaL_loadstring],,
+		AC_MSG_NOTICE([No system-wide Lua library found! Using embedded Lua instead])
+		embedded_lua=yes
+	)
 fi
 
 dnl Check for SDL
@@ -210,6 +218,8 @@ dnl send a signal to automake if we're compiling for win32
 AM_CONDITIONAL(WIN32, test x$win32 = xtrue)
 
 AM_CONDITIONAL(NONLINUX, test x$macosx = xtrue -o x$win32 = xtrue)
+
+AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 
 AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile win32/Makefile])
 
