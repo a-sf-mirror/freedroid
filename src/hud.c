@@ -405,6 +405,9 @@ static void blit_running_power_bars(void)
 						 WHOLE_RUNNING_POWER_RECT_X,
 						 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H);
 	}
+	if (GameConfig.cheat_running_stamina)
+		PutStringFont(Screen, Messagestat_BFont, UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X),
+				UNIVERSAL_COORD_H(WHOLE_RUNNING_POWER_RECT_Y), "C");
 
 };				// void blit_running_power_bars ( void )
 
