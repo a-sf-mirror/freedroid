@@ -197,32 +197,14 @@ void trigger_events(void)
 const char *teleporter_square_below_mouse_cursor(void)
 {
 	finepoint MapPositionOfMouse;
-	int i;
+	struct event_trigger *arr;
 
 	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
 		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
-
-		struct event_trigger *arr = event_triggers.arr;
-		for (i = 0; i < event_triggers.size; i++) {
-
-			if (Me.pos.z != arr[i].level)
-				continue;
-
-			if ((int)MapPositionOfMouse.x != arr[i].position.x)
-				continue;
-
-			if ((int)MapPositionOfMouse.y != arr[i].position.y)
-				continue;
-
-			if (arr[i].silent)
-				continue;
-
-			if (!arr[i].enabled)
-				continue;
-
-			return D_(arr[i].name);
-		}
+ 		arr = visible_event_at_location((int)MapPositionOfMouse.x, (int)MapPositionOfMouse.y, Me.pos.z);
+		if (arr)
+			return D_(arr->name);
 	}
 	return NULL;
 }
@@ -246,3 +228,30 @@ void event_modify_trigger_state(const char *name, int state)
 	}
 }
 
+/**
+ * Visible event Trigger at a location
+ */
+struct event_trigger * visible_event_at_location(int x, int y, int z)
+{
+	int i;
+	struct event_trigger *arr = event_triggers.arr;
+	for (i = 0; i < event_triggers.size; i++) {
+		if (z != arr[i].level)
+			continue;
+
+		if (x != arr[i].position.x)
+			continue;
+
+		if (y != arr[i].position.y)
+			continue;
+
+		if (arr[i].silent)
+			continue;
+
+		if (!arr[i].enabled)
+			continue;
+
+		return &arr[i];
+	}
+	return NULL;
+}

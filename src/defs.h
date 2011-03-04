@@ -543,10 +543,9 @@ enum {
 #define MAX_COOKIES 200
 #define MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX 100
 
-#define RIGHT_WALL_BIT 1
-#define LEFT_WALL_BIT 2
-#define UP_WALL_BIT 4
-#define DOWN_WALL_BIT 8
+#define EW_WALL_BIT 1
+#define NS_WALL_BIT 2
+#define VISIBLE_EVENT_BIT 4
 #define SQUARE_SEEN_AT_ALL_BIT 16
 
 #define MAX_SAVED_CHARACTERS_ON_DISK 7	// Not actually amount of chars, but amount "per page"

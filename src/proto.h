@@ -52,6 +52,7 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename);
 void trigger_events(void);
 const char *teleporter_square_below_mouse_cursor(void);
 void event_modify_trigger_state(const char *name, int state);
+struct event_trigger * visible_event_at_location(int x, int y, int z);
 
 // lua.c
 void init_lua(void);

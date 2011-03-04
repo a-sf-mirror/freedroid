@@ -39,6 +39,7 @@ int AUTOMAP_TEXTURE_HEIGHT = 1024;
 
 #define AUTOMAP_SQUARE_SIZE 3
 #define WALL_COLOR 0x00, 0xFF, 0xFF
+#define EXIT_COLOR 0xFF, 0xFF, 0x00
 #define TUX_COLOR 0x00, 0x00, 0xFF
 #define FRIEND_COLOR 0x00, 0xFF, 0x00
 #define ENEMY_COLOR 0xFF, 0x00, 0x00
@@ -197,21 +198,17 @@ void CollectAutomapData(void)
 						if (obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_RECTANGLE) {
 
 							if (obstacle_map[our_obstacle->type].block_area_parm_1 > 0.80) {
-								if (Me.pos.x < our_obstacle->pos.x)
-									Me.Automap[level][b][a] |= LEFT_WALL_BIT;
-								else
-									Me.Automap[level][b][a] |= RIGHT_WALL_BIT;
+									Me.Automap[level][b][a] |= EW_WALL_BIT;
 							}
 							if (obstacle_map[our_obstacle->type].block_area_parm_2 > 0.80) {
-								if (Me.pos.y < our_obstacle->pos.y)
-									Me.Automap[level][b][a] |= UP_WALL_BIT;
-								else
-									Me.Automap[level][b][a] |= DOWN_WALL_BIT;
+								Me.Automap[level][b][a] |= NS_WALL_BIT;
 							}
 						}
 					}
 				}
 			}
+			if (visible_event_at_location(x, y, level))
+				Me.Automap[level][y][x] |= VISIBLE_EVENT_BIT;
 
 			Me.Automap[level][y][x] = Me.Automap[level][y][x] | SQUARE_SEEN_AT_ALL_BIT;
 		}
@@ -273,7 +270,7 @@ static void display_automap_compass()
  */
 void display_automap(void)
 {
-	int x, y;
+	int x, y, i, j;
 	Level automap_level = curShip.AllLevels[Me.pos.z];
 	int level = Me.pos.z;
 
@@ -302,7 +299,7 @@ void display_automap(void)
 	// obstacles on this level.
 	for (y = 0; y < automap_level->ylen; y++) {
 		for (x = 0; x < automap_level->xlen; x++) {
-			if (Me.Automap[level][y][x] & (RIGHT_WALL_BIT | LEFT_WALL_BIT)) {
+			if (Me.Automap[level][y][x] & EW_WALL_BIT) {
 				PutPixel_automap_wrapper(Screen,
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
@@ -311,13 +308,24 @@ void display_automap(void)
 							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
 			}
 
-			if (Me.Automap[level][y][x] & (UP_WALL_BIT | DOWN_WALL_BIT)) {
+			if (Me.Automap[level][y][x] & NS_WALL_BIT) {
 				PutPixel_automap_wrapper(Screen,
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
 							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
 				PutPixel_automap_wrapper(Screen,
 							 2 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
 							 1 + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, WALL_COLOR);
+			}
+
+			//Now we blit known event triggers
+			if (Me.Automap[level][y][x] & VISIBLE_EVENT_BIT) {
+				for (i = 0; i < AUTOMAP_SQUARE_SIZE; i++) {
+					for (j = 0; j < AUTOMAP_SQUARE_SIZE; j++) {
+						PutPixel_automap_wrapper(Screen,
+							i + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * (automap_level->ylen - y),
+							j + AUTOMAP_SQUARE_SIZE * x + AUTOMAP_SQUARE_SIZE * y, EXIT_COLOR);
+					}
+				}
 			}
 		}
 	}
