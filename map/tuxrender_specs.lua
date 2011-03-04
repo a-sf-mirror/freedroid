@@ -261,6 +261,14 @@ tux_ordering {
 tux_ordering {
   type = "1hranged",
   rotations = { 8 },
+  phase_start = 0,
+  phase_end = 1,
+  order = part_order.FSWATH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 8 },
   phase_start = 25,
   phase_end = 27,
   order = part_order.FSTWAH
