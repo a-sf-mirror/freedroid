@@ -182,7 +182,7 @@ static void self_repair_item(item *it)
 }
 
 /**
- * This function calculates the price of a given item, taking into account
+ * This function calculates the price of a single given item, taking into account
  * (*) the base list price of the item
  * (*) the base list prices of the installed add-ons
  */
@@ -200,18 +200,25 @@ unsigned long calculate_item_buy_price(item * BuyItem)
 		}
 	}
 
-	return BuyItem->multiplicity * price;
+	return price;
 }
 
 /**
- * This function calculates the price of a given item, taking into account
- * (*) the base list price of the item
- * (*) the base list prices of the installed add-ons
+ * This function calculates the sell price of a single given item, taking into account
+ * the markdown (currently 0.3 for all NPCs)
  */
 unsigned long calculate_item_sell_price(item * BuyItem)
 {
+	int price;
+	// Some items cannot be sold
+	if (!(price = calculate_item_buy_price(BuyItem)))
+		return 0;
+
 	// Items sell for less than the full price of the item.
-	return 0.3 * calculate_item_buy_price(BuyItem);
+	price = floor(0.3 * price);
+
+	// Prices have to be non-zero so the item can be sold
+	return price ? price : 1;
 }
 
 /**

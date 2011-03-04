@@ -269,6 +269,7 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 {
 	long int repair_price = 0;
 	itemspec *info;
+	int price = calculate_item_buy_price(show_item);
 
 	if (show_item == NULL)
 		return;
@@ -281,22 +282,34 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 	
 	// Now we give some pricing information, the base list price for the item,
 	// the repair price and the sell value
-	if (calculate_item_buy_price(show_item)) {
+	if (price) {
 		if (buy) {
-			autostr_append(desc->text, _("Price: %ld\n"), calculate_item_buy_price(show_item));
-		} else {
-			autostr_append(desc->text, _("Sell value: %ld\n"), calculate_item_sell_price(show_item));
-		}
+			if (ItemMap[show_item->type].item_group_together_in_inventory) {
+				autostr_append(desc->text, _("Price: %5ld (per unit)\n"), price);
+				autostr_append(desc->text, _("Buy all: %5ld\n"), price * show_item->multiplicity);
+			} else {
+				autostr_append(desc->text, _("Price: %5ld\n"), price);
+			}
+ 		} else {
+			if (ItemMap[show_item->type].item_group_together_in_inventory) {
+				autostr_append(desc->text, _("Price: %5ld (per unit)\n"), price);
+				autostr_append(desc->text, _("Sell all: %5ld\n"), price * show_item->multiplicity);
+			} else {
+				autostr_append(desc->text, _("Price: %5ld\n"), price);
+			}
+ 		}
 
 		if (show_item->current_durability == show_item->max_durability || show_item->max_durability == (-1))
 			repair_price = 0;
 		else
 			repair_price = calculate_item_repair_price(show_item);
 
-		if (show_item->max_durability == (-1))
-			autostr_append(desc->text, _("Indestructible\n"));
-		else if (!buy)
-			autostr_append(desc->text, _("Repair cost: %ld\n"), repair_price);
+		if (ItemMap[show_item->type].base_item_durability != (-1)) {
+			if (show_item->max_durability == (-1))
+				autostr_append(desc->text, _("Indestructible\n"));
+			else if (!buy)
+				autostr_append(desc->text, _("Repair cost: %ld\n"), repair_price);
+		}
 	} else {
 		autostr_append(desc->text, _("Unsellable\n"));
 	}
@@ -719,7 +732,7 @@ void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 
 	// Ok.  Here we silently sell the item.
 	//
-	Me.Gold += calculate_item_sell_price(SellItem) * ((float)AmountToSellAtMost) / ((float)SellItem->multiplicity);
+	Me.Gold += calculate_item_sell_price(SellItem) * AmountToSellAtMost;
 	if (AmountToSellAtMost < SellItem->multiplicity)
 		SellItem->multiplicity -= AmountToSellAtMost;
 	else
@@ -747,7 +760,7 @@ static int buy_item(item *BuyItem, int amount)
 		amount = BuyItem->multiplicity;
 		
 	new_item.multiplicity = amount;
-	item_price = calculate_item_buy_price(&new_item);
+	item_price = calculate_item_buy_price(&new_item) * new_item.multiplicity;
 
 	// If the item is too expensive, bail out
 	if (item_price > Me.Gold) {
