@@ -241,6 +241,22 @@ tux_ordering {
 tux_ordering {
   type = "1hranged",
   rotations = { 0 },
+  phase_start = 17,
+  phase_end = 22,
+  order = part_order.FTWASH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 0 },
+  phase_start = 24,
+  phase_end = 24,
+  order = part_order.FTSWAH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 0 },
   phase_start = 25,
   phase_end = 28,
   order = part_order.FWTASH
@@ -249,7 +265,15 @@ tux_ordering {
 tux_ordering {
   type = "1hranged",
   rotations = { 0 },
-  order = part_order.FTHSWA
+  phase_start = 32,
+  phase_end = 34,
+  order = part_order.FWTASH
+}
+
+tux_ordering {
+  type = "1hranged",
+  rotations = { 0 },
+  order = part_order.FTSAHW
 }
 
 tux_ordering {
