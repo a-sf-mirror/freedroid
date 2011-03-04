@@ -291,6 +291,7 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 				autostr_append(desc->text, _("Price: %5ld\n"), price);
 			}
  		} else {
+ 			price = calculate_item_sell_price(show_item);
 			if (ItemMap[show_item->type].item_group_together_in_inventory) {
 				autostr_append(desc->text, _("Price: %5ld (per unit)\n"), price);
 				autostr_append(desc->text, _("Sell all: %5ld\n"), price * show_item->multiplicity);
