@@ -223,12 +223,13 @@ static void show_waypoints(int mask)
  * This function is used by thelevel *Editor integrated into 
  * freedroid.  It marks all places that have a label attached to them.
  */
-static void show_map_labels(int mask)
+static void show_map_labels(int must_zoom)
 {
 	static struct image map_label_indicator = EMPTY_IMAGE;
 	level *EditLevel = curShip.AllLevels[Me.pos.z];
 	struct map_label *map_label;
 	int i;
+	float scale = must_zoom ? lvledit_zoomfact_inv() : 1.0;
 
 	// On the first function call to this function, we must load the map label indicator
 	// iso image from the disk to memory and keep it there as static.  That should be
@@ -242,23 +243,7 @@ static void show_map_labels(int mask)
 		// Get the map label
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
-		if (!(mask && ZOOM_OUT)) {
-			if (use_open_gl)
-				draw_gl_textured_quad_at_map_position(&map_label_indicator, map_label->pos.x + 0.5,
-								      map_label->pos.y + 0.5, 1.0, 1.0, 1.0, FALSE, FALSE,
-								      1.);
-			else
-				blit_iso_image_to_map_position(&map_label_indicator, map_label->pos.x + 0.5,
-							       map_label->pos.y + 0.5);
-		} else {
-			if (use_open_gl)
-				draw_gl_textured_quad_at_map_position(&map_label_indicator, map_label->pos.x + 0.5,
-								      map_label->pos.y + 0.5, 1.0, 1.0, 1.0, 0.25, FALSE,
-								      lvledit_zoomfact_inv());
-			else
-				blit_zoomed_iso_image_to_map_position(&(map_label_indicator), map_label->pos.x + 0.5,
-								      map_label->pos.y + 0.5);
-		}
+		display_image_on_map(&map_label_indicator, map_label->pos.x + 0.5, map_label->pos.y + 0.5, IMAGE_SCALE_TRANSFO(scale));
 	}
 }
 
