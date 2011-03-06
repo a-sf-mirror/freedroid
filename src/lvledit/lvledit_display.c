@@ -102,18 +102,10 @@ static void print_label_information(level *EditLevel)
 	}
 }
 
-/**
- * This function is used by thelevel *Editor integrated into 
- * freedroid.  It highlights the map position that is currently 
- * edited or would be edited, if the user pressed something.  I.e. 
- * it provides a "cursor" for thelevel *Editor.
- */
-static void Highlight_Current_Block(int mask)
+static void show_cursor(int must_zoom)
 {
-	level *EditLevel;
-	static struct image level_editor_cursor = { NULL, 0, 0 };
+	static struct image level_editor_cursor = EMPTY_IMAGE;
 
-	EditLevel = curShip.AllLevels[Me.pos.z];
 #define HIGHLIGHTCOLOR 255
 
 	// Maybe, if the level editor floor cursor has not yet been loaded,
@@ -123,22 +115,11 @@ static void Highlight_Current_Block(int mask)
 		load_image(&level_editor_cursor, "level_editor_floor_cursor.png", TRUE);
 	}
 
-	if (mask & ZOOM_OUT) {
-		if (use_open_gl)
-			draw_gl_textured_quad_at_map_position(&level_editor_cursor,
-							      Me.pos.x, Me.pos.y, 1.0, 1.0, 1.0, 0, FALSE, lvledit_zoomfact_inv());
-		else
-			blit_zoomed_iso_image_to_map_position(&level_editor_cursor, Me.pos.x, Me.pos.y);
-	} else {
-		if (use_open_gl)
-			draw_gl_textured_quad_at_map_position(&level_editor_cursor, Me.pos.x, Me.pos.y, 1.0, 1.0, 1.0, 0, FALSE, 1.0);
-		else
-			blit_iso_image_to_map_position(&level_editor_cursor, Me.pos.x, Me.pos.y);
-	}
+	float scale = must_zoom ? lvledit_zoomfact_inv() : 1.0;
 
-	print_label_information(EditLevel);
-
-}				// void Highlight_Current_Block(void)
+	display_image_on_map(&level_editor_cursor, Me.pos.x, Me.pos.y, IMAGE_SCALE_TRANSFO(scale)); 
+	print_label_information(EditLevel());
+}
 
 /**
  * This function is used to draw a line between given map tiles.  It is
@@ -370,7 +351,7 @@ void leveleditor_display()
 
 	show_waypoints(ZOOM_OUT * GameConfig.zoom_is_on);
 	show_map_labels(ZOOM_OUT * GameConfig.zoom_is_on);
-	Highlight_Current_Block(ZOOM_OUT * GameConfig.zoom_is_on);
+	show_cursor(ZOOM_OUT * GameConfig.zoom_is_on);
 	gps_show();
 
 	SetCurrentFont(FPS_Display_BFont);
