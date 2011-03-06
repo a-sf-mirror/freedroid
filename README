@@ -137,10 +137,9 @@
    * Pulseaudio: Using SDL-pulseaudio you are currently likely not to get sound. This has nothing to do
 	 with FreedroidRPG but with Pulseaudio and its plugins still in general being immature. We recommend using
 	 e.g. SDL-esd or SDL-alsa until these problems has been fixed upstream.
-   * AMD/ATI R300 graphics cards: Mesa 6.5.2 does not support user clipping planes which breaks the
-	 text in freedroidRPG. Upgrading to Mesa 7 fixes this.
    * Intel 915/945/IDG graphics cards (EEE PCs, netbooks, etc): Mesa 7.9-devel has an issue which makes the game
-   	 run slowly. It is fixed by installing and launching 'driconf' and setting 'Enable texture tiling' to 'No'.   
+   	 run slowly and consume a lot of memory. It is fixed by installing and launching 'driconf' and setting 
+	 'Enable texture tiling' to 'No'.   
    * The "Toggle display collision rectangles" function of the level editor does not work in SDL mode.
    * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
 
