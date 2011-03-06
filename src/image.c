@@ -164,7 +164,7 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 	SDL_Surface *surf;
 
 	// Check if the image must be transformed
-	if (t->scale == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0 && t->highlight == 0) {
+	if (t->scale == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0 && !t->highlight) {
 		// No transformation
 		surf = img->surface;
 	} else {
@@ -172,7 +172,7 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 
 		// Check if the transformation is in cache
 		struct image_transformation *cache = &img->cached_transformation;
-		if (!cache->surface || cache->scale != t->scale || cache->r != t->r || cache->g != t->g || cache->b != t->b || cache->a != t->a) {
+		if (!cache->surface || cache->scale != t->scale || cache->r != t->r || cache->g != t->g || cache->b != t->b || cache->a != t->a || cache->highlight != t->highlight) {
 			// Transformed image is not in cache, create it
 
 			int scaled;
@@ -184,8 +184,8 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 				scaled = 0;
 			}
 
-			if (t->r != 1.0 || t->g != 1.0 || t->b != 1.0 || t->a != 1.0 || t->highlight != 0) {
-				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a, t->highlight);
+			if (t->r != 1.0 || t->g != 1.0 || t->b != 1.0 || t->a != 1.0 || t->highlight) {
+				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a, t->highlight ? 64 : 0);
 
 				if (scaled)
 					SDL_FreeSurface(t->surface);
