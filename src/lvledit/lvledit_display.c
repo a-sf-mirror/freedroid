@@ -198,6 +198,7 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
  */
 static void show_waypoints(int mask)
 {
+	float zf = (mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0;
 	waypoint *wpts = EditLevel()->waypoints.arr;
 	float r, g, b;
 	float x, y;
@@ -221,23 +222,8 @@ static void show_waypoints(int mask)
 		// Apply disco mode when current waypoint is selected
 		object_vtx_color(&wpts[i], &r, &g, &b);
 
-		// Draw the waypoint on the map
-		if (mask & ZOOM_OUT) {
-			if (use_open_gl) {
-				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn],
-								      x, y, r, g, b, 0.25, FALSE, lvledit_zoomfact_inv());
-			} else {
-				blit_zoomed_iso_image_to_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn], x, y);
-			}
-		} else {
-			if (use_open_gl) {
-				draw_gl_textured_quad_at_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn],
-								      x, y, r, g, b, 0, FALSE, 1.0);
-			}
-			else {
-				blit_iso_image_to_map_position(&level_editor_waypoint_cursor[wpts[i].suppress_random_spawn], x, y);
-			}
-		}
+		struct image *img = &level_editor_waypoint_cursor[wpts[i].suppress_random_spawn];
+		display_image_on_map(img, x, y, set_image_transformation(zf, r, g, b, 1.0));
 
 		// Get the connections of the waypoint
 		int *connections = wpts[i].connections.arr;
