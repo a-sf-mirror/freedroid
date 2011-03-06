@@ -84,7 +84,20 @@ void end_image_batch()
 	batch_draw = FALSE;
 	gl_end();
 }
- 
+
+static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)
+{
+	gl_begin();
+	glTexCoord2f(tx0, ty0);
+	glVertex2i(x1, y1);
+	glTexCoord2f(tx0, ty1);
+	glVertex2i(x1, y2);
+	glTexCoord2f(tx1, ty1);
+	glVertex2i(x2, y2);
+	glTexCoord2f(tx1, ty0);
+	glVertex2i(x2, y1);
+}
+
 /**
  * Draw an image in OpenGL mode.
  * Changes the active texture if necessary, and emits glBegin/glEnd pairs
@@ -118,24 +131,27 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 			gl_end();
 			glBindTexture(GL_TEXTURE_2D, img->texture);
 			active_tex = img->texture;
-			gl_begin();
 	}
 			
 	// Draw the image	
-	gl_begin();
-	glTexCoord2f(img->tex_x0, img->tex_y0);
-	glVertex2i(x, y);
-	glTexCoord2f(img->tex_x0, img->tex_y1);
-	glVertex2i(x, ymax);
-	glTexCoord2f(img->tex_x1, img->tex_y1);
-	glVertex2i(xmax, ymax);
-	glTexCoord2f(img->tex_x1, img->tex_y0);
-	glVertex2i(xmax, y);
+	gl_emit_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
 
 	// glEnd() is only required if we are not doing a batch
 	if (!batch_draw) {
 		gl_end();
 	}
+
+	if (t->highlight) {
+		// Highlight? Draw the texture again with 1, 1 blending factors
+		// This increases the lightness too much, but is a quick and easy solution
+		gl_end();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE);
+		gl_emit_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+		gl_end();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+
 #endif
 }
 
@@ -148,7 +164,7 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 	SDL_Surface *surf;
 
 	// Check if the image must be transformed
-	if (t->scale == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0) {
+	if (t->scale == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0 && t->highlight == 0) {
 		// No transformation
 		surf = img->surface;
 	} else {
@@ -168,8 +184,8 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 				scaled = 0;
 			}
 
-			if (t->r != 1.0 || t->g != 1.0 || t->b != 1.0 || t->a != 1.0) {
-				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a, 0);
+			if (t->r != 1.0 || t->g != 1.0 || t->b != 1.0 || t->a != 1.0 || t->highlight != 0) {
+				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a, t->highlight);
 
 				if (scaled)
 					SDL_FreeSurface(t->surface);
@@ -381,9 +397,9 @@ int image_loaded(struct image *img)
 /**
  * Create a struct image_transformation from transformation parameters, for use in image display functions.
  */
-struct image_transformation set_image_transformation(float scale, float r, float g, float b, float a)
+struct image_transformation set_image_transformation(float scale, float r, float g, float b, float a, int highlight)
 {
-	struct image_transformation t = { .surface = NULL, .scale = scale, .r = r, .g = g, .b = b, .a = a };
+	struct image_transformation t = { .surface = NULL, .scale = scale, .r = r, .g = g, .b = b, .a = a, .highlight = highlight };
 	return t;
 }
 

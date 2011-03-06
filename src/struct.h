@@ -72,6 +72,7 @@ struct image_transformation {
 	float g;
 	float b;
 	float a;
+	int highlight;
 };
 
 /**

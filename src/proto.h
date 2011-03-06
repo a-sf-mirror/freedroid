@@ -870,6 +870,6 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 void free_image_surface(struct image *img);
 void delete_image(struct image *img);
 int image_loaded(struct image *);
-struct image_transformation set_image_transformation(float scale, float r, float g, float b, float a);
+struct image_transformation set_image_transformation(float scale, float r, float g, float b, float a, int highlight);
 
 #endif

@@ -165,7 +165,7 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
 		struct image *img = get_item_inventory_image(ItemImageCode);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y, set_image_transformation(1.0, 1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0, 1.0));
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, set_image_transformation(1.0, 1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0, 1.0, 0));
 #ifdef HAVE_LIBGL
 		//XXX get rid of this which will be useless once everything has been moved to struct image
 		if (use_open_gl) {
@@ -279,7 +279,7 @@ static void show_floor(int mask)
 			}
 
 			struct image *img = &(floor_images[MapBrick]);
-			display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, set_image_transformation(zf, r, g, b, 1.0));
+			display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, set_image_transformation(zf, r, g, b, 1.0, 0));
 		}
 	}
 
@@ -3331,8 +3331,6 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	// Apply disco mode when current item is selected
 	object_vtx_color(CurItem, &r, &g, &b);
 
-	// When zoomed out, you can't see any items clearly anyway...
-	//
 	if (mask & ZOOM_OUT) {
 		if (use_open_gl) {
 			draw_gl_textured_quad_at_map_position(img,
