@@ -285,18 +285,18 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 	if (price) {
 		if (buy) {
 			if (ItemMap[show_item->type].item_group_together_in_inventory) {
-				autostr_append(desc->text, _("Price: %5ld (per unit)\n"), price);
-				autostr_append(desc->text, _("Buy all: %5ld\n"), price * show_item->multiplicity);
+				autostr_append(desc->text, _("Price per unit: %ld \n"), price);
+				autostr_append(desc->text, _("Buy all: %ld\n"), price * show_item->multiplicity);
 			} else {
-				autostr_append(desc->text, _("Price: %5ld\n"), price);
+				autostr_append(desc->text, _("Price: %ld\n"), price);
 			}
  		} else {
  			price = calculate_item_sell_price(show_item);
 			if (ItemMap[show_item->type].item_group_together_in_inventory) {
-				autostr_append(desc->text, _("Price: %5ld (per unit)\n"), price);
-				autostr_append(desc->text, _("Sell all: %5ld\n"), price * show_item->multiplicity);
+				autostr_append(desc->text, _("Price per unit: %ld ()\n"), price);
+				autostr_append(desc->text, _("Sell all: %ld\n"), price * show_item->multiplicity);
 			} else {
-				autostr_append(desc->text, _("Price: %5ld\n"), price);
+				autostr_append(desc->text, _("Price: %ld\n"), price);
 			}
  		}
 
