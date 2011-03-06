@@ -133,6 +133,8 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 	int i;
 	static struct image level_editor_dot_cursor = EMPTY_IMAGE;
 
+	float scale = (mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0;
+
 	// Maybe, if the level editor dot cursor has not yet been loaded,
 	// we need to load it.
 	//
@@ -157,18 +159,8 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 		float x, y;
 		x = (((float)i) / steps) * x1 + x2 * (steps - i) / steps;
 		y = (((float)i) / steps) * y1 + y2 * (steps - i) / steps;
-		if (mask & ZOOM_OUT) {
-			if (use_open_gl)
-				draw_gl_textured_quad_at_map_position(&level_editor_dot_cursor, x, y,
-								      1.0, 1.0, 1.0, 0.25, FALSE, lvledit_zoomfact_inv());
-			else
-				blit_zoomed_iso_image_to_map_position(&level_editor_dot_cursor, x, y);
-		} else {
-			if (use_open_gl)
-				draw_gl_textured_quad_at_map_position(&level_editor_dot_cursor, x, y, 1.0, 1.0, 1.0, TRUE, FALSE, 1.0);
-			else
-				blit_iso_image_to_map_position(&level_editor_dot_cursor, x, y);
-		}
+
+		display_image_on_map(&level_editor_dot_cursor, x, y, IMAGE_SCALE_TRANSFO(scale));
 	}
 
 };				// void draw_connection_between_tiles ( .... )
