@@ -996,27 +996,6 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 };				// void blit_open_gl_stretched_texture_light_radius ( void )
 
 /**
- * This function should help to do 'putpixel' even with OpenGL graphics
- * output method.  However, using that is depreciated if it can be helped
- * somehow.
- */
-void PutPixel_open_gl(int x, int y, Uint32 pixel)
-{
-
-#ifdef HAVE_LIBGL
-	/* Uglier and slower than glDrawPixels, but it works :) */
-	glDisable(GL_TEXTURE_2D);
-	glBegin(GL_POINTS);
-	glColor3ub(((pixel >> 16) & 0xff), (pixel >> 8) & 0xff, (pixel) & 0xff);
-	glVertex2i(x, y);
-	glColor3ub(255, 255, 255);
-	glEnd();
-	glEnable(GL_TEXTURE_2D);
-#endif
-
-};				// void PutPixel_open_gl ( x , y , pixel ) ;
-
-/**
  * Draw a colored rectangle on screen in OpenGL.
  *
  * @param rect The rectangular area.
