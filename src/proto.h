@@ -237,12 +237,8 @@ void unset_gl_clip_rect(void);
 // blocks.c 
 int wall_orientation(int wall);
 void iso_load_bullet_surfaces(void);
-void make_sure_zoomed_surface_is_there(struct image *our_iso_image);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
-void LoadAndPrepareRedEnemyRotationModelNr(int RotationModel);
-void LoadAndPrepareGreenEnemyRotationModelNr(int RotationModel);
-void LoadAndPrepareBlueEnemyRotationModelNr(int RotationModel);
 void Load_Enemy_Surfaces(void);
 void Load_Tux_Surfaces(void);
 void Load_Bullet_Surfaces(void);
