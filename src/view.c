@@ -2404,8 +2404,8 @@ void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, in
 
 	// If there is an equipped item, get its animation prefix name
 	if (render_data->wearable_item && render_data->wearable_item->type != -1 &&
-	    render_data->wearable_item != item_held_in_hand &&
-	    ItemMap[render_data->wearable_item->type].tux_part_instance) {
+			render_data->wearable_item != item_held_in_hand &&
+			ItemMap[render_data->wearable_item->type].tux_part_instance) {
 		part_string = ItemMap[render_data->wearable_item->type].tux_part_instance;
 	}
 
@@ -2422,57 +2422,29 @@ void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, in
 		make_sure_whole_part_group_is_ready(tux_part_group, motion_class, part_string);
 	}
 
-	// Now everything should be loaded correctly and we just need to blit the Tux.  Anything
-	// that isn't loaded yet should be considered a serious bug and a reason to terminate 
-	// immediately...
-	//
-	if (!use_open_gl) {
+	float r = 1.0, g = 1.0, b = 1.0, a = 1.0;
 
-		if (loaded_tux_images[tux_part_group][our_phase][rotation_index].surface == NULL) {
-			ErrorMessage(__FUNCTION__, "Unable to load tux part's surface : tux_part_group=%d, our_phase=%d, rotation_index=%d",
-				PLEASE_INFORM, IS_FATAL, tux_part_group, our_phase, rotation_index);
-		}
-
-		if (x == (-1)) {
-			blit_iso_image_to_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
-					Me.pos.x, Me.pos.y);
-		} else {
-			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y, IMAGE_NO_TRANSFO);
-		}
-
+	if (Me.paralyze_duration) {	/* Paralyzed ? tux turns red */
+		g = 0.2;
+		b = 0.2;
+	} else if (Me.slowdown_duration) {	/* Slowed down ? tux turns blue */
+		r = 0.2;
+		g = 0.2;
+	} else if (Me.energy < Me.maxenergy * 0.25) {	/* Low energy ? blink red */
+		g = b = ((SDL_GetTicks() >> 5) & 31) * 0.03;
 	}
-#ifdef HAVE_LIBGL
-	else {
-		float r = 1.0, g = 1.0, b = 1.0;
-		int blend = FALSE;
 
-		if (loaded_tux_images[tux_part_group][our_phase][rotation_index].texture == 0) {
-			ErrorMessage(__FUNCTION__, "Unable to load tux part's texture : tux_part_group=%d, our_phase=%d, rotation_index=%d",
-				PLEASE_INFORM, IS_FATAL, tux_part_group, our_phase, rotation_index);
-		}
-
-		if (Me.paralyze_duration) {	/* Paralyzed ? tux turns red */
-			g = 0.2;
-			b = 0.2;
-		} else if (Me.slowdown_duration) {	/* Slowed down ? tux turns blue */
-			r = 0.2;
-			g = 0.2;
-		} else if (Me.energy < Me.maxenergy * 0.25) {	/* Low energy ? blink red */
-			g = b = ((SDL_GetTicks() >> 5) & 31) * 0.03;
-		}
-
-		if (Me.invisible_duration) {	/* Invisible? Become transparent */
-			blend = TRANSPARENCY_CUROBJECT;
-		}
-
-		if (x == (-1)) {
-			draw_gl_textured_quad_at_map_position(&loaded_tux_images[tux_part_group][our_phase][rotation_index],
-					Me.pos.x, Me.pos.y, r, g, b, FALSE, blend, 1.0);
-		} else {
-			display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y, IMAGE_NO_TRANSFO);
-		}
+	if (Me.invisible_duration) {	/* Invisible? Become transparent */
+		a = 0.5;
 	}
-#endif
+
+	struct image *img = &loaded_tux_images[tux_part_group][our_phase][rotation_index];
+
+	if (x == -1) {
+		display_image_on_map(img, Me.pos.x, Me.pos.y, set_image_transformation(1.0, r, g, b, a, 0));
+	} else {
+		display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y, IMAGE_NO_TRANSFO);
+	}
 }
 
 /**
