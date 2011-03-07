@@ -3192,6 +3192,10 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item)
 {
 	float r, g, b;
+	float zf = 1.0;
+
+	if (mask & ZOOM_OUT)
+		zf = lvledit_zoomfact_inv();
 
 	// The unwanted cases MUST be handled first...
 	//
@@ -3217,31 +3221,8 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	// Apply disco mode when current item is selected
 	object_vtx_color(CurItem, &r, &g, &b);
 
-	if (mask & ZOOM_OUT) {
-		if (use_open_gl) {
-			draw_gl_textured_quad_at_map_position(img,
-									CurItem->virt_pos.x, CurItem->virt_pos.y, r, g, b, 0.25, FALSE,
-							      lvledit_zoomfact_inv());
-		} else {
-			blit_zoomed_iso_image_to_map_position(img,
-							      CurItem->virt_pos.x, CurItem->virt_pos.y);
-		}
-	} else {
-		float anim_tr = (CurItem->throw_time <= 0) ? 0.0 : (3.0 * sinf(CurItem->throw_time * 3.0));
-		if (use_open_gl) {
-			draw_gl_textured_quad_at_map_position(img,
-							      CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr,
-							      r, g, b, highlight_item, FALSE, 1.0);
-		} else {
-			blit_iso_image_to_map_position(img,
-						       CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
-			if (highlight_item)
-				sdl_highlight_iso_image(img,
-									  CurItem->virt_pos.x - anim_tr, CurItem->virt_pos.y - anim_tr);
-		}
-	}
-
-};				// void PutItem( int ItemNumber );
+	display_image_on_map(img, CurItem->virt_pos.x, CurItem->virt_pos.y, set_image_transformation(zf, r, g, b, 1.0, highlight_item));
+}
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_direction[RADIAL_SPELL_DIRECTIONS], float age)
 {

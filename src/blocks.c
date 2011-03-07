@@ -256,20 +256,6 @@ void blit_iso_image_to_map_position(struct image * our_iso_image, float pos_x, f
 
 };				// void blit_iso_image_to_map_position ( struct image * our_iso_image , float pos_x , float pos_y )
 
-void sdl_highlight_iso_image(struct image *img, float pos_x, float pos_y)
-{
-	SDL_Rect tr;
-	int x, y;
-
-	translate_map_point_to_screen_pixel(pos_x, pos_y, &x, &y);
-	tr.x = x + img->offset_x;
-	tr.y = y + img->offset_y;
-
-	SDL_Surface *surf = sdl_create_colored_surface(img->surface, 1.0, 1.0, 1.0, 1.0, TRUE);
-	our_SDL_blit_surface_wrapper(surf, NULL, Screen, &tr);
-	SDL_FreeSurface(surf);
-}
-
 /**
  *
  *
