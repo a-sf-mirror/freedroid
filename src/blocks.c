@@ -36,18 +36,6 @@
 #include "lvledit/lvledit_display.h"
 
 /**
- * XXX remove that
- *
- */
-void make_sure_zoomed_surface_is_there(struct image *our_iso_image)
-{
-	if (our_iso_image->zoomed_out_surface == NULL) {
-		our_iso_image->zoomed_out_surface = zoomSurface(our_iso_image->surface, lvledit_zoomfact_inv(),
-								lvledit_zoomfact_inv(), FALSE);
-	}
-}
-
-/**
  * This function loads the Blast image and decodes it into the multiple
  * small Blast surfaces.
  */
@@ -255,31 +243,6 @@ void blit_iso_image_to_map_position(struct image * our_iso_image, float pos_x, f
 	our_SDL_blit_surface_wrapper(our_iso_image->surface, NULL, Screen, &target_rectangle);
 
 };				// void blit_iso_image_to_map_position ( struct image * our_iso_image , float pos_x , float pos_y )
-
-/**
- *
- *
- */
-void blit_zoomed_iso_image_to_map_position(struct image * our_iso_image, float pos_x, float pos_y)
-{
-	SDL_Rect target_rectangle;
-	int x, y;
-	float zoom_factor = lvledit_zoomfact_inv();
-
-	translate_map_point_to_screen_pixel(pos_x, pos_y, &x, &y);
-	target_rectangle.x = x + our_iso_image->offset_x * zoom_factor;
-	target_rectangle.y = y + our_iso_image->offset_y * zoom_factor;
-
-	if (use_open_gl) {
-		raise(SIGSEGV);
-		/*blit_zoomed_open_gl_texture_to_screen_position ( our_struct image , target_rectangle . x , 
-		   target_rectangle . y , TRUE , 0.25 ) ; */
-	} else {
-		make_sure_zoomed_surface_is_there(our_iso_image);
-		our_SDL_blit_surface_wrapper(our_iso_image->zoomed_out_surface, NULL, Screen, &target_rectangle);
-	}
-
-};				// void blit_zoomed_iso_image_to_map_position ( struct image our_iso_image , float pos_x , float pos_y )
 
 /**
  *

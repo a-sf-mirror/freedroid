@@ -309,7 +309,6 @@ There are more skills defined, than the maximum number specified in the code!", 
 		ProgramToFill->icon_name = ReadAndMallocStringFromData(ProgramPointer, "Picture=\"", "\"");
 
 		ProgramToFill->icon_surface.surface = NULL;
-		ProgramToFill->icon_surface.zoomed_out_surface = NULL;
 		ProgramToFill->icon_surface.texture_has_been_created = 0;
 		ProgramToFill->icon_surface.tex_w = 0;
 

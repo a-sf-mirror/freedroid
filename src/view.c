@@ -2165,7 +2165,6 @@ Received some non-positive Tux surface dimensions.  That's a bug for sure!", PLE
 Creation of an Tux SDL software surface from pixel data failed.", PLEASE_INFORM, IS_FATAL);
 				}
 
-				loaded_tux_images[tux_part_group][our_phase][rotation_index].zoomed_out_surface = NULL;
 				loaded_tux_images[tux_part_group][our_phase][rotation_index].texture_has_been_created = FALSE;
 				loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x = img_x_offs;
 				loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y = img_y_offs;
@@ -2347,7 +2346,6 @@ The number of images found in the image collection for enemy model %d is bigger 
 			// SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
 			// our_struct image -> surface = our_SDL_display_format_wrapperAlpha( Whole_Image ); 
 			// now we have an alpha-surf of right size
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].zoomed_out_surface = NULL;
 			enemy_images[enemy_model_nr][rotation_index][enemy_phase].texture_has_been_created = FALSE;
 			enemy_images[enemy_model_nr][rotation_index][enemy_phase].offset_x = img_x_offs;
 			enemy_images[enemy_model_nr][rotation_index][enemy_phase].offset_y = img_y_offs;

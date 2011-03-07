@@ -97,8 +97,6 @@ struct image {
 	short tex_h;
 
 	struct image_transformation cached_transformation;
-	
-	SDL_Surface *zoomed_out_surface; // remove me
 };
 #define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .texture_has_been_created = 0 , .cached_transformation = { NULL, 0.0, 0, 0, 0, 0 } }
 

@@ -308,7 +308,6 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
 
 	img->surface = our_SDL_display_format_wrapperAlpha(surface);
-	img->zoomed_out_surface = NULL;
 	img->texture_has_been_created = FALSE;
 
 	SDL_SetColorKey(img->surface, 0, 0);
@@ -354,11 +353,6 @@ void free_image_surface(struct image *img)
 	if (img->surface) {
 		SDL_FreeSurface(img->surface);
 		img->surface = NULL;
-	}
-
-	if (img->zoomed_out_surface) {
-		SDL_FreeSurface(img->zoomed_out_surface);
-		img->zoomed_out_surface = NULL;
 	}
 }
 
