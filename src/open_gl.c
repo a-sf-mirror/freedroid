@@ -616,59 +616,6 @@ static inline void draw_gl_textured_quad_helper(int x0, int y0, int x1, int y1, 
 };
 #endif
 
-void
-draw_gl_textured_quad_at_map_position(struct image * our_iso_image,
-				      float our_col, float our_line,
-				      float r, float g, float b, int highlight_texture, int blend, float zoom_factor)
-{
-
-#ifdef HAVE_LIBGL
-	float a = 1.0;
-	int x, y;
-
-	if (((blend == TRANSPARENCY_FOR_WALLS) && GameConfig.transparency) || blend == TRANSPARENCY_CUROBJECT) {
-		//glEnable(GL_BLEND);
-		a = 0.50;
-	} else if (blend == TRANSPARENCY_FOR_SEE_THROUGH_OBJECTS) {
-		//glEnable(GL_BLEND);
-	} else {
-		glDisable(GL_BLEND);
-		glEnable(GL_ALPHA_TEST);
-	}
-
-	translate_map_point_to_screen_pixel(our_col, our_line, &x, &y);
-	x += our_iso_image->offset_x * zoom_factor;
-	y += our_iso_image->offset_y * zoom_factor;
-
-	glColor4f(r, g, b, a);
-
-	glBindTexture(GL_TEXTURE_2D, (our_iso_image->texture));
-
-	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w * zoom_factor,
-				     y + our_iso_image->h * zoom_factor, our_iso_image->tex_x0, our_iso_image->tex_y0,
-				     our_iso_image->tex_x1, our_iso_image->tex_y1);
-
-	if (highlight_texture) {
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_ONE, GL_ONE);
-
-		// Now we draw our quad AGAIN!
-		//
-		draw_gl_textured_quad_helper(x, y, x + our_iso_image->w * zoom_factor,
-					     y + our_iso_image->h * zoom_factor, our_iso_image->tex_x0, our_iso_image->tex_y0,
-					     our_iso_image->tex_x1, our_iso_image->tex_y1);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	}
-
-	glColor4f(1.0, 1.0, 1.0, 1.0);
-
-	glEnable(GL_BLEND);
-	glDisable(GL_ALPHA_TEST);
-#endif
-
-};				// void draw_gl_textured_quad_at_map_position ( ... )
-
 /**
  *
  *
