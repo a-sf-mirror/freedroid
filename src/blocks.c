@@ -227,27 +227,6 @@ void iso_load_bullet_surfaces(void)
  *
  *
  */
-void blit_iso_image_to_map_position(struct image * our_iso_image, float pos_x, float pos_y)
-{
-	SDL_Rect target_rectangle;
-	int ii, jj;
-
-	if (use_open_gl) {
-		ErrorMessage(__FUNCTION__, "This function should not be called in OpenGL mode. It ends up calling glDrawPixels which yields poor performance.\n", PLEASE_INFORM, IS_WARNING_ONLY);
-	}
-
-	translate_map_point_to_screen_pixel(pos_x, pos_y, &ii, &jj);
-	target_rectangle.x = ii + our_iso_image->offset_x;
-	target_rectangle.y = jj + our_iso_image->offset_y;
-
-	our_SDL_blit_surface_wrapper(our_iso_image->surface, NULL, Screen, &target_rectangle);
-
-};				// void blit_iso_image_to_map_position ( struct image * our_iso_image , float pos_x , float pos_y )
-
-/**
- *
- *
- */
 void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image)
 {
 	char offset_file_name[10000];

@@ -245,7 +245,6 @@ void load_floor_tiles(void);
 struct image *get_obstacle_image(int);
 void load_obstacle(int);
 void load_all_obstacles(void);
-void blit_iso_image_to_map_position(struct image *our_iso_image, float pos_x, float pos_y);
 struct image *get_item_shop_image(int type);
 struct image *get_item_ingame_image(int type);
 struct image *get_item_inventory_image(int type);
