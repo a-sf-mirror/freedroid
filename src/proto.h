@@ -212,7 +212,6 @@ enum {
 int our_SDL_flip_wrapper(void);
 int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surface * dst, SDL_Rect * dstrect);
 void our_SDL_update_rect_wrapper(SDL_Surface * screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h);
-int our_SDL_fill_rect_wrapper(SDL_Surface * dst, SDL_Rect * dstrect, Uint32 color);
 int blit_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Uint32 color);
 void drawIsoEnergyBar(int dir, int x, int y, int z, int w, int d, int length, float fill, myColor * c1, myColor * c2);
 
@@ -280,6 +279,7 @@ void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int glwidth
 void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int r, int g, int b);
 void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a, int highlight);
+void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 
 // saveloadgame.c 
 int find_saved_games(struct dirent ***);

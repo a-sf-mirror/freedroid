@@ -710,9 +710,9 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 	// dialog background not visible.  But anyway, let's just clear the two buffers
 	// for now...
 	//
-	our_SDL_fill_rect_wrapper(Screen, NULL, 0);
+	ClearGraphMem();
 	our_SDL_flip_wrapper();
-	our_SDL_fill_rect_wrapper(Screen, NULL, 0);
+	ClearGraphMem();
 	our_SDL_flip_wrapper();
 
 #endif				// HAVE_LIBGL
@@ -832,11 +832,12 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
  */
 void ClearGraphMem(void)
 {
+	SDL_Rect rect = { .x = 0, .y = 0, .w = GameConfig.screen_width, .h = GameConfig.screen_height };
+
 	SDL_SetClipRect(Screen, NULL);
 
-	// Now we fill the screen with black color...
-	our_SDL_fill_rect_wrapper(Screen, NULL, 0);
-};				// void ClearGraphMem( void )
+	draw_rectangle(&rect, 0, 0, 0, 255);
+}
 
 /**
  * Draw a colored rectangle on screen with alpha blending in SDL.
@@ -852,17 +853,22 @@ void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 	boxRGBA(Screen, rect->x, rect->y, rect->x + rect->w, rect->y + rect->h, r, g, b, a);
 }
 
+void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
+{
+	if (use_open_gl) {
+		gl_draw_rectangle(rect, r, g, b, a);
+	} else {
+		sdl_draw_rectangle(rect, r, g, b, a);
+	}
+}
+
 /**
  * This function draws a transparent black rectangle over a specified
  * area on the screen.
  */
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area)
 {
-	if (use_open_gl) {
-		gl_draw_rectangle(&Area, 0, 0, 0, 150);
-	} else {
-		sdl_draw_rectangle(&Area, 0, 0, 0, 150);
-	}
+	draw_rectangle(&Area, 0, 0, 0, 150);
 }
 
 /**
@@ -871,11 +877,7 @@ void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area)
  */
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area)
 {
-	if (use_open_gl) {
-		gl_draw_rectangle(&Area, 255, 255, 255, 100);
-	} else {
-		sdl_draw_rectangle(&Area, 255, 255, 255, 100);
-	}
+	draw_rectangle(&Area, 255, 255, 255, 100);
 }
 
 /*

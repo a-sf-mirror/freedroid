@@ -178,7 +178,7 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 	SDL_Rect TargetRectangle;
 
 	// toolbar background
-	our_SDL_fill_rect_wrapper(Screen, &vt->rect, SDL_MapRGB(Screen->format, 0x55, 0x68, 0x89));
+	draw_rectangle(&vt->rect, 85, 104, 137, 255);
 
 	// now the tiles to be selected   
 

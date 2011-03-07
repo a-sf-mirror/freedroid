@@ -152,54 +152,6 @@ void our_SDL_update_rect_wrapper(SDL_Surface * screen, Sint32 x, Sint32 y, Sint3
 };				// void our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h ) 
 
 /**
- * This function will draw a rectangle to the screen.  It will use either
- * OpenGL or SDL for graphics output, depending on output method currently
- * set for the game.
- *
- * Note:  Rectangles in this sense have to be parallel to the screen
- *        coordinates.  Other rectangles can be drawn with the function
- *        blit_quad below (which only works with OpenGL output method).
- */
-int our_SDL_fill_rect_wrapper(SDL_Surface * dst, SDL_Rect * dstrect, Uint32 color)
-{
-#ifdef HAVE_LIBGL
-	Uint8 r, g, b, a;
-#endif
-
-	if (use_open_gl) {
-#ifdef HAVE_LIBGL
-		if (dst == Screen) {
-			glDisable(GL_TEXTURE_2D);
-
-			SDL_GetRGBA(color, Screen->format, &r, &g, &b, &a);
-			glColor4ub(r, g, b, a);
-			if (dstrect == NULL) {
-				glBegin(GL_QUADS);
-				glVertex2i(0, GameConfig.screen_height);
-				glVertex2i(0, 0);
-				glVertex2i(0 + GameConfig.screen_width, 0);
-				glVertex2i(0 + GameConfig.screen_width, GameConfig.screen_height);
-				glEnd();
-			} else {
-				glBegin(GL_QUADS);
-				glVertex2i(dstrect->x, dstrect->y);
-				glVertex2i(dstrect->x, dstrect->y + dstrect->h);
-				glVertex2i(dstrect->x + dstrect->w, dstrect->y + dstrect->h);
-				glVertex2i(dstrect->x + dstrect->w, dstrect->y);
-				glEnd();
-			}
-			glColor4ub(255, 255, 255, 255);
-			glEnable(GL_TEXTURE_2D);
-			return (0);
-		}
-#endif
-	}
-
-	return (SDL_FillRect(dst, dstrect, color));
-
-};				// int our_SDL_fill_rect_wrapper (SDL_Surface *dst, SDL_Rect *dstrect, Uint32 color)
-
-/**
  * This function will draw quads, that are not necessarily parallel to 
  * the screen coordinates to the screen.  It will currently only do 
  * something in OpenGL output method.

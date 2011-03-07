@@ -75,7 +75,7 @@ void show_backgrounded_label_at_pixel_position(char *LabelText, int pos_x, int p
 	background_rect.w = TextWidth(LabelText) + 2;
 	background_rect.h = 20;
 
-	our_SDL_fill_rect_wrapper(Screen, &(background_rect), 0);
+	draw_rectangle(&background_rect, 0, 0, 0, 255);
 
 	SetCurrentFont(FPS_Display_BFont);
 	PutString(Screen, pos_x, pos_y, LabelText);
@@ -124,7 +124,7 @@ int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, 
 	// Set up and fill the rectangle.
 	t_rect.w = w;
 	t_rect.h = r_height;
-	our_SDL_fill_rect_wrapper(Screen, &t_rect, SDL_MapRGB(Screen->format, 0, 0, 0));
+	draw_rectangle(&t_rect, 0, 0, 0, 255);
 	
 	// Show the text inside our newly drawn rectangle.
 	t_rect.w -= IN_WINDOW_TEXT_OFFSET * 2;
@@ -662,7 +662,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 		TargetRect.h = 340;
 		TargetRect.x = (640 - TargetRect.w) / 2;
 		TargetRect.y = (480 - TargetRect.h) / 2;
-		our_SDL_fill_rect_wrapper(Screen, &TargetRect, SDL_MapRGB(Screen->format, 0, 0, 0));
+		draw_rectangle(&TargetRect, 0, 0, 0, 255);
 
 		TargetRect.w -= EDIT_WINDOW_TEXT_OFFSET;
 		TargetRect.h -= EDIT_WINDOW_TEXT_OFFSET;

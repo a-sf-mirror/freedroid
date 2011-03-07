@@ -1555,21 +1555,15 @@ static void blit_all_item_slots(int mask)
 			// background of the slot will be highlighted...
 			//
 			if (MouseCursorIsInRect(&(item_level->ItemList[i].text_slot_rectangle), GetMousePos_x(), GetMousePos_y()))
-				our_SDL_fill_rect_wrapper(Screen, &(item_level->ItemList[i].text_slot_rectangle),
-							  SDL_MapRGB(Screen->format, 0x000, 0x000, 0x099));
+				draw_rectangle(&item_level->ItemList[i].text_slot_rectangle, 0, 0, 153, 255);
 			else {
-				if (use_open_gl) {
-					if ((item_level->ItemList[i].text_slot_rectangle.x + item_level->ItemList[i].text_slot_rectangle.w <= 0) ||
-						(item_level->ItemList[i].text_slot_rectangle.y + item_level->ItemList[i].text_slot_rectangle.h <= 0) ||
-						(item_level->ItemList[i].text_slot_rectangle.x >= GameConfig.screen_width) ||
-						(item_level->ItemList[i].text_slot_rectangle.y >= GameConfig.screen_height))
-						continue;
-					gl_draw_rectangle(&item_level->ItemList[i].text_slot_rectangle, 0, 0, 0,
-								  BACKGROUND_TEXT_RECT_ALPHA);
-				} else {
-					SDL_Rect our_rect = item_level->ItemList[i].text_slot_rectangle;	//we need that because SDL_FillRect modifies the dstrect
-					sdl_draw_rectangle(&our_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
-				}
+				if ((item_level->ItemList[i].text_slot_rectangle.x + item_level->ItemList[i].text_slot_rectangle.w <= 0) ||
+					(item_level->ItemList[i].text_slot_rectangle.y + item_level->ItemList[i].text_slot_rectangle.h <= 0) ||
+					(item_level->ItemList[i].text_slot_rectangle.x >= GameConfig.screen_width) ||
+					(item_level->ItemList[i].text_slot_rectangle.y >= GameConfig.screen_height))
+					continue;
+
+				draw_rectangle(&item_level->ItemList[i].text_slot_rectangle, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
 			}
 	
 			// Finally it's time to insert the font into the item slot.  We
@@ -1796,7 +1790,7 @@ void draw_grid_on_the_floor(int mask)
 			tr.w = 12;
 			tr.h = 14;
 
-			our_SDL_fill_rect_wrapper(Screen, &tr, 0x000000);
+			draw_rectangle(&tr, 0, 0, 0, 255);
 			display_text(numbers[ii][jj], r - 5, c - 5, &tr);
 		}
 	SetCurrentFont(PreviousFont);
@@ -3538,21 +3532,12 @@ void draw_inventory_occupied_rectangle(SDL_Rect TargetRect, int bgcolor)
 #define REQUIREMENTS_NOT_MET 1
 #define IS_MAGICAL 2
 
-	if (use_open_gl) {
-		if (!bgcolor)
-			gl_draw_rectangle(&TargetRect, 127, 127, 127, 100);
-		if (bgcolor & IS_MAGICAL)
-			gl_draw_rectangle(&TargetRect, 0, 0, 255, 100);
-		if (bgcolor & REQUIREMENTS_NOT_MET)
-			gl_draw_rectangle(&TargetRect, 255, 0, 0, 100);
-	} else {
-		if (!bgcolor)
-			sdl_draw_rectangle(&TargetRect, 127, 127, 127, 100);
-		if (bgcolor & IS_MAGICAL)
-			sdl_draw_rectangle(&TargetRect, 0, 0, 255, 100);
-		if (bgcolor & REQUIREMENTS_NOT_MET)
-			sdl_draw_rectangle(&TargetRect, 255, 0, 0, 100);
-	}
+	if (!bgcolor)
+		draw_rectangle(&TargetRect, 127, 127, 127, 100);
+	if (bgcolor & IS_MAGICAL)
+		draw_rectangle(&TargetRect, 0, 0, 255, 100);
+	if (bgcolor & REQUIREMENTS_NOT_MET)
+		draw_rectangle(&TargetRect, 255, 0, 0, 100);
 }
 
 /**

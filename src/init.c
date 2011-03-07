@@ -118,7 +118,6 @@ void next_startup_percentage(int done)
 {
 	static int startup_percent = 0;
 	SDL_Rect Bar_Rect;
-	Uint32 FillColor = SDL_MapRGB(Screen->format, 150, 200, 225);
 
 	startup_percent += done;
 
@@ -129,13 +128,13 @@ void next_startup_percentage(int done)
 	Bar_Rect.y = 288 * GameConfig.screen_height / 480;
 	Bar_Rect.w = 3 * startup_percent * GameConfig.screen_width / 640;
 	Bar_Rect.h = 30 * GameConfig.screen_height / 480;
-	our_SDL_fill_rect_wrapper(Screen, &Bar_Rect, FillColor);
+	draw_rectangle(&Bar_Rect, 150, 200, 225, 255);
 
 	Bar_Rect.x = (160 + 3 * startup_percent) * GameConfig.screen_width / 640;
 	Bar_Rect.y = 288 * GameConfig.screen_height / 480;
 	Bar_Rect.w = (300 - 3 * startup_percent) * GameConfig.screen_width / 640;
 	Bar_Rect.h = 30 * GameConfig.screen_height / 480;
-	our_SDL_fill_rect_wrapper(Screen, &Bar_Rect, 0);
+	draw_rectangle(&Bar_Rect, 0, 0, 0, 255);
 
 	SDL_SetClipRect(Screen, NULL);
 

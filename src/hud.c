@@ -56,6 +56,7 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 {
 	SDL_Rect running_power_rect;
 	SDL_Rect un_running_power_rect;
+	uint8_t r, g, b, a;
 
 	if (!max_value) {
 		max_value = 1;
@@ -96,9 +97,12 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 	// running power status on screen...
 	//
 	SDL_SetClipRect(Screen, NULL);
-	our_SDL_fill_rect_wrapper(Screen, &(running_power_rect), filled_color_code);
-	our_SDL_fill_rect_wrapper(Screen, &(un_running_power_rect), empty_color_code);
 
+	SDL_GetRGBA(filled_color_code, Screen->format, &r, &g, &b, &a);
+	draw_rectangle(&running_power_rect, r, g, b, a);
+
+	SDL_GetRGBA(empty_color_code, Screen->format, &r, &g, &b, &a);
+	draw_rectangle(&un_running_power_rect, r, g, b, a);
 };				// void blit_vertical_status_bar ( ... )
 
 /**
@@ -244,17 +248,13 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 	rect.x = bar_x;
 	rect.y = bar_y;
 	rect.w = bar_width;
-	if (use_open_gl) {
-		gl_draw_rectangle(&rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
-	} else {
-		sdl_draw_rectangle(&rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
-	}
+	draw_rectangle(&rect, r, g, b, BACKGROUND_TEXT_RECT_ALPHA);
 
 	// Draw the energy bar complement
 	rect.x = bar_x + bar_width;
 	rect.y = bar_y;
 	rect.w = barc_width;
-	our_SDL_fill_rect_wrapper(Screen, &rect, SDL_MapRGB(Screen->format, 0x000, 0x000, 0x000));
+	draw_rectangle(&rect, 0, 0, 0, 255);
 
 	// Display droid's short description text
 	rect.x = translate_map_point_to_screen_pixel_x(description_pos->x, description_pos->y) - text_length / 2;
@@ -813,10 +813,7 @@ void show_current_text_banner(void)
 
 	// Draw the rectangle inside which the text will be drawn
 	SDL_SetClipRect(Screen, NULL);	// this unsets the clipping rectangle
-	if (use_open_gl)
-		gl_draw_rectangle(&banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
-	else
-		sdl_draw_rectangle(&banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
+	draw_rectangle(&banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
 
 	// Print the text
 	int line_spacing = (banner_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);
