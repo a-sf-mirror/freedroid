@@ -354,101 +354,41 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 	skew_and_blit_rect(x + left, y + up, x + right, y + low, 0x00FEEAA);
 }
 
-/**
- * Draw an obstacle at its place on the screen.
- *
- * @param our_obstacle Point to the obstacle to blit.
- */
-void blit_one_obstacle(obstacle * our_obstacle, int highlight, int zoom)
+void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 {
 #define HIGHLIGHT 1
 #define NOHIGHLIGHT 0
 
-	struct image tmp;
-	gps obs_screen_position;
 	float zf = zoom ? lvledit_zoomfact_inv() : 1.0;
+	level *lvl = curShip.AllLevels[Me.pos.z];
+	float r, g, b, a;
 
-	if ((our_obstacle->type <= -1) || (our_obstacle->type >= NUMBER_OF_OBSTACLE_TYPES)) {
-		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given exceeds the number of\n\
-				obstacle types allowed and loaded in Freedroid.", PLEASE_INFORM, IS_FATAL, our_obstacle->type);
+	if ((o->type <= -1) || (o->type >= NUMBER_OF_OBSTACLE_TYPES)) {
+		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given is incorrect. Resetting type to 1.", PLEASE_INFORM, IS_WARNING_ONLY, o->type);
+		o->type = 1;
 	}
+
 	// Maybe the children friendly version is desired.  Then the blood on the floor
 	// will not be blitted to the screen.
-	if ((!GameConfig.show_blood) && (our_obstacle->type >= ISO_BLOOD_1) && (our_obstacle->type <= ISO_BLOOD_8))
+	if ((!GameConfig.show_blood) && (o->type >= ISO_BLOOD_1) && (o->type <= ISO_BLOOD_8))
 		return;
 
-	if (zoom && !use_open_gl) {
-		make_sure_zoomed_surface_is_there(get_obstacle_image(our_obstacle->type));
-	}
-
-	update_virtual_position(&obs_screen_position, &our_obstacle->pos, CURLEVEL()->levelnum);
-
-	// We blit the obstacle in question, but if we're in the level editor and this
-	// obstacle has been marked, we apply a color filter to it.  Otherwise we blit
-	// it just so.
-	if (element_in_selection(our_obstacle)) {
-		if (use_open_gl) {
-			draw_gl_textured_quad_at_map_position(get_obstacle_image(our_obstacle->type),
-							      obs_screen_position.x, obs_screen_position.y,
-							      ((SDL_GetTicks() >> 7) % 3) / 2.0,
-							      (((SDL_GetTicks() >> 7) + 1) % 3) / 2.0,
-							      (((SDL_GetTicks() >> 7) + 2) % 3) / 2.0, highlight, FALSE, zf);
-		} else {
-			DebugPrintf(1, "\nColor filter for level editor invoked (via SDL!) for marked obstacle!");
-			tmp.surface = our_SDL_display_format_wrapperAlpha(get_obstacle_image(our_obstacle->type)->surface);
-			tmp.surface->format->Bmask = 0x0;
-			tmp.surface->format->Rmask = 0x0;
-			tmp.surface->format->Gmask = 0x0FFFFFFFF;
-			tmp.offset_x = get_obstacle_image(our_obstacle->type)->offset_x;
-			tmp.offset_y = get_obstacle_image(our_obstacle->type)->offset_y;
-			if (zoom) {
-				tmp.zoomed_out_surface = NULL;
-				blit_zoomed_iso_image_to_map_position(&(tmp), our_obstacle->pos.x, our_obstacle->pos.y);
-				SDL_FreeSurface(tmp.zoomed_out_surface);
-			}
-
-			else {
-				blit_iso_image_to_map_position(&tmp, obs_screen_position.x, obs_screen_position.y);
-			}
-			SDL_FreeSurface(tmp.surface);
-		}
+	// Compute colorization (in case the obstacle is currently selected in the leveleditor)
+	if (pos_inside_level(o->pos.x, o->pos.y, lvl)) {
+		object_vtx_color(o, &r, &g, &b);
 	} else {
-		if (use_open_gl) {
-			// Not in all cases does it make sense to make the walls transparent.
-			// Only those walls, that are really blocking the Tux from view should
-			// be made transparent.
-			if (obstacle_map[our_obstacle->type].transparent == TRANSPARENCY_FOR_WALLS) {
-				if ((obs_screen_position.x > Me.pos.x - 1.0) &&
-				    (obs_screen_position.y > Me.pos.y - 1.0) &&
-				    (obs_screen_position.x < Me.pos.x + 1.5) && (obs_screen_position.y < Me.pos.y + 1.5)) {
-					draw_gl_textured_quad_at_map_position(get_obstacle_image(our_obstacle->type), obs_screen_position.x,
-									      obs_screen_position.y, 1, 1, 1, highlight,
-									      obstacle_map[our_obstacle->type].transparent, zf);
+		r = g = b = a = 1.0;
+	}
 
-				} else {
-					draw_gl_textured_quad_at_map_position(get_obstacle_image(our_obstacle->type), obs_screen_position.x,
-									      obs_screen_position.y, 1, 1, 1, highlight, 0, zf);
-
-				}
-			} else {
-				draw_gl_textured_quad_at_map_position(get_obstacle_image(our_obstacle->type), obs_screen_position.x,
-								      obs_screen_position.y, 1, 1, 1, highlight,
-								      obstacle_map[our_obstacle->type].transparent, zf);
-			}
-		} else {
-			if (!zoom) {
-				blit_iso_image_to_map_position(get_obstacle_image(our_obstacle->type),
-							       obs_screen_position.x, obs_screen_position.y);
-				if (highlight)
-					sdl_highlight_iso_image(get_obstacle_image(our_obstacle->type),
-										  our_obstacle->pos.x, our_obstacle->pos.y);
-			} else {
-				blit_zoomed_iso_image_to_map_position(get_obstacle_image(our_obstacle->type),
-								      obs_screen_position.x, obs_screen_position.y);
-			}
-
+	if (GameConfig.transparency && obstacle_map[o->type].transparent == TRANSPARENCY_FOR_WALLS) {
+		if ((o->pos.x > Me.pos.x - 1.0) && (o->pos.y > Me.pos.y - 1.0)
+			&& (o->pos.x < Me.pos.x + 1.5) && (o->pos.y < Me.pos.y + 1.5)) {
+			a = 0.5;
 		}
 	}
+
+	struct image *img = get_obstacle_image(o->type);
+	display_image_on_map(img, o->pos.x, o->pos.y, set_image_transformation(zf, r, g, b, a, highlight));
 }
 
 /**
