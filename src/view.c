@@ -3219,7 +3219,9 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	// Apply disco mode when current item is selected
 	object_vtx_color(CurItem, &r, &g, &b);
 
-	display_image_on_map(img, CurItem->virt_pos.x, CurItem->virt_pos.y, set_image_transformation(zf, r, g, b, 1.0, highlight_item));
+	float anim_throw = (CurItem->throw_time <= 0) ? 0.0 : (3.0 * sinf(CurItem->throw_time * 3.0));
+
+	display_image_on_map(img, CurItem->virt_pos.x - anim_throw, CurItem->virt_pos.y - anim_throw, set_image_transformation(zf, r, g, b, 1.0, highlight_item));
 }
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_direction[RADIAL_SPELL_DIRECTIONS], float age)
