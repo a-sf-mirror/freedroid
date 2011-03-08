@@ -558,7 +558,7 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 	strm.avail_out = cursz;
 	strm.next_out = (Bytef *) temp_dbuffer;
 
-	ret = inflateInit(&strm);
+	ret = inflateInit2(&strm, 47);
 	if (ret != Z_OK) {
 		ErrorMessage(__FUNCTION__, "\
 		zlib was unable to start decompressing a stream.\n\
@@ -623,7 +623,7 @@ int deflate_to_stream(unsigned char *source_buffer, int size, FILE *dest)
 	strm.avail_in = size;
 	strm.next_in = source_buffer;
 
-    ret = deflateInit(&strm, Z_DEFAULT_COMPRESSION);
+    ret = deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY);
 	if (ret != Z_OK) {
 		ErrorMessage(__FUNCTION__, "\
 		zlib was unable to start compressing a string.", PLEASE_INFORM, IS_WARNING_ONLY);
