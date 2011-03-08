@@ -79,7 +79,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=6 Text=_"The people from the uhh... city want me to have a word with him. Yeah, that's it."
+Nr=6 Text=_"The people from the uhh... town want me to have a word with him. Yeah, that's it."
 LuaCode={
 	npc_says(_"[b]Error: Reason invalid.[/b]")
 	hide(6)

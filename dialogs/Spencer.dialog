@@ -166,7 +166,7 @@ LuaCode={
 	else
 		npc_says(_"These are bad times. Interplanetary travel is made impossible by bot ships, so we need to stick to our local resources.")
 		npc_says(_"We've got a list of stuff we need from the automated underground storage north of town. But the bots there are numerous.")
-		npc_says(_"And currently I can't spare a single man from the city defenses. It's quite a difficult situation.")
+		npc_says(_"And currently I can't spare a single man from the town's defenses. It's quite a difficult situation.")
 		show(6)
 	end
 }
@@ -207,7 +207,7 @@ LuaCode={
 	if (done_quest(_"Anything but the army snacks, please!")) then
 		npc_says(_"When I was eating, Michelangelo told me about his renewed oven energy supply. He seemed very pleased, and so was I.")
 	else
-		npc_says(_"I think you should visit the camp's cook sometime. He's usually in the restaurant kitchen.")
+		npc_says(_"I think you should visit the town's cook sometime. He's usually in the restaurant kitchen.")
 	end
 
 	if (done_quest(_"Novice Arena")) then

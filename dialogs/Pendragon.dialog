@@ -49,7 +49,7 @@ EveryTime LuaCode={
 			tux_says(_"Someone I found in the desert, Tania.")
 		end
 		npc_says(get_player_name() .. _", you may enter.")
-		npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the city.")
+		npc_says(_"However, you will have to talk to Spencer before you bring your friend, Tania, into the town.")
 		if (not has_cookie("Tania_met_Pendragon")) then
 			change_obstacle_state("DesertGate-Inner", "opened")
 			teleport_npc("W-enter-2", "Tania") --Ensure that Tania is on Level 0!

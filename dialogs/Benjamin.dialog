@@ -80,7 +80,7 @@ LuaCode={
 Nr=20 Text=_"Can you teach me how to properly use rifles and guns?"
 LuaCode={ 
 	if (get_skill("ranged") == 0) then
-		npc_says(_"If anyone in this city knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
+		npc_says(_"If anyone in this town knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
 		npc_says(_"Of course, I will need compensation for the ammunition spent in the training and for my time.")
 		npc_says(_"Say... A hundred circuits should be enough for a beginner lesson.")
 		npc_says(_"Interested?")

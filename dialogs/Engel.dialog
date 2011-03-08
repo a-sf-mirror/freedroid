@@ -79,7 +79,7 @@ LuaCode={
 Nr=6 Text=_"Where can I get some help?"
 LuaCode={
 	npc_says(_"Nowhere. This is the end of the world. There is no help.")
-	npc_says(_"There is a city a bit south from here, but if I were you, I would not go there.")
+	npc_says(_"There is a town a bit south from here, but if I were you, I would not go there.")
 	npc_says(_"The Rot Guard is the ruler there, and cruelty is their solution to everything.") -- Rot = red
 	npc_says(_"Real freedom is really dead.")
 	hide(6)

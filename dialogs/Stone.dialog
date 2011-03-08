@@ -47,7 +47,7 @@ EveryTime LuaCode={
 
 Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
-	npc_says(_"Welcome to this camp! I'm Ms. Stone. I run this shop.")
+	npc_says(_"Welcome to our town! I'm Ms. Stone. I run this shop.")
 	set_bot_name(_"Stone -- Shopowner")
 	hide(0) show(1, 10)
 }
@@ -113,7 +113,7 @@ LuaCode={
 			npc_says(_"I don't know what you are talking about.")
 			del_cookie("Stone_Talk_Again_Later")		-- Stone rejects to tell more because Tux is RG now
 	else
-		npc_says(_"The Guards run the city with very strict laws and demand total obedience.", "NO_WAIT")
+		npc_says(_"The Guards run the town with very strict laws and demand total obedience.", "NO_WAIT")
 		npc_says(_"We all need to obey their rules. We need to work hard or they hurt us.")
 		npc_says(_"I guess I should not complain. The bots are far worse than the guards can be, but...")
 		npc_says(_"Sucked dry by a bloodthirsty regime over many years or just sliced into bits by our former servants...", "NO_WAIT")

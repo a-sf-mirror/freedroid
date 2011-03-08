@@ -74,7 +74,7 @@ EveryTime LuaCode={
 			hide(45, 46, 47, 49, 50, 51, 52, 53, 56, 57, 58, 59, 92)
 			if (has_cookie("Tania_just-stopped-by-Pendragon")) then
 				del_cookie("Tania_just-stopped-by-Pendragon")
-				update_quest(_"Tania's Escape", _"Pendragon just stopped Tania and I at the city gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
+				update_quest(_"Tania's Escape", _"Pendragon just stopped Tania and I at the town gate. Apparently he won't let her in, unless Spencer gives the go-ahead.")
 				npc_says(_"It is OK. I'll wait here at the gate.")
 				end_dialog()
 			end

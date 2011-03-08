@@ -74,7 +74,7 @@ LuaCode={
 
 Nr=4 Text=_"What are your orders?"
 LuaCode={
-	npc_says(_"My orders are to protect the living beings in this camp from attacks by hostile bots.")
+	npc_says(_"My orders are to protect the living beings in this town from attacks by hostile bots.")
 	npc_says(_"This has top priority. There are no other priorities.")
 	hide(4)
 }

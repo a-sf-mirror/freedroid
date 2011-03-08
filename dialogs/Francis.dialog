@@ -150,7 +150,7 @@ LuaCode={
 Nr=14 Text=_"Tell me more about the town you mentioned."
 LuaCode={
 	npc_says(_"It is a small mining community of no more than 500 inhabitants...")
-	npc_says(_"It was a stroke of luck that it did not get destroyed by the bots. Because of poor funding, the city could not afford new models.")
+	npc_says(_"It was a stroke of luck that it did not get destroyed by the bots. Because of poor funding, the town could not afford new models.")
 	npc_says(_"All they had at the time of the bot attack were the 614 battle bot platforms. They were running an old operating system and were not affected by whatever caused the other bots to go crazy.")
 	npc_says(_"Right now the place is protected by the Red Guard, a bunch of volunteers. I cannot say I agree with their methods.")
 	npc_says(_"However, I must admit that being a prisoner of a walled town looks pretty good compared to the alternative of being eviscerated alive.")

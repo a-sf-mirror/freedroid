@@ -62,7 +62,7 @@ EveryTime LuaCode={
 
 Nr=0 Text=_"Hello! I'm new here."
 LuaCode={ 
-	npc_says(_"Hello. I'm Bender, the dead man of this camp.")
+	npc_says(_"Hello. I'm Bender, the dead man of this town.")
 	set_bot_name(_"Bender")
 	hide(0) show(1)
 }
@@ -97,7 +97,7 @@ LuaCode={
 	npc_says(_"You know man, I got those offers everybody gets.")
 	npc_says(_"They offer some brain enlargement pills to enhance brain performance.")
 	npc_says(_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'")
-	npc_says(_"And everybody in the camp said I was dumb, which by the way IS NOT TRUE.")
+	npc_says(_"And everybody in the town said I was dumb, which by the way IS NOT TRUE.")
 	npc_says(_"So I thought these pills might make them think differently about me.")
 	hide(4) show(5, 6)
 }
@@ -126,7 +126,7 @@ LuaCode={
 		npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
 	end
 	npc_says(_"Just get me a cure, and I'll be forever grateful!")
-	add_quest(_"Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The city doctor will not give him the antidote, so it is up to me to save him.")
+	add_quest(_"Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him.")
 	hide(7, 8) show(11)
 }
 ----------------------------------------------------------------------
@@ -195,7 +195,7 @@ LuaCode={
 	npc_says(_"What was your name again?")
 	tux_says(get_player_name())
 	npc_says(_"Thanks ".. get_player_name() .._", I owe you one.", "NO_WAIT")
-	npc_says(_"And I'll sure vote for you if you want into the city guard! ")
+	npc_says(_"And I'll sure vote for you if you want into the Red Guard! ")
 }
 ----------------------------------------------------------------------
 

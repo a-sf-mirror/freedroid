@@ -69,7 +69,7 @@ LuaCode={
 	npc_says(_"... THEN SOMETHING IS NOT LOGICAL!")
 	tux_says(_"Calm down. There must be some logic behind this.")
 	npc_says(_"There is none!")
-	npc_says(_"They could just enter the city and massacre everyone...")
+	npc_says(_"They could just enter the town and massacre everyone...")
 	npc_says(_"But they do not even seem to try!")
 	npc_says(_"This makes no sense at all!")
 	hide(3)
@@ -99,7 +99,7 @@ LuaCode={
 Nr=7 Text=_"I want to leave this place."
 LuaCode={
 	npc_says(_"We all do, Linarian, we all do.")
-	npc_says(_"The act in question is made impossible by the quasi-infinite bots outside of the city walls.")
+	npc_says(_"The act in question is made impossible by the quasi-infinite bots outside of the town walls.")
 	npc_says(_"You cannot live for long out there.")
 	hide(7) show(8)
 }
@@ -107,7 +107,7 @@ LuaCode={
 
 Nr=8 Text=_"No, I meant I would like to leave this world."
 LuaCode={
-	npc_says(_"Simple. Walk outside the city walls, and the bots will send you to the other world within a few minutes.")
+	npc_says(_"Simple. Walk outside the town walls, and the bots will send you to the other world within a few minutes.")
 	npc_says(_"Unless you mean leave the planet, in which case that is impossible.")
 	npc_says(_"Most likely all of our cosmodromes have been destroyed in the bot attacks.")
 	hide(8)

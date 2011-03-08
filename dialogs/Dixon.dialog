@@ -171,22 +171,22 @@ LuaCode={
 	tux_says(_"Well... I can build an igloo and make pykrete out of snow... And... Umm...", "NO_WAIT")
 	npc_says(_"Well, I appreciate your enthusiasm, and at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now.")
 	npc_says(_"Now... To which project I should assign you... Hmm...", "NO_WAIT")
-	npc_says(_"Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the city.")
+	npc_says(_"Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the town.")
 	npc_says(_"It's yellow and round, and my name is engraved on the lid.", "NO_WAIT")
-	npc_says(_"The bots under the city took it from me during the Great Assault, I was lucky, they could have killed me with ease.")
+	npc_says(_"The bots under the town took it from me during the Great Assault, I was lucky, they could have killed me with ease.")
 	npc_says(_"Since the toolkit can't be teleported, everyone has been reluctant to go after it.")
-	npc_says(_"If you could get it back for us, it would help the city very much.")
-	add_quest(_"The yellow toolkit", _"Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the city's maintenance tunnels. I am supposed to get it from there.")
+	npc_says(_"If you could get it back for us, it would help the town very much.")
+	add_quest(_"The yellow toolkit", _"Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the town's maintenance tunnels. I am supposed to get it from there.")
 	hide(22) show(21, 25, 26)
 }
 ----------------------------------------------------------------------
 
-Nr=25 Text=_"Why are there rebel bots under the city?"
+Nr=25 Text=_"Why are there rebel bots under the town?"
 LuaCode={
 	npc_says(_"They were there to keep the underground power grid and our pipe system working.", "NO_WAIT")
 	npc_says(_"When the Great Assault happened they did not turn into killing machines like most of the other bots did. ")
 	npc_says(_"We lost control over them, but that is all.", "NO_WAIT")
-	npc_says(_"It was our biggest worry that they might destroy cables, pipes and other things which keep the city running.")
+	npc_says(_"It was our biggest worry that they might destroy cables, pipes and other things which keep the town running.")
 	npc_says(_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions.", "NO_WAIT")
 	npc_says(_"They have fortified the tunnels and they do not let anyone in.")
 	hide(25)
@@ -332,7 +332,7 @@ LuaCode={
 
 Nr=39 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
 LuaCode={
-	npc_says(_"I am not happy about this. I suggest you leave the city.", "NO_WAIT")
+	npc_says(_"I am not happy about this. I suggest you leave town.", "NO_WAIT")
 	npc_says(_"Accidents... Happen.")
 	add_gold(350)
 	add_cookie("dixon_angry_350")
@@ -368,7 +368,7 @@ Nr=42 Text=_"Come on, I am sure you can do even better than that... "
 LuaCode={
 	npc_says(_"Four hundred. We cannot offer anything more.", "NO_WAIT")
 	npc_says(_"Please, we really need the autotools.", "NO_WAIT")
-	npc_says(_"Without them this city is doomed.")
+	npc_says(_"Without them the town is doomed.")
 	hide(39, 42) show(40)
 }
 ----------------------------------------------------------------------
@@ -378,7 +378,7 @@ LuaCode={
 	npc_says(_"Heh, never better!", "NO_WAIT")
 	npc_says(_"All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds.")
 	npc_says(_"Thanks to the autotools we can start building instead of just trying to repair the damage.", "NO_WAIT")
-	npc_says(_"Once this is sick war is over, I will make sure you get keys to the city Linarian.")
+	npc_says(_"Once this sick war is over, I will make sure you get the 'Key to the City' Linarian.")
 	hide(43)
 }
 ----------------------------------------------------------------------
@@ -428,7 +428,7 @@ LuaCode={
 	npc_says(_"The Library of Alexandria, the Colossus of Rhodes, the Black Island...")
 	npc_says(_"And this is just one of those things.", "NO_WAIT")
 	npc_says(_"Just go and see for yourself. Otherwise you will not believe me.")
-	end_quest(_"The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the city working. All is well that ends well.")
+	end_quest(_"The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well.")
 	hide(48)
 }
 ----------------------------------------------------------------------
@@ -436,7 +436,7 @@ LuaCode={
 Nr=50 Text=_"What are these strange materials I need to craft add-ons?"
 LuaCode={
 	npc_says(_"These are special devices extracted from bots.")
-	npc_says(_"A scout troop recently spotted two guys in the north of this town.")
+	npc_says(_"A scout troop recently spotted two guys in the north of town.")
 	npc_says(_"I was told these guys shoot bots and disassemble them, extract their parts.")
 	npc_says(_"Maybe they can help you somehow receive such parts.")
 	tux_says(_"Thank you.")
