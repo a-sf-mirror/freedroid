@@ -91,7 +91,7 @@ void EditLevelDimensions(void)
 
 	while (!proceed_now) {
 
-		InitiateMenu(-1);
+		InitiateMenu(-2);
 
 		i = 0;
 		sprintf(Options[i], _("North"));
@@ -131,7 +131,7 @@ void EditLevelDimensions(void)
 		MenuTexts[i++] = _("Back");
 		MenuTexts[i++] = "";
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, -1, FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, -2, FPS_Display_BFont);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -228,7 +228,7 @@ static void SetLevelInterfaces(void)
 
 	while (!proceed_now) {
 		EditLevel = curShip.AllLevels[Me.pos.z];
-		InitiateMenu(-1);
+		InitiateMenu(-2);
 
 		i = 0;
 
@@ -263,7 +263,7 @@ static void SetLevelInterfaces(void)
 		MenuTexts[i++] = _("Back");
 		MenuTexts[i++] = "";
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, -1, FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, -2, FPS_Display_BFont);
 
 		while (EnterPressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -434,7 +434,7 @@ static void AddRemLevel(void)
 	game_status = INSIDE_MENU;
 
 	while (!proceed_now) {
-		InitiateMenu(-1);
+		InitiateMenu(-2);
 		i = 0;
 		MenuTexts[i++] = _("Add New Level");
 		MenuTexts[i++] = _("Remove Current Level");
@@ -444,7 +444,7 @@ static void AddRemLevel(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, -1, FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, -2, FPS_Display_BFont);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -549,7 +549,7 @@ static void LevelOptions(void)
 
 	while (!proceed_now) {
 
-		InitiateMenu(-1);
+		InitiateMenu(-2);
 
 		i = 0;
 		sprintf(Options[i], _("Level"));
@@ -639,7 +639,7 @@ static void LevelOptions(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, -1, FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, -2, FPS_Display_BFont);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -829,7 +829,7 @@ static void AdvancedOptions(void)
 
 	while (!proceed_now) {
 
-		InitiateMenu(-1);
+		InitiateMenu(-2);
 
 		i = 0;
 		MenuTexts[i++] = _("Run Map Level Validator");
@@ -840,7 +840,7 @@ static void AdvancedOptions(void)
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, -1, FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, -2, FPS_Display_BFont);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
@@ -907,7 +907,7 @@ int DoLevelEditorMainMenu()
 
 	while (!proceed_now) {
 
-		InitiateMenu(-1);
+		InitiateMenu(-2);
 
 		i = 0;
 		sprintf(Options[i], _("Level"));
@@ -934,7 +934,7 @@ int DoLevelEditorMainMenu()
 		while (EscapePressed())
 			SDL_Delay(1);
 
-		MenuPosition = DoMenuSelection("", MenuTexts, -1, -1, FPS_Display_BFont);
+		MenuPosition = DoMenuSelection("", MenuTexts, -1, -2, FPS_Display_BFont);
 
 		while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 			SDL_Delay(1);
