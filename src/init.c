@@ -1412,7 +1412,7 @@ I will not be able to load or save games or configurations\n\
 
 	Copy_Rect(Full_User_Rect, User_Rect);
 
-	InitTimer();
+	init_timer();
 
 	InitVideo();
 

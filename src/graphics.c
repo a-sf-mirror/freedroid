@@ -492,20 +492,18 @@ A font file for the BFont library could not be loaded.", PLEASE_INFORM, IS_FATAL
 
 };				// InitOurBFonts ( void )
 
-/* -----------------------------------------------------------------
- * This funciton initialises the timer subsystem.
- * -----------------------------------------------------------------*/
-void InitTimer(void)
+/**
+ * This function initializes the timer subsystem.
+ */
+void init_timer(void)
 {
 	// Now SDL_TIMER is initialized here:
 	//
 	if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1) {
 		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
 		Terminate(EXIT_FAILURE, FALSE);
-	} else
-		DebugPrintf(1, "\nSDL Timer initialisation successful.\n");
-
-};				// void InitTimer (void)
+	}
+}
 
 /**
  * This function checks if the availability of OpenGL libraries (at compile
@@ -720,7 +718,7 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 };				// void set_video_mode_for_open_gl ( void )
 
 /* -----------------------------------------------------------------
- * This funciton initialises the video display and opens up a 
+ * This function initialises the video display and opens up a 
  * window for graphics display.
  * -----------------------------------------------------------------*/
 void InitVideo(void)

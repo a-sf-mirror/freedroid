@@ -259,7 +259,7 @@ void blit_mouse_cursor(void);
 void fade_out_screen(void);
 void fade_in_screen(void);
 void InitPictures(void);
-void InitTimer(void);
+void init_timer(void);
 void InitVideo(void);
 void InitOurBFonts(void);
 void ClearGraphMem(void);
