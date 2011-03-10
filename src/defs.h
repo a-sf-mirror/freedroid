@@ -174,7 +174,7 @@ enum _game_config_screen_visible_parameters {
 #define UserCenter_x (User_Rect.x+User_Rect.w/2)
 #define UserCenter_y (User_Rect.y+User_Rect.h/2)
 
-#define MAX_CHARACTER_NAME_LENGTH 25
+#define MAX_CHARACTER_NAME_LENGTH 13
 
 // The flags for AssembleCombatWindow are:
 enum { ONLY_SHOW_MAP = 1, DO_SCREEN_UPDATE = 2, ONLY_SHOW_MAP_AND_TEXT = 4, SHOW_GRID = 8, SHOW_TUX_AND_ENEMIES = 16, SHOW_TEXT =
