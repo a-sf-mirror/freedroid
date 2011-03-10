@@ -1166,8 +1166,47 @@ luaL_reg lfuncs[] = {
 void run_lua(const char *code)
 {
 	if (luaL_dostring(global_lua_state, code)) {
-		ErrorMessage(__FUNCTION__, "Error running Lua code {%s}: %s.\n", PLEASE_INFORM, IS_FATAL, code,
-			     lua_tostring(global_lua_state, -1));
+		fflush(stdout);
+
+		const char *error = lua_tostring(global_lua_state, -1);
+		char *display_code = strdup(code);
+		const char *ptr = error;
+		int err_line = 0;
+		int cur_line = 2;
+		struct auto_string *erronous_code;
+
+		erronous_code = alloc_autostr(16);
+
+		//Find which line the error is on
+		while (*ptr != ':') {
+			ptr++;
+		}
+		ptr++;
+		err_line = strtol(ptr, NULL, 10);
+
+		//Break up lua code by newlines then insert line numbers & error notification
+		ptr = strtok(display_code,"\n");
+
+		while (ptr != NULL) {
+			if (err_line != cur_line) {
+				autostr_append(erronous_code, "%d%s\n", cur_line, ptr);
+#ifndef __WIN32__
+			} else if (!strcmp(getenv("TERM"), "xterm")) { //color highlighting for Linux/Unix terminals
+				autostr_append(erronous_code, "\033[41m>%d%s\033[0m\n", cur_line, ptr);
+#endif
+			} else {
+				autostr_append(erronous_code, ">%d%s\n", cur_line, ptr);
+			}
+
+			ptr = strtok(NULL, "\n");
+			cur_line++;
+		}
+
+		ErrorMessage(__FUNCTION__, "Error running Lua code: %s.\nErroneous LuaCode={\n%s}",
+				 PLEASE_INFORM, IS_WARNING_ONLY, error, erronous_code->value);
+
+		free(display_code);
+		free_autostr(erronous_code);
 	}
 }
 
