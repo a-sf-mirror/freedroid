@@ -806,8 +806,8 @@ void InitiateMenu(int background_code)
 		AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 	} else if (background_code == (-2)) {	// Show editor background
 		AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
-			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | ZOOM_OUT *
-			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR | OMIT_ITEMS_LABEL);
+				OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | OMIT_BLASTS | SKIP_LIGHT_RADIUS |
+				NO_CURSOR | OMIT_ITEMS_LABEL);
 	} else {
 		// DisplayImage ( find_file ( BackgroundToUse , GRAPHICS_DIR, FALSE ) );
 		blit_special_background(background_code);
