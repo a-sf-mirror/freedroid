@@ -270,6 +270,9 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 	long int repair_price = 0;
 	itemspec *info;
 	int price = calculate_item_buy_price(show_item);
+	const char *action = _("Buy");
+	const char *buyone_highlight = font_switchto_neon;
+	const char *buyall_highlight = font_switchto_neon;
 
 	if (show_item == NULL)
 		return;
@@ -283,22 +286,23 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 	// Now we give some pricing information, the base list price for the item,
 	// the repair price and the sell value
 	if (price) {
-		if (buy) {
-			if (ItemMap[show_item->type].item_group_together_in_inventory) {
-				autostr_append(desc->text, _("Price per unit: %ld \n"), price);
-				autostr_append(desc->text, _("Buy all: %ld\n"), price * show_item->multiplicity);
-			} else {
-				autostr_append(desc->text, _("Price: %ld\n"), price);
-			}
- 		} else {
+		if (!buy) {
  			price = calculate_item_sell_price(show_item);
-			if (ItemMap[show_item->type].item_group_together_in_inventory) {
-				autostr_append(desc->text, _("Price per unit: %ld ()\n"), price);
-				autostr_append(desc->text, _("Sell all: %ld\n"), price * show_item->multiplicity);
-			} else {
-				autostr_append(desc->text, _("Price: %ld\n"), price);
-			}
- 		}
+			action = _("Sell");
+		} else if (price > Me.Gold) {
+			buyone_highlight = font_switchto_red;
+			buyall_highlight = font_switchto_red;
+		} else if ((price * show_item->multiplicity) > Me.Gold) {
+			buyall_highlight = font_switchto_red;
+		}
+
+		if (ItemMap[show_item->type].item_group_together_in_inventory) {
+			autostr_append(desc->text, _("Price per unit: %s%ld%s\n"), buyone_highlight, price, font_switchto_neon);
+			autostr_append(desc->text, _("%s all: %s%ld%s\n"), action, buyall_highlight, price * show_item->multiplicity, font_switchto_neon);
+		} else {
+			autostr_append(desc->text, _("%s Price: %s%ld%s\n"), action, buyone_highlight, price, font_switchto_neon);
+		}
+
 
 		if (show_item->current_durability == show_item->max_durability || show_item->max_durability == (-1))
 			repair_price = 0;
