@@ -144,6 +144,9 @@ static int event_change_obstacle_type(const char *obslabel, int type)
 	obstacle *our_obstacle = give_pointer_to_obstacle_with_label(obslabel, &obstacle_level_num);
 	level *obstacle_level = curShip.AllLevels[obstacle_level_num];
 
+	// tell the automap to update
+	update_obstacle_automap(obstacle_level->levelnum, our_obstacle);
+	
 	if (type != -1) {
 		our_obstacle->type = type;
 	} else {

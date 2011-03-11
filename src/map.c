@@ -903,6 +903,9 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		int obstacle_drops_treasure
 			= obstacle_map[target_obstacle->type].flags & DROPS_RANDOM_TREASURE;
 
+		// Let the automap know that we've updated things
+		update_obstacle_automap(level, target_obstacle);
+
 		// Now we really smash the obstacle, i.e. we can set it's type to the debris that has
 		// been configured for this obstacle type.  In if there is nothing configured (i.e. -1 set)
 		// then we'll just delete the obstacle in question entirely.  For this we got a standard function to

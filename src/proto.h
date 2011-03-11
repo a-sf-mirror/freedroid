@@ -34,6 +34,7 @@ void Game(void);
 void display_automap(void);
 void toggle_automap(void);
 void CollectAutomapData(void);
+void update_obstacle_automap(int z, obstacle *our_obstacle);
 
 // init.c
 void ResetGameConfigToDefaultValues(void);

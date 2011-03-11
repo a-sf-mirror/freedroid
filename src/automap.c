@@ -82,6 +82,33 @@ static void round_automap_pos(float a, float b, int *ra, int *rb)
 }
 
 /**
+ * This function first erases the automap data on a square,
+ * then it tags each square touching it to redraw the automap.
+ *
+ */
+static void update_automap_square(int z, int x, int y)
+{
+	int a, b;
+	level *automap_level = curShip.AllLevels[z];
+
+	Me.Automap[z][y][x] &= ~UPDATE_SQUARE_BIT;
+	Me.Automap[z][y][x] &= ~EW_WALL_BIT;
+	Me.Automap[z][y][x] &= ~NS_WALL_BIT;
+
+	for (a = x - 1 ; a <=  x + 1; a++) {
+		if ((a < 0) || (a >= automap_level->xlen))
+			continue;
+			
+		for (b = y - 1; b <=  y + 1; b++) {
+			if ((b < 0) || (b >= automap_level->ylen))
+				continue;
+
+			Me.Automap[z][b][a] &= ~SQUARE_SEEN_AT_ALL_BIT;
+		}
+	}	
+}
+
+/**
  * This function collects the automap data and stores it in the Me data
  * structure.
  */
@@ -140,6 +167,9 @@ void CollectAutomapData(void)
 	//
 	for (y = start_y; y < end_y; y++) {
 		for (x = start_x; x < end_x; x++) {
+			if (Me.Automap[level][y][x] & UPDATE_SQUARE_BIT)
+				update_automap_square(level, x, y);
+					
 			if (Me.Automap[level][y][x] & SQUARE_SEEN_AT_ALL_BIT)
 				continue;
 
@@ -216,6 +246,48 @@ void CollectAutomapData(void)
 
 };				// void CollectAutomapData ( void )
 
+/**
+ * Sets all of the squares overlapped as not seen, so they can
+ * be updated.
+ */
+void update_obstacle_automap(int z, obstacle *our_obstacle)
+{
+	level *automap_level = curShip.AllLevels[z];
+	int obstacle_start_x;
+	int obstacle_end_x;
+	int obstacle_start_y;
+	int obstacle_end_y;
+
+	round_automap_pos(our_obstacle->pos.x + obstacle_map[our_obstacle->type].left_border, 
+			our_obstacle->pos.x + obstacle_map[our_obstacle->type].right_border, &obstacle_start_x, &obstacle_end_x);
+
+	round_automap_pos(our_obstacle->pos.y + obstacle_map[our_obstacle->type].upper_border,
+			our_obstacle->pos.y + obstacle_map[our_obstacle->type].lower_border, &obstacle_start_y, &obstacle_end_y);
+
+	if (obstacle_start_x < 0)
+		obstacle_start_x = 0;
+	if (obstacle_start_y < 0)
+		obstacle_start_y = 0;
+	if (obstacle_end_x < 0)
+		obstacle_end_x = 0;
+	if (obstacle_end_y < 0)
+		obstacle_end_y = 0;
+	if (obstacle_start_x >= automap_level->xlen)
+		obstacle_start_x = automap_level->xlen - 1;
+	if (obstacle_start_y >= automap_level->ylen)
+		obstacle_start_y = automap_level->ylen - 1;
+	if (obstacle_end_x >= automap_level->xlen)
+		obstacle_end_x = automap_level->xlen - 1;
+	if (obstacle_end_y >= automap_level->ylen)
+		obstacle_end_y = automap_level->ylen - 1;
+
+	int x, y;
+	for (x = obstacle_start_x; x <=  obstacle_end_x; x++) {
+		for (y = obstacle_start_y; y <=  obstacle_end_y; y++) {
+			Me.Automap[z][y][x] |= UPDATE_SQUARE_BIT;
+		}
+	}
+}
 
 /**
  * Use GL_POINTS primitive in OpenGL mode to render automap points for better performance.
