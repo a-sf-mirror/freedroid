@@ -62,11 +62,11 @@ Cost per level=0
 ** Start of new program specification subsection **
 Program name=_"Sanctuary"
 Program description=_"Effect: Teleport to town or back 
-The art of rapidly moving away from danger is very useful. Even when used in reverse it has it's uses."
+The art of rapidly moving away from danger is very useful. Even when used in reverse it has its uses."
 Picture="TeleportHomeSpell.png"
 Form="self"
 Effect="teleport_home"
-Cost=100
+Cost=120
 Cost per level=-10
 
 ** Start of new program specification subsection **
@@ -77,7 +77,7 @@ Form="self"
 Effect="invisibility"
 Effect duration=5
 Effect duration per level=2
-Cost=30
+Cost=45
 Cost per level=5
 
 ** Start of new program specification subsection **
@@ -91,8 +91,8 @@ Affect humans=0
 Base damage=5
 Mod damage=2
 Damage per level=2
-Cost=5
-Cost per level=2
+Cost=10
+Cost per level=3
 
 ** Start of new program specification subsection **
 Program name=_"Calculate Pi"  
@@ -107,7 +107,7 @@ Mod damage=0
 Damage per level=0
 Effect duration=10
 Effect duration per level=2
-Cost=10
+Cost=14
 Cost per level=2
 
 ** Start of new program specification subsection **
@@ -121,7 +121,7 @@ Base damage=0
 Effect="paralyze"
 Effect duration=5
 Effect duration per level=1
-Cost=40
+Cost=50
 Cost per level=0
 
 ** Start of new program specification subsection **
@@ -136,7 +136,7 @@ Affect humans=0
 Base damage=0
 Effect duration=3
 Effect duration per level=1
-Cost=100
+Cost=120
 Cost per level=0
 
 ** Start of new program specification subsection **
@@ -151,7 +151,7 @@ Base damage=10
 Damage per level=2
 Affect bots=1
 Affect humans=0
-Cost=50
+Cost=70
 Cost per level=5
 
 ** Start of new program specification subsection **
@@ -166,7 +166,7 @@ Base damage=10
 Damage per level=2
 Affect bots=1
 Affect humans=0
-Cost=100
+Cost=110
 Cost per level=10
 Artwork internal code=1
 
@@ -180,7 +180,7 @@ Affect bots=1
 Affect humans=0
 Base damage=40
 Damage per level=5
-Cost=80
+Cost=90
 Cost per level=5
 
 ** Start of new program specification subsection **
@@ -194,7 +194,7 @@ Affect humans=0
 Base damage=80
 Mod damage=80
 Damage per level=20
-Cost=160
+Cost=180
 Cost per level=15
 
 # Possibly Tux should also get some damage from it? "Everything is equal to it, even Tux."
@@ -211,7 +211,7 @@ Base damage=150
 Damage per level=15
 Hurt self=50
 Hurt self per level=5
-Cost=100
+Cost=120
 Cost per level=10
 
 ** Start of new program specification subsection **
@@ -222,6 +222,10 @@ Form="self"
 Effect="passive"
 Cost=0
 
+
+*****************
+**Unused skills**
+*****************
 
 #Potential future implementation# Nethack = takeover for humans. Possibly with a new minigame where you somehow make the human get sucked into playing the game turning it to a somewhat stupid bot, freezing them in place and agreeing to do things for you (eg like Tybalt will open the gate to RG house and let you past even if you are not yet a member). This would open up a lot of options for creating alternative storylines (eg never becoming an RG member). 
 
@@ -285,6 +289,11 @@ Cost per level=-2
 Effect duration=3
 Effect duration per level=1
 Base damage=0
+
+
+************
+**Grenades**
+************
 
 ** Start of new program specification subsection **
 Program name=_"Small Plasma grenade"
