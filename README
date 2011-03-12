@@ -140,7 +140,6 @@
    * Intel 915/945/IDG graphics cards (EEE PCs, netbooks, etc): Mesa 7.9-devel has an issue which makes the game
    	 run slowly and consume a lot of memory. It is fixed by installing and launching 'driconf' and setting 
 	 'Enable texture tiling' to 'No'.   
-   * The "Toggle display collision rectangles" function of the level editor does not work in SDL mode.
    * Due to hardware and software drivers, the "Gamma Correction" option may affect nothing.
 
 5. Screen resolution
