@@ -1278,7 +1278,7 @@ Item as gun: modifier for starting angle=0.000000
 Item as gun: pass through hit bodies="no"
 Item as gun: required ammunition type="Sshell"
 Item as gun: ammo clip size=2
-Item as gun: weapon requires both hands="yes"
+Item as gun: weapon requires both hands="no"
 Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
