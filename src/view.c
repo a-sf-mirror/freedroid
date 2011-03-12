@@ -359,6 +359,7 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 	float zf = zoom ? lvledit_zoomfact_inv() : 1.0;
 	level *lvl = curShip.AllLevels[Me.pos.z];
 	float r, g, b, a;
+	gps pos;
 
 	if ((o->type <= -1) || (o->type >= NUMBER_OF_OBSTACLE_TYPES)) {
 		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given is incorrect. Resetting type to 1.", PLEASE_INFORM, IS_WARNING_ONLY, o->type);
@@ -370,22 +371,24 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 	if ((!GameConfig.show_blood) && (o->type >= ISO_BLOOD_1) && (o->type <= ISO_BLOOD_8))
 		return;
 
+	update_virtual_position(&pos, &o->pos, lvl->levelnum);
+
 	// Compute colorization (in case the obstacle is currently selected in the leveleditor)
-	if (pos_inside_level(o->pos.x, o->pos.y, lvl)) {
+	if (pos_inside_level(pos.x, pos.y, lvl)) {
 		object_vtx_color(o, &r, &g, &b);
 	} else {
 		r = g = b = a = 1.0;
 	}
 
 	if (GameConfig.transparency && obstacle_map[o->type].transparent == TRANSPARENCY_FOR_WALLS) {
-		if ((o->pos.x > Me.pos.x - 1.0) && (o->pos.y > Me.pos.y - 1.0)
-			&& (o->pos.x < Me.pos.x + 1.5) && (o->pos.y < Me.pos.y + 1.5)) {
+		if ((pos.x > Me.pos.x - 1.0) && (pos.y > Me.pos.y - 1.0)
+			&& (pos.x < Me.pos.x + 1.5) && (pos.y < Me.pos.y + 1.5)) {
 			a = 0.5;
 		}
 	}
 
 	struct image *img = get_obstacle_image(o->type);
-	display_image_on_map(img, o->pos.x, o->pos.y, set_image_transformation(zf, r, g, b, a, highlight));
+	display_image_on_map(img, pos.x, pos.y, set_image_transformation(zf, r, g, b, a, highlight));
 }
 
 /**
