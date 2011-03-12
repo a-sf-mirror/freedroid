@@ -31161,6 +31161,9 @@ idx=1814 type=32 data={
 idx=1801 type=32 data={
 	Authorized personnel only!
 }
+idx=1813 type=32 data={
+	Please read the other sign first.
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  41 y=  76 rnd=0	 c:  180 179
