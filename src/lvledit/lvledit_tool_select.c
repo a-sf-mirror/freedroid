@@ -937,27 +937,10 @@ int leveleditor_select_display()
 		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y + state.rect_len.y, &r3, &c3);
 		translate_map_point_to_screen_pixel(state.rect_start.x + state.rect_len.x, state.rect_start.y, &r4, &c4);
 
-		if (!use_open_gl) {
-			DrawHatchedQuad(Screen, r1, c1, r2, c2, r3, c3, r4, c4, 0x1f, 0x7f, 0x8f);
-		}
-#ifdef HAVE_LIBGL
-		else {
-			glDisable(GL_TEXTURE_2D);
+		short x[4] = { r1, r2, r3, r4 };
+		short y[4] = { c1, c2, c3, c4 };
 
-			glColor4ub(0x1f, 0x7f, 0x8f, 0x8f);
-
-			glBegin(GL_QUADS);
-			glVertex2i(r1, c1);
-			glVertex2i(r2, c2);
-			glVertex2i(r3, c3);
-			glVertex2i(r4, c4);
-			glEnd();
-
-			glColor4ub(255, 255, 255, 255);
-
-			glEnable(GL_TEXTURE_2D);
-		}
-#endif
+		draw_quad(x, y, 31, 127, 143, 143);
 		break;
 	default:
 		break;

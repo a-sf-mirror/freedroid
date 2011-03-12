@@ -152,39 +152,6 @@ void our_SDL_update_rect_wrapper(SDL_Surface * screen, Sint32 x, Sint32 y, Sint3
 };				// void our_SDL_update_rect_wrapper ( SDL_Surface *screen, Sint32 x, Sint32 y, Sint32 w, Sint32 h ) 
 
 /**
- * This function will draw quads, that are not necessarily parallel to 
- * the screen coordinates to the screen.  It will currently only do 
- * something in OpenGL output method.
- */
-int blit_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Uint32 color)
-{
-#ifdef HAVE_LIBGL
-	Uint8 r, g, b, a;
-#endif
-
-	if (use_open_gl) {
-#ifdef HAVE_LIBGL
-		glDisable(GL_TEXTURE_2D);
-
-		SDL_GetRGBA(color, Screen->format, &r, &g, &b, &a);
-		glColor4ub(r, g, b, a);
-
-		glBegin(GL_QUADS);
-		glVertex2i(x1, y1);
-		glVertex2i(x2, y2);
-		glVertex2i(x3, y3);
-		glVertex2i(x4, y4);
-		glEnd();
-
-		glColor4ub(255, 255, 255, 255);
-		glEnable(GL_TEXTURE_2D);
-#endif
-	}
-
-	return (0);
-};				// int blit_quad ( int x1 , int y1 , int x2, int y2, int x3, int y3, int x4 , int y4 , Uint32 color )
-
-/**
  * Simon N.:  ISO functions.  these draw quads in the 3D planes
  */
 void drawISOXYQuad(int x, int y, int z, int w, int h)

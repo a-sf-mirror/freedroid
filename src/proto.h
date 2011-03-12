@@ -268,10 +268,10 @@ void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area);
 int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value);
 void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int glwidth);
-void DrawHatchedQuad(SDL_Surface * Surface, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int r, int g, int b);
 void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a, int highlight);
 void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
+void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a);
 
 // saveloadgame.c 
 int find_saved_games(struct dirent ***);

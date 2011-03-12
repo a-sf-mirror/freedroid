@@ -208,7 +208,7 @@ void leveleditor_init_widgets()
 		{LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON, NULL,
 			_("Toggle display tooltips\n\nUse this button to toggle these annoying help windows on and off.")},
 		{LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON, NULL,
-			_("Toggle display collision rectangles\n\nUse this button to toggle the visible collision rectangles on and off.\nThis only works using OpenGL mode!")},
+			_("Toggle display collision rectangles\n\nUse this button to toggle the visible collision rectangles on and off.")},
 		{LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF, NULL,
 			_("Change grid mode ( placement / full / off )")},
 		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL,

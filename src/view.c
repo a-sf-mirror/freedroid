@@ -318,18 +318,10 @@ void blit_leveleditor_point(int x, int y)
  * function to illustrate the collision rectangle of a certain obstacle
  * on the floor via a bright ugly distorted rectangular shape.
  */
-void skew_and_blit_rect(float x1, float y1, float x2, float y2, Uint32 color)
-{
-	int r1, r2, r3, r4, c1, c2, c3, c4;
-	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
-	translate_map_point_to_screen_pixel(x1, y2, &r2, &c2);
-	translate_map_point_to_screen_pixel(x2, y2, &r3, &c3);
-	translate_map_point_to_screen_pixel(x2, y1, &r4, &c4);
-	blit_quad(r1, c1, r2, c2, r3, c3, r4, c4, color);
-}
-
 void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 {
+	int r1, r2, r3, r4, c1, c2, c3, c4;
+	float x1, y1, x2, y2;
 	gps vpos;
 
 	if (!draw_collision_rectangles)
@@ -337,21 +329,26 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 
 	update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
 
-	float left = obstacle_map[our_obstacle->type].left_border;
-	float up = obstacle_map[our_obstacle->type].upper_border;
-	float low = obstacle_map[our_obstacle->type].lower_border;
-	float right = obstacle_map[our_obstacle->type].right_border;
-	float x = vpos.x;
-	float y = vpos.y;
-
 	// If there is no collision rectangle to draw, we are done
-	//
 	if (obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_NONE)
 		return;
 
+	x1 = vpos.x + obstacle_map[our_obstacle->type].left_border;
+	y1 = vpos.y + obstacle_map[our_obstacle->type].upper_border;
+	x2 = vpos.x + obstacle_map[our_obstacle->type].right_border;
+	y2 = vpos.y + obstacle_map[our_obstacle->type].lower_border;
+
+	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
+	translate_map_point_to_screen_pixel(x1, y2, &r2, &c2);
+	translate_map_point_to_screen_pixel(x2, y2, &r3, &c3);
+	translate_map_point_to_screen_pixel(x2, y1, &r4, &c4);
+
+	short x[4] = { r1, r2, r3, r4 };
+	short y[4] = { c1, c2, c3, c4 };
+
 	// Now we draw the collision rectangle.  We use the same parameters
 	// of the obstacle spec, that are also used for the collision checks.
-	skew_and_blit_rect(x + left, y + up, x + right, y + low, 0x00FEEAA);
+	draw_quad(x, y, 15, 238, 170, 255);
 }
 
 void blit_one_obstacle(obstacle *o, int highlight, int zoom)
