@@ -92,7 +92,7 @@
 
   Hold X     ... Show labels for items on the ground
   Z          ... Toggle show labels for items on the ground
-  T          ... Toggle walls becoming transparent when Tux approaches (OpenGL only)
+  T          ... Toggle walls becoming transparent when Tux approaches
 
 
 4. Known Issues
