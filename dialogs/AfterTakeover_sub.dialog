@@ -47,6 +47,7 @@ LuaCode={
 	repair_level = get_program_revision("Repair equipment")
 	damage = npc_damage_amount()
 	if (damage > 0) then
+		npc_says(_"Available amount of valuable circuits for repair: ".. get_gold() ..".")
 		-- Estimate the average repair costs: --
 		cost_time = damage / math.log(repair_level * get_program_revision("Check system integrity") + math.exp(1) - 1)
 		cost_materials = damage * 10 / math.log(repair_level * get_program_revision("Extract bot parts") + math.exp(1))
