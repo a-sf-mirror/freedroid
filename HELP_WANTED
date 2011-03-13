@@ -2,7 +2,7 @@ Currently the FreedroidRPG development team needs:
 
 * Artists
 We have a lack of skilled graphics artists, especially those that can create pretty things with 3D tools.
-All current graphics sources are .blend, but whatever software is your preference is fine by us, as long as the sources are saved in a format accessible to free tools like eg Blender.
+All current graphics sources are .blend, but whatever software is your preference is fine by us, as long as the sources are saved in a format accessible to free tools like e.g. Blender.
 
 * Coders
 The more coders the more new features and bug fixes. So if you like FreedroidRPG and know C then do not be afraid to get in touch with us on IRC or the mailing list. :)
@@ -12,6 +12,8 @@ What's the point of having code and pretty graphics if you do not have content?
 Designing maps and really good dialogs and story lines takes good imagination and a lot of time.
 So even if you know nothing about programing or drawing, your contribution can be very useful indeed.
 At the end of the day, it's the content that makes or breaks an RPG game. 
+
+By all means, you should also check http://www.freedroid.org/developer-area/contribute/ since is is more likely to be up-to-date.
 
 
 Finally, remember that no contribution is too small to be interesting. :)
