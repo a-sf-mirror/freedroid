@@ -287,76 +287,6 @@ static void load_dialog(const char *fpath)
 	free(ChatData);
 }
 
-/**
- *
- *
- */
-void make_sure_chat_portraits_loaded_for_this_droid(Enemy this_droid)
-{
-	SDL_Surface *Small_Droid;
-	SDL_Surface *Large_Droid;
-	char fpath[2048];
-	char fname[500];
-	int i;
-	int model_number;
-	static int first_call = TRUE;
-	static int this_type_has_been_loaded[ENEMY_ROTATION_MODELS_AVAILABLE];
-
-	// We make sure we only load the portrait files once and not
-	// every time...
-	//
-	if (first_call) {
-		for (i = 0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++)
-			this_type_has_been_loaded[i] = FALSE;
-	}
-	first_call = FALSE;
-
-	// We look up the model number for this chat partner.
-	//
-	model_number = this_droid->type;
-
-	// We should make sure, that we don't double-load images that we have loaded
-	// already, thereby wasting more resources, including OpenGL texture positions.
-	//
-	if (this_type_has_been_loaded[model_number])
-		return;
-	this_type_has_been_loaded[model_number] = TRUE;
-
-	// At first we try to load the image, that is named after this
-	// chat section.  If that succeeds, perfect.  If not, we'll revert
-	// to a default image.
-	//
-	strcpy(fname, "droids/");
-	strcat(fname, PrefixToFilename[Druidmap[model_number].individual_shape_nr]);
-	strcat(fname, "/portrait.png");
-	find_file(fname, GRAPHICS_DIR, fpath, 0);
-	DebugPrintf(2, "\nFilename used for portrait: %s.", fpath);
-
-	Small_Droid = our_IMG_load_wrapper(fpath);
-	if (Small_Droid == NULL) {
-		fprintf(stderr, "\n\nfpath: %s \n", fpath);
-		ErrorMessage(__FUNCTION__, "\
-It wanted to load a small portrait file in order to display it in the \n\
-chat interface of Freedroid.  But:  Loading this file has ALSO failed.", PLEASE_INFORM, IS_FATAL);
-	}
-
-	Large_Droid = zoomSurface(Small_Droid, (float)Droid_Image_Window.w / (float)Small_Droid->w,
-				  (float)Droid_Image_Window.w / (float)Small_Droid->w, 0);
-
-	SDL_FreeSurface(Small_Droid);
-
-	if (use_open_gl) {
-		chat_portrait_of_droid[model_number].surface =
-		    SDL_CreateRGBSurface(0, Large_Droid->w, Large_Droid->h, 32, rmask, gmask, bmask, amask);
-		SDL_SetAlpha(Large_Droid, 0, SDL_ALPHA_OPAQUE);
-		our_SDL_blit_surface_wrapper(Large_Droid, NULL, chat_portrait_of_droid[model_number].surface, NULL);
-		flip_image_vertically(chat_portrait_of_droid[model_number].surface);
-		SDL_FreeSurface(Large_Droid);
-	} else
-		chat_portrait_of_droid[model_number].surface = Large_Droid;
-
-}
-
 static void show_chat_up_button(void)
 {
 	ShowGenericButtonFromList(CHAT_LOG_SCROLL_UP_BUTTON);
@@ -375,8 +305,13 @@ static void show_chat_down_button(void)
  */
 void show_chat_log(enemy *chat_enemy)
 {
+	struct image *img = get_droid_portrait_image(chat_enemy->type);
+	float scale;
+
 	blit_special_background(CHAT_DIALOG_BACKGROUND_PICTURE_CODE);
-	our_SDL_blit_surface_wrapper(chat_portrait_of_droid[chat_enemy->type].surface, NULL, Screen, &Droid_Image_Window);
+
+	scale = (float)Droid_Image_Window.w / (float)img->w;
+	display_image_on_screen(img, Droid_Image_Window.x, Droid_Image_Window.y, IMAGE_SCALE_TRANSFO(scale));
 
 	chat_log.content_above_func = show_chat_up_button;
 	chat_log.content_below_func = show_chat_down_button;
@@ -602,8 +537,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	chat_control_chat_droid = ChatDroid;
 
 	Activate_Conservative_Frame_Computation();
-
-	make_sure_chat_portraits_loaded_for_this_droid(ChatDroid);
 
 	// First we empty the array of possible answers in the
 	// chat interface.

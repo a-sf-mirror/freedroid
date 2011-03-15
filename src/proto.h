@@ -244,6 +244,7 @@ void Load_Bullet_Surfaces(void);
 void Load_Blast_Surfaces(void);
 void load_floor_tiles(void);
 struct image *get_obstacle_image(int);
+struct image *get_droid_portrait_image(int);
 void load_obstacle(int);
 void load_all_obstacles(void);
 struct image *get_item_shop_image(int type);

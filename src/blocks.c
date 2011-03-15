@@ -437,6 +437,26 @@ struct image *get_obstacle_image(int type)
 	return &obstacle_map[type].image;
 }
 
+static void load_droid_portrait(int type)
+{
+	char fpath[1024];
+
+	strcpy(fpath, "droids/");
+	strcat(fpath, PrefixToFilename[Druidmap[type].individual_shape_nr]);
+	strcat(fpath, "/portrait.png");
+
+	load_image(&chat_portrait_of_droid[type], fpath, FALSE);
+}
+
+struct image *get_droid_portrait_image(int type)
+{
+	if (!image_loaded(&chat_portrait_of_droid[type])) {
+		load_droid_portrait(type);
+	}
+
+	return &chat_portrait_of_droid[type];
+}
+
 /**
  * Load the images associated to the given
  * obstacle type.
