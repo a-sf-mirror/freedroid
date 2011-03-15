@@ -267,7 +267,7 @@ void InitOurBFonts(void);
 void ClearGraphMem(void);
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area);
-int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value);
+int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value, int unit_price);
 void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int glwidth);
 void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, float b, float a, int highlight);

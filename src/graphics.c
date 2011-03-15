@@ -175,7 +175,7 @@ void fade_in_screen(void)
  * It will accept the range allowed and do the complete selection process
  * with the user until he presses 'OK' on the scale screen.
  */
-int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value)
+int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value, int unit_price)
 {
 	static struct image selection_knob = EMPTY_IMAGE;
 	int ok_button_was_pressed = FALSE;
@@ -189,9 +189,19 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	int knob_is_grabbed = FALSE;
 	int knob_at = default_value;
 	int delta = 0;
-	char number_text[1000];
+	int old_knob_at = 0;
 	SDL_Event event;
 	SDL_Rect knob_target_rect;
+
+	/* Initialize the text widget. */
+	static text_widget item_description;
+	init_text_widget(&item_description, "");
+	item_description.rect.x = UNIVERSAL_COORD_W(310);
+	item_description.rect.y = UNIVERSAL_COORD_H(180);
+	item_description.rect.w = UNIVERSAL_COORD_W(75);
+	item_description.rect.h = UNIVERSAL_COORD_H(45);
+	item_description.font = FPS_Display_BFont;
+	item_description.line_height_factor = LINE_HEIGHT_FACTOR;
 
 	int old_game_status = game_status;
 
@@ -210,9 +220,20 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 		ShowGenericButtonFromList(NUMBER_SELECTOR_OK_BUTTON);
 		knob_target_rect.x = knob_start_x + knob_offset_x - selection_knob.w / 2;
 		knob_target_rect.y = UNIVERSAL_COORD_H(260) - selection_knob.h / 2;
-		display_image_on_screen(&selection_knob, knob_target_rect.x, knob_target_rect.y, IMAGE_NO_TRANSFO); 
-		sprintf(number_text, "%d", knob_at);
-		PutStringFont(Screen, FPS_Display_BFont, UNIVERSAL_COORD_W(320), UNIVERSAL_COORD_H(190), number_text);
+		display_image_on_screen(&selection_knob, knob_target_rect.x, knob_target_rect.y, IMAGE_NO_TRANSFO);
+
+		if (old_knob_at != knob_at) {
+			item_description.scroll_offset = -3;
+			free_autostr(item_description.text);
+			item_description.text = alloc_autostr(100);
+			autostr_append(item_description.text, "%d\n", knob_at);
+			if (unit_price) {
+				autostr_append(item_description.text, _("%d price\n"), unit_price * knob_at);
+			}
+			old_knob_at = knob_at;
+		}
+		show_text_widget(&item_description);
+
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();
 		SDL_framerateDelay(&SDL_FPSmanager);
