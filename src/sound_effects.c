@@ -445,7 +445,7 @@ void Fire_Bullet_Sound(int BulletType)
 		return;
 	}
 
-	char sound_file[100] = "effects/";
+	char sound_file[100] = "effects/bullets/";
 	strcat(sound_file, Bulletmap[BulletType].sound);
 
 	play_sound_cached(sound_file);

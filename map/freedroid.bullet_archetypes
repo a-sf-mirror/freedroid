@@ -6,7 +6,6 @@ Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 25
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
-Sound to play: "Fire_Bullet_Pulse_Sound_0.ogg"
 ** End of new bullet specification subsection **
 
 // this is the 476 standard shot
@@ -17,7 +16,7 @@ Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 40
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
-Sound to play: "Fire_Bullet_Single_Pulse_Sound_0.ogg"
+Sound to play: "Single_Pulse.ogg"
 ** End of new bullet specification subsection **
 
 // this is the double 821 military shot
@@ -28,7 +27,7 @@ Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 55
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
-Sound to play: "Fire_Bullet_Military_Sound_0.ogg"
+Sound to play: "Military.ogg"
 ** End of new bullet specification subsection **
 
 // this is the disruptor, the 742 and 711 use
@@ -49,7 +48,7 @@ Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 80
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
-Sound to play: "Fire_Bullet_Exterminator_Sound_0.ogg"
+Sound to play: "Exterminator.ogg"
 ** End of new bullet specification subsection **
 
 // this is the laser rifle of the 614
@@ -60,7 +59,7 @@ Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 40
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
-Sound to play: "phaser.ogg"
+Sound to play: "Phaser.ogg"
 ** End of new bullet specification subsection **
 
 // this is half of the influencer primitive rifle
@@ -71,7 +70,7 @@ Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 12
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
-Sound to play: "Fire_Bullet_Single_Laser_Sound_0.ogg"
+Sound to play: "Single_Laser.ogg"
 ** End of new bullet specification subsection **
 
 // this is even less than half of the influencer shot, only a white ball so far
@@ -82,7 +81,7 @@ Flying speed of this bullet type : 8.0
 Damage cause by a hit of this bullet type : 8
 Cannot fire until previous bullet has been deleted : 0
 Type of blast this bullet causes when crashing e.g. against a wall : 0
-Sound to play: "Fire_Bullet_Single_Laser_Sound_0.ogg"
+Sound to play: "Plasma_Pistol.ogg"
 ** End of new bullet specification subsection **
 
 // this is the yellow-red laser sword
