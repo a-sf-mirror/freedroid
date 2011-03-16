@@ -325,6 +325,43 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 
 };				// int do_graphical_number_selection_in_range ( int lower_range , int upper_range )
 
+void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
+{
+	int bpp = surf->format->BytesPerPixel;
+	uint32_t color;
+	uint8_t *p;
+
+	if ((x < 0) || (y < 0) || (x >= surf->w) || (y >= surf->h))
+		return;
+
+	color = SDL_MapRGBA(surf->format, red, green, blue, alpha);
+
+	p = (Uint8 *) surf->pixels + y * surf->pitch + x * bpp;
+
+	switch (bpp) {
+	case 1:
+			*p = color;
+			break;
+	case 2:
+			*(Uint16 *) p = color;
+			break;
+	case 3:
+			if (SDL_BYTEORDER == SDL_BIG_ENDIAN) {
+				p[0] = (color >> 16) & 0xff;
+				p[1] = (color >> 8) & 0xff;
+				p[2] = color & 0xff;
+			} else {
+				p[0] = color & 0xff;
+				p[1] = (color >> 8) & 0xff;
+				p[2] = (color >> 16) & 0xff;
+			}
+			break;
+	case 4:
+			*(Uint32 *) p = color;
+			break;
+	}
+}
+
 static Uint8 add_val_to_component(Uint8 component, int value)
 {
 	int tmp;
@@ -378,7 +415,7 @@ SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, flo
 				blue = add_val_to_component(blue, 64);
 			}
 
-			pixelRGBA(colored_surf, x, y, red, green, blue, alpha);
+			sdl_put_pixel(colored_surf, x, y, red, green, blue, alpha);
 		}
 	}
 
@@ -944,15 +981,15 @@ static void draw_expanded_pixel(SDL_Surface * Surface, int x, int y, int xincr, 
 {
 	int i;
 
-	pixelRGBA(Surface, x, y, r, g, b, 255);
+	sdl_put_pixel(Surface, x, y, r, g, b, 255);
 
 	if (thickness <= 1)
 		return;
 	for (i = x + xincr; i != x + thickness * xincr; i += xincr) {
-		pixelRGBA(Surface, i, y, r, g, b, 255);
+		sdl_put_pixel(Surface, i, y, r, g, b, 255);
 	}
 	for (i = y + yincr; i != y + thickness * yincr; i += yincr) {
-		pixelRGBA(Surface, x, i, r, g, b, 255);
+		sdl_put_pixel(Surface, x, i, r, g, b, 255);
 	}
 }
 

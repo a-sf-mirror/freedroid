@@ -296,7 +296,7 @@ void update_obstacle_automap(int z, obstacle *our_obstacle)
 static inline void PutPixel_automap_wrapper(SDL_Surface * abc, int x, int y, int r, int g, int b)
 {
 	if (!use_open_gl)
-		pixelRGBA(abc, x, y, r, g, b, 255);
+		sdl_put_pixel(abc, x, y, r, g, b, 255);
 #ifdef HAVE_LIBGL
 	else {
 		glColor3ub(r, g, b);
