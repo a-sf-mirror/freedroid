@@ -222,7 +222,6 @@ Nr=15 Text=_"I wouldn't want to lose any armor. What can I do about that?"
 LuaCode={
 	npc_says(_"Well, there are several ways to keep that from happening.")
 	npc_says(_"Equipped items in poor condition will show up yellow and should turn red if in critical condition.")
-	npc_says(_"However, if your visual acuity is only SDL, not OGL, apparently the colors won't change.")
 	npc_says(_"If you don't unequip an item in poor or critical condition it may be ruined!")
 	npc_says(_"There are three things you can do when an item reaches critical condition:")
 	npc_says(_"First, you can sell or discard the item.")
