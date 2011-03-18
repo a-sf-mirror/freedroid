@@ -43,7 +43,7 @@ LuaCode={
 	n_emhp = 0 --enemy hitpoints
 	n_emac = 0 --enemy attack/armor
 	n_emname = ""--enemy name
-	n_emtype = 0 --enemy type 0-nothing, 1-easy, 2-medum, 3-hard
+	n_emtype = 0 --enemy type 0-nothing, 1-easy, 2-medium, 3-hard
 	n_emiq = 100 --females need more health than this to use 'feminine wiles'
 
 	n_role = "" --your job
@@ -64,7 +64,7 @@ LuaCode={
 ----------------------------------------------------------------------
 Nr=1 Text=_"yes" 	
 LuaCode={
-	n_randomchoice = "yes" --Pick nethack race, role, gender, alingment randomly
+	n_randomchoice = "yes" --Pick nethack race, role, gender, alignment randomly
 	hide(1,2)
 	next(8)
 }
@@ -83,13 +83,13 @@ LuaCode={
 ----------------------------------------------------------------------
 -- 3-8: job choice
 ----------------------------------------------------------------------
-Nr=3 Text=_"Archeologist"
+Nr=3 Text=_"Archaeologist"
 LuaCode={
 	selection = 1
 	next(8)
 }
 ----------------------------------------------------------------------
-Nr=4 Text=_"Roge"
+Nr=4 Text=_"Rogue"
 LuaCode={
 	selection = 2
 	next(8)
@@ -121,13 +121,13 @@ LuaCode={
 	if (selection == 0) then 
 		selection = math.random(5)
 	end
-		--actual assingment --
+		--actual assignment --
 	if (selection == 1) then
-		n_role = _"Archeologist"
+		n_role = _"Archaeologist"
 		n_hp = 0
 		n_tricks = 2
 	elseif (selection == 2) then
-		n_role = _"Roge"
+		n_role = _"Rogue"
 		n_hp = 10
 		n_tricks = 2
 	elseif (selection == 3) then
@@ -345,7 +345,7 @@ LuaCode={
 	else
 		npc_says(_"You are on level [b]"..n_level.."[/b]:", "NO_WAIT")
 		--Describe the level
-		npc_says_random(_"You find yourself in a series of passages all alike.", _"You find yourself in an underground office building.", _"You find yourself in a labyrinth, with 1980's music playing mysteriously.", _"You find yourself inside a Cretaceous limestone cave.", _"You find yourself in an abandoned coal mine.", _"You find yourself in a flooded room.", "You find yourself in a room filled with huge, transparent, hexagonal dipyramidal crystals.", _"You find yourself in a passage filled with bones from the ancient past.", _"You find yourself in a room filled with fresh bones.", _"You find yourself in a room filled with rotting corpses.", _"You find yourself in a goblin village.", _"You find yourself in an abandoned gold mine.", _"You find yourself. You are in a yoga room.", _"You lose yourself in a misty passageway.", _"You find yourself in a room filled with blinking lights.", _"You find youself in a lava tube.", _"You find yourself lost in darkness.", "NO_WAIT")
+		npc_says_random(_"You find yourself in a series of passages all alike.", _"You find yourself in an underground office building.", _"You find yourself in a labyrinth, with 1980's music playing mysteriously.", _"You find yourself inside a Cretaceous limestone cave.", _"You find yourself in an abandoned coal mine.", _"You find yourself in a flooded room.", "You find yourself in a room filled with huge, transparent, hexagonal dipyramidal crystals.", _"You find yourself in a passage filled with bones from the ancient past.", _"You find yourself in a room filled with fresh bones.", _"You find yourself in a room filled with rotting corpses.", _"You find yourself in a goblin village.", _"You find yourself in an abandoned gold mine.", _"You find yourself. You are in a yoga room.", _"You lose yourself in a misty passageway.", _"You find yourself in a room filled with blinking lights.", _"You find yourself in a lava tube.", _"You find yourself lost in darkness.", "NO_WAIT")
 
 		--Random happenings:
 		random_var = math.random(5)+n_level
@@ -398,7 +398,7 @@ LuaCode={
 			n_emiq = 51 + math.random(20)
 		else
 			n_emtype = 1 -- very easy enemy
-			n_emname = get_random(_"bureaucrat", _"snail", _"bannana slug")
+			n_emname = get_random(_"bureaucrat", _"snail", _"banana slug")
 			n_emac = math.random(2)
 			n_emhp = 1 + math.random(20)
 			n_emiq = 1 + math.random(20)
@@ -418,7 +418,7 @@ LuaCode={
 Nr=50 Text=_"Attack"
 LuaCode={
 	if (n_emtype == 0) then --inanimate object
-		npc_says_random(_"You attack the inaimate "..n_emname..".", _"You go to attack, but then think better.", _"You charge the "..n_emname.._" and strike a mighty blow...", _"You are puzzeled as to what you plan to attack.", _"You throw a fireball at the "..n_emname.._". It is super effective!", _"You attack the "..n_emname..".", "NO_WAIT")
+		npc_says_random(_"You attack the inanimate "..n_emname..".", _"You go to attack, but then think better.", _"You charge the "..n_emname.._" and strike a mighty blow...", _"You are puzzled as to what you plan to attack.", _"You throw a fireball at the "..n_emname.._". It is super effective!", _"You attack the "..n_emname..".", "NO_WAIT")
 		next(61)
 	else
 		damage = math.random((n_ac+1)*10)
@@ -587,7 +587,7 @@ LuaCode={
 		else
 			damage = math.random((n_emac+1)*10)
 			if (damage > n_ac) then
-				npc_says_random(_"The devious "..n_emname.._" stabs you, causing ".. damage-n_ac.._" damage.", _"You suffer "..damage-n_ac.._" damage as the "..n_emname.._" tosses you up into the air like a ragdoll.", _"The "..n_emname.._" breathes fire at you, burning your map and causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" throws an exploding bananna at you, but you duck, so it only causes "..damage-n_ac.." damage.", _"The "..n_emname.._" hits you with its best shot, causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" hits you against the wall, causing "..damage-n_ac.._" of hurt.", _"The "..n_emname.._" snipes you with an arrow causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" bites you causing "..damage-n_ac.._" damage.", "NO_WAIT")
+				npc_says_random(_"The devious "..n_emname.._" stabs you, causing ".. damage-n_ac.._" damage.", _"You suffer "..damage-n_ac.._" damage as the "..n_emname.._" tosses you up into the air like a ragdoll.", _"The "..n_emname.._" breathes fire at you, burning your map and causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" throws an exploding banana at you, but you duck, so it only causes "..damage-n_ac.." damage.", _"The "..n_emname.._" hits you with its best shot, causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" hits you against the wall, causing "..damage-n_ac.._" of hurt.", _"The "..n_emname.._" snipes you with an arrow causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" bites you causing "..damage-n_ac.._" damage.", "NO_WAIT")
 				n_hp = n_hp - damage + n_ac
 			else
 				npc_says_random(_"You doge a blow from the "..n_emname,n_emname.._" trys to hit you, but misses.",n_emname.._" blow hits your cap of cool, causing no damage.",n_emname.._" pokes you really hard. You are annoyed.",n_emname.._" takes a swing at you, but can't reach you from there.", "NO_WAIT")

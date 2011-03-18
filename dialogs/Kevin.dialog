@@ -160,7 +160,7 @@ Nr=12 Text=_"I don't want any reward. Just gratitude."
 LuaCode={
 	npc_says(_"Of course you can have that. There, I'm most grateful to you. That should do.")
 	add_cookie("kevin_reward1_given")
-	-- reward here could be bonus to joining faction or a powerfull hacked (friedly) bot that supports Tux fighting in Hell Fortress.
+	-- reward here could be bonus to joining faction or a powerful hacked (friendly) bot that supports Tux fighting in Hell Fortress.
 	end_dialog()
 	hide(11, 12, 13)
 }
@@ -246,7 +246,7 @@ NO_TEXT
 LuaCode={
 	tux_says_random(
 		_"Hold on, I don't seem to have that much money right now.",
-		_"This is embarrasing. I will come back when I have the amount of valuable circuits you desire.")
+		_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
 	npc_says_random(
 		_"Ok, come back when you can afford to pay me if you are interested.",
 		_"Please don't bother me if you can't pay me.",
@@ -259,7 +259,7 @@ LuaCode={
 Nr=41 Text="BUG, REPORT ME! kevin node41"
 NO_TEXT
 LuaCode={
-	tux_says(_"Sorry, my memory databank is filled to the brim right now. Can't learn more until I get some more experience.")
+	tux_says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
 	npc_says_random(
 		_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
 		_"I cannot teach you when you have no training points. Come back when you are more prepared.",

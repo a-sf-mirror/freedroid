@@ -97,7 +97,7 @@ LuaCode={
 
 Nr=8 Text=_"Step aside, you stupid tin can!"
 LuaCode={
-	npc_says(_"[b]You shall not pass. Acticating disintegrator beam in ten seconds.[/b]")
+	npc_says(_"[b]You shall not pass. Activating disintegrator beam in ten seconds.[/b]")
 	npc_says(_"[b]Nine.[/b]")
 	npc_says(_"[b]Eight.[/b]")
 	hide(2, 8) show(9, 10)
