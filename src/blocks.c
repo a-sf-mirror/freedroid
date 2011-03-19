@@ -209,7 +209,7 @@ void iso_load_bullet_surfaces(void)
 	DebugPrintf(1, "Number_Of_Bullet_Types: %d.", Number_Of_Bullet_Types);
 
 	for (i = 0; i < Number_Of_Bullet_Types; i++) {
-		if (strlen(Bulletmap[i].name) && !strcmp(Bulletmap[i].name, "ERROR:  UNHANDLED BULLET IMAGE TYPE"))
+		if (strlen(Bulletmap[i].name) && strstr(Bulletmap[i].name, "NO BULLET IMAGE"))
 			continue;
 
 		for (j = 0; j < Bulletmap[i].phases; j++) {

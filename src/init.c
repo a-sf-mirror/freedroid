@@ -221,12 +221,6 @@ void Get_Bullet_Data(char *DataPointer)
 
 #define NEW_BULLET_TYPE_BEGIN_STRING "** Start of new bullet specification subsection **"
 
-#define BULLET_RECHARGE_TIME_BEGIN_STRING "Time is takes to recharge this bullet/weapon in seconds :"
-#define BULLET_SPEED_BEGIN_STRING "Flying speed of this bullet type :"
-#define BULLET_DAMAGE_BEGIN_STRING "Damage cause by a hit of this bullet type :"
-#define BULLET_ONE_SHOT_ONLY_AT_A_TIME "Cannot fire until previous bullet has been deleted : "
-#define BULLET_BLAST_TYPE_CAUSED_BEGIN_STRING "Type of blast this bullet causes when crashing e.g. against a wall :"
-
 	DebugPrintf(1, "\n\nStarting to read bullet data...\n\n");
 	// At first, we must allocate memory for the droid specifications.
 	// How much?  That depends on the number of droids defined in freedroid.ruleset.
@@ -614,9 +608,6 @@ static void get_item_data(char *DataPointer)
 #define ITEM_DROP_SOUND_FILE_NAME "Item uses drop sound with filename=\""
 
 #define ITEM_RECHARGE_TIME_BEGIN_STRING "Time is takes to recharge this bullet/weapon in seconds :"
-#define ITEM_SPEED_BEGIN_STRING "Flying speed of this bullet type :"
-#define ITEM_DAMAGE_BEGIN_STRING "Damage cause by a hit of this bullet type :"
-#define ITEM_ONE_SHOT_ONLY_AT_A_TIME "Cannot fire until previous bullet has been deleted : "
 
 	ItemPointer = LocateStringInData(DataPointer, ITEM_SECTION_BEGIN_STRING);
 	EndOfItemData = LocateStringInData(DataPointer, ITEM_SECTION_END_STRING);
@@ -781,8 +772,9 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 					    &item->item_gun_reloading_time, EndOfItemData);
 
 			// Now we read in the image type that should be generated for this bullet
-			ReadValueFromString(ItemPointer, "Item as gun: bullet_image_type=", "%hd",
-					    &item->item_gun_bullet_image_type, EndOfItemData);
+			char *bullet_type = ReadAndMallocStringFromData(ItemPointer, "Item as gun: bullet_image_type=\"", "\"");
+			item->item_gun_bullet_image_type = GetBulletByName(bullet_type);
+			free(bullet_type);
 
 			// Now we read in the image type that should be generated for this bullet
 			ReadValueFromString(ItemPointer, "Item as gun: bullet_lifetime=", "%f",
@@ -935,6 +927,13 @@ void Init_Game_Data()
 	Get_Programs_Data(Data);
 	free(Data);
 
+	// Load the bullet data (required for the item archtypes to load)
+	//
+	find_file("freedroid.bullet_archetypes", MAP_DIR, fpath, 0);
+	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
+	Get_Bullet_Data(Data);
+	free(Data);
+
 	// Load Tux animation and rendering specifications.
 	tux_rendering_init();
 	find_file("tuxrender_specs.lua", MAP_DIR, fpath, 1);
@@ -969,15 +968,6 @@ void Init_Game_Data()
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Robot_Data(Data);
 	free(Data);
-
-	// Now finally it's time for all the bullet data...
-	//
-	find_file("freedroid.bullet_archetypes", MAP_DIR, fpath, 0);
-	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
-	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
-	Get_Bullet_Data(Data);
-	free(Data);
-
 };				// int Init_Game_Data ( void )
 
 char copyright[] = "\nFreedroidRPG comes with NO WARRANTY to the extent permitted by law.\n\
