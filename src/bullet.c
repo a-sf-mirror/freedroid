@@ -237,11 +237,12 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 	// cause later, after the bullet is deleted, it will be hard to know
 	// the correct location ;)
 	//
-	int type = (CurBullet->type == 4) ? EXTERMINATORBLAST : BULLETBLAST;
-
-	if (ShallWeStartABlast)
+	if (ShallWeStartABlast) {
+		int type = BULLETBLAST;
+		if (strlen(Bulletmap[CurBullet->type].name) && !strcmp(Bulletmap[CurBullet->type].name, "exterminator"))
+			type = EXTERMINATORBLAST;
 		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, type, CurBullet->damage, CurBullet->faction);
-
+	}
 	CurBullet->type = INFOUT;
 	CurBullet->time_in_seconds = 0;
 	CurBullet->mine = FALSE;
