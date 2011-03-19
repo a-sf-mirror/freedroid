@@ -763,6 +763,9 @@ static char *decode_waypoints(level *loadlevel, char *data)
 	// Initialize waypoints
 	dynarray_init(&loadlevel->waypoints, 2, sizeof(struct waypoint));
 
+	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)
+		return data;
+
 	// Find the beginning and end of the waypoint list
 	if ((wp_begin = strstr(data, WP_BEGIN_STRING)) == NULL)
 		return NULL;
