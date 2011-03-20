@@ -24,6 +24,7 @@
 /**
  * Generate a texture atlas from a list of PNG files.
  */
+#include <string.h>
 #include "pngfuncs.h"
 #include "../src/system.h"
 
@@ -195,7 +196,13 @@ static void get_offset_for_image(struct img *img)
 
 	dat = calloc(1, 4000);
 
-	fread(dat, 3999, 1, OffsetFile);
+	if (fread(dat, 3999, 1, OffsetFile) != 1 && ferror(OffsetFile)) {
+		fprintf(stderr, "Unable to read offset for image %s: %s\n", img->f, strerror(errno));
+		img->xoff = 0;
+		img->yoff = 0;
+		fclose(OffsetFile);
+		return;
+	}
 	fclose(OffsetFile);
 
 	p = strstr(dat, OFFSET_FILE_OFFSETX_STRING);

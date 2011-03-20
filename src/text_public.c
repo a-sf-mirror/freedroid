@@ -288,12 +288,18 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 		DebugPrintf(1, "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : Opening file succeeded...");
 	}
 
-	MemoryAmount = FS_filelength(DataFile) + 100;
+	int filelen = FS_filelength(DataFile);
+	MemoryAmount = filelen + 100;
 	Data = (char *)MyMalloc(MemoryAmount);
 
-	fread(Data, MemoryAmount, 1, DataFile);
-
-	DebugPrintf(1, "\n%s(): Reading file succeeded...", __FUNCTION__);
+	if (fread(Data, 1, MemoryAmount, DataFile) < filelen && ferror(DataFile)) {
+		ErrorMessage(__FUNCTION__, "\
+		Freedroid was unable to read a given text file, that should be there and\n\
+		should be accessible.\n\
+		Filename: %s", PLEASE_INFORM, IS_FATAL, filename);
+	} else {
+		DebugPrintf(1, "\n%s(): Reading file succeeded...", __FUNCTION__);
+	}
 
 	if (fclose(DataFile) == EOF) {
 		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
@@ -542,7 +548,12 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 	unsigned char *src = MyMalloc(filelen + 1);
 	int cursz = 1048576;	//start with 1MB
 	unsigned char *temp_dbuffer = malloc(cursz);
-	fread(src, filelen, 1, DataFile);
+	if (fread(src, filelen, 1, DataFile) != 1) {
+		ErrorMessage(__FUNCTION__, "Error reading compressed data stream.", PLEASE_INFORM, IS_WARNING_ONLY);
+		free(temp_dbuffer);
+		free(src);
+		return -1;
+	}
 
 	int ret;
 	z_stream strm;

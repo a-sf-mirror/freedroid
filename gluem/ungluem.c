@@ -176,7 +176,8 @@ Please specify a valid file to open using -i on the commandline.", PLEASE_INFORM
 		printf("This seems to be an uncompressed file.\n");
 		buf = MyMalloc(FS_filelength(DataFile));
 
-		fread(buf, FS_filelength(DataFile), 1, DataFile);
+		if (fread(buf, FS_filelength(DataFile), 1, DataFile) != 1)
+			ErrorMessage(__FUNCTION__, "ungluem was unable to read tux image archive file %s.", PLEASE_INFORM, IS_FATAL, fpath);
 	} else {
 		inflate_stream(DataFile, &buf, &sz);
 	}

@@ -1118,7 +1118,12 @@ int LoadGameConfig(void)
 	}
 
 	char *stuff = (char *)malloc(FS_filelength(configfile) + 1);
-	fread(stuff, FS_filelength(configfile), 1, configfile);
+	if (fread(stuff, FS_filelength(configfile), 1, configfile) != 1) {
+		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		fclose(configfile);
+		free(stuff);
+		return ERR;
+	}
 	fclose(configfile);
 	read_configuration_for_freedroid(stuff, "GameConfig", &GameConfig);
 	configfile = NULL;
@@ -1213,7 +1218,11 @@ int SaveGameConfig(void)
 	// Now write the actual data
 	savestruct_autostr = alloc_autostr(4096);
 	save_configuration_for_freedroid("GameConfig", &(GameConfig));
-	fwrite(savestruct_autostr->value, 1, savestruct_autostr->length, config_file);
+	if (fwrite(savestruct_autostr->value, savestruct_autostr->length, 1, config_file) != 1) {
+		ErrorMessage(__FUNCTION__, "Failed to write config file: %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		free_autostr(savestruct_autostr);	
+		return ERR;
+	}
 
 	free_autostr(savestruct_autostr);
 

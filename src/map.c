@@ -1535,11 +1535,17 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 	if (compress) { 
 		deflate_to_stream((unsigned char *)shipstr->value, shipstr->length, ShipFile);
 	}	else {
-		fwrite((unsigned char *)shipstr->value, shipstr->length, 1, ShipFile); 
+		if (fwrite((unsigned char *)shipstr->value, shipstr->length, 1, ShipFile) != 1) {
+			ErrorMessage(__FUNCTION__, "Error writing ship file %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+			fclose(ShipFile);
+			free_autostr(shipstr);
+			return ERR;
+		}
 	}
 
 	if (fclose(ShipFile) == EOF) {
-		ErrorMessage(__FUNCTION__, "Closing of ship file failed!", PLEASE_INFORM, IS_FATAL);
+		ErrorMessage(__FUNCTION__, "Closing of ship file failed!", PLEASE_INFORM, IS_WARNING_ONLY);
+		free_autostr(shipstr);
 		return ERR;
 	}
 
