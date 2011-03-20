@@ -296,7 +296,7 @@ LuaCode={
 	npc_says(_"If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks.")
 	npc_says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
 	npc_says(_"Good luck.")
-	add_quest(_"Propagating a faulty firmware", _"I can now enter the fortress and find the upgrade server bot. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me.")
+	add_quest(_"Propagating a faulty firmware", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me.")
 	hide(44) show(45)
 }
 ----------------------------------------------------------------------
