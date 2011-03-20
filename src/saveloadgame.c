@@ -416,23 +416,6 @@ int DeleteGame(void)
 };				// int DeleteGame( void )
 
 /**
- * This loads the backup for the current player name
- */
-int LoadBackupGame()
-{
-	strcat(Me.character_name, ".bkp");
-	int ret = LoadGame();
-
-	// Make sure the character name does not end in ".bkp". LoadGame() will
-	// reset the name to the correct one, except when it failed.
-	char *ptr = Me.character_name + strlen(Me.character_name) - 4;
-	if (!strcmp(ptr, ".bkp"))
-		*ptr = '\0';
-
-	return ret;
-}
-
-/**
  * Load all enemies from a savegame
  */
 static void load_enemies(char *game_data)
@@ -511,14 +494,11 @@ static void load_bullets(char *LoadGameData)
 	}
 }
 
-/**
- * This function loads an old saved game of Freedroid from a file.
- */
-int LoadGame(void)
+static int load_saved_game(int use_backup)
 {
 	char version_check_string[1000];
 	char *LoadGameData = NULL;
-	char filename[1000];
+	char filename[1000], prefix[1000];
 	int i;
 	FILE *DataFile;
 
@@ -534,7 +514,12 @@ int LoadGame(void)
 
 	Activate_Conservative_Frame_Computation();
 
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
+	sprintf(prefix, "%s/%s", our_config_dir, Me.character_name);
+	if (use_backup) {
+		strcat(prefix, ".bkp");
+	}
+
+	sprintf(filename, "%s%s", prefix, ".shp");
 
 	if ((DataFile = fopen(filename, "rb")) == NULL) {
 		alert_window(_("W A R N I N G !\n\nFreedroidRPG was unable to locate the saved game file you requested to load.\nThis might mean that it really isn't there cause you tried to load a game without ever having saved the game before.\nThe other explanation of this error might be a severe error in FreedroidRPG. If you think this is the case, please report this to the developers."));
@@ -553,7 +538,7 @@ int LoadGame(void)
 
 	LoadShip(filename, 1);
 
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
+	sprintf(filename, "%s%s", prefix, SAVEDGAME_EXT);
 
 	DataFile = fopen(filename, "rb");
 	if (inflate_stream(DataFile, (unsigned char **)&LoadGameData, NULL)) {
@@ -636,6 +621,22 @@ int LoadGame(void)
 
 	append_new_game_message(_("Game loaded."));
 	return OK;
+}
+
+/**
+ * This function loads an old saved game of Freedroid from a file.
+ */
+int LoadGame(void)
+{
+	return load_saved_game(0);
+}
+
+/**
+ * This loads the backup for the current player name
+ */
+int LoadBackupGame()
+{
+	return load_saved_game(1);
 }
 
 void read_enemy_ptr(const char *buffer, const char *tag, enemy ** val)
