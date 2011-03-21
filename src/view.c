@@ -1289,14 +1289,11 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 
 			our_obstacle = e->element_pointer;
 
-			// Do not display obstacle shadow if obstacles are omitted
-			if (mask & OMIT_OBSTACLES)
-				break;
-
 			// If the obstacle has a shadow, it seems like now would be a good time
 			// to blit it.
+			// Do not display obstacle shadow when obstacles are omitted
 			//
-			if (!GameConfig.skip_shadow_blitting) {
+			if (!GameConfig.skip_shadow_blitting && !(mask &OMIT_OBSTACLES)) {
 				gps vpos;
 				update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
 				display_image_on_map(&obstacle_map[our_obstacle->type].shadow_image, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0));
