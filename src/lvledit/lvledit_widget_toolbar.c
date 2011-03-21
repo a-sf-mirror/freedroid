@@ -174,7 +174,6 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 	int i;
 	int cindex = cs->toolbar_first_block;
 	float zoom_factor;
-	SDL_Surface *tmp;
 	SDL_Rect TargetRectangle;
 
 	// toolbar background
@@ -204,27 +203,10 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 		if (!img)
 			break;
 
-		// We find the proper zoom_factor, so that the obstacle/tile in question will
-		// fit into one tile in the level editor top status selection row.
-		//
-		if (use_open_gl) {
-			zoom_factor = min(((float)INITIAL_BLOCK_WIDTH / (float)img->w),
-					  ((float)INITIAL_BLOCK_HEIGHT / (float)img->h));
-		} else {
-			zoom_factor = min(((float)INITIAL_BLOCK_WIDTH / (float)img->surface->w),
-					  ((float)INITIAL_BLOCK_HEIGHT / (float)img->surface->h));
-		}
+		zoom_factor = min(((float)INITIAL_BLOCK_WIDTH / (float)img->w),
+				((float)INITIAL_BLOCK_HEIGHT / (float)img->h));
 
-		if (use_open_gl) {
-			draw_gl_scaled_textured_quad_at_screen_position(img, TargetRectangle.x, TargetRectangle.y, zoom_factor);
-		} else {
-			// We create a scaled version of the obstacle/floorpiece in question
-			tmp = zoomSurface(img->surface, zoom_factor, zoom_factor, FALSE);
-
-			// Now we can show and free the scaled version of the floor tile again.
-			our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &TargetRectangle);
-			SDL_FreeSurface(tmp);
-		}
+		display_image_on_screen(img, TargetRectangle.x - img->offset_x * zoom_factor, TargetRectangle.y - img->offset_y * zoom_factor, IMAGE_SCALE_TRANSFO(zoom_factor));
 
 		if (cindex == cs->selected_tile_nb) {
 			HighlightRectangle(Screen, TargetRectangle);
