@@ -584,26 +584,6 @@ static inline void draw_gl_textured_quad_helper(int x0, int y0, int x1, int y1, 
 #endif
 
 /**
- *
- *
- */
-void draw_gl_scaled_textured_quad_at_screen_position(struct image * our_iso_image, int x, int y, float scale_factor)
-{
-
-#ifdef HAVE_LIBGL
-
-	glBindTexture(GL_TEXTURE_2D, (our_iso_image->texture));
-
-	draw_gl_textured_quad_helper(x, y, x + our_iso_image->w * scale_factor,
-				     y + our_iso_image->h * scale_factor, our_iso_image->tex_x0, our_iso_image->tex_y0,
-				     our_iso_image->tex_x1, our_iso_image->tex_y1);
-
-
-#endif
-
-};
-
-/**
  * This function blits some texture to the screen, but instead of using
  * the usual 1:1 ratio, this function will instead stretch the texture
  * received such that the ratio corresponds to the current (possibly wider)

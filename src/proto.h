@@ -226,7 +226,6 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 void show_character_screen_background(void);
 int safely_initialize_our_default_open_gl_parameters(void);
-void draw_gl_scaled_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y, float scale_factor);
 void blit_special_background(int background_code);
 void open_gl_check_error_status(const char *name_of_calling_function);
 void draw_gl_bg_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y);
