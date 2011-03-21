@@ -600,7 +600,7 @@ void init_obstacle_data(void)
 	block_2param(ISO_V_WOOD_FENCE, 1.1, 2.2);
 	obstacle_map[ISO_V_WOOD_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_V_DENSE_FENCE, 1.1, 2.2);
-	block_2param(ISO_V_MESH_FENCE, 1.1, 2.2);
+	block_2param(ISO_V_MESH_FENCE, 0.8, 2.2);
 	obstacle_map[ISO_V_MESH_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_V_MESH_FENCE].flags |= GROUND_LEVEL;
 	block_2param(ISO_V_WIRE_FENCE, 0.8, 2.2);
@@ -609,7 +609,7 @@ void init_obstacle_data(void)
 	block_2param(ISO_H_WOOD_FENCE, 2.2, 1.1);
 	obstacle_map[ISO_H_WOOD_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_H_DENSE_FENCE, 2.2, 1.10);
-	block_2param(ISO_H_MESH_FENCE, 2.2, 1.10);
+	block_2param(ISO_H_MESH_FENCE, 2.2, 0.8);
 	obstacle_map[ISO_H_MESH_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_H_MESH_FENCE].flags |= GROUND_LEVEL;
 	block_2param(ISO_H_WIRE_FENCE, 2.2, 0.8);
