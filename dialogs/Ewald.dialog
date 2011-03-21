@@ -58,7 +58,7 @@ LuaCode={
 Nr=1 Text=_"How is your business doing?"
 LuaCode={
 	if (has_cookie("guard_follow_tux")) then
-		npc_says("Can't complain at the moment...")
+		npc_says(_"Can't complain at the moment...")
 	else
 		npc_says(_"Nah, No darn good at all.")
 		npc_says(_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high.")
