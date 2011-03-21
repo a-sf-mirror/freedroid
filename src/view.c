@@ -1289,6 +1289,10 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 
 			our_obstacle = e->element_pointer;
 
+			// Do not display obstacle shadow if obstacles are omitted
+			if (mask & OMIT_OBSTACLES)
+				break;
+
 			// If the obstacle has a shadow, it seems like now would be a good time
 			// to blit it.
 			//
