@@ -85,10 +85,14 @@ if test x$fast_math = xyes; then
 fi
 
 if test x$embedded_lua = xno; then
-	AC_CHECK_LIB([lua], [luaL_loadstring],,
+	KYUA_LUA()
+	if test x$lua_found = xno; then
 		AC_MSG_NOTICE([No system-wide Lua library found! Using embedded Lua instead])
-		embedded_lua=yes
-	)
+		embedded_lua=yes;
+	else
+		CFLAGS="$CFLAGS $LUA_CFLAGS"
+		LIBS="$LIBS $LUA_LIBS"
+	fi
 fi
 
 dnl Check for SDL
