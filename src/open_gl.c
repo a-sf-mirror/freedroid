@@ -855,7 +855,7 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y)
 	local_iso_image.tex_x1 = 1.0;
 	local_iso_image.tex_y1 = 1.0;
 
-	draw_gl_scaled_textured_quad_at_screen_position(&local_iso_image, decay_x, decay_y, LightRadiusConfig.scale_factor);
+	display_image_on_screen(&local_iso_image, decay_x, decay_y, IMAGE_SCALE_TRANSFO(LightRadiusConfig.scale_factor));
 
 #endif
 
