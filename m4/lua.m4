@@ -1,3 +1,4 @@
+dnl Copyright 2011 Arthur Huillet
 dnl Copyright 2011 Google Inc.
 dnl All rights reserved.
 dnl
@@ -41,17 +42,17 @@ AC_DEFUN([KYUA_LUA], [
     fi
 
     if test "${lua_found}" = no; then
-        AC_PATH_PROGS([LUA_CONFIG], [lua-config])
-        if test "${LUA_CONFIG-unset}" != unset; then
+        AC_PATH_PROGS([LUA_CONFIG], [lua-config], no)
+		if test "$LUA_CONFIG" = "no" ; then
+			lua_found=no
+		else
             AC_SUBST([LUA_CFLAGS], [$(${LUA_CONFIG} --include)])
             AC_SUBST([LUA_LIBS], [$(${LUA_CONFIG} --libs)])
             lua_found=yes
         fi
     fi
 
-    if test "${lua_found}" = no; then
-        AC_MSG_ERROR([lua (5.1 or newer) is required])
-    else
+    if test "${lua_found}" = yes; then
         AC_MSG_NOTICE([using LUA_CFLAGS = ${LUA_CFLAGS}])
         AC_MSG_NOTICE([using LUA_LIBS = ${LUA_LIBS}])
     fi
