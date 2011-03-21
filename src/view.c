@@ -1844,11 +1844,10 @@ void AssembleCombatPicture(int mask)
 	glDisable(GL_TEXTURE_2D);
 	glPointSize(2.0);
 	glBegin(GL_POINTS);
-	i = 0;
+	int i = 0;
 	for (; i < MAX_INFLU_POSITION_HISTORY; i++) {
 		int x, y;
-		translate_map_point_to_screen_pixel(Me.Position_History_Ring_Buffer[i].x, Me.Position_History_Ring_Buffer[i].y, &x, &y,
-						    1.0);
+		translate_map_point_to_screen_pixel(Me.Position_History_Ring_Buffer[i].x, Me.Position_History_Ring_Buffer[i].y, &x, &y);
 		glColor3f(1.0, 0.0, 0.0);
 		glVertex2i(x, y);
 	}
@@ -1858,17 +1857,17 @@ void AssembleCombatPicture(int mask)
 #endif
 
 #if 0
-	/* This code displays tux waypoints */
+	/* This code displays tux "waypoints" */
 	glDisable(GL_TEXTURE_2D);
 	glLineWidth(2.0);
 	glBegin(GL_LINE_STRIP);
 	i = 0;
 	int x, y;
-	translate_map_point_to_screen_pixel(Me.pos.x, Me.pos.y, &x, &y, 1.0);
+	translate_map_point_to_screen_pixel(Me.pos.x, Me.pos.y, &x, &y);
 	glColor3f(0.0, 1.0, 0.0);
 	glVertex2i(x, y);
 	while (Me.next_intermediate_point[i].x != -1) {
-		translate_map_point_to_screen_pixel(Me.next_intermediate_point[i].x, Me.next_intermediate_point[i].y, &x, &y, 1.0);
+		translate_map_point_to_screen_pixel(Me.next_intermediate_point[i].x, Me.next_intermediate_point[i].y, &x, &y);
 		glColor3f(0.0, 1.0, 0.0);
 		glVertex2i(x, y);
 		i++;
