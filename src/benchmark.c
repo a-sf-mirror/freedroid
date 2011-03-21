@@ -139,6 +139,8 @@ static int dynarray_test()
 			}
 		}
 		dynarray_free(dyn);
+		free(dyn);
+		dyn = NULL;
 	}
 
 	timer_stop();
