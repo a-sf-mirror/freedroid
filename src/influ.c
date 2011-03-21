@@ -189,7 +189,7 @@ void correct_tux_position_according_to_jump()
 	old_mouse_move_target.y = Me.mouse_move_target.y;
 	old_mouse_move_target.z = Me.mouse_move_target.z;
 
-	Teleport(newpos.z, newpos.x, newpos.y, FALSE);
+	Teleport(newpos.z, newpos.x, newpos.y, FALSE, FALSE);
 
 	Me.mouse_move_target.x = old_mouse_move_target.x;
 	Me.mouse_move_target.y = old_mouse_move_target.y;

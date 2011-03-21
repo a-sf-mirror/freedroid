@@ -207,7 +207,7 @@ static void TeleportHome(void)
 		// Teleport
 		teleport_arrival_sound();
 		reset_visible_levels();
-		Teleport(Me.teleport_anchor.z, Me.teleport_anchor.x, Me.teleport_anchor.y, TRUE);
+		Teleport(Me.teleport_anchor.z, Me.teleport_anchor.x, Me.teleport_anchor.y, TRUE, TRUE);
 		clear_active_bullets();
 
 		// Reset teleport anchor
@@ -226,7 +226,7 @@ static void TeleportHome(void)
 
 	teleport_arrival_sound();
 	reset_visible_levels();
-	Teleport(HomeSpot.level, HomeSpot.x, HomeSpot.y, TRUE);
+	Teleport(HomeSpot.level, HomeSpot.x, HomeSpot.y, TRUE, TRUE);
 	clear_active_bullets();
 
 }				// void TeleportHome ( void )

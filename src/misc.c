@@ -966,7 +966,7 @@ int MyRandom(int UpperBound)
  * This function teleports the influencer to a new position on the
  * ship.  THIS CAN BE A POSITION ON A DIFFERENT LEVEL.
  */
-void Teleport(int LNum, float X, float Y, int with_sound_and_fading)
+void Teleport(int LNum, float X, float Y, int with_sound_and_fading, int with_animation_reset)
 {
 	// Check if we are in editor and not in game test mode then we store the level number
 	//
@@ -1034,8 +1034,10 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 	Me.mouse_move_target.z = Me.pos.z;
 
 	// Animate Tux as standing still
-	Me.walk_cycle_phase = 0.0;
-	Me.phase = tux_anim.standing_keyframe;
+	if (with_animation_reset) {
+		Me.walk_cycle_phase = 0.0;
+		Me.phase = tux_anim.standing_keyframe;
+	}
 
 	if (with_sound_and_fading) {
 		teleport_arrival_sound();
@@ -1071,7 +1073,7 @@ void teleport_to_level_center(int level_num)
 	float y = curShip.AllLevels[level_num]->ylen / 2;
 
 	// Teleporting to the center of the level
-	Teleport(level_num, x, y, FALSE);
+	Teleport(level_num, x, y, FALSE, TRUE);
 }
 
 /**

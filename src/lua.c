@@ -95,7 +95,7 @@ static int lua_event_teleport(lua_State * L)
 	location TempLocation;
 	ResolveMapLabelOnShip(label, &TempLocation);
 	reset_visible_levels();
-	Teleport(TempLocation.level, TempLocation.x + 0.5, TempLocation.y + 0.5, TRUE);
+	Teleport(TempLocation.level, TempLocation.x + 0.5, TempLocation.y + 0.5, TRUE, TRUE);
 	clear_active_bullets();
 	return 0;
 }

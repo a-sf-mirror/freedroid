@@ -504,7 +504,7 @@ static void AddRemLevel(void)
 				gps_transform_map_init();
 				// Teleporting Tux will re-render the menu background
 				reset_visible_levels();
-				Teleport(0, 3, 3, FALSE);
+				Teleport(0, 3, 3, FALSE, TRUE);
 			}
 			break;
 		case LEAVE_OPTIONS_MENU:
@@ -788,7 +788,7 @@ static void LevelOptions(void)
 						while (LeftPressed()) ;
 					}
 					reset_visible_levels();
-					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
+					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE, TRUE);
 					break;
 				} else {
 					if (RightPressed()) {
@@ -802,7 +802,7 @@ static void LevelOptions(void)
 						while (LeftPressed()) ;
 					}
 					reset_visible_levels();
-					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE);
+					Teleport(EditLevel()->levelnum, Me.pos.x, Me.pos.y, FALSE, TRUE);
 					break;
 				}
 

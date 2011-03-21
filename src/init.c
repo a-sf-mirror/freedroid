@@ -1189,7 +1189,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	if (game_root_mode == ROOT_IS_LVLEDIT && level_exists(GameConfig.last_edited_level))
 		teleport_to_level_center(GameConfig.last_edited_level);
 	else
-		Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE);
+		Teleport(StartPosition.level, StartPosition.x, StartPosition.y, FALSE, TRUE);
 	clear_active_bullets();
 
 	// At this point the position history can be initialized

@@ -662,7 +662,7 @@ void action_jump_to_level(int target_level, double x, double y)
 
 	action_push(ACT_JUMP_TO_LEVEL, EditLevel()->levelnum, Me.pos.x, Me.pos.y);	//< sets undo or redo stack, depending on push_mode state
 	reset_visible_levels();
-	Teleport(target_level, (float)x, (float)y, FALSE);
+	Teleport(target_level, (float)x, (float)y, FALSE, TRUE);
 }
 
 /**
