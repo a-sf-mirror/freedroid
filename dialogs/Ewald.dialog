@@ -57,12 +57,16 @@ LuaCode={
 
 Nr=1 Text=_"How is your business doing?"
 LuaCode={
-	npc_says(_"Nah, No darn good at all.")
-	npc_says(_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high.")
-	npc_says(_"No one wants to pay 499 circs for bottom shelf swill that even Bender would not drink...")
-	npc_says(_"The tax is quite brutal as well. And the Red Guard always demands discounts too.")
-	npc_says(_"Life is tough. I am still happy though.")
-	hide(1)
+	if (has_cookie("guard_follow_tux")) then
+		npc_says("Can't complain at the moment...")
+	else
+		npc_says(_"Nah, No darn good at all.")
+		npc_says(_"The bots ruined it for me. Now the supplies are very low and I had to make the prices high.")
+		npc_says(_"No one wants to pay 499 circs for bottom shelf swill that even Bender would not drink...")
+		npc_says(_"The tax is quite brutal as well. And the Red Guard always demands discounts too.")
+		npc_says(_"Life is tough. I am still happy though.")
+		hide(1)
+	end
 }
 ----------------------------------------------------------------------
 
