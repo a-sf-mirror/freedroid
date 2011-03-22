@@ -214,7 +214,7 @@ void leveleditor_init_widgets()
 		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL,
 			_("Toggle display obstacles\n\nUse this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor.")},
 		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL,
-			_("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio (OpenGL only).\n")},
+			_("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio.\n")},
 		{LEVEL_EDITOR_QUIT_BUTTON, NULL,
 			_("Test Map\n\nThis will save your map and reload it after you finish testing, avoiding saving an unclean world state.")},
 		{RIGHT_LEVEL_EDITOR_BUTTON, NULL, NULL},
