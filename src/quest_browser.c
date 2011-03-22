@@ -414,6 +414,7 @@ void quest_browser_interface(void)
 	Activate_Conservative_Frame_Computation();
 	SetCurrentFont(FPS_Display_BFont);
 
+	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | NO_CURSOR | OMIT_ITEMS_LABEL);
 	blit_special_background(QUEST_BROWSER_BACKGROUND_CODE);
 	StoreMenuBackground(1);
 
