@@ -196,7 +196,7 @@ static void show_waypoints(int mask)
 		object_vtx_color(&wpts[i], &r, &g, &b);
 
 		struct image *img = &level_editor_waypoint_cursor[wpts[i].suppress_random_spawn];
-		display_image_on_map(img, x, y, set_image_transformation(zf, r, g, b, 1.0, 0));
+		display_image_on_map(img, x, y, IMAGE_SCALE_RGB_TRANSFO(zf, r, g, b));
 
 		// Get the connections of the waypoint
 		int *connections = wpts[i].connections.arr;

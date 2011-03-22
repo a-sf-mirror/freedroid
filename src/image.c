@@ -111,12 +111,10 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 	int xoff = img->offset_x;
 	int yoff = img->offset_y;
 
-	if (t->scale != 1.0) {
-		xmax *= t->scale;
-		ymax *= t->scale;
-		xoff *= t->scale;
-		yoff *= t->scale;
-	}
+	xmax *= t->scale_x;
+	ymax *= t->scale_y;
+	xoff *= t->scale_x;
+	yoff *= t->scale_y;
 
 	glColor4f(t->r, t->g, t->b, t->a);
 
@@ -164,7 +162,7 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 	SDL_Surface *surf;
 
 	// Check if the image must be transformed
-	if (t->scale == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0 && !t->highlight) {
+	if (t->scale_x == 1.0 && t->scale_y == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0 && !t->highlight) {
 		// No transformation
 		surf = img->surface;
 	} else {
@@ -172,12 +170,12 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 
 		// Check if the transformation is in cache
 		struct image_transformation *cache = &img->cached_transformation;
-		if (!cache->surface || cache->scale != t->scale || cache->r != t->r || cache->g != t->g || cache->b != t->b || cache->a != t->a || cache->highlight != t->highlight) {
+		if (!cache->surface || cache->scale_x != t->scale_x || cache->scale_y != t->scale_y || cache->r != t->r || cache->g != t->g || cache->b != t->b || cache->a != t->a || cache->highlight != t->highlight) {
 			// Transformed image is not in cache, create it
 
 			int scaled;
-			if (t->scale != 1.0) {
-				t->surface = zoomSurface(img->surface, t->scale, t->scale, FALSE); 
+			if (t->scale_x != 1.0 || t->scale_y != 1.0) {
+				t->surface = zoomSurface(img->surface, t->scale_x, t->scale_y, FALSE); 
 				scaled = 1;
 			} else {
 				t->surface = img->surface;
@@ -204,8 +202,8 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 		surf = cache->surface;
 	}
 
-	target_rectangle.x += img->offset_x * t->scale;
-	target_rectangle.y += img->offset_y * t->scale;
+	target_rectangle.x += img->offset_x * t->scale_x;
+	target_rectangle.y += img->offset_y * t->scale_y;
 
 	SDL_BlitSurface(surf, NULL, Screen, &target_rectangle);
 }
@@ -391,9 +389,9 @@ int image_loaded(struct image *img)
 /**
  * Create a struct image_transformation from transformation parameters, for use in image display functions.
  */
-struct image_transformation set_image_transformation(float scale, float r, float g, float b, float a, int highlight)
+struct image_transformation set_image_transformation(float scale_x, float scale_y, float r, float g, float b, float a, int highlight)
 {
-	struct image_transformation t = { .surface = NULL, .scale = scale, .r = r, .g = g, .b = b, .a = a, .highlight = highlight };
+	struct image_transformation t = { .surface = NULL, .scale_x = scale_x, .scale_y = scale_y, .r = r, .g = g, .b = b, .a = a, .highlight = highlight };
 	return t;
 }
 

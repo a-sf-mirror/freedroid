@@ -67,7 +67,8 @@ struct BFont_Info;
 
 struct image_transformation {
 	SDL_Surface *surface;		
-	float scale;
+	float scale_x;
+	float scale_y;
 	float r;
 	float g;
 	float b;

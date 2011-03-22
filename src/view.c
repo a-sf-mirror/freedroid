@@ -165,7 +165,7 @@ static void ShowOneItemAlarm(item * AlarmItem, int Position)
 			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
 				return;
 		struct image *img = get_item_inventory_image(ItemImageCode);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y, set_image_transformation(1.0, 1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0, 1.0, 0));
+		display_image_on_screen(img, TargetRect.x, TargetRect.y, set_image_transformation(1.0, 1.0, 1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0, 1.0, 0));
 #ifdef HAVE_LIBGL
 		//XXX get rid of this which will be useless once everything has been moved to struct image
 		if (use_open_gl) {
@@ -279,7 +279,7 @@ static void show_floor(int mask)
 			}
 
 			struct image *img = &(floor_images[MapBrick]);
-			display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, set_image_transformation(zf, r, g, b, 1.0, 0));
+			display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, IMAGE_SCALE_RGB_TRANSFO(zf, r, g, b));
 		}
 	}
 
@@ -388,7 +388,7 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 	}
 
 	struct image *img = get_obstacle_image(o->type);
-	display_image_on_map(img, pos.x, pos.y, set_image_transformation(zf, r, g, b, a, highlight));
+	display_image_on_map(img, pos.x, pos.y, set_image_transformation(zf, zf, r, g, b, a, highlight));
 }
 
 /**
@@ -2441,7 +2441,7 @@ void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, in
 	struct image *img = &loaded_tux_images[tux_part_group][our_phase][rotation_index];
 
 	if (x == -1) {
-		display_image_on_map(img, Me.pos.x, Me.pos.y, set_image_transformation(1.0, r, g, b, a, 0));
+		display_image_on_map(img, Me.pos.x, Me.pos.y, set_image_transformation(1.0, 1.0, r, g, b, a, 0));
 	} else {
 		display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y, IMAGE_NO_TRANSFO);
 	}
@@ -3012,7 +3012,7 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	}
 
 	struct image *img = &enemy_images[RotationModel][RotationIndex][(int)ThisRobot->animation_phase];
-	display_image_on_map(img, bot_pos.x, bot_pos.y, set_image_transformation(zf, darkness * r, darkness * g, darkness * b, 1.0, highlight));
+	display_image_on_map(img, bot_pos.x, bot_pos.y, set_image_transformation(zf, zf, darkness * r, darkness * g, darkness * b, 1.0, highlight));
 
 	int screen_x, screen_y;
 	translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
@@ -3193,7 +3193,7 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 
 	float anim_throw = (CurItem->throw_time <= 0) ? 0.0 : (3.0 * sinf(CurItem->throw_time * 3.0));
 
-	display_image_on_map(img, CurItem->virt_pos.x - anim_throw, CurItem->virt_pos.y - anim_throw, set_image_transformation(zf, r, g, b, 1.0, highlight_item));
+	display_image_on_map(img, CurItem->virt_pos.x - anim_throw, CurItem->virt_pos.y - anim_throw, set_image_transformation(zf, zf, r, g, b, 1.0, highlight_item));
 }
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_direction[RADIAL_SPELL_DIRECTIONS], float age)

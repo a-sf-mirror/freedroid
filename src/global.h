@@ -374,7 +374,8 @@ EXTERN struct {
 	struct distancebased_animation run;
 } tux_anim;
 
-#define IMAGE_SCALE_TRANSFO(SCALE) set_image_transformation(SCALE, 1.0, 1.0, 1.0, 1.0, 0)
+#define IMAGE_SCALE_RGB_TRANSFO(SCALE, R, G, B) set_image_transformation(SCALE, SCALE, R, G, B, 1.0, 0)
+#define IMAGE_SCALE_TRANSFO(SCALE) IMAGE_SCALE_RGB_TRANSFO(SCALE, 1.0, 1.0, 1.0)
 #define IMAGE_NO_TRANSFO IMAGE_SCALE_TRANSFO(1.0)
 #endif				// _global_h
 
