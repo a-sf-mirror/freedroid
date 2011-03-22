@@ -563,56 +563,6 @@ int safely_initialize_our_default_open_gl_parameters(void)
 
 };				// int safely_initialize_our_default_open_gl_parameters ( void )
 
-/* This function draws a textured quad on screen. */
-
-#ifdef HAVE_LIBGL
-static inline void draw_gl_textured_quad_helper(int x0, int y0, int x1, int y1, float tex_x0, float tex_y0, float tex_x1, float tex_y1)
-{
-
-	glBegin(GL_QUADS);
-	glTexCoord2f(tex_x0, tex_y0);
-	glVertex2i(x0, y0);
-	glTexCoord2f(tex_x0, tex_y1);
-	glVertex2i(x0, y1);
-	glTexCoord2f(tex_x1, tex_y1);
-	glVertex2i(x1, y1);
-	glTexCoord2f(tex_x1, tex_y0);
-	glVertex2i(x1, y0);
-	glEnd();
-
-};
-#endif
-
-/**
- * This function blits some texture to the screen, but instead of using
- * the usual 1:1 ratio, this function will instead stretch the texture
- * received such that the ratio corresponds to the current (possibly wider)
- * screen dimension.
- */
-void draw_gl_bg_textured_quad_at_screen_position(struct image * our_floor_iso_image, int x, int y)
-{
-
-#ifdef HAVE_LIBGL
-	int image_end_x;
-	int image_end_y;
-
-	if (our_floor_iso_image->w == 1024)	//then the image is 1024x768
-	{			/*dirty hack for better scaling */
-		image_end_x = x + our_floor_iso_image->w * GameConfig.screen_width / 1024;
-		image_end_y = y + our_floor_iso_image->h * GameConfig.screen_height / 768;
-	} else {
-		image_end_x = x + our_floor_iso_image->w * GameConfig.screen_width / 640;
-		image_end_y = y + our_floor_iso_image->h * GameConfig.screen_height / 480;
-	}
-
-	glBindTexture(GL_TEXTURE_2D, (our_floor_iso_image->texture));
-	draw_gl_textured_quad_helper(x, y, image_end_x, image_end_y, our_floor_iso_image->tex_x0, our_floor_iso_image->tex_y0,
-				     our_floor_iso_image->tex_x1, our_floor_iso_image->tex_y1);
-
-#endif
-
-}
-
 /**
  * This function restores the menu background, that must have been stored
  * before using the function of similar name.

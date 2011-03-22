@@ -228,7 +228,6 @@ void show_character_screen_background(void);
 int safely_initialize_our_default_open_gl_parameters(void);
 void blit_background(const char *background);
 void open_gl_check_error_status(const char *name_of_calling_function);
-void draw_gl_bg_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y);
 void set_gl_clip_rect(const SDL_Rect *clip);
 void unset_gl_clip_rect(void);
 
