@@ -128,18 +128,16 @@ static void fade(int fade_delay, int direction)
 		if (!use_open_gl) {
 			SDL_SetAlpha(bg, SDL_SRCALPHA, fade);
 			SDL_FillRect(Screen, NULL, 0);
-			our_SDL_blit_surface_wrapper(bg, NULL, Screen, NULL);
-			blit_mouse_cursor();
-			our_SDL_flip_wrapper();
+			SDL_BlitSurface(bg, NULL, Screen, NULL);
 		} else {
 #ifdef HAVE_LIBGL
 			glColor4ub(fade, fade, fade, 255);
 			RestoreMenuBackground(0);
 			glColor4ub(255, 255, 255, 255);
-			blit_mouse_cursor();
-			SDL_GL_SwapBuffers();
 #endif
 		}
+		blit_mouse_cursor();
+		our_SDL_flip_wrapper();
 		now = SDL_GetTicks();
 	}
 }
