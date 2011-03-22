@@ -50,14 +50,16 @@ EveryTime LuaCode={
 		if (has_cookie("kevin_sigtalk")) then hide(20) else show(20) end
 	end
 
-	if (has_cookie("kevins_lawnmower_tux_login")) then
-		npc_says(_"Oh, and did you play around with my Lawnmower?")
-		show(60, 61)
-	end
+if (not has_cookie("lawnmower_fueled")) then
+		if (has_cookie("kevins_lawnmower_tux_login")) then
+			npc_says(_"Oh, and did you play around with my Lawnmower?")
+			show(60, 61)
+		end
 
-	if (has_cookie("kevins_lawnmower_tux_login_kevin_attempt")) then
-		npc_says(_"Hmm, strange things are happening to my lawnmower.")
-		npc_says(_"But I don't have the time right now to take a look at it.")
+		if (has_cookie("kevins_lawnmower_tux_login_kevin_attempt")) then
+			npc_says(_"Hmm, strange things are happening to my lawnmower.")
+			npc_says(_"But I don't have the time right now to take a look at it.")
+		end
 	end
 
 	show(99)

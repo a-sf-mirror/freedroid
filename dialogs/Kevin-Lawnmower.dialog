@@ -33,7 +33,7 @@ EveryTime LuaCode={
 	npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
 	npc_says(_"Please state your name for identification.")
 	npc_says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
-show(5,6)
+	show(5,6)
 	if (has_cookie("lawnmower_fuel_4")) then
 		set_bot_state("fixed")
 		npc_says(_"WARNING:", NO_WAIT)
@@ -180,6 +180,7 @@ LuaCode={
 	del_item("Barf's Energy Drink", 1)
 	add_item("Tungsten spikes", 2)
 	del_cookie("lawnmower_fuel_4")
+	add_cookie("lawnmower_fueled")
 	set_bot_state("home")
 	hide(50, 51)
 }
