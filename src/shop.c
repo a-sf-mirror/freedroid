@@ -427,7 +427,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 		// interface...
 		AssembleCombatPicture(ONLY_SHOW_MAP);
 		SDL_SetClipRect(Screen, NULL);
-		blit_special_background(ITEM_BROWSER_SHOP_BACKGROUND_CODE);
+		blit_background("item_browser_shop.png");
 
 		/* This is a magic formula to place the item picture. */
 		int x = 40 * GameConfig.screen_width / 1024 + ((250 * GameConfig.screen_width / 1024) - 132) / 2;

@@ -308,7 +308,7 @@ void show_chat_log(enemy *chat_enemy)
 	struct image *img = get_droid_portrait_image(chat_enemy->type);
 	float scale;
 
-	blit_special_background(CHAT_DIALOG_BACKGROUND_PICTURE_CODE);
+	blit_background("conversation.png");
 
 	scale = (float)Droid_Image_Window.w / (float)img->w;
 	display_image_on_screen(img, Droid_Image_Window.x, Droid_Image_Window.y, IMAGE_SCALE_TRANSFO(scale));

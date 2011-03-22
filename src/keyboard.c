@@ -301,7 +301,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 	int ypos = keychart_rect.y;
 	int xpos = keychart_rect.x;
 
-	blit_special_background(SHOP_BACKGROUND_IMAGE_CODE);
+	blit_background("shoppe.jpg");
 
 	ShadowingRectangle(Screen, keychart_rect);
 

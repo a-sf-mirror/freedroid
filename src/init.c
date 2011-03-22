@@ -122,7 +122,7 @@ void next_startup_percentage(int done)
 	startup_percent += done;
 
 	if (use_open_gl)
-		blit_special_background(FREEDROID_LOADING_PICTURE_CODE);
+		blit_background("startup1.jpg");
 
 	Bar_Rect.x = 160 * GameConfig.screen_width / 640;
 	Bar_Rect.y = 288 * GameConfig.screen_height / 480;
@@ -198,7 +198,7 @@ void PlayATitleFile(char *Filename)
 		strncpy(PreparedBriefingText, NextSubsectionStartPointer, ThisTextLength);
 		PreparedBriefingText[ThisTextLength] = 0;
 
-		ScrollText((PreparedBriefingText), NE_TITLE_PIC_BACKGROUND_CODE);
+		ScrollText((PreparedBriefingText), "title.jpg");
 		free(PreparedBriefingText);
 	}
 

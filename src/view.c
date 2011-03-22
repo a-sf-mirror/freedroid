@@ -1808,7 +1808,7 @@ void AssembleCombatPicture(int mask)
 	// view...
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
 		ShowItemAlarm();
-		blit_special_background(HUD_BACKGROUND_CODE);
+		blit_background("hud_background.png");
 		show_text_widget(&message_log);
 		if (!GameOver) {
 			ShowCurrentHealthAndForceLevel();
@@ -3410,7 +3410,7 @@ static void show_inventory_screen(void)
 	// At this point we know, that the inventory screen is desired and must be
 	// displayed in-game:
 	//
-	blit_special_background(INVENTORY_SCREEN_BACKGROUND_CODE);
+	blit_background("inventory.png");
 
 	// Now we display the item in the influencer drive slot
 	//

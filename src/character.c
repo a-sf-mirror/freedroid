@@ -486,7 +486,7 @@ void ShowCharacterScreen()
 	CharacterRect.w = CHARACTERRECT_W;
 	CharacterRect.h = CHARACTERRECT_H;
 
-	blit_special_background(CHARACTER_SCREEN_BACKGROUND_CODE);
+	blit_background("character.png");
 
 	SetCurrentFont(Blue_BFont);
 

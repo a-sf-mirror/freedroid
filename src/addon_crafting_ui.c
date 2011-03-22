@@ -251,7 +251,7 @@ void show_addon_crafting_ui()
 	}
 
 	// Draw the background image.
-	blit_special_background(ADDON_CRAFTING_BACKGROUND_CODE);
+	blit_background("item_upgrade_crafting.png");
 
 	// Draw the title.
 	SetCurrentFont(Menu_BFont);

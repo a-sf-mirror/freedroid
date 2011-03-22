@@ -216,7 +216,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 
 	while (!ok_button_was_pressed && !escape_button_was_pressed) {
 		RestoreMenuBackground(1);
-		blit_special_background(NUMBER_SELECTOR_BACKGROUND_CODE);
+		blit_background("number_selector.png");
 		ShowGenericButtonFromList(NUMBER_SELECTOR_OK_BUTTON);
 		knob_target_rect.x = knob_start_x + knob_offset_x - selection_knob.w / 2;
 		knob_target_rect.y = UNIVERSAL_COORD_H(260) - selection_knob.h / 2;
@@ -869,7 +869,7 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 
 	InitOurBFonts();
 
-	blit_special_background(FREEDROID_LOADING_PICTURE_CODE);
+	blit_background("startup1.jpg");
 	our_SDL_flip_wrapper();
 
 	SDL_SetGamma(GameConfig.current_gamma_correction, GameConfig.current_gamma_correction, GameConfig.current_gamma_correction);

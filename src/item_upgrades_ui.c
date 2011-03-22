@@ -223,7 +223,7 @@ void show_item_upgrade_ui()
 	}
 
 	// Draw the background image.
-	blit_special_background(ITEM_UPGRADE_BACKGROUND_CODE);
+	blit_background("item_upgrade.png");
 
 	// Draw the apply and close buttons.
 	if (ui.apply_button_active) {

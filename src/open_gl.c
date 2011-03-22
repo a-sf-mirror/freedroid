@@ -870,253 +870,85 @@ void gl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 #endif
 }
 
-#define CHARACTER_SCREEN_BACKGROUND_FILE "backgrounds/character.png"
-#define SKILL_SCREEN_BACKGROUND_FILE "backgrounds/SkillScreen.png"
-#define SKILL_EXPLANATION_SCREEN_BACKGROUND_FILE "backgrounds/SkillExplanationScreen.png"
-#define INVENTORY_SCREEN_BACKGROUND_FILE "backgrounds/inventory.png"
-#define NE_TITLE_PIC_FILE       "backgrounds/title.jpg"
-#define NE_CREDITS_PIC_FILE     "backgrounds/credits.jpg"
-#define SHOP_BACKGROUND_IMAGE   "backgrounds/shoppe.jpg"
-#define TAKEOVER_BROWSER_BG_PIC_FILE "backgrounds/takeover_browser.png"
-#define ITEM_BROWSER_SHOP_FILE "backgrounds/item_browser_shop.png"
-#define NE_CONSOLE_FG_1_FILE     "backgrounds/console_fg_1.png"
-#define NE_CONSOLE_FG_2_FILE     "backgrounds/console_fg_2.png"
-#define NE_CONSOLE_FG_3_FILE     "backgrounds/console_fg_3.png"
-#define NE_CONSOLE_FG_4_FILE     "backgrounds/console_fg_4.png"
-#define NE_CONSOLE_BG_PIC1_FILE "backgrounds/console_bg1.jpg"
-#define NE_CONSOLE_BG_PIC2_FILE "backgrounds/console_bg2.jpg"
-#define LEVEL_EDITOR_BANNER_FILE1 "backgrounds/LevelEditorSelectionBar1.png"
-#define LEVEL_EDITOR_BANNER_FILE2 "backgrounds/LevelEditorSelectionBar2.png"
-#define LEVEL_EDITOR_BANNER_FILE3 "backgrounds/LevelEditorSelectionBar3.png"
-#define LEVEL_EDITOR_BANNER_FILE4 "backgrounds/LevelEditorSelectionBar4.png"
-#define LEVEL_EDITOR_BANNER_FILE5 "backgrounds/LevelEditorSelectionBar5.png"
-#define LEVEL_EDITOR_BANNER_FILE6 "backgrounds/LevelEditorSelectionBar6.png"
-#define LEVEL_EDITOR_BANNER_FILE7 "backgrounds/LevelEditorSelectionBar7.png"
-#define FREEDROID_LOADING_PICTURE_NAME "backgrounds/startup1.jpg"
-#define MOUSE_BUTTON_CHA_BACKGROUND_PICTURE "mouse_buttons/CHAButton.png"
-#define MOUSE_BUTTON_INV_BACKGROUND_PICTURE "mouse_buttons/INVButton.png"
-#define MOUSE_BUTTON_SKI_BACKGROUND_PICTURE "mouse_buttons/SKIButton.png"
-#define MOUSE_BUTTON_PLUS_BACKGROUND_PICTURE "mouse_buttons/PLUSButton.png"
-#define CHAT_BACKGROUND_IMAGE_FILE "backgrounds/conversation.png"
-#define TO_BG_FILE		"backgrounds/transfer.jpg"
-#define QUEST_BROWSER_BACKGROUND_IMAGE_FILE "backgrounds/quest_browser.png"
-#define NUMBER_SELECTOR_BACKGROUND_IMAGE_FILE "backgrounds/number_selector.png"
-#define GAME_MESSAGE_WINDOW_BACKGROUND_IMAGE_FILE "backgrounds/game_message_window.png"
-#define HUD_BACKGROUND_IMAGE_FILE "backgrounds/hud_background.png"
-#define ITEM_UPGRADE_BACKGROUND_IMAGE_FILE "item_upgrade/background.png"
-#define ADDON_CRAFTING_BACKGROUND_IMAGE_FILE "item_upgrade/background_crafting.png"
-
-#define ALL_KNOWN_BACKGROUNDS 35
-static struct image our_backgrounds[ALL_KNOWN_BACKGROUNDS];
-static int background_has_been_loaded[ALL_KNOWN_BACKGROUNDS];
+static struct background {
+	const char *filename;
+	struct image img;
+	int x;
+	int y;
+	int must_scale;
+} backgrounds[] = {
+		{"inventory.png", EMPTY_IMAGE, 0, 0, FALSE },
+		{"character.png", EMPTY_IMAGE, -320, 0, FALSE },
+		{"SkillScreen.png", EMPTY_IMAGE, -320, 0, FALSE },
+		{"SkillExplanationScreen.png", EMPTY_IMAGE, 0, 0, FALSE },
+		{"title.jpg", EMPTY_IMAGE, 0, 0,  TRUE },
+		{"credits.jpg", EMPTY_IMAGE, 0, 0,  TRUE },
+		{"shoppe.jpg", EMPTY_IMAGE, 0, 0, TRUE },
+		{"takeover_browser.png", EMPTY_IMAGE, 0, 0, TRUE },
+		{"item_browser_shop.png", EMPTY_IMAGE, 0, 0,TRUE },
+		{"startup1.jpg", EMPTY_IMAGE, 0, 0,  TRUE },
+		{"conversation.png", EMPTY_IMAGE, 0, 0,  TRUE },
+		{"transfer.jpg", EMPTY_IMAGE, 0, 0,  TRUE },
+		{"quest_browser.png", EMPTY_IMAGE, 0, 0,  TRUE },
+		{"number_selector.png", EMPTY_IMAGE, 0, 0,  TRUE },
+		{"game_message_window.png", EMPTY_IMAGE, 0, 0, TRUE },
+		{"hud_background.png", EMPTY_IMAGE, 0, -118, TRUE },
+		{"item_upgrade.png", EMPTY_IMAGE, ITEM_UPGRADE_RECT_X, ITEM_UPGRADE_RECT_Y,  FALSE },
+		{"item_upgrade_crafting.png", EMPTY_IMAGE, ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, FALSE },
+};
 
 /**
- * For blitting backgrounds and static images in various positions of the
- * game, we got this function, that handles them, taking special care to
- * use open-gl textures for faster blitting in OpenGL settings.
+ * This function displays a background (or UI element) at a given position in the game.
  */
-void blit_special_background(int background_code)
+void blit_background(const char *background)
 {
-	SDL_Surface *tmp_surf_1;
-	SDL_Rect src_rect;
+	int i;
 
-	if (background_code >= ALL_KNOWN_BACKGROUNDS) {
-		ErrorMessage(__FUNCTION__, "Received a request to display a background that does not exist.", PLEASE_INFORM, IS_FATAL);
-		exit(1);
+	// Search the specified background in the list
+	struct background *bg = NULL;
+
+	for (i = 0; i < sizeof(backgrounds)/sizeof(backgrounds[0]); i++) {
+		if (!strcmp(backgrounds[i].filename, background)) {
+			bg = &backgrounds[i];
+			break;
+		}
 	}
 
-	static char *background_filenames[ALL_KNOWN_BACKGROUNDS] = {
-		INVENTORY_SCREEN_BACKGROUND_FILE,	// 0
-		CHARACTER_SCREEN_BACKGROUND_FILE,	// 1 
-		SKILL_SCREEN_BACKGROUND_FILE,	// 2
-		SKILL_EXPLANATION_SCREEN_BACKGROUND_FILE,	// 3
-		NE_TITLE_PIC_FILE,	// 4
-		NE_CREDITS_PIC_FILE,	// 5
-		SHOP_BACKGROUND_IMAGE,	// 6
-		TAKEOVER_BROWSER_BG_PIC_FILE,	// 7
-		ITEM_BROWSER_SHOP_FILE,	// 8 
-		NE_CONSOLE_FG_1_FILE,	// 9 
-		NE_CONSOLE_FG_2_FILE,	// 10
-		NE_CONSOLE_FG_3_FILE,	// 11
-		NE_CONSOLE_FG_4_FILE,	// 12
-		NE_CONSOLE_BG_PIC1_FILE,	// 13
-		LEVEL_EDITOR_BANNER_FILE1,	// 14
-		LEVEL_EDITOR_BANNER_FILE2,	// 15
-		LEVEL_EDITOR_BANNER_FILE3,	// 16
-		LEVEL_EDITOR_BANNER_FILE4,	// 17
-		LEVEL_EDITOR_BANNER_FILE5,	// 18
-		LEVEL_EDITOR_BANNER_FILE6,	// 19
-		LEVEL_EDITOR_BANNER_FILE7,	// 20
-		FREEDROID_LOADING_PICTURE_NAME,	// 21
-		MOUSE_BUTTON_CHA_BACKGROUND_PICTURE,	// 22
-		MOUSE_BUTTON_INV_BACKGROUND_PICTURE,	// 23
-		MOUSE_BUTTON_SKI_BACKGROUND_PICTURE,	// 24 
-		MOUSE_BUTTON_PLUS_BACKGROUND_PICTURE,	// 25
-		CHAT_BACKGROUND_IMAGE_FILE,	// 26
-		CHAT_BACKGROUND_IMAGE_FILE,	// 27
-		TO_BG_FILE,	// 28
-		QUEST_BROWSER_BACKGROUND_IMAGE_FILE,	// 29
-		NUMBER_SELECTOR_BACKGROUND_IMAGE_FILE,	// 30
-		GAME_MESSAGE_WINDOW_BACKGROUND_IMAGE_FILE,	// 31
-		HUD_BACKGROUND_IMAGE_FILE,	// 32
-		ITEM_UPGRADE_BACKGROUND_IMAGE_FILE,	// 33
-		ADDON_CRAFTING_BACKGROUND_IMAGE_FILE,	// 33
-	};
-
-	static int scaling_done[ALL_KNOWN_BACKGROUNDS];
-
-	SDL_Rect our_background_rects[ALL_KNOWN_BACKGROUNDS] = {
-		{0, 0, 0, 0},	// 0
-		{CHARACTERRECT_X, 0, 0, 0},	// 1 
-		{CHARACTERRECT_X, 0, 0, 0},	// 2
-		{0, 0, 0, 0},	// 3
-		{0, 0, 0, 0},	// 4 
-		{0, 0, 0, 0},	// 5
-		{0, 0, 0, 0},	// 6
-		{0, 0, 0, 0},	// 7
-		{0, 0, 0, 0},	// 8
-
-		{32, 180, CONS_MENU_LENGTH, CONS_MENU_HEIGHT},	// 9
-		{32, 180, CONS_MENU_LENGTH, CONS_MENU_HEIGHT},	// 10
-		{32, 180, CONS_MENU_LENGTH, CONS_MENU_HEIGHT},	// 11
-		{32, 180, CONS_MENU_LENGTH, CONS_MENU_HEIGHT},	// 12
-		{0, 0, 0, 0},	// 13
-		{0, 0, 0, 0},	// 14
-		{0, 0, 0, 0},	// 15
-		{0, 0, 0, 0},	// 16
-		{0, 0, 0, 0},	// 17
-		{0, 0, 0, 0},	// 18
-		{0, 0, 0, 0},	// 19
-		{0, 0, 0, 0},	// 20
-		{0, 0, 0, 0},	// 21
-		{GameConfig.screen_width - 80, GameConfig.screen_height - 46, 38, 45},	// 22
-		{GameConfig.screen_width - 40, GameConfig.screen_height - 60, 38, 40},	// 23 
-		{GameConfig.screen_width - 50, GameConfig.screen_height - 104, 38, 47},	// 24
-		{GameConfig.screen_width - 80, GameConfig.screen_height - 46, 38, 45},	// 25
-		{0, 0, 0, 0},	// 26
-		{CHAT_SUBDIALOG_WINDOW_X,
-		 CHAT_SUBDIALOG_WINDOW_Y,
-		 CHAT_SUBDIALOG_WINDOW_W,
-		 CHAT_SUBDIALOG_WINDOW_H},	// 27
-		{0, 0, 0, 0},	// 28
-		{0, 0, 0, 0},	// 29
-		{0, 0, 0, 0},	// 30
-		{(65 * GameConfig.screen_width) / 640, GameConfig.screen_height - (70 * GameConfig.screen_height) / 480, 500, 70},	// 31
-		{(0 * GameConfig.screen_width) / 640, GameConfig.screen_height - (118 * GameConfig.screen_height) / 480, 500, 70},	// 32
-		{ITEM_UPGRADE_RECT_X, ITEM_UPGRADE_RECT_Y, ITEM_UPGRADE_RECT_W, ITEM_UPGRADE_RECT_H},	// 33
-		{ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, ADDON_CRAFTING_RECT_W, ADDON_CRAFTING_RECT_H}	// 34
-	};
-
-	const int need_scaling[ALL_KNOWN_BACKGROUNDS] = {
-		FALSE,		// 0
-		FALSE,		// 1
-		FALSE,		// 2
-		FALSE,		// 3
-		TRUE,		// 4
-		TRUE,		// 5
-		TRUE,		// 6
-		TRUE,		// 7
-		TRUE,		// 8
-		FALSE,		// 9
-		FALSE,		// 10
-		FALSE,		// 11
-		FALSE,		// 12
-		FALSE,		// 13
-		FALSE,		// 14
-		FALSE,		// 15
-		FALSE,		// 16
-		FALSE,		// 17
-		FALSE,		// 18
-		FALSE,		// 19
-		FALSE,		// 20
-		TRUE,		// 21
-		FALSE,		// 22
-		FALSE,		// 23
-		FALSE,		// 24
-		FALSE,		// 25
-		TRUE,		// 26
-		TRUE,		// 27
-		TRUE,		// 28
-		TRUE,		// 29
-		TRUE,		// 30
-		TRUE,		// 31
-		TRUE,		// 32
-		FALSE,		// 33
-	};
-
-	if (!background_has_been_loaded[background_code]) {
-		background_has_been_loaded[background_code] = 1;
-
-		load_image_surface(&our_backgrounds[background_code], background_filenames[background_code], FALSE);
-
-		// For the dialog, we need not only the dialog background, but also some smaller
-		// parts of the background image, so we can re-do the background part that is in
-		// the dialog partners chat output window.  We don't make a separate image on disk
-		// but rather extract the info inside the code.  That makes for easier adaptation
-		// of the window dimensions from inside the code...
-		//
-		if (background_code == CHAT_DIALOG_BACKGROUND_EXCERPT_CODE) {
-			tmp_surf_1 = SDL_CreateRGBSurface(SDL_SWSURFACE, CHAT_SUBDIALOG_WINDOW_W, CHAT_SUBDIALOG_WINDOW_H,
-							  32, 0x000000ff, 0x0000ff00, 0x00ff0000, 0xff000000);
-
-			src_rect.x = CHAT_SUBDIALOG_WINDOW_X;
-			src_rect.w = CHAT_SUBDIALOG_WINDOW_W;
-			src_rect.h = CHAT_SUBDIALOG_WINDOW_H;
-			// With OpenGL, the image is flipped at this point already, so we
-			// just copy the image in flipped form, cause later it should be 
-			// flipped anyway.  Cool, eh?  Of course this way only the location
-			// of the rectangle has to be adapted a bit...
-			//
-			if (use_open_gl) {
-				src_rect.y = 480 - CHAT_SUBDIALOG_WINDOW_Y - CHAT_SUBDIALOG_WINDOW_H;
-			} else {
-				src_rect.y = CHAT_SUBDIALOG_WINDOW_Y;
-			}
-
-			SDL_BlitSurface(our_backgrounds[background_code].surface, &src_rect, tmp_surf_1, NULL);
-			SDL_FreeSurface(our_backgrounds[background_code].surface);
-			our_backgrounds[background_code].surface = SDL_DisplayFormat(tmp_surf_1);
-		}
-
-		if (use_open_gl) {
-			make_texture_out_of_surface(&(our_backgrounds[background_code]));
-		}
-
+	if (!bg) {
+		ErrorMessage(__FUNCTION__, "Received a request to display background %s which is unknown. Doing nothing.", PLEASE_INFORM, IS_WARNING_ONLY, background);
+		return;
 	}
 
-	if (use_open_gl) {
-		if (need_scaling[background_code]) {
-			draw_gl_bg_textured_quad_at_screen_position(&our_backgrounds[background_code],
-								    our_background_rects[background_code].x,
-								    our_background_rects[background_code].y);
-		} else
-			display_image_on_screen(&our_backgrounds[background_code],
-								 our_background_rects[background_code].x,
-								 our_background_rects[background_code].y, IMAGE_NO_TRANSFO);
-	} else {
-		if (need_scaling[background_code] && !scaling_done[background_code]) {
-			scaling_done[background_code] = 1;
-			double rx, ry;
-			if (our_backgrounds[background_code].w == 1024) {
-				rx = Screen->w / 1024.0;
-				ry = Screen->h / 768.0;
-			} else {
-				rx = Screen->w / 640.0;
-				ry = Screen->h / 480.0;
-			}
-			SDL_Surface *tmp_surf2 = zoomSurface(our_backgrounds[background_code].surface, rx, ry, TRUE);
-			SDL_FreeSurface(our_backgrounds[background_code].surface);
-			our_backgrounds[background_code].surface = tmp_surf2;
-			our_backgrounds[background_code].w = tmp_surf2->w;
-			our_backgrounds[background_code].h = tmp_surf2->h;
-		}
-		SDL_SetClipRect(Screen, NULL);
-		our_SDL_blit_surface_wrapper(our_backgrounds[background_code].surface, NULL, Screen,
-					     &(our_background_rects[background_code]));
-
+	// Load the background
+	if (!image_loaded(&bg->img)) {
+		char path[2048];
+		sprintf(path, "backgrounds/%s", bg->filename);
+		load_image(&bg->img, path, FALSE);
 	}
 
-};				// void blit_special_background ( int background_code )
+
+	// Compute coordinates and display
+	int x = bg->x;
+	int y = bg->y;
+	
+	float scalex = 1.0, scaley = 1.0;
+	if (bg->must_scale) {
+		scalex = (float)GameConfig.screen_width / bg->img.w;
+		scaley = (float)GameConfig.screen_height / (bg->img.w * 3 / 4);
+	}
+
+	x *= scalex;
+	y *= scaley;
+
+	if (x < 0)
+		x += GameConfig.screen_width;
+
+	if (y < 0)
+		y += GameConfig.screen_height;
+
+
+	display_image_on_screen(&bg->img, x, y, set_image_transformation(scalex, scaley, 1.0, 1.0, 1.0, 1.0, 0));
+}
 
 void set_gl_clip_rect(const SDL_Rect *clip)
 {

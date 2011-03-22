@@ -229,8 +229,8 @@ static void show_droid_info(int droidtype)
 	SDL_SetClipRect(Screen, NULL);
 
 	// Show background
-	blit_special_background(NE_TITLE_PIC_BACKGROUND_CODE);
-	blit_special_background(TAKEOVER_BROWSER_BG_PIC_BACKGROUND_CODE);
+	blit_background("title.jpg");
+	blit_background("takeover_browser.png");
 
 	// Show droid portrait
 	show_droid_picture(UNIVERSAL_COORD_W(45), UNIVERSAL_COORD_H(213), droidtype);
@@ -957,7 +957,7 @@ static void ShowPlayground(void)
 	//  SDL_SetColorKey (Screen, 0, 0);
 	SDL_SetClipRect(Screen, &User_Rect);
 
-	blit_special_background(TAKEOVER_BACKGROUND_CODE);
+	blit_background("transfer.jpg");
 
 	blit_tux(xoffs + DruidStart[YourColor].x, yoffs + DruidStart[YourColor].y + 30);
 

@@ -226,7 +226,7 @@ void blit_open_gl_stretched_texture_light_radius(int decay_x, int decay_y);
 void gl_draw_rectangle(SDL_Rect *, int, int, int, int);
 void show_character_screen_background(void);
 int safely_initialize_our_default_open_gl_parameters(void);
-void blit_special_background(int background_code);
+void blit_background(const char *background);
 void open_gl_check_error_status(const char *name_of_calling_function);
 void draw_gl_bg_textured_quad_at_screen_position(struct image *our_floor_iso_image, int x, int y);
 void set_gl_clip_rect(const SDL_Rect *clip);
@@ -589,11 +589,11 @@ void input_set_keybind(char *keybind, SDLKey key, SDLMod mod);
 void clear_player_inventory_and_stats(void);
 void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
-int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, int background_code, void *MenuFont);
+int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, const char *background_name, void *MenuFont);
 int chat_do_menu_selection_flagged(char **MenuTexts, enemy *chat_droid);
 int chat_do_menu_selection(char **MenuTexts, enemy *chat_droid);
 void StartupMenu(void);
-void InitiateMenu(int background_code);
+void InitiateMenu(const char *background_name);
 void Cheatmenu(void);
 void EscapeMenu(void);
 
@@ -673,12 +673,12 @@ int display_text_using_line_height(const char *, int, int, const SDL_Rect*, floa
 int display_text(const char *, int, int, const SDL_Rect*);
 void show_chat_log(enemy *);
 
-int ScrollText(char *text, int background_code);
+int ScrollText(char *text, const char *background_name);
 
 int ImprovedCheckLineBreak(char *, const SDL_Rect*, float);
 char *PreviousLine(char *textstart, char *text);
 char *NextLine(char *text);
-char *get_string(int max_len, int background_code, const char *text_for_overhead_promt);
+char *get_string(int max_len, const char *background_name, const char *text_for_overhead_promt);
 void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...);
 int longest_line_width(char *text);
 

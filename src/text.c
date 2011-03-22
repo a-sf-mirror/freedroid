@@ -220,7 +220,7 @@ int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels)
  * defined by the global SDL_Rect User_Rect
  *
  * ----------------------------------------------------------------- */
-int ScrollText(char *Text, int background_code)
+int ScrollText(char *Text, const char *background_name)
 {
 	int Number_Of_Line_Feeds = 0;	// number of lines used for the text
 	int StartInsertLine, InsertLine;
@@ -238,12 +238,8 @@ int ScrollText(char *Text, int background_code)
 
 	while (!done) {
 		
-		/*MouseLeftPressed()
-	       || (MouseCursorIsOnButton(SCROLL_TEXT_UP_BUTTON, GetMousePos_x(), GetMousePos_y()))
-	       || (MouseCursorIsOnButton(SCROLL_TEXT_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y()))) {*/
-
-		if (background_code != (-1))
-			blit_special_background(background_code);
+		if (background_name)
+			blit_background(background_name);
 		Number_Of_Line_Feeds = display_text(Text, ScrollRect.x, InsertLine, &ScrollRect);
 		// We might add some buttons to be displayed here, so that, if you don't have
 		// a mouse wheel and don't know about cursor keys, you can still click on these
@@ -541,7 +537,7 @@ int ImprovedCheckLineBreak(char *Resttext, const SDL_Rect * clip, float line_hei
 /**
  * Prompt the user for a string no longer than MaxLen (excluding terminating \0).
  */
-char *get_string(int MaxLen, int background_code, const char *text_for_overhead_promt)
+char *get_string(int MaxLen, const char *background_name, const char *text_for_overhead_promt)
 {
 	char *input;		// pointer to the string entered by the user
 	int key;		// last 'character' entered 
@@ -561,7 +557,7 @@ char *get_string(int MaxLen, int background_code, const char *text_for_overhead_
 	curpos = 0;
 
 	while (!finished) {
-		blit_special_background(background_code);
+		blit_background(background_name);
 		display_text(text_for_overhead_promt, 50, 50, NULL);
 
 		x0 = MyCursorX;
@@ -576,7 +572,7 @@ char *get_string(int MaxLen, int background_code, const char *text_for_overhead_
 			// Display the image again so both buffers are in sync
 			// useful for GL drivers that do true pageflipping (win32, nvidia 173.x, ...)
 			if (use_open_gl) {
-				blit_special_background(background_code);
+				blit_background(background_name);
 				display_text(text_for_overhead_promt, 50, 50, NULL);
 				x0 = MyCursorX;
 				y0 = MyCursorY;

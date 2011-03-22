@@ -77,14 +77,11 @@ static int MouseCursorIsOverMenuItem(int first_menu_item_pos_y, int h)
  *
  *
  */
-static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu_item_pos_y, int background_code, void *MenuFont)
+static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu_item_pos_y, const char *background_name, void *MenuFont)
 {
 	char open_gl_string[2000];
 
-	// We need to prepare the background for the menu, so that
-	// it can be accessed with proper speed later...
-	//
-	InitiateMenu(background_code);
+	InitiateMenu(background_name);
 
 	// Maybe if this is the very first startup menu, we should also print
 	// out some status variables like whether using OpenGL or not DIRECTLY
@@ -127,7 +124,7 @@ static void print_menu_text(char *InitialText, char *MenuTexts[], int first_menu
  * this is not respected, segfault errors are likely.
  * 
  */
-int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int background_code, void *MenuFont)
+int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const char *background_name, void *MenuFont)
 {
 	int h;
 	int i;
@@ -195,7 +192,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, int back
 
 	first_menu_item_pos_y = (GameConfig.screen_height - NumberOfOptionsGiven * h) / 2;
 
-	print_menu_text(InitialText, MenuTexts, first_menu_item_pos_y, background_code, MenuFont);
+	print_menu_text(InitialText, MenuTexts, first_menu_item_pos_y, background_name, MenuFont);
 
 	StoreMenuBackground(0);
 
@@ -794,7 +791,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
  * the screen is cleared.  This function resolves some redundancy 
  * that occured since there are so many submenus needing this.
  */
-void InitiateMenu(int background_code)
+void InitiateMenu(const char *background_name)
 {
 	// Here comes the standard initializer for all the menus and submenus
 	// of the big escape menu.  This prepares the screen, so that we can
@@ -802,15 +799,14 @@ void InitiateMenu(int background_code)
 	//
 	SDL_SetClipRect(Screen, NULL);
 
-	if (background_code == (-1)) {		// Show game background
+	if (!strcmp(background_name, "--GAME_BACKGROUND--")) {		// Show game background
 		AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
-	} else if (background_code == (-2)) {	// Show editor background
+	} else if (!strcmp(background_name, "--EDITOR_BACKGROUND--")) {	// Show editor background
 		AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
 				OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | OMIT_BLASTS | SKIP_LIGHT_RADIUS |
 				NO_CURSOR | OMIT_ITEMS_LABEL);
 	} else {
-		// DisplayImage ( find_file ( BackgroundToUse , GRAPHICS_DIR, FALSE ) );
-		blit_special_background(background_code);
+		blit_background(background_name);
 	}
 
 	SDL_SetClipRect(Screen, NULL);
@@ -1064,9 +1060,9 @@ static void RunSubMenu(int startup, int menu_id)
 		menus[menu_id].FillText(texts);
 
 		if (startup)
-			pos = DoMenuSelection("", texts, -1, NE_TITLE_PIC_BACKGROUND_CODE, Menu_BFont);
+			pos = DoMenuSelection("", texts, -1, "title.jpg", Menu_BFont);
 		else
-			pos = DoMenuSelection("", texts, 1, -1, Menu_BFont);
+			pos = DoMenuSelection("", texts, 1, "--GAME_BACKGROUND--", Menu_BFont);
 
 		int ret = menus[menu_id].HandleSelection(pos);
 
@@ -1772,13 +1768,13 @@ static int savegame_already_exists(const char *name)
 static char *get_new_character_name(void)
 {
 	char *str;
-	InitiateMenu(NE_TITLE_PIC_BACKGROUND_CODE);
+	InitiateMenu("title.jpg");
 
 	// Loop until the player enters a name that does not already exist.
 	int loop = 1;
 	while (loop) {
 		if (!skip_initial_menus)
-			str = get_string(MAX_CHARACTER_NAME_LENGTH - 1, NE_TITLE_PIC_BACKGROUND_CODE, _("\n\
+			str = get_string(MAX_CHARACTER_NAME_LENGTH - 1, "title.jpg", _("\n\
      Please enter a name\n\
      for the new hero: \n\n\
      ---ENTER to accept.\n\
@@ -1834,7 +1830,7 @@ static int do_savegame_selection_and_act(int action)
 		break;
 	}
 
-	InitiateMenu(NE_TITLE_PIC_BACKGROUND_CODE);
+	InitiateMenu("title.jpg");
 
 	// We use empty strings to denote the end of any menu selection, 
 	// therefore also for the end of the list of saved characters.
@@ -1883,7 +1879,7 @@ static int do_savegame_selection_and_act(int action)
 			MenuTexts[cnt] = _("Back");
 			MenuTexts[cnt + 1] = "";
 
-			MenuPosition = DoMenuSelection(menu_title, MenuTexts, 1, NE_TITLE_PIC_BACKGROUND_CODE, NULL);
+			MenuPosition = DoMenuSelection(menu_title, MenuTexts, 1, "title.jpg", NULL);
 
 			if (MenuPosition == (-1) || MenuPosition == cnt + 1) {
 				for (cnt = 0; cnt < n; cnt++)
@@ -1913,7 +1909,7 @@ static int do_savegame_selection_and_act(int action)
 		MenuTexts[0] = _("BACK");
 		MenuTexts[1] = "";
 
-		DoMenuSelection(_("\n\nNo saved games found!"), MenuTexts, 1, NE_TITLE_PIC_BACKGROUND_CODE, NULL);
+		DoMenuSelection(_("\n\nNo saved games found!"), MenuTexts, 1, "title.jpg", NULL);
 
 		return FALSE;
 	}
@@ -1939,7 +1935,7 @@ static int do_savegame_selection_and_act(int action)
 		MenuTexts[1] = _("BACK");
 		MenuTexts[2] = "";
 		sprintf(SafetyText, _("Really delete hero '%s'?"), Me.character_name);
-		int FinalDecision = DoMenuSelection(SafetyText, MenuTexts, 1, NE_TITLE_PIC_BACKGROUND_CODE, NULL);
+		int FinalDecision = DoMenuSelection(SafetyText, MenuTexts, 1, "title.jpg", NULL);
 
 		if (FinalDecision == 1)
 			DeleteGame();
@@ -2000,7 +1996,7 @@ int Single_Player_Menu(void)
 	while (!can_continue) {
 
 		if (!skip_initial_menus)
-			MenuPosition = DoMenuSelection("", MenuTexts, 1, NE_TITLE_PIC_BACKGROUND_CODE, Menu_BFont);
+			MenuPosition = DoMenuSelection("", MenuTexts, 1, "title.jpg", Menu_BFont);
 		else
 			MenuPosition = NEW_HERO_POSITION;
 

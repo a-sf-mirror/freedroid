@@ -576,7 +576,7 @@ static void ShowSkillsExplanationScreen(void)
 
 	// This should draw the background...
 	//
-	blit_special_background(SKILL_SCREEN_EXPLANATION_BACKGROUND_CODE);
+	blit_background("SkillExplanationScreen.png");
 
 	// Draws the skill icon at the correct position
 	//
@@ -782,7 +782,7 @@ void ShowSkillsScreen(void)
 	// SDL_SetClipRect( Screen, NULL );
 	// our_SDL_blit_surface_wrapper ( SkillScreenImage , NULL , Screen , &SkillScreenRect );
 	//
-	blit_special_background(SKILL_SCREEN_BACKGROUND_CODE);
+	blit_background("SkillScreen.png");
 
 	if (GameConfig.skill_explanation_screen_visible)
 		ShowSkillsExplanationScreen();
