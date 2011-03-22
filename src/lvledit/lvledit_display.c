@@ -54,11 +54,6 @@ float lvledit_zoomfact_inv()
 
 int lvledit_set_zoomfact(float zf)
 {
-	if (!use_open_gl) {
-		/* Zoom factor cannot be changed in SDL mode. */
-		return -1;
-	}
-
 	lvledit_zoom_factor = zf;
 	lvledit_zoom_factor_inv = 1.0 / zf;
 	return 0;
