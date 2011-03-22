@@ -58,8 +58,7 @@ Building with autotools
    make
 
 5) Installation
-   a) "make install" will install the game. The binary name is freedroidRPG.
-      If you want all users on your computer to use your built of FreedroidRPG, execute "make install" as root.
+   a) "make install" will install the game system-wide. You need to be root for this. The binary name is freedroidRPG.
 
       Hint: you can speed up "make" process using "make -j n". Replace "n" with number of jobs.
       For more information execute "make --help".
