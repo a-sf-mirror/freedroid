@@ -61,7 +61,7 @@ LuaCode={
 	npc_says(_"I'll feed it into Hydra right away. Expect the results in a short while. Hydra has never let me down.")
 	del_item_backpack("Kevin's Data Cube", 1)
 	end_quest(_"A kingdom for a cluster!", _"Yes, that was simple. I wish everything else went as smoothly as this one did...")
-	hide(6) show(9)
+	hide(6) show(9, 10)
 }
 ----------------------------------------------------------------------
 
@@ -71,6 +71,16 @@ LuaCode={
 	npc_says(_"Seems like the disruptor shield which thwarts all our attacks on Hell Fortress can be controlled from somewhere outside, or something like that.")
 	npc_says(_"I was busy servicing one of Hydra's nodes, but I sent the full report to Spencer. He will tell you more.")
 	hide(9)
+}
+----------------------------------------------------------------------
+
+Nr=10 Text=_"So... What's the story on those data cubes, anyway?"
+LuaCode={
+	npc_says(_"Well, they were originally developed for use with the Open-Pandora computing platform.")
+	tux_says(_"The what?")
+	npc_says(_"It was a handheld gaming computer, built on open-source software.")
+	npc_says(_"The device had limited storage capabilities, so an enterprising hacker designed the data cubes.")
+	npc_says(_"Those were the beginning days of open-source hardware. It's one of the few open-source innovations still around.")
 }
 ----------------------------------------------------------------------
 
