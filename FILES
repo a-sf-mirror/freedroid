@@ -11,7 +11,7 @@ Directory structure:
 ./win32/            : Windows .exe icons
 ./croppy            : A helper tool for graphics, that automatically crops images
 ./gluem             : A helper tool for graphics, used to build tux_image_archive files
-./zpipe		        : zlib's zpipe, used as a helper for graphics
+./zpipe		    : zlib's zpipe, used as a helper for graphics
 
 
 Text files containing descriptions:
@@ -25,6 +25,6 @@ INSTALL               : Instructions for building and installing from source.
 
 Legal documents
 ---------------
-COPYING                        : A copy of GPL license, the copyright license this game is released under
+COPYING               : A copy of GPL license, the copyright license this game is released under
 
 
