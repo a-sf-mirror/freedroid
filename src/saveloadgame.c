@@ -221,8 +221,6 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 void SaveThumbnailOfGame(void)
 {
 	char filename[1000];
-	SDL_Surface *NewThumbnail = NULL;
-
 	if (!our_config_dir)
 		return;
 
@@ -230,38 +228,7 @@ void SaveThumbnailOfGame(void)
 
 	AssembleCombatPicture(SHOW_ITEMS | NO_CURSOR);
 
-	if (use_open_gl) {
-#ifdef HAVE_LIBGL
-		SDL_Surface *FullView;
-		// We need to make a copy in processor memory. 
-		GLvoid *imgdata = malloc((GameConfig.screen_width + 2) * (GameConfig.screen_height + 2) * 4);
-		glReadPixels(0, 1, GameConfig.screen_width, GameConfig.screen_height - 1, GL_RGB, GL_UNSIGNED_BYTE, imgdata);
-
-		// Now we need to make a real SDL surface from the raw image data we
-		// have just extracted.
-		//
-		FullView =
-		    SDL_CreateRGBSurfaceFrom(imgdata, GameConfig.screen_width, GameConfig.screen_height, 24, 3 * GameConfig.screen_width,
-					     bmask, gmask, rmask, 0);
-
-		NewThumbnail = zoomSurface(FullView, 0.32 * 640.0f / GameConfig.screen_width, 0.32 * 640.0f / GameConfig.screen_width, 0);
-
-		if (NewThumbnail == NULL)
-			return;
-
-		flip_image_vertically(NewThumbnail);
-
-		SDL_FreeSurface(FullView);
-		free(imgdata);
-#endif
-	} else {
-		NewThumbnail = zoomSurface(Screen, 0.32, 0.32, 0);
-	}
-
-	SDL_SaveBMP(NewThumbnail, filename);
-
-	SDL_FreeSurface(NewThumbnail);
-
+	save_screenshot(filename, 210);
 };				// void SaveThumbnailOfGame ( void )
 
 /**

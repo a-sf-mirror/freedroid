@@ -40,7 +40,7 @@
 /* name of each keybinding */
 const char *keybindNames[] = {
 	/* General */
-	"keychart", "fullscreen", "quit", "wall_transparency", "grab_input",
+	"keychart", "fullscreen", "quit", "wall_transparency", "grab_input", "take_screenshot",
 
 	/* Ingame */
 	"inventory", "skill", "character", "quests",
@@ -194,6 +194,7 @@ void input_set_default(void)
 	input_set_keybind("grab_input", SDLK_g, KMOD_LCTRL);
 	input_set_keybind("quit", SDLK_q, KMOD_LCTRL);
 	input_set_keybind("wall_transparency", SDLK_t, KMOD_NONE);
+	input_set_keybind("take_screenshot", SDLK_PRINT, KMOD_NONE);
 
 	/* Game */
 	input_set_keybind("inventory", SDLK_i, KMOD_NONE);
@@ -698,6 +699,13 @@ static int input_key(int keynum, int value)
 			mode = SDL_GRAB_OFF;
 
 		SDL_WM_GrabInput(mode);
+	} else if (KEYPRESS("take_screenshot")) {
+		char filename[1000];
+		char relative_filename[100];
+		sprintf(relative_filename, "%s.screenshot-%d.bmp", Me.character_name, SDL_GetTicks()/1000);
+		sprintf(filename, "%s/%s", our_config_dir, relative_filename);
+		save_screenshot(filename, FALSE);
+		alert_window(_("Screenshot saved to \"%s\" in your .freedroid_rpg/ directory."), relative_filename);
 	} else if (KEYPRESS("wall_transparency")) {
 		GameConfig.transparency = !GameConfig.transparency;
 		return 0;
