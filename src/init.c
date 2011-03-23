@@ -160,6 +160,7 @@ void PlayATitleFile(char *Filename)
 	char *PreparedBriefingText;
 	char *TerminationPointer;
 	char *TitleSongName;
+	char *background_name;
 	int ThisTextLength;
 	char finaldir[50];
 	while (SpacePressed() || MouseLeftPressed()) ;
@@ -178,6 +179,10 @@ void PlayATitleFile(char *Filename)
 
 	TitleSongName =
 	    ReadAndMallocStringFromData(TitleFilePointer, "The title song in the sound subdirectory for this mission is : ", "\n");
+
+	background_name = ReadAndMallocStringFromDataOptional(TitleFilePointer, "Background file: ", "\n");
+	if (!background_name)
+		background_name = strdup("title.jpg");
 
 	SwitchBackgroundMusicTo(TitleSongName);
 	free(TitleSongName);
@@ -198,14 +203,14 @@ void PlayATitleFile(char *Filename)
 		strncpy(PreparedBriefingText, NextSubsectionStartPointer, ThisTextLength);
 		PreparedBriefingText[ThisTextLength] = 0;
 
-		ScrollText((PreparedBriefingText), "title.jpg");
+		ScrollText((PreparedBriefingText), background_name);
 		free(PreparedBriefingText);
 	}
 
 	ClearGraphMem();
 	our_SDL_flip_wrapper();
 	free(TitleFilePointer);
-
+	free(background_name);
 };				// void PlayATitleFile ( char* Filename )
 
 /*----------------------------------------------------------------------
