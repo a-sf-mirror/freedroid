@@ -1269,6 +1269,52 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.last_edited_level = -1;
 }
 
+/** 
+ * Set signal handlers for SIGSEGV, SIGFPE, and enable floating point exceptions.
+ */
+static void set_signal_handlers(void)
+{
+
+
+#ifndef __WIN32__
+
+	// Let's see if we're dealing with a real release or rather if
+	// we're dealing with a svn version.  The difference is this:
+	// Releases shouldn't terminate upon a floating point exception
+	// while the current svn code (for better debugging) should
+	// do so.  Therefore we check for 'svn' in the current version
+	// string and enable/disable the exceptions accordingly...
+	if (strstr(VERSION, "svn")) {
+		DebugPrintf(-4, "\nThis seems to be a development version, so we'll exit on floating point exceptions.");
+		// feenableexcept ( FE_ALL_EXCEPT );
+		// feenableexcept ( FE_INEXACT ) ;
+		// feenableexcept ( FE_UNDERFLOW ) ;
+		// feenableexcept ( FE_OVERFLOW ) ;
+		feenableexcept(FE_INVALID);
+		feenableexcept(FE_DIVBYZERO);
+	} else {
+		DebugPrintf(-4, "\nThis seems to be a 'stable' release, so no exit on floating point exceptions.");
+		fedisableexcept(FE_INVALID);
+		fedisableexcept(FE_DIVBYZERO);
+	}
+#ifndef __APPLE_CC__
+
+	struct sigaction action;
+
+	// We set up the structure for the new signal handling
+	// to give to the operating system
+	//
+	action.sa_handler = print_trace;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = 0;
+
+	sigaction(SIGSEGV, &action, NULL);
+	sigaction(SIGFPE, &action, NULL);
+
+#endif
+#endif
+}
+
 /* -----------------------------------------------------------------
  * This function initializes the whole Freedroid game.
  * 
@@ -1285,56 +1331,7 @@ void InitFreedroid(int argc, char **argv)
 	//
 	DebugPrintf(-4, "\nHello, this is FreedroidRPG, version %s.", VERSION);
 
-#ifndef __WIN32__
-
-	// Let's see if we're dealing with a real release or rather if
-	// we're dealing with a svn version.  The difference is this:
-	// Releases shouldn't terminate upon a floating point exception
-	// while the current svn code (for better debugging) should
-	// do so.  Therefore we check for 'svn' in the current version
-	// string and enable/disable the exceptions accordingly...
-	//
-	if (strstr(VERSION, "svn") != NULL) {
-		DebugPrintf(-4, "\nThis seems to be a development version, so we'll exit on floating point exceptions.");
-		// feenableexcept ( FE_ALL_EXCEPT );
-		// feenableexcept ( FE_INEXACT ) ;
-		// feenableexcept ( FE_UNDERFLOW ) ;
-		// feenableexcept ( FE_OVERFLOW ) ;
-		feenableexcept(FE_INVALID);
-		feenableexcept(FE_DIVBYZERO);
-	} else {
-		DebugPrintf(-4, "\nThis seems to be a 'stable' release, so no exit on floating point exceptions.");
-		fedisableexcept(FE_INVALID);
-		fedisableexcept(FE_DIVBYZERO);
-	}
-#endif
-
-	/*
-	   if ( feraiseexcept ( FE_ALL_EXCEPT ) != 0 )
-	   {
-	   DebugPrintf ( -100 , "\nCouldn't set floating point exceptions to be raised...\nTerminating..." );
-	   exit ( 0 );
-	   }
-	   else
-	   {
-	   DebugPrintf ( -100 , "\nFloating point exceptions to be raised set successfully!\n" );
-	   }
-	 */
-	/*
-	   test_float_1 = 3.1 ;
-	   test_float_2 = 0.0 ; 
-	   test_float_3 = test_float_1 / test_float_2 ;
-	 */
-
-	// feenableexcept ( FE_ALL_EXCEPT );
-	// feenableexcept ( FE_DIVBYZERO | FE_INVALID ); // FE_INEXACT | FE_UNDERFLOW | FE_OVERFLOW 
-	// fesetexceptflag (const fexcept_t *flagp, int excepts);
-
-	// We hack the default signal handlers to print out a backtrace
-	// in case of a fatal error of type 'segmentation fault' or the
-	// like...
-	//
-	implant_backtrace_into_signal_handlers();
+	set_signal_handlers();
 
 	clear_out_arrays_for_fresh_game();
 
@@ -1342,7 +1339,6 @@ void InitFreedroid(int argc, char **argv)
 
 	Overall_Average = 0.041;
 	SkipAFewFrames = 0;
-	Me.TextToBeDisplayed = NULL;
 
 	ResetGameConfigToDefaultValues();
 

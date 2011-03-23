@@ -599,7 +599,6 @@ void EscapeMenu(void);
 // misc.c 
 #define CURLEVEL() (curShip.AllLevels[Me.pos.z])
 void print_trace(int signum);
-void implant_backtrace_into_signal_handlers(void);
 void adapt_button_positions_to_screen_resolution(void);
 void ErrorMessage(const char *FunctionName, const char *ProblemDescription, int InformDevelopers, int IsFatal, ...);
 void ShowGenericButtonFromList(int ButtonIndex);

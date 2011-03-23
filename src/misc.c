@@ -376,10 +376,6 @@ size_t backtrace_size;
 char **backtrace_strings;
 size_t backtrace_counter;
 
-#ifndef __WIN32__
-struct sigaction new_action, old_action;
-#endif
-
 /** 
  * Obtain a backtrace and print it to stdout.
  * If signum != 0, call Terminate()
@@ -439,61 +435,6 @@ void print_trace(int signum)
 	Terminate(EXIT_FAILURE, TRUE);
 
 };				// void print_trace ( int sig_num )
-
-/** 
- * In this function, we move the normal SIGSEGV handler (and other signal
- * handlers to our own handler stuff, which will print out a backtrace
- * of the preceeding function calls, so that we get some suitable debug
- * output, even if there was no debugger used when starting the game.
- *
- * This might not be completely portable to win32 systems.  Don't know if
- * it's our fault or not, but maybe we will have to disable this piece
- * of code via simple conditional compilation if the target is win32.
- *
- * For more documentation, see the GLIBC manual, Section 24.3.4 on signal
- * handling.
- *
- */
-void implant_backtrace_into_signal_handlers(void)
-{
-
-#if (!defined __WIN32__) && (!defined __APPLE_CC__)
-
-	DebugPrintf(-4, "\n-Signal Handling------------------------------------------------------\n\
-Setting up signal handlers for internal backtrace:\n\
-Now catching SIGSEGV: ");
-
-	// We set up the structure for the new signal handling
-	// to give to the operating system
-	//
-	new_action.sa_handler = print_trace;
-	sigemptyset(&new_action.sa_mask);
-	new_action.sa_flags = 0;
-
-	// Now it's time to activate the new signal handling...
-	//
-	sigaction(SIGSEGV, NULL, &old_action);
-	if (old_action.sa_handler != SIG_IGN) {
-		DebugPrintf(-4, "YES");
-		sigaction(SIGSEGV, &new_action, NULL);
-	} else {
-		DebugPrintf(-4, "NO");
-	}
-
-	// 
-	DebugPrintf(-4, "\nNow catching FPE (if raised, that is!): ");
-	sigaction(SIGFPE, NULL, &old_action);
-	if (old_action.sa_handler != SIG_IGN) {
-		DebugPrintf(-4, "YES");
-		sigaction(SIGFPE, &new_action, NULL);
-	} else {
-		DebugPrintf(-4, "NO");
-	}
-	DebugPrintf(-4, "\n\n");
-
-#endif
-
-};				// void implant_backtrace_into_signal_handlers ( void )
 
 /**
  * If we want the screen resolution to be a runtime option and not a 
