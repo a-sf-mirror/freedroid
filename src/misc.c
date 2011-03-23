@@ -569,92 +569,52 @@ button index given exceeds the number of buttons defined in freedroid.", PLEASE_
 };				// int MouseCursorIsOnButton( int ButtonIndex , int x , int y )
 
 /**
- * This function blits a button to the screen.  The button must have been
- * defined prior to this in the above button list.
- */
-/**
- * This function blits a button to the screen.  The button must have been
- * defined prior to this in the above button list.
+ * Draw a button on the screen.
  */
 void ShowGenericButtonFromList(int ButtonIndex)
 {
-	SDL_Surface *tmp;
-	char fpath[2048];
-	SDL_Rect Temp_Blitting_Rect;
+	struct mouse_press_button *btn;
 
-	// First a sanity check if the button index given does make
-	// some sense.
-	//
-	//
+	// Safety check
 	if ((ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS) || (ButtonIndex < 0)) {
 		ErrorMessage(__FUNCTION__, "Request to display button index %d could not be fulfilled: the\n\
-				button index given exceeds the number of buttons defined in freedroid.", PLEASE_INFORM, IS_FATAL, ButtonIndex);
+				button index given exceeds the number of buttons defined in freedroid.", PLEASE_INFORM, IS_WARNING_ONLY, ButtonIndex);
+		return;
 	}
-	// Now check if this button needs blitting, and if not, we do the scaling once
-	// and disable the scaling ever afterwards...
-	//
+
+	btn = &AllMousePressButtons[ButtonIndex];
+
+	// Some buttons have no graphics, in this case there is nothing to do.
 	if (!strcmp(AllMousePressButtons[ButtonIndex].button_image_file_name, "THIS_DOESNT_NEED_BLITTING")) {
 		return;
 	}
-	// Now we check if we have to load the button image still
-	// or if it is perhaps already loaded into memory.
-	//
-	if (!image_loaded(&AllMousePressButtons[ButtonIndex].button_image)) {
-		find_file(AllMousePressButtons[ButtonIndex].button_image_file_name, GRAPHICS_DIR, fpath, 0);
-		tmp = our_IMG_load_wrapper(fpath);
-		if (tmp == NULL) {
-			fprintf(stderr, "\nfpath: %s.\nButton Index: %d.\n", fpath, ButtonIndex);
-			ErrorMessage(__FUNCTION__, "\
-					An image file for a button that should be displayed on the screen couldn't\n\
-					be successfully loaded into memory.\n\
-					This is an indication of a severe bug/installation problem of freedroid.", PLEASE_INFORM, IS_WARNING_ONLY);
-			return;
-		}
-		AllMousePressButtons[ButtonIndex].button_image.surface = our_SDL_display_format_wrapperAlpha(tmp);
-		SDL_FreeSurface(tmp);
 
-		if (AllMousePressButtons[ButtonIndex].scale_this_button) {
-			tmp =
-			    zoomSurface(AllMousePressButtons[ButtonIndex].button_image.surface, ((float)GameConfig.screen_width) / 640.0,
-					((float)GameConfig.screen_height) / 480.0, TRUE);
-			SDL_FreeSurface(AllMousePressButtons[ButtonIndex].button_image.surface);
-			AllMousePressButtons[ButtonIndex].button_image.surface = our_SDL_display_format_wrapperAlpha(tmp);
-			SDL_FreeSurface(tmp);
+	// Compute scaling factors for button
+	float scale_x = 1.0, scale_y = 1.0;
+	if (btn->scale_this_button) {
+		scale_x = ((float)GameConfig.screen_width) / 640.0;
+		scale_y = ((float)GameConfig.screen_height) / 480.0;
+	}
 
-			AllMousePressButtons[ButtonIndex].button_rect.x *= ((float)GameConfig.screen_width) / 640.0;
-			AllMousePressButtons[ButtonIndex].button_rect.w *= ((float)GameConfig.screen_width) / 640.0;
-			AllMousePressButtons[ButtonIndex].button_rect.y *= ((float)GameConfig.screen_height) / 480.0;
-			AllMousePressButtons[ButtonIndex].button_rect.h *= ((float)GameConfig.screen_height) / 480.0;
-			AllMousePressButtons[ButtonIndex].scale_this_button = FALSE;
-		}
+	// Load button image if required
+	struct image *img = &btn->button_image;
+	if (!image_loaded(img)) {
+		load_image(img, btn->button_image_file_name, FALSE);
+
 		// Maybe we had '0' entries for the height or width of this button in the list.
 		// This means that we will take the real width and the real height from the image
 		// and overwrite the 0 entries with this.
 		//
-		if (AllMousePressButtons[ButtonIndex].button_rect.w == (0)) {
-			AllMousePressButtons[ButtonIndex].button_rect.w = AllMousePressButtons[ButtonIndex].button_image.surface->w;
+		if (!btn->button_rect.w) {
+			btn->button_rect.w = img->w;
 		}
-		if (AllMousePressButtons[ButtonIndex].button_rect.h == (0)) {
-			AllMousePressButtons[ButtonIndex].button_rect.h = AllMousePressButtons[ButtonIndex].button_image.surface->h;
-		}
-		// With OpenGL output method, we'll make a texture for faster and 
-		// better blitting.
-		//
-		if (use_open_gl) {
-			make_texture_out_of_surface(&(AllMousePressButtons[ButtonIndex].button_image));
+
+		if (!btn->button_rect.h) {
+			btn->button_rect.h = img->h;
 		}
 	}
 
-	// Now that we know we have the button image loaded, we can start
-	// to blit the button image to the screen.
-	//
-	// But in order not to damage the original rect data, we use the
-	// temp value as parameter for the SDL_Blit thing..
-	//
-	Copy_Rect(AllMousePressButtons[ButtonIndex].button_rect, Temp_Blitting_Rect);
-
-	display_image_on_screen(&AllMousePressButtons[ButtonIndex].button_image, Temp_Blitting_Rect.x,
-						 Temp_Blitting_Rect.y, IMAGE_NO_TRANSFO);
+	display_image_on_screen(img, AllMousePressButtons[ButtonIndex].button_rect.x * scale_x, AllMousePressButtons[ButtonIndex].button_rect.y * scale_y, set_image_transformation(scale_x, scale_y, 1.0, 1.0, 1.0, 1.0, 0));
 }
 
 /* -----------------------------------------------------------------
