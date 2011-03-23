@@ -16,6 +16,7 @@ SDL_mixer (optional)
 libogg (optional)
 libvorbis (optional)
 OpenGL (optional)
+lua (optional, packaged in the source tree if not available system-wide)
 
 The packages to install are listed below, depending on your distribution.
 
@@ -29,7 +30,7 @@ sudo apt-get install libsdl1.2-dev libsdl-mixer1.2-dev libsdl-gfx1.2-dev libsdl-
 
 3) Archlinux
 
-pacman -S sdl sdl_image sdl_gfx sdl_mixer libogg
+pacman -S sdl sdl_image sdl_gfx sdl_mixer libogg lua
 
 4) Please contribute lists for your distribution!
 
