@@ -901,6 +901,7 @@ int DoLevelEditorMainMenu()
 		SAVE_LEVEL_POSITION,
 //              MANAGE_LEVEL_POSITION,
 		ESCAPE_FROM_MENU_POSITION,
+                SHOW_HELP,
 		QUIT_TO_MAIN_POSITION,
 		QUIT_POSITION,
 	};
@@ -927,6 +928,7 @@ int DoLevelEditorMainMenu()
 			//              MenuTexts[i++] = " ";
 		}
 		MenuTexts[i++] = _("Continue Editing");
+                MenuTexts[i++] = _("Show Help");
 		MenuTexts[i++] = _("Quit to Main Menu");
 		MenuTexts[i++] = _("Exit FreedroidRPG");
 		MenuTexts[i++] = "";
@@ -993,6 +995,11 @@ int DoLevelEditorMainMenu()
 			our_SDL_flip_wrapper();
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
+			break;
+                case SHOW_HELP:
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
+				SDL_Delay(1);
+			PlayATitleFile("level_editor_help.title");
 			break;
 		case QUIT_TO_MAIN_POSITION:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())

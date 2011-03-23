@@ -1,6 +1,8 @@
-  = The FreedroidRPG Level Editor =
+The title song in the sound subdirectory for this mission is : Bleostrada.ogg
+*** START OF PURE SCROLLTEXT DATA *** 
+  THE FREEDROID RPG LEVEL EDITOR
 
-=== Introduction :===
+=== Introduction ===
 FreedroidRPG comes with a built-in level editor. This level editor allows you to control any aspect of a normal FreedroidRPG map and to save maps.
 
 You can access it from the main menu (click "Level Editor") or executing 'freedroidRPG -e'.
@@ -184,3 +186,6 @@ o						zoom
 
 If you encounter problems with the editor, please contact us.
 Also, don't be afraid to send us maps if you made something cool, we don't bite. :)
+*** END OF PURE SCROLLTEXT DATA ***
+
+*** END OF TITLE FILE *** LEAVE THIS TERMINATOR IN HERE ***
