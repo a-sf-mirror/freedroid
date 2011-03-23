@@ -142,64 +142,28 @@ static void display_takeover_help()
  */
 static void show_droid_picture(int PosX, int PosY, int type)
 {
-	SDL_Surface *tmp;
-	SDL_Rect target;
-	char ConstructedFileName[5000];
-	char fpath[2048];
+	char filename[5000];
 	static char LastImageSeriesPrefix[1000] = "NONE_AT_ALL";
 #define NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION 32
-	static SDL_Surface *DroidRotationSurfaces[NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION] = { NULL };
-	SDL_Surface *Whole_Image;
-	int i;
+	static struct image droid_images[NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION];
 	int RotationIndex;
 
 	if (!strcmp(Druidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET"))
-		return;		// later this should be a default-correction instead
+		return;
 
 	// Maybe we have to reload the whole image series
 	//
 	if (strcmp(LastImageSeriesPrefix, Druidmap[type].droid_portrait_rotation_series_prefix)) {
-		// Maybe we have to free the series from an old item display first
-		//
-		if (DroidRotationSurfaces[0] != NULL) {
-			for (i = 1; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
-				SDL_FreeSurface(DroidRotationSurfaces[i]);
-			}
-		}
-		// Now we can start to load the whole series into memory
-		//
+		int i;
 		for (i = 0; i < NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION; i++) {
-			if (!strcmp(Druidmap[type].droid_portrait_rotation_series_prefix, "NONE_AVAILABLE_YET")) {
-				Terminate(EXIT_FAILURE, TRUE);
-			} else {
-				sprintf(ConstructedFileName, "droids/%s/portrait_%04d.jpg",
-					Druidmap[type].droid_portrait_rotation_series_prefix, i + 1);
-			}
+			delete_image(&droid_images[i]);
 
-			// We must remember, that his is already loaded of course
-			strcpy(LastImageSeriesPrefix, Druidmap[type].droid_portrait_rotation_series_prefix);
+			sprintf(filename, "droids/%s/portrait_%04d.jpg", Druidmap[type].droid_portrait_rotation_series_prefix, i + 1);
 
-			find_file(ConstructedFileName, GRAPHICS_DIR, fpath, 0);
-
-			Whole_Image = our_IMG_load_wrapper(fpath);	// This is a surface with alpha channel, since the picture is one of this type
-			if (Whole_Image == NULL) {
-				fprintf(stderr, "\n\nfpath: %s. \n", fpath);
-				ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to load an image of a rotated droid into memory.\n\
-This error indicates some installation problem with freedroid.", PLEASE_INFORM, IS_FATAL);
-			}
-
-			SDL_SetAlpha(Whole_Image, 0, SDL_ALPHA_OPAQUE);
-
-			DroidRotationSurfaces[i] = our_SDL_display_format_wrapperAlpha(Whole_Image);	// now we have an alpha-surf of right size
-			SDL_SetColorKey(DroidRotationSurfaces[i], 0, 0);	// this should clear any color key in the dest surface
-
-			if (use_open_gl) {
-				flip_image_vertically(DroidRotationSurfaces[i]);
-			}
-
-			SDL_FreeSurface(Whole_Image);
+			load_image(&droid_images[i], filename, FALSE);
 		}
+			
+		strcpy(LastImageSeriesPrefix, Druidmap[type].droid_portrait_rotation_series_prefix);
 	}
 
 	RotationIndex = (SDL_GetTicks() / 50);
@@ -207,16 +171,8 @@ This error indicates some installation problem with freedroid.", PLEASE_INFORM, 
 	RotationIndex =
 	    RotationIndex - (RotationIndex / NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION) * NUMBER_OF_IMAGES_IN_DROID_PORTRAIT_ROTATION;
 
-	tmp = DroidRotationSurfaces[RotationIndex];
-
-	SDL_Surface *scaled = zoomSurface(tmp,
-									  (float)Droid_Image_Window.w / (float)tmp->w,
-									  (float)Droid_Image_Window.w / (float)tmp->w, 0);
-
-	SDL_SetClipRect(Screen, NULL);
-	Set_Rect(target, PosX, PosY, GameConfig.screen_width, GameConfig.screen_height);
-	our_SDL_blit_surface_wrapper(scaled, NULL, Screen, &target);
-	SDL_FreeSurface(scaled);
+	struct image *img = &droid_images[RotationIndex];
+	display_image_on_screen(img, PosX, PosY, IMAGE_SCALE_TRANSFO((float)Droid_Image_Window.w / img->w));
 }
 
 /**
