@@ -62,6 +62,9 @@ EveryTime LuaCode={
 		update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
 		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
+	if (has_cookie("TutorialTux-PastWall")) then
+		hide(70) show(30, 38)
+	end
 
 	show(99)
 }
@@ -426,8 +429,19 @@ LuaCode={
 	end
 	npc_says(_"I'll unlock the door to the south. Follow the corridor east to the shooting range.")
 	change_obstacle_state("TutorialMeleeOut", "opened")
+	set_bot_destination("TutorialTom-Wall")
 	end_dialog()
-	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(30, 38)
+	hide(20, 21, 22, 23, 24, 25, 26, 27, 28, 29) show(70)
+}
+----------------------------------------------------------------------
+
+Nr=70 Text=_"There is a wall in the path! How will we get through?"
+LuaCode={
+	npc_says(_"Notice part of it is made of a weak material, glass.")
+	npc_says(_"Obstacles you can interact with change color when your cursor is hovering over them.")
+	npc_says(_"[b]Left click[/b] on the glass wall to break it.")
+	npc_says(_"After you break through the glass wall, walk to the other side so I know you are ready to move on.")
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

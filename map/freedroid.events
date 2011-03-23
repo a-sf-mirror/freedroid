@@ -743,6 +743,29 @@ LuaCode={
 }
 * End of trigger *
 
+* New event trigger *
+Name=_"PastWall-N"
+Trigger at label="Tutorial-PastWall1"
+Silent=1
+LuaCode={
+	if (not has_cookie("TutorialTux-PastWall")) then
+		add_cookie("TutorialTux-PastWall")
+		set_bot_destination("Tutorial-PastWall1", "TutorialTom")
+	end
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"PastWall-S"
+Trigger at label="Tutorial-PastWall2"
+Silent=1
+LuaCode={
+	if (not has_cookie("TutorialTux-PastWall")) then
+		add_cookie("TutorialTux-PastWall")
+		set_bot_destination("Tutorial-PastWall1", "TutorialTom")
+	end
+}
+* End of trigger *
 ##############
 ## Level 38 ##
 ##############
