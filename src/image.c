@@ -175,7 +175,7 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 
 			int scaled;
 			if (t->scale_x != 1.0 || t->scale_y != 1.0) {
-				t->surface = zoomSurface(img->surface, t->scale_x, t->scale_y, FALSE); 
+				t->surface = zoomSurface(img->surface, t->scale_x, t->scale_y, TRUE); 
 				scaled = 1;
 			} else {
 				t->surface = img->surface;
@@ -298,9 +298,12 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 	}
 
 	find_file(filename, GRAPHICS_DIR, fpath, 0);
-	SDL_Surface *surface = our_IMG_load_wrapper(fpath);
+	SDL_Surface *surface = IMG_Load(fpath);
 	if (surface == NULL) {
-		ErrorMessage(__FUNCTION__, "Could not load image\n File name: %s \n", PLEASE_INFORM, IS_FATAL, fpath);
+		ErrorMessage(__FUNCTION__, "Could not load image.\n File name: %s. IMG_GetError(): %s.\n", PLEASE_INFORM, IS_WARNING_ONLY, fpath, IMG_GetError());
+		struct image empty = EMPTY_IMAGE;
+		*img = empty;
+		return;
 	}
 	
 	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
