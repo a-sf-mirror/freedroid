@@ -638,11 +638,24 @@ static void lvlval_waypoint_execute(struct level_validator *this, struct lvlval_
 		.code = VALIDATION_ERROR
 	};
 
+	struct lvlval_error no_waypoints = {
+		.title = "Level has zero waypoints",
+		.comment = "Zero waypoints on a level can be a problem when a bot gets on this level, such as "
+		           "by following Tux. At least one waypoint should be placed on each level.",
+		.format = "[Type=\"WZ\"] WP L=%d (warning)",
+		.caught = FALSE,
+		.code = VALIDATION_WARNING
+	};
+
 	waypoint *wpts;
 #	define MIN_DIST 1.0
 
 	// Get all waypoints for the level
 	wpts = validator_ctx->this_level->waypoints.arr;
+
+	//Check that we have waypoints
+	if (!validator_ctx->this_level->waypoints.size)
+		validator_print_error(validator_ctx, &no_waypoints, validator_ctx->this_level->levelnum);
 
 	// Check waypoints position
 	for (i = 0; i < validator_ctx->this_level->waypoints.size; ++i) {
