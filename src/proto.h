@@ -272,6 +272,7 @@ SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, flo
 void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a);
 void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
+void save_screenshot(const char *filename, int width);
 
 // saveloadgame.c 
 int find_saved_games(struct dirent ***);
@@ -861,7 +862,6 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 void free_image_surface(struct image *img);
 void delete_image(struct image *img);
 int image_loaded(struct image *);
-void save_screenshot(const char *filename, int width);
 struct image_transformation set_image_transformation(float scale_x, float scale_y, float r, float g, float b, float a, int highlight);
 
 #endif
