@@ -22863,6 +22863,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  85 y=   6 rnd=0	 c:    1
+Nr.=  1 x=  85 y=   7 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 22
@@ -22981,6 +22983,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  88 y=   4 rnd=0	 c:    1
+Nr.=  1 x=  87 y=   4 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 23
@@ -23099,6 +23103,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  87 y=   6 rnd=0	 c:    1
+Nr.=  1 x=  87 y=   5 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 24
@@ -25401,6 +25407,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  10 y=  20 rnd=0	 c:    1
+Nr.=  1 x=   9 y=  20 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 27
@@ -26684,6 +26692,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  89 y=  40 rnd=0	 c:    1
+Nr.=  1 x=  87 y=  40 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 28
@@ -31500,6 +31510,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  38 y=   3 rnd=0	 c:    1
+Nr.=  1 x=  37 y=   3 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 33
@@ -38160,6 +38172,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  88 y=   8 rnd=0	 c:    1
+Nr.=  1 x=  86 y=   6 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 42
@@ -38647,6 +38661,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  88 y=  21 rnd=0	 c:    1
+Nr.=  1 x=  87 y=  21 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 45
@@ -39616,6 +39632,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  34 y=   6 rnd=0	 c:    1
+Nr.=  1 x=  35 y=   7 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 47
@@ -43969,6 +43987,8 @@ it: n="Source Book of Plasma discharge"  X=31.000000  Y=47.500000  MDur=-1  CDur
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  56 y=   2 rnd=0	 c:    1
+Nr.=  1 x=  57 y=   2 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 51
@@ -44087,6 +44107,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  86 y=  27 rnd=0	 c:    1
+Nr.=  1 x=  87 y=  29 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 52
@@ -44205,6 +44227,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  38 y=  84 rnd=0	 c:    1
+Nr.=  1 x=  40 y=  85 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 53
@@ -44323,6 +44347,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  67 y=  80 rnd=0	 c:    1
+Nr.=  1 x=  66 y=  80 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 54
@@ -44441,6 +44467,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  86 y=  62 rnd=0	 c:    1
+Nr.=  1 x=  86 y=  63 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 55
@@ -46567,6 +46595,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=  60 y=  87 rnd=0	 c:    1
+Nr.=  1 x=  61 y=  86 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 *** End of Ship Data ***
