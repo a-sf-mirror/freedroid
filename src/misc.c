@@ -76,15 +76,15 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/inv_button_yellow.png", {283, 480 - 47, 46, 14}, TRUE},
 	[SKI_SCREEN_TOGGLE_BUTTON_YELLOW] =
 	    {EMPTY_IMAGE, "mouse_buttons/ski_button_yellow.png", {378, 480 - 47, 46, 14}, TRUE},
-	[UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/UPButton.png", {600, 94, 40, 40}, TRUE},
-	[DOWN_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/DOWNButton.png", {600, 316, 40, 40}, TRUE},
+	[UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/UpButton.png", {600, 94, 40, 40}, TRUE},
+	[DOWN_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/DownButton.png", {600, 316, 40, 40}, TRUE},
 
 	[ITEM_BROWSER_LEFT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {280, 44, 37, 37}, TRUE},
 	[ITEM_BROWSER_RIGHT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {536, 44, 37, 37}, TRUE},
 	[ITEM_BROWSER_EXIT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {201, 340, 47, 47}, TRUE},
 
-	[LEFT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LeftShopButton.png", {23, 446, 23, 23}, TRUE},
-	[RIGHT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {580, 447, 23, 23}, TRUE},
+	[LEFT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LeftButton.png", {23, 446, 23, 23}, TRUE},
+	[RIGHT_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightButton.png", {580, 447, 23, 23}, TRUE},
 	[LEFT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LeftShopButton.png", {6, 15, 23, 23}, TRUE},
 	[RIGHT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {584, 15, 23, 23}, TRUE},
 	[LEFT_LEVEL_EDITOR_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeft.png", {3, 8, 15, 60}, FALSE},
@@ -211,9 +211,9 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 
 
 	[LEVEL_EDITOR_NEXT_ITEM_GROUP_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextItemGroup.png", {55 + 64 * 8, 32 + 5 * 66, 0, 0}, TRUE},
+	    {EMPTY_IMAGE, "mouse_buttons/RightButton.png", {55 + 64 * 8, 32 + 5 * 66, 0, 0}, TRUE},
 	[LEVEL_EDITOR_PREV_ITEM_GROUP_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorPrevItemGroup.png", {55, 32 + 5 * 66, 0, 0}, TRUE},
+	    {EMPTY_IMAGE, "mouse_buttons/LeftButton.png", {55, 32 + 5 * 66, 0, 0}, TRUE},
 
 	[LEVEL_EDITOR_CANCEL_ITEM_DROP_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorCancelItemDrop.png", {55 + 80, 32 + 5 * 66, 0, 0}, TRUE},
