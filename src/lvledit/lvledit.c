@@ -256,6 +256,7 @@ void TestMap(void)
 	leveleditor_cleanup();	//free current selection and undo stack as a workaround for existing problems
 	if (game_root_mode == ROOT_IS_GAME)	/*don't allow map testing if root mode is GAME */
 		return;
+	game_status = INSIDE_GAME;
 	SaveGame();
 	Game();
 	LoadGame();
