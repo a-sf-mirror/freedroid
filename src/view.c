@@ -272,6 +272,7 @@ static void show_floor(int mask)
 			MapBrick = GetMapBrick(lvl, col, line);
 
 			// Compute colorization (in case the floor tile is currently selected in the leveleditor)
+			
 			if (pos_inside_level(col, line, lvl)) {
 				object_vtx_color(&lvl->map[line][col], &r, &g, &b);
 			} else {
@@ -374,10 +375,9 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 	update_virtual_position(&pos, &o->pos, lvl->levelnum);
 
 	// Compute colorization (in case the obstacle is currently selected in the leveleditor)
+	r = g = b = a = 1.0;
 	if (pos_inside_level(pos.x, pos.y, lvl)) {
 		object_vtx_color(o, &r, &g, &b);
-	} else {
-		r = g = b = a = 1.0;
 	}
 
 	if (GameConfig.transparency && obstacle_map[o->type].transparent == TRANSPARENCY_FOR_WALLS) {
