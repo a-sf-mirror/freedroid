@@ -17308,6 +17308,8 @@ t369 x3.10 y22.45
 plabelinfolvl
 /plabelinfolvl
 piteminfolvl
+it: n="Power hammer"  X=33.743668  Y=19.704853  MDur=40  CDur=29.000000  AClip=21  Multi=1 
+it: n="Laser power pack"  X=33.487225  Y=23.597662  MDur=-1  CDur=0.000000  AClip=0  Multi=65 
 /piteminfolvl
 obstacleextensions
 /obstacleextensions
