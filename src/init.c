@@ -988,6 +988,7 @@ Usage: freedroidRPG [-h | --help] \n\
                     [-o | --open_gl] [-n | --no_open_gl] \n\
                     [-f | --fullscreen] [-w | --window] \n\
                     [-d X | --debug=X]       X = 0-5; default 1 \n\
+                    [-l character-name | --load=character-name] \n\
                     [-r Y | --resolution=Y]  Y = 99 lists available resolutions. \n\
 \n\
 Please report bugs either by entering them into the bug tracker\n\
@@ -1033,6 +1034,7 @@ void ParseCommandLine(int argc, char *const argv[])
 		{"version", 0, 0, 'v'},
 		{"help", 0, 0, 'h'},
 		{"editor", 0, 0, 'e'},
+		{"load", 1, 0, 'l'},
 		{"open_gl", 0, 0, 'o'},
 		{"no_open_gl", 0, 0, 'n'},
 		{"nosound", 0, 0, 'q'},
@@ -1048,7 +1050,7 @@ void ParseCommandLine(int argc, char *const argv[])
 	command_line_override_for_screen_resolution = FALSE;
 
 	while (1) {
-		c = getopt_long(argc, argv, "veonqsb:h?d::r:wf", long_options, NULL);
+		c = getopt_long(argc, argv, "vel:onqsb:h?d::r:wf", long_options, NULL);
 		if (c == -1)
 			break;
 
@@ -1069,6 +1071,16 @@ void ParseCommandLine(int argc, char *const argv[])
 
 		case 'e':
 			start_editor = TRUE;
+			break;
+
+		case 'l':
+			if (!optarg) {
+				fprintf(stderr, "Please provide saved game name.\n");
+				exit(1);
+			}
+
+			load_saved = TRUE;
+			saved_game_name = optarg;
 			break;
 
 		case 'o':

@@ -162,6 +162,8 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	sound_on = TRUE;	// default value, can be overridden by command-line 
 	use_open_gl = TRUE;	// default value, can be overridden by command-line 
 	start_editor = FALSE;	// default value, can be overridden by command-line 
+	load_saved = FALSE;	// default value, can be overridden by command-line
+	saved_game_name = NULL;
 	debug_level = -1;	// -1: shut up all debug ... 0=no debug 1=first debug level (at the moment=all) 
 	GameConfig.fullscreen_on = FALSE;	// use X11-window or full screen
 
@@ -179,6 +181,16 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 			// startup menu and load the level editor directly
 			prepare_level_editor();
 			start_editor = FALSE;
+		} else if (load_saved && saved_game_name != NULL) {
+			// Skip the startup menu and load saved game directly
+			if (load_named_game(saved_game_name) != OK) {
+				StartupMenu();
+				input_handle();
+			} else {
+				game_root_mode = ROOT_IS_GAME;
+			}
+
+			load_saved = FALSE;
 		} else {
 			StartupMenu();
 			input_handle();

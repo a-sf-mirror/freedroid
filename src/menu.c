@@ -1744,7 +1744,7 @@ static void Droid_fill(char *MenuTexts[10])
 /**
  * @return true if there is already a save game using specified name
  */
-static int savegame_already_exists(const char *name)
+static int savegame_exists(const char *name)
 {
 	struct dirent **eps;
 	int n = find_saved_games(&eps);
@@ -1794,7 +1794,7 @@ static char *get_new_character_name(void)
 				str[i] = '-';
 
 		// Check if name already exists
-		loop = savegame_already_exists(str);
+		loop = savegame_exists(str);
 		if (loop) {
 			alert_window("A character named \"%s\" already exists.\nPlease choose another name.", str);
 			free(str);
@@ -1802,6 +1802,22 @@ static char *get_new_character_name(void)
 	}
 
 	return str;
+}
+
+int load_named_game(const char *name)
+{
+	if (strlen(name) >= MAX_CHARACTER_NAME_LENGTH) {
+		ErrorMessage(__FUNCTION__, "The saved game name is too long.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		return ERR;
+	}
+
+	strcpy(Me.character_name, name);
+	if (LoadGame() != OK)
+		return ERR;
+
+	GetEventTriggers("freedroid.events");
+	item_held_in_hand = NULL;
+	return OK;
 }
 
 enum {
@@ -1897,8 +1913,6 @@ static int do_savegame_selection_and_act(int action)
 				break;
 		}
 
-		strcpy(Me.character_name, MenuTexts[MenuPosition - 1]);
-
 		for (cnt = 0; cnt < n; cnt++)
 			free(eps[cnt]);
 		free(eps);
@@ -1920,9 +1934,7 @@ static int do_savegame_selection_and_act(int action)
 	rtn = FALSE;
 	switch (action) {
 	case SAVEGAME_LOAD:
-		if (LoadGame() == OK) {
-			GetEventTriggers("freedroid.events");
-			item_held_in_hand = NULL;
+		if (load_named_game(MenuTexts[MenuPosition - 1]) == OK) {
 			rtn = TRUE;
 		} else {
 			rtn = FALSE;
@@ -1930,6 +1942,7 @@ static int do_savegame_selection_and_act(int action)
 		break;
 	case SAVEGAME_DELETE:
 
+		strcpy(Me.character_name, MenuTexts[MenuPosition - 1]);
 		// We do a final safety check to ask for confirmation.
 		MenuTexts[0] = _("Sure!");
 		MenuTexts[1] = _("BACK");

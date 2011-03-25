@@ -93,6 +93,8 @@ EXTERN int show_all_droids;	// display enemies regardless of IsVisible()
 EXTERN int draw_collision_rectangles;	// to better debug collision rectangles
 EXTERN int draw_grid;		// grid to see where objects will be positioned
 EXTERN int start_editor;
+EXTERN int load_saved;
+EXTERN char *saved_game_name;
 
 EXTERN FPSmanager SDL_FPSmanager;
 

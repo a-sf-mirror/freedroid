@@ -596,6 +596,7 @@ void StartupMenu(void);
 void InitiateMenu(const char *background_name);
 void Cheatmenu(void);
 void EscapeMenu(void);
+int load_named_game(const char *name);
 
 // misc.c 
 #define CURLEVEL() (curShip.AllLevels[Me.pos.z])
