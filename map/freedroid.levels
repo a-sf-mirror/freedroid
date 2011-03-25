@@ -17315,6 +17315,9 @@ it: n="Power hammer"  X=33.743668  Y=19.704853  MDur=40  CDur=29.000000  AClip=2
 it: n="Laser power pack"  X=33.487225  Y=23.597662  MDur=-1  CDur=0.000000  AClip=0  Multi=65 
 /piteminfolvl
 obstacleextensions
+idx=501 type=32 data={
+	In case of panic: run!
+}
 /obstacleextensions
 wp
 Nr.=  0 x=   7 y=   4 rnd=0	 c:    1   2
