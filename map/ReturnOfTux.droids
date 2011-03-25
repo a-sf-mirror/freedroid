@@ -204,6 +204,8 @@ SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=13
+Number of Random Droids=50
+Random Droid Types: 123, 247, 302, 329, 420, 476, 493
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
