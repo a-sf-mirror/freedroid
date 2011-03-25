@@ -100,7 +100,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=31 Text=_"Yes, always ask."
+Nr=31 Text=_"Y (always ask)"
 NO_TEXT
 LuaCode={
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
@@ -111,7 +111,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=32 Text=_"No, don't ask"
+Nr=32 Text=_"N (don't ask)"
 NO_TEXT
 LuaCode={
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
@@ -138,7 +138,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=34 Text=_"Yes, enable broadcast."
+Nr=34 Text=_"Y (enable broadcast)"
 NO_TEXT
 LuaCode={
 	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.")
@@ -150,7 +150,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=35 Text=_"No, disable broadcast."
+Nr=35 Text=_"N (disable broadcast)"
 NO_TEXT
 LuaCode={
 	npc_says(_"Commands will only be executed by this bot.")
@@ -187,7 +187,7 @@ LuaCode={
 Nr=41 Text=_"Yes"
 NO_TEXT
 LuaCode={
-	tux_says(_"Yes", "NO_WAIT")
+	tux_says(_"Y", "NO_WAIT")
 	cli_says(_"New Name: ", "NO_WAIT")
 
 	funny_name = get_random(_"Bald", _"Chic", _"Fuzzy", _"Fluffy", _"Cuddly", _"Laughing", _"Fickle", _"Hyper", _"Machavellian", _"Happy", _"Chic", _"Ornery")
@@ -201,7 +201,7 @@ LuaCode={
 Nr=42 Text=_"No"
 NO_TEXT
 LuaCode={
-	tux_says(_"No", "NO_WAIT")
+	tux_says(_"N", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(41, 42) show(0, 20, 30, 40)
 }
@@ -220,7 +220,7 @@ LuaCode={
 Nr=44 Text=_"Yes"
 NO_TEXT
 LuaCode={
-	tux_says(_"Yes", "NO_WAIT")
+	tux_says(_"Y", "NO_WAIT")
 	display_console_message(_"Renamed [b]"..bot_name().._"[/b] to [b]"..new_name.."[/b].")
 	set_bot_name(new_name)
 	npc_says(_"This "..bot_type().._" unit is now designated: [b]"..bot_name().."[/b]", "NO_WAIT")
@@ -232,7 +232,7 @@ LuaCode={
 Nr=45 Text=_"No"
 NO_TEXT
 LuaCode={
-	tux_says(_"No", "NO_WAIT")
+	tux_says(_"N", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(44, 45) show(0, 20, 30, 40)
 }

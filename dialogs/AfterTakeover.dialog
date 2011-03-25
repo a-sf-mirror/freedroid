@@ -35,7 +35,7 @@ EveryTime LuaCode={
 	npc_says(_"Welcome to [b]".. bot_name().."[/b]!", "NO_WAIT")
 	if (npc_damage_amount() >0) then
 		npc_says(_"Hardware Check : BOT DAMAGED", "NO_WAIT")
-		npc_says(_"This ".. bot_type().._" unit could need some repair.", "NO_WAIT")
+		npc_says(_"This ".. bot_type().._" unit could stand to be repaired.", "NO_WAIT")
 	end
 	if (has_cookie("aftertakeover_broadcast_mode")) then
 		if (npc_damage_amount() > 5) then
@@ -87,7 +87,7 @@ LuaCode={
 	tux_says(_"./follow_me.sh", "NO_WAIT")
 	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
-	npc_says(_"Trying to keep up with " .. get_player_name() .._" position.", "NO_WAIT")
+	npc_says(_"Acquiring lock on position of " .. get_player_name() .. ".", "NO_WAIT")
 	npc_says(_"Status: Following " .. get_player_name() .. ".", "NO_WAIT")
 	if (has_cookie("aftertakeover_broadcast_mode")) then
 		broadcast_bot_state("follow_tux")
@@ -161,7 +161,7 @@ LuaCode={
 		npc_says("Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "NO_WAIT")
 		npc_says("Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.", "NO_WAIT")
 		npc_says("Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-		-- gettext strings left on purpose
+		-- gettext strings left out on purpose
 	end
 	if (has_cookie("dixon_very_angry")) and
 	   (has_cookie("bruce_hurt")) and
