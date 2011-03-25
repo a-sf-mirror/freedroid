@@ -17312,6 +17312,106 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
+Nr.=  0 x=   7 y=   4 rnd=0	 c:    1   2
+Nr.=  1 x=   7 y=   7 rnd=0	 c:    0   2
+Nr.=  2 x=   3 y=   7 rnd=0	 c:    1   0
+Nr.=  3 x=  11 y=   6 rnd=0	 c:    4   5   6
+Nr.=  4 x=  11 y=   9 rnd=0	 c:    3   5
+Nr.=  5 x=   9 y=   9 rnd=0	 c:    4   3
+Nr.=  6 x=  13 y=   4 rnd=0	 c:    3
+Nr.=  7 x=  11 y=  11 rnd=0	 c:    8  10
+Nr.=  8 x=  12 y=  13 rnd=0	 c:    7   9
+Nr.=  9 x=  14 y=  14 rnd=0	 c:    8  10
+Nr.= 10 x=  13 y=  11 rnd=0	 c:    9   7
+Nr.= 11 x=  29 y=  17 rnd=0	 c:   12  13
+Nr.= 12 x=  31 y=  18 rnd=0	 c:   11  13
+Nr.= 13 x=  30 y=  18 rnd=0	 c:   12  11
+Nr.= 14 x=  25 y=  11 rnd=0	 c:   15  16
+Nr.= 15 x=  25 y=  10 rnd=0	 c:   14  16
+Nr.= 16 x=  26 y=   9 rnd=0	 c:   15  14
+Nr.= 17 x=  30 y=  12 rnd=0	 c:   18  19
+Nr.= 18 x=  28 y=  12 rnd=0	 c:   17  19
+Nr.= 19 x=  30 y=  10 rnd=0	 c:   18  17
+Nr.= 20 x=  36 y=   9 rnd=0	 c:   21  22
+Nr.= 21 x=  35 y=  11 rnd=0	 c:   20  22
+Nr.= 22 x=  36 y=  11 rnd=0	 c:   21  20
+Nr.= 23 x=  32 y=  14 rnd=0	 c:   24  25
+Nr.= 24 x=  30 y=  14 rnd=0	 c:   23  25
+Nr.= 25 x=  32 y=  15 rnd=0	 c:   24  23
+Nr.= 26 x=  35 y=  14 rnd=0	 c:   27
+Nr.= 27 x=  35 y=  15 rnd=0	 c:   26
+Nr.= 28 x=  36 y=  20 rnd=0	 c:   29  30
+Nr.= 29 x=  36 y=  22 rnd=0	 c:   28  30
+Nr.= 30 x=  37 y=  20 rnd=0	 c:   29  28
+Nr.= 31 x=  33 y=  25 rnd=0	 c:   32
+Nr.= 32 x=  34 y=  25 rnd=0	 c:   31
+Nr.= 33 x=  36 y=  27 rnd=0	 c:   34  35
+Nr.= 34 x=  36 y=  30 rnd=0	 c:   33
+Nr.= 35 x=  33 y=  27 rnd=0	 c:   33  40  39
+Nr.= 36 x=  31 y=  27 rnd=0	 c:   37
+Nr.= 37 x=  31 y=  28 rnd=0	 c:   36  38
+Nr.= 38 x=  32 y=  27 rnd=0	 c:   37  39
+Nr.= 39 x=  32 y=  28 rnd=0	 c:   38  35
+Nr.= 40 x=  33 y=  28 rnd=0	 c:   35
+Nr.= 41 x=  34 y=  31 rnd=0	 c:   42
+Nr.= 42 x=  33 y=  32 rnd=0	 c:   41  44
+Nr.= 43 x=  33 y=  31 rnd=0	 c:   44
+Nr.= 44 x=  33 y=  33 rnd=0	 c:   43  42
+Nr.= 45 x=  30 y=  31 rnd=0	 c:   46
+Nr.= 46 x=  33 y=  34 rnd=0	 c:   45
+Nr.= 47 x=  30 y=  25 rnd=0	 c:   48
+Nr.= 48 x=  31 y=  25 rnd=0	 c:   47  49  52
+Nr.= 49 x=  31 y=  21 rnd=0	 c:   48  50
+Nr.= 50 x=  29 y=  21 rnd=0	 c:   49  51
+Nr.= 51 x=  30 y=  20 rnd=0	 c:   50  52
+Nr.= 52 x=  31 y=  23 rnd=0	 c:   51  48
+Nr.= 53 x=  33 y=  22 rnd=0	 c:   54
+Nr.= 54 x=  33 y=  20 rnd=0	 c:   53  55
+Nr.= 55 x=  33 y=  21 rnd=0	 c:   54  56
+Nr.= 56 x=  33 y=  23 rnd=0	 c:   55
+Nr.= 57 x=   7 y=  25 rnd=1	 c: 
+Nr.= 58 x=   4 y=  35 rnd=0	 c:   59
+Nr.= 59 x=   5 y=  38 rnd=0	 c:   58  60
+Nr.= 60 x=   5 y=  40 rnd=0	 c:   59  61
+Nr.= 61 x=   7 y=  35 rnd=0	 c:   60  62  85
+Nr.= 62 x=   5 y=  35 rnd=0	 c:   61  63
+Nr.= 63 x=   8 y=  39 rnd=0	 c:   62  64
+Nr.= 64 x=   6 y=  39 rnd=0	 c:   63  65
+Nr.= 65 x=   9 y=  35 rnd=0	 c:   64  66  83  85
+Nr.= 66 x=   9 y=  39 rnd=0	 c:   65  67
+Nr.= 67 x=   9 y=  42 rnd=0	 c:   66  68
+Nr.= 68 x=  12 y=  44 rnd=0	 c:   67  69
+Nr.= 69 x=  12 y=  45 rnd=0	 c:   68  70
+Nr.= 70 x=  10 y=  46 rnd=0	 c:   69  71
+Nr.= 71 x=  15 y=  44 rnd=0	 c:   70  72  73
+Nr.= 72 x=  13 y=  43 rnd=0	 c:   71
+Nr.= 73 x=  14 y=  45 rnd=0	 c:   71  74
+Nr.= 74 x=  17 y=  45 rnd=0	 c:   73  75
+Nr.= 75 x=  15 y=  41 rnd=0	 c:   74  76
+Nr.= 76 x=  20 y=  44 rnd=0	 c:   75  77
+Nr.= 77 x=  19 y=  45 rnd=0	 c:   76  78
+Nr.= 78 x=  17 y=  42 rnd=0	 c:   77  79
+Nr.= 79 x=  17 y=  39 rnd=0	 c:   78  80  93
+Nr.= 80 x=  15 y=  40 rnd=0	 c:   79  81  82
+Nr.= 81 x=  15 y=  36 rnd=0	 c:   80  86
+Nr.= 82 x=  14 y=  35 rnd=0	 c:   80  83
+Nr.= 83 x=  11 y=  36 rnd=0	 c:   82  84  65
+Nr.= 84 x=  12 y=  35 rnd=0	 c:   83
+Nr.= 85 x=  10 y=  38 rnd=0	 c:   65  61
+Nr.= 86 x=  18 y=  35 rnd=0	 c:   81  87
+Nr.= 87 x=  21 y=  35 rnd=0	 c:   86  88  98  99
+Nr.= 88 x=  20 y=  37 rnd=0	 c:   87  89  99
+Nr.= 89 x=  23 y=  37 rnd=0	 c:   88  90
+Nr.= 90 x=  23 y=  39 rnd=0	 c:   89  91  94
+Nr.= 91 x=  20 y=  39 rnd=0	 c:   90  92
+Nr.= 92 x=  19 y=  40 rnd=0	 c:   91  93
+Nr.= 93 x=  21 y=  43 rnd=0	 c:   92  79  94  95
+Nr.= 94 x=  23 y=  42 rnd=0	 c:   90  93
+Nr.= 95 x=  25 y=  45 rnd=0	 c:   93  96
+Nr.= 96 x=  23 y=  45 rnd=0	 c:   95  97
+Nr.= 97 x=  25 y=  40 rnd=0	 c:   96  98
+Nr.= 98 x=  25 y=  37 rnd=0	 c:   97  87
+Nr.= 99 x=  25 y=  43 rnd=0	 c:   87  88
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 14
