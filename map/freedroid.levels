@@ -47025,7 +47025,7 @@ t43 x22.00 y12.50
 t43 x22.50 y12.50
 t43 x23.00 y12.50
 t45 x15.50 y32.50
-t370 x12.24 y25.60
+t150 x12.62 y25.56
 /obsdata
 plabelinfolvl
 x=31 y=13 name="58from6"
