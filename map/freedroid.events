@@ -929,7 +929,7 @@ LuaCode={
 * End of trigger *
 
 * New event trigger *
-Name=_"One level deeper..."
+Name=_"We need to go deeper..."
 Trigger at label="58to13"
 Silent=0
 LuaCode={
