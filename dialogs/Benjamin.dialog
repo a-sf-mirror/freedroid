@@ -28,7 +28,7 @@ EveryTime LuaCode={
 		show(0)
 		add_cookie("met_benjamin")
 	else
-		tux_says_random(_"Hello.", _"Greetings master Benjamin.")
+		tux_says_random(_"Hello.", _"Greetings Master Benjamin.")
 		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
 	end
 	show(99)
@@ -119,14 +119,14 @@ LuaCode={
 	tux_says(_"Yes, I'd like some basic training in ranged combat.")
 	cost = 100
 	if train_skill(cost, 3, "ranged") then
-		npc_says(_"Suits me well, I'm not busy at the moment anyway.")
-		npc_says(_"Now the most important thing is that you turn off the auto-aim on your weapon, like this.", "NO_WAIT")
+		npc_says(_"Suits me well enough, I'm not busy at the moment anyway.")
+		npc_says(_"Now, the most important thing is that you turn off the auto-aim on your weapon, like this.", "NO_WAIT")
 		npc_says(_"Otherwise your weapon might 'help' you and shoot somewhere you didn't intend to fire.")
-		npc_says(_"Next important thing is to remember how to properly fire a shot.", "NO_WAIT")
+		npc_says(_"The next important thing is to remember how to properly fire a shot.", "NO_WAIT")
 		npc_says(_"Watch your target closely. Pretend you're moving with it. Aim for the head.")
 		npc_says(_"When you feel completely in sync with your target, then you pull the trigger.", "NO_WAIT")
 		npc_says(_"Good. You are learning fast. Try it a few more times.")
-		npc_says(_"Good. I think that it is enough for today.")
+		npc_says(_"Okay, I think that it is enough for today.")
 		hide(21) show(20)
 	else
 		if (get_gold() < cost ) then next(27) else next(28) end
@@ -134,7 +134,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=22 Text=_"Yes I want even more training. (cost 200 circuits, 6 training points)"
+Nr=22 Text=_"Yes, I want even more training. (cost 200 circuits, 6 training points)"
 NO_TEXT
 LuaCode={
 	tux_says(_"So lets start the second course?")
@@ -142,7 +142,7 @@ LuaCode={
 	if train_skill(cost, 6, "ranged") then
 		npc_says(_"Very well.")
 		npc_says(_"You must remain calm whilst shooting.", "NO_WAIT")
-		npc_says(_"Try breathing out as you pull the trigger and squeeze it gently rather than jerking it.")
+		npc_says(_"Try breathing out as you pull the trigger, and squeeze it gently rather than jerking it.")
 		npc_says(_"That's right. You will find yourself hitting the target much more often now.")
 		hide(22) show(20)
 	else
@@ -151,15 +151,15 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=23 Text=_"Yes I'm eager for more training. (cost 300 circuits, 9 training points)"
+Nr=23 Text=_"I'm eager for more training. (cost 300 circuits, 9 training points)"
 NO_TEXT
 LuaCode={
-	tux_says(_"So can you help me get even better with guns?")
+	tux_says(_"So can you help me become even better with guns?")
 	cost = 300
 	if train_skill(cost, 9, "ranged") then
 		npc_says(_"Of course.")
-		npc_says(_"Next lesson is hitting a moving target.")
-		npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead in case you use a non-laser gun.")
+		npc_says(_"Next lesson: hitting a moving target.")
+		npc_says(_"It's pretty simple really, just watch to see where it is going and then aim slightly ahead if you are using a non-laser gun.")
 		npc_says(_"It's easy when you know how, especially with bots, because they tend to move in straight lines, not bob and weave like people.")
 		npc_says(_"I think that is enough training for now. Next time, firing on the move!")
 		hide(23) show(20)
@@ -169,15 +169,15 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24 Text=_"Yes I accept. (cost 400 circuits, 12 training points)"
+Nr=24 Text=_"Yes, I wish to train some more. (cost 400 circuits, 12 training points)"
 NO_TEXT
 LuaCode={
-	tux_says(_"I'd like to learn how to be a master shot.")
+	tux_says(_"I'd like to learn how to be a crack shot.")
 	cost = 400
 	if train_skill(cost, 12, "ranged") then
 		npc_says(_"Firing on the move is difficult, but can make survival much more likely!")
-		npc_says(_"The secret is to keep a stable platform and hold the weapon loosely so that it doesn't jar.")
-		npc_says(_"Oh yes, and remember not to trip, because you should be looking where you are firing, not where you are stepping.")
+		npc_says(_"The secret is to keep your weapon steadily but loosely, so that it isn't jarred.")
+		npc_says(_"Oh yes, and be careful of your footing. You should be looking where you are firing, not where you are stepping.")
 		npc_says(_"Keep practicing and you will get the hang of it eventually.")
 		hide(24) show(20)
 	else
@@ -186,7 +186,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=25 Text=_"Yes I want to become a god in ranged combat. (cost 500 circuits, 15 training points)"
+Nr=25 Text=_"I want to become a god in ranged combat. (cost 500 circuits, 15 training points)"
 NO_TEXT
 LuaCode={
 	tux_says(_"Teach me how to be at one with my weapon.")
@@ -208,13 +208,13 @@ Nr=27 Text="BUG, REPORT ME! node27 Benjamin"
 NO_TEXT
 LuaCode={
 	npc_says_random(
-		_"You need more gold.",
+		_"You need more circuits.",
 		_"Please don't bother me if you can't pay me.",
-		_"Please defray the costs of the ammo used in training.",
-		_"I repeat, you need to bring enough to pay for the practice targets you destroy and for my time.",
+		_"I need cash to defray the costs of the ammo used in training.",
+		_"I repeat, you need to bring enough to pay for the practice targets you destroy, and for my time.",
 		_"You don't have enough money! I cannot afford to just give away training for free.",
 		_"Come back when you have enough circuits.",
-		_"So come back when you have some valuables.")
+		_"So come back when you have something of value.")
 }
 ----------------------------------------------------------------------
 
@@ -223,12 +223,12 @@ NO_TEXT
 LuaCode={
 	npc_says_random(
 		_"You are not ready. Go kill some bots and come back.",
-		_"Come back when you are mentally ready to learn.",
+		_"Come back when you are mentally prepared to learn.",
 		_"Come back after some more practice in the field.",
 		_"Only a well prepared mind is open to the ultimate in ranged combat secrets.",
 		_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
-		_"But I don't think you have enough experience for this. Come back here after you see some more action.",
-		_"Then come back when you have a real will to learn.",
+		_"I don't think you have enough experience for this. Come back after you see some more action.",
+		_"Come back when you have a real will to learn.",
 		_"You don't have enough experience. Come here after you see some more action.") 
 }
 ----------------------------------------------------------------------
@@ -236,7 +236,7 @@ LuaCode={
 Nr=30 Text=_"What weapons are available to the members of the Red Guard?"
 LuaCode={
 	npc_says(_"Well, for novice members there are simple laser and plasma pistols. They have their share of problems, but they do the trick nine times out of ten.")
-	npc_says(_"For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency or to highly experienced people.")
+	npc_says(_"For bigger bots we have bigger guns. The exterminator is the best weapon that we have. We hand them out only in case of an emergency, or to highly experienced people.")
 	hide(30) show(31, 32, 33)
 }
 ----------------------------------------------------------------------
@@ -246,10 +246,10 @@ LuaCode={
 	npc_says(_"It is!", "NO_WAIT")
 	npc_says(_"While many people find the ammunition canisters too big, and the bullets too slow, they cannot deny that once plasma hits, it leaves big holes.")
 	npc_says(_"Plasma is matter, ionised gas to be exact. It also happens to be hot enough to make steel boil.")
-	npc_says(_"Most of the new recruits hate how hard to aim this weapon is. If bullets were animals, then plasma would be a well fed cow. By the time it arrives at the target, the bot is already a mile away.")
+	npc_says(_"Most of the new recruits hate how hard this weapon is to aim. If bullets were animals, then plasma would be a well fed cow. By the time it arrives at the target, the bot is already a mile away.")
 	npc_says(_"If you are going to use plasma weapons you need to remember one thing: Don't let the weapon get damaged.")
 	npc_says(_"Even though our armor is designed to resist high temperatures, once the plasma containment module goes, you will die, along with anything within ten meters of you.")
-	npc_says(_"Because of all those drawbacks plasma weapons are not too popular. Quite a pity, they have great potential.")
+	npc_says(_"Because of all those drawbacks, plasma weapons are not too popular. Quite a pity, they have great potential.")
 	hide(31)
 }
 ----------------------------------------------------------------------
@@ -258,10 +258,10 @@ Nr=32 Text=_"Tell me more about laser weapons."
 LuaCode={
 	npc_says(_"Laser is an acronym for Light Amplification by Stimulated Emission of Radiation.")
 	npc_says(_"Laser is the technology employed in most of our weaponry. It uses a focused light beam to cause damage.")
-	npc_says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of lights so to say. Also it is not affected by gravity or wind, which makes aiming easier.")
+	npc_says(_"Because the beam is composed out of light, it travels REALLY fast, at the speed of light, so to say. Also it is not affected by gravity or wind, which makes aiming easier.")
 	npc_says(_"However, other than being a good training tool for newbies, that design just fails to deliver.")
-	npc_says(_"The shots tend to be underpowered, the gun takes a long while to power up for a shot and can overheat during intense combat.")
-	npc_says(_"This is why I am trying to improve it, but so far I have had no success. I just feel like giving up.")
+	npc_says(_"The shots tend to be underpowered, the gun takes a long while to power up for a shot, and it can overheat during intense combat.")
+	npc_says(_"This is why I am trying to improve it, but so far I have had no success. I'm feeling pretty discouraged about it.")
 	hide(32)
 }
 ----------------------------------------------------------------------
@@ -285,8 +285,8 @@ LuaCode={
 Nr=41 Text=_"How many exterminators does the Red Guard have?"
 LuaCode={
 	if (del_gold(50)) then 
-		npc_says(_"It might come as a surprise to you, but we don't have many. A bit over twenty, last time I checked.", "NO_WAIT")
-		npc_says(_"However, as you can clearly see, it's more than enough to keep all of the cursed bots away.")
+		npc_says(_"It might come as a surprise to you, but we don't have many. A little over twenty, last time I checked.", "NO_WAIT")
+		npc_says(_"Thankfully, as you can clearly see, it's more than enough to keep all of the cursed bots away.")
 		hide(41) show(44)
 	else
 		next(43)
@@ -302,10 +302,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=44 Text=_"That is not a lot. Why there are so few of them right now?"
+Nr=44 Text=_"That is not many. Why there are so few of them right now?"
 LuaCode={
 	if (del_gold(50)) then
-		npc_says(_"All of them were a very lucky find.", "NO_WAIT")
+		npc_says(_"They were a very lucky find.", "NO_WAIT")
 		npc_says(_"We found a crashed army truck on the Terminal Field. It had six crates inside it, each containing five exterminators.")
 		npc_says(_"We tried, but we could not replicate the technology, only bullets.", "NO_WAIT")
 		npc_says(_"A few got damaged in battle, and we failed to recover five after a failed scout mission. We have twenty-two right now.")
@@ -319,9 +319,9 @@ LuaCode={
 Nr=46 Text=_"What is the exterminator ammunition made from?"
 LuaCode={
 	if (del_gold(50)) then
-		npc_says(_"We use radioactives, whatever type happens to be on hand. Mostly plutonium and uranium, but we are not too picky.")
-		npc_says(_"When we get low on ammo, we send in a chain gang of criminals and sluggards into the mine shaft K-17.")
-		npc_says(_"That place was closed down ages ago because of high radiation levels. It's full of good ores from which we make bullets and power our nuclear reactors.")
+		npc_says(_"We use radioactive isotopes, whatever type happens to be on hand. Mostly plutonium and uranium, but we are not too picky.")
+		npc_says(_"When we get low on ammo, we send in a chain gang of criminals and sluggards into mine shaft K-17.")
+		npc_says(_"That place was closed down ages ago because of high radiation levels, but it's full of good ore from which we make bullets and power our nuclear reactors.")
 		npc_says(_"We get our fission materials, and they serve their sentence. It was one of the best ideas we have ever had.")
 		hide(46)
 	else
@@ -351,9 +351,9 @@ LuaCode={
 Nr=51 Text=_"What makes the exterminator so powerful?"
 LuaCode={
 	if (get_gold(50)) then
-		npc_says(_"This is a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something.")
-		npc_says(_"Of course the high velocity of the impact can cause tremendous devastation by itself.")
-		npc_says(_"We never bothered with doing any research on that topic. It works and that is enough for us.")
+		npc_says(_"That's a tricky question. Most of the force comes from the miniature nuclear explosions which happen once the bullet hits something.")
+		npc_says(_"Of course, the high velocity of the impact can cause tremendous devastation by itself.")
+		npc_says(_"We never bothered with doing much research on that topic. It works, and that is enough for us.")
 	else
 		next(43)
 	end
@@ -363,7 +363,7 @@ LuaCode={
 
 Nr=69 Text=_"That is all I want to know."
 LuaCode={
-	npc_says(_"Very well. This conversation never happened.")
+	npc_says(_"Very well. Oh... This conversation never happened.")
 	hide(41, 44, 46, 47, 49, 51, 69)
 }
 ----------------------------------------------------------------------
