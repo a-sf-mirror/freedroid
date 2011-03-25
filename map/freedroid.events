@@ -469,6 +469,15 @@ LuaCode={
 ## Level 13 ##
 ##############
 
+* New event trigger *
+Name=_"Get me out of here!"
+Trigger at label="13to58"
+Silent=0
+LuaCode={
+	teleport("58from13")
+}
+* End of trigger *
+
 ##############
 ## Level 14 ##
 ##############
@@ -916,6 +925,15 @@ Trigger at label="58to6"
 Silent=0
 LuaCode={
 	teleport("6from58")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"One level deeper..."
+Trigger at label="58to13"
+Silent=0
+LuaCode={
+	teleport("13from58")
 }
 * End of trigger *
 

@@ -17307,6 +17307,8 @@ t369 x3.10 y22.45
 /obsdata
 plabelinfolvl
 x=7 y=25 name="Ewalds296start"
+x=3 y=4 name="13to58"
+x=3 y=5 name="13from58"
 /plabelinfolvl
 piteminfolvl
 it: n="Power hammer"  X=33.743668  Y=19.704853  MDur=40  CDur=29.000000  AClip=21  Multi=1 
@@ -47019,10 +47021,13 @@ t43 x22.00 y12.50
 t43 x22.50 y12.50
 t43 x23.00 y12.50
 t45 x15.50 y32.50
+t370 x12.24 y25.60
 /obsdata
 plabelinfolvl
 x=31 y=13 name="58from6"
 x=30 y=13 name="58to6"
+x=12 y=25 name="58to13"
+x=12 y=24 name="58from13"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
