@@ -142,37 +142,45 @@ void init_obstacle_data(void)
 	block_2param(ISO_CYAN_WALL_WINDOW_1, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_CYAN_WALL_WINDOW_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CYAN_WALL_WINDOW_1].filename = "iso_walls_0022.png";
+	obstacle_map[ISO_CYAN_WALL_WINDOW_1].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_CYAN_WALL_WINDOW_1].flags |= IS_VERTICAL;
 	block_2param(ISO_CYAN_WALL_WINDOW_2, standard_wall_width, standard_wall_thickness);
 	obstacle_map[ISO_CYAN_WALL_WINDOW_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_CYAN_WALL_WINDOW_2].filename = "iso_walls_0023.png";
+	obstacle_map[ISO_CYAN_WALL_WINDOW_2].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_CYAN_WALL_WINDOW_2].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_RED_WALL_WINDOW_1, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_RED_WALL_WINDOW_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_RED_WALL_WINDOW_1].filename = "iso_walls_0024.png";
+	obstacle_map[ISO_RED_WALL_WINDOW_1].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_RED_WALL_WINDOW_1].flags |= IS_VERTICAL;
 	block_2param(ISO_RED_WALL_WINDOW_2, standard_wall_width, standard_wall_thickness);
 	obstacle_map[ISO_RED_WALL_WINDOW_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_RED_WALL_WINDOW_2].filename = "iso_walls_0025.png";
+	obstacle_map[ISO_RED_WALL_WINDOW_2].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_RED_WALL_WINDOW_2].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_FLOWER_WALL_WINDOW_1, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_FLOWER_WALL_WINDOW_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_FLOWER_WALL_WINDOW_1].filename = "iso_walls_0026.png";
+	obstacle_map[ISO_FLOWER_WALL_WINDOW_1].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_FLOWER_WALL_WINDOW_1].flags |= IS_VERTICAL;
 	block_2param(ISO_FLOWER_WALL_WINDOW_2, standard_wall_width, standard_wall_thickness);
 	obstacle_map[ISO_FLOWER_WALL_WINDOW_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_FLOWER_WALL_WINDOW_2].filename = "iso_walls_0027.png";
+	obstacle_map[ISO_FLOWER_WALL_WINDOW_2].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_FLOWER_WALL_WINDOW_2].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_FUNKY_WALL_WINDOW_1, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_1].filename = "iso_walls_0028.png";
+	obstacle_map[ISO_FUNKY_WALL_WINDOW_1].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_1].flags |= IS_VERTICAL;
 	block_2param(ISO_FUNKY_WALL_WINDOW_2, standard_wall_width, standard_wall_thickness);
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_2].filename = "iso_walls_0029.png";
+	obstacle_map[ISO_FUNKY_WALL_WINDOW_2].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_FUNKY_WALL_WINDOW_2].flags |= IS_HORIZONTAL;
 
 	block_2param(ISO_V_DOOR_000_OPEN, standard_wall_thickness, standard_door_width);
@@ -908,6 +916,7 @@ void init_obstacle_data(void)
 
 	block_2param(ISO_GREY_WALL_END_W, standard_wall_thickness, standard_wall_width);
 	obstacle_map[ISO_GREY_WALL_END_W].filename = "iso_walls_0005.png";
+	obstacle_map[ISO_GREY_WALL_END_W].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_GREY_WALL_END_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_GREY_WALL_END_W].flags |= IS_VERTICAL;
 
@@ -915,6 +924,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_GREY_WALL_END_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_GREY_WALL_END_N].flags |= IS_HORIZONTAL;
 	obstacle_map[ISO_GREY_WALL_END_N].filename = "iso_walls_0006.png";
+	obstacle_map[ISO_GREY_WALL_END_N].transparent = TRANSPARENCY_FOR_WALLS;
 
 	/*description for all ISO_GREY_WALL_END_ */
   /**************************************/
