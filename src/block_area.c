@@ -999,9 +999,11 @@ void init_obstacle_data(void)
 
 	block_2param(ISO_BRICK_WALL_CABLES_H, 1.2, 0.8);
 	obstacle_map[ISO_BRICK_WALL_CABLES_H].filename = "iso_brick_wall_cables_0001.png";
+	obstacle_map[ISO_BRICK_WALL_CABLES_H].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_BRICK_WALL_CABLES_H].flags |= IS_HORIZONTAL;
 	block_2param(ISO_BRICK_WALL_CABLES_V, 0.8, 1.2);
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].filename = "iso_brick_wall_cables_0002.png";
+	obstacle_map[ISO_BRICK_WALL_CABLES_V].transparent = TRANSPARENCY_FOR_WALLS;
 	obstacle_map[ISO_BRICK_WALL_CABLES_V].flags |= IS_VERTICAL;
 
 	block_4param(ISO_BRICK_WALL_CORNER_1, 0.3, 0.6, 0.6, 0.6);
@@ -1015,12 +1017,16 @@ void init_obstacle_data(void)
 
 	block_4param(ISO_BRICK_WALL_CABLES_CORNER_1, 0.3, 0.6, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_1].filename = "iso_brick_wall_cables_0004.png";
+	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_1].transparent = TRANSPARENCY_FOR_WALLS;
 	block_4param(ISO_BRICK_WALL_CABLES_CORNER_2, 0.65, 0.3, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_2].filename = "iso_brick_wall_cables_0005.png";
+	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_2].transparent = TRANSPARENCY_FOR_WALLS;
 	block_4param(ISO_BRICK_WALL_CABLES_CORNER_3, 0.6, 0.6, 0.3, 0.3);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_3].filename = "iso_brick_wall_cables_0006.png";
+	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_3].transparent = TRANSPARENCY_FOR_WALLS;
 	block_4param(ISO_BRICK_WALL_CABLES_CORNER_4, 0.3, 0.3, 0.6, 0.6);
 	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_4].filename = "iso_brick_wall_cables_0007.png";
+	obstacle_map[ISO_BRICK_WALL_CABLES_CORNER_4].transparent = TRANSPARENCY_FOR_WALLS;
 
 	//all cabled brick walls above share the same description
 
