@@ -94,6 +94,7 @@ void init_npcs()
 		"Duncan",
 		"Engel",
 		"Ewald",
+		"Ewalds_296",
 		"Francis",
 		"Geist",
 		"HF-FirmwareUpdateServer",

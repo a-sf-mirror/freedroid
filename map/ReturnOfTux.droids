@@ -206,6 +206,8 @@ SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard
 Level=13
 Number of Random Droids=50
 Random Droid Types: 123, 247, 249,302, 329, 420, 476, 493
+
+SForce: T=296 Marker=9999 Faction="civilian" StartLabel="Ewalds296StartGameSquare" UseDialog="Ewalds_296" ShortLabel=_"Friendly 296"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
