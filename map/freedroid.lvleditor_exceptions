@@ -91,6 +91,16 @@ Rule=8 [Type="WQ"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=22.500000:Y2=13.
 Rule=9 [Type="WQ"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=16.500000:Y2=14.500000:L2=6 (warning)
 Rule=10 [Type="WQ"] WP1 X1=16.500000:Y1=14.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 (warning)
 
+
+# Level 13,
+# Paths to which are blocked to make Ewalds bot stand still.
+
+Rule=500 [Type="WQ"] WP1 X1=7.500000:Y1=25.500000:L1=13 -> WP2 X2=10.500000:Y2=26.500000:L2=13 (warning)
+Rule=501 [Type="WQ"] WP1 X1=10.500000:Y1=26.500000:L1=13 -> WP2 X2=7.500000:Y2=25.500000:L2=13 (warning)
+Rule=502 [Type="WW"] WP1 X1=7.500000:Y1=25.500000:L1=13 -> WP2 X2=10.500000:Y2=26.500000:L2=13 : path not found
+Rule=503 [Type="WW"] WP1 X1=10.500000:Y1=26.500000:L1=13 -> WP2 X2=7.500000:Y2=25.500000:L2=13 : path not found
+
+
 # Some obstacles going past level borders
 
 Rule=1017 [Type="OW"] X=0.020000:Y=85.029999:L=0 T=36 -> west border=-0.730000 (warning)
