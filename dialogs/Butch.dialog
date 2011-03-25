@@ -46,7 +46,7 @@ EveryTime LuaCode={
 	if (has_quest(_"Time to say goodnight")) then
 		if (not done_quest(_"Time to say goodnight")) then 
 			npc_says(_"I've already opened the door. What are you waiting for? All you need to do is go down to the master arena and fight the bots.")
-			npc_says(_"But I can understand if you hesitate. The master arena is by no means an easy task. Maybe you should practice some more before you go down.")
+			npc_says(_"But, I can understand if you're hesitant. The master arena is by no means an easy task. Maybe you should practice some more before you go down.")
 		else
 			if (not has_cookie("butch_enable_second_set")) then
 				add_cookie("butch_enable_second_set")
@@ -110,9 +110,9 @@ LuaCode={
 Nr=6 Text=_"Yeah. I want to fight."
 LuaCode={
 	npc_says(_"Good. I opened up the novice arena gate. Just climb down the ladder south of here.")
-	npc_says(_"But remember, the door out won't be opened until you kill all the bots.")
-	npc_says(_"And be careful, your brain get so fooled by what happens in the holographic world that you take physical damage for real.")
-	npc_says(_"So even if the enemies are only holograms, they can still hurt you and even kill you.")
+	npc_says(_"But remember, the escape hatch won't be opened until you kill all the bots.")
+	npc_says(_"And be careful, your brain will be fooled by what happens in the holographic world. Any damage you take there, will result in actual physical damage.")
+	npc_says(_"So even if the enemies are only holograms, they can still hurt you... and even kill you.")
 	add_quest(_"Novice Arena", _"Fighting in the arena is not something I would usually do, but I feel like doing it for a change. Why not?")
 	change_obstacle_state("NoviceArenaAccessDoor", "opened")
 	hide(6, 12, 13) show(9)
@@ -122,8 +122,8 @@ LuaCode={
 Nr=7 Text=_"The bots are dead."
 LuaCode={
 	npc_says(_"Good for you.")
-	npc_says(_"You are a total newbie. But, a good newbie.")
-	npc_says(_"I will say a good word to Spencer about this.")
+	npc_says(_"You are a total newbie. But, a talented newbie.")
+	npc_says(_"I will put a good word in to Spencer about this.")
 	update_quest(_"Novice Arena", _"Now that was easy. *Yawn*. I nearly fell asleep. No problem at all, the bots are dead.")
 	hide(7, 8) show(9, 11)
 }
@@ -149,7 +149,7 @@ LuaCode={
 		npc_says(_"Newbie, I have a second arena.")
 		npc_says(_"You will die if you go there.")
 		npc_says(_"I pity you, silly bird. Don't go there.")
-		npc_says(_"But if you really want it, the door is now open.")
+		npc_says(_"But if you really want to, the door is now open.")
 		add_quest(_"Time to say goodnight", _"I told the arena master to let me into his master arena. He agreed. Now all that remains to do is to climb down the ladder to the north arena and wait for death herself to come on her black wings and claim my soul. You know, now that I think about it... Maybe I should stay out of there?")
 		change_obstacle_state("MasterArenaAccessDoor", "opened")
 	end
@@ -159,10 +159,10 @@ LuaCode={
 
 Nr=10 Text=_"The master arena is clear."
 LuaCode={
-	npc_says(_"What!? Impossible! No one ever survived the second arena!")
-	npc_says(_"One has to be out of his mind to try the second arena.")
-	npc_says(_"You are not a newbie, but you are COMPLETELY INSANE!")
-	npc_says(_"I pity you, poor fool. You will die young.")
+	npc_says(_"What!? Impossible! No one has ever survived the second arena!")
+	npc_says(_"One has to be out of his mind to even attempt the second arena.")
+	npc_says(_"You are not a newbie... You are COMPLETELY INSANE!")
+	npc_says(_"Poor fool... You will surely die young.")
 	add_xp(8000)
 	update_quest(_"Time to say goodnight", _"I survived the master arena. A miracle. Whew.")
 	hide(10)
@@ -176,7 +176,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"Why the hell are you organizing fights? Enough people have died already!"
+Nr=12 Text=_"Why the heck are you organizing fights? Enough people have died already!"
 LuaCode={
 	npc_says(_"I have a very good reason not to tell you.")
 	npc_says(_"Not like someone as inexperienced as you could understand it anyway.")
@@ -223,7 +223,7 @@ LuaCode={
 
 Nr=21 Text=_"I want to fight in the master arena!"
 LuaCode={
-	npc_says(_"But you've already completed the master arena. Ok, but I can have the bots respawn for you now, so you can have another go!")
+	npc_says(_"But you've already completed the master arena. However, I can have the bots respawn for you now, so you can have another go!")
 	npc_says(_"But certainly you've earned yourself a reputation as arena master around here now and we respect that.")
 	respawn_level(30)
 --	change_obstacle_state("MasterArenaExitDoor", "closed") -- for this we need to make sure it opens again after killing the bots
