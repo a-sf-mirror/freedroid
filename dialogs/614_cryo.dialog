@@ -93,10 +93,10 @@ LuaCode={
 
 Nr=5 Text=_"Why are you not hostile as are all the other bots?"
 LuaCode={
-	npc_says(_"I belong to a an older generation of bots, running a custom-made security guard operating system.")
+	npc_says(_"I belong to an older generation of bots, running a custom-made security guard operating system.")
 	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
-	npc_says(_"Even though discontinued from Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
-	npc_says(_"Don't forget to buy products from Nicholson, Inc.. They are the best.")
+	npc_says(_"Even though discontinued by Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
+	npc_says(_"Don't forget to buy products from Nicholson, Inc. They are the best.")
 	hide(5)
 }
 ----------------------------------------------------------------------
