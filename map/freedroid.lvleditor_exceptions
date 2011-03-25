@@ -92,7 +92,7 @@ Rule=9 [Type="WQ"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=16.500000:Y2=14.
 Rule=10 [Type="WQ"] WP1 X1=16.500000:Y1=14.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 (warning)
 
 
-# Level 13,
+# Level 13, Three Fermis Land
 # Paths to which are blocked to make Ewalds bot stand still.
 
 Rule=500 [Type="WQ"] WP1 X1=7.500000:Y1=25.500000:L1=13 -> WP2 X2=10.500000:Y2=26.500000:L2=13 (warning)
