@@ -17306,9 +17306,9 @@ t414 x1.56 y23.69
 t369 x3.10 y22.45
 /obsdata
 plabelinfolvl
-x=7 y=25 name="Ewalds296start"
 x=3 y=4 name="13to58"
 x=3 y=5 name="13from58"
+x=7 y=25 name="Ewalds296StartGameSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Power hammer"  X=33.743668  Y=19.704853  MDur=40  CDur=29.000000  AClip=21  Multi=1 
