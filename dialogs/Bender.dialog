@@ -182,8 +182,8 @@ LuaCode={
 
 Nr=12 Text=_"About that medicine that you need..."
 LuaCode={ 
-	npc_says(_"What have you got?")
-	npc_says(_"What? You have nothing?")
+	npc_says(_"Did you get it?")
+	npc_says(_"What? You didn't get it?")
 	npc_says(_"Man, what are you doing here? Get the medicine! I need it now!")
 	hide(12)
 }
@@ -202,8 +202,8 @@ LuaCode={
 Nr=14 Text=_"What secrets? Like a secret handshake?"
 LuaCode={ 
 	hide(14)
-	npc_says(_"Nah. But that is an awesome idea.")
-	npc_says(_"Let's work it out -- just be sure not to let the Doc in on it.")
+	npc_says(_"Nah. But that is a totally awesome idea.")
+	npc_says(_"Let's work it out -- just, uh, be sure not to let the Doc in on it.")
 	show(15)
 }
 ----------------------------------------------------------------------
