@@ -87,7 +87,7 @@ Chance of this robot scoring a hit=50
 Time to recover after getting hit=1.00
 Is this 'droid' a human : 0
 Filename prefix for graphics="123"
-Notes concerning this droid=_"A simple rubbish disposal robot. Common device in most space craft to maintain a clean ship." 
+Notes concerning this droid=_"A simple rubbish disposal robot. Common device in most factories to maintain a clean yard."
 
 ** Start of new Robot: ** 
 Droidname: 139
