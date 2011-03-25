@@ -2859,7 +2859,21 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-
+** Start of new item specification subsection **
+Item name=_"Nuclear Science for Dummies IV"
+Item min class for drop=-1
+Item max class for drop=-1
+Item can be applied in combat="no"
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="spellbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="spellbook/inv_image_green.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=600
+Item description text=_"From the back of the cover: 'The Nuclear Science for Dummies is the most popular handbook series for learning nuclear science: Learn to generate enough power to keep you town lit up for a decade! Discover how to really scare neighboring countries! Find out how to make your very own mutant pet!' This obviously important tome of knowledge from before the great assault comes with no warranty whatsoever."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
 
 
 
