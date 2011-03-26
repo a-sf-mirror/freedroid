@@ -961,3 +961,13 @@ void leveleditor_select_reset()
 			break;
 	}
 }
+
+void level_editor_switch_selection_type(int direction)
+{
+	int type = selection_type() + direction;
+	if (type < 0)
+		type = OBJECT_WAYPOINT;
+	else if (type > OBJECT_WAYPOINT)
+		type = OBJECT_OBSTACLE;
+	leveleditor_select_type(type);
+}

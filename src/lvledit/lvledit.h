@@ -146,10 +146,10 @@ EXTERN item *ItemDropFromLevelEditor(void);
 EXTERN void TestMap(void);
 
 enum leveleditor_object_type {
-	OBJECT_FLOOR,
 	OBJECT_OBSTACLE,
-	OBJECT_WAYPOINT,
+	OBJECT_FLOOR,
 	OBJECT_ITEM,
+	OBJECT_WAYPOINT,
 	OBJECT_NONE,
 };
 

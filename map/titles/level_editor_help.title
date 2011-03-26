@@ -182,6 +182,8 @@ g						access drop item screen
 t						toggle 3x3 transparency around the crosshair
 m						add/edit a map label at the position of the crosshair or the selected tile
 o						zoom
+tab						switch to the next editing mode
+shift+tab			switch to the previous editing mode
 
 
 If you encounter problems with the editor, please contact us.

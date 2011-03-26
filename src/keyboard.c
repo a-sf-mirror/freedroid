@@ -64,6 +64,7 @@ const char *keybindNames[] = {
 	"change_obstacle_label", "change_map_label", "zoom_out",
 	"cycle_marked_obstacle",
 	"cut", "copy", "paste",
+	"next_selection_type", "previous_selection_type",
 	"next_tab", "undo", "redo", "beautify_grass",
 	"connect_waypoint",
 	"toolbar_scroll_left", "toolbar_scroll_right", "toolbar_step_left", "toolbar_step_right",
@@ -266,6 +267,8 @@ void input_set_default(void)
 	input_set_keybind("cut", SDLK_x, KMOD_LCTRL);
 	input_set_keybind("copy", SDLK_c, KMOD_LCTRL);
 	input_set_keybind("paste", SDLK_v, KMOD_LCTRL);
+	input_set_keybind("next_selection_type", SDLK_TAB, KMOD_NONE);
+	input_set_keybind("previous_selection_type", SDLK_TAB, KMOD_LSHIFT);
 
 	/* Cheat */
 	input_set_keybind("cheat_xp+_1k", SDLK_KP1, KMOD_NONE);
@@ -636,6 +639,12 @@ static int input_key(int keynum, int value)
 			return 0;
 		} else if (KEYPRESS("next_tab")) {
 			alert_window("Reimplement that");
+			return 0;
+		} else if (KEYPRESS("next_selection_type")) {
+			level_editor_switch_selection_type(1);
+			return 0;
+		} else if (KEYPRESS("previous_selection_type")) {
+			level_editor_switch_selection_type(-1);
 			return 0;
 		} else if (KEYPRESS("undo")) {
 			level_editor_action_undo();
