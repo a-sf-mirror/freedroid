@@ -1477,7 +1477,12 @@ int level_validation()
 	}
 
 	our_SDL_flip_wrapper();
-	
+
+	while (!SpacePressed() && !EnterPressed() && !MouseLeftPressed() && !EscapePressed())
+		SDL_Delay(1);
+	// Hack: eat all pending events.
+	input_handle();
+
 	return (final_rc != VALIDATION_PASS);
 }
 

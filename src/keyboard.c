@@ -33,6 +33,7 @@
 #include "lvledit/lvledit_grass_actions.h"
 #include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_widgets.h"
+#include "lvledit/lvledit_validator.h"
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
 #define KEY_RELEASE  (-1.) /**< Key is released. */
@@ -68,6 +69,7 @@ const char *keybindNames[] = {
 	"next_tab", "undo", "redo", "beautify_grass",
 	"connect_waypoint",
 	"toolbar_scroll_left", "toolbar_scroll_right", "toolbar_step_left", "toolbar_step_right",
+	"run_map_validator",
 
 	/* Cheat keys */
 	"cheat_xp+_1k", "cheat_xp*_2",
@@ -269,6 +271,7 @@ void input_set_default(void)
 	input_set_keybind("paste", SDLK_v, KMOD_LCTRL);
 	input_set_keybind("next_selection_type", SDLK_TAB, KMOD_NONE);
 	input_set_keybind("previous_selection_type", SDLK_TAB, KMOD_LSHIFT);
+	input_set_keybind("run_map_validator", SDLK_e, KMOD_LCTRL);
 
 	/* Cheat */
 	input_set_keybind("cheat_xp+_1k", SDLK_KP1, KMOD_NONE);
@@ -666,6 +669,9 @@ static int input_key(int keynum, int value)
 			return 0;
 		} else if (KEYPRESS("toolbar_step_right")) {
 			leveleditor_toolbar_right();
+			return 0;
+		} else if (KEYPRESS("run_map_validator")) {
+			level_validation();	
 			return 0;
 		} else if (!strncmp(GameConfig.input_keybinds[keynum].name, "place_obstacle_kp", strlen("place_obstacle_kp"))
 			   && value == KEY_PRESS) {

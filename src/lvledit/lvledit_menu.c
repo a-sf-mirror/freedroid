@@ -854,10 +854,6 @@ static void AdvancedOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 			level_validation();
-			while (!SpacePressed() && !EnterPressed() && !MouseLeftPressed() && !EscapePressed())
-				SDL_Delay(0);
-			//Hack: eat all pending events.
-			input_handle();
 			break;
 		case LEAVE_OPTIONS_MENU:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
