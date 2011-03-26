@@ -1848,6 +1848,22 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_WALL_TERMINAL_W].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_W].action = &terminal_connect_action;
 	
+	block_2param(ISO_TURBINES_SMALL_W, 1.1, 2.1);
+	obstacle_map[ISO_TURBINES_SMALL_W].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_TURBINES_SMALL_W].filename = "iso_turbines_small_0000.png";
+	
+	block_2param(ISO_TURBINES_SMALL_N, 2.3, 1.05);
+	obstacle_map[ISO_TURBINES_SMALL_N].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_TURBINES_SMALL_N].filename = "iso_turbines_small_0001.png";
+	
+	block_2param(ISO_TURBINES_SMALL_E, 1.1, 2.1);
+	obstacle_map[ISO_TURBINES_SMALL_E].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_TURBINES_SMALL_E].filename = "iso_turbines_small_0002.png";
+	
+	block_2param(ISO_TURBINES_SMALL_S, 2.1, 1.05);
+	obstacle_map[ISO_TURBINES_SMALL_S].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_TURBINES_SMALL_S].filename = "iso_turbines_small_0003.png";
+	
 	obstacle_map[ISO_WEAPON_CRATE].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_WEAPON_CRATE, 1.3, 1.3);
 	obstacle_map[ISO_WEAPON_CRATE].flags |= IS_SMASHABLE | IS_CLICKABLE;
