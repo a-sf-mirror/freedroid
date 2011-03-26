@@ -765,7 +765,7 @@ void level_editor_paste_selection()
 	int nbact = 0;
 	moderately_finepoint cmin, cmax, center;
 
-	if (mode != FD_RECTDONE) {
+	if (mode == FD_RECT || mode == DRAGDROP) {
 		// We get called from the outside so check mode coherency first
 		return;
 	}
