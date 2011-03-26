@@ -35,11 +35,11 @@ EveryTime LuaCode={
 
 	if (has_item_backpack("Nuclear Science for Dummies IV") > 0) then
 		show(10)
-	else end
+	end
 
 	if (has_cookie("ewalds_296_reactor_fix")) then
 		show(11)
-	else end
+	end
 }
 ----------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ LuaCode={
 	npc_says(_"I have installed on me the Service with a Smile software package, copyrighted by MEGASYS CORPORATION, to make sure I'm REALLY happy and appealing to customers!")
 	npc_says(_"May I interest you in reading the license to you? Perhaps the terms of usage? The privacy policy?")
 	tux_says(_"Uh, no, I'm fine.")
-	npc_says(_"Oh, that's a real shame, sir or madam! We have a special Chef's Surprise today! Would you be interested in-", "NO_WAIT")
+	npc_says(_"Oh, that's a real shame, sir and or madam! We have a special Chef's Surprise today! Would you be interested in-", "NO_WAIT")
 	tux_says(_"No, I'm fine, really!")
 	hide(0) show(1, 99)
 }
@@ -107,7 +107,7 @@ LuaCode={
 
 Nr=6 Text=_"Why aren't you calling someone? Why aren't you trying to fix this? You have a maintenance program!"
 LuaCode={
-	npc_says(_"You would like to see my manager? I don't think that would be necessary, Dave. I mean, sir or madam.")
+	npc_says(_"You would like to see my manager? I don't think that would be necessary, Dave. I mean, sir and or madam.")
 	tux_says(_"Fine, don't call anyone, but fix this thing! It's unstable!")
 	npc_says(_"I've been trying to extract the expired graphite module and replace it with a BRAND NEW, CHEAP one! But my maintenance program does not have data on 'Graphite Module'. I am afraid I can't do it, Dave.")
 	npc_says(_"... Sir or madam.")
@@ -117,9 +117,9 @@ LuaCode={
 
 Nr=7 Text=_"I suppose I might as well order something while I'm here. Give me the menu, please."
 LuaCode={
-	npc_says(_"I'm sorry, sir or madam, we have no menu at the moment.")
+	npc_says(_"I'm sorry, sir and or madam, we have no menu at the moment.")
 	tux_says(_"All right, then give me some cold water.")
-	npc_says(_"I'm sorry, sir or madam, we're fresh out of water.")
+	npc_says(_"I'm sorry, sir and or madam, we're fresh out of water.")
 	tux_says(_"But you just offered me...")
 	npc_says(_"Sorry!")
 	hide(7)
@@ -134,8 +134,8 @@ LuaCode={
 	tux_says(_"Subatomic and Nuclear Science for Dummies, volume IV?. Maybe someone in town has it. I have to go now, there's no time to lose!")
 	npc_says(_"Would you like the check?")
 	add_cookie("ewalds_296_sourcebook")
-	end_dialog()
 	hide(8)
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
@@ -157,10 +157,10 @@ LuaCode={
 	tux_says(". . .")
 	npc_says(_"... HI THERE! I'll be your humble servant for the duration of your stay in-", "NO_WAIT")
 	tux_says(_"THE REACTOR! What about the reactor? Can you replace the module now?")
-	npc_says(_"Yes, the reactor! Your order has been processed, sir or madam! Please wait patiently!")
+	npc_says(_"Yes, the reactor! Your order has been processed, sir and or madam! Please wait patiently!")
 	add_cookie("ewalds_296_reactor_fix")
-	end_dialog()
 	hide(10)
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
@@ -192,34 +192,33 @@ LuaCode={
 	npc_says(_"Only this version of the program-", "NO_WAIT")
 	tux_says(_"I don't care! You're willing to sacrifice yourself to save the people up there. That qualifies as a bot worth saving in my eyes.")
 	tux_says(_"I am not letting you die.")
-	npc_says(_"If you try to stop me, I will fight.")
+	npc_says(_"You must not try to stop me, sir and or madam.")
 	hide(13) show(14, 15)
 }
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"I am going to save you, even if... Even if I have to hack you and drag you all the way up!"
 LuaCode={
-	npc_says(_"You wish to fight, sir or madam?")
+	npc_says(_"You wish to fight, sir and or madam?")
 	tux_says(_"I don't want to hurt you. Follow me, and we can think of a better way to do this.")
 	npc_says(_"Negative. The reactor can only be safely destroyed using the manual self-destruction mechanism.")
 	tux_says(_"All right then. I guess I'll just have to force you to come.")
-	npc_says(_"Very well, sir or madam.")
-	cli_says(_"TARGET ACQUIRED: COMMENCING DESTRUCTION SEQUENCE!")
-	set_npc_faction("ms")
-	end_dialog()
+	npc_says(_"I cannot allow sir and or madam to come to harm.")
+	teleport("TeleportHomeTarget")
 	hide(14, 15) show(30, 99)
+	end_dialog()
 }
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Nr=15 Text=_"... You're sure you want to do this?"
 LuaCode={
-	npc_says(_"There is no other way, sir or madam.")
+	npc_says(_"There is no other way, sir and or madam.")
 	tux_says(_"I understand.")
 	tux_says(_"Good luck, 296. You won't be forgotten.")
-	npc_says(_"Thank you, sir or madam.")
+	npc_says(_"Thank you, sir and or madam.")
 	npc_says(_"I must go now. Goodbye.")
-	end_dialog()
 	hide(14, 15)
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
@@ -233,31 +232,36 @@ LuaCode={
 	hide(16)
 }
 ----------------------------------------------------------------------
-
-Nr=30 Text=_"So, 296, how's it going?"
+ 
+Nr=30 Text=_"Erm... But didn't you... Uh..."
 LuaCode={
-	npc_says(_"Great, sir or madam! The business is flourishing and everything is AMAZINGLY back to normal!")
-	npc_says(_"Would sir or madam be interested in a refreshing drink, ON THE HOUSE?")
-	tux_says(_"Why, thank you!")
-	npc_says(_"Would sir or madam want any other service?")
-	show(31, 32, 33) hide(30)
+	npc_says(_"Allow me to clear up your confusion, sir and or madam!")
+	npc_says(_"My Nick of Time software package allowed me to tap into the town's teleportation network.")
+	npc_says(_"This COMPLETELY AWESOME set of subroutines let me teleport in an iron bar to take my place at the last possible moment!")
+	tux_says(_"And now you're-", NOWAIT)
+	npc_says(_"Back in the employ of the GREAT and SUPER AWESOME Ewald!")
+	tux_says(_"Well, I'm glad to see you're not destroyed.")
+	show(31, 33) hide(30)
 }
 ----------------------------------------------------------------------
 
-Nr=31 Text=_"Hmm... How about... Ewald's password?"
+Nr=31 Text=_"So, 296, how's it going?"
+LuaCode={
+	npc_says(_"Great, sir and or madam! The business is flourishing and everything is AMAZINGLY back to normal!")
+	npc_says(_"Would sir and or madam be interested in a refreshing drink, ON THE HOUSE?")
+	tux_says(_"Why, thank you!")
+	npc_says(_"Would sir and or madam want any other service?")
+	show(32, 33) hide(31)
+}
+----------------------------------------------------------------------
+
+Nr=32 Text=_"Hmm... How about... Ewald's password?"
 LuaCode={
 	npc_says(_"Our MAGNIFICENT bartender EWALD has an UNBREAKABLE password! His account is the most secure EVER! NO ONE except for him can get on it!")
 	tux_says(_"What's the password?")
 	npc_says(_"Five asterisks!")
 	tux_says("...")
 	npc_says(_"... Maybe I shouldn't have said that.")
-	hide(31)
-}
-----------------------------------------------------------------------
-
-Nr=32 Text=_"TO BE COMPLETED"
-LuaCode={
-	npc_says(_"TO BE COMPLETED")
 	hide(32)
 }
 ----------------------------------------------------------------------
