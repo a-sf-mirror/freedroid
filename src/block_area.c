@@ -1676,15 +1676,15 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BASIN_4].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BASIN_4].filename = "iso_basin_0004.png";
 
-	block_2param(ISO_DESKCHAIR_1, 0.95, 1.05);
+	block_2param(ISO_DESKCHAIR_1, 0.90, 0.90);
 	obstacle_map[ISO_DESKCHAIR_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DESKCHAIR_1].filename = "iso_deskchair_0001.png";
 
-	block_2param(ISO_DESKCHAIR_2, 0.95, 1.05);
+	block_2param(ISO_DESKCHAIR_2, 0.90, 0.90);
 	obstacle_map[ISO_DESKCHAIR_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DESKCHAIR_2].filename = "iso_deskchair_0002.png";
 
-	block_2param(ISO_DESKCHAIR_3, 0.95, 1.05);
+	block_2param(ISO_DESKCHAIR_3, 0.90, 0.90);
 	obstacle_map[ISO_DESKCHAIR_3].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_DESKCHAIR_3].filename = "iso_deskchair_0003.png";
 
