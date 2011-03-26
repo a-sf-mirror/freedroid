@@ -34,6 +34,12 @@ Bullet identification: "plasma_white"
 Sound to play: "Plasma_Pistol.ogg"
 ** End of new bullet specification subsection **
 
+// this is the 12-gauge shotgun bullet, showing nice spread
+** Start of new bullet specification subsection **
+Bullet identification: "shotgun"
+Sound to play: "Single_Pulse.ogg"
+** End of new bullet specification subsection **
+
 // this is the yellow-red laser sword
 ** Start of new bullet specification subsection **
 Bullet identification: "NO BULLET IMAGE - melee"
