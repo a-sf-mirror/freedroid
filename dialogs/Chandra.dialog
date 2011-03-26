@@ -132,10 +132,14 @@ LuaCode={
 
 Nr=10 Text=_"Do you think I could join the guardians of this town?"
 LuaCode={
-	npc_says(_"The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can fix things.")
-	npc_says(_"Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here.")
-	npc_says(_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax.")
-	hide(10)
+	if (has_cookie("guard_follow_tux")) then
+		npc_says(_"The Red Guard...? Only if you're as strong and courageous as they are! There is no one better than the Red Guard! Nothing but top quality men there!")
+	else
+		npc_says(_"The Red Guard? Unlikely. You'd have to establish a reputation beforehand, and demonstrate that you can fix things.")
+		npc_says(_"Also, the Red Guard is not a very popular organization, so if you do join them then you can expect to be hated by nearly everyone here.")
+		npc_says(_"As the ancients said, 'Boni pastoris est tondere pecus, non deglubere'. A good tax must be a reasonable tax.")
+		hide(10)
+	end
 }
 ----------------------------------------------------------------------
 
