@@ -624,7 +624,7 @@ static void LevelOptions(void)
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
-		sprintf(Options[i], _("Infinite Running"));
+		sprintf(Options[i], _("Infinite Running Stamina"));
 		strcat(Options[i], ": ");
 		if (EditLevel()->infinite_running_on_this_level)
 			strcat(Options[i], _("YES"));
