@@ -76,6 +76,14 @@ EveryTime LuaCode={
 	if (will_rush_tux()) then
 		set_rush_tux(0)
 	end
+
+	if (has_cookie("met_docmoore")) and
+	   (has_item("Rubber duck") > 0) and
+	   (not has_cookie("not_seen_rubber_duck_lie")) then
+		npc_says(_"Oh, did you by any chance see a bright yellow item made out of polyvinyl chloride?")
+		show(42, 43)
+	end
+
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -227,6 +235,33 @@ Nr=30 Text=_"Forget it. Getting the antidote is not worth the effort."
 LuaCode={
 	npc_says(_"I am not giving it to you, and that won't change.")
 	hide(21, 22, 30)
+}
+----------------------------------------------------------------------
+
+Nr=42 Text=_"Hmm. I cannot remember."
+LuaCode={
+	tux_says(_"I'm sorry.")
+	npc_says(_"No problem. Thanks anyway.")
+	add_cookie("not_seen_rubber_duck_lie")
+	hide(42, 43)
+}
+----------------------------------------------------------------------
+
+Nr=43 Text=_"I think I did."
+NO_TEXT
+LuaCode={
+	tux_says(_"Hmm... Yellow, bright, PVC...?")
+	tux_says(_"I think I did.")
+	tux_says(_"Do you mean this rubber duck by any chance?")
+	npc_says(_"Ooh, you found it.")
+	tux_says(_"Here, take it if it's yours.")
+	npc_says(_"Thanks.")
+	npc_says(_"Take this healthy drink as reward.")
+	tux_says(_"Looks.. erm... interesting...")
+	tux_says(_"Thank you. I am sure it ... can be quite useful in some situations.")
+	add_item("Doc-in-a-can", 1)
+	del_item("Rubber duck")
+	hide(42, 43)
 }
 ----------------------------------------------------------------------
 
