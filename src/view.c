@@ -380,10 +380,14 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 		object_vtx_color(o, &r, &g, &b);
 	}
 
-	if (GameConfig.transparency && obstacle_map[o->type].transparent == TRANSPARENCY_FOR_WALLS) {
+	if (GameConfig.transparency) { 
 		if ((pos.x > Me.pos.x - 1.0) && (pos.y > Me.pos.y - 1.0)
 			&& (pos.x < Me.pos.x + 1.5) && (pos.y < Me.pos.y + 1.5)) {
-			a = 0.5;
+				if (game_status == INSIDE_LVLEDITOR) {
+					a = 0.5;
+				} else if (obstacle_map[o->type].transparent == TRANSPARENCY_FOR_WALLS) {
+					a = 0.5;
+				}
 		}
 	}
 
