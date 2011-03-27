@@ -24364,8 +24364,12 @@ it: n="Brain stimulator"  X=7.621753  Y=22.693378  MDur=-1  CDur=0.000000  AClip
 obstacleextensions
 /obstacleextensions
 wp
-Nr.=  0 x=  61 y=  75 rnd=0	 c:    1
-Nr.=  1 x=  62 y=  75 rnd=0	 c:    0
+Nr.=  0 x=  47 y=   5 rnd=0	 c:    1   2
+Nr.=  1 x=  48 y=   5 rnd=0	 c:    0   2
+Nr.=  2 x=  47 y=   6 rnd=0	 c:    1   0
+Nr.=  3 x=  50 y=   5 rnd=1	 c:    4   5
+Nr.=  4 x=  51 y=   5 rnd=1	 c:    3   5
+Nr.=  5 x=  50 y=   6 rnd=1	 c:    4   3
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 25
