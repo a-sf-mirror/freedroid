@@ -940,15 +940,19 @@ void init_obstacle_data(void)
 
 	block_2param(ISO_GREY_WALL_CORNER_1, 1.1, 1.0);
 	obstacle_map[ISO_GREY_WALL_CORNER_1].filename = "iso_wall_corners_0001.png";
+	obstacle_map[ISO_GREY_WALL_CORNER_1].transparent = TRANSPARENCY_FOR_WALLS;
 
 	block_2param(ISO_GREY_WALL_CORNER_2, 1.1, 1.0);
 	obstacle_map[ISO_GREY_WALL_CORNER_2].filename = "iso_wall_corners_0002.png";
+	obstacle_map[ISO_GREY_WALL_CORNER_2].transparent = TRANSPARENCY_FOR_WALLS;
 
 	block_2param(ISO_GREY_WALL_CORNER_3, 1.1, 1.0);
 	obstacle_map[ISO_GREY_WALL_CORNER_3].filename = "iso_wall_corners_0003.png";
+	obstacle_map[ISO_GREY_WALL_CORNER_3].transparent = TRANSPARENCY_FOR_WALLS;
 
 	block_2param(ISO_GREY_WALL_CORNER_4, 1.1, 1.0);
 	obstacle_map[ISO_GREY_WALL_CORNER_4].filename = "iso_wall_corners_0004.png";
+	obstacle_map[ISO_GREY_WALL_CORNER_4].transparent = TRANSPARENCY_FOR_WALLS;
 
 	for (i = ISO_LIGHT_GREEN_WALL_1; i <= ISO_FUNKY_WALL_4; i++) {
 		obstacle_map[i].transparent = TRANSPARENCY_FOR_WALLS;
