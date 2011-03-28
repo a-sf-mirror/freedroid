@@ -1444,10 +1444,12 @@ void init_obstacle_data(void)
 	block_2param(ISO_RED_FENCE_H, 2.3, 0.80);
 	obstacle_map[ISO_RED_FENCE_H].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_RED_FENCE_H].filename = "iso_fence_0002.png";
+	obstacle_map[ISO_RED_FENCE_H].transparent = TRANSPARENCY_FOR_WALLS;
 
 	block_2param(ISO_RED_FENCE_V, 0.80, 2.3);
 	obstacle_map[ISO_RED_FENCE_V].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_RED_FENCE_V].filename = "iso_fence_0001.png";
+	obstacle_map[ISO_RED_FENCE_V].transparent = TRANSPARENCY_FOR_WALLS;
 
 	block_2param(ISO_BED_1, 1.2, 2.0);
 	obstacle_map[ISO_BED_1].flags &= ~BLOCKS_VISION_TOO;
