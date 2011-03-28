@@ -63,7 +63,7 @@ const char *keybindNames[] = {
 	"place_obstacle_kp4", "place_obstacle_kp5", "place_obstacle_kp6",
 	"place_obstacle_kp7", "place_obstacle_kp8", "place_obstacle_kp9",
 	"change_obstacle_label", "change_map_label", "zoom_out",
-	"cycle_marked_obstacle",
+	"cycle_marked_object",
 	"cut", "copy", "paste",
 	"next_selection_type", "previous_selection_type",
 	"next_tab", "undo", "redo", "beautify_grass",
@@ -256,7 +256,7 @@ void input_set_default(void)
 	input_set_keybind("change_obstacle_label", SDLK_h, KMOD_NONE);
 	input_set_keybind("change_map_label", SDLK_m, KMOD_NONE);
 	input_set_keybind("zoom_out", SDLK_o, KMOD_NONE);
-	input_set_keybind("cycle_marked_obstacle", SDLK_n, KMOD_NONE);
+	input_set_keybind("cycle_marked_object", SDLK_n, KMOD_NONE);
 	input_set_keybind("next_tab", SDLK_f, KMOD_NONE);
 	input_set_keybind("undo", SDLK_z, KMOD_NONE);
 	input_set_keybind("redo", SDLK_y, KMOD_NONE);
@@ -637,8 +637,8 @@ static int input_key(int keynum, int value)
 		} else if (KEYPRESS("zoom_out")) {
 			GameConfig.zoom_is_on = !GameConfig.zoom_is_on;
 			return 0;
-		} else if (KEYPRESS("cycle_marked_obstacle")) {
-			level_editor_cycle_marked_obstacle();
+		} else if (KEYPRESS("cycle_marked_object")) {
+			level_editor_cycle_marked_object();
 			return 0;
 		} else if (KEYPRESS("next_tab")) {
 			alert_window("Reimplement that");

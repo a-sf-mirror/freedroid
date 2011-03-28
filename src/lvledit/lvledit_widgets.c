@@ -193,8 +193,8 @@ void leveleditor_init_widgets()
 			_("Beautify grass button\n\nUse this button to automatically 'beautify' rough edges of the grass-sand tiles. It will apply to the selected floor or, if not applicable, to the entire level.\n\nYou can also use Ctrl-b for this.")},
 		{LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, NULL,
 			_("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use Ctrl-X for this.")},
-		{LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON, NULL,
-			_("Next obstacle on currently selected tile\n\nUse this button to cycle the currently marked obstacle on this tile.\n\nYou can also use the N key for this.")},
+		{LEVEL_EDITOR_NEXT_OBJECT_BUTTON, NULL,
+			_("Next object on currently selected tile\n\nUse this button to cycle the currently marked object on this tile.\n\nYou can also use the N key for this.")},
 		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL,
 			_("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n")},
 		{LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, NULL,
@@ -314,9 +314,9 @@ void leveleditor_update_button_states()
 		case LEVEL_EDITOR_SAVE_SHIP_BUTTON:
 			w->enabled = (game_root_mode == ROOT_IS_LVLEDIT);
 			break;
-		case LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON:
-			w->enabled = level_editor_can_cycle_obs();
-			break;
+		case LEVEL_EDITOR_NEXT_OBJECT_BUTTON:
+			w->enabled = level_editor_can_cycle_marked_object();
+			break;		
 		case LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON:
 			w->enabled = !selection_empty();
 			break;

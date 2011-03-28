@@ -614,7 +614,26 @@ static void end_drag_drop()
 	}
 }
 
-int level_editor_can_cycle_obs()
+static int level_editor_number_of_marked_items()
+{
+	item *it;
+	int i, num = 0;
+
+	for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+		it = &EditLevel()->ItemList[i];
+
+		if (it->type == -1)
+			continue;
+
+		if ((fabsf(state.rect_start.x - it->pos.x) <= 0.5) && (fabsf(state.rect_start.y - it->pos.y) <= 0.5)) {
+			num++;
+		}
+	}
+
+	return num;
+}
+
+int level_editor_can_cycle_marked_object()
 {
 	if (mode != FD_RECTDONE) {
 		// We get called from the outside so check mode coherency first
@@ -627,23 +646,28 @@ int level_editor_can_cycle_obs()
 	if (!pos_inside_level(state.rect_start.x, state.rect_start.y, EditLevel()))
 		return 0;
 
-	if (EditLevel()->map[state.rect_start.y][state.rect_start.x].glued_obstacles.size <= 1)
-		return 0;
+	switch (selection_type()) {	
+		case OBJECT_OBSTACLE: 		
+			if (EditLevel()->map[state.rect_start.y][state.rect_start.x].glued_obstacles.size <= 1)
+				return 0;
+			break;		
+		case OBJECT_ITEM:
+			if (level_editor_number_of_marked_items() <= 1)
+				return 0;
+			break;
+		default:
+			ErrorMessage(__FUNCTION__, "Unhandled selection type.", IS_WARNING_ONLY, NO_NEED_TO_INFORM);
+			return 0;
+			break;				
+	}
 
 	return 1;
 }
 
-void level_editor_cycle_marked_obstacle()
+static void level_editor_cycle_marked_obstacle()
 {
 	//This function will select only one of the obstacles attached to a given tile,
 	//and browse through them for each subsequent call.
-
-	if (!level_editor_can_cycle_obs())
-		return;
-
-	// clear the selection and take the next obstacle in the list
-	clear_selection(state.rect_nbelem_selected);
-	state.rect_nbelem_selected = 0;
 
 	if (state.single_tile_mark_index >= EditLevel()->map[state.rect_start.y][state.rect_start.x].glued_obstacles.size) {
 		state.single_tile_mark_index = 0;
@@ -651,6 +675,56 @@ void level_editor_cycle_marked_obstacle()
 
 	int idx = ((int *)(EditLevel()->map[state.rect_start.y][state.rect_start.x].glued_obstacles.arr))[state.single_tile_mark_index];
 	add_object_to_list(&selected_elements, &EditLevel()->obstacle_list[idx], OBJECT_OBSTACLE);
+}
+
+static void level_editor_cycle_marked_item()
+{
+	item *it;
+	int i, j;	
+
+	if (state.single_tile_mark_index >= level_editor_number_of_marked_items()) {
+		state.single_tile_mark_index = 0;
+	}
+
+	for (i = 0,j = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
+		it = &EditLevel()->ItemList[i];
+
+		if (it->type == -1)
+			continue;
+
+		if ((fabsf(state.rect_start.x - it->pos.x) <= 0.5) && (fabsf(state.rect_start.y- it->pos.y) <= 0.5)) {
+			if (state.single_tile_mark_index == j) {
+				break;
+			}
+
+			j++;
+		}
+ 
+	}
+
+	add_object_to_list(&selected_elements, it, OBJECT_ITEM);
+}
+
+void level_editor_cycle_marked_object()
+{
+	if (!level_editor_can_cycle_marked_object())
+		return;
+
+	clear_selection(state.rect_nbelem_selected);
+	state.rect_nbelem_selected = 0;	
+	
+	switch (selection_type()) {
+		case OBJECT_OBSTACLE:
+			level_editor_cycle_marked_obstacle();
+			break;
+		case OBJECT_ITEM:
+			level_editor_cycle_marked_item();
+			break;
+		default:
+			ErrorMessage(__FUNCTION__, "Unhandled selection type.", IS_WARNING_ONLY, NO_NEED_TO_INFORM);
+			break;
+	}
+	
 	state.single_tile_mark_index++;
 	state.rect_nbelem_selected = 1;
 }

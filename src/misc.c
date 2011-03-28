@@ -111,9 +111,9 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButton.png", {-270, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButtonPushed.png", {-270, -30, 0, 0}, FALSE},
-	[LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON] =
+	[LEVEL_EDITOR_NEXT_OBJECT_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextObstacleButton.png", {-240, -30, 0, 0}, FALSE},
-	[LEVEL_EDITOR_NEXT_OBSTACLE_BUTTON_PUSHED] =
+	[LEVEL_EDITOR_NEXT_OBJECT_BUTTON_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextObstacleButtonPushed.png", {-240, -30, 0, 0}, FALSE},
 
 
