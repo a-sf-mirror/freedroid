@@ -1746,7 +1746,7 @@ static void Droid_fill(char *MenuTexts[10])
  */
 static int savegame_exists(const char *name)
 {
-	struct dirent **eps;
+	struct dirent **eps = NULL;
 	int n = find_saved_games(&eps);
 	int exists = 0;
 	int i;
