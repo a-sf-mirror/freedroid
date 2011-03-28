@@ -715,7 +715,7 @@ static char *decode_map(level *loadlevel, char *data)
 		return NULL;
 
 	/* now scan the map */
-	short int curlinepos = 0;
+	unsigned int curlinepos = 0;
 	this_line = (char *)MyMalloc(4096);
 
 	/* read MapData */
@@ -725,7 +725,7 @@ static char *decode_map(level *loadlevel, char *data)
 		int tmp;
 
 		/* Select the next line */
-		short int nlpos = 0;
+		unsigned int nlpos = 0;
 		memset(this_line, 0, 4096);
 		while (map_begin[curlinepos + nlpos] != '\n')
 			nlpos++;
