@@ -592,6 +592,23 @@ LuaCode={
 ##############
 ## Level 28 ##
 ##############
+* New event trigger *
+Name=_"From32to28"
+Trigger at label="28to32"
+Silent=1
+LuaCode={
+	teleport("32from28")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"From28to32falseone"
+Trigger at label="28to32falsebackto28"
+Silent=1
+LuaCode={
+	teleport("28from32")
+}
+* End of trigger *
 
 ##############
 ## Level 29 ##
@@ -624,6 +641,41 @@ LuaCode={
 ##############
 ## Level 32 ##
 ##############
+* New event trigger *
+Name=_"Falseteleporter1"
+Trigger at label="32to28false1"
+Silent=1
+LuaCode={
+	teleport("28from32")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Falseteleporter2"
+Trigger at label="32to28false2"
+Silent=1
+LuaCode={
+	teleport("28from32")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Falseteleporter3"
+Trigger at label="32to28false3"
+Silent=1
+LuaCode={
+	teleport("28from32")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"32to38riddlesolved"
+Trigger at label="32to28true"
+Silent=1
+LuaCode={
+	teleport("28from32success")
+}
+* End of trigger *
 
 ##############
 ## Level 33 ##

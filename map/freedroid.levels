@@ -28694,10 +28694,10 @@ t18 x48.32 y42.53
 t18 x45.57 y42.70
 t42 x38.42 y57.82
 t24 x50.77 y49.85
-t24 x44.37 y49.42
-t24 x42.36 y49.40
-t24 x42.36 y51.43
-t24 x44.39 y51.41
+t24 x44.51 y48.44
+t24 x42.48 y48.43
+t24 x42.50 y50.45
+t24 x44.53 y50.43
 t299 x54.29 y45.45
 t298 x54.24 y45.47
 t247 x45.49 y58.80
@@ -28787,6 +28787,10 @@ x=33 y=61 name="834"
 x=48 y=64 name="883"
 x=59 y=59 name="999"
 x=63 y=22 name="296"
+x=41 y=45 name="28from32"
+x=41 y=69 name="28to32"
+x=50 y=69 name="28to32falsebackto28"
+x=43 y=49 name="28from32success"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -32746,6 +32750,11 @@ t133 x9.84 y8.84
 t133 x8.84 y8.84
 /obsdata
 plabelinfolvl
+x=26 y=10 name="32to28false2"
+x=17 y=1 name="32to28false1"
+x=9 y=10 name="32to28false3"
+x=17 y=18 name="32to28true"
+x=17 y=10 name="32from28"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
