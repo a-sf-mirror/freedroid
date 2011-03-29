@@ -656,7 +656,6 @@ int level_editor_can_cycle_marked_object()
 				return 0;
 			break;
 		default:
-			ErrorMessage(__FUNCTION__, "Unhandled selection type. \n", IS_WARNING_ONLY, NO_NEED_TO_INFORM);
 			return 0;
 			break;				
 	}
