@@ -366,7 +366,8 @@ SForce: T=883 Marker=3031 StartLabel="MSOfficeFirmwareUpdateServerStartPosition"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=32
-
+Number of Random Droids=7
+Random Droid Types: 249, 302, 516, 615, 629
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
