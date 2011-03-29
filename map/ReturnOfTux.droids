@@ -304,6 +304,7 @@ Level=27
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=28
+SForce: T=WOR Marker=2028 MaxDistanceToHome=20 Faction="civilian" StartLabel="JohnStartGameSquare" RushTux=0 UseDialog="John" ShortLabel=_"John"
 
 SForce: T=123 Marker=1028 StartLabel="123"
 SForce: T=139 Marker=1028 StartLabel="139"

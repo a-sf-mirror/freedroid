@@ -102,6 +102,7 @@ void init_npcs()
 		"HF-GateGuardLeader",
 		"Iris",
 		"Jasmine",
+		"John",
 		"Kevin",
 		"KevinGuard",
 		"Kevin-Lawnmower",

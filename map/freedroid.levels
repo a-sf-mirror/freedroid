@@ -28791,6 +28791,7 @@ x=41 y=45 name="28from32"
 x=41 y=69 name="28to32"
 x=50 y=69 name="28to32falsebackto28"
 x=43 y=49 name="28from32success"
+x=49 y=54 name="JohnStartGameSquare"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
