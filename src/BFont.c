@@ -147,9 +147,6 @@ BFont_Info *LoadFont(char *filename)
 	// Prepare the data structures according to the rendering mode
 	prepare_font(font, char_rect);	
 	
-	// XXX should not be here
-	SetCurrentFont(font);
-
 	return font;
 }
 
@@ -466,24 +463,6 @@ void LeftPutString(SDL_Surface * Surface, int y, char *text)
 void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text)
 {
 	PutStringFont(Surface, Font, 0, y, text);
-}
-
-/******/
-
-void PrintString(SDL_Surface * Surface, int x, int y, const char *fmt, ...)
-{
-	va_list args;
-	char *temp;
-	va_start(args, fmt);
-
-	if ((temp = (char *)malloc(1000 + 1)) != NULL) {
-		vsprintf(temp, fmt, args);
-
-		PutStringFont(Surface, CurrentFont, x, y, temp);
-
-		free(temp);
-	}
-	va_end(args);
 }
 
 /*********************************************************************************************************/

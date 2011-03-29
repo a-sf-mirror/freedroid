@@ -79,6 +79,3 @@ void JustifiedPutString(SDL_Surface * Surface, int y, char *text);
 
 /* Write a justify-aligned string on the "Surface" with the specified font */
 void JustifiedPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *text);
-
-/* The following functions do the same task but have the classic "printf" syntax */
-void PrintString(SDL_Surface * Surface, int x, int y, const char *fmt, ...);
