@@ -578,6 +578,9 @@ int furniture_tiles_list[] = {
 	ISO_PILLAR_TALL,
 	ISO_PILLAR_SHORT,
 
+	ISO_V_CURTAIN,
+	ISO_H_CURTAIN,
+
 	-1,
 };
 
