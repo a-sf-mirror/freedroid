@@ -32626,7 +32626,7 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: -1
-Name of this level=_"empty and unused level 1"
+Name of this level=_"Johns Riddle"
 BgSong=underground.ogg
 beginning_of_map
  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31  31 
