@@ -28787,11 +28787,11 @@ x=33 y=61 name="834"
 x=48 y=64 name="883"
 x=59 y=59 name="999"
 x=63 y=22 name="296"
-x=41 y=45 name="28from32"
 x=41 y=69 name="28to32"
 x=43 y=49 name="28from32"
 x=49 y=54 name="JohnStartGameSquare"
 x=50 y=69 name="28to28"
+x=43 y=49 name="28from32success"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
