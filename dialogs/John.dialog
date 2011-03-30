@@ -22,42 +22,207 @@ If you have questions concerning FreedroidRPG, please send an email to:
 
 freedroid-discussion@lists.sourceforge.net
 
-Remember to change =_ to only = for OptionText and Subtitle that will not need translation.
-
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={ 
-	if (not has_cookie("met_John")) then
-		show(0)
-		add_cookie("met_John")
-	else
-		tux_says_random(_"Hello.", _"Hi there.", "NO_WAIT")
-		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
+FirstTime LuaCode={ add_cookie("met_john") show(0) }
+
+EveryTime LuaCode={
+	if (has_cookie("john_dislike")) then
+		tux_says(_"I am s-")
+		npc_says(_"Go away please.")
+		end_dialog()
 	end
-	show(99)
+
+	if (has_cookie("JohnPuzzleStarted")) then
+
+show(99)
+
+		-- if Tux solved the puzzle, went into the correct teleporter
+		if (not has_cookie("JohnPuzzleLocked")) then
+			if (has_cookie("JohnPuzzleSolved")) then
+				if (has_cookie("John28to28_teleported")) then
+					npc_says(_"Congratulations, you solved my little puzzle.")
+					npc_says(_"I give you this as a small reward.")
+					add_item("Dexterity Pill", 1)
+				else
+					-- Tux solved the puzzle without retrying!
+					npc_says(_"Wow... you solved it, and on your first time, too.")
+					npc_says(_"That's pretty good.")
+					npc_says(_"Here, take this as reward.")
+					tux_says(_"Oh, thank you.")
+					add_item("Dexterity Pill", 1)
+					add_item("Strength Pill", 1)
+				end
+				add_cookie("JohnPuzzleLocked")
+			end
+		end
+
+		-- if Tux ran into false teleporter of the storage room
+		if (has_cookie("John28to28_teleported")) and
+		   (not has_cookie("28to28_hide")) then
+			tux_says(_"What was that?!")
+			npc_says(_"See..?")
+			npc_says(_"It's not as easy as you thought.")
+			npc_says(_"Take a closer look at the storage room again...")
+			tux_says(_"Okay.")
+			add_cookie("28to28_hide")
+		end
+
+		-- Puzzle is neither solved nor locked:
+		if (not has_cookie("JohnPuzzleLocked")) or
+		(not has_cookie("JohnPuzzleSolved")) then
+
+			-- Tux walked through the false teleporter one time
+			if (not has_cookie("JohnProblems1")) then
+				if (has_cookie("JohnPuzzlefalseA1")) or
+				   (has_cookie("JohnPuzzlefalseB1")) or
+				   (has_cookie("JohnPuzzlefalseC1")) then
+					npc_says(_"Looks like you had some problems?")
+					tux_says(_"Yes...")
+					npc_says(_"Ok, I'll give you another chance.")
+					npc_says(_"But it will be your last chance, so take care...")
+					tux_says(_"Thanks.")
+					add_cookie("JohnProblems1")
+				end
+			end
+
+			--Tux walked through the same teleporter twice (wtf?!)
+			
+			if ((has_cookie("JohnPuzzlefalseA1")) and
+				(has_cookie("JohnPuzzlefalseA2"))) or
+			   ((has_cookie("JohnPuzzlefalseB1")) and
+				(has_cookie("JohnPuzzlefalseB2"))) or
+			   ((has_cookie("JohnPuzzlefalseC1")) and
+				(has_cookie("JohnPuzzlefalseC2"))) or
+			   (has_cookie("John28to28_teleported2")) then
+				npc_says(_"Dude!")
+				npc_says(_"You made the same mistake twice.")
+				npc_says(_"You walked through the same teleporter twice!")
+				npc_says(_"What's wrong with your mind?")
+				tux_says(_"I-")
+				npc_says(_"How is that ever going to work?")
+				npc_says(_"I locked the puzzle.")
+				npc_says(_"It doesn't seem like you'd ever be able to solve it.")
+				add_cookie("JohnPuzzleLocked")
+			end
+			
+			if (not has_cookie("JohnPuzzleLocked")) then
+				-- Tux walked through the false teleporter second time
+				if (has_cookie("JohnPuzzlefalseA2")) or
+				   (has_cookie("JohnPuzzlefalseB2")) or
+				   (has_cookie("JohnPuzzlefalseC2")) then
+					npc_says(_"Sorry, seems like that puzzle was too hard for you.")
+					tux_says(_"But I-")
+					npc_says(_"It is locked now.")
+					tux_says(_"I was very close to the solution.")
+					npc_says(_"Well, why did you still fail if you were so close?")
+					tux_says(_"Hmpf..")
+					add_cookie("JohnPuzzleLocked")
+				end
+			end
+
+		end 	-- of  'if (not has_cookie("JohnPuzzleLocked")) or
+			--  (not has_cookie("JohnPuzzleSolved")) then'
+
+	end -- of 'if (has_cookie("JohnPuzzleStarted")) then'
+
+	set_rush_tux(0, "John")
 }
 ----------------------------------------------------------------------
 
-Nr=0 Text=_"We apologize, this is under construction."
+Nr=0 Text=_"Hello."
 LuaCode={
-	npc_says(_"Well, do you expect anything different, when you click on it??")
+	npc_says(_"Hello.")
+	npc_says(_"Errr... How did you get in here?!")
+	tux_says(_"I just walked through the door.")
+	npc_says(_"And your name?")
+	tux_says(_"I'm " .. get_player_name() .. _".")
+	npc_says(_"And you were not slaughtered by the bots outside?")
+	tux_says(_"Apparently, I am still alive.")
+	tux_says(_"Does that answer your question?")
+	npc_says(_"It does... smart aleck.")
 	hide(0) show(1)
 }
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"Click me."
+Nr=1 Text=_"What do you do here?"
 LuaCode={
-	npc_says(_"Oh, look, it magically completed itself!!")
-	npc_says(_"No, not really, just kidding.")
+	npc_says(_"I'm living here.")
+	npc_says(_"What did you expect?")
+	tux_says(_"Okay, that question was a little stupid.")
+	hide(1) show(2)
 }
 ----------------------------------------------------------------------
 
-Nr=99 Text=_"Exit"
+Nr=2 Text=_"Are there any other people around here?"
 LuaCode={
-	npc_says(_"Finally...")
+	npc_says(_"Not that I know.")
+	npc_says(_"Only you and me.")
+	tux_says(_"Okay, that question was also a little stupid.")
+	hide(2) show(3)
+}
+----------------------------------------------------------------------
+
+Nr=3 Text=_"Isn't it a little boring in here, isolated from the outer world?"
+LuaCode={
+	npc_says(_"I'm fine.")
+	npc_says(_"When I'm bored, I try to make up some puzzles...")
+	hide(3) show(4, 5)
+}
+----------------------------------------------------------------------
+
+Nr=4 Text=_"'Puzzles'?"
+LuaCode={
+	npc_says(_"Yeah, puzzles.")
+	npc_says(_"Do you want to try one?")
+	hide(4, 5) show(10, 11)
+}
+----------------------------------------------------------------------
+
+Nr=5 Text=_"Sounds interesting."
+LuaCode={
+	tux_says(_"Can you tell me more about it?")
+	npc_says(_"No.")
+	npc_says(_"But you can experience it for yourself.")
+	npc_says(_"Interested?")
+	hide(4, 5) show(10, 11)
+}
+----------------------------------------------------------------------
+
+Nr=10 Text=_"Yeah, sure!"
+LuaCode={
+	npc_says(_"Ok, so the entrance is in my storage room.")
+	npc_says(_"Shouldn't be too difficult to find.")
+	tux_says(_"Ok, let me take a look.")
+	npc_says(_"Wait, wait. I'll give you a hint:")
+	npc_says(_"'Looking from above hostiles may appear as salvation.'")
+	tux_says(_"Uh, ok, thanks.")
+	add_cookie("JohnPuzzleStarted")
 	end_dialog()
-	show(0)
+	hide(10, 11)
+}
+----------------------------------------------------------------------
+
+Nr=11 Text=_"Hmm... I don't trust you."
+LuaCode={
+	tux_says(_"I think, it's a trap!")
+	npc_says(_"Well, you can leave at any time.")
+	npc_says(_"I wish you would!")
+	add_cookie("john_dislike")
+	hide(10, 11)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=99 Text=_"See you."
+LuaCode={
+	if (has_cookie("john_dislike")) then
+		npc_says(_"I don't think so...")
+	else
+		npc_says(_"See you later.")
+	end
+	end_dialog()
 }
 ----------------------------------------------------------------------
 
