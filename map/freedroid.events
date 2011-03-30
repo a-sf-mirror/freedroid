@@ -597,16 +597,34 @@ Name=_"From32to28"
 Trigger at label="28to32"
 Silent=1
 LuaCode={
-	teleport("32from28")
+	if (not has_cookie("JohnPuzzleLocked")) then
+		if (not has_cookie("JohnPuzzleSolved")) and
+		   (has_cookie("JohnPuzzleStarted")) then
+			teleport("32from28")
+			set_rush_tux(1, "John")
+		end
+	end
 }
 * End of trigger *
 
 * New event trigger *
-Name=_"From28to32falseone"
-Trigger at label="28to32falsebackto28"
+Name=_"From28to28"
+Trigger at label="28to28"
 Silent=1
 LuaCode={
-	teleport("28from32")
+	if (not has_cookie("JohnPuzzleLocked")) then
+		if (not has_cookie("JohnPuzzleSolved")) and
+		   (has_cookie("JohnPuzzleStarted")) then
+				if (not has_cookie("John28to28_teleported2")) then
+					teleport("28from32")
+					set_rush_tux(1, "John")
+						if (has_cookie("John28to28_teleported")) then
+							add_cookie("John28to28_teleported2")
+						end
+					add_cookie("John28to28_teleported")
+				end
+		end
+	end
 }
 * End of trigger *
 
@@ -643,37 +661,50 @@ LuaCode={
 ##############
 * New event trigger *
 Name=_"Falseteleporter1"
-Trigger at label="32to28false1"
+Trigger at label="32to28falseA"
 Silent=1
 LuaCode={
 	teleport("28from32")
+	if has_cookie("JohnPuzzlefalseA1") then
+		add_cookie("JohnPuzzlefalseA2")
+	end
+	add_cookie("JohnPuzzlefalseA1")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"Falseteleporter2"
-Trigger at label="32to28false2"
+Trigger at label="32to28falseB"
 Silent=1
 LuaCode={
 	teleport("28from32")
+	if has_cookie("JohnPuzzlefalseB1") then
+		add_cookie("JohnPuzzlefalseB2")
+	end
+	add_cookie("JohnPuzzlefalseB1")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"Falseteleporter3"
-Trigger at label="32to28false3"
+Trigger at label="32to28falseC"
 Silent=1
 LuaCode={
 	teleport("28from32")
+		if has_cookie("JohnPuzzlefalseC1") then
+		add_cookie("JohnPuzzlefalseC2")
+	end
+	add_cookie("JohnPuzzlefalseC1")
 }
 * End of trigger *
 
 * New event trigger *
 Name=_"32to38riddlesolved"
-Trigger at label="32to28true"
+Trigger at label="32to28trueD"
 Silent=1
 LuaCode={
 	teleport("28from32success")
+	add_cookie("JohnPuzzleSolved")
 }
 * End of trigger *
 
