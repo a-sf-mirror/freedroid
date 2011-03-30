@@ -40119,6 +40119,8 @@ obstacleextensions
 wp
 Nr.=  0 x=  88 y=  21 rnd=0	 c:    1
 Nr.=  1 x=  87 y=  21 rnd=0	 c:    0
+Nr.=  2 x=  21 y=   2 rnd=0	 c:    3
+Nr.=  3 x=  24 y=   1 rnd=0	 c:    2
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 45
