@@ -32754,6 +32754,7 @@ t23 x9.46 y10.46
 t23 x17.44 y18.45
 t23 x17.48 y1.51
 t23 x26.41 y10.52
+t245 x16.30 y9.36
 /obsdata
 plabelinfolvl
 x=26 y=10 name="32to28falseC"
@@ -32765,6 +32766,9 @@ x=17 y=10 name="32from28"
 piteminfolvl
 /piteminfolvl
 obstacleextensions
+idx=83 type=32 data={
+	Looking from above, hostiles may appear as salvation.
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  15 y=  26 rnd=0	 c:    1   6   5  12   3   2   4
