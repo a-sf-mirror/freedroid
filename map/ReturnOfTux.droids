@@ -289,7 +289,8 @@ Level=24
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=25
-
+Number of Random Droids=50-60
+Random Droid Types: 123, 247, 249, 302, 329, 476, 493, 571
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
