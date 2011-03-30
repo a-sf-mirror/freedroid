@@ -29230,6 +29230,7 @@ t413 x46.31 y49.85
 t414 x46.79 y49.34
 t415 x46.32 y48.75
 t416 x45.70 y49.31
+t372 x60.87 y49.34
 /obsdata
 plabelinfolvl
 x=9 y=7 name="123"
@@ -29282,6 +29283,13 @@ idx=675 type=32 data={
 }
 idx=702 type=32 data={
 	To storage...
+}
+idx=763 type=31 data={
+	it: n="Source Book of Network Mapper"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+	it: n="Source Book of Broadcast virus"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+	it: n="Dexterity Capsule"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+	it: n="Bottled ice"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+	it: n="Doc-in-a-can"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 }
 /obstacleextensions
 wp
