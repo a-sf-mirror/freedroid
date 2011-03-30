@@ -28789,9 +28789,9 @@ x=59 y=59 name="999"
 x=63 y=22 name="296"
 x=41 y=45 name="28from32"
 x=41 y=69 name="28to32"
-x=50 y=69 name="28to32falsebackto28"
-x=43 y=49 name="28from32success"
+x=43 y=49 name="28from32"
 x=49 y=54 name="JohnStartGameSquare"
+x=50 y=69 name="28to28"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -32751,10 +32751,10 @@ t133 x9.84 y8.84
 t133 x8.84 y8.84
 /obsdata
 plabelinfolvl
-x=26 y=10 name="32to28false2"
-x=17 y=1 name="32to28false1"
-x=9 y=10 name="32to28false3"
-x=17 y=18 name="32to28true"
+x=26 y=10 name="32to28falseC"
+x=17 y=1 name="32to28falseA"
+x=9 y=10 name="32to28falseB"
+x=17 y=18 name="32to28trueD"
 x=17 y=10 name="32from28"
 /plabelinfolvl
 piteminfolvl
