@@ -27903,7 +27903,7 @@ jump target north: -1
 jump target south: -1
 jump target east: -1
 jump target west: 27
-Name of this level=_"Some temple"
+Name of this level=_"Some sanctuary"
 BgSong=TheBeginning.ogg
 beginning_of_map
  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30  30 
