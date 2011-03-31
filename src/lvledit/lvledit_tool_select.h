@@ -36,7 +36,7 @@ point selection_start(void);
 point selection_len(void);
 int selection_type(void);
 
-int level_editor_can_cycle_object(void);
+int level_editor_can_cycle_marked_object(void);
 void level_editor_cycle_marked_object(void);
 void level_editor_cut_selection(void);
 void level_editor_copy_selection(void);
