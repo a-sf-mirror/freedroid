@@ -1762,27 +1762,27 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BOTLINE_02_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_02_S].filename = "iso_botline_0005.png";
 	
-	block_2param(ISO_BOTLINE_03_N, 5, 2);
+	block_2param(ISO_BOTLINE_03_N, 4.2, 1.70);
 	obstacle_map[ISO_BOTLINE_03_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_03_N].filename = "iso_botline_0006.png";
 	
-	block_2param(ISO_BOTLINE_03_E, 2, 5);
+	block_2param(ISO_BOTLINE_03_E, 1.70, 4.2);
 	obstacle_map[ISO_BOTLINE_03_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_03_E].filename = "iso_botline_0007.png";
 	
-	block_2param(ISO_BOTLINE_04_N, 5, 2);
+	block_2param(ISO_BOTLINE_04_N, 4.5, 1.70);
 	obstacle_map[ISO_BOTLINE_04_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_04_N].filename = "iso_botline_0008.png";
 	
-	block_2param(ISO_BOTLINE_04_E, 2, 5);
+	block_2param(ISO_BOTLINE_04_E, 1.70, 4.5);
 	obstacle_map[ISO_BOTLINE_04_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_04_E].filename = "iso_botline_0009.png";
 	
-	block_2param(ISO_BOTLINE_05_N, 5, 2);
+	block_2param(ISO_BOTLINE_05_N, 4.5, 1.70);
 	obstacle_map[ISO_BOTLINE_05_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_05_N].filename = "iso_botline_0010.png";
 	
-	block_2param(ISO_BOTLINE_05_E, 2, 5);
+	block_2param(ISO_BOTLINE_05_E, 1.70, 4.5);
 	obstacle_map[ISO_BOTLINE_05_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_05_E].filename = "iso_botline_0011.png";
 
