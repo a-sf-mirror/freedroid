@@ -49,6 +49,18 @@ SForce: T=*** StartLabel="***" Faction="ms" UseDialog="AfterTakeover" Fixed="0" 
 (XXX are optional but don't have default values, specify correctly if used)
 
 ----------------------------------------------------------------------
+For T=	 :available droids:
+123 139 247 249 296 302 329 420 476 493 516 543 571 598 603 614 615 629 711 742 751 821 834 833 999
+
+		 :avaiable NPCs:
+PRO DOC GUA DIX MUM FSC WOR GUB COO KEV JAS TAN BAR FEM TRM
+
+See .map/freedroid.droid_archetypes for more information.
+----------------------------------------------------------------------
+Factions are defined in /src/faction.c
+----------------------------------------------------------------------
+Dialogs can be found in /dialogs/
+----------------------------------------------------------------------
 *** Beginning of Droid Data ***
 ----------------------------------------------------------------------
 ** Beginning of new Level **
