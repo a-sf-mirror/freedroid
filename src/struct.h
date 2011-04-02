@@ -89,6 +89,8 @@ struct image {
 	int texture_has_been_created;
 #ifdef HAVE_LIBGL
 	GLuint texture;
+#else
+	int texture;
 #endif
 	float tex_x0;
 	float tex_x1;
