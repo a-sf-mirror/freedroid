@@ -42,7 +42,7 @@
 
 //--------------------
 // 
-#define MAX_NUMBER_OF_LIGHT_SOURCES 100
+#define MAX_NUMBER_OF_LIGHT_SOURCES 200
 
 /* Position and strength of a light source */
 struct light_source {
