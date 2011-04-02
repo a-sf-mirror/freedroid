@@ -1114,7 +1114,7 @@ void save_screenshot(const char *filename, int width)
 	Activate_Conservative_Frame_Computation();
 	SDL_Surface *NewThumbnail = NULL;
 	SDL_Surface *FullView = Screen;
-	GLvoid *imgdata = malloc((GameConfig.screen_width + 2) * (GameConfig.screen_height + 2) * 4);
+	void *imgdata = malloc((GameConfig.screen_width + 2) * (GameConfig.screen_height + 2) * 4);
 	float scale_factor = 1;
 	if (width)
 		scale_factor = (float) width / GameConfig.screen_width;
