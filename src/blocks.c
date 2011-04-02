@@ -380,6 +380,8 @@ void Load_Enemy_Surfaces(void)
 	// and which of them have not.
 	//
 	for (j = 0; j < ENEMY_ROTATION_MODELS_AVAILABLE; j++) {
+		chat_portrait_of_droid[j].surface = NULL;
+		chat_portrait_of_droid[j].texture_has_been_created = FALSE;
 		for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 			enemy_images[j][i][0].surface = NULL;
 		}
