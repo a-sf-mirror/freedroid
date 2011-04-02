@@ -452,6 +452,14 @@ static void load_droid_portrait(int type)
 
 struct image *get_droid_portrait_image(int type)
 {
+	if (type >= ENEMY_ROTATION_MODELS_AVAILABLE) {
+		ErrorMessage(__FUNCTION__, "Tried to load a portrait image of a bot those type is #%d, but the maximum configured value is %d.\n"
+				                   "ENEMY_ROTATION_MODELS_AVAILABLE should be raised.", 
+				                   PLEASE_INFORM, IS_FATAL,
+				                   type, ENEMY_ROTATION_MODELS_AVAILABLE - 1);
+		return NULL;
+	}
+	
 	if (!image_loaded(&chat_portrait_of_droid[type])) {
 		load_droid_portrait(type);
 	}
