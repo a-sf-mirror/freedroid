@@ -87,6 +87,7 @@ void end_image_batch()
 
 static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)
 {
+#ifdef HAVE_LIBGL
 	gl_begin();
 	glTexCoord2f(tx0, ty0);
 	glVertex2i(x1, y1);
@@ -96,6 +97,7 @@ static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float
 	glVertex2i(x2, y2);
 	glTexCoord2f(tx1, ty0);
 	glVertex2i(x2, y1);
+#endif
 }
 
 /**
@@ -105,6 +107,7 @@ static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float
  */
 static void gl_display_image(struct image *img, int x, int y, struct image_transformation *t)
 {
+#ifdef HAVE_LIBGL
 	// Compute image coordinates according to scale factor
 	int xmax = img->w;
 	int ymax = img->h;
@@ -123,7 +126,6 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 	xmax += x;
 	ymax += y;
 
-#ifdef HAVE_LIBGL
 	// Bind the texture if required
 	if (img->texture != active_tex) {
 			gl_end();
