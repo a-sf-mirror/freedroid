@@ -24411,6 +24411,15 @@ it: n="Headlamp"  X=6.356940  Y=22.473343  MDur=-1  CDur=0.000000  AClip=0  Mult
 it: n="Brain stimulator"  X=7.621753  Y=22.693378  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
+idx=289 type=32 data={
+	question mark sign
+}
+idx=290 type=32 data={
+	exclamation mark sign
+}
+idx=291 type=32 data={
+	less than sign
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  47 y=   5 rnd=0	 c:    1   2
