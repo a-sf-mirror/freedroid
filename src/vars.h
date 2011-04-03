@@ -181,6 +181,8 @@ char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES] = {
 	"iso_water_sidewalk_02.png",
 	"iso_water_sidewalk_03.png",
 	"iso_water_sidewalk_04.png",
+	"iso_water_edge_0013.png",
+	"iso_water_edge_0014.png",
 };
 
 tux_t Me;
