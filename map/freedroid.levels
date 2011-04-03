@@ -47893,7 +47893,7 @@ t47 x38.41 y23.59
 t47 x70.44 y28.64
 t47 x64.41 y28.60
 t47 x38.43 y20.67
-t47 x38.40 y17.64
+t47 x38.51 y17.62
 t47 x78.52 y26.66
 t47 x78.42 y25.65
 t47 x76.61 y17.45
@@ -48004,6 +48004,30 @@ plabelinfolvl
 piteminfolvl
 /piteminfolvl
 obstacleextensions
+idx=962 type=32 data={
+	Power generator, don't change settings!
+}
+idx=963 type=32 data={
+	Power generator, don't change settings!
+}
+idx=1675 type=32 data={
+	Insert coin!!!!
+}
+idx=1676 type=32 data={
+	You always loose?  Play again, I am sure you'll win next time!
+}
+idx=1775 type=32 data={
+	This is only decoration for good atmosphere. Don't cut plastic lawn!
+}
+idx=1774 type=32 data={
+	Plastic leaves, do not eat!
+}
+idx=1913 type=32 data={
+	Caution: nothing. - There is absolutely nothing dangerous in the area!
+}
+idx=2056 type=32 data={
+	Stepping on this pad will affect absolutely nothing. LOL!
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  89 y=  10 rnd=0	 c:    1
