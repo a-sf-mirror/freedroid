@@ -1877,6 +1877,44 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_WEAPON_CRATE].label = "Weapon Crate";
 	obstacle_map[ISO_WEAPON_CRATE].filename = "iso_weapon_crate.png";
 	
+	// dead bodies
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_1].filename = "default_dead_body_00_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_1_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_1_1].filename = "default_dead_body_02_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_1_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_2_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_2_1].filename = "default_dead_body_04_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_2_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_3_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_3_1].filename = "default_dead_body_06_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_3_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_4_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_4_1].filename = "default_dead_body_08_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_4_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_5_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_5_1].filename = "default_dead_body_10_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_5_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_6_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_6_1].filename = "default_dead_body_12_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_6_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_7_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_7_1].filename = "default_dead_body_14_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_7_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].filename = "default_dead_human_00_0001.png";
+	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].flags &= ~NEEDS_PRE_PUT;
+
+
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
 		if (!obstacle_map[i].filename) {
 			obstacle_map[i].filename = MyMalloc(100);	// that should be sufficient for file names...
