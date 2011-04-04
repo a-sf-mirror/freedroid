@@ -380,8 +380,8 @@ void Load_Enemy_Surfaces(void)
 	// and which of them have not.
 	//
 	for (j = 0; j < ENEMY_ROTATION_MODELS_AVAILABLE; j++) {
-		chat_portrait_of_droid[j].surface = NULL;
-		chat_portrait_of_droid[j].texture_has_been_created = FALSE;
+		struct image empty = EMPTY_IMAGE;
+		chat_portrait_of_droid[j] = empty;
 		for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
 			enemy_images[j][i][0].surface = NULL;
 		}
@@ -498,8 +498,8 @@ void load_obstacle(int i)
 		strcat(shadow_file_name, "shadow_");
 		strcat(shadow_file_name, &(fpath[strlen(fpath) - 8]));
 		if (find_file(shadow_file_name, GRAPHICS_DIR, fpath, 1)) {
-			obstacle_map[i].shadow_image.surface = NULL;
-			obstacle_map[i].shadow_image.texture_has_been_created = FALSE;
+			struct image empty = EMPTY_IMAGE;
+			obstacle_map[i].shadow_image = empty;
 			return;
 		} else {
 			load_image(&obstacle_map[i].shadow_image, shadow_file_name, TRUE);

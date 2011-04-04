@@ -310,9 +310,8 @@ There are more skills defined, than the maximum number specified in the code!", 
 		ProgramToFill->description = ReadAndMallocStringFromData(ProgramPointer, "Program description=_\"", "\"");
 		ProgramToFill->icon_name = ReadAndMallocStringFromData(ProgramPointer, "Picture=\"", "\"");
 
-		ProgramToFill->icon_surface.surface = NULL;
-		ProgramToFill->icon_surface.texture_has_been_created = 0;
-		ProgramToFill->icon_surface.tex_w = 0;
+		struct image empty = EMPTY_IMAGE;
+		ProgramToFill->icon_surface = empty;
 
 		ProgramToFill->effect = ReadAndMallocStringFromData(ProgramPointer, "Effect=\"", "\"");
 
