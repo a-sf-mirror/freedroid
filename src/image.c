@@ -142,11 +142,10 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 	}
 
 	if (t->highlight) {
-		// Highlight? Draw the texture again with 1, 1 blending factors
+		// Highlight? Draw the texture again with additive blending factors
 		// This increases the lightness too much, but is a quick and easy solution
 		gl_end();
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_ONE, GL_ONE);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		gl_emit_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
 		gl_end();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
