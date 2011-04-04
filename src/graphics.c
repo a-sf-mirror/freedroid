@@ -907,9 +907,16 @@ void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 	SDL_PixelFormat *fmt = Screen->format;
 	SDL_Surface *surface;
 
+	// SDL_FillRect and SDL_BlitSurface clip the rectangle to fit on the surface, but
+	// callers of sdl_draw_rectangle expect it to be unchanged, so store it.
+	SDL_Rect old_rect = (*rect);
+
 	if (a == SDL_ALPHA_OPAQUE) {
 		// Do a rectangle fill operation if the input rectangle is opaque.
 		SDL_FillRect(Screen, rect, SDL_MapRGB(Screen->format, r, g, b));
+
+		// Restore the old rectangle.
+		(*rect) = old_rect;
 		return;
 	}
 
@@ -926,6 +933,9 @@ void sdl_draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
 	// Blit the surface on screen and free it.
 	SDL_BlitSurface(surface, NULL, Screen, rect);
 	SDL_FreeSurface(surface);
+
+	// Restore the old rectangle.
+	(*rect) = old_rect;
 }
 
 void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a)
