@@ -1914,6 +1914,16 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].filename = "default_dead_human_00_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].flags &= ~NEEDS_PRE_PUT;
 
+	obstacle_map[ISO_LADDER_1].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_LADDER_1].filename = "iso_ladder_0001.png";
+	obstacle_map[ISO_LADDER_1].flags &= ~NEEDS_PRE_PUT;
+	
+	obstacle_map[ISO_LADDER_2].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_LADDER_2].filename = "iso_ladder_0002.png";
+	obstacle_map[ISO_LADDER_2].flags &= ~NEEDS_PRE_PUT;
+	
+	
+
 
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
 		if (!obstacle_map[i].filename) {
