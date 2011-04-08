@@ -1921,8 +1921,32 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LADDER_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_LADDER_2].filename = "iso_ladder_0002.png";
 	obstacle_map[ISO_LADDER_2].flags &= ~NEEDS_PRE_PUT;
-	
-	
+
+
+
+	block_2param(ISO_WRECKED_CAR_1, 1.4, 2.8);
+	obstacle_map[ISO_WRECKED_CAR_1].filename = "iso_wrecked_car_0001.png";
+	obstacle_map[ISO_WRECKED_CAR_1].flags &= ~BLOCKS_VISION_TOO;
+
+
+	block_2param(ISO_WRECKED_CAR_2, 2.8, 1.4);
+	obstacle_map[ISO_WRECKED_CAR_2].filename = "iso_wrecked_car_0002.png";
+	obstacle_map[ISO_WRECKED_CAR_2].flags &= ~BLOCKS_VISION_TOO;
+
+
+	block_2param(ISO_WRECKED_CAR_3, 1.4, 2.8);
+	obstacle_map[ISO_WRECKED_CAR_3].filename = "iso_wrecked_car_0003.png";
+	obstacle_map[ISO_WRECKED_CAR_3].flags &= ~BLOCKS_VISION_TOO;
+
+
+
+	block_2param(ISO_WRECKED_CAR_4, 2.8, 1.4);
+	obstacle_map[ISO_WRECKED_CAR_4].filename = "iso_wrecked_car_0004.png";
+	obstacle_map[ISO_WRECKED_CAR_4].flags &= ~BLOCKS_VISION_TOO;
+
+
+
+
 
 
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
