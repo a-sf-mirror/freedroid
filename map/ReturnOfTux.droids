@@ -174,7 +174,6 @@ Random Droid Types: 249, 516, 629
 Level=8
 Number of Random Droids=60-80
 Random Droid Types: 123, 139
-
 SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" UseDialog="Engel" ShortLabel=_"Blue Guy"
 SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" UseDialog="Geist" ShortLabel=_"Blue Guy"
 SForce: T=302 Marker=2008 StartLabel="The302InFrontOfTheTempleStart"
@@ -297,6 +296,7 @@ Level=23
 ** Beginning of new Level **
 Level=24
 
+SForce: T=GUN Marker=1024 Faction="ms" StartLabel="autogun" UseDialog="Geist" ShortLabel=_"Autogun"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **

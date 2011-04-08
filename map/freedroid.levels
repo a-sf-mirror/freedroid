@@ -24267,6 +24267,7 @@ t431 x32.49 y84.46
 t432 x34.49 y84.52
 /obsdata
 plabelinfolvl
+x=48 y=48 name="autogun"
 /plabelinfolvl
 piteminfolvl
 it: n="Big kitchen knife"  X=1.400179  Y=1.424040  MDur=10  CDur=6.000000  AClip=0  Multi=1 
@@ -24439,6 +24440,8 @@ Nr.=  2 x=  47 y=   6 rnd=0	 c:    1   0
 Nr.=  3 x=  50 y=   5 rnd=1	 c:    4   5
 Nr.=  4 x=  51 y=   5 rnd=1	 c:    3   5
 Nr.=  5 x=  50 y=   6 rnd=1	 c:    4   3
+Nr.=  6 x=  48 y=  48 rnd=0	 c:    7
+Nr.=  7 x=  49 y=  48 rnd=0	 c:    6
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 25
