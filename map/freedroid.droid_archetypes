@@ -1102,19 +1102,19 @@ Is this 'droid' a human : 0
 Filename prefix for graphics="terminal"
 Notes concerning this droid=_"This is a terminal."
 
-** Start of new Robot: ** 
+** Start of new Robot: **
 Droidname: GUN
 Default description:_"Autogun"
 Droid uses portrait rotation series with prefix="615"
 Maximum speed of this droid: 0
 Class of this droid: 7
 Drops item class=-1
-Maximum energy of this droid: 210
+Maximum energy of this droid: 410
 Rate of healing: 4
-Experience_Reward gained for destroying one of this type: 700
+Experience_Reward gained for destroying one of this type: 300
 Aggression distance of this droid=16
-Time spent eyeing Tux=0.75
-Weapon item="Laser pistol"
+Time spent eyeing Tux=2
+Weapon item="Autogun Laser Pistol"
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
@@ -1125,10 +1125,10 @@ Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
 Chance of this robot scoring a hit=65
-Time to recover after getting hit=0.20
+Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Filename prefix for graphics="615"
-Notes concerning this droid=_"This version is the one mainly used by the military." 
+Notes concerning this droid=_"Autogun. --todo"
 
 
 
