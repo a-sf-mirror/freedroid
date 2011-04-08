@@ -835,19 +835,19 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_W_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_W_SOFA].flags &= ~BLOCKS_VISION_TOO;
 
-	block_2param(ISO_TREE_1, 1.2, 1.2);
+	block_2param(ISO_TREE_1, 0.6, 0.6);
 	obstacle_map[ISO_TREE_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TREE_1].filename = "iso_obstacle_0113.png";
-	block_2param(ISO_TREE_2, 1.0, 1.0);
+	block_2param(ISO_TREE_2, 0.6, 0.6);
 	obstacle_map[ISO_TREE_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TREE_2].filename = "iso_obstacle_0114.png";
-	block_2param(ISO_TREE_3, 1.1, 1.1);
+	block_2param(ISO_TREE_3, 0.6, 0.8);
 	obstacle_map[ISO_TREE_3].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TREE_3].filename = "iso_obstacle_0115.png";
-	block_2param(ISO_TREE_4, 1.2, 1.2);
+	block_2param(ISO_TREE_4, 0.6, 0.6);
 	obstacle_map[ISO_TREE_4].filename = "iso_tree_0000.png";
 	obstacle_map[ISO_TREE_4].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_TREE_5, 1.2, 1.2);
+	block_2param(ISO_TREE_5, 1.3, 1.3);
 	obstacle_map[ISO_TREE_5].filename = "iso_tree_0001.png";
 	obstacle_map[ISO_TREE_5].flags &= ~BLOCKS_VISION_TOO;
 
