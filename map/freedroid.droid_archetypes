@@ -1108,7 +1108,7 @@ Default description:_"Autogun"
 Droid uses portrait rotation series with prefix="615"
 Maximum speed of this droid: 0
 Class of this droid: 7
-Drops item class=-1
+Drops item class=9
 Maximum energy of this droid: 410
 Rate of healing: 4
 Experience_Reward gained for destroying one of this type: 300
