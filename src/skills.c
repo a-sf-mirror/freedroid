@@ -555,7 +555,7 @@ static int CursorIsOnWhichSpellPageButton(int x, int y)
 	// at least, the row of skill icons.
 	//
 	for (i = 0; i < NUMBER_OF_SKILL_PAGES; i++) {
-		if (x < SkillScreenRect.x + SPELL_LEVEL_BUTTONS_X + (i + 1) * SPELL_LEVEL_BUTTON_WIDTH)
+		if (x < SkillScreenRect.x + (2.0 * ((float)GameConfig.screen_width / 640.0)) + SPELL_LEVEL_BUTTONS_X + (i + 1) * SPELL_LEVEL_BUTTON_WIDTH)
 			return i;
 	}
 
