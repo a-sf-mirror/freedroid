@@ -4356,6 +4356,42 @@ Item motion class="2hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
+** Start of new item specification subsection **
+Item name=_"Autogun Laser Pistol"
+Item min class for drop=-1
+Item max class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_laser_pistol"
+Item uses rotation series with prefix="weapons/laser_pistol"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=-1
+Dexterity minimum required to wear/wield this item=-1
+Base item duration=100
+plus duration modifier=10
+File or directory name for inventory image="weapons/bot_ranged.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=500
+inventory_size_x=2
+inventory_size_y=1
+Item description text=_"A basic laser, but it has good uses in certain situations. No warranty of any kind, though."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=1.000000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=70.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=3
+Item as gun: modifier for damage of bullets=6
+Item as gun: bullet_image_type="laser_rifle"
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="laser_ammunition"
+Item as gun: ammo clip size=1
+Item as gun: weapon requires both hands="no"
+Item motion class="1hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
+
 
 *** End of item data section: ***
 
