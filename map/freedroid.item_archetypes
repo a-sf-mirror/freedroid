@@ -4371,13 +4371,13 @@ plus duration modifier=10
 File or directory name for inventory image="weapons/bot_ranged.png"
 Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=500
-inventory_size_x=2
+inventory_size_x=1
 inventory_size_y=1
-Item description text=_"A basic laser, but it has good uses in certain situations. No warranty of any kind, though."
+Item description text=_"This is the laser weapon of the autogun. If you see this item whilst normal gameplay, please make a bugreport."
 ----- the following part is only relevant for weapons -----
-Item as gun: recharging time=1.000000
+Item as gun: recharging time=1.100000
 Item as gun: reloading time=0.000000
-Item as gun: speed of bullets=70.000000
+Item as gun: speed of bullets=50.000000
 Item as gun: is melee weapon=0
 Item as gun: damage of bullets=3
 Item as gun: modifier for damage of bullets=6
