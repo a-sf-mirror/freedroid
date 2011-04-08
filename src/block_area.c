@@ -1709,19 +1709,19 @@ void init_obstacle_data(void)
 	block_2param(ISO_SECURITY_GATE_RED_S, 0.95, 1.05);
 	obstacle_map[ISO_SECURITY_GATE_RED_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SECURITY_GATE_RED_S].filename = "iso_security_gate_0004.png";
-	
+
 	block_2param(ISO_SECURITY_GATE_OPEN_E, 0.95, 1.05);
 	obstacle_map[ISO_SECURITY_GATE_OPEN_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SECURITY_GATE_OPEN_E].filename = "iso_security_gate_0005.png";
-	
+
 	block_2param(ISO_SECURITY_GATE_OPEN_S, 0.95, 1.05);
 	obstacle_map[ISO_SECURITY_GATE_OPEN_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SECURITY_GATE_OPEN_S].filename = "iso_security_gate_0006.png";
-	
+
 	block_2param(ISO_SECURITY_GATE_CLOSED_E, 0.95, 1.05);
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_E].filename = "iso_security_gate_0007.png";
-	
+
 	block_2param(ISO_SECURITY_GATE_CLOSED_S, 0.95, 1.05);
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_SECURITY_GATE_CLOSED_S].filename = "iso_security_gate_0008.png";
@@ -1741,47 +1741,47 @@ void init_obstacle_data(void)
 	block_2param(ISO_BOTLINE_01_N, 3, 2);
 	obstacle_map[ISO_BOTLINE_01_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_01_N].filename = "iso_botline_0000.png";
-	
+
 	block_2param(ISO_BOTLINE_01_E, 2, 3);
 	obstacle_map[ISO_BOTLINE_01_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_01_E].filename = "iso_botline_0001.png";
-	
+
 	block_2param(ISO_BOTLINE_02_E, 2.46, 1.94);
 	obstacle_map[ISO_BOTLINE_02_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_02_E].filename = "iso_botline_0002.png";
-	
+
 	block_2param(ISO_BOTLINE_02_N, 1.94, 2.46);
 	obstacle_map[ISO_BOTLINE_02_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_02_N].filename = "iso_botline_0003.png";
-	
+
 	block_2param(ISO_BOTLINE_02_W, 2.46, 1.94);
 	obstacle_map[ISO_BOTLINE_02_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_02_W].filename = "iso_botline_0004.png";
-	
+
 	block_2param(ISO_BOTLINE_02_S, 1.94, 2.46);
 	obstacle_map[ISO_BOTLINE_02_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_02_S].filename = "iso_botline_0005.png";
-	
+
 	block_2param(ISO_BOTLINE_03_N, 4.2, 1.70);
 	obstacle_map[ISO_BOTLINE_03_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_03_N].filename = "iso_botline_0006.png";
-	
+
 	block_2param(ISO_BOTLINE_03_E, 1.70, 4.2);
 	obstacle_map[ISO_BOTLINE_03_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_03_E].filename = "iso_botline_0007.png";
-	
+
 	block_2param(ISO_BOTLINE_04_N, 4.5, 1.70);
 	obstacle_map[ISO_BOTLINE_04_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_04_N].filename = "iso_botline_0008.png";
-	
+
 	block_2param(ISO_BOTLINE_04_E, 1.70, 4.5);
 	obstacle_map[ISO_BOTLINE_04_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_04_E].filename = "iso_botline_0009.png";
-	
+
 	block_2param(ISO_BOTLINE_05_N, 4.5, 1.70);
 	obstacle_map[ISO_BOTLINE_05_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_05_N].filename = "iso_botline_0010.png";
-	
+
 	block_2param(ISO_BOTLINE_05_E, 1.70, 4.5);
 	obstacle_map[ISO_BOTLINE_05_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BOTLINE_05_E].filename = "iso_botline_0011.png";
@@ -1813,19 +1813,19 @@ void init_obstacle_data(void)
 	block_2param(ISO_REACTOR_S, 4.5, 4);
 	obstacle_map[ISO_REACTOR_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_S].filename = "iso_reactor_1_0000.png";
-	
+
 	block_2param(ISO_REACTOR_E, 4, 4.5);
 	obstacle_map[ISO_REACTOR_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_E].filename = "iso_reactor_1_0001.png";
-	
+
 	block_2param(ISO_REACTOR_N, 4.5, 4);
 	obstacle_map[ISO_REACTOR_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_N].filename = "iso_reactor_1_0002.png";
-	
+
 	block_2param(ISO_REACTOR_W, 4, 4.5);
 	obstacle_map[ISO_REACTOR_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_REACTOR_W].filename = "iso_reactor_1_0003.png";
-	
+
 	block_2param(ISO_WALL_TERMINAL_S, 0.6, 0.4);
 	obstacle_map[ISO_WALL_TERMINAL_S].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_WALL_TERMINAL_S].filename = "iso_wall_terminal_0000.png";
@@ -1839,77 +1839,70 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_WALL_TERMINAL_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_WALL_TERMINAL_E].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_E].action = &terminal_connect_action;
-	
+
 	block_2param(ISO_WALL_TERMINAL_N, 0.6, 0.4);
 	obstacle_map[ISO_WALL_TERMINAL_N].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_WALL_TERMINAL_N].filename = "iso_wall_terminal_0004.png";
 	obstacle_map[ISO_WALL_TERMINAL_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_WALL_TERMINAL_N].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_N].action = &terminal_connect_action;
-	
+
 	block_2param(ISO_WALL_TERMINAL_W, 0.4, 0.6);
 	obstacle_map[ISO_WALL_TERMINAL_W].flags |= IS_CLICKABLE;
 	obstacle_map[ISO_WALL_TERMINAL_W].filename = "iso_wall_terminal_0006.png";
 	obstacle_map[ISO_WALL_TERMINAL_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_WALL_TERMINAL_W].label = _("Terminal");
 	obstacle_map[ISO_WALL_TERMINAL_W].action = &terminal_connect_action;
-	
+
 	block_2param(ISO_TURBINES_SMALL_W, 1.1, 1.8);
 	obstacle_map[ISO_TURBINES_SMALL_W].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TURBINES_SMALL_W].filename = "iso_turbines_small_0000.png";
-	
+
 	block_2param(ISO_TURBINES_SMALL_N, 1.8, 1.05);
 	obstacle_map[ISO_TURBINES_SMALL_N].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TURBINES_SMALL_N].filename = "iso_turbines_small_0001.png";
-	
+
 	block_2param(ISO_TURBINES_SMALL_E, 1.1, 1.8);
 	obstacle_map[ISO_TURBINES_SMALL_E].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TURBINES_SMALL_E].filename = "iso_turbines_small_0002.png";
-	
+
 	block_2param(ISO_TURBINES_SMALL_S, 1.8, 1.05);
 	obstacle_map[ISO_TURBINES_SMALL_S].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TURBINES_SMALL_S].filename = "iso_turbines_small_0003.png";
-	
+
 	obstacle_map[ISO_WEAPON_CRATE].flags |= DROPS_RANDOM_TREASURE;
 	block_2param(ISO_WEAPON_CRATE, 1.3, 1.3);
 	obstacle_map[ISO_WEAPON_CRATE].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_WEAPON_CRATE].action = &barrel_action;
 	obstacle_map[ISO_WEAPON_CRATE].label = "Weapon Crate";
 	obstacle_map[ISO_WEAPON_CRATE].filename = "iso_weapon_crate.png";
-	
+
 	// dead bodies
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_1].filename = "default_dead_body_00_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_1_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_1_1].filename = "default_dead_body_02_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_1_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_2_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_2_1].filename = "default_dead_body_04_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_2_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_3_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_3_1].filename = "default_dead_body_06_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_3_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_4_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_4_1].filename = "default_dead_body_08_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_4_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_5_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_5_1].filename = "default_dead_body_10_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_5_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_6_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_6_1].filename = "default_dead_body_12_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_6_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_7_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_7_1].filename = "default_dead_body_14_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_7_1].flags &= ~NEEDS_PRE_PUT;
-	
+
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].filename = "default_dead_human_00_0001.png";
 	obstacle_map[ISO_DEFAULT_DEAD_BODY_0_2].flags &= ~NEEDS_PRE_PUT;
@@ -1917,36 +1910,25 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_LADDER_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_LADDER_1].filename = "iso_ladder_0001.png";
 	obstacle_map[ISO_LADDER_1].flags &= ~NEEDS_PRE_PUT;
-	
 	obstacle_map[ISO_LADDER_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_LADDER_2].filename = "iso_ladder_0002.png";
 	obstacle_map[ISO_LADDER_2].flags &= ~NEEDS_PRE_PUT;
-
-
 
 	block_2param(ISO_WRECKED_CAR_1, 1.4, 2.8);
 	obstacle_map[ISO_WRECKED_CAR_1].filename = "iso_wrecked_car_0001.png";
 	obstacle_map[ISO_WRECKED_CAR_1].flags &= ~BLOCKS_VISION_TOO;
 
-
 	block_2param(ISO_WRECKED_CAR_2, 2.8, 1.4);
 	obstacle_map[ISO_WRECKED_CAR_2].filename = "iso_wrecked_car_0002.png";
 	obstacle_map[ISO_WRECKED_CAR_2].flags &= ~BLOCKS_VISION_TOO;
-
 
 	block_2param(ISO_WRECKED_CAR_3, 1.4, 2.8);
 	obstacle_map[ISO_WRECKED_CAR_3].filename = "iso_wrecked_car_0003.png";
 	obstacle_map[ISO_WRECKED_CAR_3].flags &= ~BLOCKS_VISION_TOO;
 
-
-
 	block_2param(ISO_WRECKED_CAR_4, 2.8, 1.4);
 	obstacle_map[ISO_WRECKED_CAR_4].filename = "iso_wrecked_car_0004.png";
 	obstacle_map[ISO_WRECKED_CAR_4].flags &= ~BLOCKS_VISION_TOO;
-
-
-
-
 
 
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
