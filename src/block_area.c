@@ -1601,12 +1601,12 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BAR_TABLE].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_BAR_TABLE].flags |= GROUND_LEVEL;
 
-	block_2param(ISO_TABLE_OVAL_1, 1.1, 1.3);
+	block_2param(ISO_TABLE_OVAL_1, 0.85, 1.5);
 	obstacle_map[ISO_TABLE_OVAL_1].filename = "iso_tables_0006.png";
 	obstacle_map[ISO_TABLE_OVAL_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TABLE_OVAL_1].flags |= GROUND_LEVEL;
 
-	block_2param(ISO_TABLE_OVAL_2, 1.1, 1.3);
+	block_2param(ISO_TABLE_OVAL_2, 1.5, 0.85);
 	obstacle_map[ISO_TABLE_OVAL_2].filename = "iso_tables_0007.png";
 	obstacle_map[ISO_TABLE_OVAL_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TABLE_OVAL_2].flags |= GROUND_LEVEL;
