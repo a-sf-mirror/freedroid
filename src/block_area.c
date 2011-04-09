@@ -861,11 +861,11 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_H_CURTAIN].filename = "iso_obstacle_0108.png";
 
 	block_2param(ISO_N_SOFA, 1.0, 0.5);
-	obstacle_map[ISO_N_SOFA].filename = "iso_obstacle_0109.png";
+	obstacle_map[ISO_N_SOFA].filename = "iso_obstacle_0110.png";
 	obstacle_map[ISO_N_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_N_SOFA].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_S_SOFA, 1.0, 0.5);
-	obstacle_map[ISO_S_SOFA].filename = "iso_obstacle_0110.png";
+	obstacle_map[ISO_S_SOFA].filename = "iso_obstacle_0112.png";
 	obstacle_map[ISO_S_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_S_SOFA].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_E_SOFA, 0.5, 1.0);
@@ -873,7 +873,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_E_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_E_SOFA].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_W_SOFA, 0.5, 1.0);
-	obstacle_map[ISO_W_SOFA].filename = "iso_obstacle_0112.png";
+	obstacle_map[ISO_W_SOFA].filename = "iso_obstacle_0109.png";
 	obstacle_map[ISO_W_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_W_SOFA].flags &= ~BLOCKS_VISION_TOO;
 
