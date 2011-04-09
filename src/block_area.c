@@ -844,11 +844,11 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_4_BATHTUB].filename = "iso_bathroom_furniture_0003.png";
 	obstacle_map[ISO_4_BATHTUB].flags &= ~BLOCKS_VISION_TOO;
 
-	block_2param(ISO_H_WASHTUB, 0.5, 0.4);
+	block_2param(ISO_H_WASHTUB, 0.4, 0.5);
 	obstacle_map[ISO_H_WASHTUB].filename = "iso_obstacle_0105.png";
 	obstacle_map[ISO_H_WASHTUB].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_H_WASHTUB].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_V_WASHTUB, 0.4, 0.5);
+	block_2param(ISO_V_WASHTUB, 0.5, 0.4);
 	obstacle_map[ISO_V_WASHTUB].filename = "iso_obstacle_0106.png";
 	obstacle_map[ISO_V_WASHTUB].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_V_WASHTUB].flags &= ~BLOCKS_VISION_TOO;
