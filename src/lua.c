@@ -37,9 +37,9 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_map.h"
 
-#include "../lua/lua.h"
-#include "../lua/lauxlib.h"
-#include "../lua/lualib.h"
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
 
 /* Our Lua state for event execution */
 lua_State *global_lua_state;

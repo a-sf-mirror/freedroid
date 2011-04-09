@@ -33,8 +33,8 @@
 #include "global.h"
 #include "proto.h"
 
-#include "../lua/lua.h"
-#include "../lua/lauxlib.h"
+#include "lua.h"
+#include "lauxlib.h"
 
 /* Our Lua state for event execution (defined in lua.c) */
 extern lua_State *global_lua_state;

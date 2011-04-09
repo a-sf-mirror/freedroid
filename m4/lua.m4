@@ -44,6 +44,7 @@ AC_DEFUN([KYUA_LUA], [
     if test "${lua_found}" = no; then
         AC_PATH_PROGS([LUA_CONFIG], [lua-config], no)
 		if test "$LUA_CONFIG" = "no" ; then
+			AC_SUBST([LUA_CFLAGS], [-I../lua])
 			lua_found=no
 		else
             AC_SUBST([LUA_CFLAGS], [$(${LUA_CONFIG} --include)])
@@ -56,4 +57,6 @@ AC_DEFUN([KYUA_LUA], [
         AC_MSG_NOTICE([using LUA_CFLAGS = ${LUA_CFLAGS}])
         AC_MSG_NOTICE([using LUA_LIBS = ${LUA_LIBS}])
     fi
+
+    CFLAGS="$CFLAGS $LUA_CFLAGS"
 ])
