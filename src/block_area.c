@@ -613,22 +613,37 @@ void init_obstacle_data(void)
 	//
 	block_2param(ISO_V_WOOD_FENCE, 1.1, 2.2);
 	obstacle_map[ISO_V_WOOD_FENCE].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_V_WOOD_FENCE].filename = "iso_obstacle_0059.png";
+
 	block_2param(ISO_V_DENSE_FENCE, 1.1, 2.2);
+	obstacle_map[ISO_V_DENSE_FENCE].filename = "iso_obstacle_0061.png";
+
 	block_2param(ISO_V_MESH_FENCE, 0.8, 2.2);
 	obstacle_map[ISO_V_MESH_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_V_MESH_FENCE].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_V_MESH_FENCE].filename = "iso_obstacle_0063.png";
+
 	block_2param(ISO_V_WIRE_FENCE, 0.8, 2.2);
 	obstacle_map[ISO_V_WIRE_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_V_WIRE_FENCE].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_V_WIRE_FENCE].filename = "iso_obstacle_0065.png";
+
 	block_2param(ISO_H_WOOD_FENCE, 2.2, 1.1);
 	obstacle_map[ISO_H_WOOD_FENCE].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_H_WOOD_FENCE].filename = "iso_obstacle_0060.png";
+
 	block_2param(ISO_H_DENSE_FENCE, 2.2, 1.10);
+	obstacle_map[ISO_H_DENSE_FENCE].filename = "iso_obstacle_0062.png";
+
 	block_2param(ISO_H_MESH_FENCE, 2.2, 0.8);
 	obstacle_map[ISO_H_MESH_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_H_MESH_FENCE].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_H_MESH_FENCE].filename = "iso_obstacle_0064.png";
+
 	block_2param(ISO_H_WIRE_FENCE, 2.2, 0.8);
 	obstacle_map[ISO_H_WIRE_FENCE].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_H_WIRE_FENCE].flags |= GROUND_LEVEL;
+	obstacle_map[ISO_H_WIRE_FENCE].filename = "iso_obstacle_0066.png";
 
 	block_2param(ISO_N_TOILET_SMALL, 0.4, 0.4);
 	obstacle_map[ISO_N_TOILET_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
