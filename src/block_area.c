@@ -808,19 +808,19 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_W_BED].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_BED].flags &= ~BLOCKS_VISION_TOO;
 
-	block_2param(ISO_N_FULL_PARK_BENCH, 1, 1.3);
+	block_2param(ISO_N_FULL_PARK_BENCH, 0.7, 1.3);
 	obstacle_map[ISO_N_FULL_PARK_BENCH].filename = "iso_obstacle_0099.png";
 	obstacle_map[ISO_N_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_N_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_E_FULL_PARK_BENCH, 1.3, 1);
+	block_2param(ISO_E_FULL_PARK_BENCH, 1.3, 0.7);
 	obstacle_map[ISO_E_FULL_PARK_BENCH].filename = "iso_obstacle_0100.png";
 	obstacle_map[ISO_E_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_S_FULL_PARK_BENCH, 1.3, 1);
+	block_2param(ISO_S_FULL_PARK_BENCH, 1.3, 0.7);
 	obstacle_map[ISO_S_FULL_PARK_BENCH].filename = "iso_obstacle_0101.png";
 	obstacle_map[ISO_S_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_S_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
-	block_2param(ISO_W_FULL_PARK_BENCH, 1, 1.3);
+	block_2param(ISO_W_FULL_PARK_BENCH, 0.7, 1.3);
 	obstacle_map[ISO_W_FULL_PARK_BENCH].filename = "iso_obstacle_0102.png";
 	obstacle_map[ISO_W_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
