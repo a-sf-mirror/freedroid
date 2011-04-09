@@ -370,22 +370,27 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_REFRESH_5].emitted_light_strength = 10;
 	obstacle_map[ISO_REFRESH_5].animate_fn = animate_refresh;
 
+	obstacle_map[ISO_TELEPORTER_1].filename = "iso_obstacle_0018.png";
 	obstacle_map[ISO_TELEPORTER_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_1].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TELEPORTER_1].emitted_light_strength = 20;
 	obstacle_map[ISO_TELEPORTER_1].animate_fn = animate_teleporter;
+	obstacle_map[ISO_TELEPORTER_2].filename = "iso_obstacle_0019.png";
 	obstacle_map[ISO_TELEPORTER_2].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_2].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TELEPORTER_2].emitted_light_strength = 19;
 	obstacle_map[ISO_TELEPORTER_2].animate_fn = animate_teleporter;
+	obstacle_map[ISO_TELEPORTER_3].filename = "iso_obstacle_0020.png";
 	obstacle_map[ISO_TELEPORTER_3].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_3].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TELEPORTER_3].emitted_light_strength = 18;
 	obstacle_map[ISO_TELEPORTER_3].animate_fn = animate_teleporter;
+	obstacle_map[ISO_TELEPORTER_4].filename = "iso_obstacle_0016.png";
 	obstacle_map[ISO_TELEPORTER_4].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_4].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TELEPORTER_4].emitted_light_strength = 19;
 	obstacle_map[ISO_TELEPORTER_4].animate_fn = animate_teleporter;
+	obstacle_map[ISO_TELEPORTER_5].filename = "iso_obstacle_0017.png";
 	obstacle_map[ISO_TELEPORTER_5].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_TELEPORTER_5].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_TELEPORTER_5].emitted_light_strength = 20;
@@ -509,6 +514,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_CAVE_CORNER_SW].filename = "iso_cave_wall_0006.png";
 
 	block_2param(ISO_COOKING_POT, 0.5, 0.5);
+	obstacle_map[ISO_COOKING_POT].filename = "iso_obstacle_0042.png";
 	obstacle_map[ISO_COOKING_POT].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_COOKING_POT].flags &= ~BLOCKS_VISION_TOO;
 
@@ -628,15 +634,17 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_N_TOILET_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_N_TOILET_SMALL].filename = "iso_bathroom_furniture_0008.png";
 	obstacle_map[ISO_N_TOILET_SMALL].flags &= ~BLOCKS_VISION_TOO;
-
 	block_2param(ISO_E_TOILET_SMALL, 0.4, 0.4);
 	obstacle_map[ISO_E_TOILET_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_TOILET_SMALL].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_E_TOILET_SMALL].filename = "iso_bathroom_furniture_0009.png";
+
 	block_2param(ISO_S_TOILET_SMALL, 0.4, 0.4);
+	obstacle_map[ISO_S_TOILET_SMALL].filename = "iso_obstacle_0069.png";
 	obstacle_map[ISO_S_TOILET_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_S_TOILET_SMALL].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_W_TOILET_SMALL, 0.4, 0.4);
+	obstacle_map[ISO_W_TOILET_SMALL].filename = "iso_obstacle_0070.png";
 	obstacle_map[ISO_W_TOILET_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_TOILET_SMALL].flags &= ~BLOCKS_VISION_TOO;
 
@@ -752,41 +760,53 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_W_DESK].filename = "iso_tables_0004.png";
 
 	block_2param(ISO_N_SCHOOL_CHAIR, 0.4, 0.4);
+	obstacle_map[ISO_N_SCHOOL_CHAIR].filename = "iso_obstacle_0083.png";
 	obstacle_map[ISO_N_SCHOOL_CHAIR].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_N_SCHOOL_CHAIR].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_E_SCHOOL_CHAIR, 0.4, 0.4);
+	obstacle_map[ISO_E_SCHOOL_CHAIR].filename = "iso_obstacle_0084.png";
 	obstacle_map[ISO_E_SCHOOL_CHAIR].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_SCHOOL_CHAIR].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_S_SCHOOL_CHAIR, 0.4, 0.4);
+	obstacle_map[ISO_S_SCHOOL_CHAIR].filename = "iso_obstacle_0085.png";
 	obstacle_map[ISO_S_SCHOOL_CHAIR].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_S_SCHOOL_CHAIR].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_W_SCHOOL_CHAIR, 0.4, 0.4);
+	obstacle_map[ISO_W_SCHOOL_CHAIR].filename = "iso_obstacle_0086.png";
 	obstacle_map[ISO_W_SCHOOL_CHAIR].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_SCHOOL_CHAIR].flags &= ~BLOCKS_VISION_TOO;
 
 	block_2param(ISO_N_BED, 1.1, 0.7);
+	obstacle_map[ISO_N_BED].filename = "iso_obstacle_0087.png";
 	obstacle_map[ISO_N_BED].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_N_BED].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_E_BED, 0.7, 1.1);
+	obstacle_map[ISO_E_BED].filename = "iso_obstacle_0088.png";
 	obstacle_map[ISO_E_BED].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_BED].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_S_BED, 1.1, 0.7);
+	obstacle_map[ISO_S_BED].filename = "iso_obstacle_0089.png";
 	obstacle_map[ISO_S_BED].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_S_BED].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_W_BED, 0.7, 1.1);
+	obstacle_map[ISO_W_BED].filename = "iso_obstacle_0090.png";
 	obstacle_map[ISO_W_BED].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_BED].flags &= ~BLOCKS_VISION_TOO;
 
 	block_2param(ISO_N_FULL_PARK_BENCH, 1, 1.3);
+	obstacle_map[ISO_N_FULL_PARK_BENCH].filename = "iso_obstacle_0099.png";
 	obstacle_map[ISO_N_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_N_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_E_FULL_PARK_BENCH, 1.3, 1);
+	obstacle_map[ISO_E_FULL_PARK_BENCH].filename = "iso_obstacle_0100.png";
 	obstacle_map[ISO_E_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_S_FULL_PARK_BENCH, 1.3, 1);
+	obstacle_map[ISO_S_FULL_PARK_BENCH].filename = "iso_obstacle_0101.png";
 	obstacle_map[ISO_S_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_S_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_W_FULL_PARK_BENCH, 1, 1.3);
+	obstacle_map[ISO_W_FULL_PARK_BENCH].filename = "iso_obstacle_0102.png";
 	obstacle_map[ISO_W_FULL_PARK_BENCH].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_FULL_PARK_BENCH].flags &= ~BLOCKS_VISION_TOO;
 
@@ -810,28 +830,35 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_4_BATHTUB].flags &= ~BLOCKS_VISION_TOO;
 
 	block_2param(ISO_H_WASHTUB, 0.5, 0.4);
+	obstacle_map[ISO_H_WASHTUB].filename = "iso_obstacle_0105.png";
 	obstacle_map[ISO_H_WASHTUB].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_H_WASHTUB].flags &= ~BLOCKS_VISION_TOO;
-
 	block_2param(ISO_V_WASHTUB, 0.4, 0.5);
+	obstacle_map[ISO_V_WASHTUB].filename = "iso_obstacle_0106.png";
 	obstacle_map[ISO_V_WASHTUB].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_V_WASHTUB].flags &= ~BLOCKS_VISION_TOO;
 
 	obstacle_map[ISO_V_CURTAIN].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_V_CURTAIN].flags |= IS_VERTICAL;
+	obstacle_map[ISO_V_CURTAIN].filename = "iso_obstacle_0107.png";
 	obstacle_map[ISO_H_CURTAIN].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_H_CURTAIN].flags |= IS_HORIZONTAL;
+	obstacle_map[ISO_H_CURTAIN].filename = "iso_obstacle_0108.png";
 
 	block_2param(ISO_N_SOFA, 1.0, 0.5);
+	obstacle_map[ISO_N_SOFA].filename = "iso_obstacle_0109.png";
 	obstacle_map[ISO_N_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_N_SOFA].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_S_SOFA, 1.0, 0.5);
+	obstacle_map[ISO_S_SOFA].filename = "iso_obstacle_0110.png";
 	obstacle_map[ISO_S_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_S_SOFA].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_E_SOFA, 0.5, 1.0);
+	obstacle_map[ISO_E_SOFA].filename = "iso_obstacle_0111.png";
 	obstacle_map[ISO_E_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_E_SOFA].flags &= ~BLOCKS_VISION_TOO;
 	block_2param(ISO_W_SOFA, 0.5, 1.0);
+	obstacle_map[ISO_W_SOFA].filename = "iso_obstacle_0112.png";
 	obstacle_map[ISO_W_SOFA].flags |= GROUND_LEVEL;
 	obstacle_map[ISO_W_SOFA].flags &= ~BLOCKS_VISION_TOO;
 
@@ -986,9 +1013,8 @@ void init_obstacle_data(void)
 		obstacle_map[i].transparent = TRANSPARENCY_FOR_WALLS;
 	}
 
-	// Brick walls are smashable.  When you smash them, there should be
-	// first a cracked brick wall, then when smashing again, there will
-	// be only some rubble left, and that should be *passable*.
+	// Cracked brick walls are smashable.  When you smash them, there should be
+	// some rubble left, and that should be *passable*.
 	block_2param(ISO_BRICK_WALL_H, 1.2, 0.8);
 	obstacle_map[ISO_BRICK_WALL_H].filename = "iso_brick_wall_0002.png";
 	obstacle_map[ISO_BRICK_WALL_H].result_type_after_smashing_once = ISO_BRICK_WALL_CRACKED_1;
@@ -1049,10 +1075,8 @@ void init_obstacle_data(void)
 
 	//all brick walls above share the same description
 
-	// Brick walls are smashable.  When you smash them, there should be
-	// first a cracked brick wall, then when smashing again, there will
-	// be only some rubble left, and that should be *passable*.
-	//
+	// Cracked brick walls are smashable.  When you smash them, there should be
+	// some rubble left, and that should be *passable*.
 	block_2param(ISO_BRICK_WALL_CRACKED_1, 0.5, 1.2);
 	obstacle_map[ISO_BRICK_WALL_CRACKED_1].filename = "iso_brick_wall_0012.png";
 	obstacle_map[ISO_BRICK_WALL_CRACKED_1].flags |= IS_SMASHABLE | IS_CLICKABLE;
