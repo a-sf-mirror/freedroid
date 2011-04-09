@@ -1969,6 +1969,14 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_WRECKED_CAR_4].filename = "iso_wrecked_car_0004.png";
 	obstacle_map[ISO_WRECKED_CAR_4].flags &= ~BLOCKS_VISION_TOO;
 
+	block_2param(ISO_N_TOILET_WHITE_SMALL, 0.4, 0.4);
+	obstacle_map[ISO_N_TOILET_WHITE_SMALL].filename = "iso_obstacle_0068.png";
+	obstacle_map[ISO_N_TOILET_WHITE_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
+	obstacle_map[ISO_N_TOILET_WHITE_SMALL].flags &= ~BLOCKS_VISION_TOO;
+	block_2param(ISO_E_TOILET_WHITE_SMALL, 0.4, 0.4);
+	obstacle_map[ISO_E_TOILET_WHITE_SMALL].filename = "iso_obstacle_0067.png";
+	obstacle_map[ISO_E_TOILET_WHITE_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
+	obstacle_map[ISO_E_TOILET_WHITE_SMALL].flags &= ~BLOCKS_VISION_TOO;
 
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
 		if (!obstacle_map[i].filename) {
