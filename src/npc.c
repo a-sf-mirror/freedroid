@@ -100,6 +100,7 @@ void init_npcs()
 		"HF-FirmwareUpdateServer",
 		"HF-GateGuard",
 		"HF-GateGuardLeader",
+		"InvaderBot",
 		"Iris",
 		"Jasmine",
 		"John",

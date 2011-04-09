@@ -1,1 +1,74 @@
-This file is currently nearly empty. It was created to make handling of a patch easier.
+----------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+EveryTime LuaCode={ 
+	if (not has_cookie("invader-bot-status")) then
+		npc_says(_"Target Acquired...","NO_WAIT")
+		npc_says(_"Scanning...")
+		npc_says(_"Non-Human Lifeform Identified","NO_WAIT")
+		npc_says(_"Species Identified: Linarian")
+		npc_says(_"Current Status: Unknown")
+		show(0,1)
+		add_cookie("invader-bot-status")
+	else
+		end_dialog()
+	end
+}
+----------------------------------------------------------------------
+
+Nr=0 Text=_"Hello there."
+LuaCode={
+	npc_says(_"Uploading Status...")
+	set_npc_faction("ms")
+	npc_says(_"Linarian is hostile. Destroy!")
+	hide(0)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=1 Text=_"Die!"
+LuaCode={
+	npc_says(_"Uploading Status...")
+	set_npc_faction("ms")
+	npc_says(_"Linarian is hostile. Destroy!")
+	hide(1)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+Nr=99 Text=_"..."
+LuaCode={
+	npc_says(_"Uploading Status...")
+	set_npc_faction("ms")
+	npc_says(_"Linarian is hostile. Destroy!")
+	hide(99)
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+
+End of chat dialog for character="XXXXX"

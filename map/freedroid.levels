@@ -16641,8 +16641,13 @@ t45 x55.56 y24.53
 /obsdata
 plabelinfolvl
 x=62 y=21 name="Lev12-614-complex-guard"
-x=49 y=41 name="FrancisStart"
-x=43 y=40 name="NewTuxStartGameSquare"
+x=40 y=35 name="FrancisSafe"
+x=42 y=38 name="NewTuxStartGameSquare"
+x=47 y=42 name="FrancisStart"
+x=49 y=40 name="InvaderBot-Alive-Check-N"
+x=46 y=42 name="InvaderBot-Alive-Check-W"
+x=54 y=41 name="123"
+x=51 y=50 name="FrancisAfterBotAttack"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -16681,28 +16686,29 @@ idx=29 type=30 data={
 wp
 Nr.=  0 x=  65 y=  22 rnd=1	 c:    1
 Nr.=  1 x=  63 y=  21 rnd=1	 c:   11
-Nr.=  2 x=  66 y=  24 rnd=0	 c:   21
+Nr.=  2 x=  66 y=  24 rnd=0	 c:   12
 Nr.=  3 x=  71 y=  26 rnd=0	 c:    4
 Nr.=  4 x=  75 y=  28 rnd=0	 c:    3   5
 Nr.=  5 x=  80 y=  26 rnd=0	 c:    4   6
 Nr.=  6 x=  82 y=  29 rnd=0	 c:    5
 Nr.=  7 x=  85 y=  24 rnd=0	 c:    8   9  10
-Nr.=  8 x=  82 y=  19 rnd=0	 c:    7   9  23
-Nr.=  9 x=  83 y=  22 rnd=0	 c:    8   7  10  23
+Nr.=  8 x=  82 y=  19 rnd=0	 c:    7   9  14
+Nr.=  9 x=  83 y=  22 rnd=0	 c:    8   7  10  14
 Nr.= 10 x=  83 y=  26 rnd=0	 c:    7   9
 Nr.= 11 x=  63 y=  22 rnd=1	 c:    0
-Nr.= 12 x=  49 y=  41 rnd=1	 c:   14  13  20
-Nr.= 13 x=  47 y=  42 rnd=1	 c:   12  20
-Nr.= 14 x=  51 y=  43 rnd=1	 c:   15  12  19  20
-Nr.= 15 x=  51 y=  40 rnd=1	 c:   12  14  16  20
-Nr.= 16 x=  54 y=  42 rnd=1	 c:   15  17
-Nr.= 17 x=  56 y=  40 rnd=1	 c:   16
-Nr.= 18 x=  55 y=  40 rnd=1	 c:   17  16
-Nr.= 19 x=  51 y=  50 rnd=1	 c:   14
-Nr.= 20 x=  49 y=  42 rnd=1	 c:   14  13  12
-Nr.= 21 x=  63 y=  26 rnd=0	 c:    2  22
-Nr.= 22 x=  66 y=  27 rnd=0	 c:   21
-Nr.= 23 x=  81 y=  20 rnd=0	 c:    9   8
+Nr.= 12 x=  63 y=  26 rnd=0	 c:    2  13
+Nr.= 13 x=  66 y=  27 rnd=0	 c:   12
+Nr.= 14 x=  81 y=  20 rnd=0	 c:    9   8
+Nr.= 15 x=  40 y=  35 rnd=1	 c:   16
+Nr.= 16 x=  42 y=  37 rnd=1	 c:   15
+Nr.= 17 x=  44 y=  41 rnd=1	 c:   18  22
+Nr.= 18 x=  43 y=  40 rnd=1	 c:   17  23
+Nr.= 19 x=  54 y=  41 rnd=1	 c:   20
+Nr.= 20 x=  52 y=  41 rnd=1	 c:   19
+Nr.= 21 x=  51 y=  50 rnd=1	 c:   24
+Nr.= 22 x=  47 y=  42 rnd=1	 c:   17
+Nr.= 23 x=  46 y=  42 rnd=1	 c:   18  24
+Nr.= 24 x=  50 y=  42 rnd=1	 c:   23  21
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 13
