@@ -663,19 +663,19 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_W_TOILET_WHITE_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_TOILET_WHITE_SMALL].flags &= ~BLOCKS_VISION_TOO;
 
-	block_2param(ISO_N_TOILET_BIG, 0.4, 0.4);
+	block_2param(ISO_N_TOILET_BIG, 0.68, 0.5);
 	obstacle_map[ISO_N_TOILET_BIG].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_N_TOILET_BIG].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_N_TOILET_BIG].filename = "iso_bathroom_furniture_0004.png";
-	block_2param(ISO_E_TOILET_BIG, 0.4, 0.4);
+	block_2param(ISO_E_TOILET_BIG, 0.5, 0.68);
 	obstacle_map[ISO_E_TOILET_BIG].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_TOILET_BIG].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_E_TOILET_BIG].filename = "iso_bathroom_furniture_0005.png";
-	block_2param(ISO_S_TOILET_BIG, 0.4, 0.4);
+	block_2param(ISO_S_TOILET_BIG, 0.68, 0.5);
 	obstacle_map[ISO_S_TOILET_BIG].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_S_TOILET_BIG].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_S_TOILET_BIG].filename = "iso_bathroom_furniture_0006.png";
-	block_2param(ISO_W_TOILET_BIG, 0.4, 0.4);
+	block_2param(ISO_W_TOILET_BIG, 0.5, 0.68);
 	obstacle_map[ISO_W_TOILET_BIG].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_W_TOILET_BIG].flags &= ~BLOCKS_VISION_TOO;
 	obstacle_map[ISO_W_TOILET_BIG].filename = "iso_bathroom_furniture_0007.png";
