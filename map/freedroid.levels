@@ -3617,6 +3617,7 @@ x=21 y=30 name="DocFront-inner-S"
 x=22 y=30 name="DocFront-out-S"
 x=22 y=29 name="DocFront-out-N"
 x=21 y=18 name="L0TeleporterGuard"
+x=40 y=24 name="296TeleportTarget"
 /plabelinfolvl
 piteminfolvl
 it: n="Rubber duck"  X=76.323608  Y=23.040028  MDur=-1  CDur=1.000000  AClip=0  Multi=1 

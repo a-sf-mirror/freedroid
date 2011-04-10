@@ -46,7 +46,9 @@ EveryTime LuaCode={
 		hide(20)
 	end
 
-	if (has_cookie("met_sorenson") and (not has_cookie("talked_about_sister")) ) then show(10) else end
+	if (has_cookie("met_sorenson") and (not has_cookie("talked_about_sister")) ) then show(10) end
+
+	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(50) end
 }
 ----------------------------------------------------------------------
 
@@ -147,6 +149,23 @@ LuaCode={
 	npc_says(_"So you could say that this is one of the few stories that end well.")
 	hide(46)
 	if (bot_Apoclypse == 0) then hide(43) end
+}
+
+----------------------------------------------------------------------
+
+Nr=50 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
+LuaCode={
+	npc_says(_"It's interesting you should be looking for that - the library has two copies.")
+	tux_says(_"I need one - it's a matter of life and death!")
+	npc_says(_"Life and death?")
+	tux_says(_"There's a nuclear reactor going supercritical under the town - if I have the book, maybe I can stop it.")
+	npc_says(_"In that case, you can have it. My mission is to preserve our culture, which won't matter if we're all dead.")
+	tux_says(_"Thank you, Tamara.")
+	update_quest(_"An Explosive Situation", _"I was able to get a copy of Subatomic and Nuclear Science for Dummies, Volume IV from the librarian, Tamara. I'd better hurry back to Ewald's 296 with it.")
+	add_item(_"Nuclear Science for Dummies IV")
+	add_cookie("have_296_book")
+	hide(50)
+	end_dialog()
 }
 
 ----------------------------------------------------------------------

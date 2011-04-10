@@ -294,6 +294,20 @@ LuaCode={
 }
 * End of trigger *
 
+* New event trigger *
+Name=_"296 Teleported Out"
+Trigger at label="TeleportHomeTarget"
+Silent=1
+LuaCode={
+	if (has_cookie("296_self_sacrifice") and not done_quest(_"An Explosive Situation") and not has_cookie("ewalds_296_teleported")) then
+		teleport_npc("296TeleportTarget", "Ewalds_296")
+		add_cookie("ewalds_296_teleported")
+		add_diary_entry(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
+		cli_says("  ".._"Quest Log Updated.","NO_WAIT")
+	end
+}
+* End of trigger *
+
 ##############
 ## Level  1 ##
 ############## 
@@ -1039,6 +1053,20 @@ Trigger at label="58to13"
 Silent=0
 LuaCode={
 	teleport("13from58")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"296 Teleport Point"
+Trigger at label="58from13"
+Silent=0
+LuaCode={
+	if (has_cookie("296_self_sacrifice") and not done_quest(_"An Explosive Situation") and not has_cookie("ewalds_296_teleported")) then
+		teleport_npc("296TeleportTarget", "Ewalds_296")
+		add_cookie("ewalds_296_teleported")
+		add_diary_entry(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
+		cli_says("  ".._"Quest Log Updated.","NO_WAIT")
+	end
 }
 * End of trigger *
 

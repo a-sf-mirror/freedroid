@@ -61,6 +61,8 @@ EveryTime LuaCode={
 
 	if (has_cookie("dixon_saved_and_talked")) then hide(46) else end
 	show(99)
+	
+	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(60) end
 }
 ----------------------------------------------------------------------
 
@@ -442,6 +444,16 @@ LuaCode={
 	tux_says(_"Thank you.")
 	npc_says(_"Good luck.")
 	hide(50)
+}
+----------------------------------------------------------------------
+
+Nr=60 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
+LuaCode={
+	npc_says(_"Unfortunately, I never added that one to my library.")
+	tux_says(_"Library... Of course! Thanks, Dixon!")
+	npc_says(_"Uh... You're welcome, I guess.")
+	update_quest(_"An Explosive Situation", _"I spoke to Dixon, who didn't have a copy of the book. He did give me an idea, though - I'll head for the library in town.")
+	hide(60)
 }
 ----------------------------------------------------------------------
 

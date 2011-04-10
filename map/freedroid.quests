@@ -269,6 +269,16 @@ Completion LuaCode={
 }
 ** End of this mission target subsection **
 
+** Start of this mission target subsection **
++++
++++ Save the town from nuclear disaster
++++
+Mission Name=_"An Explosive Situation"
+Completion LuaCode={
+	add_diary_entry(_"An Explosive Situation", _"Not only is the town safe, but apparently so is Ewald's 296 droid. Oh joy.")
+}
+** End of this mission target subsection **
+
 *** END OF QUEST LIST *** LEAVE THIS TERMINATOR IN HERE ***
 
 
