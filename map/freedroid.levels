@@ -50265,9 +50265,8 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
-Nr.=  0 x=  35 y=  17 rnd=0	 c: 
-Nr.=  1 x=  26 y=  73 rnd=0	 c:    2
-Nr.=  2 x=  27 y=  73 rnd=0	 c:    1
+Nr.=  0 x=  26 y=  73 rnd=0	 c:    1
+Nr.=  1 x=  27 y=  73 rnd=0	 c:    0
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 53
