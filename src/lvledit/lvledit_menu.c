@@ -36,6 +36,7 @@
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_validator.h"
 #include "lvledit/lvledit_menu.h"
+#include "lvledit/lvledit_widgets.h"
 
 #include "mapgen/mapgen.h"
 
@@ -499,6 +500,8 @@ static void AddRemLevel(void)
 
 				dirty_animated_obstacle_lists(tmp);
 				delete_map_level(tmp);
+
+				leveleditor_reset_tools();
 
 				gps_transform_map_dirty_flag = TRUE;
 				gps_transform_map_init();

@@ -825,4 +825,5 @@ void leveleditor_place_reset()
 	default:
 			break;
 	}
+	OriginWaypoint = -1;
 }
