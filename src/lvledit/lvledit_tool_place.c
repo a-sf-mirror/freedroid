@@ -102,9 +102,9 @@ static int do_waypoint_route(int rspawn)
 
 	if (state.startwp != -1 && wpnum != state.startwp) {
 		// Connect to the previous waypoint
-		if (action_toggle_waypoint_connection(EditLevel(), state.startwp, wpnum, 0, 0) == 1)
+		if (action_toggle_waypoint_connection(EditLevel(), state.startwp, wpnum, 0, 1) == 1)
 			state.nbactions++;
-		if (action_toggle_waypoint_connection(EditLevel(), wpnum, state.startwp, 0, 0) == 1)
+		if (action_toggle_waypoint_connection(EditLevel(), wpnum, state.startwp, 0, 1) == 1)
 			state.nbactions++;
 	}
 
