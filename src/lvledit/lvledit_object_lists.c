@@ -669,6 +669,11 @@ int plant_tiles_list[] = {
 	-1,
 };
 
+int misc_tiles_list[] = {
+
+	-1
+};
+
 int waypoint_list[] = {
 	0,			//random spawn
 	1,			//no random spawn 

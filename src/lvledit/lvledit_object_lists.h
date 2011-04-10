@@ -4,6 +4,7 @@ extern int machinery_tiles_list[];
 extern int furniture_tiles_list[];
 extern int container_tiles_list[];
 extern int plant_tiles_list[];
+extern int misc_tiles_list[];
 extern int waypoint_list[];
 extern int *sidewalk_floor_list;
 extern int *water_floor_list;
