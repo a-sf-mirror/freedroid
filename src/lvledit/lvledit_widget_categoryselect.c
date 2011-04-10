@@ -89,7 +89,7 @@ void leveleditor_categoryselect_display(struct leveleditor_widget *w)
 	SDL_Rect tr, hr;
 	int tab_width = 80;
 
-	draw_rectangle(&w->rect, 101, 101, 101, 255);
+	draw_rectangle(&w->rect, 80, 100, 100, 150);
 
 	BFont_Info *PreviousFont;
 	PreviousFont = GetCurrentFont();
@@ -105,7 +105,7 @@ void leveleditor_categoryselect_display(struct leveleditor_widget *w)
 	hr.x = w->rect.x;
 
 	if (cs == currently_selected_category)
-		draw_rectangle(&hr, 85, 104, 137, 255);
+		draw_rectangle(&hr, 100, 220, 220, 350);
 
 	display_text(cs->title, hr.x + 2, hr.y, &hr);
 	tr.x = hr.x + tab_width - 2;

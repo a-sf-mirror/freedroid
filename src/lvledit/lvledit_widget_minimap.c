@@ -143,7 +143,7 @@ void leveleditor_minimap_display(struct leveleditor_widget *w)
 	set_gl_clip_rect(&w->rect);
 
 	// Display the background
-	draw_rectangle(&w->rect, 85, 104, 137, 255);
+	draw_rectangle(&w->rect, 85, 100, 100, 150);
 
 	// Display the grid
 	for (i = -1; i <= 2; i++) {
