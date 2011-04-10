@@ -550,6 +550,24 @@ void level_editor_action_toggle_waypoint_connection_user(level * EditLevel, int 
 
 }
 
+void lvledit_action_toggle_waypoint(int randomspawn)
+{
+	int wpnum = get_waypoint(EditLevel(), EditX(), EditY());
+	if (wpnum < 0) {
+		// If the waypoint doesn't exist at the map position, create it
+		action_create_waypoint(EditLevel(), EditX(), EditY(), randomspawn);
+	} else {
+		// An existing waypoint will be removed or have its
+		// randomspawn flag toggled
+		waypoint *wpts = EditLevel()->waypoints.arr;
+		if (randomspawn) {
+			action_toggle_waypoint_randomspawn(EditLevel(), wpts[wpnum].x, wpts[wpnum].y);
+		} else {
+			action_remove_waypoint(EditLevel(), wpts[wpnum].x, wpts[wpnum].y);
+		}
+	}
+}
+
 void action_set_floor(Level EditLevel, int x, int y, int type)
 {
 	int old = EditLevel->map[y][x].floor_value;

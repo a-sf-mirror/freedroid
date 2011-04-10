@@ -67,7 +67,7 @@ const char *keybindNames[] = {
 	"cut", "copy", "paste",
 	"next_selection_type", "previous_selection_type",
 	"next_tab", "undo", "redo", "beautify_grass",
-	"connect_waypoint",
+	"toggle_waypoint", "toggle_waypoint_randomspawn", "connect_waypoint",
 	"toolbar_scroll_left", "toolbar_scroll_right", "toolbar_step_left", "toolbar_step_right",
 	"run_map_validator",
 
@@ -261,6 +261,8 @@ void input_set_default(void)
 	input_set_keybind("undo", SDLK_z, KMOD_NONE);
 	input_set_keybind("redo", SDLK_y, KMOD_NONE);
 	input_set_keybind("beautify_grass", SDLK_b, KMOD_LCTRL);
+	input_set_keybind("toggle_waypoint", SDLK_w, KMOD_NONE);
+	input_set_keybind("toggle_waypoint_randomspawn", SDLK_w, KMOD_LSHIFT);
 	input_set_keybind("connect_waypoint", SDLK_c, KMOD_NONE);
 	input_set_keybind("toolbar_scroll_left", SDLK_PAGEUP, KMOD_NONE);
 	input_set_keybind("toolbar_scroll_right", SDLK_PAGEDOWN, KMOD_NONE);
@@ -682,6 +684,12 @@ static int input_key(int keynum, int value)
 				return 0;
 			}
 			level_editor_place_aligned_object(number);
+			return 0;
+		} else if (KEYPRESS("toggle_waypoint")) {
+			lvledit_action_toggle_waypoint(FALSE);
+			return 0;
+		} else if (KEYPRESS("toggle_waypoint_randomspawn")) {
+			lvledit_action_toggle_waypoint(TRUE);
 			return 0;
 		} else if (KEYPRESS("connect_waypoint")) {
 			level_editor_action_toggle_waypoint_connection_user(CURLEVEL(), EditX(), EditY());

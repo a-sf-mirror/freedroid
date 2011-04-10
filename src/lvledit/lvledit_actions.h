@@ -46,6 +46,7 @@ void action_remove_waypoint(level *, int, int);
 void action_toggle_waypoint_randomspawn(level *, int, int);
 int action_toggle_waypoint_connection(level *, int, int, int, int);
 void level_editor_action_toggle_waypoint_connection_user(level *, int, int);
+void lvledit_action_toggle_waypoint(int);
 
 /* Floor tiles manipulation */
 void action_set_floor(level *, int, int, int);

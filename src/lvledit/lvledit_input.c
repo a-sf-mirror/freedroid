@@ -276,29 +276,6 @@ void leveleditor_process_input()
 
 	HandleLevelEditorCursorKeys();
 
-	// If the person using the level editor pressed w, the waypoint is
-	// toggled on the current square.  That means either removed or added.
-	// And in case of removal, also the connections must be removed.
-	//
-	if (WPressed()) {
-		int wpnum = get_waypoint(EditLevel(), EditX(), EditY());
-		if (wpnum < 0) {
-			// If the waypoint doesn't exist at the map position, create it
-			action_create_waypoint(EditLevel(), EditX(), EditY(), ShiftPressed());
-		} else {
-			// An existing waypoint will be removed or have its
-			// randomspawn flag toggled
-			waypoint *wpts = EditLevel()->waypoints.arr;
-			if (ShiftPressed()) {
-				action_toggle_waypoint_randomspawn(EditLevel(), wpts[wpnum].x, wpts[wpnum].y);
-			} else {
-				action_remove_waypoint(EditLevel(), wpts[wpnum].x, wpts[wpnum].y);
-			}
-		}
-		while (WPressed())
-			SDL_Delay(1);
-	}
-
 	level_editor_auto_scroll();
 
 	if (EscapePressed()) {
