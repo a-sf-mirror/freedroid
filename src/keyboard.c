@@ -37,6 +37,7 @@
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */
 #define KEY_RELEASE  (-1.) /**< Key is released. */
+#define ISKEYPAD(k) (k >= SDLK_KP0 && k <= SDLK_KP_EQUALS)
 
 /* name of each keybinding */
 const char *keybindNames[] = {
@@ -772,6 +773,24 @@ int input_key_press(SDL_Event * event)
 }
 
 /**
+ * @fn int kptoprint (int)
+ *
+ * @brief Returns printable keycodes when given a printable keypad code.
+ */
+static int kptoprint(int key) {
+	switch (key) {
+		case SDLK_KP_PERIOD: key = SDLK_PERIOD; break;
+		case SDLK_KP_DIVIDE: key = SDLK_SLASH; break;
+		case SDLK_KP_MULTIPLY: key = SDLK_ASTERISK; break;
+		case SDLK_KP_MINUS: key = SDLK_MINUS; break;
+		case SDLK_KP_PLUS: key = SDLK_PLUS; break;
+		case SDLK_KP_EQUALS: key = SDLK_EQUALS; break;
+		default: break;	
+	}	
+	return key;
+}
+
+/**
  * This function reads a character from the keyboard
  * and returns the SDLKey that was pressed.
  */
@@ -808,6 +827,9 @@ int getchar_raw(int *mod)
 			 * "The keyboard syms have been cleverly chosen to map to ASCII"
 			 * ... I hope that this design feature is portable, and durable ;)
 			 */
+			if(ISKEYPAD(Returnkey)) {
+				Returnkey = kptoprint(Returnkey);
+			}
 			return (Returnkey);
 		}
  next:		;
