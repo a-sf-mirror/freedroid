@@ -89,11 +89,11 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[RIGHT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {584, 15, 23, 23}, TRUE},
 	[LEFT_LEVEL_EDITOR_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeft.png", {3, 8, 15, 60}, FALSE},
 	[LEFT_LEVEL_EDITOR_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeft.png", {3, 8, 15, 60}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeftPushed.png", {3, 8, 15, 60}, FALSE},
 	[RIGHT_LEVEL_EDITOR_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorRight.png", {-16, 8, 15, 60}, FALSE},
 	[RIGHT_LEVEL_EDITOR_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorRight.png", {-16, 8, 15, 60}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorRightPushed.png", {-16, 8, 15, 60}, FALSE},
 
 	[NUMBER_SELECTOR_OK_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/number_selector_ok_button.png", {308, 288, 48, 48}, TRUE},
 	[NUMBER_SELECTOR_LEFT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {148, 244, 35, 35}, TRUE},
