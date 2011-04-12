@@ -1978,14 +1978,6 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_E_TOILET_WHITE_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_TOILET_WHITE_SMALL].flags &= ~BLOCKS_VISION_TOO;
 
-	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
-		if (!obstacle_map[i].filename) {
-			obstacle_map[i].filename = MyMalloc(100);	// that should be sufficient for file names...
-			sprintf(obstacle_map[i].filename, "iso_obstacle_%04d.png", i);
-		}
-
-	}
-
 	// corrections for corner and T walls
 	obstacle_map[ISO_THICK_WALL_T_E].left_border = obstacle_map[ISO_THICK_WALL_V].left_border;
 	obstacle_map[ISO_THICK_WALL_T_W].right_border = obstacle_map[ISO_THICK_WALL_V].right_border;
