@@ -91,6 +91,7 @@ static int do_waypoint_route(int rspawn)
 
 	if (our_mode != CONNECT_WAYPOINT) {
 		//we are starting a new route
+		state.origwp = -1;
 		state.startwp = -1;
 		state.nbactions = 0;
 	}
