@@ -1696,6 +1696,15 @@ void draw_grid_on_the_floor(int mask)
 	x = rintf(Me.pos.x + 0.5);
 	y = rintf(Me.pos.y + 0.5);
 
+	if (x < 1)
+		x = 1;
+	if (x > our_level->xlen)
+		x = our_level->xlen;
+	if (y < 1)
+		y = 1;
+	if (y > our_level->ylen)
+		y = our_level->ylen;
+
 	float dd;
 
 	if (draw_grid >= 2) {	// large grid
