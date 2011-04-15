@@ -89,11 +89,11 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[RIGHT_TUX_SHOP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/RightShopButton.png", {584, 15, 23, 23}, TRUE},
 	[LEFT_LEVEL_EDITOR_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeft.png", {3, 8, 15, 60}, FALSE},
 	[LEFT_LEVEL_EDITOR_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeftPushed.png", {3, 8, 15, 60}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorLeftPushed.png", {2, 7, 15, 60}, FALSE},
 	[RIGHT_LEVEL_EDITOR_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorRight.png", {-16, 8, 15, 60}, FALSE},
 	[RIGHT_LEVEL_EDITOR_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorRightPushed.png", {-16, 8, 15, 60}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorObjectSelectorRightPushed.png", {-17, 7, 15, 60}, FALSE},
 
 	[NUMBER_SELECTOR_OK_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/number_selector_ok_button.png", {308, 288, 48, 48}, TRUE},
 	[NUMBER_SELECTOR_LEFT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {148, 244, 35, 35}, TRUE},
@@ -110,11 +110,11 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButton.png", {-270, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButtonPushed.png", {-270, -30, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorDeleteObstacleButtonPushed.png", {-271, -31, 0, 0}, FALSE},
 	[LEVEL_EDITOR_NEXT_OBJECT_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextObstacleButton.png", {-240, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_NEXT_OBJECT_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextObstacleButtonPushed.png", {-240, -30, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNextObstacleButtonPushed.png", {-241, -31, 0, 0}, FALSE},
 
 
 /* upper right are directly under the object selector*/
@@ -220,12 +220,12 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_UNDO_BUTTON] =
 		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorUndoButton.png", {-330, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_UNDO_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorUndoButtonPushed.png", {-330, -30, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorUndoButtonPushed.png", {-331, -31, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_REDO_BUTTON] =
 		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorRedoButton.png", {-300, -30, 0, 0}, FALSE},
 	[LEVEL_EDITOR_REDO_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", {-300, -30, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorRedoButtonPushed.png", {-301, -31, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON] =
 		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -290, 0, 0}, FALSE},
