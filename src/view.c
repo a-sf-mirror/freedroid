@@ -1672,16 +1672,6 @@ void update_item_text_slot_positions(void)
 	}
 };				// void update_item_text_slot_positions ( void )
 
-static void draw_line_at_map_position(float x1, float y1, float x2, float y2, Uint32 color, int thickness)
-{
-	int c1, c2, r1, r2;
-
-	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
-	translate_map_point_to_screen_pixel(x2, y2, &r2, &c2);
-
-	draw_line(r1, c1, r2, c2, color, thickness);
-}
-
 void draw_grid_on_the_floor(int mask)
 {
 	if (game_status != INSIDE_LVLEDITOR)
@@ -1713,19 +1703,19 @@ void draw_grid_on_the_floor(int mask)
 	if (draw_grid >= 2) {	// large grid
 		// Draw the horizontal lines
 		for (dd = 0; dd <= our_level->ylen; dd++) {
-			draw_line_at_map_position(0, dd, our_level->xlen, dd, 0x99FFFF, 1);	// light cyan
+			draw_line_on_map(0, dd, our_level->xlen, dd, 0x99FFFF, 1);	// light cyan
  		}
 
 		// Draw the vertical lines
 		for (dd = 0; dd <= our_level->xlen; dd++) {
-			draw_line_at_map_position(dd, 0, dd, our_level->ylen, 0x99FFFF, 1);	// light cyan
+			draw_line_on_map(dd, 0, dd, our_level->ylen, 0x99FFFF, 1);	// light cyan
 		}
 	}
 
 	for (dd = 0; dd <= 1; dd += .5)	// quick-placement grid
 	{
-		draw_line_at_map_position(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1);	// magenta
-		draw_line_at_map_position(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1);	// magenta
+		draw_line_on_map(x - 1.5, y - dd, x + 0.5, y - dd, 0xFF00FF, 1);	// magenta
+		draw_line_on_map(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1);	// magenta
 	}
 
 	// display numbers, corresponding to the numpad keys for quick placing 
@@ -1753,10 +1743,10 @@ void draw_grid_on_the_floor(int mask)
 	SetCurrentFont(PreviousFont);
 
 	// now display the level borders (red line)	
-	draw_line_at_map_position(0, 0, 0, our_level->ylen, 0xFF0000, 3);
-	draw_line_at_map_position(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
-	draw_line_at_map_position(0, 0, our_level->xlen, 0, 0xFF0000, 3);
-	draw_line_at_map_position(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+	draw_line_on_map(0, 0, 0, our_level->ylen, 0xFF0000, 3);
+	draw_line_on_map(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+	draw_line_on_map(0, 0, our_level->xlen, 0, 0xFF0000, 3);
+	draw_line_on_map(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
 }
 
 /* -----------------------------------------------------------------

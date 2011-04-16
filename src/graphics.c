@@ -1115,6 +1115,16 @@ void draw_line(float x1, float y1, float x2, float y2, Uint32 color, int width)
 	}
 }
 
+void draw_line_on_map(float x1, float y1, float x2, float y2, Uint32 color, int width)
+{
+	int c1, c2, r1, r2;
+
+	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
+	translate_map_point_to_screen_pixel(x2, y2, &r2, &c2);
+
+	draw_line(r1, c1, r2, c2, color, width);
+}
+
 /**
  * This function saves a screenshot of the current game, scaled to the width number of pixels.
  * If width is set to 0, then no scaling is used.
