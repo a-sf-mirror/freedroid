@@ -1,0 +1,441 @@
+----------------------------------------------------------------------
+ * This file is part of Freedroid
+ *
+ * Freedroid is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Freedroid is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Freedroid; see the file COPYING. If not, write to the 
+ * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * MA 02111-1307 USA
+----------------------------------------------------------------------
+
+
+If you have questions concerning FreedroidRPG, please send an email to:
+
+freedroid-discussion@lists.sourceforge.net
+
+
+Beginning of new chat dialog for character="XXXXX"
+
+EveryTime LuaCode={
+	npc_says(_"Hello.")
+	npc_says(_"Here you'll be able to access all dialogs that are available ingame.")
+	npc_says(_"Take care, this may be a little buggy.")
+	npc_says(_"Don't do this if you are just normally playing.")
+	npc_says(_"There dialogs can currently be accessed:")
+
+show(1, 2, 3, 4, 5, 6, 7, 8, 9,
+	10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+	20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+	30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+	40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+	50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+	60, 61, 62, 63)
+
+
+	show(99)
+}
+----------------------------------------------------------------------
+
+Nr=0 Text=_"Left out."
+LuaCode={
+	npc_says(_"Left out on purpose...")
+	hide(0)
+}
+----------------------------------------------------------------------
+
+Nr=1 Text=_"614_cryo"
+LuaCode={
+	run_subdialog("614_cryo.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=2 Text=_"AfterTakeover"
+LuaCode={
+	run_subdialog("AfterTakeover.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=3 Text=_"AfterTakeover_sub"
+LuaCode={
+	run_subdialog("AfterTakeover_sub.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=4 Text=_"Bender"
+LuaCode={
+	run_subdialog("Bender.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=5 Text=_"Benjamin"
+LuaCode={
+	run_subdialog("Benjamin.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=6 Text=_"Bruce"
+LuaCode={
+	run_subdialog("Bruce.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=7 Text=_"c-net"
+LuaCode={
+	run_subdialog("c-net.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=8 Text=_"c-net_sub_nethack"
+LuaCode={
+	run_subdialog("c-net_sub_nethack.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=9 Text=_"Chandra"
+LuaCode={
+	run_subdialog("Chandra.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=10 Text=_"Cryo-Terminal"
+LuaCode={
+	run_subdialog("Cryo-Terminal.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=11 Text=_"Dixon"
+LuaCode={
+	run_subdialog("Dixon.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=12 Text=_"DocMoore"
+LuaCode={
+	run_subdialog("DocMoore.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=13 Text=_"DSB-MachineDeckControl"
+LuaCode={
+	run_subdialog("DSB-MachineDeckControl.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=14 Text=_"DSB-PowerControl"
+LuaCode={
+	run_subdialog("DSB-PowerControl.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=15 Text=_"DSB-PowerControlGate1"
+LuaCode={
+	run_subdialog("DSB.PowerControlGate1.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=16 Text=_"Dude"
+LuaCode={
+	npc_says("Beware of recursion!")
+	run_subdialog("Dude.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=17 Text=_"Duncan"
+LuaCode={
+	run_subdialog("Duncan.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=18 Text=_"Engel"
+LuaCode={
+	run_subdialog("Engel.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=19 Text=_"Engel_sub"
+LuaCode={
+	run_subdialog("Engel_sub.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=20 Text=_"Ewald"
+LuaCode={
+	run_subdialog("Ewald.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=21 Text=_"Ewalds_296"
+LuaCode={
+	run_subdialog("Ewalds_296.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=22 Text=_"Francis"
+LuaCode={
+	run_subdialog("Francis.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=23 Text=_"Geist"
+LuaCode={
+	run_subdialog("Geist.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=24 Text=_"HF-FirmwareUpdateServer"
+LuaCode={
+	run_subdialog("HF-FirmwareUpdateServer.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=25 Text=_"HF-GateGuard"
+LuaCode={
+	run_subdialog("HF-GateGuard.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=26 Text=_"HF-GateGuardLeader"
+LuaCode={
+	run_subdialog("HF-GateGuardLeader.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=27 Text=_"InvaderBot"
+LuaCode={
+	run_subdialog("InvaderBot.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=28 Text=_"Iris"
+LuaCode={
+	run_subdialog("Iris.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=29 Text=_"Jasmine"
+LuaCode={
+	run_subdialog("Jasmine.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=30 Text=_"John"
+LuaCode={
+	run_subdialog("John.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=31 Text=_"Kevin-Lawnmower"
+LuaCode={
+	run_subdialog("Kevin-Lawnmower.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=32 Text=_"Kevin"
+LuaCode={
+	run_subdialog("Kevin.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=33 Text=_"Kevin-Guard"
+LuaCode={
+	run_subdialog("Kevin-Guard.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=34 Text=_"Koan"
+LuaCode={
+	run_subdialog("Koan.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=35 Text=_"Lukas"
+LuaCode={
+	run_subdialog("Lukas.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=36 Text=_"Maintenance-Terminal"
+LuaCode={
+	run_subdialog("Maintenance-Terminal.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=37 Text=_"Michelanglo"
+LuaCode={
+	run_subdialog("Michelanglo.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=38 Text=_"Pendragon"
+LuaCode={
+	run_subdialog("Pendragon.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=39 Text=_"Peter"
+LuaCode={
+	run_subdialog("Peter.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=40 Text=_"Richard"
+LuaCode={
+	run_subdialog("Richard.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=41 Text=_"SACD"
+LuaCode={
+	run_subdialog("SACD.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=42 Text=_"SADD"
+LuaCode={
+	run_subdialog("SADD.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=43 Text=_"Singularity-Drone"
+LuaCode={
+	run_subdialog("Singularity-Drone.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=44 Text=_"Singularity"
+LuaCode={
+	run_subdialog("Singularity.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=45 Text=_"Skippy"
+LuaCode={
+	run_subdialog("Skippy.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=46 Text=_"Sorenson"
+LuaCode={
+	run_subdialog("Sorenson.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=47 Text=_"Spencer"
+LuaCode={
+	run_subdialog("Spencer.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=48 Text=_"Stone"
+LuaCode={
+	run_subdialog("Stone.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=49 Text=_"Tamara"
+LuaCode={
+	run_subdialog("Tamara.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=50 Text=_"Tania"
+LuaCode={
+	run_subdialog("Tania.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=51 Text=_"Template"
+LuaCode={
+	run_subdialog("Template.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=52 Text=_"TestDroid"
+LuaCode={
+	run_subdialog("TestDroid.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=53 Text=_"Town-614"
+LuaCode={
+	run_subdialog("Town-614.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=54 Text=_"Town-GuardhouseGuard"
+LuaCode={
+	run_subdialog("Town-GuardhouseGuard.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=55 Text=_"Town-NorthGateGuard"
+LuaCode={
+	run_subdialog("Town-NorthGateGuard.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=56 Text=_"Town-TeleportGuard"
+LuaCode={
+	run_subdialog("Town-TeleportGuard.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=57 Text=_"Town-TuxGuard"
+LuaCode={
+	run_subdialog("Town-TuxGuard.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=58 Text=_"TutorialTerminal"
+LuaCode={
+	run_subdialog("TutorialTerminal.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=59 Text=_"TutorialTux"
+LuaCode={
+	run_subdialog("TutorialTux.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=60 Text=_"TutorialTom"
+LuaCode={
+	run_subdialog("TutorialTom.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=61 Text=_"Tybalt"
+LuaCode={
+	run_subdialog("Tybalt.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=62 Text=_"WillGapes"
+LuaCode={
+	run_subdialog("TutorialTux.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=63 Text=_"Butch"
+LuaCode={
+	run_subdialog("Butch.dialog")
+}
+----------------------------------------------------------------------
+
+Nr=99 Text=_"Exit"
+LuaCode={
+	npc_says(_"Closing...")
+	end_dialog()
+}
+----------------------------------------------------------------------
+
+End of chat dialog for character="XXXXX"
