@@ -1386,7 +1386,7 @@ int level_validation()
 	int row_height = FontHeight(current_font);
 	int max_rows = (report_rect.h / row_height) - 4;	// 4 lines are reserved for header and footer
 	int column_width = TextWidth("000: empty");
-	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_GRID | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
+	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | OMIT_TUX | GameConfig.omit_obstacles_in_level_editor *
 				OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | OMIT_BLASTS | SKIP_LIGHT_RADIUS |
 				NO_CURSOR | OMIT_ITEMS_LABEL);
 	SetCurrentFont(current_font);	// Reset font, in case it was modified by AssembleCombatPicture()
