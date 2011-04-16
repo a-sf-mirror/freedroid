@@ -296,7 +296,7 @@ Level=23
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=24
-
+SForce: T=WOR Marker=2024 Faction="civilian" StartLabel="DudeStartGameSquare" UseDialog="Geist" ShortLabel=_"Dude"
 SForce: T=GUN Marker=1024 Faction="ms" StartLabel="autogun" UseDialog="Geist" ShortLabel=_"Autogun"
 ** End of this levels droid data **
 ----------------------------------------------------------------------

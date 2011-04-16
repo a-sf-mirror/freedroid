@@ -87,6 +87,7 @@ void init_npcs()
 		"c-net",
 		"Cryo-Terminal",
 		"Dixon",
+		"Dude",
 		"DocMoore",
 		"DSB-MachineDeckControl",
 		"DSB-PowerControl",
