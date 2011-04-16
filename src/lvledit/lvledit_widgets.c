@@ -244,7 +244,7 @@ void leveleditor_init_widgets()
 	list_add_tail(&create_categoryselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_categoryselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_categoryselector(4, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(5, _("MISC"), OBJECT_OBSTACLE, misc_tiles_list)->node, &leveleditor_widget_list);
+	list_add_tail(&create_categoryselector(5, _("OTHER"), OBJECT_OBSTACLE, misc_tiles_list)->node, &leveleditor_widget_list);
 	list_add_tail(&create_categoryselector(6, _("ALL"), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
 
 	// Floor
