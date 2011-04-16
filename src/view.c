@@ -1684,7 +1684,10 @@ static void draw_line_at_map_position(float x1, float y1, float x2, float y2, Ui
 
 void draw_grid_on_the_floor(int mask)
 {
-	if (!(draw_grid && (mask & SHOW_GRID)))
+	if (game_status != INSIDE_LVLEDITOR)
+		return;
+
+	if (!draw_grid)
 		return;
 
 	int LineStart, LineEnd, ColStart, ColEnd;
