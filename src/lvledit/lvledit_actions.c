@@ -812,6 +812,12 @@ void level_editor_place_aligned_object(int positionid)
 	pos.x = (int)Me.pos.x + position_offset_x[positionid];
 	pos.y = (int)Me.pos.y + position_offset_y[positionid];
 
+	if (!pos_inside_level(pos.x, pos.y, EditLevel()))
+	{
+		// Do not place an aligned object outside the current level.
+		return;
+	}
+
 	switch (cs->type) {
 	case OBJECT_OBSTACLE:
 			action_create_obstacle_user(EditLevel(), pos.x, pos.y, type);
