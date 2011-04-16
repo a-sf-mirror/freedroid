@@ -1718,6 +1718,12 @@ void draw_grid_on_the_floor(int mask)
 		draw_line_on_map(x - dd, y - 1.5, x - dd, y + 0.5, 0xFF00FF, 1);	// magenta
 	}
 
+	// Draw the level borders.
+	draw_line_on_map(0, 0, 0, our_level->ylen, 0xFF0000, 3);
+	draw_line_on_map(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+	draw_line_on_map(0, 0, our_level->xlen, 0, 0xFF0000, 3);
+	draw_line_on_map(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
+
 	// display numbers, corresponding to the numpad keys for quick placing 
 	BFont_Info *PreviousFont;
 	PreviousFont = GetCurrentFont();
@@ -1741,12 +1747,6 @@ void draw_grid_on_the_floor(int mask)
 			display_text(numbers[ii][jj], r - 5, c - 5, &tr);
 		}
 	SetCurrentFont(PreviousFont);
-
-	// now display the level borders (red line)	
-	draw_line_on_map(0, 0, 0, our_level->ylen, 0xFF0000, 3);
-	draw_line_on_map(our_level->xlen, 0, our_level->xlen, our_level->ylen, 0xFF0000, 3);
-	draw_line_on_map(0, 0, our_level->xlen, 0, 0xFF0000, 3);
-	draw_line_on_map(0, our_level->ylen, our_level->xlen, our_level->ylen, 0xFF0000, 3);
 }
 
 /* -----------------------------------------------------------------
