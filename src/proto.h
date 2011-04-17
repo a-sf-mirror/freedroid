@@ -617,6 +617,7 @@ void StartTakingTimeForFPSCalculation(void);
 int Get_Average_FPS(void);
 float Frame_Time(void);
 void Activate_Conservative_Frame_Computation(void);
+void update_frames_displayed(void);
 int MyRandom(int);
 void Teleport(int LNum, float X, float Y, int WithSound, int with_animation_reset);
 void teleport_to_level_center(int);
@@ -718,6 +719,7 @@ int get_minutes_of_game_duration(float current_game_date);
 void append_new_game_message(const char *fmt, ...);
 void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
+int get_current_fps(void);
 
 // item_upgrades_ui.c
 int append_item_upgrade_ui_tooltip(const point *, struct auto_string *str);

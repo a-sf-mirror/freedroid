@@ -69,6 +69,16 @@ static void gps_show() {
 }
 
 /**
+ * Displays counted FPS right above GPS
+ */
+void lvledit_display_fps(void) {
+	static char fps_text[200];
+	sprintf(fps_text, _(" FPS=%d\n"), get_current_fps());
+	display_text(fps_text, User_Rect.x + 1,	
+		GameConfig.screen_height - 2 * FontHeight(GetCurrentFont()), NULL);
+}
+
+/**
  * Now we print out the map label information about this map location.
  */
 static void print_label_information(level *EditLevel)
@@ -325,6 +335,9 @@ void leveleditor_display()
 	show_map_labels(ZOOM_OUT * GameConfig.zoom_is_on);
 	show_cursor(ZOOM_OUT * GameConfig.zoom_is_on);
 	gps_show();
+
+	if (GameConfig.Draw_Framerate)
+		lvledit_display_fps();
 
 	SetCurrentFont(FPS_Display_BFont);
 

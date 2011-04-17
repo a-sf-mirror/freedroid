@@ -272,6 +272,9 @@ void LevelEditor()
 	while (!level_editor_done) {
 		game_status = INSIDE_LVLEDITOR;
 
+		StartTakingTimeForFPSCalculation();
+		update_frames_displayed();
+
 		if (GameConfig.limit_framerate)
 			SDL_Delay(10);
 
@@ -284,6 +287,7 @@ void LevelEditor()
 
 		leveleditor_display();
 
+		ComputeFPSForThisFrame();
 	}
 
 	leveleditor_cleanup();

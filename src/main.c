@@ -285,23 +285,16 @@ void update_timeouts_for_bots_on_level(int level_num, float latest_frame_time)
  * ----------------------------------------------------------------- */
 void UpdateCountersForThisFrame()
 {
-	static long Overall_Frames_Displayed = 0;
 	int i;
 	float my_speed;
 	float latest_frame_time = Frame_Time();
 	int level_num;
 	float lose_life;
-	// The next couter counts the frames displayed by freedroid during this
-	// whole run!!  DO NOT RESET THIS COUNTER WHEN THE GAME RESTARTS!!
-	Overall_Frames_Displayed++;
-	Overall_Average = (Overall_Average * (Overall_Frames_Displayed - 1)
-			   + latest_frame_time) / Overall_Frames_Displayed;
+
+	update_frames_displayed();
 
 	LastGotIntoBlastSound += latest_frame_time;
 	LastRefreshSound += latest_frame_time;
-
-	if (SkipAFewFrames)
-		SkipAFewFrames--;
 
 	// This is the timeout, that the tux should not start a movement
 	// some fraction of a second after an item drop.

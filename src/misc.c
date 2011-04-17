@@ -56,6 +56,7 @@ Uint32 One_Frame_SDL_Ticks;
 Uint32 Ten_Frame_SDL_Ticks;
 Uint32 Onehundred_Frame_SDL_Ticks;
 int framenr = 0;
+long Overall_Frames_Displayed = 0;
 
 char *our_homedir = NULL;
 char *our_config_dir = NULL;
@@ -834,6 +835,21 @@ void Activate_Conservative_Frame_Computation(void)
 	DebugPrintf(1, "\nConservative_Frame_Computation activated!");
 
 };				// void Activate_Conservative_Frame_Computation(void)
+
+/*
+ * Should be called in every frame when counting FPS
+ */
+void update_frames_displayed(void)
+{
+	// The next couter counts the frames displayed by freedroid during this
+	// whole run!!  DO NOT RESET THIS COUNTER WHEN THE GAME RESTARTS!!
+	Overall_Frames_Displayed++;
+	Overall_Average = (Overall_Average * (Overall_Frames_Displayed - 1)
+			   + Frame_Time()) / Overall_Frames_Displayed;
+
+	if (SkipAFewFrames)
+		SkipAFewFrames--;
+}
 
 /**
  * This function is used to generate an integer in range of all

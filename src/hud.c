@@ -893,7 +893,7 @@ void init_message_log(void)
 /**
  * Calculate the current FPS and return it.
  */
-static int get_current_fps()
+int get_current_fps(void)
 {
 	static float time_since_last_fps_update = 10;
 	static int frames_counted = 0;
