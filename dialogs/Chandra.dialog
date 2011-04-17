@@ -27,9 +27,12 @@ Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
 	if (not has_cookie("met_chandra")) then
+		npc_says(_"So the rumors are true - a real live Linarian walks among us!")
 		show(0)
 		add_cookie("met_chandra")
-	else end
+	else 
+		npc_says(_"Good to see you again. How can I help you?")
+	end
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -37,7 +40,11 @@ EveryTime LuaCode={
 Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"Welcome. I am Chandra, the local sage in this old town.")
-	hide(0) show(1, 2, 9)
+	if (has_cookie("linarian_chandra")) and
+	   (not has_cookie("chandra_first_contact")) then
+		show(15)
+	end
+       	hide(0) show(1, 2, 9)
 }
 ----------------------------------------------------------------------
 
@@ -47,7 +54,7 @@ LuaCode={
 	npc_says(_"The mines have depleted recently, however. The town was under a threat of bankruptcy. Living here became harder and many left to seek new opportunities elsewhere.")
 	npc_says(_"But now after the Great Assault, the rest of the planet gets bombarded by automated bot ships every now and then, so being down here isn't so bad at all.")
 	npc_says(_"Even with the Red Guard in charge, I suppose.")
-	hide(1) show(5, 10)
+	hide(1) show(5, 10, 14)
 }
 ----------------------------------------------------------------------
 
@@ -176,6 +183,43 @@ LuaCode={
 	npc_says(_"Though I do not know the details, I assure you there are many. Robots and automated machinery served almost every purpose you can imagine, and probably some that you can't.")
 	npc_says(_"They were used by the military, aboard ships, as security droids and more. Right now, however, most of the people who know them up close are pushing up daisies.")
 	hide(13)
+}
+----------------------------------------------------------------------
+
+Nr=14 Text=_"Where in the void is this world?"
+ LuaCode={
+	npc_says(_"I guess you mean in the universe?")
+	tux_says(_"Yes, I think that is your name for it.")
+	npc_says(_"Well, we are in a barred spiral galaxy, twenty-six thousand light years away from the galactic core.")
+	npc_says(_"The galactic radius is 43,000 light years and the circumference is estimated at 270,000 light years.")
+	npc_says(_"This is a planetary system of ten planets, and we are presently located on the third one from our star, Sol.")
+	npc_says(_"I am not an astronomer, so I could be wrong. I am too tired to keep track of what is a planet and what is just an oversized rock.")
+	tux_says(_"This could be just about anywhere. Your description is too ambiguous.")
+	npc_says(_"Sorry, star sciences are my weak point.")
+	hide(14)
+}
+----------------------------------------------------------------------
+
+Nr=15 Text=_"Chandra? Francis in the Cryogenics facility mentioned your name."
+LuaCode={
+	npc_says(_"Oh did he? What exactly did he say about me?")
+	tux_says(_"He said you might know more about who I am.")
+	npc_says(_"Hmmm... I'm not so sure about 'who', but he is quite right about my knowledge of Linarians... quite right indeed. What would you like to know, my friend?")
+	run_subdialog("ChandraFirstContact_sub.dialog")
+	if (has_cookie("chandra_revenge")) then
+		end_dialog()
+        end
+	hide(15) show(16)
+}
+----------------------------------------------------------------------
+
+Nr=16 Text=_"I wanted to ask you some questions about Linarians."
+LuaCode={
+	npc_says(_"Yes?")
+	run_subdialog("ChandraFirstContact_sub.dialog")
+	if (has_cookie("chandra_revenge")) then
+        	end_dialog()
+        end
 }
 ----------------------------------------------------------------------
 
