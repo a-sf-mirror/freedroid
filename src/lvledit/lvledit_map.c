@@ -289,6 +289,7 @@ void remove_column_east(level *EditLevel)
 	// (ie. obstacles, map labels, items, waypoints) but remove those which are
 	// outside of the map
 	move_all_objects(EditLevel, 0, 0);
+	teleport_to_level_center(EditLevel->levelnum);
 }
 
 /**
@@ -314,6 +315,7 @@ void remove_column_west(level *EditLevel)
 
 	// Now we also have to shift the position of all elements
 	move_all_objects(EditLevel, -1, 0);
+	teleport_to_level_center(EditLevel->levelnum);
 }
 
 /**
@@ -337,6 +339,7 @@ void remove_line_north(level *EditLevel)
 
 	// Now we also have to shift the position of all elements
 	move_all_objects(EditLevel, 0, -1);
+	teleport_to_level_center(EditLevel->levelnum);
 }
 
 /**
@@ -357,4 +360,5 @@ void remove_line_south(level *EditLevel)
 	// (ie. obstacles, map labels, items, waypoints) but remove those which are
 	// outside of the map
 	move_all_objects(EditLevel, 0, 0);
+	teleport_to_level_center(EditLevel->levelnum);
 }
