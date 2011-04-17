@@ -24347,8 +24347,8 @@ t57 x10.50 y49.50
 t56 x11.50 y49.50
 t58 x12.50 y49.50
 t55 x13.50 y49.50
-t18 x14.50 y49.50
-t23 x15.50 y49.50
+t19 x14.50 y49.50
+t24 x15.50 y49.50
 t32 x16.50 y49.50
 t33 x18.50 y49.50
 t34 x20.50 y49.50
@@ -24603,13 +24603,13 @@ it: n="Droid 883 Exterminator"  X=1.500000  Y=22.500000  MDur=15  CDur=11.000000
 it: n="Autogun Laser Pistol"  X=2.500000  Y=22.500000  MDur=104  CDur=85.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
-idx=289 type=32 data={
+idx=529 type=32 data={
 	question mark sign
 }
-idx=290 type=32 data={
+idx=530 type=32 data={
 	exclamation mark sign
 }
-idx=291 type=32 data={
+idx=531 type=32 data={
 	less than sign
 }
 /obstacleextensions
@@ -29476,16 +29476,16 @@ obstacleextensions
 idx=684 type=32 data={
 	Caution: Hot steam is hot!
 }
-idx=714 type=32 data={
+idx=704 type=32 data={
 	Storage room
 }
 idx=687 type=32 data={
 	Danger! High voltage!
 }
-idx=672 type=32 data={
+idx=673 type=32 data={
 	Warning: Hot steam is hot!
 }
-idx=675 type=32 data={
+idx=677 type=32 data={
 	Danger: High voltage!
 }
 idx=702 type=32 data={
