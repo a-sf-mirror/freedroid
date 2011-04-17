@@ -927,6 +927,64 @@ void start_tux_death_explosions(void)
 
 };				// void start_tux_death_explosions ( void )
 
+/** 
+ * This function opens a menu when tux dies, asking the
+ * player if he/she wants to load latest or backup game, 
+ * quit to main menu or quit the game.
+ */
+void do_death_menu()
+{
+        char *MenuTexts[100];
+        int done = FALSE;
+        int MenuPosition = 1;
+        int i;
+
+        game_status = INSIDE_MENU;
+
+        input_handle();
+
+        enum {
+                LOAD_LATEST_POSITION = 1,
+                LOAD_BACKUP_POSITION,
+                QUIT_TO_MAIN_POSITION,
+                QUIT_POSITION
+        };
+
+        while (!done) {
+                i = 0;
+                MenuTexts[i++] = "Load Latest";
+                MenuTexts[i++] = "Load Backup";
+                MenuTexts[i++] = "Quit to Main Menu";
+                MenuTexts[i++] = "Exit FreedroidRPG";
+                MenuTexts[i++] = "";
+
+                MenuPosition = DoMenuSelection("", MenuTexts, 1, "--GAME_BACKGROUND--", Menu_BFont);
+
+                switch (MenuPosition) {
+
+                case LOAD_LATEST_POSITION:
+                        LoadGame();
+                        done = !done;
+                        break;
+                case LOAD_BACKUP_POSITION:
+                        LoadBackupGame();
+                        done = !done;
+                        break;
+                case QUIT_TO_MAIN_POSITION:
+                        if (game_root_mode == ROOT_IS_GAME) {
+                                GameOver = TRUE;
+                        }
+                        done = !done;
+                        break;
+                case QUIT_POSITION:
+                        Terminate(EXIT_SUCCESS, TRUE);
+                        break;
+                default:
+                        break;
+                }
+	}
+}
+
 /**
  * This function checks if the influencer is currently colliding with an
  * enemy and throws him back in that case.

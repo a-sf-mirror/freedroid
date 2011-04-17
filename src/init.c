@@ -1515,6 +1515,7 @@ void ThouArtDefeated(void)
 
 	}
 
+        do_death_menu();
 
 	input_handle();
 };				// void ThouArtDefeated(void)
