@@ -1978,6 +1978,10 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_E_TOILET_WHITE_SMALL].filename = "iso_obstacle_0067.png";
 	obstacle_map[ISO_E_TOILET_WHITE_SMALL].flags |= IS_SMASHABLE | GROUND_LEVEL;
 	obstacle_map[ISO_E_TOILET_WHITE_SMALL].flags &= ~BLOCKS_VISION_TOO;
+	
+	block_2param(ISO_CRUSHED_476, 2.1, 2.6);
+	obstacle_map[ISO_CRUSHED_476].filename = "crushed_476_0001.png";
+	obstacle_map[ISO_CRUSHED_476].flags &= ~BLOCKS_VISION_TOO;
 
 //arms, second section
 

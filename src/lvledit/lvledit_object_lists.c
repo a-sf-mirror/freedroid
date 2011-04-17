@@ -686,6 +686,8 @@ int misc_tiles_list[] = {
 	ISO_WRECKED_CAR_2,
 	ISO_WRECKED_CAR_3,
 	ISO_WRECKED_CAR_4,
+	
+	ISO_CRUSHED_476,
 
 	-1
 };
