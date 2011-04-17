@@ -310,7 +310,7 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	int xstart = 0, xend = EditLevel->xlen;
 	int ystart = 0, yend = EditLevel->ylen;
 
-	if(selection_type() == OBJECT_FLOOR) {
+	if (selection_type() == OBJECT_FLOOR && !selection_empty()) {
 		point start = selection_start(), len = selection_len();
 		xstart = start.x;
 		xend = start.x + len.x;
