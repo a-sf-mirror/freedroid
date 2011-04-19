@@ -26,10 +26,9 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_michelangelo")) then
+	if (not has_met("Michelangelo")) then
 		show(0)
-		add_cookie("met_michelangelo")
-	else end
+	end
 
 	if (has_quest(_"Anything but the army snacks, please!")) then
 		if (done_quest(_"Anything but the army snacks, please!")) then
@@ -38,7 +37,7 @@ EveryTime LuaCode={
 				if (done_quest(_"SADD's power supply")) then 
 					hide(75, 76, 77)
 				else
-					if (has_item_backpack("Red Dilithium Crystal") < 1) then show(40, 75) else end
+					if (has_item_backpack("Red Dilithium Crystal") < 1) then show(40, 75) end
 				end
 			end
 			if (has_quest(_"Gapes Gluttony")) then
@@ -61,7 +60,7 @@ EveryTime LuaCode={
 				if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
 			end
 		end
-	else end
+	end
 	show(99)
 }
 ----------------------------------------------------------------------

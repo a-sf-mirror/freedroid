@@ -26,9 +26,8 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_bruce")) then
+	if (not has_met("Bruce")) then
 		show(0)
-		add_cookie("met_bruce")
 	end
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"I am tired.")

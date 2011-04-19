@@ -27,7 +27,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ add_cookie("met_iris") show(0) }
+FirstTime LuaCode={ show(0) }
 
 EveryTime LuaCode={
 	if has_cookie("Iris_wants_lamp") then

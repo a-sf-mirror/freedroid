@@ -24,7 +24,7 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ add_cookie("met_stone") show(0) }
+FirstTime LuaCode={ show(0) }
 
 EveryTime LuaCode={
 	if (has_cookie("stone_helping")) and

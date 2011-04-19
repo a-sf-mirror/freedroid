@@ -25,7 +25,6 @@ Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
 	add_cookie("lawnmower_fuel_97")
-	add_cookie("met_kevins_lawnmower")
 }
 
 EveryTime LuaCode={

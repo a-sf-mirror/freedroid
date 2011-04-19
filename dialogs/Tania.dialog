@@ -27,7 +27,6 @@ Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
 	show(0)
-	add_cookie("met_tania")
 }
 
 EveryTime LuaCode={
@@ -362,7 +361,7 @@ LuaCode={
 Nr=50 Text=_"I have some industrial coolant you could have."
 LuaCode={
 	npc_says(_"I can't drink this.")
-	if has_cookie("met_ewald") then
+	if has_met("Ewald") then
 		tux_says(_"I've seen the town bartender put it in drinks.")
 		npc_says(_"I guess I'll give it a try then.")
 		del_item_backpack("Industrial coolant")

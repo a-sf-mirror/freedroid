@@ -26,7 +26,6 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={
-	add_cookie("met_skippy")
 	show(0, 99)
 }
 

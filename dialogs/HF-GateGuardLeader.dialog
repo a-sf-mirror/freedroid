@@ -25,10 +25,9 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_hf-gateguardleader")) then
+	if (not has_met("HF-GateGuardLeader")) then
 		npc_says(_"Hey, Linarian! What do you want here?")
 		show(1, 2, 3)
-		add_cookie("met_hf-gateguardleader")
 	else
 		if (done_quest(_"Opening access to MS Office")) then
 			if (has_cookie("msfacilitygateguardleader_informed")) then

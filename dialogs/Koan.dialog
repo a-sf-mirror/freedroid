@@ -43,7 +43,7 @@ EveryTime LuaCode={
 		if has_quest("Doing Duncan a favor") then
 			show(2)
 		else
-			if (not has_cookie("met_duncan")) then
+			if (not has_met("Duncan")) then
 				show(4)
 			else
 				show(5)

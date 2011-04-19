@@ -39,10 +39,6 @@ EveryTime LuaCode={
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 
-	if (not has_cookie("met_dsb-pcg1e")) then
-		add_cookie("met_dsb-pcg1e")	
-	else end
-
 	if (cmp_obstacle_state("DSB-PCGate1", "closed")) then show(0)
 	else
 		if (cmp_obstacle_state("DSB-PCGate1", "opened")) then show(10)

@@ -26,14 +26,13 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_dixon")) then
+	if (not has_met("Dixon")) then
 		show(0)
-		add_cookie("met_dixon")
-	else end
+	end
 
 	if (has_item_backpack("Dixon's Toolbox") > 0) then
 		if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
-	else end
+	end
 
 	if (done_quest(_"The yellow toolkit")) then
 		if (has_cookie("singularity_dead")) then
@@ -41,25 +40,25 @@ EveryTime LuaCode={
 		else 
 			if (has_cookie("dixon_one")) then show(46) else show(45) end
 		end
-	else end
+	end
 
 	if (has_cookie("dixon_angry_250")) then
 		if (has_cookie("dixon_very_angry")) then next(83) 
 		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong and I have no desire to talk to you.")
 		end
-	else end
+	end
 
 	if (has_cookie("dixon_angry_350")) then
 		if (has_cookie("dixon_very_angry")) then next(83)
 		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong and I have no desire to talk to you.")
 		end
-	else end
+	end
 
 	if (has_cookie("singularity_saved")) then
 		if (has_cookie("dixon_one")) then show(46) else show(45) end
-	else end
+	end
 
-	if (has_cookie("dixon_saved_and_talked")) then hide(46) else end
+	if (has_cookie("dixon_saved_and_talked")) then hide(46) end
 	show(99)
 	
 	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(60) end

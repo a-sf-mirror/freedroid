@@ -26,10 +26,9 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
-	if (not has_cookie("met_sorenson")) then
+	if (not has_met("Sorenson")) then
 		show(20, 30, 40, 50)
-		add_cookie("met_sorenson")
-	else end
+	end
 
 	tux_says(_"Um... Hello?")
 	npc_says(_"AH! A Visitor! Come in! Come in!")

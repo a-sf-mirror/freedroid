@@ -25,11 +25,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if has_cookie("met_ewalds_296") then
+	if has_met("Ewalds_296") then
 		npc_says(_"HI THERE! I'll be your humble servant-", "NO_WAIT")
 		tux_says(_"Uhh, yes, thank you, I know.")
-	else npc_says(_"HI THERE! I'll be your humble servant for the duration of your stay at Ewald's bar! We hope you enjoy your stay here and come again! Don't forget to tell ALL your friends about us! I LOVE YOU!")
-		add_cookie("met_ewalds_296")
+	else
+		npc_says(_"HI THERE! I'll be your humble servant for the duration of your stay at Ewald's bar! We hope you enjoy your stay here and come again! Don't forget to tell ALL your friends about us! I LOVE YOU!")
 		show(0)
 	end
 

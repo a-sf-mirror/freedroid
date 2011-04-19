@@ -24,16 +24,15 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_willgapes")) then
+	if (not has_met("WillGapes")) then
 		npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!") 
 		npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
-		add_cookie("met_willgapes")
 		show(1, 2, 3)
 	elseif (has_quest(_"Gapes Gluttony")) and (not done_quest(_"Gapes Gluttony")) then
         if (has_item_backpack("Lunch in a Picnic Basket") > 0) then
 			del_item_backpack("Lunch in a Picnic Basket")
 			show (9)
-		else 
+		else
 			npc_says(_"Have you brought me some food?")
 			tux_says(_"No, not yet.")
 			npc_says(_"Hurry... I'm starting to feel weak.")

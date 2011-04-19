@@ -26,10 +26,9 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_geist")) then
+	if (not has_met("Geist")) then
 		show(0)
-		add_cookie("met_geist")
-	else end
+	end
 	show(99)
 }
 ----------------------------------------------------------------------

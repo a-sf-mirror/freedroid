@@ -26,9 +26,8 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_duncan")) then
+	if (not has_met("Duncan")) then
 		show(0, 90, 99)
-		add_cookie("met_duncan")
 	elseif (not has_cookie("guard_follow_tux")) and
 			(not has_cookie("koan_quest")) then
 		next(50)
@@ -146,7 +145,7 @@ LuaCode={
 	npc_says(_"I will be waiting here for your return.")
 	tux_says(_"That is all I need to know. I will find Koan.")
 	npc_says(_"Only time will tell.")
-	if (cmp_obstacle_state("DesertGate", "closed") and (not has_cookie("met_tania"))) then
+	if (cmp_obstacle_state("DesertGate", "closed") and (not has_met("Tania"))) then
 		npc_says(_"Here is a couple of circuits to grease open the western gate, if you know what I mean.")
 		add_gold(25)
 	end

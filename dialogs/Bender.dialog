@@ -25,10 +25,9 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_bender")) then
+	if (not has_met("Bender")) then
 		show(0)
-		add_cookie("met_bender")
-	else end
+	end
 
 	if (has_quest(_"Bender's problem")) then 
 		if (not done_quest(_"Bender's problem")) then 
@@ -44,11 +43,10 @@ EveryTime LuaCode={
 					npc_says(_"Congratulations on getting into the Red Guard! I voted for you and that was what got you in! I said we'd be buddies, didn't I? Want to stand guard at the gate with me? It gets boring with just that 614 to talk to. I could tell you all the secrets of the Red Guard.")
 					add_cookie("bender_congrats")
 					show(14)
-				else end
+				end
 			else
 				next(13)
 			end
-
 		end
 	end
 

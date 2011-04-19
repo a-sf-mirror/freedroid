@@ -24,9 +24,8 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
-	if (not has_cookie("met_benjamin")) then
+	if (not has_met("Benjamin")) then
 		show(0)
-		add_cookie("met_benjamin")
 	else
 		tux_says_random(_"Hello.", _"Greetings Master Benjamin.")
 		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")

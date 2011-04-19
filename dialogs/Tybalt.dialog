@@ -26,14 +26,13 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_tybalt")) then
+	if (not has_met("Tybalt")) then
 		show(0)
-		add_cookie("met_tybalt")
 	else show(2) end
 
 	if (has_cookie("tux_has_joined_guard")) then
 		hide(50, 54, 55, 56)
-        else end
+	end
 
 	show(99)
 }
@@ -63,7 +62,7 @@ LuaCode={
 		npc_says(_"Sorry pal, but I don't think so. Only authorized personnel are permitted and that means members of the Red Guard.")
 		npc_says(_"Talk to Spencer if you have any business inside. I cannot let you pass.")
 		-- do we propose a bribe ?
-		if(not has_cookie("tybalt_bribe")) then show(50) else end
+		if (not has_cookie("tybalt_bribe")) then show(50) end
 	end
 	hide(2)
 }

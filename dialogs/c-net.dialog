@@ -301,7 +301,7 @@ LuaCode={
 		show(66)
 	elseif (username =="lily") then -- no special files yet
 	elseif (username =="cpain") then -- no special files yet
-	else end
+	end
 	cli_says(terminal, "NO_WAIT")
 	show(31) hide(10, 20, 30, 80, 99)
 }

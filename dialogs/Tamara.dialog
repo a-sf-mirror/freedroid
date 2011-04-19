@@ -28,14 +28,13 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
-	if (not has_cookie("met_tamara")) then
+	if (not has_met("Tamara")) then
 		tux_says(_"Hi, I'm " .. get_player_name() .. ".")
 		npc_says(_"Welcome to the Library, I'm Tamara.")
 		npc_says(_"Please take a look around and see if there is something here that interests you.")
 		npc_says(_"You are welcome to ask me if you have any questions.")
 		set_bot_name(_"Tamara -- Librarian")
 		show(40, 99)
-		add_cookie("met_tamara")
 	else
 		npc_says(_"What can I help you with.")
 	end
@@ -46,7 +45,7 @@ EveryTime LuaCode={
 		hide(20)
 	end
 
-	if (has_cookie("met_sorenson") and (not has_cookie("talked_about_sister")) ) then show(10) end
+	if (has_met("Sorenson") and (not has_cookie("talked_about_sister")) ) then show(10) end
 
 	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(50) end
 }

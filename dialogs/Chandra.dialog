@@ -26,11 +26,10 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={ 
-	if (not has_cookie("met_chandra")) then
+	if (not has_met("Chandra")) then
 		npc_says(_"So the rumors are true - a real live Linarian walks among us!")
 		show(0)
-		add_cookie("met_chandra")
-	else 
+	else
 		npc_says(_"Good to see you again. How can I help you?")
 	end
 	show(99)
@@ -44,7 +43,7 @@ LuaCode={
 	   (not has_cookie("chandra_first_contact")) then
 		show(15)
 	end
-       	hide(0) show(1, 2, 9)
+	hide(0) show(1, 2, 9)
 }
 ----------------------------------------------------------------------
 

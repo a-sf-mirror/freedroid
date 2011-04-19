@@ -26,9 +26,8 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_sadd")) then
+	if (not has_met("SADD")) then
 		show(1)
-		add_cookie("met_sadd")
 		set_rush_tux(0)
 	end
 

@@ -25,7 +25,7 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ add_cookie("met_engel") show (0, 6) }
+FirstTime LuaCode={ show (0, 6) }
 
 EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
@@ -146,7 +146,7 @@ LuaCode={
 	tux_says(_"So they are kind of add-ons?")
 	npc_says(_"Yes.")
 	npc_says(_"Ask the Stadtmenschen if you want to know more.") --Stadtmenschen = townspeople
-	if (not has_cookie("met_dixon")) then
+	if (not has_met("Dixon")) then
 		npc_says(_"I think the Rot Guard makes them.") --Rot = red
 		npc_says(_"If you have Gluck, they won't kill you directly.") --Gluck (should actually be 'Glück' but there is no ü in the font) = luck
 	end

@@ -25,7 +25,7 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={ add_cookie("met_john") show(0) }
+FirstTime LuaCode={ show(0) }
 
 EveryTime LuaCode={
 	if (has_cookie("john_dislike")) then

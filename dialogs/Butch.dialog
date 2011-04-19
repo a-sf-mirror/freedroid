@@ -26,10 +26,9 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
-	if (not has_cookie("met_butch")) then
+	if (not has_met("Butch")) then
 		show(0)
-		add_cookie("met_butch")
-	else end
+	end
 
 	if (has_quest(_"Novice Arena")) then
 		if (not done_quest(_"Novice Arena")) then 
@@ -38,10 +37,10 @@ EveryTime LuaCode={
 			if (not has_cookie("butch_enable_first_set")) then 
 				add_cookie("butch_enable_first_set")
 				show(7, 8)
-			else end
+			end
 			show(20)
 		end
-	else end
+	end
 
 	if (has_quest(_"Time to say goodnight")) then
 		if (not done_quest(_"Time to say goodnight")) then 
@@ -51,10 +50,10 @@ EveryTime LuaCode={
 			if (not has_cookie("butch_enable_second_set")) then
 				add_cookie("butch_enable_second_set")
 				show(10)
-			else end
+			end
 			show(21)
 		end
-	else end
+	end
 	show(99) 
 }
 ----------------------------------------------------------------------
