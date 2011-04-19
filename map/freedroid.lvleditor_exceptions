@@ -197,5 +197,9 @@ Rule=1107 [Type="OW"] X=0.281547:Y=42.945724:L=53 T=2 -> west border=-0.268453 (
 Rule=1108 [Type="OW"] X=0.379692:Y=67.999092:L=53 T=2 -> west border=-0.170308 (warning)
 Rule=1109 [Type="OW"] X=0.364541:Y=78.983948:L=53 T=2 -> west border=-0.185459 (warning)
 Rule=1110 [Type="OW"] X=0.424242:Y=89.924240:L=53 T=2 -> west border=-0.125758 (warning)
+Rule=1111 [Type="ON"] X=0.980000:Y=0.460000:L=52 T=1 -> north border=-0.090000 (warning)
+Rule=1112 [Type="ON"] X=0.990000:Y=0.390000:L=52 T=1 -> north border=-0.160000 (warning)
+Rule=1113 [Type="OE"] X=89.540001:Y=89.989998:L=52 T=2 -> east border=90.090004 (warning)
+
 
 *** End of LevelValidator Exceptions List ***
