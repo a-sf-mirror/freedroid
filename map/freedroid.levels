@@ -53551,16 +53551,45 @@ t2 x4.44 y89.91
 t2 x3.44 y89.91
 t2 x2.44 y89.91
 t2 x1.45 y89.93
+t2 x0.39 y13.99
+t2 x0.31 y27.98
+t2 x0.28 y42.95
+t2 x0.38 y68.00
+t2 x0.36 y78.98
+t2 x0.42 y89.92
+t1 x28.01 y89.52
 /obsdata
 plabelinfolvl
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
 obstacleextensions
+idx=1721 type=32 data={
+	Worker 1
+}
+idx=1722 type=32 data={
+	Worker 2
+}
+idx=1723 type=32 data={
+	Worker 3
+}
+idx=1724 type=32 data={
+	Worker 4
+}
+idx=1899 type=32 data={
+	Please don't talk, sing, take any drugs or write on walls in there!
+}
+idx=2395 type=32 data={
+	Don't touch the fence, there are more efficient ways to waste energy here.
+}
+idx=2442 type=32 data={
+	I have no idea what this red thing is, but it looks pretty cool.
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  67 y=  80 rnd=0	 c:    1
 Nr.=  1 x=  66 y=  80 rnd=0	 c:    0
+Nr.=  2 x=  47 y=  16 rnd=0	 c: 
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 54
