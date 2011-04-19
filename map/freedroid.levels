@@ -48353,22 +48353,22 @@ idx=962 type=32 data={
 idx=963 type=32 data={
 	Power generator, don't change settings!
 }
-idx=1675 type=32 data={
+idx=1714 type=32 data={
 	Insert coin!!!!
 }
-idx=1676 type=32 data={
+idx=1715 type=32 data={
 	You always loose?  Play again, I am sure you'll win next time!
 }
-idx=1775 type=32 data={
+idx=1813 type=32 data={
 	This is only decoration for good atmosphere. Don't cut plastic lawn!
 }
-idx=1774 type=32 data={
+idx=1814 type=32 data={
 	Plastic leaves, do not eat!
 }
-idx=1913 type=32 data={
+idx=1954 type=32 data={
 	Caution: nothing. - There is absolutely nothing dangerous in the area!
 }
-idx=2056 type=32 data={
+idx=2097 type=32 data={
 	Stepping on this pad will affect absolutely nothing. LOL!
 }
 /obstacleextensions
