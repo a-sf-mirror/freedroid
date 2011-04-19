@@ -28,9 +28,9 @@ FirstTime LuaCode={ show(0) }
 
 EveryTime LuaCode={
 	if (has_cookie("stone_helping")) and
-		(not has_cookie("stone_done")) and
-		(get_gold() > 1400) then
-			show(23)
+	   (not has_cookie("stone_done")) and
+	   (get_gold() > 1400) then
+		show(23)
 	else
 		hide(23)
 	end
@@ -38,8 +38,8 @@ EveryTime LuaCode={
 		show(4)
 	end
 	if (not has_cookie("tux_has_joined_guard")) and		-- avoid that the node is shown several times
-		(not has_cookie("Stone_Hide_Guard_Question")) then
-			show(3)
+	   (not has_cookie("Stone_Hide_Guard_Question")) then
+		show(3)
 	end
 	show(99)
 }

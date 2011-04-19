@@ -27,11 +27,11 @@ Beginning of new chat dialog for character="XXXXX"
 
 EveryTime LuaCode={
 	if (not has_cookie("bot_attack")) then
-    		npc_says(_"HELP! We're under attack!","NO_WAIT")
+		npc_says(_"HELP! We're under attack!","NO_WAIT")
 		npc_says(_"[b](The old man is clearly distressed and frightened.)[/b]")
-   		 show(0)
-    		add_cookie("bot_attack")
-    		set_rush_tux(0)	
+		show(0)
+		add_cookie("bot_attack")
+		set_rush_tux(0)
 	elseif (not npc_dead("InvaderBot")) then
 		npc_says(_"Have you neutralized the threat yet?")
 		show(1,2)
@@ -41,7 +41,7 @@ EveryTime LuaCode={
 	elseif (not has_quest(_"Deliverance")) then
 		show(90)
 		npc_says(_"Welcome back " .. get_player_name() .. ".")
-	else 
+	else
 		show(99)
 		npc_says(_"It's good to see you again, " .. get_player_name() .. ".")
 	end
@@ -49,15 +49,15 @@ EveryTime LuaCode={
 	if (has_cookie("cryo_614_lock_gate") and (not has_cookie("cryo_outergate_code"))) then
 		show(30)
 	end
-		
+
 	if (has_cookie("tux_has_joined_guard") and (not has_cookie("francis_guard_response"))) then
-		add_cookie("francis_guard_response")		
+		add_cookie("francis_guard_response")
 		tux_says(_"I joined the Red Guard.")
 		npc_says(_"Oh...")
 		npc_says(_"Well. Congratulations are in order, I suppose.")
 		tux_says(_"...")
 	end
-	
+
 	if (has_cookie("refused_deliverance")) then
 		show(99) hide(90)
 	end

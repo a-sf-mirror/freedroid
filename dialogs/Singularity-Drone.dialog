@@ -25,9 +25,7 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={
-	show(99)
-}
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=99 Text="..."

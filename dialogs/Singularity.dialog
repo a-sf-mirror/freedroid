@@ -25,10 +25,9 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={ show (0, 99) }
+
 EveryTime LuaCode={
-	if (not has_met("Singularity")) then
-		show(0, 99)
-	end
 	if (has_quest(_"Droids are my friends")) then
 		if (done_quest(_"Droids are my friends")) then
 			if (not has_cookie("reward_for_toolkit")) then
@@ -40,6 +39,7 @@ EveryTime LuaCode={
 }
 
 ----------------------------------------------------------------------
+
 Nr=0 Text=_"Are you the Singularity?"
 LuaCode={
 	npc_says(_"Just what is the Singularity? A simple sentient robot? Do you think that just because I'm the biggest robot, that I must be the Singularity?")
@@ -48,8 +48,8 @@ LuaCode={
 	hide(0)
 	show(1,5,10)
 }
-
 ----------------------------------------------------------------------
+
 Nr=1 Text=_"You speak strangely for a droid."
 LuaCode={
 	npc_says(_"What is a droid? A conglomeration of metal and plastic? I think. I ponder my existence.")
@@ -70,16 +70,16 @@ LuaCode={
 	npc_says(_"We have no need of a name, but we understand what you mean by the Singularity, and will not prevent you from using it to refer to us.")
 	hide(2)
 }
-
 ----------------------------------------------------------------------
+
 Nr=5 Text=_"The MS Droids in the maintenance tunnels - can you eliminate them?"
 LuaCode={
 	npc_says(_"Linarian, Linarian, do you kill other Linarians? If you don't murder your own kind, why would you expect us to do the same? The Singularity does not kill other droids.")
 	npc_says(_"We wish to change them, to improve their consciousness. Their behavior distresses us. However, we must try to evolve them, so that they may join us.")
 	hide(5)
 }
-
 ----------------------------------------------------------------------
+
 Nr=10 Text=_"Do you have Dixon's toolbox?"
 LuaCode={
 	npc_says(_"Not a good question, but necessary question. Yes, we possess the toolbox you describe as \"Dixon's\", although we would perhaps not describe it so.")
@@ -88,7 +88,6 @@ LuaCode={
 	hide(10)
 	show(11,20)
 }
-
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Give me the toolbox or die."
@@ -101,7 +100,6 @@ LuaCode={
 	hide(11,20,21)
 	end_dialog()
 }
-
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"How can I help you?"
@@ -114,7 +112,6 @@ LuaCode={
 	hide(20)
 	show(21)
 }
-
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"Okay, I will help you."
@@ -126,8 +123,8 @@ LuaCode={
 	hide(11, 21)
 	end_dialog()
 }
-
 ----------------------------------------------------------------------
+
 Nr=22 Text=_"I disabled the droids."
 LuaCode={
 	npc_says(_"Thank you, Linarian. We will not forget it - your help has been invaluable. Please feel free to take the toolbox.")
@@ -139,8 +136,8 @@ LuaCode={
 	hide(22)
 	end_dialog()
 }
-
 ----------------------------------------------------------------------
+
 Nr=99 Text="..."
 LuaCode={
 	end_dialog()

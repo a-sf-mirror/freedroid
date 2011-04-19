@@ -24,14 +24,14 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={
-	if (not has_met("Spencer")) then
-		show(0)
-		del_cookie("guard_follow_tux")
-		set_bot_state("patrol", "Town-TuxGuard")
-		change_obstacle_state("Dixon-autogun", "enabled")
-	end
+FirstTime LuaCode={
+	show(0)
+	del_cookie("guard_follow_tux")
+	set_bot_state("patrol", "Town-TuxGuard")
+	change_obstacle_state("Dixon-autogun", "enabled")
+}
 
+EveryTime LuaCode={
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"Greetings fellow Red Guard member.")
 		hide(2, 12)

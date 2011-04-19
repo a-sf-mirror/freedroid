@@ -25,10 +25,9 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={ show(0, 3) }
+
 EveryTime LuaCode={
-	if (not has_met("Ewald")) then
-		show(0, 3)
-	end
 	if (has_cookie("Tania-at-Bar")) and
 	(not has_cookie("Tania-at-Bar_Ewald")) then
 		add_cookie("Tania-at-Bar_Ewald")

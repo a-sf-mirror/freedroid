@@ -23,10 +23,10 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
+FirstTime LuaCode={ show(0) }
+
 EveryTime LuaCode={
-	if (not has_met("Kevin")) then
-		show(0)
-	else 
+	if (has_met("Kevin")) then
 		tux_says_random(_"Hello.", _"Hi there, Kevin.")
 		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
 	end

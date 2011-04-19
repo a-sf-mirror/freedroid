@@ -25,12 +25,12 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={
-	if (not has_met("SADD")) then
-		show(1)
-		set_rush_tux(0)
-	end
+FirstTime LuaCode={
+	show(1)
+	set_rush_tux(0)
+}
 
+EveryTime LuaCode={
 	if (not has_cookie("SADD-trick")) then
 		npc_says(_"Your bio checksum does not trigger a match in staff database. Please show proper credentials or leave the premises at once.")
 	else

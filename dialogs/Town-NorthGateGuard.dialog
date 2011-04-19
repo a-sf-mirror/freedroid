@@ -38,7 +38,7 @@ EveryTime LuaCode={
 			npc_says_random(_"Oh, it is you.", _"I see you have returned.", _"Welcome back.")
 		end
 		end_dialog()
-	else 
+	else
 		tux_says(_"Can I ask you something?")
 		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 			npc_says(_"Yes, Loon.", "NO_WAIT")

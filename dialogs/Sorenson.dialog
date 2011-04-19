@@ -25,11 +25,9 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={ 
-	if (not has_met("Sorenson")) then
-		show(20, 30, 40, 50)
-	end
+FirstTime LuaCode={ show(20, 30, 40, 50) }
 
+EveryTime LuaCode={
 	tux_says(_"Um... Hello?")
 	npc_says(_"AH! A Visitor! Come in! Come in!")
 	tux_says(_"I think I should go now. Right now. See you later.")

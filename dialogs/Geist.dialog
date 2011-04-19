@@ -25,12 +25,9 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={
-	if (not has_met("Geist")) then
-		show(0)
-	end
-	show(99)
-}
+FirstTime LuaCode={ show(0) }
+
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello. Any idea where I can get some help here?"

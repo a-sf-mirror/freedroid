@@ -23,9 +23,7 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-FirstTime LuaCode={
-	add_cookie("lawnmower_fuel_97")
-}
+FirstTime LuaCode={ add_cookie("lawnmower_fuel_97") }
 
 EveryTime LuaCode={
 	npc_says(_"Welcome to Kevin's personal lawnmower.")

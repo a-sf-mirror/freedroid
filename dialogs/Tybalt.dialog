@@ -24,11 +24,12 @@ freedroid-discussion@lists.sourceforge.net
 
 
 Beginning of new chat dialog for character="XXXXX"
+FirstTime LuaCode={ show(0) }
 
 EveryTime LuaCode={
-	if (not has_met("Tybalt")) then
-		show(0)
-	else show(2) end
+	if (has_met("Tybalt")) then
+		show(2)
+	end
 
 	if (has_cookie("tux_has_joined_guard")) then
 		hide(50, 54, 55, 56)

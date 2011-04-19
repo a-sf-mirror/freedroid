@@ -25,11 +25,13 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={ 
+FirstTime LuaCode={
+	npc_says(_"So the rumors are true - a real live Linarian walks among us!")
+	show(0)
+}
+
+EveryTime LuaCode={
 	if (not has_met("Chandra")) then
-		npc_says(_"So the rumors are true - a real live Linarian walks among us!")
-		show(0)
-	else
 		npc_says(_"Good to see you again. How can I help you?")
 	end
 	show(99)

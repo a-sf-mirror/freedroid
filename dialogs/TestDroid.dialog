@@ -25,12 +25,9 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={
-	if (not has_met("TestDroid")) then
-		show(0)
-	end
-	show(99)
-}
+FirstTime LuaCode={ show(0) }
+
+EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"This is a MegaSys test bot, running a very basic version of their OS. I can do nothing with this bot, because it doesn't know how to do anything."

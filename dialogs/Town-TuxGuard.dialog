@@ -45,8 +45,8 @@ LuaCode={
 	tux_says(_"Okay.")
 	hide(20)
 }
-
 ----------------------------------------------------------------------
+
 Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Mhmmm.")

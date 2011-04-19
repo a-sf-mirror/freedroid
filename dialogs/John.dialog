@@ -36,8 +36,6 @@ EveryTime LuaCode={
 
 	if (has_cookie("JohnPuzzleStarted")) then
 
-show(99)
-
 		-- if Tux solved the puzzle, went into the correct teleporter
 		if (not has_cookie("JohnPuzzleLocked")) then
 			if (has_cookie("JohnPuzzleSolved")) then
@@ -128,6 +126,8 @@ show(99)
 	end -- of 'if (has_cookie("JohnPuzzleStarted")) then'
 
 	set_rush_tux(0, "John")
+
+show(99)
 }
 ----------------------------------------------------------------------
 

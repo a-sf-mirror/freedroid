@@ -25,21 +25,21 @@ freedroid-discussion@lists.sourceforge.net
 
 Beginning of new chat dialog for character="XXXXX"
 
-EveryTime LuaCode={
-	terminal = "admin@main.mdc.dsb.ms: ~ #"
-	if (not has_met("DSB-MachineDeckControl")) then
+FirstTime LuaCode={
 		cli_says(_"Login : ", "NO_WAIT")
 		tux_says(_"admin", "NO_WAIT")
 		cli_says(_"Password : ", "NO_WAIT")
 		tux_says(_"*******", "NO_WAIT")
 		npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-	end
-	cli_says(terminal, "NO_WAIT")
-	show(99, 1)
+}
 
+EveryTime LuaCode={
+	terminal = "admin@main.mdc.dsb.ms: ~ #"
+	cli_says(terminal, "NO_WAIT")
 	if (not done_quest(_"Opening access to MS Office")) then
 		show(7)
 	end
+	show(99, 1)
 }
 ----------------------------------------------------------------------
 
