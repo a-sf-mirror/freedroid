@@ -441,6 +441,14 @@ static int lua_event_remove_cookie(lua_State * L)
 	return 0;
 }
 
+static int lua_event_has_met(lua_State *L)
+{
+	const char *npc_name = luaL_checkstring(L, 1);
+	struct npc *npc = npc_get(npc_name);
+	lua_pushboolean(L, npc->chat_character_initialized);
+	return 1;
+}
+
 static int lua_event_assign_mission(lua_State * L)
 {
 	const char *misname = luaL_checkstring(L, 1);
@@ -1066,6 +1074,8 @@ luaL_reg lfuncs[] = {
 	{"has_cookie", lua_event_cookie_planted}
 	,
 	{"remove_cookie", lua_event_remove_cookie}
+	,
+	{"has_met", lua_event_has_met}
 	,
 	{"assign_quest", lua_event_assign_mission}
 	,

@@ -570,11 +570,12 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 
 		if (chat_initialization_code)
 			run_lua(chat_initialization_code);
-
-		npc->chat_character_initialized = 1;
 	}
 
 	run_chat(ChatDroid, FALSE);
+
+	if (!npc->chat_character_initialized)
+		npc->chat_character_initialized = 1;
 }
 
 /**
