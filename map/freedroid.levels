@@ -3556,6 +3556,9 @@ t66 x85.48 y59.28
 t407 x85.50 y44.50
 t407 x85.50 y56.50
 t407 x85.50 y58.50
+t396 x14.54 y72.65
+t439 x25.61 y79.57
+t444 x32.44 y77.51
 /obsdata
 plabelinfolvl
 x=35 y=7 name="StoneStartGameSquare"
