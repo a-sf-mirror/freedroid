@@ -378,28 +378,20 @@ void DisplayBigScreenMessage(void)
 
 };				// void DisplayBigScreenMessage( void )
 
-/**
- * Prints text at given positions, automatically word-wrapping at the
- * edges of clip_rect.  If clip_rect is NULL, no clipping is performed.
- *      
- * @return number of lines written (from the first text line up to the
- *         last displayed line)
- */
-int display_text_using_line_height(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor)
+static int display_text_using_line_height_with_cursor(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor, int curpos)
 {
 	char *tmp;		// mobile pointer to the current position in the string to be printed
 	SDL_Rect Temp_Clipping_Rect;	// adding this to prevent segfault in case of NULL as parameter
 	SDL_Rect store_clip;
 	short int nblines = 1;
 	int empty_lines_started = 0;
+	int current_curpos = 0;
 
 	int letter_spacing = get_letter_spacing(GetCurrentFont());
 	int tab_width = TABWIDTH * (CharWidth(GetCurrentFont(), TABCHAR) + letter_spacing);
 
-	if (!*text) {
+	if (!*text)
 		nblines = 0;
-		return nblines;
-	}
 
 	// We position the internal text cursor on the right spot for
 	// the first character to be printed.
@@ -408,6 +400,9 @@ int display_text_using_line_height(const char *text, int startx, int starty, con
 		MyCursorX = startx;
 	if (starty != -1)
 		MyCursorY = starty;
+
+	int cursor_x = MyCursorX;
+	int cursor_y = MyCursorY;
 
 	// We make a backup of the current clipping rect, so we can restore
 	// it later.
@@ -438,8 +433,14 @@ int display_text_using_line_height(const char *text, int startx, int starty, con
 	//
 	tmp = (char *)text;	// this is no longer a 'const' char*, but only a char*
 	while (*tmp && (MyCursorY < clip->y + clip->h)) {
+		if (current_curpos == curpos) {
+			cursor_x = MyCursorX;
+			cursor_y = MyCursorY;
+		}
+
 		if (handle_switch_font_char(*tmp)) {
 			tmp++;
+			current_curpos++;
 			continue;
 		}
 
@@ -447,7 +448,8 @@ int display_text_using_line_height(const char *text, int startx, int starty, con
 		    && (ImprovedCheckLineBreak(tmp, clip, line_height_factor) == 1))	// don't write over right border 
 		{		/*THE CALL ABOVE HAS DONE THE CARRIAGE RETURN FOR US !!! */
 			empty_lines_started++;
-			++tmp;
+			tmp++;
+			current_curpos++;
 			continue;
 		}
 
@@ -477,16 +479,43 @@ int display_text_using_line_height(const char *text, int startx, int starty, con
 			}
 		}
 		tmp++;
+		current_curpos++;
 	}
+
+	end_image_batch();
 
 	SDL_SetClipRect(Screen, &store_clip);	// restore previous clip-rect 
 
-	end_image_batch();
+	if (curpos != -1) {
+		if (curpos != 0 && current_curpos == curpos) {
+			cursor_x = MyCursorX;
+			cursor_y = MyCursorY;
+		}
+
+		SDL_Rect cursor_rect;
+		cursor_rect.x = cursor_x;
+		cursor_rect.y = cursor_y;
+		cursor_rect.h = FontHeight(GetCurrentFont());
+		cursor_rect.w = 8;
+		HighlightRectangle(Screen, cursor_rect);
+	}
 	
 	if (use_open_gl)
 		unset_gl_clip_rect();
 
 	return nblines;
+}
+
+/**
+ * Prints text at given positions, automatically word-wrapping at the
+ * edges of clip_rect.  If clip_rect is NULL, no clipping is performed.
+ *      
+ * @return number of lines written (from the first text line up to the
+ *         last displayed line)
+ */
+int display_text_using_line_height(const char *text, int startx, int starty, const SDL_Rect *clip, float line_height_factor)
+{
+	return display_text_using_line_height_with_cursor(text, startx, starty, clip, line_height_factor, -1);
 }
 
 /**
@@ -619,8 +648,6 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 	int finished;
 	int x0, y0;
 	SDL_Rect TargetRect;
-	SDL_Rect CursorRect;
-	char tmp_char;
 	int i;
 
 #define EDIT_WINDOW_TEXT_OFFSET 15
@@ -672,20 +699,9 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 		if (PopupWindowTitle[strlen(PopupWindowTitle) - 1] != '\n')
 			display_text("\n\n", x0, y0, &TargetRect);
 
-		TargetRect.y = MyCursorX;
+		TargetRect.x = MyCursorX;
 		TargetRect.y = MyCursorY;
-		display_text(input, TargetRect.x, TargetRect.y, &TargetRect);
-
-		// We position the cursor right on its real location
-		//
-		tmp_char = input[curpos];
-		input[curpos] = 0;
-		CursorRect.x = MyCursorX;
-		input[curpos] = tmp_char;
-		CursorRect.y = TargetRect.y;
-		CursorRect.h = FontHeight(GetCurrentFont());
-		CursorRect.w = 8;
-		HighlightRectangle(Screen, CursorRect);
+		display_text_using_line_height_with_cursor(input, TargetRect.x, TargetRect.y, &TargetRect, LINE_HEIGHT_FACTOR, curpos);
 
 		our_SDL_flip_wrapper();
 
@@ -754,9 +770,8 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 
 	SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL);
 
-	return (input);
-
-};				// char* GetEditableStringInPopupWindow ( int MaxLen , char* PopupWindowTitle )
+	return input;
+}
 
 /* -----------------------------------------------------------------
  * behaves similarly as gl_printf() of svgalib, using the BFont
