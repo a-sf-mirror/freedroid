@@ -48360,6 +48360,12 @@ t399 x41.82 y41.20
 t352 x81.99 y89.50
 t65 x84.33 y89.76
 t1 x80.00 y89.50
+t1 x68.00 y89.50
+t1 x56.00 y89.50
+t1 x40.00 y89.50
+t1 x28.00 y89.50
+t1 x13.00 y89.50
+t2 x13.50 y90.00
 /obsdata
 plabelinfolvl
 /plabelinfolvl
@@ -51199,6 +51205,14 @@ t48 x19.33 y82.45
 t390 x49.37 y79.61
 t391 x51.35 y80.11
 t393 x47.77 y80.08
+t165 x0.45 y0.14
+t26 x0.48 y11.98
+t134 x0.61 y18.50
+t134 x0.68 y29.49
+t48 x0.01 y42.43
+t48 x0.64 y42.36
+t47 x0.67 y62.61
+t47 x0.04 y62.57
 /obsdata
 plabelinfolvl
 /plabelinfolvl
@@ -58609,6 +58623,10 @@ t2 x75.50 y24.00
 t2 x76.50 y24.00
 t1 x77.00 y23.50
 t1 x77.00 y22.50
+t136 x89.71 y18.50
+t136 x89.97 y18.50
+t48 x90.00 y42.45
+t47 x90.00 y62.59
 /obsdata
 plabelinfolvl
 /plabelinfolvl
