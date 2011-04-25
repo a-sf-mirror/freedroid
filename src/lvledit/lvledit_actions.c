@@ -195,11 +195,6 @@ obstacle *action_create_obstacle(level * EditLevel, double x, double y, int new_
 			EditLevel->obstacle_list[i].pos.z = EditLevel->levelnum;
 			EditLevel->obstacle_list[i].timestamp = 0;
 			glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
-			// Now that we have disturbed the order of the obstacles on this level, we need
-			// to re-assemble the lists of pointers to obstacles, like the door list, the
-			// teleporter list and the refreshes list.
-			//
-			dirty_animated_obstacle_lists(EditLevel->levelnum);
 			
 			return (&(EditLevel->obstacle_list[i]));
 		}
@@ -302,12 +297,6 @@ void action_remove_obstacle(level *EditLevel, obstacle *our_obstacle)
 	// reglue everything to the map...
 	//
 	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
-
-	// Now that we have disturbed the order of the obstacles on this level, we need
-	// to re-assemble the lists of pointers to obstacles, like the door list, the
-	// teleporter list and the refreshes list.
-	//
-	dirty_animated_obstacle_lists(lvl->levelnum);
 }
 
 void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)

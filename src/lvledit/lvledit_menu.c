@@ -199,7 +199,6 @@ void EditLevelDimensions(void)
 		}
 
 		gps_transform_map_init();
-		dirty_animated_obstacle_lists(EditLevel->levelnum);
 
 	}			// while (!proceed_now)
 
@@ -476,7 +475,6 @@ static void AddRemLevel(void)
 
 				gps_transform_map_dirty_flag = TRUE;
 				gps_transform_map_init();
-				dirty_animated_obstacle_lists(new_level_num);
 				// Teleporting Tux will re-render the menu background
 				reset_visible_levels();
 				action_jump_to_level_center(new_level_num);
@@ -498,7 +496,6 @@ static void AddRemLevel(void)
 			{
 				int tmp = EditLevel()->levelnum; // needed due to Teleport changing EditLevel() result
 
-				dirty_animated_obstacle_lists(tmp);
 				delete_map_level(tmp);
 
 				leveleditor_reset_tools();
