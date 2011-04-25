@@ -129,6 +129,21 @@ void del_obstacle_extension(level *lvl, obstacle *obs, enum obstacle_extension_t
 	}
 }
 
+void del_obstacle_extensions(level *lvl, obstacle *obs)
+{
+	int i;
+	struct obstacle_extension *ext;
+
+	for (i = 0; i < lvl->obstacle_extensions.size; i++) {
+		ext = &ACCESS_OBSTACLE_EXTENSION(lvl->obstacle_extensions, i);
+
+		if (ext->obs != obs)
+			continue;
+
+		dynarray_del(&lvl->obstacle_extensions, i, sizeof(struct obstacle_extension));
+	}
+}
+
 /**
  * Add a new extension to an obstacle.
  * \param lvl Pointer towards the level where the obstacle lies

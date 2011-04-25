@@ -295,9 +295,8 @@ void action_remove_obstacle(level *EditLevel, obstacle *our_obstacle)
 
 	our_obstacle->type = (-1);
 
-	// Remove the obstacle label if we had one
-	// with the current design this won't be undoable
-	action_change_obstacle_label(lvl, our_obstacle, NULL, 0);
+	// Remove the extensions.
+	del_obstacle_extensions(EditLevel, our_obstacle);
 
 	// Now doing that must have shifted the glue!  That is a problem.  We need to
 	// reglue everything to the map...
