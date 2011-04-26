@@ -133,6 +133,7 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_GLASS_WALL_2].flags |= IS_SMASHABLE | IS_CLICKABLE;
 	obstacle_map[ISO_GLASS_WALL_2].label = "";
 	obstacle_map[ISO_GLASS_WALL_2].action = &barrel_action;
+	obstacle_map[ISO_GLASS_WALL_2].result_type_after_smashing_once = ISO_BROKEN_GLASS_WALL_2;
 
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].block_area_type = COLLISION_TYPE_NONE;
 	obstacle_map[ISO_BROKEN_GLASS_WALL_1].flags &= ~BLOCKS_VISION_TOO;
@@ -2010,7 +2011,10 @@ void init_obstacle_data(void)
 	obstacle_map[ISO_BOTLINE_08_E].filename = "iso_botline_0008_E.png";
 
 
-
+	obstacle_map[ISO_BROKEN_GLASS_WALL_2].block_area_type = COLLISION_TYPE_NONE;
+	obstacle_map[ISO_BROKEN_GLASS_WALL_2].flags &= ~BLOCKS_VISION_TOO;
+	obstacle_map[ISO_BROKEN_GLASS_WALL_2].flags |= IS_WALKABLE;
+	obstacle_map[ISO_BROKEN_GLASS_WALL_2].filename = "iso_walls_0031.png";
 
 	// corrections for corner and T walls
 	obstacle_map[ISO_THICK_WALL_T_E].left_border = obstacle_map[ISO_THICK_WALL_V].left_border;
