@@ -61,6 +61,10 @@ EveryTime LuaCode={
 	if (has_cookie("refused_deliverance")) then
 		show(99) hide(90)
 	end
+
+	if (has_cookie("Francis_tux_dismissed")) then
+		show(11, 12)
+	end
 }
 ----------------------------------------------------------------------
 
@@ -154,6 +158,7 @@ LuaCode={
 	npc_says(_"Chandra in the nearby town center probably has even more information.")
 	npc_says(_"Look in the chest in the next room for some spare gear I managed to gather for you. It's not much, but it should help you make to town in one piece.")
 	add_cookie("linarian_chandra")
+	add_cookie("Francis_tux_dismissed")
 	hide(8,9) show(10, 11)
 }
 ----------------------------------------------------------------------
@@ -162,6 +167,7 @@ Nr=9 Text=_"Keeper? You don't sound so sure... What is the deal with this place?
 LuaCode={
 	npc_says(_"I'm sorry, but you probably need to start traveling to the town. The Red Guard are not known to be the most patient.")
 	npc_says(_"They were the ones who wanted me to thaw you out, after all. You'd better get going.")
+	add_cookie("Francis_tux_dismissed")
 	hide(9) show(10, 11)
 }
 ----------------------------------------------------------------------
@@ -182,7 +188,7 @@ LuaCode={
 	npc_says(_"Sure. You just need to follow the road outside to the east. After the bridge, turn right and continue to follow the road and you will soon be outside of the town main gate.")
 	npc_says(_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there.")
 	npc_says(_"Once in town you will be able to purchase or trade a few more items for protection at Ms. Stone's shop just inside the town gate.")
-	show(12)
+	hide(11) show(12)
 }
 ----------------------------------------------------------------------
 
@@ -208,12 +214,12 @@ LuaCode={
 
 Nr=90 Text=_"Thanks for the help. I'll be going now."
 LuaCode={
-	    npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
-	    npc_says(_"Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?")
-	    tux_says(_"Spencer?")
-	    npc_says(_"Yes. He's the leader of the Red Guard.")
-	    show(91, 93)
-	    hide(90)
+	npc_says(_"I am glad I could help you. You should be careful around here. Best head straight for our town.")
+	npc_says(_"Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?")
+	tux_says(_"Spencer?")
+	npc_says(_"Yes. He's the leader of the Red Guard.")
+	show(91, 93)
+	hide(90)
 }
 ----------------------------------------------------------------------
 
