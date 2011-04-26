@@ -88,7 +88,7 @@ static void remove_blood_obstacles_for_respawning(int level_num)
 		case ISO_OIL_STAINS_6:
 		case ISO_OIL_STAINS_7:
 		case ISO_OIL_STAINS_8:
-			action_remove_obstacle(curShip.AllLevels[level_num], &(curShip.AllLevels[level_num]->obstacle_list[i]));
+			del_obstacle(&curShip.AllLevels[level_num]->obstacle_list[i]);
 			// Now the obstacles have shifted a bit to close the gap from the
 			// deletion.  We need to re-process the current index in the next
 			// loop of this cycle...
@@ -404,6 +404,8 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 	char *curfield = NULL;
 	char *curfieldend = NULL;
 	char *obstacle_SectionBegin;
+	float x, y;
+	int type;
 
 	// First we initialize the obstacles with 'empty' information
 	//
@@ -425,7 +427,6 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 	// Now we decode all the obstacle information
 	//
 	curfield = obstacle_SectionBegin;
-	i = 0;
 	while (*curfield != '/') {
 		//structure of obstacle entry is :      // t59 x2.50 y63.50 l-1 d-1 
 		//we read the type
@@ -434,7 +435,7 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
-		loadlevel->obstacle_list[i].type = atoi(curfield);
+		type = atoi(curfield);
 		(*curfieldend) = ' ';
 
 		//we read the X position
@@ -443,7 +444,7 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
-		loadlevel->obstacle_list[i].pos.x = atof(curfield);
+		x = atof(curfield);
 		(*curfieldend) = ' ';
 
 		//Y position
@@ -452,14 +453,14 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		while ((*curfieldend) != ' ')
 			curfieldend++;
 		(*curfieldend) = 0;
-		loadlevel->obstacle_list[i].pos.y = atof(curfield);
+		y = atof(curfield);
 		(*curfieldend) = ' ';
 
 		while ((*curfield) != '\n')
 			curfield++;
 		curfield++;
 
-		i++;
+		add_obstacle(loadlevel, x, y, type);
 	}
 
 	return curfield;
@@ -915,7 +916,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		// safely do it and not make some errors into the glue structure or obstacles lists...
 		//
 		if (obstacle_map[target_obstacle->type].result_type_after_smashing_once == (-1)) {
-			action_remove_obstacle(BoxLevel, target_obstacle);
+			del_obstacle(target_obstacle);
 		} else {
 			target_obstacle->type = obstacle_map[target_obstacle->type].result_type_after_smashing_once;
 		}

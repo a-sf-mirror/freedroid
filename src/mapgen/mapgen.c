@@ -17,7 +17,6 @@
 
 static struct mapgen_gamelevel map;
 static level *target_level;
-static int curobstacle;
 
 struct roominfo *rooms;
 int total_rooms = 0;
@@ -74,21 +73,11 @@ static void free_level()
 void set_dungeon_output(level * output)
 {
 	target_level = output;
-	curobstacle = 0;
 }
 
 void mapgen_add_obstacle(double x, double y, int type)
 {
-	if (curobstacle >= MAX_OBSTACLES_ON_MAP) {
-		ErrorMessage(__FUNCTION__, "Too many obstacles on random dungeon level %d\n", PLEASE_INFORM, IS_FATAL,
-			     target_level->levelnum);
-	}
-
-	target_level->obstacle_list[curobstacle].type = type;
-	target_level->obstacle_list[curobstacle].pos.x = x;
-	target_level->obstacle_list[curobstacle].pos.y = y;
-	target_level->obstacle_list[curobstacle].pos.z = target_level->levelnum;
-	curobstacle++;
+	add_obstacle(target_level, x, y, type);
 }
 
 void mapgen_set_floor(int x, int y, int type)

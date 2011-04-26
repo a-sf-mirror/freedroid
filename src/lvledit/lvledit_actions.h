@@ -34,7 +34,6 @@ void action_push(int type, ...);
 obstacle *action_create_obstacle(level *, double, double, int);
 obstacle *action_create_obstacle_user(level *, double, double, int);
 void action_remove_obstacle_user(level *, obstacle *);
-void action_remove_obstacle(level *, obstacle *);
 
 void action_move_obstacle(level *, obstacle *, float, float);
 

@@ -150,7 +150,7 @@ static int event_change_obstacle_type(const char *obslabel, int type)
 	if (type != -1) {
 		our_obstacle->type = type;
 	} else {
-		action_remove_obstacle(obstacle_level, our_obstacle);
+		del_obstacle(our_obstacle);
 	}
 
 	// Now we make sure the door lists and that are all updated...

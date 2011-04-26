@@ -723,7 +723,7 @@ static void end_wall_line(int commit)
 		if (!commit) {
 			// When the user wants cancel the line of walls, we must remove all
 			// the walls
-			action_remove_obstacle(EditLevel(), e->address);
+			del_obstacle(e->address);
 		}
 		nb_actions++;
 	}

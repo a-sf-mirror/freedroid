@@ -870,4 +870,8 @@ void delete_image(struct image *img);
 int image_loaded(struct image *);
 struct image_transformation set_image_transformation(float scale_x, float scale_y, float r, float g, float b, float a, int highlight);
 
+// obstacle.c
+obstacle *add_obstacle(level *lvl, float x, float y, int type);
+void del_obstacle(obstacle *o);
+
 #endif

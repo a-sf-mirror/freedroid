@@ -185,24 +185,13 @@ void action_push(int type, ...)
 
 obstacle *action_create_obstacle(level * EditLevel, double x, double y, int new_obstacle_type)
 {
-	int i;
+	obstacle *o;
 
-	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		if (EditLevel->obstacle_list[i].type == (-1)) {
-			EditLevel->obstacle_list[i].type = new_obstacle_type;
-			EditLevel->obstacle_list[i].pos.x = x;
-			EditLevel->obstacle_list[i].pos.y = y;
-			EditLevel->obstacle_list[i].pos.z = EditLevel->levelnum;
-			EditLevel->obstacle_list[i].timestamp = 0;
-			glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
-			
-			return (&(EditLevel->obstacle_list[i]));
-		}
-	}
+	o = add_obstacle(EditLevel, x, y, new_obstacle_type);
 
-	ErrorMessage(__FUNCTION__, "\
-	    Ran out of obstacle positions (%d) in level %d!", PLEASE_INFORM, IS_FATAL, MAX_OBSTACLES_ON_MAP, EditLevel->levelnum);
-	return (NULL);
+	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
+
+	return o;
 }
 
 void action_move_obstacle(level * EditLevel, obstacle * obs, float newx, float newy)
@@ -274,31 +263,6 @@ void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle,
 	}
 }
 
-/**
- * Remove an obstacle from the map.
- * @param undoable indicates whether the action should be made undoable by pushing 
- * undo actions on the stack.
- */
-void action_remove_obstacle(level *EditLevel, obstacle *our_obstacle)
-{
-	level *lvl = curShip.AllLevels[our_obstacle->pos.z];
-
-	// The likely case that no obstacle was currently marked.
-	//
-	if (our_obstacle == NULL)
-		return;
-
-	our_obstacle->type = (-1);
-
-	// Remove the extensions.
-	del_obstacle_extensions(EditLevel, our_obstacle);
-
-	// Now doing that must have shifted the glue!  That is a problem.  We need to
-	// reglue everything to the map...
-	//
-	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
-}
-
 void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
 {
 	/* Save obstacle information for the undo action */
@@ -310,7 +274,7 @@ void action_remove_obstacle_user(Level EditLevel, obstacle * our_obstacle)
 	posy = our_obstacle->pos.y;
 
 	// make an undoable removal
-	action_remove_obstacle(EditLevel, our_obstacle);
+	del_obstacle(our_obstacle);
 	action_push(ACT_CREATE_OBSTACLE, posx, posy, type);
 }
 

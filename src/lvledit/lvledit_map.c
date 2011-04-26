@@ -124,7 +124,7 @@ static void move_obstacles(level *EditLevel, int x, int y)
 		
 		if (!pos_inside_level(o->pos.x, o->pos.y, EditLevel)) {
 			// When the obstacle is outside of the map, we must remove it
-			action_remove_obstacle(EditLevel, o);
+			del_obstacle(o);
 		}
 	}
 
