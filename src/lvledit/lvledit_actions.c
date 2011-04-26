@@ -863,10 +863,7 @@ void CreateNewMapLevel(int level_num)
 	dynarray_init(&NewLevel->waypoints, 10, sizeof(struct waypoint));
 	
 	curShip.AllLevels[level_num] = NewLevel;
-
-	glue_obstacles_to_floor_tiles_for_level(level_num);
-
-};				// void CreateNewMapLevel( int )
+}
 
 void delete_map_level(int lnum)
 {
