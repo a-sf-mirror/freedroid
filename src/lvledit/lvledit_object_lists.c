@@ -34,7 +34,7 @@
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_object_lists.h"
 
-int floor_tiles_list[] = {
+static int floor_tiles_array[] = {
 
 	ISO_SIDEWALK_0,
 
@@ -202,7 +202,7 @@ int floor_tiles_list[] = {
 	-1
 };
 
-int wall_tiles_list[] = {
+static int wall_tiles_array[] = {
 	ISO_TRANSP_FOR_WATER,
 
 	ISO_OUTER_DOOR_V_00,
@@ -331,7 +331,7 @@ int wall_tiles_list[] = {
 	-1
 };
 
-int machinery_tiles_list[] = {
+static int machinery_tiles_array[] = {
 	ISO_ENHANCER_RU,
 	ISO_ENHANCER_LU,
 	ISO_ENHANCER_RD,
@@ -437,7 +437,7 @@ int machinery_tiles_list[] = {
 	-1,
 };
 
-int furniture_tiles_list[] = {
+static int furniture_tiles_array[] = {
 	ISO_LAMP_N,
 	ISO_LAMP_E,
 	ISO_LAMP_S,
@@ -615,7 +615,7 @@ int furniture_tiles_list[] = {
 	-1,
 };
 
-int container_tiles_list[] = {
+static int container_tiles_array[] = {
 	ISO_H_CHEST_CLOSED,
 	ISO_H_CHEST_OPEN,
 
@@ -643,7 +643,7 @@ int container_tiles_list[] = {
 	-1,
 };
 
-int plant_tiles_list[] = {
+static int plant_tiles_array[] = {
 	ISO_TREE_1,
 	ISO_TREE_2,
 	ISO_TREE_3,
@@ -670,7 +670,7 @@ int plant_tiles_list[] = {
 	-1,
 };
 
-int misc_tiles_list[] = {
+static int misc_tiles_array[] = {
 	ISO_DEFAULT_DEAD_BODY_0_1,
 
 	ISO_DEFAULT_DEAD_BODY_1_1,
@@ -692,12 +692,21 @@ int misc_tiles_list[] = {
 	-1
 };
 
-int waypoint_list[] = {
+static int waypoint_array[] = {
 	0,			//random spawn
 	1,			//no random spawn 
 	-1
 };
 	
+int *floor_tiles_list = floor_tiles_array;
+int *wall_tiles_list = wall_tiles_array;
+int *machinery_tiles_list = machinery_tiles_array;
+int *furniture_tiles_list = furniture_tiles_array;
+int *container_tiles_list = container_tiles_array;
+int *plant_tiles_list = plant_tiles_array;
+int *misc_tiles_list = misc_tiles_array;
+int *waypoint_list = waypoint_array;
+
 int *sidewalk_floor_list;
 int *water_floor_list;
 int *grass_floor_list;

@@ -37,7 +37,57 @@
 #include "lvledit/lvledit_widgets.h"
 #include "lvledit/lvledit_object_lists.h"
 
-static int all_obstacles_list[NUMBER_OF_OBSTACLE_TYPES + 1];
+static int all_obstacles_array[NUMBER_OF_OBSTACLE_TYPES + 1];
+static int *all_obstacles_list = all_obstacles_array;
+
+typedef struct {
+	char *name;
+	int **object_list;
+	struct leveleditor_categoryselect *cs;
+} object_category;
+
+static object_category obstacle_category_list[] = {
+	{ "WALL", &wall_tiles_list },
+	{ "FURNITURE", &furniture_tiles_list },
+	{ "MACHINERY", &machinery_tiles_list },
+	{ "CONTAINER", &container_tiles_list },
+	{ "PLANT", &plant_tiles_list },
+	{ "OTHER", &misc_tiles_list },
+	{ "ALL", &all_obstacles_list }
+};
+
+static object_category floor_category_list[] = {
+	{ "SIDEWALK", &sidewalk_floor_list },
+	{ "WATER", &water_floor_list },
+	{ "GRASS", &grass_floor_list },
+	{ "SQUARE", &square_floor_list },
+	{ "OTHER", &other_floor_list },
+	{ "ALL", &floor_tiles_list }
+};
+
+static object_category item_category_list[] = {
+	{ "MELEE", &melee_items_list },
+	{ "GUN", &gun_items_list },
+	{ "DEFENSIVE", &defense_items_list },
+	{ "USEABLE", &spell_items_list },
+	{ "OTHER", &other_items_list },
+	{ "ALL", &all_items_list }
+};
+
+static object_category waypoint_category_list[] = {
+	{ "ALL", &waypoint_list }
+};
+
+static struct {
+	enum leveleditor_object_type object_type;
+	object_category *categories;
+	size_t length;
+} category_list[] = {
+	{ OBJECT_OBSTACLE, obstacle_category_list, sizeof(obstacle_category_list) / sizeof(obstacle_category_list[0]) },
+	{ OBJECT_FLOOR, floor_category_list, sizeof(floor_category_list) / sizeof(floor_category_list[0]) },
+	{ OBJECT_ITEM, item_category_list, sizeof(item_category_list) / sizeof(item_category_list[0]) },
+	{ OBJECT_WAYPOINT, waypoint_category_list, sizeof(waypoint_category_list) / sizeof(waypoint_category_list[0]) },
+};
 
 LIST_HEAD(leveleditor_widget_list);
 
@@ -225,47 +275,30 @@ void leveleditor_init_widgets()
 		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, "WAYPOINT", NULL},
 	};
 
-	int i;
+	int i, j;
 
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
 		ShowGenericButtonFromList(b[i].btn_index);	//we need that to have .w and .h of the button rect initialized.
 		list_add(&create_button(b[i].btn_index, b[i].text, b[i].tooltip)->node, &leveleditor_widget_list);
 	}
 
-	// Create category selectors
 	build_leveleditor_tile_lists();
 
 	// Obstacles
 	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++)
 		all_obstacles_list[i] = i;
 	all_obstacles_list[i] = -1;
-	list_add_tail(&create_categoryselector(0, _("WALL"), OBJECT_OBSTACLE, wall_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(1, _("FURNITURE"), OBJECT_OBSTACLE, furniture_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(2, _("MACHINERY"), OBJECT_OBSTACLE, machinery_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(3, _("CONTAINER"), OBJECT_OBSTACLE, container_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(4, _("PLANT"), OBJECT_OBSTACLE, plant_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(5, _("OTHER"), OBJECT_OBSTACLE, misc_tiles_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(6, _("ALL"), OBJECT_OBSTACLE, all_obstacles_list)->node, &leveleditor_widget_list);
 
-	// Floor
-	list_add_tail(&create_categoryselector(0, _("SIDEWALK"), OBJECT_FLOOR, sidewalk_floor_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(1, _("WATER"), OBJECT_FLOOR, water_floor_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(2, _("GRASS"), OBJECT_FLOOR, grass_floor_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(3, _("SQUARE"), OBJECT_FLOOR, square_floor_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(4, _("OTHER"), OBJECT_FLOOR, other_floor_list)->node, &leveleditor_widget_list);
-
-	list_add_tail(&create_categoryselector(5, _("ALL"), OBJECT_FLOOR, floor_tiles_list)->node, &leveleditor_widget_list);
-
-	// Items
-	list_add_tail(&create_categoryselector(0, _("MELEE"), OBJECT_ITEM, melee_items_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(1, _("GUN"), OBJECT_ITEM, gun_items_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(2, _("DEFENSIVE"), OBJECT_ITEM, defense_items_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(3, _("USEABLE"), OBJECT_ITEM, spell_items_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(4, _("OTHER"), OBJECT_ITEM, other_items_list)->node, &leveleditor_widget_list);
-	list_add_tail(&create_categoryselector(5, _("ALL"), OBJECT_ITEM, all_items_list)->node, &leveleditor_widget_list);
-
-	// Waypoints
-	list_add_tail(&create_categoryselector(0, _("ALL"), OBJECT_WAYPOINT, waypoint_list)->node, &leveleditor_widget_list);
+	// Create category selectors 
+	for (i = 0; i < sizeof(category_list) / sizeof(category_list[0]); i++) {
+		enum leveleditor_object_type type = category_list[i].object_type;
+		object_category *categories = category_list[i].categories;
+		for (j = 0; j < category_list[i].length; j++) {
+			struct leveleditor_widget *widget = create_categoryselector(j, _(categories[j].name), type, *categories[j].object_list);
+			categories[j].cs = widget->ext;
+			list_add_tail(&widget->node, &leveleditor_widget_list);
+		}
+	}
 
 	// Create the minimap
 	list_add_tail(&create_minimap()->node, &leveleditor_widget_list);
