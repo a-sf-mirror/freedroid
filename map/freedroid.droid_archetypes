@@ -1109,9 +1109,9 @@ Droid uses portrait rotation series with prefix="615"
 Maximum speed of this droid: 0
 Class of this droid: 7
 Drops item class=9
-Maximum energy of this droid: 410
+Maximum energy of this droid: 150
 Rate of healing: 4
-Experience_Reward gained for destroying one of this type: 300
+Experience_Reward gained for destroying one of this type: 360
 Aggression distance of this droid=16
 Time spent eyeing Tux=2
 Weapon item="Autogun Laser Pistol"
@@ -1120,7 +1120,7 @@ Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5
 Percent to drop Antimatter-Matter Converter=2
 Percent to drop Tachyon Condensator=10
-Greeting Sound number=-1
+Greeting Sound number=1
 Got Hit Sound number=-1
 Death sound file name="none"
 Attack animation sound file name="none"
@@ -1129,8 +1129,6 @@ Time to recover after getting hit=0.30
 Is this 'droid' a human : 0
 Filename prefix for graphics="615"
 Notes concerning this droid=_"Autogun. --todo"
-
-
 
 ** Start of new Robot: ** 
 Droidname: INV
