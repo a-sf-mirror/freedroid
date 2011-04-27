@@ -89,6 +89,11 @@ LuaCode={
 Nr=9 Text=_"Will you marry me?"
 LuaCode={
 	npc_says(_"Forget it.")
+	tux_says(_"Roses are red,")
+	tux_says(_"Violets are blue,")
+	tux_says(_"All of my base,")
+	tux_says(_"Are belong to you.")
+	npc_says("...")
 	hide(9)
 }
 ----------------------------------------------------------------------
