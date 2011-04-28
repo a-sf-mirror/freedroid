@@ -59596,12 +59596,12 @@ t47 x65.68 y46.57
 t47 x65.55 y45.58
 t47 x65.62 y44.50
 t47 x65.44 y55.40
-t270 x68.99 y58.03
-t270 x68.25 y44.00
-t270 x78.03 y47.58
-t270 x81.31 y57.66
-t270 x82.95 y53.84
-t408 x77.17 y58.19
+t35 x21.49 y30.06
+t35 x20.49 y30.06
+t35 x19.49 y30.06
+t35 x18.49 y30.06
+t132 x21.99 y30.06
+t133 x21.49 y29.56
 t408 x75.20 y49.38
 t408 x78.92 y53.44
 t408 x77.96 y55.95
@@ -59900,14 +59900,43 @@ t133 x18.49 y29.56
 t132 x17.99 y30.06
 t133 x19.49 y29.56
 t133 x20.49 y29.56
-t133 x21.49 y29.56
-t132 x21.99 y30.06
-t35 x18.49 y30.06
-t35 x19.49 y30.06
-t35 x20.49 y30.06
-t35 x21.49 y30.06
 /obsdata
 plabelinfolvl
+x=39 y=64 name="883a"
+x=39 y=65 name="883b"
+x=54 y=61 name="711"
+x=60 y=61 name="834"
+x=77 y=46 name="476a"
+x=78 y=46 name="476b"
+x=77 y=47 name="476c"
+x=78 y=47 name="476d"
+x=79 y=47 name="476e"
+x=79 y=48 name="476f"
+x=78 y=48 name="476g"
+x=81 y=52 name="249a"
+x=81 y=53 name="249b"
+x=82 y=53 name="249c"
+x=82 y=52 name="249d"
+x=82 y=54 name="249e"
+x=83 y=54 name="249f"
+x=83 y=53 name="249g"
+x=79 y=56 name="629a"
+x=79 y=55 name="629b"
+x=80 y=55 name="629c"
+x=80 y=56 name="629d"
+x=80 y=57 name="629e"
+x=81 y=57 name="629g"
+x=81 y=56 name="629f"
+x=76 y=57 name="821a"
+x=76 y=58 name="821b"
+x=68 y=58 name="615a1"
+x=69 y=57 name="615c1"
+x=68 y=57 name="615b1"
+x=69 y=58 name="615d1"
+x=67 y=44 name="615a2"
+x=67 y=43 name="615b2"
+x=68 y=43 name="615c2"
+x=68 y=44 name="615d2"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -59929,24 +59958,6 @@ idx=543 type=30 data={
 }
 idx=911 type=30 data={
 	< another level < could be rebel town for example< 
-}
-idx=1233 type=30 data={
-	a spawning point of a very strong bot
-}
-idx=1758 type=30 data={
-	ranged bots
-}
-idx=1757 type=30 data={
-	ranged bots
-}
-idx=1759 type=30 data={
-	ranged bots
-}
-idx=1761 type=30 data={
-	ranged bots
-}
-idx=1760 type=30 data={
-	ranged bots
 }
 idx=695 type=30 data={
 	open these gates per map label trigger
