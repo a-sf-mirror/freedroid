@@ -175,25 +175,28 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 		Terminate(failed ? EXIT_FAILURE : EXIT_SUCCESS, FALSE);
 	}
 
-	while (!QuitProgram) {
-		if (start_editor) {
-			// When the user wants to start editor from the command line, skip the
-			// startup menu and load the level editor directly
-			prepare_level_editor();
-			start_editor = FALSE;
-		} else if (load_saved && saved_game_name != NULL) {
-			// Skip the startup menu and load saved game directly
-			if (load_named_game(saved_game_name) != OK) {
-				StartupMenu();
-				input_handle();
-			} else {
-				game_root_mode = ROOT_IS_GAME;
-			}
+	int skip_menu = FALSE;
+	if (start_editor) {
+		// When the user wants to start editor from the command line, skip the
+		// startup menu and load the level editor directly
+		skip_menu = TRUE;
+		prepare_level_editor();
+		start_editor = FALSE;
+	} else if (load_saved && saved_game_name != NULL) {
+		// Skip the startup menu and load saved game directly
+		if (load_named_game(saved_game_name) == OK) {
+			skip_menu = TRUE;
+			game_root_mode = ROOT_IS_GAME;
+		}
+		load_saved = FALSE;
+	}
 
-			load_saved = FALSE;
-		} else {
+	while (!QuitProgram) {
+		if (!skip_menu) {
 			StartupMenu();
 			input_handle();
+		} else {
+			skip_menu = FALSE;
 		}
 		switch (game_root_mode) {
 		case ROOT_IS_GAME:
