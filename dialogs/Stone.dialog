@@ -192,6 +192,7 @@ LuaCode={
 			tux_says(_"Yes, I have it.")
 			npc_says(_"Oh thank you!")
 			add_cookie("stone_done")
+			end_quest(_"Saving the shop", _"Ms. Stone seemed relieved as I gave her the money. I hope she won't need to file bankruptcy.")
 		else 											-- joined guard + not enough money
 			npc_says(_"Hold on a minute, you are still a bit short on money.", "NO_WAIT")
 			npc_says(_"Don't try to trick me.")
