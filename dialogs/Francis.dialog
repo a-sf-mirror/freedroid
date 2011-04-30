@@ -156,7 +156,7 @@ LuaCode={
 	npc_says(_"Wow, this is the worst case of cryo-neural damage I have ever seen.")
 	npc_says(_"The Red Guard had me thaw you out because you are a Linarian. I don't know much about your kind, but I do know that you have a strange affinity for computers, almost magical powers.")
 	npc_says(_"Chandra in the nearby town center probably has even more information.")
-	npc_says(_"Look in the chest in the next room for some spare gear I managed to gather for you. It's not much, but it should help you make to town in one piece.")
+	npc_says(_"Look in the chest in the next room for some spare gear I managed to gather for you. It's not much, but it should help you make it to town in one piece.")
 	add_cookie("linarian_chandra")
 	add_cookie("Francis_tux_dismissed")
 	hide(8,9) show(10, 11)
@@ -175,8 +175,8 @@ LuaCode={
 Nr=10 Text=_"Tell me more about the town you mentioned."
 LuaCode={
 	npc_says(_"It is a small mining community of perhaps 500 inhabitants...")
-	npc_says(_"It was a stroke of luck that it did not get destroyed by the bots. Because of poor funding, the town could not afford new models.")
-	npc_says(_"All they had at the time of the bot attack were the 614 battle bot platforms. For some reason these and some other older bots were not affected by whatever caused the other bots to go crazy.")
+	npc_says(_"I guess it was a stroke of luck that the town has not been completely destroyed by the bots.")
+	npc_says(_"Oddly enough, the rusty old bots that the town uses for security were not affected by whatever caused the other bots to go crazy.")
 	npc_says(_"Right now the town is 'protected' by the Red Guard, a bunch of opportunistic roughnecks. It's not exactly a secret that I don't agree with their methods.")
 	npc_says(_"However, I must admit that being oppressed is a much better alternative to being eviscerated alive.")
 	hide(10)
