@@ -453,6 +453,13 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 			continue;
 		}
 
+		// carriage return in the middle of a word if it is too big to fit on one line
+		if (isgraph(*tmp) && (MyCursorX + CharWidth(GetCurrentFont(), *tmp) + letter_spacing) > (clip->x + clip->w)) {
+			MyCursorX = clip->x;
+			MyCursorY += (int)(FontHeight(GetCurrentFont()) * line_height_factor);
+			empty_lines_started++;
+		}
+
 		switch (*tmp) {
 		case '\n':
 			MyCursorX = clip->x;
