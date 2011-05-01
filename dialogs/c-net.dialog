@@ -34,7 +34,7 @@ EveryTime LuaCode={
 		cli_says(_"Login : ", "NO_WAIT")
 		if has_cookie("knows_c-net_users") then show(0, 1, 2, 3, 99) else show(0, 99) end
 	end
-	hide(10, 11, 12, 13, 14, 15, 16, 20, 21, 23, 24, 30, 31, 80, 81, 82, 83)
+	hide(10, 11, 12, 13, 14, 15, 16, 20, 21, 23, 24, 30, 31, 80, 81, 82, 83, 85, 86)
 }
 ----------------------------------------------------------------------
 
@@ -349,7 +349,7 @@ LuaCode={
 	npc_says(" ", "NO_WAIT")
 	terminal = username .. "@c-net:~/games$"
 	cli_says(terminal, "NO_WAIT")
-	show(81, 82, 83, 85) hide(10, 20, 30, 80, 99)
+	show(81, 82, 83, 85, 86) hide(10, 20, 30, 80, 99)
 }
 ----------------------------------------------------------------------
 
@@ -359,7 +359,7 @@ LuaCode={
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-	show(10, 20, 30, 80, 99) hide(81, 82, 83, 85)
+	show(10, 20, 30, 80, 99) hide(81, 82, 83, 85, 86)
 }
 ----------------------------------------------------------------------
 
@@ -395,6 +395,53 @@ LuaCode={
 	cli_says(terminal, "NO_WAIT")
 	add_cookie("player_rickrolled")
 	hide(85)
+}
+----------------------------------------------------------------------
+
+Nr=86 Text=_"progress_quest"
+NO_TEXT
+LuaCode={
+	tux_says(_"./progress_quest", "NO_WAIT")
+	if (not has_cookie("playing_progress_quest")) then
+		add_cookie("playing_progress_quest")
+		npc_says(_"Roll your Stats.")
+		hide(81, 82, 83, 85, 86)
+		next(87)
+	else
+		npc_says(_"You are already playing Progress Quest:")
+		npc_says_random(_"You are selling an item!", _"You are killing a creature!", _"You are gaining a level!", _"You are casting a spell!")
+		cli_says(terminal, "NO_WAIT")
+	end
+}
+----------------------------------------------------------------------
+
+Nr=87 Text=_"BUG c-net node 87 -- ROLL STATS"
+NO_TEXT
+LuaCode={
+	str = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	con = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	dex = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	int = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	wis = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	cha = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	npc_says(_"You rolled Stats of STR: [b]"..str.."[/b], CON: [b]"..con.."[/b], DEX: [b]"..dex.."[/b], INT: [b]"..int.."[/b],  WIS: [b]"..wis.."[/b], CHA [b]"..cha, "NO_WAIT")
+	show(88, 89)
+}
+----------------------------------------------------------------------
+
+Nr=88 Text=_"Accept Character"
+NO_TEXT
+LuaCode={
+	npc_says(_"Welcome to Progress Quest!")
+	cli_says(terminal, "NO_WAIT")
+	show(81, 82, 83, 85, 86) hide(88, 89)
+}
+----------------------------------------------------------------------
+
+Nr=89 Text=_"Reroll Character"
+NO_TEXT
+LuaCode={
+	next(87)
 }
 ----------------------------------------------------------------------
 
