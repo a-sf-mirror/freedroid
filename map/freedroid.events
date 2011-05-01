@@ -1073,10 +1073,62 @@ LuaCode={
 ##############
 ## Level 59 ##
 ##############
+* New event trigger *
+Name=_"Back to tunnel"
+Trigger at label="59to60ctrlroom"
+Silent=1
+LuaCode={
+	teleport("60from59ctrlroom")
+}
+* End of trigger *
 
+* New event trigger *
+Name=_"To tunnel..."
+Trigger at label="59to60botroom"
+Silent=1
+LuaCode={
+	teleport("60from59botroom")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Back to tunnel"
+Trigger at label="59to60house"
+Silent=1
+LuaCode={
+	teleport("60from59house")
+}
+* End of trigger *
 ##############
 ## Level 60 ##
 ##############
+
+* New event trigger *
+Name=_"Back to tunnel"
+Trigger at label="60to59ctrlroom"
+Silent=1
+LuaCode={
+	teleport("59from60ctrlroom")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"To tunnel..."
+Trigger at label="60to59botroom"
+Silent=1
+LuaCode={
+	teleport("59from60botroom")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Back to tunnel"
+Trigger at label="60to59house"
+Silent=1
+LuaCode={
+	teleport("59from60house")
+}
+* End of trigger *
 
 ##############
 ## Level 61 ##
