@@ -51,11 +51,7 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 	int y_min, y_max, y;
 
 	// Clear out all the existing glue information
-	for (x = 0; x < lvl->xlen; x++) {
-		for (y = 0; y < lvl->ylen; y++) {
-			dynarray_free(&lvl->map[y][x].glued_obstacles);
-		}
-	}
+	free_glued_obstacles(lvl);
 
 	// Browse obstacles on the level to glue them
 	for (obstacle_counter = 0; obstacle_counter < MAX_OBSTACLES_ON_MAP; obstacle_counter++) {
@@ -97,6 +93,17 @@ int next_glue_timestamp(void)
 	}
 
 	return glue_timestamp;
+}
+
+void free_glued_obstacles(level *lvl)
+{
+	int x, y;
+
+	for (x = 0; x < lvl->xlen; x++) {
+		for (y = 0; y < lvl->ylen; y++) {
+			dynarray_free(&lvl->map[y][x].glued_obstacles);
+		}
+	}
 }
 
 #undef _floor_tiles_c

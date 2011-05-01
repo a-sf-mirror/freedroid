@@ -280,6 +280,8 @@ void remove_column_east(level *EditLevel)
 	if (EditLevel->xlen - 1 < MIN_MAP_LINES)
 		return;
 
+	free_glued_obstacles(EditLevel);
+
 	// Remove a column at the east is always easy, we must just modify the
 	// value of size on the horizontal axis, allocation of new memory or other
 	// things are not necessary
@@ -303,6 +305,8 @@ void remove_column_west(level *EditLevel)
 
 	if (EditLevel->xlen - 1 < MIN_MAP_LINES)
 		return;
+
+	free_glued_obstacles(EditLevel);
 
 	// Now the new memory and everything is done.  All we
 	// need to do is move the information to the east
@@ -329,6 +333,8 @@ void remove_line_north(level *EditLevel)
 	if (EditLevel->ylen - 1 < MIN_MAP_LINES)
 		return;
 
+	free_glued_obstacles(EditLevel);
+
 	// Now we do some shifting of lines
 	free(EditLevel->map[0]);
 	for (i = 0; i < EditLevel->ylen - 1; i++) {
@@ -350,6 +356,8 @@ void remove_line_south(level *EditLevel)
 {
 	if (EditLevel->ylen - 1 < MIN_MAP_LINES)
 		return;
+
+	free_glued_obstacles(EditLevel);
 
 	// Remove a line at the very south is always easy, we must just modify the
 	// value of size on the vertical axis, allocation of new memory or other

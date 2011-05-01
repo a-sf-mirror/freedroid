@@ -389,6 +389,7 @@ float translate_pixel_to_zoomed_map_location(float axis_x, float axis_y, int giv
 //floor_tiles.c
 void glue_obstacles_to_floor_tiles_for_level(int level_num);
 int next_glue_timestamp(void);
+void free_glued_obstacles(level *lvl);
 
 //colldet.c
 int WalkablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx);
