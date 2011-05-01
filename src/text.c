@@ -713,6 +713,7 @@ char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, c
 		} else if (key == SDLK_ESCAPE) {
 			while (EscapePressed())
 				SDL_Delay(1);
+			free(input);
 			return NULL;
 		} else if (isprint(key) && (curpos < MaxLen)) {
 			// If a printable character has been entered, it is either appended to
