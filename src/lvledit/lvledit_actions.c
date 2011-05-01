@@ -870,6 +870,9 @@ void delete_map_level(int lnum)
 	int i;
 	level *l = curShip.AllLevels[lnum];
 
+	// Clear out all the existing glue information.
+	free_glued_obstacles(l);
+
 	// Delete floor tiles
 	for (i = 0; i < l->ylen; i++)
 		free(l->map[i]);
