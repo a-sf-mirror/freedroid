@@ -60385,8 +60385,8 @@ end_of_level
 Levelnumber: 60
 xlen of this level: 30
 ylen of this level: 30
-light radius bonus of this level: 19
-minimal light on this level: 19
+light radius bonus of this level: 5
+minimal light on this level: 2
 infinite_running_on_this_level: 0
 random dungeon: 0
 teleport pair: 0
