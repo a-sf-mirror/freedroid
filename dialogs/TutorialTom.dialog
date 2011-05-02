@@ -66,6 +66,10 @@ EveryTime LuaCode={
 	end
 
 	show(99)
+
+	if (partner_started()) then
+		set_rush_tux(0)
+	end
 }
 ----------------------------------------------------------------------
 
