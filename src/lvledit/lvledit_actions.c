@@ -462,44 +462,26 @@ int action_toggle_waypoint_connection(level *EditLevel, int id_origin, int id_ta
 
 void level_editor_action_toggle_waypoint_connection_user(level * EditLevel, int xpos, int ypos)
 {
-	waypoint *wpts;
-	int i;
+	int wpnum;
 
-	// Determine which waypoint is currently targeted
-	wpts = EditLevel->waypoints.arr;
-	for (i = 0; i < EditLevel->waypoints.size; i++) {
-		if ((wpts[i].x == xpos) && (wpts[i].y == ypos))
-			break;
+	wpnum = get_waypoint(EditLevel, xpos, ypos);
+	if (wpnum < 0) {
+		// No waypoint is currently targeted.
+		return;
 	}
 
-	if (i == EditLevel->waypoints.size) {
-		sprintf(VanishingMessage, _("Sorry, don't know which waypoint you mean."));
-		VanishingMessageEndDate = SDL_GetTicks() + 7000;
-	} else {
-		sprintf(VanishingMessage, _("You specified waypoint nr. %d."), i);
-		VanishingMessageEndDate = SDL_GetTicks() + 7000;
-		if (OriginWaypoint == (-1)) {
-			OriginWaypoint = i;
-			strcat(VanishingMessage, _("\nIt has been marked as the origin of the next connection."));
-			DebugPrintf(1, "\nWaypoint nr. %d. selected as origin\n", i);
-		} else {
-			if (OriginWaypoint == i) {
-				strcat(VanishingMessage, _("\n\nOrigin==Target --> Connection Operation cancelled."));
-				OriginWaypoint = (-1);
-			} else {
-				sprintf(VanishingMessage, _("\n\nOrigin: %d Target: %d. Operation makes sense."), OriginWaypoint, i);
-				if (action_toggle_waypoint_connection(EditLevel, OriginWaypoint, i, 1, 1) < 0) {
-					strcat(VanishingMessage, _("\nOperation done, connection removed."));
-				} else {
-					strcat(VanishingMessage, _("\nOperation done, connection added."));
-				}
-				OriginWaypoint = (-1);
-			}
-		}
+	if (OriginWaypoint == -1) {
+		// Set the origin waypoint for the next connection.
+		OriginWaypoint = wpnum;
+		return;
 	}
 
-	return;
+	if (OriginWaypoint != wpnum) {
+		// Toggle a connection between the origin waypoint and the currently targeted.
+		action_toggle_waypoint_connection(EditLevel, OriginWaypoint, wpnum, 1, 1);
+	}
 
+	OriginWaypoint = -1;
 }
 
 void lvledit_action_toggle_waypoint(int randomspawn)
