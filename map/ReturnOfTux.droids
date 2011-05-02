@@ -209,7 +209,7 @@ Level=12
 Number of Random Droids=6-8
 Random Droid Types: 123
 
-SForce: T=PRO Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux=1 UseDialog="Francis" ShortLabel=_"Old Guy" on_death_drop_item_name="Data cube"
+SForce: T=PRO Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux=1 UseDialog="Francis" ShortLabel=_"Old Guy"
 SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot"
 SForce: T=INV Marker=2012 Faction="civilian" StartLabel="123" UseDialog="InvaderBot" ShortLabel=_"Invading Robot"
 ** End of this levels droid data **
