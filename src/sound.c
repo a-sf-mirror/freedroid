@@ -248,7 +248,6 @@ static void LoadAndFadeInBackgroundMusic(void)
 	return;
 #else
 
-	static int MOD_Music_Channel = -1;
 	char fpath[2048];
 	char filename_raw[2048];
 
@@ -260,7 +259,6 @@ static void LoadAndFadeInBackgroundMusic(void)
 		//printf("\nOld Background music channel has been halted.");
 		// fflush(stdout);
 		Mix_HaltMusic();	// this REALLY is a VOID-argument function!!
-		MOD_Music_Channel = -1;
 		return;
 	}
 	// Now we LOAD the music file from disk into memory!!
@@ -289,9 +287,7 @@ static void LoadAndFadeInBackgroundMusic(void)
 	} else
 		DebugPrintf(1, "\nSuccessfully loaded file %s.", fpath);
 
-	// MOD_Music_Channel = Mix_PlayMusic ( Loaded_MOD_Files[ Tune ] , -1 );
-	MOD_Music_Channel = Mix_PlayMusic(Loaded_MOD_Files[0], -1);
-	//    MOD_Music_Channel = Mix_FadeInMusic ( Loaded_MOD_Files[ 0 ] , -1 ,  );
+	Mix_PlayMusic(Loaded_MOD_Files[0], -1);
 
 	Mix_VolumeMusic((int)rintf(GameConfig.Current_BG_Music_Volume * MIX_MAX_VOLUME));
 

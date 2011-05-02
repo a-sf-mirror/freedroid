@@ -116,14 +116,11 @@ void CollectAutomapData(void)
 {
 	int x, y;
 	int start_x, start_y, end_x, end_y;
-	gps ObjPos;
 	static int TimePassed;
 	Level automap_level = curShip.AllLevels[Me.pos.z];
 	int i;
 	obstacle *our_obstacle;
 	int level = Me.pos.z;
-
-	ObjPos.z = Me.pos.z;
 
 	// Checking the whole map for passability will surely take a lot
 	// of computation.  Therefore we only do this once every second of

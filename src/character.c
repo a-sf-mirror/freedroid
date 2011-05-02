@@ -460,7 +460,6 @@ Error: Programming_Skill skill seems out of bounds.", PLEASE_INFORM, IS_FATAL);
 void ShowCharacterScreen()
 {
 	char CharText[1000];
-	point CurPos;
 
 	DebugPrintf(2, "\n%s(): Function call confirmed.", __FUNCTION__);
 
@@ -472,12 +471,7 @@ void ShowCharacterScreen()
 		return;
 
 	SetCurrentFont(Messagestat_BFont);
-
-	// We will need the current mouse position on several spots...
-	//
-	CurPos.x = GetMousePos_x();
-	CurPos.y = GetMousePos_y();
-
+	
 	// We define the right side of the user screen as the rectangle
 	// for our inventory screen.
 	//

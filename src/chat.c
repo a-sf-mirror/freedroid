@@ -528,8 +528,6 @@ wait_click_and_out:
  */
 void ChatWithFriendlyDroid(enemy * ChatDroid)
 {
-	int i;
-	char *DialogMenuTexts[MAX_ANSWERS_PER_PERSON];
 	char fpath[2048];
 	char tmp_filename[5000];
 	struct npc *npc;
@@ -537,13 +535,6 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	chat_control_chat_droid = ChatDroid;
 
 	Activate_Conservative_Frame_Computation();
-
-	// First we empty the array of possible answers in the
-	// chat interface.
-	//
-	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
-		DialogMenuTexts[i] = "";
-	}
 
 	// We clean out the chat roster from any previous use
 	//

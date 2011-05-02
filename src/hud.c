@@ -520,7 +520,6 @@ static void prepare_text_window_content(struct auto_string *str)
 	int InvIndex;
 	int index_of_obst_below_mouse_cursor = (-1);
 	int index_of_floor_item_below_mouse_cursor = (-1);
-	finepoint MapPositionOfMouse;
 
 	CurPos.x = GetMousePos_x();
 	CurPos.y = GetMousePos_y();
@@ -707,11 +706,6 @@ static void prepare_text_window_content(struct auto_string *str)
 	if (MouseCursorIsInUserRect(CurPos.x, CurPos.y)) {
 		level *obj_lvl = NULL;
 		
-		// DebugPrintf( 2  , "\nCursor is in userfenster... --> see if hovering over an item...");
-
-		MapPositionOfMouse.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
-		MapPositionOfMouse.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
-
 		index_of_floor_item_below_mouse_cursor = get_floor_item_index_under_mouse_cursor(&obj_lvl);
 		
 		if (index_of_floor_item_below_mouse_cursor != (-1) && obj_lvl != NULL) {
