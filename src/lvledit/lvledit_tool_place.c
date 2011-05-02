@@ -66,7 +66,6 @@ static struct leveleditor_place {
 	int r_tile_used;
 
 	/* Waypoint mode */
-	int origwp;
 	int startwp;
 	int nbactions;
 } state;
@@ -91,7 +90,6 @@ static int do_waypoint_route(int rspawn)
 
 	if (our_mode != CONNECT_WAYPOINT) {
 		//we are starting a new route
-		state.origwp = -1;
 		state.startwp = -1;
 		state.nbactions = 0;
 	}
@@ -118,14 +116,8 @@ static int do_waypoint_route(int rspawn)
 		return 1;
 	}
 
-	if (!isnew && wpnum == state.origwp) {
-		end_waypoint_route();
-		return 1;
-	}
-
 	if (our_mode != CONNECT_WAYPOINT) {
 		our_mode = CONNECT_WAYPOINT;
-		state.origwp = wpnum;
 	}
 
 	state.startwp = wpnum;
