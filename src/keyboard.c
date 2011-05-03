@@ -67,7 +67,7 @@ const char *keybindNames[] = {
 	"cycle_marked_object",
 	"cut", "copy", "paste",
 	"next_selection_type", "previous_selection_type",
-	"next_tab", "undo", "redo", "beautify_grass",
+	"next_tab", "previous_tab", "undo", "redo", "beautify_grass",
 	"toggle_waypoint", "toggle_waypoint_randomspawn", "connect_waypoint",
 	"toolbar_scroll_left", "toolbar_scroll_right", "toolbar_step_left", "toolbar_step_right",
 	"run_map_validator",
@@ -259,6 +259,7 @@ void input_set_default(void)
 	input_set_keybind("zoom_out", SDLK_o, KMOD_NONE);
 	input_set_keybind("cycle_marked_object", SDLK_n, KMOD_NONE);
 	input_set_keybind("next_tab", SDLK_f, KMOD_NONE);
+	input_set_keybind("previous_tab", SDLK_f, KMOD_LSHIFT);
 	input_set_keybind("undo", SDLK_z, KMOD_NONE);
 	input_set_keybind("redo", SDLK_y, KMOD_NONE);
 	input_set_keybind("beautify_grass", SDLK_b, KMOD_LCTRL);
@@ -644,7 +645,10 @@ static int input_key(int keynum, int value)
 			level_editor_cycle_marked_object();
 			return 0;
 		} else if (KEYPRESS("next_tab")) {
-			alert_window("Reimplement that");
+			leveleditor_categoryselect_switch(1);
+			return 0;
+		} else if (KEYPRESS("previous_tab")) {
+			leveleditor_categoryselect_switch(-1);
 			return 0;
 		} else if (KEYPRESS("next_selection_type")) {
 			level_editor_switch_selection_type(1);

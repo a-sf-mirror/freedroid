@@ -89,6 +89,8 @@ void leveleditor_display_widgets(void);
 void leveleditor_update_button_states(void);
 void leveleditor_select_type(enum leveleditor_object_type);
 
+void leveleditor_categoryselect_switch(int direction);
+
 struct leveleditor_widget *get_active_widget(int, int);
 EXTERN struct list_head leveleditor_widget_list;
 EXTERN struct leveleditor_widget *previously_active_widget;

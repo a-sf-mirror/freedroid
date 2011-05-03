@@ -188,6 +188,8 @@ m						add/edit a map label at the position of the crosshair or the selected til
 o						zoom
 tab						switch to the next editing mode
 shift+tab			switch to the previous editing mode
+f							switch to the next object tab
+shift+f				switch to the previous object tab
 
 
 If you encounter problems with the editor, please contact us.

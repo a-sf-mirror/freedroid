@@ -464,3 +464,30 @@ void leveleditor_select_type(enum leveleditor_object_type type)
 		}
 	}
 }
+
+void leveleditor_categoryselect_switch(int direction)
+{
+	// Find a category list for the current selection type
+	object_category *categories = NULL;
+	int i, length = 0;
+	for (i = 0; i < sizeof(category_list) / sizeof(category_list[0]); i++) {
+		if (selection_type() == category_list[i].object_type) {
+			categories = category_list[i].categories;
+			length = category_list[i].length;
+			break;
+		}
+	}
+
+	// Find the current category
+	for (i = 0; i < length; i++) {
+		if (get_current_object_type() == categories[i].cs)
+			break;
+	}
+
+	// Switch the current category according to the direction
+	int index = i + direction;
+	if (index < 0)
+		index = length - 1;
+	index %= length;
+	leveleditor_categoryselect_activate(categories[index].cs);
+}
