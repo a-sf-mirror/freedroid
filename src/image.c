@@ -107,6 +107,10 @@ static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float
  */
 static void gl_display_image(struct image *img, int x, int y, struct image_transformation *t)
 {
+	// If the image is empty, don't do anything
+	if (!img->texture)
+		return;
+
 #ifdef HAVE_LIBGL
 	// Compute image coordinates according to scale factor
 	int xmax = img->w;
@@ -161,6 +165,10 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 {
 	SDL_Rect target_rectangle = { .x = x, .y = y };
 	SDL_Surface *surf;
+
+	// If the image is empty, don't do anything
+	if (!img->surface)
+		return;
 
 	// Check if the image must be transformed
 	if (t->scale_x == 1.0 && t->scale_y == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0 && !t->highlight) {
@@ -343,6 +351,10 @@ void load_image(struct image *img, const char *filename, int use_offset_file)
 	}
 
 	if (use_open_gl) {
+		// End the image batch if one is in progress to create the texture
+		gl_end();
+
+		// Create the texture
 		make_texture_out_of_surface(img);
 	}
 }
