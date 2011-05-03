@@ -29,7 +29,7 @@ EveryTime LuaCode={
 		npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
 		show(1, 2, 3)
 	elseif (has_quest(_"Gapes Gluttony")) and (not done_quest(_"Gapes Gluttony")) then
-        if (has_item_backpack("Lunch in a Picnic Basket") > 0) then
+		if (has_item_backpack("Lunch in a Picnic Basket") > 0) then
 			del_item_backpack("Lunch in a Picnic Basket")
 			show (9)
 		else
@@ -41,11 +41,11 @@ EveryTime LuaCode={
 		npc_says(_"Hey, are you all right? It looks like the robots are winning.")
 		npc_says(_"I found this in the First Aid kit. Maybe it will help.")
 		add_item("Antibiotic")
-		del_cookie("generous_gapes")		
+		del_cookie("generous_gapes")
 	else
 		npc_says(_"I see you're still alive. Maybe the robots won't win after all.")
 	end
-	show (99)
+	show(99)
 }
 ---------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ LuaCode={
 Nr=4 Text=_"There are still some alive in the town." 
 LuaCode={
 	npc_says(_"Ha, they won't last long. The robots will destroy them all. It's hopeless!")
-	hide(4) 
+	hide(4)
 }
 ----------------------------------------------------------------------
 
@@ -103,7 +103,7 @@ LuaCode={
 	npc_says(_"If you bring me a well-cooked meal, I will tell you about Hell's Fortress.")
 	npc_says(_"Trust me, you won't survive long in there without my help.")
 	add_quest(_"Gapes Gluttony", _"I found a man who is starving. He is willing to tell me about Hell's Fortress if I will bring him some food. I should speak to Michelangelo about this.")
-	hide(7) 
+	hide(7)
 }
 ----------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ LuaCode={
 	npc_says(_"I told them the upgrade wasn't ready. It hadn't been fully tested.")
 	npc_says(_"They wouldn't listen to me. They called me a fool! ME!?")
 	npc_says(_"Now they are all dead. Serves them right too!")
-	hide(8) 
+	hide(8)
 }
 ----------------------------------------------------------------------
 
@@ -125,7 +125,7 @@ LuaCode={
 	tux_says(_"Um...You're welcome?") 
 	npc_says(_"...")
 	tux_says(_"Now, how about some information?")
-	npc_says(_"OK, so what do you want to know?")	
+	npc_says(_"OK, so what do you want to know?")
 	end_quest(_"Gapes Gluttony", _"I brought the full picnic basket to Gapes, and he tore into it like a wild animal. It was a disgusting sight, but thankfully it ended quickly.")
 	del_item_backpack("Lunch in a Picnic Basket")
 	add_item("Empty Picnic Basket")
@@ -137,10 +137,10 @@ LuaCode={
 Nr=11 Text=_"Tell me about this upgrade. Is that why all the robots are killing people?"
 LuaCode={
 	npc_says(_"I'm afraid so... It wasn't finished yet.")
-	npc_says(_"The upgrade was supposed to revolutionize the world, but instead, it seems to have destroyed it.")	 
+	npc_says(_"The upgrade was supposed to revolutionize the world, but instead, it seems to have destroyed it.")
 	hide(11)
 }
-----------------------------------------------------------------------	
+----------------------------------------------------------------------
 
 Nr=12 Text=_"How can I shut down the factory?"
 LuaCode={
@@ -148,7 +148,7 @@ LuaCode={
 	npc_says(_"But the robots have sealed the doors shut.")
 	hide(12) show(13)
 }
-----------------------------------------------------------------------		
+----------------------------------------------------------------------
 
 Nr=13 Text=_"Is there another way to get in?"
 LuaCode={
@@ -159,7 +159,7 @@ LuaCode={
 	hide(13) 
 }
 ----------------------------------------------------------------------	
-	
+
 Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Be careful!")

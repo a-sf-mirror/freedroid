@@ -196,7 +196,7 @@ LuaCode={
 	npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
 	improve_skill("programming")
 	drop_dead()
-	hide(60, 61, 62, 63, 64, 65, 66) 
+	hide(60, 61, 62, 63, 64, 65, 66)
 }
 ----------------------------------------------------------------------
 

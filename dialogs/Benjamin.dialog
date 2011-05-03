@@ -25,7 +25,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 FirstTime LuaCode={ show(0) }
 
-EveryTime LuaCode={ 
+EveryTime LuaCode={
 	if (has_met("Benjamin")) then
 		tux_says_random(_"Hello.", _"Greetings Master Benjamin.")
 		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
@@ -77,7 +77,7 @@ LuaCode={
 
 
 Nr=20 Text=_"Can you teach me how to properly use rifles and guns?"
-LuaCode={ 
+LuaCode={
 	if (get_skill("ranged") == 0) then
 		npc_says(_"If anyone in this town knows more about guns than me, then my name's not Benjamin.", "NO_WAIT")
 		npc_says(_"Of course, I will need compensation for the ammunition spent in the training and for my time.")
@@ -105,7 +105,7 @@ LuaCode={
 		npc_says(_"It will of course cost a fair bit of cold, hard circuits as well. 500, to be precise.")
 		npc_says(_"Interested?")
 		show(25)
-	else 
+	else
 		npc_says(_"Sorry, there is no human alive that could give you further training.")
 	end
 	hide(20)

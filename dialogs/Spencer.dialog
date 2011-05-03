@@ -47,7 +47,7 @@ EveryTime LuaCode={
 
 	if (not has_quest(_"Propagating a faulty firmware")) and
 	   (done_quest(_"Opening access to MS Office")) then 
-	    show(44)
+		show(44)
 	end
 
 	if (has_quest(_"Deliverance") and (not done_quest(_"Deliverance"))) then 
@@ -85,8 +85,7 @@ LuaCode={
 Nr=3 Text=_"How about some circuits instead?"
 LuaCode={
 	npc_says(_"For 15 million circuits, no less, hehe.")
-	hide(3, 7, 12)
-	show(4)
+	hide(3, 7, 12) show(4)
 }
 ----------------------------------------------------------------------
 
@@ -95,15 +94,13 @@ LuaCode={
 	npc_says(_"That much I can tell.")
 	npc_says(_"Look, I'm just fooling around. We don't let just anyone join the Red Guard.", "NO_WAIT")
 	npc_says(_"If you seriously want to join, you have to prove yourself first. You might want to ask around town for things you can do.")
-	hide(4)
-	show(7, 12)
+	hide(4) show(7, 12)
 }
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Francis wanted me to give you this."
 LuaCode={
 	if (has_item_backpack("Data cube") > 0) then 
-		del_item_backpack("Data cube", 1)
 		npc_says(_"Ah, excellent, the list I asked for.")
 		npc_says(_"It figures he would ask someone to deliver it for him.")
 		tux_says(_"Why's that?")
@@ -117,16 +114,16 @@ LuaCode={
 		tux_says(_"Disposable people? Unlikely to survive? Can't they just stay in cryogenics indefinitely?")
 		npc_says(_"No. They take up a lot of space, and keeping them alive takes a lot of power, which is running out. Most of the people there are sick or dying anyway, which is why they're frozen in the first place. We can't afford to waste any resources.")
 		npc_says(_"We even had to confiscate the town cook's macrowave oven battery, which means we can't eat warm food anymore. We needed it to keep the town's defenses up.")
+		del_item_backpack("Data cube", 1)
 		del_item_backpack("Data cube")
 		end_quest(_"Deliverance", _"I gave Spencer the data cube. Apparently it was a list of people in freezing in the cryogenic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power...")
 		add_xp(100)
-		hide(5)
 	else
 		npc_says(_"... What?")
 		tux_says(_"Oh, erm... Hehe, I think I forgot it somewhere.")
 		npc_says(_"Then you had better go and look for it. Don't waste my time, Linarian.")
-		hide(5)
 	end
+	hide(5)
 }
 ----------------------------------------------------------------------
 
@@ -240,7 +237,7 @@ LuaCode={
 	else
 		if (get_town_score() > 29) then 
 			npc_says(_"All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it.")
-		else 
+		else
 			npc_says(_"I can't accept you into the guard like this. Get going. There are still many things to do for you.")
 		end
 	end

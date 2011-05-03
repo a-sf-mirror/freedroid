@@ -31,7 +31,7 @@ EveryTime LuaCode={
 		if (not done_quest(_"Bender's problem")) then
 			hide(1, 2, 3, 4, 6, 7, 8)
 			if (has_item_backpack("Brain Enlargement Pills Antidote") > 0) then
-				hide(5, 10, 11, 12, 50)	show(9)
+				hide(5, 10, 11, 12, 50) show(9)
 			else
 				hide(9) show(12)
 			end
@@ -229,12 +229,13 @@ LuaCode={
 	hide(16)
 }
 ----------------------------------------------------------------------
+
 Nr=17 Text=_"What are you doing now?"
 LuaCode={
 	npc_says(_"I'm killing time. Guard work is very boring.")
 }
-
 ----------------------------------------------------------------------
+
 Nr=20 Text=_"Did you take all the Brain Enlargement Pills?"
 LuaCode={
 	npc_says(_"No. I have one left.")
@@ -242,8 +243,8 @@ LuaCode={
 	add_item("Brain Enlargement Pill", 1)
 	hide(20)
 }
-
 ----------------------------------------------------------------------
+
 Nr=50 Text=_"Yeah, it was a totally idiotic idea to take those pills."
 LuaCode={
 	npc_says(_"What? I'm not an idiot! Understood?")

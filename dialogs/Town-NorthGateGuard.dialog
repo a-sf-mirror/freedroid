@@ -30,7 +30,7 @@ EveryTime LuaCode={
 		show(1, 2, 3)
 		set_rush_tux(0)
 		add_cookie("guard_follow_tux")
-	elseif will_rush_tux() then
+	elseif (will_rush_tux()) then
 		set_rush_tux(0)
 		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 			npc_says_random(_"Oh, the loon returned.", _"Just the loon. I needn't have worried.")
@@ -78,7 +78,6 @@ LuaCode={
 	change_obstacle_state("Main Gate Outer E", "closed")
 	change_obstacle_state("Main Gate Outer W", "closed")
 	change_obstacle_state("Main Gate Guardhouse", "closed")
-
 	set_faction_state("redguard", "hostile")
 	end_dialog()
 	hide(1, 2, 3) show(99)
@@ -102,7 +101,7 @@ LuaCode={
 	npc_says_random(
 		_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
 		_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
-	hide(5) show(10,11)
+	hide(5) show(10, 11)
 }
 ----------------------------------------------------------------------
 
@@ -230,7 +229,8 @@ LuaCode={
 	change_obstacle_state("Main Gate Guardhouse", "opened")
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
-	if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+	if (has_quest(_"Deliverance")) and
+	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end
 	hide(20, 30, 31, 32) show(99)
@@ -239,9 +239,11 @@ LuaCode={
 
 Nr=40 Text=_"Can you tell me where I can find Spencer?"
 LuaCode={
-	if has_cookie("town-northgateguard_tux_nickname_loon") then
-	    npc_says(_"Spencer? What would a loon like you want with the boss?")
-	else npc_says(_"Spencer? What would you want with the boss?") end
+	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
+		npc_says(_"Spencer? What would a loon like you want with the boss?")
+	else
+		npc_says(_"Spencer? What would you want with the boss?")
+	end
 	tux_says(_"Francis gave me something to deliver to him.")
 	npc_says(_"Ah, Professor Popsicle. Yeah, I guess he wouldn't want to show up here anymore.")
 	tux_says(_"Why not?")
@@ -256,7 +258,6 @@ LuaCode={
 Nr=99 Text=_"I'll be going then."
 LuaCode={
 	npc_says(_"Mhmmm.")
-		
 	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 		npc_says(get_player_name() .._"... the Loon")
 	end

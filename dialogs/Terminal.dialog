@@ -41,9 +41,7 @@ EveryTime LuaCode={
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"help"
-LuaCode={
-	cli_says(_"Available commands: logout")
-}
+LuaCode={ cli_says(_"Available commands: logout") }
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"

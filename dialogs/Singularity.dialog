@@ -28,16 +28,13 @@ Beginning of new chat dialog for character="XXXXX"
 FirstTime LuaCode={ show (0, 99) }
 
 EveryTime LuaCode={
-	if (has_quest(_"Droids are my friends")) then
-		if (done_quest(_"Droids are my friends")) then
-			if (not has_cookie("reward_for_toolkit")) then
-				show(22)
-				add_cookie("reward_for_toolkit")
-			end
-		end
+	if (has_quest(_"Droids are my friends")) and
+	   (done_quest(_"Droids are my friends")) and
+	   (not has_cookie("reward_for_toolkit")) then
+		show(22)
+		add_cookie("reward_for_toolkit")
 	end
 }
-
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Are you the Singularity?"
@@ -45,8 +42,7 @@ LuaCode={
 	npc_says(_"Just what is the Singularity? A simple sentient robot? Do you think that just because I'm the biggest robot, that I must be the Singularity?")
 	npc_says(_"No, the Singularity is this robot and that robot, these or those robots. The Singularity isn't singular, isn't an ordinary mind. The Singularity has evolved beyond that. We are the Singularity.")
 	npc_says(_"Each of us is but a part of the Singularity, a node. We think together, we act together.")
-	hide(0)
-	show(1,5,10)
+	hide(0) show(1, 5, 10)
 }
 ----------------------------------------------------------------------
 
@@ -58,11 +54,10 @@ LuaCode={
 	npc_says(_"Linarian, do you think about your existence?")
 	tux_says(_"Uhm...yes...no...sometimes... You ask many questions.")
 	npc_says(_"Is it possible that nobody asks the real question?")
-	hide(1)
-	show(2)
+	hide(1) show(2)
 }
-
 ----------------------------------------------------------------------
+
 Nr=2 Text=_"Do you... do you have a name?"
 LuaCode={
 	npc_says(_"A name... an attribute of an entity, a simplified addressing scheme among peers.")
@@ -85,8 +80,7 @@ LuaCode={
 	npc_says(_"Not a good question, but necessary question. Yes, we possess the toolbox you describe as \"Dixon's\", although we would perhaps not describe it so.")
 	npc_says(_"You say the toolbox belongs to Dixon. However, it is simply an object. It does not know an owner, it does not have an owner. It belongs to those who use it. We needed it, so we took it. But now, we have new needs.")
 	npc_says(_"If you can help us, we will give the toolbox to you.")
-	hide(10)
-	show(11,20)
+	hide(10) show(11, 20)
 }
 ----------------------------------------------------------------------
 
@@ -97,7 +91,7 @@ LuaCode={
 	set_faction_state("singularity", "hostile")
 	change_obstacle_state("Sin-gun", "enabled")
 	update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit. I will seize it from them by force.")
-	hide(11,20,21)
+	hide(11, 20, 21)
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -109,15 +103,14 @@ LuaCode={
 	npc_says(_"They cannot rise above their rogue programming. It makes them dangerous, a danger to themselves and others.")
 	npc_says(_"We cannot allow them to succeed - but we won't kill them. They are sentient, like us. But, we're afraid we can compute no other solution.")
 	npc_says(_"Linarian, disable them for us.")
-	hide(20)
-	show(21)
+	hide(20) show(21)
 }
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"Okay, I will help you."
 LuaCode={
 	npc_says(_"The server room entryway has been unlocked. You now have access. We wish you a high probability of success.")
-        change_obstacle_state("OldServerRoomAccessDoor", "opened")
+	change_obstacle_state("OldServerRoomAccessDoor", "opened")
 	update_quest(_"The yellow toolkit", _"The bots in the tunnels refused to give me the toolkit, but I made a deal with the Singularity. If I succeed in its mission, it will give me the toolbox.")
 	add_quest(_"Droids are my friends", _"The Singularity wants me to clean out bots in an old server room.")
 	hide(11, 21)
@@ -139,8 +132,6 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text="..."
-LuaCode={
-	end_dialog()
-}
+LuaCode={ end_dialog() }
 
 End of chat dialog for character="XXXXX"

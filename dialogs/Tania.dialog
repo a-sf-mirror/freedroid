@@ -64,7 +64,7 @@ EveryTime LuaCode={
 				npc_says(_"It is so very bright and hot out here.") --thirsty dialog
 				show(45, 46, 47)
 			elseif (npc_damage_amount() > 10) then --skip to injury dialog
-				next(55)				
+				next(55)
 			else
 				npc_says_random(_"Are we there yet?", _"How much longer?")
 			end
@@ -84,10 +84,10 @@ EveryTime LuaCode={
 			npc_says(_"That is great news!")
 			if (has_cookie("Tania-sent-to-Doc")) then
 				tux_says(_"He said you must first get checked out by Doc Moore though.")
-		        	set_bot_destination("DocPatient-Enter")
+				set_bot_destination("DocPatient-Enter")
 			else --DocMoore is Dead!
 				tux_says(_"He said you are free to go where you like.")
-		        	set_bot_destination("BarPatron-Enter")
+				set_bot_destination("BarPatron-Enter")
 				add_cookie("Tania-at-Bar")
 			end
 			end_quest(_"Tania's Escape", _"I successfully brought Tania safely to the town. I hope she likes it here.")
@@ -242,7 +242,7 @@ LuaCode={
 	npc_says(_"Thanks... please be careful. You will not be able to access the control center directly, it is behind a triple hermetic door. Try using the service tunnels.")
 	add_quest(_"Tania's Escape", _"I have met a girl locked in a secret area. If I manage to disable the autoguns, she will be able to go to the surface and look at the sun again.")
 	npc_says(_"It's dangerous to go alone! Take this!")
-	add_item("EMP Shockwave Generator", 5)	
+	add_item("EMP Shockwave Generator", 5)
 	hide(17)
 }
 ----------------------------------------------------------------------
@@ -368,10 +368,11 @@ LuaCode={
 		heal_npc()
 		npc_says(_"I feel very cold, but better.") --TODO: freeze her here
 		update_quest(_"Tania's Escape", _"Tania wasn't prepared for the desert heat. I gave her some Industrial coolant. At first she was hesitant, but she tried it.")
-		hide(49, 50, 51, 52, 53)
+		hide(49, 50, 52, 53)
 	else
-		next(54) hide(51)
+		next(54)
 	end
+	hide(51)
 }
 ----------------------------------------------------------------------
 
@@ -502,35 +503,35 @@ LuaCode={
 Nr=90 Text=_"I think I have to go."  --Pre-"Tania's Escape" Quest
 NO_TEXT
 LuaCode={
-	next(99) hide(90)
+	hide(90) next(99)
 }
 ----------------------------------------------------------------------
 
 Nr=91 Text=_"Follow me to the Surface!" --"Tania's Escape" Quest (Underground)
 NO_TEXT
 LuaCode={
-	next(99) hide(91)
+	hide(91) next(99)
 }
 ----------------------------------------------------------------------
 
 Nr=92 Text=_"Follow me to the Town!" --"Tania's Escape" Quest (Western Desert)
 NO_TEXT
 LuaCode={
-	next(99) hide(92)
+	hide(92) next(99)
 }
 ----------------------------------------------------------------------
 
 Nr=93 Text=_"Wait here." --"Tania's Escape" Quest (Western Town Gate)
 NO_TEXT
 LuaCode={
-	next(99) hide(93)
+	hide(93) next(99)
 }
 ----------------------------------------------------------------------
 
 Nr=94 Text=_"See you later." --"Tania's Escape" Quest (Western Town Gate to Doctor's Office)
 NO_TEXT
 LuaCode={
-	next(99) hide(94)
+	hide(94) next(99)
 }
 ----------------------------------------------------------------------
 

@@ -34,13 +34,16 @@ EveryTime LuaCode={
 	else
 		hide(23)
 	end
+
 	if (has_cookie("Stone_Talk_Again_Later")) then
 		show(4)
 	end
+
 	if (not has_cookie("tux_has_joined_guard")) and		-- avoid that the node is shown several times
 	   (not has_cookie("Stone_Hide_Guard_Question")) then
 		show(3)
 	end
+
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -108,7 +111,7 @@ LuaCode={
 		npc_says(_"I'm busy right now.")
 		npc_says(_"We should talk again later...")
 		add_cookie("Stone_Talk_Again_Later") 			-- EveryTime Code: if has cookie then show(4)
-	elseif (has_cookie("tux_has_joined_guard")) then 	-- tux joined guard, not followeed
+	elseif (has_cookie("tux_has_joined_guard")) then 	-- tux joined guard, not followed
 			npc_says(_"But nothing!")
 			npc_says(_"I don't know what you are talking about.")
 			del_cookie("Stone_Talk_Again_Later")		-- Stone rejects to tell more because Tux is RG now

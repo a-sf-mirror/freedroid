@@ -31,15 +31,11 @@ EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"This is a MegaSys test bot, running a very basic version of their OS. I can do nothing with this bot, because it doesn't know how to do anything."
-LuaCode={
-	hide(0)
-}
+LuaCode={ hide(0) }
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-LuaCode={
-	end_dialog()
-}
+LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

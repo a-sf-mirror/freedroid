@@ -30,14 +30,14 @@ EveryTime LuaCode={
 	npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
 	npc_says(_"Please state your name for identification.")
 	npc_says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
-	show(5,6)
+
 	if (has_cookie("lawnmower_fuel_4")) then
 		set_bot_state("fixed")
 		npc_says(_"WARNING:", NO_WAIT)
 		npc_says(_"Less than [b]5%[/b] fuel remaining!", NO_WAIT)
 		npc_says(_"All movement suppressed...")
 		npc_says(_"Scanning area for possible compatible energy sources...")
-		hide(5,6)
+		hide(5, 6)
 		if (has_item_backpack("Barf's Energy Drink") > 0) then
 			npc_says(_"Compatible energy source found!")
 			npc_says(_"[b]Barf's Energy Drink[/b]")
@@ -49,6 +49,7 @@ EveryTime LuaCode={
 			end_dialog()
 		end
 	end
+
 	if (has_cookie("lawnmower_fuel_8")) then
 		del_cookie("lawnmower_fuel_8")
 		add_cookie("lawnmower_fuel_4")
@@ -71,7 +72,8 @@ EveryTime LuaCode={
 		del_cookie("lawnmower_fuel_97")
 		add_cookie("lawnmower_fuel_64")
 	end
-	show(99)
+
+	show(5, 6, 99)
 }
 ----------------------------------------------------------------------
 

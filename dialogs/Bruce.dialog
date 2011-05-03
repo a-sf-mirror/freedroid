@@ -34,11 +34,11 @@ EveryTime LuaCode={
 		end_dialog()
 	end
 	if (has_item_equipped("Dixon's Helmet")) and
-		(not has_cookie("bruce_hurt")) and
-		(not has_cookie("Dixons_helmet_not_given_Bruce")) and
-		(not has_cookie("bruce_helmet_initial")) then
-			add_cookie("bruce_helmet_initial")
-			next(20)
+	   (not has_cookie("bruce_hurt")) and
+	   (not has_cookie("Dixons_helmet_not_given_Bruce")) and
+	   (not has_cookie("bruce_helmet_initial")) then
+		add_cookie("bruce_helmet_initial")
+		next(20)
 	end
 	if (has_cookie("Bruce_wants_helmet")) then
 		npc_says(_"So, what about the helmet now?")

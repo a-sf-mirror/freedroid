@@ -29,7 +29,7 @@ FirstTime LuaCode={ show(0, 3) }
 
 EveryTime LuaCode={
 	if (has_cookie("Tania-at-Bar")) and
-	(not has_cookie("Tania-at-Bar_Ewald")) then
+	   (not has_cookie("Tania-at-Bar_Ewald")) then
 		add_cookie("Tania-at-Bar_Ewald")
 		npc_says(_"Your lady friend just told me the epic story of how you rescued her.")
 		npc_says(_"That was really something.")
@@ -37,7 +37,9 @@ EveryTime LuaCode={
 	end
 
 	if has_cookie("drank_all_ewald_had") then show(14) end
+
 	if has_cookie("ewald_gambling") then show(30) end
+
 	show(99)
 }
 ----------------------------------------------------------------------
@@ -198,8 +200,8 @@ LuaCode={
 Nr=14 Text=_"Hey, I could use a refreshing drink!"
 LuaCode={
 	npc_says(_"Here, have a watery mary.")
-	heat_tux(-1000);
-	hide(14);
+	heat_tux(-1000)
+	hide(14)
 }
 -----------------------------------------------------------------------
 
@@ -294,7 +296,7 @@ LuaCode={
 Nr=37 Text=_"Dice"
 LuaCode={
 	hide(37, 38) next(39)
-}	
+}
 -----------------------------------------------------------------------
 
 Nr=38 Text=_"Coin-flipping"
@@ -406,6 +408,7 @@ LuaCode={
 	else
 		npc_says(_"Looks like it is 'heads'.")
 	end
+
 	if (tux1 == 1) then
 		npc_says(_"So do you think there will be an even or odd number of 'tails' flips?")
 	else
@@ -558,8 +561,8 @@ LuaCode={
 Nr=99 Text=_"See you later."
 LuaCode={
 	npc_says_random(_"Goodbye and remember: My bar is always open.", _"Come back soon!", _"You are welcome to unwind with old Ewald any time. Come back soon.", _"Remember, you can always come back here to relax and kick back.")
-	end_dialog()
 	hide(32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 50, 51, 52, 53, 54, 55, 56) --end any partial gambling
+	end_dialog()
 }
 ----------------------------------------------------------------------
 

@@ -222,8 +222,7 @@ Nr=26 Text=_"I am racked with hunger pains, give me some army snacks!"
 LuaCode={
 	npc_says(_"I thought you would have learned by now.")
 	npc_says(_"As you wish.")
-	next(27)
-	hide(26)
+	hide(26) next(27)
 }
 ----------------------------------------------------------------------
 
@@ -333,12 +332,11 @@ LuaCode={
 		tux_says(_"Umm... I guess you have a point there.")
 		tux_says(_"But sorry, I don't think there is anything I can do right now,", "NO_WAIT")
 		tux_says(_"Talk to Spencer yourself.")
-		hide(42)
 	else
 		npc_says(_"I did.")
 		npc_says(_"They said it was already fed to their reactor as fuel.")
-		hide(42)
 	end
+	hide(42)
 } -- There could be a quest for Tux to find the item that uses the battery and return it to Michelangelo.
 ----------------------------------------------------------------------
 

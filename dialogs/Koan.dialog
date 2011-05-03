@@ -85,10 +85,10 @@ LuaCode={
 	npc_says(_"Thank you.")
 	npc_says(_"Feel free to stay here. There is no danger.")
 	npc_says(_"The water is safe to drink and the fruit from the tree is quite delicious.")
-	hide(2, 3) show(5, 20, 99)
 	if has_quest("Doing Duncan a favor") then
 		next(12)
 	end
+	hide(2, 3) show(5, 20, 99)
 }
 ----------------------------------------------------------------------
 

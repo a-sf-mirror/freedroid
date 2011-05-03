@@ -31,15 +31,15 @@ EveryTime LuaCode={
 	end
 
 	if (has_quest(_"Bender's problem")) and
-		(has_cookie("met_docmoore")) and
-		(not done_quest(_"Bender's problem")) then
-			show(2)
+	   (has_cookie("met_docmoore")) and
+	   (not done_quest(_"Bender's problem")) then
+		show(2)
 	end
 
 	if (has_cookie("Tania-sent-to-Doc")) and
-		(not has_cookie("Tania-Doc-OK")) then
-			add_cookie("Tania-Doc-OK")
-			show(25)
+	   (not has_cookie("Tania-Doc-OK")) then
+		add_cookie("Tania-Doc-OK")
+		show(25)
 	end
 
 	if (has_item_backpack("Strength Pill") > 0) then show(50) end
@@ -267,22 +267,19 @@ LuaCode={
 
 Nr=50 Text=_"What can you tell me about Strength Pills?"
 LuaCode={
-	hide(50)
-	next(53)
+	hide(50) next(53)
 }
 ----------------------------------------------------------------------
 
 Nr=51 Text=_"What can you tell me about Dexterity Pills?"
 LuaCode={
-	hide(51)
-	next(53)
+	hide(51) next(53)
 }
 ----------------------------------------------------------------------
 
 Nr=52 Text=_"What can you tell me about Code Pills?"
 LuaCode={
-	hide(52)
-	next(53)
+	hide(52) next(53)
 }
 ----------------------------------------------------------------------
 

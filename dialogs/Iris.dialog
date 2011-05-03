@@ -43,6 +43,7 @@ EveryTime LuaCode={
 			npc_says_random(_"Sure is dark around here.", _"I wish there was some decent lighting.")
 		end
 	end
+
 	if (has_cookie("Iris_false_happy")) and
 		(not has_cookie("guard_follow_tux")) then
 		del_cookie("Iris_false_happy")
@@ -129,8 +130,6 @@ LuaCode={
 	npc_says(_"Oh, I have a nice book here.")
 	npc_says(_"But it's not worth the old dusty lamp.")
 	npc_says(_"I give it to you for the lamp and 100 circuits.")
-	hide(6)
-	add_cookie("iris_deal")
 	if (get_gold() > 99) then
 		show(7)
 	else
@@ -138,6 +137,8 @@ LuaCode={
 		tux_says(_"Let me get back to you about that.")
 		end_dialog()
 	end
+	hide(6)
+	add_cookie("iris_deal")
 }
 ---------------------------------------------------------------------
 

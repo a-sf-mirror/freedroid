@@ -67,8 +67,7 @@ LuaCode={
 	npc_says(_"PRIMARY OBJECTIVE 1: do not let unauthorized people in.", "NO_WAIT")
 	npc_says(_"PRIMARY OBJECTIVE 2: authorized personnel must have access to the zone.", "NO_WAIT")
 	npc_says(_"SECONDARY OBJECTIVE: prevent secret information leakage")
-	hide(1)
-	show(4, 5)
+	hide(1) show(4, 5)
 }
 ----------------------------------------------------------------------
 
@@ -88,8 +87,7 @@ LuaCode={
 	tux_says(_"I mean, you are not attacking me... Don't you kill like other bots?")
 	npc_says(_"I do! I do! I kill humans, bots, linarians and even dogs, cats and other animals! I would kill anybody!")
 	npc_says(_"Em.. Anybody who would try to get in, of course.")
-	show(6)
-	hide(5)
+	show(6) hide(5)
 }
 ----------------------------------------------------------------------
 
@@ -105,8 +103,7 @@ LuaCode={
 	end_dialog()
 	change_obstacle_state("SADDGun1", "enabled")
 	change_obstacle_state("SADDGun2", "enabled")
-	show(8)
-	hide(6, 99)
+	show(8) hide(6, 99)
 }
 ----------------------------------------------------------------------
 
@@ -115,8 +112,7 @@ LuaCode={
 	npc_says(_"You are not. You have secret information, so I won't let you out.")
 	tux_says(_"Why not kill me immediately?")
 	npc_says(_"And stand here alone until I die? While you are here I can speak with you. Oh, I haven't spoken to anybody for a looong time!")
-	hide(8)
-	show(10, 11)
+	hide(8) show(10, 11)
 }
 ----------------------------------------------------------------------
 
@@ -141,8 +137,7 @@ LuaCode={
 	npc_says(_"Yes, it will be violated. But first order has higher priority.")
 	tux_says(_"So you can disobey your orders?")
 	npc_says(_"I've already disobeyed them, when I told you what I shouldn't have. That's because of my human nature.")
-	show(15, 16)
-	hide(11)
+	show(15, 16) hide(11)
 }
 ----------------------------------------------------------------------
 
@@ -155,16 +150,14 @@ LuaCode={
 	tux_says(_"Almost a computer? What does that mean?")
 	npc_says(_"It means what it means! Nothing more, nothing less! Shut up, little piece of biomass!")
 	end_dialog()
-	hide(15)
-	show(20)
+	hide(15) show(20)
 }
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"I suggest a deal. You let me out, I bring you dilithium crystals. It will save both of us."
 LuaCode={
 	npc_says(_"Why would I trust you?")
-	hide(4, 8, 10, 15, 16)
-	show(21, 22)
+	hide(4, 8, 10, 15, 16) show(21, 22)
 }
 ----------------------------------------------------------------------
 
@@ -180,16 +173,14 @@ Nr=21 Text=_"You must promise me a significant reward."
 LuaCode={
 	npc_says(_"Actuators! Ok, I'll give you a super exterminator if you give me dilithium crystals.")
 	add_cookie("asked_sadd_for_exterminator")
-	next(23)
-	hide(21, 22)
+	hide(21, 22) next(23)
 }
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"It seems that you are sentient, that you are a form of life. I must help any form of life."
 LuaCode={
 	npc_says(_"Thanks a lot for your warm words. I think I can trust you.")
-	next(23)
-	hide(21, 22)
+	hide(21, 22) next(23)
 }
 ----------------------------------------------------------------------
 
@@ -253,8 +244,7 @@ LuaCode={
 	change_obstacle_state("SADDGun1", "enabled")
 	change_obstacle_state("SADDGun2", "enabled")
 	change_obstacle_state("BreakableWall2", "broken")
-	hide(37)
-	show(41, 42, 43)
+	hide(37) show(41, 42, 43)
 }
 ----------------------------------------------------------------------
 
@@ -355,8 +345,7 @@ LuaCode={
 	npc_says(_"I'm sorry " .. get_player_name() .._", I'm afraid I can't do that.")
 	npc_says(_"Nice try, though. I may owe you, but I can't let you in. You must leave.")
 	end_dialog()
-	show(99)
-	hide(97)
+	show(99) hide(97)
 }
 ----------------------------------------------------------------------
 

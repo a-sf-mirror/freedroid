@@ -58,26 +58,28 @@ LuaCode={
 		npc_says(_"Gun 02 status: ENABLED", "NO_WAIT")
 		npc_says(_"Gun 03 status: ENABLED", "NO_WAIT")
 		if (not has_cookie("Maintenance-refusal")) then
-			show (3)
+			show(3)
 		else
-			show (10)
+			show(10)
 		end
 	else
 		npc_says(_"Gun 01 status: DISABLED", "NO_WAIT")
 		npc_says(_"Gun 02 status: DISABLED", "NO_WAIT")
 		npc_says(_"Gun 03 status: DISABLED", "NO_WAIT")
-		show (4)
+		show(4)
 	end
 
 	if (cmp_obstacle_state("Maintenance-gungate", "opened")) then
 		npc_says(_"Access Gate status: OPEN", "NO_WAIT")
-		show (5)
+		show(5)
 	else
 		npc_says(_"Access Gate status: CLOSED", "NO_WAIT")
-		show (6)
+		show(6)
 	end
+
 	cli_says(terminal, "NO_WAIT")
-	hide (0)
+
+	hide(0)
 }
 ----------------------------------------------------------------------
 

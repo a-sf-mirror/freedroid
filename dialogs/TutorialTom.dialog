@@ -52,6 +52,7 @@ EveryTime LuaCode={
 		npc_says(_"Long stasis sleep unfortunately has the side effect of temporary memory loss, sometimes even for simple ordinary every day things.")
 		npc_says(_"So let's start with the basics, shall we?")
 		show(1, 7, 80)
+		set_rush_tux(0)
 	elseif (has_quest(_"Tutorial Movement") and not has_cookie("talk_to_tom")) then
 		add_cookie("talk_to_tom")
 		npc_says(_"Glad to see you figured out the quest log!")
@@ -61,15 +62,12 @@ EveryTime LuaCode={
 		update_quest(_"Tutorial Movement", _"Apparently I can sprint if I hold down the control key as I move. This might help if I get in a tight spot.")
 		npc_says(_"This distance is determined by your yellow stamina bar; the more you have, the farther you can run without becoming winded.")
 	end
+
 	if (has_cookie("TutorialTux-PastWall")) then
 		hide(70) show(30, 38)
 	end
 
 	show(99)
-
-	if (partner_started()) then
-		set_rush_tux(0)
-	end
 }
 ----------------------------------------------------------------------
 
@@ -140,13 +138,13 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"No, thanks, I still remember how to walk, run, navigate, and pick things up."
-LuaCode={ 
+LuaCode={
 	hide(1, 7, 80) next(9)
 }
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"Thank you, that was very informative. Can we move on now?"
-LuaCode={ 
+LuaCode={
 	end_quest(_"Tutorial Movement")
 	npc_says(_"I just closed your first quest. You can still see what you learned by clicking on the 'done quests' tab in the quest screen.", "NO_WAIT")
 	hide(8) next(9)
@@ -267,8 +265,9 @@ LuaCode={
 Nr=19 Text=_"I think I'm ready for the next section of the tutorial."
 LuaCode={
 	npc_says(_"Ok, I'll open the next door then. But prepare yourself, soon you will learn how to fight against bots in hand-to-hand combat.")
-	if (has_cookie("has_repair")) then
-	else improve_program("Repair equipment") end
+	if (not has_cookie("has_repair")) then
+		improve_program("Repair equipment")
+	end
 	change_obstacle_state("TutorialEquipOut", "opened")
 	end_dialog()
 	hide(10, 11, 12, 13, 14, 15, 16, 17, 19) show(20, 29)
@@ -409,22 +408,21 @@ LuaCode={
 		del_item_backpack("Tachyon Condensator", 1)
 		add_item(".22 Automatic", 1)
 		add_cookie("has_gun")
-		heal_tux()
 		hide(28) show(29)
 	else
 		npc_says(_"You didn't bring back the Tachyon Condensator. You'll need to bring it back before we can continue.")
 		npc_says(_"I'll go ahead and heal you. If your weapon or armor are in bad shape, perhaps you should repair them before going back in there.")
 		npc_says(_"Don't come back without the [b]Tachyon Condensator[/b].")
-		heal_tux()
 		end_dialog()
 	end
+	heal_tux()
 }
 ----------------------------------------------------------------------
 
 Nr=29 Text=_"I'm ready to move on."
 LuaCode={
 	if (not done_quest(_"Tutorial Melee")) then
-		 complete_quest(_"Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
+		complete_quest(_"Tutorial Melee", _"I decided to move on and go to the shooting tutorial.")
 	end
 	if (has_cookie("has_gun")) then
 		npc_says(_"I'll bet you're itching to try that pistol out on some bots.")
@@ -499,8 +497,6 @@ LuaCode={
 		add_item(".22 Automatic", 1)
 	end
 	npc_says(_"Here is some more ammunition for it")
-	add_item(".22 LR Ammunition", 50)
-
 	npc_says(_"You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter.")
 	npc_says(_"Practice switching weapons and reloading.")
 	npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
@@ -510,8 +506,9 @@ LuaCode={
 	add_cookie("opened_door")
 	change_obstacle_state("TutorialStorage", "opened")
 	change_obstacle_state("TutorialShootCage", "opened")
+	add_item(".22 LR Ammunition", 50)
 	end_dialog()
-	hide(33) show(34,35)
+	hide(33) show(34, 35)
 }
 ----------------------------------------------------------------------
 
@@ -532,7 +529,7 @@ LuaCode={
 		npc_says(_"Put all your ranged weapons in your inventory, then talk to me and we'll move on.")
 		update_quest(_"Tutorial Shooting", _"That was like shooting fish in a barrel. I could use a fish about now.")
 		end_dialog()
-		hide(35,38) show(36, 37)
+		hide(35, 38) show(36, 37)
 	else
 		npc_says(_"I don't mind if you don't want to do this, but please don't try to trick me.")
 		npc_says(_"I don't have verified kills on all those bots.")
@@ -578,7 +575,7 @@ LuaCode={
 			npc_says(_"That includes the laser and plasma pistols in the storage room to the west.")
 		end
 	elseif has_cookie("has_gun") then
-		if  (has_item_backpack(".22 Automatic") > 0) then
+		if (has_item_backpack(".22 Automatic") > 0) then
 			end_quest(_"Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
 			next(39)
 		else
@@ -599,9 +596,9 @@ LuaCode={
 	del_item_backpack("Laser pistol")
 	del_item_backpack("Plasma pistol")
 	npc_says(_"Thank you, Linarian. We'll now move on to hacking.")
- 	change_obstacle_state("TutorialShootingOut", "opened")
- 	end_dialog()
- 	hide(30, 31, 32, 33, 37, 38, 39) show(40)
+	change_obstacle_state("TutorialShootingOut", "opened")
+	end_dialog()
+	hide(30, 31, 32, 33, 37, 38, 39) show(40)
 }
 ----------------------------------------------------------------------
 
@@ -645,8 +642,8 @@ LuaCode={
 Nr=42 Text=_"Alright, I'm ready to go hack some bots."
 LuaCode={
 	if (not done_quest(_"Tutorial Upgrading Items")) then
-				end_quest(_"Tutorial Upgrading Items",_"I decided that I don't need to know how to upgrade items.")
-		end
+		end_quest(_"Tutorial Upgrading Items",_"I decided that I don't need to know how to upgrade items.")
+	end
 	npc_says(_"First, you'll need to unlock the door.")
 	npc_says(_"See that [b]Terminal[/b] to the left?")
 	npc_says(_"You will need to login, by left clicking on it, and then select unlock door.")

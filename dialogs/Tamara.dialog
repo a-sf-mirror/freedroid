@@ -103,15 +103,15 @@ LuaCode={
 Nr=42 Text=_"Do you have any books about the bot apocolypse?"
 LuaCode={
 	npc_says(_"I'm writing one, but it isn't complete, and there are no publishers left. But, I can tell you all about robots and automata in literature. Interested?")
-	hide(42) show(43,44,45)
+	hide(42) show(43, 44, 45)
 	bot_Apoclypse = 2
-	if( has_cookie("kevin_sigtalk")) then show(46) bot_Apoclypse = 3 end
+	if (has_cookie("kevin_sigtalk")) then show(46) bot_Apoclypse = 3 end
 }
 ----------------------------------------------------------------------
 
 Nr=43 Text=_"Another time, perhaps."
 LuaCode={
-	hide(43,44,45,46)
+	hide(43, 44, 45, 46)
 }
 ----------------------------------------------------------------------
 
@@ -151,7 +151,6 @@ LuaCode={
 	hide(46)
 	if (bot_Apoclypse == 0) then hide(43) end
 }
-
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
@@ -168,11 +167,10 @@ LuaCode={
 	hide(50)
 	end_dialog()
 }
-
 ----------------------------------------------------------------------
 Nr=99 Text=_"Thank you for the help."
 LuaCode={
-	hide(43,44,45,46)
+	hide(43, 44, 45, 46)
 	npc_says_random(_"No problem, and remember to return your books in time.", _"I aim to ensure that the great works of literature will survive this horrible apocalypse.", _"That is what I'm here for. Come back at any time.")
 	end_dialog()
 }

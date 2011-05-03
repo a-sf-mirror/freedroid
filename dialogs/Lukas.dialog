@@ -67,9 +67,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later!"
-LuaCode={
-	end_dialog()
-}
+LuaCode={ end_dialog() }
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

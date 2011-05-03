@@ -67,19 +67,19 @@ EveryTime LuaCode={
 
 	if (cmp_obstacle_state("DesertGate", "closed")) and
 	   (has_cookie("desertgate_tax_30")) then
-			npc_says(_"Got the money?")
-			if (get_gold() >= 30) then
-				show(45)
-			else
-				hide(45)
-			end
-		elseif (has_cookie("desertgate_tax_40")) then
-			npc_says(_"Got the money?")
-			if (get_gold() >= 40) then
-				show(45)
-			else
-				hide(45)
-			end
+		npc_says(_"Got the money?")
+		if (get_gold() >= 30) then
+			show(45)
+		else
+			hide(45)
+		end
+	elseif (has_cookie("desertgate_tax_40")) then
+		npc_says(_"Got the money?")
+		if (get_gold() >= 40) then
+			show(45)
+		else
+			hide(45)
+		end
 	end
 
 	if (has_cookie("desertgate_tax_30")) or
@@ -266,15 +266,15 @@ LuaCode={
 			change_obstacle_state("DesertGate", "opened")
 			update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
 		elseif (has_cookie("desertgate_tax_40")) and
-			(get_gold() >= 40) then
-				npc_says(_"At last.")
-				tux_says(_"Here, let me pass now.")
-				npc_says(_"You may pass, Loon.")
-				npc_says(_"But don't expect any help in there.")
-				del_cookie("desertgate_tax_40")
-				del_gold(40)
-				change_obstacle_state("DesertGate", "opened")
-				update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
+			   (get_gold() >= 40) then
+			npc_says(_"At last.")
+			tux_says(_"Here, let me pass now.")
+			npc_says(_"You may pass, Loon.")
+			npc_says(_"But don't expect any help in there.")
+			del_cookie("desertgate_tax_40")
+			del_gold(40)
+			change_obstacle_state("DesertGate", "opened")
+			update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
 		else
 			npc_says(_"Don't try to trick me, duck.") --just in case...
 			npc_says(_"Come back if you have the bucks!")

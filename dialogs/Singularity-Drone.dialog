@@ -29,8 +29,6 @@ EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
 
 Nr=99 Text="..."
-LuaCode={
-	end_dialog()
-}
+LuaCode={ end_dialog() }
 
 End of chat dialog for character="XXXXX"

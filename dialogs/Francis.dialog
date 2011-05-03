@@ -34,10 +34,10 @@ EveryTime LuaCode={
 		set_rush_tux(0)
 	elseif (not npc_dead("InvaderBot")) then
 		npc_says(_"Have you neutralized the threat yet?")
-		show(1,2)
+		show(1, 2)
 	elseif (not has_cookie("met_francis")) then
 		npc_says(_"Have you neutralized the threat yet?")
-		show(1,3)
+		show(1, 3)
 	elseif (not has_quest(_"Deliverance")) then
 		show(90)
 		npc_says(_"Welcome back " .. get_player_name() .. ".")
@@ -59,7 +59,7 @@ EveryTime LuaCode={
 	end
 
 	if (has_cookie("refused_deliverance")) then
-		show(99) hide(90)
+		hide(90) show(99)
 	end
 
 	if (has_cookie("Francis_tux_dismissed")) then
@@ -81,7 +81,7 @@ Nr=1 Text=_"No, not yet."
 LuaCode={
 	npc_says(_"Hurry! There's no time...")
 	set_bot_destination("FrancisSafe")
-	hide(1,2)
+	hide(1, 2)
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -102,7 +102,7 @@ LuaCode={
 		add_item("Data cube")
 		drop_dead()
 	end
-	hide(1,2)
+	hide(1, 2)
 	end_dialog()
 }
 ----------------------------------------------------------------------
@@ -113,7 +113,7 @@ LuaCode={
 	npc_says(_"Now that we are safe, I'd be happy to answer some of your questions. But we cannot take too long, you will need to head to the town as soon as possible.")
 	add_cookie("met_francis")
 	set_bot_destination("FrancisStart")
-	hide(1,2,3) show(4, 90)
+	hide(1, 2, 3) show(4, 90)
 }
 ----------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ Nr=4 Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor sho
 LuaCode={
 	npc_says(_"Unfortunately, for a case like yours, that is normal. According to your records, you were in stasis sleep for over 70 years.")
 	npc_says(_"Stasis is not too kind on the mind. It is not uncommon for strange dreams and nightmares to plague people who have been under that long.")
-	hide(4) show(5,6)
+	hide(4) show(5, 6)
 }
 ----------------------------------------------------------------------
 
@@ -141,7 +141,7 @@ LuaCode={
 	set_bot_name(_"Dr. Francis - Cryogenicist")
 	npc_says(_"Currently, there is a war raging all around the globe. One day, our once loyal bots rebelled against us and began trying to wipe us out. The beginning of this war has been dubbed 'The Great Assault.'")
 	npc_says(_"And it looks like humans are losing the war. Our town isn't doing so well at this point either. But there is still hope, since you were discovered here.")
-	hide(6) show(7,8,9)
+	hide(6) show(7, 8, 9)
 }
 ----------------------------------------------------------------------
 
@@ -160,7 +160,7 @@ LuaCode={
 	npc_says(_"Look in the chest in the next room for some spare gear I managed to gather for you. It's not much, but it should help you make it to town in one piece.")
 	add_cookie("linarian_chandra")
 	add_cookie("Francis_tux_dismissed")
-	hide(8,9) show(10, 11)
+	hide(8, 9) show(10, 11)
 }
 ----------------------------------------------------------------------
 
@@ -219,8 +219,7 @@ LuaCode={
 	npc_says(_"Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?")
 	tux_says(_"Spencer?")
 	npc_says(_"Yes. He's the leader of the Red Guard.")
-	show(91, 93)
-	hide(90)
+	hide(90) show(91, 93)
 }
 ----------------------------------------------------------------------
 
@@ -229,8 +228,7 @@ LuaCode={
 	npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 	npc_says(_"But... The prospect of facing that... That man again... I just can't bear it.")
 	npc_says(_"Please, " ..get_player_name().. ", will you do me this favor?")
-	show(92, 93)
-	hide(91)
+	hide(91) show(92, 93)
 }
 ----------------------------------------------------------------------
 

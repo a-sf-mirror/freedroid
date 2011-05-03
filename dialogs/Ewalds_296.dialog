@@ -83,7 +83,7 @@ LuaCode={
 	tux_says(_"A super awesome- I mean, a Geiger counter? To measure radiation? Interesting. It's making all those funny clicking sounds... What is it saying?")
 	npc_says(_"It is saying the reactor is nearing terminal radiation overload! AWESOME!")
 	add_quest(_"An Explosive Situation", _"I found a 296 belonging to Ewald in the maintenance tunnels underneath the town. It claims to be monitoring a damaged nuclear reactor.")
-	hide(2, 3) show (4, 5, 16)
+	hide(2, 3) show(4, 5, 16)
 }
 ----------------------------------------------------------------------
 

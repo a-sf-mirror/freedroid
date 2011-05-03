@@ -29,7 +29,7 @@ EveryTime LuaCode={
 	if (not has_met("Duncan")) then
 		show(0, 90, 99)
 	elseif (not has_cookie("guard_follow_tux")) and
-			(not has_cookie("koan_quest")) then
+		(not has_cookie("koan_quest")) then
 		next(50)
 	end
 
@@ -38,7 +38,7 @@ EveryTime LuaCode={
 	else
 		if (has_cookie("koan_spared")) and
 		   (not has_cookie("koan_quest_done")) then
-				next(60)
+		next(60)
 		end
 	end
 
@@ -200,8 +200,7 @@ LuaCode={
 Nr=62 Text=_"Yeah. I got him. I think this is your cube."
 LuaCode={
 	npc_says(_"Yes. I appreciate your help.")
-	hide(62, 63)
-	next(69)
+	hide(62, 63) next(69)
 }
 ----------------------------------------------------------------------
 
@@ -229,8 +228,7 @@ LuaCode={
 Nr=67 Text=_"Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
 LuaCode={
 	npc_says(_"I will.")
-	hide(67, 68)
-	next(69)
+	hide(67, 68) next(69)
 }
 ----------------------------------------------------------------------
 
@@ -290,8 +288,7 @@ LuaCode={
 	tux_says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")
 	npc_says(_"I read many books on Linarians. That is all.")
 	npc_says(_"Nothing more and nothing less.")
-	next(98)
-	show(98)
+	show(98) next(98)
 }
 ----------------------------------------------------------------------
 

@@ -44,7 +44,7 @@ EveryTime LuaCode={
 		if (cmp_obstacle_state("DSB-PCGate1", "opened")) then show(10)
 		else npc_says(_"GAME BUG. PLEASE REPORT.") end
 	end
-	show(98,99)
+	show(98, 99)
 }
 ----------------------------------------------------------------------
 
