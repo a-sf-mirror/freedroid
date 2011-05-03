@@ -42,8 +42,8 @@
 #define PUSH_ROSTER 2
 #define POP_ROSTER 3
 
-char *chat_initialization_code;	//first time with a character-code
-char *chat_startup_code;	//every time we start this dialog-code
+static char *chat_initialization_code;	//first time with a character-code
+static char *chat_startup_code;	//every time we start this dialog-code
 
 static void run_chat(enemy *ChatDroid, int is_subdialog);
 
@@ -412,9 +412,6 @@ void run_subdialog(const char *tmp_filename)
 		dummyflags[i] = 0;
 	}
 
-	if (chat_initialization_code)
-		run_lua(chat_initialization_code);
-
 	run_chat(chat_control_chat_droid, TRUE);
 
 	push_or_pop_chat_roster(POP_ROSTER);
@@ -474,6 +471,9 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	chat_log.rect.h = CHAT_SUBDIALOG_WINDOW_H;
 	chat_log.font = FPS_Display_BFont;
 	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
+
+	if (chat_initialization_code)
+		run_lua(chat_initialization_code);
 
 	// We load the option texts into the dialog options variable..
 	//
@@ -558,9 +558,9 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 		for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 			chat_control_chat_flags[i] = 0;
 		}
-
-		if (chat_initialization_code)
-			run_lua(chat_initialization_code);
+	} else {
+		free(chat_initialization_code);
+		chat_initialization_code = NULL;
 	}
 
 	run_chat(ChatDroid, FALSE);
