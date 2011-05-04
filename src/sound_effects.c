@@ -212,62 +212,59 @@ void play_death_sound_for_bot(enemy * ThisRobot)
  * Whenever a bot starts to attack the Tux, he'll issue the attack cry.
  * This is done here, and no respect to loading time issues for now...
  */
-void play_enter_attack_run_state_sound(int SoundCode)
+void play_enter_attack_run_state_sound(enemy *ThisRobot)
 {
+	int SoundCode;
+	moderately_finepoint emitter_pos;
+	moderately_finepoint listener_pos;
+	const char *sounds[] = {
+		"effects/bot_sounds/Start_Attack_Sound_0.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_1.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_2.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_9.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_10.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_11.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_12.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_13.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_14.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_15.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_16.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_17.ogg",
+		"effects/bot_sounds/Start_Attack_Sound_18.ogg",
+	};
+
+	emitter_pos.x = ThisRobot->pos.x;
+	emitter_pos.y = ThisRobot->pos.y;
+	listener_pos.x = Me.pos.x;
+	listener_pos.y = Me.pos.y;
+
 	if (MyRandom(5)) {
-		switch (SoundCode) {
-		case -1:
+		// get sound code
+		SoundCode = Druidmap[ThisRobot->type].greeting_sound_type;
+
+		// sound codes are [0, 2]U[9, 18]
+		// this makes it so the index will be [0, number_of_sounds - 1]
+		if (SoundCode > 2)
+			SoundCode -= 6;
+
+		// if index is negative return
+		if (SoundCode < 0) {
 			return;
-			break;
-		case 0:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_0.ogg");
-			break;
-		case 1:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_1.ogg");
-			break;
-		case 2:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_2.ogg");
-			break;
-		case 9:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_9.ogg");
-			break;
-		case 10:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_10.ogg");
-			break;
-		case 11:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_11.ogg");
-			break;
-		case 12:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_12.ogg");
-			break;
-		case 13:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_13.ogg");
-			break;
-		case 14:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_14.ogg");
-			break;
-		case 15:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_15.ogg");
-			break;
-		case 16:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_16.ogg");
-			break;
-		case 17:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_17.ogg");
-			break;
-		case 18:
-			play_sound("effects/bot_sounds/Start_Attack_Sound_18.ogg");
-			break;
-		default:
-			DebugPrintf(0, "\nUnknown Start Attack sound!!! NOT TERMINATING CAUSE OF THIS...");
-			// Terminate( ERR );
-			break;
 		}
+
+		// if index is higher than sound count, display debug message then return
+		if (SoundCode > (sizeof(sounds) / sizeof(sounds[0]) - 1)) {
+			DebugPrintf(0, "\nUnknown Start Attack sound!!! NOT TERMINATING CAUSE OF THIS...");
+			return;
+		}
+
+		play_sound_at_position(sounds[SoundCode], &listener_pos, &emitter_pos);
+
 	} else {		//either we output a standard sound, either we output a special voice sample such as "drill eyes"
 		char sample_path[1024] = "effects/bot_sounds/voice_samples/";
 		sprintf(sample_path + strlen(sample_path), "%d.ogg", MyRandom(42) + 1);
 		//printf("Playing %s\n", sample_path);
-		play_sound(sample_path);
+		play_sound_at_position(sample_path, &listener_pos, &emitter_pos);
 	}
 }
 

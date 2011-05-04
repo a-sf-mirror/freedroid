@@ -1508,7 +1508,7 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 		ThisRobot->combat_state = ATTACK;
 		ThisRobot->last_combat_step = ATTACK_MOVE_RATE + 1.0;	// So that attack will start immediately
 		if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
-			play_enter_attack_run_state_sound(Druidmap[ThisRobot->type].greeting_sound_type);
+			play_enter_attack_run_state_sound(ThisRobot);
 		}
 	}
 }

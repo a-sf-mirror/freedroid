@@ -437,7 +437,7 @@ void Takeover_Game_Won_Sound(void);
 void Takeover_Game_Deadlock_Sound(void);
 void Takeover_Game_Lost_Sound(void);
 void PlayGreetingSound(int SoundCode);
-void play_enter_attack_run_state_sound(int SoundCode);
+void play_enter_attack_run_state_sound(enemy *ThisRobot);
 void play_death_sound_for_bot(enemy * ThisRobot);
 void play_item_sound(int item_type);
 void PlayEnemyGotHitSound(int enemytype);
