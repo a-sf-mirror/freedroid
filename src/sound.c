@@ -479,7 +479,12 @@ void play_sound_at_position(const char *filename, struct moderately_finepoint *l
 	// just to prevent the angle from wrapping. 
 	angle_value = angle_value % 360;
 
-	play_sound_cached_pos(filename, angle_value, (unsigned char)distance_value);
+	// if the emitter->listener vector is really small, use non-positional play.
+	if (distance < 1) {
+		play_sound_cached(filename);
+	} else { 
+		play_sound_cached_pos(filename, angle_value, (unsigned char)distance_value);
+	}
 }
 
 //----------------------------------------------------------------------
