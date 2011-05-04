@@ -42,6 +42,7 @@
 #define ALL_MOD_MUSICS 1
 #define MAX_SOUND_CHANNELS 5000
 
+static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance);
 static void remove_all_samples_from_WAV_cache(void);
 static void LoadAndFadeInBackgroundMusic(void);
 
@@ -88,6 +89,14 @@ void play_sound_cached(const char *filename)
 }
 
 void play_sound_cached_v(const char *filename, double volume)
+{
+}
+
+static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance)
+{
+}
+
+void play_sound_at_position(const char *filename, struct moderately_finepoint *listener, struct moderately_finepoint *emitter)
 {
 }
 
@@ -212,6 +221,28 @@ void SetSoundFXVolume(float NewVolume)
 	if (!sound_on)
 		return;
 	remove_all_samples_from_WAV_cache();
+}
+
+
+/**
+ * Finds a free channel to play a sample on
+ *
+ * Returns channel number if successful otherwise returns -1 if free channel isn't found
+ **/
+static int find_free_channel()
+{
+	int i = 0;
+	
+	// iterate through all of the channels
+	for (i = 0; i < MAX_SOUND_CHANNELS; i++) {
+
+		// if the channel is no longer playing, we can use it.
+		if (!Mix_Playing(i))
+			return i; 
+	}
+
+	// we couldn't find a free channel. 
+	return -1;
 }
 
 /** ================================= FUNCTIONS FOR THREADING ======================================== */
@@ -402,6 +433,55 @@ void play_sound_cached(const char *filename)
 	play_sound_cached_v(filename, 1.0);
 }
 
+#define MAX_HEARING_DISTANCE 500
+#define DEGREE_PER_RADIAN (180/M_PI)
+
+/**
+ * Plays a sound relative to the listener where listener is the position of the listener, and emitter is the position
+ * of the emitter of the sound.
+ **/
+void play_sound_at_position(const char *filename, struct moderately_finepoint *listener, struct moderately_finepoint *emitter)
+{
+	float angle;
+	float distance;
+	int emitter_x;
+	int emitter_y;
+	int listener_x;
+	int listener_y;
+	int difference_x;
+	int difference_y;
+	unsigned int distance_value;
+	unsigned short angle_value;
+
+	// translate the emitter and listener coordinates to screen coordinates.
+	translate_map_point_to_screen_pixel(emitter->x, emitter->y, &emitter_x, &emitter_y);
+	translate_map_point_to_screen_pixel(listener->x, listener->y, &listener_x, &listener_y);
+	
+	// d[x,y] = [x1,y1] - [x2,y2]
+	difference_x = listener_x - emitter_x;
+	difference_y = listener_y - emitter_y;
+	
+	// calculate the distance	
+	distance = sqrt((difference_x * difference_x) + (difference_y * difference_y));
+
+	// and angle [-pi, pi] radians
+	angle = atan2(difference_y, difference_x);
+
+	// prevent overflow 
+	distance_value = (unsigned int)((distance / MAX_HEARING_DISTANCE) * 255);
+
+	// we don't want distance_value to wrap around.
+	distance_value = (distance_value >= 255) ? 255 : distance_value;
+
+	// adjust the angle so that it is aligned with the game / screen coordinates properly.
+	angle_value = (unsigned short)((angle * DEGREE_PER_RADIAN - 90));
+
+	// just to prevent the angle from wrapping. 
+	angle_value = angle_value % 360;
+
+	play_sound_cached_pos(filename, angle_value, (unsigned char)distance_value);
+}
+
 //----------------------------------------------------------------------
 // This function should play a sound sample, that is NOT needed within
 // the action part of the game but only in menus or dialogs and can
@@ -412,7 +492,15 @@ void play_sound_cached(const char *filename)
 //aep: implements volume now volume must be a double from 0 to 1. thats not my idea! go to JP, kill him!
 void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 {
-	int Newest_Sound_Channel = 0;
+	// use volume to scale the distance for the effect
+	// Range for volume - distance translation: 0 ( loud ) to 255 ( soft ) 
+	play_sound_cached_pos(SoundSampleFileName, 0, (unsigned char)(255 - (volume * 255)));
+}
+
+// Plays a sound at relative distance and angle
+static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance)
+{
+	int channel_to_play_sample_on = 0;
 	char fpath[2048];
 	int index_of_sample_to_be_played = 0;
 	int sound_must_be_loaded = TRUE;
@@ -467,7 +555,7 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 		// now change the volume of the sound sample in question to what is normal
 		// for sound effects right now...
 		//
-		Mix_VolumeChunk(dynamic_WAV_cache[next_free_position_in_cache], (int)rintf(MIX_MAX_VOLUME * volume * GameConfig.Current_Sound_FX_Volume));	//aep
+		Mix_VolumeChunk(dynamic_WAV_cache[next_free_position_in_cache], (int)rintf(MIX_MAX_VOLUME * GameConfig.Current_Sound_FX_Volume));	//aep
 
 		// We note the position of the sound file to be played
 		//
@@ -493,11 +581,28 @@ void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 	// In case of an error, we will of course print an error message
 	// and quit...
 	//
-	Newest_Sound_Channel = Mix_PlayChannel(-1, dynamic_WAV_cache[index_of_sample_to_be_played], 0);
-	if (Newest_Sound_Channel <= -1) {
+	
+	// First let's find a free channel
+	channel_to_play_sample_on = find_free_channel();
+
+	// Now we try to play the sound file that has just been successfully
+	// loaded into memory or has resided in memory already for some time...
+	if (Mix_PlayChannel(channel_to_play_sample_on, dynamic_WAV_cache[index_of_sample_to_be_played], 0) <= -1) {
 		fprintf(stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n", SoundSampleFileName, Mix_GetError());
 		ErrorMessage(__FUNCTION__, "\
-		                           The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			                   The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+	}
+
+	// if we found a free channel, let's apply an effect to it.
+	if (channel_to_play_sample_on != -1) {
+		if (!Mix_SetPosition(channel_to_play_sample_on, angle, distance)){
+			fprintf(stderr, "\n\nSoundSampleFileName: '%s' channel: '%d' Mix_GetError(): %s \n",
+				SoundSampleFileName, channel_to_play_sample_on, Mix_GetError());
+			ErrorMessage(__FUNCTION__, 
+					"\
+				        The SDL mixer was unable to register an effect on given channel.\n", 
+					NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		}
 	}
 }
 

@@ -448,6 +448,7 @@ void play_melee_weapon_missed_sound(void);
 void play_open_chest_sound(void);
 void play_sound_cached(const char *SoundSampleFileName);
 void play_sound_cached_v(const char *SoundSampleFileName, double volume);
+void play_sound_at_position(const char *filename, struct moderately_finepoint *listener, struct moderately_finepoint *emitter);
 
 // items.c
 void init_item(item *);
