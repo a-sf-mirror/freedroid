@@ -775,7 +775,7 @@ static char *decode_waypoints(level *loadlevel, char *data)
 	if ((wp_end = strstr(data, WP_END_STRING)) == NULL)
 		return NULL;
 
-	short int curlinepos = 0;
+	int curlinepos = 0;
 	this_line = (char *)MyMalloc(4096);
 	
 	while (1) {
