@@ -1488,7 +1488,7 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	if (ThisRobot->has_greeted_influencer == FALSE) {
 		ThisRobot->has_greeted_influencer = TRUE;
 		if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
-			PlayGreetingSound(Druidmap[ThisRobot->type].greeting_sound_type);
+			play_greeting_sound(ThisRobot);
 		}
 	}
 
@@ -2178,7 +2178,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		ThisRobot->current_angle = -(-90 + 180 * atan2(ydist, xdist) / M_PI);
 	}
 
-	enemy_fire_bullet_sound(ThisRobot);
+	fire_bullet_sound(guntype, &ThisRobot->pos);
 };				// void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
 /**

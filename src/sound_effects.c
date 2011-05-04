@@ -107,74 +107,45 @@ void Not_Enough_Dist_Sound(void)
  * to expect, by loading it freshly from disk and then forgetting about it
  * again.
  */
-void PlayGreetingSound(int SoundCode)
+void play_greeting_sound(enemy *ThisRobot)
 {
-	switch (SoundCode) {
-	case -1:
+	int SoundCode = Druidmap[ThisRobot->type].greeting_sound_type;
+	moderately_finepoint emitter_pos;
+	moderately_finepoint listener_pos;	
+	const char *sounds[] = {
+		"effects/bot_sounds/First_Contact_Sound_0.ogg",
+		"effects/bot_sounds/First_Contact_Sound_1.ogg",
+		"effects/bot_sounds/First_Contact_Sound_2.ogg",
+		"effects/bot_sounds/First_Contact_Sound_3.ogg",
+		"effects/bot_sounds/First_Contact_Sound_4.ogg",
+		"effects/bot_sounds/First_Contact_Sound_5.ogg",
+		"effects/bot_sounds/First_Contact_Sound_6.ogg",
+		"effects/bot_sounds/First_Contact_Sound_7.ogg",
+		"effects/bot_sounds/First_Contact_Sound_8.ogg",
+		"effects/bot_sounds/First_Contact_Sound_9.ogg",
+		"effects/bot_sounds/First_Contact_Sound_10.ogg",
+		"effects/bot_sounds/First_Contact_Sound_11.ogg",
+		"effects/bot_sounds/First_Contact_Sound_12.ogg",
+		"effects/bot_sounds/First_Contact_Sound_13.ogg",
+		"effects/bot_sounds/First_Contact_Sound_14.ogg",
+		"effects/bot_sounds/First_Contact_Sound_15.ogg",
+		"effects/bot_sounds/First_Contact_Sound_16.ogg",
+		"effects/bot_sounds/First_Contact_Sound_17.ogg",
+		"effects/bot_sounds/First_Contact_Sound_18.ogg",
+	};
+
+	// Ensure that SoundCode will index a sound in the sounds[] c string array.
+	if ((SoundCode < 0) || (SoundCode >= (sizeof(sounds) / sizeof(sounds[0])))) {
+		ErrorMessage(__FUNCTION__, "\nUnknown Greeting sound!!!", PLEASE_INFORM, IS_WARNING_ONLY);
 		return;
-		break;
-	case 0:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_0.ogg");
-		break;
-	case 1:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_1.ogg");
-		break;
-	case 2:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_2.ogg");
-		break;
-	case 3:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_3.ogg");
-		break;
-	case 4:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_4.ogg");
-		break;
-	case 5:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_5.ogg");
-		break;
-	case 6:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_6.ogg");
-		break;
-	case 7:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_7.ogg");
-		break;
-	case 8:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_8.ogg");
-		break;
-	case 9:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_9.ogg");
-		break;
-	case 10:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_10.ogg");
-		break;
-	case 11:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_11.ogg");
-		break;
-	case 12:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_12.ogg");
-		break;
-	case 13:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_13.ogg");
-		break;
-	case 14:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_14.ogg");
-		break;
-	case 15:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_15.ogg");
-		break;
-	case 16:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_16.ogg");
-		break;
-	case 17:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_17.ogg");
-		break;
-	case 18:
-		play_sound_cached("effects/bot_sounds/First_Contact_Sound_18.ogg");
-		break;
-	default:
-		DebugPrintf(0, "\nUnknown Greeting sound!!! Terminating...");
-		Terminate(EXIT_FAILURE, TRUE);
-		break;
 	}
+
+	listener_pos.x = Me.pos.x;
+	listener_pos.y = Me.pos.y;
+	emitter_pos.x = ThisRobot->pos.x;
+	emitter_pos.y = ThisRobot->pos.y;
+
+	play_sound_at_position(sounds[SoundCode], &listener_pos, &emitter_pos);
 }
 
 /**
@@ -435,33 +406,14 @@ void play_melee_weapon_missed_sound(void)
 
 /**
  * This function should generate the sound that belongs to a certain
- * (ranged) weapon.  This does not include the Tux swinging/swinging_and_hit
+ * (ranged) weapon.  
+ *
+ * This does not include the Tux swinging/swinging_and_hit
  * sounds, when Tux is using melee weapons, but it does include ranged
  * weapons and the non-animated bot weapons too.
  */
-void tux_fire_bullet_sound(int BulletType)
+void fire_bullet_sound(int BulletType, struct gps *shooter_pos)
 {
-	if (!sound_on)
-		return;
-
-	if (!Bulletmap[BulletType].sound) {
-		play_melee_weapon_missed_sound();
-		return;
-	}
-
-	char sound_file[100] = "effects/bullets/";
-	strcat(sound_file, Bulletmap[BulletType].sound);
-
-	play_sound_cached(sound_file);
-}
-
-/**
- * This function generates a sound relative to the position of tux when
- * an enemy fires a weapon.
- */
-void enemy_fire_bullet_sound(enemy *ThisRobot)
-{
-	int BulletType = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_image_type;
 	moderately_finepoint emitter_pos;
 	moderately_finepoint listener_pos;
 
@@ -473,10 +425,10 @@ void enemy_fire_bullet_sound(enemy *ThisRobot)
 		return;
 	}
 
-	emitter_pos.x = ThisRobot->pos.x;
-	emitter_pos.y = ThisRobot->pos.y;
 	listener_pos.x = Me.pos.x;
 	listener_pos.y = Me.pos.y;
+	emitter_pos.x = shooter_pos->x;
+	emitter_pos.y = shooter_pos->y;
 
 	char sound_file[100] = "effects/bullets/";
 	strcat(sound_file, Bulletmap[BulletType].sound);
