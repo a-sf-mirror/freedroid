@@ -185,6 +185,8 @@ void PlayGreetingSound(int SoundCode)
 void play_death_sound_for_bot(enemy * ThisRobot)
 {
 	char filename[5000];
+	moderately_finepoint enemy_pos;
+	moderately_finepoint listener_pos;	
 
 	// If the keyword 'none' for the death sound file name is encountered,
 	// nothing will be done...
@@ -192,12 +194,18 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 	if (!strcmp(Druidmap[ThisRobot->type].droid_death_sound_file_name, "none"))
 		return;
 
+	enemy_pos.x = ThisRobot->pos.x;
+	enemy_pos.y = ThisRobot->pos.y;
+
+	listener_pos.x = Me.pos.x;
+	listener_pos.y = Me.pos.y;
+
 	// Now we play the given death sound, looking for the file in the
 	// appropriate sound folder.
 	//
 	strcpy(filename, "effects/bot_sounds/");
 	strcat(filename, Druidmap[ThisRobot->type].droid_death_sound_file_name);
-	play_sound_cached(filename);
+	play_sound_at_position(filename, &listener_pos, &enemy_pos);
 }
 
 /**
