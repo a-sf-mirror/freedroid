@@ -247,7 +247,6 @@ void play_enter_attack_run_state_sound(enemy *ThisRobot)
 		if (SoundCode > 2)
 			SoundCode -= 6;
 
-		// if index is negative return
 		if (SoundCode < 0) {
 			return;
 		}
@@ -440,7 +439,7 @@ void play_melee_weapon_missed_sound(void)
  * sounds, when Tux is using melee weapons, but it does include ranged
  * weapons and the non-animated bot weapons too.
  */
-void Fire_Bullet_Sound(int BulletType)
+void tux_fire_bullet_sound(int BulletType)
 {
 	if (!sound_on)
 		return;
@@ -454,6 +453,35 @@ void Fire_Bullet_Sound(int BulletType)
 	strcat(sound_file, Bulletmap[BulletType].sound);
 
 	play_sound_cached(sound_file);
+}
+
+/**
+ * This function generates a sound relative to the position of tux when
+ * an enemy fires a weapon.
+ */
+void enemy_fire_bullet_sound(enemy *ThisRobot)
+{
+	int BulletType = ItemMap[Druidmap[ThisRobot->type].weapon_item.type].item_gun_bullet_image_type;
+	moderately_finepoint emitter_pos;
+	moderately_finepoint listener_pos;
+
+	if (!sound_on)
+		return;
+
+	if (!Bulletmap[BulletType].sound) {
+		play_melee_weapon_missed_sound();
+		return;
+	}
+
+	emitter_pos.x = ThisRobot->pos.x;
+	emitter_pos.y = ThisRobot->pos.y;
+	listener_pos.x = Me.pos.x;
+	listener_pos.y = Me.pos.y;
+
+	char sound_file[100] = "effects/bullets/";
+	strcat(sound_file, Bulletmap[BulletType].sound);
+
+	play_sound_at_position(sound_file, &listener_pos, &emitter_pos);
 }
 
 /**

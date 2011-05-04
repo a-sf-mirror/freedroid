@@ -2178,7 +2178,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		ThisRobot->current_angle = -(-90 + 180 * atan2(ydist, xdist) / M_PI);
 	}
 
-	Fire_Bullet_Sound(guntype);
+	enemy_fire_bullet_sound(ThisRobot);
 };				// void RawStartEnemysShot( enemy* ThisRobot , float xdist , float ydist )
 
 /**
