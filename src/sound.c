@@ -433,7 +433,7 @@ void play_sound_cached(const char *filename)
 	play_sound_cached_v(filename, 1.0);
 }
 
-#define MAX_HEARING_DISTANCE 500
+#define MAX_HEARING_DISTANCE 620
 #define DEGREE_PER_RADIAN (180/M_PI)
 
 /**
