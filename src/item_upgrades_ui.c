@@ -417,7 +417,7 @@ static int grab_customized_item(void)
 	// field so that it doesn't get cleared when we alter the UI. 
 	MoveItem(&ui.custom_item, &ui.dragged_item);
 	item_held_in_hand = &ui.dragged_item;
-	play_item_sound(item_held_in_hand->type);
+	play_item_sound(item_held_in_hand->type, &Me.pos);
 
 	// Reset the cost field to zero and disable the apply button
 	// since there's no item to customize.
@@ -444,7 +444,7 @@ static int grab_addon_item(int index)
 	// field so that it doesn't get cleared when we alter the UI. 
 	MoveItem(&ui.addon_items[index], &ui.dragged_item);
 	item_held_in_hand = &ui.dragged_item;
-	play_item_sound(item_held_in_hand->type);
+	play_item_sound(item_held_in_hand->type, &Me.pos);
 
 	// Remove the corresponding string from the upgrade socket array. We
 	// use the NULL pointer to identify sockets that have been modified
@@ -493,7 +493,7 @@ static int set_customized_item(item *it)
 	clear_customized_item();
 
 	// Move the item to the customization slot.
-	play_item_sound(it->type);
+	play_item_sound(it->type, &Me.pos);
 	MoveItem(it, &ui.custom_item);
 
 	// Create add-on items from the strings in the upgrade socket array
@@ -524,7 +524,7 @@ static int set_addon_item(item *it, int index)
 	// Move the item to the socket slot. The upgrade socket array of the 
 	// customized item remains unchanged; the player needs to press the
 	// apply button before any modifications to the item take place.
-	play_item_sound(it->type);
+	play_item_sound(it->type, &Me.pos);
 	MoveItem(it, &ui.addon_items[index]);
 
 	// Recalculate the cost and the bonus string and enable the apply button

@@ -220,7 +220,7 @@ void play_enter_attack_run_state_sound(enemy *ThisRobot)
  * Whenever an item is placed or taken, we'll issue a sound attached to
  * that item. 
  */
-void play_item_sound(int item_type)
+void play_item_sound(int item_type, struct gps *item_pos)
 {
 	char final_file_name[5000];
 
@@ -235,7 +235,7 @@ void play_item_sound(int item_type)
 	//
 	strcpy(final_file_name, "effects/item_sounds/");
 	strcat(final_file_name, ItemMap[item_type].item_drop_sound_file_name);
-	play_sound(final_file_name);
+	play_sound_at_position(final_file_name, &Me.pos, item_pos);
 
 }
 

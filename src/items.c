@@ -389,7 +389,7 @@ Received item type %d that is outside the range of allowed item types.",
 	tmp_item.type = ItemType;
 	FillInItemProperties(&tmp_item, FALSE, multiplicity);
 
-	play_item_sound(ItemType);
+	play_item_sound(ItemType, &item_pos);
 
 	return drop_item(&tmp_item, item_pos.x, item_pos.y, item_pos.z);
 }
@@ -607,7 +607,7 @@ void CopyItem(item * SourceItem, item * DestItem, int MakeSound)
 
 	if (MakeSound) {
 		// PlayItemSound( ItemMap[ SourceItem->type ].sound_number );
-		play_item_sound(SourceItem->type);
+		play_item_sound(SourceItem->type, &SourceItem->pos);
 	}
 }
 
@@ -876,7 +876,7 @@ void ApplyItem(item * CurItem)
 		failed_usage = improve_program(get_program_index_with_name("Repair equipment"));
 	}
 
-	play_item_sound(CurItem->type);
+	play_item_sound(CurItem->type, &Me.pos);
 
 	// In some cases the item concerned is a one-shot-device like a health potion, which should
 	// evaporize after the first application.  Therefore we delete the item from the inventory list.
@@ -1392,7 +1392,7 @@ void DropHeldItemToSlot(item * SlotItem)
 	
 	// Move the item to the slot and mark it as no longer grabbed.
 	MoveItem(DropItemPointer, SlotItem);
-	play_item_sound(SlotItem->type);
+	play_item_sound(SlotItem->type, &Me.pos);
 }
 
 /**
@@ -1667,7 +1667,7 @@ void HandleInventoryScreen(void)
 			// So we set, that something should be displayed in the 'hand', and it should of
 			// course be the image of the item grabbed from inventory.
 			item_held_in_hand = &(Me.Inventory[Grabbed_InvPos]);
-			play_item_sound(item_held_in_hand->type);
+			play_item_sound(item_held_in_hand->type, &Me.pos);
 
 			return;
 		}
@@ -1940,7 +1940,7 @@ void raw_move_picked_up_item_to_entry(item * ItemPointer, item * TargetPointer, 
 
 	// We make the sound of an item being taken
 	// PlayItemSound( ItemMap[ ItemPointer->type ].sound_number );
-	play_item_sound(ItemPointer->type);
+	play_item_sound(ItemPointer->type, &Me.pos);
 
 	DeleteItem(ItemPointer);
 };				// void move_picked_up_item_to_entry ( ItemPointer , TargetPointer )
@@ -2006,7 +2006,7 @@ int try_give_item(item *ItemPointer)
 	// money counter and eliminate the item on the floor.
 
 	if (MatchItemWithName(ItemPointer->type, "Valuable Circuits")) {
-		play_item_sound(ItemPointer->type);
+		play_item_sound(ItemPointer->type, &Me.pos);
 		Me.Gold += ItemPointer->multiplicity;
 		DeleteItem(ItemPointer);
 		return 1;
@@ -2020,7 +2020,7 @@ int try_give_item(item *ItemPointer)
 		if (CountItemtypeInInventory(ItemPointer->type)) {
 			TargetItemIndex = FindFirstInventoryIndexWithItemType(ItemPointer->type);
 			Me.Inventory[TargetItemIndex].multiplicity += ItemPointer->multiplicity;
-			play_item_sound(ItemPointer->type);
+			play_item_sound(ItemPointer->type, &Me.pos);
 			DeleteItem(ItemPointer);
 			return 1;
 		}
