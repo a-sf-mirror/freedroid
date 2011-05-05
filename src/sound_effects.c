@@ -110,8 +110,6 @@ void Not_Enough_Dist_Sound(void)
 void play_greeting_sound(enemy *ThisRobot)
 {
 	int SoundCode = Druidmap[ThisRobot->type].greeting_sound_type;
-	moderately_finepoint emitter_pos;
-	moderately_finepoint listener_pos;	
 	const char *sounds[] = {
 		"effects/bot_sounds/First_Contact_Sound_0.ogg",
 		"effects/bot_sounds/First_Contact_Sound_1.ogg",
@@ -140,12 +138,7 @@ void play_greeting_sound(enemy *ThisRobot)
 		return;
 	}
 
-	listener_pos.x = Me.pos.x;
-	listener_pos.y = Me.pos.y;
-	emitter_pos.x = ThisRobot->pos.x;
-	emitter_pos.y = ThisRobot->pos.y;
-
-	play_sound_at_position(sounds[SoundCode], &listener_pos, &emitter_pos);
+	play_sound_at_position(sounds[SoundCode], &Me.pos, &ThisRobot->pos);
 }
 
 /**
@@ -156,8 +149,6 @@ void play_greeting_sound(enemy *ThisRobot)
 void play_death_sound_for_bot(enemy * ThisRobot)
 {
 	char filename[5000];
-	moderately_finepoint enemy_pos;
-	moderately_finepoint listener_pos;	
 
 	// If the keyword 'none' for the death sound file name is encountered,
 	// nothing will be done...
@@ -165,18 +156,12 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 	if (!strcmp(Druidmap[ThisRobot->type].droid_death_sound_file_name, "none"))
 		return;
 
-	enemy_pos.x = ThisRobot->pos.x;
-	enemy_pos.y = ThisRobot->pos.y;
-
-	listener_pos.x = Me.pos.x;
-	listener_pos.y = Me.pos.y;
-
 	// Now we play the given death sound, looking for the file in the
 	// appropriate sound folder.
 	//
 	strcpy(filename, "effects/bot_sounds/");
 	strcat(filename, Druidmap[ThisRobot->type].droid_death_sound_file_name);
-	play_sound_at_position(filename, &listener_pos, &enemy_pos);
+	play_sound_at_position(filename, &Me.pos, &ThisRobot->pos);
 }
 
 /**
@@ -186,8 +171,6 @@ void play_death_sound_for_bot(enemy * ThisRobot)
 void play_enter_attack_run_state_sound(enemy *ThisRobot)
 {
 	int SoundCode;
-	moderately_finepoint emitter_pos;
-	moderately_finepoint listener_pos;
 	const char *sounds[] = {
 		"effects/bot_sounds/Start_Attack_Sound_0.ogg",
 		"effects/bot_sounds/Start_Attack_Sound_1.ogg",
@@ -203,11 +186,6 @@ void play_enter_attack_run_state_sound(enemy *ThisRobot)
 		"effects/bot_sounds/Start_Attack_Sound_17.ogg",
 		"effects/bot_sounds/Start_Attack_Sound_18.ogg",
 	};
-
-	emitter_pos.x = ThisRobot->pos.x;
-	emitter_pos.y = ThisRobot->pos.y;
-	listener_pos.x = Me.pos.x;
-	listener_pos.y = Me.pos.y;
 
 	if (MyRandom(5)) {
 		// get sound code
@@ -228,13 +206,13 @@ void play_enter_attack_run_state_sound(enemy *ThisRobot)
 			return;
 		}
 
-		play_sound_at_position(sounds[SoundCode], &listener_pos, &emitter_pos);
+		play_sound_at_position(sounds[SoundCode], &Me.pos, &ThisRobot->pos);
 
 	} else {		//either we output a standard sound, either we output a special voice sample such as "drill eyes"
 		char sample_path[1024] = "effects/bot_sounds/voice_samples/";
 		sprintf(sample_path + strlen(sample_path), "%d.ogg", MyRandom(42) + 1);
 		//printf("Playing %s\n", sample_path);
-		play_sound_at_position(sample_path, &listener_pos, &emitter_pos);
+		play_sound_at_position(sample_path, &Me.pos, &ThisRobot->pos);
 	}
 }
 
@@ -414,9 +392,6 @@ void play_melee_weapon_missed_sound(void)
  */
 void fire_bullet_sound(int BulletType, struct gps *shooter_pos)
 {
-	moderately_finepoint emitter_pos;
-	moderately_finepoint listener_pos;
-
 	if (!sound_on)
 		return;
 
@@ -425,15 +400,10 @@ void fire_bullet_sound(int BulletType, struct gps *shooter_pos)
 		return;
 	}
 
-	listener_pos.x = Me.pos.x;
-	listener_pos.y = Me.pos.y;
-	emitter_pos.x = shooter_pos->x;
-	emitter_pos.y = shooter_pos->y;
-
 	char sound_file[100] = "effects/bullets/";
 	strcat(sound_file, Bulletmap[BulletType].sound);
 
-	play_sound_at_position(sound_file, &listener_pos, &emitter_pos);
+	play_sound_at_position(sound_file, &Me.pos, shooter_pos);
 }
 
 /**

@@ -96,7 +96,7 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 {
 }
 
-void play_sound_at_position(const char *filename, struct moderately_finepoint *listener, struct moderately_finepoint *emitter)
+void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter)
 {
 }
 
@@ -440,7 +440,7 @@ void play_sound_cached(const char *filename)
  * Plays a sound relative to the listener where listener is the position of the listener, and emitter is the position
  * of the emitter of the sound.
  **/
-void play_sound_at_position(const char *filename, struct moderately_finepoint *listener, struct moderately_finepoint *emitter)
+void play_sound_at_position(const char *filename, struct gps *listener, struct gps *emitter)
 {
 	float angle;
 	float distance;
@@ -450,11 +450,15 @@ void play_sound_at_position(const char *filename, struct moderately_finepoint *l
 	int listener_y;
 	int difference_x;
 	int difference_y;
+	gps emitter_virt_coords;
 	unsigned int distance_value;
 	unsigned short angle_value;
 
+	// need to get the emitters coordinates as if it were on the same level as the listener. 
+	update_virtual_position(&emitter_virt_coords, emitter, listener->z);
+
 	// translate the emitter and listener coordinates to screen coordinates.
-	translate_map_point_to_screen_pixel(emitter->x, emitter->y, &emitter_x, &emitter_y);
+	translate_map_point_to_screen_pixel(emitter_virt_coords.x, emitter_virt_coords.y, &emitter_x, &emitter_y);
 	translate_map_point_to_screen_pixel(listener->x, listener->y, &listener_x, &listener_y);
 	
 	// d[x,y] = [x1,y1] - [x2,y2]
