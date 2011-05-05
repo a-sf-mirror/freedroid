@@ -543,7 +543,7 @@ static void line_moving_forwards(moderately_finepoint offset)
 	line_element *last_wall;	// The last wall of the line
 	int new_direction;			// New direction of the wall line
 	float distance;				// Difference of distance since last time
-	int type;						// The type of the new wall
+	int type = 0;						// The type of the new wall
 
 	// Get the last wall in the line of walls
 	last_wall = list_entry(state.l_elements_head.prev, line_element, list);

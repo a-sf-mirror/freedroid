@@ -2802,7 +2802,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 	if (use_open_gl) {
 
 #ifdef HAVE_LIBGL
-		int x, y, w, h;
+		int x, y, w;
 		myColor c1 = { 0, 0, 0, 255 };
 		myColor c2 = { 0, 0, 0, 255 };
 		float PercentageDone = 0;
@@ -2816,7 +2816,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 			x = TargetRectangle.x;
 			y = TargetRectangle.y - 10 * barnum;
 			w = TargetRectangle.w;
-			h = TargetRectangle.h;
 
 			if (is_friendly(e->faction, FACTION_SELF))
 				c1.g = 255;
