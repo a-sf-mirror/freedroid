@@ -431,14 +431,14 @@ void Takeover_Game_Lost_Sound(void)
 	play_sound_cached("effects/Takeover_Game_Lost_Sound_0.ogg");
 }
 
-void DruidBlastSound(void)
+void droid_blast_sound(struct gps *blast_pos)
 {
-	play_sound_cached("effects/Blast_Sound_0.ogg");
+	play_sound_at_position("effects/Blast_Sound_0.ogg", &Me.pos, blast_pos);
 }
 
-void ExterminatorBlastSound(void)
+void exterminator_blast_sound(struct gps *blast_pos)
 {
-	play_sound_cached("effects/Blast_Sound_0.ogg");
+	play_sound_at_position("effects/Blast_Sound_0.ogg", &Me.pos, blast_pos);
 }
 
 /**

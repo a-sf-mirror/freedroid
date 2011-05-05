@@ -320,11 +320,11 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 	NewBlast->faction = faction;
 
 	if (type == DROIDBLAST) {
-		DruidBlastSound();
+		droid_blast_sound(&NewBlast->pos);
 	}
 
 	if (type == EXTERMINATORBLAST) {
-		ExterminatorBlastSound();
+		exterminator_blast_sound(&NewBlast->pos);
 	}
 
 }				// void StartBlast( ... )
