@@ -46,13 +46,8 @@ EveryTime LuaCode={
 	end
 
 	if (not has_quest(_"Propagating a faulty firmware")) and
-	   (done_quest(_"Opening access to MS Office")) then 
+	   (done_quest(_"Opening access to MS Office")) then
 		show(44)
-	end
-
-	if (has_quest(_"Deliverance") and (not done_quest(_"Deliverance"))) then 
-		add_cookie("knows_spencer_office")
-		show(5)
 	end
 
 	show(99)
@@ -62,6 +57,10 @@ EveryTime LuaCode={
 Nr=0 Text=_"Hi! I'm new here."
 LuaCode={
 	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
+	if (has_quest(_"Deliverance") and (not done_quest(_"Deliverance"))) then
+		add_cookie("knows_spencer_office")
+		show(5)
+	end
 	hide(0) show(1, 7)
 }
 ----------------------------------------------------------------------
@@ -100,7 +99,7 @@ LuaCode={
 
 Nr=5 Text=_"Francis wanted me to give you this."
 LuaCode={
-	if (has_item_backpack("Data cube") > 0) then 
+	if (has_item_backpack("Data cube") > 0) then
 		npc_says(_"Ah, excellent, the list I asked for.")
 		npc_says(_"It figures he would ask someone to deliver it for him.")
 		tux_says(_"Why's that?")
@@ -235,7 +234,7 @@ LuaCode={
 		change_obstacle_state("Main Gate Guardhouse", "opened")
 		hide(3, 12)
 	else
-		if (get_town_score() > 29) then 
+		if (get_town_score() > 29) then
 			npc_says(_"All in all, not quite so bad. But you still need to do the one thing or the other. Then we can talk about it.")
 		else
 			npc_says(_"I can't accept you into the guard like this. Get going. There are still many things to do for you.")
@@ -319,7 +318,7 @@ LuaCode={
 		npc_says(_"Well, we have enough food for now. I'll let this Tania person in.")
 	end
 
-	if (npc_dead("DocMoore")) then 
+	if (npc_dead("DocMoore")) then
 		npc_says(_"I'd say you should take her straight away to Doc Moore, but he was found dead earlier.")
 		npc_says(_"You wouldn't happen to know anything about that, would you?")
 		if (has_cookie("killed_docmoore")) then
