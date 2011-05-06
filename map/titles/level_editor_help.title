@@ -55,6 +55,17 @@ These items will be displayed in the upper shop bar.
 In order to remove one of these items, simply select it and click on 'buy'.
 The red cross gets you out of the screen.
 
+			Adding Text to a Sign
+
+Select the sign and add an obstacle label with the sign text. Save the map and exit.
+Open the level file (map/freedroid.levels) and find the new obstacle label. Change the line above the text from 'type=30' to 'type=32' and save.
+Now when you click on the sign in the game your short message will appear.
+
+			Adding a Dialog to a Terminal
+
+Select the terminal and add an obstacle label with the dialog name you wish to use. Save the map and exit.
+Open the level file (map/freedroid.levels) and find the new obstacle label.
+Change the line above the text from 'type=30' to 'type=32' and save. Now when you click on the terminal in the game it will start the dialog you selected.
 
 		Floor edit mode:
 The floor edit mode works quite similar to the obstacle edit mode. You can select different types of floors at the object selector.
