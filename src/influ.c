@@ -1492,7 +1492,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 		if (melee_weapon_hit_something)
 			play_melee_weapon_hit_something_sound();
 		else
-			play_melee_weapon_missed_sound();
+			play_melee_weapon_missed_sound(&Me.pos);
 
 		return 0;
 	}

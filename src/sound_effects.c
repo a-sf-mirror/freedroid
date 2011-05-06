@@ -362,24 +362,17 @@ void play_melee_weapon_hit_something_sound(void)
 	}
 }
 
-void play_melee_weapon_missed_sound(void)
+void play_melee_weapon_missed_sound(struct gps *attacker_pos)
 {
-	switch (MyRandom(3)) {
-	case 0:
-		play_sound_cached("effects/swing_then_nohit_1.ogg");
-		break;
-	case 1:
-		play_sound_cached("effects/swing_then_nohit_2.ogg");
-		break;
-	case 2:
-		play_sound_cached("effects/swing_then_nohit_3.ogg");
-		break;
-	case 3:
-		play_sound_cached("effects/swing_then_nohit_4.ogg");
-		break;
-	default:
-		break;
-	}
+	const char *sounds[] = {
+		"effects/swing_then_nohit_1.ogg",
+		"effects/swing_then_nohit_2.ogg",
+		"effects/swing_then_nohit_3.ogg",
+		"effects/swing_then_nohit_4.ogg",
+	};
+	int SoundCode = MyRandom(sizeof(sounds) / sizeof(sounds[0]) - 1);
+	
+	play_sound_at_position(sounds[SoundCode], &Me.pos, attacker_pos);
 }
 
 /**
@@ -396,7 +389,7 @@ void fire_bullet_sound(int BulletType, struct gps *shooter_pos)
 		return;
 
 	if (!Bulletmap[BulletType].sound) {
-		play_melee_weapon_missed_sound();
+		play_melee_weapon_missed_sound(shooter_pos);
 		return;
 	}
 

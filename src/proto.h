@@ -444,7 +444,7 @@ void PlayEnemyGotHitSound(int enemytype);
 void BulletReflectedSound(void);
 void Play_Spell_ForceToEnergy_Sound(void);
 void play_melee_weapon_hit_something_sound(void);
-void play_melee_weapon_missed_sound(void);
+void play_melee_weapon_missed_sound(struct gps *attacker_pos);
 void play_open_chest_sound(void);
 void play_sound_cached(const char *SoundSampleFileName);
 void play_sound_cached_v(const char *SoundSampleFileName, double volume);
