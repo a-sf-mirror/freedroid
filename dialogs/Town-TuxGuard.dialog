@@ -33,7 +33,12 @@ EveryTime LuaCode={
 	else
 		npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
 	end
-	show(20, 99)
+
+	if (not has_cookie("knows_spencer_office")) then
+		show(20)
+	end
+
+	show(99)
 }
 ----------------------------------------------------------------------
 
