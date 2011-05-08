@@ -19,27 +19,21 @@ Each trigger has the following field:
 Name=_"To Maintenance Tunnels"
 Trigger at label="0to6"
 Silent=0
-LuaCode={
-	teleport("6from0")
-}
+LuaCode={ teleport("6from0") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To Novice Arena"
 Trigger at label="0to29"
 Silent=0
-LuaCode={
-	teleport("29from0")
-}
+LuaCode={ teleport("29from0") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To Master Arena"
 Trigger at label="0to30"
 Silent=0
-LuaCode={
-	teleport("30from0")
-}
+LuaCode={ teleport("30from0") }
 * End of trigger *
 
 * New event trigger *
@@ -47,7 +41,7 @@ Name=_"Escort Tux N"
 Trigger at label="N-enter-1"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -62,7 +56,7 @@ Name=_"Escort Tux N2"
 Trigger at label="N-enter-2"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -77,7 +71,7 @@ Name=_"Escort Tux N3"
 Trigger at label="N-enter-3"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -92,7 +86,7 @@ Name=_"Escort Tux N4"
 Trigger at label="N-enter-4"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("follow_tux", "Town-TuxGuard")
 	end
 	if (has_cookie("North_greeting")) then
@@ -107,10 +101,11 @@ Name=_"Escort Tux N-e1"
 Trigger at label="N-exit-1"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if ((not has_cookie("North_greeting")) and (not has_cookie("tux_has_joined_guard"))) then
+	if (not has_cookie("North_greeting")) and
+	   (not has_cookie("tux_has_joined_guard")) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
@@ -122,10 +117,11 @@ Name=_"Escort Tux N-e2"
 Trigger at label="N-exit-2"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if ((not has_cookie("North_greeting")) and (not has_cookie("tux_has_joined_guard"))) then
+	if (not has_cookie("North_greeting")) and
+	   (not has_cookie("tux_has_joined_guard")) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
@@ -137,10 +133,11 @@ Name=_"Escort Tux N-e3"
 Trigger at label="N-exit-3"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if ((not has_cookie("North_greeting")) and (not has_cookie("tux_has_joined_guard"))) then
+	if (not has_cookie("North_greeting")) and
+	   (not has_cookie("tux_has_joined_guard")) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
@@ -152,10 +149,11 @@ Name=_"Escort Tux N-e4"
 Trigger at label="N-exit-4"
 Silent=1
 LuaCode={
-	if (has_cookie("guard_follow_tux") ) then
+	if (has_cookie("guard_follow_tux")) then
 		set_bot_state("patrol", "Town-TuxGuard")
 	end
-	if ((not has_cookie("North_greeting")) and (not has_cookie("tux_has_joined_guard"))) then
+	if (not has_cookie("North_greeting")) and
+	   (not has_cookie("tux_has_joined_guard")) then
 		add_cookie("North_greeting")
 		set_rush_tux(1, "Town-NorthGateGuard")
 	end
@@ -167,7 +165,9 @@ Name=_"Tania Escort W-1"
 Trigger at label="W-enter-1"
 Silent=1
 LuaCode={
-	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+	if (has_cookie("Tania_surface")) and
+	   (not done_quest(_"Tania's Escape")) and
+	   (not has_cookie("Tania-stopped-by-Pendragon")) then
 		add_cookie("Tania-stopped-by-Pendragon")
 		start_chat("Pendragon")
 	end
@@ -179,7 +179,9 @@ Name=_"Tania Escort W-2"
 Trigger at label="W-enter-2"
 Silent=1
 LuaCode={
-	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+	if (has_cookie("Tania_surface")) and
+	   (not done_quest(_"Tania's Escape")) and
+	   (not has_cookie("Tania-stopped-by-Pendragon")) then
 		add_cookie("Tania-stopped-by-Pendragon")
 		start_chat("Pendragon")
 	end
@@ -191,7 +193,9 @@ Name=_"Tania Escort W-3"
 Trigger at label="W-enter-3"
 Silent=1
 LuaCode={
-	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+	if (has_cookie("Tania_surface")) and
+	   (not done_quest(_"Tania's Escape")) and
+	   (not has_cookie("Tania-stopped-by-Pendragon")) then
 		add_cookie("Tania-stopped-by-Pendragon")
 		start_chat("Pendragon")
 	end
@@ -203,7 +207,8 @@ Name=_"DocFront-inner-N"
 Trigger at label="DocFront-inner-N"
 Silent=1
 LuaCode={
-	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+	if (tux_hp_ratio() < 0.4) and
+	   (not has_cookie("DocMoore_exam")) then
 		set_rush_tux(1, "DocMoore")
 		add_cookie("DocMoore_exam")
 	end
@@ -215,7 +220,8 @@ Name=_"DocFront-inner-S"
 Trigger at label="DocFront-inner-N"
 Silent=1
 LuaCode={
-	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+	if (tux_hp_ratio() < 0.4) and
+	   (not has_cookie("DocMoore_exam")) then
 		set_rush_tux(1, "DocMoore")
 		add_cookie("DocMoore_exam")
 	end
@@ -227,7 +233,8 @@ Name=_"DocBack-inner-W"
 Trigger at label="DocBack-inner-W"
 Silent=1
 LuaCode={
-	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+	if (tux_hp_ratio() < 0.4) and
+	   (not has_cookie("DocMoore_exam")) then
 		set_rush_tux(1, "DocMoore")
 		add_cookie("DocMoore_exam")
 	end
@@ -239,7 +246,8 @@ Name=_"DocBack-inner-E"
 Trigger at label="DocBack-inner-E"
 Silent=1
 LuaCode={
-	if ((tux_hp_ratio() < 0.4) and (not has_cookie("DocMoore_exam"))) then
+	if (tux_hp_ratio() < 0.4) and
+	   (not has_cookie("DocMoore_exam")) then
 		set_rush_tux(1, "DocMoore")
 		add_cookie("DocMoore_exam")
 	end
@@ -299,7 +307,9 @@ Name=_"296 Teleported Out"
 Trigger at label="TeleportHomeTarget"
 Silent=1
 LuaCode={
-	if (has_cookie("296_self_sacrifice") and not done_quest(_"An Explosive Situation") and not has_cookie("ewalds_296_teleported")) then
+	if (has_cookie("296_self_sacrifice")) and
+	   (not done_quest(_"An Explosive Situation")) and
+	   (not has_cookie("ewalds_296_teleported")) then
 		teleport_npc("296TeleportTarget", "Ewalds_296")
 		add_cookie("ewalds_296_teleported")
 		add_diary_entry(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
@@ -315,18 +325,14 @@ LuaCode={
 Name=_"Exit Warehouse"
 Trigger at label="1to8"
 Silent=0
-LuaCode={
-	teleport("8from1")
-}
+LuaCode={ teleport("8from1") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To Warehouse Level 2"
 Trigger at label="1to2"
 Silent=0
-LuaCode={
-	teleport("2from1")
-}
+LuaCode={ teleport("2from1") }
 * End of trigger *
 
 ##############
@@ -336,9 +342,7 @@ LuaCode={
 Name=_"To Warehouse Level 1"
 Trigger at label="2to1"
 Silent=0
-LuaCode={
-	teleport("1from2")
-}
+LuaCode={ teleport("1from2") }
 * End of trigger *
 
 ##############
@@ -348,18 +352,14 @@ LuaCode={
 Name=_"Back to Kevin's Garden"
 Trigger at label="3to17"
 Silent=0
-LuaCode={
-	teleport("17from3")
-}
+LuaCode={ teleport("17from3") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To Energy Station"
 Trigger at label="3to18"
 Silent=0
-LuaCode={
-	teleport("18from3")
-}
+LuaCode={ teleport("18from3") }
 * End of trigger *
 
 ##############
@@ -369,9 +369,7 @@ LuaCode={
 Name=_"Back to Lower Catacombs"
 Trigger at label="4to56"
 Silent=0
-LuaCode={
-	teleport("56fromX1")
-}
+LuaCode={ teleport("56fromX1") }
 * End of trigger *
 
 ##############
@@ -381,9 +379,7 @@ LuaCode={
 Name=_"Way to Disruptor Machine Deck"
 Trigger at label="5to55"
 Silent=0
-LuaCode={
-	teleport("55fromX0")
-}
+LuaCode={ teleport("55fromX0") }
 * End of trigger *
 
 ##############
@@ -393,9 +389,7 @@ LuaCode={
 Name=_"Back to Town"
 Trigger at label="6to0"
 Silent=0
-LuaCode={
-	teleport("0from6")
-}
+LuaCode={ teleport("0from6") }
 * End of trigger *
 
 * New event trigger *
@@ -403,7 +397,8 @@ Name=_"Singularity-Alive-Check-N"
 Trigger at label="Singularity-Alive-Check-N"
 Silent=1
 LuaCode={
-	if (npc_dead("Singularity") and (not has_cookie("Singularity-dead"))) then
+	if (npc_dead("Singularity")) and
+	   (not has_cookie("Singularity-dead")) then
 		add_cookie("Singularity-dead")
 		set_faction_state("singularity", "hostile")
 		change_obstacle_state("Sin-gun", "enabled")
@@ -419,7 +414,8 @@ Name=_"Singularity-Alive-Check-S"
 Trigger at label="Singularity-Alive-Check-S"
 Silent=1
 LuaCode={
-	if (npc_dead("Singularity") and (not has_cookie("Singularity-dead"))) then
+	if (npc_dead("Singularity") and
+	   (not has_cookie("Singularity-dead")) then
 		add_cookie("Singularity-dead")
 		set_faction_state("singularity", "hostile")
 		change_obstacle_state("Sin-gun", "enabled")
@@ -434,9 +430,7 @@ LuaCode={
 Name=_"To Old Server Room"
 Trigger at label="6to58"
 Silent=0
-LuaCode={
-	teleport("58from6")
-}
+LuaCode={ teleport("58from6") }
 * End of trigger *
 
 ##############
@@ -450,9 +444,7 @@ LuaCode={
 Name=_"Enter Warehouse"
 Trigger at label="8to1"
 Silent=0
-LuaCode={
-	teleport("1from8")
-}
+LuaCode={ teleport("1from8") }
 * End of trigger *
 
 ##############
@@ -462,9 +454,7 @@ LuaCode={
 Name=_"Down into Crystal Caves"
 Trigger at label="9to33"
 Silent=0
-LuaCode={
-	teleport("33from9")
-}
+LuaCode={ teleport("33from9") }
 * End of trigger *
 
 ##############
@@ -484,7 +474,7 @@ Name=_"InvaderBot-Alive-Check-N"
 Trigger at label="InvaderBot-Alive-Check-N"
 Silent=1
 LuaCode={
-	if (not npc_dead("InvaderBot")) then	
+	if (not npc_dead("InvaderBot")) then
 		set_rush_tux(1, "InvaderBot")
 	end
 }
@@ -495,7 +485,7 @@ Name=_"InvaderBot-Alive-Check-W"
 Trigger at label="InvaderBot-Alive-Check-W"
 Silent=1
 LuaCode={
-	if (not npc_dead("InvaderBot")) then	
+	if (not npc_dead("InvaderBot")) then
 		set_rush_tux(1, "InvaderBot")
 	end
 }
@@ -509,9 +499,7 @@ LuaCode={
 Name=_"Get me out of here!"
 Trigger at label="13to58"
 Silent=0
-LuaCode={
-	teleport("58from13")
-}
+LuaCode={ teleport("58from13") }
 * End of trigger *
 
 ##############
@@ -559,14 +547,11 @@ LuaCode={
 }
 * End of trigger *
 
-
 * New event trigger *
 Name=_"To Kevin's Underground Station"
 Trigger at label="17to3"
 Silent=0
-LuaCode={
-	teleport("3from17")
-}
+LuaCode={ teleport("3from17") }
 * End of trigger *
 
 ##############
@@ -576,9 +561,7 @@ LuaCode={
 Name=_"To Underground Station"
 Trigger at label="18to3"
 Silent=0
-LuaCode={
-	teleport("3from18")
-}
+LuaCode={ teleport("3from18") }
 * End of trigger *
 
 ##############
@@ -612,9 +595,7 @@ LuaCode={
 Name=_"Hatch with broken ladder"
 Trigger at label="25to43"
 Silent=0
-LuaCode={
-	teleport("43fromX0")
-}
+LuaCode={ teleport("43fromX0") }
 * End of trigger *
 
 ##############
@@ -633,12 +614,11 @@ Name=_"From32to28"
 Trigger at label="28to32"
 Silent=1
 LuaCode={
-	if (not has_cookie("JohnPuzzleLocked")) then
-		if (not has_cookie("JohnPuzzleSolved")) and
-		   (has_cookie("JohnPuzzleStarted")) then
-			teleport("32from28")
-			set_rush_tux(1, "John")
-		end
+	if (not has_cookie("JohnPuzzleLocked")) and
+	   (not has_cookie("JohnPuzzleSolved")) and
+	   (has_cookie("JohnPuzzleStarted")) then
+		teleport("32from28")
+		set_rush_tux(1, "John")
 	end
 }
 * End of trigger *
@@ -648,17 +628,16 @@ Name=_"From28to28"
 Trigger at label="28to28"
 Silent=1
 LuaCode={
-	if (not has_cookie("JohnPuzzleLocked")) then
-		if (not has_cookie("JohnPuzzleSolved")) and
-		   (has_cookie("JohnPuzzleStarted")) then
-				if (not has_cookie("John28to28_teleported2")) then
-					teleport("28from32")
-					set_rush_tux(1, "John")
-						if (has_cookie("John28to28_teleported")) then
-							add_cookie("John28to28_teleported2")
-						end
-					add_cookie("John28to28_teleported")
-				end
+	if (not has_cookie("JohnPuzzleLocked")) and
+	   (not has_cookie("JohnPuzzleSolved")) and
+	   (has_cookie("JohnPuzzleStarted")) then
+		if (not has_cookie("John28to28_teleported2")) then
+			teleport("28from32")
+			set_rush_tux(1, "John")
+			if (has_cookie("John28to28_teleported")) then
+				add_cookie("John28to28_teleported2")
+			end
+		add_cookie("John28to28_teleported")
 		end
 	end
 }
@@ -671,9 +650,7 @@ LuaCode={
 Name=_"Exit Novice Arena"
 Trigger at label="29to0"
 Silent=0
-LuaCode={
-	teleport("0from29")
-}
+LuaCode={ teleport("0from29") }
 * End of trigger *
 
 ##############
@@ -683,9 +660,7 @@ LuaCode={
 Name=_"Exit Master Arena"
 Trigger at label="30to0"
 Silent=0
-LuaCode={
-	teleport("0from30")
-}
+LuaCode={ teleport("0from30") }
 * End of trigger *
 
 ##############
@@ -701,7 +676,7 @@ Trigger at label="32to28falseA"
 Silent=1
 LuaCode={
 	teleport("28from32")
-	if has_cookie("JohnPuzzlefalseA1") then
+	if (has_cookie("JohnPuzzlefalseA1")) then
 		add_cookie("JohnPuzzlefalseA2")
 	end
 	add_cookie("JohnPuzzlefalseA1")
@@ -714,7 +689,7 @@ Trigger at label="32to28falseB"
 Silent=1
 LuaCode={
 	teleport("28from32")
-	if has_cookie("JohnPuzzlefalseB1") then
+	if (has_cookie("JohnPuzzlefalseB1")) then
 		add_cookie("JohnPuzzlefalseB2")
 	end
 	add_cookie("JohnPuzzlefalseB1")
@@ -727,7 +702,7 @@ Trigger at label="32to28falseC"
 Silent=1
 LuaCode={
 	teleport("28from32")
-		if has_cookie("JohnPuzzlefalseC1") then
+		if (has_cookie("JohnPuzzlefalseC1")) then
 		add_cookie("JohnPuzzlefalseC2")
 	end
 	add_cookie("JohnPuzzlefalseC1")
@@ -751,9 +726,7 @@ LuaCode={
 Name=_"Exit Crystal Caves"
 Trigger at label="33to9"
 Silent=0
-LuaCode={
-	teleport("9from33")
-}
+LuaCode={ teleport("9from33") }
 * End of trigger *
 
 ##############
@@ -764,7 +737,9 @@ Name=_"Back to the Desert"
 Trigger at label="34to38"
 Silent=0
 LuaCode={
-	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+	if (has_cookie("Tania_surface") and
+	   (not done_quest(_"Tania's Escape")) and
+	   (not has_cookie("Tania-stopped-by-Pendragon"))) then
 		teleport_npc("38to34", "Tania")
 	end
 	teleport("38from34");
@@ -779,7 +754,8 @@ Name=_"Back to the Desert"
 Trigger at label="SADD-NoExit"
 Silent=1
 LuaCode={
-	if (done_quest(_"SADD's power supply") and (not has_cookie("SADD-trick"))) then
+	if (done_quest(_"SADD's power supply")) and
+	   (not has_cookie("SADD-trick")) then
 		add_cookie("SADD-trick")
 		change_obstacle_state("SADDGun1", "enabled")
 		change_obstacle_state("SADDGun2", "enabled")
@@ -794,7 +770,9 @@ Name=_"Back to the Desert"
 Trigger at label="35to40"
 Silent=0
 LuaCode={
-	if (has_quest(_"Tania's Escape") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania_surface"))) then
+	if (has_quest(_"Tania's Escape")) and
+	   (not done_quest(_"Tania's Escape")) and
+	   (not has_cookie("Tania_surface")) then
 		add_cookie("Tania_surface")
 		teleport_npc("40from35", "Tania")
 		change_obstacle_state("DesertGate-Inner", "closed")
@@ -808,18 +786,14 @@ LuaCode={
 Name=_"To the Secret Area Service Tunnels"
 Trigger at label="35to36-North"
 Silent=0
-LuaCode={
-	teleport("36from35-North")
-}
+LuaCode={ teleport("36from35-North") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To the Secret Area Service Tunnels"
 Trigger at label="35to36-South"
 Silent=0
-LuaCode={
-	teleport("36from35-South")
-}
+LuaCode={ teleport("36from35-South") }
 * End of trigger *
 
 ##############
@@ -829,18 +803,14 @@ LuaCode={
 Name=_"Back to the Secret Area"
 Trigger at label="36to35-North"
 Silent=0
-LuaCode={
-	teleport("35from36-North")
-}
+LuaCode={ teleport("35from36-North") }
 * End of trigger *
 
 * New event trigger *
 Name=_"Back to the Secret Area"
 Trigger at label="36to35-South"
 Silent=0
-LuaCode={
-	teleport("35from36-South")
-}
+LuaCode={ teleport("35from36-South") }
 * End of trigger *
 
 ##############
@@ -851,10 +821,12 @@ Name=_"Red Square"
 Trigger at label="tutmove-1"
 Silent=1
 LuaCode={
-	if (has_cookie("learn_to_walk") and has_quest("Tutorial Movement") and (not has_cookie("move_red")) ) then
+	if (has_cookie("learn_to_walk")) and
+	   (has_quest("Tutorial Movement")) and
+	   (not has_cookie("move_red")) then
 		add_cookie("move_red")
 		add_diary_entry("Tutorial Movement",_"Good, now move to the black grating to the East.")
-               display_big_message(_"Quest log updated")
+		display_big_message(_"Quest log updated")
 	end
 }
 * End of trigger *
@@ -863,10 +835,12 @@ LuaCode={
 Name=_"Black Dot"
 Trigger at label="tutmove-2"
 LuaCode={
-	if (has_quest("Tutorial Movement") and has_cookie("move_red") and (not has_cookie("move_black"))) then
+	if (has_quest("Tutorial Movement")) and
+	   (has_cookie("move_red")) and
+	   (not has_cookie("move_black")) then
 		add_cookie("move_black")
 		add_diary_entry("Tutorial Movement",_"Good, now talk to Tutorial Tom again.")
-               display_big_message(_"Quest log updated")
+		display_big_message(_"Quest log updated")
 	end
 }
 * End of trigger *
@@ -902,7 +876,9 @@ Name=_"To a Forgotten Bunker"
 Trigger at label="38to34"
 Silent=0
 LuaCode={
-	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then
+	if (has_cookie("Tania_surface")) and
+	   (not done_quest(_"Tania's Escape")) and
+	   (not has_cookie("Tania-stopped-by-Pendragon")) then
 		teleport_npc("34to38", "Tania")
 	end
 	teleport("34from38")
@@ -920,9 +896,7 @@ LuaCode={
 Name=_"Unknown place"
 Trigger at label="40to35"
 Silent=0
-LuaCode={
-	teleport("35from40")
-}
+LuaCode={ teleport("35from40") }
 * End of trigger *
 
 ##############
@@ -940,9 +914,7 @@ LuaCode={
 Name=_"Hidden way out"
 Trigger at label="43toX1"
 Silent=0
-LuaCode={
-	teleport("25from43")
-}
+LuaCode={ teleport("25from43") }
 * End of trigger *
 
 ##############
@@ -996,18 +968,14 @@ LuaCode={
 Name=_"Back to Disruptor Shield Control"
 Trigger at label="55toX0"
 Silent=0
-LuaCode={
-	teleport("5from55")
-}
+LuaCode={ teleport("5from55") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To Machine Deck Lower Catacombs"
 Trigger at label="55toX1"
 Silent=0
-LuaCode={
-	teleport("56fromX0")
-}
+LuaCode={ teleport("56fromX0") }
 * End of trigger *
 
 ##############
@@ -1017,18 +985,14 @@ LuaCode={
 Name=_"Back to Machine Deck Upper Catacombs"
 Trigger at label="56toX0"
 Silent=0
-LuaCode={
-	teleport("55fromX1")
-}
+LuaCode={ teleport("55fromX1") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To Disruptor Machine Deck"
 Trigger at label="56toX1"
 Silent=0
-LuaCode={
-	teleport("4from56")
-}
+LuaCode={ teleport("4from56") }
 * End of trigger *
 
 ##############
@@ -1042,18 +1006,14 @@ LuaCode={
 Name=_"Back To Maintenance Tunnel"
 Trigger at label="58to6"
 Silent=0
-LuaCode={
-	teleport("6from58")
-}
+LuaCode={ teleport("6from58") }
 * End of trigger *
 
 * New event trigger *
 Name=_"We need to go deeper..."
 Trigger at label="58to13"
 Silent=0
-LuaCode={
-	teleport("13from58")
-}
+LuaCode={ teleport("13from58") }
 * End of trigger *
 
 * New event trigger *
@@ -1061,7 +1021,9 @@ Name=_"296 Teleport Point"
 Trigger at label="58from13"
 Silent=0
 LuaCode={
-	if (has_cookie("296_self_sacrifice") and not done_quest(_"An Explosive Situation") and not has_cookie("ewalds_296_teleported")) then
+	if (has_cookie("296_self_sacrifice")) and
+	   (not done_quest(_"An Explosive Situation")) and
+	   (not has_cookie("ewalds_296_teleported")) then
 		teleport_npc("296TeleportTarget", "Ewalds_296")
 		add_cookie("ewalds_296_teleported")
 		add_diary_entry(_"An Explosive Situation", _"I just heard an explosion - Ewald's 296 must have just blown the reactor. Perhaps I should go tell Ewald what happened.")
@@ -1077,27 +1039,21 @@ LuaCode={
 Name=_"Back to tunnel"
 Trigger at label="59to60ctrlroom"
 Silent=1
-LuaCode={
-	teleport("60from59ctrlroom")
-}
+LuaCode={ teleport("60from59ctrlroom") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To tunnel..."
 Trigger at label="59to60botroom"
 Silent=1
-LuaCode={
-	teleport("60from59botroom")
-}
+LuaCode={ teleport("60from59botroom") }
 * End of trigger *
 
 * New event trigger *
 Name=_"Back to tunnel"
 Trigger at label="59to60house"
 Silent=1
-LuaCode={
-	teleport("60from59house")
-}
+LuaCode={ teleport("60from59house") }
 * End of trigger *
 ##############
 ## Level 60 ##
@@ -1107,27 +1063,21 @@ LuaCode={
 Name=_"Back to tunnel"
 Trigger at label="60to59ctrlroom"
 Silent=1
-LuaCode={
-	teleport("59from60ctrlroom")
-}
+LuaCode={ teleport("59from60ctrlroom") }
 * End of trigger *
 
 * New event trigger *
 Name=_"To tunnel..."
 Trigger at label="60to59botroom"
 Silent=1
-LuaCode={
-	teleport("59from60botroom")
-}
+LuaCode={ teleport("59from60botroom") }
 * End of trigger *
 
 * New event trigger *
 Name=_"Back to tunnel"
 Trigger at label="60to59house"
 Silent=1
-LuaCode={
-	teleport("59from60house")
-}
+LuaCode={ teleport("59from60house") }
 * End of trigger *
 
 ##############
