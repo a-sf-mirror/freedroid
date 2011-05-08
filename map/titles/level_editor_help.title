@@ -97,11 +97,12 @@ You can also click the map at a position you want to have a waypoint having this
 Clicking on a preexisting waypoint lets you connect it with another one (just click the other one, too, to do it).
 However, there is a difference between those two planting methods. When you connect two waypoints using the keyboard, the connections will be unidirectional.
 That means that when you make a connection from waypoint A to waypoint B, the bot will only be able to walk from A to B but not back.
+You can remove an unidirectional connection by 'overlying' it with another one going into the very direction as the one you want to delete (this does not work with bidirectional connections!).
 Bidirectional connections are however automatically done using the click method to connect waypoints.
 Important note: It is not possible to connect waypoints on different maps with each other!
 Waypoints are also used to position randomly spawned bots. However this might be inappropriate for some waypoints.
 There are 'normal' ones which are white, for respawning bots and 'special', purple ones which should be used for NPCs. The normal ones are used for spawned bots, the purple ones should be used for NPCs.
-You can select these different types of waypoints in the upper selection bar. To turn a normal waypoint into a purple one or back again, press shift+w. 
+You can select these different types of waypoints in the upper selection bar. To turn a normal waypoint into a purple one or back again, press shift+w.
 Please make sure that paths between waypoints are not blocked by an obstacle in between of two waypoints.
 To automatically check a entire map for this, you can use the map level validator which is explained later.
 
@@ -149,16 +150,16 @@ Here you can easily navigate to other levels. You can either use the arrow keys 
 in order to switch to the next or previous (refers to level numbers) level, or, clicking on it, enter the number of the desired level and press enter.
 
 		Level options
-				Level: 	See above for explanation
-				Name: 	The map name displayed at the GPS in the upper right corner of the game screen. You can disable the GPS in-game using the options menu.
-				Size: 	You can increase or reduce the size of your level. Select the desired edge where you want to add/remove a line of tiles and click the <- or -> arrow buttons.
+				Level:	See above for explanation
+				Name:	The map name displayed at the GPS in the upper right corner of the game screen. You can disable the GPS in-game using the options menu.
+				Size:	You can increase or reduce the size of your level. Select the desired edge where you want to add/remove a line of tiles and click the <- or -> arrow buttons.
 				Edge interface:	Here you can set the levels that shall be next to the current level. Enter the level number for the respective edge.
 								A level can only have one adjacent level (one it touches edges with) in each of the four cardinal directions (North, South, West, East).
-				Random dungeon: If you set this option to 'Yes', the map will automatically generate a dungeon. You set the number of teleporters to and from this map clicking on the option.
+				Random dungeon:	If you set this option to 'Yes', the map will automatically generate a dungeon. You set the number of teleporters to and from this map clicking on the option.
 								Randomly generated dungeons automatically will have everything necessary, like waypoints, bots, and obstacles, set.
-				Teleport pair: 	This important if you make a dungeon that is not directly connected to another map. You can set the number of exits and entrances for a randomly generated dungeon here.
-				Light: 			How much light would you like to have? Press space to switch between ambient (general brightness of the present map) and bonus (light emitted by some obstacles, such as lamps or mushrooms) mode.
-				Background music: 	Here you can set a music track to be played while the player walks around on the map. Possible tracks can be found in ./sound/music/ .
+				Teleport pair:	This important if you make a dungeon that is not directly connected to another map. You can set the number of exits and entrances for a randomly generated dungeon here.
+				Light:			How much light would you like to have? Press space to switch between ambient (general brightness of the present map) and bonus (light emitted by some obstacles, such as lamps or mushrooms) mode.
+				Background music:	Here you can set a music track to be played while the player walks around on the map. Possible tracks can be found in ./sound/music/ .
 									Just enter the file name including the .ogg extension.
 				Infinite running:	If you have this set to "yes", Tux' stamina will not decrease while running across the map. This should only be used if the level has no hostile NPCs on it, like on level 0, the Town, for example.
 				add/rem level:		Lets you add a new level or remove the current level.
@@ -167,7 +168,7 @@ in order to switch to the next or previous (refers to level numbers) level, or, 
 Here you can run the map level validator.
 The map level validator checks all the paths between connected waypoints to ensure they are not blocked by obstacles. More detailed output explaining which paths are blocked can be found in the terminal, given the case that the game is run using it, or a global error output file.
 This should ALWAYS be run before calling a map finished.
-	
+
 		Playtest mapfile
 Allows you to playtest your modifications easily.
 If you leave this mode, obstacle changes that were made while playing, destroying crates for example, will be reverted to the time where you started playtesting.
@@ -198,9 +199,9 @@ t						toggle 3x3 transparency around the crosshair
 m						add/edit a map label at the position of the crosshair or the selected tile
 o						zoom
 tab						switch to the next editing mode
-shift+tab			switch to the previous editing mode
-f							switch to the next object tab
-shift+f				switch to the previous object tab
+shift+tab				switch to the previous editing mode
+f						switch to the next object tab
+shift+f					switch to the previous object tab
 
 
 If you encounter problems with the editor, please contact us.
