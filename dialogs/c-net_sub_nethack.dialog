@@ -62,6 +62,7 @@ LuaCode={
 }
 
 ----------------------------------------------------------------------
+
 Nr=1 Text=_"yes" 	
 LuaCode={
 	n_randomchoice = "yes" --Pick nethack race, role, gender, alignment randomly
@@ -70,6 +71,7 @@ LuaCode={
 }
 
 ----------------------------------------------------------------------
+
 Nr=2 Text=_"no"
 LuaCode={
 	hide(1,2)
@@ -83,30 +85,35 @@ LuaCode={
 ----------------------------------------------------------------------
 -- 3-8: job choice
 ----------------------------------------------------------------------
+
 Nr=3 Text=_"Archaeologist"
 LuaCode={
 	selection = 1
 	next(8)
 }
 ----------------------------------------------------------------------
+
 Nr=4 Text=_"Rogue"
 LuaCode={
 	selection = 2
 	next(8)
 }
 ----------------------------------------------------------------------
+
 Nr=5 Text=_"Ranger"
 LuaCode={
 	selection = 3
 	next(8)
 }
 ----------------------------------------------------------------------
+
 Nr=6 Text=_"Tourist"
 LuaCode={
 	selection = 4
 	next(8)
 }
 ----------------------------------------------------------------------
+
 Nr=7 Text=_"Wizard"
 LuaCode={
 	selection = 5
@@ -145,7 +152,7 @@ LuaCode={
 	end
 
 	selection = 0
-	
+
 	if (n_randomchoice == "no") then
 		npc_says(_"Choose your race.", "NO_WAIT")
 		cli_says("> ", "NO_WAIT")
@@ -159,24 +166,28 @@ LuaCode={
 ----------------------------------------------------------------------
 -- 9-13: race choice
 ----------------------------------------------------------------------
+
 Nr=9 Text=_"human"
 LuaCode={
 	selection = 1
 	next(13)
 }
 ----------------------------------------------------------------------
+
 Nr=10 Text=_"elf"
 LuaCode={
 	selection = 2
 	next(13)
 }
 ----------------------------------------------------------------------
+
 Nr=11 Text=_"gnome"
 LuaCode={
 	selection = 3
 	next(13)
 }
 ----------------------------------------------------------------------
+
 Nr=12 Text=_"orc"
 LuaCode={
 	selection = 4
@@ -226,12 +237,14 @@ LuaCode={
 }
 
 ----------------------------------------------------------------------
+
 Nr=14 Text=_"male"
 LuaCode={
 	selection = 1
 	next(16)
 }
 ----------------------------------------------------------------------
+
 Nr=15 Text=_"female"
 LuaCode={
 	selection = 2
@@ -477,7 +490,7 @@ LuaCode={
 			next(60)
 		end
 	else
-		next(60)	
+		next(60)
 	end
 }
 ----------------------------------------------------------------------
@@ -612,56 +625,55 @@ LuaCode={
 		end
 	end
 }
-
 ----------------------------------------------------------------------
+
 Nr=61 Text="END LEVEL - BUG NODE 61 c-net sub nethack"
 NO_TEXT
 LuaCode={
-	hide(50,51,52,53,54)
+	hide(50, 51, 52, 53, 54)
 	if ((yendor == "yes") and (math.random(3)>2)) then --have the Amulet of Yendor
 		npc_says(_"You come to the end of level "..n_level.._" and the [b]Amulet of Yendor[/b] compels you down, deeper into the depths.", "NO_WAIT")
 		next(63)
 	else --still need the Amulet of Yendor
 		npc_says(_"You come to the end of level "..n_level.._" and see a way up and a way down. Which do you choose?", "NO_WAIT")
 		if (math.random(3)>1) then show(53) end
-		show(62,63)
+		show(62, 63)
 		cli_says("> ", "NO_WAIT")
 	end
 }
-
 ----------------------------------------------------------------------
+
 Nr=62 Text=_"Go Up"
 LuaCode={
 	npc_says_random(_"You climb up the ladder with care.", _"You shimmy up the crevasse.", _"You ascend the Gothic staircase.", _"You untie the balloon.", _"You wave your arms vigorously and slowly levitate up.", _"You grab a nice rope someone left, and climb up it.", _"Using magic, you cut foot and handholds into the rock, and use them.", _"Reaching a state of total ONE-ness with the world, you break your earthly bonds, and rise upwards.", _"You climb the cliff-face.", _"You jump up, and pull yourself up to the next level.", "NO_WAIT")
 	n_level=n_level-1
 	next(30)
 }
-
 ----------------------------------------------------------------------
+
 Nr=63 Text=_"Go Down"
 LuaCode={
 	npc_says_random(_"You rappel down the pit to the level below.", _"You lower yourself using footholds cut long ago into the living earth.", _"You take the staircase down to the lower level.", _"By playing with the levers before you, you teleport into the depths below.", _"You take out a shovel and start digging. Eventually you hit rock bottom.", _"You carefully climb down the ladder.", _"You jump into the darkness and land in the depths.", "NO_WAIT")
 	n_level=n_level+1
 	next(30)
 }
-
-
 ----------------------------------------------------------------------
 -- 70s- End Dialog
 ----------------------------------------------------------------------
+
 Nr=70 Text="END GAME W/ WIN/LOSS - BUG NODE 70 c-net sub nethack"
 NO_TEXT
 LuaCode={
-	hide(20,62,63,30,50,51,52,53,54,60,99)
+	hide(20, 62, 63, 30, 50, 51, 52, 53, 54, 60, 99)
 	end_dialog()
 }
 ----------------------------------------------------------------------
+
 Nr=99 Text=_"End Game"
 LuaCode={
-	hide(20,62,63,30,50,51,52,53,54,60,99)
+	hide(20, 62, 63, 30, 50, 51, 52, 53, 54, 60, 99)
 	end_dialog()
 }
-
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

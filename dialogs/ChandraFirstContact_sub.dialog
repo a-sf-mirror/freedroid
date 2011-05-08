@@ -66,7 +66,7 @@ LuaCode={
 	npc_says(_"But as time passed, so did the memories of the great deeds. It is unlikely that you will find many who know more about your people's noble past.")
 	npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
 	add_cookie("chandra_first_contact")
-	hide(2,3) show(99)
+	hide(2, 3) show(99)
 }
 ----------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ LuaCode={
 	npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
 	npc_says(_"Spencer and the Red Guard would not want you to know these things, as you may not be willing to help our failing community.")
 	npc_says(_"However, to not share this information with you is another transgression that I cannot be a part of. Please " .. get_player_name() .. ", we need your help!")
-	hide(2,3) show(5, 6)
+	hide(2, 3) show(5, 6)
 }
 ----------------------------------------------------------------------
 

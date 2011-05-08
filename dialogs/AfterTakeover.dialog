@@ -126,7 +126,9 @@ LuaCode={
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		npc_says(_"Are you really sure you want to destroy ".. bot_name().._"? Y/N")
 		hide(1, 11, 12, 13, 20) show(21, 22)
-	else next(23) end
+	else
+		next(23)
+	end
 }
 ----------------------------------------------------------------------
 

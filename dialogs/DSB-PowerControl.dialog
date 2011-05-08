@@ -41,6 +41,7 @@ EveryTime LuaCode={
 	show(99)
 }
 ----------------------------------------------------------------------
+
 Nr=99 Text=_"logout"
 LuaCode={
 	npc_says(_"Exiting")
