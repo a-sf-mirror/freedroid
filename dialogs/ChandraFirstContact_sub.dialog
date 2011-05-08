@@ -24,6 +24,7 @@ freedroid-discussion@lists.sourceforge.net
 
 
 Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
 
 EveryTime LuaCode={
 	show(1, 4, 7, 99)

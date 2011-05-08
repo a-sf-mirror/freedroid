@@ -26,6 +26,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 
 
 Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
 
 FirstTime LuaCode={ show(0) }
 

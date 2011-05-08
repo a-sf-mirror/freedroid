@@ -23,6 +23,7 @@ freedroid-discussion@lists.sourceforge.net
 
 
 Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
 
 FirstTime LuaCode={
 	npc_says(_"HI THERE! I'll be your humble servant for the duration of your stay at Ewald's bar! We hope you enjoy your stay here and come again! Don't forget to tell ALL your friends about us! I LOVE YOU!")

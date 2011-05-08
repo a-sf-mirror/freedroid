@@ -23,6 +23,7 @@ freedroid-discussion@lists.sourceforge.net
 
 
 Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
 
 EveryTime LuaCode={
 	if (has_cookie("guard_follow_tux")) then

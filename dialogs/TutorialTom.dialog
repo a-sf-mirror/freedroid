@@ -23,6 +23,7 @@ freedroid-discussion@lists.sourceforge.net
 
 
 Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
 
 FirstTime LuaCode={
 		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here

@@ -24,6 +24,7 @@ freedroid-discussion@lists.sourceforge.net
 
 
 Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
 
 EveryTime LuaCode={
 	terminal = get_player_name() .. _"@hacked_".. bot_type()..": ~ # "

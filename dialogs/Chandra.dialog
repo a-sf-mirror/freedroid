@@ -24,6 +24,7 @@ freedroid-discussion@lists.sourceforge.net
 
 
 Beginning of new chat dialog for character="XXXXX"
+----------------------------------------------------------------------
 
 FirstTime LuaCode={
 	npc_says(_"So the rumors are true - a real live Linarian walks among us!")
