@@ -58357,7 +58357,7 @@ dungeon generated: 0
 jump target north: 57
 jump target south: 67
 jump target east: 52
-jump target west: -1
+jump target west: 63
 Name of this level=_"Hell Station"
 BgSong=TheBeginning.ogg
 beginning_of_map
@@ -62016,7 +62016,7 @@ random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
 jump target north: 64
-jump target south: -1
+jump target south: 63
 jump target east: 57
 jump target west: -1
 Name of this level=_"New level just created"
@@ -62330,9 +62330,9 @@ infinite_running_on_this_level: 0
 random dungeon: 0
 teleport pair: 0
 dungeon generated: 0
-jump target north: -1
+jump target north: 62
 jump target south: -1
-jump target east: -1
+jump target east: 59
 jump target west: -1
 Name of this level=_"New level just created"
 BgSong=TheBeginning.ogg
