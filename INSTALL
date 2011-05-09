@@ -87,6 +87,100 @@ The binary we ship supports all those features and is built with autotools.
 In special cases we may agree to sending you the complete cross-compiler archive so you can build win32 binaries
 easily.
 
+Building In Windows
+===================
+
+1) Installation of Python
+
+	Python will be needed during the build of FreedroidRPG, so you frist need to install it.
+	  Download and install ActivePython from http://www.activestate.com/activepython/downloads
+
+2) Installation of MinGW
+
+	Before trying to build FreedroidRPG under Windows, you need to setup a development environment that will "mimic" a Unix development environment:
+	 Get the lastest version of MinGW from http://sourceforge.net/projects/mingw/files/Automated%20MinGW%20Installer/mingw-get-inst/
+	 Run the downloaded installer, and:
+	  * Choose to 'download latest repository catalogues'
+	  * Choose following destination: C:\MinGW (if you choose an other destination, you'll have to adapt the rest of this How-To)
+	  * On the components selection screen, add 'MinGW Developer Toolkit'
+
+	Once installed, you'll have a new MinGW entry in your Start Menu, and a MinGW Shell subentry.
+	 Launch MinGW Shell, and in the terminal window just opened, type:
+	  mingw-get install msys-wget
+	  mingw-get install msys-unzip
+	  mingw-get install msys-mintty
+
+	 If you want a better terminal than the one provided by default, open the properties of the MinGW Shell menu subentry (by right-clicking on it), and change the target to
+	 C:\MinGW\msys\1.0\msys.bat --mintty
+	 and launch a new MinGW Shell.
+
+	Nota: When you start a MinGW Shell, the current directory is your HOME directory. This HOME directory can be found in
+	C:\MinGW\msys\1.0\home\<your_username>
+
+3) SVN installation
+
+	To retrieve FreedroidRPG source files, you will need to use Subversion (SVN in short) (http://subversion.apache.org/).
+	There are several graphical Windows clients for SVN, the most known and used being TortoiseSVN. Here, we will use the command line client.
+
+	To download, extract and install the SVN tool, type the following commands in a MinGW Shell:
+		wget http://alagazam.net/svn-1.6.16/svn-win32-1.6.16.zip
+	If that doesn't work, try_
+		wget slaxer.com/chucks/svn-win32-1.6.16.zip
+		unzip svn-win32-1.6.16.zip
+		cd svn-win32-1.6.16
+		cp -r bin iconv share /
+		cd
+
+4) FreedroidRPG dependencies installation
+
+	In order to compile FreedroidRPG, you have to first install some library dependencies. We provide those libraries in 2 binary packages, so you do not need to compile them yourself
+	In a MinGW Shell, type the following commands:
+		wget http://buildbot.freedroid.org/downloads/freedroidRPG_dev.tar.gz
+		wget http://buildbot.freedroid.org/downloads/freedroidRPG_dependencies.zip
+		cd /
+		tar -xzf ~/freedroidRPG_dev.tar.gz
+		cd /bin
+		unzip ~/freedroidRPG_dependencies.zip
+		cd /c/WINDOWS/system32
+		unzip ~/freedroidRPG_dependencies.zip
+		cd
+
+5) FreedroidRPG compilation
+
+	So, you are now finally ready to download and compile the game!
+
+	In a MinGW Shell, do the following:
+
+	 download the source files with svn:
+	 svn co http://freedroid.svn.sourceforge.net/svnroot/freedroid freedroid
+
+	 enter freedroid source directory:
+	 cd freedroid
+
+	 compile the game:
+	 ./autogen.sh
+	 CFLAGS=-I/include ./configure --without-x --disable-sdltest
+	 make
+
+
+	Nota:, if an error window opens complaining about libgmp-10.dll missing, then you used a bugged version of the MinGW installer
+	(some DLLs are not correctly installed). To fix the problem, just type the following commands:
+	 cp /mingw/bin/libgmp-10.dll /mingw/libexec/gcc/mingw32/4.5.2
+	 cp /mingw/bin/libmpc-2.dll /mingw/libexec/gcc/mingw32/4.5.2
+	 cp /mingw/bin/libmpfr-1.dll /mingw/libexec/gcc/mingw32/4.5.2
+	 cp /mingw/bin/libiconv-2.dll /mingw/mingw32/bin
+	 cp /mingw/bin/libintl-8.dll /mingw/mingw32/bin
+
+	If everything went alright, you will find a freedroidRPG.exe file in the src/ subdirectory. You can launch it from the terminal:
+		cd src
+		./freedroidRPG
+
+	or you can just double-click on the executable's icon from the File Explorer. You will find it in
+	 C:\MinGW\msys\1.0\home\<your_username>\freedroid\src
+
+
+Enjoy the game!
+
 ==============================================================
 If you have problems with the compilation/installation, please
 contact us : #freedroid on irc.freenode.net (we don't bite!),
