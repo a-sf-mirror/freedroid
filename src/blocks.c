@@ -341,7 +341,7 @@ void get_enemy_surfaces_data(char *DataPointer)
 
 	while ((SurfacePointer = strstr(SurfacePointer, NEW_SURFACE_BEGIN_STRING)) != NULL) {
 		if (SurfaceIndex >= ENEMY_ROTATION_MODELS_AVAILABLE) {
-			ErrorMessage(__FUNCTION__, "freedroid.enemy_surfaces specifies more surfaces than ENEMY_ROTATION_MODELS_AVAILABLE (%d) allows.", PLEASE_INFORM, IS_FATAL, ENEMY_ROTATION_MODELS_AVAILABLE);
+			ErrorMessage(__FUNCTION__, "enemy_surfaces.dat specifies more surfaces than ENEMY_ROTATION_MODELS_AVAILABLE (%d) allows.", PLEASE_INFORM, IS_FATAL, ENEMY_ROTATION_MODELS_AVAILABLE);
 		}
 
  		DebugPrintf(1, "\n\nFound another surface specification entry!  Lets add that to the others!");
@@ -418,7 +418,7 @@ void Load_Enemy_Surfaces(void)
 	char fpath[2048];
 	char *Data;
 
-	find_file("freedroid.enemy_surfaces", MAP_DIR, fpath, 0);
+	find_file("enemy_surfaces.dat", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	get_enemy_surfaces_data(Data);
 	free(Data);
