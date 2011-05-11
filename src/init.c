@@ -1218,7 +1218,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	// Now we read in the mission targets for this mission
 	// Several different targets may be specified simultaneously
 	//
-	GetQuestList("freedroid.quests");
+	GetQuestList("quests.dat");
 
 	SwitchBackgroundMusicTo(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
 
