@@ -55,12 +55,14 @@ struct animated_obstacle {
 };
 
 /**
+ * This function removes all volatile obstacles from a given level.
+ * An example of a volatile obstacle is the blood.
  * If the blood doesn't vanish, then there will be more and more blood,
  * especially after the bots on the level have respawned a few times.
  * Therefore we need this function, which will remove all traces of blood
  * from a given level.
  */
-static void remove_blood_obstacles_for_respawning(int level_num)
+static void remove_volatile_obstacles(int level_num)
 {
 	int i;
 
@@ -68,39 +70,11 @@ static void remove_blood_obstacles_for_respawning(int level_num)
 	// that are 'blood'.
 	//
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
-		switch (curShip.AllLevels[level_num]->obstacle_list[i].type) {
-			// In case we encounter the -1 obstacle, we're done, cause 'holes'
-			// aren't permitted inside the obstacle list of a level...
-			//
-		case ISO_BLOOD_1:
-		case ISO_BLOOD_2:
-		case ISO_BLOOD_3:
-		case ISO_BLOOD_4:
-		case ISO_BLOOD_5:
-		case ISO_BLOOD_6:
-		case ISO_BLOOD_7:
-		case ISO_BLOOD_8:
-		case ISO_OIL_STAINS_1:
-		case ISO_OIL_STAINS_2:
-		case ISO_OIL_STAINS_3:
-		case ISO_OIL_STAINS_4:
-		case ISO_OIL_STAINS_5:
-		case ISO_OIL_STAINS_6:
-		case ISO_OIL_STAINS_7:
-		case ISO_OIL_STAINS_8:
+		int obstacle_type = curShip.AllLevels[level_num]->obstacle_list[i].type;
+		if (obstacle_map[obstacle_type].flags & IS_VOLATILE)
 			del_obstacle(&curShip.AllLevels[level_num]->obstacle_list[i]);
-			// Now the obstacles have shifted a bit to close the gap from the
-			// deletion.  We need to re-process the current index in the next
-			// loop of this cycle...
-			//
-			i--;
-			break;
-		default:
-			break;
-		}
 	}
-
-};				// void remove_blood_obstacles_for_respawning ( int level_num )
+}
 
 /**
  * This function will make all blood obstacles vanish, all dead bots come
@@ -114,9 +88,9 @@ void respawn_level(int level_num)
 	char wp_used[wp_num]; // is a waypoint already used ?
 	memset(wp_used, 0, wp_num);
 
-	// First we remove all the blood obstacles...
+	// First we remove all the volatile obstacles...
 	//
-	remove_blood_obstacles_for_respawning(level_num);
+	remove_volatile_obstacles(level_num);
 
 	// Now we can give new life to dead bots...
 	//

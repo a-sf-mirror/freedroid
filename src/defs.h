@@ -197,7 +197,8 @@ enum {
 	NEEDS_PRE_PUT = 64,
 	GROUND_LEVEL = 128,	/* This obstacle has a small height */
 	IS_WALKABLE = 256,	/* A bot can traverse this obstacle */
-    IS_CLICKABLE = 512  /* Player can click on this obstacle */
+	IS_CLICKABLE = 512,	/* Player can click on this obstacle */
+	IS_VOLATILE = 1024	/* This obstacle vanishes when level is respawned. */
 };
 
 #define AUTOMAP_ZOOM_OUT_FACT 8.0
