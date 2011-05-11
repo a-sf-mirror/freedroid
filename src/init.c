@@ -963,7 +963,7 @@ void Init_Game_Data()
 
 	next_startup_percentage(39);
 
-	find_file("freedroid.difficulty_params", MAP_DIR, fpath, 0);
+	find_file("difficulty_params.dat", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Difficulty_Parameters(Data);
 	free(Data);
