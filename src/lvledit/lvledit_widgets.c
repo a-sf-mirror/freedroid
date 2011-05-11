@@ -238,7 +238,7 @@ void leveleditor_init_widgets()
 		{LEVEL_EDITOR_REDO_BUTTON, NULL,
 			_("Redo\n\nUse this button to redo an action.")},
 		{LEVEL_EDITOR_SAVE_SHIP_BUTTON, NULL,
-			_("Save Map\n\nThis button will save your current map over the file '../map/freedroid.levels' from your current working directory.")},
+			_("Save Map\n\nThis button will save your current map over the file '../map/levels.dat' from your current working directory.")},
 		{LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON, NULL,
 			_("Beautify grass button\n\nUse this button to automatically 'beautify' rough edges of the grass-sand tiles. It will apply to the selected floor or, if not applicable, to the entire level.\n\nYou can also use Ctrl-b for this.")},
 		{LEVEL_EDITOR_DELETE_OBSTACLE_BUTTON, NULL,

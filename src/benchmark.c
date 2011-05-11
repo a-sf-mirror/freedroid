@@ -86,7 +86,7 @@ static int loadship_bench()
 
 	// Find a ship file to load
 	char fp[2048];
-	find_file("freedroid.levels", MAP_DIR, fp, 0);
+	find_file("levels.dat", MAP_DIR, fp, 0);
 
 	// Load it many times
 	timer_start();
@@ -176,7 +176,7 @@ static int level_test()
 
 	// Load default ship
 	char fp[2048];
-	find_file("freedroid.levels", MAP_DIR, fp, 0);
+	find_file("levels.dat", MAP_DIR, fp, 0);
 	LoadShip(fp, 0);
 
 	timer_start();

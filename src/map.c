@@ -1409,7 +1409,7 @@ static void TranslateToHumanReadable(struct auto_string *str, map_tile * MapInfo
  * This function generates savable text out of the current level data
  *
  * If reset_random_levels is TRUE, then the random levels are saved
- * "un-generated" (typical usage: freedroid.levels).
+ * "un-generated" (typical usage: levels.dat).
  *
  */
 static void encode_level_for_saving(struct auto_string *shipstr, level *lvl, int reset_random_levels)
@@ -1481,7 +1481,7 @@ jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->xlen, lvl
  * saves whole games.
  *
  * If reset_random_levels is TRUE, then the random levels are saved
- * "un-generated" (typical usage: freedroid.levels).
+ * "un-generated" (typical usage: levels.dat).
  */
 int SaveShip(const char *filename, int reset_random_levels, int compress)
 {
