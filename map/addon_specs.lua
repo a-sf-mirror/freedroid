@@ -9,7 +9,7 @@ table as its argument. The passed table contains named fields that specify
 everything that needs to be known about the add-on. The recognized fields are:
 
   name: A string matching the name of one of the item archetypes. When you want
-  to create a new add-on, you need to add a new item to freedroid.item_archetypes
+  to create a new add-on, you need to add a new item to item_archetypes.dat
   first and then use its name for this field.
 
   upgrade_cost: The number of valuable circuits it costs to upgrade an item with

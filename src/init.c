@@ -584,7 +584,7 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 };				// int Get_Robot_Data ( void )
 
 /**
- * This function reads in all the item data from the freedroid.item_archetype file,
+ * This function reads in all the item data from the item_archetypes.dat file,
  * but IT DOES NOT LOAD THE FILE, IT ASSUMES IT IS ALREADY LOADED and
  * it only receives a pointer to the start of the bullet section from
  * the calling function.
@@ -816,7 +816,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 				item->item_gun_use_ammunition = 8;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
-The type of ammunition used by an item in freedroid.item_archetypes was not recognized. \n\
+The type of ammunition used by an item in item_archetypes.dat was not recognized. \n\
 This string was: %s\n", PLEASE_INFORM, IS_FATAL, YesNoString);
 			}
 			free(YesNoString);
@@ -829,7 +829,7 @@ This string was: %s\n", PLEASE_INFORM, IS_FATAL, YesNoString);
 				item->item_gun_requires_both_hands = FALSE;
 			} else {
 				ErrorMessage(__FUNCTION__, "\
-The item specification of an item in freedroid.item_archetypes should contain an \n\
+The item specification of an item in item_archetypes.dat should contain an \n\
 answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLEASE_INFORM, IS_FATAL);
 			};
 			free(YesNoString);
@@ -839,7 +839,7 @@ answer that is either 'yes' or 'no', but which was neither 'yes' nor 'no'.", PLE
 			item->motion_class = get_motion_class_id_by_name(YesNoString);
 			if (item->motion_class == -1) {
 				ErrorMessage(__FUNCTION__,
-						"The motion_class of an item in freedroid.item_archetypes is unknown: %s",
+						"The motion_class of an item in item_archetypes.dat is unknown: %s",
 						PLEASE_INFORM, IS_FATAL, YesNoString);
 			};
 			free(YesNoString);
@@ -952,7 +952,7 @@ void Init_Game_Data()
 	Load_Enemy_Surfaces();
 
 	// Item archetypes must be loaded too
-	find_file("freedroid.item_archetypes", MAP_DIR, fpath, 0);
+	find_file("item_archetypes.dat", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	get_item_data(Data);
 	free(Data);

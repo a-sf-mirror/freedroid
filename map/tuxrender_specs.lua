@@ -37,7 +37,7 @@ tux_animation {
 --
 -- motion_class_names: list of motion class names
 --   Those names are used in the next section of this file to define the ordering
---   of Tux's parts rendering, and in freedroid.item_archetypes to associate a
+--   of Tux's parts rendering, and in item_archetypes.dat to associate a
 --   motion class to a weapon.
 --   The first motion_class is the one used when Tux has no weapon in hand.
 ------------------------------------------------------------------------------
