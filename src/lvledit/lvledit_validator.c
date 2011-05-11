@@ -1399,7 +1399,7 @@ int level_validation()
 
 	// Load exceptions rules
 
-	load_excpt_lists("freedroid.lvleditor_exceptions");
+	load_excpt_lists("lvleditor_exceptions.dat");
 
 	// Loop on each level
 
@@ -1496,7 +1496,7 @@ int level_validation_on_console_only()
 	
 	// Load exceptions rules
 
-	load_excpt_lists("freedroid.lvleditor_exceptions");
+	load_excpt_lists("lvleditor_exceptions.dat");
 
 	// Loop on each level
 
