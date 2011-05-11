@@ -55,7 +55,7 @@ For T=	 :available droids:
 		 :avaiable NPCs:
 PRO DOC GUA DIX MUM FSC WOR GUB COO KEV JAS TAN BAR FEM TRM
 
-See .map/freedroid.droid_archetypes for more information.
+See .map/droid_archetypes.dat for more information.
 ----------------------------------------------------------------------
 Factions are defined in /src/faction.c
 ----------------------------------------------------------------------

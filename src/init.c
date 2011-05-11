@@ -970,7 +970,7 @@ void Init_Game_Data()
 
 	// Time to eat some droid archetypes...
 	//
-	find_file("freedroid.droid_archetypes", MAP_DIR, fpath, 0);
+	find_file("droid_archetypes.dat", MAP_DIR, fpath, 0);
 	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Robot_Data(Data);

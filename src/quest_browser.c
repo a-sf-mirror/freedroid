@@ -135,7 +135,7 @@ static void print_statistics(void)
 				worst_capture_success_rate = rate;
 			}
 		}
-		srt[model] = model; //set to un-alphabetized order from freedroid.droid_archetypes
+		srt[model] = model; //set to un-alphabetized order from droid_archetypes.dat
 	}
 
 	//Assemble Output
@@ -189,7 +189,7 @@ static void print_statistics(void)
 			autostr_append(quest_browser_text, _("Failed Takeover: no failures\n"));
 	}
 
-	//This sorts the droid types by default model name (from freedroid.droid_archetypes):
+	//This sorts the droid types by default model name (from droid_archetypes.dat):
 	//srt[] will hold the Druidmap[] indices in this order 
 	qsort(srt, Number_Of_Droid_Types, sizeof(srt[0]), cmp_droid_names);
 
