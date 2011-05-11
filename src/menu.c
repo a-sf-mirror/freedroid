@@ -1815,7 +1815,7 @@ int load_named_game(const char *name)
 	if (LoadGame() != OK)
 		return ERR;
 
-	GetEventTriggers("freedroid.events");
+	GetEventTriggers("events.dat");
 	item_held_in_hand = NULL;
 	return OK;
 }

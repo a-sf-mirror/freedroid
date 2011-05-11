@@ -115,7 +115,7 @@ To automatically check a entire map for this, you can use the map level validato
 
 
 		Planting map labels:
-Map labels are used to define starting locations of NPCs (see ReturnOfTux.droids), events that occur when Tux moves over them (see freedroid.events), or locations used for movement of NPCs through the lua script files (events, quests, and the dialogs).
+Map labels are used to define starting locations of NPCs (see ReturnOfTux.droids), events that occur when Tux moves over them (see events.dat), or locations used for movement of NPCs through the lua script files (events, quests, and the dialogs).
 To define a new map label, press the 'm' key on the keyboard or click the button with the M on the sign on it. You will be prompted for the map label. Note that there will be a colorful circle appearing on any map tile that has been fitted with a map label.
 The map label will be automatically planted on the tile in the middle of the screen.
 You can switch the displaying of droids/NPCs on or off pressing the button with the 302 bot on it.

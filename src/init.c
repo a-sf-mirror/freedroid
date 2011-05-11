@@ -1193,7 +1193,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	//
 	clear_out_arrays_for_fresh_game();
 
-	GetEventTriggers("freedroid.events");
+	GetEventTriggers("events.dat");
 
 	if (!skip_initial_menus)
 		PlayATitleFile("StartOfGame.title");
