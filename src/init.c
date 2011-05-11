@@ -936,7 +936,7 @@ void Init_Game_Data()
 
 	// Load the bullet data (required for the item archtypes to load)
 	//
-	find_file("freedroid.bullet_archetypes", MAP_DIR, fpath, 0);
+	find_file("bullet_archetypes.dat", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Bullet_Data(Data);
 	free(Data);

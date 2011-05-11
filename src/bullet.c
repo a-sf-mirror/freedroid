@@ -844,7 +844,7 @@ void CheckBlastCollisions(int num)
 
 /**
  * This function returns the bullet number of a specified bullet string.
- * Bullet strings are defined in map/freedroid.bullet_archtypes
+ * Bullet strings are defined in map/bullet_archtypes.dat
  *
  * Defaults to 0
  */
