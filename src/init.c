@@ -928,7 +928,7 @@ void Init_Game_Data()
 
 	// Load programs (spells) information
 	//
-	find_file("freedroid.program_archetypes", MAP_DIR, fpath, 0);
+	find_file("program_archetypes.dat", MAP_DIR, fpath, 0);
 	DebugPrintf(INIT_GAME_DATA_DEBUG, "\nvoid Init_Game_Data:  Data will be taken from file : %s. Commencing... \n", fpath);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Programs_Data(Data);
