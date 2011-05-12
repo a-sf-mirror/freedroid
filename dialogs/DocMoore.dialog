@@ -157,11 +157,15 @@ Nr=10 Text=_"Can you fix me up?"
 LuaCode={
 	npc_says(_"Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health.")
 	if (not has_cookie("asked_docmoore_self_damage")) then
-		npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
-		show(11)
+			npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
+			show(11)
 	end
-	npc_says_random(_"There, it's done. You're completely fixed. You can go now.", _"You need to keep better care of yourself. You're completely fixed. You can go now.")
-	heal_tux()
+	if (tux_hp_ratio() == 1) then
+		npc_says(_"You seem to be in excellent health, there is nothing I can do for you right now.")
+	else
+		npc_says_random(_"There, it's done. You're completely fixed. You can go now.", _"You need to keep better care of yourself. You're completely fixed. You can go now.")
+		heal_tux()
+	end
 	hide(0)
 }
 ----------------------------------------------------------------------
