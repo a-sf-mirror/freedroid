@@ -99,6 +99,8 @@ LuaCode={
 		npc_says(_"[b](In the other room, you hear the faint whirring of servos. The horror in the old man's eyes tell you that he too has heard it.)[/b]")
 		npc_says(_"...a monster! You are not a Linarian like the legends spoke of! The cryo-stasis has corrupted your soul! AGGGG!!!")
 		npc_says(_"[b](The old man grips his chest and collapses in what appears to have been a fatal heart attack.)[/b]")
+		teleport_npc("NewTuxStartGameSquare", "InvaderBot")
+		set_npc_faction("ms", "InvaderBot")
 		add_quest(_"Deliverance", _"The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?")
 		add_item("Data cube")
 		drop_dead()
