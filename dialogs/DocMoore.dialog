@@ -168,7 +168,12 @@ LuaCode={
 
 Nr=11 Text=_"What do you mean, self-inflicted damage?"
 LuaCode={
-	npc_says(_"Well, you see that idiotic Bender character on my doorstep?")
+	if (has_cookie("guard_follow_tux")) or
+	   (has_cookie("tux_has_joined_guard")) then
+		npc_says(_"Well, you see that Bender character on my doorstep?")
+		else
+		npc_says(_"Well, you see that idiotic Bender character on my doorstep?")
+	end
 	tux_says(_"What can you tell me about Bender?")
 	npc_says(_"Bender asked my advice about some pills he saw advertised in an e-mail. I told him not to buy them.")
 	npc_says(_"But guess what? He bought and took the stupid pills anyways, and then he came back to me to fix him.")
