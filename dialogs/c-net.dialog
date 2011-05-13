@@ -275,6 +275,10 @@ LuaCode={
 		npc_says("Voots, Ryan", "NO_WAIT")
 		npc_says("Wood, JK", "NO_WAIT")
 		npc_says("Winterer, Armin", "NO_WAIT")
+		if (not has_cookie("deliverance_datacube_c-net_list")) then
+			update_quest(_"Deliverance", _"I found a terminal in the town which could read the data cube Francis gave me. It looks like there was a list of names on it, but I have no clue what's the deal with these names.")
+			add_cookie("deliverance_datacube_c-net_list")
+		end
 	else
 		npc_says(_"no disk found", "NO_WAIT")
 	end
