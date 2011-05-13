@@ -66,6 +66,10 @@ EveryTime LuaCode={
 	if (has_cookie("Francis_tux_dismissed")) then
 		show(11, 12)
 	end
+
+	if (npc_dead("InvaderBot")) then
+		hide(1, 2)
+	end
 }
 ----------------------------------------------------------------------
 
