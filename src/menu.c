@@ -1811,7 +1811,9 @@ int load_named_game(const char *name)
 		return ERR;
 	}
 
-	strcpy(Me.character_name, name);
+	if (strcmp(name, Me.character_name))
+			strcpy(Me.character_name, name);
+
 	if (LoadGame() != OK)
 		return ERR;
 
@@ -1913,6 +1915,8 @@ static int do_savegame_selection_and_act(int action)
 				break;
 		}
 
+		strcpy(Me.character_name, MenuTexts[MenuPosition - 1]);
+
 		for (cnt = 0; cnt < n; cnt++)
 			free(eps[cnt]);
 		free(eps);
@@ -1934,7 +1938,7 @@ static int do_savegame_selection_and_act(int action)
 	rtn = FALSE;
 	switch (action) {
 	case SAVEGAME_LOAD:
-		if (load_named_game(MenuTexts[MenuPosition - 1]) == OK) {
+		if (load_named_game(Me.character_name) == OK) {
 			rtn = TRUE;
 		} else {
 			rtn = FALSE;
@@ -1942,7 +1946,6 @@ static int do_savegame_selection_and_act(int action)
 		break;
 	case SAVEGAME_DELETE:
 
-		strcpy(Me.character_name, MenuTexts[MenuPosition - 1]);
 		// We do a final safety check to ask for confirmation.
 		MenuTexts[0] = _("Sure!");
 		MenuTexts[1] = _("BACK");
