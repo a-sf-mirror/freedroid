@@ -152,17 +152,18 @@ static int mapgen_bench()
 {
 	int loop = 100;
 	extern void CreateNewMapLevel(int);
-	CreateNewMapLevel(0);
-	level *l = curShip.AllLevels[0];
-	l->xlen = 90;
-	l->ylen = 90;
-	l->random_dungeon = 2;
-	l->teleport_pair = 0;
-
+	extern int delete_map_level(int);
 	timer_start();
 	while (loop--) {
+		CreateNewMapLevel(0);
+		level *l = curShip.AllLevels[0];
+		l->xlen = 90;
+		l->ylen = 90;
+		l->random_dungeon = 2;
+		l->teleport_pair = 0;
 		set_dungeon_output(l);
 		generate_dungeon(l->xlen, l->ylen, l->random_dungeon, l->teleport_pair);
+		delete_map_level(0);
 	}
 	timer_stop();
 
