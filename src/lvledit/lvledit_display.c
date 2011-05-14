@@ -331,8 +331,10 @@ void leveleditor_display()
 			      OMIT_OBSTACLES | GameConfig.omit_enemies_in_level_editor * OMIT_ENEMIES | ZOOM_OUT *
 			      GameConfig.zoom_is_on | OMIT_BLASTS | SKIP_LIGHT_RADIUS | NO_CURSOR | OMIT_ITEMS_LABEL);
 
+	start_image_batch();
 	show_waypoints(ZOOM_OUT * GameConfig.zoom_is_on);
 	show_map_labels(ZOOM_OUT * GameConfig.zoom_is_on);
+	end_image_batch();
 	show_cursor(ZOOM_OUT * GameConfig.zoom_is_on);
 	gps_show();
 
