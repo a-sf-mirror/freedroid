@@ -155,7 +155,7 @@ LuaCode={
 	end_quest(_"Bender's problem", _"Bender is fine now. He gave me some muscle enlargement pills in return for my help. Hmm...")
 	set_bot_destination("NewSpencer")
 	add_cookie("Bender-at-Spencer") --have Bender go "talk" to Spencer
-	hide(9) show(20)
+	hide(9, 10, 50) show(20)
 }
 ----------------------------------------------------------------------
 
