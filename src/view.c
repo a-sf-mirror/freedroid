@@ -76,19 +76,17 @@ struct image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECT
 static int old_current_level = -1;
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_directions[RADIAL_SPELL_DIRECTIONS], float age);
-void insert_new_element_into_blitting_list(float new_element_norm, int new_element_type, void *new_element_pointer, int code_number);
 static void show_inventory_screen(void);
 
 
 struct blitting_list_element {
 	int element_type;
 	void *element_pointer;
-	float norm_of_elements_position;
+	float norm;
 	int code_number;
-	struct list_head node;
 };
 
-LIST_HEAD(blitting_list);
+struct dynarray *blitting_list;
 
 enum {
 	BLITTING_TYPE_NONE = 0,
@@ -396,6 +394,23 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 }
 
 /**
+ * Several different things must be inserted into the blitting list.
+ * Therefore this function is an abstraction, that will insert a generic
+ * object into the blitting list.
+ */
+static void insert_new_element_into_blitting_list(float new_element_norm, int new_element_type, void *new_element_pointer, int code_number)
+{
+	struct blitting_list_element elt;
+
+	elt.norm = new_element_norm;
+	elt.element_type = new_element_type;
+	elt.element_pointer = new_element_pointer;
+	elt.code_number = code_number;
+
+	dynarray_add(blitting_list, &elt, sizeof(struct blitting_list_element));
+}
+
+/**
  * In order for the obstacles to be blitted, they must first be inserted
  * into the correctly ordered list of objects to be blitted this frame.
  */
@@ -462,35 +477,6 @@ void insert_obstacles_into_blitting_list(int mask)
 		}
 	}
 }
-
-/**
- * Several different things must be inserted into the blitting list.
- * Therefore this function is an abstraction, that will insert a generic
- * object into the blitting list.
- */
-void insert_new_element_into_blitting_list(float new_element_norm, int new_element_type, void *new_element_pointer, int code_number)
-{
-	struct blitting_list_element *e, *n;
-	struct blitting_list_element *newe;
-
-	newe = MyMalloc(sizeof(struct blitting_list_element));
-	newe->norm_of_elements_position = new_element_norm;
-	newe->element_type = new_element_type;
-	newe->element_pointer = new_element_pointer;
-	newe->code_number = code_number;
-
-	list_for_each_entry_safe(e, n, &blitting_list, node) {
-
-		if (new_element_norm < e->norm_of_elements_position) {
-			// Insert before this element
-			list_add_tail(&newe->node, &e->node);
-			return;
-		}
-	}
-
-	// Reached the end of the list?
-	list_add_tail(&newe->node, &blitting_list);
-};				// void insert_new_element_into_blitting_list ( ... )
 
 /**
  *
@@ -1203,6 +1189,24 @@ void insert_thrown_items_into_blitting_list(void)
 	}
 };				// void insert_enemies_into_blitting_list ( void )
 
+static int blitting_list_compare(const void *elt1, const void *elt2)
+{
+	const struct blitting_list_element *e1 = elt1, *e2 = elt2;
+
+	if (e1->norm < e2->norm)
+		return -1;
+	else if (e1->norm > e2->norm)
+		return 1;
+	
+	return 0;
+}
+
+static void sort_blitting_list(void)
+{
+	qsort(blitting_list->arr, blitting_list->size, sizeof(struct blitting_list_element),
+			blitting_list_compare);
+}
+
 /**
  * In isometric viewpoint setting, we need to respect visibility when
  * considering the order of things to blit.  Therefore we will first set
@@ -1212,10 +1216,11 @@ void insert_thrown_items_into_blitting_list(void)
  */
 void set_up_ordered_blitting_list(int mask)
 {
-	struct blitting_list_element *e, *n;
-	list_for_each_entry_safe(e, n, &blitting_list, node) {
-		list_del(&e->node);
-		free(e);
+	if (!blitting_list) {
+		blitting_list = dynarray_alloc(100, sizeof(struct blitting_list_element));
+	} else {
+		dynarray_free(blitting_list);
+		dynarray_init(blitting_list, 100, sizeof(struct blitting_list_element));
 	}
 
 	// Now we can start to fill in the obstacles around the
@@ -1235,7 +1240,8 @@ void set_up_ordered_blitting_list(int mask)
 
 	insert_thrown_items_into_blitting_list();
 
-};				// void set_up_ordered_blitting_list ( void )
+	sort_blitting_list();
+}
 
 static void show_obstacle(int mask, obstacle * o, int code_number)
 {
@@ -1275,8 +1281,10 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 	int item_under_cursor = -1;
 	level *item_under_cursor_lvl = NULL;
 	
-	struct blitting_list_element *e, *n;
-	list_for_each_entry_safe(e, n, &blitting_list, node) {
+	int i;
+	for (i = 0; i < blitting_list->size; i++) {
+		struct blitting_list_element *e = &((struct blitting_list_element *)(blitting_list->arr))[i];
+
 		switch (e->element_type) {
 		case BLITTING_TYPE_OBSTACLE:
 			// We do some sanity checking for illegal obstacle types.
@@ -1361,7 +1369,6 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 	enemy *enemy_under_cursor = NULL;
 	int item_under_cursor = -1;
 	level *item_under_cursor_lvl = NULL;
-	struct blitting_list_element *e, *n;
 
 	// We memorize which 'enemy' is currently under the mouse target, so that we
 	// can properly highlight this enemy...
@@ -1371,7 +1378,9 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 
 	// Now it's time to blit all the elements from the list...
 	//
-	list_for_each_entry_safe(e, n, &blitting_list, node) {
+	int i;
+	for (i = 0; i < blitting_list->size; i++) {
+		struct blitting_list_element *e = &((struct blitting_list_element *)(blitting_list->arr))[i];
 
 		if (e->element_type == BLITTING_TYPE_NONE)
 			break;
