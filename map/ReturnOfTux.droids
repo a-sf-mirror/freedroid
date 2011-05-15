@@ -535,21 +535,29 @@ SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" Use
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=50
+Number of Random Droids=100-120
+Random Droid Types: 296, 249, 302, 476
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=51
+Number of Random Droids=100-130
+Random Droid Types: 476, 420, 493, 516
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=52
+Number of Random Droids=180-200
+Random Droid Types: 516, 493, 598
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=53
+Number of Random Droids=120
+Random Droid Types: 598, 571, 615
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -562,16 +570,20 @@ Level=54
 Level=55
 Number of Random Droids=30-90
 Random Droid Types: 249, 302, 615, 629
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=56
 Number of Random Droids=45-110
 Random Droid Types: 249, 302, 476, 615, 629, 711
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=57
+Number of Random Droids=99
+Random Droid Types: 493, 629, 834, 821
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -579,7 +591,63 @@ Level=57
 Level=58
 Number of Random Droids=20
 Random Droid Types: 123, 139, 247, 249
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=59
+Number of Random Droids=200
+Random Droid Types: 883, 821, 711, 751, 834
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=60
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=61
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=62
+Number of Random Droids= 10
+Random Droid Types: 302
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=63
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=64
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=65
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=66
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=67
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+** Beginning of new Level **
+Level=68
+
+** End of this levels droid data **
+----------------------------------------------------------------------
+
 *** End of Droid Data ***
 // Anything after above marker will be ignored.
