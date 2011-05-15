@@ -63395,34 +63395,32 @@ piteminfolvl
 obstacleextensions
 /obstacleextensions
 wp
-Nr.=  0 x=  39 y=  40 rnd=0	 c:    1
-Nr.=  1 x=  41 y=  42 rnd=0	 c:    0
-Nr.=  2 x=  14 y=   2 rnd=0	 c:    3   4
-Nr.=  3 x=  17 y=   2 rnd=0	 c:    2   4
-Nr.=  4 x=  20 y=   2 rnd=0	 c:    3   2
-Nr.=  5 x=  30 y=   1 rnd=0	 c:    6   8
-Nr.=  6 x=  36 y=   1 rnd=0	 c:    5   7
-Nr.=  7 x=  37 y=   2 rnd=0	 c:    6   8
-Nr.=  8 x=  29 y=   2 rnd=0	 c:    7   5
-Nr.=  9 x=  43 y=   2 rnd=0	 c:   10  12
-Nr.= 10 x=  45 y=   1 rnd=0	 c:    9  11  13  12
-Nr.= 11 x=  49 y=   2 rnd=0	 c:   10  12
-Nr.= 12 x=  51 y=   1 rnd=0	 c:   11  13  10   9
-Nr.= 13 x=  53 y=   2 rnd=0	 c:   12  10
-Nr.= 14 x=  57 y=   1 rnd=0	 c:   15  23
-Nr.= 15 x=  57 y=   2 rnd=0	 c:   14  16
-Nr.= 16 x=  58 y=   2 rnd=0	 c:   15  17
-Nr.= 17 x=  59 y=   2 rnd=0	 c:   16  18
-Nr.= 18 x=  59 y=   1 rnd=0	 c:   17  19
-Nr.= 19 x=  60 y=   1 rnd=0	 c:   18  20
-Nr.= 20 x=  62 y=   2 rnd=0	 c:   19  21
-Nr.= 21 x=  63 y=   1 rnd=0	 c:   20  22
-Nr.= 22 x=  64 y=   1 rnd=0	 c:   21  23
-Nr.= 23 x=  64 y=   2 rnd=0	 c:   22  14
-Nr.= 24 x=  74 y=   1 rnd=0	 c:   25
-Nr.= 25 x=  76 y=   2 rnd=0	 c:   24  26  27
-Nr.= 26 x=  77 y=   1 rnd=0	 c:   25  27
-Nr.= 27 x=  74 y=   3 rnd=0	 c:   26  25
+Nr.=  0 x=  14 y=   2 rnd=0	 c:    1   2
+Nr.=  1 x=  17 y=   2 rnd=0	 c:    0   2
+Nr.=  2 x=  20 y=   2 rnd=0	 c:    1   0
+Nr.=  3 x=  30 y=   1 rnd=0	 c:    4   6
+Nr.=  4 x=  36 y=   1 rnd=0	 c:    3   5
+Nr.=  5 x=  37 y=   2 rnd=0	 c:    4   6
+Nr.=  6 x=  29 y=   2 rnd=0	 c:    5   3
+Nr.=  7 x=  43 y=   2 rnd=0	 c:    8  10
+Nr.=  8 x=  45 y=   1 rnd=0	 c:    7   9  11  10
+Nr.=  9 x=  49 y=   2 rnd=0	 c:    8  10
+Nr.= 10 x=  51 y=   1 rnd=0	 c:    9  11   8   7
+Nr.= 11 x=  53 y=   2 rnd=0	 c:   10   8
+Nr.= 12 x=  57 y=   1 rnd=0	 c:   13  21
+Nr.= 13 x=  57 y=   2 rnd=0	 c:   12  14
+Nr.= 14 x=  58 y=   2 rnd=0	 c:   13  15
+Nr.= 15 x=  59 y=   2 rnd=0	 c:   14  16
+Nr.= 16 x=  59 y=   1 rnd=0	 c:   15  17
+Nr.= 17 x=  60 y=   1 rnd=0	 c:   16  18
+Nr.= 18 x=  62 y=   2 rnd=0	 c:   17  19
+Nr.= 19 x=  63 y=   1 rnd=0	 c:   18  20
+Nr.= 20 x=  64 y=   1 rnd=0	 c:   19  21
+Nr.= 21 x=  64 y=   2 rnd=0	 c:   20  12
+Nr.= 22 x=  74 y=   1 rnd=0	 c:   23
+Nr.= 23 x=  76 y=   2 rnd=0	 c:   22  24  25
+Nr.= 24 x=  77 y=   1 rnd=0	 c:   23  25
+Nr.= 25 x=  74 y=   3 rnd=0	 c:   24  23
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 66
