@@ -63,7 +63,7 @@ Nr=1 Text=_"Get current OS version"
 LuaCode={
 	if (not has_cookie("uploaded_faulty_firmware")) then 
 		npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
-	else 
+	else
 		npc_says(_"Currently deployed firmware is v. 5.0.8+" .. get_player_name() .. _"washere+gpl")
 	end
 }
@@ -76,10 +76,18 @@ LuaCode={
 	npc_says(_"Waiting for all connections....")
 	npc_says("...")
 	npc_says("...")
-	npc_says(_"Firmware update propagated!")
-	add_cookie("uploaded_faulty_firmware")
-	end_quest(_"Propagating a faulty firmware", _"I managed to upload the faulty firmware to all bots within transmission range. Victory is mine!")
-	hide(3)
+	npc_says(_"Please resolve merge conflicts:")
+	if (takeover(get_program("Hacking")+4)) then
+		npc_says(_"Conflicts resolved,")
+		npc_says(_"Firmware update propagated!")
+		add_cookie("uploaded_faulty_firmware")
+		end_quest(_"Propagating a faulty firmware", _"I managed to upload the faulty firmware to all bots within transmission range. Victory is mine!")
+		hide(3)
+	else
+		npc_says(_"Merge failed.")
+		npc_says(_"Exiting...")
+		end_dialog()
+	end
 }
 ----------------------------------------------------------------------
 
