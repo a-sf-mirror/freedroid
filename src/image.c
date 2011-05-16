@@ -76,7 +76,7 @@ void end_image_batch()
 static void gl_emit_quads(void)
 {
 	if (vtx && vtx->size) {	
-		glVertexPointer(2, GL_INT, 0, vtx->arr);
+		glVertexPointer(2, GL_FLOAT, 0, vtx->arr);
 		glTexCoordPointer(2, GL_FLOAT, 0, tex->arr);
 		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
 		
@@ -90,30 +90,16 @@ static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, floa
 #ifdef HAVE_LIBGL
 
 	if (!vtx)
-		vtx = dynarray_alloc(16, 8 * sizeof(int));
+		vtx = dynarray_alloc(16, 8 * sizeof(float));
 	if (!tex)
 		tex = dynarray_alloc(16, 8 * sizeof(float));
 
 	float tx[8] = { tx0, ty0, tx0, ty1, tx1, ty1, tx1, ty0 };
-	int v[8] = { x1, y1, x1, y2, x2, y2, x2, y1 };
+	float v[8] = { x1, y1, x1, y2, x2, y2, x2, y1 };
 
-	dynarray_add(vtx, v, 8 * sizeof(int));
+	dynarray_add(vtx, v, 8 * sizeof(float));
 	dynarray_add(tex, tx, 8 * sizeof(float));
 
-/*	glVertexPointer(2, GL_INT, 0, v);
-	glTexCoordPointer(2, GL_FLOAT, 0, tx);
-
-	glDrawArrays(GL_QUADS, 0, 4);
-*/
-/*	gl_begin();
-	glTexCoord2f(tx0, ty0);
-	glVertex2i(x1, y1);
-	glTexCoord2f(tx0, ty1);
-	glVertex2i(x1, y2);
-	glTexCoord2f(tx1, ty1);
-	glVertex2i(x2, y2);
-	glTexCoord2f(tx1, ty0);
-	glVertex2i(x2, y1);*/
 #endif
 }
 
