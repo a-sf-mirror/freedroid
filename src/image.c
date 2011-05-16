@@ -42,6 +42,9 @@ extern int gl_max_texture_size;	//defined in open_gl.c
 
 // Currently active OpenGL texture
 static int active_tex = -1;
+// Currently active OpenGL color
+static float active_color[4];
+
 // Do we want to draw as a batch? (ie. not emit glBegin/glEnd pairs every time)
 static int batch_draw = FALSE;
 
@@ -65,6 +68,7 @@ void end_image_batch()
 {
 	batch_draw = FALSE;
 	active_tex = -1;
+	active_color[0] = -1;
 
 	gl_emit_quads();
 }
@@ -136,8 +140,6 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 	xoff *= t->scale_x;
 	yoff *= t->scale_y;
 
-	glColor4fv(&t->c[0]);
-
 	x += xoff;
 	y += yoff;
 	xmax += x;
@@ -145,17 +147,25 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 
 	// Bind the texture if required
 	if (img->texture != active_tex) {
-			gl_emit_quads();
-			glBindTexture(GL_TEXTURE_2D, img->texture);
-			active_tex = img->texture;
+		gl_emit_quads();
+		glBindTexture(GL_TEXTURE_2D, img->texture);
+		active_tex = img->texture;
 	}
-	
+
+	// Change the active color if required
+	if (memcmp(&active_color[0], &t->c[0], sizeof(active_color))) {
+		gl_emit_quads();
+		glColor4fv(&t->c[0]);
+		memcpy(&active_color[0], &t->c[0], sizeof(active_color));
+	}
+
 	// Draw the image	
 	gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
 
 	if (!batch_draw) {
 		gl_emit_quads();
 		active_tex = -1;
+		active_color[0] = -1;
 	}
 
 	if (t->highlight) {
