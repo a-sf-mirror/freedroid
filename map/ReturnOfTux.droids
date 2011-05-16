@@ -371,7 +371,6 @@ Level=31
 Number of Random Droids=60-70
 Random Droid Types: 249, 302, 516, 615, 629
 
-SForce: T=WOR Faction="civilian" StartLabel="GapesStartLocation" UseDialog="WillGapes" ShortLabel=_"Corporate Guy"
 SForce: T=883 Marker=1031 StartLabel="MSDDStartGameSquare" ShortLabel=_"MSDD - MegaSys Defence Droid"
 SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
 SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid1StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
@@ -650,6 +649,11 @@ Level=68
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
+** Beginning of new Level **
+Level=69
+
+SForce: T=WOR Faction="civilian" StartLabel="GapesStartGameSquare" UseDialog="WillGapes" ShortLabel=_"Corporate Guy"
+** End of this levels droid data **
 
 *** End of Droid Data ***
 // Anything after above marker will be ignored.

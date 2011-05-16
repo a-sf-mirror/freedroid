@@ -32958,7 +32958,6 @@ x=27 y=32 name="MSOfficeFirmwareUpdateServerStartPosition"
 x=71 y=7 name="MSAreaGuardChiefStartGameSquare"
 x=77 y=8 name="MSAreaGuardStartGameSquare"
 x=36 y=27 name="OpenFirmwareUpgradeRoom"
-x=29 y=42 name="GapesStartLocation"
 x=63 y=86 name="31to69"
 x=62 y=85 name="31from69"
 /plabelinfolvl
@@ -64374,6 +64373,7 @@ t1 x15.00 y15.50
 plabelinfolvl
 x=11 y=16 name="69to31"
 x=11 y=15 name="69from31"
+x=12 y=14 name="GapesStartGameSquare"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
