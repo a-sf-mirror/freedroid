@@ -977,6 +977,8 @@ void get_animated_obstacle_lists(struct visible_level *vis_lvl)
 
 	/* Now browse obstacles and fill our list of animated obstacles. */
 	for (obstacle_index = 0; obstacle_index < MAX_OBSTACLES_ON_MAP; obstacle_index++) {
+		if (Lev->obstacle_list[obstacle_index].type == -1)
+			continue;
 		if (obstacle_map[Lev->obstacle_list[obstacle_index].type].animate_fn != NULL) {
 			struct animated_obstacle *a = MyMalloc(sizeof(struct animated_obstacle));
 			a->index = obstacle_index;
