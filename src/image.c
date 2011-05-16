@@ -123,7 +123,7 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 	xoff *= t->scale_x;
 	yoff *= t->scale_y;
 
-	glColor4f(t->r, t->g, t->b, t->a);
+	glColor4fv(&t->c[0]);
 
 	x += xoff;
 	y += yoff;
@@ -170,8 +170,9 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 	if (!img->surface)
 		return;
 
-	// Check if the image must be transformed
-	if (t->scale_x == 1.0 && t->scale_y == 1.0 && t->r == 1.0 && t->g == 1.0 && t->b == 1.0 && t->a == 1.0 && !t->highlight) {
+	// Check if the image must be transformed at all
+	float white[4] = { 1.0, 1.0, 1.0, 1.0 };
+	if (t->scale_x == 1.0 && t->scale_y == 1.0 && !memcmp(&t->c[0], &white[0], sizeof(white)) && !t->highlight) {
 		// No transformation
 		surf = img->surface;
 	} else {
@@ -179,9 +180,10 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 
 		// Check if the transformation is in cache
 		struct image_transformation *cache = &img->cached_transformation;
-		if (!cache->surface || cache->scale_x != t->scale_x || cache->scale_y != t->scale_y || cache->r != t->r || cache->g != t->g || cache->b != t->b || cache->a != t->a || cache->highlight != t->highlight) {
+		if (!cache->surface || cache->scale_x != t->scale_x || cache->scale_y != t->scale_y || memcmp(&cache->c[0], &t->c[0], sizeof(t->c)) || cache->highlight != t->highlight) {
 			// Transformed image is not in cache, create it
 
+			// Scale the image
 			int scaled;
 			if (t->scale_x != 1.0 || t->scale_y != 1.0) {
 				t->surface = zoomSurface(img->surface, t->scale_x, t->scale_y, TRUE); 
@@ -191,8 +193,9 @@ static void sdl_display_image(struct image *img, int x, int y, struct image_tran
 				scaled = 0;
 			}
 
-			if (t->r != 1.0 || t->g != 1.0 || t->b != 1.0 || t->a != 1.0 || t->highlight) {
-				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->r, t->g, t->b, t->a, t->highlight ? 64 : 0);
+			// Apply color filter on the image
+			if (memcmp(&t->c[0], &white[0], sizeof(white)) || t->highlight) {
+				SDL_Surface *tmp = sdl_create_colored_surface(t->surface, t->c[0], t->c[1], t->c[2], t->c[3], t->highlight ? 64 : 0);
 
 				if (scaled)
 					SDL_FreeSurface(t->surface);
@@ -413,6 +416,6 @@ int image_loaded(struct image *img)
  */
 struct image_transformation set_image_transformation(float scale_x, float scale_y, float r, float g, float b, float a, int highlight)
 {
-	struct image_transformation t = { .surface = NULL, .scale_x = scale_x, .scale_y = scale_y, .r = r, .g = g, .b = b, .a = a, .highlight = highlight };
+	struct image_transformation t = { .surface = NULL, .scale_x = scale_x, .scale_y = scale_y, .c = { r, g, b, a }, .highlight = highlight };
 	return t;
 }

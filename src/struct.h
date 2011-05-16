@@ -69,10 +69,7 @@ struct image_transformation {
 	SDL_Surface *surface;		
 	float scale_x;
 	float scale_y;
-	float r;
-	float g;
-	float b;
-	float a;
+	float c[4]; /**< color transformation, r g b a in that order */
 	int highlight;
 };
 
@@ -101,7 +98,7 @@ struct image {
 
 	struct image_transformation cached_transformation;
 };
-#define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .texture_has_been_created = 0 , .cached_transformation = { NULL, 0.0, 0, 0, 0, 0 } }
+#define EMPTY_IMAGE { .surface = NULL , .offset_x = 0 , .offset_y = 0 , .texture_has_been_created = 0 , .cached_transformation = { NULL, 0.0, 0.0, { 0.0, 0.0, 0.0, 0.0}, 0 } }
 
 typedef struct mouse_press_button {
 	struct image button_image;
