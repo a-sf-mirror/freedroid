@@ -44,29 +44,6 @@ extern int gl_max_texture_size;	//defined in open_gl.c
 static int active_tex = -1;
 // Do we want to draw as a batch? (ie. not emit glBegin/glEnd pairs every time)
 static int batch_draw = FALSE;
-// Are we currently inside a glBegin/glEnd pair?
-static int emit_begun = FALSE;
-
-static void gl_begin()
-{
-#ifdef HAVE_LIBGL
-	if (!emit_begun) {
-		glBegin(GL_QUADS);
-		emit_begun = TRUE;
-	}
-#endif
-}
-
-static void gl_end()
-{
-#ifdef HAVE_LIBGL
-	if (emit_begun) {
-		glEnd();
-		emit_begun = FALSE;
-		active_tex = -1;
-	}
-#endif
-}
 
 /**
  * Start rendering images as a batch.
@@ -82,13 +59,22 @@ void start_image_batch()
 void end_image_batch()
 {
 	batch_draw = FALSE;
-	gl_end();
+	active_tex = -1;
 }
 
 static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)
 {
 #ifdef HAVE_LIBGL
-	gl_begin();
+
+	float tx[] = { tx0, ty0, tx0, ty1, tx1, ty1, tx1, ty0 };
+	int v[] = { x1, y1, x1, y2, x2, y2, x2, y1 };
+    
+	glVertexPointer(2, GL_INT, 0, v);
+	glTexCoordPointer(2, GL_FLOAT, 0, tx);
+
+	glDrawArrays(GL_QUADS, 0, 4);
+
+/*	gl_begin();
 	glTexCoord2f(tx0, ty0);
 	glVertex2i(x1, y1);
 	glTexCoord2f(tx0, ty1);
@@ -96,7 +82,7 @@ static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float
 	glTexCoord2f(tx1, ty1);
 	glVertex2i(x2, y2);
 	glTexCoord2f(tx1, ty0);
-	glVertex2i(x2, y1);
+	glVertex2i(x2, y1);*/
 #endif
 }
 
@@ -132,26 +118,22 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 
 	// Bind the texture if required
 	if (img->texture != active_tex) {
-			gl_end();
 			glBindTexture(GL_TEXTURE_2D, img->texture);
 			active_tex = img->texture;
 	}
-			
+	
 	// Draw the image	
 	gl_emit_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
 
-	// glEnd() is only required if we are not doing a batch
 	if (!batch_draw) {
-		gl_end();
+		active_tex = -1;
 	}
 
 	if (t->highlight) {
 		// Highlight? Draw the texture again with additive blending factors
 		// This increases the lightness too much, but is a quick and easy solution
-		gl_end();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		gl_emit_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
-		gl_end();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
@@ -354,9 +336,6 @@ void load_image(struct image *img, const char *filename, int use_offset_file)
 	}
 
 	if (use_open_gl) {
-		// End the image batch if one is in progress to create the texture
-		gl_end();
-
 		// Create the texture
 		make_texture_out_of_surface(img);
 	}
