@@ -624,8 +624,11 @@ int validate_dialogs()
 	run_lua("function upgrade_items(a)\nend\n");
 	run_lua("function craft_addons(a)\nend\n");
 	/* set_bot_destination cannot be tested because this may be invoked when the bot is
-	 diffrent level then when the bot starts */
+	 on a different level than where the bot starts */
 	run_lua("function set_bot_destination(a)\nend\n");
+
+	/* takeover requires user input - hardcode it to win */
+	run_lua("function takeover(a)\nreturn true\nend\n");
 
 	/* This dummy will be used to test break_off_and_attack() functions and such. */
 	BROWSE_ALIVE_BOTS(dummy_partner) {
