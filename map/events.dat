@@ -714,6 +714,12 @@ LuaCode={ teleport("0from30") }
 ##############
 ## Level 31 ##
 ##############
+* New event trigger *
+Name=_"Back to tunnel"
+Trigger at label="31to69"
+Silent=1
+LuaCode={ teleport("69from31") }
+* End of trigger *
 
 ##############
 ## Level 32 ##
@@ -1163,6 +1169,12 @@ LuaCode={ teleport("59from60house") }
 ##############
 ## Level 69 ##
 ##############
+* New event trigger *
+Name=_"Back to tunnel"
+Trigger at label="69to31"
+Silent=1
+LuaCode={ teleport("31from69") }
+* End of trigger *
 
 ** End of Mission Event Section **
 *** End of Mission File ***
