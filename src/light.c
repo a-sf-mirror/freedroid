@@ -490,7 +490,7 @@ void LightRadiusInit()
 	LightRadiusConfig.translate_y = (int)(UNIVERSAL_TUX_HEIGHT / unit_screen_height);
 
 	// Allocate the light_radius buffer
-	light_strength_buffer = malloc(LightRadiusConfig.cells_w * LightRadiusConfig.cells_h * sizeof(int));
+	light_strength_buffer = MyMalloc(LightRadiusConfig.cells_w * LightRadiusConfig.cells_h * sizeof(int));
 
 }				// void LightRadiusInit();
 
