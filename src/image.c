@@ -45,6 +45,9 @@ static int active_tex = -1;
 // Do we want to draw as a batch? (ie. not emit glBegin/glEnd pairs every time)
 static int batch_draw = FALSE;
 
+static struct dynarray *vtx;
+static struct dynarray *tex;
+
 /**
  * Start rendering images as a batch.
  */
@@ -53,6 +56,8 @@ void start_image_batch()
 	batch_draw = TRUE;
 }
 
+static void gl_emit_quads(void);
+
 /**
  * End the image batch.
  */
@@ -60,20 +65,42 @@ void end_image_batch()
 {
 	batch_draw = FALSE;
 	active_tex = -1;
+
+	gl_emit_quads();
 }
 
-static inline void gl_emit_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)
+static void gl_emit_quads(void)
+{
+	if (vtx && vtx->size) {	
+		glVertexPointer(2, GL_INT, 0, vtx->arr);
+		glTexCoordPointer(2, GL_FLOAT, 0, tex->arr);
+		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
+		
+		vtx->size = 0;
+		tex->size = 0;
+	}
+}
+
+static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)
 {
 #ifdef HAVE_LIBGL
 
-	float tx[] = { tx0, ty0, tx0, ty1, tx1, ty1, tx1, ty0 };
-	int v[] = { x1, y1, x1, y2, x2, y2, x2, y1 };
-    
-	glVertexPointer(2, GL_INT, 0, v);
+	if (!vtx)
+		vtx = dynarray_alloc(16, 8 * sizeof(int));
+	if (!tex)
+		tex = dynarray_alloc(16, 8 * sizeof(float));
+
+	float tx[8] = { tx0, ty0, tx0, ty1, tx1, ty1, tx1, ty0 };
+	int v[8] = { x1, y1, x1, y2, x2, y2, x2, y1 };
+
+	dynarray_add(vtx, v, 8 * sizeof(int));
+	dynarray_add(tex, tx, 8 * sizeof(float));
+
+/*	glVertexPointer(2, GL_INT, 0, v);
 	glTexCoordPointer(2, GL_FLOAT, 0, tx);
 
 	glDrawArrays(GL_QUADS, 0, 4);
-
+*/
 /*	gl_begin();
 	glTexCoord2f(tx0, ty0);
 	glVertex2i(x1, y1);
@@ -118,14 +145,16 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 
 	// Bind the texture if required
 	if (img->texture != active_tex) {
+			gl_emit_quads();
 			glBindTexture(GL_TEXTURE_2D, img->texture);
 			active_tex = img->texture;
 	}
 	
 	// Draw the image	
-	gl_emit_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+	gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
 
 	if (!batch_draw) {
+		gl_emit_quads();
 		active_tex = -1;
 	}
 
@@ -133,7 +162,7 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 		// Highlight? Draw the texture again with additive blending factors
 		// This increases the lightness too much, but is a quick and easy solution
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-		gl_emit_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
+		gl_queue_quad(x, y, xmax, ymax, img->tex_x0, img->tex_y0, img->tex_x1, img->tex_y1);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
