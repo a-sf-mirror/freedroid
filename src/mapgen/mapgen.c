@@ -4,7 +4,6 @@
 #include "struct.h"
 #include "../src/global.h"
 #include "proto.h"
-#include "savestruct.h"
 
 #include "mapgen/mapgen.h"
 #include "mapgen/themes.h"

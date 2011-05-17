@@ -32,7 +32,6 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-#include "savestruct.h"
 
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_map.h"

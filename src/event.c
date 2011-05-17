@@ -35,7 +35,6 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
-#include "savestruct.h"
 
 struct event_trigger {
 	int level;
