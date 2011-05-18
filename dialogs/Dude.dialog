@@ -189,9 +189,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24 Text=_"HF-FirmwareUpdateServer"
+Nr=24 Text=_"HFF-GateAccessServer"
 LuaCode={
-	run_subdialog("HF-FirmwareUpdateServer.dialog")
+	run_subdialog("HFF-GateAccessServer.dialog")
 }
 ----------------------------------------------------------------------
 
