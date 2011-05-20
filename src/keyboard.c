@@ -16,7 +16,7 @@
  */
 
 /**
- * @file input.c
+ * @file keyboard.c
  *
  * @brief Handles all the keybindings and input.
  */
@@ -78,34 +78,35 @@ const char *keybindNames[] = {
 	"cheat_drop_random_item", "cheat_drop_random_magical_item",
 	"cheat_respawn_level",
 	"cheat_menu", "cheat_level_editor",
-	"end"
-};				/* must terminate in "end" */
+	NULL
+};				/* must terminate with NULL */
 
 /**
- * @fn void input_init (void)
+ * @fn void input_keyboard_init (void)
  *
  * @brief Initializes the input subsystem (does not set keys).
  */
 void input_keyboard_init(void)
 {
 	int i;
-	for (i = 0; strcmp(keybindNames[i], "end"); i++) ;	/* gets number of bindings */
 
-	GameConfig.input_keybinds[0].name = "end";
+	GameConfig.input_keybinds[0].name = NULL;
 
-	if (i > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
+	if (sizeof(keybindNames) / sizeof(keybindNames[0]) > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
 		ErrorMessage(__FUNCTION__,
 			     "There are %d keyboard commands defined in keyboard.c, but GameConfig structure only supports %d.\n",
-			     PLEASE_INFORM, IS_FATAL, i, sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]));
+			     PLEASE_INFORM, IS_FATAL,
+			     sizeof(keybindNames) / sizeof(keybindNames[0]),
+			     sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]));
 
 	/* creates a null keybinding for each */
-	for (i = 0; strcmp(keybindNames[i], "end"); i++) {
+	for (i = 0; keybindNames[i] != NULL; i++) {
 		GameConfig.input_keybinds[i].name = (char *)keybindNames[i];
 		GameConfig.input_keybinds[i].key = SDLK_UNKNOWN;
 		GameConfig.input_keybinds[i].mod = KMOD_NONE;
 	}
 
-	GameConfig.input_keybinds[i].name = "end";
+	GameConfig.input_keybinds[i].name = NULL;
 }
 
 /**
@@ -128,7 +129,7 @@ void input_exit(void)
 void input_set_keybind(char *keybind, SDLKey key, SDLMod mod)
 {
 	int i;
-	for (i = 0; strcmp(keybindNames[i], "end"); i++)
+	for (i = 0; keybindNames[i] != NULL; i++)
 		if (strcmp(keybind, GameConfig.input_keybinds[i].name) == 0) {
 			GameConfig.input_keybinds[i].key = key;
 			GameConfig.input_keybinds[i].mod = mod;
@@ -141,7 +142,7 @@ void input_set_keybind(char *keybind, SDLKey key, SDLMod mod)
 void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
 {
 	int i;
-	for (i = 0; strcmp(keybindNames[i], "end"); i++) {
+	for (i = 0; keybindNames[i] != NULL; i++) {
 		if (!strcmp(cmdname, GameConfig.input_keybinds[i].name)) {
 			if (key)
 				*key = GameConfig.input_keybinds[i].key;
@@ -323,7 +324,7 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 
 	ypos = keychart_rect.y;
 
-	for (i = startidx; strcmp(keybindNames[i], "end"); i++) {
+	for (i = startidx; keybindNames[i] != NULL; i++) {
 		char keystr[100] = "";
 		const char *font_str = font_switchto_neon;
 		
@@ -454,7 +455,7 @@ void keychart()
 					newmod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE);	/* We want to ignore "global" modifiers. */
 					GameConfig.input_keybinds[cursor].mod = newmod;
 
-					for (i = 0; strcmp(keybindNames[i], "end"); i++) {
+					for (i = 0; keybindNames[i] != NULL; i++) {
 						if (i == cursor)
 							continue;
 
@@ -754,7 +755,7 @@ static int input_key_event(SDLKey key, SDLMod mod, int value)
 	int noteaten = -1;
 	mod &= ~(KMOD_CAPS | KMOD_NUM | KMOD_MODE);	/* We want to ignore "global" modifiers. */
 
-	for (i = 0; strcmp(keybindNames[i], "end"); i++)
+	for (i = 0; keybindNames[i] != NULL; i++)
 		if ((GameConfig.input_keybinds[i].key == key) && (GameConfig.input_keybinds[i].mod == mod)) {
 			if (!(noteaten = input_key(i, value)))
 				break;

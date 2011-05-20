@@ -903,7 +903,7 @@ void save_keybind_t_array(const char *tag, keybind_t * keybinds, int size)
 	autostr_append(savestruct_autostr, "<keybinds cmd=%d>\n", size);
 	int i;
 	for (i = 0; i < size; i++) {
-		if (!strcmp(keybinds[i].name, "end"))
+		if (keybinds[i].name == NULL)
 			break;
 
 		autostr_append(savestruct_autostr, "%s %d %d\n", keybinds[i].name, keybinds[i].key, keybinds[i].mod);
