@@ -39,6 +39,7 @@ struct img {
    const char *f;
    int xoff;
    int yoff;
+   int placed;
 };
 
 struct img *images;
@@ -48,13 +49,15 @@ SDL_Surface *atlas_surf;
 const char *output_path;
 FILE *atlas_file;
 
-int atlas_width = 1024;
-int atlas_height = 1024;
+int atlas_width;
+int atlas_height;
 int atlas_num = 1;
 
 int total_image_area = 0;
 
 int last_y = 0;
+
+int improve_packing = 0;
 
 static void init_sdl(void)
 {
@@ -126,7 +129,7 @@ static int check_position(int x, int y, SDL_Surface *s)
 
 	// Check limit at bottom
 	if (y + s->h >= atlas_height) {
-		fprintf(stderr, "%dx%d atlas is too small, creating another image.\n", atlas_width, atlas_height);
+	//	fprintf(stderr, "%dx%d atlas is too small, creating another image.\n", atlas_width, atlas_height);
 		return 2;
 	}
 
@@ -140,10 +143,30 @@ static void create_atlas()
 	int max_h = 0;
 	int i;
 
-	for (i = 0; i < image_count; i++) {
+	for (i = 0; i < image_count;) {
+		// Bypass already placed images
+		if (images[i].placed) {
+			i++;
+			continue;
+		}
+
+		// Select image
+		int check = 0;
+		int select;
+
+		for (select = i; select < image_count; select++) {
+			if (images[select].placed)
+				continue;
+
+			check = check_position(x, y, images[select].s);
+			if (!check)
+				break;
+
+			if (!improve_packing)
+				break;
+		}
+
 		// Place image
-		int check = check_position(x, y, images[i].s);
-		  
 		if (check == 2) {
 			// Create new atlas
 			x = 0;
@@ -153,25 +176,22 @@ static void create_atlas()
 			atlas_num++;
 			init_output(atlas_num);
 
-			// Loop again
-			i--;
 			continue;
 		} else if (check == 1)	{
 			next_line(&x, &y, &max_h);
 
-			// Loop again
-			i--;
 			continue;
 		}
 
-		place_image_at(x, y, &images[i]);
+		place_image_at(x, y, &images[select]);
+		images[select].placed = 1;
 
 		// Update max height for this line
-		if (max_h < images[i].s->h)
-			max_h = images[i].s->h;
+		if (max_h < images[select].s->h)
+			max_h = images[select].s->h;
 
 		// Compute next position for image
-		x += images[i].s->w + 1;
+		x += images[select].s->w + 1;
 		last_y = y + max_h;
 	}
 
@@ -233,6 +253,8 @@ void load_images()
 		SDL_SetColorKey(images[i].s, 0, 0);
 		
 		get_offset_for_image(&images[i]);
+
+		images[i].placed = 0;
 	}
 }
 
