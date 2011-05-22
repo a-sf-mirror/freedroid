@@ -1287,6 +1287,9 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.lazyload = 1;
 	GameConfig.show_item_labels = 0;
 	GameConfig.last_edited_level = -1;
+	GameConfig.screen_width = 800;
+	GameConfig.screen_height = 600;
+	GameConfig.fullscreen_on = FALSE;
 }
 
 /** 
