@@ -57,7 +57,7 @@ int total_image_area = 0;
 
 int last_y = 0;
 
-int improve_packing = 0;
+int improve_packing = 1;
 
 static void init_sdl(void)
 {
