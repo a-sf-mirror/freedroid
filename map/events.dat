@@ -165,6 +165,7 @@ Name=_"Escort Tux N-e1-outer"
 Trigger at label="N-exit-1-outer"
 Silent=1
 LuaCode={
+	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
 	if (has_cookie("North_greeting")) then
 		del_cookie("North_greeting")
@@ -177,6 +178,7 @@ Name=_"Escort Tux N-e2-outer"
 Trigger at label="N-exit-2-outer"
 Silent=1
 LuaCode={
+	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
 	if (has_cookie("North_greeting")) then
 		del_cookie("North_greeting")
@@ -189,6 +191,7 @@ Name=_"Escort Tux N-e3-outer"
 Trigger at label="N-exit-3-outer"
 Silent=1
 LuaCode={
+	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
 	if (has_cookie("North_greeting")) then
 		del_cookie("North_greeting")
@@ -201,6 +204,7 @@ Name=_"Escort Tux N-e4-outer"
 Trigger at label="N-exit-4-outer"
 Silent=1
 LuaCode={
+	set_rush_tux(0, "Town-TuxGuard")
 	set_rush_tux(0, "Town-NorthGateGuard")
 	if (has_cookie("North_greeting")) then
 		del_cookie("North_greeting")
