@@ -180,7 +180,22 @@ void load_all_items(void)
 		load_item_graphics(i);
 	}
 }
-	
+
+/**
+ * Free all images associated with items.
+ */
+void free_item_graphics(void)
+{
+	int i;
+	for (i = 0; i < Number_Of_Item_Types; i++) {
+		if (image_loaded(&ItemMap[i].inventory_image)) {
+			delete_image(&ItemMap[i].inventory_image);
+			delete_image(&ItemMap[i].ingame_image);
+			delete_image(&ItemMap[i].shop_image);
+		}
+	}
+}
+
 /**
  * This function loads the items image and decodes it into the multiple
  * small item surfaces.
@@ -516,6 +531,21 @@ void load_all_obstacles(void)
 	}
 
 };				// void load_all_obstacles ( void )
+
+/**
+ * Free all images associated with obstacles.
+ */
+void free_obstacle_graphics(void)
+{
+	int i;
+	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
+		if (image_loaded(&obstacle_map[i].image))
+			delete_image(&obstacle_map[i].image);
+
+		if (image_loaded(&obstacle_map[i].shadow_image))
+			delete_image(&obstacle_map[i].shadow_image);
+	}
+}
 
 /**
  * This function loads isometric floor tiles, and in OpenGL mode, generates

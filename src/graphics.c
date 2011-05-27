@@ -1171,4 +1171,11 @@ void save_screenshot(const char *filename, int width)
 	SDL_FreeSurface(NewThumbnail);
 }
 
+void reload_graphics(void)
+{
+	// Free all items and obstacles graphics. Graphics will be loaded when needed
+	free_obstacle_graphics();
+	free_item_graphics();
+}
+
 #undef _graphics_c

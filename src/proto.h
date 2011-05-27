@@ -246,10 +246,12 @@ struct image *get_obstacle_image(int);
 struct image *get_droid_portrait_image(int);
 void load_obstacle(int);
 void load_all_obstacles(void);
+void free_obstacle_graphics(void);
 struct image *get_item_shop_image(int type);
 struct image *get_item_ingame_image(int type);
 struct image *get_item_inventory_image(int type);
 void load_all_items(void);
+void free_item_graphics(void);
 void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image);
 
 // block_areas.c
@@ -275,6 +277,7 @@ void draw_rectangle(SDL_Rect *rect, int r, int g, int b, int a);
 void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, int a);
 void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 void save_screenshot(const char *filename, int width);
+void reload_graphics(void);
 
 // saveloadgame.c 
 int find_saved_games(struct dirent ***);

@@ -78,6 +78,7 @@ const char *keybindNames[] = {
 	"cheat_drop_random_item", "cheat_drop_random_magical_item",
 	"cheat_respawn_level",
 	"cheat_menu", "cheat_level_editor",
+	"cheat_reload_graphics",
 	NULL
 };				/* must terminate with NULL */
 
@@ -294,6 +295,7 @@ void input_set_default(void)
 	input_set_keybind("cheat_respawn_level", SDLK_r, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
 	input_set_keybind("cheat_level_editor", SDLK_e, KMOD_LCTRL | KMOD_LALT);
 	input_set_keybind("cheat_menu", SDLK_c, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
+	input_set_keybind("cheat_reload_graphics", SDLK_g, KMOD_LCTRL | KMOD_LALT | KMOD_LSHIFT);
 
 }
 
@@ -521,6 +523,8 @@ static int input_key(int keynum, int value)
 			DropRandomItem(Me.pos.z, Me.pos.x, Me.pos.y, 3, TRUE);
 		} else if (KEYPRESS("cheat_respawn_level")) {
 			respawn_level(Me.pos.z);
+		} else if (KEYPRESS("cheat_reload_graphics")) {
+			reload_graphics();
 		}
 	}
 
