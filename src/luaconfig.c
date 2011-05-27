@@ -49,6 +49,7 @@ enum data_type {
 	DOUBLE_TYPE,
 	STRING_TYPE,
 	INT_ARRAY,
+	FLOAT_ARRAY,
 	STRING_ARRAY
 };
 
@@ -126,6 +127,26 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 			dynarray_init((struct dynarray *)result, 1, sizeof(int));
 		}
 		break;
+	case FLOAT_ARRAY:
+		if (ltype == LUA_TTABLE) {
+			// Init a dynarray, using the lua table's length
+			dynarray_init((struct dynarray *)result, lua_objlen(L, -1), sizeof(float));
+			lua_pushnil(L);
+			// Fill the dynarray with the content of the lua table
+			while (lua_next(L, -2) != 0) {
+				if (lua_type(L, -2) == LUA_TNUMBER && lua_type(L, -1) == LUA_TNUMBER) {
+					float value = (float)lua_tonumber(L, -1);
+					dynarray_add((struct dynarray *)result, &value, sizeof(float));
+					found_and_valid = TRUE;
+				}
+				lua_pop(L, 1);
+			}
+		} else {
+			// The data is not in the lua table: initialize the dynarray
+			// with 1 empty slot (to possibly receive a default value)
+			dynarray_init((struct dynarray *)result, 1, sizeof(float));
+		}
+		break;
 	case STRING_ARRAY:
 		if (ltype == LUA_TTABLE) {
 			// Init a dynarray, using the lua table's length
@@ -183,6 +204,13 @@ static void set_value_from_default(const char *default_value, enum data_type typ
 			dynarray_add((struct dynarray *)data, &int_value, sizeof(int));
 		}
 		break;
+	case FLOAT_ARRAY:
+		// Add the default value to the dynarray
+		{
+			float float_value = atof(default_value);
+			dynarray_add((struct dynarray *)data, &float_value, sizeof(float));
+		}
+		break;
 	case STRING_ARRAY:
 		// Add the default value to the dynarray
 		if (default_value != NULL) {
@@ -214,6 +242,7 @@ static void clean_structure(struct data_spec *data_specs)
 				free (*((char **)data_specs[i].data));
 			break;
 		case INT_ARRAY:
+		case FLOAT_ARRAY:
 			dynarray_free((struct dynarray *)(data_specs[i].data));
 			break;
 		case STRING_ARRAY:
