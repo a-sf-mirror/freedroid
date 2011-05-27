@@ -228,6 +228,7 @@ void Get_Bullet_Data(char *DataPointer)
 	int BulletIndex = 0;
 
 #define NEW_BULLET_TYPE_BEGIN_STRING "** Start of new bullet specification subsection **"
+#define NEW_BULLET_TYPE_END_STRING "** End of new bullet specification subsection **"
 
 	DebugPrintf(1, "\n\nStarting to read bullet data...\n\n");
 	// At first, we must allocate memory for the droid specifications.
@@ -257,11 +258,12 @@ void Get_Bullet_Data(char *DataPointer)
 	char *BulletPointer = DataPointer;
 
 	while ((BulletPointer = strstr(BulletPointer, NEW_BULLET_TYPE_BEGIN_STRING)) != NULL) {
+		char *EndBulletSection = LocateStringInData(BulletPointer, NEW_BULLET_TYPE_END_STRING);
 		DebugPrintf(1, "\n\nFound another Bullet specification entry!  Lets add that to the others!");
 		BulletPointer++;	// to avoid doubly taking this entry
 		Bulletmap[BulletIndex].name = ReadAndMallocStringFromData(BulletPointer, "Bullet identification: \"", "\"");
-		Bulletmap[BulletIndex].phases = 1;
-		Bulletmap[BulletIndex].phase_changes_per_second = 1;
+		ReadValueFromStringWithDefault(BulletPointer, "Number of phases: ", "%d", "1", &Bulletmap[BulletIndex].phases, EndBulletSection);
+		ReadValueFromStringWithDefault(BulletPointer, "Phases per second: ", "%lf", "1", &Bulletmap[BulletIndex].phase_changes_per_second, EndBulletSection);
 		Bulletmap[BulletIndex].sound = ReadAndMallocStringFromDataOptional(BulletPointer, "Sound to play: \"", "\"");
 		BulletIndex++;
 	}
