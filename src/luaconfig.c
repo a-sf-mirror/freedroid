@@ -506,6 +506,123 @@ static int lua_tuxordering_ctor(lua_State *L)
 	return 0;
 }
 
+static int lua_obstacle_ctor(lua_State *L)
+{
+	static int obstacle_index = 0;
+	struct obstacle_spec *obstacle = &obstacle_map[obstacle_index++];
+
+	struct dynarray borders;
+	struct dynarray flags;
+	int transparency;
+	char *animation;
+	char *action;
+	int emitted_light_strength;
+	char *leveleditor_category;
+
+	char default_transparency[20];
+	sprintf(default_transparency, "%d", TRANSPARENCY_FOR_WALLS);
+
+	struct data_spec data_specs[] = {
+		{ "image_filename", NULL, STRING_TYPE, &obstacle->filename },
+		{ "label", NULL, STRING_TYPE, &obstacle->label },
+		{ "borders", "0", FLOAT_ARRAY, &borders },
+		{ "flags", "0", INT_ARRAY, &flags },
+		{ "after_smashing", "-1", INT_TYPE, &obstacle->result_type_after_smashing_once },
+		{ "emitted_light_strength", "0", INT_TYPE, &emitted_light_strength },
+		{ "transparency", default_transparency, INT_TYPE, &transparency },
+		{ "action", NULL, STRING_TYPE, &action },
+		{ "animation", NULL, STRING_TYPE, &animation },
+		{ "leveleditor_category", NULL, STRING_TYPE, &leveleditor_category },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	set_structure_from_table(L, data_specs);
+
+#define DEFAULT_BORDER 0.6
+
+	// Clear obstacle structure
+	struct image empty_image = EMPTY_IMAGE;
+	memcpy(&obstacle->image, &empty_image, sizeof(empty_image));
+	memcpy(&obstacle->shadow_image, &empty_image, sizeof(empty_image));
+	obstacle->left_border = -DEFAULT_BORDER;
+	obstacle->right_border = DEFAULT_BORDER;
+	obstacle->upper_border = -DEFAULT_BORDER;
+	obstacle->lower_border = DEFAULT_BORDER;
+
+	// Borders
+	obstacle->block_area_type = COLLISION_TYPE_NONE;
+	float *borders_array = borders.arr;
+	if (borders.size == 4) {
+		obstacle->block_area_type = COLLISION_TYPE_RECTANGLE;
+		obstacle->left_border = borders_array[0];
+		obstacle->right_border = borders_array[1];
+		obstacle->upper_border = borders_array[2];
+		obstacle->lower_border = borders_array[3];
+	}
+	dynarray_free(&borders);
+
+	obstacle->block_area_parm_1 = obstacle->right_border - obstacle->left_border;
+	obstacle->block_area_parm_2 = obstacle->lower_border - obstacle->upper_border;
+	obstacle->diaglength = sqrt(obstacle->left_border * obstacle->left_border +
+		obstacle->upper_border * obstacle->upper_border);
+
+	// Combine flags
+	obstacle->flags = 0;
+	int i;
+	int *flags_array = flags.arr;
+	for (i = 0; i < flags.size; i++)
+		obstacle->flags |= flags_array[i];
+	dynarray_free(&flags);
+
+	obstacle->emitted_light_strength = emitted_light_strength;
+	obstacle->transparent = transparency;
+	
+	// Parse action
+	obstacle->action = get_action_by_name(action);
+	free(action);
+
+	// Parse animation
+	obstacle->animate_fn = get_animation_by_name(animation);
+	free(animation);
+
+	free(leveleditor_category);
+
+	return 0;
+}
+
+/**
+ * Set obstacle flags as global lua values.
+ */
+static void init_obstacle_flags(void)
+{
+	const struct {
+		const char *name;
+		unsigned int value;
+	} flags[] = {
+		// Obstacle flags
+		{ "IS_VERTICAL", IS_VERTICAL },
+		{ "IS_HORIZONTAL", IS_HORIZONTAL },
+		{ "IS_WALL", IS_WALL },
+		{ "IS_SMASHABLE", IS_SMASHABLE },
+		{ "BLOCKS_VISION", BLOCKS_VISION_TOO },
+		{ "DROPS_RANDOM_TREASURE", DROPS_RANDOM_TREASURE },
+		{ "NEEDS_PRE_PUT", NEEDS_PRE_PUT },
+		{ "GROUND_LEVEL", GROUND_LEVEL },
+		{ "IS_WALKABLE", IS_WALKABLE },
+		{ "IS_CLICKABLE", IS_CLICKABLE },
+		{ "IS_VOLATILE", IS_VOLATILE },
+		// Obstacle transparency
+		{ "NO_TRANSPARENCY", TRANSPARENCY_NONE },
+		{ "WALLS_TRANSPARENCY", TRANSPARENCY_FOR_WALLS }
+	};
+
+	int i;
+	for (i = 0; i < sizeof(flags) / sizeof(flags[0]); i++) {
+		lua_pushinteger(global_lua_state, flags[i].value);
+		lua_setglobal(global_lua_state, flags[i].name);
+	}
+}
+
 /**
  * Add lua constructors of new data types
  */
@@ -519,6 +636,7 @@ void init_luaconfig()
 		{"tux_animation", lua_tuxanimation_ctor},
 		{"tux_rendering_config", lua_tuxrendering_config_ctor},
 		{"tux_ordering", lua_tuxordering_ctor},
+		{"obstacle", lua_obstacle_ctor},
 		{NULL, NULL}
 	};
 
@@ -526,4 +644,6 @@ void init_luaconfig()
 		lua_pushcfunction(global_lua_state, lfuncs[i].func);
 		lua_setglobal(global_lua_state, lfuncs[i].name);
 	}
+
+	init_obstacle_flags();
 }

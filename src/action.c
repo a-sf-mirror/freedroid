@@ -670,4 +670,33 @@ int check_for_items_to_pickup(level *item_lvl, int item_index)
 	return FALSE;
 }
 
+/**
+ * This function returns a pointer to the obstacle action function for the given action name.
+ * If action with the given name wasn't found it returns NULL.
+ */
+action_fptr get_action_by_name(const char *action_name)
+{
+	const struct {
+		const char *name;
+		action_fptr action;
+	} action_map[] = {
+		{ "barrel", barrel_action },
+		{ "chest", chest_open_action },
+		{ "terminal", terminal_connect_action },
+		{ "sign", sign_read_action }
+	};
+
+	if (!action_name)
+		return NULL;
+
+	int i;
+	for (i = 0; i < sizeof(action_map) / sizeof(action_map[0]); i++) {
+		if (!strcmp(action_name, action_map[i].name))
+			return action_map[i].action;
+	}
+
+	ErrorMessage(__FUNCTION__, "\nUnknown obstacle action '%s'.\n", PLEASE_INFORM, IS_FATAL, action_name);
+	return NULL;
+}
+
 #undef _action_c

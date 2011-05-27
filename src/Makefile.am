@@ -19,7 +19,6 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	lua.c luaconfig.c \
 	armor.c \
 	blocks.c \
-	block_area.c \
 	floor_tiles.c \
 	graphics.c map.c colldet.c init.c \
 	image.c \

@@ -277,3 +277,32 @@ is not really an autogun.  Instead it's something else.", PLEASE_INFORM, IS_FATA
 	
 	return TRUE;
 }
+
+/**
+ * This functions returns a pointer to the obstacle animation function for the
+ * given animation name.
+ */
+animation_fptr get_animation_by_name(const char *animation_name)
+{
+	const struct {
+		const char *name;
+		animation_fptr animation;
+	} animation_map[] = {
+		{ "door", animate_door },
+		{ "teleporter", animate_teleporter },
+		{ "autogun", animate_autogun },
+		{ "refresh",  animate_refresh }
+	};
+
+	if (!animation_name)
+		return NULL;
+
+	int i;
+	for (i = 0; i < sizeof(animation_map) / sizeof(animation_map[0]); i++) {
+		if (!strcmp(animation_name, animation_map[i].name))
+			return animation_map[i].animation;
+	}
+
+	ErrorMessage(__FUNCTION__, "\nUnknown obstacle animation '%s'.\n", PLEASE_INFORM, IS_FATAL, animation_name);
+	return NULL;
+}

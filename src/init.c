@@ -977,6 +977,10 @@ void Init_Game_Data()
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Robot_Data(Data);
 	free(Data);
+
+	// Load obstacle specifications.
+	find_file("obstacle_specs.lua", MAP_DIR, fpath, 0);
+	run_lua_file(fpath);
 };				// int Init_Game_Data ( void )
 
 char copyright[] = "\nFreedroidRPG comes with NO WARRANTY to the extent permitted by law.\n\

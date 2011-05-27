@@ -93,6 +93,7 @@ void terminal_connect_action(level *, int);
 void sign_read_action(level *sign_lvl, int sign_index);
 int clickable_obstacle_below_mouse_cursor(level **obst_lvl);
 int check_for_items_to_pickup(level *item_lvl, int item_index);
+action_fptr get_action_by_name(const char *action_name);
 
 // pathfinder.c
 int set_up_intermediate_course_between_positions(gps * curpos, moderately_finepoint * move_target, moderately_finepoint * waypoints,
@@ -253,9 +254,6 @@ struct image *get_item_inventory_image(int type);
 void load_all_items(void);
 void free_item_graphics(void);
 void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image);
-
-// block_areas.c
-void init_obstacle_data(void);
 
 // graphics.c 
 void blit_mouse_cursor(void);
@@ -817,6 +815,7 @@ int animate_door(level* obstacle_lvl, int obstacle_idx);
 int animate_teleporter(level* obstacle_lvl, int obstacle_idx);
 int animate_refresh(level* obstacle_lvl, int obstacle_idx);
 int animate_autogun(level* obstacle_lvl, int obstacle_idx);
+animation_fptr get_animation_by_name(const char *animation_name);
 
 // benchmark.c
 int benchmark(void);
