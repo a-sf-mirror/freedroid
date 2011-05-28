@@ -183,6 +183,7 @@ NO_TEXT
 LuaCode={
 	tux_says("logout","NO_WAIT")
 	npc_says(_"Closing remote connection...")
+	del_cookie("AfterTakeover_repair")
 	end_dialog()
 	hide(21, 22)
 }

@@ -62,8 +62,13 @@ LuaCode={
 			show(21)
 		end
 	else
-		npc_says(bot_name().._" is currently undamaged.", "NO_WAIT")
-		hide(20)
+		if (has_cookie("AfterTakeover_repair")) then
+			npc_says("Repair in progress.", "NO_WAIT")
+			npc_says("Logout to complete repair process.")
+		else
+			npc_says(bot_name().._" is currently undamaged.", "NO_WAIT")
+			hide(20)
+		end
 	end
 	cli_says(terminal_sub, "NO_WAIT")
 }
@@ -85,6 +90,7 @@ LuaCode={
 	del_gold(cost_materials)
 	heat_tux(cost_heat)
 	cli_says(terminal_sub, "NO_WAIT")
+	add_cookie("AfterTakeover_repair")
 	hide(20, 21)
 }
 ----------------------------------------------------------------------
