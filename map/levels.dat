@@ -33222,6 +33222,12 @@ idx=1801 type=32 data={
 idx=1813 type=32 data={
 	Please read the other sign first.
 }
+idx=1979 type=30 data={
+	HF-Gate-outer
+}
+idx=1984 type=30 data={
+	HF-Gate-inner
+}
 /obstacleextensions
 wp
 Nr.=  0 x=  41 y=  76 rnd=0	 c:  180 179
