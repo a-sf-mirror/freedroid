@@ -37,6 +37,8 @@ Sound to play: "Plasma_Pistol.ogg"
 // this is the 12-gauge shotgun bullet, showing nice spread
 ** Start of new bullet specification subsection **
 Bullet identification: "shotgun"
+Number of phases: 4
+Phases per second: 6
 Sound to play: "Single_Pulse.ogg"
 ** End of new bullet specification subsection **
 
