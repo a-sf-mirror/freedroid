@@ -189,9 +189,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24 Text=_"HFF-GateAccessServer"
+Nr=24 Text=_"HF-GateAccessServer"
 LuaCode={
-	run_subdialog("HFF-GateAccessServer.dialog")
+	run_subdialog("HF-GateAccessServer.dialog")
 }
 ----------------------------------------------------------------------
 

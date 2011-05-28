@@ -33136,7 +33136,7 @@ idx=271 type=30 data={
 	GlassWallLaserTrap02
 }
 idx=1512 type=32 data={
-	HFF-GateAccessServer
+	HF-GateAccessServer
 }
 idx=1342 type=30 data={
 	UpgradeFirmwareRoomFinal
@@ -61141,6 +61141,7 @@ t47 x27.49 y76.49
 t27 x51.94 y30.07
 t2 x89.50 y89.76
 t65 x18.01 y0.01
+t45 x58.48 y33.29
 /obsdata
 plabelinfolvl
 x=39 y=64 name="883a"
@@ -61217,6 +61218,9 @@ idx=2281 type=30 data={
 }
 idx=2280 type=30 data={
 	bot autogun
+}
+idx=2347 type=32 data={
+	HF-FirmwareUpdateServer
 }
 /obstacleextensions
 wp
