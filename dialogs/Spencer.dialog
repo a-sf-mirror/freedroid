@@ -33,10 +33,26 @@ FirstTime LuaCode={
 }
 
 EveryTime LuaCode={
+	if (has_cookie("HF-Spencer")) then
+		npc_says(_"Red Guard HQ, Spencer speaking.")
+		npc_says(_"Are you receiving me?")
+		tux_says(_"Yes.")
+		tux_says(_"Spencer, we have a problem.")
+		npc_says(_"Yes, Richard detected abnormalities with the server. Can you report anything regarding this?")
+		tux_says(_"Indeed, the server says it is a gate server, not a firmware server.")
+		npc_says(_"Bah!")
+		npc_says(_"Must prevent access to the real update server. Can you open the gate?")
+		npc_says(_"Ri ard sa... e c nn cti n *bzzzzzzzzz* bad.")
+		npc_says(_"Goo*sizzle*ck.")
+		npc_says(_"O*crack*er")
+		update_quest(_"Propagating a faulty firmware", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
+		end_dialog()
+	end
+
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"Greetings fellow Red Guard member.")
 		hide(2, 12)
-	end 
+	end
 
 	if (has_cookie("Tania_met_Pendragon") and (not has_cookie("Tania-sent-to-Doc")) and (not has_cookie("Tania-set-free"))) then
 		show(50)
@@ -291,8 +307,10 @@ LuaCode={
 	npc_says(_"With a bit of luck, you might not need to access it. We know they have their update server in the office.")
 	npc_says(_"If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks.")
 	npc_says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
+	npc_says(_"However I'll ask Richard to see if we can contact you as soon as you find the server, so we know if you're alive and there is still hope.")
+	npc_says(_"Or if things are going to go back to the the way they were befor you were taken out of stasis sleep...")
 	npc_says(_"Good luck.")
-	add_quest(_"Propagating a faulty firmware", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me.")
+	add_quest(_"Propagating a faulty firmware", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
 	hide(44) show(45)
 }
 ----------------------------------------------------------------------
