@@ -50,7 +50,7 @@ void GetThisLevelsDroids(char *section_pointer);
 
 struct animated_obstacle {
 	int index;
-	int (*animate_fn)(level* obstacle_lvl, int obstacle_idx);
+	animation_fptr animation_fn;
 	struct list_head node;
 };
 
@@ -979,10 +979,10 @@ void get_animated_obstacle_lists(struct visible_level *vis_lvl)
 	for (obstacle_index = 0; obstacle_index < MAX_OBSTACLES_ON_MAP; obstacle_index++) {
 		if (Lev->obstacle_list[obstacle_index].type == -1)
 			continue;
-		if (obstacle_map[Lev->obstacle_list[obstacle_index].type].animate_fn != NULL) {
+		if (obstacle_map[Lev->obstacle_list[obstacle_index].type].animation_fn != NULL) {
 			struct animated_obstacle *a = MyMalloc(sizeof(struct animated_obstacle));
 			a->index = obstacle_index;
-			a->animate_fn = obstacle_map[Lev->obstacle_list[obstacle_index].type].animate_fn;
+			a->animation_fn = obstacle_map[Lev->obstacle_list[obstacle_index].type].animation_fn;
 			list_add(&a->node, &vis_lvl->animated_obstacles_list);
 			continue;
 		}
@@ -1821,8 +1821,8 @@ void animate_obstacles(void)
 		}
 		// Call animation function of each animated object
 		list_for_each_entry(a, &visible_lvl->animated_obstacles_list, node) {
-			if (a->animate_fn != NULL) {
-				a->animate_fn(visible_lvl->lvl_pointer, a->index);
+			if (a->animation_fn != NULL) {
+				a->animation_fn(visible_lvl->lvl_pointer, a->index);
 			}
 		}
 	}

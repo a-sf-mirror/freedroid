@@ -578,11 +578,11 @@ static int lua_obstacle_ctor(lua_State *L)
 	obstacle->transparent = transparency;
 	
 	// Parse action
-	obstacle->action = get_action_by_name(action);
+	obstacle->action_fn = get_action_by_name(action);
 	free(action);
 
 	// Parse animation
-	obstacle->animate_fn = get_animation_by_name(animation);
+	obstacle->animation_fn = get_animation_by_name(animation);
 	free(animation);
 
 	free(leveleditor_category);

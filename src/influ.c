@@ -587,7 +587,7 @@ static void move_tux_towards_intermediate_point(void)
 		case NO_COMBO_ACTION_SET:
 			break;
 		case COMBO_ACTION_OBSTACLE:
-			obstacle_map[curShip.AllLevels[Me.mouse_move_target.z]->obstacle_list[Me.mouse_move_target_combo_action_parameter].type].action(
+			obstacle_map[curShip.AllLevels[Me.mouse_move_target.z]->obstacle_list[Me.mouse_move_target_combo_action_parameter].type].action_fn(
                     curShip.AllLevels[Me.mouse_move_target.z], 
                     Me.mouse_move_target_combo_action_parameter);
 			break;
@@ -1653,7 +1653,7 @@ static void AnalyzePlayersMouseClick()
 		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 
 		if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl)) != -1) {
-			obstacle_map[obj_lvl->obstacle_list[tmp].type].action(obj_lvl, tmp);
+			obstacle_map[obj_lvl->obstacle_list[tmp].type].action_fn(obj_lvl, tmp);
 			if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 				wait_mouseleft_release = TRUE;
 			return;

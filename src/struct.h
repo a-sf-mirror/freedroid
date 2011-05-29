@@ -812,12 +812,12 @@ typedef struct obstacle_spec {
 	char transparent;
 	
 	char *filename;
-	action_fptr action;
+	action_fptr action_fn;
 	
 	//--------------------
 	// Some obstacles have an associated animation.
 	// This property defines the function to call to animate them
-	animation_fptr animate_fn;
+	animation_fptr animation_fn;
 } obstacle_spec;
 
 struct visible_level {
