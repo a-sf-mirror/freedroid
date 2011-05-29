@@ -466,7 +466,7 @@ Name=_"Singularity-Alive-Check-S"
 Trigger at label="Singularity-Alive-Check-S"
 Silent=1
 LuaCode={
-	if (npc_dead("Singularity") and
+	if (npc_dead("Singularity")) and
 	   (not has_cookie("Singularity-dead")) then
 		add_cookie("Singularity-dead")
 		set_faction_state("singularity", "hostile")

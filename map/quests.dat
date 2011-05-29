@@ -150,7 +150,7 @@ Mission Name=_"SADD's power supply"
 Mission Name=_"Tania's Escape"
 Mission target is to kill droids with marker : 2035
 Completion LuaCode={
-	if npc_dead("Tania") then
+	if (npc_dead("Tania")) then
 		display_big_message(_"Tania died!")
 		display_console_message(_"Tania died!")
 		if (not has_cookie("Tania_surface")) then
