@@ -926,6 +926,9 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 
 		// Refresh some speed-up data structures
 		get_visible_levels();
+		// Notify level-enter events on this level
+		if (game_status == INSIDE_GAME)
+			event_level_changed(Me.pos.z);
 		
 	} else {
 		// If no real level change has occurred, everything

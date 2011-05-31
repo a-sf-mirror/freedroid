@@ -50,7 +50,8 @@ void PlayATitleFile(char *Filename);
 
 // event.c
 void GetEventTriggers(const char *EventsAndEventTriggersFilename);
-void trigger_events(void);
+void check_event_conditions(void);
+void event_level_changed(int lvl);
 const char *teleporter_square_below_mouse_cursor(void);
 void event_modify_trigger_state(const char *name, int state);
 struct event_trigger * visible_event_at_location(int x, int y, int z);

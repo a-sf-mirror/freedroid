@@ -54,7 +54,7 @@ void UpdateCountersForThisFrame();
  */
 void DoAllMovementAndAnimations(void)
 {
-	trigger_events();
+	check_event_conditions();
 
 	animate_obstacles();	// this is a pure client issue.  Not dependent upon the players.
 

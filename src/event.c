@@ -37,14 +37,29 @@
 #include "proto.h"
 
 struct event_trigger {
-	int level;
-	point position;
 
 	luacode lua_code;
 
 	char *name;
 	int enabled;		//is the trigger enabled?
 	int silent;		//do we have to advertise this trigger to the user? (teleporters..)
+
+
+	enum {
+		POSITION,
+		ENTER_LEVEL,
+	} trigger_type;
+
+	union {
+		struct {
+			int level;
+			int x;
+			int y;
+		} position;
+		struct {
+			int level;
+		} enter_level;
+	} trigger;
 };
 
 static struct dynarray event_triggers;
@@ -52,7 +67,7 @@ static struct dynarray event_triggers;
 /**
  * Delete all events and event triggers
  */
-static void clear_out_event_triggers(void)
+static void clear_out_events(void)
 {
 	// Remove existing triggers
 	int i;
@@ -73,18 +88,23 @@ static void clear_out_event_triggers(void)
 #define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"
 #define EVENT_TRIGGER_END_STRING "* End of trigger *"
 #define EVENT_TRIGGER_NAME_STRING "Name=_\""
-
-#define EVENT_TRIGGER_IS_SILENT_STRING "Silent="
 #define EVENT_TRIGGER_LUACODE_STRING "LuaCode={"
 #define EVENT_TRIGGER_LUACODE_END_STRING "}"
-#define EVENT_TRIGGER_LABEL_STRING "Trigger at label=\""
 #define EVENT_TRIGGER_ENABLED_STRING "Enable this trigger by default="
+
+// For position-based events
+#define EVENT_TRIGGER_LABEL_STRING "Trigger at label=\""
+#define EVENT_TRIGGER_IS_SILENT_STRING "Silent="
+
+// For level-enter events
+#define LEVEL_EVENT_LVLNUM_VALUE "Trigger entering level="
+
 
 /** 
  *
  *
  */
-static void decode_event_triggers(char *EventSectionPointer)
+static void load_events(char *EventSectionPointer)
 {
 	char *EventPointer;
 	char *EndOfEvent;
@@ -103,30 +123,30 @@ static void decode_event_triggers(char *EventSectionPointer)
 		s = EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1];
 		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = 0;
 
-		DebugPrintf(1, "\nStarting to read details of this event trigger section\n\n");
-
-		// Now we decode the details of this event trigger section
-		//
-
-		// Now we read in the triggering position in x and y and z coordinates
-		TempMapLabelName = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LABEL_STRING, "\"");
-		ResolveMapLabelOnShip(TempMapLabelName, &TempLocation);
-		temp.position.x = TempLocation.x;
-		temp.position.y = TempLocation.y;
-		temp.level = TempLocation.level;
-
-		free(TempMapLabelName);
+		// Determine type of event condition
+		if (TempMapLabelName = strstr(EventPointer, EVENT_TRIGGER_LABEL_STRING)) {
+			temp.trigger_type = POSITION;
+			TempMapLabelName = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LABEL_STRING, "\"");
+			ResolveMapLabelOnShip(TempMapLabelName, &TempLocation);
+			temp.trigger.position.x = TempLocation.x;
+			temp.trigger.position.y = TempLocation.y;
+			temp.trigger.position.level = TempLocation.level;
+			free(TempMapLabelName);
+			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
+						&temp.silent, EndOfEvent);
+		} else {
+			temp.trigger_type = ENTER_LEVEL;
+			ReadValueFromString(EventPointer, LEVEL_EVENT_LVLNUM_VALUE, "%d",
+						&temp.trigger.enter_level.level, EndOfEvent);
+		}
 
 		temp.name = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_NAME_STRING, "\"");
 
-		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
-					       &temp.silent, EndOfEvent);
-
 		temp.lua_code =
-		    ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
+			ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LUACODE_STRING, EVENT_TRIGGER_LUACODE_END_STRING);
 
 		ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_ENABLED_STRING, "%d", "1",
-					       &temp.enabled, EndOfEvent);
+						&temp.enabled, EndOfEvent);
 
 		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = '\0';
 
@@ -134,8 +154,7 @@ static void decode_event_triggers(char *EventSectionPointer)
 
 		dynarray_add(&event_triggers, &temp, sizeof(struct event_trigger));
 	}			// While Event trigger begin string found...
-
-};				// void decode_event_triggers ( char* EventSectionPointer )
+}
 
 /**
  * This function reads in the game events, i.e. the locations and conditions
@@ -146,43 +165,68 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
 	char *EventSectionPointer;
 	char fpath[2048];
 
-	clear_out_event_triggers();
+	clear_out_events();
 
 	find_file(EventsAndEventTriggersFilename, MAP_DIR, fpath, 0);
 	EventSectionPointer =
-	    ReadAndMallocAndTerminateFile(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
+		ReadAndMallocAndTerminateFile(fpath, "*** END OF EVENT ACTION AND EVENT TRIGGER FILE *** LEAVE THIS TERMINATOR IN HERE ***");
 
-	decode_event_triggers(EventSectionPointer);
+	load_events(EventSectionPointer);
 
 	free(EventSectionPointer);
 };
 
 /**
  *
- * This function checks for triggered events.  Those events are
+ * This function checks for triggered position-based events. Those events are
  * usually entered via the mission file and read into the appropriate
  * structures via the InitNewMission function.  Here we check, whether
  * the necessary conditions for an event are satisfied, and in case that
  * they are, we order the appropriate event to be executed.
  *
  */
-void trigger_events(void)
+void check_event_conditions(void)
 {
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
 
-		if (arr[i].level != Me.pos.z)
+		if (arr[i].trigger_type != POSITION)
 			continue;
+
+		if (arr[i].trigger.position.level != Me.pos.z)
+ 			continue;
 
 		if (!arr[i].enabled)
 			continue;
 
-		if (arr[i].position.x != (int)(Me.pos.x))
+		if (arr[i].trigger.position.x != (int)(Me.pos.x))
+ 			continue;
+
+		if (arr[i].trigger.position.y != (int)(Me.pos.y))
 			continue;
 
-		if (arr[i].position.y != (int)(Me.pos.y))
+		run_lua(arr[i].lua_code);
+	}
+}
+
+/**
+ * Trigger level-enter events for the given level
+ */
+void event_level_changed(int lvl)
+{
+	int i;
+	struct event_trigger *arr = event_triggers.arr;
+
+	for (i = 0; i < event_triggers.size; i++) {
+		if (arr[i].trigger_type != ENTER_LEVEL)
+			continue;
+
+		if (arr[i].trigger.enter_level.level != lvl)
+			continue;
+
+		if (!arr[i].enabled)
 			continue;
 
 		run_lua(arr[i].lua_code);
@@ -235,13 +279,16 @@ struct event_trigger * visible_event_at_location(int x, int y, int z)
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
 	for (i = 0; i < event_triggers.size; i++) {
-		if (z != arr[i].level)
+		if (arr[i].trigger_type != POSITION)
 			continue;
 
-		if (x != arr[i].position.x)
+		if (z != arr[i].trigger.position.level)
+ 			continue;
+
+		if (x != arr[i].trigger.position.x)
 			continue;
 
-		if (y != arr[i].position.y)
+		if (y != arr[i].trigger.position.y)
 			continue;
 
 		if (arr[i].silent)
