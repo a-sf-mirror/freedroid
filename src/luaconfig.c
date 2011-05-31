@@ -508,8 +508,7 @@ static int lua_tuxordering_ctor(lua_State *L)
 
 static int lua_obstacle_ctor(lua_State *L)
 {
-	static int obstacle_index = 0;
-	struct obstacle_spec *obstacle = &obstacle_map[obstacle_index++];
+	struct obstacle_spec obstacle;
 
 	struct dynarray borders;
 	struct dynarray flags;
@@ -523,11 +522,11 @@ static int lua_obstacle_ctor(lua_State *L)
 	sprintf(default_transparency, "%d", TRANSPARENCY_FOR_WALLS);
 
 	struct data_spec data_specs[] = {
-		{ "image_filename", NULL, STRING_TYPE, &obstacle->filename },
-		{ "label", NULL, STRING_TYPE, &obstacle->label },
+		{ "image_filename", NULL, STRING_TYPE, &obstacle.filename },
+		{ "label", NULL, STRING_TYPE, &obstacle.label },
 		{ "borders", "0", FLOAT_ARRAY, &borders },
 		{ "flags", "0", INT_ARRAY, &flags },
-		{ "after_smashing", "-1", INT_TYPE, &obstacle->result_type_after_smashing_once },
+		{ "after_smashing", "-1", INT_TYPE, &obstacle.result_type_after_smashing_once },
 		{ "emitted_light_strength", "0", INT_TYPE, &emitted_light_strength },
 		{ "transparency", default_transparency, INT_TYPE, &transparency },
 		{ "action", NULL, STRING_TYPE, &action },
@@ -542,51 +541,52 @@ static int lua_obstacle_ctor(lua_State *L)
 
 	// Clear obstacle structure
 	struct image empty_image = EMPTY_IMAGE;
-	memcpy(&obstacle->image, &empty_image, sizeof(empty_image));
-	memcpy(&obstacle->shadow_image, &empty_image, sizeof(empty_image));
-	obstacle->left_border = -DEFAULT_BORDER;
-	obstacle->right_border = DEFAULT_BORDER;
-	obstacle->upper_border = -DEFAULT_BORDER;
-	obstacle->lower_border = DEFAULT_BORDER;
+	memcpy(&obstacle.image, &empty_image, sizeof(empty_image));
+	memcpy(&obstacle.shadow_image, &empty_image, sizeof(empty_image));
+	obstacle.left_border = -DEFAULT_BORDER;
+	obstacle.right_border = DEFAULT_BORDER;
+	obstacle.upper_border = -DEFAULT_BORDER;
+	obstacle.lower_border = DEFAULT_BORDER;
 
 	// Borders
-	obstacle->block_area_type = COLLISION_TYPE_NONE;
+	obstacle.block_area_type = COLLISION_TYPE_NONE;
 	float *borders_array = borders.arr;
 	if (borders.size == 4) {
-		obstacle->block_area_type = COLLISION_TYPE_RECTANGLE;
-		obstacle->left_border = borders_array[0];
-		obstacle->right_border = borders_array[1];
-		obstacle->upper_border = borders_array[2];
-		obstacle->lower_border = borders_array[3];
+		obstacle.block_area_type = COLLISION_TYPE_RECTANGLE;
+		obstacle.left_border = borders_array[0];
+		obstacle.right_border = borders_array[1];
+		obstacle.upper_border = borders_array[2];
+		obstacle.lower_border = borders_array[3];
 	}
 	dynarray_free(&borders);
 
-	obstacle->block_area_parm_1 = obstacle->right_border - obstacle->left_border;
-	obstacle->block_area_parm_2 = obstacle->lower_border - obstacle->upper_border;
-	obstacle->diaglength = sqrt(obstacle->left_border * obstacle->left_border +
-		obstacle->upper_border * obstacle->upper_border);
+	obstacle.block_area_parm_1 = obstacle.right_border - obstacle.left_border;
+	obstacle.block_area_parm_2 = obstacle.lower_border - obstacle.upper_border;
+	obstacle.diaglength = sqrt(obstacle.left_border * obstacle.left_border +
+		obstacle.upper_border * obstacle.upper_border);
 
 	// Combine flags
-	obstacle->flags = 0;
+	obstacle.flags = 0;
 	int i;
 	int *flags_array = flags.arr;
 	for (i = 0; i < flags.size; i++)
-		obstacle->flags |= flags_array[i];
+		obstacle.flags |= flags_array[i];
 	dynarray_free(&flags);
 
-	obstacle->emitted_light_strength = emitted_light_strength;
-	obstacle->transparent = transparency;
+	obstacle.emitted_light_strength = emitted_light_strength;
+	obstacle.transparent = transparency;
 	
 	// Parse action
-	obstacle->action_fn = get_action_by_name(action);
+	obstacle.action_fn = get_action_by_name(action);
 	free(action);
 
 	// Parse animation
-	obstacle->animation_fn = get_animation_by_name(animation);
+	obstacle.animation_fn = get_animation_by_name(animation);
 	free(animation);
 
 	free(leveleditor_category);
 
+	dynarray_add(&obstacle_map, &obstacle, sizeof(obstacle_spec));
 	return 0;
 }
 

@@ -103,9 +103,9 @@ void leveleditor_toolbar_mousewheeldown(SDL_Event * event, struct leveleditor_wi
 
 static void print_obstacle_info(char *str, int obs_idx)
 {
-	int flags = obstacle_map[obs_idx].flags;
+	int flags = get_obstacle_spec(obs_idx)->flags;
 
-	sprintf(str, "Obs. number %d, %s\n", obs_idx, obstacle_map[obs_idx].filename);
+	sprintf(str, "Obs. number %d, %s\n", obs_idx, get_obstacle_spec(obs_idx)->filename);
 
 	if (flags & IS_HORIZONTAL)
 		strcat(str, "- IS_HORIZONTAL\n");

@@ -192,10 +192,11 @@ void CollectAutomapData(void)
 				int obstacle_start_y;
 				int obstacle_end_y;
 
-				round_automap_pos(our_obstacle->pos.x + obstacle_map[our_obstacle->type].left_border, our_obstacle->pos.x + obstacle_map[our_obstacle->type].right_border,
+				obstacle_spec *obstacle_spec = get_obstacle_spec(our_obstacle->type);
+				round_automap_pos(our_obstacle->pos.x + obstacle_spec->left_border, our_obstacle->pos.x + obstacle_spec->right_border,
 						&obstacle_start_x, &obstacle_end_x);
 
-				round_automap_pos(our_obstacle->pos.y + obstacle_map[our_obstacle->type].upper_border, our_obstacle->pos.y + obstacle_map[our_obstacle->type].lower_border,
+				round_automap_pos(our_obstacle->pos.y + obstacle_spec->upper_border, our_obstacle->pos.y + obstacle_spec->lower_border,
 						&obstacle_start_y, &obstacle_end_y);
 
 				if (obstacle_start_x < 0)
@@ -222,12 +223,12 @@ void CollectAutomapData(void)
 				for (a = obstacle_start_x; a <=  obstacle_end_x; a++) {
 					for (b = obstacle_start_y; b <=  obstacle_end_y; b++) {
 
-						if (obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_RECTANGLE) {
+						if (obstacle_spec->block_area_type == COLLISION_TYPE_RECTANGLE) {
 
-							if (obstacle_map[our_obstacle->type].block_area_parm_1 > 0.80) {
+							if (obstacle_spec->block_area_parm_1 > 0.80) {
 									Me.Automap[level][b][a] |= EW_WALL_BIT;
 							}
-							if (obstacle_map[our_obstacle->type].block_area_parm_2 > 0.80) {
+							if (obstacle_spec->block_area_parm_2 > 0.80) {
 								Me.Automap[level][b][a] |= NS_WALL_BIT;
 							}
 						}
@@ -255,11 +256,12 @@ void update_obstacle_automap(int z, obstacle *our_obstacle)
 	int obstacle_start_y;
 	int obstacle_end_y;
 
-	round_automap_pos(our_obstacle->pos.x + obstacle_map[our_obstacle->type].left_border, 
-			our_obstacle->pos.x + obstacle_map[our_obstacle->type].right_border, &obstacle_start_x, &obstacle_end_x);
+	obstacle_spec *obstacle_spec = get_obstacle_spec(our_obstacle->type);
+	round_automap_pos(our_obstacle->pos.x + obstacle_spec->left_border,
+			our_obstacle->pos.x + obstacle_spec->right_border, &obstacle_start_x, &obstacle_end_x);
 
-	round_automap_pos(our_obstacle->pos.y + obstacle_map[our_obstacle->type].upper_border,
-			our_obstacle->pos.y + obstacle_map[our_obstacle->type].lower_border, &obstacle_start_y, &obstacle_end_y);
+	round_automap_pos(our_obstacle->pos.y + obstacle_spec->upper_border,
+			our_obstacle->pos.y + obstacle_spec->lower_border, &obstacle_start_y, &obstacle_end_y);
 
 	if (obstacle_start_x < 0)
 		obstacle_start_x = 0;

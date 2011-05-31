@@ -73,7 +73,7 @@ static void remove_volatile_obstacles(int level_num)
 		int obstacle_type = curShip.AllLevels[level_num]->obstacle_list[i].type;
 		if (obstacle_type == -1)
 			continue;
-		if (obstacle_map[obstacle_type].flags & IS_VOLATILE)
+		if (get_obstacle_spec(obstacle_type)->flags & IS_VOLATILE)
 			del_obstacle(&curShip.AllLevels[level_num]->obstacle_list[i]);
 	}
 }
@@ -843,7 +843,8 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 
 		target_obstacle = &(BoxLevel->obstacle_list[target_idx]);
 
-		if (!(obstacle_map[target_obstacle->type].flags & IS_SMASHABLE))
+		obstacle_spec *obstacle_spec = get_obstacle_spec(target_obstacle->type);
+		if (!(obstacle_spec->flags & IS_SMASHABLE))
 			continue;
 
 		// Now we check if the item really was close enough to the strike target.
@@ -881,7 +882,7 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		blast_start_pos.y = target_obstacle->pos.y;
 
 		int obstacle_drops_treasure
-			= obstacle_map[target_obstacle->type].flags & DROPS_RANDOM_TREASURE;
+			= obstacle_spec->flags & DROPS_RANDOM_TREASURE;
 
 		// Let the automap know that we've updated things
 		update_obstacle_automap(level, target_obstacle);
@@ -891,10 +892,10 @@ static int smash_obstacles_only_on_tile(float x, float y, int level, int map_x, 
 		// then we'll just delete the obstacle in question entirely.  For this we got a standard function to
 		// safely do it and not make some errors into the glue structure or obstacles lists...
 		//
-		if (obstacle_map[target_obstacle->type].result_type_after_smashing_once == (-1)) {
+		if (obstacle_spec->result_type_after_smashing_once == (-1)) {
 			del_obstacle(target_obstacle);
 		} else {
-			target_obstacle->type = obstacle_map[target_obstacle->type].result_type_after_smashing_once;
+			target_obstacle->type = obstacle_spec->result_type_after_smashing_once;
 		}
 
 		// Drop items after destroying the obstacle, in order to avoid collisions
@@ -981,10 +982,11 @@ void get_animated_obstacle_lists(struct visible_level *vis_lvl)
 	for (obstacle_index = 0; obstacle_index < MAX_OBSTACLES_ON_MAP; obstacle_index++) {
 		if (Lev->obstacle_list[obstacle_index].type == -1)
 			continue;
-		if (obstacle_map[Lev->obstacle_list[obstacle_index].type].animation_fn != NULL) {
+		animation_fptr animation_fn = get_obstacle_spec(Lev->obstacle_list[obstacle_index].type)->animation_fn;
+		if (animation_fn != NULL) {
 			struct animated_obstacle *a = MyMalloc(sizeof(struct animated_obstacle));
 			a->index = obstacle_index;
-			a->animation_fn = obstacle_map[Lev->obstacle_list[obstacle_index].type].animation_fn;
+			a->animation_fn = animation_fn;
 			list_add(&a->node, &vis_lvl->animated_obstacles_list);
 			continue;
 		}

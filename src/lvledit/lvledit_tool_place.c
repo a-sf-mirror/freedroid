@@ -379,7 +379,7 @@ static void pick_walls(int windex)
 		break;
 
 	default:
-		if (obstacle_map[windex].flags & IS_HORIZONTAL) {
+		if (get_obstacle_spec(windex)->flags & IS_HORIZONTAL) {
 			state.l_type.h = windex;
 			state.l_type.v = windex - 1;
 		}
@@ -396,7 +396,7 @@ static void pick_walls(int windex)
  */
 static int horizontal_wall(int type)
 {
-	return (obstacle_map[type].flags & IS_HORIZONTAL);
+	return (get_obstacle_spec(type)->flags & IS_HORIZONTAL);
 }
 
 /**
@@ -405,7 +405,7 @@ static int horizontal_wall(int type)
  */
 static int vertical_wall(int type)
 {
-	return (obstacle_map[type].flags & IS_VERTICAL);
+	return (get_obstacle_spec(type)->flags & IS_VERTICAL);
 }
 
 /**

@@ -104,7 +104,7 @@ static inline float calc_squared_distance_seg_point_normalized(float x1, float y
  */
 int WalkablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx)
 {
-	if (obstacle_map[obs->type].flags & IS_WALKABLE)
+	if (get_obstacle_spec(obs->type)->flags & IS_WALKABLE)
 		return TRUE;
 
 	if (this->next)
@@ -121,7 +121,7 @@ colldet_filter WalkableWithMarginPassFilter = { WalkablePassFilterCallback, NULL
  */
 int FlyablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx)
 {
-	if (obstacle_map[obs->type].flags & GROUND_LEVEL)
+	if (get_obstacle_spec(obs->type)->flags & GROUND_LEVEL)
 		return TRUE;
 
 	if (this->next)
@@ -138,7 +138,7 @@ colldet_filter FlyablePassFilter = { FlyablePassFilterCallback, NULL, 0, NULL };
  */
 int VisiblePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx)
 {
-	if (!(obstacle_map[obs->type].flags & BLOCKS_VISION_TOO))
+	if (!(get_obstacle_spec(obs->type)->flags & BLOCKS_VISION_TOO))
 		return TRUE;
 
 	if (this->next)
@@ -317,7 +317,8 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 				// If the obstacle doesn't even have a collision rectangle, then
 				// of course it's easy, cause then there can't be any collision
 				//
-				if (obstacle_map[our_obs->type].block_area_type == COLLISION_TYPE_NONE)
+				obstacle_spec *obstacle_spec = get_obstacle_spec(our_obs->type);
+				if (obstacle_spec->block_area_type == COLLISION_TYPE_NONE)
 					continue;
 
 				// Filter out some obstacles, if asked
@@ -327,11 +328,11 @@ static int dlc_on_one_level(int x_tile_start, int x_tile_end, int y_tile_start, 
 				// So we have our obstacle 
 
 				// Check the flags of both points against the rectangle of the object
-				moderately_finepoint rect1 = { our_obs->pos.x + obstacle_map[our_obs->type].left_border,
-					our_obs->pos.y + obstacle_map[our_obs->type].upper_border
+				moderately_finepoint rect1 = { our_obs->pos.x + obstacle_spec->left_border,
+					our_obs->pos.y + obstacle_spec->upper_border
 				};
-				moderately_finepoint rect2 = { our_obs->pos.x + obstacle_map[our_obs->type].right_border,
-					our_obs->pos.y + obstacle_map[our_obs->type].lower_border
+				moderately_finepoint rect2 = { our_obs->pos.x + obstacle_spec->right_border,
+					our_obs->pos.y + obstacle_spec->lower_border
 				};
 
 				// When DLC is called by the pathfinder, we grow a bit the obstacle's size.
@@ -560,14 +561,15 @@ int MoveOutOfObstacle(float *posX, float *posY, int posZ, obstacle * ThisObstacl
 	enum { RIGHT, DOWN, LEFT, TOP };
 	unsigned int i;
 	moderately_finepoint new_pos = { 0.5, 0.5 };
+	obstacle_spec *obstacle_spec = get_obstacle_spec(ThisObstacle->type);
 
 	// Construct a sorted list of distance between character's position and the rectangle's edges
 	//
-	moderately_finepoint rect1 = { ThisObstacle->pos.x + obstacle_map[ThisObstacle->type].left_border,
-		ThisObstacle->pos.y + obstacle_map[ThisObstacle->type].upper_border
+	moderately_finepoint rect1 = { ThisObstacle->pos.x + obstacle_spec->left_border,
+		ThisObstacle->pos.y + obstacle_spec->upper_border
 	};
-	moderately_finepoint rect2 = { ThisObstacle->pos.x + obstacle_map[ThisObstacle->type].right_border,
-		ThisObstacle->pos.y + obstacle_map[ThisObstacle->type].lower_border
+	moderately_finepoint rect2 = { ThisObstacle->pos.x + obstacle_spec->right_border,
+		ThisObstacle->pos.y + obstacle_spec->lower_border
 	};
 
 	struct dist_elt dist_arr[] = { {rect2.x - (*posX), RIGHT},
@@ -661,16 +663,17 @@ int EscapeFromObstacle(float *posX, float *posY, int posZ, colldet_filter * filt
 				// If the obstacle doesn't even have a collision rectangle, then
 				// of course it's easy, cause then there can't be any collision
 				//
-				if (obstacle_map[our_obs->type].block_area_type == COLLISION_TYPE_NONE)
+				obstacle_spec *obstacle_spec = get_obstacle_spec(our_obs->type);
+				if (obstacle_spec->block_area_type == COLLISION_TYPE_NONE)
 					continue;
 
 				// Now if the position lies inside the collision rectangle, then there's
 				// a collision.
 				//
-				if ((*posX > our_obs->pos.x + obstacle_map[our_obs->type].left_border) &&
-				    (*posX < our_obs->pos.x + obstacle_map[our_obs->type].right_border) &&
-				    (*posY > our_obs->pos.y + obstacle_map[our_obs->type].upper_border) &&
-				    (*posY < our_obs->pos.y + obstacle_map[our_obs->type].lower_border)) {
+				if ((*posX > our_obs->pos.x + obstacle_spec->left_border) &&
+				    (*posX < our_obs->pos.x + obstacle_spec->right_border) &&
+				    (*posY > our_obs->pos.y + obstacle_spec->upper_border) &&
+				    (*posY < our_obs->pos.y + obstacle_spec->lower_border)) {
 					// Find a new position for the character
 					return MoveOutOfObstacle(posX, posY, posZ, our_obs, filter);
 				}

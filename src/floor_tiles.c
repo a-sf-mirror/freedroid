@@ -61,10 +61,11 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 		if (o->type == -1)
 			continue;
 
-		x_min = floor(o->pos.x + obstacle_map[o->type].left_border);
-		x_max = floor(o->pos.x + obstacle_map[o->type].right_border);
-		y_min = floor(o->pos.y + obstacle_map[o->type].upper_border);
-		y_max = floor(o->pos.y + obstacle_map[o->type].lower_border);
+		obstacle_spec *spec = get_obstacle_spec(o->type);
+		x_min = floor(o->pos.x + spec->left_border);
+		x_max = floor(o->pos.x + spec->right_border);
+		y_min = floor(o->pos.y + spec->upper_border);
+		y_max = floor(o->pos.y + spec->lower_border);
 
 		for (x = x_min; x <= x_max; x++) {
 			for (y = y_min; y <= y_max; y++) {

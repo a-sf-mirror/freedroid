@@ -77,4 +77,9 @@ void del_obstacle(obstacle *o)
 	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
 }
 
+obstacle_spec *get_obstacle_spec(int index)
+{
+	return (obstacle_spec *)obstacle_map.arr + index;
+}
+
 #undef _obstacle_c

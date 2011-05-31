@@ -726,7 +726,7 @@ static void prepare_text_window_content(struct auto_string *str)
 			gps obst_vpos;
 			update_virtual_position(&obst_vpos, &(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].pos), Me.pos.z);
 			if (obst_vpos.x != -1) {
-				const char *label =  _(obstacle_map[obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type].label);
+				const char *label =  _(get_obstacle_spec(obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type)->label);
 				if (!label) {
 					ErrorMessage(__FUNCTION__, "Obstacle type %d is clickable, and as such requires a label to be displayed on mouseover.\n", PLEASE_INFORM, IS_WARNING_ONLY, obj_lvl->obstacle_list[index_of_obst_below_mouse_cursor].type);
 					label = "No label for this obstacle";

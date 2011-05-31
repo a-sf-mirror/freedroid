@@ -37,8 +37,7 @@
 #include "lvledit/lvledit_widgets.h"
 #include "lvledit/lvledit_object_lists.h"
 
-static int all_obstacles_array[NUMBER_OF_OBSTACLE_TYPES + 1];
-static int *all_obstacles_list = all_obstacles_array;
+static int *all_obstacles_list = NULL;
 
 typedef struct {
 	char *name;
@@ -285,7 +284,8 @@ void leveleditor_init_widgets()
 	build_leveleditor_tile_lists();
 
 	// Obstacles
-	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++)
+	all_obstacles_list = MyMalloc(sizeof(int) * (obstacle_map.size + 1));
+	for (i = 0; i < obstacle_map.size; i++)
 		all_obstacles_list[i] = i;
 	all_obstacles_list[i] = -1;
 

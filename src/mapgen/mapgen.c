@@ -572,9 +572,10 @@ void mapgen_gift(struct roominfo *r)
 		r->x + r->w / 2, r->y + r->h - 1}
 	};
 
-	if (mapgen_get_tile(positions[pos].x + dx[pos], positions[pos].y + dy[pos]) == TILE_WALL) { 
-		positions[pos].x += obstacle_map[gifts[pos]].right_border;
-		positions[pos].y += obstacle_map[gifts[pos]].lower_border;
+	if (mapgen_get_tile(positions[pos].x + dx[pos], positions[pos].y + dy[pos]) == TILE_WALL) {
+		obstacle_spec *spec = get_obstacle_spec(gifts[pos]);
+		positions[pos].x += spec->right_border;
+		positions[pos].y += spec->lower_border;
 		mapgen_add_obstacle(positions[pos].x, positions[pos].y, gifts[pos]);
 	}
 }

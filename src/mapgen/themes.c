@@ -31,8 +31,8 @@
 #include "mapgen/themes.h"
 
 #define RAND_THEME(t)	t[MyRandom(sizeof(t) / sizeof(t[0]) - 1)]
-#define OBSTACLE_DIM_X(x)	ceil(obstacle_map[x].right_border - obstacle_map[x].left_border)
-#define OBSTACLE_DIM_Y(x)	ceil(obstacle_map[x].lower_border - obstacle_map[x].upper_border)
+#define OBSTACLE_DIM_X(x)	ceil(get_obstacle_spec(x)->right_border - get_obstacle_spec(x)->left_border)
+#define OBSTACLE_DIM_Y(x)	ceil(get_obstacle_spec(x)->lower_border - get_obstacle_spec(x)->upper_border)
 
 static void apply_default_theme(int, int, int);
 static void apply_metal_theme(int, int, int);

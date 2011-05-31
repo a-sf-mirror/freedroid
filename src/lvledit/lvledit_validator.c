@@ -1202,7 +1202,8 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 			continue;
 		}
 
-		border = o->pos.x + obstacle_map[o->type].left_border;
+		obstacle_spec *obstacle_spec = get_obstacle_spec(o->type);
+		border = o->pos.x + obstacle_spec->left_border;
 		if (border < 0 && l->jump_target_west != -1) {
 			struct obstacle_excpt_data to_check =
 			    { 'W', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
@@ -1214,7 +1215,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 			}
 		}
 
-		border = o->pos.x + obstacle_map[o->type].right_border;
+		border = o->pos.x + obstacle_spec->right_border;
 		if (border > max_x && l->jump_target_east != -1) {
 			struct obstacle_excpt_data to_check =
 			    { 'E', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
@@ -1226,7 +1227,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 			}
 		}
 
-		border = o->pos.y + obstacle_map[o->type].upper_border;
+		border = o->pos.y + obstacle_spec->upper_border;
 		if (border < 0 && l->jump_target_north != -1) {
 			struct obstacle_excpt_data to_check =
 			    { 'N', {o->pos.x, o->pos.y, l->levelnum}, o->type, border };
@@ -1238,7 +1239,7 @@ static void lvlval_obstacles_execute(struct level_validator *this, struct lvlval
 			}
 		}
 
-		border = o->pos.y + obstacle_map[o->type].lower_border;
+		border = o->pos.y + obstacle_spec->lower_border;
 		if (border > max_y && l->jump_target_south != -1) {
 
 			struct obstacle_excpt_data to_check =

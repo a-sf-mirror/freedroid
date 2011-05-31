@@ -1278,9 +1278,6 @@ enum obstacle_types {
 	ISO_BOTLINE_08_E,
 	ISO_CRUSHED_476,
 	ISO_BROKEN_GLASS_WALL_2,
-
-
-	NUMBER_OF_OBSTACLE_TYPES
 };
 
 enum {

@@ -583,18 +583,19 @@ static void move_tux_towards_intermediate_point(void)
 
 		/* We might have a combo_action, that can occur on the end of any
 		 * course, like e.g. open a chest or pick up some item. */
+		level *lvl = curShip.AllLevels[Me.mouse_move_target.z];
 		switch (Me.mouse_move_target_combo_action_type) {
 		case NO_COMBO_ACTION_SET:
 			break;
 		case COMBO_ACTION_OBSTACLE:
-			obstacle_map[curShip.AllLevels[Me.mouse_move_target.z]->obstacle_list[Me.mouse_move_target_combo_action_parameter].type].action_fn(
-                    curShip.AllLevels[Me.mouse_move_target.z], 
+			get_obstacle_spec(lvl->obstacle_list[Me.mouse_move_target_combo_action_parameter].type)->action_fn(
+                    lvl,
                     Me.mouse_move_target_combo_action_parameter);
 			break;
 		case COMBO_ACTION_PICK_UP_ITEM:
 			// If Tux arrived at destination, pick up the item and give it to the player
-			if (check_for_items_to_pickup(curShip.AllLevels[Me.mouse_move_target.z], Me.mouse_move_target_combo_action_parameter)) {
-				item *it = &curShip.AllLevels[Me.mouse_move_target.z]->ItemList[Me.mouse_move_target_combo_action_parameter];
+			if (check_for_items_to_pickup(lvl, Me.mouse_move_target_combo_action_parameter)) {
+				item *it = &lvl->ItemList[Me.mouse_move_target_combo_action_parameter];
 
 				if (GameConfig.Inventory_Visible) {
 					// Special case: when the inventory screen is open, and there
@@ -1653,7 +1654,7 @@ static void AnalyzePlayersMouseClick()
 		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 
 		if ((tmp = clickable_obstacle_below_mouse_cursor(&obj_lvl)) != -1) {
-			obstacle_map[obj_lvl->obstacle_list[tmp].type].action_fn(obj_lvl, tmp);
+			get_obstacle_spec(obj_lvl->obstacle_list[tmp].type)->action_fn(obj_lvl, tmp);
 			if (Me.mouse_move_target_combo_action_type != NO_COMBO_ACTION_SET)
 				wait_mouseleft_release = TRUE;
 			return;

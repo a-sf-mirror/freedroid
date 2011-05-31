@@ -64,7 +64,7 @@ static void find_dropable_position_near_chest(float *item_x, float *item_y, int 
 	*item_y = Me.pos.y;
 
 	// Step 1: randomly choose one of 16 main 22.5° directions around the chest
-	float obs_diag = obstacle_map[obst_level->obstacle_list[obst_index].type].diaglength;
+	float obs_diag = get_obstacle_spec(obst_level->obstacle_list[obst_index].type)->diaglength;
 	offset_vector.x = obs_diag + 0.5;
 	offset_vector.y = 0.0;
 	RotateVectorByAngle(&offset_vector, (float)MyRandom(16) * 22.5);
@@ -234,7 +234,7 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 		obst_index = ((int *)(lvl->map[y][x].glued_obstacles.arr))[i];
 		
 		if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
-			if (obstacle_map[lvl->obstacle_list[obst_index].type].flags & IS_CLICKABLE) {
+			if (get_obstacle_spec(lvl->obstacle_list[obst_index].type)->flags & IS_CLICKABLE) {
 				*obst_lvl = lvl;
 				return obst_index;
 			} else {
@@ -253,18 +253,19 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
  */
 static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 	gps obst_vpos;
+	obstacle_spec *obstacle_spec = get_obstacle_spec(obst_lvl->obstacle_list[obst_index].type);
+
 	update_virtual_position(&obst_vpos, &(obst_lvl->obstacle_list[obst_index].pos), Me.pos.z);
-	int obst_type = obst_lvl->obstacle_list[obst_index].type;
-    if (calc_distance(Me.pos.x, Me.pos.y, obst_vpos.x, obst_vpos.y)
-		<= (obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0 + 0.5) {
-    	// Maybe a combo_action has made us come here and open the chest.  Then of
-    	// course we can remove the combo action setting now...
-    	//
-    	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
-    	Me.mouse_move_target_combo_action_parameter = -1;
-        return 1;
-    }	
-    
+	if (calc_distance(Me.pos.x, Me.pos.y, obst_vpos.x, obst_vpos.y)
+		<= (obstacle_spec->block_area_parm_1 * sqrt(2)) / 2.0 + 0.5) {
+		// Maybe a combo_action has made us come here and open the chest.  Then of
+		// course we can remove the combo action setting now...
+		//
+		Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+		Me.mouse_move_target_combo_action_parameter = -1;
+		return 1;
+	}
+
 	// We set up a course, that will lead us directly to the barrel, that we are
 	// supposed to smash (upon arrival, later).
 	//
@@ -285,8 +286,8 @@ static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 	step_vector.y = Me.pos.y - obst_vpos.y;
 	vec_len = vect_len(step_vector);
 
-	step_vector.x *= ((obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
-	step_vector.y *= ((obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
+	step_vector.x *= ((obstacle_spec->block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
+	step_vector.y *= ((obstacle_spec->block_area_parm_1 * sqrt(2)) / 2.0 + 0.05) / vec_len;
 
 	for (i = 0; i < 8; i++) {
 		if (DirectLineColldet(Me.pos.x, Me.pos.y, obst_vpos.x, obst_vpos.y, Me.pos.z, &WalkablePassFilter)) {
@@ -330,8 +331,8 @@ static int reach_obstacle_from_any_direction(level *obst_lvl, int obst_index) {
 	moderately_finepoint point_near_obst, point_away_from_obst;
 
 	// half-size of the barrel
-	moderately_finepoint half_size = { (obstacle_map[obst_type].block_area_parm_1 * sqrt(2)) / 2.0,
-		(obstacle_map[obst_type].block_area_parm_2 * sqrt(2)) / 2.0
+	moderately_finepoint half_size = { (obstacle_spec->block_area_parm_1 * sqrt(2)) / 2.0,
+		(obstacle_spec->block_area_parm_2 * sqrt(2)) / 2.0
 	};
 
 	for (i = 0; i < 8; i++) {
@@ -403,18 +404,19 @@ static int reach_obstacle_from_specific_direction(level *obst_lvl, int obst_inde
 	Me.mouse_move_target_combo_action_parameter = obst_index;
 	int obst_type = obst_lvl->obstacle_list[obst_index].type;
 
+	obstacle_spec *spec = get_obstacle_spec(obst_type);
 	switch (direction) {
 	case EAST:
-		Me.mouse_move_target.x += obstacle_map[obst_type].block_area_parm_1;
+		Me.mouse_move_target.x += spec->block_area_parm_1;
 		break;
 	case SOUTH:
-		Me.mouse_move_target.y += obstacle_map[obst_type].block_area_parm_2;
+		Me.mouse_move_target.y += spec->block_area_parm_2;
 		break;
 	case WEST:
-		Me.mouse_move_target.x -= obstacle_map[obst_type].block_area_parm_1;
+		Me.mouse_move_target.x -= spec->block_area_parm_1;
 		break;
 	case NORTH:
-		Me.mouse_move_target.y -= obstacle_map[obst_type].block_area_parm_2;
+		Me.mouse_move_target.y -= spec->block_area_parm_2;
 		break;
 	default:
 		ErrorMessage(__FUNCTION__, "Invalid direction!!", PLEASE_INFORM, IS_FATAL);

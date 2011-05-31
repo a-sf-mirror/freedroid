@@ -979,9 +979,10 @@ void Init_Game_Data()
 	free(Data);
 
 	// Load obstacle specifications.
+	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));
 	find_file("obstacle_specs.lua", MAP_DIR, fpath, 0);
 	run_lua_file(fpath);
-};				// int Init_Game_Data ( void )
+}
 
 char copyright[] = "\nFreedroidRPG comes with NO WARRANTY to the extent permitted by law.\n\
 You may redistribute copies of FreedroidRPG\n\

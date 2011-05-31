@@ -329,13 +329,14 @@ void blit_obstacle_collision_rectangle(obstacle * our_obstacle)
 	update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
 
 	// If there is no collision rectangle to draw, we are done
-	if (obstacle_map[our_obstacle->type].block_area_type == COLLISION_TYPE_NONE)
+	obstacle_spec *spec = get_obstacle_spec(our_obstacle->type);
+	if (spec->block_area_type == COLLISION_TYPE_NONE)
 		return;
 
-	x1 = vpos.x + obstacle_map[our_obstacle->type].left_border;
-	y1 = vpos.y + obstacle_map[our_obstacle->type].upper_border;
-	x2 = vpos.x + obstacle_map[our_obstacle->type].right_border;
-	y2 = vpos.y + obstacle_map[our_obstacle->type].lower_border;
+	x1 = vpos.x + spec->left_border;
+	y1 = vpos.y + spec->upper_border;
+	x2 = vpos.x + spec->right_border;
+	y2 = vpos.y + spec->lower_border;
 
 	translate_map_point_to_screen_pixel(x1, y1, &r1, &c1);
 	translate_map_point_to_screen_pixel(x1, y2, &r2, &c2);
@@ -360,7 +361,7 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 	float r, g, b, a;
 	gps pos;
 
-	if ((o->type <= -1) || (o->type >= NUMBER_OF_OBSTACLE_TYPES)) {
+	if ((o->type <= -1) || (o->type >= obstacle_map.size)) {
 		ErrorMessage(__FUNCTION__, "The obstacle type %d that was given is incorrect. Resetting type to 1.", PLEASE_INFORM, IS_WARNING_ONLY, o->type);
 		o->type = 1;
 	}
@@ -383,7 +384,7 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 			&& (pos.x < Me.pos.x + 1.5) && (pos.y < Me.pos.y + 1.5)) {
 				if (game_status == INSIDE_LVLEDITOR) {
 					a = 0.5;
-				} else if (obstacle_map[o->type].transparent == TRANSPARENCY_FOR_WALLS) {
+				} else if (get_obstacle_spec(o->type)->transparent == TRANSPARENCY_FOR_WALLS) {
 					a = 0.5;
 				}
 		}
@@ -1249,7 +1250,7 @@ static void show_obstacle(int mask, obstacle * o, int code_number)
 
 
 	// Safety checks
-	if ((o->type <= -1) || (o->type >= NUMBER_OF_OBSTACLE_TYPES)) {
+	if ((o->type <= -1) || (o->type >= obstacle_map.size)) {
 		ErrorMessage(__FUNCTION__, "The blitting list contained an illegal obstacle type %d.", PLEASE_INFORM, IS_FATAL, o->type);
 	}
 
@@ -1278,6 +1279,7 @@ static void show_obstacle(int mask, obstacle * o, int code_number)
 void blit_preput_objects_according_to_blitting_list(int mask)
 {
 	obstacle *our_obstacle = NULL;
+	obstacle_spec *obstacle_spec = NULL;
 	int item_under_cursor = -1;
 	level *item_under_cursor_lvl = NULL;
 	
@@ -1291,7 +1293,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			// Can't hurt to do that so as to be on the safe side.
 			//
 			if ((((obstacle *) e->element_pointer)->type <= -1) ||
-			    ((obstacle *) e->element_pointer)->type >= NUMBER_OF_OBSTACLE_TYPES) {
+			    ((obstacle *) e->element_pointer)->type >= obstacle_map.size) {
 				ErrorMessage(__FUNCTION__,
 					     "The blitting list contained an illegal obstacle type %d, for obstacle at coordinates %f %f. Doing nothing.", PLEASE_INFORM, IS_WARNING_ONLY, 
 						 ((obstacle *) e->element_pointer)->type, ((obstacle *) e->element_pointer)->pos.x, ((obstacle *) e->element_pointer)->pos.y);
@@ -1300,6 +1302,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			}
 
 			our_obstacle = e->element_pointer;
+			obstacle_spec = get_obstacle_spec(our_obstacle->type);
 
 			// If the obstacle has a shadow, it seems like now would be a good time
 			// to blit it.
@@ -1308,7 +1311,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			if (!GameConfig.skip_shadow_blitting && !(mask &OMIT_OBSTACLES)) {
 				gps vpos;
 				update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
-				display_image_on_map(&obstacle_map[our_obstacle->type].shadow_image, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0));
+				display_image_on_map(&obstacle_spec->shadow_image, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0));
 			}
 			
 			// If the obstacle in question does have a collision rectangle, then we
@@ -1318,7 +1321,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 
 			// Draw the obstacle by itself if it is a preput obstacle
 			//
-			if (obstacle_map[((obstacle *) e->element_pointer)->type].flags & NEEDS_PRE_PUT)
+			if (obstacle_spec->flags & NEEDS_PRE_PUT)
 				show_obstacle(mask, ((obstacle *) e->element_pointer), e->code_number);
 			break;
 		
@@ -1387,7 +1390,7 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 		switch (e->element_type) {
 		case BLITTING_TYPE_OBSTACLE:
 			// Skip preput obstacles
-			if (obstacle_map[((obstacle*)(e->element_pointer))->type].flags & NEEDS_PRE_PUT)
+			if (get_obstacle_spec(((obstacle*)(e->element_pointer))->type)->flags & NEEDS_PRE_PUT)
 				continue;
 			show_obstacle(mask, e->element_pointer, e->code_number);
 			break;

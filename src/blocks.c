@@ -446,12 +446,13 @@ void Load_Enemy_Surfaces(void)
  */
 struct image *get_obstacle_image(int type)
 {
-	if (!image_loaded(&obstacle_map[type].image)) {
+	obstacle_spec *spec = get_obstacle_spec(type);
+	if (!image_loaded(&spec->image)) {
 		//printf("Just in time loading for obstacle %d\n", type);
 		load_obstacle(type);
 	}
 
-	return &obstacle_map[type].image;
+	return &spec->image;
 }
 
 static void load_droid_portrait(int type)
@@ -490,34 +491,35 @@ void load_obstacle(int i)
 {
 	char fpath[1024];
 	char shadow_file_name[2000];
+	obstacle_spec *spec = get_obstacle_spec(i);
 
-	if (image_loaded(&obstacle_map[i].image)) {
+	if (image_loaded(&spec->image)) {
 		ErrorMessage(__FUNCTION__, "Tried to load image for obstacle type %d that was already loaded.\n", PLEASE_INFORM,
 			     IS_WARNING_ONLY, i);
 		return;
 	}
 
-	if (!obstacle_map[i].filename) {
+	if (!spec->filename) {
 		ErrorMessage(__FUNCTION__, "Obstacle type %d has no filename specified for its graphics.\n", PLEASE_INFORM, IS_FATAL, i);
 	}
 
 	// At first we construct the file name of the single tile file we are about to load...
-	sprintf(fpath, "obstacles/%s", obstacle_map[i].filename);
-	load_image(&obstacle_map[i].image, fpath, TRUE);
+	sprintf(fpath, "obstacles/%s", spec->filename);
+	load_image(&spec->image, fpath, TRUE);
 
 	// Maybe the obstacle in question also has a shadow image?  In that
 	// case we should load the shadow image now. 
-	if (strlen(obstacle_map[i].filename) >= 8) {
+	if (strlen(spec->filename) >= 8) {
 		strcpy(shadow_file_name, fpath);
 		shadow_file_name[strlen(shadow_file_name) - 8] = 0;
 		strcat(shadow_file_name, "shadow_");
 		strcat(shadow_file_name, &(fpath[strlen(fpath) - 8]));
 		if (find_file(shadow_file_name, GRAPHICS_DIR, fpath, 1)) {
 			struct image empty = EMPTY_IMAGE;
-			obstacle_map[i].shadow_image = empty;
+			spec->shadow_image = empty;
 			return;
 		} else {
-			load_image(&obstacle_map[i].shadow_image, shadow_file_name, TRUE);
+			load_image(&spec->shadow_image, shadow_file_name, TRUE);
 		}
 	}
 }
@@ -526,11 +528,10 @@ void load_all_obstacles(void)
 {
 	int i;
 
-	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
+	for (i = 0; i < obstacle_map.size; i++) {
 		load_obstacle(i);
 	}
-
-};				// void load_all_obstacles ( void )
+}
 
 /**
  * Free all images associated with obstacles.
@@ -538,12 +539,12 @@ void load_all_obstacles(void)
 void free_obstacle_graphics(void)
 {
 	int i;
-	for (i = 0; i < NUMBER_OF_OBSTACLE_TYPES; i++) {
-		if (image_loaded(&obstacle_map[i].image))
-			delete_image(&obstacle_map[i].image);
+	for (i = 0; i < obstacle_map.size; i++) {
+		if (image_loaded(&get_obstacle_spec(i)->image))
+			delete_image(&get_obstacle_spec(i)->image);
 
-		if (image_loaded(&obstacle_map[i].shadow_image))
-			delete_image(&obstacle_map[i].shadow_image);
+		if (image_loaded(&get_obstacle_spec(i)->shadow_image))
+			delete_image(&get_obstacle_spec(i)->shadow_image);
 	}
 }
 

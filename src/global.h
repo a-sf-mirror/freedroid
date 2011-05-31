@@ -37,7 +37,7 @@
 #define EXTERN extern
 
 EXTERN char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES];
-EXTERN obstacle_spec obstacle_map[NUMBER_OF_OBSTACLE_TYPES];
+EXTERN struct dynarray obstacle_map;
 EXTERN float FPSover1;
 EXTERN float FPSover10;
 EXTERN float FPSover100;
@@ -270,7 +270,7 @@ EXTERN text_widget message_log;
 #else
 #define EXTERN extern
 #endif
-EXTERN obstacle_spec obstacle_map[NUMBER_OF_OBSTACLE_TYPES];
+EXTERN struct dynarray obstacle_map;
 EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 #undef EXTERN

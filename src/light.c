@@ -631,7 +631,7 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 
 					emitter->timestamp = tstamp;
 
-					if (obstacle_map[emitter->type].emitted_light_strength == 0)
+					if (get_obstacle_spec(emitter->type)->emitted_light_strength == 0)
 						continue;
 
 					// Now we know that this one needs to be inserted!
@@ -644,7 +644,7 @@ WARNING!  End of light sources array reached!", NO_NEED_TO_INFORM, IS_WARNING_ON
 					if (light_sources[next_light_emitter_index].vpos.x == -1)
 						continue;
 
-					light_sources[next_light_emitter_index].strength = obstacle_map[emitter->type].emitted_light_strength;
+					light_sources[next_light_emitter_index].strength = get_obstacle_spec(emitter->type)->emitted_light_strength;
 					next_light_emitter_index++;
 
 					// We must not write beyond the bounds of our light sources array!
