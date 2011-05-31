@@ -124,7 +124,7 @@ static void load_events(char *EventSectionPointer)
 		EndOfEvent[strlen(EVENT_TRIGGER_END_STRING) - 1] = 0;
 
 		// Determine type of event condition
-		if (TempMapLabelName = strstr(EventPointer, EVENT_TRIGGER_LABEL_STRING)) {
+		if ((TempMapLabelName = strstr(EventPointer, EVENT_TRIGGER_LABEL_STRING))) {
 			temp.trigger_type = POSITION;
 			TempMapLabelName = ReadAndMallocStringFromData(EventPointer, EVENT_TRIGGER_LABEL_STRING, "\"");
 			ResolveMapLabelOnShip(TempMapLabelName, &TempLocation);
