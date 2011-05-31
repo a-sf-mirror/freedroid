@@ -212,18 +212,16 @@ LuaCode={
 
 Nr=20 Text=_"I want to fight in the novice arena!"
 LuaCode={
-	npc_says(_"You've already completed the novice arena. But since you really want to have another go, I'll cause the bots to respawn now. There, it's done.")
+	npc_says(_"You've already completed the novice arena. But if you really want to have another go, the door's open.")
 	npc_says(_"But you also might want to try the master arena now, maybe? If so, just say so.")
-	respawn_level(29)
 --	change_obstacle_state("NoviceArenaExitDoor", "closed") -- for this we need to make sure it opens again after killing the bots
 }
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"I want to fight in the master arena!"
 LuaCode={
-	npc_says(_"But you've already completed the master arena. However, I can have the bots respawn for you now, so you can have another go!")
-	npc_says(_"But certainly you've earned yourself a reputation as arena master around here now and we respect that.")
-	respawn_level(30)
+	npc_says(_"You've already completed the master arena, but I guess it's no skin off my nose if you want to have another go.")
+	npc_says(_"In any case, you've certainly earned yourself a reputation as arena master around here now and we respect that.")
 --	change_obstacle_state("MasterArenaExitDoor", "closed") -- for this we need to make sure it opens again after killing the bots
 }
 ----------------------------------------------------------------------

@@ -699,6 +699,12 @@ LuaCode={
 ## Level 29 ##
 ##############
 * New event trigger *
+Name=_"Respawn Novice Arena"
+Trigger entering level=29
+LuaCode={ respawn_level(29) }
+* End of trigger *
+
+* New event trigger *
 Name=_"Exit Novice Arena"
 Trigger at label="29to0"
 Silent=0
@@ -708,6 +714,12 @@ LuaCode={ teleport("0from29") }
 ##############
 ## Level 30 ##
 ##############
+* New event trigger *
+Name=_"Respawn Master Arena"
+Trigger entering level=30
+LuaCode={ respawn_level(30) }
+* End of trigger *
+
 * New event trigger *
 Name=_"Exit Master Arena"
 Trigger at label="30to0"
