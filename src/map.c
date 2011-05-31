@@ -71,6 +71,8 @@ static void remove_volatile_obstacles(int level_num)
 	//
 	for (i = 0; i < MAX_OBSTACLES_ON_MAP; i++) {
 		int obstacle_type = curShip.AllLevels[level_num]->obstacle_list[i].type;
+		if (obstacle_type == -1)
+			continue;
 		if (obstacle_map[obstacle_type].flags & IS_VOLATILE)
 			del_obstacle(&curShip.AllLevels[level_num]->obstacle_list[i]);
 	}
