@@ -424,28 +424,14 @@ static void start_drag_drop()
 	state.cur_drag_pos.y = mouse_mapcoord.y;
 }
 
-static void do_drag_drop_obstacle()
+static void do_drag_drop_obstacle(moderately_finepoint diff)
 {
 	struct selected_element *e;
-	moderately_finepoint cmin, cmax, diff;
-	
-	// Calculate the coordinates min/max of the selection
-	calc_min_max_selection(&selected_elements, &cmin, &cmax);
-	
-	// Calculate the new displacement of the selection
-	diff.x = mouse_mapcoord.x - state.cur_drag_pos.x;
-	diff.y = mouse_mapcoord.y - state.cur_drag_pos.y;
 
 	list_for_each_entry(e, &selected_elements, node) {
 		if (e->type != OBJECT_OBSTACLE)
 			return;
 
-		if ((cmax.y + diff.y) >= EditLevel()->ylen || (cmax.x + diff.x) >= EditLevel()->xlen
-			|| (cmin.x + diff.x) < 0 || (cmin.y + diff.y) < 0) {
-			// Do not place obstacles outside of the level
-			return;
-		}
-		
 		// Calculate the new coordinates of the obstacle
 		((obstacle *) (e->data))->pos.x += diff.x;
 		((obstacle *) (e->data))->pos.y += diff.y;
@@ -458,28 +444,14 @@ static void do_drag_drop_obstacle()
 	glue_obstacles_to_floor_tiles_for_level(EditLevel()->levelnum);
 }
 
-static void do_drag_drop_floor()
+static void do_drag_drop_floor(moderately_finepoint diff)
 {
 	struct selected_element *e;
 	struct lvledit_map_tile *t;
-	moderately_finepoint cmin, cmax, diff;
 	int changed_tiles = 0;
-
-	// Calculate the coordinates min/max of the selection
-	calc_min_max_selection(&clipboard_elements, &cmin, &cmax);
-	
-	// Calculate the new displacement of the selection
-	diff.x = mouse_mapcoord.x - state.cur_drag_pos.x;
-	diff.y = mouse_mapcoord.y - state.cur_drag_pos.y;
 
 	// Move the selection if the displacement exceeds half a tile
 	if (abs(diff.x) >= 0.5 || abs(diff.y) >= 0.5 ) {
-		
-		if ((cmax.y + diff.y) >= EditLevel()->ylen || (cmax.x + diff.x) >= EditLevel()->xlen
-			|| (cmin.x + diff.x) <= 0 || (cmin.y + diff.y) <= 0) {
-			// Do not place obstacles outside of the level
-			return;
-		}
 
 		if ((state.drag_start.x != state.cur_drag_pos.x) 
 			|| (state.drag_start.y != state.cur_drag_pos.y)) {
@@ -525,28 +497,14 @@ static void do_drag_drop_floor()
 	}
 }
 
-static void do_drag_drop_item()
+static void do_drag_drop_item(moderately_finepoint diff)
 {
 	struct selected_element *e;
-	moderately_finepoint cmin, cmax, diff;
-	
-	// Calculate the coordinates min/max of the selection
-	calc_min_max_selection(&selected_elements, &cmin, &cmax);
-	
-	// Calculate the new displacement of the selection
-	diff.x = mouse_mapcoord.x - state.cur_drag_pos.x;
-	diff.y = mouse_mapcoord.y - state.cur_drag_pos.y;
 
 	list_for_each_entry(e, &selected_elements, node) {
 		if (e->type != OBJECT_ITEM)
 			return;
 
-		if ((cmax.y + diff.y) >= EditLevel()->ylen || (cmax.x + diff.x) >= EditLevel()->xlen
-			|| (cmin.x + diff.x) < 0 || (cmin.y + diff.y) < 0) {
-			// Do not place items outside of the level
-			return;
-		}
-		
 		// Calculate the new coordinates of the item
 		((item *) (e->data))->pos.x += diff.x;
 		((item *) (e->data))->pos.y += diff.y;
@@ -557,15 +515,30 @@ static void do_drag_drop_item()
 
 static void do_drag_drop()
 {
+	moderately_finepoint cmin, cmax, diff;
+
+	// Calculate the coordinates min/max of the selection.
+	calc_min_max_selection(&selected_elements, &cmin, &cmax);
+
+	// Calculate the new displacement of the selection.
+	diff.x = mouse_mapcoord.x - state.cur_drag_pos.x;
+	diff.y = mouse_mapcoord.y - state.cur_drag_pos.y;
+
+	if ((cmax.y + diff.y) >= EditLevel()->ylen || (cmax.x + diff.x) >= EditLevel()->xlen
+		|| (cmin.x + diff.x) < 0 || (cmin.y + diff.y) < 0) {
+		// Do not place objects outside the level.
+		return;
+	}
+
 	switch (selection_type()) {
 	case OBJECT_OBSTACLE:
-		do_drag_drop_obstacle();
+		do_drag_drop_obstacle(diff);
 		break;
 	case OBJECT_FLOOR:
-		do_drag_drop_floor();
+		do_drag_drop_floor(diff);
 		break;
 	case OBJECT_ITEM:
-		do_drag_drop_item();
+		do_drag_drop_item(diff);
 		break;
 	default:
 		break;	
