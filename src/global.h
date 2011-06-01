@@ -249,6 +249,8 @@ EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 EXTERN struct image floor_images[ALL_ISOMETRIC_FLOOR_TILES];
+EXTERN struct dynarray obstacle_images;
+EXTERN struct dynarray obstacle_shadow_images;
 
 EXTERN float iso_floor_tile_width;
 EXTERN float iso_floor_tile_height;

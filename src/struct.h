@@ -779,10 +779,7 @@ typedef void (*action_fptr) (level *obst_lvl, int obstacle_idx);
 typedef int (*animation_fptr) (level *obst_lvl, int obstacle_idx);
 
 typedef struct obstacle_spec {
-	struct image image;
-	struct image shadow_image;
-
-  char *label; 
+	char *label; 
 
 	//--------------------
 	// Some obstacles will block the Tux from walking through them.

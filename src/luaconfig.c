@@ -541,8 +541,8 @@ static int lua_obstacle_ctor(lua_State *L)
 
 	// Clear obstacle structure
 	struct image empty_image = EMPTY_IMAGE;
-	memcpy(&obstacle.image, &empty_image, sizeof(empty_image));
-	memcpy(&obstacle.shadow_image, &empty_image, sizeof(empty_image));
+	dynarray_add(&obstacle_images, &empty_image, sizeof(empty_image));
+	dynarray_add(&obstacle_shadow_images, &empty_image, sizeof(empty_image));
 	obstacle.left_border = -DEFAULT_BORDER;
 	obstacle.right_border = DEFAULT_BORDER;
 	obstacle.upper_border = -DEFAULT_BORDER;

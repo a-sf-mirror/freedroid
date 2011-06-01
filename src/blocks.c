@@ -439,22 +439,6 @@ void Load_Enemy_Surfaces(void)
 	free(Data);
 }
 
-/**
- * Return a pointer towards the struct image
- * associated to the given obstacle type.
- * Used for lazy loading.
- */
-struct image *get_obstacle_image(int type)
-{
-	obstacle_spec *spec = get_obstacle_spec(type);
-	if (!image_loaded(&spec->image)) {
-		//printf("Just in time loading for obstacle %d\n", type);
-		load_obstacle(type);
-	}
-
-	return &spec->image;
-}
-
 static void load_droid_portrait(int type)
 {
 	char fpath[1024];
@@ -483,17 +467,30 @@ struct image *get_droid_portrait_image(int type)
 	return &chat_portrait_of_droid[type];
 }
 
+static void __obs_images(int type, struct image **img, struct image **shadow_img)
+{
+	struct image *image = &((struct image *)obstacle_images.arr)[type];
+	struct image *shadow_image = &((struct image *)obstacle_shadow_images.arr)[type];
+
+	if (img)
+		*img = image;
+	if (shadow_img)
+		*shadow_img = shadow_image;
+}
+
 /**
  * Load the images associated to the given
  * obstacle type.
  */
-void load_obstacle(int i)
+static void load_obstacle(int i)
 {
 	char fpath[1024];
 	char shadow_file_name[2000];
+	struct image *img, *shadow_img;
 	obstacle_spec *spec = get_obstacle_spec(i);
+	__obs_images(i, &img, &shadow_img);
 
-	if (image_loaded(&spec->image)) {
+	if (image_loaded(img)) {
 		ErrorMessage(__FUNCTION__, "Tried to load image for obstacle type %d that was already loaded.\n", PLEASE_INFORM,
 			     IS_WARNING_ONLY, i);
 		return;
@@ -505,7 +502,7 @@ void load_obstacle(int i)
 
 	// At first we construct the file name of the single tile file we are about to load...
 	sprintf(fpath, "obstacles/%s", spec->filename);
-	load_image(&spec->image, fpath, TRUE);
+	load_image(img, fpath, TRUE);
 
 	// Maybe the obstacle in question also has a shadow image?  In that
 	// case we should load the shadow image now. 
@@ -516,21 +513,29 @@ void load_obstacle(int i)
 		strcat(shadow_file_name, &(fpath[strlen(fpath) - 8]));
 		if (find_file(shadow_file_name, GRAPHICS_DIR, fpath, 1)) {
 			struct image empty = EMPTY_IMAGE;
-			spec->shadow_image = empty;
+			*shadow_img = empty;
 			return;
 		} else {
-			load_image(&spec->shadow_image, shadow_file_name, TRUE);
+			load_image(shadow_img, shadow_file_name, TRUE);
 		}
 	}
 }
 
-void load_all_obstacles(void)
+/**
+ * Return a pointer towards the struct image
+ * associated to the given obstacle type.
+ * Used for lazy loading.
+ */
+struct image *get_obstacle_image(int type)
 {
-	int i;
+	struct image *img;
+    __obs_images(type, &img, NULL);
 
-	for (i = 0; i < obstacle_map.size; i++) {
-		load_obstacle(i);
+	if (!image_loaded(img)) {
+		load_obstacle(type);
 	}
+
+	return img;
 }
 
 /**
@@ -540,11 +545,22 @@ void free_obstacle_graphics(void)
 {
 	int i;
 	for (i = 0; i < obstacle_map.size; i++) {
-		if (image_loaded(&get_obstacle_spec(i)->image))
-			delete_image(&get_obstacle_spec(i)->image);
+		struct image *img, *shadow_img;
+		__obs_images(i, &img, &shadow_img);
 
-		if (image_loaded(&get_obstacle_spec(i)->shadow_image))
-			delete_image(&get_obstacle_spec(i)->shadow_image);
+		if (image_loaded(img))
+			delete_image(img);
+		if (image_loaded(shadow_img))
+			delete_image(shadow_img);
+	}
+}
+
+void load_all_obstacles(void)
+{
+	int i;
+
+	for (i = 0; i < obstacle_map.size; i++) {
+		load_obstacle(i);
 	}
 }
 
