@@ -35,8 +35,35 @@
  * This files contains obstacles related functions.
  */
 
+void glue_obstacle(level *lvl, obstacle *o)
+{
+	int x_min, x_max, x;
+	int y_min, y_max, y;
+	int idx;
+
+	if (o->type == -1)
+		return;
+
+	obstacle_spec *spec = get_obstacle_spec(o->type);
+	x_min = floor(o->pos.x + spec->left_border);
+	x_max = floor(o->pos.x + spec->right_border);
+	y_min = floor(o->pos.y + spec->upper_border);
+	y_max = floor(o->pos.y + spec->lower_border);
+
+	idx = get_obstacle_index(lvl, o);
+
+	for (x = x_min; x <= x_max; x++) {
+		for (y = y_min; y <= y_max; y++) {
+			if (x < 0 || y < 0 || x >= lvl->xlen || y >= lvl->ylen)
+				continue;
+
+			dynarray_add(&lvl->map[y][x].glued_obstacles, &idx, sizeof(idx));
+		}
+	}
+}
+
 /**
- * \brief Add a new obstacle without glue it on the map.
+ * \brief Add a new obstacle and glue it on the map.
  */
 obstacle *add_obstacle(level *lvl, float x, float y, int type)
 {
@@ -51,6 +78,8 @@ obstacle *add_obstacle(level *lvl, float x, float y, int type)
 		lvl->obstacle_list[i].pos.z = lvl->levelnum;
 		lvl->obstacle_list[i].type = type;
 		lvl->obstacle_list[i].timestamp = 0;
+
+		glue_obstacle(lvl, &lvl->obstacle_list[i]);
 
 		return &lvl->obstacle_list[i];
 	}

@@ -31,7 +31,6 @@ void level_editor_action_redo(void);
 void action_push(int type, ...);
 
 /* Obstacle manipulation */
-obstacle *action_create_obstacle(level *, double, double, int);
 obstacle *action_create_obstacle_user(level *, double, double, int);
 void action_remove_obstacle_user(level *, obstacle *);
 

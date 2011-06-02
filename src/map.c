@@ -1181,10 +1181,6 @@ int LoadShip(char *filename, int compressed)
 		curShip.num_levels = this_levelnum + 1;
 		
 		generate_dungeon_if_needed(this_level);
-		
-		// We attach each obstacle to a floor tile, as a help for 
-		// collision detection.
-		glue_obstacles_to_floor_tiles_for_level(this_levelnum);
 
 		// Move to the level termination marker
 		pos = strstr(pos, LEVEL_END_STRING);

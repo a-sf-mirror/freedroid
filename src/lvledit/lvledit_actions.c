@@ -183,17 +183,6 @@ void action_push(int type, ...)
 	va_end(args);
 }
 
-obstacle *action_create_obstacle(level * EditLevel, double x, double y, int new_obstacle_type)
-{
-	obstacle *o;
-
-	o = add_obstacle(EditLevel, x, y, new_obstacle_type);
-
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
-
-	return o;
-}
-
 void action_move_obstacle(level * EditLevel, obstacle * obs, float newx, float newy)
 {
 	action_push(ACT_MOVE_OBSTACLE, obs, obs->pos.x, obs->pos.y);
@@ -204,7 +193,7 @@ void action_move_obstacle(level * EditLevel, obstacle * obs, float newx, float n
 
 obstacle *action_create_obstacle_user(Level EditLevel, double x, double y, int new_obstacle)
 {
-	obstacle *o = action_create_obstacle(EditLevel, x, y, new_obstacle);
+	obstacle *o = add_obstacle(EditLevel, x, y, new_obstacle);
 	if (o) {
 		action_push(ACT_REMOVE_OBSTACLE, o);
 	}

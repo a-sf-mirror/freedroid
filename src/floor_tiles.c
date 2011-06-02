@@ -47,34 +47,13 @@ void glue_obstacles_to_floor_tiles_for_level(int level_num)
 {
 	level *lvl = curShip.AllLevels[level_num];
 	int obstacle_counter;
-	int x_min, x_max, x;
-	int y_min, y_max, y;
 
 	// Clear out all the existing glue information
 	free_glued_obstacles(lvl);
 
 	// Browse obstacles on the level to glue them
 	for (obstacle_counter = 0; obstacle_counter < MAX_OBSTACLES_ON_MAP; obstacle_counter++) {
-
-		obstacle *o = &lvl->obstacle_list[obstacle_counter];
-
-		if (o->type == -1)
-			continue;
-
-		obstacle_spec *spec = get_obstacle_spec(o->type);
-		x_min = floor(o->pos.x + spec->left_border);
-		x_max = floor(o->pos.x + spec->right_border);
-		y_min = floor(o->pos.y + spec->upper_border);
-		y_max = floor(o->pos.y + spec->lower_border);
-
-		for (x = x_min; x <= x_max; x++) {
-			for (y = y_min; y <= y_max; y++) {
-				if (x < 0 || y < 0 || x >= lvl->xlen || y >= lvl->ylen)
-					continue;
-
-				dynarray_add(&lvl->map[y][x].glued_obstacles, &obstacle_counter, sizeof(obstacle_counter));
-			}
-		}
+		glue_obstacle(lvl, &lvl->obstacle_list[obstacle_counter]);
 	}
 }
 

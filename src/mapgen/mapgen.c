@@ -1046,8 +1046,6 @@ int generate_dungeon(int w, int h, int nbconnec, int tpair)
 	di.distance = dist;
 	mapgen_convert(&di, w, h, map.m);
 
-	glue_obstacles_to_floor_tiles_for_level(target_level->levelnum);
-
 	// Place random waypoints
 	place_waypoints();
 

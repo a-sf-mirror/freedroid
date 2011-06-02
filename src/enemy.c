@@ -829,7 +829,6 @@ in Freedroid RPG.\n", PLEASE_INFORM, IS_FATAL);
  */
 static void enemy_spray_blood(enemy * CurEnemy)
 {
-	extern obstacle *action_create_obstacle(level *, double, double, int);
 	moderately_finepoint target_pos = { 1.0, 0 };
 
 	RotateVectorByAngle(&target_pos, MyRandom(360));
@@ -838,9 +837,9 @@ static void enemy_spray_blood(enemy * CurEnemy)
 	target_pos.y += CurEnemy->virt_pos.y;
 
 	if (Druidmap[CurEnemy->type].is_human)
-		action_create_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, ISO_BLOOD_1 + MyRandom(7));
+		add_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, ISO_BLOOD_1 + MyRandom(7));
 	else
-		action_create_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, ISO_OIL_STAINS_1 + MyRandom(7));
+		add_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, ISO_OIL_STAINS_1 + MyRandom(7));
 
 };				// void enemy_spray_blood ( Enemy CurEnemy ) 
 
