@@ -35,6 +35,16 @@
  * This files contains obstacles related functions.
  */
 
+static void obstacle_boundaries(obstacle *o, int *x_min, int *x_max, int *y_min, int *y_max)
+{
+	obstacle_spec *spec = get_obstacle_spec(o->type);
+
+	*x_min = floor(o->pos.x + spec->left_border);
+	*x_max = floor(o->pos.x + spec->right_border);
+	*y_min = floor(o->pos.y + spec->upper_border);
+	*y_max = floor(o->pos.y + spec->lower_border);
+}
+
 void glue_obstacle(level *lvl, obstacle *o)
 {
 	int x_min, x_max, x;
@@ -44,11 +54,7 @@ void glue_obstacle(level *lvl, obstacle *o)
 	if (o->type == -1)
 		return;
 
-	obstacle_spec *spec = get_obstacle_spec(o->type);
-	x_min = floor(o->pos.x + spec->left_border);
-	x_max = floor(o->pos.x + spec->right_border);
-	y_min = floor(o->pos.y + spec->upper_border);
-	y_max = floor(o->pos.y + spec->lower_border);
+	obstacle_boundaries(o, &x_min, &x_max, &y_min, &y_max);
 
 	idx = get_obstacle_index(lvl, o);
 
@@ -58,6 +64,36 @@ void glue_obstacle(level *lvl, obstacle *o)
 				continue;
 
 			dynarray_add(&lvl->map[y][x].glued_obstacles, &idx, sizeof(idx));
+		}
+	}
+}
+
+static void unglue_obstacle(level *lvl, obstacle *o)
+{
+	int x_min, x_max, x;
+	int y_min, y_max, y;
+	int idx, i;
+
+	if (o->type == -1)
+		return;
+
+	obstacle_boundaries(o, &x_min, &x_max, &y_min, &y_max);
+
+	idx = get_obstacle_index(lvl, o);
+
+	for (x = x_min; x <= x_max; x++) {
+		for (y = y_min; y <= y_max; y++) {
+			if (x < 0 || y < 0 || x >= lvl->xlen || y >= lvl->ylen)
+				continue;
+
+			int *glued_obstacles = lvl->map[y][x].glued_obstacles.arr;
+
+			for (i = 0; i < lvl->map[y][x].glued_obstacles.size; i++) {
+				if (glued_obstacles[i] == idx) {
+					dynarray_del(&lvl->map[y][x].glued_obstacles, i, sizeof(int));
+					break;
+				}
+			}
 		}
 	}
 }
@@ -97,13 +133,11 @@ void del_obstacle(obstacle *o)
 {
 	level *lvl = curShip.AllLevels[o->pos.z];
 
+	unglue_obstacle(lvl, o);
+
 	o->type = -1;
 
 	del_obstacle_extensions(lvl, o);
-
-	// Now doing that must have shifted the glue!  That is a problem.  We need to
-	// reglue everything to the map...
-	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
 }
 
 obstacle_spec *get_obstacle_spec(int index)
