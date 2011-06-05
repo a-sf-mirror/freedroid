@@ -571,8 +571,6 @@ static void end_drag_drop()
 		}
 	}
 
-	glue_obstacles_to_floor_tiles_for_level(EditLevel()->levelnum);
-
 	if (enb)
 		action_push(ACT_MULTIPLE_ACTIONS, enb);
 
