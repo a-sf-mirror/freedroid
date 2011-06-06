@@ -640,7 +640,7 @@ static int input_key(int keynum, int value)
 			return 0;
 		} else if (KEYPRESS("change_obstacle_label")) {
 			if (single_tile_selection(OBJECT_OBSTACLE)) {
-				action_change_obstacle_label_user(EditLevel(), single_tile_selection(OBJECT_OBSTACLE), NULL);
+				action_change_obstacle_label_user(EditLevel(), single_tile_selection(OBJECT_OBSTACLE));
 			}
 		} else if (KEYPRESS("change_map_label")) {
 			level_editor_action_change_map_label_user(CURLEVEL());

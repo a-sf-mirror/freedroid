@@ -36,7 +36,7 @@ void action_remove_obstacle_user(level *, obstacle *);
 
 void action_move_obstacle(level *, obstacle *, float, float);
 
-void action_change_obstacle_label_user(level *, obstacle *, char *);
+void action_change_obstacle_label_user(level *, obstacle *);
 
 /* Waypoint manipulation */
 waypoint *action_create_waypoint(level *, int, int, int);

@@ -231,20 +231,15 @@ static int action_change_obstacle_label(level *EditLevel, obstacle *obstacle, ch
 	return undoable;
 }
 
-void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle, char *predefined_name)
+void action_change_obstacle_label_user(level *EditLevel, obstacle *our_obstacle)
 {
 	char *name = NULL;
 
 	if (!our_obstacle)
 		return;
 
-	if (predefined_name == NULL) {
-		char *old_label = get_obstacle_extension(EditLevel, our_obstacle, OBSTACLE_EXTENSION_LABEL);
-		name = GetEditableStringInPopupWindow(1000, _("\nPlease enter obstacle label: \n\n"),
-						   old_label ? old_label : "");
-	} else {
-		name = strdup(predefined_name);
-	}
+	char *old_label = get_obstacle_extension(EditLevel, our_obstacle, OBSTACLE_EXTENSION_LABEL);
+	name = GetEditableStringInPopupWindow(1000, _("\nPlease enter obstacle label: \n\n"), old_label ? old_label : "");
 	
 	if (name) {
 		action_change_obstacle_label(EditLevel, our_obstacle, name, 1);
