@@ -68,7 +68,7 @@ void glue_obstacle(level *lvl, obstacle *o)
 	}
 }
 
-static void unglue_obstacle(level *lvl, obstacle *o)
+void unglue_obstacle(level *lvl, obstacle *o)
 {
 	int x_min, x_max, x;
 	int y_min, y_max, y;

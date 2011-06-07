@@ -70,6 +70,9 @@ void defrag_obstacle_array(level *lvl)
 	// Browse the array and fill in the voids
 	for (i = 0; i < array_end; i++) {
 		if (lvl->obstacle_list[i].type == -1) {
+			// Unglue the last obstacle.
+			unglue_obstacle(lvl, &lvl->obstacle_list[array_end]);
+
 			// Fill in this spot with the last obstacle
 			memcpy(&lvl->obstacle_list[i], &lvl->obstacle_list[array_end], sizeof(obstacle));
 			lvl->obstacle_list[array_end].type = -1;
@@ -77,11 +80,11 @@ void defrag_obstacle_array(level *lvl)
 
 			// Re-address obstacle extension pointing to the obstacle we've moved
 			change_extensions(lvl, &lvl->obstacle_list[array_end+1], &lvl->obstacle_list[i]);
+
+			// Glue the moved obstacle.
+			glue_obstacle(lvl, &lvl->obstacle_list[i]);
 		}
 	}
-
-	// Update obstacle lists
-	glue_obstacles_to_floor_tiles_for_level(lvl->levelnum);
 
 	dirty_animated_obstacle_lists(lvl->levelnum);
 }
