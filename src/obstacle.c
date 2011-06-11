@@ -140,6 +140,24 @@ void del_obstacle(obstacle *o)
 	del_obstacle_extensions(lvl, o);
 }
 
+/**
+ * \brief Move an obstacle at the given position on its level.
+ */
+void move_obstacle(obstacle *o, float newx, float newy)
+{
+	level *lvl = curShip.AllLevels[o->pos.z];
+
+	if (!pos_inside_level(newx, newy, lvl))
+		return;
+
+	unglue_obstacle(lvl, o);
+
+	o->pos.x = newx;
+	o->pos.y = newy;
+
+	glue_obstacle(lvl, o);
+}
+
 obstacle_spec *get_obstacle_spec(int index)
 {
 	return (obstacle_spec *)obstacle_map.arr + index;

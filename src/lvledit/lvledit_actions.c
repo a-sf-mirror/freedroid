@@ -186,9 +186,8 @@ void action_push(int type, ...)
 void action_move_obstacle(level * EditLevel, obstacle * obs, float newx, float newy)
 {
 	action_push(ACT_MOVE_OBSTACLE, obs, obs->pos.x, obs->pos.y);
-	obs->pos.x = newx;
-	obs->pos.y = newy;
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
+
+	move_obstacle(obs, newx, newy);
 }
 
 obstacle *action_create_obstacle_user(Level EditLevel, double x, double y, int new_obstacle)

@@ -440,16 +440,12 @@ static void do_drag_drop_obstacle(moderately_finepoint diff)
 		if (e->type != OBJECT_OBSTACLE)
 			return;
 
-		// Calculate the new coordinates of the obstacle
-		((obstacle *) (e->data))->pos.x += diff.x;
-		((obstacle *) (e->data))->pos.y += diff.y;
+		obstacle *o = ((obstacle *)(e->data));
+
+		move_obstacle(o, o->pos.x + diff.x, o->pos.y + diff.y);
 	}	
 	state.cur_drag_pos.x = mouse_mapcoord.x;
 	state.cur_drag_pos.y = mouse_mapcoord.y;
-
-	// In order to display obstacles during a drag and drop operation, we must
-	// glue them to floor tiles of the current edited level.
-	glue_obstacles_to_floor_tiles_for_level(EditLevel()->levelnum);
 }
 
 static void do_drag_drop_floor(moderately_finepoint diff)

@@ -118,18 +118,13 @@ static void move_obstacles(level *EditLevel, int x, int y)
 		if (o->type <= (-1))
 			continue;
 
-		// Move the obstacle
-		o->pos.x += x;
-		o->pos.y += y;
-		
-		if (!pos_inside_level(o->pos.x, o->pos.y, EditLevel)) {
+		if (!pos_inside_level(o->pos.x + x, o->pos.y + y, EditLevel)) {
 			// When the obstacle is outside of the map, we must remove it
 			del_obstacle(o);
+		} else {
+			move_obstacle(o, o->pos.x + x, o->pos.y + y);
 		}
 	}
-
-	// And finally, re-glue all obstacles to the map
-	glue_obstacles_to_floor_tiles_for_level(EditLevel->levelnum);
 }
 
 /**
