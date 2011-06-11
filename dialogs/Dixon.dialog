@@ -43,13 +43,13 @@ EveryTime LuaCode={
 
 	if (has_cookie("dixon_angry_250")) then
 		if (has_cookie("dixon_very_angry")) then next(83) 
-		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong and I have no desire to talk to you.")
+		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong, and I have no desire to talk to you.")
 		end
 	end
 
 	if (has_cookie("dixon_angry_350")) then
 		if (has_cookie("dixon_very_angry")) then next(83)
-		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong and I have no desire to talk to you.")
+		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong, and I have no desire to talk to you.")
 		end
 	end
 
@@ -145,7 +145,7 @@ LuaCode={
 		npc_says(_"I will give you one small device that can emit an Electro Magnetic Pulse.")
 	end
 	npc_says(_"If you get in trouble just activate one and it will send a shockwave around you damaging any bot around you. It should give you some breathing room.")
-	npc_says(_"The best of it all, is that it's completely harmless for humans. But make sure to not fry the circuits of our own 614 guard bots or computer terminals.")
+	npc_says(_"Best of all, it's completely harmless to biologicals. But make sure not to fry the circuits of our own 614 guard bots or computer terminals.")
 	npc_says(_"The entrance to the tunnels is in the courtyard of the citadel. Once you exit this building, go straight and turn to your right once inside the outer citadel gates.")
 	npc_says(_"There you will find the maintenance access hatch.", "NO_WAIT")
 	npc_says(_"Once you get inside, you'll need to use the terminal to unlock the door. I'll write down my password for you.", "NO_WAIT")
@@ -169,11 +169,11 @@ LuaCode={
 	tux_says(_"I can handle computers very well. I also know a lot about laboratory equipment.", "NO_WAIT")
 	npc_says(_"And what about construction? Mechanical devices? Repairing broken power lines? Building laser pistols? Anything like that? ")
 	tux_says(_"Well... I can build an igloo and make pykrete out of snow... And... Umm...", "NO_WAIT")
-	npc_says(_"Well, I appreciate your enthusiasm, and at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now.")
-	npc_says(_"Now... To which project I should assign you... Hmm...", "NO_WAIT")
+	npc_says(_"Well, I appreciate your enthusiasm, but at the same time I am afraid that waiting half a year for snowfall does not sound so appealing to me right now.")
+	npc_says(_"Now... Which project I should assign you to... Hmm...", "NO_WAIT")
 	npc_says(_"Ah, I know what you could do for us. We need some autotools to automate a few tasks. There is a set of them in the maintenance tunnels below the town.")
 	npc_says(_"It's yellow and round, and my name is engraved on the lid.", "NO_WAIT")
-	npc_says(_"The bots under the town took it from me during the Great Assault, I was lucky, they could have killed me with ease.")
+	npc_says(_"The bots under the town took it from me during the Great Assault. I was lucky, they could have killed me with ease.")
 	npc_says(_"Since the toolkit can't be teleported, everyone has been reluctant to go after it.")
 	npc_says(_"If you could get it back for us, it would help the town very much.")
 	add_quest(_"The yellow toolkit", _"Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the town's maintenance tunnels. I am supposed to get it from there.")
@@ -183,8 +183,8 @@ LuaCode={
 
 Nr=25 Text=_"Why are there rebel bots under the town?"
 LuaCode={
-	npc_says(_"They were there to keep the underground power grid and our pipe system working.", "NO_WAIT")
-	npc_says(_"When the Great Assault happened they did not turn into killing machines like most of the other bots did. ")
+	npc_says(_"They were there to keep the underground power grid and our plumbing system working.", "NO_WAIT")
+	npc_says(_"When the Great Assault happened they did not turn into killing machines like most of the other bots. ")
 	npc_says(_"We lost control over them, but that is all.", "NO_WAIT")
 	npc_says(_"It was our biggest worry that they might destroy cables, pipes and other things which keep the town running.")
 	npc_says(_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions.", "NO_WAIT")
@@ -202,7 +202,7 @@ LuaCode={
 	npc_says(_"I tried to say something, but the bot did not listen. It just continued. 'As we speak the bots are turning against humanity. People are dying. The war has started.'")
 	npc_says(_"'I need your toolkit, Dixon. I need it to survive,' it said. 'I need it to survive the time of the rule of metal.'")
 	npc_says(_"As soon as I dropped my toolkit, I was able to teleport away. That bot freaked me out, so I locked the door tight behind me.")
-	npc_says(_"Once I got out I learned the bot was not lying. The Great Assault started. The rest is history.")
+	npc_says(_"Once I got out I learned the bot was telling the truth. The Great Assault had started. The rest is history.")
 	hide(26) show(27)
 }
 ----------------------------------------------------------------------
@@ -237,9 +237,9 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=29 Text=_"Of course I am kidding, Dixon. Lighten up! Now, be a good guy and open the tunnels for me so I can pry your toolbox from the cold and dead hands of the bots down there."
+Nr=29 Text=_"Of course I am kidding, Dixon. Lighten up! Now, be a good guy and open the tunnels for me so I can pry your toolbox from the cold, dead hands of the bots down there."
 LuaCode={
-	npc_says(_"That was not very funny. You scared me. Sheesh.", "NO_WAIT")
+	npc_says(_"That wasn't very funny. You scared me. Sheesh.", "NO_WAIT")
 	npc_says(_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter.")
 	npc_says(_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore.")
 	npc_says(_"Once you get into the tunnels, you'll need to use the terminal to unlock the door. I've written my password down for you.", "NO_WAIT")
@@ -253,7 +253,7 @@ LuaCode={
 Nr=30 Text=_"You can forget about your toolkit. I am not going to take away something that a lifeform needs to survive. I would rather die than kill."
 LuaCode={
 	npc_says(_". . .")
-	npc_says(_"I think I understand. Yes, I do not like violence, myself. The bots may have the toolkit, I am sure there must be a second set of autotools kicking around somewhere.")
+	npc_says(_"I think I understand. Yes, I do not like violence, myself. The bots may need the toolkit, I am sure there must be a second set of autotools kicking around somewhere.")
 	npc_says(_"After all, it seems like they need them more than I do.", "NO_WAIT")
 	npc_says(_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots.")
 	add_cookie("singularity_saved")
@@ -272,7 +272,7 @@ LuaCode={
 Nr=34 Text=_"The tunnels are cleansed. Here is your toolkit."
 LuaCode={
 	npc_says(_"*sigh* I hate to see this end in such a way. Bot or no bot, they let me live. They deserved a chance.")
-	npc_says(_"Well, What was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did a great job.")
+	npc_says(_"Well, what was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did a great job.")
 	npc_says(_"I thank you for your help in recovering the autotools.", "NO_WAIT")
 	npc_says(_"Here is some money, you deserve it for getting my toolkit back.")
 	npc_says(_"Finally, I would like to say that the technical division is not interested in further cooperation with you, but I think you would fit very well in the military division. You should talk to them.")
@@ -287,7 +287,7 @@ LuaCode={
 Nr=35 Text=_"I got your toolkit. The bots were not a big problem."
 LuaCode={
 	npc_says(_"Good. We sure need the autotools.", "NO_WAIT")
-	npc_says(_"Our roads need fixing, our power lines need fixing, our walls need fixing... Hell, everything needs fixing in this place.")
+	npc_says(_"Our roads need fixing, our power lines need fixing, our walls need fixing... Heck, everything needs fixing in this place.")
 	npc_says(_"With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time.")
 	npc_says(_"Here is some money for your effort. And I am sure you will find this helmet useful too, it saved my life once, and I hope it saves yours one day.")
 	add_gold(100)
@@ -308,7 +308,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=37 Text=_"I was not joking. I am listening to your offers."
+Nr=37 Text=_"I was not joking. I am listening to your offer."
 LuaCode={
 	npc_says(_"Linarian, I curse the day on which you have arrived here.", "NO_WAIT")
 	npc_says(_"Two fifty.")
@@ -395,7 +395,7 @@ Nr=45 Text=_"Is everything all right?"
 LuaCode={
 	npc_says(_"No, I am afraid not.", "NO_WAIT")
 	npc_says(_"While I do not regret sparing the bots in the tunnels, the town suffers for it.")
-	npc_says(_"It makes me sad to see everything slowly wasting away. The bots are doing more damage than we can repair.", "NO_WAIT")
+	npc_says(_"It makes me sad to see everything slowly wasting away. The Megasys bots are doing more damage than we can repair.", "NO_WAIT")
 	npc_says(_"This town has a few weeks left to live. After that we are all dead.")
 	add_cookie("dixon_one")
 	hide(45)
