@@ -3380,7 +3380,7 @@ exist at all.", PLEASE_INFORM, IS_FATAL);
 	if (vpos.x == -1)
 		return;
 
-	display_image_on_map(&Blastmap[CurBlast->type].image[phase], vpos.x, vpos.y, IMAGE_NO_TRANSFO);
+	display_image_on_map(&Blastmap[CurBlast->type].images[phase], vpos.x, vpos.y, IMAGE_NO_TRANSFO);
 }
 
 /**

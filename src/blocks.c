@@ -41,33 +41,19 @@
  */
 void Load_Blast_Surfaces(void)
 {
-	int j;
-	char constructed_filename[5000];
+	int i, j;
+	char fpath[2048];
 
-	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
-		sprintf(constructed_filename, "blasts/iso_blast_bullet_%04d.png", j + 1);
-		load_image(&Blastmap[0].image[j], constructed_filename, TRUE);
+	find_file("blast_specs.lua", MAP_DIR, fpath, 0);
+	run_lua_file(fpath);
+
+	for (i = 0; i < sizeof(Blastmap) / sizeof(Blastmap[0]); i++) {
+		for (j = 0; j < Blastmap[i].phases; j++) {
+			sprintf(fpath, "blasts/%s_%04d.png", Blastmap[i].name, j + 1);
+			load_image(&Blastmap[i].images[j], fpath, TRUE);
+		}
 	}
-
-	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
-		sprintf(constructed_filename, "blasts/iso_blast_droid_%04d.png", j + 1);
-		load_image(&Blastmap[1].image[j], constructed_filename, TRUE);
-	}
-
-	for (j = 0; j < PHASES_OF_EACH_BLAST; j++) {
-		sprintf(constructed_filename, "blasts/iso_blast_exterminator_%04d.png", j + 1);
-		load_image(&Blastmap[2].image[j], constructed_filename, TRUE);
-	}
-
-/*Now also set up values for blasts*/
-	Blastmap[0].phases = 6;
-	Blastmap[1].phases = 9;
-	Blastmap[2].phases = 9;
-	Blastmap[0].total_animation_time = 0.6;
-	Blastmap[1].total_animation_time = 1.0;
-	Blastmap[2].total_animation_time = 1.0;
-
-};				// void Load_Blast_Surfaces( void )
+}
 
 static void load_item_graphics(int item_type)
 {

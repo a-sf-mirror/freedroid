@@ -677,7 +677,8 @@ typedef struct melee_shot	// this is a melee shot
 typedef struct blastspec {
 	int phases;
 	float total_animation_time;
-	struct image image[PHASES_OF_EACH_BLAST];
+	struct image *images;
+	char *name;
 } blastspec;
 
 typedef struct blast {

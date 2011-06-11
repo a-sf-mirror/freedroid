@@ -527,7 +527,6 @@ enum {
 #define MAX_LEVELS		100	// how many map levels are allowed in one ship
 
 #define MAX_PHASES_IN_A_BULLET 12
-#define PHASES_OF_EACH_BLAST 20
 
 #define UNIVERSAL_COORD_W(W) (int)((float)(W) * ((float)(GameConfig . screen_width) / 640.0))
 #define UNIVERSAL_COORD_H(H) (int)((float)(H) * ((float)(GameConfig . screen_height) / 480.0))

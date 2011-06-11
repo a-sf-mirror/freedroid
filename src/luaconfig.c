@@ -590,6 +590,25 @@ static int lua_obstacle_ctor(lua_State *L)
 	return 0;
 }
 
+static int lua_blast_ctor(lua_State *L)
+{
+	static int blast_index = 0;
+	blastspec* blast = &Blastmap[blast_index++];
+	if (blast_index > ALLBLASTTYPES)
+		ErrorMessage(__FUNCTION__, "Maximum number of blast types was exceeded.", PLEASE_INFORM, IS_FATAL);
+
+	struct data_spec data_specs[] = {
+		{ "name", NULL, STRING_TYPE, &blast->name },
+		{ "animation_time", "1.0", FLOAT_TYPE, &blast->total_animation_time },
+		{ "phases", 0, INT_TYPE, &blast->phases },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	set_structure_from_table(L, data_specs);
+	blast->images = MyMalloc(sizeof(struct image) * blast->phases);
+	return 0;
+}
+
 /**
  * Set obstacle flags as global lua values.
  */
@@ -637,6 +656,7 @@ void init_luaconfig()
 		{"tux_rendering_config", lua_tuxrendering_config_ctor},
 		{"tux_ordering", lua_tuxordering_ctor},
 		{"obstacle", lua_obstacle_ctor},
+		{"blast", lua_blast_ctor},
 		{NULL, NULL}
 	};
 
