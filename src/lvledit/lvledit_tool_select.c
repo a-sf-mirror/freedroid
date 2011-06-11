@@ -113,6 +113,12 @@ int element_in_selection(void *data)
 			if (((struct lvledit_map_tile *) (e->data))->tile == data)
 				return 1;
 			break;
+		case OBJECT_WAYPOINT:
+			// We must compare the coordinates of the two waypoints
+			if (((waypoint *)e->data)->x == ((waypoint *)data)->x &&
+				((waypoint *)e->data)->y == ((waypoint *)data)->y)
+				return 1;
+			break;
 		default:
 			if (e->data == data)
 				return 1;
@@ -209,9 +215,8 @@ static void __clear_selected_list(struct list_head *lst, int nbelem)
 	list_for_each_entry_safe(e, ne, lst, node) {
 		if (nbelem-- == 0)
 			return;
-
-		if (e->type == OBJECT_FLOOR) {
-			/* Unselecting a floor tile requires freeing its wrapper structure. */				
+		if (e->type == OBJECT_FLOOR || e->type == OBJECT_WAYPOINT) {
+			/* Unselecting floor tiles or waypoints requires freeing the duplicated data */
 			free(e->data);
 		}
 		list_del(&e->node);
@@ -252,7 +257,10 @@ static void select_waypoint_on_tile(int x, int y)
 	for (i = 0; i < EditLevel()->waypoints.size; i++) {
 		if (wpts[i].x == x && wpts[i].y == y) {
 			if (!element_in_selection(&wpts[i])) {
-				add_object_to_list(&selected_elements, &wpts[i], OBJECT_WAYPOINT);
+				waypoint *w = MyMalloc(sizeof(waypoint));
+				memcpy(w, &wpts[i], sizeof(waypoint));
+
+				add_object_to_list(&selected_elements, w, OBJECT_WAYPOINT);
 				state.rect_nbelem_selected++;
 			}
 		}
@@ -908,7 +916,8 @@ void level_editor_paste_selection()
 			}
 
 			// Add and select
-			add_object_to_list(&selected_elements, action_create_waypoint(EditLevel(), w->x, w->y, w->suppress_random_spawn), OBJECT_WAYPOINT);
+			action_create_waypoint(EditLevel(), w->x, w->y, w->suppress_random_spawn);
+			select_waypoint_on_tile(w->x, w->y);
 
 			nbact++;
 			break;
