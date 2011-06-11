@@ -36,6 +36,8 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+#include "lvledit/lvledit_object_lists.h"
+
 /* Our Lua state for event execution (defined in lua.c) */
 extern lua_State *global_lua_state;
 
@@ -516,7 +518,6 @@ static int lua_obstacle_ctor(lua_State *L)
 	char *animation;
 	char *action;
 	int emitted_light_strength;
-	char *leveleditor_category;
 
 	char default_transparency[20];
 	sprintf(default_transparency, "%d", TRANSPARENCY_FOR_WALLS);
@@ -531,7 +532,6 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "transparency", default_transparency, INT_TYPE, &transparency },
 		{ "action", NULL, STRING_TYPE, &action },
 		{ "animation", NULL, STRING_TYPE, &animation },
-		{ "leveleditor_category", NULL, STRING_TYPE, &leveleditor_category },
 		{ NULL, NULL, 0, 0 }
 	};
 
@@ -584,9 +584,26 @@ static int lua_obstacle_ctor(lua_State *L)
 	obstacle.animation_fn = get_animation_by_name(animation);
 	free(animation);
 
-	free(leveleditor_category);
-
 	dynarray_add(&obstacle_map, &obstacle, sizeof(obstacle_spec));
+	return 0;
+}
+
+static int lua_leveleditor_obstacle_category_ctor(lua_State *L)
+{
+	char *category_name;
+	struct dynarray obstacle_list;
+
+	struct data_spec data_specs[] = {
+		{ "name", NULL, STRING_TYPE, &category_name },
+		{ "obstacles", NULL, STRING_ARRAY, &obstacle_list },
+		{ NULL, NULL, 0, 0 }
+	};
+
+	set_structure_from_table(L, data_specs);
+
+	lvledit_set_obstacle_list_for_category(category_name, &obstacle_list);
+	free(category_name);
+	dynarray_free(&obstacle_list);
 	return 0;
 }
 
@@ -656,6 +673,7 @@ void init_luaconfig()
 		{"tux_rendering_config", lua_tuxrendering_config_ctor},
 		{"tux_ordering", lua_tuxordering_ctor},
 		{"obstacle", lua_obstacle_ctor},
+		{"leveleditor_obstacle_category", lua_leveleditor_obstacle_category_ctor},
 		{"blast", lua_blast_ctor},
 		{NULL, NULL}
 	};

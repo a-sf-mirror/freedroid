@@ -9,42 +9,36 @@ obstacle {
 	image_filename = "iso_tree_0000.png",
 	borders = borders(0.60, 0.60),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_walls_0001.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0002.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0003.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0004.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_tree_0001.png",
 	borders = borders(1.30, 1.30),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
@@ -53,7 +47,6 @@ obstacle {
 	flags = { IS_HORIZONTAL, IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -62,7 +55,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -71,7 +63,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -80,7 +71,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -88,7 +78,6 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -97,7 +86,6 @@ obstacle {
 	flags = { IS_VERTICAL, IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -106,7 +94,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -115,7 +102,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -124,7 +110,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -132,7 +117,6 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -140,7 +124,6 @@ obstacle {
 	emitted_light_strength = 20,
 	transparency = NO_TRANSPARENCY,
 	animation = "teleporter",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -148,7 +131,6 @@ obstacle {
 	emitted_light_strength = 19,
 	transparency = NO_TRANSPARENCY,
 	animation = "teleporter",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -156,7 +138,6 @@ obstacle {
 	emitted_light_strength = 18,
 	transparency = NO_TRANSPARENCY,
 	animation = "teleporter",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -164,7 +145,6 @@ obstacle {
 	emitted_light_strength = 19,
 	transparency = NO_TRANSPARENCY,
 	animation = "teleporter",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -172,7 +152,6 @@ obstacle {
 	emitted_light_strength = 20,
 	transparency = NO_TRANSPARENCY,
 	animation = "teleporter",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -181,7 +160,6 @@ obstacle {
 	emitted_light_strength = 10,
 	transparency = NO_TRANSPARENCY,
 	animation = "refresh",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -190,7 +168,6 @@ obstacle {
 	emitted_light_strength = 10,
 	transparency = NO_TRANSPARENCY,
 	animation = "refresh",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -199,7 +176,6 @@ obstacle {
 	emitted_light_strength = 10,
 	transparency = NO_TRANSPARENCY,
 	animation = "refresh",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -208,7 +184,6 @@ obstacle {
 	emitted_light_strength = 10,
 	transparency = NO_TRANSPARENCY,
 	animation = "refresh",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -217,7 +192,6 @@ obstacle {
 	emitted_light_strength = 10,
 	transparency = NO_TRANSPARENCY,
 	animation = "refresh",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -225,7 +199,6 @@ obstacle {
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -233,7 +206,6 @@ obstacle {
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -243,7 +215,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -253,7 +224,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -261,7 +231,6 @@ obstacle {
 	borders = borders(0.80, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -269,7 +238,6 @@ obstacle {
 	borders = borders(0.60, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -277,7 +245,6 @@ obstacle {
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
 	animation = "autogun",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -285,7 +252,6 @@ obstacle {
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
 	animation = "autogun",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -293,7 +259,6 @@ obstacle {
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
 	animation = "autogun",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -301,7 +266,6 @@ obstacle {
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
 	animation = "autogun",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -309,7 +273,6 @@ obstacle {
 	borders = borders(1.50, 1.00),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -317,7 +280,6 @@ obstacle {
 	borders = borders(1.00, 1.50),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -325,7 +287,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -333,7 +294,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -341,7 +301,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -349,7 +308,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -357,7 +315,6 @@ obstacle {
 	borders = borders(0.50, 0.50),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -367,7 +324,6 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -377,7 +333,6 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -387,7 +342,6 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -397,28 +351,24 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0047.png",
 	borders = borders(-0.50, 0.25, -0.50, 0.25),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0048.png",
 	borders = borders(-0.50, 0.25, -0.50, 0.25),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0001.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -428,7 +378,6 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -438,7 +387,6 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -448,7 +396,6 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -458,7 +405,6 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -467,49 +413,42 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 24,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0005.png",
 	borders = borders(-0.60, 0.55, -0.60, 0.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0006.png",
 	borders = borders(-0.60, 0.55, -0.60, 0.55),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0007.png",
 	borders = borders(-0.60, 0.50, -0.60, 0.55),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0008.png",
 	borders = borders(-0.60, 0.50, -0.60, 0.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0059.png",
 	borders = borders(1.10, 2.20),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0060.png",
 	borders = borders(2.20, 1.10),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -517,7 +456,6 @@ obstacle {
 	borders = borders(1.10, 2.20),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -525,7 +463,6 @@ obstacle {
 	borders = borders(2.20, 1.10),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -533,7 +470,6 @@ obstacle {
 	borders = borders(0.80, 2.20),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -541,7 +477,6 @@ obstacle {
 	borders = borders(2.20, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -549,7 +484,6 @@ obstacle {
 	borders = borders(0.80, 2.20),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -557,7 +491,6 @@ obstacle {
 	borders = borders(2.20, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -565,7 +498,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -573,7 +505,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -581,7 +512,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -589,7 +519,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -597,7 +526,6 @@ obstacle {
 	borders = borders(0.68, 0.50),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -605,7 +533,6 @@ obstacle {
 	borders = borders(0.50, 0.68),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -613,7 +540,6 @@ obstacle {
 	borders = borders(0.68, 0.50),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -621,7 +547,6 @@ obstacle {
 	borders = borders(0.50, 0.68),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -629,7 +554,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -637,7 +561,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -645,7 +568,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -653,7 +575,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -661,7 +582,6 @@ obstacle {
 	borders = borders(0.40, 1.00),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -669,7 +589,6 @@ obstacle {
 	borders = borders(1.00, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -677,7 +596,6 @@ obstacle {
 	borders = borders(0.40, 1.00),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -685,7 +603,6 @@ obstacle {
 	borders = borders(1.00, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -693,7 +610,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -701,7 +617,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -709,7 +624,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -717,7 +631,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -725,7 +638,6 @@ obstacle {
 	borders = borders(1.10, 0.70),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -733,7 +645,6 @@ obstacle {
 	borders = borders(0.70, 1.10),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -741,7 +652,6 @@ obstacle {
 	borders = borders(1.10, 0.70),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -749,7 +659,6 @@ obstacle {
 	borders = borders(0.70, 1.10),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -757,7 +666,6 @@ obstacle {
 	borders = borders(0.60, 2.20),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -765,7 +673,6 @@ obstacle {
 	borders = borders(2.20, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -773,7 +680,6 @@ obstacle {
 	borders = borders(0.60, 2.20),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -781,7 +687,6 @@ obstacle {
 	borders = borders(2.20, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -789,7 +694,6 @@ obstacle {
 	borders = borders(1.10, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -797,7 +701,6 @@ obstacle {
 	borders = borders(0.60, 1.10),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -805,7 +708,6 @@ obstacle {
 	borders = borders(0.60, 1.10),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -813,7 +715,6 @@ obstacle {
 	borders = borders(1.10, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -821,7 +722,6 @@ obstacle {
 	borders = borders(0.70, 1.30),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -829,7 +729,6 @@ obstacle {
 	borders = borders(1.30, 0.70),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -837,7 +736,6 @@ obstacle {
 	borders = borders(1.30, 0.70),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -845,7 +743,6 @@ obstacle {
 	borders = borders(0.70, 1.30),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -853,7 +750,6 @@ obstacle {
 	borders = borders(1.50, 1.00),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -861,7 +757,6 @@ obstacle {
 	borders = borders(1.00, 1.50),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -869,7 +764,6 @@ obstacle {
 	borders = borders(0.40, 0.50),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -877,21 +771,18 @@ obstacle {
 	borders = borders(0.50, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0107.png",
 	flags = { IS_VERTICAL, BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0108.png",
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -899,7 +790,6 @@ obstacle {
 	borders = borders(0.50, 1.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -907,7 +797,6 @@ obstacle {
 	borders = borders(1.00, 0.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -915,7 +804,6 @@ obstacle {
 	borders = borders(0.50, 1.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -923,98 +811,84 @@ obstacle {
 	borders = borders(1.00, 0.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0113.png",
 	borders = borders(0.60, 0.60),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0114.png",
 	borders = borders(0.60, 0.60),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_obstacle_0115.png",
 	borders = borders(0.60, 0.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0001.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0002.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0003.png",
 	borders = borders(-0.55, 0.20, -0.20, 0.55),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0004.png",
 	borders = borders(-0.55, 0.20, -0.55, 0.20),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0005.png",
 	borders = borders(-0.20, 0.55, -0.20, 0.55),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0006.png",
 	borders = borders(-0.20, 0.55, -0.55, 0.20),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0007.png",
 	borders = borders(-0.55, 0.55, -0.55, 0.20),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0008.png",
 	borders = borders(-0.20, 0.55, -0.55, 0.55),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0009.png",
 	borders = borders(-0.55, 0.55, -0.20, 0.55),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_thick_wall_0010.png",
 	borders = borders(-0.55, 0.20, -0.55, 0.55),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1022,7 +896,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1030,7 +903,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1038,7 +910,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1046,35 +917,30 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0005.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0006.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0007.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0008.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1082,7 +948,6 @@ obstacle {
 	borders = borders(1.20, 0.80),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
 	after_smashing = 235,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1090,112 +955,96 @@ obstacle {
 	borders = borders(0.80, 1.20),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
 	after_smashing = 236,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0003.png",
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0004.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.60),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0005.png",
 	borders = borders(-0.60, 0.65, -0.60, 0.30),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0006.png",
 	borders = borders(-0.30, 0.60, -0.30, 0.60),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0007.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.30),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_blood_0001.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_blood_0002.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_blood_0003.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_blood_0004.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_blood_0005.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_blood_0006.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_blood_0007.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_blood_0008.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_exits_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_exits_0002.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -1204,7 +1053,6 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 10,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
@@ -1212,49 +1060,42 @@ obstacle {
 	borders = borders(1.50, 1.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_rocks_n_plants_0002.png",
 	flags = { BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_rocks_n_plants_0003.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_walls_0016.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0017.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0018.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0019.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1262,7 +1103,6 @@ obstacle {
 	borders = borders(3.50, 1.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1270,7 +1110,6 @@ obstacle {
 	borders = borders(1.50, 3.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1278,7 +1117,6 @@ obstacle {
 	borders = borders(2.20, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1286,7 +1124,6 @@ obstacle {
 	borders = borders(0.60, 2.20),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1294,7 +1131,6 @@ obstacle {
 	borders = borders(2.20, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1302,119 +1138,102 @@ obstacle {
 	borders = borders(0.60, 2.20),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0002.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0006.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0010.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0004.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0008.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0012.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0003.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0007.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0011.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0001.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0005.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0009.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0013.png",
 	borders = borders(1.10, 1.10),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0014.png",
 	borders = borders(1.10, 1.10),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0015.png",
 	borders = borders(1.10, 1.10),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0016.png",
 	borders = borders(1.10, 1.10),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1422,7 +1241,6 @@ obstacle {
 	borders = borders(-0.05, 0.60, -1.55, 0.55),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1430,7 +1248,6 @@ obstacle {
 	borders = borders(1.20, 1.20),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -1438,7 +1255,6 @@ obstacle {
 	borders = borders(1.20, 1.20),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -1446,14 +1262,12 @@ obstacle {
 	borders = borders(1.20, 1.20),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_doors_0022.png",
 	flags = { BLOCKS_VISION },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -1461,7 +1275,6 @@ obstacle {
 	borders = borders(-1.55, 0.55, -0.05, 0.60),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1469,7 +1282,6 @@ obstacle {
 	borders = borders(1.20, 1.20),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -1477,7 +1289,6 @@ obstacle {
 	borders = borders(1.20, 1.20),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -1485,75 +1296,64 @@ obstacle {
 	borders = borders(1.20, 1.20),
 	flags = { IS_WALKABLE },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_doors_0017.png",
 	flags = { BLOCKS_VISION },
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_doors_0024.png",
 	borders = borders(-0.05, 0.60, -1.55, 0.55),
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_doors_0023.png",
 	borders = borders(-1.55, 0.55, -0.05, 0.60),
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0002.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0003.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_machinery_0004.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_chairs_0004.png",
 	borders = borders(0.80, 0.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_chairs_0001.png",
 	borders = borders(0.80, 0.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_chairs_0002.png",
 	borders = borders(0.80, 0.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_chairs_0003.png",
 	borders = borders(0.80, 0.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1561,7 +1361,6 @@ obstacle {
 	borders = borders(1.60, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1569,7 +1368,6 @@ obstacle {
 	borders = borders(0.80, 1.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1577,7 +1375,6 @@ obstacle {
 	borders = borders(1.60, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1585,35 +1382,30 @@ obstacle {
 	borders = borders(0.80, 1.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_body_0001.png",
 	flags = { BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_body_0002.png",
 	flags = { BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_body_0003.png",
 	flags = { BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_body_0004.png",
 	flags = { BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -1621,7 +1413,6 @@ obstacle {
 	borders = borders(2.00, 2.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1629,7 +1420,6 @@ obstacle {
 	borders = borders(2.00, 2.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1637,7 +1427,6 @@ obstacle {
 	borders = borders(2.00, 2.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1645,19 +1434,16 @@ obstacle {
 	borders = borders(2.00, 2.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_fence_0001.png",
 	borders = borders(0.80, 2.30),
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_fence_0002.png",
 	borders = borders(2.30, 0.80),
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1665,7 +1451,6 @@ obstacle {
 	borders = borders(1.20, 2.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1673,7 +1458,6 @@ obstacle {
 	borders = borders(2.00, 1.20),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1681,7 +1465,6 @@ obstacle {
 	borders = borders(1.20, 2.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1689,49 +1472,42 @@ obstacle {
 	borders = borders(2.00, 1.20),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_beds_0004.png",
 	borders = borders(1.20, 2.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_beds_0005.png",
 	borders = borders(2.00, 1.20),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_beds_0006.png",
 	borders = borders(1.20, 2.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_beds_0007.png",
 	borders = borders(2.00, 1.20),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_conference_furniture_0004.png",
 	borders = borders(0.50, 0.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_conference_furniture_0006.png",
 	borders = borders(0.50, 0.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -1740,7 +1516,6 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 24,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1749,7 +1524,6 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 24,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1758,7 +1532,6 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 24,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1767,7 +1540,6 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 7,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
@@ -1776,7 +1548,6 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 9,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
@@ -1785,7 +1556,6 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 8,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
@@ -1794,35 +1564,30 @@ obstacle {
 	flags = { GROUND_LEVEL },
 	emitted_light_strength = 11,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0008.png",
 	borders = borders(1.20, 1.20),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0009.png",
 	borders = borders(1.20, 1.20),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0010.png",
 	borders = borders(1.20, 1.20),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0011.png",
 	borders = borders(1.20, 1.20),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1832,7 +1597,6 @@ obstacle {
 	flags = { IS_VERTICAL, BLOCKS_VISION, IS_SMASHABLE, IS_CLICKABLE },
 	after_smashing = 237,
 	action = "barrel",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1842,19 +1606,16 @@ obstacle {
 	flags = { IS_HORIZONTAL, BLOCKS_VISION, IS_SMASHABLE, IS_CLICKABLE },
 	after_smashing = 238,
 	action = "barrel",
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0014.png",
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_0015.png",
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1862,7 +1623,6 @@ obstacle {
 	borders = borders(2.20, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1870,7 +1630,6 @@ obstacle {
 	borders = borders(1.00, 2.20),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1878,7 +1637,6 @@ obstacle {
 	borders = borders(2.00, 1.00),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1886,21 +1644,18 @@ obstacle {
 	borders = borders(1.00, 2.20),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_conference_furniture_0007.png",
 	borders = borders(0.50, 0.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_conference_furniture_0005.png",
 	borders = borders(0.50, 0.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -1910,7 +1665,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "sign",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -1920,7 +1674,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "sign",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -1930,49 +1683,42 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "sign",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_walls_0010.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0011.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0012.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0013.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0014.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0015.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -1980,7 +1726,6 @@ obstacle {
 	borders = borders(0.80, 1.05),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1988,7 +1733,6 @@ obstacle {
 	borders = borders(1.05, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -1996,7 +1740,6 @@ obstacle {
 	borders = borders(0.80, 1.05),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2004,7 +1747,6 @@ obstacle {
 	borders = borders(1.05, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2012,7 +1754,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2020,7 +1761,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2028,7 +1768,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2036,7 +1775,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2044,7 +1782,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2052,7 +1789,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2060,7 +1796,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2068,7 +1803,6 @@ obstacle {
 	borders = borders(1.10, 1.10),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2076,7 +1810,6 @@ obstacle {
 	borders = borders(3.50, 1.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2084,7 +1817,6 @@ obstacle {
 	borders = borders(1.50, 3.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2092,7 +1824,6 @@ obstacle {
 	borders = borders(1.50, 1.00),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2100,7 +1831,6 @@ obstacle {
 	borders = borders(1.00, 1.50),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2108,7 +1838,6 @@ obstacle {
 	borders = borders(0.80, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2116,7 +1845,6 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	emitted_light_strength = 29,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -2124,35 +1852,30 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	emitted_light_strength = 29,
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0017.png",
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0018.png",
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0019.png",
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_outer_walls_0020.png",
 	borders = borders(1.00, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2160,7 +1883,6 @@ obstacle {
 	borders = borders(0.85, 1.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2168,7 +1890,6 @@ obstacle {
 	borders = borders(1.50, 0.85),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2176,7 +1897,6 @@ obstacle {
 	borders = borders(1.00, 1.20),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2184,7 +1904,6 @@ obstacle {
 	borders = borders(1.20, 1.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2195,7 +1914,6 @@ obstacle {
 	after_smashing = 348,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2206,63 +1924,54 @@ obstacle {
 	after_smashing = 446,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0022.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0023.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0024.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0025.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0026.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0027.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0028.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0029.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2270,7 +1979,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2278,7 +1986,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2286,7 +1993,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2294,7 +2000,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2302,7 +2007,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2310,7 +2014,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2318,7 +2021,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2326,7 +2028,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2334,7 +2035,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2342,7 +2042,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2350,7 +2049,6 @@ obstacle {
 	borders = borders(0.60, 1.20),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2358,7 +2056,6 @@ obstacle {
 	borders = borders(1.20, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2366,7 +2063,6 @@ obstacle {
 	borders = borders(0.60, 1.20),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2374,7 +2070,6 @@ obstacle {
 	borders = borders(1.20, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2382,7 +2077,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2390,7 +2084,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2398,7 +2091,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2406,7 +2098,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2414,7 +2105,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2422,7 +2112,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2430,7 +2119,6 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2438,63 +2126,54 @@ obstacle {
 	borders = borders(0.60, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0001.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0002.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0003.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0004.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0005.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0006.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0007.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_oil_stains_0008.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2502,7 +2181,6 @@ obstacle {
 	borders = borders(1.00, 1.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2510,7 +2188,6 @@ obstacle {
 	borders = borders(1.20, 0.80),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
 	after_smashing = 235,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2518,77 +2195,66 @@ obstacle {
 	borders = borders(0.80, 1.20),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
 	after_smashing = 236,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_autogun_0001.png",
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_autogun_0002.png",
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_autogun_0003.png",
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_autogun_0004.png",
 	borders = borders(0.70, 0.70),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_cables_0001.png",
 	borders = borders(1.20, 0.80),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_cables_0002.png",
 	borders = borders(0.80, 1.20),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_cables_0004.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.60),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_cables_0005.png",
 	borders = borders(-0.60, 0.65, -0.60, 0.30),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_cables_0006.png",
 	borders = borders(-0.30, 0.60, -0.30, 0.60),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_brick_wall_cables_0007.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.30),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2596,7 +2262,6 @@ obstacle {
 	borders = borders(1.50, 5.00),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2604,7 +2269,6 @@ obstacle {
 	borders = borders(5.00, 1.50),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2612,7 +2276,6 @@ obstacle {
 	borders = borders(0.65, 5.50),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -2620,112 +2283,96 @@ obstacle {
 	borders = borders(5.50, 0.65),
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_crystal_fields_0001.png",
 	borders = borders(0.50, 0.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_crystal_fields_0002.png",
 	borders = borders(1.15, 1.15),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_crystal_fields_0003.png",
 	borders = borders(0.95, 0.95),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_crystal_fields_0004.png",
 	borders = borders(1.25, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_crystal_fields_0005.png",
 	borders = borders(1.20, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_crystal_fields_0006.png",
 	borders = borders(1.10, 1.10),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "plant"
 }
 
 obstacle {
 	image_filename = "iso_wall_corners_0001.png",
 	borders = borders(1.10, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_wall_corners_0002.png",
 	borders = borders(1.10, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_wall_corners_0003.png",
 	borders = borders(1.10, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_wall_corners_0004.png",
 	borders = borders(1.10, 1.00),
 	flags = { BLOCKS_VISION },
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_walls_0030.png",
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_doors_0022_blocked.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_doors_0017_blocked.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_doubledoors_0011.png",
 	borders = borders(-0.55, 1.55, -0.80, 0.20),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
 	image_filename = "iso_doubledoors_0012.png",
 	borders = borders(-0.80, 0.20, -0.55, 1.55),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2734,7 +2381,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2743,7 +2389,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2752,7 +2397,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2761,7 +2405,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2769,7 +2412,6 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2778,7 +2420,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "wall"
 }
 
 obstacle {
@@ -2787,7 +2428,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2796,7 +2436,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2805,7 +2444,6 @@ obstacle {
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
@@ -2813,70 +2451,60 @@ obstacle {
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
-	leveleditor_category = "none"
 }
 
 obstacle {
 	image_filename = "iso_basin_0001.png",
 	borders = borders(1.05, 0.95),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_basin_0002.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_basin_0003.png",
 	borders = borders(1.05, 0.95),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_basin_0004.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_deskchair_0001.png",
 	borders = borders(0.90, 0.90),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_deskchair_0002.png",
 	borders = borders(0.90, 0.90),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_deskchair_0003.png",
 	borders = borders(0.90, 0.90),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_exits_0005.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_exits_0006.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -2886,7 +2514,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -2896,7 +2523,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -2904,7 +2530,6 @@ obstacle {
 	borders = borders(0.60, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -2912,7 +2537,6 @@ obstacle {
 	borders = borders(0.80, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -2922,7 +2546,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -2932,7 +2555,6 @@ obstacle {
 	flags = { GROUND_LEVEL, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "chest",
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -2940,7 +2562,6 @@ obstacle {
 	borders = borders(0.80, 0.60),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "container"
 }
 
 obstacle {
@@ -2948,63 +2569,54 @@ obstacle {
 	borders = borders(0.60, 0.80),
 	flags = { GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "container"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0001.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0002.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0003.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0004.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0005.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0006.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0007.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_security_gate_0008.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -3015,140 +2627,120 @@ obstacle {
 	after_smashing = 407,
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0000.png",
 	borders = borders(3.00, 2.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0001.png",
 	borders = borders(2.00, 3.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0002.png",
 	borders = borders(2.46, 1.94),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0003.png",
 	borders = borders(1.94, 2.46),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0004.png",
 	borders = borders(2.46, 1.94),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0005.png",
 	borders = borders(1.94, 2.46),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0006_N.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0006_W.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0006_S.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0006_E.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0007_N.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0007_W.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_freighter_railway_0000.png",
 	borders = borders(3.00, 3.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_freighter_railway_0001.png",
 	borders = borders(3.00, 3.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_freighter_railway_0002.png",
 	borders = borders(3.00, 3.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_freighter_railway_0003.png",
 	borders = borders(3.00, 3.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_freighter_railway_0004.png",
 	borders = borders(3.00, 3.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_freighter_railway_0005.png",
 	borders = borders(3.00, 3.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_solar_panel_0000.png",
 	borders = borders(0.95, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -3158,35 +2750,30 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "container"
 }
 
 obstacle {
 	image_filename = "iso_reactor_1_0000.png",
 	borders = borders(4.50, 4.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_reactor_1_0001.png",
 	borders = borders(4.00, 4.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_reactor_1_0002.png",
 	borders = borders(4.50, 4.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_reactor_1_0003.png",
 	borders = borders(4.00, 4.50),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -3196,7 +2783,6 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -3206,7 +2792,6 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -3216,7 +2801,6 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -3226,35 +2810,30 @@ obstacle {
 	flags = { IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "terminal",
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_turbines_small_0000.png",
 	borders = borders(1.10, 1.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_turbines_small_0001.png",
 	borders = borders(1.80, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_turbines_small_0002.png",
 	borders = borders(1.10, 1.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_turbines_small_0003.png",
 	borders = borders(1.80, 1.05),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
@@ -3264,112 +2843,96 @@ obstacle {
 	flags = { BLOCKS_VISION, IS_SMASHABLE, DROPS_RANDOM_TREASURE, IS_CLICKABLE },
 	transparency = NO_TRANSPARENCY,
 	action = "barrel",
-	leveleditor_category = "container"
 }
 
 obstacle {
 	image_filename = "default_dead_body_00_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_body_02_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_body_04_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_body_06_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_body_08_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_body_10_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_body_12_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_body_14_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "default_dead_human_00_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "iso_ladder_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_ladder_0002.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_wrecked_car_0001.png",
 	borders = borders(1.40, 2.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "iso_wrecked_car_0002.png",
 	borders = borders(2.80, 1.40),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "iso_wrecked_car_0003.png",
 	borders = borders(1.40, 2.80),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "iso_wrecked_car_0004.png",
 	borders = borders(2.80, 1.40),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
@@ -3377,7 +2940,6 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
@@ -3385,62 +2947,53 @@ obstacle {
 	borders = borders(0.40, 0.40),
 	flags = { IS_SMASHABLE, GROUND_LEVEL },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "furniture"
 }
 
 obstacle {
 	image_filename = "iso_botline_0007_S.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0007_E.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0008_N.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0008_W.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0008_S.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "iso_botline_0008_E.png",
 	borders = borders(1.00, 1.00),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "machinery"
 }
 
 obstacle {
 	image_filename = "crushed_476_0001.png",
 	borders = borders(2.10, 2.60),
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "other"
 }
 
 obstacle {
 	image_filename = "iso_walls_0031.png",
 	flags = { IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
-	leveleditor_category = "wall"
 }
 

@@ -283,7 +283,12 @@ void leveleditor_init_widgets()
 
 	build_leveleditor_tile_lists();
 
-	// Obstacles
+	// Load categories for obstacles
+	char fpath[4096];
+	find_file("leveleditor_obstacle_categories.lua", MAP_DIR, fpath, 0);
+	run_lua_file(fpath);
+
+	// Build list of all obstacles
 	all_obstacles_list = MyMalloc(sizeof(int) * (obstacle_map.size + 1));
 	for (i = 0; i < obstacle_map.size; i++)
 		all_obstacles_list[i] = i;
