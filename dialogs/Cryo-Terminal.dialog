@@ -62,7 +62,6 @@ LuaCode={
 Nr=1 Text=_"appointments and visiting hours"
 NO_TEXT
 LuaCode={
-	tux_says(_"appointments and visiting hours", "NO_WAIT")
 	npc_says(_"Cryogenic Solutions operates 24 hours a day every day of the year.")
 	npc_says(_"However for the safety of our clients, visiting hours are restricted.", "NO_WAIT")
 	npc_says(_"Visiting hours for family and friends are by appointment only [b]Monday-Thursday 10:00-14:00[/b].")
@@ -75,7 +74,6 @@ LuaCode={
 Nr=2 Text=_"pricing"
 NO_TEXT
 LuaCode={
-	tux_says(_"pricing", "NO_WAIT")
 	npc_says(_"Seeing the distant future is priceless.")
 	npc_says(_"But we here at Cryogenic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable.")
 	npc_says(_"Make an appointment today!")
@@ -87,10 +85,9 @@ LuaCode={
 Nr=3 Text=_"advantages"
 NO_TEXT	
 LuaCode={
-	tux_says(_"advantages", "NO_WAIT")
 	npc_says(_"Are you looking to experience a whole new reality?")
 	npc_says(_"Or are you interested in finding out what happens?")
-	npc_says(_"Or maybe you want to see what compounded interest can do for you?")
+	npc_says(_"Or maybe you want to see what compound interest can do for you?")
 	npc_says(_"These are just some of the many advantages of taking the fast trip to the future with Cryogenic Solutions!")
 	cli_says(terminal, "NO_WAIT")
 	hide(3)
@@ -101,7 +98,6 @@ Nr=50 Text="*#06#"
 NO_TEXT	
 LuaCode={
 	add_cookie("cryo_term_unlocked")
-	tux_says("*#06#", "NO_WAIT")
 	npc_says(_"Enter command code", "NO_WAIT")
 	cli_says("> ")
 	tux_says("09F911029D74E35BD84156C5635688C0")
