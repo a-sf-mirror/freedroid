@@ -39,9 +39,9 @@ iso_doors_0019.png 0 1145 153 209 off -15 -177
 iso_doors_0024.png 154 1145 153 209 off -15 -177
 iso_doors_0023.png 308 1145 153 209 off -137 -175
 iso_doors_0014.png 462 1145 153 209 off -137 -175
-iso_doors_0017_blocked.png 616 1145 153 209 off 0 0
+iso_doors_0017_blocked.png 616 1145 153 209 off -137 -175
 iso_doors_0016.png 770 1145 153 209 off -137 -175
-iso_doors_0022_blocked.png 924 1145 153 209 off 0 0
+iso_doors_0022_blocked.png 924 1145 153 209 off -15 -175
 iso_doors_0015.png 1078 1145 153 209 off -137 -175
 iso_doors_0017.png 1232 1145 153 209 off -137 -175
 iso_doors_0013.png 1386 1145 153 209 off -137 -175
