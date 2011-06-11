@@ -76,10 +76,10 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=3 Text=_"The fall of the Red Guard? I am going to report that you are preparing a revolution!"
+Nr=3 Text=_"The fall of the Red Guard? I am going to report that you are inciting a revolution!"
 LuaCode={
 	npc_says(_"My word against yours. If you wish to try it, please, be my guest.")
-	npc_says(_"I am not preparing anything. I am just stating what I see as inevitable in the future.")
+	npc_says(_"I am not inciting anything. I am just stating what I see as inevitable in the future.")
 	npc_says(_"I have taken part in many conflicts and I have seen how governments collapse.")
 	npc_says(_"As soon as the war is over, the Red Guard will disband.")
 	npc_says(_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs.")
@@ -147,18 +147,18 @@ LuaCode={
 	tux_says(_"That is all I need to know. I will find Koan.")
 	npc_says(_"Only time will tell.")
 	if (cmp_obstacle_state("DesertGate", "closed") and (not has_met("Tania"))) then
-		npc_says(_"Here is a couple of circuits to grease open the western gate, if you know what I mean.")
+		npc_says(_"Here are a couple of circuits to grease open the western gate, if you know what I mean.")
 		add_gold(25)
 	end
 	npc_says(_"Good luck!")
-	add_quest(_"Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan some very precious thing.")
+	add_quest(_"Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan something very precious.")
 	hide(52, 59) show(55, 56)
 }
 ----------------------------------------------------------------------
 
 Nr=55 Text=_"What are those bots?"
 LuaCode={
-	npc_says(_"We call them 'Harvester'.")
+	npc_says(_"We call them 'Harvesters'.")
 	npc_says(_"They were designed to chop down trees in the mountains.")
 	npc_says(_"Now they chop down people.")
 	npc_says(_"Their only weak point is their security system. But no one has managed to stay alive long enough to hack them.")
@@ -257,7 +257,7 @@ Nr=90 Text=_"I feel you are... Different."
 LuaCode={
 	npc_says(_"What a great way to start a conversation.")
 	npc_says(_"Yes, that is true. I am not who I seem to be.")
-	npc_says(_"But then again, neither are you, so my thoughts are we are even.")
+	npc_says(_"But then again, neither are you, so my thoughts are, we are even.")
 	tux_says(_"What do you mean? I am " .. get_player_name() .. _" and not anyone else.");
 	npc_says(_"And I am Duncan McNamara, the maker of grenades and nothing else.")
 	set_bot_name(_"Duncan -- Bombmaker")
@@ -268,7 +268,7 @@ LuaCode={
 
 Nr=92 Text=_"Tell me who you are. I need to know."
 LuaCode={
-	npc_says(_"Twenty years ago, the people were kinder to each other.")
+	npc_says(_"Twenty years ago, people were kinder to each other.")
 	npc_says(_"I suggest you be kind to me as well, and I will be kind to you.")
 	npc_says(_"That way I get to keep my secret, and you get to keep yours.")
 	hide(92) show(93)
