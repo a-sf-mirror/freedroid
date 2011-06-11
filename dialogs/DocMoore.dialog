@@ -96,7 +96,10 @@ LuaCode={
 	npc_says(_"Um, what are you? Some kind of overgrown penguin?")
 	tux_says(_"I'm a Linarian.")
 	npc_says(_"Oh, I vaguely remember reading something about Linarian biology back in my university days...")
-	npc_says(_"I should be able to heal you if you get hurt.")
+	npc_says(_"Wait... did you come from outside of town?")
+	tux_says(_"Yes, I had to fight my way here through a bunch of bots.")
+	npc_says(_"Oh my!")
+	npc_says(_"Well, I should be able to heal you if you get hurt.")
 	add_cookie("met_docmoore")
 	if (has_quest(_"Bender's problem")) then
 		show(2)
@@ -125,7 +128,7 @@ Nr=2 Text=_"Doc, I took some of those brain enlargement pills..."
 LuaCode={
 	if (has_cookie("doc_healed_tux")) then
 		npc_says(_"Sorry, but I already gave you some medical help.")
-		npc_says(_"To poison yourself, 1 more time, that's entirely your own business and I'm not responsible.")
+		npc_says(_"To poison yourself again, that's entirely your own business and I'm not responsible.")
 		npc_says(_"As far as I am concerned, in this town everyone gets everything equally.")
 		show(20)
 	else
@@ -207,7 +210,7 @@ LuaCode={
 	npc_says(_"Huh? What?")
 	tux_says(_"Humans... You are so interesting. I always wanted to know exactly how much blood you have.")
 	npc_says(_"Don't do this. Don't do this.")
-	tux_says(_"Prepare, Doc. The experiment begins.")
+	tux_says(_"Prepare, Doctor. The experiment begins.")
 	npc_says(_"Don't do this! DON'T DO THIS!")
 	npc_says(_"AAAAAAAAAAAA!")
 	tux_says(_"Ugh. Human blood is disgusting. At least four liters. I feel sick.")
