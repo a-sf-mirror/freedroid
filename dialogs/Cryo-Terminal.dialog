@@ -60,7 +60,6 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=1 Text=_"appointments and visiting hours"
-NO_TEXT
 LuaCode={
 	npc_says(_"Cryogenic Solutions operates 24 hours a day every day of the year.")
 	npc_says(_"However for the safety of our clients, visiting hours are restricted.", "NO_WAIT")
@@ -72,7 +71,6 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=2 Text=_"pricing"
-NO_TEXT
 LuaCode={
 	npc_says(_"Seeing the distant future is priceless.")
 	npc_says(_"But we here at Cryogenic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable.")
@@ -83,7 +81,6 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=3 Text=_"advantages"
-NO_TEXT	
 LuaCode={
 	npc_says(_"Are you looking to experience a whole new reality?")
 	npc_says(_"Or are you interested in finding out what happens?")
@@ -95,7 +92,6 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=50 Text="*#06#"
-NO_TEXT	
 LuaCode={
 	add_cookie("cryo_term_unlocked")
 	npc_says(_"Enter command code", "NO_WAIT")
@@ -109,7 +105,6 @@ LuaCode={
 ---------------------------------------------------------------------
 
 Nr=51 Text=_"guest mode"
-NO_TEXT	
 LuaCode={
 	del_cookie("cryo_term_unlocked")
 	npc_says(_"Entering user mode...")
@@ -135,9 +130,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=70 Text=_"open gates"
-NO_TEXT
 LuaCode={
-	tux_says(_"open gates", "NO_WAIT")
 	npc_says(_"Access granted. Opening gates ...")
 	npc_says(_"Cryo Complex Gates status: OPEN")
 	change_obstacle_state("CryoOuterGate", "opened")
@@ -148,9 +141,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=80 Text=_"close gates"
-NO_TEXT
 LuaCode={
-	tux_says(_"close gates", "NO_WAIT")
 	npc_says(_"Access granted. Closing gates ...")
 	npc_says(_"Cryo Complex Gates status: CLOSED")
 	change_obstacle_state("CryoOuterGate", "closed")
@@ -161,9 +152,7 @@ LuaCode={
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"leave"
-NO_TEXT
 LuaCode={
-	tux_says(_"leave", "NO_WAIT")
 	npc_says(_"Exiting Session")
 	end_dialog()
 }
