@@ -35,7 +35,7 @@ Nr=1 Text=_"What is a Linarian?"
 LuaCode={
 	if (not has_cookie("chandra_first_contact")) then
 		npc_says(_"Ah yes, I heard that your memory had been affected by stasis. I will share with you what I know.")
-		npc_says(_"Linarians came to this planet about a century ago. While their specialities can vary, they are most widely known for their nearly-magical skills with computers.")	
+		npc_says(_"Linarians came to this planet about a century ago. While their specialties can vary, they are most widely known for their nearly-magical skills with computers.")	
 		if (not has_cookie("guard_follow_tux")) then
 			npc_says(_"[b](Chandra quickly glances around. After verifying that no one else seems to be paying attention to your conversation, he takes a quick breath and continues quietly.)[/b]")
 			npc_says(_"Since you are asking this question and you have even come into our town, I am assuming that your memory has been completely damaged.")
@@ -52,7 +52,7 @@ LuaCode={
 			npc_says(_"What else would you like to know?")
 		end
 	else
-		npc_says(_"Linarians came to this planet about a century ago. While their specialities can vary, they are most widely known for their nearly-magical skills with computers.")
+		npc_says(_"Linarians came to this planet about a century ago. While their specialties can vary, they are most widely known for their nearly-magical skills with computers.")
 		npc_says(_"I'd rather not repeat what I said earlier. It pains me to think of it...")
 	end
 	hide(1) 
@@ -80,7 +80,7 @@ LuaCode={
 	npc_says(_"Over time, most people have willingly forgotten our actions and focused on the good deeds the Linarians performed despite our senseless behavior.")
 	npc_says("Even though we tried to celebrate the grand deeds and heroics of the surviving Linarians, the memories faded. The memories turned into legends and myths as the Linarians slowly withdrew from the world.")
 	npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
-	npc_says(_"Spencer and the Red Guard would not want you to know these things, as you may not be willing to help our failing community.")
+	npc_says(_"Spencer and the Red Guard would not want you to know these things, as you might not be willing to help our failing community.")
 	npc_says(_"However, to not share this information with you is another transgression that I cannot be a part of. Please " .. get_player_name() .. ", we need your help!")
 	hide(2, 3) show(5, 6)
 }
@@ -93,7 +93,7 @@ LuaCode={
 	npc_says(_"But the townspeople were made aware of your existence upon your discovery. Everyone was quickly informed of the legends performed by the Linarians of the past.")
 	npc_says(_"While you will find some people helpful because of this, others may be a bit more hostile. The hostility is a matter of xenophobia and pride in one own's species.")
 	if (not has_cookie("guard_follow_tux")) then
-		npc_says(_"Don't tell anyone else, but I'm surprised the Red Guard ordered you to be thawed. They are human supremists to the extreme. For them to accept your help does not make much sense. They must be playing at something. Beware of the Red Guard, Linarian.")
+		npc_says(_"Don't tell anyone else, but I'm surprised the Red Guard ordered you to be thawed. They are human supremacists to the extreme. For them to accept your help does not make much sense. They must be playing at something. Beware the Red Guard, Linarian.")
 	end
 	hide(4)
 }
