@@ -2701,14 +2701,14 @@ obstacle {
 }
 
 obstacle {
-	image_filename = "iso_doors_0022.png",
+	image_filename = "iso_doors_0022_blocked.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 	leveleditor_category = "wall"
 }
 
 obstacle {
-	image_filename = "iso_doors_0017.png",
+	image_filename = "iso_doors_0017_blocked.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 	leveleditor_category = "wall"
