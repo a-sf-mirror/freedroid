@@ -265,11 +265,14 @@ void Get_Bullet_Data(char *DataPointer)
 		ReadValueFromStringWithDefault(BulletPointer, "Number of phases: ", "%d", "1", &Bulletmap[BulletIndex].phases, EndBulletSection);
 		ReadValueFromStringWithDefault(BulletPointer, "Phases per second: ", "%lf", "1", &Bulletmap[BulletIndex].phase_changes_per_second, EndBulletSection);
 		Bulletmap[BulletIndex].sound = ReadAndMallocStringFromDataOptional(BulletPointer, "Sound to play: \"", "\"");
+		char *blast_name = ReadAndMallocStringFromDataOptional(BulletPointer, "Blast: \"", "\"");
+		Bulletmap[BulletIndex].blast_type = get_blast_type_by_name(blast_name);
+		free(blast_name);
 		BulletIndex++;
 	}
 
 	DebugPrintf(1, "\nEnd of Get_Bullet_Data ( char* DataPointer ) reached.");
-}				// void Get_Bullet_Data ( char* DataPointer );
+}
 
 /**
  * This function reads the descriptions of the different programs
@@ -935,6 +938,10 @@ void Init_Game_Data()
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
 	Get_Programs_Data(Data);
 	free(Data);
+
+	// Load the blast data (required for the bullets to load)
+	find_file("blast_specs.lua", MAP_DIR, fpath, 0);
+	run_lua_file(fpath);
 
 	// Load the bullet data (required for the item archtypes to load)
 	//

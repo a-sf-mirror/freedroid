@@ -424,14 +424,16 @@ void Takeover_Game_Lost_Sound(void)
 	play_sound_cached("effects/Takeover_Game_Lost_Sound_0.ogg");
 }
 
-void droid_blast_sound(struct gps *blast_pos)
+void play_blast_sound(int blast_type, struct gps *blast_pos)
 {
-	play_sound_at_position("effects/Blast_Sound_0.ogg", &Me.pos, blast_pos);
-}
+	char fpath[2048];
 
-void exterminator_blast_sound(struct gps *blast_pos)
-{
-	play_sound_at_position("effects/Blast_Sound_0.ogg", &Me.pos, blast_pos);
+	if (!Blastmap[blast_type].sound_file)
+		return;
+
+	strcpy(fpath, "effects/");
+	strcat(fpath, Blastmap[blast_type].sound_file);
+	play_sound_at_position(fpath, &Me.pos, blast_pos);
 }
 
 /**

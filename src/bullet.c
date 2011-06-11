@@ -237,12 +237,9 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 	// cause later, after the bullet is deleted, it will be hard to know
 	// the correct location ;)
 	//
-	if (ShallWeStartABlast) {
-		int type = BULLETBLAST;
-		if (strlen(Bulletmap[CurBullet->type].name) && !strcmp(Bulletmap[CurBullet->type].name, "exterminator"))
-			type = EXTERMINATORBLAST;
-		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, type, CurBullet->damage, CurBullet->faction);
-	}
+	if (ShallWeStartABlast)
+		StartBlast(CurBullet->pos.x, CurBullet->pos.y, CurBullet->pos.z, Bulletmap[CurBullet->type].blast_type, CurBullet->damage, CurBullet->faction);
+
 	CurBullet->type = INFOUT;
 	CurBullet->time_in_seconds = 0;
 	CurBullet->mine = FALSE;
@@ -252,8 +249,7 @@ void DeleteBullet(int Bulletnumber, int ShallWeStartABlast)
 	CurBullet->pos.y = 0;
 	CurBullet->pos.z = -1;
 	CurBullet->angle = 0;
-
-};				// void DeleteBullet( int Bulletnumber , int StartBlast )
+}
 
 /**
  * This function starts a blast (i.e. an explosion) at the given location
@@ -319,15 +315,8 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 
 	NewBlast->faction = faction;
 
-	if (type == DROIDBLAST) {
-		droid_blast_sound(&NewBlast->pos);
-	}
-
-	if (type == EXTERMINATORBLAST) {
-		exterminator_blast_sound(&NewBlast->pos);
-	}
-
-}				// void StartBlast( ... )
+	play_blast_sound(type, &NewBlast->pos);
+}
 
 /**
  * This function advances the different phases of an explosion according
@@ -361,7 +350,7 @@ However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INF
 				continue;
 			}
 			
-			if (CurBlast->type == DROIDBLAST || CurBlast->type == EXTERMINATORBLAST)
+			if (Blastmap[CurBlast->type].do_damage)
 				CheckBlastCollisions(i);
 
 			// And now we advance the phase of the blast according to the
@@ -859,6 +848,25 @@ int GetBulletByName(const char *bullet_name)
 	}
 	ErrorMessage(__FUNCTION__, "\
 The bullet name \"%s\" lacks a definition.", PLEASE_INFORM, IS_WARNING_ONLY, bullet_name);
+	return 0;
+}
+
+/**
+ * This functions resolves the blast name to blast type.
+ * If blast type wasn't find for the given name the default blast type is
+ * returned.
+ */
+int get_blast_type_by_name(const char *name)
+{
+	if (!name)
+		return 0;
+
+	int i;
+	for (i = 0; i < sizeof(Blastmap) / sizeof(Blastmap[0]); i++) {
+		if (!strcmp(name, Blastmap[i].name))
+			return i;
+	}
+
 	return 0;
 }
 

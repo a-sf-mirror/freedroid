@@ -618,6 +618,8 @@ static int lua_blast_ctor(lua_State *L)
 		{ "name", NULL, STRING_TYPE, &blast->name },
 		{ "animation_time", "1.0", FLOAT_TYPE, &blast->total_animation_time },
 		{ "phases", 0, INT_TYPE, &blast->phases },
+		{ "do_damage", "0", INT_TYPE, &blast->do_damage },
+		{ "sound_file", NULL, STRING_TYPE, &blast->sound_file },
 		{ NULL, NULL, 0, 0 }
 	};
 

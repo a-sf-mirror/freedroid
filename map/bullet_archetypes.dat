@@ -14,6 +14,7 @@ Sound to play: "Military.ogg"
 ** Start of new bullet specification subsection **
 Bullet identification: "exterminator"
 Sound to play: "Exterminator.ogg"
+Blast: "iso_blast_exterminator"
 ** End of new bullet specification subsection **
 
 // this is the laser rifle of the 614

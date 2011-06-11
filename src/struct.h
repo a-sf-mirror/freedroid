@@ -637,6 +637,7 @@ typedef struct bulletspec {
 	char *sound;		// what sound to play
 	int phases;		// how many phases in motion to show 
 	double phase_changes_per_second;	// how many different phases to display every second
+	int blast_type;
 	struct image image[BULLET_DIRECTIONS][MAX_PHASES_IN_A_BULLET];
 } bulletspec;
 
@@ -677,8 +678,10 @@ typedef struct melee_shot	// this is a melee shot
 typedef struct blastspec {
 	int phases;
 	float total_animation_time;
+	int do_damage;
 	struct image *images;
 	char *name;
+	string sound_file;
 } blastspec;
 
 typedef struct blast {
