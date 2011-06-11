@@ -72,7 +72,7 @@ static int find_array_index(char *filenames[], int count, char *key)
 	return -1;
 }
 
-int load_texture_atlas(const char *atlas_name, const char *directory, char *filenames[], struct image atlasmembers[], int count)
+int load_texture_atlas(const char *atlas_name, const char *directory, char *filenames[], struct image *atlasmembers[], int count)
 {
 	// Open atlas file
 	char *dat = get_texture_atlas(atlas_name);
@@ -117,12 +117,12 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 			}
 
 			// Fill in element struct image
-			delete_image(&atlasmembers[index]);
-			create_subimage(&atlas_img, &atlasmembers[index], &dest_rect);
+			delete_image(atlasmembers[index]);
+			create_subimage(&atlas_img, atlasmembers[index], &dest_rect);
 
 			// Set image offset
-			atlasmembers[index].offset_x = xoff;
-			atlasmembers[index].offset_y = yoff;
+			atlasmembers[index]->offset_x = xoff;
+			atlasmembers[index]->offset_y = yoff;
 
 			// Move on to the next element
 			while (*dat && *dat != '\n')

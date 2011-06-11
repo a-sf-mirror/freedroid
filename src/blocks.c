@@ -557,8 +557,15 @@ void load_all_obstacles(void)
  */
 void load_floor_tiles(void)
 {
+	struct image *images[ALL_ISOMETRIC_FLOOR_TILES];
+	int i;
+
+	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
+		images[i] = &floor_images[i];
+	}
+
 	// Try to load the atlas
-	if (load_texture_atlas("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, floor_images, ALL_ISOMETRIC_FLOOR_TILES)) {
+	if (load_texture_atlas("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, images, ALL_ISOMETRIC_FLOOR_TILES)) {
 		ErrorMessage(__FUNCTION__, "Unable to load floor tiles atlas at floor_tiles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
 	}
 }
