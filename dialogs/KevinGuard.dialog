@@ -44,7 +44,7 @@ EveryTime LuaCode={
 
 Nr=1 Text=_"I must talk to your master."
 LuaCode={
-	npc_says(_"[b]State you reason.[/b]")
+	npc_says(_"[b]State your reason.[/b]")
 	hide(1, 3, 17) show(5, 6, 7)
 }
 ----------------------------------------------------------------------
@@ -129,7 +129,7 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"The enemies are approaching from every side!"
+Nr=12 Text=_"Enemies are approaching from every side!"
 LuaCode={
 	npc_says(_"[b]Error: Reason invalid.[/b]")
 	hide(12) show(13)
