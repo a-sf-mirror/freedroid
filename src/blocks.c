@@ -465,45 +465,25 @@ static void __obs_images(int type, struct image **img, struct image **shadow_img
 }
 
 /**
- * Load the images associated to the given
- * obstacle type.
+ * Load the image of the shadow of the given
+ * obstacle type, if such shadow exists.
  */
-static void load_obstacle(int i)
+static void load_obstacle_shadow(int i)
 {
 	char fpath[1024];
 	char shadow_file_name[2000];
-	struct image *img, *shadow_img;
+	struct image *shadow_img;
 	obstacle_spec *spec = get_obstacle_spec(i);
-	__obs_images(i, &img, &shadow_img);
+	__obs_images(i, NULL, &shadow_img);
 
-	if (image_loaded(img)) {
-		ErrorMessage(__FUNCTION__, "Tried to load image for obstacle type %d that was already loaded.\n", PLEASE_INFORM,
-			     IS_WARNING_ONLY, i);
+	sprintf(shadow_file_name, "obstacles/shadow_%s", spec->filename);
+
+	if (find_file(shadow_file_name, GRAPHICS_DIR, fpath, 1)) {
+		struct image empty = EMPTY_IMAGE;
+		*shadow_img = empty;
 		return;
-	}
-
-	if (!spec->filename) {
-		ErrorMessage(__FUNCTION__, "Obstacle type %d has no filename specified for its graphics.\n", PLEASE_INFORM, IS_FATAL, i);
-	}
-
-	// At first we construct the file name of the single tile file we are about to load...
-	sprintf(fpath, "obstacles/%s", spec->filename);
-	load_image(img, fpath, TRUE);
-
-	// Maybe the obstacle in question also has a shadow image?  In that
-	// case we should load the shadow image now. 
-	if (strlen(spec->filename) >= 8) {
-		strcpy(shadow_file_name, fpath);
-		shadow_file_name[strlen(shadow_file_name) - 8] = 0;
-		strcat(shadow_file_name, "shadow_");
-		strcat(shadow_file_name, &(fpath[strlen(fpath) - 8]));
-		if (find_file(shadow_file_name, GRAPHICS_DIR, fpath, 1)) {
-			struct image empty = EMPTY_IMAGE;
-			*shadow_img = empty;
-			return;
-		} else {
-			load_image(shadow_img, shadow_file_name, TRUE);
-		}
+	} else {
+		load_image(shadow_img, shadow_file_name, TRUE);
 	}
 }
 
@@ -516,10 +496,6 @@ struct image *get_obstacle_image(int type)
 {
 	struct image *img;
     __obs_images(type, &img, NULL);
-
-	if (!image_loaded(img)) {
-		load_obstacle(type);
-	}
 
 	return img;
 }
@@ -545,8 +521,19 @@ void load_all_obstacles(void)
 {
 	int i;
 
+	char *filenames[obstacle_map.size];
+	struct image *images[obstacle_map.size];
 	for (i = 0; i < obstacle_map.size; i++) {
-		load_obstacle(i);
+		filenames[i] = ((struct obstacle_spec *)(obstacle_map.arr))[i].filename;
+		images[i] = &((struct image *)(obstacle_images.arr))[i];
+	}
+
+	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", filenames, images, obstacle_images.size)) {
+		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacles at obstacles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
+	}
+
+	for (i = 0; i < obstacle_map.size; i++) {
+		load_obstacle_shadow(i);
 	}
 }
 
