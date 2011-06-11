@@ -36,28 +36,6 @@
  */
 
 /**
- * This function creates the data structure used by the collision detection system and the rendering system.
- * Each obstacle covers a certain number of floor tiles: a reference to the obstacle from the 
- * floor tiles in question is created. This operation is similar to physically applying glue on the obstacles
- * to make them fit on the tiles.
- * An obstacle is glued to any tile it covers even partially. One obstacle is glued to 1 or more floor tiles.
- * A floor tile might have no obstacles glued onto it.
- */
-void glue_obstacles_to_floor_tiles_for_level(int level_num)
-{
-	level *lvl = curShip.AllLevels[level_num];
-	int obstacle_counter;
-
-	// Clear out all the existing glue information
-	free_glued_obstacles(lvl);
-
-	// Browse obstacles on the level to glue them
-	for (obstacle_counter = 0; obstacle_counter < MAX_OBSTACLES_ON_MAP; obstacle_counter++) {
-		glue_obstacle(lvl, &lvl->obstacle_list[obstacle_counter]);
-	}
-}
-
-/**
  * In order to make sure that an obstacle is only displayed/checked once, the collision detection and display code use a timestamp.
  * Every time a new collision detection is started, and every time a new frame is displayed, the timestamp is increased.
  * Obstacles with the same timestamp are obstacles that have already been checked.
