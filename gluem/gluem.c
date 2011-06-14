@@ -688,8 +688,6 @@ void ParseCommandLine(int argc, char *const argv[])
  * -----------------------------------------------------------------*/
 void InitVideo(void)
 {
-	const SDL_VideoInfo *vid_info;
-	SDL_Rect **vid_modes;
 	char vid_driver[81];
 	Uint32 flags;
 
@@ -716,14 +714,11 @@ void InitVideo(void)
 	//
 	atexit(SDL_Quit);
 
-	vid_info = SDL_GetVideoInfo();	/* just curious */
 	SDL_VideoDriverName(vid_driver, 80);
 
 	flags = SDL_SWSURFACE | SDL_HWPALETTE;
 	// if (fullscreen_on) flags |= SDL_FULLSCREEN;
 	flags &= !SDL_FULLSCREEN;
-
-	vid_modes = SDL_ListModes(NULL, SDL_SWSURFACE);
 
 	/* 
 	 * currently only the simple 320x200 mode is supported for 
