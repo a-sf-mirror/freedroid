@@ -374,6 +374,8 @@ static void do_make_texture_out_of_surface(struct image * our_image, int txw, in
 {
 
 #ifdef HAVE_LIBGL
+	// Stop any image batch being constructed, if relevant
+	end_image_batch();
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -578,6 +580,10 @@ void RestoreMenuBackground(int backup_slot)
 		int h = GameConfig.screen_height;
 		int w = GameConfig.screen_width;
 
+		// Stop any image batch being constructed, 
+		// so that struct image does not get confused.
+		end_image_batch();
+
 		glDisable(GL_TEXTURE_2D);
 		glEnable(GL_TEXTURE_RECTANGLE_ARB);
 		glBindTexture(GL_TEXTURE_RECTANGLE_ARB, (StoredMenuBackgroundTex[backup_slot]));
@@ -619,10 +625,9 @@ void StoreMenuBackground(int backup_slot)
 
 	if (use_open_gl) {
 #ifdef HAVE_LIBGL
-		/* The old approach was to malloc a buffer the size of the screen and glReadPixels to it. The problem
-		   is that it's awfully slow, and subsequent RestoreMenuBackground will be slow as well. Here, we hope the
-		   graphics card has enough RAM, and just create a big texture to store the image.
-		 */
+		// Stop any image batch being constructed, 
+		// so that struct image does not get confused.
+		end_image_batch();
 
 		glFlush();
 
@@ -675,6 +680,10 @@ void set_up_stretched_texture_for_light_radius(void)
 	//
 	if (!use_open_gl)
 		return;
+
+	// Stop any image batch being constructed, 
+	// so that struct image does not get confused.
+	end_image_batch();
 
 	// Some protection against creating this texture twice...
 	//
@@ -737,6 +746,10 @@ void light_radius_update_stretched_texture(void)
 
 		}
 	}
+
+	// Stop any image batch being constructed, 
+	// so that struct image does not get confused.
+	end_image_batch();
 
 	glBindTexture(GL_TEXTURE_2D, light_radius_stretch_texture);
 	glTexSubImage2D(GL_TEXTURE_2D, 0,
