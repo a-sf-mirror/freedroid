@@ -483,13 +483,13 @@ void insert_obstacles_into_blitting_list(int mask)
  *
  *
  */
-void insert_tux_into_blitting_list(void)
+static void insert_tux_into_blitting_list(void)
 {
 	float tux_norm = Me.pos.x + Me.pos.y;
 
 	insert_new_element_into_blitting_list(tux_norm, BLITTING_TYPE_TUX, NULL, -1);
 
-};				// void insert_tux_into_blitting_list ( void )
+}
 
 /**
  *
@@ -525,22 +525,10 @@ void insert_one_thrown_item_into_blitting_list(level *item_lvl, int item_num)
  *
  *
  */
-void insert_one_bullet_into_blitting_list(int bullet_num)
+static void insert_one_bullet_into_blitting_list(float norm, int bullet_num)
 {
-	gps virtpos;
-
-	// Due to the use of a painter algorithm, we need to sort the objects depending of their 
-	// isometric distance on the current level.
-	// We thus have to get the bullet's position on the current level. 
-	update_virtual_position(&virtpos, &AllBullets[bullet_num].pos, Me.pos.z);
-
-	// Could not find virtual position? Give up drawing.
-	if (virtpos.z == -1)
-		return;
-
-	insert_new_element_into_blitting_list(virtpos.x + virtpos.y, BLITTING_TYPE_BULLET, &(AllBullets[bullet_num]), bullet_num);
-
-};				// void insert_one_bullet_into_blitting_list ( int enemy_num )
+	insert_new_element_into_blitting_list(norm, BLITTING_TYPE_BULLET, &AllBullets[bullet_num], bullet_num);
+}
 
 /**
  *
@@ -1109,10 +1097,13 @@ int pos_near_level(float x, float y, level * lvl, float dist)
  * The blitting list must contain the enemies too.  This function is 
  * responsible for inserting the enemies at the right positions.
  */
-void insert_enemies_into_blitting_list(void)
+static void insert_enemies_into_blitting_list(int mask)
 {
 	int i;
+	int xmin, xmax, ymin, ymax;
 	enemy *ThisRobot;
+
+	get_floor_boundaries(mask, &ymin, &ymax, &xmin, &xmax);
 
 	// Now that we plan to also show bots on other levels, we must be
 	// a bit more general and proceed through all the levels...
@@ -1131,37 +1122,50 @@ void insert_enemies_into_blitting_list(void)
 			//
 			update_virtual_position(&(ThisRobot->virt_pos), &(ThisRobot->pos), Me.pos.z);
 
-			if (fabsf(ThisRobot->virt_pos.x - Me.pos.x) > FLOOR_TILES_VISIBLE_AROUND_TUX + FLOOR_TILES_VISIBLE_AROUND_TUX)
-				continue;
-			if (fabsf(ThisRobot->virt_pos.y - Me.pos.y) > FLOOR_TILES_VISIBLE_AROUND_TUX + FLOOR_TILES_VISIBLE_AROUND_TUX)
+			if (ThisRobot->virt_pos.x < xmin || ThisRobot->virt_pos.x > xmax ||
+				ThisRobot->virt_pos.y < ymin || ThisRobot->virt_pos.y > ymax)
 				continue;
 
 			insert_one_enemy_into_blitting_list(ThisRobot);
 		}
 	}
 
-};				// void insert_enemies_into_blitting_list ( void )
+}
 
 /**
  *
  *
  */
-void insert_bullets_into_blitting_list(void)
+static void insert_bullets_into_blitting_list(int mask)
 {
 	int i;
+	bullet *b;
+	int xmin, xmax, ymin, ymax;
+	get_floor_boundaries(mask, &ymin, &ymax, &xmin, &xmax);
 
 	for (i = 0; i < MAXBULLETS; i++) {
-		if (AllBullets[i].type != INFOUT)
-			insert_one_bullet_into_blitting_list(i);
-	}
+		b = &AllBullets[i];
+		if (b->type == INFOUT)
+			continue;
 
-};				// void insert_bullets_into_blitting_list ( void )
+		gps vpos;
+		update_virtual_position(&vpos, &b->pos, Me.pos.z);
+
+		if (vpos.z == -1)
+			continue;
+
+		if (vpos.x < xmin || vpos.x > xmax || vpos.y < ymin || vpos.y > ymax)
+			continue;
+
+		insert_one_bullet_into_blitting_list(vpos.x + vpos.y, i);
+	}
+}
 
 /**
  *
  *
  */
-void insert_blasts_into_blitting_list(void)
+static void insert_blasts_into_blitting_list(int mask)
 {
 	int i;
 
@@ -1170,13 +1174,13 @@ void insert_blasts_into_blitting_list(void)
 			insert_one_blast_into_blitting_list(i);
 	}
 
-};				// void insert_enemies_into_blitting_list ( void )
+}
 
 /**
  *
  *
  */
-void insert_thrown_items_into_blitting_list(void)
+static void insert_thrown_items_into_blitting_list(int mask)
 {
 	int i;
 	struct visible_level *vis_lvl, *n;
@@ -1188,7 +1192,7 @@ void insert_thrown_items_into_blitting_list(void)
 				insert_one_thrown_item_into_blitting_list(vis_lvl->lvl_pointer, i);
 		}
 	}
-};				// void insert_enemies_into_blitting_list ( void )
+}
 
 static int blitting_list_compare(const void *elt1, const void *elt2)
 {
@@ -1231,15 +1235,15 @@ void set_up_ordered_blitting_list(int mask)
 
 	insert_tux_into_blitting_list();
 
-	insert_enemies_into_blitting_list();
+	insert_enemies_into_blitting_list(mask);
 
-	insert_bullets_into_blitting_list();
+	insert_bullets_into_blitting_list(mask);
 
-	insert_blasts_into_blitting_list();
+	insert_blasts_into_blitting_list(mask);
 
-	insert_move_cursor_into_blitting_list();
+	insert_move_cursor_into_blitting_list(mask);
 
-	insert_thrown_items_into_blitting_list();
+	insert_thrown_items_into_blitting_list(mask);
 
 	sort_blitting_list();
 }
