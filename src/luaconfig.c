@@ -602,8 +602,7 @@ static int lua_leveleditor_obstacle_category_ctor(lua_State *L)
 	set_structure_from_table(L, data_specs);
 
 	lvledit_set_obstacle_list_for_category(category_name, &obstacle_list);
-	free(category_name);
-	dynarray_free(&obstacle_list);
+	clean_structure(data_specs);
 	return 0;
 }
 
