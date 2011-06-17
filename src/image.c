@@ -100,6 +100,18 @@ static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, floa
 	dynarray_add(vtx, v, 8 * sizeof(float));
 	dynarray_add(tex, tx, 8 * sizeof(float));
 
+	/* We have to limit the number of vertices in a single glDrawArrays call.
+	   With the r300 driver, having more than 65532 vertices in a vertex array:
+	   	- Gallium 0.4 on ATI RV370, Mesa 7.10.2): locks up the GPU, forcing a reboot
+		- 2.1 Mesa 7.11-devel (git-fc8c4a3) : ignores vertices above the maximal value, corrupting the rendered image
+		
+	   This workaround is only justified by the state of the r300 driver at the time of this writing, and shall be
+	   removed as soon as r300 is confirmed to work fine with arbitrarily large vertex arrays.
+	   */
+#define MAX_QUADS 16383
+	if (vtx->size >= MAX_QUADS) {
+		gl_emit_quads();
+	}
 #endif
 }
 
