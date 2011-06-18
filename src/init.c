@@ -140,6 +140,8 @@ void next_startup_percentage(int done)
 #endif
 
 	startup_percent += done;
+	if (startup_percent > 100)
+		startup_percent = 100;
 
 #ifdef STARTUP_PERCENTAGE_COMPUTE
 	long elapsed = SDL_GetTicks() - load_start_time;
