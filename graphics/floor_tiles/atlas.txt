@@ -1,4 +1,4 @@
-* floor_tiles_atlas1.png size 2048 2048
+* floor_tiles_atlas1.png size 2048 1024
 iso_grass_floor_0003.png 0 0 156 94 off -77 -57
 iso_grass_floor_0009.png 157 0 145 92 off -67 -57
 iso_grass_floor_0002.png 303 0 159 91 off -83 -54
