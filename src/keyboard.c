@@ -652,10 +652,10 @@ static int input_key(int keynum, int value)
 			level_editor_cycle_marked_object();
 			return 0;
 		} else if (KEYPRESS("next_tab")) {
-			leveleditor_categoryselect_switch(1);
+			lvledit_categoryselect_switch(1);
 			return 0;
 		} else if (KEYPRESS("previous_tab")) {
-			leveleditor_categoryselect_switch(-1);
+			lvledit_categoryselect_switch(-1);
 			return 0;
 		} else if (KEYPRESS("next_selection_type")) {
 			level_editor_switch_selection_type(1);
@@ -673,16 +673,16 @@ static int input_key(int keynum, int value)
 			level_editor_beautify_grass_tiles(EditLevel());
 			return 0;
 		} else if (KEYPRESS("toolbar_scroll_left")) {
-			leveleditor_toolbar_scroll_left();
+			widget_lvledit_toolbar_scroll_left();
 			return 0;
 		} else if (KEYPRESS("toolbar_scroll_right")) {
-			leveleditor_toolbar_scroll_right();
+			widget_lvledit_toolbar_scroll_right();
 			return 0;
 		} else if (KEYPRESS("toolbar_step_left")) {
-			leveleditor_toolbar_left();
+			widget_lvledit_toolbar_left();
 			return 0;
 		} else if (KEYPRESS("toolbar_step_right")) {
-			leveleditor_toolbar_right();
+			widget_lvledit_toolbar_right();
 			return 0;
 		} else if (KEYPRESS("run_map_validator")) {
 			level_validation();	

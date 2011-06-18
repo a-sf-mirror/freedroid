@@ -181,7 +181,7 @@ static void level_editor_auto_scroll()
 
 void leveleditor_input_mouse_motion(SDL_Event * event)
 {
-	struct leveleditor_widget *w;
+	struct widget *w;
 
 	w = get_active_widget(event->motion.x, event->motion.y);
 
@@ -199,7 +199,7 @@ void leveleditor_input_mouse_motion(SDL_Event * event)
 
 void leveleditor_input_mouse_button(SDL_Event * event)
 {
-	struct leveleditor_widget *w;
+	struct widget *w;
 
 	w = get_active_widget(event->button.x, event->button.y);
 
@@ -249,7 +249,7 @@ void leveleditor_input_mouse_button(SDL_Event * event)
 
 void leveleditor_input_keybevent(SDL_Event * event)
 {
-	struct leveleditor_widget *w, *n;
+	struct widget *w, *n;
 
 	w = get_active_widget(GetMousePos_x(), GetMousePos_y());
 
@@ -261,7 +261,7 @@ void leveleditor_input_keybevent(SDL_Event * event)
 	if (w && w->keybevent && !w->keybevent(event, w))
 		return;
 
-	list_for_each_entry_safe(w, n, &leveleditor_widget_list, node) {
+	list_for_each_entry_safe(w, n, &lvledit_widget_list, node) {
 		if (w && w->keybevent && !w->keybevent(event, w))
 			return;
 	}

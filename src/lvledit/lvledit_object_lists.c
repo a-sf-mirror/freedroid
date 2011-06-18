@@ -377,7 +377,7 @@ static void build_item_lists(void)
 /**
  * This function builds all the lists of objects belonging to the various categories.
  */
-void build_leveleditor_tile_lists(void)
+void lvledit_build_tile_lists(void)
 {
 	build_floor_tile_lists();
 	build_item_lists();

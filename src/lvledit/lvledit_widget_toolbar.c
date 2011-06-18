@@ -34,32 +34,32 @@
 #include "widgets.h"
 #include "lvledit/lvledit_tools.h"
 
-static struct leveleditor_categoryselect *previous_category = NULL;
+static struct widget_lvledit_categoryselect *previous_category = NULL;
 static int num_blocks_per_line = 0;
 
 static int display_info = 0;
 
-void leveleditor_toolbar_mouseenter(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mouseenter(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 }
 
-void leveleditor_toolbar_mouseleave(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mouseleave(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	display_info = 0;
 }
 
-void leveleditor_toolbar_mouserelease(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mouserelease(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 }
 
-void leveleditor_toolbar_mousepress(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mousepress(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int i;
 	int x;
 
@@ -76,29 +76,29 @@ void leveleditor_toolbar_mousepress(SDL_Event * event, struct leveleditor_widget
 
 }
 
-void leveleditor_toolbar_mouserightrelease(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mouserightrelease(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	display_info = 0;
 }
 
-void leveleditor_toolbar_mouserightpress(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mouserightpress(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	display_info = 1;
-	leveleditor_toolbar_mousepress(event, vt);
+	widget_lvledit_toolbar_mousepress(event, vt);
 }
 
-void leveleditor_toolbar_mousewheelup(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mousewheelup(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
-	leveleditor_toolbar_left();
+	widget_lvledit_toolbar_left();
 }
 
-void leveleditor_toolbar_mousewheeldown(SDL_Event * event, struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_mousewheeldown(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
-	leveleditor_toolbar_right();
+	widget_lvledit_toolbar_right();
 }
 
 static void print_obstacle_info(char *str, int obs_idx)
@@ -121,7 +121,7 @@ static void print_obstacle_info(char *str, int obs_idx)
 		strcat(str, "- IS_CLICKABLE\n");
 }
 
-static void leveleditor_print_object_info(enum leveleditor_object_type type, int *array, int idx, char *str)
+static void leveleditor_print_object_info(enum lvledit_object_type type, int *array, int idx, char *str)
 {
 	switch (type) {
 	case OBJECT_FLOOR:
@@ -141,7 +141,7 @@ static void leveleditor_print_object_info(enum leveleditor_object_type type, int
 	}
 }
 
-static struct image *leveleditor_get_object_image(enum leveleditor_object_type type, int *array, int idx)
+static struct image *leveleditor_get_object_image(enum lvledit_object_type type, int *array, int idx)
 {
 	extern struct image level_editor_waypoint_cursor[];
 	switch (type) {
@@ -161,10 +161,10 @@ static struct image *leveleditor_get_object_image(enum leveleditor_object_type t
 	return NULL;
 }
 
-void leveleditor_toolbar_display(struct leveleditor_widget *vt)
+void widget_lvledit_toolbar_display(struct widget *vt)
 {
 	(void)vt;
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 
 	if (cs != previous_category) {
 		previous_category = cs;
@@ -221,9 +221,9 @@ void leveleditor_toolbar_display(struct leveleditor_widget *vt)
 	}
 }
 
-void leveleditor_toolbar_left()
+void widget_lvledit_toolbar_left()
 {
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 
 	cs->selected_tile_nb = cs->selected_tile_nb <= 1 ? 0 : cs->selected_tile_nb - 1;
 
@@ -231,9 +231,9 @@ void leveleditor_toolbar_left()
 		cs->toolbar_first_block--;
 }
 
-void leveleditor_toolbar_right()
+void widget_lvledit_toolbar_right()
 {
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int i;
 
 	for (i = 0; cs->indices[i] != -1; i++) ;
@@ -245,9 +245,9 @@ void leveleditor_toolbar_right()
 	}
 }
 
-void leveleditor_toolbar_scroll_left()
+void widget_lvledit_toolbar_scroll_left()
 {
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 
 	if (cs->toolbar_first_block < 8)
 		cs->toolbar_first_block = 0;
@@ -259,9 +259,9 @@ void leveleditor_toolbar_scroll_left()
 	}
 }
 
-void leveleditor_toolbar_scroll_right()
+void widget_lvledit_toolbar_scroll_right()
 {
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int i;
 
 	for (i = 0; cs->indices[i] != -1; i++) ;

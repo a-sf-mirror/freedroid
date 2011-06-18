@@ -23,7 +23,7 @@
  *
  */
 
-#define _leveleditor_map_c
+#define _widget_lvledit_map_c
 
 #include "system.h"
 

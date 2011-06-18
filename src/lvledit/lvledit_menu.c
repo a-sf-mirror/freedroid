@@ -498,7 +498,7 @@ static void AddRemLevel(void)
 
 				delete_map_level(tmp);
 
-				leveleditor_reset_tools();
+				lvledit_reset_tools();
 
 				gps_transform_map_dirty_flag = TRUE;
 				gps_transform_map_init();

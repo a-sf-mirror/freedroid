@@ -71,25 +71,25 @@ static void minimap_to_screen(float x, float y, int *screen_x, int *screen_y)
 	*screen_y = temp_y + MINIMAP_CENTER_Y;
 }
 
-void leveleditor_minimap_mouseenter(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mouseenter(SDL_Event *event, struct widget *w)
 {
-	struct leveleditor_minimap *m = w->ext;
+	struct widget_lvledit_minimap *m = w->ext;
 	(void)m;
 }
 
-void leveleditor_minimap_mouseleave(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mouseleave(SDL_Event *event, struct widget *w)
 {
-	struct leveleditor_minimap *m = w->ext;
+	struct widget_lvledit_minimap *m = w->ext;
 	(void)m;
 }
 
-void leveleditor_minimap_mouserelease(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mouserelease(SDL_Event *event, struct widget *w)
 {
-	struct leveleditor_minimap *m = w->ext;
+	struct widget_lvledit_minimap *m = w->ext;
 	(void)m;
 }
 
-void leveleditor_minimap_mousepress(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mousepress(SDL_Event *event, struct widget *w)
 {
 	gps vpos, rpos;
 
@@ -104,25 +104,25 @@ void leveleditor_minimap_mousepress(SDL_Event *event, struct leveleditor_widget 
 	action_jump_to_level(rpos.z, rpos.x, rpos.y);
 }
 
-void leveleditor_minimap_mouserightrelease(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mouserightrelease(SDL_Event *event, struct widget *w)
 {
-	struct leveleditor_minimap *m = w->ext;
+	struct widget_lvledit_minimap *m = w->ext;
 	(void)m;
 }
 
-void leveleditor_minimap_mouserightpress(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mouserightpress(SDL_Event *event, struct widget *w)
 {
-	struct leveleditor_minimap *m = w->ext;
+	struct widget_lvledit_minimap *m = w->ext;
 	(void)m;
 }
 
-void leveleditor_minimap_mousewheelup(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mousewheelup(SDL_Event *event, struct widget *w)
 {
 	minimap_scale += 10.0;
 	minimap_scale = min(500.0, minimap_scale);
 }
 
-void leveleditor_minimap_mousewheeldown(SDL_Event *event, struct leveleditor_widget *w)
+void widget_lvledit_minimap_mousewheeldown(SDL_Event *event, struct widget *w)
 {
 	minimap_scale -= 10.0;
 	minimap_scale = max(1.0, minimap_scale);
@@ -136,7 +136,7 @@ static void draw_line_at_minimap_position(float x1, float y1, float x2, float y2
 	draw_line(r1, c1, r2, c2, SDL_MapRGB(Screen->format, 0xFF, 0xFF, 0xFF), 1);
 }
 
-void leveleditor_minimap_display(struct leveleditor_widget *w)
+void widget_lvledit_minimap_display(struct widget *w)
 {
 	int i, j;
 

@@ -145,7 +145,7 @@ EXTERN void LevelEditor(void);
 EXTERN item *ItemDropFromLevelEditor(void);
 EXTERN void TestMap(void);
 
-enum leveleditor_object_type {
+enum lvledit_object_type {
 	OBJECT_OBSTACLE,
 	OBJECT_FLOOR,
 	OBJECT_ITEM,

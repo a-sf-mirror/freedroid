@@ -23,13 +23,13 @@
  */
 
 #undef EXTERN
-#ifndef _leveleditor_widgets_c
+#ifndef _widgets_c
 #define EXTERN extern
 #else
 #define EXTERN
 #endif
 
-enum leveleditor_widget_type {
+enum widget_type {
 	WIDGET_BUTTON,
 	WIDGET_TOOLBAR,
 	WIDGET_MAP,
@@ -38,25 +38,25 @@ enum leveleditor_widget_type {
 };
 
 /* A widget in the level editor */
-struct leveleditor_widget {
-	enum leveleditor_widget_type type;	//Type of widget
+struct widget {
+	enum widget_type type;	//Type of widget
 	SDL_Rect rect;		//Space occupied
 	struct list_head node;
 	int enabled;
-	void (*mouseenter) (SDL_Event *, struct leveleditor_widget *);
-	void (*mouseleave) (SDL_Event *, struct leveleditor_widget *);
-	void (*mouserelease) (SDL_Event *, struct leveleditor_widget *);
-	void (*mousepress) (SDL_Event *, struct leveleditor_widget *);
-	void (*mouserightrelease) (SDL_Event *, struct leveleditor_widget *);
-	void (*mouserightpress) (SDL_Event *, struct leveleditor_widget *);
-	void (*mousewheelup) (SDL_Event *, struct leveleditor_widget *);
-	void (*mousewheeldown) (SDL_Event *, struct leveleditor_widget *);
-	void (*mousemove) (SDL_Event *, struct leveleditor_widget *);
-	int (*keybevent) (SDL_Event *, struct leveleditor_widget *);
+	void (*mouseenter) (SDL_Event *, struct widget *);
+	void (*mouseleave) (SDL_Event *, struct widget *);
+	void (*mouserelease) (SDL_Event *, struct widget *);
+	void (*mousepress) (SDL_Event *, struct widget *);
+	void (*mouserightrelease) (SDL_Event *, struct widget *);
+	void (*mouserightpress) (SDL_Event *, struct widget *);
+	void (*mousewheelup) (SDL_Event *, struct widget *);
+	void (*mousewheeldown) (SDL_Event *, struct widget *);
+	void (*mousemove) (SDL_Event *, struct widget *);
+	int (*keybevent) (SDL_Event *, struct widget *);
 	void *ext;		//Type specific information
 };
 
-struct leveleditor_button {
+struct widget_button {
 	int btn_index;		//index in AllMousePressButtons array
 	int pressed;
 	int active;
@@ -64,36 +64,36 @@ struct leveleditor_button {
 	char *tooltip;
 };
 
-struct leveleditor_toolbar {
+struct widget_lvledit_toolbar {
 };
 
-struct leveleditor_mapwidget {
+struct widget_lvledit_map {
 };
 
-struct leveleditor_categoryselect {
+struct widget_lvledit_categoryselect {
 	unsigned int selected_tile_nb;
 	unsigned int toolbar_first_block;
 	char *title;
-	enum leveleditor_object_type type;
+	enum lvledit_object_type type;
 	int *indices;
 };
 
 #define WIDGET_MINIMAP_WIDTH 210
 #define WIDGET_MINIMAP_HEIGHT 140
 
-struct leveleditor_minimap {
+struct widget_lvledit_minimap {
 };
 
-void leveleditor_init_widgets(void);
-void leveleditor_display_widgets(void);
+void widget_lvledit_init(void);
+void widget_display(void);
 void leveleditor_update_button_states(void);
-void leveleditor_select_type(enum leveleditor_object_type);
+void lvledit_select_type(enum lvledit_object_type);
 
-void leveleditor_categoryselect_switch(int direction);
+void lvledit_categoryselect_switch(int direction);
 
-struct leveleditor_widget *get_active_widget(int, int);
-EXTERN struct list_head leveleditor_widget_list;
-EXTERN struct leveleditor_widget *previously_active_widget;
+struct widget *get_active_widget(int, int);
+EXTERN struct list_head lvledit_widget_list;
+EXTERN struct widget *previously_active_widget;
 
 #undef EXTERN
 

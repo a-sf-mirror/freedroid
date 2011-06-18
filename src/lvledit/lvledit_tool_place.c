@@ -726,7 +726,7 @@ static void end_wall_line(int commit)
 
 int leveleditor_place_input(SDL_Event *event)
 {
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int type = cs->indices[cs->selected_tile_nb];
 
 	if (!mouse_in_level) {

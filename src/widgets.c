@@ -22,7 +22,7 @@
  *
  */
 
-#define _leveleditor_widgets_c
+#define _widgets_c
 
 #include "system.h"
 
@@ -42,7 +42,7 @@ static int *all_obstacles_list = NULL;
 typedef struct {
 	char *name;
 	int **object_list;
-	struct leveleditor_categoryselect *cs;
+	struct widget_lvledit_categoryselect *cs;
 } object_category;
 
 static object_category obstacle_category_list[] = {
@@ -78,7 +78,7 @@ static object_category waypoint_category_list[] = {
 };
 
 static struct {
-	enum leveleditor_object_type object_type;
+	enum lvledit_object_type object_type;
 	object_category *categories;
 	size_t length;
 } category_list[] = {
@@ -88,24 +88,24 @@ static struct {
 	{ OBJECT_WAYPOINT, waypoint_category_list, sizeof(waypoint_category_list) / sizeof(waypoint_category_list[0]) },
 };
 
-LIST_HEAD(leveleditor_widget_list);
+LIST_HEAD(lvledit_widget_list);
 
-static struct leveleditor_widget *create_button(int btype, char *text, char *tooltip)
+static struct widget *widget_button_create(int btype, char *text, char *tooltip)
 {
-	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct widget *a = MyMalloc(sizeof(struct widget));
 	a->type = WIDGET_BUTTON;
 	a->rect = AllMousePressButtons[btype].button_rect;
-	a->mouseenter = leveleditor_button_mouseenter;
-	a->mouseleave = leveleditor_button_mouseleave;
-	a->mouserelease = leveleditor_button_mouserelease;
-	a->mousepress = leveleditor_button_mousepress;
-	a->mouserightrelease = leveleditor_button_mouserightrelease;
-	a->mouserightpress = leveleditor_button_mouserightpress;
-	a->mousewheelup = leveleditor_button_mousewheelup;
-	a->mousewheeldown = leveleditor_button_mousewheeldown;
+	a->mouseenter = widget_button_mouseenter;
+	a->mouseleave = widget_button_mouseleave;
+	a->mouserelease = widget_button_mouserelease;
+	a->mousepress = widget_button_mousepress;
+	a->mouserightrelease = widget_button_mouserightrelease;
+	a->mouserightpress = widget_button_mouserightpress;
+	a->mousewheelup = widget_button_mousewheelup;
+	a->mousewheeldown = widget_button_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_button *b = MyMalloc(sizeof(struct leveleditor_button));
+	struct widget_button *b = MyMalloc(sizeof(struct widget_button));
 	b->btn_index = btype;
 	b->pressed = 0;
 	b->text = text;
@@ -116,75 +116,75 @@ static struct leveleditor_widget *create_button(int btype, char *text, char *too
 	return a;
 }
 
-static struct leveleditor_widget *create_map()
+static struct widget *widget_lvledit_map_create()
 {
-	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct widget *a = MyMalloc(sizeof(struct widget));
 	a->type = WIDGET_MAP;
 	a->rect.x = 0;
 	a->rect.y = 68;
 	a->rect.w = GameConfig.screen_width;
 	a->rect.h = GameConfig.screen_height - 68;
-	a->mouseenter = leveleditor_map_mouseenter;
-	a->mouseleave = leveleditor_map_mouseleave;
-	a->mouserelease = leveleditor_map_mouserelease;
-	a->mousepress = leveleditor_map_mousepress;
-	a->mouserightrelease = leveleditor_map_mouserightrelease;
-	a->mouserightpress = leveleditor_map_mouserightpress;
-	a->mousewheelup = leveleditor_map_mousewheelup;
-	a->mousewheeldown = leveleditor_map_mousewheeldown;
-	a->mousemove = leveleditor_map_mousemove;
-	a->keybevent = leveleditor_map_keybevent;
+	a->mouseenter = widget_lvledit_map_mouseenter;
+	a->mouseleave = widget_lvledit_map_mouseleave;
+	a->mouserelease = widget_lvledit_map_mouserelease;
+	a->mousepress = widget_lvledit_map_mousepress;
+	a->mouserightrelease = widget_lvledit_map_mouserightrelease;
+	a->mouserightpress = widget_lvledit_map_mouserightpress;
+	a->mousewheelup = widget_lvledit_map_mousewheelup;
+	a->mousewheeldown = widget_lvledit_map_mousewheeldown;
+	a->mousemove = widget_lvledit_map_mousemove;
+	a->keybevent = widget_lvledit_map_keybevent;
 	a->enabled = 1;
 
-	struct leveleditor_mapwidget *m = MyMalloc(sizeof(struct leveleditor_mapwidget));
+	struct widget_lvledit_map *m = MyMalloc(sizeof(struct widget_lvledit_map));
 	a->ext = m;
 
 	return a;
 }
 
-static struct leveleditor_widget *create_toolbar()
+static struct widget *widget_lvledit_toolbar_create()
 {
-	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct widget *a = MyMalloc(sizeof(struct widget));
 	a->type = WIDGET_TOOLBAR;
 	a->rect.x = 0;
 	a->rect.y = 0;
 	a->rect.w = GameConfig.screen_width;
 	a->rect.h = 73;
-	a->mouseenter = leveleditor_toolbar_mouseenter;
-	a->mouseleave = leveleditor_toolbar_mouseleave;
-	a->mouserelease = leveleditor_toolbar_mouserelease;
-	a->mousepress = leveleditor_toolbar_mousepress;
-	a->mouserightrelease = leveleditor_toolbar_mouserightrelease;
-	a->mouserightpress = leveleditor_toolbar_mouserightpress;
-	a->mousewheelup = leveleditor_toolbar_mousewheelup;
-	a->mousewheeldown = leveleditor_toolbar_mousewheeldown;
+	a->mouseenter = widget_lvledit_toolbar_mouseenter;
+	a->mouseleave = widget_lvledit_toolbar_mouseleave;
+	a->mouserelease = widget_lvledit_toolbar_mouserelease;
+	a->mousepress = widget_lvledit_toolbar_mousepress;
+	a->mouserightrelease = widget_lvledit_toolbar_mouserightrelease;
+	a->mouserightpress = widget_lvledit_toolbar_mouserightpress;
+	a->mousewheelup = widget_lvledit_toolbar_mousewheelup;
+	a->mousewheeldown = widget_lvledit_toolbar_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_toolbar *t = MyMalloc(sizeof(struct leveleditor_toolbar));
+	struct widget_lvledit_toolbar *t = MyMalloc(sizeof(struct widget_lvledit_toolbar));
 	a->ext = t;
 
 	return a;
 }
 
-static struct leveleditor_widget *create_categoryselector(int x, char *text, enum leveleditor_object_type type, int *olist)
+static struct widget *widget_lvledit_categoryselector_create(int x, char *text, enum lvledit_object_type type, int *olist)
 {
-	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct widget *a = MyMalloc(sizeof(struct widget));
 	a->type = WIDGET_CATEGORY_SELECTOR;
 	a->rect.x = x * 80;
 	a->rect.y = 73;
 	a->rect.w = 80;
 	a->rect.h = 17;
-	a->mouseenter = leveleditor_categoryselect_mouseenter;
-	a->mouseleave = leveleditor_categoryselect_mouseleave;
-	a->mouserelease = leveleditor_categoryselect_mouserelease;
-	a->mousepress = leveleditor_categoryselect_mousepress;
-	a->mouserightrelease = leveleditor_categoryselect_mouserightrelease;
-	a->mouserightpress = leveleditor_categoryselect_mouserightpress;
-	a->mousewheelup = leveleditor_categoryselect_mousewheelup;
-	a->mousewheeldown = leveleditor_categoryselect_mousewheeldown;
+	a->mouseenter = widget_lvledit_categoryselect_mouseenter;
+	a->mouseleave = widget_lvledit_categoryselect_mouseleave;
+	a->mouserelease = widget_lvledit_categoryselect_mouserelease;
+	a->mousepress = widget_lvledit_categoryselect_mousepress;
+	a->mouserightrelease = widget_lvledit_categoryselect_mouserightrelease;
+	a->mouserightpress = widget_lvledit_categoryselect_mouserightpress;
+	a->mousewheelup = widget_lvledit_categoryselect_mousewheelup;
+	a->mousewheeldown = widget_lvledit_categoryselect_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_categoryselect *cs = MyMalloc(sizeof(struct leveleditor_categoryselect));
+	struct widget_lvledit_categoryselect *cs = MyMalloc(sizeof(struct widget_lvledit_categoryselect));
 	cs->type = type;
 	cs->indices = olist;
 	cs->title = text;
@@ -193,35 +193,35 @@ static struct leveleditor_widget *create_categoryselector(int x, char *text, enu
 	return a;
 }
 
-static struct leveleditor_widget *create_minimap()
+static struct widget *widget_lvledit_minimap_create()
 {
-	struct leveleditor_widget *a = MyMalloc(sizeof(struct leveleditor_widget));
+	struct widget *a = MyMalloc(sizeof(struct widget));
 	a->type = WIDGET_MINIMAP;
 	a->rect.w = WIDGET_MINIMAP_WIDTH;
 	a->rect.h = WIDGET_MINIMAP_HEIGHT;
 	a->rect.x = GameConfig.screen_width - a->rect.w;
 	a->rect.y = GameConfig.screen_height - a->rect.h;
-	a->mouseenter = leveleditor_minimap_mouseenter;
-	a->mouseleave = leveleditor_minimap_mouseleave;
-	a->mouserelease = leveleditor_minimap_mouserelease;
-	a->mousepress = leveleditor_minimap_mousepress;
-	a->mouserightrelease = leveleditor_minimap_mouserightrelease;
-	a->mouserightpress = leveleditor_minimap_mouserightpress;
-	a->mousewheelup = leveleditor_minimap_mousewheelup;
-	a->mousewheeldown = leveleditor_minimap_mousewheeldown;
+	a->mouseenter = widget_lvledit_minimap_mouseenter;
+	a->mouseleave = widget_lvledit_minimap_mouseleave;
+	a->mouserelease = widget_lvledit_minimap_mouserelease;
+	a->mousepress = widget_lvledit_minimap_mousepress;
+	a->mouserightrelease = widget_lvledit_minimap_mouserightrelease;
+	a->mouserightpress = widget_lvledit_minimap_mouserightpress;
+	a->mousewheelup = widget_lvledit_minimap_mousewheelup;
+	a->mousewheeldown = widget_lvledit_minimap_mousewheeldown;
 	a->enabled = 1;
 
-	struct leveleditor_minimap *n = MyMalloc(sizeof(struct leveleditor_minimap));	
+	struct widget_lvledit_minimap *n = MyMalloc(sizeof(struct widget_lvledit_minimap));	
 	a->ext = n;
 
 	return a;
 }
 
-void leveleditor_init_widgets()
+void widget_lvledit_init()
 {
-	struct leveleditor_widget *map;
+	struct widget *map;
 
-	if (!list_empty(&leveleditor_widget_list)) {
+	if (!list_empty(&lvledit_widget_list)) {
 		/* Widgets already initialized, get out */
 		return;
 	}
@@ -278,10 +278,10 @@ void leveleditor_init_widgets()
 
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
 		ShowGenericButtonFromList(b[i].btn_index);	//we need that to have .w and .h of the button rect initialized.
-		list_add(&create_button(b[i].btn_index, b[i].text, b[i].tooltip)->node, &leveleditor_widget_list);
+		list_add(&widget_button_create(b[i].btn_index, b[i].text, b[i].tooltip)->node, &lvledit_widget_list);
 	}
 
-	build_leveleditor_tile_lists();
+	lvledit_build_tile_lists();
 
 	// Load categories for obstacles
 	char fpath[4096];
@@ -296,37 +296,37 @@ void leveleditor_init_widgets()
 
 	// Create category selectors 
 	for (i = 0; i < sizeof(category_list) / sizeof(category_list[0]); i++) {
-		enum leveleditor_object_type type = category_list[i].object_type;
+		enum lvledit_object_type type = category_list[i].object_type;
 		object_category *categories = category_list[i].categories;
 		for (j = 0; j < category_list[i].length; j++) {
-			struct leveleditor_widget *widget = create_categoryselector(j, _(categories[j].name), type, *categories[j].object_list);
+			struct widget *widget = widget_lvledit_categoryselector_create(j, _(categories[j].name), type, *categories[j].object_list);
 			categories[j].cs = widget->ext;
-			list_add_tail(&widget->node, &leveleditor_widget_list);
+			list_add_tail(&widget->node, &lvledit_widget_list);
 		}
 	}
 
 	// Create the minimap
-	list_add_tail(&create_minimap()->node, &leveleditor_widget_list);
+	list_add_tail(&widget_lvledit_minimap_create()->node, &lvledit_widget_list);
 
 	/* The toolbar */
-	list_add_tail(&create_toolbar()->node, &leveleditor_widget_list);
+	list_add_tail(&widget_lvledit_toolbar_create()->node, &lvledit_widget_list);
 
 	/* The map (has to be the latest widget in the list) */
-	map = create_map();
-	list_add_tail(&map->node, &leveleditor_widget_list);
+	map = widget_lvledit_map_create();
+	list_add_tail(&map->node, &lvledit_widget_list);
 
 	// Activate the obstacle type selector
-	leveleditor_select_type(OBJECT_OBSTACLE);
+	lvledit_select_type(OBJECT_OBSTACLE);
 
-	leveleditor_map_init();
+	widget_lvledit_map_init();
 }
 
 void leveleditor_update_button_states()
 {
-	struct leveleditor_button *b;
-	struct leveleditor_widget *w;
+	struct widget_button *b;
+	struct widget *w;
 	obstacle *o;
-	list_for_each_entry(w, &leveleditor_widget_list, node) {
+	list_for_each_entry(w, &lvledit_widget_list, node) {
 		if (w->type != WIDGET_BUTTON)
 			continue;
 
@@ -401,10 +401,10 @@ void leveleditor_update_button_states()
 	}
 }
 
-struct leveleditor_widget *get_active_widget(int x, int y)
+struct widget *get_active_widget(int x, int y)
 {
-	struct leveleditor_widget *w;
-	list_for_each_entry(w, &leveleditor_widget_list, node) {
+	struct widget *w;
+	list_for_each_entry(w, &lvledit_widget_list, node) {
 		if (!w->enabled)
 			continue;
 		if (MouseCursorIsInRect(&w->rect, x, y)) {
@@ -415,62 +415,62 @@ struct leveleditor_widget *get_active_widget(int x, int y)
 	return NULL;
 }
 
-void leveleditor_display_widgets()
+void widget_display()
 {
-	struct leveleditor_widget *w;
-	list_for_each_entry_reverse(w, &leveleditor_widget_list, node) {
+	struct widget *w;
+	list_for_each_entry_reverse(w, &lvledit_widget_list, node) {
 		if (!w->enabled)
 			continue;
 
 		switch (w->type) {
 		case WIDGET_BUTTON:
-			leveleditor_button_display(w);
+			widget_button_display(w);
 			break;
 		case WIDGET_TOOLBAR:
-			leveleditor_toolbar_display(w);
+			widget_lvledit_toolbar_display(w);
 			break;
 		case WIDGET_MAP:
-			leveleditor_map_display(w);
+			widget_lvledit_map_display(w);
 			break;
 		case WIDGET_CATEGORY_SELECTOR:
-			leveleditor_categoryselect_display(w);
+			widget_lvledit_categoryselect_display(w);
 			break;
 		case WIDGET_MINIMAP:
-			leveleditor_minimap_display(w);
+			widget_lvledit_minimap_display(w);
 			break;
 		}
 	}
 }
 
-void leveleditor_select_type(enum leveleditor_object_type type)
+void lvledit_select_type(enum lvledit_object_type type)
 {
-	struct leveleditor_widget *cs_widget;
+	struct widget *cs_widget;
 
 	if (selection_type() != type) {
 		// When the user changes the current object type selected, reset tools
-		leveleditor_reset_tools();
+		lvledit_reset_tools();
 	}
 
 	// Find the categories which must be enabled
- 	list_for_each_entry_reverse(cs_widget, &leveleditor_widget_list, node) {
+ 	list_for_each_entry_reverse(cs_widget, &lvledit_widget_list, node) {
  		if (cs_widget->type != WIDGET_CATEGORY_SELECTOR)
  			continue;
 
 		// By default, desactivate all categories
 		cs_widget->enabled = 0;		
 		
-		struct leveleditor_categoryselect *cs = cs_widget->ext;
+		struct widget_lvledit_categoryselect *cs = cs_widget->ext;
 
 		// Activate a category if it is of the right type
 		if (cs->type == type) {
 			cs_widget->enabled = 1;
 
-			leveleditor_categoryselect_activate(cs);
+			widget_lvledit_categoryselect_activate(cs);
 		}
 	}
 }
 
-void leveleditor_categoryselect_switch(int direction)
+void lvledit_categoryselect_switch(int direction)
 {
 	// Find a category list for the current selection type
 	object_category *categories = NULL;
@@ -494,5 +494,5 @@ void leveleditor_categoryselect_switch(int direction)
 	if (index < 0)
 		index = length - 1;
 	index %= length;
-	leveleditor_categoryselect_activate(categories[index].cs);
+	widget_lvledit_categoryselect_activate(categories[index].cs);
 }

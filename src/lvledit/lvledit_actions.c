@@ -593,7 +593,7 @@ void level_editor_action_change_map_label_user(level *EditLevel)
 void action_jump_to_level(int target_level, double x, double y)
 {
 	// When the user wants to change the current edited level, reset tools
-	leveleditor_reset_tools();
+	lvledit_reset_tools();
 
 	action_push(ACT_JUMP_TO_LEVEL, EditLevel()->levelnum, Me.pos.x, Me.pos.y);	//< sets undo or redo stack, depending on push_mode state
 	reset_visible_levels();
@@ -719,7 +719,7 @@ void level_editor_place_aligned_object(int positionid)
 {
 	float position_offset_x[9] = { 0, 0.5, 1.0, 0, 0.5, 1.0, 0, 0.5, 1.0 };
 	float position_offset_y[9] = { 1.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0, 0, 0 };
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int type = cs->indices[cs->selected_tile_nb];
 	moderately_finepoint pos;
 

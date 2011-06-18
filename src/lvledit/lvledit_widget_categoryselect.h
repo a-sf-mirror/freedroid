@@ -22,18 +22,18 @@
  *
  */
 
-#ifndef _leveleditor_widgets_c
+#ifndef _widgets_c
 #endif
 
-void leveleditor_categoryselect_mouseenter(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_mouseleave(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_mouserelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_mousepress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_mouserightrelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_mouserightpress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_mousewheelup(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_categoryselect_display(struct leveleditor_widget *);
+void widget_lvledit_categoryselect_mouseenter(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_mouseleave(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_mouserelease(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_mousepress(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_mouserightrelease(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_mouserightpress(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_mousewheelup(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_mousewheeldown(SDL_Event *, struct widget *);
+void widget_lvledit_categoryselect_display(struct widget *);
 
-struct leveleditor_categoryselect *get_current_object_type(void);
-void leveleditor_categoryselect_activate(struct leveleditor_categoryselect *);
+struct widget_lvledit_categoryselect *get_current_object_type(void);
+void widget_lvledit_categoryselect_activate(struct widget_lvledit_categoryselect *);

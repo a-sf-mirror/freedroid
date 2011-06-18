@@ -288,7 +288,7 @@ static void show_tooltips()
 	if (time_spent_on_some_button <= TICKS_UNTIL_TOOLTIP)
 		return;
 
-	struct leveleditor_widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
+	struct widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
 	if (!w)
 		return;
 
@@ -299,7 +299,7 @@ static void show_tooltips()
 		return;
 	}
 
-	struct leveleditor_button *b = w->ext;
+	struct widget_button *b = w->ext;
 	if (b->tooltip) {
 		// The button has a tooltip, display it
 		show_button_tooltip(b->tooltip);
@@ -312,14 +312,14 @@ static void show_tooltips()
  */
 static void display_cursor()
 {
-	struct leveleditor_widget *w;
+	struct widget *w;
 	w = get_active_widget(GetMousePos_x(), GetMousePos_y());
 
 	if (w) {
 		if (w->type != WIDGET_MAP)
 			blit_mouse_cursor();
 		else
-			leveleditor_map_display_cursor();
+			widget_lvledit_map_display_cursor();
 	}
 }
 
@@ -362,7 +362,7 @@ void leveleditor_display()
 	// Construct the linked list of visible levels.
 	get_visible_levels();
 
-	leveleditor_display_widgets();
+	widget_display();
 
 	if (EditLevel()->random_dungeon) {
 		sprintf(VanishingMessage, " This level is automatically generated. \n Editing will have no effect.");

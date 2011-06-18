@@ -29,24 +29,24 @@
 #define EXTERN
 #endif
 
-void leveleditor_map_mouseenter(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mouseleave(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mouserelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mousepress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mouserightrelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mouserightpress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mousewheelup(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_map_mousemove(SDL_Event *, struct leveleditor_widget *);
-int leveleditor_map_keybevent(SDL_Event *, struct leveleditor_widget *);
+void widget_lvledit_map_mouseenter(SDL_Event *, struct widget *);
+void widget_lvledit_map_mouseleave(SDL_Event *, struct widget *);
+void widget_lvledit_map_mouserelease(SDL_Event *, struct widget *);
+void widget_lvledit_map_mousepress(SDL_Event *, struct widget *);
+void widget_lvledit_map_mouserightrelease(SDL_Event *, struct widget *);
+void widget_lvledit_map_mouserightpress(SDL_Event *, struct widget *);
+void widget_lvledit_map_mousewheelup(SDL_Event *, struct widget *);
+void widget_lvledit_map_mousewheeldown(SDL_Event *, struct widget *);
+void widget_lvledit_map_mousemove(SDL_Event *, struct widget *);
+int widget_lvledit_map_keybevent(SDL_Event *, struct widget *);
 
-void leveleditor_map_display(struct leveleditor_widget *);
-void leveleditor_map_display_cursor(void);
+void widget_lvledit_map_display(struct widget *);
+void widget_lvledit_map_display_cursor(void);
 
-void leveleditor_map_init(void);
+void widget_lvledit_map_init(void);
 
 void leveleditor_update_tool(void);
-void leveleditor_reset_tools(void);
+void lvledit_reset_tools(void);
 
 EXTERN moderately_finepoint mouse_mapcoord;
 EXTERN int mouse_in_level;

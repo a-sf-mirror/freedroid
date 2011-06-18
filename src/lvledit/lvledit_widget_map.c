@@ -41,13 +41,13 @@ static struct leveleditor_tool *active_tool = NULL;
 moderately_finepoint mouse_mapcoord;
 int mouse_in_level; // is the mouse cursor at an existing position on the level?
 
-void leveleditor_map_init()
+void widget_lvledit_map_init()
 {
 	leveleditor_init_tools();
 	selected_tool = &tool_select;
 }
 
-static void forward_event(SDL_Event * event)
+static void forward_event(SDL_Event *event)
 {
 	if (active_tool) {
 		if (active_tool->input_event(event)) {
@@ -56,24 +56,24 @@ static void forward_event(SDL_Event * event)
 	}
 }
 
-void leveleditor_map_mouseenter(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mouseenter(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 }
 
-void leveleditor_map_mouseleave(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mouseleave(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 }
 
-void leveleditor_map_mouserelease(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mouserelease(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 
 	forward_event(event);
 }
 
-void leveleditor_map_mousepress(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mousepress(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 	if (!active_tool && mouse_in_level) {
@@ -89,14 +89,14 @@ void leveleditor_map_mousepress(SDL_Event * event, struct leveleditor_widget *vm
 	forward_event(event);
 }
 
-void leveleditor_map_mouserightrelease(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mouserightrelease(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 
 	forward_event(event);
 }
 
-void leveleditor_map_mouserightpress(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mouserightpress(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 
@@ -106,19 +106,19 @@ void leveleditor_map_mouserightpress(SDL_Event * event, struct leveleditor_widge
 	forward_event(event);
 }
 
-void leveleditor_map_mousewheelup(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mousewheelup(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
-	leveleditor_toolbar_left();
+	widget_lvledit_toolbar_left();
 }
 
-void leveleditor_map_mousewheeldown(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mousewheeldown(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
-	leveleditor_toolbar_right();
+	widget_lvledit_toolbar_right();
 }
 
-void leveleditor_map_mousemove(SDL_Event * event, struct leveleditor_widget *vm)
+void widget_lvledit_map_mousemove(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 	mouse_mapcoord =
@@ -134,7 +134,7 @@ void leveleditor_map_mousemove(SDL_Event * event, struct leveleditor_widget *vm)
 	forward_event(event);
 }
 
-int leveleditor_map_keybevent(SDL_Event * event, struct leveleditor_widget *vm)
+int widget_lvledit_map_keybevent(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 
@@ -150,7 +150,7 @@ int leveleditor_map_keybevent(SDL_Event * event, struct leveleditor_widget *vm)
 	return 0;
 }
 
-void leveleditor_map_display_cursor()
+void widget_lvledit_map_display_cursor()
 {
 	static int dragging = FALSE;
 
@@ -172,7 +172,7 @@ void leveleditor_map_display_cursor()
 	blit_mouse_cursor();
 }
 
-void leveleditor_map_display(struct leveleditor_widget *vm)
+void widget_lvledit_map_display(struct widget *vm)
 {
 	(void)vm;
 }
@@ -182,7 +182,7 @@ void leveleditor_update_tool()
 	forward_event(NULL);
 }
 
-void leveleditor_reset_tools()
+void lvledit_reset_tools()
 {
 	leveleditor_place_reset();
 	leveleditor_select_reset();

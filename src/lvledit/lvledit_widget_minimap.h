@@ -22,12 +22,12 @@
  *
  */
 
-void leveleditor_minimap_mouseenter(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_mouseleave(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_mouserelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_mousepress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_mouserightrelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_mouserightpress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_mousewheelup(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_minimap_display(struct leveleditor_widget *);
+void widget_lvledit_minimap_mouseenter(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_mouseleave(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_mouserelease(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_mousepress(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_mouserightrelease(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_mouserightpress(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_mousewheelup(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_mousewheeldown(SDL_Event *, struct widget *);
+void widget_lvledit_minimap_display(struct widget *);

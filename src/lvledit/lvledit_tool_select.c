@@ -53,7 +53,7 @@ static struct leveleditor_select {
 enum { DISABLED, FD_RECT, FD_RECTDONE, DRAGDROP } mode;
 
 struct selected_element {
-	enum leveleditor_object_type type;
+	enum lvledit_object_type type;
 	struct list_head node;
 	void *data;
 };
@@ -191,7 +191,7 @@ point selection_len() {
 
 int selection_type()
 {
-	struct leveleditor_categoryselect *cs = get_current_object_type();
+	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 
 	if (!cs) {
 		return OBJECT_NONE;
@@ -200,7 +200,7 @@ int selection_type()
 	return cs->type;
 }
 
-static void add_object_to_list(struct list_head *list, void *data, enum leveleditor_object_type type)
+static void add_object_to_list(struct list_head *list, void *data, enum lvledit_object_type type)
 {
 	struct selected_element *e = MyMalloc(sizeof(struct selected_element));
 	e->type = type;
@@ -1018,5 +1018,5 @@ void level_editor_switch_selection_type(int direction)
 		type = OBJECT_WAYPOINT;
 	else if (type > OBJECT_WAYPOINT)
 		type = OBJECT_OBSTACLE;
-	leveleditor_select_type(type);
+	lvledit_select_type(type);
 }

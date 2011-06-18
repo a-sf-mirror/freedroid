@@ -226,7 +226,7 @@ static void leveleditor_init()
 	//
 	OriginWaypoint = (-1);
 
-	leveleditor_init_widgets();
+	widget_lvledit_init();
 
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 }
@@ -280,7 +280,7 @@ void LevelEditor()
 
 		leveleditor_process_input();
 
-		struct leveleditor_widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
+		struct widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
 		if (w && w->type == WIDGET_MAP) {
 			leveleditor_update_tool();
 		}

@@ -18,5 +18,5 @@ extern int *spell_items_list;
 extern int *other_items_list;
 extern int *all_items_list;
 
-void build_leveleditor_tile_lists(void);
+void lvledit_build_tile_lists(void);
 void lvledit_set_obstacle_list_for_category(const char *category_name, struct dynarray *obstacle_list);

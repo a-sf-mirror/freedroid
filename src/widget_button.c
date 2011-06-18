@@ -38,7 +38,7 @@
 #include "lvledit/lvledit_tools.h"
 #include "widgets.h"
 
-static void activate_button(struct leveleditor_button *b)
+static void activate_button(struct widget_button *b)
 {
 	int idx = b->btn_index;
 	
@@ -107,29 +107,29 @@ static void activate_button(struct leveleditor_button *b)
 
 		break;
 	case RIGHT_LEVEL_EDITOR_BUTTON:
-		leveleditor_toolbar_scroll_right();
+		widget_lvledit_toolbar_scroll_right();
 		break;
 	case LEFT_LEVEL_EDITOR_BUTTON:
-		leveleditor_toolbar_scroll_left();
+		widget_lvledit_toolbar_scroll_left();
 		break;
 	case LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON:
-		leveleditor_select_type(OBJECT_OBSTACLE);
+		lvledit_select_type(OBJECT_OBSTACLE);
 		break;
 	case LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON:
-		leveleditor_select_type(OBJECT_FLOOR);
+		lvledit_select_type(OBJECT_FLOOR);
 		break;
 	case LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON:
-		leveleditor_select_type(OBJECT_ITEM);
+		lvledit_select_type(OBJECT_ITEM);
 		break;
 	case LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON:
-		leveleditor_select_type(OBJECT_WAYPOINT);
+		lvledit_select_type(OBJECT_WAYPOINT);
 		break;
 	default:
 		ErrorMessage(__FUNCTION__, "Button type %d unhandled.", PLEASE_INFORM, IS_WARNING_ONLY, idx);
 	}
 }
 
-static void activate_button_secondary(struct leveleditor_button *b)
+static void activate_button_secondary(struct widget_button *b)
 {
 	int idx = b->btn_index;
 
@@ -157,21 +157,21 @@ static void activate_button_secondary(struct leveleditor_button *b)
 	}
 }
 
-void leveleditor_button_mouseenter(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mouseenter(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 	(void)b;
 }
 
-void leveleditor_button_mouseleave(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mouseleave(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 	b->pressed = 0;
 }
 
-void leveleditor_button_mouserelease(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mouserelease(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 	if (b->pressed) {
 		/* Validate the click: ACTION */
 		activate_button(b);
@@ -179,16 +179,16 @@ void leveleditor_button_mouserelease(SDL_Event * event, struct leveleditor_widge
 	}
 }
 
-void leveleditor_button_mousepress(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mousepress(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 
 	b->pressed = 1;
 }
 
-void leveleditor_button_mouserightrelease(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mouserightrelease(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 	if (b->pressed) {
 		/* Validate the click: ACTION */
 		activate_button_secondary(b);
@@ -196,30 +196,30 @@ void leveleditor_button_mouserightrelease(SDL_Event * event, struct leveleditor_
 	}
 }
 
-void leveleditor_button_mouserightpress(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mouserightpress(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 
 	b->pressed = 1;
 }
 
-void leveleditor_button_mousewheelup(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mousewheelup(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 	(void)b;
 	//do nothing;
 }
 
-void leveleditor_button_mousewheeldown(SDL_Event * event, struct leveleditor_widget *vb)
+void widget_button_mousewheeldown(SDL_Event *event, struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 	(void)b;
 	//do nothing;
 }
 
-void leveleditor_button_display(struct leveleditor_widget *vb)
+void widget_button_display(struct widget *vb)
 {
-	struct leveleditor_button *b = vb->ext;
+	struct widget_button *b = vb->ext;
 
 	int pushoffset = b->pressed ? 1 : 0;
 	int activeoffset = b->active;

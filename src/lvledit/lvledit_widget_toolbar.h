@@ -23,22 +23,22 @@
  */
 
 #undef EXTERN
-#ifndef _leveleditor_widgets_c
+#ifndef _widgets_c
 #define EXTERN extern
 #endif
 
-void leveleditor_toolbar_mouseenter(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_mouseleave(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_mouserelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_mousepress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_mouserightrelease(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_mouserightpress(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_mousewheelup(SDL_Event *, struct leveleditor_widget *);
-void leveleditor_toolbar_mousewheeldown(SDL_Event *, struct leveleditor_widget *);
+void widget_lvledit_toolbar_mouseenter(SDL_Event *, struct widget *);
+void widget_lvledit_toolbar_mouseleave(SDL_Event *, struct widget *);
+void widget_lvledit_toolbar_mouserelease(SDL_Event *, struct widget *);
+void widget_lvledit_toolbar_mousepress(SDL_Event *, struct widget *);
+void widget_lvledit_toolbar_mouserightrelease(SDL_Event *, struct widget *);
+void widget_lvledit_toolbar_mouserightpress(SDL_Event *, struct widget *);
+void widget_lvledit_toolbar_mousewheelup(SDL_Event *, struct widget *);
+void widget_lvledit_toolbar_mousewheeldown(SDL_Event *, struct widget *);
 
-void leveleditor_toolbar_display(struct leveleditor_widget *);
+void widget_lvledit_toolbar_display(struct widget *);
 
-void leveleditor_toolbar_left(void);
-void leveleditor_toolbar_right(void);
-void leveleditor_toolbar_scroll_left(void);
-void leveleditor_toolbar_scroll_right(void);
+void widget_lvledit_toolbar_left(void);
+void widget_lvledit_toolbar_right(void);
+void widget_lvledit_toolbar_scroll_left(void);
+void widget_lvledit_toolbar_scroll_right(void);
