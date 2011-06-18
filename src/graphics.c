@@ -464,7 +464,7 @@ void InitPictures(void)
 
 	load_floor_tiles();
 
-	next_startup_percentage(33);
+	next_startup_percentage(19);
 
 	load_all_obstacles();
 
@@ -476,13 +476,13 @@ void InitPictures(void)
 
 	Load_Blast_Surfaces();
 
-	next_startup_percentage(19);
+	next_startup_percentage(5);
 
 	Load_Mouse_Move_Cursor_Surfaces();
 
 	iso_load_bullet_surfaces();
 
-	next_startup_percentage(5);
+	next_startup_percentage(3);
 }
 
 /**

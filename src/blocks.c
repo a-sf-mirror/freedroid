@@ -528,10 +528,12 @@ void load_all_obstacles(void)
 	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", filenames, images, obstacle_images.size)) {
 		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacles at obstacles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
 	}
+	next_startup_percentage(62);
 
 	for (i = 0; i < obstacle_map.size; i++) {
 		load_obstacle_shadow(i);
 	}
+	next_startup_percentage(8);
 }
 
 /**

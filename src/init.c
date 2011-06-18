@@ -106,7 +106,7 @@ static void clear_out_arrays_for_fresh_game(void)
 	ClearAutomapData();
 
 	clear_npcs();
-	
+
 	init_tux();
 }
 
@@ -119,7 +119,49 @@ void next_startup_percentage(int done)
 	static int startup_percent = 0;
 	SDL_Rect Bar_Rect;
 
+	/* Define STARTUP_PERCENTAGE_COMPUTE to get an estimate
+	   of the real percentage associated to each step during the
+	   game startup.
+	   */
+#ifdef STARTUP_PERCENTAGE_COMPUTE
+	static long load_start_time;
+
+	struct load_step {
+		long elapsed;
+		int percent;
+	};
+
+	static struct dynarray *step_times = NULL;
+	if (!step_times)
+		step_times = dynarray_alloc(10, sizeof(struct load_step));
+
+	if (!startup_percent)
+		load_start_time = SDL_GetTicks();
+#endif
+
 	startup_percent += done;
+
+#ifdef STARTUP_PERCENTAGE_COMPUTE
+	long elapsed = SDL_GetTicks() - load_start_time;
+
+	printf("Step %d: %ld ms have elapsed (%d%%), now at %d%%\n", step_times->size, elapsed, done, startup_percent);
+
+	struct load_step step = { elapsed, done };
+	dynarray_add(step_times, &step, sizeof(struct load_step));
+
+	if (startup_percent >= 100) {
+		float ms_to_percent = 100.0 / elapsed;
+		printf("Loading took %ld ms, 1 ms = %f%%\n", elapsed, ms_to_percent);
+
+		int i;
+		for (i = 1; i < step_times->size; i++) {
+#define STEP(X) ((struct load_step *)step_times->arr)[X]
+			int step_time = STEP(i).elapsed - STEP(i-1).elapsed;
+			int step_percent = step_time * ms_to_percent;
+			printf("Step %d: %d ms -> %d%%\n", i, step_time, step_percent);
+		}
+	}
+#endif
 
 	if (use_open_gl)
 		blit_background("startup1.jpg");
@@ -929,8 +971,6 @@ void Init_Game_Data()
 
 #define INIT_GAME_DATA_DEBUG 1
 
-	next_startup_percentage(2);
-
 	// Load programs (spells) information
 	//
 	find_file("program_archetypes.dat", MAP_DIR, fpath, 0);
@@ -970,7 +1010,6 @@ void Init_Game_Data()
 	find_file("addon_specs.lua", MAP_DIR, fpath, 1);
 	run_lua_file(fpath);
 
-	next_startup_percentage(39);
 
 	find_file("difficulty_params.dat", MAP_DIR, fpath, 0);
 	Data = ReadAndMallocAndTerminateFile(fpath, "*** End of this Freedroid data File ***");
@@ -989,6 +1028,8 @@ void Init_Game_Data()
 	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));
 	find_file("obstacle_specs.lua", MAP_DIR, fpath, 0);
 	run_lua_file(fpath);
+
+	next_startup_percentage(1);
 }
 
 char copyright[] = "\nFreedroidRPG comes with NO WARRANTY to the extent permitted by law.\n\
@@ -1439,6 +1480,8 @@ I will not be able to load or save games or configurations\n\
 
 	InitVideo();
 
+	next_startup_percentage(0);
+
 	init_keyboard_input_array();
 	init_message_log();
 	init_lua();
@@ -1464,6 +1507,7 @@ I will not be able to load or save games or configurations\n\
 
 	InitPictures(); //requires game data loaded in Init_Game_Data()
 
+	next_startup_percentage(100);
 	if (strstr(VERSION, "rc"))
 		alert_window("%s", _("You are playing a Release Candidate.\nStrange bugs might still be present in the game.\nPlease report any issues you find to either of:\n\n#freedroid at irc.freenode.net\nfreedroid-discussion AT lists.sourceforge.net\nhttps://sourceforge.net/apps/phpbb/freedroid\n\nor directly to the bugtracker at the SF website\nThank you for helping us test the game.\n\nGood luck!\n"));
 
