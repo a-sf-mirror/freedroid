@@ -97,7 +97,7 @@ EXTERN struct leveleditor_widget *previously_active_widget;
 
 #undef EXTERN
 
-#include "lvledit/lvledit_widget_button.h"
+#include "widget_button.h"
 #include "lvledit/lvledit_widget_map.h"
 #include "lvledit/lvledit_widget_toolbar.h"
 #include "lvledit/lvledit_widget_categoryselect.h"

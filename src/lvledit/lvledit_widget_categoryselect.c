@@ -31,7 +31,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
-#include "lvledit/lvledit_widgets.h"
+#include "widgets.h"
 
 static struct leveleditor_categoryselect *currently_selected_category = NULL;
 

@@ -36,7 +36,7 @@
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_menu.h"
 #include "lvledit/lvledit_tools.h"
-#include "lvledit/lvledit_widgets.h"
+#include "widgets.h"
 
 static void activate_button(struct leveleditor_button *b)
 {

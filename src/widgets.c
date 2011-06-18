@@ -34,7 +34,7 @@
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_tools.h"
-#include "lvledit/lvledit_widgets.h"
+#include "widgets.h"
 #include "lvledit/lvledit_object_lists.h"
 
 static int *all_obstacles_list = NULL;

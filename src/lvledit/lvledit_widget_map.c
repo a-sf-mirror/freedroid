@@ -32,7 +32,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
-#include "lvledit/lvledit_widgets.h"
+#include "widgets.h"
 #include "lvledit/lvledit_tools.h"
 
 static struct leveleditor_tool *selected_tool = NULL;

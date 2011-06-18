@@ -38,6 +38,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	faction.c \
 	waypoint.c \
 	obstacle.c \
+	widgets.c widgets.h widget_button.c widget_button.h \
 	lvledit/lvledit.c lvledit/lvledit.h \
 	lvledit/lvledit_actions.c lvledit/lvledit_actions.h \
 	lvledit/lvledit_display.c lvledit/lvledit_display.h \
@@ -51,12 +52,10 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	lvledit/lvledit_tool_move.c lvledit/lvledit_tool_move.h \
 	lvledit/lvledit_tool_place.c lvledit/lvledit_tool_place.h \
 	lvledit/lvledit_tool_select.c lvledit/lvledit_tool_select.h \
-	lvledit/lvledit_widget_button.c lvledit/lvledit_widget_button.h \
 	lvledit/lvledit_widget_map.c lvledit/lvledit_widget_map.h \
 	lvledit/lvledit_widget_toolbar.c lvledit/lvledit_widget_toolbar.h \
 	lvledit/lvledit_widget_categoryselect.c lvledit/lvledit_widget_categoryselect.h \
 	lvledit/lvledit_widget_minimap.c lvledit/lvledit_widget_minimap.h \
-	lvledit/lvledit_widgets.c lvledit/lvledit_widgets.h \
 	mapgen/mapgen.c mapgen/mapgen.h mapgen/gram_simple.c animate.c \
 	mapgen/themes.c mapgen/themes.h
 
