@@ -294,7 +294,6 @@ static void SetLevelInterfaces(void)
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_north = (tgt);
-				proceed_now = !proceed_now;
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
@@ -310,7 +309,6 @@ static void SetLevelInterfaces(void)
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_east = (tgt);
-				proceed_now = !proceed_now;
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
@@ -326,7 +324,6 @@ static void SetLevelInterfaces(void)
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_south = (tgt);
-				proceed_now = !proceed_now;
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
@@ -342,7 +339,6 @@ static void SetLevelInterfaces(void)
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_west = (tgt);
-				proceed_now = !proceed_now;
 			}
 			gps_transform_map_dirty_flag = TRUE;
 			break;
