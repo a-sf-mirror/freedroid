@@ -332,7 +332,7 @@ SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 
 	padded_surf = SDL_CreateRGBSurface(0, x, y, 32, rmask, gmask, bmask, amask);
 
-	SDL_SetAlpha(our_surface, 0, 0);
+	SDL_SetAlpha(our_surface, SDL_RLEACCEL, 0);
 	dest.x = 0;
 	dest.y = y - our_surface->h;
 	dest.w = our_surface->w;

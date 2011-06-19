@@ -126,7 +126,7 @@ static void fade(int fade_delay, int direction)
 			fade = 255 - fade;
 
 		if (!use_open_gl) {
-			SDL_SetAlpha(bg, SDL_SRCALPHA, fade);
+			SDL_SetAlpha(bg, SDL_SRCALPHA | SDL_RLEACCEL, fade);
 			SDL_FillRect(Screen, NULL, 0);
 			SDL_BlitSurface(bg, NULL, Screen, NULL);
 		} else {
