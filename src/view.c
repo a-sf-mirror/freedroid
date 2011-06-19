@@ -558,6 +558,11 @@ void insert_move_cursor_into_blitting_list()
 {
 	float norm;
 
+	if (game_status == INSIDE_LVLEDITOR) {
+		// Do not show move cursors inside the editor.
+		return;
+	}
+
 	norm = Me.mouse_move_target.x + Me.mouse_move_target.y;
 
 	insert_new_element_into_blitting_list(norm, BLITTING_TYPE_MOVE_CURSOR, NULL, 0);
