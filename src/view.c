@@ -2199,9 +2199,6 @@ Creation of an Tux SDL software surface from pixel data failed.", PLEASE_INFORM,
 				loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x = img_x_offs;
 				loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y = img_y_offs;
 
-				// this should clear any color key in the dest surface
-				SDL_SetColorKey(loaded_tux_images[tux_part_group][our_phase][rotation_index].surface, 0, 0);
-
 				flip_image_vertically(loaded_tux_images[tux_part_group][our_phase][rotation_index].surface);
 
 				if (use_open_gl) {
@@ -2383,8 +2380,6 @@ The number of images found in the image collection for enemy model %d is bigger 
 			enemy_images[enemy_model_nr][rotation_index][enemy_phase].h = orig_img_ylen;
 			enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_w = img_xlen;
 			enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_h = img_ylen;
-
-			SDL_SetColorKey(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface, 0, 0);	// this should clear any color key in the dest surface
 
 			if (use_open_gl) {
 				make_texture_out_of_prepadded_image(&(enemy_images[enemy_model_nr][rotation_index]

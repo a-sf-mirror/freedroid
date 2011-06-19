@@ -260,7 +260,6 @@ SDL_Surface *our_SDL_display_format_wrapperAlpha(SDL_Surface * surface)
 		if (surface == Screen)
 			return (NULL);
 		return_surface = SDL_DisplayFormatAlpha(surface);
-		SDL_SetColorKey(return_surface, 0, 0);	// this should clear any color key in the dest surface
 		SDL_SetAlpha(return_surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
 		return (return_surface);
 	} else {
@@ -351,7 +350,6 @@ SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 	padded_surf = SDL_CreateRGBSurface(0, x, y, 32, rmask, gmask, bmask, amask);
 
 	SDL_SetAlpha(our_surface, 0, 0);
-	SDL_SetColorKey(our_surface, 0, 0x0FF);
 	dest.x = 0;
 	dest.y = y - our_surface->h;
 	dest.w = our_surface->w;

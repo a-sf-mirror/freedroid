@@ -308,7 +308,6 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 		// Copy subimage
 		SDL_SetAlpha(source->surface, 0, 1);
 		SDL_SetAlpha(new_img->surface, SDL_SRCALPHA, 0);
-		SDL_SetColorKey(new_img->surface, 0, 0);
 		SDL_BlitSurface(source->surface, rect, new_img->surface, NULL);
 	}
 
@@ -343,8 +342,6 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 
 	img->surface = our_SDL_display_format_wrapperAlpha(surface);
 	img->texture_has_been_created = FALSE;
-
-	SDL_SetColorKey(img->surface, 0, 0);
 
 	SDL_FreeSurface(surface);
 
