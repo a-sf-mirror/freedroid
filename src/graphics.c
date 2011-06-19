@@ -466,7 +466,7 @@ void InitPictures(void)
 
 	next_startup_percentage(19);
 
-	load_all_obstacles();
+	load_all_obstacles(TRUE);
 
 	if (!GameConfig.lazyload) {
 		load_all_items();
@@ -1174,8 +1174,9 @@ void reload_graphics(void)
 {
 	free_floor_tiles();
 	load_floor_tiles();
-	// Free all items and obstacles graphics. Graphics will be loaded when needed
 	free_obstacle_graphics();
+	load_all_obstacles(FALSE);
+	// Free all items graphics. Graphics will be loaded when needed.
 	free_item_graphics();
 }
 

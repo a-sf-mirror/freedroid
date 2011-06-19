@@ -248,7 +248,7 @@ void load_floor_tiles(void);
 void free_floor_tiles(void);
 struct image *get_obstacle_image(int);
 struct image *get_droid_portrait_image(int);
-void load_all_obstacles(void);
+void load_all_obstacles(int with_startup_bar);
 void free_obstacle_graphics(void);
 struct image *get_item_shop_image(int type);
 struct image *get_item_ingame_image(int type);
