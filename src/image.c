@@ -340,7 +340,7 @@ void load_image_surface(struct image *img, const char *filename, int use_offset_
 	
 	SDL_SetAlpha(surface, 0, SDL_ALPHA_OPAQUE);
 
-	img->surface = our_SDL_display_format_wrapperAlpha(surface);
+	img->surface = SDL_DisplayFormatAlpha(surface);
 	img->texture_has_been_created = FALSE;
 
 	SDL_FreeSurface(surface);

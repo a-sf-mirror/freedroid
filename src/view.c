@@ -3286,7 +3286,7 @@ Freedroid wanted to load a certain image file into memory, but the SDL\n\
 function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 			}
 			// SDL_SetColorKey( tmp_surf , 0 , 0 ); 
-			SparkPrototypeSurface[SparkType][k] = our_SDL_display_format_wrapperAlpha(tmp_surf);
+			SparkPrototypeSurface[SparkType][k] = SDL_DisplayFormatAlpha(tmp_surf);
 			SDL_FreeSurface(tmp_surf);
 
 			// Now that the loading is successfully done, we can do the
@@ -3297,7 +3297,7 @@ function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 
 				tmp_surf = rotozoomSurface(SparkPrototypeSurface[SparkType][k], Angle, 1.0, FALSE);
 
-				PrerotatedSparkSurfaces[SparkType][k][i].surface = our_SDL_display_format_wrapperAlpha(tmp_surf);
+				PrerotatedSparkSurfaces[SparkType][k][i].surface = SDL_DisplayFormatAlpha(tmp_surf);
 
 				// Maybe opengl is in use.  Then we need to prepare some textures too...
 				//

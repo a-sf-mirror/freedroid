@@ -78,10 +78,10 @@ Inventory image for item type %d, at path %s was not found", PLEASE_INFORM, IS_F
 		factor_x = (float)target_x / (float)original_img->w;
 		factor_y = (float)target_y / (float)original_img->h;
 		tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
-		spec->inventory_image.surface = our_SDL_display_format_wrapperAlpha(tmp_surf2);
+		spec->inventory_image.surface = SDL_DisplayFormatAlpha(tmp_surf2);
 		SDL_FreeSurface(tmp_surf2);
 	} else
-		spec->inventory_image.surface = our_SDL_display_format_wrapperAlpha(original_img);
+		spec->inventory_image.surface = SDL_DisplayFormatAlpha(original_img);
 
 	if (use_open_gl) {
 		make_texture_out_of_surface(&spec->inventory_image);
@@ -108,7 +108,7 @@ Inventory image for item type %d, at path %s was not found", PLEASE_INFORM, IS_F
 	factor_x = ((float)GameConfig.screen_width / 640.0) * ((float)target_x / (float)original_img->w);
 	factor_y = ((float)GameConfig.screen_height / 480.0) * ((float)target_y / (float)original_img->h);
 	tmp_surf2 = zoomSurface(original_img, factor_x, factor_y, FALSE);
-	spec->shop_image.surface = our_SDL_display_format_wrapperAlpha(tmp_surf2);
+	spec->shop_image.surface = SDL_DisplayFormatAlpha(tmp_surf2);
 	SDL_FreeSurface(original_img);
 	SDL_FreeSurface(tmp_surf2);
 

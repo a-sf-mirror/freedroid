@@ -220,7 +220,6 @@ void our_SDL_update_rect_wrapper(SDL_Surface * screen, Sint32 x, Sint32 y, Sint3
 int blit_quad(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, Uint32 color);
 void drawIsoEnergyBar(int dir, int x, int y, int z, int w, int d, int length, float fill, myColor * c1, myColor * c2);
 
-SDL_Surface *our_SDL_display_format_wrapperAlpha(SDL_Surface * surface);
 SDL_Surface *our_IMG_load_wrapper(const char *file);
 void flip_image_vertically(SDL_Surface * tmp1);
 void make_texture_out_of_surface(struct image *our_image);

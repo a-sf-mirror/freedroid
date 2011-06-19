@@ -391,7 +391,7 @@ SDL_Surface *sdl_create_colored_surface(SDL_Surface *surf, float r, float g, flo
 	SDL_Surface *colored_surf;
 	int x, y;
 
-	colored_surf = our_SDL_display_format_wrapperAlpha(surf);
+	colored_surf = SDL_DisplayFormatAlpha(surf);
 
 	for (y = 0; y < surf->h; y++) {
 		for (x = 0; x < surf->w; x++) {

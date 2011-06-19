@@ -252,23 +252,6 @@ void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, fl
 #endif
 };				// void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor *c1, myColor *c2  ) 
 
-SDL_Surface *our_SDL_display_format_wrapperAlpha(SDL_Surface * surface)
-{
-	SDL_Surface *return_surface;
-
-	if (use_open_gl) {
-		if (surface == Screen)
-			return (NULL);
-		return_surface = SDL_DisplayFormatAlpha(surface);
-		SDL_SetAlpha(return_surface, SDL_SRCALPHA, SDL_ALPHA_OPAQUE);
-		return (return_surface);
-	} else {
-		return (SDL_DisplayFormatAlpha(surface));
-	}
-
-	return (NULL);
-};				// SDL_Surface* our_SDL_display_format_wrapperAlpha ( SDL_Surface *surface )
-
 /**
  * This function flips a given SDL_Surface.
  * 
