@@ -1172,6 +1172,8 @@ void save_screenshot(const char *filename, int width)
 
 void reload_graphics(void)
 {
+	free_floor_tiles();
+	load_floor_tiles();
 	// Free all items and obstacles graphics. Graphics will be loaded when needed
 	free_obstacle_graphics();
 	free_item_graphics();

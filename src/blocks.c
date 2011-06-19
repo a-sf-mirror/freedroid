@@ -556,4 +556,12 @@ void load_floor_tiles(void)
 	}
 }
 
+void free_floor_tiles(void)
+{
+	int i;
+	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
+		delete_image(&floor_images[i]);
+	}
+}
+
 #undef _blocks_c
