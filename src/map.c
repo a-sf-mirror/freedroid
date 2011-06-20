@@ -1629,7 +1629,7 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		// Create a new enemy, and initialize its 'identity' and 'global state'
 		// (the enemy will be fully initialized by respawn_level())
 		enemy *newen = enemy_new(droid_type);
-		newen->SpecialForce = 1;
+		newen->SpecialForce = TRUE;
 
 		ReadValueFromStringWithDefault(special_droid, "Fixed=", "%hd", "0", &(newen->CompletelyFixed), special_droid_end);
 		ReadValueFromStringWithDefault(special_droid, "Marker=", "%d", "0000", &(newen->marker), special_droid_end);
@@ -1650,7 +1650,7 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		newen->pos.z = our_level_number;
 		free(start_map_label);
 
-		ReadValueFromStringWithDefault(special_droid, "RushTux=", "%hd", "0", &(newen->will_rush_tux), special_droid_end);
+		ReadValueFromStringWithDefault(special_droid, "RushTux=", "%hu", "0", &(newen->will_rush_tux), special_droid_end);
 
 		newen->dialog_section_name = ReadAndMallocStringFromDataOptional(special_droid, "UseDialog=\"", "\"");
 		if (!newen->dialog_section_name)

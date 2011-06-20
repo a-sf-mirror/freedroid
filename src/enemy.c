@@ -303,7 +303,7 @@ enemy *enemy_new(int type)
 	this_enemy->type = type;
 
 	// Init 'identity' attributes.
-	this_enemy->SpecialForce = 0;
+	this_enemy->SpecialForce = FALSE;
 	this_enemy->marker = 0;
 	this_enemy->max_distance_to_home = 0;
 	this_enemy->dialog_section_name = NULL;
@@ -1484,7 +1484,7 @@ static void state_machine_stop_and_eye_target(enemy * ThisRobot, moderately_fine
 	TurnABitTowardsPosition(ThisRobot, target_vpos.x, target_vpos.y, 120);
 
 	/* Do greet sound if not already done */
-	if (ThisRobot->has_greeted_influencer == FALSE) {
+	if (!ThisRobot->has_greeted_influencer) {
 		ThisRobot->has_greeted_influencer = TRUE;
 		if (Druidmap[ThisRobot->type].greeting_sound_type != (-1)) {
 			play_greeting_sound(ThisRobot);
@@ -2142,7 +2142,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		melee_shot *NewShot = &(AllMeleeShots[shot_index]);
 
 		NewShot->attack_target_type = ThisRobot->attack_target_type;
-		NewShot->mine = 0;	/* shot comes from a bot not tux */
+		NewShot->mine = FALSE;	/* shot comes from a bot not tux */
 
 		if (ThisRobot->attack_target_type == ATTACK_TARGET_IS_ENEMY) {
 			NewShot->bot_target_n = ThisRobot->bot_target_n;

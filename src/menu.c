@@ -1137,7 +1137,8 @@ static int Startup_handle(int n)
 		LoadShip(fpp, 0);
 		PrepareStartOfNewCharacter("TutorialTuxStart");
 		skip_initial_menus = 0;
-		strcpy(Me.character_name, "TutorialTux");
+		free(Me.character_name);
+		Me.character_name = strdup("TutorialTux");
 		return EXIT_MENU;
 		break;
 	case OPTIONS_POSITION:
@@ -1811,8 +1812,10 @@ int load_named_game(const char *name)
 		return ERR;
 	}
 
-	if (strcmp(name, Me.character_name))
-			strcpy(Me.character_name, name);
+	if (strcmp(name, Me.character_name)) {
+		free(Me.character_name);
+		Me.character_name = strdup(name);
+	}
 
 	if (LoadGame() != OK)
 		return ERR;
@@ -1915,7 +1918,8 @@ static int do_savegame_selection_and_act(int action)
 				break;
 		}
 
-		strcpy(Me.character_name, MenuTexts[MenuPosition - 1]);
+		free(Me.character_name);
+		Me.character_name = strdup(MenuTexts[MenuPosition - 1]);
 
 		for (cnt = 0; cnt < n; cnt++)
 			free(eps[cnt]);
@@ -2025,7 +2029,8 @@ int Single_Player_Menu(void)
 				find_file("levels.dat", MAP_DIR, fp, 0);
 				LoadShip(fp, 0);
 				PrepareStartOfNewCharacter("NewTuxStartGameSquare");
-				strcpy(Me.character_name, char_name);
+				free(Me.character_name);
+				Me.character_name = strdup(char_name);
 				can_continue = TRUE;
 				free(char_name);
 			}

@@ -104,7 +104,8 @@ static int loadgame_bench()
 	int loop = 3;
 
 	// Use MapEd.savegame
-	sprintf(Me.character_name, "MapEd");
+	free(Me.character_name);
+	Me.character_name = strdup("MapEd");
 
 	// Load it many times
 	timer_start();

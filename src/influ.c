@@ -1446,7 +1446,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 			melee_shot *NewShot = &(AllMeleeShots[shot_index]);
 
 			NewShot->attack_target_type = ATTACK_TARGET_IS_ENEMY;
-			NewShot->mine = 1;
+			NewShot->mine = TRUE;
 
 			NewShot->bot_target_n = erot->id;
 			NewShot->bot_target_addr = erot;
@@ -1709,6 +1709,11 @@ static void free_tux()
 {
 	int i;
 
+	free(Me.character_name);
+        Me.character_name = NULL;
+	free(Me.savegame_version_string);
+	Me.savegame_version_string = NULL;
+
 	clear_tux_mission_info();
 	for (i = 0; i < MAX_COOKIES; i++) {
 		if (Me.cookie_list[i])
@@ -1763,7 +1768,7 @@ void init_tux()
 	
 	enemy_set_reference(&Me.current_enemy_target_n, &Me.current_enemy_target_addr, NULL);
 	
-	Me.god_mode = 0;
+	Me.god_mode = FALSE;
 	
 	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
 	Me.mouse_move_target_combo_action_parameter = -1;

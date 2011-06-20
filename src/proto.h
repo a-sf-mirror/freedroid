@@ -291,8 +291,7 @@ void LoadAndShowStats(char *CoreFilename);
 
 /* Saving is done via macros */
 #define save_pritype(Z,X,Y) autostr_append(savestruct_autostr, Z, X, *(Y))
-#define save_char(X,Y) save_pritype("%s: %hhd\n", X, Y)
-#define save_uchar(X,Y) save_pritype("%s: %hhu\n", X, Y)
+#define save_uint8_t(X,Y) save_pritype("%s: %hu\n", X, Y)
 #define save_uint16_t(X,Y) save_pritype("%s: %hu\n", X, Y)
 #define save_int16_t(X,Y) save_pritype("%s: %hd\n", X, Y)
 #define save_int32_t(X,Y) save_pritype("%s: %d\n", X, Y)
@@ -304,10 +303,9 @@ void LoadAndShowStats(char *CoreFilename);
 /* Reading is slightly more difficult so we do it with functions */
 void read_int32_t(const char *, const char *, int32_t *);
 void read_int16_t(const char *, const char *, int16_t *);
-void read_char(const char *, const char *, char *);
 void read_uint32_t(const char *, const char *, uint32_t *);
 void read_uint16_t(const char *, const char *, uint16_t *);
-void read_uchar(const char *, const char *, unsigned char *);
+void read_uint8_t(const char *, const char *, uint8_t *);
 void read_double(const char *, const char *, double *);
 void read_float(const char *, const char *, float *);
 void read_string(const char *, const char *, string *);
@@ -321,12 +319,10 @@ void save_int32_t_array(const char *, int *, int);
 void read_int32_t_array(char *, const char *, int *, int);
 void save_item_array(const char *, item *, int);
 void read_item_array(char *, const char *, item *, int);
-void save_uchar_array(const char *, unsigned char *, int);
-void read_uchar_array(char *, const char *, unsigned char *, int);
-void save_char_array(const char *, char *, int);
-void read_char_array(char *, const char *, char *, int);
 void save_uint16_t_array(const char *, uint16_t *, int);
 void read_uint16_t_array(char *, const char *, uint16_t *, int);
+void save_uint8_t_array(const char *, uint8_t *, int);
+void read_uint8_t_array(char *, const char *, uint8_t *, int);
 void save_gps_array(const char *, gps *, int);
 void read_gps_array(char *, const char *, gps *, int);
 void save_float_array(const char *, float *, int);

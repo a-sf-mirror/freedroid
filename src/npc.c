@@ -65,7 +65,7 @@ void npc_add(const char *dialog_basename)
 	struct npc *n = MyMalloc(sizeof(struct npc));
 
 	n->dialog_basename = strdup(dialog_basename);
-	n->chat_character_initialized = 0;
+	n->chat_character_initialized = FALSE;
 	n->last_trading_date = 0.0f;
 
 	npc_clear_inventory(n);

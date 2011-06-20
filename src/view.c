@@ -75,7 +75,7 @@ struct image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECT
 
 static int old_current_level = -1;
 
-void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_directions[RADIAL_SPELL_DIRECTIONS], float age);
+void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, uint8_t active_directions[RADIAL_SPELL_DIRECTIONS], float age);
 static void show_inventory_screen(void);
 
 
@@ -3220,7 +3220,7 @@ There was -1 item type given to blit.  This must be a mistake! ", PLEASE_INFORM,
 	display_image_on_map(img, CurItem->virt_pos.x - anim_throw, CurItem->virt_pos.y - anim_throw, set_image_transformation(zf, zf, r, g, b, 1.0, highlight_item));
 }
 
-void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, char active_direction[RADIAL_SPELL_DIRECTIONS], float age)
+void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, uint8_t active_direction[RADIAL_SPELL_DIRECTIONS], float age)
 {
 #define FIXED_NUMBER_OF_SPARK_ANGLES 12
 #define FIXED_NUMBER_OF_PROTOTYPES 4

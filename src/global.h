@@ -187,7 +187,7 @@ EXTERN light_radius_config LightRadiusConfig;
 int chat_control_next_node;	//what is the next node to use?
 int chat_control_end_dialog;	//end current dialog?
 int chat_control_partner_started;	//the dialog partner is the one who started the talk
-unsigned char *chat_control_chat_flags; //current chat flags
+uint8_t *chat_control_chat_flags; //current chat flags
 enemy *chat_control_chat_droid;	//droid we are chatting with
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
 EXTERN text_widget chat_log;

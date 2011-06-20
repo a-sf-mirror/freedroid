@@ -239,6 +239,7 @@ int SaveGame(void)
 {
 	char filename[1000];
 	char filename2[1000];
+	struct auto_string *version_string;
 	int ret;
 	FILE *SaveGameFile;
 
@@ -255,9 +256,12 @@ int SaveGame(void)
 
 	Activate_Conservative_Frame_Computation();
 
-	sprintf(Me.savegame_version_string,
+	version_string = alloc_autostr(256);
+	autostr_printf(version_string,
 		"%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d",
 		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
+	free(Me.savegame_version_string);
+	Me.savegame_version_string = strdup(version_string->value);
 
 	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
 	sprintf(filename2, "%s/%s%s", our_config_dir, Me.character_name, ".bkp.shp");
@@ -347,6 +351,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nint SaveGame( void ): end of function reached.");
 
+	free_autostr(version_string);
 	free_autostr(savestruct_autostr);
 	savestruct_autostr = NULL;
 	return OK;
@@ -635,13 +640,6 @@ void read_int16_t(const char *buffer, const char *tag, int16_t * val)
 	*val = valt;
 }
 
-void read_char(const char *buffer, const char *tag, char *val)
-{
-	int32_t valt;
-	read_int32_t(buffer, tag, &valt);
-	*val = valt;
-}
-
 void read_uint32_t(const char *buffer, const char *tag, uint32_t * val)
 {
 	int32_t valt;
@@ -656,7 +654,7 @@ void read_uint16_t(const char *buffer, const char *tag, uint16_t * val)
 	*val = valt;
 }
 
-void read_uchar(const char *buffer, const char *tag, unsigned char *val)
+void read_uint8_t(const char *buffer, const char *tag, uint8_t *val)
 {
 	uint32_t valt;
 	read_uint32_t(buffer, tag, &valt);
@@ -768,10 +766,8 @@ define_save_xxx_array(int32_t);
 define_save_xxx_array(uint32_t);
 define_save_xxx_array(int16_t);
 define_save_xxx_array(uint16_t);
-typedef unsigned char uchar;
+define_save_xxx_array(uint8_t);
 define_save_xxx_array(float);
-define_save_xxx_array(uchar);
-define_save_xxx_array(char);
 define_save_xxx_array(string);
 define_save_xxx_array(mission);
 define_save_xxx_array(upgrade_socket);
@@ -855,9 +851,8 @@ define_read_xxx_array(int32_t);
 define_read_xxx_array(uint32_t);
 define_read_xxx_array(int16_t);
 define_read_xxx_array(uint16_t);
+define_read_xxx_array(uint8_t);
 define_read_xxx_array(float);
-define_read_xxx_array(uchar);
-define_read_xxx_array(char);
 define_read_xxx_array(string);
 define_read_xxx_array(mission);
 define_read_xxx_array(upgrade_socket);

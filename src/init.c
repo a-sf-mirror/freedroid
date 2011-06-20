@@ -1302,7 +1302,8 @@ void prepare_level_editor()
 	LoadShip(fp, 0);
 	PrepareStartOfNewCharacter("NewTuxStartGameSquare");
 	skip_initial_menus = 0;
-	strcpy(Me.character_name, "MapEd");
+	free(Me.character_name);
+	Me.character_name = strdup("MapEd");
 }
 
 /**

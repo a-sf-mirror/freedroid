@@ -818,7 +818,7 @@ static int lua_set_bot_destination(lua_State * L)
 
 static int lua_set_rush_tux(lua_State * L)
 {
-	const int cmd = luaL_checkinteger(L, 1);
+	const uint8_t cmd = (uint8_t)luaL_checkinteger(L, 1);
 	enemy *en = get_enemy_arg(L, 2);
 	en->will_rush_tux = cmd;
 	return 0;

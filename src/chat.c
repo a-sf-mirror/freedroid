@@ -392,8 +392,8 @@ void run_subdialog(const char *tmp_filename)
 {
 	char fpath[2048];
 	char finaldir[50];
-	unsigned char dummyflags[MAX_ANSWERS_PER_PERSON];
-	unsigned char *old_chat_flags = chat_control_chat_flags;
+	uint8_t dummyflags[MAX_ANSWERS_PER_PERSON];
+	uint8_t *old_chat_flags = chat_control_chat_flags;
 
 	memset(dummyflags, 0, MAX_ANSWERS_PER_PERSON);
 	chat_control_chat_flags = &dummyflags[0];
@@ -566,7 +566,7 @@ void ChatWithFriendlyDroid(enemy * ChatDroid)
 	run_chat(ChatDroid, FALSE);
 
 	if (!npc->chat_character_initialized)
-		npc->chat_character_initialized = 1;
+		npc->chat_character_initialized = TRUE;
 }
 
 /**

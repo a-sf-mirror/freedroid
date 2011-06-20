@@ -107,16 +107,13 @@ typedef struct mouse_press_button {
 	char scale_this_button;
 } mouse_press_button, *Mouse_press_button;
 
-typedef struct keybind {
-	char *name;
-		/**< keybinding name, taken from keybindNames */
-	int key;
-	     /**< key/axis/button event number */
-	int mod;
-	     /**< Key modifiers */
-} keybind_t;
-
 typedef char *string;
+
+typedef struct keybind {
+	string name; /**< keybinding name, taken from keybindNames */
+	int key;      /**< key/axis/button event number */
+	int mod;      /**< Key modifiers */
+} keybind_t;
 
 typedef struct configuration_for_freedroid {
 	float WantedTextVisibleTime;
@@ -389,6 +386,8 @@ typedef struct druidspec {
 	short individual_shape_nr;
 } druidspec;
 
+typedef char s_char; // Used for pointer to static string which are not to be saved
+
 typedef struct enemy {
 	// There are three sets of attributes, which are initialized and
 	// possibly re-initialized by 3 different codes:
@@ -416,7 +415,7 @@ typedef struct enemy {
 	//
 	short int id;                       // unique id of the droid. start at 1.
 	short int type;                     // the number of the droid specifications in Druidmap
-	char SpecialForce;                  // this flag will exclude the droid from initial shuffling of droids
+	uint8_t SpecialForce;               // this flag will exclude the droid from initial shuffling of droids
 	int marker;                         // this provides a marker for special mission targets
 	short int max_distance_to_home;     // how far this robot will go before returning to it's home waypoint
 	string dialog_section_name;
@@ -427,17 +426,17 @@ typedef struct enemy {
 	// 2nd set ('global state')
 	//
 	int faction;
-	char will_rush_tux;           // will this robot approach the Tux on sight and open communication?
-	int combat_state;             // current state of the bot
-	float state_timeout;          // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
-	short int CompletelyFixed;    // set this flag to make the robot entirely immobile
-	char has_been_taken_over;     // has the Tux made this a friendly bot via takeover subgame?
-	char follow_tux;              // does this robot try to follow tux via it's random movements?
-	char has_greeted_influencer;  // has this robot issued his first-time-see-the-Tux message?
-	short int nextwaypoint;       // the next waypoint target
-	short int lastwaypoint;       // the waypoint from whence this robot just came from
-	short int homewaypoint;       // the waypoint this robot started at
-	gps pos;                      // coordinates of the current position in the level
+	uint8_t will_rush_tux;          // will this robot approach the Tux on sight and open communication?
+	int combat_state;               // current state of the bot
+	float state_timeout;            // time spent in this state (used by "timeout" states such as STOP_AND_EYE_TARGET only)
+	short int CompletelyFixed;      // set this flag to make the robot entirely immobile
+	uint8_t has_been_taken_over;    // has the Tux made this a friendly bot via takeover subgame?
+	uint8_t follow_tux;             // does this robot try to follow tux via it's random movements?
+	uint8_t has_greeted_influencer; // has this robot issued his first-time-see-the-Tux message?
+	short int nextwaypoint;         // the next waypoint target
+	short int lastwaypoint;         // the waypoint from whence this robot just came from
+	short int homewaypoint;         // the waypoint this robot started at
+	gps pos;                        // coordinates of the current position in the level
 
 	//--------------------
 	// 3rd set ('transient state')
@@ -453,7 +452,7 @@ typedef struct enemy {
 	float pure_wait;                   // time till the droid will start to move again
 	float firewait;                    // time this robot still takes until its weapon will be fully reloaded
 	short int ammo_left;               // ammunition left in the charger
-	char attack_target_type;           // attack NOTHING, PLAYER, or BOT
+	uint8_t attack_target_type;        // attack NOTHING, PLAYER, or BOT
 	short int bot_target_n;
 	struct enemy *bot_target_addr;
 	float previous_angle;              // which angle has this robot been facing the frame before?
@@ -462,9 +461,9 @@ typedef struct enemy {
 	float last_phase_change;           // when did the robot last change his (8-way-)direction of facing
 	float last_combat_step;            // when did this robot last make a step to move in closer or farther away from Tux in combat?
 	float TextVisibleTime;
-	char *TextToBeDisplayed;           // WARNING!!! Only use static texts
+	s_char *TextToBeDisplayed;         // WARNING!!! Only use static texts
 	moderately_finepoint PrivatePathway[5];
-	char bot_stuck_in_wall_at_previous_check;
+	uint8_t bot_stuck_in_wall_at_previous_check;
 	float time_since_previous_stuck_in_wall_check;
 
 	//--------------------
@@ -477,8 +476,8 @@ typedef struct enemy {
 
 typedef struct npc {
 	string dialog_basename;
-	unsigned char chat_character_initialized;
-	unsigned char chat_flags[MAX_ANSWERS_PER_PERSON];
+	uint8_t chat_character_initialized;
+	uint8_t chat_flags[MAX_ANSWERS_PER_PERSON];
 
 	string shoplist[MAX_ITEMS_IN_INVENTORY]; //list of items that can be put in the inventory of the NPC
 	int shoplistweight[MAX_ITEMS_IN_INVENTORY]; //weight of each item: relative probability of appearance in inventory
@@ -505,7 +504,7 @@ typedef struct tux {
 	gps mouse_move_target;	// where the tux is going automatically by virtue of mouse move
 
 	short int current_enemy_target_n;	//which enemy has been targeted 
-	char god_mode;
+	uint8_t god_mode;
 	enemy *current_enemy_target_addr;	// which enemy has been targeted, address
 
 	int mouse_move_target_combo_action_type;	// what extra action has to be done upon arrival?
@@ -536,7 +535,7 @@ typedef struct tux {
 	float MissionTimeElapsed;
 	float got_hit_time;	// how long stunned now since the last time tux got hit 
 
-	char savegame_version_string[1000];	// a string to identify games from older freedroid versions
+	string savegame_version_string;	// a string to identify games from older freedroid versions
 
 	int base_cooling;
 	int base_dexterity;
@@ -563,12 +562,12 @@ typedef struct tux {
 	unsigned int ExpRequired_previously;	// how was required for the previous level?
 
 	unsigned int Gold;
-	char character_name[MAX_CHARACTER_NAME_LENGTH];
+	string character_name;
 	mission AllMissions[MAX_MISSIONS_IN_GAME];	// What must be done to fullfill this mission?
 	int marker;		// In case you've taken over a marked droid, this will contain the marker
 	float LastCrysoundTime;
 	float TextVisibleTime;
-	char *TextToBeDisplayed;                    // WARNING!!! Only use static texts
+	s_char *TextToBeDisplayed;                    // WARNING!!! Only use static texts
 
 	//--------------------
 	// Here we note all the 'skill levels' of the Tux and also which skill is
@@ -595,7 +594,7 @@ typedef struct tux {
 	//--------------------
 	// A record of when and if the tux has been on some maps...
 	//
-	unsigned char HaveBeenToLevel[MAX_LEVELS];	// record of the levels the player has visited yet.
+	uint8_t HaveBeenToLevel[MAX_LEVELS];	            // record of the levels the player has visited yet.
 	float time_since_last_visit_or_respawn[MAX_LEVELS];	// record of the levels the player has visited yet.
 
 	string cookie_list[MAX_COOKIES];
@@ -643,8 +642,8 @@ typedef struct bulletspec {
 
 typedef struct bullet {
 	short int type;
-	unsigned char phase;
-	char mine;
+	int phase;
+	uint8_t mine;
 	gps pos;
 	moderately_finepoint speed;
 	short int damage;	// damage done by this particular bullet
@@ -654,20 +653,20 @@ typedef struct bullet {
 	short int owner;
 	float angle;
 
-	char pass_through_hit_bodies;	// does this bullet go through hit bodies (e.g. like a laser sword strike)
+	uint8_t pass_through_hit_bodies; // does this bullet go through hit bodies (e.g. like a laser sword strike)
 	short int freezing_level;	// does this bullet freeze the target?
 	float poison_duration;
 	float poison_damage_per_sec;
 	float paralysation_duration;
 
 	int faction;
-	char hit_type;		//hit bots, humans, both?
+	uint8_t hit_type;		//hit bots, humans, both?
 } bullet, *Bullet;
 
 typedef struct melee_shot	// this is a melee shot
 {
-	char attack_target_type;	//type of attack
-	char mine;		//is it mine?
+	uint8_t attack_target_type;	//type of attack
+	uint8_t mine;		//is it mine?
 	short int bot_target_n;	//which enemy has been targeted 
 	enemy *bot_target_addr;	// which enemy has been targeted, address
 	short int to_hit;	//chance to hit, percent
@@ -702,9 +701,9 @@ typedef struct spell_active {
 	moderately_finepoint spell_center;
 	float spell_radius;
 	float spell_age;
-	char active_directions[RADIAL_SPELL_DIRECTIONS];
+	uint8_t active_directions[RADIAL_SPELL_DIRECTIONS];
 	int mine;
-	char hit_type;
+	uint8_t hit_type;
 } spell_active;
 
 typedef struct spell_skill_spec {
