@@ -664,15 +664,12 @@ void move_tux()
 	// We store the influencers position for the history record and so that others
 	// can follow his trail.
 	//
-	static int i = 0;
-	i++;
-	if (i & 1) {
-		Me.current_zero_ring_index++;
-		Me.current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
-		Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].x = Me.pos.x;
-		Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].y = Me.pos.y;
-		Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].z = Me.pos.z;
-	}
+	Me.current_zero_ring_index++;
+	Me.current_zero_ring_index %= MAX_INFLU_POSITION_HISTORY;
+	Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].x = Me.pos.x;
+	Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].y = Me.pos.y;
+	Me.Position_History_Ring_Buffer[Me.current_zero_ring_index].z = Me.pos.z;
+
 
 	if (Me.paralyze_duration) {
 		Me.speed.x = 0;
