@@ -170,10 +170,21 @@ void load_all_items(void)
 void free_item_graphics(void)
 {
 	int i;
+	struct image empty_image = EMPTY_IMAGE;
+
 	for (i = 0; i < Number_Of_Item_Types; i++) {
 		if (image_loaded(&ItemMap[i].inventory_image)) {
 			delete_image(&ItemMap[i].inventory_image);
-			delete_image(&ItemMap[i].ingame_image);
+
+			// If the ingame image is not available for an item, then it is just a copy
+			// of the inventory image. In this case, the ingame image should not be
+			// deleted. The resources associated with this image will be freed when
+			// the inventory image is deleted.
+			if (strcmp(ItemMap[i].item_rotation_series_prefix, "NONE_AVAILABLE_YET"))
+				delete_image(&ItemMap[i].ingame_image);
+			else
+				memcpy(&ItemMap[i].ingame_image, &empty_image, sizeof(struct image));
+
 			delete_image(&ItemMap[i].shop_image);
 		}
 	}
