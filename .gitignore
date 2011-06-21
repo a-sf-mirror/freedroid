@@ -40,3 +40,10 @@ callgrind.out*
 # Output
 stderr.txt
 stdout.txt
+
+# Atlas image files
+graphics/obstacles/atlas.txt
+graphics/obstacles/obstacles_atlas1.png
+graphics/obstacles/obstacles_atlas2.png
+graphics/obstacles/obstacles_shadows_atlas1.png
+graphics/obstacles/shadow_atlas.txt
