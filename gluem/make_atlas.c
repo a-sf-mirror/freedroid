@@ -61,7 +61,8 @@ int improve_packing = 1;
 
 static void init_sdl(void)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
+	// Do not init the video subsystem, so that it can be run on headless computers
+	if (SDL_Init(0) == -1) {
 		exit(1);
 	}
 
