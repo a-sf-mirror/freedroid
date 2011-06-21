@@ -22,13 +22,13 @@
  *
  */
 
-void widget_button_mouseenter(SDL_Event *, struct widget *);
-void widget_button_mouseleave(SDL_Event *, struct widget *);
-void widget_button_mouserelease(SDL_Event *, struct widget *);
-void widget_button_mousepress(SDL_Event *, struct widget *);
-void widget_button_mouserightrelease(SDL_Event *, struct widget *);
-void widget_button_mouserightpress(SDL_Event *, struct widget *);
-void widget_button_mousewheelup(SDL_Event *, struct widget *);
-void widget_button_mousewheeldown(SDL_Event *, struct widget *);
+struct widget_button {
+	int btn_index;		//index in AllMousePressButtons array
+	int pressed;
+	int active;
+	char *text;
+	char *tooltip;
+};
 
+struct widget *widget_button_create(int, char *, char *);
 void widget_button_display(struct widget *);

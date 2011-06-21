@@ -56,24 +56,24 @@ static void forward_event(SDL_Event *event)
 	}
 }
 
-void widget_lvledit_map_mouseenter(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mouseenter(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 }
 
-void widget_lvledit_map_mouseleave(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mouseleave(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 }
 
-void widget_lvledit_map_mouserelease(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mouserelease(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 
 	forward_event(event);
 }
 
-void widget_lvledit_map_mousepress(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mousepress(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 	if (!active_tool && mouse_in_level) {
@@ -89,14 +89,14 @@ void widget_lvledit_map_mousepress(SDL_Event *event, struct widget *vm)
 	forward_event(event);
 }
 
-void widget_lvledit_map_mouserightrelease(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mouserightrelease(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 
 	forward_event(event);
 }
 
-void widget_lvledit_map_mouserightpress(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mouserightpress(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 
@@ -106,19 +106,19 @@ void widget_lvledit_map_mouserightpress(SDL_Event *event, struct widget *vm)
 	forward_event(event);
 }
 
-void widget_lvledit_map_mousewheelup(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mousewheelup(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 	widget_lvledit_toolbar_left();
 }
 
-void widget_lvledit_map_mousewheeldown(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mousewheeldown(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 	widget_lvledit_toolbar_right();
 }
 
-void widget_lvledit_map_mousemove(SDL_Event *event, struct widget *vm)
+static void widget_lvledit_map_mousemove(SDL_Event *event, struct widget *vm)
 {
 	(void)vm;
 	mouse_mapcoord =
@@ -170,6 +170,32 @@ void widget_lvledit_map_display_cursor()
 	}
 
 	blit_mouse_cursor();
+}
+
+struct widget *widget_lvledit_map_create()
+{
+	struct widget *a = MyMalloc(sizeof(struct widget));
+	a->type = WIDGET_MAP;
+	a->rect.x = 0;
+	a->rect.y = 68;
+	a->rect.w = GameConfig.screen_width;
+	a->rect.h = GameConfig.screen_height - 68;
+	a->mouseenter = widget_lvledit_map_mouseenter;
+	a->mouseleave = widget_lvledit_map_mouseleave;
+	a->mouserelease = widget_lvledit_map_mouserelease;
+	a->mousepress = widget_lvledit_map_mousepress;
+	a->mouserightrelease = widget_lvledit_map_mouserightrelease;
+	a->mouserightpress = widget_lvledit_map_mouserightpress;
+	a->mousewheelup = widget_lvledit_map_mousewheelup;
+	a->mousewheeldown = widget_lvledit_map_mousewheeldown;
+	a->mousemove = widget_lvledit_map_mousemove;
+	a->keybevent = widget_lvledit_map_keybevent;
+	a->enabled = 1;
+
+	struct widget_lvledit_map *m = MyMalloc(sizeof(struct widget_lvledit_map));
+	a->ext = m;
+
+	return a;
 }
 
 void widget_lvledit_map_display(struct widget *vm)

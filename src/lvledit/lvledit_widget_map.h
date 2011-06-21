@@ -29,17 +29,10 @@
 #define EXTERN
 #endif
 
-void widget_lvledit_map_mouseenter(SDL_Event *, struct widget *);
-void widget_lvledit_map_mouseleave(SDL_Event *, struct widget *);
-void widget_lvledit_map_mouserelease(SDL_Event *, struct widget *);
-void widget_lvledit_map_mousepress(SDL_Event *, struct widget *);
-void widget_lvledit_map_mouserightrelease(SDL_Event *, struct widget *);
-void widget_lvledit_map_mouserightpress(SDL_Event *, struct widget *);
-void widget_lvledit_map_mousewheelup(SDL_Event *, struct widget *);
-void widget_lvledit_map_mousewheeldown(SDL_Event *, struct widget *);
-void widget_lvledit_map_mousemove(SDL_Event *, struct widget *);
-int widget_lvledit_map_keybevent(SDL_Event *, struct widget *);
+struct widget_lvledit_map {
+};
 
+struct widget *widget_lvledit_map_create();
 void widget_lvledit_map_display(struct widget *);
 void widget_lvledit_map_display_cursor(void);
 

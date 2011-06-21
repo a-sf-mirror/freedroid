@@ -25,15 +25,16 @@
 #ifndef _widgets_c
 #endif
 
-void widget_lvledit_categoryselect_mouseenter(SDL_Event *, struct widget *);
-void widget_lvledit_categoryselect_mouseleave(SDL_Event *, struct widget *);
-void widget_lvledit_categoryselect_mouserelease(SDL_Event *, struct widget *);
-void widget_lvledit_categoryselect_mousepress(SDL_Event *, struct widget *);
-void widget_lvledit_categoryselect_mouserightrelease(SDL_Event *, struct widget *);
-void widget_lvledit_categoryselect_mouserightpress(SDL_Event *, struct widget *);
-void widget_lvledit_categoryselect_mousewheelup(SDL_Event *, struct widget *);
-void widget_lvledit_categoryselect_mousewheeldown(SDL_Event *, struct widget *);
+struct widget_lvledit_categoryselect {
+	unsigned int selected_tile_nb;
+	unsigned int toolbar_first_block;
+	char *title;
+	enum lvledit_object_type type;
+	int *indices;
+};
+
 void widget_lvledit_categoryselect_display(struct widget *);
 
+struct widget *widget_lvledit_categoryselector_create(int, char *, enum lvledit_object_type, int *);
 struct widget_lvledit_categoryselect *get_current_object_type(void);
 void widget_lvledit_categoryselect_activate(struct widget_lvledit_categoryselect *);

@@ -22,12 +22,11 @@
  *
  */
 
-void widget_lvledit_minimap_mouseenter(SDL_Event *, struct widget *);
-void widget_lvledit_minimap_mouseleave(SDL_Event *, struct widget *);
-void widget_lvledit_minimap_mouserelease(SDL_Event *, struct widget *);
-void widget_lvledit_minimap_mousepress(SDL_Event *, struct widget *);
-void widget_lvledit_minimap_mouserightrelease(SDL_Event *, struct widget *);
-void widget_lvledit_minimap_mouserightpress(SDL_Event *, struct widget *);
-void widget_lvledit_minimap_mousewheelup(SDL_Event *, struct widget *);
-void widget_lvledit_minimap_mousewheeldown(SDL_Event *, struct widget *);
+#define WIDGET_MINIMAP_WIDTH 210
+#define WIDGET_MINIMAP_HEIGHT 140
+
+struct widget_lvledit_minimap {
+};
+
 void widget_lvledit_minimap_display(struct widget *);
+struct widget *widget_lvledit_minimap_create();

@@ -27,15 +27,10 @@
 #define EXTERN extern
 #endif
 
-void widget_lvledit_toolbar_mouseenter(SDL_Event *, struct widget *);
-void widget_lvledit_toolbar_mouseleave(SDL_Event *, struct widget *);
-void widget_lvledit_toolbar_mouserelease(SDL_Event *, struct widget *);
-void widget_lvledit_toolbar_mousepress(SDL_Event *, struct widget *);
-void widget_lvledit_toolbar_mouserightrelease(SDL_Event *, struct widget *);
-void widget_lvledit_toolbar_mouserightpress(SDL_Event *, struct widget *);
-void widget_lvledit_toolbar_mousewheelup(SDL_Event *, struct widget *);
-void widget_lvledit_toolbar_mousewheeldown(SDL_Event *, struct widget *);
+struct widget_lvledit_toolbar {
+};
 
+struct widget *widget_lvledit_toolbar_create();
 void widget_lvledit_toolbar_display(struct widget *);
 
 void widget_lvledit_toolbar_left(void);

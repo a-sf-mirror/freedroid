@@ -35,49 +35,49 @@
 
 static struct widget_lvledit_categoryselect *currently_selected_category = NULL;
 
-void widget_lvledit_categoryselect_mouseenter(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mouseenter(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	(void)cs;
 }
 
-void widget_lvledit_categoryselect_mouseleave(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mouseleave(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	(void)cs;
 }
 
-void widget_lvledit_categoryselect_mouserelease(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mouserelease(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	(void)cs;
 }
 
-void widget_lvledit_categoryselect_mousepress(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mousepress(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	currently_selected_category = cs;
 }
 
-void widget_lvledit_categoryselect_mouserightrelease(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mouserightrelease(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	(void)cs;
 }
 
-void widget_lvledit_categoryselect_mouserightpress(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mouserightpress(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	(void)cs;
 }
 
-void widget_lvledit_categoryselect_mousewheelup(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mousewheelup(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	(void)cs;
 }
 
-void widget_lvledit_categoryselect_mousewheeldown(SDL_Event *event, struct widget *w)
+static void widget_lvledit_categoryselect_mousewheeldown(SDL_Event *event, struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	(void)cs;
@@ -121,4 +121,31 @@ struct widget_lvledit_categoryselect *get_current_object_type()
 void widget_lvledit_categoryselect_activate(struct widget_lvledit_categoryselect *e)
 {
 	currently_selected_category = e;
+}
+
+struct widget *widget_lvledit_categoryselector_create(int x, char *text, enum lvledit_object_type type, int *olist)
+{
+	struct widget *a = MyMalloc(sizeof(struct widget));
+	a->type = WIDGET_CATEGORY_SELECTOR;
+	a->rect.x = x * 80;
+	a->rect.y = 73;
+	a->rect.w = 80;
+	a->rect.h = 17;
+	a->mouseenter = widget_lvledit_categoryselect_mouseenter;
+	a->mouseleave = widget_lvledit_categoryselect_mouseleave;
+	a->mouserelease = widget_lvledit_categoryselect_mouserelease;
+	a->mousepress = widget_lvledit_categoryselect_mousepress;
+	a->mouserightrelease = widget_lvledit_categoryselect_mouserightrelease;
+	a->mouserightpress = widget_lvledit_categoryselect_mouserightpress;
+	a->mousewheelup = widget_lvledit_categoryselect_mousewheelup;
+	a->mousewheeldown = widget_lvledit_categoryselect_mousewheeldown;
+	a->enabled = 1;
+
+	struct widget_lvledit_categoryselect *cs = MyMalloc(sizeof(struct widget_lvledit_categoryselect));
+	cs->type = type;
+	cs->indices = olist;
+	cs->title = text;
+
+	a->ext = cs;
+	return a;
 }

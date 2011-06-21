@@ -56,34 +56,6 @@ struct widget {
 	void *ext;		//Type specific information
 };
 
-struct widget_button {
-	int btn_index;		//index in AllMousePressButtons array
-	int pressed;
-	int active;
-	char *text;
-	char *tooltip;
-};
-
-struct widget_lvledit_toolbar {
-};
-
-struct widget_lvledit_map {
-};
-
-struct widget_lvledit_categoryselect {
-	unsigned int selected_tile_nb;
-	unsigned int toolbar_first_block;
-	char *title;
-	enum lvledit_object_type type;
-	int *indices;
-};
-
-#define WIDGET_MINIMAP_WIDTH 210
-#define WIDGET_MINIMAP_HEIGHT 140
-
-struct widget_lvledit_minimap {
-};
-
 void widget_lvledit_init(void);
 void widget_display(void);
 void leveleditor_update_button_states(void);

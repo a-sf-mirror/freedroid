@@ -39,23 +39,23 @@ static int num_blocks_per_line = 0;
 
 static int display_info = 0;
 
-void widget_lvledit_toolbar_mouseenter(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mouseenter(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 }
 
-void widget_lvledit_toolbar_mouseleave(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mouseleave(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	display_info = 0;
 }
 
-void widget_lvledit_toolbar_mouserelease(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mouserelease(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 }
 
-void widget_lvledit_toolbar_mousepress(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mousepress(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 
@@ -76,26 +76,26 @@ void widget_lvledit_toolbar_mousepress(SDL_Event *event, struct widget *vt)
 
 }
 
-void widget_lvledit_toolbar_mouserightrelease(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mouserightrelease(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	display_info = 0;
 }
 
-void widget_lvledit_toolbar_mouserightpress(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mouserightpress(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	display_info = 1;
 	widget_lvledit_toolbar_mousepress(event, vt);
 }
 
-void widget_lvledit_toolbar_mousewheelup(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mousewheelup(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	widget_lvledit_toolbar_left();
 }
 
-void widget_lvledit_toolbar_mousewheeldown(SDL_Event *event, struct widget *vt)
+static void widget_lvledit_toolbar_mousewheeldown(SDL_Event *event, struct widget *vt)
 {
 	(void)vt;
 	widget_lvledit_toolbar_right();
@@ -159,6 +159,30 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 	}
 
 	return NULL;
+}
+
+struct widget *widget_lvledit_toolbar_create()
+{
+	struct widget *a = MyMalloc(sizeof(struct widget));
+	a->type = WIDGET_TOOLBAR;
+	a->rect.x = 0;
+	a->rect.y = 0;
+	a->rect.w = GameConfig.screen_width;
+	a->rect.h = 73;
+	a->mouseenter = widget_lvledit_toolbar_mouseenter;
+	a->mouseleave = widget_lvledit_toolbar_mouseleave;
+	a->mouserelease = widget_lvledit_toolbar_mouserelease;
+	a->mousepress = widget_lvledit_toolbar_mousepress;
+	a->mouserightrelease = widget_lvledit_toolbar_mouserightrelease;
+	a->mouserightpress = widget_lvledit_toolbar_mouserightpress;
+	a->mousewheelup = widget_lvledit_toolbar_mousewheelup;
+	a->mousewheeldown = widget_lvledit_toolbar_mousewheeldown;
+	a->enabled = 1;
+
+	struct widget_lvledit_toolbar *t = MyMalloc(sizeof(struct widget_lvledit_toolbar));
+	a->ext = t;
+
+	return a;
 }
 
 void widget_lvledit_toolbar_display(struct widget *vt)
