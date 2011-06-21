@@ -151,7 +151,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 
 	QuitProgram = FALSE;
 	draw_collision_rectangles = FALSE;
-	draw_grid = TRUE;
 	gps_transform_map_dirty_flag = TRUE;
 
 	/*

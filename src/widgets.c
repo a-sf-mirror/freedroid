@@ -348,7 +348,7 @@ void leveleditor_update_button_states()
 			b->active = 2 * GameConfig.omit_obstacles_in_level_editor;
 			break;
 		case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
-			b->active = 2 * (draw_grid);
+			b->active = 2 * (GameConfig.show_grid);
 			break;
 		case LEVEL_EDITOR_SAVE_SHIP_BUTTON:
 			w->enabled = (game_root_mode == ROOT_IS_LVLEDIT);

@@ -1701,7 +1701,7 @@ void draw_grid_on_the_floor(int mask)
 	if (game_status != INSIDE_LVLEDITOR)
 		return;
 
-	if (!draw_grid)
+	if (!GameConfig.show_grid)
 		return;
 
 	int LineStart, LineEnd, ColStart, ColEnd;
@@ -1724,7 +1724,7 @@ void draw_grid_on_the_floor(int mask)
 
 	float dd;
 
-	if (draw_grid >= 2) {	// large grid
+	if (GameConfig.show_grid >= 2) {	// large grid
 		// Draw the horizontal lines
 		for (dd = 0; dd <= our_level->ylen; dd++) {
 			draw_line_on_map(0, dd, our_level->xlen, dd, 0x99FFFF, 1);	// light cyan

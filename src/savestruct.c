@@ -744,6 +744,7 @@ save_int32_t("omit_enemies_in_level_editor", &(target->omit_enemies_in_level_edi
 save_int32_t("zoom_is_on", &(target->zoom_is_on));
 save_int32_t("show_blood", &(target->show_blood));
 save_int32_t("show_tooltips", &(target->show_tooltips));
+save_int32_t("show_grid", &(target->show_grid));
 save_int32_t("number_of_big_screen_messages", &(target->number_of_big_screen_messages));
 save_float("delay_for_big_screen_messages", &(target->delay_for_big_screen_messages));
 save_int32_t("enable_cheatkeys", &(target->enable_cheatkeys));
@@ -802,6 +803,7 @@ read_int32_t(pos, "omit_enemies_in_level_editor",  &(target->omit_enemies_in_lev
 read_int32_t(pos, "zoom_is_on",  &(target->zoom_is_on));
 read_int32_t(pos, "show_blood",  &(target->show_blood));
 read_int32_t(pos, "show_tooltips",  &(target->show_tooltips));
+read_int32_t(pos, "show_grid",  &(target->show_grid));
 read_int32_t(pos, "number_of_big_screen_messages",  &(target->number_of_big_screen_messages));
 read_float(pos, "delay_for_big_screen_messages",  &(target->delay_for_big_screen_messages));
 read_int32_t(pos, "enable_cheatkeys",  &(target->enable_cheatkeys));

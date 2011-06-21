@@ -91,7 +91,6 @@ EXTERN int debug_level;		// 0=no debug 1=some debug messages 2=...etc
 				// (currently only 0 or !=0 is implemented) 
 EXTERN int show_all_droids;	// display enemies regardless of IsVisible() 
 EXTERN int draw_collision_rectangles;	// to better debug collision rectangles
-EXTERN int draw_grid;		// grid to see where objects will be positioned
 EXTERN int start_editor;
 EXTERN int load_saved;
 EXTERN char *saved_game_name;

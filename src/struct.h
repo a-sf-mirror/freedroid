@@ -142,6 +142,7 @@ typedef struct configuration_for_freedroid {
 	int zoom_is_on;
 	int show_blood;		// this can be used to make the game more friendly for children...
 	int show_tooltips;
+	int show_grid;
 	int number_of_big_screen_messages;
 	float delay_for_big_screen_messages;
 	int enable_cheatkeys;

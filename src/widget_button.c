@@ -92,7 +92,7 @@ static void activate_button(struct widget_button *b)
 		draw_collision_rectangles = !draw_collision_rectangles;
 		break;
 	case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
-		draw_grid = (draw_grid + 1) % 3;
+		GameConfig.show_grid = (GameConfig.show_grid + 1) % 3;
 		break;
 	case LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON:
 		GameConfig.omit_obstacles_in_level_editor = !GameConfig.omit_obstacles_in_level_editor;
