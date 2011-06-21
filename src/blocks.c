@@ -473,29 +473,6 @@ static void __obs_images(int type, struct image **img, struct image **shadow_img
 }
 
 /**
- * Load the image of the shadow of the given
- * obstacle type, if such shadow exists.
- */
-static void load_obstacle_shadow(int i)
-{
-	char fpath[1024];
-	char shadow_file_name[2000];
-	struct image *shadow_img;
-	obstacle_spec *spec = get_obstacle_spec(i);
-	__obs_images(i, NULL, &shadow_img);
-
-	sprintf(shadow_file_name, "obstacles/shadow_%s", spec->filename);
-
-	if (find_file(shadow_file_name, GRAPHICS_DIR, fpath, 1)) {
-		struct image empty = EMPTY_IMAGE;
-		*shadow_img = empty;
-		return;
-	} else {
-		load_image(shadow_img, shadow_file_name, TRUE);
-	}
-}
-
-/**
  * Return a pointer towards the struct image
  * associated to the given obstacle type.
  * Used for lazy loading.
@@ -528,12 +505,14 @@ void free_obstacle_graphics(void)
 void load_all_obstacles(int with_startup_bar)
 {
 	int i;
+	struct image empty_image = EMPTY_IMAGE;
 
 	char *filenames[obstacle_map.size];
 	struct image *images[obstacle_map.size];
 	for (i = 0; i < obstacle_map.size; i++) {
 		filenames[i] = ((struct obstacle_spec *)(obstacle_map.arr))[i].filename;
 		images[i] = &((struct image *)(obstacle_images.arr))[i];
+		memcpy(&((struct image *)obstacle_shadow_images.arr)[i], &empty_image, sizeof(empty_image));
 	}
 
 	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", filenames, images, obstacle_images.size)) {
@@ -543,9 +522,18 @@ void load_all_obstacles(int with_startup_bar)
 	if (with_startup_bar)
 		next_startup_percentage(62);
 
+	char shadow_filename[1024];
 	for (i = 0; i < obstacle_map.size; i++) {
-		load_obstacle_shadow(i);
+		sprintf(shadow_filename, "shadow_%s", ((struct obstacle_spec *)obstacle_map.arr)[i].filename);
+		filenames[i] = strdup(shadow_filename);
+		images[i] = &((struct image *)obstacle_shadow_images.arr)[i];
 	}
+
+	if (load_texture_atlas("obstacles/shadow_atlas.txt", "obstacles/", filenames, images, obstacle_shadow_images.size))
+		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacle shadows at obstacle/shadow_atlas.txt.", PLEASE_INFORM, IS_FATAL);
+
+	for (i = 0; i < obstacle_map.size; i++)
+		free(filenames[i]);
 
 	if (with_startup_bar)
 		next_startup_percentage(8);
