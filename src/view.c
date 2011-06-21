@@ -1725,14 +1725,24 @@ void draw_grid_on_the_floor(int mask)
 	float dd;
 
 	if (GameConfig.show_grid >= 2) {	// large grid
-		// Draw the horizontal lines
-		for (dd = 0; dd <= our_level->ylen; dd++) {
-			draw_line_on_map(0, dd, our_level->xlen, dd, 0x99FFFF, 1);	// light cyan
- 		}
 
-		// Draw the vertical lines
-		for (dd = 0; dd <= our_level->xlen; dd++) {
-			draw_line_on_map(dd, 0, dd, our_level->ylen, 0x99FFFF, 1);	// light cyan
+		if (LineStart < 0)
+			LineStart = 0;
+		if (LineEnd > our_level->ylen)
+			LineEnd = our_level->ylen;
+		if (ColStart < 0)
+			ColStart = 0;
+		if (ColEnd > our_level->xlen)
+			ColEnd = our_level->xlen;
+
+		// Draw horizontal lines.
+		for (dd = LineStart; dd <= LineEnd; dd++) {
+			draw_line_on_map(LineStart, dd, LineEnd, dd, 0x99FFFF, 1);	// light cyan
+		}
+
+		// Draw vertical lines.
+		for (dd = ColStart; dd <= ColEnd; dd++) {
+			draw_line_on_map(dd, ColStart, dd, ColEnd, 0x99FFFF, 1);	// light cyan
 		}
 	}
 
