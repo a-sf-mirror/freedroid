@@ -185,9 +185,11 @@ void GetEventTriggers(const char *EventsAndEventTriggersFilename)
  * they are, we order the appropriate event to be executed.
  *
  */
-void check_event_conditions(void)
+void trigger_position_events(void)
 {
 	int i;
+	int position_previous_x = (int)(GetInfluPositionHistoryX(0));
+	int position_previous_y = (int)(GetInfluPositionHistoryY(0));
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
@@ -201,13 +203,14 @@ void check_event_conditions(void)
 		if (!arr[i].enabled)
 			continue;
 
-		if (arr[i].trigger.position.x != (int)(Me.pos.x))
- 			continue;
+		if (((int)Me.pos.x == arr[i].trigger.position.x) 
+		&& ((int)Me.pos.y == arr[i].trigger.position.y)) {
 
-		if (arr[i].trigger.position.y != (int)(Me.pos.y))
-			continue;
+			if ((position_previous_x != arr[i].trigger.position.x) 
+			|| (position_previous_y != arr[i].trigger.position.y))
 
-		run_lua(arr[i].lua_code);
+				run_lua(arr[i].lua_code);
+		}
 	}
 }
 

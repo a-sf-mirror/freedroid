@@ -54,8 +54,6 @@ void UpdateCountersForThisFrame();
  */
 void DoAllMovementAndAnimations(void)
 {
-	check_event_conditions();
-
 	animate_obstacles();	// this is a pure client issue.  Not dependent upon the players.
 
 	animate_blasts();	// move blasts to the right current "phase" of the blast

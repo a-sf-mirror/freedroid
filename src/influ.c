@@ -439,6 +439,8 @@ static void move_tux_according_to_his_speed()
 	Me.pos.x += planned_step_x;
 	Me.pos.y += planned_step_y;
 
+	trigger_position_events();
+
 	// If the Tux got stuck, i.e. if he got no speed at all and still is 
 	// currently not in a 'passable' position, the fallback handling needs
 	// to be applied to move the Tux out of the offending obstacle (i.e. 
