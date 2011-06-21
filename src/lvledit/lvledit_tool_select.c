@@ -36,7 +36,7 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_display.h"
 #include "lvledit/lvledit_tools.h"
-#include "widgets.h"
+#include "widgets/widgets.h"
 
 static struct leveleditor_select {
 	point rect_start;

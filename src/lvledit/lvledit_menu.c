@@ -36,7 +36,7 @@
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_validator.h"
 #include "lvledit/lvledit_menu.h"
-#include "widgets.h"
+#include "widgets/widgets.h"
 
 #include "mapgen/mapgen.h"
 

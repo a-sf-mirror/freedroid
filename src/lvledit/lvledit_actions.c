@@ -37,7 +37,7 @@
 
 
 #include "lvledit/lvledit.h"
-#include "widgets.h"
+#include "widgets/widgets.h"
 
 /* Undo/redo action lists */
 LIST_HEAD(to_undo);

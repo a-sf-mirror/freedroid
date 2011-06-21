@@ -35,7 +35,7 @@
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
 
-#include "widgets.h"
+#include "widgets/widgets.h"
 
 #include "lvledit/lvledit_tools.h"
 

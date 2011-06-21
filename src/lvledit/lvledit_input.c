@@ -36,7 +36,7 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_menu.h"
-#include "widgets.h"
+#include "widgets/widgets.h"
 
 static void HandleLevelEditorCursorKeys()
 {
