@@ -414,20 +414,20 @@ leveleditor_obstacle_category {
 leveleditor_obstacle_category {
 	name = "OTHER",
 	obstacles = {
-		"default_dead_body_00_0001.png",
-		"default_dead_body_02_0001.png",
-		"default_dead_body_04_0001.png",
-		"default_dead_body_06_0001.png",
-		"default_dead_body_08_0001.png",
-		"default_dead_body_10_0001.png",
-		"default_dead_body_12_0001.png",
-		"default_dead_body_14_0001.png",
-		"default_dead_human_00_0001.png",
+		"iso_default_dead_body_00_0001.png",
+		"iso_default_dead_body_02_0001.png",
+		"iso_default_dead_body_04_0001.png",
+		"iso_default_dead_body_06_0001.png",
+		"iso_default_dead_body_08_0001.png",
+		"iso_default_dead_body_10_0001.png",
+		"iso_default_dead_body_12_0001.png",
+		"iso_default_dead_body_14_0001.png",
+		"iso_default_dead_human_00_0001.png",
 		"iso_wrecked_car_0001.png",
 		"iso_wrecked_car_0002.png",
 		"iso_wrecked_car_0003.png",
 		"iso_wrecked_car_0004.png",
-		"crushed_476_0001.png"
+		"iso_crushed_476_0001.png"
 	}
 }
 

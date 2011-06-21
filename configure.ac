@@ -233,7 +233,7 @@ AM_CONDITIONAL(NONLINUX, test x$macosx = xtrue -o x$win32 = xtrue)
 
 AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 
-AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile croppy/Makefile win32/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile graphics/Makefile croppy/Makefile win32/Makefile])
 
 AC_OUTPUT
 

@@ -2846,55 +2846,55 @@ obstacle {
 }
 
 obstacle {
-	image_filename = "default_dead_body_00_0001.png",
+	image_filename = "iso_default_dead_body_00_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_body_02_0001.png",
+	image_filename = "iso_default_dead_body_02_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_body_04_0001.png",
+	image_filename = "iso_default_dead_body_04_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_body_06_0001.png",
+	image_filename = "iso_default_dead_body_06_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_body_08_0001.png",
+	image_filename = "iso_default_dead_body_08_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_body_10_0001.png",
+	image_filename = "iso_default_dead_body_10_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_body_12_0001.png",
+	image_filename = "iso_default_dead_body_12_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_body_14_0001.png",
+	image_filename = "iso_default_dead_body_14_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
 
 obstacle {
-	image_filename = "default_dead_human_00_0001.png",
+	image_filename = "iso_default_dead_human_00_0001.png",
 	flags = { BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
 }
@@ -2986,7 +2986,7 @@ obstacle {
 }
 
 obstacle {
-	image_filename = "crushed_476_0001.png",
+	image_filename = "iso_crushed_476_0001.png",
 	borders = borders(2.10, 2.60),
 	transparency = NO_TRANSPARENCY,
 }
