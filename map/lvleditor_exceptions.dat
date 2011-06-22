@@ -82,15 +82,17 @@ Rule=8 [Type="WD"] WP1 X1=25.500000:Y1=49.500000:L1=37 <-> WP2 X2=25.500000:Y2=4
 # Level 6, Maintenance Tunnels
 # Paths of Singularity drones blocked by closed doors which the player can open accessing the terminal
 
-Rule=3 [Type="WW"] WP1 X1=22.500000:Y1=13.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 : path not found
-Rule=4 [Type="WW"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=22.500000:Y2=13.500000:L2=6 : path not found
-Rule=5 [Type="WW"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=16.500000:Y2=14.500000:L2=6 : path not found
-Rule=6 [Type="WW"] WP1 X1=16.500000:Y1=14.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 : path not found
-Rule=7 [Type="WQ"] WP1 X1=22.500000:Y1=13.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 (warning)
-Rule=8 [Type="WQ"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=22.500000:Y2=13.500000:L2=6 (warning)
-Rule=9 [Type="WQ"] WP1 X1=20.500000:Y1=14.500000:L1=6 -> WP2 X2=16.500000:Y2=14.500000:L2=6 (warning)
-Rule=10 [Type="WQ"] WP1 X1=16.500000:Y1=14.500000:L1=6 -> WP2 X2=20.500000:Y2=14.500000:L2=6 (warning)
 
+
+
+Rule=3 [Type="WW"] WP1 X1=32.500000:Y1=13.500000:L1=6 -> WP2 X2=30.500000:Y2=14.500000:L2=6 : path not found
+Rule=4 [Type="WW"] WP1 X1=30.500000:Y1=14.500000:L1=6 -> WP2 X2=32.500000:Y2=13.500000:L2=6 : path not found
+Rule=5 [Type="WW"] WP1 X1=30.500000:Y1=14.500000:L1=6 -> WP2 X2=26.500000:Y2=14.500000:L2=6 : path not found
+Rule=6 [Type="WW"] WP1 X1=26.500000:Y1=14.500000:L1=6 -> WP2 X2=30.500000:Y2=14.500000:L2=6 : path not found
+Rule=7 [Type="WQ"] WP1 X1=32.500000:Y1=13.500000:L1=6 -> WP2 X2=30.500000:Y2=14.500000:L2=6 (warning)
+Rule=8 [Type="WQ"] WP1 X1=30.500000:Y1=14.500000:L1=6 -> WP2 X2=32.500000:Y2=13.500000:L2=6 (warning)
+Rule=9 [Type="WQ"] WP1 X1=30.500000:Y1=14.500000:L1=6 -> WP2 X2=26.500000:Y2=14.500000:L2=6 (warning)
+Rule=10 [Type="WQ"] WP1 X1=26.500000:Y1=14.500000:L1=6 -> WP2 X2=30.500000:Y2=14.500000:L2=6 (warning)
 
 # Level 13, Three Fermis Land
 # Paths to which are blocked to make Ewalds bot stand still.
