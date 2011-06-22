@@ -644,7 +644,10 @@ static int lua_event_freeze_tux_npc(lua_State * L)
 
 static int lua_chat_player_name(lua_State * L)
 {
-	lua_pushstring(L, Me.character_name);
+	if (Me.character_name)
+		lua_pushstring(L, Me.character_name);
+	else
+		lua_pushstring(L, "");
 	return 1;
 }
 
