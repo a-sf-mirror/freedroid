@@ -209,7 +209,7 @@ static void show_waypoints(int mask)
 		for (j = 0; j < wpts[i].connections.size; j++) {
 			waypoint *to_wp = &wpts[connections[j]];
 
-			if ((EditX() == wpts[i].x) && (EditY() == wpts[i].y)) {
+			if (((EditX() == wpts[i].x) && (EditY() == wpts[i].y)) || GameConfig.show_wp_connections) {
 				draw_connection_between_tiles(x, y, to_wp->x + 0.5, to_wp->y + 0.5, mask);
 			}
 		}

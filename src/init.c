@@ -1336,6 +1336,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.show_blood = TRUE;
 	GameConfig.show_tooltips = TRUE;
 	GameConfig.show_grid = TRUE;
+	GameConfig.show_wp_connections = FALSE;
 	GameConfig.number_of_big_screen_messages = 4;
 	GameConfig.delay_for_big_screen_messages = 6.5;
 	GameConfig.enable_cheatkeys = FALSE;

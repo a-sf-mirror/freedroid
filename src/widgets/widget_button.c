@@ -59,6 +59,9 @@ static void activate_button(struct widget_button *b)
 		} else
 			alert_window("%s", _("M E S S A G E\n\nE R R O R ! Your ship was not saved.\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor from the main menu to be able to save."));
 		break;
+	case LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON:
+		GameConfig.show_wp_connections = !GameConfig.show_wp_connections;
+		break;
 	case LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON:
 		level_editor_beautify_grass_tiles(EditLevel());
 		break;

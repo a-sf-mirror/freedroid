@@ -117,6 +117,8 @@ void widget_lvledit_init()
 			_("Delete selected obstacle\n\nUse this button to delete the currently marked obstacle.\n\nYou can also use Ctrl-X for this.")},
 		{LEVEL_EDITOR_NEXT_OBJECT_BUTTON, NULL,
 			_("Next object on currently selected tile\n\nUse this button to cycle the currently marked object on this tile.\n\nYou can also use the N key for this.")},
+		{LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON, NULL,
+			_("Toggle display waypoint connections\n\nUse this button to toggle between waypoint connections displayed on and off.")},
 		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL,
 			_("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n")},
 		{LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, NULL,
@@ -205,6 +207,9 @@ void leveleditor_update_button_states()
 
 		b = w->ext;
 		switch (b->btn_index) {
+		case LEVEL_EDITOR_TOGGLE_WAYPOINT_CONNECTIONS_BUTTON:
+			b->active = 2 * !GameConfig.show_wp_connections;
+			break;
 		case LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON:
 			b->active = 2 * GameConfig.omit_enemies_in_level_editor;
 			break;
