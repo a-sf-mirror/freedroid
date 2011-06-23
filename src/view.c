@@ -1737,12 +1737,12 @@ void draw_grid_on_the_floor(int mask)
 
 		// Draw horizontal lines.
 		for (dd = LineStart; dd <= LineEnd; dd++) {
-			draw_line_on_map(LineStart, dd, LineEnd, dd, 0x99FFFF, 1);	// light cyan
+			draw_line_on_map(ColStart, dd, ColEnd, dd, 0x99FFFF, 1);	// light cyan
 		}
 
 		// Draw vertical lines.
 		for (dd = ColStart; dd <= ColEnd; dd++) {
-			draw_line_on_map(dd, ColStart, dd, ColEnd, 0x99FFFF, 1);	// light cyan
+			draw_line_on_map(dd, LineStart, dd, LineEnd, 0x99FFFF, 1);	// light cyan
 		}
 	}
 
