@@ -33256,7 +33256,7 @@ idx=271 type=30 data={
 	GlassWallLaserTrap02
 }
 idx=1512 type=32 data={
-	HF-GateAccessServer
+	MO-HFGateAccessServer
 }
 idx=1342 type=30 data={
 	UpgradeFirmwareRoomFinal
