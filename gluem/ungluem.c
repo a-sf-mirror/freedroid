@@ -352,7 +352,12 @@ static void extract_and_write_file(const char *name, unsigned char **pos, int sd
 	free(tmpbuf);
 
 	if (extract_offset) {
-		write_offset_file(name, img_x_offs, img_y_offs);
+		char basename[4096];
+		strcpy(basename, name);
+		char *ext = strstr(basename, ".png");
+		if (ext)
+			*ext = '\0';
+		write_offset_file(basename, img_x_offs, img_y_offs);
 	}
 
 	*pos = ptr;
