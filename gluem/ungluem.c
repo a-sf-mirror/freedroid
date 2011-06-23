@@ -214,7 +214,7 @@ static void get_string_for_phase(int p, char *out)
 	
 	if (p >= first_stand_animation_image && p <= last_stand_animation_image) {
 		str = "stand";
-		offset = p - first_death_animation_image;
+		offset = p - first_stand_animation_image;
 	}
 
 	if (offset == 999) 
