@@ -408,7 +408,7 @@ static void extract_enemy_archive(unsigned char *ptr, int sdl)
 		cooked_stand_object_phases, first_stand_animation_image, last_stand_animation_image);
 
 	for (rotation_index = 0; rotation_index < ROTATION_ANGLES_PER_ROTATION_MODEL; rotation_index++) {
-		for (enemy_phase = 0; enemy_phase < last_stand_animation_image; enemy_phase++) {
+		for (enemy_phase = 0; enemy_phase <= last_stand_animation_image; enemy_phase++) {
 			char phase_str[50];
 			char output_name[4096];
 			
