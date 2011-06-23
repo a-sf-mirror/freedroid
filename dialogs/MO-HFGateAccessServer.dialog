@@ -85,7 +85,7 @@ LuaCode={
 		npc_says(_"Gate 1 status: OPENED", "NO_WAIT")
 	else
 		npc_says(_"Gate 1 status: CLOSED", "NO_WAIT")
-		if (not has_cookie("HF-GAS_hacked")) then
+		if (not has_cookie("MO-HFGAS_hacked")) then
 			show(2)
 		end
 	end
@@ -94,7 +94,7 @@ LuaCode={
 		npc_says(_"Gate 2 status: OPENED", "NO_WAIT")
 	else
 		npc_says(_"Gate 2 status: CLOSED", "NO_WAIT")
-		if (not has_cookie("HF-GAS_hacked")) then
+		if (not has_cookie("MO-HFGAS_hacked")) then
 			show(2)
 		end
 	end
@@ -123,7 +123,7 @@ LuaCode={
 		tux_says(_"sudo !!")
 		npc_says(_"sudo open gates", "NO_WAIT")
 		npc_says(_"Which gates do you want to open?")
-		add_cookie("HF-GAS_hacked")
+		add_cookie("MO-HFGAS_hacked")
 	else
 		npc_says(_"Permission denied.")
 		hurt_tux(10)

@@ -189,21 +189,21 @@ LuaCode={
 }
 ----------------------------------------------------------------------
 
-Nr=24 Text=_"HF-GateAccessServer"
+Nr=24 Text=_"MO-HFGateAccessServer"
 LuaCode={
-	run_subdialog("HF-GateAccessServer.dialog")
+	run_subdialog("MO-HFGateAccessServer.dialog")
 }
 ----------------------------------------------------------------------
 
-Nr=25 Text=_"HF-GateGuard"
+Nr=25 Text=_"MO-RGGateGuard"
 LuaCode={
-	run_subdialog("HF-GateGuard.dialog")
+	run_subdialog("MO-RGGateGuard.dialog")
 }
 ----------------------------------------------------------------------
 
-Nr=26 Text=_"HF-GateGuardLeader"
+Nr=26 Text=_"MO-RGGateGuardLeader"
 LuaCode={
-	run_subdialog("HF-GateGuardLeader.dialog")
+	run_subdialog("MO-RGGateGuardLeader.dialog")
 }
 ----------------------------------------------------------------------
 

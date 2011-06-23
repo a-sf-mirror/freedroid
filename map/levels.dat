@@ -43402,8 +43402,8 @@ t321 x82.50 y71.50
 t351 x41.00 y21.50
 /obsdata
 plabelinfolvl
-x=37 y=11 name="HF-GateGuard"
-x=42 y=11 name="HF-GateGuardLeader"
+x=37 y=11 name="MO-RGGateGuard"
+x=42 y=11 name="MO-RGGateGuardLeader"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl

@@ -571,8 +571,8 @@ Level=49
 Number of Random Droids=50
 Random Droid Types: 123, 247, 302, 329, 476, 598
 
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="HF-GateGuard" UseDialog="HF-GateGuard" ShortLabel=_"Bot Factory Gate Guard"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="HF-GateGuardLeader" UseDialog="HF-GateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="MO-RGGateGuard" UseDialog="MO-RGGateGuard" ShortLabel=_"Bot Factory Gate Guard"
+SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="MO-RGGateGuardLeader" UseDialog="MO-RGGateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
