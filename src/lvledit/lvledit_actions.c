@@ -125,6 +125,11 @@ static action *action_create(int type, va_list args)
 			act->d.delete_waypoint.x = va_arg(args, int);
 			act->d.delete_waypoint.y = va_arg(args, int);
 			break;
+		case ACT_MOVE_WAYPOINT:
+			act->d.move_waypoint.w = va_arg(args, waypoint *);
+			act->d.move_waypoint.newx = va_arg(args, int);
+			act->d.move_waypoint.newy = va_arg(args, int);
+			break;
 		case ACT_TOGGLE_WAYPOINT_RSPAWN:
 			act->d.toggle_waypoint_rspawn.x = va_arg(args, int);
 			act->d.toggle_waypoint_rspawn.y = va_arg(args, int);
@@ -391,6 +396,18 @@ void action_remove_waypoint(level *EditLevel, int x, int y)
 	action_push(ACT_CREATE_WAYPOINT, x, y, old_random_spawn);
 }
 
+void action_move_waypoint(level *lvl, waypoint *w, int x, int y)
+{
+	int oldx, oldy;
+
+	oldx = w->x;
+	oldy = w->y;
+
+	move_waypoint(lvl, w, x, y);
+
+	action_push(ACT_MOVE_WAYPOINT, w, oldx, oldy);
+}
+
 /**
  * Set/unset the flag for random bots and add this action in the undo/redo stack
  * \param EditLevel Pointer towards the currently edited level where toggle the waypoint
@@ -640,6 +657,9 @@ static void action_do(level * level, action * a)
 		break;
 	case ACT_REMOVE_WAYPOINT:
 		action_remove_waypoint(level, a->d.delete_waypoint.x, a->d.delete_waypoint.y);
+		break;
+	case ACT_MOVE_WAYPOINT:
+		action_move_waypoint(level, a->d.move_waypoint.w, a->d.move_waypoint.newx, a->d.move_waypoint.newy);
 		break;
 	case ACT_TOGGLE_WAYPOINT_RSPAWN:
 		action_toggle_waypoint_randomspawn(level, a->d.toggle_waypoint_rspawn.x, a->d.toggle_waypoint_rspawn.y);

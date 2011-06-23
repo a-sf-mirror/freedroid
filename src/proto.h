@@ -857,6 +857,7 @@ float lvledit_zoomfact_inv(void);
 int add_waypoint(level *, int, int, int);
 void del_waypoint(level *, int, int);
 int get_waypoint(level *, int, int);
+void move_waypoint(level *, waypoint *, int, int);
 
 // image.c
 void start_image_batch(void);

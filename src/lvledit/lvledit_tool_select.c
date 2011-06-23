@@ -480,7 +480,7 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 		list_for_each_entry(e, &clipboard_elements, node) {
 			if (e->type != OBJECT_FLOOR)
 				return;
-				
+
 			t = e->data;
 
 			// Calculate the new coordinates of the tile
@@ -493,11 +493,11 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 
 			// Select the new tile
 			select_floor_on_tile(t->coord.x, t->coord.y);
-		}		
+		}
 		state.cur_drag_pos.x += (int)diff.x;
 		state.cur_drag_pos.y += (int)diff.y;
 		
-		action_push(ACT_MULTIPLE_ACTIONS, changed_tiles);		
+		action_push(ACT_MULTIPLE_ACTIONS, changed_tiles);
 	}
 }
 
@@ -515,6 +515,39 @@ static void do_drag_drop_item(moderately_finepoint diff)
 	}	
 	state.cur_drag_pos.x = mouse_mapcoord.x;
 	state.cur_drag_pos.y = mouse_mapcoord.y;
+}
+
+static void do_drag_drop_waypoint(moderately_finepoint diff)
+{
+	struct selected_element *e;
+	waypoint *w, *w2;
+	int wp_pos;
+
+	// Move the selection if the displacement exceeds half a tile
+	if (abs(diff.x) >= 0.5 || abs(diff.y) >= 0.5 ) {
+		list_for_each_entry(e, &selected_elements, node) {
+			if (e->type != OBJECT_WAYPOINT)
+				return;
+
+			w = e->data;
+
+			// In order to retrieve the actual waypoint we must obtain its index in the level's waypoint array
+			wp_pos = get_waypoint(EditLevel(), w->x, w->y);
+
+			// Modify the selection coordinates
+			w->x += (int)diff.x;
+			w->y += (int)diff.y;
+
+			// Retrieve the original waypoint
+			w2 = &(((waypoint *)(EditLevel()->waypoints.arr))[wp_pos]);
+
+			// Modify the actual waypoint
+			move_waypoint(EditLevel(), w2, w->x, w->y);
+		}
+
+		state.cur_drag_pos.x += (int)diff.x;
+		state.cur_drag_pos.y += (int)diff.y;
+	}
 }
 
 static void do_drag_drop()
@@ -544,8 +577,11 @@ static void do_drag_drop()
 	case OBJECT_ITEM:
 		do_drag_drop_item(diff);
 		break;
+	case OBJECT_WAYPOINT:
+		do_drag_drop_waypoint(diff);
+		break;
 	default:
-		break;	
+		break;
 	}
 }
 
@@ -554,6 +590,8 @@ static void end_drag_drop()
 	struct selected_element *e;
 	int enb = 0;
 	double x, y;
+	int wp_pos;
+	waypoint *w, *w2;
 
 	// Set up undo actions
 	list_for_each_entry(e, &selected_elements, node) {
@@ -568,6 +606,21 @@ static void end_drag_drop()
 			x = (((item *) (e->data))->pos.x - state.cur_drag_pos.x + state.drag_start.x);
 			y = (((item *) (e->data))->pos.y - state.cur_drag_pos.y + state.drag_start.y);
 			action_push(ACT_MOVE_ITEM, (item *) e->data, x, y);
+			enb++;
+			break;
+		case OBJECT_WAYPOINT:
+			// In order to store the undo action for each waypoint we need to
+			// compute the initial position of the waypoint
+			w = e->data;
+			x = (w->x - (int)(state.cur_drag_pos.x - state.drag_start.x));
+			y = (w->y - (int)(state.cur_drag_pos.y - state.drag_start.y));
+
+			// In order to retrieve the actual waypoint we must obtain its index in the level's waypoints array
+			wp_pos = get_waypoint(EditLevel(), w->x, w->y);
+
+			// Retrieve the original waypoint and push the undo action
+			w2 = &(((waypoint *)(EditLevel()->waypoints.arr))[wp_pos]);
+			action_push(ACT_MOVE_WAYPOINT, w2, (int)x, (int)y);
 			enb++;
 			break;
 		default:
