@@ -2853,7 +2853,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 
 			// tweak as needed, this alters the transparency
 			c1.a = 140;
-			drawIsoEnergyBar(Z_DIR, x, y, 1, 5, 5, w, PercentageDone, &c1, &c2);
+			drawIsoEnergyBar(x, y, 1, 5, 5, w, PercentageDone, &c1, &c2);
 		}
 
 #endif

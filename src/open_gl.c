@@ -186,7 +186,6 @@ void drawISOYZQuad(int x, int y, int z, int h, int d)
 
 /**
  * Simon N.: Draws an isometric energy bar.
- * dir : X_DIR | Y_DIR | Z_DIR
  * x,y,z : the position of the lower left hand corner
  * h : the height of the energy bar, as if viewed in the X direction
  * d : the depth of the energy bar, as if viewed in the X direction
@@ -194,7 +193,7 @@ void drawISOYZQuad(int x, int y, int z, int h, int d)
  * c1 : the fill color
  * c1 : the background color
  */
-void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, float fill, myColor * c1, myColor * c2)
+void drawIsoEnergyBar(int x, int y, int z, int h, int d, int length, float fill, myColor * c1, myColor * c2)
 {
 #ifdef HAVE_LIBGL
 	int l = (int)(fill * length);
@@ -204,48 +203,19 @@ void drawIsoEnergyBar(int dir, int x, int y, int z, int h, int d, int length, fl
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
 
-	// the rest of this is trig to work out the x,y,z co-ordinates of the quads
-	if (dir == X_DIR) {
-		// we need to round these or sometimes the
-		// quads will be out by 1 pixel
-		lcos = (int)rint(l * COS_28);
-		lsin = (int)rint(l * SIN_28);
-		l2cos = (int)rint(l2 * COS_28);
-		l2sin = (int)rint(l2 * SIN_28);
+	lcos = (int)rint(l * COS_28);
+	lsin = (int)rint(l * SIN_28);
+	// think of this a dcos, same reason above
+	l2cos = (int)rint(d * COS_28);
+	l2sin = (int)rint(d * SIN_28);
+	drawISOXYQuad(x, y, z, d, h);
+	drawISOYZQuad(x + l2cos, y + l2sin, z, h, l);
+	drawISOXZQuad(x, y - h, z, d, l);
 
-		drawISOXYQuad(x, y, z, l, h);
-		drawISOYZQuad(x + lcos, y + lsin, z, h, d);
-		drawISOXZQuad(x, y - h, z, l, d);
-		glColor4ub(c2->r, c2->g, c2->b, c2->a);
-		drawISOXYQuad(x + lcos, y + lsin, z, l2, h);
-		drawISOYZQuad(x + l2cos + lcos, y + l2sin + lsin, z, h, d);
-		drawISOXZQuad(x + lcos, y + lsin - h, z, l2, d);
+	glColor4ub(c2->r, c2->g, c2->b, c2->a);
+	drawISOYZQuad(x + l2cos + lcos, y + l2sin - lsin, z, h, l2);
+	drawISOXZQuad(x + lcos, y - lsin - h, z, d, l2);
 
-	} else if (dir == Y_DIR) {
-		// this should be wcos, but we're saving variables :)
-		lcos = (int)rint(h * COS_28);
-		lsin = (int)rint(h * SIN_28);
-		drawISOXYQuad(x, y, z, h, l);
-		drawISOYZQuad(x + lcos, y + lsin, z, l, d);
-		drawISOXZQuad(x, y - l, z, h, d);
-		glColor4ub(c2->r, c2->g, c2->b, c2->a);
-		drawISOXYQuad(x, y - l, z, h, l2);
-		drawISOYZQuad(x + lcos, y - l + lsin, z, l2, d);
-		drawISOXZQuad(x, y - l - l2, z, h, d);
-	} else {
-		lcos = (int)rint(l * COS_28);
-		lsin = (int)rint(l * SIN_28);
-		// think of this a dcos, same reason above
-		l2cos = (int)rint(d * COS_28);
-		l2sin = (int)rint(d * SIN_28);
-		drawISOXYQuad(x, y, z, d, h);
-		drawISOYZQuad(x + l2cos, y + l2sin, z, h, l);
-		drawISOXZQuad(x, y - h, z, d, l);
-
-		glColor4ub(c2->r, c2->g, c2->b, c2->a);
-		drawISOYZQuad(x + l2cos + lcos, y + l2sin - lsin, z, h, l2);
-		drawISOXZQuad(x + lcos, y - lsin - h, z, d, l2);
-	}
 	glEnd();
 	glEnable(GL_TEXTURE_2D);
 	glColor4ub(255, 255, 255, 255);
