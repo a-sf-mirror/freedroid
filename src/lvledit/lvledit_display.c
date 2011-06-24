@@ -244,6 +244,9 @@ static void show_map_labels(int must_zoom)
 	struct map_label *map_label;
 	int i;
 	float scale = must_zoom ? lvledit_zoomfact_inv() : 1.0;
+	int x_min, x_max, y_min, y_max;
+
+	get_floor_boundaries(must_zoom, &y_min, &y_max, &x_min, &x_max);
 
 	// On the first function call to this function, we must load the map label indicator
 	// iso image from the disk to memory and keep it there as static.  That should be
@@ -256,6 +259,12 @@ static void show_map_labels(int must_zoom)
 	for (i = 0; i < EditLevel->map_labels.size; i++) {	
 		// Get the map label
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
+
+		// Skip map labels that are not visible
+		if (map_label->pos.x < x_min || map_label->pos.x > x_max)
+			continue;
+		if (map_label->pos.y < y_min || map_label->pos.y > y_max)
+			continue;
 
 		display_image_on_map(&map_label_indicator, map_label->pos.x + 0.5, map_label->pos.y + 0.5, IMAGE_SCALE_TRANSFO(scale));
 	}
