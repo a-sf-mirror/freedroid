@@ -239,7 +239,8 @@ void Load_Bullet_Surfaces(void);
 void Load_Blast_Surfaces(void);
 void load_floor_tiles(void);
 void free_floor_tiles(void);
-struct image *get_obstacle_image(int);
+struct image *get_obstacle_image(int, int);
+struct image *get_obstacle_shadow_image(int, int);
 struct image *get_droid_portrait_image(int);
 void load_all_obstacles(int with_startup_bar);
 void free_obstacle_graphics(void);
@@ -803,9 +804,8 @@ void dynarray_del(struct dynarray *, int, size_t);
 void animation_timeline_reset(void);
 void animation_timeline_advance(void);
 int animate_door(level* obstacle_lvl, int obstacle_idx);
-int animate_teleporter(level* obstacle_lvl, int obstacle_idx);
-int animate_refresh(level* obstacle_lvl, int obstacle_idx);
 int animate_autogun(level* obstacle_lvl, int obstacle_idx);
+int animate_obstacle(level *obstacle_lvl, int obstacle_idx);
 animation_fptr get_animation_by_name(const char *animation_name);
 
 // benchmark.c

@@ -105,7 +105,7 @@ static void print_obstacle_info(char *str, int obs_idx)
 {
 	int flags = get_obstacle_spec(obs_idx)->flags;
 
-	sprintf(str, "Obs. number %d, %s\n", obs_idx, get_obstacle_spec(obs_idx)->filename);
+	sprintf(str, "Obs. number %d, %s\n", obs_idx, ((char **)get_obstacle_spec(obs_idx)->filenames.arr)[0]);
 
 	if (flags & IS_HORIZONTAL)
 		strcat(str, "- IS_HORIZONTAL\n");
@@ -148,7 +148,7 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 	case OBJECT_FLOOR:
 			return &(floor_images[array[idx]]);
 	case OBJECT_OBSTACLE:
-			return get_obstacle_image(array[idx]);
+			return get_obstacle_image(array[idx], 0);
 	case OBJECT_WAYPOINT:
 			return &(level_editor_waypoint_cursor[idx]);
 	case OBJECT_ITEM:

@@ -739,6 +739,7 @@ typedef struct obstacle {
 	int type;
 	gps pos;
 	int timestamp;
+	int frame_index;
 } obstacle;
 
 typedef struct map_tile {
@@ -783,6 +784,12 @@ typedef struct level {
 typedef void (*action_fptr) (level *obst_lvl, int obstacle_idx);
 typedef int (*animation_fptr) (level *obst_lvl, int obstacle_idx);
 
+struct obstacle_graphics {
+	int count;
+	struct image *images;
+	struct image *shadows;
+};
+
 typedef struct obstacle_spec {
 	char *label; 
 
@@ -812,14 +819,15 @@ typedef struct obstacle_spec {
 	//
 	short emitted_light_strength;
 	char transparent;
-	
-	char *filename;
+
+	struct dynarray filenames;
 	action_fptr action_fn;
-	
+
 	//--------------------
 	// Some obstacles have an associated animation.
 	// This property defines the function to call to animate them
 	animation_fptr animation_fn;
+	float animation_fps;
 } obstacle_spec;
 
 struct visible_level {

@@ -390,7 +390,7 @@ void blit_one_obstacle(obstacle *o, int highlight, int zoom)
 		}
 	}
 
-	struct image *img = get_obstacle_image(o->type);
+	struct image *img = get_obstacle_image(o->type, o->frame_index);
 	display_image_on_map(img, pos.x, pos.y, set_image_transformation(zf, zf, r, g, b, a, highlight));
 }
 
@@ -1320,7 +1320,7 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			if (!GameConfig.skip_shadow_blitting && !(mask &OMIT_OBSTACLES)) {
 				gps vpos;
 				update_virtual_position(&vpos, &our_obstacle->pos, Me.pos.z);
-				struct image *shadow_img = &((struct image *)(obstacle_shadow_images.arr))[our_obstacle->type];
+				struct image *shadow_img = get_obstacle_shadow_image(our_obstacle->type, our_obstacle->frame_index);
 				display_image_on_map(shadow_img, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(mask & ZOOM_OUT ? lvledit_zoomfact_inv() : 1.0));
 			}
 			

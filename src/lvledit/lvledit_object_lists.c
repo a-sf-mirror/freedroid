@@ -251,12 +251,16 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 	int idx = 0;
 	for (i = 0; i < obstacles_filenames->size; i++) {
 		const char *filename = ((const char **)obstacles_filenames->arr)[i];
+
 		for (j = 0; j < obstacle_map.size; j++) {
-			if (!strcmp(filename, ((obstacle_spec *)obstacle_map.arr)[j].filename)) {
+			if (!strcmp(filename, ((char **)get_obstacle_spec(j)->filenames.arr)[0])) {
 				idx_list[idx++] = j;
 				break;
 			}
 		}
+
+		if (j == obstacle_map.size)
+			ErrorMessage(__FUNCTION__, "Could not find obstacle with the given filename: %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
 	}
 	idx_list[idx] = -1;
 

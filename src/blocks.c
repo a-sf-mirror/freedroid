@@ -461,28 +461,24 @@ struct image *get_droid_portrait_image(int type)
 	return &chat_portrait_of_droid[type];
 }
 
-static void __obs_images(int type, struct image **img, struct image **shadow_img)
-{
-	struct image *image = &((struct image *)obstacle_images.arr)[type];
-	struct image *shadow_image = &((struct image *)obstacle_shadow_images.arr)[type];
-
-	if (img)
-		*img = image;
-	if (shadow_img)
-		*shadow_img = shadow_image;
-}
-
 /**
  * Return a pointer towards the struct image
  * associated to the given obstacle type.
- * Used for lazy loading.
  */
-struct image *get_obstacle_image(int type)
+struct image *get_obstacle_image(int type, int frame_index)
 {
-	struct image *img;
-    __obs_images(type, &img, NULL);
+	struct obstacle_graphics *obs_graphics = &((struct obstacle_graphics *)obstacle_images.arr)[type];
+	return &obs_graphics->images[frame_index];
+}
 
-	return img;
+/**
+ * Return a pointer towards the shadow image
+ * associated to the given obstacle type.
+ */
+struct image *get_obstacle_shadow_image(int type, int frame_index)
+{
+	struct obstacle_graphics *obs_graphics= &((struct obstacle_graphics *)obstacle_images.arr)[type];
+	return &obs_graphics->shadows[frame_index];
 }
 
 /**
@@ -490,32 +486,40 @@ struct image *get_obstacle_image(int type)
  */
 void free_obstacle_graphics(void)
 {
-	int i;
+	int i, j;
 	for (i = 0; i < obstacle_map.size; i++) {
-		struct image *img, *shadow_img;
-		__obs_images(i, &img, &shadow_img);
-
-		if (image_loaded(img))
-			delete_image(img);
-		if (image_loaded(shadow_img))
-			delete_image(shadow_img);
+		struct obstacle_graphics *graphics = &((struct obstacle_graphics *)obstacle_images.arr)[i];
+		for (j = 0; j < graphics->count; j++) {
+			delete_image(&graphics->images[j]);
+			delete_image(&graphics->shadows[j]);
+		}
 	}
 }
 
 void load_all_obstacles(int with_startup_bar)
 {
-	int i;
+	int i, j, image_index;
 	struct image empty_image = EMPTY_IMAGE;
 
-	char *filenames[obstacle_map.size];
-	struct image *images[obstacle_map.size];
+	int image_count = 0;
+	for (i = 0; i < obstacle_map.size; i++)
+		image_count += get_obstacle_spec(i)->filenames.size;
+
+	char *filenames[image_count];
+	struct image *images[image_count];
+
+	image_index = 0;
 	for (i = 0; i < obstacle_map.size; i++) {
-		filenames[i] = ((struct obstacle_spec *)(obstacle_map.arr))[i].filename;
-		images[i] = &((struct image *)(obstacle_images.arr))[i];
-		memcpy(&((struct image *)obstacle_shadow_images.arr)[i], &empty_image, sizeof(empty_image));
+		obstacle_spec *spec = get_obstacle_spec(i);
+		struct obstacle_graphics *graphics = &((struct obstacle_graphics *)obstacle_images.arr)[i];
+		for (j = 0; j < spec->filenames.size; j++) {
+			filenames[image_index] = ((char **)spec->filenames.arr)[j];
+			images[image_index] = &graphics->images[j];
+			image_index++;
+		}
 	}
 
-	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", filenames, images, obstacle_images.size)) {
+	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", filenames, images, image_count)) {
 		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacles at obstacles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
 	}
 
@@ -523,16 +527,23 @@ void load_all_obstacles(int with_startup_bar)
 		next_startup_percentage(62);
 
 	char shadow_filename[1024];
+	image_index = 0;
 	for (i = 0; i < obstacle_map.size; i++) {
-		sprintf(shadow_filename, "shadow_%s", ((struct obstacle_spec *)obstacle_map.arr)[i].filename);
-		filenames[i] = strdup(shadow_filename);
-		images[i] = &((struct image *)obstacle_shadow_images.arr)[i];
+		obstacle_spec *spec = get_obstacle_spec(i);
+		struct obstacle_graphics *graphics = &((struct obstacle_graphics *)obstacle_images.arr)[i];
+		for (j = 0; j < spec->filenames.size; j++) {
+			sprintf(shadow_filename, "shadow_%s", ((char **)spec->filenames.arr)[j]);
+			filenames[image_index] = strdup(shadow_filename);
+			images[image_index] = &graphics->shadows[j];
+			memcpy(images[image_index], &empty_image, sizeof(empty_image));
+			image_index++;
+		}
 	}
 
-	if (load_texture_atlas("obstacles/shadow_atlas.txt", "obstacles/", filenames, images, obstacle_shadow_images.size))
+	if (load_texture_atlas("obstacles/shadow_atlas.txt", "obstacles/", filenames, images, image_count))
 		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacle shadows at obstacle/shadow_atlas.txt.", PLEASE_INFORM, IS_FATAL);
 
-	for (i = 0; i < obstacle_map.size; i++)
+	for (i = 0; i < image_count; i++)
 		free(filenames[i]);
 
 	if (with_startup_bar)

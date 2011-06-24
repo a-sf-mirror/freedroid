@@ -523,7 +523,6 @@ static int lua_obstacle_ctor(lua_State *L)
 	sprintf(default_transparency, "%d", TRANSPARENCY_FOR_WALLS);
 
 	struct data_spec data_specs[] = {
-		{ "image_filename", NULL, STRING_TYPE, &obstacle.filename },
 		{ "label", NULL, STRING_TYPE, &obstacle.label },
 		{ "borders", "0", FLOAT_ARRAY, &borders },
 		{ "flags", "0", INT_ARRAY, &flags },
@@ -532,17 +531,28 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "transparency", default_transparency, INT_TYPE, &transparency },
 		{ "action", NULL, STRING_TYPE, &action },
 		{ "animation", NULL, STRING_TYPE, &animation },
+		{ "animation_fps", "10", FLOAT_TYPE, &obstacle.animation_fps },
 		{ NULL, NULL, 0, 0 }
 	};
+
+	if (!set_value_from_table(L, 1, "image_filenames", STRING_ARRAY, &obstacle.filenames)) {
+		obstacle.filenames.size = 1;
+		if (!set_value_from_table(L, 1, "image_filenames", STRING_TYPE, (char **)obstacle.filenames.arr)) {
+			ErrorMessage(__FUNCTION__, "No image filename for obstacle. At least one image filename must be given.",
+				PLEASE_INFORM, IS_FATAL);
+		}
+	}
 
 	set_structure_from_table(L, data_specs);
 
 #define DEFAULT_BORDER 0.6
 
 	// Clear obstacle structure
-	struct image empty_image = EMPTY_IMAGE;
-	dynarray_add(&obstacle_images, &empty_image, sizeof(empty_image));
-	dynarray_add(&obstacle_shadow_images, &empty_image, sizeof(empty_image));
+	struct obstacle_graphics graphics;
+	graphics.count = obstacle.filenames.size;
+	graphics.images = MyMalloc(sizeof(struct image) * graphics.count);
+	graphics.shadows = MyMalloc(sizeof(struct image) * graphics.count);
+	dynarray_add(&obstacle_images, &graphics, sizeof(graphics));
 	obstacle.left_border = -DEFAULT_BORDER;
 	obstacle.right_border = DEFAULT_BORDER;
 	obstacle.upper_border = -DEFAULT_BORDER;
@@ -583,6 +593,9 @@ static int lua_obstacle_ctor(lua_State *L)
 	// Parse animation
 	obstacle.animation_fn = get_animation_by_name(animation);
 	free(animation);
+
+	if (obstacle.filenames.size > 1)
+		obstacle.animation_fn = animate_obstacle;
 
 	dynarray_add(&obstacle_map, &obstacle, sizeof(obstacle_spec));
 	return 0;

@@ -391,6 +391,7 @@ static char *decode_obstacles(level *loadlevel, char *DataPointer)
 		loadlevel->obstacle_list[i].pos.y = -1;
 		loadlevel->obstacle_list[i].pos.z = loadlevel->levelnum;
 		loadlevel->obstacle_list[i].timestamp = 0;
+		loadlevel->obstacle_list[i].frame_index = 0;
 	}
 
 	if (loadlevel->random_dungeon && !loadlevel->dungeon_generated)

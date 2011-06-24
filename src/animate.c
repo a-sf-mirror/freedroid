@@ -43,18 +43,15 @@
 //--------------------
 // Animation timelines.
 //
-static float teleport_timeline = 0.0;
-static float refresh_timeline = 0.0;
 static float autogun_timeline = 0.0;
 static float door_timeline = 0.0;
+static float animation_timeline = 0.0;
 
 void animation_timeline_reset()
 {
-	teleport_timeline = 0.0;	
-	refresh_timeline = 0.0;
 	autogun_timeline = 0.0;
 	door_timeline = 0.0;
-
+	animation_timeline = 0.0;
 }
 
 /*
@@ -62,14 +59,13 @@ void animation_timeline_reset()
  */
 void animation_timeline_advance()
 {
-	teleport_timeline += Frame_Time() * 10;	
-	refresh_timeline += Frame_Time() * 3;
 	autogun_timeline += Frame_Time();
 	if (autogun_timeline >= 0.3)
 		autogun_timeline = 0.0;
 	door_timeline += Frame_Time();
 	if (door_timeline >= 0.02)
 		door_timeline = 0.0;
+	animation_timeline += Frame_Time();
 }
 
 /*****************************************************************************
@@ -152,26 +148,6 @@ int animate_door(level* door_lvl, int door_idx)
 			&& (*Pos != ISO_OUTER_DOOR_V_00) && (*Pos != ISO_OUTER_DOOR_H_00))
 			*Pos -= 1;	
 	}
-
-	return TRUE;
-}
-
-/*
- * This functions continuously animates the iso image of a teleporter 
- */
-int animate_teleporter(level* teleporter_lvl, int teleporter_idx)
-{
-	teleporter_lvl->obstacle_list[teleporter_idx].type = (((int)rintf(teleport_timeline)) % 5) + ISO_TELEPORTER_1;
-
-	return TRUE;
-}
-
-/*
- * This function continuously animates the iso image of a "droid nest" 
- */
-int animate_refresh(level* refresh_lvl, int refresh_idx)
-{
-	refresh_lvl->obstacle_list[refresh_idx].type = (((int)rintf(refresh_timeline)) % 5) + ISO_REFRESH_1;
 
 	return TRUE;
 }
@@ -278,6 +254,14 @@ is not really an autogun.  Instead it's something else.", PLEASE_INFORM, IS_FATA
 	return TRUE;
 }
 
+int animate_obstacle(level *obstacle_lvl, int obstacle_idx)
+{
+	obstacle *obstacle = &obstacle_lvl->obstacle_list[obstacle_idx];
+	obstacle_spec *spec = get_obstacle_spec(obstacle->type);
+	obstacle->frame_index = (int)rintf(spec->animation_fps * animation_timeline) % spec->filenames.size;
+	return TRUE;
+}
+
 /**
  * This functions returns a pointer to the obstacle animation function for the
  * given animation name.
@@ -289,9 +273,7 @@ animation_fptr get_animation_by_name(const char *animation_name)
 		animation_fptr animation;
 	} animation_map[] = {
 		{ "door", animate_door },
-		{ "teleporter", animate_teleporter },
-		{ "autogun", animate_autogun },
-		{ "refresh",  animate_refresh }
+		{ "autogun", animate_autogun }
 	};
 
 	if (!animation_name)

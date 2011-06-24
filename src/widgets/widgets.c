@@ -165,9 +165,14 @@ void widget_lvledit_init()
 
 	// Build list of all obstacles
 	all_obstacles_list = MyMalloc(sizeof(int) * (obstacle_map.size + 1));
-	for (i = 0; i < obstacle_map.size; i++)
-		all_obstacles_list[i] = i;
-	all_obstacles_list[i] = -1;
+	for (i = 0, j = 0; i < obstacle_map.size; i++) {
+		// Dummy obstacles (obstacles without image) should not be displayed in the
+		// level editor obstacle list.
+		if (!image_loaded(get_obstacle_image(i, 0)))
+			continue;
+		all_obstacles_list[j++] = i;
+	}
+	all_obstacles_list[j] = -1;
 
 	// Create category selectors 
 	for (i = 0; i < sizeof(category_list) / sizeof(category_list[0]); i++) {
