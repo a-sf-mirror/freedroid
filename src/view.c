@@ -211,7 +211,7 @@ void PutMiscellaneousSpellEffects(void)
 
 };				// void PutMiscellaneousSpellEffects ( void )
 
-static void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *ColStart, int *ColEnd)
+void get_floor_boundaries(int mask, int *LineStart, int *LineEnd, int *ColStart, int *ColEnd)
 {
 	float zf = lvledit_zoomfact();
 	if (mask & ZOOM_OUT) {

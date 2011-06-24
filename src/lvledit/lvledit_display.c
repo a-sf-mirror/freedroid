@@ -181,6 +181,9 @@ static void show_waypoints(int mask)
 	float r, g, b;
 	float x, y;
 	int i, j;
+	int x_min, x_max, y_min, y_max;
+
+	get_floor_boundaries(mask, &y_min, &y_max, &x_min, &x_max);
 
 	// Maybe, if the level editor floor cursor has not yet been loaded,
 	// we need to load it.
@@ -193,6 +196,12 @@ static void show_waypoints(int mask)
 	}
 
 	for (i = 0; i < EditLevel()->waypoints.size; i++) {
+		// Skip waypoints that are not visible
+		if (wpts[i].x <= x_min || wpts[i].x >= x_max)
+			continue;
+		if (wpts[i].y <= y_min || wpts[i].y >= y_max)
+			continue;
+
 		// Calculate the position of the waypoint
 		x = wpts[i].x + 0.5;
 		y = wpts[i].y + 0.5;

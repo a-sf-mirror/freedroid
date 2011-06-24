@@ -122,6 +122,7 @@ void delete_melee_shot(melee_shot *);
 int GetBulletByName(const char *bullet_name);
 
 // view.c 
+void get_floor_boundaries(int, int *, int *, int *, int *);
 void gps_transform_map_init(void);
 void update_virtual_position(gps * target_pos, gps * source_pos, int level_num);
 int resolve_virtual_position(gps * actual_pos, gps * virtual_pos);
