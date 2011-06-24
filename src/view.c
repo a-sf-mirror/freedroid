@@ -3184,8 +3184,8 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 	float scale = 1.0;
 	if (mask & ZOOM_OUT)
 		scale = lvledit_zoomfact_inv();
-
-	display_image_on_map(&Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(scale));
+	if (IsVisible(&vpos))
+		display_image_on_map(&Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(scale));
 }
 
 /**
@@ -3395,8 +3395,8 @@ exist at all.", PLEASE_INFORM, IS_FATAL);
 	update_virtual_position(&vpos, &CurBlast->pos, Me.pos.z);
 	if (vpos.x == -1)
 		return;
-
-	display_image_on_map(&Blastmap[CurBlast->type].images[phase], vpos.x, vpos.y, IMAGE_NO_TRANSFO);
+	if (IsVisible(&vpos))
+		display_image_on_map(&Blastmap[CurBlast->type].images[phase], vpos.x, vpos.y, IMAGE_NO_TRANSFO);
 }
 
 /**
