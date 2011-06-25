@@ -1173,10 +1173,25 @@ static void insert_bullets_into_blitting_list(int mask)
 static void insert_blasts_into_blitting_list(int mask)
 {
 	int i;
+	blast *b;
+	int xmin, xmax, ymin, ymax;
+	get_floor_boundaries(mask, &ymin, &ymax, &xmin, &xmax);
 
 	for (i = 0; i < MAXBLASTS; i++) {
-		if (AllBlasts[i].type != INFOUT)
-			insert_one_blast_into_blitting_list(i);
+		b = &AllBlasts[i];
+		if (b->type == INFOUT)
+			continue;
+		
+		gps vpos;
+		update_virtual_position(&vpos, &b->pos, Me.pos.z);
+
+		if (vpos.z == -1)
+			continue;
+
+		if (vpos.x < xmin || vpos.x > xmax || vpos.y < ymin || vpos.y > ymax)
+			continue;
+
+		insert_one_blast_into_blitting_list(i);
 	}
 
 }
