@@ -509,17 +509,12 @@ void insert_one_enemy_into_blitting_list(enemy * erot)
  *
  *
  */
-void insert_one_thrown_item_into_blitting_list(level *item_lvl, int item_num)
+static void insert_one_thrown_item_into_blitting_list(item *it, int item_num)
 {
-	float item_norm;
-	item *CurItem = &item_lvl->ItemList[item_num];
+	float norm = it->virt_pos.x + it->virt_pos.y;
 
-	update_virtual_position(&CurItem->virt_pos, &CurItem->pos, Me.pos.z);
-
-	item_norm = CurItem->virt_pos.x + CurItem->virt_pos.y;
-
-	insert_new_element_into_blitting_list(item_norm, BLITTING_TYPE_THROWN_ITEM, CurItem, item_num);
-};				// void insert_one_item_into_blitting_list ( int enemy_num )
+	insert_new_element_into_blitting_list(norm, BLITTING_TYPE_THROWN_ITEM, it, item_num);
+}
 
 /**
  *
@@ -1204,12 +1199,28 @@ static void insert_thrown_items_into_blitting_list(int mask)
 {
 	int i;
 	struct visible_level *vis_lvl, *n;
+	item *it;
+
+	int xmin, xmax, ymin, ymax;
+	get_floor_boundaries(mask, &ymin, &ymax, &xmin, &xmax);
 	
 	BROWSE_VISIBLE_LEVELS(vis_lvl, n) {
 		level *lvl = vis_lvl->lvl_pointer;
 		for (i = 0; i < MAX_ITEMS_PER_LEVEL; i++) {
-			if (lvl->ItemList[i].type != -1)
-				insert_one_thrown_item_into_blitting_list(vis_lvl->lvl_pointer, i);
+			it = &lvl->ItemList[i];
+			
+			if (it->type == -1)
+				continue;
+
+			update_virtual_position(&it->virt_pos, &it->pos, Me.pos.z);
+
+			if (it->virt_pos.z == -1)
+				continue;
+
+			if (it->virt_pos.x < xmin || it->virt_pos.x > xmax || it->virt_pos.y < ymin || it->virt_pos.y > ymax)
+				continue;
+		
+			insert_one_thrown_item_into_blitting_list(it, i);
 		}
 	}
 }
