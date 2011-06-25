@@ -10,7 +10,11 @@ else
 extradirs = win32 croppy 
 endif 
 
+if CROSS_COMPILING
+SUBDIRS = src gluem $(extradirs)
+else
 SUBDIRS = src gluem graphics $(extradirs)
+endif
 
 man_MANS = freedroidRPG.6
 

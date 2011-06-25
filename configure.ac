@@ -231,6 +231,8 @@ AM_CONDITIONAL(WIN32, test x$win32 = xtrue)
 
 AM_CONDITIONAL(NONLINUX, test x$macosx = xtrue -o x$win32 = xtrue)
 
+AM_CONDITIONAL(CROSS_COMPILING, test x$cross_compiling = xyes)
+
 AM_CONDITIONAL(BUILD_LUA, test x$embedded_lua = xyes)
 
 AC_CONFIG_FILES([Makefile src/Makefile gluem/Makefile graphics/Makefile croppy/Makefile win32/Makefile])
@@ -241,6 +243,10 @@ echo "Summary:
 
 	use embedded Lua library (not system-wide):	$embedded_lua
 	compile with OpenGL support:	$summary_have_gl
-	compile with sound support:	$summary_sound	
-	"
+	compile with sound support:	$summary_sound"
 
+if test x$cross_compiling = xyes; then
+	echo "	cross-compiling detected, so will not build some subdirs"
+fi
+
+echo ""
