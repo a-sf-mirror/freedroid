@@ -28,5 +28,4 @@
 struct widget_lvledit_minimap {
 };
 
-void widget_lvledit_minimap_display(struct widget *);
 struct widget *widget_lvledit_minimap_create();

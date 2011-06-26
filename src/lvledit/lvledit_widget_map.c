@@ -176,10 +176,8 @@ struct widget *widget_lvledit_map_create()
 {
 	struct widget *a = MyMalloc(sizeof(struct widget));
 	a->type = WIDGET_MAP;
-	a->rect.x = 0;
-	a->rect.y = 68;
-	a->rect.w = GameConfig.screen_width;
-	a->rect.h = GameConfig.screen_height - 68;
+	widget_set_rect(a, 0, 68, GameConfig.screen_width, GameConfig.screen_height -68);
+	a->display = NULL;
 	a->mouseenter = widget_lvledit_map_mouseenter;
 	a->mouseleave = widget_lvledit_map_mouseleave;
 	a->mouserelease = widget_lvledit_map_mouserelease;
@@ -196,11 +194,6 @@ struct widget *widget_lvledit_map_create()
 	a->ext = m;
 
 	return a;
-}
-
-void widget_lvledit_map_display(struct widget *vm)
-{
-	(void)vm;
 }
 
 void leveleditor_update_tool()

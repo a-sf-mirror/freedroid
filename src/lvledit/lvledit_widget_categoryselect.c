@@ -83,7 +83,7 @@ static void widget_lvledit_categoryselect_mousewheeldown(SDL_Event *event, struc
 	(void)cs;
 }
 
-void widget_lvledit_categoryselect_display(struct widget *w)
+static void categoryselect_display(struct widget *w)
 {
 	struct widget_lvledit_categoryselect *cs = w->ext;
 	SDL_Rect tr, hr;
@@ -127,10 +127,8 @@ struct widget *widget_lvledit_categoryselector_create(int x, char *text, enum lv
 {
 	struct widget *a = MyMalloc(sizeof(struct widget));
 	a->type = WIDGET_CATEGORY_SELECTOR;
-	a->rect.x = x * 80;
-	a->rect.y = 73;
-	a->rect.w = 80;
-	a->rect.h = 17;
+	widget_set_rect(a, x * 80, 73, 80, 17);
+	a->display = categoryselect_display;
 	a->mouseenter = widget_lvledit_categoryselect_mouseenter;
 	a->mouseleave = widget_lvledit_categoryselect_mouseleave;
 	a->mouserelease = widget_lvledit_categoryselect_mouserelease;

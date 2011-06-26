@@ -33,8 +33,6 @@ struct widget_lvledit_categoryselect {
 	int *indices;
 };
 
-void widget_lvledit_categoryselect_display(struct widget *);
-
 struct widget *widget_lvledit_categoryselector_create(int, char *, enum lvledit_object_type, int *);
 struct widget_lvledit_categoryselect *get_current_object_type(void);
 void widget_lvledit_categoryselect_activate(struct widget_lvledit_categoryselect *);

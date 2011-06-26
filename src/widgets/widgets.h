@@ -29,6 +29,8 @@
 #define EXTERN
 #endif
 
+#include "lvledit/lvledit.h"
+
 enum widget_type {
 	WIDGET_BUTTON,
 	WIDGET_TOOLBAR,
@@ -41,8 +43,8 @@ enum widget_type {
 struct widget {
 	enum widget_type type;	//Type of widget
 	SDL_Rect rect;		//Space occupied
-	struct list_head node;
-	int enabled;
+	uint8_t enabled;
+	void (*display) (struct widget *);
 	void (*mouseenter) (SDL_Event *, struct widget *);
 	void (*mouseleave) (SDL_Event *, struct widget *);
 	void (*mouserelease) (SDL_Event *, struct widget *);
@@ -54,21 +56,27 @@ struct widget {
 	void (*mousemove) (SDL_Event *, struct widget *);
 	int (*keybevent) (SDL_Event *, struct widget *);
 	void *ext;		//Type specific information
+	struct list_head node;
 };
 
 void widget_lvledit_init(void);
-void widget_display(void);
 void leveleditor_update_button_states(void);
 void lvledit_select_type(enum lvledit_object_type);
 
 void lvledit_categoryselect_switch(int direction);
 
+void display_widgets();
 struct widget *get_active_widget(int, int);
-EXTERN struct list_head lvledit_widget_list;
+void widget_set_rect(struct widget *, int, int, int, int);
+EXTERN struct list_head widget_list;
+EXTERN struct list_head *lvledit_widget_list;
 EXTERN struct widget *previously_active_widget;
 
 #undef EXTERN
 
+#define WIDGET(x) ((struct widget *)x)
+
+#include "widgets/widget_group.h"
 #include "widgets/widget_button.h"
 #include "lvledit/lvledit_widget_map.h"
 #include "lvledit/lvledit_widget_toolbar.h"

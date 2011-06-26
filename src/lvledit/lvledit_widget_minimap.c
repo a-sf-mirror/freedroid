@@ -136,31 +136,7 @@ static void draw_line_at_minimap_position(float x1, float y1, float x2, float y2
 	draw_line(r1, c1, r2, c2, SDL_MapRGB(Screen->format, 0xFF, 0xFF, 0xFF), 1);
 }
 
-struct widget *widget_lvledit_minimap_create()
-{
-	struct widget *a = MyMalloc(sizeof(struct widget));
-	a->type = WIDGET_MINIMAP;
-	a->rect.w = WIDGET_MINIMAP_WIDTH;
-	a->rect.h = WIDGET_MINIMAP_HEIGHT;
-	a->rect.x = GameConfig.screen_width - a->rect.w;
-	a->rect.y = GameConfig.screen_height - a->rect.h;
-	a->mouseenter = widget_lvledit_minimap_mouseenter;
-	a->mouseleave = widget_lvledit_minimap_mouseleave;
-	a->mouserelease = widget_lvledit_minimap_mouserelease;
-	a->mousepress = widget_lvledit_minimap_mousepress;
-	a->mouserightrelease = widget_lvledit_minimap_mouserightrelease;
-	a->mouserightpress = widget_lvledit_minimap_mouserightpress;
-	a->mousewheelup = widget_lvledit_minimap_mousewheelup;
-	a->mousewheeldown = widget_lvledit_minimap_mousewheeldown;
-	a->enabled = 1;
-
-	struct widget_lvledit_minimap *n = MyMalloc(sizeof(struct widget_lvledit_minimap));
-	a->ext = n;
-
-	return a;
-}
-
-void widget_lvledit_minimap_display(struct widget *w)
+static void minimap_display(struct widget *w)
 {
 	int i, j;
 
@@ -201,4 +177,26 @@ void widget_lvledit_minimap_display(struct widget *w)
 	draw_line_at_minimap_position(Me.pos.x, Me.pos.y - 2.0, Me.pos.x, Me.pos.y + 2.0);
 	
 	unset_gl_clip_rect();
+}
+
+struct widget *widget_lvledit_minimap_create()
+{
+	struct widget *a = MyMalloc(sizeof(struct widget));
+	a->type = WIDGET_MINIMAP;
+	widget_set_rect(a, GameConfig.screen_width - WIDGET_MINIMAP_WIDTH, GameConfig.screen_height - WIDGET_MINIMAP_HEIGHT, WIDGET_MINIMAP_WIDTH, WIDGET_MINIMAP_HEIGHT); 
+	a->display = minimap_display;
+	a->mouseenter = widget_lvledit_minimap_mouseenter;
+	a->mouseleave = widget_lvledit_minimap_mouseleave;
+	a->mouserelease = widget_lvledit_minimap_mouserelease;
+	a->mousepress = widget_lvledit_minimap_mousepress;
+	a->mouserightrelease = widget_lvledit_minimap_mouserightrelease;
+	a->mouserightpress = widget_lvledit_minimap_mouserightpress;
+	a->mousewheelup = widget_lvledit_minimap_mousewheelup;
+	a->mousewheeldown = widget_lvledit_minimap_mousewheeldown;
+	a->enabled = 1;
+
+	struct widget_lvledit_minimap *n = MyMalloc(sizeof(struct widget_lvledit_minimap));
+	a->ext = n;
+
+	return a;
 }

@@ -1,6 +1,6 @@
 /* 
  *
- *   Copyright (c) 2009 Arthur Huillet
+ *   Copyright (c) 2011 Catalin Badea
  *
  *
  *  This file is part of Freedroid
@@ -22,23 +22,19 @@
  *
  */
 
-#undef EXTERN
-#ifndef leveleditor_widget_map_c
-#define EXTERN extern
-#else
-#define EXTERN
-#endif
+#ifndef WIDGET_GROUP_H
+#define WIDGET_GROUP_H
 
-struct widget_lvledit_map {
+struct widget_group {
+	struct widget base;
+	struct widget *last_focused;
+	struct list_head list;
 };
 
-struct widget *widget_lvledit_map_create();
-void widget_lvledit_map_display_cursor(void);
+int widget_group_add(struct widget_group *, struct widget *);
+struct widget_group *widget_group_create();
 
-void widget_lvledit_map_init(void);
+#define WIDGET_GROUP(x) ((struct widget_group *)x)
 
-void leveleditor_update_tool(void);
-void lvledit_reset_tools(void);
+#endif
 
-EXTERN moderately_finepoint mouse_mapcoord;
-EXTERN int mouse_in_level;

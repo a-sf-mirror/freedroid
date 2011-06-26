@@ -220,33 +220,7 @@ static void widget_button_mousewheeldown(SDL_Event *event, struct widget *vb)
 	//do nothing;
 }
 
-struct widget *widget_button_create(int btype, char *text, char *tooltip)
-{
-	struct widget *a = MyMalloc(sizeof(struct widget));
-	a->type = WIDGET_BUTTON;
-	a->rect = AllMousePressButtons[btype].button_rect;
-	a->mouseenter = widget_button_mouseenter;
-	a->mouseleave = widget_button_mouseleave;
-	a->mouserelease = widget_button_mouserelease;
-	a->mousepress = widget_button_mousepress;
-	a->mouserightrelease = widget_button_mouserightrelease;
-	a->mouserightpress = widget_button_mouserightpress;
-	a->mousewheelup = widget_button_mousewheelup;
-	a->mousewheeldown = widget_button_mousewheeldown;
-	a->enabled = 1;
-
-	struct widget_button *b = MyMalloc(sizeof(struct widget_button));
-	b->btn_index = btype;
-	b->pressed = 0;
-	b->text = text;
-	b->tooltip = tooltip;
-
-	a->ext = b;
-
-	return a;
-}
-
-void widget_button_display(struct widget *vb)
+static void button_display(struct widget *vb)
 {
 	struct widget_button *b = vb->ext;
 
@@ -269,4 +243,31 @@ void widget_button_display(struct widget *vb)
 		// Draw the text on the button
 		display_text(b->text, rect.x, rect.y, &rect);
 	}
+}
+
+struct widget *widget_button_create(int btype, char *text, char *tooltip)
+{
+	struct widget *a = MyMalloc(sizeof(struct widget));
+	a->type = WIDGET_BUTTON;
+	a->display = button_display;
+	a->rect = AllMousePressButtons[btype].button_rect;
+	a->mouseenter = widget_button_mouseenter;
+	a->mouseleave = widget_button_mouseleave;
+	a->mouserelease = widget_button_mouserelease;
+	a->mousepress = widget_button_mousepress;
+	a->mouserightrelease = widget_button_mouserightrelease;
+	a->mouserightpress = widget_button_mouserightpress;
+	a->mousewheelup = widget_button_mousewheelup;
+	a->mousewheeldown = widget_button_mousewheeldown;
+	a->enabled = 1;
+
+	struct widget_button *b = MyMalloc(sizeof(struct widget_button));
+	b->btn_index = btype;
+	b->pressed = 0;
+	b->text = text;
+	b->tooltip = tooltip;
+
+	a->ext = b;
+
+	return a;
 }

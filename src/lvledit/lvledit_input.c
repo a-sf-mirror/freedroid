@@ -261,7 +261,7 @@ void leveleditor_input_keybevent(SDL_Event * event)
 	if (w && w->keybevent && !w->keybevent(event, w))
 		return;
 
-	list_for_each_entry_safe(w, n, &lvledit_widget_list, node) {
+	list_for_each_entry_safe(w, n, lvledit_widget_list, node) {
 		if (w && w->keybevent && !w->keybevent(event, w))
 			return;
 	}

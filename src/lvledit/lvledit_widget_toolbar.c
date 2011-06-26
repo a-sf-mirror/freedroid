@@ -161,31 +161,7 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 	return NULL;
 }
 
-struct widget *widget_lvledit_toolbar_create()
-{
-	struct widget *a = MyMalloc(sizeof(struct widget));
-	a->type = WIDGET_TOOLBAR;
-	a->rect.x = 0;
-	a->rect.y = 0;
-	a->rect.w = GameConfig.screen_width;
-	a->rect.h = 73;
-	a->mouseenter = widget_lvledit_toolbar_mouseenter;
-	a->mouseleave = widget_lvledit_toolbar_mouseleave;
-	a->mouserelease = widget_lvledit_toolbar_mouserelease;
-	a->mousepress = widget_lvledit_toolbar_mousepress;
-	a->mouserightrelease = widget_lvledit_toolbar_mouserightrelease;
-	a->mouserightpress = widget_lvledit_toolbar_mouserightpress;
-	a->mousewheelup = widget_lvledit_toolbar_mousewheelup;
-	a->mousewheeldown = widget_lvledit_toolbar_mousewheeldown;
-	a->enabled = 1;
-
-	struct widget_lvledit_toolbar *t = MyMalloc(sizeof(struct widget_lvledit_toolbar));
-	a->ext = t;
-
-	return a;
-}
-
-void widget_lvledit_toolbar_display(struct widget *vt)
+static void toolbar_display(struct widget *vt)
 {
 	(void)vt;
 	struct widget_lvledit_categoryselect *cs = get_current_object_type();
@@ -243,6 +219,28 @@ void widget_lvledit_toolbar_display(struct widget *vt)
 
 		cindex++;
 	}
+}
+
+struct widget *widget_lvledit_toolbar_create()
+{
+	struct widget *a = MyMalloc(sizeof(struct widget));
+	a->type = WIDGET_TOOLBAR;
+	widget_set_rect(a, 0, 0, GameConfig.screen_width, 73);
+	a->display = toolbar_display;
+	a->mouseenter = widget_lvledit_toolbar_mouseenter;
+	a->mouseleave = widget_lvledit_toolbar_mouseleave;
+	a->mouserelease = widget_lvledit_toolbar_mouserelease;
+	a->mousepress = widget_lvledit_toolbar_mousepress;
+	a->mouserightrelease = widget_lvledit_toolbar_mouserightrelease;
+	a->mouserightpress = widget_lvledit_toolbar_mouserightpress;
+	a->mousewheelup = widget_lvledit_toolbar_mousewheelup;
+	a->mousewheeldown = widget_lvledit_toolbar_mousewheeldown;
+	a->enabled = 1;
+
+	struct widget_lvledit_toolbar *t = MyMalloc(sizeof(struct widget_lvledit_toolbar));
+	a->ext = t;
+
+	return a;
 }
 
 void widget_lvledit_toolbar_left()

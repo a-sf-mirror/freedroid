@@ -380,7 +380,7 @@ void leveleditor_display()
 	// Construct the linked list of visible levels.
 	get_visible_levels();
 
-	widget_display();
+	display_widgets();
 
 	if (EditLevel()->random_dungeon) {
 		sprintf(VanishingMessage, " This level is automatically generated. \n Editing will have no effect.");

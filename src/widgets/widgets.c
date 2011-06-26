@@ -88,16 +88,38 @@ static struct {
 	{ OBJECT_WAYPOINT, waypoint_category_list, sizeof(waypoint_category_list) / sizeof(waypoint_category_list[0]) },
 };
 
-LIST_HEAD(lvledit_widget_list);
+LIST_HEAD(widget_list);
+
+void widget_set_rect(struct widget *w, int x, int y, int width, int height)
+{
+	w->rect.x = x;
+	w->rect.y = y;
+	w->rect.w = width;
+	w->rect.h = height;
+}
+
+void display_widgets() 
+{
+	struct widget *w;
+	list_for_each_entry(w, &widget_list, node) {
+		if (w->enabled && w->display)
+			w->display(w);
+	}
+}
 
 void widget_lvledit_init()
 {
-	struct widget *map;
-
-	if (!list_empty(&lvledit_widget_list)) {
+	if (lvledit_widget_list) {
 		/* Widgets already initialized, get out */
 		return;
 	}
+
+	struct widget_group *wb = widget_group_create();
+	widget_set_rect(WIDGET(wb), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
+	list_add_tail(&WIDGET(wb)->node, &widget_list);
+	lvledit_widget_list = &wb->list;
+	
+	struct widget *map;
 
 	/* Build our interface */
 	struct {
@@ -153,7 +175,7 @@ void widget_lvledit_init()
 
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
 		ShowGenericButtonFromList(b[i].btn_index);	//we need that to have .w and .h of the button rect initialized.
-		list_add(&widget_button_create(b[i].btn_index, b[i].text, b[i].tooltip)->node, &lvledit_widget_list);
+		list_add(&widget_button_create(b[i].btn_index, b[i].text, b[i].tooltip)->node, lvledit_widget_list);
 	}
 
 	lvledit_build_tile_lists();
@@ -181,19 +203,21 @@ void widget_lvledit_init()
 		for (j = 0; j < category_list[i].length; j++) {
 			struct widget *widget = widget_lvledit_categoryselector_create(j, _(categories[j].name), type, *categories[j].object_list);
 			categories[j].cs = widget->ext;
-			list_add_tail(&widget->node, &lvledit_widget_list);
+			widget_group_add(wb, widget);
 		}
 	}
 
 	// Create the minimap
-	list_add_tail(&widget_lvledit_minimap_create()->node, &lvledit_widget_list);
-
+	struct widget *widget = widget_lvledit_minimap_create();
+	widget_group_add(wb, widget);
+	
 	/* The toolbar */
-	list_add_tail(&widget_lvledit_toolbar_create()->node, &lvledit_widget_list);
+	widget = widget_lvledit_toolbar_create();
+	widget_group_add(wb, widget);
 
 	/* The map (has to be the latest widget in the list) */
 	map = widget_lvledit_map_create();
-	list_add_tail(&map->node, &lvledit_widget_list);
+	widget_group_add(wb, map);	
 
 	// Activate the obstacle type selector
 	lvledit_select_type(OBJECT_OBSTACLE);
@@ -206,7 +230,7 @@ void leveleditor_update_button_states()
 	struct widget_button *b;
 	struct widget *w;
 	obstacle *o;
-	list_for_each_entry(w, &lvledit_widget_list, node) {
+	list_for_each_entry(w, lvledit_widget_list, node) {
 		if (w->type != WIDGET_BUTTON)
 			continue;
 
@@ -287,7 +311,7 @@ void leveleditor_update_button_states()
 struct widget *get_active_widget(int x, int y)
 {
 	struct widget *w;
-	list_for_each_entry(w, &lvledit_widget_list, node) {
+	list_for_each_entry(w, lvledit_widget_list, node) {
 		if (!w->enabled)
 			continue;
 		if (MouseCursorIsInRect(&w->rect, x, y)) {
@@ -296,33 +320,6 @@ struct widget *get_active_widget(int x, int y)
 	}
 
 	return NULL;
-}
-
-void widget_display()
-{
-	struct widget *w;
-	list_for_each_entry_reverse(w, &lvledit_widget_list, node) {
-		if (!w->enabled)
-			continue;
-
-		switch (w->type) {
-		case WIDGET_BUTTON:
-			widget_button_display(w);
-			break;
-		case WIDGET_TOOLBAR:
-			widget_lvledit_toolbar_display(w);
-			break;
-		case WIDGET_MAP:
-			widget_lvledit_map_display(w);
-			break;
-		case WIDGET_CATEGORY_SELECTOR:
-			widget_lvledit_categoryselect_display(w);
-			break;
-		case WIDGET_MINIMAP:
-			widget_lvledit_minimap_display(w);
-			break;
-		}
-	}
 }
 
 void lvledit_select_type(enum lvledit_object_type type)
@@ -335,7 +332,7 @@ void lvledit_select_type(enum lvledit_object_type type)
 	}
 
 	// Find the categories which must be enabled
- 	list_for_each_entry_reverse(cs_widget, &lvledit_widget_list, node) {
+ 	list_for_each_entry_reverse(cs_widget, lvledit_widget_list, node) {
  		if (cs_widget->type != WIDGET_CATEGORY_SELECTOR)
  			continue;
 

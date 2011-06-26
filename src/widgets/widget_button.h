@@ -31,4 +31,3 @@ struct widget_button {
 };
 
 struct widget *widget_button_create(int, char *, char *);
-void widget_button_display(struct widget *);
