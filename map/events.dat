@@ -737,6 +737,35 @@ Silent=1
 LuaCode={ teleport("69from31") }
 * End of trigger *
 
+* New event trigger *
+Name=_"MSO-BreakingGlassWallTrap"
+Trigger at label="MSO-BreakingGlassWallTrapTrigger"
+Silent=1
+LuaCode={
+	change_obstacle_state("GlassWallLaserTrap01", "enabled")
+	change_obstacle_state("GlassWallLaserTrap02", "enabled")
+	change_obstacle_state("GlassWallLaserTrap03", "enabled")
+	change_obstacle_state("GlassWallLaserTrap04", "enabled")
+	change_obstacle_state("GlassWallLaserTrap05", "enabled")
+	change_obstacle_state("BreakingGlassWallOnTrap01", "broken")
+	change_obstacle_state("BreakingGlassWallOnTrap02", "broken")
+	change_obstacle_state("BreakingGlassWallOnTrap03", "broken")
+	change_obstacle_state("BreakingGlassWallOnTrap04", "broken")
+ }
+* End of trigger *
+
+* New event trigger *
+Name=_"MSO-SwitchOffGlassWallLaserTrap"
+Trigger at label="MSO-SwitchOffGlassWallLaserTrap"
+Silent=1
+LuaCode={
+	change_obstacle_state("GlassWallLaserTrap01", "disabled")
+	change_obstacle_state("GlassWallLaserTrap02", "disabled")
+	change_obstacle_state("GlassWallLaserTrap03", "disabled")
+	change_obstacle_state("GlassWallLaserTrap04", "disabled")
+	change_obstacle_state("GlassWallLaserTrap05", "disabled")
+ }
+* End of trigger *
 ##############
 ## Level 32 ##
 ##############

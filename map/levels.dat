@@ -33174,16 +33174,15 @@ t321 x6.50 y83.50
 t321 x6.50 y84.50
 t321 x18.50 y6.50
 t321 x17.50 y6.50
+t50 x48.53 y19.53
 /obsdata
 plabelinfolvl
-x=48 y=19 name="BreakingGlassWallTrapTrigger"
 x=31 y=21 name="BreakingGlassSecretDoorWHTrigger"
 x=76 y=73 name="MSOLobbyDeactivateSecurity"
 x=78 y=78 name="IntruderDetectorMSOLobby01"
 x=79 y=78 name="IntruderDetectorMSOLobby02"
 x=56 y=33 name="MSOHQExitSwitch"
 x=82 y=77 name="SwitchOffLaserTrapMSOLobby"
-x=43 y=19 name="SwitchOffGlassWallLaserTrap"
 x=12 y=76 name="MSOPointOfNoReturn"
 x=42 y=68 name="SecretPowerStationHatchMSOGarden"
 x=57 y=54 name="MSOMillerEntranceUnlocker"
@@ -33203,6 +33202,8 @@ x=77 y=8 name="MSAreaGuardStartGameSquare"
 x=36 y=27 name="OpenFirmwareUpgradeRoom"
 x=63 y=86 name="31to69"
 x=62 y=85 name="31from69"
+x=48 y=19 name="MSO-BreakingGlassWallTrapTrigger"
+x=43 y=19 name="MSO-SwitchOffGlassWallLaserTrap"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
