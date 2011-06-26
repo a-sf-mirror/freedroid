@@ -106,6 +106,13 @@ obstacle_states = {
 
 	[388] = {["enabled"] = 388, ["disabled"] = 407,},
 	[407] = {["disabled"] = 407, ["enabled"] = 388,},
+
+	-- glass walls
+	[281] = {["intact"] = 281, ["broken"] = 348,},
+	[282] = {["intact"] = 282, ["broken"] = 446,},
+
+	[348] = {["broken"] = 348, ["intact"] = 281,},
+	[446] = {["broken"] = 446, ["intact"] = 282,},
 };
 
 function get_obstacle_state_id(id, state)
