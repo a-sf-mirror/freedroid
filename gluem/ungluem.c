@@ -65,6 +65,7 @@ int amask = 0x000000FF;
 SDL_Surface *Screen;
 
 int extract_offset = 0;
+int use_original_size = 1;
 int display = 0;
 int debug_level = 0;
 //--------------------
@@ -102,11 +103,12 @@ static void parse_commandline(int argc, char *const argv[])
 		{"version", 0, 0, 'v'},
 		{"help", 0, 0, 'h'},
 		{"extract-offset", 0, 0, 'o'},
+		{"power-of-two-size", 0, 0, 's'},
 		{0, 0, 0, 0}
 	};
 
 	while (1) {
-		c = getopt_long(argc, argv, "odvh?i:", long_options, NULL);
+		c = getopt_long(argc, argv, "osdvh?i:", long_options, NULL);
 
 		if (c == -1)
 			break;
@@ -128,9 +130,13 @@ static void parse_commandline(int argc, char *const argv[])
 				display = 1;
 				break;
 
+			case 's':
+				use_original_size = 0;
+				break;
+
 			case 'h':
 			case '?':
-				fprintf(stderr, "Usage: %s [-o] [-h] [-d] -i input_file\n", argv[0]);
+				fprintf(stderr, "Usage: %s [-o] [-s] [-h] [-d] -i input_file\n", argv[0]);
 				exit(0);
 				break;
 
@@ -320,6 +326,9 @@ static void extract_and_write_file(const char *name, unsigned char **pos, int sd
 	img_y_offs = ReadSint16(ptr);
 	ptr += sizeof(Sint16);
 
+	orig_img_xlen = img_xlen;
+	orig_img_ylen = img_ylen;
+
 	if (!sdl) {
 		orig_img_xlen = ReadSint16(ptr);
 		ptr += sizeof(Sint16);
@@ -337,6 +346,21 @@ static void extract_and_write_file(const char *name, unsigned char **pos, int sd
 	SDL_SetColorKey(surf, 0, 0);
 
 	flip_image_vertically(surf);
+
+	if (use_original_size) {
+		SDL_SetAlpha(surf, 0, 0);
+		SDL_Surface *tmp = SDL_CreateRGBSurface(0, orig_img_xlen, orig_img_ylen, 32, rmask, gmask, bmask, amask);
+		Uint32 bg_color = SDL_MapRGBA(tmp->format, 0, 0, 0, 0);
+		SDL_FillRect(tmp, NULL, bg_color);
+		SDL_Rect src;
+		src.x = 0;
+		src.y = 0;
+		src.w = orig_img_xlen;
+		src.h = orig_img_ylen;
+		SDL_BlitSurface(surf, &src, tmp, NULL);
+		SDL_FreeSurface(surf);
+		surf = tmp;
+	}
 	
 	png_save_surface(name, surf);
 
