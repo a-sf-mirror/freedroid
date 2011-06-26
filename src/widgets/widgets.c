@@ -98,6 +98,9 @@ void widget_set_rect(struct widget *w, int x, int y, int width, int height)
 	w->rect.h = height;
 }
 
+/**
+ * This function displays the currently active top level widget groups.
+ */
 void display_widgets() 
 {
 	struct widget *w;
@@ -107,6 +110,9 @@ void display_widgets()
 	}
 }
 
+/**
+ * This function builds the level editor interface if it hasn't been already initialized.
+ */
 void widget_lvledit_init()
 {
 	if (lvledit_widget_list) {

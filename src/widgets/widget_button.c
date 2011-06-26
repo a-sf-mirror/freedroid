@@ -245,6 +245,11 @@ static void button_display(struct widget *vb)
 	}
 }
 
+/**
+ * @brief Creates a widget_button.
+ * This function creates a widget_button using the default callbacks.
+ * @return A pointer to the newly created widget_button.
+ */
 struct widget *widget_button_create(int btype, char *text, char *tooltip)
 {
 	struct widget *a = MyMalloc(sizeof(struct widget));

@@ -25,10 +25,18 @@
 #ifndef WIDGET_GROUP_H
 #define WIDGET_GROUP_H
 
+/** 
+ * @struct widget_group
+ * @brief Type used for managing multiple widgets. 
+ *
+ * This structure type is used for storing, displaying and updating a group of
+ * widgets.
+ * NOTE: Widget types inheriting widget_group must have it as their first attribute.
+ */
 struct widget_group {
-	struct widget base;
-	struct widget *last_focused;
-	struct list_head list;
+	struct widget base;		/**< Base widget type, containing callback functions. */
+	struct widget *last_focused;	/**< Widget pointer used for handling enter/leave events. */
+	struct list_head list;		/**< Linked list used for storing children. */
 };
 
 int widget_group_add(struct widget_group *, struct widget *);

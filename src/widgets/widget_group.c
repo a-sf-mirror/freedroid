@@ -40,6 +40,12 @@ static void group_display(struct widget *w)
 	}
 }
 
+/**
+ * @brief Creates a widget_group.
+ *
+ * This function creates a widget_group using the default callbacks.
+ * @return A pointer to the newly created widget_group.
+ */
 struct widget_group *widget_group_create() 
 {
 	struct widget_group *wb = (struct widget_group *)MyMalloc(sizeof(struct widget_group));	
@@ -56,6 +62,11 @@ struct widget_group *widget_group_create()
 	return wb;
 }
 
+/**
+ * This function adds a widget to a widget_group.
+ * @param wg a pointer to the widget_group to which a new widget is added.
+ * @param w a pointer to widget that is being added to the widget group.
+ */
 int widget_group_add(struct widget_group *wg, struct widget *w) 
 {
 	list_add_tail(&w->node, &wg->list);

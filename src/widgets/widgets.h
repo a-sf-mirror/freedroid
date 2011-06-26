@@ -22,6 +22,11 @@
  *
  */
 
+/**
+ * @file widgets.h
+ * This file contains structure types and functions used by the widget system.
+ */
+
 #undef EXTERN
 #ifndef _widgets_c
 #define EXTERN extern
@@ -39,12 +44,19 @@ enum widget_type {
 	WIDGET_MINIMAP,
 };
 
-/* A widget in the level editor */
+/**
+ * @struct widget
+ * @brief Base widget type.
+ *
+ * This is the base type used by the widget system. Contains basic information and callbacks
+ * used by all widget types.
+ * NOTE: Widget types inheriting this type must have it as their first attribute.   
+ */
 struct widget {
-	enum widget_type type;	//Type of widget
-	SDL_Rect rect;		//Space occupied
-	uint8_t enabled;
-	void (*display) (struct widget *);
+	enum widget_type type;	/**< Enum representing the widget's type. Deprecated. */
+	SDL_Rect rect;		/**< Rectangle containing widget's size and position. */
+	uint8_t enabled;	/**< Boolean flag used for enabling/disabling the widget. */
+	void (*display) (struct widget *); /**< Display callback. */
 	void (*mouseenter) (SDL_Event *, struct widget *);
 	void (*mouseleave) (SDL_Event *, struct widget *);
 	void (*mouserelease) (SDL_Event *, struct widget *);
@@ -55,8 +67,8 @@ struct widget {
 	void (*mousewheeldown) (SDL_Event *, struct widget *);
 	void (*mousemove) (SDL_Event *, struct widget *);
 	int (*keybevent) (SDL_Event *, struct widget *);
-	void *ext;		//Type specific information
-	struct list_head node;
+	void *ext;		/**< Pointer to type specific data. Deprecated. */
+	struct list_head node;	/**< Linked list node used for storing sibling widgets in a widget_group. */
 };
 
 void widget_lvledit_init(void);
@@ -68,7 +80,7 @@ void lvledit_categoryselect_switch(int direction);
 void display_widgets();
 struct widget *get_active_widget(int, int);
 void widget_set_rect(struct widget *, int, int, int, int);
-EXTERN struct list_head widget_list;
+EXTERN struct list_head widget_list;		/**< List containing top level widget groups. */
 EXTERN struct list_head *lvledit_widget_list;
 EXTERN struct widget *previously_active_widget;
 
