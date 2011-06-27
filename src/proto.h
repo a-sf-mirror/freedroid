@@ -765,7 +765,7 @@ int list_empty(const list_head_t * head);
 void list_splice(list_head_t * list, list_head_t * head);
 void list_splice_init(list_head_t * list, list_head_t * head);
 
-int load_texture_atlas(const char *, const char *, char *filenames[], struct image *images[], int);
+int load_texture_atlas(const char *, const char *, struct image *(*get_storage_for_key)(const char *key));
 
 // chat.c
 void PlantCookie(const char *);

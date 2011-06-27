@@ -496,58 +496,85 @@ void free_obstacle_graphics(void)
 	}
 }
 
-void load_all_obstacles(int with_startup_bar)
+static struct image *get_storage_for_obstacle_image(const char *filename)
 {
-	int i, j, image_index;
-	struct image empty_image = EMPTY_IMAGE;
+	int i, j;
 
-	int image_count = 0;
-	for (i = 0; i < obstacle_map.size; i++)
-		image_count += get_obstacle_spec(i)->filenames.size;
-
-	char *filenames[image_count];
-	struct image *images[image_count];
-
-	image_index = 0;
 	for (i = 0; i < obstacle_map.size; i++) {
 		obstacle_spec *spec = get_obstacle_spec(i);
 		struct obstacle_graphics *graphics = &((struct obstacle_graphics *)obstacle_images.arr)[i];
 		for (j = 0; j < spec->filenames.size; j++) {
-			filenames[image_index] = ((char **)spec->filenames.arr)[j];
-			images[image_index] = &graphics->images[j];
-			image_index++;
+			const char *fname = ((char **)spec->filenames.arr)[j];
+			if (!strcmp(fname, filename))
+				return &graphics->images[j];
 		}
 	}
 
-	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", filenames, images, image_count)) {
+	ErrorMessage(__FUNCTION__, "Obstacles texture atlas specifies element %s which is not expected.",
+		PLEASE_INFORM, IS_WARNING_ONLY, filename);
+	return NULL;
+}
+
+static struct image *get_storage_for_obstacle_shadow_image(const char *filename)
+{
+	int i, j;
+	const char *obstacle_filename = filename + strlen("shadow_");
+
+	for (i = 0; i < obstacle_map.size; i++) {
+		obstacle_spec *spec = get_obstacle_spec(i);
+		struct obstacle_graphics *graphics = &((struct obstacle_graphics *)obstacle_images.arr)[i];
+		for (j = 0; j < spec->filenames.size; j++) {
+			const char *fname = ((char **)spec->filenames.arr)[j];
+			if (!strcmp(fname, obstacle_filename))
+				return &graphics->shadows[j];
+		}
+	}
+
+	ErrorMessage(__FUNCTION__, "Obstacle shadows texture atlas specifies element %s which is not expected.",
+		PLEASE_INFORM, IS_WARNING_ONLY, filename);
+	return NULL;
+}
+
+void load_all_obstacles(int with_startup_bar)
+{
+	int i, j;
+	struct image empty_image = EMPTY_IMAGE;
+
+	if (load_texture_atlas("obstacles/atlas.txt", "obstacles/", get_storage_for_obstacle_image)) {
 		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacles at obstacles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
 	}
 
 	if (with_startup_bar)
 		next_startup_percentage(62);
 
-	char shadow_filename[1024];
-	image_index = 0;
+	// Clear obstacle shadow images
+	// It's required because only subset of obstacles has got shadow
 	for (i = 0; i < obstacle_map.size; i++) {
 		obstacle_spec *spec = get_obstacle_spec(i);
 		struct obstacle_graphics *graphics = &((struct obstacle_graphics *)obstacle_images.arr)[i];
-		for (j = 0; j < spec->filenames.size; j++) {
-			sprintf(shadow_filename, "shadow_%s", ((char **)spec->filenames.arr)[j]);
-			filenames[image_index] = strdup(shadow_filename);
-			images[image_index] = &graphics->shadows[j];
-			memcpy(images[image_index], &empty_image, sizeof(empty_image));
-			image_index++;
-		}
+		for (j = 0; j < spec->filenames.size; j++)
+			memcpy(&graphics->shadows[j], &empty_image, sizeof(empty_image));
 	}
 
-	if (load_texture_atlas("obstacles/shadow_atlas.txt", "obstacles/", filenames, images, image_count))
+	if (load_texture_atlas("obstacles/shadow_atlas.txt", "obstacles/", get_storage_for_obstacle_shadow_image))
 		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for obstacle shadows at obstacle/shadow_atlas.txt.", PLEASE_INFORM, IS_FATAL);
-
-	for (i = 0; i < image_count; i++)
-		free(filenames[i]);
 
 	if (with_startup_bar)
 		next_startup_percentage(8);
+}
+
+static struct image *get_storage_for_floor_tile(const char *filename)
+{
+	int i;
+
+	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
+		if (!strcmp(floor_tile_filenames[i], filename))
+			return &floor_images[i];
+	}
+
+	ErrorMessage(__FUNCTION__, "Floor tiles texture atlas specifies element %s which is not expected.",
+		PLEASE_INFORM, IS_WARNING_ONLY, filename);
+	return NULL;
 }
 
 /**
@@ -557,15 +584,8 @@ void load_all_obstacles(int with_startup_bar)
  */
 void load_floor_tiles(void)
 {
-	struct image *images[ALL_ISOMETRIC_FLOOR_TILES];
-	int i;
-
-	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
-		images[i] = &floor_images[i];
-	}
-
 	// Try to load the atlas
-	if (load_texture_atlas("floor_tiles/atlas.txt", "floor_tiles/", floor_tile_filenames, images, ALL_ISOMETRIC_FLOOR_TILES)) {
+	if (load_texture_atlas("floor_tiles/atlas.txt", "floor_tiles/", get_storage_for_floor_tile)) {
 		ErrorMessage(__FUNCTION__, "Unable to load floor tiles atlas at floor_tiles/atlas.txt.", PLEASE_INFORM, IS_FATAL);
 	}
 }

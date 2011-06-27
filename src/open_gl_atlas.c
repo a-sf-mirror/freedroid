@@ -60,19 +60,7 @@ static int read_atlas_header(const char *buf, char *path)
 	return 0;
 }
 
-static int find_array_index(char *filenames[], int count, char *key)
-{
-	int i;
-
-	for (i = 0; i < count; i++) {
-		if (!strcmp(filenames[i], key))
-			return i;
-	}
-
-	return -1;
-}
-
-int load_texture_atlas(const char *atlas_name, const char *directory, char *filenames[], struct image *atlasmembers[], int count)
+int load_texture_atlas(const char *atlas_name, const char *directory, struct image *(*get_storage_for_key)(const char *key))
 {
 	// Open atlas file
 	char *dat = get_texture_atlas(atlas_name);
@@ -98,10 +86,10 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 		while (*dat && *dat != '*') {
 			// Read each element in the atlas
 			SDL_Rect dest_rect;
-			char element_path[2048];
+			char element_key[2048];
 			int x, y, w, h;
 			int xoff, yoff;
-			if (!sscanf(dat, "%s %d %d %d %d off %d %d", &element_path[0], &x, &y, &w, &h, &xoff, &yoff)) {
+			if (!sscanf(dat, "%s %d %d %d %d off %d %d", &element_key[0], &x, &y, &w, &h, &xoff, &yoff)) {
 				break;
 			}
 
@@ -110,19 +98,16 @@ int load_texture_atlas(const char *atlas_name, const char *directory, char *file
 			dest_rect.w = w;
 			dest_rect.h = h;
 
-			int index = find_array_index(filenames, count, element_path);
+			struct image *img = get_storage_for_key(element_key);
+			if (img) {
+				// Fill in element struct image
+				delete_image(img);
+				create_subimage(&atlas_img, img, &dest_rect);
 
-			if (index == -1) {
-				ErrorMessage(__FUNCTION__, "Atlas file %s specifies element %s which is not expected for this atlas.", PLEASE_INFORM, IS_FATAL, atlas_path, element_path);
+				// Set image offset
+				img->offset_x = xoff;
+				img->offset_y = yoff;
 			}
-
-			// Fill in element struct image
-			delete_image(atlasmembers[index]);
-			create_subimage(&atlas_img, atlasmembers[index], &dest_rect);
-
-			// Set image offset
-			atlasmembers[index]->offset_x = xoff;
-			atlasmembers[index]->offset_y = yoff;
 
 			// Move on to the next element
 			while (*dat && *dat != '\n')
