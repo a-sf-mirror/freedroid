@@ -131,7 +131,7 @@ static void show_cursor(int must_zoom)
  * mainly used for the map editor to highlight connections and the 
  * current map tile target.
  */
-void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int mask)
+void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int mask, int rspawn)
 {
 	float steps;
 	float dist;
@@ -162,10 +162,18 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 		return;
 	for (i = 0; i < steps + 1; i++) {
 		float x, y;
+		int r, g, b;
 		x = (((float)i) / steps) * x1 + x2 * (steps - i) / steps;
 		y = (((float)i) / steps) * y1 + y2 * (steps - i) / steps;
 
-		display_image_on_map(&level_editor_dot_cursor, x, y, IMAGE_SCALE_TRANSFO(scale));
+		r = 255;
+		if (rspawn)
+			g = b = 0;
+		else
+			g = b = 255;
+
+		display_image_on_map(&level_editor_dot_cursor, x, y, IMAGE_SCALE_RGB_TRANSFO(scale, r, g, b));
+
 	}
 
 };				// void draw_connection_between_tiles ( .... )
@@ -219,7 +227,7 @@ static void show_waypoints(int mask)
 			waypoint *to_wp = &wpts[connections[j]];
 
 			if (((EditX() == wpts[i].x) && (EditY() == wpts[i].y)) || GameConfig.show_wp_connections) {
-				draw_connection_between_tiles(x, y, to_wp->x + 0.5, to_wp->y + 0.5, mask);
+				draw_connection_between_tiles(x, y, to_wp->x + 0.5, to_wp->y + 0.5, mask, wpts[i].suppress_random_spawn);
 			}
 		}
 	}
@@ -229,7 +237,8 @@ static void show_waypoints(int mask)
 	// current cursor (i.e. 'me') position.
 	if (OriginWaypoint != (-1)) {
 		// Draw the connection between the origin waypoint and the cursor (ie. 'me')
-		draw_connection_between_tiles(wpts[OriginWaypoint].x + 0.5, wpts[OriginWaypoint].y + 0.5, Me.pos.x, Me.pos.y, mask);
+		draw_connection_between_tiles(wpts[OriginWaypoint].x + 0.5, wpts[OriginWaypoint].y + 0.5, Me.pos.x, Me.pos.y,
+											mask, wpts[OriginWaypoint].suppress_random_spawn);
 	}
 }
 

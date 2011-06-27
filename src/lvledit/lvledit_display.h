@@ -29,7 +29,7 @@
 #endif
 
 void leveleditor_display(void);
-void draw_connection_between_tiles(float, float, float, float, int);
+void draw_connection_between_tiles(float, float, float, float, int, int);
 
 float lvledit_zoomfact(void);
 float lvledit_zoomfact_inv(void);

@@ -797,7 +797,7 @@ int leveleditor_place_display()
 		waypoint *wpts = EditLevel()->waypoints.arr;
 
 		draw_connection_between_tiles(wpts[state.startwp].x + 0.5, wpts[state.startwp].y + 0.5, mouse_mapcoord.x, mouse_mapcoord.y,
-					      GameConfig.zoom_is_on ? ZOOM_OUT : 0);
+					      GameConfig.zoom_is_on ? ZOOM_OUT : 0, wpts[state.startwp].suppress_random_spawn);
 	}
 
 	return 0;
