@@ -485,6 +485,13 @@ Silent=0
 LuaCode={ teleport("58from6") }
 * End of trigger *
 
+* New event trigger *
+Name=_"Singularity Attacked"
+Trigger on enemy death in level=6
+Enemy faction="singularity"
+LuaCode={ set_faction_state("singularity", "hostile") }
+* End of trigger *
+
 ##############
 ## Level  7 ##
 ##############
