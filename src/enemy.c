@@ -918,6 +918,8 @@ static int kill_enemy(enemy * target, char givexp, int killertype)
 	list_move(&(target->global_list), &dead_bots_head);	// bot is dead? move it to dead list
 	list_del(&(target->level_list));	// bot is dead? remove it from level list
 
+	event_enemy_died(target);
+
 	return 0;
 };
 
