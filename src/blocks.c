@@ -417,10 +417,6 @@ void Load_Enemy_Surfaces(void)
 		last_death_animation_image[i] = 1;
 		first_stand_animation_image[i] = 1;
 		last_stand_animation_image[i] = 1;
-		use_default_attack_image[i] = TRUE;
-		use_default_gethit_image[i] = TRUE;
-		use_default_death_image[i] = TRUE;
-		use_default_stand_image[i] = TRUE;
 	}
 
 
