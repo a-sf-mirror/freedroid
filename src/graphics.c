@@ -783,6 +783,9 @@ void InitVideo(void)
 	char fpath[2048];
 	char window_title_string[200];
 
+	// Tell SDL to center the window once we make it
+	putenv("SDL_VIDEO_CENTERED=1");
+
 	// Initialize the SDL library 
 	//
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
