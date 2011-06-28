@@ -147,7 +147,7 @@ static void load_events(char *EventSectionPointer)
 			free(TempMapLabelName);
 			ReadValueFromStringWithDefault(EventPointer, EVENT_TRIGGER_IS_SILENT_STRING, "%d", "1",
 						&temp.silent, EndOfEvent);
-		} else if(strstr(EventPointer, LEVEL_EVENT_LVLNUM_VALUE)) {
+		} else if (strstr(EventPointer, LEVEL_EVENT_LVLNUM_VALUE)) {
 			temp.trigger_type = ENTER_LEVEL;
 			ReadValueFromString(EventPointer, LEVEL_EVENT_LVLNUM_VALUE, "%d",
 						&temp.trigger.enter_level.level, EndOfEvent);
@@ -155,13 +155,14 @@ static void load_events(char *EventSectionPointer)
 			temp.trigger_type = ENEMY_DEATH;
 			ReadValueFromString(EventPointer, ENEMY_DEATH_LVLNUM_VALUE, "%d",
 						&temp.trigger.enemy_death.level, EndOfEvent);
-			if(strstr(EventPointer, ENEMY_DEATH_FACTION)) {
+			if (strstr(EventPointer, ENEMY_DEATH_FACTION)) {
 				TempEnemyFaction = ReadAndMallocStringFromData(EventPointer, ENEMY_DEATH_FACTION, "\"");
 				temp.trigger.enemy_death.faction = get_faction_id(TempEnemyFaction);
+				free(TempEnemyFaction);
 			} else {
 				temp.trigger.enemy_death.faction = -1;
 			}
-			if(strstr(EventPointer, ENEMY_DEATH_DIALOG_NAME)) {
+			if (strstr(EventPointer, ENEMY_DEATH_DIALOG_NAME)) {
 				temp.trigger.enemy_death.dialog_name = ReadAndMallocStringFromData(EventPointer, ENEMY_DEATH_DIALOG_NAME, "\"");
 			} else {
 				temp.trigger.enemy_death.dialog_name = NULL;
