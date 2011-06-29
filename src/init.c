@@ -1048,7 +1048,8 @@ Usage: freedroidRPG [-h | --help] \n\
                     [-f | --fullscreen] [-w | --window] \n\
                     [-d X | --debug=X]       X = 0-5; default 1 \n\
                     [-l character-name | --load=character-name] \n\
-                    [-r Y | --resolution=Y]  Y = 99 lists available resolutions. \n\
+                    [-r Y | --resolution=Y]  Y = 99 lists hardcoded resolutions. \n\
+                          Y may also be of the form 'WxH' e.g. '800x600'\n\
 \n\
 Please report bugs either by entering them into the bug tracker\n\
 on our sourceforge-website at:\n\n\
@@ -1059,25 +1060,12 @@ For more information and known issues please see README.\n\
 Thanks a lot in advance.\n\
                           / The FreedroidRPG dev team.\n\n";
 
-screen_resolution screen_resolutions[] = {
-	// xres,yres, cmdline comment, display in menu
-	{640, 480, "640 x 480, 4:3 (default with SDL)", TRUE},
-	{800, 600, "800 x 600, 4:3 (default with OpenGL)", TRUE},
-	{1024, 768, "1024 x 768, 4:3", TRUE},
-	{1152, 864, "1152 x 864, 4:3", TRUE},
-	{1280, 960, "1280 x 960, 4:3", TRUE},
-	{1400, 1050, "1400 x 1050, 4:3", TRUE},
-	{1600, 1200, "1600 x 1200, 4:3", TRUE},
-	{1280, 1024, "Unsupported! (1280 x 1024, 5:4)", FALSE},
-	{1024, 600, "Unsupported! (1024 x 600, 128:75)", FALSE},
-	{1280, 800, "Unsupported! (1280 x 800, 16:10)", FALSE},
-	{1440, 900, "Unsupported! (1440 x 900, 16:10)", FALSE},
-	{1680, 1050, "Unsupported! (1680 x 1050, 16:10)", FALSE},
-	{854, 480, "Unsupported! (854 x 480, 16:9)", FALSE},
-	{1280, 720, "Unsupported! (1280 x 720, 16:9)", FALSE},
-	{1920, 1080, "Unsupported! (1920 x 1080, 16:9)", FALSE},
-	// end of list
-	{-1, -1, "", FALSE}
+#define MAX_RESOLUTIONS 32
+screen_resolution screen_resolutions[MAX_RESOLUTIONS];
+screen_resolution hard_resolutions[] = {
+	{640, 480, "640 x 480", TRUE},
+	{800, 600, "800 x 600", TRUE},
+	{1024, 768, "1024 x 768", TRUE}
 };
 
 /* -----------------------------------------------------------------
@@ -1170,30 +1158,37 @@ void ParseCommandLine(int argc, char *const argv[])
 				GameConfig.screen_width = 800;
 				GameConfig.screen_height = 600;
 			} else {
-				int nb_res = 0;
-				while (screen_resolutions[nb_res].xres != -1)
-					++nb_res;
+				int nb_res = sizeof(hard_resolutions) / sizeof(hard_resolutions[0]);
+				char *x = strtok(optarg, "x");
+				char *y = strtok(NULL, "x");
+
+				// User input a resolution
+				if (y != NULL) {
+					GameConfig.screen_width = atoi(x);
+					GameConfig.screen_height = atoi(y);
+					break;
+				}
 
 				resolution_code = atoi(optarg);
+
 				if (resolution_code >= 0 && resolution_code < nb_res) {
 					if (resolution_code != 0)
 						command_line_override_for_screen_resolution = TRUE;
-					GameConfig.screen_width = screen_resolutions[resolution_code].xres;
-					GameConfig.screen_height = screen_resolutions[resolution_code].yres;
-					DebugPrintf(1, "\n%s(): Command line argument -r %d recognized.", __FUNCTION__, resolution_code);
+					GameConfig.screen_width = hard_resolutions[resolution_code].xres;
+					GameConfig.screen_height = hard_resolutions[resolution_code].yres;
 				} else {
-					fprintf(stderr, "\nresolution code received: %d", resolution_code);
+					fprintf(stderr, "\nresolution code received: %d\n", resolution_code);
 					char *txt = (char *)malloc((nb_res * 128 + 1) * sizeof(char));
 					txt[0] = '\0';
 					int i;
-					for (i = 0; i < nb_res; ++i) {
+					for (i = 0; i < nb_res; i++) {
 						char tmp[129];
-						snprintf(tmp, 129, "\t\t%d = %s\n", i, screen_resolutions[i].comment);
+						snprintf(tmp, 129, "\t\t%d = %s\n", i, hard_resolutions[i].comment);
 						strncat(txt, tmp, 128);
 					}
 					ErrorMessage(__FUNCTION__, "  %s%s  %s", NO_NEED_TO_INFORM, IS_FATAL,
 						     "\tThe resolution identifier given is not a valid resolution code.\n"
-						     "\tThese codes correspond to the following resolutions available:\n",
+						     "\tThese codes correspond to the following hardcoded resolutions available:\n",
 						     txt,
 						     "\tAnything else will not be accepted right now, but you can send in\n"
 						     "\tyour suggestion to the FreedroidRPG dev team to enable new resolutions.\n"
@@ -1398,6 +1393,40 @@ static void set_signal_handlers(void)
 #endif
 }
 
+/**
+ * Enumerates resolutions supported by SDL
+ */
+static void detect_available_resolutions(void)
+{
+	SDL_Rect **modes;
+	int i;
+	char *res[64];
+
+	// Get available fullscreen/hardware modes (reported by SDL)
+	modes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
+
+	// Check if our resolution is restricted
+	if (modes == NULL) {
+		// NULL means no resolutions are supported, which is fatal
+		ErrorMessage(__FUNCTION__, "SDL reports no resolutions are supported, terminating\n", PLEASE_INFORM, IS_FATAL);
+	} else if (modes == (SDL_Rect**) -1) {
+		ErrorMessage(__FUNCTION__,
+			"SDL reports all resolutions are supported in fullscreen mode.\n"
+			"Please use -r WIDTHxHEIGHT to specify any one you like.\n"
+			"Defaulting to a sane one for now\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+			screen_resolutions[0] =	(screen_resolution) {800, 600, "", TRUE};
+			screen_resolutions[1] = (screen_resolution) {-1, -1, "", FALSE};
+	} else {
+		// Add resolutions to the screen_resolutions array
+		for (i = 0; modes[i] && i < MAX_RESOLUTIONS; ++i) {
+			res[i] = (char *) malloc(32);
+			sprintf(res[i], "%d x %d", modes[i]->w, modes[i]->h);
+			screen_resolutions[i] = (screen_resolution) {modes[i]->w, modes[i]->h, res[i], TRUE};
+		}
+		screen_resolutions[i] = (screen_resolution) {-1, -1, "", FALSE};
+	}
+};
+
 /* -----------------------------------------------------------------
  * This function initializes the whole Freedroid game.
  * 
@@ -1466,6 +1495,14 @@ I will not be able to load or save games or configurations\n\
 	GameConfig.screen_height = 600;
 	input_keyboard_init();
 	input_set_default();
+
+	if (SDL_Init(SDL_INIT_VIDEO) == -1)
+		ErrorMessage(__FUNCTION__, "Couldn't initialize SDL: %s\n", PLEASE_INFORM, IS_FATAL,  SDL_GetError());
+	// So the video library could be initialized.  So it should also be
+	// cleaned up and closed once we're done and quit FreedroidRPG.
+	atexit(SDL_Quit);
+
+	detect_available_resolutions();
 
 	LoadGameConfig();
 

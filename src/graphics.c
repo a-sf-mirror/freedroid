@@ -772,10 +772,10 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 
 };				// void set_video_mode_for_open_gl ( void )
 
-/* -----------------------------------------------------------------
+/**
  * This function initialises the video display and opens up a 
  * window for graphics display.
- * -----------------------------------------------------------------*/
+ */
 void InitVideo(void)
 {
 	char vid_driver[81];
@@ -785,19 +785,6 @@ void InitVideo(void)
 
 	// Tell SDL to center the window once we make it
 	putenv("SDL_VIDEO_CENTERED=1");
-
-	// Initialize the SDL library 
-	//
-	if (SDL_Init(SDL_INIT_VIDEO) == -1) {
-		fprintf(stderr, "Couldn't initialize SDL: %s\n", SDL_GetError());
-		Terminate(EXIT_FAILURE, FALSE);
-	} else {
-		DebugPrintf(1, "\nSDL Video initialisation successful.\n");
-		// So the video library could be initialized.  So it should also be
-		// cleaned up and closed once we're done and quit FreedroidRPG.
-		//
-		atexit(SDL_Quit);
-	}
 
 	// Let's get some info about the whole system here.  Is this a windows or x11 or
 	// mac or whatever graphical environment?
