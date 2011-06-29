@@ -427,6 +427,10 @@ void LightRadiusInit()
 	LightRadiusConfig.cells_w = round((float)GameConfig.screen_width / (float)LIGHT_RADIUS_TEXTURE_DIVISOR);
 	LightRadiusConfig.cells_h = round((float)GameConfig.screen_height / (float)LIGHT_RADIUS_TEXTURE_DIVISOR);
 
+	// This will prevent a SIGFPE from happening below
+	if(LightRadiusConfig.cells_w <= 1) LightRadiusConfig.cells_w = 2;
+	if(LightRadiusConfig.cells_h <= 1) LightRadiusConfig.cells_h = 2;
+
 	// Find the the nearest power-of-two greater than of equal to the number of cells
 	// and limit the texture's size
 	int pot_w = pot_gte(LightRadiusConfig.cells_w);
