@@ -50,6 +50,8 @@ EXTERN void LevelEditor(void);
 
 #define AUTO_SCROLL_RATE (0.02f)
 
+#define MAX_MENU_ITEMS 16
+
 /**
  * This function tells over which menu item the mouse cursor would be,
  * if there were infinitely many menu items.
@@ -1031,12 +1033,12 @@ enum {
 	MENU_NUM
 };
 
-#define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[10]);
+#define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[MAX_MENU_ITEMS]);
 MENU_LIST
 #undef MENU
     struct Menu {
 	int (*HandleSelection) (int);
-	void (*FillText) (char *[10]);
+	void (*FillText) (char *[MAX_MENU_ITEMS]);
 };
 
 struct Menu menus[] = {
@@ -1049,13 +1051,13 @@ struct Menu menus[] = {
 static void RunSubMenu(int startup, int menu_id)
 {
 	int can_continue = 0;
-	char *texts[10];
+	char *texts[MAX_MENU_ITEMS];
 	int i = 0;
 	while (!can_continue) {
 		int pos;
 		// We need to fill at each loop because
 		// several menus change their contents
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < MAX_MENU_ITEMS; i++)
 			texts[i] = (char *)malloc(1024 * sizeof(char));
 		menus[menu_id].FillText(texts);
 
@@ -1066,7 +1068,7 @@ static void RunSubMenu(int startup, int menu_id)
 
 		int ret = menus[menu_id].HandleSelection(pos);
 
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < MAX_MENU_ITEMS; i++)
 			free(texts[i]);
 
 		if (ret == EXIT_MENU) {
@@ -1159,7 +1161,7 @@ static int Startup_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Startup_fill(char *MenuTexts[10])
+static void Startup_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	int i = 0;
 	strncpy(MenuTexts[i++], _("Play"), 1024);
@@ -1195,7 +1197,7 @@ static int Game_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Game_fill(char *MenuTexts[10])
+static void Game_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	const char *difficulty_str[] = {
 		[DIFFICULTY_EASY] = "easy",
@@ -1247,7 +1249,7 @@ static int Options_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Options_fill(char *MenuTexts[10])
+static void Options_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	strncpy(MenuTexts[0], _("Gameplay"), 1024);
 	strncpy(MenuTexts[1], _("Graphics"), 1024);
@@ -1300,7 +1302,7 @@ static int Escape_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Escape_fill(char *MenuTexts[10])
+static void Escape_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	if (game_root_mode == ROOT_IS_GAME)
 		strncpy(MenuTexts[0], _("Resume Play"), 1024);
@@ -1366,12 +1368,12 @@ static int Resolution_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Resolution_fill(char *MenuTexts[10])
+static void Resolution_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	int i = 0;
 	int j = 0;
 
-	while (screen_resolutions[i].xres != -1) {
+	while (screen_resolutions[i].xres != -1 && i < MAX_MENU_ITEMS) {
 		//Only supported screen resolution are displayed
 		if (screen_resolutions[i].supported) {
 			char flag = ' ';
@@ -1455,7 +1457,7 @@ static int Graphics_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Graphics_fill(char *MenuTexts[10])
+static void Graphics_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	char Options[20][1000];
 	int i = 0;
@@ -1549,7 +1551,7 @@ static int Sound_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Sound_fill(char *MenuTexts[10])
+static void Sound_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	char Options[20][1000];
 	int i = 0;
@@ -1688,7 +1690,7 @@ static int OSD_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void OSD_fill(char *MenuTexts[10])
+static void OSD_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	sprintf(MenuTexts[0], _("Show position: %s"), GameConfig.Draw_Position ? _("YES") : _("NO"));
 	sprintf(MenuTexts[1], _("Show framerate: %s"), GameConfig.Draw_Framerate ? _("YES") : _("NO"));
@@ -1721,7 +1723,7 @@ static int Droid_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Droid_fill(char *MenuTexts[10])
+static void Droid_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	char Options[20][1000];
 	int i = 0;
@@ -1832,7 +1834,7 @@ enum {
 
 static int do_savegame_selection_and_act(int action)
 {
-	char *MenuTexts[10];
+	char *MenuTexts[MAX_MENU_ITEMS];
 	struct dirent **eps;
 	int n;
 	int cnt;
@@ -1997,7 +1999,7 @@ int Single_Player_Menu(void)
 {
 	int can_continue = FALSE;
 	int MenuPosition = 1;
-	char *MenuTexts[10];
+	char *MenuTexts[MAX_MENU_ITEMS];
 	char *char_name = NULL;
 
 	enum {
