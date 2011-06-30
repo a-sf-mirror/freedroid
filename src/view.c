@@ -2991,7 +2991,6 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 {
 	int RotationModel;
 	int RotationIndex;
-	float darkness;
 	moderately_finepoint bot_pos;
 	float zf = 1.0;
 	if (mask & ZOOM_OUT)
@@ -3061,18 +3060,8 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	bot_pos.x = ThisRobot->virt_pos.x;
 	bot_pos.y = ThisRobot->virt_pos.y;
 
-	if (!(mask & SKIP_LIGHT_RADIUS) && !GameConfig.skip_light_radius) {
-		darkness = (float)get_light_strength(bot_pos) / (float)(NUMBER_OF_SHADOW_IMAGES-1);
-		if (darkness > 1.0)
-			darkness = 1.0;
-		if (darkness < 0.0)
-			darkness = 0.0;
-	} else {
-		darkness = 1.0;
-	}
-
 	struct image *img = &enemy_images[RotationModel][RotationIndex][(int)ThisRobot->animation_phase];
-	display_image_on_map(img, bot_pos.x, bot_pos.y, set_image_transformation(zf, zf, darkness * r, darkness * g, darkness * b, 1.0, highlight));
+	display_image_on_map(img, bot_pos.x, bot_pos.y, set_image_transformation(zf, zf, r, g, b, 1.0, highlight));
 
 	int screen_x, screen_y;
 	translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
