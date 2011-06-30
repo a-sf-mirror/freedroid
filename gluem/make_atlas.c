@@ -100,10 +100,35 @@ static void finish_output(int atlas_num)
 {
 	char path[2048];
 	sprintf(path, "%s%d.png", image_out_path, atlas_num);
+
+	// There is a possibility that a lot of space is empty in an atlas image and
+	// the height of the image can be cropped to lower power of two.
+	// It's especially true for the last image of texture atlas.
+	// If possible the height of the current atlas image is cropped to
+	// lower power of two.
+	int height = atlas_height;
+	while (last_y < height / 2)
+		height /= 2;
+
+	if (height != atlas_height) {
+		SDL_Rect src;
+		SDL_PixelFormat *format = atlas_surf->format;
+		SDL_Surface *cropped_surface = SDL_CreateRGBSurface(0, atlas_width, height,
+			32, format->Rmask, format->Gmask, format->Bmask, format->Amask);
+
+		src.x = src.y = 0;
+		src.w = atlas_width;
+		src.h = height;
+		SDL_SetAlpha(atlas_surf, 0, 0);
+		SDL_BlitSurface(atlas_surf, &src, cropped_surface, NULL);
+		SDL_FreeSurface(atlas_surf);
+		atlas_surf = cropped_surface;
+	}
+
 	png_save_surface(path, atlas_surf);
 	SDL_FreeSurface(atlas_surf);
 
-	printf("Atlas %d created. Last y position is %d. Atlas size: %dkB, images size: %dkB. Packing efficiency is %f.\n", atlas_num, last_y, (atlas_width * atlas_height * 4) / 1024, (total_image_area * 4) / 1024, (float)total_image_area/(float)(atlas_width * atlas_height));
+	printf("Atlas %d created. Last y position is %d. Atlas size: %dkB, images size: %dkB. Packing efficiency is %f.\n", atlas_num, last_y, (atlas_width * height * 4) / 1024, (total_image_area * 4) / 1024, (float)total_image_area/(float)(atlas_width * height));
 }
 
 
