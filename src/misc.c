@@ -910,6 +910,11 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading, int with_an
 	}
 
 	if (LNum != Me.pos.z) {
+
+		// Notify level change events on this level
+		if (game_status == INSIDE_GAME)
+			event_level_changed(Me.pos.z, LNum);
+
 		// In case a real level change has happened,
 		// we need to do a lot of work.  Therefore we start by activating
 		// the conservative frame time computation to avoid a 'jump'.
@@ -936,10 +941,7 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 
 		// Refresh some speed-up data structures
 		get_visible_levels();
-		// Notify level-enter events on this level
-		if (game_status == INSIDE_GAME)
-			event_level_changed(Me.pos.z);
-		
+
 	} else {
 		// If no real level change has occurred, everything
 		// is simple and we just need to set the new coordinates, haha

@@ -48,6 +48,7 @@ struct event_trigger {
 	enum {
 		POSITION,
 		ENTER_LEVEL,
+		EXIT_LEVEL,
 		ENEMY_DEATH,
 	} trigger_type;
 
@@ -59,7 +60,7 @@ struct event_trigger {
 		} position;
 		struct {
 			int level;
-		} enter_level;
+		} change_level;
 		struct {
 			int level;
 			int faction;
@@ -106,6 +107,9 @@ static void clear_out_events(void)
 // For level-enter events
 #define LEVEL_EVENT_LVLNUM_VALUE "Trigger entering level="
 
+// For level-exit events
+#define LEVEL_EXIT_LVLNUM_VALUE "Trigger exiting level="
+
 // For enemy-death events
 #define ENEMY_DEATH_LVLNUM_VALUE "Trigger on enemy death in level="
 #define ENEMY_DEATH_FACTION "Enemy faction=\""
@@ -150,7 +154,11 @@ static void load_events(char *EventSectionPointer)
 		} else if (strstr(EventPointer, LEVEL_EVENT_LVLNUM_VALUE)) {
 			temp.trigger_type = ENTER_LEVEL;
 			ReadValueFromString(EventPointer, LEVEL_EVENT_LVLNUM_VALUE, "%d",
-						&temp.trigger.enter_level.level, EndOfEvent);
+						&temp.trigger.change_level.level, EndOfEvent);
+		} else if (strstr(EventPointer, LEVEL_EXIT_LVLNUM_VALUE)) {
+			temp.trigger_type = EXIT_LEVEL;
+			ReadValueFromString(EventPointer, LEVEL_EXIT_LVLNUM_VALUE, "%d",
+						&temp.trigger.change_level.level, EndOfEvent);
 		} else {
 			temp.trigger_type = ENEMY_DEATH;
 			ReadValueFromString(EventPointer, ENEMY_DEATH_LVLNUM_VALUE, "%d",
@@ -246,18 +254,23 @@ void trigger_position_events(void)
 }
 
 /**
- * Trigger level-enter events for the given level
+ * Trigger level-enter and level-exit events for the given level
  */
-void event_level_changed(int lvl)
+void event_level_changed(int past_lvl, int cur_lvl)
 {
 	int i;
 	struct event_trigger *arr = event_triggers.arr;
 
 	for (i = 0; i < event_triggers.size; i++) {
-		if (arr[i].trigger_type != ENTER_LEVEL)
-			continue;
+		if (arr[i].trigger_type == ENTER_LEVEL) {
+			if (arr[i].trigger.change_level.level != cur_lvl)
+				continue;
 
-		if (arr[i].trigger.enter_level.level != lvl)
+		} else if (arr[i].trigger_type == EXIT_LEVEL) {
+			if (arr[i].trigger.change_level.level != past_lvl)
+				continue;
+
+		} else
 			continue;
 
 		if (!arr[i].enabled)
