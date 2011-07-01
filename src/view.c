@@ -2261,183 +2261,6 @@ Surface to be loaded didn't have empty (NULL) pointer in the first place.", PLEA
 };				// void grab_tux_images_from_archive ( ... )
 
 /**
- * While earlier we used lots and lots of isolated .png and .offset files
- * to store the information about an enemy, we've now moved over to using
- * a single archive file that holds all the image and all the offset 
- * information, even in uncompressed form, making access at runtime even
- * *much* faster than it was before.  This file grabs one enemy from
- * such an archive file.  It's typically called once whenever the enemy
- * type is first encountered in one run of the engine.
- */
-void grab_enemy_images_from_archive(int enemy_model_nr)
-{
-	int rotation_index;
-	int enemy_phase;
-	FILE *DataFile;
-	char constructed_filename[10000];
-	char fpath[2048];
-	char archive_type_string[5] = { 0, 0, 0, 0, 0 };
-	char ogl_support_string[5] = { 0, 0, 0, 0, 0 };
-	unsigned char *DataBuffer;
-	unsigned char *ptr, *dest;
-	int tmplen;
-
-	Sint16 img_xlen;
-	Sint16 img_ylen;
-	Sint16 img_x_offs;
-	Sint16 img_y_offs;
-	Sint16 orig_img_xlen;
-	Sint16 orig_img_ylen;
-
-	Sint16 cooked_walk_object_phases;
-	Sint16 cooked_attack_object_phases;
-	Sint16 cooked_gethit_object_phases;
-	Sint16 cooked_death_object_phases;
-	Sint16 cooked_stand_object_phases;
-
-	// A short message for debug purposes
-	//
-	DebugPrintf(1, "\n%s:  grabbing new image series...", __FUNCTION__);
-
-	// We need a file name!
-	//
-	sprintf(constructed_filename, "droids/%s/%s.tux_image_archive.z",
-		PrefixToFilename[enemy_model_nr], PrefixToFilename[enemy_model_nr]);
-	find_file(constructed_filename, GRAPHICS_DIR, fpath, 1);
-
-	// First we need to open the file
-	//
-	if ((DataFile = fopen(fpath, "rb")) == NULL) {
-		fprintf(stderr, "\n\nfilename: '%s'\n", fpath);
-
-		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to open a given enemy image archive.\n\
-This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
-	} else {
-		DebugPrintf(1, "\n%s() : Opening file succeeded...", __FUNCTION__);
-	}
-
-	inflate_stream(DataFile, &DataBuffer, NULL);
-	fclose(DataFile);
-
-	ptr = DataBuffer;
-
-	// Now we assume, that this is an image collection file for an enemy
-	// and therefore it should have the right header bytes (keyword eneX)
-	// and it also should be suitable for use with OpenGl (keyword oglX)
-	//
-	memcpy(archive_type_string, ptr, 4);
-	ptr += 4;
-	memcpy(ogl_support_string, ptr, 4);
-	ptr += 4;
-
-	// We check if this is really an image archive of ENEMY type...
-	//
-	if (strncmp("eneX", archive_type_string, 4)) {
-		ErrorMessage(__FUNCTION__, "\
-Initial archive type string doesn't look like it's from an image archive of ENEMY type.\n\
-This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
-	}
-	// Now we know that this is an archive of enemy type.  Therefore
-	// we can start to read out some entries, that are only found in
-	// enemy image collections.
-	//
-	cooked_walk_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_attack_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_gethit_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_death_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_stand_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-
-	// The information about cycle length needs to be entered into the 
-	// corresponding arrays (usually initialized in blocks.c, for those
-	// series, that don't have an image archive yet...)
-	//
-	first_walk_animation_image[enemy_model_nr] = 1;
-	last_walk_animation_image[enemy_model_nr] = cooked_walk_object_phases;
-	first_attack_animation_image[enemy_model_nr] = last_walk_animation_image[enemy_model_nr] + 1;
-	last_attack_animation_image[enemy_model_nr] = last_walk_animation_image[enemy_model_nr] + cooked_attack_object_phases;
-	first_gethit_animation_image[enemy_model_nr] = last_attack_animation_image[enemy_model_nr] + 1;
-	last_gethit_animation_image[enemy_model_nr] = last_attack_animation_image[enemy_model_nr] + cooked_gethit_object_phases;
-	first_death_animation_image[enemy_model_nr] = last_gethit_animation_image[enemy_model_nr] + 1;
-	last_death_animation_image[enemy_model_nr] = last_gethit_animation_image[enemy_model_nr] + cooked_death_object_phases;
-	first_stand_animation_image[enemy_model_nr] = last_death_animation_image[enemy_model_nr] + 1;
-	last_stand_animation_image[enemy_model_nr] = last_death_animation_image[enemy_model_nr] + cooked_stand_object_phases;
-
-	// Now some error checking against more phases in this enemy animation than
-	// currently allowed from the array size...
-	//
-	if (last_stand_animation_image[enemy_model_nr] >= MAX_ENEMY_MOVEMENT_PHASES) {
-		ErrorMessage(__FUNCTION__, "\
-The number of images found in the image collection for enemy model %d is bigger than currently allowed (found %d images, max. %d).", PLEASE_INFORM, IS_FATAL, enemy_model_nr, last_stand_animation_image[enemy_model_nr], MAX_ENEMY_MOVEMENT_PHASES);
-	}
-	// Now we can proceed to read in the pure image data from the image
-	// collection archive file
-	//
-	for (rotation_index = 0; rotation_index < ROTATION_ANGLES_PER_ROTATION_MODEL; rotation_index++) {
-		for (enemy_phase = 0; enemy_phase < last_stand_animation_image[enemy_model_nr]; enemy_phase++) {
-			// We read the image parameters.  We need those to construct the
-			// surface.  Therefore this must come first.
-			//
-			img_xlen = ReadSint16(ptr);
-			ptr += sizeof(Sint16);
-			img_ylen = ReadSint16(ptr);
-			ptr += sizeof(Sint16);
-			img_x_offs = ReadSint16(ptr);
-			ptr += sizeof(Sint16);
-			img_y_offs = ReadSint16(ptr);
-			ptr += sizeof(Sint16);
-			orig_img_xlen = ReadSint16(ptr);
-			ptr += sizeof(Sint16);
-			orig_img_ylen = ReadSint16(ptr);
-			ptr += sizeof(Sint16);
-
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface =
-				SDL_CreateRGBSurface(SDL_SWSURFACE, img_xlen, img_ylen, 32, rmask, gmask, bmask, amask);
-
-			dest = enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface->pixels;
-			tmplen = 4 * img_xlen * img_ylen;
-			memcpy(dest, ptr, tmplen);
-			ptr += tmplen;
-
-			// This might be useful later, when using only SDL output...
-			//
-			// SDL_SetAlpha( Whole_Image , 0 , SDL_ALPHA_OPAQUE );
-			// our_struct image -> surface = our_SDL_display_format_wrapperAlpha( Whole_Image ); 
-			// now we have an alpha-surf of right size
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].texture_has_been_created = FALSE;
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].offset_x = img_x_offs;
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].offset_y = img_y_offs;
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].w = orig_img_xlen;
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].h = orig_img_ylen;
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_w = img_xlen;
-			enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_h = img_ylen;
-
-			if (use_open_gl) {
-				make_texture_out_of_prepadded_image(&(enemy_images[enemy_model_nr][rotation_index]
-							[enemy_phase]));
-				float tmp = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0;
-				enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y0 = enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1;
-				enemy_images[enemy_model_nr][rotation_index][enemy_phase].tex_y1 = tmp;
-			} else {
-				flip_image_vertically(enemy_images[enemy_model_nr][rotation_index][enemy_phase].surface);
-			}
-		}
-	}
-
-	free(DataBuffer);
-
-	DebugPrintf(1, "\n%s: grabbing new image series DONE.", __FUNCTION__);
-
-	return;
-
-};				// void grab_enemy_images_from_archive ( ... )
-
-/**
  * When the Tux changes equipment and ONE NEW PART IS EQUIPPED, then
  * ALL THE IMAGES FOR THAT PART IN ALL DIRECTIONS AND ALL PHASES must
  * get loaded and that's what is done here...
@@ -2840,7 +2663,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 	SDL_Rect FillRect;
 
 #define ENEMY_ENERGY_BAR_OFFSET_X 0
-#define ENEMY_ENERGY_BAR_OFFSET_Y (-20)
 #define ENEMY_ENERGY_BAR_LENGTH 65
 
 #define ENEMY_ENERGY_BAR_WIDTH 7
@@ -2894,7 +2716,7 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 		int health_pixels = (int) ceil(Percentage * TargetRectangle.w);
 
 		FillRect.x = TargetRectangle.x;
-		FillRect.y = TargetRectangle.y - ENEMY_ENERGY_BAR_WIDTH - ENEMY_ENERGY_BAR_OFFSET_Y;
+		FillRect.y = TargetRectangle.y - ENEMY_ENERGY_BAR_WIDTH;
 		FillRect.h = ENEMY_ENERGY_BAR_WIDTH;
 		FillRect.w = health_pixels;
 
@@ -3066,17 +2888,10 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 	int screen_x, screen_y;
 	translate_map_point_to_screen_pixel(ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, &screen_x, &screen_y);
 
-	if (use_open_gl) {
-		TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].w * zf) / 2;
-		TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].h * zf) / 1;
-		TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w * zf;
-		TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h * zf;
-	} else {
-		TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].surface->w * zf) / 2;
-		TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].surface->h * zf) / 1;
-		TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].surface->w * zf;
-		TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].surface->h * zf;
-	}
+	TargetRectangle.x = screen_x - (enemy_images[RotationModel][RotationIndex][0].w * zf) / 2;
+	TargetRectangle.y = screen_y - (enemy_images[RotationModel][RotationIndex][0].h * zf) / 1;
+	TargetRectangle.w = enemy_images[RotationModel][RotationIndex][0].w * zf;
+	TargetRectangle.h = enemy_images[RotationModel][RotationIndex][0].h * zf;
 
 	if (GameConfig.enemy_energy_bars_visible)
 		PutEnemyEnergyBar(ThisRobot, TargetRectangle);

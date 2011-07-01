@@ -35,6 +35,135 @@
 
 #include "lvledit/lvledit_display.h"
 
+static int current_enemy_nr;
+
+static int __enemy_animation(const char *filename, int *rotation, int *phase, int *first_image, int **last_image)
+{
+	int i;
+	int rotation_index;
+	int phase_index;
+	int first_animation_image;
+	int* last_animation_image;
+
+	struct {
+		const char *format_string;
+		int first_image;
+		int *last_image;
+	} animations[] = {
+		{ "enemy_rot_%02d_walk-%02d.png", first_walk_animation_image[current_enemy_nr], &last_walk_animation_image[current_enemy_nr] },
+		{ "enemy_rot_%02d_attack-%02d.png", first_attack_animation_image[current_enemy_nr], &last_attack_animation_image[current_enemy_nr] },
+		{ "enemy_rot_%02d_gethit-%02d.png", first_gethit_animation_image[current_enemy_nr], &last_gethit_animation_image[current_enemy_nr] },
+		{ "enemy_rot_%02d_death-%02d.png", first_death_animation_image[current_enemy_nr], &last_death_animation_image[current_enemy_nr] },
+		{ "enemy_rot_%02d_stand-%02d.png", first_stand_animation_image[current_enemy_nr], &last_stand_animation_image[current_enemy_nr] }
+	};
+
+	for (i = 0; i < sizeof(animations) / sizeof(animations[0]); i++) {
+		if (sscanf(filename, animations[i].format_string, &rotation_index, &phase_index) == 2) {
+			first_animation_image = animations[i].first_image;
+			last_animation_image = animations[i].last_image;
+			break;
+		}
+	}
+
+	if (i == sizeof(animations) / sizeof(animations[0])) {
+		ErrorMessage(__FUNCTION__, "Unexpected image filename '%s' for enemy '%s'.", PLEASE_INFORM, IS_WARNING_ONLY,
+			filename, PrefixToFilename[current_enemy_nr]);
+		return -1;
+	}
+
+	if (rotation)
+		*rotation = rotation_index;
+	if (phase)
+		*phase = phase_index;
+	if (first_image)
+		*first_image = first_animation_image;
+	if (last_image)
+		*last_image = last_animation_image;
+
+	return 0;
+}
+
+static struct image *get_storage_for_enemy_image(const char *filename)
+{
+	int rotation_index;
+	int phase_index;
+	int first_animation_image;
+
+	if (__enemy_animation(filename, &rotation_index, &phase_index, &first_animation_image, NULL))
+		return NULL;
+
+	return &enemy_images[current_enemy_nr][rotation_index][first_animation_image + phase_index - 1];
+}
+
+static struct image *compute_number_of_phases_for_enemy(const char *filename)
+{
+	int phase_index;
+	int *last_animation_image;
+
+	if (!__enemy_animation(filename, NULL, &phase_index, NULL, &last_animation_image)) {
+		if (*last_animation_image < phase_index + 1)
+			*last_animation_image = phase_index + 1;
+	}
+
+	return NULL;
+}
+
+/**
+ * Enemy animation images are stored in texture atlases. This functions loads all
+ * the images for the given enemy model.
+ * It's typically called once whenever the enemy type is first encountered
+ * in one run of the engine.
+ */
+static void load_enemy_graphics(int enemy_model_nr)
+{
+	char atlas_filename[4096];
+	char atlas_directory[4096];
+
+	sprintf(atlas_filename, "droids/%s/atlas.txt", PrefixToFilename[enemy_model_nr]);
+	sprintf(atlas_directory, "droids/%s/", PrefixToFilename[enemy_model_nr]);
+
+	// The information about cycle length needs to be entered into the
+	// corresponding arrays (usually initialized in blocks.c, for those
+	// series, that don't have an image archive yet...)
+	//
+	last_walk_animation_image[enemy_model_nr] = 0;
+	last_attack_animation_image[enemy_model_nr] = 0;
+	last_gethit_animation_image[enemy_model_nr] = 0;
+	last_death_animation_image[enemy_model_nr] = 0;
+	last_stand_animation_image[enemy_model_nr] = 0;
+
+	current_enemy_nr = enemy_model_nr;
+	if (load_texture_atlas(atlas_filename, atlas_directory, compute_number_of_phases_for_enemy)) {
+		ErrorMessage(__FUNCTION__, "Unable to access the texture atlas for enemy '%s' at '%s'.",
+			PLEASE_INFORM, IS_FATAL, PrefixToFilename[enemy_model_nr], atlas_filename);
+	}
+
+	first_walk_animation_image[enemy_model_nr] = 1;
+	first_attack_animation_image[enemy_model_nr] = last_walk_animation_image[enemy_model_nr] + 1;
+	last_attack_animation_image[enemy_model_nr] += last_walk_animation_image[enemy_model_nr];
+	first_gethit_animation_image[enemy_model_nr] = last_attack_animation_image[enemy_model_nr] + 1;
+	last_gethit_animation_image[enemy_model_nr] += last_attack_animation_image[enemy_model_nr];
+	first_death_animation_image[enemy_model_nr] = last_gethit_animation_image[enemy_model_nr] + 1;
+	last_death_animation_image[enemy_model_nr] += last_gethit_animation_image[enemy_model_nr];
+	first_stand_animation_image[enemy_model_nr] = last_death_animation_image[enemy_model_nr] + 1;
+	last_stand_animation_image[enemy_model_nr] += last_death_animation_image[enemy_model_nr];
+
+	// Now some error checking against more phases in this enemy animation than
+	// currently allowed from the array size...
+	//
+	if (last_stand_animation_image[enemy_model_nr] >= MAX_ENEMY_MOVEMENT_PHASES) {
+		ErrorMessage(__FUNCTION__,
+			"The number of images found in the image collection for enemy model %d is bigger than currently allowed (found %d images, max. %d).",
+			PLEASE_INFORM, IS_FATAL, enemy_model_nr, last_stand_animation_image[enemy_model_nr], MAX_ENEMY_MOVEMENT_PHASES);
+	}
+
+	if (load_texture_atlas(atlas_filename, atlas_directory, get_storage_for_enemy_image)) {
+		ErrorMessage(__FUNCTION__, "Unable to load texture atlas for enemy '%s' at %s.",
+			PLEASE_INFORM, IS_FATAL, PrefixToFilename[enemy_model_nr], atlas_filename);
+	}
+}
+
+
 /**
  * This function loads the Blast image and decodes it into the multiple
  * small Blast surfaces.
@@ -315,10 +444,8 @@ Freedroid received a rotation model number that does not exist: %d\n", PLEASE_IN
 	EnemyFullyPrepared[ModelNr] = TRUE;
 	Activate_Conservative_Frame_Computation();
 
-	grab_enemy_images_from_archive(ModelNr);
-	return;
-
-};				// void LoadAndPrepareEnemyRotationModelNr ( int j )
+	load_enemy_graphics(ModelNr);
+}
 
 /**
  * Read the Enemy Surfaces details from the data stream.

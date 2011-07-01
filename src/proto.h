@@ -149,7 +149,6 @@ void PutMouseMoveCursor(void);
 void clear_all_loaded_tux_images(int with_free);
 int set_rotation_index_for_this_robot(enemy * ThisRobot);
 int set_rotation_model_for_this_robot(enemy * ThisRobot);
-void grab_enemy_images_from_archive(int enemy_model_nr);
 int level_is_visible(int level_num);
 void get_visible_levels(void);
 void reset_visible_levels(void);
