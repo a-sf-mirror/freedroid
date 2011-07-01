@@ -204,7 +204,6 @@ void LightRadiusInit(void);
 void LightRadiusClean(void);
 int get_light_strength_screen(int x, int y);
 int get_light_strength_cell(uint32_t x, uint32_t y);
-int get_light_strength(moderately_finepoint target_pos);
 void update_light_list(void);
 void blit_light_radius(void);
 

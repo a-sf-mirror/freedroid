@@ -979,20 +979,6 @@ int get_light_strength_screen(int x, int y)
 }				// int get_light_screen_strength ( moderately_finepoint target_pos )
 
 /**
- * This function is used to find the light intensity at any given point
- * on the map.
- */
-int get_light_strength(moderately_finepoint target_pos)
-{
-	int x, y;
-
-	x = translate_map_point_to_screen_pixel_x(target_pos.x, target_pos.y);
-	y = translate_map_point_to_screen_pixel_y(target_pos.x, target_pos.y);
-
-	return get_light_strength_screen(x, y);
-}
-
-/**
  * This function should blit the shadows on the floor, that are used to
  * generate the impression of a 'light radius' around the players 
  * character.
