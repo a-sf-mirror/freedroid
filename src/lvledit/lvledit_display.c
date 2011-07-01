@@ -162,15 +162,15 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 		return;
 	for (i = 0; i < steps + 1; i++) {
 		float x, y;
-		int r, g, b;
+		float r, g, b;
 		x = (((float)i) / steps) * x1 + x2 * (steps - i) / steps;
 		y = (((float)i) / steps) * y1 + y2 * (steps - i) / steps;
 
-		r = 255;
+		r = 1.0;
 		if (rspawn)
 			g = b = 0;
 		else
-			g = b = 255;
+			g = b = 1.0;
 
 		display_image_on_map(&level_editor_dot_cursor, x, y, IMAGE_SCALE_RGB_TRANSFO(scale, r, g, b));
 
