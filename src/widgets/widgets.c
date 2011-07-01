@@ -153,8 +153,6 @@ void widget_lvledit_init()
 			_("New map label\n\nUse this button to attach a new map label to the current cursor position.  These map labels can be used to define starting points for bots and characters or also to define locations for events and triggers.")},
 		{LEVEL_EDITOR_EDIT_CHEST_BUTTON, NULL,
 			_("Edit chests contents\n\nUse this button to change the contents of the chest. If it is empty the game may generate random items at run time.")},
-		{LEVEL_EDITOR_ESC_BUTTON, NULL,
-			_("Menu\n\nUse this button to enter the main menu of the level editor.\n Note, that you can also use the Escape key to enter the level editor main menu.")},
 		{LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON, NULL,
 			_("Toggle display enemies\n\nUse this button to toggle between enemies displayed in level editor or enemies hidden in level editor.")},
 		{LEVEL_EDITOR_TOGGLE_TOOLTIPS_BUTTON, NULL,

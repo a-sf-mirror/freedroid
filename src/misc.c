@@ -119,10 +119,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 
 
 /* upper right are directly under the object selector*/
-	[LEVEL_EDITOR_ESC_BUTTON] =
-		{EMPTY_IMAGE, "mouse_buttons/LevelEditorESCButton.png", {-90, 80, 0, 0}, FALSE},
-	[LEVEL_EDITOR_ESC_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorESCButtonPushed.png", {-89, 79, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorSaveShipButton.png", {-60, 80, 0, 0}, FALSE},
 	[LEVEL_EDITOR_SAVE_SHIP_BUTTON_PUSHED] =

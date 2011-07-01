@@ -82,9 +82,6 @@ static void activate_button(struct widget_button *b)
 	case LEVEL_EDITOR_EDIT_CHEST_BUTTON:
 		level_editor_edit_chest(single_tile_selection(OBJECT_OBSTACLE));
 		break;
-	case LEVEL_EDITOR_ESC_BUTTON:
-		level_editor_done = DoLevelEditorMainMenu();
-		break;
 	case LEVEL_EDITOR_TOGGLE_ENEMIES_BUTTON:
 		GameConfig.omit_enemies_in_level_editor = !GameConfig.omit_enemies_in_level_editor;
 		break;
