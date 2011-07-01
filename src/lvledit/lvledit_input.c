@@ -117,14 +117,15 @@ static void level_editor_auto_scroll()
 	static int edgedate[4] = { 0, 0, 0, 0 };
 
 #define AUTOSCROLL_DELAY 500
+#define AUTOSCROLL_SPEED 20
 
 	if (GetMousePos_x() < 5) {
 		// scroll to the left
 		if (edgedate[0] == 0) {
 			edgedate[0] = SDL_GetTicks();
 		} else if (SDL_GetTicks() - edgedate[0] > AUTOSCROLL_DELAY) {
-			chx -= 0.05;
-			chy += 0.05;
+			chx -= AUTOSCROLL_SPEED * Frame_Time();
+			chy += AUTOSCROLL_SPEED * Frame_Time();
 		}
 	} else {
 		edgedate[0] = 0;
@@ -135,8 +136,8 @@ static void level_editor_auto_scroll()
 		if (edgedate[1] == 0) {
 			edgedate[1] = SDL_GetTicks();
 		} else if (SDL_GetTicks() - edgedate[1] > AUTOSCROLL_DELAY) {
-			chx += 0.05;
-			chy -= 0.05;
+			chx += AUTOSCROLL_SPEED * Frame_Time();
+			chy -= AUTOSCROLL_SPEED * Frame_Time();
 		}
 	} else {
 		edgedate[1] = 0;
@@ -147,8 +148,8 @@ static void level_editor_auto_scroll()
 		if (edgedate[2] == 0) {
 			edgedate[2] = SDL_GetTicks();
 		} else if (SDL_GetTicks() - edgedate[2] > AUTOSCROLL_DELAY) {
-			chx += 0.05;
-			chy += 0.05;
+			chx += AUTOSCROLL_SPEED * Frame_Time();
+			chy += AUTOSCROLL_SPEED * Frame_Time();
 		}
 	} else {
 		edgedate[2] = 0;
@@ -159,8 +160,8 @@ static void level_editor_auto_scroll()
 		if (edgedate[3] == 0) {
 			edgedate[3] = SDL_GetTicks();
 		} else if (SDL_GetTicks() - edgedate[3] > AUTOSCROLL_DELAY) {
-			chx -= 0.05;
-			chy -= 0.05;
+			chx -= AUTOSCROLL_SPEED * Frame_Time();
+			chy -= AUTOSCROLL_SPEED * Frame_Time();
 		}
 	} else {
 		edgedate[3] = 0;

@@ -71,9 +71,11 @@ int leveleditor_move_input(SDL_Event * event)
 		b = translate_point_to_map_location(GetMousePos_x() - (GameConfig.screen_width / 2),
 						    GetMousePos_y() - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
 
+#define SCROLL_SPEED_FACTOR 4
+
 		// Calculate the new position
-		Me.pos.x += (b.x - a.x) / 10.0;
-		Me.pos.y += (b.y - a.y) / 10.0;
+		Me.pos.x += SCROLL_SPEED_FACTOR * Frame_Time() * (b.x - a.x);
+		Me.pos.y += SCROLL_SPEED_FACTOR * Frame_Time() * (b.y - a.y);
 
 		if (Me.pos.x > curShip.AllLevels[Me.pos.z]->xlen)
 			Me.pos.x = curShip.AllLevels[Me.pos.z]->xlen - 1;
