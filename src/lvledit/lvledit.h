@@ -156,6 +156,7 @@ enum lvledit_object_type {
 	OBJECT_FLOOR,
 	OBJECT_ITEM,
 	OBJECT_WAYPOINT,
+	OBJECT_MAP_LABEL,
 	OBJECT_NONE,
 };
 

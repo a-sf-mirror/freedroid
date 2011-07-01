@@ -153,6 +153,8 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 			return &(level_editor_waypoint_cursor[idx]);
 	case OBJECT_ITEM:
 			return get_item_shop_image(array[idx]);
+	case OBJECT_MAP_LABEL:
+			return NULL;
 	default:
 			ErrorMessage(__FUNCTION__, "Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_FATAL, type);
 			break;

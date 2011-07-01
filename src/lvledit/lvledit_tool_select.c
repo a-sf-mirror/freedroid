@@ -119,6 +119,12 @@ int element_in_selection(void *data)
 				((waypoint *)e->data)->y == ((waypoint *)data)->y)
 				return 1;
 			break;
+		case OBJECT_MAP_LABEL:
+			// We must compare the coordinates of the two map labels
+			if (((map_label *)e->data)->pos.x == ((map_label *)data)->pos.x &&
+				((map_label *)e->data)->pos.y == ((map_label *)data)->pos.y)
+				return 1;
+			break;
 		default:
 			if (e->data == data)
 				return 1;
@@ -147,6 +153,7 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 	waypoint *w;
 	obstacle *o;
 	item *it;
+	map_label *m;
 	
 	cmin->x = 9999;
 	cmin->y = 9999;
@@ -174,6 +181,11 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 			w = e->data;
 
 			__calc_min_max(w->x, w->y, cmin, cmax);
+			break;
+		case OBJECT_MAP_LABEL:
+			m = e->data;
+
+			__calc_min_max(m->pos.x, m->pos.y, cmin, cmax);
 			break;
 		default:
 			;
@@ -215,8 +227,8 @@ static void __clear_selected_list(struct list_head *lst, int nbelem)
 	list_for_each_entry_safe(e, ne, lst, node) {
 		if (nbelem-- == 0)
 			return;
-		if (e->type == OBJECT_FLOOR || e->type == OBJECT_WAYPOINT) {
-			/* Unselecting floor tiles or waypoints requires freeing the duplicated data */
+		if (e->type == OBJECT_FLOOR || e->type == OBJECT_WAYPOINT || e->type == OBJECT_MAP_LABEL) {
+			/* Unselecting floor tiles, waypoints or map labels requires freeing the duplicated data */
 			free(e->data);
 		}
 		list_del(&e->node);
@@ -288,6 +300,24 @@ static void select_item_on_tile(int x, int y)
 	}
 }
 
+static void select_map_label_on_tile(int x, int y)
+{
+	map_label *labels = EditLevel()->map_labels.arr;
+	int i;
+
+	for (i = 0; i < EditLevel()->map_labels.size; i++) {
+		if (labels[i].pos.x == x && labels[i].pos.y == y) {
+			if (!element_in_selection(&labels[i])) {
+				map_label *m = MyMalloc(sizeof(map_label));
+				memcpy(m, &labels[i], sizeof(map_label));
+
+				add_object_to_list(&selected_elements, m, OBJECT_MAP_LABEL);
+				state.rect_nbelem_selected++;
+			}
+		}
+	}
+}
+
 static void select_object_on_tile(int x, int y)
 {
 	switch (selection_type()) {
@@ -302,6 +332,9 @@ static void select_object_on_tile(int x, int y)
 		break;
 	case OBJECT_ITEM:
 		select_item_on_tile(x, y);
+		break;
+	case OBJECT_MAP_LABEL:
+		select_map_label_on_tile(x, y);
 		break;
 	default:
 		ErrorMessage(__FUNCTION__,
@@ -1068,8 +1101,8 @@ void level_editor_switch_selection_type(int direction)
 {
 	int type = selection_type() + direction;
 	if (type < 0)
-		type = OBJECT_WAYPOINT;
-	else if (type > OBJECT_WAYPOINT)
+		type = OBJECT_MAP_LABEL;
+	else if (type > OBJECT_MAP_LABEL)
 		type = OBJECT_OBSTACLE;
 	lvledit_select_type(type);
 }

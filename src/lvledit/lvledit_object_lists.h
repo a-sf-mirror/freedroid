@@ -16,6 +16,7 @@ extern int *gun_items_list;
 extern int *defense_items_list;
 extern int *spell_items_list;
 extern int *other_items_list;
+extern int *map_label_list;
 extern int *all_items_list;
 
 void lvledit_build_tile_lists(void);

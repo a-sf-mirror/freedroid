@@ -208,6 +208,11 @@ static int waypoint_array[] = {
 	-1
 };
 
+static int map_label_array[] = {
+	0,
+	-1
+};
+
 int *floor_tiles_list = floor_tiles_array;
 int *wall_tiles_list = NULL;
 int *machinery_tiles_list = NULL;
@@ -216,6 +221,7 @@ int *container_tiles_list = NULL;
 int *plant_tiles_list = NULL;
 int *misc_tiles_list = NULL;
 int *waypoint_list = waypoint_array;
+int *map_label_list = map_label_array;
 
 int *sidewalk_floor_list;
 int *water_floor_list;

@@ -77,6 +77,10 @@ static object_category waypoint_category_list[] = {
 	{ "ALL", &waypoint_list }
 };
 
+static object_category map_label_category_list[] = {
+	{ "ALL", &map_label_list }
+};
+
 static struct {
 	enum lvledit_object_type object_type;
 	object_category *categories;
@@ -86,6 +90,7 @@ static struct {
 	{ OBJECT_FLOOR, floor_category_list, sizeof(floor_category_list) / sizeof(floor_category_list[0]) },
 	{ OBJECT_ITEM, item_category_list, sizeof(item_category_list) / sizeof(item_category_list[0]) },
 	{ OBJECT_WAYPOINT, waypoint_category_list, sizeof(waypoint_category_list) / sizeof(waypoint_category_list[0]) },
+	{ OBJECT_MAP_LABEL, map_label_category_list, sizeof(map_label_category_list) / sizeof(waypoint_category_list[0]) },
 };
 
 LIST_HEAD(widget_list);
@@ -172,7 +177,8 @@ void widget_lvledit_init()
 		{LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON, "OBSTACLE", NULL},
 		{LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON, "FLOOR", NULL},
 		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, "ITEM", NULL},
-		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, "WAYPOINT", NULL},
+		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, "WP", NULL},
+		{LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON, "LABEL", NULL},
 	};
 
 	int i, j;
@@ -307,6 +313,9 @@ void leveleditor_update_button_states()
 			break;
 		case LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON:
 			b->active = 2 * (selection_type() == OBJECT_WAYPOINT);
+			break;
+		case LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON:
+			b->active = 2 * (selection_type() == OBJECT_MAP_LABEL);
 			break;
 		}
 	}

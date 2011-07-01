@@ -252,6 +252,7 @@ static void show_map_labels(int must_zoom)
 	level *EditLevel = curShip.AllLevels[Me.pos.z];
 	struct map_label *map_label;
 	int i;
+	float r, g, b;
 	float scale = must_zoom ? lvledit_zoomfact_inv() : 1.0;
 	int x_min, x_max, y_min, y_max;
 
@@ -269,13 +270,16 @@ static void show_map_labels(int must_zoom)
 		// Get the map label
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
+		// Apply disco mode when the current map label is selected
+		object_vtx_color(map_label, &r, &g, &b);
+
 		// Skip map labels that are not visible
 		if (map_label->pos.x < x_min || map_label->pos.x > x_max)
 			continue;
 		if (map_label->pos.y < y_min || map_label->pos.y > y_max)
 			continue;
 
-		display_image_on_map(&map_label_indicator, map_label->pos.x + 0.5, map_label->pos.y + 0.5, IMAGE_SCALE_TRANSFO(scale));
+		display_image_on_map(&map_label_indicator, map_label->pos.x + 0.5, map_label->pos.y + 0.5, IMAGE_SCALE_RGB_TRANSFO(scale, r, g, b));
 	}
 }
 

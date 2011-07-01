@@ -124,6 +124,9 @@ static void activate_button(struct widget_button *b)
 	case LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON:
 		lvledit_select_type(OBJECT_WAYPOINT);
 		break;
+	case LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON:
+		lvledit_select_type(OBJECT_MAP_LABEL);
+		break;
 	default:
 		ErrorMessage(__FUNCTION__, "Button type %d unhandled.", PLEASE_INFORM, IS_WARNING_ONLY, idx);
 	}
