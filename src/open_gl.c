@@ -692,8 +692,7 @@ void light_radius_update_stretched_texture(void)
 
 			alpha = 255 - (alpha_factor) * ((float)light_strength);
 
-			PutPixel32(light_radius_stretch_surface, x, y,
-				   SDL_MapRGBA(light_radius_stretch_surface->format, red, green, blue, alpha));
+			sdl_put_pixel(light_radius_stretch_surface, x, y, red, green, blue, alpha);
 
 		}
 	}

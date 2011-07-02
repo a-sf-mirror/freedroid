@@ -465,19 +465,6 @@ void LeftPutStringFont(SDL_Surface * Surface, BFont_Info * Font, int y, char *te
 	PutStringFont(Surface, Font, 0, y, text);
 }
 
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-
-inline void PutPixel32(SDL_Surface * surface, int x, int y, Uint32 pixel)
-{
-	Uint8 *p;
-	p = (Uint8 *) surface->pixels + y * surface->pitch + x * 4;
-
-	*(Uint32 *) p = pixel;
-
-}				// void PutPixel ( ... )
-
 /**
  * NOTE:  I THINK THE SURFACE MUST BE LOCKED FOR THIS!
  *
