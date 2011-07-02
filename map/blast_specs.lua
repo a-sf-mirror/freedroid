@@ -23,8 +23,8 @@ blast {
 
 blast {
 	name = "iso_blast_exterminator",
-	phases = 20,
-	animation_time = 1.0,
+	phases = 28,
+	animation_time = 1.6,
 	do_damage = 1,
 	sound_file = "Blast_Sound_0.ogg"
 }
