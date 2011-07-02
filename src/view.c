@@ -1830,12 +1830,13 @@ void draw_grid_on_the_floor(int mask)
  * ----------------------------------------------------------------- */
 void AssembleCombatPicture(int mask)
 {
-	// We generate a list of obstacles (and other stuff) that might
-	// emit some light.  It should be sufficient to establish this
-	// list once in the code and the to use it for all light computations
-	// of this frame.
-	//
-	update_light_list();
+	if ((!GameConfig.skip_light_radius) && (!(mask & SKIP_LIGHT_RADIUS))) {
+		// We generate a list of obstacles (and other stuff) that might
+		// emit some light.  It should be sufficient to establish this
+		// list once in the code and the to use it for all light computations
+		// of this frame.
+		update_light_list();
+	}
 
 	show_floor(mask);
 
