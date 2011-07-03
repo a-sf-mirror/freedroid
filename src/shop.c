@@ -553,14 +553,14 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 				}
 				MoveMenuPositionSound();
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), FALSE)) >= 0)) {
-				if (RowStart + ClickTarget < NumberOfItems) {
+				if (ClickTarget < RowLength) {
 					ItemIndex = RowStart + ClickTarget;
 					TuxItemIndex = (-1);
 					fill_item_description(&item_description, ShowPointerList[ItemIndex], 1);
 					item_description.scroll_offset = scroll_to_top;
 				}
 			} else if (((ClickTarget = ClickWasOntoItemRowPosition(GetMousePos_x(), GetMousePos_y(), TRUE)) >= 0)) {
-				if (TuxRowStart + ClickTarget < NumberOfItemsInTuxRow) {
+				if (ClickTarget < RowLength) {
 					TuxItemIndex = TuxRowStart + ClickTarget;
 					ItemIndex = (-1);
 					fill_item_description(&item_description, TuxItemsList[TuxItemIndex], 0);
