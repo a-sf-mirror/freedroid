@@ -1318,6 +1318,8 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 	int item_under_cursor = -1;
 	level *item_under_cursor_lvl = NULL;
 	
+	start_image_batch();
+
 	int i;
 	for (i = 0; i < blitting_list->size; i++) {
 		struct blitting_list_element *e = &((struct blitting_list_element *)(blitting_list->arr))[i];
@@ -1396,6 +1398,8 @@ void blit_preput_objects_according_to_blitting_list(int mask)
 			break;
 		}
 	}
+
+	end_image_batch();
 
 }				// void blit_preput_objects_according_to_blitting_list ( ... )
 
