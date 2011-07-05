@@ -1,7 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-atlas_DATA = obstacles/atlas.txt obstacles/shadow_atlas.txt floor_tiles/atlas.txt
-
-atlasdir=graphics/obstacles/
+noinst_DATA = obstacles/atlas.txt obstacles/shadow_atlas.txt floor_tiles/atlas.txt
 
 obstacles/atlas.txt: obstacles/iso_*.png obstacles/iso_*.offset
 	cd obstacles; ./../../gluem/make_atlas obstacles_atlas 2048 2048 atlas.txt iso_*.png
