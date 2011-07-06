@@ -92,7 +92,7 @@ static void activate_button(struct widget_button *b)
 		draw_collision_rectangles = !draw_collision_rectangles;
 		break;
 	case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
-		GameConfig.show_grid = (GameConfig.show_grid + 1) % 3;
+		GameConfig.show_grid = !GameConfig.show_grid;
 		break;
 	case LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON:
 		GameConfig.omit_obstacles_in_level_editor = !GameConfig.omit_obstacles_in_level_editor;
@@ -155,6 +155,11 @@ static void activate_button_secondary(struct widget_button *b)
 			VanishingMessageEndDate = SDL_GetTicks() + 1000;
 		}
 		break;
+
+	case LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF:
+		GameConfig.grid_mode = (GameConfig.grid_mode + 1) % 2;
+		break;
+
 	default:
 		break;
 	}

@@ -144,6 +144,7 @@ typedef struct configuration_for_freedroid {
 	int show_tooltips;
 	int show_grid;
 	int show_wp_connections;
+	int grid_mode;
 	int number_of_big_screen_messages;
 	float delay_for_big_screen_messages;
 	int enable_cheatkeys;

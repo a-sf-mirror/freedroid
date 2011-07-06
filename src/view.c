@@ -1754,7 +1754,7 @@ void draw_grid_on_the_floor(int mask)
 
 	float dd;
 
-	if (GameConfig.show_grid >= 2) {	// large grid
+	if (GameConfig.grid_mode == 1) {	// large grid
 
 		if (LineStart < 0)
 			LineStart = 0;

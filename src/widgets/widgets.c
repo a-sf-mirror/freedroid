@@ -208,7 +208,7 @@ void widget_lvledit_init()
 		{LEVEL_EDITOR_TOGGLE_COLLISION_RECTS_BUTTON, NULL,
 			_("Toggle display collision rectangles\n\nUse this button to toggle the visible collision rectangles on and off.")},
 		{LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF, NULL,
-			_("Change grid mode ( placement / full / off )")},
+			_("Toggle grid mode.\n\nUse this button to toggle grid displaying on and off.\n\nUse right click to change the grid mode.")},
 		{LEVEL_EDITOR_TOGGLE_OBSTACLES_BUTTON, NULL,
 			_("Toggle display obstacles\n\nUse this button to toggle between obstacles displayed in level editor or obstacles hidden in level editor.")},
 		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL,

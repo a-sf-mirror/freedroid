@@ -30,7 +30,7 @@ Important note: You will only be able to select things that are included in the 
 In order to select this mode, click on button that says 'Obstacle' of the category selector on the left lower area.
 Having selected an obstacle, just click somewhere on the map to place it at the cursor's position.
 Since clicking is a little imprecise, you can also use your numberpad to place obstacles.
-Click on the leftmost (it shows a small grid) of the five button above category selector to have a grid with numbers displayed.
+Click on the leftmost (it shows a small grid) of the five button above category selector to have a grid with numbers displayed. Use left click for switching the grid on and off and right click for changing the grid mode.
 These numbers refer to the numbers of your numberpad if you have one. Pressing '1' will place the obstacle that is highlighted in the object selector at the position of the digit '1' on the purple grid.
 Since placing a line of walls that way is quite inefficient, you can simply hold down the left mouse button and a line of walls is placed as you move the cursor if you have a wall object selected. This works with the most common walls in FreedroidRPG.
 While holding the left mouse button down and placing walls, a click with the right mouse button will remove all the walls you drew after starting to hold down the left mouse button.
