@@ -118,3 +118,13 @@ void dynarray_del(struct dynarray *array, int index, size_t membersize)
 		array->size--;
 	}
 }
+
+/**
+ * \brief Get a pointer to an element in a dynamic array.
+ * \param index Index of the element
+ * \param membersize Size of the elements in the array
+ */
+void *dynarray_member(struct dynarray *array, int index, size_t membersize)
+{
+	return array->arr + membersize * index;
+}

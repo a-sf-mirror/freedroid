@@ -160,7 +160,7 @@ void move_obstacle(obstacle *o, float newx, float newy)
 
 obstacle_spec *get_obstacle_spec(int index)
 {
-	return (obstacle_spec *)obstacle_map.arr + index;
+	return dynarray_member(&obstacle_map, index, sizeof(obstacle_spec));
 }
 
 #undef _obstacle_c
