@@ -615,6 +615,27 @@ void free_obstacle_graphics(void)
 	}
 }
 
+/**
+ * Check if all images for obstacles were loaded correctly. Issue warnings for
+ * missing images.
+ */
+static void validate_obstacle_graphics(void)
+{
+	int i, j;
+	for (i = 0; i < obstacle_map.size; i++) {
+		struct obstacle_graphics *graphics = &((struct obstacle_graphics *)obstacle_images.arr)[i];
+		for (j = 0; j < graphics->count; j++) {
+			const char *filename = ((char **)get_obstacle_spec(i)->filenames.arr)[j];
+			if (!image_loaded(&graphics->images[j])) {
+				if (strcmp(filename, "DUMMY OBSTACLE")) {
+					ErrorMessage(__FUNCTION__, "Could not load the image '%s' for obstacle %d.",
+						PLEASE_INFORM, IS_WARNING_ONLY, filename, i);
+				}
+			}
+		}
+	}
+}
+
 static struct image *get_storage_for_obstacle_image(const char *filename)
 {
 	int i, j;
@@ -680,6 +701,8 @@ void load_all_obstacles(int with_startup_bar)
 
 	if (with_startup_bar)
 		next_startup_percentage(8);
+
+	validate_obstacle_graphics();
 }
 
 static struct image *get_storage_for_floor_tile(const char *filename)

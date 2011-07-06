@@ -259,7 +259,15 @@ void lvledit_set_obstacle_list_for_category(const char *category_name, struct dy
 		const char *filename = ((const char **)obstacles_filenames->arr)[i];
 
 		for (j = 0; j < obstacle_map.size; j++) {
-			if (!strcmp(filename, ((char **)get_obstacle_spec(j)->filenames.arr)[0])) {
+			const char *current_filename = ((char **)get_obstacle_spec(j)->filenames.arr)[0];
+			if (!strcmp(filename, current_filename)) {
+				// If the image isn't loaded the obstacle isn't inserted in the obstacle list
+				if (!image_loaded(get_obstacle_image(j, 0))) {
+					ErrorMessage(__FUNCTION__, "The image '%s' for obstacle %d isn't loaded. The obstacle won't be included in obstacle list in the leveleditor.",
+						PLEASE_INFORM, IS_WARNING_ONLY, current_filename);
+					break;
+				}
+
 				idx_list[idx++] = j;
 				break;
 			}
