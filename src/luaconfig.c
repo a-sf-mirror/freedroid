@@ -125,8 +125,15 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 			}
 		} else {
 			// The data is not in the lua table: initialize the dynarray
-			// with 1 empty slot (to possibly receive a default value)
+			// with 1 empty slot (to possibly receive a single lua value
+			// or a default value)
 			dynarray_init((struct dynarray *)result, 1, sizeof(int));
+			// If the data is a single value fill the dynarray slot
+			if (ltype == LUA_TNUMBER) {
+				int value = lua_tointeger(L, -1);
+				dynarray_add((struct dynarray *)result, &value, sizeof(int));
+				found_and_valid = TRUE;
+			}
 		}
 		break;
 	case FLOAT_ARRAY:
@@ -145,8 +152,15 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 			}
 		} else {
 			// The data is not in the lua table: initialize the dynarray
-			// with 1 empty slot (to possibly receive a default value)
+			// with 1 empty slot (to possibly receive a single lua value
+			// or a default value)
 			dynarray_init((struct dynarray *)result, 1, sizeof(float));
+			// If the data is a single value fill the dynarray slot
+			if (ltype == LUA_TNUMBER) {
+				float value = (float)lua_tonumber(L, -1);
+				dynarray_add((struct dynarray *)result, &value, sizeof(float));
+				found_and_valid = TRUE;
+			}
 		}
 		break;
 	case STRING_ARRAY:
@@ -165,8 +179,15 @@ static int set_value_from_table(lua_State *L, int index, const char *field, enum
 			}
 		} else {
 			// The data is not in the lua table: initialize the dynarray
-			// with 1 empty slot (to possibly receive a default value)
+			// with 1 empty slot (to possibly receive a single lua value
+			// or a default value)
 			dynarray_init((struct dynarray *)result, 1, sizeof(char *));
+			// If the data is a single value fill the dynarray slot
+			if (ltype == LUA_TSTRING) {
+				char *value = strdup(lua_tostring(L, -1));
+				dynarray_add((struct dynarray *)result, &value, sizeof(char *));
+				found_and_valid = TRUE;
+			}
 		}
 		break;
 	default:
@@ -536,11 +557,8 @@ static int lua_obstacle_ctor(lua_State *L)
 	};
 
 	if (!set_value_from_table(L, 1, "image_filenames", STRING_ARRAY, &obstacle.filenames)) {
-		obstacle.filenames.size = 1;
-		if (!set_value_from_table(L, 1, "image_filenames", STRING_TYPE, (char **)obstacle.filenames.arr)) {
 			ErrorMessage(__FUNCTION__, "No image filename for obstacle. At least one image filename must be given.",
 				PLEASE_INFORM, IS_FATAL);
-		}
 	}
 
 	set_structure_from_table(L, data_specs);
