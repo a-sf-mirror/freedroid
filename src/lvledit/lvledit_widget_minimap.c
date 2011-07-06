@@ -71,69 +71,40 @@ static void minimap_to_screen(float x, float y, int *screen_x, int *screen_y)
 	*screen_y = temp_y + MINIMAP_CENTER_Y;
 }
 
-static void widget_lvledit_minimap_mouseenter(SDL_Event *event, struct widget *w)
-{
-	struct widget_lvledit_minimap *m = w->ext;
-	(void)m;
-}
-
-static void widget_lvledit_minimap_mouseleave(SDL_Event *event, struct widget *w)
-{
-	struct widget_lvledit_minimap *m = w->ext;
-	(void)m;
-}
-
-static void widget_lvledit_minimap_mouserelease(SDL_Event *event, struct widget *w)
-{
-	struct widget_lvledit_minimap *m = w->ext;
-	(void)m;
-}
-
-static void widget_lvledit_minimap_mousepress(SDL_Event *event, struct widget *w)
-{
-	gps vpos, rpos;
-
-	// Translate a given screen coordinates to minimap point
-	screen_to_minimap(event->button.x, event->button.y, &vpos.x, &vpos.y);
-	vpos.z = EditLevel()->levelnum;
-
-	if (!resolve_virtual_position(&rpos, &vpos)) {
-		return;
-	}
-
-	action_jump_to_level(rpos.z, rpos.x, rpos.y);
-}
-
-static void widget_lvledit_minimap_mouserightrelease(SDL_Event *event, struct widget *w)
-{
-	struct widget_lvledit_minimap *m = w->ext;
-	(void)m;
-}
-
-static void widget_lvledit_minimap_mouserightpress(SDL_Event *event, struct widget *w)
-{
-	struct widget_lvledit_minimap *m = w->ext;
-	(void)m;
-}
-
-static void widget_lvledit_minimap_mousewheelup(SDL_Event *event, struct widget *w)
-{
-	minimap_scale += 10.0;
-	minimap_scale = min(500.0, minimap_scale);
-}
-
-static void widget_lvledit_minimap_mousewheeldown(SDL_Event *event, struct widget *w)
-{
-	minimap_scale -= 10.0;
-	minimap_scale = max(1.0, minimap_scale);
-}
-
 static void draw_line_at_minimap_position(float x1, float y1, float x2, float y2)
 {
 	int r1, c1, r2, c2;
 	minimap_to_screen(x1, y1, &r1, &c1);
 	minimap_to_screen(x2, y2, &r2, &c2);
 	draw_line(r1, c1, r2, c2, SDL_MapRGB(Screen->format, 0xFF, 0xFF, 0xFF), 1);
+}
+
+static int minimap_handle_event(struct widget *w, SDL_Event *event)
+{
+	gps vpos, rpos;
+	if (event->type == SDL_MOUSEBUTTONDOWN)
+		switch (event->button.button) {
+			case MOUSE_BUTTON_1:
+				screen_to_minimap(event->button.x, event->button.y, &vpos.x, &vpos.y);
+				vpos.z = EditLevel()->levelnum;
+				if (resolve_virtual_position(&rpos, &vpos))
+					action_jump_to_level(rpos.z, rpos.x, rpos.y);
+				return 1;
+
+			case SDL_BUTTON_WHEELUP:
+				minimap_scale += 10.0;
+				minimap_scale = min(500.0, minimap_scale);
+				return 1;
+
+			case SDL_BUTTON_WHEELDOWN:
+				minimap_scale -= 10.0;
+				minimap_scale = max(1.0, minimap_scale);
+				return 1;
+
+			default:
+				break;
+		}
+	return 0;
 }
 
 static void minimap_display(struct widget *w)
@@ -185,14 +156,7 @@ struct widget *widget_lvledit_minimap_create()
 	a->type = WIDGET_MINIMAP;
 	widget_set_rect(a, GameConfig.screen_width - WIDGET_MINIMAP_WIDTH, GameConfig.screen_height - WIDGET_MINIMAP_HEIGHT, WIDGET_MINIMAP_WIDTH, WIDGET_MINIMAP_HEIGHT); 
 	a->display = minimap_display;
-	a->mouseenter = widget_lvledit_minimap_mouseenter;
-	a->mouseleave = widget_lvledit_minimap_mouseleave;
-	a->mouserelease = widget_lvledit_minimap_mouserelease;
-	a->mousepress = widget_lvledit_minimap_mousepress;
-	a->mouserightrelease = widget_lvledit_minimap_mouserightrelease;
-	a->mouserightpress = widget_lvledit_minimap_mouserightpress;
-	a->mousewheelup = widget_lvledit_minimap_mousewheelup;
-	a->mousewheeldown = widget_lvledit_minimap_mousewheeldown;
+	a->handle_event = minimap_handle_event;
 	a->enabled = 1;
 
 	struct widget_lvledit_minimap *n = MyMalloc(sizeof(struct widget_lvledit_minimap));

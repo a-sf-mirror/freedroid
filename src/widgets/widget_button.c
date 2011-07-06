@@ -160,64 +160,52 @@ static void activate_button_secondary(struct widget_button *b)
 	}
 }
 
-static void widget_button_mouseenter(SDL_Event *event, struct widget *vb)
+/**
+ * Generic handle event function for buttons.
+ * 
+ * Buttons have two primary states: normal and pressed.
+ * Pressed state is switched on on mouse press event and switched off
+ * on mouse release or mouse leave event.
+ * 
+ * Buttons have one primary and one secondary action. The primary action is
+ * triggered on left mouse button release while the secondary action is 
+ * triggered on right mouse button release. Both actions require
+ * the button to be in pressed state when receiving the release event
+ * to be triggered.
+ */
+static int button_handle_event(struct widget *w, SDL_Event *event)
 {
-	struct widget_button *b = vb->ext;
-	(void)b;
-}
+	struct widget_button *b = w->ext;
+	switch (event->type) {
+		case SDL_MOUSEBUTTONDOWN:
+			// Button has been pressed.
+			b->pressed = 1;
+			return 1;
 
-static void widget_button_mouseleave(SDL_Event *event, struct widget *vb)
-{
-	struct widget_button *b = vb->ext;
-	b->pressed = 0;
-}
+		case SDL_MOUSEBUTTONUP:
+			// Trigger the button if it is currently pressed.
+			if (b->pressed) {
+				b->pressed = 0;
+				if (event->button.button == MOUSE_BUTTON_1)
+					activate_button(b);
+				if (event->button.button == MOUSE_BUTTON_3)
+					activate_button_secondary(b);
+			}
+			break;
 
-static void widget_button_mouserelease(SDL_Event *event, struct widget *vb)
-{
-	struct widget_button *b = vb->ext;
-	if (b->pressed) {
-		/* Validate the click: ACTION */
-		activate_button(b);
-		b->pressed = 0;
+		case SDL_USEREVENT:
+			// Mouse left the button's rectangle, switch to normal state.
+			if (event->user.code == EVENT_MOUSE_LEAVE) {
+				b->pressed = 0;
+			}
+			if (event->user.code == EVENT_UPDATE && w->update)
+				w->update(w);
+			break;
+
+		default:
+			break;
 	}
-}
-
-static void widget_button_mousepress(SDL_Event *event, struct widget *vb)
-{
-	struct widget_button *b = vb->ext;
-
-	b->pressed = 1;
-}
-
-static void widget_button_mouserightrelease(SDL_Event *event, struct widget *vb)
-{
-	struct widget_button *b = vb->ext;
-	if (b->pressed) {
-		/* Validate the click: ACTION */
-		activate_button_secondary(b);
-		b->pressed = 0;
-	}
-}
-
-static void widget_button_mouserightpress(SDL_Event *event, struct widget *vb)
-{
-	struct widget_button *b = vb->ext;
-
-	b->pressed = 1;
-}
-
-static void widget_button_mousewheelup(SDL_Event *event, struct widget *vb)
-{
-	struct widget_button *b = vb->ext;
-	(void)b;
-	//do nothing;
-}
-
-static void widget_button_mousewheeldown(SDL_Event *event, struct widget *vb)
-{
-	struct widget_button *b = vb->ext;
-	(void)b;
-	//do nothing;
+	return 0;
 }
 
 static void button_display(struct widget *vb)
@@ -256,14 +244,7 @@ struct widget *widget_button_create(int btype, char *text, char *tooltip)
 	a->type = WIDGET_BUTTON;
 	a->display = button_display;
 	a->rect = AllMousePressButtons[btype].button_rect;
-	a->mouseenter = widget_button_mouseenter;
-	a->mouseleave = widget_button_mouseleave;
-	a->mouserelease = widget_button_mouserelease;
-	a->mousepress = widget_button_mousepress;
-	a->mouserightrelease = widget_button_mouserightrelease;
-	a->mouserightpress = widget_button_mouserightpress;
-	a->mousewheelup = widget_button_mousewheelup;
-	a->mousewheeldown = widget_button_mousewheeldown;
+	a->handle_event = button_handle_event;
 	a->enabled = 1;
 
 	struct widget_button *b = MyMalloc(sizeof(struct widget_button));

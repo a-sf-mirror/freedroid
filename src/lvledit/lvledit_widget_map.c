@@ -56,74 +56,9 @@ static void forward_event(SDL_Event *event)
 	}
 }
 
-static void widget_lvledit_map_mouseenter(SDL_Event *event, struct widget *vm)
+static void map_mousemove(struct widget *vm, SDL_Event *event)
 {
-	(void)vm;
-}
-
-static void widget_lvledit_map_mouseleave(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-}
-
-static void widget_lvledit_map_mouserelease(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-
-	forward_event(event);
-}
-
-static void widget_lvledit_map_mousepress(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-	if (!active_tool && mouse_in_level) {
-		active_tool = selected_tool;
-
-		/* disable temporary-switching by CTRL because it conflicts with modifiers used in select tool
-		   if (CtrlPressed()) {
-		   active_tool = (selected_tool == &tool_place ? &tool_select : &tool_place);
-		   }
-		 */
-	}
-
-	forward_event(event);
-}
-
-static void widget_lvledit_map_mouserightrelease(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-
-	forward_event(event);
-}
-
-static void widget_lvledit_map_mouserightpress(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-
-	if (!active_tool)
-		active_tool = &tool_move;
-
-	forward_event(event);
-}
-
-static void widget_lvledit_map_mousewheelup(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-	widget_lvledit_toolbar_left();
-}
-
-static void widget_lvledit_map_mousewheeldown(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-	widget_lvledit_toolbar_right();
-}
-
-static void widget_lvledit_map_mousemove(SDL_Event *event, struct widget *vm)
-{
-	(void)vm;
-	mouse_mapcoord =
-	    translate_point_to_map_location((float)event->motion.x - (GameConfig.screen_width / 2),
-					    (float)event->motion.y - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
+	mouse_mapcoord = translate_point_to_map_location((float)event->motion.x - (GameConfig.screen_width / 2), (float)event->motion.y - (GameConfig.screen_height / 2), GameConfig.zoom_is_on);
 
 	if (mouse_mapcoord.x < 0 || mouse_mapcoord.x >= EditLevel()->xlen ||
 			mouse_mapcoord.y < 0 || mouse_mapcoord.y >= EditLevel()->ylen)
@@ -134,10 +69,8 @@ static void widget_lvledit_map_mousemove(SDL_Event *event, struct widget *vm)
 	forward_event(event);
 }
 
-int widget_lvledit_map_keybevent(SDL_Event *event, struct widget *vm)
+static int map_keybevent(struct widget *vm, SDL_Event *event)
 {
-	(void)vm;
-
 	// Tool selection menu via space
 	if (EVENT_KEYPRESS(event, SDLK_SPACE) && !active_tool) {
 		// No active tool? Cycle the currently selected one.
@@ -147,6 +80,54 @@ int widget_lvledit_map_keybevent(SDL_Event *event, struct widget *vm)
 	// Forward the key to the active tool
 	forward_event(event);
 
+	return 0;
+}
+
+static int map_handle_event(struct widget *w, SDL_Event *event)
+{
+	switch (event->type) {
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event->button.button) {
+				case MOUSE_BUTTON_1:
+					if (!active_tool && mouse_in_level)
+						active_tool = selected_tool;
+					forward_event(event);
+					return 1;
+
+				case MOUSE_BUTTON_3:
+					if (!active_tool)
+					active_tool = &tool_move;
+					forward_event(event);
+					break;
+
+				case SDL_BUTTON_WHEELUP:
+					widget_lvledit_toolbar_left();
+					return 1;
+
+				case SDL_BUTTON_WHEELDOWN:
+					widget_lvledit_toolbar_right();
+					return 1;
+
+				default:
+					return 0;
+			}
+			return 1;
+
+		case SDL_MOUSEBUTTONUP:
+			forward_event(event);
+			return 1;
+
+		case SDL_MOUSEMOTION:
+			map_mousemove(w, event);
+			return 1;
+
+		case SDL_KEYDOWN:
+			map_keybevent(w, event);
+			return 1;
+
+		default:
+			break;
+	}
 	return 0;
 }
 
@@ -178,16 +159,7 @@ struct widget *widget_lvledit_map_create()
 	a->type = WIDGET_MAP;
 	widget_set_rect(a, 0, 68, GameConfig.screen_width, GameConfig.screen_height -68);
 	a->display = NULL;
-	a->mouseenter = widget_lvledit_map_mouseenter;
-	a->mouseleave = widget_lvledit_map_mouseleave;
-	a->mouserelease = widget_lvledit_map_mouserelease;
-	a->mousepress = widget_lvledit_map_mousepress;
-	a->mouserightrelease = widget_lvledit_map_mouserightrelease;
-	a->mouserightpress = widget_lvledit_map_mouserightpress;
-	a->mousewheelup = widget_lvledit_map_mousewheelup;
-	a->mousewheeldown = widget_lvledit_map_mousewheeldown;
-	a->mousemove = widget_lvledit_map_mousemove;
-	a->keybevent = widget_lvledit_map_keybevent;
+	a->handle_event = map_handle_event;
 	a->enabled = 1;
 
 	struct widget_lvledit_map *m = MyMalloc(sizeof(struct widget_lvledit_map));

@@ -57,16 +57,8 @@ struct widget {
 	SDL_Rect rect;		/**< Rectangle containing widget's size and position. */
 	uint8_t enabled;	/**< Boolean flag used for enabling/disabling the widget. */
 	void (*display) (struct widget *); /**< Display callback. */
-	void (*mouseenter) (SDL_Event *, struct widget *);
-	void (*mouseleave) (SDL_Event *, struct widget *);
-	void (*mouserelease) (SDL_Event *, struct widget *);
-	void (*mousepress) (SDL_Event *, struct widget *);
-	void (*mouserightrelease) (SDL_Event *, struct widget *);
-	void (*mouserightpress) (SDL_Event *, struct widget *);
-	void (*mousewheelup) (SDL_Event *, struct widget *);
-	void (*mousewheeldown) (SDL_Event *, struct widget *);
-	void (*mousemove) (SDL_Event *, struct widget *);
-	int (*keybevent) (SDL_Event *, struct widget *);
+	void (*update) (struct widget *);  /**< Callback triggered by update events. */
+	int (*handle_event) (struct widget *, SDL_Event *);	/**< General event handler. */
 	void *ext;		/**< Pointer to type specific data. Deprecated. */
 	struct list_head node;	/**< Linked list node used for storing sibling widgets in a widget_group. */
 };
@@ -78,6 +70,8 @@ void lvledit_select_type(enum lvledit_object_type);
 void lvledit_categoryselect_switch(int direction);
 
 void display_widgets();
+void update_widgets();
+void handle_widget_event(SDL_Event *);
 struct widget *get_active_widget(int, int);
 void widget_set_rect(struct widget *, int, int, int, int);
 EXTERN struct list_head widget_list;		/**< List containing top level widget groups. */
@@ -87,6 +81,14 @@ EXTERN struct widget *previously_active_widget;
 #undef EXTERN
 
 #define WIDGET(x) ((struct widget *)x)
+
+#define EVENT_UPDATE 0		/**< User event code used for signaling the update event. Sent by update_widgets. */
+#define EVENT_MOUSE_ENTER 1	/**< User event code used for signaling mouse entering a widget. */
+#define EVENT_MOUSE_LEAVE 2	/**< USer event code used for signaling mouse leaving a widget. */
+
+#define MOUSE_BUTTON_1 1
+#define MOUSE_BUTTON_2 2
+#define MOUSE_BUTTON_3 3
 
 #include "widgets/widget_group.h"
 #include "widgets/widget_button.h"

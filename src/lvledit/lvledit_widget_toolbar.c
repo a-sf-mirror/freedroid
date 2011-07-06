@@ -39,26 +39,8 @@ static int num_blocks_per_line = 0;
 
 static int display_info = 0;
 
-static void widget_lvledit_toolbar_mouseenter(SDL_Event *event, struct widget *vt)
+static void toolbar_mousepress(struct widget *vt, SDL_Event *event)
 {
-	(void)vt;
-}
-
-static void widget_lvledit_toolbar_mouseleave(SDL_Event *event, struct widget *vt)
-{
-	(void)vt;
-	display_info = 0;
-}
-
-static void widget_lvledit_toolbar_mouserelease(SDL_Event *event, struct widget *vt)
-{
-	(void)vt;
-}
-
-static void widget_lvledit_toolbar_mousepress(SDL_Event *event, struct widget *vt)
-{
-	(void)vt;
-
 	struct widget_lvledit_categoryselect *cs = get_current_object_type();
 	int i;
 	int x;
@@ -73,32 +55,47 @@ static void widget_lvledit_toolbar_mousepress(SDL_Event *event, struct widget *v
 	for (i = 0; cs->indices[i] != -1; i++) ;
 	if (cs->selected_tile_nb >= i - 1)
 		cs->selected_tile_nb = i - 1;
-
 }
 
-static void widget_lvledit_toolbar_mouserightrelease(SDL_Event *event, struct widget *vt)
+static int toolbar_handle_event(struct widget *w, SDL_Event *event)
 {
-	(void)vt;
-	display_info = 0;
-}
+	switch (event->type) {
+		case SDL_MOUSEBUTTONDOWN:
+			switch (event->button.button) {
+				case MOUSE_BUTTON_3:
+					display_info = 1;
+				case MOUSE_BUTTON_1:
+					toolbar_mousepress(w, event);
+					break;	
 
-static void widget_lvledit_toolbar_mouserightpress(SDL_Event *event, struct widget *vt)
-{
-	(void)vt;
-	display_info = 1;
-	widget_lvledit_toolbar_mousepress(event, vt);
-}
+				case SDL_BUTTON_WHEELUP:
+					widget_lvledit_toolbar_left();
+					break;	
 
-static void widget_lvledit_toolbar_mousewheelup(SDL_Event *event, struct widget *vt)
-{
-	(void)vt;
-	widget_lvledit_toolbar_left();
-}
+				case SDL_BUTTON_WHEELDOWN:
+					widget_lvledit_toolbar_right();
+					break;	
 
-static void widget_lvledit_toolbar_mousewheeldown(SDL_Event *event, struct widget *vt)
-{
-	(void)vt;
-	widget_lvledit_toolbar_right();
+				default:
+					return 0;
+			}
+		case SDL_MOUSEMOTION:
+			return 1;
+
+		case SDL_MOUSEBUTTONUP:
+			if (event->button.button == 3)
+				display_info = 0;
+			return 1;
+
+		case SDL_USEREVENT:
+			if (event->user.code == EVENT_MOUSE_LEAVE)
+				display_info = 0;
+			break;
+
+		default:
+			break;
+	}
+	return 0;
 }
 
 static void print_obstacle_info(char *str, int obs_idx)
@@ -229,14 +226,7 @@ struct widget *widget_lvledit_toolbar_create()
 	a->type = WIDGET_TOOLBAR;
 	widget_set_rect(a, 0, 0, GameConfig.screen_width, 73);
 	a->display = toolbar_display;
-	a->mouseenter = widget_lvledit_toolbar_mouseenter;
-	a->mouseleave = widget_lvledit_toolbar_mouseleave;
-	a->mouserelease = widget_lvledit_toolbar_mouserelease;
-	a->mousepress = widget_lvledit_toolbar_mousepress;
-	a->mouserightrelease = widget_lvledit_toolbar_mouserightrelease;
-	a->mouserightpress = widget_lvledit_toolbar_mouserightpress;
-	a->mousewheelup = widget_lvledit_toolbar_mousewheelup;
-	a->mousewheeldown = widget_lvledit_toolbar_mousewheeldown;
+	a->handle_event = toolbar_handle_event;
 	a->enabled = 1;
 
 	struct widget_lvledit_toolbar *t = MyMalloc(sizeof(struct widget_lvledit_toolbar));

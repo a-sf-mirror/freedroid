@@ -95,12 +95,46 @@ static struct {
 
 LIST_HEAD(widget_list);
 
+/**
+ * This function pushes events to the currently active top level containers. 
+ *
+ * NOTE: EVENT_UPDATE events are passed to both active and inactive top level containers.
+ */
+void handle_widget_event(SDL_Event *event)
+{
+	struct widget *w;
+	int is_update_event = 0;
+	if (event->type == SDL_USEREVENT && event->user.code == EVENT_UPDATE)
+		is_update_event = 1;
+	list_for_each_entry(w, &widget_list, node) {
+		if (is_update_event || w->enabled)
+			w->handle_event(w, event);
+	}
+}
+
 void widget_set_rect(struct widget *w, int x, int y, int width, int height)
 {
 	w->rect.x = x;
 	w->rect.y = y;
 	w->rect.w = width;
 	w->rect.h = height;
+}
+
+/**
+ * This functions pushes an EVENT_UPDATE event through the widget system.
+ * This should be called once every few frames to update widgets' state.
+ *
+ * NOTE: Update events are handled by disabled widgets but are not sent to
+ * children widgets. This allows for inactive widgets to become active on
+ * update events. 
+ */
+void update_widgets()
+{
+	SDL_Event event;
+	event.type = SDL_USEREVENT;
+	event.user.code = EVENT_UPDATE;
+	handle_widget_event(&event);
+	leveleditor_update_button_states();
 }
 
 /**
@@ -133,6 +167,15 @@ void widget_lvledit_init()
 	struct widget *map;
 
 	/* Build our interface */
+
+	/* The map (has to be the first widget in the list) */
+	map = widget_lvledit_map_create();
+	widget_group_add(wb, map);	
+
+	/* The toolbar */
+	struct widget *widget = widget_lvledit_toolbar_create();
+	widget_group_add(wb, widget);
+
 	struct {
 		int btn_index;
 		char *text;
@@ -185,7 +228,7 @@ void widget_lvledit_init()
 
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
 		ShowGenericButtonFromList(b[i].btn_index);	//we need that to have .w and .h of the button rect initialized.
-		list_add(&widget_button_create(b[i].btn_index, b[i].text, b[i].tooltip)->node, lvledit_widget_list);
+		list_add_tail(&widget_button_create(b[i].btn_index, b[i].text, b[i].tooltip)->node, lvledit_widget_list);
 	}
 
 	lvledit_build_tile_lists();
@@ -218,20 +261,12 @@ void widget_lvledit_init()
 	}
 
 	// Create the minimap
-	struct widget *widget = widget_lvledit_minimap_create();
+	widget = widget_lvledit_minimap_create();
 	widget_group_add(wb, widget);
 	
-	/* The toolbar */
-	widget = widget_lvledit_toolbar_create();
-	widget_group_add(wb, widget);
-
-	/* The map (has to be the latest widget in the list) */
-	map = widget_lvledit_map_create();
-	widget_group_add(wb, map);	
-
 	// Activate the obstacle type selector
 	lvledit_select_type(OBJECT_OBSTACLE);
-
+	
 	widget_lvledit_map_init();
 }
 
@@ -324,7 +359,7 @@ void leveleditor_update_button_states()
 struct widget *get_active_widget(int x, int y)
 {
 	struct widget *w;
-	list_for_each_entry(w, lvledit_widget_list, node) {
+	list_for_each_entry_reverse(w, lvledit_widget_list, node) {
 		if (!w->enabled)
 			continue;
 		if (MouseCursorIsInRect(&w->rect, x, y)) {

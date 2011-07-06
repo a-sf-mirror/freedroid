@@ -35,6 +35,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "widgets/widgets.h"
 
 #ifndef SDL_BUTTON_WHEELUP
 #define SDL_BUTTON_WHEELUP 4
@@ -87,7 +88,7 @@ static void input_mouse_motion(SDL_Event * event)
 		input_axis.x = event->motion.x - UserCenter_x;
 		input_axis.y = event->motion.y - UserCenter_y;
 	} else {
-		leveleditor_input_mouse_motion(event);
+		handle_widget_event(event);
 	}
 }
 
@@ -105,7 +106,7 @@ static void input_mouse_button(SDL_Event * event)
 		if (event->button.button == SDL_BUTTON_WHEELDOWN)
 			MouseWheelDownMovesRecorded++;
 	} else {
-		leveleditor_input_mouse_button(event);
+		handle_widget_event(event);
 	}
 }
 

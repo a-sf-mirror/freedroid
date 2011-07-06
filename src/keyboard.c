@@ -777,7 +777,7 @@ int input_key_press(SDL_Event * event)
 	if (!noteaten)
 		return 0;
 	else if (INLVLEDIT()) {
-		leveleditor_input_keybevent(event);
+		handle_widget_event(event);
 	}
 
 	return 0;

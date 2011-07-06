@@ -279,6 +279,7 @@ void LevelEditor()
 			SDL_Delay(10);
 
 		leveleditor_process_input();
+		update_widgets();
 
 		struct widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
 		if (w && w->type == WIDGET_MAP) {
