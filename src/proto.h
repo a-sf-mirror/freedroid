@@ -232,6 +232,7 @@ int wall_orientation(int wall);
 void iso_load_bullet_surfaces(void);
 void Load_Mouse_Move_Cursor_Surfaces(void);
 void LoadAndPrepareEnemyRotationModelNr(int RotationModel);
+void free_enemy_graphics(void);
 void Load_Enemy_Surfaces(void);
 void Load_Tux_Surfaces(void);
 void Load_Bullet_Surfaces(void);

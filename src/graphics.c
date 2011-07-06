@@ -1168,6 +1168,9 @@ void reload_graphics(void)
 	load_all_obstacles(FALSE);
 	// Free all items graphics. Graphics will be loaded when needed.
 	free_item_graphics();
+	// Free all enemies graphics. Graphics for an enemy will be loaded
+	// when the enemy is encountered.
+	free_enemy_graphics();
 }
 
 #undef _graphics_c

@@ -406,27 +406,14 @@ in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFO
 
 };				// void get_offset_for_iso_image_from_file_and_path ( fpath , our_iso_image )
 
+static int EnemyFullyPrepared[ENEMY_ROTATION_MODELS_AVAILABLE];
+
 /**
  *
  *
  */
 void LoadAndPrepareEnemyRotationModelNr(int ModelNr)
 {
-	int i;
-	static int FirstCallEver = TRUE;
-	static int EnemyFullyPrepared[ENEMY_ROTATION_MODELS_AVAILABLE];
-
-	// Maybe this function has just been called for the first time ever.
-	// Then of course we need to initialize the array, that is used for
-	// keeping track of the currently loaded enemy rotation surfaces.
-	// This we do here.
-	//
-	if (FirstCallEver) {
-		for (i = 0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
-			EnemyFullyPrepared[i] = FALSE;
-		}
-		FirstCallEver = FALSE;
-	}
 	// Now a sanity check against using rotation types, that don't exist
 	// in Freedroid RPG at all!
 	//
@@ -445,6 +432,23 @@ Freedroid received a rotation model number that does not exist: %d\n", PLEASE_IN
 	Activate_Conservative_Frame_Computation();
 
 	load_enemy_graphics(ModelNr);
+}
+
+void free_enemy_graphics(void)
+{
+	int i;
+	int rotation_index, phase_index;
+
+	for (i = 0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
+		if (!EnemyFullyPrepared[i])
+			continue;
+
+		for (rotation_index = 0; rotation_index < ROTATION_ANGLES_PER_ROTATION_MODEL; rotation_index++) {
+			for (phase_index = 0; phase_index < MAX_ENEMY_MOVEMENT_PHASES; phase_index++)
+				delete_image(&enemy_images[i][rotation_index][phase_index]);
+		}
+		EnemyFullyPrepared[i] = FALSE;
+	}
 }
 
 /**
@@ -509,18 +513,10 @@ void get_enemy_surfaces_data(char *DataPointer)
 void Load_Enemy_Surfaces(void)
 {
 	int i;
-	int j;
 
-	// We clean out the rotated enemy surface pointers, so that later we
-	// can judge securely which of them have been initialized (non-Null)
-	// and which of them have not.
-	//
-	for (j = 0; j < ENEMY_ROTATION_MODELS_AVAILABLE; j++) {
+	for (i = 0; i < ENEMY_ROTATION_MODELS_AVAILABLE; i++) {
 		struct image empty = EMPTY_IMAGE;
-		chat_portrait_of_droid[j] = empty;
-		for (i = 0; i < ROTATION_ANGLES_PER_ROTATION_MODEL; i++) {
-			enemy_images[j][i][0].surface = NULL;
-		}
+		chat_portrait_of_droid[i] = empty;
 	}
 
 	// When using the new tux image collection files, the animation cycle
