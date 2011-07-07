@@ -47,6 +47,7 @@ obstacle {
 	flags = { IS_HORIZONTAL, IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
+	groups = "blue doors"
 }
 
 obstacle {
@@ -86,6 +87,7 @@ obstacle {
 	flags = { IS_VERTICAL, IS_WALKABLE },
 	transparency = NO_TRANSPARENCY,
 	animation = "door",
+	groups = "blue doors"
 }
 
 obstacle {
@@ -171,6 +173,7 @@ obstacle {
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL },
 	transparency = NO_TRANSPARENCY,
+	groups = "red door"
 }
 
 obstacle {
@@ -178,6 +181,7 @@ obstacle {
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL },
 	transparency = NO_TRANSPARENCY,
+	groups = "red door"
 }
 
 obstacle {
@@ -245,6 +249,7 @@ obstacle {
 	borders = borders(1.50, 1.00),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
 }
 
 obstacle {
@@ -252,34 +257,39 @@ obstacle {
 	borders = borders(1.00, 1.50),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
 	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
 }
 
 obstacle {
 	image_filenames = "iso_cave_wall_0003.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NE },
 	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
 }
 
 obstacle {
 	image_filenames = "iso_cave_wall_0004.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SE },
 	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
 }
 
 obstacle {
 	image_filenames = "iso_cave_wall_0005.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NW },
 	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
 }
 
 obstacle {
 	image_filenames = "iso_cave_wall_0006.png",
 	borders = borders(1.00, 1.00),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SW },
 	transparency = NO_TRANSPARENCY,
+	groups = "cave wall"
 }
 
 obstacle {
@@ -807,36 +817,42 @@ obstacle {
 	image_filenames = "iso_thick_wall_0001.png",
 	borders = borders(1.10, 0.40),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "thick wall"
 }
 
 obstacle {
 	image_filenames = "iso_thick_wall_0002.png",
 	borders = borders(0.40, 1.10),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "thick wall"
 }
 
 obstacle {
 	image_filenames = "iso_thick_wall_0003.png",
 	borders = borders(-0.55, 0.20, -0.20, 0.55),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NE },
+	groups = "thick wall"
 }
 
 obstacle {
 	image_filenames = "iso_thick_wall_0004.png",
 	borders = borders(-0.55, 0.20, -0.55, 0.20),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SE },
+	groups = "thick wall"
 }
 
 obstacle {
 	image_filenames = "iso_thick_wall_0005.png",
 	borders = borders(-0.20, 0.55, -0.20, 0.55),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NW },
+	groups = "thick wall"
 }
 
 obstacle {
 	image_filenames = "iso_thick_wall_0006.png",
 	borders = borders(-0.20, 0.55, -0.55, 0.20),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SW },
+	groups = "thick wall"
 }
 
 obstacle {
@@ -920,6 +936,7 @@ obstacle {
 	borders = borders(1.20, 0.80),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
 	after_smashing = 235,
+	groups = "brick wall"
 }
 
 obstacle {
@@ -927,6 +944,7 @@ obstacle {
 	borders = borders(0.80, 1.20),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
 	after_smashing = 236,
+	groups = "brick wall"
 }
 
 obstacle {
@@ -938,25 +956,29 @@ obstacle {
 obstacle {
 	image_filenames = "iso_brick_wall_0004.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.60),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NE },
+	groups = { "brick wall", "brick wall 2" }
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_0005.png",
 	borders = borders(-0.60, 0.65, -0.60, 0.30),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SW },
+	groups = { "brick wall", "brick wall 2" }
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_0006.png",
 	borders = borders(-0.30, 0.60, -0.30, 0.60),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NW },
+	groups = { "brick wall", "brick wall 2" }
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_0007.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.30),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SE },
+	groups = { "brick wall", "brick wall 2" }
 }
 
 obstacle {
@@ -1116,96 +1138,112 @@ obstacle {
 	image_filenames = "iso_outer_walls_0002.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "outer wall 1"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0006.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "outer wall 2"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0010.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "outer wall 3"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0004.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "outer wall 4"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0008.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "outer wall 5"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0012.png",
 	borders = borders(-0.55, 0.55, -0.05, 0.60),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "outer wall 6"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0003.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "outer wall 4"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0007.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "outer wall 5"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0011.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "outer wall 6"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0001.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "outer wall 1"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0005.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "outer wall 2"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0009.png",
 	borders = borders(-0.05, 0.60, -0.55, 0.55),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "outer wall 3"
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0013.png",
 	borders = borders(1.10, 1.10),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NW },
+	groups = { "outer wall 1", "outer wall 2", "outer wall 3", "outer wall 4", "outer wall 5", "outer wall 6" }
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0014.png",
 	borders = borders(1.10, 1.10),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SW },
+	groups = { "outer wall 1", "outer wall 2", "outer wall 3", "outer wall 4", "outer wall 5", "outer wall 6" }
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0015.png",
 	borders = borders(1.10, 1.10),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SE },
+	groups = { "outer wall 1", "outer wall 2", "outer wall 3", "outer wall 4", "outer wall 5", "outer wall 6" }
 }
 
 obstacle {
 	image_filenames = "iso_outer_walls_0016.png",
 	borders = borders(1.10, 1.10),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NE },
+	groups = { "outer wall 1", "outer wall 2", "outer wall 3", "outer wall 4", "outer wall 5", "outer wall 6" }
 }
 
 obstacle {
@@ -2160,6 +2198,7 @@ obstacle {
 	borders = borders(1.20, 0.80),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
 	after_smashing = 235,
+	groups = "brick wall 2"
 }
 
 obstacle {
@@ -2167,6 +2206,7 @@ obstacle {
 	borders = borders(0.80, 1.20),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
 	after_smashing = 236,
+	groups = "brick wall 2"
 }
 
 obstacle {
@@ -2197,36 +2237,42 @@ obstacle {
 	image_filenames = "iso_brick_wall_cables_0001.png",
 	borders = borders(1.20, 0.80),
 	flags = { IS_HORIZONTAL, BLOCKS_VISION },
+	groups = "brick wall cables"
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_cables_0002.png",
 	borders = borders(0.80, 1.20),
 	flags = { IS_VERTICAL, BLOCKS_VISION },
+	groups = "brick wall cables"
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_cables_0004.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.60),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NE },
+	groups = "brick wall cables"
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_cables_0005.png",
 	borders = borders(-0.60, 0.65, -0.60, 0.30),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SW },
+	groups = "brick wall cables"
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_cables_0006.png",
 	borders = borders(-0.30, 0.60, -0.30, 0.60),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_NW },
+	groups = "brick wall cables"
 }
 
 obstacle {
 	image_filenames = "iso_brick_wall_cables_0007.png",
 	borders = borders(-0.60, 0.30, -0.60, 0.30),
-	flags = { BLOCKS_VISION },
+	flags = { BLOCKS_VISION, CORNER_SE },
+	groups = "brick wall cables"
 }
 
 obstacle {

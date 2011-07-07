@@ -230,163 +230,49 @@ static void end_rectangle_floor(int commit)
 
 /*
  * Pick type of walls (vertical and horizontal).
- * This function is temporary, because it's terrible hack ...
  */
 static void pick_walls(int windex)
 {
+	int i;
+	struct obstacle_spec *spec = get_obstacle_spec(windex);
+	struct obstacle_group *group = find_obstacle_group(windex);
+
 	state.l_type.nw = state.l_type.ne = -1;
 	state.l_type.sw = state.l_type.se = -1;
+	state.l_type.h = state.l_type.v = -1;
 
-	switch (windex) {
-	case ISO_BRICK_WALL_CABLES_V:
-	case ISO_BRICK_WALL_CABLES_H:
-		state.l_type.v = ISO_BRICK_WALL_CABLES_V;
-		state.l_type.h = ISO_BRICK_WALL_CABLES_H;
-
-		// Pick the corners
-		state.l_type.nw = ISO_BRICK_WALL_CABLES_CORNER_NW;
-		state.l_type.ne = ISO_BRICK_WALL_CABLES_CORNER_NE;
-		state.l_type.sw = ISO_BRICK_WALL_CABLES_CORNER_SW;
-		state.l_type.se = ISO_BRICK_WALL_CABLES_CORNER_SE;
-		break;
-	case ISO_THICK_WALL_V:
-	case ISO_THICK_WALL_H:
-		state.l_type.v = ISO_THICK_WALL_V;
-		state.l_type.h = ISO_THICK_WALL_H;
-
-		// Pick the corners
-		state.l_type.nw = ISO_THICK_WALL_CORNER_NW;
-		state.l_type.ne = ISO_THICK_WALL_CORNER_NE;
-		state.l_type.sw = ISO_THICK_WALL_CORNER_SW;
-		state.l_type.se = ISO_THICK_WALL_CORNER_SE;
-		break;
-	case ISO_V_DOOR_LOCKED:
-	case ISO_H_DOOR_LOCKED:
-		state.l_type.v = ISO_V_DOOR_LOCKED;
-		state.l_type.h = ISO_H_DOOR_LOCKED;
-		break;
-	case ISO_V_DOOR_000_OPEN:
-	case ISO_H_DOOR_000_OPEN:
-		state.l_type.v = ISO_V_DOOR_000_OPEN;
-		state.l_type.h = ISO_H_DOOR_000_OPEN;
-		break;
-	case ISO_OUTER_WALL_W1:
-	case ISO_OUTER_WALL_N1:
-		state.l_type.v = ISO_OUTER_WALL_W1;
-		state.l_type.h = ISO_OUTER_WALL_N1;
-		
-		// Pick the corners
-		state.l_type.nw = ISO_OUTER_WALL_CORNER_NW;
-		state.l_type.ne = ISO_OUTER_WALL_CORNER_NE;
-		state.l_type.sw = ISO_OUTER_WALL_CORNER_SW;
-		state.l_type.se = ISO_OUTER_WALL_CORNER_SE;
-		break;
-
-	case ISO_OUTER_WALL_W2:
-	case ISO_OUTER_WALL_N2:
-		state.l_type.v = ISO_OUTER_WALL_W2;
-		state.l_type.h = ISO_OUTER_WALL_N2;
-
-		// Pick the corners
-		state.l_type.nw = ISO_OUTER_WALL_CORNER_NW;
-		state.l_type.ne = ISO_OUTER_WALL_CORNER_NE;
-		state.l_type.sw = ISO_OUTER_WALL_CORNER_SW;
-		state.l_type.se = ISO_OUTER_WALL_CORNER_SE;
-		break;
-
-	case ISO_OUTER_WALL_W3:
-	case ISO_OUTER_WALL_N3:
-		state.l_type.v = ISO_OUTER_WALL_W3;
-		state.l_type.h = ISO_OUTER_WALL_N3;
-
-		// Pick the corners
-		state.l_type.nw = ISO_OUTER_WALL_CORNER_NW;
-		state.l_type.ne = ISO_OUTER_WALL_CORNER_NE;
-		state.l_type.sw = ISO_OUTER_WALL_CORNER_SW;
-		state.l_type.se = ISO_OUTER_WALL_CORNER_SE;
-		break;
-
-	case ISO_OUTER_WALL_E1:
-	case ISO_OUTER_WALL_S1:
-		state.l_type.v = ISO_OUTER_WALL_E1;
-		state.l_type.h = ISO_OUTER_WALL_S1;
-
-		// Pick the corners 14 2 3
-		state.l_type.nw = ISO_OUTER_WALL_CORNER_NW;
-		state.l_type.ne = ISO_OUTER_WALL_CORNER_NE;
-		state.l_type.sw = ISO_OUTER_WALL_CORNER_SW;
-		state.l_type.se = ISO_OUTER_WALL_CORNER_SE;
-		break;
-
-	case ISO_OUTER_WALL_E2:
-	case ISO_OUTER_WALL_S2:
-		state.l_type.v = ISO_OUTER_WALL_E2;
-		state.l_type.h = ISO_OUTER_WALL_S2;
-
-		// Pick the corners
-		state.l_type.nw = ISO_OUTER_WALL_CORNER_NW;
-		state.l_type.ne = ISO_OUTER_WALL_CORNER_NE;
-		state.l_type.sw = ISO_OUTER_WALL_CORNER_SW;
-		state.l_type.se = ISO_OUTER_WALL_CORNER_SE;
-		break;
-
-	case ISO_OUTER_WALL_E3:
-	case ISO_OUTER_WALL_S3:
-		state.l_type.v = ISO_OUTER_WALL_E3;
-		state.l_type.h = ISO_OUTER_WALL_S3;
-
-		// Pick the corners
-		state.l_type.nw = ISO_OUTER_WALL_CORNER_NW;
-		state.l_type.ne = ISO_OUTER_WALL_CORNER_NE;
-		state.l_type.sw = ISO_OUTER_WALL_CORNER_SW;
-		state.l_type.se = ISO_OUTER_WALL_CORNER_SE;
-		break;
-
-	case ISO_CAVE_WALL_V:
-	case ISO_CAVE_WALL_H:
-		state.l_type.v = ISO_CAVE_WALL_V;
-		state.l_type.h = ISO_CAVE_WALL_H;
-		
-		// Pick the corners
-		state.l_type.nw = ISO_CAVE_CORNER_NW;
-		state.l_type.ne = ISO_CAVE_CORNER_NE;
-		state.l_type.sw = ISO_CAVE_CORNER_SW;
-		state.l_type.se = ISO_CAVE_CORNER_SE;
-		break;
-		
-	case ISO_BRICK_WALL_H:
-	case ISO_BRICK_WALL_V:
-		state.l_type.v = ISO_BRICK_WALL_V;
-		state.l_type.h = ISO_BRICK_WALL_H;
-		
-		// Pick the corners
-		state.l_type.nw = ISO_BRICK_WALL_CORNER_NW;
-		state.l_type.ne = ISO_BRICK_WALL_CORNER_NE;
-		state.l_type.sw = ISO_BRICK_WALL_CORNER_SW;	
-		state.l_type.se = ISO_BRICK_WALL_CORNER_SE;
-		break;
-
-	case ISO_BRICK_WALL_EH:
-	case ISO_BRICK_WALL_EV:
-		state.l_type.v = ISO_BRICK_WALL_EV;
-		state.l_type.h = ISO_BRICK_WALL_EH;
-		
-		// Pick the corners
-		state.l_type.nw = ISO_BRICK_WALL_CORNER_NW;
-		state.l_type.ne = ISO_BRICK_WALL_CORNER_NE;
-		state.l_type.sw = ISO_BRICK_WALL_CORNER_SW;	
-		state.l_type.se = ISO_BRICK_WALL_CORNER_SE;
-		break;
-
-	default:
-		if (get_obstacle_spec(windex)->flags & IS_HORIZONTAL) {
+	// If obstacle doesn't belong to any group it's assumed that
+	// it has only vertical and horizontal wall types. In this case,
+	// horizontal and vertical obstacle types should be subsequent
+	// obstacle types.
+	if (!group) {
+		if (spec->flags & IS_HORIZONTAL) {
 			state.l_type.h = windex;
 			state.l_type.v = windex - 1;
-		}
-		else {
+		} else {
 			state.l_type.v = windex;
-			state.l_type.h = windex + 1;		
+			state.l_type.h = windex + 1;
 		}
+		return;
+	}
+
+	// Find corners, horizontal and vertical wall types in the obstacle
+	// group.
+	for (i = 0; i < group->members.size; i++) {
+		int member = ((int *)(group->members.arr))[i];
+		unsigned int member_flags = get_obstacle_spec(member)->flags;
+		if (member_flags & CORNER_NW)
+			state.l_type.nw = member;
+		else if (member_flags & CORNER_NE)
+			state.l_type.ne = member;
+		else if (member_flags & CORNER_SE)
+			state.l_type.se = member;
+		else if (member_flags & CORNER_SW)
+			state.l_type.sw = member;
+		else if (member_flags & IS_HORIZONTAL)
+			state.l_type.h = member;
+		else if (member_flags & IS_VERTICAL)
+			state.l_type.v = member;
 	}
 }
 
