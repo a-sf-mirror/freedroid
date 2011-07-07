@@ -557,7 +557,7 @@ static void do_drag_drop_waypoint(moderately_finepoint diff)
 	int wp_pos;
 
 	// Move the selection if the displacement exceeds half a tile
-	if (abs(diff.x) >= 0.5 || abs(diff.y) >= 0.5 ) {
+	if (fabsf(diff.x) >= 0.5 || fabsf(diff.y) >= 0.5 ) {
 		list_for_each_entry(e, &selected_elements, node) {
 			if (e->type != OBJECT_WAYPOINT)
 				return;
@@ -568,8 +568,8 @@ static void do_drag_drop_waypoint(moderately_finepoint diff)
 			wp_pos = get_waypoint(EditLevel(), w->x, w->y);
 
 			// Modify the selection coordinates
-			w->x += (int)diff.x;
-			w->y += (int)diff.y;
+			w->x += (int)rintf(diff.x);
+			w->y += (int)rintf(diff.y);
 
 			// Retrieve the original waypoint
 			w2 = &(((waypoint *)(EditLevel()->waypoints.arr))[wp_pos]);
@@ -578,8 +578,8 @@ static void do_drag_drop_waypoint(moderately_finepoint diff)
 			move_waypoint(EditLevel(), w2, w->x, w->y);
 		}
 
-		state.cur_drag_pos.x += (int)diff.x;
-		state.cur_drag_pos.y += (int)diff.y;
+		state.cur_drag_pos.x += (int)rintf(diff.x);
+		state.cur_drag_pos.y += (int)rintf(diff.y);
 	}
 }
 
