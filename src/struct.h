@@ -831,6 +831,11 @@ typedef struct obstacle_spec {
 	float animation_fps;
 } obstacle_spec;
 
+struct obstacle_group {
+	const char *name;
+	struct dynarray members;
+};
+
 struct visible_level {
 	int valid;
 	level *lvl_pointer;

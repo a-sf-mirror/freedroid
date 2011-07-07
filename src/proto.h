@@ -873,5 +873,7 @@ obstacle_spec *get_obstacle_spec(int index);
 void glue_obstacle(level *lvl, obstacle *o);
 void unglue_obstacle(level *lvl, obstacle *o);
 void move_obstacle(obstacle *o, float x, float y);
+void add_obstacle_to_group(const char *group_name, int type);
+struct obstacle_group *find_obstacle_group(int type);
 
 #endif

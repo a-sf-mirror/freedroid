@@ -334,6 +334,15 @@ enum {
 };
 
 #undef EXTERN
+#ifdef _obstacle_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+
+EXTERN struct dynarray obstacle_groups;
+
+#undef EXTERN
 #ifdef _saveloadgame_c
 #define EXTERN
 #else

@@ -531,6 +531,7 @@ static int lua_tuxordering_ctor(lua_State *L)
 
 static int lua_obstacle_ctor(lua_State *L)
 {
+	int i;
 	struct obstacle_spec obstacle;
 
 	struct dynarray borders;
@@ -539,6 +540,7 @@ static int lua_obstacle_ctor(lua_State *L)
 	char *animation;
 	char *action;
 	int emitted_light_strength;
+	struct dynarray groups;
 
 	char default_transparency[20];
 	sprintf(default_transparency, "%d", TRANSPARENCY_FOR_WALLS);
@@ -553,6 +555,7 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "action", NULL, STRING_TYPE, &action },
 		{ "animation", NULL, STRING_TYPE, &animation },
 		{ "animation_fps", "10", FLOAT_TYPE, &obstacle.animation_fps },
+		{ "groups", NULL, STRING_ARRAY, &groups },
 		{ NULL, NULL, 0, 0 }
 	};
 
@@ -595,7 +598,6 @@ static int lua_obstacle_ctor(lua_State *L)
 
 	// Combine flags
 	obstacle.flags = 0;
-	int i;
 	int *flags_array = flags.arr;
 	for (i = 0; i < flags.size; i++)
 		obstacle.flags |= flags_array[i];
@@ -614,6 +616,16 @@ static int lua_obstacle_ctor(lua_State *L)
 
 	if (obstacle.filenames.size > 1)
 		obstacle.animation_fn = animate_obstacle;
+
+	if (groups.size > 0) {
+		int obstacle_type = obstacle_map.size;
+		for (i = 0; i < groups.size; i++) {
+			char **group_name = dynarray_member(&groups, i, sizeof(char *));
+			add_obstacle_to_group(*group_name, obstacle_type);
+			free(*group_name);
+		}
+	}
+	dynarray_free(&groups);
 
 	dynarray_add(&obstacle_map, &obstacle, sizeof(obstacle_spec));
 	return 0;
@@ -679,6 +691,10 @@ static void init_obstacle_flags(void)
 		{ "IS_WALKABLE", IS_WALKABLE },
 		{ "IS_CLICKABLE", IS_CLICKABLE },
 		{ "IS_VOLATILE", IS_VOLATILE },
+		{ "CORNER_NE", CORNER_NE },
+		{ "CORNER_NW", CORNER_NW },
+		{ "CORNER_SE", CORNER_SE },
+		{ "CORNER_SW", CORNER_SW },
 		// Obstacle transparency
 		{ "NO_TRANSPARENCY", TRANSPARENCY_NONE },
 		{ "WALLS_TRANSPARENCY", TRANSPARENCY_FOR_WALLS }

@@ -189,6 +189,10 @@ enum {
 	/* Walls */
 	IS_HORIZONTAL = 2,
 	IS_VERTICAL = 4,
+	CORNER_NE = 2048,
+	CORNER_NW = 4096,
+	CORNER_SE = 8192,
+	CORNER_SW = 16384,
 
 	/* Obstacle specs */
 	BLOCKS_VISION_TOO = 8,	/* Light will not pass through this obstacle */

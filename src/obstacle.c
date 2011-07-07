@@ -163,4 +163,49 @@ obstacle_spec *get_obstacle_spec(int index)
 	return dynarray_member(&obstacle_map, index, sizeof(obstacle_spec));
 }
 
+static struct obstacle_group *get_obstacle_group_by_name(const char *group_name)
+{
+	int i;
+	struct obstacle_group *group = obstacle_groups.arr;
+
+	for (i = 0; i < obstacle_groups.size; i++) {
+		if (!strcmp(group[i].name, group_name))
+			return &group[i];
+	}
+
+	return NULL;
+}
+
+struct obstacle_group *find_obstacle_group(int type)
+{
+	int i, j;
+	struct obstacle_group *group = obstacle_groups.arr;
+
+	for (i = 0; i < obstacle_groups.size;i ++) {
+		for (j = 0; j < group[i].members.size; j++) {
+			if (((int *)group[i].members.arr)[j] == type)
+				return &group[i];
+		}
+	}
+
+	return NULL;
+}
+
+void add_obstacle_to_group(const char *group_name, int type)
+{
+	struct obstacle_group new_group;
+	struct obstacle_group *group = get_obstacle_group_by_name(group_name);
+
+	// Create group if it doesn't exist
+	if (!group) {
+		new_group.name = strdup(group_name);
+		dynarray_init(&new_group.members, 8, sizeof(int));
+		dynarray_add(&obstacle_groups, &new_group, sizeof(struct obstacle_group));
+
+		group = dynarray_member(&obstacle_groups, obstacle_groups.size - 1, sizeof(struct obstacle_group));
+	}
+
+	dynarray_add(&group->members, &type, sizeof(int));
+}
+
 #undef _obstacle_c
