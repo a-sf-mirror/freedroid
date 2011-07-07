@@ -488,7 +488,7 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 	int changed_tiles = 0;
 
 	// Move the selection if the displacement exceeds half a tile
-	if (abs(diff.x) >= 0.5 || abs(diff.y) >= 0.5 ) {
+	if (fabsf(diff.x) >= 0.5 || fabsf(diff.y) >= 0.5 ) {
 
 		if ((state.drag_start.x != state.cur_drag_pos.x) 
 			|| (state.drag_start.y != state.cur_drag_pos.y)) {
@@ -517,8 +517,8 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 			t = e->data;
 
 			// Calculate the new coordinates of the tile
-			t->coord.x += (int)diff.x;
-			t->coord.y += (int)diff.y;
+			t->coord.x += (int)rintf(diff.x);
+			t->coord.y += (int)rintf(diff.y);
 
 			// Set the floor for the new current tile
 			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_value);
@@ -527,8 +527,8 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 			// Select the new tile
 			select_floor_on_tile(t->coord.x, t->coord.y);
 		}
-		state.cur_drag_pos.x += (int)diff.x;
-		state.cur_drag_pos.y += (int)diff.y;
+		state.cur_drag_pos.x += (int)rintf(diff.x);
+		state.cur_drag_pos.y += (int)rintf(diff.y);
 		
 		action_push(ACT_MULTIPLE_ACTIONS, changed_tiles);
 	}
