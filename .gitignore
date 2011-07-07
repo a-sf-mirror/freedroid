@@ -11,6 +11,7 @@ src/*.exe
 zpipe/zpipe
 gluem/*font
 gluem/make_atlas
+gluem/explode_atlas
 
 # Patches
 *.orig
