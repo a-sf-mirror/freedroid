@@ -158,7 +158,7 @@ static void toggle_enemies_button_click(struct widget_button *wb)
 
 static void toggle_tooltips_button_click(struct widget_button *wb)
 {
-	GameConfig.show_tooltips = !GameConfig.show_tooltips;
+	GameConfig.show_lvledit_tooltips = !GameConfig.show_lvledit_tooltips;
 }
 
 static void toggle_collisions_button_click(struct widget_button *wb)
@@ -255,7 +255,7 @@ static void toggle_enemies_button_update(struct widget *w)
 
 static void toggle_tooltips_button_update(struct widget *w)
 {
-	WIDGET_BUTTON(w)->active = !GameConfig.show_tooltips;
+	WIDGET_BUTTON(w)->active = !GameConfig.show_lvledit_tooltips;
 }
 
 static void toggle_collisions_button_update(struct widget *w)

@@ -1334,7 +1334,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.omit_enemies_in_level_editor = TRUE;
 	GameConfig.zoom_is_on = FALSE;
 	GameConfig.show_blood = TRUE;
-	GameConfig.show_tooltips = TRUE;
+	GameConfig.show_lvledit_tooltips = TRUE;
 	GameConfig.show_grid = TRUE;
 	GameConfig.show_wp_connections = FALSE;
 	GameConfig.number_of_big_screen_messages = 4;

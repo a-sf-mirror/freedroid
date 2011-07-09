@@ -312,7 +312,7 @@ static void show_tooltips()
 
 	previous_function_call_time = SDL_GetTicks();
 
-	if (!GameConfig.show_tooltips)
+	if (!GameConfig.show_lvledit_tooltips)
 		return;
 
 #define TICKS_UNTIL_TOOLTIP 1200
