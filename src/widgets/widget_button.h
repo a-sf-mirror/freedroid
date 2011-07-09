@@ -1,6 +1,7 @@
 /* 
  *
  *   Copyright (c) 2010 Arthur Huillet
+ *   Copyright (c) 2011 Catalin Badea
  *
  *
  *  This file is part of Freedroid
@@ -22,12 +23,25 @@
  *
  */
 
+/**
+ * @struct widget_button
+ * @brief Widget button type.
+ *
+ * This structure type is used for managing buttons.
+ * Buttons have 3 main states (normal, hovered and pressed) and two
+ * toggle states.
+ */
 struct widget_button {
-	int btn_index;		//index in AllMousePressButtons array
-	int pressed;
-	int active;
-	char *text;
-	char *tooltip;
+	struct widget base;				/**< Base widget containing callbacks and position info. */
+	enum { DEFAULT, HOVERED, PRESSED } state;	/**< Button primary state variable. */
+	int active;					/**< Flag for switching between the two toggle states. */
+	struct image *image[2][3];					/**< Image pointers for each toggle state. */
+	void (*activate_button) (struct widget_button *);		/**< Left click callback. */
+	void (*activate_button_secondary) (struct widget_button *);	/**< Right click callback. */
+	string text;					/**< Text displayed in center of the button's rectangle. */
+	string tooltip;					/**< Tooltip displayed on mouse hover. */
 };
 
-struct widget *widget_button_create(int, char *, char *);
+struct widget_button *widget_button_create();
+
+#define WIDGET_BUTTON(x) ((struct widget_button *)x)

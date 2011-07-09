@@ -64,7 +64,6 @@ struct widget {
 };
 
 void widget_lvledit_init(void);
-void leveleditor_update_button_states(void);
 void lvledit_select_type(enum lvledit_object_type);
 
 void lvledit_categoryselect_switch(int direction);

@@ -330,7 +330,7 @@ static void show_tooltips()
 		return;
 	}
 
-	struct widget_button *b = w->ext;
+	struct widget_button *b = WIDGET_BUTTON(w);
 	if (b->tooltip) {
 		// The button has a tooltip, display it
 		show_button_tooltip(b->tooltip);
