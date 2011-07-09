@@ -1,9 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-bin_PROGRAMS = gluem ungluem explodefont gluefont make_atlas explode_atlas
-
-gluem_SOURCES = ../src/text_public.c gluem.c
-
-ungluem_SOURCES = ../src/text_public.c pngfuncs.c ungluem.c pngfuncs.h
+bin_PROGRAMS = explodefont gluefont make_atlas explode_atlas
 
 explodefont_SOURCES = explodefont.c pngfuncs.c pngfuncs.h
 
