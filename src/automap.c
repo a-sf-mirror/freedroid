@@ -351,7 +351,8 @@ void display_automap(void)
 		return;
 
 	// Display the compass
-	display_automap_compass();
+	if (game_status != INSIDE_LVLEDITOR)
+		display_automap_compass();
 
 	// Also if there is no map-maker present in inventory, then we need not
 	// do a thing here...
