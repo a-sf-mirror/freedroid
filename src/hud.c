@@ -767,51 +767,78 @@ static void prepare_text_window_content(struct auto_string *str)
  */
 void show_current_text_banner(void)
 {
-	SDL_Rect banner_rect;
 	static struct auto_string *txt = NULL;
 	if (txt == NULL)
 		txt = alloc_autostr(200);
 
-	// Set font first, before making any font specific calculations
-	SetCurrentFont(TEXT_BANNER_DEFAULT_FONT);
-
 	// Prepare the string, that is to be displayed inside the text rectangle
 	prepare_text_window_content(txt);
 
-	// Do not show anything if the description is too short
-	if (strlen(txt->value) <= 1)
-		return;
+	SDL_Rect rect;
+	rect.x = best_banner_pos_x;
+	rect.y = best_banner_pos_y;
+	rect.w = 0;
+	rect.h = 0;
 
-	banner_rect.x = best_banner_pos_x;
-	banner_rect.y = best_banner_pos_y;
-	banner_rect.h = 100; // some default size
+	display_tooltip(txt->value, 1, rect);
+}
 
-	// Set banner width
-	banner_rect.w = longest_line_width(txt->value);
-	banner_rect.w += TEXT_BANNER_HORIZONTAL_MARGIN * 2;
+/**
+ * This function displays a tooltip in the specified rectangle. 
+ * The rectangle size can be specified or left to 0, meaning the rectangle will be
+ * expanded to fit the text. 
+ * @param text Text to be displayed.
+ * @centered Flag marking whether the text will be centered or not.
+ * @SDL_Rect Rectangle in which the tooltip will be displayed.
+ */
+void display_tooltip(const char *text, int centered, SDL_Rect rect)
+{
+	// Displaying the text aligned to center modifies the string
+	// so we make a temporary copy to keep the original text untouched.
+	char buffer[strlen(text) + 1];
+	strcpy(buffer, text);
 
-	// Set banner height
-	int lines_in_text = get_lines_needed(txt->value, banner_rect, LINE_HEIGHT_FACTOR);
-	banner_rect.h = lines_in_text * FontHeight(GetCurrentFont());
+	// Set font before making any font specific calculations.
+	SetCurrentFont(TEXT_BANNER_DEFAULT_FONT);
 
+	// If the width is not specified, expand the rectangle to fit
+	// the longest line width.
+	if (!rect.w)
+		rect.w = longest_line_width(buffer) + 2 * TEXT_BANNER_HORIZONTAL_MARGIN;
+
+	// Compute the required height.
+	int lines_in_text = get_lines_needed(buffer, rect, LINE_HEIGHT_FACTOR);
+	rect.h = lines_in_text * FontHeight(GetCurrentFont());
+	
 	// Add extra correction to ensure the banner rectangle stays inside
 	// the visible screen.
-	if (banner_rect.x < 1)
-		banner_rect.x = 1;
-	else if (banner_rect.x + banner_rect.w > GameConfig.screen_width - 1)
-		banner_rect.x = GameConfig.screen_width - banner_rect.w - 1;
-	if (banner_rect.y < 1)
-		banner_rect.y = 1;
-	else if (banner_rect.y + banner_rect.h > GameConfig.screen_height - 1)
-		banner_rect.y = GameConfig.screen_height - banner_rect.h - 1;
+	if (rect.x < 1)
+		rect.x = 1;
+	else if (rect.x + rect.w > GameConfig.screen_width - 1)
+		rect.x = GameConfig.screen_width - rect.w - 1;
+	if (rect.y < 1)
+		rect.y = 1;
+	else if (rect.y + rect.h > GameConfig.screen_height - 1)
+		rect.y = GameConfig.screen_height - rect.h - 1;
+	
+	// Compute actual coordinates for the text.
+	SDL_Rect text_rect = rect;
+	text_rect.x += TEXT_BANNER_HORIZONTAL_MARGIN;
+	text_rect.w -= 2 * TEXT_BANNER_HORIZONTAL_MARGIN;
 
-	// Draw the rectangle inside which the text will be drawn
+	// Draw the background rectangle
 	SDL_SetClipRect(Screen, NULL);	// this unsets the clipping rectangle
-	draw_rectangle(&banner_rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
+	draw_rectangle(&rect, 0, 0, 0, BACKGROUND_TEXT_RECT_ALPHA);
+	
+	// Print the text.
+	if (!centered) {
+		display_text_using_line_height(buffer, text_rect.x, text_rect.y, &text_rect, 1.0);
+		return;
+	}
 
-	// Print the text
-	int line_spacing = (banner_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);
-	char *ptr = txt->value;
+	// Print the text centered.
+	int line_spacing = (text_rect.h - lines_in_text * FontHeight(GetCurrentFont())) / (lines_in_text + 1);
+	char *ptr = buffer;
 	int i;
 	for (i = 0; i < lines_in_text; i++) {
 		char *this_line = ptr;
@@ -821,9 +848,10 @@ void show_current_text_banner(void)
 			this_line[pos] = '\0';
 			ptr += pos + 1;
 		}
+		int offset = (text_rect.w - TextWidth(this_line)) / 2;
 		PutString(Screen,
-			  banner_rect.x + (banner_rect.w - TextWidth(this_line)) / 2,
-			  banner_rect.y + line_spacing + i * (line_spacing + FontHeight(GetCurrentFont())), this_line);
+			  text_rect.x + offset,
+			  text_rect.y + line_spacing + i * (line_spacing + FontHeight(GetCurrentFont())), this_line);
 	}
 }
 

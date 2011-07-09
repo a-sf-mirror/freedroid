@@ -717,6 +717,7 @@ void append_new_game_message(const char *fmt, ...);
 void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 int get_current_fps(void);
+void display_tooltip(const char *, int, SDL_Rect);
 
 // item_upgrades_ui.c
 int append_item_upgrade_ui_tooltip(const point *, struct auto_string *str);
