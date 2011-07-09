@@ -797,4 +797,17 @@ void load_tux_graphics(int tux_part_group, int motion_class, const char *part_st
 	}
 }
 
+/**
+ * Force tux graphics to reload.
+ */
+void reload_tux_graphics(void)
+{
+	int i;
+
+	// Clear tux part strings. It will force tux graphics to reload.
+	for (i = 0; i < ALL_PART_GROUPS; i++) {
+		previous_part_strings[i][0] = '\0';
+	}
+}
+
 #undef _blocks_c

@@ -1171,6 +1171,7 @@ void reload_graphics(void)
 	// Free all enemies graphics. Graphics for an enemy will be loaded
 	// when the enemy is encountered.
 	free_enemy_graphics();
+	reload_tux_graphics();
 }
 
 #undef _graphics_c
