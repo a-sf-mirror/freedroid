@@ -146,7 +146,7 @@ void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag,
 void PutBlast(int);
 void PutEnemy(enemy * e, int x, int y, int mask, int highlight);
 void PutMouseMoveCursor(void);
-void clear_all_loaded_tux_images(int with_free);
+void clear_all_loaded_tux_images(void);
 int set_rotation_index_for_this_robot(enemy * ThisRobot);
 int set_rotation_model_for_this_robot(enemy * ThisRobot);
 int level_is_visible(int level_num);
@@ -249,6 +249,7 @@ struct image *get_item_ingame_image(int type);
 struct image *get_item_inventory_image(int type);
 void load_all_items(void);
 void free_item_graphics(void);
+void load_tux_graphics(int tux_part_group, int motion_class, const char *part_string);
 void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image);
 
 // graphics.c 

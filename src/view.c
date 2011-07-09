@@ -62,17 +62,6 @@ int bmask = 0xFF000000;
 int amask = 0x000000FF;
 #endif
 
-char *part_group_strings[ALL_PART_GROUPS] = {
-	"head/",
-	"shield/",
-	"torso/",
-	"feet/",
-	"weapon/",
-	"weaponarm/"
-};
-
-struct image loaded_tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
-
 static int old_current_level = -1;
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, uint8_t active_directions[RADIAL_SPELL_DIRECTIONS], float age);
@@ -1996,297 +1985,37 @@ void PutMouseMoveCursor(void)
  *
  *
  */
-void free_one_loaded_tux_image_series(int tux_part_group)
+static void free_one_loaded_tux_image_series(int tux_part_group)
 {
-	int j;
-	int k;
+	int i, j;
 
-	if (strcmp(previous_part_strings[tux_part_group], NOT_LOADED_MARKER) == 0) {
-		DebugPrintf(1, "\n%s(): refusing to free group %d because it's free already.", __FUNCTION__, tux_part_group);
-		return;
-	}
+	previous_part_strings[tux_part_group][0] = '\0';
 
-	DebugPrintf(1, "\n%s():  part_group = %d.", __FUNCTION__, tux_part_group);
-
-	strcpy(previous_part_strings[tux_part_group], NOT_LOADED_MARKER);
-
-	for (j = 0; j < TUX_TOTAL_PHASES; j++) {
-		for (k = 0; k < MAX_TUX_DIRECTIONS; k++) {
-			// if ( loaded_tux_images [ tux_part_group ] [ j ] [ k ] . surface != NULL )
-			// SDL_FreeSurface ( loaded_tux_images [ tux_part_group ] [ j ] [ k ] . surface ) ;
-			// loaded_tux_images [ tux_part_group ] [ j ] [ k ] . surface = NULL ;
-			// free_single_tux_image ( tux_part_group , j , k );
-
-			SDL_FreeSurface(loaded_tux_images[tux_part_group][j][k].surface);
-
-			loaded_tux_images[tux_part_group][j][k].surface = NULL;
+	for (i = 0; i < TUX_TOTAL_PHASES; i++) {
+		for (j = 0; j < MAX_TUX_DIRECTIONS; j++) {
+			delete_image(&tux_images[tux_part_group][i][j]);
 		}
 	}
-
-	DebugPrintf(1, "...done freeing group.");
-
-};				// void free_one_loaded_tux_image_series ( int tux_part_group )
-
-/**
- *
- *
- */
-void clear_all_loaded_tux_images(int with_free)
-{
-	int i, j, k;
-
-	// Some more debug output...
-	//
-	DebugPrintf(1, "\n%s(): clearing tux surfaces.  with_free=%d.", __FUNCTION__, with_free);
-
-	if (with_free) {
-		for (i = 0; i < ALL_PART_GROUPS; i++) {
-			free_one_loaded_tux_image_series(i);
-		}
-	} else {
-		for (i = 0; i < ALL_PART_GROUPS; i++) {
-			strcpy(previous_part_strings[i], NOT_LOADED_MARKER);
-			for (j = 0; j < TUX_TOTAL_PHASES; j++) {
-				for (k = 0; k < MAX_TUX_DIRECTIONS; k++) {
-					loaded_tux_images[i][j][k].surface = NULL;
-				}
-			}
-		}
-	}
-
-};				// void clear_all_loaded_tux_images ( int force_free )
-
-/**
- * We open a tux image archive file corresponding to the currently needed
- * tux image series.
- */
-FILE *open_tux_image_archive_file(int tux_part_group, int motion_class, char *part_string)
-{
-	char constructed_filename[10000];
-	char fpath[2048];
-	FILE *DataFile;
-
-	// We need a file name!
-	//
-	sprintf(constructed_filename, "tux_motion_parts/%s/%s%s.tux_image_archive.z",
-		get_motion_class_name_by_id(motion_class), part_group_strings[tux_part_group], part_string);
-
-	if (find_file(constructed_filename, GRAPHICS_DIR, fpath, 0)) {
-		ErrorMessage(__FUNCTION__,
-			     "Freedroid was unable to find a given tux image archive (%s).\n"
-				 "This indicates a serious bug in this installation of Freedroid.",
-			     PLEASE_INFORM, IS_FATAL, constructed_filename);
-
-	}
-
-	// First we need to open the file
-	//
-	if ((DataFile = fopen(fpath, "rb")) == NULL) {
-		fprintf(stderr, "\n\nfilename: '%s'\n", fpath);
-
-		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to open a given tux image archive.\n\
-This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
-	} else {
-		DebugPrintf(1, "\n%s(): Opening file succeeded...", __FUNCTION__);
-	}
-
-	return (DataFile);
-
 }
 
 /**
- * While earlier we used lots and lots of isolated .png and .offset files
- * to store the information about the Tux, we've now moved over to using
- * a single archive file that holds all the image and all the offset 
- * information, even in uncompressed form, making access at runtime even
- * *much* faster than it was before.  This file grabs one tux part from
- * such an archive file.  It's typically called once or twice whenever 
- * either a fresh game is started/loaded or when the Tux is changing
- * equipment.
+ *
+ *
  */
-void grab_tux_images_from_archive(int tux_part_group, int motion_class, char *part_string)
+void clear_all_loaded_tux_images(void)
 {
-	int rotation_index;
-	int our_phase;
-	FILE *DataFile;
-	char *tmp_buff;
-	char archive_type_string[5] = { 0, 0, 0, 0, 0 };
-	char ogl_support_string[5] = { 0, 0, 0, 0, 0 };
-	unsigned char *DataBuffer, *ptr;
-	int tmplen;
+	int i;
 
-	Sint16 cooked_walk_object_phases;
-	Sint16 cooked_attack_object_phases;
-	Sint16 cooked_gethit_object_phases;
-	Sint16 cooked_death_object_phases;
-	Sint16 cooked_stand_object_phases;
-
-	Sint16 img_xlen;
-	Sint16 img_ylen;
-	Sint16 img_x_offs;
-	Sint16 img_y_offs;
-
-	// A short message for debug purposes
-	//
-	DebugPrintf(1, "\n%s():  grabbing new image series...", __FUNCTION__);
-
-	// reading binary-files requires endian swapping depending on platform
-	// Therefore we read the whole file into memory first then read out the 
-	// numbers using SDLNet_Read..(). The file have to be written using SDLNet_Write..()
-	DataFile = open_tux_image_archive_file(tux_part_group, motion_class, part_string);
-
-	inflate_stream(DataFile, &DataBuffer, NULL);
-	fclose(DataFile);
-
-	ptr = DataBuffer;
-	// We store the currently loaded part string, so that we can later
-	// decide if we need to do something upon an equipment change or
-	// not.
-	//
-	strcpy(previous_part_strings[tux_part_group], part_string);
-	DebugPrintf(1, "\n%s(): getting image series for group %d.", __FUNCTION__, tux_part_group);
-
-	// Now we assume, that this is an image collection file for tux
-	// and therefore it should have the right header bytes (keyword tuxX)
-	// and it also should be suitable for pure SDL (keyword sdlX)
-	//
-	memcpy(archive_type_string, ptr, 4);
-	ptr += 4;
-	memcpy(ogl_support_string, ptr, 4);
-	ptr += 4;
-
-	// We check if this is really an image archive of ENEMY type...
-	//
-	if (strncmp("tuxX", archive_type_string, 4)) {
-		ErrorMessage(__FUNCTION__, "\
-Initial archive type string doesn't look like it's from an image archive of TUX type.\n\
-This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
+	for (i = 0; i < ALL_PART_GROUPS; i++) {
+		free_one_loaded_tux_image_series(i);
 	}
-	// We check if this is really an image archive of ENEMY type...
-	//
-	if (strncmp("sdlX", ogl_support_string, 4)) {
-		ErrorMessage(__FUNCTION__, "\
-Initial archive type string doesn't look like this is a pure-SDL\n\
-arranged image archive.  While this is not impossible to use, it's\n\
-still quite inefficient, and I can only recommend to use sdl-sized\n\
-images.  Therefore I refuse to process this file any further here.", PLEASE_INFORM, IS_FATAL);
-	}
-	// Now we know that this is an archive of tux type.  Therefore
-	// we can start to read out some entries, that are only found in
-	// enemy image collections and then disregard them, because for
-	// tux, we don't need this kind of information anyway.
-	//
-
-	cooked_walk_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_attack_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_gethit_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_death_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-	cooked_stand_object_phases = ReadSint16(ptr);
-	ptr += sizeof(Sint16);
-
-	// Now we can start to really load the images.
-	//
-	for (rotation_index = 0; rotation_index < MAX_TUX_DIRECTIONS; rotation_index++) {
-		for (our_phase = 0; our_phase < TUX_TOTAL_PHASES; our_phase++) {
-			// Now if the struct image we want to blit right now has not yet been loaded,
-			// then we need to do something about is and at least attempt to load the
-			// surface
-			//
-			if (loaded_tux_images[tux_part_group][our_phase][rotation_index].surface == NULL) {
-				img_xlen = ReadSint16(ptr);
-				ptr += sizeof(Sint16);
-				img_ylen = ReadSint16(ptr);
-				ptr += sizeof(Sint16);
-				img_x_offs = ReadSint16(ptr);
-				ptr += sizeof(Sint16);
-				img_y_offs = ReadSint16(ptr);
-				ptr += sizeof(Sint16);
-
-				// Some extra checks against illegal values for the length and height
-				// of the tux images.
-				//
-				if ((img_xlen <= 0) || (img_ylen <= 0)) {
-					ErrorMessage(__FUNCTION__, "\
-Received some non-positive Tux surface dimensions.  That's a bug for sure!", PLEASE_INFORM, IS_FATAL);
-				}
-				// New code:  read data into some area.  Have SDL make a surface around the
-				// loaded data.  That is much cleaner than hard-writing the data into the 
-				// memory, that SDL has prepared internally.
-				//
-				tmplen = 4 * img_xlen * img_ylen;
-				tmp_buff = MyMalloc(tmplen);
-				memcpy(tmp_buff, ptr, tmplen);
-				ptr += tmplen;
-#               if SDL_BYTEORDER == SDL_BIG_ENDIAN
-				endian_swap(tmp_buff, 4, img_xlen * img_ylen);
-#               endif
-
-				loaded_tux_images[tux_part_group][our_phase][rotation_index].surface =
-				    SDL_CreateRGBSurfaceFrom(tmp_buff, img_xlen, img_ylen, 32, 4 * img_xlen,
-							     0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-
-				if (loaded_tux_images[tux_part_group][our_phase][rotation_index].surface == NULL) {
-					DebugPrintf(-1000, "\n\nError code from SDL: %s.", SDL_GetError());
-					ErrorMessage(__FUNCTION__, "\
-Creation of an Tux SDL software surface from pixel data failed.", PLEASE_INFORM, IS_FATAL);
-				}
-
-				loaded_tux_images[tux_part_group][our_phase][rotation_index].texture_has_been_created = FALSE;
-				loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_x = img_x_offs;
-				loaded_tux_images[tux_part_group][our_phase][rotation_index].offset_y = img_y_offs;
-
-				flip_image_vertically(loaded_tux_images[tux_part_group][our_phase][rotation_index].surface);
-
-				if (use_open_gl) {
-					make_texture_out_of_surface(&loaded_tux_images[tux_part_group][our_phase][rotation_index]);
-					free(tmp_buff);
-				}
-			} else {
-				// If the surface pointer hasn't been NULL in the first place, then
-				// obviously something with the initialisation was wrong in the first
-				// place...
-				//
-				ErrorMessage(__FUNCTION__, "\
-Surface to be loaded didn't have empty (NULL) pointer in the first place.", PLEASE_INFORM, IS_FATAL);
-
-			}
-		}
-	}			/* for rotation_index < MAX_TUX_DIRECTIONS */
-
-	/* ok, we're done reading. Don't forget to free data-file */
-	free(DataBuffer);
-
-	return;
-
-};				// void grab_tux_images_from_archive ( ... )
+}
 
 /**
- * When the Tux changes equipment and ONE NEW PART IS EQUIPPED, then
- * ALL THE IMAGES FOR THAT PART IN ALL DIRECTIONS AND ALL PHASES must
- * get loaded and that's what is done here...
- */
-void make_sure_whole_part_group_is_ready(int tux_part_group, int motion_class, char *part_string)
-{
-	grab_tux_images_from_archive(tux_part_group, motion_class, part_string);
-
-	// It can be expected, that this operation HAS TAKEN CONSIDERABLE TIME!
-	// Therefore we must activate the conservative frame time compution now,
-	// so as to prevent any unwanted jumps right now...
-	//
-	Activate_Conservative_Frame_Computation();
-
-};				// void make_sure_whole_part_group_is_ready ( int tux_part_group , int motion_class , char* part_string )
-
-/*----------------------------------------------------------------------
  * This function should blit the isometric version of the Tux to the
  * screen.
- *----------------------------------------------------------------------*/
-void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, int motion_class, int our_phase, int rotation_index)
+ */
+static void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, int motion_class, int our_phase, int rotation_index)
 {
 	char *part_string = *(render_data->default_part_instance);
 	int tux_part_group = render_data->part_group;
@@ -2308,7 +2037,13 @@ void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, in
 	//
 	if (strcmp(previous_part_strings[tux_part_group], part_string)) {
 		free_one_loaded_tux_image_series(tux_part_group);
-		make_sure_whole_part_group_is_ready(tux_part_group, motion_class, part_string);
+		load_tux_graphics(tux_part_group, motion_class, part_string);
+		strcpy(previous_part_strings[tux_part_group], part_string);
+		// It can be expected, that this operation HAS TAKEN CONSIDERABLE TIME!
+		// Therefore we must activate the conservative frame time compution now,
+		// so as to prevent any unwanted jumps right now...
+		//
+		Activate_Conservative_Frame_Computation();
 	}
 
 	float r = 1.0, g = 1.0, b = 1.0, a = 1.0;
@@ -2327,12 +2062,12 @@ void iso_put_tux_part(struct tux_part_render_data *render_data, int x, int y, in
 		a = 0.5;
 	}
 
-	struct image *img = &loaded_tux_images[tux_part_group][our_phase][rotation_index];
+	struct image *img = &tux_images[tux_part_group][our_phase][rotation_index];
 
 	if (x == -1) {
 		display_image_on_map(img, Me.pos.x, Me.pos.y, set_image_transformation(1.0, 1.0, r, g, b, a, 0));
 	} else {
-		display_image_on_screen(&loaded_tux_images[tux_part_group][our_phase][rotation_index], x, y, IMAGE_NO_TRANSFO);
+		display_image_on_screen(img, x, y, IMAGE_NO_TRANSFO);
 	}
 }
 
@@ -2488,7 +2223,7 @@ int get_motion_class_id()
 	// If the motion_class has changed, then Tux's images have to be reloaded
 	if (motion_class != previously_used_motion_class) {
 		previously_used_motion_class = motion_class;
-		clear_all_loaded_tux_images(TRUE);
+		clear_all_loaded_tux_images();
 	}
 
 	return motion_class;

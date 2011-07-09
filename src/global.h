@@ -243,6 +243,7 @@ EXTERN int droid_gethit_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
+EXTERN struct image tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
 EXTERN struct image floor_images[ALL_ISOMETRIC_FLOOR_TILES];
 EXTERN struct dynarray obstacle_images;
 

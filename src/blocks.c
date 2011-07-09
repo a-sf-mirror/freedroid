@@ -740,4 +740,61 @@ void free_floor_tiles(void)
 	}
 }
 
+static int current_tux_part_group;
+
+static struct image *get_storage_for_tux_image(const char *filename)
+{
+	int rotation;
+	int phase;
+
+	if (sscanf(filename, "tux_rot_%02d_phase_%02d.png", &rotation, &phase) != 2) {
+		ErrorMessage(__FUNCTION__, "Invalid filename '%s' in tux texture atlas.",
+			PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		return NULL;
+	}
+
+	if (rotation >= MAX_TUX_DIRECTIONS) {
+		ErrorMessage(__FUNCTION__, "Invalid rotation index %d in tux texture atlas.\n"
+			"Maximum allowed value for the rotation index is %d.", PLEASE_INFORM, IS_WARNING_ONLY,
+			rotation, MAX_TUX_DIRECTIONS - 1);
+		return NULL;
+	}
+
+	if (phase >= TUX_TOTAL_PHASES) {
+		ErrorMessage(__FUNCTION__, "Invalid phase index %d in tux texture atlas.\n"
+			"Maximum allowed value for the phase index is %d.", PLEASE_INFORM, IS_WARNING_ONLY,
+			phase, TUX_TOTAL_PHASES - 1);
+		return NULL;
+	}
+
+	return &tux_images[current_tux_part_group][phase][rotation];
+}
+
+/**
+ * Load the tux image part group for the given motion class.
+ */
+void load_tux_graphics(int tux_part_group, int motion_class, const char *part_string)
+{
+	char atlas_filename[4096];
+	char atlas_directory[4096];
+	static char *part_group_strings[ALL_PART_GROUPS] = {
+		"head/",
+		"shield/",
+		"torso/",
+		"feet/",
+		"weapon/",
+		"weaponarm/"
+	};
+
+	sprintf(atlas_directory, "tux_motion_parts/%s/%s%s/",
+		get_motion_class_name_by_id(motion_class), part_group_strings[tux_part_group], part_string);
+	sprintf(atlas_filename, "%s/atlas.txt", atlas_directory);
+
+	current_tux_part_group = tux_part_group;
+	if (load_texture_atlas(atlas_filename, atlas_directory, get_storage_for_tux_image)) {
+		ErrorMessage(__FUNCTION__, "Unable to load tux texture atlas at %s.",
+			PLEASE_INFORM, IS_FATAL, atlas_filename);
+	}
+}
+
 #undef _blocks_c
