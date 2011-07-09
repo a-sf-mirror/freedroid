@@ -34,8 +34,6 @@
 #define EXTERN
 #endif
 
-#include "lvledit/lvledit.h"
-
 enum widget_type {
 	WIDGET_BUTTON,
 	WIDGET_TOOLBAR,
@@ -63,19 +61,13 @@ struct widget {
 	struct list_head node;	/**< Linked list node used for storing sibling widgets in a widget_group. */
 };
 
-void widget_lvledit_init(void);
-void lvledit_select_type(enum lvledit_object_type);
-
-void lvledit_categoryselect_switch(int direction);
-
 void display_widgets();
 void update_widgets();
 void handle_widget_event(SDL_Event *);
-struct widget *get_active_widget(int, int);
+struct image *widget_load_image_resource(char *, int);
 void widget_set_rect(struct widget *, int, int, int, int);
+
 EXTERN struct list_head widget_list;		/**< List containing top level widget groups. */
-EXTERN struct list_head *lvledit_widget_list;
-EXTERN struct widget *previously_active_widget;
 
 #undef EXTERN
 
@@ -91,7 +83,3 @@ EXTERN struct widget *previously_active_widget;
 
 #include "widgets/widget_group.h"
 #include "widgets/widget_button.h"
-#include "lvledit/lvledit_widget_map.h"
-#include "lvledit/lvledit_widget_toolbar.h"
-#include "lvledit/lvledit_widget_categoryselect.h"
-#include "lvledit/lvledit_widget_minimap.h"

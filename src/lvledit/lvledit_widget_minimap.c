@@ -31,7 +31,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
-#include "widgets/widgets.h"
+#include "lvledit/lvledit_widgets.h"
 
 /**
  * This file defines a minimap that displays the neighbors of the 

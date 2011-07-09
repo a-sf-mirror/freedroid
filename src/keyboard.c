@@ -32,7 +32,7 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_grass_actions.h"
 #include "lvledit/lvledit_tools.h"
-#include "widgets/widgets.h"
+#include "lvledit/lvledit_widgets.h"
 #include "lvledit/lvledit_validator.h"
 
 #define KEY_PRESS    ( 1.) /**< Key is pressed. */

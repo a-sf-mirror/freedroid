@@ -36,7 +36,7 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_display.h"
 
-#include "widgets/widgets.h"
+#include "lvledit/lvledit_widgets.h"
 #include "lvledit/lvledit_tools.h"
 
 static enum {
