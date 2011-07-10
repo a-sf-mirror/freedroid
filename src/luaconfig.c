@@ -38,8 +38,8 @@
 
 #include "lvledit/lvledit_object_lists.h"
 
-/* Our Lua state for event execution (defined in lua.c) */
-extern lua_State *global_lua_state;
+/* Lua state for config execution (defined in lua.c) */
+extern lua_State *config_lua_state;
 
 /**
  * Data types that could be read from a Lua config file
@@ -702,8 +702,8 @@ static void init_obstacle_flags(void)
 
 	int i;
 	for (i = 0; i < sizeof(flags) / sizeof(flags[0]); i++) {
-		lua_pushinteger(global_lua_state, flags[i].value);
-		lua_setglobal(global_lua_state, flags[i].name);
+		lua_pushinteger(config_lua_state, flags[i].value);
+		lua_setglobal(config_lua_state, flags[i].name);
 	}
 }
 
@@ -727,8 +727,8 @@ void init_luaconfig()
 	};
 
 	for (i = 0; lfuncs[i].name != NULL; i++) {
-		lua_pushcfunction(global_lua_state, lfuncs[i].func);
-		lua_setglobal(global_lua_state, lfuncs[i].name);
+		lua_pushcfunction(config_lua_state, lfuncs[i].func);
+		lua_setglobal(config_lua_state, lfuncs[i].name);
 	}
 
 	init_obstacle_flags();

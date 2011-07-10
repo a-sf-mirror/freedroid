@@ -248,7 +248,7 @@ void trigger_position_events(void)
 			if ((position_previous_x != arr[i].trigger.position.x) 
 			|| (position_previous_y != arr[i].trigger.position.y))
 
-				run_lua(arr[i].lua_code);
+				run_lua(LUA_DIALOG, arr[i].lua_code);
 		}
 	}
 }
@@ -276,7 +276,7 @@ void event_level_changed(int past_lvl, int cur_lvl)
 		if (!arr[i].enabled)
 			continue;
 
-		run_lua(arr[i].lua_code);
+		run_lua(LUA_DIALOG, arr[i].lua_code);
 	}
 }
 
@@ -310,7 +310,7 @@ void event_enemy_died(enemy *dead)
 			if (arr[i].trigger.enemy_death.marker != dead->marker)
 				continue;
 
-		run_lua(arr[i].lua_code);
+		run_lua(LUA_DIALOG, arr[i].lua_code);
 	}
 }
 

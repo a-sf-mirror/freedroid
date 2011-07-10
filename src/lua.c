@@ -40,8 +40,19 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
-/* Our Lua state for event execution */
-lua_State *global_lua_state;
+/* Lua state for dialog execution */
+static lua_State *dialog_lua_state;
+
+/* Lua state for config execution */
+lua_State *config_lua_state;
+
+static lua_State *get_lua_state(enum lua_target target)
+{
+	if (target == LUA_CONFIG)
+		return config_lua_state;
+
+	return dialog_lua_state;
+}
 
 /** Helper to retrieve the enemy 
   * a Lua function must act upon.
@@ -422,7 +433,6 @@ static int lua_event_cookie_planted(lua_State * L)
 	for (i = 0; i < MAX_COOKIES; i++) {
 		if (!Me.cookie_list[i])
 			break;
-		
 		if (!strcmp(Me.cookie_list[i], cookie)) {
 			cond = 1;
 			break;
@@ -439,7 +449,6 @@ static int lua_event_remove_cookie(lua_State * L)
 	DeleteCookie(cookie);
 	return 0;
 }
-
 static int lua_event_has_met(lua_State *L)
 {
 	const char *npc_name = luaL_checkstring(L, 1);
@@ -1178,12 +1187,14 @@ luaL_reg lfuncs[] = {
 	{NULL, NULL}
 };
 
-void run_lua(const char *code)
+void run_lua(enum lua_target target, const char *code)
 {
-	if (luaL_dostring(global_lua_state, code)) {
+	lua_State *L = get_lua_state(target);
+
+	if (luaL_dostring(L, code)) {
 		fflush(stdout);
 
-		const char *error = lua_tostring(global_lua_state, -1);
+		const char *error = lua_tostring(L, -1);
 		char *display_code = strdup(code);
 		const char *ptr = error;
 		int err_line = 0;
@@ -1225,11 +1236,13 @@ void run_lua(const char *code)
 	}
 }
 
-void run_lua_file(const char *path)
+void run_lua_file(enum lua_target target, const char *path)
 {
-	if (luaL_dofile(global_lua_state, path)) {
+	lua_State *L = get_lua_state(target);
+
+	if (luaL_dofile(L, path)) {
 		ErrorMessage(__FUNCTION__, "Cannot run script file %s: %s.\n",
-		         PLEASE_INFORM, IS_FATAL, path, lua_tostring(global_lua_state, -1));
+		         PLEASE_INFORM, IS_FATAL, path, lua_tostring(L, -1));
 	}
 }
 
@@ -1238,15 +1251,19 @@ void init_lua()
 	char fpath[2048];
 	int i;
 
-	global_lua_state = lua_open();
-	luaL_openlibs(global_lua_state);
+	dialog_lua_state = lua_open();
+	luaL_openlibs(dialog_lua_state);
+	config_lua_state = lua_open();
+	luaL_openlibs(config_lua_state);
 
 	for (i = 0; lfuncs[i].name != NULL; i++) {
-		lua_pushcfunction(global_lua_state, lfuncs[i].func);
-		lua_setglobal(global_lua_state, lfuncs[i].name);
+		lua_pushcfunction(dialog_lua_state, lfuncs[i].func);
+		lua_setglobal(dialog_lua_state, lfuncs[i].name);
 	}
 
 	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
-		run_lua_file(fpath);
+		run_lua_file(LUA_DIALOG, fpath);
+		run_lua_file(LUA_CONFIG, fpath);
 	}
 }
+

@@ -227,7 +227,7 @@ void AssignMission(const char *name)
 	Me.AllMissions[MissNum].MissionWasAssigned = TRUE;
 
 	if (Me.AllMissions[MissNum].assignment_lua_code)
-		run_lua(Me.AllMissions[MissNum].assignment_lua_code);
+		run_lua(LUA_DIALOG, Me.AllMissions[MissNum].assignment_lua_code);
 
 	Me.quest_browser_changed = 1;
 };
@@ -243,7 +243,7 @@ void CompleteMission(const char *name)
 	Me.AllMissions[MissNum].MissionIsComplete = TRUE;
 
 	if (Me.AllMissions[MissNum].completion_lua_code)
-		run_lua(Me.AllMissions[MissNum].completion_lua_code);
+		run_lua(LUA_DIALOG, Me.AllMissions[MissNum].completion_lua_code);
 
 	Me.quest_browser_changed = 1;
 }

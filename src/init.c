@@ -983,7 +983,7 @@ void Init_Game_Data()
 
 	// Load the blast data (required for the bullets to load)
 	find_file("blast_specs.lua", MAP_DIR, fpath, 0);
-	run_lua_file(fpath);
+	run_lua_file(LUA_CONFIG, fpath);
 
 	// Load the bullet data (required for the item archtypes to load)
 	//
@@ -995,7 +995,7 @@ void Init_Game_Data()
 	// Load Tux animation and rendering specifications.
 	tux_rendering_init();
 	find_file("tuxrender_specs.lua", MAP_DIR, fpath, 1);
-	run_lua_file(fpath);
+	run_lua_file(LUA_CONFIG, fpath);
 	tux_rendering_validate(); // check mandatory specifications/configurations
 
 	// Load Bot animation definitions and animations
@@ -1010,7 +1010,7 @@ void Init_Game_Data()
 
 	// Load add-on specifications.
 	find_file("addon_specs.lua", MAP_DIR, fpath, 1);
-	run_lua_file(fpath);
+	run_lua_file(LUA_CONFIG, fpath);
 
 
 	find_file("difficulty_params.dat", MAP_DIR, fpath, 0);
@@ -1029,7 +1029,7 @@ void Init_Game_Data()
 	// Load obstacle specifications.
 	dynarray_init(&obstacle_map, 512, sizeof(struct obstacle_spec));
 	find_file("obstacle_specs.lua", MAP_DIR, fpath, 0);
-	run_lua_file(fpath);
+	run_lua_file(LUA_CONFIG, fpath);
 
 	next_startup_percentage(1);
 }

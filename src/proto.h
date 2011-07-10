@@ -59,8 +59,8 @@ struct event_trigger * visible_event_at_location(int x, int y, int z);
 
 // lua.c
 void init_lua(void);
-void run_lua(const char *code);
-void run_lua_file(const char *);
+void run_lua(enum lua_target, const char *code);
+void run_lua_file(enum lua_target, const char *);
 
 // luaconfig.c
 void init_luaconfig(void);

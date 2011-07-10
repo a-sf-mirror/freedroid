@@ -1501,4 +1501,10 @@ enum obstacle_extension_type {
 	OBSTACLE_EXTENSION_DIALOGFILE, // This extension indicates the dialog filename associated to an interactive obstacle. Contains the dialog basename.
 	OBSTACLE_EXTENSION_SIGNMESSAGE = OBSTACLE_EXTENSION_DIALOGFILE, // This extension contains the message written on a signpost. It is exclusive with a dialogfile specification
 };
+
+enum lua_target {
+	LUA_CONFIG,
+	LUA_DIALOG
+};
+
 #endif

@@ -501,7 +501,7 @@ void widget_lvledit_init()
 	// Load categories for obstacles
 	char fpath[4096];
 	find_file("leveleditor_obstacle_categories.lua", MAP_DIR, fpath, 0);
-	run_lua_file(fpath);
+	run_lua_file(LUA_CONFIG, fpath);
 
 	// Build list of all obstacles
 	all_obstacles_list = MyMalloc(sizeof(int) * (obstacle_map.size + 1));

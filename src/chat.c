@@ -442,7 +442,7 @@ static void process_this_chat_option(int menu_selection, enemy *chat_droid)
 
 	// Run LUA associated with this selection
 	if (ChatRoster[menu_selection].lua_code)
-		run_lua(ChatRoster[menu_selection].lua_code);
+		run_lua(LUA_DIALOG, ChatRoster[menu_selection].lua_code);
 }
 
 /**
@@ -473,7 +473,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
 
 	if (chat_initialization_code)
-		run_lua(chat_initialization_code);
+		run_lua(LUA_DIALOG, chat_initialization_code);
 
 	// We load the option texts into the dialog options variable..
 	//
@@ -487,7 +487,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	while (1) {
 		// Now we run the startup code
 		if (chat_startup_code && chat_control_next_node == -1) {
-			run_lua(chat_startup_code);
+			run_lua(LUA_DIALOG, chat_startup_code);
 			free(chat_startup_code);
 			chat_startup_code = NULL;	//and free it immediately so as not to run it again in this session
 
@@ -605,30 +605,30 @@ int validate_dialogs()
 
 	/* _says functions are not run by the validator, as they display
 	   text on screen and wait for clicks */
-	run_lua("function npc_says(a)\nend\n");
-	run_lua("function tux_says(a)\nend\n");
-	run_lua("function cli_says(a)\nend\n");
+	run_lua(LUA_DIALOG, "function npc_says(a)\nend\n");
+	run_lua(LUA_DIALOG, "function tux_says(a)\nend\n");
+	run_lua(LUA_DIALOG, "function cli_says(a)\nend\n");
 
 	/* Subdialogs currently call run_chat and we cannot do that when validating dialogs */
-	run_lua("function run_subdialog(a)\nend\n");
+	run_lua(LUA_DIALOG, "function run_subdialog(a)\nend\n");
 
 	/* Shops must not be run (display + wait for clicks) */
-	run_lua("function trade_with(a)\nend\n");
+	run_lua(LUA_DIALOG, "function trade_with(a)\nend\n");
 	
 	/* drop_dead cannot be tested because it means we would try to kill our dummy bot
 	 several times, which is not allowed by the engine */
-	run_lua("function drop_dead(a)\nend\n");
+	run_lua(LUA_DIALOG, "function drop_dead(a)\nend\n");
 
-	run_lua("function user_input_string(a)\nreturn \"dummy\";\nend\n");
+	run_lua(LUA_DIALOG, "function user_input_string(a)\nreturn \"dummy\";\nend\n");
 
-	run_lua("function upgrade_items(a)\nend\n");
-	run_lua("function craft_addons(a)\nend\n");
+	run_lua(LUA_DIALOG, "function upgrade_items(a)\nend\n");
+	run_lua(LUA_DIALOG, "function craft_addons(a)\nend\n");
 	/* set_bot_destination cannot be tested because this may be invoked when the bot is
 	 on a different level than where the bot starts */
-	run_lua("function set_bot_destination(a)\nend\n");
+	run_lua(LUA_DIALOG, "function set_bot_destination(a)\nend\n");
 
 	/* takeover requires user input - hardcode it to win */
-	run_lua("function takeover(a)\nreturn true\nend\n");
+	run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
 
 	/* This dummy will be used to test break_off_and_attack() functions and such. */
 	BROWSE_ALIVE_BOTS(dummy_partner) {
@@ -651,13 +651,13 @@ int validate_dialogs()
 
 		if (chat_initialization_code) {
 			printf("\tinit code\n");
-			run_lua(chat_initialization_code);
+			run_lua(LUA_DIALOG, chat_initialization_code);
 		}
 
 
 		if (chat_startup_code) {
 			printf("\tstartup code\n");
-			run_lua(chat_startup_code);
+			run_lua(LUA_DIALOG, chat_startup_code);
 		}
 		k = 0;
 		for (j = 0; j < MAX_DIALOGUE_OPTIONS_IN_ROSTER; j++) {
@@ -666,7 +666,7 @@ int validate_dialogs()
 					printf("\n");
 				}
 				printf("|node %2d|\t", j);
-				run_lua(ChatRoster[j].lua_code);
+				run_lua(LUA_DIALOG, ChatRoster[j].lua_code);
 				k++;
 			}
 		}
