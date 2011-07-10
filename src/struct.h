@@ -818,7 +818,7 @@ typedef struct obstacle_spec {
 	// Some obstacles will emit light.  Specify light strength here.
 	// A value of 0 light will be sufficient in most cases...
 	//
-	short emitted_light_strength;
+	struct dynarray emitted_light_strength;
 	char transparent;
 
 	struct dynarray filenames;

@@ -539,7 +539,6 @@ static int lua_obstacle_ctor(lua_State *L)
 	int transparency;
 	char *animation;
 	char *action;
-	int emitted_light_strength;
 	struct dynarray groups;
 
 	char default_transparency[20];
@@ -550,7 +549,7 @@ static int lua_obstacle_ctor(lua_State *L)
 		{ "borders", "0", FLOAT_ARRAY, &borders },
 		{ "flags", "0", INT_ARRAY, &flags },
 		{ "after_smashing", "-1", INT_TYPE, &obstacle.result_type_after_smashing_once },
-		{ "emitted_light_strength", "0", INT_TYPE, &emitted_light_strength },
+		{ "emitted_light_strength", "0", INT_ARRAY, &obstacle.emitted_light_strength },
 		{ "transparency", default_transparency, INT_TYPE, &transparency },
 		{ "action", NULL, STRING_TYPE, &action },
 		{ "animation", NULL, STRING_TYPE, &animation },
@@ -603,7 +602,6 @@ static int lua_obstacle_ctor(lua_State *L)
 		obstacle.flags |= flags_array[i];
 	dynarray_free(&flags);
 
-	obstacle.emitted_light_strength = emitted_light_strength;
 	obstacle.transparent = transparency;
 	
 	// Parse action

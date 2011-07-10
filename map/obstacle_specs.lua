@@ -123,7 +123,7 @@ obstacle {
 
 obstacle {
 	image_filenames = { "iso_obstacle_0018.png", "iso_obstacle_0019.png", "iso_obstacle_0020.png", "iso_obstacle_0016.png", "iso_obstacle_0017.png" },
-	emitted_light_strength = 20,
+	emitted_light_strength = { 20, 19, 18, 19, 20 },
 	transparency = NO_TRANSPARENCY,
 	animation_fps = 10
 }
