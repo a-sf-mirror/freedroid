@@ -285,12 +285,13 @@ void ParseCommandLine(int argc, char *const argv[])
 
 	if (input_filename == NULL) {
 		DebugPrintf(-1, "\nERROR:  No input file specified... Terminating...\n");
+		printf("\n%s", usage_string);
 		Terminate(EXIT_FAILURE, TRUE);
-    }
+  }
 
 	if (output_filename == NULL) {
 		output_filename = strdup(input_filename);
-    }
+  }
 
 } // ParseCommandLine 
 
@@ -575,7 +576,9 @@ int get_default_center(int *default_center_x, int *default_center_y)
 				*default_center_x, *default_center_y);
 		return TRUE;
 	}
-	
+
+	DebugPrintf(1, "\nCROPPY: Images size %dx%d unrecognized. Using %d/%d default origin. The offset value will be inaccurate.",
+		*default_center_x, *default_center_y);
 	return FALSE;
 }
 
@@ -676,11 +679,8 @@ int main(int argc, char *const argv[])
 		Terminate(EXIT_FAILURE, TRUE);
 	}
 
-	if (!get_default_center(&default_center_x, &default_center_y)) {
-		DebugPrintf(-1, "\nCROPPY ERROR:  Unrecognized image format received... terminating in order to prevent accidents...\n");
-		Terminate(EXIT_FAILURE, TRUE);
-	}
-	
+	get_default_center(&default_center_x, &default_center_y);
+
 	if (!no_graphics_output) {
 		SDL_BlitSurface(input_surface, NULL, Screen, NULL);
 		SDL_Flip(Screen);
