@@ -248,6 +248,7 @@ enum {
 #define LINE_HEIGHT_FACTOR (6.0/5.0)
 
 #define BACKGROUND_TEXT_RECT_ALPHA 110
+#define TEXT_BANNER_HORIZONTAL_MARGIN 4
 
 //--------------------
 // dimensions of the droids as required for functions NotPassable() and CheckEnemyCollsion() )

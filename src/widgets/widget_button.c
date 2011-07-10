@@ -69,11 +69,15 @@ static int button_handle_event(struct widget *w, SDL_Event *event)
 
 		case SDL_USEREVENT:
 			// Set hovered state when the mouse is over the button.
-			if (event->user.code == EVENT_MOUSE_ENTER)
+			if (event->user.code == EVENT_MOUSE_ENTER) {
 				b->state = HOVERED;
+				// Set the button tooltip to be displayed.
+				widget_set_tooltip(b->tooltip, &w->rect);
+			}
 			// Mouse left the button's rectangle, switch to normal state.
 			if (event->user.code == EVENT_MOUSE_LEAVE) {
 				b->state = DEFAULT;
+				widget_set_tooltip(NULL, NULL);
 			}
 			if (event->user.code == EVENT_UPDATE && w->update)
 				w->update(w);

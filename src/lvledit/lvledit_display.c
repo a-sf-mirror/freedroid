@@ -284,60 +284,6 @@ static void show_map_labels(int must_zoom)
 }
 
 /**
- * When the mouse has rested idle on some mouse button in the level 
- * editor (and also tooltips are enabled) then some small window (a 
- * tooltip) will appear and describe the purpose of the button under the
- * mouse cursor.  Bringing up this tooltip window is the purpose of this
- * function.
- */
-static void show_button_tooltip(const char *tooltip_text)
-{
-	float w = 400;
-	float h = 20; // will be expanded by show_backgrounded_text_rectangle()
-	float x = 120;
-	float y = 160;
-
-	show_backgrounded_text_rectangle(tooltip_text, FPS_Display_BFont, x, y, w, h);
-}
-
-/**
- * Display the tooltips of the buttons on the screen
- */
-static void show_tooltips()
-{
-	static float time_spent_on_some_button = 0;
-	static float previous_function_call_time = 0;
-
-	time_spent_on_some_button += SDL_GetTicks() - previous_function_call_time;
-
-	previous_function_call_time = SDL_GetTicks();
-
-	if (!GameConfig.show_lvledit_tooltips)
-		return;
-
-#define TICKS_UNTIL_TOOLTIP 1200
-	if (time_spent_on_some_button <= TICKS_UNTIL_TOOLTIP)
-		return;
-
-	struct widget *w = get_active_widget(GetMousePos_x(), GetMousePos_y());
-	if (!w)
-		return;
-
-	if (w->type != WIDGET_BUTTON) {
-		// If the active widget is not a button,
-		// reset the tooltip timer
-		time_spent_on_some_button = 0;
-		return;
-	}
-
-	struct widget_button *b = WIDGET_BUTTON(w);
-	if (b->tooltip) {
-		// The button has a tooltip, display it
-		show_button_tooltip(b->tooltip);
-	}
-}
-
-/**
  * Display the cursor in the leveleditor according to the currently
  * selected tool etc.
  */
@@ -387,8 +333,6 @@ void leveleditor_display()
 	if (VanishingMessageEndDate > SDL_GetTicks()) {
 		display_text_using_line_height(VanishingMessage, 1, GameConfig.screen_height - 8 * FontHeight(GetCurrentFont()), NULL, 1.0);
 	}
-
-	show_tooltips();
 
 	// Construct the linked list of visible levels.
 	get_visible_levels();

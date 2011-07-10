@@ -86,10 +86,10 @@ static int group_mouse_event(struct widget *wg, SDL_Event *event)
 
 	// Send enter/leave events if the focused widget has changed.
 	if (current_widget != WIDGET_GROUP(wg)->last_focused) {
-		if (current_widget)
-			current_widget->handle_event(current_widget, &enter_event);
 		if (WIDGET_GROUP(wg)->last_focused)
 			WIDGET_GROUP(wg)->last_focused->handle_event(WIDGET_GROUP(wg)->last_focused, &leave_event);
+		if (current_widget)
+			current_widget->handle_event(current_widget, &enter_event);
 		WIDGET_GROUP(wg)->last_focused = current_widget;
 	}
 

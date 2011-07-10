@@ -39,7 +39,6 @@
 
 
 #define TEXT_BANNER_DEFAULT_FONT FPS_Display_BFont
-#define TEXT_BANNER_HORIZONTAL_MARGIN 4
 
 int best_banner_pos_x, best_banner_pos_y;
 

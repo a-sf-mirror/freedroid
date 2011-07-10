@@ -66,6 +66,7 @@ void update_widgets();
 void handle_widget_event(SDL_Event *);
 struct image *widget_load_image_resource(char *, int);
 void widget_set_rect(struct widget *, int, int, int, int);
+void widget_set_tooltip(char *, SDL_Rect *);
 
 EXTERN struct list_head widget_list;		/**< List containing top level widget groups. */
 
