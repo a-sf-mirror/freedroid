@@ -37,10 +37,12 @@
 #include "global.h"
 #include "proto.h"
 
+#include "widgets/widgets.h"
+
 int Single_Player_Menu(void);
 void Options_Menu(void);
 
-EXTERN void LevelEditor(void);
+void LevelEditor(void);
 
 #define SINGLE_PLAYER_STRING "Play"
 #define LOAD_EXISTING_HERO_STRING _("Your characters: ")

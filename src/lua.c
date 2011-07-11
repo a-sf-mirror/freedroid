@@ -36,6 +36,8 @@
 #include "lvledit/lvledit_actions.h"
 #include "lvledit/lvledit_map.h"
 
+#include "widgets/widgets.h"
+
 #include "lua.h"
 #include "lauxlib.h"
 #include "lualib.h"

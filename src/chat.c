@@ -39,6 +39,8 @@
 #include "proto.h"
 #include "global.h"
 
+#include "widgets/widgets.h"
+
 #define PUSH_ROSTER 2
 #define POP_ROSTER 3
 
@@ -318,7 +320,7 @@ void show_chat_log(enemy *chat_enemy)
 	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF_BUTTON);
 	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF2_BUTTON);
 
-	show_text_widget(&chat_log);
+	widget_text_display(&chat_log);
 }
 
 /**
@@ -463,7 +465,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 
 	/* Initialize the chat log widget. */
 	if (!is_subdialog)
-		init_text_widget(&chat_log, _("\3--- Start of Dialog ---\n"));
+		widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
 
 	chat_log.rect.x = CHAT_SUBDIALOG_WINDOW_X;
 	chat_log.rect.y = CHAT_SUBDIALOG_WINDOW_Y;

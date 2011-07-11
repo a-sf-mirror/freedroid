@@ -26,7 +26,8 @@
  * @file widgets.h
  * This file contains structure types and functions used by the widget system.
  */
-
+#ifndef _widgets_h
+#define _widgets_h
 #undef EXTERN
 #ifndef _widgets_c
 #define EXTERN extern
@@ -84,3 +85,6 @@ EXTERN struct list_head widget_list;		/**< List containing top level widget grou
 
 #include "widgets/widget_group.h"
 #include "widgets/widget_button.h"
+#include "widgets/widget_text.h"
+
+#endif

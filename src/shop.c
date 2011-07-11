@@ -36,6 +36,8 @@
 #include "global.h"
 #include "proto.h"
 
+#include "widgets/widgets.h"
+
 #define SHOP_ROW_LENGTH 8
 
 SDL_Rect ShopItemRowRect;
@@ -265,7 +267,7 @@ void ShowItemPicture(int PosX, int PosY, int Number)
 /**
  * Assemble item description.
  */
-static void fill_item_description(text_widget *desc, item *show_item, int buy)
+static void fill_item_description(struct widget_text *desc, item *show_item, int buy)
 {
 	long int repair_price = 0;
 	itemspec *info;
@@ -279,7 +281,7 @@ static void fill_item_description(text_widget *desc, item *show_item, int buy)
 
 	info = &ItemMap[show_item->type];
 
-	init_text_widget(desc, "");
+	widget_text_init(desc, "");
 
 	append_item_description(desc->text, show_item);
 	
@@ -359,7 +361,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	int SellButtonActive = FALSE;
 	int ret = 0;
 	int old_game_status = game_status;
-	static text_widget item_description;
+	static struct widget_text item_description;
 	const int scroll_to_top = -1000;
 
 	game_status = INSIDE_MENU;
@@ -399,7 +401,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 	}
 
 	/* Initialize the text widget. */
-	init_text_widget(&item_description, "");
+	widget_text_init(&item_description, "");
 	item_description.rect.x = UNIVERSAL_COORD_W(258);
 	item_description.rect.y = UNIVERSAL_COORD_H(108);
 	item_description.rect.w = UNIVERSAL_COORD_W(346);
@@ -439,7 +441,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			ShowItemPicture(x, y, TuxItemsList[TuxItemIndex]->type);
 		}
 
-		show_text_widget(&item_description);
+		widget_text_display(&item_description);
 
 		for (i = 0; i < RowLength; i++) {
 			ShowRescaledItem(i, FALSE, ShowPointerList[i + RowStart]);

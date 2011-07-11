@@ -34,10 +34,12 @@
 #include "proto.h"
 #include "global.h"
 
+#include "widgets/widgets.h"
+
 /**
  * Initialize or reset a text widget.
  */
-void init_text_widget(text_widget *w, const char *start_text) {
+void widget_text_init(struct widget_text *w, const char *start_text) {
 	if (w->text == NULL)
 		w->text = alloc_autostr(10000);
 	w->text->length = 0;
@@ -53,7 +55,7 @@ void init_text_widget(text_widget *w, const char *start_text) {
 /**
  * @return TRUE if it is possible to scroll up.
  */
-static int text_widget_can_scroll_up(text_widget *w) {
+static int text_can_scroll_up(struct widget_text *w) {
 	SetCurrentFont(w->font);
 	int lines_needed = get_lines_needed(w->text->value, w->rect, w->line_height_factor);
 	const int font_size = FontHeight(w->font) * w->line_height_factor;
@@ -66,7 +68,7 @@ static int text_widget_can_scroll_up(text_widget *w) {
 /**
  * @return TRUE if it is possible to scroll down.
  */
-static int text_widget_can_scroll_down(text_widget *w) {
+static int text_can_scroll_down(struct widget_text *w) {
 	return w->scroll_offset != 0;
 }
 
@@ -76,16 +78,16 @@ static int text_widget_can_scroll_down(text_widget *w) {
  * @return TRUE if a mouse click was handled, and no further handling should be
  * done by the caller
  */
-int widget_handle_mouse(text_widget *w) {
+int widget_text_handle_mouse(struct widget_text *w) {
 	int mouse_over_widget = MouseCursorIsInRect(&w->rect, GetMousePos_x(), GetMousePos_y());
 	int mouse_over_upper_half = (GetMousePos_y() - w->rect.y) < (w->rect.h / 2);
 	int mouse_over_lower_half = (GetMousePos_y() - w->rect.y) >= (w->rect.h / 2);
 
 	/* Change the mouse cursor as needed. */
 	if (mouse_over_widget) {
-		if (text_widget_can_scroll_up(w) && mouse_over_upper_half)
+		if (text_can_scroll_up(w) && mouse_over_upper_half)
 			mouse_cursor = MOUSE_CURSOR_SCROLL_UP;
-		else if (text_widget_can_scroll_down(w) && mouse_over_lower_half)
+		else if (text_can_scroll_down(w) && mouse_over_lower_half)
 			mouse_cursor = MOUSE_CURSOR_SCROLL_DOWN;
 	}
 
@@ -130,7 +132,7 @@ int widget_handle_mouse(text_widget *w) {
 /**
  * Show the specified text widget.
  */
-void show_text_widget(text_widget *w) {
+void widget_text_display(struct widget_text *w) {
 	SetCurrentFont(w->font);
 	int lines_needed = get_lines_needed(w->text->value, w->rect, w->line_height_factor);
 	int offset = 0;

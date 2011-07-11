@@ -23,7 +23,6 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	graphics.c map.c colldet.c init.c \
 	image.c \
 	takeover.c bullet.c influ.c action.c misc.c text.c text_public.c sound.c \
-	text_widget.c \
 	enemy.c input.c keyboard.c main.c hud.c view.c automap.c BFont.c \
 	defs.h map.h vars.h takeover.h global.h \
 	proto.h struct.h system.h BFont.h \
@@ -40,6 +39,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	obstacle.c \
 	widgets/widgets.c widgets/widgets.h widgets/widget_button.c widgets/widget_button.h \
 	widgets/widget_group.c widgets/widget_group.h \
+	widgets/widget_text.c widgets/widget_text.h \
 	lvledit/lvledit.c lvledit/lvledit.h \
 	lvledit/lvledit_actions.c lvledit/lvledit_actions.h \
 	lvledit/lvledit_display.c lvledit/lvledit_display.h \

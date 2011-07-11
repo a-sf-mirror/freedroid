@@ -36,6 +36,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "widgets/widgets.h"
 
 #ifdef __OpenBSD__
 #include "ieeefp.h"
@@ -1286,7 +1287,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	//
 	our_SDL_flip_wrapper();
 
-	init_text_widget(&message_log, _("--- Message Log ---"));
+	widget_text_init(&message_log, _("--- Message Log ---"));
 	if (strcmp(startpos, "TutorialTuxStart") == 0)
 		append_new_game_message(_("Starting tutorial."));
 	else

@@ -43,6 +43,8 @@
 #include "map.h"
 #include "proto.h"
 
+#include "widgets/widgets.h"
+
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_display.h"
 #include "lvledit/lvledit_tools.h"
@@ -1869,7 +1871,7 @@ void AssembleCombatPicture(int mask)
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
 		ShowItemAlarm();
 		blit_background("hud_background.png");
-		show_text_widget(&message_log);
+		widget_text_display(&message_log);
 		if (!GameOver) {
 			ShowCurrentHealthAndForceLevel();
 			ShowCurrentSkill();

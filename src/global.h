@@ -189,7 +189,7 @@ int chat_control_partner_started;	//the dialog partner is the one who started th
 uint8_t *chat_control_chat_flags; //current chat flags
 enemy *chat_control_chat_droid;	//droid we are chatting with
 dialogue_option ChatRoster[MAX_DIALOGUE_OPTIONS_IN_ROSTER];
-EXTERN text_widget chat_log;
+EXTERN struct widget_text chat_log;
 
 #undef EXTERN
 #ifdef _sound_c
@@ -259,7 +259,7 @@ EXTERN int vid_bpp;		// bits per pixel
 #else
 #define EXTERN extern
 #endif
-EXTERN text_widget message_log;
+EXTERN struct widget_text message_log;
 
 #undef EXTERN
 #ifdef _blocks_c

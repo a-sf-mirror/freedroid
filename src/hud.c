@@ -36,7 +36,7 @@
 #include "struct.h"
 #include "proto.h"
 #include "global.h"
-
+#include "widgets/widgets.h"
 
 #define TEXT_BANNER_DEFAULT_FONT FPS_Display_BFont
 
@@ -901,7 +901,7 @@ void append_new_game_message(const char *fmt, ...)
  */
 void init_message_log(void)
 {
-	init_text_widget(&message_log, _("--- Message Log ---"));
+	widget_text_init(&message_log, _("--- Message Log ---"));
 
 	/* Set up the text widget. */
 	message_log.rect.x = MESSAGE_TEXT_WIDGET_X;

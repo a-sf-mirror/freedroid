@@ -37,6 +37,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "widgets/widgets.h"
 
 #define BEST_MELEE_DISTANCE (0.8)
 #define BEST_CHAT_DISTANCE (BEST_MELEE_DISTANCE+0.2)
@@ -1627,7 +1628,7 @@ static void AnalyzePlayersMouseClick()
 
 	/* Handle the main message log. */
 	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
-		if (widget_handle_mouse(&message_log))
+		if (widget_text_handle_mouse(&message_log))
 			return;
 	}
 

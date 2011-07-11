@@ -38,6 +38,7 @@
 #include "proto.h"
 #include "takeover.h"
 #include "map.h"
+#include "widgets/widgets.h"
 
 enemy *cDroid;
 Uint32 cur_time;		// current time in ms 
@@ -203,7 +204,7 @@ static void show_droid_info(int droidtype)
 /**
  * Initialize text widget with a description of the specified droidtype.
  */
-static void init_droid_description(text_widget *w, int droidtype)
+static void init_droid_description(struct widget_text *w, int droidtype)
 {
 	char *item_name;
 	int weapon_type;
@@ -514,10 +515,10 @@ int droid_takeover(enemy *target)
 	int menu_finished = FALSE;
 	int reward = 0;
 	SDL_Event event;
-	static text_widget droid_info;
+	static struct widget_text droid_info;
 
 	// Set up the droid description widget
-	init_text_widget(&droid_info, "");
+	widget_text_init(&droid_info, "");
 	init_droid_description(&droid_info, target->type);
 	droid_info.rect.x = 258 * GameConfig.screen_width / 640;
 	droid_info.rect.y = 107 * GameConfig.screen_height / 480;
@@ -544,7 +545,7 @@ int droid_takeover(enemy *target)
 
 	while (!menu_finished) {
 		show_droid_info(target->type);
-		show_text_widget(&droid_info);
+		widget_text_display(&droid_info);
 		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
 		SetCurrentFont(Para_BFont);
 		CenteredPutString(Screen, GameConfig.screen_height - 30, "For more information, click the help button.");

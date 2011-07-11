@@ -39,6 +39,7 @@
 #include "global.h"
 #include "proto.h"
 #include "map.h"
+#include "widgets/widgets.h"
 
 static const SDL_VideoInfo *vid_info;
 
@@ -192,8 +193,8 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	SDL_Rect knob_target_rect;
 
 	/* Initialize the text widget. */
-	static text_widget item_description;
-	init_text_widget(&item_description, "");
+	static struct widget_text item_description;
+	widget_text_init(&item_description, "");
 	item_description.rect.x = UNIVERSAL_COORD_W(310);
 	item_description.rect.y = UNIVERSAL_COORD_H(180);
 	item_description.rect.w = UNIVERSAL_COORD_W(75);
@@ -230,7 +231,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 			}
 			old_knob_at = knob_at;
 		}
-		show_text_widget(&item_description);
+		widget_text_display(&item_description);
 
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();

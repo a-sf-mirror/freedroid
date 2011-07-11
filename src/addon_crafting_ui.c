@@ -24,6 +24,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "widgets/widgets.h"
 
 /**
  * \file addon_crafting_ui.c
@@ -53,7 +54,7 @@ static struct {
 	int selection;
 	int scroll_offset; /// The scroll offset of the recipe list, in full rows.
 	struct dynarray recipes;
-	struct text_widget description;
+	struct widget_text description;
 	struct material materials_for_selected[5];
 } ui = { .visible = FALSE };
 
@@ -373,7 +374,7 @@ void show_addon_crafting_ui()
 	}
 
 	// Draw the description of the selected recipe.
-	show_text_widget(&ui.description);
+	widget_text_display(&ui.description);
 }
 
 int addon_crafting_ui_visible()
@@ -450,7 +451,7 @@ static void handle_ui()
 	// Handle events to the description text widget. Since the buttons overlap
 	// with the text widget, we only call this when the cursor is not on them.
 	// Otherwise, the text widget would handle the events of the buttons.
-	widget_handle_mouse(&ui.description);
+	widget_text_handle_mouse(&ui.description);
 }
 
 /**
@@ -463,7 +464,7 @@ void addon_crafting_ui()
 
 	// Clear the struct and build the recipe list.
 	memset(&ui, 0, sizeof(ui));
-	init_text_widget(&ui.description, "");
+	widget_text_init(&ui.description, "");
 	ui.description.font = Messagevar_BFont;
 	ui.description.rect = rects.recipe_desc;
 	ui.description.content_above_func = draw_scroll_desc_up_button;
