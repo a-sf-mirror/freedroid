@@ -1250,6 +1250,8 @@ void PrepareStartOfNewCharacter(char *startpos)
 	// previous game or failed load-game attempt...
 	//
 	clear_out_arrays_for_fresh_game();
+	// We do the same as above for lua state
+	reset_lua_state();
 
 	GetEventTriggers("events.dat");
 

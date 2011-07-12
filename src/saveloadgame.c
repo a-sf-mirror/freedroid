@@ -342,6 +342,7 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 	}
 
 	save_factions(savestruct_autostr);
+	lua_save_variables(savestruct_autostr);
 	autostr_append(savestruct_autostr, "End of freedroidRPG savefile\n");
 	deflate_to_stream((unsigned char *)savestruct_autostr->value, savestruct_autostr->length+1, SaveGameFile);
 	fclose(SaveGameFile);
@@ -486,6 +487,8 @@ static int load_saved_game(int use_backup)
 	DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\n%s(): function call confirmed....", __FUNCTION__);
 
 	Activate_Conservative_Frame_Computation();
+	// Initialize Lua state correctly
+	reset_lua_state();
 
 	sprintf(prefix, "%s/%s", our_config_dir, Me.character_name);
 	if (use_backup) {
@@ -532,6 +535,7 @@ static int load_saved_game(int use_backup)
 	load_npcs(LoadGameData);
 	load_bullets(LoadGameData);
 	load_factions(LoadGameData);
+	lua_load_variables(LoadGameData);
 
 	/* post-loading: Some transient states have to be adapted */
 	enemy *erot;

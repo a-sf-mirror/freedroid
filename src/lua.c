@@ -1269,3 +1269,84 @@ void init_lua()
 	}
 }
 
+/**
+ * Reset Lua state
+ */
+void reset_lua_state(void)
+{
+	int i;
+	char fpath[2048];
+
+	lua_close(dialog_lua_state);
+	dialog_lua_state = lua_open();
+	luaL_openlibs(dialog_lua_state);
+
+	for (i = 0; lfuncs[i].name != NULL; i++) {
+		lua_pushcfunction(dialog_lua_state, lfuncs[i].func);
+		lua_setglobal(dialog_lua_state, lfuncs[i].name);
+	}
+
+	if (!find_file("script_helpers.lua", MAP_DIR, fpath, 1)) {
+		run_lua_file(LUA_DIALOG, fpath);
+	}
+}
+
+/**
+ * Save Lua variables as lua code.
+ * Variables prefixed with '_' are omitted because these are Lua predefined variables.
+ */
+void lua_save_variables(struct auto_string *savestruct_autostr)
+{
+	int boolean;
+	const char *value;
+	lua_State *L = get_lua_state(LUA_DIALOG);
+
+	autostr_append(savestruct_autostr, "lua_variables:LuaCode={\n");
+
+	lua_pushnil(L);
+	while (lua_next(L, LUA_GLOBALSINDEX) != 0) {
+		int value_type = lua_type(L, -1);
+		int key_type = lua_type(L, -2);
+
+		if (key_type != LUA_TSTRING) {
+			lua_pop(L, 1);
+			continue;
+		}
+
+		const char *name = lua_tostring(L, -2);
+		if (name[0] == '_') {
+			lua_pop(L, 1);
+			continue;
+		}
+
+		switch (value_type)
+		{
+			case LUA_TBOOLEAN:
+				boolean = lua_toboolean(L, -1);
+				autostr_append(savestruct_autostr, "_G[\"%s\"] = %s\n", name, boolean ? "true" : "false");
+				break;
+			case LUA_TSTRING:
+			case LUA_TNUMBER:
+				value = lua_tostring(L, -1);
+				autostr_append(savestruct_autostr, "_G[\"%s\"] = %s\n", name, value);
+				break;
+			default:
+				break;
+		}
+
+		lua_pop(L, 1);
+	}
+
+	autostr_append(savestruct_autostr, "}\n");
+}
+
+/**
+ * Load Lua variables from a saved game
+ */
+void lua_load_variables(const char *savegame_data)
+{
+	luacode init_variables_code = NULL;
+	read_luacode(savegame_data, "lua_variables", &init_variables_code);
+	run_lua(LUA_DIALOG, init_variables_code);
+	free(init_variables_code);
+}
