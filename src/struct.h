@@ -600,8 +600,6 @@ typedef struct tux {
 	uint8_t HaveBeenToLevel[MAX_LEVELS];	            // record of the levels the player has visited yet.
 	float time_since_last_visit_or_respawn[MAX_LEVELS];	// record of the levels the player has visited yet.
 
-	string cookie_list[MAX_COOKIES];
-
 	//--------------------
 	// THE FOLLOWING ARE INFORMATION, THAT ARE HUGE AND THAT ALSO DO NOT NEED
 	// TO BE COMMUNICATED FROM THE CLIENT TO THE SERVER OR VICE VERSA

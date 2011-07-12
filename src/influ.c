@@ -1718,13 +1718,7 @@ static void free_tux()
 	Me.savegame_version_string = NULL;
 
 	clear_tux_mission_info();
-	for (i = 0; i < MAX_COOKIES; i++) {
-		if (Me.cookie_list[i])
-			free(Me.cookie_list[i]);
 
-		Me.cookie_list[i] = NULL;
-	}
-	
 	// We mark all the big screen messages for this character
 	// as out of date, so they can be overwritten with new 
 	// messages...

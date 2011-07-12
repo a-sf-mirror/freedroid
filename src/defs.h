@@ -520,7 +520,6 @@ enum {
 
 #define MIN_MAP_LINES		30
 #define MAX_MAP_LINES 		100
-#define MAX_COOKIES 200
 #define MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX 100
 
 #define EW_WALL_BIT 1

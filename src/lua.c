@@ -420,37 +420,6 @@ static int lua_event_add_diary_entry(lua_State * L)
 	return 0;
 }
 
-static int lua_event_plant_cookie(lua_State * L)
-{
-	const char *cookie = luaL_checkstring(L, 1);
-	PlantCookie(cookie);
-	return 0;
-}
-
-static int lua_event_cookie_planted(lua_State * L)
-{
-	const char *cookie = luaL_checkstring(L, 1);
-	int i;
-	int cond = 0;
-	for (i = 0; i < MAX_COOKIES; i++) {
-		if (!Me.cookie_list[i])
-			break;
-		if (!strcmp(Me.cookie_list[i], cookie)) {
-			cond = 1;
-			break;
-		}
-	}
-
-	lua_pushboolean(L, cond);
-	return 1;
-}
-
-static int lua_event_remove_cookie(lua_State * L)
-{
-	const char *cookie = luaL_checkstring(L, 1);
-	DeleteCookie(cookie);
-	return 0;
-}
 static int lua_event_has_met(lua_State *L)
 {
 	const char *npc_name = luaL_checkstring(L, 1);
@@ -1081,12 +1050,6 @@ luaL_reg lfuncs[] = {
 	{"set_death_item", lua_set_death_item}
 	,
 	{"add_diary_entry", lua_event_add_diary_entry}
-	,
-	{"add_cookie", lua_event_plant_cookie}
-	,
-	{"has_cookie", lua_event_cookie_planted}
-	,
-	{"remove_cookie", lua_event_remove_cookie}
 	,
 	{"has_met", lua_event_has_met}
 	,
