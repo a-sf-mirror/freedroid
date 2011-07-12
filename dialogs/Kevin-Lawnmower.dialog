@@ -24,7 +24,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ add_cookie("lawnmower_fuel_97") }
+FirstTime LuaCode={ fuel = 97 }
 
 EveryTime LuaCode={
 	npc_says(_"Welcome to Kevin's personal lawnmower.")
@@ -32,7 +32,7 @@ EveryTime LuaCode={
 	npc_says(_"Please state your name for identification.")
 	npc_says(_"WARNING: ANY ABUSE WILL BE PUNISHED!")
 
-	if (has_cookie("lawnmower_fuel_4")) then
+	if (fuel < 5) then
 		set_bot_state("fixed")
 		npc_says(_"WARNING:", NO_WAIT)
 		npc_says(_"Less than [b]5%[/b] fuel remaining!", NO_WAIT)
@@ -51,27 +51,11 @@ EveryTime LuaCode={
 		end
 	end
 
-	if (has_cookie("lawnmower_fuel_8")) then
-		del_cookie("lawnmower_fuel_8")
-		add_cookie("lawnmower_fuel_4")
-	elseif (has_cookie("lawnmower_fuel_11")) then
-		del_cookie("lawnmower_fuel_11")
-		add_cookie("lawnmower_fuel_8")
-	elseif (has_cookie("lawnmower_fuel_20")) then
-		del_cookie("lawnmower_fuel_20")
-		add_cookie("lawnmower_fuel_11")
-	elseif (has_cookie("lawnmower_fuel_38")) then
-		del_cookie("lawnmower_fuel_38")
-		add_cookie("lawnmower_fuel_20")
-	elseif (has_cookie("lawnmower_fuel_43")) then
-		del_cookie("lawnmower_fuel_43")
-		add_cookie("lawnmower_fuel_38")
-	elseif (has_cookie("lawnmower_fuel_64")) then
-		del_cookie("lawnmower_fuel_64")
-		add_cookie("lawnmower_fuel_43")
-	elseif (has_cookie("lawnmower_fuel_97")) then
-		del_cookie("lawnmower_fuel_97")
-		add_cookie("lawnmower_fuel_64")
+	if ((fuel > 4) and (fuel <= 97)) then
+		fuel = math.floor(fuel*0.7-2)
+		if (fuel < 0) then
+			fuel = 0
+		end
 	end
 
 	show(5, 6, 99)
@@ -141,22 +125,10 @@ NO_TEXT
 LuaCode={
 	tux_says(_"fuel_level", "NO_WAIT")
 	npc_says(_"Printing fuel level...")
-	if (has_cookie("lawnmower_fuel_4")) then
+	if (fuel < 5) then
 		npc_says(_"WARNING, less than [b]5%[/b] fuel remaining!")
-	elseif (has_cookie("lawnmower_fuel_8")) then
-		npc_says(_"[b]9[/b]% remaining")
-	elseif (has_cookie("lawnmower_fuel_11")) then
-		npc_says(_"[b]11[/b]% remaining")
-	elseif (has_cookie("lawnmower_fuel_20")) then
-		npc_says(_"[b]20[/b]% remaining")
-	elseif (has_cookie("lawnmower_fuel_38")) then
-		npc_says(_"[b]38[/b]% remaining")
-	elseif (has_cookie("lawnmower_fuel_43")) then
-		npc_says(_"[b]43[/b]% remaining")
-	elseif (has_cookie("lawnmower_fuel_64")) then
-		npc_says(_"[b]64[/b]% remaining")
-	elseif (has_cookie("lawnmower_fuel_97")) then
-		npc_says(_"[b]97[/b]% remaining")
+	elseif (fuel <= 97) then
+		npc_says(_"[b]"..fuel.."[/b]% remaining")
 	else
 		npc_says(_"Tank completely refilled.")
 	end
@@ -179,7 +151,7 @@ LuaCode={
 	npc_says(_"Done.")
 	del_item("Barf's Energy Drink", 1)
 	add_item("Tungsten spikes", 2)
-	del_cookie("lawnmower_fuel_4")
+	fuel = 100
 	add_cookie("lawnmower_fueled")
 	set_bot_state("home")
 	hide(50, 51)
