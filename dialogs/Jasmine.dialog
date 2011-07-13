@@ -26,7 +26,10 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0) }
+FirstTime LuaCode={
+	jasmine_count = 0
+	show(0)
+}
 
 EveryTime LuaCode={ show(99) }
 ----------------------------------------------------------------------
@@ -101,12 +104,8 @@ LuaCode={
 
 Nr=99 Text=_"See you later."
 LuaCode={
-	if (not has_cookie("jasmine_count2")) then
-		if (has_cookie("jasmine_count1")) then
-			add_cookie("jasmine_count2")
-		else
-			add_cookie("jasmine_count1")
-		end
+	if (jasmine_count < 2) then
+		jasmine_count = jasmine_count + 1
 		npc_says(_"Yeah. Whatever.")
 		end_dialog()
 	else
