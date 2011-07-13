@@ -27,6 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 FirstTime LuaCode={
+	desertgate_tax = 0
 	show(0)
 }
 
@@ -66,25 +67,15 @@ EveryTime LuaCode={
 		show(40)
 	end
 
-	if (cmp_obstacle_state("DesertGate", "closed")) and
-	   (has_cookie("desertgate_tax_30")) then
-		npc_says(_"Got the money?")
-		if (get_gold() >= 30) then
-			show(45)
-		else
-			hide(45)
+	if (desertgate_tax ~= 0) then
+		if (cmp_obstacle_state("DesertGate", "closed")) then
+			npc_says(_"Got the money?")
+			if (get_gold() >= desertgate_tax) then
+				show(45)
+			else
+				hide(45)
+			end
 		end
-	elseif (has_cookie("desertgate_tax_40")) then
-		npc_says(_"Got the money?")
-		if (get_gold() >= 40) then
-			show(45)
-		else
-			hide(45)
-		end
-	end
-
-	if (has_cookie("desertgate_tax_30")) or
-		(has_cookie("desertgate_tax_40")) then
 		hide(40)
 	end
 
@@ -240,16 +231,13 @@ LuaCode={
 	npc_says(_"Yes. But you have to pay a one-time tax for it first.")
 	if (not has_cookie("town-northgateguard_tux_nickname_loon")) then
 		npc_says(_"Pay 30 circuits and you may pass.")
-		add_cookie("desertgate_tax_30")
-		if (get_gold() >= 30) then
-			show(45)
-		end
+		desertgate_tax = 30
 	else
 		npc_says(_"You can enter the desert, but first you'll have to pay 40 circuits.")
-		add_cookie("desertgate_tax_40")
-		if (get_gold() >= 40) then
-			show(45)
-		end
+		desertgate_tax = 40
+	end
+	if (get_gold() >= desertgate_tax) then
+		show(45)
 	end
 	hide(40)
 }
@@ -257,29 +245,26 @@ LuaCode={
 
 Nr=45 Text=_"Yes, I've got the money."
 LuaCode={
-		if (has_cookie("desertgate_tax_30")) and
-		(get_gold() >= 30) then
+	if (get_gold() >= desertgate_tax) then
+		if (desertgate_tax == 30) then
 			npc_says(_"Good.")
 			tux_says(_"Here, take it.")
 			npc_says(_"You may pass.")
-			del_cookie("desertgate_tax_30")
-			del_gold(30)
-			change_obstacle_state("DesertGate", "opened")
 			update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a little tax.")
-		elseif (has_cookie("desertgate_tax_40")) and
-			   (get_gold() >= 40) then
+		elseif (desertgate_tax == 40) then
 			npc_says(_"At last.")
 			tux_says(_"Here, let me pass now.")
 			npc_says(_"You may pass, Loon.")
 			npc_says(_"But don't expect any help in there.")
-			del_cookie("desertgate_tax_40")
-			del_gold(40)
-			change_obstacle_state("DesertGate", "opened")
 			update_quest(_"Doing Duncan a favor", _"Pendragon opened the gate for me, but I had to pay a tax.")
-		else
-			npc_says(_"Don't try to trick me, duck.") --just in case...
-			npc_says(_"Come back if you have the bucks!")
 		end
+		del_gold(desertgate_tax)
+		desertgate_tax = 0
+		change_obstacle_state("DesertGate", "opened")
+	else
+		npc_says(_"Don't try to trick me, duck.") --just in case...
+		npc_says(_"Come back if you have the bucks!")
+	end
 	hide(45)
 	end_dialog()
 }
