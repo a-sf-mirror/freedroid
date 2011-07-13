@@ -27,6 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 FirstTime LuaCode={ fuel = 97 }
 
 EveryTime LuaCode={
+	show(5, 6, 99)
 	npc_says(_"Welcome to Kevin's personal lawnmower.")
 	npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
 	npc_says(_"Please state your name for identification.")
@@ -58,7 +59,6 @@ EveryTime LuaCode={
 		end
 	end
 
-	show(5, 6, 99)
 }
 ----------------------------------------------------------------------
 
