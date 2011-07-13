@@ -71,8 +71,10 @@ Thanks a lot in advance, the Freedroid dev team.\n\n";
 int debug_level = 0;
 int vid_bpp;
 
-int offset_x_override = -30000; // something completely unlikely
-int offset_y_override = -30000; // something completely unlikely
+#define UNDEFINED_OFFSET -30000 // something completely unlikely
+
+int offset_x_override = UNDEFINED_OFFSET;
+int offset_y_override = UNDEFINED_OFFSET;
 
 //--------------------
 // We add this dummy, so that dialog editor and item editor
@@ -582,6 +584,52 @@ int get_default_center(int *default_center_x, int *default_center_y)
 	return FALSE;
 }
 
+int read_offset_file(int *center_x, int *center_y)
+{
+	char filename[10000];
+	int offset_x, offset_y;
+	FILE *offset_file;
+
+	// Determine offset file name
+	strcpy(filename, input_filename);
+	if (strstr(filename, ".png"))
+		filename[strlen(filename) - 4] = '\0';
+	strcat(filename, ".offset");
+
+	// Read offset file
+	if ((offset_file = fopen(filename, "r")) == NULL)
+		return 0;
+
+	fseek(offset_file, 0, SEEK_END);
+	long file_size = ftell(offset_file);
+	fseek(offset_file, 0, SEEK_SET);
+
+	char *offset_data = malloc(file_size + 1);
+	size_t bytes_read = fread(offset_data, 1, file_size, offset_file);
+	fclose(offset_file);
+	offset_data[file_size] = '\0';
+
+	if (bytes_read != file_size) {
+		free(offset_data);
+		return 0;
+	}
+
+	char *offset_x_string = strstr(offset_data, OFFSET_FILE_OFFSETX_STRING);
+	char *offset_y_string = strstr(offset_data, OFFSET_FILE_OFFSETY_STRING);
+
+	if (offset_x_string)
+		sscanf(offset_x_string, OFFSET_FILE_OFFSETX_STRING "%d", &offset_x);
+	if (offset_y_string)
+		sscanf(offset_y_string, OFFSET_FILE_OFFSETY_STRING "%d", &offset_y);
+	free(offset_data);
+
+	fprintf(stderr, "Using offset %d/%d from file %s\n", offset_x, offset_y, filename);
+
+	*center_x = -offset_x;
+	*center_y = -offset_y;
+	return 1;
+}
+
 void write_offset_file(int default_center_x, int default_center_y) 
 {
 	char filename[10000];
@@ -595,9 +643,9 @@ void write_offset_file(int default_center_x, int default_center_y)
 	// the default origin settings for this image.  We take that possibility into
 	// account here.
 	//
-	if (offset_x_override != -30000)
+	if (offset_x_override != UNDEFINED_OFFSET)
 		default_center_x = offset_x_override;
-	if (offset_y_override != -30000)
+	if (offset_y_override != UNDEFINED_OFFSET)
 		default_center_y = offset_y_override;
 	
 	//--------------------
@@ -680,6 +728,7 @@ int main(int argc, char *const argv[])
 	}
 
 	get_default_center(&default_center_x, &default_center_y);
+	read_offset_file(&default_center_x, &default_center_y);
 
 	if (!no_graphics_output) {
 		SDL_BlitSurface(input_surface, NULL, Screen, NULL);
