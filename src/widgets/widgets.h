@@ -86,5 +86,6 @@ EXTERN struct list_head widget_list;		/**< List containing top level widget grou
 #include "widgets/widget_group.h"
 #include "widgets/widget_button.h"
 #include "widgets/widget_text.h"
+#include "widgets/widget_background.h"
 
 #endif
