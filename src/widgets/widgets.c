@@ -147,6 +147,9 @@ static void display_tooltips()
 	char buffer[strlen(tooltip.text) + 1];
 	strcpy(buffer, tooltip.text);
 
+	// Set the correct font before computing text width.
+	SetCurrentFont(FPS_Display_BFont);
+
 	// Tooltip width is given by the longest line in the tooltip, with a maximum of 400 pixels
 	// after which linebreaks are automatically added.
 	tooltip_rect.w = longest_line_width(buffer) + 2 * TEXT_BANNER_HORIZONTAL_MARGIN;
