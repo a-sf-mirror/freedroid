@@ -243,7 +243,7 @@ void show_chat_log(enemy *chat_enemy)
 	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF_BUTTON);
 	ShowGenericButtonFromList(CHAT_LOG_SCROLL_OFF2_BUTTON);
 
-	widget_text_display(&chat_log);
+	widget_text_display(WIDGET(&chat_log));
 }
 
 /**
@@ -390,10 +390,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	if (!is_subdialog)
 		widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
 
-	chat_log.rect.x = CHAT_SUBDIALOG_WINDOW_X;
-	chat_log.rect.y = CHAT_SUBDIALOG_WINDOW_Y;
-	chat_log.rect.w = CHAT_SUBDIALOG_WINDOW_W;
-	chat_log.rect.h = CHAT_SUBDIALOG_WINDOW_H;
+	widget_set_rect(WIDGET(&chat_log), CHAT_SUBDIALOG_WINDOW_X, CHAT_SUBDIALOG_WINDOW_Y, CHAT_SUBDIALOG_WINDOW_W, CHAT_SUBDIALOG_WINDOW_H);
 	chat_log.font = FPS_Display_BFont;
 	chat_log.line_height_factor = LINE_HEIGHT_FACTOR;
 

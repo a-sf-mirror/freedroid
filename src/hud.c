@@ -904,10 +904,7 @@ void init_message_log(void)
 	widget_text_init(&message_log, _("--- Message Log ---"));
 
 	/* Set up the text widget. */
-	message_log.rect.x = MESSAGE_TEXT_WIDGET_X;
-	message_log.rect.y = MESSAGE_TEXT_WIDGET_Y;
-	message_log.rect.w = MESSAGE_TEXT_WIDGET_W;
-	message_log.rect.h = MESSAGE_TEXT_WIDGET_H;
+	widget_set_rect(WIDGET(&message_log), MESSAGE_TEXT_WIDGET_X, MESSAGE_TEXT_WIDGET_Y, MESSAGE_TEXT_WIDGET_W, MESSAGE_TEXT_WIDGET_H);
 	message_log.font = Messagevar_BFont;
 }
 

@@ -402,10 +402,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 
 	/* Initialize the text widget. */
 	widget_text_init(&item_description, "");
-	item_description.rect.x = UNIVERSAL_COORD_W(258);
-	item_description.rect.y = UNIVERSAL_COORD_H(108);
-	item_description.rect.w = UNIVERSAL_COORD_W(346);
-	item_description.rect.h = UNIVERSAL_COORD_H(255);
+	widget_set_rect(WIDGET(&item_description), UNIVERSAL_COORD_W(258), UNIVERSAL_COORD_H(108), UNIVERSAL_COORD_W(346), UNIVERSAL_COORD_H(255));
 	item_description.font = FPS_Display_BFont;
 	item_description.line_height_factor = LINE_HEIGHT_FACTOR;
 	item_description.scroll_offset = scroll_to_top;
@@ -441,7 +438,7 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 			ShowItemPicture(x, y, TuxItemsList[TuxItemIndex]->type);
 		}
 
-		widget_text_display(&item_description);
+		widget_text_display(WIDGET(&item_description));
 
 		for (i = 0; i < RowLength; i++) {
 			ShowRescaledItem(i, FALSE, ShowPointerList[i + RowStart]);

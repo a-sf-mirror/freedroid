@@ -32,20 +32,23 @@
  * This structure is used for displaying and handling text windows.
  */
 struct widget_text {
-	SDL_Rect rect;             /* The area in which the text should be displayed */
-	struct BFont_Info *font;
-	struct auto_string *text;
+	struct widget base;		/**< Base widget type containing callbacks and position info. */
+	struct BFont_Info *font;	/**< Font to be used when displaying text. */
+	struct auto_string *text;	/**< Text to be displayed. */
 	float line_height_factor;
-
-	int scroll_offset;         /* 0 means bottom, negative means above bottom. */
-	int mouse_already_handled;
-
+	int scroll_offset;         	/**< Offset for the text being displayed. 0 means bottom, negative means above bottom. */
+	int mouse_already_handled;	/**< Flag used for handling input. Deprecated. */
+	enum mouse_hover { NOT_HOVERED, UPPER_HALF, LOWER_HALF } mouse_hover;	/**< Area hovered by the mouse. */
+	
 	void (*content_below_func)(void);
 	void (*content_above_func)(void);
 };
 
+struct widget_text *widget_text_create();
 void widget_text_init(struct widget_text *, const char *);
 int widget_text_handle_mouse(struct widget_text *);
-void widget_text_display(struct widget_text *);
+void widget_text_display(struct widget *);
+
+#define WIDGET_TEXT(x) ((struct widget_text *)x)
 
 #endif

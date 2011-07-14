@@ -195,10 +195,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 	/* Initialize the text widget. */
 	static struct widget_text item_description;
 	widget_text_init(&item_description, "");
-	item_description.rect.x = UNIVERSAL_COORD_W(310);
-	item_description.rect.y = UNIVERSAL_COORD_H(180);
-	item_description.rect.w = UNIVERSAL_COORD_W(75);
-	item_description.rect.h = UNIVERSAL_COORD_H(45);
+	widget_set_rect(WIDGET(&item_description), UNIVERSAL_COORD_W(310), UNIVERSAL_COORD_H(180), UNIVERSAL_COORD_W(75), UNIVERSAL_COORD_H(45));
 	item_description.font = FPS_Display_BFont;
 	item_description.line_height_factor = LINE_HEIGHT_FACTOR;
 
@@ -231,7 +228,7 @@ int do_graphical_number_selection_in_range(int lower_range, int upper_range, int
 			}
 			old_knob_at = knob_at;
 		}
-		widget_text_display(&item_description);
+		widget_text_display(WIDGET(&item_description));
 
 		blit_mouse_cursor();
 		our_SDL_flip_wrapper();

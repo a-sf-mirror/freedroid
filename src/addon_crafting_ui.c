@@ -110,7 +110,7 @@ static void select_recipe(int index)
 
 	// Scroll the text widget to the top.
 	ui.description.scroll_offset = -get_lines_needed(desc->value,
-	            ui.description.rect, ui.description.line_height_factor);
+	            WIDGET(&ui.description)->rect, ui.description.line_height_factor);
 }
 
 /**
@@ -374,7 +374,7 @@ void show_addon_crafting_ui()
 	}
 
 	// Draw the description of the selected recipe.
-	widget_text_display(&ui.description);
+	widget_text_display(WIDGET(&ui.description));
 }
 
 int addon_crafting_ui_visible()
@@ -466,7 +466,7 @@ void addon_crafting_ui()
 	memset(&ui, 0, sizeof(ui));
 	widget_text_init(&ui.description, "");
 	ui.description.font = Messagevar_BFont;
-	ui.description.rect = rects.recipe_desc;
+	WIDGET(&ui.description)->rect = rects.recipe_desc;
 	ui.description.content_above_func = draw_scroll_desc_up_button;
 	ui.description.content_below_func = draw_scroll_desc_down_button;
 	build_recipe_list();

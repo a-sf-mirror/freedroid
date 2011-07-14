@@ -520,10 +520,7 @@ int droid_takeover(enemy *target)
 	// Set up the droid description widget
 	widget_text_init(&droid_info, "");
 	init_droid_description(&droid_info, target->type);
-	droid_info.rect.x = 258 * GameConfig.screen_width / 640;
-	droid_info.rect.y = 107 * GameConfig.screen_height / 480;
-	droid_info.rect.w = 346 * GameConfig.screen_width / 640;
-	droid_info.rect.h = 282 * GameConfig.screen_height / 480;
+	widget_set_rect(WIDGET(&droid_info), UNIVERSAL_COORD_W(258), UNIVERSAL_COORD_H(107), UNIVERSAL_COORD_W(346), UNIVERSAL_COORD_H(282));
 	droid_info.font = FPS_Display_BFont;
 	droid_info.content_above_func = show_info_up_button;
 	droid_info.content_below_func = show_info_down_button;
@@ -545,7 +542,7 @@ int droid_takeover(enemy *target)
 
 	while (!menu_finished) {
 		show_droid_info(target->type);
-		widget_text_display(&droid_info);
+		widget_text_display(WIDGET(&droid_info));
 		ShowGenericButtonFromList(TAKEOVER_HELP_BUTTON);
 		SetCurrentFont(Para_BFont);
 		CenteredPutString(Screen, GameConfig.screen_height - 30, "For more information, click the help button.");
