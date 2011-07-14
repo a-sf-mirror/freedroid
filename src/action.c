@@ -456,14 +456,17 @@ static int approach(int type)
 			{ ISO_WALL_TERMINAL_N, NORTH},
 			{ ISO_WALL_TERMINAL_W, WEST},
 			{ ISO_SIGN_1, EAST },
-			{ ISO_SIGN_3, EAST },
+			{ ISO_SIGN_1_FLASH, EAST },
 			{ ISO_SIGN_2, SOUTH },
+			{ ISO_SIGN_2_FLASH, SOUTH },
+			{ ISO_SIGN_3, EAST },
+			{ ISO_SIGN_3_FLASH, EAST },
 	};
 
 	for (i = 0; i < sizeof(lookup)/sizeof(lookup[0]); i++) {
 		if (lookup[i].type == type)
 			return lookup[i].direction;
-	}	
+	}
 
 
 	ErrorMessage(__FUNCTION__, "Tried to approach obstacle type %d, but this is not a known type.", PLEASE_INFORM, IS_WARNING_ONLY, type);
