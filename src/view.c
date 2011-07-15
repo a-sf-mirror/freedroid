@@ -1414,7 +1414,6 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 	//
 	int i;
 	for (i = 0; i < blitting_list->size; i++) {
-		start_image_batch();
 		struct blitting_list_element *e = &((struct blitting_list_element *)(blitting_list->arr))[i];
 
 		if (e->element_type == BLITTING_TYPE_NONE)
@@ -1479,7 +1478,6 @@ void blit_nonpreput_objects_according_to_blitting_list(int mask)
 			break;
 		}
 	}
-	end_image_batch();
 
 };				// void blit_nonpreput_objects_according_to_blitting_list ( ... )
 
