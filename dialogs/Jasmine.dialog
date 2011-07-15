@@ -116,6 +116,7 @@ LuaCode={
 		npc_says(_"Kernel panic in module: Jasmine")
 		npc_says(_"Buffer overrun in anger.c:1532")
 		npc_says(_"Core dumped. System halted.")
+		jasmine_count = 0
 		drop_dead()
 		add_cookie("jasmine_sigsegv")
 	end
