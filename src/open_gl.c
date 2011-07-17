@@ -870,6 +870,9 @@ void blit_background(const char *background)
 void set_gl_clip_rect(const SDL_Rect *clip)
 {
 #ifdef HAVE_LIBGL
+	// Flush image batch. Scissor test shouldn't affect it.
+	end_image_batch();
+
 	if (use_open_gl) {
 		glScissor(clip->x, GameConfig.screen_height - (clip->y + clip->h), clip->w, clip->h);
 		glEnable(GL_SCISSOR_TEST);
