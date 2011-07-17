@@ -62,6 +62,7 @@ static int read_atlas_header(const char *buf, char *path)
 
 int load_texture_atlas(const char *atlas_name, const char *directory, struct image *(*get_storage_for_key)(const char *key))
 {
+	int loaded_any_subimage = FALSE;
 	// Open atlas file
 	char *dat = get_texture_atlas(atlas_name);
 	char *atlas_data = dat;
@@ -107,6 +108,8 @@ int load_texture_atlas(const char *atlas_name, const char *directory, struct ima
 				// Set image offset
 				img->offset_x = xoff;
 				img->offset_y = yoff;
+
+				loaded_any_subimage = TRUE;
 			}
 
 			// Move on to the next element
@@ -115,7 +118,13 @@ int load_texture_atlas(const char *atlas_name, const char *directory, struct ima
 			dat++;
 		}
 
-		free_image_surface(&atlas_img);
+		// Free atlas SDL surface.
+		// If no subimage was loaded the OpenGL texture is also deleted
+		// in order to prevent a potential resource leak.
+		if (!loaded_any_subimage)
+			delete_image(&atlas_img);
+		else
+			free_image_surface(&atlas_img);
 	}
 
 	free(atlas_data);
