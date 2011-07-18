@@ -42,8 +42,8 @@ extern int gl_max_texture_size;	//defined in open_gl.c
 
 // Currently active OpenGL texture
 static int active_tex = -1;
-// Currently active OpenGL color
-static float active_color[4];
+// Requested OpenGL color
+static float requested_color[4];
 
 // Do we want to draw as a batch? (ie. not emit glBegin/glEnd pairs every time)
 static int batch_draw = FALSE;
@@ -68,14 +68,17 @@ void end_image_batch()
 {
 	batch_draw = FALSE;
 	active_tex = -1;
-	active_color[0] = -1;
 
 	gl_emit_quads();
+
+	requested_color[0] = -1;
 }
 
 static void gl_emit_quads(void)
 {
-	if (vtx && vtx->size) {	
+	if (vtx && vtx->size) {
+		glColor4fv(requested_color);
+
 		glVertexPointer(2, GL_FLOAT, 0, vtx->arr);
 		glTexCoordPointer(2, GL_FLOAT, 0, tex->arr);
 		glDrawArrays(GL_QUADS, 0, vtx->size * 4);
@@ -151,10 +154,9 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 	}
 
 	// Change the active color if required
-	if (memcmp(&active_color[0], &t->c[0], sizeof(active_color))) {
+	if (memcmp(&requested_color[0], &t->c[0], sizeof(requested_color))) {
 		gl_emit_quads();
-		glColor4fv(&t->c[0]);
-		memcpy(&active_color[0], &t->c[0], sizeof(active_color));
+		memcpy(&requested_color[0], &t->c[0], sizeof(requested_color));
 	}
 
 	// Draw the image	
@@ -163,7 +165,7 @@ static void gl_display_image(struct image *img, int x, int y, struct image_trans
 	if (!batch_draw) {
 		gl_emit_quads();
 		active_tex = -1;
-		active_color[0] = -1;
+		requested_color[0] = -1;
 	}
 
 	if (t->highlight) {
