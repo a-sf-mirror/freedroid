@@ -124,13 +124,13 @@ LuaCode={
 		npc_says(_"sudo open gates", "NO_WAIT")
 		npc_says(_"Which gates do you want to open?")
 		add_cookie("MO-HFGAS_hacked")
+		hide(3) show(4)
 	else
 		npc_says(_"Permission denied.")
 		hurt_tux(10)
 		heat_tux(15)
 		end_dialog()
 	end
-	hide(3) show(4)
 }
 ----------------------------------------------------------------------
 
