@@ -1711,7 +1711,7 @@ void GetThisLevelsDroids(char *section_pointer)
 	ReadValueFromString(section_pointer, DROIDS_LEVEL_INDICATION_STRING, "%d", &our_level_number, lvl_end_location);
 
 	// Now we read in the min and max number of random droids for this level
-	if (ReadRangeFromString(section_pointer, DROIDS_NUMBER_INDICATION_STRING, "\n", &min_rand, &max_rand, 0) > 1) {
+	if (ReadRangeFromString(section_pointer, DROIDS_NUMBER_INDICATION_STRING, "\n", &max_rand, &min_rand, 0) > 1) {
 		ErrorMessage(__FUNCTION__, "\
 The previous error was a garbled number of random droids defined on Level %d.", PLEASE_INFORM, IS_WARNING_ONLY, our_level_number);
 	}
