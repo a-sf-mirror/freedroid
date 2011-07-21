@@ -46,6 +46,7 @@ EveryTime LuaCode={
 		npc_says(_"Goo*sizzle*ck.")
 		npc_says(_"O*crack*er")
 		update_quest(_"Propagating a faulty firmware", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
+		add_quest(_"Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate.")
 		end_dialog()
 	end
 

@@ -113,6 +113,7 @@ LuaCode={
 	end_dialog()
 	hurt_tux(5)
 	heat_tux(10)
+	update_quest("Open Sesame", "The server is secured, looks like I have to hack it.")
 	hide(2) show(3)
 }
 ----------------------------------------------------------------------
@@ -123,12 +124,13 @@ LuaCode={
 		tux_says(_"sudo !!")
 		npc_says(_"sudo open gates", "NO_WAIT")
 		npc_says(_"Which gates do you want to open?")
+		update_quest("Open Sesame", "Whew, I finally managed to hack the gate access server. I can open the gates now.")
 		add_cookie("MO-HFGAS_hacked")
 		hide(3) show(4)
 	else
 		npc_says(_"Permission denied.")
-		hurt_tux(10)
 		heat_tux(15)
+		hurt_tux(10)
 		end_dialog()
 	end
 }
@@ -174,6 +176,7 @@ LuaCode={
 	npc_says(_"Anomalies detected!")
 	change_obstacle_state("HF-Gate-inner", "opened")
 	if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
+		update_quest("Open Sesame", "I think I managed to open the gates to the Hell Fortress. But where can I find them?")
 		hide(7)
 	end
 	hide(5)
@@ -190,6 +193,7 @@ LuaCode={
 	npc_says(_"Anomalies detected!")
 	change_obstacle_state("HF-Gate-outer", "opened")
 	if (cmp_obstacle_state("HF-Gate-inner", "opened")) then
+		update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
 		hide(7)
 	end
 	hide(6)
@@ -206,6 +210,7 @@ LuaCode={
 	npc_says(_"Anomalies detected!")
 	change_obstacle_state("HF-Gate-inner", "opened")
 	change_obstacle_state("HF-Gate-outer", "opened")
+	update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
 	hide(5, 6, 7)
 }
 ----------------------------------------------------------------------
