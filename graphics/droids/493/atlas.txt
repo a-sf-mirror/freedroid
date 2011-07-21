@@ -7,7 +7,6 @@ enemy_rot_06_death-01.png 276 0 47 89 off -18 -58
 enemy_rot_07_death-01.png 324 0 72 89 off -31 -61
 enemy_rot_01_death-09.png 397 0 83 88 off -60 -72
 enemy_rot_02_attack-00.png 481 0 23 87 off -11 -66
-enemy_rot_06_death-14.png 505 0 1 1 off -2 -25
 enemy_rot_01_attack-03.png 0 94 55 87 off -25 -67
 enemy_rot_01_gethit-01.png 56 94 57 87 off -26 -66
 enemy_rot_02_attack-10.png 114 94 35 87 off -12 -66
@@ -317,9 +316,10 @@ enemy_rot_05_death-08.png 276 907 68 67 off -21 -38
 enemy_rot_00_death-07.png 345 907 76 66 off -37 -58
 enemy_rot_00_death-10.png 422 907 75 66 off -43 -58
 enemy_rot_06_death-13.png 0 976 82 47 off -2 -25
-enemy_rot_04_death-05.png 83 976 71 46 off -38 -18
-enemy_rot_04_death-09.png 155 976 79 42 off -31 -14
-enemy_rot_04_death-10.png 235 976 75 42 off -31 -14
+enemy_rot_06_death-14.png 83 976 82 47 off -2 -25
+enemy_rot_04_death-05.png 166 976 71 46 off -38 -18
+enemy_rot_04_death-09.png 238 976 79 42 off -31 -14
+enemy_rot_04_death-10.png 318 976 75 42 off -31 -14
 * 493_4.png size 512 1024
 enemy_rot_03_death-13.png 0 0 87 66 off -67 -24
 enemy_rot_04_gethit-01.png 88 0 72 66 off -35 -54
