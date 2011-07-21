@@ -52,7 +52,7 @@ void LevelEditor(void);
 
 #define AUTO_SCROLL_RATE (0.02f)
 
-#define MAX_MENU_ITEMS 16
+#define MAX_MENU_ITEMS 100
 
 /**
  * This function tells over which menu item the mouse cursor would be,
@@ -1035,12 +1035,12 @@ enum {
 	MENU_NUM
 };
 
-#define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[MAX_MENU_ITEMS]);
+#define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[MAX_MENU_ITEMS + 1]);
 MENU_LIST
 #undef MENU
     struct Menu {
 	int (*HandleSelection) (int);
-	void (*FillText) (char *[MAX_MENU_ITEMS]);
+	void (*FillText) (char *[MAX_MENU_ITEMS + 1]);
 };
 
 struct Menu menus[] = {
@@ -1059,7 +1059,7 @@ static void RunSubMenu(int startup, int menu_id)
 		int pos;
 		// We need to fill at each loop because
 		// several menus change their contents
-		for (i = 0; i < MAX_MENU_ITEMS; i++)
+		for (i = 0; i < MAX_MENU_ITEMS + 1; i++)
 			texts[i] = (char *)malloc(1024 * sizeof(char));
 		menus[menu_id].FillText(texts);
 
@@ -1341,8 +1341,10 @@ static int Resolution_handle(int n)
 		++nb_res;
 	}
 
+	int offset = max(0, nb_supported_res - MAX_MENU_ITEMS + 1);
+
 	// Last menu entry is 'Back'
-	if (n == nb_supported_res) {
+	if (n == nb_supported_res - offset) {
 		while (EnterPressed() || SpacePressed()) ;
 		return EXIT_MENU;
 	}
@@ -1351,7 +1353,7 @@ static int Resolution_handle(int n)
 		return CONTINUE_MENU;
 
 	int i, j;
-	for (i = 0, j = 0; i < nb_res; ++i) {
+	for (i = offset, j = 0; i < nb_res; ++i) {
 		// Only supported screen resolution are displayed
 		if (!screen_resolutions[i].supported)
 			continue;
@@ -1370,12 +1372,23 @@ static int Resolution_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Resolution_fill(char *MenuTexts[MAX_MENU_ITEMS])
+static void Resolution_fill(char *MenuTexts[MAX_MENU_ITEMS + 1])
 {
 	int i = 0;
 	int j = 0;
+	int nb_res = 0;
 
-	while (screen_resolutions[i].xres != -1 && i < MAX_MENU_ITEMS) {
+	// Count the resolutions, stop on our delimiter
+	for (i = 0; screen_resolutions[i].xres != -1; i++);
+	nb_res = i;
+
+	// we require an offset in case we need to truncate the list
+	// + 1 to make room for 'Back'
+	int offset = max(0, nb_res - MAX_MENU_ITEMS + 1);
+	i = offset;
+
+	// + 1 here accounts for 'Back'
+	while (i < nb_res && j + 1 < MAX_MENU_ITEMS) {
 		//Only supported screen resolution are displayed
 		if (screen_resolutions[i].supported) {
 			char flag = ' ';
@@ -1387,8 +1400,9 @@ static void Resolution_fill(char *MenuTexts[MAX_MENU_ITEMS])
 		}
 		++i;
 	}
+	// Append 'Back' option
 	strncpy(MenuTexts[j++], _("Back"), 1024);
-	MenuTexts[j++][0] = '\0';
+	MenuTexts[j][0] = '\0';
 }
 
 static int Graphics_handle(int n)
