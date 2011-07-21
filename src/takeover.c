@@ -824,6 +824,7 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 
 	old_status = game_status;
 
+	cDroid = NULL;
 	Activate_Conservative_Frame_Computation();
 
 	// Maybe takeover graphics haven't been loaded yet.  Then we do this
