@@ -46368,14 +46368,14 @@ t389 x83.00 y77.43
 t389 x83.00 y78.43
 /obsdata
 plabelinfolvl
-x=53 y=3 name="HFF-EntranceBotStartSquare"
+x=53 y=3 name="HF-EntranceBotStartSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Source Book of Plasma discharge"  X=31.000000  Y=47.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
 /piteminfolvl
 obstacleextensions
 idx=139 type=30 data={
-	HFF-EntranceInnerGate
+	HF-EntranceInnerGate
 }
 /obstacleextensions
 wp

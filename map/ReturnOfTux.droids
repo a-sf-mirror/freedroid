@@ -580,6 +580,7 @@ Level=50
 Number of Random Droids=100-120
 Random Droid Types: 296, 249, 302, 476
 
+SForce: T=296 Marker=9999 Faction="neutral" StartLabel="HF-EntranceBotStartSquare" UseDialog="HF-EntranceBot" ShortLabel=_"Reception Droid"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **

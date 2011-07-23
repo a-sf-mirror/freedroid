@@ -157,6 +157,12 @@ LuaCode={
 	npc_says(_"It was created to give clearance to the tourists when the factory was first built.")
 	npc_says(_"Because the program hasn't been used in years, maybe the robots haven't disabled it.")
 	npc_says(_"But you will have to find some other way into the headquarters. Guests were never given clearance.")
+	npc_says(_"However, owners are.")
+	npc_says(_"I guess that is all this otherwise worthless piece of paper is useful for anymore.")
+	tux_says(_"Paper?")
+	npc_says(_"Sheet of cellulose.")
+	npc_says(_"Here, take it.")
+	add_item("MS Stock Certificate", 1)
 	hide(13) 
 }
 ----------------------------------------------------------------------	

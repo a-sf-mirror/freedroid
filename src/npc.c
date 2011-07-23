@@ -98,6 +98,7 @@ void init_npcs()
 		"Ewalds_296",
 		"Francis",
 		"Geist",
+		"HF-EntranceBot",
 		"HF-FirmwareUpdateServer",
 		"MO-HFGateAccessServer",
 		"MO-RGGateGuard",
