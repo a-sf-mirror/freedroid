@@ -1289,6 +1289,9 @@ void lua_save_variables(struct auto_string *savestruct_autostr)
 				autostr_append(savestruct_autostr, "_G[\"%s\"] = %s\n", name, boolean ? "true" : "false");
 				break;
 			case LUA_TSTRING:
+				value = lua_tostring(L, -1);
+				autostr_append(savestruct_autostr, "_G[\"%s\"] = \"%s\"\n", name, value);
+				break;
 			case LUA_TNUMBER:
 				value = lua_tostring(L, -1);
 				autostr_append(savestruct_autostr, "_G[\"%s\"] = %s\n", name, value);
