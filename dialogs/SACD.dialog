@@ -26,11 +26,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	show(1, 3)
-}
+</LuaCode>
 
-EveryTime LuaCode={ 
+<EveryTime LuaCode>
 	if (not has_cookie("login_sacd")) then
 		update_quest(_"Tania's Escape", _"I have found the Secret Area Control Datacenter.")
 		add_xp(1000)
@@ -43,11 +43,11 @@ EveryTime LuaCode={
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 	hide(2) show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"/usr/bin/guns --disable"
-LuaCode={
+<LuaCode>
 	npc_says(_"Disabling guns...")
 	npc_says(_"Connecting to peripheral controller...")
 	npc_says(_"Guns disabled.")
@@ -56,20 +56,20 @@ LuaCode={
 	change_obstacle_state("SADDGun2", "disabled")
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 	hide(1) show(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"/usr/bin/guns --enable"
-LuaCode={
+<LuaCode>
 	npc_says(_"Enabling guns...")
 	npc_says(_"Connecting to peripheral controller...")
 	npc_says(_"ERROR: Guns cannot be enabled.")
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"/usr/bin/hermodoors --open"
-LuaCode={
+<LuaCode>
 	npc_says(_"Opening doors...")
 	npc_says(_"Connecting to peripheral controller...")
 	change_obstacle_state("SACD-North-1", "opened")
@@ -92,13 +92,13 @@ LuaCode={
 	set_bot_destination("SADD-MoveTarget", "SADD")
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 	hide(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-LuaCode={
+<LuaCode>
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

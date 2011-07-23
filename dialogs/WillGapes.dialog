@@ -24,7 +24,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (not has_met("WillGapes")) then
 		npc_says(_"Don't come any closer! Or I'll turn you into scrap metal!") 
 		npc_says(_"Wait... You're not a robot. Who are you? What are you doing here?")
@@ -47,79 +47,79 @@ EveryTime LuaCode={
 		npc_says(_"I see you're still alive. Maybe the robots won't win after all.")
 	end
 	show(99)
-}
+</LuaCode>
 ---------------------------------------------------------------------
 
 Nr=1 Text=_"A friend..."
-LuaCode={
+<LuaCode>
 	tux_says(_"My name is ".. get_player_name() .._", and I'm here to stop the robots!")
 	npc_says(_"Stop them!? You can't. It's too late. The robots have killed everyone.")
 	hide(1, 2, 3) show(4, 5, 6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"I am Luke Skywalker, a Jedi Knight, and I'm here to save you!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Huh? Am I dreaming?")
 	tux_says(_"Sorry, I've always wanted to say that.")
 	npc_says(_"Who are you really?")
 	next(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"Your worst nightmare! I'm here to punish you for your crimes against humanity."
-LuaCode={
+<LuaCode>
 	npc_says(_"Wait, Stop! I'm worth billions of circuits... I'll give you anything. Just don't kill me!")
 	npc_says(_"Who are you really?")
 	next(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"There are still some alive in the town." 
-LuaCode={
+<LuaCode>
 	npc_says(_"Ha, they won't last long. The robots will destroy them all. It's hopeless!")
 	hide(4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"But you're still alive?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Barely, all I've had to eat for the past few months were energy bars from the snack machine.")
 	npc_says(_"Now all that's left are military rations, and I would rather starve than eat those!")
 	hide(5) show(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"Who are you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"My name is Will Gapes. I'm the chief software architect for MegaSys. I helped start the company.")
 	npc_says(_"Without my help this company would still be learning BASIC!")
 	set_bot_name(_"Will Gapes -- MegaSys CSA")
 	hide(6) show(8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"Maybe I could find you some food?"
-LuaCode={
+<LuaCode>
 	npc_says(_"If you bring me a well-cooked meal, I will tell you about Hell's Fortress.")
 	npc_says(_"Trust me, you won't survive long in there without my help.")
 	add_quest(_"Gapes Gluttony", _"I found a man who is starving. He is willing to tell me about Hell's Fortress if I will bring him some food. I should speak to Michelangelo about this.")
 	hide(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"So these murderous robots are your creation?"
-LuaCode={
+<LuaCode>
 	npc_says(_"NO! It was the company's fault!")
 	npc_says(_"I told them the upgrade wasn't ready. It hadn't been fully tested.")
 	npc_says(_"They wouldn't listen to me. They called me a fool! ME!?")
 	npc_says(_"Now they are all dead. Serves them right too!")
 	hide(8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"I've brought you some food."
-LuaCode={
+<LuaCode>
 	npc_says(_"It's about time! I'm starving.")
 	npc_says(_"Oh, this is delicious!")
 	npc_says(_"om nom nom")
@@ -132,27 +132,27 @@ LuaCode={
 	add_item("Empty Picnic Basket")
 	add_cookie("generous_gapes")
 	hide(9) show(11, 12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Tell me about this upgrade. Is that why all the robots are killing people?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm afraid so... It wasn't finished yet.")
 	npc_says(_"The upgrade was supposed to revolutionize the world, but instead, it seems to have destroyed it.")
 	hide(11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"How can I shut down the factory?"
-LuaCode={
+<LuaCode>
 	npc_says(_"You must deactivate the energy supply.")
 	npc_says(_"But the robots have sealed the doors shut.")
 	hide(12) show(13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"Is there another way to get in?"
-LuaCode={
+<LuaCode>
 	npc_says(_"You might be able to get guest access.")
 	npc_says(_"It was created to give clearance to the tourists when the factory was first built.")
 	npc_says(_"Because the program hasn't been used in years, maybe the robots haven't disabled it.")
@@ -164,14 +164,14 @@ LuaCode={
 	npc_says(_"Here, take it.")
 	add_item("MS Stock Certificate", 1)
 	hide(13) 
-}
+</LuaCode>
 ----------------------------------------------------------------------	
 
 Nr=99 Text=_"I'll be going then."
-LuaCode={
+<LuaCode>
 	npc_says(_"Be careful!")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

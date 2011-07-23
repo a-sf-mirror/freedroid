@@ -28,16 +28,16 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	tux_says(_"Hi, I'm " .. get_player_name() .. ".")
 	npc_says(_"Welcome to the Library, I'm Tamara.")
 	npc_says(_"Please take a look around and see if there is something here that interests you.")
 	npc_says(_"You are welcome to ask me if you have any questions.")
 	set_bot_name(_"Tamara -- Librarian")
 	show(40, 99)
-}
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_met("Tamara")) then
 		npc_says(_"What can I help you with?")
 	end
@@ -51,11 +51,11 @@ EveryTime LuaCode={
 	if (has_met("Sorenson") and (not has_cookie("talked_about_sister"))) then show(10) end
 
 	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(50) end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"Hmm, you look very similar to another person I met, by the name of Sorenson."
-LuaCode={
+<LuaCode>
 	npc_says(_"Well, it's understandable. We are sisters.")
 	npc_says(_"Or actually half sisters. She is also half crazy, so we don't communicate much.")
 	npc_says(_"*sigh*")
@@ -65,11 +65,11 @@ LuaCode={
 	npc_says(_"Now all she does is sit locked in her house staring into the computer.")
 	add_cookie("talked_about_sister")
 	hide(10) show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"I would like to learn how to hack."
-LuaCode={
+<LuaCode>
 	add_cookie("tamara_asked_hacking")
 	if (has_cookie("talked_about_sister")) then
 		npc_says(_"My sister used to play Nethack all the time, about the time she became really good at hacking.")
@@ -80,44 +80,44 @@ LuaCode={
 	npc_says(_"I've never played it.")
 	npc_says(_"That might be why I'm no good with computers.")
 	hide(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"This is a library, not a book shop.")
 	npc_says(_"However, valuable books have a tendency to simply vanish and never get returned by some people...") 
 	npc_says(_"Especially strangers just passing by...")
 	npc_says(_"Thus I'm forced to take a deposit for each book.")
 	hide(40) show(41)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=41 Text=_"So what interesting books do you have available right now?"
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Some of these might interest you.", _"I only have a few programming volumes, feel free to look through them.")
 	trade_with("Tamara")
  	show(42)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=42 Text=_"Do you have any books about the bot apocolypse?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm writing one, but it isn't complete, and there are no publishers left. But, I can tell you all about robots and automata in literature. Interested?")
 	hide(42) show(43, 44, 45)
 	bot_Apoclypse = 2
 	if (has_cookie("kevin_sigtalk")) then show(46) bot_Apoclypse = 3 end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=43 Text=_"Another time, perhaps."
-LuaCode={
+<LuaCode>
 	hide(43, 44, 45, 46)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=44 Text=_"Where does the word 'bot' come from?"
-LuaCode={
+<LuaCode>
 	bot_Apoclypse = bot_Apoclypse-1;
 	npc_says(_"It is a shortening of the word 'robot', derived from the Czech word for forced labor.")
 	npc_says(_"R.U.R. (Rossum's Universal Robots), a play, introduced \'robots\' as artificial people.")
@@ -125,11 +125,11 @@ LuaCode={
 	tux_says(_"Ironic.")
 	hide(44)
 	if (bot_Apoclypse == 0) then hide(43) end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"What about the creation of robots for defense?"
-LuaCode={
+<LuaCode>
 	bot_Apoclypse = bot_Apoclypse-1;
 	npc_says(_"During the Holy Roman Empire, the Jewish people of the Prague ghetto needed protection.")
  	npc_says(_"So a holy rabbi shaped the Golem out of clay, and brought it to life through rituals and writing 'emet' (truth) on its head.")
@@ -138,11 +138,11 @@ LuaCode={
 	npc_says(_"But as the rabbi changed 'emet' to 'met' (death), the Golem fell on him, and both the creator and creation became lifeless.")
 	hide(45)
 	if (bot_Apoclypse == 0) then hide(43) end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=46 Text=_"What can you tell me about robotic girlfriends?"
-LuaCode={
+<LuaCode>
 	bot_Apoclypse = bot_Apoclypse-1;
 	npc_says(_"Well, the Romans wrote down a story about Pygmalion, the sculptor of Cyprus.")
 	npc_says(_"Pygmalion carved an ivory woman of far surpassing natural beauty and fell in love.")
@@ -151,11 +151,11 @@ LuaCode={
 	npc_says(_"So you could say that this is one of the few stories that end well.")
 	hide(46)
 	if (bot_Apoclypse == 0) then hide(43) end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
-LuaCode={
+<LuaCode>
 	npc_says(_"It's interesting you should be looking for that - the library has two copies.")
 	tux_says(_"I need one - it's a matter of life and death!")
 	npc_says(_"Life and death?")
@@ -167,14 +167,14 @@ LuaCode={
 	add_cookie("have_296_book")
 	hide(50)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 Nr=99 Text=_"Thank you for the help."
-LuaCode={
+<LuaCode>
 	hide(43, 44, 45, 46)
 	npc_says_random(_"No problem, and remember to return your books in time.", _"I aim to ensure that the great works of literature will survive this horrible apocalypse.", _"That is what I'm here for. Come back at any time.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

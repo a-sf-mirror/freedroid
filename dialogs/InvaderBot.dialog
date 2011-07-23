@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={ 
+<EveryTime LuaCode>
 	if (not has_cookie("invader-bot-status")) then
 		npc_says(_"Target Acquired...","NO_WAIT")
 		npc_says(_"Scanning...")
@@ -38,37 +38,37 @@ EveryTime LuaCode={
 	else
 		end_dialog()
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello there."
-LuaCode={
+<LuaCode>
 	npc_says(_"Uploading Status...")
 	set_npc_faction("ms")
 	npc_says(_"Linarian is hostile. Destroy!")
 	hide(0)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Die!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Uploading Status...")
 	set_npc_faction("ms")
 	npc_says(_"Linarian is hostile. Destroy!")
 	hide(1)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"..."
-LuaCode={
+<LuaCode>
 	npc_says(_"Uploading Status...")
 	set_npc_faction("ms")
 	npc_says(_"Linarian is hostile. Destroy!")
 	hide(99)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 

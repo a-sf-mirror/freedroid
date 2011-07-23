@@ -26,13 +26,13 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ 
+<FirstTime LuaCode>
 	show(0) 
 	John28to28_teleported = 0
 	JohnPuzzlefalse = 0
-}
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_cookie("john_dislike")) then
 		tux_says(_"I am s-")
 		npc_says(_"Go away please.")
@@ -124,11 +124,11 @@ EveryTime LuaCode={
 	set_rush_tux(0, "John")
 
 show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello."
-LuaCode={
+<LuaCode>
 	npc_says(_"Hello.")
 	npc_says(_"Errr... How did you get in here?!")
 	tux_says(_"I just walked through the door.")
@@ -139,55 +139,55 @@ LuaCode={
 	tux_says(_"Does that answer your question?")
 	npc_says(_"It does... smart aleck.")
 	hide(0) show(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"What do you do here?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm living here.")
 	npc_says(_"What did you expect?")
 	tux_says(_"Okay, that question was a little stupid.")
 	hide(1) show(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"Are there any other people around here?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Not that I know.")
 	npc_says(_"Only you and me.")
 	tux_says(_"Okay, that question was also a little stupid.")
 	hide(2) show(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"Isn't it a little boring in here, isolated from the outer world?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm fine.")
 	npc_says(_"When I'm bored, I try to make up some puzzles...")
 	hide(3) show(4, 5)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"'Puzzles'?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Yeah, puzzles.")
 	npc_says(_"Do you want to try one?")
 	hide(4, 5) show(10, 11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Sounds interesting."
-LuaCode={
+<LuaCode>
 	tux_says(_"Can you tell me more about it?")
 	npc_says(_"No.")
 	npc_says(_"But you can experience it for yourself.")
 	npc_says(_"Interested?")
 	hide(4, 5) show(10, 11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"Yeah, sure!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Ok, so the entrance is in my storage room.")
 	npc_says(_"Shouldn't be too difficult to find.")
 	tux_says(_"Ok, let me take a look.")
@@ -197,29 +197,29 @@ LuaCode={
 	add_cookie("JohnPuzzleStarted")
 	end_dialog()
 	hide(10, 11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Hmm... I don't trust you."
-LuaCode={
+<LuaCode>
 	tux_says(_"I think, it's a trap!")
 	npc_says(_"Well, you can leave at any time.")
 	npc_says(_"I wish you would!")
 	add_cookie("john_dislike")
 	hide(10, 11)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you."
-LuaCode={
+<LuaCode>
 	if (has_cookie("john_dislike")) then
 		npc_says(_"I don't think so...")
 	else
 		npc_says(_"See you later.")
 	end
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

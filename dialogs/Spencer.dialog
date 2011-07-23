@@ -25,14 +25,14 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	show(0)
 	del_cookie("guard_follow_tux")
 	set_bot_state("patrol", "Town-TuxGuard")
 	change_obstacle_state("Dixon-autogun", "enabled")
-}
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_cookie("HF-Spencer")) then
 		npc_says(_"Red Guard HQ, Spencer speaking.")
 		npc_says(_"Are you receiving me?")
@@ -69,54 +69,54 @@ EveryTime LuaCode={
 	end
 
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi! I'm new here."
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
 	if (has_quest(_"Deliverance") and (not done_quest(_"Deliverance"))) then
 		add_cookie("knows_spencer_office")
 		show(5)
 	end
 	hide(0) show(1, 7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"I want to join the Red Guard."
-LuaCode={
+<LuaCode>
 	npc_says(_"Hmm... Really? Well, you cannot join just like that, you know...", "NO_WAIT")
 	npc_says(_"You must prove that you would make a good new member.")
 	hide(1) show(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"I really want to become a member."
-LuaCode={
+<LuaCode>
 	npc_says(_"This is not so easy. First you must establish a reputation around here. Ask around, talk to people and build your reputation.")
 	npc_says(_"Once you're a known character around here, we might let you join the ranks of the Guard.")
 	hide(2) show(3, 12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"How about some circuits instead?"
-LuaCode={
+<LuaCode>
 	npc_says(_"For 15 million circuits, no less, hehe.")
 	hide(3, 7, 12) show(4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"But I don't have that many circuits!"
-LuaCode={
+<LuaCode>
 	npc_says(_"That much I can tell.")
 	npc_says(_"Look, I'm just fooling around. We don't let just anyone join the Red Guard.", "NO_WAIT")
 	npc_says(_"If you seriously want to join, you have to prove yourself first. You might want to ask around town for things you can do.")
 	hide(4) show(7, 12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Francis wanted me to give you this."
-LuaCode={
+<LuaCode>
 	if (has_item_backpack("Data cube") > 0) then
 		npc_says(_"Ah, excellent, the list I asked for.")
 		npc_says(_"It figures he would ask someone to deliver it for him.")
@@ -141,11 +141,11 @@ LuaCode={
 		npc_says(_"Then you had better go and look for it. Don't waste my time, Linarian.")
 	end
 	hide(5)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"Maybe I could help somehow?"
-LuaCode={
+<LuaCode>
 	npc_says(_"That would be most kind of you, but I doubt that you will be able to clear out the warehouse for us.")
 	npc_says(_"But since you are said to be powerful and a former hero, I'll once more put trust into a stranger.")
 	npc_says(_"I've unlocked the access-way to the warehouse. It's to the north of this town, somewhat hidden in the woods northeast.")
@@ -154,11 +154,11 @@ LuaCode={
 	add_quest(_"Opening a can of bots...", _"I am supposed to clean out the first level of some warehouse. Sounds easy. It lies nearby, somewhat hidden in the woods north-east of town.")
 	change_obstacle_state("AccessDoorToWarehouse", "opened")
 	hide(6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"How is it going?"
-LuaCode={
+<LuaCode>
 	if (has_quest(_"Opening a can of bots...")) then
 		if (done_quest(_"Opening a can of bots...")) then
 			if (has_cookie("reward_for_warehouse_given")) then
@@ -182,11 +182,11 @@ LuaCode={
 		npc_says(_"And currently I can't spare a single man from the town's defenses. It's quite a difficult situation.")
 		show(6)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"Have I done enough quests to become a member now?"
-LuaCode={
+<LuaCode>
 	if (not done_quest(_"The yellow toolkit")) then
 		npc_says(_"I think our teleporter service man, Dixon, has some problem. You might want to talk to him.")
 	else
@@ -258,51 +258,51 @@ LuaCode={
 			npc_says(_"I can't accept you into the guard like this. Get going. There are still many things to do for you.")
 		end
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=37 Text=_"I've heard Richard obtained new information on the town."
-LuaCode={
+<LuaCode>
 	npc_says(_"Yes, that's right, and in fact it might be crucial. As you may have heard, the MS office is defended by a disruptor shield. They open it only to let out new armies of bots.")
 	npc_says(_"The data on the cube he obtained indicates the existence of a secret experimental facility in this region. Our findings suggest that they were testing some new form of disruptor shield for MS, so the shield can be controlled from that facility.")
 	npc_says(_"If the information is true, then you can take over the control droid and disable the shield permanently so we can get in.")
 	npc_says(_"We know that MS had a firmware update system, which could be used to propagate a malicious update to disable all bots. It is very alluring, but to perform this trick you need to hack the control droid, which is in the heart of the HF. To enter HF you would have to disable the disruptor shield.")
 	npc_says(_"This seems like a gift sent from the heavens. Cleaning the Hell Fortress is not going to be easy, though..")
 	hide(37) show(38)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=38 Text=_"I'd like to participate in this operation."
-LuaCode={
+<LuaCode>
 	npc_says(_"That's most kind of you to volunteer. So far, I've sent two scouts into the area. They have found the facility entrance and unlocked the gate.")
 	npc_says(_"That is a good sign, because it shows that the key combinations from the data cube were correct.")
 	npc_says(_"However, we lost contact with them shortly after they went inside. They also reported heavy bot resistance.")
 	npc_says(_"I'd be glad if you could take a look. But use the utmost care. We can't afford to lose another guard.")
 	hide(38) show(39, 40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=39 Text=_"OK. I'll be careful. But I'll do it."
-LuaCode={
+<LuaCode>
 	npc_says(_"Good. The base entrance is somewhat hidden in the caves to the northeast. Best to use the north gate out of town, then head east, and turn north again along the shore.")
 	npc_says(_"I wish you the best of luck for this operation. It might be that our survival depends on it. Don't wait for assistance.")
 	npc_says(_"Try to get control over the disruptor shield if you can. The control droid should be somewhere on the lowest level of the installation. Simply destroying the droid might suffice in disabling the shield.")
 	add_quest(_"Opening access to MS Office", _"Spencer has revealed the information from the data cube evaluation to me. It seems there is an old military research facility north of the town. By taking over the control droid, I should be able to control the disruptor shield at the facility. I could activate it permanently, thereby locking off the Hell Fortress, and the bots it's producing, forever. Alternatively, I could disable it, and fight my way through the Hell Fortress droids until I reach the main control droid and update it, thereby disabling all bots in the entire area around town in one fell swoop.")
 	change_obstacle_state("DisruptorShieldBaseGate", "opened")
 	hide(39, 40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"I don't feel like doing it now. I'd rather prepare some more."
-LuaCode={
+<LuaCode>
 	npc_says(_"Good. You should be well prepared if you intend to go.")
 	npc_says(_"Also there is no need to hurry with this. After all, the installation is not running away, so it's best to take a cautious approach.")
 	hide(40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=44 Text=_"It's done. Your soldiers were killed, but I managed to reach a computer terminal that controls the shield. Access to the bot factory is now open, after I changed the password on the terminal so as to prevent the bots from enabling the shield again."
-LuaCode={
+<LuaCode>
 	npc_says(_"Good. We cannot help you much in this final mission, but I can tell you what our recon teams gathered behind the factory doors. You will enter a zone that used to be a MS office.")
 	npc_says(_"They carried out some development there, and had part of their patching division and update management department. The actual factory is located behind the office.")
 	npc_says(_"With a bit of luck, you might not need to access it. We know they have their update server in the office.")
@@ -313,25 +313,25 @@ LuaCode={
 	npc_says(_"Good luck.")
 	add_quest(_"Propagating a faulty firmware", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
 	hide(44) show(45)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"I will need some time to get myself ready before I clean up the Hell Fortress."
-LuaCode={
+<LuaCode>
 	npc_says(_"You had better be ready.")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"I found someone out in the desert."
-LuaCode={
+<LuaCode>
 	npc_says(_"Great, another mouth to feed.")
 	npc_says(_"What is this person's name?")
 	hide(50) show(51)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=51 Text=_"Tania"
-LuaCode={
+<LuaCode>
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"Well, since you are a guard member, I'll let you vouch for this Tania person.")
 	else
@@ -351,11 +351,11 @@ LuaCode={
 		update_quest(_"Tania's Escape", _"Spencer said it was okay for Tania to enter the town, as long as she goes to see Doc Moore first thing. Now all I have to do is tell her and Pendragon.")
 	end
 	hide(51)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=52 Text=_"No, of course not."
-LuaCode={
+<LuaCode>
 	npc_says(_"Good.")
 	npc_says(_"I didn't think it was you, but you never know.")
 	npc_says(_"About your friend, she can come in provided that she pulls her weight around here.")
@@ -366,11 +366,11 @@ LuaCode={
 		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that.")
 	end
 	hide(52, 53, 54)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=53 Text=_"He and I had a disagreement, which we settled."
-LuaCode={
+<LuaCode>
 	npc_says(_"I am the law here. If you have a problem, you come to me.")
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"I'm going to strip you of your membership in the Red Guard.")
@@ -387,25 +387,25 @@ LuaCode={
 		end_dialog()
 	end
 	hide(52, 53, 54)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=54 Text=_"I killed him just to see what it was like. It was awesome."
-LuaCode={
+<LuaCode>
 	npc_says(_"You are a sociopath, and a danger to us all!")
 	npc_says(_"We must stop you before you kill again.")
 	update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. He found me too dangerous to live.")
 	set_faction_state("redguard", "hostile")
 	end_dialog()
 	hide(52, 53, 54)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be going then."
-LuaCode={
+<LuaCode>
 	npc_says(_"See you later.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

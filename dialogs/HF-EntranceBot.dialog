@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	npc_says(_"Welcome to the MegaSys Factory complex.")
 	npc_says(_"Access is restricted to authorized personnel.")
 	npc_says(_"Proof of authorization is required.")
@@ -47,20 +47,20 @@ EveryTime LuaCode={
 		show(1, 2, 3)
 	end
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"I am THE ONE."
-LuaCode={
+<LuaCode>
 	npc_says(_"You are THE ONE without permission.")
 	npc_says(_"Please consider leaving.")
 	end_dialog()
 	hide(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"I am working here."
-LuaCode={
+<LuaCode>
 	npc_says(_"Me too.")
 	npc_says(_"Please prove your statement.")
 	tux_says(_"Do I look like a typical MegaSys slave  errr  worker to you stupid bot?")
@@ -77,11 +77,11 @@ LuaCode={
 		end_dialog()
 	end
 	hide(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"I have come to save the world, I don't need any proof."
-LuaCode={
+<LuaCode>
 	npc_says(_"Feel uncertain about the future?")
 	npc_says(_"Purchase the MegaSys Security Bundle to help safeguard your home.")
 	npc_says(_"It contains:")
@@ -92,15 +92,15 @@ LuaCode={
 	npc_says(_"If you order [b]RIGHT NOW[/b], we will [b]SHIP FOR FREE!!![/b]")
 	tux_says(_"No, thanks.")
 	hide(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 
 Nr=99 Text=_"Bye"
-LuaCode={
+<LuaCode>
 	npc_says(_"Remember, MegaSys products are the best!")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

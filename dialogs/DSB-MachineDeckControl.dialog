@@ -26,37 +26,37 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"admin", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-}
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	terminal = "admin@main.mdc.dsb.ms: ~ #"
 	cli_says(terminal, "NO_WAIT")
 	if (not done_quest(_"Opening access to MS Office")) then
 		show(7)
 	end
 	show(99, 1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"passwd"
-LuaCode={
+<LuaCode>
 	npc_says(_"Changing password for admin. Enter new password: ")
 	npc_says(_"Enter new password again: ")
 	npc_says(_"Password successfully changed.")
 	add_cookie("dsb-mdc_password")
 	cli_says(terminal, "NO_WAIT")
 	hide(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"shieldmgr --disable --force"
-LuaCode={
+<LuaCode>
 	npc_says(_"Disabling disruptor shield... ")
 	npc_says(_"Shield disabled.")
 	if (not has_cookie("dsb-mdc_password")) then
@@ -68,14 +68,14 @@ LuaCode={
 		end_dialog()
 	end
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-LuaCode={
+<LuaCode>
 	npc_says(_"Exiting")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

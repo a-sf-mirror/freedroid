@@ -26,20 +26,22 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(20, 30, 40, 50) }
+<FirstTime LuaCode>
+	show(20, 30, 40, 50)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	tux_says(_"Um... Hello?")
 	npc_says(_"AH! A Visitor! Come in! Come in!")
 	tux_says(_"I think I should go now. Right now. See you later.")
 	npc_says(_"No, don't go. I will not let you go before we talk. Important things.")
 	npc_says(_"I can help you understand computers... Greater than ever before.")
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"Who are you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I? Sorenson is a great computer person.")
 	npc_says(_"Knows the deep codes. Walks the paths.")
 	npc_says(_"Sees the light of all chips. Knows how to use every keyboard.")
@@ -60,106 +62,106 @@ LuaCode={
 	npc_says(_"Sorenson the coder greets you.")
 	set_bot_name(_"Sorenson -- Mystery coder")
 	hide(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text=_"Why are you like this? What happened to you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Was learning COBOL. Pain. Torture. Horrible screaming.")
 	npc_says(_"Sorenson asked for help. Many days and nights.")
 	npc_says(_"Light arrived. Light offered help. Sorenson changed.")
 	npc_says(_"Free person now.")
 	hide(30) show(31)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"What is this COBOL?"
-LuaCode={
+<LuaCode>
 	npc_says(_"COBOL is the mind-crippler.")
 	npc_says(_"Don't use it. Forget the cursed name. COBOL is pain. COBOL is hate.")
 	hide(31)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy some from you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Of course not. Trade is good.")
 	trade_with("Sorenson")
 	hide(40) show(41)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=41 Text=_"Can I take a look at your books again?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Yes. Sure. Of course.")
 	trade_with("Sorenson")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"You got me curious. How can you help me understand computers better?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Simplicity! Sign this contract. No need to read it.")
 	npc_says(_"You trust Sorenson, right?")
 	hide(50) show(51, 79)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=51 Text=_"Sure. I'll sign it."
-LuaCode={
+<LuaCode>
 	npc_says(_"Go0d. H3re is th3 con7ract. S1gn it!")
 	tux_says(_"Ok, here go --")
 	npc_says(_"N0! 1n bl00d!")
 	hide(51) show(52, 55, 78)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=52 Text=_"Um... Your voice sounds strange. Is everything fine?"
-LuaCode={
+<LuaCode>
 	npc_says(_"519n 7h3 c0n7r4c7!!!!")
 	hide(52) show(53)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=53 Text=_"Please calm down. You must speak clearly and slowly. Please stop breathing smoke like that, it bothers my throat. And what is the deal with the red glowing eyes? You should see a doctor. "
-LuaCode={
+<LuaCode>
 	npc_says(_"519n 17!!!!")
 	hide(53)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=55 Text=_"Sure, no problem... Now, how shall I sign this?"
-LuaCode={
+<LuaCode>
 	hide(52, 53, 55, 78, 79)
 	show(60, 61, 62, 63, 64, 65, 66)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=60 Text=_"Tux."
 NO_TEXT
-LuaCode={ next(70) }
+<LuaCode> next(70) </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=61 Text=_"Tux, the Linarian"
 NO_TEXT
-LuaCode={ next(70) }
+<LuaCode> next(70) </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=62 Text=_"I accept the contract, Tux"
 NO_TEXT
-LuaCode={ next(70) }
+<LuaCode> next(70) </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=63 Text=_"Elbereth"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"4444! 17 burn5! 7'm m3171n9!")
 	npc_says(_"44444444444444444!")
 	drop_dead()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=64 Text=_"Francis"
-LuaCode={
+<LuaCode>
 	npc_says(_"H4! Y0ur s0ul 15 min3, Francis!")
 	npc_says(_"Wh47? N07 w0rk1b9?")
 	tux_says(_"Erm. I have a confession to make. My name is not Francis.")
@@ -167,63 +169,63 @@ LuaCode={
 	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
 	end_dialog()
 	hide(64)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=65 Text=_"The great destroyer of evil, the purger of all things foul, the friend of mankind, the third duke of Linarius, esquire, Doctorate of Computer Sciences, high priest of Kernelius, the ray of light in the darkness, the bender of spoons, His Great Magnificence, Tux."
-LuaCode={
+<LuaCode>
 	npc_says(_"Huh?")
 	tux_says(_"I... Don't feel... good... Blood loss... So... Cold...")
 	npc_says(_"N0! Idi07!")
 	kill_tux()
 	hide(65)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=66 Text=_"X"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"N0! S7up1d illi73r4t3 p3n9u1n! D13!!")
 	hide(66)
 	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=70 Text=_"Huh? I d0n'7 f33l g00d."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Yes! I am free! At last I am free!", _"Yes! I am free!", _"Yes! I am free at last!")
 	tux_says(_"W417... 1 f331... H0rr1b13...")
 	npc_says(_"Yes, fool! You have freed me! I can finally die! Goodbye idiot!")
 	improve_skill("programming")
 	drop_dead()
 	hide(60, 61, 62, 63, 64, 65, 66)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=78 Text=_"In blood? Yuck. I am not going to do this, blood is too messy for a binding legal contract. Forget about it."
-LuaCode={
+<LuaCode>
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rtal foo1!")
 	hide(78)
 	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=79 Text=_"There is no way I will sign something without reading it. Forget about it."
-LuaCode={
+<LuaCode>
 	npc_says(_"N00oo00oo0! T1m3 to d1e, m0rta1 foo1!")
 	hide(79)
 	npc_faction("crazy", _"COBOL Programmer -- Madly Enraged")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I really must be going now. Goodbye."
-LuaCode={
+<LuaCode>
 	npc_says(_"Please come back later, Linarian. We must talk again.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

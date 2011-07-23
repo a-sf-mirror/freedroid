@@ -25,9 +25,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0) }
+<FirstTime LuaCode>
+	show(0)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_cookie("stone_helping")) and
 	   (not has_cookie("stone_done")) and
 	   (get_gold() > 1400) then
@@ -46,19 +48,19 @@ EveryTime LuaCode={
 	end
 
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi! I'm new here."
-LuaCode={
+<LuaCode>
 	npc_says(_"Welcome to our town! I'm Ms. Stone. I run this shop.")
 	set_bot_name(_"Stone -- Shopowner")
 	hide(0) show(1, 10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"I would like to trade with you."
-LuaCode={
+<LuaCode>
 	npc_says(_"Good! Here is the selection of items I have for sale.")
 	if (has_cookie("stone_no_guns")) then
 		hide(2)
@@ -66,11 +68,11 @@ LuaCode={
 		show(2)
 	end
 	trade_with("Stone")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"Swords, clubs and maces? What is this? I want guns!"
-LuaCode={
+<LuaCode>
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"I think the Red Guard has their own store somewhere.")
 		npc_says(_"At least, they somehow get supplement I don't sell.")
@@ -81,11 +83,11 @@ LuaCode={
 		add_cookie("stone_no_guns")
 	end
 	hide(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"What can you tell me about the guards here?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Ah, the Red Guard.", "NO_WAIT")
 	if (has_cookie("guard_follow_tux")) then  			-- tux followed by guard
 		npc_says(_"Well, they keep the town safe.")
@@ -102,11 +104,11 @@ LuaCode={
 	end
 	add_cookie("Stone_Hide_Guard_Question")  			-- avoid node being shown several times
 	hide(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"But...?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("guard_follow_tux")) then
 		npc_says(_"But nothing.")
 		npc_says(_"I'm busy right now.")
@@ -125,12 +127,12 @@ LuaCode={
 		show(8)
 	end
 	hide(4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"If things are so bad right now, why don't you leave?"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"If things are so bad right now, why --")
 	npc_says(_"I don't want to hear this jabberwocky.", "NO_WAIT")
 	npc_says(_"A hint, Linarian: We don't have much, but we're alive and we'd rather stay that way.", "NO_WAIT")
@@ -140,11 +142,11 @@ LuaCode={
 		npc_says(_"If you want to start a revolution, you're on your own.")
 	end
 	hide(8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"How is your business going?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("stone_done")) then
 		npc_says(_"Thanks to you I have a chance now.", "NO_WAIT")
 		npc_says(_"Ha! It's time to show the world that Lily Stone is not going down without putting up a REAL good fight.")
@@ -156,38 +158,38 @@ LuaCode={
 		show(13, 16)
 	end
 	hide(10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"Can I help you somehow Ms. Stone?"
-LuaCode={
+<LuaCode>
 	npc_says(_"No, there's nothing that can be done anymore. I don't have enough money to lift the shop from the downward spiral.")
 	npc_says(_"I'd need thousands to just survive the month.", "NO_WAIT")
 	npc_says(_"The shop is dying, and there's nothing either of us can do about it.")
 	hide(13, 16) show(15)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=15 Text=_"Maybe there is still hope, Ms. Stone. How much exactly do you need?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I couldn't get myself to look at my finance logs for a while now. I guess about two thousand circuits.")
 	add_cookie("stone_helping")
 	add_quest(_"Saving the shop", _"Ms. Stone can't afford to pay her taxes, and it looks like the family business will be going under soon. She needs 2000 in cash to stay afloat. I could try to help her out.")
 	if (get_gold() > 2000) then show(23) else hide(23) end
 	hide(15)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"A pity that nothing can be done about your store."
-LuaCode={
+<LuaCode>
 	npc_says(_"Yes. A tradition of six generations will die with this shop...", "NO_WAIT")
 	npc_says(_"I guess it just had to happen one day...")
 	hide(13, 16)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=23 Text=_"I have the money you need Ms. Stone. You can have it."
-LuaCode={
+<LuaCode>
 	npc_says(_"Is... Is this a joke? So much money? And you just give it to me?", "NO_WAIT")
 	npc_says(_"Thank you! Thank you! Thank you! Savior!")
 	if (has_cookie("tux_has_joined_guard")) then		-- joined guard
@@ -219,11 +221,11 @@ LuaCode={
 		end
 	end
 	hide(23)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"Yes, its me."
-LuaCode={
+<LuaCode>
 	npc_says(_"I thought so. My grandfather used to tell me stories about you. He said you would come here in a time of despair.", "NO_WAIT")
 	npc_says(_"And here you are.")
 	npc_says(_"I hope your arrival changes the tide of this war...", "NO_WAIT")
@@ -235,21 +237,21 @@ LuaCode={
 	end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 	end_dialog()
 	hide(31, 32, 33)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=32 Text=_"It's not important who I am."
-LuaCode={
+<LuaCode>
 	npc_says(_"If you want to remain a stranger, I will respect your wishes.", "NO_WAIT")
 	npc_says(_"So be it.")
 	end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me.")
 	end_dialog()
 	hide(31, 32, 33)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=33 Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
-LuaCode={
+<LuaCode>
 	npc_says(_"You... monster...", "NO_WAIT")
 	npc_says(_"No one makes fun of Lily Stone's family store!", "NO_WAIT")
 	npc_says(_"Say your prayers, you oversized duck!!!")
@@ -258,14 +260,14 @@ LuaCode={
 	end_quest(_"Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
 	end_dialog()
 	hide(31, 32, 33)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Have a nice day!", _"Take care that you don't void any warranties.", _"Please come back if you have any questions regarding my goods.", _"I hope to see you again, soon!")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

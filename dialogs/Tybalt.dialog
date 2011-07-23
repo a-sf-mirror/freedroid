@@ -26,9 +26,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0) }
+<FirstTime LuaCode>
+	show(0)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_met("Tybalt")) then
 		show(2)
 	end
@@ -38,26 +40,26 @@ EveryTime LuaCode={
 	end
 
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi! I'm new here."
-LuaCode={
+<LuaCode>
 	npc_says(_"Hello. I'm Tybalt. I'm guarding the town citadel gate. Only authorized personnel are permitted.")
 	set_bot_name(_"Tybalt -- Citadel Gate Guard")
 	hide(0) show(1, 2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Why is this gate locked most of the time?"
-LuaCode={
+<LuaCode>
 	npc_says(_"It's locked so no one can sneak inside while I'm not looking. That's why.")
 	hide(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"I want to get into the citadel."
-LuaCode={
+<LuaCode>
 	if (has_cookie("tux_has_joined_guard")) then 
 		npc_says(_"Of course. Guard members are always authorized to enter the town citadel. The gate is open. Enjoy your stay.")
 		change_obstacle_state("OldTownGuardHouseEntrance", "opened")
@@ -68,35 +70,35 @@ LuaCode={
 		if (not has_cookie("tybalt_bribe")) then show(50) end
 	end
 	hide(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"So why is it you keep the citadel locked? Is there anything secret in there?"
-LuaCode={
+<LuaCode>
 	npc_says(_"We need to protect our equipment and documents, because lives depend on it.")
 	npc_says(_"Also, we don't have to answer questions.")
 	hide(10)
 	-- this is meant to introduce that there have been thefts - we can use it for both the rebel faction
 	-- and Kevin introduction. Kevin might even be a member of the rebel faction.
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"I have a lot of money for you."
-LuaCode={
+<LuaCode>
 	npc_says(_"Fascinating. Can I have a hundred please?")
 	hide(50) show(54, 55)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=54 Text=_"Erm... I don't have that much."
-LuaCode={
+<LuaCode>
 	npc_says(_"Well, too bad.")
 	hide(54, 55)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=55 Text=_"Here you go."
-LuaCode={
+<LuaCode>
 	if (del_gold(100)) then
 		npc_says(_"Thank you.")
 		add_cookie("tybalt_bribe")
@@ -105,11 +107,11 @@ LuaCode={
 		npc_says_random(_"That is not a hundred.", _"Um, count that again.", _"Talk to me when you have a bit more.")
 	end
 	hide(54, 55)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=56 Text=_"Ok, now please open the door for me."
-LuaCode={
+<LuaCode>
 	npc_says(_"What door?")
 	tux_says(_"The door to the citadel!")
 	npc_says(_"But you are not a member of the Red Guard.")
@@ -119,14 +121,14 @@ LuaCode={
 	tux_says(_"I want my money back.")
 	npc_says(_"What money?")
 	hide(56) 
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	npc_says(_"Good riddance.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

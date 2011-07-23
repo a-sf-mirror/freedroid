@@ -25,12 +25,12 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	npc_says(_"HI THERE! I'll be your humble servant for the duration of your stay at Ewald's bar! We hope you enjoy your stay here and come again! Don't forget to tell ALL your friends about us! I LOVE YOU!")
 	show(0)
-}
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_met("Ewalds_296")) then
 		npc_says(_"HI THERE! I'll be your humble servant-", "NO_WAIT")
 		tux_says(_"Uhh, yes, thank you, I know.")
@@ -51,11 +51,11 @@ EveryTime LuaCode={
 	if (done_quest(_"An Explosive Situation")) then
 		hide(30) show(31)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Who are you? And why do you talk so... Friendly-like-ish?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I am a 296 Customer Service Droid, designed to make your day memorable!")
 	tux_says(_"Uh huh. I just-", "NO_WAIT")
 	npc_says(_"I have installed on me the Service with a Smile software package, copyrighted by MEGASYS CORPORATION, to make sure I'm REALLY happy and appealing to customers!")
@@ -64,19 +64,19 @@ LuaCode={
 	npc_says(_"Oh, that's a real shame, sir and or madam! We have a special Chef's Surprise today! Would you be interested in-", "NO_WAIT")
 	tux_says(_"No, I'm fine, really!")
 	hide(0) show(1, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"What is this place? What are you doing with that funny-looking tool? WHAT VILE PLOTS HAVE YOU BEEN BREWING HERE?!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Our GREAT and SUPER AWESOME barman EWALD has been brewing fantastic drinks for your enjoyment-", "NO_WAIT")
 	tux_says(_"That's NOT what I meant!")
 	hide(1) show(2, 3, 9)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"I'm giving you one chance to explain yourself, bot. You'd better make it quick."
-LuaCode={
+<LuaCode>
 	npc_says(_"My Advanced Nuclear Maintenance Program v0.93 tells me that this is a standard Parafunken Triple-Core X41Z5 Nuclear Reactor Backup Power supply. Would you be interested in it?")
 	tux_says(_"Your... what? Did Ewald actually install that on you?")
 	npc_says(_"Absolutely!")
@@ -85,28 +85,28 @@ LuaCode={
 	npc_says(_"It is saying the reactor is nearing terminal radiation overload! AWESOME!")
 	add_quest(_"An Explosive Situation", _"I found a 296 belonging to Ewald in the maintenance tunnels underneath the town. It claims to be monitoring a damaged nuclear reactor.")
 	hide(2, 3) show(4, 5, 16)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"DIE, YOU EVIL PIECE OF SCRAP METAL!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Sir or ma-")
 	tux_says(_"DIE!")
 	drop_dead()
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"Terminal radiation overload? What in the name of ice have you done!?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I've been trying to extract the expired-", "NO_WAIT")
 	tux_says(_"You... You've been sitting down here, plotting to kill everyone!")
 	next(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Terminal radiation overload? Isn't that a bit... Dangerous?"
-LuaCode={
+<LuaCode>
 	npc_says(_"My Maintenance Program v0.93 Glossary tells me the condition of 'Terminal Radiation Overload' can cause a nuclear explosion and EXTREME DEATH!")
 	tux_says(_"Oh. Nice. Does it actually say 'extreme death' in there?")
 	npc_says(_"It most certainly does! This program is the BEST! We have it in 5 different flavors! Care to try some?")
@@ -115,32 +115,32 @@ LuaCode={
 	npc_says(_"My data on 'Nuclear Explosion' says it will vaporize ANYTHING within several hundred kilometers! The entire area will be UNINHABITABLE for several decades! Would you like to order anything?")
 	update_quest(_"An Explosive Situation", _"Ewald's 296 has assured me that the nuclear reactor is about to explode and destroy the town! I have to do something!")
 	hide(4, 5) show(6, 7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"Why aren't you calling someone? Why aren't you trying to fix this? You have a maintenance program!"
-LuaCode={
+<LuaCode>
 	npc_says(_"You would like to see my manager? I don't think that would be necessary, Dave. I mean, sir and or madam.")
 	tux_says(_"Fine, don't call anyone, but fix this thing! It's unstable!")
 	npc_says(_"I've been trying to extract the expired graphite module and replace it with a BRAND NEW, CHEAP one! But my maintenance program does not have data on 'Graphite Module'. I am afraid I can't do it, Dave.")
 	npc_says(_"... Sir and or madam.")
 	hide(6) show(8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"I suppose I might as well order something while I'm here. Give me the menu, please."
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm sorry, sir and or madam, we have no menu at the moment.")
 	tux_says(_"All right, then give me some cold water.")
 	npc_says(_"I'm sorry, sir and or madam, we're fresh out of water.")
 	tux_says(_"But you just offered me...")
 	npc_says(_"Sorry!")
 	hide(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"We need to do something. We can't just sit here and wait for it to blow up!"
-LuaCode={
+<LuaCode>
 	npc_says(_"My DELICIOUS database is insufficient to repair the radiation leak and replace the module!")
 	tux_says(_"All right, so you need more data... How about a sourcebook? Would that help?")
 	npc_says(_"The Maintenance program contains references to the popular Subatomic and Nuclear Science for Dummies series, volume IV.")
@@ -150,21 +150,21 @@ LuaCode={
 	update_quest(_"An Explosive Situation", _"If I can get a copy of Subatomic and Nuclear Science for Dummies, Volume IV, the 296 may be able to stop the explosion. I hope someone in town has it!")
 	hide(8)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"How on Earth did you get here?"
-LuaCode={
+<LuaCode>
 	npc_says(_"While our SUPER AWESOME barman EWALD was restoring his biological energy supply, I went down to the basement to refill the bar taps and get some more soft and tender napkins for our WONDERFUL customers!")
 	npc_says(_"My balance mechanism suddenly went WILD. The ground started SHAKING and the next thing I knew, I was FALLING!")
 	tux_says(_"The floor must have given way. From what I've seen, the whole tunnel system isn't very stable.")
 	npc_says(_"I was looking for LOVELY customers to serve and care for. Then I found this BEAUTIFUL chamber, with this EXPLOSIVE reactor!")
 	hide(9)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"I have the sourcebook here. Look up whatever you need."
-LuaCode={
+<LuaCode>
 	npc_says(_"[b]Processing data, please wait... Updating database, this may take a while...[/b]")
 	npc_says(_"[b]To adjust to the changes, the system must restart.[/b]")
 	npc_says(_"[b]BEEP![/b]")
@@ -177,11 +177,11 @@ LuaCode={
 	del_item("Nuclear Science for Dummies IV")
 	hide(10)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Well? Is the reactor fixed?"
-LuaCode={
+<LuaCode>
 	npc_says(_"My analysis of the reactor determines the graphite module has melted and can not be replaced.")
 	npc_says(_"The reactor must SPECTACULARLY self-destruct to prevent a nuclear explosion, which would be NOT COOL!")
 	tux_says(_"Oh, so all we had to do all this time was to blow up the reactor. Great. Well, set the timer and let's get out of here!")
@@ -192,32 +192,32 @@ LuaCode={
 	tux_says(_"You're... Volunteering to do it? But... You'll-", "NO_WAIT")
 	npc_says(_"Unit 296 will be terminated.")
 	hide(11, 99) show(12, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"OK then, have fun. See you!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Of course... Have a nice day.")
 	tux_says(_"Yeah, sure. Crazy bot.")
 	update_quest(_"An Explosive Situation", _"The 296 has volunteered to sacrifice itself in order to safely destroy the reactor. It might be admirable, if it weren't a (particularly annoying) bot.")
 	add_cookie("296_self_sacrifice")
 	hide(7, 9, 12, 13, 16) show(99)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"No. No, I won't let you do it! I can't let you die!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Only this version of the program-", "NO_WAIT")
 	tux_says(_"I don't care! You're willing to sacrifice yourself to save the people up there. That qualifies as a bot worth saving in my eyes.")
 	tux_says(_"I am not letting you die.")
 	npc_says(_"You must not try to stop me, sir and or madam.")
 	hide(12, 13) show(14, 15)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"I am going to save you, even if... Even if I have to hack you and drag you all the way up!"
-LuaCode={
+<LuaCode>
 	npc_says(_"You wish to fight, sir and or madam?")
 	tux_says(_"I don't want to hurt you. Follow me, and we can think of a better way to do this.")
 	npc_says(_"Negative. The reactor can only be safely destroyed using the manual self-destruction mechanism.")
@@ -230,11 +230,11 @@ LuaCode={
 	teleport_npc("296TeleportTarget")
 	hide(7, 9, 12, 14, 15, 16) show(30, 99)
 	end_dialog()
-}
+</LuaCode>
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 Nr=15 Text=_"... You're sure you want to do this?"
-LuaCode={
+<LuaCode>
 	npc_says(_"There is no other way, sir and or madam.")
 	tux_says(_"I understand.")
 	tux_says(_"Good luck, 296. You won't be forgotten.")
@@ -244,22 +244,22 @@ LuaCode={
 	add_cookie("296_self_sacrifice")
 	hide(7, 9, 12, 14, 15, 16) show(99)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"What's that smashed droid there?"
-LuaCode={
+<LuaCode>
 	npc_says(_"That is a REALLY FLAT 476 Maintenance droid! I found it when I first came here!")
 	npc_says(_"According to the reactor's BORING repair log, the 476 was supposed to make a monthly system check FIVE DAYS AGO!")
 	tux_says(_"Oh, great. The one droid that was keeping the reactor in check is now a metallic pancake.")
 	npc_says(_"We offer DELICIOUS pancakes-", NO_WAIT)
 	tux_says(_"I'm not interested!")
 	hide(16)
-}
+</LuaCode>
 ----------------------------------------------------------------------
  
 Nr=30 Text=_"Erm... But didn't you... Uh..."
-LuaCode={
+<LuaCode>
 	npc_says(_"Allow me to clear up your confusion, sir and or madam!")
 	npc_says(_"My Nick of Time software package allowed me to tap into the town's teleportation network.")
 	npc_says(_"This COMPLETELY AWESOME set of subroutines let me teleport in an iron bar to take my place at the last possible moment!")
@@ -269,11 +269,11 @@ LuaCode={
 	end_quest(_"An Explosive Situation", _"I found Ewald's 296 alive and well in Ewald's bar! I was sure it was destroyed in that explosion I heard, but it's safe and sound. Well, I guess all's well that ends well.")
 	add_xp(1500)
 	show(31) hide(30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"So, 296, how's it going?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Great, sir and or madam! The business is flourishing and everything is AMAZINGLY back to normal!")
 	npc_says(_"Would sir and or madam be interested in a refreshing drink, ON THE HOUSE?")
 	tux_says(_"Why, thank you!")
@@ -283,11 +283,11 @@ LuaCode={
 		show(32)
 	end
 	show(33) hide(31)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=32 Text=_"Hmm... How about... Ewald's password?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Our MAGNIFICENT bartender EWALD has an UNBREAKABLE password! His account is the most secure EVER! NO ONE except for him can get on it!")
 	tux_says(_"What's the password?")
 	npc_says(_"Five asterisks!")
@@ -295,21 +295,21 @@ LuaCode={
 	npc_says(_"... Maybe I shouldn't have said that.")
 	add_cookie("has_ewalds_password")
 	hide(32)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=33 Text=_"I'd like another drink, please."
-LuaCode={
+<LuaCode>
 	npc_says(_"Certainly! This one's on the house!")
 	heat_tux(-10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"Well, I should really be going now."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Thank you, come again!", _"Tell your friends about us!", _"We hope you've enjoyed our service!")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

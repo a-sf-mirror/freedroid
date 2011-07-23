@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	-- Are we human? CAPTCHA!!!
 	number_one=math.random(2,7)
 	number_two=math.random(1,number_one-1)
@@ -56,21 +56,21 @@ EveryTime LuaCode={
 		npc_says(_"Please select action")
 		show(1, 3, 99)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Get current OS version"
-LuaCode={
+<LuaCode>
 	if (not has_cookie("uploaded_faulty_firmware")) then
 		npc_says(_"Currently deployed firmware is v. 5.0.8+worldto-nogpl.")
 	else
 		npc_says(_"Currently deployed firmware is v. 5.0.8+" .. get_player_name() .. _"washere+gpl")
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"Propagate firmware update"
-LuaCode={
+<LuaCode>
 	npc_says(_"Compressing image....")
 	npc_says(_"Advertising update to clients...")
 	npc_says(_"Waiting for all connections....")
@@ -88,13 +88,13 @@ LuaCode={
 		npc_says(_"Exiting...")
 		end_dialog()
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"Logout"
-LuaCode={
+<LuaCode>
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

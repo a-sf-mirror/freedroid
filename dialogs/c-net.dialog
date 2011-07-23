@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={ 
+<EveryTime LuaCode> 
 --	name = get_player_name() -- We need to generate the option text of option 0 to use this properly
 	if (has_cookie("terminals_disabled")) then
 		npc_says(_" . ")
@@ -37,12 +37,12 @@ EveryTime LuaCode={
 		if has_cookie("knows_c-net_users") then show(0, 1, 2, 3, 99) else show(0, 99) end
 	end
 	hide(10, 11, 12, 13, 14, 15, 16, 20, 21, 23, 24, 30, 31, 80, 81, 82, 83, 85, 86)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text="guest"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	username = get_player_name()
 	terminal = username .. "@c-net:~$"
 	tux_says("guest", "NO_WAIT")
@@ -65,12 +65,12 @@ LuaCode={
 	npc_says(_"Last login from dev/tty3 on unknown", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text="root"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("root", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("******")
@@ -83,12 +83,12 @@ LuaCode={
 		cli_says(terminal, "NO_WAIT")
 		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text="lily"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("lily", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("******")
@@ -101,12 +101,12 @@ LuaCode={
 		cli_says(terminal, "NO_WAIT")
 		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text="cpain"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("cpain", "NO_WAIT")
 	cli_says(_"Password: ", "NO_WAIT")
 	if (not has_cookie("know_sorenson_password")) then
@@ -120,51 +120,51 @@ LuaCode={
 		cli_says(terminal, "NO_WAIT")
 		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text="BUG, REPORT ME! cnet node9" 
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Login incorrect", "NO_WAIT")
 	npc_says(_"Connection to c-net terminated.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text="cd info_commands/" -- ../ date finger users whoami 
 NO_TEXT
-LuaCode={
+<LuaCode>
 	terminal = username .. "@c-net:~/info_commands$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(11, 12, 13, 14, 15, 16) hide(10, 20, 30, 80, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text="cd ../"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(10, 20, 30, 80, 99) hide(11, 12, 13, 14, 15, 16)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text="date"
 NO_TEXT
-LuaCode={
+<LuaCode>
 --	npc_says(get_date() ,"NO_WAIT")
 	tux_says("date", "NO_WAIT")
 	npc_says(_"Date unknown", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text="finger"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("finger", "NO_WAIT")
 	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
 	npc_says("Login	Tty	Name", "NO_WAIT")
@@ -173,72 +173,72 @@ LuaCode={
 	npc_says("guest	tty3	" .. get_player_name() .. "", "NO_WAIT")
 	npc_says("lily	tty2	Lily Stone", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text="users"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("users", "NO_WAIT")
 	npc_says("bossman cpain guest lily", "NO_WAIT")
 	if (not has_cookie("knows_c-net_users")) then add_cookie("knows_c-net_users") end
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=15 Text="whoami"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("whoami", "NO_WAIT")
 	npc_says(username, "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=16 Text="uname"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("uname", "NO_WAIT")
 	npc_says("Nkernel", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text="cd file_commands/" -- ../ ls readdrive ./statistics.pl
 NO_TEXT
-LuaCode={
+<LuaCode>
 	terminal = username .. "@c-net:~/file_commands$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(21, 23, 24) hide(10, 20, 30, 80, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text="cd ../"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(10, 20, 30, 80, 99) hide(21, 23, 24)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 --Nr=22 Text="ls"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("ls", "NO_WAIT")
 	npc_says(".", "NO_WAIT")
 	npc_says("mountdisk.sh@", "NO_WAIT")
 	npc_says("statistics.pl*", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(23, 24)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=23 Text=_"mountdisk.sh"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./mountdisk.sh", "NO_WAIT")
 	if (has_item_backpack("Kevin's Data Cube") > 0) then
 		npc_says(_"Mounting volume \"Kevins_Security_File\"...")
@@ -283,23 +283,23 @@ LuaCode={
 		npc_says(_"no disk found", "NO_WAIT")
 	end
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=24 Text=_"statistics.pl"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("./statistics.pl", "NO_WAIT")
 	npc_says(_"Corrupted file.", "NO_WAIT")
 --	npc_says(_"Bot #Dead# Tux #Hacked/Failed#Ratio", "NO_WAIT")
 --	npc_says(print_stats(),"NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text="cd documents/"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	terminal = username .. "@c-net:~/documents$"
 	tux_says("cd documents/ ", "NO_WAIT")
 	if (username == _"guest") then
@@ -310,86 +310,86 @@ LuaCode={
 	end
 	cli_says(terminal, "NO_WAIT")
 	show(31) hide(10, 20, 30, 80, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text="cd ../"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(10, 20, 30, 80, 99) hide(31)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=66 Text=_"forkBOMB.sh -arm bomb"
-LuaCode={
+<LuaCode>
 	npc_says(_"bomb armed", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(67, 68)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=67 Text=_"forkBOMB.sh -disarm bomb"
-LuaCode={
+<LuaCode>
 	npc_says(_"bomb defused", "NO_WAIT")
 	cli_says("root@c-net:~$", "NO_WAIT")
 	hide(67, 68) show(66)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=68 Text=_"forkBOMB.sh -execute"
-LuaCode={
+<LuaCode>
 	add_cookie("terminals_disabled")
 	display_big_message("Terminals Disabled")
 	npc_says(_"Script run. After logout this terminal will be disabled.", "NO_WAIT")
 	cli_says(_"root@c-net:~$", "NO_WAIT")
 --	add_xp(30) -- Eventually make this a quest goal.
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=80 Text="cd games/"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(" ", "NO_WAIT")
 	terminal = username .. "@c-net:~/games$"
 	cli_says(terminal, "NO_WAIT")
 	show(81, 82, 83, 85, 86) hide(10, 20, 30, 80, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=81 Text="cd ../"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	terminal = username .. "@c-net:~$"
 	npc_says(" ", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(10, 20, 30, 80, 99) hide(81, 82, 83, 85, 86)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=82 Text="nethack"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("./nethack", "NO_WAIT")
 	run_subdialog("c-net_sub_nethack.dialog")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=83 Text=_"global_thermonuclear_war"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./global_thermonuclear_war", "NO_WAIT")
 	npc_says_random(_"Sorry, only winning move is not to play. New game?", _"Mankind exterminated. You lost!", _"No victory possible. LOSER! Play again?", _"Everyone dies, new game?", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=85 Text=_"tetris"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./tetris", "NO_WAIT")
 	npc_says("Never gonna give you up,")
 	npc_says("Never gonna let you down,")
@@ -401,12 +401,12 @@ LuaCode={
 	cli_says(terminal, "NO_WAIT")
 	add_cookie("player_rickrolled")
 	hide(85)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=86 Text=_"progress_quest"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./progress_quest", "NO_WAIT")
 	if (not has_cookie("playing_progress_quest")) then
 		add_cookie("playing_progress_quest")
@@ -418,12 +418,12 @@ LuaCode={
 		npc_says_random(_"You are selling an item!", _"You are killing a creature!", _"You are gaining a level!", _"You are casting a spell!")
 		cli_says(terminal, "NO_WAIT")
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=87 Text=_"BUG c-net node 87 -- ROLL STATS"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	str = math.random(0,6) + math.random(0,6) + math.random(0,6)
 	con = math.random(0,6) + math.random(0,6) + math.random(0,6)
 	dex = math.random(0,6) + math.random(0,6) + math.random(0,6)
@@ -432,33 +432,33 @@ LuaCode={
 	cha = math.random(0,6) + math.random(0,6) + math.random(0,6)
 	npc_says(_"You rolled Stats of STR: [b]"..str.."[/b], CON: [b]"..con.."[/b], DEX: [b]"..dex.."[/b], INT: [b]"..int.."[/b],  WIS: [b]"..wis.."[/b], CHA [b]"..cha, "NO_WAIT")
 	show(88, 89)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=88 Text=_"Accept Character"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Welcome to Progress Quest!")
 	cli_says(terminal, "NO_WAIT")
 	show(81, 82, 83, 85, 86) hide(88, 89)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=89 Text=_"Reroll Character"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	next(87)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text="logout"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("logout", "NO_WAIT")
 	npc_says(_"Connection to c-net closed.")
 --	set_internet_login_time()
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

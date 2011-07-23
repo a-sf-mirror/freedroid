@@ -26,72 +26,74 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	jasmine_count = 0
 	show(0)
-}
+</LuaCode>
 
-EveryTime LuaCode={ show(99) }
+<EveryTime LuaCode>
+	show(99)
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi! I'm new here."
-LuaCode={
+<LuaCode>
 	npc_says(_"Yes. Hello. What do you want?")
 	hide(0) show(1, 8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Who are you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"People call me Jasmine...")
 	npc_says(_"That is not my real name, but it will do for now.")
 	set_bot_name(_"Jasmine")
 	hide(1) show(2, 3, 4, 5)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"What are you doing in Kevin's place?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I live with him, stupid.")
 	npc_says(_"I like him. He... He is very much like me.")
 	set_bot_name(_"Jasmine --- Girlfriend of a true Hacker")
 	hide(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"How are you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Annoyed. Now leave me alone.")
 	hide(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"Why does such a nice lady act so harshly? Can't we all just get along?"
-LuaCode={
+<LuaCode>
 	npc_says(_"No.")
 	hide(4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"What are you up to?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nothing. Quit asking questions.")
 	npc_says(_"Don't bore me.")
 	hide(5)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"You are the most beautiful human I have ever seen."
-LuaCode={
+<LuaCode>
 	npc_says(_"And you are at least a quarter wrong.")
 	tux_says(_"You're so cute, baby seals and polar bears sent each other pictures of you.")
 	npc_says(_"Now, please get out of my sight.")
 	hide(8) show(9)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"Will you marry me?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Forget it.")
 	tux_says(_"Roses are red,")
 	tux_says(_"Violets are blue,")
@@ -99,11 +101,11 @@ LuaCode={
 	tux_says(_"Are belong to you.")
 	npc_says("...")
 	hide(9)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	if (jasmine_count < 2) then
 		jasmine_count = jasmine_count + 1
 		npc_says(_"Yeah. Whatever.")
@@ -120,7 +122,7 @@ LuaCode={
 		drop_dead()
 		add_cookie("jasmine_sigsegv")
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

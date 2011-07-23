@@ -28,26 +28,26 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(_"admin", "NO_WAIT")
 	cli_says(_" Password : ", "NO_WAIT")
 	tux_says(_"*******", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
-}
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	terminal = "admin@main.pc.dsb.ms: ~ #"
 	cli_says(terminal, "NO_WAIT")
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-LuaCode={
+<LuaCode>
 	npc_says(_"Exiting")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

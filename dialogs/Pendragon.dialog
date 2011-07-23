@@ -26,12 +26,12 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={
+<FirstTime LuaCode>
 	desertgate_tax = 0
 	show(0)
-}
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	branch_to_tania = false
 	if (has_cookie("Tania-stopped-by-Pendragon") and (not has_cookie("Pendragon-OK-w-Tania"))) and --Tania Escape Quest stuff
 	   (has_cookie("Tania-sent-to-Doc") or has_cookie("Tania-set-free")) then
@@ -86,21 +86,21 @@ EveryTime LuaCode={
 	if (branch_to_tania) then
 		start_chat("Tania")
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi! I'm new here."
-LuaCode={
+<LuaCode>
 	npc_says(_"You don't say. I'm not living here either. I'm just on vacation.")
 	npc_says(_"Normally I'm a fighter. But now I try to relax, chill, take it easy and have a lot of fun.")
 	npc_says(_"And in case you couldn't tell, that was sarcasm.")
 	set_bot_name(_"Fighter")
 	hide(0) show(1,2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Could you teach me how to fight?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("beat_up_pendragon")) then
 		npc_says(_"NO! NO! Er... I mean, not right now. I am busy. Come again later.")
 	else
@@ -108,28 +108,28 @@ LuaCode={
 		npc_says(_"For a price. Hundred circuits should be enough.")
 		hide(1, 99) show(11, 19)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 Nr=2 Text=_"Do you have a name?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I go by Pendragon, because I can pull a knife from thin air.")
 	npc_says(_"And you?")
 	tux_says(get_player_name().._", because it is my name?")
 	set_bot_name(_"Pendragon -- Fighter")
 	hide(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Teach me the basic stuff."
-LuaCode={
+<LuaCode>
 	npc_says(_"Are you sure?", "NO_WAIT")
 	npc_says(_"I only accept students that already have some experience in fighting bots.")
 	hide(11, 19) show(12, 29)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
-LuaCode={
+<LuaCode>
 	if (get_skill("melee") < 1) then
 		if (train_skill(100, 5, "melee")) then
 			del_health(25)
@@ -161,42 +161,42 @@ LuaCode={
 		npc_says(_"Hey, wake up! I taught you that stuff already. Go practice on the bots, if you really want more training.")
 	end
 	hide(12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=19 Text=_"Teach me how to smash concrete blocks with my bare hands."
-LuaCode={
+<LuaCode>
 	npc_says(_"Oh, Linarian, you amuse me so.", "NO_WAIT")
 	npc_says(_"You are quite an ambitious fellow.")
 	npc_says(_"First learn the basics. Spend a year working on that, and then I'll be able to teach you some advanced tricks.")
 	hide(19) show(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"Teach me Ninjitsu."
-LuaCode={
+<LuaCode>
 	npc_says(_"Go away.")
 	hide(20) show(21)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"I want to know the Crazy Double-Fang Wolf-Sunlight I-Like-Tea Death Touch of Major Destruction Flesh-Bursting Attack!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Wow.", "NO_WAIT")
 	npc_says(_"You have a very rich imagination. There is no such thing. Get a life.")
 	hide(21) show(22)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"I want to know the forbidden skill of furuike ya kawazu tobikomu mizu no oto."
-LuaCode={
+<LuaCode>
 	npc_says(_"This is starting to make me angry. Shut up and go away.")
 	hide(22) show(23)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=23 Text=_"Teach me how to flip out and kill people!"
-LuaCode={
+<LuaCode>
 	npc_says(_"*sigh*")
 	npc_says(_"I will teach you to keep your mouth shut when told to. Observe very carefully.")
 	npc_says(_"Make sure you pay attention.")
@@ -210,18 +210,18 @@ LuaCode={
 	npc_says(_"Now go away.")
 	end_dialog()
 	hide(23)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=29 Text=_"Enough for now."
-LuaCode={
+<LuaCode>
 	npc_says(_"Fine.")
 	hide(11, 12, 19, 20, 21, 22, 23, 29) show(1, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"I want to pass the gate."
-LuaCode={
+<LuaCode>
 	npc_says(_"Fine.")
 	tux_says(_"Can you open it please?")
 	npc_says(_"Yes, I can.")
@@ -240,11 +240,11 @@ LuaCode={
 		show(45)
 	end
 	hide(40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"Yes, I've got the money."
-LuaCode={
+<LuaCode>
 	if (get_gold() >= desertgate_tax) then
 		if (desertgate_tax == 30) then
 			npc_says(_"Good.")
@@ -267,14 +267,14 @@ LuaCode={
 	end
 	hide(45)
 	end_dialog()
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Have courage.", _"Be strong.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

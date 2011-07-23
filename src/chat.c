@@ -151,13 +151,13 @@ static void load_dialog(const char *fpath)
 		free(chat_initialization_code);
 		chat_initialization_code = NULL;
 	}
-	chat_initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "FirstTime LuaCode={", "}");
+	chat_initialization_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<FirstTime LuaCode>", "</LuaCode>");
 
 	if (chat_startup_code) {
 		free(chat_startup_code);
 		chat_startup_code = NULL;
 	}
-	chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "EveryTime LuaCode={", "}");
+	chat_startup_code = ReadAndMallocStringFromDataOptional(SectionPointer, "<EveryTime LuaCode>", "</LuaCode>");
 
 	// At first we go take a look on how many options we have
 	// to decode from this section.
@@ -193,7 +193,7 @@ static void load_dialog(const char *fpath)
 		ChatRoster[OptionIndex].no_text = strstr(SectionPointer, NO_TEXT_OPTION_STRING) > 0;
 
 		if (strstr(SectionPointer, "LuaCode")) {
-			ChatRoster[OptionIndex].lua_code = ReadAndMallocStringFromData(SectionPointer, "LuaCode={", "}");
+			ChatRoster[OptionIndex].lua_code = ReadAndMallocStringFromData(SectionPointer, "<LuaCode>", "</LuaCode>");
 		} else
 			ChatRoster[OptionIndex].lua_code = NULL;
 

@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (not has_met("Duncan")) then
 		show(0, 90, 99)
 	elseif (not has_cookie("guard_follow_tux")) and
@@ -46,100 +46,100 @@ EveryTime LuaCode={
 	if (has_cookie("tux_has_joined_guard")) then
 		hide(3, 4)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi... Erm... Who are you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Duncan McNamara, The Red Guard's resident bomb maker, at your service.")
 	set_bot_name(_"Duncan -- Bombmaker")
 	hide(0, 90) show(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"I would like to buy a bomb."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.", _"Sure. These are my offers today.")
 	trade_with("Duncan")
 	if (not has_cookie("guard_follow_tux")) then
 		hide(1) show(2, 7)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"I see only grenades. Do you have something bigger?"
-LuaCode={
+<LuaCode>
 	npc_says(_"My deepest apologies, I do not.")
 	npc_says(_"The Red Guard prohibits the sales of extremely destructive munitions.")
 	npc_says(_"It is not yet the time for the fall of their rule, so I remain loyal.")
 	hide(2) show(3, 4, 5, 6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"The fall of the Red Guard? I am going to report that you are inciting a revolution!"
-LuaCode={
+<LuaCode>
 	npc_says(_"My word against yours. If you wish to try it, please, be my guest.")
 	npc_says(_"I am not inciting anything. I am just stating what I see as inevitable in the future.")
 	npc_says(_"I have taken part in many conflicts and I have seen how governments collapse.")
 	npc_says(_"As soon as the war is over, the Red Guard will disband.")
 	npc_says(_"Of course, I am making the assumption of victory, which is highly unlikely with the current state of affairs.")
 	hide(3, 4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"The fall of the Red Guard? Tell me more about it."
-LuaCode={
+<LuaCode>
 	npc_says(_"It is not the time to speak of such things yet. Come another day, and we shall talk about it in more detail.")
 	npc_says(_"The Red Guard can have their great laser beams and plasma cannons... But nothing can save them.")
 	hide(3, 4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"I want to buy some grenades."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Certainly.", _"Sure.", _"With pleasure I am showing you my offers.")
 	trade_with("Duncan")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"What kind of grenade is the best?"
-LuaCode={
+<LuaCode>
 	npc_says(_"You get what you pay for.")
 	hide(6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"How did you get into making explosives?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Twenty years ago there was a conflict.")
 	npc_says(_"A grenade I threw destroyed a being which killed many of... my people.")
 	npc_says(_"Now I make more to smash the destroyers.")
 	hide(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text="BUG, REPORT ME! duncan node50 -- starting koan quest"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Ah. Welcome again Linarian.")
 	npc_says(_"I have a little request for you.")
 	npc_says(_"I know someone who needs to be taught a lesson.")
 	npc_says(_"Interested?")
 	add_cookie("koan_quest")
 	show(51, 59)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 Nr=51 Text=_"Tell me more."
-LuaCode={
+<LuaCode>
 	npc_says(_"Ah, excellent.")
 	npc_says(_"A... friend of mine, Koan, stole something of great value to me.")
 	npc_says(_"He is hiding somewhere in the desert, I don't know exactly where.")
 	hide(51) show(52)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=52 Text=_"I will get your property back."
-LuaCode={
+<LuaCode>
 	npc_says(_"Excellent. I am pleased to hear this.")
 	npc_says(_"There is something you must know.")
 	npc_says(_"There are not too many bots in the desert, but they are invincible. It is best to avoid them.")
@@ -153,36 +153,36 @@ LuaCode={
 	npc_says(_"Good luck!")
 	add_quest(_"Doing Duncan a favor", _"I have to find Koan in the desert west of town and get Duncan something very precious.")
 	hide(52, 59) show(55, 56)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=55 Text=_"What are those bots?"
-LuaCode={
+<LuaCode>
 	npc_says(_"We call them 'Harvesters'.")
 	npc_says(_"They were designed to chop down trees in the mountains.")
 	npc_says(_"Now they chop down people.")
 	npc_says(_"Their only weak point is their security system. But no one has managed to stay alive long enough to hack them.")
 	hide(55)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=56 Text=_"What is it that he took from you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"A cube. Trust me, you can't miss it.")
 	hide(56)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=59 Text=_"No, I don't find bloodshed a pleasurable activity."
-LuaCode={
+<LuaCode>
 	npc_says(_"That is fine. I will find someone else.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=60 Text="BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"So... Any news on the Koan matter?")
 	if (has_cookie("koan_spared")) then 
 		tux_says(_"I could not find him anywhere in the desert. I don't think he is there anymore.")
@@ -195,27 +195,27 @@ LuaCode={
 	end
 	add_cookie("koan_quest_done")
 	show(64)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=62 Text=_"Yeah. I got him. I think this is your cube."
-LuaCode={
+<LuaCode>
 	npc_says(_"Yes. I appreciate your help.")
 	hide(62, 63) next(69)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=63 Text=_"Yeah, I got him. Now, what is this big cube that you had me carry all the way here?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Just a memento from a friend.")
 	npc_says(_"A little more than a portable end of the world, which I am looking forward to disassembling and learning its secrets.")
 	npc_says(_"Nothing that important.")
 	hide(62, 63) show(67, 68)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=64 Text=_"A 'few' bots? The place was crawling with Harvesters! I nearly got killed!"
-LuaCode={
+<LuaCode>
 	npc_says(_"There were only one hundred and twenty bots in the entire desert region. This hardly qualifies as many, considering the size of the area.")
 	tux_says(_"What? You know exactly how many bots were in the desert? Without being there? I don't like this.")
 	npc_says(_"I just know a lot of things. You do not need to worry about it.")
@@ -223,38 +223,38 @@ LuaCode={
 	npc_says(_"As you wish.")
 	end_dialog()
 	hide(64)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=67 Text=_"Hey, that is really neat. Here is your cube. Enjoy disassembling it and have fun with it."
-LuaCode={
+<LuaCode>
 	npc_says(_"I will.")
 	hide(67, 68) next(69)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=68 Text=_"WHAT? No way I am giving you a doomsday device! Forget about it."
-LuaCode={
+<LuaCode>
 	npc_says(_"I understand. So be it.")
 	end_quest(_"Doing Duncan a favor", _"No way am I giving Duncan that cube thingie. Who knows what he would do with it.")
 	end_dialog()
 	hide(67, 68)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=69 Text="BUG, REPORT ME! duncan node69"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	add_xp(3000)
 	del_item_backpack("Pandora's Cube", 1)
 	sell_item("Plasma Shockwave Emitter")
 	end_quest(_"Doing Duncan a favor", _"I gave Duncan the cube thingie. It feels nice to help people.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=90 Text=_"I feel you are... Different."
-LuaCode={
+<LuaCode>
 	npc_says(_"What a great way to start a conversation.")
 	npc_says(_"Yes, that is true. I am not who I seem to be.")
 	npc_says(_"But then again, neither are you, so my thoughts are, we are even.")
@@ -263,45 +263,45 @@ LuaCode={
 	set_bot_name(_"Duncan -- Bombmaker")
 	npc_says(_"I believe the topic is thoroughly exhausted now.")
 	hide(0, 1, 2, 90) show(5, 92)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=92 Text=_"Tell me who you are. I need to know."
-LuaCode={
+<LuaCode>
 	npc_says(_"Twenty years ago, people were kinder to each other.")
 	npc_says(_"I suggest you be kind to me as well, and I will be kind to you.")
 	npc_says(_"That way I get to keep my secret, and you get to keep yours.")
 	hide(92) show(93)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=93 Text=_"I don't have any secrets."
-LuaCode={
+<LuaCode>
 	npc_says(_"And neither do I.")
 	hide(93)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=97 Text="BUG, REPORT ME! duncan node97"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"I wish you cold winds.")
 	tux_says(_"Huh? How do you know the Linarian farewell? No one around here knows it.")
 	npc_says(_"I read many books on Linarians. That is all.")
 	npc_says(_"Nothing more and nothing less.")
 	show(98) next(98)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=98 Text=_"I wish you cold winds."
-LuaCode={
+<LuaCode>
 	npc_says(_"May the ice bring you wisdom.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	if (not has_cookie("coldwinds_cookie")) then
 		add_cookie("coldwinds_cookie")
 		next(97)
@@ -309,7 +309,7 @@ LuaCode={
 		npc_says(_"See you later.")
 		end_dialog()
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -25,9 +25,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0) }
+<FirstTime LuaCode>
+	show(0)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_quest(_"Bender's problem")) then
 		if (not done_quest(_"Bender's problem")) then
 			hide(1, 2, 3, 4, 6, 7, 8)
@@ -54,70 +56,70 @@ EveryTime LuaCode={
 		set_bot_destination("BenderStartGameSquare")
 	end
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello! I'm new here."
-LuaCode={ 
+<LuaCode>
 	npc_says(_"Hello. I'm Bender, the dead man of this town.")
 	set_bot_name(_"Bender")
 	hide(0) show(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"What's wrong? You seem to be in pretty good shape for a dead man."
-LuaCode={ 
+<LuaCode>
 	npc_says(_"Yeah. I'm the strongest man in all the world. That's 'cause I took ALL of the strength pills.")
 	npc_says(_"And yet, I might be dead soon. The doc warned me, but I didn't listen. GRAH!")
 	set_bot_name(_"Bender -- The strongest one")
 	hide(1) show(2, 3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"You took too many strength pills and now you're sick?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nah. The strength pills were fine. They made me strong. The doc said so.")
 	npc_says(_"It was the brain enlargement pills. They did me no good, man.")
 	hide(2, 3) show(4, 10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"What made you so sick?"
-LuaCode={
+<LuaCode>
 	npc_says(_"It was the brain enlargement pills. They did me no good, man.")
 	hide(2, 3) show(4, 10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"Brain enlargement pills? Sounds ridiculous!"
-LuaCode={
+<LuaCode>
 	npc_says(_"You know man, I got those offers everybody gets.")
 	npc_says(_"They offer some brain enlargement pills to enhance brain performance.")
 	npc_says(_"'Enlarg3 your brain! Bu.y pi11s! Che4p!!11!!!'")
 	npc_says(_"And everybody in the town said I was dumb, which by the way IS NOT TRUE.")
 	npc_says(_"So I thought these pills might make them think differently about me.")
 	hide(4) show(5, 6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"But if you aren't dumb, why the brain enlargement pills?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Because they said I was dumb. So I had to do something about it, eh?")
 	hide(5)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"Isn't there some doctor in town who could cure you?"
-LuaCode={ 
+<LuaCode>
 	npc_says(_"Yeah, the doc could help. But he won't. I've threatened him, but he won't.")
 	npc_says(_"He's so angry cause I didn't listen. He warned me about the brain enlargement pill offers.")
 	npc_says(_"They can cause some awful forms of cancer. But I didn't listen. And now he refuses to help me, man.")
 	hide(6) show(7, 8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"Maybe I can help you somehow?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Man, if you could do that, I'd give you everything. I still got some of those strength pills left.")
 	if (not has_cookie("tux_has_joined_guard")) then
 		npc_says(_"Also I could vote for you if you seek to join the guard of the town.")
@@ -125,20 +127,20 @@ LuaCode={
 	npc_says(_"Just get me a cure, and I'll be forever grateful!")
 	add_quest(_"Bender's problem", _"I met a Red Guardsman named Bender. He poisoned himself with some brain enlargement pills, which turned out to be highly carcinogenic. The town doctor will not give him the antidote, so it is up to me to save him.")
 	hide(7, 8) show(11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"I'm sorry, but it looks like there's nothing I could do for you."
-LuaCode={ 
+<LuaCode>
 	npc_says(_"Of course not. You're not a doctor. Only the doctor has the right medicine.")
 	npc_says(_"But this rat would rather let me die!")
 	npc_says(_"I'll rip his guts out as soon as I get my hands on him, man!")
 	hide(7, 8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"I've got your medicine. With best wishes from the doctor."
-LuaCode={
+<LuaCode>
 	npc_says(_"Wow, you really did it! I guess you beat the hell out of him.")
 	npc_says(_"He wouldn't help me even after I pounded him a bit. A big bit.")
 	npc_says(_"Man, you are the greatest hero!")
@@ -156,56 +158,56 @@ LuaCode={
 	set_bot_destination("NewSpencer")
 	add_cookie("Bender-at-Spencer") --have Bender go "talk" to Spencer
 	hide(9, 10, 50) show(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"Maybe taking the brain enlargement pills really was stupid."
-LuaCode={
+<LuaCode>
 	npc_says(_"WHAT? Did you just say I'm stupid?")
 	npc_says(_"Don't say it, man.")
 	npc_says(_"I can kill you so much, that no one will recognize you!")
 	hide(10) show(50)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"Where can I find this doctor?"
-LuaCode={
+<LuaCode>
 	npc_says(_"He's right inside this building. I'm waiting here for him, man.")
 	npc_says(_"When he comes out, maybe I can pound him some more. Maybe then he'll help me at last!")
 	npc_says(_"Yes, he'll get a good beating. That will make him reconsider! That rat!")
 	hide(11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"About that medicine that you need..."
-LuaCode={
+<LuaCode>
 	npc_says(_"Did you get it?")
 	npc_says(_"What? You didn't get it?")
 	npc_says(_"Man, what are you doing here? Get the medicine! I need it now!")
 	hide(12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"How are you doing?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Much better. I'm cured. You're a good guy, man!", "NO_WAIT")
 	npc_says(_"What was your name again?")
 	tux_says(get_player_name())
 	npc_says(_"Thanks ".. get_player_name() .._", I owe you one.", "NO_WAIT")
 	npc_says(_"And I'll sure vote for you if you want into the Red Guard! ")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"What secrets? Like a secret handshake?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nah. But that is a totally awesome idea.")
 	npc_says(_"Let's work it out -- just, uh, be sure not to let the Doc in on it.")
 	hide(14) show(15)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=15 Text=_"Do you actually know any *real* secrets?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Yeah, sure.")
 	npc_says(_"I know the shop keeper Lily's password.")
 	npc_says(_"I sometimes login to her account and mess with it for the LULZ.")
@@ -213,11 +215,11 @@ LuaCode={
 	tux_says(_"Erm... excuse me?")
 	npc_says(_"Just a song my mother used to sing to me.")
 	hide(15) show(16, 17)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"Hey, could you let tell me Lily's password?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Sure, but we will have to shake on it.")
 	tux_says(_"OK...")
 	npc_says(_"It is an asterisk repeated four times.")
@@ -226,26 +228,26 @@ LuaCode={
 	npc_says(_"I am the most awesome hacker ever.")
 	tux_says(_"Sure...")
 	hide(16)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=17 Text=_"What are you doing now?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm killing time. Guard work is very boring.")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"Did you take all the Brain Enlargement Pills?"
-LuaCode={
+<LuaCode>
 	npc_says(_"No. I have one left.")
 	npc_says(_"Here, take it. I don't want it.")
 	add_item("Brain Enlargement Pill", 1)
 	hide(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"Yeah, it was a totally idiotic idea to take those pills."
-LuaCode={
+<LuaCode>
 	npc_says(_"What? I'm not an idiot! Understood?")
 	npc_says(_"No one says I'm stupid! I'm NOT STUPID!")
 	npc_says(_"I'LL BEAT YOU TO SPLINTERS!")
@@ -253,14 +255,14 @@ LuaCode={
 	npc_faction("crazy", _"Bender -- Homicidal")
 	end_dialog()
 	hide(50)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={ 
+<LuaCode> 
 	npc_says_random(_"Later, man!", _"Stay cool dude.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

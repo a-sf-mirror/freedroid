@@ -26,10 +26,14 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={ show(99) }
+<EveryTime LuaCode>
+	show(99)
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text="..."
-LuaCode={ end_dialog() }
+<LuaCode>
+	end_dialog()
+</LuaCode>
 
 End of chat dialog for character="XXXXX"

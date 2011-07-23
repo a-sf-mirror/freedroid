@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (not has_cookie("met_docmoore")) then
 		show(0)
 	end
@@ -86,11 +86,11 @@ EveryTime LuaCode={
 	end
 
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Hello. I'm Doc Moore. I'm the medic of this town. I don't believe we've met?")
 	tux_says(_"I'm ".. get_player_name() .. ".")
 	npc_says(_"Um, what are you? Some kind of overgrown penguin?")
@@ -106,26 +106,26 @@ LuaCode={
 	end
 	set_bot_name(_"Doc Moore -- Medic")
 	hide(0) show(1, 3, 10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Do you also sell medical equipment?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Yes. Here is what I can offer today.")
 	trade_with("DocMoore")
 	hide(1) show(40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"May I buy some medical equipment?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Sure. Here is what I can offer today.")
 	trade_with("DocMoore")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"Doc, I took some of those brain enlargement pills..."
-LuaCode={
+<LuaCode>
 	if (has_cookie("doc_healed_tux")) then
 		npc_says(_"Sorry, but I already gave you some medical help.")
 		npc_says(_"To poison yourself again, that's entirely your own business and I'm not responsible.")
@@ -142,22 +142,22 @@ LuaCode={
 		add_item("Brain Enlargement Pills Antidote",1)
 	end
 	hide(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"Doctor, how can I keep healthy and alive?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Always remember L-I-F-E")
 	npc_says(_"L - Look at your health status regularly.")
 	npc_says(_"I - Ingest cold water if you are overheating.")
 	npc_says(_"F - Flee if you cannot fight.")
 	npc_says(_"E - Evacuate to the town if you cannot flee.")
 	hide(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"Can you fix me up?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Sure, as the only doctor of this slowly growing community, I take responsibility for everyone's health.")
 	if (not has_cookie("asked_docmoore_self_damage")) then
 			npc_says(_"However, self-inflicted damage might be exempted from this rule in some cases...")
@@ -170,11 +170,11 @@ LuaCode={
 		heal_tux()
 	end
 	hide(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"What do you mean, self-inflicted damage?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("guard_follow_tux")) or
 	   (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"Well, you see that Bender character on my doorstep?")
@@ -188,25 +188,25 @@ LuaCode={
 	npc_says(_"He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that.")
 	add_cookie("asked_docmoore_self_damage")
 	hide(11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"Doc... I really want the antidote."
-LuaCode={
+<LuaCode>
 	npc_says(_"No! I am not giving it to you. Forget about it.")
 	hide(20) show(21, 30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"My patience is running out. Give me the antidote. Now."
-LuaCode={
+<LuaCode>
 	npc_says(_"No! Over my dead body.")
 	hide(21) show(22, 30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"Your wish is my command!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Huh? What?")
 	tux_says(_"Humans... You are so interesting. I always wanted to know exactly how much blood you have.")
 	npc_says(_"Don't do this. Don't do this.")
@@ -231,38 +231,38 @@ LuaCode={
 	add_item("Antibiotic",10)
 	add_item("Brain Enlargement Pills Antidote",5)
 	hide(22, 10, 11, 50, 51, 52, 55, 56, 57)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=25 Text=_"Is Tania OK?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Haven't you heard of doctor-patient confidentiality?")
 	tux_says(_"Ummm...")
 	npc_says(_"No worries. She is fine.")
 	heal_npc("Tania")
 	hide(25)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text=_"Forget it. Getting the antidote is not worth the effort."
-LuaCode={
+<LuaCode>
 	npc_says(_"I am not giving it to you, and that won't change.")
 	hide(21, 22, 30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=42 Text=_"Hmm. I cannot remember."
-LuaCode={
+<LuaCode>
 	tux_says(_"I'm sorry.")
 	npc_says(_"No problem. Thanks anyway.")
 	add_cookie("not_seen_rubber_duck_lie")
 	hide(42, 43)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=43 Text=_"I think I did."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"Hmm... Yellow, bright, PVC...?")
 	tux_says(_"I think I did.")
 	tux_says(_"Do you mean this rubber duck by any chance?")
@@ -275,30 +275,30 @@ LuaCode={
 	add_item("Doc-in-a-can", 1)
 	del_item("Rubber duck")
 	hide(42, 43)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"What can you tell me about Strength Pills?"
-LuaCode={
+<LuaCode>
 	hide(50) next(53)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=51 Text=_"What can you tell me about Dexterity Pills?"
-LuaCode={
+<LuaCode>
 	hide(51) next(53)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=52 Text=_"What can you tell me about Code Pills?"
-LuaCode={
+<LuaCode>
 	hide(52) next(53)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=53 Text=_"BUG REPORT ME! Francis node 53!"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Those pills are only one variant of a fantastic scientific breakthrough that happened shortly before the Great Assault.")
 	npc_says(_"Three kinds of enhancement pills were developed. One for strength, one for dexterity and one for programming abilities.")
 	npc_says(_"These pills work on a nanotechnological basis with small machines connecting to your muscle and nerve tissue.")
@@ -306,21 +306,21 @@ LuaCode={
 	npc_says(_"Since this invention only came about shortly before the Great Assault, these pills are now very rare.")
 	npc_says(_"But if you should get them, even better, because the effects are permanent, and as far as we can tell, there aren't any side effects!")
 	hide(53)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=54 Text=_"What can you tell me about Brain Pills?"
-LuaCode={
+<LuaCode>
 	if(has_cookie("doc_healed_tux")) then
 		npc_says(_"I already warned you about those!")
 	end
 	npc_says(_"Those pills are almost pure biological waste! They are sold to stupid ignorant gullible people. Never EVER take one.")
 	hide(54)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=55 Text=_"What can you tell me about Diet supplements?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Have you tasted the army snacks that the cook, Michelangelo, has been handing out?")
 	if (has_cookie("asked_michelangelo_for_army_snacks")) then
 		tux_says(_"Yes, those were horrible. They had a nice color though.")
@@ -332,33 +332,33 @@ LuaCode={
 	npc_says(_"Well, unlike the army snacks, the Diet Supplements actually have a slight nutritional benefit.")
 	npc_says(_"After taking one your health should improve slightly.")
 	hide(55)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=56 Text=_"What can you tell me about Antibiotics?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Basically it is bottled up poison made by bacteria.")
 	tux_says(_"And that is good for me?")
 	npc_says(_"Yep. It kills the bacteria that want to kill you. It improves your health significantly.")
 	hide(56)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=57 Text=_"What is a Doc-in-a-can?"
-LuaCode={
+<LuaCode>
 	npc_says(_"It is a device that releases millions of short-lived nanobots that swarm all over your body inside and out repairing and fixing almost all but the most serious wounds.")
 	tux_says(_"Wouldn't long-lived nanobots work better?")
 	npc_says(_"They found that long-lived nanobots evolve self-replication and act like a cancer. A cancer of gray goo that eats everything.")
 	npc_says(_"Several planets were made uninhabitable before they figured that one out.")
 	hide(57)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"See you later.", _"Keep healthy!")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

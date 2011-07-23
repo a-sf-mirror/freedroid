@@ -28,7 +28,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	terminal = "dixon@maintanance: ~ # "
 
 	cli_says(_"Login : ", "NO_WAIT")
@@ -39,11 +39,11 @@ EveryTime LuaCode={
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 	show(0, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"sys_status --all"
-LuaCode={
+<LuaCode>
 	if (not has_cookie("Maintenance-devices") ) then
 		add_cookie("Maintenance-devices")
 		create_droid("Sin-Emissary", 249, "singularity")
@@ -81,18 +81,18 @@ LuaCode={
 	cli_says(terminal, "NO_WAIT")
 
 	hide(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"disable guns"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm sorry. I'm afraid I can't let you do that.")
 	hide(3) show(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"sudo enable guns"
-LuaCode={
+<LuaCode>
 	cli_says(_"[sudo] password for dixon: ")
 	tux_says("*******", "NO_WAIT")
 	npc_says(_"Enabling gun 01 ...", "NO_WAIT")
@@ -104,66 +104,66 @@ LuaCode={
 	npc_says(_"SUCCESS")
 	cli_says(terminal, "NO_WAIT")
 	hide(4) show(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"close access gate"
-LuaCode={
+<LuaCode>
 	npc_says(_"Closing Access Gate ...", "NO_WAIT")
 	change_obstacle_state("Maintenance-gungate", "closed")
 	npc_says(_"SUCCESS")
 	cli_says(terminal, "NO_WAIT")
 	hide(5) show(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"open access gate"
-LuaCode={
+<LuaCode>
 	npc_says(_"Opening Access Gate ...", "NO_WAIT")
 	change_obstacle_state("Maintenance-gungate", "opened")
 	npc_says(_"SUCCESS")
 	cli_says(terminal, "NO_WAIT")
 	hide(6) show(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"sudo disable guns"
-LuaCode={
+<LuaCode>
 	cli_says(_"[sudo] password for dixon: ")
 	tux_says("*******")
 	npc_says(_"Would you like a sandwich with that?")
 	cli_says("> ", "NO_WAIT")
 	hide(7) show(8, 9)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"yes"
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Now how would I make one of those?", _"Sudo doesn't give you magic powers.")
 	cli_says(terminal, "NO_WAIT")
 	hide(8, 9) show(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"no"
-LuaCode={
+<LuaCode>
 	npc_says(_"Good choice.")
 	add_cookie("Maintenance-refusal")
 	hide(8, 9) next(11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"sudo disable guns"
-LuaCode={
+<LuaCode>
 	cli_says(_"[sudo] password for dixon: ")
 	tux_says("*******")
 	hide(10) next(11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"BUG, REPORT ME! Maintenance-Terminal node11 -- Disable Guns"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Disabling gun 01 ...")
 	change_obstacle_state("Maintenance-gun1", "disabled")
 	npc_says(_"Disabling gun 02 ...")
@@ -173,16 +173,16 @@ LuaCode={
 	npc_says(_"SUCCESS")
 	cli_says(terminal, "NO_WAIT")
 	show(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-LuaCode={
+<LuaCode>
 	npc_says(_"Exiting", "NO_WAIT")
 	npc_says(_"Goodbye Dave.")
 	end_dialog()
 	hide (3, 4, 5, 6, 7, 8, 9, 10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

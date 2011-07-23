@@ -28,7 +28,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={ 
+<EveryTime LuaCode>
 	if (not has_cookie("connected_terminal")) then
 		show(0)
 		add_cookie("connected_terminal")
@@ -38,18 +38,20 @@ EveryTime LuaCode={
 		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
 	end
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"help"
-LuaCode={ cli_says(_"Available commands: logout") }
+<LuaCode>
+	cli_says(_"Available commands: logout")
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-LuaCode={
+<LuaCode>
 	cli_says(_"Goodbye")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

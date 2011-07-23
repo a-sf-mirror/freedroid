@@ -24,9 +24,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ fuel = 97 }
+<FirstTime LuaCode>
+	fuel = 97
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	show(5, 6, 99)
 	npc_says(_"Welcome to Kevin's personal lawnmower.")
 	npc_says(_"Your connection with this bot has been logged and reported to Kevin.")
@@ -59,12 +61,12 @@ EveryTime LuaCode={
 		end
 	end
 
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"I'll state my name."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("" .. get_player_name() .. "")
 	npc_says(_"Identifying as " .. get_player_name() .. "", "NO_WAIT")
 	if (has_cookie("kevins_lawnmower_tux_login_granted")) then
@@ -78,12 +80,12 @@ LuaCode={
 		heat_tux(15)
 		end_dialog()
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"I'll try 'Kevin'."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"Kevin")
 	npc_says(_"Identifying as Kevin...", "NO_WAIT")
 	npc_says(_"Identification failed!", "NO_WAIT")
@@ -96,33 +98,33 @@ LuaCode={
 	add_cookie("kevins_lawnmower_tux_login_kevin_attempt")
 	heat_tux(25)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"help"
-LuaCode={
+<LuaCode>
 	tux_says(_"Available commands:", "NO_WAIT")
 	npc_says(_"help", "NO_WAIT")
 	npc_says(_"version", "NO_WAIT")
 	npc_says(_"fuel_level", "NO_WAIT")
 	npc_says(_"exit", NO_WAIT)
 	show(30, 31, 20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text=_"version"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"version", "NO_WAIT")
 	npc_says(_"printing version...", "NO_WAIT")
 	npc_says(_"MowOS 0.4.2", "NO_WAIT")
 	hide(30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"fuel_level"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"fuel_level", "NO_WAIT")
 	npc_says(_"Printing fuel level...")
 	if (fuel < 5) then
@@ -133,12 +135,12 @@ LuaCode={
 		npc_says(_"Tank completely refilled.")
 	end
 	hide(31)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"It can have one drink..."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"So, where do I have to put in the drink...?", "NO_WAIT")
 	tux_says(_"Ah, here!", "NO_WAIT")
 	npc_says(_"[b]glug glug glug[/b]")
@@ -155,30 +157,30 @@ LuaCode={
 	add_cookie("lawnmower_fueled")
 	set_bot_state("home")
 	hide(50, 51)
-}
+</LuaCode>
 
 ----------------------------------------------------------------------
 
 Nr=51 Text=_"No, I cannot spare any drinks!"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"Sorry, tin can.")
 	npc_says(_"Import error: [b]null[/b] fuel received.", "NO_WAIT")
 	npc_says(_"WARNING, less than [b]5%[/b] fuel remaining!")
 	npc_says(_"Resuming hibernation...")
 	hide(50, 51)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text="exit"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("exit","NO_WAIT")
 	npc_says(_"exiting...")
 	hide(31, 30, 20, 50, 51)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

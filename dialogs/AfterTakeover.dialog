@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	terminal = get_player_name() .. _"@hacked_".. bot_type()..": ~ # "
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says(get_player_name(), "NO_WAIT")
@@ -51,21 +51,21 @@ EveryTime LuaCode={
 	end
 	cli_says(terminal, "NO_WAIT")
 	show(1, 11, 12, 13, 20, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"cd repair&settings/"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"cd repair&settings/", "NO_WAIT")
 	run_subdialog("AfterTakeover_sub.dialog")
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"./hold_position.sh"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./hold_position.sh", "NO_WAIT")
 	npc_says(_"Holding position.", "NO_WAIT")
 	npc_says(_"script V 1.0.2 (c) gnu.org, 2054", "NO_WAIT")
@@ -79,12 +79,12 @@ LuaCode={
 	end
 	cli_says(terminal, "NO_WAIT")
 	hide(11) show(12, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"./follow_me.sh"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./follow_me.sh", "NO_WAIT")
 	npc_says(_"Initiating tracking sequence.", "NO_WAIT")
 	npc_says(_"Movement unit: Enabled.", "NO_WAIT")
@@ -97,12 +97,12 @@ LuaCode={
 	end
 	cli_says(terminal, "NO_WAIT")
 	hide(12) show(11, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"./move_freely.sh"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./move_freely.sh", "NO_WAIT")
 	npc_says(_"Enable movement.", "NO_WAIT")
 	npc_says(_"script V 1.0.5 (c) gnu.org, 2054", "NO_WAIT")
@@ -117,12 +117,12 @@ LuaCode={
 	end
 	cli_says(terminal, "NO_WAIT")
 	hide(13) show(11, 12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"./hcf.py"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./hcf.py", "NO_WAIT")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		npc_says(_"Are you really sure you want to destroy ".. bot_name().._"? Y/N")
@@ -130,28 +130,28 @@ LuaCode={
 	else
 		next(23)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"Yes"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Destruction confirmed.")
 	hide(21, 22) next(23)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"No"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Destruction averted.")
 	hide(21, 22) show(1, 11, 12, 13, 20, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=23 Text="BUG, REPORT ME! aftertakeover node23"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Executing: Halt and Catch Fire.", "NO_WAIT")
 	if (math.random(1,10) > 2 ) then  -- it shouldn't appear too often
 		npc_says(_"Warning! Cooling subsystems disabled.", "NO_WAIT")
@@ -175,18 +175,18 @@ LuaCode={
 		add_item("Nobody's edge",1)
 	end
 	drop_dead()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text="logout"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("logout","NO_WAIT")
 	npc_says(_"Closing remote connection...")
 	del_cookie("AfterTakeover_repair")
 	end_dialog()
 	hide(21, 22)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

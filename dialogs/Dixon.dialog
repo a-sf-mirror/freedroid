@@ -26,9 +26,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0) }
+<FirstTime LuaCode>
+	show(0)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_item_backpack("Dixon's Toolbox") > 0) then
 		if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
 	end
@@ -61,46 +63,46 @@ EveryTime LuaCode={
 	show(99)
 	
 	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(60) end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi! I'm new here."
-LuaCode={ 
+<LuaCode>
 	npc_says(_"Hello and welcome. I'm Dixon, the chief engineer of the Red Guard technical division.")
 	set_bot_name(_"Dixon -- Mechanic")
 	hide(0) show(1, 19)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Technical division?"
-LuaCode={ 
+<LuaCode>
 	npc_says(_"Yes. We are the engineers, the workers and the repairmen of this little fortified town.", "NO_WAIT")
 	npc_says(_"The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons.")
 	npc_says(_"But even they know that without us this town would have been destroyed months ago.")
 	npc_says(_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone.")
 	hide(1) show(18, 17, 16)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=16 Text=_"I would like to craft add-ons."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	craft_addons()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=17 Text=_"I would like to customize my equipment."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	if (not has_cookie("engel_offered_extraction_skill")) then
 		show (50)
 	end
 	upgrade_items()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=18 Text=_"Can you repair my equipment?"
-LuaCode={
+<LuaCode>
 	npc_says(_"While I am quite sure I can repair just about anything that you would want fixed, I cannot help you right now.", "NO_WAIT")
 	npc_says(_"Our security wall is full of holes, and they need to be plugged up.")
 	npc_says(_"We need to perform a statistical analysis of the energy distribution in our power supply system, there is a leak somewhere and we are losing many megawatts.")
@@ -108,11 +110,11 @@ LuaCode={
 	npc_says(_"The technical division is very understaffed right now. On average one person has to do the jobs of three people.", "NO_WAIT")
 	npc_says(_"We just cannot afford to do any non-critical jobs right now. ")
 	hide(18) show(22)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=19 Text=_"Why are you wearing armor? Mechanics do not need it."
-LuaCode={
+<LuaCode>
 	npc_says(_"Ah... Yes. At first I thought that I did not need it either.", "NO_WAIT")
 	npc_says(_"One day the military division asked us to leave the town and fix a big hole in the defensive wall caused by a strange explosion.")
 	npc_says(_"All was well until the bots launched a massive attack. They hit us with lasers, plasma mortars, radiation cannons and lots of other weapons.")
@@ -121,21 +123,21 @@ LuaCode={
 	npc_says(_"Now, while you cannot see it underneath the armor, my right leg runs NetBSD.", "NO_WAIT")
 	npc_says(_"Now I never leave home without my protective suit. Mostly for protection, but also for aesthetic reasons. I am sure you understand.")
 	hide(19) show(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"You are very calm, talking about your leg and the bot attack."
-LuaCode={
+<LuaCode>
 	npc_says(_"Linarian, I cannot change the past, I can only change the future.", "NO_WAIT")
 	npc_says(_"Crying, screaming or begging time to rewind itself and give me a second chance will not get me anywhere.")
 	npc_says(_"What I can do is to try to have a good life despite the constant threat from the bots outside the town walls.")
 	npc_says(_"And besides, life is not so bad with a robotic leg. The motors inside it can mimic a normal walk very well. Most people do not even notice something is different about me.")
 	hide(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"I am ready. Open the tunnels for me, Dixon."
-LuaCode={
+<LuaCode>
 	npc_says(_"Great. Be careful down there. Just try to get the toolkit and get out of there as soon as possible.")
 	if difficulty("easy") then
 		npc_says(_"I will give you three small devices that can emit an Electro Magnetic Pulse.")
@@ -159,11 +161,11 @@ LuaCode={
 		add_item("EMP Shockwave Generator",1)
 	end
 	hide(21, 26) show(31)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=22 Text=_"Can I help you somehow?"
-LuaCode={
+<LuaCode>
 	npc_says(_"We need people badly, so it would be great if you could give us a helping hand even for a few days.", "NO_WAIT")
 	npc_says(_"Now, what are your skills? Where do you think you could be the most useful?")
 	tux_says(_"I can handle computers very well. I also know a lot about laboratory equipment.", "NO_WAIT")
@@ -178,11 +180,11 @@ LuaCode={
 	npc_says(_"If you could get it back for us, it would help the town very much.")
 	add_quest(_"The yellow toolkit", _"Dixon, the leader of the Red Guard technical division, lost his yellow toolkit in the town's maintenance tunnels. I am supposed to get it from there.")
 	hide(22) show(21, 25, 26)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=25 Text=_"Why are there rebel bots under the town?"
-LuaCode={
+<LuaCode>
 	npc_says(_"They were there to keep the underground power grid and our plumbing system working.", "NO_WAIT")
 	npc_says(_"When the Great Assault happened they did not turn into killing machines like most of the other bots. ")
 	npc_says(_"We lost control over them, but that is all.", "NO_WAIT")
@@ -190,11 +192,11 @@ LuaCode={
 	npc_says(_"However, the bots seem to be very content with just being there. They do not undertake any offensive actions.", "NO_WAIT")
 	npc_says(_"They have fortified the tunnels and they do not let anyone in.")
 	hide(25)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=26 Text=_"How did it happen that the bots took your tools away?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Long story. Just before the Great Assault I was installing some cables in the failover power supply system.")
 	npc_says(_"I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'")
 	npc_says(_"It was quite a surprise to me. I was quite sure the maintenance bots could not talk. They did not have the software for it. But...")
@@ -204,19 +206,19 @@ LuaCode={
 	npc_says(_"As soon as I dropped my toolkit, I was able to teleport away. That bot freaked me out, so I locked the door tight behind me.")
 	npc_says(_"Once I got out I learned the bot was telling the truth. The Great Assault had started. The rest is history.")
 	hide(26) show(27)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=27 Text=_"Hmm... You know... I think that the bots in the tunnels might be sentient."
-LuaCode={
+<LuaCode>
 	npc_says(_"WHAT? Sentient? You got to be kidding me.", "NO_WAIT")
 	npc_says(_"Right?")
 	hide(21, 27) show(28, 29, 30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=28 Text=_"Yes, I think so. The robots must be alive. This is why we need to exterminate them as soon as possible before they kill us all."
-LuaCode={
+<LuaCode>
 	npc_says(_"OH MY GOD! Linarian, there is no time to lose!", "NO_WAIT")
 	npc_says(_"I will call the military division and arrange a sweep of the tunnels at once.")
 	npc_says(_"May the heavens have mercy upon us, but better them than us.")
@@ -234,11 +236,11 @@ LuaCode={
 	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	update_quest(_"The yellow toolkit", _"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
 	hide(28, 29, 30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=29 Text=_"Of course I am kidding, Dixon. Lighten up! Now, be a good guy and open the tunnels for me so I can pry your toolbox from the cold, dead hands of the bots down there."
-LuaCode={
+<LuaCode>
 	npc_says(_"That wasn't very funny. You scared me. Sheesh.", "NO_WAIT")
 	npc_says(_"No one jokes about the bots anymore. We have seen too much death to do that. It is a serious matter.")
 	npc_says(_"The bots are our enemies, executioners, killers. Not even Ewald tells jokes about them anymore.")
@@ -247,11 +249,11 @@ LuaCode={
 	update_quest(_"The yellow toolkit", _"The bots in the tunnels might be sentient. I cannot wait to extinguish an emerging life form. This will be fun.")
 	change_obstacle_state("NorthernMaintainanceDoor", "opened")
 	hide(28, 29, 30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text=_"You can forget about your toolkit. I am not going to take away something that a lifeform needs to survive. I would rather die than kill."
-LuaCode={
+<LuaCode>
 	npc_says(_". . .")
 	npc_says(_"I think I understand. Yes, I do not like violence, myself. The bots may need the toolkit, I am sure there must be a second set of autotools kicking around somewhere.")
 	npc_says(_"After all, it seems like they need them more than I do.", "NO_WAIT")
@@ -259,18 +261,18 @@ LuaCode={
 	add_cookie("singularity_saved")
 	end_quest(_"The yellow toolkit", _"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
 	hide(28, 29, 30)
-}	
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"How did it happen that the bots took your tools away?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Ah, it is a strange story, I am sure you would not believe me. I will tell you some other time.")
 	hide(31)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=34 Text=_"The tunnels are cleansed. Here is your toolkit."
-LuaCode={
+<LuaCode>
 	npc_says(_"*sigh* I hate to see this end in such a way. Bot or no bot, they let me live. They deserved a chance.")
 	npc_says(_"Well, what was done cannot be undone and now we all have to live with what we have. I guess I am being too pessimistic, you did a great job.")
 	npc_says(_"I thank you for your help in recovering the autotools.", "NO_WAIT")
@@ -281,11 +283,11 @@ LuaCode={
 	add_gold(150)
 	end_quest(_"The yellow toolkit", _"Finally. I am tired, covered in bruises and oil... But I made sure that the all the bots are dead. It felt great to break their metal bodies and crush their circuits. Dixon didn't seem too happy about this solution, but I don't care. It was fun killing the bots. Nothing else matters.")
 	hide(34, 35, 36)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=35 Text=_"I got your toolkit. The bots were not a big problem."
-LuaCode={
+<LuaCode>
 	npc_says(_"Good. We sure need the autotools.", "NO_WAIT")
 	npc_says(_"Our roads need fixing, our power lines need fixing, our walls need fixing... Heck, everything needs fixing in this place.")
 	npc_says(_"With those little gadgets we will be able to automate a lot of those simple repairs, saving us a lot of time.")
@@ -296,28 +298,28 @@ LuaCode={
 	add_item("Dixon's Helmet",1)
 	end_quest(_"The yellow toolkit", _"I gave the toolkit to Dixon. He was very happy to have his autotools back. I got his helmet as a gift. I guess this is better than nothing.")
 	hide(34, 35, 36)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=36 Text=_"I got your toolkit. You can buy it from me if you want."
-LuaCode={
+<LuaCode>
 	npc_says(_"WHAT!? ", "NO_WAIT")
 	npc_says(_"You got to be kidding me, Linarian.", "NO_WAIT")
 	npc_says(_"Give me the toolkit and stop fooling around.")
 	hide(34, 35, 36) show(37)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=37 Text=_"I was not joking. I am listening to your offer."
-LuaCode={
+<LuaCode>
 	npc_says(_"Linarian, I curse the day on which you have arrived here.", "NO_WAIT")
 	npc_says(_"Two fifty.")
 	hide(35, 37) show(38, 41)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=38 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
-LuaCode={
+<LuaCode>
 	npc_says(_"Here. It is all there.", "NO_WAIT")
 	npc_says(_"Now get out of here. I am a pacifist, but I am willing to make a special exception just for you.", "NO_WAIT")
 	npc_says(_"Get out of my sight.")
@@ -327,11 +329,11 @@ LuaCode={
 	end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a nice sum of money. Life is good.")
 	end_dialog()
 	hide(38, 41)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=39 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
-LuaCode={
+<LuaCode>
 	npc_says(_"I am not happy about this. I suggest you leave town.", "NO_WAIT")
 	npc_says(_"Accidents... Happen.")
 	add_gold(350)
@@ -340,11 +342,11 @@ LuaCode={
 	end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a huge sum of money. Life is great.")
 	end_dialog()
 	hide(39, 42)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"Deal. Here is your toolkit. Now cough up the money. Fast."
-LuaCode={
+<LuaCode>
 	npc_says(_"Linarian. Now we part as usual. However should I ever see you after the war is over...", "NO_WAIT")
 	npc_says(_"I promise to kill you.")
 	npc_says(_"Now take your money and get out of my face. I do not want to see you here ever again.")
@@ -354,87 +356,87 @@ LuaCode={
 	end_quest(_"The yellow toolkit", _"I sold the toolkit to Dixon for a enormous sum of money. Life is truly grand. But, I better stay away from Dixon for now... He seemed very angry at me.")
 	end_dialog()
 	hide(40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=41 Text=_"Good joke. I am sure you can do better."
-LuaCode={
+<LuaCode>
 	npc_says(_"Three fifty. This is all that the technical division has as their cash resources.")
 	hide(38, 41) show(39, 42)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=42 Text=_"Come on, I am sure you can do even better than that... "
-LuaCode={
+<LuaCode>
 	npc_says(_"Four hundred. We cannot offer anything more.", "NO_WAIT")
 	npc_says(_"Please, we really need the autotools.", "NO_WAIT")
 	npc_says(_"Without them the town is doomed.")
 	hide(39, 42) show(40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=43 Text=_"Is everything all right?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Heh, never better!", "NO_WAIT")
 	npc_says(_"All indicators are in the green, the power and water fill the pipes and even Spencer seems happier now that the town is thriving despite all odds.")
 	npc_says(_"Thanks to the autotools we can start building instead of just trying to repair the damage.", "NO_WAIT")
 	npc_says(_"Once this sick war is over, I will make sure you get the 'Key to the City' Linarian.")
 	hide(43)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=44 Text=_"Is everything all right?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nearly. Only my conscience keeps me up at night.", "NO_WAIT")
 	npc_says(_"Please leave me alone with my thoughts, I do not want to talk to anyone right now.")
 	hide(44)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"Is everything all right?"
-LuaCode={
+<LuaCode>
 	npc_says(_"No, I am afraid not.", "NO_WAIT")
 	npc_says(_"While I do not regret sparing the bots in the tunnels, the town suffers for it.")
 	npc_says(_"It makes me sad to see everything slowly wasting away. The Megasys bots are doing more damage than we can repair.", "NO_WAIT")
 	npc_says(_"This town has a few weeks left to live. After that we are all dead.")
 	add_cookie("dixon_one")
 	hide(45)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=46 Text=_"Is everything all right?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Ha! Never better!", "NO_WAIT")
 	npc_says(_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types.")
 	npc_says(_"Life is good right now.")
 	add_cookie("dixon_saved_and_talked")
 	hide(46) show(47)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=47 Text=_"What happened? Last time I asked, you said things are not going that well."
-LuaCode={
+<LuaCode>
 	npc_says(_"Yes, but now everything is different.", "NO_WAIT")
 	npc_says(_"I met someone who decided to join us in the fight against the MegaSys bots.")
 	npc_says(_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean.")
 	add_cookie("got_singularity")
 	hide(47) show(48)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=48 Text=_"Why the secrecy and the hushed voice? Can't you just tell me?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nope. Some things you just have to see with your own eyes.", "NO_WAIT")
 	npc_says(_"The Library of Alexandria, the Colossus of Rhodes, the Black Island...")
 	npc_says(_"And this is just one of those things.", "NO_WAIT")
 	npc_says(_"Just go and see for yourself. Otherwise you will not believe me.")
 	end_quest(_"The yellow toolkit", _"The tunnels bots seem to be working together with Dixon in keeping the town working. All is well that ends well.")
 	hide(48)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=50 Text=_"What are these strange materials I need to craft add-ons?"
-LuaCode={
+<LuaCode>
 	npc_says(_"These are special devices extracted from bots.")
 	npc_says(_"A scout troop recently spotted two guys in the north of town.")
 	npc_says(_"I was told these guys shoot bots and disassemble them, extract their parts.")
@@ -442,22 +444,22 @@ LuaCode={
 	tux_says(_"Thank you.")
 	npc_says(_"Good luck.")
 	hide(50)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=60 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Volume IV?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Unfortunately, I never added that one to my library.")
 	tux_says(_"Library... Of course! Thanks, Dixon!")
 	npc_says(_"Uh... You're welcome, I guess.")
 	update_quest(_"An Explosive Situation", _"I spoke to Dixon, who didn't have a copy of the book. He did give me an idea, though - I'll head for the library in town.")
 	hide(60)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=83 Text="BUG, REPORT ME! dixon node83"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"YOU AGAIN!")
 	npc_says(_"I.", "NO_WAIT")
 	npc_says(_"SAID.", "NO_WAIT")
@@ -467,13 +469,13 @@ LuaCode={
 	npc_says(_"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!")
 	npc_faction("crazy", _"Dixon -- Temporarily insane")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I must go now."
-LuaCode={
+<LuaCode>
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

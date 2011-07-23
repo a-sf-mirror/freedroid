@@ -25,7 +25,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_cookie("guard_follow_tux")) then
 		npc_says(_"I'm to keep an eye on you until you talk to Spencer.")
 		set_bot_name(_"Red Guard Escort")
@@ -40,27 +40,27 @@ EveryTime LuaCode={
 	end
 
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"Where can I find Spencer?"
-LuaCode={
+<LuaCode>
 	npc_says(_"He's usually in his office in the citadel.")
 	npc_says(_"Head down the main corridor until you pass the citadel gates.")
 	npc_says(_"His office has purple walls, you won't miss it.")
 	tux_says(_"Okay.")
 	hide(20)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be going then."
-LuaCode={
+<LuaCode>
 	npc_says(_"Mhmmm.")
 	if (has_cookie("town-northgateguard_tux_nickname_loon")) then
 		npc_says(get_player_name() .._"... the Loon")
 	end
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

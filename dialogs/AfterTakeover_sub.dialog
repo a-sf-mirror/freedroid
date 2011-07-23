@@ -26,24 +26,24 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	terminal_sub = get_player_name().. _"@hacked_".. bot_type().."/repair&settings: ~ # "
 	cli_says(terminal_sub, "NO_WAIT")
 	show(0, 20, 30, 40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text="cd .."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says("cd ..", "NO_WAIT")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"./est_repair.plx"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./est_repair.plx", "NO_WAIT")
 	repair_level = get_program_revision("Repair equipment")
 	damage = npc_damage_amount()
@@ -71,12 +71,12 @@ LuaCode={
 		end
 	end
 	cli_says(terminal_sub, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"./repair.plx"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./repair.plx", "NO_WAIT")
 	npc_says(_"Repair in progress.", "NO_WAIT")
 	npc_says(_"Logout to complete repair process.")
@@ -92,46 +92,46 @@ LuaCode={
 	cli_says(terminal_sub, "NO_WAIT")
 	add_cookie("AfterTakeover_repair")
 	hide(20, 21)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=30 Text=_"./settings.plx"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./settings.plx", "NO_WAIT")
 	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
 	npc_says(_"Version: 1.82c", "NO_WAIT")
 	npc_says(_"No upgrades found.", "NO_WAIT")
 	npc_says(_"Always ask for confirmation before execution of hcf.py? [Y/N]", "NO_WAIT")
 	hide(0, 20, 21, 30, 40) show(31, 32)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"Y (always ask)"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
 	if (not has_cookie("aftertakeover_confirm_hcf")) then 
 		add_cookie("aftertakeover_confirm_hcf")
 	end
 	next(33)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=32 Text=_"N (don't ask)"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		del_cookie("aftertakeover_confirm_hcf")
 	end
 	next(33)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=33 Text="BUG, REPORT ME! aftertakeover_sub node33"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Settings saved", "NO_WAIT")
 	if (npc_damage_amount() > 5) then
 		npc_says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.")
@@ -142,45 +142,45 @@ LuaCode={
 		show(34, 35)
 	end
 	hide(31, 32)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=34 Text=_"Y (enable broadcast)"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.")
 	npc_says(_"Entering \"botnet\" mode...")
 	if (not has_cookie("aftertakeover_broadcast_mode")) then
 		add_cookie("aftertakeover_broadcast_mode")
 	end
 	next(36)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=35 Text=_"N (disable broadcast)"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Commands will only be executed by this bot.")
 	npc_says(_"Entering \"single node\" mode...")
 	if (has_cookie("aftertakeover_broadcast_mode")) then
 		del_cookie("aftertakeover_broadcast_mode")
 	end
 	next(36)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=36 Text="BUG, REPORT ME! aftertakeover_sub node36"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Settings saved", "NO_WAIT")
  	cli_says(terminal_sub, "NO_WAIT")
 	hide(34, 35) show(0, 20, 30, 40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text=_"./hostname"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"./hostname", "NO_WAIT")
 	npc_says(_"Welcome to the hostname menu.", "NO_WAIT")
 	npc_says(_"Version: 0.15.01", "NO_WAIT")
@@ -188,12 +188,12 @@ LuaCode={
 	npc_says(_"Select new name? [Y/N]", "NO_WAIT")
 	cli_says("> ", "NO_WAIT")
 	hide(0, 20, 21, 30, 40) show(41, 42)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=41 Text=_"Yes"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"Y", "NO_WAIT")
 	cli_says(_"New Name: ", "NO_WAIT")
 
@@ -202,55 +202,55 @@ LuaCode={
 
 	new_name = user_input_string(_"Type a new name for this "..bot_type().._" unit.", funny_name .." ".. bot_type())
 	hide(41, 42) next(43)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=42 Text=_"No"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"N", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(41, 42) show(0, 20, 30, 40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=43 Text="BUG, REPORT ME! aftertakeover_sub node43"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(new_name,"NO_WAIT")
 	npc_says(_"Confirm renaming from [b]"..bot_name().._"[/b] to [b]"..new_name.._"[/b]? [Y/N]", "NO_WAIT")
 	cli_says("> ", "NO_WAIT")
 	show(44, 45)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=44 Text=_"Yes"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"Y", "NO_WAIT")
 	display_console_message(_"Renamed [b]"..bot_name().._"[/b] to [b]"..new_name.."[/b].")
 	set_bot_name(new_name)
 	npc_says(_"This "..bot_type().._" unit is now designated: [b]"..bot_name().."[/b]", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(44, 45) show(0, 20, 30, 40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=45 Text=_"No"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"N", "NO_WAIT")
 	cli_says(terminal_sub, "NO_WAIT")
 	hide(44, 45) show(0, 20, 30, 40)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text="BUG, REPORT ME! aftertakeover_sub node99"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"cd ..", "NO_WAIT")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

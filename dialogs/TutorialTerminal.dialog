@@ -28,7 +28,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	terminal = "guest@example.com: ~ #"
 
 	cli_says("Login : ", "NO_WAIT")
@@ -48,40 +48,40 @@ EveryTime LuaCode={
 	end
 	cli_says(terminal, "NO_WAIT")
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"open gate"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"open gate", "NO_WAIT")
 	npc_says(_"Access granted. Opening gate ...")
 	npc_says(_"Gate status: OPEN")
 	change_obstacle_state("TutorialTakeover", "opened")
 	cli_says(terminal, "NO_WAIT")
 	hide(0) show(10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"close gate"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"close gate", "NO_WAIT")
 	npc_says(_"Access granted. Closing gate ...")
 	npc_says(_"Gate status: CLOSED")
 	change_obstacle_state("TutorialTakeover", "closed")
 	cli_says(terminal, "NO_WAIT")
 	hide(10) show(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"logout", "NO_WAIT")
 	npc_says(_"Exiting")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

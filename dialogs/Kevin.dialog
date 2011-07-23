@@ -24,9 +24,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0) }
+<FirstTime LuaCode>
+	show(0)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_met("Kevin")) then
 		tux_says_random(_"Hello.", _"Hi there, Kevin.")
 		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
@@ -63,11 +65,11 @@ EveryTime LuaCode={
 	end
 
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello... Oh dear... You look awful... Who did this to you? Did they torture you?"
-LuaCode={ 
+<LuaCode> 
 	npc_says(_"Hi. I haven't eaten and slept very much in the last time so I'm a little hungry and may appear a little tired.")
 	npc_says(_"One of the side effects of always deleting all cookies.")
 	npc_says(_"Don't worry about me. I'll be fine.")
@@ -76,29 +78,29 @@ LuaCode={
 	npc_says(_"Eh... I guess you could put it that way, yes.")
 	set_bot_name(_"Kevin --- Hacker")
 	hide(0) show(30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"I'll see after the energy supply now."
-LuaCode={
+<LuaCode>
 	npc_says(_"That's great. You can't miss it. It's not hard to find. Enter my garden and find the lower station entrance there.")
 	npc_says(_"It would be best not to bother with the resistance on the first level. You only need to take care of the energy supply. And that's on the SECOND level.")
 	npc_says(_"I hope you have a laser pistol or something like that, the bots there will rip you apart if you try to approach them.")
 	npc_says(_"Best make it quick. I'm already sick of stabilizing the stupid power grid.")
 	update_quest(_"And there was light...", _"The entrance is in Kevins garden. According to Kevin I also don't need to bother with bots on the first level, just go straight for the second level.")
 	hide(6, 7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"I'm sorry, but I don't think there's anything I could do about that energy supply."
-LuaCode={ 
+<LuaCode> 
 	npc_says(_"Too bad. Now get out of my sight.")
 	hide(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"About that project you said you have running..."
-LuaCode={
+<LuaCode>
 	if (done_quest(_"A kingdom for a cluster!")) then
 		npc_says(_"I've already received the results from the evaluation of my data in the cluster. Good work.")
 	else
@@ -109,11 +111,11 @@ LuaCode={
 		show(9)
 	end
 	hide(8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
-LuaCode={
+<LuaCode>
 	if (has_quest(_"A kingdom for a cluster!")) then 
 		npc_says(_"You've already agreed to take my data cube to the cluster. I have no influence on this matter anymore.")
 		npc_says(_"The fate of the town now rests in your hands. Take the data cube I gave you to the cluster. Only there can the data be evaluated properly.")
@@ -127,11 +129,11 @@ LuaCode={
 		add_item("Kevin's Data Cube",1)
 	end
 	hide(9)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"How about some reward for securing your energy supply area?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("kevin_reward1_given")) then
 		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.", _"I am not as confused as you think. Go away now.")
 	else
@@ -139,11 +141,11 @@ LuaCode={
 		show(11, 12, 13)
 	end
 	hide(10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"I want to become a hacker."
-LuaCode={
+<LuaCode>
 	npc_says(_"Your desire for information amuses me. Your wish will be granted. I will teach you how to improve your skill in designing hacking programs.")
 	npc_says(_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill.")
 	npc_says(_"Look at this terminal... I am connected to a remote system. A fool would just launch a thousand attacks, but a skilled intruder stops and thinks.")
@@ -155,49 +157,49 @@ LuaCode={
 	improve_program("Hacking")
 	end_dialog()
 	hide(11, 12, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"I don't want any reward. Just gratitude."
-LuaCode={
+<LuaCode>
 	npc_says(_"Of course you can have that. There, I'm most grateful to you. That should do.")
 	add_cookie("kevin_reward1_given")
 	-- reward here could be bonus to joining faction or a powerful hacked (friendly) bot that supports Tux fighting in Hell Fortress.
 	end_dialog()
 	hide(11, 12, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"I want money."
-LuaCode={
+<LuaCode>
 	npc_says(_"Eh... Here, take these 900 circuits. That should be enough.")
 	add_gold(900)
 	add_cookie("kevin_reward1_given")
 	end_dialog()
 	hide(11, 12, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=20 Text=_"Jasmine just blew up."
-LuaCode={
+<LuaCode>
 	npc_says(_"Oh. Right.")
 	npc_says(_"Well, thanks for telling me.")
 	npc_says(_"Back to the drawing board, I guess...")
 	add_cookie("kevin_sigtalk")
 	hide(20) show(21)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=21 Text=_"I thought you would be more worried about her death."
-LuaCode={
+<LuaCode>
 	kevin_day = get_random(_"Monday", _"Tuesday", _"Wednesday", _"Thursday", _"Friday", _"Saturday", _"Sunday")
 	npc_says(_"Why? I have backups from last "..kevin_day..". No reason to worry at all.")
 	npc_says(_"It will be a while till I get her together again, but she will be fine.")
 	hide(21)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 Nr=30 Text=_"What can you teach me about hacking?"
-LuaCode={
+<LuaCode>
 	if (not done_quest(_"And there was light...")) then 
 		if (not has_quest(_"And there was light...")) then
 			npc_says(_"Not now, I'm busy.")
@@ -227,11 +229,11 @@ LuaCode={
 		end
 	end
 	hide(30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=31 Text=_"Yes, please teach me."
-LuaCode={
+<LuaCode>
 	if (train_program(300, get_program("Hacking") * 2, "Hacking")) then
 		npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 		npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
@@ -240,12 +242,12 @@ LuaCode={
 	else
 		if (get_gold() < 300 ) then next(40) else next(41) end
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=40 Text="BUG, REPORT ME! kevin node40"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says_random(
 		_"Hold on, I don't seem to have that much money right now.",
 		_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
@@ -255,12 +257,12 @@ LuaCode={
 		_"You don't have enough money! I cannot afford to just give away training for free.",
 		_"Come back when you have enough circuits.",
 		_"So come back when you have some valuables.")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=41 Text="BUG, REPORT ME! kevin node41"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"Sorry, my memory data bank is filled to the brim right now. Can't learn more until I get some more experience.")
 	npc_says_random(
 		_"You Linarians are funny creatures. Come back later when you feel ready if you please.",
@@ -272,22 +274,22 @@ LuaCode={
 		_"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
 		_"Then come back when you have a real will to learn.",
 		_"You don't have enough experience. Come here after you see some more action.") 
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=60 Text="No, I didn't touch it."
-LuaCode={
+<LuaCode>
 	npc_says(_"Strange, I should have a look at it...") --Tux lied to him and will not directly get an account if he talks to it next time.
 	npc_says(_"...when I have more time..")
 	if (has_cookie("kevins_lawnmower_tux_login")) then
 		del_cookie("kevins_lawnmower_tux_login")
 	end
 	hide(61, 60)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=61 Text="Yes, I tried to login."
-LuaCode={
+<LuaCode>
 	if (done_quest(_"And there was light...")) then
 		npc_says(_"Please, don't touch it.")
 		npc_says(_"I don't want you to break it somehow.")
@@ -299,14 +301,14 @@ LuaCode={
 		npc_says(_"The power level is still very low, hence, I am quite busy.")
 	end
 	hide(61, 60)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"Let us talk later."
-LuaCode={ 
+<LuaCode> 
 	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.", _"If you need to contact me, my number is 127.0.0.1", _"Keep your system up to date, Linarian.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

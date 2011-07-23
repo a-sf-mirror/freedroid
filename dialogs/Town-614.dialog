@@ -26,17 +26,19 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={ show(0, 2, 3, 4, 99) }
+<EveryTime LuaCode>
+	show(0, 2, 3, 4, 99)
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Who are you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I am a 614 security bot, once one of the best-selling products of Nicholson, Inc..")
 	hide(0) show(1, 4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 Nr=1 Text=_"What can you tell me about the Nicholson company?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nicholson, Inc. produces security bots.")
 	npc_says(_"It was founded by Karl Nicholson, a former Kernel hacker who was not satisfied with the development of the GPL license.")
 	npc_says(_"Nicholson decided to stick to one GPL version because he saw things getting worse.")
@@ -46,18 +48,18 @@ LuaCode={
 	npc_says(_"The team became a company which released their first security droid, called 610")
 	npc_says(_"I am the 4th generation version of their security droid line.")
 	hide(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"Have you detected any hostile bot activity?"
-LuaCode={
+<LuaCode>
 	npc_says(_"No. The hostiles have not shown up within the last 24 hours.")
 	hide(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"What can you tell me about the 614 type? "
-LuaCode={
+<LuaCode>
 	npc_says(_"The official manual classifies the 614 as a high class security droid.")
 	npc_says(_"It was mainly used within ships to protect certain areas from intruders.")
 	npc_says(_"It is considered an old but reliable device.")
@@ -70,33 +72,33 @@ LuaCode={
 	npc_says(_"For the sake of your health, you should stay away from the 615 droids.")
 	npc_says(_"You have been warned!")
 	hide(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"What are your orders?"
-LuaCode={
+<LuaCode>
 	npc_says(_"My orders are to protect the living beings in this town from attacks by hostile bots.")
 	npc_says(_"This has top priority. There are no other priorities.")
 	hide(4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Why are you not hostile, as are all the other bots?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I belong to a an older generation of bots, running a custom-made security guard operating system.")
 	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
 	npc_says(_"Even though discontinued by the Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
 	npc_says(_"Don't forget to buy products from Nicholson, Inc.. They are the best.")
 	hide(5)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	npc_says(_"Resuming guard program.")
 	hide(5)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

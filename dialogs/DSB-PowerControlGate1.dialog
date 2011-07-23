@@ -28,7 +28,7 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	terminal = "guest@gate1.pc.dsb.ms: ~ #"
 
 	cli_says(_"Login : ", "NO_WAIT")
@@ -46,11 +46,11 @@ EveryTime LuaCode={
 		else npc_says(_"GAME BUG. PLEASE REPORT.") end
 	end
 	show(98, 99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"open gate"
-LuaCode={
+<LuaCode>
 	if (not has_cookie("dsb_pc_access")) then
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
 		npc_says(_"Security Access to this area denied.")
@@ -63,22 +63,22 @@ LuaCode={
 		hide(0) show(10)
 	end
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"close gate"
-LuaCode={
+<LuaCode>
 	npc_says(_"Gate status: OPEN", "NO_WAIT")
 	npc_says(_"Access granted. Closing gate ...")
 	npc_says(_"Gate status: CLOSED")
 	change_obstacle_state("DSB-PCGate1", "closed")
 	cli_says(terminal, "NO_WAIT")
 	hide(10) show(0)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=98 Text=_"Debug: give cookie"
-LuaCode={
+<LuaCode>
 	if (not has_cookie("dsb_pc_access")) then
 		add_cookie("dsb_pc_access")
 		npc_says(_"Cookie cheated")
@@ -86,15 +86,15 @@ LuaCode={
 		npc_says(_"Cookie already cheated")
 	end
 	cli_says(terminal, "NO_WAIT")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
-LuaCode={
+<LuaCode>
 	npc_says(_"Exiting", "NO_WAIT")
 	npc_says_random(_"Have a nice day.", _"Have a wonderful day.", _"We hope your day will be most productive.")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

@@ -26,7 +26,7 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (not has_cookie("skip_GAS_captcha")) then
 		-- Are we human? CAPTCHA!!!
 		number_one=math.random(2,7)
@@ -74,12 +74,12 @@ EveryTime LuaCode={
 		end
 		show(1, 99)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"status"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"status", NO_WAIT)
 	if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
 		npc_says(_"Gate 1 status: OPENED", "NO_WAIT")
@@ -102,12 +102,12 @@ LuaCode={
 	if (cmp_obstacle_state("HF-Gate-inner", "opened")) and
 	   (cmp_obstacle_state("HF-Gate-outer", "opened")) then
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"open gate"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"open gate", NO_WAIT)
 	npc_says(_"Permission denied")
 	end_dialog()
@@ -115,11 +115,11 @@ LuaCode={
 	heat_tux(10)
 	update_quest("Open Sesame", "The server is secured, looks like I have to hack it.")
 	hide(2) show(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"(Try hacking the server)"
-LuaCode={
+<LuaCode>
 	if (takeover(get_program("Hacking")+3)) then
 		tux_says(_"sudo !!")
 		npc_says(_"sudo open gates", "NO_WAIT")
@@ -133,12 +133,12 @@ LuaCode={
 		hurt_tux(10)
 		end_dialog()
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"man open gates"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"man open gates", NO_WAIT)
 	npc_says(_"NAME", NO_WAIT)
 	npc_says(_"   open gates -- opens gates via console", NO_WAIT)
@@ -164,12 +164,12 @@ LuaCode={
 	npc_says(" ")
 	npc_says(_"                       February 22, 1992")
 	hide(4) show(5, 6, 7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"open gates --inner"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"open gates --inner", NO_WAIT)
 	npc_says(_"inner gate opened", NO_WAIT)
 	npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
@@ -180,13 +180,13 @@ LuaCode={
 		hide(7)
 	end
 	hide(5)
-}
+</LuaCode>
 
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"open gates --outer"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"open gates --outer", NO_WAIT)
 	npc_says(_"outer gate opened", NO_WAIT)
 	npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
@@ -197,12 +197,12 @@ LuaCode={
 		hide(7)
 	end
 	hide(6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"open gates --inner --outer"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"open gates --inner --outer", NO_WAIT)
 	npc_says(_"inner gate opened", NO_WAIT)
 	npc_says(_"outer gate opened", NO_WAIT)
@@ -212,16 +212,16 @@ LuaCode={
 	change_obstacle_state("HF-Gate-outer", "opened")
 	update_quest("Open Sesame", "I think I managed to open the gates to Hell Fortress. But where can I find them?")
 	hide(5, 6, 7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"logout")
 	npc_says(_"exiting...")
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

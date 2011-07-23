@@ -26,70 +26,74 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show (0, 6) }
+<FirstTime LuaCode>
+	show (0, 6)
+</LuaCode>
 
-EveryTime LuaCode={ show(99) }
+<EveryTime LuaCode>
+	show(99)
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi! I'm new here. "
-LuaCode={
+<LuaCode>
 	npc_says(_"Hello. We are the Fleischer brothers.") -- Fleischer is a name, but also means "butcher"
 	npc_says(_"I am Engel. He is Geist, and he does not know the language.") -- Engel = Angle, Geist = Ghost or Spirit
 	set_bot_name(_"Engel -- Hunter")
 	set_bot_name(_"Geist -- Hunter", "Geist")
 	hide(0) show(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"What are you doing here?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Revenge.")
 	npc_says(_"The bots have killed our mother. Now we kill them.")
 	npc_says(_"No mercy. We hunt them.")
 	hide(1) show(2, 11, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"Can I help you somehow?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nein. Let us die as warriors. That is all we ask for.") -- Nein = No
 	hide(2) show(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"If you keep standing here more bots will come and they will kill you. Go somewhere safe, and set up defense there."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"If you keep standing here more bots will come and --")
 	npc_says(_"Sehr gut. Let them come. We are ready.") -- Sehr gut = Very good or very well.
 	npc_says(_"What a beautiful day. Yes.")
 	hide(3) show(5)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"You are insane. Get out of here while you still can."
-LuaCode={
+<LuaCode>
 	npc_says(_"No.")
 	npc_says(_"Every day since the mess started I come here to fight the bots.")
 	npc_says(_"Today will be no different.")
 	npc_says(_"Do not try to stop us. We have our rifles loaded.")
 	hide(5) show(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"Where can I get some help?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nowhere. This is the end of the world. There is no help.")
 	npc_says(_"There is a town a bit south from here, but if I were you, I would not go there.")
 	npc_says(_"The Rot Guard is the ruler there, and cruelty is their solution to everything.") -- Rot = red
 	npc_says(_"Real freedom is really dead.")
 	hide(6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"You guys are totally nuts. Get a life."
 NO_TEXT
-LuaCode={
+<LuaCode>
 	tux_says(_"You guys are tota --")
 	npc_says(_"WHAT?! What is it that you want to say?")
 	tux_says(_"Erm... I --")
@@ -100,19 +104,19 @@ LuaCode={
 	npc_says(_"Maybe then you will tell us other gut jokes that you know.") --gut = good
 	npc_says(_"Maybe one day...")
 	hide(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"What did you use to do before you became a hunter?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I was a bot constructor. Built the killers of my mother.")
 	npc_says(_"Now I sell the parts that I remove from the bots to buy more ammunition and food.")
 	hide(11) show(12, 14)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"I want to know how to extract modules from the bots."
-LuaCode={
+<LuaCode>
 	rev = get_program_revision("Extract bot parts")
 	if (rev ==  5) then
 		npc_says(_"I schon told you alles I know about that.") -- schon = already ,  alles = everything/all
@@ -126,18 +130,18 @@ LuaCode={
 		npc_says(_"Interested?")
 		run_subdialog("Engel_sub.dialog")
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"Can I join your hunt?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nein. Our problem. Our hunt.") -- nein = no
 	hide(13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"What happens to these bot parts?"
-LuaCode={
+<LuaCode>
 	tux_says(_"Are they used to build other bots?")
 	npc_says(_"Most of them are used to bauen little nette gadgets.") --bauen = build , in this context more like 'create' | nette= nice
 	npc_says(_"You can use them to make weapons better or make you stronger.")
@@ -154,14 +158,14 @@ LuaCode={
 	npc_says(_"But I don't know more about these gadgets.")
 	npc_says(_"Asking me more questions about that makes no sense...")
 	hide(14)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"I'll be going then."
-LuaCode={
+<LuaCode>
 	npc_says(_"Goodbye and viel Gluck.") -- viel Gluck = good luck (should be "viel Glück, but the ü is missing in the font)
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

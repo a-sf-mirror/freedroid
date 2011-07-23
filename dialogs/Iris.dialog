@@ -28,9 +28,11 @@ Remember to change =_ to only = for OptionText and Subtitle that will not need t
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0) }
+<FirstTime LuaCode>
+	show(0)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if has_cookie("Iris_wants_lamp") then
 		if (has_item_backpack("Desk Lamp") > 0) then
 			if has_cookie("iris_deal") then
@@ -51,45 +53,45 @@ EveryTime LuaCode={
 		show(4)
 	end
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hello."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Hello", _"Hi there!")
 	hide(0) show(1)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"Who are you?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm Iris")
 	set_bot_name(_"Iris")
 	tux_says(_"Hello Iris.")
 	hide(1) show(2)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"What are you doing here?"
-LuaCode={
+<LuaCode>
 	npc_says(_"I'm here just for vacations.")
 	tux_says(_"And what do you usually do?")
 	npc_says(_"Usually I hunt bots.") --she may be a spy of the rebel faction that is not yet implemented
 	set_bot_name(_"Iris -- Bothunter")
 	hide(2) show(3)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"Where do you come from?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Nowhere and everywhere.")
 	npc_says(_"As I already said, I walk around and kill bots.")
 	hide(3) show(4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"Do you like it here?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("guard_follow_tux")) then
 		add_cookie("Iris_false_happy")
 		npc_says(_"Yes, sure.")
@@ -114,18 +116,18 @@ LuaCode={
 		end
 	end
 	hide(4)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Look, I have this Lamp."
-LuaCode={
+<LuaCode>
 	npc_says(_"Wow, nice.")
 	hide(5) show(6)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"You can have it."
-LuaCode={
+<LuaCode>
 	npc_says(_"Oh great, thanks!")
 	npc_says(_"Hmm, what can I give you as thank-you...?")
 	npc_says(_"Oh, I have a nice book here.")
@@ -140,11 +142,11 @@ LuaCode={
 	end
 	hide(6)
 	add_cookie("iris_deal")
-}
+</LuaCode>
 ---------------------------------------------------------------------
 
 Nr=7 Text=_"Sure, sounds like a fair trade."
-LuaCode={
+<LuaCode>
 	if (del_gold(100)) then
 		tux_says(_"Take these 100 valuable circuits.")
 		npc_says(_"Ok, here it is. Take this book.")
@@ -160,18 +162,18 @@ LuaCode={
 		npc_says(_"Eff off until you have the right sum!")
 	end
 	hide(7)
-}
+</LuaCode>
 ---------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	if (has_cookie("Iris_wants_lamp")) then
 		npc_says(_"Bye.")
 	else
 		npc_says(_"In your dreams, Penguin!")
 	end
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"

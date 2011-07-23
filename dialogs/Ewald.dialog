@@ -26,9 +26,11 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
-FirstTime LuaCode={ show(0, 3) }
+<FirstTime LuaCode>
+	show(0, 3)
+</LuaCode>
 
-EveryTime LuaCode={
+<EveryTime LuaCode>
 	if (has_cookie("Tania-at-Bar")) and
 	   (not has_cookie("Tania-at-Bar_Ewald")) then
 		add_cookie("Tania-at-Bar_Ewald")
@@ -42,22 +44,22 @@ EveryTime LuaCode={
 	if has_cookie("ewald_gambling") then show(30) end
 
 	show(99)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Hi. You look really happy."
-LuaCode={
+<LuaCode>
 	npc_says(_"Hey! I'm Ewald. I'm a bartender.")
 	npc_says(_"I used to do a lot of drugs, and I destroyed my brain.")
 	npc_says(_"I'm not too smart now, but I'm very happy all the time!")
 	npc_says(_"Want something to drink?")
 	set_bot_name(_"Ewald -- Barkeeper")
 	hide(0) show(1, 2, 13)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=1 Text=_"How is your business doing?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("guard_follow_tux")) then
 		npc_says(_"Can't complain at the moment...")
 	else
@@ -68,18 +70,18 @@ LuaCode={
 		npc_says(_"Life is tough. I am still happy though.")
 		hide(1)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=2 Text=_"Are you selling something other than drinks?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Yeah, I have some junk here... Want to see?")
 	trade_with("Ewald")
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=3 Text=_"I could use a drink. What is there to be had?"
-LuaCode={
+<LuaCode>
 	npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
 	npc_says(_"I have WATER!")
 	if (not has_item_backpack("Mug")) then
@@ -87,84 +89,84 @@ LuaCode={
 	else
 		hide(3) show(4, 5, 6)
 	end
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=4 Text=_"I want double water on the rocks. Stirred, not shaken."
-LuaCode={
+<LuaCode>
 	npc_says(_"Here you go. That one is on the house. And if the water is not enough, just ask me for more.")
 	heat_tux(-20)
 	hide(4, 5, 6) show(9)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=5 Text=_"Long Island iced water please."
-LuaCode={
+<LuaCode>
 	npc_says(_"Here you go.")
 	heat_tux(-30)
 	hide(4, 5, 6) show(8)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=6 Text=_"I want something cheap... Give me some fortified water."
-LuaCode={
+<LuaCode>
 	npc_says(_"Eh... Sure, as you wish. Here you go.")
 	heat_tux(-50)
 	hide(4, 5, 6) show(7)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=7 Text=_"Ugh... Ahh... I like it. Give me some more of that."
-LuaCode={
+<LuaCode>
 	npc_says(_"Uh... Sure...")
 	heat_tux(-1000);
 	hide(7) show(10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=8 Text=_"Ahh... Fresh water! Give me some more of that."
-LuaCode={
+<LuaCode>
 	npc_says(_"Yeah, I thought you would like it. Here is more.")
 	heat_tux(-1000);
 	hide(8) show(10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=9 Text=_"Hmm... Lots of ice. Give me one more double water, but now without any ice."
-LuaCode={
+<LuaCode>
 	npc_says(_"One double water coming up.")
 	heat_tux(-1000);
 	hide(9) show(10)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=10 Text=_"MORE! I want more water!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Erm... Ok... Here, have some of my special, water colada.")
 	heat_tux(-1000);
 	hide(10) show(11)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=11 Text=_"I am really thirsty! I want water."
-LuaCode={
+<LuaCode>
 	npc_says(_"Well, you drank all my water, so you cannot have any more. There is none left.")
 	npc_says(_"I heard Linarians can drink a lot of water, but seven liters...")
 	hide(11) show(12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=12 Text=_"MORE! MORE! MORE! I WANT MORE WATER. NOW!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Eh... I think you've had enough... Maybe you should just go for a walk for now?")
 	npc_says(_"You have had everything that I had.")
 	add_cookie("drank_all_ewald_had")
 	hide(12)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=13 Text=_"Any idea where I can find some entertainment here?"
-LuaCode={
+<LuaCode>
 	if (has_cookie("tux_has_joined_guard")) then
 		npc_says(_"I thought that shooting bots with those big guns was fun...?")
 		npc_says(_"*sigh*")
@@ -195,19 +197,19 @@ LuaCode={
 		npc_says(_"If you are really bored, you can try gambling with me.")
 	end
 	hide(13) show(30)
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=14 Text=_"Hey, I could use a refreshing drink!"
-LuaCode={
+<LuaCode>
 	npc_says(_"Here, have a watery mary.")
 	heat_tux(-1000)
 	hide(14)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=30 Text=_"Sure, I'll gamble with you. What do you play?"
-LuaCode={
+<LuaCode>
 	if (not has_cookie("ewald_gambling")) then add_cookie("ewald_gambling") end
 	npc_says(_"I play a dice game and a coin-flipping game.")
 	-- Initialize some variables here
@@ -223,11 +225,11 @@ LuaCode={
 	npc_says(_"You should come back when you have more to gamble with.")
 	end
 	hide(30) show(31, 32)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=31 Text=_"Tell me the rules for your 'dice game'."
-LuaCode={
+<LuaCode>
 	npc_says(_"It is simple. We both get three six sided dice.")
 	npc_says(_"You bet. Then you throw one die.")
 	npc_says(_"Then you decide on a betting multiplier, up to 3x.")
@@ -237,11 +239,11 @@ LuaCode={
 	------------------------------------------------
 	-- Assuming optimal playing then
 	-- Expected payout: 105.96% (easy), 97.11% (normal), 92.69% (hard)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=32 Text=_"Tell me the rules for your 'coin-flip game'."
-LuaCode={
+<LuaCode>
 	npc_says(_"It is simple. Five coin flips.")
 	npc_says(_"You bet. Then you tell me if I will flip more 'heads' or 'tails'.")
 	npc_says(_"I flip one coin.")
@@ -262,84 +264,84 @@ LuaCode={
 	-- Losing both: 11/32 expected payout: 0/128 (easy), 33/128 (normal), 22/128 (hard)
 	-- Intermediate: 10/32 expected payout: 0/128
 	-- Expected payout: 132/128 (easy), 121/128 (normal), 110/128 (hard)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=33 Text=_"How about a bet of 10 circuits"
-LuaCode={
+<LuaCode>
 	bet=10
 	hide(30, 31, 32, 33, 34, 35) next(36)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=34 Text=_"I'm feeling I'll start with a bet of 100 circuits"
-LuaCode={
+<LuaCode>
 	bet = 100
 	hide(30, 31, 32, 33, 34, 35) next(36)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=35 Text=_"I want to bet 200 circuits"
-LuaCode={
+<LuaCode>
 	bet = 200
 	hide(30, 31, 32, 33, 34, 35) next(36)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=36 Text="BUG, REPORT ME! ewald node36 -- Name Game"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Name your game.")
 	show(37, 38)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=37 Text=_"Dice"
-LuaCode={
+<LuaCode>
 	hide(37, 38) next(39)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=38 Text=_"Coin-flipping"
-LuaCode={
+<LuaCode>
 	hide(37, 38) next(50)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=39 Text="BUG, REPORT ME! ewald node39 -- Dice - Initial roll"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Dice it is. Roll your first die.")
 	tux1=math.random(1,6)
 	tux_says(_"I rolled a ".. tux1 ..".")
 	npc_says(_"What multiplier are you going to bet?")
 	show(40, 41, 42)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=40 Text="1x"
-LuaCode={
+<LuaCode>
 	next(43)
-} 
+</LuaCode> 
 -----------------------------------------------------------------------
 
 Nr=41 Text="2x"
-LuaCode={
+<LuaCode>
 	bet=bet*2
 	next(43)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=42 Text="3x" 
-LuaCode={
+<LuaCode>
 	bet=bet*3
 	next(43)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=43 Text="BUG, REPORT ME! ewald node43 -- Dice - finish game" -- finish game here
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"You've bet ".. bet .._" valuable circuits.")
 	ewd1=math.random(1,6)
 	npc_says(_"My first roll is a ".. ewd1 ..".")
@@ -371,37 +373,37 @@ LuaCode={
 		display_console_message(_"You lost ".. bet .._" valuable circuits by gambling dice with Ewald.")
 	end
 	hide(40, 41, 42) show(30)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=50 Text="BUG, REPORT ME! ewald node50 -- Coin-flipping game"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Coin flipping it is.")
 	npc_says(_"So. What do you think? Heads or tails?")
 	show(51, 52)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=51 Text=_"Heads"
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Heads, eh? I always like heads.", _"Heads? Sometimes I pick heads... when I don't pick tails.", _"When I think too much about it, I end up picking heads.", _"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.", _"I think I would have picked tails this time.")
 	tux1 = 0
 	hide(51, 52) next(53)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=52 Text=_"Tails"
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Tails? Fits, since you've got one.", _"Tails? I always liked that game... good times.", _"Tails. When I don't pick heads, I always pick tails.", _"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.", _"I think I would have picked heads this time.")
 	tux1 = 1
 	hide(51, 52) next(53)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=53 Text="BUG, REPORT ME! ewald node53 -- Coin-flipping game - first flip"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"Here goes nothing.")
 	ewd1=math.random(0,1)
 	if (ewd1 == 1) then
@@ -416,11 +418,11 @@ LuaCode={
 		npc_says(_"So do you think there will be an even or odd number of 'heads' flips?")
 	end
 	show(54, 55)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=54 Text=_"Even number"
-LuaCode={
+<LuaCode>
 	tux2 = 0 -- Set to 'even'
 	random_var = math.random()
  	if (random_var > 0.8) then
@@ -439,11 +441,11 @@ LuaCode={
 		npc_says(_"I think I would have picked even this time.")
 	end
 	hide(54, 55) next(56)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=55 Text=_"Odd number"
-LuaCode={
+<LuaCode>
 	tux2 = 1 -- Set to 'odd'
 	random_var = math.random()
  	if (random_var > 0.8) then
@@ -462,12 +464,12 @@ LuaCode={
 		npc_says(_"I think I would have picked odd this time.")
 	end
 	hide(54, 55) next(56)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=56 Text="BUG, REPORT ME! ewald node56 -- Coin-flipping game - last four flips"
 NO_TEXT
-LuaCode={
+<LuaCode>
 	npc_says(_"The last four coin flips:")
 	ewd2=math.random(0,1)
 	if (ewd2 == 1) then
@@ -556,15 +558,15 @@ LuaCode={
 	end
 
 	show(30)
-}
+</LuaCode>
 -----------------------------------------------------------------------
 
 Nr=99 Text=_"See you later."
-LuaCode={
+<LuaCode>
 	npc_says_random(_"Goodbye and remember: My bar is always open.", _"Come back soon!", _"You are welcome to unwind with old Ewald any time. Come back soon.", _"Remember, you can always come back here to relax and kick back.")
 	hide(32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 50, 51, 52, 53, 54, 55, 56) --end any partial gambling
 	end_dialog()
-}
+</LuaCode>
 ----------------------------------------------------------------------
 
 End of chat dialog for character="XXXXX"
