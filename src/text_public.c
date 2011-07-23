@@ -479,7 +479,7 @@ Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INF
 		ErrorMessage(__FUNCTION__, "\
 The value read in as a maximum (%d) is less than the minimum (%d).\n\
 This most likely means corrupted data.\n\
-Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INFORM, IS_WARNING_ONLY, *min, *max, default_val);
+Setting both the maximum and minimum to the default value (%d).", NO_NEED_TO_INFORM, IS_WARNING_ONLY, *max, *min, default_val);
 		*min = *max = default_val;
 		return_value = 2;
 	}
