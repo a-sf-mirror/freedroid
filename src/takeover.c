@@ -620,7 +620,7 @@ int droid_takeover(enemy *target)
 
 	cDroid = NULL;
 
-	ClearGraphMem();
+	clear_screen();
 
 	SwitchBackgroundMusicTo(CURLEVEL()->Background_Song_Name);
 

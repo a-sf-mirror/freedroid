@@ -255,7 +255,7 @@ void PlayATitleFile(char *Filename)
 		free(PreparedBriefingText);
 	}
 
-	ClearGraphMem();
+	clear_screen();
 	our_SDL_flip_wrapper();
 	free(TitleFilePointer);
 	free(background_name);

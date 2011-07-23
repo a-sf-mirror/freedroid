@@ -761,9 +761,9 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 	// dialog background not visible.  But anyway, let's just clear the two buffers
 	// for now...
 	//
-	ClearGraphMem();
+	clear_screen();
 	our_SDL_flip_wrapper();
-	ClearGraphMem();
+	clear_screen();
 	our_SDL_flip_wrapper();
 
 #endif				// HAVE_LIBGL
@@ -864,20 +864,6 @@ Resetting to default resolution (800 x 600)...", NO_NEED_TO_INFORM, IS_WARNING_O
 
 	SDL_initFramerate(&SDL_FPSmanager);
 	SDL_setFramerate(&SDL_FPSmanager, 40);
-}
-
-/**
- * This function fills all the screen or the freedroid window with a 
- * black color.  The name of the function originates from earlier, when
- * we still wrote directly to the vga memory using memset under ms-dos.
- */
-void ClearGraphMem(void)
-{
-	SDL_Rect rect = { .x = 0, .y = 0, .w = GameConfig.screen_width, .h = GameConfig.screen_height };
-
-	SDL_SetClipRect(Screen, NULL);
-
-	draw_rectangle(&rect, 0, 0, 0, 255);
 }
 
 /**
@@ -1170,6 +1156,19 @@ void reload_graphics(void)
 	// when the enemy is encountered.
 	free_enemy_graphics();
 	reload_tux_graphics();
+}
+
+/**
+ * Clear the screen.
+ * This function will use either the glClear() or the SDL_FillRect()
+ * depending on the current output method.
+ */
+void clear_screen(void)
+{
+	if (use_open_gl)
+		glClear(GL_COLOR_BUFFER_BIT);
+	else
+		SDL_FillRect(Screen, NULL, SDL_MapRGB(Screen->format, 0, 0, 0));
 }
 
 #undef _graphics_c

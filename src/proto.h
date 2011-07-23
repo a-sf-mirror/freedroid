@@ -264,7 +264,6 @@ void InitPictures(void);
 void init_timer(void);
 void InitVideo(void);
 void InitOurBFonts(void);
-void ClearGraphMem(void);
 void HighlightRectangle(SDL_Surface * Surface, SDL_Rect Area);
 void ShadowingRectangle(SDL_Surface * Surface, SDL_Rect Area);
 int do_graphical_number_selection_in_range(int lower_range, int upper_range, int default_value, int unit_price);
@@ -277,6 +276,7 @@ void draw_quad(const int16_t vx[4], const int16_t vy[4], int r, int g, int b, in
 void sdl_put_pixel(SDL_Surface *surf, int x, int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 void save_screenshot(const char *filename, int width);
 void reload_graphics(void);
+void clear_screen(void);
 
 // saveloadgame.c 
 int find_saved_games(struct dirent ***);

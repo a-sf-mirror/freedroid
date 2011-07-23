@@ -207,7 +207,7 @@ int benchmark()
 	char str[1024];
 	int failed = 0;
 
-	ClearGraphMem();
+	clear_screen();
 	sprintf(str, "Testing \"%s\"...", do_benchmark);
 	PutString(Screen, 10, 100, str);
 	our_SDL_flip_wrapper();

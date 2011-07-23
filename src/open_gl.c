@@ -477,6 +477,8 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 
 #ifdef HAVE_LIBGL
 
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+
 	glEnable(GL_TEXTURE_2D);
 
 	glShadeModel(GL_FLAT);

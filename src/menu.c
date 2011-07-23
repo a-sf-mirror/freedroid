@@ -843,7 +843,7 @@ void Cheatmenu(void)
 
 	can_continue = FALSE;
 	while (!can_continue) {
-		ClearGraphMem();
+		clear_screen();
 		printf_SDL(Screen, x0, y0, "Current position: Level=%d, X=%d, Y=%d\n", Me.pos.z, (int)Me.pos.x, (int)Me.pos.y);
 		printf_SDL(Screen, -1, -1, " f. xray_vision_for_tux: %s", GameConfig.xray_vision_for_tux ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " g. god mode: %s\n", Me.god_mode ? "ON" : "OFF");
@@ -902,7 +902,7 @@ void Cheatmenu(void)
 								break;
 						}
 						if (!(l % ((GameConfig.screen_height == 768) ? 25 : 16))) {
-							ClearGraphMem();
+							clear_screen();
 							printf_SDL(Screen, 15, y0,
 								   "ID    X     Y    ENERGY   speedX  Status  Friendly An-type An-Phase \n");
 							printf_SDL(Screen, -1, -1, "---------------------------------------------\n");
@@ -1003,7 +1003,7 @@ void Cheatmenu(void)
 		}		/* switch (getchar_raw()) */
 	}			/* while (!can_continue) */
 
-	ClearGraphMem();
+	clear_screen();
 	our_SDL_flip_wrapper();
 
 	return;
@@ -1098,7 +1098,7 @@ static void RunMenu(int is_startup)
 		while (EscapePressed()) ;
 	}
 	RunSubMenu(is_startup, start_menu);
-	ClearGraphMem();
+	clear_screen();
 }
 
 void StartupMenu(void)

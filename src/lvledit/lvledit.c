@@ -132,7 +132,7 @@ item *ItemDropFromLevelEditor(void)
 
 	while (!SelectionDone) {
 		SDL_Event event;
-		ClearGraphMem();
+		clear_screen();
 
 		for (j = 0; j < row_len; j++) {
 			for (i = 0; i < line_len; i++) {
