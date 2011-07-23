@@ -45,14 +45,14 @@ EveryTime LuaCode={
 		npc_says(_"So, what about the helmet now?")
 		npc_says(_"I offered you 20 circuits for it.")
 		if (has_item("Dixon's Helmet") > 0) then
-			if (has_cookie("bruce_helmet_sell_20")) then
+			if (bruce_helmet_sell == 20) then
 				npc_says(_"You agreed.")
 				tux_says(_"Indeed.")
-			elseif (has_cookie("bruce_helmet_sell_100")) then
+			elseif (bruce_helmet_sell == 100) then
 				npc_says(_"You suggested 100 circuits as a prize.")
 				npc_says(_"That is acceptable to me.")
 				tux_says(_"Excellent.")
-			elseif (has_cookie("bruce_helmet_sell_free")) then
+			elseif (bruce_helmet_sell == 0) then
 				npc_says(_"You said you would give me the helmet for free.")
 				tux_says(_"Yes, that's true.")
 			end
@@ -61,7 +61,7 @@ EveryTime LuaCode={
 				npc_says(_"I don't want to rip it off your head.")
 				end_dialog()
 			else
-				if (has_cookie("bruce_helmet_sell_free")) and
+				if (bruce_helmet_sell == 0) and
 					(has_item("Dixon's Helmet")) then
 					tux_says(_"Here you go.")
 					npc_says(_"Oh, thank you!")
@@ -71,7 +71,7 @@ EveryTime LuaCode={
 					add_item("Desk Lamp")
 					del_item("Dixon's Helmet")
 				end
-				if (has_cookie("bruce_helmet_sell_20")) and
+				if (bruce_helmet_sell == 20) and
 					(has_item("Dixon's Helmet")) then
 					npc_says(_"Fine.")
 					npc_says(_"Here are your 20 circuits.")
@@ -81,7 +81,7 @@ EveryTime LuaCode={
 					add_gold(20)
 					del_item("Dixon's Helmet")
 				end
-				if (has_cookie("bruce_helmet_sell_100")) and
+				if (bruce_helmet_sell == 100) and
 					(has_item("Dixon's Helmet")) then
 					npc_says(_"Hmm...")
 					npc_says(_"Ok.")
@@ -244,7 +244,7 @@ LuaCode={
 	npc_says(_"Okay.")
 	npc_says(_"Let me quickly go get the money.") --excuse for need to restart the dialog
 	npc_says(_"Talk to me again in a moment.")
-	add_cookie("bruce_helmet_sell_20")
+	bruce_helmet_sell = 20
 	add_cookie("bruce_tux_shall_unequip_helmet")
 	hide(25, 40, 45, 46, 47, 48)
 	end_dialog()
@@ -256,7 +256,7 @@ LuaCode={
 	npc_says(_"Well... okay.")
 	npc_says(_"Let me get the money.") --excuse for need to restart the dialog
 	npc_says(_"Come back to me after that.")
-	add_cookie("bruce_helmet_sell_100")
+	bruce_helmet_sell = 100
 	add_cookie("bruce_tux_shall_unequip_helmet")
 	hide(25, 40, 45, 46, 47, 48)
 	end_dialog()
@@ -281,7 +281,7 @@ LuaCode={
 	npc_says(_"Oh... Oh my! thanks!")
 	npc_says(_"Wait, let me go get something first.")
 	tux_says(_"Sure.")
-	add_cookie("bruce_helmet_sell_free")
+	bruce_helmet_sell = 0
 	end_dialog()
 	hide(25, 40, 45, 46, 47, 48)
 	}
