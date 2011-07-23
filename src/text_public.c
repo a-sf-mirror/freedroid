@@ -446,7 +446,7 @@ This indicates a corrupted or seriously outdated game data or saved game file.",
  * A valid string, with no errors means it returns a 0.
 */
 
-int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *max, int *min, int default_val)
+int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *min, int *max, int default_val)
 {
 	char *ptr;
 	int return_value = 0;
