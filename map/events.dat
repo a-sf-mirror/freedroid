@@ -429,40 +429,6 @@ LuaCode={ teleport("0from6") }
 * End of trigger *
 
 * New event trigger *
-Name=_"Singularity-Alive-Check-N"
-Trigger at label="Singularity-Alive-Check-N"
-Silent=1
-LuaCode={
-	if (npc_dead("Singularity")) and
-	   (not has_cookie("Singularity-dead")) then
-		add_cookie("Singularity-dead")
-		set_faction_state("singularity", "hostile")
-		change_obstacle_state("Sin-gun", "enabled")
-		if (has_quest("The yellow toolkit")) then
-			add_diary_entry(_"The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me!")
-		end
-	end
-}
-* End of trigger *
-
-* New event trigger *
-Name=_"Singularity-Alive-Check-S"
-Trigger at label="Singularity-Alive-Check-S"
-Silent=1
-LuaCode={
-	if (npc_dead("Singularity")) and
-	   (not has_cookie("Singularity-dead")) then
-		add_cookie("Singularity-dead")
-		set_faction_state("singularity", "hostile")
-		change_obstacle_state("Sin-gun", "enabled")
-		if (has_quest("The yellow toolkit")) then
-			add_diary_entry(_"The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me!")
-		end
-	end
-}
-* End of trigger *
-
-* New event trigger *
 Name=_"To Old Server Room"
 Trigger at label="6to58"
 Silent=0
@@ -473,7 +439,24 @@ LuaCode={ teleport("58from6") }
 Name=_"Singularity Attacked"
 Trigger on enemy death in level=6
 Enemy faction="singularity"
-LuaCode={ set_faction_state("singularity", "hostile") }
+LuaCode={ 
+	set_faction_state("singularity", "hostile") 
+	change_obstacle_state("Sin-gun", "enabled")
+}
+* End of trigger *
+
+* New event trigger *
+Name=_"Singularity Dead"
+Trigger on enemy death in level=6
+Enemy dialog name="Singularity"
+LuaCode={ 
+	if (not has_cookie("Singularity-dead")) then
+		add_cookie("Singularity-dead")
+	end
+	if (has_quest("The yellow toolkit")) then
+		add_diary_entry(_"The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it...")
+	end
+}
 * End of trigger *
 
 ##############
