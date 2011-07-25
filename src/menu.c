@@ -1830,7 +1830,7 @@ int load_named_game(const char *name)
 		return ERR;
 	}
 
-	if (strcmp(name, Me.character_name)) {
+	if (!Me.character_name || strcmp(name, Me.character_name)) {
 		free(Me.character_name);
 		Me.character_name = strdup(name);
 	}
