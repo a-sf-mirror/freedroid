@@ -424,13 +424,13 @@ NO_TEXT
 Nr=87 Text=_"BUG c-net node 87 -- ROLL STATS"
 NO_TEXT
 <LuaCode>
-	str = math.random(0,6) + math.random(0,6) + math.random(0,6)
-	con = math.random(0,6) + math.random(0,6) + math.random(0,6)
-	dex = math.random(0,6) + math.random(0,6) + math.random(0,6)
-	int = math.random(0,6) + math.random(0,6) + math.random(0,6)
-	wis = math.random(0,6) + math.random(0,6) + math.random(0,6)
-	cha = math.random(0,6) + math.random(0,6) + math.random(0,6)
-	npc_says(_"You rolled Stats of STR: [b]"..str.."[/b], CON: [b]"..con.."[/b], DEX: [b]"..dex.."[/b], INT: [b]"..int.."[/b],  WIS: [b]"..wis.."[/b], CHA [b]"..cha, "NO_WAIT")
+	local str = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	local con = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	local dex = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	local int = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	local wis = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	local cha = math.random(0,6) + math.random(0,6) + math.random(0,6)
+	npc_says(string.format(_"You rolled Stats of STR: [b]%d[/b], CON: [b]%d[/b], DEX: [b]%d[/b], INT: [b]%d[/b],  WIS: [b]%d[/b], CHA: [b]%d[/b].", str, con, dex, int, wis, cha), "NO_WAIT")
 	show(88, 89)
 </LuaCode>
 ----------------------------------------------------------------------
