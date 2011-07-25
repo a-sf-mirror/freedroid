@@ -96,8 +96,8 @@ static void clear_out_events(void)
 #define EVENT_TRIGGER_BEGIN_STRING "* New event trigger *"
 #define EVENT_TRIGGER_END_STRING "* End of trigger *"
 #define EVENT_TRIGGER_NAME_STRING "Name=_\""
-#define EVENT_TRIGGER_LUACODE_STRING "LuaCode={"
-#define EVENT_TRIGGER_LUACODE_END_STRING "}"
+#define EVENT_TRIGGER_LUACODE_STRING "<LuaCode>"
+#define EVENT_TRIGGER_LUACODE_END_STRING "</LuaCode>"
 #define EVENT_TRIGGER_ENABLED_STRING "Enable this trigger by default="
 
 // For position-based events
