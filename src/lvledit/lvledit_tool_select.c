@@ -58,12 +58,15 @@ struct selected_element {
 	void *data;
 };
 
+#define ALL_FLOOR_LAYERS (-1)
+
 /* Selected floor tiles are wrapped into a struct lvledit_map_tile, that holds 
  * coordinate information. struct map_tile does not have coordinate information,
  * and the game doesn't need it, only the leveleditor. */
 struct lvledit_map_tile {
 	map_tile *tile;
 	point coord;
+	int layer;
 };
 
 static LIST_HEAD(selected_elements);
@@ -190,6 +193,21 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 		default:
 			;
 		}
+	}
+}
+
+static int set_floor_layers(level *lvl, struct lvledit_map_tile *tile)
+{
+	int i;
+	struct map_tile *t = tile->tile;
+
+	if (tile->layer == ALL_FLOOR_LAYERS) {
+		for (i = 0; i < lvl->floor_layers; i++)
+			action_set_floor(EditLevel(), tile->coord.x, tile->coord.y, i, t->floor_values[i]);
+		return i;
+	} else {
+		action_set_floor(lvl, tile->coord.x, tile->coord.y, current_floor_layer, t->floor_values[tile->layer]);
+		return 1;
 	}
 }
 
@@ -521,8 +539,7 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 			t->coord.y += (int)rintf(diff.y);
 
 			// Set the floor for the new current tile
-			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_values[0]);
-			changed_tiles++;
+			changed_tiles += set_floor_layers(EditLevel(), t);
 
 			// Select the new tile
 			select_floor_on_tile(t->coord.x, t->coord.y);
@@ -825,6 +842,7 @@ void level_editor_copy_selection()
 			memcpy(t->tile, ((struct lvledit_map_tile *) (e->data))->tile, sizeof(map_tile));
 			t->coord.x = ((struct lvledit_map_tile *) (e->data))->coord.x;
 			t->coord.y = ((struct lvledit_map_tile *) (e->data))->coord.y;		
+			t->layer = GameConfig.show_all_floor_layers ? ALL_FLOOR_LAYERS : current_floor_layer;
 			
 			add_object_to_list(&clipboard_elements, t, OBJECT_FLOOR);
 			break;
@@ -843,6 +861,20 @@ void level_editor_copy_selection()
 		default:
 			;
 		}
+	}
+}
+
+static int clear_current_floor_layers(level *lvl, int coord_x, int coord_y)
+{
+	int i;
+
+	if (GameConfig.show_all_floor_layers) {
+		for (i = 0; i < lvl->floor_layers; i++)
+			action_set_floor(lvl, coord_x, coord_y, i, ISO_FLOOR_EMPTY);
+		return i;
+	} else {
+		action_set_floor(lvl, coord_x, coord_y, current_floor_layer, ISO_FLOOR_EMPTY);
+		return 1;
 	}
 }
 
@@ -865,11 +897,9 @@ void level_editor_cut_selection()
 			break;
 		case OBJECT_FLOOR:
 			// We replace the tile we cut by a black tile
-			action_set_floor(EditLevel(), 
+			nbelem += clear_current_floor_layers(EditLevel(),
 				((struct lvledit_map_tile *) (e->data))->coord.x,
-				((struct lvledit_map_tile *) (e->data))->coord.y,
-				ISO_FLOOR_EMPTY);
-			nbelem++;
+				((struct lvledit_map_tile *) (e->data))->coord.y);
 			break;
 		case OBJECT_ITEM:
 			action_remove_item(EditLevel(), e->data);
@@ -957,10 +987,8 @@ void level_editor_paste_selection()
 			}
 
 			// Set and select	current tile
-			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_values[0]);
+			nbact += set_floor_layers(EditLevel(), t);
 			select_floor_on_tile(t->coord.x, t->coord.y);
-			
-			nbact++;
 			break;
 		case OBJECT_ITEM:
 			it = e->data;

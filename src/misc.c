@@ -168,7 +168,14 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButton.png", {-30, -350, 0, 0}, FALSE},
 	[LEVEL_EDITOR_BEAUTIFY_GRASS_BUTTON_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorBeautifyGrassButtonPushed.png", {-29, -349, 0, 0}, FALSE},
-
+	[LEVEL_EDITOR_ALL_FLOOR_LAYERS_BUTTON] =
+			{EMPTY_IMAGE, "mouse_buttons/LevelEditorAllFloorLayersButton.png", {-120, -350, 0, 0}, FALSE},
+	[LEVEL_EDITOR_ALL_FLOOR_LAYERS_BUTTON_PUSHED] =
+			{EMPTY_IMAGE, "mouse_buttons/LevelEditorAllFloorLayersButtonPushed.png", {-120, -350, 0, 0}, FALSE},
+	[LEVEL_EDITOR_SINGLE_FLOOR_LAYER_BUTTON] =
+			{EMPTY_IMAGE, "mouse_buttons/LevelEditorSingleFloorLayerButton.png", {-120, -350, 0, 0}, FALSE},
+	[LEVEL_EDITOR_SINGLE_FLOOR_LAYER_BUTTON_PUSHED] =
+			{EMPTY_IMAGE, "mouse_buttons/LevelEditorSingleFloorLayerButtonPushed.png", {-120, -350, 0, 0}, FALSE},
 
 /* above the obstacle selector, lower row*/
 	[LEVEL_EDITOR_TOGGLE_GRID_BUTTON_OFF] =

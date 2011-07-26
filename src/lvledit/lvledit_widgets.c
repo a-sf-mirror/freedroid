@@ -356,6 +356,26 @@ static void typeselect_map_label_button_update(struct widget *w)
 	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_MAP_LABEL);
 }
 
+// Leveleditor floor layers button callbacks
+static void floor_layers_button_click(struct widget_button *wb)
+{
+	GameConfig.show_all_floor_layers = !GameConfig.show_all_floor_layers;
+}
+
+static void floor_layers_button_right_click(struct widget_button *wb)
+{
+	int next_layer = current_floor_layer + 1;
+	if (next_layer >= EditLevel()->floor_layers)
+		next_layer = 0;
+	action_change_floor_layer(EditLevel(), next_layer);
+}
+
+static void floor_layers_button_update(struct widget *w)
+{
+	w->enabled = selection_type() == OBJECT_FLOOR && EditLevel()->floor_layers > 1;
+	WIDGET_BUTTON(w)->active = !GameConfig.show_all_floor_layers;
+}
+
 /**
  * This function builds the level editor interface if it hasn't been already initialized.
  */
@@ -440,6 +460,9 @@ void widget_lvledit_init()
 		{LEVEL_EDITOR_ZOOM_IN_BUTTON, NULL,
 			_("Zoom in/out\n\nUse this button to zoom INTO or OUT of the level.\n\nUse right click to change the zoom ratio.\n"),
 			2, zoom_in_button_click, zoom_in_button_right_click, zoom_in_button_update},
+		{LEVEL_EDITOR_ALL_FLOOR_LAYERS_BUTTON, NULL,
+			_("Toggle floor layers\n\nUse this button to toggle between all floor layers displayed or single floor layer displayed.\n\nUse right click to change the current floor layer.\n"),
+			2, floor_layers_button_click, floor_layers_button_right_click, floor_layers_button_update},
 		{LEVEL_EDITOR_QUIT_BUTTON, NULL,
 			_("Test Map\n\nThis will save your map and reload it after you finish testing, avoiding saving an unclean world state."),
 			1, quit_button_click, NULL, NULL},

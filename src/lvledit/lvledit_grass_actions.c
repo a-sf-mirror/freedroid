@@ -79,7 +79,8 @@ static Uint16 get_top_map_brick(level *l, int x, int y)
 
 static void grass_change_floor(level *l, int x, int y, int type)
 {
-	action_set_floor(l, x, y, type);
+	int top_layer = get_top_map_layer(l, x, y);
+	action_set_floor(l, x, y, top_layer, type);
 	grass_change_count++;
 }
 

@@ -179,4 +179,6 @@ void lvledit_reset_tools()
 	leveleditor_select_reset();
 
 	active_tool = NULL;
+
+	current_floor_layer = 0;
 }

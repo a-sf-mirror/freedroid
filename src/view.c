@@ -251,6 +251,13 @@ static void show_floor(int mask)
 
 	layer_start = 0;
 	layer_end = lvl->floor_layers;
+	// Draw only the current floor layer?
+	if (game_status == INSIDE_LVLEDITOR) {
+		if (!GameConfig.show_all_floor_layers) {
+			layer_start = current_floor_layer;
+			layer_end = layer_start + 1;
+		}
+	}
 
 	start_image_batch();
 

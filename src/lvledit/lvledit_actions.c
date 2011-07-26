@@ -141,6 +141,7 @@ static action *action_create(int type, va_list args)
 		case ACT_TILE_FLOOR_SET:
 			act->d.change_floor.x = va_arg(args, int);
 			act->d.change_floor.y = va_arg(args, int);
+			act->d.change_floor.layer = va_arg(args, int);
 			act->d.change_floor.type = va_arg(args, int);
 			break;
 		case ACT_MULTIPLE_ACTIONS:
@@ -160,6 +161,9 @@ static action *action_create(int type, va_list args)
 			act->d.jump_to_level.target_level = va_arg(args, int);
 			act->d.jump_to_level.x = (float)va_arg(args, double);
 			act->d.jump_to_level.y = (float)va_arg(args, double);
+			break;
+		case ACT_CHANGE_FLOOR_LAYER:
+			act->d.target_layer = va_arg(args, int);
 			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unknown action type %d\n", PLEASE_INFORM, IS_FATAL, type);
@@ -502,11 +506,18 @@ void lvledit_action_toggle_waypoint(int randomspawn)
 	}
 }
 
-void action_set_floor(Level EditLevel, int x, int y, int type)
+void action_set_floor(Level EditLevel, int x, int y, int layer, int type)
 {
-	int old = EditLevel->map[y][x].floor_values[0];
-	EditLevel->map[y][x].floor_values[0] = type;
-	action_push(ACT_TILE_FLOOR_SET, x, y, old);
+	int old = EditLevel->map[y][x].floor_values[layer];
+	EditLevel->map[y][x].floor_values[layer] = type;
+	action_push(ACT_TILE_FLOOR_SET, x, y, layer, old);
+}
+
+void action_change_floor_layer(level *lvl, int layer)
+{
+	int old_floor_layer = current_floor_layer;
+	current_floor_layer = layer;
+	action_push(ACT_CHANGE_FLOOR_LAYER, old_floor_layer);
 }
 
 static int action_change_map_label(level *EditLevel, int i, char *name, int x, int y, int undoable)
@@ -668,7 +679,7 @@ static void action_do(level * level, action * a)
 		action_toggle_waypoint_connection(level, a->d.toggle_waypoint_connection.x, a->d.toggle_waypoint_connection.y, 1, 1);
 		break;
 	case ACT_TILE_FLOOR_SET:
-		action_set_floor(level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.type);
+		action_set_floor(level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.layer, a->d.change_floor.type);
 		break;
 	case ACT_MULTIPLE_ACTIONS:
 		ErrorMessage(__FUNCTION__, "Passed a multiple actions meta-action as parameter. A real action is needed.\n", PLEASE_INFORM, IS_WARNING_ONLY);
@@ -682,7 +693,9 @@ static void action_do(level * level, action * a)
 	case ACT_JUMP_TO_LEVEL:
 		action_jump_to_level(a->d.jump_to_level.target_level, a->d.jump_to_level.x, a->d.jump_to_level.y);
 		break;
-
+	case ACT_CHANGE_FLOOR_LAYER:
+		action_change_floor_layer(level, a->d.target_layer);
+		break;
 	}
 }
 
@@ -760,7 +773,7 @@ void level_editor_place_aligned_object(int positionid)
 			action_create_obstacle_user(EditLevel(), pos.x, pos.y, type);
 			break;
 	case OBJECT_FLOOR:
-			action_set_floor(EditLevel(), (int)Me.pos.x, (int)Me.pos.y, type);
+			action_set_floor(EditLevel(), (int)Me.pos.x, (int)Me.pos.y, current_floor_layer, type);
 			break;
 	case OBJECT_ITEM:
 			action_create_item(EditLevel(), pos.x, pos.y, type);
@@ -778,7 +791,7 @@ void level_editor_place_aligned_object(int positionid)
 void CreateNewMapLevel(int level_num)
 {
 	level *NewLevel;
-	int i, k;
+	int i, k, l;
 
 	// Get the memory for one level 
 	//
@@ -795,6 +808,7 @@ void CreateNewMapLevel(int level_num)
 	NewLevel->levelnum = level_num;
 	NewLevel->xlen = 90;
 	NewLevel->ylen = 90;
+	NewLevel->floor_layers = 1;
 	NewLevel->light_bonus = 19;
 	NewLevel->minimum_light_value = 19;
 	NewLevel->infinite_running_on_this_level = FALSE;
@@ -809,6 +823,8 @@ void CreateNewMapLevel(int level_num)
 		NewLevel->map[i] = MyMalloc(NewLevel->xlen * sizeof(map_tile));
 		for (k = 0; k < NewLevel->xlen; k++) {
 			NewLevel->map[i][k].floor_values[0] = ISO_FLOOR_SAND;
+			for (l = 1; l < MAX_FLOOR_LAYERS; l++)
+				NewLevel->map[i][k].floor_values[l] = ISO_FLOOR_EMPTY;
 			dynarray_init(&NewLevel->map[i][k].glued_obstacles, 0, sizeof(int));
 		}
 	}

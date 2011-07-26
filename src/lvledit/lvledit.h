@@ -61,6 +61,7 @@ enum ActionType {
 	ACT_SET_MAP_LABEL,
 	ACT_JUMP_TO_LEVEL,
 	ACT_MULTIPLE_ACTIONS,
+	ACT_CHANGE_FLOOR_LAYER,
 };
 
 typedef struct {
@@ -118,6 +119,7 @@ typedef struct {
 
 		struct {
 			int x, y;
+			int layer;
 			int type;
 		} change_floor;
 
@@ -138,6 +140,8 @@ typedef struct {
 			int target_level;
 			double x, y;
 		} jump_to_level;
+
+		int target_layer;
 	} d;
 } action;
 
@@ -170,4 +174,7 @@ EXTERN float VanishingMessageEndDate;
 EXTERN int OriginWaypoint;
 
 EXTERN int level_editor_done;
+
+EXTERN int current_floor_layer;
+
 #endif

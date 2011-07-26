@@ -533,6 +533,7 @@ static void LevelOptions(void)
 		CHANGE_LEVEL_POSITION = 1,
 		SET_LEVEL_NAME,
 		EDIT_LEVEL_DIMENSIONS,
+		EDIT_LEVEL_FLOOR_LAYERS,
 		SET_LEVEL_INTERFACE_POSITION,
 		SET_RANDOM_LEVEL,
 		SET_TELEPORT_PAIR,
@@ -560,6 +561,11 @@ static void LevelOptions(void)
 		i++;
 		sprintf(Options[i], _("Size"));
 		sprintf(Options[i + 1], ":  X %d  Y %d ", EditLevel()->xlen, EditLevel()->ylen);
+		strcat(Options[i], Options[i + 1]);
+		MenuTexts[i] = Options[i];
+		i++;
+		sprintf(Options[i], _("Floor layers"));
+		sprintf(Options[i + 1], ":  %d", EditLevel()->floor_layers);
 		strcat(Options[i], Options[i + 1]);
 		MenuTexts[i] = Options[i];
 		i++;
@@ -716,6 +722,24 @@ static void LevelOptions(void)
 				SDL_Delay(1);
 			EditLevelDimensions();
 			break;
+		case EDIT_LEVEL_FLOOR_LAYERS:
+			if (LeftPressed() || RightPressed())
+				break;
+			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
+				SDL_Delay(1);
+			char popup_message[1000];
+			sprintf(popup_message, _("\n Please enter new number of floor layers (valid values are between 1 and %d): \n\n"), MAX_FLOOR_LAYERS);
+			char *new_floor_layers = GetEditableStringInPopupWindow(1000, popup_message, "");
+			if (new_floor_layers) {
+				char *endptr;
+				long layers = strtol(new_floor_layers, &endptr, 10);
+				if (layers > MAX_FLOOR_LAYERS) layers = MAX_FLOOR_LAYERS;
+				else if (layers < 1) layers = 1;
+				if (*endptr != *new_floor_layers)
+					EditLevel()->floor_layers = layers;
+				free(new_floor_layers);
+			}
+			break;
 		case CHANGE_INFINITE_RUNNING:
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
@@ -765,6 +789,23 @@ static void LevelOptions(void)
 						reset_visible_levels();
 						action_jump_to_level_center(newlevel);
 					}
+					while (RightPressed()) ;
+				}
+				break;
+
+			case EDIT_LEVEL_FLOOR_LAYERS:
+				if (LeftPressed()) {
+					int new_layers = EditLevel()->floor_layers - 1;
+					if (new_layers > 0)
+						EditLevel()->floor_layers = new_layers;
+					if (current_floor_layer >= EditLevel()->floor_layers)
+						current_floor_layer = EditLevel()->floor_layers - 1;
+					while (LeftPressed()) ;
+				}
+				if (RightPressed()) {
+					int new_layers = EditLevel()->floor_layers + 1;
+					if (new_layers <= MAX_FLOOR_LAYERS)
+						EditLevel()->floor_layers = new_layers;
 					while (RightPressed()) ;
 				}
 				break;
