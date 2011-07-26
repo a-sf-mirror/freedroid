@@ -595,7 +595,7 @@ void mapgen_place_obstacles(struct dungeon_info *di, int w, int h, unsigned char
 					themes[rooms[room].theme](x, y, wall);
 					break;	
 				case TILE_WALL:
-					mapgen_set_floor(x, y, ISO_COMPLETELY_DARK);
+					mapgen_set_floor(x, y, ISO_FLOOR_EMPTY);
 					break;
 				default:
 					mapgen_set_floor(x, y, tiles[y * w + x]);

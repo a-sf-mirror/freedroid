@@ -51,6 +51,32 @@ enum _horizontal_neighbors {
 
 static int grass_change_count = 0;
 
+/**
+ * Find the first layer that is occupied by a different
+ * floor tile than the default one.
+ */
+static int get_top_map_layer(level *l, int x, int y)
+{
+	int i = l->floor_layers - 1;
+
+	while (i && get_map_brick(l, x, y, i) == ISO_FLOOR_EMPTY)
+		i--;
+
+	return i;
+}
+
+/**
+ * This function returns the map brick code of the tile that occupies
+ * the given position in the top layer.
+ * It searches floor layers at the given position to find the first
+ * floor tile other than the default floor tile.
+ */
+static Uint16 get_top_map_brick(level *l, int x, int y)
+{
+	int top_layer = get_top_map_layer(l, x, y);
+	return get_map_brick(l, x, y, top_layer);
+}
+
 static void grass_change_floor(level *l, int x, int y, int type)
 {
 	action_set_floor(l, x, y, type);
@@ -102,7 +128,7 @@ static int is_some_grass_tile(int floor_value)
 
 	switch (floor_value) {
 	case ISO_WATER:
-	case ISO_COMPLETELY_DARK:
+	case ISO_FLOOR_EMPTY:
 	case ISO_RED_WAREHOUSE_FLOOR:
 		return (FALSE);
 		break;
@@ -125,37 +151,37 @@ static void fix_corners_in_this_grass_tile(level * EditLevel, int x, int y)
 	int east_grass = 0;
 	int west_grass = 0;
 
-	if (is_full_grass_tile(GetMapBrick(EditLevel, x, y + NORTH_T)))
+	if (is_full_grass_tile(get_top_map_brick(EditLevel, x, y + NORTH_T)))
 		north_grass = TRUE;
-	if (is_full_grass_tile(GetMapBrick(EditLevel, x, y + SOUTH_T)))
+	if (is_full_grass_tile(get_top_map_brick(EditLevel, x, y + SOUTH_T)))
 		south_grass = TRUE;
-	if (is_full_grass_tile(GetMapBrick(EditLevel, x + EAST_T, y)))
+	if (is_full_grass_tile(get_top_map_brick(EditLevel, x + EAST_T, y)))
 		east_grass = TRUE;
-	if (is_full_grass_tile(GetMapBrick(EditLevel, x + WEST_T, y)))
+	if (is_full_grass_tile(get_top_map_brick(EditLevel, x + WEST_T, y)))
 		west_grass = TRUE;
 
 	// Upper left corner:
 	//
-	if ((north_grass && west_grass && GetMapBrick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
-	    && (GetMapBrick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
+	if ((north_grass && west_grass && get_top_map_brick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
+	    && (get_top_map_brick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_15);
 	}
 	// Upper right corner
 	//
-	if ((north_grass && east_grass && GetMapBrick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
-	    && (GetMapBrick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
+	if ((north_grass && east_grass && get_top_map_brick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
+	    && (get_top_map_brick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_16);
 	}
 	// Lower left corner:
 	//
-	if ((south_grass && west_grass && GetMapBrick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
-	    && (GetMapBrick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
+	if ((south_grass && west_grass && get_top_map_brick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
+	    && (get_top_map_brick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_14);
 	}
 	// Lower right corner
 	//
-	if ((south_grass && east_grass && GetMapBrick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
-	    && (GetMapBrick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
+	if ((south_grass && east_grass && get_top_map_brick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
+	    && (get_top_map_brick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_17);
 	}
 
@@ -172,36 +198,36 @@ static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
 	int east_grass = 0;
 	int west_grass = 0;
 
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + NORTH_T))) {
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x, y + NORTH_T))) {
 		north_grass = TRUE;
 	}
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + SOUTH_T))) {
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x, y + SOUTH_T))) {
 		south_grass = TRUE;
 	}
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x + EAST_T, y))) {
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x + EAST_T, y))) {
 		east_grass = TRUE;
 	}
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x + WEST_T, y))) {
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x + WEST_T, y))) {
 		west_grass = TRUE;
 	}
 
 	// Upper left corner:
-	if (north_grass && west_grass && GetMapBrick(EditLevel, x + WEST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
+	if (north_grass && west_grass && get_top_map_brick(EditLevel, x + WEST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_21);
 	}
 
 	// Upper right corner
-	if (north_grass && east_grass && GetMapBrick(EditLevel, x + EAST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
+	if (north_grass && east_grass && get_top_map_brick(EditLevel, x + EAST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_20);
 	}
 
 	// Lower left corner:
-	if (south_grass && west_grass && GetMapBrick(EditLevel, x + WEST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
+	if (south_grass && west_grass && get_top_map_brick(EditLevel, x + WEST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_18);
 	}
 
 	// Lower right corner
-	if (south_grass && east_grass && GetMapBrick(EditLevel, x + EAST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
+	if (south_grass && east_grass && get_top_map_brick(EditLevel, x + EAST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
 		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_19);
 	}
 }
@@ -217,13 +243,13 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 	int east_grass = 0;
 	int west_grass = 0;
 
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + NORTH_T)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x, y + NORTH_T)))
 		north_grass = TRUE;
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + SOUTH_T)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x, y + SOUTH_T)))
 		south_grass = TRUE;
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x + EAST_T, y)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x + EAST_T, y)))
 		east_grass = TRUE;
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x + WEST_T, y)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x + WEST_T, y)))
 		west_grass = TRUE;
 
 	// Fix sand on the west:
@@ -273,13 +299,13 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 	int west_grass = 0;
 	int our_rand;
 
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + NORTH_T)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x, y + NORTH_T)))
 		north_grass = TRUE;
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x, y + SOUTH_T)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x, y + SOUTH_T)))
 		south_grass = TRUE;
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x + EAST_T, y)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x + EAST_T, y)))
 		east_grass = TRUE;
-	if (is_some_grass_tile(GetMapBrick(EditLevel, x + WEST_T, y)))
+	if (is_some_grass_tile(get_top_map_brick(EditLevel, x + WEST_T, y)))
 		west_grass = TRUE;
 
 	if (!north_grass && !south_grass && !east_grass && !west_grass) {
@@ -324,7 +350,7 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile_value = GetMapBrick(EditLevel, x, y);
+			this_tile_value = get_top_map_brick(EditLevel, x, y);
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_corners_in_this_grass_tile(EditLevel, x, y);
@@ -337,7 +363,7 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile_value = GetMapBrick(EditLevel, x, y);
+			this_tile_value = get_top_map_brick(EditLevel, x, y);
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_anticorners_in_this_grass_tile(EditLevel, x, y);
@@ -350,7 +376,7 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile_value = GetMapBrick(EditLevel, x, y);
+			this_tile_value = get_top_map_brick(EditLevel, x, y);
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_halfpieces_in_this_grass_tile(EditLevel, x, y);
@@ -363,7 +389,7 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile_value = GetMapBrick(EditLevel, x, y);
+			this_tile_value = get_top_map_brick(EditLevel, x, y);
 
 			if (is_full_grass_tile(this_tile_value)) {
 				our_rand = MyRandom(106);
@@ -389,7 +415,7 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	// 
 	for (x = xstart; x < xend; x++) {
 		for (y = ystart; y < yend; y++) {
-			this_tile_value = GetMapBrick(EditLevel, x, y);
+			this_tile_value = get_top_map_brick(EditLevel, x, y);
 
 			if (is_full_grass_tile(this_tile_value)) {
 				fix_isolated_grass_tile(EditLevel, x, y);

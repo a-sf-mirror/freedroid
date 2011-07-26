@@ -201,7 +201,7 @@ void insert_line_north(level *EditLevel)
  */
 void insert_line_south(level *EditLevel)
 {
-	int i;
+	int i, j;
 
 	if (EditLevel->ylen + 1 >= MAX_MAP_LINES)
 		return;
@@ -210,8 +210,11 @@ void insert_line_south(level *EditLevel)
 	
 	// Create the new line, and fill it with default values
 	EditLevel->map[EditLevel->ylen - 1] = MyMalloc((EditLevel->xlen + 1) * sizeof(map_tile));
+	map_tile *tiles = EditLevel->map[EditLevel->ylen - 1];
 	for (i = 0; i < EditLevel->xlen; i++) {
-		EditLevel->map[EditLevel->ylen - 1][i].floor_value = ISO_FLOOR_SAND;
+		tiles[i].floor_values[0] = ISO_FLOOR_SAND;
+		for (j = 1; j < MAX_FLOOR_LAYERS; j++)
+			EditLevel->map[EditLevel->ylen - 1][i].floor_values[j] = ISO_FLOOR_EMPTY;
 		dynarray_init(&EditLevel->map[EditLevel->ylen - 1][i].glued_obstacles, 0, sizeof(int));
 	}
 }
@@ -222,7 +225,7 @@ void insert_line_south(level *EditLevel)
  */
 void insert_column_east(level *EditLevel)
 {
-	int i;
+	int i, j;
 	map_tile *MapPointer;
 
 	if (EditLevel->xlen + 1 >= MAX_MAP_LINES)
@@ -233,7 +236,9 @@ void insert_column_east(level *EditLevel)
 	// We have to enlarge each map line, and fill those new tiles with default values
 	for (i = 0; i < EditLevel->ylen; i++) {
 		MapPointer = (map_tile*)realloc(EditLevel->map[i], sizeof(map_tile) * (EditLevel->xlen + 1));
-		MapPointer[EditLevel->xlen - 1].floor_value = ISO_FLOOR_SAND;
+		MapPointer[EditLevel->xlen - 1].floor_values[0] = ISO_FLOOR_SAND;
+		for (j = 1; j < MAX_FLOOR_LAYERS; j++)
+			MapPointer[EditLevel->xlen - 1].floor_values[j] = ISO_FLOOR_EMPTY;
 		dynarray_init(&MapPointer[EditLevel->xlen - 1].glued_obstacles, 0, sizeof(int));
 		EditLevel->map[i] = MapPointer;
 	}

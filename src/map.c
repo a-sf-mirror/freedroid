@@ -279,6 +279,16 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 	fp += off + 1;
 	off = 0;
 
+	/* Read floor_layers */
+	fp += strlen("floor layers:");
+	while (*(fp + off) != '\n')
+		off++;
+	fp[off] = 0;
+	loadlevel->floor_layers = atoi(fp);
+	fp[off] = '\n';
+	fp += off + 1;
+	off = 0;
+
 	/* Read lrb */
 	fp += strlen("light radius bonus of this level:");
 	while (*(fp + off) != '\n')
@@ -699,6 +709,7 @@ static char *decode_map(level *loadlevel, char *data)
 	/* read MapData */
 	for (i = 0; i < loadlevel->ylen; i++) {
 		int col;
+		int layer;
 		map_tile *Buffer;
 		int tmp;
 
@@ -714,8 +725,13 @@ static char *decode_map(level *loadlevel, char *data)
 		/* Decode it */
 		Buffer = MyMalloc((loadlevel->xlen + 10) * sizeof(map_tile));
 		for (col = 0; col < loadlevel->xlen; col++) {
-			tmp = strtol(this_line + 4 * col, NULL, 10);
-			Buffer[col].floor_value = (Uint16) tmp;
+			for (layer = 0; layer < loadlevel->floor_layers; layer++) {
+				tmp = strtol(this_line + 4 * (loadlevel->floor_layers * col + layer), NULL, 10);
+				Buffer[col].floor_values[layer] = (Uint16) tmp;
+			}
+			// Make sure that all floor layers are always initialized properly.
+			for ( ; layer < MAX_FLOOR_LAYERS; layer++)
+				Buffer[col].floor_values[layer] = ISO_FLOOR_EMPTY;
 			dynarray_init(&Buffer[col].glued_obstacles, 0, sizeof(int));
 		}
 
@@ -941,9 +957,11 @@ int smash_obstacle(float x, float y, int level)
 
 /**
  * This function returns the map brick code of the tile that occupies the
- * given position.
+ * given position in the given layer.
+ * Floor layers are indexed from 0 to lvl->floor_layers - 1. The lowest
+ * floor layer is #0. Every map has at least one layer.
  */
-Uint16 GetMapBrick(level * lvl, float x, float y)
+Uint16 get_map_brick(level *lvl, float x, float y, int layer)
 {
 	Uint16 BrickWanted;
 	int RoundX, RoundY;
@@ -951,15 +969,16 @@ Uint16 GetMapBrick(level * lvl, float x, float y)
 	gps vpos = { x, y, lvl->levelnum };
 	gps rpos;
 	if (!resolve_virtual_position(&rpos, &vpos)) {
-		return ISO_COMPLETELY_DARK;
+		return ISO_FLOOR_EMPTY;
 	}
 	RoundX = (int)rintf(rpos.x);
 	RoundY = (int)rintf(rpos.y);
 
-	BrickWanted = curShip.AllLevels[rpos.z]->map[RoundY][RoundX].floor_value;
+	BrickWanted = curShip.AllLevels[rpos.z]->map[RoundY][RoundX].floor_values[layer];
 	if (BrickWanted >= ALL_ISOMETRIC_FLOOR_TILES) {
-		ErrorMessage(__FUNCTION__, "Level %d at %d %d uses an unknown floor tile.\n", PLEASE_INFORM, IS_WARNING_ONLY, lvl->levelnum, RoundX, RoundY);
-		return ISO_COMPLETELY_DARK;
+		ErrorMessage(__FUNCTION__, "Level %d at %d %d uses an unknown floor tile: %d.\n", PLEASE_INFORM, IS_WARNING_ONLY,
+			lvl->levelnum, RoundX, RoundY, BrickWanted);
+		return ISO_FLOOR_EMPTY;
 	}
 
 	return BrickWanted;
@@ -1397,12 +1416,14 @@ static void encode_waypoints(struct auto_string *shipstr, level *lvl)
  * This function translates map data into human readable map code, that
  * can later be written to the map file on disk.
  */
-static void TranslateToHumanReadable(struct auto_string *str, map_tile * MapInfo, int LineLength)
+static void TranslateToHumanReadable(struct auto_string *str, map_tile * MapInfo, int LineLength, int layers)
 {
 	int col;
+	int layer;
 
 	for (col = 0; col < LineLength; col++) {
-		autostr_append(str, "%3d ", MapInfo[col].floor_value);
+		for (layer = 0; layer < layers; layer++)
+			autostr_append(str, "%3d ", MapInfo[col].floor_values[layer]);
 	}
 
 	autostr_append(str, "\n");
@@ -1424,6 +1445,7 @@ static void encode_level_for_saving(struct auto_string *shipstr, level *lvl, int
 	autostr_append(shipstr, "%s %d\n\
 xlen of this level: %d\n\
 ylen of this level: %d\n\
+floor layers: %d\n\
 light radius bonus of this level: %d\n\
 minimal light on this level: %d\n\
 infinite_running_on_this_level: %d\n\
@@ -1433,7 +1455,8 @@ dungeon generated: %d\n\
 jump target north: %d\n\
 jump target south: %d\n\
 jump target east: %d\n\
-jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->xlen, lvl->ylen,
+jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum,
+		lvl->xlen, lvl->ylen, lvl->floor_layers,
 		lvl->light_bonus, lvl->minimum_light_value,
 		lvl->infinite_running_on_this_level,
 		lvl->random_dungeon,
@@ -1450,7 +1473,7 @@ jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum, lvl->xlen, lvl
 	// Now in the loop each line of map data should be saved as a whole
 	for (i = 0; i < ylen; i++) {
 		if (!(reset_random_levels && lvl->random_dungeon)) {
-			TranslateToHumanReadable(shipstr, lvl->map[i], xlen);
+			TranslateToHumanReadable(shipstr, lvl->map[i], xlen, lvl->floor_layers);
 		} else {
 			int j = xlen;
 			while (j--) {

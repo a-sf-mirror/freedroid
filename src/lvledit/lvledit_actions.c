@@ -504,8 +504,8 @@ void lvledit_action_toggle_waypoint(int randomspawn)
 
 void action_set_floor(Level EditLevel, int x, int y, int type)
 {
-	int old = EditLevel->map[y][x].floor_value;
-	EditLevel->map[y][x].floor_value = type;
+	int old = EditLevel->map[y][x].floor_values[0];
+	EditLevel->map[y][x].floor_values[0] = type;
 	action_push(ACT_TILE_FLOOR_SET, x, y, old);
 }
 
@@ -808,7 +808,7 @@ void CreateNewMapLevel(int level_num)
 	for (i = 0; i < NewLevel->ylen; i++) {
 		NewLevel->map[i] = MyMalloc(NewLevel->xlen * sizeof(map_tile));
 		for (k = 0; k < NewLevel->xlen; k++) {
-			NewLevel->map[i][k].floor_value = ISO_FLOOR_SAND;
+			NewLevel->map[i][k].floor_values[0] = ISO_FLOOR_SAND;
 			dynarray_init(&NewLevel->map[i][k].glued_obstacles, 0, sizeof(int));
 		}
 	}

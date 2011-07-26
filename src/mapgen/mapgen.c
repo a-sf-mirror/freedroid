@@ -81,7 +81,7 @@ void mapgen_add_obstacle(double x, double y, int type)
 
 void mapgen_set_floor(int x, int y, int type)
 {
-	target_level->map[y][x].floor_value = type;
+	target_level->map[y][x].floor_values[0] = type;
 }
 
 static void split_wall(int w, int h, unsigned char *tiles) 

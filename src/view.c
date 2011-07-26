@@ -241,6 +241,7 @@ void object_vtx_color(void *data, float *r, float *g, float *b)
 static void show_floor(int mask)
 {
 	int LineStart, LineEnd, ColStart, ColEnd, line, col, MapBrick;
+	int layer_start, layer_end, layer;
 	float r, g, b;
 	float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
 
@@ -248,37 +249,33 @@ static void show_floor(int mask)
 
 	get_floor_boundaries(mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
-#if HAVE_LIBGL
-	if (use_open_gl) {
-		glEnable(GL_ALPHA_TEST);
-	}
-#endif
+	layer_start = 0;
+	layer_end = lvl->floor_layers;
+
 	start_image_batch();
 
-	for (line = LineStart; line < LineEnd; line++) {
-		for (col = ColStart; col < ColEnd; col++) {
-			// Retrieve floor tile
-			MapBrick = GetMapBrick(lvl, col, line);
+	for (layer = layer_start; layer < layer_end; layer++) {
+		for (line = LineStart; line < LineEnd; line++) {
+			for (col = ColStart; col < ColEnd; col++) {
+				// Retrieve floor tile
+				MapBrick = get_map_brick(lvl, col, line, layer);
+				if (MapBrick == ISO_FLOOR_EMPTY)
+					continue;
 
-			// Compute colorization (in case the floor tile is currently selected in the leveleditor)
-			
-			if (pos_inside_level(col, line, lvl)) {
-				object_vtx_color(&lvl->map[line][col], &r, &g, &b);
-			} else {
-				r = g = b = 1.0;
+				// Compute colorization (in case the floor tile is currently selected in the leveleditor)
+				if (pos_inside_level(col, line, lvl)) {
+					object_vtx_color(&lvl->map[line][col], &r, &g, &b);
+				} else {
+					r = g = b = 1.0;
+				}
+
+				struct image *img = &(floor_images[MapBrick]);
+				display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, IMAGE_SCALE_RGB_TRANSFO(zf, r, g, b));
 			}
-
-			struct image *img = &(floor_images[MapBrick]);
-			display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, IMAGE_SCALE_RGB_TRANSFO(zf, r, g, b));
 		}
 	}
 
 	end_image_batch();
-#if HAVE_LIBGL
-	if (use_open_gl) {
-		glDisable(GL_ALPHA_TEST);
-	}
-#endif
 }
 
 void blit_leveleditor_point(int x, int y)

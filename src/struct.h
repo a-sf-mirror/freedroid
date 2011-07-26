@@ -162,6 +162,7 @@ typedef struct configuration_for_freedroid {
 	int lazyload;
 	int show_item_labels;
 	int last_edited_level;
+	int show_all_floor_layers;
 
 	int difficulty_level;
 
@@ -742,7 +743,7 @@ typedef struct obstacle {
 } obstacle;
 
 typedef struct map_tile {
-	Uint16 floor_value;
+	Uint16 floor_values[MAX_FLOOR_LAYERS];
 	struct dynarray glued_obstacles;
 } map_tile;
 
@@ -764,6 +765,7 @@ typedef struct level {
 	char *Levelname;
 	char *Background_Song_Name;
 
+	int floor_layers;
 	map_tile *map[MAX_MAP_LINES];	// this is a vector of pointers
 	int jump_target_north;
 	int jump_target_south;

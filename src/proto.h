@@ -363,7 +363,7 @@ void quest_browser_interface(void);
 void respawn_level(int level_num);
 void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer);
 int smash_obstacle(float x, float y, int level);
-Uint16 GetMapBrick(level *, float, float);
+Uint16 get_map_brick(level *, float, float, int);
 void CountNumberOfDroidsOnShip(void);
 int LoadShip(char *filename, int);
 int SaveShip(const char *filename, int reset_random_levels, int);

@@ -521,7 +521,7 @@ static void do_drag_drop_floor(moderately_finepoint diff)
 			t->coord.y += (int)rintf(diff.y);
 
 			// Set the floor for the new current tile
-			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_value);
+			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_values[0]);
 			changed_tiles++;
 
 			// Select the new tile
@@ -868,7 +868,7 @@ void level_editor_cut_selection()
 			action_set_floor(EditLevel(), 
 				((struct lvledit_map_tile *) (e->data))->coord.x,
 				((struct lvledit_map_tile *) (e->data))->coord.y,
-				ISO_COMPLETELY_DARK);
+				ISO_FLOOR_EMPTY);
 			nbelem++;
 			break;
 		case OBJECT_ITEM:
@@ -957,7 +957,7 @@ void level_editor_paste_selection()
 			}
 
 			// Set and select	current tile
-			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_value);
+			action_set_floor(EditLevel(), t->coord.x, t->coord.y, t->tile->floor_values[0]);
 			select_floor_on_tile(t->coord.x, t->coord.y);
 			
 			nbact++;
