@@ -48,6 +48,7 @@
 
 void Init_Game_Data(void);
 void Get_Bullet_Data(char *DataPointer);
+void UpdateCountersForThisFrame();
 
 static struct {
 	double maxspeed_calibrator;
@@ -1620,6 +1621,7 @@ void ThouArtDefeated(void)
 		MoveBullets();
 		move_enemies();
 		animate_obstacles();
+		UpdateCountersForThisFrame();
 		
 		for (j = 0; j < MAXBULLETS; j++)
 			CheckBulletCollisions(j);

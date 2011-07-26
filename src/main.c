@@ -330,6 +330,10 @@ void UpdateCountersForThisFrame()
 		}
 	}
 	
+	// We stop here to prevent animation glitches when Tux is dead
+	if (GameOver)
+		return;	
+
 	// Some bots might be frozen and some might be poisoned, some
 	// might still have a 'firewait' or a normal wait or a paralysis.
 	// In any case those counters must be updated, but we'll only to 
