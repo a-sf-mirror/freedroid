@@ -2,6 +2,7 @@
 Levelnumber: 0
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 1
@@ -4016,6 +4017,7 @@ end_of_level
 Levelnumber: 1
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -4978,6 +4980,7 @@ end_of_level
 Levelnumber: 2
 xlen of this level: 60
 ylen of this level: 30
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -5630,6 +5633,7 @@ end_of_level
 Levelnumber: 3
 xlen of this level: 38
 ylen of this level: 22
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -6097,6 +6101,7 @@ end_of_level
 Levelnumber: 4
 xlen of this level: 44
 ylen of this level: 41
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -6836,6 +6841,7 @@ end_of_level
 Levelnumber: 5
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -8351,6 +8357,7 @@ end_of_level
 Levelnumber: 6
 xlen of this level: 50
 ylen of this level: 40
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -9114,6 +9121,7 @@ end_of_level
 Levelnumber: 7
 xlen of this level: 44
 ylen of this level: 47
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -9822,6 +9830,7 @@ end_of_level
 Levelnumber: 8
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -11696,6 +11705,7 @@ end_of_level
 Levelnumber: 9
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -12755,6 +12765,7 @@ end_of_level
 Levelnumber: 10
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -13233,6 +13244,7 @@ end_of_level
 Levelnumber: 11
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -14371,6 +14383,7 @@ end_of_level
 Levelnumber: 12
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 1
@@ -16759,6 +16772,7 @@ end_of_level
 Levelnumber: 13
 xlen of this level: 40
 ylen of this level: 50
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -17490,6 +17504,7 @@ end_of_level
 Levelnumber: 14
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -18968,6 +18983,7 @@ end_of_level
 Levelnumber: 15
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -20059,6 +20075,7 @@ end_of_level
 Levelnumber: 16
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -20933,6 +20950,7 @@ end_of_level
 Levelnumber: 17
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -22043,6 +22061,7 @@ end_of_level
 Levelnumber: 18
 xlen of this level: 30
 ylen of this level: 30
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -22291,6 +22310,7 @@ end_of_level
 Levelnumber: 19
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -22796,6 +22816,7 @@ end_of_level
 Levelnumber: 20
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -23415,6 +23436,7 @@ end_of_level
 Levelnumber: 21
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -23535,6 +23557,7 @@ end_of_level
 Levelnumber: 22
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -23655,6 +23678,7 @@ end_of_level
 Levelnumber: 23
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -23775,6 +23799,7 @@ end_of_level
 Levelnumber: 24
 xlen of this level: 99
 ylen of this level: 99
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 16
 infinite_running_on_this_level: 1
@@ -24881,6 +24906,7 @@ end_of_level
 Levelnumber: 25
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -25967,6 +25993,7 @@ end_of_level
 Levelnumber: 26
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -27341,6 +27368,7 @@ end_of_level
 Levelnumber: 27
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -28819,6 +28847,7 @@ end_of_level
 Levelnumber: 28
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -29867,6 +29896,7 @@ end_of_level
 Levelnumber: 29
 xlen of this level: 25
 ylen of this level: 21
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -30084,6 +30114,7 @@ end_of_level
 Levelnumber: 30
 xlen of this level: 25
 ylen of this level: 21
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -30301,6 +30332,7 @@ end_of_level
 Levelnumber: 31
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -33594,6 +33626,7 @@ end_of_level
 Levelnumber: 32
 xlen of this level: 43
 ylen of this level: 40
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -33772,6 +33805,7 @@ end_of_level
 Levelnumber: 33
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -36221,6 +36255,7 @@ end_of_level
 Levelnumber: 34
 xlen of this level: 36
 ylen of this level: 45
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
@@ -36514,6 +36549,7 @@ end_of_level
 Levelnumber: 35
 xlen of this level: 51
 ylen of this level: 61
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
@@ -37894,6 +37930,7 @@ end_of_level
 Levelnumber: 36
 xlen of this level: 23
 ylen of this level: 30
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
@@ -38129,6 +38166,7 @@ end_of_level
 Levelnumber: 37
 xlen of this level: 48
 ylen of this level: 68
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -39119,6 +39157,7 @@ end_of_level
 Levelnumber: 38
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -39468,6 +39507,7 @@ end_of_level
 Levelnumber: 39
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -39863,6 +39903,7 @@ end_of_level
 Levelnumber: 40
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -40323,6 +40364,7 @@ end_of_level
 Levelnumber: 41
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -40443,6 +40485,7 @@ end_of_level
 Levelnumber: 42
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -40676,6 +40719,7 @@ end_of_level
 Levelnumber: 43
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 9
 infinite_running_on_this_level: 0
@@ -40785,6 +40829,7 @@ end_of_level
 Levelnumber: 44
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -40934,6 +40979,7 @@ end_of_level
 Levelnumber: 45
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -41174,6 +41220,7 @@ end_of_level
 Levelnumber: 46
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -41905,6 +41952,7 @@ end_of_level
 Levelnumber: 47
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -42143,6 +42191,7 @@ end_of_level
 Levelnumber: 48
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -42723,6 +42772,7 @@ end_of_level
 Levelnumber: 49
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -43480,6 +43530,7 @@ end_of_level
 Levelnumber: 50
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -46577,6 +46628,7 @@ end_of_level
 Levelnumber: 51
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -49231,6 +49283,7 @@ end_of_level
 Levelnumber: 52
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -52668,6 +52721,7 @@ end_of_level
 Levelnumber: 53
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -56136,6 +56190,7 @@ end_of_level
 Levelnumber: 54
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -56286,6 +56341,7 @@ end_of_level
 Levelnumber: 55
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -56395,6 +56451,7 @@ end_of_level
 Levelnumber: 56
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -56504,6 +56561,7 @@ end_of_level
 Levelnumber: 57
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -57983,6 +58041,7 @@ end_of_level
 Levelnumber: 58
 xlen of this level: 40
 ylen of this level: 50
+floor layers: 1
 light radius bonus of this level: 12
 minimal light on this level: 5
 infinite_running_on_this_level: 0
@@ -58823,6 +58882,7 @@ end_of_level
 Levelnumber: 59
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -61897,6 +61957,7 @@ end_of_level
 Levelnumber: 60
 xlen of this level: 30
 ylen of this level: 30
+floor layers: 1
 light radius bonus of this level: 5
 minimal light on this level: 2
 infinite_running_on_this_level: 0
@@ -62159,6 +62220,7 @@ end_of_level
 Levelnumber: 61
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -62487,6 +62549,7 @@ end_of_level
 Levelnumber: 62
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -62804,6 +62867,7 @@ end_of_level
 Levelnumber: 63
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -63014,6 +63078,7 @@ end_of_level
 Levelnumber: 64
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -63134,6 +63199,7 @@ end_of_level
 Levelnumber: 65
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -63687,6 +63753,7 @@ end_of_level
 Levelnumber: 66
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -64032,6 +64099,7 @@ end_of_level
 Levelnumber: 67
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -64352,6 +64420,7 @@ end_of_level
 Levelnumber: 68
 xlen of this level: 90
 ylen of this level: 90
+floor layers: 1
 light radius bonus of this level: 19
 minimal light on this level: 19
 infinite_running_on_this_level: 0
@@ -64540,6 +64609,7 @@ end_of_level
 Levelnumber: 69
 xlen of this level: 30
 ylen of this level: 30
+floor layers: 1
 light radius bonus of this level: 2
 minimal light on this level: 1
 infinite_running_on_this_level: 0
