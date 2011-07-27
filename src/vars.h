@@ -183,6 +183,28 @@ char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES] = {
 	"iso_water_sidewalk_04.png",
 	"iso_water_edge_0013.png",
 	"iso_water_edge_0014.png",
+
+	"iso_grass_floor_0029.png",
+	"iso_grass_floor_0030.png",
+	"iso_grass_floor_0031.png",
+	"iso_grass_floor_0032.png",
+	"iso_grass_floor_0033.png",
+	"iso_grass_floor_0034.png",
+	"iso_grass_floor_0035.png",
+	"iso_grass_floor_0036.png",
+	"iso_grass_floor_0037.png",
+	"iso_grass_floor_0038.png",
+	"iso_grass_floor_0039.png",
+	"iso_grass_floor_0040.png",
+	"iso_grass_floor_0041.png",
+	"iso_grass_floor_0042.png",
+	"iso_grass_floor_0043.png",
+	"iso_grass_floor_0044.png",
+	"iso_grass_floor_0045.png",
+	"iso_grass_floor_0046.png",
+	"iso_grass_floor_0047.png",
+	"iso_grass_floor_0048.png",
+	"iso_grass_floor_0049.png"
 };
 
 tux_t Me;
