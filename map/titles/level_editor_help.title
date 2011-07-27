@@ -69,11 +69,15 @@ Change the line above the text from 'type=30' to 'type=32' and save. Now when yo
 
 		Floor edit mode:
 The floor edit mode works quite similar to the obstacle edit mode. You can select different types of floors at the object selector.
-To fill a region with a single floor tile, first select the tile to use, then click and drag the left mouse button until it covers the desired region.
+To fill a region with a single floor tile, first select the tile to use, then click and drag the left mouse button until it covers the desired region. The floor tiles are placed on the current floor layer.
 There are no floors that are special in any way, they are pure decoration.
+
+The visibility of floor layers can be controlled by a button with the layer icon. The button is only displayed for levels with multilayer floors.
+Left click on the button switches between a single floor layer displayed and all floor layers displayed. Right click on the button changes the current floor layer.
 
 			Selecting floor types
 Selecting is as easy as in the the obstacle mode. Floor tiles can be moved to with the method described above.
+For levels with multilayer floors only visible floor layers are selected. When a single floor layer is visible, only the tiles in the current floor layer are selected.
 
 In order to have a look at the floor only, click the lamp icon to have no obstacles displayed. Another click will let obstacles appear again.
 The icon with the turquoise rectangle displays collision rectangles. These rectangles indicate the blocking-area of an obstacle. Tux can't walk on such an area.
@@ -153,6 +157,7 @@ in order to switch to the next or previous (refers to level numbers) level, or, 
 				Level:	See above for explanation
 				Name:	The map name displayed at the GPS in the upper right corner of the game screen. You can disable the GPS in-game using the options menu.
 				Size:	You can increase or reduce the size of your level. Select the desired edge where you want to add/remove a line of tiles and click the <- or -> arrow buttons.
+				Floor layers: In order to change the number of floor layers for the current level, use the <- or -> arrow buttons.
 				Edge interface:	Here you can set the levels that shall be next to the current level. Enter the level number for the respective edge.
 								A level can only have one adjacent level (one it touches edges with) in each of the four cardinal directions (North, South, West, East).
 				Random dungeon:	If you set this option to 'Yes', the map will automatically generate a dungeon. You set the number of teleporters to and from this map clicking on the option.
