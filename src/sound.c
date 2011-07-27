@@ -42,6 +42,8 @@
 #define ALL_MOD_MUSICS 1
 #define MAX_SOUND_CHANNELS 5000
 
+static int allocated_sound_channels;
+
 static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance);
 static void remove_all_samples_from_WAV_cache(void);
 static void LoadAndFadeInBackgroundMusic(void);
@@ -205,8 +207,8 @@ void InitAudio(void)
 	// for a small increase in memory appetite as the price.  Whether this will
 	// really resolve the problem however is unsure.
 	//
-	DebugPrintf(1, "\nChannels allocated: %d. ", Mix_AllocateChannels(200));
-};				// void InitAudio(void)
+	allocated_sound_channels = Mix_AllocateChannels(200);
+}
 
 void SetBGMusicVolume(float NewVolume)
 {
@@ -234,11 +236,20 @@ static int find_free_channel()
 	int i = 0;
 	
 	// iterate through all of the channels
-	for (i = 0; i < MAX_SOUND_CHANNELS; i++) {
+	for (i = 0; i < allocated_sound_channels; i++) {
 
 		// if the channel is no longer playing, we can use it.
 		if (!Mix_Playing(i))
 			return i; 
+	}
+
+	// allocate more sound channels
+	int requested_sound_channels = allocated_sound_channels + 100;
+	if (requested_sound_channels <= MAX_SOUND_CHANNELS) {
+		int old_allocated_sound_channels = allocated_sound_channels;
+		allocated_sound_channels = Mix_AllocateChannels(allocated_sound_channels + 100);
+		if (allocated_sound_channels > old_allocated_sound_channels)
+			return old_allocated_sound_channels + 1;
 	}
 
 	// we couldn't find a free channel. 
