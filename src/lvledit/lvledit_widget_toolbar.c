@@ -143,7 +143,7 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 	extern struct image level_editor_waypoint_cursor[];
 	switch (type) {
 	case OBJECT_FLOOR:
-			return &(floor_images[array[idx]]);
+			return dynarray_member(&floor_images, array[idx], sizeof(struct image));
 	case OBJECT_OBSTACLE:
 			return get_obstacle_image(array[idx], 0);
 	case OBJECT_WAYPOINT:

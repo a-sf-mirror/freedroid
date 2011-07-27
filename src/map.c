@@ -975,7 +975,7 @@ Uint16 get_map_brick(level *lvl, float x, float y, int layer)
 	RoundY = (int)rintf(rpos.y);
 
 	BrickWanted = curShip.AllLevels[rpos.z]->map[RoundY][RoundX].floor_values[layer];
-	if (BrickWanted >= ALL_ISOMETRIC_FLOOR_TILES) {
+	if (BrickWanted >= floor_tile_filenames.size) {
 		ErrorMessage(__FUNCTION__, "Level %d at %d %d uses an unknown floor tile: %d.\n", PLEASE_INFORM, IS_WARNING_ONLY,
 			lvl->levelnum, RoundX, RoundY, BrickWanted);
 		return ISO_FLOOR_EMPTY;

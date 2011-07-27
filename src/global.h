@@ -36,7 +36,6 @@
 #else
 #define EXTERN extern
 
-EXTERN char *floor_tile_filenames[ALL_ISOMETRIC_FLOOR_TILES];
 EXTERN struct dynarray obstacle_map;
 EXTERN float FPSover1;
 EXTERN float FPSover10;
@@ -244,7 +243,7 @@ EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 EXTERN struct image tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
-EXTERN struct image floor_images[ALL_ISOMETRIC_FLOOR_TILES];
+EXTERN struct dynarray floor_images;
 EXTERN struct dynarray obstacle_images;
 
 EXTERN float iso_floor_tile_width;
@@ -268,6 +267,7 @@ EXTERN struct widget_text message_log;
 #define EXTERN extern
 #endif
 EXTERN struct dynarray obstacle_map;
+EXTERN struct dynarray floor_tile_filenames;
 EXTERN char *PrefixToFilename[ENEMY_ROTATION_MODELS_AVAILABLE];
 
 #undef EXTERN

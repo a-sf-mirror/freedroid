@@ -709,9 +709,10 @@ static struct image *get_storage_for_floor_tile(const char *filename)
 {
 	int i;
 
-	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
-		if (!strcmp(floor_tile_filenames[i], filename))
-			return &floor_images[i];
+	for (i = 0; i < floor_tile_filenames.size; i++) {
+		char **current_filename = dynarray_member(&floor_tile_filenames, i, sizeof(char *));
+		if (!strcmp(*current_filename, filename))
+			return dynarray_member(&floor_images, i, sizeof(struct image));
 	}
 
 	ErrorMessage(__FUNCTION__, "Floor tiles texture atlas specifies element %s which is not expected.",
@@ -735,8 +736,8 @@ void load_floor_tiles(void)
 void free_floor_tiles(void)
 {
 	int i;
-	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
-		delete_image(&floor_images[i]);
+	for (i = 0; i < floor_images.size; i++) {
+		delete_image(dynarray_member(&floor_images, i, sizeof(struct image)));
 	}
 }
 

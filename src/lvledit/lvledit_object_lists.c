@@ -325,27 +325,28 @@ static void build_floor_tile_lists(void)
 	free(square_floor_list);   //Square Tiles - Geometric Patterned
 	free(other_floor_list);    //OTHER: Dirt, Sand, Carpet, Misc, etc.
 
-	sidewalk_floor_list = MyMalloc((ALL_ISOMETRIC_FLOOR_TILES) * sizeof(int));
-	water_floor_list    = MyMalloc((ALL_ISOMETRIC_FLOOR_TILES) * sizeof(int));
-	grass_floor_list    = MyMalloc((ALL_ISOMETRIC_FLOOR_TILES) * sizeof(int));
-	square_floor_list   = MyMalloc((ALL_ISOMETRIC_FLOOR_TILES) * sizeof(int));
-	other_floor_list    = MyMalloc((ALL_ISOMETRIC_FLOOR_TILES) * sizeof(int));
+	sidewalk_floor_list = MyMalloc(floor_tile_filenames.size * sizeof(int));
+	water_floor_list    = MyMalloc(floor_tile_filenames.size * sizeof(int));
+	grass_floor_list    = MyMalloc(floor_tile_filenames.size * sizeof(int));
+	square_floor_list   = MyMalloc(floor_tile_filenames.size * sizeof(int));
+	other_floor_list    = MyMalloc(floor_tile_filenames.size * sizeof(int));
 
-	for (i = 0; i < ALL_ISOMETRIC_FLOOR_TILES; i++) {
-		if (strstr(floor_tile_filenames[i], "sidewalk")) {
+	for (i = 0; i < floor_tile_filenames.size; i++) {
+		char **current_filename = dynarray_member(&floor_tile_filenames, i, sizeof(char *));
+		if (strstr(*current_filename, "sidewalk")) {
 			sidewalk_floor_list[sidewalk] = i;
 			sidewalk++;
-			if (strstr(floor_tile_filenames[i], "water")) { //Water-Sidewalk tiles should be in both
+			if (strstr(*current_filename, "water")) { //Water-Sidewalk tiles should be in both
 				water_floor_list[water] = i;
 				water++;
 			}
-		} else if (strstr(floor_tile_filenames[i], "water")) {
+		} else if (strstr(*current_filename, "water")) {
 			water_floor_list[water] = i;
 			water++;
-		} else if (strstr(floor_tile_filenames[i], "grass")) {
+		} else if (strstr(*current_filename, "grass")) {
 			grass_floor_list[grass] = i;
 			grass++;
-		} else if (strstr(floor_tile_filenames[i], "square")) {
+		} else if (strstr(*current_filename, "square")) {
 			square_floor_list[square] = i;
 			square++;
 		} else {

@@ -668,6 +668,24 @@ static int lua_blast_ctor(lua_State *L)
 	return 0;
 }
 
+static int lua_floor_tile_list_ctor(lua_State *L)
+{
+	struct image empty_image = EMPTY_IMAGE;
+
+	lua_pushnil(L);
+	while (lua_next(L, -2) != 0) {
+		if (lua_type(L, -1) == LUA_TSTRING) {
+			const char *filename = strdup(lua_tostring(L, -1));
+			dynarray_add(&floor_tile_filenames, &filename, sizeof(char *));
+			dynarray_add(&floor_images, &empty_image, sizeof(empty_image));
+		}
+		lua_pop(L, 1);
+	}
+	lua_pop(L, 1);
+
+	return 0;
+}
+
 /**
  * Set obstacle flags as global lua values.
  */
@@ -721,6 +739,7 @@ void init_luaconfig()
 		{"obstacle", lua_obstacle_ctor},
 		{"leveleditor_obstacle_category", lua_leveleditor_obstacle_category_ctor},
 		{"blast", lua_blast_ctor},
+		{"floor_tile_list", lua_floor_tile_list_ctor},
 		{NULL, NULL}
 	};
 

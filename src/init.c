@@ -1033,6 +1033,10 @@ void Init_Game_Data()
 	find_file("obstacle_specs.lua", MAP_DIR, fpath, 0);
 	run_lua_file(LUA_CONFIG, fpath);
 
+	// Load floor tile specifications.
+	find_file("floor_tiles.lua", MAP_DIR, fpath, 0);
+	run_lua_file(LUA_CONFIG, fpath);
+
 	next_startup_percentage(1);
 }
 

@@ -276,7 +276,7 @@ static void show_floor(int mask)
 					r = g = b = 1.0;
 				}
 
-				struct image *img = &(floor_images[MapBrick]);
+				struct image *img = dynarray_member(&floor_images, MapBrick, sizeof(struct image));
 				display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, IMAGE_SCALE_RGB_TRANSFO(zf, r, g, b));
 			}
 		}
