@@ -423,7 +423,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
  * This function performs a menu for the player to select from, using the
  * keyboard or mouse wheel.
  */
-int chat_do_menu_selection_flagged(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *chat_droid)
+int chat_do_menu_selection_filtered(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *chat_droid, const char *topic)
 {
 	int MenuSelection;
 	char *FilteredChatMenuTexts[MAX_ANSWERS_PER_PERSON];
@@ -433,7 +433,7 @@ int chat_do_menu_selection_flagged(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enem
 	// We filter out those answering options that are allowed by the flag mask
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 		FilteredChatMenuTexts[i] = "";
-		if (chat_control_chat_flags[i]) {
+		if (chat_control_chat_flags[i] && !(strcmp(topic, ChatRoster[i].topic))) {
 
 			DebugPrintf(MENU_SELECTION_DEBUG, "%2d. ", i);
 			DebugPrintf(MENU_SELECTION_DEBUG, "%s\n", MenuTexts[i]);
@@ -457,7 +457,7 @@ int chat_do_menu_selection_flagged(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enem
 		use_counter = 0;
 		for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 
-			if (chat_control_chat_flags[i]) {
+			if (chat_control_chat_flags[i] && !(strcmp(topic, ChatRoster[i].topic))) {
 				FilteredChatMenuTexts[use_counter] = MenuTexts[i];
 				use_counter++;
 				if (MenuSelection == use_counter) {

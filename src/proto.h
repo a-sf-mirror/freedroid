@@ -592,7 +592,7 @@ void clear_player_inventory_and_stats(void);
 void StoreMenuBackground(int backup_slot);
 void RestoreMenuBackground(int backup_slot);
 int DoMenuSelection(char *InitialText, char *MenuTexts[], int FirstItem, const char *background_name, void *MenuFont);
-int chat_do_menu_selection_flagged(char **MenuTexts, enemy *chat_droid);
+int chat_do_menu_selection_filtered(char **MenuTexts, enemy *chat_droid, const char *topic);
 int chat_do_menu_selection(char **MenuTexts, enemy *chat_droid);
 void StartupMenu(void);
 void InitiateMenu(const char *background_name);
@@ -767,6 +767,8 @@ void list_splice_init(list_head_t * list, list_head_t * head);
 int load_texture_atlas(const char *, const char *, struct image *(*get_storage_for_key)(const char *key));
 
 // chat.c
+void chat_push_topic(const char *topic);
+void chat_pop_topic();
 void run_subdialog(const char *);
 void chat_add_response(const char *, int, enemy *);
 int validate_dialogs(void);

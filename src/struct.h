@@ -851,6 +851,7 @@ typedef struct ship {
 } ship;
 
 typedef struct dialogue_option {
+	char *topic;
 	char *option_text;
 	int no_text;
 	luacode lua_code;

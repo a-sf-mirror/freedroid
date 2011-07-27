@@ -43,9 +43,14 @@
 
 #define PUSH_ROSTER 2
 #define POP_ROSTER 3
+#define CHAT_TOPIC_STACK_SIZE 10
 
 static char *chat_initialization_code;	//first time with a character-code
 static char *chat_startup_code;	//every time we start this dialog-code
+
+// Topic stack
+static char *topic_stack[CHAT_TOPIC_STACK_SIZE];
+static unsigned int topic_stack_slot;
 
 static void run_chat(enemy *ChatDroid, int is_subdialog);
 
@@ -55,6 +60,7 @@ static void run_chat(enemy *ChatDroid, int is_subdialog);
  */
 static void clear_dialog_option(dialogue_option * d)
 {
+	d->topic = "";
 	d->option_text = "";
 	d->no_text = 0;
 	d->lua_code = NULL;
@@ -69,6 +75,8 @@ static void delete_one_dialog_option(int i, int FirstInitialisation)
 	// If this is not the first initialisation, we have to free the allocated
 	// strings first, or we'll be leaking memory...
 	if (!FirstInitialisation) {
+		if (strlen(ChatRoster[i].topic))
+			free(ChatRoster[i].topic);
 		if (strlen(ChatRoster[i].option_text))
 			free(ChatRoster[i].option_text);
 	}
@@ -121,6 +129,35 @@ There was an unrecognized parameter handled to this function.", PLEASE_INFORM, I
 	}
 
 };				// push_or_pop_chat_roster ( int push_or_pop )
+
+
+/**
+ * \brief Push a new topic in the topic stack.
+ * \param topic The topic name.
+ */
+void chat_push_topic(const char *topic)
+{
+	if (topic_stack_slot < CHAT_TOPIC_STACK_SIZE - 1) {
+		topic_stack[++topic_stack_slot] = topic;
+	} else {
+		ErrorMessage(__FUNCTION__,
+			     "The maximum depth of 10 topics has been maxed out.",
+			     PLEASE_INFORM, IS_WARNING_ONLY);
+	}
+}
+
+/**
+ * \brief Pop the top topic in the topic stack.
+ */
+void chat_pop_topic() {
+	if (topic_stack_slot > 0) {
+		topic_stack_slot--;
+	} else {
+		ErrorMessage(__FUNCTION__,
+			     "Root topic can't be popped.",
+			     PLEASE_INFORM, IS_WARNING_ONLY);
+	}
+}
 
 /**
  * This function should load new chat dialogue information from the 
@@ -188,6 +225,12 @@ static void load_dialog(const char *fpath)
 		ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromDataOptional(SectionPointer, "Text=\"", "\"");
 		if (!ChatRoster[OptionIndex].option_text) {
 			ChatRoster[OptionIndex].option_text = ReadAndMallocStringFromData(SectionPointer, "Text=_\"", "\"");
+		}
+
+		ChatRoster[OptionIndex].topic = ReadAndMallocStringFromDataOptional(SectionPointer, "Topic=\"", "\"");
+
+		if (!ChatRoster[OptionIndex].topic) {
+			ChatRoster[OptionIndex].topic = "";
 		}
 
 		ChatRoster[OptionIndex].no_text = strstr(SectionPointer, NO_TEXT_OPTION_STRING) > 0;
@@ -386,6 +429,10 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	chat_control_end_dialog = 0;
 	chat_control_next_node = -1;
 
+	// Reset topic stack variables
+	topic_stack_slot = 0;
+	topic_stack[0] = "";
+
 	/* Initialize the chat log widget. */
 	if (!is_subdialog)
 		widget_text_init(&chat_log, _("\3--- Start of Dialog ---\n"));
@@ -419,7 +466,8 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 
 		if (chat_control_next_node == -1) {
 			chat_control_next_node =
-				chat_do_menu_selection_flagged(DialogMenuTexts, ChatDroid);
+				chat_do_menu_selection_filtered(DialogMenuTexts, ChatDroid, 
+								topic_stack[topic_stack_slot]);
 			// We do some correction of the menu selection variable:
 			// The first entry of the menu will give a 1 and so on and therefore
 			// we need to correct this to more C style.

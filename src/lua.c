@@ -667,6 +667,21 @@ static int lua_chat_cli_says(lua_State * L)
 	return 0;
 }
 
+static int lua_chat_push_topic(lua_State * L)
+{
+	const char *topic = luaL_checkstring(L, 1);
+	
+	chat_push_topic(topic);
+
+	return 0;
+}
+
+static int lua_chat_pop_topic(lua_State * L)
+{
+	chat_pop_topic();
+
+	return 0;
+}
 
 static int lua_chat_run_subdialog(lua_State * L)
 {
@@ -1081,8 +1096,7 @@ luaL_reg lfuncs[] = {
 	,
 	{"craft_addons", lua_event_craft_addons}
 	,
-
-	{"get_player_name", lua_chat_player_name}
+	{"get_player_name", lua_chat_player_name} 
 	,
 	{"tux_says", lua_chat_tux_says}
 	,
@@ -1090,6 +1104,10 @@ luaL_reg lfuncs[] = {
 	{"chat_npc_says", lua_chat_npc_says}
 	,
 	{"cli_says", lua_chat_cli_says}
+	,
+	{"topic", lua_chat_push_topic}
+	,
+	{"pop_topic", lua_chat_pop_topic}
 	,
 	{"run_subdialog", lua_chat_run_subdialog}
 	,
