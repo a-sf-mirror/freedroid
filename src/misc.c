@@ -1071,6 +1071,7 @@ int LoadGameConfig(void)
 		free(stuff);
 		return ERR;
 	}
+	stuff[FS_filelength(configfile)] = 0;
 	fclose(configfile);
 	read_configuration_for_freedroid(stuff, "GameConfig", &GameConfig);
 	configfile = NULL;
