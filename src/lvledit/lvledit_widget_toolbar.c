@@ -202,6 +202,11 @@ static void toolbar_display(struct widget *vt)
 		if (!img)
 			break;
 
+		if (!image_loaded(img)) {
+			cindex++;
+			continue;
+		}
+
 		zoom_factor = min(((float)INITIAL_BLOCK_WIDTH / (float)img->w),
 				((float)INITIAL_BLOCK_HEIGHT / (float)img->h));
 
