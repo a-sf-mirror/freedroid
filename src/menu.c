@@ -133,6 +133,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 	int h;
 	int i;
 	static int MenuPosition = 1;
+	int VertScrollOffset = 0;
 	int NumberOfOptionsGiven;
 	int LongestOption;
 	SDL_Rect HighlightRect;
@@ -187,14 +188,21 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 	// (50 pixels around the menu's background, and 1.5 fontheigth around the text)
 	LongestOption = min(GameConfig.screen_width - 100 - 3 * h, LongestOption);
 
+	// Find how many options you can fit in the menu
+	int max_options = (GameConfig.screen_height - 100)/h;
+
 	// In those cases where we don't reset the menu position upon 
 	// initalization of the menu, we must check for menu positions
 	// outside the bounds of the current menu.
 	//
-	if (MenuPosition > NumberOfOptionsGiven)
+	if (MenuPosition > NumberOfOptionsGiven) {
 		MenuPosition = 1;
+	} else if (MenuPosition > max_options) {
+		VertScrollOffset = (MenuPosition - 1)/max_options;
+		MenuPosition = MenuPosition % max_options;
+	}
 
-	first_menu_item_pos_y = (GameConfig.screen_height - NumberOfOptionsGiven * h) / 2;
+	first_menu_item_pos_y = (GameConfig.screen_height - min(max_options, NumberOfOptionsGiven) * h) / 2;
 
 	print_menu_text(InitialText, MenuTexts, first_menu_item_pos_y, background_name, MenuFont);
 
@@ -203,7 +211,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 	BackgroundRect.x = (GameConfig.screen_width - LongestOption - 3 * h) / 2;
 	BackgroundRect.y = first_menu_item_pos_y - 50;
 	BackgroundRect.w = LongestOption + 3 * h;
-	BackgroundRect.h = (h * NumberOfOptionsGiven) + 100;
+	BackgroundRect.h = (h * min(max_options, NumberOfOptionsGiven)) + 100;
 
 	while (1) {
 		save_mouse_state();
@@ -219,13 +227,14 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 		//
 		if (((!strcmp(InitialText, LOAD_EXISTING_HERO_STRING)) ||
 		     (!strcmp(InitialText, DELETE_EXISTING_HERO_STRING))) &&
-		    strcmp(MenuTexts[MenuPosition - 1], _("[down]")) &&
-		    strcmp(MenuTexts[MenuPosition - 1], _("[up]")) &&
-		    strcmp(MenuTexts[MenuPosition - 1], " ") && MenuPosition < NumberOfOptionsGiven) {
+		    (MenuPosition + VertScrollOffset < NumberOfOptionsGiven) &&
+		    strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], _("[down]")) &&
+		    strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], _("[up]")) &&
+		    strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ")) {
 			// We load the thumbnail, or at least we try to do it...
 			//
-			LoadAndShowThumbnail(MenuTexts[MenuPosition - 1]);
-			LoadAndShowStats(MenuTexts[MenuPosition - 1]);
+			LoadAndShowThumbnail(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
+			LoadAndShowStats(MenuTexts[MenuPosition - 1 + VertScrollOffset]);
 		}
 		// Draw the menu's  background
 		//
@@ -234,36 +243,32 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 		// Display each option
 		//
 		for (i = 0; TRUE; i++) {
+			if (i >= min(max_options, NumberOfOptionsGiven))
+				break;
+			int i_abs = i + VertScrollOffset;
 			char *str = NULL;
-			int free_needed = FALSE;
 			int width = 0;
 
-			if (MenuTextWidths[i] == 0)
+			if (MenuTextWidths[i_abs] == 0)
 				break;
 
 			// Don't select empty menu entries
-			if (strcmp(MenuTexts[i], " ") == 0)
+			if (strcmp(MenuTexts[i_abs], " ") == 0)
 				continue;
 
 			// Define the actual text to display
 			// If the text is too long, handle autoscroll and clip it
-			if (MenuTextWidths[i] > LongestOption) {
-				if (i == MenuPosition - 1) {	// selected option -> autoscroll
-					str = strdup(MenuTexts[i] + (int)auto_scroll_start);
-				} else {	// unselected option -> no scroll
-					str = strdup(MenuTexts[i]);
+
+			str = strdup(MenuTexts[i_abs] + (i == MenuPosition - 1 ? (int)auto_scroll_start : 0));
+			width = min(MenuTextWidths[i_abs], LongestOption);
+
+			if (CutDownStringToMaximalSize(str, LongestOption) == FALSE) {
+				// if cutting was not needed, we are at the end of the text,
+				// so stop autoscroll
+				if (i == MenuPosition - 1) {
+					auto_scroll_run = FALSE;
+					auto_scroll_start = 0.0f;
 				}
-				free_needed = TRUE;
-				if (CutDownStringToMaximalSize(str, LongestOption) == FALSE) {
-					// if cutting was not needed, we are at the end of the text,
-					// so stop autoscroll
-					if (i == MenuPosition - 1)
-						auto_scroll_run = FALSE;
-				}
-				width = LongestOption;
-			} else {
-				str = MenuTexts[i];
-				width = MenuTextWidths[i];
 			}
 
 			// Depending on what highlight method has been used, we so some highlighting
@@ -271,7 +276,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 			//
 			if (i == MenuPosition - 1) {
 				HighlightRect.x = (GameConfig.screen_width - width) / 2 - h;
-				HighlightRect.y = first_menu_item_pos_y + (MenuPosition - 1) * h;
+				HighlightRect.y = first_menu_item_pos_y + i * h;
 				HighlightRect.w = width + 2 * h;
 				HighlightRect.h = h;
 				HighlightRectangle(Screen, HighlightRect);
@@ -283,8 +288,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 			// Draw the option's text
 			CenteredPutString(Screen, first_menu_item_pos_y + i * h, str);
 
-			if (free_needed == TRUE)
-				free(str);
+			free(str);
 		}
 		if (strlen(InitialText) > 0)
 			display_text(InitialText, 50, 50, NULL);
@@ -300,6 +304,7 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 		// input from the user...
 		//
 		int old_menu_position = MenuPosition;
+		int old_scroll_offset = VertScrollOffset;
 
 		if (SDL_PollEvent(&event)) {
 
@@ -340,35 +345,51 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 					//
 					//
 					MenuItemSelectedSound();
-					ret = MenuPosition;
+					ret = MenuPosition + VertScrollOffset;
 					goto out;
 					break;
 
 				case SDLK_UP:
+					if ((MenuPosition == 1)
+						&& (VertScrollOffset > 0)
+						&& (NumberOfOptionsGiven > max_options)) {
+
+						--VertScrollOffset;
+						continue;
+					}
 					if (MenuPosition > 1)
 						MenuPosition--;
 
 					// Skip any blank positions when moving with the keyboard
-					if (strcmp(MenuTexts[MenuPosition - 1], " ") == 0)
+					if (strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ") == 0)
 						MenuPosition = (MenuPosition == 1) ? MenuPosition + 1 : MenuPosition - 1;
 
 					MoveMenuPositionSound();
 					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
-					HighlightRect.y = first_menu_item_pos_y + (MenuPosition - 1) * h;
+					HighlightRect.y = first_menu_item_pos_y
+						+ (MenuPosition - 1) * h;
 					SDL_WarpMouse(HighlightRect.x, HighlightRect.y + h/2);
 					break;
 
 				case SDLK_DOWN:
-					if (MenuPosition < NumberOfOptionsGiven)
+					if ((MenuPosition == max_options)
+						&& (VertScrollOffset + max_options < NumberOfOptionsGiven)
+						&& (NumberOfOptionsGiven > max_options)) {
+
+						++VertScrollOffset;
+						continue;
+					}
+					if (MenuPosition < min(max_options, NumberOfOptionsGiven))
 						MenuPosition++;
 
 					// Skip any blank positions when moving with the keyboard
-					if (strcmp(MenuTexts[MenuPosition - 1], " ") == 0)
-						MenuPosition = (MenuPosition == NumberOfOptionsGiven) ? MenuPosition - 1 : MenuPosition + 1;
+					if (strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ") == 0)
+						MenuPosition = (MenuPosition == min(max_options, NumberOfOptionsGiven)) ? MenuPosition - 1 : MenuPosition + 1;
 
 					MoveMenuPositionSound();
 					HighlightRect.x = UNIVERSAL_COORD_W(320);	// ( TextWidth ( MenuTexts [ MenuPosition - 1 ] ) ) / 2 ;
-					HighlightRect.y = first_menu_item_pos_y + (MenuPosition - 1) * h;
+					HighlightRect.y = first_menu_item_pos_y
+						+ (MenuPosition - 1) * h;
 					SDL_WarpMouse(HighlightRect.x, HighlightRect.y + h/2);
 					break;
 
@@ -385,10 +406,10 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 			// it. Also, we completely ignore any clicks if the clicked
 			// position is blank.
 			if (MouseCursorIsOverMenuItem(first_menu_item_pos_y, h) == MenuPosition &&
-				strcmp(MenuTexts[MenuPosition - 1], " ") != 0) {
+				strcmp(MenuTexts[MenuPosition - 1 + VertScrollOffset], " ") != 0) {
 
 				MenuItemSelectedSound();
-				ret = MenuPosition;
+				ret = MenuPosition + VertScrollOffset;
 				goto out;
 			}
 		}
@@ -396,11 +417,11 @@ int DoMenuSelection(char *InitialText, char **MenuTexts, int FirstItem, const ch
 		MenuPosition = MouseCursorIsOverMenuItem(first_menu_item_pos_y, h);
 		if (MenuPosition < 1)
 			MenuPosition = 1;
-		if (MenuPosition > NumberOfOptionsGiven)
-			MenuPosition = NumberOfOptionsGiven;
+		if (MenuPosition > min(max_options, NumberOfOptionsGiven))
+			MenuPosition = min(max_options, NumberOfOptionsGiven);
 
 		// If the selected option has changed, halt eventual current autoscrolling
-		if (MenuPosition != old_menu_position) {
+		if (MenuPosition != old_menu_position || VertScrollOffset != old_scroll_offset) {
 			auto_scroll_run = TRUE;
 			auto_scroll_start = 0.0f;
 		}
