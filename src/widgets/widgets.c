@@ -43,7 +43,6 @@ struct image_resource {
 	struct list_head node;
 };
 
-LIST_HEAD(widget_list);
 LIST_HEAD(image_resource_list);
 
 /**
@@ -68,20 +67,28 @@ struct image *widget_load_image_resource(char *name, int use_offset_file)
 }
 
 /**
- * This function pushes events to the currently active top level containers. 
- *
- * NOTE: EVENT_UPDATE events are passed to both active and inactive top level containers.
+ * This function returns the current active user interface. 
+ */
+static struct widget *get_active_ui()
+{
+	switch (game_status) {	
+		case INSIDE_LVLEDITOR:
+			return WIDGET(get_lvledit_ui());
+
+		default:
+			return NULL;
+	}
+}
+
+/**
+ * This function pushes events to the currently active top level group. 
  */
 void handle_widget_event(SDL_Event *event)
 {
-	struct widget *w;
-	int is_update_event = 0;
-	if (event->type == SDL_USEREVENT && event->user.code == EVENT_UPDATE)
-		is_update_event = 1;
-	list_for_each_entry(w, &widget_list, node) {
-		if (is_update_event || w->enabled)
-			w->handle_event(w, event);
-	}
+	struct widget *ui = get_active_ui();
+
+	if (ui)
+		ui->handle_event(ui, event);
 }
 
 void widget_set_rect(struct widget *w, int x, int y, int width, int height)
@@ -198,14 +205,14 @@ void update_widgets()
 }
 
 /**
- * This function displays the currently active top level widget groups.
+ * This function displays the currently active top level widget group.
  */
 void display_widgets() 
 {
-	struct widget *w;
-	list_for_each_entry(w, &widget_list, node) {
-		if (w->enabled && w->display)
-			w->display(w);
+	struct widget *ui = get_active_ui();
+
+	if (ui) {
+		ui->display(ui);
+		display_tooltips();
 	}
-	display_tooltips();
 }

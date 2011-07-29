@@ -848,6 +848,9 @@ struct map_label *get_map_label(level *, const char *);
 // lvledit_display.c
 float lvledit_zoomfact_inv(void);
 
+// lvledit_widgets.c
+struct widget_group *get_lvledit_ui();
+
 // waypoint.c
 int add_waypoint(level *, int, int, int);
 void del_waypoint(level *, int, int);

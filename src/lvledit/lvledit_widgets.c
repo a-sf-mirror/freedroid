@@ -41,6 +41,7 @@
 #include "lvledit/lvledit_menu.h"
 #include "lvledit/lvledit_widgets.h"
 
+static struct widget_group *level_editor_widget_group = NULL; 
 static int *all_obstacles_list = NULL;
 
 typedef struct {
@@ -377,18 +378,16 @@ static void floor_layers_button_update(struct widget *w)
 }
 
 /**
- * This function builds the level editor interface if it hasn't been already initialized.
+ * This function returns the editor top level widget and creates it if necessary.
  */
-void widget_lvledit_init()
+struct widget_group *get_lvledit_ui()
 {
-	if (lvledit_widget_list) {
-		/* Widgets already initialized, get out */
-		return;
-	}
+	if (level_editor_widget_group)
+		// Editor UI already initialized.
+		return level_editor_widget_group;
 
-	struct widget_group *level_editor_widget_group = widget_group_create();
+	level_editor_widget_group = widget_group_create();
 	widget_set_rect(WIDGET(level_editor_widget_group), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
-	list_add_tail(&WIDGET(level_editor_widget_group)->node, &widget_list);
 	lvledit_widget_list = &level_editor_widget_group->list;
 	
 	struct widget *map;
@@ -556,6 +555,8 @@ void widget_lvledit_init()
 	lvledit_select_type(OBJECT_OBSTACLE);
 	
 	widget_lvledit_map_init();
+
+	return level_editor_widget_group;
 }
 
 struct widget *get_active_widget(int x, int y)

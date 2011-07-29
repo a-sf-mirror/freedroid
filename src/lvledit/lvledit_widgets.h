@@ -34,7 +34,6 @@
 #define EXTERN
 #endif
 
-void widget_lvledit_init(void);
 void lvledit_select_type(enum lvledit_object_type);
 void lvledit_categoryselect_switch(int direction);
 struct widget *get_active_widget(int, int);

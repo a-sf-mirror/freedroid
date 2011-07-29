@@ -226,8 +226,6 @@ static void leveleditor_init()
 	//
 	OriginWaypoint = (-1);
 
-	widget_lvledit_init();
-
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 }
 
