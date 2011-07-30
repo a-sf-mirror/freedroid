@@ -24772,7 +24772,7 @@ it: n="Shock discharger"  X=7.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip
 it: n="Silencer"  X=8.500000  Y=18.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 it: n="Coprocessor"  X=1.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 it: n="Pedometer"  X=2.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Foot warmer"  X=3.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+it: n="Foot warmers"  X=3.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 it: n="Circuit jammer"  X=4.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 it: n="Sensor disruptor"  X=5.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 it: n="Headlamp"  X=6.500000  Y=19.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 

@@ -3514,12 +3514,12 @@ inventory_size_x=1
 inventory_size_y=1
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/linarian_power_crank"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/linarian_power_crank/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This mechanical crank pumps up your muscles."
+Item description text=_"This mechanical crank, product of the highly advanced and sophisticated technological genius of the Linarian race, performs elaborate operations on energy and directs it towards a biochemical structure. For short, it buffs up your muscles. That's good."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3598,9 +3598,9 @@ inventory_size_x=1
 inventory_size_y=1
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/peltier_element"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/peltier_element/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"A thermoelectric device that increases your cooling rate."
@@ -3654,9 +3654,9 @@ inventory_size_x=1
 inventory_size_y=1
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/coprocessor"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/coprocessor/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"By speeding up your computations, this chip helps you to excel in many activities."
@@ -3668,26 +3668,26 @@ inventory_size_x=1
 inventory_size_y=1
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/pedometer"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/pedometer/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"A device that helps you to move dexterously by giving feedback on your foot movement."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Foot warmer"
-inventory_size_x=1
-inventory_size_y=1
+Item name=_"Foot warmers"
+inventory_size_x=2
+inventory_size_y=2
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/foot_warmers"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/foot_warmers/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This item helps you to be more comfortable in your shoes."
+Item description text=_"This pair of electric fuzzy foot warmers would make even a penguin warm and comfortable in any shoes, and help maintain a healthy body temprature, thus preventing colds and making you look cool. At least, that's what the advertisement says. And ads don't lie, do they?"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3696,9 +3696,9 @@ inventory_size_x=1
 inventory_size_y=1
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/circuit_jammer"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/circuit_jammer/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"This item improves your melee weapon by blasting the enemies you hit with an electromagnetic pulse. The pulse is powerful enough to temporarily shut down the circuits of the attacked bot."
@@ -3710,9 +3710,9 @@ inventory_size_x=1
 inventory_size_y=1
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/sensor_disruptor"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/sensor_disruptor/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
 Item description text=_"When attached to a melee weapon, this item induces errors to the sensors of the bots you attack, causing them to slow down momentarily."
@@ -3734,16 +3734,16 @@ Item description text=_"When fastened to your helmet, this lamp allows you to se
 
 ** Start of new item specification subsection **
 Item name=_"Brain stimulator"
-inventory_size_x=1
-inventory_size_y=1
+inventory_size_x=2
+inventory_size_y=2
 Item min class for drop=-1
 Item can be installed in slot with name="none"
-Item uses rotation series with prefix="tachyon_converter"
+Item uses rotation series with prefix="addons/brain_stimulator"
 Items of this type collect together in inventory="no"
-File or directory name for inventory image="tachyon_converter/inv_image.png"
+File or directory name for inventory image="addons/brain_stimulator/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"A chip that allows you to learn faster by providing additional feedback on your actions."
+Item description text=_"A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquailly referred to as a 'wierd swim cap with little thingies on it') and providing additional feedback on various actions."
 ** End of new item specification subsection **
 
 

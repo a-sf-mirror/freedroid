@@ -169,7 +169,7 @@ materials = { ["Superconducting Relay Unit"] = 3, ["Plasma Transistor"] = 10 }
 }
 
 addon{
-name = _"Foot warmer",
+name = _"Foot warmers",
 upgrade_cost = 50,
 require_socket = "electric",
 require_item = "boots",
