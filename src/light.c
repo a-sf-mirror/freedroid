@@ -797,7 +797,7 @@ static int calculate_light_strength(gps *cell_vpos)
 		// the light source into account. It means that we do not accumulate
 		// light sources.
 		if ( absolute_intensity - final_light_strength < 0 )
-			break;
+			continue;
 
 		// Some pre-computations
 		// First transform light source's position into virtual position, related to Tux's current level
