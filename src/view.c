@@ -1276,7 +1276,6 @@ void set_up_ordered_blitting_list(int mask)
 
 static void show_obstacle(int mask, obstacle * o, int code_number)
 {
-	level *obst_lvl;
 
 
 	// Safety checks
@@ -1288,7 +1287,7 @@ static void show_obstacle(int mask, obstacle * o, int code_number)
 		if (mask & ZOOM_OUT) {
 			blit_one_obstacle(o, NOHIGHLIGHT, ZOOM_OUT);
 		} else {
-			if (code_number == clickable_obstacle_below_mouse_cursor(&obst_lvl)) {
+			if (code_number == clickable_obstacle_under_cursor) {
 				blit_one_obstacle(o, HIGHLIGHT, !ZOOM_OUT);
 			} else {
 				// Do not blit "transp for water" obstacle when not in leveleditor mode
@@ -1829,7 +1828,7 @@ void draw_grid_on_the_floor(int mask)
 void AssembleCombatPicture(int mask)
 {
 	clear_screen();
-
+	clickable_obstacle_under_cursor =  clickable_obstacle_below_mouse_cursor(NULL);
 	if ((!GameConfig.skip_light_radius) && (!(mask & SKIP_LIGHT_RADIUS))) {
 		// We generate a list of obstacles (and other stuff) that might
 		// emit some light.  It should be sufficient to establish this

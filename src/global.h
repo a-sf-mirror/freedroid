@@ -167,6 +167,7 @@ EXTERN int gps_transform_map_dirty_flag;
 #define NEIGHBOR_ID_SE(lvl) NEIGHBOR_ID(lvl, 2, 2)
 
 EXTERN struct tux_rendering tux_rendering;
+EXTERN int clickable_obstacle_under_cursor;
 
 #undef EXTERN
 #ifdef _light_c

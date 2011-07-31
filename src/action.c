@@ -205,8 +205,9 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 	finepoint MapPositionOfMouse;
 	int i;
 	int obst_index;
-
-	*obst_lvl = NULL;
+	
+	if(obst_lvl)
+		*obst_lvl = NULL;
 
 	// If the cursor is not inside the user rectangle, 
 	// there is no obstacle below it.
@@ -236,7 +237,8 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 		
 		if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
 			if (get_obstacle_spec(lvl->obstacle_list[obst_index].type)->flags & IS_CLICKABLE) {
-				*obst_lvl = lvl;
+				if(obst_lvl)
+					*obst_lvl = lvl;
 				return obst_index;
 			} else {
 				continue;
