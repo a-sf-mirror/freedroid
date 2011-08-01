@@ -36,6 +36,7 @@
 #include "global.h"
 #include "proto.h"
 #include "vars.h"
+#include "widgets/widgets.h"
 
 #ifdef __OpenBSD__
 #include "ieeefp.h"
@@ -75,6 +76,9 @@ void Game()
 	reset_visible_levels();
 	get_visible_levels();
 	animation_timeline_reset();
+
+	// Reset tooltips.
+	widget_set_tooltip(NULL, NULL);
 	
 	while ((!GameOver && !QuitProgram)) {
 		game_status = INSIDE_GAME;

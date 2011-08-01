@@ -222,6 +222,9 @@ static void leveleditor_init()
 	strcpy(VanishingMessage, "");
 	VanishingMessageEndDate = 0;
 
+	// Reset tooltips.
+	widget_set_tooltip(NULL, NULL);
+
 	// For drawing new waypoints, we init this.
 	//
 	OriginWaypoint = (-1);
