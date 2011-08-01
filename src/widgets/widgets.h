@@ -62,12 +62,23 @@ struct widget {
 	struct list_head node;	/**< Linked list node used for storing sibling widgets in a widget_group. */
 };
 
+/**
+ * This structure is used for storing and displaying tooltips.
+ * The tooltip text will be retrieved using the get_text function pointer. If this pointer is NULL,
+ * the text field will be used instead.
+ * NOTE: get_text should be used for dynamic tooltips while the text field should be used for static tooltips.
+ */
+struct tooltip {
+	string (*get_text)();	/**< Returns the text of a dynamic tooltip. */
+	string text;		/**< String used for static tooltip texts. */
+};
+
 void display_widgets();
 void update_widgets();
 void handle_widget_event(SDL_Event *);
 struct image *widget_load_image_resource(char *, int);
 void widget_set_rect(struct widget *, int, int, int, int);
-void widget_set_tooltip(char *, SDL_Rect *);
+void widget_set_tooltip(struct tooltip *, SDL_Rect *);
 
 #undef EXTERN
 

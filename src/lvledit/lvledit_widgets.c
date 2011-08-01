@@ -405,7 +405,7 @@ struct widget_group *get_lvledit_ui()
 	struct {
 		int btn_index;
 		char *text;
-		char *tooltip;
+		string tooltip_text;
 		int  number_of_toggle_states;
 		void (*activate_button) (struct widget_button *);
 		void (*activate_button_secondary) (struct widget_button *);
@@ -490,7 +490,7 @@ struct widget_group *get_lvledit_ui()
 
 		// Set text and tooltip.
 		button->text = b[i].text; 
-		button->tooltip = b[i].tooltip; 
+		button->tooltip.text = b[i].tooltip_text; 
 		
 		// Set callbacks.
 		button->activate_button = b[i].activate_button;

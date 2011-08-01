@@ -72,7 +72,7 @@ static int button_handle_event(struct widget *w, SDL_Event *event)
 			if (event->user.code == EVENT_MOUSE_ENTER) {
 				b->state = HOVERED;
 				// Set the button tooltip to be displayed.
-				widget_set_tooltip(b->tooltip, &w->rect);
+				widget_set_tooltip(&b->tooltip, &w->rect);
 			}
 			// Mouse left the button's rectangle, switch to normal state.
 			if (event->user.code == EVENT_MOUSE_LEAVE) {
@@ -144,7 +144,8 @@ struct widget_button *widget_button_create()
 	a->state = DEFAULT;
 	a->active = 0;
 	a->text = NULL;
-	a->tooltip = NULL;
+	a->tooltip.text = NULL;
+	a->tooltip.get_text = NULL;
 	a->activate_button = NULL;
 	a->activate_button_secondary = NULL;
 	

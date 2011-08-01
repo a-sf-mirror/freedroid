@@ -100,9 +100,9 @@ void widget_set_rect(struct widget *w, int x, int y, int width, int height)
 }
 
 static struct {
-	string text;		/**< Tooltip text to be displayed. */
+	struct tooltip *value;	/**< Pointer to the widget's tooltip. */
 	SDL_Rect widget_rect;	/**< Tooltip owner rectangle. */
-} tooltip;	/**< Contains informations about the current tooltip to be displayed.*/
+} tooltip_info;		/**< Contains informations about the current tooltip to be displayed.*/
 
 /**
  * This function changes the tooltip text to be displayed
@@ -111,11 +111,19 @@ static struct {
  * @param new_tooltip The new tooltip to be displayed.
  * @param widget_rect Rectangle of the tooltip owner.
  */
-void widget_set_tooltip(string new_tooltip, SDL_Rect *widget_rect)
+void widget_set_tooltip(struct tooltip *new_tooltip, SDL_Rect *widget_rect)
 {
-	tooltip.text = new_tooltip;
-	if (widget_rect)
-		tooltip.widget_rect = *widget_rect;
+	if (!new_tooltip || !widget_rect) {
+		tooltip_info.value = NULL;
+		return;
+	}
+
+	if ((new_tooltip->get_text && new_tooltip->get_text()) || new_tooltip->text) {
+		tooltip_info.value = new_tooltip;
+		tooltip_info.widget_rect = *widget_rect;
+	} else {
+		tooltip_info.value = NULL;
+	}
 }
 
 /**
@@ -133,11 +141,19 @@ static void display_tooltips()
 	time_spent_on_button += SDL_GetTicks() - previous_function_call_time;
 	previous_function_call_time = SDL_GetTicks();
 
-	if (!tooltip.text) {
-		// No tooltip is set, meaning the mouse is not hovering any widget with tooltip.
+	if (!tooltip_info.value) {
+		// No tooltip has been set for displaying.
 		time_spent_on_button = 0;
 		return;
 	}
+
+	string tooltip_text;
+
+	// Get the tooltip text.
+	if (tooltip_info.value->get_text)
+		tooltip_text = tooltip_info.value->get_text();
+	else
+		tooltip_text = tooltip_info.value->text;
 
 	// Level editor specific options.
 	if (game_status == INSIDE_LVLEDITOR) {
@@ -150,12 +166,12 @@ static void display_tooltips()
 		centered = 0;	// Editor tooltips are not centered.
 	}
 	
-	// Temporary copy required for not altering the tooltip string.
-	char buffer[strlen(tooltip.text) + 1];
-	strcpy(buffer, tooltip.text);
-
 	// Set the correct font before computing text width.
 	SetCurrentFont(FPS_Display_BFont);
+
+	// Temporary copy required due to longest_line_width() altering the string.
+	char buffer[strlen(tooltip_text) + 1];
+	strcpy(buffer, tooltip_text);
 
 	// Tooltip width is given by the longest line in the tooltip, with a maximum of 400 pixels
 	// after which linebreaks are automatically added.
@@ -164,11 +180,11 @@ static void display_tooltips()
 		tooltip_rect.w = 400;	
 
 	// Compute height
-	int lines_in_text = get_lines_needed(tooltip.text, tooltip_rect, LINE_HEIGHT_FACTOR);
+	int lines_in_text = get_lines_needed(tooltip_text, tooltip_rect, LINE_HEIGHT_FACTOR);
 	tooltip_rect.h = lines_in_text * FontHeight(FPS_Display_BFont);
 
-	int center_x = tooltip.widget_rect.x + tooltip.widget_rect.w / 2;	
-	int center_y = tooltip.widget_rect.y + tooltip.widget_rect.h / 2;	
+	int center_x = tooltip_info.widget_rect.x + tooltip_info.widget_rect.w / 2;	
+	int center_y = tooltip_info.widget_rect.y + tooltip_info.widget_rect.h / 2;	
 
 	// The tooltip is positioned to the left or to the right (whichever is closer 
 	// to the screen's center) of the widget's center.
@@ -180,12 +196,12 @@ static void display_tooltips()
 	// The tooltip is positioned above or under the widget (whichever is closer 
 	// to the screen's center). A small offset is added for aesthetic reasons.
 	if (center_y < GameConfig.screen_height / 2)
-		tooltip_rect.y = tooltip.widget_rect.y + tooltip.widget_rect.h + 4;
+		tooltip_rect.y = tooltip_info.widget_rect.y + tooltip_info.widget_rect.h + 4;
 	else
-		tooltip_rect.y = tooltip.widget_rect.y - tooltip_rect.h - 4;
+		tooltip_rect.y = tooltip_info.widget_rect.y - tooltip_rect.h - 4;
 		
 
-	display_tooltip(tooltip.text, centered, tooltip_rect);
+	display_tooltip(tooltip_text, centered, tooltip_rect);
 }
 
 /**

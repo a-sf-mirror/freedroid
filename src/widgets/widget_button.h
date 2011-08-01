@@ -39,7 +39,7 @@ struct widget_button {
 	void (*activate_button) (struct widget_button *);		/**< Left click callback. */
 	void (*activate_button_secondary) (struct widget_button *);	/**< Right click callback. */
 	string text;					/**< Text displayed in center of the button's rectangle. */
-	string tooltip;					/**< Tooltip displayed on mouse hover. */
+	struct tooltip tooltip;				/**< Tooltip displayed on mouse hover. */
 };
 
 struct widget_button *widget_button_create();
