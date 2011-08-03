@@ -215,6 +215,16 @@ Graphics FAQ:
 
 	   to start the game with OpenGL output disabled.  Graphics will revert to
 	   pure SDL mode.
+	Q: I run Linux with multiple monitors in TwinView (Xinerama) mode, however fullscreen
+	   mode is centered over the break between the two monitors. I would rather it be
+	   centered on one of the screens.
+	A: To have the game use only one monitor for fullscreen mode, do the following:
+	   1)  Make certain you use SDL version >=1.2.14.
+	   2)  Set the environmental variable "SDL_VIDEO_FULLSCREEN_DISPLAY" to the number corresponding to
+			the monitor you wish to use: 0 is your first display, 1 is your second, etc.
+
+	   If that does not work you may have to add single-monitor metamodes to your xorg.conf file.
+	   Modifications to xorg.conf require a restart of the X server before they take effect.
 
 Sound FAQ:
 
