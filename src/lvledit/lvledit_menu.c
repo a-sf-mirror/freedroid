@@ -40,11 +40,17 @@
 
 #include "mapgen/mapgen.h"
 
-int EditLevelNrPopup(void)
+/**
+ * Get a natural value from the user
+ * @param displayed_text Text to be displayed
+ * @param suggested_val Suggested value for the number
+ * @return Input number, -1 if the input is not made of digits only and -2 if the input is NULL
+ */
+int get_number_popup(const char *displayed_text, const char *suggested_val)
 {
 	char *str, *cstr;
 	int tgt = 0;
-	str = GetEditableStringInPopupWindow(1000, _("\n Please enter new level number: \n\n"), "");
+	str = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text), suggested_val);
 	if (str) {
 		cstr = str;
 		while (*cstr) {
@@ -56,13 +62,13 @@ int EditLevelNrPopup(void)
 		if (!tgt)
 			tgt = atoi(str);
 	} else
-		tgt = -1;
+		tgt = -2;
 	
 	free(str);
 
 	return (tgt);
 
-}				// int EditLevelNrPopup ( void )
+}
 
 /**
  * This a a menu interface to allow to edit the level dimensions in a
@@ -290,7 +296,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = EditLevelNrPopup();
+			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_north = (tgt);
@@ -305,7 +311,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = EditLevelNrPopup();
+			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_east = (tgt);
@@ -320,7 +326,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = EditLevelNrPopup();
+			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_south = (tgt);
@@ -335,7 +341,7 @@ static void SetLevelInterfaces(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = EditLevelNrPopup();
+			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
 
 			if (tgt >= -1 && tgt < curShip.num_levels) {
 				EditLevel->jump_target_west = (tgt);
@@ -658,7 +664,7 @@ static void LevelOptions(void)
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = EditLevelNrPopup();
+			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (level_exists(tgt)) {
@@ -990,7 +996,7 @@ int DoLevelEditorMainMenu()
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 
-			tgt = EditLevelNrPopup();
+			tgt = get_number_popup("\n Please enter new level number: \n\n", "");
 
 			if (tgt >= 0 && tgt < curShip.num_levels) {
 				if (level_exists(tgt)) {
