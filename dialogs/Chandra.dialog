@@ -248,7 +248,7 @@ Nr=16 Text=_"I wanted to ask you some questions about Linarians."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=17 Text=_"I wanted to ask you some questions about droid."
+Nr=17 Text=_"I wanted to ask you some questions about droids."
 <LuaCode>
 	npc_says(_"Yes?")
 	hide(17)
@@ -256,7 +256,7 @@ Nr=17 Text=_"I wanted to ask you some questions about droid."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=18 Text=_"That's all I wanted to know about droid." Topic="Bot Information" 
+Nr=18 Text=_"That's all I wanted to know about droids." Topic="Bot Information" 
 <LuaCode>
 	npc_says(_"Did you have any other questions?")
 	pop_topic()
