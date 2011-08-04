@@ -49,7 +49,7 @@ static char *chat_initialization_code;	//first time with a character-code
 static char *chat_startup_code;	//every time we start this dialog-code
 
 // Topic stack
-static char *topic_stack[CHAT_TOPIC_STACK_SIZE];
+static const char *topic_stack[CHAT_TOPIC_STACK_SIZE];
 static unsigned int topic_stack_slot;
 
 static void run_chat(enemy *ChatDroid, int is_subdialog);
