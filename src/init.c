@@ -1201,8 +1201,8 @@ void ParseCommandLine(int argc, char *const argv[])
 						     "\tThe resolution identifier given is not a valid resolution code.\n"
 						     "\tThese codes correspond to the following hardcoded resolutions available:\n",
 						     txt,
-						     "\tAnything else will not be accepted right now, but you can send in\n"
-						     "\tyour suggestion to the FreedroidRPG dev team to enable new resolutions.\n"
+						     "\tAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
+						     "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.\n"
 						     "----------------------------------------------------------------------\n");
 					free(txt);
 				}
