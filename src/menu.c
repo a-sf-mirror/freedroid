@@ -877,6 +877,7 @@ void Cheatmenu(void)
 		printf_SDL(Screen, -1, -1, " c. Acquire 1 million circuits, current worth: %d\n", Me.Gold);
 		printf_SDL(Screen, -1, -1, " n. No hidden droids: %s", show_all_droids ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " r. Infinite running stamina: %s", GameConfig.cheat_running_stamina ? "ON\n" : "OFF\n");
+		printf_SDL(Screen, -1, -1, " s. Double speed running: %s\n", GameConfig.cheat_double_speed ? "ON" : "OFF");
 		printf_SDL(Screen, -1, -1, " x. Cheatkeys : %s", GameConfig.enable_cheatkeys ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " q. RESUME game\n");
 
@@ -1009,6 +1010,10 @@ void Cheatmenu(void)
 
 		case 'r':
 			GameConfig.cheat_running_stamina = !GameConfig.cheat_running_stamina;
+			break;
+
+		case 's':
+			GameConfig.cheat_double_speed = !GameConfig.cheat_double_speed;
 			break;
 
 		case 'x':

@@ -68,6 +68,14 @@ float vect_len(moderately_finepoint our_vector)
 	return (sqrt(powf(our_vector.x, 2) + powf(our_vector.y, 2)));
 };				// float vect_len ( moderately_finepoint our_vector )
 
+static float get_tux_running_speed(void)
+{
+	if (GameConfig.cheat_double_speed)
+		return 2 * TUX_RUNNING_SPEED;
+
+	return TUX_RUNNING_SPEED;
+}
+
 /**
  * This function adapts the influencers current speed to the maximal speed
  * possible for the influencer.
@@ -104,8 +112,9 @@ static void limit_tux_speed()
 
 	/* Limit the speed when Tux is not attacking. */
 	float speed = Me.speed.x * Me.speed.x + Me.speed.y * Me.speed.y;
-	if (speed > TUX_RUNNING_SPEED * TUX_RUNNING_SPEED) {
-		float ratio = (TUX_RUNNING_SPEED * TUX_RUNNING_SPEED) / speed;
+	float running_speed = get_tux_running_speed();
+	if (speed > running_speed * running_speed) {
+		float ratio = (running_speed * running_speed) / speed;
 		Me.speed.x *= ratio;
 		Me.speed.y *= ratio;
 	}
@@ -539,8 +548,9 @@ static int move_tux_towards_raw_position(float x, float y)
 
 	if ((LeftCtrlPressed() || GameConfig.autorun_activated) &&
 		!(LeftCtrlPressed() && GameConfig.autorun_activated) && (!Me.running_must_rest)) {
-		planned_step.x = RemainingWay.x * TUX_RUNNING_SPEED / length;
-		planned_step.y = RemainingWay.y * TUX_RUNNING_SPEED / length;
+		float running_speed = get_tux_running_speed();
+		planned_step.x = RemainingWay.x * running_speed / length;
+		planned_step.y = RemainingWay.y * running_speed / length;
 	} else {
 		planned_step.x = RemainingWay.x * TUX_WALKING_SPEED / length;
 		planned_step.y = RemainingWay.y * TUX_WALKING_SPEED / length;
