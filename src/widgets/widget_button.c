@@ -110,8 +110,19 @@ static void button_display(struct widget *wb)
 		img = b->image[0][DEFAULT];
 
 	// Don't display button if no image found.
-	if (img)
-		display_image_on_screen(img, wb->rect.x, wb->rect.y, set_image_transformation(wb->rect.w / (float)img->w, wb->rect.h / (float)img->h, 1.0, 1.0, 1.0, 1.0, 0));
+	if (img) {
+		// Align the image at the center of the button and scale it as much as possible,
+		// while keeping the aspect ratio.
+
+		// Compute the maximum scale that can be applied.
+		float scale = min(wb->rect.w / (float)img->w, wb->rect.h / (float)img->h);
+
+		// Compute the position inside the button's rectangle.
+		int pos_x = wb->rect.x + (wb->rect.w - img->w * scale) / 2;
+		int pos_y = wb->rect.y + (wb->rect.h - img->h * scale) / 2;
+
+		display_image_on_screen(img, pos_x, pos_y, IMAGE_SCALE_TRANSFO(scale));
+	}
 
 	// Display button's text if any.
 	if (b->text) {
