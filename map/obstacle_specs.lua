@@ -3049,3 +3049,10 @@ obstacle {
 	action = "sign",
 	animation_fps = 0.6
 }
+	
+obstacle {
+	image_filenames = { "iso_barrel_radioactive_0000.png" },
+	borders = borders(0.70, 0.70),
+	emitted_light_strength = { 0, 2},
+	transparency = NO_TRANSPARENCY,
+}

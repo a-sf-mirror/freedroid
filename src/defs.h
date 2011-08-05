@@ -1286,6 +1286,7 @@ enum obstacle_types {
 	ISO_SIGN_1_FLASH,
 	ISO_SIGN_2_FLASH,
 	ISO_SIGN_3_FLASH,
+	ISO_BARREL_RADIOACTIVE,
 };
 
 enum {

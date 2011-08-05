@@ -382,6 +382,7 @@ leveleditor_obstacle_category {
 		"iso_container_0011.png",
 		"iso_barrel_1.png",
 		"iso_barrel_2.png",
+		"iso_barrel_radioactive_0000.png",
 		"iso_barrel_3.png",
 		"iso_barrel_4.png",
 		"iso_barrel_5.png",
