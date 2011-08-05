@@ -483,10 +483,7 @@ static int lua_event_give_xp(lua_State * L)
 static int lua_event_eat_training_points(lua_State * L)
 {
 	int nb = luaL_checkinteger(L, 1);
-	char tmpstr[150];
 	Me.points_to_distribute -= nb;
-	sprintf(tmpstr, _("%d training point(s) spent!"), nb);
-	SetNewBigScreenMessage(tmpstr);
 	return 0;
 }
 
