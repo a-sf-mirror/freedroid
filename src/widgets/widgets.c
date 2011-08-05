@@ -232,3 +232,26 @@ void display_widgets()
 		display_tooltips();
 	}
 }
+
+/**
+ * Default event handler.
+ */
+static int handle_event(struct widget *w, SDL_Event *event)
+{
+	return 0;
+}
+
+/**
+ * This function creates a simple widget.
+ */
+struct widget *widget_create()
+{
+	struct widget *w = MyMalloc(sizeof(struct widget));
+	widget_set_rect(w, 0, 0, 0, 0);
+	w->handle_event = handle_event;
+	w->display = NULL;
+	w->update = NULL;
+	w->enabled = 1;
+
+	return w;
+}

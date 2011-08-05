@@ -75,6 +75,7 @@ struct tooltip {
 
 void display_widgets();
 void update_widgets();
+struct widget *widget_create();
 void handle_widget_event(SDL_Event *);
 struct image *widget_load_image_resource(char *, int);
 void widget_set_rect(struct widget *, int, int, int, int);
