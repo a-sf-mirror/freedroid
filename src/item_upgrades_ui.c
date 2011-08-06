@@ -383,7 +383,7 @@ static void calculate_cost_and_bonuses(void)
 
 	// Rebuild the item bonuses using a temporary item that has all the
 	// yet to be installed add-ons installed.
-	CopyItem(&ui.custom_item, &temp, FALSE);
+	CopyItem(&ui.custom_item, &temp);
 	for (i = 0; i < ADDON_ITEMS_MAX; i++) {
 		if (i < temp.upgrade_sockets.size) {
 			addon = &ui.addon_items[i];

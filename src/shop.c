@@ -759,7 +759,7 @@ static int buy_item(item *BuyItem, int amount)
 		return -1;
 	}
 
-	CopyItem(BuyItem, &new_item, 0);
+	CopyItem(BuyItem, &new_item);
 	
 	if (BuyItem->multiplicity < amount)
 		amount = BuyItem->multiplicity;

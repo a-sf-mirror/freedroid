@@ -490,7 +490,7 @@ void show_quick_inventory(void);
 void HandleInventoryScreen(void);
 int try_give_item(item *it);
 int give_item(item *);
-void CopyItem(item * SourceItem, item * DestItem, int MakeSound);
+void CopyItem(item * SourceItem, item * DestItem);
 void DeleteItem(item * Item);
 void DropRandomItem(int level_num, float x, float y, int class, int ForceMagical);
 int get_floor_item_index_under_mouse_cursor(level **item_lvl);

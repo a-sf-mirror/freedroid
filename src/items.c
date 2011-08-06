@@ -572,7 +572,7 @@ void MakeHeldFloorItemOutOf(item * SourceItem)
 	}
 	// Now we enter the item into the item list of this level
 	//
-	CopyItem(SourceItem, &(CURLEVEL()->ItemList[i]), FALSE);
+	CopyItem(SourceItem, &(CURLEVEL()->ItemList[i]));
 
 	CURLEVEL()->ItemList[i].pos.x = Me.pos.x;
 	CURLEVEL()->ItemList[i].pos.y = Me.pos.y;
@@ -596,7 +596,7 @@ void DeleteItem(item *it)
  * This function COPIES an item from the source location to the destination
  * location.
  */
-void CopyItem(item * SourceItem, item * DestItem, int MakeSound)
+void CopyItem(item * SourceItem, item * DestItem)
 {
 
 	memcpy(DestItem, SourceItem, sizeof(item));
@@ -604,11 +604,6 @@ void CopyItem(item * SourceItem, item * DestItem, int MakeSound)
 	// Create a soft copy of the upgrade sockets. Memcpy just copied the
 	// pointer but we want the actual data to be duplicated.
 	copy_upgrade_sockets(SourceItem, DestItem);
-
-	if (MakeSound) {
-		// PlayItemSound( ItemMap[ SourceItem->type ].sound_number );
-		play_item_sound(SourceItem->type, &SourceItem->pos);
-	}
 }
 
 /**
@@ -1454,7 +1449,8 @@ void DropHeldItemToInventory(void)
 	CurPos.y = GetMousePos_y() - (16 * (ItemMap[item_held_in_hand->type].inv_size.y - 1));
 
 	if (ItemCanBeDroppedInInv(item_held_in_hand->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
-		CopyItem(item_held_in_hand, &(Me.Inventory[FreeInvIndex]), TRUE);
+		CopyItem(item_held_in_hand, &(Me.Inventory[FreeInvIndex]));
+		play_item_sound(item_held_in_hand->type, &Me.pos);
 		Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
 		Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
 
@@ -1483,13 +1479,14 @@ void DropHeldItemToInventory(void)
 			// try to create new space for the drop item.  After that, we can
 			// remove it.
 			//
-			CopyItem(&(Me.Inventory[i]), &(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]), FALSE);
+			CopyItem(&(Me.Inventory[i]), &(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]));
 			Me.Inventory[i].type = (-1);
 
 			if (ItemCanBeDroppedInInv(item_held_in_hand->type, GetInventorySquare_x(CurPos.x), GetInventorySquare_y(CurPos.y))) {
 				
 				// Copy the HelItem to the now free position
-				CopyItem(item_held_in_hand, &(Me.Inventory[FreeInvIndex]), TRUE);
+				CopyItem(item_held_in_hand, &(Me.Inventory[FreeInvIndex]));
+				play_item_sound(item_held_in_hand->type, &Me.pos);
 				Me.Inventory[FreeInvIndex].inventory_position.x = GetInventorySquare_x(CurPos.x);
 				Me.Inventory[FreeInvIndex].inventory_position.y = GetInventorySquare_y(CurPos.y);
 				DeleteItem(item_held_in_hand);
@@ -1505,7 +1502,7 @@ void DropHeldItemToInventory(void)
 			// item would fit into the inventory, then of course we should re-add the
 			// removed item to the inventory, so that no other items get lost.
 			//
-			CopyItem(&(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]), &(Me.Inventory[i]), FALSE);
+			CopyItem(&(Me.Inventory[MAX_ITEMS_IN_INVENTORY - 1]), &(Me.Inventory[i]));
 
 		}		// for: try all items if removal is the solution
 	}			// if not immediately place findable
@@ -1921,20 +1918,8 @@ void HandleInventoryScreen(void)
  */
 void raw_move_picked_up_item_to_entry(item * ItemPointer, item * TargetPointer, point Inv_Loc)
 {
-	/*
-	char TempText[1000];
-
-	// Announce that we have taken the item. Pointless for purposes other than debugging.
-	// If you pointed and clicked on something, if it vanishes, you picked it up...
-
-	Me.TextVisibleTime = 0;
-	sprintf(TempText, _("Item taken: %s."), D_(ItemMap[ItemPointer->type].item_name));
-	append_new_game_message(TempText);	// this can be freed/destroyed afterwards.  it's ok.
-	Me.TextToBeDisplayed = strdup(TempText);
-	*/
-
 	// We add the new item to the inventory
-	CopyItem(ItemPointer, TargetPointer, FALSE);
+	CopyItem(ItemPointer, TargetPointer);
 	TargetPointer->inventory_position.x = Inv_Loc.x;
 	TargetPointer->inventory_position.y = Inv_Loc.y;
 
