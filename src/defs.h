@@ -538,12 +538,6 @@ enum {
 //--------------------
 // Rectangle definitions
 
-// Game message window
-#define MESSAGE_TEXT_WIDGET_X UNIVERSAL_COORD_W(120)
-#define MESSAGE_TEXT_WIDGET_Y UNIVERSAL_COORD_H(389)
-#define MESSAGE_TEXT_WIDGET_W UNIVERSAL_COORD_W(415)
-#define MESSAGE_TEXT_WIDGET_H UNIVERSAL_COORD_H(44)
-
 // the inventory rect is the rectangle inside the inventory screen,
 // where all the items "in the backpack" including the quick inventory
 // are displayed.  it's relative to the top left corner, as always.

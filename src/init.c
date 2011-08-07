@@ -1292,7 +1292,7 @@ void PrepareStartOfNewCharacter(char *startpos)
 	//
 	our_SDL_flip_wrapper();
 
-	widget_text_init(&message_log, _("--- Message Log ---"));
+	widget_text_init(message_log, _("--- Message Log ---"));
 	if (strcmp(startpos, "TutorialTuxStart") == 0)
 		append_new_game_message(_("Starting tutorial."));
 	else

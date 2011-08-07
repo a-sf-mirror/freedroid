@@ -1586,12 +1586,6 @@ static void AnalyzePlayersMouseClick()
 {
 	int tmp;
 
-	/* Handle the main message log. */
-	if (MouseCursorIsInUserRect(GetMousePos_x(), GetMousePos_y())) {
-		if (widget_text_handle_mouse(&message_log))
-			return;
-	}
-
 	// This flag avoids the mouse_move_target to change while the user presses
 	// LMB to start a combo action.
 	static int wait_mouseleft_release = FALSE;

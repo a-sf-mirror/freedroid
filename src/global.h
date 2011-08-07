@@ -259,7 +259,7 @@ EXTERN int vid_bpp;		// bits per pixel
 #else
 #define EXTERN extern
 #endif
-EXTERN struct widget_text message_log;
+EXTERN struct widget_text *message_log;
 
 #undef EXTERN
 #ifdef _blocks_c

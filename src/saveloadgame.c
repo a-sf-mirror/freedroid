@@ -451,7 +451,7 @@ static int load_saved_game(int use_backup)
 	our_SDL_flip_wrapper();
 
 	animation_timeline_reset();
-	widget_text_init(&message_log, _("--- Message Log ---"));
+	widget_text_init(message_log, _("--- Message Log ---"));
 	append_new_game_message(_("Game loaded."));
 	return OK;
 }

@@ -802,14 +802,14 @@ int get_days_of_game_duration(float current_game_date)
  */
 void append_new_game_message(const char *fmt, ...)
 {
-	autostr_append(message_log.text, "\n* ");
+	autostr_append(message_log->text, "\n* ");
 
 	va_list args;
 	va_start(args, fmt);
-	autostr_vappend(message_log.text, fmt, args);
+	autostr_vappend(message_log->text, fmt, args);
 	va_end(args);
 
-	message_log.scroll_offset = 0;
+	message_log->scroll_offset = 0;
 }
 
 /**
@@ -817,11 +817,8 @@ void append_new_game_message(const char *fmt, ...)
  */
 void init_message_log(void)
 {
-	widget_text_init(&message_log, _("--- Message Log ---"));
-
-	/* Set up the text widget. */
-	widget_set_rect(WIDGET(&message_log), MESSAGE_TEXT_WIDGET_X, MESSAGE_TEXT_WIDGET_Y, MESSAGE_TEXT_WIDGET_W, MESSAGE_TEXT_WIDGET_H);
-	message_log.font = Messagevar_BFont;
+	if (!message_log)
+		message_log = widget_text_create();
 }
 
 /**

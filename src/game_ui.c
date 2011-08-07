@@ -279,7 +279,14 @@ static struct widget_group *create_hud_bar()
 	widget_set_rect(WIDGET(ammo), left_panel_x + 36, WIDGET(panel)->rect.y + 77, 100, 22);
 	ammo->font = FPS_Display_BFont;
 	WIDGET(ammo)->update = current_ammo_update;
-	widget_group_add(hud_bar, WIDGET(ammo));
+
+	// Message log.
+	init_message_log();
+	widget_set_rect(WIDGET(message_log), 120,  WIDGET(panel)->rect.y + 7, 415, 46);
+	message_log->font = Messagevar_BFont;
+	widget_group_add(hud_bar, WIDGET(message_log));
+
+widget_group_add(hud_bar, WIDGET(ammo));
 
 	return hud_bar;
 }
