@@ -77,10 +77,17 @@ static Uint16 get_top_map_brick(level *l, int x, int y)
 	return get_map_brick(l, x, y, top_layer);
 }
 
-static void grass_change_floor(level *l, int x, int y, int type)
+static void grass_change_transparent_floor(level *l, int x, int y, int transparent_type, int opaque_type)
 {
-	int top_layer = get_top_map_layer(l, x, y);
-	action_set_floor(l, x, y, top_layer, type);
+	int i;
+
+	for (i = 0; i < l->floor_layers - 2; i++) {
+		action_set_floor(l, x, y, i, ISO_FLOOR_EMPTY);
+		grass_change_count++;
+	}
+	action_set_floor(l, x, y, l->floor_layers - 2, opaque_type);
+	grass_change_count++;
+	action_set_floor(l, x, y, l->floor_layers - 1, transparent_type);
 	grass_change_count++;
 }
 
@@ -177,28 +184,27 @@ static void fix_corners_in_this_grass_tile(level * EditLevel, int x, int y)
 	//
 	if ((north_grass && west_grass && get_top_map_brick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_15);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_10, ISO_FLOOR_SAND);
 	}
 	// Upper right corner
 	//
 	if ((north_grass && east_grass && get_top_map_brick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_16);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_11, ISO_FLOOR_SAND);
 	}
 	// Lower left corner:
 	//
 	if ((south_grass && west_grass && get_top_map_brick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_14);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_09, ISO_FLOOR_SAND);
 	}
 	// Lower right corner
 	//
 	if ((south_grass && east_grass && get_top_map_brick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_17);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_12, ISO_FLOOR_SAND);
 	}
-
-};				// void fix_corners_in_this_grass_tile ( EditLevel , x , y ) 
+}
 
 /**
  * Now we fix those grass tiles, that have only very little contact to
@@ -226,22 +232,22 @@ static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
 
 	// Upper left corner:
 	if (north_grass && west_grass && get_top_map_brick(EditLevel, x + WEST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_21);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_16, ISO_FLOOR_SAND);
 	}
 
 	// Upper right corner
 	if (north_grass && east_grass && get_top_map_brick(EditLevel, x + EAST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_20);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_15, ISO_FLOOR_SAND);
 	}
 
 	// Lower left corner:
 	if (south_grass && west_grass && get_top_map_brick(EditLevel, x + WEST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_18);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_13, ISO_FLOOR_SAND);
 	}
 
 	// Lower right corner
 	if (south_grass && east_grass && get_top_map_brick(EditLevel, x + EAST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
-		grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_19);
+		grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_14, ISO_FLOOR_SAND);
 	}
 }
 
@@ -269,36 +275,35 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 	//
 	if (east_grass && !west_grass) {
 		if (MyRandom(100) < 50)
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_6);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_01, ISO_FLOOR_SAND);
 		else
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_7);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_02, ISO_FLOOR_SAND);
 	}
 	// Fix sand on the east:
 	//
 	if (!east_grass && west_grass) {
 		if (MyRandom(100) < 50)
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_9);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_04, ISO_FLOOR_SAND);
 		else
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_8);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_03, ISO_FLOOR_SAND);
 	}
 	// Fix sand on the north:
 	//
 	if (south_grass && !north_grass) {
 		if (MyRandom(100) < 50)
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_13);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_08, ISO_FLOOR_SAND);
 		else
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_12);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_07, ISO_FLOOR_SAND);
 	}
 	// Fix sand on the south:
 	//
 	if (!south_grass && north_grass) {
 		if (MyRandom(100) < 50)
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_11);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_06, ISO_FLOOR_SAND);
 		else
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_10);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_05, ISO_FLOOR_SAND);
 	}
-
-};				// void fix_halfpieces_in_this_grass_tile ( EditLevel , x , y ) 
+}
 
 /**
  *
@@ -325,14 +330,13 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 		DebugPrintf(-4, "\nFixed an isolated grass tile.");
 		our_rand = MyRandom(100);
 		if (our_rand < 33)
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_22);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_17, ISO_FLOOR_SAND);
 		else if (our_rand < 66)
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_23);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_18, ISO_FLOOR_SAND);
 		else
-			grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_24);
+			grass_change_transparent_floor(EditLevel, x, y, ISO_GRASS_19, ISO_FLOOR_SAND);
 	}
-
-};				// void fix_isolated_grass_tile ( EditLevel , x , y ) 
+}
 
 /**
  * When planting grass tiles, taking care of the smooth borders for these
@@ -358,6 +362,10 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 	}
 
 	DebugPrintf(-4, "\nlevel_editor_beautify_grass_tiles (...): process started...");
+
+	// Make sure the level has multilayer floor
+	if (EditLevel->floor_layers == 1)
+		EditLevel->floor_layers++;
 
 	// First we fix the pure corner pieces, cutting away quit some grass
 	// 
