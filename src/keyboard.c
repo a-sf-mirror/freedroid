@@ -771,14 +771,7 @@ static int input_key_event(SDLKey key, SDLMod mod, int value)
 
 int input_key_press(SDL_Event * event)
 {
-	int noteaten;
-	noteaten = input_key_event(event->key.keysym.sym, event->key.keysym.mod, KEY_PRESS);
-
-	if (!noteaten)
-		return 0;
-	else if (INLVLEDIT()) {
-		handle_widget_event(event);
-	}
+	input_key_event(event->key.keysym.sym, event->key.keysym.mod, KEY_PRESS);
 
 	return 0;
 }

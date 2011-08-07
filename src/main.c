@@ -87,6 +87,7 @@ void Game()
 
 		save_mouse_state();
 		input_handle();
+		update_widgets();
 
 		UpdateCountersForThisFrame();
 

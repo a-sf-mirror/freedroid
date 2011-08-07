@@ -734,8 +734,13 @@ void move_tux()
 
 	// Maybe we need to fire a bullet or set a new mouse move target
 	// for the new move-to location
-	//
-	AnalyzePlayersMouseClick();
+	// There are currently two different input systms in use - event based and state based.
+	// In order to maintain compatibility between the two, a game_map widget is added on the
+	// game main widget to detect how user input should be handled. Therefore, when the mouse
+	// is over the game_map widget (the widget is not in its DEFAULT state), no further event handling
+	// is done by the widget system and AnalyzePlayersMouseClick is called.
+	if (game_map->state != DEFAULT)
+		AnalyzePlayersMouseClick();
 
 	if (MouseLeftPressed())
 		no_left_button_press_in_previous_analyze_mouse_click = FALSE;
@@ -1267,61 +1272,6 @@ int ButtonPressWasNotMeantAsFire()
 };				// int ButtonPressWasNotMeantAsFire ( )
 
 /**
- * When the user clicks on a button in the HUD, launch the related action.
- * Return TRUE if the mouse is pressed inside the HUD's area.
- */
-static int handle_click_in_hud()
-{
-	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (MouseLeftClicked()) {
-			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_INVENTORY);
-		}
-		return TRUE;
-	}
-
-	if (MouseCursorIsOnButton(CHA_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (MouseLeftClicked()) {
-			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_CHARACTER);
-		}
-		return TRUE;
-	}
-
-	if (MouseCursorIsOnButton(SKI_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (MouseLeftClicked()) {
-			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILLS);
-		}
-		return TRUE;
-	}
-
-	if (MouseCursorIsOnButton(LOG_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (MouseLeftClicked()) {
-			quest_browser_interface();
-		}
-		return TRUE;
-	}
-
-	if (MouseCursorIsOnButton(WEAPON_MODE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (MouseLeftClicked()) {
-			TuxReloadWeapon();
-		}
-		return TRUE;
-	}
-
-	if (MouseCursorIsOnButton(SKI_ICON_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		if (MouseLeftClicked()) {
-			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILLS);
-		}
-		return TRUE;
-	}
-	// Finally, protect all the other parts of the hud from user's clicks
-	if (GetMousePos_y() >= UNIVERSAL_COORD_H(MESSAGE_TEXT_WIDGET_Y))
-		return TRUE;
-
-	// The mouse is outside the hud.
-	return FALSE;
-}
-
-/**
  * At some point in the analysis of the users mouse click, we'll be 
  * certain, that a fireing/weapon swing was meant with the click.  Once
  * this is knows, this function can be called to do the mechanics of the
@@ -1655,8 +1605,6 @@ static void AnalyzePlayersMouseClick()
 	}
 
 	if (ButtonPressWasNotMeantAsFire())
-		return;
-	if (handle_click_in_hud())
 		return;
 	if (no_left_button_press_in_previous_analyze_mouse_click) {
 		level *obj_lvl = NULL;

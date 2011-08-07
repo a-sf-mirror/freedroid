@@ -659,6 +659,9 @@ void toggle_game_config_screen_visibility(int screen_visible);
 int get_current_fps(void);
 void display_tooltip(const char *, int, SDL_Rect);
 
+// game_ui.c
+struct widget_group *get_game_ui();
+
 // item_upgrades_ui.c
 int append_item_upgrade_ui_tooltip(const point *, struct auto_string *str);
 void show_item_upgrade_ui();

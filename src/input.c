@@ -87,8 +87,6 @@ static void input_mouse_motion(SDL_Event * event)
 	if (game_status != INSIDE_LVLEDITOR) {
 		input_axis.x = event->motion.x - UserCenter_x;
 		input_axis.y = event->motion.y - UserCenter_y;
-	} else {
-		handle_widget_event(event);
 	}
 }
 
@@ -105,8 +103,6 @@ static void input_mouse_button(SDL_Event * event)
 
 		if (event->button.button == SDL_BUTTON_WHEELDOWN)
 			MouseWheelDownMovesRecorded++;
-	} else {
-		handle_widget_event(event);
 	}
 }
 
@@ -138,6 +134,8 @@ int input_handle(void)
 		default:
 			break;
 		}
+
+		handle_widget_event(&event);
 	}
 	return 0;
 }

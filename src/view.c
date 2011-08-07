@@ -1874,7 +1874,7 @@ void AssembleCombatPicture(int mask)
 	// view...
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
 		ShowItemAlarm();
-		blit_background("hud_background.png");
+		display_widgets();
 		widget_text_display(WIDGET(&message_log));
 		if (!GameOver) {
 			ShowCurrentHealthAndForceLevel();

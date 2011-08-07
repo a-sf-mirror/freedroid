@@ -75,6 +75,9 @@ static struct widget *get_active_ui()
 		case INSIDE_LVLEDITOR:
 			return WIDGET(get_lvledit_ui());
 
+		case INSIDE_GAME:
+			return WIDGET(get_game_ui());
+
 		default:
 			return NULL;
 	}

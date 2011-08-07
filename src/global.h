@@ -371,6 +371,14 @@ EXTERN char *do_benchmark;
 EXTERN list_head_t npc_head;
 
 #undef EXTERN
+#ifdef _game_ui_c
+#define EXTERN
+#else
+#define EXTERN extern
+#endif
+EXTERN struct widget_button *game_map;
+
+#undef EXTERN
 #ifdef _influ_c
 #define EXTERN
 #else
