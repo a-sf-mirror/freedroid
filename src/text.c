@@ -144,6 +144,9 @@ int show_backgrounded_text_rectangle(const char *text, struct BFont_Info *font, 
  */
 void alert_window(const char *text, ...)
 {
+	if (!SDL_WasInit(SDL_INIT_VIDEO))
+		return;
+
 	va_list args;
 	struct auto_string *buffer = alloc_autostr(256);
 	int w = 440;   // arbitrary
