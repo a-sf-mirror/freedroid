@@ -84,6 +84,18 @@ static void grass_change_floor(level *l, int x, int y, int type)
 	grass_change_count++;
 }
 
+static void grass_change_opaque_floor(level *l, int x, int y, int type)
+{
+	int i;
+
+	for (i = 0; i < l->floor_layers - 1; i++) {
+		action_set_floor(l, x, y, i, ISO_FLOOR_EMPTY);
+		grass_change_count++;
+	}
+	action_set_floor(l, x, y, l->floor_layers - 1, type);
+	grass_change_count++;
+}
+
 static void done_beautify_grass()
 {
 	action_push(ACT_MULTIPLE_ACTIONS, grass_change_count);
@@ -96,24 +108,23 @@ static void done_beautify_grass()
  */
 static int is_full_grass_tile(int floor_value)
 {
-
 	switch (floor_value) {
 	case ISO_FLOOR_SAND_WITH_GRASS_1:
 	case ISO_FLOOR_SAND_WITH_GRASS_2:
 	case ISO_FLOOR_SAND_WITH_GRASS_3:
 	case ISO_FLOOR_SAND_WITH_GRASS_4:
+	case ISO_FLOOR_SAND_WITH_GRASS_5:
 	case ISO_FLOOR_SAND_WITH_GRASS_25:
 	case ISO_FLOOR_SAND_WITH_GRASS_26:
 	case ISO_FLOOR_SAND_WITH_GRASS_27:
-		return (TRUE);
+		return TRUE;
 		break;
 
 	default:
-		return (FALSE);
+		return FALSE;
 		break;
 	}
-
-};				// int is_full_grass_tile ( map_tile* this_tile )
+}
 
 /**
  * Is this tile 'some' grass tile, i.e. a grass tile with JUST ANY BIT
@@ -121,25 +132,26 @@ static int is_full_grass_tile(int floor_value)
  */
 static int is_some_grass_tile(int floor_value)
 {
+	if (ISO_GRASS_01 <= floor_value && floor_value <= ISO_GRASS_21)
+		return TRUE;
 
 	if (floor_value < ISO_FLOOR_SAND_WITH_GRASS_1)
-		return (FALSE);
+		return FALSE;
 	if (floor_value > ISO_FLOOR_SAND_WITH_GRASS_29)
-		return (FALSE);
+		return FALSE;
 
 	switch (floor_value) {
 	case ISO_WATER:
 	case ISO_FLOOR_EMPTY:
 	case ISO_RED_WAREHOUSE_FLOOR:
-		return (FALSE);
+		return FALSE;
 		break;
 	default:
 		break;
 	}
 
-	return (TRUE);
-
-};				// int is_full_grass_tile ( map_tile* this_tile )
+	return TRUE;
+}
 
 /**
  *
@@ -395,19 +407,19 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 			if (is_full_grass_tile(this_tile_value)) {
 				our_rand = MyRandom(106);
 				if (our_rand < 25)
-					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_1);
+					grass_change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_1);
 				else if (our_rand < 50)
-					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_2);
+					grass_change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_2);
 				else if (our_rand < 75)
-					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_3);
+					grass_change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_3);
 				else if (our_rand < 100)
-					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_4);
+					grass_change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_4);
 				else if (our_rand < 102)
-					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_25);
+					grass_change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_25);
 				else if (our_rand < 104)
-					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_26);
+					grass_change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_26);
 				else
-					grass_change_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_27);
+					grass_change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_27);
 			}
 		}
 	}
