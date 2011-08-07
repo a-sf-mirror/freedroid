@@ -429,7 +429,6 @@ int GetInventorySquare_x(int x);
 int GetInventorySquare_y(int x);
 void DropHeldItemToInventory(void);
 item *drop_item(item *, float, float, int);
-void show_quick_inventory(void);
 void HandleInventoryScreen(void);
 int try_give_item(item *it);
 int give_item(item *);

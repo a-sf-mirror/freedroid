@@ -1509,39 +1509,6 @@ void DropHeldItemToInventory(void)
 };				// void DropHeldItemToInventory( void )
 
 /**
- * This function shows the quick inventory items on the right side of
- * the screen.
- */
-void show_quick_inventory(void)
-{
-	int i;
-	SDL_Rect target_rect;
-	int index;
-	char text[5] = "";
-
-	// Now we can blit all the objects in the quick inventory, but of course only
-	// those small objects, that have a 1x1 inventory grid size, so that they really
-	// can be drawn from the 'belt' that is actually the quick inventory.
-
-	for (i = 0; i < 10; i++) {
-		sprintf(text, "%d", i < 9 ? i + 1: 0);
-		PutStringFont(Screen, Messagestat_BFont, UNIVERSAL_COORD_W(130 + i * 40 - 9),
-					GameConfig.screen_height - UNIVERSAL_COORD_H(16), text);
-		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
-			&& (Me.Inventory[index].inventory_position.x == i)
-			&& (Me.Inventory[index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1))
-		{
-			target_rect.x = UNIVERSAL_COORD_W(130 + i * 40);
-			target_rect.y = GameConfig.screen_height - UNIVERSAL_COORD_H(32);
-
-			struct image *img = get_item_inventory_image(Me.Inventory[index].type);
-
-		    display_image_on_screen(img, target_rect.x, target_rect.y, IMAGE_NO_TRANSFO);	
-		}
-	}
-}
-
-/**
  *
  *
  */

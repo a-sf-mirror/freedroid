@@ -347,6 +347,33 @@ static char *get_heat_bar_tooltip()
 	return buffer->value;
 }
 
+/** This function displays the quick inventory widget. */
+static void quick_inventory_display(struct widget *w)
+{
+	int i;
+	SDL_Rect target_rect;
+	int index;
+	char text[5] = "";
+
+	int step = w->rect.w / 10;
+
+	for (i = 0; i < 10; i++) {
+		sprintf(text, "%d", i < 9 ? i + 1: 0);
+		PutStringFont(Screen, Messagestat_BFont, w->rect.x + i * step, w->rect.y + 16, text);
+		if (((index = GetInventoryItemAt(i, INVENTORY_GRID_HEIGHT - 1)) != -1)
+			&& (Me.Inventory[index].inventory_position.x == i)
+			&& (Me.Inventory[index].inventory_position.y == INVENTORY_GRID_HEIGHT - 1))
+		{
+			target_rect.x = w->rect.x + i * step + 9;
+			target_rect.y = w->rect.y;
+
+			struct image *img = get_item_inventory_image(Me.Inventory[index].type);
+
+			display_image_on_screen(img, target_rect.x, target_rect.y, IMAGE_NO_TRANSFO);
+		}
+	}
+}
+
 /**
  * This function builds the hud bar widgets.
  */
@@ -508,6 +535,12 @@ static struct widget_group *create_hud_bar()
 		WIDGET(wb)->update = b[i].update;
 		widget_group_add(hud_bar, WIDGET(wb));
 	}
+
+	// Quick inventory
+	struct widget *quick_inventory = widget_create();
+	widget_set_rect(quick_inventory, left_scaling_panel_x - 51, WIDGET(panel)->rect.y + 65, right_panel_x - left_scaling_panel_x + 102, 32);
+	quick_inventory->display = quick_inventory_display;
+	widget_group_add(hud_bar, quick_inventory);
 
 	// Ammo indicator
 	struct widget_text *ammo = widget_text_create();

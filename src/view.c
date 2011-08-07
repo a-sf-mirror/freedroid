@@ -1873,7 +1873,6 @@ void AssembleCombatPicture(int mask)
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
 		ShowItemAlarm();
 		display_widgets();
-		show_quick_inventory();
 		show_addon_crafting_ui();
 		show_item_upgrade_ui();
 		if (!GameOver)
