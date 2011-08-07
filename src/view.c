@@ -1879,7 +1879,6 @@ void AssembleCombatPicture(int mask)
 		if (!GameOver) {
 			ShowCurrentHealthAndForceLevel();
 		}
-		display_buttons();
 		show_quick_inventory();
 		ShowCharacterScreen();
 		ShowSkillsScreen();

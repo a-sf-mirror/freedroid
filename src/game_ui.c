@@ -33,6 +33,23 @@
 
 #include "widgets/widgets.h"
 
+/**
+ * This macro is used for creating callbacks that updates
+ * a widget flag using an external variable.
+ *
+ * @param widget_type the type of the widget for which the callback is set.
+ * @param flag the widget flag to be updated.
+ * @param data the external data used for updating.
+ */
+#define WIDGET_UPDATE_FLAG_ON_DATA(widget_type, flag, data) \
+({ \
+  void anonymous_func(struct widget *w) \
+  { \
+    widget_type(w)->flag = data; \
+  } \
+  anonymous_func; \
+})
+
 static struct widget_group *game_widget_group = NULL;
 
 /** Toggle the skills screen when the current skill button is pressed. */
@@ -105,6 +122,35 @@ static void current_ammo_update(struct widget *w)
 		autostr_printf(text, "%5d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
 }
 
+/** Activate the quest log interface. */
+static void toggle_log_screen(struct widget_button *w)
+{
+	// The quest browser interface runs in a separate loop, preventing widgets from
+	// receiving events. Because of this, the toggle_log button doesn't receive
+	// the MOUSE_LEAVE event, once the quest browser is open. Thus, we have to reset the state of the
+	// toggle_log button 'by hand'. Note: this is a hack, until the quest browser is reimplemented.
+	w->state = DEFAULT;
+	quest_browser_interface();
+}
+
+/** Toggle inventory screen on/off. */
+static void toggle_inventory_screen(struct widget_button *w)
+{
+	toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_INVENTORY);
+}
+
+/** Toggle character screen on/off. */
+static void toggle_character_screen(struct widget_button *w)
+{
+	toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_CHARACTER);
+}
+
+/** Toggle the skill screen when the skill button is clicked. */
+static void toggle_skill_screen(struct widget_button *w)
+{
+	toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILLS);
+}
+
 /**
  * This function builds the hud bar widgets.
  */
@@ -168,12 +214,59 @@ static struct widget_group *create_hud_bar()
 			(void *)TuxReloadWeapon,
 			get_current_weapon_button_tooltip,
 			current_weapon_button_update
-		}
+		},
+		// Log button
+		{
+			{{"mouse_buttons/log_button.png", "mouse_buttons/log_button_yellow.png", NULL},
+			{"mouse_buttons/log_button_red.png","mouse_buttons/log_button_yellow.png", NULL}},
+			{center_panel_x + 55, WIDGET(panel)->rect.y + 49, 32, 19},
+			NULL,
+			toggle_log_screen,
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, Me.quest_browser_changed)
+		},
+		// Inventory button
+		{
+			{{"mouse_buttons/inv_button.png", "mouse_buttons/inv_button_yellow.png", NULL},
+			{NULL}},
+			{center_panel_x + 99, WIDGET(panel)->rect.y + 49, 32, 19},
+			NULL,
+			toggle_inventory_screen,
+			NULL,
+			NULL
+		},
+		// Character button
+		{
+			{{"mouse_buttons/cha_button.png", "mouse_buttons/cha_button_yellow.png", NULL},
+			{"mouse_buttons/cha_button_red.png", "mouse_buttons/cha_button_yellow.png",NULL}},
+			{center_panel_x + 150, WIDGET(panel)->rect.y + 49, 32, 19},
+			NULL,
+			toggle_character_screen,
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active,(Me.points_to_distribute > 0))
+		},
+		// Skill button
+		{
+			{{"mouse_buttons/ski_button.png", "mouse_buttons/ski_button_yellow.png", NULL},
+			{NULL}},
+			{center_panel_x + 192, WIDGET(panel)->rect.y + 49, 32, 19},
+			NULL,
+			toggle_skill_screen,
+			NULL,
+			NULL
+		},
 	};
 
-	int i;
+	int i, j, k;
 	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
 		struct widget_button * wb = widget_button_create();
+
+		// Load button images
+		for (j = 0; j < 2; j++)
+			for (k = 0; k < 3; k++)
+				if (b[i].image[j][k])
+					wb->image[j][k] = widget_load_image_resource(b[i].image[j][k], 0);
+
 		widget_set_rect(WIDGET(wb), b[i].rect.x, b[i].rect.y, b[i].rect.w, b[i].rect.h);
 		wb->activate_button = b[i].activate_button;
 		wb->tooltip.get_text = b[i].get_tooltip_text;

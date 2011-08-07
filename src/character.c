@@ -76,34 +76,6 @@
 #define SPELLCASTING_SKILL_Y 306
 
 /**
- * This function displays all the buttons that open up the character
- * screen and the inventory screen
- */
-void display_buttons(void)
-{
-	if (Me.quest_browser_changed)
-		ShowGenericButtonFromList(LOG_SCREEN_TOGGLE_BUTTON_RED);
-
-	// When the Tux has some extra skill points, that can be distributed
-	// to some character stats or saved for later training with some trainer
-	// character in the city, we mark the character screen toggle button as
-	// red to indicate the available points.
-	if (Me.points_to_distribute > 0) {
-		ShowGenericButtonFromList(CHA_SCREEN_TOGGLE_BUTTON_RED);
-	}
-
-	if (MouseCursorIsOnButton(INV_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		ShowGenericButtonFromList(INV_SCREEN_TOGGLE_BUTTON_YELLOW);
-	} else if (MouseCursorIsOnButton(LOG_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		ShowGenericButtonFromList(LOG_SCREEN_TOGGLE_BUTTON_YELLOW);
-	} else if (MouseCursorIsOnButton(CHA_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		ShowGenericButtonFromList(CHA_SCREEN_TOGGLE_BUTTON_YELLOW);
-	} else if (MouseCursorIsOnButton(SKI_SCREEN_TOGGLE_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-		ShowGenericButtonFromList(SKI_SCREEN_TOGGLE_BUTTON_YELLOW);
-	}
-}
-
-/**
  * This function adds any bonuses that might be on the influencers things
  * concerning ONLY PRIMARY STATS, NOT SECONDARY STATS!
  */

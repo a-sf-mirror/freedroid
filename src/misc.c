@@ -62,21 +62,6 @@ char *our_homedir = NULL;
 char *our_config_dir = NULL;
 
 mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
-	[LOG_SCREEN_TOGGLE_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {239, 480 - 47, 46, 14}, TRUE},
-	[CHA_SCREEN_TOGGLE_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {334, 480 - 47, 46, 14}, TRUE},
-	[INV_SCREEN_TOGGLE_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {283, 480 - 47, 46, 14}, TRUE},
-	[SKI_SCREEN_TOGGLE_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {378, 480 - 47, 46, 14}, TRUE},
-	[CHA_SCREEN_TOGGLE_BUTTON_RED] = {EMPTY_IMAGE, "mouse_buttons/cha_button_red.png", {334, 480 - 47, 46, 14}, TRUE},
-	[LOG_SCREEN_TOGGLE_BUTTON_YELLOW] =
-	    {EMPTY_IMAGE, "mouse_buttons/log_button_yellow.png", {239, 480 - 47, 46, 14}, TRUE},
-	[LOG_SCREEN_TOGGLE_BUTTON_RED] =
-	    {EMPTY_IMAGE, "mouse_buttons/log_button_red.png", {239, 480 - 47, 46, 14}, TRUE},
-	[CHA_SCREEN_TOGGLE_BUTTON_YELLOW] =
-	    {EMPTY_IMAGE, "mouse_buttons/cha_button_yellow.png", {334, 480 - 47, 46, 14}, TRUE},
-	[INV_SCREEN_TOGGLE_BUTTON_YELLOW] =
-	    {EMPTY_IMAGE, "mouse_buttons/inv_button_yellow.png", {283, 480 - 47, 46, 14}, TRUE},
-	[SKI_SCREEN_TOGGLE_BUTTON_YELLOW] =
-	    {EMPTY_IMAGE, "mouse_buttons/ski_button_yellow.png", {378, 480 - 47, 46, 14}, TRUE},
 	[UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/UpButton.png", {600, 94, 40, 40}, TRUE},
 	[DOWN_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/DownButton.png", {600, 316, 40, 40}, TRUE},
 
