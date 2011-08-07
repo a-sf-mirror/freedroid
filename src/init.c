@@ -1071,12 +1071,13 @@ screen_resolution screen_resolutions[MAX_RESOLUTIONS];
 screen_resolution hard_resolutions[] = {
 	{640, 480, "640 x 480", TRUE},
 	{800, 600, "800 x 600", TRUE},
-	{1024, 768, "1024 x 768", TRUE},
-	{1024, 768, "1024 x 768", TRUE},
+	{1024, 768, "1024 x 768", TRUE}
+
+	/* Additional resolutions
 	{1152, 864, "1152 x 864", TRUE},
 	{1280, 960, "1280 x 960", TRUE},
 	{1400, 1050, "1400 x 1050", TRUE},
-	{1600, 1200, "1600 x 1200", TRUE}
+	{1600, 1200, "1600 x 1200", TRUE} */
 };
 
 /* -----------------------------------------------------------------
@@ -1412,23 +1413,19 @@ static void set_signal_handlers(void)
 static void detect_available_resolutions(void)
 {
 	SDL_Rect **modes;
-	int i;
+	screen_resolution resolution_holder;
+	int i, j, merged_size;
 	char *res[64];
 
 	// Get available fullscreen/hardware modes (reported by SDL)
 	modes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
-
-	// Check if our resolution is restricted
-	if (modes == NULL) {
-		// NULL means no resolutions are supported, which is fatal
-		ErrorMessage(__FUNCTION__, "SDL reports no resolutions are supported, terminating\n", PLEASE_INFORM, IS_FATAL);
-	} else if (modes == (SDL_Rect**) -1) {
+	if (modes == (SDL_Rect**) -1) {
 		ErrorMessage(__FUNCTION__,
 			"SDL reports all resolutions are supported in fullscreen mode.\n"
 			"Please use -r WIDTHxHEIGHT to specify any one you like.\n"
 			"Defaulting to a sane one for now\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 			screen_resolutions[0] =	(screen_resolution) {800, 600, "", TRUE};
-			screen_resolutions[1] = (screen_resolution) {-1, -1, "", FALSE};
+			i = 1;
 	} else {
 		// Add resolutions to the screen_resolutions array
 		for (i = 0; modes[i] && i < MAX_RESOLUTIONS; ++i) {
@@ -1436,8 +1433,34 @@ static void detect_available_resolutions(void)
 			sprintf(res[i], "%d x %d", modes[i]->w, modes[i]->h);
 			screen_resolutions[i] = (screen_resolution) {modes[i]->w, modes[i]->h, res[i], TRUE};
 		}
-		screen_resolutions[i] = (screen_resolution) {-1, -1, "", FALSE};
 	}
+
+	// Add hard-coded resolutions to the list
+	for (j = 0; j < sizeof(hard_resolutions) / sizeof(hard_resolutions[0]) && i + j < MAX_RESOLUTIONS; j++) {
+		screen_resolutions[i + j] = hard_resolutions[j];
+	}
+
+	// Sort and prune duplicates
+	merged_size = i + min(sizeof(hard_resolutions) / sizeof(hard_resolutions[0]), j);
+	for (i = 0; i < merged_size; i++) {
+		for (j = 0; j < merged_size - 1; j++) {
+			// Sort in descending order of xres, then yres
+			if (screen_resolutions[j].xres < screen_resolutions[j + 1].xres ||
+					(screen_resolutions[j].xres == screen_resolutions[j + 1].xres &&
+					screen_resolutions[j].yres < screen_resolutions[j +1].yres)) {
+				resolution_holder = screen_resolutions[j + 1];
+				screen_resolutions[j + 1] = screen_resolutions[j];
+				screen_resolutions[j] = resolution_holder;
+
+			// If it's a duplicate we'll set it to a terminator entry and it will be sorted to the end				
+			} else if (screen_resolutions[j].xres == screen_resolutions[j + 1].xres &&
+					screen_resolutions[j].yres == screen_resolutions[j + 1].yres)
+				screen_resolutions[j + 1] = (screen_resolution) {-1, -1, "", FALSE};
+		}
+	}
+
+	// Add our terminator on the end, just in case
+	screen_resolutions[i - 1] = (screen_resolution) {-1, -1, "", FALSE};
 };
 
 /* -----------------------------------------------------------------
