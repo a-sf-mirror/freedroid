@@ -152,6 +152,202 @@ static void toggle_skill_screen(struct widget_button *w)
 }
 
 /**
+ * This function draws a vertical status bar representing the amount of running power
+ * currently available to the player.
+ */
+static void stamina_bar_display(struct widget *w)
+{
+	static Uint32 normal_fill_color = 0;
+	static Uint32 empty_color = 0;
+	static Uint32 rest_fill_color = 0;
+	static Uint32 infinite_fill_color = 0;
+
+	// Initialize drawing colors.
+	if (!normal_fill_color) {
+		empty_color = SDL_MapRGBA(Screen->format, 20, 20, 20, 80);
+		normal_fill_color = SDL_MapRGBA(Screen->format, 255, 255, 0, 80);
+		rest_fill_color = SDL_MapRGBA(Screen->format, 255, 20, 20, 80);
+		infinite_fill_color = SDL_MapRGBA(Screen->format, 255, 255, 255, 80);
+	}
+
+	float max_value;
+	float current_value;
+	Uint32 filled_color;
+
+	// Set color and fill ratio values
+	if (curShip.AllLevels[Me.pos.z]->infinite_running_on_this_level) {
+		max_value = 2.0;
+		current_value = 2.0;
+		filled_color = infinite_fill_color;
+	} else {
+		max_value = Me.max_running_power;
+		current_value = Me.running_power;
+
+		if (Me.running_must_rest)
+			filled_color = rest_fill_color;
+		else
+			filled_color = normal_fill_color;
+	}
+
+	// Draw the status bar.
+	blit_vertical_status_bar(max_value, current_value, filled_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
+
+	if (GameConfig.cheat_running_stamina)
+		PutStringFont(Screen, Messagestat_BFont, w->rect.x, w->rect.y, "C");
+}
+
+/** Computes the tooltip text displayed when hovering the stamina bar. */
+static char *get_stamina_bar_tooltip()
+{
+	static struct auto_string *buffer = NULL;
+	if (!buffer)
+		buffer = alloc_autostr(64);
+
+	autostr_printf(buffer, "%s\n%s%d/%d\n", _("RUN"), Me.running_power / Me.max_running_power <= 0.1 ? font_switchto_red : "", (int)Me.running_power, (int)Me.max_running_power);
+
+	return buffer->value;
+}
+
+/** This function displays the experience status bar. */
+static void experience_bar_display(struct widget *w)
+{
+	static Uint32 fill_color = 0;
+	static Uint32 empty_color = 0;
+	int exp_range = Me.ExpRequired - Me.ExpRequired_previously;
+	int exp_achieved = Me.Experience - Me.ExpRequired_previously;
+
+	// Avoid arithmetic exceptions.
+	if (Me.ExpRequired <= 1)
+		return;
+	if ((Me.Experience > Me.ExpRequired) || (exp_range <= 1) || (exp_achieved < 1))
+		return;
+
+	// Initialize the status bar colors.
+	if (!fill_color) {
+		empty_color = SDL_MapRGBA(Screen->format, 50, 50, 50, 80);
+		fill_color = SDL_MapRGBA(Screen->format, 255, 120, 120, 80);
+	}
+
+	blit_vertical_status_bar(exp_range, exp_achieved, fill_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
+}
+
+/** Computes the tooltip text displayed when hovering the experience bar. */
+static char *get_experience_bar_tooltip(struct widget *w)
+{
+	static struct auto_string *buffer = NULL;
+	if (!buffer)
+		buffer = alloc_autostr(64);
+
+	autostr_printf(buffer, "%s\n%d/%d\n", _("XP"), Me.Experience, Me.ExpRequired);
+
+	return buffer->value;
+}
+
+/** This function displays the health status bar. */
+static void health_bar_display(struct widget *w)
+{
+	static Uint32 fill_color = 0;
+	static Uint32 empty_color = 0;
+
+	// Initialize the colors used for drawing.
+	if (!fill_color) {
+		fill_color = SDL_MapRGBA(Screen->format, 255, 0, 0, 0);
+		empty_color = SDL_MapRGBA(Screen->format, 20, 0, 0, 0);
+	}
+
+	blit_vertical_status_bar(Me.maxenergy, Me.energy, fill_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
+
+	if (Me.god_mode)
+		PutStringFont(Screen, Messagestat_BFont,  w->rect.x, w->rect.y, "C");
+}
+
+/** Computes the tooltip text displayed when hovering the health bar. */
+static char* get_health_bar_tooltip(struct widget *w)
+{
+	static struct auto_string *buffer = NULL;
+	if (!buffer)
+		buffer = alloc_autostr(64);
+
+	autostr_printf(buffer, "%s\n%s%d/%d\n", _("Health"), Me.energy / Me.maxenergy <= 0.1 ? font_switchto_red : "", (int)Me.energy, (int)Me.maxenergy);
+
+	return buffer->value;
+}
+
+/** This function displays the temperature status bar. */
+static void heat_bar_display(struct widget *w)
+{
+	static Uint32 empty_color = 0;
+
+	// Initialize drawing color.
+	if (!empty_color)
+		empty_color = SDL_MapRGBA(Screen->format, 0, 0, 55, 0);
+
+	// Compute temperature ratio.
+	int temp_ratio = Me.max_temperature ? (100 * Me.temperature) / Me.max_temperature : 100;
+	if (temp_ratio > 100)
+		temp_ratio = 100;
+
+	// Compute fill color using the temperature ratio.
+	int red;
+	int green;
+	int blue;
+	if (temp_ratio < 25) {
+		red = 0;
+		green = 2.55 * 4 * temp_ratio;
+		blue = 255;
+	} else if (temp_ratio < 50) {
+		red = 0;
+		green = 255;
+		blue = 255 - (2.55 * 4 * (temp_ratio - 25));
+	} else if (temp_ratio < 75) {
+		red = 2.4 * 4 * (temp_ratio - 50);
+		green = 255;
+		blue = 0;
+	} else {
+		red = 255;
+		green = 255 - (1.8 * 4 * (temp_ratio - 75));
+		blue = 0;
+	}
+
+	// Make the bar blink if Tux is overheating.
+	int add = 0;
+	if (Me.temperature > Me.max_temperature) {
+		// Use game date to modify the filling color.
+		if ((int)(Me.current_game_date) % 2)
+			add = 255 - (Me.current_game_date - (int)(Me.current_game_date)) * 255;
+		else
+			add = (Me.current_game_date - (int)(Me.current_game_date)) * 255;
+
+		blue += add;
+		green += add;
+
+		// Make sure color values don't exceed 255.
+		blue = blue < 255 ? blue : 255;
+		green = green < 255 ? green : 255;
+	}
+
+	Uint32 fill_color = SDL_MapRGBA(Screen->format, red, green, blue, 0);
+
+	// If the current temperature is higher than the max temperature, the status bar will exceed its normal rectangle.
+	int temperature = Me.temperature > Me.max_temperature ? Me.max_temperature : Me.temperature;
+
+	// Display the status bar.
+	blit_vertical_status_bar(Me.max_temperature, temperature, fill_color, empty_color, w->rect.x, w->rect.y, w->rect.w, w->rect.h);
+}
+
+/** Computes the tooltip text displayed when hovering the heat bar. */
+static char *get_heat_bar_tooltip()
+{
+	static struct auto_string *buffer = NULL;
+	if (!buffer)
+		buffer = alloc_autostr(64);
+
+	autostr_printf(buffer, "%s\n%s%d/%d\n", _("Temperature"), Me.temperature / Me.max_temperature >= 0.9 ? font_switchto_red : "", (int)Me.temperature, (int)Me.max_temperature);
+
+	return buffer->value;
+}
+
+/**
  * This function builds the hud bar widgets.
  */
 static struct widget_group *create_hud_bar()
@@ -255,6 +451,41 @@ static struct widget_group *create_hud_bar()
 			NULL,
 			NULL
 		},
+		// Stamina bar
+		{
+			{{NULL}},
+			{left_panel_x + 6, WIDGET(panel)->rect.y + 11, 6, 50},
+			stamina_bar_display,
+			NULL,
+			get_stamina_bar_tooltip,
+			NULL
+		},
+		// Experience bar
+		{
+			{{NULL}},
+			{left_panel_x + 19, WIDGET(panel)->rect.y + 11, 6, 50},
+			experience_bar_display,
+			NULL,
+			get_experience_bar_tooltip,
+			NULL
+		},
+		// Health bar
+		{
+			{{NULL}},
+			{right_panel_x + 154, WIDGET(panel)->rect.y + 11, 6, 50},
+			health_bar_display,
+			NULL,
+			get_health_bar_tooltip,
+			NULL
+		},
+		// Heat bar
+		{
+			{{NULL}},
+			{right_panel_x + 169, WIDGET(panel)->rect.y + 11, 6, 50},
+			heat_bar_display,
+			NULL,
+			get_heat_bar_tooltip, NULL
+		},
 	};
 
 	int i, j, k;
@@ -268,6 +499,10 @@ static struct widget_group *create_hud_bar()
 					wb->image[j][k] = widget_load_image_resource(b[i].image[j][k], 0);
 
 		widget_set_rect(WIDGET(wb), b[i].rect.x, b[i].rect.y, b[i].rect.w, b[i].rect.h);
+
+		if (b[i].display)
+			WIDGET(wb)->display = b[i].display;
+
 		wb->activate_button = b[i].activate_button;
 		wb->tooltip.get_text = b[i].get_tooltip_text;
 		WIDGET(wb)->update = b[i].update;

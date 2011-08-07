@@ -549,26 +549,6 @@ enum {
 // 388 is the maximum y size to fit items up to 6 inventory squares high
 // 398 is the maximum y size to fit items up to 5 inventory squares high
 
-#define WHOLE_HEALTH_RECT_Y (480-85)
-#define WHOLE_HEALTH_RECT_W 6
-#define WHOLE_HEALTH_RECT_H 50
-#define WHOLE_HEALTH_RECT_X 614
-
-#define WHOLE_RUNNING_POWER_RECT_X 6
-#define WHOLE_RUNNING_POWER_RECT_Y (480-85)
-#define WHOLE_RUNNING_POWER_RECT_W 6
-#define WHOLE_RUNNING_POWER_RECT_H 50
-
-#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_X 19
-#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y WHOLE_RUNNING_POWER_RECT_Y
-#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_W WHOLE_RUNNING_POWER_RECT_W
-#define WHOLE_EXPERIENCE_COUNTDOWN_RECT_H WHOLE_RUNNING_POWER_RECT_H
-
-#define WHOLE_FORCE_RECT_Y ( WHOLE_HEALTH_RECT_Y )
-#define WHOLE_FORCE_RECT_W ( WHOLE_HEALTH_RECT_W )
-#define WHOLE_FORCE_RECT_H ( WHOLE_HEALTH_RECT_H )
-#define WHOLE_FORCE_RECT_X ( 640-12)
-
 //--------------------
 // The weapon rectangle is of course for the weapon the Tux is
 // using.  When using a 2-handed weapon, the 'shield' rectangle

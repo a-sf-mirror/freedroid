@@ -49,8 +49,7 @@ int best_banner_pos_x, best_banner_pos_y;
  * function to draw such bars in a convenient way, which is what this
  * function is supposed to do.
  */
-static void
-blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_color_code,
+void blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_color_code,
 			 Uint32 empty_color_code, int x, int y, int w, int h)
 {
 	SDL_Rect running_power_rect;
@@ -69,12 +68,6 @@ blit_vertical_status_bar(float max_value, float current_value, Uint32 filled_col
 	//
 	if (current_value > 3 * max_value)
 		current_value = 3 * max_value;
-
-	// Scale the status bar.
-	x = x * GameConfig.screen_width / 640.0;
-	y = y * GameConfig.screen_height / 480.0;
-	w = w * GameConfig.screen_width / 640.0;
-	h = h * GameConfig.screen_height / 480.0;
 
 	running_power_rect.x = x;
 	running_power_rect.y = y + ((h * (max_value - current_value)) / max_value);
@@ -261,196 +254,6 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 }
 
 /**
- * The experience needed for the next level and the experience achieved
- * already to gain the next level can be seen from an experience countdown
- * bar on (top of the) screen.  We draw it here.
- */
-void blit_experience_countdown_bars(void)
-{
-	static Uint32 experience_countdown_rect_color = 0;
-	static Uint32 un_experience_countdown_rect_color = 0;
-	int exp_range = Me.ExpRequired - Me.ExpRequired_previously;
-	int exp_achieved = Me.Experience - Me.ExpRequired_previously;
-
-	// At game startup, it might be that an uninitialized Tux (with 0 in the
-	// max running power entry) is still in the data structure and when the
-	// title displays, this causes division by zero... 
-	//
-	if (Me.ExpRequired <= 1)
-		return;
-	if ((Me.Experience > Me.ExpRequired) || (exp_range <= 1) || (exp_achieved < 0)) {
-		DebugPrintf(1, "\nblit_experience_countdown_bars(...)\n\
-The current experience of the Tux is higher than the next level while trying\n\
-to blit the 'experience countdown' bar.  Graphics will be suppressed for now...");
-		return;
-	}
-	// Upon the very first function call, the health and force colors are not yet
-	// set.  Therefore we set these colors once and for the rest of the game.
-	//
-	if (experience_countdown_rect_color == 0) {
-		un_experience_countdown_rect_color = SDL_MapRGBA(Screen->format, 50, 50, 50, 80);
-		experience_countdown_rect_color = SDL_MapRGBA(Screen->format, 255, 120, 120, 80);
-	}
-
-	blit_vertical_status_bar(exp_range, exp_achieved,
-				 experience_countdown_rect_color, un_experience_countdown_rect_color,
-				 WHOLE_EXPERIENCE_COUNTDOWN_RECT_X,
-				 WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y,
-				 WHOLE_EXPERIENCE_COUNTDOWN_RECT_W, WHOLE_EXPERIENCE_COUNTDOWN_RECT_H);
-
-};				// void blit_experience_countdown_bars ( void )
-
-static void blit_running_power_bars(void)
-{
-	static Uint32 running_power_rect_color = 0;
-	static Uint32 un_running_power_rect_color = 0;
-	static Uint32 rest_running_power_rect_color = 0;
-	static Uint32 infinite_running_power_rect_color = 0;
-
-	// At game startup, it might be that an uninitialized Tux (with 0 in the
-	// max running power entry) is still in the data structure and when the
-	// title displayes, this causes division by zero... 
-	//
-	if (Me.max_running_power <= 1)
-		return;
-
-	// Upon the very first function call, the health and force colors are not yet
-	// set.  Therefore we set these colors once and for the rest of the game.
-	//
-	if (running_power_rect_color == 0) {
-		un_running_power_rect_color = SDL_MapRGBA(Screen->format, 20, 20, 20, 80);
-		running_power_rect_color = SDL_MapRGBA(Screen->format, 255, 255, 0, 80);
-		rest_running_power_rect_color = SDL_MapRGBA(Screen->format, 255, 20, 20, 80);
-		infinite_running_power_rect_color = SDL_MapRGBA(Screen->format, 255, 255, 255, 80);
-	}
-
-	// Now that all our rects are set up, we can start to display the current
-	// running power status on screen...
-	//
-	SDL_SetClipRect(Screen, NULL);
-	if (curShip.AllLevels[Me.pos.z]->infinite_running_on_this_level) {
-		blit_vertical_status_bar(2.0, 2.0, infinite_running_power_rect_color,
-					 un_running_power_rect_color,
-					 WHOLE_RUNNING_POWER_RECT_X,
-					 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H);
-	} else {
-		if (Me.running_must_rest)
-			blit_vertical_status_bar(Me.max_running_power, Me.running_power,
-						 rest_running_power_rect_color,
-						 un_running_power_rect_color,
-						 WHOLE_RUNNING_POWER_RECT_X,
-						 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H);
-		else
-			blit_vertical_status_bar(Me.max_running_power, Me.running_power,
-						 running_power_rect_color,
-						 un_running_power_rect_color,
-						 WHOLE_RUNNING_POWER_RECT_X,
-						 WHOLE_RUNNING_POWER_RECT_Y, WHOLE_RUNNING_POWER_RECT_W, WHOLE_RUNNING_POWER_RECT_H);
-	}
-	if (GameConfig.cheat_running_stamina)
-		PutStringFont(Screen, Messagestat_BFont, UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X),
-				UNIVERSAL_COORD_H(WHOLE_RUNNING_POWER_RECT_Y), "C");
-
-};				// void blit_running_power_bars ( void )
-
-/**
- * Basically there are currently two methods of displaying the current
- * energy and mana of the Tux.  One method is to use the energy-o-meter,
- * an analog energy/mana display.  
- * The other method is to use classic energy bars.  This function is here
- * to provide the energy bars if desired.
- */
-void blit_energy_and_mana_bars(void)
-{
-
-	static Uint32 health_rect_color = 0;
-	static Uint32 un_health_rect_color = 0;
-	static Uint32 un_force_rect_color = 0;
-
-	// Upon the very first function call, the health and force colors are not yet
-	// set.  Therefore we set these colors once and for the rest of the game.
-	//
-	if (health_rect_color == 0) {
-		health_rect_color = SDL_MapRGBA(Screen->format, 255, 0, 0, 0);
-		un_health_rect_color = SDL_MapRGBA(Screen->format, 20, 0, 0, 0);
-		un_force_rect_color = SDL_MapRGBA(Screen->format, 0, 0, 55, 0);
-	}
-
-	blit_vertical_status_bar(Me.maxenergy, Me.energy,
-				 health_rect_color, un_health_rect_color,
-				 WHOLE_HEALTH_RECT_X, WHOLE_HEALTH_RECT_Y, WHOLE_HEALTH_RECT_W, WHOLE_HEALTH_RECT_H);
-
-	if (Me.god_mode)
-		PutStringFont(Screen, Messagestat_BFont,  UNIVERSAL_COORD_W(WHOLE_HEALTH_RECT_X),
-				UNIVERSAL_COORD_H(WHOLE_HEALTH_RECT_Y), "C");
-
-/*0 0 255
-vert grimpe, bleu baisse, rouge grimpe, vert baisse*/
-	int temp_ratio = Me.max_temperature ? (100 * Me.temperature) / Me.max_temperature : 100;
-	if (temp_ratio > 100)
-		temp_ratio = 100;
-	int red = (temp_ratio) > 50 ? ((temp_ratio > 75) ? 255 : 4 * (temp_ratio - 50) * 2.55) : 0;
-	int green;
-	int blue;
-	if (temp_ratio < 25) {
-		red = 0;
-		green = 2.55 * 4 * temp_ratio;
-		blue = 255;
-	} else if (temp_ratio < 50) {
-		red = 0;
-		green = 255;
-		blue = 255 - (2.55 * 4 * (temp_ratio - 25));
-	} else if (temp_ratio < 75) {
-		green = 255;
-		blue = 0;
-		red = 2.4 * 4 * (temp_ratio - 50);
-	} else {
-		blue = 0;
-		red = 255;
-		green = 255 - (1.8 * 4 * (temp_ratio - 75));
-	}
-
-	int add = 0;
-	if (Me.temperature > Me.max_temperature) {	//make the bar blink
-		switch ((int)(Me.current_game_date) % 4) {
-		case 0:
-		case 2:
-			add = (Me.current_game_date - (int)(Me.current_game_date)) * 255;
-			red += add;
-			blue += add;
-			green += add;
-			break;
-		case 1:
-		case 3:
-			add = 255 - (Me.current_game_date - (int)(Me.current_game_date)) * 255;
-			red += add;
-			blue += add;
-			green += add;
-			break;
-		}
-	}
-	blit_vertical_status_bar(Me.max_temperature, (Me.temperature > Me.max_temperature) ? Me.max_temperature : Me.temperature,
-				 SDL_MapRGBA(Screen->format, red > 255 ? 255 : red, green < 255 ? green : 255, blue < 255 ? blue : 255, 0)
-				 , un_force_rect_color, WHOLE_FORCE_RECT_X, WHOLE_FORCE_RECT_Y, WHOLE_FORCE_RECT_W, WHOLE_FORCE_RECT_H);
-
-};				// void blit_energy_and_mana_bars ( void )
-
-/**
- * This function displays the status bars for mana and energy in some 
- * corner of the screen.  The dimensions and location of the bar are
- * specified in items.h
- */
-void ShowCurrentHealthAndForceLevel(void)
-{
-	blit_energy_and_mana_bars();
-
-	blit_running_power_bars();
-
-	blit_experience_countdown_bars();
-
-};				// void ShowCurrentHealthAndForceLevel( void )
-
-/**
  * This function sets up the text, that is to appear in a bigger text
  * rectangle, possibly next to the mouse cursor, e.g. when the mouse is
  * hovering over an item or barrel or crate or teleporter.
@@ -549,66 +352,6 @@ static void prepare_text_window_content(struct auto_string *str)
 	// Check if the item upgrade UI is open and the cursor is inside it.
 	// We show a tooltip for the item upgrade UI if that's the case.
 	if (append_item_upgrade_ui_tooltip(&CurPos, str)) {
-		return;
-	}
-
-	/* Make the cursor position comparable to the coordinates of UI elements. */
-	int x = CurPos.x * 640.0 / GameConfig.screen_width;
-	int y = CurPos.y * 480.0 / GameConfig.screen_height;
-
-	if (   x > WHOLE_RUNNING_POWER_RECT_X
-	    && x < WHOLE_RUNNING_POWER_RECT_X + WHOLE_RUNNING_POWER_RECT_W
-	    && y > WHOLE_RUNNING_POWER_RECT_Y
-	    && y < WHOLE_RUNNING_POWER_RECT_Y + WHOLE_RUNNING_POWER_RECT_H)
-	{
-		autostr_printf(str, "%s\n%s%d/%d", _("RUN"),
-			Me.running_power / Me.max_running_power <= 0.1 ? font_switchto_red : "",
-			(int)rintf(Me.running_power), (int)rintf(Me.max_running_power));
-		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X);
-		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_RUNNING_POWER_RECT_Y)
-			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
-		return;
-	}
-
-	if (   x > WHOLE_EXPERIENCE_COUNTDOWN_RECT_X
-	    && x < WHOLE_EXPERIENCE_COUNTDOWN_RECT_X + WHOLE_EXPERIENCE_COUNTDOWN_RECT_W
-	    && y > WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y
-	    && y < WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y + WHOLE_EXPERIENCE_COUNTDOWN_RECT_H)
-	{
-		autostr_printf(str, "%s\n%d/%d", _("XP"), Me.Experience, Me.ExpRequired);
-		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_RUNNING_POWER_RECT_X + 5);
-		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y)
-			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
-		return;
-	}
-
-	if (   x > WHOLE_HEALTH_RECT_X
-	    && x < WHOLE_HEALTH_RECT_X + WHOLE_HEALTH_RECT_W
-	    && y > WHOLE_HEALTH_RECT_Y
-	    && y < WHOLE_HEALTH_RECT_Y + WHOLE_HEALTH_RECT_H)
-	{
-		autostr_printf(str, "%s\n%s%d/%d", _("Health"),
-			Me.energy / Me.maxenergy <= 0.1 ? font_switchto_red : "",
-			(int)rintf(Me.energy), (int)rintf(Me.maxenergy));
-		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W - 5)
-			- longest_line_width(str->value) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
-		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_HEALTH_RECT_Y)
-			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
-		return;
-	}
-
-	if (   x > WHOLE_FORCE_RECT_X
-	    && x < WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W
-	    && y > WHOLE_FORCE_RECT_Y
-	    && y < WHOLE_FORCE_RECT_Y + WHOLE_FORCE_RECT_H)
-	{
-		autostr_printf(str, "%s\n%s%d/%d", _("Temperature"),
-			Me.temperature / Me.max_temperature >= 0.9 ? font_switchto_red : "",
-			(int)rintf(Me.temperature), (int)rintf(Me.max_temperature));
-		best_banner_pos_x = UNIVERSAL_COORD_W(WHOLE_FORCE_RECT_X + WHOLE_FORCE_RECT_W)
-			- longest_line_width(str->value) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
-		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_FORCE_RECT_Y)
-			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
 		return;
 	}
 

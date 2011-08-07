@@ -659,6 +659,7 @@ void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 int get_current_fps(void);
 void display_tooltip(const char *, int, SDL_Rect);
+void blit_vertical_status_bar(float, float, Uint32, Uint32, int, int, int, int);
 
 // game_ui.c
 struct widget_group *get_game_ui();
