@@ -261,63 +261,6 @@ static void show_droid_description(enemy *cur_enemy, gps *description_pos)
 }
 
 /**
- * This function displays the icon of the current readied skill 
- * The dimensions and location of the picture are
- * specified in defs.h
- */
-void ShowCurrentSkill(void)
-{
-	SDL_Rect Target_Rect;
-
-	Target_Rect.x =
-	    UNIVERSAL_COORD_W(CURRENT_SKILL_RECT_X) + (CURRENT_SKILL_RECT_W * GameConfig.screen_width / 640 - CURRENT_SKILL_RECT_W) / 2;
-	Target_Rect.y = CURRENT_SKILL_RECT_Y + (CURRENT_SKILL_RECT_H * GameConfig.screen_height / 480 - CURRENT_SKILL_RECT_H) / 2;
-	Target_Rect.w = CURRENT_SKILL_RECT_W;
-	Target_Rect.h = CURRENT_SKILL_RECT_H;
-
-	spell_skill_spec *spec = &SpellSkillMap[Me.readied_skill];
-	load_skill_icon_if_needed(spec);
-
-	display_image_on_screen(&spec->icon_surface, Target_Rect.x, Target_Rect.y, IMAGE_NO_TRANSFO);
-}
-
-/**
- * This function displays the icon of the current readied weapon, 
- * and the state of the charger
- * The dimensions and location of the picture are
- * specified in defs.h
- */
-void ShowCurrentWeapon(void)
-{
-	char current_ammo[10];
-	if (Me.weapon_item.type == -1 || &Me.weapon_item == item_held_in_hand)
-		return;
-
-	struct image *img = get_item_inventory_image(Me.weapon_item.type);
-
-	float x = UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_X + CURRENT_WEAPON_RECT_W / 2) -
-	    img->w / 2;
-	float y = UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y + CURRENT_WEAPON_RECT_H / 2) -
-	    img->h / 2;
-
-	display_image_on_screen(img, x, y, IMAGE_NO_TRANSFO);
-
-	if (!ItemMap[Me.weapon_item.type].item_gun_use_ammunition)
-		return;
-
-	if (Me.busy_type == WEAPON_RELOAD)
-		sprintf(current_ammo, _("reloading"));
-	else if (!Me.weapon_item.ammo_clip)
-		sprintf(current_ammo, _(" %sEMPTY"), font_switchto_red);
-	else
-		sprintf(current_ammo, "%2d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
-
-	x = UNIVERSAL_COORD_W(CURRENT_WEAPON_RECT_X + CURRENT_WEAPON_RECT_W / 2 - 25);
-	y = UNIVERSAL_COORD_H(CURRENT_WEAPON_RECT_Y + CURRENT_WEAPON_RECT_H / 2 + 25);
-	PutStringFont(Screen, FPS_Display_BFont, x, y, current_ammo);
-}
-
-/**
  * The experience needed for the next level and the experience achieved
  * already to gain the next level can be seen from an experience countdown
  * bar on (top of the) screen.  We draw it here.
@@ -666,33 +609,6 @@ static void prepare_text_window_content(struct auto_string *str)
 			- longest_line_width(str->value) - TEXT_BANNER_HORIZONTAL_MARGIN * 2;
 		best_banner_pos_y = UNIVERSAL_COORD_H(WHOLE_FORCE_RECT_Y)
 			- 3 * FontHeight(TEXT_BANNER_DEFAULT_FONT);
-		return;
-	}
-
-	// Display Weapon item on hover
-	if (  x > WHOLE_EXPERIENCE_COUNTDOWN_RECT_X + WHOLE_EXPERIENCE_COUNTDOWN_RECT_W
-	    && x < 130
-	    && y > WHOLE_EXPERIENCE_COUNTDOWN_RECT_Y)
-	{
-		if (Me.weapon_item.type != (-1)) {
-			append_item_description(str, &(Me.weapon_item));
-			best_banner_pos_x = UNIVERSAL_COORD_W(45);
-			best_banner_pos_y = GameConfig.screen_height - UNIVERSAL_COORD_H(150);
-		}
-		return;
-	}
-
-	// Display Readied Skill on hover
-	if (  x > 510
-	    && x < WHOLE_HEALTH_RECT_X
-	    && y > WHOLE_HEALTH_RECT_Y)
-	{
-		if (Me.skill_level[Me.readied_skill] > 0) {
-			autostr_printf(str, _("%s\nHeat: %d\nRevision: %d\n"), SpellSkillMap[Me.readied_skill].name, 
-					calculate_program_heat_cost(Me.readied_skill), Me.skill_level[Me.readied_skill]);
-			best_banner_pos_x = GameConfig.screen_width - UNIVERSAL_COORD_W(150);
-			best_banner_pos_y = GameConfig.screen_height - UNIVERSAL_COORD_H(150);
-		}
 		return;
 	}
 

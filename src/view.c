@@ -1878,8 +1878,6 @@ void AssembleCombatPicture(int mask)
 		widget_text_display(WIDGET(&message_log));
 		if (!GameOver) {
 			ShowCurrentHealthAndForceLevel();
-			ShowCurrentSkill();
-			ShowCurrentWeapon();
 		}
 		display_buttons();
 		show_quick_inventory();

@@ -356,12 +356,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 
 	[TAKEOVER_HELP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/takeover_help_button.png", {78, 23, 153, 38}, FALSE},
 
-	// This button is for changing the current weapon mode/reloading
-	[WEAPON_MODE_BUTTON] =
-	    {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {CURRENT_WEAPON_RECT_X, 400, CURRENT_WEAPON_RECT_W, CURRENT_WEAPON_RECT_H}, TRUE},
-	[SKI_ICON_BUTTON] =
-	    {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {CURRENT_SKILL_RECT_X, 400, CURRENT_SKILL_RECT_W, CURRENT_SKILL_RECT_H}, TRUE},
-
 	// Buttons of the item upgrade UI.
 	[ITEM_UPGRADE_APPLY_BUTTON] = { EMPTY_IMAGE, "item_upgrade/button_apply.png",
 	    { ITEM_UPGRADE_RECT_X + 250, ITEM_UPGRADE_RECT_Y + 389, 48, 48 }, FALSE},

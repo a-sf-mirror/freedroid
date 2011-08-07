@@ -562,17 +562,8 @@ enum {
 #define INVENTORY_RECT_Y 260
 #define INVENTORY_RECT_X 8
 
-#define CURRENT_SKILL_RECT_X 537
-#define CURRENT_SKILL_RECT_Y (GameConfig . screen_height - 80 * GameConfig . screen_height / 480)
-#define CURRENT_SKILL_RECT_W 64
-#define CURRENT_SKILL_RECT_H 64
-
 // 388 is the maximum y size to fit items up to 6 inventory squares high
 // 398 is the maximum y size to fit items up to 5 inventory squares high
-#define CURRENT_WEAPON_RECT_X 35
-#define CURRENT_WEAPON_RECT_Y 398
-#define CURRENT_WEAPON_RECT_W 64
-#define CURRENT_WEAPON_RECT_H 64
 
 #define WHOLE_HEALTH_RECT_Y (480-85)
 #define WHOLE_HEALTH_RECT_W 6
