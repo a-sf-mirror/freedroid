@@ -802,8 +802,16 @@ static void LevelOptions(void)
 			case EDIT_LEVEL_FLOOR_LAYERS:
 				if (LeftPressed()) {
 					int new_layers = EditLevel()->floor_layers - 1;
-					if (new_layers > 0)
+					if (new_layers > 0) {
+						int x, y;
 						EditLevel()->floor_layers = new_layers;
+						// Clear the removed floor layer
+						for (y = 0; y < EditLevel()->ylen; y++) {
+							for (x = 0; x < EditLevel()->xlen; x++) {
+								EditLevel()->map[y][x].floor_values[new_layers] = ISO_FLOOR_EMPTY;
+							}
+						}
+					}
 					if (current_floor_layer >= EditLevel()->floor_layers)
 						current_floor_layer = EditLevel()->floor_layers - 1;
 					while (LeftPressed()) ;
