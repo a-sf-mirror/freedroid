@@ -374,6 +374,35 @@ static void quick_inventory_display(struct widget *w)
 	}
 }
 
+/* This function displays the item alarm widget. */
+static void item_alarm_display(struct widget *w)
+{
+	item *item_list[] = {
+			&Me.shield_item,
+			&Me.special_item,
+			&Me.armour_item,
+			&Me.drive_item,
+			&Me.weapon_item};
+
+	int i;
+	for (i = 0; i < 5; i++) {
+		if (item_list[i]->type == -1 || item_list[i]->max_durability == -1)
+			continue;
+
+		struct image *img = get_item_inventory_image(item_list[i]->type);
+
+		if (item_list[i]->current_durability > 5)
+			continue;
+
+		// Make critical damaged items blink.
+		if (item_list[i]->current_durability < 3 && (int)(Me.MissionTimeElapsed * 2) % 2)
+			continue;
+
+		float color_factor = (item_list[i]->current_durability - 1) / 4.0;
+		display_image_on_screen(img, w->rect.x + 64 * i, w->rect.y, set_image_transformation(1, 1, 1, color_factor, 0, 1, 0));
+	}
+}
+
 /**
  * This function builds the hud bar widgets.
  */
@@ -385,7 +414,6 @@ static struct widget_group *create_hud_bar()
 	// hud bar background
 	struct widget_background *panel = widget_background_create();
 	WIDGET(panel)->rect = WIDGET(hud_bar)->rect;
-	widget_group_add(hud_bar, WIDGET(panel));
 
 	// Fixed size tiles
 	struct image *img_1 = widget_load_image_resource("widgets/hud_background_1.png", 0);
@@ -411,6 +439,15 @@ static struct widget_group *create_hud_bar()
 	int right_scaling_panel_x = center_panel_x + img_3->w;
 	fill = right_panel_x - right_scaling_panel_x;
 	widget_background_add(panel, img_4, right_scaling_panel_x, WIDGET(panel)->rect.y, fill, img_4->h);
+
+	// item alarm
+	// This widget must be added before the hud bar background.
+	struct widget *item_alarm = widget_create();
+	widget_set_rect(item_alarm, right_panel_x - 300, WIDGET(panel)->rect.y + 5, 0, 0);
+	item_alarm->display = item_alarm_display;
+	widget_group_add(hud_bar, item_alarm);
+
+	widget_group_add(hud_bar, WIDGET(panel));
 
 	struct {
 		char *image[2][3];

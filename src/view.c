@@ -125,62 +125,6 @@ static void DisplayItemImageAtMouseCursor(int ItemImageCode)
 }
 
 /**
- * This function displays (several) blinking warning signs as soon as item
- * durabilities reach critical (<5) durability level.
- */
-static void ShowOneItemAlarm(item * AlarmItem, int Position)
-{
-	SDL_Rect TargetRect;
-	int ItemImageCode;
-
-	if (AlarmItem->type == (-1))
-		return;
-	if (AlarmItem->max_durability == (-1))
-		return;
-
-	ItemImageCode = AlarmItem->type;
-	
-	if (GameConfig.screen_width > 800) {
-		TargetRect.x = GameConfig.screen_width / 2 + 160 - 64 * Position; // Centered
-	} else {
-		TargetRect.x = GameConfig.screen_width - GameConfig.screen_width * 100/640 - 64 * Position; // Right-aligned
-	}
-	TargetRect.y = GameConfig.screen_height * 390/480;
-
-	if (AlarmItem->current_durability <= 5) {
-		if (AlarmItem->current_durability < 3)
-			if (((int)(Me.MissionTimeElapsed * 2)) % 2 == 1)
-				return;
-		struct image *img = get_item_inventory_image(ItemImageCode);
-		display_image_on_screen(img, TargetRect.x, TargetRect.y, set_image_transformation(1.0, 1.0, 1.0, (float)(AlarmItem->current_durability - 1) / (4), 0.0, 1.0, 0));
-#ifdef HAVE_LIBGL
-		//XXX get rid of this which will be useless once everything has been moved to struct image
-		if (use_open_gl) {
-			glColor3f(1.0, 1.0, 1.0);
-		}
-#endif
-	}
-}
-
-/**
- * This function displays (several) blinking warning signs as soon as item
- * durabilities reach critical (<5) durability level.
- */
-void ShowItemAlarm(void)
-{
-
-	ShowOneItemAlarm(&Me.weapon_item, 1);
-	ShowOneItemAlarm(&Me.shield_item, 2);
-	ShowOneItemAlarm(&Me.special_item, 3);
-	ShowOneItemAlarm(&Me.armour_item, 4);
-	ShowOneItemAlarm(&Me.drive_item, 5);
-
-
-
-
-};				// void ShowItemAlarm( void )
-
-/**
  * Now it's time to blit all the spell effects.
  */
 void PutMiscellaneousSpellEffects(void)
@@ -1871,7 +1815,6 @@ void AssembleCombatPicture(int mask)
 	// Here are some more things, that are not needed in the level editor
 	// view...
 	if (!(mask & ONLY_SHOW_MAP_AND_TEXT)) {
-		ShowItemAlarm();
 		display_widgets();
 		show_addon_crafting_ui();
 		show_item_upgrade_ui();
