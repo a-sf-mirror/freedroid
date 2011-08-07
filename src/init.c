@@ -86,7 +86,7 @@ extern int fedisableexcept(int TheExceptionFlags);
  *
  *
  */
-static void clear_out_arrays_for_fresh_game(void)
+void clear_out_arrays_for_fresh_game(void)
 {
 	int i;
 
@@ -99,12 +99,9 @@ static void clear_out_arrays_for_fresh_game(void)
 	for (i = 0; i < MAXBLASTS; i++) {
 		DeleteBlast(i);
 	}
-	for (i = 0; i < MAX_ACTIVE_SPELLS; i++) {
-		DeleteSpell(i);
-	}
+	clear_active_spells();
 
 	clear_enemies();
-	clear_active_spells();
 	ClearAutomapData();
 
 	clear_npcs();
@@ -1531,6 +1528,7 @@ I will not be able to load or save games or configurations\n\
 	GameConfig.screen_height = 600;
 	input_keyboard_init();
 	input_set_default();
+	init_lua();
 
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		ErrorMessage(__FUNCTION__, "Couldn't initialize SDL: %s\n", PLEASE_INFORM, IS_FATAL,  SDL_GetError());
@@ -1562,7 +1560,6 @@ I will not be able to load or save games or configurations\n\
 
 	init_keyboard_input_array();
 	init_message_log();
-	init_lua();
 	init_luaconfig();
 
 	InitAudio();

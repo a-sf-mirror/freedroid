@@ -26,6 +26,7 @@
 #define _proto_h
 
 #include "struct.h"
+#include "lua.h"
 
 // main.c 
 void Game(void);
@@ -38,6 +39,7 @@ void update_obstacle_automap(int z, obstacle *our_obstacle);
 
 // init.c
 void ResetGameConfigToDefaultValues(void);
+void clear_out_arrays_for_fresh_game(void);
 void next_startup_percentage(int Percentage);
 void ParseCommandLine(int argc, char *const argv[]);
 void ClearAutomapData(void);
@@ -59,11 +61,11 @@ struct event_trigger * visible_event_at_location(int x, int y, int z);
 
 // lua.c
 void init_lua(void);
+lua_State *get_lua_state(enum lua_target target);
 void run_lua(enum lua_target, const char *code);
 void run_lua_file(enum lua_target, const char *);
 void reset_lua_state(void);
-void lua_save_variables(struct auto_string *savestruct_autostr);
-void lua_load_variables(const char *savegame_data);
+void write_lua_variables(struct auto_string *savestruct_autostr);
 
 // luaconfig.c
 void init_luaconfig(void);
@@ -286,66 +288,6 @@ int LoadBackupGame(void);
 int LoadGame(void);
 int DeleteGame(void);
 void LoadAndShowStats(char *CoreFilename);
-
-/* Primitive types */
-
-/* Saving is done via macros */
-#define save_pritype(Z,X,Y) autostr_append(savestruct_autostr, Z, X, *(Y))
-#define save_uint8_t(X,Y) save_pritype("%s: %hu\n", X, Y)
-#define save_uint16_t(X,Y) save_pritype("%s: %hu\n", X, Y)
-#define save_int16_t(X,Y) save_pritype("%s: %hd\n", X, Y)
-#define save_int32_t(X,Y) save_pritype("%s: %d\n", X, Y)
-#define save_uint32_t(X,Y) save_pritype("%s: %u\n", X, Y)
-#define save_float(X,Y) save_pritype("%s: %f\n", X, Y)
-#define save_double(X,Y) save_pritype("%s: %lf\n", X, Y)
-#define save_string(X,Y) if (*Y) save_pritype("%s: %s\n", X, Y)
-
-/* Reading is slightly more difficult so we do it with functions */
-void read_int32_t(const char *, const char *, int32_t *);
-void read_int16_t(const char *, const char *, int16_t *);
-void read_uint32_t(const char *, const char *, uint32_t *);
-void read_uint16_t(const char *, const char *, uint16_t *);
-void read_uint8_t(const char *, const char *, uint8_t *);
-void read_double(const char *, const char *, double *);
-void read_float(const char *, const char *, float *);
-void read_string(const char *, const char *, string *);
-
-/* Array writing/reading */
-void save_moderately_finepoint_array(const char *, moderately_finepoint *, int);
-void read_moderately_finepoint_array(char *, const char *, moderately_finepoint *, int);
-void save_mission_array(const char *, mission *, int);
-void read_mission_array(char *, const char *, mission *, int);
-void save_int32_t_array(const char *, int *, int);
-void read_int32_t_array(char *, const char *, int *, int);
-void save_item_array(const char *, item *, int);
-void read_item_array(char *, const char *, item *, int);
-void save_uint16_t_array(const char *, uint16_t *, int);
-void read_uint16_t_array(char *, const char *, uint16_t *, int);
-void save_uint8_t_array(const char *, uint8_t *, int);
-void read_uint8_t_array(char *, const char *, uint8_t *, int);
-void save_gps_array(const char *, gps *, int);
-void read_gps_array(char *, const char *, gps *, int);
-void save_float_array(const char *, float *, int);
-void read_float_array(char *, const char *, float *, int);
-void save_string_array(const char *, string *, int);
-void read_string_array(char *, const char *, string *, int);
-void save_upgrade_socket_dynarray(const char *, struct upgrade_socket_dynarray *);
-void read_upgrade_socket_dynarray(char *, const char *, struct upgrade_socket_dynarray *);
-void save_item_dynarray(const char *, item_dynarray *);
-void read_item_dynarray(char *, const char *, item_dynarray *);
-
-/* Hacks */
-void save_keybind_t_array(const char *, keybind_t *, int);
-void read_keybind_t_array(const char *, const char *, keybind_t *, int);
-#define save_automap_data_t_array save_automap_data
-void save_automap_data(const char *, automap_data_t *, int);
-void read_automap_data_t_array(char *, char *, automap_data_t *, int);
-void save_sdl_rect(const char *, SDL_Rect *);
-int read_sdl_rect(const char *, const char *, SDL_Rect *);
-#define save_list_head_t(X,Y)
-#define read_list_head_t(X,Y,Z)
-void save_luacode(const char *, luacode *);
-void read_luacode(const char *, const char *, luacode *);
 
 // mission.c 
 void CompleteMission(const char *);
@@ -827,8 +769,6 @@ enum faction_id get_faction_id(const char *);
 void set_faction_state(enum faction_id, enum faction_id, enum faction_state);
 int is_friendly(enum faction_id, enum faction_id);
 void init_factions(void);
-void save_factions(struct auto_string *);
-void load_factions(char *);
 
 // obstacle_extension.c
 void *get_obstacle_extension(level *, obstacle *, enum obstacle_extension_type);

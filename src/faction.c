@@ -35,6 +35,7 @@
 #include "struct.h"
 #include "proto.h"
 #include "global.h"
+#include "savestruct.h"
 
 static int hostility_matrix[FACTION_NUMBER_OF_FACTIONS][FACTION_NUMBER_OF_FACTIONS];
 
@@ -161,45 +162,25 @@ void init_factions()
 }
 
 /**
-  * Save the faction hostility matrix.
+  * Save one faction hostility matrix.
   */
-void save_factions(struct auto_string *s)
-{
-	int i;
 
-	autostr_append(s, "<factions>\n");
-	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
-		save_int32_t_array(factions[i].name, hostility_matrix[i], FACTION_NUMBER_OF_FACTIONS);
-	}
-	autostr_append(s, "</factions>\n");
+void write_faction(struct auto_string *strout, int *faction_idx)
+{
+	autostr_append(strout, "%s = ", factions[*faction_idx].name);
+	write_int32_t_array(strout, hostility_matrix[*faction_idx], FACTION_NUMBER_OF_FACTIONS);
+	autostr_append(strout, ",\n");
 }
 
 /**
-  * Load the faction hostility matrix.
+  * Load one faction hostility matrix.
   */
-void load_factions(char *s)
+
+void read_faction(lua_State *L, int index, int *faction_idx)
 {
-	char *end;
-	int i;
-
-	s = strstr(s, "<factions>");
-	if (!s) {
-		// Reset factions to default
-		ErrorMessage(__FUNCTION__, "Could not find factions in savegame. Using default values for faction hostility matrix.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-		init_factions();
-		return;
-	}
-
-	end = strstr(s, "</factions>");
-	if (!end) {
-		return;
-	}
-	*end = 0;
-
-	for (i = 0; i < FACTION_NUMBER_OF_FACTIONS; i++) {
-		read_int32_t_array(s, factions[i].name, hostility_matrix[i], FACTION_NUMBER_OF_FACTIONS);
-	}	
-
-	*end = '<';
+	lua_getfield(L, index, factions[*faction_idx].name);
+	read_int32_t_array(L, -1, hostility_matrix[*faction_idx], FACTION_NUMBER_OF_FACTIONS);
+	lua_pop(L, 1);
 }
+
 #undef _faction_c

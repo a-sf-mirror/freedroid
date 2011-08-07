@@ -35,8 +35,8 @@
 #include "global.h"
 #include "proto.h"
 #include "sys/stat.h"
-#include "savestruct.h"
 #include "widgets/widgets.h"
+#include "savestruct.h"
 
 #include "scandir.h"
 
@@ -48,17 +48,8 @@
 #define nl_langinfo(X) "%a %b %e %H:%M:%S %Y"
 #endif
 
-#define SAVEDGAME_EXT ".savegame"
+#define SAVEDGAME_EXT ".sav.gz"
 #define SAVE_GAME_THUMBNAIL_EXT ".thumbnail.bmp"
-
-jmp_buf saveload_jmpbuf;
-
-#define WrapErrorMessage(a, b, c, d, ...) do { \
-	ErrorMessage(a,b,c,IS_WARNING_ONLY, ##__VA_ARGS__);\
-    	alert_window(_("An error occurred when trying to load the savegame.\nA common reason for this is that FreedroidRPG has been updated to a newer version since the save was made, in which case the savegame is very likely not compatible.\nIf you see this message and you have not updated the game, make sure to report this to the developers.\nThanks!"));\
-        if (d==IS_FATAL)\
-    	    longjmp(saveload_jmpbuf, 1);\
-} while (0)
 
 /**
  * Filter function for scandir calls.
@@ -301,49 +292,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 		Terminate(EXIT_FAILURE, TRUE);
 	}
 
-	/* Save tux */
-	save_tux_t("player", &Me);
+	save_game_data(savestruct_autostr);
 
-	/* Save all enemies */
-	int i;
-	int a = 0;
-	for (i = 0; i < 2; i++) {
-		enemy *erot;
-		list_for_each_entry(erot, i ? &dead_bots_head : &alive_bots_head, global_list) {
-			char str[20];
-			sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
-			save_enemy(str, erot);
-			a++;
-		}
-	}
-
-	/* Save NPCs */
-	a = 0;
-	struct npc *n;
-	list_for_each_entry(n, &npc_head, node) {
-		char str[20];
-		sprintf(str, "npc %d", a);
-		save_npc(str, n);
-		a++;
-	}
-
-	/* Save all bullets */
-	for (i = 0; i < MAXBULLETS; i++) {
-		char str[20];
-		sprintf(str, "blt%d", i);
-		save_bullet(str, &AllBullets[i]);
-	}
-
-	/* Save melee shots */
-	for (i = 0; i < MAX_MELEE_SHOTS; i++) {
-		char str[20];
-		sprintf(str, "ml%d", i);
-		save_melee_shot(str, &AllMeleeShots[i]);
-	}
-
-	save_factions(savestruct_autostr);
-	lua_save_variables(savestruct_autostr);
-	autostr_append(savestruct_autostr, "End of freedroidRPG savefile\n");
 	deflate_to_stream((unsigned char *)savestruct_autostr->value, savestruct_autostr->length+1, SaveGameFile);
 	fclose(SaveGameFile);
 
@@ -389,91 +339,11 @@ int DeleteGame(void)
 
 };				// int DeleteGame( void )
 
-/**
- * Load all enemies from a savegame
- */
-static void load_enemies(char *game_data)
-{
-	enemy one_enemy;
-	int done;
-	int a = 0, i;
-
-	clear_enemies();
-
-	for (i = 0; i < 2; i++) {
-		char *cpos = game_data;
-		done = 0;
-		while (!done) {
-			char str[25];
-			sprintf(str, "%s enemy %d", i ? "dead" : "alive", a);
-			cpos = strstr(cpos, str);
-			if (!cpos) {
-				break;
-			}
-			cpos -= 5;
-			memset(&one_enemy, 0, sizeof(enemy)); // all pointers have to be zeroed before to call read_xxx() functions
-			if (read_enemy(cpos, str, &one_enemy)) {
-				done = 1;
-			} else {
-				enemy *newen = enemy_new(one_enemy.type);
-				free(newen->short_description_text);
-				memcpy(newen, &one_enemy, sizeof(enemy));
-				enemy_insert_into_lists(newen, (i==0));
-			}
-			a++;
-		}
-	}
-}
-
-static void load_npcs(char *LoadGameData)
-{
-	clear_npcs();
-
-	struct npc *npc;
-	char *cpos = LoadGameData;
-	int a = 0, done = 0;
-	while (!done) {
-		npc = calloc(1, sizeof(struct npc));
-		char str[25];
-		sprintf(str, "npc %d", a);
-		cpos = strstr(cpos, str);
-		if (!cpos) {
-			done = 1;
-			free(npc);
-			break;
-		}
-		cpos -= 5;
-		if (read_npc(cpos, str, npc)) {
-			done = 1;
-			free(npc);
-		} else {
-			npc_insert(npc);
-		}
-		a++;
-	}
-}
-
-static void load_bullets(char *LoadGameData)
-{
-	char *cpos = LoadGameData;
-	int i;
-	for (i = 0; i < MAXBULLETS; i++) {
-		char str[20];
-		sprintf(str, "blt%d", i);
-		cpos = strstr(cpos, str);
-		if (!cpos)
-			break;
-		cpos -= 5;
-		read_bullet(cpos, str, &AllBullets[i]);
-	}
-}
-
 static int load_saved_game(int use_backup)
 {
 	char version_check_string[1000];
 	char *LoadGameData = NULL;
 	char filename[1000], prefix[1000];
-	int i;
 	FILE *DataFile;
 
 	if (!our_config_dir) {
@@ -515,29 +385,34 @@ static int load_saved_game(int use_backup)
 	LoadShip(filename, 1);
 
 	sprintf(filename, "%s%s", prefix, SAVEDGAME_EXT);
-
 	DataFile = fopen(filename, "rb");
 	if (inflate_stream(DataFile, (unsigned char **)&LoadGameData, NULL)) {
 		fclose(DataFile);
 		alert_window("Unable to decompress saved game - this is probably an old, incompatible game. Sorry.");
 		return ERR;
 	}
-
 	fclose(DataFile);
 
-	init_tux();
-	read_tux_t(LoadGameData, "player", &Me);
+	clear_out_arrays_for_fresh_game();
+	load_game_data(LoadGameData);
 
+	free(LoadGameData);
+	LoadGameData = NULL;
+
+	sprintf(version_check_string, "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d",
+		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
+
+	if (strcmp(Me.savegame_version_string, version_check_string) != 0) {
+		alert_window(_("Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."));
+		our_SDL_flip_wrapper();
+		while (!MouseLeftPressed())
+			SDL_Delay(1);
+	}
+
+	/* post-loading: Some transient states have to be adapted */
 	reset_visible_levels();
 	get_visible_levels();
 
-	load_enemies(LoadGameData);
-	load_npcs(LoadGameData);
-	load_bullets(LoadGameData);
-	load_factions(LoadGameData);
-	lua_load_variables(LoadGameData);
-
-	/* post-loading: Some transient states have to be adapted */
 	enemy *erot;
 	BROWSE_DEAD_BOTS(erot) {
 		/*
@@ -552,31 +427,12 @@ static int load_saved_game(int use_backup)
 			erot->animation_type = DEAD_ANIMATION;
 	}
 
-	for (i = 0; i < MAXBULLETS; i++) {
-		DeleteBullet(i, FALSE);
-	}
-	sprintf(version_check_string, "%s;sizeof(tux_t)=%d;sizeof(enemy)=%d;sizeof(bullet)=%d;MAXBULLETS=%d",
-		VERSION, (int)sizeof(tux_t), (int)sizeof(enemy), (int)sizeof(bullet), (int)MAXBULLETS);
-
-	if (strcmp(Me.savegame_version_string, version_check_string) != 0) {
-		alert_window(_("Version or structsize mismatch! The savegame is not from the same version of FreedroidRPG... possible breakage."));
-		our_SDL_flip_wrapper();
-		while (!MouseLeftPressed())
-			SDL_Delay(1);
-	}
-	// To prevent cheating, we remove all active spells, that might still be there
-	// from other games just played before.
-	//
-	clear_active_spells();
-
 	// Now that we have loaded the game, we must count and initialize the number
 	// of droids used in this ship.  Otherwise we might ignore some robots.
 	//
 	CountNumberOfDroidsOnShip();
 
 	SwitchBackgroundMusicTo(curShip.AllLevels[Me.pos.z]->Background_Song_Name);
-
-	free((char *)LoadGameData);
 
 	// Maybe someone just lost in the game and has then pressed the load
 	// button.  Then a new game is loaded and the game-over status has
@@ -614,449 +470,6 @@ int LoadGame(void)
 int LoadBackupGame()
 {
 	return load_saved_game(1);
-}
-
-void read_enemy_ptr(const char *buffer, const char *tag, enemy ** val)
-{
-}
-
-void read_int32_t(const char *buffer, const char *tag, int32_t * val)
-{
-	char search[strlen(tag) + 3];
-	sprintf(search, "\n%s:", tag);
-	char *pos = strstr(buffer, search);
-	if (!pos)
-		return;
-	pos += 3 + strlen(tag);
-	char *epos = pos;
-	while (*epos != '\n')
-		epos++;
-	*epos = '\0';
-	while (!isdigit(*pos) && *pos != '-')
-		pos++;
-	*val = strtol(pos, NULL, 10);
-	*epos = '\n';
-}
-
-void read_int16_t(const char *buffer, const char *tag, int16_t * val)
-{
-	int32_t valt;
-	read_int32_t(buffer, tag, &valt);
-	*val = valt;
-}
-
-void read_uint32_t(const char *buffer, const char *tag, uint32_t * val)
-{
-	int32_t valt;
-	read_int32_t(buffer, tag, &valt);
-	*val = valt;
-}
-
-void read_uint16_t(const char *buffer, const char *tag, uint16_t * val)
-{
-	uint32_t valt;
-	read_uint32_t(buffer, tag, &valt);
-	*val = valt;
-}
-
-void read_uint8_t(const char *buffer, const char *tag, uint8_t *val)
-{
-	uint32_t valt;
-	read_uint32_t(buffer, tag, &valt);
-	*val = valt;
-}
-
-void read_double(const char *buffer, const char *tag, double *val)
-{
-	char search[strlen(tag) + 3];
-	sprintf(search, "\n%s:", tag);
-	char *pos = strstr(buffer, search);
-	if (!pos)
-		return;
-	pos += 3 + strlen(tag);
-	char *epos = pos;
-	while (*epos != '\n')
-		epos++;
-	*epos = '\0';
-	while (!isdigit(*pos) && *pos != '-')
-		pos++;
-	*val = strtod(pos, NULL);
-	*epos = '\n';
-}
-
-void read_float(const char *buffer, const char *tag, float *val)
-{
-	double valt;
-	read_double(buffer, tag, &valt);
-	*val = valt;
-}
-
-void read_string(const char *buffer, const char *tag, string *val)
-{
-	char search[strlen(tag) + 3];
-	char *pos, *epos;
-	sprintf(search, "\n%s:", tag);
-	pos = strstr(buffer, search);
-	if (!pos)
-		return;
-	pos += 3 + strlen(tag);
-	epos = pos;
-	while (*epos != '\n')
-		epos++;
-	*epos = '\0';
-
-	int size = strlen(pos);
-    if (*val) {
-		ErrorMessage(__FUNCTION__, "The target char * passed was not NULL - this means we are probably trying to overwrite an existing string which will lead to a memory leak.", PLEASE_INFORM, IS_WARNING_ONLY);
-	}
-
-	*val = MyMalloc(size + 1);
-
-	strcpy(*val, pos);
-	*epos = '\n';
-}
-
-void save_luacode(const char *tag, luacode * val)
-{
-	if (*val)
-		autostr_append(savestruct_autostr, "%s:LuaCode={%s}\n", tag, *val);
-}
-
-void read_luacode(const char *buffer, const char *tag, luacode * val)
-{
-	if (*val) {
-		free(*val);
-		*val = NULL;
-	}
-
-	char search[strlen(tag) + 3];
-	sprintf(search, "\n%s:LuaCode={", tag);
-	char *pos = strstr(buffer, search);
-	if (!pos)
-		return;
-	while (*pos != '{')
-		pos++;
-	pos++;
-	char *epos = pos;
-	while (*epos != '}' || *(epos + 1) != '\n')
-		epos++;
-	*epos = '\0';
-	*val = malloc(strlen(pos) + 1);
-	strcpy(*val, pos);
-	*epos = '\n';
-}
-
-/* Save arrays of simple types */
-#define define_save_xxx_array(X) void save_##X##_array(const char *tag, X *val_ar, int size)\
-{\
-	autostr_append(savestruct_autostr, "<%s array n=%d>\n", tag, size);\
-	int i;\
-	for (i = 0; i < size; i++) {\
-		char str[strlen(tag) + 20];\
-		sprintf(str, "%s elem %d", tag, i);\
-		save_##X(str, &val_ar[i]);\
-	}\
-	autostr_append(savestruct_autostr, "</%s>\n", tag);\
-}
-
-/* Save dynamic arrays of simple types.
- * Requires you to first use define_save_xxx_array for the type.
- */
-#define define_save_xxx_dynarray(X) void save_##X##_dynarray(const char *tag, X##_dynarray *array)\
-{\
-	save_##X##_array(tag, array->arr, array->size);\
-}
-
-define_save_xxx_array(int32_t);
-define_save_xxx_array(uint32_t);
-define_save_xxx_array(int16_t);
-define_save_xxx_array(uint16_t);
-define_save_xxx_array(uint8_t);
-define_save_xxx_array(float);
-define_save_xxx_array(string);
-define_save_xxx_array(mission);
-define_save_xxx_array(upgrade_socket);
-define_save_xxx_dynarray(upgrade_socket);
-define_save_xxx_dynarray(item);
-define_save_xxx_array(item);
-define_save_xxx_array(gps);
-define_save_xxx_array(moderately_finepoint);
-
-/**
- * \brief Reads the number of elements stored to a generic savestruct array.
- * \param buffer String from which to read.
- * \param tag Tag name of the array.
- * \return The size of the array.
- */
-int read_array_size(const char *buffer, const char *tag)
-{
-	// Find the beginning element.
-	char search[strlen(tag) + 20];
-	sprintf(search, "<%s array", tag);
-	char *pos = strstr(buffer, search);
-	if (!pos) WrapErrorMessage(__FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);
-
-	// Find the size string.
-	char *runp = pos + 1;
-	runp += strlen(tag) + 1 + strlen("array") + 1;
-	while (!isdigit(*runp)) runp++;
-
-	// Convert it to an integer.
-	return atoi(runp);
-}
-
-/* Read arrays of simple types */
-#define define_read_xxx_array(X) void read_##X##_array(char *buffer, const char *tag, X *val_ar, int size)\
-{\
-	int i;\
-	/* Find the beginning element. */\
-	char search[strlen(tag) + 20];\
-	sprintf(search, "<%s array", tag);\
-	char * pos = strstr(buffer, search);\
-	if (!pos) WrapErrorMessage(__FUNCTION__, "Unable to find array %s\n", PLEASE_INFORM, IS_FATAL, tag);\
-	sprintf(search, "</%s>", tag);\
-	/* Find the end element. */\
-	char * epos = strstr(pos, search);\
-	if ( ! epos ) WrapErrorMessage(__FUNCTION__, "Unable to find array end %s\n", PLEASE_INFORM, IS_FATAL, tag);\
-	epos += strlen(search);\
-	/* Check for valid size. */\
-	int nb = read_array_size(pos, tag);\
-	if ( nb != size ) WrapErrorMessage(__FUNCTION__, "Size mismatch for array %s, %d in file, %d in game\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, tag, nb, size);\
-	/* Overwrite the last character of the end element with NUL. */\
-	char savechar = *(epos + 1);\
-	*(epos+1) = '\0';\
-	/* Read array elements. */\
-	for (i = 0; i < (nb <= size ? nb : size); i++) {\
-		char str[strlen(tag) + 20];\
-		sprintf(str, "%s elem %d", tag, i);\
-		pos = strstr(pos, str);\
-		if (!pos) break;\
-		pos -= 5;\
-		read_##X(pos, str, &val_ar[i]);\
-	}\
-	/* Restore the last character of the end element. */\
-	*(epos+1) = savechar;\
-}
-
-/* Read dynamic arrays of simple types
- * Requires you to first use define_read_xxx_array for the type.
- */
-#define define_read_xxx_dynarray(X) void read_##X##_dynarray(char *buffer, const char *tag, X##_dynarray *array)\
-{\
-	/* Read the size. */\
-	int size = read_array_size(buffer, tag);\
-	/* Allocate space. */\
-	dynarray_init((struct dynarray *) array, size, sizeof(X));\
-	array->size = size;\
-	/* Read the array elements. */\
-	read_##X##_array(buffer, tag, array->arr, array->size);\
-}
-
-define_read_xxx_array(int32_t);
-define_read_xxx_array(uint32_t);
-define_read_xxx_array(int16_t);
-define_read_xxx_array(uint16_t);
-define_read_xxx_array(uint8_t);
-define_read_xxx_array(float);
-define_read_xxx_array(string);
-define_read_xxx_array(mission);
-define_read_xxx_array(upgrade_socket);
-define_read_xxx_dynarray(upgrade_socket);
-define_read_xxx_array(item);
-define_read_xxx_dynarray(item);
-define_read_xxx_array(gps);
-define_read_xxx_array(moderately_finepoint);
-
-void save_sdl_rect(const char *tag, SDL_Rect * target)
-{
-	autostr_append(savestruct_autostr, "<%s>\n", tag);
-	save_int16_t("x", &(target->x));
-	save_int16_t("y", &(target->y));
-	save_uint16_t("w", &(target->w));
-	save_uint16_t("h", &(target->h));
-	autostr_append(savestruct_autostr, "</%s>\n", tag);
-}
-
-int read_sdl_rect(const char *buffer, const char *tag, SDL_Rect * target)
-{
-	char search[strlen(tag) + 5];
-	sprintf(search, "<%s>", tag);
-	char *pos = strstr(buffer, search);
-	if (!pos)
-		return 1;
-	pos += 1 + strlen(tag);
-	sprintf(search, "</%s>", tag);
-	char *epos = strstr(buffer, search);
-	if (!epos)
-		return 2;
-	*epos = 0;
-	read_int16_t(pos, "x", &(target->x));
-	read_int16_t(pos, "y", &(target->y));
-	read_uint16_t(pos, "w", &(target->w));
-	read_uint16_t(pos, "h", &(target->h));
-	*epos = '>';
-	return 0;
-}
-
-void save_keybind_t_array(const char *tag, keybind_t * keybinds, int size)
-{
-	autostr_append(savestruct_autostr, "<keybinds cmd=%d>\n", size);
-	int i;
-	for (i = 0; i < size; i++) {
-		if (keybinds[i].name == NULL)
-			break;
-
-		autostr_append(savestruct_autostr, "%s %d %d\n", keybinds[i].name, keybinds[i].key, keybinds[i].mod);
-	}
-	autostr_append(savestruct_autostr, "</keybinds>\n");
-}
-
-void read_keybind_t_array(const char *buffer, const char *tag, keybind_t * kbs, int size)
-{
-	int tknb;
-	char *pos = strstr(buffer, "<keybinds cmd=");
-	if (!pos) {
-		WrapErrorMessage(__FUNCTION__, "Unable to find keybinds.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-		return;
-	}
-	char *epos = strstr(pos, "</keybinds>\n");
-	if (!epos) {
-		WrapErrorMessage(__FUNCTION__, "Unable to find keybinds end.\n", PLEASE_INFORM, IS_WARNING_ONLY);
-		return;
-	}
-	char savechar = *epos;
-	*epos = '\0';
-	int mc = 0;
-	char tmpname[100];
-	int tmpcode = 0;
-	int tmpmod;
-
-	pos += strlen("<keybinds cmd=");
-	while (!isdigit(*pos))
-		pos++;
-	char *erunp = pos;
-	while ((*erunp) != '>')
-		erunp++;
-	*erunp = '\0';
-	mc = atoi(pos);
-	*erunp = '>';
-	pos = erunp;
-
-	if (mc < size)
-		WrapErrorMessage(__FUNCTION__, "Config file defines %d keybindings, game supports only %d.\n", PLEASE_INFORM, IS_FATAL, mc,
-				 size);
-
-	while (*pos != '\n')
-		pos++;
-	pos++;
-
-	strtok(pos, " \n");
-	tknb = 0;
-	do {
-		switch (tknb) {
-		case 0:	/*key name */
-			strncpy(tmpname, pos, 99);
-			tmpname[99] = 0;
-			tknb++;
-			break;
-		case 1:	/*key code */
-			tmpcode = atoi(pos);
-			tknb++;
-			break;
-		case 2:	/*key mod */
-			tmpmod = atoi(pos);
-
-			input_set_keybind(tmpname, tmpcode, tmpmod);
-			tknb = 0;
-			break;
-		}
-	} while ((pos = strtok(NULL, " \n")));
-
-	*epos = savechar;
-}
-
-void save_automap_data(const char *tag, automap_data_t * automapdata, int size)
-{
-	autostr_append(savestruct_autostr, "<automap nl=%d sx=%d sy=%d>\n", MAX_LEVELS, 100, 100);
-	int i, j, k;
-	for (i = 0; i < MAX_LEVELS; i++) {
-		autostr_append(savestruct_autostr, "%d\n", i);
-		for (j = 0; j < 100; j++) {
-			for (k = 0; k < 100; k += 5)
-				autostr_append(savestruct_autostr, "%hhd %hhd %hhd %hhd %hhd ", automapdata[i][j][k], automapdata[i][j][k + 1],
-					automapdata[i][j][k + 2], automapdata[i][j][k + 3], automapdata[i][j][k + 4]);
-			autostr_append(savestruct_autostr, "\n");
-		}
-	}
-	autostr_append(savestruct_autostr, "</automap>\n");
-}
-
-void read_automap_data_t_array(char *buffer, char *tag, automap_data_t * automapdata, int size)
-{
-	char *pos = strstr(buffer, "<automap nl=");
-	if (!pos)
-		WrapErrorMessage(__FUNCTION__, "Unable to find automap data\n", PLEASE_INFORM, IS_FATAL);
-	char *epos = strstr(pos, "</automap>\n");
-	if (!epos)
-		WrapErrorMessage(__FUNCTION__, "Unable to find automap data end\n", PLEASE_INFORM, IS_FATAL);
-	epos += strlen("</automap>\n");
-	char savechar = *(epos + 1);
-	*(epos + 1) = '\0';
-	char *runp = pos + 1;
-	runp += strlen("<automap");
-
-	ClearAutomapData();
-
-	while (*runp != '\n')
-		runp++;
-	*runp = '\0';
-	int nl, sx, sy;
-	sscanf(pos, "<automap nl=%d sx=%d sy=%d>", &nl, &sx, &sy);
-
-	if (nl != MAX_LEVELS)
-		WrapErrorMessage(__FUNCTION__, "Number of levels mismatch when reading automap data : file %d, game %d\n",
-				 NO_NEED_TO_INFORM, IS_WARNING_ONLY, nl, MAX_LEVELS);
-	if (sx != 100 || sy != 100)
-		WrapErrorMessage(__FUNCTION__, "Size mismatch when reading automap data.\n", PLEASE_INFORM, IS_FATAL);
-
-	*runp = '\n';
-	runp++;
-	char *erunp;
-	int i = 0, j = 0, k = 0;
-	while (i < nl) {
-		/* we're on level number */
-		while (*runp != '\n')
-			runp++;
-		runp++;
-		/*now on the actual data */
-		j = 0;
-		while (j < 100) {
-			k = 0;
-			while (k < 100) {
-				while (!isdigit(*runp))
-					runp++;
-				erunp = runp + 1;
-				while (*erunp != ' ')
-					erunp++;
-				*erunp = '\0';
-
-				(automapdata)[i][j][k] = atoi(runp);
-				*erunp = ' ';
-				runp = erunp;
-				k++;
-			}
-			while (*runp != '\n')
-				runp++;
-			runp++;
-			j++;
-		}
-
-		while (*runp != '\n')
-			runp++;
-		i++;
-	}
-	*(epos + 1) = savechar;
-
 }
 
 #undef _saveloadgame_c

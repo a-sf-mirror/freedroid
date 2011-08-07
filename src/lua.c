@@ -48,7 +48,7 @@ static lua_State *dialog_lua_state;
 /* Lua state for config execution */
 lua_State *config_lua_state;
 
-static lua_State *get_lua_state(enum lua_target target)
+lua_State *get_lua_state(enum lua_target target)
 {
 	if (target == LUA_CONFIG)
 		return config_lua_state;
@@ -1273,13 +1273,11 @@ void reset_lua_state(void)
  * Save Lua variables as lua code.
  * Variables prefixed with '_' are omitted because these are Lua predefined variables.
  */
-void lua_save_variables(struct auto_string *savestruct_autostr)
+void write_lua_variables(struct auto_string *savestruct_autostr)
 {
 	int boolean;
 	const char *value;
 	lua_State *L = get_lua_state(LUA_DIALOG);
-
-	autostr_append(savestruct_autostr, "lua_variables:LuaCode={\n");
 
 	lua_pushnil(L);
 	while (lua_next(L, LUA_GLOBALSINDEX) != 0) {
@@ -1318,16 +1316,5 @@ void lua_save_variables(struct auto_string *savestruct_autostr)
 		lua_pop(L, 1);
 	}
 
-	autostr_append(savestruct_autostr, "}\n");
-}
-
-/**
- * Load Lua variables from a saved game
- */
-void lua_load_variables(const char *savegame_data)
-{
-	luacode init_variables_code = NULL;
-	read_luacode(savegame_data, "lua_variables", &init_variables_code);
-	run_lua(LUA_DIALOG, init_variables_code);
-	free(init_variables_code);
+	autostr_append(savestruct_autostr, "\n");
 }

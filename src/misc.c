@@ -1058,7 +1058,7 @@ int LoadGameConfig(void)
 		return (OK);
 	}
 
-	sprintf(fname, "%s/config", our_config_dir);
+	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
 	if ((configfile = fopen(fname, "rb")) == NULL) {
 		DebugPrintf(0, "WARNING: failed to open config-file: %s\n");
 		return (ERR);
@@ -1073,7 +1073,17 @@ int LoadGameConfig(void)
 	}
 	stuff[FS_filelength(configfile)] = 0;
 	fclose(configfile);
-	read_configuration_for_freedroid(stuff, "GameConfig", &GameConfig);
+
+	if (setjmp(saveload_jmpbuf)) {
+		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		configfile = NULL;
+		free(stuff);
+		ResetGameConfigToDefaultValues();
+		return ERR;
+	}
+
+	load_freedroid_configuration(stuff);
+
 	configfile = NULL;
 	free(stuff);
 
@@ -1139,7 +1149,7 @@ int SaveGameConfig(void)
 	if (our_config_dir[0] == '\0')
 		return (ERR);
 
-	sprintf(fname, "%s/config", our_config_dir);
+	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
 	if ((config_file = fopen(fname, "wb")) == NULL) {
 		DebugPrintf(0, "WARNING: failed to create config-file: %s\n");
 		return (ERR);
@@ -1165,7 +1175,7 @@ int SaveGameConfig(void)
 
 	// Now write the actual data
 	savestruct_autostr = alloc_autostr(4096);
-	save_configuration_for_freedroid("GameConfig", &(GameConfig));
+	save_freedroid_configuration(savestruct_autostr);
 	if (fwrite(savestruct_autostr->value, savestruct_autostr->length, 1, config_file) != 1) {
 		ErrorMessage(__FUNCTION__, "Failed to write config file: %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
 		free_autostr(savestruct_autostr);	

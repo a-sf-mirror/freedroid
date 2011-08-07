@@ -28,7 +28,9 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	proto.h struct.h system.h BFont.h \
 	open_gl.c open_gl_atlas.c mission.c chat.c light.c \
 	getopt.c getopt1.c getopt.h scandir.c scandir.h sound.h sound_effects.c \
-	lang.h lists.c lists.h gen_savestruct.py savestruct.c savestruct.h string.c pathfinder.c \
+	lang.h lists.c lists.h \
+	gen_savestruct.py savestruct.c savestruct.h savestruct_internal.c savestruct_internal.h \
+	string.c pathfinder.c \
 	benchmark.c \
 	npc.c \
 	obstacle_extension.c \
@@ -62,7 +64,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	mapgen/mapgen.c mapgen/mapgen.h mapgen/gram_simple.c animate.c \
 	mapgen/themes.c mapgen/themes.h
 
-savestruct.c savestruct.h: struct.h gen_savestruct.py
+savestruct.c savestruct.h: struct.h savestruct_internal.h gen_savestruct.py
 	python gen_savestruct.py struct.h savestruct
 
 clean-local:

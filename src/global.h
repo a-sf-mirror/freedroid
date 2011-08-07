@@ -351,6 +351,7 @@ EXTERN struct dynarray obstacle_groups;
 #define EXTERN extern
 #endif
 EXTERN struct auto_string *savestruct_autostr;
+EXTERN jmp_buf saveload_jmpbuf;
 
 #undef EXTERN
 #ifdef _benchmark_c
