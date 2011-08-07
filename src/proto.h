@@ -161,6 +161,7 @@ void PutIndividuallyShapedDroidBody(enemy *, SDL_Rect, int, int);
 void object_vtx_color(void *, float *, float *, float *);
 int get_motion_class_id_by_name(char *);
 char *get_motion_class_name_by_id(int);
+void show_inventory_screen(void);
 
 #define next_valid_visible_level(pos, start) ({ \
 	pos = start; \

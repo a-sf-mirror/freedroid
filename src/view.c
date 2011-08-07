@@ -67,8 +67,6 @@ int amask = 0x000000FF;
 static int old_current_level = -1;
 
 void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, uint8_t active_directions[RADIAL_SPELL_DIRECTIONS], float age);
-static void show_inventory_screen(void);
-
 
 struct blitting_list_element {
 	int element_type;
@@ -1880,11 +1878,8 @@ void AssembleCombatPicture(int mask)
 			ShowCurrentHealthAndForceLevel();
 		}
 		show_quick_inventory();
-		ShowCharacterScreen();
-		ShowSkillsScreen();
 		show_addon_crafting_ui();
 		show_item_upgrade_ui();
-		show_inventory_screen();
 		if (!GameOver)
 			show_texts_and_banner();
 	}
@@ -2997,7 +2992,7 @@ void draw_inventory_occupied_rectangle(SDL_Rect TargetRect, int bgcolor)
  * items the influencer is carrying in his inventory and also all the 
  * items the influencer is fitted with.
  */
-static void show_inventory_screen(void)
+void show_inventory_screen(void)
 {
 	SDL_Rect TargetRect;
 	int SlotNum;

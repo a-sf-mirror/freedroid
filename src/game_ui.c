@@ -307,5 +307,41 @@ struct widget_group *get_game_ui()
 	struct widget_group *hud_bar = create_hud_bar(); 
 	widget_group_add(game_widget_group, WIDGET(hud_bar));
 
+	struct {
+		SDL_Rect rect;
+		void (*display)(struct widget *w);
+		void (*update)(struct widget *w);
+	} panels[] = {
+		{
+			{0, 0, 320, 480},
+			(void *)show_inventory_screen,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.Inventory_Visible)
+		},
+		{
+			{0, 0, 320, 480},
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.skill_explanation_screen_visible)
+		},
+		{
+			{GameConfig.screen_width - 320, 0, 320, 480},
+			(void *)ShowCharacterScreen,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.CharacterScreen_Visible)
+		},
+		{
+			{GameConfig.screen_width - 320, 0, 320, 480},
+			(void *)ShowSkillsScreen,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.SkillScreen_Visible)
+		}
+	};
+
+	int i;
+	for (i = 0; i < sizeof(panels) / sizeof(panels[0]); i++) {
+		struct widget_group *w = widget_group_create();
+		widget_set_rect(WIDGET(w), panels[i].rect.x, panels[i].rect.y, panels[i].rect.w, panels[i].rect.h);
+		WIDGET(w)->display = panels[i].display;
+		WIDGET(w)->update = panels[i].update;
+		widget_group_add(game_widget_group, WIDGET(w));
+	}
+
 	return game_widget_group;
 }
