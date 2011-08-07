@@ -62,18 +62,18 @@ jmp_buf saveload_jmpbuf;
 
 /**
  * Filter function for scandir calls.
- * This function keeps files with the ".savegame" extension.
+ * This function keeps files with the SAVEDGAME_EXT extension.
  */
 static int filename_filter_func(const struct dirent *file)
 {
-	char *pos = strstr(file->d_name, ".savegame");
+	char *pos = strstr(file->d_name, SAVEDGAME_EXT);
 
-	if (pos != NULL) {	// ".savegame" found
-		if (strlen(pos) == 9) {	// since strlen(".savegame") is 9, then
-			// d_name *ENDS* with ".savegame"
+	if (pos != NULL) {	// SAVEDGAME_EXT found
+		if (strlen(pos) == strlen(SAVEDGAME_EXT)) {
+			// d_name *ENDS* with SAVEDGAME_EXT
 
-			if (strstr(file->d_name, ".bkp.savegame") + 4 == pos) {
-				//then we have .bkp.savegame = filter it out
+			if (strstr(file->d_name, ".bkp"SAVEDGAME_EXT) + 4 == pos) {
+				//then we have .bkp+SAVEDGAME_EXT = filter it out
 				return 0;
 			}
 			return 1;
@@ -101,10 +101,10 @@ int find_saved_games(struct dirent ***namelist)
 		return 0;
 	}
 
-	// For each element in list, remove the suffix ".savegame"
+	// For each element in list, remove the suffix SAVEDGAME_EXT
 	int i;
 	for (i = 0; i < n; i++) {
-		*strstr((*namelist)[i]->d_name, ".savegame") = 0;
+		*strstr((*namelist)[i]->d_name, SAVEDGAME_EXT) = 0;
 		if (!strlen((*namelist)[i]->d_name))
 			strcpy((*namelist)[i]->d_name, "INVALID");
 	}
@@ -286,8 +286,8 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 		DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nShip data for saved game seems to have been saved correctly.\n");
 	}
 
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".savegame");
-	sprintf(filename2, "%s/%s%s", our_config_dir, Me.character_name, ".bkp.savegame");
+	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
+	sprintf(filename2, "%s/%s%s", our_config_dir, Me.character_name, ".bkp"SAVEDGAME_EXT);
 
 	unlink(filename2);
 	ret = rename(filename, filename2);
