@@ -832,7 +832,7 @@ static int lua_chat_takeover(lua_State * L)
 	int player_capsules = 2 + Me.skill_level[get_program_index_with_name("Hacking")];
 	int game_length = luaL_optint(L, 2, 100);
 
-	int won = do_takeover(player_capsules, opponent_capsules, game_length);
+	int won = do_takeover(player_capsules, opponent_capsules, game_length, NULL);
 
 	lua_pushboolean(L, won);
 

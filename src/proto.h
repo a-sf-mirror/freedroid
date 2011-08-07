@@ -739,7 +739,7 @@ int GreatShopInterface(int, item * ShowPointerList[MAX_ITEMS_IN_INVENTORY], int,
 // takeover.c 
 
 int droid_takeover(enemy *);
-int do_takeover(int, int, int);
+int do_takeover(int, int, int, enemy *);
 
 void InventPlayground(void);
 

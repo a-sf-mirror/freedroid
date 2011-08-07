@@ -40,7 +40,6 @@
 #include "map.h"
 #include "widgets/widgets.h"
 
-enemy *cDroid;
 Uint32 cur_time;		// current time in ms 
 
 // Takeover images
@@ -131,7 +130,7 @@ float EvaluatePosition(const int color, const int row, const int layer, const in
 float EvaluateCenterPosition(const int color, const int row, const int layer, const int endgame);
 void AdvancedEnemyTakeoverMovements(const int countdown);
 
-static void ShowPlayground(void);
+static void ShowPlayground(enemy *target);
 
 static void display_takeover_help()
 {
@@ -236,7 +235,7 @@ static void init_droid_description(struct widget_text *w, int droidtype)
  * This function does the countdown where you still can changes your
  * color.
  */
-static void ChooseColor(void)
+static void ChooseColor(enemy *target)
 {
 	int countdown = 100;	// duration in 1/10 seconds given for color choosing 
 	int ColorChosen = FALSE;
@@ -307,7 +306,7 @@ static void ChooseColor(void)
 		countdown--;	// Count down 
 		sprintf(count_text, _("Color-%d.%d"), countdown/10, countdown%10);
 
-		ShowPlayground();
+		ShowPlayground(target);
 		to_show_banner(count_text, NULL);
 		our_SDL_flip_wrapper();
 
@@ -320,7 +319,7 @@ static void ChooseColor(void)
 		SDL_Delay(1);
 };				// void ChooseColor ( void ) 
 
-static void PlayGame(int countdown)
+static void PlayGame(int countdown, enemy *target)
 {
 	char count_text[80];
 	int FinishTakeover = FALSE;
@@ -466,7 +465,7 @@ static void PlayGame(int countdown)
 
 		}
 		/* if (motion_tick has occurred) */
-		ShowPlayground();
+		ShowPlayground(target);
 		to_show_banner(count_text, NULL);
 		our_SDL_flip_wrapper();
 		SDL_Delay(10);
@@ -487,7 +486,7 @@ static void PlayGame(int countdown)
 		ProcessPlayground();
 		ProcessPlayground();	/* this has to be done several times to be sure */
 		ProcessDisplayColumn();
-		ShowPlayground();
+		ShowPlayground(target);
 		our_SDL_flip_wrapper();
 	}			/* while (countdown) */
 
@@ -575,11 +574,10 @@ int droid_takeover(enemy *target)
 
 	while (!(!SpacePressed() && !EscapePressed() && !MouseLeftPressed())) ;
 
-	cDroid = target;
 	int player_capsules = 2 + Me.skill_level[get_program_index_with_name("Hacking")];
 	max_opponent_capsules = 2 + Druidmap[target->type].class;
 
-	if (do_takeover(player_capsules, max_opponent_capsules, 100)) {
+	if (do_takeover(player_capsules, max_opponent_capsules, 100, target)) {
 		/* Won takeover */
 		Me.marker = target->marker;
 
@@ -617,8 +615,6 @@ int droid_takeover(enemy *target)
 		Me.energy *= 0.5;
                 Me.TakeoverFailures[target->type]++;
 	}
-
-	cDroid = NULL;
 
 	clear_screen();
 
@@ -814,7 +810,13 @@ static void GetTakeoverGraphics(void)
 	TakeoverGraphicsAreAlreadyLoaded = TRUE;
 }
 
-int do_takeover(int player_capsules, int opponent_capsules, int game_length)
+/**
+ * Initiate the takeover game
+ * @param game_length game time in tenths of a second
+ * @param target a pointer to the enemy structure of the target. NULL means none
+ * @return 1 on player success, 0 on player failure
+ */
+int do_takeover(int player_capsules, int opponent_capsules, int game_length, enemy* target)
 {
 	char *message;
 	int player_won = 0;
@@ -824,7 +826,6 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 
 	old_status = game_status;
 
-	cDroid = NULL;
 	Activate_Conservative_Frame_Computation();
 
 	// Maybe takeover graphics haven't been loaded yet.  Then we do this
@@ -855,10 +856,10 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 
 		EvaluatePlayground();
 
-		ShowPlayground();
+		ShowPlayground(target);
 		our_SDL_flip_wrapper();
 
-		ChooseColor();
+		ChooseColor(target);
 
 		// This following function plays the takeover game, until one
 		// of THREE states is reached, i.e. until YOU WON, YOU LOST
@@ -866,7 +867,7 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 		// the takeover game is finished, but if it's a deadlock, then
 		// the game must be played again in the next loop...
 		//
-		PlayGame(game_length);
+		PlayGame(game_length, target);
 
 		// We we evaluate the final score of the game.  Maybe we're done
 		// already, maybe not...
@@ -886,7 +887,7 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 			message = _("Deadlock");
 		}
 
-		ShowPlayground();
+		ShowPlayground(target);
 		to_show_banner(message, NULL);
 		our_SDL_flip_wrapper();
 		SDL_Delay(100);
@@ -897,29 +898,42 @@ int do_takeover(int player_capsules, int opponent_capsules, int game_length)
 	return player_won;
 }
 
-
-static void ShowPlayground(void)
+/**
+ * Draws the playground for the takeover game
+ * @param target a pointer to the target's enemy structure. Use NULL for none
+ */
+static void ShowPlayground(enemy * target)
 {
 	int i, j;
 	int color, player;
 	int block;
 	int xoffs, yoffs;
 	SDL_Rect Target_Rect;
-
+	int phase, dheight;
 	xoffs = User_Rect.x + (User_Rect.w - 2 * 290) / 2;
 	yoffs = User_Rect.y + (User_Rect.h - 2 * 140) / 2;
 
-	//  SDL_SetColorKey (Screen, 0, 0);
-	SDL_SetClipRect(Screen, &User_Rect);
+	phase = (int) Me.phase;
 
 	blit_background("transfer.jpg");
 
-	blit_tux(xoffs + DruidStart[YourColor].x, yoffs + DruidStart[YourColor].y + 30);
+	if (target) {
+		// Find the difference of the droid's height and Tux's height.
+		// Tux's height is measured from the top of his head to the bottom of his feet
+		// This also accounts for the droid's blitting offset
+		dheight = tux_images[PART_GROUP_FEET][0][phase].offset_y + tux_images[PART_GROUP_FEET][0][phase].h -
+			tux_images[PART_GROUP_HEAD][0][phase].offset_y -
+			enemy_images[target->type][0][0].h -
+			enemy_images[target->type][0][0].offset_y;
 
-	if (cDroid) {
-		Set_Rect(Target_Rect, xoffs + DruidStart[!YourColor].x, yoffs + DruidStart[!YourColor].y, User_Rect.w, User_Rect.h);
-		PutIndividuallyShapedDroidBody(cDroid, Target_Rect, FALSE, FALSE);
+		// Offset the droid's drawing rectangle by dheight minus 30 units.
+		Set_Rect(Target_Rect, xoffs + DruidStart[!YourColor].x, yoffs + dheight - 30, User_Rect.w, User_Rect.h);
+		PutIndividuallyShapedDroidBody(target, Target_Rect, FALSE, FALSE);
 	}
+	//  SDL_SetColorKey (Screen, 0, 0);
+	SDL_SetClipRect(Screen, &User_Rect);
+
+	blit_tux(xoffs + DruidStart[YourColor].x, yoffs);
 
 	Set_Rect(Target_Rect, xoffs + LEFT_OFFS_X, yoffs + LEFT_OFFS_Y, User_Rect.w, User_Rect.h);
 
