@@ -985,48 +985,56 @@ obstacle {
 	image_filenames = "iso_blood_0001.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
 	image_filenames = "iso_blood_0002.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
 	image_filenames = "iso_blood_0003.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
 	image_filenames = "iso_blood_0004.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
 	image_filenames = "iso_blood_0005.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
 	image_filenames = "iso_blood_0006.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
 	image_filenames = "iso_blood_0007.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
 	image_filenames = "iso_blood_0008.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "blood"
 }
 
 obstacle {
@@ -2145,48 +2153,56 @@ obstacle {
 	image_filenames = "iso_oil_stains_0001.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {
 	image_filenames = "iso_oil_stains_0002.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {
 	image_filenames = "iso_oil_stains_0003.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {
 	image_filenames = "iso_oil_stains_0004.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {
 	image_filenames = "iso_oil_stains_0005.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {
 	image_filenames = "iso_oil_stains_0006.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {
 	image_filenames = "iso_oil_stains_0007.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {
 	image_filenames = "iso_oil_stains_0008.png",
 	flags = { IS_VOLATILE, BLOCKS_VISION, NEEDS_PRE_PUT },
 	transparency = NO_TRANSPARENCY,
+	groups = "oil stains"
 }
 
 obstacle {

@@ -163,7 +163,7 @@ obstacle_spec *get_obstacle_spec(int index)
 	return dynarray_member(&obstacle_map, index, sizeof(obstacle_spec));
 }
 
-static struct obstacle_group *get_obstacle_group_by_name(const char *group_name)
+struct obstacle_group *get_obstacle_group_by_name(const char *group_name)
 {
 	int i;
 	struct obstacle_group *group = obstacle_groups.arr;

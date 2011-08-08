@@ -836,12 +836,21 @@ static void enemy_spray_blood(enemy * CurEnemy)
 	target_pos.x += CurEnemy->virt_pos.x;
 	target_pos.y += CurEnemy->virt_pos.y;
 
-	if (Druidmap[CurEnemy->type].is_human)
-		add_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, ISO_BLOOD_1 + MyRandom(7));
-	else
-		add_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, ISO_OIL_STAINS_1 + MyRandom(7));
+	struct obstacle_group *blood_group = NULL;
 
-};				// void enemy_spray_blood ( Enemy CurEnemy ) 
+	if (Druidmap[CurEnemy->type].is_human)
+		blood_group = get_obstacle_group_by_name("blood");
+	else
+		blood_group = get_obstacle_group_by_name("oil stains");
+
+	if (!blood_group) {
+		ErrorMessage(__FUNCTION__, "Could not find obstacle group for blood.", PLEASE_INFORM, IS_WARNING_ONLY);
+		return;
+	}
+
+	int *random_blood_type = dynarray_member(&blood_group->members, MyRandom(blood_group->members.size - 1), sizeof(int));
+	add_obstacle(curShip.AllLevels[CurEnemy->pos.z], target_pos.x, target_pos.y, *random_blood_type);
+}
 
 /**
  * When a robot has reached energy <= 1, then this robot will explode and
