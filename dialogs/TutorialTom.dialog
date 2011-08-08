@@ -26,19 +26,14 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
+		doors = {"TutorialEntry", "TutorialZigzag1", "TutorialZigzag2", "TutorialZigzag3", "TutorialZigzag4"}
+		doors2 = {doors[1], doors[2], doors[3], doors[4], doors[5], "TutorialEquipOut", "TutorialMeleeOut", "TutorialStorage", "TutorialShootingOut", 				     "TutorialTakeover"}
+		items_up = {"Entropy Inverter", "Tachyon Condensator", "Antimatter-Matter Converter", "Superconducting Relay Unit", "Plasma Transistor"}
+		ranged_combat = {"Normal Jacket", "Big kitchen knife", "Shoes", "Standard Shield", "Worker Helmet"}
 		-- to avoid excessive map validator waypoint errors, map starts with all relevant doors open, so we need to close them here
-		change_obstacle_state("TutorialEntry", "closed")
-		change_obstacle_state("TutorialZigzag1", "closed")
-		change_obstacle_state("TutorialZigzag2", "closed")
-		change_obstacle_state("TutorialZigzag3", "closed")
-		change_obstacle_state("TutorialZigzag4", "closed")
-		change_obstacle_state("TutorialZigzagOut", "closed")
-		change_obstacle_state("TutorialEquipOut", "closed")
-		change_obstacle_state("TutorialExit1", "closed")
-		change_obstacle_state("TutorialMeleeOut", "closed")
-		change_obstacle_state("TutorialStorage", "closed")
-		change_obstacle_state("TutorialShootingOut", "closed")
-		change_obstacle_state("TutorialTakeover", "closed")
+		for var in ipairs(doors2) do
+			change_obstacle_state(doors2[var], "closed")
+		end
 		-- we also need remove all tux skills, except use weapon
 		downgrade_program("Hacking")
 		downgrade_program("Repair equipment")
@@ -155,12 +150,9 @@ Nr=8 Text=_"Thank you, that was very informative. Can we move on now?"
 Nr=9 Text=_"I'm eager to learn more."
 <LuaCode>
 	npc_says(_"Ok, follow me into the next area.")
-	change_obstacle_state("TutorialEntry", "opened")
-	change_obstacle_state("TutorialZigzag1", "opened")
-	change_obstacle_state("TutorialZigzag2", "opened")
-	change_obstacle_state("TutorialZigzag3", "opened")
-	change_obstacle_state("TutorialZigzag4", "opened")
-	change_obstacle_state("TutorialZigzagOut", "opened")
+	for var in ipairs(doors) do
+			change_obstacle_state(doors[var], "opened")
+		end
 	end_dialog()
 	hide(1, 2, 3, 4, 5) show(10)
 </LuaCode>
@@ -541,10 +533,11 @@ Nr=35 Text=_"I killed all the bots."
 Nr=36 Text=_"I would like a few more bots to shoot at."
 <LuaCode>
 	npc_says(_"Ok, I'll create some more droids.")
-	create_droid("shootingrange1", 123)
-	create_droid("shootingrange3", 123)
-	create_droid("shootingrange5", 123)
-	create_droid("shootingrange7", 123)
+	i = 1
+	while (i < 8) do
+		create_droid("shootingrange"..i, 123)
+		i = i + 2
+	end
 	end_dialog()
 	hide(36)
 </LuaCode>
@@ -801,11 +794,9 @@ Nr=58 Text=_"Can you tell me more about upgrading items?"
 	npc_says(_"Pay attention to the type of the socket the add-on needs.")
 	update_quest(_"Tutorial Upgrading Items", _"Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them.")
 -- TODO decide on what type of upgrade should player make?
-	add_item("Entropy Inverter", 20)
-	add_item("Tachyon Condensator", 20)
-	add_item("Antimatter-Matter Converter", 20)
-	add_item("Superconducting Relay Unit", 20)
-	add_item("Plasma Transistor", 20)
+	for var in ipairs(items_up) do
+		add_item(items_up[var], 20)
+	end
 	craft_addons()
 	npc_says(_"Now you'll need to pay some more money in order to make a socket and plug-in the add-on. Here, take some.")
 	add_gold(600)
@@ -820,11 +811,9 @@ Nr=59 Text=_"I wasted my materials on the add-on I didn't need. Can you give mor
 <LuaCode>
 	npc_says(_"Yes, but only this time. I'll give you some money too. Just be more careful in the future and make wise choices.") 
 	npc_says(_"Reality is not as generous as I am.")
-	add_item("Entropy Inverter", 20)
-	add_item("Tachyon Condensator", 20)
-	add_item("Antimatter-Matter Converter", 20)
-	add_item("Superconducting Relay Unit", 20)
-	add_item("Plasma Transistor", 20)
+	for var in ipairs(items_up) do
+		add_item(items_up[var], 20)
+	end
 	add_gold(600)
 	tux_says(_"Thank you.")
 	npc_says(_"Think carefully before you make your next add-on.")
@@ -882,11 +871,9 @@ Nr=83 Text=_"Ranged Combat"
 	npc_says(_"OK, I'll take us to the shooting range and give you some armor and a weapon.")
 	teleport_npc("TutorialTom-Ranged")
 	teleport("TutorialTux-Ranged")
-	add_item("Normal Jacket")
-	add_item("Big kitchen knife")
-	add_item("Shoes")
-	add_item("Standard Shield")
-	add_item("Worker Helmet")
+	for var in ipairs(ranged_combat) do
+		add_item(ranged_combat[var])
+	end
 	change_obstacle_state("TutorialShootCage", "opened")
 	next(30) hide(81, 82, 83, 84, 85, 86)
 </LuaCode>
@@ -897,11 +884,9 @@ Nr=84 Text=_"Abilities"
 	npc_says(_"OK, I'll take us there and give you some armor and a weapon.")
 	teleport_npc("TutorialTom-Terminals")
 	teleport("TutorialTux-Terminals")
-	add_item("Normal Jacket")
-	add_item("Big kitchen knife")
-	add_item("Shoes")
-	add_item("Standard Shield")
-	add_item("Worker Helmet")
+	for var in ipairs(ranged_combat) do
+		add_item(ranged_combat[var])
+	end
 	next(40) hide(81, 82, 83, 84, 85, 86)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -911,11 +896,9 @@ Nr=85 Text=_"Upgrading Items & Terminals"
 	npc_says(_"OK, I'll take us there and give you some armor and a weapon to work with.")
 	teleport_npc("TutorialTom-Terminals")
 	teleport("TutorialTux-Terminals")
-	add_item("Normal Jacket")
-	add_item("Big kitchen knife")
-	add_item("Shoes")
-	add_item("Standard Shield")
-	add_item("Worker Helmet")
+	for var in ipairs(ranged_combat) do
+		add_item(ranged_combat[var])
+	end
 	next(58) show(42) hide(81, 82, 83, 84, 85, 86)
 </LuaCode>
 ----------------------------------------------------------------------
