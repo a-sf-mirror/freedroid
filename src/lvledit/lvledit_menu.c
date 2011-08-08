@@ -50,7 +50,7 @@ int get_number_popup(const char *displayed_text, const char *suggested_val)
 {
 	char *str, *cstr;
 	int tgt = 0;
-	str = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text), suggested_val);
+	str = GetEditableStringInPopupWindow(10, _(displayed_text), suggested_val);
 	if (str) {
 		cstr = str;
 		while (*cstr) {
