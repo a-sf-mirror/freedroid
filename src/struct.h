@@ -779,6 +779,11 @@ typedef struct level {
 	struct dynarray obstacle_extensions;
 	struct dynarray map_labels;
 	struct dynarray waypoints;
+	struct {
+		int nr;
+		int types[10];
+		int types_size;
+	} random_droids;
 
 	int teleport_pair;
 } level, *Level;

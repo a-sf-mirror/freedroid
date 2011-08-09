@@ -101,42 +101,33 @@ SForce: T=FEM Marker=9999 Faction="civilian" StartLabel="Iris" UseDialog="Iris" 
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=1
-Number of Random Droids=80
-Random Droid Types: 123, 139, 247, 249
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=2
-Number of Random Droids=90
-Random Droid Types: 123, 139, 247, 249
 
 SForce: T=883 Marker=1002 StartLabel="Lv2DalekStartGameSquare" ShortLabel=_"Dark Apprentice of MegaSys"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=3
-Number of Random Droids=45-50
-Random Droid Types: 123, 249, 329
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=4
-Number of Random Droids=75-85
-Random Droid Types: 302, 420, 476, 516
 
 SForce: T=598 Marker=1004 StartLabel="DSB-MDCT-Guard" ShortLabel=_"DSB Control Terminal Guard"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=5
-Number of Random Droids=80
-Random Droid Types: 249, 302, 516, 615, 629
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=6
-Number of Random Droids=10-15
-Random Droid Types: 123, 139, 247, 249
 
 SForce: T=883 MaxDistanceToHome=17 Faction="singularity" StartLabel="ToolkitBossMonsterStartGameSquare" UseDialog="Singularity" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
 SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-01" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
@@ -166,14 +157,12 @@ SForce: T=296 Faction="ms" StartLabel="MS-Sawmil" UseDialog="AfterTakeover" Shor
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=7
-Number of Random Droids=15
-Random Droid Types: 249, 516, 629
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=8
-Number of Random Droids=60-80
-Random Droid Types: 123, 139
+
 SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" UseDialog="Engel" ShortLabel=_"Blue Guy"
 SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" UseDialog="Geist" ShortLabel=_"Blue Guy"
 SForce: T=302 Marker=2008 StartLabel="The302InFrontOfTheTempleStart"
@@ -182,8 +171,6 @@ SForce: T=302 Marker=3008 StartLabel="Lev8-302"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=9
-Number of Random Droids=50-65
-Random Droid Types: 123, 139, 247
 
 SForce: T=329 Marker=1009 StartLabel="Level9Stalker1StartGameSquare"
 SForce: T=302 Marker=1009 StartLabel="Level9Stalker2StartGameSquare"
@@ -192,22 +179,16 @@ SForce: T=249 Marker=1009 StartLabel="Level9Stalker3StartGameSquare"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=10
-Number of Random Droids=30
-Random Droid Types: 543
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=11
-Number of Random Droids=15-20
-Random Droid Types: 139, 249, 302
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=12
-Number of Random Droids=6-8
-Random Droid Types: 123
 
 SForce: T=PRO Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux=1 UseDialog="Francis" ShortLabel=_"Old Guy"
 SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot"
@@ -216,22 +197,17 @@ SForce: T=INV Marker=2012 Faction="civilian" StartLabel="123-l12" UseDialog="Inv
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=13
-Number of Random Droids=50
-Random Droid Types: 123, 247, 249,302, 329, 420, 476, 493
 
 SForce: T=296 Marker=9999 Faction="civilian" StartLabel="Ewalds296StartGameSquare" UseDialog="Ewalds_296" ShortLabel=_"Friendly 296"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=14
-Number of Random Droids=15
-Random Droid Types: 420, 476
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=15
-Number of Random Droids=35
-Random Droid Types: 123, 247, 302, 329, 420, 476, 493
 
 SForce: T=711 Marker=1015 StartLabel="L15-711"
 SForce: T=742 Marker=1015 StartLabel="L15-742"
@@ -241,15 +217,11 @@ SForce: T=834 Marker=1015 StartLabel="L15-834"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=16
-Number of Random Droids=60
-Random Droid Types: 123, 247, 302, 329, 420, 476, 493
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=17
-Number of Random Droids=50-60
-Random Droid Types: 123, 139, 247, 249
 
 SForce: T=614 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux=1 UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
 SForce: T=KEV Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" UseDialog="Kevin" ShortLabel=_"Kevin"
@@ -263,20 +235,17 @@ SForce: T=821 Marker=2017 StartLabel="Kevins821StartGameSquare" ShortLabel=_"Pri
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=18
-Number of Random Droids=5-15
-Random Droid Types: 302, 476, 493, 571
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=19
-Number of Random Droids=30
-Random Droid Types: 123, 139, 247, 249, 302, 329
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=20
-Number of Random Droids=40
-Random Droid Types: 123, 247, 302, 329, 420, 476, 493
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -345,20 +314,17 @@ SForce: T=INV Marker=1024 Faction="ms" StartLabel="INV-l24" ShortLabel=_"INV"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=25
-Number of Random Droids=50-60
-Random Droid Types: 123, 247, 249, 302, 329, 476, 493, 571
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=26
-Number of Random Droids=30
-Random Droid Types: 329, 476, 493, 571, 598
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=27
-Number of Random Droids=60
-Random Droid Types: 247, 249, 302, 476, 615, 629, 821
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -411,8 +377,6 @@ SForce: T=999 Marker=1030 StartLabel="MasterArenaBot4StartGameSquare" ShortLabel
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=31
-Number of Random Droids=60-70
-Random Droid Types: 249, 302, 516, 615, 629
 
 SForce: T=883 Marker=1031 StartLabel="MSDDStartGameSquare" ShortLabel=_"MSDD - MegaSys Defence Droid"
 SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
@@ -425,14 +389,12 @@ SForce: T=883 Marker=3031 StartLabel="MSOfficeFirmwareUpdateServerStartPosition"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=32
-Number of Random Droids=5
-Random Droid Types: 249, 302, 516, 615, 629
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=33
-Number of Random Droids=10-20
-Random Droid Types: 123, 139, 247, 296, 302, 516, 571, 598
+
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
@@ -473,8 +435,6 @@ SForce: T=883 StartLabel="SergeStartGameSquare" ShortLabel=_"SADD"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=36
-Number of Random Droids=5-7
-Random Droid Types: 629, 476, 598, 302
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -503,22 +463,16 @@ SForce: T=123 Marker=4037 StartLabel="takeover7" ShortLabel=_"Target"
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=38
-Number of Random Droids=30
-Random Droid Types: 543
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=39
-Number of Random Droids=30
-Random Droid Types: 543
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=40
-Number of Random Droids=30
-Random Droid Types: 543
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -534,8 +488,6 @@ Level=42
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=43
-Number of Random Droids=30-90
-Random Droid Types: 123, 247, 302, 329, 476, 598
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -561,15 +513,11 @@ Level=47
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=48
-Number of Random Droids=15
-Random Droid Types: 302. 476
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=49
-Number of Random Droids=50
-Random Droid Types: 123, 247, 302, 329, 476, 598
 
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="MO-RGGateGuard" UseDialog="MO-RGGateGuard" ShortLabel=_"Bot Factory Gate Guard"
 SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="MO-RGGateGuardLeader" UseDialog="MO-RGGateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
@@ -577,30 +525,22 @@ SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="MO-RGGateGuardLeader" U
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=50
-Number of Random Droids=100-120
-Random Droid Types: 296, 249, 302, 476
 
 SForce: T=296 Marker=9999 Faction="neutral" StartLabel="HF-EntranceBotStartSquare" UseDialog="HF-EntranceBot" ShortLabel=_"Reception Droid"
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=51
-Number of Random Droids=100-130
-Random Droid Types: 476, 420, 493, 516
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=52
-Number of Random Droids=180-200
-Random Droid Types: 516, 493, 598
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=53
-Number of Random Droids=120
-Random Droid Types: 598, 571, 615
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -611,36 +551,26 @@ Level=54
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=55
-Number of Random Droids=30-90
-Random Droid Types: 249, 302, 615, 629
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=56
-Number of Random Droids=45-110
-Random Droid Types: 249, 302, 476, 615, 629, 711
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=57
-Number of Random Droids=99
-Random Droid Types: 493, 629, 834, 821
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=58
-Number of Random Droids=20
-Random Droid Types: 123, 139, 247, 249
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=59
-Number of Random Droids=200
-Random Droid Types: 883, 821, 711, 751, 834
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -656,8 +586,6 @@ Level=61
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=62
-Number of Random Droids= 10
-Random Droid Types: 302
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
@@ -673,8 +601,6 @@ Level=64
 ----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=65
-Number of Random Droids= 10
-Random Droid Types: 302, 493
 
 ** End of this levels droid data **
 ----------------------------------------------------------------------
