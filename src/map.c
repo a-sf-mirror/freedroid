@@ -1648,7 +1648,7 @@ int GetCrew(char *filename)
 #define START_OF_DROID_DATA_STRING "*** Beginning of Droid Data ***"
 #define END_OF_DROID_DATA_STRING "*** End of Droid Data ***"
 #define DROIDS_LEVEL_DESCRIPTION_START_STRING "** Beginning of new Level **"
-#define DROIDS_LEVEL_DESCRIPTION_END_STRING "** End of this levels droid data **"
+#define DROIDS_LEVEL_DESCRIPTION_END_STRING "** End of this levels Special Forces data **"
 
 	//Now its time to start decoding the droids file.
 	//For that, we must get it into memory first.
@@ -1689,9 +1689,7 @@ int GetCrew(char *filename)
 static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_number, char *lvl_end_location)
 {
 	int droid_type;
-	char *start_map_label;
-	location start_location;
-#define SPECIAL_FORCE_INDICATION_STRING "SForce: T="
+#define SPECIAL_FORCE_INDICATION_STRING "T="
 
 	while ((search_pointer = strstr(search_pointer, SPECIAL_FORCE_INDICATION_STRING)) != NULL) {
 		char *special_droid = ReadAndMallocStringFromData(search_pointer, SPECIAL_FORCE_INDICATION_STRING, "\n");
@@ -1720,37 +1718,33 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		ReadValueFromStringWithDefault(special_droid, "MaxDistanceToHome=", "%hd", "0", &(newen->max_distance_to_home),
 					       special_droid_end);
 
-		char *faction = ReadAndMallocStringFromDataOptional(special_droid, "Faction=\"", "\"");
-		if (!faction) {
-			faction = strdup("ms");
-		}
+		char *faction = ReadAndMallocStringFromData(special_droid, "Faction=\"", "\"");
 		newen->faction = get_faction_id(faction);
 		free(faction);
 
-		start_map_label = ReadAndMallocStringFromData(special_droid, "StartLabel=\"", "\"");
-		ResolveMapLabelOnShip(start_map_label, &start_location);
-		newen->pos.x = start_location.x;
-		newen->pos.y = start_location.y;
+		char *x, *y;
+		x = ReadAndMallocStringFromData(special_droid, "PosX=", " ");
+		y = ReadAndMallocStringFromData(special_droid, "PosY=", " ");
+
+		newen->pos.x = strtof(x, NULL);
+		newen->pos.y = strtof(y, NULL);
 		newen->pos.z = our_level_number;
-		free(start_map_label);
+		free(x);
+		free(y);
 
 		ReadValueFromStringWithDefault(special_droid, "RushTux=", "%hu", "0", &(newen->will_rush_tux), special_droid_end);
 
-		newen->dialog_section_name = ReadAndMallocStringFromDataOptional(special_droid, "UseDialog=\"", "\"");
-		if (!newen->dialog_section_name)
-			newen->dialog_section_name = strdup("AfterTakeover");
+		newen->dialog_section_name = ReadAndMallocStringFromData(special_droid, "UseDialog=\"", "\"");
 		npc_get(newen->dialog_section_name); // Check that we have a valid dialog.
 
 		if (newen->short_description_text)
 			free(newen->short_description_text);
 
-		newen->short_description_text = ReadAndMallocStringFromDataOptional(special_droid, "ShortLabel=_\"", "\"");;
-		if (!newen->short_description_text)
-			newen->short_description_text = strdup(Druidmap[newen->type].default_short_description);
+		newen->short_description_text = ReadAndMallocStringFromData(special_droid, "ShortLabel=\"", "\"");;
 
 		char *death_drop;
-		death_drop = ReadAndMallocStringFromDataOptional(special_droid, "on_death_drop_item_name=\"", "\"");
-		if (death_drop) {
+		death_drop = ReadAndMallocStringFromData(special_droid, "DropItemName=\"", "\"");
+		if (strcmp(death_drop, "none")) {
 			newen->on_death_drop_item_code = GetItemIndexByName(death_drop);
 			free(death_drop);
 		} else {
@@ -1778,7 +1772,7 @@ void GetThisLevelsDroids(char *section_pointer)
 	level *lvl;
 
 #define DROIDS_LEVEL_INDICATION_STRING "Level="
-#define DROIDS_LEVEL_END_INDICATION_STRING "** End of this levels droid data **"
+#define DROIDS_LEVEL_END_INDICATION_STRING "** End of this levels Special Forces data **"
 
 	lvl_end_location = LocateStringInData(section_pointer, DROIDS_LEVEL_END_INDICATION_STRING);
 	lvl_end_location[0] = 0;

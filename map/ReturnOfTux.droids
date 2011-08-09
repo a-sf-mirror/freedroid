@@ -1,629 +1,554 @@
- * ----------------------------------------------------------------------
- *
- * Copyright (c) 1994, 2002-2010 the Freedroid dev team
- *
- * This file is part of Freedroid
- *
- * Freedroid is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * Freedroid is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Freedroid; see the file COPYING. If not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
- * MA 02111-1307 USA
- *
- * ----------------------------------------------------------------------
-
-----------------------------------------------------------------------
-
-This is a Freedroid droids file.
-
-It describes the droids that are to be put into an area.
-
-Convention for avoiding duplication of Marker (needs to be world unique)
-
-Marker = Group(1+) + Level(3 digits); Example 1037 for group 1 on lvl 37
-Groups that need to span several levels belong to level 999
-
-Note: 9999 is hardcoded in places, so don't change those
-without "fixing" it elsewhere as well
-In the future we should probably use eg
-9999 for Red Guard faction
-8999 for resistance faction
-7999 for 2nd resistance faction
-and when "all go hostile" check which factions could still be friendly.
-----------------------------------------------------------------------
-
-Example with all currently available options and their (some intended in future) default values
-
-SForce: T=*** StartLabel="***" Faction="ms" UseDialog="AfterTakeover" Fixed="0" Marker=0000 RushTux="no" ShortLabel=_"XXX" on_death_drop_item_name="XXX" MaxDistanceToHome=XXX
-
-(*** must always be present and correctly specified)
-(XXX are optional but don't have default values, specify correctly if used)
-
-----------------------------------------------------------------------
-For T=	 :available droids:
-123 139 247 249 296 302 329 420 476 493 516 543 571 598 603 614 615 629 711 742 751 821 834 833 999
-
-		 :avaiable NPCs:
-PRO DOC GUA DIX MUM FSC WOR GUB COO KEV JAS TAN BAR FEM TRM
-
-See .map/droid_archetypes.dat for more information.
-----------------------------------------------------------------------
-Factions are defined in /src/faction.c
-----------------------------------------------------------------------
-Dialogs can be found in /dialogs/
-----------------------------------------------------------------------
-*** Beginning of Droid Data ***
-----------------------------------------------------------------------
 ** Beginning of new Level **
 Level=0
 
-SForce: T=GUA Marker=9999 Faction="redguard" RushTux=1 MaxDistanceToHome=7 StartLabel="L0NorthGateGuard" UseDialog="Town-NorthGateGuard"ShortLabel=_"North Gate Guard"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0GateGuardhouseGuard" UseDialog="Town-GuardhouseGuard" ShortLabel=_"Gate Guardhouse Guard"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="TuxEscortStartGameSquare" UseDialog="Town-TuxGuard" ShortLabel=_"Red Guard Member"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="L0TeleporterGuard" UseDialog="Town-TeleporterGuard" ShortLabel=_"Town Teleporter Guard"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="BenderStartGameSquare" UseDialog="Bender" ShortLabel=_"Red Guard Member"
-SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="ChandraStartGameSquare" UseDialog="Chandra" ShortLabel=_"Chandra -- Town Sage"
-SForce: T=DOC Marker=9999 Faction="civilian" StartLabel="DocMooreStartGameSquare" UseDialog="DocMoore" ShortLabel=_"Medic" on_death_drop_item_name="Laser Scalpel"
-SForce: T=MUM Marker=9999 Faction="civilian" StartLabel="StoneStartGameSquare" UseDialog="Stone" ShortLabel=_"Shopowner" on_death_drop_item_name="Two Barrel shotgun"
-SForce: T=FSC Marker=9998 Faction="civilian" StartLabel="SorensonStartGameSquare" UseDialog="Sorenson" ShortLabel=_"COBAL Programmer"
-SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare1" UseDialog="Town-614" ShortLabel=_"614 -- North Gate Guard Bot"
-SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare2" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
-SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare3" UseDialog="Town-614" ShortLabel=_"614 -- South Gate Guard Bot"
-SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare4" UseDialog="Town-614" ShortLabel=_"614 -- East Gate Guard Bot"
-SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare5" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
-SForce: T=614 Marker=9999 Faction="redguard" StartLabel="614StartGameSquare6" UseDialog="Town-614" ShortLabel=_"614 -- Patrolling Guard Bot"
-SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="RichardStartGameSquare" UseDialog="Richard" ShortLabel=_"*nix Admin"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="BenjaminCitadelStartGameSquare" UseDialog="Benjamin" ShortLabel=_"Red Guard Member"
-SForce: T=DIX Marker=9999 Faction="redguard" StartLabel="DixonStartGameSquare" UseDialog="Dixon" ShortLabel=_"Red Guard Member"
-SForce: T=COO Marker=9999 Faction="civilian" StartLabel="MichelangeloStartGameSquare" UseDialog="Michelangelo" ShortLabel=_"Cook"
-SForce: T=WOR Marker=9999 Faction="civilian" StartLabel="SkippyStartGameSquare" UseDialog="Skippy" ShortLabel=_"Guy with Hat"
-SForce: T=WOR Marker=9999 Faction="civilian" StartLabel="DuncanStartGameSquare" UseDialog="Duncan" ShortLabel=_"Sketchy Guy"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="PendragonStartGameSquare" UseDialog="Pendragon" ShortLabel=_"Red Guard Member"
-SForce: T=WOR Marker=9999 Faction="civilian" StartLabel="BruceStartGameSquare" UseDialog="Bruce" ShortLabel=_"Mine Worker"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="ButchStartGameSquare" UseDialog="Butch" ShortLabel=_"Red Guard Member"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="NewSpencer" UseDialog="Spencer" ShortLabel=_"Spencer -- Leader of the Red Guard"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="LukasStartGameSquare" UseDialog="Lukas" ShortLabel=_"Lukas -- Head of the Armory"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="TybaltStartGameSquare" UseDialog="Tybalt" ShortLabel=_"Red Guard Member"
-SForce: T=BAR Marker=9999 Faction="civilian" StartLabel="EwaldStartGameSquare" UseDialog="Ewald" ShortLabel=_"Barkeeper"
-SForce: T=FSC Marker=9999 Faction="civilian" StartLabel="TamaraStartGameSquare" UseDialog="Tamara" ShortLabel=_"Librarian"
-SForce: T=WOR Marker=9999 Faction="resistance" StartLabel="CitadelPrison" UseDialog="Peter" ShortLabel=_"Peter -- Imprisoned Rebel"
-SForce: T=FEM Marker=9999 Faction="civilian" StartLabel="Iris" UseDialog="Iris" ShortLabel=_"Hot Girl"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=FEM: PosX=63 PosY=82 Faction="civilian" UseDialog="Iris" ShortLabel="Hot Girl" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=62 PosY=44 Faction="resistance" UseDialog="Peter" ShortLabel="Peter -- Imprisoned Rebel" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=FSC: PosX=73 PosY=21 Faction="civilian" UseDialog="Tamara" ShortLabel="Librarian" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=BAR: PosX=36 PosY=19 Faction="civilian" UseDialog="Ewald" ShortLabel="Barkeeper" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=38 PosY=51 Faction="redguard" UseDialog="Tybalt" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=38 PosY=44 Faction="redguard" UseDialog="Lukas" ShortLabel="Lukas -- Head of the Armory" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=33 PosY=48 Faction="redguard" UseDialog="Spencer" ShortLabel="Spencer -- Leader of the Red Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=18 PosY=52 Faction="redguard" UseDialog="Butch" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=75 PosY=80 Faction="civilian" UseDialog="Bruce" ShortLabel="Mine Worker" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=7 PosY=33 Faction="redguard" UseDialog="Pendragon" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=7 PosY=45 Faction="civilian" UseDialog="Duncan" ShortLabel="Sketchy Guy" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=63 PosY=17 Faction="civilian" UseDialog="Skippy" ShortLabel="Guy with Hat" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=COO: PosX=36 PosY=15 Faction="civilian" UseDialog="Michelangelo" ShortLabel="Cook" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=DIX: PosX=25 PosY=72 Faction="redguard" UseDialog="Dixon" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=38 PosY=60 Faction="redguard" UseDialog="Benjamin" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=PRO: PosX=53 PosY=53 Faction="civilian" UseDialog="Richard" ShortLabel="*nix Admin" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=50 PosY=24 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- Patrolling Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=34 PosY=67 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- Patrolling Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=80 PosY=38 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- East Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=21 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=17 PosY=79 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- South Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=22 PosY=10 Faction="redguard" UseDialog="Town-614" ShortLabel="614 -- North Gate Guard Bot" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=FSC: PosX=8 PosY=7 Faction="civilian" UseDialog="Sorenson" ShortLabel="COBAL Programmer" Marker=9998 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=MUM: PosX=35 PosY=7 Faction="civilian" UseDialog="Stone" ShortLabel="Shopowner" Marker=9999 RushTux=0 Fixed=0 DropItemName="Two Barrel shotgun" MaxDistanceToHome=0
+T=DOC: PosX=18 PosY=27 Faction="civilian" UseDialog="DocMoore" ShortLabel="Medic" Marker=9999 RushTux=0 Fixed=0 DropItemName="Laser Scalpel" MaxDistanceToHome=0
+T=PRO: PosX=49 PosY=17 Faction="civilian" UseDialog="Chandra" ShortLabel="Chandra -- Town Sage" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=23 PosY=29 Faction="redguard" UseDialog="Bender" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=21 PosY=18 Faction="redguard" UseDialog="Town-TeleporterGuard" ShortLabel="Town Teleporter Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=22 PosY=13 Faction="redguard" UseDialog="Town-TuxGuard" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=18 PosY=6 Faction="redguard" UseDialog="Town-GuardhouseGuard" ShortLabel="Gate Guardhouse Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=28 PosY=8 Faction="redguard" UseDialog="Town-NorthGateGuard" ShortLabel="North Gate Guard" Marker=9999 RushTux=1 Fixed=0 DropItemName="none" MaxDistanceToHome=7
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=1
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=2
 
-SForce: T=883 Marker=1002 StartLabel="Lv2DalekStartGameSquare" ShortLabel=_"Dark Apprentice of MegaSys"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=883: PosX=47 PosY=22 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Dark Apprentice of MegaSys" Marker=1002 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=3
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=4
 
-SForce: T=598 Marker=1004 StartLabel="DSB-MDCT-Guard" ShortLabel=_"DSB Control Terminal Guard"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=598: PosX=4 PosY=32 Faction="ms" UseDialog="AfterTakeover" ShortLabel="DSB Control Terminal Guard" Marker=1004 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=5
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=6
 
-SForce: T=883 MaxDistanceToHome=17 Faction="singularity" StartLabel="ToolkitBossMonsterStartGameSquare" UseDialog="Singularity" ShortLabel=_"The Singularity" on_death_drop_item_name="Dixon's Toolbox"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-01" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=302 Faction="singularity" StartLabel="Sin-Drone-02" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-03" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=249 Faction="singularity" StartLabel="Sin-Drone-04" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-05" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=302 Faction="singularity" StartLabel="Sin-Drone-06" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=249 MaxDistanceToHome=5 Faction="singularity" StartLabel="Sin-Drone-07" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-08" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=302 Faction="singularity" StartLabel="Sin-Drone-09" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-10" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-11" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-12" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=249 Faction="singularity" StartLabel="Sin-Drone-13" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=249 Faction="singularity" StartLabel="Sin-Drone-14" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-15" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=302 Faction="singularity" StartLabel="Sin-Drone-16" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-17" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=249 Faction="singularity" StartLabel="Sin-Drone-18" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=247 Faction="singularity" StartLabel="Sin-Drone-19" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=302 Faction="singularity" StartLabel="Sin-Drone-20" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=249 Faction="singularity" StartLabel="Sin-Drone-21" UseDialog="Singularity-Drone" ShortLabel=_"Singularity Drone"
-SForce: T=296 Faction="ms" StartLabel="MS-Sawmil" UseDialog="AfterTakeover" ShortLabel=_"MS Emissary"
-
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=296: PosX=43 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="MS Emissary" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=46 PosY=3 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=47 PosY=9 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=41 PosY=8 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=45 PosY=1 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=47 PosY=4 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=38 PosY=5 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=34 PosY=5 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=37 PosY=6 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=31 PosY=5 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=32 PosY=12 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=32 PosY=11 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=38 PosY=25 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=37 PosY=27 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=33 PosY=37 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=13 PosY=37 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=5
+T=302: PosX=22 PosY=32 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=20 PosY=32 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=24 PosY=31 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=21 PosY=19 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=19 PosY=17 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=24 PosY=13 Faction="singularity" UseDialog="Singularity-Drone" ShortLabel="Singularity Drone" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=45 PosY=11 Faction="singularity" UseDialog="Singularity" ShortLabel="The Singularity" Marker=0 RushTux=0 Fixed=0 DropItemName="Dixon's Toolbox" MaxDistanceToHome=17
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=7
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=8
 
-SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="DarwinStartGameSquare" UseDialog="Engel" ShortLabel=_"Blue Guy"
-SForce: T=GUB Marker=1008 Faction="civilian" StartLabel="MelfisStartGameSquare" UseDialog="Geist" ShortLabel=_"Blue Guy"
-SForce: T=302 Marker=2008 StartLabel="The302InFrontOfTheTempleStart"
-SForce: T=302 Marker=3008 StartLabel="Lev8-302"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=302: PosX=8 PosY=62 Faction="ms" UseDialog="AfterTakeover" ShortLabel="302 Nemesis" Marker=3008 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=42 PosY=12 Faction="ms" UseDialog="AfterTakeover" ShortLabel="302 Nemesis" Marker=2008 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUB: PosX=37 PosY=55 Faction="civilian" UseDialog="Geist" ShortLabel="Blue Guy" Marker=1008 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUB: PosX=35 PosY=57 Faction="civilian" UseDialog="Engel" ShortLabel="Blue Guy" Marker=1008 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=9
 
-SForce: T=329 Marker=1009 StartLabel="Level9Stalker1StartGameSquare"
-SForce: T=302 Marker=1009 StartLabel="Level9Stalker2StartGameSquare"
-SForce: T=249 Marker=1009 StartLabel="Level9Stalker3StartGameSquare"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=249: PosX=63 PosY=73 Faction="ms" UseDialog="AfterTakeover" ShortLabel="249 Chicago" Marker=1009 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=63 PosY=65 Faction="ms" UseDialog="AfterTakeover" ShortLabel="302 Nemesis" Marker=1009 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=329: PosX=67 PosY=69 Faction="ms" UseDialog="AfterTakeover" ShortLabel="329 Sparkie" Marker=1009 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=10
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=11
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=12
 
-SForce: T=PRO Marker=9999 MaxDistanceToHome=17 Faction="civilian" StartLabel="FrancisStart" RushTux=1 UseDialog="Francis" ShortLabel=_"Old Guy"
-SForce: T=614 Marker=1012 Faction="redguard" StartLabel="Lev12-614-complex-guard" UseDialog="614_cryo" ShortLabel=_"614 - Friendly Robot"
-SForce: T=INV Marker=2012 Faction="civilian" StartLabel="123-l12" UseDialog="InvaderBot" ShortLabel=_"Invading Robot"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=INV: PosX=54 PosY=41 Faction="civilian" UseDialog="InvaderBot" ShortLabel="Invading Robot" Marker=2012 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=62 PosY=21 Faction="redguard" UseDialog="614_cryo" ShortLabel="614 - Friendly Robot" Marker=1012 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=PRO: PosX=47 PosY=42 Faction="civilian" UseDialog="Francis" ShortLabel="Old Guy" Marker=9999 RushTux=1 Fixed=0 DropItemName="none" MaxDistanceToHome=17
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=13
 
-SForce: T=296 Marker=9999 Faction="civilian" StartLabel="Ewalds296StartGameSquare" UseDialog="Ewalds_296" ShortLabel=_"Friendly 296"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=296: PosX=7 PosY=25 Faction="civilian" UseDialog="Ewalds_296" ShortLabel="Friendly 296" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=14
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=15
 
-SForce: T=711 Marker=1015 StartLabel="L15-711"
-SForce: T=742 Marker=1015 StartLabel="L15-742"
-SForce: T=821 Marker=1015 StartLabel="L15-821"
-SForce: T=834 Marker=1015 StartLabel="L15-834"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=834: PosX=33 PosY=78 Faction="ms" UseDialog="AfterTakeover" ShortLabel="834 Wisp" Marker=1015 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=821: PosX=19 PosY=77 Faction="ms" UseDialog="AfterTakeover" ShortLabel="821 Ufo" Marker=1015 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=742: PosX=16 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="742 Zeus" Marker=1015 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=711: PosX=7 PosY=46 Faction="ms" UseDialog="AfterTakeover" ShortLabel="711 Grillmeister" Marker=1015 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=16
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=17
 
-SForce: T=614 Marker=1017 MaxDistanceToHome=9 Faction="civilian" StartLabel="KevinGuardStartGameSquare" RushTux=1 UseDialog="KevinGuard" ShortLabel=_"Stolen 614"
-SForce: T=KEV Marker=1017 Faction="civilian" StartLabel="KevinStartGameSquare" UseDialog="Kevin" ShortLabel=_"Kevin"
-SForce: T=JAS Marker=1017 Faction="civilian" StartLabel="JasmineStartGameSquare" UseDialog="Jasmine" ShortLabel=_"Cute Girl"
-SForce: T=603 Marker=1017 Faction="civilian" StartLabel="KevinsLawnMowerStart" UseDialog="Kevin-Lawnmower" ShortLabel=_"Lawn Mower"
-SForce: T=598 Marker=2017 StartLabel="Kevins598StartGameSquare" ShortLabel=_"Prisoner"
-SForce: T=751 Marker=2017 StartLabel="Kevins751StartGameSquare" ShortLabel=_"Prisoner"
-SForce: T=883 Marker=2017 StartLabel="Kevins883StartGameSquare" ShortLabel=_"Prisoner"
-SForce: T=821 Marker=2017 StartLabel="Kevins821StartGameSquare" ShortLabel=_"Prisoner"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=821: PosX=63 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=69 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=751: PosX=66 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=598: PosX=60 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Prisoner" Marker=2017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=603: PosX=76 PosY=38 Faction="civilian" UseDialog="Kevin-Lawnmower" ShortLabel="Lawn Mower" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=JAS: PosX=66 PosY=51 Faction="civilian" UseDialog="Jasmine" ShortLabel="Cute Girl" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=KEV: PosX=70 PosY=52 Faction="civilian" UseDialog="Kevin" ShortLabel="Kevin" Marker=1017 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=57 PosY=46 Faction="civilian" UseDialog="KevinGuard" ShortLabel="Stolen 614" Marker=1017 RushTux=1 Fixed=0 DropItemName="none" MaxDistanceToHome=9
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=18
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=19
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=20
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=21
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=22
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=23
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=24
-SForce: T=WOR Marker=2024 Faction="civilian" StartLabel="DudeStartGameSquare" UseDialog="Dude" ShortLabel=_"Dude"
-SForce: T=GUN Marker=1024 Faction="ms" StartLabel="autogun" UseDialog="Geist" ShortLabel=_"Autogun"
 
-
-SForce: T=123 Marker=1024 Faction="ms" StartLabel="123-l24" ShortLabel=_"123"
-SForce: T=139 Marker=1024 Faction="ms" StartLabel="139-l24" ShortLabel=_"139"
-SForce: T=247 Marker=1024 Faction="ms" StartLabel="247-l24" ShortLabel=_"247"
-SForce: T=249 Marker=1024 Faction="ms" StartLabel="249-l24" ShortLabel=_"249"
-SForce: T=296 Marker=1024 Faction="ms" StartLabel="296-l24" ShortLabel=_"296"
-SForce: T=302 Marker=1024 Faction="ms" StartLabel="302-l24" ShortLabel=_"302"
-SForce: T=329 Marker=1024 Faction="ms" StartLabel="329-l24" ShortLabel=_"329"
-SForce: T=420 Marker=1024 Faction="ms" StartLabel="420-l24" ShortLabel=_"420"
-SForce: T=476 Marker=1024 Faction="ms" StartLabel="476-l24" ShortLabel=_"476"
-SForce: T=493 Marker=1024 Faction="ms" StartLabel="493-l24" ShortLabel=_"493"
-SForce: T=516 Marker=1024 Faction="ms" StartLabel="516-l24" ShortLabel=_"516"
-SForce: T=571 Marker=1024 Faction="ms" StartLabel="571-l24" ShortLabel=_"571"
-SForce: T=598 Marker=1024 Faction="ms" StartLabel="598-l24" ShortLabel=_"598"
-SForce: T=603 Marker=1024 Faction="ms" StartLabel="603-l24" ShortLabel=_"603"
-SForce: T=614 Marker=1024 Faction="ms" StartLabel="614-l24" ShortLabel=_"614"
-SForce: T=615 Marker=1024 Faction="ms" StartLabel="615-l24" ShortLabel=_"615"
-SForce: T=629 Marker=1024 Faction="ms" StartLabel="629-l24" ShortLabel=_"629"
-SForce: T=711 Marker=1024 Faction="ms" StartLabel="711-l24" ShortLabel=_"711"
-SForce: T=742 Marker=1024 Faction="ms" StartLabel="742-l24" ShortLabel=_"742"
-SForce: T=751 Marker=1024 Faction="ms" StartLabel="751-l24" ShortLabel=_"751
-SForce: T=821 Marker=1024 Faction="ms" StartLabel="821-l24" ShortLabel=_"821"
-SForce: T=834 Marker=1024 Faction="ms" StartLabel="834-l24" ShortLabel=_"834"
-SForce: T=883 Marker=1024 Faction="ms" StartLabel="883-l24" ShortLabel=_"883"
-SForce: T=999 Marker=1024 Faction="ms" StartLabel="999-l24" ShortLabel=_"999"
-SForce: T=PRO Marker=1024 Faction="ms" StartLabel="PRO-l24" ShortLabel=_"PRO"
-SForce: T=DOC Marker=1024 Faction="ms" StartLabel="DOC-l24" ShortLabel=_"DOC"
-SForce: T=GUA Marker=1024 Faction="ms" StartLabel="GUA-l24" ShortLabel=_"GUA"
-SForce: T=DIX Marker=1024 Faction="ms" StartLabel="DIX-l24" ShortLabel=_"DIX"
-SForce: T=MUM Marker=1024 Faction="ms" StartLabel="MUM-l24" ShortLabel=_"MUM"
-SForce: T=FSC Marker=1024 Faction="ms" StartLabel="FSC-l24" ShortLabel=_"FSC
-SForce: T=WOR Marker=1024 Faction="ms" StartLabel="WOR-l24" ShortLabel=_"WOR"
-SForce: T=GUB Marker=1024 Faction="ms" StartLabel="GUB-l24" ShortLabel=_"GUB"
-SForce: T=COO Marker=1024 Faction="ms" StartLabel="COO-l24" ShortLabel=_"COO"
-SForce: T=KEV Marker=1024 Faction="ms" StartLabel="KEV-l24" ShortLabel=_"KEV"
-SForce: T=JAS Marker=1024 Faction="ms" StartLabel="JAS-l24" ShortLabel=_"JAS"
-SForce: T=TAN Marker=1024 Faction="ms" StartLabel="TAN-l24" ShortLabel=_"TAN"
-SForce: T=BAR Marker=1024 Faction="ms" StartLabel="BAR-l24" ShortLabel=_"BAR"
-SForce: T=543 Marker=1024 Faction="ms" StartLabel="543-l24" ShortLabel=_"543"
-SForce: T=FEM Marker=1024 Faction="ms" StartLabel="FEM-l24" ShortLabel=_"FEM"
-SForce: T=GUN Marker=1024 Faction="ms" StartLabel="GUN-l24" ShortLabel=_"GUN"
-SForce: T=INV Marker=1024 Faction="ms" StartLabel="INV-l24" ShortLabel=_"INV"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=INV: PosX=66 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="INV" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUN: PosX=66 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="GUN" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=FEM: PosX=63 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel="FEM" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=543: PosX=63 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="543" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=BAR: PosX=63 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="BAR" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=TAN: PosX=63 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel="TAN" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=JAS: PosX=63 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="JAS" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=KEV: PosX=63 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel="KEV" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=COO: PosX=63 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="COO" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUB: PosX=63 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel="GUB" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=63 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel="WOR" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=FSC: PosX=63 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Female Scientist" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=MUM: PosX=63 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel="MUM" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=DIX: PosX=63 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="DIX" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=63 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="GUA" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=DOC: PosX=60 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel="DOC" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=PRO: PosX=60 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="PRO" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=999: PosX=60 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="999" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=60 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel="883" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=834: PosX=60 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="834" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=821: PosX=60 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel="821" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=751: PosX=60 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="751 Soviet" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=742: PosX=60 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel="742" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=711: PosX=60 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel="711" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=629: PosX=60 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel="629" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=615: PosX=60 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel="615" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=60 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="614" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=603: PosX=60 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=598: PosX=57 PosY=49 Faction="ms" UseDialog="AfterTakeover" ShortLabel="598" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=571: PosX=57 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="571" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=516: PosX=57 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="516" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=493: PosX=57 PosY=43 Faction="ms" UseDialog="AfterTakeover" ShortLabel="493" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=476: PosX=57 PosY=41 Faction="ms" UseDialog="AfterTakeover" ShortLabel="476" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=420: PosX=57 PosY=39 Faction="ms" UseDialog="AfterTakeover" ShortLabel="420" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=329: PosX=57 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="329" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=57 PosY=35 Faction="ms" UseDialog="AfterTakeover" ShortLabel="302" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=296: PosX=57 PosY=33 Faction="ms" UseDialog="AfterTakeover" ShortLabel="296" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=57 PosY=31 Faction="ms" UseDialog="AfterTakeover" ShortLabel="249" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=57 PosY=29 Faction="ms" UseDialog="AfterTakeover" ShortLabel="247" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=139: PosX=57 PosY=27 Faction="ms" UseDialog="AfterTakeover" ShortLabel="139" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=57 PosY=25 Faction="ms" UseDialog="AfterTakeover" ShortLabel="123" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUN: PosX=42 PosY=45 Faction="ms" UseDialog="Geist" ShortLabel="Autogun" Marker=1024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=40 PosY=20 Faction="civilian" UseDialog="Dude" ShortLabel="Dude" Marker=2024 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=25
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=26
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=27
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=28
-SForce: T=WOR Marker=2028 MaxDistanceToHome=50 Faction="civilian" StartLabel="JohnStartGameSquare" RushTux=0 UseDialog="John" ShortLabel=_"John"
 
-SForce: T=123 Marker=1028 StartLabel="123-l28"
-SForce: T=139 Marker=1028 StartLabel="139-l28"
-SForce: T=247 Marker=1028 StartLabel="247-l28"
-SForce: T=249 Marker=1028 StartLabel="249-l28"
-SForce: T=296 Marker=1028 StartLabel="296-l28"
-SForce: T=302 Marker=1028 StartLabel="302-l28"
-SForce: T=329 Marker=1028 StartLabel="329-l28"
-SForce: T=420 Marker=1028 StartLabel="420-l28"
-SForce: T=476 Marker=1028 StartLabel="476-l28"
-SForce: T=493 Marker=1028 StartLabel="493-l28"
-SForce: T=516 Marker=1028 StartLabel="516-l28"
-SForce: T=543 Marker=1028 StartLabel="543-l28"
-SForce: T=571 Marker=1028 StartLabel="571-l28"
-SForce: T=598 Marker=1028 StartLabel="598-l28"
-SForce: T=614 Marker=1028 StartLabel="614-l28"
-SForce: T=615 Marker=1028 StartLabel="615-l28"
-SForce: T=629 Marker=1028 StartLabel="629-l28"
-SForce: T=711 Marker=1028 StartLabel="711-l28"
-SForce: T=742 Marker=1028 StartLabel="742-l28"
-SForce: T=751 Marker=1028 StartLabel="751-l28"
-SForce: T=821 Marker=1028 StartLabel="821-l28"
-SForce: T=834 Marker=1028 StartLabel="834-l28"
-SForce: T=883 Marker=1028 StartLabel="883-l28"
-SForce: T=999 Marker=1028 StartLabel="999-l28"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=999: PosX=59 PosY=59 Faction="ms" UseDialog="AfterTakeover" ShortLabel="999 Cerebrum" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=48 PosY=64 Faction="ms" UseDialog="AfterTakeover" ShortLabel="883 Dalex" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=834: PosX=33 PosY=61 Faction="ms" UseDialog="AfterTakeover" ShortLabel="834 Wisp" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=821: PosX=25 PosY=48 Faction="ms" UseDialog="AfterTakeover" ShortLabel="821 Ufo" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=751: PosX=25 PosY=30 Faction="ms" UseDialog="AfterTakeover" ShortLabel="751 Soviet" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=742: PosX=7 PosY=36 Faction="ms" UseDialog="AfterTakeover" ShortLabel="742 Zeus" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=711: PosX=5 PosY=50 Faction="ms" UseDialog="AfterTakeover" ShortLabel="711 Grillmeister" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=629: PosX=7 PosY=65 Faction="ms" UseDialog="AfterTakeover" ShortLabel="629 Spitfire" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=615: PosX=8 PosY=80 Faction="ms" UseDialog="AfterTakeover" ShortLabel="615 Firedevil" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=614: PosX=27 PosY=81 Faction="ms" UseDialog="AfterTakeover" ShortLabel="614 Security Bot" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=598: PosX=42 PosY=80 Faction="ms" UseDialog="AfterTakeover" ShortLabel="598 Minister" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=571: PosX=58 PosY=82 Faction="ms" UseDialog="AfterTakeover" ShortLabel="571 Apollo" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=543: PosX=67 PosY=81 Faction="ms" UseDialog="AfterTakeover" ShortLabel="543 Forest Harvester" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=516: PosX=81 PosY=75 Faction="ms" UseDialog="AfterTakeover" ShortLabel="516 Ghoul" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=493: PosX=80 PosY=58 Faction="ms" UseDialog="AfterTakeover" ShortLabel="493 Spinster" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=476: PosX=80 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="476 Coward" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=420: PosX=78 PosY=30 Faction="ms" UseDialog="AfterTakeover" ShortLabel="420 Surgeon" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=329: PosX=79 PosY=19 Faction="ms" UseDialog="AfterTakeover" ShortLabel="329 Sparkie" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=72 PosY=5 Faction="ms" UseDialog="AfterTakeover" ShortLabel="302 Nemesis" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=296: PosX=63 PosY=22 Faction="ms" UseDialog="AfterTakeover" ShortLabel="296 Sawmill" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=57 PosY=5 Faction="ms" UseDialog="AfterTakeover" ShortLabel="249 Chicago" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=41 PosY=6 Faction="ms" UseDialog="AfterTakeover" ShortLabel="247 Banshee" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=139: PosX=27 PosY=7 Faction="ms" UseDialog="AfterTakeover" ShortLabel="139 Templar" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=9 PosY=7 Faction="ms" UseDialog="AfterTakeover" ShortLabel="123 Acolyte" Marker=1028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=WOR: PosX=49 PosY=54 Faction="civilian" UseDialog="John" ShortLabel="John" Marker=2028 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=50
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=29
 
-SForce: T=123 Marker=1029 StartLabel="NoviceArenaBot1StartGameSquare" ShortLabel=_"Race Condition"
-SForce: T=139 Marker=1029 StartLabel="NoviceArenaBot2StartGameSquare" ShortLabel=_"Undeclared Variable"
-SForce: T=247 Marker=1029 StartLabel="NoviceArenaBot3StartGameSquare" ShortLabel=_"Segmentation Fault"
-SForce: T=249 Marker=1029 StartLabel="NoviceArenaBot4StartGameSquare" ShortLabel=_"Buffer Overflow"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=249: PosX=10 PosY=2 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Buffer Overflow" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=18 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Segmentation Fault" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=139: PosX=10 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Undeclared Variable" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=5 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Race Condition" Marker=1029 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=30
 
-SForce: T=598 Marker=1030 StartLabel="MasterArenaBot1StartGameSquare" ShortLabel=_"Melissa.I"
-SForce: T=615 Marker=1030 StartLabel="MasterArenaBot2StartGameSquare" ShortLabel=_"ILOVEYOU"
-SForce: T=629 Marker=1030 StartLabel="MasterArenaBot3StartGameSquare" ShortLabel=_"W32.YourDoom"
-SForce: T=999 Marker=1030 StartLabel="MasterArenaBot4StartGameSquare" ShortLabel=_"CIH.1103"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=999: PosX=10 PosY=2 Faction="ms" UseDialog="AfterTakeover" ShortLabel="CIH.1103" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=629: PosX=18 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="W32.YourDoom" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=615: PosX=10 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="ILOVEYOU" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=598: PosX=5 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Melissa.I" Marker=1030 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=31
 
-SForce: T=883 Marker=1031 StartLabel="MSDDStartGameSquare" ShortLabel=_"MSDD - MegaSys Defence Droid"
-SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid0StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid1StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid2StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid3StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=420 Marker=2031 Faction="civilian" StartLabel="MSOTestDroid4StartGameSquare" UseDialog="TestDroid" ShortLabel=_"TD"
-SForce: T=883 Marker=3031 StartLabel="MSOfficeFirmwareUpdateServerStartPosition" ShortLabel=_"Update Server Guard"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=883: PosX=27 PosY=32 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Update Server Guard" Marker=3031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=420: PosX=26 PosY=11 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=420: PosX=18 PosY=22 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=420: PosX=18 PosY=25 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=420: PosX=18 PosY=28 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=420: PosX=17 PosY=37 Faction="civilian" UseDialog="TestDroid" ShortLabel="TD" Marker=2031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=8 PosY=71 Faction="ms" UseDialog="AfterTakeover" ShortLabel="MSDD - MegaSys Defence Droid" Marker=1031 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=32
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=33
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=34
 
-SForce: T=WOR Fixed=1 Marker=1034 Faction="civilian" StartLabel="Koan" UseDialog="Koan" ShortLabel=_"Koan" on_death_drop_item_name="Pandora's Cube"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=WOR: PosX=22 PosY=16 Faction="civilian" UseDialog="Koan" ShortLabel="Koan" Marker=1034 RushTux=0 Fixed=1 DropItemName="Pandora's Cube" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=35
 
-//-------------------- SADD + Tania ------
-SForce: T=883 Marker=1035 Faction="civilian" StartLabel="SADDStartGameSquare" RushTux=1 UseDialog="SADD" ShortLabel=_"Hostile Droid"
-SForce: T=TAN Marker=2035 Faction="civilian" StartLabel="TaniaStartGameSquare" UseDialog="Tania" ShortLabel=_"Scientist"
-//-------------------- Battle to get to the Datacenter ------
-SForce: T=598 Marker=3035 StartLabel="SecretAreaDefenceControl" ShortLabel=_"SACD - Defender"
-SForce: T=302 Marker=5035 StartLabel="SecretAreaCollectorPassage2"
-SForce: T=883 Marker=5035 StartLabel="SecretAreaCollectorEmmiters" ShortLabel=_"SADD"
-SForce: T=139 Marker=5035 StartLabel="SecretAreaCollectorEnterance" ShortLabel=_"Ashman"
-SForce: T=249 Marker=5035 StartLabel="SecretAreaCollectorPassage" ShortLabel=_"Guard"
-SForce: T=883 Marker=5035 StartLabel="SecretAreaCollectorComputers" ShortLabel=_"SADD"
-SForce: T=629 Marker=5035 StartLabel="SecretAreaHall" ShortLabel=_"Guard"
-SForce: T=629 Marker=5035 StartLabel="SecretAreaStore" ShortLabel=_"Guard"
-SForce: T=629 Marker=5035 StartLabel="SecretAreaPassage" ShortLabel=_"Guard"
-SForce: T=247 Marker=5035 StartLabel="SecretAreaRestroom" ShortLabel=_"Servant"
-SForce: T=476 Marker=5035 StartLabel="SecretAreaBedroom" ShortLabel=_"Criocapsules maintainer"
-SForce: T=329 Marker=5035 StartLabel="SecretAreaBathroom" ShortLabel=_"Sanitary technician"
-SForce: T=302 Marker=5035 StartLabel="SecretAreaToilet" ShortLabel=_"Toilet droid"
-//-------------------- LOCKED SECTION ------
-//S*Force: T=WOR Marker=4035 Faction="civilian" StartLabel="BorisStartGameSquare" UseDialog="Boris" ShortLabel=_"Boris -- scientists leader"
-//S*Force: T=FSC Marker=4035 Faction="civilian" StartLabel="LinaStartGameSquare" UseDialog="Lina" ShortLabel=_"Lina -- librarian"
-//S*Force: T=WOR Marker=4035 Faction="civilian" StartLabel="SergeStartGameSquare" UseDialog="Serge" ShortLabel=_"Serge -- storehouse keeper"
-//-------------------- Replacement Droids ------
-SForce: T=883 StartLabel="BorisStartGameSquare" ShortLabel=_"SADD"
-SForce: T=883 StartLabel="LinaStartGameSquare"  ShortLabel=_"SADD"
-SForce: T=883 StartLabel="SergeStartGameSquare" ShortLabel=_"SADD"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=883: PosX=36 PosY=51 Faction="ms" UseDialog="AfterTakeover" ShortLabel="SADD" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=40 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="SADD" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=41 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="SADD" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=28 PosY=4 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Toilet droid" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=329: PosX=30 PosY=4 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Sanitary technician" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=476: PosX=38 PosY=17 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Criocapsules maintainer" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=35 PosY=3 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Servant" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=629: PosX=31 PosY=8 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Guard" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=629: PosX=24 PosY=4 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Guard" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=629: PosX=32 PosY=22 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Guard" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=26 PosY=19 Faction="ms" UseDialog="AfterTakeover" ShortLabel="SADD" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=249: PosX=29 PosY=11 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Guard" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=139: PosX=15 PosY=11 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Ashman" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=31 PosY=17 Faction="ms" UseDialog="AfterTakeover" ShortLabel="SADD" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=302: PosX=20 PosY=15 Faction="ms" UseDialog="AfterTakeover" ShortLabel="302 Nemesis" Marker=5035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=598: PosX=32 PosY=37 Faction="ms" UseDialog="AfterTakeover" ShortLabel="SACD - Defender" Marker=3035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=TAN: PosX=9 PosY=20 Faction="civilian" UseDialog="Tania" ShortLabel="Scientist" Marker=2035 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=883: PosX=20 PosY=28 Faction="civilian" UseDialog="SADD" ShortLabel="Hostile Droid" Marker=1035 RushTux=1 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=36
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=37
 
-SForce: T=PRO Marker=9999 Faction="civilian" StartLabel="TutorialTutorStart" RushTux=1 UseDialog="TutorialTom" ShortLabel=_"???"
-SForce: T=123 Marker=1037 StartLabel="melee1" ShortLabel=_"Kill Me" on_death_drop_item_name="Entropy Inverter"
-SForce: T=247 Marker=2037 StartLabel="melee2" ShortLabel=_"Kill Me Too" on_death_drop_item_name="Tachyon Condensator"
-SForce: T=123 Marker=3037 StartLabel="shootingrange1" ShortLabel=_"Target"
-SForce: T=123 Marker=3037 StartLabel="shootingrange2" ShortLabel=_"Target"
-SForce: T=123 Marker=3037 StartLabel="shootingrange3" ShortLabel=_"Target"
-SForce: T=123 Marker=3037 StartLabel="shootingrange4" ShortLabel=_"Target"
-SForce: T=123 Marker=3037 StartLabel="shootingrange5" ShortLabel=_"Target"
-SForce: T=123 Marker=3037 StartLabel="shootingrange6" ShortLabel=_"Target"
-SForce: T=123 Marker=3037 StartLabel="shootingrange7" ShortLabel=_"Target"
-SForce: T=123 Marker=3037 StartLabel="shootingrange8" ShortLabel=_"Target"
-SForce: T=123 Marker=4037 StartLabel="takeover1" ShortLabel=_"Target"
-SForce: T=123 Marker=4037 StartLabel="takeover2" ShortLabel=_"Target"
-SForce: T=247 Marker=4037 StartLabel="takeover3" ShortLabel=_"Target"
-SForce: T=247 Marker=4037 StartLabel="takeover4" ShortLabel=_"Target"
-SForce: T=247 Marker=4037 StartLabel="takeover5" ShortLabel=_"Target"
-SForce: T=123 Marker=4037 StartLabel="takeover6" ShortLabel=_"Target"
-SForce: T=123 Marker=4037 StartLabel="takeover7" ShortLabel=_"Target"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=123: PosX=42 PosY=5 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=39 PosY=6 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=41 PosY=8 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=42 PosY=11 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=40 PosY=14 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=41 PosY=18 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=39 PosY=19 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=4037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=38 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=41 PosY=54 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=43 PosY=45 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=39 PosY=42 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=39 PosY=47 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=43 PosY=52 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=43 PosY=57 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=123: PosX=38 PosY=55 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Target" Marker=3037 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=247: PosX=2 PosY=58 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Kill Me Too" Marker=2037 RushTux=0 Fixed=0 DropItemName="Tachyon Condensator" MaxDistanceToHome=0
+T=123: PosX=2 PosY=50 Faction="ms" UseDialog="AfterTakeover" ShortLabel="Kill Me" Marker=1037 RushTux=0 Fixed=0 DropItemName="Entropy Inverter" MaxDistanceToHome=0
+T=PRO: PosX=15 PosY=13 Faction="civilian" UseDialog="TutorialTom" ShortLabel="???" Marker=9999 RushTux=1 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=38
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=39
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=40
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=41
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=42
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=43
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=44
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=45
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=46
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=47
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=48
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=49
 
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="MO-RGGateGuard" UseDialog="MO-RGGateGuard" ShortLabel=_"Bot Factory Gate Guard"
-SForce: T=GUA Marker=9999 Faction="redguard" StartLabel="MO-RGGateGuardLeader" UseDialog="MO-RGGateGuardLeader" ShortLabel=_"Bot Factory Gate Guard Leader"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=GUA: PosX=42 PosY=11 Faction="redguard" UseDialog="MO-RGGateGuardLeader" ShortLabel="Bot Factory Gate Guard Leader" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=37 PosY=11 Faction="redguard" UseDialog="MO-RGGateGuard" ShortLabel="Bot Factory Gate Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=50
 
-SForce: T=296 Marker=9999 Faction="neutral" StartLabel="HF-EntranceBotStartSquare" UseDialog="HF-EntranceBot" ShortLabel=_"Reception Droid"
-** End of this levels droid data **
-----------------------------------------------------------------------
+T=296: PosX=53 PosY=3 Faction="neutral" UseDialog="HF-EntranceBot" ShortLabel="Reception Droid" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=51
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=52
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=53
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=54
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=55
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=56
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=57
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=58
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=59
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=60
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=61
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=62
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=63
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=64
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=65
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=66
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=67
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=68
 
-** End of this levels droid data **
-----------------------------------------------------------------------
+** End of this levels Special Forces data **
+---------------------------------------------------------
 ** Beginning of new Level **
 Level=69
 
-SForce: T=WOR Faction="civilian" StartLabel="GapesStartGameSquare" UseDialog="WillGapes" ShortLabel=_"Corporate Guy"
-** End of this levels droid data **
-
+T=WOR: PosX=12 PosY=14 Faction="civilian" UseDialog="WillGapes" ShortLabel="Corporate Guy" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+** End of this levels Special Forces data **
+---------------------------------------------------------
 *** End of Droid Data ***
-// Anything after above marker will be ignored.
