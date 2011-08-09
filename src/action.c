@@ -201,11 +201,13 @@ static int mouse_cursor_is_on_that_obstacle(level *lvl, int obst_index)
  */
 int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 {
-	int x, y;
+#define HOVER_CHECK_DIST 2
+#define SIDE_LENGTH (HOVER_CHECK_DIST * 2 + 1)
 	finepoint MapPositionOfMouse;
-	int i;
-	int obst_index;
-	
+	int i, j, x, y;
+	int return_index = -1, obst_index = 0;
+	float obst_normal = 0, max_normal = 0;
+
 	if(obst_lvl)
 		*obst_lvl = NULL;
 
@@ -226,26 +228,33 @@ int clickable_obstacle_below_mouse_cursor(level **obst_lvl)
 		return -1;
 
 	level *lvl = curShip.AllLevels[mouse_target_pos.z];
-	if (!pos_inside_level(mouse_target_pos.x, mouse_target_pos.y, lvl))
-		return - 1;
 
-	y = mouse_target_pos.y;
-	x = mouse_target_pos.x;
+	// Iterate through a square area of tiles with sides HOVER_CHECK_DIST * 2 + 1
+	// centered on the tile under the mouse
+	for (i = 0; i < pow(SIDE_LENGTH, 2); i++) {
+		y = i / SIDE_LENGTH - HOVER_CHECK_DIST - 1  + mouse_target_pos.y;
+		x = i % SIDE_LENGTH - HOVER_CHECK_DIST - 1  + mouse_target_pos.x;
 
-	for (i = 0; i < lvl->map[y][x].glued_obstacles.size; i++) {
-		obst_index = ((int *)(lvl->map[y][x].glued_obstacles.arr))[i];
-		
-		if (mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
-			if (get_obstacle_spec(lvl->obstacle_list[obst_index].type)->flags & IS_CLICKABLE) {
-				if(obst_lvl)
+		if (!pos_inside_level(x, y, lvl))
+			continue;
+
+		// Iterate through all candidate obstacles on this tile
+		for (j = 0; j < lvl->map[y][x].glued_obstacles.size; j++) {
+			obst_index = ((int *)(lvl->map[y][x].glued_obstacles.arr))[j];
+			obst_normal = lvl->obstacle_list[obst_index].pos.x + lvl->obstacle_list[obst_index].pos.y;
+
+			if (obst_normal > max_normal &&
+				get_obstacle_spec(lvl->obstacle_list[obst_index].type)->flags & IS_CLICKABLE &&
+				mouse_cursor_is_on_that_obstacle(lvl, obst_index)) {
+
+				max_normal = obst_normal;
+				return_index = obst_index;
+				if (obst_lvl)
 					*obst_lvl = lvl;
-				return obst_index;
-			} else {
-				continue;
 			}
 		}
 	}
-	return -1;
+	return return_index;
 }
 
 /**
