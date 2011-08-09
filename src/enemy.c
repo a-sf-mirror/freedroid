@@ -2725,7 +2725,6 @@ enemy *get_enemy_with_dialog(const char *dialog)
 		}
 	}
 
-	ErrorMessage(__FUNCTION__, _("Could not find a droid corresponding to the dialog \"%s\"."), PLEASE_INFORM, IS_FATAL, dialog);
 	return NULL;
 }
 #undef _enemy_c

@@ -62,14 +62,22 @@ lua_State *get_lua_state(enum lua_target target)
   * by default the function will act upon
   * the current chat droid.
   */
-static enemy *get_enemy_arg(lua_State *L, int param_number) 
+static enemy *get_enemy_opt(lua_State *L, int param_number, int optional)
 {
 	const char *dialog = luaL_optstring(L, param_number, NULL);
 
 	if (!dialog)
 		return chat_control_chat_droid;
 
-	return get_enemy_with_dialog(dialog);
+	enemy *en = get_enemy_with_dialog(dialog);
+	if (!optional && !en)
+		ErrorMessage(__FUNCTION__, _("Could not find a droid corresponding to the dialog \"%s\"."), PLEASE_INFORM, IS_FATAL, dialog);
+	return en;
+}
+
+static enemy *get_enemy_arg(lua_State *L, int param_number)
+{
+	return get_enemy_opt(L, param_number, FALSE);
 }
 
 /** Helper to modify the enemy state
@@ -839,6 +847,13 @@ static int lua_chat_takeover(lua_State * L)
 	return 1;
 }
 
+static int lua_chat_bot_exists(lua_State *L)
+{
+	int exists = get_enemy_opt(L, 1, TRUE) != NULL;
+	lua_pushboolean(L, exists);
+	return 1;
+}
+
 static int lua_chat_get_bot_type(lua_State * L)
 {
 	enemy *en = get_enemy_arg(L, 1); 
@@ -1122,6 +1137,8 @@ luaL_reg lfuncs[] = {
 	,
 
 	{"drop_dead", lua_chat_drop_dead}
+	,
+	{"bot_exists", lua_chat_bot_exists}
 	,
 	{"set_bot_state", lua_chat_set_bot_state}
 	,

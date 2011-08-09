@@ -86,10 +86,12 @@ Nr=3 Text=_"/usr/bin/hermodoors --open"
 	npc_says(_"Invalid password. Entering lockdown mode.")
 	npc_says(_"ERROR: Lockdown mode has an error.", "NO_WAIT")
 	npc_says(_"ERROR: error has an error.", "NO_WAIT")
-	npc_says(_"ERROR: SADD droids now set to search-and-destroy mode.")
-	set_npc_faction("ms", "SADD")
-	set_bot_name(_"SADD -- Exterminate Mode", "SADD")
-	set_bot_destination("SADD-MoveTarget", "SADD")
+	if bot_exists("SADD") then
+		npc_says(_"ERROR: SADD droids now set to search-and-destroy mode.")
+		set_npc_faction("ms", "SADD")
+		set_bot_name(_"SADD -- Exterminate Mode", "SADD")
+		set_bot_destination("SADD-MoveTarget", "SADD")
+	end
 	cli_says(_"admin@sadefence: ~ #", "NO_WAIT")
 	hide(3)
 </LuaCode>
