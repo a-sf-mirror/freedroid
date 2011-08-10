@@ -51,6 +51,9 @@ LIST_HEAD(image_resource_list);
 struct image *widget_load_image_resource(char *name, int use_offset_file) 
 {
 	struct image_resource *res;
+
+	if (!name)
+		return NULL;
 	
 	// Check if image is already loaded.
 	list_for_each_entry(res, &image_resource_list, node) {
@@ -60,8 +63,8 @@ struct image *widget_load_image_resource(char *name, int use_offset_file)
 
 	// Image not found, allocate memory and load it from its file.
 	res = MyMalloc(sizeof(struct image_resource));
-	load_image(&res->img, name, use_offset_file);
-	res->name = name;
+	res->name = strdup(name);
+	load_image(&res->img, res->name, use_offset_file);
 	list_add(&res->node, &image_resource_list);
 	return &res->img;
 }
