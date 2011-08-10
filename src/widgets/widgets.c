@@ -71,16 +71,38 @@ struct image *widget_load_image_resource(char *name, int use_offset_file)
  */
 static struct widget *get_active_ui()
 {
+	static int old_game_status = -1;
+	static struct widget *old_active_ui = NULL;
+	static struct widget *new_active_ui = NULL;
+
 	switch (game_status) {	
 		case INSIDE_LVLEDITOR:
-			return WIDGET(get_lvledit_ui());
+			new_active_ui = WIDGET(get_lvledit_ui());
+			break;
 
 		case INSIDE_GAME:
-			return WIDGET(get_game_ui());
+			new_active_ui = WIDGET(get_game_ui());
+			break;
 
 		default:
 			return NULL;
 	}
+
+	// If the current active interface has changed, send a 
+	// mouse leave event to the previous interface.
+	if (old_game_status != game_status) {
+		SDL_Event event;
+		event.type = SDL_USEREVENT;
+		event.user.code = EVENT_MOUSE_LEAVE;
+
+		if (old_active_ui)
+			old_active_ui->handle_event(old_active_ui, &event);
+	}
+
+	old_active_ui = new_active_ui;
+	old_game_status = game_status;
+
+	return new_active_ui;
 }
 
 /**
