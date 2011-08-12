@@ -525,6 +525,8 @@ int input_key_press(SDL_Event *);
 void keychart(void);
 void input_set_default(void);
 void input_keyboard_init(void);
+void input_hold_keyboard(void);
+void input_release_keyboard(void);
 int getchar_raw(int *);
 void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod);
 void input_get_keybind_string(const char *cmd, char *out);

@@ -39,6 +39,8 @@
 #define KEY_RELEASE  (-1.) /**< Key is released. */
 #define ISKEYPAD(k) (k >= SDLK_KP0 && k <= SDLK_KP_EQUALS)
 
+static int input_keyboard_locked; // Block the execution of the keybindings.
+
 /* name of each keybinding */
 const char *keybindNames[] = {
 	/* General */
@@ -108,6 +110,8 @@ void input_keyboard_init(void)
 	}
 
 	GameConfig.input_keybinds[i].name = NULL;
+
+	input_keyboard_locked = 0;
 }
 
 /**
@@ -480,6 +484,34 @@ void keychart()
 }
 
 /**
+ * Hold the keyboard input handler.
+ *
+ * Some UI panels have their own keyboard input handler, or in some cases
+ * we do not want the main keyboard input handler to react to key events.
+ * Some keybindings could however be 'un-interruptibles'.
+ * The opposite function is input_release_keyboard().
+ */
+void input_hold_keyboard(void)
+{
+	// Several UI elements may want to hold the keyboard handler, and
+	// thus call this function and its release companion.
+	// We thus need to count how many times this function is called, and
+	// how many times the release function is called.
+	input_keyboard_locked++;
+}
+
+/**
+ * Release the keyboard input handler.
+ *
+ * See input_hold_keyboard().
+ */
+void input_release_keyboard(void)
+{
+	if (input_keyboard_locked > 0)
+		input_keyboard_locked--;
+}
+
+/**
  * @fn static void input_key( int keynum, int value)
  *
  * @brief Runs the input command.
@@ -493,6 +525,16 @@ void keychart()
 #define INLVLEDIT()	(game_status == INSIDE_LVLEDITOR)
 static int input_key(int keynum, int value)
 {
+	/* Non lockable keybindings */
+ 	if (KEYPRESS("quit")) {
+		Terminate(EXIT_SUCCESS, TRUE);
+		return 0;
+	}
+
+	/* Do not execute the other key actions, if the the keyboard input is 'held' */
+	if (input_keyboard_locked)
+		return -1;
+
 	/* Cheat keys - those all fall through to normal game keys! */
 	if (GameConfig.enable_cheatkeys && INGAME()) {
 		if (KEYPRESS("cheat_xp+_1k")) {
@@ -718,7 +760,7 @@ static int input_key(int keynum, int value)
 		}
 	}
 
-	/* Global options */
+	/* Global keybindings */
 	if (KEYPRESS("fullscreen")) {
 		/* This doesn't seem to work so well on Windows */
 #ifndef __WIN32__
@@ -746,9 +788,6 @@ static int input_key(int keynum, int value)
 		return 0;
 	} else if (KEYPRESS("keychart")) {
 		keychart();
-		return 0;
-	} else if (KEYPRESS("quit")) {
-		Terminate(EXIT_SUCCESS, TRUE);
 		return 0;
 	}
 
