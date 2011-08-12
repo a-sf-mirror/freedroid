@@ -81,6 +81,23 @@ struct image *widget_load_image_resource(char *, int);
 void widget_set_rect(struct widget *, int, int, int, int);
 void widget_set_tooltip(struct tooltip *, SDL_Rect *);
 
+/**
+ * This macro is used for creating callbacks that updates
+ * a widget flag using an external variable.
+ *
+ * @param widget_type the type of the widget for which the callback is set.
+ * @param flag the widget flag to be updated.
+ * @param data the external data used for updating.
+ */
+#define WIDGET_UPDATE_FLAG_ON_DATA(widget_type, flag, data) \
+({ \
+  void anonymous_func(struct widget *w) \
+  { \
+    widget_type(w)->flag = data; \
+  } \
+  anonymous_func; \
+})
+
 #undef EXTERN
 
 #define WIDGET(x) ((struct widget *)x)

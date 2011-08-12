@@ -33,23 +33,6 @@
 
 #include "widgets/widgets.h"
 
-/**
- * This macro is used for creating callbacks that updates
- * a widget flag using an external variable.
- *
- * @param widget_type the type of the widget for which the callback is set.
- * @param flag the widget flag to be updated.
- * @param data the external data used for updating.
- */
-#define WIDGET_UPDATE_FLAG_ON_DATA(widget_type, flag, data) \
-({ \
-  void anonymous_func(struct widget *w) \
-  { \
-    widget_type(w)->flag = data; \
-  } \
-  anonymous_func; \
-})
-
 static struct widget_group *game_widget_group = NULL;
 
 /** Toggle the skills screen when the current skill button is pressed. */
