@@ -626,11 +626,6 @@ struct widget_group *get_game_ui()
 	} panels[] = {
 		{
 			{0, 0, 320, 480},
-			(void *)show_inventory_screen,
-			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.Inventory_Visible)
-		},
-		{
-			{0, 0, 320, 480},
 			NULL,
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.skill_explanation_screen_visible)
 		},
@@ -643,6 +638,14 @@ struct widget_group *get_game_ui()
 			{GameConfig.screen_width - 320, 0, 320, 480},
 			(void *)ShowSkillsScreen,
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.SkillScreen_Visible)
+		},
+		// The item held in hand is displayed by show_inventory_screen().
+		// In order to have this item displayed in front of all widgets,
+		// the inventory panel has to be the last widget in the list.
+		{
+			{0, 0, 320, 480},
+			(void *)show_inventory_screen,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.Inventory_Visible)
 		}
 	};
 
