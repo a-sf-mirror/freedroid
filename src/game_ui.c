@@ -639,6 +639,16 @@ struct widget_group *get_game_ui()
 			(void *)ShowSkillsScreen,
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.SkillScreen_Visible)
 		},
+		{
+			{0, 0, 320, 480},
+			(void *)show_addon_crafting_ui,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, addon_crafting_ui_visible())
+		},
+		{
+			{320, 0, 320, 480},
+			(void *)show_item_upgrade_ui,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, item_upgrade_ui_visible())
+		},
 		// The item held in hand is displayed by show_inventory_screen().
 		// In order to have this item displayed in front of all widgets,
 		// the inventory panel has to be the last widget in the list.

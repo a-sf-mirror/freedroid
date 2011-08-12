@@ -24,6 +24,7 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "widgets/widgets.h"
 
 #define ADDON_ITEMS_MAX 4
 
@@ -699,7 +700,7 @@ void item_upgrade_ui()
 {
 	int i;
 	int old_game_status = game_status;
-	game_status = INSIDE_MENU;
+	game_status = INSIDE_GAME;
 
 	// Load all static images if not already loaded.
 	if (!images_loaded) {
@@ -730,6 +731,7 @@ void item_upgrade_ui()
 		// Handle input. Since the UI makes use of the inventory, we need to let
 		// the inventory handle events that fall outside of the upgrade UI.
 		save_mouse_state();
+		update_widgets();
 		input_handle();
 		if (!handle_ui())
 			HandleInventoryScreen();

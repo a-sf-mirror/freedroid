@@ -460,7 +460,7 @@ static void handle_ui()
 void addon_crafting_ui()
 {
 	int old_game_status = game_status;
-	game_status = INSIDE_MENU;
+	game_status = INSIDE_GAME;
 
 	// Clear the struct and build the recipe list.
 	memset(&ui, 0, sizeof(ui));
@@ -486,6 +486,7 @@ void addon_crafting_ui()
 
 		// Handle input.
 		save_mouse_state();
+		update_widgets();
 		input_handle();
 		handle_ui();
 
