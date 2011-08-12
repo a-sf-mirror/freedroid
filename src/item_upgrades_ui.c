@@ -110,6 +110,14 @@ static void load_images()
 }
 
 /**
+ * Returns the item upgrade interface's status.
+ */
+int item_upgrade_ui_visible()
+{
+	return ui_visible;
+}
+
+/**
  * \brief Gets the tooltip text the item upgrade UI would like to display.
  * \param cursor Cursor position.
  * \param result Return location for the tooltip text.
