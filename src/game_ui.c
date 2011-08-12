@@ -639,6 +639,13 @@ struct widget_group *get_game_ui()
 			(void *)ShowSkillsScreen,
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, GameConfig.SkillScreen_Visible)
 		},
+		// This widget, covering the whole screen, avoid mouse event propagation to the other widgets
+		// when the addon crafting or item upgrade panels are opened.
+		{
+			{0, 0, GameConfig.screen_width, GameConfig.screen_height},
+			NULL,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, (addon_crafting_ui_visible() || item_upgrade_ui_visible()))
+		},
 		{
 			{0, 0, 320, 480},
 			(void *)show_addon_crafting_ui,

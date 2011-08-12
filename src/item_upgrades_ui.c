@@ -724,6 +724,9 @@ void item_upgrade_ui()
 	GameConfig.skill_explanation_screen_visible = FALSE;
 	ui_visible = TRUE;
 
+	// Prevent keyboard input.
+	input_hold_keyboard();
+
 	// Loop until the player clicks the close button of the UI or presses and
 	// releases escape. We need to ensure that the escape key is released so
 	// that it doesn't interfere with the dialog that opened the upgrade UI.
@@ -740,6 +743,9 @@ void item_upgrade_ui()
 		// drawing function in the right place.
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
 	}
+
+	// Release keyboard input.
+	input_release_keyboard();
 
 	// If the player left any items to the upgrade interface,
 	// drop them to the inventory or to the ground.
