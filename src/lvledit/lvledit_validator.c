@@ -60,6 +60,8 @@ static void lvlval_extensions_execute(struct level_validator *this, struct lvlva
 static void *lvlval_extensions_parse_excpt(char *string);
 static int lvlval_extensions_cmp_data(void *opaque_data1, void *opaque_data2);
 
+static void lvlval_map_labels_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx);
+
 struct level_validator level_validators[] = {
 	{'C',
 	 LIST_HEAD_INIT(level_validators[0].excpt_list),
@@ -86,6 +88,11 @@ struct level_validator level_validators[] = {
 	 lvlval_extensions_execute,
 	 lvlval_extensions_parse_excpt,
 	 lvlval_extensions_cmp_data},
+	{'L',
+	 LIST_HEAD_INIT(level_validators[5].excpt_list),
+	 lvlval_map_labels_execute,
+	 NULL,
+	 NULL},
 	{.initial = '\0'}
 };
 
@@ -1368,6 +1375,52 @@ static void lvlval_extensions_execute(struct level_validator *this, struct lvlva
 }
 
 //===========================================================
+// Map Labels Validator
+//
+// This validator checks for duplicated map labels
+//===========================================================
+
+struct lvlval_map_label {
+	const char *name;
+	int levelnum;
+};
+
+static struct dynarray map_labels;
+
+static void lvlval_map_labels_execute(struct level_validator *this, struct lvlval_ctx *validator_ctx)
+{
+	int i, j;
+	struct lvlval_error map_label_error = {
+		.title = "Duplicated map labels list",
+		.comment = "The following map labels are not world-unique.",
+		.format = "Map label '%s' declared on levels %d, %d",
+		.caught = FALSE,
+		.code = VALIDATION_ERROR
+	};
+
+	struct level *lvl = validator_ctx->this_level;
+	for (i = 0; i < lvl->map_labels.size; i++) {
+		struct map_label *current_label = dynarray_member(&lvl->map_labels, i, sizeof(struct map_label));
+
+		// Search for duplicated map labels
+		for (j = 0; j < map_labels.size; j++) {
+			struct lvlval_map_label *label = dynarray_member(&map_labels, j, sizeof(struct lvlval_map_label));
+			if (!strcmp(label->name, current_label->label_name)) {
+				validator_print_error(validator_ctx, &map_label_error, label->name, lvl->levelnum, label->levelnum);
+				break;
+			}
+		}
+
+		if (j == map_labels.size) {
+			struct lvlval_map_label label = { current_label->label_name, lvl->levelnum };
+			dynarray_add(&map_labels, &label, sizeof(struct lvlval_map_label));
+		}
+	}
+
+	validator_print_separator(validator_ctx);
+}
+
+//===========================================================
 // ENTRY POINT
 //
 // Run several validations
@@ -1402,6 +1455,9 @@ int level_validation()
 
 	load_excpt_lists("lvleditor_exceptions.dat");
 
+	// Init map labels validator data
+	dynarray_init(&map_labels, 1024, sizeof(struct lvlval_map_label));
+
 	// Loop on each level
 
 	int l;
@@ -1411,7 +1467,7 @@ int level_validation()
 	for (l = 0; l < curShip.num_levels; ++l) {
 		struct lvlval_ctx validator_ctx = { &report_rect, curShip.AllLevels[l], FALSE, VALIDATION_PASS };
 
-		// Compute raw and column position, when a new column of text starts
+		// Compute row and column position, when a new column of text starts
 		if ((l % max_rows) == 0) {
 			col_pos = report_rect.x + (l / max_rows) * column_width;
 			row_pos = report_rect.y + 2 * row_height;	// 2 lines are reserved for the header
@@ -1461,6 +1517,9 @@ int level_validation()
 	
 	free_exception_lists();
 
+	// Free map labels validator data
+	dynarray_free(&map_labels);
+
 	// That's it.  We can say goodbye and return.
 
 	int posy = report_rect.y + report_rect.h - row_height;
@@ -1499,6 +1558,9 @@ int level_validation_on_console_only()
 
 	load_excpt_lists("lvleditor_exceptions.dat");
 
+	// Init map labels validator data
+	dynarray_init(&map_labels, 1024, sizeof(struct lvlval_map_label));
+
 	// Loop on each level
 
 	int l;
@@ -1527,7 +1589,10 @@ int level_validation_on_console_only()
 	uncaught_excpt = print_uncaught_exceptions();
 	
 	free_exception_lists();
-	
+
+	// Free map labels validator data
+	dynarray_free(&map_labels);
+
 	return (final_rc == VALIDATION_ERROR) || uncaught_excpt;
 }
 
