@@ -1638,7 +1638,7 @@ int save_special_forces(const char *filename)
 
 		enemy *en;
 
-		BROWSE_LEVEL_BOTS(en, lvl->levelnum) {
+		list_for_each_entry_reverse(en, &level_bots_head[lvl->levelnum], level_list) {
 			if (!en->SpecialForce)
 				continue;
 
