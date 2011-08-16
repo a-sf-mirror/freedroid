@@ -122,7 +122,7 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 {
 	switch (type) {
 	case OBJECT_FLOOR:
-			sprintf(str, "Floor tile number %d\n", array[idx]);
+			sprintf(str, "Floor tile number %d, filename %s\n", array[idx], *(char **)dynarray_member(&floor_tile_filenames, array[idx], sizeof(char *)));
 			break;
 	case OBJECT_OBSTACLE:
 			print_obstacle_info(str, array[idx]);

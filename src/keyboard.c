@@ -69,7 +69,7 @@ const char *keybindNames[] = {
 	"cycle_marked_object",
 	"cut", "copy", "paste",
 	"next_selection_type", "previous_selection_type",
-	"next_tab", "previous_tab", "undo", "redo", "beautify_grass",
+	"next_tab", "previous_tab", "undo", "redo", "beautify_grass", "beautify_water",
 	"toggle_waypoint", "toggle_waypoint_randomspawn", "connect_waypoint",
 	"toolbar_scroll_left", "toolbar_scroll_right", "toolbar_step_left", "toolbar_step_right",
 	"run_map_validator",
@@ -271,6 +271,7 @@ void input_set_default(void)
 	input_set_keybind("undo", SDLK_z, KMOD_NONE);
 	input_set_keybind("redo", SDLK_y, KMOD_NONE);
 	input_set_keybind("beautify_grass", SDLK_b, KMOD_LCTRL);
+	input_set_keybind("beautify_water", SDLK_w, KMOD_LCTRL);
 	input_set_keybind("toggle_waypoint", SDLK_w, KMOD_NONE);
 	input_set_keybind("toggle_waypoint_randomspawn", SDLK_w, KMOD_LSHIFT);
 	input_set_keybind("connect_waypoint", SDLK_c, KMOD_NONE);
@@ -713,6 +714,9 @@ static int input_key(int keynum, int value)
 			return 0;
 		} else if (KEYPRESS("beautify_grass")) {
 			level_editor_beautify_grass_tiles(EditLevel());
+			return 0;
+		} else if (KEYPRESS("beautify_water")) {
+			level_editor_beautify_water_tiles(EditLevel());
 			return 0;
 		} else if (KEYPRESS("toolbar_scroll_left")) {
 			widget_lvledit_toolbar_scroll_left();

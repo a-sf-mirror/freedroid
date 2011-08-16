@@ -23,3 +23,4 @@
  */
 
 void level_editor_beautify_grass_tiles(level *);
+void level_editor_beautify_water_tiles(level *);
