@@ -310,6 +310,7 @@ Uint16 get_map_brick(level *, float, float, int);
 void CountNumberOfDroidsOnShip(void);
 int LoadShip(char *filename, int);
 int SaveShip(const char *filename, int reset_random_levels, int);
+int save_special_forces(const char *filename);
 void get_animated_obstacle_lists(struct visible_level *vis_lvl);
 void dirty_animated_obstacle_lists(int lvl_num);
 void clear_animated_obstacle_lists(struct visible_level *vis_lvl);
@@ -773,6 +774,7 @@ void npc_inventory_delete_item(struct npc *, int);
 
 // faction.c
 enum faction_id get_faction_id(const char *);
+const char *get_faction_from_id(int);
 void set_faction_state(enum faction_id, enum faction_id, enum faction_state);
 int is_friendly(enum faction_id, enum faction_id);
 void init_factions(void);

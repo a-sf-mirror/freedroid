@@ -70,6 +70,21 @@ enum faction_id get_faction_id(const char *name)
 }
 
 /**
+ * Returns the name of a faction based on a given id
+ * @param faction_id Position of the faction in the factions enum
+ * @return Name of the faction
+ */
+const char *get_faction_from_id(int faction_id)
+{
+	if ((faction_id < 0) || (faction_id >= (sizeof(factions) / sizeof(factions[0])))) {
+		ErrorMessage(__FUNCTION__, "Malformed faction id! Faction %d does not exist.", PLEASE_INFORM, IS_WARNING_ONLY, faction_id);
+		return factions[FACTION_SELF].name;
+	}
+
+	return factions[faction_id].name;
+}
+
+/**
   * Set the hostility parameter between two factions. This function takes care of the symmetry: two factions always have
   * the same state towards each other, there can be no friendly one way/hostile the other way situation.
   */

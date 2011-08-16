@@ -1614,6 +1614,70 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 	return OK;
 }
 
+int save_special_forces(const char *filename)
+{
+	FILE *s_forces_file = NULL;
+	struct auto_string *s_forces_str;
+	level *lvl;
+	int i;
+
+	if ((s_forces_file = fopen(filename, "wb")) == NULL) {
+		ErrorMessage(__FUNCTION__, "Error opening Special Forces file %s for writing.", PLEASE_INFORM, IS_FATAL, filename);
+		return ERR;
+	}
+
+	s_forces_str = alloc_autostr(64);
+
+	for (i = 0; i < curShip.num_levels; i++) {
+		if (!level_exists(i))
+			continue;
+
+		lvl = curShip.AllLevels[i];
+		autostr_append(s_forces_str, "** Beginning of new Level **\n");
+		autostr_append(s_forces_str, "Level=%d\n\n",  lvl->levelnum);
+
+		enemy *en;
+
+		BROWSE_LEVEL_BOTS(en, lvl->levelnum) {
+			if (!en->SpecialForce)
+				continue;
+
+			autostr_append(s_forces_str, "T=%s: ", Druidmap[en->type].druidname);
+			autostr_append(s_forces_str, "PosX=%d PosY=%d ", (int)en->pos.x, (int)en->pos.y);
+			autostr_append(s_forces_str, "Faction=\"%s\" ", get_faction_from_id(en->faction));
+			autostr_append(s_forces_str, "UseDialog=\"%s\" ", en->dialog_section_name);
+
+			autostr_append(s_forces_str, "ShortLabel=\"%s\" ", en->short_description_text);
+			autostr_append(s_forces_str, "Marker=%d ", en->marker);
+			autostr_append(s_forces_str, "RushTux=%d ", en->will_rush_tux);
+
+			autostr_append(s_forces_str, "Fixed=%hi ", en->CompletelyFixed);
+			autostr_append(s_forces_str, "DropItemName=\"%s\" ",
+						(en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].item_name);
+			autostr_append(s_forces_str, "MaxDistanceToHome=%hd\n", en->max_distance_to_home);
+		}
+
+		autostr_append(s_forces_str, "** End of this levels Special Forces data **\n");
+		autostr_append(s_forces_str, "---------------------------------------------------------\n");
+	}
+
+	autostr_append(s_forces_str, "*** End of Droid Data ***");
+
+	if (fwrite((unsigned char *)s_forces_str->value, s_forces_str->length, 1, s_forces_file) != 1) {
+		ErrorMessage(__FUNCTION__, "Error writing SpecialForces file %s.", PLEASE_INFORM, IS_WARNING_ONLY, filename);
+		fclose(s_forces_file);
+		goto out;
+	}
+
+	if (fclose(s_forces_file) == EOF) {
+		ErrorMessage(__FUNCTION__, "Closing of Special Forces file failed!", PLEASE_INFORM, IS_WARNING_ONLY);
+		goto out;
+	}
+
+out:	free_autostr(s_forces_str);
+	return OK;
+}
+
 /**
  * This function is used to calculate the number of the droids on the 
  * ship, which is a global variable.
