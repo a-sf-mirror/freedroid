@@ -57,7 +57,7 @@ static void group_display(struct widget *w)
 /**
  * @brief Handles mouse motion and mouse button clicks events received by widget groups.
  * 
- * This function is used in group_handle_event to handle mouse motion and button events.
+ * This function is used in widget_group_handle_event to handle mouse motion and button events.
  * The widget group handles these events by forwarding them to the first enabled children 
  * under the mouse.
  *
@@ -152,7 +152,7 @@ static int group_mouse_leave_event(struct widget *wg, SDL_Event *event)
 /**
  * This function handles all events received by a widget group.
  */
-static int group_handle_event(struct widget *wg, SDL_Event *event) 
+int widget_group_handle_event(struct widget *wg, SDL_Event *event)
 {
 	switch (event->type) {
 		case SDL_MOUSEMOTION:
@@ -192,7 +192,7 @@ struct widget_group *widget_group_create()
 {
 	struct widget_group *wb = (struct widget_group *)MyMalloc(sizeof(struct widget_group));	
 	WIDGET(wb)->display = group_display;
-	WIDGET(wb)->handle_event = group_handle_event;
+	WIDGET(wb)->handle_event = widget_group_handle_event;
 	WIDGET(wb)->enabled = 1;
 	wb->list = (struct list_head)LIST_HEAD_INIT(wb->list);	
 	wb->last_focused = NULL;
