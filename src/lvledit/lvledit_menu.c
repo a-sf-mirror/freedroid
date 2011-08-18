@@ -532,8 +532,9 @@ static void LevelOptions(void)
 	int proceed_now = FALSE;
 	int MenuPosition = 1;
 	int tgt = -1;
-	int i;
+	int i, j;
 	int l = 0;
+	int *droid_types;
 
 	enum {
 		CHANGE_LEVEL_POSITION = 1,
@@ -542,6 +543,7 @@ static void LevelOptions(void)
 		EDIT_LEVEL_FLOOR_LAYERS,
 		SET_LEVEL_INTERFACE_POSITION,
 		SET_RANDOM_LEVEL,
+		SET_RANDOM_DROIDS,
 		SET_TELEPORT_PAIR,
 		CHANGE_LIGHT,
 		SET_BACKGROUND_SONG_NAME,
@@ -600,6 +602,16 @@ static void LevelOptions(void)
 		sprintf(Options[i], "%s: %s", _("Random dungeon"),
 			EditLevel()->random_dungeon == 2 ? _("2 connections") : EditLevel()->random_dungeon ==
 			1 ? _("1 connection") : _("no"));
+		MenuTexts[i] = Options[i];
+		i++;
+
+		droid_types = EditLevel()->random_droids.types;
+		sprintf(Options[i], "Random droids: %d Types: ", EditLevel()->random_droids.nr);
+		for (j = 0; j < EditLevel()->random_droids.types_size; j++) {
+				if (j)
+					strcat(Options[i], ", ");
+				strcat(Options[i], Druidmap[droid_types[j]].druidname);
+		}
 		MenuTexts[i] = Options[i];
 		i++;
 
@@ -677,6 +689,9 @@ static void LevelOptions(void)
 		case SET_RANDOM_LEVEL:
 			EditLevel()->random_dungeon++;
 			EditLevel()->random_dungeon %= 3;
+			break;
+		case SET_RANDOM_DROIDS:
+			get_random_droids_from_user();
 			break;
 		case SET_TELEPORT_PAIR:
 			EditLevel()->teleport_pair = mapgen_cycle_teleport_pair(EditLevel()->teleport_pair);
