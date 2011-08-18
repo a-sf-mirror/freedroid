@@ -2553,6 +2553,8 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		g = 0.2;
 	}
 
+	object_vtx_color(ThisRobot, &r, &g, &b);
+
 	bot_pos.x = ThisRobot->virt_pos.x;
 	bot_pos.y = ThisRobot->virt_pos.y;
 

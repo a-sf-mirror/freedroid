@@ -157,6 +157,7 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 	obstacle *o;
 	item *it;
 	map_label *m;
+	enemy *en;
 	
 	cmin->x = 9999;
 	cmin->y = 9999;
@@ -189,6 +190,11 @@ static void calc_min_max_selection(struct list_head *list, moderately_finepoint 
 			m = e->data;
 
 			__calc_min_max(m->pos.x, m->pos.y, cmin, cmax);
+			break;
+		case OBJECT_ENEMY:
+			en = e->data;
+
+			__calc_min_max(en->pos.x, en->pos.y, cmin, cmax);
 			break;
 		default:
 			;
@@ -336,6 +342,23 @@ static void select_map_label_on_tile(int x, int y)
 	}
 }
 
+static void select_special_forces_on_tile(int x, int y)
+{
+	enemy *en;
+
+	BROWSE_LEVEL_BOTS(en, EditLevel()->levelnum) {
+		if (!en->SpecialForce)
+			continue;
+
+		if ((int)en->pos.x == x && (int)en->pos.y == y) {
+			if (!element_in_selection(en)) {
+				add_object_to_list(&selected_elements, en, OBJECT_ENEMY);
+				state.rect_nbelem_selected++;
+			}
+		}
+	}
+}
+
 static void select_object_on_tile(int x, int y)
 {
 	switch (selection_type()) {
@@ -355,6 +378,7 @@ static void select_object_on_tile(int x, int y)
 		select_map_label_on_tile(x, y);
 		break;
 	case OBJECT_ENEMY:
+		select_special_forces_on_tile(x, y);
 		break;
 	default:
 		ErrorMessage(__FUNCTION__,
