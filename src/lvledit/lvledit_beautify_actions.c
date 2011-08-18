@@ -161,7 +161,7 @@ static int is_some_grass_tile(int floor_value)
 
 	if (floor_value < ISO_FLOOR_SAND_WITH_GRASS_1)
 		return FALSE;
-	if (floor_value > ISO_FLOOR_SAND_WITH_GRASS_29)
+	if (floor_value > ISO_FLOOR_SAND_WITH_GRASS_27)
 		return FALSE;
 
 	switch (floor_value) {
