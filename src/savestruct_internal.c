@@ -474,10 +474,13 @@ void write_char_array(struct auto_string *strout, char *data, int size)
 void read_keybind_t_array(lua_State *L, int index, keybind_t *data, int size)
 {
 	lua_is_of_type_or_abort(L, index, LUA_TTABLE);
+	keybind_t keybind;
 	int i;
-	for (i = 0; i < lua_objlen(L, -1) && i < size - 1; i++) {
+	for (i = 0; i < lua_objlen(L, -1); i++) {
 		lua_rawgeti(L, index, i+1);
-		read_keybind_t(L, -1, &data[i]);
+		read_keybind_t(L, -1, &keybind);
+		input_set_keybind(keybind.name, keybind.key, keybind.mod);
+		free(keybind.name);
 		lua_pop(L, 1);
 	}
 }
