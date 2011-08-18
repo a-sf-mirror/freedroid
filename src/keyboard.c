@@ -30,7 +30,7 @@
 
 #include "lvledit/lvledit.h"
 #include "lvledit/lvledit_actions.h"
-#include "lvledit/lvledit_grass_actions.h"
+#include "lvledit/lvledit_beautify_actions.h"
 #include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_widgets.h"
 #include "lvledit/lvledit_validator.h"

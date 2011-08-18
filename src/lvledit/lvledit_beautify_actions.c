@@ -26,7 +26,7 @@
  * This file contains all the actions performed by the level editor, ie. the functions that act on the level.
  */
 
-#define _leveleditor_grass_actions_c
+#define _leveleditor_beautify_actions_c
 
 #include "system.h"
 
@@ -646,4 +646,4 @@ void level_editor_beautify_water_tiles(level *lvl)
 	done_beautify_floor_tiles();
 }
 
-#undef _leveleditor_grass_actions_c
+#undef _leveleditor_beautify_actions_c

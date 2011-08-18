@@ -47,7 +47,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	lvledit/lvledit.c lvledit/lvledit.h \
 	lvledit/lvledit_actions.c lvledit/lvledit_actions.h \
 	lvledit/lvledit_display.c lvledit/lvledit_display.h \
-	lvledit/lvledit_grass_actions.c lvledit/lvledit_grass_actions.h \
+	lvledit/lvledit_beautify_actions.c lvledit/lvledit_beautify_actions.h \
 	lvledit/lvledit_input.c \
 	lvledit/lvledit_enemy.c \
 	lvledit/lvledit_map.c lvledit/lvledit_map.h \

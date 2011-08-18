@@ -36,7 +36,7 @@
 #include "lvledit/lvledit_tools.h"
 #include "lvledit/lvledit_object_lists.h"
 #include "lvledit/lvledit_display.h"
-#include "lvledit/lvledit_grass_actions.h"
+#include "lvledit/lvledit_beautify_actions.h"
 #include "lvledit/lvledit_map.h"
 #include "lvledit/lvledit_menu.h"
 #include "lvledit/lvledit_widgets.h"
