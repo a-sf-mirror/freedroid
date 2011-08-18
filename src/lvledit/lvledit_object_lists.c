@@ -258,6 +258,10 @@ int *spell_items_list;
 int *other_items_list;
 int *all_items_list;
 
+int *droid_enemies_list = NULL;
+int *human_enemies_list = NULL;
+int *all_enemies_list = NULL;
+
 void lvledit_set_obstacle_list_for_category(const char *category_name, struct dynarray *obstacles_filenames)
 {
 	const struct {
@@ -415,6 +419,32 @@ static void build_item_lists(void)
 
 }
 
+static void build_enemies_lists(void)
+{
+	int i;
+	int humans = 0;
+	int droids = 0;
+
+	droid_enemies_list = MyMalloc((Number_Of_Droid_Types + 1) * sizeof(int));
+	human_enemies_list = MyMalloc((Number_Of_Droid_Types + 1) * sizeof(int));
+	all_enemies_list = MyMalloc((Number_Of_Droid_Types + 1) * sizeof(int));
+
+	for (i = 0; i < Number_Of_Droid_Types; i++) {
+		// XXX: Skip the "TRM" type because it doesn't have an atlas file
+		if (!strcmp(Druidmap[i].druidname, "TRM"))
+			continue;
+
+		if (Druidmap[i].is_human)
+			human_enemies_list[humans++] = i;
+		else
+			droid_enemies_list[droids++] = i;
+
+		all_enemies_list[i] = i;
+	}
+
+	all_enemies_list[i] = droid_enemies_list[droids] = human_enemies_list[humans] = -1;
+}
+
 /**
  * This function builds all the lists of objects belonging to the various categories.
  */
@@ -422,4 +452,5 @@ void lvledit_build_tile_lists(void)
 {
 	build_floor_tile_lists();
 	build_item_lists();
+	build_enemies_lists();
 }

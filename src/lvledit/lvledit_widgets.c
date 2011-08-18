@@ -86,6 +86,12 @@ static object_category map_label_category_list[] = {
 	{ "ALL", &map_label_list }
 };
 
+static object_category enemy_category_list[] = {
+	{ "DROIDS", &droid_enemies_list },
+	{ "HUMANS", &human_enemies_list },
+	{ "ALL", &all_enemies_list },
+};
+
 static struct {
 	enum lvledit_object_type object_type;
 	object_category *categories;
@@ -94,6 +100,7 @@ static struct {
 	{ OBJECT_OBSTACLE, obstacle_category_list, sizeof(obstacle_category_list) / sizeof(obstacle_category_list[0]) },
 	{ OBJECT_FLOOR, floor_category_list, sizeof(floor_category_list) / sizeof(floor_category_list[0]) },
 	{ OBJECT_ITEM, item_category_list, sizeof(item_category_list) / sizeof(item_category_list[0]) },
+	{ OBJECT_ENEMY, enemy_category_list, sizeof(enemy_category_list) / sizeof(enemy_category_list[0]) },
 	{ OBJECT_WAYPOINT, waypoint_category_list, sizeof(waypoint_category_list) / sizeof(waypoint_category_list[0]) },
 	{ OBJECT_MAP_LABEL, map_label_category_list, sizeof(map_label_category_list) / sizeof(waypoint_category_list[0]) },
 };
@@ -219,6 +226,11 @@ static void typeselect_floor_button_click(struct widget_button *wb)
 static void typeselect_item_button_click(struct widget_button *wb)
 {
 	lvledit_select_type(OBJECT_ITEM);
+}
+
+static void typeselect_enemy_button_click(struct widget_button *wb)
+{
+	lvledit_select_type(OBJECT_ENEMY);
 }
 
 static void typeselect_waypoint_button_click(struct widget_button *wb)
@@ -349,6 +361,11 @@ static void typeselect_item_button_update(struct widget *w)
 	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_ITEM);
 }
 
+static void typeselect_enemy_button_update(struct widget *w)
+{
+	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_ENEMY);
+}
+
 static void typeselect_waypoint_button_update(struct widget *w)
 {
 	WIDGET_BUTTON(w)->active = (selection_type() == OBJECT_WAYPOINT);
@@ -477,6 +494,8 @@ struct widget_group *get_lvledit_ui()
 			2, typeselect_floor_button_click, NULL, typeselect_floor_button_update},
 		{LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON, "ITEM", NULL,
 			2, typeselect_item_button_click, NULL, typeselect_item_button_update},
+		{LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON, "ENEMY", NULL,
+			2, typeselect_enemy_button_click, NULL, typeselect_enemy_button_update},
 		{LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON, "WP", NULL,
 			2, typeselect_waypoint_button_click, NULL, typeselect_waypoint_button_update},
 		{LEVEL_EDITOR_TYPESELECT_MAP_LABEL_BUTTON, "LABEL", NULL,

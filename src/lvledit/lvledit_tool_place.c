@@ -650,6 +650,9 @@ int leveleditor_place_input(SDL_Event *event)
 				place_item(type);
 				return 1;
 				break;
+			case OBJECT_ENEMY:
+				return 1;
+				break;
 			default:
 				alert_window("%s", _("Place tool does not support this type of object."));
 			}

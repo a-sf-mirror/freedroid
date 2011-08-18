@@ -235,6 +235,15 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[LEVEL_EDITOR_TYPESELECT_OBSTACLE_BUTTON_OFF_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -290, 0, 0}, FALSE},
 
+	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON] =
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3.png", {-90, -214, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON_PUSHED] =
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Pushed.png", {-90, -214, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON_OFF] =
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3Off.png", {-90, -214, 0, 0}, FALSE},
+	[LEVEL_EDITOR_TYPESELECT_ENEMY_BUTTON_OFF_PUSHED] =
+		{EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton3OffPushed.png", {-90, -214, 0, 0}, FALSE},
+
 	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON] =
 		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -252, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_FLOOR_BUTTON_PUSHED] =
@@ -245,13 +254,13 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -252, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton.png", {-152, -214, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2.png", {-152, -214, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonPushed.png", {-152, -214, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Pushed.png", {-152, -214, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_OFF] =
-		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOff.png", {-152, -214, 0, 0}, FALSE},
+		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2Off.png", {-152, -214, 0, 0}, FALSE},
 	[LEVEL_EDITOR_TYPESELECT_ITEM_BUTTON_OFF_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButtonOffPushed.png", {-152, -214, 0, 0}, FALSE},
+	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2OffPushed.png", {-152, -214, 0, 0}, FALSE},
 
 	[LEVEL_EDITOR_TYPESELECT_WAYPOINT_BUTTON] =
 		 {EMPTY_IMAGE, "mouse_buttons/LevelEditorTypeSelectorButton2.png", {-152, -176, 0, 0}, FALSE},

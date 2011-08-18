@@ -118,6 +118,18 @@ static void print_obstacle_info(char *str, int obs_idx)
 		strcat(str, "- IS_CLICKABLE\n");
 }
 
+static void print_enemy_info(char *str, int en_idx)
+{
+	sprintf(str, 	"%s\n\
+			class: %d, xp_reward: %hd\n\
+			heal: %.2f /s, max_energy: %.2f, max_speed: %.2f\n\
+			aggression_dist: %.2f, eyeing_tux_for: %.2f s",
+				Druidmap[en_idx].druidname,
+				Druidmap[en_idx].class, Druidmap[en_idx].experience_reward,
+				Druidmap[en_idx].healing_friendly, Druidmap[en_idx].maxenergy, Druidmap[en_idx].maxspeed,
+				Druidmap[en_idx].aggression_distance, Druidmap[en_idx].time_spent_eyeing_tux);
+}
+
 static void leveleditor_print_object_info(enum lvledit_object_type type, int *array, int idx, char *str)
 {
 	switch (type) {
@@ -132,6 +144,9 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 			break;
 	case OBJECT_ITEM:
 			sprintf(str, "Item name: %s", ItemMap[array[idx]].item_name);
+			break;
+	case OBJECT_ENEMY:
+			print_enemy_info(str, array[idx]);
 			break;
 	default:
 			*str = 0;
@@ -152,6 +167,8 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 			return get_item_shop_image(array[idx]);
 	case OBJECT_MAP_LABEL:
 			return NULL;
+	case OBJECT_ENEMY:
+			return get_droid_portrait_image(array[idx]);
 	default:
 			ErrorMessage(__FUNCTION__, "Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_FATAL, type);
 			break;

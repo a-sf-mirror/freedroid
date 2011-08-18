@@ -354,6 +354,8 @@ static void select_object_on_tile(int x, int y)
 	case OBJECT_MAP_LABEL:
 		select_map_label_on_tile(x, y);
 		break;
+	case OBJECT_ENEMY:
+		break;
 	default:
 		ErrorMessage(__FUNCTION__,
 				"Abstract object type %d for leveleditor not supported.\n", PLEASE_INFORM, IS_WARNING_ONLY, selection_type());
