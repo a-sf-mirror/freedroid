@@ -103,6 +103,30 @@ int improve_program(int prog_id)
 	return 0;
 }
 
+void downgrade_program(int prog_id)
+{
+	if (prog_id < 0)
+		return;
+
+	Me.skill_level[prog_id]--;
+	if (Me.skill_level[prog_id] < 0)
+		Me.skill_level[prog_id] = 0;
+
+	// If the current skill level was downgraded to 0, the current
+	// skill needs to be unselected.
+	if (!Me.skill_level[prog_id] && Me.readied_skill == prog_id) {
+		int i;
+		for (i = 0; i < MAX_NUMBER_OF_PROGRAMS; i++) {
+			if (Me.skill_level[i] > 0) {
+				activate_nth_skill(i);
+				return;
+			}
+		}
+
+		ErrorMessage(__FUNCTION__, "No skills are available for selection.", PLEASE_INFORM, IS_WARNING_ONLY);
+	}
+}
+
 /* ------------------
  * This function calculates the heat cost of running a given program (source or blob), based on current program level and casting ability
  * -----------------*/
