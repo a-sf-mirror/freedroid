@@ -186,13 +186,12 @@ static void show_floor(int mask)
 	int layer_start, layer_end, layer;
 	float r, g, b;
 	float zf = ((mask & ZOOM_OUT) ? lvledit_zoomfact_inv() : 1.0);
-
 	level *lvl = curShip.AllLevels[Me.pos.z];
 
 	get_floor_boundaries(mask, &LineStart, &LineEnd, &ColStart, &ColEnd);
 
 	layer_start = 0;
-	layer_end = lvl->floor_layers;
+	layer_end = MAX_FLOOR_LAYERS;
 	// Draw only the current floor layer?
 	if (game_status == INSIDE_LVLEDITOR) {
 		if (!GameConfig.show_all_floor_layers) {
