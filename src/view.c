@@ -2320,7 +2320,7 @@ static int must_blit_enemy(enemy *e, int x, int y)
 	if (e->animation_type == DEAD_ANIMATION)
 		return TRUE;
 	// if the enemy is out of sight, we need not do anything more here
-	if ((!show_all_droids) && (!IsVisible(&e->virt_pos))) {
+	if (game_status != INSIDE_LVLEDITOR && (!show_all_droids) && (!IsVisible(&e->virt_pos))) {
 		return FALSE;
 	}
 
