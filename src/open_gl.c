@@ -811,7 +811,6 @@ static struct background {
 		{"quest_browser.png", EMPTY_IMAGE, 0, 0,  TRUE },
 		{"number_selector.png", EMPTY_IMAGE, 0, 0,  TRUE },
 		{"game_message_window.png", EMPTY_IMAGE, 0, 0, TRUE },
-		{"hud_background.png", EMPTY_IMAGE, 0, -118, TRUE },
 		{"item_upgrade.png", EMPTY_IMAGE, ITEM_UPGRADE_RECT_X, ITEM_UPGRADE_RECT_Y,  FALSE },
 		{"item_upgrade_crafting.png", EMPTY_IMAGE, ADDON_CRAFTING_RECT_X, ADDON_CRAFTING_RECT_Y, FALSE },
 };
