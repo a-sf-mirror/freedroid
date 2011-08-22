@@ -983,4 +983,12 @@ struct tux_rendering {
 	tux_part_render_motionclass *render_order;      // The render_sets of each motion class
 } tux_rendering;
 
+/**
+ * Contains a set of Tux's parts images for a motion class.
+ */
+struct tux_motion_class_images {
+	struct image part_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
+	char part_names[ALL_PART_GROUPS][64];
+};
+
 #endif

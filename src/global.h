@@ -107,7 +107,6 @@ EXTERN float timeout_from_item_drop;
 EXTERN int use_open_gl;
 EXTERN int command_line_override_for_screen_resolution;
 
-EXTERN char previous_part_strings[ALL_PART_GROUPS][50];
 EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
 EXTERN item *item_held_in_hand;
 
@@ -243,7 +242,7 @@ EXTERN int droid_gethit_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_death_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 EXTERN int droid_stand_animation_speed_factor[ENEMY_ROTATION_MODELS_AVAILABLE];
 
-EXTERN struct image tux_images[ALL_PART_GROUPS][TUX_TOTAL_PHASES][MAX_TUX_DIRECTIONS];
+EXTERN struct tux_motion_class_images *tux_images;
 EXTERN struct dynarray floor_images;
 EXTERN struct dynarray obstacle_images;
 

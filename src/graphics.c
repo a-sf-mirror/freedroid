@@ -470,8 +470,6 @@ void InitPictures(void)
 		load_all_items();
 	}
 
-	clear_all_loaded_tux_images();
-
 	Load_Blast_Surfaces();
 
 	next_startup_percentage(5);

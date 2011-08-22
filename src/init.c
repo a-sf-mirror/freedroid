@@ -992,10 +992,7 @@ void Init_Game_Data()
 	free(Data);
 
 	// Load Tux animation and rendering specifications.
-	tux_rendering_init();
-	find_file("tuxrender_specs.lua", MAP_DIR, fpath, 1);
-	run_lua_file(LUA_CONFIG, fpath);
-	tux_rendering_validate(); // check mandatory specifications/configurations
+	tux_rendering_load_specs("tuxrender_specs.lua");
 
 	// Load Bot animation definitions and animations
 	// must be before Get_Robot_Data()

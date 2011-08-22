@@ -144,14 +144,12 @@ void update_item_text_slot_positions(void);
 void AssembleCombatPicture(int);
 void blit_tux(int x, int y);
 struct tux_part_render_data *tux_get_part_render_data(char *part_name);
-void tux_rendering_init();
-void tux_rendering_validate();
+void tux_rendering_load_specs(const char *config_filename);
 void PutBullet(int Bullet_number, int mask);
 void PutItem(item *CurItem, int ItemNumber, int mask, int put_thrown_items_flag, int highlight_item);
 void PutBlast(int);
 void PutEnemy(enemy * e, int x, int y, int mask, int highlight);
 void PutMouseMoveCursor(void);
-void clear_all_loaded_tux_images(void);
 int set_rotation_index_for_this_robot(enemy * ThisRobot);
 int set_rotation_model_for_this_robot(enemy * ThisRobot);
 int level_is_visible(int level_num);
@@ -161,6 +159,7 @@ void PutIndividuallyShapedDroidBody(enemy *, SDL_Rect, int, int);
 void object_vtx_color(void *, float *, float *, float *);
 int get_motion_class_id_by_name(char *);
 char *get_motion_class_name_by_id(int);
+int get_motion_class_id(void);
 void show_inventory_screen(void);
 
 #define next_valid_visible_level(pos, start) ({ \
@@ -255,7 +254,7 @@ struct image *get_item_ingame_image(int type);
 struct image *get_item_inventory_image(int type);
 void load_all_items(void);
 void free_item_graphics(void);
-void load_tux_graphics(int tux_part_group, int motion_class, const char *part_string);
+void load_tux_graphics(int motion_class, int tux_part_group, const char *part_string);
 void reload_tux_graphics(void);
 void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our_iso_image);
 

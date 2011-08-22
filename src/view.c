@@ -1918,29 +1918,16 @@ void PutMouseMoveCursor(void)
  *
  *
  */
-static void free_one_loaded_tux_image_series(int tux_part_group)
+static void free_one_loaded_tux_image_series(int motion_class, int tux_part_group)
 {
 	int i, j;
 
-	previous_part_strings[tux_part_group][0] = '\0';
+	tux_images[motion_class].part_names[tux_part_group][0] = '\0';
 
 	for (i = 0; i < TUX_TOTAL_PHASES; i++) {
 		for (j = 0; j < MAX_TUX_DIRECTIONS; j++) {
-			delete_image(&tux_images[tux_part_group][i][j]);
+			delete_image(&tux_images[motion_class].part_images[tux_part_group][i][j]);
 		}
-	}
-}
-
-/**
- *
- *
- */
-void clear_all_loaded_tux_images(void)
-{
-	int i;
-
-	for (i = 0; i < ALL_PART_GROUPS; i++) {
-		free_one_loaded_tux_image_series(i);
 	}
 }
 
@@ -1968,10 +1955,10 @@ static void iso_put_tux_part(struct tux_part_render_data *render_data, int x, in
 	// far, then we'll need to free that old part and (later) load the new
 	// part.
 	//
-	if (strcmp(previous_part_strings[tux_part_group], part_string)) {
-		free_one_loaded_tux_image_series(tux_part_group);
-		load_tux_graphics(tux_part_group, motion_class, part_string);
-		strcpy(previous_part_strings[tux_part_group], part_string);
+	if (strcmp(tux_images[motion_class].part_names[tux_part_group], part_string)) {
+		free_one_loaded_tux_image_series(motion_class, tux_part_group);
+		load_tux_graphics(motion_class, tux_part_group, part_string);
+		strcpy(tux_images[motion_class].part_names[tux_part_group], part_string);
 		// It can be expected, that this operation HAS TAKEN CONSIDERABLE TIME!
 		// Therefore we must activate the conservative frame time compution now,
 		// so as to prevent any unwanted jumps right now...
@@ -1995,7 +1982,7 @@ static void iso_put_tux_part(struct tux_part_render_data *render_data, int x, in
 		a = 0.5;
 	}
 
-	struct image *img = &tux_images[tux_part_group][our_phase][rotation_index];
+	struct image *img = &tux_images[motion_class].part_images[tux_part_group][our_phase][rotation_index];
 
 	if (x == -1) {
 		display_image_on_map(img, Me.pos.x, Me.pos.y, set_image_transformation(1.0, 1.0, r, g, b, a, 0));
@@ -2037,7 +2024,7 @@ struct tux_part_render_data *tux_get_part_render_data(char *part_name)
 /**
   * Initialize Tux's part rendering specification's data structures
   */
-void tux_rendering_init()
+static void tux_rendering_init()
 {
 	dynarray_init(&tux_rendering.motion_class_names, 0, 0);
 	memset(&tux_rendering.default_instances, 0, sizeof(struct tux_part_instances));
@@ -2047,7 +2034,7 @@ void tux_rendering_init()
 /**
  * Check mandatory specifications, needed to ensure that Tux can be rendered.
  */
-void tux_rendering_validate()
+static void tux_rendering_validate()
 {
 	// At least one motion_class is needed
 	if (tux_rendering.motion_class_names.size < 1) {
@@ -2097,6 +2084,22 @@ void tux_rendering_validate()
 }
 
 /**
+ * Load Tux animation and rendering specifications.
+ */
+void tux_rendering_load_specs(const char *config_filename)
+{
+	char fpath[2048];
+
+	tux_rendering_init();
+
+	find_file(config_filename, MAP_DIR, fpath, 1);
+	run_lua_file(LUA_CONFIG, fpath);
+	tux_rendering_validate(); // check mandatory specifications/configurations
+
+	tux_images = MyMalloc(tux_rendering.motion_class_names.size * sizeof(struct tux_motion_class_images));
+}
+
+/**
  * Returns the id (index number) of a motion_class, given its name
  *
  * \param name A motion_class name
@@ -2137,27 +2140,17 @@ char *get_motion_class_name_by_id(int id)
 
 /**
  * Returns Tux's current motion_class id, which depends on its weapon.
- * Force a reload of Tux iso_images if motion_class has changed since last call.
  *
  * \return The current motion_class's id
  */
 int get_motion_class_id()
 {
-	static int previously_used_motion_class = -4; // something we'll never really use
-	int motion_class;
+	int motion_class = 0;
 
-	if (Me.weapon_item.type == -1) {
-		// It Tux has no weapon in hand, return the first motion_class
-		motion_class = 0;
-	} else {
+	// It Tux has a weapon in hand, return its motion class.
+	// Otherwise, return the first motion_class.
+	if (Me.weapon_item.type != -1)
 		motion_class = ItemMap[Me.weapon_item.type].motion_class;
-	}
-
-	// If the motion_class has changed, then Tux's images have to be reloaded
-	if (motion_class != previously_used_motion_class) {
-		previously_used_motion_class = motion_class;
-		clear_all_loaded_tux_images();
-	}
 
 	return motion_class;
 }
@@ -2176,19 +2169,15 @@ void iso_put_tux(int x, int y)
 	// is when x != -1, then we set those parameters to default values (apart
 	// from motion_class.
 
-	int motion_class = 0;
+	int motion_class = get_motion_class_id();
 	int our_phase = (int)Me.phase; // Tux current animation keyframe
 	int rotation_index = 0; // Facing front
 
-	motion_class = get_motion_class_id();
-
 	if (x == -1) {
-		float angle;
-
 		// Compute the rotation angle
 		// If Tux is walking/running, compute its angle from the direction of movement,
 		// else reuse the last computed angle.
-		angle = Me.angle;
+		float angle = Me.angle;
 
 		if ((Me.phase < tux_anim.attack.first_keyframe) || (Me.phase > tux_anim.attack.last_keyframe)) {
 			if (fabsf(Me.speed.x) + fabsf(Me.speed.y) > 0.1) {

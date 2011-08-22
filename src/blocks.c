@@ -741,6 +741,7 @@ void free_floor_tiles(void)
 	}
 }
 
+static int current_tux_motion_class;
 static int current_tux_part_group;
 
 static struct image *get_storage_for_tux_image(const char *filename)
@@ -768,13 +769,13 @@ static struct image *get_storage_for_tux_image(const char *filename)
 		return NULL;
 	}
 
-	return &tux_images[current_tux_part_group][phase][rotation];
+	return &tux_images[current_tux_motion_class].part_images[current_tux_part_group][phase][rotation];
 }
 
 /**
  * Load the tux image part group for the given motion class.
  */
-void load_tux_graphics(int tux_part_group, int motion_class, const char *part_string)
+void load_tux_graphics(int motion_class, int tux_part_group, const char *part_string)
 {
 	char atlas_filename[4096];
 	char atlas_directory[4096];
@@ -791,6 +792,7 @@ void load_tux_graphics(int tux_part_group, int motion_class, const char *part_st
 		get_motion_class_name_by_id(motion_class), part_group_strings[tux_part_group], part_string);
 	sprintf(atlas_filename, "%s/atlas.txt", atlas_directory);
 
+	current_tux_motion_class = motion_class;
 	current_tux_part_group = tux_part_group;
 	if (load_texture_atlas(atlas_filename, atlas_directory, get_storage_for_tux_image)) {
 		ErrorMessage(__FUNCTION__, "Unable to load tux texture atlas at %s.",
@@ -803,11 +805,13 @@ void load_tux_graphics(int tux_part_group, int motion_class, const char *part_st
  */
 void reload_tux_graphics(void)
 {
-	int i;
+	int i, j;
 
 	// Clear tux part strings. It will force tux graphics to reload.
-	for (i = 0; i < ALL_PART_GROUPS; i++) {
-		previous_part_strings[i][0] = '\0';
+	for (i = 0; i < tux_rendering.motion_class_names.size; i++) {
+		struct tux_motion_class_images *motion_class = &tux_images[i];
+		for (j = 0; j < ALL_PART_GROUPS; j++)
+			motion_class->part_names[j][0] = '\0';
 	}
 }
 

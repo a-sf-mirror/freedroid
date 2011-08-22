@@ -921,8 +921,10 @@ static void ShowPlayground(enemy * target)
 		// Find the difference of the droid's height and Tux's height.
 		// Tux's height is measured from the top of his head to the bottom of his feet
 		// This also accounts for the droid's blitting offset
-		dheight = tux_images[PART_GROUP_FEET][0][phase].offset_y + tux_images[PART_GROUP_FEET][0][phase].h -
-			tux_images[PART_GROUP_HEAD][0][phase].offset_y -
+		struct tux_motion_class_images *current_motion_class_images = &tux_images[get_motion_class_id()];
+		dheight = current_motion_class_images->part_images[PART_GROUP_FEET][0][phase].offset_y +
+			current_motion_class_images->part_images[PART_GROUP_FEET][0][phase].h -
+			current_motion_class_images->part_images[PART_GROUP_HEAD][0][phase].offset_y -
 			enemy_images[target->type][0][0].h -
 			enemy_images[target->type][0][0].offset_y;
 
