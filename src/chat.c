@@ -600,6 +600,11 @@ int validate_dialogs()
 	/* takeover requires user input - hardcode it to win */
 	run_lua(LUA_DIALOG, "function takeover(a)\nreturn true\nend\n");
 
+	/* push_topic() and pop_topic() cannot be tested because the validator doesn't follow 
+	 the logical order of nodes */
+	run_lua(LUA_DIALOG, "function topic(a)\nend\n");
+	run_lua(LUA_DIALOG, "function pop_topic(a)\nend\n");
+
 	/* This dummy will be used to test break_off_and_attack() functions and such. */
 	BROWSE_ALIVE_BOTS(dummy_partner) {
 		break;
