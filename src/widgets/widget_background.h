@@ -34,5 +34,6 @@ struct widget_background {
 
 struct widget_background *widget_background_create();
 void widget_background_add(struct widget_background *, struct image *, int, int, int, int);
+void widget_background_load_3x3_tiles(struct widget_background *, char *);
 
 #define WIDGET_BACKGROUND(x) ((struct widget_background *)x)
