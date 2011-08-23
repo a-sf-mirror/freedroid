@@ -1802,7 +1802,7 @@ void init_tux()
 	Me.TextToBeDisplayed = "";
 	Me.TextVisibleTime = 0;
 
-	Me.base_physique = 25;
+	Me.base_physique = 20;
 	Me.base_strength = 10;
 	Me.base_dexterity = 15;
 	Me.base_cooling = 25;

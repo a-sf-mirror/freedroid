@@ -36,8 +36,10 @@
 #include "global.h"
 #include "proto.h"
 
-#define Energy_Gain_Per_Vit_Point 2;
-#define Maxtemp_Gain_Per_CPU_Point 4;
+#define BASE_HPMAX 20
+#define HPMAX_GAIN_PER_LEVEL 5
+#define HPMAX_GAIN_PER_PHY_POINT 2
+#define Maxtemp_Gain_Per_CPU_Point 4
 
 #define RECHARGE_SPEED_PERCENT_PER_DEX_POINT 0
 #define TOHIT_PERCENT_PER_DEX_POINT (1.0)
@@ -149,11 +151,6 @@ void check_for_new_experience_level_reached()
 			return;
 		}
 
-		// Like in the Gothic 1 game, maximum life force will now automatically
-		// be increased upon reaching a new character level.
-		//
-		Me.base_physique += 3;
-
 		// When a droid reaches a new experience level, all health and 
 		// force are restored to full this one time no longer.  Gothic
 		// rulez more than Diablo rulez.
@@ -240,7 +237,8 @@ void update_secondary_stats_from_primary_stats()
 
 	// How many life points can this character aquire currently
 	//
-	Me.maxenergy = (Me.physique) * Energy_Gain_Per_Vit_Point;
+	Me.maxenergy = BASE_HPMAX + (Me.exp_level) * HPMAX_GAIN_PER_LEVEL
+                                  + (Me.physique) * HPMAX_GAIN_PER_PHY_POINT;
 
 	// The maximum mana value computed from the primary stats
 	//
