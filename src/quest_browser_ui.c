@@ -487,6 +487,12 @@ static void scroll_down(struct widget_button *wb)
 		mission_list_scroll_override_from_user++;
 }
 
+/** This function is used for darkening the screen area outside the quest browser. */
+static void display_dark_background(struct widget *w)
+{
+	draw_rectangle(&w->rect, 0, 0, 0, 150);
+}
+
 /**
  * This function returns the quest log top level widget and creates it if necessary.
  */
@@ -498,6 +504,12 @@ struct widget_group *create_quest_browser()
 	quest_browser = widget_group_create();
 	widget_set_rect(WIDGET(quest_browser), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
 	WIDGET(quest_browser)->handle_event = quest_browser_handle_event;
+
+	// Dark background
+	struct widget *dark_background = widget_create();
+	widget_set_rect(dark_background, 0, 0, GameConfig.screen_width, GameConfig.screen_height);
+	dark_background->display = display_dark_background;
+	widget_group_add(quest_browser, dark_background);
 
 	// Expand the quest browser as much as possible, keeping the main monitor's aspect ratio and
 	// leaving some space for the buttons on the right side.
