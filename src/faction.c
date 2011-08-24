@@ -65,7 +65,7 @@ enum faction_id get_faction_id(const char *name)
 			return factions[i].id;
 	}
 
-	ErrorMessage(__FUNCTION__, "Faction name %s does not exist.", PLEASE_INFORM, IS_FATAL, name);
+	ErrorMessage(__FUNCTION__, "Faction name %s does not exist.", PLEASE_INFORM, IS_WARNING_ONLY, name);
 	return FACTION_SELF;
 }
 

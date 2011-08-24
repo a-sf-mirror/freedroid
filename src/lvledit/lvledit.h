@@ -180,4 +180,6 @@ EXTERN int current_floor_layer;
 
 EXTERN void get_random_droids_from_user(void);
 
+EXTERN void place_special_force(gps, int);
+
 #endif

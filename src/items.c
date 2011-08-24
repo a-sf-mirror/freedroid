@@ -693,7 +693,7 @@ int GetItemIndexByName(const char *name)
 			return cidx;
 	}
 
-	ErrorMessage(__FUNCTION__, "Unable to find item name %s\n", PLEASE_INFORM, IS_FATAL, name);
+	ErrorMessage(__FUNCTION__, "Unable to find item name %s\n", PLEASE_INFORM, IS_WARNING_ONLY, name);
 	return -1;
 }
 

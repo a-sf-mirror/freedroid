@@ -228,6 +228,21 @@ static void end_rectangle_floor(int commit)
 		level_editor_action_undo();
 }
 
+/**
+ * Place an enemy on the map
+ * @param droid_type Type of droid to pe placed
+ */
+void place_enemy(int droid_type)
+{
+	gps pos;
+
+	pos.x = mouse_mapcoord.x;
+	pos.y = mouse_mapcoord.y;
+	pos.z = EditLevel()->levelnum;
+
+	place_special_force(pos, droid_type);
+}
+
 /*
  * Pick type of walls (vertical and horizontal).
  */
@@ -651,6 +666,7 @@ int leveleditor_place_input(SDL_Event *event)
 				return 1;
 				break;
 			case OBJECT_ENEMY:
+				place_enemy(type);
 				return 1;
 				break;
 			default:

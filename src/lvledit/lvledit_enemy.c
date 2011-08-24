@@ -131,5 +131,188 @@ void get_random_droids_from_user()
 		free(droid_type);
 	}
 
-out:	free_autostr(displayed_text);
+out:
+	free_autostr(displayed_text);
+}
+
+/**
+ * Edits information related to Special Forces such as marker, faction, dialogue etc
+ * @param en Enemy to be edited
+ */
+static void edit_special_force_info(enemy *en)
+{
+	char *user_input;
+	char suggested_val[200];
+	int numb;
+	struct auto_string *displayed_text = alloc_autostr(64);
+
+	StoreMenuBackground(0);
+
+	autostr_printf(displayed_text, "New enemy info:\n Marker: ");
+	sprintf(suggested_val, "%d", en->marker);
+
+	// Edit the marker
+	while (1) {
+		numb = get_number_popup(displayed_text->value, suggested_val);
+		if (numb == -2)
+			goto out;
+
+		if (numb != -1)
+			break;
+
+		alert_window("%s", _("Invalid number! The number must be natural."));
+		RestoreMenuBackground(0);
+	}
+
+	en->marker = numb;
+	autostr_append(displayed_text, "%d\n Faction: ", numb);
+	sprintf(suggested_val, "%s", get_faction_from_id(en->faction));
+
+	// Edit the faction
+	user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text->value), suggested_val);
+	if (!user_input)
+		return;
+
+	en->faction = get_faction_id(user_input);
+
+	autostr_append(displayed_text, "%s\n Dialog name: ", get_faction_from_id(en->faction));
+	sprintf(suggested_val, "%s", en->dialog_section_name);
+	free(user_input);
+
+	// Change the dialog
+	while (1) {
+		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text->value), suggested_val);
+		if (!user_input)
+			goto out;
+
+		if (npc_get(user_input))
+			break;
+
+		alert_window("Dialog \"%s\" not found!", _(user_input));
+		RestoreMenuBackground(0);
+		sprintf(suggested_val, "%s", user_input);
+	}
+
+	free(en->dialog_section_name);
+	en->dialog_section_name = strdup(user_input);
+
+	autostr_append(displayed_text, "%s\n Short description: ", user_input);
+	sprintf(suggested_val, "%s", en->short_description_text);
+	free(user_input);
+
+	// Edit the Short description
+	user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text->value), suggested_val);
+	if (!user_input)
+		goto out;
+
+	free(en->short_description_text);
+	en->short_description_text = strdup(user_input);
+
+	autostr_append(displayed_text, "%s\n Completely fixed: ", user_input);
+	sprintf(suggested_val, "%s", en->CompletelyFixed ? "yes" : "no");
+	free(user_input);
+
+	// Completely fixed
+	while (1) {
+		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text->value), suggested_val);
+		if (!user_input)
+			goto out;
+
+		if (!strcmp(user_input, "yes")) {
+			en->CompletelyFixed = 1;
+			break;
+
+		} else if (!strcmp(user_input, "no")) {
+			en->CompletelyFixed = 0;
+			break;
+		}
+	}
+
+	autostr_append(displayed_text, "%s\n Max distance from home: ", en->CompletelyFixed ? "yes" : "no");
+	sprintf(suggested_val, "%d", en->max_distance_to_home);
+	free(user_input);
+
+	// Edit max distance to home
+	while(1) {
+		numb = get_number_popup(displayed_text->value, suggested_val);
+		if (numb == -2)
+			return;
+
+		if (numb != -1)
+			break;
+
+		alert_window("%s", _("Invalid number! The number must be natural."));
+		RestoreMenuBackground(0);
+		sprintf(suggested_val, "%d", numb);
+	}
+
+	en->max_distance_to_home = numb;
+
+	autostr_append(displayed_text, "%d\n Item dropped on death: ", numb);
+	sprintf(suggested_val, "%s", (en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].item_name);
+
+	// Change the item dropped on death
+	while (1) {
+		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text->value), suggested_val);
+		if (!user_input)
+			goto out;
+
+		if (!strcmp(user_input, "none")) {
+			en->on_death_drop_item_code = -1;
+			break;
+
+		} else if (GetItemIndexByName(user_input) != -1) {
+			en->on_death_drop_item_code = GetItemIndexByName(user_input);
+			break;
+		}
+
+		alert_window("Item \"%s\" not found!", _(user_input));
+		RestoreMenuBackground(0);
+		sprintf(suggested_val, "%s", user_input);
+	}
+
+	autostr_append(displayed_text, "%s\n Rushes Tux: ",
+				(en->on_death_drop_item_code == -1) ? "none" : ItemMap[en->on_death_drop_item_code].item_name);
+	sprintf(suggested_val, "%s", en->will_rush_tux ? "yes" : "no");
+
+	// Rush Tux
+	while (1) {
+		user_input = GetEditableStringInPopupWindow(sizeof(suggested_val) - 1, _(displayed_text->value), suggested_val);
+		if (!user_input)
+			goto out;
+
+		if (!strcmp(user_input, "yes")) {
+			en->will_rush_tux = 1;
+			break;
+
+		} else if (!strcmp(user_input, "no")) {
+			en->will_rush_tux = 0;
+			break;
+		}
+	}
+
+out:
+	free_autostr(displayed_text);
+}
+
+/**
+ * Places an enemy on the currently edited map
+ * @param droid_pos Coordinates of the droid
+ * @param enemy_type Type of enemy to be inserted
+ */
+void place_special_force(gps droid_pos, int enemy_type)
+{
+	enemy *en = enemy_new(enemy_type);
+
+	// Initialise some of the enemy fields to their default
+	en->SpecialForce = TRUE;
+	en->pos = droid_pos;
+
+	// Each enemy needs a default dialog
+	en->dialog_section_name = strdup("AfterTakeover");
+
+	// Let the user edit the info
+	edit_special_force_info(en);
+
+	enemy_insert_into_lists(en, TRUE);
 }

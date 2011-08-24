@@ -51,7 +51,7 @@ struct npc *npc_get(const char *dialog_basename)
 			return n;
 	}
 
-	ErrorMessage(__FUNCTION__, "Could not find NPC with name \"%s\".", PLEASE_INFORM, IS_FATAL, dialog_basename);
+	ErrorMessage(__FUNCTION__, "Could not find NPC with name \"%s\".", PLEASE_INFORM, IS_WARNING_ONLY, dialog_basename);
 	return NULL;
 }
 
