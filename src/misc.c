@@ -329,21 +329,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	[CHAT_LOG_SCROLL_OFF_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 3, 160, 20}, TRUE},
 	[CHAT_LOG_SCROLL_OFF2_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuOff.png", {342, 272, 160, 20}, TRUE},
 
-	[QUEST_BROWSER_EXIT_BUTTON] = {EMPTY_IMAGE, "THIS_DOESNT_NEED_BLITTING", {486, 324, 73, 73}, TRUE},
-	[QUEST_BROWSER_OPEN_QUESTS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/quest_browser_open_quests.png", {473, 97, 153, 38}, TRUE},
-	[QUEST_BROWSER_OPEN_QUESTS_OFF_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/quest_browser_open_quests_off.png", {473, 97, 153, 38}, TRUE},
-	[QUEST_BROWSER_DONE_QUESTS_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/quest_browser_done_quests.png", {478, 149, 153, 38}, TRUE},
-	[QUEST_BROWSER_DONE_QUESTS_OFF_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/quest_browser_done_quests_off.png", {478, 149, 153, 38}, TRUE},
-	[QUEST_BROWSER_NOTES_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/quest_browser_notes.png", {478, 203, 153, 38}, TRUE},
-	[QUEST_BROWSER_NOTES_OFF_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/quest_browser_notes_off.png", {478, 203, 153, 38}, TRUE},
-	[QUEST_BROWSER_SCROLL_UP_BUTTON] = {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuUp.png", {181, 12, 160, 20}, TRUE},
-	[QUEST_BROWSER_SCROLL_DOWN_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/ScrollDialogMenuDown.png", {181, 452, 160, 20}, TRUE},
 	[QUEST_BROWSER_ITEM_SHORT_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/quest_browser_item_short.png", {108, 86, 300, 26}, FALSE},
 	[QUEST_BROWSER_ITEM_LONG_BUTTON] =

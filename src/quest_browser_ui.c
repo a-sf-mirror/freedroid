@@ -437,6 +437,56 @@ static void text_display(struct widget *w)
 	}
 }
 
+/** Toggle open quests. */
+static void toggle_open_quests(struct widget_button *wb)
+{
+	mission_list_scroll_override_from_user = 0;
+	current_quest_browser_mode = QUEST_BROWSER_SHOW_OPEN_MISSIONS;
+}
+
+/** Toggle finished quests. */
+static void toggle_done_quests(struct widget_button *wb)
+{
+	mission_list_scroll_override_from_user = 0;
+	current_quest_browser_mode = QUEST_BROWSER_SHOW_DONE_MISSIONS;
+}
+
+/** Toggle notes. */
+static void toggle_notes(struct widget_button *wb)
+{
+	mission_list_scroll_override_from_user = 0;
+	current_quest_browser_mode = QUEST_BROWSER_SHOW_NOTES;
+}
+
+/** Check if the quest browser can scroll up. */
+static int can_scroll_up()
+{
+	return (mission_list_scroll_override_from_user > 0);
+}
+
+/** Quest browser scroll up. */
+static void scroll_up(struct widget_button *wb)
+{
+	if (wb->active)
+		mission_list_scroll_override_from_user--;
+}
+
+/** Check if the quest browser can scroll down. */
+static int can_scroll_down()
+{
+	int lines_needed = get_lines_needed(quest_browser_text->value, mission_description_rect, 1.0);
+	int visible_lines = mission_description_rect.h / (float) FontHeight(GetCurrentFont());
+
+	return (lines_needed > visible_lines) && (mission_list_scroll_override_from_user < lines_needed - visible_lines);
+}
+
+/** Quest browser scroll down. */
+static void scroll_down(struct widget_button *wb)
+{
+	if (wb->active)
+		mission_list_scroll_override_from_user++;
+}
+
 /**
  * This function returns the quest log top level widget and creates it if necessary.
  */
@@ -481,6 +531,80 @@ struct widget_group *create_quest_browser()
 	text->display = text_display;
 	widget_group_add(quest_browser, text);
 	quest_browser_text = alloc_autostr(32);
+
+	// Exit button arm background.
+	int right_side_buttons_x = quest_browser_x + quest_browser_w;
+	int exit_button_arm_y = quest_browser_y + quest_browser_h - 183;
+
+	struct widget_background *exit_button = widget_background_create();
+	struct image *img = widget_load_image_resource("widgets/exit_button_background.png", 0);
+	widget_set_rect(WIDGET(exit_button), right_side_buttons_x - 5, exit_button_arm_y, img->w, img->h);
+	widget_background_add(exit_button, img, WIDGET(exit_button)->rect.x, WIDGET(exit_button)->rect.y, img->w, img->h);
+	widget_group_add(quest_browser, WIDGET(exit_button));
+
+	struct {
+		char *image[3];
+		SDL_Rect rect;
+		void (*activate_button)(struct widget_button *);
+		void (*update)(struct widget *);
+	} b[] = {
+		// Open quests
+		{
+			{"widgets/quest_open_off.png", NULL, "widgets/quest_open.png"},
+			{right_side_buttons_x, quest_browser_y + 37, 126, 29},
+			toggle_open_quests,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, current_quest_browser_mode == QUEST_BROWSER_SHOW_OPEN_MISSIONS)
+		},
+		// Done quests
+		{
+			{"widgets/quest_done_off.png", NULL, "widgets/quest_done.png"},
+			{right_side_buttons_x, quest_browser_y + 76, 126, 29},
+			toggle_done_quests,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, current_quest_browser_mode == QUEST_BROWSER_SHOW_DONE_MISSIONS)
+		},
+		// Notes
+		{
+			{"widgets/quest_notes_off.png", NULL, "widgets/quest_notes.png"},
+			{right_side_buttons_x, quest_browser_y + 115, 126, 29},
+			toggle_notes,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, current_quest_browser_mode == QUEST_BROWSER_SHOW_NOTES)
+		},
+		// Exit button
+		{
+			{"widgets/exit_button_default.png", "widgets/exit_button_pressed.png", NULL},
+			{WIDGET(exit_button)->rect.x + 16, WIDGET(exit_button)->rect.y + 54, 54, 55},
+			(void *)toggle_quest_browser,
+			NULL
+		},
+		// Scroll up
+		{
+			{"widgets/scroll_up_off.png", NULL, "widgets/scroll_up.png"},
+			{quest_browser_x + quest_browser_w / 2 - 59, quest_browser_y - 14, 118, 17},
+			scroll_up,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, can_scroll_up())
+		},
+		// Scroll down
+		{
+			{"widgets/scroll_down_off.png", NULL, "widgets/scroll_down.png"},
+			{quest_browser_x + quest_browser_w / 2 - 59, quest_browser_y + quest_browser_h, 118, 17}, 
+			scroll_down,
+			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, can_scroll_down())
+		}
+	};
+
+	int i;
+	for (i = 0; i < sizeof(b) / sizeof(b[0]); i++) {
+		struct widget_button *button = widget_button_create();
+
+		button->image[0][DEFAULT] = widget_load_image_resource(b[i].image[0], 0);
+		button->image[0][PRESSED] = widget_load_image_resource(b[i].image[1], 0);
+		button->image[1][DEFAULT] = widget_load_image_resource(b[i].image[2], 0);
+
+		WIDGET(button)->rect = b[i].rect;
+		button->activate_button = b[i].activate_button;
+		WIDGET(button)->update = b[i].update;
+		widget_group_add(quest_browser, WIDGET(button));
+	}
 
 	return quest_browser;
 }
