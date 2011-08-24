@@ -421,6 +421,23 @@ static int quest_browser_handle_event(struct widget *w, SDL_Event *event)
 }
 
 /**
+ * This function displays the selected category on the quest browser monitor.
+ */
+static void text_display(struct widget *w)
+{
+   switch (current_quest_browser_mode) {
+	case QUEST_BROWSER_SHOW_NOTES:
+		print_statistics();
+		break;
+
+	case QUEST_BROWSER_SHOW_OPEN_MISSIONS:
+	case QUEST_BROWSER_SHOW_DONE_MISSIONS:
+		quest_browser_display_mission_list(current_quest_browser_mode);
+		break;
+	}
+}
+
+/**
  * This function returns the quest log top level widget and creates it if necessary.
  */
 struct widget_group *create_quest_browser()
@@ -457,6 +474,13 @@ struct widget_group *create_quest_browser()
 	widget_set_rect(WIDGET(panel), quest_browser_x, quest_browser_y, quest_browser_w, quest_browser_h);
 	widget_background_load_3x3_tiles(panel, "widgets/quest");
 	widget_group_add(quest_browser, WIDGET(panel));
+
+	// Text widget
+	struct widget *text = widget_create();
+	Set_Rect(mission_description_rect, quest_browser_x + 55, quest_browser_y + 35, quest_browser_w - 85, quest_browser_h - 70);
+	text->display = text_display;
+	widget_group_add(quest_browser, text);
+	quest_browser_text = alloc_autostr(32);
 
 	return quest_browser;
 }
