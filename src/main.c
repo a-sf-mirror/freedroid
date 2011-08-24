@@ -88,34 +88,31 @@ void Game()
 		save_mouse_state();
 		input_handle();
 		update_widgets();
+		HandleInventoryScreen();
+		HandleCharacterScreen();
 
-		UpdateCountersForThisFrame();
 
 		CollectAutomapData();
-
-		DoAllMovementAndAnimations();
+		UpdateAllCharacterStats();
 
 		AssembleCombatPicture(SHOW_ITEMS);
 		our_SDL_flip_wrapper();
 
-		move_tux();
-		get_visible_levels();
+		if (!world_frozen()) {
+			UpdateCountersForThisFrame();
 
-		HandleInventoryScreen();
-		HandleCharacterScreen();
+			DoAllMovementAndAnimations();
+			move_tux();
+			get_visible_levels();
 
-		UpdateAllCharacterStats();
+			move_enemies();
+			check_tux_enemy_collision();
+			correct_tux_position_according_to_jump();
 
-		move_enemies();
-
-		check_tux_enemy_collision();
-
-		correct_tux_position_according_to_jump();
+		}
 
 		CheckIfMissionIsComplete();
-
 		ComputeFPSForThisFrame();
-
 	}			// while !GameOver 
 }
 

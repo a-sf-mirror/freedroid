@@ -577,6 +577,9 @@ void endian_swap(char *pdata, size_t dsize, size_t nelements);
 uint32_t pot_gte(uint32_t v);
 obstacle *give_pointer_to_obstacle_with_label(const char *, int *);
 int level_exists(int);
+void freeze_world();
+void unfreeze_world();
+int world_frozen();
 
 // enemy.c 
 void SetRestOfGroupToState(Enemy ThisRobot, short NewState);

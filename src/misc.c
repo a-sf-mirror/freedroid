@@ -45,6 +45,7 @@
 #  include <signal.h>
 #endif
 
+static int world_is_frozen = 0;
 long oneframedelay = 0;
 long tenframedelay = 0;
 long onehundredframedelay = 0;
@@ -728,6 +729,39 @@ void Pause(void)
 	}
 
 	return;
+}
+
+/**
+ * This function prevents any action from taking place in the game world.
+ *
+ * Interaction with the user interface is unaffected.
+ */
+void freeze_world()
+{
+	// Because different UI elements may try to freeze the game world,
+	// it's necessary to count how many times this function has been
+	// called.
+	world_is_frozen++;
+}
+
+/**
+ * This function unfreezes the game world.
+ *
+ * NOTE: unfreeze_world() must be called for each call to freeze_world().
+ */
+void unfreeze_world()
+{
+	if (world_is_frozen > 0)
+		world_is_frozen--;
+}
+
+/**
+ * This function returns the current state of the game world.
+ * @return TRUE if the game world is currently frozen.
+ */
+int world_frozen()
+{
+	return (world_is_frozen > 0);
 }
 
 /**
