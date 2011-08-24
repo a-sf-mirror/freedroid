@@ -398,10 +398,13 @@ void toggle_quest_browser(void)
 	Me.quest_browser_changed = 0;
 	quest_browser_activated = !quest_browser_activated;
 
-	if (quest_browser_activated)
+	if (quest_browser_activated) {
 		input_hold_keyboard();
-	else
+		freeze_world();
+	} else {
+		unfreeze_world();
 		input_release_keyboard();
+	}
 }
 
 /**
