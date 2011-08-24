@@ -298,8 +298,9 @@ void CheckIfMissionIsComplete(void);
 void mission_diary_add(const char *, const char *);
 int GetMissionIndexByName(const char *);
 
-// quest_browser.c
-void quest_browser_interface(void);
+// quest_browser_ui.c
+void toggle_quest_browser(void);
+struct widget_group *create_quest_browser();
 
 // map.c 
 void respawn_level(int level_num);

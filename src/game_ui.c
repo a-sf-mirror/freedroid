@@ -105,17 +105,6 @@ static void current_ammo_update(struct widget *w)
 		autostr_printf(text, "%5d / %2d", Me.weapon_item.ammo_clip, ItemMap[Me.weapon_item.type].item_gun_ammo_clip_size);
 }
 
-/** Activate the quest log interface. */
-static void toggle_log_screen(struct widget_button *w)
-{
-	// The quest browser interface runs in a separate loop, preventing widgets from
-	// receiving events. Because of this, the toggle_log button doesn't receive
-	// the MOUSE_LEAVE event, once the quest browser is open. Thus, we have to reset the state of the
-	// toggle_log button 'by hand'. Note: this is a hack, until the quest browser is reimplemented.
-	w->state = DEFAULT;
-	quest_browser_interface();
-}
-
 /** Toggle inventory screen on/off. */
 static void toggle_inventory_screen(struct widget_button *w)
 {
@@ -464,7 +453,7 @@ static struct widget_group *create_hud_bar()
 			{"mouse_buttons/log_button_red.png","mouse_buttons/log_button_yellow.png", NULL}},
 			{center_panel_x + 55, WIDGET(panel)->rect.y + 49, 32, 19},
 			NULL,
-			toggle_log_screen,
+			(void *)toggle_quest_browser,
 			NULL,
 			WIDGET_UPDATE_FLAG_ON_DATA(WIDGET_BUTTON, active, Me.quest_browser_changed)
 		},
@@ -657,6 +646,11 @@ struct widget_group *get_game_ui()
 		WIDGET(w)->update = panels[i].update;
 		widget_group_add(game_widget_group, WIDGET(w));
 	}
+
+	// Create the quest browser.
+	struct widget_group *quest_browser = create_quest_browser();
+	WIDGET(quest_browser)->update = WIDGET_UPDATE_FLAG_ON_DATA(WIDGET, enabled, quest_browser_activated);
+	widget_group_add(game_widget_group, WIDGET(quest_browser));
 
 	return game_widget_group;
 }

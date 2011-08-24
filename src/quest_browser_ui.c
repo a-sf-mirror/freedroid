@@ -33,6 +33,9 @@
 #include "struct.h"
 #include "global.h"
 #include "proto.h"
+#include "widgets/widgets.h"
+
+static struct widget_group *quest_browser = NULL;
 
 static SDL_Rect mission_description_rect = { 134, 86, 280, 320 };
 
@@ -388,117 +391,74 @@ static void quest_browser_display_mission_list(int list_type)
 }
 
 /**
- * This function manages the quest browser.
+ * This function enables the quest browser panel.
  */
-void quest_browser_interface(void)
+void toggle_quest_browser(void)
 {
-	int back_to_game = FALSE;
-	int old_game_status = game_status;
-	static int first_call = TRUE;
-
-	game_status = INSIDE_MENU;
-
-	// On the very first 
-	if (first_call) {
-		first_call = FALSE;
-		mission_description_rect.x *= (((float)GameConfig.screen_width) / 640.0);
-		mission_description_rect.y *= (((float)GameConfig.screen_height) / 480.0);
-		mission_description_rect.w *= (((float)GameConfig.screen_width) / 640.0);
-		mission_description_rect.h *= (((float)GameConfig.screen_height) / 480.0);
-		quest_browser_text = alloc_autostr(1000);
-	}
-	// This might take some time, so we need to be careful here,
-	// so as not to generate a massive frame time, that would
-	// throw every moving thing from the map.
-	//
-	Activate_Conservative_Frame_Computation();
-	SetCurrentFont(FPS_Display_BFont);
-
-	AssembleCombatPicture(ONLY_SHOW_MAP_AND_TEXT | SHOW_ITEMS | NO_CURSOR | OMIT_ITEMS_LABEL);
-	blit_background("quest_browser.png");
-	StoreMenuBackground(1);
-
 	Me.quest_browser_changed = 0;
+	quest_browser_activated = !quest_browser_activated;
 
-	while (!back_to_game) {
-		SDL_Delay(1);
+	if (quest_browser_activated)
+		input_hold_keyboard();
+	else
+		input_release_keyboard();
+}
 
-		RestoreMenuBackground(1);
-		if (current_quest_browser_mode == QUEST_BROWSER_SHOW_OPEN_MISSIONS)
-			ShowGenericButtonFromList(QUEST_BROWSER_OPEN_QUESTS_BUTTON);
-		else
-			ShowGenericButtonFromList(QUEST_BROWSER_OPEN_QUESTS_OFF_BUTTON);
-		if (current_quest_browser_mode == QUEST_BROWSER_SHOW_DONE_MISSIONS)
-			ShowGenericButtonFromList(QUEST_BROWSER_DONE_QUESTS_BUTTON);
-		else
-			ShowGenericButtonFromList(QUEST_BROWSER_DONE_QUESTS_OFF_BUTTON);
-		if (current_quest_browser_mode == QUEST_BROWSER_SHOW_NOTES)
-			ShowGenericButtonFromList(QUEST_BROWSER_NOTES_BUTTON);
-		else
-			ShowGenericButtonFromList(QUEST_BROWSER_NOTES_OFF_BUTTON);
-
-		switch (current_quest_browser_mode) {
-			case QUEST_BROWSER_SHOW_NOTES:
-				print_statistics();
-				break;
-			case QUEST_BROWSER_SHOW_OPEN_MISSIONS:
-			case QUEST_BROWSER_SHOW_DONE_MISSIONS:
-				quest_browser_display_mission_list(current_quest_browser_mode);
-				break;
-		}
-		
-		ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_UP_BUTTON);
-		ShowGenericButtonFromList(QUEST_BROWSER_SCROLL_DOWN_BUTTON);
-
-		blit_mouse_cursor();
-		our_SDL_flip_wrapper();
-		save_mouse_state();
-
-		SDL_Event event;
-
-		SDL_WaitEvent(&event);
-
-		if (event.type == SDL_QUIT) {
-			Terminate(EXIT_SUCCESS, TRUE);
+/**
+ * Event handler for the quest browser top level group widget.
+ */
+static int quest_browser_handle_event(struct widget *w, SDL_Event *event)
+{
+	// Handle keyboard events
+	if (event->type == SDL_KEYDOWN)
+		if (event->key.keysym.sym == SDLK_q || event->key.keysym.sym == SDLK_ESCAPE) {
+			toggle_quest_browser();
+			return 1;
 		}
 
-		if (event.type == SDL_KEYDOWN) {
+	// Call default group widget event handler.
+	return widget_group_handle_event(w, event);
+}
 
-			if (event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_q) {
-				back_to_game = TRUE;
-			}
-		}
+/**
+ * This function returns the quest log top level widget and creates it if necessary.
+ */
+struct widget_group *create_quest_browser()
+{
+	if (quest_browser)
+		return quest_browser;
 
-		if (MouseLeftClicked()) {
-			if (MouseCursorIsOnButton(QUEST_BROWSER_OPEN_QUESTS_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				current_quest_browser_mode = QUEST_BROWSER_SHOW_OPEN_MISSIONS;
-				mission_list_scroll_override_from_user = 0;
-			}
-			if (MouseCursorIsOnButton(QUEST_BROWSER_DONE_QUESTS_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				current_quest_browser_mode = QUEST_BROWSER_SHOW_DONE_MISSIONS;
-				mission_list_scroll_override_from_user = 0;
-			}
-			if (MouseCursorIsOnButton(QUEST_BROWSER_NOTES_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				current_quest_browser_mode = QUEST_BROWSER_SHOW_NOTES;
-				mission_list_scroll_override_from_user = 0;
-			}
-			if (MouseCursorIsOnButton(QUEST_BROWSER_SCROLL_UP_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				mission_list_scroll_override_from_user--;
-				if (mission_list_scroll_override_from_user < 0)
-					mission_list_scroll_override_from_user = 0;
-			}
-			if (MouseCursorIsOnButton(QUEST_BROWSER_SCROLL_DOWN_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				mission_list_scroll_override_from_user++;
-			}
+	quest_browser = widget_group_create();
+	widget_set_rect(WIDGET(quest_browser), 0, 0, GameConfig.screen_width, GameConfig.screen_height);
+	WIDGET(quest_browser)->handle_event = quest_browser_handle_event;
 
-			if (MouseCursorIsOnButton(QUEST_BROWSER_EXIT_BUTTON, GetMousePos_x(), GetMousePos_y())) {
-				back_to_game = TRUE;
+	// Expand the quest browser as much as possible, keeping the main monitor's aspect ratio and
+	// leaving some space for the buttons on the right side.
 
-				while (MouseLeftPressed());
-			}
-		}
-	}
-	game_status = old_game_status;
+	// available screen space
+	SDL_Rect available_space = {0, 30, GameConfig.screen_width - 127, GameConfig.screen_height - 60};
+
+	// Size on the lowest resolution
+	float quest_browser_w = 327;
+	float quest_browser_h = 387;
+
+	// Compute the maximum scale that can be applied.
+	float scale = min(available_space.w / quest_browser_w, available_space.h / quest_browser_h);
+
+	quest_browser_w *= scale;
+	quest_browser_h *= scale;
+
+	// Position the quest browser in the center of the screen.
+	float quest_browser_x = available_space.x + (available_space.w - quest_browser_w) / 2;
+	float quest_browser_y = available_space.y + (available_space.h - quest_browser_h) / 2;
+
+	// Main body background
+	struct widget_background *panel = widget_background_create();
+	widget_set_rect(WIDGET(panel), quest_browser_x, quest_browser_y, quest_browser_w, quest_browser_h);
+	widget_background_load_3x3_tiles(panel, "widgets/quest");
+	widget_group_add(quest_browser, WIDGET(panel));
+
+	return quest_browser;
 }
 
 #undef _quest_browser_c

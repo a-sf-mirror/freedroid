@@ -73,6 +73,7 @@ extern char *our_config_dir;
 EXTERN int Number_Of_Droid_Types;
 EXTERN int QuitProgram;
 EXTERN int GameOver;
+EXTERN int quest_browser_activated;
 
 extern list_head_t alive_bots_head;
 extern list_head_t dead_bots_head;

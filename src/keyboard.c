@@ -583,7 +583,7 @@ static int input_key(int keynum, int value)
 			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_CHARACTER);
 			return 0;
 		} else if (KEYPRESS("quests")) {
-			quest_browser_interface();
+			toggle_quest_browser();
 			return 0;
 		} else if (KEYPRESS("autorun")) {
 			GameConfig.autorun_activated = !GameConfig.autorun_activated;

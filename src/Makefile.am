@@ -34,7 +34,7 @@ freedroidRPG_SOURCES = menu.c shop.c items.c character.c skills.c saveloadgame.c
 	benchmark.c \
 	npc.c \
 	obstacle_extension.c \
-	quest_browser.c \
+	quest_browser_ui.c \
 	map_label.c \
 	faction.c \
 	waypoint.c \
