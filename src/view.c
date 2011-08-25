@@ -2528,7 +2528,9 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		return;
 	}
 
-	float r = 1.0, g = 1.0, b = 1.0;
+	float r, g, b;
+
+	object_vtx_color(ThisRobot, &r, &g, &b);
 
 	if (ThisRobot->paralysation_duration_left != 0) {
 		g = 0.2;
@@ -2540,8 +2542,6 @@ void PutIndividuallyShapedDroidBody(enemy * ThisRobot, SDL_Rect TargetRectangle,
 		r = 0.2;
 		g = 0.2;
 	}
-
-	object_vtx_color(ThisRobot, &r, &g, &b);
 
 	bot_pos.x = ThisRobot->virt_pos.x;
 	bot_pos.y = ThisRobot->virt_pos.y;
