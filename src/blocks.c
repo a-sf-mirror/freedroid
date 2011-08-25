@@ -601,6 +601,19 @@ struct image *get_obstacle_shadow_image(int type, int frame_index)
 }
 
 /**
+ * Return a pointer towards the map label image.
+ */
+struct image *get_map_label_image()
+{
+	static struct image img = EMPTY_IMAGE;
+
+	if (!image_loaded(&img))
+		load_image(&img, "level_editor_map_label_indicator.png", TRUE);
+
+	return &img;
+}
+
+/**
  * Free all images associated with obstacles.
  */
 void free_obstacle_graphics(void)

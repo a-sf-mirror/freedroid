@@ -166,7 +166,7 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 	case OBJECT_ITEM:
 			return get_item_shop_image(array[idx]);
 	case OBJECT_MAP_LABEL:
-			return NULL;
+			return get_map_label_image();
 	case OBJECT_ENEMY:
 			return get_droid_portrait_image(array[idx]);
 	default:

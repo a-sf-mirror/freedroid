@@ -248,7 +248,6 @@ static void show_waypoints(int mask)
  */
 static void show_map_labels(int must_zoom)
 {
-	static struct image map_label_indicator = EMPTY_IMAGE;
 	level *EditLevel = curShip.AllLevels[Me.pos.z];
 	struct map_label *map_label;
 	int i;
@@ -257,13 +256,6 @@ static void show_map_labels(int must_zoom)
 	int x_min, x_max, y_min, y_max;
 
 	get_floor_boundaries(must_zoom, &y_min, &y_max, &x_min, &x_max);
-
-	// On the first function call to this function, we must load the map label indicator
-	// iso image from the disk to memory and keep it there as static.  That should be
-	// it for here.
-	if (!image_loaded(&map_label_indicator)) {
-		load_image(&map_label_indicator, "level_editor_map_label_indicator.png", TRUE);
-	}
 
 	// Now we can draw a fine indicator at all the necessary positions ...
 	for (i = 0; i < EditLevel->map_labels.size; i++) {	
@@ -279,7 +271,8 @@ static void show_map_labels(int must_zoom)
 		if (map_label->pos.y < y_min || map_label->pos.y > y_max)
 			continue;
 
-		display_image_on_map(&map_label_indicator, map_label->pos.x + 0.5, map_label->pos.y + 0.5, IMAGE_SCALE_RGB_TRANSFO(scale, r, g, b));
+		struct image *img = get_map_label_image();
+		display_image_on_map(img, map_label->pos.x + 0.5, map_label->pos.y + 0.5, IMAGE_SCALE_RGB_TRANSFO(scale, r, g, b));
 	}
 }
 
