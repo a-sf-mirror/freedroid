@@ -808,7 +808,6 @@ static struct background {
 		{"startup1.jpg", EMPTY_IMAGE, 0, 0,  TRUE },
 		{"conversation.png", EMPTY_IMAGE, 0, 0,  TRUE },
 		{"transfer.jpg", EMPTY_IMAGE, 0, 0,  TRUE },
-		{"quest_browser.png", EMPTY_IMAGE, 0, 0,  TRUE },
 		{"number_selector.png", EMPTY_IMAGE, 0, 0,  TRUE },
 		{"game_message_window.png", EMPTY_IMAGE, 0, 0, TRUE },
 		{"item_upgrade.png", EMPTY_IMAGE, ITEM_UPGRADE_RECT_X, ITEM_UPGRADE_RECT_Y,  FALSE },
