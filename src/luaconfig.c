@@ -724,6 +724,77 @@ static void init_obstacle_flags(void)
 }
 
 /**
+ * \brief Read a npc table. Called when a npc list is read in a Lua config file.
+ * \param L Lua state.
+ */
+static int lua_npc_list_ctor(lua_State *L)
+{
+	if (lua_type(L, 1) == LUA_TTABLE) {
+		lua_pushnil(L);
+		// Process the lua table
+		while (lua_next(L, -2) != 0) {
+	                const char *npc_name;
+			if (lua_type(L, -2) == LUA_TNUMBER && lua_type(L, -1) == LUA_TSTRING) {
+				npc_name = lua_tostring(L, -1);
+				npc_add(npc_name);
+			}
+			lua_pop(L, 1);
+		}
+	} // Not default value because list have been intialized as empty
+
+	return 0;
+}
+
+/**
+ * \brief Npc_shop constructor. Called when a 'npc_shop' object is read in a Lua config file.
+ * \param L Lua state.
+ */
+static int lua_npc_shop_ctor(lua_State *L)
+{
+	char *name;
+	const char *item_name;
+	int item_weight;
+
+	// Get the name of npc
+	set_value_from_table(L, 1, "name", STRING_TYPE, &name);
+
+	lua_getfield(L, 1, "items");
+
+	// Process the items table
+	if (lua_type(L, -1) == LUA_TTABLE) {
+		lua_pushnil(L);
+
+		while (lua_next(L, -2) != 0) {
+			if (lua_type(L, -1) == LUA_TTABLE) {
+				// get the name of item
+				lua_rawgeti(L, -1, 1);
+				if (lua_type(L, -1) == LUA_TSTRING)
+					item_name = lua_tostring(L, -1);
+				else
+					item_name = NULL;
+				lua_pop(L, 1);
+
+				// get the weight of item
+				lua_rawgeti(L, -1, 2);
+				if (lua_type(L, -1) == LUA_TNUMBER)
+					item_weight = lua_tointeger(L, -1);
+				else
+					item_weight = 1;
+				lua_pop(L, 1);
+
+				// add item to the shoplist of the npc
+				npc_add_shoplist(name, item_name, item_weight);
+			}
+			lua_pop(L, 1);
+		}
+	}
+
+	lua_pop(L, 1);
+	free(name);
+	return 0;
+}
+
+/**
  * Add lua constructors of new data types
  */
 
@@ -740,6 +811,8 @@ void init_luaconfig()
 		{"leveleditor_obstacle_category", lua_leveleditor_obstacle_category_ctor},
 		{"blast", lua_blast_ctor},
 		{"floor_tile_list", lua_floor_tile_list_ctor},
+		{"npc_list", lua_npc_list_ctor},
+		{"npc_shop", lua_npc_shop_ctor},
 		{NULL, NULL}
 	};
 
