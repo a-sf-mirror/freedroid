@@ -106,3 +106,17 @@ struct map_label *get_map_label(level *lvl, const char *label_name)
 	return NULL;
 }
 
+struct map_label *get_map_label_from_coords(level *lvl, float x, float y)
+{
+	map_label *m;
+	int i;
+
+	for (i = 0; i < lvl->map_labels.size; i++) {
+		m = &ACCESS_MAP_LABEL(lvl->map_labels, i);
+
+		if (m->pos.x == floor(x) && m->pos.y == floor(y))
+			return m;
+	}
+
+	return NULL;
+}

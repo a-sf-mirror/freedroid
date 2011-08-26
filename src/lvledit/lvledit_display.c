@@ -84,26 +84,18 @@ void lvledit_display_fps(void) {
 static void print_label_information(level *EditLevel)
 {
 	char PanelText[5000] = "";
-	struct map_label *map_label;
-	int i;
+	map_label *m;
 
-	for (i = 0; i < EditLevel->map_labels.size; i++) {
-		// Get the map label
-		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
+	m = get_map_label_from_coords(EditLevel, Me.pos.x, Me.pos.y);
 
-		if ((fabsf(Me.pos.x - (map_label->pos.x + 0.5)) <= 0.5) && 
-			 (fabsf(Me.pos.y - (map_label->pos.y + 0.5)) <= 0.5)) {
-			// When a map label is located at the same position than the cursor,
-			// we must print the map label information
+	if (m) {
+		// Create the map label information
+		sprintf(PanelText, _("\n Map label information: \n label_name=\"%s\"."), m->label_name);
 
-			// Create the map label information
-			sprintf(PanelText, _("\n Map label information: \n label_name=\"%s\"."), map_label->label_name);
+		// Display the map label information on the screen
+		display_text_using_line_height(PanelText, User_Rect.x, GameConfig.screen_height - 5 * FontHeight(GetCurrentFont()), NULL, 1.0);
 
-			// Display the map label information on the screen
-			display_text_using_line_height(PanelText, User_Rect.x, GameConfig.screen_height - 5 * FontHeight(GetCurrentFont()), NULL, 1.0);
-
-			return;
-		}
+		return;
 	}
 }
 
