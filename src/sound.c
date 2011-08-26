@@ -158,20 +158,17 @@ void InitAudio(void)
 	// Now SDL_AUDIO is initialized here:
 
 	if (SDL_InitSubSystem(SDL_INIT_AUDIO) == -1) {
-		fprintf(stderr, "\n\nSDL just reported a problem.\n\
-				 The error string from SDL_GetError\nwas: %s \n\
-				 The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
-		ErrorMessage(__FUNCTION__, "\
-								   The SDL AUDIO SUBSYSTEM COULD NOT BE INITIALIZED.\n\
-								   \n\
-								   Please check that your sound card is properly configured,\n\
-								   i.e. if other applications are able to play sounds.\n\
-								   \n\
-								   If you for some reason cannot get your sound card ready, \n\
-								   you can choose to play without sound.\n\
-								   \n\
-								   If you want this, use the appropriate command line option and Freedroid will \n\
-								   not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		fprintf(stderr, " \n\nSDL just reported a problem.\n"
+			"The error string from SDL_GetError\nwas: %s \n"
+			"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
+		ErrorMessage(__FUNCTION__, "\n"
+					"The SDL AUDIO SUBSYSTEM COULD NOT BE INITIALIZED.\n\n"
+					"Please check that your sound card is properly configured,\n"
+					"i.e. if other applications are able to play sounds.\n\n"
+					"If you for some reason cannot get your sound card ready, \n"
+					"you can choose to play without sound.\n\n"
+					"If you want this, use the appropriate command line option and Freedroid will\n"
+					"not complain any more.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		sound_on = FALSE;
 		return;
 	} else {
@@ -182,20 +179,17 @@ void InitAudio(void)
 	// an audio channel.  This will be done here (see code from Mixer-Tutorial):
 	//
 	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers)) {
-		fprintf(stderr, "\n\nSDL just reported a problem.\n\
-				 The error string from SDL_GetError\nwas: %s \n\
-				 The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
-		ErrorMessage(__FUNCTION__, "\
-								   The SDL AUDIO CHANNEL COULD NOT BE OPEND.\n\
-								   \n\
-								   Please check that your sound card is properly configured,\n\
-								   i.e. if other applications are able to play sounds.\n\
-								   \n\
-								   If you for some reason cannot get your sound card ready, \n\
-								   you can choose to play without sound.\n\
-								   \n\
-								   If you want this, use the appropriate command line option and Freedroid will \n\
-								   not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		fprintf(stderr, "\n\nSDL just reported a problem.\n"
+		"The error string from SDL_GetError\nwas: %s \n"
+		"The error string from the SDL mixer subsystem was: %s \n", SDL_GetError(), Mix_GetError());
+		ErrorMessage(__FUNCTION__, "\n"
+					"The SDL AUDIO CHANNEL COULD NOT BE OPENED.\n\n"
+					"Please check that your sound card is properly configured,\n"
+					"i.e. if other applications are able to play sounds.\n\n"
+					"If you for some reason cannot get your sound card ready,\n"
+					"you can choose to play without sound.\n\n"
+					"If you want this, use the appropriate command line option and Freedroid will\n"
+					"not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		sound_on = FALSE;
 		return;
 	} else {
@@ -234,7 +228,7 @@ void SetSoundFXVolume(float NewVolume)
 static int find_free_channel()
 {
 	int i = 0;
-	
+
 	// iterate through all of the channels
 	for (i = 0; i < allocated_sound_channels; i++) {
 
@@ -423,8 +417,8 @@ void play_sound(const char *filename)
 	Newest_Sound_Channel = Mix_PlayChannel(-1, One_Shot_WAV_File, 0);
 	if (Newest_Sound_Channel <= -1) {
 		fprintf(stderr, "\n\nfilename: '%s' Mix_GetError(): %s \n", filename, Mix_GetError());
-		ErrorMessage(__FUNCTION__, "\
-		The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.\n", PLEASE_INFORM, IS_WARNING_ONLY);
+		ErrorMessage(__FUNCTION__, "\n"
+					"The SDL MIXER WAS UNABLE TO PLAY A CERTAIN FILE LOADED INTO MEMORY FOR PLAYING ONCE.\n", PLEASE_INFORM, IS_WARNING_ONLY);
 
 		// If we receive an error playing a sound file here, we must see to it that the callback
 		// code and allocation there and all that doesn't get touched.
@@ -465,7 +459,7 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 	unsigned int distance_value;
 	unsigned short angle_value;
 
-	// need to get the emitters coordinates as if it were on the same level as the listener. 
+	// need to get the emitters coordinates as if it were on the same level as the listener.
 	if (emitter->z == -1 || listener->z == -1)
 		play_sound(filename);
 	else
@@ -474,18 +468,18 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 	// translate the emitter and listener coordinates to screen coordinates.
 	translate_map_point_to_screen_pixel(emitter_virt_coords.x, emitter_virt_coords.y, &emitter_x, &emitter_y);
 	translate_map_point_to_screen_pixel(listener->x, listener->y, &listener_x, &listener_y);
-	
+
 	// d[x,y] = [x1,y1] - [x2,y2]
 	difference_x = listener_x - emitter_x;
 	difference_y = listener_y - emitter_y;
-	
-	// calculate the distance	
+
+	// calculate the distance
 	distance = sqrt((difference_x * difference_x) + (difference_y * difference_y));
 
 	// and angle [-pi, pi] radians
 	angle = atan2(difference_y, difference_x);
 
-	// prevent overflow 
+	// prevent overflow
 	distance_value = (unsigned int)((distance / MAX_HEARING_DISTANCE) * 255);
 
 	// we don't want distance_value to wrap around.
@@ -494,7 +488,7 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 	// adjust the angle so that it is aligned with the game / screen coordinates properly.
 	angle_value = (unsigned short)((angle * DEGREE_PER_RADIAN - 90));
 
-	// just to prevent the angle from wrapping. 
+	// just to prevent the angle from wrapping.
 	angle_value = angle_value % 360;
 
 	// if the emitter->listener vector is really small, use non-positional play.
@@ -516,7 +510,7 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 void play_sound_cached_v(const char *SoundSampleFileName, double volume)
 {
 	// use volume to scale the distance for the effect
-	// Range for volume - distance translation: 0 ( loud ) to 255 ( soft ) 
+	// Range for volume - distance translation: 0 ( loud ) to 255 ( soft )
 	play_sound_cached_pos(SoundSampleFileName, 0, (unsigned char)(255 - (volume * 255)));
 }
 
@@ -594,8 +588,8 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 		next_free_position_in_cache++;
 		if (next_free_position_in_cache >= MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE) {
 			fprintf(stderr, "\n\nnext_free_position_in_cache: %d,\n", next_free_position_in_cache);
-			ErrorMessage(__FUNCTION__, "\
-			                           ALERT!  Ran out of space in the dynamic wav sample cache!  Cache size too small?", PLEASE_INFORM, IS_FATAL);
+			ErrorMessage(__FUNCTION__, "\n"
+						"ALERT! Ran out of space in the dynamic wav sample cache! Cache size too small?", PLEASE_INFORM, IS_FATAL);
 		}
 	}
 	// Now we try to play the sound file that has just been successfully
@@ -612,8 +606,8 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 	// loaded into memory or has resided in memory already for some time...
 	if (Mix_PlayChannel(channel_to_play_sample_on, dynamic_WAV_cache[index_of_sample_to_be_played], 0) <= -1) {
 		fprintf(stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n", SoundSampleFileName, Mix_GetError());
-		ErrorMessage(__FUNCTION__, "\
-			                   The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+		ErrorMessage(__FUNCTION__, "\n"
+					"The SDL mixer was unable to play a certain sound sample file, that was supposed to be cached for later.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 	}
 
 	// if we found a free channel, let's apply an effect to it.
@@ -622,9 +616,8 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 			fprintf(stderr, "\n\nSoundSampleFileName: '%s' channel: '%d' Mix_GetError(): %s \n",
 				SoundSampleFileName, channel_to_play_sample_on, Mix_GetError());
 			ErrorMessage(__FUNCTION__, 
-					"\
-				        The SDL mixer was unable to register an effect on given channel.\n", 
-					NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+						"\n"
+						"The SDL mixer was unable to register an effect on given channel.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		}
 	}
 }
