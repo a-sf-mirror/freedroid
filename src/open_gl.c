@@ -483,9 +483,6 @@ void safely_set_some_open_gl_flags_and_shade_model(void)
 
 	glShadeModel(GL_FLAT);
 
-	glDisable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER, 0.499999);
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
