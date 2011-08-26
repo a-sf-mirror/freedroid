@@ -151,11 +151,6 @@ static void new_obstacle_label_button_click(struct widget_button *wb)
 		action_change_obstacle_label_user(EditLevel(), single_tile_selection(OBJECT_OBSTACLE));
 }
 
-static void new_map_label_button_click(struct widget_button *wb)
-{
-	level_editor_action_change_map_label_user(EditLevel(), Me.pos.x, Me.pos.y);
-}
-
 static void edit_chest_button_click(struct widget_button *wb)
 {
 	level_editor_edit_chest(single_tile_selection(OBJECT_OBSTACLE));
@@ -454,9 +449,6 @@ struct widget_group *get_lvledit_ui()
 		{LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON, NULL,
 			_("New obstacle label\n\nUse this button to attach a label to the currently marked obstacle.  These obstacle labels can be used to define obstacles to be modified by events.\n"),
 			1, new_obstacle_label_button_click, NULL, new_obstacle_label_button_update},
-		{LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON, NULL,
-			_("New map label\n\nUse this button to attach a new map label to the current cursor position.  These map labels can be used to define starting points for bots and characters or also to define locations for events and triggers."),
-			1, new_map_label_button_click, NULL, NULL},
 		{LEVEL_EDITOR_EDIT_CHEST_BUTTON, NULL,
 			_("Edit chests contents\n\nUse this button to change the contents of the chest. If it is empty the game may generate random items at run time."),
 			1, edit_chest_button_click, NULL, edit_chest_button_update},

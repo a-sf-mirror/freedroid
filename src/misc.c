@@ -138,10 +138,6 @@ mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS] = {
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewObstacleLabelButton.png", {-120, -350, 0, 0}, FALSE},
 	[LEVEL_EDITOR_NEW_OBSTACLE_LABEL_BUTTON_PUSHED] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewObstacleLabelButtonPushed.png", {-119, -349, 0, 0}, FALSE},
-	[LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewMapLabelButton.png", {-90, -350, 0, 0}, FALSE},
-	[LEVEL_EDITOR_NEW_MAP_LABEL_BUTTON_PUSHED] =
-	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorNewMapLabelButtonPushed.png", {-89, -349, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ZOOM_IN_BUTTON] =
 	    {EMPTY_IMAGE, "mouse_buttons/LevelEditorZoomInButton.png", {-60, -350, 0, 0}, FALSE},
 	[LEVEL_EDITOR_ZOOM_IN_BUTTON_PUSHED] =
