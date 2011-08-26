@@ -76,6 +76,7 @@ void end_image_batch()
 
 static void gl_emit_quads(void)
 {
+#ifdef HAVE_LIBGL
 	if (vtx && vtx->size) {
 		glColor4fv(requested_color);
 
@@ -86,6 +87,7 @@ static void gl_emit_quads(void)
 		vtx->size = 0;
 		tex->size = 0;
 	}
+#endif
 }
 
 static inline void gl_queue_quad(int x1, int y1, int x2, int y2, float tx0, float ty0, float tx1, float ty1)

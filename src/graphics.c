@@ -1163,10 +1163,14 @@ void reload_graphics(void)
  */
 void clear_screen(void)
 {
-	if (use_open_gl)
+#ifdef HAVE_LIBGL
+	if (use_open_gl) {
 		glClear(GL_COLOR_BUFFER_BIT);
-	else
-		SDL_FillRect(Screen, NULL, SDL_MapRGB(Screen->format, 0, 0, 0));
+		return;
+	}
+#endif
+
+	SDL_FillRect(Screen, NULL, SDL_MapRGB(Screen->format, 0, 0, 0));
 }
 
 #undef _graphics_c
