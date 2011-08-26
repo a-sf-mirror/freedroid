@@ -243,6 +243,14 @@ void place_enemy(int droid_type)
 	place_special_force(pos, droid_type);
 }
 
+/**
+ * Place a map label on the map.
+ */
+static void place_map_label()
+{
+	level_editor_action_change_map_label_user(EditLevel(), mouse_mapcoord.x, mouse_mapcoord.y);
+}
+
 /*
  * Pick type of walls (vertical and horizontal).
  */
@@ -667,6 +675,10 @@ int leveleditor_place_input(SDL_Event *event)
 				break;
 			case OBJECT_ENEMY:
 				place_enemy(type);
+				return 1;
+				break;
+			case OBJECT_MAP_LABEL:
+				place_map_label();
 				return 1;
 				break;
 			default:

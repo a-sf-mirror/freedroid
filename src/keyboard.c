@@ -686,7 +686,7 @@ static int input_key(int keynum, int value)
 				action_change_obstacle_label_user(EditLevel(), single_tile_selection(OBJECT_OBSTACLE));
 			}
 		} else if (KEYPRESS("change_map_label")) {
-			level_editor_action_change_map_label_user(CURLEVEL());
+			level_editor_action_change_map_label_user(CURLEVEL(), Me.pos.x, Me.pos.y);
 			return 0;
 		} else if (KEYPRESS("zoom_out")) {
 			GameConfig.zoom_is_on = !GameConfig.zoom_is_on;

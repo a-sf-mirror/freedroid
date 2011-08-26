@@ -52,7 +52,7 @@ void action_set_floor(level *, int, int, int, int);
 void action_change_floor_layer(level *, int);
 
 /* Map manipulation */
-void level_editor_action_change_map_label_user(level *);
+void level_editor_action_change_map_label_user(level *, float, float);
 void action_jump_to_level(int, double, double);
 void action_jump_to_level_center(int);
 void CreateNewMapLevel(int);

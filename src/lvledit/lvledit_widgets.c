@@ -153,7 +153,7 @@ static void new_obstacle_label_button_click(struct widget_button *wb)
 
 static void new_map_label_button_click(struct widget_button *wb)
 {
-	level_editor_action_change_map_label_user(EditLevel());
+	level_editor_action_change_map_label_user(EditLevel(), Me.pos.x, Me.pos.y);
 }
 
 static void edit_chest_button_click(struct widget_button *wb)

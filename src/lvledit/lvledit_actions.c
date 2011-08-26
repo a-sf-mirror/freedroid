@@ -556,7 +556,7 @@ static int action_change_map_label(level *EditLevel, int i, char *name, int x, i
 	return undoable;
 }
 
-void level_editor_action_change_map_label_user(level *EditLevel)
+void level_editor_action_change_map_label_user(level *EditLevel, float x, float y)
 {
 	struct map_label *map_label = NULL;
 	char *name;
@@ -570,8 +570,8 @@ void level_editor_action_change_map_label_user(level *EditLevel)
 	for (i = 0; i < EditLevel->map_labels.size; i++) {
 		map_label = &ACCESS_MAP_LABEL(EditLevel->map_labels, i);
 
-		if ((fabsf(map_label->pos.x + 0.5 - Me.pos.x) < 0.5) && 
-			 (fabsf(map_label->pos.y + 0.5 - Me.pos.y) < 0.5)) {
+		if ((fabsf(map_label->pos.x + 0.5 - x) < 0.5) &&
+			 (fabsf(map_label->pos.y + 0.5 - y) < 0.5)) {
 			
 			// Use the old label as a suggestion
 			old_name = map_label->label_name;
@@ -610,7 +610,7 @@ void level_editor_action_change_map_label_user(level *EditLevel)
 	}
 
 	// Change a map label when the name enter by the user is valid
-	action_change_map_label(EditLevel, i, name, rintf(Me.pos.x - 0.5), rintf(Me.pos.y - 0.5), 1);
+	action_change_map_label(EditLevel, i, name, rintf(x - 0.5), rintf(y - 0.5), 1);
 }
 
 /**
