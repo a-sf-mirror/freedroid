@@ -106,7 +106,7 @@ int find_saved_games(struct dirent ***namelist)
 void LoadAndShowThumbnail(char *CoreFilename)
 {
 	char filename[1000];
-	SDL_Surface *NewThumbnail;
+	struct image thumbnail = EMPTY_IMAGE;
 	SDL_Rect TargetRectangle;
 
 	if (!our_config_dir)
@@ -115,27 +115,22 @@ void LoadAndShowThumbnail(char *CoreFilename)
 	sprintf(filename, "%s/%s%s", our_config_dir, CoreFilename, SAVE_GAME_THUMBNAIL_EXT);
 
 	/* Load the image */
-	NewThumbnail = our_IMG_load_wrapper(filename);
-	if (NewThumbnail == NULL)
+	thumbnail.surface = our_IMG_load_wrapper(filename);
+	if (!thumbnail.surface)
 		return;
 
-	/* Create a surface to hold the - correctly formatted - image */
-	SDL_Surface *tmp = SDL_CreateRGBSurface(0, NewThumbnail->w, NewThumbnail->h, 32, rmask, gmask, bmask, amask);
-	our_SDL_blit_surface_wrapper(NewThumbnail, NULL, tmp, NULL);
-	SDL_FreeSurface(NewThumbnail);
+	thumbnail.w = thumbnail.surface->w;
+	thumbnail.h = thumbnail.surface->h;
+	if (use_open_gl)
+		make_texture_out_of_surface(&thumbnail);
 
 	TargetRectangle.x = 10;
-	TargetRectangle.y = GameConfig.screen_height - tmp->h - 10;
+	TargetRectangle.y = GameConfig.screen_height - thumbnail.h - 10;
 
-	if (use_open_gl) {
-		flip_image_vertically(tmp);
-	}
+	display_image_on_screen(&thumbnail, TargetRectangle.x, TargetRectangle.y, IMAGE_NO_TRANSFO);
 
-	our_SDL_blit_surface_wrapper(tmp, NULL, Screen, &TargetRectangle);
-
-	SDL_FreeSurface(tmp);
-
-};				// void LoadAndShowThumbnail ( char* CoreFilename )
+	delete_image(&thumbnail);
+}
 
 /**
  * 
