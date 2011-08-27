@@ -506,11 +506,22 @@ void lvledit_action_toggle_waypoint(int randomspawn)
 	}
 }
 
-void action_set_floor(Level EditLevel, int x, int y, int layer, int type)
+void action_set_floor_layer(Level EditLevel, int x, int y, int layer, int type)
 {
+	if (layer >= EditLevel->floor_layers)
+		EditLevel->floor_layers++;
+
 	int old = EditLevel->map[y][x].floor_values[layer];
 	EditLevel->map[y][x].floor_values[layer] = type;
 	action_push(ACT_TILE_FLOOR_SET, x, y, layer, old);
+}
+
+void action_set_floor(Level EditLevel, int x, int y, int type)
+{
+	// Underlay floor tiles are placed in layer #0.
+	// Overlay floor tiles are placed in layer #1.
+	int layer = type < MAX_UNDERLAY_FLOOR_TILES ? 0 : 1;
+	action_set_floor_layer(EditLevel, x, y, layer, type);
 }
 
 void action_change_floor_layer(level *lvl, int layer)
@@ -679,7 +690,7 @@ static void action_do(level * level, action * a)
 		action_toggle_waypoint_connection(level, a->d.toggle_waypoint_connection.x, a->d.toggle_waypoint_connection.y, 1, 1);
 		break;
 	case ACT_TILE_FLOOR_SET:
-		action_set_floor(level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.layer, a->d.change_floor.type);
+		action_set_floor_layer(level, a->d.change_floor.x, a->d.change_floor.y, a->d.change_floor.layer, a->d.change_floor.type);
 		break;
 	case ACT_MULTIPLE_ACTIONS:
 		ErrorMessage(__FUNCTION__, "Passed a multiple actions meta-action as parameter. A real action is needed.\n", PLEASE_INFORM, IS_WARNING_ONLY);
@@ -773,7 +784,7 @@ void level_editor_place_aligned_object(int positionid)
 			action_create_obstacle_user(EditLevel(), pos.x, pos.y, type);
 			break;
 	case OBJECT_FLOOR:
-			action_set_floor(EditLevel(), (int)Me.pos.x, (int)Me.pos.y, current_floor_layer, type);
+			action_set_floor(EditLevel(), (int)Me.pos.x, (int)Me.pos.y, type);
 			break;
 	case OBJECT_ITEM:
 			action_create_item(EditLevel(), pos.x, pos.y, type);

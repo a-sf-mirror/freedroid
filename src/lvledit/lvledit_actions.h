@@ -48,7 +48,8 @@ void level_editor_action_toggle_waypoint_connection_user(level *, int, int);
 void lvledit_action_toggle_waypoint(int);
 
 /* Floor tiles manipulation */
-void action_set_floor(level *, int, int, int, int);
+void action_set_floor(level *, int, int, int);
+void action_set_floor_layer(level *, int, int, int, int);
 void action_change_floor_layer(level *, int);
 
 /* Map manipulation */

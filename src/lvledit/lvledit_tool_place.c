@@ -168,7 +168,7 @@ static void start_rectangle_floor(int findex)
 		state.r_start.y = EditLevel()->ylen - 1;
 
 	// Place the first tile 
-	action_set_floor(EditLevel(), state.r_start.x, state.r_start.y, current_floor_layer, state.r_tile_used);
+	action_set_floor(EditLevel(), state.r_start.x, state.r_start.y, state.r_tile_used);
 	action_push(ACT_MULTIPLE_ACTIONS, 1);
 
 }
@@ -213,7 +213,7 @@ static void handle_rectangle_floor()
 		// Then redo a correct one
 		for (i = state.r_start.x; i != state.r_start.x + state.r_len_x + state.r_step_x; i += state.r_step_x) {
 			for (j = state.r_start.y; j != state.r_start.y + state.r_len_y + state.r_step_y; j += state.r_step_y) {
-				action_set_floor(EditLevel(), i, j, current_floor_layer, state.r_tile_used);
+				action_set_floor(EditLevel(), i, j, state.r_tile_used);
 				changed_tiles++;
 			}
 		}

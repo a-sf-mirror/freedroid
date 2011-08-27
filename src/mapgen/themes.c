@@ -335,7 +335,7 @@ static void place_garden(int room)
 
 	for (i = y1; i <= y2; i++)
 		for (j = x1; j <= x2; j++)
-			mapgen_set_floor(j, i, ISO_FLOOR_SAND_WITH_GRASS_1 + MyRandom(4));
+			mapgen_set_floor(j, i, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_1 + MyRandom(4));
 
 	// Cycle through doors of the given room
 	for (i = 0; i < ri->num_doors; i++)

@@ -209,10 +209,10 @@ static int set_floor_layers(level *lvl, struct lvledit_map_tile *tile)
 
 	if (tile->layer == ALL_FLOOR_LAYERS) {
 		for (i = 0; i < lvl->floor_layers; i++)
-			action_set_floor(EditLevel(), tile->coord.x, tile->coord.y, i, t->floor_values[i]);
+			action_set_floor_layer(EditLevel(), tile->coord.x, tile->coord.y, i, t->floor_values[i]);
 		return i;
 	} else {
-		action_set_floor(lvl, tile->coord.x, tile->coord.y, current_floor_layer, t->floor_values[tile->layer]);
+		action_set_floor_layer(lvl, tile->coord.x, tile->coord.y, current_floor_layer, t->floor_values[tile->layer]);
 		return 1;
 	}
 }
@@ -896,10 +896,10 @@ static int clear_current_floor_layers(level *lvl, int coord_x, int coord_y)
 
 	if (GameConfig.show_all_floor_layers) {
 		for (i = 0; i < lvl->floor_layers; i++)
-			action_set_floor(lvl, coord_x, coord_y, i, ISO_FLOOR_EMPTY);
+			action_set_floor_layer(lvl, coord_x, coord_y, i, ISO_FLOOR_EMPTY);
 		return i;
 	} else {
-		action_set_floor(lvl, coord_x, coord_y, current_floor_layer, ISO_FLOOR_EMPTY);
+		action_set_floor_layer(lvl, coord_x, coord_y, current_floor_layer, ISO_FLOOR_EMPTY);
 		return 1;
 	}
 }

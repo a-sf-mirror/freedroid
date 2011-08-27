@@ -79,40 +79,15 @@ static Uint16 get_top_map_brick(level *l, int x, int y)
 
 static void change_transparent_floor(level *l, int x, int y, int transparent_type, int opaque_type)
 {
-	int i;
-
-	for (i = 0; i < l->floor_layers - 2; i++) {
-		action_set_floor(l, x, y, i, ISO_FLOOR_EMPTY);
-		tile_change_count++;
-	}
-	action_set_floor(l, x, y, l->floor_layers - 2, opaque_type);
+	action_set_floor(l, x, y, opaque_type);
 	tile_change_count++;
-	action_set_floor(l, x, y, l->floor_layers - 1, transparent_type);
-	tile_change_count++;
-}
-
-static void change_top_opaque_floor(level *l, int x, int y, int type)
-{
-	int i;
-
-	for (i = 0; i < l->floor_layers - 1; i++) {
-		action_set_floor(l, x, y, i, ISO_FLOOR_EMPTY);
-		tile_change_count++;
-	}
-	action_set_floor(l, x, y, l->floor_layers - 1, type);
+	action_set_floor(l, x, y, transparent_type);
 	tile_change_count++;
 }
 
 static void change_opaque_floor(level *l, int x, int y, int type)
 {
-	int i;
-
-	action_set_floor(l, x, y, 0, type);
-	tile_change_count++;
-	for (i = 1; i < l->floor_layers; i++) {
-		action_set_floor(l, x, y, i, ISO_FLOOR_EMPTY);
-		tile_change_count++;
-	}
+	change_transparent_floor(l, x, y, type, ISO_FLOOR_EMPTY);
 }
 
 static void done_beautify_floor_tiles()
@@ -127,22 +102,10 @@ static void done_beautify_floor_tiles()
  */
 static int is_full_grass_tile(int floor_value)
 {
-	switch (floor_value) {
-	case ISO_FLOOR_SAND_WITH_GRASS_1:
-	case ISO_FLOOR_SAND_WITH_GRASS_2:
-	case ISO_FLOOR_SAND_WITH_GRASS_3:
-	case ISO_FLOOR_SAND_WITH_GRASS_4:
-	case ISO_FLOOR_SAND_WITH_GRASS_5:
-	case ISO_FLOOR_SAND_WITH_GRASS_25:
-	case ISO_FLOOR_SAND_WITH_GRASS_26:
-	case ISO_FLOOR_SAND_WITH_GRASS_27:
+	if (ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_1 <= floor_value && floor_value <= ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_27)
 		return TRUE;
-		break;
 
-	default:
-		return FALSE;
-		break;
-	}
+	return FALSE;
 }
 
 static int is_full_water_tile(int floor_value)
@@ -156,25 +119,10 @@ static int is_full_water_tile(int floor_value)
  */
 static int is_some_grass_tile(int floor_value)
 {
-	if (ISO_GRASS_01 <= floor_value && floor_value <= ISO_GRASS_21)
+	if (ISO_OVERLAY_GRASS_01 <= floor_value && floor_value <= ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_27)
 		return TRUE;
 
-	if (floor_value < ISO_FLOOR_SAND_WITH_GRASS_1)
-		return FALSE;
-	if (floor_value > ISO_FLOOR_SAND_WITH_GRASS_27)
-		return FALSE;
-
-	switch (floor_value) {
-	case ISO_WATER:
-	case ISO_FLOOR_EMPTY:
-	case ISO_RED_WAREHOUSE_FLOOR:
-		return FALSE;
-		break;
-	default:
-		break;
-	}
-
-	return TRUE;
+	return FALSE;
 }
 
 static int is_some_water_tile(int floor_value)
@@ -228,25 +176,25 @@ static void fix_corners_in_this_grass_tile(level * EditLevel, int x, int y)
 	//
 	if ((north_grass && west_grass && get_top_map_brick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_10, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_10, ISO_FLOOR_SAND);
 	}
 	// Upper right corner
 	//
 	if ((north_grass && east_grass && get_top_map_brick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + SOUTH_T) == ISO_FLOOR_SAND)) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_11, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_11, ISO_FLOOR_SAND);
 	}
 	// Lower left corner:
 	//
 	if ((south_grass && west_grass && get_top_map_brick(EditLevel, x + EAST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_09, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_09, ISO_FLOOR_SAND);
 	}
 	// Lower right corner
 	//
 	if ((south_grass && east_grass && get_top_map_brick(EditLevel, x + WEST_T, y) == ISO_FLOOR_SAND)
 	    && (get_top_map_brick(EditLevel, x, y + NORTH_T) == ISO_FLOOR_SAND)) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_12, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_12, ISO_FLOOR_SAND);
 	}
 }
 
@@ -309,22 +257,22 @@ static void fix_anticorners_in_this_grass_tile(level * EditLevel, int x, int y)
 
 	// Upper left corner:
 	if (north_grass && west_grass && get_top_map_brick(EditLevel, x + WEST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_16, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_16, ISO_FLOOR_SAND);
 	}
 
 	// Upper right corner
 	if (north_grass && east_grass && get_top_map_brick(EditLevel, x + EAST_T, y + NORTH_T) == ISO_FLOOR_SAND) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_15, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_15, ISO_FLOOR_SAND);
 	}
 
 	// Lower left corner:
 	if (south_grass && west_grass && get_top_map_brick(EditLevel, x + WEST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_13, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_13, ISO_FLOOR_SAND);
 	}
 
 	// Lower right corner
 	if (south_grass && east_grass && get_top_map_brick(EditLevel, x + EAST_T, y + SOUTH_T) == ISO_FLOOR_SAND) {
-		change_transparent_floor(EditLevel, x, y, ISO_GRASS_14, ISO_FLOOR_SAND);
+		change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_14, ISO_FLOOR_SAND);
 	}
 }
 
@@ -392,33 +340,33 @@ static void fix_halfpieces_in_this_grass_tile(level * EditLevel, int x, int y)
 	//
 	if (east_grass && !west_grass) {
 		if (MyRandom(100) < 50)
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_01, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_01, ISO_FLOOR_SAND);
 		else
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_02, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_02, ISO_FLOOR_SAND);
 	}
 	// Fix sand on the east:
 	//
 	if (!east_grass && west_grass) {
 		if (MyRandom(100) < 50)
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_04, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_04, ISO_FLOOR_SAND);
 		else
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_03, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_03, ISO_FLOOR_SAND);
 	}
 	// Fix sand on the north:
 	//
 	if (south_grass && !north_grass) {
 		if (MyRandom(100) < 50)
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_08, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_08, ISO_FLOOR_SAND);
 		else
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_07, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_07, ISO_FLOOR_SAND);
 	}
 	// Fix sand on the south:
 	//
 	if (!south_grass && north_grass) {
 		if (MyRandom(100) < 50)
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_06, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_06, ISO_FLOOR_SAND);
 		else
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_05, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_05, ISO_FLOOR_SAND);
 	}
 }
 
@@ -481,11 +429,11 @@ static void fix_isolated_grass_tile(level * EditLevel, int x, int y)
 		DebugPrintf(-4, "\nFixed an isolated grass tile.");
 		our_rand = MyRandom(100);
 		if (our_rand < 33)
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_17, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_17, ISO_FLOOR_SAND);
 		else if (our_rand < 66)
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_18, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_18, ISO_FLOOR_SAND);
 		else
-			change_transparent_floor(EditLevel, x, y, ISO_GRASS_19, ISO_FLOOR_SAND);
+			change_transparent_floor(EditLevel, x, y, ISO_OVERLAY_GRASS_19, ISO_FLOOR_SAND);
 	}
 }
 
@@ -566,19 +514,19 @@ void level_editor_beautify_grass_tiles(level * EditLevel)
 			if (is_full_grass_tile(this_tile_value)) {
 				our_rand = MyRandom(106);
 				if (our_rand < 25)
-					change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_1);
+					change_opaque_floor(EditLevel, x, y, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_1);
 				else if (our_rand < 50)
-					change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_2);
+					change_opaque_floor(EditLevel, x, y, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_2);
 				else if (our_rand < 75)
-					change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_3);
+					change_opaque_floor(EditLevel, x, y, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_3);
 				else if (our_rand < 100)
-					change_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_4);
+					change_opaque_floor(EditLevel, x, y, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_4);
 				else if (our_rand < 102)
-					change_top_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_25);
+					change_opaque_floor(EditLevel, x, y, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_25);
 				else if (our_rand < 104)
-					change_top_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_26);
+					change_opaque_floor(EditLevel, x, y, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_26);
 				else
-					change_top_opaque_floor(EditLevel, x, y, ISO_FLOOR_SAND_WITH_GRASS_27);
+					change_opaque_floor(EditLevel, x, y, ISO_OVERLAY_FLOOR_SAND_WITH_GRASS_27);
 			}
 		}
 	}
