@@ -722,10 +722,16 @@ static struct image *get_storage_for_floor_tile(const char *filename)
 {
 	int i;
 
-	for (i = 0; i < floor_tile_filenames.size; i++) {
-		char **current_filename = dynarray_member(&floor_tile_filenames, i, sizeof(char *));
+	for (i = 0; i < underlay_floor_tile_filenames.size; i++) {
+		char **current_filename = dynarray_member(&underlay_floor_tile_filenames, i, sizeof(char *));
 		if (!strcmp(*current_filename, filename))
-			return dynarray_member(&floor_images, i, sizeof(struct image));
+			return dynarray_member(&underlay_floor_images, i, sizeof(struct image));
+	}
+
+	for (i = 0; i < overlay_floor_tile_filenames.size; i++) {
+		char **current_filename = dynarray_member(&overlay_floor_tile_filenames, i, sizeof(char *));
+		if (!strcmp(*current_filename, filename))
+			return dynarray_member(&overlay_floor_images, i, sizeof(struct image));
 	}
 
 	ErrorMessage(__FUNCTION__, "Floor tiles texture atlas specifies element %s which is not expected.",
@@ -749,8 +755,12 @@ void load_floor_tiles(void)
 void free_floor_tiles(void)
 {
 	int i;
-	for (i = 0; i < floor_images.size; i++) {
-		delete_image(dynarray_member(&floor_images, i, sizeof(struct image)));
+	for (i = 0; i < underlay_floor_images.size; i++) {
+		delete_image(dynarray_member(&underlay_floor_images, i, sizeof(struct image)));
+	}
+
+	for (i = 0; i < overlay_floor_images.size; i++) {
+		delete_image(dynarray_member(&overlay_floor_images, i, sizeof(struct image)));
 	}
 }
 

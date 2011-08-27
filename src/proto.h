@@ -331,6 +331,7 @@ float translate_pixel_to_zoomed_map_location(float axis_x, float axis_y, int giv
 //floor_tiles.c
 int next_glue_timestamp(void);
 void free_glued_obstacles(level *lvl);
+struct image *get_floor_tile_image(int floor_value);
 
 //colldet.c
 int WalkablePassFilterCallback(colldet_filter * this, obstacle * obs, int obs_idx);

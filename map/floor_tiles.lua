@@ -1,15 +1,15 @@
-floor_tile_list {
+underlay_floor_tile_list {
 	"iso_miscellaneous_floor_0000.png",
 	"iso_miscellaneous_floor_0001.png",
 	"iso_miscellaneous_floor_0002.png",
 	"iso_miscellaneous_floor_0003.png",
 	"iso_miscellaneous_floor_0004.png",
 	"iso_miscellaneous_floor_0005.png",
-	"iso_grass_floor_0000.png",
-	"iso_grass_floor_0001.png",
-	"iso_grass_floor_0002.png",
-	"iso_grass_floor_0003.png",
-	"iso_grass_floor_0004.png",
+	"DUMMY_FLOOR_TILE",
+	"DUMMY_FLOOR_TILE",
+	"DUMMY_FLOOR_TILE",
+	"DUMMY_FLOOR_TILE",
+	"DUMMY_FLOOR_TILE",
 	"DUMMY_FLOOR_TILE",
 	"DUMMY_FLOOR_TILE",
 	"DUMMY_FLOOR_TILE",
@@ -32,9 +32,9 @@ floor_tile_list {
 	"iso_water_0000.png",
 	"iso_miscellaneous_floor_0007.png",
 	"iso_miscellaneous_floor_0008.png",
-	"iso_grass_floor_0024.png",
-	"iso_grass_floor_0025.png",
-	"iso_grass_floor_0026.png",
+	"DUMMY_FLOOR_TILE",
+	"DUMMY_FLOOR_TILE",
+	"DUMMY_FLOOR_TILE",
 	"DUMMY_FLOOR_TILE",
 	"DUMMY_FLOOR_TILE",
 	"iso_miscellaneous_floor_0009.png",
@@ -141,7 +141,10 @@ floor_tile_list {
 	"iso_water_sidewalk_03.png",
 	"iso_water_sidewalk_04.png",
 	"iso_water_edge_0013.png",
-	"iso_water_edge_0014.png",
+	"iso_water_edge_0014.png"
+}
+
+overlay_floor_tile_list {
 	"iso_grass_floor_0029.png",
 	"iso_grass_floor_0030.png",
 	"iso_grass_floor_0031.png",
@@ -162,5 +165,15 @@ floor_tile_list {
 	"iso_grass_floor_0046.png",
 	"iso_grass_floor_0047.png",
 	"iso_grass_floor_0048.png",
-	"iso_grass_floor_0049.png"
+	"iso_grass_floor_0049.png",
+
+	"iso_grass_floor_0000.png",
+	"iso_grass_floor_0001.png",
+	"iso_grass_floor_0002.png",
+	"iso_grass_floor_0003.png",
+	"iso_grass_floor_0004.png",
+
+	"iso_grass_floor_0024.png",
+	"iso_grass_floor_0025.png",
+	"iso_grass_floor_0026.png"
 }

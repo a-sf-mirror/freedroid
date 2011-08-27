@@ -64,4 +64,21 @@ void free_glued_obstacles(level *lvl)
 	}
 }
 
+/**
+ * Return a floor tile image for a given floor type.
+ * A floor type can be either underlay or overlay floor tile.
+ */
+struct image *get_floor_tile_image(int floor_value)
+{
+	struct dynarray *images = &underlay_floor_images;
+	// Overlay floor tiles are numbered starting with MAX_UNDERLAY_FLOOR_TILES.
+	// This offset is subtracted from floor_value to get index in the floor tiles
+	// image array.
+	if (floor_value >= MAX_UNDERLAY_FLOOR_TILES) {
+		floor_value -= MAX_UNDERLAY_FLOOR_TILES;
+		images = &overlay_floor_images;
+	}
+	return dynarray_member(images, floor_value, sizeof(struct image));
+}
+
 #undef _floor_tiles_c

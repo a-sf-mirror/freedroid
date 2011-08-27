@@ -202,9 +202,9 @@ static void show_floor(int mask)
 
 	start_image_batch();
 
-	for (layer = layer_start; layer < layer_end; layer++) {
-		for (line = LineStart; line < LineEnd; line++) {
-			for (col = ColStart; col < ColEnd; col++) {
+	for (line = LineStart; line < LineEnd; line++) {
+		for (col = ColStart; col < ColEnd; col++) {
+			for (layer = layer_start; layer < layer_end; layer++) {
 				// Retrieve floor tile
 				MapBrick = get_map_brick(lvl, col, line, layer);
 				if (MapBrick == ISO_FLOOR_EMPTY)
@@ -217,7 +217,7 @@ static void show_floor(int mask)
 					r = g = b = 1.0;
 				}
 
-				struct image *img = dynarray_member(&floor_images, MapBrick, sizeof(struct image));
+				struct image *img = get_floor_tile_image(MapBrick);
 				display_image_on_map(img, (float)col + 0.5, (float)line + 0.5, IMAGE_SCALE_RGB_TRANSFO(zf, r, g, b));
 			}
 		}

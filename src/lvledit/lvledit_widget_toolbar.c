@@ -134,7 +134,14 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 {
 	switch (type) {
 	case OBJECT_FLOOR:
-			sprintf(str, "Floor tile number %d, filename %s\n", array[idx], *(char **)dynarray_member(&floor_tile_filenames, array[idx], sizeof(char *)));
+			if (array[idx] >= MAX_UNDERLAY_FLOOR_TILES) {
+				int index = array[idx] - MAX_UNDERLAY_FLOOR_TILES;
+				char **filename = dynarray_member(&overlay_floor_tile_filenames, index, sizeof(char *));
+				sprintf(str, "Overlay floor tile %d, filename %s\n", index, *filename); 
+			} else {
+				char **filename = dynarray_member(&underlay_floor_tile_filenames, array[idx], sizeof(char *));
+				sprintf(str, "Underlay floor tile number %d, filename %s\n", array[idx], *filename);
+			}
 			break;
 	case OBJECT_OBSTACLE:
 			print_obstacle_info(str, array[idx]);
@@ -158,7 +165,7 @@ static struct image *leveleditor_get_object_image(enum lvledit_object_type type,
 	extern struct image level_editor_waypoint_cursor[];
 	switch (type) {
 	case OBJECT_FLOOR:
-			return dynarray_member(&floor_images, array[idx], sizeof(struct image));
+			return get_floor_tile_image(array[idx]);
 	case OBJECT_OBSTACLE:
 			return get_obstacle_image(array[idx], 0);
 	case OBJECT_WAYPOINT:

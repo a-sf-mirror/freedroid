@@ -668,7 +668,7 @@ static int lua_blast_ctor(lua_State *L)
 	return 0;
 }
 
-static int lua_floor_tile_list_ctor(lua_State *L)
+static void get_floor_tile_list(lua_State *L, struct dynarray *filenames, struct dynarray *images)
 {
 	struct image empty_image = EMPTY_IMAGE;
 
@@ -676,13 +676,27 @@ static int lua_floor_tile_list_ctor(lua_State *L)
 	while (lua_next(L, -2) != 0) {
 		if (lua_type(L, -1) == LUA_TSTRING) {
 			const char *filename = strdup(lua_tostring(L, -1));
-			dynarray_add(&floor_tile_filenames, &filename, sizeof(char *));
-			dynarray_add(&floor_images, &empty_image, sizeof(empty_image));
+			dynarray_add(filenames, &filename, sizeof(char *));
+			dynarray_add(images, &empty_image, sizeof(empty_image));
 		}
 		lua_pop(L, 1);
 	}
 	lua_pop(L, 1);
+}
 
+static int lua_underlay_floor_tile_list_ctor(lua_State *L)
+{
+	get_floor_tile_list(L, &underlay_floor_tile_filenames, &underlay_floor_images);
+	if (underlay_floor_tile_filenames.size >= MAX_UNDERLAY_FLOOR_TILES)
+		ErrorMessage(__FUNCTION__, "Maximum number of underlay floor tile types has been exceeded.", PLEASE_INFORM, IS_FATAL);
+	return 0;
+}
+
+static int lua_overlay_floor_tile_list_ctor(lua_State *L)
+{
+	get_floor_tile_list(L, &overlay_floor_tile_filenames, &overlay_floor_images);
+	if (overlay_floor_tile_filenames.size >= MAX_OVERLAY_FLOOR_TILES)
+		ErrorMessage(__FUNCTION__, "Maximum number of overlay floor tile types has been exceeded.", PLEASE_INFORM, IS_FATAL);
 	return 0;
 }
 
@@ -810,7 +824,8 @@ void init_luaconfig()
 		{"obstacle", lua_obstacle_ctor},
 		{"leveleditor_obstacle_category", lua_leveleditor_obstacle_category_ctor},
 		{"blast", lua_blast_ctor},
-		{"floor_tile_list", lua_floor_tile_list_ctor},
+		{"underlay_floor_tile_list", lua_underlay_floor_tile_list_ctor},
+		{"overlay_floor_tile_list", lua_overlay_floor_tile_list_ctor},
 		{"npc_list", lua_npc_list_ctor},
 		{"npc_shop", lua_npc_shop_ctor},
 		{NULL, NULL}
