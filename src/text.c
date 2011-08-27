@@ -399,10 +399,8 @@ static int display_text_using_line_height_with_cursor(const char *text, int star
 	// We position the internal text cursor on the right spot for
 	// the first character to be printed.
 	//
-	if (startx != -1)
-		MyCursorX = startx;
-	if (starty != -1)
-		MyCursorY = starty;
+	MyCursorX = startx;
+	MyCursorY = starty;
 
 	int cursor_x = MyCursorX;
 	int cursor_y = MyCursorY;
