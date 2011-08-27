@@ -803,9 +803,6 @@ void ShowSkillsScreen(void)
 	// At this point we know, that the skill screen is desired and must be
 	// displayed in-game:
 	//
-	// SDL_SetClipRect( Screen, NULL );
-	// our_SDL_blit_surface_wrapper ( SkillScreenImage , NULL , Screen , &SkillScreenRect );
-	//
 	blit_background("SkillScreen.png");
 
 	if (GameConfig.skill_explanation_screen_visible)

@@ -1056,7 +1056,7 @@ void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 			int light_strength;
 			light_strength = get_light_strength_screen((uint32_t) center_x, (uint32_t) center_y);
 			if (light_strength < (NUMBER_OF_SHADOW_IMAGES-1))
-				our_SDL_blit_surface_wrapper(light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle);
+				SDL_BlitSurface(light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle);
 
 			// Next tile along X
 			center_x += (LRC_ISO_WIDTH + LRC_ISO_GAP_X);
@@ -1076,7 +1076,7 @@ void blit_classic_SDL_light_radius(int decay_x, int decay_y)
 			int light_strength;
 			light_strength = get_light_strength_screen((uint32_t) center_x, (uint32_t) center_y);
 			if (light_strength < (NUMBER_OF_SHADOW_IMAGES-1))
-				our_SDL_blit_surface_wrapper(light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle);
+				SDL_BlitSurface(light_radius_chunk[light_strength].surface, NULL, Screen, &target_rectangle);
 
 			// Next tile along X
 			center_x += LRC_ISO_WIDTH + LRC_ISO_GAP_X;

@@ -59,86 +59,6 @@ int our_SDL_flip_wrapper()
 };				// int our_SDL_flip_wrapper ( SDL_Surface *screen )
 
 /**
- * Here comes our SDL wrapper, that will either do a normal SDL blit or,
- * if OpenGL is present and enabled, use OpenGL to draw the scene.
- */
-int our_SDL_blit_surface_wrapper(SDL_Surface * src, SDL_Rect * srcrect, SDL_Surface * dst, SDL_Rect * dstrect)
-{
-#ifdef HAVE_LIBGL
-	int bytes;
-	int target_x, target_y;
-#endif
-
-	if (use_open_gl) {
-#ifdef HAVE_LIBGL
-		if (src == NULL) {
-			ErrorMessage(__FUNCTION__,
-				     "Got NULL as source surface. src = 0x%08x, dstrect = 0x%08x x = %d y = %d w = %d h = %d.",
-				     PLEASE_INFORM, IS_FATAL, src, dstrect, dstrect ? dstrect->x : -1, dstrect ? dstrect->y : -1,
-				     dstrect ? dstrect->w : -1, dstrect ? dstrect->h : -1);
-			return (0);
-		}
-
-		if (dst == Screen) {
-			if (dstrect == NULL)
-				glRasterPos2i(0, GameConfig.screen_height - 1);
-			else {
-				target_x = dstrect->x;
-				target_y = dstrect->y + src->h - 1;
-
-				glRasterPos2i(target_x, target_y);
-			}
-
-			// error cases
-			if (!src->w) {
-				ErrorMessage(__FUNCTION__, "Surface of width 0 encountered, doing nothing.", NO_NEED_TO_INFORM,
-					     IS_WARNING_ONLY);
-				return 0;
-			}
-
-			if (srcrect != NULL) {
-				ErrorMessage(__FUNCTION__, "srcrect is not NULL, we do not handle this.", NO_NEED_TO_INFORM,
-					     IS_WARNING_ONLY);
-				return 0;
-			}
-
-			bytes = src->pitch / src->w;
-
-			glDisable(GL_TEXTURE_2D);
-
-			switch (bytes) {
-			case 4:
-#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-				glDrawPixels(src->w, src->h, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8, src->pixels);
-#else
-				glDrawPixels(src->w, src->h, GL_BGRA, GL_UNSIGNED_BYTE, src->pixels);
-#endif
-				break;
-			case 3:
-				glDrawPixels(src->w, src->h, GL_RGB, GL_UNSIGNED_BYTE, src->pixels);
-				break;
-			case 2:
-				glDrawPixels(src->w, src->h, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, src->pixels);
-				break;
-			default:
-				ErrorMessage(__FUNCTION__, "Surface has %d bytes per pixel. Doing nothing.", NO_NEED_TO_INFORM,
-					     IS_WARNING_ONLY);
-			}
-
-			glEnable(GL_TEXTURE_2D);
-			return (0);
-		}
-
-		return SDL_BlitSurface(src, srcrect, dst, dstrect);
-#endif
-	} else {
-		return SDL_BlitSurface(src, srcrect, dst, dstrect);
-	}
-
-	return 0;
-};				// void our_SDL_blit_surface_wrapper(image, NULL, Screen, NULL)
-
-/**
  *
  *
  */
@@ -288,7 +208,7 @@ SDL_Surface *our_IMG_load_wrapper(const char *file)
  * the surface, so that the dimensions will reach the next biggest power
  * of two in both directions, width and length.
  */
-SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
+static SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 {
 	int x = 1;
 	int y = 1;
@@ -308,11 +228,10 @@ SDL_Surface *pad_image_for_texture(SDL_Surface * our_surface)
 	dest.w = our_surface->w;
 	dest.h = our_surface->h;
 
-	our_SDL_blit_surface_wrapper(our_surface, NULL, padded_surf, &dest);
+	SDL_BlitSurface(our_surface, NULL, padded_surf, &dest);
 
-	return (padded_surf);
-
-};				// SDL_Surface* pad_image_for_texture ( SDL_Surface* our_surface ) 
+	return padded_surf;
+}
 
 /**
  * If OpenGL is in use, we need to make textured quads out of our normal
@@ -554,9 +473,9 @@ void RestoreMenuBackground(int backup_slot)
 
 #endif
 	} else {
-		our_SDL_blit_surface_wrapper(StoredMenuBackground[backup_slot], NULL, Screen, NULL);
+		SDL_BlitSurface(StoredMenuBackground[backup_slot], NULL, Screen, NULL);
 	}
-};				// void RestoreMenuBackground ( void )
+}
 
 /**
  * This function stores the current background as the background for a
