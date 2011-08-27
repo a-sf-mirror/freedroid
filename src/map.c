@@ -1810,10 +1810,10 @@ static void GetThisLevelsSpecialForces(char *search_pointer, int our_level_numbe
 		death_drop = ReadAndMallocStringFromData(special_droid, "DropItemName=\"", "\"");
 		if (strcmp(death_drop, "none")) {
 			newen->on_death_drop_item_code = GetItemIndexByName(death_drop);
-			free(death_drop);
 		} else {
 			newen->on_death_drop_item_code = -1;
 		}
+		free(death_drop);
 		free(special_droid);
 		enemy_insert_into_lists(newen, TRUE);
 	}
