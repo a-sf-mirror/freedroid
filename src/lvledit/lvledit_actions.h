@@ -70,6 +70,10 @@ void action_move_item(level *, item *, float, float);
 // Object manipulation
 void level_editor_place_aligned_object(int);
 
+// Map labels manipulation
+void action_create_map_label(level *, int, int, char *);
+void action_remove_map_label(level *, int, int);
+
 #ifndef _leveleditor_actions_c
 #define EXTERN extern
 #else

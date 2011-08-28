@@ -165,6 +165,15 @@ static action *action_create(int type, va_list args)
 		case ACT_CHANGE_FLOOR_LAYER:
 			act->d.target_layer = va_arg(args, int);
 			break;
+		case ACT_CREATE_MAP_LABEL:
+			act->d.create_map_label.x = va_arg(args, int);
+			act->d.create_map_label.y = va_arg(args, int);
+			act->d.create_map_label.label_name = va_arg(args, char *);
+			break;
+		case ACT_REMOVE_MAP_LABEL:
+			act->d.delete_map_label.x = va_arg(args, int);
+			act->d.delete_map_label.y = va_arg(args, int);
+			break;
 		default:
 			ErrorMessage(__FUNCTION__, "Unknown action type %d\n", PLEASE_INFORM, IS_FATAL, type);
 	}
@@ -625,6 +634,43 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 }
 
 /**
+ * @brief Create a map label on the map and push this action on the undo/redo stack.
+ *
+ * @param lvl Pointer towards the level where the map label is created.
+ * @param x The x position of the map label.
+ * @param y The y position of the map label.
+ * @param label_name The name of the map label.
+ */
+void action_create_map_label(level *lvl, int x, int y, char *label_name)
+{
+	add_map_label(lvl, x, y, label_name);
+
+	action_push(ACT_REMOVE_MAP_LABEL, x, y);
+}
+
+/**
+ * @brief Remove a map label on the map and push this action on the undo/redo stack.
+ *
+ * @param lvl Pointer towards the level where the map label is removed.
+ * @param x The x position of the map label.
+ * @param y The y position of the map label.
+ */
+void action_remove_map_label(level *lvl, int x, int y)
+{
+	char *old_label_name;
+	map_label *m;
+
+	m = get_map_label_from_coords(lvl, x, y);
+	if (m) {
+		old_label_name = strdup(m->label_name);
+
+		del_map_label(lvl, m->label_name);
+
+		action_push(ACT_CREATE_MAP_LABEL, x, y, old_label_name);
+	}
+}
+
+/**
  *  @fn void jump_to_level( int target_map, float x, float y)
  *
  *  @brief jumps to a target level, saving this level on the undo/redo stack
@@ -706,6 +752,12 @@ static void action_do(level * level, action * a)
 		break;
 	case ACT_CHANGE_FLOOR_LAYER:
 		action_change_floor_layer(level, a->d.target_layer);
+		break;
+	case ACT_CREATE_MAP_LABEL:
+		action_create_map_label(level, a->d.create_map_label.x, a->d.create_map_label.y, a->d.create_map_label.label_name);
+		break;
+	case ACT_REMOVE_MAP_LABEL:
+		action_remove_map_label(level, a->d.delete_map_label.x, a->d.delete_map_label.y);
 		break;
 	}
 }

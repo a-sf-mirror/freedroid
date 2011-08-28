@@ -836,6 +836,7 @@ void level_editor_copy_selection()
 {
 	struct selected_element *e;
 	struct lvledit_map_tile *t;	
+	map_label *m;
 	waypoint *w;
 	obstacle *o;
 	item *it;
@@ -883,6 +884,12 @@ void level_editor_copy_selection()
 			memcpy(w, e->data, sizeof(waypoint));
 
 			add_object_to_list(&clipboard_elements, w, OBJECT_WAYPOINT);
+			break;
+		case OBJECT_MAP_LABEL:
+			m = MyMalloc(sizeof(map_label));
+			memcpy(m, e->data, sizeof(map_label));
+
+			add_object_to_list(&clipboard_elements, m, OBJECT_MAP_LABEL);
 			break;
 		default:
 			;
@@ -935,6 +942,10 @@ void level_editor_cut_selection()
 			action_remove_waypoint(EditLevel(), ((waypoint *)(e->data))->x, ((waypoint *)(e->data))->y);
 			nbelem++;
 			break;
+		case OBJECT_MAP_LABEL:
+			action_remove_map_label(EditLevel(), ((map_label *)(e->data))->pos.x, ((map_label *)(e->data))->pos.y);
+			nbelem++;
+			break;
 		default:
 			break;
 		}
@@ -949,6 +960,7 @@ void level_editor_paste_selection()
 {		
 	struct selected_element *e;
 	struct lvledit_map_tile *t;	
+	map_label *m;
 	waypoint *w;
 	obstacle *o;
 	item *it;
@@ -1054,6 +1066,27 @@ void level_editor_paste_selection()
 			// Add and select
 			action_create_waypoint(EditLevel(), w->x, w->y, w->suppress_random_spawn);
 			select_waypoint_on_tile(w->x, w->y);
+
+			nbact++;
+			break;
+		case OBJECT_MAP_LABEL:
+			m = e->data;
+
+			m->pos.x -= ceil(center.x);
+			m->pos.y -= ceil(center.y);
+
+			m->pos.x += (int)Me.pos.x;
+			m->pos.y += (int)Me.pos.y;
+
+			if (m->pos.x >= EditLevel()->xlen || m->pos.y >= EditLevel()->ylen
+				|| m->pos.x < 0 || m->pos.y < 0) {
+				// We must not paste map labels outside the boundaries of level
+				break;
+			}
+
+			// Add and select
+			action_create_map_label(EditLevel(), m->pos.x, m->pos.y, m->label_name);
+			select_map_label_on_tile(m->pos.x, m->pos.y);
 
 			nbact++;
 			break;

@@ -62,6 +62,8 @@ enum ActionType {
 	ACT_JUMP_TO_LEVEL,
 	ACT_MULTIPLE_ACTIONS,
 	ACT_CHANGE_FLOOR_LAYER,
+	ACT_CREATE_MAP_LABEL,
+	ACT_REMOVE_MAP_LABEL,
 };
 
 typedef struct {
@@ -142,6 +144,17 @@ typedef struct {
 		} jump_to_level;
 
 		int target_layer;
+
+		struct {
+			int x;
+			int y;
+			char *label_name;
+		} create_map_label;
+
+		struct {
+			int x;
+			int y;
+		} delete_map_label;
 	} d;
 } action;
 
