@@ -156,59 +156,25 @@ void respawn_level(int level_num)
 }
 
 /**
- * Now that we plan not to use hard-coded and explicitly human written 
- * coordinates any more, we need to use some labels instead.  But there
- * should be a function to conveniently resolve a given label within a
- * given map.  That's what this function is supposed to do.
- */
-static void resolve_map_label_on_level(const char *label_name, location *position_pointer, int level_num)
-{
-	level *lvl = curShip.AllLevels[level_num];
-	struct map_label *map_label;
-
-	// Get the map label on this level
-	map_label = get_map_label(lvl, label_name);
-	if (map_label) {
-		// The map label has been found, we must resolve it
-		position_pointer->x = map_label->pos.x + 0.5;
-		position_pointer->y = map_label->pos.y + 0.5;
-		position_pointer->level = level_num;
-		
-		DebugPrintf(1, "\nResolving map label '%s' succeeded: pos.x=%d, pos.y=%d, pos.z=%d.",
-			    label_name, position_pointer->x, position_pointer->y, position_pointer->level);
-		return;
-	}
-
-	position_pointer->x = -1;
-	position_pointer->y = -1;
-	position_pointer->level = -1;
-	DebugPrintf(1, "\nResolving map label '%s' failed on level %d.", label_name, level_num);
-}
-
-/**
  * This is the ultimate function to resolve a given label within a
  * given SHIP.
  */
 void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer)
 {
+	map_label *m;
 	int i;
 
-	// We empty the given target pointer, so that we can tell
-	// a successful resolve later...
-	//
-	PositionPointer->x = -1;
-	PositionPointer->y = -1;
-
-	// Now we check each level of the ship, if it maybe contains this
-	// label...
-	//
 	for (i = 0; i < curShip.num_levels; i++) {
 		if (!level_exists(i))
 			continue;
-		resolve_map_label_on_level(MapLabel, PositionPointer, i);
 
-		if (PositionPointer->x != (-1))
+		m = get_map_label(curShip.AllLevels[i], MapLabel);
+		if (m) {
+			PositionPointer->x = m->pos.x + 0.5;
+			PositionPointer->y = m->pos.y + 0.5;
+			PositionPointer->level = i;
 			return;
+		}
 	}
 
 	ErrorMessage(__FUNCTION__, "\
