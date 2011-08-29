@@ -210,7 +210,7 @@ void play_enter_attack_run_state_sound(enemy *ThisRobot)
 
 	} else {		//either we output a standard sound, either we output a special voice sample such as "drill eyes"
 		char sample_path[1024] = "effects/bot_sounds/voice_samples/";
-		sprintf(sample_path + strlen(sample_path), "%d.ogg", MyRandom(42) + 1);
+		sprintf(sample_path + strlen(sample_path), "%d.ogg", MyRandom(47) + 1);
 		//printf("Playing %s\n", sample_path);
 		play_sound_at_position(sample_path, &Me.pos, &ThisRobot->pos);
 	}
