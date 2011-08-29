@@ -49,7 +49,7 @@ static char *chat_initialization_code;	//first time with a character-code
 static char *chat_startup_code;	//every time we start this dialog-code
 
 // Topic stack
-static const char *topic_stack[CHAT_TOPIC_STACK_SIZE];
+static char *topic_stack[CHAT_TOPIC_STACK_SIZE];
 static unsigned int topic_stack_slot;
 
 static void run_chat(enemy *ChatDroid, int is_subdialog);
@@ -138,11 +138,11 @@ There was an unrecognized parameter handled to this function.", PLEASE_INFORM, I
 void chat_push_topic(const char *topic)
 {
 	if (topic_stack_slot < CHAT_TOPIC_STACK_SIZE - 1) {
-		topic_stack[++topic_stack_slot] = topic;
+		topic_stack[++topic_stack_slot] = strdup(topic);
 	} else {
 		ErrorMessage(__FUNCTION__,
-			     "The maximum depth of 10 topics has been maxed out.",
-			     PLEASE_INFORM, IS_WARNING_ONLY);
+			     "The maximum depth of %hd topics has been maxed out.",
+			     PLEASE_INFORM, IS_WARNING_ONLY, CHAT_TOPIC_STACK_SIZE);
 	}
 }
 
@@ -151,6 +151,7 @@ void chat_push_topic(const char *topic)
  */
 void chat_pop_topic() {
 	if (topic_stack_slot > 0) {
+		free(topic_stack[topic_stack_slot]);
 		topic_stack_slot--;
 	} else {
 		ErrorMessage(__FUNCTION__,
@@ -430,6 +431,9 @@ static void run_chat(enemy *ChatDroid, int is_subdialog)
 	chat_control_next_node = -1;
 
 	// Reset topic stack variables
+	for(i = 1; i <= topic_stack_slot ; i++) {
+		free(topic_stack[i]);
+	}
 	topic_stack_slot = 0;
 	topic_stack[0] = "";
 
