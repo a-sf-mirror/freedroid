@@ -1506,7 +1506,7 @@ jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum,
 		} else {
 			int j = xlen;
 			while (j--) {
-				autostr_append(shipstr, "  4 ");
+				autostr_append(shipstr, "  0 ");
 			}
 			autostr_append(shipstr, "\n");
 		}
