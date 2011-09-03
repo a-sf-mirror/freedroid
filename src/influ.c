@@ -1740,7 +1740,6 @@ void init_tux()
 	Me.got_hit_time = -1;
 
 	Me.points_to_distribute = 0;
-	Me.ExpRequired = 1500;
 	
 	// reset statistics	
 	Me.meters_traveled = 0;
@@ -1756,8 +1755,8 @@ void init_tux()
 		Me.time_since_last_visit_or_respawn[i] = -1;
 	}
 
-	Me.Experience = 1;
-	Me.exp_level = 1;
+	Me.Experience = 0;
+	Me.exp_level = 0;
 	Me.Gold = 0;
 	
 	Me.readied_skill = 0;

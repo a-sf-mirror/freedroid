@@ -999,12 +999,6 @@ void write_tux_t(struct auto_string *strout, tux_t *data)
     autostr_append(strout, "exp_level = ");
     write_int32_t(strout, &data->exp_level);
     autostr_append(strout, ",\n");
-    autostr_append(strout, "ExpRequired = ");
-    write_uint32_t(strout, &data->ExpRequired);
-    autostr_append(strout, ",\n");
-    autostr_append(strout, "ExpRequired_previously = ");
-    write_uint32_t(strout, &data->ExpRequired_previously);
-    autostr_append(strout, ",\n");
     autostr_append(strout, "Gold = ");
     write_uint32_t(strout, &data->Gold);
     autostr_append(strout, ",\n");
@@ -1340,14 +1334,6 @@ void read_tux_t(lua_State* L, int index, tux_t *data)
     }
     if (lua_getfield_or_warn(L, index, "exp_level")) {
         read_int32_t(L, -1, &data->exp_level);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "ExpRequired")) {
-        read_uint32_t(L, -1, &data->ExpRequired);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "ExpRequired_previously")) {
-        read_uint32_t(L, -1, &data->ExpRequired_previously);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "Gold")) {
