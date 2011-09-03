@@ -36,6 +36,7 @@
 #include "global.h"
 #include "proto.h"
 
+#define BASE_EXP_REQUIRED 500
 #define BASE_HPMAX 20
 #define HPMAX_GAIN_PER_LEVEL 5
 #define HPMAX_GAIN_PER_PHY_POINT 2
@@ -121,28 +122,27 @@ static void AddInfluencerItemSecondaryBonus(item * BonusItem)
 }
 
 /**
- * Maybe the influencer has reached a new experience level?
- * Let's check this...
+ * \brief Get the experience required for next level.
+ * \param level Current level.
+ */
+int get_experience_required(int level)
+{
+	if (level < 0)
+		return 0;
+	return BASE_EXP_REQUIRED * (level * level) + BASE_EXP_REQUIRED;
+}
+
+/**
+ * \brief Check if Tux has reached a new experience level.
  */
 void check_for_new_experience_level_reached()
 {
-	int BaseExpRequired = 500;
+	int exp_required = get_experience_required(Me.exp_level);
 
 	if (Me.exp_level >= 24)
 		return;
 
-	Me.ExpRequired = BaseExpRequired * (exp((Me.exp_level - 1) * log(2)));
-
-	// For display reasons in the experience graph, we also state the experience 
-	// needed for the previous level inside the tux struct.  Therefore all exp/level
-	// calculations are found in this function.
-	//
-	if (Me.exp_level > 1) {
-		Me.ExpRequired_previously = BaseExpRequired * (exp((Me.exp_level - 2) * log(2)));
-	} else
-		Me.ExpRequired_previously = 0;
-
-	if (Me.Experience > Me.ExpRequired) {
+	if (Me.Experience >= exp_required) {
 		Me.exp_level++;
 		Me.points_to_distribute += 5;
 
@@ -472,7 +472,7 @@ void ShowCharacterScreen()
 	SetCurrentFont(Messagestat_BFont);
 	display_text(_("Next level"), LEFT_TXT_X + CharacterRect.x, 107 + CharacterRect.y, &CharacterRect);
 	SetCurrentFont(Messagevar_BFont);
-	sprintf(CharText, "%u", Me.ExpRequired);
+	sprintf(CharText, "%u", get_experience_required(Me.exp_level));
 	display_text(CharText, LEVEL_NR_X + CharacterRect.x, 107 + CharacterRect.y, &CharacterRect);
 
 	SetCurrentFont(Messagestat_BFont);

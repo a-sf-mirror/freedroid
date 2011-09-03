@@ -561,10 +561,8 @@ typedef struct tux {
 	int double_ranged_damage;	// does this Tux do double ranged weapon damage?
 	float experience_factor; // multiplier for the experience gained from bots
 
-	unsigned int Experience;	// character Experience = 'spare droid elements found'
-	int exp_level;		// which 'experience level' is the influencer currently at?
-	unsigned int ExpRequired;	// how much experience required for the next level?
-	unsigned int ExpRequired_previously;	// how was required for the previous level?
+	int exp_level;			/* Tux experience level. */
+	unsigned int Experience;	
 
 	unsigned int Gold;
 	string character_name;
