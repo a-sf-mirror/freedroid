@@ -458,7 +458,6 @@ int item_upgrade_ui_visible();
 
 // character.c
 void display_buttons(void);
-int get_experience_required(int);
 void UpdateAllCharacterStats(void);
 void ShowCharacterScreen(void);
 void HandleCharacterScreen(void);

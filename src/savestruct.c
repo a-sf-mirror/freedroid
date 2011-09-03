@@ -993,8 +993,128 @@ void write_tux_t(struct auto_string *strout, tux_t *data)
     autostr_append(strout, "experience_factor = ");
     write_float(strout, &data->experience_factor);
     autostr_append(strout, ",\n");
+    autostr_append(strout, "Experience = ");
+    write_uint32_t(strout, &data->Experience);
+    autostr_append(strout, ",\n");
     autostr_append(strout, "exp_level = ");
     write_int32_t(strout, &data->exp_level);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "ExpRequired = ");
+    write_uint32_t(strout, &data->ExpRequired);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "ExpRequired_previously = ");
+    write_uint32_t(strout, &data->ExpRequired_previously);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "Gold = ");
+    write_uint32_t(strout, &data->Gold);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "character_name = ");
+    write_string(strout, &data->character_name);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "AllMissions = ");
+    write_mission_array(strout, data->AllMissions, MAX_MISSIONS_IN_GAME);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "marker = ");
+    write_int32_t(strout, &data->marker);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "LastCrysoundTime = ");
+    write_float(strout, &data->LastCrysoundTime);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "TextVisibleTime = ");
+    write_float(strout, &data->TextVisibleTime);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "readied_skill = ");
+    write_int32_t(strout, &data->readied_skill);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "skill_level = ");
+    write_int32_t_array(strout, data->skill_level, MAX_NUMBER_OF_PROGRAMS);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "melee_weapon_skill = ");
+    write_int32_t(strout, &data->melee_weapon_skill);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "ranged_weapon_skill = ");
+    write_int32_t(strout, &data->ranged_weapon_skill);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "spellcasting_skill = ");
+    write_int32_t(strout, &data->spellcasting_skill);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "Inventory = ");
+    write_item_array(strout, data->Inventory, MAX_ITEMS_IN_INVENTORY);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "weapon_item = ");
+    write_item(strout, &data->weapon_item);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "drive_item = ");
+    write_item(strout, &data->drive_item);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "armour_item = ");
+    write_item(strout, &data->armour_item);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "shield_item = ");
+    write_item(strout, &data->shield_item);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "special_item = ");
+    write_item(strout, &data->special_item);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "HaveBeenToLevel = ");
+    write_uint8_t_array(strout, data->HaveBeenToLevel, MAX_LEVELS);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "time_since_last_visit_or_respawn = ");
+    write_float_array(strout, data->time_since_last_visit_or_respawn, MAX_LEVELS);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "next_intermediate_point = ");
+    write_moderately_finepoint_array(strout, data->next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "Automap = ");
+    write_automap_data_t_array(strout, data->Automap, MAX_LEVELS);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "current_zero_ring_index = ");
+    write_int32_t(strout, &data->current_zero_ring_index);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "Position_History_Ring_Buffer = ");
+    write_gps_array(strout, data->Position_History_Ring_Buffer, MAX_INFLU_POSITION_HISTORY);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "BigScreenMessageIndex = ");
+    write_int32_t(strout, &data->BigScreenMessageIndex);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "BigScreenMessage = ");
+    write_string_array(strout, data->BigScreenMessage, MAX_BIG_SCREEN_MESSAGES);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "BigScreenMessageDuration = ");
+    write_float_array(strout, data->BigScreenMessageDuration, MAX_BIG_SCREEN_MESSAGES);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "slowdown_duration = ");
+    write_float(strout, &data->slowdown_duration);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "paralyze_duration = ");
+    write_float(strout, &data->paralyze_duration);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "invisible_duration = ");
+    write_float(strout, &data->invisible_duration);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "nmap_duration = ");
+    write_float(strout, &data->nmap_duration);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "quest_browser_changed = ");
+    write_int32_t(strout, &data->quest_browser_changed);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "program_shortcuts = ");
+    write_int32_t_array(strout, data->program_shortcuts, 10);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "TakeoverSuccesses = ");
+    write_int32_t_array(strout, data->TakeoverSuccesses, NB_DROID_TYPES);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "TakeoverFailures = ");
+    write_int32_t_array(strout, data->TakeoverFailures, NB_DROID_TYPES);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "destroyed_bots = ");
+    write_int32_t_array(strout, data->destroyed_bots, NB_DROID_TYPES);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "damage_dealt = ");
+    write_int32_t_array(strout, data->damage_dealt, NB_DROID_TYPES);
+    autostr_append(strout, ",\n");
+    autostr_append(strout, "meters_traveled = ");
+    write_float(strout, &data->meters_traveled);
     autostr_append(strout, ",\n");
     autostr_append(strout, "}");
 }
@@ -1214,8 +1334,169 @@ void read_tux_t(lua_State* L, int index, tux_t *data)
         read_float(L, -1, &data->experience_factor);
         lua_pop(L, 1);
     }
+    if (lua_getfield_or_warn(L, index, "Experience")) {
+        read_uint32_t(L, -1, &data->Experience);
+        lua_pop(L, 1);
+    }
     if (lua_getfield_or_warn(L, index, "exp_level")) {
         read_int32_t(L, -1, &data->exp_level);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "ExpRequired")) {
+        read_uint32_t(L, -1, &data->ExpRequired);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "ExpRequired_previously")) {
+        read_uint32_t(L, -1, &data->ExpRequired_previously);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Gold")) {
+        read_uint32_t(L, -1, &data->Gold);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "character_name")) {
+        read_string(L, -1, &data->character_name);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "AllMissions")) {
+        read_mission_array(L, -1, data->AllMissions, MAX_MISSIONS_IN_GAME);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "marker")) {
+        read_int32_t(L, -1, &data->marker);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "LastCrysoundTime")) {
+        read_float(L, -1, &data->LastCrysoundTime);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "TextVisibleTime")) {
+        read_float(L, -1, &data->TextVisibleTime);
+        lua_pop(L, 1);
+    }
+    data->TextToBeDisplayed = NULL;
+    if (lua_getfield_or_warn(L, index, "readied_skill")) {
+        read_int32_t(L, -1, &data->readied_skill);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "skill_level")) {
+        read_int32_t_array(L, -1, data->skill_level, MAX_NUMBER_OF_PROGRAMS);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "melee_weapon_skill")) {
+        read_int32_t(L, -1, &data->melee_weapon_skill);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "ranged_weapon_skill")) {
+        read_int32_t(L, -1, &data->ranged_weapon_skill);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "spellcasting_skill")) {
+        read_int32_t(L, -1, &data->spellcasting_skill);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Inventory")) {
+        read_item_array(L, -1, data->Inventory, MAX_ITEMS_IN_INVENTORY);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "weapon_item")) {
+        read_item(L, -1, &data->weapon_item);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "drive_item")) {
+        read_item(L, -1, &data->drive_item);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "armour_item")) {
+        read_item(L, -1, &data->armour_item);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "shield_item")) {
+        read_item(L, -1, &data->shield_item);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "special_item")) {
+        read_item(L, -1, &data->special_item);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "HaveBeenToLevel")) {
+        read_uint8_t_array(L, -1, data->HaveBeenToLevel, MAX_LEVELS);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "time_since_last_visit_or_respawn")) {
+        read_float_array(L, -1, data->time_since_last_visit_or_respawn, MAX_LEVELS);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "next_intermediate_point")) {
+        read_moderately_finepoint_array(L, -1, data->next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Automap")) {
+        read_automap_data_t_array(L, -1, data->Automap, MAX_LEVELS);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "current_zero_ring_index")) {
+        read_int32_t(L, -1, &data->current_zero_ring_index);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "Position_History_Ring_Buffer")) {
+        read_gps_array(L, -1, data->Position_History_Ring_Buffer, MAX_INFLU_POSITION_HISTORY);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "BigScreenMessageIndex")) {
+        read_int32_t(L, -1, &data->BigScreenMessageIndex);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "BigScreenMessage")) {
+        read_string_array(L, -1, data->BigScreenMessage, MAX_BIG_SCREEN_MESSAGES);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "BigScreenMessageDuration")) {
+        read_float_array(L, -1, data->BigScreenMessageDuration, MAX_BIG_SCREEN_MESSAGES);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "slowdown_duration")) {
+        read_float(L, -1, &data->slowdown_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "paralyze_duration")) {
+        read_float(L, -1, &data->paralyze_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "invisible_duration")) {
+        read_float(L, -1, &data->invisible_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "nmap_duration")) {
+        read_float(L, -1, &data->nmap_duration);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "quest_browser_changed")) {
+        read_int32_t(L, -1, &data->quest_browser_changed);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "program_shortcuts")) {
+        read_int32_t_array(L, -1, data->program_shortcuts, 10);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "TakeoverSuccesses")) {
+        read_int32_t_array(L, -1, data->TakeoverSuccesses, NB_DROID_TYPES);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "TakeoverFailures")) {
+        read_int32_t_array(L, -1, data->TakeoverFailures, NB_DROID_TYPES);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "destroyed_bots")) {
+        read_int32_t_array(L, -1, data->destroyed_bots, NB_DROID_TYPES);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "damage_dealt")) {
+        read_int32_t_array(L, -1, data->damage_dealt, NB_DROID_TYPES);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "meters_traveled")) {
+        read_float(L, -1, &data->meters_traveled);
         lua_pop(L, 1);
     }
 }
@@ -1963,8 +2244,12 @@ void read_gps(lua_State* L, int index, gps *data)
     }
 }
 
+define_write_xxx_array(item);
+define_read_xxx_array(item);
 define_write_xxx_dynarray(upgrade_socket);
 define_read_xxx_dynarray(upgrade_socket);
+define_write_xxx_array(automap_data_t);
+define_read_xxx_array(automap_data_t);
 define_write_xxx_dynarray(item);
 define_read_xxx_dynarray(item);
 define_write_xxx_array(uint8_t);
@@ -1975,6 +2260,8 @@ define_write_xxx_array(spell_active);
 define_read_xxx_array(spell_active);
 define_write_xxx_array(melee_shot);
 define_read_xxx_array(melee_shot);
+define_write_xxx_array(mission);
+define_read_xxx_array(mission);
 define_write_xxx_array(bullet);
 define_read_xxx_array(bullet);
 define_write_xxx_array(int32_t);
@@ -1983,5 +2270,7 @@ define_write_xxx_array(moderately_finepoint);
 define_read_xxx_array(moderately_finepoint);
 define_write_xxx_array(string);
 define_read_xxx_array(string);
+define_write_xxx_array(gps);
+define_read_xxx_array(gps);
 define_write_xxx_array(blast);
 define_read_xxx_array(blast);

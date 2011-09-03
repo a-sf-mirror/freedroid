@@ -76,9 +76,17 @@ void write_gps(struct auto_string *, gps *);
 /*! \ingroup genrw */
 void read_gps(lua_State *, int, gps *);
 /*! \ingroup genrw */
+void write_item_array(struct auto_string *, item *, int);
+/*! \ingroup genrw */
+void read_item_array(lua_State *, int, item *, int);
+/*! \ingroup genrw */
 void write_upgrade_socket_dynarray(struct auto_string *, upgrade_socket_dynarray *);
 /*! \ingroup genrw */
 void read_upgrade_socket_dynarray(lua_State *, int, upgrade_socket_dynarray *);
+/*! \ingroup genrw */
+void write_automap_data_t_array(struct auto_string *, automap_data_t *, int);
+/*! \ingroup genrw */
+void read_automap_data_t_array(lua_State *, int, automap_data_t *, int);
 /*! \ingroup genrw */
 void write_item_dynarray(struct auto_string *, item_dynarray *);
 /*! \ingroup genrw */
@@ -100,6 +108,10 @@ void write_melee_shot_array(struct auto_string *, melee_shot *, int);
 /*! \ingroup genrw */
 void read_melee_shot_array(lua_State *, int, melee_shot *, int);
 /*! \ingroup genrw */
+void write_mission_array(struct auto_string *, mission *, int);
+/*! \ingroup genrw */
+void read_mission_array(lua_State *, int, mission *, int);
+/*! \ingroup genrw */
 void write_bullet_array(struct auto_string *, bullet *, int);
 /*! \ingroup genrw */
 void read_bullet_array(lua_State *, int, bullet *, int);
@@ -115,6 +127,10 @@ void read_moderately_finepoint_array(lua_State *, int, moderately_finepoint *, i
 void write_string_array(struct auto_string *, string *, int);
 /*! \ingroup genrw */
 void read_string_array(lua_State *, int, string *, int);
+/*! \ingroup genrw */
+void write_gps_array(struct auto_string *, gps *, int);
+/*! \ingroup genrw */
+void read_gps_array(lua_State *, int, gps *, int);
 /*! \ingroup genrw */
 void write_blast_array(struct auto_string *, blast *, int);
 /*! \ingroup genrw */
