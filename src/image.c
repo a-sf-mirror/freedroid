@@ -265,6 +265,21 @@ void display_image_on_map(struct image *img, float X, float Y, struct image_tran
 	display_image_on_screen(img, x, y, t);
 }
 
+static SDL_Surface *copy_subsurface(SDL_Surface *surface, SDL_Rect *rect)
+{
+	// Create new surface for subimage
+	SDL_Surface *surf = SDL_CreateRGBSurface(0, rect->w, rect->h, 32, rmask, gmask, bmask, amask);
+	SDL_Surface *new_surf = SDL_DisplayFormatAlpha(surf);
+	SDL_FreeSurface(surf);
+
+	// Copy subimage
+	SDL_SetAlpha(surface, 0, 1);
+	SDL_SetAlpha(new_surf, SDL_SRCALPHA | SDL_RLEACCEL, 0);
+	SDL_BlitSurface(surface, rect, new_surf, NULL);
+
+	return new_surf;
+}
+
 /**
  * Create an image as a part of another (texture atlas element).
  */
@@ -277,10 +292,14 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 
 	if (use_open_gl) {
 
-		// In OpenGL mode, require the source to be a texture.
+		// If the source isn't a texture, it means that something bad happened,
+		// e.g. OpenGL implementation doesn't support big enough textures.
+		// In this case, FreedroidRPG will try to create a separate texture
+		// for each subimage.
 		if (!source->texture_has_been_created) {
-			ErrorMessage(__FUNCTION__, "Trying to create subimage from image source %x (width %d height %d), but image does not have a GL texture.", PLEASE_INFORM, IS_WARNING_ONLY, source, source->w, source->h);
-	return;
+			new_img->surface = copy_subsurface(source->surface, rect);
+			make_texture_out_of_surface(new_img);
+			return;
 		}
 
 		// Copy structure fields
@@ -304,15 +323,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 			return;
 		}
 
-		// Create new surface for subimage
-		SDL_Surface *surf = SDL_CreateRGBSurface(0, rect->w, rect->h, 32, rmask, gmask, bmask, amask);
-		new_img->surface = SDL_DisplayFormatAlpha(surf);
-		SDL_FreeSurface(surf);
-				
-		// Copy subimage
-		SDL_SetAlpha(source->surface, 0, 1);
-		SDL_SetAlpha(new_img->surface, SDL_SRCALPHA | SDL_RLEACCEL, 0);
-		SDL_BlitSurface(source->surface, rect, new_img->surface, NULL);
+		new_img->surface = copy_subsurface(source->surface, rect);
 	}
 
 }
