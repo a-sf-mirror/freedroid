@@ -980,6 +980,8 @@ This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATA
 	Me.mouse_move_target.y = Me.pos.y;
 	Me.mouse_move_target.z = Me.pos.z;
 
+	Me.mouse_move_target_combo_action_type = NO_COMBO_ACTION_SET;
+
 	// Animate Tux as standing still
 	if (with_animation_reset) {
 		Me.walk_cycle_phase = 0.0;
