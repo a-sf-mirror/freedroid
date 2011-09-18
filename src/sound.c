@@ -45,6 +45,7 @@
 static int allocated_sound_channels;
 
 static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned short angle, unsigned char distance);
+static int allocate_sample_cache_entry(void);
 static void remove_all_samples_from_WAV_cache(void);
 static void LoadAndFadeInBackgroundMusic(void);
 
@@ -117,6 +118,7 @@ void play_sound(const char *filename)
 /** ============================================ GLOBALS ============================================  */
 
 static Mix_Chunk *dynamic_WAV_cache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
+static Uint32 dynamic_WAV_cache_last_use[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
 static char *sound_names_in_dynamic_wav_chache[MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE];
 static char channel_must_be_freed[MAX_SOUND_CHANNELS];
 
@@ -557,10 +559,9 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 
 		// Now we try to load the requested sound file into memory...
 		//
-		dynamic_WAV_cache[next_free_position_in_cache] = NULL;
 		find_file(SoundSampleFileName, SOUND_DIR, fpath, 0);
-		dynamic_WAV_cache[next_free_position_in_cache] = Mix_LoadWAV(fpath);
-		if (dynamic_WAV_cache[next_free_position_in_cache] == NULL) {
+		Mix_Chunk *loaded_wav_chunk = Mix_LoadWAV(fpath);
+		if (!loaded_wav_chunk) {
 			fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
 			ErrorMessage(__FUNCTION__, "Could not load sound file \"%s\": %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fpath, Mix_GetError());
 			// If the sample couldn't be loaded, we just quit, not marking anything
@@ -568,29 +569,22 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 			//
 			return;
 		}
+
+		// Allocate a cache entry for the loaded WAV sample
+		int sample_cache_index = allocate_sample_cache_entry();
+		dynamic_WAV_cache[sample_cache_index] = loaded_wav_chunk;
+		sound_names_in_dynamic_wav_chache[sample_cache_index] = MyMalloc(strlen(SoundSampleFileName) + 1);
+		strcpy(sound_names_in_dynamic_wav_chache[sample_cache_index], SoundSampleFileName);
+
 		// Hoping, that this will not take up too much processor speed, we'll
 		// now change the volume of the sound sample in question to what is normal
 		// for sound effects right now...
 		//
-		Mix_VolumeChunk(dynamic_WAV_cache[next_free_position_in_cache], (int)rintf(MIX_MAX_VOLUME * GameConfig.Current_Sound_FX_Volume));	//aep
+		Mix_VolumeChunk(dynamic_WAV_cache[sample_cache_index], (int)rintf(MIX_MAX_VOLUME * GameConfig.Current_Sound_FX_Volume));
 
 		// We note the position of the sound file to be played
 		//
-		index_of_sample_to_be_played = next_free_position_in_cache;
-
-		// Now we store the corresponding file name as well.
-		//
-		sound_names_in_dynamic_wav_chache[next_free_position_in_cache] = MyMalloc(strlen(SoundSampleFileName) + 1);
-		strcpy(sound_names_in_dynamic_wav_chache[next_free_position_in_cache], SoundSampleFileName);
-
-		// Now we increase the 'next_sample' index and are done.
-		//
-		next_free_position_in_cache++;
-		if (next_free_position_in_cache >= MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE) {
-			fprintf(stderr, "\n\nnext_free_position_in_cache: %d,\n", next_free_position_in_cache);
-			ErrorMessage(__FUNCTION__, "\n"
-						"ALERT! Ran out of space in the dynamic wav sample cache! Cache size too small?", PLEASE_INFORM, IS_FATAL);
-		}
+		index_of_sample_to_be_played = sample_cache_index;
 	}
 	// Now we try to play the sound file that has just been successfully
 	// loaded into memory or has resided in memory already for some time...
@@ -604,6 +598,7 @@ static void play_sound_cached_pos(const char *SoundSampleFileName, unsigned shor
 
 	// Now we try to play the sound file that has just been successfully
 	// loaded into memory or has resided in memory already for some time...
+	dynamic_WAV_cache_last_use[index_of_sample_to_be_played] = SDL_GetTicks();
 	if (Mix_PlayChannel(channel_to_play_sample_on, dynamic_WAV_cache[index_of_sample_to_be_played], 0) <= -1) {
 		fprintf(stderr, "\n\nSoundSampleFileName: '%s' Mix_GetError(): %s \n", SoundSampleFileName, Mix_GetError());
 		ErrorMessage(__FUNCTION__, "\n"
@@ -650,6 +645,29 @@ static void remove_all_samples_from_WAV_cache(void)
 	// the next play function will search it and produce a segfault.
 	//
 	next_free_position_in_cache = 0;
+}
+
+static int allocate_sample_cache_entry(void)
+{
+	// When the wav file cache is full, free the least recently used entry.
+	if (next_free_position_in_cache >= MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE) {
+		int i;
+		Uint32 least_recently_used = dynamic_WAV_cache_last_use[0];
+		int least_recently_used_index = 0;
+
+		for (i = 1; i < MAX_SOUNDS_IN_DYNAMIC_WAV_CACHE; i++) {
+			if (dynamic_WAV_cache_last_use[i] < least_recently_used) {
+				least_recently_used = dynamic_WAV_cache_last_use[i];
+				least_recently_used_index = i;
+			}
+		}
+
+		free(sound_names_in_dynamic_wav_chache[least_recently_used_index]);
+		Mix_FreeChunk(dynamic_WAV_cache[least_recently_used_index]);
+		return least_recently_used_index;
+	}
+
+	return next_free_position_in_cache++;
 }
 
 #endif				// HAVE_LIBSDL_MIXER
