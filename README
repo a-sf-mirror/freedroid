@@ -94,7 +94,7 @@
   Z          ... Toggle show labels for items on the ground
   T          ... Toggle walls becoming transparent when Tux approaches
   Ctrl + Q   ... Quit the game
-  Ctrl + G   ... Toggle grab imput (prevent cursor from escaping the game window)
+  Ctrl + G   ... Toggle grab input (prevent cursor from escaping the game window)
   Print      ... Take screenshot (saved into ./.freedroid_rpg/ folder of your home directory)
 
   Arrow keys ... Move
