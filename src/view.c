@@ -1488,7 +1488,7 @@ static void blit_all_item_slots(int mask)
 			// background of the slot will be highlighted...
 			//
 			if (MouseCursorIsInRect(&(item_level->ItemList[i].text_slot_rectangle), GetMousePos_x(), GetMousePos_y()))
-				draw_rectangle(&item_level->ItemList[i].text_slot_rectangle, 0, 0, 153, 255);
+				draw_rectangle(&item_level->ItemList[i].text_slot_rectangle, 0, 0, 153, 100);
 			else {
 				if ((item_level->ItemList[i].text_slot_rectangle.x + item_level->ItemList[i].text_slot_rectangle.w <= 0) ||
 					(item_level->ItemList[i].text_slot_rectangle.y + item_level->ItemList[i].text_slot_rectangle.h <= 0) ||
