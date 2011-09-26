@@ -77,7 +77,7 @@ Nr=3 Text=_"What can you tell me about the 614 type?"
 	npc_says(_"The latest version of the security line is the 615.")
 	-- probably some when a cookie can check whether tux already saw such a droid and trigger/switch on the following dialog part
 	npc_says(_"Unfortunately its development was not finished when the great assault started.")
-	npc_says(_"The lack of security options on the system of the 615 lead to a malfunction.")
+	npc_says(_"The lack of security options on the system of the 615 led to a malfunction.")
 	npc_says(_"Circumstances that led to the great assault even made the 615 go crazy and attack people.")
 	npc_says(_"For the sake of your health, you should stay away from the 615 droids.")
 	npc_says(_"You have been warned!")
