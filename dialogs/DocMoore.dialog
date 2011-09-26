@@ -183,7 +183,7 @@ Nr=11 Text=_"What do you mean, self-inflicted damage?"
 	end
 	tux_says(_"What can you tell me about Bender?")
 	npc_says(_"Bender asked my advice about some pills he saw advertised in an e-mail. I told him not to buy them.")
-	npc_says(_"But guess what? He bought and took the stupid pills anyways, and then he came back to me to fix him.")
+	npc_says(_"But guess what? He bought and took the stupid pills anyway, and then he came back to me to fix him.")
 	npc_says(_"If he, or anyone, is going to completely disregard my medical advice, and then think they are going to get my medical supplies, then they are wrong.")
 	npc_says(_"He won't get anything from me anymore. It would be unfair to the community to waste all the supplies on him, and that's my final word on that.")
 	add_cookie("asked_docmoore_self_damage")
