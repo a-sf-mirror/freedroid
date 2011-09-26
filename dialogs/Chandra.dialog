@@ -346,7 +346,7 @@ Nr=25 Text=_"How come no one seems freaked out by a big fracking penguin?" Topic
 	npc_says(_"[b]<chuckles>[/b] This is not the first time the people of Earth have seen one of your kind.")
 	npc_says(_"Of course, its been almost one hundred years since Linarians first came to this planet. As you might imagine most of the people who were alive then are long gone.")
 	npc_says(_"But the townspeople were made aware of your existence upon your discovery. Everyone was quickly informed of the legends performed by the Linarians of the past.")
-	npc_says(_"While you will find some people helpful because of this, others may be a bit more hostile. The hostility is a matter of xenophobia and pride in one own's species.")
+	npc_says(_"While you will find some people helpful because of this, others may be a bit more hostile. The hostility is a matter of xenophobia and pride in one's own species.")
 	if (not has_cookie("guard_follow_tux")) then
 		npc_says(_"Don't tell anyone else, but I'm surprised the Red Guard ordered you to be thawed. They are human supremacists to the extreme. For them to accept your help does not make much sense. They must be playing at something. Beware the Red Guard, Linarian.")
 	end
