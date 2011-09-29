@@ -98,7 +98,7 @@ Nr=3 Text=_"My limbs don't seem to want to work properly. Can you help me with t
 	npc_says(_"Ah yes, movement. It's second nature to us humans, but our research with you in the past showed that your brain seems to work more like a computer.")
 	npc_says(_"To move somewhere, you first need to determine where you want to go by [b]left clicking[/b] where you want to go on your HUD.")
 	npc_says(_"If you can go there, you will do so.")
-	npc_says(_"Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again.") 
+	npc_says(_"Now try to move to the red dot to the north. Then to the black grating to the east, and then talk to me again.")
 	update_quest(_"Tutorial Movement", _"I'm supposed to left click anywhere to move to a location. If I can figure out a way, I will move there automatically. Tom wants me to first try to move to the red dot to the North.")
 	add_cookie("learn_to_walk")
 	end_dialog()
@@ -233,7 +233,7 @@ Nr=16 Text=_"You mentioned discarding an item. Why would I want to do that?"
 	npc_says(_"Well, I can think of a few reasons.")
 	npc_says(_"You might not have enough room in your inventory for an item you need more, or can sell for more.")
 	npc_says(_"If an item is close to being destroyed, you might also consider dropping it.")
-	npc_says(_"And finally some items give negative status effects, and aren't worth selling.") 
+	npc_says(_"And finally some items give negative status effects, and aren't worth selling.")
 	npc_says(_"Armor or weapons may affect you in different ways.")
 	npc_says(_"Some will help you out, for example by increasing your cooling rate or increasing your dexterity. This is the work of specialized nanobots, but the reverse can happen too.")
 	hide(16)
@@ -441,7 +441,7 @@ Nr=70 Text=_"There is a wall in the path! How will we get through?"
 
 Nr=30 Text=_"Ranged weaponry seems safer than getting up close and personal."
 <LuaCode>
-	npc_says(_"Well, Linarian, most of the time, it is.")
+	npc_says(_"Well, Linarian, most of the time it is.")
 	npc_says(_"There are some bots with ranged weaponry, but we don't have any of those in captivity.")
 	add_quest(_"Tutorial Shooting", _"I am learning about how to use ranged weapons.")
 	hide(30) show(31)
@@ -450,7 +450,7 @@ Nr=30 Text=_"Ranged weaponry seems safer than getting up close and personal."
 
 Nr=31 Text=_"So what can you tell me about guns?"
 <LuaCode>
-	npc_says(_"The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come in swinging range.")
+	npc_says(_"The basic idea behind ranged weaponry is to hurt or kill an enemy without having to come within swinging range.")
 	npc_says(_"There are three basic ways to do this: traditional firearms, lasers, and plasma weapons.")
 	npc_says(_"Traditional firearms are things that go bang. A small explosion accelerates the ammunition towards the target at a high velocity, causing injury.")
 	npc_says(_"Lasers use an intensified beam of light to burn through the intended victim. These operate on replaceable charge packs.")
@@ -489,7 +489,7 @@ Nr=33 Text=_"I think I understand how to use guns now."
 		npc_says(_"Here's my personal .22 Automatic pistol. It's not much as guns go, but it can do the trick.")
 		add_item(".22 Automatic", 1)
 	end
-	npc_says(_"Here is some more ammunition for it")
+	npc_says(_"Here is some more ammunition for it.")
 	npc_says(_"You'll no doubt get more mileage out of the plasma pistol, though. Or any other gun, for that matter.")
 	npc_says(_"Practice switching weapons and reloading.")
 	npc_says(_"On the other side of that fence are some bots. Practice killing them off with various ranged weapons.")
@@ -608,11 +608,11 @@ Nr=40 Text=_"Why are we stopping?"
 	npc_says(_"[b]Dexterity[/b] controls your hit rate, or how likely you are to hit the enemy. It also determines how likely you are to dodge a hit from them.")
 	npc_says(_"[b]Cooling[/b] is your processors cooling. or heat resilience, and determines how much you can process before your system starts overheating.")
 	npc_says(_"Finally, among your main characteristics, [b]Physique[/b] determines how much health you have.")
-	npc_says(_"They are general [b]Melee[/b] and [b]Ranged[/b] fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
-	npc_says(_"You also have the [b]Programming[/b] skill, which essentially is about programming in an energy efficient manner so programs cause less heat.")
+	npc_says(_"There are general [b]Melee[/b] and [b]Ranged[/b] fighting skills, both of which increase the damage you inflict and how fast you attack as you improve them.")
+	npc_says(_"You also have the [b]Programming[/b] skill, which essentially is about programming in an energy-efficient manner so programs cause less heat.")
 	npc_says(_"Apart from this, a few programs require a teacher and training points to improve.")
 	npc_says(_"[b]Extract Bot Parts[/b] is a special passive skill that will allow you to salvage parts from bots you 'retire', which you can trade for money in the town.")
-	npc_says(_"A good technician is able to make use of that parts.")
+	npc_says(_"A good technician is able to make use of those parts.")
 	npc_says(_"He can create, let's say, an add-on and, after doing some modifications to the item, attach this add-on.")
 	npc_says(_"This way an upgraded item is created.")
 	add_quest(_"Tutorial Upgrading Items", _"There is a way to upgrade items if I meet a good technician. It sounds useful, maybe I should learn more about this.")
@@ -785,20 +785,20 @@ Nr=57 Text=_"Tell me again about take over, I'm not sure I got it all."
 
 Nr=58 Text=_"Can you tell me more about upgrading items?"
 <LuaCode>
-	npc_says(_"You can upgrade most weapons and clothings. First you'll need some materials to craft add-ons.") 
+	npc_says(_"You can upgrade most weapons and clothing. First, you'll need some materials to craft add-ons.")
 	npc_says(_"Parts needed for this process can be extracted from bots. You'll have to learn how to do it.")
 	npc_says(_"When you have enough materials, you can craft an add-on. Make sure the add-on is suitable for your equipment.")
-	npc_says(_"After this, you have to make a socket in your equipment so you can plug the add-on.")
+	npc_says(_"After this, you have to make a socket in your equipment so you can plug in the add-on.")
 	npc_says(_"That's the theory. Simple, isn't it?")
 	npc_says(_"I'll give you some materials now and let you craft an add-on.")
-	npc_says(_"Pay attention to the type of the socket the add-on needs.")
+	npc_says(_"Pay attention to the type of socket the add-on needs.")
 	update_quest(_"Tutorial Upgrading Items", _"Before crafting an add-on I have to get some materials. The best way is to extract them from the bots, using Extract Bot Parts skill. Each add-on requires a socket in the item. When the add-on is ready, I have to create a socket in the item and plug the add-on. Only technicians can craft add-ons or plug them.")
 -- TODO decide on what type of upgrade should player make?
 	for var in ipairs(items_up) do
 		add_item(items_up[var], 20)
 	end
 	craft_addons()
-	npc_says(_"Now you'll need to pay some more money in order to make a socket and plug-in the add-on. Here, take some.")
+	npc_says(_"Now you'll need to pay some more money in order to make a socket and plug in the add-on. Here, take some.")
 	add_gold(600)
 	npc_says(_"Choose an item and add an appropriate socket by clicking '+' on the right of the item. Then attach the add-on to this item and confirm your choice.")
 	upgrade_items()
@@ -809,7 +809,7 @@ Nr=58 Text=_"Can you tell me more about upgrading items?"
 
 Nr=59 Text=_"I wasted my materials on the add-on I didn't need. Can you give more?"
 <LuaCode>
-	npc_says(_"Yes, but only this time. I'll give you some money too. Just be more careful in the future and make wise choices.") 
+	npc_says(_"Yes, but only this time. I'll give you some money too. Just be more careful in the future and make wise choices.")
 	npc_says(_"Reality is not as generous as I am.")
 	for var in ipairs(items_up) do
 		add_item(items_up[var], 20)
