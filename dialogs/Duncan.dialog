@@ -97,7 +97,7 @@ Nr=4 Text=_"The fall of the Red Guard? Tell me more about it."
 
 Nr=5 Text=_"I want to buy some grenades."
 <LuaCode>
-	npc_says_random(_"Certainly.", _"Sure.", _"With pleasure I am showing you my offers.")
+	npc_says_random(_"Certainly.", _"Sure.", _"With pleasure.")
 	trade_with("Duncan")
 </LuaCode>
 ----------------------------------------------------------------------
