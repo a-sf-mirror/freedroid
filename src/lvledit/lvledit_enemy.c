@@ -303,6 +303,7 @@ out:
 void place_special_force(gps droid_pos, int enemy_type)
 {
 	enemy *en = enemy_new(enemy_type);
+	enemy_reset(en);
 
 	// Initialise some of the enemy fields to their default
 	en->SpecialForce = TRUE;
