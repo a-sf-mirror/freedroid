@@ -1053,8 +1053,8 @@ int level_exists(int level_num)
 int LoadGameConfig(void)
 {
 	char fname[5000];
-	int original_width_of_screen = 800;
-	int original_height_of_screen = 600;
+	int original_width_of_screen = DEFAULT_SCREEN_WIDTH;
+	int original_height_of_screen = DEFAULT_SCREEN_HEIGHT;
 	FILE *configfile;
 
 	if (!our_config_dir) {

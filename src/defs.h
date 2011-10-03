@@ -458,7 +458,9 @@ enum {
 #define BUTTON_WIDTH 35
 #define BUTTON_HEIGHT 19
 
-#define CHARACTERRECT_X (GameConfig . screen_width-320)
+#define DEFAULT_SCREEN_WIDTH  (800)
+#define DEFAULT_SCREEN_HEIGHT (600)
+#define CHARACTERRECT_X (GameConfig.screen_width - 320)
 #define CHARACTERRECT_W (320)
 #define CHARACTERRECT_H (480)
 

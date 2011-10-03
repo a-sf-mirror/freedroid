@@ -1159,8 +1159,8 @@ void ParseCommandLine(int argc, char *const argv[])
 
 		case 'r':
 			if (!optarg) {
-				GameConfig.screen_width = 800;
-				GameConfig.screen_height = 600;
+				GameConfig.screen_width = DEFAULT_SCREEN_WIDTH;
+				GameConfig.screen_height = DEFAULT_SCREEN_HEIGHT;
 			} else {
 				int nb_res = sizeof(hard_resolutions) / sizeof(hard_resolutions[0]);
 				char *x = strtok(optarg, "x");
@@ -1349,8 +1349,8 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.show_item_labels = 0;
 	GameConfig.last_edited_level = -1;
 	GameConfig.show_all_floor_layers = 1;
-	GameConfig.screen_width = 800;
-	GameConfig.screen_height = 600;
+	GameConfig.screen_width = DEFAULT_SCREEN_WIDTH;
+	GameConfig.screen_height = DEFAULT_SCREEN_HEIGHT;
 	GameConfig.fullscreen_on = FALSE;
 }
 
@@ -1417,7 +1417,7 @@ static void detect_available_resolutions(void)
 			"SDL reports all resolutions are supported in fullscreen mode.\n"
 			"Please use -r WIDTHxHEIGHT to specify any one you like.\n"
 			"Defaulting to a sane one for now\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
-			screen_resolutions[0] =	(screen_resolution) {800, 600, "", TRUE};
+			screen_resolutions[0] =	(screen_resolution) {DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, "", TRUE};
 			i = 1;
 	} else {
 		// Add resolutions to the screen_resolutions array
@@ -1520,8 +1520,6 @@ I will not be able to load or save games or configurations\n\
 #endif
 	}
 
-	GameConfig.screen_width = 800;
-	GameConfig.screen_height = 600;
 	input_keyboard_init();
 	input_set_default();
 	init_lua();
