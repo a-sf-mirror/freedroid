@@ -1351,6 +1351,8 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.show_all_floor_layers = 1;
 	GameConfig.screen_width = DEFAULT_SCREEN_WIDTH;
 	GameConfig.screen_height = DEFAULT_SCREEN_HEIGHT;
+	GameConfig.next_time_width_of_screen = GameConfig.screen_width;
+	GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 	GameConfig.fullscreen_on = FALSE;
 }
 
