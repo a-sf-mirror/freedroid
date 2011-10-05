@@ -1526,6 +1526,8 @@ I will not be able to load or save games or configurations\n\
 	input_set_default();
 	init_lua();
 
+	LoadGameConfig();
+
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		ErrorMessage(__FUNCTION__, "Couldn't initialize SDL: %s\n", PLEASE_INFORM, IS_FATAL,  SDL_GetError());
 	// So the video library could be initialized.  So it should also be
@@ -1533,8 +1535,6 @@ I will not be able to load or save games or configurations\n\
 	atexit(SDL_Quit);
 
 	detect_available_resolutions();
-
-	LoadGameConfig();
 
 	ParseCommandLine(argc, argv);
 
