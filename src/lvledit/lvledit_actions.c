@@ -927,6 +927,9 @@ void delete_map_level(int lnum)
 	int i;
 	level *l = curShip.AllLevels[lnum];
 
+	free(l->Levelname);
+	free(l->Background_Song_Name);
+
 	// Clear out all the existing glue information.
 	free_glued_obstacles(l);
 
@@ -948,6 +951,15 @@ void delete_map_level(int lnum)
 		if (curShip.AllLevels[i]->jump_target_east == lnum)
 			curShip.AllLevels[i]->jump_target_east = -1;
 	}
+
+	// Free obstacle extensions.
+	dynarray_free(&l->obstacle_extensions);
+
+	// Free map labels.
+	dynarray_free(&l->map_labels);
+
+	// Free waypoints.
+	dynarray_free(&l->waypoints);
 
 	// Free memory
 	free(curShip.AllLevels[lnum]);
