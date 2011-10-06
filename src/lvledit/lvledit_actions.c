@@ -540,7 +540,7 @@ void action_change_floor_layer(level *lvl, int layer)
 	action_push(ACT_CHANGE_FLOOR_LAYER, old_floor_layer);
 }
 
-static int action_change_map_label(level *EditLevel, int i, char *name, int x, int y, int undoable)
+static void action_change_map_label(level *EditLevel, int i, char *name, int x, int y)
 {
 	struct map_label *map_label;
 	char *old_label = NULL;
@@ -557,23 +557,16 @@ static int action_change_map_label(level *EditLevel, int i, char *name, int x, i
 		del_map_label(EditLevel, old_label);
 	}
 
-	// Create the undo action if appropriate
-	if (undoable) {
-		action_push(ACT_SET_MAP_LABEL, i, old_label, x, y);
-	} else {
-		free(old_label);
-	}
+	action_push(ACT_SET_MAP_LABEL, i, old_label, x, y);
 
 	// If the new label is empty, we are done
 	if (!name || !strlen(name))
-		return 0;
+		return;
 
 	name = strdup(name);
 
 	// Create a new map label at the position of cursor
 	add_map_label(EditLevel, x, y, name);
-
-	return undoable;
 }
 
 void level_editor_action_change_map_label_user(level *EditLevel, float x, float y)
@@ -630,7 +623,7 @@ void level_editor_action_change_map_label_user(level *EditLevel, float x, float 
 	}
 
 	// Change a map label when the name enter by the user is valid
-	action_change_map_label(EditLevel, i, name, rintf(x - 0.5), rintf(y - 0.5), 1);
+	action_change_map_label(EditLevel, i, name, rintf(x - 0.5), rintf(y - 0.5));
 }
 
 /**
@@ -745,7 +738,7 @@ static void action_do(level * level, action * a)
 		action_change_obstacle_label(level, a->d.change_obstacle_name.obstacle, a->d.change_obstacle_name.new_name, 1);
 		break;
 	case ACT_SET_MAP_LABEL:
-		action_change_map_label(level, a->d.change_label_name.id, a->d.change_label_name.new_name, a->d.change_label_name.x, a->d.change_label_name.y, 1);
+		action_change_map_label(level, a->d.change_label_name.id, a->d.change_label_name.new_name, a->d.change_label_name.x, a->d.change_label_name.y);
 		break;
 	case ACT_JUMP_TO_LEVEL:
 		action_jump_to_level(a->d.jump_to_level.target_level, a->d.jump_to_level.x, a->d.jump_to_level.y);
