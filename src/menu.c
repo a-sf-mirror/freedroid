@@ -1096,7 +1096,7 @@ static void RunSubMenu(int startup, int menu_id)
 
 		int ret = menus[menu_id].HandleSelection(pos);
 
-		for (i = 0; i < MAX_MENU_ITEMS; i++)
+		for (i = 0; i < MAX_MENU_ITEMS + 1; i++)
 			free(texts[i]);
 
 		if (ret == EXIT_MENU) {
