@@ -800,6 +800,7 @@ void del_map_label(level *, const char *);
 void free_map_labels(level *lvl);
 struct map_label *get_map_label(level *, const char *);
 struct map_label *get_map_label_from_coords(level *, float, float);
+struct map_label *map_label_exists(const char *);
 
 // lvledit_display.c
 float lvledit_zoomfact_inv(void);

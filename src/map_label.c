@@ -120,3 +120,26 @@ struct map_label *get_map_label_from_coords(level *lvl, float x, float y)
 
 	return NULL;
 }
+
+/**
+ * @brief Check if a map label exists.
+ *
+ * @param label_name The name of the map label.
+ * @return A pointer towards the map label or NULL if it doesn't exist.
+ */
+struct map_label *map_label_exists(const char *label_name)
+{
+	map_label *m;
+	int i;
+
+	for (i = 0; i < curShip.num_levels; i++) {
+		if (!level_exists(i))
+			continue;
+
+		m = get_map_label(curShip.AllLevels[i], label_name);
+		if (m)
+			return m;
+	}
+
+	return NULL;
+}
