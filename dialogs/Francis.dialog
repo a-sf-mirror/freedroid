@@ -144,8 +144,8 @@ Nr=5 Text=_"Who am I?"
 
 Nr=6 Text=_"Who are you? What is going on?"
 <LuaCode>
-	npc_says(_"My name is Dr. Francis Spark. I am... uh... the keeper of this cryogenic facility.")
-	set_bot_name(_"Dr. Francis - Cryogenicist")
+	npc_says(_"My name is Dr. Francis Spark. I am... uh... the keeper of this cryonic facility.")
+	set_bot_name(_"Dr. Francis - Cryonicist")
 	npc_says(_"Currently, there is a war raging all around the globe. One day, our once loyal bots rebelled against us and began trying to wipe us out. The beginning of this war has been dubbed 'The Great Assault.'")
 	npc_says(_"And it looks like humans are losing the war. Our town isn't doing so well at this point either. But there is still hope, since you were discovered here.")
 	hide(6) show(7, 8, 9)
@@ -211,7 +211,7 @@ Nr=12 Text=_"How do I get out from here?"
 Nr=30 Text=_"The 614 bot said he might lock the outside gate!"
 <LuaCode>
 	add_cookie("cryo_outergate_code")
-	npc_says(_"Oh. You'll need to put the cryogenic terminals into admin mode to access the gate controls.")
+	npc_says(_"Oh. You'll need to put the cryonic terminals into admin mode to access the gate controls.")
 	tux_says(_"How do I do that?")
 	npc_says(_"You press star-pound-zero-six-pound and then enter the free-speech number.")
 	npc_says(_"It is kind of long, so I'll write it down for you.")

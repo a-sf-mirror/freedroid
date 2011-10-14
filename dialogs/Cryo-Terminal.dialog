@@ -30,8 +30,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	terminal = "guest@cryo-solutions: ~ # "
-	npc_says(_"Welcome to [b]Cryogenic Solutions[/b]!", "NO_WAIT")
-	npc_says_random(_"We freeze you today, so you can see tomorrow!", _"Take the fast trip to the future with Cryogenic Solutions!", "NO_WAIT")
+	npc_says(_"Welcome to [b]Cryonic Solutions[/b]!", "NO_WAIT")
+	npc_says_random(_"We freeze you today, so you can see tomorrow!", _"Take the fast trip to the future with Cryonic Solutions!", "NO_WAIT")
 	npc_says(_"Please make your selection to learn more!", "NO_WAIT")
 	if (not has_cookie("cryo_term_unlocked")) then
 	show(0, 1, 2, 3)
@@ -50,10 +50,10 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=0 Text=_"about"
 <LuaCode>
-	npc_says(_"Cryogenic Solutions is a full service cryogenic company.", "NO_WAIT")
+	npc_says(_"Cryonic Solutions is a full service cryonic company.", "NO_WAIT")
 	npc_says(_"We provide not only full cryostasis, but post-stasis reintegration into the world of tomorrow!")
-	npc_says(_"Take the fast trip to the future with Cryogenic Solutions!")
-	npc_says(_"Cryogenic Solutions, since ".. os.date("%w")+2011 .._", is the name people trust in cryogenics!")
+	npc_says(_"Take the fast trip to the future with Cryonic Solutions!")
+	npc_says(_"Cryonic Solutions, since ".. os.date("%w")+2011 .._", is the name people trust in cryonics!")
 	cli_says(terminal, "NO_WAIT")
 	hide(0)
 </LuaCode>
@@ -61,7 +61,7 @@ Nr=0 Text=_"about"
 
 Nr=1 Text=_"appointments and visiting hours"
 <LuaCode>
-	npc_says(_"Cryogenic Solutions operates 24 hours a day every day of the year.")
+	npc_says(_"Cryonic Solutions operates 24 hours a day every day of the year.")
 	npc_says(_"However for the safety of our clients, visiting hours are restricted.", "NO_WAIT")
 	npc_says(_"Visiting hours for family and friends are by appointment only [b]Monday-Thursday 10:00-14:00[/b].")
 	npc_says(_"Prospective clients are welcome to make appointments from [b]15:00-17:00 Fridays[/b].", "NO_WAIT")
@@ -73,7 +73,7 @@ Nr=1 Text=_"appointments and visiting hours"
 Nr=2 Text=_"pricing"
 <LuaCode>
 	npc_says(_"Seeing the distant future is priceless.")
-	npc_says(_"But we here at Cryogenic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable.")
+	npc_says(_"But we here at Cryonic Solutions understand that you and your loved ones have a budget. So we offer a wide range of products to make your trip to the future affordable.")
 	npc_says(_"Make an appointment today!")
 	cli_says(terminal, "NO_WAIT")
 	hide(2)
@@ -85,7 +85,7 @@ Nr=3 Text=_"advantages"
 	npc_says(_"Are you looking to experience a whole new reality?")
 	npc_says(_"Or are you interested in finding out what happens?")
 	npc_says(_"Or maybe you want to see what compound interest can do for you?")
-	npc_says(_"These are just some of the many advantages of taking the fast trip to the future with Cryogenic Solutions!")
+	npc_says(_"These are just some of the many advantages of taking the fast trip to the future with Cryonic Solutions!")
 	cli_says(terminal, "NO_WAIT")
 	hide(3)
 </LuaCode>

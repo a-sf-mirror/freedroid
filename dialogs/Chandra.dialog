@@ -223,7 +223,7 @@ Nr=14 Text=_"Where in the void is this world?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=15 Text=_"Chandra? Francis in the Cryogenics facility mentioned your name."
+Nr=15 Text=_"Chandra? Francis in the cryonic facility mentioned your name."
 <LuaCode>
 	npc_says(_"Oh did he? What exactly did he say about me?")
 	tux_says(_"He said you might know more about who I am, about Linarians.")
