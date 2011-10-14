@@ -558,7 +558,6 @@ typedef struct tux {
 
 	int slowing_melee_targets;	// duration for how long hit enemies are slowed down
 	int paralyzing_melee_targets;	// duration for how long hit enemies are paralyzed
-	int double_ranged_damage;	// does this Tux do double ranged weapon damage?
 	float experience_factor; // multiplier for the experience gained from bots
 
 	unsigned int Experience;	

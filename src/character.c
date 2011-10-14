@@ -180,8 +180,6 @@ void update_all_primary_stats()
 	Me.cooling = Me.base_cooling;
 	Me.physique = Me.base_physique;
 
-	Me.double_ranged_damage = FALSE;
-
 	// Now we add all bonuses to the influencers PRIMARY stats
 	//
 	AddInfluencerItemAttributeBonus(&Me.armour_item);
@@ -288,14 +286,6 @@ void update_damage_tux_can_do()
 			//
 			Me.damage_modifier *= RangedDamageMultiplierTable[Me.ranged_weapon_skill];
 			Me.base_damage *= RangedDamageMultiplierTable[Me.ranged_weapon_skill];
-
-			// Maybe there is a plugin for double damage with ranged
-			// weapons present?
-			//
-			if (Me.double_ranged_damage != 0) {
-				Me.base_damage *= 2;
-				Me.damage_modifier *= 2;
-			}
 		}
 	} else {
 		// In case of no weapon equipped at all, we initialize

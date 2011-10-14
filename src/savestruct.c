@@ -987,9 +987,6 @@ void write_tux_t(struct auto_string *strout, tux_t *data)
     autostr_append(strout, "paralyzing_melee_targets = ");
     write_int32_t(strout, &data->paralyzing_melee_targets);
     autostr_append(strout, ",\n");
-    autostr_append(strout, "double_ranged_damage = ");
-    write_int32_t(strout, &data->double_ranged_damage);
-    autostr_append(strout, ",\n");
     autostr_append(strout, "experience_factor = ");
     write_float(strout, &data->experience_factor);
     autostr_append(strout, ",\n");
@@ -1318,10 +1315,6 @@ void read_tux_t(lua_State* L, int index, tux_t *data)
     }
     if (lua_getfield_or_warn(L, index, "paralyzing_melee_targets")) {
         read_int32_t(L, -1, &data->paralyzing_melee_targets);
-        lua_pop(L, 1);
-    }
-    if (lua_getfield_or_warn(L, index, "double_ranged_damage")) {
-        read_int32_t(L, -1, &data->double_ranged_damage);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "experience_factor")) {
