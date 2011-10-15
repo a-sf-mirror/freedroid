@@ -26,6 +26,10 @@ freedroid-discussion@lists.sourceforge.net
 Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
+<FirstTime LuaCode>
+	francis_help = 150
+</LuaCode>
+
 <EveryTime LuaCode>
 	if (not has_cookie("bot_attack")) then
 		npc_says(_"HELP! We're under attack!","NO_WAIT")
@@ -94,6 +98,7 @@ Nr=1 Text=_"No, not yet."
 Nr=2 Text=_"(Lie) Yes, the bot has been defeated."
 <LuaCode>
 	if (not has_cookie("tux_liar")) then
+		francis_help = francis_help - 30
 		npc_says(_"Oh, many thanks to ...")
 		npc_says(_"You lie! You shouldn't toy with an old man with a weak heart! I can hear its servos whirring away... heading this way to kill us both! Please you must help...")
 		add_cookie("tux_liar")
@@ -232,6 +237,7 @@ Nr=90 Text=_"Thanks for the help. I'll be going now."
 
 Nr=91 Text=_"Deliver that cube yourself."
 <LuaCode>
+	francis_help = francis_help - 10
 	npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 	npc_says(_"But... The prospect of facing that... That man again... I just can't bear it.")
 	npc_says(_"Please, " ..get_player_name().. ", will you do me this favor?")
@@ -241,14 +247,14 @@ Nr=91 Text=_"Deliver that cube yourself."
 
 Nr=92 Text=_"No, I don't want to deliver your stupid cube."
 <LuaCode>
+	francis_help = francis_help - 60
 	add_cookie("refused_deliverance")
 	npc_says(_"... All right.")
 	npc_says(_"I can't force you to do it if you don't want to.")
 	npc_says(_"I suppose I'll just have to go to Spencer myself.")
 	npc_says(_"Anyway, I am glad I could help you. You should be careful around here. Best head straight for our town.")
-	npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
 	hide(92, 93)
-	end_dialog()
+	next(98)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -256,10 +262,21 @@ Nr=93 Text=_"All right, I'll deliver the cube."
 <LuaCode>
 	npc_says(_"Thank you.")
 	npc_says(_"You can ask one of the guards in town, they'll know where to find Spencer.")
-	npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
 	add_item("Data cube", 1)
 	add_quest(_"Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
 	hide(90, 91, 92, 93)
+	next(98)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=98 Text=_"BUG, REPORT ME! francis node98"
+NO_TEXT
+<LuaCode>
+	if (francis_help > 0) then
+		npc_says("Oh... I almost forgot... This is a small help but I hope it will make your life a little easier.")
+		add_gold(francis_help)
+	end
+	npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
