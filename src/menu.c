@@ -1061,12 +1061,12 @@ enum {
 	MENU_NUM
 };
 
-#define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[MAX_MENU_ITEMS + 1]);
+#define MENU(x, y) static int x##_handle (int); static void x##_fill (char *[MAX_MENU_ITEMS]);
 MENU_LIST
 #undef MENU
     struct Menu {
 	int (*HandleSelection) (int);
-	void (*FillText) (char *[MAX_MENU_ITEMS + 1]);
+	void (*FillText) (char *[MAX_MENU_ITEMS]);
 };
 
 struct Menu menus[] = {
@@ -1085,7 +1085,7 @@ static void RunSubMenu(int startup, int menu_id)
 		int pos;
 		// We need to fill at each loop because
 		// several menus change their contents
-		for (i = 0; i < MAX_MENU_ITEMS + 1; i++)
+		for (i = 0; i < MAX_MENU_ITEMS; i++)
 			texts[i] = (char *)malloc(1024 * sizeof(char));
 		menus[menu_id].FillText(texts);
 
@@ -1096,7 +1096,7 @@ static void RunSubMenu(int startup, int menu_id)
 
 		int ret = menus[menu_id].HandleSelection(pos);
 
-		for (i = 0; i < MAX_MENU_ITEMS + 1; i++)
+		for (i = 0; i < MAX_MENU_ITEMS; i++)
 			free(texts[i]);
 
 		if (ret == EXIT_MENU) {
@@ -1367,7 +1367,8 @@ static int Resolution_handle(int n)
 		++nb_res;
 	}
 
-	int offset = max(0, nb_supported_res - MAX_MENU_ITEMS + 1);
+	// + 2 here accounts for 'Back' and end-of-list marker
+	int offset = max(0, nb_supported_res - MAX_MENU_ITEMS + 2);
 
 	// Last menu entry is 'Back'
 	if (n == nb_supported_res - offset) {
@@ -1398,7 +1399,7 @@ static int Resolution_handle(int n)
 	return CONTINUE_MENU;
 }
 
-static void Resolution_fill(char *MenuTexts[MAX_MENU_ITEMS + 1])
+static void Resolution_fill(char *MenuTexts[MAX_MENU_ITEMS])
 {
 	int i = 0;
 	int j = 0;
@@ -1408,13 +1409,13 @@ static void Resolution_fill(char *MenuTexts[MAX_MENU_ITEMS + 1])
 	for (i = 0; screen_resolutions[i].xres != -1; i++);
 	nb_res = i;
 
-	// we require an offset in case we need to truncate the list
-	// + 1 to make room for 'Back'
-	int offset = max(0, nb_res - MAX_MENU_ITEMS + 1);
+	// we require an offset in case we need to truncate the beginning of the list
+	// '-2' to make room for 'Back' and end-of-list marker
+	int offset = max(0, nb_res - (MAX_MENU_ITEMS - 2));
 	i = offset;
 
-	// + 1 here accounts for 'Back'
-	while (i < nb_res && j + 1 < MAX_MENU_ITEMS) {
+	// '-2' here accounts for 'Back' and end-of-list marker
+	while (i < nb_res && j < (MAX_MENU_ITEMS - 2)) {
 		//Only supported screen resolution are displayed
 		if (screen_resolutions[i].supported) {
 			char flag = ' ';
