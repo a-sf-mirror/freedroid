@@ -1098,8 +1098,6 @@ void ParseCommandLine(int argc, char *const argv[])
 		{0, 0, 0, 0}
 	};
 
-	command_line_override_for_screen_resolution = FALSE;
-
 	while (1) {
 		c = getopt_long(argc, argv, "vel:onqsb:h?d::r:wf", long_options, NULL);
 		if (c == -1)
@@ -1170,36 +1168,41 @@ void ParseCommandLine(int argc, char *const argv[])
 				if (y != NULL) {
 					GameConfig.screen_width = atoi(x);
 					GameConfig.screen_height = atoi(y);
-					break;
-				}
-
-				resolution_code = atoi(optarg);
-
-				if (resolution_code >= 0 && resolution_code < nb_res) {
-					if (resolution_code != 0)
-						command_line_override_for_screen_resolution = TRUE;
-					GameConfig.screen_width = hard_resolutions[resolution_code].xres;
-					GameConfig.screen_height = hard_resolutions[resolution_code].yres;
 				} else {
-					fprintf(stderr, "\nresolution code received: %d\n", resolution_code);
-					char *txt = (char *)malloc((nb_res * 128 + 1) * sizeof(char));
-					txt[0] = '\0';
-					int i;
-					for (i = 0; i < nb_res; i++) {
-						char tmp[129];
-						snprintf(tmp, 129, "\t\t%d = %s\n", i, hard_resolutions[i].comment);
-						strncat(txt, tmp, 128);
+
+					resolution_code = atoi(optarg);
+
+					if (resolution_code >= 0 && resolution_code < nb_res) {
+						GameConfig.screen_width = hard_resolutions[resolution_code].xres;
+						GameConfig.screen_height = hard_resolutions[resolution_code].yres;
+					} else {
+						fprintf(stderr, "\nresolution code received: %d\n", resolution_code);
+						char *txt = (char *)malloc((nb_res * 128 + 1) * sizeof(char));
+						txt[0] = '\0';
+						int i;
+						for (i = 0; i < nb_res; i++) {
+							char tmp[129];
+							snprintf(tmp, 129, "\t\t%d = %s\n", i, hard_resolutions[i].comment);
+							strncat(txt, tmp, 128);
+						}
+						ErrorMessage(__FUNCTION__, "  %s%s  %s", NO_NEED_TO_INFORM, IS_FATAL,
+								 "\tThe resolution identifier given is not a valid resolution code.\n"
+								 "\tThese codes correspond to the following hardcoded resolutions available:\n",
+								 txt,
+								 "\tAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
+								 "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.\n"
+								 "----------------------------------------------------------------------\n");
+						free(txt);
 					}
-					ErrorMessage(__FUNCTION__, "  %s%s  %s", NO_NEED_TO_INFORM, IS_FATAL,
-						     "\tThe resolution identifier given is not a valid resolution code.\n"
-						     "\tThese codes correspond to the following hardcoded resolutions available:\n",
-						     txt,
-						     "\tAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
-						     "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.\n"
-						     "----------------------------------------------------------------------\n");
-					free(txt);
 				}
 			}
+			// By default, after starting up, the current resolution should be
+			// the resolution used at the next game startup too, so we preselect
+			// that for now.  The user can still change that later inside the
+			// game from within the options menu.
+			//
+			GameConfig.next_time_width_of_screen = GameConfig.screen_width;
+			GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 			break;
 		case 'b':
 			if (!optarg) {
@@ -1222,16 +1225,7 @@ void ParseCommandLine(int argc, char *const argv[])
 			break;
 		}		/* switch(c) */
 	}			/* while(1) */
-
-	// By default, after starting up, the current resolution should be
-	// the resolution used at the next game startup too, so we preselect
-	// that for now.  The user can still change that later inside the
-	// game from within the options menu.
-	//
-	GameConfig.next_time_width_of_screen = GameConfig.screen_width;
-	GameConfig.next_time_height_of_screen = GameConfig.screen_height;
-
-};				// ParseCommandLine (int argc, char *const argv[])
+}
 
 /* -----------------------------------------------------------------
  * This function initializes a completely new game within freedroid.

@@ -1053,8 +1053,6 @@ int level_exists(int level_num)
 int LoadGameConfig(void)
 {
 	char fname[5000];
-	int original_width_of_screen = DEFAULT_SCREEN_WIDTH;
-	int original_height_of_screen = DEFAULT_SCREEN_HEIGHT;
 	FILE *configfile;
 
 	if (!our_config_dir) {
@@ -1113,13 +1111,8 @@ settings file will be generated.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 	GameConfig.skill_explanation_screen_visible = FALSE;
 	GameConfig.Automap_Visible = TRUE;
 
-	if (command_line_override_for_screen_resolution) {
-		GameConfig.screen_width = original_width_of_screen;
-		GameConfig.screen_height = original_height_of_screen;
-	}
 	return (OK);
-
-};				// int LoadGameConfig ( void )
+}
 
 /*----------------------------------------------------------------------
  * SaveGameConfig: do just that

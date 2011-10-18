@@ -106,7 +106,6 @@ EXTERN FPSmanager SDL_FPSmanager;
 
 EXTERN float timeout_from_item_drop;
 EXTERN int use_open_gl;
-EXTERN int command_line_override_for_screen_resolution;
 
 EXTERN mouse_press_button AllMousePressButtons[MAX_MOUSE_PRESS_BUTTONS];
 EXTERN item *item_held_in_hand;
