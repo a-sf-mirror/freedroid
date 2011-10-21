@@ -308,15 +308,14 @@ Nr=44 Text=_"It's done. Your soldiers were killed, but I managed to reach a comp
 	npc_says(_"With a bit of luck, you might not need to access it. We know they have their update server in the office.")
 	npc_says(_"If you can find it and get it to propagate a faulty update, this could suffice to stopping bots dead in their tracks.")
 	npc_says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
-	npc_says(_"However I'll ask Richard to see if we can contact you as soon as you find the server, so we know if you're alive and there is still hope.")
-	npc_says(_"Or if things are going to go back to the the way they were befor you were taken out of stasis sleep...")
+	npc_says(_"However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep...")
 	npc_says(_"Good luck.")
 	add_quest(_"Propagating a faulty firmware", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
 	hide(44) show(45)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=45 Text=_"I will need some time to get myself ready before I clean up the Hell Fortress."
+Nr=45 Text=_"I will need some time to get myself ready before I clean up Hell Fortress."
 <LuaCode>
 	npc_says(_"You had better be ready.")
 </LuaCode>

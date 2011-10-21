@@ -288,7 +288,7 @@ Nr=81 Text=_"Don't worry, I'll be fine."
 <LuaCode>
 	npc_says(_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly.")
 	npc_says(_"I have seen corpses with nearly all of the fingers ripped off. People with eyes drilled out by some big tool.")
-	npc_says(_"I smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the town walls.")
+	npc_says(_"I have smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the town walls.")
 	npc_says(_"The bots know no mercy. They cannot even define it, infernal scrap metal fiends.")
 	npc_says(_"Feel free to go, Linarian, but make sure to be very dead before they start killing you.")
 	tux_says(_"Where can I get the crystals?")

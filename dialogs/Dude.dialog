@@ -31,7 +31,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_"Here you'll be able to access all dialogs that are available ingame.")
 	npc_says(_"Take care, this may be a little buggy.")
 	npc_says(_"Don't do this if you are just normally playing.")
-	npc_says(_"There dialogs can currently be accessed:")
+	npc_says(_"These dialogs can currently be accessed:")
 
 	show(1, 2, 3, 4, 5, 6, 7, 8, 9,
 		10, 11, 12, 13, 14, 15, 16, 17, 18, 19,

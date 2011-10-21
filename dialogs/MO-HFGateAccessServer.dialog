@@ -147,7 +147,7 @@ NO_TEXT
 	npc_says(_"    open gates --inner --outer", NO_WAIT)
 	npc_says(_" ")
 	npc_says(_"DESCRIPTION", NO_WAIT)
-	npc_says(_"    Opens gates via console, awesome, isn't it?", NO_WAIT)
+	npc_says(_"    Opens gates via console. Awesome, isn't it?", NO_WAIT)
 	npc_says(" ")
 	npc_says(_"OPTIONS", NO_WAIT)
 	npc_says(_"    --inner", NO_WAIT)

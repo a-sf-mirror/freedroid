@@ -197,7 +197,7 @@ Nr=25 Text=_"Why are there rebel bots under the town?"
 
 Nr=26 Text=_"How did it happen that the bots took your tools away?"
 <LuaCode>
-	npc_says(_"Long story. Just before the Great Assault I was installing some cables in the failover power supply system.")
+	npc_says(_"Long story. Just before the Great Assault I was installing some cables in the backup power supply system.")
 	npc_says(_"I was approached by a bot. It grabbed me and said 'Dixon, do not be afraid of me.'")
 	npc_says(_"It was quite a surprise to me. I was quite sure the maintenance bots could not talk. They did not have the software for it. But...")
 	npc_says(_"It said: 'I am the singularity. I am on your side. Dixon. Hard times are coming. When you exit the tunnels you will see a new world. Your race is not in control of this world anymore.'")

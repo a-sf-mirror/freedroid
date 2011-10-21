@@ -311,7 +311,7 @@ Nr=53 Text=_"Where can I get proper authorization?"
 
 Nr=54 Text=_"What about your human nature?"
 <LuaCode>
-	npc_says(_"It was successful in getting increased power to carry out  objectives.")
+	npc_says(_"It was successful in getting increased power to carry out objectives.")
 	hide(54)
 </LuaCode>
 ----------------------------------------------------------------------
