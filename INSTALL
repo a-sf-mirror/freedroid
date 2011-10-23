@@ -30,7 +30,9 @@ sudo apt-get install libsdl1.2-dev libsdl-mixer1.2-dev libsdl-gfx1.2-dev libsdl-
 
 3) Archlinux
 
-pacman -S sdl sdl_image sdl_gfx sdl_mixer libogg lua
+pacman -S libgl libvorbis lua sdl sdl_gfx sdl_image sdl_mixer
+
+There is also a freedroidrpg-svn pkgbuild at the arch user repository: https://aur.archlinux.org/packages.php?ID=30257
 
 4) Please contribute lists for your distribution!
 
