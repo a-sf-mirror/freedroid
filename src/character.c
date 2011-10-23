@@ -355,11 +355,13 @@ void UpdateAllCharacterStats()
 		Me.light_bonus_from_tux += 5 * ratio;
 	}
 
-	// Check player's health and temperature
+	// Check player's health, temperature and stamina
 	if (Me.energy > Me.maxenergy)
 		Me.energy = Me.maxenergy;
 	if (Me.temperature < 0)
 		Me.temperature = 0;
+	if (Me.running_power > Me.max_running_power)
+		Me.running_power = Me.max_running_power;
 
 }
 
