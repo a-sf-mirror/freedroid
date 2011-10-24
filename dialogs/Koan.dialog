@@ -60,11 +60,11 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"I see the troubles of the world in your eyes.")
 		show(10, 11)
 		hide(20, 21, 99)
-	elseif has_cookie("met_koan_before_duncan") then
-		npc_says_random(_"Come sitdown my friend.", _"Please take some time and relax here in the cool.")
-		if (tania_is_here) then
-			npc_says(_"I see you've brought a friend along with you.")
-		end
+	--elseif has_cookie("met_koan_before_duncan") then
+	--	npc_says_random(_"Come sitdown my friend.", _"Please take some time and relax here in the cool.")
+	--	if (tania_is_here) then
+	--		npc_says(_"I see you've brought a friend along with you.")
+	--	end
 	end
 </LuaCode>
 ----------------------------------------------------------------------

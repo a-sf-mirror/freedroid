@@ -193,7 +193,6 @@ Nr=12 Text=_"What bots are in the 200 class?" Topic="Bot Information"
 	npc_says(_"Let's see... Oh, there is also the 296, which was used for serving drinks. Ewald once had one of those in his bar.")
 	tux_says(_"Once? What happened to it?")
 	npc_says(_"No one knows. One day it simply wasn't there. Ewald probably remembers more than I do, though.")
-	add_cookie("ewald_296")
 	bot_information_nodes = bot_information_nodes - 1
 	hide(12)
 </LuaCode>
@@ -280,7 +279,6 @@ Nr=20 Text=_"What is a Linarian?" Topic="Linarians"
 			show(21, 22)
 			topic("Linarians Attacked")
 			npc_says(_"[b](Chandra moves his head ever so slightly as he quickly glances around. After noticing the nearby presence of the Red Guard member, his posture and tone changes. Perhaps you should speak with him again once you lose your escort...)[/b]")
-			add_cookie("chandra_escort")
 			npc_says(_"What else would you like to know?")
 		end
 	else

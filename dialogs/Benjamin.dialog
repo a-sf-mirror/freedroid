@@ -57,7 +57,6 @@ Nr=1 Text=_"What are you doing here alone? "
 Nr=3 Text=_"Did you think about somehow gathering the excess heat and using it to make the beam stronger?"
 <LuaCode>
 	npc_says(_"Hmm... There might be something in that idea. I will think about it.")
-	add_cookie("benjamin_better_beams")
 	hide(3, 4, 5)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -65,7 +64,6 @@ Nr=3 Text=_"Did you think about somehow gathering the excess heat and using it t
 Nr=4 Text=_"If I were you, I would focus my work on the firing rate."
 <LuaCode>
 	npc_says(_"Hmm... I will think about it. Hmm...")
-	add_cookie("benjamin_faster_shooting")
 	hide(3, 4, 5)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -73,7 +71,6 @@ Nr=4 Text=_"If I were you, I would focus my work on the firing rate."
 Nr=5 Text=_"You know, laser pistols are not a very promising weapon. I think you should work on something different."
 <LuaCode>
 	npc_says(_"Yeah, maybe you are right. I will think about it.")
-	add_cookie("benjamin_something_else")
 	hide(3, 4, 5)
 </LuaCode>
 ----------------------------------------------------------------------

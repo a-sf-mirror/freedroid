@@ -74,15 +74,15 @@ NO_TEXT
 	tux_says("root", "NO_WAIT")
 	cli_says(_"Password : ", "NO_WAIT")
 	tux_says("******")
-	if (not has_cookie("know_root_password")) then
+	--if (not has_cookie("knows_root_password")) then
 		next(9)
-	else
-		username = "root"
-		terminal = username .. "@c-net:~$"
-	 	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
-		cli_says(terminal, "NO_WAIT")
-		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
-	end
+	--else
+	--	username = "root"
+	--	terminal = username .. "@c-net:~$"
+	--	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+	--	cli_says(terminal, "NO_WAIT")
+	--	show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
+	--end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -109,17 +109,17 @@ NO_TEXT
 <LuaCode>
 	tux_says("cpain", "NO_WAIT")
 	cli_says(_"Password: ", "NO_WAIT")
-	if (not has_cookie("know_sorenson_password")) then
+	--if (not has_cookie("knows_sorenson_password")) then
 		tux_says("******")
 		next(9)
-	else
-		tux_says("************************************")
-		username = "cpain"
-		terminal = username .. "@c-net:~$"
-		npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
-		cli_says(terminal, "NO_WAIT")
-		show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
-	end
+	--else
+	--	tux_says("************************************")
+	--	username = "cpain"
+	--	terminal = username .. "@c-net:~$"
+	--	npc_says(_"Last login from dev/tty3 on unknown" , "NO_WAIT")
+	--	cli_says(terminal, "NO_WAIT")
+	--	show(10, 20, 30, 80, 99) hide(0, 1, 2, 3)
+	--end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -399,7 +399,6 @@ NO_TEXT
 	npc_says("Never gonna tell a lie and hurt you.")
 	--left out gettext markers on purpose
 	cli_says(terminal, "NO_WAIT")
-	add_cookie("player_rickrolled")
 	hide(85)
 </LuaCode>
 ----------------------------------------------------------------------

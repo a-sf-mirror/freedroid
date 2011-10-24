@@ -419,7 +419,6 @@ Nr=47 Text=_"What happened? Last time I asked, you said things are not going tha
 	npc_says(_"Yes, but now everything is different.", "NO_WAIT")
 	npc_says(_"I met someone who decided to join us in the fight against the MegaSys bots.")
 	npc_says(_"You will need a hacked computer. Type in 'ssh 10.83.13.230' as the superuser, and you will see what I mean.")
-	add_cookie("got_singularity")
 	hide(47) show(48)
 </LuaCode>
 ----------------------------------------------------------------------

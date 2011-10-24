@@ -227,7 +227,6 @@ Nr=25 Text=_"Yes, sure."
 		npc_says(_"Please take off the helmet, so we can proceed trading.")
 	end
 	hide(25) show(40, 45, 46, 47, 48)
-	add_cookie("tux_shall_unequip_Dixon's_helmet")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -293,8 +292,6 @@ Nr=99 Text=_"I'll be going then."
 <LuaCode>
 	if (has_cookie("bruce_hurt")) then
 		npc_says(_". . .")
-	elseif (has_cookie("bruce_tux_shall_unequip_helmet_free")) then
-		npc_says(_"Please, don't run off. I'll only be a moment.")
 	elseif (has_cookie("bruce_tux_shall_unequip_helmet")) then
 		npc_says(_"Hang tight, I'll be right back for that helmet!")
 	else
