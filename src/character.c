@@ -43,7 +43,6 @@
 #define Maxtemp_Gain_Per_CPU_Point 4
 
 #define RECHARGE_SPEED_PERCENT_PER_DEX_POINT 0
-#define TOHIT_PERCENT_PER_DEX_POINT (1.0)
 
 //--------------------
 // At first we state some geometry constants for where to insert
@@ -231,7 +230,7 @@ void update_secondary_stats_from_primary_stats()
 {
 	// The chance that this player character will score a hit on an enemy
 	//
-	Me.to_hit = 60 + (Me.dexterity) * TOHIT_PERCENT_PER_DEX_POINT;
+	Me.to_hit = 100 - 40 * exp(- 0.03 * Me.dexterity);
 
 	// How many life points can this character aquire currently
 	//
