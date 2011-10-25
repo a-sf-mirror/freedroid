@@ -269,7 +269,7 @@ Silent=1
 
 * New event trigger *
 Name=_"DocFront-inner-S"
-Trigger at label="DocFront-inner-N"
+Trigger at label="DocFront-inner-S"
 Silent=1
 <LuaCode>
 	if (tux_hp_ratio() < 0.4) and
@@ -320,7 +320,7 @@ Silent=1
 
 * New event trigger *
 Name=_"DocFront-out-S"
-Trigger at label="DocFront-out-N"
+Trigger at label="DocFront-out-S"
 Silent=1
 <LuaCode>
 	if (has_cookie("DocMoore_exam")) then
