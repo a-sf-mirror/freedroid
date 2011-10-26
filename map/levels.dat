@@ -3563,43 +3563,17 @@ t396 x14.54 y72.65
 t439 x25.61 y79.57
 /obsdata
 plabelinfolvl
-x=35 y=7 name="StoneStartGameSquare"
-x=8 y=7 name="SorensonStartGameSquare"
-x=49 y=17 name="ChandraStartGameSquare"
-x=36 y=15 name="MichelangeloStartGameSquare"
-x=36 y=19 name="EwaldStartGameSquare"
-x=63 y=17 name="SkippyStartGameSquare"
-x=75 y=80 name="BruceStartGameSquare"
-x=7 y=45 name="DuncanStartGameSquare"
-x=17 y=79 name="614StartGameSquare2"
-x=21 y=79 name="614StartGameSquare3"
-x=34 y=67 name="614StartGameSquare5"
-x=50 y=24 name="614StartGameSquare6"
-x=7 y=33 name="PendragonStartGameSquare"
-x=28 y=8 name="L0NorthGateGuard"
 x=33 y=48 name="NewSpencer"
-x=25 y=72 name="DixonStartGameSquare"
-x=18 y=52 name="ButchStartGameSquare"
-x=38 y=51 name="TybaltStartGameSquare"
-x=38 y=44 name="LukasStartGameSquare"
-x=53 y=53 name="RichardStartGameSquare"
-x=38 y=60 name="BenjaminCitadelStartGameSquare"
 x=16 y=18 name="TeleportHomeTarget"
 x=32 y=62 name="0to6"
 x=32 y=61 name="0from6"
 x=18 y=62 name="0to29"
 x=18 y=61 name="0from29"
 x=17 y=40 name="0to30"
-x=80 y=38 name="614StartGameSquare4"
-x=73 y=21 name="TamaraStartGameSquare"
-x=18 y=6 name="L0GateGuardhouseGuard"
-x=22 y=10 name="614StartGameSquare1"
-x=62 y=44 name="CitadelPrison"
 x=23 y=11 name="N-enter-1"
 x=24 y=11 name="N-enter-2"
 x=26 y=11 name="N-enter-3"
 x=27 y=11 name="N-enter-4"
-x=22 y=13 name="TuxEscortStartGameSquare"
 x=23 y=29 name="BenderStartGameSquare"
 x=33 y=24 name="BarPatron-Enter"
 x=20 y=29 name="DocPatient-Enter"
@@ -3607,8 +3581,6 @@ x=3 y=34 name="W-enter-1"
 x=3 y=35 name="W-enter-2"
 x=3 y=36 name="W-enter-3"
 x=18 y=40 name="0from30"
-x=63 y=82 name="Iris"
-x=18 y=27 name="DocMooreStartGameSquare"
 x=11 y=26 name="DocBack-inner-W"
 x=12 y=26 name="DocBack-inner-E"
 x=12 y=27 name="DocBack-out-E"
@@ -3617,7 +3589,6 @@ x=21 y=29 name="DocFront-inner-N"
 x=21 y=30 name="DocFront-inner-S"
 x=22 y=30 name="DocFront-out-S"
 x=22 y=29 name="DocFront-out-N"
-x=21 y=18 name="L0TeleporterGuard"
 x=40 y=24 name="296TeleportTarget"
 x=23 y=4 name="N-exit-1-outer"
 x=24 y=4 name="N-exit-2-outer"
@@ -5520,7 +5491,6 @@ t271 x20.61 y2.43
 plabelinfolvl
 x=20 y=2 name="2to1"
 x=19 y=2 name="2from1"
-x=47 y=22 name="Lv2DalekStartGameSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Source Book of Malformed packet"  X=40.821510  Y=18.357288  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
@@ -8985,33 +8955,9 @@ t391 x4.88 y12.74
 t49 x3.50 y10.50
 /obsdata
 plabelinfolvl
-x=45 y=11 name="ToolkitBossMonsterStartGameSquare"
 x=21 y=4 name="6to0"
 x=21 y=3 name="6from0"
-x=24 y=13 name="Sin-Drone-01"
-x=19 y=17 name="Sin-Drone-02"
-x=21 y=19 name="Sin-Drone-03"
-x=24 y=31 name="Sin-Drone-04"
-x=20 y=32 name="Sin-Drone-05"
-x=22 y=32 name="Sin-Drone-06"
-x=13 y=37 name="Sin-Drone-07"
-x=33 y=37 name="Sin-Drone-08"
-x=37 y=27 name="Sin-Drone-09"
-x=38 y=25 name="Sin-Drone-10"
-x=32 y=11 name="Sin-Drone-11"
-x=32 y=12 name="Sin-Drone-12"
-x=31 y=5 name="Sin-Drone-13"
-x=37 y=6 name="Sin-Drone-14"
-x=34 y=5 name="Sin-Drone-15"
-x=38 y=5 name="Sin-Drone-16"
-x=47 y=4 name="Sin-Drone-17"
-x=45 y=1 name="Sin-Drone-18"
-x=41 y=8 name="Sin-Drone-19"
-x=47 y=9 name="Sin-Drone-20"
-x=46 y=3 name="Sin-Drone-21"
-x=44 y=13 name="Sin-Drone-22"
 x=23 y=2 name="Sin-Emissary"
-x=43 y=10 name="MS-Sawmil"
 x=38 y=2 name="6from58"
 x=38 y=1 name="6to58"
 /plabelinfolvl
@@ -11483,12 +11429,9 @@ t40 x89.50 y0.50
 t376 x6.76 y67.70
 /obsdata
 plabelinfolvl
-x=35 y=57 name="DarwinStartGameSquare"
-x=37 y=55 name="MelfisStartGameSquare"
 x=42 y=12 name="The302InFrontOfTheTempleStart"
 x=83 y=26 name="8to1"
 x=84 y=27 name="8from1"
-x=8 y=62 name="Lev8-302"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -12612,9 +12555,6 @@ t37 x25.50 y88.50
 t37 x25.50 y89.50
 /obsdata
 plabelinfolvl
-x=67 y=69 name="Level9Stalker1StartGameSquare"
-x=63 y=65 name="Level9Stalker2StartGameSquare"
-x=63 y=73 name="Level9Stalker3StartGameSquare"
 x=41 y=44 name="9to33"
 x=40 y=45 name="9from33"
 /plabelinfolvl
@@ -16677,14 +16617,11 @@ t353 x33.56 y37.56
 t45 x55.56 y24.53
 /obsdata
 plabelinfolvl
-x=62 y=21 name="Lev12-614-complex-guard"
 x=40 y=35 name="FrancisSafe"
 x=42 y=38 name="NewTuxStartGameSquare"
 x=47 y=42 name="FrancisStart"
 x=49 y=40 name="InvaderBot-Alive-Check-N"
 x=46 y=42 name="InvaderBot-Alive-Check-W"
-x=51 y=50 name="FrancisAfterBotAttack"
-x=54 y=41 name="123-l12"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -17367,7 +17304,6 @@ t16 x4.61 y43.28
 plabelinfolvl
 x=3 y=4 name="13to58"
 x=3 y=5 name="13from58"
-x=7 y=25 name="Ewalds296StartGameSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Power hammer"  X=33.743668  Y=19.704853  MDur=40  CDur=29.000000  AClip=21  Multi=1 
@@ -19976,10 +19912,6 @@ t2 x32.50 y63.00
 t2 x31.50 y59.00
 /obsdata
 plabelinfolvl
-x=7 y=46 name="L15-711"
-x=16 y=47 name="L15-742"
-x=19 y=77 name="L15-821"
-x=33 y=78 name="L15-834"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -21743,16 +21675,8 @@ t113 x56.49 y66.50
 t113 x58.11 y66.93
 /obsdata
 plabelinfolvl
-x=57 y=46 name="KevinGuardStartGameSquare"
-x=70 y=52 name="KevinStartGameSquare"
-x=60 y=41 name="Kevins598StartGameSquare"
-x=63 y=41 name="Kevins821StartGameSquare"
-x=66 y=41 name="Kevins751StartGameSquare"
-x=69 y=41 name="Kevins883StartGameSquare"
 x=75 y=16 name="17to3"
 x=74 y=16 name="17from3"
-x=66 y=51 name="JasmineStartGameSquare"
-x=76 y=38 name="KevinsLawnMowerStart"
 x=50 y=46 name="Kevin-Enter-3"
 x=50 y=47 name="Kevin-Enter-2"
 x=50 y=48 name="Kevin-Enter-1"
@@ -24585,49 +24509,6 @@ t449 x34.50 y68.50
 t450 x28.50 y75.50
 /obsdata
 plabelinfolvl
-x=42 y=45 name="autogun"
-x=40 y=20 name="DudeStartGameSquare"
-x=57 y=25 name="123-l24"
-x=57 y=27 name="139-l24"
-x=57 y=29 name="247-l24"
-x=57 y=31 name="249-l24"
-x=57 y=33 name="296-l24"
-x=57 y=35 name="302-l24"
-x=57 y=37 name="329-l24"
-x=57 y=39 name="420-l24"
-x=57 y=41 name="476-l24"
-x=57 y=43 name="493-l24"
-x=57 y=45 name="516-l24"
-x=57 y=47 name="571-l24"
-x=57 y=49 name="598-l24"
-x=60 y=49 name="DOC-l24"
-x=60 y=47 name="PRO-l24"
-x=60 y=45 name="999-l24"
-x=60 y=43 name="883-l24"
-x=60 y=41 name="834-l24"
-x=60 y=39 name="821-l24"
-x=60 y=37 name="751-l24"
-x=60 y=35 name="742-l24"
-x=60 y=33 name="711-l24"
-x=60 y=31 name="629-l24"
-x=60 y=29 name="615-l24"
-x=60 y=27 name="614-l24"
-x=60 y=25 name="603-l24"
-x=63 y=25 name="GUA-l24"
-x=63 y=27 name="DIX-l24"
-x=63 y=29 name="MUM-l24"
-x=63 y=31 name="FSC-l24"
-x=63 y=33 name="WOR-l24"
-x=63 y=35 name="GUB-l24"
-x=63 y=37 name="COO-l24"
-x=63 y=39 name="KEV-l24"
-x=63 y=41 name="JAS-l24"
-x=63 y=43 name="TAN-l24"
-x=63 y=45 name="BAR-l24"
-x=63 y=47 name="543-l24"
-x=63 y=49 name="FEM-l24"
-x=66 y=25 name="GUN-l24"
-x=66 y=27 name="INV-l24"
 /plabelinfolvl
 piteminfolvl
 it: n="Big kitchen knife"  X=1.500000  Y=1.500000  MDur=7  CDur=1.000000  AClip=0  Multi=1 
@@ -29733,33 +29614,8 @@ t416 x45.70 y49.31
 t372 x60.87 y49.34
 /obsdata
 plabelinfolvl
-x=9 y=7 name="123-l28"
-x=27 y=7 name="139-l28"
-x=41 y=6 name="247-l28"
-x=57 y=5 name="249-l28"
-x=72 y=5 name="302-l28"
-x=79 y=19 name="329-l28"
-x=78 y=30 name="420-l28"
-x=80 y=45 name="476-l28"
-x=80 y=58 name="493-l28"
-x=81 y=75 name="516-l28"
-x=67 y=81 name="543-l28"
-x=58 y=82 name="571-l28"
-x=42 y=80 name="598-l28"
-x=27 y=81 name="614-l28"
-x=8 y=80 name="615-l28"
-x=7 y=65 name="629-l28"
-x=5 y=50 name="711-l28"
-x=7 y=36 name="742-l28"
-x=25 y=30 name="751-l28"
-x=25 y=48 name="821-l28"
-x=33 y=61 name="834-l28"
-x=48 y=64 name="883-l28"
-x=59 y=59 name="999-l28"
-x=63 y=22 name="296-l28"
 x=41 y=69 name="28to32"
 x=43 y=49 name="28from32"
-x=49 y=54 name="JohnStartGameSquare"
 x=50 y=69 name="28to28"
 x=43 y=49 name="28from32success"
 /plabelinfolvl
@@ -30095,10 +29951,6 @@ t271 x21.71 y8.45
 /obsdata
 plabelinfolvl
 x=10 y=10 name="29from0"
-x=5 y=10 name="NoviceArenaBot1StartGameSquare"
-x=10 y=18 name="NoviceArenaBot2StartGameSquare"
-x=18 y=10 name="NoviceArenaBot3StartGameSquare"
-x=10 y=2 name="NoviceArenaBot4StartGameSquare"
 x=21 y=8 name="29to0"
 /plabelinfolvl
 piteminfolvl
@@ -30316,10 +30168,6 @@ t2 x1.51 y19.98
 /obsdata
 plabelinfolvl
 x=10 y=10 name="30from0"
-x=5 y=10 name="MasterArenaBot1StartGameSquare"
-x=10 y=18 name="MasterArenaBot2StartGameSquare"
-x=18 y=10 name="MasterArenaBot3StartGameSquare"
-x=10 y=2 name="MasterArenaBot4StartGameSquare"
 x=21 y=8 name="30to0"
 /plabelinfolvl
 piteminfolvl
@@ -33238,17 +33086,9 @@ x=42 y=68 name="SecretPowerStationHatchMSOGarden"
 x=57 y=54 name="MSOMillerEntranceUnlocker"
 x=63 y=56 name="MSOMillerEntranceUnlockCounter"
 x=16 y=85 name="MSOCollapsingBrickWall2HFTunnelTrigger"
-x=8 y=71 name="MSDDStartGameSquare"
-x=17 y=37 name="MSOTestDroid0StartGameSquare"
-x=18 y=28 name="MSOTestDroid1StartGameSquare"
-x=18 y=25 name="MSOTestDroid2StartGameSquare"
-x=18 y=22 name="MSOTestDroid3StartGameSquare"
-x=26 y=11 name="MSOTestDroid4StartGameSquare"
 x=20 y=75 name="MSOHQOpener"
 x=21 y=71 name="MSOHQUnlocker"
 x=27 y=32 name="MSOfficeFirmwareUpdateServerStartPosition"
-x=71 y=7 name="MSAreaGuardChiefStartGameSquare"
-x=77 y=8 name="MSAreaGuardStartGameSquare"
 x=36 y=27 name="OpenFirmwareUpgradeRoom"
 x=63 y=86 name="31to69"
 x=62 y=85 name="31from69"
@@ -36557,7 +36397,6 @@ t321 x12.01 y16.91
 t321 x12.05 y17.29
 /obsdata
 plabelinfolvl
-x=22 y=16 name="Koan"
 x=20 y=35 name="34to38"
 x=19 y=35 name="34from38"
 /plabelinfolvl
@@ -37791,8 +37630,6 @@ t29 x32.00 y53.50
 /obsdata
 plabelinfolvl
 x=17 y=24 name="SADD-MoveTarget"
-x=20 y=28 name="SADDStartGameSquare"
-x=9 y=20 name="TaniaStartGameSquare"
 x=26 y=19 name="SecretAreaCollectorComputers"
 x=31 y=17 name="SecretAreaCollectorEmmiters"
 x=29 y=11 name="SecretAreaCollectorPassage"
@@ -37806,9 +37643,6 @@ x=28 y=4 name="SecretAreaToilet"
 x=30 y=4 name="SecretAreaBathroom"
 x=31 y=8 name="SecretAreaPassage"
 x=24 y=4 name="SecretAreaStore"
-x=41 y=37 name="BorisStartGameSquare"
-x=40 y=47 name="LinaStartGameSquare"
-x=36 y=51 name="SergeStartGameSquare"
 x=24 y=43 name="35to40"
 x=24 y=42 name="35from40"
 x=24 y=2 name="35to36-North"
@@ -39014,7 +38848,6 @@ t281 x25.00 y64.00
 t117 x25.00 y65.00
 /obsdata
 plabelinfolvl
-x=15 y=13 name="TutorialTutorStart"
 x=9 y=13 name="TutorialLeave"
 x=2 y=50 name="melee1"
 x=2 y=58 name="melee2"
@@ -39026,13 +38859,6 @@ x=39 y=42 name="shootingrange5"
 x=43 y=45 name="shootingrange6"
 x=41 y=54 name="shootingrange7"
 x=38 y=45 name="shootingrange8"
-x=39 y=19 name="takeover1"
-x=41 y=18 name="takeover2"
-x=40 y=14 name="takeover3"
-x=42 y=11 name="takeover4"
-x=41 y=8 name="takeover5"
-x=39 y=6 name="takeover6"
-x=42 y=5 name="takeover7"
 x=11 y=14 name="TutorialTuxStart"
 x=10 y=12 name="tutmove-1"
 x=13 y=12 name="tutmove-2"
@@ -43510,8 +43336,6 @@ t321 x82.50 y71.50
 t351 x41.00 y21.50
 /obsdata
 plabelinfolvl
-x=37 y=11 name="MO-RGGateGuard"
-x=42 y=11 name="MO-RGGateGuardLeader"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -46476,7 +46300,6 @@ t389 x83.00 y77.43
 t389 x83.00 y78.43
 /obsdata
 plabelinfolvl
-x=53 y=3 name="HF-EntranceBotStartSquare"
 /plabelinfolvl
 piteminfolvl
 it: n="Source Book of Plasma discharge"  X=31.000000  Y=47.500000  MDur=-1  CDur=1.000000  AClip=0  Multi=1 
@@ -61482,41 +61305,6 @@ t65 x18.01 y0.01
 t45 x58.48 y33.29
 /obsdata
 plabelinfolvl
-x=39 y=64 name="883a"
-x=39 y=65 name="883b"
-x=54 y=61 name="711"
-x=77 y=46 name="476a"
-x=78 y=46 name="476b"
-x=77 y=47 name="476c"
-x=78 y=47 name="476d"
-x=79 y=47 name="476e"
-x=79 y=48 name="476f"
-x=78 y=48 name="476g"
-x=81 y=52 name="249a"
-x=81 y=53 name="249b"
-x=82 y=53 name="249c"
-x=82 y=52 name="249d"
-x=82 y=54 name="249e"
-x=83 y=54 name="249f"
-x=83 y=53 name="249g"
-x=79 y=56 name="629a"
-x=79 y=55 name="629b"
-x=80 y=55 name="629c"
-x=80 y=56 name="629d"
-x=80 y=57 name="629e"
-x=81 y=57 name="629g"
-x=81 y=56 name="629f"
-x=76 y=57 name="821a"
-x=76 y=58 name="821b"
-x=68 y=58 name="615a1"
-x=69 y=57 name="615c1"
-x=68 y=57 name="615b1"
-x=69 y=58 name="615d1"
-x=67 y=44 name="615a2"
-x=67 y=43 name="615b2"
-x=68 y=43 name="615c2"
-x=68 y=44 name="615d2"
-x=61 y=61 name="834"
 x=50 y=28 name="59to60ctrlroom"
 x=50 y=29 name="59from60ctrlroom"
 x=88 y=1 name="59to60botroom"
@@ -64868,7 +64656,6 @@ t1 x15.00 y15.50
 plabelinfolvl
 x=11 y=16 name="69to31"
 x=11 y=15 name="69from31"
-x=12 y=14 name="GapesStartGameSquare"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
