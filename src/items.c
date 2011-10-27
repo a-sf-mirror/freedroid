@@ -76,7 +76,7 @@ item create_item_with_name(const char *item_name, int full_durability, int multi
  * \param it item to check
  * \return TRUE if the item can be installed in one slot, FALSE otherwise
  */
-int equippable_item(item *it)
+static int equippable_item(item *it)
 {
 	if (ItemMap[it->type].item_can_be_installed_in_weapon_slot)
 		return TRUE;
@@ -394,7 +394,7 @@ Received item type %d that is outside the range of allowed item types.",
 	return drop_item(&tmp_item, item_pos.x, item_pos.y, item_pos.z);
 }
 
-int get_random_item_type(int class)
+static int get_random_item_type(int class)
 {
 
 	if (class > 9) {
@@ -557,7 +557,7 @@ void DamageProtectiveEquipment()
  * the floor, but not visible yet of course, cause it still gets the 
  * held in hand attribute.
  */
-void MakeHeldFloorItemOutOf(item * SourceItem)
+static void MakeHeldFloorItemOutOf(item * SourceItem)
 {
 	int i;
 
@@ -648,7 +648,7 @@ void Quick_ApplyItem(int ItemKey)
  * the spellbook.  So we do this once and have it available all the time
  * in a convenient and easy to maintain fashion.
  */
-int associate_skill_with_item(int item_type)
+static int associate_skill_with_item(int item_type)
 {
 	int associated_skill = (-1);
 	if (!item_type || item_type == -1)
@@ -667,17 +667,6 @@ int associate_skill_with_item(int item_type)
 	return (associated_skill);
 
 };				// int associate_skill_with_item ( int item_type )
-
-/**
- * Some items, that can be applied directly (like spellbooks) do have a
- * certain stat requirement.  This function checks if the corresponding
- * requirements are met or not.
- */
-int requirements_for_item_application_met(item * it)
-{
-	(void) it;
-	return 1;
-}
 
 /**
  * This function checks whether a given item has the name specified. This is
@@ -728,10 +717,6 @@ void ApplyItem(item * CurItem)
 	if (!ItemMap[CurItem->type].item_combat_use_description) {
 		Me.TextVisibleTime = 0;
 		Me.TextToBeDisplayed = _("I can't use this item here.");
-		return;
-	}
-
-	if (!requirements_for_item_application_met(CurItem)) {
 		return;
 	}
 
@@ -977,7 +962,7 @@ int CountItemtypeInInventory(int Itemtype)
  *
  *
  */
-int FindFirstInventoryIndexWithItemType(int Itemtype)
+static int FindFirstInventoryIndexWithItemType(int Itemtype)
 {
 	int i;
 
@@ -1044,7 +1029,7 @@ Tux inventory.  Something must have gone awry...", PLEASE_INFORM, IS_FATAL);
 
 };				// void DeleteOneInventoryItemsOfType( int Itemtype  )
 
-int MouseCursorIsInSkiERect(int x, int y)
+static int MouseCursorIsInSkiERect(int x, int y)
 {
 	if (x > 320 || x < 0)
 		return FALSE;
@@ -1333,9 +1318,6 @@ int ItemUsageRequirementsMet(item * UseItem, int MakeSound)
 	if (Me.cooling < ItemMap[UseItem->type].item_require_cooling && ItemMap[UseItem->type].item_require_cooling > 0) {
 		return (FALSE);
 	}
-	if (!requirements_for_item_application_met(UseItem)) {
-		return (FALSE);
-	}
 	return TRUE;
 };				// int ItemUsageRequirementsMet( item* UseItem )
 
@@ -1344,7 +1326,7 @@ int ItemUsageRequirementsMet(item * UseItem, int MakeSound)
  * item currently held in hand by the player/influencer.  Which item this
  * is will be found out by the function.
  */
-int HeldItemUsageRequirementsMet(void)
+static int HeldItemUsageRequirementsMet(void)
 {
 	// Check validity of HeldItem
 	if (item_held_in_hand == NULL) {
@@ -1360,7 +1342,7 @@ int HeldItemUsageRequirementsMet(void)
  * only the slot where this item should be installed.  The source item
  * will be found out from inside this function.  Very convenient.
  */
-void DropHeldItemToSlot(item * SlotItem)
+static void DropHeldItemToSlot(item * SlotItem)
 {
 	item *DropItemPointer; // temporary storage
 
@@ -1883,7 +1865,7 @@ void HandleInventoryScreen(void)
  *
  *
  */
-void raw_move_picked_up_item_to_entry(item * ItemPointer, item * TargetPointer, point Inv_Loc)
+static void raw_move_picked_up_item_to_entry(item * ItemPointer, item * TargetPointer, point Inv_Loc)
 {
 	// We add the new item to the inventory
 	CopyItem(ItemPointer, TargetPointer);

@@ -44,7 +44,7 @@ struct widget_text {
 	void (*content_above_func)(void);
 };
 
-struct widget_text *widget_text_create();
+struct widget_text *widget_text_create(void);
 void widget_text_init(struct widget_text *, const char *);
 int widget_text_handle_mouse(struct widget_text *);
 void widget_text_display(struct widget *);

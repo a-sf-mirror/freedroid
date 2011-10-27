@@ -41,7 +41,7 @@ struct widget_group {
 
 int widget_group_add(struct widget_group *, struct widget *);
 int widget_group_handle_event(struct widget *, SDL_Event *);
-struct widget_group *widget_group_create();
+struct widget_group *widget_group_create(void);
 
 #define WIDGET_GROUP(x) ((struct widget_group *)x)
 

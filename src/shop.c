@@ -117,7 +117,7 @@ int AssemblePointerListForItemShow(item ** ItemPointerListPointer, int IncludeWo
  * course we must find out and return the index of the item clicked on.
  * If no item was clicked on, then a -1 will be returned as index.
  */
-int ClickWasOntoItemRowPosition(int x, int y, int TuxItemRow)
+static int ClickWasOntoItemRowPosition(int x, int y, int TuxItemRow)
 {
 	if (TuxItemRow) {
 		if (y < TuxItemRowRect.y)
@@ -644,47 +644,6 @@ int GreatShopInterface(int NumberOfItems, item * ShowPointerList[MAX_ITEMS_IN_IN
 }
 
 /**
- * This function tells us which item in the menu has been clicked upon.
- * It does not check for lower than 4 items in the menu available.
- */
-int ClickedMenuItemPosition(void)
-{
-	int CursorY;
-	int i;
-
-	CursorY = GetMousePos_y();	// this is already the position corrected for 16 pixels!!
-
-#define ITEM_MENU_DISTANCE 80
-#define ITEM_FIRST_POS_Y 130
-#define NUMBER_OF_ITEMS_ON_ONE_SCREEN 4
-
-	// When a character is blitted to the screen at x y, then the x and y
-	// refer to the top left corner of the coming blit.  Using this information
-	// we will define the areas where a click 'on the blitted text' has occurred
-	// or not.
-	//
-	if (CursorY < ITEM_FIRST_POS_Y)
-		return (-1);
-	if (CursorY > ITEM_FIRST_POS_Y + NUMBER_OF_ITEMS_ON_ONE_SCREEN * ITEM_MENU_DISTANCE)
-		return (-1);
-
-	for (i = 0; i < NUMBER_OF_ITEMS_ON_ONE_SCREEN; i++) {
-		if (CursorY < ITEM_FIRST_POS_Y + (i + 1) * ITEM_MENU_DISTANCE)
-			return i;
-	}
-
-	// At this point we've already determined and returned to right click-area.
-	// if this point is ever reached, a severe error has occurred, and Freedroid
-	// should therefore also say so.
-	//
-	ErrorMessage(__FUNCTION__, "\
-The MENU CODE was unable to properly resolve a mouse button press.", PLEASE_INFORM, IS_FATAL);
-
-	return (3);		// to make compilers happy :)
-
-};				// int ClickedMenuItemPosition( void )
-
-/**
  * This function repairs the item given as parameter.
  */
 static void repair_item(item * RepairItem)
@@ -705,7 +664,7 @@ static void repair_item(item * RepairItem)
 /**
  * This function tries to sell the item given as parameter.
  */
-void TryToSellItem(item * SellItem, int AmountToSellAtMost)
+static void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 {
 	// We catch the case, that not even one item was selected
 	// for buying in the number selector...

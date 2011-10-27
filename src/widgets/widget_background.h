@@ -32,7 +32,7 @@ struct widget_background {
 	struct dynarray tiles;
 };
 
-struct widget_background *widget_background_create();
+struct widget_background *widget_background_create(void);
 void widget_background_add(struct widget_background *, struct image *, int, int, int, int);
 void widget_background_load_3x3_tiles(struct widget_background *, char *);
 

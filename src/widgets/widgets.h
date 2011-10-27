@@ -69,13 +69,13 @@ struct widget {
  * NOTE: get_text should be used for dynamic tooltips while the text field should be used for static tooltips.
  */
 struct tooltip {
-	string (*get_text)();	/**< Returns the text of a dynamic tooltip. */
+	string (*get_text)(void);	/**< Returns the text of a dynamic tooltip. */
 	string text;		/**< String used for static tooltip texts. */
 };
 
-void display_widgets();
-void update_widgets();
-struct widget *widget_create();
+void display_widgets(void);
+void update_widgets(void);
+struct widget *widget_create(void);
 void handle_widget_event(SDL_Event *);
 struct image *widget_load_image_resource(char *, int);
 void widget_set_rect(struct widget *, int, int, int, int);

@@ -42,6 +42,6 @@ struct widget_button {
 	struct tooltip tooltip;				/**< Tooltip displayed on mouse hover. */
 };
 
-struct widget_button *widget_button_create();
+struct widget_button *widget_button_create(void);
 
 #define WIDGET_BUTTON(x) ((struct widget_button *)x)

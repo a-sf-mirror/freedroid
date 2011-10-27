@@ -134,7 +134,7 @@ int get_experience_required(int level)
 /**
  * \brief Check if Tux has reached a new experience level.
  */
-void check_for_new_experience_level_reached()
+static void check_for_new_experience_level_reached()
 {
 	int exp_required = get_experience_required(Me.exp_level);
 
@@ -226,7 +226,7 @@ void update_all_primary_stats()
  * current 'magic' modifiers from equipped items will be applied somewhere
  * else.
  */
-void update_secondary_stats_from_primary_stats()
+static void update_secondary_stats_from_primary_stats()
 {
 	// The chance that this player character will score a hit on an enemy
 	//
@@ -257,7 +257,7 @@ void update_secondary_stats_from_primary_stats()
  * character is using.  And depending on the weapon type (melee or
  * ranged weapon) some additional attributes will also play a role.
  */
-void update_damage_tux_can_do()
+static void update_damage_tux_can_do()
 {
 	if (Me.weapon_item.type != (-1)) {
 		if (ItemMap[Me.weapon_item.type].item_weapon_is_melee != 0) {
@@ -368,7 +368,7 @@ void UpdateAllCharacterStats()
  * Now we print out the current skill levels in hacking skill, 
  * spellcasting, melee combat, ranged weapon combat and repairing things
  */
-void show_character_screen_skills()
+static void show_character_screen_skills()
 {
 
 	// We add some security against skill values out of allowed

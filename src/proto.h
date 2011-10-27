@@ -45,7 +45,7 @@ void ParseCommandLine(int argc, char *const argv[]);
 void ClearAutomapData(void);
 void InitFreedroid(int, char **);
 void PrepareStartOfNewCharacter(char *startpos);
-void prepare_level_editor();
+void prepare_level_editor(void);
 void ThouArtDefeated(void);
 void ThouHastWon(void);
 void PlayATitleFile(char *Filename);
@@ -245,7 +245,7 @@ void load_floor_tiles(void);
 void free_floor_tiles(void);
 struct image *get_obstacle_image(int, int);
 struct image *get_obstacle_shadow_image(int, int);
-struct image *get_map_label_image();
+struct image *get_map_label_image(void);
 struct image *get_droid_portrait_image(int);
 void load_all_obstacles(int with_startup_bar);
 void free_obstacle_graphics(void);
@@ -300,7 +300,7 @@ int GetMissionIndexByName(const char *);
 
 // quest_browser_ui.c
 void toggle_quest_browser(void);
-struct widget_group *create_quest_browser();
+struct widget_group *create_quest_browser(void);
 
 // map.c 
 void respawn_level(int level_num);
@@ -448,13 +448,13 @@ void copy_upgrade_sockets(item *, item *);
 int item_can_be_customized(item *);
 int item_can_be_installed_to_socket(item *, item *, int);
 struct addon_spec *get_addon_spec(int);
-struct dynarray *get_addon_specs();
+struct dynarray *get_addon_specs(void);
 void add_addon_spec(struct addon_spec *);
 void get_item_bonus_string(item *, const char *, struct auto_string *);
 void print_addon_description(struct addon_spec *, struct auto_string *);
 void calculate_item_bonuses(item *);
 int count_used_sockets(item *);
-int item_upgrade_ui_visible();
+int item_upgrade_ui_visible(void);
 
 // character.c
 void display_buttons(void);
@@ -585,9 +585,9 @@ void endian_swap(char *pdata, size_t dsize, size_t nelements);
 uint32_t pot_gte(uint32_t v);
 obstacle *give_pointer_to_obstacle_with_label(const char *, int *);
 int level_exists(int);
-void freeze_world();
-void unfreeze_world();
-int world_frozen();
+void freeze_world(void);
+void unfreeze_world(void);
+int world_frozen(void);
 
 // enemy.c 
 void SetRestOfGroupToState(Enemy ThisRobot, short NewState);
@@ -596,7 +596,7 @@ int CheckEnemyEnemyCollision(enemy *);
 void move_enemies(void);
 void clear_enemies(void);
 void enemy_reset(enemy *this_bot);
-void enemy_reset_fabric();
+void enemy_reset_fabric(void);
 enemy *enemy_new(int type);
 void enemy_insert_into_lists(enemy *this_enemy, int is_living);
 void animate_enemy(enemy * our_bot);
@@ -676,18 +676,18 @@ void display_tooltip(const char *, int, SDL_Rect);
 void blit_vertical_status_bar(float, float, Uint32, Uint32, int, int, int, int);
 
 // game_ui.c
-struct widget_group *get_game_ui();
+struct widget_group *get_game_ui(void);
 
 // item_upgrades_ui.c
 int append_item_upgrade_ui_tooltip(const point *, struct auto_string *str);
-void show_item_upgrade_ui();
-void item_upgrade_ui();
+void show_item_upgrade_ui(void);
+void item_upgrade_ui(void);
 
 // addon_crafting_ui.c
 int cursor_is_on_addon_crafting_ui(const point *);
-void show_addon_crafting_ui();
-void addon_crafting_ui();
-int addon_crafting_ui_visible();
+void show_addon_crafting_ui(void);
+void addon_crafting_ui(void);
+int addon_crafting_ui_visible(void);
 
 // shop.c 
 void ShowItemPicture(int, int, int);
@@ -729,7 +729,7 @@ int load_texture_atlas(const char *, const char *, struct image *(*get_storage_f
 
 // chat.c
 void chat_push_topic(const char *topic);
-void chat_pop_topic();
+void chat_pop_topic(void);
 void run_subdialog(const char *);
 void chat_add_response(const char *, int, enemy *);
 int validate_dialogs(void);
@@ -811,7 +811,7 @@ struct map_label *map_label_exists(const char *);
 float lvledit_zoomfact_inv(void);
 
 // lvledit_widgets.c
-struct widget_group *get_lvledit_ui();
+struct widget_group *get_lvledit_ui(void);
 
 // waypoint.c
 int add_waypoint(level *, int, int, int);
