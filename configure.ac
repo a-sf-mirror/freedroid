@@ -77,7 +77,7 @@ if test x$use_debug = xyes; then
 fi
 
 if test x$more_warn = xyes; then
-	CFLAGS="$CFLAGS -Wextra -Wmissing-prototypes -Wstrict-prototypes -Wshadow -Wpointer-arith -Wcast-align -Wnested-externs -Wunreachable-code"
+	CFLAGS="$CFLAGS -Wextra -Wstrict-prototypes -Wshadow -Wpointer-arith -Wcast-align -Wnested-externs -Wunreachable-code"
 fi
 
 if test x$fast_math = xyes; then
