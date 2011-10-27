@@ -778,9 +778,8 @@ void DropEnemyTreasure(Enemy ThisRobot)
 		// We make sure the item created is of a reasonable type
 		//
 		if ((ThisRobot->on_death_drop_item_code <= 0) || (ThisRobot->on_death_drop_item_code >= Number_Of_Item_Types)) {
-			DebugPrintf(-1000, "\n%s(): item type found: %d.", ThisRobot->on_death_drop_item_code);
-			ErrorMessage(__FUNCTION__, "\
-Item to be dropped (forced for this bot) is of illegal type!", PLEASE_INFORM, IS_FATAL);
+			ErrorMessage(__FUNCTION__, "Bot at %f %f (level %d, dialog %s) is specified to drop an item that doesn't exist (item type %d).", PLEASE_INFORM, IS_WARNING_ONLY, ThisRobot->pos.x, ThisRobot->pos.y, ThisRobot->pos.z, ThisRobot->dialog_section_name, ThisRobot->on_death_drop_item_code);
+			return;
 		}
 
 		DropItemAt(ThisRobot->on_death_drop_item_code, ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, 1);
@@ -791,7 +790,6 @@ Item to be dropped (forced for this bot) is of illegal type!", PLEASE_INFORM, IS
 	// valuables, that the Tux can then collect afterwards.
 	//
 	DropRandomItem(ThisRobot->pos.z, ThisRobot->virt_pos.x, ThisRobot->virt_pos.y, Druidmap[ThisRobot->type].drop_class, FALSE);
-
 }
 
 /**

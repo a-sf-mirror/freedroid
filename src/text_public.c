@@ -149,8 +149,6 @@ void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlele
 	void *MatchPointer;
 	size_t SearchPos = 0;
 
-	DebugPrintf(3, "%s(): haystack = %d, len = %d, needle=%s\n", __FUNCTION__, haystack, haystacklen, needle);
-
 	while (haystacklen - SearchPos > 0) {
 		// We search for the first match OF THE FIRST CHARACTER of needle
 		//
@@ -164,12 +162,7 @@ void *MyMemmem(char *haystack, size_t haystacklen, char *needle, size_t needlele
 		// Otherwise we see, if also the rest of the strings match this time ASSUMING THEY ARE STRINGS!
 		// In case of a match, we can return immediately
 		//
-		DebugPrintf(3, "calling strstr()..");
 		MatchPointer = strstr(NextFoundPointer, needle);
-		if (MatchPointer)
-			DebugPrintf(3, "..survived. MatchPointer = %d\n", MatchPointer);
-		else
-			DebugPrintf(3, "survived, but nothing found\n");
 		if (MatchPointer != NULL)
 			return (MatchPointer);
 

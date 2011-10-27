@@ -806,7 +806,7 @@ static int lua_set_bot_destination(lua_State * L)
 				Map label %s (found on level %d) does not have a waypoint. Cannot send bot %s\n\
 				to this location. Doing nothing.\n\
 				Location coordinates x=%d, y=%d.",
-				PLEASE_INFORM, IS_WARNING_ONLY, label, TempLocation.level, en->pos.z, en->dialog_section_name, TempLocation.x, TempLocation.y);
+				PLEASE_INFORM, IS_WARNING_ONLY, label, TempLocation.level, en->dialog_section_name, TempLocation.x, TempLocation.y);
 		return 0;
 	}
 
@@ -920,7 +920,7 @@ static int lua_set_faction_state(lua_State *L)
 	else if (!strcmp(state_str, "friendly"))
 		state = FRIENDLY;
 	else {
-		ErrorMessage(__FUNCTION__, "Unknown faction state %s.", PLEASE_INFORM, IS_WARNING_ONLY);
+		ErrorMessage(__FUNCTION__, "Unknown faction state %s.", PLEASE_INFORM, IS_WARNING_ONLY, state_str);
 		return 0;
 	}
 

@@ -110,7 +110,7 @@ void CheckIfMissionIsComplete(void)
 			BROWSE_ALIVE_BOTS(erot) {
 				if ((erot->marker == Me.AllMissions[mis_num].KillOne)) {
 					DebugPrintf(MIS_COMPLETE_DEBUG,
-						    "\nOne of the marked droids is still alive... (0x%08x at %f:%f on %d)\n", erot,
+						    "\nOne of the marked droids is still alive... (%p at %f:%f on %d)\n", erot,
 						    erot->pos.x, erot->pos.y, erot->pos.z);
 					this_mission_seems_completed = FALSE;
 					break;

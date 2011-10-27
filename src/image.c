@@ -319,7 +319,7 @@ void create_subimage(struct image *source, struct image *new_img, SDL_Rect *rect
 	} else {
 
 		if (!source->surface) {
-			ErrorMessage(__FUNCTION__, "Trying to create subimage from image source %x (width %d height %d), but image SDL surface is NULL.", PLEASE_INFORM, IS_WARNING_ONLY, source, source->w, source->h);
+			ErrorMessage(__FUNCTION__, "Trying to create subimage from image source %p (width %d height %d), but image SDL surface is NULL.", PLEASE_INFORM, IS_WARNING_ONLY, source, source->w, source->h);
 			return;
 		}
 

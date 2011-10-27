@@ -1062,7 +1062,7 @@ int LoadGameConfig(void)
 
 	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
 	if ((configfile = fopen(fname, "rb")) == NULL) {
-		DebugPrintf(0, "WARNING: failed to open config-file: %s\n");
+		fprintf(stderr, "Unable to open configuration file %s\n", fname);
 		return (ERR);
 	}
 
@@ -1148,7 +1148,7 @@ int SaveGameConfig(void)
 
 	sprintf(fname, "%s/fdrpg.cfg", our_config_dir);
 	if ((config_file = fopen(fname, "wb")) == NULL) {
-		DebugPrintf(0, "WARNING: failed to create config-file: %s\n");
+		fprintf(stderr, "Unable to open configuration file %s for writing\n", fname);
 		return (ERR);
 	}
 	// We put the current version number of freedroid into the 

@@ -97,7 +97,7 @@ void input_keyboard_init(void)
 
 	if (sizeof(keybindNames) / sizeof(keybindNames[0]) > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
 		ErrorMessage(__FUNCTION__,
-			     "There are %d keyboard commands defined in keyboard.c, but GameConfig structure only supports %d.\n",
+			     "There are %ld keyboard commands defined in keyboard.c, but GameConfig structure only supports %ld.\n",
 			     PLEASE_INFORM, IS_FATAL,
 			     sizeof(keybindNames) / sizeof(keybindNames[0]),
 			     sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]));
@@ -158,6 +158,10 @@ void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
 	}
 	ErrorMessage(__FUNCTION__, "Unable to get keybind for command '%s', that command does not exist.\n", PLEASE_INFORM, IS_FATAL,
 		     cmdname);
+
+	/* This dead code writes "key" and "mod" to shut up GCC */
+	*key = GameConfig.input_keybinds[0].key;
+	*mod = GameConfig.input_keybinds[0].mod;
 }
 
 /**

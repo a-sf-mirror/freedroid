@@ -299,10 +299,10 @@ static void fill_item_description(struct widget_text *desc, item *show_item, int
 		}
 
 		if (ItemMap[show_item->type].item_group_together_in_inventory) {
-			autostr_append(desc->text, _("Price per unit: %s%ld%s\n"), buyone_highlight, price, font_switchto_neon);
-			autostr_append(desc->text, _("%s all: %s%ld%s\n"), action, buyall_highlight, price * show_item->multiplicity, font_switchto_neon);
+			autostr_append(desc->text, _("Price per unit: %s%d%s\n"), buyone_highlight, price, font_switchto_neon);
+			autostr_append(desc->text, _("%s all: %s%d%s\n"), action, buyall_highlight, price * show_item->multiplicity, font_switchto_neon);
 		} else {
-			autostr_append(desc->text, _("%s Price: %s%ld%s\n"), action, buyone_highlight, price, font_switchto_neon);
+			autostr_append(desc->text, _("%s Price: %s%d%s\n"), action, buyone_highlight, price, font_switchto_neon);
 		}
 
 
