@@ -831,9 +831,11 @@ void init_luaconfig()
 		{NULL, NULL}
 	};
 
+	lua_State *L = get_lua_state(LUA_CONFIG);
+
 	for (i = 0; lfuncs[i].name != NULL; i++) {
-		lua_pushcfunction(config_lua_state, lfuncs[i].func);
-		lua_setglobal(config_lua_state, lfuncs[i].name);
+		lua_pushcfunction(L, lfuncs[i].func);
+		lua_setglobal(L, lfuncs[i].name);
 	}
 
 	init_obstacle_flags();
