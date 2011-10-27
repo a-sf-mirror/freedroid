@@ -117,13 +117,6 @@ Nr=1 Text=_"Do you also sell medical equipment?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=40 Text=_"May I buy some medical equipment?"
-<LuaCode>
-	npc_says(_"Sure. Here is what I can offer today.")
-	trade_with("DocMoore")
-</LuaCode>
-----------------------------------------------------------------------
-
 Nr=2 Text=_"Doc, I took some of those brain enlargement pills..."
 <LuaCode>
 	if (has_cookie("doc_healed_tux")) then
@@ -248,6 +241,13 @@ Nr=30 Text=_"Forget it. Getting the antidote is not worth the effort."
 <LuaCode>
 	npc_says(_"I am not giving it to you, and that won't change.")
 	hide(21, 22, 30)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=40 Text=_"May I buy some medical equipment?"
+<LuaCode>
+	npc_says(_"Sure. Here is what I can offer today.")
+	trade_with("DocMoore")
 </LuaCode>
 ----------------------------------------------------------------------
 

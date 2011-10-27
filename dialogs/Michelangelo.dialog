@@ -266,44 +266,6 @@ Nr=32 Text=_"Where can I find dilithium crystals?"
 	hide(32)
 </LuaCode>
 ----------------------------------------------------------------------
-Nr=70 Text=_"Why don't you send someone for the dilithium?"
-<LuaCode>
-	npc_says(_"I did.")
-	npc_says(_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood.")
-	npc_says(_"The bots made a bloody mess out of him.")
-	hide(70)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=80 Text=_"Maybe I can get you some dilithium."
-<LuaCode>
-	npc_says(_"Have you gotten overheated, Linarian?")
-	npc_says(_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot.")
-	npc_says(_"If you want to die just walk into a nuclear reactor or something. So much simpler.")
-	hide(80) show(81)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=81 Text=_"Don't worry, I'll be fine."
-<LuaCode>
-	npc_says(_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly.")
-	npc_says(_"I have seen corpses with nearly all of the fingers ripped off. People with eyes drilled out by some big tool.")
-	npc_says(_"I have smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the town walls.")
-	npc_says(_"The bots know no mercy. They cannot even define it, infernal scrap metal fiends.")
-	npc_says(_"Feel free to go, Linarian, but make sure to be very dead before they start killing you.")
-	tux_says(_"Where can I get the crystals?")
-	npc_says(_"There is an old dilithium mine to the east. I am sure there is lots of that stuff there.")
-	npc_says(_"I will talk to the guards, they will open the eastern gate for you.")
-	npc_says(_"Good luck. Try not to get yourself killed.")
-	tux_says(_"How many dilithium crystals do you need?")
-	npc_says(_"A single small crystal could power my oven for a decade if it is of good quality. But unfortunately my oven requires two to operate correctly. And since it is so dangerous to send anyone to get dilithium, could you get me a spare as well?")
-	tux_says(_"So you need three dilithium crystals?")
-	npc_says(_"Yes. Please get me three dilithium crystals.")
-	change_obstacle_state("EastGateOfTown", "opened")
-	add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")	
-	hide(19, 40, 41, 42, 70, 81)
-</LuaCode>
-----------------------------------------------------------------------
 
 Nr=40 Text=_"What is this 'dilithium'?"
 <LuaCode>
@@ -343,6 +305,15 @@ Nr=42 Text=_"Tell the Red Guard that you need your battery back."
 </LuaCode> -- There could be a quest for Tux to find the item that uses the battery and return it to Michelangelo.
 ----------------------------------------------------------------------
 
+Nr=70 Text=_"Why don't you send someone for the dilithium?"
+<LuaCode>
+	npc_says(_"I did.")
+	npc_says(_"Yesterday a guard patrol found a few tiny bits of him and lots of dried blood.")
+	npc_says(_"The bots made a bloody mess out of him.")
+	hide(70)
+</LuaCode>
+----------------------------------------------------------------------
+
 Nr=75 Text=_"I need a dilithium crystal."
 <LuaCode>
 	npc_says(_"I am already using the ones you got me. They are being used to feed the town.")
@@ -365,6 +336,36 @@ Nr=77 Text=_"I need one of the dilithium crystals back, it is a matter of life o
 	add_item("Red Dilithium Crystal", 1)
 	update_quest(_"SADD's power supply", _"I remembered that I gave Michelangelo three dilithium crystals when he only needed two for his oven. I convinced him it was a life-or-death situation (is the SADD a life-form?) so he returned the spare one to me. Looks like I saved myself a trip back to the old dilithium mine!")
 	hide(77)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=80 Text=_"Maybe I can get you some dilithium."
+<LuaCode>
+	npc_says(_"Have you gotten overheated, Linarian?")
+	npc_says(_"Look, there are dozens of ways you can kill yourself, and most hurt less than being killed by a bot.")
+	npc_says(_"If you want to die just walk into a nuclear reactor or something. So much simpler.")
+	hide(80) show(81)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=81 Text=_"Don't worry, I'll be fine."
+<LuaCode>
+	npc_says(_"Do you know how the bots act? Some want to kill you as soon as possible... Others want to do the same, but slowly.")
+	npc_says(_"I have seen corpses with nearly all of the fingers ripped off. People with eyes drilled out by some big tool.")
+	npc_says(_"I have smelled burnt meat and heard the screams of the captives as they were incinerated alive outside the town walls.")
+	npc_says(_"The bots know no mercy. They cannot even define it, infernal scrap metal fiends.")
+	npc_says(_"Feel free to go, Linarian, but make sure to be very dead before they start killing you.")
+	tux_says(_"Where can I get the crystals?")
+	npc_says(_"There is an old dilithium mine to the east. I am sure there is lots of that stuff there.")
+	npc_says(_"I will talk to the guards, they will open the eastern gate for you.")
+	npc_says(_"Good luck. Try not to get yourself killed.")
+	tux_says(_"How many dilithium crystals do you need?")
+	npc_says(_"A single small crystal could power my oven for a decade if it is of good quality. But unfortunately my oven requires two to operate correctly. And since it is so dangerous to send anyone to get dilithium, could you get me a spare as well?")
+	tux_says(_"So you need three dilithium crystals?")
+	npc_says(_"Yes. Please get me three dilithium crystals.")
+	change_obstacle_state("EastGateOfTown", "opened")
+	add_quest(_"Anything but the army snacks, please!", _"I am supposed to get three dilithium crystals for that cook, Michelangelo. Without them he cannot cook anything in his macrowave oven. And without his cooking, the whole town is stuck eating army snacks. Many people have committed suicide because of the horrible food. This madness must stop.")	
+	hide(19, 40, 41, 42, 70, 81)
 </LuaCode>
 ----------------------------------------------------------------------
 

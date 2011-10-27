@@ -429,16 +429,6 @@ Nr=29 Text=_"I'm ready to move on."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=70 Text=_"There is a wall in the path! How will we get through?"
-<LuaCode>
-	npc_says(_"Notice part of it is made of a weak material, glass.")
-	npc_says(_"Obstacles you can interact with change color when your cursor is hovering over them.")
-	npc_says(_"[b]Left click[/b] on the glass wall to break it.")
-	npc_says(_"After you break through the glass wall, walk to the other side so I know you are ready to move on.")
-	end_dialog()
-</LuaCode>
-----------------------------------------------------------------------
-
 Nr=30 Text=_"Ranged weaponry seems safer than getting up close and personal."
 <LuaCode>
 	npc_says(_"Well, Linarian, most of the time it is.")
@@ -833,6 +823,16 @@ Nr=60 Text=_"Upgrading items is still too complex for me. Can you explain it aga
 	upgrade_items()
 	npc_says(_"I hope it's clear now.")
 
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=70 Text=_"There is a wall in the path! How will we get through?"
+<LuaCode>
+	npc_says(_"Notice part of it is made of a weak material, glass.")
+	npc_says(_"Obstacles you can interact with change color when your cursor is hovering over them.")
+	npc_says(_"[b]Left click[/b] on the glass wall to break it.")
+	npc_says(_"After you break through the glass wall, walk to the other side so I know you are ready to move on.")
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
