@@ -144,6 +144,7 @@
 		               "If you see this message and you have not updated the game, "\
 		               "make sure to report this to the developers.\n"\
 		               "Thanks!"));\
+		lua_pop(L, 1);\
 	}\
 	rc;\
 })
