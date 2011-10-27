@@ -553,7 +553,12 @@ int load_named_game(const char *name);
 #define CURLEVEL() (curShip.AllLevels[Me.pos.z])
 void print_trace(int signum);
 void adapt_button_positions_to_screen_resolution(void);
-void ErrorMessage(const char *FunctionName, const char *ProblemDescription, int InformDevelopers, int IsFatal, ...);
+#ifdef __GNUC__
+#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg) __attribute__ ((format(printf,fmt,firstarg)));
+#else
+#define PRINTF_FMT_ATTRIBUTE(fmt,firstarg)
+#endif
+void ErrorMessage(const char *FunctionName, const char *ProblemDescription, int InformDevelopers, int IsFatal, ...) PRINTF_FMT_ATTRIBUTE(2,5);
 void ShowGenericButtonFromList(int ButtonIndex);
 int mouse_cursor_is_on_that_image(float pos_x, float pos_y, struct image *our_iso_image);
 int MouseCursorIsInRect(const SDL_Rect *, int, int);
@@ -617,7 +622,7 @@ int get_lines_needed(const char *text, SDL_Rect t_rect, float line_height_factor
 void show_backgrounded_label_at_map_position(char *LabelText, float fill_status, float pos_x, float pos_y, int zoom_is_on);
 char *GetEditableStringInPopupWindow(int MaxLen, const char *PopupWindowTitle, const char *DefaultString);
 int show_backgrounded_text_rectangle(const char *, struct BFont_Info *, int, int, int, int);
-void alert_window(const char *text, ...);
+void alert_window(const char *text, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 int CutDownStringToMaximalSize(char *StringToCut, int LengthInPixels);
 void SetNewBigScreenMessage(const char *ScreenMessageText);
 void DisplayBigScreenMessage(void);
@@ -634,7 +639,7 @@ int ImprovedCheckLineBreak(char *, const SDL_Rect*, float);
 char *PreviousLine(char *textstart, char *text);
 char *NextLine(char *text);
 char *get_string(int max_len, const char *background_name, const char *text_for_overhead_promt);
-void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...);
+void printf_SDL(SDL_Surface * screen, int x, int y, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(4,5);
 int longest_line_width(char *text);
 
 // text_public.c 
@@ -648,7 +653,7 @@ void ReadValueFromString(char *SearchBeginPointer, const char *ValuePreceedText,
 int ReadRangeFromString(char *SearchString, const char *StartIndicationString, const char *EndIndicationString, int *min, int *max, int default_val);
 char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_String);
 char *LocateStringInData(char *SearchBeginPointer, const char *SearchTextPointer);
-void DebugPrintf(int db_level, const char *fmt, ...);
+void DebugPrintf(int db_level, const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 void *MyMalloc(long);
 int FS_filelength(FILE * f);
 int inflate_stream(FILE *, unsigned char **, int *);
@@ -663,7 +668,7 @@ void show_texts_and_banner(void);
 int get_days_of_game_duration(float current_game_date);
 int get_hours_of_game_duration(float current_game_date);
 int get_minutes_of_game_duration(float current_game_date);
-void append_new_game_message(const char *fmt, ...);
+void append_new_game_message(const char *fmt, ...) PRINTF_FMT_ATTRIBUTE(1,2);
 void init_message_log(void);
 void toggle_game_config_screen_visibility(int screen_visible);
 int get_current_fps(void);
@@ -744,9 +749,9 @@ void set_dungeon_output(level *);
 // string.c
 struct auto_string *alloc_autostr(int);
 void free_autostr(struct auto_string *);
-int autostr_printf(struct auto_string *, const char *, ...);
+int autostr_printf(struct auto_string *, const char *, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 int autostr_vappend(struct auto_string *str, const char *fmt, va_list args);
-int autostr_append(struct auto_string *, const char *, ...);
+int autostr_append(struct auto_string *, const char *, ...) PRINTF_FMT_ATTRIBUTE(2,3);
 
 // dynarray.c
 struct dynarray *dynarray_alloc(int, size_t);
