@@ -174,13 +174,13 @@ NO_TEXT
 	rev = get_program_revision("Extract bot parts")
 
 	if (can_tux_train(50, 1)) then
-		if (rev == 0) then next_node = 18 end -- Learn rev1
-		if (rev == 1) then next_node = 20 end -- Learn rev2
-		if (rev == 2) then next_node = 30 end -- Learn rev3
-		if (rev == 3) then next_node = 40 end -- Learn rev4
-		if (rev == 4) then next_node = 50 end -- Learn rev5
+		if (rev == 0) then next(18) end -- Learn rev1
+		if (rev == 1) then next(20) end -- Learn rev2
+		if (rev == 2) then next(30) end -- Learn rev3
+		if (rev == 3) then next(40) end -- Learn rev4
+		if (rev == 4) then next(50) end -- Learn rev5
 	else -- Can't train
-		next_node = 99 -- This stops a crash
+		next(99) -- This stops a crash
 		if (get_gold() >= 50) then -- Training points were the problem
 			npc_says(_"Hmmm...")
 			npc_says(_"You look green. Toughen up. Get some experience, kill some bots.")
@@ -193,13 +193,12 @@ NO_TEXT
 	end
 
 	if (rev == 5) then -- Max level
-		next_node = 70
+		next(70)
 	elseif (can_tux_train(50, 1)) then
 		del_gold(50)
 		del_points(1)
 	end
 
-	next(next_node)
 </LuaCode>
 ----------------------------------------------------------------------
 
