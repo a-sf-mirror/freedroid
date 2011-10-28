@@ -1198,25 +1198,28 @@ void run_lua(enum lua_target target, const char *code)
 
 		erronous_code = alloc_autostr(16);
 
-		//Find which line the error is on
-		while (*ptr != ':') {
+		//Find which line the error is on (if there is a line number in the error message)
+		while (*ptr != 0 && *ptr != ':') {
 			ptr++;
 		}
-		ptr++;
-		err_line = strtol(ptr, NULL, 10);
+		if (*ptr != 0) {
+			// Line number found
+			ptr++;
+			err_line = strtol(ptr, NULL, 10);
+		}
 
 		//Break up lua code by newlines then insert line numbers & error notification
 		ptr = strtok(display_code,"\n");
 
 		while (ptr != NULL) {
 			if (err_line != cur_line) {
-				autostr_append(erronous_code, "%d%s\n", cur_line, ptr);
+				autostr_append(erronous_code, "%d %s\n", cur_line, ptr);
 #ifndef __WIN32__
 			} else if (!strcmp(getenv("TERM"), "xterm")) { //color highlighting for Linux/Unix terminals
-				autostr_append(erronous_code, "\033[41m>%d%s\033[0m\n", cur_line, ptr);
+				autostr_append(erronous_code, "\033[41m>%d %s\033[0m\n", cur_line, ptr);
 #endif
 			} else {
-				autostr_append(erronous_code, ">%d%s\n", cur_line, ptr);
+				autostr_append(erronous_code, ">%d %s\n", cur_line, ptr);
 			}
 
 			ptr = strtok(NULL, "\n");
