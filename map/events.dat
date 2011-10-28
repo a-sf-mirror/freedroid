@@ -161,6 +161,38 @@ Silent=1
 * End of trigger *
 
 * New event trigger *
+Name=_"Escort Tux TR-exit-1"
+Trigger at label="TeleporterRoom-exit-1"
+Silent=1
+<LuaCode>
+	if (has_cookie("guard_follow_tux")) then
+		set_bot_state("follow_tux", "Town-TuxGuard")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux TR-exit-2"
+Trigger at label="TeleporterRoom-exit-2"
+Silent=1
+<LuaCode>
+	if (has_cookie("guard_follow_tux")) then
+		set_bot_state("follow_tux", "Town-TuxGuard")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"Escort Tux Teleport Out"
+Trigger exiting level=0
+<LuaCode>
+	if (has_cookie("guard_follow_tux")) then
+		set_bot_state("patrol", "Town-TuxGuard")
+	end
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
 Name=_"Escort Tux N-e1-outer"
 Trigger at label="N-exit-1-outer"
 Silent=1
