@@ -911,7 +911,7 @@ static void ShowPlayground(enemy * target)
 	SDL_Rect Target_Rect;
 	int phase, dheight;
 	xoffs = User_Rect.x + (User_Rect.w - 2 * 290) / 2;
-	yoffs = User_Rect.y + (User_Rect.h - 2 * 140) / 2;
+	yoffs = User_Rect.y + (User_Rect.h - 2 * 140) / 2 + 30;
 
 	phase = (int) Me.phase;
 
