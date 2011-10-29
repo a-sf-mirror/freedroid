@@ -29,7 +29,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	terminal = "dixon@maintanance: ~ # "
+	terminal = "dixon@maintenance: ~ # "
 
 	cli_says(_"Login : ", "NO_WAIT")
 	tux_says("dixon", "NO_WAIT")
@@ -46,7 +46,6 @@ Nr=0 Text=_"sys_status --all"
 <LuaCode>
 	if (not has_cookie("Maintenance-devices") ) then
 		add_cookie("Maintenance-devices")
-		create_droid("Sin-Emissary", 249, "singularity")
 		npc_says(_"Detecting connected devices...")
 		npc_says(_"Found 03 connected auto-guns.")
 		npc_says(_"Found 01 connected gate.")
@@ -87,6 +86,7 @@ Nr=0 Text=_"sys_status --all"
 Nr=3 Text=_"disable guns"
 <LuaCode>
 	npc_says(_"I'm sorry. I'm afraid I can't let you do that.")
+	cli_says(terminal, "NO_WAIT")
 	hide(3) show(7)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -133,23 +133,25 @@ Nr=7 Text=_"sudo disable guns"
 	tux_says("*******")
 	npc_says(_"Would you like a sandwich with that?")
 	cli_says("> ", "NO_WAIT")
-	hide(7) show(8, 9)
+	show(8, 9)
+	topic("Make a sandwich")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=8 Text=_"yes"
+Nr=8 Text=_"yes" Topic="Make a sandwich"
 <LuaCode>
 	npc_says_random(_"Now how would I make one of those?", _"Sudo doesn't give you magic powers.")
 	cli_says(terminal, "NO_WAIT")
-	hide(8, 9) show(7)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=9 Text=_"no"
+Nr=9 Text=_"no" Topic="Make a sandwich"
 <LuaCode>
 	npc_says(_"Good choice.")
 	add_cookie("Maintenance-refusal")
-	hide(8, 9) next(11)
+	hide(7, 8, 9) next(11)
+	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
