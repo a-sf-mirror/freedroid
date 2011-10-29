@@ -31768,7 +31768,7 @@ t155 x40.00 y28.50
 t6 x42.64 y28.98
 t6 x43.64 y28.97
 t11 x40.00 y26.47
-t11 x40.00 y27.50
+t15 x40.00 y27.50
 t194 x44.37 y37.48
 t11 x20.98 y62.56
 t11 x21.00 y61.50
@@ -32160,7 +32160,7 @@ t186 x19.50 y20.50
 t178 x17.50 y20.50
 t177 x17.50 y18.50
 t176 x17.00 y19.50
-t186 x19.50 y18.00
+t190 x19.50 y18.00
 t49 x18.00 y19.50
 t48 x19.50 y38.50
 t48 x19.50 y40.50
@@ -32731,7 +32731,7 @@ t322 x29.00 y84.00
 t231 x28.00 y84.00
 t323 x28.00 y83.00
 t323 x28.00 y82.00
-t15 x43.05 y80.13
+t11 x43.05 y80.13
 t322 x27.00 y84.00
 t322 x26.00 y84.00
 t322 x25.00 y84.00
@@ -33078,11 +33078,11 @@ t50 x48.53 y19.53
 /obsdata
 plabelinfolvl
 x=31 y=21 name="BreakingGlassSecretDoorWHTrigger"
-x=76 y=73 name="MSOLobbyDeactivateSecurity"
+x=76 y=73 name="SwitchOffLaserTrapMSOLobby-2"
 x=78 y=78 name="IntruderDetectorMSOLobby01"
 x=79 y=78 name="IntruderDetectorMSOLobby02"
 x=56 y=33 name="MSOHQExitSwitch"
-x=82 y=77 name="SwitchOffLaserTrapMSOLobby"
+x=82 y=77 name="SwitchOffLaserTrapMSOLobby-1"
 x=12 y=76 name="MSOPointOfNoReturn"
 x=42 y=68 name="SecretPowerStationHatchMSOGarden"
 x=57 y=54 name="MSOMillerEntranceUnlocker"
@@ -33242,6 +33242,12 @@ idx=1979 type=30 data={
 }
 idx=1984 type=30 data={
 	HF-Gate-inner
+}
+idx=2263 type=30 data={
+	MSLaserTrapLVL31-1
+}
+idx=2281 type=30 data={
+	MSLaserTrapLVL31-2
 }
 /obstacleextensions
 wp
@@ -44913,7 +44919,7 @@ t2 x34.50 y23.00
 t2 x33.50 y23.00
 t2 x32.50 y23.00
 t1 x30.00 y22.50
-t11 x30.00 y21.50
+t15 x30.00 y21.50
 t1 x30.00 y23.50
 t2 x41.50 y35.00
 t2 x42.50 y35.00
@@ -45051,7 +45057,7 @@ t2 x35.50 y35.00
 t2 x34.50 y35.00
 t2 x33.50 y35.00
 t2 x32.50 y35.00
-t353 x30.50 y35.00
+t357 x30.50 y35.00
 t1 x41.00 y46.50
 t1 x32.00 y23.50
 t1 x32.00 y24.50
@@ -45718,7 +45724,7 @@ t1 x23.00 y66.50
 t1 x23.00 y67.50
 t1 x23.00 y68.50
 t1 x23.00 y69.50
-t353 x3.50 y58.00
+t357 x3.50 y58.00
 t1 x14.00 y56.50
 t1 x14.00 y55.50
 t1 x14.00 y54.50
@@ -47386,7 +47392,7 @@ t1 x36.00 y30.50
 t1 x36.00 y29.50
 t1 x36.00 y28.50
 t1 x36.00 y27.50
-t11 x51.00 y56.50
+t15 x51.00 y56.50
 t1 x36.00 y17.50
 t1 x36.00 y16.50
 t1 x36.00 y15.50

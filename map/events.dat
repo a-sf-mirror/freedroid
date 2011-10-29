@@ -795,7 +795,7 @@ Silent=1
 	change_obstacle_state("BreakingGlassWallOnTrap02", "broken")
 	change_obstacle_state("BreakingGlassWallOnTrap03", "broken")
 	change_obstacle_state("BreakingGlassWallOnTrap04", "broken")
- </LuaCode>
+</LuaCode>
 * End of trigger *
 
 * New event trigger *
@@ -808,7 +808,46 @@ Silent=1
 	change_obstacle_state("GlassWallLaserTrap03", "disabled")
 	change_obstacle_state("GlassWallLaserTrap04", "disabled")
 	change_obstacle_state("GlassWallLaserTrap05", "disabled")
- </LuaCode>
+</LuaCode>
+* End of trigger *
+
+
+ * New event trigger *
+Name=_"IntruderDetectorMSOLobby01"
+Trigger at label="IntruderDetectorMSOLobby01"
+Silent=1
+<LuaCode>
+	change_obstacle_state("MSLaserTrapLVL31-1", "enabled")
+	change_obstacle_state("MSLaserTrapLVL31-2", "enabled")
+</LuaCode>
+* End of trigger *
+
+* New event trigger *
+Name=_"IntruderDetectorMSOLobby02"
+Trigger at label="IntruderDetectorMSOLobby02"
+Silent=1
+<LuaCode>
+	change_obstacle_state("MSLaserTrapLVL31-1", "enabled")
+	change_obstacle_state("MSLaserTrapLVL31-2", "enabled")
+</LuaCode>
+
+* New event trigger *
+Name=_"MSO-SwitchOffLaserTrapMSOLobby-1"
+Trigger at label="SwitchOffLaserTrapMSOLobby-1"
+Silent=1
+<LuaCode>
+	change_obstacle_state("MSLaserTrapLVL31-1", "disabled")
+	change_obstacle_state("MSLaserTrapLVL31-2", "disabled")
+</LuaCode>
+
+* New event trigger *
+Name=_"MSO-SwitchOffLaserTrapMSOLobby-2"
+Trigger at label="SwitchOffLaserTrapMSOLobby-2"
+Silent=1
+<LuaCode>
+	change_obstacle_state("MSLaserTrapLVL31-1", "disabled")
+	change_obstacle_state("MSLaserTrapLVL31-2", "disabled")
+</LuaCode>
 * End of trigger *
 ##############
 ## Level 32 ##
