@@ -27,7 +27,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <FirstTime LuaCode>
-	show (0, 6)
+	show(0, 6)
 </LuaCode>
 
 <EveryTime LuaCode>

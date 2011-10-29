@@ -95,7 +95,7 @@ Nr=17 Text=_"I would like to customize my equipment."
 NO_TEXT
 <LuaCode>
 	if (not has_cookie("engel_offered_extraction_skill")) then
-		show (50)
+		show(50)
 	end
 	upgrade_items()
 </LuaCode>
