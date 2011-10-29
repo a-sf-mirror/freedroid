@@ -1417,6 +1417,7 @@ int PerformTuxAttackRaw(int use_mouse_cursor_for_targeting)
 			NewShot->to_hit = Me.to_hit;
 			NewShot->damage = Me.base_damage + MyRandom(Me.damage_modifier);
 			NewShot->owner = -1;	//no "bot class number" owner
+			NewShot->time_to_hit = tux_anim.attack.duration / 2;
 
 			melee_weapon_hit_something = TRUE;
 

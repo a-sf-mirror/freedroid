@@ -2084,6 +2084,9 @@ void write_melee_shot(struct auto_string *strout, melee_shot *data)
     autostr_append(strout, "owner = ");
     write_int16_t(strout, &data->owner);
     autostr_append(strout, ",\n");
+    autostr_append(strout, "time_to_hit = ");
+    write_float(strout, &data->time_to_hit);
+    autostr_append(strout, ",\n");
     autostr_append(strout, "}");
 }
 
@@ -2112,6 +2115,10 @@ void read_melee_shot(lua_State* L, int index, melee_shot *data)
     }
     if (lua_getfield_or_warn(L, index, "owner")) {
         read_int16_t(L, -1, &data->owner);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "time_to_hit")) {
+        read_float(L, -1, &data->time_to_hit);
         lua_pop(L, 1);
     }
 }

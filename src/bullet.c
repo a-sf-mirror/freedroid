@@ -133,14 +133,17 @@ void delete_melee_shot(melee_shot * t)
 void DoMeleeDamage(void)
 {
 	int i;
+	float latest_frame_time = Frame_Time();
 	melee_shot *CurMelS;
 
 	/* Browse all melee shots */
 	for (i = 0; i < MAX_MELEE_SHOTS; i++) {
 		CurMelS = &AllMeleeShots[i];
 
-		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_NOTHING)
+		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_NOTHING || CurMelS->time_to_hit > 0) {
+			CurMelS->time_to_hit -= latest_frame_time;
 			continue;
+		}
 
 		if (CurMelS->attack_target_type == ATTACK_TARGET_IS_ENEMY) {
 			/* Attack an enemy */

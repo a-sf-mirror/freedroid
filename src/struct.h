@@ -672,6 +672,7 @@ typedef struct melee_shot	// this is a melee shot
 	short int to_hit;	//chance to hit, percent
 	short int damage;
 	short int owner;
+	float time_to_hit;	//Time until the 'shot' makes contact
 } melee_shot;
 
 typedef struct blastspec {
