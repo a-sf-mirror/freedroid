@@ -68,6 +68,10 @@ Beginning of new chat dialog for character="XXXXX"
 		show(44)
 	end
 
+	if (data_cube_lost and (not done_quest(_"Deliverance"))) then
+		show(29)
+	end
+
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -77,7 +81,7 @@ Nr=0 Text=_"Hi! I'm new here."
 	npc_says(_"I'm Spencer. I'm the leader of the Red Guard. Is there anything I can help you with?")
 	if (has_quest(_"Deliverance") and (not done_quest(_"Deliverance"))) then
 		add_cookie("knows_spencer_office")
-		show(5)
+		show(20)
 	end
 	hide(0) show(1, 7)
 </LuaCode>
@@ -112,35 +116,6 @@ Nr=4 Text=_"But I don't have that many circuits!"
 	npc_says(_"Look, I'm just fooling around. We don't let just anyone join the Red Guard.", "NO_WAIT")
 	npc_says(_"If you seriously want to join, you have to prove yourself first. You might want to ask around town for things you can do.")
 	hide(4) show(7, 12)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=5 Text=_"Francis wanted me to give you this."
-<LuaCode>
-	if (has_item_backpack("Data cube") > 0) then
-		npc_says(_"Ah, excellent, the list I asked for.")
-		npc_says(_"It figures he would ask someone to deliver it for him.")
-		tux_says(_"Why's that?")
-		npc_says(_"We had a little disagreement, Francis and I. He refused to accept our rule and do the task we gave him.")
-		npc_says(_"I had to persuade him myself.")
-		tux_says(_"Did you beat him up?")
-		npc_says(_"No, nothing so violent. Let's just say I know more about Francis than he would like to remember.")
-		npc_says(_"Anyway, we haven't exactly been close friends since.")
-		tux_says(_"Why didn't he want to do this task you gave him? What was it?")
-		npc_says(_"I wanted him to go through the people in cryonic freezing in the facility, and make a list of disposable ones and people unlikely to survive. This cube contains that list.")
-		tux_says(_"Disposable people? Unlikely to survive? Can't they just stay in cryonics indefinitely?")
-		npc_says(_"No. They take up a lot of space, and keeping them alive takes a lot of power, which is running out. Most of the people there are sick or dying anyway, which is why they're frozen in the first place. We can't afford to waste any resources.")
-		npc_says(_"We even had to confiscate the town cook's macrowave oven battery, which means we can't eat warm food anymore. We needed it to keep the town's defenses up.")
-		del_item_backpack("Data cube", 1)
-		del_item_backpack("Data cube")
-		end_quest(_"Deliverance", _"I gave Spencer the data cube. Apparently it was a list of people in freezing in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power...")
-		add_xp(100)
-	else
-		npc_says(_"... What?")
-		tux_says(_"Oh, erm... Hehe, I think I forgot it somewhere.")
-		npc_says(_"Then you had better go and look for it. Don't waste my time, Linarian.")
-	end
-	hide(5)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -258,6 +233,111 @@ Nr=12 Text=_"Have I done enough quests to become a member now?"
 			npc_says(_"I can't accept you into the guard like this. Get going. There are still many things to do for you.")
 		end
 	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=20 Text=_"Francis wanted me to give you a data cube."
+<LuaCode>
+	npc_says(_"Ah, excellent, the list I asked for.")
+	npc_says(_"It figures he would ask someone to deliver it for him.")
+	tux_says(_"Why's that?")
+	npc_says(_"We had a little disagreement, Francis and I. He refused to accept our rule and do the task we gave him.")
+	npc_says(_"I had to persuade him myself.")
+	npc_says(_"Well, give me the data cube.")
+	if (has_item_backpack("Data cube") > 0) then
+		show(21, 22, 25, 26)
+	else
+		show(23, 25, 26)
+	end
+	hide(20) 
+	topic("Deliver the cube")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=21 Text=_"(Give the data cube to Spencer)" Topic="Deliver the cube"
+NO_TEXT
+<LuaCode>
+	tux_says(_"Take this.")
+	del_item_backpack("Data cube", 1)
+	npc_says(_"Thank you for the good work you have done. I think you deserve a small reward.")
+	add_xp(100)
+	add_gold(100)
+	end_quest(_"Deliverance", _"I gave Spencer the data cube. He gave me a small reward.")
+	data_cube_lost = nil;
+	hide(20, 21, 22, 23, 24, 25, 26)
+	pop_topic("Deliver the cube")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=22 Text=_"(Lie about the oversight of the data cube)" Topic="Deliver the cube"
+NO_TEXT
+<LuaCode>
+	next(23)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=23 Text=_"(Apologize for the oversight of the data cube)" Topic="Deliver the cube"
+NO_TEXT
+<LuaCode>
+	if (not data_cube_lost) then
+		tux_says(_"Oh, erm... Hehe, I think I forgot it somewhere.")
+	else
+		tux_says(_"Hm, I still don't have the data cube.")
+	end
+	npc_says(_"... What?")
+	npc_says(_"Then you had better go and look for it. Don't waste my time, Linarian.")
+	data_cube_lost = true
+	hide(21, 22, 23)
+	pop_topic("Deliver the cube")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=24 Text=_"(Lie about the loss of the data cube)" Topic="Deliver the cube"
+NO_TEXT
+<LuaCode>
+	tux_says(_"I think I lost the data cube.")
+	npc_says(_"Come on, you've got to be kidding! ...")
+	npc_says(_"So I will call one minion for this job. You are very useless, unable to bring a small thing.")
+	npc_says(_"Get out of my sight!")
+	end_quest(_"Deliverance", _"I lied about the data cube and Spencer thinks now I lost the cube. I won a little time for people in cryonic stase. But, I couldn't stop Spencer's project.")
+	add_xp(250)
+	hide(21, 22, 23)
+	end_dialog()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=25 Text=_"How did you persuade Francis? Did you beat him up?" Topic="Deliver the cube"
+<LuaCode>
+	npc_says(_"No, nothing so violent. Let's just say I know more about Francis than he would like to remember.")
+	npc_says(_"Francis is someone who is very understandable. I just had to find the right words.")
+	npc_says(_"Anyway, we have nearly been close friends since.")
+	hide(25)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=26 Text=_"Why didn't Francis want to do this task you gave him? What was it?" Topic="Deliver the cube"
+<LuaCode>
+	npc_says(_"We had an unfortunate misunderstanding, so we had a very hard time talking together.")
+	npc_says(_"I wanted him to go through the people in cryonic freezing in the facility, and make a list of disposable ones and people unlikely to survive. This cube contains that list.")
+	tux_says(_"Disposable people? Unlikely to survive? Can't they just stay in cryonics indefinitely?")
+	npc_says(_"No. They take up a lot of space, and keeping them alive takes a lot of power, which is running out. Most of the people there are sick or dying anyway, which is why they're frozen in the first place. We can't afford to waste any resources.")
+	npc_says(_"We even had to confiscate the town cook's macrowave oven battery, which means we can't eat warm food anymore. We needed it to keep the town's defenses up.")
+	update_quest(_"Deliverance", _"I learn incredible information. Apparently the data cube stored a list of people in freezing in the cryonic facility. Spencer wants to dispose of some of them because keeping them alive uses up the town's power...")
+	hide(26) show(24)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=29 Text=_"I would like to talk about the Francis' cube."
+<LuaCode>
+	npc_says(_"Well, I'm listening to you. But you must be quickly, I've no time to loose.")
+	npc_says(_"If you found the data cube, just give it.")
+	if (has_item_backpack("Data cube") > 0) then
+		show(21, 22)
+	else
+		show(23)
+	end
+	hide(29)
+	topic("Deliver the cube")
 </LuaCode>
 ----------------------------------------------------------------------
 

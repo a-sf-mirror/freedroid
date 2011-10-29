@@ -231,11 +231,12 @@ Nr=90 Text=_"Thanks for the help. I'll be going now."
 	npc_says(_"Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?")
 	tux_says(_"Spencer?")
 	npc_says(_"Yes. He's the leader of the Red Guard.")
-	hide(90) show(91, 93)
+	hide(90) show(91, 93, 94)
+	topic("Deliver the cube")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=91 Text=_"Deliver that cube yourself."
+Nr=91 Text=_"Deliver that cube yourself." Topic="Deliver the cube"
 <LuaCode>
 	francis_help = francis_help - 10
 	npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
@@ -245,7 +246,7 @@ Nr=91 Text=_"Deliver that cube yourself."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=92 Text=_"No, I don't want to deliver your stupid cube."
+Nr=92 Text=_"No, I don't want to deliver your stupid cube." Topic="Deliver the cube"
 <LuaCode>
 	francis_help = francis_help - 60
 	add_cookie("refused_deliverance")
@@ -253,19 +254,29 @@ Nr=92 Text=_"No, I don't want to deliver your stupid cube."
 	npc_says(_"I can't force you to do it if you don't want to.")
 	npc_says(_"I suppose I'll just have to go to Spencer myself.")
 	npc_says(_"Anyway, I am glad I could help you. You should be careful around here. Best head straight for our town.")
-	hide(92, 93)
+	hide(92, 93, 94)
 	next(98)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=93 Text=_"All right, I'll deliver the cube."
+Nr=93 Text=_"All right, I'll deliver the cube." Topic="Deliver the cube"
 <LuaCode>
 	npc_says(_"Thank you.")
 	npc_says(_"You can ask one of the guards in town, they'll know where to find Spencer.")
 	add_item("Data cube", 1)
 	add_quest(_"Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
-	hide(90, 91, 92, 93)
+	hide(90, 91, 92, 93, 94)
 	next(98)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=94 Text=_"What is stored in the cube?" Topic="Deliver the cube"
+<LuaCode>
+	npc_says(_"It's almost nothing... nothing important... if I know nothing about purposes.")
+	npc_says(_"Spencer wanted me to list all people in cryonic stasis. We had an argument about it, but in the end I gave in. Maybe it's needed. I couldn't avoid it.")
+	npc_says(_"I'm not a bad person, but I don't like these types of decisions. Lose-lose decisions are especially difficult. But, I suppose, it's like that for everybody.")
+	npc_says(_"Bring your questions to Spencer. I'd rather not discuss it anymore, it is too troubling, especially since I'm complicit in whatever happens.")
+	hide(94)
 </LuaCode>
 ----------------------------------------------------------------------
 

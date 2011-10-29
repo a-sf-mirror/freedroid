@@ -13,6 +13,15 @@ end
 -- a red guard
 function get_town_score()
     town_score = 0
+
+    if has_quest("Deliverance") then
+	if data_cube_lost then
+		town_score = town_score - 5
+	elseif done_quest("Deliverance") then
+		town_score = town_score + 5
+	end
+    end
+
     if done_quest("Bender's problem") then
 	town_score = town_score + 10
     end
