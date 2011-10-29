@@ -26,7 +26,7 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode> 
-	show(0, 2, 3, 4, 99) 
+	show(0, 4, 5, 99) 
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -34,11 +34,21 @@ Nr=0 Text=_"Who are you? "
 <LuaCode>
 	npc_says(_"I am a 614 security bot, once one of the best-selling products of Nicholson, Inc..")
 	set_bot_name(_"614 -- Cryo Lab Guard Bot")
-	hide(0)	show(1, 4)
+	hide(0)	show(1, 2, 3)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"What can you tell me about the Nicholson company?"
+Nr=1 Text=_"Why are you not hostile as are all the other bots?"
+<LuaCode>
+	npc_says(_"I belong to an older generation of bots, running a custom-made security guard operating system.")
+	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
+	npc_says(_"Even though discontinued by Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
+	npc_says(_"Don't forget to buy products from Nicholson, Inc. They are the best.")
+	hide(1)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=2 Text=_"What can you tell me about the Nicholson company?"
 <LuaCode>
 	npc_says(_"Nicholson, Inc. produces security bots.")
 	npc_says(_"It was founded by Karl Nicholson, a former Kernel hacker who was not satisfied with the development of the GPL license.")
@@ -47,23 +57,7 @@ Nr=1 Text=_"What can you tell me about the Nicholson company?"
 	npc_says(_"He built up a team and developed his own Kernel called 'Nkernel'.")
 	npc_says(_"The Nkernel development team grew fast and technicians started to produce their own droids optimized for the Nkernel.")
 	npc_says(_"The team became a company which released their first security droid, called 610.")
-	npc_says(_"I am the 4th generation version of their security droid line.")
-	hide(1)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=2 Text=_"Have you detected any hostile bot activity?"
-<LuaCode>
-	npc_says(_"Order Received. Initiating proximity energy level scan...")
-	npc_says(_"***** Proximity Scan Results *****", "NO_WAIT")
-	npc_says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
-	npc_says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
-	npc_says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
-		if (cmp_obstacle_state("CryoOuterGate", "closed")) then
-		npc_says(_"Cryo Complex Gates Status: [b]CLOSED[/b]")
-	else
-		npc_says(_"Cryo Complex Gates Status: [b]OPEN[/b]")
-	end
+	npc_says(_"I am the 5th generation version of their security droid line.")
 	hide(2)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -85,21 +79,27 @@ Nr=3 Text=_"What can you tell me about the 614 type?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=4 Text=_"What are your orders?"
+Nr=4 Text=_"Have you detected any hostile bot activity?"
 <LuaCode>
-	npc_says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
-	npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: [b]HIGH[/b].")
-	add_cookie("cryo_614_lock_gate")
+	npc_says(_"Order Received. Initiating proximity energy level scan...")
+	npc_says(_"***** Proximity Scan Results *****", "NO_WAIT")
+	npc_says(_"Hostile Numeric Presence: [b]HIGH[/b]", "NO_WAIT")
+	npc_says(_"Enemy Energy Levels: [b]LOW[/b]", "NO_WAIT")
+	npc_says(_"Threat Degree Analysis: [b]MODERATE[/b]", "NO_WAIT")
+		if (cmp_obstacle_state("CryoOuterGate", "closed")) then
+		npc_says(_"Cryo Complex Gates Status: [b]CLOSED[/b]")
+	else
+		npc_says(_"Cryo Complex Gates Status: [b]OPEN[/b]")
+	end
 	hide(4)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=5 Text=_"Why are you not hostile as are all the other bots?"
+Nr=5 Text=_"What are your orders?"
 <LuaCode>
-	npc_says(_"I belong to an older generation of bots, running a custom-made security guard operating system.")
-	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
-	npc_says(_"Even though discontinued by Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
-	npc_says(_"Don't forget to buy products from Nicholson, Inc. They are the best.")
+	npc_says(_"Primary objective: Protect the living beings inside this complex from attacks by hostile bots.")
+	npc_says(_"Secondary objective: Protect facility by locking outer gates if Threat Degree Analysis: [b]HIGH[/b].")
+	add_cookie("cryo_614_lock_gate")
 	hide(5)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -107,7 +107,7 @@ Nr=5 Text=_"Why are you not hostile as are all the other bots?"
 Nr=99 Text=_"See you later."
 <LuaCode>
 	npc_says(_"Resuming guard program.")
-	hide(5)
+	hide(1, 2, 3)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
