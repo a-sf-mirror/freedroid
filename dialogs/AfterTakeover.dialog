@@ -369,14 +369,6 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=46 Text="BUG, REPORT ME! aftertakeover node46" Topic="repair_and_settings"
-NO_TEXT
-<LuaCode>
-	tux_says(_"cd ..", "NO_WAIT")
-	pop_topic()
-</LuaCode>
-----------------------------------------------------------------------
-
 Nr=47 Text=_"./hcf.py"
 NO_TEXT
 <LuaCode>
