@@ -200,85 +200,99 @@ NO_TEXT
 	npc_says(_"Welcome to the settings menu.", "NO_WAIT")
 	npc_says(_"Version: 1.82c", "NO_WAIT")
 	npc_says(_"No upgrades found.", "NO_WAIT")
-	npc_says(_"Always ask for confirmation before execution of hcf.py? [Y/N]", "NO_WAIT")
-	hide(3, 20, 21, 30, 40) show(31, 32)
-	topic("./settings.plx Y/N")
+	if (npc_damage_amount() > 5) then
+		npc_says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.", "NO_WAIT")
+	else
+		show(35)
+	end
+	npc_says(_"Which setting should be changed?", "NO_WAIT")
+	hide(3, 20, 21, 30, 40) show(31, 39)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=31 Text=_"Y (always ask)" Topic="./settings.plx Y/N"
+Nr=31 Text=_"confirmation of hcf.py" Topic="repair_and_settings"
+NO_TEXT
+<LuaCode>
+	npc_says(_"Always ask for confirmation before execution of hcf.py? [Y/N]", "NO_WAIT")
+	hide(31, 35, 39) show(32, 33)
+	topic("hcf.py confirmation Y/N")
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=32 Text=_"Y (always ask)" Topic="hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Confirmation will now be asked before execution of hcf.py.")
 	if (not has_cookie("aftertakeover_confirm_hcf")) then 
 		add_cookie("aftertakeover_confirm_hcf")
 	end
-	next(33)
+	next(38)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=32 Text=_"N (don't ask)" Topic="./settings.plx Y/N"
+Nr=33 Text=_"N (don't ask)" Topic="hcf.py confirmation Y/N"
 NO_TEXT
 <LuaCode>
 	npc_says(_"hcf.py will be executed without asking for confirmation.")
 	if (has_cookie("aftertakeover_confirm_hcf")) then
 		del_cookie("aftertakeover_confirm_hcf")
 	end
-	next(33)
+	next(38)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=33 Text="BUG, REPORT ME! aftertakeover node33" Topic="repair_and_settings"
+Nr=35 Text=_"broadcast commands" Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
-	npc_says(_"Settings saved", "NO_WAIT")
-	if (npc_damage_amount() > 5) then
-		npc_says(_"UNIT TOO DAMAGED TO BROADCAST COMMANDS.")
-		cli_says(terminal_sub, "NO_WAIT")
-		show(3, 20, 30, 40)
-	else
-		npc_says(_"Broadcast commands to all units on level? [Y/N]")
-		show(34, 35)
-	end
-	hide(31, 32)
+	npc_says(_"Broadcast commands to all units on level? [Y/N]", "NO_WAIT")
+	hide(31, 35, 39) show(36, 37)
 	topic("enable broadcast Y/N")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=34 Text=_"Y (enable broadcast)" Topic="enable broadcast Y/N"
+Nr=36 Text=_"Y (enable broadcast)" Topic="enable broadcast Y/N"
 NO_TEXT
 <LuaCode>
-	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.")
+	npc_says(_"Commands will be broadcast and executed by all bots on this level under your control.", "NO_WAIT")
 	npc_says(_"Entering \"botnet\" mode...")
 	if (not has_cookie("aftertakeover_broadcast_mode")) then
 		add_cookie("aftertakeover_broadcast_mode")
 	end
-	next(36)
+	next(38)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=35 Text=_"N (disable broadcast)" Topic="enable broadcast Y/N"
+Nr=37 Text=_"N (disable broadcast)" Topic="enable broadcast Y/N"
 NO_TEXT
 <LuaCode>
-	npc_says(_"Commands will only be executed by this bot.")
+	npc_says(_"Commands will only be executed by this bot.", "NO_WAIT")
 	npc_says(_"Entering \"single node\" mode...")
 	if (has_cookie("aftertakeover_broadcast_mode")) then
 		del_cookie("aftertakeover_broadcast_mode")
 	end
-	next(36)
+	next(38)
 	pop_topic()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=36 Text="BUG, REPORT ME! aftertakeover node36" Topic="repair_and_settings"
+Nr=38 Text="BUG, REPORT ME! aftertakeover node38" Topic="repair_and_settings"
+NO_TEXT
+<LuaCode>
+	hide(32, 33, 36, 37)
+	next(30)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=39 Text="leave settings.plx" Topic="repair_and_settings"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Settings saved", "NO_WAIT")
- 	cli_says(terminal_sub, "NO_WAIT")
-	hide(34, 35) show(3, 20, 30, 40)
+	npc_says(_"Leaving settings.plx", "NO_WAIT")
+	cli_says(terminal_sub, "NO_WAIT")
+	hide(31, 35, 39) show(3, 20, 30, 40)
 </LuaCode>
 ----------------------------------------------------------------------
 
