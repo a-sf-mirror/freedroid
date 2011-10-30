@@ -111,7 +111,7 @@ about the problem, by either\n\
   post on our forum at:\n\
     https://sourceforge.net/apps/phpbb/freedroid\n\
   report a bug on our tracker at:\n\
-    https://sourceforge.net/tracker/?group_id=54521&atid=474016\n\
+    http://bugs.freedroid.org/\n\
 \n\
 Thanks a lot!\n\n");
 	}
