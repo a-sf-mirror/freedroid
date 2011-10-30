@@ -101,7 +101,7 @@ static int enemy_find_closest_waypoint(struct enemy *this_bot)
 	}
 
 	if (best_waypoint == -1)
-		ErrorMessage(__FUNCTION__, "Found no closest waypoint on level %d.", PLEASE_INFORM, IS_FATAL, lvl->levelnum);
+		ErrorMessage(__FUNCTION__, "Found no closest waypoint on level %d.", PLEASE_INFORM, IS_WARNING_ONLY, lvl->levelnum);
 
 	return best_waypoint;
 }
@@ -118,8 +118,13 @@ int teleport_to_closest_waypoint(struct enemy *ThisRobot)
 	// Find the closest waypoint
 	int best_waypoint = enemy_find_closest_waypoint(ThisRobot);
 
-	// Teleport the robot to the best waypoint
-	teleport_to_waypoint(ThisRobot, lvl, best_waypoint);
+	if (best_waypoint >= 0) {
+		// Teleport the robot to the best waypoint
+		teleport_to_waypoint(ThisRobot, lvl, best_waypoint);
+	} else {
+		// No waypoint found, make this bot wander
+		ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
+	}
 
 	return best_waypoint;
 }
@@ -211,9 +216,15 @@ void teleport_enemy(enemy *robot, int z, float x, float y)
 
 	// Reset the bot's waypoints
 	int best_waypoint = enemy_find_closest_waypoint(robot);
-	robot->homewaypoint = best_waypoint;
-	robot->lastwaypoint = best_waypoint;
-	robot->nextwaypoint = best_waypoint;
+
+	if (best_waypoint >= 0) {
+		robot->homewaypoint = best_waypoint;
+		robot->lastwaypoint = best_waypoint;
+		robot->nextwaypoint = best_waypoint;
+	} else {
+		// No waypoint found, make this bot wander
+		robot->combat_state = WAYPOINTLESS_WANDERING;
+	}
 }
 
 /**
@@ -517,11 +528,15 @@ static void move_enemy_to_spot(Enemy ThisRobot, moderately_finepoint next_target
 		// The waypoints used by the bot have no sense on this new level. They have
 		// to be re-initialized. The closest available waypoint is chosen.
 		int best_waypoint = enemy_find_closest_waypoint(ThisRobot);
-		
-		ThisRobot->homewaypoint = best_waypoint;
-		ThisRobot->lastwaypoint = best_waypoint;
-		ThisRobot->nextwaypoint = best_waypoint;
-		
+
+		if (best_waypoint >= 0) {
+			ThisRobot->homewaypoint = best_waypoint;
+			ThisRobot->lastwaypoint = best_waypoint;
+			ThisRobot->nextwaypoint = best_waypoint;
+		} else {
+			// No waypoint found, make this bot wander
+			ThisRobot->combat_state = WAYPOINTLESS_WANDERING;
+		}
 		// Move the bot to the appropriate level list
 		list_move(&ThisRobot->level_list, &(level_bots_head[ThisRobot->pos.z]));
 	}
