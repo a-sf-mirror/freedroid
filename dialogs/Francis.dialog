@@ -32,47 +32,49 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	if (not has_cookie("bot_attack")) then
-		npc_says(_"HELP! We're under attack!","NO_WAIT")
-		npc_says(_"[b](The old man is clearly distressed and frightened.)[/b]")
-		show(0)
+		if (npc_dead("InvaderBot")) then
+			next(6)
+		else
+			npc_says(_"HELP! We're under attack!","NO_WAIT")
+			npc_says(_"[b](The old man is clearly distressed and frightened.)[/b]")
+			show(0)
+		end
 		add_cookie("bot_attack")
 		set_rush_tux(0)
 	elseif (not npc_dead("InvaderBot")) then
 		npc_says(_"Have you neutralized the threat yet?")
-		show(1, 2)
-	elseif (not has_cookie("met_francis")) then
+		if (not has_cookie("tux_liar")) then
+			show(1, 2)
+		else
+			show(1, 3)
+		end
+	elseif (not has_cookie("invaderbot_neutralized")) then
 		npc_says(_"Have you neutralized the threat yet?")
-		show(1, 3)
-	elseif (not has_quest(_"Deliverance")) then
-		show(90)
-		npc_says(_"Welcome back " .. get_player_name() .. ".")
+		show(5)
 	else
-		show(99)
-		npc_says(_"It's good to see you again, " .. get_player_name() .. ".")
-	end
+		if ((not has_quest(_"Deliverance")) and (not has_cookie("refused_deliverance"))) then
+			show(90)
+			npc_says(_"Welcome back " .. get_player_name() .. ".")
+		else
+			show(99)
+			npc_says(_"It's good to see you again, " .. get_player_name() .. ".")
+		end
 
-	if (has_cookie("cryo_614_lock_gate") and (not has_cookie("cryo_outergate_code"))) then
-		show(30)
-	end
+                if (has_cookie("Francis_tux_dismissed")) then
+			show(21, 22)
+		end
 
-	if (has_cookie("tux_has_joined_guard") and (not has_cookie("francis_guard_response"))) then
-		add_cookie("francis_guard_response")
-		tux_says(_"I joined the Red Guard.")
-		npc_says(_"Oh...")
-		npc_says(_"Well. Congratulations are in order, I suppose.")
-		tux_says(_"...")
-	end
+		if (has_cookie("cryo_614_lock_gate") and (not has_cookie("cryo_outergate_code"))) then
+			show(30)
+		end
 
-	if (has_cookie("refused_deliverance")) then
-		hide(90) show(99)
-	end
-
-	if (has_cookie("Francis_tux_dismissed")) then
-		show(11, 12)
-	end
-
-	if (npc_dead("InvaderBot")) then
-		hide(1, 2)
+		if (has_cookie("tux_has_joined_guard") and (not has_cookie("francis_guard_response"))) then
+			add_cookie("francis_guard_response")
+			tux_says(_"I joined the Red Guard.")
+			npc_says(_"Oh...")
+			npc_says(_"Well. Congratulations are in order, I suppose.")
+			tux_says(_"...")
+		end
 	end
 </LuaCode>
 ----------------------------------------------------------------------
@@ -97,74 +99,73 @@ Nr=1 Text=_"No, not yet."
 
 Nr=2 Text=_"(Lie) Yes, the bot has been defeated."
 <LuaCode>
-	if (not has_cookie("tux_liar")) then
-		francis_help = francis_help - 30
-		npc_says(_"Oh, many thanks to ...")
-		npc_says(_"You lie! You shouldn't toy with an old man with a weak heart! I can hear its servos whirring away... heading this way to kill us both! Please you must help...")
-		add_cookie("tux_liar")
-		set_bot_destination("FrancisSafe")
-	else
-		npc_says(_"[b](sigh)[/b] Thank you, Linarian. You are truly...")
-		npc_says(_"[b](In the other room, you hear the faint whirring of servos. The horror in the old man's eyes tell you that he too has heard it.)[/b]")
-		npc_says(_"...a monster! You are not a Linarian like the legends spoke of! The cryo-stasis has corrupted your soul! AGGGG!!!")
-		npc_says(_"[b](The old man grips his chest and collapses in what appears to have been a fatal heart attack.)[/b]")
-		teleport_npc("NewTuxStartGameSquare", "InvaderBot")
-		set_npc_faction("ms", "InvaderBot")
-		add_quest(_"Deliverance", _"The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?")
-		add_item("Data cube")
-		drop_dead()
-	end
+	francis_help = francis_help - 30
+	npc_says(_"Oh, many thanks to ...")
+	npc_says(_"You lie! You shouldn't toy with an old man with a weak heart! I can hear its servos whirring away... heading this way to kill us both! Please, you must help...")
+	add_cookie("tux_liar")
+	set_bot_destination("FrancisSafe")
 	hide(1, 2)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=3 Text=_"Yes, the bot has been defeated."
+Nr=3 Text=_"(Lie) Yes, the bot has been defeated."
+<LuaCode>
+	npc_says(_"[b](sigh)[/b] Thank you, Linarian. You are truly...")
+	npc_says(_"[b](In the other room, you hear the faint whirring of servos. The horror in the old man's eyes tell you that he too has heard it.)[/b]")
+	npc_says(_"...a monster! You are not a Linarian like the legends spoke of! The cryo-stasis has corrupted your soul! AGGGG!!!")
+	npc_says(_"[b](The old man grips his chest and collapses in what appears to have been a fatal heart attack.)[/b]")
+	teleport_npc("NewTuxStartGameSquare", "InvaderBot")
+	set_npc_faction("ms", "InvaderBot")
+	add_quest(_"Deliverance", _"The mysterious old man died from a heart attack caused by fear. He had a small data cube on his body. I wonder what's on it...?")
+	add_item("Data cube")
+	drop_dead()
+	hide(1, 3)
+	end_dialog()
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=5 Text=_"Yes, the bot has been defeated."
 <LuaCode>
 	npc_says(_"Thank heavens! Perhaps the legends are true after all...")
 	npc_says(_"Now that we are safe, I'd be happy to answer some of your questions. But we cannot take too long, you will need to head to the town as soon as possible.")
-	add_cookie("met_francis")
+	add_cookie("invaderbot_neutralized")
 	set_bot_destination("FrancisStart")
-	hide(1, 2, 3) show(4, 90)
+	hide(5) show(10, 90)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=4 Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower... Fire... Death... It was awful."
+Nr=6 Text=_"BUG, REPORT ME! francis node4"
+NO_TEXT
+<LuaCode>
+	npc_says(_"Thank heavens! You have protected us from this bot.")
+	npc_says(_"You have been in stasis for quite some time, but you still can defend yourself. Perhaps the legends are true after all...")
+	npc_says(_"Now that we are safe, I'd be happy to answer some of your questions. But we cannot take too long, you will need to head to the town as soon as possible.")
+	add_cookie("invaderbot_neutralized")
+	set_bot_destination("FrancisStart")
+	hide(6) show(10, 90)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=10 Text=_"I feel terrible... Was I asleep? I remember nightmares. A meteor shower... Fire... Death... It was awful."
 <LuaCode>
 	npc_says(_"Unfortunately, for a case like yours, that is normal. According to your records, you were in stasis sleep for over 70 years.")
-	npc_says(_"Stasis is not too kind on the mind. It is not uncommon for strange dreams and nightmares to plague people who have been under that long.")
-	hide(4) show(5, 6)
+	npc_says(_"Stasis is not too kind on the mind. It is not uncommon for strange dreams and nightmares to plague people who have been under stasis that long.")
+	hide(10) show(11, 15)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=5 Text=_"Who am I?"
+Nr=11 Text=_"Who am I?"
 <LuaCode>
 	npc_says(_"So you really can't remember, eh?")
 	npc_says(_"Long stasis sleep can cause neurological damage and impact the memory. Looks like that is what happened here.")
 	npc_says(_"If the computer is not lying, then your name is " .. get_player_name() .. ".")
 	npc_says(_"I'm just glad that we realized that you were a legendary Linarian and started the thawing process when we did.")
-	hide(5)	show(8)
+	hide(11) show(12)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=6 Text=_"Who are you? What is going on?"
-<LuaCode>
-	npc_says(_"My name is Dr. Francis Spark. I am... uh... the keeper of this cryonic facility.")
-	set_bot_name(_"Dr. Francis - Cryonicist")
-	npc_says(_"Currently, there is a war raging all around the globe. One day, our once loyal bots rebelled against us and began trying to wipe us out. The beginning of this war has been dubbed 'The Great Assault.'")
-	npc_says(_"And it looks like humans are losing the war. Our town isn't doing so well at this point either. But there is still hope, since you were discovered here.")
-	hide(6) show(7, 8, 9)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=7 Text=_"How did the war start?"
-<LuaCode>
-	npc_says(_"Unfortunately, I'm not the best source of information for that. All I know is that one day the bots went crazy. Maybe someone else in town knows more.")
-	hide(7)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=8 Text=_"Linarians? Legends? What are you talking about?"
+Nr=12 Text=_"Linarians? Legends? What are you talking about?"
 <LuaCode>
 	npc_says(_"Wow, this is the worst case of cryo-neural damage I have ever seen.")
 	npc_says(_"The Red Guard had me thaw you out because you are a Linarian. I don't know much about your kind, but I do know that you have a strange affinity for computers, almost magical powers.")
@@ -172,44 +173,61 @@ Nr=8 Text=_"Linarians? Legends? What are you talking about?"
 	npc_says(_"Look in the chest in the next room for some spare gear I managed to gather for you. It's not much, but it should help you make it to town in one piece.")
 	add_cookie("linarian_chandra")
 	add_cookie("Francis_tux_dismissed")
-	hide(8, 9) show(10, 11)
+	hide(12) show(20, 21)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=9 Text=_"Keeper? You don't sound so sure... What is the deal with this place?"
+Nr=15 Text=_"Who are you? What is going on?"
+<LuaCode>
+	npc_says(_"My name is Dr. Francis Spark. I am... uh... the keeper of this cryonic facility.")
+	set_bot_name(_"Dr. Francis - Cryonicist")
+	npc_says(_"Currently, there is a war raging all around the globe. One day, our once loyal bots rebelled against us and began trying to wipe us out. The beginning of this war has been dubbed 'The Great Assault.'")
+	npc_says(_"And it looks like humans are losing the war. Our town isn't doing so well at this point either. But there is still hope, since you were discovered here.")
+	hide(15) show(16, 17)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=16 Text=_"How did the war start?"
+<LuaCode>
+	npc_says(_"Unfortunately, I'm not the best source of information for that. All I know is that one day the bots went crazy. Maybe someone else in town knows more.")
+	hide(16)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=17 Text=_"Keeper? You don't sound so sure... What is the deal with this place?"
 <LuaCode>
 	npc_says(_"I'm sorry, but you probably need to start traveling to the town. The Red Guard are not known to be the most patient.")
 	npc_says(_"They were the ones who wanted me to thaw you out, after all. You'd better get going.")
 	add_cookie("Francis_tux_dismissed")
-	hide(9) show(10, 11)
+	hide(17) show(20, 21)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=10 Text=_"Tell me more about the town you mentioned."
+Nr=20 Text=_"Tell me more about the town you mentioned."
 <LuaCode>
 	npc_says(_"It is a small mining community of perhaps 500 inhabitants...")
 	npc_says(_"I guess it was a stroke of luck that the town has not been completely destroyed by the bots.")
 	npc_says(_"Oddly enough, the rusty old bots that the town uses for security were not affected by whatever caused the other bots to go crazy.")
 	npc_says(_"Right now the town is 'protected' by the Red Guard, a bunch of opportunistic roughnecks. It's not exactly a secret that I don't agree with their methods.")
 	npc_says(_"However, I must admit that being oppressed is a much better alternative to being eviscerated alive.")
-	hide(10)
+	hide(20)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"Can you tell me how to get to town?"
+Nr=21 Text=_"Can you tell me how to get to town?"
 <LuaCode>
 	npc_says(_"Sure. You just need to follow the road outside to the east. After the bridge, turn right and continue to follow the road and you will soon be outside of the town main gate.")
 	npc_says(_"If you run across too many bots, you can try to circle around them. But avoid getting too far off the road, so you don't get lost. It's very dangerous out there.")
 	npc_says(_"Once in town you will be able to purchase or trade a few more items for protection at Ms. Stone's shop just inside the town gate.")
-	hide(11) show(12)
+	hide(21) show(22)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"How do I get out from here?"
+Nr=22 Text=_"How do I get out from here?"
 <LuaCode>
 	npc_says(_"Oh, just take the small door and corridor out to the waiting room. And from there you can get out through the customer entrance.")
 	npc_says(_"I keep the back entrance, close to my sleeping quarters, locked at all times. Better safe than sorry.")
-	hide(12)
+	hide(22)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -231,22 +249,43 @@ Nr=90 Text=_"Thanks for the help. I'll be going now."
 	npc_says(_"Oh, I almost forgot... Could you take this data cube and give it to Spencer once you get to town?")
 	tux_says(_"Spencer?")
 	npc_says(_"Yes. He's the leader of the Red Guard.")
-	hide(90) show(91, 93, 94)
+	hide(90) show(91, 92, 93)
 	topic("Deliver the cube")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=91 Text=_"Deliver that cube yourself." Topic="Deliver the cube"
+Nr=91 Text=_"What is stored in the cube?" Topic="Deliver the cube"
+<LuaCode>
+	npc_says(_"It's almost nothing... nothing important... if I know nothing about purposes.")
+	npc_says(_"Spencer wanted me to list all people in cryonic stasis. We had an argument about it, but in the end I gave in. Maybe it's needed. I couldn't avoid it.")
+	npc_says(_"I'm not a bad person, but I don't like these types of decisions. Lose-lose decisions are especially difficult. But, I suppose, it's like that for everybody.")
+	npc_says(_"Bring your questions to Spencer. I'd rather not discuss it anymore, it is too troubling, especially since I'm complicit in whatever happens.")
+	hide(91)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=92 Text=_"All right, I'll deliver the cube." Topic="Deliver the cube"
+<LuaCode>
+	npc_says(_"Thank you.")
+	npc_says(_"You can ask one of the guards in town, they'll know where to find Spencer.")
+	add_item("Data cube", 1)
+	add_quest(_"Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
+	hide(91, 92, 93, 94)
+	next(98)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=93 Text=_"Deliver that cube yourself." Topic="Deliver the cube"
 <LuaCode>
 	francis_help = francis_help - 10
 	npc_says(_"Oh, I would, believe me. I'm quite capable of running my own errands, even with the mass of bots out there.")
 	npc_says(_"But... The prospect of facing that... That man again... I just can't bear it.")
 	npc_says(_"Please, " ..get_player_name().. ", will you do me this favor?")
-	hide(91) show(92, 93)
+	hide(93) show(94)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=92 Text=_"No, I don't want to deliver your stupid cube." Topic="Deliver the cube"
+Nr=94 Text=_"No, I don't want to deliver your stupid cube." Topic="Deliver the cube"
 <LuaCode>
 	francis_help = francis_help - 60
 	add_cookie("refused_deliverance")
@@ -254,29 +293,8 @@ Nr=92 Text=_"No, I don't want to deliver your stupid cube." Topic="Deliver the c
 	npc_says(_"I can't force you to do it if you don't want to.")
 	npc_says(_"I suppose I'll just have to go to Spencer myself.")
 	npc_says(_"Anyway, I am glad I could help you. You should be careful around here. Best head straight for our town.")
-	hide(92, 93, 94)
+	hide(91, 92, 94)
 	next(98)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=93 Text=_"All right, I'll deliver the cube." Topic="Deliver the cube"
-<LuaCode>
-	npc_says(_"Thank you.")
-	npc_says(_"You can ask one of the guards in town, they'll know where to find Spencer.")
-	add_item("Data cube", 1)
-	add_quest(_"Deliverance", _"Francis asked me to deliver a data cube for him. When I reach the town, I'm supposed to give it to Spencer, who's in charge of the Red Guard ruling the nearby town. Of course, my first job is to survive the trip there...")
-	hide(90, 91, 92, 93, 94)
-	next(98)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=94 Text=_"What is stored in the cube?" Topic="Deliver the cube"
-<LuaCode>
-	npc_says(_"It's almost nothing... nothing important... if I know nothing about purposes.")
-	npc_says(_"Spencer wanted me to list all people in cryonic stasis. We had an argument about it, but in the end I gave in. Maybe it's needed. I couldn't avoid it.")
-	npc_says(_"I'm not a bad person, but I don't like these types of decisions. Lose-lose decisions are especially difficult. But, I suppose, it's like that for everybody.")
-	npc_says(_"Bring your questions to Spencer. I'd rather not discuss it anymore, it is too troubling, especially since I'm complicit in whatever happens.")
-	hide(94)
 </LuaCode>
 ----------------------------------------------------------------------
 
