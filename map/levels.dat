@@ -1,4 +1,3 @@
-
 Levelnumber: 0
 xlen of this level: 90
 ylen of this level: 90
@@ -6713,7 +6712,6 @@ t46 x2.30 y31.27
 plabelinfolvl
 x=30 y=2 name="4from56"
 x=31 y=1 name="4to56"
-x=4 y=32 name="DSB-MDCT-Guard"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -8216,7 +8214,6 @@ t46 x75.33 y19.03
 plabelinfolvl
 x=57 y=68 name="5from55"
 x=56 y=67 name="5to55"
-x=22 y=19 name="Shutdown sequence in quest, open doors on machinedeck"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -8959,7 +8956,6 @@ t49 x3.50 y10.50
 plabelinfolvl
 x=21 y=4 name="6to0"
 x=21 y=3 name="6from0"
-x=23 y=2 name="Sin-Emissary"
 x=38 y=2 name="6from58"
 x=38 y=1 name="6to58"
 /plabelinfolvl
@@ -11431,7 +11427,6 @@ t40 x89.50 y0.50
 t376 x6.76 y67.70
 /obsdata
 plabelinfolvl
-x=42 y=12 name="The302InFrontOfTheTempleStart"
 x=83 y=26 name="8to1"
 x=84 y=27 name="8from1"
 /plabelinfolvl
@@ -14204,7 +14199,6 @@ t37 x50.50 y88.50
 t37 x50.50 y87.50
 /obsdata
 plabelinfolvl
-x=65 y=32 name="Resistance Hidding Place"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -18801,7 +18795,6 @@ t2 x54.50 y18.00
 t353 x52.58 y23.55
 /obsdata
 plabelinfolvl
-x=3 y=16 name="Brokenterminal-1"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -33077,21 +33070,10 @@ t321 x17.50 y6.50
 t50 x48.53 y19.53
 /obsdata
 plabelinfolvl
-x=31 y=21 name="BreakingGlassSecretDoorWHTrigger"
 x=76 y=73 name="SwitchOffLaserTrapMSOLobby-2"
 x=78 y=78 name="IntruderDetectorMSOLobby01"
 x=79 y=78 name="IntruderDetectorMSOLobby02"
-x=56 y=33 name="MSOHQExitSwitch"
 x=82 y=77 name="SwitchOffLaserTrapMSOLobby-1"
-x=12 y=76 name="MSOPointOfNoReturn"
-x=42 y=68 name="SecretPowerStationHatchMSOGarden"
-x=57 y=54 name="MSOMillerEntranceUnlocker"
-x=63 y=56 name="MSOMillerEntranceUnlockCounter"
-x=16 y=85 name="MSOCollapsingBrickWall2HFTunnelTrigger"
-x=20 y=75 name="MSOHQOpener"
-x=21 y=71 name="MSOHQUnlocker"
-x=27 y=32 name="MSOfficeFirmwareUpdateServerStartPosition"
-x=36 y=27 name="OpenFirmwareUpgradeRoom"
 x=63 y=86 name="31to69"
 x=62 y=85 name="31from69"
 x=50 y=84 name="HF-gate-check1"
@@ -37638,19 +37620,6 @@ t29 x32.00 y53.50
 /obsdata
 plabelinfolvl
 x=17 y=24 name="SADD-MoveTarget"
-x=26 y=19 name="SecretAreaCollectorComputers"
-x=31 y=17 name="SecretAreaCollectorEmmiters"
-x=29 y=11 name="SecretAreaCollectorPassage"
-x=15 y=11 name="SecretAreaCollectorEnterance"
-x=20 y=15 name="SecretAreaCollectorPassage2"
-x=32 y=22 name="SecretAreaHall"
-x=32 y=37 name="SecretAreaDefenceControl"
-x=38 y=17 name="SecretAreaBedroom"
-x=35 y=3 name="SecretAreaRestroom"
-x=28 y=4 name="SecretAreaToilet"
-x=30 y=4 name="SecretAreaBathroom"
-x=31 y=8 name="SecretAreaPassage"
-x=24 y=4 name="SecretAreaStore"
 x=24 y=43 name="35to40"
 x=24 y=42 name="35from40"
 x=24 y=2 name="35to36-North"
@@ -38856,7 +38825,6 @@ t281 x25.00 y64.00
 t117 x25.00 y65.00
 /obsdata
 plabelinfolvl
-x=9 y=13 name="TutorialLeave"
 x=2 y=50 name="melee1"
 x=2 y=58 name="melee2"
 x=38 y=55 name="shootingrange1"
@@ -38875,7 +38843,6 @@ x=38 y=50 name="TutorialTux-Ranged"
 x=34 y=25 name="TutorialTom-Terminals"
 x=34 y=27 name="TutorialTux-Terminals"
 x=34 y=10 name="TutorialTom-Takeover"
-x=38 y=10 name="TutorialTux-Takeover"
 x=16 y=43 name="TutorialTom-Chest"
 x=16 y=41 name="TutorialTux-Chest"
 x=16 y=57 name="TutorialTom-Melee"
