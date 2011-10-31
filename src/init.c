@@ -1686,7 +1686,7 @@ void ThouHastWon(void)
 
 	// Now it's time for the end game title file...
 	//
-	PlayATitleFile("EndOfGame.title");
+	//PlayATitleFile("EndOfGame.title");
 
 	PlayATitleFile("Credits.title");
 
