@@ -127,7 +127,7 @@ Nr=5 Text=_"I'm sensing some sort of strange presence in the vicinity."
 	npc_says(_"On our way to the next stopping point, we'll pass some items on the floor.")
 	npc_says(_"Feel free to stop and examine them to get practice.")
 	npc_says(_"[b]Left clicking[/b] on an item will pick it up and put it in your inventory, toggled by the [b]I key[/b], where you can examine it further.")
-	update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'Z' key, and press 'X' to flash the ability.  To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'I'.")
+	update_quest(_"Tutorial Movement", _"Toggle detect items by pressing the 'Z' key, and press 'X' to flash the ability. To pick up an item, left click on it. To view an item you've picked up, open the inventory by pressing 'I'.")
 	change_obstacle_state("TutorialEntry", "opened")
 	hide(5)
 </LuaCode>

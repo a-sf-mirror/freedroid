@@ -379,7 +379,7 @@ NO_TEXT
 		if (random_var > 18) then
 			n_emtype = 6 -- even more difficult enemy
 			--get_random(...) returns a random argument
-			n_emname = get_random(_"angry woodchuck", _"platypus", _"duck", _"puffin", _"superintellegent slime mold", _"internet oracle")
+			n_emname = get_random(_"angry woodchuck", _"platypus", _"duck", _"puffin", _"superintelligent slime mold", _"internet oracle")
 			n_emac = 10 + math.random(3)
 			n_emhp = 200 + math.random(20)
 			n_emiq = 200 + math.random(20)
@@ -610,7 +610,7 @@ NO_TEXT
 				npc_says_random(_"The devious "..n_emname.._" stabs you, causing ".. damage-n_ac.._" damage.", _"You suffer "..damage-n_ac.._" damage as the "..n_emname.._" tosses you up into the air like a ragdoll.", _"The "..n_emname.._" breathes fire at you, burning your map and causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" throws an exploding banana at you, but you duck, so it only causes "..damage-n_ac.." damage.", _"The "..n_emname.._" hits you with its best shot, causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" hits you against the wall, causing "..damage-n_ac.._" of hurt.", _"The "..n_emname.._" snipes you with an arrow causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" bites you causing "..damage-n_ac.._" damage.", "NO_WAIT")
 				n_hp = n_hp - damage + n_ac
 			else
-				npc_says_random(_"You doge a blow from the "..n_emname,n_emname.._" tries to hit you, but misses.",n_emname.._" blow hits your cap of cool, causing no damage.",n_emname.._" pokes you really hard. You are annoyed.",n_emname.._" takes a swing at you, but can't reach you from there.", "NO_WAIT")
+				npc_says_random(_"You dodge a blow from the "..n_emname,n_emname.._" tries to hit you, but misses.",n_emname.._" blow hits your cap of cool, causing no damage.",n_emname.._" pokes you really hard. You are annoyed.",n_emname.._" takes a swing at you, but can't reach you from there.", "NO_WAIT")
 			end
 		end
 

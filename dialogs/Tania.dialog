@@ -255,7 +255,7 @@ Nr=18 Text=_"Why not just open them? There should be a way of unlocking the base
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=19 Text=_"Carpets, sofa, bookshelfs. Where did you get all this?"
+Nr=19 Text=_"Carpets, sofa, bookshelves. Where did you get all this?"
 <LuaCode>
 	npc_says(_"Peter did all he could to make this room comfortable. The sofa and armchair are from the commanders cabinet, the books are from the lounge...")
 	hide(19)

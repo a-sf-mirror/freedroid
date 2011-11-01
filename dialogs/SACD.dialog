@@ -80,7 +80,7 @@ Nr=3 Text=_"/usr/bin/hermodoors --open"
 	change_obstacle_state("SA-Main-WestN", "opened")
 	change_obstacle_state("SA-Main-WestS", "opened")
 	change_obstacle_state("SA-Main-Enter", "opened")
-	npc_says(_"ERROR: An error occured while opening some doors.")
+	npc_says(_"ERROR: An error occurred while opening some doors.")
 	npc_says(_"Please enter unlock security override password:")
 	tux_says(_"CTRL+C")
 	npc_says(_"Invalid password. Entering lockdown mode.")
