@@ -472,7 +472,6 @@ void get_enemy_surfaces_data(char *DataPointer)
 #define SURFACES_STAND_ANI_SPEED_BEGIN_STRING "droid_stand_animation_speed_factor="
 
 
-	SurfacePointer = LocateStringInData(DataPointer, ENEMY_SURFACES_SECTION_BEGIN_STRING);
 	EndOfSurfaceData = LocateStringInData(DataPointer, ENEMY_SURFACES_SECTION_END_STRING);
 
  	DebugPrintf(1, "\n\nStarting to read surfaces data...\n\n");

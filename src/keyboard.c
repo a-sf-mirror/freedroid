@@ -335,8 +335,6 @@ static int display_keychart(unsigned int startidx, unsigned int cursor, int high
 	if (startidx >= sizeof(keybindNames) / sizeof(keybindNames[0]))
 		return -1;
 
-	ypos = keychart_rect.y;
-
 	for (i = startidx; keybindNames[i] != NULL; i++) {
 		char keystr[100] = "";
 		const char *font_str = font_switchto_neon;

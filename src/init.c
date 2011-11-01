@@ -664,7 +664,6 @@ static void get_item_data(char *DataPointer)
 
 #define ITEM_RECHARGE_TIME_BEGIN_STRING "Time is takes to recharge this bullet/weapon in seconds :"
 
-	ItemPointer = LocateStringInData(DataPointer, ITEM_SECTION_BEGIN_STRING);
 	EndOfItemData = LocateStringInData(DataPointer, ITEM_SECTION_END_STRING);
 
 	Number_Of_Item_Types = CountStringOccurences(DataPointer, NEW_ITEM_TYPE_BEGIN_STRING);

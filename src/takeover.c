@@ -768,7 +768,6 @@ static void GetTakeoverGraphics(void)
 	}
 
 	// Get the default background color, to be used when no background picture found! 
-	curx += CAPSULE_LEN + 2;
 	curx = 0;
 	cury += FILL_BLOCK_HEIGHT + 2;
 
