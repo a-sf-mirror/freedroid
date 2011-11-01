@@ -163,7 +163,7 @@ static void display_tooltips()
 	static float time_spent_on_button = 0;
 	static float previous_function_call_time = 0;
 	int centered = 1;
-	SDL_Rect tooltip_rect;
+	SDL_Rect tooltip_rect = { .x = 0, .y = 0, .h = 500 };
 
 	// Update the timer.
 	time_spent_on_button += SDL_GetTicks() - previous_function_call_time;
