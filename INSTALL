@@ -26,7 +26,7 @@ sudo apt-get install libsdl1.2-dev libsdl-mixer1.2-dev libsdl-gfx1.2-dev libsdl-
 
 2) Fedora
 
-(To be done)
+yum install SDL_image-devel SDL_net-devel SDL_mixer-devel libjpeg-devel libpng-devel libvorbis-devel libGLU-devel 
 
 3) Archlinux
 
