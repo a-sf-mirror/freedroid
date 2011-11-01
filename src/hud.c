@@ -162,12 +162,16 @@ exist really (i.e. has a type = (-1) ).", PLEASE_INFORM, IS_FATAL);
 
 	// Usable items should say that they can be used via right-clicking on it
 	if (ItemMap[item->type].item_combat_use_description) {
-		autostr_append(str, "%s\n", ItemMap[item->type].item_combat_use_description);
+		if (game_status == INSIDE_GAME) {
+			autostr_append(str, "%s\n", ItemMap[item->type].item_combat_use_description);
 
-		// Show text only if item is in inventory
-		if (item->inventory_position.x != -1) {
-			autostr_append(str, "\n");
-			autostr_append(str, _("Right click to use\n"));
+			// Show text only if item is in inventory
+			if (item->inventory_position.x != -1) {
+				autostr_append(str, "\n");
+				autostr_append(str, _("Right click to use\n"));
+			}
+		} else {
+			autostr_append(str, "Item use: %s\n", ItemMap[item->type].item_combat_use_description);
 		}
 	}
 
