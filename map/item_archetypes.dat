@@ -2589,8 +2589,8 @@ inventory_size_y=2
 
 ** Start of new item specification subsection **
 Item name=_"Source Book of Sanctuary"
-Item min class for drop=2
-Item max class for drop=9
+Item min class for drop=-1
+Item max class for drop=-1
 Item use when applied in combat=_"Permanently acquire/enhance this program"
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="spellbook"
