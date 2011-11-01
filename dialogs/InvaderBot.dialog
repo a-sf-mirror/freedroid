@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Non-Human Lifeform Identified","NO_WAIT")
 		npc_says(_"Species Identified: Linarian")
 		npc_says(_"Current Status: Unknown")
-		show(0,1)
+		show(0, 1, 2)
 		add_cookie("invader-bot-status")
 	else
 		end_dialog()
@@ -43,30 +43,28 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=0 Text=_"Hello there."
 <LuaCode>
-	npc_says(_"Uploading Status...")
-	set_npc_faction("ms")
-	npc_says(_"Linarian is hostile. Destroy!")
-	hide(0)
-	end_dialog()
+	next(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=1 Text=_"Die!"
+Nr=1 Text=_"What's up?"
+<LuaCode>
+	next(99)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=2 Text=_"Die!"
+<LuaCode>
+	next(99)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=99 Text=_"BUG, REPORT ME! invaderbot node99 -- END NODE"
+NO_TEXT
 <LuaCode>
 	npc_says(_"Uploading Status...")
 	set_npc_faction("ms")
 	npc_says(_"Linarian is hostile. Destroy!")
-	hide(1)
-	end_dialog()
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=99 Text=_"..."
-<LuaCode>
-	npc_says(_"Uploading Status...")
-	set_npc_faction("ms")
-	npc_says(_"Linarian is hostile. Destroy!")
-	hide(99)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
