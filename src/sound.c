@@ -462,10 +462,12 @@ void play_sound_at_position(const char *filename, struct gps *listener, struct g
 	unsigned short angle_value;
 
 	// need to get the emitters coordinates as if it were on the same level as the listener.
-	if (emitter->z == -1 || listener->z == -1)
+	if (emitter->z == -1 || listener->z == -1) {
 		play_sound(filename);
-	else
+		return;
+	} else {
 		update_virtual_position(&emitter_virt_coords, emitter, listener->z);
+	}
 
 	// translate the emitter and listener coordinates to screen coordinates.
 	translate_map_point_to_screen_pixel(emitter_virt_coords.x, emitter_virt_coords.y, &emitter_x, &emitter_y);
