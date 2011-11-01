@@ -587,7 +587,7 @@ int get_default_center(int *default_center_x, int *default_center_y)
 int read_offset_file(int *center_x, int *center_y)
 {
 	char filename[10000];
-	int offset_x, offset_y;
+	int offset_x = 0, offset_y = 0;
 	FILE *offset_file;
 
 	// Determine offset file name
