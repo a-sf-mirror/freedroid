@@ -346,7 +346,7 @@ wait_for_click_return:
  */
 void chat_add_response(const char *response, int no_wait, enemy *chat_droid)
 {
-	autostr_append(chat_log.text, response);
+	autostr_append(chat_log.text, "%s", response);
 	chat_log.scroll_offset = 0;
 
 	show_chat_log(chat_droid);

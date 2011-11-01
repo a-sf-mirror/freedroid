@@ -537,7 +537,7 @@ static void act_sign(level *l, obstacle *o)
 		message = "There is nothing on this sign.";
 	}
 
-	append_new_game_message(message);
+	append_new_game_message("%s", message);
 }
 
 static void __obstacle_action(level *lvl, int index, enum interactive_obstacle_type act)

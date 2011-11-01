@@ -546,7 +546,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 	// been given for the menu
 	for (i = 0; i < MAX_ANSWERS_PER_PERSON; i++) {
 		DebugPrintf(MENU_SELECTION_DEBUG, "%2d. ", i);
-		DebugPrintf(MENU_SELECTION_DEBUG, MenuTexts[i]);
+		DebugPrintf(MENU_SELECTION_DEBUG, "%s", MenuTexts[i]);
 		DebugPrintf(MENU_SELECTION_DEBUG, "\n");
 		fflush(stdout);
 		fflush(stderr);

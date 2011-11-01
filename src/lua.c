@@ -140,7 +140,7 @@ static int lua_event_display_big_message(lua_State * L)
 static int lua_event_display_console_message(lua_State * L)
 {
 	const char *msg = luaL_checkstring(L, 1);
-	append_new_game_message(msg);
+	append_new_game_message("%s", msg);
 	return 0;
 }
 

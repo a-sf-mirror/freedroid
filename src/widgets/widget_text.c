@@ -43,7 +43,7 @@ void widget_text_init(struct widget_text *w, const char *start_text) {
 	if (w->text == NULL)
 		w->text = alloc_autostr(10000);
 	w->text->length = 0;
-	autostr_printf(w->text, start_text);
+	autostr_printf(w->text, "%s", start_text);
 
 	w->mouse_hover = NOT_HOVERED;
 	w->mouse_already_handled = 0;
