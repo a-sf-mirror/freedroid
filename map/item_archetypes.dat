@@ -1170,7 +1170,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=150
 inventory_size_x=1
 inventory_size_y=2
-Item description text=_"With .22 ammo, it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practise out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
+Item description text=_"With .22 ammo, it's mostly dumb luck if you actually damage a bot with this pistol. On the bright side, you will get a LOT of target practice out of each bot before a bullet or two manages to find a weak enough spot to take the bot out."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.300000
 Item as gun: reloading time=3.000000
@@ -2200,7 +2200,7 @@ Item uses drop sound with filename="Item_Armour_Put_Sound_0.ogg"
 Base list price=600
 inventory_size_x=2
 inventory_size_y=2
-Item description text=_"Very strong for its size, this jacket made out of Shootex(TM) does a good job of absorbing basic blows. It is suitable for all kinds of extreme sports, such as climbing, rafting, bunjee-jumping, fencening and even racing."
+Item description text=_"Very strong for its size, this jacket made out of Shootex(TM) does a good job of absorbing basic blows. It is suitable for all kinds of extreme sports, such as climbing, rafting, bungee-jumping, fencing and even racing."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3139,7 +3139,7 @@ inventory_size_x=1
 inventory_size_y=1
 Item uses drop sound with filename="Item_Drop_Sound_2.ogg"
 Base list price=1
-Item description text=_"The new monetary standard of the world. With the collapse of the banking system, the precious metals in bot circutry has literally become hard cash. A bit hard to come by though, as the bots are not likely to just hand it over..."
+Item description text=_"The new monetary standard of the world. With the collapse of the banking system, the precious metals in bot circuitry has literally become hard cash. A bit hard to come by though, as the bots are not likely to just hand it over..."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3458,7 +3458,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="empty_picnic_basket/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"This is the latest in 'Dr. How?'-brand picnic basket technology! With patented food-preserving time-dilation, space-bending minituization, and anti-gravity, your food stays fresh and your drinks stay cold in a small light-as-a-feather package! Now you can picnic the old fashioned way!  Batteries sold separately."
+Item description text=_"This is the latest in 'Dr. How?'-brand picnic basket technology! With patented food-preserving time-dilation, space-bending miniaturization, and anti-gravity, your food stays fresh and your drinks stay cold in a small light-as-a-feather package! Now you can picnic the old fashioned way!  Batteries sold separately."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3472,7 +3472,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="picnic_basket/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and drinks to feed a dozen people. With 'Dr. How?'-time diliation, the food keeps oven-fresh, and the drinks stay ice-cold."
+Item description text=_"This is a 'Dr. How?'-brand picnic basket stuffed full of enough food and drinks to feed a dozen people. With 'Dr. How?'-time dilation, the food keeps oven-fresh, and the drinks stay ice-cold."
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3500,7 +3500,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="stock_certificate/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=0
-Item description text=_"This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer. Must be redemed in a stock trading terminal."
+Item description text=_"This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer. Must be redeemed in a stock trading terminal."
 ** End of new item specification subsection **
 
 
@@ -3687,7 +3687,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="addons/foot_warmers/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"This pair of electric fuzzy foot warmers would make even a penguin warm and comfortable in any shoes, and help maintain a healthy body temprature, thus preventing colds and making you look cool. At least, that's what the advertisement says. And ads don't lie, do they?"
+Item description text=_"This pair of electric fuzzy foot warmers would make even a penguin warm and comfortable in any shoes, and help maintain a healthy body temperature, thus preventing colds and making you look cool. At least, that's what the advertisement says. And ads don't lie, do they?"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
@@ -3743,7 +3743,7 @@ Items of this type collect together in inventory="no"
 File or directory name for inventory image="addons/brain_stimulator/inv_image.png"
 Item uses drop sound with filename="Item_Drop_Sound_4.ogg"
 Base list price=100
-Item description text=_"A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquailly referred to as a 'wierd swim cap with little thingies on it') and providing additional feedback on various actions."
+Item description text=_"A chip that allows faster learning by connecting directly to the brain via a neural interface (colloquially referred to as a 'weird swim cap with little thingies on it') and providing additional feedback on various actions."
 ** End of new item specification subsection **
 
 
