@@ -637,6 +637,7 @@ void lvledit_categoryselect_switch(int direction)
 	int index = i + direction;
 	if (index < 0)
 		index = length - 1;
-	index %= length;
+	if (length)
+		index %= length;
 	widget_lvledit_categoryselect_activate(categories[index].cs);
 }
