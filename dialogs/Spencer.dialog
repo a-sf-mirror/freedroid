@@ -45,7 +45,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Ri ard sa... e c nn cti n *bzzzzzzzzz* bad.")
 		npc_says(_"Goo*sizzle*ck.")
 		npc_says(_"O*crack*er")
-		update_quest(_"Propagating a faulty firmware", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
+		update_quest(_"Propagating a faulty firmware update", _"Spencer contacted me and said I was supposed to find the real firmware update server. I hope I survive this...")
 		add_quest(_"Open Sesame", "It turns out what we thought was the firmware update server was just a gate access server. Spencer speculates the real firmware server is behind this gate.")
 		end_dialog()
 	end
@@ -63,7 +63,7 @@ Beginning of new chat dialog for character="XXXXX"
 		show(37)
 	end
 
-	if (not has_quest(_"Propagating a faulty firmware")) and
+	if (not has_quest(_"Propagating a faulty firmware update")) and
 	   (done_quest(_"Opening access to MS Office")) then
 		show(44)
 	end
@@ -390,7 +390,7 @@ Nr=44 Text=_"It's done. Your soldiers were killed, but I managed to reach a comp
 	npc_says(_"Look for the entrance of the office in the crystal fields. I will send a message to the guards so they let you pass. Then you will be on your own.", "NO_WAIT")
 	npc_says(_"However I'll ask Richard to see if we can contact you as soon as you find the server so we know if you're alive and there is still hope, or if things are going to go back to the way they were before you were taken out of stasis sleep...")
 	npc_says(_"Good luck.")
-	add_quest(_"Propagating a faulty firmware", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
+	add_quest(_"Propagating a faulty firmware update", _"I can now enter the fortress and find the upgrade server terminal. The fortress gates are in the Crystal Fields. Spencer told the guards to open the doors for me. He said he'd probably contact me when I found the server.")
 	hide(44) show(45)
 </LuaCode>
 ----------------------------------------------------------------------

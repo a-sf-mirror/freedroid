@@ -86,7 +86,7 @@ Nr=10 Text=_"Calm down. This is not an attack. I've disabled the shield and I'm 
 <LuaCode>
 	npc_says(_"WHAT?! Not an attack?!")
 	npc_says(_"I hope you are telling the truth. One second...")
-	if (has_quest(_"Propagating a faulty firmware")) then
+	if (has_quest(_"Propagating a faulty firmware update")) then
 		change_obstacle_state("MSAreaDoor", "opened")
 		add_cookie("msfacilitygateguardleader_informed")
 		next(20)

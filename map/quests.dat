@@ -130,10 +130,10 @@ Mission target is to reach Y-Pos : 33.5
 
 ** Start of this mission target subsection **
 +++ 
-+++ ENDGAME MISSION - propagate faulty firmware upgrade.
++++ ENDGAME MISSION - propagate faulty firmware update.
 +++ This mission can only be finished through a talk with the firmware update server.
 +++ 
-Mission Name=_"Propagating a faulty firmware"
+Mission Name=_"Propagating a faulty firmware update"
 ** End of this mission target subsection **
 
 ** Start of this mission target subsection **

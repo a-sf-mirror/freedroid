@@ -63,7 +63,7 @@ Nr=2 Text=_"I am working here."
 <LuaCode>
 	npc_says(_"Me too.")
 	npc_says(_"Please prove your statement.")
-	tux_says(_"Do I look like a typical MegaSys slave  errr  worker to you stupid bot?")
+	tux_says(_"Do I look like a typical MegaSys slave, errr, worker to you, stupid bot?")
 	npc_says(_"No insults, please. But, no")
 	if (has_item("MS Stock Certificate") > 0) then
 		tux_says(_"But I have this certificate")
