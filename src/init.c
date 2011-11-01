@@ -1633,6 +1633,7 @@ void ThouArtDefeated(void)
 		show_texts_and_banner();
 		animate_blasts();
 		MoveBullets();
+		MoveActiveSpells();
 		move_enemies();
 		animate_obstacles();
 		UpdateCountersForThisFrame();
@@ -1674,6 +1675,7 @@ void ThouHastWon(void)
 		show_texts_and_banner();
 		animate_blasts();
 		MoveBullets();
+		MoveActiveSpells();
 		move_enemies();
 		animate_obstacles();
 
