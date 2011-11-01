@@ -662,7 +662,7 @@ void activate_nth_skill(int skill_num)
 		Me.readied_skill = skill_num;
 	} else {
 		ErrorMessage(__FUNCTION__,
-			"Tried to activate skill number %d which was not aquired yet.\n",
+			"Tried to activate skill number %d which was not acquired yet.\n",
 				PLEASE_INFORM, IS_WARNING_ONLY, skill_num);
 	}
 
@@ -687,7 +687,7 @@ void set_nth_quick_skill(int quick_skill)
 		if (Me.skill_level[ski] <=  0) {
 			// Invalid skill was selected
 			ErrorMessage(__FUNCTION__,
-				"Tried to set skill number %d in quick skills. Skill was not aquired yet.\n",
+				"Tried to set skill number %d in quick skills. Skill was not acquired yet.\n",
 					PLEASE_INFORM, IS_WARNING_ONLY, ski);
 			return;
 		}

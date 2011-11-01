@@ -275,7 +275,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 	int scan_index;
 	int cut_away;
 
-	DebugPrintf(DEBUG_TUX_PATHFINDING, "\nOPTIMISATION --> streamline_tux_intermediate_course: starting...");
+	DebugPrintf(DEBUG_TUX_PATHFINDING, "\nOPTIMIZATION --> streamline_tux_intermediate_course: starting...");
 
 	// We process each index position of the course, starting with the point
 	// where the tux will be starting.
@@ -352,7 +352,7 @@ static void streamline_intermediate_course(gps * curpos, moderately_finepoint * 
 			waypoints[cut_away - 1].y = waypoints[cut_away].y;
 		}
 	} else {
-		DebugPrintf(DEBUG_TUX_PATHFINDING, "\nOPTIMISATION --> streamline_tux_intermediate_course: no final shortcut.");
+		DebugPrintf(DEBUG_TUX_PATHFINDING, "\nOPTIMIZATION --> streamline_tux_intermediate_course: no final shortcut.");
 	}
 
 }				// void streamline_tux_intermediate_course ( )

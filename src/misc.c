@@ -1131,7 +1131,7 @@ int SaveGameConfig(void)
 	// control to the operating system immediately if that happens...
 	//
 	if (our_config_dir == NULL) {
-		printf("It seems that the game couldn't start up at all... therefore we need not save any config information.\n\n");
+		printf("It seems that the game couldn't start up at all... therefore we need not save any configuration information.\n\n");
 		SDL_Quit();
 #if __WIN32__
 		system("notepad stderr.txt");
@@ -1174,7 +1174,7 @@ int SaveGameConfig(void)
 	savestruct_autostr = alloc_autostr(4096);
 	save_freedroid_configuration(savestruct_autostr);
 	if (fwrite(savestruct_autostr->value, savestruct_autostr->length, 1, config_file) != 1) {
-		ErrorMessage(__FUNCTION__, "Failed to write config file: %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		ErrorMessage(__FUNCTION__, "Failed to write configuration file: %s", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
 		free_autostr(savestruct_autostr);	
 		return ERR;
 	}

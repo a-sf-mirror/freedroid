@@ -681,7 +681,7 @@ static void TryToSellItem(item * SellItem, int AmountToSellAtMost)
 	if (SellItem->multiplicity < 1) {
 		ErrorMessage(__FUNCTION__, "\
 		An item sold seemed to have multiplicity < 1.  This might be due to some\n\
-		fatal errors in the engine OR it might be due to some items droped on the\n\
+		fatal errors in the engine OR it might be due to some items dropped on the\n\
 		maps somewhere long ago still had multiplicity=0 setting, which should not\n\
 		normally occur with 'freshly' generated items.  Well, that's some dust from\n\
 		the past, but now it should be fixed and not occur in future releases (0.9.10\n\

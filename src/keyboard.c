@@ -156,7 +156,7 @@ void input_get_keybind(const char *cmdname, SDLKey * key, SDLMod * mod)
 			return;
 		}
 	}
-	ErrorMessage(__FUNCTION__, "Unable to get keybind for command '%s', that command does not exist.\n", PLEASE_INFORM, IS_FATAL,
+	ErrorMessage(__FUNCTION__, "Unable to get keybinding for command '%s', that command does not exist.\n", PLEASE_INFORM, IS_FATAL,
 		     cmdname);
 
 	/* This dead code writes "key" and "mod" to shut up GCC */

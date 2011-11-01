@@ -87,7 +87,7 @@ int find_saved_games(struct dirent ***namelist)
 
 	if (n == -1)
 	{
-		ErrorMessage(__FUNCTION__, "Error occured while reading save game directory.",
+		ErrorMessage(__FUNCTION__, "Error occurred while reading save game directory.",
 					 NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		return 0;
 	}
@@ -342,7 +342,7 @@ static int load_saved_game(int use_backup)
 	FILE *DataFile;
 
 	if (!our_config_dir) {
-		DebugPrintf(0, "No Config-directory, cannot load any games\n");
+		DebugPrintf(0, "No Configuration-directory, cannot load any games\n");
 		return (OK);
 	}
 

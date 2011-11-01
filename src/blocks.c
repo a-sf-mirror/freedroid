@@ -384,7 +384,7 @@ void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our
 		ErrorMessage(__FUNCTION__, "\
 Freedroid was unable to open offset file %s for an isometric image.\n\
 Since the offset could not be obtained from the offset file, 0 will be used instead.\n\
-This can lead to minor positioning pertubations\n\
+This can lead to minor positioning perturbations\n\
 in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name);
 		our_iso_image->offset_x = 0;
 		our_iso_image->offset_y = 0;

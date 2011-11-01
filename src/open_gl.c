@@ -330,32 +330,32 @@ void open_gl_check_error_status(const char *name_of_calling_function)
 		// All is well.  No messages need to be generated...
 		break;
 	case GL_INVALID_ENUM:
-		fprintf(stderr, "\nCheck occured in function: %s.", name_of_calling_function);
+		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
 		ErrorMessage(__FUNCTION__, "Error code GL_INVALID_ENUM received!", PLEASE_INFORM, IS_WARNING_ONLY);
 		break;
 	case GL_INVALID_VALUE:
-		fprintf(stderr, "\nCheck occured in function: %s.", name_of_calling_function);
+		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
 		ErrorMessage(__FUNCTION__, "Error code GL_INVALID_VALUE received!", PLEASE_INFORM, IS_WARNING_ONLY);
 		break;
 	case GL_INVALID_OPERATION:
-		fprintf(stderr, "\nCheck occured in function: %s.", name_of_calling_function);
+		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
 		ErrorMessage(__FUNCTION__, "Error code GL_INVALID_OPERATION received!", PLEASE_INFORM, IS_WARNING_ONLY);
 		break;
 	case GL_STACK_OVERFLOW:
-		fprintf(stderr, "\nCheck occured in function: %s.", name_of_calling_function);
+		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
 		ErrorMessage(__FUNCTION__, "Error code GL_STACK_OVERFLOW received!", PLEASE_INFORM, IS_FATAL);
 		break;
 	case GL_STACK_UNDERFLOW:
-		fprintf(stderr, "\nCheck occured in function: %s.", name_of_calling_function);
+		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
 		ErrorMessage(__FUNCTION__, "Error code GL_STACK_UNDERFLOW received!", PLEASE_INFORM, IS_FATAL);
 		break;
 	case GL_OUT_OF_MEMORY:
-		fprintf(stderr, "\nCheck occured in function: %s.", name_of_calling_function);
+		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
 		ErrorMessage(__FUNCTION__, "Error code GL_OUT_OF_MEMORY received!", PLEASE_INFORM, IS_FATAL);
 		// raise ( SIGSEGV );
 		break;
 	default:
-		fprintf(stderr, "\nCheck occured in function: %s.", name_of_calling_function);
+		fprintf(stderr, "\nCheck occurred in function: %s.", name_of_calling_function);
 		ErrorMessage(__FUNCTION__, "Unhandled error code received!", PLEASE_INFORM, IS_FATAL);
 		break;
 	}

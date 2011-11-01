@@ -150,7 +150,7 @@ void DoMeleeDamage(void)
 			enemy *tg = enemy_resolve_address(CurMelS->bot_target_n, &CurMelS->bot_target_addr);
 			if (!tg) {
 				ErrorMessage(__FUNCTION__,
-					     "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targetted enemy. Deleting.\n",
+					     "Melee shot was set to ATTACK_TARGET_IS_ENEMY but had no targeted enemy. Deleting.\n",
 					     NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 				delete_melee_shot(CurMelS);
 				continue;
@@ -340,7 +340,7 @@ void animate_blasts(void)
 			if (!pos_inside_level(CurBlast->pos.x, CurBlast->pos.y, curShip.AllLevels[CurBlast->pos.z])) {
 				ErrorMessage(__FUNCTION__, "\
 A BLAST WAS FOUND TO EXIST OUTSIDE THE BOUNDS OF THE MAP.\n\
-This is an idication for an inconsistency in Freedroid.\n\
+This is an indication of an inconsistency in Freedroid.\n\
 \n\
 However, the error is not fatal and will be silently compensated for now.\n\
 When reporting a problem to the Freedroid developers, please note if this\n\

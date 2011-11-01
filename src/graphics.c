@@ -577,12 +577,12 @@ static void check_open_gl_libraries_present(void)
 \n*\
 \n* You have requested OpenGL output via command line switch (-o parameter)\
 \n* but you (or someone else) compiled this version of FreedroidRPG without\
-\n* having the nescessary OpenGL libraries on your (his/her) system. \
+\n* having the necessary OpenGL libraries on your (his/her) system. \
 \n*\
 \n* FreedroidRPG will now fallback to normal SDL output (which might be a\
 \n* lot slower than the OpenGL method.\n\
 \n*\
-\n* You might try setting appropriate speed optimisation parameters in the\
+\n* You might try setting appropriate speed optimization parameters in the\
 \n* 'performance tweaks' menu, in case you run into speed trouble.\
 \n*\
 \n* If you prefer to use OpenGL output, please make sure that you have \
@@ -793,7 +793,7 @@ void InitVideo(void)
 	if (SDL_VideoDriverName(vid_driver, 80)) {
 		DebugPrintf(-4, "\nVideo system type: %s.", vid_driver);
 	} else {
-		fprintf(stderr, "Video driver seems not to exist or initialisation failure!\nError code: %s\n", SDL_GetError());
+		fprintf(stderr, "Video driver seems not to exist or initialization failure!\nError code: %s\n", SDL_GetError());
 		Terminate(EXIT_FAILURE, FALSE);
 	}
 
