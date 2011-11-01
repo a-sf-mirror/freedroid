@@ -556,7 +556,7 @@ NO_TEXT
 			npc_says_random(_"Please be safe!", _"Thanks again.", _"Please come back again, my little penguin.")
 		end
 	else
-		npc_says_random(_"That's ok. But please, please, come back. I'm so lonely.", _"Please come back again and get me out of here.")
+		npc_says_random(_"That's OK. But please, please, come back. I'm so lonely.", _"Please come back again and get me out of here.")
 	end
 	end_dialog()
 </LuaCode>

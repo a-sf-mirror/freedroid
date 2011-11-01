@@ -128,7 +128,7 @@ Nr=7 Text=_"Wizard"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=8 Text="JOB ASSINGMENT - BUG NODE 8 c-net sub nethack" --hidden
+Nr=8 Text="JOB ASSIGNMENT - BUG NODE 8 c-net sub nethack" --hidden
 NO_TEXT
 <LuaCode>
 	hide(3,4,5,6,7)
@@ -202,7 +202,7 @@ Nr=12 Text=_"orc"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=13 Text="RACE ASSINGMENT - BUG NODE 13 c-net sub nethack " --hidden
+Nr=13 Text="RACE ASSIGNMENT - BUG NODE 13 c-net sub nethack " --hidden
 NO_TEXT
 <LuaCode>
 	hide(9,10,11,12)
@@ -484,10 +484,10 @@ Nr=52 Text=_"Trick"
 		npc_says(_"Not having any tricks left, you resort to you trying your feminine wiles.", "NO_WAIT")
 		if (n_hp > n_emiq) then 
 			if (math.random(6)>1) then
-				npc_says_random(_"You succeed getting past the "..n_emname..".", _"You distract the "..n_emname.._" long enough to escape.", _"Your plight is noticed by a hero, who valiantly rescues you from the dasterdly "..n_emname..".", "NO_WAIT")
+				npc_says_random(_"You succeed getting past the "..n_emname..".", _"You distract the "..n_emname.._" long enough to escape.", _"Your plight is noticed by a hero, who valiantly rescues you from the dastardly "..n_emname..".", "NO_WAIT")
 				next(61)
 			else
-				npc_says_random(_"The "..n_emname.._" casts change gender on you.", _"The "..n_emname.._" curses you.", _"The "..n_emname.._" casts a polymorph spell.", _"The Random Number God stikes you, changing your gender.", "NO_WAIT")
+				npc_says_random(_"The "..n_emname.._" casts change gender on you.", _"The "..n_emname.._" curses you.", _"The "..n_emname.._" casts a polymorph spell.", _"The Random Number God strikes you, changing your gender.", "NO_WAIT")
 				n_sex = _"male"
 				npc_says(_"You are now "..n_alignment .." " .. n_sex .." ".. n_race .." ".. n_role ..".", "NO_WAIT")
 				next(60)
@@ -531,7 +531,7 @@ Nr=53 Text=_"Pray"
 Nr=54 Text=_"Xyzzy"
 <LuaCode>
 	if (math.random(10)>1) then --90% chance:
-		npc_says_random(_"Nothing happens.", _"Surprisingly, nothing happens.", _"You are shocked, SHOCKED, to find nothing happens.", _"Time was frozen then unfrozen but for you, nothing happens.", _"Unexpecedly, nothing happens.", _"You wait for a moment, then, suddenly, nothing happens.", _"Twice nothing happens.", "NO_WAIT")
+		npc_says_random(_"Nothing happens.", _"Surprisingly, nothing happens.", _"You are shocked, SHOCKED, to find nothing happens.", _"Time was frozen then unfrozen but for you, nothing happens.", _"Unexpectedly, nothing happens.", _"You wait for a moment, then, suddenly, nothing happens.", _"Twice nothing happens.", "NO_WAIT")
 		if (n_emtype == 0) then
 			npc_says_random(_"You take a short nap.", _"You meditate.", _"You check your e-mail.", _"You sip a cup of late-afternoon tea in quiet retrospection.", _"You take a power nap.", _"You take a long nap.", _"You take a cat nap.", "NO_WAIT")
 			n_temphp = n_hp + math.random(51)
@@ -573,7 +573,7 @@ NO_TEXT
 		-- Rewards:
 			local random_var = math.random(1,4)
 			if (random_var == 4) then --Improve AC
-				npc_says_random(_"You find prayer beads invoking the goodwill of the Random Number God.", _"You find a lightning rod.", _"You find a sword of greater death.", _"You find a vorpal dagger.", _"You find a breast plate of awesome.", _"You find a spell of doom.", _"You find a helmet of fire.", _"You find a left boot of anit-fungus.", _"You find a right boot of speed.", _"You find a shank.", _"You find a kevlar vest.", _"You find a Hawaiian t-shirt.", _"You find an credit card.", _"You find a sharpened pencil.", _"You find a broken glass bottle.", _"You find a 'weapon'.", "NO_WAIT")
+				npc_says_random(_"You find prayer beads invoking the goodwill of the Random Number God.", _"You find a lightning rod.", _"You find a sword of greater death.", _"You find a vorpal dagger.", _"You find a breast plate of awesome.", _"You find a spell of doom.", _"You find a helmet of fire.", _"You find a left boot of anti-fungus.", _"You find a right boot of speed.", _"You find a shank.", _"You find a kevlar vest.", _"You find a Hawaiian t-shirt.", _"You find an credit card.", _"You find a sharpened pencil.", _"You find a broken glass bottle.", _"You find a 'weapon'.", "NO_WAIT")
 				n_ac = n_ac + (math.random(n_emtype + 1) +1) 
 			elseif (random_var == 3) then --Improve HP
 				npc_says_random(_"You find a bandage and put it on.", _"A nurse patches some of your wounds.", _"You drink a bottle of greater healing.",n_god.._" sends some salve to sooth your wounds.", _"You find an aloe vera plant.", _"You apply some sunscreen from your backpack.", _"You decide that you are healthier than you thought.", "NO_WAIT")
@@ -610,7 +610,7 @@ NO_TEXT
 				npc_says_random(_"The devious "..n_emname.._" stabs you, causing ".. damage-n_ac.._" damage.", _"You suffer "..damage-n_ac.._" damage as the "..n_emname.._" tosses you up into the air like a ragdoll.", _"The "..n_emname.._" breathes fire at you, burning your map and causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" throws an exploding banana at you, but you duck, so it only causes "..damage-n_ac.." damage.", _"The "..n_emname.._" hits you with its best shot, causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" hits you against the wall, causing "..damage-n_ac.._" of hurt.", _"The "..n_emname.._" snipes you with an arrow causing "..damage-n_ac.._" damage.", _"The "..n_emname.._" bites you causing "..damage-n_ac.._" damage.", "NO_WAIT")
 				n_hp = n_hp - damage + n_ac
 			else
-				npc_says_random(_"You doge a blow from the "..n_emname,n_emname.._" trys to hit you, but misses.",n_emname.._" blow hits your cap of cool, causing no damage.",n_emname.._" pokes you really hard. You are annoyed.",n_emname.._" takes a swing at you, but can't reach you from there.", "NO_WAIT")
+				npc_says_random(_"You doge a blow from the "..n_emname,n_emname.._" tries to hit you, but misses.",n_emname.._" blow hits your cap of cool, causing no damage.",n_emname.._" pokes you really hard. You are annoyed.",n_emname.._" takes a swing at you, but can't reach you from there.", "NO_WAIT")
 			end
 		end
 

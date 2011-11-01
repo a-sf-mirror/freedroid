@@ -244,7 +244,7 @@ Nr=31 Text=_"Plasma sounds deadly."
 <LuaCode>
 	npc_says(_"It is!", "NO_WAIT")
 	npc_says(_"While many people find the ammunition canisters too big, and the bullets too slow, they cannot deny that once plasma hits, it leaves big holes.")
-	npc_says(_"Plasma is matter, ionised gas to be exact. It also happens to be hot enough to make steel boil.")
+	npc_says(_"Plasma is matter, ionized gas to be exact. It also happens to be hot enough to make steel boil.")
 	npc_says(_"Most of the new recruits hate how hard this weapon is to aim. If bullets were animals, then plasma would be a well fed cow. By the time it arrives at the target, the bot is already a mile away.")
 	npc_says(_"If you are going to use plasma weapons you need to remember one thing: Don't let the weapon get damaged.")
 	npc_says(_"Even though our armor is designed to resist high temperatures, once the plasma containment module goes, you will die, along with anything within ten meters of you.")

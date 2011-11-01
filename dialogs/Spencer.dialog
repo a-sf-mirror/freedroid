@@ -299,7 +299,7 @@ NO_TEXT
 	npc_says(_"Come on, you've got to be kidding! ...")
 	npc_says(_"So I will call one minion for this job. You are very useless, unable to bring a small thing.")
 	npc_says(_"Get out of my sight!")
-	end_quest(_"Deliverance", _"I lied about the data cube and Spencer thinks now I lost the cube. I won a little time for people in cryonic stase. But, I couldn't stop Spencer's project.")
+	end_quest(_"Deliverance", _"I lied about the data cube and Spencer thinks now I lost the cube. I won a little time for people in cryonic stasis. But, I couldn't stop Spencer's project.")
 	add_xp(250)
 	hide(21, 22, 23)
 	end_dialog()
@@ -440,7 +440,7 @@ Nr=52 Text=_"No, of course not."
 	npc_says(_"About your friend, she can come in provided that she pulls her weight around here.")
 	add_cookie("Tania-set-free")
 	if (has_cookie("killed_docmoore")) then
-		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denyed everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
+		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer confronted me about Doc Moore's death. I denied everything and he bought it! He says it is OK for Tania to enter the town: I should tell her and Pendragon.")
 	else
 		update_quest(_"Tania's Escape", _"When I asked about Tania entering the town, Spencer said Doc Moore was found dead! Oh, and Tania can enter the town. I should go tell her that.")
 	end

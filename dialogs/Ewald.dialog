@@ -202,7 +202,7 @@ Nr=13 Text=_"Any idea where I can find some entertainment here?"
 
 Nr=14 Text=_"Hey, I could use a refreshing drink!"
 <LuaCode>
-	npc_says(_"Here, have a watery mary.")
+	npc_says(_"Here, have a Watery Mary.")
 	heat_tux(-1000)
 	hide(14)
 </LuaCode>

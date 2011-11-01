@@ -150,7 +150,7 @@ Nr=9 Text=_"I've got your medicine. With best wishes from the doctor."
 		npc_says(_"Here, take this as a reward.")
 	end
 	npc_says(_"Thanks, man!")
-	change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful insted of just keeping watch outside the Docs after healed.
+	change_obstacle_state("TownDocBackdoor", "opened") -- Allows Bender to do something useful instead of just keeping watch outside the Docs after healed.
 	add_xp(150)
 	del_item_backpack("Brain Enlargement Pills Antidote", 1)
 	add_item("Strength Pill",2)
