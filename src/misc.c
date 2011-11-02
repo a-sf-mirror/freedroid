@@ -1068,7 +1068,7 @@ int LoadGameConfig(void)
 
 	char *stuff = (char *)malloc(FS_filelength(configfile) + 1);
 	if (fread(stuff, FS_filelength(configfile), 1, configfile) != 1) {
-		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
 		fclose(configfile);
 		free(stuff);
 		return ERR;
@@ -1077,7 +1077,7 @@ int LoadGameConfig(void)
 	fclose(configfile);
 
 	if (setjmp(saveload_jmpbuf)) {
-		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
+		ErrorMessage(__FUNCTION__, "Failed to read config file: %s.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, fname);
 		configfile = NULL;
 		free(stuff);
 		ResetGameConfigToDefaultValues();
