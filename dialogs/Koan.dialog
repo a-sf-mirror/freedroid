@@ -28,7 +28,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 
 <EveryTime LuaCode>
-	if (has_cookie("Tania_surface") and (not done_quest(_"Tania's Escape")) and (not has_cookie("Tania-stopped-by-Pendragon"))) then --Tania is following you
+	if (has_cookie("Tania_surface") and
+	   (not done_quest(_"Tania's Escape")) and
+	   (not has_cookie("Tania-stopped-by-Pendragon"))) then --Tania is following you
 		tania_is_here = true
 		heal_npc("Tania")
 	else
@@ -51,7 +53,7 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 		end
 		show(3)
-	elseif (has_cookie("koan_spared")) then
+	elseif (has_cookie("koan_spared_via_dialog")) then
 		npc_says_random(_"It's a pleasure to meet you again.", _"I am happy to see you've returned.")
 		if (tania_is_here) then
 			npc_says(_"I see you have brought a friend along with you.")
@@ -139,7 +141,7 @@ Nr=11 Text=_"Duncan sent me to kill you, but I came to make certain you were saf
 Nr=12 Text=_"BUG, REPORT ME! Koan node12 -- UPDATE QUEST"
 NO_TEXT
 <LuaCode>
-	add_cookie("koan_spared")
+	add_cookie("koan_spared_via_dialog")
 	update_quest(_"Doing Duncan a favor", _"I met and talked to Koan, but didn't kill him.")
 	show(13)
 </LuaCode>
