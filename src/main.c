@@ -164,7 +164,6 @@ better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
 	load_saved = FALSE;	// default value, can be overridden by command-line
 	saved_game_name = NULL;
 	debug_level = -1;	// -1: shut up all debug ... 0=no debug 1=first debug level (at the moment=all) 
-	GameConfig.fullscreen_on = FALSE;	// use X11-window or full screen
 
 	InitFreedroid(argc, argv);	// Initialisation of global variables and arrays
 
