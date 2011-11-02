@@ -97,7 +97,7 @@ void input_keyboard_init(void)
 
 	if (sizeof(keybindNames) / sizeof(keybindNames[0]) > sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]))
 		ErrorMessage(__FUNCTION__,
-			     "There are %ld keyboard commands defined in keyboard.c, but GameConfig structure only supports %ld.\n",
+			     "There are %zu keyboard commands defined in keyboard.c, but GameConfig structure only supports %zu.\n",
 			     PLEASE_INFORM, IS_FATAL,
 			     sizeof(keybindNames) / sizeof(keybindNames[0]),
 			     sizeof(GameConfig.input_keybinds) / sizeof(GameConfig.input_keybinds[0]));
