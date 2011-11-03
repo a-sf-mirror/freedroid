@@ -52,7 +52,8 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Have you neutralized the threat yet?")
 		show(5)
 	else
-		if ((not has_quest(_"Deliverance")) and (not has_cookie("refused_deliverance"))) then
+		if  (not has_quest(_"Deliverance")) and
+			(not has_cookie("refused_deliverance")) then
 			show(90)
 			npc_says(_"Welcome back " .. get_player_name() .. ".")
 		else
@@ -60,21 +61,30 @@ Beginning of new chat dialog for character="XXXXX"
 			npc_says(_"It's good to see you again, " .. get_player_name() .. ".")
 		end
 
-                if (has_cookie("Francis_tux_dismissed")) then
+		if (has_cookie("Francis_tux_dismissed")) then
 			show(21, 22)
 		end
 
-		if (has_cookie("cryo_614_lock_gate") and (not has_cookie("cryo_outergate_code"))) then
+		if (has_cookie("cryo_614_lock_gate") and
+		   (not has_cookie("cryo_outergate_code"))) then
 			show(30)
 		end
 
-		if (has_cookie("tux_has_joined_guard") and (not has_cookie("francis_guard_response"))) then
+		if (has_cookie("tux_has_joined_guard") and
+		   (not has_cookie("francis_guard_response"))) then
 			add_cookie("francis_guard_response")
 			tux_says(_"I joined the Red Guard.")
 			npc_says(_"Oh...")
 			npc_says(_"Well. Congratulations are in order, I suppose.")
 			tux_says(_"...")
 		end
+	end
+ -- in case Francis gets stuck at FrancisSafe:
+	if (npc_dead("InvaderBot")) and
+	   (has_cookie("invaderbot_neutralized")) and
+	   (not has_cookie("Francis_movement_free")) then -- this way we prevent him from walking to the label whenever we talk to him again which may look strange
+		set_bot_destination("InvaderBot-Alive-Check-W")
+		add_cookie("Francis_movement_free")
 	end
 </LuaCode>
 ----------------------------------------------------------------------
