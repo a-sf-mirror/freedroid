@@ -138,17 +138,9 @@ static void check_for_new_experience_level_reached()
 {
 	int exp_required = get_experience_required(Me.exp_level);
 
-	if (Me.exp_level >= 24)
-		return;
-
 	if (Me.Experience >= exp_required) {
 		Me.exp_level++;
 		Me.points_to_distribute += 5;
-
-		if (Me.exp_level >= 24) {
-			SetNewBigScreenMessage(_("Max level reached!"));
-			return;
-		}
 
 		// When a droid reaches a new experience level, all health and 
 		// force are restored to full this one time no longer.  Gothic
