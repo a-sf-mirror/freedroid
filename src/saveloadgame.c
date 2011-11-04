@@ -305,34 +305,32 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, 
 };				// int SaveGame( void )
 
 /**
- * This function loads an old saved game of Freedroid from a file.
+ * This function delete a saved game and its backup (if there's one)
  */
 int DeleteGame(void)
 {
-	char filename[1000];
+	char filename[FILENAME_MAX];
 
 	if (!our_config_dir)
 		return (OK);
 
-	// First we save the full ship information, same as with the level editor
-	//
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, ".shp");
-
+	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, ".shp");
+	remove(filename);
+	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
 	remove(filename);
 
-	// First, we must determine the savedgame data file name
-	//
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVEDGAME_EXT);
-
+	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
 	remove(filename);
 
-	sprintf(filename, "%s/%s%s", our_config_dir, Me.character_name, SAVE_GAME_THUMBNAIL_EXT);
-
+	// We do not check if the backup files exists before to remove it, but since
+	// do not check the returned value of remove(), this is not an issue
+	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, ".bkp.shp");
+	remove(filename);
+	snprintf(filename, sizeof(filename), "%s/%s%s", our_config_dir, Me.character_name, ".bkp"SAVEDGAME_EXT);
 	remove(filename);
 
 	return (OK);
-
-};				// int DeleteGame( void )
+}
 
 static int load_saved_game(int use_backup)
 {
