@@ -4413,7 +4413,7 @@ Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
 Base list price=1000000000
 inventory_size_x=2
 inventory_size_y=3
-Item description text=_"This item is used by tester. If you find it without use a cheat, it's a bug, please report it."
+Item description text=_"This item is used by testers. If you find it ingame without using a cheat, please report it as a bug."
 ----- the following part is only relevant for weapons -----
 Item as gun: recharging time=0.500000
 Item as gun: reloading time=0.000000
