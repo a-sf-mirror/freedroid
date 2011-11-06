@@ -130,6 +130,45 @@ static void print_enemy_info(char *str, int en_idx)
 				Druidmap[en_idx].aggression_distance, Druidmap[en_idx].time_spent_eyeing_tux);
 }
 
+static void print_item_info(char *str, int item_idx)
+{
+	struct itemspec *item = &ItemMap[item_idx];
+	if (item->item_gun_ammo_clip_size) { //Mostly Guns
+		sprintf(str, 	"%s (%d/%s)\n\
+			Damage: %d-%d, Recharge: %.2f, Reload: %.2f,\n\
+			STR: >%d\n%s",
+				item->item_name, item->item_gun_ammo_clip_size, ammo_desc_for_weapon(item_idx),
+				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
+				item->item_gun_recharging_time, item->item_gun_reloading_time,
+				item->item_require_strength,
+				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
+
+	} else if (item->item_can_be_installed_in_weapon_slot) { //Most Melee Weapons
+		sprintf(str, 	"%s\n\
+			Damage: %d-%d, Recharge: %.2f,\n\
+			STR: >%d, DEX: >%d, COOL: >%d\n%s",
+				item->item_name,
+				item->base_item_gun_damage, item->base_item_gun_damage + item->item_gun_damage_modifier,
+				item->item_gun_recharging_time,
+				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling,
+				item->item_gun_requires_both_hands ? "Requires two hands\n" : "" );
+
+	} else if (item->item_can_be_installed_in_drive_slot || item->item_can_be_installed_in_armour_slot || 
+				item->item_can_be_installed_in_shield_slot || item->item_can_be_installed_in_special_slot) {
+		sprintf(str, 	"%s\n\
+			Armor: %d-%d, Durability:  %d-%d,\n\
+			STR: >%d, DEX: >%d, COOL: >%d\n",
+				item->item_name,
+				item->base_armor_class, item->base_armor_class + item->armor_class_modifier,
+				item->base_item_durability, item->base_item_durability + item->item_durability_modifier,
+				item->item_require_strength, item->item_require_dexterity, item->item_require_cooling);
+
+	} else {
+		sprintf(str, 	"%s\n%s",
+			item->item_name, item->item_description);
+	}
+}
+
 static void leveleditor_print_object_info(enum lvledit_object_type type, int *array, int idx, char *str)
 {
 	switch (type) {
@@ -150,7 +189,7 @@ static void leveleditor_print_object_info(enum lvledit_object_type type, int *ar
 			sprintf(str, "Waypt %s connection, %s for random spawn\n", "two way", array[idx] ? "NOK" : "OK");
 			break;
 	case OBJECT_ITEM:
-			sprintf(str, "Item name: %s", ItemMap[array[idx]].item_name);
+			print_item_info(str, array[idx]);
 			break;
 	case OBJECT_ENEMY:
 			print_enemy_info(str, array[idx]);
