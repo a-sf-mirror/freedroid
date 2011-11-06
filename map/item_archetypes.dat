@@ -4392,6 +4392,45 @@ Item motion class="1hranged"
 ----- end of part only relevant for weapons -----
 ** End of new item specification subsection **
 
+/**********************************************************************************************************
+ *       Cheat items                                                                              *
+ **********************************************************************************************************/
+
+** Start of new item specification subsection **
+Item name=_"Cheat Gun"
+Item min class for drop=-1
+Item max class for drop=-1
+Item can be installed in slot with name="weapon"
+Tux part instance="iso_gun1"
+Item uses rotation series with prefix="weapons/plasma_gun"
+Items of this type collect together in inventory="no"
+Strength minimum required to wear/wield this item=-1
+Dexterity minimum required to wear/wield this item=-1
+Base item duration=16000
+plus duration modifier=1
+File or directory name for inventory image="weapons/plasma_gun/inv_image2.png"
+Item uses drop sound with filename="Item_Range_Weapon_Put_Sound_0.ogg"
+Base list price=1000000000
+inventory_size_x=2
+inventory_size_y=3
+Item description text=_"This item is used by tester. If you find it without use a cheat, it's a bug, please report it."
+----- the following part is only relevant for weapons -----
+Item as gun: recharging time=0.500000
+Item as gun: reloading time=0.000000
+Item as gun: speed of bullets=45.000000
+Item as gun: is melee weapon=0
+Item as gun: damage of bullets=9999
+Item as gun: modifier for damage of bullets=0
+Item as gun: bullet_image_type="plasma_white"
+Item as gun: bullet_lifetime=-1.000000
+Item as gun: modifier for starting angle=0.000000
+Item as gun: pass through hit bodies="no"
+Item as gun: required ammunition type="none"
+Item as gun: ammo clip size=0
+Item as gun: weapon requires both hands="yes"
+Item motion class="2hranged"
+----- end of part only relevant for weapons -----
+** End of new item specification subsection **
 
 *** End of item data section: ***
 

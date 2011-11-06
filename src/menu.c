@@ -848,6 +848,7 @@ void Cheatmenu(void)
 	int i, l;
 	int x0, y0;
 	int skip_dead = 0;
+	item cheat_gun;
 
 	// Prevent distortion of framerate by the delay coming from 
 	// the time spend in the menu.
@@ -878,6 +879,7 @@ void Cheatmenu(void)
 		printf_SDL(Screen, -1, -1, " n. No hidden droids: %s", show_all_droids ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " r. Infinite running stamina: %s", GameConfig.cheat_running_stamina ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " s. Double speed running: %s\n", GameConfig.cheat_double_speed ? "ON" : "OFF");
+		printf_SDL(Screen, -1, -1, " t. Give a cheat gun\n");
 		printf_SDL(Screen, -1, -1, " x. Cheatkeys : %s", GameConfig.enable_cheatkeys ? "ON\n" : "OFF\n");
 		printf_SDL(Screen, -1, -1, " q. RESUME game\n");
 
@@ -1014,6 +1016,11 @@ void Cheatmenu(void)
 
 		case 's':
 			GameConfig.cheat_double_speed = !GameConfig.cheat_double_speed;
+			break;
+
+		case 't':
+			cheat_gun = create_item_with_name("Cheat Gun", TRUE, 1);
+			equip_item(&cheat_gun);
 			break;
 
 		case 'x':
