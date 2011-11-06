@@ -949,7 +949,7 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading, int with_an
 			fprintf(stderr, "\n\ntarget location was: lev=%d x=%f y=%f.\n", LNum, X, Y);
 			fprintf(stderr, "source location was: lev=%d x=%f y=%f.", Me.pos.z, Me.pos.x, Me.pos.y);
 			ErrorMessage(__FUNCTION__, "\
-A Teleport was requested, but the location to teleport to lies outside\n\
+A Teleport was requested, but the location to teleport to lies beyond\n\
 the bounds of this 'ship' which means the current collection of levels.\n\
 This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATAL);
 		}
@@ -1092,10 +1092,10 @@ int LoadGameConfig(void)
 	if (!GameConfig.freedroid_version_string || strcmp(GameConfig.freedroid_version_string, VERSION)) {
 		ErrorMessage(__FUNCTION__, "\
 Settings file found in your ~/.freedroid_rpg dir does not\n\
-seem to be from the same version a this installation of freedroid.\n\
+seem to be from the same version as this installation of freedroid.\n\
 This is perfectly normal if you have just upgraded your version of\n\
-freedroid.  But the loading of your settings will be canceled now,\n\
-cause the format of the settings file is no longer supported.  \n\
+freedroid.  However, the loading of your settings will be canceled now,\n\
+because the format of the settings file is no longer supported.\n\
 No need to panic.  The default settings will be used instead and a new\n\
 settings file will be generated.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		ResetGameConfigToDefaultValues();
@@ -1196,7 +1196,7 @@ int SaveGameConfig(void)
 void Terminate(int exit_code, int save_config)
 {
 	printf("\n----------------------------------------------------------------------");
-	printf("\nTermination of freedroidRPG initiated...");
+	printf("\nTermination of freedroidRPG initiated... ");
 
 	// We save the config file in any case.
 
