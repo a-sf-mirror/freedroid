@@ -1520,7 +1520,14 @@ void check_for_droids_to_attack_or_talk_with()
 	 * of the found droid to be the bot's position relatively to Tux current level
 	 */
 	enemy *droid_below_mouse_cursor = GetLivingDroidBelowMouseCursor();
-	if (droid_below_mouse_cursor == NULL && (!APressed())) {
+
+	// Set a move action unless there's a droid below the cursor,
+	// 'A' is pressed,
+	// or the player has clicked to pickup an item and hasn't released the LMB
+	if (droid_below_mouse_cursor == NULL && (!APressed()) &&
+		(no_left_button_press_in_previous_analyze_mouse_click ||
+		Me.mouse_move_target_combo_action_type != COMBO_ACTION_PICK_UP_ITEM)) {
+
 		Me.mouse_move_target.x = translate_pixel_to_map_location(input_axis.x, input_axis.y, TRUE);
 		Me.mouse_move_target.y = translate_pixel_to_map_location(input_axis.x, input_axis.y, FALSE);
 		Me.mouse_move_target.z = Me.pos.z;
