@@ -157,9 +157,9 @@ void LoadAndShowStats(char *CoreFilename)
 	if (stat(filename, &(FileInfoBuffer))) {
 		fprintf(stderr, "\n\nfilename: %s. \n", filename);
 		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to determine the time of the last modification on\n\
+FreedroidRPG was unable to determine the time of the last modification on\n\
 your saved game file.\n\
-This is either a bug in Freedroid or an indication, that the directory\n\
+This is either a bug in FreedroidRPG or an indication, that the directory\n\
 or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		return;
 	};
@@ -181,9 +181,9 @@ or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFO
 	if (stat(filename, &(FileInfoBuffer))) {
 		fprintf(stderr, "\n\nfilename: %s. \n", filename);
 		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to determine the time of the last modification on\n\
+FreedroidRPG was unable to determine the time of the last modification on\n\
 your saved game file.\n\
-This is either a bug in Freedroid or an indication, that the directory\n\
+This is either a bug in FreedroidRPG or an indication, that the directory\n\
 or file permissions of ~/.freedroid_rpg are somehow not right.", NO_NEED_TO_INFORM, IS_FATAL);
 	}
 	FileSize += FileInfoBuffer.st_size;
@@ -219,7 +219,7 @@ void SaveThumbnailOfGame(void)
 };				// void SaveThumbnailOfGame ( void )
 
 /**
- * This function saves the current game of Freedroid to a file.
+ * This function saves the current game of FreedroidRPG to a file.
  */
 
 int SaveGame(void)
@@ -266,7 +266,7 @@ int SaveGame(void)
 	if (SaveShip(filename, FALSE, 1) != OK) {
 		ErrorMessage(__FUNCTION__, "\
 The SAVING OF THE SHIP DATA FOR THE SAVED GAME FAILED!\n\
-This is either a bug in Freedroid or an indication, that the directory\n\
+This is either a bug in FreedroidRPG or an indication, that the directory\n\
 or file permissions of ~/.freedroid_rpg are somehow not right.", PLEASE_INFORM, IS_FATAL);
 	} else {
 		DebugPrintf(SAVE_LOAD_GAME_DEBUG, "\nShip data for saved game seems to have been saved correctly.\n");
@@ -450,7 +450,7 @@ static int load_saved_game(int use_backup)
 }
 
 /**
- * This function loads an old saved game of Freedroid from a file.
+ * This function loads an old saved game of FreedroidRPG from a file.
  */
 int LoadGame(void)
 {

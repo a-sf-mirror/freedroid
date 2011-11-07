@@ -26,7 +26,7 @@
 
 /**
  * This file contains all the functions managing the lighting inside
- * the freedroidRPG game window, i.e. the 'light radius' of the Tux and
+ * the FreedroidRPG game window, i.e. the 'light radius' of the Tux and
  * of other light emanating objects.
  */
 

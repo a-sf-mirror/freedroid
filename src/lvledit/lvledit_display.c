@@ -172,7 +172,7 @@ void draw_connection_between_tiles(float x1, float y1, float x2, float y2, int m
 
 /**
  * This function is used by thelevel *Editor integrated into 
- * freedroid.  It marks all waypoints with a cross.
+ * FreedroidRPG.  It marks all waypoints with a cross.
  */
 static void show_waypoints(int mask)
 {
@@ -236,7 +236,7 @@ static void show_waypoints(int mask)
 
 /**
  * This function is used by thelevel *Editor integrated into 
- * freedroid.  It marks all places that have a label attached to them.
+ * FreedroidRPG.  It marks all places that have a label attached to them.
  */
 static void show_map_labels(int must_zoom)
 {

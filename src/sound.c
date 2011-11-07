@@ -142,7 +142,7 @@ static int next_free_position_in_cache = 0;
 /** ============================================ SYSTEM ============================================ */
 // ----------------------------------------------------------------------
 // This function shall initialize the SDL Audio subsystem.  It is called
-// as soon as Freedroid is started.  It does ONLY work with SDL and no
+// as soon as FreedroidRPG is started.  It does ONLY work with SDL and no
 // longer with any form of sound engine like the YIFF.
 // ----------------------------------------------------------------------
 void InitAudio(void)
@@ -169,7 +169,7 @@ void InitAudio(void)
 					"i.e. if other applications are able to play sounds.\n\n"
 					"If you for some reason cannot get your sound card ready, \n"
 					"you can choose to play without sound.\n\n"
-					"If you want this, use the appropriate command line option and Freedroid will\n"
+					"If you want this, use the appropriate command line option and FreedroidRPG will\n"
 					"not complain any more.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		sound_on = FALSE;
 		return;
@@ -190,7 +190,7 @@ void InitAudio(void)
 					"i.e. if other applications are able to play sounds.\n\n"
 					"If you for some reason cannot get your sound card ready,\n"
 					"you can choose to play without sound.\n\n"
-					"If you want this, use the appropriate command line option and Freedroid will\n"
+					"If you want this, use the appropriate command line option and FreedroidRPG will\n"
 					"not complain any more.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		sound_on = FALSE;
 		return;
@@ -273,7 +273,7 @@ void channel_done(int channel)
 /** ============================================ MUSIC ============================================ */
 /**
  * This function is intended to provide a convenient way of switching
- * between different background sounds in freedroid.
+ * between different background sounds in FreedroidRPG.
  * If no background sound was yet running, the function should start playing
  * the given background music.
  * If some background sound was already playing, the function should shut down

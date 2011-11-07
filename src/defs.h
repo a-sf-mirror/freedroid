@@ -520,7 +520,7 @@ enum {
 #define MAX_SAVED_CHARACTERS_ON_DISK 7	// Not actually amount of chars, but amount "per page"
 
 #define MAX_INFLU_POSITION_HISTORY 500
-#define MAX_MISSIONS_IN_GAME 50	// how many missions can there be at most in Freedroid
+#define MAX_MISSIONS_IN_GAME 50	// how many missions can there be at most in FreedroidRPG
 #define MAX_MISSION_DESCRIPTION_TEXTS 25
 
 #define MAX_LEVELS		100	// how many map levels are allowed in one ship
@@ -776,7 +776,7 @@ enum obstacle_types {
 	//--------------------
 	// These obstacles are generated from 'commercial_models_for_furniture.blend' file
 	// which is currently not in the cvs rep. for licensing issues, but I'll send a
-	// version to any Freedroid co-worker involved with the graphics
+	// version to any FreedroidRPG co-worker involved with the graphics
 	//
 	ISO_N_TOILET_SMALL = 67,
 	ISO_E_TOILET_SMALL,
@@ -802,7 +802,7 @@ enum obstacle_types {
 	//--------------------
 	// These obstacles are generated from 'commercial_models_for_furniture2.blend' file
 	// which is currently not in the cvs rep. for licensing issues, but I'll send a
-	// version to any Freedroid co-worker involved with the graphics
+	// version to any FreedroidRPG co-worker involved with the graphics
 	//
 	ISO_N_BED = 87,
 	ISO_E_BED,
@@ -827,7 +827,7 @@ enum obstacle_types {
 	//--------------------
 	// These obstacles are generated from 'commercial_models_for_furniture3.blend' file
 	// which is currently not in the cvs rep. for licensing issues, but I'll send a
-	// version to any Freedroid co-worker involved with the graphics
+	// version to any FreedroidRPG co-worker involved with the graphics
 	//
 	ISO_H_BATHTUB = 103,
 	ISO_V_BATHTUB,

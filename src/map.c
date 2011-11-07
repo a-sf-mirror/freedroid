@@ -179,7 +179,7 @@ void ResolveMapLabelOnShip(const char *MapLabel, location * PositionPointer)
 
 	ErrorMessage(__FUNCTION__, "\
 Resolving map label %s failed on the complete ship!\n\
-This is a severe error in the game data of Freedroid.", PLEASE_INFORM, IS_FATAL, MapLabel);
+This is a severe error in the game data of FreedroidRPG.", PLEASE_INFORM, IS_FATAL, MapLabel);
 
 };
 
@@ -319,9 +319,9 @@ static void decode_dimensions(level *loadlevel, char *DataPointer)
 
 	if (loadlevel->ylen >= MAX_MAP_LINES) {
 		ErrorMessage(__FUNCTION__, "\
-A maplevel Freedroid was supposed to load has more map lines than allowed\n\
-for a map level as by the constant MAX_MAP_LINES in defs.h.\n\
-Sorry, but unless this constant is raised, Freedroid will refuse to load this map.", PLEASE_INFORM, IS_FATAL);
+A map/level in FreedroidRPG which was supposed to load has more map lines than allowed\n\
+for a map/level as by the constant MAX_MAP_LINES in defs.h.\n\
+Sorry, but unless this constant is raised, FreedroidRPG will refuse to load this map.", PLEASE_INFORM, IS_FATAL);
 	}
 }
 
@@ -1002,7 +1002,7 @@ Uint16 get_map_brick(level *lvl, float x, float y, int layer)
 }
 
 /**
- * Some structures within Freedroid rpg maps are animated in the sense that the
+ * Some structures within FreedroidRPG maps are animated in the sense that the
  * iso image used to display them rotates through a number of different iso
  * images.
  * We generate lists of the animated obstacles for a given visible level to 

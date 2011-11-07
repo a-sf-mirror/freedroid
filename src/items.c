@@ -976,7 +976,7 @@ static int FindFirstInventoryIndexWithItemType(int Itemtype)
 	fprintf(stderr, "\n\nItemType: '%d'.\n", Itemtype);
 	ErrorMessage(__FUNCTION__, "\
 There was an item code for an item to locate in inventory, but inventory\n\
-did not contain this item type at all!  This indicates a severe bug in Freedroid.", PLEASE_INFORM, IS_FATAL);
+did not contain this item type at all!  This indicates a severe bug in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 
 	return (-1);
 
@@ -1377,7 +1377,7 @@ static void DropHeldItemToSlot(item * SlotItem)
  * inventory indices than squares in the inventory grid, the function 
  * should always be able to find a free inventory index.  If not, this is
  * considered a severe program error, which will cause immediate 
- * termination of FreeDroid.
+ * termination of FreedroidRPG.
  */
 int GetFreeInventoryIndex(void)
 {

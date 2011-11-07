@@ -256,7 +256,7 @@ void TestMap(void)
 
 /**
  * This function provides the leveleditor integrated into
- * freedroid.  Actually this function is a submenu of the big
+ * FreedroidRPG.  Actually this function is a submenu of the big
  * Escape Menu.  In here you can edit the level and, upon pressing
  * escape, you can enter a new submenu where you can save the level,
  * change level name and quit from level editing.

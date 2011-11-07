@@ -24,7 +24,7 @@
  *
  */
 /**
- * This file contains miscellaeous helpful functions for Freedroid.
+ * This file contains miscellaeous helpful functions for FreedroidRPG.
  */
 #define _misc_c
 
@@ -538,7 +538,7 @@ int MouseCursorIsOnButton(int ButtonIndex, int x, int y)
 	if ((ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS) || (ButtonIndex < 0)) {
 		ErrorMessage(__FUNCTION__, "\
 A Button that should be checked for mouse contact was requested, but the\n\
-button index given exceeds the number of buttons defined in freedroid.", PLEASE_INFORM, IS_FATAL);
+button index given exceeds the number of buttons defined in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	}
 
 	Copy_Rect(AllMousePressButtons[ButtonIndex].button_rect, temp_rect);
@@ -571,7 +571,7 @@ void ShowGenericButtonFromList(int ButtonIndex)
 	// Safety check
 	if ((ButtonIndex >= MAX_MOUSE_PRESS_BUTTONS) || (ButtonIndex < 0)) {
 		ErrorMessage(__FUNCTION__, "Request to display button index %d could not be fulfilled: the\n\
-				button index given exceeds the number of buttons defined in freedroid.", PLEASE_INFORM, IS_WARNING_ONLY, ButtonIndex);
+				button index given exceeds the number of buttons defined in FreedroidRPG.", PLEASE_INFORM, IS_WARNING_ONLY, ButtonIndex);
 		return;
 	}
 
@@ -866,7 +866,7 @@ void Activate_Conservative_Frame_Computation(void)
  */
 void update_frames_displayed(void)
 {
-	// The next couter counts the frames displayed by freedroid during this
+	// The next couter counts the frames displayed by FreedroidRPG during this
 	// whole run!!  DO NOT RESET THIS COUNTER WHEN THE GAME RESTARTS!!
 	Overall_Frames_Displayed++;
 	Overall_Average = (Overall_Average * (Overall_Frames_Displayed - 1)
@@ -951,7 +951,7 @@ void Teleport(int LNum, float X, float Y, int with_sound_and_fading, int with_an
 			ErrorMessage(__FUNCTION__, "\
 A Teleport was requested, but the location to teleport to lies beyond\n\
 the bounds of this 'ship' which means the current collection of levels.\n\
-This indicates an error in the map system of Freedroid.", PLEASE_INFORM, IS_FATAL);
+This indicates an error in the map system of FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 		}
 
 		// Refresh some speed-up data structures
@@ -1092,9 +1092,9 @@ int LoadGameConfig(void)
 	if (!GameConfig.freedroid_version_string || strcmp(GameConfig.freedroid_version_string, VERSION)) {
 		ErrorMessage(__FUNCTION__, "\
 Settings file found in your ~/.freedroid_rpg dir does not\n\
-seem to be from the same version as this installation of freedroid.\n\
+seem to be from the same version as this installation of FreedroidRPG.\n\
 This is perfectly normal if you have just upgraded your version of\n\
-freedroid.  However, the loading of your settings will be canceled now,\n\
+FreedroidRPG.  However, the loading of your settings will be canceled now,\n\
 because the format of the settings file is no longer supported.\n\
 No need to panic.  The default settings will be used instead and a new\n\
 settings file will be generated.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
@@ -1151,9 +1151,9 @@ int SaveGameConfig(void)
 		fprintf(stderr, "Unable to open configuration file %s for writing\n", fname);
 		return (ERR);
 	}
-	// We put the current version number of freedroid into the 
+	// We put the current version number of FreedroidRPG into the 
 	// version number string.  This will be useful so that later
-	// versions of freedroid can identify old config files and decide
+	// versions of FreedroidRPG can identify old config files and decide
 	// not to use them in some cases.
 	//
 	if (GameConfig.freedroid_version_string) {

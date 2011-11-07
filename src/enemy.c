@@ -821,7 +821,7 @@ int MakeSureEnemyIsInsideHisLevel(Enemy ThisRobot)
 There was a droid found outside the bounds of this level (when dying).\n\
 This is an error and should not occur, but most likely it does since\n\
 the bots are allowed some motion without respect to existing waypoints\n\
-in Freedroid RPG.\n", PLEASE_INFORM, IS_FATAL);
+in FreedroidRPG.\n", PLEASE_INFORM, IS_FATAL);
 		return (FALSE);
 	}
 
@@ -2034,7 +2034,7 @@ void update_enemy(enemy * ThisRobot)
  * and attack behavior.
  *
  * Note that no enemy must be killed by the logic function. It's a technical limitation
- * and a requirement in freedroidRPG.
+ * and a requirement in FreedroidRPG.
  */
 void move_enemies(void)
 {

@@ -708,7 +708,7 @@ void load_game_data(char *strin)
  * Save configuration data.
  * \ingroup toprw
  *
- * Save a freedroid configuration in a Lua script file.
+ * Save a FreedroidRPG configuration in a Lua script file.
  * \param strout The auto_string to be filled
  */
 void save_freedroid_configuration(struct auto_string *strout)
@@ -719,7 +719,7 @@ void save_freedroid_configuration(struct auto_string *strout)
 }
 
 /*
- * Private table constructors, used when loading a freedroid configuration.
+ * Private table constructors, used when loading a FreedroidRPG configuration.
  */
 
 static int configuration_ctor(lua_State *L)
@@ -733,7 +733,7 @@ static int configuration_ctor(lua_State *L)
  * Load configuration data.
  * \ingroup toprw
  *
- * Load a freedroid configuration stored in a Lua script file.
+ * Load a FreedroidRPG configuration stored in a Lua script file.
  * \param strin Char array containing the data to load
  */
 void load_freedroid_configuration(char *strin)

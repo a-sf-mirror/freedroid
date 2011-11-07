@@ -25,19 +25,19 @@
  *
  * 
  * Feel free to make any modifications you like.  If you set up 
- * something cool, please send your file in to the Freedroid project.
+ * something cool, please send your file in to the FreedroidRPG project.
  *
  * ----------------------------------------------------------------------
 
 You can edit it with a standard text editor of your choice.
 Feel free to make any modifications you like.
-Freedroid will still accept your modified game data file as long
+FreedroidRPG will still accept your modified game data file as long
 as you stick to the following rules:
 1.) the text indicating the Start of the Robot Data Section must not
-    be removed or changed.  It is needed by Freedroid in order to find
+    be removed or changed.  It is needed by FreedroidRPG in order to find
     the robot section in your modified file.
 2.) the text indicating the end of the data file must not be removed.
-    It is needed by Freedroid to ensure the integrity of this data file.
+    It is needed by FreedroidRPG to ensure the integrity of this data file.
 3.) Every new robot must begin with the typical "Start of new Robot"
     string AND the asterisks as you see in the existing robots.
     Best copy an existing robots data to a new location at the end

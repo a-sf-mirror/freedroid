@@ -382,7 +382,7 @@ void get_offset_for_iso_image_from_file_and_path(char *fpath, struct image * our
 	//
 	if ((OffsetFile = fopen(offset_file_name, "rb")) == NULL) {
 		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to open offset file %s for an isometric image.\n\
+FreedroidRPG was unable to open offset file %s for an isometric image.\n\
 Since the offset could not be obtained from the offset file, 0 will be used instead.\n\
 This can lead to minor positioning perturbations\n\
 in graphics displayed, but FreedroidRPG will continue to work.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, offset_file_name);
@@ -415,11 +415,11 @@ static int EnemyFullyPrepared[ENEMY_ROTATION_MODELS_AVAILABLE];
 void LoadAndPrepareEnemyRotationModelNr(int ModelNr)
 {
 	// Now a sanity check against using rotation types, that don't exist
-	// in Freedroid RPG at all!
+	// in FreedroidRPG at all!
 	//
 	if ((ModelNr < 0) || (ModelNr >= ENEMY_ROTATION_MODELS_AVAILABLE)) {
 		ErrorMessage(__FUNCTION__, "\
-Freedroid received a rotation model number that does not exist: %d\n", PLEASE_INFORM, IS_FATAL, ModelNr);
+FreedroidRPG received a rotation model number that does not exist: %d\n", PLEASE_INFORM, IS_FATAL, ModelNr);
 	}
 	// Now we can check if the given rotation model type was perhaps already
 	// allocated and loaded and fully prepared.  Then of course we need not 

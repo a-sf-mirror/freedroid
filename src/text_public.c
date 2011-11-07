@@ -84,7 +84,7 @@ void DebugPrintf(int db_level, const char *fmt, ...)
 
 /**
  * This function should help to simplify and standardize the many error
- * messages possible in Freedroid RPG.
+ * messages possible in FreedroidRPG.
  */
 void ErrorMessage(const char *FunctionName, const char *fmt, int InformDevelopers, int IsFatal, ...)
 {
@@ -92,7 +92,7 @@ void ErrorMessage(const char *FunctionName, const char *fmt, int InformDeveloper
 	va_start(args, IsFatal);
 
 	fprintf(stderr, "\n----------------------------------------------------------------------\n\
-Freedroid has encountered a problem:\n");
+FreedroidRPG has encountered a problem:\n");
 	fprintf(stderr, "In function: %s.\n", FunctionName);
 	fprintf(stderr, "FreedroidRPG package and version number: %s %s.\n", PACKAGE, VERSION);
 	vfprintf(stderr, fmt, args);
@@ -101,7 +101,7 @@ Freedroid has encountered a problem:\n");
 		fprintf(stderr, "\
 \n\
 \n\
-If you encounter this message, please inform the Freedroid developers\n\
+If you encounter this message, please inform the FreedroidRPG developers\n\
 about the problem, by either\n\
 \n\
   sending e-mail to:\n\
@@ -117,7 +117,7 @@ Thanks a lot!\n\n");
 	}
 
 	if (IsFatal) {
-		fprintf(stderr, "Freedroid will terminate now to draw attention to the problems it could\n\
+		fprintf(stderr, "FreedroidRPG will terminate now to draw attention to the problems it could\n\
 not resolve.  Sorry if that interrupts a major game of yours...\n");
 	} else {
 		fprintf(stderr, "The problem mentioned above is not fatal, we continue the execution.\n");
@@ -229,7 +229,7 @@ char *ReadAndMallocStringFromData(char *SearchString, const char *StartIndicatio
 		fprintf(stderr, "\n\nStartIndicationString: '%s'\nEndIndicationString: '%s'\n", StartIndicationString, EndIndicationString);
 		ErrorMessage(__FUNCTION__, "\
 The string that is supposed to prefix an entry in a text data file\n\
-of Freedroid was not found within this text data file.\n\
+of FreedroidRPG was not found within this text data file.\n\
 This indicates some corruption in the data file in question.", PLEASE_INFORM, IS_FATAL);
 	}
 	return result;
@@ -274,9 +274,9 @@ char *ReadAndMallocAndTerminateFile(const char *filename, const char *File_End_S
 		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
 
 		ErrorMessage(__FUNCTION__, "\
-Freedroid was unable to open a given text file,\n\
+FreedroidRPG was unable to open a given text file,\n\
 that should be there and should be accessible.\n\
-This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_FATAL);
+This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	} else {
 		DebugPrintf(1, "\nchar* ReadAndMallocAndTerminateFile ( char* filename ) : Opening file succeeded...");
 	}
@@ -287,7 +287,7 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 
 	if (fread(Data, 1, MemoryAmount, DataFile) < filelen && ferror(DataFile)) {
 		ErrorMessage(__FUNCTION__, "\
-		Freedroid was unable to read a given text file, that should be there and\n\
+		FreedroidRPG was unable to read a given text file, that should be there and\n\
 		should be accessible.\n\
 		Filename: %s", PLEASE_INFORM, IS_FATAL, filename);
 	} else {
@@ -297,11 +297,11 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 	if (fclose(DataFile) == EOF) {
 		fprintf(stderr, "\n\nfilename: '%s'\n", filename);
 		ErrorMessage(__FUNCTION__, "\
-		Freedroid was unable to close a given text file, that should be there and\n\
+		FreedroidRPG was unable to close a given text file, that should be there and\n\
 		should be accessible.\n\
 		This indicates a strange bug in this installation of Freedroid, that is\n\
 		very likely a problem with the file/directory permissions of the files\n\
-		belonging to Freedroid.", PLEASE_INFORM, IS_FATAL);
+		belonging to FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	} else {
 		DebugPrintf(1, "\n%s(): file closed successfully...\n", __FUNCTION__);
 	}
@@ -315,7 +315,7 @@ This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM,
 			fprintf(stderr, "File_End_String: '%s'\n", File_End_String);
 
 			ErrorMessage(__FUNCTION__, "\
-		    Freedroid was unable to find the string, that should indicate the end of\n\
+		    FreedroidRPG was unable to find the string, that should indicate the end of\n\
 		    the given text file within this file.\n\
 		    This indicates a corrupt or outdated data or saved game file.", PLEASE_INFORM, IS_FATAL);
 		} else {
@@ -566,7 +566,7 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 	if (ret != Z_OK) {
 		ErrorMessage(__FUNCTION__, "\
 		zlib was unable to start decompressing a stream.\n\
-		This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_WARNING_ONLY);
+		This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM, IS_WARNING_ONLY);
 		free(temp_dbuffer);
 		free(src);
 		return -1;
@@ -590,7 +590,7 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 
 			ErrorMessage(__FUNCTION__, "\
 			zlib was unable to decompress a stream\n\
-			This indicates a serious bug in this installation of Freedroid.", PLEASE_INFORM, IS_WARNING_ONLY);
+			This indicates a serious bug in this installation of FreedroidRPG.", PLEASE_INFORM, IS_WARNING_ONLY);
 			free(temp_dbuffer);
 			free(src);
 			return -1;

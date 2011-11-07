@@ -354,8 +354,8 @@ static void CheckForTuxOutOfMap()
 		fprintf(stderr, "\n\nplayer's last position: X=%f, Y=%f, Z=%d.\n", Me.pos.x, Me.pos.y, Me.pos.z);
 		ErrorMessage(__FUNCTION__, "\
 A player's Tux was found outside the map.\n\
-This indicates either a bug in the Freedroid RPG code or\n\
-a bug in the currently used map system of Freedroid RPG.", PLEASE_INFORM, IS_FATAL);
+This indicates either a bug in the FreedroidRPG code or\n\
+a bug in the currently used map system of FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	}
 };				// void CheckForTuxOutOfMap ( )
 

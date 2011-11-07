@@ -25,7 +25,7 @@
  */
 
 /**
- * (Not all of the) Initialization routines for FreeDroid.
+ * (Not all of the) Initialization routines for FreedroidRPG.
  */
 
 #define _init_c
@@ -1227,7 +1227,7 @@ void ParseCommandLine(int argc, char *const argv[])
 }
 
 /* -----------------------------------------------------------------
- * This function initializes a completely new game within freedroid.
+ * This function initializes a completely new game within FreedroidRPG.
  * In contrast to InitFreedroid, this function should be called 
  * whenever or better before any new game is started.
  * -----------------------------------------------------------------*/
@@ -1304,14 +1304,14 @@ void prepare_level_editor()
  * This function sets the GameConfig back to the default values, NOT THE
  * VALUES STORED IN THE USERS CONFIG FILE.  This function is useful if 
  * no config file if found or if the config file turns out to originate
- * from a different version of freedroid, which could be dangerous as
+ * from a different version of FreedroidRPG, which could be dangerous as
  * well.
  */
 void ResetGameConfigToDefaultValues(void)
 {
 	// At first we set audio volume to maximum value.
 	// This might be replaced later with values from a 
-	// private user Freedroid config file.  But for now
+	// private user FreedroidRPG config file.  But for now
 	// this code is good enough...
 	//
 	GameConfig.Current_BG_Music_Volume = 0.5;
@@ -1452,7 +1452,7 @@ static void detect_available_resolutions(void)
 };
 
 /* -----------------------------------------------------------------
- * This function initializes the whole Freedroid game.
+ * This function initializes the whole FreedroidRPG game.
  * 
  * THIS MUST NOT BE CONFUSED WITH INITNEWGAME, WHICH
  * ONLY INITIALIZES A NEW MISSION FOR THE GAME.

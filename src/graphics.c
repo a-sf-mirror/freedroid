@@ -483,7 +483,7 @@ void InitPictures(void)
 
 /**
  * This function should load all the fonts we'll be using via the SDL
- * BFont library in Freedroid.
+ * BFont library in FreedroidRPG.
  */
 void InitOurBFonts(void)
 {

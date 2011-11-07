@@ -251,7 +251,7 @@ static void load_dialog(const char *fpath)
 	// We can now free the loaded file again.  Upon a new character dialogue
 	// being initiated, we'll just reload the file.  This is very convenient,
 	// for it allows making and testing changes to the dialogues without even
-	// having to restart Freedroid!  Very cool!
+	// having to restart FreedroidRPG!  Very cool!
 	//
 	free(ChatData);
 }

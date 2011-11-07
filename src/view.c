@@ -2461,7 +2461,7 @@ int set_rotation_model_for_this_robot(enemy * ThisRobot)
 	//
 	if ((RotationModel < 0) || (RotationModel >= ENEMY_ROTATION_MODELS_AVAILABLE)) {
 		ErrorMessage(__FUNCTION__, "\
-There was a rotation model type given, that exceeds the number of rotation models allowed and loaded in Freedroid.", PLEASE_INFORM, IS_FATAL);
+There was a rotation model type given, that exceeds the number of rotation models allowed and loaded in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 	}
 
 	return (RotationModel);
@@ -2761,7 +2761,7 @@ void PutRadialBlueSparks(float PosX, float PosY, float Radius, int SparkType, ui
 			if (SparkType >= NUMBER_OF_SPARK_TYPES) {
 				fprintf(stderr, "\n\nSparkType: %d\n", SparkType);
 				ErrorMessage(__FUNCTION__, "\
-Freedroid encountered a radial wave type that exceeds the CONSTANT for wave types.", PLEASE_INFORM, IS_FATAL);
+FreedroidRPG encountered a radial wave type that exceeds the CONSTANT for wave types.", PLEASE_INFORM, IS_FATAL);
 			}
 
 			switch (SparkType) {
@@ -2777,7 +2777,7 @@ Freedroid encountered a radial wave type that exceeds the CONSTANT for wave type
 			default:
 				fprintf(stderr, "\n\nSparkType: %d\n", SparkType);
 				ErrorMessage(__FUNCTION__, "\
-Freedroid encountered a radial wave type that does not exist in Freedroid.", PLEASE_INFORM, IS_FATAL);
+FreedroidRPG encountered a radial wave type that does not exist in FreedroidRPG.", PLEASE_INFORM, IS_FATAL);
 			}
 
 			find_file(ConstructedFilename, GRAPHICS_DIR, fpath, 0);
@@ -2786,7 +2786,7 @@ Freedroid encountered a radial wave type that does not exist in Freedroid.", PLE
 			if (tmp_surf == NULL) {
 				fprintf(stderr, "\n\nfpath: '%s'\n", fpath);
 				ErrorMessage(__FUNCTION__, "\
-Freedroid wanted to load a certain image file into memory, but the SDL\n\
+FreedroidRPG wanted to load a certain image file into memory, but the SDL\n\
 function used for this did not succeed.", PLEASE_INFORM, IS_FATAL);
 			}
 			// SDL_SetColorKey( tmp_surf , 0 , 0 ); 
@@ -2950,7 +2950,7 @@ void show_inventory_screen(void)
 	}
 
 	// Now we display the item in the influencer weapon slot
-	// At this point we have to pay extra care, cause the weapons in Freedroid
+	// At this point we have to pay extra care, cause the weapons in FreedroidRPG
 	// really come in many different sizes.
 	//
 	TargetRect.x = InventoryRect.x + WEAPON_RECT_X;

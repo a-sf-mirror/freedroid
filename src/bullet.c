@@ -280,9 +280,9 @@ void StartBlast(float x, float y, int level, int type, int dmg, int faction)
 A BLAST VIRTUAL POSITION WAS FOUND TO BE INCONSISTENT.\n\
 \n\
 However, the error is not fatal and will be silently compensated for now.\n\
-When reporting a problem to the Freedroid developers, please note if this\n\
+When reporting a problem to the FreedroidRPG developers, please note if this\n\
 warning message was created prior to the error in your report.\n\
-However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+However, it should NOT cause any serious trouble for FreedroidRPG.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 		return;
 	}
 	// If the blast is not on a visible level, we do not take care of it
@@ -340,12 +340,12 @@ void animate_blasts(void)
 			if (!pos_inside_level(CurBlast->pos.x, CurBlast->pos.y, curShip.AllLevels[CurBlast->pos.z])) {
 				ErrorMessage(__FUNCTION__, "\
 A BLAST WAS FOUND TO EXIST OUTSIDE THE BOUNDS OF THE MAP.\n\
-This is an indication of an inconsistency in Freedroid.\n\
+This is an indication of an inconsistency in FreedroidRPG.\n\
 \n\
 However, the error is not fatal and will be silently compensated for now.\n\
-When reporting a problem to the Freedroid developers, please note if this\n\
+When reporting a problem to the FreedroidRPG developers, please note if this\n\
 warning message was created prior to the error in your report.\n\
-However, it should NOT cause any serious trouble for Freedroid.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
+However, it should NOT cause any serious trouble for FreedroidRPG.", NO_NEED_TO_INFORM, IS_WARNING_ONLY);
 				CurBlast->pos.x = 0;
 				CurBlast->pos.y = 0;
 				CurBlast->pos.z = 0;
