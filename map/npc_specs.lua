@@ -38,6 +38,7 @@ npc_list{
 	"Lukas",
 	"Michelangelo",
 	"Maintenance-Terminal",
+	"MiniFactory-Terminal",
 	"Pendragon",
 	"Peter",
 	"Richard",

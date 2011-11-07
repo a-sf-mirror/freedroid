@@ -2875,7 +2875,20 @@ inventory_size_x=2
 inventory_size_y=2
 ** End of new item specification subsection **
 
-
+** Start of new item specification subsection **
+Item name=_"Manual of the Automated Factory"
+Item min class for drop=-1
+Item max class for drop=-1
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="repairbook"
+Items of this type collect together in inventory="no"
+File or directory name for inventory image="repairbook/inv_image.png"
+Item uses drop sound with filename="drop_book_sound.ogg"
+Base list price=0
+Item description text=_"This book describes the operation and repair of automated factories. Included are common error codes and how to fix them. However, most repairs simply call for liberal application of 'Elbow Grease'."
+inventory_size_x=2
+inventory_size_y=2
+** End of new item specification subsection **
 
 /**********************************************************************************************************
  *      Pills & Potions                                                                                   *
@@ -3503,6 +3516,20 @@ Base list price=0
 Item description text=_"This is a Stock Certificate for transfer of ownership of five hundred sixty-seven million shares of MegaSystems from William Gapes to bearer. Must be redeemed in a stock trading terminal."
 ** End of new item specification subsection **
 
+** Start of new item specification subsection **
+Item name=_"Elbow Grease Can"
+Item min class for drop=-1
+Item max class for drop=-1
+Item can be installed in slot with name="none"
+Item uses rotation series with prefix="pills_potions/blue_energy_drink"
+Items of this type collect together in inventory="yes"
+File or directory name for inventory image="pills_potions/blue_energy_drink/inv_image.png"
+inventory_size_x=1
+inventory_size_y=1
+Item uses drop sound with filename="drop_potion_sound.ogg"
+Base list price=0
+Item description text=_"A can filled with elbow grease. Hard to make it if you are not a strong man."
+** End of new item specification subsection **
 
 /**********************************************************************************************************
  *       Add-ons                                                                                          *

@@ -63,6 +63,8 @@ Beginning of new chat dialog for character="XXXXX"
 	show(99)
 	
 	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(60) end
+
+	if (has_cookie("minifactory_init_failed")) then show(51) end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -80,24 +82,7 @@ Nr=1 Text=_"Technical division?"
 	npc_says(_"The military division hates us because we are made up of people who refuse to fight or are unable to do so for health reasons.")
 	npc_says(_"But even they know that without us this town would have been destroyed months ago.")
 	npc_says(_"We deliver resources to the places which need them, build and repair the walls, fix damaged guns, manage construction work and lots of other small things which keep the bots from killing everyone.")
-	hide(1) show(18, 17, 16)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=16 Text=_"I would like to craft add-ons."
-NO_TEXT
-<LuaCode>
-	craft_addons()
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=17 Text=_"I would like to customize my equipment."
-NO_TEXT
-<LuaCode>
-	if (not has_cookie("engel_offered_extraction_skill")) then
-		show(50)
-	end
-	upgrade_items()
+	hide(1) show(18, 50)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -109,7 +94,10 @@ Nr=18 Text=_"Can you repair my equipment?"
 	npc_says(_"Our defensive bots are falling into disrepair and many are in desperate need of maintenance.")
 	npc_says(_"The technical division is very understaffed right now. On average one person has to do the jobs of three people.", "NO_WAIT")
 	npc_says(_"We just cannot afford to do any non-critical jobs right now. ")
-	hide(18) show(22)
+	if (not has_quest(_"The yellow toolkit")) then
+		show(22)
+	end
+	hide(18)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -434,15 +422,47 @@ Nr=48 Text=_"Why the secrecy and the hushed voice? Can't you just tell me?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=50 Text=_"What are these strange materials I need to craft add-ons?"
+Nr=50 Text=_"I would like to customize my equipment."
 <LuaCode>
-	npc_says(_"These are special devices extracted from bots.")
-	npc_says(_"A scout troop recently spotted two guys in the north of town.")
-	npc_says(_"I was told these guys shoot bots and disassemble them, extract their parts.")
-	npc_says(_"Maybe they can help you somehow receive such parts.")
-	tux_says(_"Thank you.")
-	npc_says(_"Good luck.")
-	hide(50)
+	npc_says(_"Of course, if I had some time, I could transform your weapon into a deadly gun. Lately, I have built a vorpal nuclear disintegrator Mk 2000 with integrated lethal de-phasor. Nice weapon.") 
+	npc_says(_"Sadly, we lack a lot of materials, and those we have are needed for town upkeep. The mine doesn't produce a lot of raw materials, and I can't just give them to you - you'll have to provide your own.")
+	npc_says(_"I can give you some advice, though. Recycling is key. You can extract special devices from the bots!")
+	npc_says(_"Amazing, isn't it? Before the great assault, we threw droids out for minor defects. Now, any wreck is a treasure.")
+	if (not has_cookie("engel_offered_extraction_skill")) then
+		npc_says(_"A scout troop recently spotted two guys in the north of town.")
+		npc_says(_"I was told these guys shoot bots and disassemble them, extracting their parts.", "NO_WAIT")
+		npc_says(_"Maybe they will sell you parts.")
+	end
+	npc_says(_"The salvaged components are used to craft add-ons. Your equipment has specific sockets to insert them.", "NO_WAIT")
+	npc_says(_"They can increase the power of items. But items can only have a limited number of addons.")
+	npc_says(_"To produce and assemble them, you may use a small factory in Maintenance Tunnels.")
+	if (not has_quest(_"The yellow toolkit")) then
+		npc_says(_"Currently, the maintenance tunnels are not accessible. We have many problems with bots. You can't go there, access has been limited.")
+		show(22)
+	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=51 Text=_"I have a problem with the Automated Factory."
+NO_TEXT
+<LuaCode>
+	if (has_cookie("dixon_angry_250") or has_cookie("dixon_angry_350")) then
+		npc_says(_"You have a problem... really amazing.")
+		npc_says(_"There is a really easy way to solve it.")
+		npc_says(_"Read the FLIPPING MANUAL!")
+		end_dialog()
+	else
+		npc_says(_"We haven't used it for a long time, so I am not surprised.")
+		npc_says(_"What is the error code?")
+		tux_says(_"Erm... I don't recall it.")
+		npc_says(_"So, I should guess?")
+		npc_says(_"Hm... It could be the common error when the autofactory is restarting.", "NO_WAIT")
+		npc_says(_"Its code should be 0x06660... 0x06661696... C, I think. It means 'fail' in hex.")
+		npc_says(_"There is a really easy way to solve it. It's not in the official instructions, but I expect it to solve your problem.")
+		npc_says(_"You just have to apply some elbow grease to the mechanism at the end of the line.")
+		npc_says(_"You can ask Bender for it. He makes much elbow grease and should be able to give you a small can.")
+		add_cookie("bender_elbow_grease")
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 

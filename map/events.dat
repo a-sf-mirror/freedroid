@@ -491,6 +491,20 @@ Enemy dialog name="Singularity"
 </LuaCode>
 * End of trigger *
 
+* New event trigger *
+Name=_"Automated Factory Mechanism"
+Trigger at label="AutomatedFactory-Mechanism"
+Silent=0
+<LuaCode>
+	if (has_item_backpack("Elbow Grease Can") > 0) then
+		add_cookie("elbow_grease_applied")
+		del_cookie("bender_elbow_grease")
+		del_item_backpack("Elbow Grease Can", 1)
+		display_big_message(_"Elbow grease has been applied to the Automated Factory.")
+	end
+</LuaCode>
+* End of trigger *
+
 ##############
 ## Level  7 ##
 ##############

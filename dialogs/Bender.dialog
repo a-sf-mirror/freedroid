@@ -51,6 +51,14 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
+	if ((has_cookie("bender_elbow_grease") or has_item_backpack("Manual of the Automated Factory") > 0)) then
+		show(40)
+	end
+
+	if (has_cookie("Bender_gave_elbow_grease")) then
+		hide(40)
+	end
+
 	if (has_cookie("Bender-at-Spencer")) then
 		del_cookie("Bender-at-Spencer")
 		set_bot_destination("BenderStartGameSquare")
@@ -243,6 +251,23 @@ Nr=20 Text=_"Did you take all the Brain Enlargement Pills?"
 	npc_says(_"Here, take it. I don't want it.")
 	add_item("Brain Enlargement Pill", 1)
 	hide(20)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=40 Text=_"Can you spare a little elbow grease?"
+<LuaCode>
+	npc_says("Yes, you are talking to the right guy, man.")
+	if (not done_quest(_"Bender's problem")) then 
+		npc_says("But now, I'm no good. I can't make you any elbow grease, sorry man.")
+		npc_says("Maybe if I was feeling better...")
+	else
+		npc_says(_"Elbow grease just takes a bit of hard work. I'm not a fan of hard work, so I keep a can with me at all times.")
+		npc_says(_"But since you helped me out with the Doctor, I'll give it to you.")
+		add_cookie("Bender_gave_elbow_grease")
+		add_item("Elbow Grease Can", 1)
+		tux_says("Thanks man!")
+	end
+	hide(40)
 </LuaCode>
 ----------------------------------------------------------------------
 

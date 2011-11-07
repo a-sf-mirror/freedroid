@@ -48,7 +48,8 @@ Nr=0 Text=_"sys_status --all"
 		add_cookie("Maintenance-devices")
 		npc_says(_"Detecting connected devices...")
 		npc_says(_"Found 03 connected auto-guns.")
-		npc_says(_"Found 01 connected gate.")
+		npc_says(_"Found 02 connected gates.")
+		npc_says(_"Found 01 connected automated factories.")
 		npc_says(_"Anomalies detected.")
 		npc_says("...")
 	end
@@ -75,6 +76,19 @@ Nr=0 Text=_"sys_status --all"
 	else
 		npc_says(_"Access Gate status: CLOSED", "NO_WAIT")
 		show(6)
+	end
+
+	if (cmp_obstacle_state("MiniFactory-Gate", "opened")) then
+		npc_says(_"Factory Gate status: OPEN", "NO_WAIT")
+	else
+		npc_says(_"Factory Gate status: CLOSED", "NO_WAIT")
+		show(12)
+	end
+
+	if (has_cookie("minifactory_online")) then
+		npc_says(_"Automated Factory status: ONLINE", "NO_WAIT")
+	else
+		npc_says(_"Automated Factory status: OFFLINE", "NO_WAIT")
 	end
 
 	cli_says(terminal, "NO_WAIT")
@@ -141,6 +155,7 @@ Nr=7 Text=_"sudo disable guns"
 Nr=8 Text=_"yes" Topic="Make a sandwich"
 <LuaCode>
 	npc_says_random(_"Now how would I make one of those?", _"Sudo doesn't give you magic powers.")
+	add_cookie("want_sandwich")
 	cli_says(terminal, "NO_WAIT")
 	pop_topic()
 </LuaCode>
@@ -175,6 +190,16 @@ NO_TEXT
 	npc_says(_"SUCCESS")
 	cli_says(terminal, "NO_WAIT")
 	show(0)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=12 Text=_"open autofactory gate"
+<LuaCode>
+	npc_says(_"Opening Automated Factory Gate ...", "NO_WAIT")
+	change_obstacle_state("MiniFactory-Gate", "opened")
+	npc_says(_"SUCCESS")
+	cli_says(terminal, "NO_WAIT")
+	hide(12) show(0)
 </LuaCode>
 ----------------------------------------------------------------------
 
