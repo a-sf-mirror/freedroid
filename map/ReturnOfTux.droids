@@ -27,7 +27,7 @@ T=FSC: PosX=8 PosY=7 Faction="civilian" UseDialog="Sorenson" ShortLabel="COBAL P
 T=MUM: PosX=35 PosY=7 Faction="civilian" UseDialog="Stone" ShortLabel="Shopowner" Marker=9999 RushTux=0 Fixed=0 DropItemName="Two Barrel shotgun" MaxDistanceToHome=0
 T=DOC: PosX=18 PosY=27 Faction="civilian" UseDialog="DocMoore" ShortLabel="Medic" Marker=9999 RushTux=0 Fixed=0 DropItemName="Laser Scalpel" MaxDistanceToHome=0
 T=PRO: PosX=49 PosY=17 Faction="civilian" UseDialog="Chandra" ShortLabel="Chandra -- Town Sage" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
-T=GUA: PosX=23 PosY=29 Faction="redguard" UseDialog="Bender" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=GUA: PosX=23 PosY=29 Faction="redguard" UseDialog="Bender" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="Elbow Grease Can" MaxDistanceToHome=0
 T=GUA: PosX=21 PosY=18 Faction="redguard" UseDialog="Town-TeleporterGuard" ShortLabel="Town Teleporter Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=22 PosY=13 Faction="redguard" UseDialog="Town-TuxGuard" ShortLabel="Red Guard Member" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 T=GUA: PosX=18 PosY=6 Faction="redguard" UseDialog="Town-GuardhouseGuard" ShortLabel="Gate Guardhouse Guard" Marker=9999 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
