@@ -35,7 +35,9 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"Spencer seems to think that you are harmless. Go about your business.")
 	end
 
-	if (not has_cookie("knows_spencer_office")) then
+	if (has_met("Spencer")) then
+		hide(20)
+	else
 		show(20)
 	end
 
