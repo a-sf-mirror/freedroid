@@ -435,7 +435,7 @@ Nr=50 Text=_"I would like to customize my equipment."
 	end
 	npc_says(_"The salvaged components are used to craft add-ons. Your equipment has specific sockets to insert them.", "NO_WAIT")
 	npc_says(_"They can increase the power of items. But items can only have a limited number of addons.")
-	npc_says(_"To produce and assemble them, you may use a small factory in Maintenance Tunnels.")
+	npc_says(_"To produce and assemble them, you may use a small factory in the Maintenance Tunnels.")
 	if (not has_quest(_"The yellow toolkit")) then
 		npc_says(_"Currently, the maintenance tunnels are not accessible. We have many problems with bots. You can't go there, access has been limited.")
 		show(22)

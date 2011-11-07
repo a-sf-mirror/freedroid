@@ -52,7 +52,7 @@ Nr=0 Text=_"autofactory start"
 Nr=1 Text=_"sudo autofactory start"
 <LuaCode>
 	npc_says(_"Commencing Initialization Process")
-	npc_says(_"Activation of Production Line...", "NO_WAIT")
+	npc_says(_"Activating Production Line...", "NO_WAIT")
 	npc_says(_"SUCCESS")
 	npc_says(_"Configuring Fabrication Data...", "NO_WAIT")
 	npc_says(_"SUCCESS")
@@ -67,7 +67,7 @@ Nr=1 Text=_"sudo autofactory start"
 		npc_says(_"The reference book is outdated. Please refer to the ticket 2012 in the technician database.")
 		cli_says(_"WARNING:", "NO_WAIT")
 		npc_says(_"The ticket 2012 is outdated. Please refer to the manual.")
-		npc_says(_"Cancelling Initialization Process")
+		npc_says(_"Cancelling Initialization Process...")
 		npc_says(_"Intialization has been cancelled to prevent any damage.")
 		add_cookie("minifactory_init_failed")
 	else

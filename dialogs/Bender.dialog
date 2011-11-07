@@ -254,7 +254,7 @@ Nr=20 Text=_"Did you take all the Brain Enlargement Pills?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=40 Text=_"Can you spare a little elbow grease?"
+Nr=40 Text=_"Can you spare some elbow grease?"
 <LuaCode>
 	npc_says("Yes, you are talking to the right guy, man.")
 	if (not done_quest(_"Bender's problem")) then 
