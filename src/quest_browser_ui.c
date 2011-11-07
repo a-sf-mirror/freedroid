@@ -90,6 +90,42 @@ static void quest_browser_append_mission_info(const char *mis_name, int full_des
 	}
 }
 
+/**
+ * Calculates the amount of a level that the player has seen
+*/
+static void calculate_level_explored(int levelnum, int *num_squares_seen, int *num_squares_exist)
+{
+	int x = 0;
+	int y = 0;
+	level *automap_level = curShip.AllLevels[levelnum];
+
+	for (y = 0; y < automap_level->ylen; y++) {
+		for (x = 0; x < automap_level->xlen; x++) {
+			if (Me.Automap[levelnum][y][x] & SQUARE_SEEN_AT_ALL_BIT) {
+				*num_squares_seen = *num_squares_seen + 1;
+			}
+		}
+	}
+
+	*num_squares_exist = *num_squares_exist + (x * y);
+	return; 
+}
+
+/**
+ * Calculates the total percentage of all the levels that a player has seen
+*/
+static float calculate_total_explored_percentage(void)
+{
+	int num_squares_seen = 0;
+	int num_squares_exist = 0;
+	int level;
+
+	for (level = 0; level < curShip.num_levels; level++) {
+		calculate_level_explored(level, &num_squares_seen, &num_squares_exist);
+	}
+	return ((float) num_squares_seen)/((float) num_squares_exist);
+}
+
 //comparison function for droid names
 static int cmp_droid_names(const void *ptr1, const void *ptr2){
 	const char *ch1 =  Druidmap[*(int *)ptr1].default_short_description;
@@ -152,6 +188,8 @@ static void print_statistics(void)
 					   (int) Me.current_game_date / (60 * 60),
 					   ((int)Me.current_game_date / 60) % 60);
 		autostr_append(quest_browser_text, _("Distance Traveled: \3%.1fm\2\n"), Me.meters_traveled);
+		if (Me.map_maker_is_present)
+			autostr_append(quest_browser_text, _("Percentage explored: \3%.1f%%\2\n"), calculate_total_explored_percentage() * 100);
 		autostr_append(quest_browser_text, _("Destroyed Enemies: \3%i\2\n"), total_destroyed);
 		autostr_append(quest_browser_text, _("Captured Enemies: \3%i\2\n"), total_takeover_success);
 		autostr_append(quest_browser_text, _("Damage Dealt: \3%i\2\n"), total_damage_dealt);
