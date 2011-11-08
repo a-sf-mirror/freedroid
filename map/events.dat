@@ -478,14 +478,14 @@ Enemy faction="singularity"
 * End of trigger *
 
 * New event trigger *
-Name=_"Singularity Dead"
+Name=_"Singularity Death"
 Trigger on enemy death in level=6
 Enemy dialog name="Singularity"
 <LuaCode> 
-	if (not has_cookie("Singularity-dead")) then
-		add_cookie("Singularity-dead")
+	if (not has_cookie("singularity_dead")) then
+		add_cookie("singularity_dead")
 	end
-	if (has_quest("The yellow toolkit")) then
+	if (has_quest("The yellow toolkit") and not done_quest("The yellow toolkit")) then
 		add_diary_entry(_"The yellow toolkit", _"The main Singularity bot is dead. The rest are now attacking me! Maybe I should have paid closer attention to it...")
 	end
 </LuaCode>
