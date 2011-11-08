@@ -1190,7 +1190,7 @@ void ParseCommandLine(int argc, char *const argv[])
 								 txt,
 								 "\tAdditional resolutions may be specified by the form 'WxH' e.g. '800x600'\n"
 								 "\tThe in-game menu automatically detects fullscreen modes supported by your hardware.\n"
-								 "----------------------------------------------------------------------\n");
+								 "n---------------------------------------------------------------------------------\n");
 						free(txt);
 					}
 				}
@@ -1493,20 +1493,20 @@ I will try to use local directory instead\n");
 	sprintf(our_config_dir, "%s/.freedroid_rpg", our_homedir);
 
 	if (stat(our_config_dir, &statbuf) == -1) {
-		DebugPrintf(0, "\n----------------------------------------------------------------------\n\
+		DebugPrintf(0, "\n---------------------------------------------------------------------------------\n\
 You seem not to have the directory %s in your home directory.\n\
 This directory is used by FreedroidRPG to store saved games and your personal settings.\n\
 So I'll try to create it now...\n\
-----------------------------------------------------------------------\n", our_config_dir);
+---------------------------------------------------------------------------------\n", our_config_dir);
 #if __WIN32__
 		_mkdir(our_config_dir);
 		DebugPrintf(1, "ok\n");
 #else
 		if (mkdir(our_config_dir, S_IREAD | S_IWRITE | S_IEXEC) == -1) {
-			DebugPrintf(0, "\n----------------------------------------------------------------------\n\
+			DebugPrintf(0, "\n---------------------------------------------------------------------------------\n\
 WARNING: Failed to create config-dir: %s. Giving up...\n\
 I will not be able to load or save games or configurations\n\
-----------------------------------------------------------------------\n", our_config_dir);
+---------------------------------------------------------------------------------\n", our_config_dir);
 			free(our_config_dir);
 			our_config_dir = NULL;
 		} else {

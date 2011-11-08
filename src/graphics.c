@@ -608,7 +608,7 @@ static void show_open_gl_driver_info(void)
 	// Since we want to use openGl, it might be good to check the OpenGL vendor string
 	// provided by the graphics driver.  Let's see...
 	//
-	fprintf(stderr, "\n-OpenGL-------------------------------------------------------");
+	fprintf(stderr, "\n-OpenGL--------------------------------------------------------------------------");
 	fprintf(stderr, "\nVendor     : %s", glGetString(GL_VENDOR));
 	open_gl_check_error_status(__FUNCTION__);
 	fprintf(stderr, "\nRenderer   : %s", glGetString(GL_RENDERER));

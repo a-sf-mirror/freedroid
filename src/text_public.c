@@ -91,37 +91,32 @@ void ErrorMessage(const char *FunctionName, const char *fmt, int InformDeveloper
 	va_list args;
 	va_start(args, IsFatal);
 
-	fprintf(stderr, "\n----------------------------------------------------------------------\n\
-FreedroidRPG has encountered a problem:\n");
-	fprintf(stderr, "In function: %s.\n", FunctionName);
-	fprintf(stderr, "FreedroidRPG package and version number: %s %s.\n", PACKAGE, VERSION);
+	fprintf(stderr, "\n---------------------------------------------------------------------------------\n\
+FreedroidRPG %s encountered a problem ", VERSION);
+	fprintf(stderr, "in function:  %s \n", FunctionName);
 	vfprintf(stderr, fmt, args);
 
 	if (InformDevelopers) {
 		fprintf(stderr, "\
 \n\
 \n\
-If you encounter this message, please inform the FreedroidRPG developers\n\
-about the problem, by either\n\
+If you encounter this message, please inform the FreedroidRPG developers about it\n\
+You can \n\
 \n\
-  sending e-mail to:\n\
-    freedroid-discussion AT lists.sourceforge.net\n\
-  mention it to someone of the developers on our IRC channel:\n\
-    channel: #freedroid on irc.freenode.net\n\
-  post on our forum at:\n\
-    https://sourceforge.net/apps/phpbb/freedroid\n\
-  report a bug on our tracker at:\n\
-    http://bugs.freedroid.org/\n\
+  send an e-mail to                    freedroid-discussion AT lists.sourceforge.net\n\
+  mention it on our IRC channel        #freedroid on irc.freenode.net\n\
+  post on our forum at                 https://sourceforge.net/apps/phpbb/freedroid\n\
+  or report the bug on our tracker at  http://bugs.freedroid.org/\n\
 \n\
-Thanks a lot!\n\n");
+Thank you!\n\n");
 	}
 
 	if (IsFatal) {
 		fprintf(stderr, "FreedroidRPG will terminate now to draw attention to the problems it could\n\
-not resolve.  Sorry if that interrupts a major game of yours...\n");
+not resolve. We are sorry if that interrupts a major game of yours.\n");
 	} else {
 		fprintf(stderr, "The problem mentioned above is not fatal, we continue the execution.\n");
-		fprintf(stderr, "----------------------------------------------------------------------\n");
+		fprintf(stderr, "---------------------------------------------------------------------------------\n");
 	}
 
 	va_end(args);

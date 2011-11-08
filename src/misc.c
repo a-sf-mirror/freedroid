@@ -1195,7 +1195,7 @@ int SaveGameConfig(void)
  */
 void Terminate(int exit_code, int save_config)
 {
-	printf("\n----------------------------------------------------------------------");
+	printf("\n---------------------------------------------------------------------------------");
 	printf("\nTermination of freedroidRPG initiated... ");
 
 	// We save the config file in any case.
