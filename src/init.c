@@ -1592,6 +1592,7 @@ void ThouArtDefeated(void)
 
 	DebugPrintf(1, "\n%s(): Real function call confirmed.", __FUNCTION__);
 	append_new_game_message(_("Game over.\n"));
+	SetNewBigScreenMessage(_("Game over.\n"));
 	GameConfig.Inventory_Visible = FALSE;
 	GameConfig.CharacterScreen_Visible = FALSE;
 	ThouArtDefeatedSound();
@@ -1629,7 +1630,6 @@ void ThouArtDefeated(void)
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_KILLED)) {
 
 		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
-		show_texts_and_banner();
 		animate_blasts();
 		MoveBullets();
 		MoveActiveSpells();
@@ -1662,6 +1662,7 @@ void ThouHastWon(void)
 
 	DebugPrintf(1, "\n%s(): Real function call confirmed.", __FUNCTION__);
 	append_new_game_message(_("Game won.\n"));
+	SetNewBigScreenMessage(_("Game won.\n"));
 	GameConfig.Inventory_Visible = FALSE;
 	GameConfig.CharacterScreen_Visible = FALSE;
 	now = SDL_GetTicks();
@@ -1670,8 +1671,7 @@ void ThouHastWon(void)
 
 	while ((SDL_GetTicks() - now < 1000 * WAIT_AFTER_GAME_WON)) {
 
-		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS);
-		show_texts_and_banner();
+		AssembleCombatPicture(DO_SCREEN_UPDATE | SHOW_ITEMS );
 		animate_blasts();
 		MoveBullets();
 		MoveActiveSpells();
