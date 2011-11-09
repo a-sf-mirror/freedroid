@@ -195,14 +195,14 @@ NO_TEXT
 		if (has_cookie("koan_quest_done")) then
 			if (npc_dead("Koan")) then  -- we killed koan manually or using the dialog and got
 				--the cube when we return first time to Duncan after seeing Koan
-				tux_says("Hey, I think I finally found your cube.")
-				npc_says("Oh, great!")
+				tux_says(_"Hey, I think I finally found your cube.")
+				npc_says(_"Oh, great!")
 			else 		 -- does this ever show up though?
-				tux_says("Hey!")
-				npc_says("Hmm...?")
-				tux_says("I think I found Koan after all ... finally.")
-				npc_says("Oh, nice!")
-				npc_says("Did you also get the cube?")
+				tux_says(_"Hey!")
+				npc_says(_"Hmm...?")
+				tux_says(_"I think I found Koan after all ... finally.")
+				npc_says(_"Oh, nice!")
+				npc_says(_"Did you also get the cube?")
 				add_cookie("koan_quest_really_done")
 			end
 		else -- koan is dead
@@ -213,19 +213,19 @@ NO_TEXT
 	elseif (npc_dead("Koan")) then  -- we don't have the cube but Koan is dead
 		if (has_cookie("Duncan_talked_Koan_dead")) then -- let Duncan ask for the cube differently if
 			-- tux already returned without the cube while Koan was dead
-			npc_says("Did you finally find the cube?")
-			tux_says("Uhmmm...")
-			npc_says("You better go getting it!")
+			npc_says(_"Did you finally find the cube?")
+			tux_says(_"Uhmmm...")
+			npc_says(_"You better go getting it!")
 		else -- we killed koan somehow but don't have the cube
 			npc_says(_"You don't look too well, what did happen?") 
 			tux_says(_"He ... he is dead...")
-			npc_says("Koan?")
+			npc_says(_"Koan?")
 			if (has_cookie("koan_spared_via_dialog")) then  -- we told Koan we won't kill him, and lied to Duncan
 				--about not finding him. Afterwards we went back to Koan and killed him manually
-				npc_says("I thought you hadn't found him?")
-				tux_says("Yes, I didn't find him at first, now I did.")
+				npc_says(_"I thought you hadn't found him?")
+				tux_says(_"Yes, I didn't find him at first, now I did.")
 			else -- we lost the cube and killed Koan via dialog
-				tux_says("Yes.")
+				tux_says(_"Yes.")
 			end
 			npc_says(_"And the cube that he was carrying? Where is it?")
 			tux_says(_"I must have left it somewhere...")

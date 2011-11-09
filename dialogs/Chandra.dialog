@@ -309,7 +309,7 @@ NO_TEXT
 	npc_says(_"Yes, this is the truth and it is something most humans regret. It is this regret that has helped erase the Linarians from our history.")
 	npc_says(_"Humanity does not have a pretty history. We have done many horrible things to each other as well. There are many things we regret so deeply that we wish we could forget.")
 	npc_says(_"Over time, most people have willingly forgotten our actions and focused on the good deeds the Linarians performed despite our senseless behavior.")
-	npc_says("Even though we tried to celebrate the grand deeds and heroics of the surviving Linarians, the memories faded. The memories turned into legends and myths as the Linarians slowly withdrew from the world.")
+	npc_says(_"Even though we tried to celebrate the grand deeds and heroics of the surviving Linarians, the memories faded. The memories turned into legends and myths as the Linarians slowly withdrew from the world.")
 	npc_says(_"Perhaps there are still other Linarians alive here on our planet. Or maybe some went back to your own planet.")
 	npc_says(_"Spencer and the Red Guard would not want you to know these things, as you might not be willing to help our failing community.")
 	npc_says(_"However, to not share this information with you is another transgression that I cannot be a part of. Please " .. get_player_name() .. ", we need your help!")

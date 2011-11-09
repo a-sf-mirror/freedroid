@@ -312,7 +312,7 @@ Nr=98 Text=_"BUG, REPORT ME! francis node98"
 NO_TEXT
 <LuaCode>
 	if (francis_help > 0) then
-		npc_says("Oh... I almost forgot... This is a small help but I hope it will make your life a little easier.")
+		npc_says(_"Oh... I almost forgot... This is a small help but I hope it will make your life a little easier.")
 		add_gold(francis_help)
 	end
 	npc_says(_"Remember not to veer too far off the path, or your quest could be over before it begins.")

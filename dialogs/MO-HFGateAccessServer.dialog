@@ -58,7 +58,7 @@ Beginning of new chat dialog for character="XXXXX"
 	else
 		npc_says(_"Welcome to MS gate access server for region #54648.")
 		if (not has_cookie("HF-AccessGateServer-Spencer-chat")) then
-			tux_says("WHAT?!")
+			tux_says(_"WHAT?!")
 			update_quest(_"Propagating a faulty firmware update", _"The firmware server seems to actually be an access server to a gate. What am I supposed to do now?")
 			add_cookie("HF-Spencer")
 			add_cookie("HF-AccessGateServer-Spencer-chat")

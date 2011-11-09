@@ -161,8 +161,8 @@ NO_TEXT
 		end
 	else
 		if (has_cookie("AfterTakeover_repair")) then
-			npc_says("Repair in progress.", "NO_WAIT")
-			npc_says("Logout to complete repair process.")
+			npc_says(_"Repair in progress.", "NO_WAIT")
+			npc_says(_"Logout to complete repair process.")
 		else
 			npc_says(bot_name().._" is currently undamaged.", "NO_WAIT")
 			hide(20)

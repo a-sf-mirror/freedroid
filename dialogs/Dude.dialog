@@ -142,7 +142,7 @@ Nr=15 Text=_"DSB-PowerControlGate1"
 
 Nr=16 Text=_"Dude"
 <LuaCode>
-	npc_says("Beware of recursion!")
+	npc_says(_"Beware of recursion!")
 	run_subdialog("Dude.dialog")
 </LuaCode>
 ----------------------------------------------------------------------

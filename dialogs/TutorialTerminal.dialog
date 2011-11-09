@@ -32,7 +32,7 @@ Beginning of new chat dialog for character="XXXXX"
 	terminal = "guest@example.com: ~ #"
 
 	cli_says("Login : ", "NO_WAIT")
-	tux_says("guest", "NO_WAIT")
+	tux_says(_"guest", "NO_WAIT")
 	cli_says(_"Entering as Guest", "NO_WAIT")
 	npc_says("", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")

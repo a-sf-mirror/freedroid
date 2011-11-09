@@ -277,7 +277,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=60 Text="No, I didn't touch it."
+Nr=60 Text=_"No, I didn't touch it."
 <LuaCode>
 	npc_says(_"Strange, I should have a look at it...") --Tux lied to him and will not directly get an account if he talks to it next time.
 	npc_says(_"...when I have more time..")
@@ -288,7 +288,7 @@ Nr=60 Text="No, I didn't touch it."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=61 Text="Yes, I tried to login."
+Nr=61 Text=_"Yes, I tried to login."
 <LuaCode>
 	if (done_quest(_"And there was light...")) then
 		npc_says(_"Please, don't touch it.")
