@@ -614,7 +614,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 			+ 2 * HIGHLIGHT_H_MARGIN;
 		if (HighlightRect.w > 580 * GameConfig.screen_width / 640)
 			HighlightRect.w = 580 * GameConfig.screen_width / 640;
-		HighlightRect.h = MenuOptionLineRequirement[menu_position_to_remember - 1] * h + 1;
+		HighlightRect.h = MenuOptionLineRequirement[menu_position_to_remember - 1] * h * LINE_HEIGHT_FACTOR;
 		if (HighlightRect.h + HighlightRect.y > UNIVERSAL_COORD_H(457))
 			HighlightRect.h = UNIVERSAL_COORD_H(457) - HighlightRect.y;
 		HighlightRectangle(Screen, HighlightRect);
