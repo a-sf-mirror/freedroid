@@ -2324,9 +2324,6 @@ void PutEnemyEnergyBar(enemy *e, SDL_Rect TargetRectangle)
 	float Percentage;
 	SDL_Rect FillRect;
 
-#define ENEMY_ENERGY_BAR_OFFSET_X 0
-#define ENEMY_ENERGY_BAR_LENGTH 65
-
 #define ENEMY_ENERGY_BAR_WIDTH 7
 
 	// If the enemy is dead already, there's nothing to do here...
