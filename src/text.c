@@ -175,6 +175,9 @@ void alert_window(const char *text, ...)
 		SDL_WaitEvent(&e);
 		
 		switch (e.type) {
+		case SDL_QUIT:
+			Terminate(EXIT_SUCCESS, TRUE);
+			break;
 		case SDL_KEYDOWN:
 			if (e.key.keysym.sym == SDLK_SPACE || e.key.keysym.sym == SDLK_RETURN || e.key.keysym.sym == SDLK_ESCAPE)
 				goto wait_click_and_out;
