@@ -33,6 +33,10 @@
 #define min(x,y) (((x) < (y)) ? (x) : (y))
 #define max(x,y) (((x) > (y)) ? (x) : (y))
 
+#ifndef png_jmpbuf
+# define png_jmpbuf(png_ptr) ((png_ptr)->jmpbuf)
+#endif 
+
 /* argv[0] */
 const char *program;
 
@@ -188,7 +192,7 @@ read_png(const char *file)
     goto perrexit;
   }
 
-  if ( setjmp(png_ptr->jmpbuf) ) {
+  if ( setjmp(png_jmpbuf(png_ptr)) ) {
     fprintf(stderr, "%s: PNG format error\n", file);
     goto errexit;
   }
