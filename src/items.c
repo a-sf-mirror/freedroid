@@ -1119,6 +1119,10 @@ int MouseCursorIsInInventoryGrid(int x, int y)
  */
 int MouseCursorIsInUserRect(int x, int y)
 {
+	// no interaction with the game when the world is frozen
+	if (world_frozen())
+		return FALSE;
+
 	if (y < User_Rect.y)
 		return (FALSE);
 	if (y > User_Rect.y + User_Rect.h)
@@ -1498,6 +1502,10 @@ int get_floor_item_index_under_mouse_cursor(level **item_lvl)
 {
 	gps mouse_pos;
 	int i;
+
+	// no interaction with the game when the world is frozen
+	if (world_frozen())
+		return -1;
 
 	// In the case that X was pressed, we don't use the item positions but rather
 	// we use the item slot rectangles from the item texts.

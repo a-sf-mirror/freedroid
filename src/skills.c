@@ -935,28 +935,30 @@ void ShowSkillsScreen(void)
 		}
 	}
 
-	// Now we see if perhaps the player has just clicked on one of the skills
-	// available to this class.  In this case of course we must set a different
-	// skill/spell as the currently activated skill/spell.
-	//
-	if ((CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
-		if (CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
-		    NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible < number_of_skills)
-			if (SkillSubsetMap[CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
-					   NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible] >= 0)
-				Me.readied_skill = SkillSubsetMap[CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
-								  NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible];
-	}
+	if (!world_frozen()) {
+		// Now we see if perhaps the player has just clicked on one of the skills
+		// available to this class.  In this case of course we must set a different
+		// skill/spell as the currently activated skill/spell.
+		//
+		if ((CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
+			if (CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
+				NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible < number_of_skills)
+				if (SkillSubsetMap[CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
+						   NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible] >= 0)
+					Me.readied_skill = SkillSubsetMap[CursorIsOnWhichSkillButton(CurPos.x, CurPos.y) +
+									  NUMBER_OF_SKILLS_PER_SKILL_PAGE * GameConfig.spell_level_visible];
+		}
 
-	if (MouseCursorIsOnButton(OPEN_CLOSE_SKILL_EXPLANATION_BUTTON, CurPos.x, CurPos.y) && MouseLeftClicked()) {
-		toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION);
-		while (MouseLeftPressed())
-			SDL_Delay(1);
-	}
+		if (MouseCursorIsOnButton(OPEN_CLOSE_SKILL_EXPLANATION_BUTTON, CurPos.x, CurPos.y) && MouseLeftClicked()) {
+			toggle_game_config_screen_visibility(GAME_CONFIG_SCREEN_VISIBLE_SKILL_EXPLANATION);
+			while (MouseLeftPressed())
+				SDL_Delay(1);
+		}
 
-	// Handle clicks on page numbers	
-	if ((CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
-		GameConfig.spell_level_visible = CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y);
+		// Handle clicks on page numbers
+		if ((CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y) != (-1)) && MouseLeftClicked()) {
+			GameConfig.spell_level_visible = CursorIsOnWhichSpellPageButton(CurPos.x, CurPos.y);
+		}
 	}
 }
 

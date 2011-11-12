@@ -88,9 +88,10 @@ void Game()
 		save_mouse_state();
 		input_handle();
 		update_widgets();
-		HandleInventoryScreen();
-		HandleCharacterScreen();
-
+		if (!world_frozen()) {
+			HandleInventoryScreen();
+			HandleCharacterScreen();
+		}
 
 		CollectAutomapData();
 		UpdateAllCharacterStats();

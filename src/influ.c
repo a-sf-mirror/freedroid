@@ -1064,6 +1064,10 @@ enemy *GetLivingDroidBelowMouseCursor()
 	struct image *our_image;
 	enemy *this_bot;
 
+	// no interaction with the game when the world is frozen
+	if (world_frozen())
+		return NULL;
+
 	mouse_vpos.x = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, TRUE);
 	mouse_vpos.y = translate_pixel_to_map_location((float)input_axis.x, (float)input_axis.y, FALSE);
 	mouse_vpos.z = Me.pos.z;
