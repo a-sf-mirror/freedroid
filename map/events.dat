@@ -875,10 +875,9 @@ Trigger at label="32to28falseA"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	if (has_cookie("JohnPuzzlefalseA1")) then
-		add_cookie("JohnPuzzlefalseA2")
-	end
-	add_cookie("JohnPuzzlefalseA1")
+	JohnPuzzlefalseA = JohnPuzzlefalseA + 1
+	set_rush_tux(1, "John")
+	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
 * End of trigger *
 
@@ -888,10 +887,9 @@ Trigger at label="32to28falseB"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	if (has_cookie("JohnPuzzlefalseB1")) then
-		add_cookie("JohnPuzzlefalseB2")
-	end
-	add_cookie("JohnPuzzlefalseB1")
+	JohnPuzzlefalseB = JohnPuzzlefalseB + 1
+	set_rush_tux(1, "John")
+	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
 * End of trigger *
 
@@ -901,10 +899,9 @@ Trigger at label="32to28falseC"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-		if (has_cookie("JohnPuzzlefalseC1")) then
-		add_cookie("JohnPuzzlefalseC2")
-	end
-	add_cookie("JohnPuzzlefalseC1")
+	JohnPuzzlefalseC = JohnPuzzlefalseC + 1
+	set_rush_tux(1, "John")
+	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
 * End of trigger *
 
@@ -915,6 +912,8 @@ Silent=1
 <LuaCode>
 	teleport("28from32success")
 	add_cookie("JohnPuzzleSolved")
+	set_rush_tux(1, "John")
+	set_bot_destination("JohnLockedLabel", "John")
 </LuaCode>
 * End of trigger *
 

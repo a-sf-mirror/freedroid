@@ -30,9 +30,14 @@ Beginning of new chat dialog for character="XXXXX"
 	show(0) 
 	John28to28_teleported = 0
 	JohnPuzzlefalse = 0
+	JohnPuzzlefalseA = 0
+	JohnPuzzlefalseB = 0
+	JohnPuzzlefalseC = 0
 </LuaCode>
 
 <EveryTime LuaCode>
+	JohnPuzzleScore = JohnPuzzlefalseA + JohnPuzzlefalseB + JohnPuzzlefalseC
+
 	if (has_cookie("john_dislike")) then
 		tux_says(_"I am s-")
 		npc_says(_"Go away please.")
@@ -40,26 +45,6 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (has_cookie("JohnPuzzleStarted")) then
-
-		-- if Tux solved the puzzle, went into the correct teleporter
-		if (not has_cookie("JohnPuzzleLocked")) then
-			if (has_cookie("JohnPuzzleSolved")) then
-				if (has_cookie("John28to28_teleported")) then
-					npc_says(_"Congratulations, you solved my little puzzle.")
-					npc_says(_"I give you this as a small reward.")
-					add_item("Dexterity Pill", 1)
-				else
-					-- Tux solved the puzzle without retrying!
-					npc_says(_"Wow... you solved it, and on your first time, too.")
-					npc_says(_"That's pretty good.")
-					npc_says(_"Here, take this as reward.")
-					tux_says(_"Oh, thank you.")
-					add_item("Dexterity Pill", 1)
-					add_item("Strength Pill", 1)
-				end
-				add_cookie("JohnPuzzleLocked")
-			end
-		end
 
 		-- if Tux ran into false teleporter of the storage room
 		if (has_cookie("John28to28_teleported")) and
@@ -74,13 +59,13 @@ Beginning of new chat dialog for character="XXXXX"
 
 		-- Puzzle is neither solved nor locked:
 		if (not has_cookie("JohnPuzzleLocked")) or
-		(not has_cookie("JohnPuzzleSolved")) then
+		   (not has_cookie("JohnPuzzleSolved")) then
 
 			-- Tux walked through the false teleporter one time
 			if (not has_cookie("JohnProblems1")) then
-				if (has_cookie("JohnPuzzlefalseA1")) or
-				   (has_cookie("JohnPuzzlefalseB1")) or
-				   (has_cookie("JohnPuzzlefalseC1")) then
+				if (JohnPuzzlefalseA == 1) or
+				   (JohnPuzzlefalseB == 1) or
+				   (JohnPuzzlefalseC == 1) then
 					npc_says(_"Looks like you had some problems?")
 					tux_says(_"Yes...")
 					npc_says(_"Ok, I'll give you another chance.")
@@ -91,14 +76,10 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 
 			--Tux walked through the same teleporter twice (wtf?!)
-			
-			if ((has_cookie("JohnPuzzlefalseA1")) and
-				(has_cookie("JohnPuzzlefalseA2"))) or
-			   ((has_cookie("JohnPuzzlefalseB1")) and
-				(has_cookie("JohnPuzzlefalseB2"))) or
-			   ((has_cookie("JohnPuzzlefalseC1")) and
-				(has_cookie("JohnPuzzlefalseC2"))) or
-			   (has_cookie("John28to28_teleported2")) then
+
+			if (JohnPuzzlefalseA == 2) or
+			   (JohnPuzzlefalseB == 2) or
+			   (JohnPuzzlefalseC == 2) then
 				npc_says(_"Dude!")
 				npc_says(_"You made the same mistake twice.")
 				npc_says(_"You walked through the same teleporter twice!")
@@ -111,10 +92,8 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 			
 			if (not has_cookie("JohnPuzzleLocked")) then
-				-- Tux walked through the false teleporter second time
-				if (has_cookie("JohnPuzzlefalseA2")) or
-				   (has_cookie("JohnPuzzlefalseB2")) or
-				   (has_cookie("JohnPuzzlefalseC2")) then
+				-- Tux walked through a false teleporter second time
+				if (JohnPuzzleScore >= 2) then
 					npc_says(_"Sorry, seems like that puzzle was too hard for you.")
 					tux_says(_"But I-")
 					npc_says(_"It is locked now.")
@@ -125,8 +104,29 @@ Beginning of new chat dialog for character="XXXXX"
 				end
 			end
 
-		end 	-- of  'if (not has_cookie("JohnPuzzleLocked")) or
-			--  (not has_cookie("JohnPuzzleSolved")) then'
+		end		-- of  'if (not has_cookie("JohnPuzzleLocked")) or
+				--  (not has_cookie("JohnPuzzleSolved")) then'
+
+		-- if Tux solved the puzzle, went into the correct teleporter
+		if (not has_cookie("JohnPuzzleLocked")) and
+		   (has_cookie("JohnPuzzleSolved")) then
+			if (has_cookie("John28to28_teleported")) or
+			   (JohnPuzzleScore > 0 ) then
+				npc_says(_"Congratulations, you solved my little puzzle.")
+				npc_says(_"I give you this as a small reward.")
+				add_item("Dexterity Pill", 1)
+			else
+				-- Tux solved the puzzle without retrying!
+				npc_says(_"Wow... you solved it, and on your first time, too.")
+				npc_says(_"That's pretty good.")
+				npc_says(_"Here, take this as reward.")
+				tux_says(_"Oh, thank you.")
+				add_item("Dexterity Pill", 1)
+				add_item("Strength Pill", 1)
+			end
+			add_cookie("JohnPuzzleLocked")
+			set_bot_destination("JohnFreeLabel")
+		end
 
 	end -- of 'if (has_cookie("JohnPuzzleStarted")) then'
 

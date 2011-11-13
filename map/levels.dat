@@ -29634,6 +29634,8 @@ x=41 y=69 name="28to32"
 x=43 y=49 name="28from32"
 x=50 y=69 name="28to28"
 x=43 y=49 name="28from32success"
+x=45 y=52 name="JohnLockedLabel"
+x=42 y=46 name="JohnFreeLabel"
 /plabelinfolvl
 piteminfolvl
 /piteminfolvl
@@ -29662,6 +29664,9 @@ idx=763 type=31 data={
 	it: n="Dexterity Capsule"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 	it: n="Bottled ice"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 	it: n="Doc-in-a-can"  X=62.000000  Y=49.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+}
+idx=765 type=31 data={
+	it: n="Source Book of Network Mapper"  X=59.000000  Y=50.000000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 }
 /obstacleextensions
 wp
@@ -29775,6 +29780,12 @@ Nr.=106 x=  43 y=  29 rnd=1	 c:  105 104
 Nr.=107 x=  46 y=  58 rnd=1	 c:   77 108
 Nr.=108 x=  46 y=  65 rnd=1	 c:  107
 Nr.=109 x=  31 y=  57 rnd=1	 c:   74
+Nr.=110 x=  43 y=  52 rnd=1	 c:  111 112 113 115
+Nr.=111 x=  45 y=  52 rnd=1	 c:  110 113 112 114
+Nr.=112 x=  44 y=  54 rnd=1	 c:  110 113 111
+Nr.=113 x=  46 y=  54 rnd=1	 c:  112 111 110 114 115
+Nr.=114 x=  47 y=  51 rnd=1	 c:  111 113
+Nr.=115 x=  46 y=  56 rnd=1	 c:  110 113
 end_of_level
 ----------------------------------------------------------------------
 Levelnumber: 29
