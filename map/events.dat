@@ -717,10 +717,13 @@ Silent=1
 	if (not has_cookie("JohnPuzzleLocked")) and
 	   (not has_cookie("JohnPuzzleSolved")) and
 	   (has_cookie("JohnPuzzleStarted")) then
-		if (John28to28_teleported < 2) then
+		if (not has_cookie("John28to28_teleported2")) then
 			teleport("28from32")
 			set_rush_tux(1, "John")
-				John28to28_teleported = John28to28_teleported + 1
+			if (has_cookie("John28to28_teleported")) then
+				add_cookie("John28to28_teleported2")
+			end
+		add_cookie("John28to28_teleported")
 		end
 	end
 </LuaCode>
@@ -872,7 +875,10 @@ Trigger at label="32to28falseA"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	JohnPuzzlefalse = JohnPuzzlefalse + 1
+	if (has_cookie("JohnPuzzlefalseA1")) then
+		add_cookie("JohnPuzzlefalseA2")
+	end
+	add_cookie("JohnPuzzlefalseA1")
 </LuaCode>
 * End of trigger *
 
@@ -882,7 +888,10 @@ Trigger at label="32to28falseB"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	JohnPuzzlefalse = JohnPuzzlefalse + 1
+	if (has_cookie("JohnPuzzlefalseB1")) then
+		add_cookie("JohnPuzzlefalseB2")
+	end
+	add_cookie("JohnPuzzlefalseB1")
 </LuaCode>
 * End of trigger *
 
@@ -892,7 +901,10 @@ Trigger at label="32to28falseC"
 Silent=1
 <LuaCode>
 	teleport("28from32")
-	JohnPuzzlefalse = JohnPuzzlefalse + 1
+		if (has_cookie("JohnPuzzlefalseC1")) then
+		add_cookie("JohnPuzzlefalseC2")
+	end
+	add_cookie("JohnPuzzlefalseC1")
 </LuaCode>
 * End of trigger *
 

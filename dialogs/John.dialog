@@ -44,7 +44,7 @@ Beginning of new chat dialog for character="XXXXX"
 		-- if Tux solved the puzzle, went into the correct teleporter
 		if (not has_cookie("JohnPuzzleLocked")) then
 			if (has_cookie("JohnPuzzleSolved")) then
-				if (John28to28_teleported ~= 0) then
+				if (has_cookie("John28to28_teleported")) then
 					npc_says(_"Congratulations, you solved my little puzzle.")
 					npc_says(_"I give you this as a small reward.")
 					add_item("Dexterity Pill", 1)
@@ -62,7 +62,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 
 		-- if Tux ran into false teleporter of the storage room
-		if (John28to28_teleported == 1) and
+		if (has_cookie("John28to28_teleported")) and
 		   (not has_cookie("28to28_hide")) then
 			tux_says(_"What was that?!")
 			npc_says(_"See..?")
@@ -78,7 +78,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 			-- Tux walked through the false teleporter one time
 			if (not has_cookie("JohnProblems1")) then
-				if (JohnPuzzlefalse == 1) then
+				if (has_cookie("JohnPuzzlefalseA1")) or
+				   (has_cookie("JohnPuzzlefalseB1")) or
+				   (has_cookie("JohnPuzzlefalseC1")) then
 					npc_says(_"Looks like you had some problems?")
 					tux_says(_"Yes...")
 					npc_says(_"Ok, I'll give you another chance.")
@@ -90,8 +92,13 @@ Beginning of new chat dialog for character="XXXXX"
 
 			--Tux walked through the same teleporter twice (wtf?!)
 			
-			if (JohnPuzzlefalse > 1) or
-			   (John28to28_teleported > 1) then
+			if ((has_cookie("JohnPuzzlefalseA1")) and
+				(has_cookie("JohnPuzzlefalseA2"))) or
+			   ((has_cookie("JohnPuzzlefalseB1")) and
+				(has_cookie("JohnPuzzlefalseB2"))) or
+			   ((has_cookie("JohnPuzzlefalseC1")) and
+				(has_cookie("JohnPuzzlefalseC2"))) or
+			   (has_cookie("John28to28_teleported2")) then
 				npc_says(_"Dude!")
 				npc_says(_"You made the same mistake twice.")
 				npc_says(_"You walked through the same teleporter twice!")
@@ -105,7 +112,9 @@ Beginning of new chat dialog for character="XXXXX"
 			
 			if (not has_cookie("JohnPuzzleLocked")) then
 				-- Tux walked through the false teleporter second time
-				if (JohnPuzzlefalse > 1) then
+				if (has_cookie("JohnPuzzlefalseA2")) or
+				   (has_cookie("JohnPuzzlefalseB2")) or
+				   (has_cookie("JohnPuzzlefalseC2")) then
 					npc_says(_"Sorry, seems like that puzzle was too hard for you.")
 					tux_says(_"But I-")
 					npc_says(_"It is locked now.")
