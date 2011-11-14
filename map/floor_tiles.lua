@@ -149,5 +149,22 @@ overlay_floor_tile_list {
 
 	"iso_grass_floor_0024.png",
 	"iso_grass_floor_0025.png",
-	"iso_grass_floor_0026.png"
+	"iso_grass_floor_0026.png",
+	
+	"iso_ground_marker_0001.png",
+	"iso_ground_marker_0002.png",
+	"iso_ground_marker_0003.png",
+	"iso_ground_marker_0004.png",
+	"iso_ground_marker_0005.png",
+	"iso_ground_marker_0006.png",	
+	"iso_ground_marker_0007.png",
+	"iso_ground_marker_0008.png",
+	"iso_ground_marker_0009.png",
+	"iso_ground_marker_0010.png",
+	"iso_ground_marker_0011.png",
+	"iso_ground_marker_0012.png",
+	"iso_ground_marker_0013.png",
+	"iso_ground_marker_0014.png",
+	"iso_ground_marker_0015.png",
+	"iso_ground_marker_0016.png"
 }
