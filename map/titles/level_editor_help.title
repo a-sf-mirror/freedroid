@@ -11,6 +11,9 @@ You can access it from the main menu (click "Level Editor") or executing 'freedr
     === Tooltips ===
 To toggle descriptions of the interface while the mouse hovers, click the white speech bubble icon located near the right window border (lower button row).
 
+    === Summary Details ===
+Summary details about obstacles and items will appear if you right click on them in the upper object selector.
+
     === Navigation ===
 To change the current level, click the nearby level number in the minimap the lower right corner, or select the desired level from the editor menu (described later).
 
