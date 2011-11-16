@@ -682,7 +682,7 @@ NO_TEXT
 Nr=80 Text="LOAD SAVE - BUG NODE 80 c-net sub nethack"
 NO_TEXT
 <LuaCode>
-	npc_says(string.format(_"Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b].", n_alignment, n_role, n_race, n_sex, n_god, n_level), NO_WAIT")
+	npc_says(string.format(_"Save game detected: %s %s %s %s in service to [b]%s[/b] on level [b]%d[/b].", n_alignment, n_role, n_race, n_sex, n_god, n_level), "NO_WAIT")
 	if (n_yendor == "yes") then
 		npc_says(_"Save game has the [b]Amulet of Yendor[/b]!", "NO_WAIT")
 	end
