@@ -60,11 +60,19 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (has_cookie("dixon_saved_and_talked")) then hide(46) end
-	show(99)
-	
-	if (has_cookie("ewalds_296_sourcebook") and (not has_cookie("have_296_book"))) then show(60) end
 
-	if (has_cookie("minifactory_init_failed")) then show(51) end
+	if ((not has_cookie("296_book_examine_library")) and
+	   has_cookie("ewalds_296_sourcebook")) then
+		show(60)
+	end
+
+	if (has_cookie("elbow_grease_applied")) then
+		hide(51)
+	elseif (has_cookie("minifactory_init_failed")) then
+		show(51)
+	end
+
+	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -463,6 +471,7 @@ NO_TEXT
 		npc_says(_"You can ask Bender for it. He makes much elbow grease and should be able to give you a small can.")
 		add_cookie("bender_elbow_grease")
 	end
+	hide(51)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -472,6 +481,7 @@ Nr=60 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Vo
 	tux_says(_"Library... Of course! Thanks, Dixon!")
 	npc_says(_"Uh... You're welcome, I guess.")
 	update_quest(_"An Explosive Situation", _"I spoke to Dixon, who didn't have a copy of the book. He did give me an idea, though - I'll head for the library in town.")
+	add_cookie("296_book_examine_library")
 	hide(60)
 </LuaCode>
 ----------------------------------------------------------------------
