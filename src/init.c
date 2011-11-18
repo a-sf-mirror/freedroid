@@ -38,12 +38,6 @@
 #include "proto.h"
 #include "widgets/widgets.h"
 
-#ifdef __OpenBSD__
-#include "ieeefp.h"
-#else
-#include "fenv.h"
-#endif
-
 #include "getopt.h"
 
 void Init_Game_Data(void);
@@ -58,29 +52,6 @@ static struct {
 	double experience_reward_calibrator;
 	double aggression_distance_calibrator;
 } difficulty_parameters[3];
-
-/**
- * The following function is NOT 'standard' C but rather a GNU extension
- * to the C standards.  We *DON'T* want to use such things, but in this
- * case it helps debugging purposes of floating point operations just so
- * much, that it's really worth using it (in development versions, not in
- * releases).  But to avoid warnings from GCC (which we always set to not
- * allow gnu extensions to the C standard by default), we declare the
- * prototype of this function here.  If you don't use GCC or this 
- * function should give you portability problems, it's ABSOLUTELY SAFE
- * to just remove all instances of it, since it really only helps 
- * debugging.  Proper documentation can be found in the GNU C Library,
- * section about 'Arithmethic', subsection on floating point control
- * functions.
- */
-#if ! defined __gnu_linux__
-/* turn off these functions where they are not present */
-#define feenableexcept(X) {}
-#define fedisableexcept(X) {}
-#else
-extern int feenableexcept(int excepts);
-extern int fedisableexcept(int TheExceptionFlags);
-#endif
 
 /**
  *
@@ -1350,33 +1321,11 @@ void ResetGameConfigToDefaultValues(void)
 }
 
 /** 
- * Set signal handlers for SIGSEGV, SIGFPE, and enable floating point exceptions.
+ * Set signal handlers for SIGSEGV and SIGFPE.
  */
 static void set_signal_handlers(void)
 {
-
-
 #ifndef __WIN32__
-
-	// Let's see if we're dealing with a real release or rather if
-	// we're dealing with a svn version.  The difference is this:
-	// Releases shouldn't terminate upon a floating point exception
-	// while the current svn code (for better debugging) should
-	// do so.  Therefore we check for 'svn' in the current version
-	// string and enable/disable the exceptions accordingly...
-	if (strstr(VERSION, "svn")) {
-		DebugPrintf(-4, "\nThis seems to be a development version, so we'll exit on floating point exceptions.");
-		// feenableexcept ( FE_ALL_EXCEPT );
-		// feenableexcept ( FE_INEXACT ) ;
-		// feenableexcept ( FE_UNDERFLOW ) ;
-		// feenableexcept ( FE_OVERFLOW ) ;
-		feenableexcept(FE_INVALID);
-		feenableexcept(FE_DIVBYZERO);
-	} else {
-		DebugPrintf(-4, "\nThis seems to be a 'stable' release, so no exit on floating point exceptions.");
-		fedisableexcept(FE_INVALID);
-		fedisableexcept(FE_DIVBYZERO);
-	}
 #ifndef __APPLE_CC__
 
 	struct sigaction action;
