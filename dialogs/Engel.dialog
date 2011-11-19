@@ -31,7 +31,8 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	show(15, 99)
+	if (get_program_revision("Extract bot parts") > 0) then show(18) end
+	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -97,7 +98,7 @@ NO_TEXT
 	tux_says(_"You guys are tota --")
 	npc_says(_"WHAT?! What is it that you want to say?")
 	tux_says(_"Erm... I --")
-	npc_says(_"WHAT!? SPIT IT OUT!")
+	npc_says(_"WHAT!? SPIT IT OUT, BACKPFEIFENGESICHT!") -- Backpfeife = Slap in the face   Gesicht = face  / a face badly in need of a slap in it
 	tux_says(_"Er... You guys are really great and I admire your bravery in the face of certain death.")
 	npc_says(_"Donnerwetter, you are a funny one.") -- donner = thunder, wetter = weather, Thunderstorm. In this sense Donnerwetter means "wow!".
 	npc_says(_"I hope that one day we shall meet again, maybe in a better time.")
@@ -117,14 +118,11 @@ Nr=11 Text=_"What did you use to do before you became a hunter?"
 
 Nr=12 Text=_"I want to know how to extract modules from the bots."
 <LuaCode>
-	rev = get_program_revision("Extract bot parts")
-	if (rev ==  5) then
+	if (get_program_revision("Extract bot parts") > 4) then
 		npc_says(_"I schon told you alles I know about that.") -- schon = already ,  alles = everything/all
-		hide(12)
+		hide(12, 15)
 	else
-		if (not has_cookie("engel_offered_extraction_skill")) then
-			add_cookie("engel_offered_extraction_skill")
-		end
+		add_cookie("engel_offered_extraction_skill")
 		npc_says(_"Yes.")
 		npc_says(_"I will sell the information for a lot of Schaltkreise.") -- Schaltkreise = circuits
 		npc_says(_"Interested?")
@@ -152,122 +150,171 @@ Nr=14 Text=_"What happens to these bot parts?"
 	tux_says(_"So they are kind of add-ons?")
 	npc_says(_"Yes.")
 	npc_says(_"Ask the Stadtmenschen if you want to know more.") --Stadtmenschen = townspeople
+
 	if (not has_met("Dixon")) then
 		npc_says(_"I think the Rot Guard makes them.") --Rot = red
 		npc_says(_"If you have Gluck, they won't kill you directly.") --Gluck (should actually be 'Glück' but there is no ü in the font) = luck
 	end
+
 	npc_says(_"But I don't know more about these gadgets.")
 	npc_says(_"Asking me more questions about that makes no sense...")
 	hide(14)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=15 Text=_"I'm ready. Please show me how to extract bot parts. (cost 50 circuits, 1 ability point)" Topic="Extract bot parts"
+Nr=15 Text=_"I'm ready. Please show me how to extract bot parts. (costs 50 circuits, 1 ability point)" Topic="Extract bot parts"
 <LuaCode>
 	next(17)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=17 Text="BUG, REPORT ME! engel node17 -- checks" Topic="Extract bot parts"
+Nr=17 Text="BUG, REPORT ME! Engel node17 -- checks" Topic="Extract bot parts"
 NO_TEXT
 <LuaCode>
-	rev = get_program_revision("Extract bot parts")
+	local rev = get_program_revision("Extract bot parts")
 
-	if (can_tux_train(50, 1)) then
-		if (rev == 0) then next(18) end -- Learn rev1
-		if (rev == 1) then next(20) end -- Learn rev2
-		if (rev == 2) then next(30) end -- Learn rev3
-		if (rev == 3) then next(40) end -- Learn rev4
-		if (rev == 4) then next(50) end -- Learn rev5
+	if (rev > 4) then -- Max level
+		next(70)
+	elseif (can_tux_train(50, 1)) then
+		del_gold(50)
+		del_points(1)
+		improve_program("Extract bot parts")
+		if (rev == 0) then next(20)
+		elseif (rev == 1) then next(30) -- Learn rev2
+		elseif (rev == 2) then next(40) -- Learn rev3
+		elseif (rev == 3) then next(50) -- Learn rev4
+		elseif (rev == 4) then next(60) -- Learn rev5
+		end
 	else -- Can't train
-		next(99) -- This stops a crash
 		if (get_gold() >= 50) then -- Training points were the problem
 			npc_says(_"Hmmm...")
 			npc_says(_"You look green. Toughen up. Get some experience, kill some bots.")
 			npc_says(_"Then we can talk.")
 		else -- No $$$
 			npc_says(_"Hmmm...")
-			npc_says(_"Kein geld, keine hilfe.") -- No money, no help.
-			npc_says(_"Come back with some money.")
+			npc_says(_"Kein Geld, keine Hilfe.") -- No money, no help.
+			npc_says(_"Come back with some circuits.")
+		end
+
+		pop_topic() -- "Extract bot parts"
+	end
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=18 Text=_"Your lessons are very helpful, but at the same time difficult to understand."
+<LuaCode>
+	npc_says(_"If you want me to repeat something, don't hesitate to ask.")
+	local rev = get_program_revision("Extract bot parts")
+	if (rev > 0) then
+		show(19)
+		if (rev > 1) then
+			show(29)
+			if (rev > 2) then
+				show(39)
+				if (rev > 3) then
+					show(49)
+					if (rev > 4) then show(59) end
+				end
+			end
 		end
 	end
-
-	if (rev == 5) then -- Max level
-		next(70)
-	elseif (can_tux_train(50, 1)) then
-		del_gold(50)
-		del_points(1)
-	end
-
+	topic("Extract bot parts")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=18 Text="BUG, REPORT ME! engel node18 -- 1st LESSON" Topic="Extract bot parts"
+Nr=19 Text=_"Could you please repeat the lesson about Entropy Inverters?" Topic="Extract bot parts"
+<LuaCode>
+	hide(19) next(20)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=20 Text="BUG, REPORT ME! Engel node20 -- 1st LESSON" Topic="Extract bot parts"
 NO_TEXT
 <LuaCode>
-	npc_says(_"Let us start with entropy inverters. This is quite simple.")
+	npc_says(_"Let us start with Entropy Inverters. This is quite simple.")
 	npc_says(_"Just take a hammer and hit the bot sehr hard on the head.") -- sehr = very
 	npc_says(_"When you have the head open wide, look around for a part which looks like two circles around a cube. That is what you are looking for.")
-	improve_program("Extract bot parts")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=20 Text="BUG, REPORT ME! engel node20 -- 2nd LESSON" Topic="Extract bot parts"
+Nr=29 Text=_"What was that about Plasma Transistors?" Topic="Extract bot parts"
+<LuaCode>
+	hide(29) next(30)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=30 Text="BUG, REPORT ME! Engel node30 -- 2nd LESSON" Topic="Extract bot parts"
 NO_TEXT
 <LuaCode>
-	npc_says(_"How about... Plasma transistors? Trivial.")
+	npc_says(_"How about... Plasma Transistors? Trivial.")
 	npc_says(_"Remove the bot's engine and look around somewhere close to the battery.")
-	npc_says(_"Plasma transistors are shaped like the letter Y. Just rip them out, it's safe.")
-	improve_program("Extract bot parts")
+	npc_says(_"Plasma Transistors are shaped like the letter Y. Just rip them out, it's safe.")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=30 Text="BUG, REPORT ME! engel node30 -- 3rd LESSON" Topic="Extract bot parts"
+Nr=39 Text=_"I need a refresh of my knowledge about Superconductors." Topic="Extract bot parts"
+<LuaCode>
+	hide(39) next(40)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=40 Text="BUG, REPORT ME! Engel node40 -- 3rd LESSON" Topic="Extract bot parts"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Hmmm... Ah, gut. Superconductors.")
 	npc_says(_"They are relatively easy to get out.")
 	npc_says(_"Look around the electric system. Power coils, capacitors, generators and the like. Usually there are plenty of sehr gut parts there.") -- sehr gut = very good
 	npc_says(_"Wear rubber gloves. Just in case, you know.")
-	improve_program("Extract bot parts")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=40 Text="BUG, REPORT ME! engel node40 -- 4th LESSON" Topic="Extract bot parts"
+Nr=49 Text=_"I would like to hear again something about Antimatter-Matter Converters." Topic="Extract bot parts"
+<LuaCode>
+	hide(49) next(50)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=50 Text="BUG, REPORT ME! Engel node50 -- 4th LESSON" Topic="Extract bot parts"
 NO_TEXT
 <LuaCode>
-	npc_says(_"I will tell you everything about matter-antimatter converters.")
+	npc_says(_"I will tell you everything about Antimatter-Matter Converters.")
 	npc_says(_"Yes... Converters are a problem.")
 	npc_says(_"They are easy to find, all you have to do is to get to the engine. But you must remember something very important:")
-	npc_says(_"Make sure you turn the converter off before you remove it.")
+	npc_says(_"Make sure you turn the Converter off before you remove it.")
 	npc_says(_"If you do not do that, you will only succeed in converting yourself to anti-matter. And as you know, there is no coming back from there.")
-	improve_program("Extract bot parts")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=50 Text="BUG, REPORT ME! engel node50 -- 5th LESSON" Topic="Extract bot parts"
+Nr=59 Text=_"My memory of Tachyon Condensators is incomplete." Topic="Extract bot parts"
+<LuaCode>
+	hide(59) next(60)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=60 Text="BUG, REPORT ME! Engel node60 -- 5th LESSON" Topic="Extract bot parts"
 NO_TEXT
 <LuaCode>
-	npc_says(_"I will teach you about tachyon converters.")
+	npc_says(_"I will teach you about Tachyon Condensators.")
 	npc_says(_"Tachyons are very interesting particles. Many stories have been told about them.")
 	npc_says(_"I have no idea why bots have them inside. They are usually not connected to anything and serve no function.")
 	npc_says(_"They are usually quite hot when you get them out, but they cool down quickly, so handling them is not a big deal.")
 	npc_says(_"They can be installed just about anywhere, so you have to spend some time digging through the circuits to find one.")
-	improve_program("Extract bot parts")
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=70 Text="BUG, REPORT ME! engel node70 -- NO MORE LESSONS" Topic="Extract bot parts"
+Nr=70 Text="BUG, REPORT ME! Engel node70 -- NO MORE LESSONS" Topic="Extract bot parts"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Nein, I told you everything I know about that. No use asking me twice, ja?") -- nein = no , ja = yes, in this case it can be understood as "did you understand?"
-	end_dialog()
+	hide(12, 15)
+	pop_topic() -- "Extract bot parts"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=98 Text=_"Maybe another time." Topic="Extract bot parts"
+Nr=98 Text=_"This should be enough for now." Topic="Extract bot parts"
 <LuaCode>
-	pop_topic()
+	hide(19, 29, 39, 49, 59)
+	pop_topic() -- "Extract bot parts"
 </LuaCode>
 ----------------------------------------------------------------------
 
