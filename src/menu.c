@@ -540,7 +540,7 @@ int chat_do_menu_selection(char *MenuTexts[MAX_ANSWERS_PER_PERSON], enemy *ChatD
 	Choice_Window.y = UNIVERSAL_COORD_H(336);
 	Choice_Window.w = UNIVERSAL_COORD_W(640 - 70);
 	Choice_Window.h = UNIVERSAL_COORD_H(118);
-	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(GetCurrentFont()) * LINE_HEIGHT_FACTOR);
+	MaxLinesInMenuRectangle = Choice_Window.h / (FontHeight(FPS_Display_BFont) * LINE_HEIGHT_FACTOR);
 
 	// First thing we do is find out how may options we have
 	// been given for the menu
