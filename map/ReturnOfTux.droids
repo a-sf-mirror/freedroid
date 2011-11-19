@@ -503,6 +503,11 @@ Level=59
 ** Beginning of new Level **
 Level=60
 
+T=603: PosX=18 PosY=8 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=603: PosX=19 PosY=9 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=603: PosX=16 PosY=8 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=603: PosX=9 PosY=10 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
+T=603: PosX=8 PosY=8 Faction="ms" UseDialog="AfterTakeover" ShortLabel="603 Lawnmower" Marker=0 RushTux=0 Fixed=0 DropItemName="none" MaxDistanceToHome=0
 ** End of this levels Special Forces data **
 ---------------------------------------------------------
 ** Beginning of new Level **
