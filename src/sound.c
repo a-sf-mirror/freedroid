@@ -360,7 +360,7 @@ void SwitchBackgroundMusicTo(char *filename_raw_parameter)
 		LoadAndFadeInBackgroundMusic();
 		BackgroundMusicStateMachineState = FADING_IN;
 	} else {
-		Mix_FadeOutMusic(200);
+		Mix_FadeOutMusic(2000);
 		BackgroundMusicStateMachineState = FADING_OUT;
 
 		// We set up a function to be invoked by the SDL automatically as
