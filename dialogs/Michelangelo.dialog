@@ -54,9 +54,12 @@ Beginning of new chat dialog for character="XXXXX"
 				end 
 			end	
 		else
-			if (has_item_backpack("Red Dilithium Crystal") > 2) then
+		    nb_crystals = has_item_backpack("Red Dilithium Crystal")
+			if (nb_crystals > 2) then
 				show(29)
-			else 
+			elseif (nb_crystals > 0) then
+				show(30)
+			else
 				show(31, 32, 40)
 				if (has_cookie("asked_michelangelo_for_army_snacks")) then show(26) else show(12) end
 			end
@@ -249,6 +252,13 @@ Nr=29 Text=_"I have the dilithium you wanted."
 	del_item_backpack("Red Dilithium Crystal", 3)
 	end_quest(_"Anything but the army snacks, please!", _"I gave the cook, Michelangelo, enough dilithium to last a decade. The evil specter of eating army snacks is lifted from the town's cantina.")
 	hide(29, 31, 32, 40)
+</LuaCode>
+----------------------------------------------------------------------
+Nr=30 Text=_"I have the dilithium you wanted."
+<LuaCode>
+	npc_says(_"Really? I thought you were dead, but not only did you come back alive, you also brought some power crystals for my trusty oven.")
+	npc_says(_"However I need at least three crystals. Can you come back with all the crystals I need?")
+	hide(30)
 </LuaCode>
 ----------------------------------------------------------------------
 
