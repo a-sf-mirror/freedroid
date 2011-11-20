@@ -101,6 +101,8 @@ Nr=20 Text="BUG, REPORT ME! MO-RGGateGuardLeader node20"
 NO_TEXT
 <LuaCode>
 	npc_says(_"Right, there is a message from Spencer, you can enter Hell Fortress. And may the source be with you!")
+	tux_says(_"See...")
+	npc_says(_"Yeah, you were right...")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
