@@ -252,7 +252,7 @@ Nr=16 Text=_"What's that smashed droid there?"
 	npc_says(_"That is a REALLY FLAT 476 Maintenance droid! I found it when I first came here!")
 	npc_says(_"According to the reactor's BORING repair log, the 476 was supposed to make a monthly system check FIVE DAYS AGO!")
 	tux_says(_"Oh, great. The one droid that was keeping the reactor in check is now a metallic pancake.")
-	npc_says(_"We offer DELICIOUS pancakes-", NO_WAIT)
+	npc_says(_"We offer DELICIOUS pancakes-", "NO_WAIT")
 	tux_says(_"I'm not interested!")
 	hide(16)
 </LuaCode>
@@ -263,7 +263,7 @@ Nr=30 Text=_"Erm... But didn't you... Uh..."
 	npc_says(_"Allow me to clear up your confusion, sir and or madam!")
 	npc_says(_"My Nick of Time software package allowed me to tap into the town's teleportation network.")
 	npc_says(_"This COMPLETELY AWESOME set of subroutines let me teleport in an iron bar to take my place at the last possible moment!")
-	tux_says(_"And now you're-", NOWAIT)
+	tux_says(_"And now you're-", "NO_WAIT")
 	npc_says(_"Back in the employ of the GREAT and SUPER AWESOME Ewald!")
 	tux_says(_"Well, I'm glad to see you're not destroyed.")
 	end_quest(_"An Explosive Situation", _"I found Ewald's 296 alive and well in Ewald's bar! I was sure it was destroyed in that explosion I heard, but it's safe and sound. Well, I guess all's well that ends well.")
