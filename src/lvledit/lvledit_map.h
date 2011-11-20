@@ -32,3 +32,5 @@ void remove_line_north(level *);
 void remove_line_south(level *);
 void remove_column_west(level *);
 void remove_column_east(level *);
+
+void save_map(void);

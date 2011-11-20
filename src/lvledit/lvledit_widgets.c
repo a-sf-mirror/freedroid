@@ -119,14 +119,7 @@ static void redo_button_click(struct widget_button *wb)
 static void save_ship_button_click(struct widget_button *wb)
 {
 	if (game_root_mode == ROOT_IS_LVLEDIT) {	/*don't allow saving if root mode is GAME */
-		char fp[2048];
-		find_file("levels.dat", MAP_DIR, fp, 0);
-		SaveShip(fp, TRUE, 0);
-		find_file("ReturnOfTux.droids", MAP_DIR, fp, 0);
-		save_special_forces(fp);
-		alert_window("%s", _("M E S S A G E\n\nYour ship was saved to file 'levels.dat' in the map directory.\n\nIf you have set up something cool and you wish to contribute it to FreedroidRPG, please contact the FreedroidRPG dev team."));
-	} else {
-		alert_window("%s", _("M E S S A G E\n\nE R R O R ! Your ship was not saved.\n\nPlaying on a map leaves the world in an unclean state not suitable for saving. Enter the editor from the main menu to be able to save."));
+		save_map();
 	}
 }
 

@@ -1050,13 +1050,7 @@ int DoLevelEditorMainMenu()
 				break;
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
-			char fp[2048];
-			find_file("levels.dat", MAP_DIR, fp, 0);
-			SaveShip(fp, TRUE, 0);
-			find_file("ReturnOfTux.droids", MAP_DIR, fp, 0);
-			save_special_forces(fp);
-			CenteredPutString(Screen, 11 * FontHeight(Menu_BFont), _("Your ship was saved..."));
-			our_SDL_flip_wrapper();
+			save_map();
 			while (EnterPressed() || SpacePressed() || MouseLeftPressed())
 				SDL_Delay(1);
 			break;

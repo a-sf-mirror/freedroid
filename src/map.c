@@ -1537,6 +1537,7 @@ jump target west: %d\n", LEVEL_HEADER_LEVELNUMBER, lvl->levelnum,
  *
  * If reset_random_levels is TRUE, then the random levels are saved
  * "un-generated" (typical usage: levels.dat).
+ * @return 0 if OK, 1 on error
  */
 int SaveShip(const char *filename, int reset_random_levels, int compress)
 {
@@ -1546,7 +1547,7 @@ int SaveShip(const char *filename, int reset_random_levels, int compress)
 
 	// Open the ship file 
 	if ((ShipFile = fopen(filename, "wb")) == NULL) {
-		ErrorMessage(__FUNCTION__, "Error opening ship file %s.", PLEASE_INFORM, IS_FATAL, filename);
+		ErrorMessage(__FUNCTION__, "Error opening ship file %s for writing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, filename);
 		return ERR;
 	}
 
@@ -1591,7 +1592,7 @@ int save_special_forces(const char *filename)
 	int i;
 
 	if ((s_forces_file = fopen(filename, "wb")) == NULL) {
-		ErrorMessage(__FUNCTION__, "Error opening Special Forces file %s for writing.", PLEASE_INFORM, IS_FATAL, filename);
+		ErrorMessage(__FUNCTION__, "Error opening Special Forces file %s for writing.", NO_NEED_TO_INFORM, IS_WARNING_ONLY, filename);
 		return ERR;
 	}
 

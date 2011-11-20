@@ -370,3 +370,29 @@ void remove_line_south(level *EditLevel)
 	move_all_objects(EditLevel, 0, 0);
 	teleport_to_level_center(EditLevel->levelnum);
 }
+
+/**
+ * Save the map - either to the real location, or to the home directory 
+ * as a fallback if the main location is not writable.
+ *
+ */
+void save_map(void)
+{
+	char fname[2048];
+	find_file("levels.dat", MAP_DIR, fname, 0);
+	if (SaveShip(fname, TRUE, 0)) {
+		ErrorMessage(__FUNCTION__, "Saving ship file to %s failed, possibly because of permission issues. Saving your ship to %s instead.\n", NO_NEED_TO_INFORM, IS_WARNING_ONLY, MAP_DIR, our_config_dir);
+		alert_window("Saving levels to %s/levels.dat instead of the default location map/levels.dat.", our_config_dir);
+		sprintf(fname, "%s/levels.dat", our_config_dir);
+		SaveShip(fname, TRUE, 0);
+	}
+
+	find_file("ReturnOfTux.droids", MAP_DIR, fname, 0);
+	if (save_special_forces(fname)) {
+		sprintf(fname, "%s/ReturnOfTux.droids", our_config_dir);
+		save_special_forces(fname);
+	}
+
+	CenteredPutString(Screen, 11 * FontHeight(Menu_BFont), _("Your ship was saved..."));
+	our_SDL_flip_wrapper();
+}
