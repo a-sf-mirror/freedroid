@@ -166,5 +166,15 @@ overlay_floor_tile_list {
 	"iso_ground_marker_red_curve_ws.png",
 	"iso_ground_marker_red_curve_nw.png",
 	"iso_ground_marker_red_curve_ne.png",
-	"iso_ground_marker_red_curve_es.png"
+	"iso_ground_marker_red_curve_es.png",
+	"iso_ground_marker_blue_y_nwe.png",
+	"iso_ground_marker_blue_y_nws.png",
+	"iso_ground_marker_blue_y_nes.png",
+	"iso_ground_marker_blue_y_wes.png",
+	"iso_ground_marker_blue_x_nwes.png",
+	"iso_ground_marker_red_y_nwe.png",
+	"iso_ground_marker_red_y_nws.png",
+	"iso_ground_marker_red_y_nes.png",
+	"iso_ground_marker_red_y_wes.png",
+	"iso_ground_marker_red_x_nwes.png"
 }
