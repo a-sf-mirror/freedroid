@@ -7,7 +7,7 @@ endif
 %.ico : %.png
 	pngtoico $< > $@
 
-EXTRA_DIST = freedroidRPG.coff freedroidRPG.rc w32icon_64x64.ico w32icon_64x64.png w32icon2_64x64.png
+EXTRA_DIST = freedroidRPG.rc w32icon_64x64.png w32icon2_64x64.png
 
 WINDRES = $(target)-windres
 freedroidRPG.coff: freedroidRPG.rc w32icon_64x64.ico
