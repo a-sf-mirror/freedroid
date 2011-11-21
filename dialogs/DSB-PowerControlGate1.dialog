@@ -39,13 +39,14 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_" ", "NO_WAIT")
 	npc_says(_"Last login from /dev/ttyS0 on Sun, 23 mar 2057.", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
-
-	if (cmp_obstacle_state("DSB-PCGate1", "closed")) then show(0)
+	if (cmp_obstacle_state("DSB-PCGate1", "closed")) then
+		show(0)
+	elseif (cmp_obstacle_state("DSB-PCGate1", "opened")) then
+		show(10)
 	else
-		if (cmp_obstacle_state("DSB-PCGate1", "opened")) then show(10)
-		else npc_says(_"GAME BUG. PLEASE REPORT.") end
+		npc_says(_"GAME BUG. PLEASE REPORT.")
 	end
-	show(98, 99)
+	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -92,7 +93,9 @@ Nr=98 Text=_"Debug: give cookie"
 Nr=99 Text=_"logout"
 <LuaCode>
 	npc_says(_"Exiting", "NO_WAIT")
-	npc_says_random(_"Have a nice day.", _"Have a wonderful day.", _"We hope your day will be most productive.")
+	npc_says_random(_"Have a nice day.",
+			_"Have a wonderful day.",
+			_"We hope your day will be most productive.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
