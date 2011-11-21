@@ -56,6 +56,12 @@ Beginning of new chat dialog for character="XXXXX"
 			end
 		end
 	end
+
+	if (has_item("The Super Exterminator")) and
+	   (has_cookie("SADD_super_exterminator")) then
+		show(37)
+	end
+
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -199,13 +205,18 @@ Nr=23 Text=_"So disable the guns, please."
 Nr=30 Text=_"I have the crystals! They were difficult to find."
 <LuaCode>
 	npc_says(_"Good. I've opened the depot door for you.")
-	end_dialog()
 	display_big_message(_"Restored SADD's power supply")
 	add_xp(1000)
 	del_item_backpack("Red Dilithium Crystal", 1)
 	change_obstacle_state("SADDDepotDoor", "opened")
 	end_quest(_"SADD's power supply", _"I managed to restore the SADD's power supply.")
-	hide(30) show(37)
+	add_cookie("SADD_super_exterminator")
+	end_dialog()
+	hide(30)
+	if (has_item("The Super Exterminator")) and
+	   (has_cookie("SADD_super_exterminator")) then
+		show(37)
+	end
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -241,11 +252,12 @@ Nr=37 Text=_"You call this a super exterminator?"
 	npc_says(_"You can go standing on your feet, that's your reward. And DON'T TRY MY PATIENCE!")
 	tux_says(_"I'll kill you if you don't give me my gun!")
 	npc_says(_"You are welcome. But you would never get out of here, my death won't help you.")
-	end_dialog()
 	change_obstacle_state("SADDGun1", "enabled")
 	change_obstacle_state("SADDGun2", "enabled")
 	change_obstacle_state("BreakableWall2", "broken")
+	del_cookie("SADD_super_exterminator")
 	hide(37) show(41, 42, 43)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
