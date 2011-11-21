@@ -111,11 +111,15 @@ static void set_bot_state(enemy *en, const char *cmd)
 
 static int lua_event_teleport(lua_State * L)
 {
+	gps stop_pos = { -1, -1, -1 };
 	const char *label = luaL_checkstring(L, 1);
 	location TempLocation;
 	ResolveMapLabelOnShip(label, &TempLocation);
 	reset_visible_levels();
 	Teleport(TempLocation.level, TempLocation.x + 0.5, TempLocation.y + 0.5, TRUE, TRUE);
+	Me.speed.x = 0.0;
+	Me.speed.y = 0.0;
+	clear_out_intermediate_points(&stop_pos, Me.next_intermediate_point, MAX_INTERMEDIATE_WAYPOINTS_FOR_TUX);
 	clear_active_bullets();
 	return 0;
 }
