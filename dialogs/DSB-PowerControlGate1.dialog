@@ -55,7 +55,7 @@ Nr=0 Text=_"open gate"
 	if (not has_cookie("dsb_pc_access")) then
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
 		npc_says(_"Security Access to this area denied.")
-		npc_says(_"Contact personnel in the Machine Deck Control Room if you believe this to be in error.")
+		npc_says(_"Contact personnel in the Machine Deck Control Room if you believe this to be an error.")
 	else
 		npc_says(_"Gate status: CLOSED", "NO_WAIT")
 		npc_says(_"Access granted. Opening gate ...")
@@ -78,16 +78,16 @@ Nr=10 Text=_"close gate"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=98 Text=_"Debug: give cookie"
-<LuaCode>
-	if (not has_cookie("dsb_pc_access")) then
-		add_cookie("dsb_pc_access")
-		npc_says(_"Cookie cheated")
-	else 
-		npc_says(_"Cookie already cheated")
-	end
-	cli_says(terminal, "NO_WAIT")
-</LuaCode>
+--Nr=98 Text=_"Debug: give cookie"
+--<LuaCode>
+--	if (not has_cookie("dsb_pc_access")) then
+--		add_cookie("dsb_pc_access")
+--		npc_says(_"Cookie cheated")
+--	else
+--		npc_says(_"Cookie already cheated")
+--	end
+--	cli_says(terminal, "NO_WAIT")
+--</LuaCode>
 ----------------------------------------------------------------------
 
 Nr=99 Text=_"logout"
