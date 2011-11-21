@@ -76,7 +76,7 @@ static void init_sdl(void)
 
 static void init_output(int atlas_num)
 {
-	atlas_surf = SDL_CreateRGBSurface(0, atlas_width, atlas_height, 32, 0xff, 0xff00, 0xff000000, 0xff000000);
+	atlas_surf = SDL_CreateRGBSurface(0, atlas_width, atlas_height, 32, 0xff, 0xff00, 0xff0000, 0xff000000);
 	if (!atlas_surf) {
 		fprintf(stderr, "Unable to create atlas surface: %s.\n", SDL_GetError());
 		exit(1);
