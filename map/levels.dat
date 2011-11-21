@@ -30236,7 +30236,7 @@ jump target east: 54
 jump target west: 61
 number of random droids: 60
 random droid types: 249, 302, 516, 615, 629
-Name of this level=_"Hell Fortress entrance"
+Name of this level=_"Hell Fortress Entrance"
 BgSong=Hell Fortress Entrance.ogg
 beginning_of_map
  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  48   0  48   0  48   0   8   0   8   0   8   0   8   0  47   0  47   0  58   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0 
@@ -43427,7 +43427,7 @@ jump target east: 51
 jump target west: 57
 number of random droids: 100
 random droid types: 296, 249, 302, 476
-Name of this level=_"Hell Fortress"
+Name of this level=_"Factory Entrance"
 BgSong=TheBeginning.ogg
 beginning_of_map
  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47 510  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 504  47 509   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0  47 505  47 505  47 505  47 505  47 505  47 505  47 505  47 505  47 509  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0 
@@ -46526,7 +46526,7 @@ jump target east: -1
 jump target west: 50
 number of random droids: 100
 random droid types: 476, 420, 493, 516
-Name of this level=_"New level just created"
+Name of this level=_"Power Station and Worker District"
 BgSong=TheBeginning.ogg
 beginning_of_map
  57   0  57   0  57   0  64   0  54   0  66   0  57   0  57   0  64   0  54   0  66   0  65   0  48   0  63   0  64   0  66   0  65   0  48   0  48   0  48   0  63   0  57   0  57   0  57   0  65   0  48   0  48   0  48   0  48   0  63   0  57   0  57   0  57   0  64   0  54   0  54   0  66   0  57   0  57   0  65   0  48   0  48   0  48   0  63   0  57   0  66   0  57   0  57   0  64   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  54   0  66   0  57   0  57   0  57   0  57   0  54   0  54   0  54   0  54   0  66   0  57   0  57   0  57   0  64   0  66   0  65   0  48   0  48   0  48   0  63   0  57   0  64   0  54   0  54   0  54   0  54   0  54   0  56   0  48   0  48   0  48   0  58   0 
@@ -49183,7 +49183,7 @@ jump target east: 53
 jump target west: 59
 number of random droids: 180
 random droid types: 516, 493, 598
-Name of this level=_"New level just created"
+Name of this level=_"Factory Core"
 BgSong=TheBeginning.ogg
 beginning_of_map
   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0 
@@ -52623,7 +52623,7 @@ jump target east: -1
 jump target west: 52
 number of random droids: 120
 random droid types: 598, 571, 615
-Name of this level=_"New level just created"
+Name of this level=_"Research Centre"
 BgSong=TheBeginning.ogg
 beginning_of_map
   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0   1   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  58   0 
@@ -58867,7 +58867,7 @@ jump target east: 52
 jump target west: 63
 number of random droids: 200
 random droid types: 883, 821, 711, 751, 834
-Name of this level=_"Hell Station"
+Name of this level=_"Factory Office"
 BgSong=TheBeginning.ogg
 beginning_of_map
  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  47   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0  12   0 
@@ -61879,7 +61879,7 @@ jump target east: -1
 jump target west: -1
 number of random droids: 0
 random droid types: 
-Name of this level=_"New level just created"
+Name of this level=_"Strange Dungeon"
 BgSong=TheBeginning.ogg
 beginning_of_map
   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 
@@ -62168,7 +62168,7 @@ jump target east: 31
 jump target west: 64
 number of random droids: 0
 random droid types: 
-Name of this level=_"New level just created"
+Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54 
@@ -62499,7 +62499,7 @@ jump target east: 57
 jump target west: -1
 number of random droids: 10
 random droid types: 302
-Name of this level=_"New level just created"
+Name of this level=_"Landing Zone"
 BgSong=TheBeginning.ogg
 beginning_of_map
  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  66  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57 
@@ -62819,7 +62819,7 @@ jump target east: 59
 jump target west: -1
 number of random droids: 0
 random droid types: 
-Name of this level=_"New level just created"
+Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  56  47  47  47  47  47  47  47  47  47  47  47 
@@ -63032,7 +63032,7 @@ jump target east: 61
 jump target west: -1
 number of random droids: 0
 random droid types: 
-Name of this level=_"New level just created"
+Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54 
@@ -63155,7 +63155,7 @@ jump target east: -1
 jump target west: 66
 number of random droids: 10
 random droid types: 302, 493
-Name of this level=_"New level just created"
+Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
  47  47  47  47  47  47  47  47  47  47  47  47  47   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1  47  47  47  47  47  47  47  47  47  58 
@@ -63711,7 +63711,7 @@ jump target east: 65
 jump target west: 67
 number of random droids: 0
 random droid types: 
-Name of this level=_"New level just created"
+Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47 
@@ -64059,7 +64059,7 @@ jump target east: 66
 jump target west: 68
 number of random droids: 0
 random droid types: 
-Name of this level=_"New level just created"
+Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47  47 
@@ -64382,7 +64382,7 @@ jump target east: 67
 jump target west: -1
 number of random droids: 0
 random droid types: 
-Name of this level=_"New level just created"
+Name of this level=_"World Edge"
 BgSong=TheBeginning.ogg
 beginning_of_map
  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  56  47  47  47  47  47  47  47  47  47  47  47 
