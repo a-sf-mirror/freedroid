@@ -937,6 +937,7 @@ Silent=0
 <LuaCode>
 	if (has_cookie("Tania_surface") and
 	   (not done_quest(_"Tania's Escape")) and
+	   has_cookie("Tania_follow_tux") and
 	   (not has_cookie("Tania-stopped-by-Pendragon"))) then
 		teleport_npc("38to34", "Tania")
 	end
