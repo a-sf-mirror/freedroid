@@ -1,7 +1,7 @@
 Background file: credits.jpg
 The title song in the sound subdirectory for this mission is : HellFortressTwo.ogg
 *** START OF PURE SCROLLTEXT DATA ***
-                                FreedroidRPG 0.14
+                                FreedroidRPG 0.15
 
 PROGRAMMING:
 
@@ -11,31 +11,30 @@ PROGRAMMING:
 
         Stefan Kangas
 
-        Ari Mustonen
-
         Samuel Pitoiset
 
         Alexander Solovets
 
+		Catalin Badea
+
+		Jozef Kucia
+		
+		Maria Grazia Alastra
+
+		Pavaluca Matei
+
 
 GAME CONTENT:
-
-        Stefan Huszics
 
         JK Wood
 
         Miles McCammon
 
         Infrared - graphics one-man-army
-
-
-MUSIC:
-
-        Nick "Nario" Hagman
+        
+		Matthias Krüger
 
 MISC:
-
-        Matthias Krüger - beta testing
 
         LOTS OF PLAYERS - bug reports and very welcomed feedback
 
@@ -57,6 +56,13 @@ PROGRAMMING:
         Pierre Bourdon
 
         Simon Castellan
+        
+		Ari Mustonen
+
+GAME CONTENT:
+
+        Stefan Huszics
+
 
 GRAPHICS:
 
@@ -70,6 +76,8 @@ DIALOGUES:
 
 MUSIC:
 
+        Nick "Nario" Hagman
+	
         Arvid Picciani
 
         "The Beginning"
