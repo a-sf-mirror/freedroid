@@ -1888,7 +1888,7 @@ Item motion class="2hranged"
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"The Super Exterminator"
+Item name=_"The Super Exterminator!!!"
 Item min class for drop=9
 Item max class for drop=9
 Item can be installed in slot with name="weapon"
