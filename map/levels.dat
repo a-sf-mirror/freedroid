@@ -24651,7 +24651,7 @@ it: n="Light Enhancer? to be included in the future..."  X=1.500000  Y=16.500000
 it: n="Fork"  X=2.500000  Y=16.500000  MDur=1  CDur=1.000000  AClip=0  Multi=1 
 it: n="Plate"  X=3.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
 it: n="Mug"  X=4.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
-it: n="Mug"  X=5.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
+it: n="Cup"  X=5.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 it: n="Teleporter homing beacon"  X=6.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=10 
 it: n="Data cube"  X=7.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 
 it: n="Kevin's Data Cube"  X=8.500000  Y=16.500000  MDur=-1  CDur=0.000000  AClip=0  Multi=1 

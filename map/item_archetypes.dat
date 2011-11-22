@@ -3376,7 +3376,7 @@ Item description text=_"This item is part of the 'Self Cleaning Kitchen' (SCK) p
 ** End of new item specification subsection **
 
 ** Start of new item specification subsection **
-Item name=_"Mug"
+Item name=_"Cup"
 Item min class for drop=-1
 Item can be installed in slot with name="none"
 Item uses rotation series with prefix="drinking_mug_2"

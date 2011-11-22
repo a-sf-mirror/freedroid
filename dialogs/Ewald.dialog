@@ -84,8 +84,9 @@ Nr=3 Text=_"I could use a drink. What is there to be had?"
 <LuaCode>
 	npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
 	npc_says(_"I have WATER!")
-	if (has_item_backpack("Mug") == 0) then
-		npc_says(_"But you'll need a mug for me to put it in.")
+	if (has_item_backpack("Mug") == 0) and
+	   (has_item_backpack("Cup") == 0) then
+		npc_says(_"But you'll need a mug or a cup for me to put it in.")
 	else
 		hide(3) show(4, 5, 6)
 	end
