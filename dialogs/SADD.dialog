@@ -57,7 +57,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_item("The Super Exterminator")) and
+	if (has_item("The Super Exterminator!!!") > 0) and
 	   (has_cookie("SADD_super_exterminator")) then
 		show(37)
 	end
@@ -213,7 +213,7 @@ Nr=30 Text=_"I have the crystals! They were difficult to find."
 	add_cookie("SADD_super_exterminator")
 	end_dialog()
 	hide(30)
-	if (has_item("The Super Exterminator")) and
+	if (has_item("The Super Exterminator!!!") > 0) and
 	   (has_cookie("SADD_super_exterminator")) then
 		show(37)
 	end
