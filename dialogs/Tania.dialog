@@ -434,13 +434,13 @@ NO_TEXT
 		injured_level = 3
 	end
 
-	if (has_item_backpack(_"Doc-in-a-can")) then
+	if (has_item_backpack(_"Doc-in-a-can") > 0) then
 		show(59)
 	end
-	if (has_item_backpack(_"Antibiotic") and (injured_level < 3)) then
+	if ((has_item_backpack(_"Antibiotic") > 0) and (injured_level < 3)) then
 		show(58)
 	end
-	if (has_item_backpack(_"Diet supplement") and (injured_level < 2)) then
+	if ((has_item_backpack(_"Diet supplement") > 0) and (injured_level < 2)) then
 		show(57)
 	end
 	show(56)

@@ -185,7 +185,7 @@ Nr=24 Text=_"Got any food yet?"
 	random_var = math.random()
 	if (random_var > 0.9) then
 		npc_says(_"Here, try this slice of lemon meringue pie.")
-		if (not has_item("Fork")) then
+		if (has_item("Fork") == 0) then
 			npc_says(_"Wait, you don't have a fork. You need a fork...")
 		elseif (not has_item_equipped("Fork")) then
 			npc_says(_"You need to equip your fork before you can use it to eat.")
@@ -195,7 +195,7 @@ Nr=24 Text=_"Got any food yet?"
 		end
 	elseif (random_var > 0.8) then
 		npc_says(_"Try this crab cake.")
-		if ((not has_item("Fork")) and (not has_item_backpack("Plate"))) then
+		if ((has_item("Fork") == 0) and (has_item_backpack("Plate") == 0)) then
 			npc_says(_"Where is your plate and fork?")
 		elseif (not has_item_equipped("Fork")) then
 			npc_says(_"You need to equip your fork before you can use it to eat.")

@@ -84,7 +84,7 @@ Nr=3 Text=_"I could use a drink. What is there to be had?"
 <LuaCode>
 	npc_says(_"Well... We are a bit short on supplies right now... Erm... AH! I know!")
 	npc_says(_"I have WATER!")
-	if (not has_item_backpack("Mug")) then
+	if (has_item_backpack("Mug") == 0) then
 		npc_says(_"But you'll need a mug for me to put it in.")
 	else
 		hide(3) show(4, 5, 6)
@@ -172,7 +172,8 @@ Nr=13 Text=_"Any idea where I can find some entertainment here?"
 		npc_says(_"*sigh*")
 		npc_says(_"I wish I could once use such a gun.")
 		npc_says(_"You are a Guard member, right?")
-		if (has_item("Barrett M82 Sniper Rifle") or has_item("Exterminator")) then
+		if ((has_item("Barrett M82 Sniper Rifle") > 0) or
+		   (has_item("Exterminator") > 0)) then
 			tux_says(_"Yes, I am a Guard member. No, it is not allowed to give guns to people who are high.")
 			npc_says(_"Pleeeeaaaase.")
 			tux_says(_"No exceptions. I apologize. Please think responsibly; there is a good reason for this rule.")
