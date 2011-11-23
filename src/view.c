@@ -2675,8 +2675,12 @@ There was a bullet to be blitted of a type that does not really exist.", PLEASE_
 	float scale = 1.0;
 	if (mask & ZOOM_OUT)
 		scale = lvledit_zoomfact_inv();
-	if (IsVisible(&vpos))
-		display_image_on_map(&Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet], vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(scale));
+	if (IsVisible(&vpos)) {
+		struct image *bullet_image = &Bulletmap[CurBullet->type].image[direction_index][PhaseOfBullet];
+		bullet_image->offset_y -= CurBullet->height;
+		display_image_on_map(bullet_image, vpos.x, vpos.y, IMAGE_SCALE_TRANSFO(scale));
+		bullet_image->offset_y += CurBullet->height;
+	}
 }
 
 /**

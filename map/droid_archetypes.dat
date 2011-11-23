@@ -158,6 +158,7 @@ Experience_Reward gained for destroying one of this type: 90
 Aggression distance of this droid=10
 Time spent eyeing Tux=1.0
 Weapon item="Droid 249 Pulse Laser Welder"
+Gun muzzle offset= 30
 Percent to drop Entropy Inverter=10
 Percent to drop Plasma Transistor=5
 Percent to drop Superconducting Relay Unit=5

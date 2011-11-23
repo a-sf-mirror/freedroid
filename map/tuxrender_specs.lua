@@ -49,7 +49,8 @@ tux_rendering_config {
   weaponarm_part_default = "iso_weaponarm",
   -- weapon_part_default = "", / No default value
   shieldarm_part_default = "iso_shieldarm",
-  feet_part_default      = "iso_feet"
+  feet_part_default      = "iso_feet",
+  gun_muzzle_height      = 65
 }
 
 ------------------------------------------------------------------------------

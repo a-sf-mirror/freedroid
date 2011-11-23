@@ -342,6 +342,9 @@ void write_bullet(struct auto_string *strout, bullet *data)
     autostr_append(strout, "pos = ");
     write_gps(strout, &data->pos);
     autostr_append(strout, ",\n");
+    autostr_append(strout, "height = ");
+    write_int32_t(strout, &data->height);
+    autostr_append(strout, ",\n");
     autostr_append(strout, "speed = ");
     write_moderately_finepoint(strout, &data->speed);
     autostr_append(strout, ",\n");
@@ -403,6 +406,10 @@ void read_bullet(lua_State* L, int index, bullet *data)
     }
     if (lua_getfield_or_warn(L, index, "pos")) {
         read_gps(L, -1, &data->pos);
+        lua_pop(L, 1);
+    }
+    if (lua_getfield_or_warn(L, index, "height")) {
+        read_int32_t(L, -1, &data->height);
         lua_pop(L, 1);
     }
     if (lua_getfield_or_warn(L, index, "speed")) {

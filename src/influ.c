@@ -1112,6 +1112,7 @@ void FillInDefaultBulletStruct(bullet * CurBullet, int bullet_image_type, short 
 	CurBullet->pos.x = Me.pos.x;
 	CurBullet->pos.y = Me.pos.y;
 	CurBullet->pos.z = Me.pos.z;
+	CurBullet->height = 0;
 	CurBullet->type = bullet_image_type;
 
 	// Previously, we had the damage done only dependant upon the weapon used.  Now
@@ -1145,9 +1146,8 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	float BulletSpeed = ItemMap[weapon_item_type].item_gun_speed;
 	double speed_norm;
 	moderately_finepoint speed;
-	float OffsetFactor;
+	float OffsetFactor = 0.5;
 	moderately_finepoint offset;
-	OffsetFactor = 0.25;
 #	define FIRE_TUX_RANGED_WEAPON_RAW_DEBUG 1
 
 	DebugPrintf(1, "\n%s(): target location: x=%f, y=%f.", __FUNCTION__, target_location.x, target_location.y);
@@ -1197,7 +1197,6 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	//
 	offset.x = OffsetFactor * (CurBullet->speed.x / BulletSpeed);
 	offset.y = OffsetFactor * (CurBullet->speed.y / BulletSpeed);
-	RotateVectorByAngle(&(offset), -60);
 
 	// And now we re-do it all!  But this time with the extra offset
 	// applied to the SHOT TARGET POINT!
@@ -1226,11 +1225,11 @@ void FireTuxRangedWeaponRaw(short int weapon_item_type, int bullet_image_type, b
 	//
 	offset.x = OffsetFactor * (CurBullet->speed.x / BulletSpeed);
 	offset.y = OffsetFactor * (CurBullet->speed.y / BulletSpeed);
-	RotateVectorByAngle(&(offset), -60);
 
 	CurBullet->pos.x += offset.x;
 	CurBullet->pos.y += offset.y;
 	CurBullet->pos.z = Me.pos.z;
+	CurBullet->height = tux_rendering.gun_muzzle_height;
 
 	CurBullet->faction = FACTION_SELF;
 

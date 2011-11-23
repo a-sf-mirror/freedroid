@@ -219,6 +219,7 @@ int animate_autogun(level* autogun_lvl, int autogun_idx)
 	CurBullet->pos.x = autogunx;
 	CurBullet->pos.y = autoguny;
 	CurBullet->pos.z = autogun_lvl->levelnum;
+	CurBullet->height = 20;
 
 	switch (*AutogunType) {
 	case ISO_AUTOGUN_W:

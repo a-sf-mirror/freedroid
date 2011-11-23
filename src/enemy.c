@@ -2133,6 +2133,7 @@ static void RawStartEnemysShot(enemy * ThisRobot, float xdist, float ydist)
 		NewBullet->pos.x = ThisRobot->virt_pos.x;
 		NewBullet->pos.y = ThisRobot->virt_pos.y;
 		NewBullet->pos.z = ThisRobot->virt_pos.z;
+		NewBullet->height = Druidmap[ThisRobot->type].gun_muzzle_height;
 
 		// fire bullets so, that they don't hit the shooter...
 		NewBullet->pos.x += (NewBullet->speed.x) / (bullet_speed) * 0.5;

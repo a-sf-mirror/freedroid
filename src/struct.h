@@ -375,6 +375,7 @@ typedef struct druidspec {
 	short int drop_class;
 
 	item weapon_item;
+	int gun_muzzle_height;
 
 	short int amount_of_plasma_transistors;
 	short int amount_of_superconductors;
@@ -580,7 +581,6 @@ typedef struct tux {
 	int melee_weapon_skill;
 	int ranged_weapon_skill;
 	int spellcasting_skill;
-
 	//--------------------
 	// The inventory slots.  Some items are residing in general inventory,
 	// other items might be equipped in some of the corresponding slots of
@@ -645,6 +645,7 @@ typedef struct bullet {
 	int phase;
 	uint8_t mine;
 	gps pos;
+	int height;
 	moderately_finepoint speed;
 	short int damage;	// damage done by this particular bullet
 	float time_in_seconds;	// how long does the bullet exist in seconds
@@ -979,6 +980,7 @@ struct tux_rendering {
 	struct dynarray motion_class_names;             // All motion classes
 	struct tux_part_instances default_instances;    // Default part instances
 	tux_part_render_motionclass *render_order;      // The render_sets of each motion class
+	int gun_muzzle_height;							// Vertical offset to apply to bullets
 } tux_rendering;
 
 /**

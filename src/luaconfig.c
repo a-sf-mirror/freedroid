@@ -408,6 +408,7 @@ static int lua_tuxrendering_config_ctor(lua_State *L)
 		{ "weapon_part_default",    NULL,            STRING_TYPE,  &tux_rendering.default_instances.weapon },
 		{ "shieldarm_part_default", "iso_shieldarm", STRING_TYPE,  &tux_rendering.default_instances.shieldarm },
 		{ "feet_part_default",      "iso_feet",      STRING_TYPE,  &tux_rendering.default_instances.feet },
+		{ "gun_muzzle_height",      "-60",           INT_TYPE,     &tux_rendering.gun_muzzle_height },
 		{ NULL, NULL, 0, 0 }
 	};
 

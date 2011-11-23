@@ -540,6 +540,7 @@ which is \"Number_of_Droid_Types\" + 2. Please increase the value of \"NB_DROID_
 		char *tmp_item_name = ReadAndMallocStringFromData(RobotPointer, WEAPON_ITEM_BEGIN_STRING, "\"");
 		Druidmap[RobotIndex].weapon_item.type = GetItemIndexByName(tmp_item_name);
 		free(tmp_item_name);
+		ReadValueFromStringWithDefault(RobotPointer, "Gun muzzle height=", "%d", "30", &Druidmap[RobotIndex].gun_muzzle_height, EndOfDataPointer);
 
 		// Now we read in the % chance for droid to drop botpart
 		ReadValueFromStringWithDefault(RobotPointer, "Percent to drop Entropy Inverter=", "%hd", "0",
