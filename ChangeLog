@@ -7275,14 +7275,4 @@ r3464 | ahuillet | 2010-11-27 00:03:23 +0100 (Sat, 27 Nov 2010) | 1 line
 
 dialog: fix typo in kevin dialog, caught by tobixen.
 ------------------------------------------------------------------------
-r3463 | ahuillet | 2010-11-26 23:14:10 +0100 (Fri, 26 Nov 2010) | 3 lines
 
-Update ChangeLog for 0.14.1.
-
-
-------------------------------------------------------------------------
-r3462 | ahuillet | 2010-11-26 23:12:26 +0100 (Fri, 26 Nov 2010) | 2 lines
-
-This is FreedroidRPG 0.14.1, fixing a bug that corrupts savegames. 
-
-------------------------------------------------------------------------
