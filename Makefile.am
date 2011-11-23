@@ -49,7 +49,7 @@ sign:
 ## Win32 specific stuff follows here
 
 win_txts = COPYING AUTHORS README ChangeLog
-win_dir = freedroidrpg-$(VERSION)-win32
+win_dir = freedroidrpg-win32
 dist-win32: src/freedroidRPG.exe
 	rm -rf $(win_dir)
 	mkdir -p $(win_dir)
@@ -61,5 +61,3 @@ dist-win32: src/freedroidRPG.exe
 	find $(win_dir) -name ".svn"              | xargs rm -rf
 	find $(win_dir) -name "*~"                | xargs rm -f
 	find $(win_dir) -name ".#*"               | xargs rm -f
-	echo Do not forget to ship the SDL dll files!
-
