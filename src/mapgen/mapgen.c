@@ -523,19 +523,24 @@ static void add_teleport(int telnum, int x, int y, int tpair)
 	sprintf(tmp, "%dfromX%d", target_level->levelnum, telnum);
 	fromwarp = strdup(tmp);
 
+	add_map_label(target_level, x, y, warp);
+	add_map_label(target_level, x + 1, y, fromwarp);
+
+	// A label placed at (x, y) is actually positioned at (x+0.5, y+0.5).
+	// That 0.5 translation is added to the other obstacles around the labels
+	// to have a coherent position.
+
 	obstacle = telnum ? teleport_pairs[tpair].exit : teleport_pairs[tpair].enter;
+	mapgen_add_obstacle(x + 0.5, y + 0.5, obstacle);
+
 	// Decorate room with teleport if the obstacle is the cloud
 	if (obstacle == ISO_TELEPORTER_1) {
 		helper = MyRandom(1);
-		mapgen_add_obstacle(x + 1, y - 1, helpers[helper][0]);
-		mapgen_add_obstacle(x - 1, y - 1, helpers[helper][1]);
-		mapgen_add_obstacle(x + 1, y + 1, helpers[helper][2]);
-		mapgen_add_obstacle(x - 1, y + 1, helpers[helper][3]);
+		mapgen_add_obstacle(x + 1 + 0.5, y - 1 + 0.5, helpers[helper][0]);
+		mapgen_add_obstacle(x - 1 + 0.5, y - 1 + 0.5, helpers[helper][1]);
+		mapgen_add_obstacle(x + 1 + 0.5, y + 1 + 0.5, helpers[helper][2]);
+		mapgen_add_obstacle(x - 1 + 0.5, y + 1 + 0.5, helpers[helper][3]);
 	}
-
-	mapgen_add_obstacle(x, y, obstacle);
-	add_map_label(target_level, x, y, warp);
-	add_map_label(target_level, x + 1, y, fromwarp);
 }
 
 void mapgen_entry_at(struct roominfo *r, int tpair)
