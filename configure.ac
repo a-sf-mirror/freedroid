@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(freedroidRPG, 0.14.1+svn)
+AC_INIT(freedroidRPG, 0.15rc1)
 
 dnl Detect the canonical host and target build environment
 AC_CANONICAL_HOST
