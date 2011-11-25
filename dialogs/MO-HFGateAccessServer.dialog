@@ -80,7 +80,7 @@ Beginning of new chat dialog for character="XXXXX"
 Nr=1 Text=_"status"
 NO_TEXT
 <LuaCode>
-	tux_says(_"status", NO_WAIT)
+	tux_says(_"status", "NO_WAIT")
 	if (cmp_obstacle_state("HF-Gate-outer", "opened")) then
 		npc_says(_"Gate 1 status: OPENED", "NO_WAIT")
 	else
@@ -108,7 +108,7 @@ NO_TEXT
 Nr=2 Text=_"open gate"
 NO_TEXT
 <LuaCode>
-	tux_says(_"open gate", NO_WAIT)
+	tux_says(_"open gate", "NO_WAIT")
 	npc_says(_"Permission denied")
 	end_dialog()
 	hurt_tux(5)
@@ -139,28 +139,28 @@ Nr=3 Text=_"(Try hacking the server)"
 Nr=4 Text=_"man open gates"
 NO_TEXT
 <LuaCode>
-	tux_says(_"man open gates", NO_WAIT)
-	npc_says(_"NAME", NO_WAIT)
-	npc_says(_"   open gates -- opens gates via console", NO_WAIT)
+	tux_says(_"man open gates", "NO_WAIT")
+	npc_says(_"NAME", "NO_WAIT")
+	npc_says(_"   open gates -- opens gates via console", "NO_WAIT")
 	npc_says(" ")
-	npc_says(_"SYNOPSIS", NO_WAIT)
-	npc_says(_"    open gates --inner --outer", NO_WAIT)
+	npc_says(_"SYNOPSIS", "NO_WAIT")
+	npc_says(_"    open gates --inner --outer", "NO_WAIT")
 	npc_says(_" ")
-	npc_says(_"DESCRIPTION", NO_WAIT)
-	npc_says(_"    Opens gates via console. Awesome, isn't it?", NO_WAIT)
+	npc_says(_"DESCRIPTION", "NO_WAIT")
+	npc_says(_"    Opens gates via console. Awesome, isn't it?", "NO_WAIT")
 	npc_says(" ")
-	npc_says(_"OPTIONS", NO_WAIT)
-	npc_says(_"    --inner", NO_WAIT)
-	npc_says(_"       Opens the inner gate.", NO_WAIT)
-	npc_says(" ", NO_WAIT)
-	npc_says(_"    --outer", NO_WAIT)
-	npc_says(_"       Opens the outer gate.", NO_WAIT)
+	npc_says(_"OPTIONS", "NO_WAIT")
+	npc_says(_"    --inner", "NO_WAIT")
+	npc_says(_"       Opens the inner gate.", "NO_WAIT")
+	npc_says(" ", "NO_WAIT")
+	npc_says(_"    --outer", "NO_WAIT")
+	npc_says(_"       Opens the outer gate.", "NO_WAIT")
 	npc_says(" ")
-	npc_says(_"SEE ALSO", NO_WAIT)
-	npc_says(_"    These are not the gates you are looking for.", NO_WAIT)
+	npc_says(_"SEE ALSO", "NO_WAIT")
+	npc_says(_"    These are not the gates you are looking for.", "NO_WAIT")
 	npc_says(" ")
-	npc_says(_"AUTHOR", NO_WAIT)
-	npc_says(_"    The Hell Fortress GateAccessServer Manual Writer", NO_WAIT)
+	npc_says(_"AUTHOR", "NO_WAIT")
+	npc_says(_"    The Hell Fortress GateAccessServer Manual Writer", "NO_WAIT")
 	npc_says(" ")
 	npc_says(_"                       February 22, 1992")
 	hide(4) show(5, 6, 7)
@@ -170,8 +170,8 @@ NO_TEXT
 Nr=5 Text=_"open gates --inner"
 NO_TEXT
 <LuaCode>
-	tux_says(_"open gates --inner", NO_WAIT)
-	npc_says(_"inner gate opened", NO_WAIT)
+	tux_says(_"open gates --inner", "NO_WAIT")
+	npc_says(_"inner gate opened", "NO_WAIT")
 	npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
 	npc_says(_"Anomalies detected!")
 	change_obstacle_state("HF-Gate-inner", "opened")
@@ -187,8 +187,8 @@ NO_TEXT
 Nr=6 Text=_"open gates --outer"
 NO_TEXT
 <LuaCode>
-	tux_says(_"open gates --outer", NO_WAIT)
-	npc_says(_"outer gate opened", NO_WAIT)
+	tux_says(_"open gates --outer", "NO_WAIT")
+	npc_says(_"outer gate opened", "NO_WAIT")
 	npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
 	npc_says(_"Anomalies detected!")
 	change_obstacle_state("HF-Gate-outer", "opened")
@@ -203,9 +203,9 @@ NO_TEXT
 Nr=7 Text=_"open gates --inner --outer"
 NO_TEXT
 <LuaCode>
-	tux_says(_"open gates --inner --outer", NO_WAIT)
-	npc_says(_"inner gate opened", NO_WAIT)
-	npc_says(_"outer gate opened", NO_WAIT)
+	tux_says(_"open gates --inner --outer", "NO_WAIT")
+	npc_says(_"inner gate opened", "NO_WAIT")
+	npc_says(_"outer gate opened", "NO_WAIT")
 	npc_says(_"[b]WARNING[/b]:", "NO_WAIT")
 	npc_says(_"Anomalies detected!")
 	change_obstacle_state("HF-Gate-inner", "opened")

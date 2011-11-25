@@ -37,8 +37,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 	if (fuel < 5) then
 		set_bot_state("fixed")
-		npc_says(_"WARNING:", NO_WAIT)
-		npc_says(_"Less than [b]5%[/b] fuel remaining!", NO_WAIT)
+		npc_says(_"WARNING:", "NO_WAIT")
+		npc_says(_"Less than [b]5%[/b] fuel remaining!", "NO_WAIT")
 		npc_says(_"All movement suppressed...")
 		npc_says(_"Scanning area for possible compatible energy sources...")
 		hide(5, 6)
@@ -107,7 +107,7 @@ Nr=20 Text=_"help"
 	npc_says(_"help", "NO_WAIT")
 	npc_says(_"version", "NO_WAIT")
 	npc_says(_"fuel_level", "NO_WAIT")
-	npc_says(_"exit", NO_WAIT)
+	npc_says(_"exit", "NO_WAIT")
 	show(30, 31, 20)
 </LuaCode>
 ----------------------------------------------------------------------

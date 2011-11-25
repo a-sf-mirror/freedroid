@@ -34,8 +34,8 @@ Beginning of new chat dialog for character="XXXXX"
 		tux_says(_"How many times do I have to show you my certificate, tin can?")
 		if (has_item("MS Stock Certificate") > 0) then
 			npc_says(_"[b]Validating certificate...[/b]")
-			npc_says(_"[b]Validation complete.[/b]", NO_WAIT)
-			npc_says(_"[b]Certificate valid.[/b]", NO_WAIT)
+			npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")
+			npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
 			npc_says(_"You may enter.")
 			change_obstacle_state("HF-EntranceInnerGate", "opened")
 			hide(1, 2, 3)
@@ -68,8 +68,8 @@ Nr=2 Text=_"I am working here."
 	if (has_item("MS Stock Certificate") > 0) then
 		tux_says(_"But I have this certificate")
 		npc_says(_"[b]Validating certificate...[/b]")
-		npc_says(_"[b]Validation complete.[/b]", NO_WAIT)
-		npc_says(_"[b]Certificate valid.[/b]", NO_WAIT)
+		npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")
+		npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
 		npc_says(_"You may enter.")
 		change_obstacle_state("HF-EntranceInnerGate", "opened")
 		add_cookie("MSStockCertificateOpensGate")
