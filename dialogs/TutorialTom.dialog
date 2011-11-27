@@ -84,8 +84,9 @@ Nr=1 Text=_"Yes, it would be most kind of you. I don't remember anything."
 Nr=2 Text=_"What can you tell me about finding my way in the world?"
 <LuaCode>
 	npc_says(_"You Linarians see the world similar to the Heads Up Displays, or [b]HUD[/b], used in computer games.")
-	npc_says(_"Linarians, like all birds, have a remarkable internal sense of direction.  Apparently your HUD has a [b]compass[/b], represented by four red arrows in the upper right corner with North marked on it.")
-	update_quest(_"Tutorial Movement", _"I learned the four red arrows in the upper-right of my HUD is a compass with north marked on it.")
+	npc_says(_"Linarians, like all birds, have a remarkable internal sense of direction. Apparently your HUD has a [b]compass[/b], represented by four red arrows in the upper right corner with North marked on it.")
+	npc_says(_"You can temporarily disable this compass by pressing the 'tab' key.")
+	update_quest(_"Tutorial Movement", _"I learned the four red arrows in the upper-right of my HUD is a compass with north marked on it. I can toggle it using the 'tab' key.")
 	npc_says(_"Rumor is there was a device Linarians used to remember every place they had been, called an [b]automap[/b].")
 	npc_says(_"Although, you don't currently have such a device, you might find someone with nanotechnology skills to make one.")
 	tux_says(_"I'll keep that in mind.")
