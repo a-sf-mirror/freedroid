@@ -1319,6 +1319,7 @@ void ResetGameConfigToDefaultValues(void)
 	GameConfig.next_time_width_of_screen = GameConfig.screen_width;
 	GameConfig.next_time_height_of_screen = GameConfig.screen_height;
 	GameConfig.fullscreen_on = FALSE;
+	GameConfig.difficulty_level = DIFFICULTY_NORMAL;
 }
 
 /** 
