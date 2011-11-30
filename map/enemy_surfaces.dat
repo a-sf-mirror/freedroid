@@ -334,7 +334,7 @@ droid_stand_animation_speed_factor=6
 ** Start of new surface specification subsection **
 PrefixToFilename="female_hunter"
 droid_walk_animation_speed_factor=5
-droid_attack_animation_speed_factor=20
+droid_attack_animation_speed_factor=12
 droid_gethit_animation_speed_factor=5
 droid_death_animation_speed_factor=8
 droid_stand_animation_speed_factor=1
