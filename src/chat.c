@@ -276,11 +276,17 @@ void show_chat_log(enemy *chat_enemy)
 {
 	struct image *img = get_droid_portrait_image(chat_enemy->type);
 	float scale;
+	moderately_finepoint pos;
 
 	blit_background("conversation.png");
 
-	scale = (float)Droid_Image_Window.w / (float)img->w;
-	display_image_on_screen(img, Droid_Image_Window.x, Droid_Image_Window.y, IMAGE_SCALE_TRANSFO(scale));
+	// Compute the maximum uniform scale to apply to the bot image so that it fills
+	// the droid portrait image, and center the image.
+	scale = min((float)Droid_Image_Window.w / (float)img->w, (float)Droid_Image_Window.h / (float)img->h);
+	pos.x = (float)Droid_Image_Window.x + ((float)Droid_Image_Window.w - (float)img->w * scale) / 2.0;
+	pos.y = (float)Droid_Image_Window.y + ((float)Droid_Image_Window.h - (float)img->h * scale) / 2.0;
+
+	display_image_on_screen(img, pos.x, pos.y, IMAGE_SCALE_TRANSFO(scale));
 
 	chat_log.content_above_func = show_chat_up_button;
 	chat_log.content_below_func = show_chat_down_button;
