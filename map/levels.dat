@@ -33100,6 +33100,7 @@ t321 x6.50 y84.50
 t321 x18.50 y6.50
 t321 x17.50 y6.50
 t50 x48.53 y19.53
+t449 x49.50 y81.42
 /obsdata
 plabelinfolvl
 x=76 y=73 name="SwitchOffLaserTrapMSOLobby-2"
@@ -33262,6 +33263,9 @@ idx=2263 type=30 data={
 }
 idx=2281 type=30 data={
 	MSLaserTrapLVL31-2
+}
+idx=2769 type=32 data={
+	If the gate is closed, please ask the office for access.
 }
 /obstacleextensions
 wp
