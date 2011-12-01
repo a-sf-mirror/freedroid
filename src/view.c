@@ -72,6 +72,7 @@ struct blitting_list_element {
 	int element_type;
 	void *element_pointer;
 	float norm;
+	int list_position;
 	int code_number;
 };
 
@@ -340,6 +341,7 @@ static void insert_new_element_into_blitting_list(float new_element_norm, int ne
 	struct blitting_list_element elt;
 
 	elt.norm = new_element_norm;
+	elt.list_position = blitting_list->size;
 	elt.element_type = new_element_type;
 	elt.element_pointer = new_element_pointer;
 	elt.code_number = code_number;
@@ -1169,8 +1171,9 @@ static int blitting_list_compare(const void *elt1, const void *elt2)
 		return -1;
 	else if (e1->norm > e2->norm)
 		return 1;
-	
-	return 0;
+	else if (e1->list_position < e2->list_position)
+		return -1;
+	else return 1;
 }
 
 static void sort_blitting_list(void)
