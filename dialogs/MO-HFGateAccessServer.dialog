@@ -51,7 +51,7 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 	if (captcha ~= response) then
 		npc_says(_"Non-human detected. Administering paralyzing shock.")
-		npc_says(_"NOTE: If you think you have to pass nevertheless, try again and make sure you enter a word, not digits.")
+		npc_says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
 		freeze_tux_npc(7)
 		hurt_tux(20)
 		heat_tux(20)

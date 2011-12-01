@@ -47,6 +47,7 @@ Beginning of new chat dialog for character="XXXXX"
 	response = user_input_string(_"CAPTCHA: Please write the lowercase word that answers the following: "..number_one.." - ".. number_two.." = ?")
 	if (captcha ~= response) then
 		npc_says(_"Non-human detected. Administering paralyzing shock.")
+		npc_says(_"NOTE: If you are a human, try again, and make sure you enter a word and not digits.")
 		freeze_tux_npc(7)
 		hurt_tux(20)
 		heat_tux(20)
