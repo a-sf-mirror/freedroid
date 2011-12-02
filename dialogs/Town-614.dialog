@@ -27,38 +27,42 @@ Beginning of new chat dialog for character="XXXXX"
 ----------------------------------------------------------------------
 
 <EveryTime LuaCode>
-	show(0, 2, 3, 4, 99)
+	show(0, 4, 5, 99)
 </LuaCode>
 ----------------------------------------------------------------------
 
 Nr=0 Text=_"Who are you?"
 <LuaCode>
 	npc_says(_"I am a 614 security bot, once one of the best-selling products of Nicholson, Inc..")
-	hide(0) show(1, 4)
+	hide(0)	show(1, 2, 3)
 </LuaCode>
 ----------------------------------------------------------------------
-Nr=1 Text=_"What can you tell me about the Nicholson company?"
+
+Nr=1 Text=_"Why are you not hostile as are all the other bots?"
+<LuaCode>
+	npc_says(_"I belong to an older generation of bots, running a custom-made security guard operating system.")
+	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
+	npc_says(_"Even though discontinued by Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
+	npc_says(_"Don't forget to buy products from Nicholson, Inc. They are the best.")
+	hide(1)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=2 Text=_"What can you tell me about the Nicholson company?"
 <LuaCode>
 	npc_says(_"Nicholson, Inc. produces security bots.")
 	npc_says(_"It was founded by Karl Nicholson, a former Kernel hacker who was not satisfied with the development of the GPL license.")
 	npc_says(_"Nicholson decided to stick to one GPL version because he saw things getting worse.")
 	npc_says(_"Others were warned, but nobody listened to Nicholsons announcements.")
-	npc_says(_"He built up a team and developed an own Kernel called 'Nkernel'.")
+	npc_says(_"He built up a team and developed his own Kernel called 'Nkernel'.")
 	npc_says(_"The Nkernel development team grew fast and technicians started to produce their own droids optimized for the Nkernel.")
-	npc_says(_"The team became a company which released their first security droid, called 610")
-	npc_says(_"I am the 4th generation version of their security droid line.")
-	hide(1)
-</LuaCode>
-----------------------------------------------------------------------
-
-Nr=2 Text=_"Have you detected any hostile bot activity?"
-<LuaCode>
-	npc_says(_"No. The hostiles have not shown up within the last 24 hours.")
+	npc_says(_"The team became a company which released their first security droid, called 610.")
+	npc_says(_"I am the 5th generation version of their security droid line.")
 	hide(2)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=3 Text=_"What can you tell me about the 614 type? "
+Nr=3 Text=_"What can you tell me about the 614 type?"
 <LuaCode>
 	npc_says(_"The official manual classifies the 614 as a high class security droid.")
 	npc_says(_"It was mainly used within ships to protect certain areas from intruders.")
@@ -67,7 +71,7 @@ Nr=3 Text=_"What can you tell me about the 614 type? "
 	npc_says(_"The latest version of the security line is the 615.")
 	-- probably some when a cookie can check whether tux already saw such a droid and trigger/switch on the following dialog part
 	npc_says(_"Unfortunately its development was not finished when the great assault started.")
-	npc_says(_"The lack of security options on the system of the 615 lead to a malfunction.")
+	npc_says(_"The lack of security options on the system of the 615 led to a malfunction.")
 	npc_says(_"Circumstances that led to the great assault even made the 615 go crazy and attack people.")
 	npc_says(_"For the sake of your health, you should stay away from the 615 droids.")
 	npc_says(_"You have been warned!")
@@ -75,20 +79,17 @@ Nr=3 Text=_"What can you tell me about the 614 type? "
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=4 Text=_"What are your orders?"
+Nr=4 Text=_"Have you detected any hostile bot activity?"
 <LuaCode>
-	npc_says(_"My orders are to protect the living beings in this town from attacks by hostile bots.")
-	npc_says(_"This has top priority. There are no other priorities.")
+	npc_says(_"No. The hostiles have not shown up within the last 24 hours.")
 	hide(4)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=5 Text=_"Why are you not hostile, as are all the other bots?"
+Nr=5 Text=_"What are your orders?"
 <LuaCode>
-	npc_says(_"I belong to a an older generation of bots, running a custom-made security guard operating system.")
-	npc_says(_"None of the bots of this generation were affected by the proceedings that led to bots attacking, generally known as the Great Assault.")
-	npc_says(_"Even though discontinued by the Nicholson, Inc. long ago, today, some people have picked up the work and are even trying to improve the operating system running on my series.")
-	npc_says(_"Don't forget to buy products from Nicholson, Inc.. They are the best.")
+	npc_says(_"My orders are to protect the living beings in this town from attacks by hostile bots.")
+	npc_says(_"This has top priority. There are no other priorities.")
 	hide(5)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -96,7 +97,7 @@ Nr=5 Text=_"Why are you not hostile, as are all the other bots?"
 Nr=99 Text=_"See you later."
 <LuaCode>
 	npc_says(_"Resuming guard program.")
-	hide(5)
+	hide(1, 2, 3)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
