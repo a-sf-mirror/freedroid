@@ -327,7 +327,7 @@ PrefixToFilename="harvester"
 droid_walk_animation_speed_factor=8
 droid_attack_animation_speed_factor=10
 droid_gethit_animation_speed_factor=10
-droid_death_animation_speed_factor=5
+droid_death_animation_speed_factor=10
 droid_stand_animation_speed_factor=6
 ** End of new surface specification subsection **
 
