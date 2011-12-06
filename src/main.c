@@ -130,26 +130,6 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Couldn't change working directory to %s.\n", dirname(argv[0]));
 #endif
 
-	// First we issue some message, that should appear in the debug log for
-	// windows users.
-	//
-#ifdef __WIN32__
-	fprintf(stderr, "\n\
-Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n\
-\n\
-Normally you would not see this message or this window, but apparently\n\
-FreedroidRPG has terminated because of an error of some sort.\n\
-\n\
-You might wish to inspect the debug output below.  Maybe sending the\n\
-debug output (or at least the lower end of the debug output) to the\n\
-FreedroidRPG developers could help them to track down the problem.\n\
-\n\
-Well, it's no guarantee that we can solve any bug, but it's certainly\n\
-better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n\
-\n\n\n\
---start of real debug log--\n\n");
-#endif
-
 	QuitProgram = FALSE;
 	draw_collision_rectangles = FALSE;
 	gps_transform_map_dirty_flag = TRUE;

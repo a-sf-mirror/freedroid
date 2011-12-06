@@ -40,6 +40,12 @@
 
 #include "getopt.h"
 
+#ifdef __WIN32__
+// Needed to call SHGetSpecialFolderPath
+#define _WIN32_IE 0x0400
+#include <shlobj.h>
+#endif
+
 void Init_Game_Data(void);
 void Get_Bullet_Data(char *DataPointer);
 void UpdateCountersForThisFrame();
@@ -1413,6 +1419,71 @@ void InitFreedroid(int argc, char **argv)
 {
 	struct stat statbuf;
 
+	// Get the homedir, and define the directory where the config file and
+	// the savegames will be stored
+#if __WIN32__
+
+	our_homedir = ".";
+	// There is no real homedir on Windows.
+	// So we use the user's "My Documents" as a home directory.
+	char mydocuments_path[MAX_PATH];
+	if (SHGetSpecialFolderPath(0, mydocuments_path, CSIDL_PERSONAL, FALSE)) {
+		our_homedir = strdup(mydocuments_path);
+	}
+	our_config_dir = MyMalloc(strlen(our_homedir) + 20);
+	sprintf(our_config_dir, "%s/FreedroidRPG", our_homedir);
+
+#else
+
+	// first we need the user's homedir for loading/saving stuff
+	if ((our_homedir = getenv("HOME")) == NULL) {
+		our_homedir = ".";
+	}
+	our_config_dir = MyMalloc(strlen(our_homedir) + 20);
+	sprintf(our_config_dir, "%s/.freedroid_rpg", our_homedir);
+
+#endif
+
+#if __WIN32__
+	if (stat(our_config_dir, &statbuf) == -1) {
+		_mkdir(our_config_dir);
+	}
+
+	// On Windows, in SDL_WinMain(), stdout and stderr are redirected to files,
+	// before to call our main().
+	// Those files are automatically created in the directory of the current process.
+	// We reopen them in the user's config directory.
+	// (Note: the files opened by SDL are removed when the process ends, because they
+	//  are empty.)
+	char *filename = MyMalloc(strlen(our_config_dir) + 15);
+	sprintf(filename, "%s/stdout.txt", our_config_dir);
+	freopen(filename, "w", stdout);
+	sprintf(filename, "%s/stderr.txt", our_config_dir);
+	freopen(filename, "w", stderr);
+	free(filename);
+
+	fprintf(stderr, "Hello!  This window contains the DEBUG OUTPUT of FreedroidRPG.\n"
+	                "\n"
+	                "Normally you would not see this message or this window, but apparently\n"
+	                "FreedroidRPG has terminated because of an error of some sort.\n"
+	                "\n"
+	                "You might wish to inspect the debug output below.  Maybe sending the\n"
+	                "debug output (or at least the lower end of the debug output) to the\n"
+	                "FreedroidRPG developers could help them to track down the problem.\n"
+	                "\n"
+	                "Well, it's no guarantee that we can solve any bug, but it's certainly\n"
+	                "better than nothing.  Thanks anyway for your interest in FreedroidRPG.\n"
+	                "\n\n"
+	                "--start of real debug log--\n\n");
+#else
+	if (stat(our_config_dir, &statbuf) == -1) {
+		if (mkdir(our_config_dir, S_IREAD | S_IWRITE | S_IEXEC) == -1) {
+			free(our_config_dir);
+			our_config_dir = NULL;
+		}
+	}
+#endif
+
 	// We mention the version of FreedroidRPG, so that debug reports
 	// are easier to assign to the different versions of the game.
 	//
@@ -1428,43 +1499,6 @@ void InitFreedroid(int argc, char **argv)
 	SkipAFewFrames = 0;
 
 	ResetGameConfigToDefaultValues();
-
-#if __WIN32__
-	our_homedir = ".";
-#else
-	// first we need the user's homedir for loading/saving stuff
-	if ((our_homedir = getenv("HOME")) == NULL) {
-		DebugPrintf(0, "WARNING: Environment does not contain HOME variable...\n\
-I will try to use local directory instead\n");
-		our_homedir = ".";
-	}
-#endif
-
-	our_config_dir = MyMalloc(strlen(our_homedir) + 20);
-	sprintf(our_config_dir, "%s/.freedroid_rpg", our_homedir);
-
-	if (stat(our_config_dir, &statbuf) == -1) {
-		DebugPrintf(0, "\n---------------------------------------------------------------------------------\n\
-You seem not to have the directory %s in your home directory.\n\
-This directory is used by FreedroidRPG to store saved games and your personal settings.\n\
-So I'll try to create it now...\n\
----------------------------------------------------------------------------------\n", our_config_dir);
-#if __WIN32__
-		_mkdir(our_config_dir);
-		DebugPrintf(1, "ok\n");
-#else
-		if (mkdir(our_config_dir, S_IREAD | S_IWRITE | S_IEXEC) == -1) {
-			DebugPrintf(0, "\n---------------------------------------------------------------------------------\n\
-WARNING: Failed to create config-dir: %s. Giving up...\n\
-I will not be able to load or save games or configurations\n\
----------------------------------------------------------------------------------\n", our_config_dir);
-			free(our_config_dir);
-			our_config_dir = NULL;
-		} else {
-			DebugPrintf(1, "ok\n");
-		}
-#endif
-	}
 
 	input_keyboard_init();
 	input_set_default();
