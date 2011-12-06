@@ -56,8 +56,14 @@ dist-win32: src/freedroidRPG.exe
 	cp -r graphics map sound dialogs $(win_dir)
 	cp src/freedroidRPG.exe $(win_dir)
 	for i in $(win_txts); do \
-	   cp $$i $(win_dir)/$$i.txt; \
+	   sed 's/$$/\r/' $$i > $(win_dir)/$$i.txt; \
 	done
 	find $(win_dir) -name ".svn"              | xargs rm -rf
 	find $(win_dir) -name "*~"                | xargs rm -f
 	find $(win_dir) -name ".#*"               | xargs rm -f
+
+package-win32: dist-win32
+	rm -f freedroidRPG-win32-*-Setup.exe
+	rm -f freedroidRPG.nsi
+	win32/install_file_lists.py win32/freedroidRPG.nsi.in $(win_dir) > freedroidRPG.nsi
+	makensis -V1 -DPRODUCT_VERSION="$(VERSION)" -DSRC_DIR="${win_dir}" freedroidRPG.nsi
