@@ -459,7 +459,7 @@ void ShowCharacterScreen()
 	display_text(CharText, LEVEL_NR_X + CharacterRect.x, 107 + CharacterRect.y, &CharacterRect);
 
 	SetCurrentFont(Messagestat_BFont);
-	display_text(_("Money"), RIGHT_TXT_X + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect);
+	display_text(_("Circuits"), RIGHT_TXT_X + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect);
 	SetCurrentFont(Messagevar_BFont);
 	sprintf(CharText, "%6d", Me.Gold);
 	display_text(CharText, 240 + CharacterRect.x, 71 + CharacterRect.y, &CharacterRect);
