@@ -128,7 +128,7 @@ Nr=11 Text=_"Teach me the basic stuff."
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"Yes (cost 100 valuable circuits, 5 ability points)"
+Nr=12 Text=_"Yes (costs 100 valuable circuits, 5 training points)"
 <LuaCode>
 	if (get_skill("melee") < 1) then
 		if (train_skill(100, 5, "melee")) then

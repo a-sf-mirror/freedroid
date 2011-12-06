@@ -115,7 +115,7 @@ Nr=10 Text=_"Do you sell anything else?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"Ok, I'll take one."
+Nr=11 Text=_"Ok, I'll take one. (costs 50 circuits)"
 <LuaCode>
 	if (del_gold(50)) then
 		npc_says(_"Here is your pill.", "NO_WAIT")

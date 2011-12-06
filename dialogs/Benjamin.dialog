@@ -112,7 +112,7 @@ Nr=20 Text=_"Can you teach me how to properly use rifles and guns?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=21 Text=_"Sign up for a course in improving my ranged weapons skill. (cost 100 circuits, 3 training points)"
+Nr=21 Text=_"Sign up for a course in improving my ranged weapons skill. (costs 100 circuits, 3 training points)"
 NO_TEXT
 <LuaCode>
 	tux_says(_"Yes, I'd like some basic training in ranged combat.")
@@ -133,7 +133,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=22 Text=_"Yes, I want even more training. (cost 200 circuits, 6 training points)"
+Nr=22 Text=_"Yes, I want even more training. (costs 200 circuits, 6 training points)"
 NO_TEXT
 <LuaCode>
 	tux_says(_"So lets start the second course?")
@@ -150,7 +150,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=23 Text=_"I'm eager for more training. (cost 300 circuits, 9 training points)"
+Nr=23 Text=_"I'm eager for more training. (costs 300 circuits, 9 training points)"
 NO_TEXT
 <LuaCode>
 	tux_says(_"So can you help me become even better with guns?")
@@ -168,7 +168,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=24 Text=_"Yes, I wish to train some more. (cost 400 circuits, 12 training points)"
+Nr=24 Text=_"Yes, I wish to train some more. (costs 400 circuits, 12 training points)"
 NO_TEXT
 <LuaCode>
 	tux_says(_"I'd like to learn how to be a crack shot.")
@@ -185,7 +185,7 @@ NO_TEXT
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=25 Text=_"I want to become a god in ranged combat. (cost 500 circuits, 15 training points)"
+Nr=25 Text=_"I want to become a god in ranged combat. (costs 500 circuits, 15 training points)"
 NO_TEXT
 <LuaCode>
 	tux_says(_"Teach me how to be at one with my weapon.")

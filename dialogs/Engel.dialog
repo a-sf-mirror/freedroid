@@ -162,7 +162,7 @@ Nr=14 Text=_"What happens to these bot parts?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=15 Text=_"I'm ready. Please show me how to extract bot parts. (costs 50 circuits, 1 ability point)" Topic="Extract bot parts"
+Nr=15 Text=_"I'm ready. Please show me how to extract bot parts. (costs 50 circuits, 1 training point)" Topic="Extract bot parts"
 <LuaCode>
 	next(17)
 </LuaCode>
