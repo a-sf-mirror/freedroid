@@ -62,7 +62,9 @@ dist-win32: src/freedroidRPG.exe
 	find $(win_dir) -name "*~"                | xargs rm -f
 	find $(win_dir) -name ".#*"               | xargs rm -f
 
-package-win32: dist-win32
+$(win_dir): dist-win32
+
+package-win32: $(filter-out $(wildcard $(win_dir)), $(win_dir))
 	rm -f freedroidRPG-win32-*-Setup.exe
 	rm -f freedroidRPG.nsi
 	win32/install_file_lists.py win32/freedroidRPG.nsi.in $(win_dir) > freedroidRPG.nsi
