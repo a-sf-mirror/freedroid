@@ -124,6 +124,9 @@ Nr=4 Text=_"But...?"
 		npc_says(_"I guess I should not complain. The bots are far worse than the guards can be, but...")
 		npc_says(_"Sucked dry by a bloodthirsty regime over many years or just sliced into bits by our former servants...", "NO_WAIT")
 		npc_says(_"... What's the difference?")
+		if (has_cookie("Stone_Talk_Again_Later")) then
+			del_cookie("Stone_Talk_Again_Later")
+		end
 		show(8)
 	end
 	hide(4)
@@ -233,7 +236,7 @@ Nr=31 Text=_"Yes, its me."
 	npc_says(_"It used to belong to my grandfather, so it's very dear to me, but I'm sure he would have like you to have it on your journey to save us all.")
 	npc_says(get_player_name() .. _", if you ever find out who started the Great Assault... GIVE THEM A SWIFT KICK FROM LILY STONE!!!")
 	set_bot_name(_"Lily Stone -- Shopowner")
-	add_item("Two Barrel shotgun",1)
+	add_item("Two Barrel shotgun", 1)
 	end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 	end_dialog()
 	hide(31, 32, 33)
@@ -258,8 +261,8 @@ Nr=33 Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
 	add_gold(1547)
 	npc_faction("crazy", _"Lily Stone -- Bird Hunter")
 	end_quest(_"Saving the shop", _"I tricked that Ms. Stone into believing I was going to help her out. It was funny to see her get angry.")
-	end_dialog()
 	hide(31, 32, 33)
+	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
 
