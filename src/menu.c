@@ -1912,21 +1912,6 @@ static int do_savegame_selection_and_act(int action)
 		MenuTexts[n] = "";
 	}
 
-	// First we must find the home directory of the user.  From there on
-	// we can then construct the full directory path of the saved games directory.
-	//
-
-#if __WIN32__
-	our_homedir = ".";
-#else
-	// first we need the user's homedir for loading/saving stuff
-	if ((our_homedir = getenv("HOME")) == NULL) {
-		DebugPrintf(0, "ERROR: Environment does not contain HOME variable... \n\
-		I need to know that for saving. Abort.\n");
-		return (ERR);
-	}
-#endif
-
 	n = find_saved_games(&eps);
 
 	if (n > 0) {

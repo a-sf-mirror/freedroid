@@ -80,10 +80,7 @@ static int filename_filter_func(const struct dirent *file)
  */
 int find_saved_games(struct dirent ***namelist)
 {
-	char save_game_dir[1000];
-	sprintf(save_game_dir, "%s/.freedroid_rpg", our_homedir);
-
-	int n = scandir(save_game_dir, namelist, filename_filter_func, alphasort);
+	int n = scandir(our_config_dir, namelist, filename_filter_func, alphasort);
 
 	if (n == -1)
 	{
