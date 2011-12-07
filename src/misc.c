@@ -1134,8 +1134,14 @@ int SaveGameConfig(void)
 		printf("It seems that the game couldn't start up at all... therefore we need not save any configuration information.\n\n");
 		SDL_Quit();
 #if __WIN32__
-		system("notepad stderr.txt");
-		system("notepad stdout.txt");
+		fflush(stdout);
+		fflush(stderr);
+		char *cmd = MyMalloc(strlen(our_config_dir) + 20);
+		sprintf(cmd, "notepad %s/stderr.txt", our_config_dir);
+		system(cmd);
+		sprintf(cmd, "notepad %s/stdout.txt", our_config_dir);
+		system(cmd);
+		free(cmd);
 #endif
 		exit(ERR);
 	}
@@ -1212,8 +1218,14 @@ void Terminate(int exit_code, int save_config)
 
 #if __WIN32__
 	if (exit_code == EXIT_FAILURE) {
-		system("notepad stderr.txt");
-		system("notepad stdout.txt");
+		fflush(stdout);
+		fflush(stderr);
+		char *cmd = MyMalloc(strlen(our_config_dir) + 20);
+		sprintf(cmd, "notepad %s/stderr.txt", our_config_dir);
+		system(cmd);
+		sprintf(cmd, "notepad %s/stdout.txt", our_config_dir);
+		system(cmd);
+		free(cmd);
 	}
 #endif
 
