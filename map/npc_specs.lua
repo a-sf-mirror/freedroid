@@ -89,8 +89,6 @@ items = {{"Big kitchen knife"},
 	 {"Shoes"},
 	 {"Shoes"},
 	 {"Worker Shoes"},
-	 {".22 LR Ammunition"},
-	 {"Shotgun shells"}
 	}
 }
 

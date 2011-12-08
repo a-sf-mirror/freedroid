@@ -224,6 +224,8 @@ Nr=12 Text=_"Have I done enough quests to become a member now?"
 		display_big_message(_"Joined Town Guard!!")
 		add_cookie("tux_has_joined_guard")
 		change_obstacle_state("Main Gate Guardhouse", "opened")
+		sell_item("Shotgun shells", 1, "Stone")
+		sell_item(".22 LR Ammunition", 1, "Stone")
 		hide(3, 12)
 	else
 		if (get_town_score() > 29) then

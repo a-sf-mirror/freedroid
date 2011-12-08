@@ -237,6 +237,7 @@ Nr=31 Text=_"Yes, its me."
 	npc_says(get_player_name() .. _", if you ever find out who started the Great Assault... GIVE THEM A SWIFT KICK FROM LILY STONE!!!")
 	set_bot_name(_"Lily Stone -- Shopowner")
 	add_item("Two Barrel shotgun", 1)
+	add_item("Shotgun shells", 20)
 	end_quest(_"Saving the shop", _"Ms. Stone was really grateful for my help. She took only what she needed from me, and still rewarded me with a shotgun she had been hiding from the Red Guard.")
 	end_dialog()
 	hide(31, 32, 33)
