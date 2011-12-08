@@ -53,7 +53,7 @@ Beginning of new chat dialog for character="XXXXX"
 		if (has_cookie("kevin_sigtalk")) then hide(20) else show(20) end
 	end
 
-	if (not has_cookie("lawnmower_fueled")) then
+	if (not has_cookie("kevins_lawnmower_tux_login_granted")) then
 		if (has_cookie("kevins_lawnmower_tux_login")) then
 			npc_says(_"Oh, and did you play around with my Lawnmower?")
 			show(60, 61)
@@ -283,10 +283,8 @@ Nr=60 Text=_"No, I didn't touch it."
 <LuaCode>
 	npc_says(_"Strange, I should have a look at it...") --Tux lied to him and will not directly get an account if he talks to it next time.
 	npc_says(_"...when I have more time..")
-	if (has_cookie("kevins_lawnmower_tux_login")) then
-		del_cookie("kevins_lawnmower_tux_login")
-	end
-	hide(61, 60)
+	del_cookie("kevins_lawnmower_tux_login")
+	hide(60, 61)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -302,7 +300,8 @@ Nr=61 Text=_"Yes, I tried to login."
 		npc_says(_"And I still have no time.")
 		npc_says(_"The power level is still very low, hence, I am quite busy.")
 	end
-	hide(61, 60)
+	del_cookie("kevins_lawnmower_tux_login")
+	hide(60, 61)
 </LuaCode>
 ----------------------------------------------------------------------
 
