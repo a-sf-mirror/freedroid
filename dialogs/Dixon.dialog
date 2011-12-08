@@ -38,30 +38,22 @@ Beginning of new chat dialog for character="XXXXX"
 	if (done_quest(_"The yellow toolkit")) then
 		if (has_cookie("singularity_dead")) then
 			if (has_cookie("singularity_killed")) then show(44) else show(43) end
+			hide(45, 46)
 		else 
 			if (has_cookie("dixon_one")) then show(46) else show(45) end
 		end
 	end
 
-	if (has_cookie("dixon_angry_250")) then
+	if (has_cookie("dixon_angry_250") or
+	    has_cookie("dixon_angry_350")) then
 		if (has_cookie("dixon_very_angry")) then next(83) 
 		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong, and I have no desire to talk to you.")
 		end
 	end
 
-	if (has_cookie("dixon_angry_350")) then
-		if (has_cookie("dixon_very_angry")) then next(83)
-		else npc_says(_"Linarian, please leave. You are no longer welcome here. You have done me wrong, and I have no desire to talk to you.")
-		end
-	end
-
-	if (has_cookie("singularity_saved")) then
-		if (has_cookie("dixon_one")) then show(46) else show(45) end
-	end
-
-	if (has_cookie("dixon_saved_and_talked")) then hide(46) end
-
-	if ((not has_cookie("296_book_examine_library")) and
+	if (has_cookie("have_296_book")) then
+		hide(60)
+	elseif ((not has_cookie("296_book_examine_library")) and
 	   has_cookie("ewalds_296_sourcebook")) then
 		show(60)
 	end
@@ -156,7 +148,7 @@ Nr=21 Text=_"I am ready. Open the tunnels for me, Dixon."
 	elseif difficulty("hard") then
 		add_item("EMP Shockwave Generator",1)
 	end
-	hide(21, 26) show(31)
+	hide(21, 26, 27, 28, 29, 30) show(31)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -254,7 +246,6 @@ Nr=30 Text=_"You can forget about your toolkit. I am not going to take away some
 	npc_says(_"I think I understand. Yes, I do not like violence, myself. The bots may need the toolkit, I am sure there must be a second set of autotools kicking around somewhere.")
 	npc_says(_"After all, it seems like they need them more than I do.", "NO_WAIT")
 	npc_says(_"I will try to contact them somehow. Maybe they would help us. Ah, we shall see. It would be great to have an ally against the other bots.")
-	add_cookie("singularity_saved")
 	end_quest(_"The yellow toolkit", _"I refused to get the toolkit from the bots in the tunnels because I think they might be sentient. Life is precious and should be preserved.")
 	hide(28, 29, 30)
 </LuaCode>
@@ -405,7 +396,6 @@ Nr=46 Text=_"Is everything all right?"
 	npc_says(_"Ha! Never better!", "NO_WAIT")
 	npc_says(_"We are mass producing energy shields, creating more electric energy than we can ever imagine spending and even experimenting with new armor types.")
 	npc_says(_"Life is good right now.")
-	add_cookie("dixon_saved_and_talked")
 	hide(46) show(47)
 </LuaCode>
 ----------------------------------------------------------------------
