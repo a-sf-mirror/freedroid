@@ -250,7 +250,7 @@ Nr=30 Text=_"What can you teach me about hacking?"
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=31 Text=_"Yes, please teach me."
+Nr=31 Text=_"Yes, please teach me how to become a hacker."
 <LuaCode>
 	if (train_program(300, kevin_next_lesson_cost, "Hacking")) then
 		kevin_lessons_taught = kevin_lessons_taught + 1
