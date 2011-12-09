@@ -26,6 +26,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 <FirstTime LuaCode>
 	show(0)
+	kevin_max_lessons = 6      -- the max number of lessons Kevin is willing to teach
+	kevin_lessons_taught = 0   -- the number of lessons Kevin has already taught, initialized with 0
+	kevin_next_lesson_cost = 0 -- the training point cost of the upcoming lesson
 </LuaCode>
 
 <EveryTime LuaCode>
@@ -42,9 +45,9 @@ Beginning of new chat dialog for character="XXXXX"
 
 	if (has_quest(_"And there was light...")) and
 	   (done_quest(_"And there was light...")) then
-		show(30, 8, 10)
-		if (not has_cookie("did_And there was light...")) then
-			add_cookie("did_And there was light...")
+		show(8, 10)
+		if (not has_cookie("Kevin_did_And there was light...")) then
+			add_cookie("Kevin_did_And there was light...") -- Tux spoke with Kevin after completing the quest "And there was light..."
 			update_quest(_"And there was light...", _"Everything *is* back to normal for now, so Kevin doesn't need to spend all his time monitoring the power levels.")
 		end
 	end
@@ -135,17 +138,18 @@ Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
 
 Nr=10 Text=_"How about some reward for securing your energy supply area?"
 <LuaCode>
-	if (has_cookie("kevin_reward1_given")) then
+	if (has_cookie("Kevin_reward_given")) then
 		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.", _"I am not as confused as you think. Go away now.")
 	else
 		npc_says(_"What do you want?")
-		show(11, 12, 13)
+		topic("Kevin's Reward")
+		show(11, 12, 13, 14)
 	end
 	hide(10)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=11 Text=_"I want to become a hacker."
+Nr=11 Text=_"I want to become a hacker." Topic="Kevin's Reward"
 <LuaCode>
 	npc_says(_"Your desire for information amuses me. Your wish will be granted. I will teach you how to improve your skill in designing hacking programs.")
 	npc_says(_"You must know that hacking is an art. It is easy to chop your enemy to bits with an axe or shred it to atoms with a grenade... But hacking requires skill.")
@@ -154,30 +158,42 @@ Nr=11 Text=_"I want to become a hacker."
 	npc_says(_"Now watch. Observe carefully. See how I enter the system... Yes. Watch the connection glowing, burning like a bright star...")
 	npc_says(_"...only to die seconds after, as the system far away collapses under it's own weight... It's done.")
 	npc_says(_"That is all I want to show you for now. Maybe later I will teach you something else.")
-	add_cookie("kevin_reward1_given")
 	improve_program("Hacking")
-	end_dialog()
-	hide(11, 12, 13)
+	next(15)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=12 Text=_"I don't want any reward. Just gratitude."
+Nr=12 Text=_"I don't want any reward. Just gratitude." Topic="Kevin's Reward"
 <LuaCode>
 	npc_says(_"Of course you can have that. There, I'm most grateful to you. That should do.")
-	add_cookie("kevin_reward1_given")
 	-- reward here could be bonus to joining faction or a powerful hacked (friendly) bot that supports Tux fighting in Hell Fortress.
-	end_dialog()
-	hide(11, 12, 13)
+	next(15)
 </LuaCode>
 ----------------------------------------------------------------------
 
-Nr=13 Text=_"I want money."
+Nr=13 Text=_"I want money." Topic="Kevin's Reward"
 <LuaCode>
 	npc_says(_"Eh... Here, take these 900 circuits. That should be enough.")
 	add_gold(900)
-	add_cookie("kevin_reward1_given")
-	end_dialog()
-	hide(11, 12, 13)
+	next(15)
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=14 Text=_"I want to think about that for another moment." Topic="Kevin's Reward"
+<LuaCode>
+	npc_says(_"So be it. As reward for your help I grant you the right to think about that.")
+	npc_says(_"Just joking. Come back when you've decided what you want.")
+	hide(11, 12, 13, 14)
+	pop_topic() -- "Kevin's Reward"
+</LuaCode>
+----------------------------------------------------------------------
+
+Nr=15 Text="BUG, REPORT ME! kevin node15" Topic="Kevin's Reward"
+NO_TEXT
+<LuaCode>
+	add_cookie("Kevin_reward_given") -- Tux received a reward for completing the quest "And there was light..."
+	hide(11, 12, 13, 14) show(30)
+	pop_topic() -- "Kevin's Reward"
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -186,7 +202,7 @@ Nr=20 Text=_"Jasmine just blew up."
 	npc_says(_"Oh. Right.")
 	npc_says(_"Well, thanks for telling me.")
 	npc_says(_"Back to the drawing board, I guess...")
-	add_cookie("kevin_sigtalk")
+	add_cookie("kevin_sigtalk") -- Tux spoke with Kevin about Jasmine blew up
 	hide(20) show(21)
 </LuaCode>
 ----------------------------------------------------------------------
@@ -199,6 +215,7 @@ Nr=21 Text=_"I thought you would be more worried about her death."
 	hide(21)
 </LuaCode>
 ----------------------------------------------------------------------
+
 Nr=30 Text=_"What can you teach me about hacking?"
 <LuaCode>
 	if (not done_quest(_"And there was light...")) then 
@@ -217,14 +234,14 @@ Nr=30 Text=_"What can you teach me about hacking?"
 			npc_says(_"If you get rid of the maintenance bots on the second underground level of this station, I will find the time to teach you something.")
 		end
 	else
-		npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
-		npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
-		hacking_level = get_program("Hacking")
-		if (hacking_level > 8) then
+		if (kevin_lessons_taught == kevin_max_lessons) then
 			npc_says(_"Sorry, there is no human alive that could give you further training.")
 			hide(31)
 		else 
-			npc_says(_"You will need " .. hacking_level * 2 .. " training points.")
+			kevin_next_lesson_cost = 2 * (kevin_lessons_taught + 1)
+			npc_says(_"I can teach you everything, for a price of course.", "NO_WAIT")
+			npc_says(_"Three hundred per lesson, up front.", "NO_WAIT")
+			npc_says(string.format(_"You will need %d training points.", kevin_next_lesson_cost))
 			npc_says(_"Still interested?")
 			show(31)
 		end
@@ -235,15 +252,15 @@ Nr=30 Text=_"What can you teach me about hacking?"
 
 Nr=31 Text=_"Yes, please teach me."
 <LuaCode>
-	if (train_program(300, get_program("Hacking") * 2, "Hacking")) then
+	if (train_program(300, kevin_next_lesson_cost, "Hacking")) then
+		kevin_lessons_taught = kevin_lessons_taught + 1
 		npc_says(_"Good. The most important thing about hacking is to understand the nature of the machine you want to hack.")
 		npc_says(_"Once you have figured out what the creators of the system were thinking when setting it up, you'll also know how to best hack it.")
 		npc_says(_"Now I see the feature set of your hacking program has already improved a lot.")
-		show(30)
 	else
-		if (get_gold() < 300 ) then next(40) else next(41) end
+		if (get_gold() < 300) then next(40) else next(41) end
 	end
-	hide(31)
+	hide(31) show(30)
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -275,7 +292,7 @@ NO_TEXT
 		_"Waving those circuits in front of me when you are too unfocused to train won't help. I can take your money, but you won't learn anything.",
 		_"Yeah, I don't think you have enough experience for this. Come back here after you see some more action.",
 		_"Then come back when you have a real will to learn.",
-		_"You don't have enough experience. Come here after you see some more action.") 
+		_"You don't have enough experience. Come here after you see some more action.")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -293,7 +310,7 @@ Nr=61 Text=_"Yes, I tried to login."
 	if (done_quest(_"And there was light...")) then
 		npc_says(_"Please, don't touch it.")
 		npc_says(_"I don't want you to break it somehow.")
-		add_cookie("kevins_lawnmower_tux_login_granted")
+		add_cookie("kevins_lawnmower_tux_login_granted") -- Tux has access to Kevin-Lawnmower
 	else
 		npc_says(_"You better not touch it!")
 		npc_says(_"If you break it somehow, I'll be very angry.")
@@ -308,7 +325,6 @@ Nr=61 Text=_"Yes, I tried to login."
 Nr=99 Text=_"Let us talk later."
 <LuaCode> 
 	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.", _"If you need to contact me, my number is 127.0.0.1", _"Keep your system up to date, Linarian.")
-	hide(31)
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
