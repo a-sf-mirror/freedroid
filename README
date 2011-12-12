@@ -115,11 +115,6 @@
    * Alt tab in/out of the game in OpenGL while a static popup is displayed makes the screen completely black.
 	 Clicking or pressing the required key to close the popup will redraw/bring back the screen.
 
- Windows
-   * Using the tool IZarc to unpack the downloaded zip breaks the game. IZarc apparently can not
-	 handle filenames without extensions. Please use other options, e.g. 7zip, winzip, winrar etc, to
-	 correctly unpack the game.
-
  Mac
    * Open Files: OSX max number of open files defaults to 256 (as of 10.6). This can lead to errors when
 	 loading images: "In Function: get_iso_image_from_file_and_path. Could not load image
