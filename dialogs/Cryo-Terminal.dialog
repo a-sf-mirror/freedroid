@@ -53,7 +53,7 @@ Nr=0 Text=_"about"
 	npc_says(_"Cryonic Solutions is a full service cryonic company.", "NO_WAIT")
 	npc_says(_"We provide not only full cryostasis, but post-stasis reintegration into the world of tomorrow!")
 	npc_says(_"Take the fast trip to the future with Cryonic Solutions!")
-	npc_says(_"Cryonic Solutions, since ".. os.date("%w")+2011 .._", is the name people trust in cryonics!")
+	npc_says(string.format(_"Cryonic Solutions, since %d, is the name people trust in cryonics!", os.date("%w") + 2011))
 	cli_says(terminal, "NO_WAIT")
 	hide(0)
 </LuaCode>
