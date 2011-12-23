@@ -1554,7 +1554,7 @@ void ProcessDisplayColumn(void)
 	static int CLayer = 3;	/* the connection-layer to the Column */
 	static int flicker_color = 0;
 	int row;
-	int GelbCounter, ViolettCounter;
+	int YellowCounter, PurpleCounter;
 
 	flicker_color = !flicker_color;
 
@@ -1599,17 +1599,17 @@ void ProcessDisplayColumn(void)
 	}			/* for */
 
 	// evaluate the winning color
-	GelbCounter = 0;
-	ViolettCounter = 0;
+	YellowCounter = 0;
+	PurpleCounter = 0;
 	for (row = 0; row < NUM_LINES; row++)
 		if (DisplayColumn[row] == YELLOW)
-			GelbCounter++;
+			YellowCounter++;
 		else
-			ViolettCounter++;
+			PurpleCounter++;
 
-	if (ViolettCounter < GelbCounter)
+	if (PurpleCounter < YellowCounter)
 		LeaderColor = YELLOW;
-	else if (ViolettCounter > GelbCounter)
+	else if (PurpleCounter > YellowCounter)
 		LeaderColor = PURPLE;
 	else
 		LeaderColor = DRAW;
