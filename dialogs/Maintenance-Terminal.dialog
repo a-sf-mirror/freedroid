@@ -154,7 +154,8 @@ Nr=7 Text=_"sudo disable guns"
 
 Nr=8 Text=_"yes" Topic="Make a sandwich"
 <LuaCode>
-	npc_says_random(_"Now how would I make one of those?", _"Sudo doesn't give you magic powers.")
+	npc_says_random(_"Now how would I make one of those?",
+					_"Sudo doesn't give you magic powers.")
 	add_cookie("want_sandwich")
 	cli_says(terminal, "NO_WAIT")
 	pop_topic()

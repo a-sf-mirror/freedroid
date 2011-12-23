@@ -369,7 +369,8 @@ Nr=29 Text=_"That's all I wanted to ask about that." Topic="Linarians"
 
 Nr=99 Text=_"Thank you for your wise words."
 <LuaCode>
-	npc_says_random(_"Feel free to come here any time you want.", "You flatter me.")
+	npc_says_random(_"Feel free to come here any time you want.",
+					_"You flatter me.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

@@ -31,7 +31,8 @@ Beginning of new chat dialog for character="XXXXX"
 <EveryTime LuaCode>
 	terminal = "guest@cryo-solutions: ~ # "
 	npc_says(_"Welcome to [b]Cryonic Solutions[/b]!", "NO_WAIT")
-	npc_says_random(_"We freeze you today, so you can see tomorrow!", _"Take the fast trip to the future with Cryonic Solutions!", "NO_WAIT")
+	npc_says_random(_"We freeze you today, so you can see tomorrow!",
+					_"Take the fast trip to the future with Cryonic Solutions!", "NO_WAIT")
 	npc_says(_"Please make your selection to learn more!", "NO_WAIT")
 	if (not has_cookie("cryo_term_unlocked")) then
 	show(0, 1, 2, 3)

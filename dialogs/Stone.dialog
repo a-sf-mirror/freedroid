@@ -269,7 +269,10 @@ Nr=33 Text=_"Ha ha ha, You fell for it! You get nothing from me! Hahahahah!"
 
 Nr=99 Text=_"See you later."
 <LuaCode>
-	npc_says_random(_"Have a nice day!", _"Take care that you don't void any warranties.", _"Please come back if you have any questions regarding my goods.", _"I hope to see you again, soon!")
+	npc_says_random(_"Have a nice day!",
+					_"Take care that you don't void any warranties.",
+					_"Please come back if you have any questions regarding my goods.",
+					_"I hope to see you again, soon!")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

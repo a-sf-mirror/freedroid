@@ -54,7 +54,8 @@ Nr=0 Text=_"Hi! I'm new here."
 
 Nr=1 Text=_"Ok, if I want to buy me one of those mapping pills. How much are they?"
 <LuaCode>
-	npc_says_random(_"They only cost 50 circuits. Special price only for you!", _"You're so lucky! I just decided to cut the price in half! One of those devices only costs 50 circuits now!")
+	npc_says_random(_"They only cost 50 circuits. Special price only for you!",
+					_"You're so lucky! I just decided to cut the price in half! One of those devices only costs 50 circuits now!")
 	hide(1) show(11, 12)
 </LuaCode>
 ----------------------------------------------------------------------

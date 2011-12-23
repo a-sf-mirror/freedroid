@@ -54,7 +54,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 		show(3)
 	elseif (has_cookie("koan_spared_via_dialog")) then
-		npc_says_random(_"It's a pleasure to meet you again.", _"I am happy to see you've returned.")
+		npc_says_random(_"It's a pleasure to meet you again.",
+						_"I am happy to see you've returned.")
 		if (tania_is_here) then
 			npc_says(_"I see you have brought a friend along with you.")
 		end
@@ -63,7 +64,8 @@ Beginning of new chat dialog for character="XXXXX"
 		show(10, 11)
 		hide(20, 21, 99)
 	--elseif has_cookie("met_koan_before_duncan") then
-	--	npc_says_random(_"Come sitdown my friend.", _"Please take some time and relax here in the cool.")
+	--	npc_says_random(_"Come sitdown my friend.",
+	--					_"Please take some time and relax here in the cool.")
 	--	if (tania_is_here) then
 	--		npc_says(_"I see you've brought a friend along with you.")
 	--	end
@@ -178,7 +180,8 @@ Nr=21 Text=_"This was a bunker?"
 
 Nr=99 Text=_"I will go now."
 <LuaCode>
-	npc_says_random(_"This place will always wait for you.", _"This is a sanctuary from the desert above.")
+	npc_says_random(_"This place will always wait for you.",
+					_"This is a sanctuary from the desert above.")
 	heal_tux()
 	hide(2, 3, 4, 5)
 	end_dialog()

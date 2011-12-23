@@ -285,7 +285,8 @@ Nr=50 Text=_"Yeah, it was a totally idiotic idea to take those pills."
 
 Nr=99 Text=_"See you later."
 <LuaCode> 
-	npc_says_random(_"Later, man!", _"Stay cool dude.")
+	npc_says_random(_"Later, man!",
+					_"Stay cool dude.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

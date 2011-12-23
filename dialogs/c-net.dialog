@@ -398,7 +398,10 @@ Nr=83 Text=_"global_thermonuclear_war"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./global_thermonuclear_war", "NO_WAIT")
-	npc_says_random(_"Sorry, only winning move is not to play. New game?", _"Mankind exterminated. You lost!", _"No victory possible. LOSER! Play again?", _"Everyone dies, new game?", "NO_WAIT")
+	npc_says_random(_"Sorry, only winning move is not to play. New game?",
+					_"Mankind exterminated. You lost!",
+					_"No victory possible. LOSER! Play again?",
+					_"Everyone dies, new game?", "NO_WAIT")
 	cli_says(terminal, "NO_WAIT")
 </LuaCode>
 ----------------------------------------------------------------------
@@ -430,7 +433,10 @@ NO_TEXT
 		next(87)
 	else
 		npc_says(_"You are already playing Progress Quest:")
-		npc_says_random(_"You are selling an item!", _"You are killing a creature!", _"You are gaining a level!", _"You are casting a spell!")
+		npc_says_random(_"You are selling an item!",
+						_"You are killing a creature!",
+						_"You are gaining a level!",
+						_"You are casting a spell!")
 		cli_says(terminal, "NO_WAIT")
 	end
 </LuaCode>

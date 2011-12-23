@@ -159,7 +159,8 @@ Nr=10 Text=_"Can you fix me up?"
 	if (tux_hp_ratio() == 1) then
 		npc_says(_"You seem to be in excellent health, there is nothing I can do for you right now.")
 	else
-		npc_says_random(_"There, it's done. You're completely fixed. You can go now.", _"You need to keep better care of yourself. You're completely fixed. You can go now.")
+		npc_says_random(_"There, it's done. You're completely fixed. You can go now.",
+						_"You need to keep better care of yourself. You're completely fixed. You can go now.")
 		heal_tux()
 	end
 	hide(0)
@@ -356,7 +357,8 @@ Nr=57 Text=_"What is a Doc-in-a-can?"
 
 Nr=99 Text=_"See you later."
 <LuaCode>
-	npc_says_random(_"See you later.", _"Keep healthy!")
+	npc_says_random(_"See you later.",
+					_"Keep healthy!")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

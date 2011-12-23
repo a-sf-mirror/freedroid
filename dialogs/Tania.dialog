@@ -44,7 +44,8 @@ Beginning of new chat dialog for character="XXXXX"
 	if (has_quest(_"Tania's Escape")) then
 		hide(1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 90)
 		if (not has_cookie("Tania_follow_tux")) then
-			npc_says_random(_"I long to see the surface.", _"You are the most interesting hallucination yet.")
+			npc_says_random(_"I long to see the surface.",
+							_"You are the most interesting hallucination yet.")
 			show(90)
 			if (not has_cookie("sagunsoff")) then		--Guns are still on
 				hide(27)
@@ -67,7 +68,8 @@ Beginning of new chat dialog for character="XXXXX"
 			elseif (npc_damage_amount() > 10) then --skip to injury dialog
 				next(55)
 			else
-				npc_says_random(_"Are we there yet?", _"How much longer?")
+				npc_says_random(_"Are we there yet?",
+								_"How much longer?")
 			end
 			show(92)
 		elseif ((not has_cookie("Tania-sent-to-Doc")) and (not has_cookie("Tania-set-free"))) then --at the Town Entrance, waiting for Spencer's OK
@@ -183,7 +185,8 @@ Nr=7 Text=_"Can you give me some pills then?"
 Nr=8 Text=_"So you are a biologist? Could you heal me?"
 <LuaCode>
 	npc_says(_"That would be something different from what I've done in the last months at least. Some entertainment.")
-	npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.", _"You are now completely healed. You should take better care of yourself.")
+	npc_says_random(_"Let me take a look at that... it's nothing some nanobots couldn't take care of.... You will be all fixed up in a minute.",
+					_"You are now completely healed. You should take better care of yourself.")
 	heal_tux()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -553,10 +556,13 @@ NO_TEXT
 			npc_says(_"OK. But please, come back soon.")
 		elseif (has_cookie("Tania-sent-to-Doc")) then --"Tania's Escape" Quest (Tania free in the town somewhere)
 			tux_says(_"See you later.")
-			npc_says_random(_"Please be safe!", _"Thanks again.", _"Please come back again, my little penguin.")
+			npc_says_random(_"Please be safe!",
+							_"Thanks again.",
+							_"Please come back again, my little penguin.")
 		end
 	else
-		npc_says_random(_"That's OK. But please, please, come back. I'm so lonely.", _"Please come back again and get me out of here.")
+		npc_says_random(_"That's OK. But please, please, come back. I'm so lonely.",
+						_"Please come back again and get me out of here.")
 	end
 	end_dialog()
 </LuaCode>

@@ -67,7 +67,8 @@ Nr=0 Text=_"Hi... Erm... Who are you?"
 
 Nr=1 Text=_"I would like to buy a bomb."
 <LuaCode>
-	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.", _"Sure. These are my offers today.")
+	npc_says_random(_"Yes. I am sure we can arrange something. Take a look.",
+					_"Sure. These are my offers today.")
 	trade_with("Duncan")
 	if (not has_cookie("guard_follow_tux")) then
 		hide(1) show(2, 7)
@@ -105,7 +106,9 @@ Nr=4 Text=_"The fall of the Red Guard? Tell me more about it."
 
 Nr=5 Text=_"I want to buy some grenades."
 <LuaCode>
-	npc_says_random(_"Certainly.", _"Sure.", _"With pleasure.")
+	npc_says_random(_"Certainly.",
+					_"Sure.",
+					_"With pleasure.")
 	trade_with("Duncan")
 </LuaCode>
 ----------------------------------------------------------------------

@@ -307,7 +307,9 @@ Nr=33 Text=_"I'd like another drink, please."
 
 Nr=99 Text=_"Well, I should really be going now."
 <LuaCode>
-	npc_says_random(_"Thank you, come again!", _"Tell your friends about us!", _"We hope you've enjoyed our service!")
+	npc_says_random(_"Thank you, come again!",
+					_"Tell your friends about us!",
+					_"We hope you've enjoyed our service!")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

@@ -70,7 +70,10 @@ Nr=3 Text=_"Thanks for the advice."
 
 Nr=99 Text=_"I'll be going then."
 <LuaCode>
-	npc_says_random(_"Finally.", _"Don't come back.", _"It is dangerous here.", _"Leave and stay away.")
+	npc_says_random(_"Finally.",
+					_"Don't come back.",
+					_"It is dangerous here.",
+					_"Leave and stay away.")
 	show(1)
 	end_dialog()
 </LuaCode>

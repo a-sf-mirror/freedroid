@@ -43,7 +43,8 @@ Beginning of new chat dialog for character="XXXXX"
 				show(5)
 			end
 		else
-			npc_says_random(_"Sure is dark around here.", _"I wish there was some decent lighting.")
+			npc_says_random(_"Sure is dark around here.",
+							_"I wish there was some decent lighting.")
 		end
 	end
 
@@ -58,7 +59,8 @@ Beginning of new chat dialog for character="XXXXX"
 
 Nr=0 Text=_"Hello."
 <LuaCode>
-	npc_says_random(_"Hello", _"Hi there!")
+	npc_says_random(_"Hello",
+					_"Hi there!")
 	hide(0) show(1)
 </LuaCode>
 ----------------------------------------------------------------------

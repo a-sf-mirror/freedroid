@@ -36,9 +36,12 @@ Beginning of new chat dialog for character="XXXXX"
 	elseif (will_rush_tux()) then
 		set_rush_tux(0)
 		if (has_cookie("town-northgateguard_tux_nickname_loon")) then
-			npc_says_random(_"Oh, the loon returned.", _"Just the loon. I needn't have worried.")
+			npc_says_random(_"Oh, the loon returned.",
+							_"Just the loon. I needn't have worried.")
 		else
-			npc_says_random(_"Oh, it is you.", _"I see you have returned.", _"Welcome back.")
+			npc_says_random(_"Oh, it is you.",
+							_"I see you have returned.",
+							_"Welcome back.")
 		end
 		end_dialog()
 	else
@@ -101,9 +104,8 @@ Nr=5 Text=_"Oh? Who was he? And why?"
 		end_quest(_"A strange guy stealing from town", _"Though I probably should ask Kevin some day what he was doing with the town computers.")
 	end
 	npc_says(_"In any case...")
-	npc_says_random(
-		_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
-		_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
+	npc_says_random(_"I'll let you in, but be warned: one false move and we all have flightless waterfowl for dinner. I hope I am making myself clear?",
+					_"Linarian, I will let you in. Do something stupid, and you aren't coming out. Got it?")
 	hide(5) show(10, 11)
 </LuaCode>
 ----------------------------------------------------------------------

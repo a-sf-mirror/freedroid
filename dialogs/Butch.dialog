@@ -230,7 +230,10 @@ Nr=21 Text=_"I want to fight in the master arena!"
 
 Nr=99 Text=_"I'll be going then."
 <LuaCode>
-	npc_says_random(_"Sure.", _"See you around.", _"Remember: pain is temporary but glory is forever.", _"Go kill some bots.")
+	npc_says_random(_"Sure.",
+					_"See you around.",
+					_"Remember: pain is temporary but glory is forever.",
+					_"Go kill some bots.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

@@ -95,7 +95,8 @@ Nr=40 Text=_"I see you have a huge source code book collection. Mind if I buy so
 
 Nr=41 Text=_"So what interesting books do you have available right now?"
 <LuaCode>
-	npc_says_random(_"Some of these might interest you.", _"I only have a few programming volumes, feel free to look through them.")
+	npc_says_random(_"Some of these might interest you.",
+					_"I only have a few programming volumes, feel free to look through them.")
 	trade_with("Tamara")
  	show(42)
 </LuaCode>
@@ -172,7 +173,9 @@ Nr=50 Text=_"Do you have a copy of Subatomic and Nuclear Science for Dummies, Vo
 Nr=99 Text=_"Thank you for the help."
 <LuaCode>
 	hide(43, 44, 45, 46)
-	npc_says_random(_"No problem, and remember to return your books in time.", _"I aim to ensure that the great works of literature will survive this horrible apocalypse.", _"That is what I'm here for. Come back at any time.")
+	npc_says_random(_"No problem, and remember to return your books in time.",
+					_"I aim to ensure that the great works of literature will survive this horrible apocalypse.",
+					_"That is what I'm here for. Come back at any time.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

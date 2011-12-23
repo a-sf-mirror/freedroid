@@ -32,8 +32,11 @@ Beginning of new chat dialog for character="XXXXX"
 	if (not has_met("<?>")) then
 		show(0)
 	else
-		tux_says_random(_"Hello.", _"Hi there.", "NO_WAIT")
-		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
+		tux_says_random(_"Hello.",
+						_"Hi there.", "NO_WAIT")
+		npc_says_random(_"Well, hello again.",
+						_"Hello hello.",
+						_"Welcome back.")
 	end
 	show(99)
 </LuaCode>

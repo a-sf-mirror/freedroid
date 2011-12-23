@@ -33,8 +33,11 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	if (has_met("Kevin")) then
-		tux_says_random(_"Hello.", _"Hi there, Kevin.")
-		npc_says_random(_"Well, hello again.", _"Hello hello.", _"Welcome back.")
+		tux_says_random(_"Hello.",
+						_"Hi there, Kevin.")
+		npc_says_random(_"Well, hello again.",
+						_"Hello hello.",
+						_"Welcome back.")
 	end
 
 	if (has_quest(_"A strange guy stealing from town")) and
@@ -139,7 +142,8 @@ Nr=9 Text=_"Maybe I can help somehow to find a suitable cluster."
 Nr=10 Text=_"How about some reward for securing your energy supply area?"
 <LuaCode>
 	if (has_cookie("Kevin_reward_given")) then
-		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.", _"I am not as confused as you think. Go away now.")
+		npc_says_random(_"I've already rewarded you for that. Don't steal my time. I'm busy.",
+						_"I am not as confused as you think. Go away now.")
 	else
 		npc_says(_"What do you want?")
 		topic("Kevin's Reward")
@@ -267,15 +271,13 @@ Nr=31 Text=_"Yes, please teach me how to become a hacker."
 Nr=40 Text="BUG, REPORT ME! kevin node40"
 NO_TEXT
 <LuaCode>
-	tux_says_random(
-		_"Hold on, I don't seem to have that much money right now.",
-		_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
-	npc_says_random(
-		_"Ok, come back when you can afford to pay me if you are interested.",
-		_"Please don't bother me if you can't pay me.",
-		_"You don't have enough money! I cannot afford to just give away training for free.",
-		_"Come back when you have enough circuits.",
-		_"So come back when you have some valuables.")
+	tux_says_random(_"Hold on, I don't seem to have that much money right now.",
+					_"This is embarrassing. I will come back when I have the amount of valuable circuits you desire.")
+	npc_says_random(_"Ok, come back when you can afford to pay me if you are interested.",
+					_"Please don't bother me if you can't pay me.",
+					_"You don't have enough money! I cannot afford to just give away training for free.",
+					_"Come back when you have enough circuits.",
+					_"So come back when you have some valuables.")
 </LuaCode>
 ----------------------------------------------------------------------
 
@@ -324,7 +326,9 @@ Nr=61 Text=_"Yes, I tried to login."
 
 Nr=99 Text=_"Let us talk later."
 <LuaCode> 
-	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.", _"If you need to contact me, my number is 127.0.0.1", _"Keep your system up to date, Linarian.")
+	npc_says_random(_"Be careful. The bots are in a foul mood today. Very easy to get killed. Very easy.",
+					_"If you need to contact me, my number is 127.0.0.1",
+					_"Keep your system up to date, Linarian.")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------

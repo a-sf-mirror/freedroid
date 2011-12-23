@@ -104,7 +104,9 @@ Nr=55 Text=_"Here you go."
 		add_cookie("tybalt_bribe")
 		show(56)
 	else
-		npc_says_random(_"That is not a hundred.", _"Um, count that again.", _"Talk to me when you have a bit more.")
+		npc_says_random(_"That is not a hundred.",
+						_"Um, count that again.",
+						_"Talk to me when you have a bit more.")
 	end
 	hide(54, 55)
 </LuaCode>

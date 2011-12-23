@@ -360,8 +360,8 @@ NO_TEXT
 
 	if ((ewd1+ewd2+ewd3) < (tux1+tux2+tux3)) then --Tux wins!
 		npc_says_random(_"You won! Good job.",
-				_"You won! Man you are lucky!",
-				_"You won!")
+						_"You won! Man you are lucky!",
+						_"You won!")
 		if (difficulty() == "easy") then
 			bet=bet*0.95
 		elseif (difficulty() == "normal") then
@@ -373,9 +373,9 @@ NO_TEXT
 		display_console_message(string.format(_"You won %d valuable circuits by gambling dice with Ewald.", math.floor(bet)))
 	else -- House Wins!
 		npc_says_random(_"You lost. Bad luck.",
-				_"You lost. Better luck next time.",
-				_"You lost, try again?",
-				_"You lost. Maybe you might like coin-flipping better?")
+						_"You lost. Better luck next time.",
+						_"You lost, try again?",
+						_"You lost. Maybe you might like coin-flipping better?")
 		del_gold(bet)
 		display_console_message(string.format(_"You lost %d valuable circuits by gambling dice with Ewald.", bet))
 	end
@@ -395,10 +395,10 @@ NO_TEXT
 Nr=51 Text=_"Heads"
 <LuaCode>
 	npc_says_random(_"Heads, eh? I always like heads.",
-			_"Heads? Sometimes I pick heads... when I don't pick tails.",
-			_"When I think too much about it, I end up picking heads.",
-			_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.",
-			_"I think I would have picked tails this time.")
+					_"Heads? Sometimes I pick heads... when I don't pick tails.",
+					_"When I think too much about it, I end up picking heads.",
+					_"Just the other day I found out that 'obverse' was the fancy name for 'heads'. Trippy.",
+					_"I think I would have picked tails this time.")
 	tux1 = 0
 	hide(51, 52) next(53)
 </LuaCode>
@@ -407,10 +407,10 @@ Nr=51 Text=_"Heads"
 Nr=52 Text=_"Tails"
 <LuaCode>
 	npc_says_random(_"Tails? Fits, since you've got one.",
-			_"Tails? I always liked that game... good times.",
-			_"Tails. When I don't pick heads, I always pick tails.",
-			_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.",
-			_"I think I would have picked heads this time.")
+					_"Tails? I always liked that game... good times.",
+					_"Tails. When I don't pick heads, I always pick tails.",
+					_"Just the other day I found out that 'reverse' was the fancy name for 'tails'. Trippy.",
+					_"I think I would have picked heads this time.")
 	tux1 = 1
 	hide(51, 52) next(53)
 </LuaCode>
@@ -545,10 +545,10 @@ NO_TEXT
 
 	if (win == 1) then -- WIN
 		npc_says_random(_"Looks like another winning combination! Good job!",
-				_"You have the best luck! You won!",
-				_"Too many of these and I'll go out of business. You won!",
-				_"You will have to tell me how you did it. You Won!",
-				_"Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
+						_"You have the best luck! You won!",
+						_"Too many of these and I'll go out of business. You won!",
+						_"You will have to tell me how you did it. You Won!",
+						_"Let me be even with you: I can't make heads or tails of how you won this odd game. Good Job!")
 		if (difficulty() == "easy") then bet = bet*3
 		else bet = bet*2
 		end
@@ -557,16 +557,16 @@ NO_TEXT
 	elseif (win == 0) then --LOSS
 		if (difficulty() == "easy") then--easy: 0% back
 			npc_says_random(_"Looks like you got everything wrong.",
-					_"Well, close, but exactly wrong.",
-					_"Close, but no cigar.",
-					_"Close only counts in hand grenades and horseshoes.")
+							_"Well, close, but exactly wrong.",
+							_"Close, but no cigar.",
+							_"Close only counts in hand grenades and horseshoes.")
 			del_gold(bet)
 		else
 			npc_says_random(_"Looks like you got everything wrong... here is some of your bet back.",
-					_"Well, close, but exactly wrong. Here is some of your bet back.",
-					_"You need to do exactly opposite of what you did here. Here is part of your bet back.",
-					_"Close, but no cigar. Here is some of your money back.",
-					_"Next time pick the opposite of what you did this time... or something.")
+							_"Well, close, but exactly wrong. Here is some of your bet back.",
+							_"You need to do exactly opposite of what you did here. Here is part of your bet back.",
+							_"Close, but no cigar. Here is some of your money back.",
+							_"Next time pick the opposite of what you did this time... or something.")
 			if (difficulty() == "normal") then --normal: 75% back
 				bet = bet*0.25
 			else --hard: 50% back
@@ -577,10 +577,10 @@ NO_TEXT
 		display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", math.floor(bet)))
 	elseif (win == 0.5) then -- COMPLETE LOSS (0% back)
 		npc_says_random(_"You lost. You were half right, but half wrong. Pick one and stay with it.",
-				_"You lost. You were all messed up. Better luck next time.",
-				_"You lost. Maybe you should try something else for a while?",
-				_"You lost.",
-				_"You lost. You might try the dice game next time.")
+						_"You lost. You were all messed up. Better luck next time.",
+						_"You lost. Maybe you should try something else for a while?",
+						_"You lost.",
+						_"You lost. You might try the dice game next time.")
 		del_gold(bet)
 		display_console_message(string.format(_"You lost %d valuable circuits in the coin-flip game with Ewald.", bet))
 	else -- ERROR:
@@ -594,9 +594,9 @@ NO_TEXT
 Nr=99 Text=_"See you later."
 <LuaCode>
 	npc_says_random(_"Goodbye and remember: My bar is always open.",
-			_"Come back soon!",
-			_"You are welcome to unwind with old Ewald any time. Come back soon.",
-			_"Remember, you can always come back here to relax and kick back.")
+					_"Come back soon!",
+					_"You are welcome to unwind with old Ewald any time. Come back soon.",
+					_"Remember, you can always come back here to relax and kick back.")
 	hide(32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 50, 51, 52, 53, 54, 55, 56) --end any partial gambling
 	end_dialog()
 </LuaCode>
