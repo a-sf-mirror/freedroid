@@ -265,6 +265,7 @@ NO_TEXT
 	tux_says(_"Sure.")
 	bruce_helmet_sell = 0
 	hide(41, 42, 43, 44, 45)
+	set_bot_destination("Bruce-move-target-label")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -276,6 +277,7 @@ Nr=42 Text=_"20 circuits? OK." Topic="Bruce wants Dixon's helmet"
 	npc_says(_"Talk to me again in a moment.")
 	bruce_helmet_sell = 20
 	hide(41, 42, 43, 44, 45)
+	set_bot_destination("Bruce-move-target-label")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
@@ -287,6 +289,7 @@ Nr=43 Text=_"20 circuits? I'll sell it for... a hundred." Topic="Bruce wants Dix
 	npc_says(_"Come back to me after that.")
 	bruce_helmet_sell = 100
 	hide(41, 42, 43, 44, 45)
+	set_bot_destination("Bruce-move-target-label")
 	end_dialog()
 </LuaCode>
 ----------------------------------------------------------------------
