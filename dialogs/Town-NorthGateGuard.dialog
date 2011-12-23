@@ -51,7 +51,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 		npc_says(_"You can ask, but don't expect a reply.", "NO_WAIT")
 		npc_says(_"I'm guarding this gate, and if I get distracted the bots might overrun this town and kill everybody in it.")
-		if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+		if (has_quest(_"Deliverance")) and
+		   (not has_cookie("knows_spencer_office")) then
 			show(40)
 		end
 	end
@@ -117,7 +118,8 @@ Nr=10 Text=_"Yes. I understand."
 	npc_says(string.format(_"You may now enter %s. But we'll be watching you. I'll let the others know you've arrived.", get_player_name()))
 	change_obstacle_state("Main Gate Inner E", "opened")
 	change_obstacle_state("Main Gate Inner W", "opened")
-	if (has_quest(_"Deliverance"))and (not has_cookie("knows_spencer_office")) then
+	if (has_quest(_"Deliverance")) and
+	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end
 	hide(10, 11) show(99)
@@ -152,7 +154,8 @@ Nr=21 Text=_"... I was only wondering who you were, and why you were wearing suc
 	for var in ipairs(doors) do
 		change_obstacle_state(doors[var], "opened")
 	end
-	if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+	if (has_quest(_"Deliverance")) and
+	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end
 	hide(20, 21, 22, 23, 30) show(99)
@@ -184,14 +187,15 @@ Nr=30 Text=_"Please don't hurt me."
 	tux_says("".. get_player_name() ..".")
 	tux_says(_"OW. That HURT!")
 	npc_says(_"Get out of here. The Doc is the third door on the right along the main path.")
-	if (del_health(40)) then else 
+	if (not del_health(40)) then
 		del_health(1)
 	end
 	for var in ipairs(doors) do
 		change_obstacle_state(doors[var], "opened")
 	end
 	end_dialog()
-	if (has_quest(_"Deliverance")) and (not has_cookie("knows_spencer_office")) then
+	if (has_quest(_"Deliverance")) and
+	   (not has_cookie("knows_spencer_office")) then
 		show(40)
 	end
 	hide(20, 21, 22, 23, 30, 31, 32) show(99)
