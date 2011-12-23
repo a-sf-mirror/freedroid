@@ -33,8 +33,10 @@ Beginning of new chat dialog for character="XXXXX"
 
 <EveryTime LuaCode>
 	branch_to_tania = false
-	if (has_cookie("Tania-stopped-by-Pendragon") and (not has_cookie("Pendragon-OK-w-Tania"))) and --Tania Escape Quest stuff
-	   (has_cookie("Tania-sent-to-Doc") or has_cookie("Tania-set-free")) then
+	if (has_cookie("Tania-stopped-by-Pendragon")) and
+	   (not has_cookie("Pendragon-OK-w-Tania")) and --Tania Escape Quest stuff
+	   (has_cookie("Tania-sent-to-Doc")) or
+		(has_cookie("Tania-set-free")) then
 		if (not done_quest(_"Tania's Escape")) then
 			npc_says(_"Tania has been waiting to talk to you.")
 		else
@@ -79,7 +81,8 @@ Beginning of new chat dialog for character="XXXXX"
 		hide(40)
 	end
 
-	if ((cmp_obstacle_state("DesertGate", "opened")) or has_met("Tania")) then
+	if (cmp_obstacle_state("DesertGate", "opened")) or
+	   (has_met("Tania")) then
 		hide(40, 45)
 	end
 
