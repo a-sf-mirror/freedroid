@@ -13,7 +13,6 @@ Directory structure:
 ./win32/            : Windows .exe icons
 ./croppy            : A helper tool for graphics, that automatically crops images
 ./gluem             : A helper tool for graphics, used to build tux_image_archive files
-./zpipe		    : zlib's zpipe, used as a helper for graphics
 
 
 Text files containing descriptions:

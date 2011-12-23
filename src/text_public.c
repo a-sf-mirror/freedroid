@@ -546,7 +546,7 @@ int inflate_stream(FILE * DataFile, unsigned char **DataBuffer, int *size)
 	int ret;
 	z_stream strm;
 
-	/* copy paste of public domain tool "zpipe" of which a copy is in fdRPG source tree */
+	/* copy paste of public domain tool "zpipe" */
 	/* big thanks to zlib authors */
 	/* allocate inflate state */
 	strm.zalloc = Z_NULL;

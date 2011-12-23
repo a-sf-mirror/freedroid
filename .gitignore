@@ -8,7 +8,6 @@ lua/liblua.a
 lua/lua*.exe
 lua/lua*.dll
 src/*.exe
-zpipe/zpipe
 gluem/*font
 gluem/make_atlas
 gluem/explode_atlas
