@@ -1,180 +1,282 @@
 ------------------------------------------------------------------------
-r5242 | ahuillet | 2011-12-10 10:12:27 +0100 (sam., 10 déc. 2011) | 1 line
+r5244 | matthiaskrgr | 2011-12-12 18:13:16 +0100 (Mon, 12 Dec 2011) | 1 line
+
+readme: remove old w32 issues which are no longer relevant. Patch by Miles.
+------------------------------------------------------------------------
+r5243 | ahuillet | 2011-12-10 11:08:58 +0100 (Sat, 10 Dec 2011) | 2 lines
+
+Update changelog for .15rc2
+
+------------------------------------------------------------------------
+r5242 | ahuillet | 2011-12-10 10:12:27 +0100 (Sat, 10 Dec 2011) | 1 line
 
 This is FreedroidRPG 0.15rc2.
 ------------------------------------------------------------------------
-r5241 | matthiaskrgr | 2011-12-09 22:11:34 +0100 (ven., 09 déc. 2011) | 1 line
+r5241 | matthiaskrgr | 2011-12-09 22:11:34 +0100 (Fri, 09 Dec 2011) | 1 line
 
 dialog: Kevin: make it a little more clear, what node 31 does.
 ------------------------------------------------------------------------
-r5240 | matthiaskrgr | 2011-12-09 21:57:02 +0100 (ven., 09 déc. 2011) | 1 line
+r5240 | matthiaskrgr | 2011-12-09 21:57:02 +0100 (Fri, 09 Dec 2011) | 1 line
 
 dialog: Kevin: make training costs independent from nethack game. Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5239 | matthiaskrgr | 2011-12-09 19:33:21 +0100 (ven., 09 déc. 2011) | 1 line
+r5239 | matthiaskrgr | 2011-12-09 19:33:21 +0100 (Fri, 09 Dec 2011) | 1 line
 
 map: hell fortress complex: prevent the player from walking through fences overlapping level borders.
 ------------------------------------------------------------------------
-r5238 | matthiaskrgr | 2011-12-08 23:22:56 +0100 (jeu., 08 déc. 2011) | 1 line
+r5238 | matthiaskrgr | 2011-12-08 23:22:56 +0100 (Thu, 08 Dec 2011) | 1 line
 
 dialog: Dixon: hide nodes in relation to the Yellow Toolkit quest (fixes #554). Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5237 | matthiaskrgr | 2011-12-08 18:30:36 +0100 (jeu., 08 déc. 2011) | 1 line
+r5237 | matthiaskrgr | 2011-12-08 18:30:36 +0100 (Thu, 08 Dec 2011) | 1 line
 
 dialog: Kevin: prevent Kevin from asking about his lawnmower after Tux already answered (fixes #577). Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5236 | matthiaskrgr | 2011-12-08 18:15:19 +0100 (jeu., 08 déc. 2011) | 1 line
+r5236 | matthiaskrgr | 2011-12-08 18:15:19 +0100 (Thu, 08 Dec 2011) | 1 line
 
 shop: Stone: prevent Stone from selling ammo until Tux saved the shop or joined the red guard. Patch by Miles.
 ------------------------------------------------------------------------
-r5235 | fluzz | 2011-12-07 23:44:17 +0100 (mer., 07 déc. 2011) | 2 lines
+r5235 | fluzz | 2011-12-07 23:44:17 +0100 (Wed, 07 Dec 2011) | 2 lines
 
 Use the config dir path computed during initialization as the directory to scan
 to find and display the savegames on the 'Play Menu'.
 ------------------------------------------------------------------------
-r5234 | fluzz | 2011-12-07 23:26:44 +0100 (mer., 07 déc. 2011) | 2 lines
+r5234 | fluzz | 2011-12-07 23:26:44 +0100 (Wed, 07 Dec 2011) | 2 lines
 
 win32: add the path to stderr.txt and stdout.txt in the system calls used
 to launch notepad, when the game terminates with a failure.
 ------------------------------------------------------------------------
-r5233 | matthiaskrgr | 2011-12-07 21:03:08 +0100 (mer., 07 déc. 2011) | 2 lines
+r5233 | matthiaskrgr | 2011-12-07 21:03:08 +0100 (Wed, 07 Dec 2011) | 2 lines
 
 run  svn propset svn:mime-type image/bmp  on 3 .bmp image files.
 
 ------------------------------------------------------------------------
-r5232 | matthiaskrgr | 2011-12-07 21:01:24 +0100 (mer., 07 déc. 2011) | 2 lines
+r5232 | matthiaskrgr | 2011-12-07 21:01:24 +0100 (Wed, 07 Dec 2011) | 2 lines
 
 run svn propset svn:mime-type image/x-ico on 3 .ico image files.
 
 ------------------------------------------------------------------------
-r5231 | matthiaskrgr | 2011-12-07 20:55:51 +0100 (mer., 07 déc. 2011) | 2 lines
+r5231 | matthiaskrgr | 2011-12-07 20:55:51 +0100 (Wed, 07 Dec 2011) | 2 lines
 
 run  svn propset svn:mime-type image/png  on 10 png image files.
 
 ------------------------------------------------------------------------
-r5230 | fluzz | 2011-12-07 20:19:08 +0100 (mer., 07 déc. 2011) | 3 lines
+r5230 | fluzz | 2011-12-07 20:19:08 +0100 (Wed, 07 Dec 2011) | 3 lines
 
 Make the package-win32 make target depends on dist-win32 only if
 the freedroidrpg-win32 directory was not yet created (that is if
 'make dist-win32' was not called before 'make package-win32')
 ------------------------------------------------------------------------
-r5229 | matthiaskrgr | 2011-12-07 14:41:34 +0100 (mer., 07 déc. 2011) | 1 line
+r5229 | matthiaskrgr | 2011-12-07 14:41:34 +0100 (Wed, 07 Dec 2011) | 1 line
 
 dialog: Stone: hide node 4 ("But...?") when we don't need it anymore (fixes #555).
 ------------------------------------------------------------------------
-r5228 | matthiaskrgr | 2011-12-07 14:09:47 +0100 (mer., 07 déc. 2011) | 1 line
+r5228 | matthiaskrgr | 2011-12-07 14:09:47 +0100 (Wed, 07 Dec 2011) | 1 line
 
 dialog: Kevin: hide node 31 ("Yes, please teache me.") if it doesn't fit/isn't needed anymore (fixes #556).
 ------------------------------------------------------------------------
-r5227 | fluzz | 2011-12-06 23:50:37 +0100 (mar., 06 déc. 2011) | 3 lines
+r5227 | fluzz | 2011-12-06 23:50:37 +0100 (Tue, 06 Dec 2011) | 3 lines
 
 Add all files needed to create a win32 installer of the game, based on
 the Nullsoft Scriptable Install System (NSIS), and add a 'package-win32'
 make target.
 ------------------------------------------------------------------------
-r5226 | fluzz | 2011-12-06 23:41:55 +0100 (mar., 06 déc. 2011) | 3 lines
+r5226 | fluzz | 2011-12-06 23:41:55 +0100 (Tue, 06 Dec 2011) | 3 lines
 
 On win32, store the config file and the savegames under the 'My Documents'
 directory.
 Also store stdout.txt and stderr.txt in that directory.
 ------------------------------------------------------------------------
-r5225 | matthiaskrgr | 2011-12-06 21:51:27 +0100 (mar., 06 déc. 2011) | 1 line
+r5225 | matthiaskrgr | 2011-12-06 21:51:27 +0100 (Tue, 06 Dec 2011) | 1 line
 
 UI: character-/item-upgrade-screen: replace "Money" by "Circuits". Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5224 | matthiaskrgr | 2011-12-06 14:17:52 +0100 (mar., 06 déc. 2011) | 1 line
+r5224 | matthiaskrgr | 2011-12-06 14:17:52 +0100 (Tue, 06 Dec 2011) | 1 line
 
 dialogs: Benjamin, Engel, Pendragon, Skippy: make skill training lesson costs form consistent. Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5223 | matthiaskrgr | 2011-12-04 12:39:21 +0100 (dim., 04 déc. 2011) | 1 line
+r5223 | matthiaskrgr | 2011-12-04 12:39:21 +0100 (Sun, 04 Dec 2011) | 1 line
 
 enemies: change animation speed of several models to make their movements look nicer.
 ------------------------------------------------------------------------
-r5222 | matthiaskrgr | 2011-12-02 08:57:06 +0100 (ven., 02 déc. 2011) | 1 line
+r5222 | matthiaskrgr | 2011-12-02 08:57:06 +0100 (Fri, 02 Dec 2011) | 1 line
 
 dialogs: Town-614: transfer corrections from 614_cryo which have already been committed in r5080 to Town-614. Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5221 | matthiaskrgr | 2011-12-02 08:47:18 +0100 (ven., 02 déc. 2011) | 1 line
+r5221 | matthiaskrgr | 2011-12-02 08:47:18 +0100 (Fri, 02 Dec 2011) | 1 line
 
 animations: speed up harvester death animation.
 ------------------------------------------------------------------------
-r5220 | matthiaskrgr | 2011-12-01 23:25:08 +0100 (jeu., 01 déc. 2011) | 1 line
+r5220 | matthiaskrgr | 2011-12-01 23:25:08 +0100 (Thu, 01 Dec 2011) | 1 line
 
 dialogs: HF-FirmwareUpdateServer, MO-HFGateAccessServe: small changes to captcha hint. Patch by Miles.
 ------------------------------------------------------------------------
-r5219 | ahuillet | 2011-12-01 12:01:26 +0100 (jeu., 01 déc. 2011) | 1 line
+r5219 | ahuillet | 2011-12-01 12:01:26 +0100 (Thu, 01 Dec 2011) | 1 line
 
 Fix painter's algorithm list sorting to properly handle the case where two different elements have the same norm.
 ------------------------------------------------------------------------
-r5218 | matthiaskrgr | 2011-11-30 23:04:29 +0100 (mer., 30 nov. 2011) | 1 line
+r5218 | matthiaskrgr | 2011-11-30 23:04:29 +0100 (Wed, 30 Nov 2011) | 1 line
 
 slow down the attack animation speed of the female_hunter model.
 ------------------------------------------------------------------------
-r5217 | matthiaskrgr | 2011-11-30 22:57:12 +0100 (mer., 30 nov. 2011) | 1 line
+r5217 | matthiaskrgr | 2011-11-30 22:57:12 +0100 (Wed, 30 Nov 2011) | 1 line
 
 archetypes: Matron: change the weapon from "Shotgun" to "NPC Hand to hand weapon" since the Shotgun did absolutely not match the actual attack animation.
 ------------------------------------------------------------------------
-r5216 | matthiaskrgr | 2011-11-30 22:48:40 +0100 (mer., 30 nov. 2011) | 1 line
+r5216 | matthiaskrgr | 2011-11-30 22:48:40 +0100 (Wed, 30 Nov 2011) | 1 line
 
 graphics: portraits: hot_mama/professor: make the background of the portraits transparent because black background doesn't look very well in the enemy selector of the level editor.
 ------------------------------------------------------------------------
-r5215 | matthiaskrgr | 2011-11-30 21:27:39 +0100 (mer., 30 nov. 2011) | 1 line
+r5215 | matthiaskrgr | 2011-11-30 21:27:39 +0100 (Wed, 30 Nov 2011) | 1 line
 
 Scale and center the droid image in the takeover screen (fixes #546). Patch by Fluzz.
 ------------------------------------------------------------------------
-r5214 | matthiaskrgr | 2011-11-30 21:27:28 +0100 (mer., 30 nov. 2011) | 1 line
+r5214 | matthiaskrgr | 2011-11-30 21:27:28 +0100 (Wed, 30 Nov 2011) | 1 line
 
 Scale and center the droid image in the dialog screen (fixes #546). Patch by Fluzz.
 ------------------------------------------------------------------------
-r5213 | matthiaskrgr | 2011-11-30 16:29:30 +0100 (mer., 30 nov. 2011) | 1 line
+r5213 | matthiaskrgr | 2011-11-30 16:29:30 +0100 (Wed, 30 Nov 2011) | 1 line
 
 map: level 31: add a sign which tells the player to check the office if the gates to the factory are closed.
 ------------------------------------------------------------------------
-r5212 | matthiaskrgr | 2011-11-30 16:16:43 +0100 (mer., 30 nov. 2011) | 1 line
+r5212 | matthiaskrgr | 2011-11-30 16:16:43 +0100 (Wed, 30 Nov 2011) | 1 line
 
 dialogs: MO-HFGateAccessServer: if the player fails at the captcha, say that digits are to be entered, not words.
 ------------------------------------------------------------------------
-r5211 | matthiaskrgr | 2011-11-29 17:52:00 +0100 (mar., 29 nov. 2011) | 1 line
+r5211 | matthiaskrgr | 2011-11-29 17:52:00 +0100 (Tue, 29 Nov 2011) | 1 line
 
-set difficulty level to NORMAL when resetting the game config (fixes #545). Patch by Józef Kucia.
+set difficulty level to NORMAL when resetting the game config (fixes #545). Patch by J?\195?\179zef Kucia.
 ------------------------------------------------------------------------
-r5210 | fluzz | 2011-11-27 22:37:07 +0100 (dim., 27 nov. 2011) | 2 lines
+r5210 | fluzz | 2011-11-27 22:37:07 +0100 (Sun, 27 Nov 2011) | 2 lines
 
 widgets: when creating the HUD, check that there is enough room for the background
 spacers. If not, display an error message, and terminate the game.
 ------------------------------------------------------------------------
-r5209 | fluzz | 2011-11-27 22:36:50 +0100 (dim., 27 nov. 2011) | 2 lines
+r5209 | fluzz | 2011-11-27 22:36:50 +0100 (Sun, 27 Nov 2011) | 2 lines
 
 widgets: change the error message displayed when a 3x3 tile set can not be loaded
 due to its container being too small to a less confusing message.
 ------------------------------------------------------------------------
-r5208 | matthiaskrgr | 2011-11-27 15:16:50 +0100 (dim., 27 nov. 2011) | 1 line
+r5208 | matthiaskrgr | 2011-11-27 15:16:50 +0100 (Sun, 27 Nov 2011) | 1 line
 
 dialog: TutorialTom: explain that we can toggle the compass using 'tab' key.
 ------------------------------------------------------------------------
-r5207 | matthiaskrgr | 2011-11-25 15:14:16 +0100 (ven., 25 nov. 2011) | 1 line
+r5207 | matthiaskrgr | 2011-11-25 15:14:16 +0100 (Fri, 25 Nov 2011) | 1 line
 
 dialogs: HF-EntranceBot, Kevin-Lawnmower, MO-HFGateAccessServer: make a couple of NO_WAITs actually work by putting quotation marks around them. Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5206 | matthiaskrgr | 2011-11-25 15:02:06 +0100 (ven., 25 nov. 2011) | 1 line
+r5206 | matthiaskrgr | 2011-11-25 15:02:06 +0100 (Fri, 25 Nov 2011) | 1 line
 
 dialog: Spencer: keep Spencer from saying "Greetings fellow Red Guard member." at the end when Tux talks to him in HF. Patch by Sebastian Offermann.
 ------------------------------------------------------------------------
-r5205 | ahuillet | 2011-11-24 08:08:18 +0100 (jeu., 24 nov. 2011) | 1 line
+r5205 | ahuillet | 2011-11-24 08:08:18 +0100 (Thu, 24 Nov 2011) | 1 line
 
 INSTALL: SDL_gfx-devel is needed on Fedora. Reported by shade0o
 ------------------------------------------------------------------------
-r5204 | fluzz | 2011-11-23 23:08:34 +0100 (mer., 23 nov. 2011) | 1 line
+r5204 | fluzz | 2011-11-23 23:08:34 +0100 (Wed, 23 Nov 2011) | 1 line
 
 Do not use a variable name for the directory uused by dist-win32 to store its files. This makes the packager buildslave be more easy to write.
 ------------------------------------------------------------------------
-r5203 | ahuillet | 2011-11-23 21:48:59 +0100 (mer., 23 nov. 2011) | 1 line
+r5203 | ahuillet | 2011-11-23 21:48:59 +0100 (Wed, 23 Nov 2011) | 1 line
 
 Shorten "this is a RC please report bugs" message for readability + vertical cutoff problem at low resolutions.
 ------------------------------------------------------------------------
-r5202 | ahuillet | 2011-11-23 20:23:47 +0100 (mer., 23 nov. 2011) | 1 line
+r5202 | ahuillet | 2011-11-23 20:23:47 +0100 (Wed, 23 Nov 2011) | 1 line
 
 This is FreedroidRPG 0.15rc1.
+------------------------------------------------------------------------
+r5201 | matthiaskrgr | 2011-11-23 18:07:38 +0100 (Wed, 23 Nov 2011) | 1 line
+
+dialog: c-net: update "List for Spencer".
+------------------------------------------------------------------------
+r5200 | matthiaskrgr | 2011-11-23 18:07:27 +0100 (Wed, 23 Nov 2011) | 1 line
+
+credits: fix typo
+------------------------------------------------------------------------
+r5199 | ahuillet | 2011-11-23 17:35:16 +0100 (Wed, 23 Nov 2011) | 1 line
+
+Update Credits for .15
+------------------------------------------------------------------------
+r5198 | matthiaskrgr | 2011-11-23 17:25:32 +0100 (Wed, 23 Nov 2011) | 1 line
+
+make bullets shot start near gun muzzle (fixes #344). Patch by Fluzz.
+------------------------------------------------------------------------
+r5197 | matthiaskrgr | 2011-11-23 17:22:26 +0100 (Wed, 23 Nov 2011) | 1 line
+
+random dungeon generator: prevent map labels associated with teleporters from being placed in the collision rectangle of the obstacles surrounding the teleporter. Patch by Fluzz.
+------------------------------------------------------------------------
+r5196 | matthiaskrgr | 2011-11-23 16:25:18 +0100 (Wed, 23 Nov 2011) | 1 line
+
+changelog: remove entries covering revisions 3463 and 3462 since these were already included in 0.14.1
+------------------------------------------------------------------------
+r5195 | matthiaskrgr | 2011-11-23 16:19:29 +0100 (Wed, 23 Nov 2011) | 1 line
+
+fix some more situations where Tania was teleported out of the Scret research center too early when Tux left it.
+------------------------------------------------------------------------
+r5194 | ahuillet | 2011-11-22 20:55:22 +0100 (Tue, 22 Nov 2011) | 1 line
+
+Updated Credits (unfinished) for .15
+------------------------------------------------------------------------
+r5193 | ahuillet | 2011-11-22 20:54:52 +0100 (Tue, 22 Nov 2011) | 1 line
+
+Updated changelog.
+------------------------------------------------------------------------
+r5192 | matthiaskrgr | 2011-11-22 19:27:52 +0100 (Tue, 22 Nov 2011) | 1 line
+
+require Tania to be following Tux before teleporting her (fixes #539) Patch by Miles.
+------------------------------------------------------------------------
+r5191 | matthiaskrgr | 2011-11-22 15:01:53 +0100 (Tue, 22 Nov 2011) | 1 line
+
+items: rename the seconds "Mug" item to "Cup" otherwise one of them would be overwritten saving the map and adapt Ewalds dialog.
+------------------------------------------------------------------------
+r5190 | matthiaskrgr | 2011-11-22 14:39:23 +0100 (Tue, 22 Nov 2011) | 1 line
+
+dialogs: fix usage of has_item checks. Patch by Sebastian Offermann.
+------------------------------------------------------------------------
+r5189 | matthiaskrgr | 2011-11-22 14:32:55 +0100 (Tue, 22 Nov 2011) | 1 line
+
+dialogs: SADD: rename the Super Exterminator here, too (back to old version) and fix the checks, if we have the item.
+------------------------------------------------------------------------
+r5188 | matthiaskrgr | 2011-11-22 14:32:42 +0100 (Tue, 22 Nov 2011) | 2 lines
+
+Revert "items: rename "The Super Exterminator!!!" to "The Super Exterminator" as a workaround to bug #542"
+This reverts commit r5184.
+------------------------------------------------------------------------
+r5187 | fluzz | 2011-11-21 23:48:37 +0100 (Mon, 21 Nov 2011) | 1 line
+
+make_atlas: fix a wrong BMASK value used to create a sdl surface.
+------------------------------------------------------------------------
+r5186 | fluzz | 2011-11-21 23:19:37 +0100 (Mon, 21 Nov 2011) | 1 line
+
+Clear Tux speed and intermediate waypath after being passed through a teleporter
+------------------------------------------------------------------------
+r5185 | matthiaskrgr | 2011-11-21 22:13:58 +0100 (Mon, 21 Nov 2011) | 1 line
+
+dialogs: SADD: only show the  You call this a super exterminator??  node when we actually picked up the item.
+------------------------------------------------------------------------
+r5184 | matthiaskrgr | 2011-11-21 22:06:18 +0100 (Mon, 21 Nov 2011) | 1 line
+
+items: rename "The Super Exterminator!!!" to "The Super Exterminator" as a workaround to bug #542
+------------------------------------------------------------------------
+r5183 | matthiaskrgr | 2011-11-21 21:32:29 +0100 (Mon, 21 Nov 2011) | 1 line
+
+dialogs: DSB-PowerControlGate1: fix typo, completely comment out the debug node.
+------------------------------------------------------------------------
+r5182 | matthiaskrgr | 2011-11-21 21:28:55 +0100 (Mon, 21 Nov 2011) | 1 line
+
+map: level 35: fix a strange wall element, here, too.
+------------------------------------------------------------------------
+r5181 | matthiaskrgr | 2011-11-21 21:22:37 +0100 (Mon, 21 Nov 2011) | 1 line
+
+dialog: DSB-PowerControlGate1: hide debug node. Patch by Sebastian Offermann
+------------------------------------------------------------------------
+r5180 | matthiaskrgr | 2011-11-21 20:40:50 +0100 (Mon, 21 Nov 2011) | 1 line
+
+map: level 59: slighly move obstacle to avoid z-ordering issues.
+------------------------------------------------------------------------
+r5179 | matthiaskrgr | 2011-11-21 20:26:29 +0100 (Mon, 21 Nov 2011) | 1 line
+
+map: rename several hell fortress levels.
 ------------------------------------------------------------------------
 r5178 | fluzz | 2011-11-20 19:54:16 +0100 (Sun, 20 Nov 2011) | 2 lines
 
@@ -7452,4 +7554,14 @@ r3464 | ahuillet | 2010-11-27 00:03:23 +0100 (Sat, 27 Nov 2010) | 1 line
 
 dialog: fix typo in kevin dialog, caught by tobixen.
 ------------------------------------------------------------------------
+r3463 | ahuillet | 2010-11-26 23:14:10 +0100 (Fri, 26 Nov 2010) | 3 lines
 
+Update ChangeLog for 0.14.1.
+
+
+------------------------------------------------------------------------
+r3462 | ahuillet | 2010-11-26 23:12:26 +0100 (Fri, 26 Nov 2010) | 2 lines
+
+This is FreedroidRPG 0.14.1, fixing a bug that corrupts savegames. 
+
+------------------------------------------------------------------------
