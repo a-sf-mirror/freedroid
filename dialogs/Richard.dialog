@@ -31,7 +31,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_item_backpack("Kevin's Data Cube") > 0) then show(6) end
+	if (has_item_backpack("Kevin's Data Cube")) then show(6) end
 	show(99)
 </LuaCode>
 ----------------------------------------------------------------------

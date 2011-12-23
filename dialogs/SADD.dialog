@@ -40,7 +40,7 @@ Beginning of new chat dialog for character="XXXXX"
 
 	if (has_quest(_"SADD's power supply")) then
 		if (not done_quest(_"SADD's power supply")) then 
-			if (has_item_backpack("Red Dilithium Crystal") > 0) then
+			if (has_item_backpack("Red Dilithium Crystal")) then
 				if (has_cookie("asked_sadd_for_exterminator")) then show(30) else show(33) end
 			else
 				show(31)
@@ -57,8 +57,8 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if (has_item("The Super Exterminator!!!") > 0) and
-	   (has_cookie("SADD_super_exterminator")) then
+	if (has_item("The Super Exterminator!!!") and
+	    has_cookie("SADD_super_exterminator")) then
 		show(37)
 	end
 
@@ -213,8 +213,8 @@ Nr=30 Text=_"I have the crystals! They were difficult to find."
 	add_cookie("SADD_super_exterminator")
 	end_dialog()
 	hide(30)
-	if (has_item("The Super Exterminator!!!") > 0) and
-	   (has_cookie("SADD_super_exterminator")) then
+	if (has_item("The Super Exterminator!!!") and
+	    has_cookie("SADD_super_exterminator")) then
 		show(37)
 	end
 </LuaCode>

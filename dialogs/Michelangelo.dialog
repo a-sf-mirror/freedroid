@@ -38,7 +38,7 @@ Beginning of new chat dialog for character="XXXXX"
 				if (done_quest(_"SADD's power supply")) then 
 					hide(75, 76, 77)
 				else
-					if (has_item_backpack("Red Dilithium Crystal") < 1) then show(40, 75) end
+					if (not has_item_backpack("Red Dilithium Crystal")) then show(40, 75) end
 				end
 			end
 			if (has_quest(_"Gapes Gluttony")) then
@@ -49,12 +49,12 @@ Beginning of new chat dialog for character="XXXXX"
 						else
 							hide(21)
 						end
-				elseif (has_item_backpack("Empty Picnic Basket") > 0) then
+				elseif (has_item_backpack("Empty Picnic Basket")) then
 					show(22)
 				end 
 			end	
 		else
-		    nb_crystals = has_item_backpack("Red Dilithium Crystal")
+		    nb_crystals = count_item_backpack("Red Dilithium Crystal")
 			if (nb_crystals > 2) then
 				show(29)
 			elseif (nb_crystals > 0) then
@@ -103,7 +103,7 @@ Nr=11 Text=_"Can I buy some food here?"
 
 Nr=12 Text=_"I want some yummy army snacks!"
 <LuaCode>
-	if ((has_item("Fork") > 0) and (has_item_backpack("Plate") > 0) and (has_item_backpack("Mug") > 0)) then
+	if (has_item("Fork") and has_item_backpack("Plate") and has_item_backpack("Mug")) then
 		if (has_item_equipped("Fork")) then
 			npc_says(_"I am supposed to read this out to all newcomers. Here goes:")
 			npc_says(_"'Please note that the army rations model #23 you are about to eat is provided 'as is' without warranty of any kind.")
@@ -185,7 +185,7 @@ Nr=24 Text=_"Got any food yet?"
 	random_var = math.random()
 	if (random_var > 0.9) then
 		npc_says(_"Here, try this slice of lemon meringue pie.")
-		if (has_item("Fork") == 0) then
+		if (not has_item("Fork")) then
 			npc_says(_"Wait, you don't have a fork. You need a fork...")
 		elseif (not has_item_equipped("Fork")) then
 			npc_says(_"You need to equip your fork before you can use it to eat.")
@@ -195,7 +195,7 @@ Nr=24 Text=_"Got any food yet?"
 		end
 	elseif (random_var > 0.8) then
 		npc_says(_"Try this crab cake.")
-		if ((has_item("Fork") == 0) and (has_item_backpack("Plate") == 0)) then
+		if ((not has_item("Fork")) and (not has_item_backpack("Plate"))) then
 			npc_says(_"Where is your plate and fork?")
 		elseif (not has_item_equipped("Fork")) then
 			npc_says(_"You need to equip your fork before you can use it to eat.")

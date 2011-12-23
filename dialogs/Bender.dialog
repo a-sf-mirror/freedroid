@@ -33,7 +33,7 @@ Beginning of new chat dialog for character="XXXXX"
 	if (has_quest(_"Bender's problem")) then
 		if (not done_quest(_"Bender's problem")) then
 			hide(1, 2, 3, 4, 6, 7, 8)
-			if (has_item_backpack("Brain Enlargement Pills Antidote") > 0) then
+			if (has_item_backpack("Brain Enlargement Pills Antidote")) then
 				hide(5, 10, 11, 12, 50) show(9)
 			else
 				hide(9) show(12)
@@ -51,7 +51,7 @@ Beginning of new chat dialog for character="XXXXX"
 		end
 	end
 
-	if ((has_cookie("bender_elbow_grease") or has_item_backpack("Manual of the Automated Factory") > 0)) then
+	if (has_cookie("bender_elbow_grease") or has_item_backpack("Manual of the Automated Factory")) then
 		show(40)
 	end
 

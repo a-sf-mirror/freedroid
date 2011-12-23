@@ -42,7 +42,7 @@ Beginning of new chat dialog for character="XXXXX"
 		npc_says(_"All movement suppressed...")
 		npc_says(_"Scanning area for possible compatible energy sources...")
 		hide(5, 6)
-		if (has_item_backpack("Barf's Energy Drink") > 0) then
+		if (has_item_backpack("Barf's Energy Drink")) then
 			npc_says(_"Compatible energy source found!")
 			npc_says(_"[b]Barf's Energy Drink[/b]")
 			show(50, 51)

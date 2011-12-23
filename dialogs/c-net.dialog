@@ -240,11 +240,11 @@ Nr=23 Text=_"mountdisk.sh"
 NO_TEXT
 <LuaCode>
 	tux_says(_"./mountdisk.sh", "NO_WAIT")
-	if (has_item_backpack("Kevin's Data Cube") > 0) then
+	if (has_item_backpack("Kevin's Data Cube")) then
 		npc_says(_"Mounting volume \"Kevins_Security_File\"...")
 		npc_says(_"Private memory and/or virtual address space exhausted.", "NO_WAIT")
 		npc_says(_"Not enough free memory to load data file.", "NO_WAIT")
-	elseif (has_quest(_"Deliverance") and (not done_quest(_"Deliverance")) and (has_item_backpack("Data cube") >0)) then
+	elseif (has_quest(_"Deliverance") and (not done_quest(_"Deliverance")) and has_item_backpack("Data cube")) then
 		npc_says(_"List for Spencer:")
 		npc_says("Alastra, Maria Grazia", "NO_WAIT")
 		npc_says("Arana, Pedro", "NO_WAIT")

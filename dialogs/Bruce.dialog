@@ -204,7 +204,7 @@ NO_TEXT
 		npc_says(_"Please unequip it, so we can proceed.")
 		npc_says(_"I want to see your face as we talk.")
 		end_dialog()
-	elseif (has_item("Dixon's Helmet") > 0) then
+	elseif (has_item("Dixon's Helmet")) then
 		if (bruce_helmet_sell == 0) then
 			tux_says(_"Here you go.")
 			npc_says(_"Oh, thank you!")

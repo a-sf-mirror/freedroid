@@ -338,7 +338,7 @@ Nr=24 Text=_"Can you heal me?"
 
 Nr=25 Text=_"I've beaten the first bot."
 <LuaCode>
-	if (has_item_backpack("Entropy Inverter") > 0) then
+	if (has_item_backpack("Entropy Inverter")) then
 		npc_says(_"So you have. Well done.")
 		npc_says(_"I'll trade you this wrench for it. I think you'll find it handy.")
 		npc_says(_"Now would be an appropriate time to mention bot parts, I guess.")
@@ -394,7 +394,7 @@ Nr=27 Text=_"I'm ready to take the next bot on."
 
 Nr=28 Text=_"I've beaten the second bot."
 <LuaCode>
-	if (has_item_backpack("Tachyon Condensator") > 0) then
+	if (has_item_backpack("Tachyon Condensator")) then
 		npc_says(_"Very good! You've completed your melee training.")
 		npc_says(_"These skills will serve you well in the future.")
 		npc_says(_"As a reward, I'm trading you a .22 Automatic pistol for that Tachyon Condensator.")
@@ -536,7 +536,7 @@ Nr=36 Text=_"I would like a few more bots to shoot at."
 
 Nr=37 Text=_"I'm ready to move on."
 <LuaCode>
-	if (has_item_backpack(".22 Automatic") > 0 and has_item_backpack("Laser pistol") > 0 and has_item_backpack("Plasma pistol") > 0) then
+	if (has_item_backpack(".22 Automatic") and has_item_backpack("Laser pistol") and has_item_backpack("Plasma pistol")) then
 		hide(36, 37) next(39)
 	else
 		npc_says(_"I'll need you to surrender your guns. Unequip them all, then talk to me again.")
@@ -551,7 +551,7 @@ Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
 <LuaCode>
 	npc_says(_"As you wish, Linarian.")
 	if (has_cookie("opened_door")) then
-		if (has_item_backpack(".22 Automatic") > 0 and has_item_backpack("Laser pistol") > 0 and has_item_backpack("Plasma pistol") > 0) then
+		if (has_item_backpack(".22 Automatic") and has_item_backpack("Laser pistol") and has_item_backpack("Plasma pistol")) then
 			end_quest(_"Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
 			next(39)
 		else
@@ -560,7 +560,7 @@ Nr=38 Text=_"I'd rather just move on to the next section of the tutorial."
 			npc_says(_"That includes the laser and plasma pistols in the storage room to the west.")
 		end
 	elseif has_cookie("has_gun") then
-		if (has_item_backpack(".22 Automatic") > 0) then
+		if (has_item_backpack(".22 Automatic")) then
 			end_quest(_"Tutorial Shooting", _"I decided not to finish the shooting tutorial.")
 			next(39)
 		else

@@ -31,7 +31,7 @@ Beginning of new chat dialog for character="XXXXX"
 </LuaCode>
 
 <EveryTime LuaCode>
-	if (has_item_backpack("Dixon's Toolbox") > 0) then
+	if (has_item_backpack("Dixon's Toolbox")) then
 		if (has_cookie("singularity_killed")) then show(34) else show(35, 36) end
 	end
 

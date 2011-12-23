@@ -43,13 +43,13 @@ Beginning of new chat dialog for character="XXXXX"
 		show(25)
 	end
 
-	if (has_item_backpack("Strength Pill") > 0) then show(50) end
-	if (has_item_backpack("Dexterity Pill") > 0) then show(51) end
-	if (has_item_backpack("Code Pill") > 0) then show(52) end
+	if (has_item_backpack("Strength Pill")) then show(50) end
+	if (has_item_backpack("Dexterity Pill")) then show(51) end
+	if (has_item_backpack("Code Pill")) then show(52) end
 
-	if (has_item_backpack("Diet supplement") > 0) then show(55) end
-	if (has_item_backpack("Antibiotic") > 0) then show(56) end
-	if (has_item_backpack("Doc-in-a-can") > 0) then show(57) end
+	if (has_item_backpack("Diet supplement")) then show(55) end
+	if (has_item_backpack("Antibiotic")) then show(56) end
+	if (has_item_backpack("Doc-in-a-can")) then show(57) end
 
 	if (tux_hp_ratio() < 0.1) then
 		npc_says(_"You look gravely injured.")
@@ -78,9 +78,9 @@ Beginning of new chat dialog for character="XXXXX"
 		set_rush_tux(0)
 	end
 
-	if (has_cookie("met_docmoore")) and
-	   (has_item("Rubber duck") > 0) and
-	   (not has_cookie("not_seen_rubber_duck_lie")) then
+	if (has_cookie("met_docmoore") and
+	    has_item("Rubber duck") and
+	   (not has_cookie("not_seen_rubber_duck_lie"))) then
 		npc_says(_"Oh, did you by any chance see a bright yellow item made out of polyvinyl chloride?")
 		show(42, 43)
 	end

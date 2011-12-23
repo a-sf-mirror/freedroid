@@ -39,9 +39,9 @@ Beginning of new chat dialog for character="XXXXX"
 	end
 
 	if (not has_cookie("koan_quest_really_done")) then
-		if (has_item_backpack("Pandora's Cube") > 0) or	--Koan died, and you brought the cube back
-		   (npc_dead("Koan")) or			            --Koan died, but you didn't bring the cube back
-		   (has_cookie("koan_spared_via_dialog")) then		        --Koan is alive!
+		if (has_item_backpack("Pandora's Cube") or	    --Koan died, and you brought the cube back
+		    npc_dead("Koan") or			            --Koan died, but you didn't bring the cube back
+		    has_cookie("koan_spared_via_dialog")) then	    --Koan is alive!
 			if (not has_cookie("koan_quest_done")) then --if you just came back from Koan
 				next(60)
 			elseif (not has_cookie("koan_not_given_cube")) and --if, after talking to Duncan, Koan became dead
@@ -191,7 +191,7 @@ Nr=59 Text=_"No, I don't find bloodshed a pleasurable activity."
 Nr=60 Text="BUG, REPORT ME! duncan node60 -- MURDERING DONE OR SAVED HIM"
 NO_TEXT
 <LuaCode>
-	if (has_item_backpack("Pandora's Cube") > 0) then
+	if (has_item_backpack("Pandora's Cube")) then
 		if (has_cookie("koan_quest_done")) then
 			if (npc_dead("Koan")) then  -- we killed koan manually or using the dialog and got
 				--the cube when we return first time to Duncan after seeing Koan

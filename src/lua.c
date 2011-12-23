@@ -372,7 +372,7 @@ static int lua_event_sell_item(lua_State *L)
 	return 0;
 }
 
-static int lua_event_has_item_backpack(lua_State * L)
+static int lua_event_count_item_backpack(lua_State * L)
 {
 	const char *itemname = luaL_checkstring(L, 1);
 
@@ -1056,16 +1056,19 @@ luaL_reg lfuncs[] = {
 
 	/* del_item_backpack(string item_name[, int multiplicity = 1])
 	 * add_item(string item_name, int multiplicity)
-	 * has_item_backpack(string item_name)
+	 * - Deletes or adds the given number of items from/to the inventory.
 	 *
-	 * Deletes or gives the given number of items.
-	 * has_time returns the number of items of the given name currently in the inventory.
+	 * count_item_backpack(string item_name)
+	 * - returns the number of items of the given name currently in the inventory.
+	 *
+	 * has_item_equipped(string item_name)
+	 * - returns true when the item is equipped
 	 */
 	{"del_item_backpack", lua_event_delete_item}
 	,
 	{"add_item", lua_event_give_item}
 	,
-	{"has_item_backpack", lua_event_has_item_backpack}
+	{"count_item_backpack", lua_event_count_item_backpack}
 	,
 	{"has_item_equipped", lua_event_has_item_equipped}
 	,

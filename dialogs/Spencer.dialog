@@ -245,7 +245,7 @@ Nr=20 Text=_"Francis wanted me to give you a data cube."
 	npc_says(_"We had a little disagreement, Francis and I. He refused to accept our rule and do the task we gave him.")
 	npc_says(_"I had to persuade him myself.")
 	npc_says(_"Well, give me the data cube.")
-	if (has_item_backpack("Data cube") > 0) then
+	if (has_item_backpack("Data cube")) then
 		show(21, 22, 25, 26)
 	else
 		show(23, 25, 26)
@@ -332,7 +332,7 @@ Nr=29 Text=_"I would like to talk about the Francis' cube."
 <LuaCode>
 	npc_says(_"Well, I'm listening to you. But you must be quickly, I've no time to loose.")
 	npc_says(_"If you found the data cube, just give it.")
-	if (has_item_backpack("Data cube") > 0) then
+	if (has_item_backpack("Data cube")) then
 		show(21, 22)
 	else
 		show(23)

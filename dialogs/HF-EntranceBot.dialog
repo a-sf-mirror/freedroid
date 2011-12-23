@@ -32,7 +32,7 @@ Beginning of new chat dialog for character="XXXXX"
 	npc_says(_"Proof of authorization is required.")
 	if (has_cookie("MSStockCertificateOpensGate")) then
 		tux_says(_"How many times do I have to show you my certificate, tin can?")
-		if (has_item("MS Stock Certificate") > 0) then
+		if (has_item("MS Stock Certificate")) then
 			npc_says(_"[b]Validating certificate...[/b]")
 			npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")
 			npc_says(_"[b]Certificate valid.[/b]", "NO_WAIT")
@@ -65,7 +65,7 @@ Nr=2 Text=_"I am working here."
 	npc_says(_"Please prove your statement.")
 	tux_says(_"Do I look like a typical MegaSys slave, errr, worker to you, stupid bot?")
 	npc_says(_"No insults, please. But, no")
-	if (has_item("MS Stock Certificate") > 0) then
+	if (has_item("MS Stock Certificate")) then
 		tux_says(_"But I have this certificate")
 		npc_says(_"[b]Validating certificate...[/b]")
 		npc_says(_"[b]Validation complete.[/b]", "NO_WAIT")

@@ -36,7 +36,7 @@ Beginning of new chat dialog for character="XXXXX"
 		tux_says(_"Uhh, yes, thank you, I know.")
 	end
 
-	if (has_item_backpack("Nuclear Science for Dummies IV") > 0) then
+	if (has_item_backpack("Nuclear Science for Dummies IV")) then
 		show(10)
 	end
 
